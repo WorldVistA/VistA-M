@@ -1,5 +1,5 @@
 PSBVDLVL ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,12,11,13,32,25,61,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**6,3,12,11,13,32,25,61,70,83,114**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;
@@ -101,8 +101,9 @@ EN(RESULTS,DFN,PSBXOR,PSBTYPE,PSBADMIN,PSBTAB,PSBUID,PSBASTS,PSBORSTS,PSBRMV,PSB
  ..;
  ..;MRR - Previous Admin NOT REMOVED tests
  ..I LSTACTN="G",PSBFLAG=0 D
- ...I $P($G(^PSB(53.79,PSBLAIEN,.5,1,0)),U,4)="PATCH" D NOTREMVD
- ...I 'X,$P($G(^PSB(53.79,PSBLAIEN,.5,1,0)),U,6)>0 D NOTREMVD
+ ...N DSPDRG S DSPDRG=$O(^PSB(53.79,PSBLAIEN,.5,0)) I 'DSPDRG Q
+ ...I $P($G(^PSB(53.79,PSBLAIEN,.5,DSPDRG,0)),U,4)="PATCH" D NOTREMVD
+ ...I 'X,$P($G(^PSB(53.79,PSBLAIEN,.5,DSPDRG,0)),U,6)>0 D NOTREMVD
  ..;
  ..;if trying to Give an earlier dose after a later admin Given   *83
  ..S PSBLSTGV=$P(^PSB(53.79,PSBLAIEN,.1),U,3)

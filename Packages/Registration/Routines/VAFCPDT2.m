@@ -1,5 +1,5 @@
-VAFCPDT2 ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ; 1/6/11 3:57pm
- ;;5.3;Registration;**414,505,627,697,797,876,937,944**;Aug 13, 1993;Build 2
+VAFCPDT2 ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ;14 Nov 2018  4:20 PM
+ ;;5.3;Registration;**414,505,627,697,797,876,937,944,974**;Aug 13, 1993;Build 2
  ;Reference to ^MPIF(984.9,"C" supported by IA #3298
  ;
 CMORHIS ;Find CMOR History
@@ -111,10 +111,19 @@ EXT ;Extended patient demographic data
  .S SRVEDT="" F  S SRVEDT=$O(MSDARR(SRVEDT)) Q:'SRVEDT  D
  ..W !?0,$P(MSDARR(SRVEDT),"^",3),?17,$P(MSDARR(SRVEDT),"^",2),?29,$$FMTE^XLFDT($P(SRVEDT,"-",2)),?44,$$FMTE^XLFDT(+MSDARR(SRVEDT))
  ;
+ ;**974,Story 841921 (mko): Name Components
+ N NCIEN
+ S NCIEN=+$P($G(^DPT(DFN,"NAME")),"^")
+ I NCIEN W !,"PATIENT NAME COMPONENTS:" D NC(NCIEN,3,22)
+ ;
  ;ALIAS multiple
- I $O(^DPT(DFN,.01,0)) D 
+ I $O(^DPT(DFN,.01,0)) D
  .W !,"ALIAS (multiple):"
- .S ALIAS=0 F  S ALIAS=$O(^DPT(DFN,.01,ALIAS)) Q:'ALIAS  W !?3,$E($P(^DPT(DFN,.01,ALIAS,0),"^"),1,30),?35,"SSN: "_$P($G(^DPT(DFN,.01,ALIAS,0)),"^",2)
+ .S ALIAS=0 F  S ALIAS=$O(^DPT(DFN,.01,ALIAS)) Q:'ALIAS  D
+ ..;**974,Story 841921 (mko): Show the entire Alias Name rather than truncating to 30
+ ..W !?3,$P(^DPT(DFN,.01,ALIAS,0),"^"),?40,"SSN: "_$P($G(^DPT(DFN,.01,ALIAS,0)),"^",2)
+ ..;**974,Story 841921 (mko): Alias Name Components
+ ..D NC(+$P($G(^DPT(DFN,.01,ALIAS,0)),"^",3),6,25)
  ;
  ; Preferred Name
  I $G(DNODE(2,DFN,.2405,"E"))]"" W !,"PREFERRED NAME",?31,": ",DNODE(2,DFN,.2405,"E")
@@ -122,6 +131,18 @@ EXT ;Extended patient demographic data
  W !,"DATE ENTERED IN PATIENT FILE",?31,": ",FILEDT
  ;
  K ALIAS,XDATA,CHG,CHGNUM,CHGDT,TMSG,TREQ,SITE,STATUS,HIS,HISCMOR,CMORNODE,CHGNODE,RACEMUL,VADM,MSDARR
+ Q
+ ;
+NC(NCIEN,TAB1,TAB2) ;**974,Story 841921 (mko): Get and write Name Components
+ Q:'$G(NCIEN)
+ S TAB1="?"_+$G(TAB1),TAB2="?"_+$G(TAB2)
+ N DIERR,DIHELP,DIMSG,NC,NCIENS,TARG,MSG
+ S NCIENS=NCIEN_","
+ D GETS^DIQ(20,NCIENS,"1;2;3;5","I","TARG","MSG") Q:$D(DIERR)
+ S NC=$G(TARG(20,NCIENS,1,"I")) W:NC]"" !,@TAB1,"Family (Last) Name",@TAB2,": "_NC
+ S NC=$G(TARG(20,NCIENS,2,"I")) W:NC]"" !,@TAB1,"Given (First) Name",@TAB2,": "_NC
+ S NC=$G(TARG(20,NCIENS,3,"I")) W:NC]"" !,@TAB1,"Middle Name",@TAB2,": "_NC
+ S NC=$G(TARG(20,NCIENS,5,"I")) W:NC]"" !,@TAB1,"Suffix",@TAB2,": "_NC
  Q
  ;
 CHISHDR W !!,"CMOR History:",!,"--------------"

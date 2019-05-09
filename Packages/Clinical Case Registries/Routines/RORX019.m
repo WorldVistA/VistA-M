@@ -1,5 +1,5 @@
 RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,26,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,26,31,33,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -18,9 +18,9 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
  ;                                      additional identifier option selected
  ;ROR*1.5*26   MAY 2015    T KOPP       Set up LIVPARAM so it can be called
  ;                                      from other entry points/reports
- ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
- ;                                      identifiers.
- ;ROR*1.5*33   MAY 2017    F TRAXLER    Adding FUT_APPT as additional identifier
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB
+ ;ROR*1.5*33   MAY 2017    F TRAXLER    Adding FUT_APPT
+ ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_CLIN
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -231,7 +231,8 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  . D ADDVAL^RORTSK11(RORTSK,"PCP",TMP,PTAG,1)
  I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D
  . S TMP=$$FUTAPPT^RORUTL02(DFN,$$PARAM^RORTSK01("OPTIONS","FUT_APPT"))
- . D ADDVAL^RORTSK11(RORTSK,"FUT_APPT",TMP,PTAG,1)
+ . D ADDVAL^RORTSK11(RORTSK,"FUT_APPT",$P(TMP,U,1),PTAG,1)
+ . D ADDVAL^RORTSK11(RORTSK,"FUT_CLIN",$P(TMP,U,2),PTAG,1)
  Q ($S($G(TTAG)<0:TTAG,1:1))
  ;
  ;*****************************************************
@@ -263,7 +264,7 @@ TSTRSLT(TNAME,MTAG) ;
  D ADDVAL^RORTSK11(RORTSK,"RESULT",$P($G(RORDATA(TNAME)),U,1),TTAG)
  Q
  ;****************************************************************
- ;Function to check whether patient should be included on report
+ ;Function
  ;To be included patient must have a score for at least one of
  ;the scores requested by the user
  ;
@@ -333,7 +334,7 @@ HEADER(PARTAG,PARAMS) ;
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
  ;manually build the table defintion(s) listed below
- ;PATIENTS(#,NAME,LAST4,AGE,DOD,TEST,DATE,RESULT,MELD,MELDNA,APRI,FIB4,ICN,PACT,PCP,FUT_APPT)
+ ;PATIENTS(#,NAME,LAST4,AGE,DOD,TEST,DATE,RESULT,MELD,MELDNA,APRI,FIB4,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)
  S COLUMNS=$$ADDVAL^RORTSK11(RORTSK,"TBLDEF",,HEADER)
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"NAME","PATIENTS")
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"HEADER","1")
@@ -372,6 +373,9 @@ HEADER(PARTAG,PARAMS) ;
  I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","FUT_APPT")
+ I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D
+ . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
+ . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","FUT_CLIN")
  ;--- LOINC codes
  N LTAG S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)
  N CTAG S CTAG=$$ADDVAL^RORTSK11(RORTSK,"CODE",,LTAG)
@@ -457,4 +461,3 @@ LIVPARAM(RORDATA,RORTSK,RORLC) ;
  . S RORLC(7)="1742-6^LN" ;ALT LOINC
  . S RORLC(8)="16325-3^LN" ;ALT LOINC
  Q
- ;

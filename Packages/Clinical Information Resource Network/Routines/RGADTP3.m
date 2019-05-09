@@ -1,5 +1,5 @@
-RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ;4/27/17  16:30
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68**;30 Apr 99;Build 1
+RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ; 12/10/18 3:01pm
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68,71**;30 Apr 99;Build 2
  ;
  ;MOVED CHKPVT AND DIFF FROM RGADTP2 DUE TO ROUTINE SIZE ISSUE
  Q
@@ -19,7 +19,22 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  S DR="",NAME=$$GET1^DIQ(2,+RGRSDFN_",",.01,"I"),HLNAME=ARRAY("NAME")
  ;**48 remove name standardization check
  ;D STDNAME^XLFNAME(.NAME,"F",.OLDNAME) S HLNAME=ARRAY("NAME") D STDNAME^XLFNAME(.HLNAME,"F",.OLDHLNAM)
- I NAME'=$G(HLNAME) S DR=DR_".01;",ARAY(2,.01)=ARRAY("NAME")
+ ;**71,Story 841921 (mko): If the Name Components flag is not set, and the incoming name is > 30 chars,
+ ;    use the name components to build a truncated name
+ ;  If the flag is set, then we need to update the Name Components entry rather than the Patient Name.
+ ;    Save the incoming components in ARAY(20), when different from existing values
+ I '$$GETFLAG^MPIFNAMC D
+ .S:$L(HLNAME)>30 (HLNAME,ARRAY("NAME"))=$$FMTNAME(.ARRAY,30)
+ .S:NAME'=$G(HLNAME) DR=DR_".01;",ARAY(2,.01)=ARRAY("NAME")
+ E  D
+ .N DIERR,DIMSG,DIHELP,MSG,NCIENS,TARG
+ .S NCIENS=$$GET1^DIQ(2,+RGRSDFN_",",1.01,"I","","MSG")_","
+ .D:NCIENS>0 GETS^DIQ(20,NCIENS,"1;2;3;5","I","TARG","MSG")
+ .S:$G(TARG(20,NCIENS,1,"I"))'=$G(ARRAY("SURNAME")) ARAY(2,1.01,"FAMILY")=$G(ARRAY("SURNAME"))
+ .S:$G(TARG(20,NCIENS,2,"I"))'=$G(ARRAY("FIRST")) ARAY(2,1.01,"GIVEN")=$G(ARRAY("FIRST"))
+ .S:$G(TARG(20,NCIENS,3,"I"))'=$G(ARRAY("MIDDLE")) ARAY(2,1.01,"MIDDLE")=$G(ARRAY("MIDDLE"))
+ .S:$G(TARG(20,NCIENS,5,"I"))'=$G(ARRAY("SUFFIX")) ARAY(2,1.01,"SUFFIX")=$G(ARRAY("SUFFIX"))
+ .S:$D(ARAY(2,1.01)) DR=DR_"1.01;"
  ;**67 - Story 455460 (ckn) - Update Preferred Name
  S PREFNAME=$$GET1^DIQ(2,+RGRSDFN_",",.2405,"I"),HLNAME=$G(ARRAY("PREFERREDNAME"))
  I PREFNAME'=$G(HLNAME) S DR=DR_".2405;",ARAY(2,.2405)=ARRAY("PREFERREDNAME")
@@ -99,7 +114,11 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  ..; S ODODD=ODODARY(2,+RGRSDFN_",",.357,"I")
  .. S ODODLUP=ODODARY(2,+RGRSDFN_",",.354,"I")
  .. S ODODSRC=ODODARY(2,+RGRSDFN_",",.353,"I")
- .. I ODOD=ARRAY("MPIDOD") Q  ;No update if no change in Date of Death
+ ..; I ODOD=ARRAY("MPIDOD") Q  ;No update if no change in Date of Death
+ ..;**71 - Story 841797 (ckn)
+ ..;DOD metadata update allowed if update is from PSIM TK OVERRIDE even
+ ..;if no change in Date of Death
+ .. I ODOD=ARRAY("MPIDOD"),'$G(ARRAY("TKOVRDOD")) Q
  .. I ODOD'=ARRAY("MPIDOD") S DR=DR_".351;",ARAY(2,.351)=$G(ARRAY(.351))
  ..; I ODODD'=$G(ARRAY("DODDocType")) S DR=DR_".357;",ARAY(2,.357)=$G(ARRAY(.357))
  .. I ODODLUP'=$G(ARRAY("DODLastUpdated")) S DR=DR_".354;",ARAY(2,.354)=$G(ARRAY(.354))
@@ -108,3 +127,24 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  .. ;Remove rest of the DOD fields if Date Of Death is getting updated
  .. S DR=DR_".352;.355;.357;.358",ARAY(2,.352)="@",ARAY(2,.355)="@",ARAY(2,.358)="@",ARAY(2,.357)="@"
  Q
+ ;
+FMTNAME(ARRAY,LEN) ;Return a formatted name from cleaned Name Components that doesn't exceed LEN characters in length.
+ ;**71,Story 841921 (mko): New function
+ N NC
+ S:'$G(LEN) LEN=30
+ ;
+ ;If ARRAY is passed as a string and doesn't have descendants assume it equals "surname^first^middle^suffix"
+ D:$D(ARRAY)=1
+ . S ARRAY("SURNAME")=$P(ARRAY,"^")
+ . S ARRAY("FIRST")=$P(ARRAY,"^",2)
+ . S ARRAY("MIDDLE")=$P(ARRAY,"^",3)
+ . S ARRAY("SUFFIX")=$P(ARRAY,"^",4)
+ ;
+ ;Clean the components
+ S NC("FAMILY")=$$CLEANC^XLFNAME($G(ARRAY("SURNAME")))
+ S NC("GIVEN")=$$CLEANC^XLFNAME($G(ARRAY("FIRST")))
+ S NC("MIDDLE")=$$CLEANC^XLFNAME($G(ARRAY("MIDDLE")))
+ S NC("SUFFIX")=$$CLEANC^XLFNAME($G(ARRAY("SUFFIX")))
+ ;
+ ;Build a full name, maximum length LEN
+ Q $$NAMEFMT^XLFNAME(.NC,"F","CL"_LEN)

@@ -1,5 +1,5 @@
 IBCEU5 ;ALB/TMP - EDI UTILITIES (continued) FOR CMS-1500 ;13-DEC-99
- ;;2.0;INTEGRATED BILLING;**51,137,232,348,349,432,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**51,137,232,348,349,432,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -115,7 +115,7 @@ HLPTXT ; Helptext for provider function
  ;; 
  ;;PROVIDER FUNCTION requirements:
  ;; 
- ;;RENDERING: UB-04 Situational, CMS-1500 REQUIRED (CMS-1500), or J430D Situational
+ ;;RENDERING: UB-04 Situational, CMS-1500 Situational, or J430D Situational
  ;;           This is the provider who performed a service.
  ;; 
  ;;ATTENDING: UB-04 REQUIRED

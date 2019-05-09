@@ -1,5 +1,5 @@
 IBCBB12 ;ALB/DEM - PROCEDURE AND LINE LEVEL PROVIDER EDITS ;17-OCT-2010
- ;;2.0;INTEGRATED BILLING;**432,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**432,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -41,8 +41,13 @@ LNPROV(IBIFN) ; DEM;432 - Edits for line level providers.
  ; JWS;IB*2.0*592 US1108 - end
  F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S IBPRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D
  . I IBFT=2,IBPRVFUN="RENDERING",'$$LNPRV2(IBPRVFUN),'$D(^DGCR(399,IBIFN,"PRV","C",IBPRVFUN)) D  Q  ; Edit Check (1).
- .. S OK=1  ; OK=1 indicates we have at least one error.
- .. S IBER=IBER_"IB333;"
+ .. ;
+ .. ;/Beginning of IB*2.0*608 - vd (US3214)
+ .. ; Changed the following from and error to a warning.
+ .. ;S OK=1  ; OK=1 indicates we have at least one error.
+ .. ;S IBER=IBER_"IB333;"
+ .. D WARN^IBCBB11("Claim has no Rendering Providers present.")
+ .. ;/Ending of IB*2.0*608 - vd (US3214)
  .. Q
  . Q:'$$LNPRV2(IBPRVFUN,.IBLNPRV)  ; Quit if not all the procedures have a line level provider of the same provider type.
  . Q:'$D(^DGCR(399,IBIFN,"PRV","C",IBPRVFUN))  ; No claim level provider for this provider type.

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MH TESTS AND SURVEYS
-10-APR-2019 13:50:09 ZWR
+09-MAY-2019 15:21:38 ZWR
 ^YTT(601.71,0)="MH TESTS AND SURVEYS^601.71s^243^240"
 ^YTT(601.71,1,0)="MMPI2^^Minnesota Multiphasic Personality Inventory 2"
 ^YTT(601.71,1,1)="^S.R. Hathaway and J.C. McKinley^NCS Pearson^^2900000"
@@ -323,7 +323,7 @@ OSEHRA ZGO Export: MH TESTS AND SURVEYS
 ^YTT(601.71,45,1)="^Leonard R. Derogatis^NCS Pearson^^3090000"
 ^YTT(601.71,45,2)="YSP^Y^Y^Y^Y"
 ^YTT(601.71,45,3)="Screen for a broad range of psychological problems and symptoms of psychopathology."
-^YTT(601.71,45,6)="A FINKELSTEIN^3040226^Schultz, Roger^3190205.1931^Y"
+^YTT(601.71,45,6)="A FINKELSTEIN^3040226^YS*5.01*143^3190501.145919^Y"
 ^YTT(601.71,45,8)="http://www.pearsonassessments.com/tests/scl90r.htm^N^Y^Y^Y^N^2^N^-1^-1"
 ^YTT(601.71,45,9)="^^1"
 ^YTT(601.71,46,0)="SDES^^Crowne-Marlowe Social Desirability Scale"

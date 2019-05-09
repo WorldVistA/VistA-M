@@ -1,5 +1,5 @@
 RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -12,7 +12,7 @@ RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
  ;                                    additional identifier option selected
  ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                    identifiers.
- ;
+ ;ROR*1.5*34   SEP 2018  F TRAXLER   Adding FUT_APPT and FUT_CLIN
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -27,12 +27,12 @@ RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
  ;
 HEADER(PARTAG) ;
  ;;PROCLST(#,PROCODE,PROCNAME,NP,NC,SOURCE)
- ;;PROCEDURES(#,NAME,LAST4,DOD,ICN,PACT,PCP,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
- ;;PROCEDURES(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PROCEDURES(#,NAME,LAST4,DOB,DOD,ICN,PACT,PCP,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PROCEDURES(#,NAME,LAST4,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PROCEDURES(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PROCEDURES(#,NAME,LAST4,DOB,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -81,6 +81,10 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;                         ^03: Date of Death
  ;                         ^04: National ICN
  ;                         ^05: Age/DOB
+ ;                         ^06: PACT
+ ;                         ^07: PCP
+ ;                         ^08: Future Appt.
+ ;                         ^09: Future clinic
  ;       "I",
  ;         ICDIEN,       Earliest Code Descriptor
  ;                         ^01: Date

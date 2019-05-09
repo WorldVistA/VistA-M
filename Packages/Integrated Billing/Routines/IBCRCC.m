@@ -1,5 +1,5 @@
 IBCRCC ;ALB/ARH - RATES: CALCULATION OF ITEM CHARGE ;22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,80,106,138,245,223,309,347,370,383,427,455,447,482**;21-MAR-94;Build 39
+ ;;2.0;INTEGRATED BILLING;**52,80,106,138,245,223,309,347,370,383,427,455,447,482,634**;21-MAR-94;Build 57
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ITMCHG and RATECHG are basic item/set/rate charge functions, IBCRCI contains more standard callable functions
@@ -154,8 +154,8 @@ MODCHG(CS,CHG,MODS) ; return adjusted amount due to RC modifier adjustment
  I 'CHG S MODS=""
  ;
  I +MODS F IBI=1:1 S IBMOD=$P(MODS,",",IBI) Q:'IBMOD  S IBY=0 D
- . I IBMOD=3 S IBMODE=22,IBY=1.3,IBX=IBX*IBY ; modifier 22 at 120% adjustment
- . I IBMOD=10 S IBMODE=50,IBY=1.54,IBX=IBX*IBY ; modifier 50 at 154% adjustment
+ . I IBMOD=3 S IBMODE=22,IBY=1.25,IBX=IBX*IBY ; modifier 22 at 125% adjustment
+ . I IBMOD=10 S IBMODE=50,IBY=1.50,IBX=IBX*IBY ; modifier 50 at 150% adjustment
  . I +IBY S IBMODS=IBMODS_$S(IBMODS="":"",1:",")_IBMODE,IBDSCNT=IBDSCNT*IBY ; allow for multiple discounts
  I IBMODS'="" S IBPDTY=U_"Modifier "_IBMODS_" Adjustment "_(IBDSCNT*100)_"% of "_$J(CHG,0,2)_U_+IBDSCNT
  Q IBX_IBPDTY

@@ -1,6 +1,6 @@
 IBCBB13 ;ALB/BI - PROCEDURE AND LINE LEVEL PROVIDER EDITS ;5-OCT-2011
- ;;2.0;INTEGRATED BILLING;**447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**447,608**;21-MAR-94;Build 90
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 IBLNTOT(IBIFN)   ; Calculate Line total charges.  IB*2.0*447 BI
@@ -80,3 +80,64 @@ IBMPID(IBIFN)   ; Test for multiple payers. IB*2.0*447 BI
  I IBPAY2,$S(IBINSTIT:$$GET1^DIQ(36,IBPAY2_",",3.04),1:$$GET1^DIQ(36,IBPAY2_",",3.02))="" Q 1
  I IBPAY3,$S(IBINSTIT:$$GET1^DIQ(36,IBPAY3_",",3.04),1:$$GET1^DIQ(36,IBPAY3_",",3.02))="" Q 1
  Q 0
+ ;
+CMNCHK(IBIFN) ;JRA;IB*2.0*608 Check for missing required Certificate of Medical Necessity (CMN) data
+ ; Input : IBIFN = IEN of the Bill/Claim (D399)
+ ; Output: IBER  = NULL if no errors      
+ ;               = String of IB Error Message codes delimited by ';'
+ ;               => Note that the return value is appended to the 'IBER' variable in routine ^IBCBB1
+ Q:IBIFN="" ""
+ N CERTYP,CMNNODE,CMNREQ,DA,DIE,ERR,FRMNAM,FRMIEN,FORM,FRMTYP,IBER,IBPROCP,PROCNUM
+ S IBER=""
+ ;Set up array of each existing Form Type (i.e. Form IENs) and associated ^DGCR data node.
+ S FRMNAM="" F  S FRMNAM=$O(^IBE(399.6,"B",FRMNAM)) Q:FRMNAM=""  S FRMIEN=+$O(^IBE(399.6,"B",FRMNAM,"")) I FRMIEN D
+ . S FORM(FRMIEN)=$P($G(^IBE(399.6,FRMIEN,0)),U,4)
+ ;Loop thru all procedures on the claim searching for missing CMN data
+ S IBPROCP=0 F  S IBPROCP=$O(^DGCR(399,IBIFN,"CP",IBPROCP)) Q:'IBPROCP  D  Q:IBER]""
+ . ;If "CMN Required?" is NULL then QUIT w/out further checking
+ . S CMNREQ=$$CVALCHK(IBPROCP,23,,"I") Q:CMNREQ=""
+ . I 'CMNREQ,$D(FORM)>1 D  Q  ;"CMN Required?" flagged as "NO" so check if data node(s) exist anyway for at least 1 form
+ . . S ERR=0,FRMIEN="" F  S FRMIEN=$O(FORM(FRMIEN)) Q:FRMIEN=""  I FORM(FRMIEN)]"" D  Q:ERR
+ . . . S CMNNODE="^DGCR(399,"_IBIFN_",""CP"","_IBPROCP_","""_FORM(FRMIEN)_""")" I $D(@CMNNODE) S ERR=1,IBER=IBER_"IB901;"
+ . S FRMTYP=$$CVALCHK(IBPROCP,24,"IB902","I") Q:'FRMTYP  ;Check for "CMN FORM TYPE" (Internal value)
+ . I $G(FORM(FRMTYP))]"" D  Q:ERR
+ . . ;Check if any data exists at the node specific to the Form Type
+ . . S ERR=0,CMNNODE="^DGCR(399,"_IBIFN_",""CP"","_IBPROCP_","""_FORM(FRMTYP)_""")"
+ . . I '$D(@CMNNODE) S ERR=1,IBER=IBER_"IB903;" Q
+ . . Q:FORM(FRMTYP)'[10126
+ . . N ND10126
+ . . S ND10126=@CMNNODE
+ . . I $P(ND10126,U,17)]"" S $P(ND10126,U,17)="" I $TR(ND10126,U)="" S ERR=1,IBER=IBER_"IB903;"
+ . ;Check if any data exists for at least 1 node other than that associated with the Form Type 
+ . S ERR=0,FRMIEN="" F  S FRMIEN=$O(FORM(FRMIEN)) Q:FRMIEN=""  I FRMIEN'=FRMTYP,FORM(FRMIEN)]"" D  Q:ERR
+ . . S CMNNODE="^DGCR(399,"_IBIFN_",""CP"","_IBPROCP_","""_FORM(FRMIEN)_""")" I $D(@CMNNODE) S ERR=1,IBER=IBER_"IB904;"
+ . ;Check for Required fields at the data node common to all forms (node 'CMN')
+ . S CERTYP=$$CVALCHK(IBPROCP,24.01,"IB905","I") Q:CERTYP=""  ;Check for "CMN CERTIFICATION TYPE"
+ . D CVALCHK(IBPROCP,24.05,"IB907","I")  ;Check for "CMN DATE THERAPY STARTED"
+ . D CVALCHK(IBPROCP,24.06,"IB908","I")  ;Check for "CMN LAST CERTIFICATION DATE"
+ . ;IF Certificate Type is "RENEWAL" (R) or "REVISED" (S) then "CMN RECERTIFICATION/REVISN DT" is Required.
+ . I CERTYP="R"!(CERTYP="S") D CVALCHK(IBPROCP,24.07,"IB909","I")
+ . ;
+ . ;Check for required fields specific to the CMN-484 form
+ . I FORM(FRMTYP)[484 D  ;Check for required fields/dates
+ . . I $$CVALCHK(IBPROCP,24.1,,"I")]""!($$CVALCHK(IBPROCP,24.102,,"I")]"") D CVALCHK(IBPROCP,24.103,"IB912","I")
+ . . I $$CVALCHK(IBPROCP,24.111,,"I")]""!($$CVALCHK(IBPROCP,24.113,,"I")]"") D CVALCHK(IBPROCP,24.114,"IB914","I")
+ . ;
+ . ;Check for required fields specific to the CMN-10126 form
+ . I FORM(FRMTYP)[10126 D
+ . . D CVALCHK(IBPROCP,24.217,"IB906","I")
+ . . N PROCMSG
+ . . S PROCMSG="CMN ""Procedure ",PROCMSG(1)=""" has no associated Calories."
+ . . I $$CVALCHK(IBPROCP,24.204,,"I")]"",'$$CVALCHK(IBPROCP,24.203,,"I") D WARN^IBCBB11(PROCMSG_"A"_PROCMSG(1))
+ . . I $$CVALCHK(IBPROCP,24.219,,"I")]"",'$$CVALCHK(IBPROCP,24.218,,"I") D WARN^IBCBB11(PROCMSG_"B"_PROCMSG(1))
+ ;
+ I IBER]"" S IBER="IB915;"_IBER
+ Q IBER
+ ;
+CVALCHK(IBPROCP,FLD,ERROR,FLG) ;JRA;IB*2.0*608 Check value of CMN field & append Error Code (if any) to list of errors
+ Q:($G(FLD)=""!('$G(IBPROCP)))
+ N VAL
+ S VAL=$$CMNDATA^IBCEF31(IBIFN,IBPROCP,FLD,$G(FLG))
+ I $G(ERROR)]"",VAL="" S IBER=IBER_ERROR_";"
+ Q VAL
+ ;

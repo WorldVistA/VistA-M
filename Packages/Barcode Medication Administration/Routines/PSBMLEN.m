@@ -1,5 +1,5 @@
 PSBMLEN ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**4,9,19,75,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**4,9,19,75,83,114**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -192,7 +192,8 @@ EDIT1   ;
 VALID ;
  I $G(PSBSTUS)="RM","^RM^"'[("^"_X_"^") W $C(7) S DDSERROR=1 D HLP^DDSUTL("Status of Removed cannot be changed.") Q
  I $G(PSBREC(7))'="Entry created with 'Manual Medication Entry' option." D  Q
- .I ($D(^PSB(53.79,DA,.5,1,0))),($P($G(^PSB(53.79,DA,.5,1,0)),U,4)="PATCH") D  Q
+ .N DSPDRG S DSPDRG=$O(^PSB(53.79,DA,.5,0)) I 'DSPDRG Q
+ .I ($D(^PSB(53.79,DA,.5,DSPDRG,0))),($P($G(^PSB(53.79,DA,.5,DSPDRG,0)),U,4)="PATCH") D  Q
  ..I "^G^N^H^R^RM^"'[("^"_X_"^") W $C(7) S DDSERROR=1 D HLP^DDSUTL("Allowed status codes are Given, Not Given, Held, Refused and Removed.")
  .I "^G^N^H^R^"'[("^"_X_"^") W $C(7) S DDSERROR=1 D HLP^DDSUTL("Allowed status codes are Given, Not Given, Held, and Refused.")
  I "^G^H^R^"'[("^"_X_"^") W $C(7) S DDSERROR=1 D HLP^DDSUTL("Allowed status codes are Given, Held, and Refused.") Q

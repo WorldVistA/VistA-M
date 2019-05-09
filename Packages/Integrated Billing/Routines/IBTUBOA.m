@@ -1,5 +1,5 @@
 IBTUBOA ;ALB/RB - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;01-JAN-01
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,155,276,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,155,276,516,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; - Entry point from Taskman.
@@ -92,6 +92,7 @@ IBTUBOA ;ALB/RB - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;01-JAN-01
  ;
 PROC ; - Loops through all the entries in the Claims Tracking file for the
  ;   period selected and calculate the Unbilled Amounts
+ N NVELIG  ;JRA;IB*2.0*608 Flag set to 1 if patient has non-veteran eligibility
  S IBDT=IBBDT-.1
  ;
  F  S IBDT=$O(^IBT(356,"D",IBDT)) Q:'IBDT!(IBDT>IBEDT)  D
@@ -101,13 +102,26 @@ PROC ; - Loops through all the entries in the Claims Tracking file for the
  . . I $P(IBNODE,U,19) Q  ;  Reason not billable assigned.
  . . I '$P(IBNODE,U,20) Q  ; Inactive.
  . . S DFN=+$P(IBNODE,U,2)
- . . I '$$PTCHK^IBTUBOU(DFN,IBNODE) Q  ; Has a non-veteran eligibility.
+ . . ;Non-veteran eligibility includes CHAMPVA & TRICARE which is non-MCCF so do not screen out
+ . . ;I '$$PTCHK^IBTUBOU(DFN,IBNODE) Q  ; Has a non-veteran eligibility.  ;JRA;IB*2.0*608 ';'
+ . . S NVELIG='$$PTCHK^IBTUBOU(DFN,IBNODE)  ;JRA;IB*2.0*608
  . . I '$$INSURED^IBCNS1(DFN,IBDT) Q  ;  Not insured during care.
- . . I $P(IBNODE,U,5),IBSEL[1,$$COV^IBTUBOU(DFN,IBDT,1) D  Q  ;Inpatient
+ . . ;JRA;IB*2.0*608 No Inpatient for Non-MCCF
+ . . ;I $P(IBNODE,U,5),IBSEL[1,$$COV^IBTUBOU(DFN,IBDT,1) D  Q  ;Inpatient  ;JRA;IB*2.0*608 ';'
+ . . I 'NVELIG,$G(IBMCCF)'="N",$P(IBNODE,U,5),IBSEL[1,$$COV^IBTUBOU(DFN,IBDT,1) D  Q  ;Inpatient  ;JRA;IB*2.0*608
  . . . S DGPM=+$P(IBNODE,U,5) D INPT^IBTUBO2(DGPM)
  . . I $P(IBNODE,U,4),IBSEL[2,$$COV^IBTUBOU(DFN,IBDT,2) D  Q  ;Outpatient
  . . . S IBOE=+$P(IBNODE,U,4) I $$NCCL^IBTUBOU(IBOE) Q  ; Non-Count Clinic
+ . . . ;JRA;IB*2.0*608 Check if Eligibility of Encounter, Appointment Type & Rate Type meet MCCF/Non-MCCF Criteria
+ . . . I $G(IBMCCF)]"",(IBMCCF'="B") N OK S OK=1 D  Q:'OK  ;JRA;IB*2.0*608
+ . . . . N CLAIM S CLAIM=+$P(IBNODE,U,11)
+ . . . . ;If looking only for MCCF and there is a non-veteran eligibility, this entry is Non-MCCF so don't process
+ . . . . I IBMCCF="M",'$$PTCHK^IBTUBOU(DFN,IBNODE) S OK=0 Q  ;Copied condition from above & modified
+ . . . . I IBOE S OK=$$MCCFCKX^IBTUBOU(409.68,IBOE,.13,"ELIG")  ;Check Eligibilty of Encounter
+ . . . . I IBOE,((OK'=1&(IBMCCF="N"))!(IBMCCF="M"&(OK))) S OK=$$MCCFCKX^IBTUBOU(409.68,IBOE,.1,"ATYP")  ;Check Appointment Type
+ . . . . I CLAIM,((OK'=1&(IBMCCF="N"))!(IBMCCF="M"&(OK))) S OK=$$MCCFCKX^IBTUBOU(399,CLAIM,.07,"RTYP")  ;Check Rate Type
  . . . D OPT^IBTUBO1(IBOE,.IBQUERY)
+ . . Q:($G(IBMCCF)="N"!(NVELIG))  ;JRA;IB*2.0*608 Quit if Non-MCCF since only want Outpatient or quit if patient has non-veteran eligibility
  . . I $P(IBNODE,U,8),IBSEL[3,$$COV^IBTUBOU(DFN,IBDT,3) D  Q  ;Prescription
  . . . N IBIFN,IBCSTAT S IBIFN=+$P(IBNODE,U,11)
  . . . I IBIFN S IBCSTAT=$$GET1^DIQ(399,IBIFN_",",.13,"I") Q:$S(IBCSTAT=0:1,IBCSTAT=1:0,IBCSTAT=2:1,IBCSTAT=3:1,IBCSTAT=4:1,IBCSTAT=5:1,IBCSTAT=7:0,1:1)  ;already billed (modified in T9)

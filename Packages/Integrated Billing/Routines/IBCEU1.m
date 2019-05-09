@@ -1,8 +1,8 @@
 IBCEU1 ;ALB/TMP - EDI UTILITIES FOR EOB PROCESSING ;10-FEB-99
- ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432,473,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432,473,547,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
-CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
+CCOB1(IBIFN,NODE,SEQ,IBRSBTST) ; Extract Claim level COB data
  ; for a bill IBIFN
  ; NODE = the file 361.1 node(s) to be returned, separated by commas
  ; SEQ = the specific insurance sequence you want returned.  If not =
@@ -10,14 +10,18 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  ; Returns IBXDATA(COB,n,node)  where COB = COB insurance sequence,
  ;  n is the entry number in file 361.1 and node is the node requested
  ;   = the requested node's data
+ ; IBRSBTST=1, this indicates the claim is being resubmitted as a "TEST"
+ ;             claim and should be used be the OUTPUT FORMATTER entries
+ ;             to determine what COB information is going out. - IB*2*608 (vd)
  ;
- N IB,IBN,IBBILL,IBS,A,B,C,IBCURR,IBMRAF,Z
+ N IB,IBN,IBBILL,IBS,A,B,C,IBCURR,IBMRAF,Z,CSEQ
  ;
  K IBXDATA
  ;
  S:$G(NODE)="" NODE=1
  S IB=$P($G(^DGCR(399,IBIFN,"M1")),U,5,7)
  S IBCURR=$$COB^IBCEF(IBIFN)
+ S CSEQ=$$COBN^IBCEF(IBIFN)
  ; ib*2.0*547 make sure you only set MRA flag if MRA on current sequence being checked
  ;S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
  S IBMRAF=$P($$MCRONBIL^IBEFUNC(IBIFN,$S(IBCURR="P":1,IBCURR="S":2,1:3)),U,2)
@@ -27,6 +31,7 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  F B=1:1:3 S IBBILL=$P(IB,U,B) I IBBILL S C=0 F  S C=$O(^IBM(361.1,"B",IBBILL,C)) Q:'C  D
  . I '$$EOBELIG(C,IBMRAF,IBCURR) Q      ; eob not eligible for secondary claim
  . S IBS=$P($G(^IBM(361.1,C,0)),U,15)   ; insurance sequence
+ . I +$G(IBRSBTST),((CSEQ=IBS)!(CSEQ<IBS)) Q   ; IB*2.0*608/vd (US2486) added to prevent COB Data from being put on Resubmitted Claims for TEST.
  . I $S('$G(SEQ):1,1:SEQ=IBS) D
  .. F Z=1:1:$L(NODE,",") D
  ... S A=$P(NODE,",",Z)
@@ -41,7 +46,7 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  ;
  Q
  ;
-CCAS1(IBIFN,SEQ) ; Extract all MEDICARE COB claim level adjustment data
+CCAS1(IBIFN,SEQ,IBRSBTST) ; Extract all MEDICARE COB claim level adjustment data
  ; for a bill IBIFN (subfile 361.11 in file 361.1)
  ; SEQ = the specific insurance sequence you want returned.  If not =
  ;       1, 2, or 3, all are returned
@@ -50,14 +55,19 @@ CCAS1(IBIFN,SEQ) ; Extract all MEDICARE COB claim level adjustment data
  ;       = the 0-node of the subfile entry (361.11)
  ;    and IBXDATA(COB,n,m) where m is a sequential # and
  ;                         = this level's 0-node
- N IB,IBA,IBS,IB0,IB00,IBBILL,B,C,D,E
+ ; IBRSBTST=1, this indicates the claim is being resubmitted as a "TEST"
+ ;             claim and should be used be the OUTPUT FORMATTER entries
+ ;             to determine what COB information is going out. - IB*2*608 (vd)
+ N IB,IBA,IBS,IB0,IB00,IBBILL,B,C,D,E,CSEQ
  ;
  S IB=$P($G(^DGCR(399,IBIFN,"M1")),U,5,7)
  S:"123"'[$G(SEQ) SEQ=""
+ S CSEQ=$$COBN^IBCEF(IBIFN)
  ;
  F B=1:1:3 S IBBILL=$P(IB,U,B) I IBBILL S C=0 F  S C=$O(^IBM(361.1,"B",IBBILL,C)) Q:'C  D
  . I '$$EOBELIG(C) Q      ; eob not eligible for secondary claim
  . S IBS=$P($G(^IBM(361.1,C,0)),U,15)   ; insurance sequence
+ . I +$G(IBRSBTST),((CSEQ=IBS)!(CSEQ<IBS)) Q   ; IB*2.0*608/vd (US2486) added to prevent COB Data from being put on Resubmitted Claims for TEST.
  . I $S('$G(SEQ):1,1:SEQ=IBS) D
  .. S (IBA,D)=0 F  S D=$O(^IBM(361.1,C,10,D)) Q:'D  S IB0=$G(^(D,0)) D
  ... S IBXDATA(IBS,D)=IB0
@@ -278,3 +288,23 @@ CHKCCOB1(IBIFN,IBS)  ; Test to see if Patient Responsibility pieces should be in
  S EOBIEN=$O(IBXDATA(IBS,0))
  S RESULT='$$LPREXIST(EOBIEN)
  Q RESULT
+ ;
+ ;/IB*2*608 (vd) (US2486) - Added this module of code to be referenced by the Output Formatter.
+CKCOBTST(IBXIEN,IBXSAVE,Z0,Z,IBRSBTST)  ; Check Primary, Secondary & Tertiary COBS for Claims Resubmitted as Test.
+ ; INPUT:  IBXIEN   - Current Claim number
+ ;         IBXSAVE  - Array containing current claim COB data.
+ ;         Z0       - Will equal "INPT", "OUTPT" or "RX"
+ ;         Z        - Is the LINE
+ N A,CURSEQ,XX
+ I '+$G(IBRSBTST) M IBXSAVE("LCOB",Z)=IBXSAVE(Z0,Z) Q  ; Only concerned with Claims that are Resubmitted as Test.
+ S A="",CURSEQ=$$COBN^IBCEF(IBXIEN)
+ ; With the line below, ideally, we want to merge all of IBXSAVE(Z0,Z) into IBXSAVE("LCOB",Z),
+ ; but the COB node should be handled separately for the current sequence.
+ S IBXSAVE("LCOB",Z)=IBXSAVE(Z0,Z)
+ S XX="" F  S XX=$O(IBXSAVE(Z0,Z,XX)) Q:XX=""  I XX'="COB" M IBXSAVE("LCOB",Z,XX)=IBXSAVE(Z0,Z,XX)
+ ; Now handle the COB node for the current sequence.
+ F  S A=$O(IBXSAVE(Z0,Z,"COB",A)) Q:A=""  D   ; Only want to merge those COBS that are previous to the current
+ . I (CURSEQ=A)!(CURSEQ<A) Q   ; Only want to merge those COBS that are previous to the current sequence.
+ . M IBXSAVE("LCOB",Z,"COB",A)=IBXSAVE(Z0,Z,"COB",A)
+ Q
+ ;

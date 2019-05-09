@@ -1,5 +1,5 @@
 IBJPS3 ;BP/YMG - IB Site Parameters, Pay-To Provider ;20-Oct-2008
- ;;2.0;INTEGRATED BILLING;**400,432,516,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**400,432,516,577,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; MRD;IB*2.0*516 - Added logic pertaining to TRICARE-Specific Pay-To
@@ -13,7 +13,7 @@ EN(IBTCFLAG) ; -- main entry point for IBJP IB PAY-TO PROVIDERS
 HDR(IBTCFLAG) ; -- header code
  ; Not setting VALMHDR causes this tag to be called upon return from every action, 
  ; this is done to keep VALMSG displayed at all times, instead of the default message on the lower bar.
- S VALMSG="* = Default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-to provider"
+ S VALMSG="* = Default "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-to provider"
  Q
  ;
 INIT(IBTCFLAG) ; -- init variables and list array
@@ -52,7 +52,7 @@ INIT(IBTCFLAG) ; -- init variables and list array
  .S @VALMAR@("ZIDX",IBCNT,PIEN)=""
  .Q
  ;
- I 'IBLN S IBLN=$$SET(IBLN,$$SETSTR^VALM1("No "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Providers defined.","",13,40))
+ I 'IBLN S IBLN=$$SET(IBLN,$$SETSTR^VALM1("No "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Providers defined.","",13,40))
  ;
  S VALMCNT=IBLN,VALMBG=1
  Q
@@ -71,7 +71,7 @@ PRVADD(IBTCFLAG) ; add new pay-to provider
  D FULL^VALM1
  S VALMBCK="R"
  S DIC="^IBE(350.9,1,"_IBNODE_",",DIC(0)="AELMQ",DA(1)=1,DLAYGO=350.9
- S DIC("A")="Enter "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-to Provider: "
+ S DIC("A")="Enter "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-to Provider: "
  D ^DIC S IEN=+Y
  I IEN'>0 Q
  D PRVEDIT1
@@ -81,7 +81,7 @@ PRVADD(IBTCFLAG) ; add new pay-to provider
 PRVDEL(IBTCFLAG) ; delete a pay-to provider
  N DA,DR,DIE,X,Y,DIR,DIRUT,DUOUT,DTOUT,I,IEN,DIVS,DFLT,IBNODE,IBDISP
  S IBNODE=$$NODE^IBJPS4(IBTCFLAG)
- S IBDISP=$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider"
+ S IBDISP=$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Provider"
  S VALMBCK="R"
  D FULL^VALM1
  S IEN=$$SEL(IBTCFLAG) Q:'IEN
@@ -120,8 +120,8 @@ PRVEDIT1 ;
  S DA=IEN,DA(1)=1
  S DR=".02T;1.01T;1.02T;1.03T;1.04T;1.05T;.04T;.03T;.05///@"
  D ^DIE
- S DIR("?")="Enter Yes to make this entry the default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-to Provider."
- S DIR("A")="Is this the default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider"
+ S DIR("?")="Enter Yes to make this entry the default "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-to Provider."
+ S DIR("A")="Is this the default "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Provider"
  S DIR(0)="YO"
  S DIR("B")="YES" I $$GETDFLT(IBTCFLAG),'$$ISDFLT(IEN,IBTCFLAG) S DIR("B")="NO"
  D ^DIR I Y K DA S DIE="^IBE(350.9,",DA=1,DR=$S(IBTCFLAG:"11.04",1:"11.03")_"////"_IEN D ^DIE
@@ -148,7 +148,7 @@ SEL(IBTCFLAG) ; select pay-to provider
  . ; there is at least one entry
  . S MAX=$O(@VALMAR@("ZIDX",""),-1) S:MAX=1 Y=1
  . I MAX>1 D
- . . S DIR("A")="Select "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider (1-"_MAX_"): "
+ . . S DIR("A")="Select "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Provider (1-"_MAX_"): "
  . . S DIR(0)="NA^"_1_":"_MAX_":0"
  . . D ^DIR
  . . Q

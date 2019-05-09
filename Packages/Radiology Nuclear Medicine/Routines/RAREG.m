@@ -1,8 +1,6 @@
-RAREG ;HISC/GJC AISC/MJK,RMO-Register Rad/NM Patient ;12 Mar 2018 7:46 AM
- ;;5.0;Radiology/Nuclear Medicine;**23,85,47,144**;Mar 16, 1998;Build 1
- ; 06/07/2007 KAM/BAY RA*5*85 Remedy Call 185568 Exam Backdating
- ;
- ;  Supported IA #1621 reference APPERROR^%ZTER  function call 
+RAREG ;HISC/GJC AISC/MJK,RMO-Register Rad/NM Patient ;14 Dec 2018 2:02 PM
+ ;;5.0;Radiology/Nuclear Medicine;**23,85,47,144,153**;Mar 16, 1998;Build 1
+ ; 06/07/2007 KAM/BAY RA*5*85 Remedy Call 185568 Exam Backdating 
  ;
  K RADTE
 PAT D SET^RAPSET1 I $D(XQUIT) K XQUIT Q
@@ -88,9 +86,6 @@ ADD2 ;
  . I '$D(^RARPT(RA17,0))#2 K RA17 Q  ; no rpt
  . Q:$$STUB^RAEDCN1(RA17)  ;quit if image stub rpt
  . S RA1=1 K RA17 ; valid (non-stub record)
- ;KLM/p144 - Troubleshoot RA ADDEXAM erroneous report problem
- I $D(RA17) D
- . I $P(^RARPT(RA17,0),U,2)'=RADFN D APPERROR^%ZTER("RA ADDEXAM - ADD2^RAREG")
  Q
  ;
 Q K %,%DT,DA,DIC,GMRAL,POP,RABED,RACAT,RADFN,RADIV,RADTE,RADTI,RALIFN,RANME,RAOIFN,RAPIFN,RAPOP,RAPTFL,RARDTE,RAREGFLG,RARSH,RASER,RASEX,RASHA,RAVLECNI,RAVLEDTI,RAVSTFLG,RAWARD,X,XQUIT,Y,YY

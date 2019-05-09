@@ -1,5 +1,5 @@
 RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;26 May 2015  4:02 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**17,21,26,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,21,26,31,33,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -13,7 +13,7 @@ RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;26 May 2015  4:02 PM
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                      identifiers.
  ;ROR*1.5*33   APR 2018    F TRAXLER    Adding FUT_APPT as identifier.
- ;
+ ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_CLIN column.
  ;******************************************************************************
  ;
  Q
@@ -27,9 +27,9 @@ RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;26 May 2015  4:02 PM
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
- ;;PATIENTS(#,NAME,LAST4,AGE,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOB,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -53,7 +53,7 @@ HEADER(PARTAG) ;
  ;                         ^04: National ICN
  ;                         ^05: FIB4 score
  ;                         ^06: Patient Care Team
- ;                         ^07: Priamary Care Provider
+ ;                         ^07: Primary Care Provider
  ;                         ^08: Age/DOB
  ;       "LR",
  ;         Category,
@@ -74,8 +74,8 @@ HCVDAA(RORTSK) ;
  N RORLTST       ; Closed root of the list of lab tests for the
  ;               ; Lab search API
  N RORREG        ; Registry IEN
- N RORSDT       ; Pharmacy start date
- N ROREDT       ; Pharmacy end date
+ N RORSDT        ; Pharmacy start date
+ N ROREDT        ; Pharmacy end date
  N RORXGRP       ; List of drug groups
  N RORXL         ; Closed root of the drug list for the pharmacy
  ;               ; search API 

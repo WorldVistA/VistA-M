@@ -1,5 +1,5 @@
-LRVR1 ;DALOI/CJS/JAH - LAB ROUTINE DATA VERIFICATION ;11/23/11  12:11
- ;;5.2;LAB SERVICE;**42,153,221,286,291,350,424,440**;Sep 27, 1994;Build 2
+LRVR1 ;DALOI/CJS/JAH - LAB ROUTINE DATA VERIFICATION;Sep 27, 2018@10:00:00
+ ;;5.2;LAB SERVICE;**42,153,221,286,291,350,424,440,512**;Sep 27, 1994;Build 7
  ;
  N LRBETST,LRBEY,LRI,LRN,LRPRGSQ
  S (LRI,LRN)=0
@@ -140,7 +140,13 @@ TEST ; from LRGV1
  F  S LRI=$O(^TMP("LR",$J,"VTO",LRI)) Q:LRI<1  K ^(LRI,"P")
  S (LRI,LRNT)=0
  F  S LRI=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRI)) Q:LRI<.5  I $D(^(LRI,0)),'$L($P(^(0),U,6)) S X=^(0) I $D(^TMP("LR",$J,"VTO",+X)) D
- . S LRNT=LRNT+1,LRTEST(LRNT)=+X,LRX=$S($P(X,"^",2)>50:$P(X,"^",9),1:$P(X,"^"))
+ . ;LR*5.2*512: modified line below to always set the panel as the parent test
+ . ;line was formerly:
+ . ; . S LRNT=LRNT+1,LRTEST(LRNT)=+X,LRX=$S($P(X,"^",2)>50:$P(X,"^",9),1:$P(X,"^"))
+ . ;The line above may have been coded based on the urgency field in LR*5.2*291
+ . ;which was released in 2006 but the functionality regarding bundling/unbundling
+ . ;was not implemented.
+ . S LRNT=LRNT+1,LRTEST(LRNT)=+X,LRX=$P(X,"^",9)
  . I $P(X,"^",9),$P(X,"^")'=$P(X,"^",9),'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,$P(X,"^",9))) S LRX=$P(X,"^",9)
  . S LRTEST(LRNT,"P")=LRX_U_$$NLT^LRVER1(LRX)_"!"
  . S ^TMP("LR",$J,"VTO",+X,"P")=$P(LRTEST(LRNT,"P"),"!")

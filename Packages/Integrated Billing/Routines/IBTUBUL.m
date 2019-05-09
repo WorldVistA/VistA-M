@@ -1,5 +1,5 @@
 IBTUBUL ;ALB/AAS - UNBILLED AMOUNTS ;29-SEP-94
- ;;2.0;INTEGRATED BILLING;**19,123,159,217,155,356,516,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**19,123,159,217,155,356,516,547,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*516 - Added sort by Division.  Because some of the totals
@@ -29,7 +29,8 @@ BULL ; - Create and send bulletin.
 SUMMARY ; Print Grand Totals.
  ;
  S IBT(IDX)="",IDX=IDX+1
- S IBT(IDX)="  GRAND TOTALS",IDX=IDX+1
+ ;S IBT(IDX)="  GRAND TOTALS",IDX=IDX+1  ;JRA;IB*2.0*608 ';'
+ S IBT(IDX)="  GRAND TOTALS"_$S($G(IBMCCF)="N":" FOR NON-MCCF CLAIMS",1:""),IDX=IDX+1  ;JRA;IB*2.0*608
  S IBT(IDX)="",IDX=IDX+1
  ;
  I IBSEL[1 D
@@ -47,7 +48,8 @@ SUMMARY ; Print Grand Totals.
  . Q
  ;
  I IBSEL[2 D
- . S IBT(IDX+1)="    Outpatient Care:"
+ . ;S IBT(IDX+1)="    Outpatient Care:"  ;JRA;IB*2.0*608 ';'
+ . S IBT(IDX+1)="    "_$S($G(IBMCCF)="M":"MCCF Claims - ",$G(IBMCCF)="N":"Non-MCCF Claims - ",1:"MCCF & Non-MCCF Claims - ")_"Outpatient Care:"  ;JRA;IB*2.0*608
  . S IBT(IDX+2)="      Number of Unbilled Outpatient Cases     : "_$J(+$G(IBUNB("ENCNTRS")),11)
  . S IBT(IDX+3)="      Number of Unbilled CPT Codes            : "_$J(+$G(IBUNB("CPTMS")),11)
  . S IBT(IDX+4)="      Number of MRA Unbilled CPT Codes        : "_$J(+$G(IBUNB("CPTMS-MRA")),11)

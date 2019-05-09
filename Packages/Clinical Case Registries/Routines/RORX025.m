@@ -1,5 +1,5 @@
 RORX025 ;ALB/TK,MAF - HEP B VACCINE OR IMMUNITY REPORT ;4/21/16 9:40am
- ;;1.5;CLINICAL CASE REGISTRIES;**29,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,31,33,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,6 +11,7 @@ RORX025 ;ALB/TK,MAF - HEP B VACCINE OR IMMUNITY REPORT ;4/21/16 9:40am
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
  ;ROR*1.5*33   MAR 2018    M FERRARESE  Adding FUTURE APPOINTMENT as additional identifiers.
+ ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name ; Fix LOINC code table for HEP A/B
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -31,6 +32,8 @@ RORX025 ;ALB/TK,MAF - HEP B VACCINE OR IMMUNITY REPORT ;4/21/16 9:40am
  ;                         ^05: Patient Care Team
  ;                         ^06: Priamary Care Provider
  ;                         ^07: Age/DOB
+ ;                         ^08: Future Appt date
+ ;                         ^09: Future Appt Clinic
  ;       "IMM")          Result if positive test found or "" if no positive test found
  ;                         ^01: Local lab test name
  ;                         ^02: Collected date (FM)
@@ -55,7 +58,8 @@ HEPBRPT(RORTSK) ;
  N RORLSDT       ; Lab test/LOINC start date
  N RORRTN        ; Routine to invoke for hep B processing
  N RORDAYS       ; Future Days  patch 33
- N RORFUT        ; Future Appointment   patch 33
+ N RORFUT        ; Future Appointment   patch 33 & 34
+ N RORCLIN       ; Future Appointment clinic   patch 34
  ;
  N NSPT,RC,REPORT,SFLAGS,TMP
  S RC=0,RORRTN="RORX025"
@@ -96,16 +100,14 @@ HEPBRPT(RORTSK) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
- ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,LN,RC,CTAG,LTAG
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
   ;automatically build the table defintion(s) listed under the header tag above  PATCH 33
- S RC=$$TBLDEF^RORXU002("HEADER^RORX018",HEADER)
- Q $S(RC<0:RC,1:HEADER)
  ;--- LOINC codes output
  I $G(RORIMM) D
  . S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)

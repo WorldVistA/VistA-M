@@ -1,5 +1,5 @@
 RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21,31,33,34**;Feb 17, 2006;Build 45
  ;
  ;
  ; This routine uses the following IAs:
@@ -23,7 +23,10 @@ RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
  ;                                       requested.
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                       identifiers. 
- ;                                      
+ ;ROR*1.5*33   JAN 2018    M FERRARESE  Adding Future Appointment date/time
+ ;                                       
+ ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name
+ ;                                                                              
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -427,9 +430,9 @@ RTEXT(GRC) ;
  ;  >0      'Header' XML tag number or error code
  ;*****************************************************************************
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
- ;;PATIENTS(#,NAME,LAST4,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;
  N HEADER,RC
  ;call to $$HEADER^RORXU002 will populate the report created date, task number,

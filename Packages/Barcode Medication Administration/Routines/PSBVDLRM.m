@@ -1,5 +1,5 @@
 PSBVDLRM ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST REMOVE MEDS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**83,114**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; called by PSBVDLUD to find Medications needing removal (MRR) then
@@ -18,11 +18,11 @@ PSBVDLRM ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST REMOVE MEDS ;03/06/16 3
 EN ;Search the Medlog file for MRR meds (not patches) that were Given
  ; and not Removed. Place these meds into the return Results array.
  ;
- N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK             ;*83
+ N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK,DSPDRG
  S PSBGNODE="^PSB(53.79,"_"""AMRR"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="AMRR")!($QS(PSBGNODE,3)'=DFN)  D
- .S PSBIEN=$QS(PSBGNODE,5)
- .I '$D(^PSB(53.79,PSBIEN,.5,1)) Q
+ .S PSBIEN=$QS(PSBGNODE,5),DSPDRG=$O(^PSB(53.79,PSBIEN,.5,0)) I 'DSPDRG Q
+ .I '$D(^PSB(53.79,PSBIEN,.5,DSPDRG)) Q
  .I "G"'[$P(^PSB(53.79,PSBIEN,0),U,9)!($D(PSBONVDL(PSBIEN))) Q
  .;
  .S PSBZON=$P(^PSB(53.79,PSBIEN,.1),"^")

@@ -1,8 +1,10 @@
 IBCEPTC3 ;ALB/ESG - EDI PREVIOUSLY TRANSMITTED CLAIMS ACTIONS ;12/19/05
- ;;2.0;INTEGRATED BILLING;**320,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**320,547,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
+ ; IB*2.0*608 (vd) provided the ability to identify those claims that are resubmitted
+ ;                 and those that are skipped. (US2486)
  Q
  ;
 SELECT ; Select claims to resubmit
@@ -17,7 +19,7 @@ SELECT ; Select claims to resubmit
  S VALMBCK="R"
  Q
  ;
-SELBATCH ; Select a batch to resubmit
+SELBATCH ; Select a batch to resubmit 
  ; Assumes IBSORT is defined
  N DIC,DIR,X,Y,Z,IBQ,IBZ,IBI,IBDX,IBASK,IBOK,IBY,DTOUT,DUOUT
  D FULL^VALM1
@@ -88,7 +90,11 @@ VIEWQ S VALMBCK="R"
  Q
  ;
 RESUB ; Resubmit selected claims
- N DIR,X,Y,IBIFN,IB364,Z1,IBTYPPTC,DIRUT,DIROUT,DTOUT,DUOUT,IBFSKIP,IBABORT
+ N DIR,DIRCTR,DIRLN,DIROUT,DIRUT,DTOUT,DUOUT
+ N IB364,IBABORT,IBCLMNO,IBIFN,IBSKCTR,IBFSKIP,IBRSBTST,IBTYPPTC
+ N X,Y,Z1
+ ;/IB*2*608 - vd (US2486) - instituted the following variable to identify a claim as being resubmitted.
+ S IBRSBTST=0
  D FULL^VALM1
  I '$O(^TMP("IB_PREV_CLAIM_SELECT",$J,0)) D  G RESUBQ
  . N DIR,X,Y
@@ -105,6 +111,9 @@ RESUB ; Resubmit selected claims
  I $D(DIRUT) G RESUBQ
  S IBTYPPTC="TEST"
  I IBLOC'=1,Y="P" S IBTYPPTC="PRODUCTION"
+ ;/IB*2*608 (vd) - The following line indicates the claim is being resubmitted as a "TEST" Claim and should be handled
+ ; special concerning the COB, OFFSET, PRIOR PAYMENTS calculations by the Output Formatter.  (US2486)
+ I IBTYPPTC="TEST" S IBRSBTST=1
  ;
  S DIR(0)="YA",DIR("B")="No"
  S DIR("A",1)="You are about to resubmit "_+^TMP("IB_PREV_CLAIM_SELECT",$J)_" claims as "_IBTYPPTC_" claims."
@@ -117,7 +126,8 @@ RESUB ; Resubmit selected claims
  ;
  ; loop thru selected claims and set into scratch globals
  S IBFSKIP=0
- KILL ^TMP("IBRCBOLD",$J)
+ K ^TMP("IBRCBOLD",$J)
+ K ^TMP("IBSKIPPED",$J)   ;/IB*2*608 - vd
  S IBIFN=0 F  S IBIFN=$O(^TMP("IB_PREV_CLAIM_SELECT",$J,IBIFN)) Q:'IBIFN  S Z1=+$G(^(IBIFN)),IB364=+$G(^(IBIFN,0)) I IB364 D
  . ;
  . I IBTYPPTC="TEST" D
@@ -127,7 +137,12 @@ RESUB ; Resubmit selected claims
  .. Q
  . ;
  . I IBTYPPTC="PRODUCTION" D
- .. I '$$TXOK(IBIFN) S IBFSKIP=IBFSKIP+1 Q    ; transmission not allowed
+ .. ;/IB*2*680 (vd) - modified the following line for US2486 as shown below.
+ .. ; I '$$TXOK(IBIFN) S IBFSKIP=IBFSKIP+1 Q    ; transmission not allowed
+ .. I '$$TXOK(IBIFN) D  Q   ;transmission not allowed
+ ... S IBCLMNO=$$GET1^DIQ(399,IBIFN,.01)
+ ... S IBFSKIP=IBFSKIP+1
+ ... S ^TMP("IBSKIPPED",$J,IBCLMNO)=IBIFN  ; /IB*2*608 (vd) - Added to identify those claims that are Skipped
  .. N Y S Y=$$ADDTBILL^IBCB1(IBIFN)  ; new entry in file 364 - "X" status
  .. I '$P(Y,U,3) Q                   ; quit if new entry didn't get added
  .. S ^TMP("IBSELX",$J,+Y)=""
@@ -142,7 +157,7 @@ RESUB ; Resubmit selected claims
  E  KILL ^TMP("IBRESUBMIT",$J),^TMP("IBEDI_TEST_BATCH",$J),^TMP("IBONE",$J) S ^TMP("IBSELX",$J)=0
  ;
  ; resubmit call
- D EN1^IBCE837B("","","",.IBABORT)
+ D EN1^IBCE837B("","","",.IBABORT,$G(IBRSBTST)) ;/IB*2*608 (vd) - added the IBRSBTST parameter for US2486.
  ;
  ; if user aborted at the last minute, then get rid of the new entries
  ; in file 364 that were added for production claim sending
@@ -164,8 +179,20 @@ RESUB ; Resubmit selected claims
  S DIR("A",1)="Selected claims have been resubmitted as "_IBTYPPTC_"."
  I IBFSKIP D
  . S DIR("A",2)="Please note: Some claims were not eligible to be resubmitted as live claims."
- . S DIR("A",3)="             These claims are still indicated as being selected."
+ . S DIR("A",3)=" These claims are still indicated as being selected."
+ . S DIR("A",4)="The following are the claims that were skipped:"
+ . S (DIRLN,IBCLMNO)="",IBSKCTR=0,DIRCTR=4
+ . F  S IBCLMNO=$O(^TMP("IBSKIPPED",$J,IBCLMNO)) Q:IBCLMNO=""  D
+ . . S IBSKCTR=IBSKCTR+1 ; Increment # of claims on the display line.
+ . . I IBSKCTR>6 D     ; Want no more than 6 claim numbers displayed per display line.
+ . . . S DIRCTR=DIRCTR+1,DIR("A",DIRCTR)=DIRLN   ; increment the DIR("A",...) display line and set the line.
+ . . . S IBSKCTR=1,DIRLN=""   ; reset the line segment ctr and clear the display line.
+ . . ;
+ . . S DIRLN=DIRLN_" "_IBCLMNO   ; Append the claim # to the existing display line.
+ . I +IBSKCTR S DIRCTR=DIRCTR+1,DIR("A",DIRCTR)=DIRLN
+ . ;
  . Q
+ K ^TMP("IBSKIPPED",$J) ;/IB*2*608 (vd) - delete the temporary list of skipped claims after reporting them.
  I IBABORT K DIR("A") S DIR("A",1)="No claims were resubmitted."
  S DIR("A")="Press return to continue "
  W ! D ^DIR K DIR
@@ -203,6 +230,9 @@ CKSENT(VALMBCK) ; Make sure selected entries are transmitted
 TXOK(IBIFN) ; Function determines if claim is OK for live resubmission
  NEW OK,IB364,IBD,IBSTAT
  S OK=0
+ ;/IB*2*608 (vd) - added the following line for US2486.
+ I $D(^IBM(361.1,"ABS",+$G(IBIFN),$$COBN^IBCEF(IBIFN))) G TXOKX  ; Not okay for claim w/EOB for this payer sequence
+ ;
  I '$P($G(^DGCR(399,+$G(IBIFN),"TX")),U,2) G TXOKX                  ; last electronic extract date
  I '$F(".2.3.4.","."_$P($G(^DGCR(399,IBIFN,0)),U,13)_".") G TXOKX   ; claim status
  S IB364=+$$LAST364^IBCEF4(+$G(IBIFN)) I 'IB364 G TXOKX             ; transmit bill exists

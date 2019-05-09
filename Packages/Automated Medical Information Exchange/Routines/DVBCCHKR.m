@@ -1,5 +1,5 @@
-DVBCCHKR ;ALB/GTS-557/THM-CHECK C&P REQUEST FOR CRITICAL DATA ; 2/12/03 9:44am
- ;;2.7;AMIE;**17,193,194**;Apr 10, 1995;Build 84
+DVBCCHKR ;ALB/GTS-557/THM-CHECK C&P REQUEST FOR CRITICAL DATA ; 3/20/19 7:56am
+ ;;2.7;AMIE;**17,194,193,209**;Apr 10, 1995;Build 17
  ;
  ;** Version Changes
  ; 2.7 - GTS/C&P appt links report (Enhc 13)
@@ -10,7 +10,8 @@ CHECK N OLDX
  S OLDX=X,DTA=^DVB(396.3,DA,0),DTB=$S($D(^DVB(396.3,DA,1)):^(1),1:"")
  ;RRA DVBA*194 priority of exam no longer populated so remove from validation list
  ;AJF;Request Status conversion
- Q:$P(DTA,U,18)=6  F XI=2,3,4,18 I $P(^DVB(396.3,DA,0),U,XI)="" S X=X_XI_U
+ ;Patch 209, reverting report screeing back to before 193
+ Q:($P(DTA,U,18)=6)!($P(DTA,U,18)=7)  F XI=2,3,4,18 I $P(^DVB(396.3,DA,0),U,XI)="" S X=X_XI_U
  I $P(DTB,U,4)="" S X=X_99_U
  I $O(^DVB(396.4,"C",DA,0))="" S X=X_98_U ;no exams selected
  S REQDA=DA,NAME=$P(^DPT(DFN,0),U,1) D:STYLEIND'="4" LINKCK
@@ -76,7 +77,7 @@ GO D:'$D(STYLEIND) SETSTYLE
  I $D(^TMP("DVBA",$J)) D:(+$$RPTCHK=1) ^DVBCULAP
  ;
 EXIT D ^%ZISC
- W:'$D(ZTQUEUED) @FF,!!!
+ S FF=IOF W:'$D(ZTQUEUED) @FF,!!!
  I $D(ZTQUEUED)&($D(DVBCMAN)) D KILL^%ZTLOAD
  K %,%Y,DTA,DTB,DTOUT,DVBCDT,FF,HD,NAME,PG,I,ZTSAVE,POP,X,XI,Y
  K ZTQUEUED,ZTDESC,ZTIO,ZTRTN,ZTSK,ITEMS,PRINT,DFN,DA,LN,DVBCMAN,DVBCQUIT,GETOUT,DVBCX,HDRPRT

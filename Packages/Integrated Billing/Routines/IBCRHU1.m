@@ -1,6 +1,6 @@
 IBCRHU1 ;ALB/ARH - RATES: UPLOAD UTILITIES ; 22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,106,138,245,427**;21-MAR-94;Build 7
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,106,138,245,427,634**;21-MAR-94;Build 57
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 GETXTMP(IBXRF,ARR,ARR1,CS) ; get list of available files
@@ -44,7 +44,7 @@ CHKDUP(CS,IBLN,ADD) ; check that item would not be a duplicate
  S IBITEM=+$$ITPTR^IBCRU2(+IBBI,$P($G(IBLN),U,1))
  I 'IBITEM,+IBBI=3,'$G(ADD) S IBX=0 G CHKDUPQ ; new NDC numbers
  I 'IBITEM S IBX="2^Line/Data Error: Item not found in source file" G CHKDUPQ
- I $$FINDCI^IBCRU4(CS,IBITEM,$P(IBLN,U,2),$P(IBLN,U,5),"",$J($P(IBLN,U,4),"",2),,,$P(IBLN,U,6)) S IBX="2^Line/Data Error:  Duplicate found, the same charge already exists for this item and effective date" G CHKDUPQ
+ I $$FINDCI^IBCRU4(CS,IBITEM,$P(IBLN,U,2),$P(IBLN,U,5),$S($$RVCD(CS,IBITEM):124,1:""),$J($P(IBLN,U,4),"",2),,,$P(IBLN,U,6)) S IBX="2^Line/Data Error:  Duplicate found, the same charge already exists for this item and effective date" G CHKDUPQ
  I $$FINDCI^IBCRU4(CS,IBITEM,$P(IBLN,U,2),$P(IBLN,U,5)) S IBX="1^Line/Data Warning:  Potential duplicate, a charge already exists for this item and effective date" G CHKDUPQ
  ;I '$P(IBLN,U,3) D ITMCHG^IBCRCC(CS,IBITEM,$P(IBLN,U,2),$P(IBLN,U,5),.IBARR) I +IBARR=1,+$P(IBARR,U,2)=+$P(IBLN,U,4) S IBX="2^Line/Data Error:  Charge for item is not modified by the new entry" G CHKDUPQ
 CHKDUPQ Q IBX
@@ -81,6 +81,16 @@ CHKFL(CS,FILE,IBSUBFL) ; Check the Charge Set and Host file are defined and matc
  S IBY=$G(^XTMP(FILE,IBSUBFL)) I IBY="" S IBX="3^Subfile/Set Error: File Subset Not Defined" G CHKFLQ
  I +IBCSBI'=+$P(IBY,U,2) S IBX="3^Subfile/Set Error: Charge Set rate Billable Item ("_$P(IBCSBI,U,2)_") does not match Host file Item ("_$$EXPAND^IBCRU1(363.3,.04,+$P(IBY,U,2))_")" G CHKFLQ
 CHKFLQ Q IBX
+ ;
+RVCD(CS,IBITEM) ; *634 - assign Revenue Code #124 to 5 ms-drg charges
+ ; Input: charge set, charge item
+ ; Output: 0 or 1  
+ N IBMHDG,IBCS0 S IBMHDG=0
+ S IBCS0=$G(^IBE(363.1,+$G(CS),0)) G:IBCS0="" RVCDQ
+ S IBCS0=$P(IBCS0,U,1)
+ I ($P(IBCS0," ",1,2)'="RC-INPT R&B")!($L(IBCS0," ")'=3) G RVCDQ
+ I $F("^881^882^883^885^886^",(U_IBITEM_U)) S IBMHDG=1
+RVCDQ Q IBMHDG
  ;
 VDATE(X) ; check for valid date
  N Y S Y=0 I +$G(X)?7N,X>2801010,X<3191232 S Y=1

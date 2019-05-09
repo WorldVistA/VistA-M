@@ -1,5 +1,5 @@
-RAREG2 ;HISC/CAH,FPT,DAD,SS AISC/MJK,RMO-Register Patient ;06/04/09  09:55
- ;;5.0;Radiology/Nuclear Medicine;**13,18,93,99**;Mar 16, 1998;Build 5
+RAREG2 ;HISC/CAH,FPT,DAD,SS AISC/MJK,RMO-Register Patient ;04 Dec 2018 1:05 PM
+ ;;5.0;Radiology/Nuclear Medicine;**13,18,93,99,153**;Mar 16, 1998;Build 1
  ;last modif. JULY 5,00 by SS 
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
  ; 06/04/09 rvd - display pregnancy screen and pregnancy screen comment only in Add Exams to Last visit option.
@@ -103,11 +103,17 @@ MEMSET(RAX,RAY,RAZ) ; Set 'MEMBER OF SET' field on the exam node
  S DIE="^RADPT("_RAX_",""DT"","_RAY_",""P"","
  S DA(2)=RAX,DA(1)=RAY,DA=RAZ,DR="25///"_$S($P($G(^RAMIS(71,+RAPROC,0)),"^",18)="Y":2,1:1) D ^DIE ;2=combined report, 1=separate reports
  Q
-SET17(RAX,RAY,RAZ) ; Set piece 17 on exam node
+SET17(RAX,RAY,RAZ) ; quad slash piece 17 on exam node
+ ;note: the value stuffed in will not be passed through
+ ;the REPORT TEXT input transform (nat'l code did not
+ ;export the field with an input transform) updated for
+ ;RA5P153 changed 3x slash to 4x slash 3x slash can cause
+ ;the wrong rpt to be tied to our study
+ ;
  Q:$G(^RADPT(RAX,"DT",RAY,"P",RAZ,0))']""
  N D,D0,DA,DI,DIC,DIE,DQ,DR,X,Y
  S DIE="^RADPT("_RAX_",""DT"","_RAY_",""P"","
- S DA(2)=RAX,DA(1)=RAY,DA=RAZ,DR="17///"_RA17 D ^DIE
+ S DA(2)=RAX,DA(1)=RAY,DA=RAZ,DR="17////"_RA17 D ^DIE
  Q
 UOSM ; called from RAREG1
  ; update order status and send OE v3.0 message

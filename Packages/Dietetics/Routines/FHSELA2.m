@@ -1,5 +1,5 @@
-FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ; 3/15/16 11:56am
- ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39,40,41,42,44,45,46**;Jan 28, 2005;Build 1
+FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ; 2/5/19 3:13pm
+ ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39,40,41,42,44,45,46,48**;Jan 28, 2005;Build 11
  ;
  ;10/9/2009 SLC/GDU FH*5.5*23
  ;  Remedy 317642 FGH - patient food allergy not mapping to N&FS food preferences
@@ -31,6 +31,8 @@ FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ; 3/15/16 11:56am
  ;1/4/2018 DAL/JLC FH*5.5*45 Adding the following food allergy: ARROWROOT
  ;10/3/2018 ALB/JLG FH*5.5*46 Adding the following food allergies:
  ;  DAIRY FOODS,FRESH FRUITS,FRUITS,MINT HERB,PEPPERMINT HERB,PEPPERMINT OIL,RABBIT MEAT
+ ;12/20/2018 SLC/GDU FH*5.5*48 Adding the following food allergies:
+ ;MEAT, MAMMALIAN HOOVED, STARFRUIT, CANNABIS
 TMPGL ; Create ^TMP Global
  K ^TMP($J,"FHALG") S FHK=0
  F  S FHK=FHK+1,FHFPS=$T(FPS+FHK),FHZ1=$P(FHFPS,";",3) Q:FHZ1=""  D
@@ -382,3 +384,6 @@ FPS ;;
  ;;PEPPERMINT HERB;PEPPERMINT HERB
  ;;PEPPERMINT OIL;PEPPERMINT OIL
  ;;RABBIT MEAT;RABBITS
+ ;;MEAT, MAMMAL HOOVED;MEAT, MAMMALIAN HOOVED
+ ;;STARFRUIT;STARFRUIT
+ ;;CANNABIS;CANNABIS

@@ -1,9 +1,12 @@
 IBCEFG7 ;ALB/TMP - OUTPUT FORMATTER GENERIC FORM PROCESSING ;06-MAR-96
- ;;2.0;INTEGRATED BILLING;**52,84,96,51,137,191,320**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**52,84,96,51,137,191,320,608**;21-MAR-94;Build 90
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
-FORM(IBFORM,IBQUE,IBNOASK,IBQDT,ZTSK,IBABORT) ;For ien IBFORM, extract data using
+ ;/IB*2*608 (vd) - US2486 added the parameter IBRSBTST to indicate a claim is a "TEST"
+ ; that is being RESUBMITTED and assists with the COB Output Formatter data.
+FORM(IBFORM,IBQUE,IBNOASK,IBQDT,ZTSK,IBABORT,IBRSBTST) ;For ien IBFORM, extract data using
  ;    output generater
  ; IBQUE = the output queue for transmitted forms or the printer queue
  ;          for printed output
@@ -15,6 +18,10 @@ FORM(IBFORM,IBQUE,IBNOASK,IBQDT,ZTSK,IBABORT) ;For ien IBFORM, extract data usin
  ;
  ; IBABORT = output parameter which says user aborted forms output.
  ;           Pass by reference.  The $$QUEUE function returned false.
+ ;
+ ; IBRSBTST = 1, this indicates the claim is being resubmitted as a "TEST" claim and should be
+ ;                             used by the OUTPUT FORMATTER entries to determine what COB information is
+ ;                             going out.  - IB*2.0*608 (vd)  US2486
  ;
  N IBF2,IBTYP,POP,ZTIO,ZTRTN,ZTDESC,ZTSAVE,ZTREQ,ZTDTH,ZTREQ
  S IBTYP=$P($G(^IBE(353,IBFORM,2)),U,2),IBQUE=$G(IBQUE),IBABORT=0

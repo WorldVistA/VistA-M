@@ -1,5 +1,5 @@
-MAGQBUT4 ;WOIFO/RMP/GEK - BP Utilities ;
- ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196,198,214**;Mar 19, 2002;Build 34;Jun 27, 2018
+MAGQBUT4 ;WOIFO/RMP,DAC - BP Utilities ; 08 Feb 2019
+ ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196,198,214,222**;Mar 19, 2002;Build 45
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -18,16 +18,26 @@ MAGQBUT4 ;WOIFO/RMP/GEK - BP Utilities ;
  ;
  Q
 VOKR(RESULT,VER) ; RPC for VOK [MAGQ VOK]
- ;Patch 214  enables Clients 135, 196, 198, 214  
+ ;P196 changed the way version checking works.  
+ ;  we now allow older versions of the BP to run. 
  N CLPATCH,SVRPATCH
  ;   get client Patch number
  S CLPATCH=$$TRIM($P(VER,"P",2))
  ; These are allowable Clients.
- S SVRPATCH=",135,196,198,214," ; P 214 , continue to support 135, 196, 198 
- ; if client patch is allowed, the Result = 1^...
- I SVRPATCH[CLPATCH S RESULT="1^3.0P214"
- E  S RESULT="0^3.0P214"
+ S SVRPATCH=",135,196,198,214,222" ; 222, continue to support all.
+ ; if client patch is allowed Result = 1^...
+ I SVRPATCH[CLPATCH S RESULT="1^3.0P222"
+ E  S RESULT="0^3.0P222"
  Q
+OLD ;
+ S VER="3.0P"_($$TRIM($P(VER,"P",2)))
+ S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
+ S SLINE=$T(+2)
+ S PNUM=$$TRIM($P(SLINE,"**",2)),PNUM=$$TRIM($P(PNUM,",",$L(PNUM,",")))
+ S CVERS=$$TRIM($P(SLINE,";",3))_"P"_PNUM
+ S RESULT=$S(CVERS=VER:1,1:0)_U_CVERS
+ Q
+ ; 
 CONV(ARR,ICT) ;Convert any single node array to FM Style multiple
  ;  The node subscripts of ARR are ignored, and not retained
  ; i.e.  ARR(34)=8
@@ -121,15 +131,6 @@ GPACHX(PV) ; Get Package File Install History of Imaging
  . . . Q
  . . Q
  . Q
- Q
- ;
-OLD ;
- S VER="3.0P"_($$TRIM($P(VER,"P",2)))
- S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
- S SLINE=$T(+2)
- S PNUM=$$TRIM($P(SLINE,"**",2)),PNUM=$$TRIM($P(PNUM,",",$L(PNUM,",")))
- S CVERS=$$TRIM($P(SLINE,";",3))_"P"_PNUM
- S RESULT=$S(CVERS=VER:1,1:0)_U_CVERS
  Q
  ;
 TRIM(X) ; remove both leading and trailing blanks

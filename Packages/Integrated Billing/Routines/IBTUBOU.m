@@ -1,6 +1,6 @@
 IBTUBOU ;ALB/RB - UNBILLED AMOUNTS (UTILITIES) ;03 Aug 2004  7:21 AM
- ;;2.0;INTEGRATED BILLING;**123,159,155**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**123,159,155,608**;21-MAR-94;Build 90
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DT1 ; - Select date range (returns variables IBBDT and IBEDT).
  N DT0,DT1,DTOUT,DUOUT,Y
@@ -107,6 +107,8 @@ CKBIL(X,Y) ; - Return valid claim data.
  S X2=$P($G(^DGCR(399,X,"S")),U,10)
  I 'X2 G:$P(X1,U,13)'=2 CKBLQ ; No authorization date, not MRA req
  I $P(X1,U,13)<2!($P(X1,U,13)>5) G CKBLQ ; Status not auth, prin, trans.
+ ;JRA;IB*2.0*608 Check if claim should be excluded based on MCCF/non-MCCF
+ I $G(IBMCCF)]"",IBMCCF'="B",'$$MCCFCKX(399,X,.07,"RTYP") G CKBLQ  ;JRA;IB*2.0*608
  S Z=$P(X1,U,7)_U_$P(X1,U,13)_U_X2,Y1=$P($P(X1,U,3),".")
  S:$P(X1,U,13)=2 $P(Z,U,6)=$P($G(^DGCR(399,X,"S")),U,7)
  I $P(X1,U,27)=1!($P(X1,U,19)=3)!(Y1<2990901) S $P(Z,U,4)=1 G CKBL1
@@ -185,3 +187,12 @@ NOTRX(BILL) ; - Determine if bill contains outpatient visit (use this check
  F  S RC=$O(^DGCR(399,BILL,"RC",RC)) Q:'RC  I $P($G(^DGCR(399.1,+$P($G(^DGCR(399,BILL,"RC",RC,0)),U,5),0)),U)'="PRESCRIPTION" S IBRX=1 Q
  ;
 NOTRXQ Q IBRX
+ ;
+MCCFCKX(FILE,IEN,FLD,ND) ;JRA;IB*2.0*608 Check if Eligibility of Encounter, Appointment Type, and Rate Type meet MCCF/non-MCCF criteria 
+ ;Input: FILE=
+ Q:('$G(FILE)!('$G(IEN)!('$G(FLD)!($G(ND)="")))) -1
+ N VAL
+ S VAL=$$GET1^DIQ(FILE,IEN_",",FLD,"I") Q:'VAL -1
+ I ((IBMCCF="N")&('$D(IBMCCF(ND,VAL))))!((IBMCCF="M")&($D(IBMCCF(ND,VAL)))) Q 0
+ Q 1
+ ;

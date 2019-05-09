@@ -1,5 +1,5 @@
-PSBO1 ;BIRMINGHAM/EFC/CR - BCMA OUTPUTS ;3/7/18 2:02pm
- ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83,103**;Mar 2004;Build 21
+PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83,103,114**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -102,15 +102,15 @@ CHECK ;Beginning of PSB*1*10
  Q
  ;
 GETREMOV(DFN) ;Process removal type XREFS and return any RM's found with key info
- N PSBGNODE,PSBIEN
+ N PSBGNODE,PSBIEN,DSPDRG
  K ^TMP("PSB",$J,"RM")
  ;
  ;Xref APATCH search
  S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
- .S PSBIEN=$QS(PSBGNODE,5)
- .Q:'$D(^PSB(53.79,PSBIEN,.5,1))
- .Q:$P(^PSB(53.79,PSBIEN,.5,1,0),U,4)'="PATCH"
+ .S PSBIEN=$QS(PSBGNODE,5),DSPDRG=$O(^PSB(53.79,PSBIEN,.5,0)) I 'DSPDRG Q
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,DSPDRG))
+ .Q:$P(^PSB(53.79,PSBIEN,.5,DSPDRG,0),U,4)'="PATCH"
  .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"
  .D SETTMP     ;get remove info and save to Tmp
  ;

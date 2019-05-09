@@ -1,11 +1,11 @@
-GMRCIEVT ;SLC/JFR - process events and build HL7 message; 1/27/03 09:23
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31**;DEC 27, 1997
- ;
+GMRCIEVT ;SLC/JFR - process events and build HL7 message; 2/7/19 09:23
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31,121**;DEC 27, 1997;Build 6
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q  ;don't start at the top
 TRIGR(IEN,ACTN) ;determine what action was taken on IFC and call event point
  ;Input: 
- ;  IEN   = consult number from file 123
- ;  ACT   = ien in 40 multiple corresponding to activity
+ ; IEN = consult number from file 123
+ ; ACT = ien in 40 multiple corresponding to activity
  ;
  N ACTYPE
  S ACTYPE=$P(^GMR(123,IEN,40,ACTN,0),U,2)
@@ -42,7 +42,7 @@ TRIGR(IEN,ACTN) ;determine what action was taken on IFC and call event point
  Q
 NW(GMRCDA) ;build new order message for IFC
  ; Input:
- ;   GMRCDA  = ien from file 123
+ ; GMRCDA = ien from file 123
  ;
  N HL,HLL,SEG,GMRC773,GMRCIQT
  S SEG=1
@@ -75,6 +75,13 @@ NW(GMRCDA) ;build new order message for IFC
  S ^TMP("HLS",$J,SEG)=$$OBXPD^GMRCISG1(GMRCDA) ; build prov DX in OBX
  S SEG=SEG+1
  S ^TMP("HLS",$J,SEG)=$$OBXTZ^GMRCISEG ;always send local time zone
+ ;
+ ;AV/MKN Add NTE segment to HL7 to send UCID file #123, field #80 *121*
+ N SEP
+ S SEP=HL("FS")
+ N UCID S UCID=$$GET1^DIQ(123,GMRCDA,80) S:UCID]"" SEG=SEG+1,^TMP("HLS",$J,SEG)="NTE"_SEP_"P"_SEP_"UCID:"_UCID
+ ;AV/MKN End of NTE for UCID *121*
+ ;
  S HLL("LINKS",1)=$$ROUTE(GMRCDA) I '$L(HLL("LINKS",1)) D  Q  ;log error
  . D LOGMSG^GMRCIUTL(IEN,ACTN,"",903)
  D GENERATE^HLMA("GMRC IFC ORM EVENT","GM",1,.GMRC773)
@@ -101,10 +108,10 @@ GENUPD(GMRCDA,GMRCACT) ;build msg and send upon REC, SC or ADD CMT event
  . N ACTVT,OC,OS
  . S ACTVT=$P(^GMR(123,GMRCDA,40,GMRCACT,0),U,2) ; get activity
  . ;set order control for ORC seg:
- . ;   v-- IP=cmt RE=adm comp OD=DC OC=cancel SC=sch or receive
+ . ; v-- IP=cmt RE=adm comp OD=DC OC=cancel SC=sch or receive
  . S OC=$S(ACTVT=20:"IP",ACTVT=10:"RE",ACTVT=6:"OD",ACTVT=19:"OC",1:"SC")
  . ;set order status for ORC seg:
- . ;   v-- SC=sch RE=adm comp DC=DC CA=cancel IP=cmt or receive
+ . ; v-- SC=sch RE=adm comp DC=DC CA=cancel IP=cmt or receive
  . S OS=$S(ACTVT=8:"SC",ACTVT=10:"CM",ACTVT=6:"DC",ACTVT=19:"CA",1:"IP")
  . S ^TMP("HLS",$J,SEG)=$$ORC^GMRCISEG(GMRCDA,OC,OS,GMRCACT)
  . S SEG=SEG+1
@@ -177,11 +184,11 @@ NOMPI(GMRCIEN,GMRCACTV) ;process MPI exception
  ;
 ROUTE(GMRCDA) ; determine correct routing for IFC msg
  ; Input:
- ;  GMRCDA = ien from file 123
+ ; GMRCDA = ien from file 123
  ;
  ; Output:
- ;   the logical link to send the message to in format
- ;     "GMRC IFC SUBSC^VHAHIN"
+ ; the logical link to send the message to in format
+ ; "GMRC IFC SUBSC^VHAHIN"
  ;
  N SITE,GMRCLINK,STA
  S SITE=$P(^GMR(123,GMRCDA,0),U,23) I 'SITE Q "" ;no ROUTING FACILITY
@@ -191,3 +198,4 @@ ROUTE(GMRCDA) ; determine correct routing for IFC msg
  S GMRCLINK=$O(GMRCLINK(0)) I 'GMRCLINK Q "" ; no link for that site
  S GMRCLINK=GMRCLINK(GMRCLINK) I '$L(GMRCLINK) Q "" ;no link name
  Q "GMRC IFC SUBSC^"_GMRCLINK
+ ;

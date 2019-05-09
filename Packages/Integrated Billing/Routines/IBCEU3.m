@@ -1,5 +1,5 @@
 IBCEU3 ;ALB/TMP - EDI UTILITIES FOR 1500 CLAIM FORM ;12/29/05 9:58am
- ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX19(IBIFN) ; New Box 19 added for patch 488.  This is for workman's comp?
@@ -269,7 +269,9 @@ LINSPEC(IBIFN) ; Checks the specialities of line and claim level providers
  S IBCP=0 F  S IBCP=$O(^DGCR(399,IBIFN,"CP",IBCP)) Q:'IBCP  D
  .S Z0=+$O(^DGCR(399,IBIFN,"CP",IBCP,"LNPRV","B",Z,0))
  .I Z0 S IBSPEC=$P($G(^DGCR(399,IBIFN,"CP",IBCP,"LNPRV",Z0,0)),U,8) S:IBSPEC="" IBSPEC="99" S IBSPC=IBSPC_U_IBSPEC
- S:IBSPC="" IBSPC=99
+ ;/IB*2*608 - vd (US3214) - modified the following line to allow for No Rendering Provider.
+ ;S:IBSPC="" IBSPC=99
+ I $$FT^IBCEF(IBIFN)'=2 S:IBSPC="" IBSPC=99
  Q IBSPC
  ;
 BILLSPEC(IBIFN,IBPRV) ;  Returns the specialty of the provider on bill IBIFN

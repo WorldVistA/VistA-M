@@ -1,5 +1,5 @@
 RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -13,6 +13,7 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
  ;                                    requested.
  ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                    identifiers.
+ ;ROR*1.5*34   SEP 2018  F TRAXLER   Adding FUT_APPT and FUT_CLIN to HEADER
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -28,9 +29,9 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
  ;
 HEADER(PARTAG) ;
  ;;ICDLST(#,CODE,DIAG,NP,NC)
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
- ;;PATIENTS(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOB,DOD,PACT,PCP,ICN,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,ICN,PACT,PCP,FUT_APPT,FUT_CLIN,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -55,8 +56,10 @@ HEADER(PARTAG) ;
  ;                         ^03: Date of Death
  ;                         ^04: ICN
  ;                         ^05: Patient Care Team
- ;                         ^06: Priamary Care Provider
+ ;                         ^06: Primary Care Provider
  ;                         ^07: Age/DOB
+ ;                         ^08: Future appt
+ ;                         ^09: Future clinic
  ;       ICDIEN,         Earliest Code Descriptor
  ;                         ^01: Date
  ;                         ^02: Source ("I", "O", or "PB")

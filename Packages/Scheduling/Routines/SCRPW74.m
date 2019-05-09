@@ -1,5 +1,5 @@
 SCRPW74 ;BP-CIOFO/KEITH,ESW - Clinic appointment availability extract (cont.) ; 6/10/03 9:13am
- ;;5.3;Scheduling;**192,206,223,241,249,291**;AUG 13, 1993
+ ;;5.3;Scheduling;**192,206,223,241,249,291,674**;AUG 13, 1993;Build 18
  ;
 MON(SDEX,SDT,SDMON) ;Determine month and date ranges for extracts
  ;Input: SDEX=extract type, '1' for prospective, '2' for retrospective
@@ -146,6 +146,7 @@ XTMP ;Service ^XTMP nodes
  ;
 RUN(SDR) ;Run extract (reschedule if requested)
  ;Input: SDR='1' if rescheduling is requested, '0' otherwise.
+ Q  ;At Request of AITC, patch SD*5.3*674 has discontinued the transmission of this option
  N SDV,SDBDT,SDDIV,SDEDT,SDEX,SDPAST,SDPBDT,SDPEDT,SDRPT
  S SDV="" F  S SDV=$O(SDMON(SDV)) Q:SDV=""  S @SDV=SDMON(SDV)
  I SDR=1 D

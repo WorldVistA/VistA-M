@@ -1,5 +1,5 @@
 IBCEF11 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX24D(A,IB) ; Returns the lines for boxes 19-24 of the CMS-1500 display
@@ -260,3 +260,28 @@ GETLDAT(IBXIEN) ; Extract data for 837 transmission LDAT record
  . S IBXSAVE("LDAT",Z)=PCE1_U_$P(NODE1,U,3)_U_$P(NODE1,U)_U_$P(NODE1,U,5)_U_$G(PSPID)_U_$G(PSAMNT)_U_$S(FTYPE=7:"",1:$P(NODE1,U,4))
  . Q
  Q
+ ;
+ ;/Beginning of IB*2.0*608 (US9) - vd
+LDAT ;
+ N Z K IBXDATA
+ S Z=0 F  S Z=$O(IBXSAVE("LDAT",Z)) Q:'Z  D
+ . S IBXDATA(Z)=Z D:Z>1 ID^IBCEF2(Z,"LDAT")
+ ;
+ I +$G(VC80) D
+ . S Z=$O(IBXDATA(""),-1)+1
+ . D ID^IBCEF2(Z,"LDAT")
+ . D VC80L(IBXIEN,Z)  ; Process for 'SNF' claims & the last claim line
+ . S A=Z
+ . S IBXDATA(Z)=A
+ Q
+ ;
+VC80L(IBIFN,LN) ; Extracts the data for the "LDAT" record for VALUE CODE 80 Line item.
+ ; IBIFN = Claims internal id number
+ ;    LN = 
+ N VC80LN
+ S VC80LN=LN
+ S $P(IBXSAVE("LDAT",VC80LN),U,11)="6R"
+ S $P(IBXSAVE("LDAT",VC80LN),U,12)=VC80LN_"_"_$$GET1^DIQ(399,IBIFN_", ",.01)
+ Q
+ ;/Ending of IB*2.0*608 - vd
+ ;

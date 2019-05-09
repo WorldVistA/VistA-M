@@ -1,5 +1,5 @@
-ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ; 10/17/17 10:42am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471**;Dec 17, 1997;Build 2
+ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;Aug 21, 2018@11:16
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471,444**;Dec 17, 1997;Build 48
  ;
  ;DBIA/ICR section
  ;10035 ^DPT(
@@ -35,10 +35,12 @@ AGET(REF,DFN,FILTER,GROUPS,DTFROM,DTTHRU,EVENT,ORRECIP) ;Get abbrev. event delay
  ; see input parameters above
  ; -- from ORWORR
  ; -- section uses ORQ1 to get orders list rather than XGET --
+ K ORUGROUP ;RTW UAP Pharmacist modify indication removal for UAP
  N ORLIST,ORIFN,IFN,I,ORWTS,TOT,MULT,ORWARD,TXTVW,ORYD,PTEVTID,EVTNAME
  S (PTEVTID,EVTNAME)=""
  K ^TMP("ORR",$J),^TMP("ORRJD",$J)
  S:'$D(GROUPS) GROUPS=1 S:'$D(FILTER) FILTER=2
+ I $G(GROUPS),($$GET1^DIQ(100.98,GROUPS,.01)="PHARMACY UAP")!($$GET1^DIQ(100.98,GROUPS,.01)="DISCHARGE MEDS") S ORUGROUP=GROUPS ;Capturing GROUPS for later UAP use GETFLDS
  S ORWTS=+$P(FILTER,U,2),FILTER=+FILTER
  S MULT=$S("^1^6^8^9^10^11^13^14^20^22^"[(U_FILTER_U):1,1:0)
  I $L($G(^DPT(DFN,.1))) S ORWARD=1 ; normally ptr to 42
@@ -158,6 +160,7 @@ GETFLDS ; used by entry points to place order fields into list
  S STRT=$S($P(X3,U,3)=11:$$RSTRT,ACTID="NW"!(ACTID="XX")!(ACTID="RL"):$P(X0,U,8),ACTID="DC":"",1:$P(X8,U)) ;110
  S STOP=$S($P(X3,U,3)=11:$$RSTOP,ACTID="HD":$P($G(^OR(100,+IFN,8,ACT,2)),U),1:$P(X0,U,9))
  S LST(IDX)="~"_ID_U_$P(X0,U,11)_U_$P(X8,U)_U_STRT_U_STOP_U_CSTS_U_$P(X8,U,4)_U_$P(X8,U,8)_U_$P(X8,U,10)_U_PRV
+ I '$D(ORUGROUP) S ORUGROUP="" ;RTW Pharmacist modify indication removal for UAP, first time entering CPRS all services view
  S $P(LST(IDX),U,13)=+$G(^OR(100,IFN,8,ACT,3))    ; flagged
  I +$P(X8,U,8) S $P(LST(IDX),U,8)=$$INITIALS^ORCHTAB2(+$P(X8,U,8))    ;nurse
  I +$P(X8,U,10) S $P(LST(IDX),U,9)=$$INITIALS^ORCHTAB2(+$P(X8,U,10))  ;clerk
@@ -203,9 +206,9 @@ GETFLDS ; used by entry points to place order fields into list
  . S $P(LST(IDX),U,24)=$P(ORCONSUB,U,2)
  ;
  S ORIGVIEW=$S($G(TXTVW)=0:0,$G(TXTVW)=1:1,ORYD=-1:1,'ORYD:1,$P(X8,U)'<ORYD:0,1:1)
- K TXT D TEXT^ORQ12(.TXT,ID,255)                  ; optimize later
+ K TXT D TEXT^ORQ12(.TXT,ID,255,ORUGROUP) ; optimize later ;RTW PASSING ORUGROUP
  I $O(^OR(100,+IFN,2,0)) S LN=$O(TXT(0)),TXT(LN)="+"_TXT(LN)
- I $O(^OR(100,+IFN,8,"C","XX",0)) S LN=$O(TXT(0)),TXT(LN)="*"_TXT(LN)
+ I $O(^OR(100,+IFN,8,"C","XX",0)),'$G(ORUGROUP) S LN=$O(TXT(0)),TXT(LN)="*"_TXT(LN) ;RTW ORUGROUP
  S LN=0 F  S LN=$O(TXT(LN)) Q:'LN  S IDX=IDX+1,LST(IDX)="t"_TXT(LN)
  I $O(^OR(100,+IFN,8,1,.2,0)) S IDX=IDX+1,LST(IDX)="|" D  ;PKI XMLText
  . S I=0 F  S I=$O(^OR(100,+IFN,8,1,.2,I)) Q:'I  S IDX=IDX+1,LST(IDX)="x"_^(I,0)

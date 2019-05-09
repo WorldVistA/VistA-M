@@ -1,5 +1,6 @@
 LR7OGMC ;DALOI/STAFF- Interim report rpc memo chem ;11/19/09  17:59
- ;;5.2;LAB SERVICE;**187,230,312,286,356,372,395,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**187,230,312,286,356,372,395,350,516**;Sep 27, 1994;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; sets lab data into ^TMP("LR7OG",$J,"TP"
  ; ^TMP("LR7OG",$J,"G")=dfn^pnm^lrdfn^age^sex^lrcw
@@ -136,14 +137,22 @@ CHKNP ; Check for NP comments and no verified results.
  ;
  N LRCAN,X
  S LRCAN=0
- F  S LRCAN=+$O(^LR(LRDFN,"CH",IDT,1,LRCAN)) Q:LRCAN<1  S X=^(LRCAN,0) Q:(($E(X)="*")&(X["Not Performed:"))
+ ;*LR*5.2*516
+ ;F  S LRCAN=+$O(^LR(LRDFN,"CH",IDT,1,LRCAN)) Q:LRCAN<1  S X=^(LRCAN,0) Q:(($E(X)="*")&(X["Not Performed:"))
  ;
  ; Print if cancel comment and no unverified results.
- I LRCAN<1 Q
+ ;I LRCAN<1 Q
+ N LRTOTO,LRNPCNT
+ S LRTOTO=$P($G(^LR(LRDFN,"CH",IDT,"ORUT",0)),U,4) ;total number of orders
+ S LRNPCNT=0
+ F  S LRCAN=+$O(^LR(LRDFN,"CH",IDT,1,LRCAN)) Q:LRCAN<1  D
+ . S X=^(LRCAN,0)
+ . I (($E(X)="*")&(X["Not Performed:")) S LRNPCNT=LRNPCNT+1
+ ;quit if all orders are marked Not performed:
+ I FORMAT!(LRTOTO=LRNPCNT) Q
  ;
  D CMT
- ;
- I 'FORMAT D PRINT^LR7OGMP(.OUTCNT)
+ D PRINT^LR7OGMP(.OUTCNT)
  K ^TMP("LR7OG",$J,"TP")
  Q
  ;
@@ -151,8 +160,16 @@ CHKNP ; Check for NP comments and no verified results.
 GETNP ;Set NP flag (Not Performed)
  N LRCAN,X
  S LRCAN=0
- F  S LRCAN=+$O(^LR(LRDFN,"CH",IDT,1,LRCAN)) Q:LRCAN<1  S X=^(LRCAN,0) Q:(($E(X)="*")&(X["Not Performed:"))
- Q:LRCAN<1
+ ;*LR*5.2*516
+ ;F  S LRCAN=+$O(^LR(LRDFN,"CH",IDT,1,LRCAN)) Q:LRCAN<1  S X=^(LRCAN,0) Q:(($E(X)="*")&(X["Not Performed:"))
+ ;Q:LRCAN<1
+ S LRTOTO=$P($G(^LR(LRDFN,"CH",IDT,"ORUT",0)),U,4) ;total number of orders
+ S LRNPCNT=0
+ F  S LRCAN=+$O(^LR(LRDFN,"CH",IDT,1,LRCAN)) Q:LRCAN<1  D
+ . S X=^(LRCAN,0)
+ . I (($E(X)="*")&(X["Not Performed:")) S LRNPCNT=LRNPCNT+1
+ ;quit if not all orders are marked Not performed:
+ I LRTOTO'=LRNPCNT Q
  I $G(FORMAT) Q:$O(^LR(LRDFN,"CH",IDT,1))
  S GOTNP=1
  Q

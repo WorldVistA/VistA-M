@@ -1,11 +1,15 @@
 PSOORED2 ;ISC-BHAM/SAB - edit orders from backdoor con't ;03/06/95 10:24
- ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385,427,538**;DEC 1997;Build 2
  ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;called from psooredt. cmop edit checks.
+ ; PSO*7*538/INC1491667 Modification to review Issue Date During Rx Edit
  Q
 ISDT D CHK K RF I $G(CMRL) W !,"Released by CMOP.  No editing allowed on Issue Date." D PAUSE^VALM1 K CMRL Q
- S %DT="AEX",%DT(0)=-$P(^PSRX(DA,2),"^",2),Y=$P(RX0,"^",13) X ^DD("DD") S %DT("A")="ISSUE DATE: ",%DT("B")=Y D ^%DT I "^"[$E(X) K X,Y,%DT,DTOUT,DUOUT Q
+ ; PSO*7*538 Modified Next Line (Added Call to PSOUTL)
+ S %DT="AEX",%DT(0)=-$P(^PSRX(DA,2),"^",2),Y=$P(RX0,"^",13) X ^DD("DD") S %DT("A")="ISSUE DATE: ",%DT("B")=Y D ^%DT D CID^PSOUTL I "^"[$E(X) K X,Y,%DT,DTOUT,DUOUT Q
+ ; PSO*7*538 Added Next Line
+ I Y=-1 W ! D CIDH^PSOUTL W ! G ISDT
  G:Y=-1 ISDT S PSORXED("FLD",1)=Y
  ;S DR="1///"_Y,DIE=52 D ^DIE
  D KV K X,Y,%DT

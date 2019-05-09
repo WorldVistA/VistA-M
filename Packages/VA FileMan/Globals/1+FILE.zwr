@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FILE
-10-APR-2019 13:45:26 ZWR
-^DIC(0)="FILE^1^9999999.64^2797"
+09-MAY-2019 15:17:05 ZWR
+^DIC(0)="FILE^1^9999999.64^2798"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
 ^DIC(".11",0,"DEL")="^"
@@ -2533,7 +2533,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(50,"%D",7,0)="This file must be built by Pharmacy Service BEFORE going on-line.  It is"
 ^DIC(50,"%D",8,0)="common to use another centers file and edit it to match your center's"
 ^DIC(50,"%D",9,0)="unique formulary."
-^DIC(50,"%MSC")=3180907.131303
+^DIC(50,"%MSC")=3190501.155512
 ^DIC("50.03","%MSC")=3180601.150838
 ^DIC("50.073",0)="DUE QUESTIONNAIRE^50.073I"
 ^DIC("50.073",0,"GL")="^PS(50.073,"
@@ -7155,7 +7155,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(100,"%D",0)="^^2^2^2950424^^^^"
 ^DIC(100,"%D",1,0)="This is the file of orders/requisitions made for any package through the"
 ^DIC(100,"%D",2,0)="Order Entry Option (OR)."
-^DIC(100,"%MSC")=3190102.174113
+^DIC(100,"%MSC")=3190501.155731
 ^DIC("100.01",0)="ORDER STATUS^100.01I"
 ^DIC("100.01",0,"GL")="^ORD(100.01,"
 ^DIC("100.01","%",0)="^1.005^^0"
@@ -12442,7 +12442,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.9","%D",10,0)="This file should always be edited by use of the provided options."
 ^DIC("350.9","%D",11,0)=" "
 ^DIC("350.9","%D",12,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("350.9","%MSC")=3190131.164146
+^DIC("350.9","%MSC")=3190501.150045
 ^DIC(351,0)="MEANS TEST BILLING CLOCK^351I"
 ^DIC(351,0,"DD")="@"
 ^DIC(351,0,"GL")="^IBE(351,"
@@ -16639,6 +16639,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("396.15","%D",2,0)="examinations that are assigned to a specific medical center division.  It "
 ^DIC("396.15","%D",3,0)="is also possible to set a flag in this file to disable the division from "
 ^DIC("396.15","%D",4,0)="appearing in the listing of selectable divisions in the GUI."
+^DIC("396.15","%MSC")=3190501.155309
 ^DIC("396.17",0)="CAPRI TEMPLATES^396.17"
 ^DIC("396.17",0,"AUDIT")="@"
 ^DIC("396.17",0,"DD")="@"
@@ -16864,7 +16865,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(399,"%D",6,0)="number in the BILL/CLAIMS file."
 ^DIC(399,"%D",7,0)=" "
 ^DIC(399,"%D",8,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(399,"%MSC")=3181102.144916
+^DIC(399,"%MSC")=3190501.150045
 ^DIC("399.1",0)="MCCR UTILITY^399.1I"
 ^DIC("399.1",0,"DD")="@"
 ^DIC("399.1",0,"GL")="^DGCR(399.1,"
@@ -16921,6 +16922,15 @@ OSEHRA ZGO Export: FILE
 ^DIC("399.5","%D",9,0)=" "
 ^DIC("399.5","%D",10,0)="This file has been replaced by functionality in the Charge Master and"
 ^DIC("399.5","%D",11,0)="will no longer be used after patch IB*2*52 is released."
+^DIC("399.6",0)="CMN FORM TYPES^399.6"
+^DIC("399.6",0,"AUDIT")="@"
+^DIC("399.6",0,"DD")="@"
+^DIC("399.6",0,"DEL")="@"
+^DIC("399.6",0,"GL")="^IBE(399.6,"
+^DIC("399.6",0,"LAYGO")="@"
+^DIC("399.6",0,"RD")="@"
+^DIC("399.6",0,"WR")="@"
+^DIC("399.6","%MSC")=3190501.150047
 ^DIC("403.35",0)="SCHEDULING USER PREFERENCE^403.35P"
 ^DIC("403.35",0,"DD")="@"
 ^DIC("403.35",0,"DEL")="@"
@@ -38529,6 +38539,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","CLOZAPINE TESTS","603.04")=""
 ^DIC("B","CLRS REPORT STORAGE","446.7")=""
 ^DIC("B","CM HL7 DATA","8973.1")=""
+^DIC("B","CMN FORM TYPES","399.6")=""
 ^DIC("B","CMOP COST STATS","552.5")=""
 ^DIC("B","CMOP DATABASE","552.2")=""
 ^DIC("B","CMOP INTERFACE",553)=""

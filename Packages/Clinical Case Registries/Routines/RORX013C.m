@@ -1,5 +1,5 @@
 RORX013C ;HCIOFO/SG - DIAGNOSIS CODES (STORE) ;10/27/05 11:11am
- ;;1.5;CLINICAL CASE REGISTRIES;**19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**19,21,31,34**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -16,6 +16,7 @@ RORX013C ;HCIOFO/SG - DIAGNOSIS CODES (STORE) ;10/27/05 11:11am
  ;                                    requested.
  ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                    identifiers.
+ ;ROR*1.5*34   SEP 2018  F TRAXLER   Adding FUT_APPT and FUT_CLIN
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -79,6 +80,9 @@ PATIENTS(PTAG,NODE) ;
  . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(TMP,U,4),ITEM,1)
  . I $$PARAM^RORTSK01("PATIENTS","PACT") D ADDVAL^RORTSK11(RORTSK,"PACT",$P(TMP,U,5),ITEM,1)
  . I $$PARAM^RORTSK01("PATIENTS","PCP") D ADDVAL^RORTSK11(RORTSK,"PCP",$P(TMP,U,6),ITEM,1)
+ . I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D
+ . . D ADDVAL^RORTSK11(RORTSK,"FUT_APPT",$P(TMP,U,8),ITEM,1)
+ . . D ADDVAL^RORTSK11(RORTSK,"FUT_CLIN",$P(TMP,U,9),ITEM,1)
  . S PTICDL=$$ADDVAL^RORTSK11(RORTSK,"PTICDL",,ITEM)
  . S ICDIEN=0
  . F  S ICDIEN=$O(@NODE@("PAT",PATIEN,ICDIEN))  Q:ICDIEN'>0  D

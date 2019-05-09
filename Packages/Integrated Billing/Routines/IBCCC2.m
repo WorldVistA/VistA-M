@@ -1,5 +1,5 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
@@ -150,6 +150,11 @@ CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  ... ;JWS;IB*2.0*592;If DENT file 228.2 link, remove it from old invoice.
  ... S IBDL=$P($G(^DGCR(399,IBIFN1,I,J,"DEN1",K,0)),"^",7)
  ... I IBDL K ^DGCR(399,"ADT",IBDL,IBIFN1)
+ . ;JRA;IB*2.0*608 Add CMN info - Node 'CMN-10126' contains data specific to only the CMS-10126 form, node 'CMN-484' contains data specific to
+ . ; only the CMN-484 form, and node 'CMN' contains data common to both forms.
+ . I $D(^DGCR(399,IBIFN1,I,J,"CMN")) S ^DGCR(399,IBIFN,I,J,"CMN")=^DGCR(399,IBIFN1,I,J,"CMN")
+ . I $D(^DGCR(399,IBIFN1,I,J,"CMN-10126")) S ^DGCR(399,IBIFN,I,J,"CMN-10126")=^DGCR(399,IBIFN1,I,J,"CMN-10126")
+ . I $D(^DGCR(399,IBIFN1,I,J,"CMN-484")) S ^DGCR(399,IBIFN,I,J,"CMN-484")=^DGCR(399,IBIFN1,I,J,"CMN-484")
 CP1 S IBCOD=$P($G(^DGCR(399,IBIFN,0)),"^",9) Q:IBCOD=""!('$D(^DGCR(399,IBIFN1,"C")))
  I IBCOD=9 F DGI=4,5,6 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICD0(",DGPROCDT=$P(^("C"),"^",DGI+7) D FILE
  I IBCOD=4 F DGI=1,2,3 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICPT(",DGPROCDT=$P(^("C"),"^",DGI+10) D FILE

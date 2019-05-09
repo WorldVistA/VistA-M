@@ -1,6 +1,11 @@
 IBTUBO ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516,547,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;Associated ICRs
+ ;  ICR#
+ ;  4671 - Supports reference to file 409.1
+ ;   427 - Supports reference to file 8
  ;
 % ; - Entry point for manual option.
  N IBBDT,IBCOMP,IBDET,IBEDT,IBOPT,IBPRT,IBTIMON,IBQUIT,IBSEL,IBSBD
@@ -68,16 +73,53 @@ DIV ; division
  ;
 DIVX ; Exit Division selection.
  ;
+ ;JRA;IB*2.0*608 Ask to Search by MCCF, Non-MCCF or Both - Start
+ W !
+ S DIR(0)="SA^M:MCCF;N:Non-MCCF (Outpatient Only);B:Both"
+ S DIR("A")="Search by (M)CCF, (N)on-MCCF (Outpatient Only), or (B)oth? "
+ S DIR("B")="M"
+ S DIR("?",1)="Non-MCCF Eligibilities of Encounter are 'CHAMPVA', 'INELIGIBLE',"
+ S DIR("?",2)=" 'EMPLOYEE', 'TRICARE' and 'SHARING AGREEMENT'."
+ S DIR("?",3)="Non-MCCF Appointment Types are 'EMPLOYEE' and 'SHARING AGREEMENT'."
+ S DIR("?",4)="Non-MCCF Rate Types are 'CHAMPVA REIMB. INS.', 'CHAMPVA',"
+ S DIR("?",5)=" 'TRICARE REIMB. INS.', 'TRICARE', 'INELIGIBLE' and 'INTERAGENCY'."
+ S DIR("?")="All other Eligibilities/Types are MCCF."
+ D ^DIR K DIR G:($D(DIROUT)!($D(DIRUT))) END
+ S IBMCCF=Y
+ ;Set up arrays of Non-MCCF Rate Types, Non-MCCF Appointment Types and Non-MCCF Eligibility of Encounter entries.
+ N ARTIEN,ARTYP,ELIG,ELIGIEN,X
+ F ARTYP="INTERAGENCY","CHAMPVA REIMB. INS.","CHAMPVA","TRICARE REIMB. INS.","TRICARE","INELIGIBLE" D  ;Non-MCCF Rate Types
+ . S ARTIEN=$O(^DGCR(399.3,"B",ARTYP,"")) I +ARTIEN S IBMCCF("RTYP",ARTIEN)=""
+ F ARTYP="EMPLOYEE","SHARING AGREEMENT" D  ;Non-MCCF Appointment Types
+ . ;DBIA4671 for following FIND^DIC
+ . K ^TMP("DILIST",$J) D FIND^DIC(409.1,,"@;.01","X",ARTYP) I $D(^TMP("DILIST",$J,2))>1 D
+ . . S X=0 F  S X=$O(^TMP("DILIST",$J,2,X)) Q:'X  S ARTIEN=^TMP("DILIST",$J,2,X) S:+ARTIEN IBMCCF("ATYP",ARTIEN)=""
+ F ELIG="CHAMPVA","INELIGIBLE","EMPLOYEE","TRICARE","SHARING AGREEMENT" D  ;Non-MCCF "Eligibility of Encounter" Entries
+ . ;DBIA427 for following FIND^DIC
+ . K ^TMP("DILIST",$J) D FIND^DIC(8,,"@;.01","X",ELIG) I $D(^TMP("DILIST",$J,2))>1 D
+ . . S X=0 F  S X=$O(^TMP("DILIST",$J,2,X)) Q:'X  S ELIGIEN=^TMP("DILIST",$J,2,X) S:+ELIGIEN IBMCCF("ELIG",ELIGIEN)=""
+ ;JRA;IB*2.0*608 - End
+ ;
  ; - Select date(s) to build report.
  W ! D DT1^IBTUBOU G:IBBDT="^" END
  ;
  ; - Select report(s).
  S IBPRT="Choose report type(s) to print:"
- S IBOPT(1)="INPATIENT UNBILLED"
- S IBOPT(2)="OUTPATIENT UNBILLED"
- S IBOPT(3)="PRESCRIPTION UNBILLED"
- S IBOPT(4)="ALL OF THE ABOVE"
- S IBSEL=$$MLTP^IBJD(IBPRT,.IBOPT,1) I 'IBSEL G END
+ ;S IBOPT(1)="INPATIENT UNBILLED"  ;JRA;IB*2.0*608 ';'
+ ;S IBOPT(2)="OUTPATIENT UNBILLED"  ;JRA;IB*2.0*608 ';'
+ ;S IBOPT(3)="PRESCRIPTION UNBILLED"  ;JRA;IB*2.0*608 ';'
+ ;S IBOPT(4)="ALL OF THE ABOVE"  ;JRA;IB*2.0*608 ';'
+ I $G(IBMCCF)="N" S IBOPT(1)="OUTPATIENT UNBILLED"  ;JRA;IB*2.0*608
+ E  D  ;JRA;IB*2.0*608
+ . S IBOPT(1)="INPATIENT UNBILLED"
+ . S IBOPT(2)="OUTPATIENT UNBILLED"
+ . S IBOPT(3)="PRESCRIPTION UNBILLED"
+ . S IBOPT(4)="ALL OF THE ABOVE"
+ ;S IBSEL=$$MLTP^IBJD(IBPRT,.IBOPT,1) I 'IBSEL G END  ;JRA;IB*2.0*608 ';'
+ S IBSEL=$$MLTP^IBJD(IBPRT,.IBOPT,$S($G(IBMCCF)="N":"",1:1)) I 'IBSEL G END  ;JRA;IB*2.0*608
+ ;JRA;IB*2.0*608 For Non-MCCF set IBSEL="2," since the value of IBSEL drives the computations and '2' is for Outpatient.
+ ; Since "OUTPATIENT UNBILLED" is the only choice for Non-MCCF, IBSEL will be set to '1,' so need to reset to '2,'.
+ S:$G(IBMCCF)="N" IBSEL="2,"  ;JRA;IB*2.0*608
  S $E(IBSEL,$L(IBSEL))=""
  ;
 RDATE ; - Select re-compile date, if necessary.
@@ -148,7 +190,7 @@ DQ ; - Entry point for DM extract.
  ;
 STR D ^IBTUBOA ; Start report.
  ;
-END K DIRUT Q
+END K DIRUT,IBMCCF Q  ;JRA IB*2.0*608 Added IBMCCF
  ;
 MSG ; - Compile message.
  W !!,"NOTE: After this report is run, the Unbilled Amounts totals for"

@@ -1,5 +1,5 @@
 PSBMLEN1 ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**3,4,9,11,13,28,50,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**3,4,9,11,13,28,50,83,114**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -190,12 +190,13 @@ FDATE ;Check Admin Time for future date/time.
  Q
  ;
 SCANFAIL ;File an MSF record
- N PSBPRM,PSBRSLT,PSBX,PSBX1,PSBX2
+ N PSBPRM,PSBRSLT,PSBX,PSBX1,PSBX2,DSPDRG
  S PSBX=^PSB(53.79,DA,0)
  S PSBX1=^PSB(53.79,DA,.1)
  S PSBPRM(0)=$P(PSBX,U,1)_U_$P(PSBX1,U,1)_U_"Manual Medication Entry"_U_""_U_"M"_U_1
- I $P(PSBX1,U,1)["U",$P($G(^PSB(53.79,DA,.5,1,0)),U,1)]"" D
- .S PSBX2="DD"_U_$P($G(^PSB(53.79,DA,.5,1,0)),U,1)
+ S DSPDRG=+$O(^PSB(53.79,DA,.5,0))
+ I $P(PSBX1,U,1)["U",$P($G(^PSB(53.79,DA,.5,DSPDRG,0)),U,1)]"" D
+ .S PSBX2="DD"_U_$P($G(^PSB(53.79,DA,.5,DSPDRG,0)),U,1)
  I $P(PSBX1,U,1)["V",$P($G(^PSB(53.79,DA,.6,1,0)),U,1)]"" D
  .S PSBX2="ADD"_U_$P($G(^PSB(53.79,DA,.6,1,0)),U,1)
  I $G(PSBX2)="",$P(PSBX1,U,1)["V",$P($G(^PSB(53.79,DA,.7,1,0)),U,1)]"" D

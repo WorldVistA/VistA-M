@@ -1,5 +1,5 @@
 RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 20 Apr 2016  1:21 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26,29,30,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26,29,30,31,33,34**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -52,7 +52,7 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 20 Apr 2016  1:21 PM
  ;
  ;ROR*1.5*31   MAY 2017    M FERRARESE   Adding PACT, PCP, and AGE/DOB as additional 
  ;                                       identifiers.
- ;
+ ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name ; Fix LOINC code table for HEP A/B
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -165,7 +165,6 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  S PARAMS=$$ADDVAL^RORTSK11(RORTSK,"PARAMETERS",,PARTAG)
  S RC=0,(ARENDT,ENDT,ARSTDT,STDT)="",FLAGS=""
  ;
- ;=== Registry name
  S REGIEN=+$$PARAM^RORTSK01("REGIEN")
  I REGIEN>0 D  Q:RC<0 RC
  . S TMP=$P($$REGNAME^RORUTL01(REGIEN),U)
@@ -405,4 +404,5 @@ SELCOL ;selected optional fields and screen criteria is listed here
  ;;PACT^I $$PARAM^RORTSK01("PATIENTS","PACT")
  ;;PCP^I $$PARAM^RORTSK01("PATIENTS","PCP")
  ;;FUT_APPT^I $$PARAM^RORTSK01("OPTIONS","FUT_APPT")
+ ;;FUT_CLIN^I $$PARAM^RORTSK01("OPTIONS","FUT_APPT")
  ;;
