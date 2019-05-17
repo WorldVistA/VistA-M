@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-15-MAR-2019 07:54:12 ZWR
+17-MAY-2019 18:58:42 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -14835,6 +14835,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("362.4","%D",1,0)="This file contains all prescription refills for bills in the Bill/Claims file."
 ^DIC("362.4","%D",2,0)=" "
 ^DIC("362.4","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC("362.4","%MSC")=3190517.185441
 ^DIC("362.5",0)="IB BILL/CLAIMS PROSTHETICS^362.5D"
 ^DIC("362.5",0,"AUDIT")="@"
 ^DIC("362.5",0,"DD")="@"
