@@ -1,6 +1,6 @@
-XUSER ;SFISC/RWF - A common set of user functions ;11/07/2012  11:56
- ;;8.0;KERNEL;**75,97,99,150,226,267,288,330,370,373,580,609**;Jul 10, 1995;Build 15
- ;Per VHA Directive 2004-038, this routine should not be modified.
+XUSER ;ISP/RFR - A common set of user functions ;06/09/15  10:51
+ ;;8.0;KERNEL;**75,97,99,150,226,267,288,330,370,373,580,609,642**;Jul 10, 1995;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
  ;Covered under DBIA #2343
  Q
 LOOKUP(XUF) ;Do a user lookup
@@ -13,6 +13,7 @@ LK1 S DIC="^VA(200,",DIC(0)="AEMQZ" D ^DIC S XUDA=Y G:Y'>0 LKX
  G:$G(XUF)["Q" LKX
  S DIR(0)="Y",DIR("A")=" Is "_$P(XUDA,U,2)_" the one you want",DIR("B")="YES" D ^DIR
  I Y'=1 S XUDA=-1 G:'$D(DIRUT) LK1
+ ;
 LKX Q XUDA
  ;
 ACTIVE(XUDA) ;Get if a user is active.
@@ -27,6 +28,7 @@ ACTIVE(XUDA) ;Get if a user is active.
 BULL ;Called from bulletin in DD of file #200 for 'Sub Alt Name' fld.
  ;This will find users with PSDMGR keys and setup the XMY array for
  ;bulletin recipients. p580 REM
+ ; ZEXCEPT: XMY - Kernel exemption
  N PSD,I
  S PSD=$$FIND1^DIC(19.1,"","MX","PSDMGR","","","PSDERR") Q:PSD'>0
  S I=0 F  S I=$O(^VA(200,"AB",PSD,I)) Q:I'>0  S XMY(I)=""
@@ -69,7 +71,7 @@ DEA(FG,IEN) ;sr. ef. Return users DEA # or Facility DEA_"-"_user VA# or null
  ;If FG is 1: DEA# or VA#
  ;Fee Basis, C&A providers only return DEA# or null - p609/REM
  ;Add XDT=DEA expiration date. If XDT unpopulated, its expired. - p609/REM
- N DEA,VA,IN,N,N1,INN,XDT,FB
+ N DEA,FB,IN,INN,N,N1,XDT,VA
  S IEN=$G(IEN,DUZ),INN=+DUZ(2)
  S N=$G(^VA(200,IEN,"PS")),N1=$G(^VA(200,IEN,"QAR"))
  S DEA=$P(N,U,2),VA=$P(N,U,3),XDT=$P(N1,U,9)
@@ -83,7 +85,10 @@ DEA(FG,IEN) ;sr. ef. Return users DEA # or Facility DEA_"-"_user VA# or null
  . N XU1 D PARENT^XUAF4("XU1","`"_INN,"PARENT FACILITY")
  . S INN=$O(XU1("P","")) I INN S IN=$P($G(^DIC(4,INN,"DEA")),U)
  . Q
- I $L(VA),$L(IN) Q IN_"-"_VA
+ N XUEXDT I INN S XUEXDT=$P($G(^DIC(4,INN,"DEA")),U,2) ;check DEA EXPIRATION DATE
+ S XUEXDT=$G(XUEXDT)
+ I $L(VA),$L(IN),$L(XUEXDT),XUEXDT'<DT Q IN_"-"_VA ;check DEA EXPIRATION DATE
+ ;I $L(VA),$L(IN) Q IN_"-"_VA
  Q ""
  ;
 DETOX(IEN) ;Return the Detox/Maintenance ID in file 200 - p580/REM
@@ -102,11 +107,11 @@ DETOX(IEN) ;Return the Detox/Maintenance ID in file 200 - p580/REM
  ;
 SDEA(FG,IEN,PSDEA) ;validation for new DEA regulations p580-JC(CPRS)
  ;ICR #2343
- ;Returns: DEA#, Facility DEA_"-"_user VA#, 1, 2, or 4^expiration date 
+ ;Returns: DEA#, Facility DEA_"-"_user VA#, 1, 2, or 4^expiration date
  ;If FG is 1: DEA# or VA# - similar to $$DEA
  ;IEN is used to lookup user in file #200
  ;PSDEA is the DEA schedule
- N DEA,N3,I,A,NALL,E,DA,XD,N,N1
+ N DEA,N3,I,A,NALL,E,DA,XD,N,N1,Y
  S FG=$G(FG),IEN=$G(IEN),PSDEA=$G(PSDEA)
  S DEA=$$DEA(FG,IEN) I DEA="" D  Q E
  . S E=1
@@ -136,50 +141,53 @@ VDEA(RETURN,IEN)  ;ISP/RFR - Verify a provider is properly configured for ePCS
  ;                     schedules on a separate node
  ;RETURN: 1 - Provider is properly configured for ePCS
  ;        0 - Provider is not properly configured for ePCS
- N STATUS,DEA,RETVAL,DATE
+ N STATUS,DEA,RETVAL,DATE,NODEA
  S RETVAL=1,STATUS=$$ACTIVE(IEN)
  I STATUS="" S RETURN("User account does not exist.")="",RETVAL=0
  I STATUS=0 S RETURN("User cannot sign on.")="",RETVAL=0
  I +STATUS=0,($P(STATUS,U,2)'="") S RETURN("User account status: "_$P(STATUS,U,2))="",RETVAL=0
  Q:STATUS="" RETVAL
  I '$D(^XUSEC("ORES",IEN)) D
- .S RETURN("Does not hold the ORES security key.")="",RETVAL=0
+ . S RETURN("Does not hold the ORES security key.")="",RETVAL=0
  I +$P($G(^VA(200,IEN,"PS")),U,1)'=1 D
- .S RETURN("Is not authorized to write medication orders.")="",RETVAL=0
+ . S RETURN("Is not authorized to write medication orders.")="",RETVAL=0
  I $P($G(^VA(200,IEN,"PS")),U,2)'="" D
- .N DATE
- .S DATE=+$P($G(^VA(200,IEN,"QAR")),U,9)
- .I DATE=0 S RETURN("Has a DEA number with no expiration date.")="",RETVAL=0
- .I DATE>0,(DATE<=DT) S RETURN("Has an expired DEA number.")="",RETVAL=0
- I $P($G(^VA(200,IEN,"PS")),U,2)="",($P($G(^VA(200,IEN,"PS")),U,3)="") D
- .S RETURN("Has neither a DEA number nor a VA number.")="",RETVAL=0
+ . N DATE
+ . S DATE=+$P($G(^VA(200,IEN,"QAR")),U,9)
+ . I DATE=0 S RETURN("Has a DEA number with no expiration date.")="",RETVAL=0,NODEA=1
+ . I DATE>0,(DATE<=DT) S RETURN("Has an expired DEA number.")="",RETVAL=0,NODEA=1
+ I $P($G(^VA(200,IEN,"PS")),U,2)="" D
+ . S NODEA=1
+ . I $P($G(^VA(200,IEN,"PS")),U,3)="" D
+ . . S RETURN("Has neither a DEA number nor a VA number.")="",RETVAL=0
+ I +$G(NODEA),($P($G(^VA(200,IEN,"PS")),U,3)'="") S RETVAL=1
  S DATE=+$P($G(^VA(200,IEN,"PS")),U,4)
  I DATE>0,(DATE<=DT) D
- .S RETURN("Is no longer able to write medication orders (inactive date).")="",RETVAL=0
+ . S RETURN("Is no longer able to write medication orders (inactive date).")="",RETVAL=0
  I $D(^VA(200,IEN,"PS3")) D
- .N NODE
- .S NODE=$$STRIP^XLFSTR(^VA(200,IEN,"PS3"),U),NODE=$$STRIP^XLFSTR(NODE,0)
- .I $G(NODE)="" S RETURN("Is not permitted to prescribe any schedules.")="",RETVAL=0 Q
- .I $G(NODE)'="" D
- ..N PIECE,SCHED,SPEC,ASCHED
- ..S SPEC("SCHEDULE ")=""
- ..S ASCHED=1
- ..F PIECE=1:1:6 D
- ...I +$P(^VA(200,IEN,"PS3"),U,PIECE)>0 D
- ....N LABEL,ERROR
- ....S LABEL=$$REPLACE^XLFSTR($$GET1^DID(200,"55."_PIECE,,"LABEL",,"ERROR"),.SPEC)
- ....S:$G(LABEL)="" LABEL="Unknown field #55."_PIECE
- ....S SCHED=$S($G(SCHED)'="":SCHED_U,1:"")_LABEL
- ...I +$P(^VA(200,IEN,"PS3"),U,PIECE)=0 S ASCHED=0
- ..I ASCHED=1 S RETURN("Is permitted to prescribe all schedules.")=""
- ..I ASCHED=0 D
- ...N DELIMIT,INDEX,TEXT
- ...S DELIMIT=", "
- ...F INDEX=1:1:$L(SCHED,U) D
- ....S:INDEX=$L(SCHED,U) DELIMIT=" and "
- ....S TEXT=$S($G(TEXT)'="":TEXT_DELIMIT,1:"")_$P(SCHED,U,INDEX)
- ...S RETURN("Is permitted to prescribe schedule"_$S($L(SCHED,U)>1:"s",1:"")_" "_TEXT_".")=""
- I '$D(^VA(200,IEN,"PS3")) S RETURN("Is permitted to prescribe all schedules.")=""
+ . N NODE
+ . S NODE=$$STRIP^XLFSTR(^VA(200,IEN,"PS3"),U),NODE=$$STRIP^XLFSTR(NODE,0)
+ . I $G(NODE)="" S RETURN("Is not permitted to prescribe any schedules.")="",RETVAL=0 Q
+ . I $G(NODE)'="" D
+ . . N PIECE,SCHED,SPEC,ASCHED
+ . . S SPEC("SCHEDULE ")=""
+ . . S ASCHED=1
+ . . F PIECE=1:1:6 D
+ . . . I +$P(^VA(200,IEN,"PS3"),U,PIECE)>0 D
+ . . . . N LABEL,ERROR
+ . . . . S LABEL=$$REPLACE^XLFSTR($$GET1^DID(200,"55."_PIECE,,"LABEL",,"ERROR"),.SPEC)
+ . . . . S:$G(LABEL)="" LABEL="Unknown field #55."_PIECE
+ . . . . S SCHED=$S($G(SCHED)'="":SCHED_U,1:"")_LABEL
+ . . . I +$P(^VA(200,IEN,"PS3"),U,PIECE)=0 S ASCHED=0
+ . . I ASCHED=1 S RETURN("Is permitted to prescribe all schedules.")=""
+ . . I ASCHED=0 D
+ . . . N DELIMIT,INDEX,TEXT
+ . . . S DELIMIT=", "
+ . . . F INDEX=1:1:$L(SCHED,U) D
+ . . . . S:INDEX=$L(SCHED,U) DELIMIT=" and "
+ . . . . S TEXT=$S($G(TEXT)'="":TEXT_DELIMIT,1:"")_$P(SCHED,U,INDEX)
+ . . . S RETURN("Is permitted to prescribe schedule"_$S($L(SCHED,U)>1:"s",1:"")_" "_TEXT_".")=""
+ I '$D(^VA(200,IEN,"PS3")) S RETURN("Is permitted to prescribe all schedules due to grandfathering.")=""
  Q RETVAL
  ;
 DIV4(XUROOT,XUDUZ) ;Return the Divisions that this user is assigned to.
@@ -200,6 +208,7 @@ HL7(IEN) ;Return a HL7 name from the components file
  Q $$HLNAME^XLFNAME(.NA,"","~")
  ;
 SCR200() ;Whole File Screen logic for file 200
+ ; ZEXCEPT: DIC,DINDEX - Kernel exemption
  ;
  ; Test to see if FileMan can "talk" to the user, IA# 4577
  I $G(DIC(0))'["E" Q 1
