@@ -1,12 +1,16 @@
 DIR2 ;SFISC/XAK - READER (SETUP VARS,REPLACE...WITH) ;2DEC2016
- ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
+ ;;22.2;VA FileMan;**2,5,8**;Jan 05, 2016;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;CALLED FROM THE TOP OF THE READER (DIR)   %P WILL NOT BE DEFINED.
  K Y,% S U="^"
- D DIR("A"),DIR("?"),DIR("L"),DIR("B") ;**
+ D  ;p8
+ .N DINAKED S DINAKED=$$LGR^%ZOSV
+ .D DIR("A"),DIR("?"),DIR("L"),DIR("B")
+ .I DINAKED]"" S DINAKED=$S(DINAKED["""""":$O(@DINAKED),1:$D(@DINAKED))
+ .Q
  S %T=$E(DIR(0)),%A=$P(DIR(0),U),%B=$P(DIR(0),U,2),%N=%A'["V"
  K:$D(DIR("A"))=10 DIR("A") K:$D(DIR("?"))=10 DIR("?")
  S %W0=$S($D(DIR("?")):DIR("?"),%T'?.AN:"",'$P($T(@(%T_1)),";",5):"",1:$$EZBLD^DIALOG($P($T(@(%T_1)),";",5)))
@@ -81,8 +85,7 @@ WITH W $$EZBLD^DIALOG(8048) R X:DTIME E  S DTOUT=1,X="",%=0 W $C(7)," ??" Q
  Q:X?.ANP  W $C(7)," ??" G WITH
  ;
 B W:$D(DTOUT) $C(7) I DG'=Y S X=Y W !?3 W X I X="" S X="@"
- D:$D(DINAKED)
- .I $D(@DINAKED)
+ S:DINAKED]"" DINAKED=$S(DINAKED["""""":$O(@DINAKED),1:$D(@DINAKED)) ;p8
 Q Q
  ;
 F ;;Enter response: ;8051
