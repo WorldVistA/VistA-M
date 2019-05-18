@@ -1,5 +1,5 @@
-MAGNTRAI ;WOIFO/NST - List images for Reports ; 16 Jan 2018 3:59 PM
- ;;3.0;IMAGING;**170,185**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGNTRAI ;WOIFO/NST - List images for Reports ; 04 Feb 2017 3:59 PM
+ ;;3.0;IMAGING;**170**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -39,18 +39,7 @@ MAGNTRAI ;WOIFO/NST - List images for Reports ; 16 Jan 2018 3:59 PM
  ;                        RPC [MAGG CPRS RAD EXAM] or [MAG3 CPRS TIU NOTE]
  ;
 IMAGEL(MAGRY,DATA,IMGLESS) ;RPC [MAGN CPRS IMAGE LIST]
- S IMGLESS=$S($D(IMGLESS):+IMGLESS,1:1)  ; Defualt is IMAGELESS
- ;
- N MAGVER,MAGNII
- S MAGVER=""
- S MAGNII=""
- ; Check version of the RPC we need to call
- F  S MAGNII=$O(DATA(MAGNII)) Q:(MAGVER'="")!(MAGNII="")  D
- . S MAGVER=$P(DATA(MAGNII),"~",2)
- . Q
- I MAGVER=2 D IMAGEL^MAGNVQ06(.MAGRY,.DATA,IMGLESS) Q 
- ;
- N MAGNCXT,MAGNI,MAGNCNT,MAGNX,MAGNTIU,RARPT
+ N MAGNI,MAGNCNT,MAGNX,RARPT
  N MAGZRY
  N $ETRAP,$ESTACK S $ETRAP="D AERRA^MAGGTERR"
  S IMGLESS=$S($D(IMGLESS):+IMGLESS,1:1)  ; Defualt is IMAGELESS
