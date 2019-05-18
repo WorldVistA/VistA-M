@@ -1,5 +1,5 @@
 CRHD9 ; CAIRO/CLC - HANDOFF TEAM LIST ;4/24/08  12:49
- ;;1.0;CRHD;**2**;Jan 28, 2008;Build 11
+ ;;1.0;CRHD;**2,7**;Jan 28, 2008;Build 1
  ;=================================================================
  ;04/22/2009 BAY/KAM CRHD*1*2 Remedy Call 264027 Correct Issue of not
  ;                            being able to display/print patients
@@ -41,7 +41,8 @@ HOPLIST(CRHDRTN,CRHDTM) ;
  ;Get list of Patients for a HO team
  N CRHDX,CRHDPT,CRHDPD,CRHDTLST,CRHDCT,CRHDPD2,VAIP,DFN,DIE,DA,DR
  K CRHDRTN
- S CRHDRTN(1)="No Patients Found"
+ ;p.7 HPS/MWA "No Patients Found" is expected to be in the second piece...added "^"
+ S CRHDRTN(1)="^No Patients Found"
  Q:'CRHDTM
  I '$D(^CRHD(183.3,"B",$P(CRHDTM,"^",2),+CRHDTM)) Q
  S CRHDX=0
