@@ -1,5 +1,5 @@
 HMPUTIL1 ;SLC/AGP,ASMR/RRB,CPC - HMP utilities routine ;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,6**;May 15, 2016;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -58,7 +58,7 @@ ADHOC(HMPDMINP,HMPFCNT,DFN) ; Add syncStart metastamp and syncStatus to unsolici
  ..S HMPDAT=$G(^TMP("HMP",$J,HMPSUB,HMPN)) Q:HMPDAT="null"!'$L(HMPDAT)
  ..S HMPDAT=HMPDAT_HMPDATP ;cpc 2015/10/21 - look for crossover data
  ..;Search for last occurrence of uid in record (this will be parent)
- ..I '$G(HMPDAT(HMPSUB,"UID")),$F(HMPDAT,SRCH) F I=2:1 S NEXT=$P($P(HMPDAT,SRCH,I),QTE) Q:NEXT=""  S HMPDAT(HMPSUB,"UID")=NEXT ;cpc 2015/10/21
+ ..I $G(HMPDAT(HMPSUB,"UID"))="",$F(HMPDAT,SRCH) F I=2:1 S NEXT=$P($P(HMPDAT,SRCH,I),QTE) Q:NEXT=""  S HMPDAT(HMPSUB,"UID")=NEXT ;cpc 2016/09/16
  ..;BL;CPC Extract stamptime if present (patient data ONLY)
  ..;cpc 2015/10/09 - conditionalize tests
  ..I '$G(HMPDAT(HMPSUB,"STAMPTIME")),$F(HMPDAT,"stampTime") D  ;cpc 2015/10/21
