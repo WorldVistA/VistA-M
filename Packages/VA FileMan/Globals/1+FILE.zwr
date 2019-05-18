@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-18-MAY-2019 04:09:29 ZWR
+18-MAY-2019 04:57:32 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -19694,6 +19694,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(450,"%D",1,0)="This file contains employee master record data that is sent to the"
 ^DIC(450,"%D",2,0)="station from the Austin Data Processing Center."
 ^DIC(450,"%D",3,0)=" "
+^DIC(450,"%MSC")=3190518.045332
 ^DIC("450.11",0)="PAID DOWNLOAD MESSAGE ERROR^450.11"
 ^DIC("450.11",0,"AUDIT")="@"
 ^DIC("450.11",0,"DD")="@"
@@ -20196,6 +20197,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(459,"%D",0)="^^2^2^2920110^^^"
 ^DIC(459,"%D",1,0)="This file contains PAID accounting data and some master record data for"
 ^DIC(459,"%D",2,0)="current employees by pay period."
+^DIC(459,"%MSC")=3190518.045332
 ^DIC(470,0)="PATIENT FUNDS^470PI"
 ^DIC(470,0,"DEL")="^"
 ^DIC(470,0,"GL")="^PRPF(470,"
