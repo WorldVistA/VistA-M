@@ -1,5 +1,5 @@
 PSSJSV0 ;BIR/CML3,WRT-SCHEDULE VALIDATION CONT. ; 08/21/97 8:26
- ;;1.0;PHARMACY DATA MANAGEMENT;;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**218**;9/30/97;Build 13
  ;
 ENPSJI ; inquire for Inpatient Meds
  S PSJPP="PSJ"
@@ -38,7 +38,7 @@ SCHT ;
 DICW ;
  ; PSSJEEU CALLS THIS-IT LOOKS AT FILE 51.1
  S Z=$P(^(0),"^",5),Z=$S(Z="O":-1,Z="S":1,Z="R":-2,1:0) W:Z "  ",$S(Z>0:"SHIFT",Z=-2:"RANGE",1:"ONE-TIME") I Z'<0,$D(PSJW),$D(^(PSJPP'="PSJ"+1,PSJW,0)),$P(^(0),"^",Z+2)]"" W "  ",$P(^(0),"^",Z+2) Q
- W "  ",$P(^PS(51.1,+Y,0),"^",Z*4+2) Q
+ W "  ",$P(^PS(51.1,+Y,0),"^",Z*4+2),$S($P(^PS(51.1,+Y,0),U,12):"  **INACTIVE**  ",1:"") Q
  ;
 ENSTH ; executable help for type of schedule
  W !!?2,"The TYPE OF SCHEDULE determines how the schedule will be processed."

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-18-MAY-2019 12:23:35 ZWR
+18-MAY-2019 17:30:58 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2861,7 +2861,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("51.1",0,"GL")="^PS(51.1,"
 ^DIC("51.1","%D",0)="^^1^1^2930716^^^^"
 ^DIC("51.1","%D",1,0)="  Sets of standard times over which medications are to be administered."
-^DIC("51.1","%MSC")=3170819.130506
+^DIC("51.1","%MSC")=3190518.172704
 ^DIC("51.15",0)="ADMINISTRATION SHIFT^51.15"
 ^DIC("51.15",0,"DD")="@"
 ^DIC("51.15",0,"GL")="^PS(51.15,"
@@ -2960,6 +2960,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("51.7","%D",1,0)="This file stores rapidly changing drug restrictions, guidelines, and"
 ^DIC("51.7","%D",2,0)="protocols to help assure medications are being used according to formulary"
 ^DIC("51.7","%D",3,0)="specifications."
+^DIC("51.7","%MSC")=3190518.172704
 ^DIC(52,0)="PRESCRIPTION^52Is"
 ^DIC(52,0,"GL")="^PSRX("
 ^DIC(52,"%",0)="^1.005^2^2"
