@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-17-MAY-2019 18:58:42 ZWR
+18-MAY-2019 00:14:07 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -8150,6 +8150,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.51","%D",9,0)=" "
 ^DIC("120.51","%D",10,0)="This file contains a list of vital sign types, and various parameters"
 ^DIC("120.51","%D",11,0)="which mold the data entry."
+^DIC("120.51","%MSC")=3190518.001003
 ^DIC("120.52",0)="GMRV VITAL QUALIFIER^120.52"
 ^DIC("120.52",0,"AUDIT")="@"
 ^DIC("120.52",0,"DD")="@"
@@ -8169,6 +8170,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.52","%D",8,0)="{pending directive #} shall not be supported."
 ^DIC("120.52","%D",9,0)=" "
 ^DIC("120.52","%D",10,0)="This file contains a list of qualifiers for vitals/measurements."
+^DIC("120.52","%MSC")=3190518.001003
 ^DIC("120.53",0)="GMRV VITAL CATEGORY^120.53"
 ^DIC("120.53",0,"AUDIT")="@"
 ^DIC("120.53",0,"DD")="@"
@@ -8177,6 +8179,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.53",0,"LAYGO")="@"
 ^DIC("120.53",0,"RD")=""
 ^DIC("120.53",0,"WR")="@"
+^DIC("120.53","%",0)="^1.005^^0"
 ^DIC("120.53","%D",0)="^1.001^11^11^3050223^^^^"
 ^DIC("120.53","%D",1,0)="Per VHA Directive {pending directive #}, this file has been ""locked down"" "
 ^DIC("120.53","%D",2,0)="by Data Standardization (DS). The file definition (i.e. data dictionary) "
@@ -8189,6 +8192,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.53","%D",9,0)=" "
 ^DIC("120.53","%D",10,0)="This file contains a list of qualities or characteristics that can be "
 ^DIC("120.53","%D",11,0)="affixed to a vital measurement."
+^DIC("120.53","%MSC")=3190518.001003
 ^DIC("120.55",0)="GMRV ORDERS^120.55P"
 ^DIC("120.55",0,"DD")="@"
 ^DIC("120.55",0,"DEL")="@"
