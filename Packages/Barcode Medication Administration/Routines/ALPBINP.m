@@ -1,5 +1,5 @@
 ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;07/06/16 7:06am
- ;;3.0;BAR CODE MED ADMIN;**8,37,73,87,102,105**;May 2007;Build 3
+ ;;3.0;BAR CODE MED ADMIN;**8,37,73,87,102,105,115**;May 2007;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine will intercept the HL7 message that it sent from Pharmacy
  ;to CPRS to update order information. The message is then parsed and 
@@ -106,6 +106,9 @@ INIT ;CALL HL7 TO INITIALIZE MESSAGE VARIABLES
  Q
 SEND ;CALL HL7 TO TRANSMIT SINGLE MESSAGE
  K ALPRSLT,ALPOPTS
+ ; If called from Workstation Init options it will screen out HL Links not selected
+ I $D(ALPHLINI) D  I '$D(HLL("LINKS")) Q
+ . F I=1:1 Q:'$D(HLL("LINKS",I))  I '$D(ALPHLINI(HLL("LINKS",I))) K HLL("LINKS",I)
  D GENERATE^HLMA(EVENT,"LM",1,.ALPRSLT,"",.ALPOPTS)
  Q
 AL1 ;ALLERGY SEGMENT BUILD
