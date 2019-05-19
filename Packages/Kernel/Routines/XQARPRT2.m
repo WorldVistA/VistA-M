@@ -1,5 +1,6 @@
 XQARPRT2 ;DCN/BUF,JLI/OAK-OIFO - LOOKUP PROVIDER ALERTS ;4/9/07  10:16
- ;;8.0;KERNEL;**316,443**;Jul 10, 1995;Build 4
+ ;;8.0;KERNEL;**316,443,690**;Jul 10, 1995;Build 18
+ ;Per VHA VA Directive 6402, this routine should not be modified
  ;  Based on the original routine AEKALERT
  Q
 EN ; OPT - interactive lists alerts from start date for a single user based on contents of alert tracking file
@@ -14,11 +15,13 @@ DQ1 ;
  S HEADERID="User "_$$GET1^DIQ(200,XQADOC_",",.01)_" (DFN="_XQADOC_")"
  U IO
  D HEADER(HEADERID,1)
- S XQAIEN=$O(^XTV(8992.1,"D",XQASDATE-.0000001)) I XQAIEN>0 S XQAIEN=$O(^(XQAIEN,0)) ; find starting point instead of having to work up through x-ref
+ S XQAIEN=$O(^XTV(8992.1,"D",XQASDATE-.0000001))
+ I XQAIEN>0 S XQAIEN=$O(^(XQAIEN,0))-0.0001 ; find starting point instead of having to work up through x-ref, XU*8*690 - Subtract .0001 from 1st XQAIEN
  I XQAIEN>0 F  S XQAIEN=$O(^XTV(8992.1,"R",XQADOC,XQAIEN)) Q:XQAIEN'>0  D  Q:$D(DIRUT)!(XQADATE>XQAEDATE)
  . S XQANODE0=$G(^XTV(8992.1,XQAIEN,0)),XQADATE=$P(XQANODE0,"^",2) Q:(XQADATE<XQASDATE)!(XQADATE>XQAEDATE)
  . D PRNTATRK(XQAIEN)
  D HEADER(HEADERID,0)
+ I '$D(ZTQUEUED) U IO(0) S DIR(0)="E" D ^DIR K DIR W ! U IO ; XU*8*690 - Pause at end of report to user terminal
  D ^%ZISC
  K XQADATE,XQACTR,DATA,DIR,DIRUT,XQADOC,XQAIEN,XQANODE0,XQASDATE,Y
  Q
@@ -60,7 +63,7 @@ DATES ;
  S DIR(0)="DO^::EX",DIR("B")="TODAY",DIR("A")="START DATE" D ^DIR K DIR Q:Y'>0  S XQASDATE=+Y
  I XQASDATE<$$OLDEST() W !?10,"The earliest date in the alert tracking file is ",$$FMTE^XLFDT($$OLDEST(),"D") S XQASDATE=$$OLDEST()
  I $D(XQA1U4N) W !,"*** WARNING ***: Do not specify too many days - each entry in the Alert Tracking",!,"file must be checked for the date range specified.",! S DIR("B")=$$FMTE^XLFDT(XQASDATE)
- S DIR(0)="DO^"_XQASDATE_":DT",DIR("A")="END DATE" D ^DIR K DIR Q:$D(DIRUT)  I Y>0 S XQAEDATE=Y+.24
+ S DIR(0)="DO^"_XQASDATE_":DT:EX",DIR("A")="END DATE" D ^DIR K DIR Q:$D(DIRUT)  I Y>0 S XQAEDATE=Y+.24 ; Add "EX" to require eXact data and Echo input, XU*8*690
  Q
  ;
 PRNTATRK(IEN) ; Print data for an entry from the alert tracking file
@@ -87,7 +90,8 @@ PRNTATRK(IEN) ; Print data for an entry from the alert tracking file
  Q
  ;
 HEADER(XQANAME,DOFF) ; Output header at start of report XQANAME indicates who report is for
- W:DOFF @IOF W:'DOFF ! W $S('DOFF:"Found "_XQATOT_" ",1:""),$S($D(XQAWORDS)>1:"Selected ",1:""),"Alerts for ",XQANAME,!,"  for dates ",$$FMTE^XLFDT(XQASDATE)," through "
+ IF '$D(ZTQUEUED) W:DOFF @IOF ; XU*8*690 - Remove initial FormFeed when queued to task job (Printer)
+ W:'DOFF ! W $S('DOFF:"Found "_XQATOT_" ",1:""),$S($D(XQAWORDS)>1:"Selected ",1:""),"Alerts for ",XQANAME,!,"  for dates ",$$FMTE^XLFDT(XQASDATE)," through "
  N OUTDATE S OUTDATE=$$FMTE^XLFDT(XQAEDATE,"D") I 'DOFF,$D(XQADATE),XQADATE<XQAEDATE,'$D(ZTQUEUED) S OUTDATE=$$FMTE^XLFDT(XQADATE)
  W OUTDATE S XQACTR=2
  D WORDHDR

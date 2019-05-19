@@ -1,6 +1,6 @@
 XQALSUR2 ;FO-OAK.SEA/JLI-Continuation of alert surrogate processing ;07/12/12  11:30
- ;;8.0;KERNEL;**366,513,602**;Jul 10, 1995;Build 9
- ;Per VHA Directive 2004-038, this routine should not be modified
+ ;;8.0;KERNEL;**366,513,602,690**;Jul 10, 1995;Build 18
+ ;Per VHA VA Directive 6402, this routine should not be modified
  Q
  ; added to handle adjustment for manual or Fileman editing of surrogate on top zero node
 CHEKSUBS(XQAUSER) ;
@@ -31,7 +31,7 @@ CHKCRIT(ZERONODE) ;EXTRINSIC - check for critical indication for alert
  . S CRITTEXT=$$UP^XLFSTR(RES(8992.3,IENS,.01)),PKGID=$$UP^XLFSTR(RES(8992.3,IENS,.02))
  . I PKGID'="",$$UP^XLFSTR($P(ZERONODE,U,2))'[PKGID Q
  . S ALERTTXT=$$UP^XLFSTR($P(ZERONODE,U,3))
- . I ALERTTXT[CRITTEXT,ALERTTXT'["NOT "_CRITTEXT S RESULT=1
+ . I ALERTTXT[CRITTEXT,ALERTTXT'["NOT "_CRITTEXT,ALERTTXT'["NON "_CRITTEXT S RESULT=1  ;;XU*8*690 - Added check for "NON" critical text
  Q RESULT
 CLEANUP(XQAUSER) ;SR. - clean up expired surrogate info
  N XQAI,XQANOW,XQASUR
