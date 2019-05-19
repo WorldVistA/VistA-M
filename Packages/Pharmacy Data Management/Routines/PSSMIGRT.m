@@ -1,5 +1,5 @@
-PSSMIGRT ;AJF -  Process Migration Sync XML message from PEPS; 10/12/2012 0931
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 38
+PSSMIGRT ;AJF -  Process Migration Sync XML message from PEPS; 06/11/2012 1605
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 35
  ;;
  ; Migration Sync continued
  ;;
@@ -83,17 +83,17 @@ NDC ;  Migration Synch for NDC
  ;
  ; Match Product IEN and Name
  S:$G(PIEN)'="" PSPNAME1=$P($G(^PSNDF(50.68,PIEN,0)),"^")
- S PSPNAME1=$$UPC(PSPNAME1),PSPNAME1=$$TR(PSPNAME1)
+ S PSPNAME1=$$UPC(PSPNAME1)
  I PSPNAME'=PSPNAME1 D OUT^PSSMIGRS(" Error... Product Names Don't Match") Q
  ;
  ; Match Manufacturer IEN and Name
  S:$G(MIEN)'="" PSMAN1=$P($G(^PS(55.95,MIEN,0)),"^")
- S PSMAN1=$$UPC(PSMAN1),PSMAN1=$$TR(PSMAN1)
+ S PSMAN1=$$UPC(PSMAN1)
  I PSMAN'=PSMAN1 D OUT^PSSMIGRS(" Error... Manufacturer Names Don't Match") Q
  ;
  ; Match Package Type IEN and Name
  S:$G(PKIEN)'="" PSTYPE1=$P($G(^PS(50.608,PKIEN,0)),"^")
- S PSTYPE1=$$UPC(PSTYPE1),PSTYPE1=$$TR(PSTYPE1)
+ S PSTYPE1=$$UPC(PSTYPE1)
  I PSTYPE'=PSTYPE1 D OUT^PSSMIGRS(" Error... Package Type Names Don't Match") Q
  ;
  ; Package Size
@@ -181,10 +181,3 @@ NDC ;  Migration Synch for NDC
  Q
 UPC(X) ;convert lower case to upper case
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- ;
-TR(X)    ;Strip trailing blanks
- Q:$G(X)="" X
- N I
- F I=$L(X):-1:0 Q:$E(X,I)'=" "
- Q $E(X,1,I)
- ;

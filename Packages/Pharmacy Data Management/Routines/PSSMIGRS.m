@@ -1,5 +1,5 @@
 PSSMIGRS ;AJF - Receives and Process Migration Synch XML message from PEPS; 05/15/2012 0645
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;;Build 38
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;;Build 35
  ;;
  ; Start of Migration Sync code
  ; Calls ^PSSMIGRT
