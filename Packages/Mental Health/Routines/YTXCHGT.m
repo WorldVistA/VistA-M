@@ -1,5 +1,5 @@
 YTXCHGT ;SLC/KCM - JSON / Tree Conversions ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,123**;Dec 30, 1994;Build 72
  ;Reference to VPRJSON supported by IA #6411
  ;
  ; SRC,DEST are global or local array references
@@ -63,15 +63,30 @@ SPEC2TR(XCHGIEN,DEST) ; Convert JSON WP entry in 601.95 to tree representation
  Q 1
  ;
 ADDEND(XCHGIEN) ; Process any contents in addendum
- N I,X,JSONTMP,ARRAY,JSONERR
- S I=0 F  S I=$O(^YTT(601.95,XCHGIEN,4,I)) Q:'I  S JSONTMP(I)=^YTT(601.95,XCHGIEN,4,I,0)
- Q:'$D(JSONTMP)
- D DECODE^VPRJSON("JSONTMP","ARRAY","JSONERR")
- I $D(JSONERR) D LOG^YTXCHGU("error","Addendum decode, "_$G(JSONERR(1))) Q
+ ; example: {"ignoreConflicts": ["601.72:6488","601.72:6491","601.72:6734"]}
+ N I,X,ARRAY
+ D ADD2TR(XCHGIEN,.ARRAY) Q:'$D(ARRAY)
  K ^XTMP("YTXIDX","ignore")
  S I=0 F  S I=$O(ARRAY("ignoreConflicts",I)) Q:'I  D
  . S X=ARRAY("ignoreConflicts",I)
  . S ^XTMP("YTXIDX","ignore",+$P(X,":"),+$P(X,":",2))=""
+ Q
+CHKSCORE(XCHGIEN) ; Check addendum for instruments that should be re-scored
+ ; example: {"rescoreInstruments":["PCL-5"]}
+ N I,X,ARRAY,IEN,REV
+ D ADD2TR(XCHGIEN,.ARRAY) Q:'$D(ARRAY)
+ S I=0 F  S I=$O(ARRAY("rescoreInstruments",I)) Q:'I  D
+ . S X=ARRAY("rescoreInstruments",I)
+ . S IEN=$O(^YTT(601.71,"B",X,0)) Q:'IEN
+ . S REV=$P($G(^YTT(601.71,IEN,9)),U,3) Q:'REV
+ . D QTASK^YTSCOREV(IEN_"~"_REV,($H+1)_",3600") ; queue rescoring (T+1@1am)
+ Q
+ADD2TR(XCHGIEN,ARRAY) ; Load Addendum JSON into TREE
+ N I,JSONTMP,JSONERR
+ S I=0 F  S I=$O(^YTT(601.95,XCHGIEN,4,I)) Q:'I  S JSONTMP(I)=^YTT(601.95,XCHGIEN,4,I,0)
+ Q:'$D(JSONTMP)
+ D DECODE^VPRJSON("JSONTMP","ARRAY","JSONERR")
+ I $D(JSONERR) D LOG^YTXCHGU("error","Addendum decode, "_$G(JSONERR(1))) Q
  Q
 JSON2WP(SRC,DEST) ; Convert JSON array (n) to WP array (n,0)
  N I

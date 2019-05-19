@@ -1,9 +1,10 @@
-YTQAPI8 ;ASF/ALB- MHAX SCORING ; 11/15/07 11:14am
- ;;5.01;MENTAL HEALTH;**85,121**;Dec 30, 1994;Build 61
+YTQAPI8 ;ASF/ALB - MHA SCORING ; 11/15/07 11:14am
+ ;;5.01;MENTAL HEALTH;**85,121,123**;Dec 30, 1994;Build 72
  Q
 OLDSCORE ;score answers fro 601.2
  D SCOREIT^YTQAPI14(.YSDATA,.YS)
  I YSDATA(1)="[ERROR]" S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="bad OLDSCORE" Q  ;-->out
+ I YSDATA(1)="[ERROR SCORE1+5]" S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="no administration found" Q  ;-->out
  D MVSCORE
  Q
 LGSCORE ;score legacy test in 84
@@ -14,13 +15,13 @@ LGSCORE ;score legacy test in 84
  S YSOLDI=$O(^YTT(601,"B",YSCODE,0))
  S YSQN=0,N=1,X=""
  F  S YSQN=$O(^YTT(601.85,"AC",YSAD,YSQN)) Q:YSQN'>0  D
- . S YSANSI=$O(^YTT(601.85,"AC",YSAD,YSQN,0))
- . S YSCI=$P($G(^YTT(601.85,YSANSI,0)),U,4)
- . I YSCI'?1N.N S YSEE=1 Q  ;-->out ASF 3/7/07
- . I '$D(^YTT(601.75,YSCI)) S YSEE=1 Q  ;-->out ASF 3/7/07
- . S YSLG=$P(^YTT(601.75,YSCI,0),U,2) S:YSLG="" YSLG=" "
- . S X=X_YSLG
- . I $L(X)=200 S ^YTD(601.2,DFN,1,YSOLDI,1,YSDATE,N)=X,X="",N=N+1
+ .S YSANSI=$O(^YTT(601.85,"AC",YSAD,YSQN,0))
+ .S YSCI=$P($G(^YTT(601.85,YSANSI,0)),U,4)
+ .I YSCI'?1N.N S YSEE=1 Q  ;-->out ASF 3/7/07
+ .I '$D(^YTT(601.75,YSCI)) S YSEE=1 Q  ;-->out ASF 3/7/07
+ .S YSLG=$P(^YTT(601.75,YSCI,0),U,2) S:YSLG="" YSLG=" "
+ .S X=X_YSLG
+ .I $L(X)=200 S ^YTD(601.2,DFN,1,YSOLDI,1,YSDATE,N)=X,X="",N=N+1
  I YSEE K ^YTD(601.2,DFN,1,YSOLDI,1,YSDATE) S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="bad LG CHOICE" Q  ;-->out
  S:$L(X) ^YTD(601.2,DFN,1,YSOLDI,1,YSDATE,N)=X
  S ^YTD(601.2,DFN,1,YSOLDI,1,YSDATE,0)=YSDATE_U_U_$P(X1,U,6)_U_$P(X1,U,7)
@@ -28,6 +29,7 @@ LGSCORE ;score legacy test in 84
  D SCOREIT^YTQAPI14(.YSDATA,.YS) ;ASF 7/12/07
  K ^YTD(601.2,DFN,1,YSOLDI,1,YSDATE)
  I YSDATA(1)="[ERROR]" S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="bad LG SCORE" Q  ;-->out
+ I YSDATA(1)="[ERROR SCORE1+5]" S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="no administration found" Q  ;-->out
  D MVSCORE
  Q
 MVSCORE ;move results
@@ -38,6 +40,30 @@ MVSCORE ;move results
  K YSDATA S YSDATA=$NA(^TMP($J,"YSCOR"))
  Q
 GETSCORE(YSDATA,YS) ;get scales and scale grps for a test
+ ; input: AD as administration ID
+ ; output: Scale name=Raw Score
+ N YSCODE,YSCODEN,N,N2,X,X1,I,YSAD,YSAI,YSTARG,YSAN,YSCALEI,YSKEYI,YSQN,YSRAW,YSVAL,YSDA,YSLG,N1,YSADATE,YSANSI,YSCI
+ N YSDATE,YSDFN,YSOLDI,YSLIMIT,YSXT,DFN,YSSPEC,YSSCRD
+ N REVSCR71,REVSCR84
+ K ^TMP($J,"YSCOR") S YSDATA=$NA(^TMP($J,"YSCOR"))
+ S YSAD=$G(YS("AD"))
+ S YSADATE=$G(YS("ADATE")),YSCODE=$G(YS("CODE")),DFN=$G(YS("DFN"))
+ I (YSADATE?7N.E)&(YSAD'?1N.N) D OLDSCORE Q  ;-->out Score answers from 601.2
+ I YSAD'?1N.N S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="bad ad num in GETSCORE" Q  ;-->out
+ I '$D(^YTT(601.85,"AC",YSAD)) S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="no such reference" Q  ;-->out ;
+ S YSCODE=$$GET1^DIQ(601.84,YSAD_",",2)
+ S YSCODEN=$$GET1^DIQ(601.84,YSAD_",",2,"I")
+ I '$D(^YTT(601.71,"B",YSCODE)) S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="no ins" Q  ;-->out
+ S YSDA=$O(^YTT(601.71,"B",YSCODE,0))
+ S YSLG=$$GET1^DIQ(601.71,YSDA_",",23)
+ I YSLG="Yes" D LGSCORE Q  ;-->out Score legacy answers in 601.85
+ ;
+ ; patch 123, check for scoring discrepancy, if so, rescore and load scores  
+ I 'YSDA S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="Getscore err, No Instrument IEN" Q  ;-->out
+ D LDSCORES^YTSCORE(.YSDATA,.YS)
+ Q
+ ;
+OLDGSCRE(YSDATA,YS) ;get scales and scale grps for a test
  ; input: AD as administration ID
  ; output: Scale name=Raw Score
  N YSCODE,YSCODEN,N,N2,X,X1,I,YSAD,YSAI,YSTARG,YSAN,YSCALEI,YSKEYI,YSQN,YSRAW,YSVAL,YSDA,YSLG,N1,YSADATE,YSANSI,YSCI,YSDATE,YSDFN,YSOLDI,YSLIMIT,YSXT,DFN
@@ -59,19 +85,19 @@ GETSCORE(YSDATA,YS) ;get scales and scale grps for a test
  S YSDATA=$NA(^TMP($J,"YSCOR"))
  S ^TMP($J,"YSCOR",1)="[DATA]",N=1
  F I=2:1 Q:'$D(^TMP($J,"YSG",I))  I ^TMP($J,"YSG",I)?1"Scale".E S YSRAW="0",N=N+1,^TMP($J,"YSCOR",N)=$P(^TMP($J,"YSG",I),U,4)_"=" D  S ^TMP($J,"YSCOR",N)=^TMP($J,"YSCOR",N)_YSRAW
- . S YSCALEI=$P(^TMP($J,"YSG",I),U),YSCALEI=$P(YSCALEI,"=",2)
- . S YSKEYI=0 F  S YSKEYI=$O(^YTT(601.91,"AC",YSCALEI,YSKEYI)) Q:YSKEYI'>0  D
- .. S G=^YTT(601.91,YSKEYI,0)
- .. S YSQN=$P(G,U,3),YSTARG=$P(G,U,4),YSVAL=$P(G,U,5)
- .. S YSAI=$O(^YTT(601.85,"AC",YSAD,YSQN,0))
- .. Q:YSAI'>0
- .. Q:'$D(^YTT(601.85,YSAI,0))  ;ASF 11/15/07
- .. S YSAN=""
- .. I $D(^YTT(601.85,YSAI,1,1,0)) S YSAN=^YTT(601.85,YSAI,1,1,0)
- .. I $P(^YTT(601.85,YSAI,0),U,4)?1N.N S YSAN=$P(^YTT(601.85,YSAI,0),U,4),YSAN=$G(^YTT(601.75,YSAN,1))
- .. I YSAN=YSTARG S YSRAW=YSRAW+YSVAL
- I YSCODE="PSOCQ" D PSOCQ^YTQAPI2A(.YSDATA)
+ .S YSCALEI=$P(^TMP($J,"YSG",I),U),YSCALEI=$P(YSCALEI,"=",2)
+ .S YSKEYI=0 F  S YSKEYI=$O(^YTT(601.91,"AC",YSCALEI,YSKEYI)) Q:YSKEYI'>0  D
+ ..S G=^YTT(601.91,YSKEYI,0)
+ ..S YSQN=$P(G,U,3),YSTARG=$P(G,U,4),YSVAL=$P(G,U,5)
+ ..S YSAI=$O(^YTT(601.85,"AC",YSAD,YSQN,0))
+ ..Q:YSAI'>0
+ ..Q:'$D(^YTT(601.85,YSAI,0))  ;ASF 11/15/07
+ ..S YSAN=""
+ ..I $D(^YTT(601.85,YSAI,1,1,0)) S YSAN=^YTT(601.85,YSAI,1,1,0)
+ ..I $P(^YTT(601.85,YSAI,0),U,4)?1N.N S YSAN=$P(^YTT(601.85,YSAI,0),U,4),YSAN=$G(^YTT(601.75,YSAN,1))
+ ..I YSAN=YSTARG S YSRAW=YSRAW+YSVAL
  Q
+ ;  
 DELSG(YSDATA,YS) ; DELETE SCALES AND SCALEGROUP-careful!!!
  ;input: ID as ien of 601.86 scalegroup
  ;output DATAvsERROR
@@ -80,10 +106,10 @@ DELSG(YSDATA,YS) ; DELETE SCALES AND SCALEGROUP-careful!!!
  I '$D(^YTT(601.86,YSID,0)) S YSDATA(1)="[ERROR]",YSDATA(2)="bad id" Q  ;-->out
  S N=0,YSDATA(1)="[DATA]"
  S YSEQ=0 F  S YSEQ=$O(^YTT(601.87,"AC",YSID,YSEQ)) Q:YSEQ'>0  D
- . S DA=$O(^YTT(601.87,"AC",YSID,YSEQ,0))
- . S DIK="^YTT(601.87,"
- . S N=N+1
- . D ^DIK
+ .S DA=$O(^YTT(601.87,"AC",YSID,YSEQ,0))
+ .S DIK="^YTT(601.87,"
+ .S N=N+1
+ .D ^DIK
  S DA=YSID,DIK="^YTT(601.86," D ^DIK
  S YSDATA(2)=N_" scales deleted"
  Q

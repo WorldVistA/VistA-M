@@ -1,5 +1,5 @@
-YTQAPI11 ;ASF/ALB MHAx API ; 8/9/10 10:34am
- ;;5.01;MENTAL HEALTH;**85,96**;DEC 30,1994;Build 46
+YTQAPI11 ;ASF/ALB - MHAx API ; 8/9/10 10:34am
+ ;;5.01;MENTAL HEALTH;**85,96,123**;DEC 30,1994;Build 72
  ;Reference to %ZIS supported by IA #10086
  ;Reference to %ZTLOAD supported by IA #10063
  ;Reference to DOB^DPTLK1 supported by IA #3266
@@ -7,38 +7,53 @@ YTQAPI11 ;ASF/ALB MHAx API ; 8/9/10 10:34am
 SCORSAVE(YSDATA,YS) ;save results to 601.92
  ; input: AD as administration ID
  ; output: DATA vs ERROR
- N YSAD,DIK,YSG,YSRNEW,Z,ZTRTN,ZTIO,ZTSAVE,ZTDESC,ZTDTH
+ N YSAD,DIK,YSG,YSRNEW ; patch 123: don't need, removed tasking,Z,ZTRTN,ZTIO,ZTSAVE,ZTDESC,ZTDTH
+ ; patch 123, new variables
+ N DA,Z
  S YSAD=$G(YS("AD"))
  I YSAD'?1N.N S YSDATA(1)="[ERROR]",YSDATA(2)="bad ad num" Q  ;-->out
  I '$D(^YTT(601.84,YSAD)) S YSDATA(1)="[ERROR]",YSDATA(2)="ad not found" Q  ;-->out
+ ;
  S YSDATA(1)="[DATA]"
  ;task
- D  D ^%ZTLOAD D HOME^%ZIS K IO("Q") Q  ;-->out
- . S ZTIO="",ZTDTH=$H
- .S ZTRTN="SSEN^YTQAPI11",ZTDESC="MHA3 SCORSAVE",ZTSAVE("YS*")=""
+ ; patch 123 -- remove tasking call
+ ;D  D ^%ZTLOAD D HOME^%ZIS K IO("Q") Q  ;-->out
+ ;.S ZTIO="",ZTDTH=$H
+ ;.S ZTRTN="SSEN^YTQAPI11",ZTDESC="MHA3 SCORSAVE",ZTSAVE("YS*")=""
  ;
 SSEN ;scorsave entry
- D GETSCORE^YTQAPI8(.YSDATA,.YS)
- I $G(^TMP($J,"YSCOR",1))'="[DATA]" S YSDATA="[ERROR]",YSDATA(2)="getscore err" Q  ;-->out
- ;delete any previous scores for this admin
- S DIK="^YTT(601.92,",DA=0
- F  S DA=$O(^YTT(601.92,"AC",YSAD,DA)) Q:DA'>0  D ^DIK
- ;ADD SCORES
- S Z=1 F  S Z=$O(^TMP($J,"YSCOR",Z)) Q:Z'>0  D
- . S YSG=^TMP($J,"YSCOR",Z)
- . S YSRNEW=$$NEW^YTQLIB(601.92)
- . S ^YTT(601.92,YSRNEW,0)=YSRNEW_U_YSAD_U_$P(YSG,"=")_U_$P(YSG,"=",2)
- . S DA=YSRNEW D IX^DIK
- S YSDATA(1)="[DATA]"
+ ; patch 123 remove this, put in 2 other calls.
+ ;D GETSCORE^YTQAPI8(.YSDATA,.YS)
+ ; new subroutines
+ D LOADANSW^YTSCORE(.YSDATA,.YS) ; put Answers for an Admin into YSDATA
+ N IEN71
+ S IEN71=$$GET1^DIQ(601.84,YSAD_",",2,"I")
+ I 'IEN71 S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="No Instrument IEN in SCORSAVE" Q  ;-->out
+ ; design is in doScoring logic document
+ D SCOREINS^YTSCORE(.YSDATA,.IEN71) ; score the instrument passing Answer Array (YSDATA) and Instrument IEN
+ I $G(^TMP($J,"YSCOR",1))'="[DATA]" S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="Scoring Error, in SCORSAVE" Q  ;-->out 
+ D UPDSCORE^YTSCORE(.YSDATA,.YS)
  Q
+ ;delete any previous scores for this admin
+ ; patch 123, original code, no longer deleting scores
+ ;S DIK="^YTT(601.92,",DA=0
+ ;F  S DA=$O(^YTT(601.92,"AC",YSAD,DA)) Q:DA'>0  D ^DIK
+ ;ADD SCORES
+ ;S Z=1 F  S Z=$O(^TMP($J,"YSCOR",Z)) Q:Z'>0  D
+ ;. S YSG=^TMP($J,"YSCOR",Z)
+ ;. S YSRNEW=$$NEW^YTQLIB(601.92)
+ ;. S ^YTT(601.92,YSRNEW,0)=YSRNEW_U_YSAD_U_$P(YSG,"=")_U_$P(YSG,"=",2)
+ ;. S DA=YSRNEW D IX^DIK
+ ;S YSDATA(1)="[DATA]"
+ ;Q
 SCALES ;from copy
- S YSSGOLD=0 F  S N=$O(^YTT(601.86,"AD",YSOLDNUM,YSSGOLD)) Q:YSSGOLD'>0  D
+ S YSSGOLD="" F  S YSSGOLD=$O(^YTT(601.86,"AD",YSOLDNUM,YSSGOLD)) Q:YSSGOLD'>0  D
  . S YSSGNEW=$$NEW^YTQLIB(601.86)
  . S ^YTT(601.86,YSSGNEW,0)=^YTT(601.86,YSSGOLD,0)
  . S $P(^YTT(601.86,YSSGNEW,0),U)=YSSGNEW
  . S $P(^YTT(601.86,YSSGNEW,0),U,2)=YSNEWNUM
  . S DA=YSSGNEW,DIK="^YTT(601.86," D IX^DIK
- . S YSSLOLD=0 F  S YSN1=$O(^YTT(601.87,"AD",YSSGOLD,YSSLOLD)) Q:YSSLOLD'>0  D
+ . S YSSLOLD=0 F  S YSSLOLD=$O(^YTT(601.87,"AD",YSSGOLD,YSSLOLD)) Q:YSSLOLD'>0  D
  .. S YSSLNEW=$$NEW^YTQLIB(601.87)
  .. S ^YTT(601.87,YSSLNEW,0)=^YTT(601.87,YSSLOLD,0)
  .. S $P(^YTT(601.87,YSSLNEW,0),U)=YSSLNEW

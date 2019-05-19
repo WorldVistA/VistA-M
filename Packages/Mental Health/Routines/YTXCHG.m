@@ -1,5 +1,5 @@
 YTXCHG ;SLC/KCM - Instrument Exchange Calls ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,123**;Dec 30, 1994;Build 72
  ;
 VERSION ;; current Instrument Exchange version
  ;;1.02
@@ -46,6 +46,8 @@ INFO(XCHGIEN,INFO) ; put build information into .INFO
  N I,OK
  K ^TMP("YTXCHG",$J,"TREE")
  S OK=$$SPEC2TR^YTXCHGT(XCHGIEN,$NA(^TMP("YTXCHG",$J,"TREE"))) G:'OK XINFO
+ I $D(^YTT(601.95,XCHGIEN,4,1,0)) D  ; pull in addendum if it is there
+ . D WP2TR^YTXCHGT($NA(^YTT(601.95,XCHGIEN,4)),$NA(^TMP("YTXCHG",$J,"TREE","xchg","addendum")))
  S I=0 F  S I=$O(^TMP("YTXCHG",$J,"TREE","test",I)) Q:'I  D
  . S INFO("tests",I)=^TMP("YTXCHG",$J,"TREE","test",I,"info","name")
  D SETINFO(.INFO,$NA(^TMP("YTXCHG",$J,"TREE")))
@@ -59,8 +61,6 @@ DELETE(XCHGIEN) ; delete instrument exchange entry
  D ^DIK
  Q
 INSTALL(XCHGIEN,DRYRUN) ; install instrument exchange entry locally
- ; .STATS("count"): records updated
- ; .STATS("errs") : errors encountered
  I $D(^YTT(601.95,XCHGIEN,1))'>1 D LOG^YTXCHGU("error","Install entry #"_XCHGIEN_" not found.") QUIT
  ;
  ; set up index across MH files
@@ -73,7 +73,7 @@ INSTALL(XCHGIEN,DRYRUN) ; install instrument exchange entry locally
  I OK D
  . I $$BADVER($G(^TMP("YTXCHGI",$J,"TREE","xchg","version"))) QUIT
  . D TR2MHA^YTXCHGT($NA(^TMP("YTXCHGI",$J,"TREE")),$G(DRYRUN))
- . D:'$G(DRYRUN) LOGINST^YTXCHGU(XCHGIEN)
+ . I '$G(DRYRUN) D LOGINST^YTXCHGU(XCHGIEN),CHKSCORE^YTXCHGT(XCHGIEN)
  K ^TMP("YTXCHGI",$J,"TREE")
  Q
 INSTALLQ(TAG,RTN) ; install exchange entries listed by TAG^RTN in post-init
@@ -86,7 +86,7 @@ INSTALLQ(TAG,RTN) ; install exchange entries listed by TAG^RTN in post-init
  . M VALS=ARRAY(XCHGI)
  . S XCHGIEN=+$$FIND1^DIC(601.95,"","KU",.VALS)
  . Q:'XCHGIEN
- . D INSTALL(XCHGIEN,.STATS)
+ . D INSTALL(XCHGIEN)
  . ; D FMDEL^YTXCHGU(601.95,XCHGIEN)  ; remove now that install is done
  D BMES^XPDUTL("MH Instrument install complete.")
  Q
@@ -163,9 +163,17 @@ TLTOUT(NODE) ; output the report template
  Q
 SAVEHFS(XCHGIEN,FULLNM) ; save instrument exchange entry to host file
  ; return 1 if successful, otherwise 0
- N PATH,FILE,OK
+ N SPECLOC,PATH,FILE,OK
+ S SPECLOC=$NA(^YTT(601.95,XCHGIEN,1,1,0))
+ I $D(^YTT(601.95,XCHGIEN,4,1,0)) D  ; insert addendum into spec
+ . K ^TMP("YTXCHG",$J,"TREE"),^TMP("YTXCHG",$J,"JSON")
+ . S OK=$$SPEC2TR^YTXCHGT(XCHGIEN,$NA(^TMP("YTXCHG",$J,"TREE")))
+ . D WP2TR^YTXCHGT($NA(^YTT(601.95,XCHGIEN,4)),$NA(^TMP("YTXCHG",$J,"TREE","xchg","addendum")))
+ . S OK=$$TR2JSON^YTXCHGT($NA(^TMP("YTXCHG",$J,"TREE")),$NA(^TMP("YTXCHG",$J,"JSON")))
+ . S SPECLOC=$NA(^TMP("YTXCHG",$J,"JSON",1))
+ ;
  D SPLTDIR^YTXCHGU(FULLNM,.PATH,.FILE)
- S OK=$$GTF^%ZISH($NA(^YTT(601.95,XCHGIEN,1,1,0)),4,PATH,FILE)
+ S OK=$$GTF^%ZISH(SPECLOC,4,PATH,FILE)
  Q OK
  ;
 LOADFILE(PATH,INFO) ; load file into JSON & tree structures
@@ -176,7 +184,7 @@ LOADFILE(PATH,INFO) ; load file into JSON & tree structures
  ; Description content ends up in ^TMP("YTXCHG",$J,"WP",2)
  K ^TMP("YTXCHG",$J,"JSON")
  K ^TMP("YTXCHG",$J,"TREE")
- K ^TMP("YTXCHG",$J,"WP",1),^TMP("YTXCHG",$J,"WP",2)
+ K ^TMP("YTXCHG",$J,"WP",1),^TMP("YTXCHG",$J,"WP",2),^TMP("YTXCHG",$J,"WP",4)
  I $E(PATH,1,5)="http:" D LOADURL(PATH,.INFO) I 1  ; load file from URL
  E  D LOADHFS(PATH,.INFO)                          ; load file from HFS
  Q:$G(INFO)=-1
@@ -210,6 +218,10 @@ SETINFO(INFO,TREE) ; set .INFO array from specification TREE
  S INFO(.03)=$G(@TREE@("xchg","source"))
  S INFO(2)=$NA(^TMP("YTXCHG",$J,"WP",2)) ; #2 is description field
  D TR2WP^YTXCHGT($NA(@TREE@("xchg","description")),INFO(2))
+ I '$D(@TREE@("xchg","addendum")) QUIT
+ S INFO(4)=$NA(^TMP("YTXCHG",$J,"WP",4)) ; #4 is addendum field
+ D TR2WP^YTXCHGT($NA(@TREE@("xchg","addendum")),INFO(4))
+ K @TREE@("xchg","addendum") ; remove so not included in spec
  Q
 SENDMAIL ; interactive -- send instrument exchange entry in mail message
  Q

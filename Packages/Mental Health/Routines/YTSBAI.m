@@ -1,0 +1,19 @@
+YTSBAI ;SLC/PIJ - Score BAI ; 01/19/2016
+ ;;5.01;MENTAL HEALTH;**123**;Dec 30, 1994;Build 72
+ ;
+ ;
+ ;
+ ;
+ Q
+ ;
+DATA1 ;
+ Q
+ ;
+SCORE1 ;
+ Q
+ ;
+SCORESV ;
+ Q
+ ;
+DLLSTR(YSDATA,YS,YSTRNG) ;
+ Q

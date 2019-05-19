@@ -1,5 +1,5 @@
-YTQAPI2 ;ASF/ALB- MHAX REMOTE PROCEDURES cont ;10/17/16  13:37
- ;;5.01;MENTAL HEALTH;**85,96,119,121**;Dec 30, 1994;Build 61
+YTQAPI2 ;ASF/ALB - MHAX REMOTE PROCEDURES cont ;10/17/16  13:37
+ ;;5.01;MENTAL HEALTH;**85,96,119,121,123**;Dec 30, 1994;Build 72
  ;Reference to ^DPT( supported by DBIA #10035
  Q
 LISTER(YSDATA,YS) ;list entries
@@ -31,6 +31,7 @@ ALLANS(YSDATA,YS) ;get all answers
  ; ADMIN ID^DFN^INSTRUMENT^DATE GIVEN^IS COMPLETE
  ;QUESTION #^seq^ANSWER
  N G,G1,N,YSAD,YSQN,YSTSTN,YSEQ,YSICON
+ N IEN71,YSRTN,YSRTN71 ; llh patch 123
  S YSAD=$G(YS("AD"))
  I YSAD'?1N.N S YSDATA(1)="[ERROR]",YSDATA(2)="bad ad num" Q  ;-->out
  I '$D(^YTT(601.85,"AC",YSAD)) S YSDATA(1)="[ERROR]",YSDATA(2)="no such reference" Q  ;-->out
@@ -39,12 +40,19 @@ ALLANS(YSDATA,YS) ;get all answers
  S YSDATA(2)=YSAD_U_$$GET1^DIQ(601.84,YSAD_",",1,"I")_U_$$GET1^DIQ(601.84,YSAD_",",2,"E")_U_$$GET1^DIQ(601.84,YSAD_",",3,"I")_U_$$GET1^DIQ(601.84,YSAD_",",8,"I")
  S YSQN=0,N=2
  F  S YSQN=$O(^YTT(601.85,"AC",YSAD,YSQN)) Q:YSQN'>0  S G=0 D
- . S G=$O(^YTT(601.85,"AC",YSAD,YSQN,G)) Q:G'>0  S G1=0 D
- .. S YSICON=$O(^YTT(601.76,"AF",YSTSTN,YSQN,0))
- .. S YSEQ=1
- .. I YSICON?1N.N S YSEQ=$P(^YTT(601.76,YSICON,0),U,3)
- .. S:$P(^YTT(601.85,G,0),U,4)?1N.N N=N+1,YSDATA(N)=YSQN_U_YSEQ_U_$P(^YTT(601.85,G,0),U,4)
- .. F  S G1=$O(^YTT(601.85,G,1,G1)) Q:G1'>0  S N=N+1,YSDATA(N)=YSQN_U_YSEQ_";"_G1_U_$G(^YTT(601.85,G,1,G1,0))
+ .S G=$O(^YTT(601.85,"AC",YSAD,YSQN,G)) Q:G'>0  S G1=0 D
+ ..S YSICON=$O(^YTT(601.76,"AF",YSTSTN,YSQN,0))
+ ..S YSEQ=1
+ ..I YSICON?1N.N S YSEQ=$P(^YTT(601.76,YSICON,0),U,3)
+ ..S:$P(^YTT(601.85,G,0),U,4)?1N.N N=N+1,YSDATA(N)=YSQN_U_YSEQ_U_$P(^YTT(601.85,G,0),U,4)
+ ..F  S G1=$O(^YTT(601.85,G,1,G1)) Q:G1'>0  S N=N+1,YSDATA(N)=YSQN_U_YSEQ_";"_G1_U_$G(^YTT(601.85,G,1,G1,0))
+ ;llh patch 123, check for special processing of complex instruments
+ S IEN71=$O(^YTT(601.71,"B",$P(YSDATA(2),U,3),0))
+ S YSRTN71=$$GET1^DIQ(601.71,IEN71_",",92)
+ I (YSRTN71'=""),(YSRTN71'="YTSCORE") D
+ .N RPRIV S RPRIV=$P($G(^YTT(601.71,IEN71,2)),U) ; wrap for note
+ .S YSRTN="DLLSTR^"_YSRTN71_"(.YSDATA,.YS,2)"
+ .I $L($T(@("DLLSTR^"_YSRTN71))) D @YSRTN D:'$L(RPRIV) WRAP(80)
  D SPECIAL^YTQAPI2A(.YSDATA,N,YSAD,YSTSTN)
  Q
 SETANS(YSDATA,YS) ;save an answer
@@ -117,4 +125,23 @@ CCALL(YSDATA) ;all choices returned
  .. S YSCDA=0 F  S YSCDA=$O(^YTT(601.751,"AC",YSN,YSN1,YSCDA)) Q:YSCDA'>0  D
  ... S N=N+1
  ... S YSDATA(N)=YSN_U_YSN1_U_YSCDA_U_$G(^YTT(601.75,YSCDA,1))
+ Q
+WRAP(MAX) ; Make sure DLLStr is wrapped by adding | chars
+ ; expects YSDATA
+ N LN,TX,OUT,I,J,X,Y,YNEW
+ S LN=$O(YSDATA(9999999999),-1)
+ S TX=$P(YSDATA(LN),U,3,99)
+ F I=1:1:$L(TX,"|") S X=$P(TX,"|",I) D
+ . I $L(X)'>MAX D ADDOUT(X) QUIT
+ . S Y=""
+ . F J=1:1:$L(X," ") D
+ . . S YNEW=Y_$S(J=1:"",1:" ")_$P(X," ",J)
+ . . I $L(YNEW)>MAX D ADDOUT(Y) S Y=$P(X," ",J) I 1
+ . . E  S Y=YNEW
+ . D ADDOUT(Y) ; add any remaining
+ S X="",I=0 F  S I=$O(OUT(I)) Q:'I  S X=X_$S(I=1:"",1:"|")_OUT(I)
+ S $P(YSDATA(LN),U,3)=X
+ Q
+ADDOUT(S) ; add string to out array (expects OUT)
+ S OUT=+$G(OUT)+1,OUT(OUT)=S
  Q

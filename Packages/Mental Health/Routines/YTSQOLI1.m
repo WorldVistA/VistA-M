@@ -1,0 +1,224 @@
+YTSQOLI1 ;SLC/PIJ - Score QOLI ; 01/08/2016
+ ;;5.01;MENTAL HEALTH;**123**;DEC 30,1994;Build 72
+ ;
+ ;Public, Supported ICRs
+ ; #2056 - Fileman API - $$GET1^DIQ
+ ;
+ Q
+ ;
+GETTSCOR(RAW,WGHTSAT0,WGHTSAT99) ; GetTScore
+ ; T-score range 0-77
+ N RESULT
+ S RESULT="-1"
+ I (WGHTSAT0=16) S RESULT="-99" Q RESULT
+ I (WGHTSAT0=15),(WGHTSAT99=1) S RESULT="-99" Q RESULT
+ I (RAW<"-3.8") S RESULT=0
+ I (RAW="-3.7") S RESULT=1
+ I (RAW="-3.6") S RESULT=2
+ I (RAW="-3.5") S RESULT=3
+ I (RAW="-3.4") S RESULT=4
+ I (RAW="-3.3") S RESULT=4
+ I (RAW="-3.2") S RESULT=5
+ I (RAW="-3.1") S RESULT=6
+ I (RAW="-3.0") S RESULT=7
+ I (RAW="-2.9") S RESULT=1
+ I (RAW="-2.8") S RESULT=2
+ I (RAW="-2.7") S RESULT=3
+ I (RAW="-2.6") S RESULT=4
+ I (RAW="-2.5") S RESULT=4
+ I (RAW="-2.4") S RESULT=5
+ I (RAW="-2.3") S RESULT=6
+ I (RAW="-2.2") S RESULT=7
+ I (RAW="-2.9") S RESULT=8
+ I (RAW="-2.8") S RESULT=8
+ I (RAW="-2.7") S RESULT=9
+ I (RAW="-2.6") S RESULT=10
+ I (RAW="-2.5") S RESULT=11
+ I (RAW="-2.4") S RESULT=11
+ I (RAW="-2.3") S RESULT=12
+ I (RAW="-2.2") S RESULT=13
+ I (RAW="-2.1") S RESULT=14
+ I (RAW="-2.0") S RESULT=15
+ I (RAW="-1.9") S RESULT=15
+ I (RAW="-1.8") S RESULT=16
+ I (RAW="-1.7") S RESULT=17
+ I (RAW="-1.6") S RESULT=18
+ I (RAW="-1.5") S RESULT=18
+ I (RAW="-1.4") S RESULT=19
+ I (RAW="-1.3") S RESULT=20
+ I (RAW="-1.2") S RESULT=21
+ I (RAW="-1.1") S RESULT=22
+ I (RAW="-1.0") S RESULT=22
+ I (RAW="-0.9") S RESULT=23
+ I (RAW="-0.8") S RESULT=24
+ I (RAW="-0.7") S RESULT=25
+ I (RAW="-0.6") S RESULT=25
+ I (RAW="-0.5") S RESULT=26
+ I (RAW="-0.4") S RESULT=27
+ I (RAW="-0.3") S RESULT=28
+ I (RAW="-0.2") S RESULT=29
+ I (RAW="-0.1") S RESULT=29
+ I (RAW="0") S RESULT=30
+ I (RAW="0.1") S RESULT=31
+ I (RAW="0.2") S RESULT=32
+ I (RAW="0.3") S RESULT=32
+ I (RAW="0.4") S RESULT=33
+ I (RAW="0.5") S RESULT=34
+ I (RAW="0.6") S RESULT=35
+ I (RAW="0.7") S RESULT=36
+ I (RAW="0.8") S RESULT=36
+ I (RAW="0.9") S RESULT=37
+ I (RAW="1.0") S RESULT=38
+ I (RAW="1.1") S RESULT=39
+ I (RAW="1.2") S RESULT=39
+ I (RAW="1.3") S RESULT=40
+ I (RAW="1.4") S RESULT=41
+ I (RAW="1.5") S RESULT=42
+ I (RAW="1.6") S RESULT=43
+ I (RAW="1.7") S RESULT=43
+ I (RAW="1.8") S RESULT=44
+ I (RAW="1.9") S RESULT=45
+ I (RAW="2.0") S RESULT=46
+ I (RAW="2.1") S RESULT=46
+ I (RAW="2.2") S RESULT=47
+ I (RAW="2.3") S RESULT=48
+ I (RAW="2.4") S RESULT=49
+ I (RAW="2.5") S RESULT=50
+ I (RAW="2.6") S RESULT=50
+ I (RAW="2.7") S RESULT=51
+ I (RAW="2.8") S RESULT=52
+ I (RAW="2.9") S RESULT=53
+ I (RAW="3.0") S RESULT=53
+ I (RAW="3.1") S RESULT=54
+ I (RAW="3.2") S RESULT=55
+ I (RAW="3.3") S RESULT=56
+ I (RAW="3.4") S RESULT=57
+ I (RAW="3.5") S RESULT=57
+ I (RAW="3.6") S RESULT=58
+ I (RAW="3.7") S RESULT=59
+ I (RAW="3.8") S RESULT=60
+ I (RAW="3.9") S RESULT=61
+ I (RAW="4.0") S RESULT=61
+ I (RAW="4.1") S RESULT=62
+ I (RAW="4.2") S RESULT=63
+ I (RAW="4.3") S RESULT=64
+ I (RAW="4.4") S RESULT=64
+ I (RAW="4.5") S RESULT=65
+ I (RAW="4.6") S RESULT=66
+ I (RAW="4.7") S RESULT=67
+ I (RAW="4.8") S RESULT=68
+ I (RAW="4.9") S RESULT=68
+ I (RAW="5.0") S RESULT=69
+ I (RAW="5.1") S RESULT=70
+ I (RAW="5.2") S RESULT=71
+ I (RAW="5.3") S RESULT=71
+ I (RAW="5.4") S RESULT=72
+ I (RAW="5.5") S RESULT=73
+ I (RAW="5.6") S RESULT=74
+ I (RAW="5.7") S RESULT=75
+ I (RAW="5.8") S RESULT=75
+ I (RAW="5.9") S RESULT=76
+ I (RAW>"5.9") S RESULT=77
+ Q RESULT
+ ;
+GETPSCOR(RAW,WGHTSAT0,WGHTSAT99) ; GetPScore (Percentile Score)
+ ; P-Score range 1-99
+ ; Invalid Score = -99
+ N RESULT
+ S RESULT=-1
+ ;
+ I (WGHTSAT0=16) S RESULT="-99" Q RESULT
+ I (WGHTSAT0=15),(WGHTSAT99=1) S RESULT="-99" Q RESULT
+ ;
+ I (RAW<"-1.2") S RESULT=1
+ I (RAW="-1.1") S RESULT=2
+ I (RAW="-1.0") S RESULT=2
+ I (RAW="-0.9") S RESULT=2
+ I (RAW="-0.8") S RESULT=2
+ I (RAW="-0.7") S RESULT=2
+ I (RAW="-0.6") S RESULT=2
+ I (RAW="-0.5") S RESULT=2
+ I (RAW="-0.4") S RESULT=3
+ I (RAW="-0.3") S RESULT=3
+ I (RAW="-0.2") S RESULT=3
+ I (RAW="-0.1") S RESULT=4
+ I (RAW="-0.0") S RESULT=4
+ I (RAW="0") S RESULT=4
+ I (RAW="0.1") S RESULT=5
+ I (RAW="0.2") S RESULT=5
+ I (RAW="0.3") S RESULT=5
+ I (RAW="0.4") S RESULT=6
+ I (RAW="0.5") S RESULT=6
+ I (RAW="0.6") S RESULT=7
+ I (RAW="0.7") S RESULT=9
+ I (RAW="0.8") S RESULT=10
+ I (RAW="0.9") S RESULT=11
+ I (RAW="1.0") S RESULT=12
+ I (RAW="1.1") S RESULT=15
+ I (RAW="1.2") S RESULT=16
+ I (RAW="1.3") S RESULT=17
+ I (RAW="1.4") S RESULT=18
+ I (RAW="1.5") S RESULT=19
+ I (RAW="1.6") S RESULT=21
+ I (RAW="1.7") S RESULT=23
+ I (RAW="1.8") S RESULT=26
+ I (RAW="1.9") S RESULT=28
+ I (RAW="2.0") S RESULT=30
+ I (RAW="2.1") S RESULT=34
+ I (RAW="2.2") S RESULT=36
+ I (RAW="2.3") S RESULT=39
+ I (RAW="2.4") S RESULT=42
+ I (RAW="2.5") S RESULT=46
+ I (RAW="2.6") S RESULT=49
+ I (RAW="2.7") S RESULT=51
+ I (RAW="2.8") S RESULT=55
+ I (RAW="2.9") S RESULT=59
+ I (RAW="3.0") S RESULT=61
+ I (RAW="3.1") S RESULT=66
+ I (RAW="3.2") S RESULT=67
+ I (RAW="3.3") S RESULT=71
+ I (RAW="3.4") S RESULT=75
+ I (RAW="3.5") S RESULT=78
+ I (RAW="3.6") S RESULT=81
+ I (RAW="3.7") S RESULT=84
+ I (RAW="3.8") S RESULT=86
+ I (RAW="3.9") S RESULT=89
+ I (RAW="4.0") S RESULT=90
+ I (RAW="4.1") S RESULT=92
+ I (RAW="4.2") S RESULT=93
+ I (RAW="4.3") S RESULT=95
+ I (RAW="4.4") S RESULT=96
+ I (RAW="4.5") S RESULT=97
+ I (RAW="4.6") S RESULT=97
+ I (RAW="4.7") S RESULT=98
+ I (RAW="4.8") S RESULT=98
+ I (RAW>"4.8") S RESULT=99
+ Q RESULT
+ ;
+SORTSAT ; Sort Satisfaction
+ N I,J,K,ARR
+ S RESULT=""
+ S ARR(1)="|Health                    "_SCALE(1)
+ S ARR(2)="|Self-Esteem               "_SCALE(2)
+ S ARR(3)="|Goals-and-Values          "_SCALE(3)
+ S ARR(4)="|Money                     "_SCALE(4)
+ S ARR(5)="|Work                      "_SCALE(5)
+ S ARR(6)="|Play                      "_SCALE(6)
+ S ARR(7)="|Learning                  "_SCALE(7)
+ S ARR(8)="|Creativity                "_SCALE(8)
+ S ARR(9)="|Helping                   "_SCALE(9)
+ S ARR(10)="|Love                      "_SCALE(10)
+ S ARR(11)="|Friends                   "_SCALE(11)
+ S ARR(12)="|Children                  "_SCALE(12)
+ S ARR(13)="|Relatives                 "_SCALE(13)
+ S ARR(14)="|Home                      "_SCALE(14)
+ S ARR(15)="|Neighborhood              "_SCALE(15)
+ S ARR(16)="|Community                 "_SCALE(16)
+ ;
+ S K="-6^-4^-3^-2^-1"
+ F J=1:1:5 D
+ .F I=1:1:16 D
+ ..I SCALE(I)=$P(K,"^",J) D
+ ...S RESULT=RESULT_ARR(I)
+ S STRING=STRING_RESULT
+ Q

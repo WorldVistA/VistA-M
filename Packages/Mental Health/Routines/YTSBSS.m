@@ -1,0 +1,16 @@
+YTSBSS ;SLC/PIJ - Score BSS ; 01/19/2016
+ ;;5.01;MENTAL HEALTH;**123**;Dec 30, 1994;Build 72
+ ;
+ Q
+ ;
+DATA1 ;
+ Q
+ ;
+STRING ;
+ Q
+ ;
+SCORESV ;
+ Q
+ ;
+DLLSTR(YSDATA,YS,YSTRNG) ;
+ Q

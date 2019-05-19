@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-19-MAY-2019 07:07:19 ZWR
+19-MAY-2019 18:58:47 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -20519,7 +20519,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.71","%D",5,0)="and transmission to the Mental Health National Database are also specified. "
 ^DIC("601.71","%D",6,0)=" "
 ^DIC("601.71","%D",7,0)="Direct entry via FileMan is prohibited."
-^DIC("601.71","%MSC")=3181130.123117
+^DIC("601.71","%MSC")=3190519.185316
 ^DIC("601.72",0)="MH QUESTIONS^601.72"
 ^DIC("601.72",0,"AUDIT")="@"
 ^DIC("601.72",0,"DD")="@"
@@ -20728,6 +20728,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.84","%D",9,0)="indicates whether the instrument has been completed, who ordered the "
 ^DIC("601.84","%D",10,0)="instrument, how many questions were answered and if the test has been "
 ^DIC("601.84","%D",11,0)="electronically signed."
+^DIC("601.84","%MSC")=3190519.185316
 ^DIC("601.85",0)="MH ANSWERS^601.85"
 ^DIC("601.85",0,"AUDIT")="@"
 ^DIC("601.85",0,"DD")="@"
@@ -20832,6 +20833,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.92","%",0)="^1.005^^0"
 ^DIC("601.92","%D",0)="^1.001^1^1^3050309^^^"
 ^DIC("601.92","%D",1,0)="This file contains results of the scored output of completed instruments."
+^DIC("601.92","%MSC")=3190519.185316
+^DIC("601.921","%MSC")=3190519.185316
 ^DIC("601.93",0)="MH REPORT^601.93"
 ^DIC("601.93",0,"AUDIT")="@"
 ^DIC("601.93",0,"DD")="@"

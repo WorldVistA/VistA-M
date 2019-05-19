@@ -1,0 +1,7 @@
+YTSMPIRD ;SLC/KCM - Data for Scoring MMPI-2-RF ; 10/24/2015
+ ;;5.01;MENTAL HEALTH;**123**;Dec 30, 1994;Build 72
+ ;
+BLDRAW ;
+ Q
+TBLTSCOR ;
+ Q

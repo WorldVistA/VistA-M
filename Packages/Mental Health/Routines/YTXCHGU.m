@@ -1,5 +1,5 @@
 YTXCHGU ;SLC/KCM - Instrument Specification Utilities ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,123**;Dec 30, 1994;Build 72
  ;
 SPLTDIR(X,DIR,FILE) ; Split entry into directory and filename
  N PATHCHAR
@@ -136,17 +136,19 @@ TREEOUT ; Save tree representation to file
  D SPEC2TR^YTXCHGT(XCHGIEN,$NA(^TMP("YTXCHG",$J,"TREE")))
  S NUM=$$PICKTEST^YTXCHGP($NA(^TMP("YTXCHG",$J,"TREE"))) G:'NUM XTREEOUT
  ;
- N X,I,ROOT,LROOT,CNT,SUB,LINE
+ N X,I,ROOT,LROOT,CNT,SUB,LINE,ESC
  S X=$NA(^TMP("YTXCHG",$J,"TREE","test",NUM))
  S ROOT=$E(X,1,$L(X)-1),LROOT=$L(ROOT),CNT=0
  F  S X=$Q(@X) Q:$E(X,1,LROOT)'=ROOT  D
- . S LINE=""
+ . S LINE="",ESC=0
  . F I=6:1:$QL(X) D
  . . S SUB=$QS(X,I)
+ . . I SUB="\s" S ESC=1 QUIT  ; JSON "treat number as string"
  . . I +SUB,(+SUB=SUB) S SUB="["_SUB_"]" I 1
  . . E  S:$L(LINE) LINE=LINE_"."
  . . S LINE=LINE_SUB
- . ; W !,LINE_"="_@X
+ . Q:ESC              ; skip line if it is just a string "escape"
+ . ; W !,LINE_"="_@X  ; uncomment to write to screen
  . S CNT=CNT+1,^TMP("YTXCHG",$J,"HFS",CNT,0)=LINE_"="_@X
  ;
  N PATH,FILE,OK
@@ -157,6 +159,14 @@ XTREEOUT ; exit TREEOUT
  K ^TMP("YTXCHG",$J,"TREE")
  K ^TMP("YTXCHG",$J,"HFS")
  Q
+FSZ(FNUM) ; return size of Fileman file in bytes (uncompressed)
+ N ROOT,SIZE,I
+ S ROOT=$$ROOT^DILFD(FNUM,"",1) ; get global root in closed form
+ S SIZE=0
+ I $D(@ROOT)#2 S SIZE=$L(@ROOT)
+ I $D(@ROOT)>1 S I=0 F  S I=$O(@ROOT@(I)) Q:'I  S SIZE=SIZE+$L(@ROOT@(I,0))
+ Q SIZE
+ ;
 TFM2ISO ; test Fileman to ISO Date/Time
  W !,$$FM2ISO("3100900")
  W !,$$FM2ISO("3120415")
