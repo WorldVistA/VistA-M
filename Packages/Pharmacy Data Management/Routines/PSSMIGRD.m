@@ -1,5 +1,5 @@
-PSSMIGRD ;AJF - Process Sync XML message from PEPS;  12/14/2012 1403 ; 8/21/14 12:51pm
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 1
+PSSMIGRD ;AJF - Process Sync XML message from PEPS;  11/01/2012 0703
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 39
  ;;
  ;  Process Sync request
  ;  Called from ^PSSMIGRC
@@ -145,19 +145,11 @@ VADU ; VA Dispense UNIT file Synch
  ;
 DING ; Drug Ingredients file Synch
  ;
- N X,Y,DIC,DA,DR,DIE,IEN,NAME,RTYPE,IDATE,PRIMARY,MVUID,VUID,EFFDT,STATUS,PRNAME
+ N X,Y,DIC,DA,DR,DIE,IEN,NAME,RTYPE,IDATE,PRIMARY,MVUID,VUID,EFFDT,STATUS
  S IEN=$G(PSS("IEN")),NAME=$G(PSS("NAME")),RTYPE=$G(PSS("RTYPE"))
- S MVUID=$G(PSS("MASTERVUID")),VUID=$G(PSS("VUID"))
+ S PRIMARY=$G(PSS("PRIMARY")),MVUID=$G(PSS("MASTERVUID")),VUID=$G(PSS("VUID"))
  S EFFDT=$G(PSS("EFFDATE")),STATUS=$G(PSS("STATUS"))
  S IDATE=$TR($P($G(PSS("INACTDATE")),"T"),"-",""),IDATE=$$HL7TFM^XLFDT(IDATE,"L")
- S PRNAME=$G(PSS("PRIMARY")),PRIMARY=""
- I $L(PRNAME) D  ;find active ien for name
- . N PRIEN,PRDATE,PRTERM
- . S PRIEN=0,PRDATE=PSS("date/time")
- . F  S PRIEN=$O(^PS(50.416,"B",PRNAME,PRIEN)) D  Q:PRIEN=0  Q:PRIMARY
- .. S PRDATE=$O(^PS(50.416,PRIEN,"TERMSTATUS","B",PRDATE),-1)
- .. S PRTERM=$O(^PS(50.416,PRIEN,"TERMSTATUS","B",PRDATE,0))
- .. I $P(^PS(50.416,PRIEN,"TERMSTATUS",PRTERM,0),U,2) S PRIMARY=PRIEN
  S FNUM=50.416,FNAME="syncResponse.XML",FNAME1="drugIngredients"
  ;
  ; Quit if REQUIRED DATA is Missing
@@ -189,15 +181,13 @@ DING ; Drug Ingredients file Synch
  . . D OUT^PSSMIGRC(" Error...Cannot obtain an IEN for NAME")
  . . S:^TMP("AJF LAYGO",$J)]"" ^DD(50.416,.01,"LAYGO",.01,0)=^TMP("AJF LAYGO",$J)
  . ;
- . ; Set required fields first
+ . ; Set Database Variables
  . S DIE=DIC K DIC
- . S DR="99.98///^S X=MVUID;99.99///^S X=VUID"
+ . S DR="2///^S X=PRIMARY;3///^S X=IDATE;99.98///^S X=MVUID;99.99///^S X=VUID"
  . S (PSS("IEN"),PIEN)=DA
- . D ^DIE ; Update Database
- . ; Set other fields
- . S DR="2///^S X=PRIMARY;3///^S X=IDATE"
- . D ^DIE ; Update Database
  . ;
+ . ; Update Database
+ . D ^DIE
  . ; Stuff EFFECTIVE DATE/TIME entries
  . S DIC="^PS(50.416,"_PIEN_",""TERMSTATUS"",",DIC(0)="L",DIC("P")="50.4169A"
  . S DA(1)=PIEN,DA=1,X=EFFDT
@@ -229,7 +219,7 @@ DING ; Drug Ingredients file Synch
  .D ^DIE
  .;
  ;
- S XMESS="<message><![CDATA[ Updated Drug Ingredients: "_NAME_" ]]></message>"
+ S XMESS="<message>  Updated Drug Ingredients: "_NAME_" </message>"
  S XIEN="<ien>"_PSS("IEN")_"</ien>"
  K DIC,DA,DR,DIE,^TMP("AJF LAYGO",$J)
  Q

@@ -1,5 +1,5 @@
-PSSMIGRE ;AJF - Process Sync XML message from PEPS; 12/17/13 1:46pm ; 12/17/13 2:08pm
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 1
+PSSMIGRE ;AJF - Process Sync XML message from PEPS;  6/19/2012 0840
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 39
  ;;
  ; Process Sync request 
  ; Called from ^PSSMIGRD
@@ -57,7 +57,7 @@ MAN ; Manufacturer file Sync
  .;S DR=".01///^S X=NAME;2///"_$S(IDATE]"":"^S X=IDATE",1:"@")
  .D ^DIE
  ;
- S XMESS="<message><![CDATA[  Updated Manufacturer: "_NAME_" ]]></message>"
+ S XMESS="<message>  Updated Manufactrer: "_NAME_" </message>"
  S XIEN="<ien>"_PSS("IEN")_"</ien>"
  K DIC,DA,DR,DIE,^TMP("AJF LAYGO",$J)
  Q
@@ -110,7 +110,7 @@ PTYP ; PACKAGE TYPE file Synch
  .;S DR=".01///^S X=NAME;1///"_$S(IDATE]"":"^S X=IDATE",1:"@")
  .D ^DIE
  ;
- S XMESS="<message><![CDATA[  Updated Package Type: "_NAME_"  ]]></message>"
+ S XMESS="<message>  Updated Package Type: "_NAME_" </message>"
  S XIEN="<ien>"_PSS("IEN")_"</ien>"
  K DIC,DA,DR,DIE,^TMP("AJF LAYGO",$J)
  Q
@@ -239,19 +239,6 @@ NDC ;  Synch for NDC
  . S:$P(NDF0,"^",10)'=PSOT DR=DR_PQ_"10///"_$S(PSOTC]"":"^S X=PSOTC",1:"@")
  . D ^DIE
  . S NIEN2=DA
- . ; Delete ROUTE OF ADMINISTRATION
- . I $D(^PSNDF(50.67,NIEN2,1,1)) D
- .. N DA,DIK
- .. S DIK="^PSNDF(50.67,"_NIEN2_",1,"
- .. S DA(1)=NIEN2,DA=$O(^PSNDF(50.67,NIEN2,1,"A"),-1) D ^DIK
- .. F  S DA=DA-1 Q:'DA>0  D ^DIK
- . ;
- . I '$D(^PSNDF(50.67,NIEN2,1,1)) D
- .. ; Stuff ROUTE OF ADMINISTRATION entries
- .. N DA,DIC
- .. S DIC="^PSNDF(50.67,"_NIEN2_",1,",DIC(0)="L",DIC("P")="50.676A"
- .. S DA(1)=NIEN2,DA=1,X="N/A" D FILE^DICN
- . ;
  . F  S NIEN2=$O(^PSNDF(50.67,"NDC",NAME,NIEN2)) Q:NIEN2=""  D
  .. D DT^DICRW S DA=NIEN2,DIE=50.67,IDATE=DT
  .. S DR="7///^S X=IDATE"
@@ -365,7 +352,7 @@ VAGN ; VA Generic Sync
  . . .S X=VAPRO,DIC=5000.2,DIC(0)="LMXZ" D ^DIC
  ;
  ;
- S XMESS="<message><![CDATA[ Updated VA Generic: "_NAME_"]]></message>"
+ S XMESS="<message>  Updated VA Generic: "_NAME_" </message>"
  S XIEN="<ien>"_$G(PSS("IEN"))_"</ien>"
  K DIC,DA,DR,DIE,^TMP("AJF LAYGO",$J)
  Q
