@@ -1,5 +1,5 @@
-PSSMIGRR ;AJF - Process Synch XML message from PEPS;  10/11/2012 0845
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;;Build 39
+PSSMIGRR ;AJF - Process Synch XML message from PEPS;  07/23/2012 1425
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;;Build 36
  ;;
  ; Called from ^PSSMIGRD
  ;;
@@ -37,7 +37,6 @@ VAPD ;VA Product Sync
  S DUNIEN=$G(PSS("DUIEN")) ;vaDispenseUnitIen
  S GCNO="0000000"_$G(PSS("GCNSEQNO")) ;gcnSeqNo padded with zeros
  S GCNSEQNO=$E(GCNO,($L(GCNO)-5),$L(GCNO)) ;gcnSeqNo
- S:+GCNSEQNO=0 GCNSEQNO="" ; Reset gcnSeqNo to blank if all zeros 10/11/12
  S PVADCCLASS=$G(PSS("PVADCCLASS")) ;primaryVaDrugClassClassification
  S PVADCCODE=$G(PSS("PVADCCODE")) ;primaryVaDrugClassCode
  S PVADCIEN=$G(PSS("PVADCIEN")) ;primaryVaDrugClassIen

@@ -1,5 +1,5 @@
-PSSMIGRD ;AJF - Process Sync XML message from PEPS;  11/01/2012 0703
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 39
+PSSMIGRD ;AJF - Process Sync XML message from PEPS;  7/2/2012 0529
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 36
  ;;
  ;  Process Sync request
  ;  Called from ^PSSMIGRC
@@ -275,7 +275,6 @@ VADC ;VA DRUG CLASS Sync
  . D FILE^DICN
  . S DIE=DIC,DR=".02///^S X=STATUS"
  . D ^DIE
- . S:^TMP("AJF LAYGO",$J)]"" ^DD(50.605,.01,"LAYGO",.01,0)=^TMP("AJF LAYGO",$J)
  . L -^PS(50.605)
  ;
  D:RTYPE="MODIFY"
@@ -354,7 +353,7 @@ DSFO ;DOSAGE FORM Sync
  ;
  S XMESS="<message> <![CDATA[ Updated Dosage Form "_NAME_"]]> </message>"
  S XIEN="<ien>"_PSS("IEN")_"</ien>"
- K DIC,DA,DR,DIE,^TMP("AJF LAYGO",$J),^TMP("AJF LAYGO DF",$J),^TMP("AJF LAYGO UT",$J)
+ K DIC,DA,DR,DIE,^TMP("AJF LAYGO",$J)
  Q
  ;
 DUPD ;
@@ -380,8 +379,8 @@ DUPD ;
  .. Q:$D(PSDUPD(CNT))
  .. S DA=$O(^PS(50.606,PIEN,"DUPD","B",CNT,""))
  .. D ^DIK
- . S:^TMP("AJF LAYGO DF",$J)]"" ^DD(50.6069,.01,"LAYGO",1,0)=^TMP("AJF LAYGO DF",$J)
  ;
+ S:^TMP("AJF LAYGO DF",$J)]"" ^DD(50.6069,.01,"LAYGO",1,0)=^TMP("AJF LAYGO DF",$J)
  ;
  I +UNIT D
  . N CNT,UPACK,DA,PSUNITS S (DA,CNT)=0
@@ -405,7 +404,8 @@ DUPD ;
  .. Q:$D(PSUNITS(CNT))
  .. S DA=$O(^PS(50.606,PIEN,"UNIT","B",CNT,""))
  .. D ^DIK
- . S:^TMP("AJF LAYGO UT",$J)]"" ^DD(50.6068,.01,"LAYGO",1,0)=^TMP("AJF LAYGO UT",$J)
+ ;
+ S:^TMP("AJF LAYGO UT",$J)]"" ^DD(50.6068,.01,"LAYGO",1,0)=^TMP("AJF LAYGO UT",$J)
  ;
  ;
  ;
