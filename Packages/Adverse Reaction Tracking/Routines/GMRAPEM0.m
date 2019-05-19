@@ -1,5 +1,5 @@
 GMRAPEM0 ;HIRMFO/WAA,FT-ALLERGY/ADVERSE REACTION PATIENT EDIT DRIVER ; 12 Jul 2016  1:54 PM
- ;;4.0;Adverse Reaction Tracking;**2,5,17,21,36,50**;Mar 29, 1996;Build 3
+ ;;4.0;Adverse Reaction Tracking;**2,5,17,21,36,50,58**;Mar 29, 1996;Build 5
 EN11 ; Entry point for GMRA USER E/E PAT REC DATA option
  ; GMRAUSER is a flag that indicates that this is a User
  ; If user has Verifier Key then user will act normal
@@ -163,6 +163,8 @@ GMRACHK(GMRAPA) ;
  N PATALLER,VADRCL1,PATNAME,REAC,REACTS,LINE
  N PATIEN,SSN,LAST4
  D GETS^DIQ(120.8,GMRAPA_",","**","E","PATALLER")
+ ;mod by CAS - to skip all but "D" Drug type reactions
+ I $P($G(^GMR(120.8,GMRAPA,0)),"^",20)'["D" Q
  S VADRCL1=$G(PATALLER(120.803,"1,"_GMRAPA_",",.01,"E"))
  S PATNAME=$G(PATALLER(120.8,GMRAPA_",",.01,"E"))
  S PATIEN=$$GET1^DIQ(120.8,GMRAPA,.01,"I")
