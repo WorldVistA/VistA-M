@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MAIL GROUP
-21-FEB-2019 13:59:44 ZWR
-^XMB(3.8,0)="MAIL GROUP^3.8^336^323"
+19-MAY-2019 07:09:28 ZWR
+^XMB(3.8,0)="MAIL GROUP^3.8^336^322"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)=1
 ^XMB(3.8,2,0)="EN PROJECTS^PU^y^^^"
@@ -379,7 +379,6 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,85,2,3,0)="values for certain files, as well as invalid text identifiers from the"
 ^XMB(3.8,85,2,4,0)="SURGERY INTERFACE PARAMETER file (#133.2)."
 ^XMB(3.8,85,3)=1
-^XMB(3.8,86,0)="SPNL SCD COORDINATOR^PU^^^^^1"
 ^XMB(3.8,87,0)="LR NCH^PU^n^^^^1"
 ^XMB(3.8,87,2,0)="^^2^2^2980625^"
 ^XMB(3.8,87,2,1,0)="This mail group is used to transmit HL7 messages to and recieve"
@@ -1966,7 +1965,6 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"AC",1,82)=""
 ^XMB(3.8,"AC",1,83)=""
 ^XMB(3.8,"AC",1,84)=""
-^XMB(3.8,"AC",1,86)=""
 ^XMB(3.8,"AC",1,87)=""
 ^XMB(3.8,"AC",1,88)=""
 ^XMB(3.8,"AC",1,89)=""
@@ -2417,7 +2415,6 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"B","SDRR BAD ADDRESS",258)=""
 ^XMB(3.8,"B","SDSC NIGHTLY TALLY",243)=""
 ^XMB(3.8,"B","SDWL-TRANSFER-ADMIN",222)=""
-^XMB(3.8,"B","SPNL SCD COORDINATOR",86)=""
 ^XMB(3.8,"B","SR CONSULT",234)=""
 ^XMB(3.8,"B","SR TRANSPLANT",250)=""
 ^XMB(3.8,"B","SR-QUARTERLY",41)=""
