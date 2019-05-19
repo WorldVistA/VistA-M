@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
-01-DEC-2018 05:45:18 ZWR
-^GMT(142.1,0)="HEALTH SUMMARY COMPONENT^142.1I^267^113"
+19-MAY-2019 06:10:42 ZWR
+^GMT(142.1,0)="HEALTH SUMMARY COMPONENT^142.1I^267^112"
 ^GMT(142.1,1,0)="ADVERSE REACTIONS/ALLERGIES^ALLRG;GMTSALG^^ADR^^^^^Adv React/Allerg"
 ^GMT(142.1,1,3.5,0)="^^6^6^2950823^^"
 ^GMT(142.1,1,3.5,1,0)="This component provides patient allergy/adverse reaction information from"
@@ -356,7 +356,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,38,3.5,8,0)="Antibiotic Serum Level, and remarks."
 ^GMT(142.1,43,0)="LAB CUMULATIVE SELECTED^MAIN;GMTSLRSC^Y^SCLU^Y^^^^Lab Cum Selected"
 ^GMT(142.1,43,1,0)="^142.17P^1^1"
-^GMT(142.1,43,1,1,0)="60"
+^GMT(142.1,43,1,1,0)=60
 ^GMT(142.1,43,1,"B",60,1)=""
 ^GMT(142.1,43,3.5,0)="^^11^11^2950824^"
 ^GMT(142.1,43,3.5,1,0)="This component contains information extracted from the Lab package. Not"
@@ -409,7 +409,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,49,.1,1,0)="EN1;GMVHS"
 ^GMT(142.1,49,.1,"B","EN1;GMVHS",1)=""
 ^GMT(142.1,49,1,0)="^142.17P^1^1"
-^GMT(142.1,49,1,1,0)="120.51"
+^GMT(142.1,49,1,1,0)=120.51
 ^GMT(142.1,49,1,"B",120.51,1)=""
 ^GMT(142.1,49,3.5,0)="^^7^7^3140306"
 ^GMT(142.1,49,3.5,1,0)="This component contains selected vital measurements extracted from the Vital"
@@ -463,7 +463,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,55,3.5,6,0)="Specialty, DC=Discharge), movement description, specialty, and provider."
 ^GMT(142.1,56,0)="IMAGING IMPRESSION SELECTED^MAIN;GMTSRASP^Y^SII^Y^^^Requires Radiology version 3 or later^Sel Image Impression"
 ^GMT(142.1,56,1,0)="^142.17P^1^1"
-^GMT(142.1,56,1,1,0)="71"
+^GMT(142.1,56,1,1,0)=71
 ^GMT(142.1,56,1,"B",71,1)=""
 ^GMT(142.1,56,3.5,0)="^^7^7^2970213^^"
 ^GMT(142.1,56,3.5,1,0)="This component contains impressions from the Radiology/Nuclear Medicine"
@@ -570,15 +570,6 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,73,3.5,2,0)="the Allergy Tracking System. It provides a brief patient list of all known"
 ^GMT(142.1,73,3.5,3,0)="food, drug and environmental allergies or adverse reactions (e.g., hay"
 ^GMT(142.1,73,3.5,4,0)="fever)."
-^GMT(142.1,74,0)="SPINAL CORD DYSFUNCTION^MAIN;GMTSSCD^Y^SCD^Y^^^^Spinal Cord Dysfunct"
-^GMT(142.1,74,3.5,0)="^^7^7^2970107^"
-^GMT(142.1,74,3.5,1,0)="This component provides patient data from the Spinal Cord Dysfuction"
-^GMT(142.1,74,3.5,2,0)="package. A patient's registration status, highest level of injury,"
-^GMT(142.1,74,3.5,3,0)="information source for SCD, completeness of injury and extent of paralysis"
-^GMT(142.1,74,3.5,4,0)="will be displayed. The following data will be displayed with time and maximum"
-^GMT(142.1,74,3.5,5,0)="occurrence limits applied:  date of onset, etiology, onset of SCD caused"
-^GMT(142.1,74,3.5,6,0)="by trauma, date recorded, motor score, cognitive score, total score and"
-^GMT(142.1,74,3.5,7,0)="record type."
 ^GMT(142.1,75,0)="VITAL SIGNS OUTPATIENT^OUTPAT;GMTSVS^Y^VSO^Y^^^^Vital Signs Outpat."
 ^GMT(142.1,75,.1,0)="^142.11^1^1"
 ^GMT(142.1,75,.1,1,0)="EN1;GMVHS"
@@ -597,7 +588,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,76,.1,1,0)="EN1;GMVHS"
 ^GMT(142.1,76,.1,"B","EN1;GMVHS",1)=""
 ^GMT(142.1,76,1,0)="^142.17P^1^1"
-^GMT(142.1,76,1,1,0)="120.51"
+^GMT(142.1,76,1,1,0)=120.51
 ^GMT(142.1,76,1,"B",120.51,1)=""
 ^GMT(142.1,76,3.5,0)="^^10^10^2960822^"
 ^GMT(142.1,76,3.5,1,0)="This component contains selected outpatient vital measurements"
@@ -630,7 +621,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,78,3.5,6,0)="and operative findings."
 ^GMT(142.1,79,0)="SURGERY SEL NON OR PROCEDURES^ENSR;GMTSRON^Y^SNSR^Y^^^^Selected NON-OR Proc^^^^^Y"
 ^GMT(142.1,79,1,0)="^142.17P^1^1"
-^GMT(142.1,79,1,1,0)="81"
+^GMT(142.1,79,1,1,0)=81
 ^GMT(142.1,79,1,"B",81,1)=""
 ^GMT(142.1,79,3.5,0)="0^^9^9^2980401^^^^"
 ^GMT(142.1,79,3.5,1,0)="This component will return selected NON-OR procedures.  The user"
@@ -647,7 +638,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,201,3.5,1,0)="This component lists directions to a particular patient's home."
 ^GMT(142.1,202,0)="CLINICAL REMINDERS DUE^MAIN;GMTSPXHR^^CR^^^^...^Reminders Due"
 ^GMT(142.1,202,1,0)="^142.17P^1^1"
-^GMT(142.1,202,1,1,0)="811.9"
+^GMT(142.1,202,1,1,0)=811.9
 ^GMT(142.1,202,1,"B",811.9,1)=""
 ^GMT(142.1,202,3.5,0)="^^3^3^2971110^^^^"
 ^GMT(142.1,202,3.5,1,0)="This component lists only clinical reminders that are due now. If the"
@@ -658,7 +649,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,203,.1,1,0)="HF;PXRHS07(DFN,END,BEG,NUM,.ARY)"
 ^GMT(142.1,203,.1,"B","HF;PXRHS07(DFN,END,BEG,NUM,.AR",1)=""
 ^GMT(142.1,203,1,0)="^142.17P^1^1"
-^GMT(142.1,203,1,1,0)="9999999.64"
+^GMT(142.1,203,1,1,0)=9999999.64
 ^GMT(142.1,203,1,"B",9999999.64,1)=""
 ^GMT(142.1,203,3.5,0)="^142.35^14^14^3170824^"
 ^GMT(142.1,203,3.5,1,0)="This component allows a user to create a list of factor health factors"
@@ -736,7 +727,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,218,3.5,9,0)="statements offered to the patient, administered by and comments."
 ^GMT(142.1,219,0)="PCE IMMUNIZATIONS SELECTED^IMMUN;GMTSPXIM^Y^SIM^Y^^^^Immunizations Select"
 ^GMT(142.1,219,1,0)="^142.17P^1^1"
-^GMT(142.1,219,1,1,0)="9999999.14"
+^GMT(142.1,219,1,1,0)=9999999.14
 ^GMT(142.1,219,1,"B",9999999.14,1)=""
 ^GMT(142.1,219,3.5,0)="^^14^14^3160526^"
 ^GMT(142.1,219,3.5,1,0)="This component lists the immunizations (e.g., Rubella, Smallpox,"
@@ -762,7 +753,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,220,3.5,5,0)="should be displayed or not."
 ^GMT(142.1,221,0)="PCE IMMUNIZATIONS SELECT CHRON^IMMUNCDT;GMTSPXIM^Y^SIMC^Y^^^^Immun Select Old>New"
 ^GMT(142.1,221,1,0)="^142.17P^1^1"
-^GMT(142.1,221,1,1,0)="9999999.14"
+^GMT(142.1,221,1,1,0)=9999999.14
 ^GMT(142.1,221,1,"B",9999999.14,1)=""
 ^GMT(142.1,221,3.5,0)="^^13^13^3160526^"
 ^GMT(142.1,221,3.5,1,0)="This component lists the immunizations (e.g., Rubella, Smallpox, etc.) and"
@@ -780,7 +771,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,221,3.5,13,0)="in the Detailed Immunizations Health Summary component."
 ^GMT(142.1,222,0)="PCE IMMUN SELECT REVERSE CHRON^IMMUNRDT;GMTSPXIM^Y^SIMR^Y^^^^Immun Select New>Old"
 ^GMT(142.1,222,1,0)="^142.17P^1^1"
-^GMT(142.1,222,1,1,0)="9999999.14"
+^GMT(142.1,222,1,1,0)=9999999.14
 ^GMT(142.1,222,1,"B",9999999.14,1)=""
 ^GMT(142.1,222,3.5,0)="^^13^13^3160526^"
 ^GMT(142.1,222,3.5,1,0)="This component lists the immunizations (e.g., Rubella, Smallpox, etc.) and"
@@ -813,14 +804,14 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,231,3.5,5,0)="health care counseling."
 ^GMT(142.1,232,0)="CLINICAL REMINDERS MAINTENANCE^MAIN;GMTSPXHR^^CM^^^^^Reminder Maintenance"
 ^GMT(142.1,232,1,0)="^142.17P^1^1"
-^GMT(142.1,232,1,1,0)="811.9"
+^GMT(142.1,232,1,1,0)=811.9
 ^GMT(142.1,232,1,"B",811.9,1)=""
 ^GMT(142.1,232,3.5,0)="^^2^2^2971110^^^^"
 ^GMT(142.1,232,3.5,1,0)="This component lists reminders that are due and not due as does the CRS"
 ^GMT(142.1,232,3.5,2,0)="component. In addition it shows why the reminder is due or not due."
 ^GMT(142.1,233,0)="PROGRESS NOTES SELECTED^MAIN;GMTSPNSL^Y^SPN^Y^^^^Selected Prog Notes"
 ^GMT(142.1,233,1,0)="^142.17P^1^1"
-^GMT(142.1,233,1,1,0)="8925.1"
+^GMT(142.1,233,1,1,0)=8925.1
 ^GMT(142.1,233,1,"B",8925.1,1)=""
 ^GMT(142.1,233,3.5,0)="^142.35^9^9^3010530^^^^"
 ^GMT(142.1,233,3.5,1,0)="This component allows for the selection of specific progress notes by "
@@ -834,7 +825,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,233,3.5,9,0)="electronically marked signed on chart will be reported."
 ^GMT(142.1,234,0)="CLINICAL REMINDERS SUMMARY^MAIN;GMTSPXHR^^CRS^^^^^Reminders Summary"
 ^GMT(142.1,234,1,0)="^142.17P^1^1"
-^GMT(142.1,234,1,1,0)="811.9"
+^GMT(142.1,234,1,1,0)=811.9
 ^GMT(142.1,234,1,"B",811.9,1)=""
 ^GMT(142.1,234,3.5,0)="^^4^4^3090421"
 ^GMT(142.1,234,3.5,1,0)="This component is similar to PCE CLINICAL REMINDERS DUE except that it "
@@ -876,7 +867,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,239,.1,1,0)="MAIN;PXRM(DFN,SEG,FLG)"
 ^GMT(142.1,239,.1,"B","MAIN;PXRM(DFN,SEG,FLG)",1)=""
 ^GMT(142.1,239,1,0)="^142.17P^1^1"
-^GMT(142.1,239,1,1,0)="811.9"
+^GMT(142.1,239,1,1,0)=811.9
 ^GMT(142.1,239,1,"B",811.9,1)=""
 ^GMT(142.1,239,3.5,0)="^^1^1^3000626^"
 ^GMT(142.1,239,3.5,1,0)="This is a brief version of the CLINICAL REMINDERS MAINTENANCE component."
@@ -907,7 +898,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,244,.1,1,0)="HF;PXRHS07(DFN,END,BEG,NUM,.GMTSARY)"
 ^GMT(142.1,244,.1,"B","HF;PXRHS07(DFN,END,BEG,NUM,.GM",1)=""
 ^GMT(142.1,244,1,0)="^142.17P^1^1"
-^GMT(142.1,244,1,1,0)="9999999.64"
+^GMT(142.1,244,1,1,0)=9999999.64
 ^GMT(142.1,244,1,"B",9999999.64,1)=""
 ^GMT(142.1,245,0)="GEC Completed Referral Count^PRINT;GMTSGEC^Y^GECC^Y^^^^Referral Count"
 ^GMT(142.1,246,0)="MHV REMINDERS DETAIL DISPLAY^MAIN;GMTSPXHR^^MHVD^^^^^Detail Display"
@@ -940,7 +931,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,250,.1,1,0)="MAIN;PXRM(DFN,SEG,FLG)"
 ^GMT(142.1,250,.1,"B","MAIN;PXRM(DFN,SEG,FLG)",1)=""
 ^GMT(142.1,250,1,0)="^142.17P^1^1"
-^GMT(142.1,250,1,1,0)="811.9"
+^GMT(142.1,250,1,1,0)=811.9
 ^GMT(142.1,250,1,"B",811.9,1)=""
 ^GMT(142.1,250,3.5,0)="^^3^3^3091118^"
 ^GMT(142.1,250,3.5,1,0)="This component lists reminders findings for reminders that are due and not"
@@ -951,7 +942,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,251,.1,1,0)="MAIN;PXRM(DFN,SEG,FLG)"
 ^GMT(142.1,251,.1,"B","MAIN;PXRM(DFN,SEG,FLG)",1)=""
 ^GMT(142.1,251,1,0)="^142.17P^1^1"
-^GMT(142.1,251,1,1,0)="811.9"
+^GMT(142.1,251,1,1,0)=811.9
 ^GMT(142.1,251,1,"B",811.9,1)=""
 ^GMT(142.1,251,3.5,0)="^^2^2^3091118^"
 ^GMT(142.1,251,3.5,1,0)="This component shows reminders with the Last Done Date if it is defined."
@@ -1115,7 +1106,6 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,"B","PROGRESS NOTES SELECTED",233)=""
 ^GMT(142.1,"B","Remote Active Meds (Tool #4)",261)=""
 ^GMT(142.1,"B","SOCIAL WORK",62)=""
-^GMT(142.1,"B","SPINAL CORD DYSFUNCTION",74)=""
 ^GMT(142.1,"B","SURGERY NON OR PROCEDURES",78)=""
 ^GMT(142.1,"B","SURGERY ONLY REPORTS",77)=""
 ^GMT(142.1,"B","SURGERY REPORTS",23)=""
@@ -1213,7 +1203,6 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,"C","RXNV",243)=""
 ^GMT(142.1,"C","RXOP",28)=""
 ^GMT(142.1,"C","RXUD",29)=""
-^GMT(142.1,"C","SCD",74)=""
 ^GMT(142.1,"C","SCL1",18)=""
 ^GMT(142.1,"C","SCL2",19)=""
 ^GMT(142.1,"C","SCL3",20)=""
@@ -1339,7 +1328,6 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,"D","SELECTED PROG NOTES",233)=""
 ^GMT(142.1,"D","SKIN TESTS",208)=""
 ^GMT(142.1,"D","SOCIAL WORK",62)=""
-^GMT(142.1,"D","SPINAL CORD DYSFUNCT",74)=""
 ^GMT(142.1,"D","SUMMARY DISPLAY",247)=""
 ^GMT(142.1,"D","SURGERY ONLY REPORTS",77)=""
 ^GMT(142.1,"D","SURGERY RPT (OR/NON)",23)=""
