@@ -1,5 +1,5 @@
 PSSMIGRE ;AJF - Process Sync XML message from PEPS; 12/17/13 1:46pm ; 12/17/13 2:08pm
- ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 8
+ ;;1.0;PHARMACY ENTERPRISE PRODUCT SYSTEM;;7/11/2008;Build 1
  ;;
  ; Process Sync request 
  ; Called from ^PSSMIGRD
