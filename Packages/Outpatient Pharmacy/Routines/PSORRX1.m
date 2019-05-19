@@ -1,5 +1,5 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532**;DEC 1997;Build 4
  ;
  ;Reference ^PSDRUG( supported by DBIA 221
  Q
@@ -9,11 +9,6 @@ REMOTERX(DFN,PSOSITE) ;
  N PID1,PID4,PID5,PID6,TFDAT,LOOP,RXMSG,PSORRDAT,PSOHCNT,ERR,HL,PSORRDAT,ORERR,SITE
  S HLARR=$NA(^TMP("HLS",$J)) K @HLARR
  S HLDAT=$NA(^XTMP("PSORRX1",$J)) K @HLDAT
- ; moved to PSORX1
- ;I '$$GET1^DIQ(59,PSOSITE,3001,"I") D  Q
- ;.W !!,"The OneVA Pharmacy flag is turned off. Queries will NOT"
- ;.W !,"be made to other VA Pharmacy locations.",!
- ; possibly add error message to be returned if no DFN.
  I 'DFN Q
  S SITE=$P($$SITE^VASITE(),U)
  S TFSTRING=$$GET1^DIQ(2,DFN,991.01,"I")_"^^^USVHA^NI^"_SITE
@@ -31,8 +26,9 @@ REMOTERX(DFN,PSOSITE) ;
  D DIRECT^HLMA(HLPROT,"GM",1,.RXDAT,"",.HLP)
  S ORFS=$G(HL("FS")),ORCS=$E($G(HL("ECH")),1),ORRS=$E($G(HL("ECH")),2),ORES=$E($G(HL("ECH")),3),ORSS=$E($G(HL("ECH")),4)
  S HLQUIT=0,ORQUIT="",ORERR=""
- I $P(RXDAT,U,3)="No response"!($P(RXDAT,U,3)="Connection Failed") D  Q
- .W !,"The system is down or not responding.",!,"Could not query prescriptions at other VA Pharmacy locations.",!
+ I ($P(RXDAT,"^",2)]"")!($P(RXDAT,"^",3)]"") D  Q
+ .W !,"The system is down or not responding"_$S($P(RXDAT,"^",3)]"":" ("_$P(RXDAT,"^",3)_").",1:".")
+ .W !,"Could not query prescriptions at other VA Pharmacy locations.",!
  .K DIR S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR
  F  X HLNEXT Q:HLQUIT'>0!(ORQUIT'="")  D
  .N LOOP
@@ -119,11 +115,6 @@ REFREQ ;
  S @HLARR@(3)="RXO^^^^^^^^"_MW_"~~~"_LOCSITE
  W !!,"Processing refill request. Please be patient as it may take a moment"
  W !,"for the host site to respond and generate your label data..."
- ;S PSOHLNK=$O(^HLCS(870,"C",REMSIEN,0))
- ;S PSOLNKNM=$$GET1^DIQ(870,PSOHLNK,.01,"E")
- ;S RMSDOM=$$GET1^DIQ(870,PSOHLNK,.03,"E")  ; get domain name
- ;S RMSDOM=$$GET1^DIQ(4,REMSIEN,60,"E")
- ;S:$$PROD^XUPROD() RMSDOM="HL7."_RMSDOM   ; prefix domain name
  S RMSDOM=$$FQDN^PSORWRAP(,REMSIEN)
  S DOMOVR=REMSITE_"~"_RMSDOM_"~DNS"
  S HLP("SUBSCRIBER")="^^^^"_DOMOVR
@@ -186,16 +177,11 @@ PARTIAL() ;
  F PSOHCNT=1:1 D  Q:DONE
  .I '$D(PSORRDAT(PSOHCNT)) S DONE=1 Q
  .S @HLARR@(1)=$G(@HLARR@(1))_PSORRDAT(PSOHCNT)
- ;S @HLARR@(2)="ORC^PF^"_PRXNUM_"~"_REMSITE_"~"_$$GET1^DIQ(4,REMSIEN,60,"E")_"^^^^^^^"_PDATE_"^"_DUZ_"~"_PHARMLN_"~"_PHARMFN_"~"_PHARMMI_"^^^~~~"_LOCSITE_U_PHONE
  S @HLARR@(2)="ORC^PF^"_PRXNUM_"~"_REMSITE_"~"_$$FQDN^PSORWRAP(,REMSIEN)_"^^^^^^^"_PDATE_"^"_DUZ_"~"_PHARMLN_"~"_PHARMFN_"~"_PHARMMI_"^^^~~~"_LOCSITE_U_PHONE
  S @HLARR@(3)="RXO^1^"_QTY_"^^^^^^"_MW_"~~~"_LOCSITE_"^^^"_DSUPP
  S @HLARR@(4)="NTE^1^L^"_REMARKS
  W !!,"Processing partial fill request. Please be patient as it may take a moment"
  W !,"for the host site to respond and generate your label data...",!
- ;S RMSDOM=$$GET1^DIQ(4,REMSIEN,60,"E")
- ;S PSOHLNK=$O(^HLCS(870,"C",REMSIEN,0)) ; get first entry (should only be one but you never know)
- ;S RMSDOM=$$GET1^DIQ(870,PSOHLNK,.03,"E")  ; get domain name
- ;S:$$PROD^XUPROD() RMSDOM="HL7."_RMSDOM   ; prefix domain name
  S RMSDOM=$$FQDN^PSORWRAP(,REMSIEN)
  S DOMOVR=REMSITE_"~"_RMSDOM_"~DNS"
  S HLP("SUBSCRIBER")="^^^^"_DOMOVR
@@ -279,7 +265,6 @@ DIR() ;
 POST ; post init for PSO*7*454
  N LIEN,OPSITE,DOMAIN,VAL
  ; add TCP/IP address for EMI
- ;S DOMAIN=$$GET1^DIQ(4,DUZ(2),60,"E")
  S DOMAIN=$$FQDN^PSORWRAP(,DUZ(2))
  S VAL="PSORRXSEND"
  S LIEN=$$FIND1^DIC(870,,"B",.VAL) Q:'LIEN
