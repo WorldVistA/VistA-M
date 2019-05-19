@@ -1,5 +1,5 @@
 RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29,31,32,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,31,32,33,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ; This routine uses the following IAs:
@@ -17,6 +17,7 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;                                      identifiers.
  ;ROR*1.5*32   11/01/17    S ALSAHHAR   Print the most recent Immunity result
  ;ROR*1.5*33   MAR 2018    M FERRARESE  Adding FUTURE APPOINTMENT as additional identifiers.
+ ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name ; Fix LOINC code table for HEP A/B 
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -105,16 +106,14 @@ HEPARPT(RORTSK) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
- ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT,FUT_CLIN)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;
  N HEADER,LN,RC,CTAG,LTAG
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
  ;automatically build the table defintion(s) listed under the header tag above  PATCH 33
- S RC=$$TBLDEF^RORXU002("HEADER^RORX018",HEADER)
- Q $S(RC<0:RC,1:HEADER)
  ;--- LOINC codes output
  I $G(RORIMM) D
  . S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)

@@ -1,5 +1,5 @@
 RORXU006 ;HCIOFO/SG - REPORT PARAMETERS ;6/21/06 1:41pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13,21,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,21,31,33,34**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -25,7 +25,8 @@ RORXU006 ;HCIOFO/SG - REPORT PARAMETERS ;6/21/06 1:41pm
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional
- ;                                      identifiers.                                 
+ ;                                      identifiers.
+ ;ROR*1.5*34   SEP 2018    M FERRARESE  Adding Future Appointment clinic name                               
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -262,12 +263,14 @@ PCPDATA(TASK,VALUE,PARENT) ;
  I TMP'<0 D ADDVAL^RORTSK11(TASK,"PCP",TMP,PARENT,1)
  Q
 FUTAPPT(TASK,DFN,DAYS,PARENT) ;  PATCH 33
- N TMP
+ N TMP,FUTAPPT,FUTCLIN
  S TMP=0
  S TMP=$$FUTAPPT^RORUTL02(DFN,DAYS)
- I TMP'<0 D 
- . D ADDVAL^RORTSK11(TASK,"FUT_APPT",TMP,PARENT,1)
- . D ADDATTR^RORTSK11(TASK,TMP,"NAME","FUT_APPT")
+ I TMP'<0 D
+ . D ADDVAL^RORTSK11(TASK,"FUT_APPT",$P(TMP,U),PARENT,1)
+ . D ADDVAL^RORTSK11(TASK,"FUT_CLIN",$P(TMP,U,2),PARENT,1) ;PATCH 34
+ ;. D ADDATTR^RORTSK11(TASK,$P(TMP,U,2),"NAME","FUT_CLIN")  ;PATCH 34
+ ;. D ADDATTR^RORTSK11(TASK,$P(TMP,U),"NAME","FUT_APPT") 
  Q
  ;
  ;***** OUTPUTS ICN HEADER IF ICN SHOULD BE THE FINAL COLUMN
@@ -297,5 +300,7 @@ APPTHDR(TASK,PARENT) ;
  N TMP
  S TMP=$$ADDVAL^RORTSK11(TASK,"COLUMN",,PARENT)
  D ADDATTR^RORTSK11(TASK,TMP,"NAME","FUT_APPT")
+ S TMP=$$ADDVAL^RORTSK11(TASK,"COLUMN",,PARENT)
+ D ADDATTR^RORTSK11(TASK,TMP,"NAME","FUT_CLIN") ; PATCH 34
  Q
  ;

@@ -1,5 +1,5 @@
 RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25,31,34**;Feb 17, 2006;Build 45
  ;
  ; This routine uses the following IAs:
  ;
@@ -26,7 +26,8 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ;                                      Add ICN to report, if requested
  ;ROR*1.5*25   OCT 2014    T KOPP       Added PTF ICD-10 support for 25 diagnoses
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
- ;                                      identifiers.                                    
+ ;                                      identifiers.   
+ ;ROR*1.5*34   SEP 2018    F TRAXLER    Adding FUT_APPT and FUT_CLIN values                                 
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -156,6 +157,9 @@ PROBLEM(PATIEN) ;
  ;       >0  Number of non-fatal errors
  ;
 QUERY(FLAGS) ;
+ N RORAPPTINFO   ; Future appointmentdate_U_clinicname
+ N RORAPPT       ; Future appointment date
+ N RORCLIN       ; Future appointment clinic name
  N RORDOD        ; Date of death
  N ROREDT1       ; Day after the end date
  N RORLAST4      ; Last 4 digits of the current patient's SSN
@@ -233,7 +237,9 @@ QUERY(FLAGS) ;
  . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  . I $$PARAM^RORTSK01("PATIENTS","PACT") S RORPACT=$$PACT^RORUTL02(PATIEN)
  . I $$PARAM^RORTSK01("PATIENTS","PCP") S RORPCP=$$PCP^RORUTL02(PATIEN)
- . ;
+ . I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D  ;patch 34
+ . . S RORAPPTINFO=$$FUTAPPT^RORUTL02(PATIEN,$$PARAM^RORTSK01("OPTIONS","FUT_APPT"))
+ . . S RORAPPT=$P(RORAPPTINFO,U,1),RORCLIN=$P(RORAPPTINFO,U,2)
  . ;--- Calculate the patient's totals
  . S RC=$$TOTALS(PATIEN)
  . I RC  Q:RC<0  S ECNT=ECNT+RC
@@ -270,7 +276,7 @@ SORT() ;
 TOTALS(PATIEN) ;
  N CNT,ICD,ICDIEN,ICDVST,PNODE,RC,TMP
  S PNODE=$NA(@RORTMP@("PAT",PATIEN))
- S @PNODE=RORLAST4_U_RORPNAME_U_RORDOD_U_$G(RORICN)_U_$G(RORPACT)_U_$G(RORPCP)_U_AGE
+ S @PNODE=RORLAST4_U_RORPNAME_U_RORDOD_U_$G(RORICN)_U_$G(RORPACT)_U_$G(RORPCP)_U_AGE_U_$G(RORAPPT)_U_$G(RORCLIN)
  S ^("PAT")=$G(@RORTMP@("PAT"))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX013
  ;
  S ICDIEN=0

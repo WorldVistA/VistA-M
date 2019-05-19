@@ -1,5 +1,5 @@
 RORUTL02 ;HCIOFO/SG - UTILITIES  ;8/25/05 10:20am
- ;;1.5;CLINICAL CASE REGISTRIES;**21,27,31,33**;Feb 17, 2006;Build 81
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,27,31,33,34**;Feb 17, 2006;Build 45
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -12,6 +12,8 @@ RORUTL02 ;HCIOFO/SG - UTILITIES  ;8/25/05 10:20am
  ;                                      prevent maxstring errors when lock
  ;                                      command is executed.
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional identifiers.
+ ;ROR*1.5*33   MAY 2017    F TRAXLER    Added FUTAPPT subroutine.
+ ;ROR*1.5*34   SEP 2018    F TRAXLER    Modified FUTAPPT subroutine.
  ;******************************************************************************
  ;
  ; This routine uses the following IAs:
@@ -102,13 +104,16 @@ PCP(DFN)  ;returns ien & name of pract filling pc position PATCH 30
  Q $P($$OUTPTPR^SDUTL3(DFN,DT,1),"^",2)
  ;
 FUTAPPT(DFN,DAYS)     ; PATCH 33 
- N VASD
+ N RORAPPTDT,RORAPPTCNE,VASD
  I $D(DAYS) D
  .N X,X1,X2
  .D NOW^%DTC S (VASD("F"),X1)=X,X2=DAYS D C^%DTC S VASD("T")=X
  .S VASD("W")="1"
  .D SDA^VADPT
- I $D(^UTILITY("VASD",$J)) Q $$DATE^RORXU002($P($G(^UTILITY("VASD",$J,1,"I")),"^",1)\1)
+ I $D(^UTILITY("VASD",$J)) D  Q RORAPPTDT_U_RORAPPTCNE  ;patch 34 change
+ .S RORAPPTDT=$$DATE^RORXU002($P($G(^UTILITY("VASD",$J,1,"I")),U,1)\1) ;appt d/t
+ .S RORAPPTCNE=$P($G(^UTILITY("VASD",$J,1,"E")),U,2) ;appt clinic name (external)
+ ;I $D(^UTILITY("VASD",$J)) Q $$DATE^RORXU002($P($G(^UTILITY("VASD",$J,1,"I")),"^",1)\1) ;patch 33 code
  Q 0
  ;***** LOADS THE LAB RESULTS
  ;
