@@ -1,8 +1,10 @@
 IBARX1 ;ALB/AAS - INTEGRATED BILLING, PHARMACY COPAY INTERFACE (CONT.) ;21-FEB-91
- ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563,614**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  - process 1 rx entry and accumulate totals
+ ;  ICR 2056   - $$GET1^DIQ
+ ;  ICR 4820     RX^PSO52API
  ;
 RX N IBAM,IBNOCH,IBTIER
  ;if Combat Vet send alert e-mail to mailgroup "IB COMBAT VET RX COPAY"
@@ -21,6 +23,25 @@ RX N IBAM,IBNOCH,IBTIER
  S IBTIER=$$RXTIER^IBAUTL(DFN,+$P($P(IBX,"^"),":",2),IBEFDT)
  ; determine rx cost
  S DA=IBATYP D COST^IBAUTL I $P($G(Y),"^")=-1 G RXQ
+ ;
+ ; IB*2.0*614  Prorate rx's with less than 30 day supply if National HRfS flag is active
+ ; Check for an original fill or a refill.
+ N IBISDT,IBRXN,IBRFN,SHRPEDT,IBLIST,IBDATA,IBLSRF S IBRXN=+$P($P(IBX,"^"),":",2)  ;IBRXN = IEN of the Drug file
+ S IBLIST="IBARX1" K ^TMP($J,IBLIST)
+ D RX^PSO52API(DFN,IBLIST,IBRXN,,"2,R,I") S IBDATA=$NA(^TMP($J,IBLIST,DFN,IBRXN))
+ S IBISDT=+@IBDATA@(1)  ;Get original released date (field 31)
+ S SHRPEDT=$$GET1^DIQ(350.9,1,70.02,"I")   ;Get SHRPE activation date
+ ;
+ S IBLSRF=$O(@IBDATA@("RF","A"),-1)  ;get last refill
+ I IBLSRF D   ;If this is a refill use the refill date to prorate amount billed
+ . I $G(@IBDATA@("RF",IBLSRF,17))="" Q   ;Check released date/time quit if not released
+ . S IBISDT=+@IBDATA@("RF",IBLSRF,17)  ;Reset fill date to date of refill
+ ;
+ ; X1 - standard  calculated amount for this tier #
+ I X1,$$CHKHRFS^IBAMTS3(DFN,IBISDT) D   ;X1 is above 0 and the Pt has a valid HRfS flag at the date of fill/refill
+ . N IBDAYS S IBDAYS=@IBDATA@(8)  ;IBDAYS = the days supply, prorate if less than 30 days
+ . I $G(IBDAYS)<30 S X1=$$PRORATE^IBAMTS3(.X1,IBDAYS)
+ K ^TMP($J,"IBARX1")
  ;
  ; compute amount above cap
  D NEW^IBARXMC($P(IBX,"^",2),X1,DT,.IBCHRG,.IBNOCH)

@@ -1,5 +1,5 @@
 IBAMTC ;ALB/CPM-MEANS TEST NIGHTLY COMPILATION JOB ;09-OCT-91
- ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549,614**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; Entry point - initialize variables and parameters
@@ -41,6 +41,10 @@ INIT ; Entry point - initialize variables and parameters
  ; This code may need to be expanded, IF we don't          ;IB*2.0*312 
  ; implement on the 1st of the month, for a clean cut over ;IB*2.0*312
  I '+$$SWSTAT^IBBAPI() D NJ^IBAECN1                        ;IB*2.0*312
+ ;
+ ;Run a nightly process to see if a Patient had the CAT I HRfS flag activated/de-activated during the past two days.
+ ; If so generate a bulletin to IB MEANS TEST mailgroup
+ D NIGHTLY^IBAMTS3                                                    ;IB*2.0*614
  ;
  D EN^IBCE ; Transmit electronic bills
  ; Clean up expired Means Test billing clocks
