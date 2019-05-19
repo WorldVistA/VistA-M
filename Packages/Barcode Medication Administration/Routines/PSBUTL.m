@@ -1,5 +1,5 @@
 PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83,97,99,104**;Mar 2004;Build 3
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83,97,99,104,114**;Mar 2004;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
@@ -408,14 +408,14 @@ REMOVES(DFN,TYPE) ;Searches xrefs for MRR type meds needing removal and adds    
  ;
  ;Type = (P)atient, (W)ard, (C)linic
  ;
- N PSBGNODE,PSBIEN,PSBZON,PSBRMDT,PSBMRRFL,PSBONX,PSBOITX,PSBOSP,PSBOSTS
+ N PSBGNODE,PSBIEN,PSBZON,PSBRMDT,PSBMRRFL,PSBONX,PSBOITX,PSBOSP,PSBOSTS,DSPDRG
  ;
  ;Xref APATCH search (backwards compatible xref)
  S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
- .S PSBIEN=$QS(PSBGNODE,5),PSBONX=$P(^PSB(53.79,PSBIEN,.1),U)
- .Q:'$D(^PSB(53.79,PSBIEN,.5,1))                        ;no disp drug
- .Q:$P(^PSB(53.79,PSBIEN,.5,1,0),U,4)'="PATCH"          ;not a Patch
+ .S PSBIEN=$QS(PSBGNODE,5),PSBONX=$P(^PSB(53.79,PSBIEN,.1),U),DSPDRG=$O(^PSB(53.79,PSBIEN,.5,0)) I 'DSPDRG Q
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,DSPDRG))                        ;no disp drug
+ .Q:$P(^PSB(53.79,PSBIEN,.5,DSPDRG,0),U,4)'="PATCH"          ;not a Patch
  .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"                   ;not Given
  .S PSBRMDT=$P(^PSB(53.79,PSBIEN,.1),"^",7) Q:'PSBRMDT  ;Scheduled Removal Time
  .Q:(PSBRMDT<PSBSTART)!(PSBRMDT>PSBSTOP)
@@ -426,10 +426,10 @@ REMOVES(DFN,TYPE) ;Searches xrefs for MRR type meds needing removal and adds    
  ;Xref AMRR search   (new xref for transdermal meds)
  S PSBGNODE="^PSB(53.79,"_"""AMRR"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="AMRR")!($QS(PSBGNODE,3)'=DFN)  D
- .S PSBIEN=$QS(PSBGNODE,5),PSBONX=$P(^PSB(53.79,PSBIEN,.1),U)
- .Q:$P(^PSB(53.79,PSBIEN,.5,1,0),U,4)="PATCH"           ;Is patch already seen
- .Q:'$D(^PSB(53.79,PSBIEN,.5,1))                        ;no disp drug
- .Q:'$P(^PSB(53.79,PSBIEN,.5,1,0),U,6)                  ;no MRR flag
+ .S PSBIEN=$QS(PSBGNODE,5),PSBONX=$P(^PSB(53.79,PSBIEN,.1),U),DSPDRG=$O(^PSB(53.79,PSBIEN,.5,0)) I 'DSPDRG Q
+ .Q:$P(^PSB(53.79,PSBIEN,.5,DSPDRG,0),U,4)="PATCH"           ;Is patch already seen
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,DSPDRG))                        ;no disp drug
+ .Q:'$P(^PSB(53.79,PSBIEN,.5,DSPDRG,0),U,6)                  ;no MRR flag
  .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"                   ;not Given
  .S PSBRMDT=$P(^PSB(53.79,PSBIEN,.1),"^",7) Q:'PSBRMDT  ;Scheduled Removal Time
  .Q:(PSBRMDT<PSBSTART)!(PSBRMDT>PSBSTOP)

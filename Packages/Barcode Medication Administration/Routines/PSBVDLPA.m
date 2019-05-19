@@ -1,5 +1,5 @@
 PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58,70,83,114**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; called by PSBVDLUD to find patches not removed
@@ -20,12 +20,12 @@ PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS;03/06/16 3:06
 EN ;Search the Medlog file for patches that were Given and not Removed.
  ; Place these meds into the return Results array.
  ;
- N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK             ;*83
+ N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK,DSPDRG
  S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
  .S PSBIEN=$QS(PSBGNODE,5)
- .I '$D(^PSB(53.79,PSBIEN,.5,1)) Q
- .I $P(^PSB(53.79,PSBIEN,.5,1,0),U,4)'="PATCH" Q
+ .S DSPDRG=$O(^PSB(53.79,PSBIEN,.5,0)) I 'DSPDRG Q
+ .I $P(^PSB(53.79,PSBIEN,.5,DSPDRG,0),U,4)'="PATCH" Q
  .I "G"'[$P(^PSB(53.79,PSBIEN,0),U,9)!($D(PSBONVDL(PSBIEN))) Q
  .S PSBZON=$P(^PSB(53.79,PSBIEN,.1),"^")
  .D CLEAN^PSBVT
