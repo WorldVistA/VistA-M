@@ -1,6 +1,6 @@
 IBARXMP ;LL/ELZ - PHARMCAY COPAY CAP PUSH TRANSACTION ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**150,158**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**150,158,637**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PUSH ; this entry point will allow the user to select one or all transactions
  ; and transmit them to other treating facilities.  This is used to try
@@ -40,7 +40,8 @@ A ; transmits all un-transmitted transactions
  ;
  F IBS="P","Y" S IBX=0 F  S IBX=$O(^IBAM(354.71,"AC",IBS,IBX)) Q:IBX<1  D
  . N IBER,IBY,IBZ,DFN
- . S IBY=1,IBZ=^IBAM(354.71,IBX,0),DFN=$P(IBZ,"^",2)
+ . S IBY=1,IBZ=$G(^IBAM(354.71,IBX,0)) Q:IBZ=""
+ . S DFN=$P(IBZ,"^",2)
  . W !,"Now transmitting ",$P(IBZ,"^")
  . D FOUND^IBARXMA(.IBY,IBX)
  . U IO
