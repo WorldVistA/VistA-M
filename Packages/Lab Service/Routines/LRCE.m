@@ -1,5 +1,5 @@
 LRCE ;DALOI/JMC - LOOK-UP ON CENTRAL ENTRY # ; 12/20/17 8:51am
- ;;5.2;LAB SERVICE;**28,76,103,121,153,210,202,263,350,416,486**;Sep 27, 1994;Build 16
+ ;;5.2;LAB SERVICE;**28,76,103,121,153,210,202,263,350,416,486,498**;Sep 27, 1994;Build 7
  ;
 EN ;
  N CAN,ORD
@@ -188,6 +188,10 @@ SEL W !,"Is this the one"
  . Q:'$P(X,U,2)  S (LRSD("RPSITE"),LRRSITE("RSITE"))=$P(X,U,2)_U_$P(^LRO(69,LRODT,1,LRSN,0),U,7)
  . S LRRSITE("RPSITE")=$P(X,U,3)
  . S LRSD("RUID")=$P(X,U,5)
+ . ;LRRSITE("IDTYPE") needs to be set so that
+ . ;all UID fields are set correctly in file 69
+ . ;see SET3^LRX (line below added in LR*5.2*498)
+ . S LRRSITE("IDTYPE")=1
  . S LRORDRR="R"
  Q
  ;
