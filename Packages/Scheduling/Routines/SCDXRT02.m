@@ -1,7 +1,11 @@
-SCDXRT02 ;ALB/JRP - RETRANSMIT REJECTS FROM NPCDB;15-OCT-1996
- ;;5.3;Scheduling;**68**;AUG 13, 1993
+SCDXRT02 ;ALB/JRP - RETRANSMIT REJECTS FROM NPCDB ;10/15/96
+ ;;5.3;Scheduling;**68,640**;AUG 13, 1993;Build 8
  ;
 EN ;Entry point for List Manager display
+ ;
+ ;SD*640 Stop selective retransmit of NPCDB rejections
+ Q
+ ;
  D EN^VALM("SCDX RETRAN REJECTS FROM NPCDB")
  Q
  ;

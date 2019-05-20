@@ -1,8 +1,12 @@
-SDOQMP ;ALB/SCK - Appointment Monitoring / Performance Measure report ; [07/17/96]
- ;;5.3;SCHEDULING;**47**;AUG 13,1993
+SDOQMP ;ALB/SCK - Appointment Monitoring / Performance Measure report;07/17/96
+ ;;5.3;SCHEDULING;**47,640**;AUG 13,1993;Build 8
  Q
  ;
 EN ;  Entry point for Access PM extract to be sent to data collection server
+ ;
+ ; SD*640 Stop sending data to data collection server even this option 
+ ; has not been used for a long time.
+ Q
  ;
  Q:$$CHKTASK^SDOQMP0
  D INIT,LOOP,START^SDOQMP2,BLDPME

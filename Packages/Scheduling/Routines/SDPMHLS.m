@@ -1,7 +1,10 @@
-SDPMHLS ;BPFO/JRC -Build ROU-R01 HL7 message for 'SD ENC PERF MON' application ; 4/2/04 7:12am [5/12/04 10:29am]
- ;;5.3;Scheduling;**313,371,416**;AUG 13, 1993
+SDPMHLS ;BPFO/JRC - Build ROU-R01 HL7 message for 'SD ENC PERF MON' application ;4/2/04
+ ;;5.3;Scheduling;**313,371,416,640**;AUG 13, 1993;Build 8
  ;
 QUE ;Queue retroactive XMIT job
+ ;SD*640 Stop running Performance Monitor Retransmit Report (AAC) job.
+ Q
+ ;
  ;Declare variables
  S (STDT,EDT,Y,X)=""
  ;Prompt user for month and year
@@ -31,6 +34,10 @@ EN ;Entry point
  ;Note: Retroactive reports use variables STDT and EDT to pass dates
  ;   STDT - start date, first day of the month for selected month
  ;   EDT - ending date, last day of the month for selected month
+ ;
+ ;SD*640 Stop scheduling APM Performance Monitor Task job.
+ Q
+ ;
  ;Declare variables
  N STDATE,ENDDATE
  N XMTARRY,SCRNARR,SORTARR,OUTARR,X,RDATE
