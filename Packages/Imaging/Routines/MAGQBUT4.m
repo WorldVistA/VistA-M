@@ -1,5 +1,5 @@
-MAGQBUT4 ;WOIFO/RMP - BP Utilities ;
- ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196,198**;Mar 19, 2002;Build 31;Apr 25, 2018
+MAGQBUT4 ;WOIFO/RMP/GEK - BP Utilities ;
+ ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196,198,214**;Mar 19, 2002;Build 34;Jun 27, 2018
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,6 +16,17 @@ MAGQBUT4 ;WOIFO/RMP - BP Utilities ;
  ;; +---------------------------------------------------------------+
  ;;
  ;
+ Q
+VOKR(RESULT,VER) ; RPC for VOK [MAGQ VOK]
+ ;Patch 214  enables Clients 135, 196, 198, 214  
+ N CLPATCH,SVRPATCH
+ ;   get client Patch number
+ S CLPATCH=$$TRIM($P(VER,"P",2))
+ ; These are allowable Clients.
+ S SVRPATCH=",135,196,198,214," ; P 214 , continue to support 135, 196, 198 
+ ; if client patch is allowed, the Result = 1^...
+ I SVRPATCH[CLPATCH S RESULT="1^3.0P214"
+ E  S RESULT="0^3.0P214"
  Q
 CONV(ARR,ICT) ;Convert any single node array to FM Style multiple
  ;  The node subscripts of ARR are ignored, and not retained
@@ -112,18 +123,6 @@ GPACHX(PV) ; Get Package File Install History of Imaging
  . Q
  Q
  ;
-VOKR(RESULT,VER) ; RPC for VOK [MAGQ VOK]
- ;P196  
- N CLPATCH,SVRPATCH
- ; gek p196   allow 135 and 196 Client.
- ;   get client Patch number
- S CLPATCH=$$TRIM($P(VER,"P",2))
- ; These are allowable Clients.
- S SVRPATCH=",135,196,198," ; P198, continue to support 135, 196.
- ; if client patch is allowed Result = 1^...
- I SVRPATCH[CLPATCH S RESULT="1^3.0P196"
- E  S RESULT="0^3.0P196"
- Q
 OLD ;
  S VER="3.0P"_($$TRIM($P(VER,"P",2)))
  S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
