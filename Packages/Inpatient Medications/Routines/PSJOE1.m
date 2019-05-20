@@ -1,9 +1,11 @@
 PSJOE1 ;BIR/CML3 - UD OE FOR COMBINED OE ;Jul 02, 2018@10:42
- ;;5.0;INPATIENT MEDICATIONS;**2,7,25,30,47,56,64,179,181,252,281,315,338,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**2,7,25,30,47,56,64,179,181,252,281,315,338,373,353**;16 DEC 97;Build 49
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA# 10009
  ; Reference to ^VALM is supported by DBIA# 10118
  ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
+ ;
+ ;*353 Haz Meds cleanup var
  ;
  S PC=0 G AD
  ;
@@ -13,6 +15,7 @@ EN ;
 AD ; Ask Drug
  ;PSJOCFG - If defined, it's for new order, renew or copy. ^PSJOCDSD using this flag to not display drug error.
  K PSJOCFG,PSGDUR,PSGRMVT,PSGRMV,PSGRF,ND2P1 ;*315
+ K PSGDRG,PSGDRGN    ;*353
  N PSJNORD,PSGORQF,PSGSDX,PSGFDX,PSGNEFDO,PSGEDTOI,PSJOCFG,PSGDREQ S PSJOCFG="NEW UD" S PSJNORD=1 I $D(VALM("TM")) S IOTM=VALM("TM"),IOBM=IOSL W IOSC,@IOSTBM,IORC
  K PSGORQF
  D ^PSGOE7

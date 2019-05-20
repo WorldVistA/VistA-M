@@ -1,5 +1,5 @@
 PSGSH ;BIR/CML3-SCHEDULE HELP TEXT ;07 OCT 97 / 9:17 AM 
- ;;5.0; INPATIENT MEDICATIONS ;**111**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**111,353**;16 DEC 97;Build 49
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; 
@@ -20,6 +20,7 @@ ENSH ;
  I X?1"???".E R !,"(Press RETURN to continue.) ",Q:DTIME W:'$T $C(7) S:'$T Q="^" I Q="^" K:$D(PSGDDFLG) PSGDDFLG,PSGST Q
  K DIC S DIC="^PS(51.1,",DIC(0)="E",D="APPSJ",DIC("W")="W ""  ""," I $D(PSJPWD),PSJPWD S DIC("W")=DIC("W")_"$S($D(^PS(51.1,+Y,1,PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"
  E  S DIC("W")=DIC("W")_"$P(^(0),""^"",2)"
+ S DIC("W")=DIC("W")_",$S($P(^PS(51.1,+Y,0),U,12):"" **INACTIVE**  "",1:"""")"   ;*353
  I $D(PSGST) S DIC("S")="I $P(^(0),""^"",5)"_$E("'",PSGST'="O")_"=""O"""
  D IX^DIC K DIC K:$D(PSGDDFLG) PSGDDFLG,PSGST Q
  ;

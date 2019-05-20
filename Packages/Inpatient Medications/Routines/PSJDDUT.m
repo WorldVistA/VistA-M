@@ -1,5 +1,5 @@
 PSJDDUT ;BIR/LDT-INPATIENT MEDICATIONS DD UTILITY ; 3/23/11 7:55am
- ;;5.0;INPATIENT MEDICATIONS;**40,44,50,83,116,111,113,194**;16 DEC 97;Build 42
+ ;;5.0;INPATIENT MEDICATIONS;**40,44,50,83,116,111,113,194,353**;16 DEC 97;Build 49
  ;
  ; Reference to ^PS(51 is supported by DBIA# 2176.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
@@ -76,6 +76,7 @@ SCH3 ;Called from Non-Verified Orders File (53.1), Schedule field 26
  I X?1"???".E D EN^DDIOL(.PSJHLP) K PSJHLP
  I X?1"???".E R !,"(Press RETURN to continue.) ",Q:DTIME D:'$T EN^DDIOL("","","$C(7)") S:'$T Q="^" I Q="^" K:$D(PSGDDFLG) PSGDDFLG,PSGST Q
  K DIC S DIC="^PS(51.1,",DIC(0)="E",D="APPSJ",DIC("W")="W ""  ""," I $D(PSJPWD),PSJPWD S DIC("W")=DIC("W")_"$S($D(^PS(51.1,+Y,1,PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"
+ S DIC("W")=DIC("W")_",$S($P(^(0),U,12):"" **INACTIVE**"",1:"""")"   ;*353
  ; Naked references on the following two lines refer to the full reference on the line above
  E  S DIC("W")=DIC("W")_"$P(^(0),""^"",2)"
  I $D(PSGST) S DIC("S")="I $P(^(0),""^"",5)"_$E("'",PSGST'="O")_"=""O"""

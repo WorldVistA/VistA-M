@@ -1,5 +1,5 @@
 PSJUTL3 ;BIR/MLM-MISC. INPATIENT UTILITIES ;29 OCT 01 / 4:29 PM
- ;;5.0; INPATIENT MEDICATIONS ;**58**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS;**58,353*;16 DEC 97;Build 49
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PSSLOCK is supported by DBIA# 2789.
@@ -76,4 +76,88 @@ SEND(START) ;
  S XMSUB="PSJ*5*58 IV Verification",XMTEXT="LINE("
  S XMDUZ="PSJ*5*58"
  S XMY(+DUZ)="" D ^XMD
+ Q
+ ;
+DMACTN ;Entry point for DM hidden action from backdoor LM OE     *353
+ N GL,IFN,NXT,NODD,NXTROOT,ROOT,QQ
+ D FULL^VALM1
+ W #
+ S (IFN,NXT,NODD)=0
+ I ((NAME["PSJ LM UD")!(NAME["PSJU LM")),$G(PSGDRG) S IFN=+PSGDRG D SHOWDR       ;Unit Dose backdoor New order entry in process Drug ien, but is OI ien when New IV's
+ ;all other Unit dose input
+ I ((NAME["PSJ LM UD")!(NAME["PSJU LM")!(NAME["PSJ LM PENDING")),'$G(PSGDRG) D   ;Unit Dose DD mult
+ . I $G(PSGORD)["P" S PSGOEEWF="^PS(53.1,"_+PSGORD_","
+ . I '$G(PSGORD),ON["P" S PSGOEEWF="^PS(53.1,"_+ON_","
+ . F QQ=0:0 S ROOT=PSGOEEWF_"1,"_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ .. S NODD=NODD+1,NXTROOT=PSGOEEWF_"1,"_QQ_")",NXT=$O(@NXTROOT),GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)")
+ .. D SHOWDR
+ ;all IV's
+ I NAME["PSJ LM IV" D 
+ . S:ON["P" PSGOEEWF="^PS(53.1,"_+ON_","
+ . S:ON["V" PSGOEEWF="^PS(55,"_DFN_",""IV"","_+ON_","                            ;IV, Chk IV Additives
+ . F QQ=0:0 S ROOT=PSGOEEWF_"""AD"","_QQ_")" S QQ=$O(@ROOT) Q:'QQ  D
+ .. S NODD=NODD+1,NXTROOT=PSGOEEWF_"""AD"","_QQ_")",NXT=$O(@NXTROOT),GL=$E(NXTROOT,1,$L(ROOT)-1),IFN=+@(GL_",0)") S:IFN IFN=+$P($G(^PS(52.6,IFN,0)),U,2)
+ .. D SHOWDR
+ I '$G(PSGDRG),'NODD D SHOWDR                                                    ;err, No IFN, No DD, & No IV Ads, display msg 
+ D PICKDR
+ S VALMBCK="R"
+ Q
+ ;
+PICKDR ;Entry point for Selecting a diff Drug
+ N IFN,Y
+ W ! K DIC S DIC="^PSDRUG(",DIC(0)="AEQMVTN",DIC("T")="" W "Return to continue or" D ^DIC K DIC I Y<0 Q
+ S IFN=+Y
+ D SHOWDR
+ G PICKDR
+ ;
+SHOWDR ;Entry point to Display Drug hidden action info (via defaulted IFN)
+ N DIR,OIPTR
+ I 'IFN W !!,"** NO Dispense Drug entered for this order",! G PICKDR
+ I NODD=1,NXT W "** MULTIPLE DISP DRUGS **"
+ W !,"DRUG NAME: ",$$GET1^DIQ(50,IFN_",","GENERIC NAME")," (IEN: "_IFN_")"
+ S OIPTR=^PSDRUG(IFN,2) S:$P(OIPTR,"^",1)]"" OIPTR=$P(OIPTR,"^",1)
+ I OIPTR]"" W !," ORDERABLE ITEM TEXT: ",! D DMOITXT
+ W !," MESSAGE: ",$$GET1^DIQ(50,IFN_",","MESSAGE") D FULL
+ W !," QTY DISP MESSAGE: ",$$GET1^DIQ(50,IFN_",","QUANTITY DISPENSE MESSAGE"),! D FULL
+ K Y
+ Q
+ ;
+DMOITXT ;Get Pharmacy Orderable Item drug text fields
+ N DDD,QUIT,TEXT,TEXTPTR,TXT
+ I $D(^PS(50.7,OIPTR,1,0)) F TXT=0:0 S TXT=$O(^PS(50.7,OIPTR,1,TXT)) Q:'TXT  D
+ . S TEXTPTR=^PS(50.7,OIPTR,1,TXT,0)
+ . F DDD=0:0 S DDD=$O(^PS(51.7,TEXTPTR,2,DDD)) Q:'DDD  I '$$INACDATE S TEXT=^PS(51.7,TEXTPTR,2,DDD,0) D FULL Q:$G(QUIT)  W "  ",TEXT,!
+ Q
+ ;
+FULL ;Screen is full, pause
+ D:($Y+3)>IOSL&('$G(QUIT)) FSCRN
+ Q
+ ;
+FSCRN ;User Wait as screen if full
+ Q:$G(QUIT)  K DIR S DIR(0)="E",DIR("A")="Press Return to continue,'^' to exit" D ^DIR W @IOF S:Y'=1 QUIT=1
+ Q
+ ;
+INACDATE() ;Check Inactive date
+ Q $P($G(^PS(51.7,TEXTPTR,0)),"^",2)
+ ;
+VPACTN  ;Entry point for VP hidden action from PSJ OE-testing bg     *353
+ D FULL^VALM1
+ N IFN S IFN=+$G(P("6")) I 'IFN S IFN=+$G(PSGPR)
+ D SHOWVP
+ S VALMBCK="R"
+ Q
+ ;
+PICKVP  ;Entry Point For Selecting a diff provider
+ N IFN,Y
+ W ! K DIC S DIC="^VA(200,",DIC(0)="AEQMVTN",DIC("T")="" W !,"Return to continue or" D ^DIC K DIC I Y<0 Q
+ S IFN=+Y
+ ;
+SHOWVP  ;Entry point to Display Provider hidden action info (via defaulted IFN)
+ N DIR
+ I 'IFN W !,"No provider entered for this order",! G PICKVP
+ W #,"PROVIDER TITLE:    ",$$GET1^DIQ(200,IFN_",","TITLE")
+ W !!,"PROVIDER REMARKS:  ",$$GET1^DIQ(200,IFN_",","REMARKS")
+ W !!,"PROVIDER SPECIALTY:  ",$$GET1^DIQ(200,IFN_",","PROVIDER CLASS"),!,"                     "_$$GET1^DIQ(200,IFN_",","SERVICE/SECTION")
+ K Y
+ G PICKVP
  Q
