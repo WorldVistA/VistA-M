@@ -1,8 +1,9 @@
 ORPRF ;SLC/JLI-Patient record flag ;6/14/06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**173,187,190,215,243**;Dec 17, 1997;Build 242
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**173,187,190,215,243,472**;Dec 17, 1997;Build 11
  ;
-FMT(ROOT) ; Format - Convert record flag data to displayable data
+FMT(ROOT,DBRSDATA) ; Format - Convert record flag data to displayable data
  ; Sets ^TMP("ORPRF",$J,NN) with flag data for multiple flags
+ ; DBRSDATA - local array with DBRS data
  N IDX,IX,CNT
  S (IDX,CNT)=0
  F  S IDX=$O(ROOT(IDX)) Q:'IDX  D
@@ -24,6 +25,14 @@ FMT(ROOT) ; Format - Convert record flag data to displayable data
  . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="Next Review Date:        "_$P($G(ROOT(IDX,"REVIEWDT")),U,2)
  . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="Owner Site:              "_$P($G(ROOT(IDX,"OWNER")),U,2)
  . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="Originating Site:        "_$P($G(ROOT(IDX,"ORIGSITE")),U,2)
+ . ;DBRS data
+ . I $O(DBRSDATA("BEHAVIORAL",0)) I $P($G(ROOT(IDX,"FLAG")),U,2)="BEHAVIORAL" D
+ . . N ORDBRSC,ORZDBRSD
+ . . S ORDBRSC=0 F  S ORDBRSC=+$O(DBRSDATA("BEHAVIORAL",ORDBRSC)) Q:ORDBRSC=0  D
+ . . . S ORZDBRSD=$G(DBRSDATA("BEHAVIORAL",ORDBRSC))
+ . . . I $P(ORZDBRSD,U,1)']"" Q
+ . . . S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="DBRS number:             "_$P(ORZDBRSD,U,1)
+ . . . I $P(ORZDBRSD,U,2)]"" S CNT=CNT+1,^TMP("ORPRF",$J,IDX,CNT)="Other DBRS data:         "_$P(ORZDBRSD,U,2)
  K ROOT
  Q
  ;
@@ -39,7 +48,11 @@ HASFLG(ORY,PTDFN) ;Does patient PTDFN has flags
  K ^TMP("ORPRF",$J)
  S ORY=$$GETACT^DGPFAPI(PTDFN,"PRFARR")
  Q:'ORY
- D FMT(.@("PRFARR")) ; Sets ^TMP("ORPRF"
+ ;
+ N DBRSARR
+ ;ICR# 6874 - check if DG*5.3*951 installed and then call the API 
+ I $T(GETDBRS^DGPFDBRS)'="" I $$GETDBRS^DGPFDBRS(PTDFN,.DBRSARR)
+ D FMT(.@("PRFARR"),.DBRSARR) ; Sets ^TMP("ORPRF"
  S IDY=0 F  S IDY=$O(^TMP("ORPRF",$J,IDY)) Q:'IDY  D
  . S ORY(IDY)=IDY_U_$G(^TMP("ORPRF",$J,IDY,"FLAG"))
  . S CAT1=0
