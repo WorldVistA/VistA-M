@@ -1,5 +1,5 @@
-MMRSIPC ;MIA/LMT - Print MRSA IPEC Report ;03/02/17  15:41
- ;;1.0;MRSA PROGRAM TOOLS;**3,5**;Mar 22, 2009;Build 146
+MMRSIPC ;MIA/LMT - Print MRSA IPEC Report ;Oct 18, 2018@15:12
+ ;;1.0;MRSA PROGRAM TOOLS;**3,5,7**;Mar 22, 2009;Build 1
  ;
  ;This is the main routine to print the MRSA IPEC Report.
  ;This routine uses functions contained in MMRSIPC2, MMRSIPC3, and MMRSIPC4.
@@ -156,6 +156,9 @@ GETPARAM ;(MDRO) ; Loads lab search/extract parameters from file 104.1
  ..S INC=INC+1
  ..S ^TMP($J,"MMRSIPC","T","MRSA_SCREEN",TST_"_"_INC,0)="2^POS"
  ..S ^TMP($J,"MMRSIPC","T",MRSAMDRO,TST_"_"_INC,0)="2^POS"
+ ..S INC=INC+1
+ ..S ^TMP($J,"MMRSIPC","T","MRSA_SCREEN",TST_"_"_INC,0)="5^DETECTED"
+ ..S ^TMP($J,"MMRSIPC","T",MRSAMDRO,TST_"_"_INC,0)="5^DETECTED"
  S TSTNM="MRSA SURVL NARES AGA"
  F  S TSTNM=$O(^LAB(60,"B",TSTNM)) Q:TSTNM=""!(TSTNM]"MRSA SURVL NARES AGAR~zzz")  D
  .I TSTNM'["MRSA SURVL NARES AGAR" Q
@@ -170,6 +173,9 @@ GETPARAM ;(MDRO) ; Loads lab search/extract parameters from file 104.1
  ..S INC=INC+1
  ..S ^TMP($J,"MMRSIPC","T","MRSA_SURV",TST_"_"_INC,0)="2^POS"
  ..S ^TMP($J,"MMRSIPC","T",MRSAMDRO,TST_"_"_INC,0)="2^POS"
+ ..S INC=INC+1
+ ..S ^TMP($J,"MMRSIPC","T","MRSA_SURV",TST_"_"_INC,0)="5^DETECTED"
+ ..S ^TMP($J,"MMRSIPC","T",MRSAMDRO,TST_"_"_INC,0)="5^DETECTED"
  S TSTNM="MRSA SURVL OTHER AGA"
  F  S TSTNM=$O(^LAB(60,"B",TSTNM)) Q:TSTNM=""!(TSTNM]"MRSA SURVL OTHER AGAR~zzz")  D
  .I TSTNM'["MRSA SURVL OTHER AGAR" Q
