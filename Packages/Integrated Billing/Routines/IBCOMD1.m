@@ -1,5 +1,5 @@
 IBCOMD1 ;ALB/CMS - GENERATE INSURANCE COMPANY LISTINGS ;03-AUG-98
- ;;2.0;INTEGRATED BILLING;**103,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**103,528,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -78,6 +78,24 @@ QUEQ K IBAIB,IBCASE,IBFLD,IBOUT,IBQUIT,^TMP("IBCOMD",$J)
  ;
 HD ; Write Heading
  S IBPAGE=IBPAGE+1
+ ; IB*602/HN ; Add report headers to Excel Spreadsheets
+ I IBOUT="E" D  Q
+ .W !,"Generate Insurance Company Listings^"_$$FMTE^XLFDT($$NOW^XLFDT,1)
+ .W !,"List of ",$S(IBAIB=1:"Active",IBAIB=2:"Inactive",1:"All")," Insurance Companies"
+ .;
+ .; - display definition of screens
+ .I $D(IBCASE) W "^where" D
+ ..N I,H
+ ..S (H,I)=0 F  S I=$O(IBCASE(I)) Q:'I  D
+ ...I H W "^and"
+ ...S H=1 W "^"_IBFLD(I)
+ ...W $S(I=4:"^Equals ",$P(IBCASE(I),"^")="C":"^Contains ",1:"^Between ")
+ ...W $S(I=4:$P($G(^DIC(5,+$P(IBCASE(I),"^",2),0)),"^"),$P(IBCASE(I),"^",2)="":"^'FIRST'",1:$P(IBCASE(I),"^",2))
+ ...I $P(IBCASE(I),"^")="R" W "^and ",$S($P(IBCASE(I),"^",3)="zzzzzz":"^'LAST'",1:$P(IBCASE(I),"^",3)) ; **IB*2.0*602
+ .;
+ .W !,"Active/Inactive^Insurance Name^Reimburse?^Street Address 1^Street Address 2^Street Address 3^City^State^ZIP^Phone Number"
+ ; IB*602/HN end 
+ ;
  I IBOUT="E" W:($E(IOST,1,2)["C-") ! W "Active/Inactive^Insurance Name^Reimburse?^Street Address 1^Street Address 2^Street Address 3^City^State^ZIP^Phone Number" Q
  W @IOF,"Generate Insurance Company Listings",?50,$$FMTE^XLFDT($$NOW^XLFDT,"Z"),?70," Page ",IBPAGE
  W !,"List of ",$S(IBAIB=1:"Active",IBAIB=2:"Inactive",1:"All")," Insurance Companies"

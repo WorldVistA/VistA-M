@@ -1,6 +1,6 @@
 IBCNSMM2 ;ALB/CMS -MEDICARE INSURANCE INTAKE (CONT) ; 18-MAY-99
- ;;2.0;INTEGRATED BILLING;**103,133**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,133,602**;21-MAR-94;Build 22
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -8,7 +8,7 @@ MII ; -- Ask Medicare Insurance Card questions
  ;  
  ;  Output Variables:
  ;  IBNAME = Name of Insured
- ;  IBHICN = Subscriber ID
+ ;  IBHICN = Subscriber ID as of IB*601 could also be a MBI Number
  ;  IBAEFF = Effective Date for Part A
  ;  IBBEFF = Effective Date for Part B
  ;  IBCOB/IBCOBI = Coordination of Benefits
@@ -31,7 +31,8 @@ MIIA ; -- Ask user for Information
  S IBX=$P($G(IBARR("A",1)),"^",3) I IBX="" S IBX=$P($G(IBARR("B",1)),"^",3)
  I $G(IBHICN)'="" S DIR("B")=IBHICN
  I IBX'="",'$D(DIR("B")) S DIR("B")=IBX
- S DIR(0)="F^7:15^I '$$VALHIC^IBCNSMM($TR(X,""-"")) K X"
+ ;S DIR(0)="F^7:15^I '$$VALHIC^IBCNSMM($TR(X,""-"")) K X" ; IB*602
+ S DIR(0)="F^3:20" ;IB*602
  S DIR("?")="^D HICH^IBCNSMM2"
  D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) K DUOUT,DTOUT,DIROUT,DIRUT S IBQUIT=1 G MIIQ
@@ -83,9 +84,7 @@ MIIQ Q
  ;
  ;
 HICH ; Help text for the HIC number prompt.
- W !,"Enter the Medicare Claim Number (Subscriber ID) exactly as it appears"
- W !,"on the Medicare Insurance Card, including ALL characters.  Valid HICN "
- W !,"formats are:  1-3 alpha characters followed by 6 or 9 digits, or "
- W !,"9 digits followed by 1 alpha character optionally followed by another "
- W !,"alpha character or 1 digit."
+ W !,"Enter the Medicare Claim Number (Subscriber ID) exactly as it appears" ; IB*602
+ W !,"on the Medicare Insurance Card, excluding special characters."
+ W !,"Entry must be 3-20 characters."
  Q

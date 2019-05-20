@@ -1,5 +1,5 @@
 IBCNAU3 ;ALB/KML/AWC - eIV USER EDIT REPORT (PRINT) ;6-APRIL-2015
- ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**528,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  Required variable input:  ALLUSERS, ALLINS, PLANS, ALLPLANS, EXCEL
@@ -53,8 +53,10 @@ PAUSE ; Pause for screen output.
 EXCEL(PLANS) ; user selected format that can be viewed in MS Excel
  N IBI,IBJ,IBK,IBL,IBM,IB01,IB02,USER,DATE
  S (IB01,IB02)=0
- W !,"USER EDIT REPORT",!
- ;
+ ; IB*602/HN ; Add report headers to Excel Spreadsheets 
+ W !,"USER EDIT REPORT^"_$$FMTE^XLFDT($$NOW^XLFDT,1)
+ ; IB*602/HN end  
+ ; 
  I PLANS W !,"Insurance Company^Group Name^User^Date/Time of Change^Modified Field^Previous Value of Data^Modified Value of Data",!
  E  W !,"Insurance Company^User^Date/Time of Change^Modified Field^Previous Value of Data^Modified Value of Data",!
  ;

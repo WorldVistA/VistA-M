@@ -1,5 +1,5 @@
 IBCNERPD ;DAOU/RO - eIV PAYER LINK REPORT PRINT;AUG-2003
- ;;2.0;INTEGRATED BILLING;**184,252,416,521,528,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**184,252,416,521,528,595,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification
@@ -201,6 +201,22 @@ DET ; - Print insurance company detail in Excel Payer report
  ;
 PHDL ; - Print the header line for the Excel spreadsheet
  N X
+ ; IB*602/HN ; Add report headers to Excel Spreadsheets
+ S X="eIV Payer Link Report^"_$$FMTE^XLFDT($$NOW^XLFDT,1)
+ W X
+ S X="Report Option: "_$S(REP=1:"Payer List",1:"Insurance Company List")
+ W !,X
+ I REP=1 D
+ . S HDR=$S(TYP=1:"Unlinked Payers Only",TYP=2:"Linked Payers Only",1:"All Payers")
+ . I TYP=3 S HDR=HDR_"^"_$S(DET=1:"With Ins. Co. Detail",1:"Without Ins. Co. Detail")
+ I REP=2 D
+ . S HDR=$S(TYP=1:"Unlinked Insurance Companies Only",TYP=2:"Linked Insurance Companies Only",1:"All Insurance Companies")
+ W "^"_HDR
+ I REP=2 W !,"'*' indicates the Insurance Company HPID/OEID failed validation checks"
+ I REP=1,DET=1 W !,"'*' indicates the Linked Insurance Company HPID/OEID failed validation checks"
+ I REP=1,IBPPYR'="" W !,"For Single Payer:"_"^"_$P(IBPPYR,"^",2)
+ I REP=2,IBMAT'="" W !,"Only Insurance Companies that match:"_"^"_IBMAT
+ ; IB*602/HN end
  I REP=1 D
  .S X="Payer Name^National Payer ID^# Linked Ins. Co.^Nationally Active?^Locally Active?^FSC Trusted?^Professional EDI#^Institutional EDI#"
  .I DET=1 S X=X_"^Linked Insurance Company Name^Street Address^City, ST^Professional EDI#^Institutional EDI#^HPID/OEID"

@@ -1,5 +1,5 @@
 IBCNSP ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**6,28,43,52,85,251,363,371,416,497,516,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**6,28,43,52,85,251,363,371,416,497,516,528,549,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
 % ;
 EN ; -- main entry point for IBCNS EXPANDED POLICY
@@ -22,7 +22,8 @@ HDR ; -- header code
  S DOD=$$GET1^DIQ(2,DFN_",",.351,"I")
  I DOD'="" D
  . S DOD=$$FMTE^XLFDT(DOD,"5DZ")
- . S VALMHDR(1)=VALMHDR(1)_"    DoD: "_DOD
+ . ;IB*2.0*602/DM display DoD properly with long patient name
+ . S VALMHDR(1)=VALMHDR(1)_"   DoD: "_DOD
  S Z=$G(^DPT(DFN,.312,+$P(IBPPOL,U,4),0))
  S W=$P($G(^IBA(355.3,+$P(Z,U,18),0)),U,11)
  S Y=$E($P($G(^DIC(36,+Z,0)),U),1,20)_" Insurance Company"

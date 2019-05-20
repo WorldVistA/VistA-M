@@ -1,5 +1,5 @@
 IBCNERP3 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT PRINT ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification
@@ -209,6 +209,42 @@ SSDB ; Display last 4 digits of SSN and DOB to facilitate pt. identification
  ;
 PHDL ; - Print the header line for the Excel spreadsheet  ; 528
  N X
+ ; IB*602/HN ; Add report headers to Excel Spreadsheets
+ S EHDR=$S($G(IPRF)=1:"eIV Inactive Policy Report",$G(IPRF)=2:"eIV Ambiguous Policy Report",1:"eIV Response Report") I TRC'="" S EHDR=EHDR_"^by Trace #"
+ W !,EHDR_"^"_$$FMTE^XLFDT($$NOW^XLFDT,1)
+ ;
+ I TRC'="" S HDR="Trace #: "_TRC W !,HDR
+ I TRC="" D
+ . S EHDR="Sorted by: "_$S(SRT=1:"Payer",1:"Patient")_" Name"
+ . S EHDR=EHDR_"^Responses Displayed: "_$S(TYP="M":"Most Recent",1:"All")
+ . W !,EHDR S EHDR=""
+ . I $G(IPRF)=1 W !,"Earliest Policy Expiration Date: ",$$FMTE^XLFDT(EXP,"5Z")
+ . S EHDR=$$FMTE^XLFDT(BDT,"5Z")_" - "_$$FMTE^XLFDT(EDT,"5Z")
+ . W !,EHDR
+ . ; Disp SORT1 rng
+ . S EHDR=""
+ . I SRT=1,PYR="" S EHDR="All Payers"
+ . I SRT=2,PAT="" S EHDR="All Patients"
+ . I EHDR="" D
+ .. I SRT=1 S EHDR=$P($G(^IBE(365.12,PYR,0)),U,1) Q
+ .. S EHDR=$P($G(^DPT(PAT,0)),U,1)
+ . W !,EHDR
+ . ; Disp SORT2 rng
+ . S EHDR=""
+ . I SRT=1,PAT="" S EHDR="All Patients"
+ . I SRT=2,PYR="" S EHDR="All Payers"
+ . I EHDR="" D
+ .. I SRT=1 S EHDR=$P($G(^DPT(PAT,0)),U,1) Q
+ .. S EHDR=$P($G(^IBE(365.12,PYR,0)),U,1)
+  . W !,EHDR
+ W !
+ ; Build disp
+ I SORT1'="",SORT2'="" D
+ . W !,$$FO^IBCNEUT1($S(TRC'=""!(SRT=1):" Payer: ",1:"Patient: "),9)_$E(PRT1,1,69)
+ . W !,$$FO^IBCNEUT1($S(TRC'=""!(SRT=1):"Patient: ",1:" Payer: "),9)_$E(PRT2,1,69)
+ . W !
+ K EHDR
+ ; IB*602/HN end
  S PGC=1
  S X=$S(SRT=1:"Payer",1:"Patient")_U_$S(SRT=1:"Patient",1:"Payer")_"^Patient SSN^Patient DOB^Subscriber^Subscriber ID^Subscriber DOB^Subscriber SSN^Subscriber Sex^Group Name^Group ID"
  S X=X_"^Whose Insurance^Pt Relationship to Subscriber^Member ID^COB^Service Date^Date of Death^Effective Date^Certification Date^Expiration Date^Payer Updated Policy"

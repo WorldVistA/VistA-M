@@ -1,5 +1,5 @@
 IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled June 2, 2005 14:20:19
- ;;2.0;INTEGRATED BILLING;**300,416,497,506,595,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**300,416,497,506,595,621,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -216,6 +216,7 @@ PCK ; Payer Check
  ..  S IN1DATA=$$GIN1()
  ..  I IN1DATA]"" D PFN(IN1DATA) I 'PIEN S PIEN="",QFL=1
  . S PAYR=PIEN,(RSTYPE,BUFF)=""
+ . ;I MDTM="" S MDTM=$$NOW^XLFDT
  . D RESP^IBCNEDEQ
  . S RIEN=RSIEN
  ;

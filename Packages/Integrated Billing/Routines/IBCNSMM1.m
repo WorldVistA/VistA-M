@@ -1,6 +1,6 @@
 IBCNSMM1 ;ALB/CMS -MEDICARE INSURANCE INTAKE (CONT) ; 11/8/06 9:32am
- ;;2.0;INTEGRATED BILLING;**103,359,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,359,497,602**;21-MAR-94;Build 22
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;(THIS ROUTINE WAS DEACTIVATED VIA PATCH 497...AND SHOULD BE RESEARCHED
  ;;IF REACTIVATED...REFER TO FIELDS (40.02, 40.03, 60.04, 60.07 OF THE
  ;;355.33 FILE.)
@@ -12,7 +12,7 @@ SETP(IBP) ; -- Stuff data fields in patient policy
  ;  DFN =pt. ien
  ;  IBCDFN =patient policy ien
  ;  IBNAME =Name of Insured
- ;  IBHICN =Subscriber ID
+ ;  IBHICN =Subscriber ID - as of IB*601 could also be a MBI Number
  ;  IBAEFF =Effective Date of Plan A
  ;  IBBEFF =Effective Date of Plan B
  ;  IBCNSP =Medicare (WNR) ien ^Part A ien ^Part B ien
