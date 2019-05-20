@@ -1,10 +1,9 @@
 PSNPPSNU ;HP/MJE-PPSN update NDF data ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
+ ;;4.0;NATIONAL DRUG FILE;**513,563,566**; 30 Oct 98;Build 2
  ;Reference to ^PSDRUG supported by DBIA #2192
  ;Reference to PSN^PSSHUIDG supported by DBIA #3621
  ;Reference to ^GMR(120.8) supported by DBIA #4606
  ;Reference to ^DD supported by DBIA #1258
- ;Reference to EN^GMRAUIX0 supported by DBIA #6372
  ;
  ; Note: this routine is an adapted version of the origional code by Dr. Dave Alexander
  ;
@@ -76,7 +75,6 @@ REINDEX ;Make sure APC xref is correct
  S FDA(57.231,CTRLXIEN_","_CTRLIEN_",",6)="REINDEX"
  D UPDATE^DIE("","FDA","CTRLIEN")
  K FDA
- I $T(EN2^GMRAUIX0)']"" G MORE
  N SUB,DA,DIK,GMRAIEN,CLASS
  S SUB=0 F  S SUB=$O(^GMR(120.8,SUB)) Q:'+SUB  I $D(^GMR(120.8,SUB,3)) D
  .S GMRAIEN=+$P($G(^GMR(120.8,SUB,0)),U) Q:'GMRAIEN
@@ -128,8 +126,9 @@ STRIP(X) ; Strip control characters
  Q Y
  ;
 UNMDRG ; Unmatch Drug File entry
- N PIECE,PRDNAM
- S PRDNAM=$P(^PSDRUG(DA,"ND"),"^",2)
+ N PIECE,PRDNAM,ND,NDP10
+ S ND=$G(^PSDRUG(DA,"ND")),PRDNAM=$E($P(ND,"^",2),1,30),NDP10=$P(ND,"^",10)
  F PIECE=1:1:5,10,11 S $P(^PSDRUG(DA,"ND"),"^",PIECE)=""
- I PRDNAM'="" S PRDNAM=$E(PRDNAM,1,30) K ^PSDRUG("VAPN",PRDNAM,DA)
+ I PRDNAM'="" K ^PSDRUG("VAPN",PRDNAM,DA)
+ I NDP10'="" K ^PSDRUG("AQ1",NDP10,DA)
  Q
