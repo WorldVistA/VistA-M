@@ -1,11 +1,12 @@
 PSJOEA2 ;BIR/MLM-INPATIENT ORDER ENTRY ; 5/11/09 7:50am
- ;;5.0;INPATIENT MEDICATIONS;**127,133,200,267,268,257,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**127,133,200,267,268,257,281,367**;16 DEC 97;Build 7
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSSLOCK is supported by DBIA #2789.
  ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
  ;
 CHK ;Check to be sure all the orders in the complex order series are completed, continued.
+ K ^TMP("PSJCVFY",$J) ; p367
  I 'PSJCOMV,'$G(COMQUIT) N PSJO S PSJO=0 F  S PSJO=$O(^TMP("PSJCOM",$J,PSJO)) Q:'PSJO  S PSGORD=+PSJO_"P",PSGND=$G(^PS(53.1,+PSJO,0)) D
  .S PSGP=$P(PSGND,"^",15)
  .I $P(PSGND,U,4)="U",$P(PSGND,U,9)="A",($P(PSGND,U,24)'="R") D ^PSGOT D  Q
@@ -23,6 +24,7 @@ CHK ;Check to be sure all the orders in the complex order series are completed, 
  ..I $P(VND4,U,10) K ^PS(55,"ANV",PSGP,+PSGORD)
  ..S:+PSJSYSU=3 ^PS(55,"AUE",PSGP,+PSGORD)=""
  ..S PSJCOM=$P($G(^PS(55,PSGP,5,+PSGORD,.2)),"^",8) I PSJCOM]"" K ^PS(53.1,"ACX",PSJCOM,PSJO) ;S $P(^PS(55,PSGP,5,+PSGORD,4),"^",9)=1
+ ..S:PSJCOM]"" ^TMP("PSJCVFY",$J,PSJO)=+PSGORD ; p367 store order index for file 55 to be used to unlock file 100.
  ..D EN1^PSJHL2(PSGP,$S(+PSJSYSU=3:"SC",+PSJSYSU=1:"SC",1:"XX"),+PSGORD_"U")     ; allow status change to be sent for pharmacists & nurses
  ..D:+PSJSYSU=1 EN1^PSJHL2(PSGP,"ZV",+PSGORD_"U") L -^PS(55,PSGP,5,+PSGORD)
  ..I $G(PSJCOM) S ^TMP("PSODAOC",$J,"IP IEN")=PSJO_"P",^TMP("PSODAOC",$J,"IP NEW IEN")=PSGORD D SETOC^PSJNEWOC(PSGORD)
@@ -60,6 +62,7 @@ CHK ;Check to be sure all the orders in the complex order series are completed, 
  ...K DO D FILE^DICN K DO
  ...N DIK,DA,PSIVACT S DIK="^PS(55,"_DFN_",""IV"",",DA=+ON,PSIVACT="" S:$G(DFN) DA(1)=DFN D IX^DIK K DIK,DA
  ...S PSJCOM=$P($G(^PS(55,DFN,"IV",+ON,.2)),"^",8) I PSJCOM]"" K ^PS(53.1,"ACX",PSJCOM,PSJO)
+ ...S:PSJCOM]"" ^TMP("PSJCVFY",$J,PSJO)=ON ; p367 store IV order index for file 55. 
  ...D EN1^PSJHL2(DFN,"SC",ON)
  ...D:+PSJSYSU=1 EN1^PSJHL2(DFN,"ZV",ON) L -^PS(55,DFN,"IV",+ON) I $G(ON55) L -^PS(55,DFN,"IV",+ON55)
  ..L -^PS(55,DFN,"IV",+ON) I $G(ON55) L -^PS(55,DFN,"IV",+ON55)

@@ -1,5 +1,5 @@
 PSJOEA ;BIR/MLM-INPATIENT ORDER ENTRY ;23 Jun 98 / 1:46 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,133,167,171,254,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,133,167,171,254,315,367**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to EN^VALM is supported by DBIA #10118.
@@ -22,7 +22,12 @@ SELECT ;
  I $D(^TMP("PSJCOM",$J)) D CHK^PSJOEA1
  S:'$G(PSGP) PSGP=$G(DFN)
  N PSJO S PSJO=0 F  S PSJO=$O(^PS(53.1,"ACX",PSJORD,PSJO)) Q:'PSJO  D
- .D UNL^PSSLOCK(PSGP,PSJO_"P") Q:$G(Y)<0
+ .L -^PS(53.1,PSJO) ; p367 
+ .D UNL^PSSLOCK(PSGP,PSJO_"P") ; Q:$G(Y)<0 p367 commented quit out
+ ; p367 Unlock complex orders (file 100) after verification of all child orders in the complex order. 
+ N PSJO S PSJO=0 F  S PSJO=$O(^TMP("PSJCVFY",$J,PSJO)) Q:'PSJO  D
+ .N PSJIDX S PSJIDX=$G(^TMP("PSJCVFY",$J,PSJO))
+ .D UNL^PSSLOCK(PSGP,PSJIDX) K ^TMP("PSJCVFY",$J,PSJO),PSJIDX
  D DONE
  Q
  ;
