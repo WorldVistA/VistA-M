@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: ERROR TRAP SUMMARY
-30-NOV-2018 11:34:21 ZWR
-^%ZTER(3.077,0)="ERROR TRAP SUMMARY^3.077^21^21"
+20-MAY-2019 18:28:02 ZWR
+^%ZTER(3.077,0)="ERROR TRAP SUMMARY^3.077^22^22"
 ^%ZTER(3.077,1,0)="RE+2~XMLTCP, <READ>^3120423.133115^3160101.195228"
 ^%ZTER(3.077,1,4,0)="^3.0775^^-68"
 ^%ZTER(3.077,1,4,63918,0)="~~~~~~~~~3~~~~~~~~~~10"
@@ -32,8 +32,12 @@ OSEHRA ZGO Export: ERROR TRAP SUMMARY
 ^%ZTER(3.077,21,0)="LR493: Application Error!, please disregard^3180103.093755^3180103.093755"
 ^%ZTER(3.077,21,4,0)="^3.0775"
 ^%ZTER(3.077,21,4,64651,0)="~~~~~~~~~1"
+^%ZTER(3.077,22,0)="LR511 : Application Error!, please disregard^3190520.182415^3190520.182415"
+^%ZTER(3.077,22,4,0)="^3.0775"
+^%ZTER(3.077,22,4,65153,0)="~~~~~~~~~~~~~~~~~~1"
 ^%ZTER(3.077,"B","LR477: Application Error!, ple",20)=""
 ^%ZTER(3.077,"B","LR493: Application Error!, ple",21)=""
+^%ZTER(3.077,"B","LR511 : Application Error!, pl",22)=""
 ^%ZTER(3.077,"B","PARSE+9~MPIFXMLS, <UNDEFINED>",17)=""
 ^%ZTER(3.077,"B","RE+2~XMLTCP, <READ>",1)=""
 ^%ZTER(3.077,"B","READ+6~XOBVSKT, <READ>",11)=""
