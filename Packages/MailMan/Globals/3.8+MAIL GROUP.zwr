@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MAIL GROUP
-19-MAY-2019 07:09:28 ZWR
-^XMB(3.8,0)="MAIL GROUP^3.8^336^322"
+20-MAY-2019 15:07:49 ZWR
+^XMB(3.8,0)="MAIL GROUP^3.8^337^323"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)=1
 ^XMB(3.8,2,0)="EN PROJECTS^PU^y^^^"
@@ -1887,6 +1887,13 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,336,2,0)="^^1^1^3190221"
 ^XMB(3.8,336,2,1,0)="Pharmacy Supervisors Group for end of RX Numbering Alert"
 ^XMB(3.8,336,3)=.5
+^XMB(3.8,337,0)="GMRCCCRA NOTIFICATIONS^PU^^^^^"
+^XMB(3.8,337,2,0)="^^4^4^3180412^"
+^XMB(3.8,337,2,1,0)="This mail group is used to send messages to the CCRA support team when an "
+^XMB(3.8,337,2,2,0)="issue or problem with the GMRC CCRA SEND HL7 Application Parameter "
+^XMB(3.8,337,2,3,0)="detects a problem with sending HL7 messages to the CCRA HealthShare "
+^XMB(3.8,337,2,4,0)="server."
+^XMB(3.8,337,3)=17
 ^XMB(3.8,"AB",.5,240,1)=""
 ^XMB(3.8,"AB",.5,319,1)=""
 ^XMB(3.8,"AB",1,3,1)=""
@@ -2223,6 +2230,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"B","GMRA VERIFY FOOD ALLERGY",9)=""
 ^XMB(3.8,"B","GMRA VERIFY OTHER ALLERGY",10)=""
 ^XMB(3.8,"B","GMRC HCP HL7 MESSAGES",318)=""
+^XMB(3.8,"B","GMRCCCRA NOTIFICATIONS",337)=""
 ^XMB(3.8,"B","HBHC MEDICAL FOSTER HOME",259)=""
 ^XMB(3.8,"B","HDIS ERRORS",213)=""
 ^XMB(3.8,"B","HDIS ERT NOTIFICATION",214)=""
