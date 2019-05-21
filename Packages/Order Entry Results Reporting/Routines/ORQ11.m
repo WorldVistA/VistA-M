@@ -1,5 +1,6 @@
 ORQ11 ;SLC/DCM - Get patient orders in context ;07/27/12  14:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,78,99,94,148,141,177,186,190,195,215,243,295,322,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,78,99,94,148,141,177,186,190,195,215,243,295,322,350,444**;Dec 17, 1997;Build 48
+ ;EPIP/RTW Modified for the Unified Action Profile 26 Oct 2016
 LOOP ; -- main loop through "ACT" x-ref
  I $G(XREF)="AW" D AW Q
  I $G(FLG)=27 D EXPD^ORQ12 Q
@@ -32,6 +33,12 @@ LP1 ; -- main secondary loop
  Q:$P(X3,U,8)  Q:$P(X3,U,3)=99  S STS=$P(X3,U,3)
  I '$G(GETKID),$P(X3,U,9),'$P($G(^OR(100,$P(X3,U,9),3)),U,8),FLG'=11 Q
  I $L($P(X0,U,17)),"^10^11^"[(U_STS_U) S X=$$LAPSED^OREVNTX($P(X0,U,17))
+ ;EPIP/RTW BEGIN ***UNIFIED ACTION PROFILE Modification*** 26/OCT/2016
+ ; original note for DM line "DISCHARGE MEDS"
+ ; original note for UAPM line "UAP MEDS"
+ I $$GET1^DIQ(100.98,GROUP,.01)="DISCHARGE MEDS" D DM Q
+ I $$GET1^DIQ(100.98,GROUP,.01)="PHARMACY UAP" D UAPM Q
+ ;EPIP/RTW END ***UNIFIED ACTION PROFILE Modification*** 
  S TAG=$S(FLG=2:"CUR1",FLG=4:"COM1",FLG=5:"EXG1",FLG=7:"PEN1",FLG=8:"UVR1",FLG=9:"UVN1",FLG=10:"UVC1",FLG=12:"FLG1",FLG=13:"VP1",FLG=14:"VPU1",FLG=18:"HLD1",FLG=20:"CHT1",FLG=21:"CHTSUM",FLG=22:"LPS1",FLG=23:"AVT1",1:"ALL1")
  I TAG="ALL1" S TAG=$S(FLG=3:"DC1",FLG=28:"DC1",1:"ALL1")
  D @TAG
@@ -204,3 +211,46 @@ AVT1 ; 23 -- secondary pass for Active/Pending sts only
  ;
 QUIT ; -- stop
  Q
+ ;EPIP/RTW ***BEGIN UNIFIED ACTION PROFILE Modification*** 26/OCT/2016
+ ; UAP MEDS ACTIVE, PENDING, HOLD
+UAPM ;
+ N ORDTE,OREDTE,X,Y
+ Q:$$GET1^DIQ(100.008,ACTOR_","_IFN_",","15")["dc/edit"
+ S ORDTE=$$GET1^DIQ(100,IFN,4,"I") ;WHEN ENTERED (#4) date if defined in the order entry
+ K %DT S X="T-3" D ^%DT S OREDTE=Y
+ ;
+ ;Hold
+ I STS=3 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Pending
+ I STS=5 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Active
+ I STS=6 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Delayed
+ ;entered within 3 days
+ ;just a starting point to test with since users haven't specified
+ ;what date range to actually go with
+ I (STS=10)&($L(ORDTE)&(ORDTE>OREDTE)) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Unreleased/new
+ I STS=11 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ Q
+ ;
+DM ; DISCHARGE MEDS 9-2-03 ACTIVE, PENDING, DC < 7 DAYS AND EXPIRED LESS THAN 90 DAYS
+ ;J0 - 06/22/2005 changes to include more types and dates
+ ;J0 - 09/08/2005 changed back to T-90 for expired meds per Tamara Olcott.
+ N ORSTOP,OREXPDT,ORDCDT,X,Y,ORDC
+ S ORDC=$$GET1^DIQ(100,IFN,63,"I") ;DC date if defined in the order entry
+ S ORSTOP=$P(X0,U,9)
+ K %DT S X="T-90" D ^%DT S OREXPDT=Y
+ K %DT S X="T-7" D ^%DT S ORDCDT=Y
+ ;D/C within last 7 days
+ I (STS=1)&($L(ORDC)&(ORDC>ORDCDT)) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Hold
+ I STS=3 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Pending
+ I STS=5 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Active
+ I STS=6 D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ ;Expired within last 90 days
+ I (STS=7)&($L(ORSTOP)&(ORSTOP>OREXPDT)) D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR) Q
+ Q
+ ;EPIP/RTW ***END UNIFIED ACTION PROFILE Modification*** 26/OCT/2016
