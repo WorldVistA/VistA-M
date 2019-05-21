@@ -1,5 +1,5 @@
 GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106**;JUN 1, 2018;Build 10
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112**;JUN 1, 2018;Build 28
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -24,6 +24,7 @@ GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ;;Patch 99 commented out PCP code- 2nd  PRD  segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
  ;;Patch 106 added code to include IN1 segments with reimburse flag, and division value in PV1.
  ;;Patch 106 cleaned up per several ICRs.
+ ;;Patch 112 critical fix to remove control characters before sending consult, as bad data was causing infinite loop of HL7 process.
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to GMRC EVSEND OR
  ;MSG = local array which contains the HL7 segments
@@ -36,6 +37,7 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  F  S I=$O(MSG(I)) Q:'I!QUIT  S MSG=MSG(I) D
  .I $E(MSG,1,3)="PID" S DFN=$P(MSG,FS,4) I 'DFN!('$D(^DPT(DFN))) S QUIT=1 Q
  .I $E(MSG,1,3)="ORC" S ORC=MSG S GMRCDA=+$P(ORC,FS,4),MSGTYP2=$P(ORC,FS,2),MSGTYP3=$P(ORC,FS,6) D
+ ..D CCONTROL^GMRCCCR1(GMRCDA) ; strip out control characters to fix infinite msg loop - patch 112
  ..I MSGTYP3="IP" S ACTIEN=$O(^GMR(123,GMRCDA,40,99999),-1) D
  ...I ACTIEN S FROMSVC=$P($G(^GMR(123,GMRCDA,40,ACTIEN,0)),U,6) I FROMSVC S OKFROM=$$FEE(FROMSVC)
  ..S OK=$$FEE($$GET1^DIQ(123,GMRCDA,1,"I"))
@@ -306,7 +308,7 @@ ADDEND(TIUDA) ;send addendums on Non VA Care consults to HCP
  I $$FEE($$GET1^DIQ(123,GMRCO,1,"I")) D EN(.T)
  Q
 TIME(X,FMT) ; Copied from $$TIME^TIULS
- ; Recieves X as 2910419.01 and FMT=Return Format of time (HH:MM:SS).
+ ; Receives X as 2910419.01 and FMT=Return Format of time (HH:MM:SS).
  N HR,MIN,SEC,TIUI
  I $S('$D(FMT):1,'$L(FMT):1,1:0) S FMT="HR:MIN"
  S X=$P(X,".",2),HR=$E(X,1,2)_$E("00",0,2-$L($E(X,1,2))),MIN=$E(X,3,4)_$E("00",0,2-$L($E(X,3,4))),SEC=$E(X,5,6)_$E("00",0,2-$L($E(X,5,6)))
