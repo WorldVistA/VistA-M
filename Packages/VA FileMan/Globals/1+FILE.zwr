@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-20-MAY-2019 09:36:45 ZWR
+21-MAY-2019 08:21:58 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4663,7 +4663,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(64,"%D",11,0)="FILE WITH SPECIFIC INFORMATION AT SPECIFIC INTERNAL FILE NUMBERS. NO"
 ^DIC(64,"%D",12,0)="ENTRIES SHOULD EVER BE DELETED. ADDITIONAL ENTRIES WILL BE DISTRIBUTED"
 ^DIC(64,"%D",13,0)="VIA GLOBAL TAPE WHEN NECESSARY."
-^DIC(64,"%MSC")=3180609.133834
+^DIC(64,"%MSC")=3190520.182205
 ^DIC("64.03",0)="WKLD LOG FILE^64.03"
 ^DIC("64.03",0,"GL")="^LRO(64.03,"
 ^DIC("64.03","%D",0)="^1.001^13^13^3101004^^"
@@ -4723,7 +4723,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.061","%D",5,0)=" "
 ^DIC("64.061","%D",6,0)="This file is a standard file for many types of terms used in electronic"
 ^DIC("64.061","%D",7,0)="messaging."
-^DIC("64.061","%MSC")=3180609.133834
+^DIC("64.061","%MSC")=3190520.182205
 ^DIC("64.062",0)="LAB ELECTRONIC SUBTYPES^64.062"
 ^DIC("64.062",0,"GL")="^LAB(64.062,"
 ^DIC("64.062","%",0)="^1.005^^0"
@@ -4751,7 +4751,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.2","%D",6,0)="will be distributed to all VAMC sites."
 ^DIC("64.2","%D",7,0)="  Forward all request for additional codes not found in this file, contact"
 ^DIC("64.2","%D",8,0)="Pathology Central Office, Attention Asst. Director for DHCP affairs. "
-^DIC("64.2","%MSC")=3180609.133834
+^DIC("64.2","%MSC")=3190520.182205
 ^DIC("64.21",0)="WKLD CODE LAB SECT^64.21"
 ^DIC("64.21",0,"GL")="^LAB(64.21,"
 ^DIC("64.21","%D",0)="^^4^4^2900306^"
@@ -7078,7 +7078,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.3","%D",62,0)="liability for any omissions or errors in the LOINC database, and all "
 ^DIC("95.3","%D",63,0)="EXPRESS AND IMPLIED WARRANTIES, INCLUDING THOSE RELATED TO MERCHANTABILITY"
 ^DIC("95.3","%D",64,0)="OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED."
-^DIC("95.3","%MSC")=3180609.133834
+^DIC("95.3","%MSC")=3190520.182205
 ^DIC("95.31",0)="LAB LOINC COMPONENT^95.31"
 ^DIC("95.31",0,"AUDIT")="@"
 ^DIC("95.31",0,"DD")="@"
@@ -7091,7 +7091,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.31","%D",1,0)="This file contains the name of the component or analyte measured for the "
 ^DIC("95.31","%D",2,0)="LAB LOINC file (#95.3).  This file is a standard file distributed"
 ^DIC("95.31","%D",3,0)="by Dallas CIOFO and should not be edited locally."
-^DIC("95.31","%MSC")=3180609.133834
+^DIC("95.31","%MSC")=3190520.182205
 ^DIC("95.4",0)="LAB MAPPING TRANSPORT^95.4"
 ^DIC("95.4",0,"AUDIT")=""
 ^DIC("95.4",0,"DD")=""
@@ -7121,7 +7121,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(100,"%D",0)="^^2^2^2950424^^^^"
 ^DIC(100,"%D",1,0)="This is the file of orders/requisitions made for any package through the"
 ^DIC(100,"%D",2,0)="Order Entry Option (OR)."
-^DIC(100,"%MSC")=3190221.000517
+^DIC(100,"%MSC")=3190521.033129
 ^DIC("100.01",0)="ORDER STATUS^100.01I"
 ^DIC("100.01",0,"GL")="^ORD(100.01,"
 ^DIC("100.01","%",0)="^1.005^^0"
@@ -8394,7 +8394,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(123,"%D",5,0)="  "
 ^DIC(123,"%D",6,0)="The only associating of results to a consult or request, for this "
 ^DIC(123,"%D",7,0)="version, is based on Medicine Package procedure results."
-^DIC(123,"%MSC")=3190314.132214
+^DIC(123,"%MSC")=3190520.225426
 ^DIC("123.033",0)="GMRC CONSULT MAPPING^123.033"
 ^DIC("123.033",0,"AUDIT")="@"
 ^DIC("123.033",0,"DD")="@"
@@ -37203,7 +37203,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.22","%D",5,0)="No local changes should ever be made to this file."
 ^DIC("9002313.22","%D",6,0)=" "
 ^DIC("9002313.22","%D",7,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.22","%MSC")=3181130.231401
+^DIC("9002313.22","%MSC")=3190521.081749
 ^DIC("9002313.23",0)="BPS NCPDP REASON FOR SERVICE CODE^9002313.23"
 ^DIC("9002313.23",0,"AUDIT")="@"
 ^DIC("9002313.23",0,"DD")="@"
@@ -37221,6 +37221,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.23","%D",5,0)="should ever be made to this file."
 ^DIC("9002313.23","%D",6,0)=" "
 ^DIC("9002313.23","%D",7,0)="Per VHA Directive 2004-038, this file definition should not be modified."
+^DIC("9002313.23","%MSC")=3190521.081749
 ^DIC("9002313.24",0)="BPS NCPDP DAW CODE^9002313.24"
 ^DIC("9002313.24",0,"AUDIT")="@"
 ^DIC("9002313.24",0,"DD")="@"
@@ -37254,7 +37255,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.25","%D",4,0)="NCPDP standards and are nationally distributed."
 ^DIC("9002313.25","%D",5,0)=" "
 ^DIC("9002313.25","%D",6,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.25","%MSC")=3181130.231401
+^DIC("9002313.25","%MSC")=3190521.081749
 ^DIC("9002313.26",0)="BPS NCPDP PRIOR AUTHORIZATION TYPE CODE^9002313.26"
 ^DIC("9002313.26",0,"AUDIT")="@"
 ^DIC("9002313.26",0,"DD")="@"
@@ -37423,7 +37424,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.37","%D",6,0)="NCPDP standards and are nationally distributed."
 ^DIC("9002313.37","%D",7,0)=" "
 ^DIC("9002313.37","%D",8,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.37","%MSC")=3190314.205941
+^DIC("9002313.37","%MSC")=3190521.081749
 ^DIC("9002313.38",0)="BPS NCPDP OTHER PAYER PROGRAM TYPE^9002313.38"
 ^DIC("9002313.38",0,"AUDIT")="@"
 ^DIC("9002313.38",0,"DD")="@"
@@ -37661,7 +37662,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.93","%D",6,0)="are nationally distributed."
 ^DIC("9002313.93","%D",7,0)=" "
 ^DIC("9002313.93","%D",8,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.93","%MSC")=3181130.231402
+^DIC("9002313.93","%MSC")=3190521.081749
 ^DIC("9002313.99",0)="BPS SETUP^9002313.99"
 ^DIC("9002313.99",0,"AUDIT")="@"
 ^DIC("9002313.99",0,"DD")="@"
