@@ -1,5 +1,5 @@
 RMPRFC3 ;HINES CIOFO/HNC - Process IFC HL7 ; 2/6/09
- ;;3.0;PROSTHETICS;**83,193**;Feb 09,1996;Build 4
+ ;;3.0;PROSTHETICS;**83,193,198**;Feb 09,1996;Build 6
  ;
  ;
  ;Helen Corkwell-new flow 3/9/05
@@ -47,9 +47,9 @@ CHK ;
  .S RMPR123A=RMPR123I
 TST ;
  ;Consult IEN
+ D FIND^DIC(4,,99,,RMPRISIT,1,"D",,,"RMPRSTA")
+ S RMPRSITIEN=$G(RMPRSTA("DILIST",2,1)) ;RMPR*3.0*198 sets the institution IEN for discontinued and new consults
  I RMPRST="NW" D
- .D FIND^DIC(4,,99,,RMPRISIT,1,"D",,,"RMPRSTA")
- .S RMPRSITIEN=$G(RMPRSTA("DILIST",2,1))
  .S RMPR123A=$O(^GMR(123,"AIFC",RMPRSITIEN,RMPR123I,0))
  ;
  I RMPR123A="" G EXIT

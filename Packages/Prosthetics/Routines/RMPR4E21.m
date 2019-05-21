@@ -1,5 +1,5 @@
 RMPR4E21 ;PHX/HNC - CLOSE OUT PURCHASE CARD TRANSACTION ;3/1/1996
- ;;3.0;PROSTHETICS;**3,12,26,28,30,34,41,45,62,111,78,114,118,133,137,182**;Feb 09, 1996;Build 13
+ ;;3.0;PROSTHETICS;**3,12,26,28,30,34,41,45,62,111,78,114,118,133,137,182,198**;Feb 09, 1996;Build 6
  ;TH  Patch #78 - 08/04/03 - Add shipment date. Call routine ^RMPR4E23
  ;RVD patch #62 - PCE processing and link to suspense
  ;
@@ -126,6 +126,7 @@ EX ;***reindex record in 664 here
  L -^RMPR(664,RMPRA,0)
  ;IFCAP final charge payment
  S RMPR442=$P(^RMPR(664,RMPRA,4),U,6) ;don't call recon if it is an early record, no ifcap order.
+ I $G(RMPR442),'$D(^PRC(442,RMPR442,0)) D M442 Q  ;RMPR*3.0*198 when file #442 does not exist a reconcile cannot occur
  D:RMPR442'="" RECON^PRCH7C(RMPR442,DUZ)
  I (X=0)&(RMPR442'="") W !!,"**** TRANSACTION NOT CLOSED-OUT!! ****" G EX1
  S $P(^RMPR(664,RMPRA,4),U,4)=RMPRTO+RMPRSH
@@ -166,3 +167,4 @@ BRK W !,$C(7),"INCOMPLETE RECORD..file 664..entry..",RMPRA,"...PLEASE CONTACT YO
 UNK W !,$C(7),"UNKNOWN 2319 RECORD TO UPDATE, 2319 NOT UPDATED!" G EXIT
 M4 W !,$C(7),"This Transaction has already been CLOSED!" G EXIT
 M6 W !,$C(7),"This Transaction has been CANCELED!" G EXIT
+M442 W !,$C(7),"This order cannot be Reconciled. The Purchase Order no longer exists." G EXIT
