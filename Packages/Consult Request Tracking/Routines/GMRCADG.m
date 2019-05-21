@@ -1,5 +1,5 @@
 GMRCADG ;ABV/PIJ - Consults Report by Released by Policy. Patch GMRC*3.0*107 ;7/5/18 07:36
- ;;3.0;CONSULT/REQUEST TRACKING;**107**;DEC 27, 1997;Build 27
+ ;;3.0;CONSULT/REQUEST TRACKING;**107,119**;DEC 27, 1997;Build 9
  ;
  ; LOCAL VISTA REPORT BY GROUPER
  ;
@@ -7,7 +7,7 @@ GMRCADG ;ABV/PIJ - Consults Report by Released by Policy. Patch GMRC*3.0*107 ;7/
  ;
 EN ; -- main entry point for GMRC RPT ADMIN RELEASE CONSULT GROUPER
  ;
- N GMRCEDT1,GMRCEDT2
+ N GMRCEDT1,GMRCEDT2,VALMBCK,VALMCNT,VALMHDR,VALMQUIT
  ;
  D EN^VALM("GMRC RPT ADMIN REL CONS GROUPR")
  Q
@@ -41,9 +41,11 @@ HDR ; -- header code
  Q
  ;
 BLDLIST ; -- init variables and list array
- N FMRELDT,I,IENS,LINE,ORDITEM,ORIEN,RELBY,X
+ N FMRELDT,FWD1,FWD2,I,IENS,LINE,ORDITEM,ORIEN,RELBY,X
  S (FMRELDT,ORIEN,LINEVAR,X)=""
  S LINECNT=0
+ S FWD1=$O(^GMR(123.1,"B","FORWARDED FROM","")),FWD2=$O(^GMR(123.1,"B","FWD TO REMOTE SERVICE",""))
+ S:FWD1="" FWD1=999999 S:FWD2="" FWD2=999999
  ;
  K ^TMP("GMRCADG",$J)
  ;
@@ -54,9 +56,11 @@ BLDLIST ; -- init variables and list array
  ... S IENS="1,"_ORIEN
  ... ;
  ... S ORDITEM=$$GET1^DIQ(100.001,IENS,.01) ; Orderable Item
- ... ;
+ ... ;*119*
+ ... S X=""
  ... I ORDITEM["-ADMIN" S X="ADMIN"
  ... I ORDITEM["-DS" S X="DS"
+ ... I X="" S X=$$FWD() Q:X=""  ;Check if the consult was forwarded from -DS or -ADMIN
  ... ;
  ... ; Admin or DS
  ... I '$D(^TMP("GMRCADG",$J,X)) S ^TMP("GMRCADG",$J,X)=0
@@ -72,6 +76,19 @@ BLDLIST ; -- init variables and list array
  ... S ^TMP("GMRCADG",$J,X,ORDITEM,RELBY)=^TMP("GMRCADG",$J,X,ORDITEM,RELBY)+1
  ... ;
  Q
+ ;
+FWD() ;Check if the consult was forwarded from a consult service -DS or -ADMIN
+ N ARR,I,IEN123,IEN123S,L,PACKREF,R1,R2,RET
+ S RET="",PACKREF=$$GET1^DIQ(100,ORIEN_",",33,"E") Q:$P(PACKREF,";",2)'="GMRC" RET
+ S IEN123=+PACKREF
+ D GETS^DIQ(123,IEN123_",","40*","IE","ARR")
+ S L=+$O(ARR(123.02,""),-1)
+ F I=L:-1:1 S IEN123S=I_","_IEN123_"," Q:'$D(ARR(123.02,IEN123S,1))!(RET]"")  D
+ .S R1=$G(ARR(123.02,IEN123S,1,"I"))=FWD1,R2=$G(ARR(123.02,IEN123S,1,"I"))=FWD2
+ .I (R1+R2) D  Q
+ ..I $G(ARR(123.02,IEN123S,6,"E"))["-DS" S RET="DS"
+ ..I $G(ARR(123.02,IEN123S,6,"E"))["-ADMIN" S RET="ADMIN"
+ Q RET
  ;
 INIT ;
  K ^TMP("VALMAR",$J)
