@@ -1,5 +1,5 @@
-GMRCCCRA ;COG/PB/LB - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99**;MAR 7, 2018;Build 29
+GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106**;JUN 1, 2018;Build 10
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -13,9 +13,17 @@ GMRCCCRA ;COG/PB/LB - Receive HL7 Message for HCP ;3/21/18 09:00
  ;10104 UP^XLFSTR
  ;10106 FMDATE^HLFNC
  ;1252  OUTPTPR^SDUTL3
+ ;6917  EN^VAFHLIN1
+ ;10106 HLADDR^HLFNC
+ ;2467  OR^ORX8
+ ;2171  NS^XUAF4
+ ;2693  EXTRACT^TIULQ
+ ;
  ;;Patch 85 fix for CA SDM ticket R6063960FY16
  ;;Patch 99 fix for screen to send community care consults HL7 messages -  Cognosante - PB Mar 5 2018
  ;;Patch 99 commented out PCP code- 2nd  PRD  segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
+ ;;Patch 106 added code to include IN1 segments with reimburse flag, and division value in PV1.
+ ;;Patch 106 cleaned up per several ICRs.
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to GMRC EVSEND OR
  ;MSG = local array which contains the HL7 segments
@@ -79,6 +87,28 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  .I I=1 S ZCNT=ZCNT+1,GMRCM(ZCNT)=$TR(GMRCP(I),"""") Q
  .S GMRCM(ZCNT,I)=$TR(GMRCP(I),"""")
  K GMRCP
+ ; MJ - 5/24/2018 patch 106 changes to add - IN1 segments
+ N GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR
+ S GMRCSTR=",3,4,5,7,8,9,12,13,15,16,17,28,36"    ; IN1 fields to capture
+ D EN^VAFHLIN1(DFN,GMRCSTR,,"|","GMRCIN1","^~\&") ; get IN1 segments
+ ; loop through IN1 segments found
+ F I=0:0 S I=$O(GMRCIN1(I)) Q:'I  I I>0 D
+ . S GMRC0=$G(GMRCIN1(I,0)) I GMRC0']"" Q
+ . S INSP=$P(GMRC0,"|",4)
+ . S N=0 F  S N=$O(^DPT(DFN,.312,N)) Q:'N  I $D(^(N,0)) D
+ .. S X=^DPT(DFN,.312,N,0)
+ .. N X1 S X1=$G(^DIC(36,+X,0)) I X1="" Q   ; no insurance company entry
+ .. S INSPX=$P(X,U,1)
+ .. I INSP=INSPX D                          ; insurance plan found matches that of the segment
+ ... S RETVAL=$$GET1^DIQ(36,INSP_",",1,"I") ; get reimbursable flag
+ ... S RETVAL=$S(RETVAL="Y":"YES",RETVAL="*":"*",RETVAL="**":"**",RETVAL="":"YES",RETVAL="N":"NO",1:"?")
+ ... S $P(GMRC0,"|",33)=RETVAL              ; add flag back into segment
+ ... ; get address
+ ... S $P(GMRC0,"|",6)=$$GETADD^GMRCCCR1(INSP) ; get address info and put it into segment field 5
+ ... S GMRCIN1(I,0)=GMRC0
+ . S ZCNT=ZCNT+1,GMRCM(ZCNT)=GMRCIN1(I,0)   ; add segment to message
+ K GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR
+ ; end patch 106 changes
  ;DG1 segment ;Patch 85 modified
  S DX=$G(@GDATA@(30,"E"))
  S DXCODE=$G(@GDATA@(30.1,"E"))
@@ -90,8 +120,18 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  D IN5^VADPT ;VAIP(18)=Attending Physician, VAIP(13,5)=Primary Physician for admission
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="PV1|1|"_$S(VAIP(13):"I",1:"O")_"|||||"_VAIP(18)_"|"
  I VAIP(5) S $P(GMRCM(ZCNT),"|",4)=VAIP(5) ;location for last movement event
+ ; patch 106 - add in division value
+ N GMRCDIV
+ S GMRCDIV=$$NS^XUAF4(DUZ(2)),GMRCDIV=$P(GMRCDIV,"^",2)
+ N A,B S A="&"_GMRCDIV,B=$P(GMRCM(ZCNT),"|",4),$P(B,"^",4)=A,$P(GMRCM(ZCNT),"|",4)=B K A,B
+ K GMRCDIV
+ ; end patch 106 mod
+ ;
  S SENS=$$SSN^DPTLK1(DFN) I SENS["*SENSITIVE*" S $P(GMRCM(ZCNT),"|",17)="R" ;sensitive patient
  S $P(GMRCM(ZCNT),"|",18)=VAIP(13,5)
+ ; begin patch 106 mod
+ K VAIP
+ ; end patch 106 mod
  D KVA^VADPT
  ;NTE segment
  D NTE(.GMRCHL)
@@ -123,7 +163,8 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .S GMRCN=$P($G(^GMR(123,GMRCDA,50,1,0)),U) I GMRCN'["TIU(8925," Q
  .D TGET^TIUSRVR1(.GMRCTXT,$S(+$G(GMRCPARN):+GMRCPARN,+$G(TIUDA):+TIUDA,1:+GMRCN),"VIEW")
  .;
- .S GMRCCMP=$$DATE($P($G(^TIU(8925,+TIUDA,13)),U),"MM/DD/CCYY")_" ADDENDUM"_"                      STATUS: "_$$GET1^DIQ(8925,+TIUDA_",",.05)
+ .; line below modified in patch 106 to use GET1^DIQ call for date
+ .S GMRCCMP=$$DATE^GMRCCCRA($$GET1^DIQ(8925,+TIUDA_",",1301,"I"),"MM/DD/CCYY")_" ADDENDUM"_"                      STATUS: "_$$GET1^DIQ(8925,+TIUDA_",",.05)
  .S (I,GMRCASTR)=0
  .F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ..I X=GMRCCMP S GMRCASTR=I
@@ -211,7 +252,8 @@ FEE(FEESVC) ;send only if name contains HCPS
 COMMENT(GMRCDA) ;send comments on Non VA Care consults to HCP
  ;create a fake event for HCP since there is no HL7 event passed to GMRC EVSEND OR
  I '$G(GMRCDA) Q
- N DFN S DFN=$$GET1^DIQ(123,GMRCDA,.02,"I") I 'DFN,'$D(^DPT(DFN)) Q
+ ;N DFN S DFN=$$GET1^DIQ(123,GMRCDA,.02,"I") I 'DFN,'$D(^DPT(DFN)) Q ; modified "," to "!" within patch 106
+ N DFN S DFN=$$GET1^DIQ(123,GMRCDA,.02,"I") I 'DFN!('$D(^DPT(DFN))) Q
  N T S T(1)="MSH|^~\&|CONSULTS||||||ORM"
  S T(2)="PID|||"_DFN
  S T(4)="ORC|XX|"_$$GET1^DIQ(123,GMRCDA,.03,"I")_";"_$$OITEM($$GET1^DIQ(123,GMRCDA,.03,"I"))_"^OR|"_GMRCDA_";GMRC^GMRC||XX|"
@@ -219,19 +261,34 @@ COMMENT(GMRCDA) ;send comments on Non VA Care consults to HCP
  Q
 ADDEND(TIUDA) ;send addendums on Non VA Care consults to HCP
  ;create a fake event for HCP since there is no HL7 event passed to GMRC EVSEND OR
+ ;
+ ; modified in patch GMRC*3.0*106 to use ICR 2693
  I '$G(TIUDA) Q
  Q:'$D(^TIU(8925,+TIUDA,0))
  N TIUTYP,DFN,GMRCPARN,GMRCO,GMRCD,GMRCDA,GMRCD1,GMRC8925,T
+ D EXTRACT^TIULQ(TIUDA)
  ;
  ; Quit if not an addendum
- S TIUTYP=$$GET1^DIQ(8925,TIUDA,.01,"I")
+ S TIUTYP=^TMP("TIULQ",$J,TIUDA,.01,"I")
  I TIUTYP'=81 Q
  ;
- S DFN=$$GET1^DIQ(8925,TIUDA,.02,"I")
- I 'DFN,'$D(^DPT(DFN)) Q
+ S DFN=^TMP("TIULQ",$J,TIUDA,.02,"I")
+ I 'DFN!('$D(^DPT(DFN))) Q
  ;
  ; Get parent note IEN, if addendum IEN is passed in:
- S GMRCPARN=$$GET1^DIQ(8925,TIUDA,.06,"I")
+ S GMRCPARN=^TMP("TIULQ",$J,TIUDA,.06,"I")
+ ;
+ ; Quit if not an addendum
+ ;S TIUTYP=$$GET1^DIQ(8925,TIUDA,.01,"I")
+ ;I TIUTYP'=81 Q
+ ;
+ ;S DFN=$$GET1^DIQ(8925,TIUDA,.02,"I")
+ ;I 'DFN,'$D(^DPT(DFN)) Q
+ ;
+ ; Get parent note IEN, if addendum IEN is passed in:
+ ;S GMRCPARN=$$GET1^DIQ(8925,TIUDA,.06,"I")
+ ;
+ ; end patch 106 mods
  ;
  S (GMRCO,GMRCD)=0
  F  S GMRCD=$O(^GMR(123,"AD",DFN,GMRCD)) Q:'GMRCD!(GMRCO)  D
@@ -266,12 +323,16 @@ DATE(X,FMT) ; Copied from $$DATE^TIULS
  I FMT["HR" S FMT=$$TIME(X,FMT)
 QDATE Q FMT
 OITEM(GMRCORDN) ; Orderable Item
- N RETVAL,GMRCOITM
+ ; patch 106 - modified to use ICR 2467
+ N RETVAL ;,GMRCOITM
  S RETVAL=1
- S GMRCOITM=+$O(^OR(100,GMRCORDN,.1,0))
- I GMRCOITM D
- .S RETVAL=+$G(^OR(100,GMRCORDN,.1,GMRCOITM,0))
- .I 'RETVAL S RETVAL=1
+ ;S GMRCOITM=+$O(^OR(100,GMRCORDN,.1,0))
+ ;I GMRCOITM D
+ ;.S RETVAL=+$G(^OR(100,GMRCORDN,.1,GMRCOITM,0))
+ ;.I 'RETVAL S RETVAL=1
+ S RETVAL=+$$OI^ORX8(GMRCORDN)
+ I 'RETVAL S RETVAL=1
+ ; end patch 106 mods
  Q RETVAL
 ACK ; Process ACK HL7 messages
  N GMRCMSG,I,X,DONE,MSGID,ERRARY,ERRI
