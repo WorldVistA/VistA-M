@@ -1,11 +1,11 @@
-ZOSVGUT3 ; VEN/SMH - Unit Tests for GT.M VistA Port;2018-04-20  10:03 AM
- ;;8.0;KERNEL;**10002**;;Build 26
- ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ZOSVGUT3 ; VEN/SMH - Unit Tests for GT.M VistA Port;Jan 08, 2019@09:23
+ ;;8.0;KERNEL;**10002,10005**;;Build 10
  ; Authored by Sam Habiel 2017.
+ ;
 STARTUP QUIT
  ;
 SHUTDOWN ; 
- S $ZSOURCE="ZOSVGUT3"
+ S $ZSOURCE="ZOSVGUT4"
  QUIT
  ;
 OPENH ; @TEST Read a Text File in w/ Handle
@@ -187,6 +187,7 @@ LIST ; @TEST LIST^%ZISH
  D CHKTF^%ut('%,3)
  ;
  I $ZPARSE("$vista_home/r/")="" QUIT
+ I $$VERSION^%ZOSV(1)["CYGWIN" QUIT  ; This just takes too long on Cygwin
  N %ARR S %ARR("*")=""
  N %RET
  N % S %=$$LIST^%ZISH("$vista_home/r/",$NA(%ARR),$NA(%RET))
@@ -381,6 +382,7 @@ LISTRPMS ; @TEST Test LIST RPMS Version (2nd par is by value not by name)
  D CHKEQ^%ut(%,1) ; Return 1 for failure
  ;
  I $ZPARSE("$vista_home/r/")="" QUIT
+ I $$VERSION^%ZOSV(1)["CYGWIN" QUIT  ; This just takes too long on Cygwin
  N %RET
  N % S %=$$LIST^%ZISH("$vista_home/r/","*",.%RET)
  N CNT,I
@@ -396,15 +398,14 @@ SIZE ; @TEST $$SIZE^%ZISH
  QUIT
  ;
 MKDIR ; @TEST $$MKDIR^%ZISH
- N % S %=$$RETURN^%ZOSV("rm -r /tmp/foo/boo",1)
- D CHKTF^%ut(%=0)
+ N % S %=$$RETURN^%ZOSV("rm -r /tmp/foo/boo",1) ; Issue #15: Don't check for failure as it may not exist
  N % S %=$$MKDIR^%ZISH("/tmp/foo/boo")
  D CHKTF^%ut(%=0)
  N % S %=$$RETURN^%ZOSV("stat /tmp/foo/boo",1)
  D CHKTF^%ut(%=0)
  QUIT
  ;
-WGETSYNC ; @TEST $$WGETSYNC^%ZISH on NDF DAT files
+WGETSYNC ; #TEST $$WGETSYNC^%ZISH on NDF DAT files
  N SEC1 S SEC1=$P($H,",",2)
  N % S %=$$WGETSYNC^%ZISH("foia-vista.osehra.org","Patches_By_Application/PSN-NATIONAL DRUG FILE (NDF)/PPS_DATS/","/tmp/foo/boo","*.DAT*")
  D CHKTF^%ut(%=0)
@@ -447,3 +448,5 @@ DF ; @TEST Test DF^%ZISH (Directory Format)
  D CHKEQ^%ut(D,"/var/db/vista/")
  QUIT
  ;
+XTROU ;;
+ ;;ZOSVGUT5

@@ -1,0 +1,6 @@
+XU810005 ; OSE/SMH - Patch XU*8.0*10005 post install ;Jan 07, 2019@09:38
+ ;;8.0;KERNEL;**10005**;;Build 10
+ ;
+POST ;
+ D PATCH^ZTMGRSET(10005)
+ QUIT

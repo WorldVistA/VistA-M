@@ -1,7 +1,6 @@
-ZOSVONUT ; VEN/SMH - Unit Tests for Cache Encryption Functions XUSHSH;2017-10-30  5:32 pm ; 6/6/18 6:46am
- ;;8.0;KERNEL;**10001,10002**;;Build 26
- ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
- ; Authored by Sam Habiel 2017
+ZOSVONUT ; VEN/SMH - Unit Tests for Cache Encryption Functions XUSHSH;Jan 08, 2019@11:20; 6/6/18 6:46am
+ ;;8.0;KERNEL;**10001,10002,10005**;;Build 10
+ ; Authored by Sam Habiel 2017, 2019
  ; This is a copy of ZOSVGUT2 modified to work on Cache
  ;
  ; Windows Users:
@@ -111,7 +110,7 @@ WGETSYNC ; @TEST $$WGETSYNC^%ZISH on NDF DAT files for Unix and Windows
  N OS S OS=$$OS^%ZOSV
  N FOLDER
  I OS="UNIX" S FOLDER="/tmp/foo/boo"
- n temp s temp=$System.Util.GetEnviron("TEMP")
+ n temp s temp=$$ENV^%ZOSV("TEMP")
  I OS="NT" S FOLDER=temp_"\foo\boo"
  N SEC1 S SEC1=$P($H,",",2)
  N % S %=$$WGETSYNC^%ZISH("foia-vista.osehra.org","Patches_By_Application/PSN-NATIONAL DRUG FILE (NDF)/PPS_DATS/",FOLDER,"*.DAT*")
@@ -138,4 +137,22 @@ WGETSYNC ; @TEST $$WGETSYNC^%ZISH on NDF DAT files for Unix and Windows
  D CHKTF^%ut($D(CURR("PPS_2PRV_3NEW.DAT")))
  ;
  D CHKTF^%ut((SEC3-SEC2)'>(SEC2-SEC1))
+ QUIT
+ ;
+BL ; #TEST $$BL^%ZOSV ; 10005
+ D CHKTF^%ut($$BL^%ZOSV("中文"),6)
+ QUIT
+ ;
+BE ; #TEST $$BE^%ZOSV ; 10005
+ N C S C=$$BE^%ZOSV("中文",1,1)
+ D CHKEQ^%ut($$BL^%ZOSV(C),1)
+ QUIT
+ ;
+ENV ; @TEST $$ENV^%ZOSV ; 10005
+ N PATH S PATH=$$ENV^%ZOSV("PATH")
+ D CHKTF^%ut(PATH'="")
+ QUIT
+ ;
+AVJ ; @TEST $$AVJ^%ZOSV ; 10005
+ D CHKTF^%ut($$AVJ^%ZOSV)
  QUIT

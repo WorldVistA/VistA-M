@@ -1,5 +1,5 @@
-%ZISH ;ISF/AC,RWF,VEN/SMH - GT.M for Unix Host file Control ;Oct 23, 2018@09:52
- ;;8.0;KERNEL;**275,306,385,524,10001,10002,10004**;Jul 10, 1995;Build 3
+%ZISH ;ISF/AC,RWF,VEN/SMH - GT.M for Unix Host file Control ;Jan 08, 2019@09:44
+ ;;8.0;KERNEL;**275,306,385,524,10001,10002,10004,10005**;Jul 10, 1995;Build 10
  ; Original Routine authored by Department of Veterans Affairs
  ; EPs OPEN,DEL1,CD,PWD,MAXREC,MKDIR,SIZE,WGETSYNC,DF,SEND,SENDTO1 
  ; --> authored by Sam Habiel 2016-2018.
@@ -276,7 +276,7 @@ FTG(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5) ;ef,SR. Unload contents of host file into global
  Q '%EXIT
  ;
 FTGERR ; Error Trap for FTG
- Q:$ES>1
+ Q:$ES
  S %ZA=1
  S %EXIT=1
  S $ECODE=""
