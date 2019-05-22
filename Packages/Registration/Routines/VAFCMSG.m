@@ -1,5 +1,5 @@
-VAFCMSG ;ALB/JRP-BACKGROUND JOB TO TRANSMIT ENTRIES IN PIVOT FILE ; 3/2/04 12:54pm
- ;;5.3;Registration;**91,149,530,578**;Jun 06, 1996
+VAFCMSG ;ALB/JRP-BACKGROUND JOB TO TRANSMIT ENTRIES IN PIVOT FILE ;7 Dec 2018  3:39 PM
+ ;;5.3;Registration;**91,149,530,578,974**;Jun 06, 1996;Build 2
  ;
 MAIN ;Main entry point for background job
  ;
@@ -44,13 +44,15 @@ BCSTA08 ;Broadcast ADT-A08 messages for all entries in ADT/HL PIVOT file
  .;Bad pointer to patient - mark entry as transmitted and quit
  .I ('$D(^DPT(DFN,0)))!($G(^DPT(DFN,-9))) D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
  .I $P(^DPT(DFN,0),U)="" D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
- .I '$D(^DPT("B",$P(^DPT(DFN,0),U),DFN)) D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
+ .;**974,Story 841921 (mko): If name components were edited, a bug
+ .;  in UPDNAME^XLFNAME could allow the .01 to be more than 30 characters.
+ .I '$D(^DPT("B",$E($P(^DPT(DFN,0),U),1,30),DFN)) D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
  .;Store info into event information array
  .K @INFOARR
  .S @INFOARR@("PIVOT")=PIVOTPTR
  .;Event reason code
  .;  99 = Death     98 = Resurrection   97=Sensitivity Update
- .;  Death will overwrite any other reason code. It is the 
+ .;  Death will overwrite any other reason code. It is the
  .;  dominant reason code.
  .S @INFOARR@("REASON",1)=""
  .S @INFOARR@("REASON",1)=$P($G(^VAT(391.71,PIVOTPTR,0)),"^",10)
@@ -100,7 +102,9 @@ BCSTA04 ;Broadcast ADT-A04 messages for all entries in ADT/HL PIVOT file
  .;Bad pointer to patient - mark entry as transmitted and quit
  .I ('$D(^DPT(DFN,0)))!($G(^DPT(DFN,-9))) D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
  .I $P(^DPT(DFN,0),U)="" D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
- .I '$D(^DPT("B",$P(^DPT(DFN,0),U),DFN)) D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
+ .;**974,Story 841921 (mko): If name components were edited, a bug
+ .;  in UPDNAME^XLFNAME could allow the .01 to be more than 30 characters.
+ .I '$D(^DPT("B",$E($P(^DPT(DFN,0),U),1,30),DFN)) D XMITFLAG^VAFCDD01(PIVOTPTR,"",1) Q
  .;Broadcast ADT-A04 message
  .S RESULT=$$EN^VAFCA04(DFN,EDITDATE,USER,PIVOTPTR)
  .D XMITFLAG^VAFCDD01(PIVOTPTR,"",1)

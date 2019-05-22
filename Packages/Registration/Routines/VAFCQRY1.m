@@ -1,5 +1,5 @@
-VAFCQRY1 ;BIR/DLR-Query for patient demographics ;22 Dec 2011  12:11 PM
- ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937**;Aug 13, 1993;Build 3
+VAFCQRY1 ;BIR/DLR-Query for patient demographics ;3 Dec 2018  12:56 PM
+ ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937,974**;Aug 13, 1993;Build 2
  ;
  ;Reference to $$GETDFNS^MPIF002 supported by IA #3634.
  ;
@@ -27,13 +27,17 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  N X S X="MPIFAPI" X ^%ZOSF("TEST") I $T S VAFCMN=$$MPINODE^MPIFAPI(DFN)
  I +VAFCMN<0 S VAFCMN=""
  S VAFCZN=^DPT(DFN,0),SSN=$P(^DPT(DFN,0),"^",9)
- N VAFCA,VAFCA1 D GETS^DIQ(2,DFN_",","1*","E","VAFCA") ;**698 GETTING ALIAS INFO
+ ;**974,Story 841921 (mko): Get the internal Alias values instead of external
+ ;  so that the internal pointer (IEN) of the Name Components entry can be retrieved.
+ ;  In the following code, values are obtained from the "I" nodes instead of the "E" nodes.
+ N VAFCA,VAFCA1 D GETS^DIQ(2,DFN_",","1*","I","VAFCA") ;**698 GETTING ALIAS INFO
  ;** 707 reformat alias information to include ALIAS SSN in PID-3 with a location reference to the name in PID-5
  I $D(VAFCA) N CT,ENT S CT=0,ENT="" F  S ENT=$O(VAFCA(2.01,ENT)) Q:ENT=""  D
  .S CT=CT+1
- .S VAFCA1(CT,"NAME")=$G(VAFCA(2.01,ENT,.01,"E"))
+ .S VAFCA1(CT,"NAME")=$G(VAFCA(2.01,ENT,.01,"I"))
  .;I $G(VAFCA(2.01,ENT,1,"E"))'="" S VAFCA1("SSN")="",VAFCA1(CT,"SSN")=$G(VAFCA(2.01,ENT,1,"E"))
- .S VAFCA1(CT,"SSN")=$G(VAFCA(2.01,ENT,1,"E"))
+ .S VAFCA1(CT,"SSN")=$G(VAFCA(2.01,ENT,1,"I"))
+ .S VAFCA1(CT,"NCIEN")=$G(VAFCA(2.01,ENT,100.03,"I"))_"^"_ENT ;**974,Story 841921 (mko): Get Name Components pointer and save IENS of Alias subentry
  S SITE=$$SITE^VASITE,STN=$P($$SITE^VASITE,"^",3)
  N TMP F TMP=1:1:31 S APID(TMP)=""
  S APID(2)=CNT
@@ -112,7 +116,13 @@ PREFNAME .; Story 455447 (elz)DG*5.3*937 Preferred Name (^preferred name^^^^^"N"
 ALIAS .;patient alias (last^first^middle^suffice^prefix^^"A" for alias - can be multiple)
  .N ALIAS,ALIEN,LVL6,NXTC,LNGTH S NXTC=0,LVL6=0
  .I $D(VAFCA1) S ALIEN=0 F  S ALIEN=$O(VAFCA1(ALIEN)) Q:'ALIEN  D
- ..S ALIAS=$$HLNAME^XLFNAME(VAFCA1(ALIEN,"NAME"),"",$E(HL("ECH"),1))
+ ..;**974,Story 841921 (mko): Get the Name Components themselves
+ ..;  rather than parsing them out of the Name field
+ ..I $G(VAFCA1(ALIEN,"NCIEN"))>0 D
+ ...N NAMEC
+ ...S NAMEC("FILE")=2.01,NAMEC("IENS")=$P(VAFCA1(ALIEN,"NCIEN"),"^",2),NAMEC("FIELD")=.01
+ ...S ALIAS=$$HLNAME^XLFNAME(.NAMEC,"",$E(HL("ECH")))
+ ..E  S ALIAS=$$HLNAME^XLFNAME(VAFCA1(ALIEN,"NAME"),"",$E(HL("ECH"),1))
  ..Q:ALIAS=""
  ..S $P(ALIAS,$E(HL("ECH"),1),7)="A"
  ..I LVL6=0 D
