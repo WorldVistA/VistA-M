@@ -1,5 +1,5 @@
 PSJBCMA5 ;BIR/JCH - RETRIEVE SPECIAL INSTRUCTIONS/OTHER PRINT INFO ; 1/9/12 11:12am
- ;;5.0;INPATIENT MEDICATIONS;**267,275,361,371,370**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS;**267,275,361,371,370,383**;16 DEC 97;Build 2
  ;
  ;Reference to ^DPT is supported by DBIA 10035
  ;Reference to ^PS(55 is supported by DBIA 2191
@@ -47,7 +47,8 @@ GETSI(DFN,ON,BC) ; Get Special Instructions for Unit Dose orders
  ..S ^PS(53.45,+PSJSYSP,5,1,0)=$P(^PS(53.1,+ON,6),"^"),^PS(53.45,+PSJSYSP,5,0)="^^1^1"
  I ON["U" D  Q $P($G(^PS(53.45,+PSJSYSP,5,0)),"^",3)
  .Q:($G(^PS(53.45,+PSJSYSP,5,0))="^^0^0")
- .Q:($G(PSGOEENO)=1)
+ .N PSJVERI S PSJVERI=($P($G(PSJSYSP0),"^",9))
+ .Q:($G(PSGOEENO)=1)&((PSJVERI)'=1)
  .I $P($G(^PS(55,+DFN,5,+ON,15,0)),"^",3) D  Q
  ..S ^PS(53.45,+PSJSYSP,5,0)=$G(^PS(55,DFN,5,+ON,15,0))
  ..S LN=0 F  S LN=$O(^PS(55,DFN,5,+ON,15,LN)) Q:'LN  S ^PS(53.45,+PSJSYSP,5,LN,0)=^PS(55,DFN,5,+ON,15,LN,0)
