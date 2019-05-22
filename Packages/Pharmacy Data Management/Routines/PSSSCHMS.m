@@ -1,5 +1,5 @@
 PSSSCHMS ;BIR/MV-Frequency utilities routine ;09/13/10
- ;;1.0;PHARMACY DATA MANAGEMENT;**178,206**;9/30/97;Build 10
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,231**;9/30/97;Build 4
  ;;Reference to INP^VADPT supported by DBIA #10061
  ;
 OLDSCH(PSSFWSCC) ;Get IEN for .01 of the schedule file from the Old Schedule name
@@ -234,7 +234,7 @@ NOTALLDD(PSSGTOI,PSSIEN) ;When only OI is sent from CPRS, all DDs must be define
  NEW PSSDD,PSSDDIEN,PSSDDACT,PSSNODD
  Q:'+$G(PSSGTOI) 0
  Q:'+$G(PSSIEN) 0
- I '$D(^PS(51.1,+PSSIEN,4)) Q 0
+ I '$O(^PS(51.1,+PSSIEN,4,0)) Q 0  ;PSS*1*231 Correct issue with orphan 0 node
  S PSSNODD=0
  F PSSDDIEN=0:0 S PSSDDIEN=$O(^PSDRUG("ASP",PSSGTOI,PSSDDIEN)) Q:'PSSDDIEN!PSSNODD  D
  .I $$EXMT^PSSDSAPI(PSSDDIEN) Q
