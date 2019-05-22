@@ -1,7 +1,15 @@
 DGPFUT3 ;ALB/SAE - PRF UTILITIES CONTINUED ; 6/9/04 5:06pm
- ;;5.3;Registration;**554**;Aug 13, 1993
+ ;;5.3;Registration;**554,951**;Aug 13, 1993;Build 135
+ ;     Last Edited: SHRPE/SGM, Aug 22, 2018 18:22
  ;
  Q  ; no direct entry
+ ; ICR# TYPE DESCRIPTION
+ ;----- ---- ------------------------------------------
+ ; 2055 Sup  $$EXTERNAL^DILFD
+ ; 2056 Sup  $$GET1^DIQ
+ ; 2171 Sup  $$NS^XUAF4
+ ;10103 Sup  ^XLFDT: $$FMTE, $$NOW
+ ;10060 Sup  File 200 FM Read
  ;
 REVIEW(DGPFDA,DGPFHX,DGPFIEN,DGPFOPT,DGPFACT) ; Entry point for review display
  ;
@@ -19,6 +27,7 @@ REVIEW(DGPFDA,DGPFHX,DGPFIEN,DGPFOPT,DGPFACT) ; Entry point for review display
  ; RECORD FLAG ASSIGNMENT    CHANGE ASSIGNMENT OWNERSHIP  CO^DGPFLMA4
  ; RECORD FLAG MANAGEMENT    ADD NEW RECORD FLAG          AF^DGPFLF3
  ; RECORD FLAG MANAGEMENT    EDIT RECORD FLAG             EF^DGPFLF5
+ ; RECORD FLAG RETRANSMISSION  <no LM action>             RT^DGPFHLF
  ;
  ; Input:
  ;   DGPFDA - data array
@@ -43,6 +52,9 @@ REVIEW(DGPFDA,DGPFHX,DGPFIEN,DGPFOPT,DGPFACT) ; Entry point for review display
  ;        FM - FLAG MANAGEMENT - Add New Record Flag
  ;        FM - FLAG MANAGEMENT - Edit Record Flag
  ;
+ ; dg*951
+ ; The variable DGPFIEN is reset in this module to a different meaning
+ N DGFIEN S DGFIEN=+$G(DGPFIEN)
  N DGPFLOUT  ; (L)ocal(OUT)put array with values needed to setup global
  N DGPFGOUT  ; (G)lobal (OUT)put array name.  Contains assignment detail
  ;
@@ -90,6 +102,7 @@ BLDLOCFA(DGPFDA,DGPFHX,DGPFLOUT) ; build (L)ocal (OUT)put array
  ;   DGPFLOUT - (L)ocal (OUT)put array
  ;
  ; Temporary variables:
+ N DGERR,DIERR
  N DGPFIEN  ; Internal Entry Number
  N DGPFPAT  ; patient data array
  N DGPFFLG  ; flag data array
@@ -109,10 +122,10 @@ BLDLOCFA(DGPFDA,DGPFHX,DGPFLOUT) ; build (L)ocal (OUT)put array
  S DGPFLOUT("STATUS")=$$EXTERNAL^DILFD(26.13,.03,"F",DGPFIEN)
  ;
  ; set initial assignment
- S DGPFLOUT("INITASSIGN")=$$FMTE^XLFDT(+$G(DGPFHX("ASSIGNDT")),"5")  ; AF
+ S DGPFLOUT("INITASSIGN")=$$FMTE^XLFDT($P($G(DGPFHX("ASSIGNDT")),U),"5")  ; AF
  I $G(DGPFLOUT("ASGMNTIEN"))]"" D  ; EF and CO actions
  . S DGPFIA=$$GETADT^DGPFAAH(DGPFLOUT("ASGMNTIEN"))
- . S DGPFLOUT("INITASSIGN")=$$FMTE^XLFDT(+$G(DGPFIA),"5")
+ . S DGPFLOUT("INITASSIGN")=$$FMTE^XLFDT($P($G(DGPFIA),U),"5")
  ;
  ; set last review date
  S DGPFLOUT("LASTREVIEW")="N/A"  ; AF action
@@ -120,18 +133,18 @@ BLDLOCFA(DGPFDA,DGPFHX,DGPFLOUT) ; build (L)ocal (OUT)put array
  . S DGPFLAST=$$GETLAST^DGPFAAH(DGPFLOUT("ASGMNTIEN"))
  . S DGPFAHX=$$GETHIST^DGPFAAH(DGPFLAST,.DGPFAHX)
  . Q:+$G(DGPFAHX("ASSIGNDT"))=+$G(DGPFIA)  ; do not set if = init asgn
- . S DGPFLOUT("LASTREVIEW")=$$FMTE^XLFDT(+$G(DGPFAHX("ASSIGNDT")),"5D")
+ . S DGPFLOUT("LASTREVIEW")=$$FMTE^XLFDT($P($G(DGPFAHX("ASSIGNDT")),U),"5D")
  ;
  ; set next review date
  S DGPFLOUT("REVIEWDT")="N/A"
  I $G(DGPFDA("REVIEWDT"))]"" D
- . S DGPFLOUT("REVIEWDT")=$$FMTE^XLFDT(+$G(DGPFDA("REVIEWDT")),"5D")
+ . S DGPFLOUT("REVIEWDT")=$$FMTE^XLFDT($P($G(DGPFDA("REVIEWDT")),U),"5D")
  ;
  S DGPFIEN=+$G(DGPFDA("OWNER"))_","
- S DGPFLOUT("OWNER")=$$GET1^DIQ(4,DGPFIEN,.01,"","","DGERR")
+ S DGPFLOUT("OWNER")=$P($$NS^XUAF4(+DGPFIEN),U)
  ;
  S DGPFIEN=+$G(DGPFDA("ORIGSITE"))_","
- S DGPFLOUT("ORIGSITE")=$$GET1^DIQ(4,DGPFIEN,.01,"","","DGERR")
+ S DGPFLOUT("ORIGSITE")=$P($$NS^XUAF4(+DGPFIEN),U)
  ;
  S DGPFIEN=$G(DGPFHX("ACTION"))
  S DGPFLOUT("ACTION")=$$EXTERNAL^DILFD(26.14,.03,"F",DGPFIEN)
@@ -144,6 +157,24 @@ BLDLOCFA(DGPFDA,DGPFHX,DGPFLOUT) ; build (L)ocal (OUT)put array
  ; word processing fields
  S DGPFIEN=+$G(DGPFHX("APPRVBY"))_","
  S DGPFLOUT("APPRVBY")=$$GET1^DIQ(200,DGPFIEN,.01,"","","DGERR")
+ ;
+ ; set DBRS if present, dg*3.5*951
+ ; for EF action, show all DBRS# to display
+ ; for AF action DGFIEN=0
+ ; see DBRS^DGPFUT61 for format of DGPFA("DBRS"_x)
+ ;
+ I DGPFLOUT("FLAGNAME")="BEHAVIORAL" D
+ . Q:'$D(DGPFDA("DBRS#"))
+ . N I,J S (I,J)=0 F  S I=$O(DGPFDA("DBRS#",I)) Q:I=""  D
+ . . N X,Y,NM,OTH
+ . . S NM=$P(DGPFDA("DBRS#",I),U)
+ . . S OTH=$P(DGPFDA("DBRS OTHER",I),U,2)
+ . . I OTH="" S OTH="<no value>"
+ . . S J=J+1
+ . . S DGPFLOUT("DBRS#",J)=NM
+ . . S DGPFLOUT("DBRS OTHER",J)=OTH
+ . . Q
+ . Q
  ;
  M DGPFLOUT("NARR")=DGPFDA("NARR")
  M DGPFLOUT("COMMENT")=DGPFHX("COMMENT")

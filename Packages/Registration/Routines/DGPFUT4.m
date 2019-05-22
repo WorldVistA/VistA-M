@@ -1,5 +1,6 @@
 DGPFUT4 ;ALB/SAE - PRF UTILITIES CONTINUED ; 6/9/04 1:33pm
- ;;5.3;Registration;**554**;Aug 13, 1993
+ ;;5.3;Registration;**554,951**;Aug 13, 1993;Build 135
+ ;     Last Edited: SHRPE/sgm - Jul 31, 2018 15:36
  ;
  Q  ; no direct entry
  ;
@@ -76,12 +77,16 @@ BLDGLOB(DGPFDA,DGPFHX,TXN,DGPFLOUT,DGPFGOUT) ; build global
  . I ";DESC;NARR;COMMENT;REASON;"[(";"_DGPFROOT_";") D  Q
  . . D BLDWP(DGPFROOT,DGPFLABL,.DGPFLINE,.DGPFLOUT,DGPFGOUT)
  . ;
+ . ; DG*5.3*951 introduces a multiple
  . S DGPFCOL=DGPFLONG-$L(DGPFLABL)
  . S DGPFPAD=$E($J("",DGPFCOL),1,DGPFCOL)
- . S DGPFVAL=DGPFPAD_DGPFLABL_DGPFLOUT(DGPFROOT)
- . ;
- . S DGPFLINE=DGPFLINE+1
- . S @DGPFGOUT@(DGPFLINE,0)=DGPFVAL
+ . I DGPFROOT'["DBRS" D
+ . . S DGPFVAL=DGPFPAD_DGPFLABL_DGPFLOUT(DGPFROOT)
+ . . S DGPFLINE=DGPFLINE+1
+ . . S @DGPFGOUT@(DGPFLINE,0)=DGPFVAL
+ . . Q
+ . I DGPFROOT="DBRS#" I DGPFLOUT("FLAGNAME")="BEHAVIORAL" D DBRS
+ . Q
  Q
  ;
 BLDPI(DGPFROOT,DGPFLABL,DGPFLONG,DGPFLINE,DGPFLOUT,DGPFGOUT) ;
@@ -153,6 +158,31 @@ BLDWP(DGPFROOT,DGPFLABL,DGPFLINE,DGPFLOUT,DGPFGOUT) ;build WP array
  . S @DGPFGOUT@(DGPFLINE,0)=DGPFVAL
  Q
  ;
+DBRS ;  DG*5.3*951 - display data in DBRS multiple
+ ;   got here where DBRS# text line processed
+ N I,J,X,LBL,PAD,ROOT,VAL
+ S PAD(1)=DGPFPAD
+ S LBL(1)=DGPFLABL
+ S ROOT(1)=DGPFROOT
+ ;  get settings for second field
+ S DGPFOFST=DGPFOFST+1
+ S DGPFTAG=DGPFRTN_"+"_DGPFOFST,DGPFTEXT=$T(@DGPFTAG)
+ S DGPFROOT=$P(DGPFTEXT,";",3) S ROOT(2)=DGPFROOT
+ S DGPFLABL=$P(DGPFTEXT,";",5) S LBL(2)=DGPFLABL
+ S DGPFCOL=DGPFLONG-$L(DGPFLABL)
+ S DGPFPAD=$E($J("",DGPFCOL),1,DGPFCOL) S PAD(2)=DGPFPAD
+ S I=0 F J=0:0 S I=$O(DGPFLOUT("DBRS#",I)) Q:'I  D
+ . S VAL=PAD(1)_LBL(1)_DGPFLOUT(ROOT(1),I)
+ . S DGPFLINE=DGPFLINE+1
+ . S @DGPFGOUT@(DGPFLINE,0)=VAL
+ . S VAL=$G(DGPFLOUT(ROOT(2),I))
+ . S:VAL="" VAL="<no value>"
+ . S VAL=PAD(2)_LBL(2)_VAL
+ . S DGPFLINE=DGPFLINE+1
+ . S @DGPFGOUT@(DGPFLINE,0)=VAL
+ . Q
+ Q
+ ;
 FATXT ; ordered list of fields to be presented to user for Flag Assignment
  ;;ROOT;       ;LABEL;
  ;;PATIENT;    ;Patient Name: ;
@@ -169,6 +199,8 @@ FATXT ; ordered list of fields to be presented to user for Flag Assignment
  ;;ACTIONDT;   ;Action Date: ;
  ;;ENTERBY;    ;Entered By: ;
  ;;APPRVBY;    ;Approved By: ;
+ ;;DBRS#;      ;DBRS No.: ;
+ ;;DBRS OTHER; ;DBRS Other: ;
  ;;NARR;       ;Record Flag Assignment Narrative: ;
  ;;COMMENT;    ;Action Comments: ;
  ;;QUIT;

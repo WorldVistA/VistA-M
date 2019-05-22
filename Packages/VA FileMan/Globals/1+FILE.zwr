@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-21-MAY-2019 20:43:49 ZWR
+22-MAY-2019 03:04:14 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -1733,6 +1733,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("26.13","%D",5,0)="Records in this file should not be added or edited except through the use"
 ^DIC("26.13","%D",6,0)="of the Patient Record Flag software that is part of Registration.  Doing"
 ^DIC("26.13","%D",7,0)="so would likely cause Patient Record Flag database corruption."
+^DIC("26.13","%MSC")=3190522.025936
 ^DIC("26.14",0)="PRF ASSIGNMENT HISTORY^26.14"
 ^DIC("26.14",0,"GL")="^DGPF(26.14,"
 ^DIC("26.14","%",0)="^1.005^^0"
@@ -1747,6 +1748,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("26.14","%D",8,0)="through the use of the Patient Record Flag software that is part of "
 ^DIC("26.14","%D",9,0)="Registration.  Doing so would likely cause the Patient Record Flag "
 ^DIC("26.14","%D",10,0)="database to become corrupted."
+^DIC("26.14","%MSC")=3190522.025936
 ^DIC("26.15",0)="PRF NATIONAL FLAG^26.15"
 ^DIC("26.15",0,"GL")="^DGPF(26.15,"
 ^DIC("26.15","%",0)="^1.005^^0"
@@ -1806,6 +1808,18 @@ OSEHRA ZGO Export: FILE
 ^DIC("26.21","%D",0)="^1.001^2^2^3050615^^^"
 ^DIC("26.21","%D",1,0)="This file tracks patients that need to have one or more of their treating"
 ^DIC("26.21","%D",2,0)="facilities checked for existing Patient Record Flag assignments."
+^DIC("26.22",0)="PRF HL7 REQUEST LOG^26.22"
+^DIC("26.22",0,"AUDIT")="@"
+^DIC("26.22",0,"DD")="@"
+^DIC("26.22",0,"DEL")="@"
+^DIC("26.22",0,"GL")="^DGPF(26.22,"
+^DIC("26.22",0,"LAYGO")="@"
+^DIC("26.22",0,"RD")="@"
+^DIC("26.22",0,"WR")="@"
+^DIC("26.22","%",0)="^1.005^^0"
+^DIC("26.22","%D",0)="^^1^1^3180429^"
+^DIC("26.22","%D",1,0)="This file contains log of PRF flag transfer requests."
+^DIC("26.22","%MSC")=3190522.025936
 ^DIC("27.11",0)="PATIENT ENROLLMENT^27.11"
 ^DIC("27.11",0,"AUDIT")="@"
 ^DIC("27.11",0,"DD")="@"
@@ -40145,6 +40159,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","PRF ASSIGNMENT HISTORY","26.14")=""
 ^DIC("B","PRF HL7 EVENT","26.21")=""
 ^DIC("B","PRF HL7 QUERY LOG","26.19")=""
+^DIC("B","PRF HL7 REQUEST LOG","26.22")=""
 ^DIC("B","PRF HL7 TRANSMISSION LOG","26.17")=""
 ^DIC("B","PRF LOCAL FLAG","26.11")=""
 ^DIC("B","PRF LOCAL FLAG HISTORY","26.12")=""

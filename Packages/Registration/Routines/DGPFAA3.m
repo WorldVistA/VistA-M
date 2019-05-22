@@ -1,5 +1,6 @@
 DGPFAA3 ;ALB/RPM - PRF ASSIGNMENT API'S CONTINUED ; 3/28/03
- ;;5.3;Registration;**425,650,911**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**425,650,911,951**;Aug 13, 1993;Build 135
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q  ;no direct entry
  ;
@@ -89,7 +90,7 @@ UNLOCK(DGAIEN) ;Unlock assignment record.
  ;
  Q
  ;
-STOHL7(DGPFA,DGPFAH,DGEROOT) ;store a valid assignment from HL7 message
+STOHL7(DGPFA,DGPFAH,DGEROOT,DGPFUV) ;store a valid assignment from HL7 message
  ; This function files an assignment if the originating site is 
  ; authorized to update an existing record and if the action is valid for
  ; the status of an existing record. 
@@ -102,6 +103,7 @@ STOHL7(DGPFA,DGPFAH,DGEROOT) ;store a valid assignment from HL7 message
  ;  DGEROOT - (optional) closed root array name (i.e. "DGERROR") for
  ;            error dialog returned from BLD^DIALOG. If not passed, error
  ;            dialog is returned in ^TMP("DIERR",$J) global.
+ ;   DGPFUV - (optional) see STOALL^DGPFAA
  ;
  ;  Output:
  ;   Function Value - Returns 1 on success, 0 on failure
@@ -137,7 +139,7 @@ STOHL7(DGPFA,DGPFAH,DGEROOT) ;store a valid assignment from HL7 message
  . I DGACT'=1,'$$HL7EDTOK(DGDFN,DGFLG,DGORIG,DGACT,DGEROOT) Q
  . ;
  . ;file the assignment and history
- . I '$$STOALL^DGPFAA(.DGPFA,.DGPFAH,.DGMSG)!($D(DGMSG)) D  Q
+ . I '$$STOALL^DGPFAA(.DGPFA,.DGPFAH,.DGMSG,$G(DGPFUV))!($D(DGMSG)) D  Q
  . . D BLD^DIALOG(261120,,,DGEROOT,"F")
  . ;
  . ;success

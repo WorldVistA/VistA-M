@@ -1,5 +1,7 @@
 DGPFHLUT ;ALB/RPM - PRF HL7 UTILITIES ; 5/31/05 3:45pm
- ;;5.3;Registration;**425,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,650,951**;Aug 13, 1993;Build 135
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;This routine contains generic utilities used when building
  ;or processing received patient record flag HL7 messages.
  ;
@@ -172,7 +174,7 @@ BLDSEG(DGTYP,DGVAL,DGHL) ;generic segment builder
  N DGREP     ;repetition subscript
  N DGREPVAL  ;repetition value
  N DGSUB     ;sub-component subscript
- N DGSUBVAL  ;suc-component value
+ N DGSUBVAL  ;sub-component value
  N DGFS      ;field separator
  N DGCS      ;component separator
  N DGRS      ;repetition separator
@@ -264,3 +266,72 @@ CONVMID(DGID) ;convert #772 msgid to #773 msgid
  S DG773=+$O(^HLMA("B",DG772,0))
  S DGMCID=+$$GET1^DIQ(773,DG773_",",2,"I","","DGERR")
  Q $S(DGMCID&('$D(DGERR)):DGMCID,1:0)
+ ;
+ENCHL7(STR) ; Encode HL7 escape sequences in a string
+ ;
+ ; Input:
+ ; STR = string possibly containing HL7 encoding chars
+ ;
+ ; HLFS and HLECH are assumed to be already initialized by HL7 (call to INIT^HLFNC2)
+ ;
+ ; Returns string with encoded escape seqs as follows:
+ ;  field separator (HLFS) --> \F\
+ ;  component separator (HLECH-1) --> \S\
+ ;  repetition separator (HLECH-2) --> \R\
+ ;  escape character (HLECH-3) --> \E\
+ ;  subcomponent separator (HLECH-4) --> \T\
+ ;
+ N CHR,CHRSTR,CNT,ESC,FLG,NEW,RPLC,Z1,Z2
+ ;
+ S ESC=$E(HLECH,3) ; escape character
+ S CHRSTR=HLFS_HLECH,FLG=0 F Z1=1:1:5 S CHR=$E(CHRSTR,Z1),CNT=$L(STR,CHR) I CNT>1 D
+ .S NEW=$P(STR,CHR)
+ .S RPLC=$C(26)_$TR(CHR,CHRSTR,"FSRET")_$C(26)
+ .F Z2=2:1:CNT S NEW=NEW_RPLC_$P(STR,CHR,Z2)
+ .S STR=NEW
+ .S FLG=1 ; flag to indicate that at least one escape sequence was encoded
+ .Q
+ S:FLG STR=$TR(STR,$C(26),ESC)
+ Q STR
+ ;
+DECHL7(STR) ; Decode HL7 escape sequences in a string
+ ;
+ ; Input:
+ ; STR = string possibly containing HL7 escape sequences for encoding chars
+ ;
+ ; HLFS and HLECH are assumed to be already initialized by HL7 (call to INIT^HLFNC2)
+ ;
+ ; Returns string with decoded escape seqs as follows:
+ ;  \F\ --> field separator (HLFS)
+ ;  \S\ --> component separator (HLECH-1)
+ ;  \R\ --> repetition separator (HLECH-2)
+ ;  \E\ --> escape character (HLECH-3)
+ ;  \T\ --> subcomponent separator (HLECH-4)
+ ;
+ ; Note: if any of HL7 encoding characters is "^", it gets replaced with a single space
+ ;       in order to prevent filing problems.
+ ;
+ N ECHARS,ECODE,ESC,LEN,PAT,PCE,REPL
+ ;
+ ; Replace ^ with a single space to prevent filing problems
+ S ECHARS=$TR(HLECH,"^"," ")
+ S ESC=$E(ECHARS,3) ; escape character
+ ; Check for escape sequences, quit if none found
+ I STR'[ESC Q STR
+ ; Array of rep. chars
+ S REPL("F")=$S(HLFS="^":" ",1:HLFS) ;Field delimiter
+ S REPL("S")=$E(ECHARS)              ;Comp. delimiter
+ S REPL("R")=$E(ECHARS,2)            ;Rep. delimiter
+ ; Temp. replace w/ASC 26, until after other ESC are stripped
+ S REPL("E")=$C(26)                  ;Esc. char
+ S REPL("T")=$E(ECHARS,4)            ;Subcomp. delimiter
+ ; Translate escape seqs left to right
+ S LEN=$L(STR,ESC) F PCE=1:1:(LEN-1)\2 D
+ .; Ignore empty or unrecognized escape sequences
+ .S ECODE=$P(STR,ESC,2) I ECODE="" S ECODE="XXXX"
+ .I $D(REPL(ECODE))'>0 S STR=$P(STR,ESC)_$C(26)_$P(STR,ESC,2)_$C(26)_$P(STR,ESC,3,LEN) Q
+ .; Else, replace escape sequence with encoding character
+ .S STR=$P(STR,ESC)_$G(REPL(ECODE))_$P(STR,ESC,3,LEN)
+ ;Replace the decoded ESC chars that were actually sent
+ S STR=$TR(STR,$C(26),ESC)
+ Q STR
