@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MESSAGE
-21-MAY-2019 12:03:05 ZWR
-^XMB(3.9,0)="MESSAGE^3.9s^289^289"
+21-MAY-2019 23:17:56 ZWR
+^XMB(3.9,0)="MESSAGE^3.9s^290^290"
 ^XMB(3.9,1,0)="PATCH OR*3*389 POSTINIT COMPLETED^PATCH OR*3*389 POSTINIT^3160526.130443"
 ^XMB(3.9,1,.6)=3160526
 ^XMB(3.9,1,1,0)="^3.91A^2^2"
@@ -47067,6 +47067,18 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,289,.6)=3190521
 ^XMB(3.9,289,2,0)="^^1^1^3190521"
 ^XMB(3.9,289,2,1,0)="There were no problem quick orders found."
+^XMB(3.9,290,0)="Inactivation of Event Code Screens from inactive procedure codes^EVENT CAPTURE PACKAGE^3190521.231149"
+^XMB(3.9,290,.6)=3190521
+^XMB(3.9,290,1,0)="^3.91A^1^1"
+^XMB(3.9,290,1,1,0)=17
+^XMB(3.9,290,1,"C",17,1)=""
+^XMB(3.9,290,2,0)="^^3^3^3190521"
+^XMB(3.9,290,2,1,0)="No Event Code Screens were inactivated, as no inactive"
+^XMB(3.9,290,2,2,0)="EC Procedure Codes were found in use."
+^XMB(3.9,290,2,3,0)=" "
+^XMB(3.9,290,6,0)="^3.911A^1^1"
+^XMB(3.9,290,6,1,0)="USER,SEVENTEEN"
+^XMB(3.9,290,6,"B","USER,SEVENTEEN",1)=""
 ^XMB(3.9,"B","050 PCE CODE MAPPING DATA FOR ",70)=""
 ^XMB(3.9,"B","DATA UPDATE FOR NDF",3)=""
 ^XMB(3.9,"B","DATA UPDATE FOR NDF",7)=""
@@ -47191,6 +47203,7 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,"B","Inactivation of Event Code Scr",43)=""
 ^XMB(3.9,"B","Inactivation of Event Code Scr",114)=""
 ^XMB(3.9,"B","Inactivation of Event Code Scr",176)=""
+^XMB(3.9,"B","Inactivation of Event Code Scr",290)=""
 ^XMB(3.9,"B","Index for global ~U~AUPNVSC( s",166)=""
 ^XMB(3.9,"B","Index for global ~U~AUPNVSC( s",167)=""
 ^XMB(3.9,"B","Install of PXRM*2.0*19",89)=""
@@ -47645,3 +47658,4 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,"C",3190520,287)=""
 ^XMB(3.9,"C",3190521,288)=""
 ^XMB(3.9,"C",3190521,289)=""
+^XMB(3.9,"C",3190521,290)=""
