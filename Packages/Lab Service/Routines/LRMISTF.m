@@ -1,5 +1,6 @@
 LRMISTF ;SLC/CJS/BA - MASS DATA ENTRY INTO FILE 63.05 ;6/26/18 1:38pm
- ;;5.2;LAB SERVICE;**153,476,508**;Sep 27, 1994;Build 8
+ ;;5.2;LAB SERVICE;**153,476,508,513**;Sep 27, 1994;Build 2
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;from option LRMISTUF
 ACCESS I '$D(^XUSEC("LRVERIFY",DUZ)) W !,"You're not cleared for this option. You must have the LRVERIFY Key." Q
  ; LR*5.2*476 - CR; added codes #1, #20.5, and #26.5 per NSR 20161009
@@ -17,7 +18,9 @@ ASK D LRAA^LRMIUT Q:LRAA<1  S LRSS=$P(^LRO(68,LRAA,0),U,2)
  S %DT="AE",%DT("A")="Micro Accession Year: ("_$E(DT,2,3)_")//" D ^%DT K %DT("A") Q:X[U  S:X="" Y=$E(DT,1,3) S LRAD=$E(Y,1,3)_"0000"
  S DIC="^LAB(60,",DIC("A")="Select MICROBIOLOGY TEST: ",DIC(0)="AEMOQ",DIC("S")="I $P(^(0),U,4)=""MI"",$L($P(^(0),U,14))" D ^DIC K DIC Q:Y<1  S LRTEST=+Y
  S LRECODE=$P(^LAB(60,LRTEST,0),U,14),LRECODE=$S($D(^LAB(62.07,LRECODE,.1)):^(.1),1:"")
- K LRSB S LRSBCNT=0 F LRSB=1:1 S X=$P(LRSBS,U,LRSB) Q:'X  S X1=""""_X,X2=";"_X I LRECODE[X,LRECODE[X1!(LRECODE[X2) S LRSB(X)="",LRSBCNT=LRSBCNT+1
+ ; LR*5.2*513 load codes into array LRECDS
+ N LRECDS D GETCODES
+ K LRSB S LRSBCNT=0 F LRSB=1:1 S X=$P(LRSBS,U,LRSB) Q:'X  I $D(LRECDS(X)) S LRSB(X)="",LRSBCNT=LRSBCNT+1
  I 'LRSBCNT W "Test does not have an appropriate entry in the EDIT CODE" Q
  F I=0:0 R !,"Preliminary or Final: ",X:DTIME Q:'$T!(X[U)!(X="P")!(X="F")  W !,"Enter ""P"" or ""F""."
  Q:'$T!(X[U)  S LRPF=X
@@ -31,4 +34,13 @@ ASK D LRAA^LRMIUT Q:LRAA<1  S LRSS=$P(^LRO(68,LRAA,0),U,2)
  Q
 INFO W !,"Enter a number between 1 and 3.",!,"1. Automatically enters the result you specify. You cannot change the entries."
  W !,"2. Automatically enters the result you specify, you can see and change entries",!,"3. Prompts with the field name.  Does not automatically enter data.",!!
+ Q
+GETCODES ; extract only the requested codes from the LRECODE string
+ N ZI,ZDR,ZJ,ZNUM
+ F ZI=1:1 S ZDR=$P(LRECODE,"DR=",ZI) Q:ZDR=""  D
+ . Q:ZDR'[";"
+ . S ZDR=$P(ZDR,"DR")
+ . F ZJ=1:1 S ZNUM=$P(ZDR,";",ZJ) Q:ZNUM=""  D
+ . . I $E(ZNUM)="""" S ZNUM=$P(ZNUM,"""",2,99)
+ . . I +ZNUM>0 S LRECDS(+ZNUM)=""
  Q
