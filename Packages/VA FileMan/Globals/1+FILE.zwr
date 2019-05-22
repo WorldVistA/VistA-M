@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-21-MAY-2019 08:21:58 ZWR
+21-MAY-2019 20:43:49 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -1676,7 +1676,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(20,"%D",23,0)=" "
 ^DIC(20,"%D",24,0)="The Degree and Prefix fields are not considered part of a standard name,"
 ^DIC(20,"%D",25,0)="but can be used to build formatted names for display."
-^DIC(20,"%MSC")=3181201.080247
+^DIC(20,"%MSC")=3190521.092919
 ^DIC("25.11",0)="HEALTH BENEFIT PLAN^25.11"
 ^DIC("25.11",0,"AUDIT")="@"
 ^DIC("25.11",0,"DD")="@"
@@ -10791,7 +10791,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%D",20,0)=" Nodes and X-ref 'QA*'."
 ^DIC(200,"%D",21,0)="Field numbers 910-910.9 reserved for Police Package"
 ^DIC(200,"%D",22,0)=" Node and X-ref 'ESP'"
-^DIC(200,"%MSC")=3181201.080247
+^DIC(200,"%MSC")=3190521.092919
 ^DIC(201,0)="USER CLASS^201"
 ^DIC(201,0,"GL")="^VA(201,"
 ^DIC(201,"%",0)="^1.005^^0"
@@ -16584,6 +16584,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("396.15","%D",2,0)="examinations that are assigned to a specific medical center division.  It "
 ^DIC("396.15","%D",3,0)="is also possible to set a flag in this file to disable the division from "
 ^DIC("396.15","%D",4,0)="appearing in the listing of selectable divisions in the GUI."
+^DIC("396.15","%MSC")=3190521.203942
 ^DIC("396.17",0)="CAPRI TEMPLATES^396.17"
 ^DIC("396.17",0,"AUDIT")="@"
 ^DIC("396.17",0,"DD")="@"

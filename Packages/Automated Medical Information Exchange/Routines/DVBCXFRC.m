@@ -1,9 +1,12 @@
-DVBCXFRC ;ALB/GTS-557/THM-PROCESS TRANSFER-IN MAIL MESSAGE ; 10/4/91  9:26 AM
- ;;2.7;AMIE;**1,6,18,65,149,193**;Apr 10, 1995;Build 84
+DVBCXFRC ;ALB/GTS-557/THM-PROCESS TRANSFER-IN MAIL MESSAGE ; 1/12/19 6:52pm
+ ;;2.7;AMIE;**1,6,18,65,149,193,209**;Apr 10, 1995;Build 17
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-EN1 N XMB,RDAT,RSTS,CM,SP,UP K OUT,CNT S (CNTA,OUT,RDAT)=0,SP=" ",CM=",",UP="^"
- X XMREC I XMRG["TRANSFER OUT" G EN1^DVBCXFRS
+EN1 ;N XMB,RDAT,RSTS,CM,SP,UP K OUT,CNT
+ ;S (CNTA,OUT,RDAT)=0,SP="",CM=",",UP="^"
+ ;X XMREC I XMRG["TRANSFER OUT" G EN1^DVBCXFRS
+ ;F DVBCI=0:0 X XMREC Q:XMER<0!(XMRG["$END")  S XLN=XMRG,SUB=$E(XLN,2,5),XLN=$E(XLN,7,245) D @SUB
+ N XMB K OUT,CNT S (CNTA,OUT)=0 X XMREC I XMRG["TRANSFER OUT" G EN1^DVBCXFRS
  F DVBCI=0:0 X XMREC Q:XMER<0!(XMRG["$END")  S XLN=XMRG,SUB=$E(XLN,2,5),XLN=$E(XLN,7,245) D @SUB
  ;check for existence of primary division
  S DVBCDIV=$$PRIM^VASITE I DVBCDIV=""!(DVBCDIV=-1) D BULL8^DVBCXFRD G EXIT
@@ -24,9 +27,9 @@ EXIT D DELSER^DVBCUTL4 ;deletes the server message
  K SUB,TYPEPTR,USER,XMER,XMRG,XMREC,ZI,PREF,POBC,POBS,CSPT,DVP
  G KILL^DVBCUTIL
  ;
-DEM0 S PNAM=$E($P(XLN,U,1),1,28),DOB=$P(XLN,U,2),SEX=$P(XLN,U,3)
- S SSN=$P(XLN,U,4),POBC=$P(XLN,U,5),POBS=$P(XLN,U,6),ICN=$P(XLN,U,7)
- S PREF=$P(XLN,U,8),CSPT=$P(XLN,U,9)
+DEM0 S PNAM=$E($P(XLN,U,1),1,28),DOB=$P(XLN,U,2),SEX=$P(XLN,U,3),SSN=$P(XLN,U,4)
+ ;S SSN=$P(XLN,U,4),POBC=$P(XLN,U,5),POBS=$P(XLN,U,6),ICN=$P(XLN,U,7)
+ ;S PREF=$P(XLN,U,8),CSPT=$P(XLN,U,9)
  Q
  ;
 USER S USER=$P(XLN,U,1),SITE=$P(XLN,U,2),SITE1=$P(XLN,U,3)
@@ -49,9 +52,9 @@ ELIG S SRVCON=$P(XLN,U,1),SRVPCT=$P(XLN,U,2),CFLOC=$P(XLN,U,3),CNUM=$P(XLN,U,4),
  ;
  ; $REQ0 "_REQDA_U_RO_U_PRIO_U_CFLOC_U_LREXMDT_U_CFREQ_U_LREXMDT_U_RONAM_U_RDIV_U_REQDT_U_DMAS
  ;
-REQ0 S OLREQDA=$P(XLN,U,1),RO=$P(XLN,U,2),RONAM=$P(XLN,U,8),RDIV=$P(XLN,U,9)
+REQ0 S OLREQDA=$P(XLN,U,1),RO=$P(XLN,U,2),RONAM=$P(XLN,U,8)
  S PRIO=$P(XLN,U,3),CFLOC=+$P(XLN,U,4),LREXMDT=$P(XLN,U,5),CFREQ=$P(XLN,U,6)
- S LREXMDT=$P(XLN,U,7),RQDT=$P(XLN,U,10),DMAS=$P(XLN,U,11)
+ ;S LREXMDT=$P(XLN,U,7),RQDT=$P(XLN,U,10),DMAS=$P(XLN,U,11)
  S CFLOC=$O(^DIC(4,"D",CFLOC,""))
  S:'$D(^DIC(4,+CFLOC,0)) CFLOC=""
  Q
@@ -66,55 +69,30 @@ REMK S:'$D(CNT) CNT=0 S CNT=CNT+1,REMK(CNT)=XLN
  Q
  ;
  ; AJF ; 2507 Reroute fields
-RDAT S OREQDA=$P(XLN,"^",1),PIEN=$P(XLN,"^",2),RRF=$P(XLN,"^",3)
- S RR=$P(XLN,"^",4),RD=$P(XLN,"^",5),RRT=$P(XLN,"^",6)
- S RRDT=$P(XLN,"^",7),CLTY=$P(XLN,"^",8),ECF=$P(XLN,"^",9)
- S RRFD=$P(XLN,"^",10),RRFIEN=$P(XLN,"^",11),RRFSTN=$P(XLN,"^",12)
- S STN=$P(XLN,"^",13),INUM=$P(XLN,"^",14)
- S RDAT=1
- Q
+RDAT ;S OREQDA=$P(XLN,"^",1),PIEN=$P(XLN,"^",2),RRF=$P(XLN,"^",3)
+ ;S RR=$P(XLN,"^",4),RD=$P(XLN,"^",5),RRT=$P(XLN,"^",6)
+ ;S RRDT=$P(XLN,"^",7),CLTY=$P(XLN,"^",8),ECF=$P(XLN,"^",9)
+ ;S RRFD=$P(XLN,"^",10),RRFIEN=$P(XLN,"^",11),RRFSTN=$P(XLN,"^",12)
+ ;S STN=$P(XLN,"^",13),INUM=$P(XLN,"^",14)
+ ;S RDAT=1
+ ;Q
  ;
-SPEC F II=1:1  S SPEC(II)=$P(XLN,"^",II) Q:SPEC(II)=""
- Q
+SPEC ;F II=1:1  S SPEC(II)=$P(XLN,"^",II) Q:SPEC(II)=""
+ ;Q
  ;
 REQEDIT ;  ** Add entry to file #396.3 (request)
  K DD,DO,DA,DR,DIC,X,Y
  ;I '$D(DFN) S OUT=1 D BULL1^DVBCXFRD Q 
  ;
  S DIC="^DVB(396.3,",DLAYGO=396.3,DIC(0)="L",X=DFN
- S:$G(RDAT)=0 ECF=""
- S DIC("DR")="1///"_RQDT_";2////"_RO_";3////.5;4////"_DMAS_";9////"_PRIO_";30////"_OLREQDA
+ S DIC("DR")="1///NOW;2////"_RO_";3////.5;9////"_PRIO_";28///"_SITE1_";30////"_OLREQDA_";33////"_DT
  D FILE^DICN K DLAYGO
  S (DA,REQDA)=+Y I DA<0 S OUT=1 D BULL1^DVBCXFRD Q
  ;Give Med Center Primary Division as routing location (DVBCDIV)
  S DIE="^DVB(396.3,"
- S RSTS=$S($G(RDAT)=0:9,1:11)
- S DVP=$P(^DVB(396.15,RDIV,0),"^")
- S DR="10////"_OTHDIS_";10.1////"_OTHDIS1_";10.2////"_OTHDIS2_";17////"_RSTS D ^DIE
- S DR="21////"_CFREQ_";23.3////"_LREXMDT_";24////"_DVP_";21.1////"_ECF
+ S DR="10////"_OTHDIS_";10.1////"_OTHDIS1_";10.2////"_OTHDIS2_";17////NT" D ^DIE
+ S DR="21////"_CFREQ_";23.3////"_LREXMDT_";24////"_DVBCDIV
  D ^DIE K DIC,DIE,DD,DO
- I +RDAT D
- .; AJF ;New Reroute fields
- .S RIEN=REQDA
- .S RRIF=$$UPRR^DVBCUTL8(DA,RRDT)
- .S DA=$P(RRIF,"^")
- .S DIE="^DVB(396.3,"_RIEN_",6,",DA(1)=RIEN
- .S DR="1////"_OREQDA_";2////"_PIEN_";3////"_RRF_";4////"_RR_";5////"_RD_";.02////"_RRT
- .S DR=DR_";.9////"_INUM_";10////"_STN_";11////"_RRFIEN_";12////"_RRFSTN
- .D ^DIE ;set Reroute fields
- .S RRIEN=DA,RRST="N",RRR=""
- .S RRUP=$$UPRS^DVBCUTL8(RIEN,RRIEN,RRDT,RRST,RRR) ; Update the status
- .;
- .S II=0
- .F  S II=$O(SPEC(II)) Q:II=""  D
- ..S DIC="^DVB(396.3,"_RIEN_",8,",DA(1)=RIEN,DLAYGO=396.3,DIC(0)="L",X=SPEC(II)
- ..D FILE^DICN K DIC
- .;
- .S DIC="^DVB(396.3,"_RIEN_",9,",DA(1)=RIEN,DLAYGO=396.3,DIC(0)="L",X=CLTY
- .D FILE^DICN K DLAYGO,DIC
- .;Add to Treating Facility List 
- .;D FILENEW^VAFCTFU(DFN,RRF)
- ;
  S CNT=0 I '$D(^DVB(396.3,REQDA,2,0)) S ^(0)="^^0^0^"_DT_"^^^^"
  F ZI=0:0 S ZI=$O(REMK(ZI)) Q:ZI=""  S X=REMK(ZI) S CNT=CNT+1,^DVB(396.3,REQDA,2,CNT,0)=X F Y=3,4 S $P(^DVB(396.3,REQDA,2,0),U,Y)=CNT
  S X="",DVBADMNM=$P(SITE1,".",1)
@@ -151,79 +129,22 @@ PATEDIT ;  ** Lookup and/or Add entry to file #2 (patient)
  .S DFN=+DVBCPT K X,Y,DIC
  ;if no match, then add record
  I +DVBCPT=0 D  Q
- .;Required elements include:
- .; PARAM("PRFCLTY")=PREFERRED FACILITY
- .; PARAM("NAME")=NAME (last name minimal; recommend full name)
- .; PARAM("GENDER")=SEX
- .; PARAM("DOB")=DATE OF BIRTH
- .; PARAM("SSN")=SOCIAL SECURITY NUMBER OR NULL IF NONE
- .; PARAM("SRVCNCTD")=SERVICE CONNECTED?
- .; PARAM("TYPE")=TYPE
- .; PARAM("VET")=VETERAN (Y/N)?
- .; PARAM("FULLICN")=INTEGRATION CONTROL NUMBER AND CHECKSUM
- .; .301 SERVICE CONNECTED?
- .; .302 SERVICE CONNECTED PERCENTAGE
- .; .314 CLAIM FOLDER LOCATION
- .; .313 CLAIM NUMBER
- .; .323 PERIOD OF SERVICE
- .; .326 SERVICE ENTRY DATE [LAST]
- .; .327 SERVICE SEPARATION DATE [LAST]
- .; .361 PRIMARY ELIGIBILITY CODE
- .; .3611 ELIGIBILITY STATUS
- .; .3612 ELIGIBILITY STATUS DATE
- .; .525 POW STATUS INDICATED?
- .; 1901 VETERAN (Y/N)?
- .; 391 TYPE
- .S PNAM=$TR(PNAM,CM,UP),PNAM=$TR(PNAM,SP,UP)
- .S PARAM("PRFCLTY")=PREF,PARAM("NAME")=PNAM,PARAM("GENDER")=SEX,PARAM("DOB")=DOB
- .S PARAM("SSN")=SSN,PARAM("SRVCNCTD")=SRVCON,PARAM("TYPE")=TYPE,PARAM("VET")=VETST
- .S PARAM("FULLICN")=ICN
- .;
- .S ^XTMP("CAPRI",PNAM,0)=""
- .S ^XTMP("CAPRI",PNAM,"PRFCLTY")=PREF,^XTMP("CAPRI",PNAM,"NAME")=PNAM
- .S ^XTMP("CAPRI",PNAM,"GENDER")=SEX,^XTMP("CAPRI",PNAM,"DOB")=DOB
- .S ^XTMP("CAPRI",PNAM,"SSN")=SSN,^XTMP("CAPRI",PNAM,"SRVCNCTD")=SRVCON
- .S ^XTMP("CAPRI",PNAM,"TYPE")=TYPEPTR,^XTMP("CAPRI",PNAM,"VET")=VETST
- .S ^XTMP("CAPRI",PNAM,"FULLICN")=ICN
- .;
- .; IA 6810
- .D ADD^VAFCPTAD(.RET,.PARAM)
- .I $P(RET(1),"^")'=1 D BULL3^DVBCXFRD S OUT=1 Q
- .S DFN=$P(RET(1),"^",2) S RESLT=$$A24^MPIFA24B(DFN)
+ .K DA,DR,DIC,DO,DD,X,Y S DVBCNEW=1
+ .S DLAYGO=2,DIC="^DPT(",DIC(0)="L",X=PNAM,DIC("DR")=".02////"_SEX_";.03////"_DOB_";.09////"_SSN
+ .D FILE^DICN K DLAYGO S (DFN,DA)=+Y
+ .I DA<0 D BULL3^DVBCXFRD S OUT=1 Q
  .S DGMSGF=1 ;why is this variable needed?
  .D ADDEDIT
  .S DIE="^DPT(",DA=DFN
- .S DR(1,2,1)=".302////"_SRVPCT_";.314////"_CFLOC_";.313////"_CNUM_";.323////"_PDSRV_$S('+$$VFILE^DILFD(2.3216):";.326////"_SRVEDT_";.327////"_SRVSDT,1:"")_";.361////"_ELIGCOD
- .S DR(1,2,2)=".3611////"_ELIGST_";.3612////"_ELIGSDT_";.525////"_POWSTAT
+ .S DR(1,2,1)=".301////"_SRVCON_";.302////"_SRVPCT_";.314////"_CFLOC_";.313////"_CNUM_";.323////"_PDSRV_$S('+$$VFILE^DILFD(2.3216):";.326////"_SRVEDT_";.327////"_SRVSDT,1:"")_";.361////"_ELIGCOD
+ .S DR(1,2,2)=".3611////"_ELIGST_";.3612////"_ELIGSDT_";.525////"_POWSTAT_";1901////"_VETST
+ .S:TYPEPTR]"" DR(1,2,3)="391////"_TYPEPTR
  .D ^DIE
  .;MSE data now to be stored in .3216 subfile in the PATIENT File (2)
  .;after Patch DG*5.3*797 has been installed. Editing of the fields
  .;.326 and .327 above can be removed once DG*5.3*797 has been released.
  .D:((+$$VFILE^DILFD(2.3216))&(SRVEDT]"")) CRTMSE
- .;Set Sensitive Record 
- .I CSPT D
- ..S (X,DINUM)=DFN,DIC(0)="L",DLAYGO=38.1
- ..S DIC("DR")="2///1;3///.5;4///"_$$HTFM^XLFDT($H)
- ..S DIC="^DGSL(38.1,"
- ..D FILE^DICN K DLAYGO
- Q 
- ;
- ;.K DA,DR,DIC,DO,DD,X,Y S DVBCNEW=1
- ;.S DLAYGO=2,DIC="^DPT(",DIC(0)="L",X=PNAM,DIC("DR")=".02////"_SEX_";.03////"_DOB_";.09////"_SSN
- ;.D FILE^DICN K DLAYGO S (DFN,DA)=+Y
- ;.I DA<0 D BULL3^DVBCXFRD S OUT=1 Q
- ;.S DGMSGF=1 ;why is this variable needed?
- ;.D ADDEDIT
- ;.S DIE="^DPT(",DA=DFN
- ;.S DR(1,2,1)=".301////"_SRVCON_";.302////"_SRVPCT_";.314////"_CFLOC_";.313////"_CNUM_";.323////"_PDSRV_$S('+$$VFILE^DILFD(2.3216):";.326////"_SRVEDT_";.327////"_SRVSDT,1:"")_";.361////"_ELIGCOD
- ;.S DR(1,2,2)=".3611////"_ELIGST_";.3612////"_ELIGSDT_";.525////"_POWSTAT_";1901////"_VETST
- ;.S:TYPEPTR]"" DR(1,2,3)="391////"_TYPEPTR
- ;.D ^DIE
- ;.;MSE data now to be stored in .3216 subfile in the PATIENT File (2)
- ;.;after Patch DG*5.3*797 has been installed. Editing of the fields
- ;.;.326 and .327 above can be removed once DG*5.3*797 has been released.
- ;.D:((+$$VFILE^DILFD(2.3216))&(SRVEDT]"")) CRTMSE
- ;Q
+ Q
  ;
 SETVARS ;  ** Add entry to file #396.4 (exam) **
  I REASONS'="" DO
