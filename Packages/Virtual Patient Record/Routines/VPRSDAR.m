@@ -1,5 +1,5 @@
 VPRSDAR ;SLC/MKB -- SDA Radiology utilities ;8/6/18  12:21
- ;;1.0;VIRTUAL PATIENT RECORD;**8**;Sep 01, 2011;Build 87
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -22,25 +22,51 @@ PRE ; -- PreProcessing for VPR RAD ORDER
  K ^TMP($J,"RAE1") D EN1^RAO7PC1(DFN,BEG,END,MAX)
  Q
  ;
-POST ; PostProcessing for VPR RAD ORDER
+POST ; -- PostProcessing for VPR RAD ORDER
  K ^TMP($J,"RAE1",DFN),^TMP($J,"RAE2",DFN)
- K VPRAE1,VPRAE2,RARPT
+ K VPRAE1,VPRAE2,RARPT,RAPROC,ORPK
  Q
  ;
-ONE ; -- ID Processing for each VPR RAD RESULT
+ONE(RAID) ; -- ID Processing for each VPR RAD RESULT (RAID = #75.1 ien)
  ;  Returns VPRAE1 = ^TMP($J,"RAE1",DFN,Exam ID)
  ;          VPRAE2 = $NA(^TMP($J,"RAE2",DFN,caseIEN,procedureName))
  ;          RARPT  = Report #74 IEN
+ ;          RAPROC = Procedure name
+ ;          RAID   = #70.03 IEN string
  ;
- N RAID,PROC
- S RAID=$P(DIEN,",",2)_"-"_$P(DIEN,",")
- ; save exam node
- S VPRAE1=$G(^TMP($J,"RAE1",DFN,RAID)),RARPT=+$P(VPRAE1,U,5)
- ; get report details for exam/case, save array name for reference
- S RAID=DFN_U_$TR(RAID,"-","^")
- D EN3^RAO7PC1(RAID) I '$D(^TMP($J,"RAE2",DFN,+DIEN)) S DDEOUT=1 Q
- S PROC=$O(^TMP($J,"RAE2",DFN,+DIEN,"")),VPRAE2=$NA(^(PROC))
+ N IDT,CASE,EXAM,TYPE
+ S IDT=+$O(^RADPT("AO",+$G(RAID),DFN,0)),CASE=+$O(^(IDT,0))
+ I CASE<1 S DDEOUT=1 Q
+ S EXAM=IDT_"-"_CASE K RARPT
+ ; get [1st] exam node
+ S VPRAE1=$G(^TMP($J,"RAE1",DFN,EXAM)),STS=$P(VPRAE1,U,3)
+ I STS="No Report"!(STS="Deleted")!(STS["Draft")!(STS["Released/Not") S DDEOUT=1 Q
+ S RARPT=+$P(VPRAE1,U,5) I RARPT<1 S DDEOUT=1 Q
+ ; get report details for [1st] exam/case, save array name for reference
+ K ^TMP($J,"RAE2") D EN30^RAO7PC1(RAID)
+ I '$D(^TMP($J,"RAE2",DFN,CASE)) S DDEOUT=1 Q
+ S VPRAE2=$Q(^TMP($J,"RAE2",DFN)),RAID=CASE_","_IDT_","_DFN
+ ; get procedure for DocumentName, list of report iens if examset
+ S TYPE=$G(^TMP($J,"RAE1",DFN,EXAM,"CPRS"))
+ I +TYPE=0 S RAPROC=$P(VPRAE1,U)    ;1 case/report
+ I +TYPE=2 S RAPROC=$P(TYPE,U,2)    ;1 report (print set)
+ I +TYPE=1 S RAPROC=$P(TYPE,U,2) D  ;exam set
+ . N RAE1,RPT S RARPT(CASE)=RARPT_";RA"
+ . F  S CASE=$O(^TMP($J,"RAE2",DFN,CASE)) Q:CASE<1  D
+ .. S EXAM=IDT_"-"_CASE
+ .. S RAE1=$G(^TMP($J,"RAE1",DFN,EXAM)),STS=$P(RAE1,U,3)
+ .. Q:STS="No Report"!(STS="Deleted")!(STS["Draft")!(STS["Released/Not")
+ .. S RPT=+$P(RAE1,U,5) S:RPT RARPT(CASE)=RPT_";RA"
  Q
+ ;
+ABN() ; -- return "A" if any report for exam(s) is abnormal, else null
+ N X,Y,CASE S Y=""
+ I $D(RARPT)<9 D  Q Y
+ . S Y=$S($P(VPRAE1,U,4)="Y":"A",$P(VPRAE1,U,9)="Y":"A",1:"")
+ S CASE=0 F  S CASE=$O(^TMP($J,"RAE2",DFN,CASE)) Q:CASE<1  D  Q:$L(Y)
+ . S X=$Q(^TMP($J,"RAE2",DFN,CASE))
+ . S:$P(@X,U,2)="Y" Y="A"
+ Q Y
  ;
  ; -- for Documents container:
  ;
@@ -59,6 +85,11 @@ RPTS ; -- find patient's radiology reports
  Q
  ;
 RPT1 ; -- ID Processing for each VPR RAD REPORT
+ ;  Returns VPRXID = Exam-Case ID
+ ;          VPRAE2 = $NA(^TMP($J,"RAE2",DFN,caseIEN,procedureName))
+ ;          VPRAE3 = $NA(^TMP($J,"RAE3",DFN,caseIEN,procedureName))
+ ;          RAPROC = Procedure name
+ ;
  N RA0,X
  S VPRXID=$P(DIEN,"~",2),DIEN=+$P(DIEN,"~")
  S RA0=$G(^RARPT(DIEN,0)) S:DFN<1 DFN=+$P(RA0,U,2)
@@ -68,11 +99,12 @@ RPT1 ; -- ID Processing for each VPR RAD REPORT
  I $L(VPRXID,"-")<2 S DDEOUT=1 Q
  S X=DFN_U_$TR(VPRXID,"-","^") D
  . N DFN,RACNT,RAMDIV,RAWHOVER,RAPRTSET
+ . K ^TMP($J,"RAE2"),^TMP($J,"RAE3")
  . D EN3^RAO7PC1(X),EN3^RAO7PC3(X)
  S VPRAE2=$Q(^TMP($J,"RAE2",DFN)),VPRAE3=$Q(^TMP($J,"RAE3",DFN))
- ; get ordered procedure for document name
- S RAPROC=$G(^TMP($J,"RAE3",DFN,"ORD"))
- I RAPROC="" S RAPROC=$G(^TMP($J,"RAE3",DFN,"ORD",$P(VPRXID,"-",2)))
+ ; get [ordered] procedure for document name
+ I $D(^TMP($J,"RAE3",DFN,"PRINT_SET")) S RAPROC=$G(^("ORD"))
+ E  S RAPROC=$QS(VPRAE3,5)
  Q
  ;
 VNUM(DFN,EXAMID) ; -- return Visit# for patient, examID

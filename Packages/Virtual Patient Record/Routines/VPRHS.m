@@ -1,15 +1,18 @@
 VPRHS ;SLC/MKB -- HealthShare utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8**;Sep 01, 2011;Build 87
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; DDE
- ; DICN                         10009
- ; DIK                          10013
+ ; ^DDE                          7014
+ ; ^DGS(41.1                     3796
+ ; ^DPT                         10035
+ ; %ZTLOAD                      10063
+ ; DDE                           7008
  ; MPIF001                       2701
  ; SDAMA301                      4433
  ; XLFDT                        10103
+ ; XLFSTR                       10104
  ;
  Q
  ;
@@ -18,16 +21,18 @@ ON() ; -- return 1 or 0, if monitoring is on
  ;
 EN(DFN) ; -- subscribe a patient for data event monitoring
  Q:'$G(DFN)  Q:$D(^VPR(1,2,+DFN,0))
- N X,Y,DA,DIC,DINUM
- S DIC="^VPR(1,2,",DIC(0)="UL",DA(1)=1,(DINUM,X)=+DFN
- D FILE^DICN
+ S ^VPR(1,2,+DFN,0)=+DFN,^VPR(1,2,"B",+DFN,+DFN)=""
+ ;N X,Y,DA,DIC,DINUM
+ ;S DIC="^VPR(1,2,",DIC(0)="UL",DA(1)=1,(DINUM,X)=+DFN
+ ;D FILE^DICN
  Q
  ;
 UN(DFN) ; -- unsubscribe
  Q:'$G(DFN)  Q:'$D(^VPR(1,2,+DFN,0))
- N DA,DIK
- S DA(1)=1,DA=+DFN,DIK="^VPR(1,2,"
- D ^DIK
+ K ^VPR(1,2,+DFN,0),^VPR(1,2,"B",+DFN,+DFN)
+ ;N DA,DIK
+ ;S DA(1)=1,DA=+DFN,DIK="^VPR(1,2,"
+ ;D ^DIK
  Q
  ;
 SUBS(DFN) ; -- return 1 or 0, if patient is subscribed or not
@@ -95,7 +100,7 @@ GET(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
  S VPRFN=0 F  S VPRFN=$O(^DDE("SDA",VPRNM,VPRFN)) Q:VPRFN<1  D
  . S VPRE=$O(^DDE("SDA",VPRNM,VPRFN,0)) K @VPRX
  . D:VPRE GET^DDE(VPRE,,.VPRQ,MTYPE,.VPRMAX,.VPRX,.VPRR)
- . Q:'$D(VPRX)  Q:@VPRX@(0)'>0
+ . Q:'$D(VPRX)  Q:+$G(@VPRX@(0))'>0
  . S VPRN=0 F  S VPRN=$O(@VPRX@(VPRN)) Q:VPRN<1  S VPRI=VPRI+1,@VPRY@(VPRI)=@VPRX@(VPRN)
  K @VPRX
  Q

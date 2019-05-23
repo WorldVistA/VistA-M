@@ -1,5 +1,5 @@
-VPRSDAQ ;SLC/MKB -- SDA queries ;11/8/18  14:11
- ;;1.0;VIRTUAL PATIENT RECORD;**8**;Sep 01, 2011;Build 87
+VPRSDAQ ;SLC/MKB -- SDA queries ;3/28/19  14:09
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -10,7 +10,7 @@ VPRSDAQ ;SLC/MKB -- SDA queries ;11/8/18  14:11
  ; ^DIC(9.4                     10048
  ; ^LR                            525
  ; ^OR(100                       5771
- ; ^ORD(100.98                    873
+ ; ^ORD(100.98                   6982
  ; ^PXRMINDX                     4290
  ; ^SC                          10040
  ; ^WV(790.05                    5772
@@ -20,18 +20,17 @@ VPRSDAQ ;SLC/MKB -- SDA queries ;11/8/18  14:11
  ; DIQ                           2056
  ; GMPLUTL2                      2741
  ; GMRADPT                      10099
- ; GMRCSLM1                      2740
- ; GMRVUT0, ^UTILITY($J          1446
+ ; GMRCSLM1, ^TMP("GMRCR",$J)    2740
+ ; GMRVUT0, ^UTILITY($J)         1446
  ; IBBAPI                        4419
- ; LR7OR1                        2503
- ; ORQ1                          3154
+ ; ICDEX                         5747
+ ; LR7OR1, ^TMP("LRRR",$J)       2503
+ ; MDPS1,^TMP("MDHSP",$J)        4230
+ ; ORQ1, ^TM("ORR",$J)           3154
  ; RMIMRP                        4745
- ; SDAM301                       4433
+ ; SDAMA301, ^TMP($J)            4433
  ; SROESTV                       3533
- ; TIUCP                         3568
- ; TIUPP3                        2864
- ; TIUSROI                       5676
- ; TIUSRVLO                      2865
+ ; TIUPP3, ^TMP("TIUPPCV",$J)    2864
  ; TIUVPR                        6077
  ; VADPT2                         325
  ; XLFDT                        10103
@@ -49,7 +48,8 @@ PROBLEMS ; -- Problem List
  Q
  ;
 ALLERGYS ; -- Allergies/Adverse Reactions
- N GMRA,VPRN,ID S VPRN=0
+ N GMRA,VPRN,ID
+ S VPRN=0,GMRA="0^0^111^0^1"
  I $L($T(EN2^GMRADPT)) D EN2^GMRADPT I 1
  E  D EN1^GMRADPT
  I 'GMRAL Q  ;D NKA^VPRDJ02 Q
@@ -137,7 +137,8 @@ LRMI ; -- LR Microbiology reports [expects LRDFN]
 ORDERS(DG) ; -- Orders by Display Group
  N ORDG,ORIGVIEW,ORKID,ORLIST,VPRI,VPRN,ORDER,X3,X4
  S DG=$G(DG,"ALL"),ORDG=+$O(^ORD(100.98,"B",DG,0))
- S ORIGVIEW=2,ORKID=$S(DG="CH":1,1:0) ;original view, lab child orders
+ ; return original view, child orders for Lab
+ S ORIGVIEW=2,ORKID=$S(DG="CH":1,DG="LAB":1,1:0)
  D EN^ORQ1(DFN_";DPT(",ORDG,6,,DSTRT,DSTOP,,,,ORKID) S VPRN=0
  S VPRI=0 F  S VPRI=$O(^TMP("ORR",$J,ORLIST,VPRI)) Q:VPRI<1  S ORDER=$G(^(VPRI)) D  Q:VPRN'<DMAX
  . I $P($P(ORDER,U),";",2)>1 Q  ;skip order actions
@@ -146,6 +147,7 @@ ORDERS(DG) ; -- Orders by Display Group
  . Q:$P(X3,U,3)=13  I X4["P",$P(X3,U,3)=1!($P(X3,U,3)=12) Q  ;cancelled
  . Q:$P(X3,U,3)=14              ;lapsed
  . I DG="RX",'$$RX(ORDER) Q     ;skip non-PS in RX group
+ . I DG="LAB",$$BB(ORDER) Q     ;skip blood bank in Lab
  . S VPRN=VPRN+1,DLIST(VPRN)=ORDER
  K ^TMP("ORR",$J)
  Q
@@ -154,6 +156,12 @@ RX(ORIFN) ; -- is order really a med? (non-PS order in display group)
  N X,Y,PKG S Y=0
  S X=$P($G(^OR(100,+$G(ORIFN),0)),U,14),PKG=$$GET1^DIQ(9.4,+X_",",1)
  I $E(PKG,1,2)="PS" S Y=1
+ Q Y
+ ;
+BB(ORIFN) ; -- return 1 or 0, if order is for Blood Bank
+ N X,Y,DG S Y=0
+ S X=$P($G(^OR(100,+$G(ORIFN),0)),U,11),DG=$P($G(^ORD(100.98,+X,0)),U,3)
+ I DG="BB"!(DG?1"VB".E) S Y=1
  Q Y
  ;
 NONORD ; -- Other orders: not Lab, Rad, or Med
@@ -198,7 +206,9 @@ CPROCS ; -- Clinical Procedures
 SURGERYS ; -- Surgeries
  N VPRY,VPRN
  D LIST^SROESTV(.VPRY,DFN,DSTRT,DSTOP,DMAX,1)
- S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  S DLIST(VPRN)=+$G(@VPRY@(VPRN))
+ S VPRN=0 F  S VPRN=$O(@VPRY@(VPRN)) Q:VPRN<1  D
+ . Q:'$O(@VPRY@(VPRN,0))  ;no documents yet (so no enc#)
+ . S DLIST(VPRN)=+$G(@VPRY@(VPRN))
  K @VPRY
  Q
  ;
@@ -272,9 +282,9 @@ VITALS ; -- GMR Vital Measurements
  D EN1^GMRVUT0 S VPRN=0
  S VPRIDT=0 F  S VPRIDT=$O(^UTILITY($J,"GMRVD",VPRIDT)) Q:VPRIDT<1  D  Q:VPRN'<DMAX
  . S VPRTYP="" F  S VPRTYP=$O(^UTILITY($J,"GMRVD",VPRIDT,VPRTYP)) Q:VPRTYP=""  D
- .. S ID=$O(^UTILITY($J,"GMRVD",VPRIDT,VPRTYP,0)) D
- ... S VPRN=VPRN+1,DLIST(VPRN)=ID
- ... S ^TMP("VPRGMV",$J,ID)=$G(^UTILITY($J,"GMRVD",VPRIDT,VPRTYP,ID))
+ .. S ID=$O(^UTILITY($J,"GMRVD",VPRIDT,VPRTYP,0)) Q:'ID
+ .. S VPRN=VPRN+1,DLIST(VPRN)=ID
+ .. S ^TMP("VPRGMV",$J,ID)=$G(^UTILITY($J,"GMRVD",VPRIDT,VPRTYP,ID))
  K ^UTILITY($J,"GMRVD")
  Q
  ;
@@ -298,12 +308,6 @@ SCHADMS ; -- Scheduled Admissions
  . Q:$P(VPRX,U,13)  ;Q:$P(VPRX,U,17)     ;cancelled or admitted
  . S VPRN=VPRN+1,DLIST(VPRN)=VPRA
  Q
- ;
-CLNPRV(HLOC) ; -- get default provider for a clinic
- N I,X,Y
- S I=+$O(^SC("ADPR",+HLOC,0)),Y=""
- S:I Y=+$G(^SC(+HLOC,"PR",I,0))
- Q Y
  ;
 INS ; -- Insurance
  N NUM,I,VPRDT,VPRSTS,VPRX

@@ -1,20 +1,23 @@
 VPRSDA ;SLC/MKB -- SDA utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8**;Sep 01, 2011;Build 87
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^AUPNPROB                     5703
  ; ^AUPNVSIT                     2028
+ ; ^DDE                          7008
  ; ^DGPM                         1865
  ; ^DIC(42                      10039
  ; ^DPT                         10035
+ ; ^LAB(60                      10054
  ; ^LR                            525
  ; ^OR(100                       5771
- ; ^ORD(100.98                    873
+ ; ^ORD(100.98                   6982
+ ; ^ORD(101.43                   2843
  ; ^SC                          10040
- ; ^SCE                          2045
- ; ^SRF                     3615,5675
+ ; ^SCE("AVSIT"                  2045
+ ; ^SRF                          5675
  ; ^TIU(8925.1                   5677
  ; %DT                          10003
  ; DILFD                         2055
@@ -22,16 +25,21 @@ VPRSDA ;SLC/MKB -- SDA utilities ;10/25/18  15:29
  ; ETSLNC                        6731
  ; ETSRXN                        6758
  ; GMRCGUIB                      2980
+ ; GMRVUT0, ^UTILITY($J          1446
  ; GMVGETVT                      5047
  ; GMVUTL                        5046
  ; ICDEX                         5747
  ; LEXTRAN                       4912
- ; LR7OSUM                       2766
+ ; LR7OSUM, ^TMP("LR"*,$J        2766
+ ; LR7OU1                        2955
  ; LRPXAPIU                      4246
- ; PXAPI                         1894
+ ; ORX8                          3071
+ ; PXAPI, ^TMP("PXKENC",$J       1894
  ; RMIMRP                        4745
- ; SDAM301                       4433
+ ; SCAPMC                        1916
+ ; SDAMA301, ^TMP($J             4433
  ; SDOE                          2546
+ ; SDUTL3                        1252
  ; TIULQ                         2693
  ; VADPT                        10061
  ; XLFNAME                       3065
@@ -50,8 +58,10 @@ DATE(X,DTO) ; -- return FM date X as SDA date
  I $G(DTO) Q Y  ;date only
  ; validate T = time
  I T=24 S T=235959 ;for SDA
- S:$L(T)<6 T=$E((T_"000000"),1,6)
- I $E(T,5,6)>59 S $E(T,5,6)="00" ;strip invalid seconds
+ S:$L(T)<6 T=$E((T_"000000"),1,6)  ;pad the time to 6 digits
+ I $E(T,1,2)>23 S T="000000"       ;invalid hours >> remove time
+ I $E(T,3,4)>59 S $E(T,3,6)="0000" ;strip invalid minutes/seconds
+ I $E(T,5,6)>59 S $E(T,5,6)="00"   ;strip invalid seconds
  S Y=Y_"T"_$E(T,1,2)_":"_$E(T,3,4)_":"_$E(T,5,6)
  ; time zone?
  Q Y
@@ -173,14 +183,20 @@ AD(ID) ; -- get info for one Adv Directive
  ;
 TIULNC(IEN) ; -- convert 8925.1 IEN to 8926.1 IEN
  ;  Returns   DATA = code ^ [description] ^ system
- ; Optional TIUTTL = local title name
+ ;          TIUTTL = local title name
  N TIUNATL S IEN=+$G(IEN),DATA=""
- S TIUNATL=+$G(^TIU(8925.1,IEN,15))
+ ; VPRNATL set in VPR DOCUMENT EXTENSION
+ S TIUNATL=$S($G(VPRNATL):VPRNATL,1:+$G(^TIU(8925.1,IEN,15)))
+ S TIUTTL=$P($G(^TIU(8925.1,IEN,0)),U)
  ; if no national mapping, return local title
- I 'TIUNATL S DATA=IEN_U_$P($G(^TIU(8925.1,IEN,0)),U)_"^VA8925.1" Q
+ I 'TIUNATL D  Q
+ . I $P(TIUTTL," ")="LR" D  Q:$L(DATA)
+ .. N TTL S TTL=$E($P(TIUTTL," ",2),1,2)
+ .. S DATA=$S(TTL="AU":"18743-5^AUTOPSY REPORT",TTL="CY":"26438-2^CYTOLOGY STUDIES",TTL="EL":"50668-3^MICROSCOPY STUDIES",TTL="SU":"27898-6^PATHOLOGY STUDIES",1:"")
+ .. I $L(DATA) S DATA=DATA_"^LOINC" Q
+ . S DATA=IEN_U_TIUTTL_"^VA8925.1"
  ; get LOINC or VUID
- S TIUTTL=$P($G(^TIU(8925.1,IEN,0)),U),IEN=TIUNATL
- S DATA=$$CODE(IEN,8926.1,"LNC")
+ S IEN=TIUNATL,DATA=$$CODE(IEN,8926.1,"LNC")
  I DATA="" S DATA=$$VUID^VPRD(IEN,8926.1) S:DATA DATA=DATA_"^^VHAT"
  ; else default = 8926.1 ien as per usual
  Q
@@ -201,6 +217,20 @@ TIUSIG() ; -- return date of authorization
  I $G(VPRTIU(DIEN,1501,"I")) S Y=VPRTIU(DIEN,1501,"I") ;Signed
  I $G(VPRTIU(DIEN,1507,"I")) S Y=VPRTIU(DIEN,1507,"I") ;Co-signed
  I $G(VPRTIU(DIEN,1606,"I")) S Y=VPRTIU(DIEN,1606,"I") ;Admin Closure
+ Q Y
+ ;
+TIUCOMP(IEN,STS) ; -- return 1 or 0, if document is complete
+ S IEN=+$G(IEN) I IEN<1 Q ""
+ S STS=+$G(STS) I STS<1 D
+ . N VPRTIU D EXTRACT^TIULQ(IEN,"VPRTIU",,.05,,,"I")
+ . S STS=+$G(VPRTIU(IEN,.05,"I"))
+ N Y S Y=$S(STS=7:1,STS=8:1,1:0)
+ Q Y
+ ;
+LRTIU(IDT,SUB) ; -- return TIU ien of lab report
+ N I,IEN,X,Y S IDT=$G(IDT),SUB=$G(SUB)
+ S Y=IDT_";"_SUB
+ S I=0 F  S I=$O(^LR(LRDFN,SUB,IDT,.05,I)) Q:I<1  S IEN=+$P($G(^(I,0)),U,2),X=+$$GET1^DIQ(8925,IEN,.05,"I") I (X=7)!(X=8) S Y=IEN_";TIU" Q
  Q Y
  ;
 LRAP1(ID) ; -- parse ID for AP,MI report
@@ -224,15 +254,41 @@ LRPT(SUB,IDT) ; -- return report text in WP(), expects DFN
  K ^TMP("LRC",$J),^TMP("LRH",$J),^TMP("LRT",$J)
  Q
  ;
+LRSLT ; -- get Entity for LabOrder Result
+ ; Returns ENTITY, VPRSUB, DATA
+ S:'$D(ORPK) ORPK=$$PKGID^ORX8(DIEN)
+ I $L(ORPK,";")<5 S DDEOUT=1 Q  ;no results yet
+ S VPRSUB=$P(ORPK,";",4),VALUE=$P(ORPK,";",5)_","_+$G(LRDFN)
+ S ENTITY="VPR LR"_VPRSUB_" RESULT"
+ S ENTITY=+$O(^DDE("B",ENTITY,0)) I ENTITY<1 S DDEOUT=1 Q
+ S DATA=+$P($G(ORIT),U,3) ;#60 ien ordered
+ Q
+ ;
 LRDFN(ORIFN) ; -- set up LRDFN for Lab Order
  I 'DFN,$G(ORIFN) S DFN=+$$GET1^DIQ(100,+ORIFN_",",.02,"I")
  S LRDFN=$$LRDFN^LRPXAPIU(DFN)
+ Q
+ ;
+LRCH(TEST) ; -- builds DLIST(#) of result nodes for TEST
+ ; called from ResultItems in VPR LRCH RESULT, expects DIEN
+ N T,X S TEST=+$G(TEST)
+ D EXPAND^LR7OU1(TEST,.DLIST)
+ S T=0 F  S T=$O(DLIST(T)) Q:T<1  D
+ . S X=$P($G(^LAB(60,T,0)),U,3) I X'="O",X'="B" Q  ;not displayable
+ . ; DLIST(60 ien) = CH data node#,LRIDT,LRDFN
+ . S DLIST(T)=$$LRDN^LRPXAPIU(T)_","_DIEN
  Q
  ;
 ORDG(DG) ; -- return ien^name^VA100.98 for a DG abbreviation
  N X,Y S X=$O(^ORD(100.98,"B",DG,0)),Y=""
  S:X Y=X_U_$P(^ORD(100.98,X,0),U)_"^VA100.98"
  Q Y
+ ;
+LRDG(DG) ; -- convert DG to section, if generic LAB
+ Q:$P($G(^ORD(100.98,+$G(DG),0)),U,3)'="LAB"  ;ok
+ N X,Y S X=$P($G(^ORD(101.43,+$G(ORIT),"LR")),U,6),Y=0
+ I X'="" S Y=$O(^ORD(100.98,"B",X,0)) S:Y DG=Y
+ Q
  ;
 WARDFAC(IEN) ; -- return #4 ien for a Ward Location
  N HLOC,Y
@@ -347,10 +403,12 @@ SRPTS(IEN) ; -- put Op Reports into DLIST(#) = TIU ien
  Q
  ;
 SRF(IEN) ; -- procedure
- N SROP,X
- S X=$P(VPRSR(IEN),U,2),SROP=$G(^SRF(IEN,"OP"))
+ N X,SROP
+ S X=$P(VPRSR(IEN),U,2)
  ; Use CPT ien if defined
- I $P(SROP,U,2) S VALUE=$$CPT^VPRDSR($P(SROP,U,2))_"^CPT-4",DATA=X Q
+ S SROP=$$GET1^DIQ(136,IEN_",",.02,"I")
+ S:'SROP SROP=$P($G(^SRF(IEN,"OP")),U,2)
+ I SROP S VALUE=$$CPT^VPRDSR(SROP)_"^CPT-4",DATA=X Q
  ; else use procedure name
  S VALUE=X_U_X
  Q
@@ -358,8 +416,17 @@ SRF(IEN) ; -- procedure
 VIT1(IEN) ; -- get info for one Vital measurement, returns VPRGMV
  S IEN=$G(IEN) I IEN="" S DDEOUT=1 Q
  D GETREC^GMVUTL(.VPRV,IEN,1)
- S VPRGMV=$G(^TMP("VPRGMV",$J,IEN)) I VPRGMV="" S VPRGMV=$G(VPRV(0))
+ S VPRGMV=$G(VPRV(0)) I '$G(VPRV(0)) S DDEOUT=1 Q
  S VPRTYPE=$$FIELD^GMVGETVT(+$P(VPRGMV,U,3),2)
+ I VPRTYPE="WT" D  ;get BMI for weight record
+ . I $G(^TMP("VPRGMV",$J,IEN)) S $P(VPRGMV,U,14)=$P(^(IEN),U,14) Q
+ . ; get BMI from query array if available, else call GMRVUT0
+ . N GMRVSTR,DFN,IDT,BMI
+ . S GMRVSTR=VPRTYPE,GMRVSTR(0)=+VPRGMV_U_+VPRGMV_"^1^1",DFN=+$P(VPRGMV,U,2)
+ . D EN1^GMRVUT0 S IDT=9999999-(+VPRGMV)
+ . S BMI=$P($G(^UTILITY($J,"GMRVD",IDT,VPRTYPE,IEN)),U,14)
+ . S:BMI'="" $P(VPRGMV,U,14)=BMI
+ . K ^UTILITY($J,"GMRVD")
  S VPRANGE=$$RANGE^VPRDGMV(VPRTYPE)
  Q
  ;
