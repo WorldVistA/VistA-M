@@ -1,6 +1,6 @@
 IBCRHL ;ALB/ARH - RATES: UPLOAD CHECK & ADD TO CM SEARCH ; 22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,106,138,245**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,106,138,245,634**;21-MAR-94;Build 57
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; check data in XTMP files to see if it can be loaded into the Charge Master
  ; file checks: Charge Set and Billable Items defined and match
@@ -82,8 +82,8 @@ CHECKS ;
  . ;
  . S IBY=$$CHKDUP^IBCRHU1(IBCS,IBLN,+$G(ADD)) I +IBY S:+IBY=2 IBDUP=IBDUP+1 D:+IBY'=2 SETL(IBY) S:+IBY<2 IBERR=IBERR+1 Q
  . ;
- . I +$G(ADD),'IBY D
- .. I $$ADDCI^IBCREF(IBCS,IBITM,$P(IBLN,U,2),+$P(IBLN,U,4),"",$P(IBLN,U,5),$P(IBLN,U,3),$P(IBLN,U,6)) S IBADD=IBADD+1
+ . I +$G(ADD),'IBY D 
+ .. I $$ADDCI^IBCREF(IBCS,IBITM,$P(IBLN,U,2),+$P(IBLN,U,4),$S($$RVCD(IBSUB,IBITM):124,1:""),$P(IBLN,U,5),$P(IBLN,U,3),$P(IBLN,U,6)) S IBADD=IBADD+1
  ;
  I +IBCNT,$G(^TMP($J,FILE,IBSUB))="" D  D SETF(IBY)
  . S IBZ=((IBERR/IBCNT)*100)
@@ -92,6 +92,13 @@ CHECKS ;
  . I +$G(ADD),+IBINAC S IBY=IBY_IBINAC_" charges items inactivated,  "
  . I +$G(ADD) S IBY=IBY_IBADD_" entries added to the Charge Set "_$P($G(^IBE(363.1,+IBCS,0)),U,1)_"."
  Q
+ ;
+RVCD(IBSUB,IBITM) ; *634 - assign Revenue Code #124 to 5 ms-drg charges
+ ; Input: subfile, charge item
+ ; Output: 0 or 1 
+ N IBMHDG S IBMHDG=0
+ I IBSUB="Inpt PD R&B",$F("^881^882^883^885^886^",(U_IBITM_U)) S IBMHDG=1
+ Q IBMHDG
  ;
 SETF(ERROR) ;
  S ^TMP($J,FILE,IBSUB)=ERROR
