@@ -1,5 +1,5 @@
 MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;FEB 23, 2017
- ;;1.0;Scheduling Calendar View;**1,4,5**;Feb 13, 2015;Build 6
+ ;;1.0;Scheduling Calendar View;**1,4,5,7**;Feb 13, 2015;Build 16
  ;
  ;This routine has multiple RPCs created to support the mobile Scheduling apps
  ;
@@ -12,8 +12,10 @@ MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;FEB 23, 2017
  ;  4433 SDAMA301
  ;
  ;Cancel an Appointment
-CANCEL(RV,DFN,SC,SD,TYPE,RSN,RMK) ; SD APPOINTMENT CANCEL MBAA RPC: MBAA CANCEL APPOINTMENT
- N STATUS,RESULT,ROUTC S STATUS=$$CANCEL1(.RESULT,DFN,SC,SD,TYPE,RSN,RMK)  ;alb/sat 4 - existing ROUTC needs to be Newed
+CANCEL(RV,DFN,SC,SD,TYPE,RSN,RMK) ; SD APPOINTMENT CANCEL 
+ ; MBAA RPC: MBAA CANCEL APPOINTMENT
+ N STATUS,RESULT
+ S STATUS=$$CANCEL1(.RESULT,DFN,SC,SD,TYPE,RSN,RMK)
  ;D MERGE^MBAAMRPC(.RV,.RESULT)
  S RV=$G(RESULT(0)) ; MBAA*1*5 - Return error text with error code
  Q
@@ -48,24 +50,38 @@ CHKCAN(RETURN,DFN,SC,SD) ; Verify cancel MBAA RPC: MBAA CANCEL APPOINTMENT
  K APT N RET,TXT,%   ;alb/sat 4 - existing TXT needs to be Newed
  S RETURN=0
  I '$D(^DPT(DFN,"S",SD)) S RETURN="APTNTSCH" Q RETURN ; patient doesn't have an appointment at the requested time  ;ICR#: 6053 DPT
- S ROUTC=1
+ ;
  D GETAPTS^MBAAMDA2(.APT,DFN,.SD)
+ ;
  I APT("APT",SD,"STATUS")["C" D  S RETURN="APTCAND" Q RETURN ; Appointment already canceled.
  . D ERRX^MBAAAPIE(.RETURN,"APTCAND")
+ ;
  I $$ISAPTCO^MBAAMAP4(,DFN,SD) D  S RETURN="APTCCHO" Q RETURN ; Appointment has a check out date and can't be canceled - MBAA*1*5
  . D ERRX^MBAAAPIE(.RETURN,"APTCCHO")
+ ;
  S %=$$CLNRGHT^MBAAMAP1(.RET,+SC)
  I RET=0 D  S RETURN="APTCRGT" Q RETURN ; Appointment not cancelled. Access to this clinic to this clinic is restricted to only priv. users - MBAA*1*5
  . S TXT(1)=RET("CLN"),TXT(2)=$C(10)
  . D ERRX^MBAAAPIE(.RETURN,"APTCRGT",.TXT)
+ ;
  I '$$CHKSPC(.STAT,DFN,SD) D  S RETURN="APTCNPE" Q RETURN ; This appointment can't be canceled - MBAA*1*5
  . D ERRX^MBAAAPIE(.RETURN,"APTCNPE",.TXT)
+ ;
+ ; OK if you made it this far
  S RETURN=1
+ ;
  Q RETURN
+ ;
 CHKSPC(RETURN,DFN,SD) ; Check if status permit cancelation, MBAA RPC: MBAA CANCEL APPOINTMENT
+ ;INPUT: RETURN -Looks like flag of 1 or 0 is RETURNed here and by the function
+ ;       DFN - Patient IEN
+ ;       SD - Date/Time of appointment
  N APT0,STATUS,IND,STAT,STATS
  S RETURN=0
+ ;
+ ; get appointment 0 node
  S APT0=$$GETAPT0^MBAAMDA2(DFN,SD)
+ ;
  ;T13 Change to use SDAMA301 API
  K R1 D STATUS^MBAARPC1(.R1,DFN,SD,+$G(APT0)) S STATUS=+R1 K R1  ;ICR 4433
  ;S STATUS=+$$STATUS^SDAM1(DFN,SD,+$G(APT0),$G(APT0))  ;ICR#: 2851 MBAA ACCESS TO SDAM1 API get appointment status
@@ -74,8 +90,10 @@ CHKSPC(RETURN,DFN,SD) ; Check if status permit cancelation, MBAA RPC: MBAA CANCE
  S IND=0
  F  S IND=$O(STATS(IND)) Q:IND=""!(RETURN=1)  D
  . I STATS(IND,"ID")=STATUS S RETURN=1 Q
+ ;
  S RETURN=$G(RETURN)
  Q RETURN
+ ;
  ;Line Tags CLNDATA, RECALL, DELETE, CHK, NEWEWL, WFCK, ENRCHK, REQBY is commented out due to the functionality being descoped from the first release
  ;CLNDATA(RETURN,CLINICID) ; returns additional clinic data MBAA ADDITIONAL CLINIC DETAILS
  ; Input: CLINICID - IEN for the Clinic in the Hospital Location file (#44)

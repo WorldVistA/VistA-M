@@ -1,5 +1,5 @@
 MBAAMAP2 ;OIT-PD/VSL - APPOINTMENT API ;FEB 23, 2017
- ;;1.0;Scheduling Calendar View;**1,4,5**;May 5, 2015;Build 6
+ ;;1.0;Scheduling Calendar View;**1,4,5,7**;May 5, 2015;Build 16
  ;
  ;Associated ICRs
  ;  ICR#
@@ -32,15 +32,60 @@ CHKAPP(RETURN,SC,DFN,SD,LEN,LVL) ; Check make appointment Called by RPC MBAA APP
  S:SDEDT'>0 SDEDT=365
  S X2=SDEDT D C^%DTC S SDEDT=X
  I $P(SD,".")'<SDEDT S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTEXCD") Q 0
+ ;
  ;check if patient has an active appointment on the same time
- D GETAPTS^MBAAMDA2(.APT,DFN,SD)
- I $D(APT),APT("APT",SD,"STATUS")'["C"  D
+ ;
+ ;WCJ;MBAA*1*7;Need to expand to check for overlaps beyond starting at the exact same time
+ ;check if new appointment + LEN crosses an appointment on file (that isn't cancelled) and
+ ;check if appointments on file (that isn't cancelled) + duration crosses the appointment we are trying to book
+ ;
+ ; first, get the appointments for the day
+ D GETAPTS^MBAAMDA2(.APT,DFN,$P(SD,"."))
+ ;
+ ; Then check if new one plus its length crosses another appointment already scheduled.
+ ; Add LENgth of new appointment to the starting time of new appoinment to get the appointment end time.
+ ; can they have an 60 minute at 8 and another appt at 9 ???
+ ; assuming they can for now and subtracting a second will allow that.
+ N LOOPSD,APPTEND
+ S APPTEND=$$FMADD^XLFDT(SD,0,0,LEN,-1)
+ ;
+ ; Loop thru appointments on file starting with the start time of the new appointment (minus a second)
+ ; Quit when the start time of existing appointment > end time of new one since more overlaps not possible
+ ; If there is an appointment in between which is not cancelled, we (royal one) have an issue
+ S LOOPSD=$$FMADD^XLFDT(SD,0,0,0,-1)  ; subtract a second to catch ones with exact same start time
+ F  S LOOPSD=$O(APT("APT",LOOPSD)) Q:LOOPSD>APPTEND!('+LOOPSD)  I APT("APT",LOOPSD,"STATUS")'["C" D  Q
  . ;MBAA*1*5 - use clinic of existing appointment
- . N SC1 S SC1=$P($G(APT("APT",SD,"CLINIC")),U) Q:'SC1
- . S %=$$GETSCAP^MBAAMAP1(.CAPT,SC1,DFN,SD) Q:'$D(CAPT)
+ . N SC1 S SC1=$P($G(APT("APT",LOOPSD,"CLINIC")),U) Q:'SC1
+ . S %=$$GETSCAP^MBAAMAP1(.CAPT,SC1,DFN,LOOPSD) Q:'$D(CAPT)
  . S TXT(1)="("_CAPT("LENGTH")_" MINUTES)"
- . S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTPAHA",.TXT,2)
+ . S RETURN=0
+ . D ERRX^MBAAAPIE(.RETURN,"APTPAHA",.TXT,2)
  Q:RETURN=0 0
+ ;
+ ; Now check if an existing appointment plus its length crosses this new one.
+ ; going back 1 day to start.  probably overkill - if max length of an appointment is a thing, we could go back that far.
+ S LOOPSD=$$FMADD^XLFDT(SD,-1,0,0,0)
+ F  S LOOPSD=$O(APT("APT",LOOPSD)) Q:LOOPSD>APPTEND!('+LOOPSD)  I APT("APT",LOOPSD,"STATUS")'["C" D  Q:RETURN=0
+ . ;MBAA*1*5 - use clinic of existing appointment
+ . N SC1 S SC1=$P($G(APT("APT",LOOPSD,"CLINIC")),U) Q:'SC1
+ . S %=$$GETSCAP^MBAAMAP1(.CAPT,SC1,DFN,LOOPSD)
+ . Q:'+$G(CAPT("LENGTH"))  ; can't check for overlaps without length so assume it's cool
+ . Q:'($$FMADD^XLFDT(LOOPSD,0,0,+$G(CAPT("LENGTH")),-1)>SD)  ; check if existing start + length - 1 sec > new appt start
+ . S TXT(1)="("_CAPT("LENGTH")_" MINUTES)"
+ . S RETURN=0
+ . D ERRX^MBAAAPIE(.RETURN,"APTPAHA",.TXT,2)
+ Q:RETURN=0 0
+ ;
+ ; left the old check for now, just in case
+ ; Check if patient has an appointment that starts exactly at the same time that hasn't been cancelled
+ ;I $D(APT),APT("APT",SD,"STATUS")'["C"  D
+ ;. ;MBAA*1*5 - use clinic of existing appointment
+ ;. N SC1 S SC1=$P($G(APT("APT",SD,"CLINIC")),U) Q:'SC1
+ ;. S %=$$GETSCAP^MBAAMAP1(.CAPT,SC1,DFN,SD) Q:'$D(CAPT)
+ ;. S TXT(1)="("_CAPT("LENGTH")_" MINUTES)"
+ ;. S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTPAHA",.TXT,2)
+ ;Q:RETURN=0 0
+ ; 
  ;check if patient has an active appointment on the same day
  I LVL>2 D
  . K APT N IDX S IDX=""
@@ -49,6 +94,7 @@ CHKAPP(RETURN,SC,DFN,SD,LEN,LVL) ; Check make appointment Called by RPC MBAA APP
  . . K TXT S TXT(1)="(AT "_$E(IDX_0,9,10)_":"_$E(IDX_"000",11,12)_")"
  . . S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTPHSD",.TXT,3)
  Q:RETURN=0 0
+ ;
  ;check if patient has an canceled appointment on the same time
  I LVL'<2 D
  . K APT
@@ -56,10 +102,13 @@ CHKAPP(RETURN,SC,DFN,SD,LEN,LVL) ; Check make appointment Called by RPC MBAA APP
  . I $D(APT),APT("APT",SD,"STATUS")["P" D 
  . . S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTPPCP",,2)
  Q:RETURN=0 0
+ ;
  ;check if date is prior to patient birth date
  I $P(SD,".",1)<$P(PAT(.03),U,1) S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTPPAB") Q RETURN
+ ;
  ;check if date is prior to clinic availability
  S FRSTA=$$GETFSTA^MBAAMDA1(SC) I FRSTA,$P(SD,".",1)<FRSTA S RETURN=0 D ERRX^MBAAAPIE(.RETURN,"APTPCLA") Q 0
+ ;
  ;check overbook
  S %=$$CHKOVB(.RETURN,.CLN,SC,SD,LEN,LVL) Q:RETURN=0 RETURN
  S RETURN=1
@@ -159,8 +208,13 @@ MAKE(RETURN,DFN,SC,SD,TYPE,STYP,LEN,SRT,OTHR,CIO,LAB,XRAY,EKG,RQXRAY,CONS,LVL,DE
  S:SD<DT SRT="W"
  S SRT0=$$NAVA^SDMANA(SC,SD,.SRT)  ;ICR#: 6049 MBAA SDMANA API USE
  D MAKE^MBAAMDA3(DFN,SD,SC,.TYPE,.STYP,STAT,3,DUZ,DT,SRT,SRT0,.LAB,.XRAY,.EKG,$G(DESDT))
- ;N DATA S DATA(27)=DT,DATA(28)=$$PTFU^MBAAMAP1(,DFN,SC)
- ;D UPDPAPT^MBAAMDA4(.DATA,DFN,SD)
+ ;
+ ;WCJ;MBAA*1*7;This has previously been commented out.  Took out the set of field 27 (it was set in line above)
+ ;and sped up the call to get encounters to make below function useable
+ N DATA ; S DATA(27)=DT,
+ S DATA(28)=$$PTFU^MBAAMAP1(,DFN,SC)
+ D UPDPAPT^MBAAMDA4(.DATA,DFN,SD)
+ ;
  S %=$$GETSCAP^MBAAMAP1(.SCAP,SC,DFN,SD)
  I $G(CONS)>0 S DATA(688)=CONS
  D UPDCAPT^MBAAMDA4(.DATA,SC,SD,$G(SCAP("IFN")))
@@ -270,4 +324,3 @@ CHECKIN(RETURN,DFN,SD,SC,CIDT) ; Check in appointment Called by RPC MBAA APPOINT
  ;S STATUS=$$STATUS^SDAM1(DFN,SD,+$G(APT0),$G(APT0))
  ;S RETURN("AFTER")=STATUS
  ;Q 1
- ;

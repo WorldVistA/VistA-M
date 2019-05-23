@@ -1,10 +1,11 @@
 MBAAMAP1 ;OIT-PD/VSL - APPOINTMENT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Aug 27, 2014;Build 85
+ ;;1.0;Scheduling Calendar View;**1,7**;Aug 27, 2014;Build 16
  ;
  ;Associated ICRs
  ;  ICR#
  ;  10104 XLFSTR
  ;  10103 XLFDT
+ ;   6934 TAG PTFU uses $O(^SCE("ADFN",DFN,SDT),-1)
  ;
  ;code removed below is scheduled for a future release of MBAA
 CLNCK(RETURN,CLN) ;Check clinic for valid stop code restriction. Called by RPC MBAA APPOINTMENT MAKE
@@ -254,8 +255,9 @@ CPAIR(RETURN,SC) ;Validate primary stop code, get credit pair MBAA RPC: MBAA APP
  ;Input: SC=HOSPITAL LOCATION record IFN
  ;Input: RETURN=variable to return clinic credit pair (pass by reference)
  ;Output: 1=success, 0=invalid primary stop code
- N SDSSC
+ N SDSSC,CLN,CS   ;WCJ;MBAA*1*7; Newed CLN & CS
  D GETCLN^MBAAMDA1(.CLN,SC,1)
+ Q:'$G(CLN(8)) 0
  D GETCSC^MBAAMDA1(.CS,CLN(8))
  S RETURN=$G(CS(1)),RETURN=$S(RETURN<100:0,RETURN>999:0,1:RETURN)
  Q:RETURN'>0 0
@@ -263,28 +265,30 @@ CPAIR(RETURN,SC) ;Validate primary stop code, get credit pair MBAA RPC: MBAA APP
  S SDSSC=$G(CS(1)),RETURN=RETURN_$S(SDSSC<100:"000",SDSSC>999:"000",1:SDSSC)
  Q 1
  ;
-PTFU(RETURN,DFN,SC)    ;Determine if this is a follow-up (return to clinic within 24 months) Called by RPC MBAA APPOINTMENT MAKE
+PTFU(RETURN,DFN,SC)    ;Determine if this is a follow-up (return to clinic within 24 months)
  ;Input: DFN=patient ifn
  ;Input: SC=clinic ifn
  ;Output: '1' if seen within 24 months, '0' otherwise
  ;
  Q:'DFN!'SC 0  ;variable check
- S RETURN=1
- N SDBDT,SDT,SDX,SDY,SDZ,SDCP,SDCP1,SC0,SDENC,SDCT,LST,ENC,FLDS
+ N SDBDT,SDT,SDX,SDY,SDCP1,SDCP2,SDENC,SDCT
  ;set up variables
  S SDBDT=(DT-20000)+.24,SDT=DT_.999999,SDY=0
- S SDX=$$CPAIR(.SDCP,SC)  ;get credit pair for this clinic
+ S SDX=$$CPAIR(.SDCP1,SC)  ;get credit pair for this clinic
+ Q:'SDX 0
  ;Iterate through encounters
- D LSTAENC^MBAAMDA1(.LST,DFN)
- S FLDS(.04)="CLINIC",FLDS(.06)="PARENT"
- D BLDLST^MBAAMAPI(.ENC,.LST,.FLDS)
- F  S SDT=$O(ENC(SDT),-1) Q:'SDT!SDY  D
- . Q:ENC(SDT,"PARENT")]""  ;parent encounters only
- . Q:ENC(SDT,"NAME")<SDBDT
- . S SDX=$$CPAIR(.SDCP1,ENC(SDT,"CLINIC"))  ;get credit pair for encounter
- . S SDY=SDCP=SDCP1  ;compare credit pairs
- . Q
+ F  S SDT=$O(^SCE("ADFN",DFN,SDT),-1) Q:(SDT<SDBDT)!SDY  D
+ .S SDENC=0 F  S SDENC=$O(^SCE("ADFN",DFN,SDT,SDENC)) Q:'SDENC!SDY  D
+ ..Q:$$GET1^DIQ(409.68,SDENC,.06,"I")  ;parent encounters only
+ ..S SDX=$$GET1^DIQ(409.68,SDENC,.04,"I")  ;get clinic
+ ..Q:'SDX
+ ..S SDX=$$CPAIR(.SDCP2,SDX)  ;get credit pair for this clinic
+ ..Q:'SDX
+ ..S SDY=SDCP1=SDCP2  ;compare credit pairs
+ ..Q
+ .Q
  Q SDY
+ ;
  ;code below is not being used in the initial release of MBAA. It will be released at a later date in a future release of MBAA
  ;HASPEND(RETURN,DFN,DT) ; Check if patient has panding appointments
  ; D HASPEND^MBAAMDA2(.RETURN,DFN,DT)
@@ -308,3 +312,30 @@ PTFU(RETURN,DFN,SC)    ;Determine if this is a follow-up (return to clinic withi
  ; D LSTSCOD^MBAAMDAL(44,2,.RETURN)
  ; Q 1
  ;
+ ;
+ ;WCJ;MAAA*1*7;old PTFU tag saved for posterity
+ ;deemed too slow since it goes through the entire outpatient encounter file
+ ;and while it uses a screen, it was still way too slow
+ ;
+PTFU2(RETURN,DFN,SC)    ;Determine if this is a follow-up (return to clinic within 24 months) Called by RPC MBAA APPOINTMENT MAKE
+ ;Input: DFN=patient ifn
+ ;Input: SC=clinic ifn
+ ;Output: '1' if seen within 24 months, '0' otherwise
+ ;
+ Q:'DFN!'SC 0  ;variable check
+ S RETURN=1
+ N SDBDT,SDT,SDX,SDY,SDZ,SDCP,SDCP1,SC0,SDENC,SDCT,LST,ENC,FLDS
+ ;set up variables
+ S SDBDT=(DT-20000)+.24,SDT=DT_.999999,SDY=0
+ S SDX=$$CPAIR(.SDCP,SC)  ;get credit pair for this clinic
+ ;Iterate through encounters
+ D LSTAENC^MBAAMDA1(.LST,DFN)
+ S FLDS(.04)="CLINIC",FLDS(.06)="PARENT"
+ D BLDLST^MBAAMAPI(.ENC,.LST,.FLDS)
+ F  S SDT=$O(ENC(SDT),-1) Q:'SDT!SDY  D
+ . Q:ENC(SDT,"PARENT")]""  ;parent encounters only
+ . Q:ENC(SDT,"NAME")<SDBDT
+ . S SDX=$$CPAIR(.SDCP1,ENC(SDT,"CLINIC"))  ;get credit pair for encounter
+ . S SDY=SDCP=SDCP1  ;compare credit pairs
+ . Q
+ Q SDY

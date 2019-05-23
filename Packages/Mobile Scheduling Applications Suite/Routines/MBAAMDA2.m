@@ -1,5 +1,5 @@
 MBAAMDA2 ;OIT-PD/VSL - APPOINTMENT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1,5**;Feb 13, 2015;Build 6
+ ;;1.0;Scheduling Calendar View;**1,5,7**;Feb 13, 2015;Build 16
  ;
  ;Associated ICRs
  ;  ICR#
@@ -12,14 +12,25 @@ MBAAMDA2 ;OIT-PD/VSL - APPOINTMENT API ;02/10/2016
  ; S RETURN=$O(^(0))
  ; Q
  ; ;
-SLOTS(RETURN,SC) ; Get available slots MBAA RPC: MBAA GET CLINIC AVAILABILITY
- ;T13 Change to use FM to get the data
- S SD=0 F  S SD=$O(^SC(SC,"ST",SD)) Q:SD'>0  D    ;ICR#: 6044 SC(
- .N IENS,ARRAY,ERR S IENS=$G(SD)_","_SC_"," D GETS^DIQ(44.005,IENS,".01;1","I","ARRAY","ERR")
- .S RETURN(SD,0)=$G(ARRAY(44.005,IENS,.01,"I")),RETURN(SD,1)=$G(ARRAY(44.005,IENS,1,"I"))
+SLOTS(RETURN,SC,SD) ; Get available slots MBAA RPC: MBAA GET CLINIC AVAILABILITY
+ ; RETURN - RETURN array passed in by reference
+ ; SC - scheduling clinic IEN of File #44
+ ; SD - starting date for slots - use DT if not passed in
+ ;
+ ;WCJ;MBAA*1*7; Start with either a date passed in or today.
+ I '$G(SD) S SD=DT
+ S SD=$$FMADD^XLFDT($P(SD,"."),-1,0,0,0)
+ ;
+ F  S SD=$O(^SC(SC,"ST",SD)) Q:SD'>0  D    ;ICR#: 6044 SC(
+ .N IENS,ARRAY,ERR
+ .S IENS=$G(SD)_","_SC_","
+ .D GETS^DIQ(44.005,IENS,".01;1","I","ARRAY","ERR")
+ .S RETURN(SD,0)=$G(ARRAY(44.005,IENS,.01,"I"))
+ .S RETURN(SD,1)=$G(ARRAY(44.005,IENS,1,"I"))
  .I $E(RETURN(SD,1),6,11)="      " S $E(RETURN(SD,1),6,11)="  " Q  ;MBAA*1*5 - 10 MINS SLOTS
  .I $E(RETURN(SD,1),6)'=" " S RETURN(SD,1)=$E(RETURN(SD,1),1,5)_"  "_$E(RETURN(SD,1),6,99) ;MBAA*1*5 20 MINS SLOTS
- K SD
+ ;
+ ;K SD
  ;M RETURN=^SC(+SC,"ST")  ;ICR#: 6044 SC(
  Q
  ;code below is not being used in the initial release of MBAA. It will be released at a later date in a future release of MBAA
@@ -78,17 +89,23 @@ APTYNAME(TYPE) ; Get appointment type name MBAA RPC: MBAA PATIENT PENDING APPT
  Q $$GET1^DIQ(409.1,TYPE_",",.01)
  ;
 GETAPTS(RETURN,DFN,SD) ; Get patient appointments Called by RPC MBAA APPOINTMENT MAKE, MBAA RPC: MBAA CANCEL APPOINTMENT
- N FILE,SFILES,APTS,DT
+ ;INPUT
+ ; RETURN - by reference for results being RETURNed
+ ; DFN - IEN to PATIENT (#2) file
+ ; SD - FileMan Date time if you want information on a specific appointment
+ ;
+ N FILE,SFILES,TMPDT
  S FILE=2
- S SFILES("1900")="",SFILES("1900","N")="APT",SFILES("1900","F")="2.98",ROUT=3
- S:$G(ROUTC)=1 ROUT=4
- D GETREC^MBAAMDAL(.APTS,DFN,FILE,,.SFILES,1,1,1)
- I '$D(SD) M RETURN=APTS Q
- I $G(SD)>0&'$D(SD(0)) D  Q
- . I $D(APTS("APT",SD)) M RETURN("APT",SD)=APTS("APT",SD) Q
- S DT=$S(SD(0)=1:$P(SD,"."),SD(0)=0:$O(APTS("APT","")))
- F  S DT=$O(APTS("APT",DT)) Q:'$D(DT)!(DT="")  D
- . M RETURN("APT",DT)=APTS("APT",DT)
+ S SFILES("1900")="",SFILES("1900","N")="APT",SFILES("1900","F")="2.98"
+ D GETREC^MBAAMDAL(.RETURN,DFN,FILE,,.SFILES,1,1,1,$G(SD))
+ Q
+ ;
+ ; Placed Quit above
+ ; it would only get here if called from future functionality SCHED^MBAAAPI1
+ ; replaced code altering DT to use TMPDT - otherwise a violation of SAC
+ S TMPDT=$S(SD(0)=1:$P(SD,"."),SD(0)=0:$O(APTS("APT","")))
+ F  S TMPDT=$O(APTS("APT",TMPDT)) Q:TMPDT=""  D
+ . M RETURN("APT",TMPDT)=APTS("APT",TMPDT)
  Q
  ;
 GETDAPTS(RETURN,DFN,SD) ; Get all appointments in the day Called by RPC MBAA APPOINTMENT MAKE
@@ -100,9 +117,6 @@ GETDAPTS(RETURN,DFN,SD) ; Get all appointments in the day Called by RPC MBAA APP
  . N ARRAY S IENS=$G(SD)_","_$G(DFN)_"," D GETS^DIQ(2.98,IENS,".01;3","I","ARRAY")
  . S RETURN(IND,1)=$G(ARRAY(2.98,IENS,.01,"I"))
  . S RETURN(IND,2)=$G(ARRAY(2.98,IENS,3,"I"))
- . ;S NOD=^DPT(DFN,"S",IND,0)
- . ;S RETURN(IND,1)=$P(NOD,U,1)
- . ;S RETURN(IND,2)=$P(NOD,U,2)
  S RETURN=1
  Q
  ;
@@ -158,6 +172,7 @@ GETAPT0(DFN,SD) ; Get appointment 0 node MBAA RPC: MBAA CANCEL APPOINTMENT
  Q $G(^DPT(DFN,"S",SD,0))  ;ICR#: 6053 DPT
  ;
 GETPAPT(RETURN,DFN,SD) ; Get patient appointment Called by RPC MBAA APPOINTMENT MAKE
+ ; MBAA*1*7;WCJ;Seems like it would more efficient to string them all together and make one GETS^DIQ call, just saying
  N IND
  F IND=0:0 S IND=$O(RETURN(IND)) Q:IND=""  D
  . S RETURN(IND)=$$GET1^DIQ(2.98,SD_","_DFN_",",IND,"I")

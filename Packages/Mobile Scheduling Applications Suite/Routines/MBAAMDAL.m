@@ -1,29 +1,49 @@
 MBAAMDAL ;OIT-PD/VSL - FILE ACCESS DAL ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Feb 13, 2015;Build 85
+ ;;1.0;Scheduling Calendar View;**1,7**;Feb 13, 2015;Build 16
  ;
-GETREC(RETURN,IFN,FILE,FLDS,SFILES,INT,EXT,REZ) ; Get one record and specified subfiles from a file Called by RPC MBAA APPOINTMENT MAKE, MBAA RPC: MBAA CANCEL APPOINTMENT, MBAA PATIENT PENDING APPT
- N STRF,FLD,FLAG,C,SFILE,IFLD,REC,SFLDN
+GETREC(RETURN,IFN,FILE,FLDS,SFILES,INT,EXT,REZ,SD) ;
+ ; Input Variables
+ ; RETURN - RETURN results passed by reference
+ ; IFN - Internal Entry Number to the Files passed in (File 2 or File 44)
+ ; FILE - File #
+ ; FLDS = Array of FLDS
+ ; SFILES - Array of Sub-files
+ ; INT - Internal values returned
+ ; EXT - External values returned
+ ; REZ - Resolve field names instead of those peck numbers
+ ; SD - Date.Time if you only want one appointment in particular
+ ;      Date if you want all appointment on a give date
+ ;      or nothing if you want all appointments from today forward
+ ;
+ ; Get one record and specified subfiles from a file Called by RPC MBAA APPOINTMENT MAKE, MBAA RPC: MBAA CANCEL APPOINTMENT, MBAA PATIENT PENDING APPT
+ N STRF,FLD,FLAG,C,SFILE,IFLD,REC,SFLDN,SKIPSF
  S STRF=""
  S IFLD=""
  F  S IFLD=$O(FLDS(IFLD)) Q:IFLD=""  S STRF=STRF_$S(STRF="":"",1:";")_IFLD
  S SFILE=""
- F  S SFILE=$O(SFILES(SFILE)) Q:SFILE=""  S STRF=STRF_$S(STRF="":"",1:";")_SFILE_"*"
+ ;
+ ; want to skip subfile 2.98 so it can be done differently.  no need to pull in all appointments for a patient since the beginning of time.
+ F  S SFILE=$O(SFILES(SFILE)) Q:SFILE=""  I $G(SFILES(SFILE,"F"))'=2.98 S STRF=STRF_$S(STRF="":"",1:";")_SFILE_"*"
+ ;
  S FLD="",FLAG=""
  S:$G(INT) FLAG=FLAG_"I" ;Returns Internal values
  S:$G(EXT) FLAG=FLAG_"E" ;Returns External values
  S:$G(REZ) FLAG=FLAG_"R" ;Resolves field numbers to field names
- ;Change below to add a filter to the results so that the REC array doesn't get so large that it takes all the memory in the partition
- D:$G(ROUT)'=3 GETS^DIQ(FILE,IFN,STRF,FLAG,"REC")
- D:$G(ROUT)>2 GETRECA
+ ;
+ D GETS^DIQ(FILE,IFN,STRF,FLAG,"REC")
+ ;
+ I $G(SFILES(1900,"F"))=2.98 D GETRECA  ;  this one we'll treat differently cause it can be huge and want to use a screen
+ ;
  F  S FLD=$O(REC(FILE,""_IFN_",",FLD)) Q:FLD=""  D
  . S:FLAG=""!(FLAG="R") RETURN(FLD)=REC(FILE,""_IFN_",",FLD)
  . S:FLAG["I" RETURN(FLD)=REC(FILE,""_IFN_",",FLD,"I")
  . S:FLAG["E" RETURN(FLD)=$S($L($G(RETURN(FLD)))>0:RETURN(FLD)_U,1:"")_REC(FILE,""_IFN_",",FLD,"E")
+ ;
  S SFILE=""
  F  S SFILE=$O(SFILES(SFILE)) Q:SFILE=""  D
  . S SFLDN=$S(FLAG["R":SFILES(SFILE,"N"),1:SFILE)
  . D GETSREC(.RETURN,.REC,SFILES(SFILE,"F"),SFLDN,FLAG)
- K ROUT,ROUTC,FLAG,FILE,STRF
+ K FLAG,FILE,STRF
  Q
  ;
 GETSREC(RETURN,REC,SFILE,SFLD,FLAG) ; Get record subfile data Called by RPC MBAA APPOINTMENT MAKE, MBAA RPC: MBAA CANCEL APPOINTMENT, MBAA PATIENT PENDING APPT
@@ -57,13 +77,46 @@ GETSREC(RETURN,REC,SFILE,SFLD,FLAG) ; Get record subfile data Called by RPC MBAA
  ; S LIST(0)=COUNT-1
  ; Q
  ;
-GETRECA ; run a diq call to get data and put it into a tmp global, then only get out the data that is needed based on the current date
- K ^TMP($J,"REC"),REC
- S:$G(ROUT)>2 FILE1="2.98"
- ;S:$G(ROUT)=4 FILE1=FILE
- D GETS^DIQ(FILE,IFN,STRF,FLAG,"^TMP($J,""REC""")
- S STRT=$$FMADD^XLFDT(DT,-1,0,0,0)_".2359" F  S STRT=$O(^TMP($J,"REC",FILE1,STRT)) Q:STRT'>0  S FLD="" F  S FLD=$O(^TMP($J,"REC",FILE1,STRT,FLD)) Q:FLD=""  S IDX="" F  S IDX=$O(^TMP($J,"REC",FILE1,STRT,FLD,IDX)) Q:IDX=""  D
- .Q:$G(STRT)<$$FMADD^XLFDT(DT,-1,0,0,0)
- .S REC(FILE1,STRT,FLD,IDX)=$G(^TMP($J,"REC",FILE1,STRT,FLD,IDX))
- K ^TMP($J,"REC"),IDX,STRT,FILE1
+GETRECA ;MBAA*1*7;will use SCREEN to get only the data that is needed from sub-file 2.98
+ ; The orignal code pulled every appointment the patient ever had by doing one inquiry on the patient file.
+ ; It returned so many that it had to store in a global and then parse the global to return everything > than yesterday
+ ; and then potentially further parse when it gets back to calling routine which may have only wanted one to cancel
+ ; Instead of one DIQ call on the patient, it has been changed to a LIST^DIC call using a SCREEN on the sub-file which gets just what you want.
+ ;
+ ; This was rewritten to get a specific appointment for cancellation (SD would be a date.time in FileMan format)
+ ;  Or
+ ; It will give everything on a certain date (SD will be just a date, no time)
+ ;  Or
+ ; everything from today forward if no date passed in
+ ; 
+ ; Will it ever want past appointments?
+ ;
+ N ERROR,TARGET,APT,IENS,LP,SCREEN
+ S SCREEN=$$SCREEN($G(SD))
+ S IENS=","_IFN_","
+ D LIST^DIC(2.98,IENS,".001;@","EI",,,,,SCREEN,,"TARGET","ERROR")
+ ;
+ ; returns something like this so loop through it
+ ;TARGET("DILIST",0)="97^*^0^"
+ ;TARGET("DILIST",2,1)=3140826.09
+ ;TARGET("DILIST",2,2)=3140925.1
+ ;TARGET("DILIST",2,3)=3141023.08
+ ;
+ ; Make sure we have a bite
+ I '$D(TARGET("DILIST",2,1)) Q
+ ;
+ ; Now, loop through that list and get the deets
+ S LP=0 F  S LP=$O(TARGET("DILIST",2,LP)) Q:LP=""  D
+ . S IENS=TARGET("DILIST",2,LP)_","_IFN_","
+ . K APT   ; mant to make sure it's clean going in
+ . D GETS^DIQ(2.98,IENS,"*",FLAG,"APT")    ; might need to revisit the * but maybe not.  GETREC above also grabs all fields in a subfile.
+ . M REC=APT  ; save off the appointment it's returning
  Q
+ ;
+SCREEN(SD) ;
+ ; SCREEN will either be I Y=SD (FileMan format)
+ ; or I $P(Y,".")=SD
+ ; or I Y>(TODAY - 1 second) (FileMan Format)
+ I $P($G(SD),".",2) Q "I Y="_SD
+ I $G(SD) Q "I $P(Y,""."")="_SD
+ Q "I Y>"_$$FMADD^XLFDT(DT,0,0,0,-1)
