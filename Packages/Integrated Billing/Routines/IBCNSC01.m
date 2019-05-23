@@ -1,5 +1,5 @@
 IBCNSC01 ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 10:06am
- ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432,494,519,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,137,191,184,232,320,349,371,399,416,432,494,519,547,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PARAM ; -- Insurance company parameters region
@@ -29,7 +29,9 @@ PARAM ; -- Insurance company parameters region
  ;
  S START=11,OFFSET=2
  D SET^IBCNSP(START,OFFSET+28," EDI Parameters ",IORVON,IORVOFF)
- D SET^IBCNSP(START+1,OFFSET+13,"Transmit?: "_$S(+IBCNS3=1:"YES-LIVE",+IBCNS3=2:"TEST ONLY",1:"NO"))
+ ;/IB*2*608 (vd) for US1909 changed the line below from "TEST ONLY" to "YES-TEST"
+ ;D SET^IBCNSP(START+1,OFFSET+13,"Transmit?: "_$S(+IBCNS3=1:"YES-LIVE",+IBCNS3=2:"TEST ONLY",$P(IBCNS3,U,1)="":"",1:"NO"))
+ D SET^IBCNSP(START+1,OFFSET+13,"Transmit?: "_$S(+IBCNS3=1:"YES-LIVE",+IBCNS3=2:"YES-TEST",$P(IBCNS3,U,1)="":"",1:"NO"))
  D SET^IBCNSP(START+2,OFFSET+1,"Inst Payer Primary ID: "_$P(IBCNS3,U,4))
  ;
  ;WCJ;IB*2.0*547; Lots o Changes below to include new Alternate Primary ID

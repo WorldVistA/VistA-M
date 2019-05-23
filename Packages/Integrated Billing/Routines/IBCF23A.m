@@ -1,5 +1,5 @@
 IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**51,432,516,547,577,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**51,432,516,547,577,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; $$INSTALDT^XPDUTL(IBPATCH,.IBARY) - ICR 10141
@@ -130,6 +130,12 @@ IBSS(IBI,IBDXI,IBLN) ; Creates index sequence for procedure
  S $P(IBSS,U,24)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","NDC","I")
  S $P(IBSS,U,25)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","PROCEDURE DESCRIPTION","I")
  S $P(IBSS,U,26)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","ADDITIONAL OB MINUTES","I")
+ ;JRA;IB*2.0*608 Put Certificate of Medical Necessity (CMN) info in pieces 30,31,32
+ M IBLPAR=^DGCR(399,IBIFN,"CP",IBI)
+ S $P(IBSS,U,30)=$TR($G(IBLPAR("CMN")),U,"~")
+ S $P(IBSS,U,31)=$TR($G(IBLPAR("CMN-10126")),U,"~")
+ S $P(IBSS,U,32)=$TR($G(IBLPAR("CMN-484")),U,"~")
+ K IBLPAR
  ;Add Provider info in pieces 41-49
  M IBLPAR=^DGCR(399,IBIFN,"CP",IBI,"LNPRV")
  F  S IBLPI=$O(IBLPAR(IBLPI)) Q:'IBLPI  S IBX=IBLPAR(IBLPI,0),$P(IBSS,U,40+IBX)=$TR(IBX,"^","~")

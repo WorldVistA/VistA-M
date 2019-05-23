@@ -1,5 +1,5 @@
 IBJPS ;ALB/MAF,ARH - IBSP IB SITE PARAMETER SCREEN ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,70,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**39,52,70,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJP IB SITE PARAMETERS, display IB site parameters
@@ -45,6 +45,7 @@ EDIT(IBSET) ; edit IB Site Parameters
  . ;WCJ;IB*2.0*547 added default Administrative contractors for billing (medicare and commercial)
  . I IBSET=17 D EN^IBJPS6(1) Q   ; medicare
  . I IBSET=18 D EN^IBJPS6(2) Q   ; commercial
+ . I IBSET=21 D EN^IBJPS8 Q   ; WCJ;IB*2.0*608;US3;
  . S DR=$P($T(@IBSET),";;",2,999)
  . Q
  ; WCJ;IB*2.0*547 - shifted the number down to insert a new one

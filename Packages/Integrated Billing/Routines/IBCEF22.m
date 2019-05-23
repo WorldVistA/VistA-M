@@ -1,5 +1,5 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
@@ -221,3 +221,25 @@ SPLIT    ; Split codes into multiple lines as needed => baa ; 488
  ... I L>1 S $P(IBX1(IBS,Q,IBSS,2),U,9)=""
  ... S UNTS=UNTS-LUNT,LUNT=$S(UNTS>LUNT:LUNT,1:UNTS)
  Q
+ ;
+ ; /Begin IB*2.0*608 - US9 - vd
+VC80I(LN)  ; Extracts the data for the "INS" record for VALUE CODE 80 Line item.
+ ; INPUT:      LN = Line counter
+ ;
+ N VC80REC,IBLOOP
+ S (VC80REC,IBLOOP)=""
+ F  S IBLOOP=$O(IBXSV("VC80",IBLOOP)) Q:IBLOOP=""  Q:$P(IBXSV("VC80",IBLOOP),U)=80
+ I IBLOOP]"" S VC80REC=IBXSV("VC80",IBLOOP)
+ ;
+ N UNIT,VC80LN
+ S UNIT=$P(VC80REC,U,2)    ; Service Unit Count
+ S VC80LN=LN+1             ; Get the next available line number.
+ ;
+ S $P(IBXSAVE("INPT",VC80LN),U,1)="0022"
+ S $P(IBXSAVE("INPT",VC80LN),U,2)="AAA00"
+ S $P(IBXSAVE("INPT",VC80LN),U,4)=$S(+IBLOOP:UNIT,1:0)
+ S $P(IBXSAVE("INPT",VC80LN),U,9)=0
+ S $P(IBXSAVE("INPT",VC80LN),U,13)=$S(+IBLOOP:"DA",1:"UN")
+ Q
+ ; /End IB*2.0*608
+ ;

@@ -1,12 +1,20 @@
 IBCEPTC2 ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS LIST MGR ;01/20/05
- ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 3337 for file 430.3
  ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
  ;
 HDR ;
  K VALMHDR
- I IBLOC S VALMHDR(1)="Claims Selected: "_+$G(^TMP("IB_PREV_CLAIM_SELECT",$J))_" (marked with *)" Q
+ ; The following line was replaced by the subsequent couple of lines of code  -  (vd) IB*2*608 - US1908
+ ;/IB*2*608 beginning
+ ; I IBLOC S VALMHDR(1)="Claims Selected: "_+$G(^TMP("IB_PREV_CLAIM_SELECT",$J))_" (marked with *)" Q
+ I IBLOC D  Q
+ . S VALMHDR(1)="** T = Test Claim"
+ . S VALMHDR(2)="Claims Selected: "_+$G(^TMP("IB_PREV_CLAIM_SELECT",$J))_" (marked with *)"
+ . Q
+ ;/IB*2*608 ending
+ ;
  S VALMHDR(1)="** A claim may appear multiple times if transmitted more than once. **"
  ;
  I $G(IBSORT)=1 D

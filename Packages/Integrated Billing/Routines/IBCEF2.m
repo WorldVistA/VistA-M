@@ -1,5 +1,5 @@
 IBCEF2 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;8/6/03 10:54am
- ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HOS(IBIFN) ; Extract rev codes for inst. episode into IBXDATA
@@ -264,3 +264,93 @@ AMTOUT(A,B,C,IBXSAVE) ; format output amount
  ;
  N Z,K,IBZ,IBARR K IBXDATA S (IBZ,K)=0,IBARR="IBXSAVE("""_A_""")" F  S IBZ=$O(@IBARR@(IBZ)) Q:'IBZ  S K=K+1,Z=0 F  S Z=$O(@IBARR@(IBZ,Z)) Q:'Z  I $P($G(@IBARR@(IBZ,Z,B)),U,C) S IBXDATA(K)=$$DOLLAR^IBCEFG1($G(IBXDATA(K))+$P(@IBARR@(IBZ,Z,B),U,C))
  Q
+ ;
+ ;/Beginning of IB*2.0*608 (US9) - vd
+SNF(IBIFN) ; Check to see if the claim is a SNF (Skilled Nursing Facility) Claim.
+ ;   Returned Values:
+ ;    SNF = 0 if claim is not a SNF Claim.
+ ;    SNF = 1 if claim is a SNF Claim.
+ N SNF
+ S SNF=0
+ I $$GET1^DIQ(399,IBIFN_", ",.24,"I")=2 S SNF=1   ; Claim is a SNF Claim
+ Q SNF
+ ;
+VC80CK(IBIFN) ; Determine if the Claim is eligible for Value Code 80 Revenue Code Claim Lines.
+ N BLTYPX,COB,IB0,NUM,PPAYID,RCVRID,VC80SW
+ S VC80SW=0
+ I '$$SNF(IBIFN) Q VC80SW   ; Not a SNF Claim.
+ S RCVRID=$$RECVR^IBCEF2(IBIFN) I "^ENVOYH^PARTA^"'[(U_RCVRID_U) Q VC80SW   ; Not ENVOYH or PARTA
+ S COB=$$COB^IBCEF(IBIFN) I COB'="P" Q VC80SW   ; Payer Responsibility Sequence not equal to "P".
+ D ALLPAYID(IBIFN,.NUM,1) S PPAYID=$G(NUM(1))  Q:(PPAYID'="12M61") VC80SW  ; Primary Payer not equal to "12M61"
+ S IB0=$G(^DGCR(399,IBIFN,0))
+ S BLTYPX=$P(IB0,U,24)_$P(IB0,U,5)
+ I BLTYPX<21!(BLTYPX>23) Q VC80SW  ; Not a valid Bill Type.
+ S VC80SW=1   ; If we got this far.the claim is eligible for Value Code 80 Revenue Code Claim Lines.
+ Q VC80SW
+ ;
+INS ; Called by the Output Formatter [#364.7, 176]
+ N A,Z
+ S Z=0,A=$G(^TMP($J,"IBLCT"))
+ F  S Z=$O(IBXDATA(Z)) D  Q:'Z
+ . K:'Z&($D(IBXDATA)=1) IBXDATA
+ . S:'Z ^TMP($J,"IBLCT")=A Q:'Z
+ . S A=A+1 M IBXSAVE("INPT",Z)=IBXDATA(Z)
+ . K IBXDATA(Z) S IBXDATA(Z)=A
+ . D:Z>1 ID^IBCEF2(Z,"INS ")
+ ;
+ I +$G(VC80) D
+ . S Z=$O(IBXDATA(""),-1)+1
+ . D ID^IBCEF2(Z,"INS ")
+ . ;D VC80I^IBCEF22(A,$G(IBXSV("VC80",A)))  ; Process for 'SNF' claims & the last claim line
+ . D VC80I^IBCEF22(A)   ; Process for 'SNF' claims & the last claim line.
+ . S A=A+1
+ . S IBXDATA(Z)=A
+ Q
+ ;
+INS05 ; Called by the Output Formatter [#364.7, 178]
+ ;K IBXDATA S IBXNOREQ='$$REQ^IBCEF1(3,"",IBXIEN) N Z S Z=0 F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  S:$P(IBXSAVE("INPT",Z),U,4)'="" IBXDATA(Z)=$P(IBXSAVE("INPT",Z),U,4)
+ K IBXDATA
+ S IBXNOREQ='$$REQ^IBCEF1(3,"",IBXIEN)
+ N LAST,Z S (LAST,Z)=0
+ F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  D  Q:LAST
+ . I +$G(VC80) S:$O(IBXSAVE("INPT",Z))="" LAST=1,IBXDATA(Z)=$P(IBXSAVE("INPT",Z),U,4) Q:LAST
+ . S:$P(IBXSAVE("INPT",Z),U,4)'="" IBXDATA(Z)=$P(IBXSAVE("INPT",Z),U,4)
+ Q
+ ;
+INS07 ; Called by the Output Formatter [#364.7, 181]
+ ;N Z S Z=0 F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  S:$P(IBXSAVE("INPT",Z),U,9)'=""&($P(IBXSAVE("INPT",Z),U,2)'="") IBXSAVE("PMOD",Z)=$P(IBXSAVE("INPT",Z),U,9),IBXDATA(Z)=$P(IBXSAVE("PMOD",Z),",")
+ N LAST,Z S (LAST,Z)=0
+ F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  D  Q:LAST
+ . I +$G(VC80) S:$O(IBXSAVE("INPT",Z))="" LAST=1,IBXDATA(Z)="" Q:LAST
+ . S:$P(IBXSAVE("INPT",Z),U,9)'=""&($P(IBXSAVE("INPT",Z),U,2)'="") IBXSAVE("PMOD",Z)=$P(IBXSAVE("INPT",Z),U,9),IBXDATA(Z)=$P(IBXSAVE("PMOD",Z),",")
+ Q
+ ;
+INS09 ; Called by the Output Formatter [#364.7, 180]
+ ;K IBXDATA N Z S Z=0 F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  S IBXDATA(Z)=$S($P(IBXSAVE("INPT",Z),U,5)="":$$DOLLAR^IBCEFG1("0.00"),1:$$DOLLAR^IBCEFG1($P(IBXSAVE("INPT",Z),U,5)))
+ K IBXDATA
+ N LAST,Z S (LAST,Z)=0
+ F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  D  Q:LAST
+ . I +$G(VC80) S:$O(IBXSAVE("INPT",Z))="" LAST=1,IBXDATA(Z)=0 Q:LAST
+ . S IBXDATA(Z)=$S($P(IBXSAVE("INPT",Z),U,5)="":$$DOLLAR^IBCEFG1("0.00"),1:$$DOLLAR^IBCEFG1($P(IBXSAVE("INPT",Z),U,5)))
+ Q
+ ;
+INS12 ; Called by the Output Formatter [#364.7, 482]
+ ;K IBXDATA N Z S Z=0 F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  S:$P(IBXSAVE("INPT",Z),U,6)'="" IBXDATA(Z)=$$DOLLAR^IBCEFG1($P(IBXSAVE("INPT",Z),U,6))
+ K IBXDATA
+ N LAST,Z S (LAST,Z)=0
+ F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  D  Q:LAST
+ . I +$G(VC80) S:$O(IBXSAVE("INPT",Z))="" LAST=1,IBXDATA(Z)="" Q:LAST
+ . S:$P(IBXSAVE("INPT",Z),U,6)'="" IBXDATA(Z)=$$DOLLAR^IBCEFG1($P(IBXSAVE("INPT",Z),U,6))
+ Q
+ ;
+INS13 ; Called by the Output Formatter [#364.7, 805]
+ ;K IBXDATA N Z,Z0 S Z=0 F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  S:$P(IBXSAVE("INPT",Z),U)'="" Z0=$P(IBXSAVE("INPT",Z),U) S IBXDATA(Z)=$S(Z0="":"",Z0'<100&(Z0'>219):"DA",1:"UN") K:IBXDATA(Z)="" IBXDATA(Z) K IBXDATA
+ K IBXDATA
+ N LAST,Z,Z0 S (LAST,Z)=0
+ F  S Z=$O(IBXSAVE("INPT",Z)) Q:'Z  D  Q:LAST
+ . I +$G(VC80) S:$O(IBXSAVE("INPT",Z))="" LAST=1,IBXDATA(Z)=$P(IBXSAVE("INPT",Z),U,13) Q:LAST
+ . S:$P(IBXSAVE("INPT",Z),U)'="" Z0=$P(IBXSAVE("INPT",Z),U)
+ . S IBXDATA(Z)=$S(Z0="":"",Z0'<100&(Z0'>219):"DA",1:"UN") K:IBXDATA(Z)="" IBXDATA(Z)
+ Q
+ ;/End IB*2.0*608 (US9) - vd
+ ;

@@ -1,5 +1,5 @@
 IBJPS2 ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD2 ; - continue build screen array for IB parameters
@@ -68,7 +68,7 @@ BLD2 ; - continue build screen array for IB parameters
  D RIGHT(3,1,1) ; - TRICARE Pay-To Providers - section 12
  S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,29,Z)) Q:'Z  S:$P($G(^IBE(350.9,1,29,Z,0)),U,5)="" Z0=Z0+1
  S Z=+$P($G(^IBE(350.9,1,11)),U,4),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z,1),U),1:"")
- S IBLN=$$SET("TRICARE Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)
+ S IBLN=$$SET("Non-MCCF Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)  ; IB*2*608 (vd) - Changed "TRICARE..." to "Non-MCCF..."
  ;
  D RIGHT(3,1,1)
  S IBLN=$$SET("Inpt Health Summary",$$EXSET^IBJU1($P(IBPD2,U,8),350.9,2.08),IBLN,IBLR,IBSEL)
@@ -136,6 +136,12 @@ BLD2 ; - continue build screen array for IB parameters
  S Z=$G(^IBE(350.9,1,52)) S:$P(Z,U)="" $P(Z,U)="No Purge"
  S IBLN=$$SET("Days to store 277RFAI Transactions",$P(Z,U),IBLN,IBLR,IBSEL)
  S IBLN=$$SET("Days to wait to purge entry on RFAI Management Worklist",$P(Z,U,2),IBLN,IBLR,IBSEL)
+ ;
+ ; WCJ - IB*2.0*608;US3 - inserted a new section 20.
+ D RIGHT(3,1,1)
+ S Z="",Z0=0 F  S Z=$O(^IBE(350.9,1,16,"B",Z)) Q:'Z  S Z0=Z0+1
+ S PTPSTR=Z0_" CMN CPT Codes Included"
+ S IBLN=$$SET("CMN CPT Code Inclusion",PTPSTR,IBLN,IBLR,IBSEL)
  Q
  ;
 SET(TTL,DATA,LN,LR,SEL,HDR) ;

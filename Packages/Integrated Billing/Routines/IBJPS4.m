@@ -1,5 +1,5 @@
 IBJPS4 ;BP/YMG - IB Site Parameters, Pay-To Provider Associations ;06-Nov-2008
- ;;2.0;INTEGRATED BILLING;**400,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**400,516,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; MRD;IB*2.0*516 - Added logic pertaining to TRICARE-Specific Pay-To
@@ -37,8 +37,8 @@ INIT(IBTCFLAG) ; -- init variables and list array
  ..S IBLN=IBLN+1 D SET^VALM10(IBLN,"")
  ..Q
  .Q
- I 'DFLT S IBLN=$$SET^IBJPS3(0,$$SETSTR^VALM1("No Default "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider found.","",11,42))
- I DFLT,'$D(PROVS) S IBLN=$$SET^IBJPS3(0,$$SETSTR^VALM1("No "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Providers found.","",15,35))
+ I 'DFLT S IBLN=$$SET^IBJPS3(0,$$SETSTR^VALM1("No Default "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Provider found.","",11,42))
+ I DFLT,'$D(PROVS) S IBLN=$$SET^IBJPS3(0,$$SETSTR^VALM1("No "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Providers found.","",15,35))
  S VALMCNT=IBLN,VALMBG=1
  Q
  ;
@@ -106,7 +106,7 @@ DIVADD(IBTCFLAG) ; associate division with a pay-to provider
  .I +IEN19>0 D
  ..I $P($G(^IBE(350.9,1,IBNODE,IEN19,0)),U,5)="" D ERR Q
  ..S DIR(0)="P^IBE(350.9,1,"_IBNODE_",:M",DIR("S")="I $P(^(0),U,5)="""""
- ..S DA(1)=1,DIR("A")="Select "_$S(IBTCFLAG:"TRICARE ",1:"")_"Pay-To Provider"
+ ..S DA(1)=1,DIR("A")="Select "_$S(IBTCFLAG:"Non-MCCF ",1:"")_"Pay-To Provider"
  ..D ^DIR
  ..I +Y>0 S DIE="^IBE(350.9,1,"_IBNODE_",",DA=IEN19,DA(1)=1,DR=".05////"_+Y D ^DIE
  .Q
@@ -115,7 +115,7 @@ DIVADD(IBTCFLAG) ; associate division with a pay-to provider
  ;
 ERR ;
  N DIR
- S DIR("A",1)="A division used as a Pay-to Provider can not be associated"
+ S DIR("A",1)="A division used as a Pay-to Provider cannot be associated"
  S DIR("A",2)="with another Pay-to Provider."
  S DIR("A")="Press RETURN to continue: "
  S DIR(0)="EA" D ^DIR
@@ -165,16 +165,22 @@ SCRN4(IEN) ; Screen for INSTITUTION(#4) file
 TRICARE(IBIFN) ; Determine whether this bill/claim is TRICARE or not.
  ; Return '1' if TRICARE, '0' if not.  There are two rate types that
  ; should return '1': TRICARE and TRICARE REIMB. INS.
+ ; 
+ ; This has been modified to reflect Non-MCCF Claims and not just TRICARE. - IB*2.0*608 - vd (US2599)
  ;
  I '$G(IBIFN) Q 0
  N IBRATE
  S IBRATE=$P(^DGCR(399,IBIFN,0),U,7)
  I 'IBRATE Q 0
- I $P($G(^DGCR(399.3,IBRATE,0)),U)'["TRICARE" Q 0
  ;
- ; At this point, the claim has a rate type of TRICARE or TRICARE
- ; REIMB. INS.  However, quit with a '1' only if a default TRICARE-
- ; specific pay-to provider is defined. Otherwise, quit with a '0'.
+ ;/Begin IB*2.0*608 - vd (US2599) - Replaced the following lines
+ ; I $P($G(^DGCR(399.3,IBRATE,0)),U)'["TRICARE" Q 0
+ I '$D(^IBE(350.9,1,28,"B",IBRATE)) Q 0   ; Not a Non-MCCF Pay-to Provider Rate Type.
+ ;/End IB*2.0*608 - vd
+ ;
+ ; At this point, the claim has a Non-MCCF rate type  However,
+ ; quit with a '1' only if a default Non-MCCF-specific pay-to
+ ; provider is defined. Otherwise, quit with a '0'.
  ;
  I $$GETDFLT^IBJPS3(1) Q 1
  Q 0

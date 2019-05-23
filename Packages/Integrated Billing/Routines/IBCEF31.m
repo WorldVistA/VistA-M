@@ -1,5 +1,5 @@
 IBCEF31 ;ALB/ESG - FORMATTER SPECIFIC BILL FLD FUNCTIONS - CONT ;14-NOV-03
- ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488,516,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488,516,592,608**;21-MAR-94;Build 90
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -129,4 +129,110 @@ GRPNUM(IBXIEN,IBXDATA) ; Populate IBXDATA with the Group Number(s).
  N Z
  F Z=1:1:3 I $D(^DGCR(399,IBXIEN,"I"_Z)) S IBXDATA(Z)=$$POLICY^IBCEF(IBXIEN,3,Z)
  Q
+ ;
+CMNDATA(IBXIEN,IBPROC,FLD,INT) ;JRA;IB*2.0*608 Return data for specified Certificate of Medical Necessity (CMN) field.
+ ;Created to return data for a specific CMN field, which is a subfield of file 399, field 304 (Procedure).  Returns data
+ ; in External format by default.
+ ;
+ ;Input:  IBXIEN = Internal bill/claim number
+ ;        IBPROC = Procedure # (subscript in ^DGCR)
+ ;        FLD    = Field number of desired field
+ ;        INT    = Flag set to 'I' if the subfield's Internal value is to be returned (optional)
+ ;
+ ;Output: VAL    = External (or optionally Internal) value of the CMN subfield specified by FLD
+ ;
+ Q:('$G(IBXIEN)!('$G(FLD)!('$G(IBPROC)))) ""
+ S INT=$G(INT)
+ N ND,VAL,X
+ S ND=IBPROC_","_IBXIEN
+ S VAL=$$GET1^DIQ(399.0304,ND,FLD,INT)
+ Q VAL
+ ;
+CMNDEX(IBXIEN,IBXSAVE) ;JRA;IB*2.0*608 Data Extract for LQ, CMN and MEA segments
+ Q:'$G(IBXIEN)
+ ;
+ N CMNREQ,ND,X,IBXDATA
+ ;Get Procedure Links for all Procedures on the claim.
+ D OUTPT^IBCEF11(IBXIEN,0) Q:'$D(IBXDATA)
+ N LP,Z,CNT
+ S LP=0 F  S LP=$O(IBXDATA(LP)) Q:'+LP  D
+ . S CNT=$G(CNT)+1
+ . Q:'$D(IBXDATA(LP,"CPLNK"))
+ . S ND=IBXDATA(LP,"CPLNK")
+ . S ND=ND_","_IBXIEN_","
+ . S CMNREQ=$$GET1^DIQ(399.0304,ND,23,"I")
+ . S:CMNREQ="" CMNREQ=0
+ . Q:'+CMNREQ
+ . S Z=$G(Z)+1
+ . S IBXSAVE("CMNDEX",Z)=IBXDATA(LP,"CPLNK")_U_CNT
+ Q
+ ;
+FRM(IBXIEN,IBXSAVE) ;JRA;IB*2.0*608 Data Extract for FRM segment
+ Q:'$G(IBXIEN)
+ ;
+ N CMNREQ,CNT,DEL,IBXDATA,LP,ND,PAIRQ,QUIT,RESPTYP,X,Z,Z1
+ ;Get Procedure Data for all Procedures on the claim.
+ D OUTPT^IBCEF11(IBXIEN,0) Q:'$D(IBXDATA)
+ S LP=0 F  S LP=$O(IBXDATA(LP)) Q:'+LP  D
+ . Q:'$D(IBXDATA(LP,"CPLNK"))
+ . S CNT=$G(CNT)+1
+ . S ND=IBXDATA(LP,"CPLNK")
+ . S ND=ND_","_IBXIEN_","
+ . S CMNREQ=$$GET1^DIQ(399.0304,ND,23,"I")
+ . S:CMNREQ="" CMNREQ=0
+ . Q:'+CMNREQ
+ . S Z=$G(Z)+1
+ . ;WHAT FORM
+ . N DATA,FORM,FLD,FLDS,INTEXT,QUES,QUESNUM,X
+ . S FORM=$TR($$GET1^DIQ(399.0304,ND,"24:3","I"),"-")  ; get the form number to figure what fields go with it
+ . Q:FORM=""  ; quit if no form number
+ . ;
+ . S FLDS=$P($T(@FORM),";;",2,9999)   ; get all the associated data fields from below
+ . ;
+ . N PAIREDQA
+ . ;Parse FLDS to get DD field, question number, type of response (2=Y/N, 3=text/code, 4=date, 5=percent/decimal), and the response data.
+ . F X=1:1 S QUES=$P(FLDS,"~",X)  Q:QUES=""  D
+ .. S FLD=$P(QUES,U)
+ .. S QUESNUM=$P(QUES,U,2)
+ .. S RESPTYP=$P(QUES,U,3)
+ .. I RESPTYP=4 S INTEXT="I"
+ .. E  S INTEXT=$P(QUES,U,4) S:INTEXT="" INTEXT="E"
+ .. S DATA=$$GET1^DIQ(399.0304,ND,FLD,INTEXT)
+ .. ;
+ .. ; KLUDGE; On form CMN10126 If 4A or 3A is blank, don't send the other (which means get rid of the previous Q/A)
+ .. ; same for 4B/3B
+ .. I FORM="CMN10126",".3A.3B.4A.4B."[QUESNUM S PAIRQ=0 D  Q:PAIRQ
+ ... I QUESNUM="3A"!(QUESNUM="3B") S PAIREDQA(QUESNUM)=DATA Q
+ ... I QUESNUM="4A",$G(PAIREDQA("3A"))="" S PAIRQ=1 Q
+ ... I QUESNUM="4B",$G(PAIREDQA("3B"))="" S PAIRQ=1 Q
+ ..;
+ .. Q:DATA=""  ;Do not include FRM rec for unanswered questions
+ .. ;
+ .. S:RESPTYP=2 DATA=$E(DATA)  ; only want Y or N
+ .. I QUESNUM=4,"YN"'[DATA S DATA="W"
+ .. S:RESPTYP=4 DATA=$$DT^IBCEFG1(DATA,"","D8")  ;YYYYMMDD date format
+ .. ;Procedure# has a 1 to many ratio with Question# but can't have 2 subscripts so combine into 1, ordering IBXSAVE by Question#.
+ .. S IBXSAVE("FRM",(Z_"_"_(X/10)))=QUESNUM_U
+ .. S $P(IBXSAVE("FRM",(Z_"_"_(X/10))),U,RESPTYP)=DATA
+ .. S $P(IBXSAVE("FRM",(Z_"_"_(X/10))),U,6)=CNT
+ ;
+ ;Re-subscript IBXSAVE with sequential integers as current subscript format will not work with Output Formatter.
+ S (Z,Z1)=0 F  S Z=$O(IBXSAVE("FRM",Z)) Q:'Z  S Z1=Z1+1,IBXSAVE("FRM",Z1)=IBXSAVE("FRM",Z),DEL(Z)=""
+ S Z=0 F  S Z=$O(DEL(Z)) Q:'Z  K IBXSAVE("FRM",Z)
+ Q
+ ;
+PTWT(IBXIEN) ;JRA;IB*2.0*608 Return CMN Patient Weight from 1st Service Line # that has it (or NULL if none)
+ Q:'$G(IBXIEN)
+ N FOUND,IBPROC,IBXSAVE,PTWT
+ D CMNDEX(IBXIEN,.IBXSAVE)
+ S (FOUND,Z)=0,PTWT="" F  S Z=$O(IBXSAVE("CMNDEX",Z)) Q:Z=""  D  Q:FOUND
+ . S IBPROC=+IBXSAVE("CMNDEX",Z) Q:'IBPROC 
+ . S PTWT=$$CMNDATA(IBXIEN,IBPROC,24.03) S:PTWT FOUND=1
+ Q PTWT
+ ;
+ ;JRA;IB*2.0*608 Tags CMN484 & CMN10126 added
+ ; FIELD#^QUESTION#^RESPONSE_TYPE^INT/EXT
+CMN484 ;;24.1^1A^3~24.102^1B^5~24.103^1C^4~24.107^2^3^I~24.108^3^3^I~24.109^4^2^I~24.11^5^3~24.111^6A^3~24.113^6B^5~24.114^6C^4~24.104^7^2~24.105^8^2~24.106^9^2~24.115^C^3
+ ;
+CMN10126 ;;24.201^1^2~24.202^2^2~24.204^3A^3~24.219^3B^3~24.203^4A^3~24.218^4B^3~24.205^5^3^I~24.206^6^3~24.207^7^2~24.208^8A^3~24.209^8B^5~24.21^8C^3~24.211^8D^3~24.212^8E^5~24.213^8F^3~24.215^8G^3~24.216^8H^5~24.214^9^3^I
  ;
