@@ -1,6 +1,7 @@
 RANPRO ;BPFO/CLT - NEW RADIOLOGY PROCEDURE ; 27 Oct 2016  4:57 PM
- ;;5.0;Radiology/Nuclear Medicine;**127,138**;Mar 16, 1998;Build 22
+ ;;5.0;Radiology/Nuclear Medicine;**127,138,150**;Mar 16, 1998;Build 2
  ;
+ ; RA*5*150 INC1933636 Do not allow entry of a semi-colon (;)
 EN ; Main entry point - driver for PROCEDURE prompt loop
  ;
  N RANQUIT,RANHIT,RADIO,RAMIS,RAPTY,RAIMAG,RA65,RARMPF,RAEXC
@@ -22,6 +23,8 @@ EN2 ; Loop entry point for PROCEDURE prompt
  .S DIR(0)="FUO^1:60",DIR("A",1)=" ",DIR("A")="RAD/NUC MED PROCEDURE NAME"
  .S DIR("PRE")="S:$D(X) X=$$UP^XLFSTR(X) K:$L(X)>60 X S:$G(X)[""?"" X=-99"
  .D ^DIR S:Y=-99 (X,Y)="?" S RANM=Y I X=""!(X["^") S RANQUIT=1 Q
+ .; RA*5*150 Added the next line
+ .I X[";" D EN^DDIOL("Entry must not contain a semi-colon ';'    ",,"!?12,$C(7)") Q
  .S RAPNM=RANM
  .K Y D SEARCH(RAPNM,.Y)
  .Q:(Y="")!(Y<0)!(Y="?")

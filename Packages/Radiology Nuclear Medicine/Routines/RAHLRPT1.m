@@ -1,10 +1,13 @@
 RAHLRPT1 ;HISC/GJC-Compiles HL7 'ORU' Message Type ;05 Dec 2017 2:43 PM
- ;;5.0;Radiology/Nuclear Medicine;**47,144**;Mar 16, 1998;Build 1
+ ;;5.0;Radiology/Nuclear Medicine;**47,144,150**;Mar 16, 1998;Build 2
  ;
  ;Integration Agreements
  ;----------------------
  ;$$GET1^DIQ(2056); ^DIWP(10011); 
  ;$$FMTHL7^XLFDT(10103); $$HLNAME^XLFNAME(3065)
+ ;
+ ;RA*5*150 Insert Observation Date for Electronically Filed (EF)
+ ;         Reports in OBR-22
  ;
 EN(RADFN,RADTI,RACNI,RAEID) ;Called from all RA RPT* event driver protocols whose
  ;HL7 version exceeds version 2.3.
@@ -88,8 +91,13 @@ OBR ;Compile 'OBR' Segment
  ;Results Rpt/Status Chng-date/time OBR-22
  ;verified: VERIFIED DATE 74;7
  ;unv'fied: DATE REPORT ENTERED 74;6
- S:$P(RAZRPT,U,5)="V" RAOBR(23)=$$FMTHL7^XLFDT($P(RAZRPT,U,7))
- S:$P(RAZRPT,U,5)'="V" RAOBR(23)=$$FMTHL7^XLFDT($P(RAZRPT,U,6))
+ ;
+ ;Electronically Filed - send 'Now'
+ ;RA*5*150 Commented out the next two lines
+ ;S:$P(RAZRPT,U,5)="V" RAOBR(23)=$$FMTHL7^XLFDT($P(RAZRPT,U,7))
+ ;S:$P(RAZRPT,U,5)'="V" RAOBR(23)=$$FMTHL7^XLFDT($P(RAZRPT,U,6))
+ ;RA*5*150 - Added the next line
+ S RAOBR(23)=$S($P(RAZRPT,U,5)="EF":$G(HLDT1),$P(RAZRPT,U,5)="V":$$FMTHL7^XLFDT($P(RAZRPT,U,7)),1:$$FMTHL7^XLFDT($P(RAZRPT,U,6)))
  ;
  ;Status OBR-25 REPORT STATUS 74;5
  ;S:$D(^RARPT(+$P(RAZXAM,U,17),"ERR",1,0))#2 RAOBR(26)="C" ;corrected rt
