@@ -1,5 +1,5 @@
 SROAPRE2 ;BIR/MAM - EDIT PAGE 2 PREOP ;07/18/2011
- ;;3.0;Surgery;**38,47,125,153,166,176,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**38,47,125,153,166,176,182,184,193**;24 Jun 93;Build 2
  D @EMILY Q
 1 ; edit renal information
  W ! K DIR S X=$P(SRAO(1),"^") I X'="" S DIR("B")=X
@@ -35,7 +35,7 @@ CNS ; cns
  Q
 NOCNS ; no CNS problems
  F I=19,21,24,29 S $P(^SRF(SRTN,200),"^",I)=SRAX
- F I=13,14 S $P(^SRF(SRTN,200.1),"^",I)=$S(SRAX="N":0,1:SRAX)
+ F I=13,14 S $P(^SRF(SRTN,200.1),"^",I)=$S(SRAX="N":0,SRAX="NS":0,1:SRAX) ;p193 added condition SRAX="NS" to $SELECT statement.
  S $P(^SRF(SRTN,210),"^")=0
  Q
 NUT ; nutritional/immune/other
