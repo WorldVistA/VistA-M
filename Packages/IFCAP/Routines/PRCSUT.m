@@ -1,6 +1,6 @@
-PRCSUT ;WISC/SAW/DGL-CONTROL POINT ACTIVITY UTILITY PROGRAM ;9/14/00  15:49
-V ;;5.1;IFCAP;**93**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCSUT ;WISC/SAW/DGL - CONTROL POINT ACTIVITY UTILITY PROGRAM ;9/14/00  15:49
+V ;;5.1;IFCAP;**93,204**;Oct 20, 2000;Build 14
+ ;Per VHA Directive 6402, this routine should not be modified.
  ;
 ENF(PRCIPFLG) ;Entry point for Inv. Pt. selection
 EN ;STA,FY,QTR,CP W/SCREEN FOR INACTIVE CP
@@ -150,7 +150,7 @@ BBFY1 S E="^2:4^K:X'?2N&(X'?4N) X I $G(X)]"""" S X=+$$YEAR^PRC0C(X) K:X-$P(F,""~
  S Y(1)="Enter a 2 or 4 digit year."
  D FT^PRC0A(.X,.Y,"First Year of the Multi-Appropriation ("_$P(D,"^")_")",E,$S(F="":B,1:B-(B-$P(F,"~",2)#$P(F,"~",3))))
  I Y?2.4N S Y=+$$YEAR^PRC0C(Y) I B<Y!(Y+$P(F,"~",3)-1<B) D EN^DDIOL("You must enter a BBFY such that the document's fiscal year is between"),EN^DDIOL("beginning and ending budget fiscal years") G BBFY1
- S PRC("BBFY")=$S(Y?4N:Y,1:"")
+ S PRC("BBFY")=$S(Y?4N:Y,1:""),PRCBBMY=1
  QUIT PRC("BBFY")
  ;
 CC ;SELECT COST CENTER
@@ -166,13 +166,14 @@ SUB ;SELECT BOC
  Q
  ;
 LOCK ;LOCK GLOBAL THAT IS BEING ACCESSED BY ANOTHER USER
- L @("+"_DIC_DA_"):15")
+ N PRCLOCK
+ S PRCLOCK=DIC_DA_")" L +(@PRCLOCK):($G(DILOCKTM,15))
  S PRCSL=$T
  W:$T=0 !!,$C(7),"Sorry, record is being accessed by another user.  Please try later."
  Q
  ;
 EX S Y=-1
- K PRC("QTR"),PRC("FY"),PRC("BBFY"),SI
+ K PRC("QTR"),PRC("FY"),PRC("BBFY"),SI,PRCBBMY
  I $D(PRC("CP")) K:PRC("CP")="ALL"!(PRC("CP")="^") PRC("CP")
 EXIT K FYT,SI,PRCSK,QTT,DIC("A")
  Q
@@ -196,7 +197,7 @@ IP ; Get Inventory point
  S (CTR,I)=0,PRCSIP=""
  F  S I=$O(^PRC(420,"AF",PRC("SITE"),+PRC("CP"),I)) Q:'I  S CTR=CTR+1,^TMP($J,"PRCSUT",CTR)=I_"^"_$P(^PRCP(445,I,0),"^")
  I CTR=0 G IPQ
- I CTR=1 S PRCSIP=$P(^TMP($J,"PRCSUT",1),"^") G IPQ
+ I CTR=1!$G(PRCRMPR) S PRCSIP=$P(^TMP($J,"PRCSUT",1),"^") G IPQ
  F I=1:1:CTR D  Q:$D(DIRUT)
  .   W !,?5,I,") ",$P(^TMP($J,"PRCSUT",I),"^",2)
  .   I I#(IOSL-2)=0 K DIR S DIR(0)="E" D ^DIR
