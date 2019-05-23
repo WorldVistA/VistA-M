@@ -1,5 +1,5 @@
 VPRDPSO ;SLC/MKB -- Outpatient Pharmacy extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4,12**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,12,13**;Sep 01, 2011;Build 1
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -36,20 +36,23 @@ RX(ID,MED) ; -- return a prescription in MED("attribute")=value
  S MED("fillsAllowed")=$P(RX0,U,8),MED("fillsRemaining")=$P(RX0,U,9)
  S MED("routing")=$P($P(RX1,U,6),";"),MED("prescription")=$P(RX0,U,5)
  S MED("lastFilled")=$P(RX0,U,3) K FILL
+ N VPRI S VPRI=1 ; p13 add unique int to stop fills from overwriting each other
  S X=$P(RX0,U,2) I X D  ; p12 add initial fill
- . S FILL(X)=""
- . S $P(FILL(X),U,10)=$P(RX1,U,6)
- . S $P(FILL(X),U,8)=$P(RX0,U,13)
- . S $P(FILL(X),U,4)=$P(RX0,U,6)
- . S $P(FILL(X),U,5)=$P(RX0,U,7)
- S I=0 F  S I=$O(^TMP("PSOR",$J,+ID,"REF",I)) Q:I<1  S X=$G(^(I,0)),FILL(+X)=X
- S I=0 F  S I=$O(^TMP("PSOR",$J,+ID,"RPAR",I)) Q:I<1  S X=$G(^(I,0)),$P(X,U,14)=1,FILL(+X)=X
- S (I,RFD,PRV)=0 F  S RFD=$O(FILL(RFD)) Q:RFD<1  S X=$G(FILL(RFD)) D  ;sort 1st
- . N MW,REL S I=I+1
- . S MW=$P($P(X,U,10),";"),REL=$P($P(X,U,8),".")
- . S MED("fill",I)=$P(RFD,".")_U_MW_U_REL_U_$P(X,U,4,5)_$S($P(X,U,14):"^1",1:"")
- . S:$P(X,U,2) PRV=$P(X,U,2) ;save last provider
- . ; fill comments?
+ . S FILL(VPRI,X)=""
+ . S $P(FILL(VPRI,X),U,10)=$P(RX1,U,6)
+ . S $P(FILL(VPRI,X),U,8)=$P(RX0,U,13)
+ . S $P(FILL(VPRI,X),U,4)=$P(RX0,U,6)
+ . S $P(FILL(VPRI,X),U,5)=$P(RX0,U,7)
+ . S VPRI=2
+ S I=0 F  S I=$O(^TMP("PSOR",$J,+ID,"REF",I)) Q:I<1  S X=$G(^(I,0)),FILL(VPRI,+X)=X,VPRI=VPRI+1
+ S I=0 F  S I=$O(^TMP("PSOR",$J,+ID,"RPAR",I)) Q:I<1  S X=$G(^(I,0)),$P(X,U,14)=1,FILL(VPRI,+X)=X,VPRI=VPRI+1
+ S VPRI=0 F  S VPRI=$O(FILL(VPRI)) Q:'VPRI  D
+ .S (RFD,PRV)=0 F  S RFD=$O(FILL(VPRI,RFD)) Q:RFD<1  S X=$G(FILL(VPRI,RFD)) D  ;sort 1st
+ . . N MW,REL
+ . . S MW=$P($P(X,U,10),";"),REL=$P($P(X,U,8),".")
+ . . S MED("fill",VPRI)=$P(RFD,".")_U_MW_U_REL_U_$P(X,U,4,5)_$S($P(X,U,14):"^1",1:"")
+ . . S:$P(X,U,2) PRV=$P(X,U,2) ;save last provider
+ . . ; fill comments?
  S X=$S($P(RX0,U,11):$P(RX0,U,11),$P(RX0,U,10):$P(RX0,U,10),1:0)
  S:X MED("fillCost")=X
  S X=$G(^TMP("PSOR",$J,+ID,"SIG",1,0)),I=1
