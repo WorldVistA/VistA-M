@@ -1,28 +1,31 @@
-RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;8/4/97  14:47
- ;;5.0;Radiology/Nuclear Medicine;**8,10,15,31,45,75,123,132**;Mar 16, 1998;Build 12
+RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;Jul 25, 2018@16:43:06
+ ;;5.0;Radiology/Nuclear Medicine;**8,10,15,31,45,75,123,132,149**;Mar 16, 1998;Build 1
  ; Input:  RADFN= Internal Number to Rad/Nuc Med Patient File #70
  ;         RAOIFN= Internal Number to Rad/Nuc Med Orders File #75.1
  ;         RAX= Null (Used to check for an '^')
  ;         RAPGE= 0 (Used as a page counter)
  ;
  ; Supported IA #1120 reference to EN6^GMRVUTL  5-P123,5-132
+ ; Reference to ^SC(D0,99) is supported by ICR #4782
  ;
  ; 1-p75 10/12/2006 GJC RA*5*75 Remedy 162508 Modify Patient AGE calc
  ; 2-p75 10/12/2006 GJC RA*5*75 set REASON FOR STUDY to a local variable
  ; 5-P123 6/23/2015 MJT RA*5*123 NSR 20140507 print weight & date taken in Radiology requests
  ; 5-P132 11/1/2017 RTW RA*5*123 NSR 20160706 print height & date taken in Radiology requests
- ; 
+ ;
  S:$D(ZTQUEUED) ZTREQ="@"
+ N DFN,GMRVSTR,RAHDX,RAPROC
  G Q:'$D(^DPT(RADFN,0)) S RADPT0=^(0) G Q:'$D(^RAO(75.1,RAOIFN,0)) S RAORD0=^(0)
+ S RAPROC=$P(RAORD0,"^",2)
  K ^UTILITY($J,"W"),^(1) S RAOSTSYM="dc^c^h^^p^^^s",$P(RALNE,"-",79)="",$P(RALNE1,"=",79)="",DIWL=5,DIWR=75,DIWF="WC75"
  S RA("NME")=$P(RADPT0,"^"),RA("SEX")=$P(RADPT0,"^",2),RA("DOB")=$P(RADPT0,"^",3),RASSN=$$SSN^RAUTL
- S RA("AGE")=($$FMDIFF^XLFDT($P(RAORD0,U,16),RA("DOB")))\365.25 ;1-p75 
+ S RA("AGE")=($$FMDIFF^XLFDT($P(RAORD0,U,16),RA("DOB")))\365.25 ;1-p75
  S RA("STY_REA")=$P($G(^RAO(75.1,RAOIFN,.1)),U) ;2-p75
- S RA("PRC NODE")=$G(^RAMIS(71,+$P(RAORD0,U,2),0))
+ S RA("PRC NODE")=$G(^RAMIS(71,+RAPROC,0))
  S RA("PRC")=$E($P(RA("PRC NODE"),U),1,36)
  S RA("PRC")=$S(RA("PRC")]"":RA("PRC"),1:"UNKNOWN")
  S RA("PRCTY")=$P(RA("PRC NODE"),U,6)
- S RA("PRCTY")=$$XTERNAL^RAUTL5(RA("PRCTY"),$P($G(^DD(71,6,0)),U,2))
+ S RA("PRCTY")=$$GET1^DIQ(71,RAPROC_",",6) ;$$XTERNAL^RAUTL5(RA("PRCTY"),$P($G(^DD(71,6,0)),U,2))
  S RA("PRCTY")=$E(RA("PRCTY"))_$$LOW^XLFSTR($E(RA("PRCTY"),2,99))
  S RA("CPT")=+$P(RA("PRC NODE"),U,9)
  S RA("CPT")=$P($$NAMCODE^RACPTMSC(RA("CPT"),DT),U)
@@ -32,7 +35,7 @@ RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;8/4/97  14:47
  S RA("PRC INFO")="",$E(RA("PRC INFO"),1,36)=RA("PRC")
  S $E(RA("PRC INFO"),38,60)=RA("CNCAT") K RA("CNCAT")
  S RA("PRC MSG")=$S(+$O(^RAMIS(71,+$P(RAORD0,"^",2),3,0))>0:1,1:0)
- S RA("OUG")=$P($P(^DD(75.1,6,0),$P(RAORD0,"^",6)_":",2),";")
+ S RA("OUG")=$$GET1^DIQ(75.1,RAOIFN_",",6) ;$P($P(^DD(75.1,6,0),$P(RAORD0,"^",6)_":",2),";")
  K RA("MOD") F I=0:0 S I=$O(^RAO(75.1,RAOIFN,"M","B",I)) Q:'I  I $D(^RAMIS(71.2,+I,0)) S RA("MOD")=$S('$D(RA("MOD")):$P(^(0),"^"),1:RA("MOD")_", "_$P(^(0),"^")) S:$P($G(^(0)),U,2)="p" RA("PORTABLE")=""
  S RA("OST")=$$GET1^DIQ(75.1,RAOIFN_",",5)_$S($P(RAOSTSYM,"^",$P(RAORD0,"^",5))="":"",1:" ("_$P(RAOSTSYM,"^",$P(RAORD0,"^",5))_")")
  S RA("PHY")=$S($D(^VA(200,+$P(RAORD0,"^",14),0)):$P(^(0),"^"),1:"UNKNOWN")
@@ -43,13 +46,12 @@ RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;8/4/97  14:47
  ; *** NSR 20140507 Start Mod to print weight & date taken in Radiology requests 5-P123 ***
  S DFN=RADFN,GMRVSTR="WT"
  D EN6^GMRVUTL
- S RA("WT")=$P(X,U,8)
- ;RTW BEGIN RA*5.0*132 ADD HEIGHT 
+ S RA("WT")=$P(X,U,8),Y=$P(X,U) D DD^%DT S RA("WTDT")=Y
+ ;RTW BEGIN RA*5.0*132 ADD HEIGHT
  S DFN=RADFN,GMRVSTR="HT"
  D EN6^GMRVUTL S RAHDX=$G(X)
  S Y=$P(RAHDX,U,1) I Y>0 D DD^%DT S RA("HTDT")=Y
  S RA("HT")=$P(RAHDX,U,8)
- S Y=$P(X,U) D DD^%DT S RA("WTDT")=Y
  ;RTW END RA*5.0*132 ADD HEIGHT
  ; actual print code located in RAORD6
  ; *** NSR 20140507 End Mod to print weight & date taken in Radiology requests ***
@@ -76,7 +78,8 @@ RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;8/4/97  14:47
  S RA("OPRIM")=$S($P($G(VAIP(7)),"^",2)]"":$P(VAIP(7),"^",2),1:"UNKNOWN")
  D:RA("OPRIM")'="UNKNOWN" PHONE("OP",+$G(VAIP(7)))
  ; Get other order info (orderer, transport mode, etc.)
- S RA("USR")=$S($D(^VA(200,+$P(RAORD0,"^",15),0)):$P(^(0),"^"),1:"UNKNOWN"),RA("TRAN")=$S($P(RAORD0,"^",19)']"":"UNKNOWN",1:$P($P(^DD(75.1,19,0),$P(RAORD0,"^",19)_":",2),";")) S:$P(RAORD0,"^",19)="p" RA("PORTABLE")=""
+ ;S RA("USR")=$S($D(^VA(200,+$P(RAORD0,"^",15),0)):$P(^(0),"^"),1:"UNKNOWN"),RA("TRAN")=$S($P(RAORD0,"^",19)']"":"UNKNOWN",1:$P($P(^DD(75.1,19,0),$P(RAORD0,"^",19)_":",2),";")) S:$P(RAORD0,"^",19)="p" RA("PORTABLE")=""
+ S RA("USR")=$S($D(^VA(200,+$P(RAORD0,"^",15),0)):$P(^(0),"^"),1:"UNKNOWN"),RA("TRAN")=$S($P(RAORD0,"^",19)="":"UNKNOWN",1:$$GET1^DIQ(75.1,RAOIFN_",",19)) S:$P(RAORD0,"^",19)="p" RA("PORTABLE")=""
  K RA("ST"),^TMP($J,"RA DIFF PRC")
  ;determine if ordered procedure has CM assoc.; return null if none
  S RACMFLG("O")=$$CMEDIA^RAO7UTL(+$P(RAORD0,U,2),$P(RA("PRC NODE"),U,6))
