@@ -1,5 +1,5 @@
-IVMLDEM9 ;ALB/BRM/PHH/LBD - IVM ADDRESS UPDATES PENDING REVIEW RPT ; 4/18/12 4:43pm
- ;;2.0;INCOME VERIFICATION MATCH;**79,93,119,126,133,152**; 21-OCT-94;Build 4
+IVMLDEM9 ;ALB/BRM/PHH/LBD/JAM - IVM ADDRESS UPDATES PENDING REVIEW RPT ;4/18/12 4:43pm
+ ;;2.0;INCOME VERIFICATION MATCH;**79,93,119,126,133,152,177**;21-OCT-94;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  Q
@@ -67,15 +67,17 @@ AUTOLOAD(DFN,IVMDA2,IVMDA1) ;auto-upload records that not been reviewed
  ..; check for residence phone number -> do not auto-upload
  ..Q:(+IVMNODE=$O(^IVM(301.92,"B","PHONE NUMBER [RESIDENCE]",0)))
  ..;
+ ..; IVM*2.0*177 ; jam; Comment lines below to skip over reject/upload logic for these records and just do cleanup
+ ..;
  ..; do not auto-upload if there is an active prescription
- ..I $$PHARM^IVMLDEM6(+DFN) D REJTADD Q
+ ..;I $$PHARM^IVMLDEM6(+DFN) D REJTADD Q
  ..;
  ..; set upload parameters
- ..S IVMFIELD=$P($G(^IVM(301.92,+IVMNODE,0)),"^",5)
- ..S IVMVALUE=$P(IVMNODE,"^",2)
+ ..;S IVMFIELD=$P($G(^IVM(301.92,+IVMNODE,0)),"^",5)
+ ..;S IVMVALUE=$P(IVMNODE,"^",2)
  ..;
  ..; load addr field into the Patient (#2) file
- ..D UPLOAD^IVMLDEM6(DFN,IVMFIELD,IVMVALUE) S IVMFLAG=1
+ ..;D UPLOAD^IVMLDEM6(DFN,IVMFIELD,IVMVALUE) S IVMFLAG=1
  ..;
  ..; remove entry from (#301.511) sub-file
  ..D DELENT^IVMLDEMU(IVMDA2,IVMDA1,IVMJ)
@@ -89,6 +91,7 @@ AUTOLOAD(DFN,IVMDA2,IVMDA1) ;auto-upload records that not been reviewed
  .D UPDADDLG^DGADDUTL(DFN,.DGPRIOR,.DGCURR)
  Q
 REJTADD ;Reject the address
+ ;
  ; update the ADDRESS CHANGE DT/TM field #.118 in PATIENT file #2
  D UPDDTTM^DGADDUTL(DFN,"PERM")
  ;
