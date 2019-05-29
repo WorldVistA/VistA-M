@@ -1,5 +1,5 @@
-MAGNAN03 ;WOIFO/NST - Get image annotations ; 21 Dec 2017 3:59 PM
- ;;3.0;IMAGING;**185**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGNAN03 ;WOIFO/NST - Get image annotations ; 10 Apr 2018 3:59 PM
+ ;;3.0;IMAGING;**185,197**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -185,6 +185,7 @@ GIENANN(MAGRY,MAGNCNT,MAGNCXT,DATA) ;Get annotations for image IEN
  ; 
  N J,I,MAGIEN,MAGNTIU,MAGOUT
  ;
+ I '$D(DATA(0)) Q  ; no data to report
  S MAGNCNT=MAGNCNT+1
  S @MAGRY@(MAGNCNT)="NEXT_CONTEXTID|"_MAGNCXT_"|"_DATA(0)_"|CLN"
  I 'DATA(0) Q   ; Error quit

@@ -1,5 +1,5 @@
-MAGNVQ06 ;WOIFO/NST - List images for Reports ; 26 Dec 2017 3:59 PM
- ;;3.0;IMAGING;**185**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGNVQ06 ;WOIFO/NST - List images for Reports ; 05 Feb 2018 3:59 PM
+ ;;3.0;IMAGING;**185,197**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -180,7 +180,7 @@ APPEND(MAGOUT,MAGNCNT,MAGNCXT,MAGIN,REFTYPE,REFIEN)  ;
  F  S I=$O(@MAGIN@(I)) Q:'I  D
  . S MAGNCNT=MAGNCNT+1
  . S @MAGOUT@(MAGNCNT)=@MAGIN@(I)
- . I $P(@MAGIN@(I),"|")="NEXT_STUDY" S OLDSTUDY=$P(@MAGIN@(I),"|",3)=""
+ . I $P(@MAGIN@(I),"|")="NEXT_STUDY" S OLDSTUDY=$P(@MAGIN@(I),"|",3)'="NEW"
  . I OLDSTUDY,$P(@MAGIN@(I),"|")="STUDY_IEN" D   ; Add STUDY_INFO. Better place will be MAGDQR21
  . . S MAGNCNT=MAGNCNT+1
  . . S IMGIEN=$P(@MAGIN@(I),"|",2)  ; IEN of the group
