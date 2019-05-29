@@ -1,14 +1,18 @@
 PRCHNPO4 ;WOIFO/RSD/RHD-CONT. OF NEW PO--COMPLETE PROCESSING IN SUPPLY ;4/22/98  06:21
-V ;;5.1;IFCAP;**51,56,81,79**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**51,56,81,79,196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*196 Modified check for only PCard orders to insure ALL
+ ;            orders have FCP monies available for the order,
+ ;            and, if not, the FCP Overcommit switch set to ON.
  ;
 PHA S ERROR="" I $G(PRCHPC)'=1 D NEW^PRCOEDC(PRCHPO,.ERROR) I ERROR'="" W !!?5,"Procurement History transaction error " G ERR^PRCHNPO
  N RBD,RBDT,RBQT,RBFY,CCHK,FCHK,REFMOP S REFMOP=$P($G(^PRC(442,PRCHPO,0)),U,2)
- I REFMOP=25 S RBDT=$$DATE^PRC0C($P($G(^PRC(442,PRCHPO,1)),U,15),"I"),RBFY=$E(RBDT,3,4),RBQT=$P(RBDT,"^",2),RBD=$$QTRDATE^PRC0D(RBFY,RBQT),RBD=$P(RBD,"^",7)
+ S RBDT=$$DATE^PRC0C($P($G(^PRC(442,PRCHPO,1)),U,15),"I"),RBFY=$E(RBDT,3,4),RBQT=$P(RBDT,"^",2),RBD=$$QTRDATE^PRC0D(RBFY,RBQT),RBD=$P(RBD,"^",7)   ;PRC*5.1*196
  S PRC("CP")=$P($G(^PRC(442,PRCHPO,0)),"^",3)
  S CCHK=$P($G(^PRC(442,PRCHPO,0)),U,15)
  I $G(PRCHPC)="",CCHK'="" N BRCHK,BRCOST S BRCHK=$P($G(^PRC(442,PRCHPO,0)),"^",12),BRCOST=$P($G(^PRCS(410,+BRCHK,4)),"^") S:BRCOST'="" CCHK=CCHK-BRCOST
- I REFMOP=25 S FCHK=$$OVCOM^PRCS0A(PRC("SITE")_"^"_PRC("CP")_"^"_$P($$DATE^PRC0C(RBD,"I"),"^",1,2),CCHK,2) I FCHK'=0 W !,"Insufficient funds for this request." H 2 G ERR^PRCHNPO
+ S FCHK=$$OVCOM^PRCS0A(PRC("SITE")_"^"_PRC("CP")_"^"_$P($$DATE^PRC0C(RBD,"I"),"^",1,2),CCHK,2) I FCHK'=0 W !,"Insufficient funds for this request." H 2 G ERR^PRCHNPO   ;PRC*5.1*196
  I $P($G(^PRC(442,PRCHPO,0)),U,2)=25 S FILE=442 D LIMIT^PRCHCD0 I $G(ERROR) K FILE,ERROR G ERR^PRCHNPO
  ;I $G(PRCHPC)=2 S $P(^PRC(442,PRCHPO,0),U,15)=PRCHTAMT
  I $P($G(^PRC(442,PRCHPO,23)),U,11)="D" D  G:$G(ERROR)=1 ERR^PRCHNPO

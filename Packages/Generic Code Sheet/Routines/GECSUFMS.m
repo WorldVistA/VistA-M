@@ -1,9 +1,14 @@
 GECSUFMS ;WISC/RFJ/KLD-fms utilities ;10/13/98
- ;;2.0;GCS;**7,8,15,19,30,31,34**;MAR 14, 1995
+ ;;2.0;GCS;**7,8,15,19,30,31,34,40**;MAR 14, 1995;Build 13
  Q
  ;
+ ;GEC*2.0*40 Modified document MOA segment to insure the
+ ;           document transaction date used was from 
+ ;           Committed Date in file 410 entry and handles
+ ;           the FY/FQ correctly when date is before 
+ ;           or after current FY.
  ;
-CONTROL(SYSTEM,STATION,DOCUMENT,TRANCODE,SECCODE,MODFLAG,FCPFLAG,DESCRIPT) ;  return fms control segment
+CONTROL(SYSTEM,STATION,DOCUMENT,TRANCODE,SECCODE,MODFLAG,FCPFLAG,DESCRIPT,COMMDATE) ;  return fms control segment
  ;  system = "A" for ar, "I" for ifcap, "E" for eng, "C" for create doc
  ;  station = 3 digit station number
  ;  document = source document [sta-po####xx] where xx=partial (opt)
@@ -15,7 +20,7 @@ CONTROL(SYSTEM,STATION,DOCUMENT,TRANCODE,SECCODE,MODFLAG,FCPFLAG,DESCRIPT) ;  re
  ;            use only for tran-code AR, CR, IV, MO, SA, ST
  ;  descript = description of event
  ;  return gecsfms("ctl"), gecsfms("bat"), gecsfms("doc")
- N %,%H,%I,BATNUMB,DATE,FY,H,M,S,SEGMENT,STACK,TIME,TRANCLAS,X,Y,SYSTEMI
+ N %,%H,%I,BATNUMB,DATE,FY,H,M,S,SEGMENT,STACK,TIME,TRANCLAS,X,Y,SYSTEMI,GECOMDT    ;GEC*2.0*40
  K GECSFMS
  S SYSTEMI=SYSTEM ; save initial system for rebuild
  S SYSTEM=$S($E(SYSTEM)="A":"ARS",$E(SYSTEM)="I":"IFC",$E(SYSTEM)="E":"AMM",1:"CFD")
@@ -23,9 +28,14 @@ CONTROL(SYSTEM,STATION,DOCUMENT,TRANCODE,SECCODE,MODFLAG,FCPFLAG,DESCRIPT) ;  re
  S DOCUMENT=$E($TR(DOCUMENT,"-")_"           ",1,11)
  S TRANCODE=$E(TRANCODE,1,2)
  S SECCODE=$E(SECCODE_"    ",1,4)
- D NOW^%DTC S Y=%,DATE=X D DD^%DT
+GCOMDT D NOW^%DTC S Y=%,(GECOMDT,DATE)=X D DD^%DT    ;GEC*2.0*40
+ I $G(COMMDATE) S GECOMDT=COMMDATE,TIME="100000"
  S %=$P(Y,"@",2),H=$P(%,":"),M=$P(%,":",2),S=$P(%,":",3),H=$E("00",$L(H)+1,2)_H,M=$E("00",$L(M)+1,2)_M,S=$E("00",$L(S)+1,2)_S,TIME=H_M_S
- S Y=X X ^DD("DD") S FY=$S($E(DATE,4,5)<10:$E(DATE,2,3),1:$P(Y,",",2)+1)
+ S Y=X X ^DD("DD") S FY=$S(GECOMDT>($E(DATE,1,3)_"0930"):$E(DATE,2,3)+1,GECOMDT<DATE:999,1:$E(DATE,2,3))    ;GEC*2.0*40
+ I FY=999 D    ;GEC*2.0*40
+ . I $E(GECOMDT,1,3)=$E(DATE,1,3)!((GECOMDT>($E(DATE,1,3)-1)_"0930")) S FY=$E(DATE,2,3) Q
+ . I GECOMDT>($E(GECOMDT,1,3)_"0930"),GECOMDT<($E(GECOMDT,1,3)_1232) S FY=$E(GECOMDT,2,3)+1 Q
+ . S FY=$E(GECOMDT,2,3)
  S STACK=TRANCODE_"-"_DOCUMENT
  ; check if STACK exists in 2100.1 file
  K GECSDATA
@@ -39,7 +49,7 @@ CONTROL(SYSTEM,STATION,DOCUMENT,TRANCODE,SECCODE,MODFLAG,FCPFLAG,DESCRIPT) ;  re
  I MODFLAG F  S %=$$ACOUNTER^GECSUNUM(STATION_"-FMS:BATCH-"_FY),%=$E(%,$L(%)-2,$L(%)),%=$E("000",$L(%)+1,3)_%,X=STACK_"-"_STATION_% I '$D(^GECS(2100.1,"B",X)) L +^GECS(2100.1,"AZ",X):0 I $T S STACK=X Q
  S BATNUMB=$E($P(STACK,"-",3)_"      ",1,6)
  S TRANCLAS="DOC" I TRANCODE="VR" S TRANCLAS="VRQ",TRANCODE="  "
- S GECSFMS("CTL")="CTL^"_SYSTEM_"^FMS^"_$E(STATION,1,3)_"^"_TRANCLAS_"^"_TRANCODE_"^"_SECCODE_"^"_$E(BATNUMB,1,6)_"^"_DOCUMENT_"^"_(17+$E(DATE))_$E(DATE,2,7)_"^"_TIME_"^001^001^001^"_$C(126)
+ S GECSFMS("CTL")="CTL^"_SYSTEM_"^FMS^"_$E(STATION,1,3)_"^"_TRANCLAS_"^"_TRANCODE_"^"_SECCODE_"^"_$E(BATNUMB,1,6)_"^"_DOCUMENT_"^"_(17+$E(GECOMDT))_$E(GECOMDT,2,7)_"^"_TIME_"^001^001^001^"_$C(126)    ;GEC*2.0*40
  ;
  ;  vendor request, add ctl to stack and quit
  I TRANCLAS="VRQ" D  Q

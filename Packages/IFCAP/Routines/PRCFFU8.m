@@ -1,6 +1,11 @@
 PRCFFU8 ;WISC/SJG-OBLIGATION PROCESSING UTILITIES, CON'T ;5/17/09  23:39
- ;;5.1;IFCAP;**130**;Oct 20, 2000;Build 25
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;5.1;IFCAP;**130,196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*196 Send order obligation date to GECS for creation
+ ;            of the SO document CTL segment with correct date for 
+ ;            Cancel doc and Decrease Adj doc or when
+ ;            amending a vendor.
  ;
  ; No Top Level Entry
  QUIT
@@ -25,7 +30,8 @@ CANCEL(REF,TYPE) ; Cancel FMS Obligation Documents
  ; REF - PAT Reference Number
  ; TYPE - FMS Transaction Type
  ; DATA - MO2 Segment
- N DATA
+ N DATA,FMSCOMDT       ;PRC*5.1*196
+ S FMSCOMDT=PRCFA("OBLDATE")    ;PRC*5.1*196
  S (PRCFA("MOD"),PRCFA("CANCEL"))="X^2^Cancellation Entry"
  S FMSMOD=$P(PRCFA("MOD"),U)
  I PRCFA("TT")="AR",$E(REF,11,12)'=12 S REF=$E(REF,1,10)_12
@@ -36,7 +42,7 @@ DEC ;
  Q:XRBLD=2  ; exit if rebuilding the 'E' (amended original) transaction
  W !!,"...now generating the FMS Decrease "_TYPE_" Obligation Document..."
  S FMSDES="Decrease Obligation Amount of "_TYPE_" Obligation Document"
- I XRBLD=0 D CONTROL^GECSUFMS("I",PRC("SITE"),REF,TYPE,FMSSEC,1,"Y",FMSDES)
+ I XRBLD=0 D CONTROL^GECSUFMS("I",PRC("SITE"),REF,TYPE,FMSSEC,1,"Y",FMSDES,FMSCOMDT)    ;PRC*5.1*196
  S DATA=$$SEG2^PRCFFU8("X^"_TYPE,POIEN,.SEG)
  D GECS
  S PRCFA("PODA")=PRCFA("OLDPODA")
@@ -48,7 +54,7 @@ CANC ;
  Q:XRBLD=2
  W !!,"...now generating the FMS "_TYPE_" Cancellation Document..."
  S FMSDES="Cancellation of "_TYPE_" Obligation Document"
- I XRBLD=0 D CONTROL^GECSUFMS("I",PRC("SITE"),REF,TYPE,FMSSEC,1,"Y",FMSDES)
+ I XRBLD=0 D CONTROL^GECSUFMS("I",PRC("SITE"),REF,TYPE,FMSSEC,1,"Y",FMSDES,FMSCOMDT)   ;PRC*5.1*196
  S DATA=$$SEG2^PRCFFU8("X^"_TYPE,POIEN,.SEG)
  D GECS
  S PRCFA("PODA")=PRCFA("OLDPODA")
