@@ -1,5 +1,5 @@
-MAGGTU4T ;WOIFO/SG/NST/JSL - VERSION CONTROL (TELEREADER) ; 01 Apr 2013 10:20 AM
- ;;3.0;IMAGING;**93,94,106,117,122,127,182**;Mar 19, 2002;Build 38;May 24, 2017
+MAGGTU4T ;WOIFO/SG/NST/JSL - VERSION CONTROL (TELEREADER) ; 10 Jan 2019 10:20 AM
+ ;;3.0;IMAGING;**93,94,106,117,122,127,182,219**;Mar 19, 2002;Build 45;Jul 5, 2018
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,6 +23,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.219 |   2 |  62 | Jan 2019                                 |
  ;;| 3.0.182 |   3 |  61 | May 2017                                 |
  ;;| 3.0.127 |   9 |  60 | Apr 2013                                 |
  ;;==================================================================
@@ -35,6 +36,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ; order of patch sequential numbers is recommended.
  ;
  ; NOTE:
+ ;  Patch 219 did not remove support for any clients.
  ;  Patch 182 removed support for 
  ;        - Patch 122
  ;        - Patch 117
