@@ -1,5 +1,5 @@
-MAGNAN01 ;WOIFO/NST - IMAGING ANNOTATION UTILITY RPCS ; 28 Jul 2017 11:43 AM
- ;;3.0;IMAGING;**185**;Mar 19, 2002;Build 92;Aug 02, 2012
+MAGNAN01 ;WOIFO/NST - IMAGING ANNOTATION UTILITY RPCS ; 07 May 2018 11:43 AM
+ ;;3.0;IMAGING;**185,201**;Mar 19, 2002;Build 92;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -91,7 +91,7 @@ UPDATE(MAGOUT,IEN0,IEN1,MAGPARAM) ; Add new annotation data node w/ DUZ, version
  . Q
  ;
  S ANSITE=$G(DUZ(2))  ; Annotation Site
- S ANSERV=$$GET1^DIQ(200,DUZ,29,"E")  ; Annotation service
+ S ANSERV=$$GET1^DIQ(200,DUZ,29,"I")  ; Annotation service
  ;
  S IENS=IEN1_","_IEN0_","
  S:$E(IEN0)'="+" MAGNIEN(1)=IEN0
@@ -102,8 +102,8 @@ UPDATE(MAGOUT,IEN0,IEN1,MAGPARAM) ; Add new annotation data node w/ DUZ, version
  S:$D(ANNOT) MAGNFDA(2005.0031,IENS,2)=$$NOW^XLFDT() ;SAVE D/T
  S:VER'="" MAGNFDA(2005.0031,IENS,3)=VER           ;VERSION
  S MAGNFDA(2005.0031,IENS,4)=$G(SOURCE,"CLINIC")
- S MAGNFDA(2005.0031,IENS,7)=$G(ANSERV)     ;SERVICE/SECTION
- S MAGNFDA(2005.0031,IENS,8)=$G(ANSITE)     ;SITE
+ S MAGNFDA(2005.0031,IENS,7)=ANSERV     ;SERVICE/SECTION
+ S MAGNFDA(2005.0031,IENS,8)=ANSITE     ;SITE
  S:NAME'="" MAGNFDA(2005.0031,IENS,9)=NAME           ;Annotation name
  D UPDATE^DIE("","MAGNFDA","MAGNIEN","MAGNXE")
  I $$ISERROR^MAGNU002(.MAGOUT,.MAGNXE) Q 0

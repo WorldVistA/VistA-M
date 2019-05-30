@@ -1,5 +1,5 @@
-MAGGTIA1 ;WOIFO/GEK/SG - RPC Call to Add Image File entry ; 1/22/09 1:42pm
- ;;3.0;IMAGING;**21,8,59,93**;Dec 02, 2009;Build 163
+MAGGTIA1 ;WOIFO/GEK/SG/NST - RPC Call to Add Image File entry ; OCT 23, 2018@1:42pm
+ ;;3.0;IMAGING;**21,8,59,93,201**;Dec 02, 2009;Build 163
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -143,6 +143,11 @@ C1 ; we jump here if we already had a Filename sent
  . . S X=$P(MAGGFNM,".",1)_".BIG"
  . . S MAGRY=MAGRY_U_MAGGDRV_MAGDHASH_U_X
  . . Q
+ . Q
+ ;
+ N MAGOUT
+ I $$GET^XPAR("ALL","MAG PRECACHE ACQ ENABLED",,"I") D  ; IA# 2263
+ . D NWI2005^MAGNWRK1(.MAGOUT,MAGGDA) ; add a new storage work item
  . Q
  ;
 CLEAN ;
