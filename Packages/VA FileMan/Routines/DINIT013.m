@@ -1,4 +1,4 @@
-DINIT013 ;SFISC/TKW,VEN/SMH-DIALOG & LANGUAGE FILE INITS ;6DEC2012
+DINIT013 ;SFISC/TKW,VEN/SMH-DIALOG & LANGUAGE FILE INITS ;Jun 13, 2019@11:51
  ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
@@ -71,10 +71,14 @@ Q Q
  ;;=MODERN GERMAN (1500-)
  ;;^UTILITY(U,$J,.85,2,1,7,0)
  ;;=GERMAN,MODERN (1500-)
+ ;;^UTILITY(U,$J,.85,2,20.2)
+ ;;=S:$G(%DT)'[""I"" %DT=$G(%DT)_""I"" G CONT^%DT
  ;;^UTILITY(U,$J,.85,2,"CRD")
  ;;=S:$G(Y) Y=$TR($FN(Y,","),",",".")
  ;;^UTILITY(U,$J,.85,2,"DD")
- ;;=S:Y Y=$S($E(Y,6,7):$E(Y,6,7)_".",1:"")_$S($E(Y,4,5):$E(Y,4,5)_".",1:"")_($E(Y,1,3)+1700)_$P(" "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12)_$S($E(Y,13,14):":"_$E(Y_0,13,14),1:""),"^",Y[".")
+ ;;=S:Y Y=$S($E(Y,6,7):$E(Y,6,7)_".",1:"")_$S($E(Y,4,5):$E(Y,4,5)_".",1:"")_($E(Y,1,3)+1700)_$P("@"_$E(Y_0,9,10)_":"_$E(Y_"000",11,12)_$S($E(Y,13,14):":"_$E(Y_0,13,14),1:""),"^",Y[".")
+ ;;^UTILITY(U,$J,.85,2,"FMTE")
+ ;;=S:Y Y=$S($E(Y,6,7):$E(Y,6,7)_".",1:"")_$S($E(Y,4,5):$E(Y,4,5)_".",1:"")_($E(Y,1,3)+1700)_$P("@"_$E(Y_0,9,10)_":"_$E(Y_"000",11,12)_$S($E(Y,13,14):":"_$E(Y_0,13,14),1:""),"^",Y[".")
  ;;^UTILITY(U,$J,.85,2,"LC")
  ;;=S Y=$TR(Y,"ABCDEFGHIJKLMNOPQRSTUVWXYZ[]\","abcdefghijklmnopqrstuvwxyz{}|")
  ;;^UTILITY(U,$J,.85,2,"ORD")
