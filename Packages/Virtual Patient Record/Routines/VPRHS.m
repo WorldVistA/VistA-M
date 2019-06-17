@@ -1,5 +1,5 @@
 VPRHS ;SLC/MKB -- HealthShare utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15**;Sep 01, 2011;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -56,8 +56,8 @@ PAT ; -- post Patient update
  Q
  ;
 POST(DFN,TYPE,ID,ACT,VST) ; -- post an update to
+ ;  ^VPR(1,2,DFN,"AVPR",TYPE,ID) = seq# ^ U/D ^ VISIT#
  ;  ^VPR("AVPR",seq#,DFN) = ICN ^ TYPE ^ ID ^ U/D ^ VISIT#
- ;
  Q:'$P($G(^VPR(1,0)),U,2)                   ;monitoring disabled
  S DFN=+$G(DFN),TYPE=$G(TYPE),ID=$G(ID)
  Q:DFN<1  Q:TYPE=""                         ;incomplete request
@@ -66,14 +66,36 @@ POST(DFN,TYPE,ID,ACT,VST) ; -- post an update to
  I '$$SUBS(DFN),'$G(^DPT(DFN,.35)) D NEW(DFN,ICN) Q
  S ACT=$S($G(ACT)="@":"D",1:"U")
 P1 ;may enter here from VPRHSX manual update option
- N SEQ S SEQ=$I(^VPR(1,1))
+ N SEQ S SEQ=$$NUM
  S ^VPR("AVPR",SEQ,DFN)=ICN_U_$G(TYPE)_U_$G(ID)_U_$G(ACT)_U_$G(VST)
+ ; use * for subscript (whole container) if ID is null
+ S ^VPR(1,2,DFN,"AVPR",TYPE,$S($G(ID)="":"*",1:ID))=SEQ_U_$G(ACT)_U_$G(VST)
  Q
  ;
-NEW(DFN,ICN) ; -- post a new patient to ^VPR("ANEW",seq#,DFN) = ICN
- Q:$G(DFN)<1  I $G(ICN)<1 S ICN=$$GETICN^MPIF001(DFN) Q:ICN<0
+NUM() ; -- return existing SEQ of record, or increment
+ N X,Y S X=$S(ID="":"*",1:ID)
+ S Y=+$G(^VPR(1,2,DFN,"AVPR",TYPE,X)) I '$D(^VPR("AVPR",Y,DFN)) S Y=0
+ I Y'>0 S Y=$I(^VPR(1,1))
+ Q Y
+ ;
+NEW(DFN,ICN) ; -- post a new patient to 
+ ; ^VPR(1,2,DFN,"ANEW")  = seq#
+ ; ^VPR("ANEW",seq#,DFN) = ICN
+ Q:$G(DFN)<1  Q:$G(^VPR(1,2,DFN,"ANEW"))
+ I $G(ICN)<1 S ICN=$$GETICN^MPIF001(DFN) Q:ICN<0
  N SEQ S SEQ=$I(^VPR(1,1))
- S ^VPR("ANEW",SEQ,DFN)=ICN
+ S ^VPR("ANEW",SEQ,DFN)=ICN,^VPR(1,2,DFN,"ANEW")=SEQ
+ Q
+ ;
+DEL(LIST,SEQ) ; -- remove ^VPR(LIST,SEQ) nodes
+ N DFN,DATA,TYPE,ID
+ S LIST=$G(LIST),SEQ=+$G(SEQ) Q:LIST=""  Q:SEQ<1
+ S DFN=+$O(^VPR(LIST,SEQ,0)) I DFN<1 Q
+ I LIST="ANEW" K ^VPR("ANEW",SEQ,DFN),^VPR(1,2,DFN,"ANEW") Q
+ S DATA=$G(^VPR(LIST,SEQ,DFN)) K ^VPR("AVPR",SEQ,DFN)
+ S TYPE=$P(DATA,2) Q:TYPE=""  ;error
+ S ID=$P(DATA,U,3) S:ID="" ID="*"
+ K ^VPR(1,2,DFN,"AVPR",TYPE,ID)
  Q
  ;
 GET(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
@@ -81,10 +103,12 @@ GET(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
  S DFN=$G(DFN),ICN=$P(DFN,";",2),DFN=+DFN
  Q:DFN<1  Q:'$D(^DPT(DFN))  S VPRQ("patient")=DFN
  ;
+ ; validate/set up input parameters
  S VPRNM=$G(NAME)  Q:VPRNM=""
  S ID=$G(ID),MTYPE=$G(MTYPE,1) ;XML
  I $G(VPRQ("max")) S VPRMAX=VPRQ("max")
  ;
+ ; define default return arrays
  S VPRY=$G(VPRY,$NA(^TMP("VPR GET",$J))),VPRI=0 K @VPRY
  S VPRR=$G(VPRR,$NA(^TMP("VPR ERR",$J))) K @VPRR
  I VPRNM="Patient",'ID&DFN S ID=DFN_";2"
@@ -99,6 +123,38 @@ GET(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
  S VPRX=$NA(^TMP("VPRHS",$J))
  S VPRFN=0 F  S VPRFN=$O(^DDE("SDA",VPRNM,VPRFN)) Q:VPRFN<1  D
  . S VPRE=$O(^DDE("SDA",VPRNM,VPRFN,0)) K @VPRX
+ . D:VPRE GET^DDE(VPRE,,.VPRQ,MTYPE,.VPRMAX,.VPRX,.VPRR)
+ . Q:'$D(VPRX)  Q:+$G(@VPRX@(0))'>0
+ . S VPRN=0 F  S VPRN=$O(@VPRX@(VPRN)) Q:VPRN<1  S VPRI=VPRI+1,@VPRY@(VPRI)=@VPRX@(VPRN)
+ K @VPRX
+ Q
+ ;
+UPD(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
+ ; Used with patch update Entities to fix data cache
+ N ICN,VPRNM,VPRPCH,VPRCNTR,VPRE,VPRI,VPRN,VPRX,VPRMAX
+ S DFN=$G(DFN),ICN=$P(DFN,";",2),DFN=+DFN
+ Q:DFN<1  Q:'$D(^DPT(DFN))  S VPRQ("patient")=DFN
+ ;
+ ; validate/set up input parameters
+ S VPRNM=$G(NAME)  Q:VPRNM=""
+ S ID=$G(ID),MTYPE=$G(MTYPE,1) ;XML
+ I $G(VPRQ("max")) S VPRMAX=VPRQ("max")
+ ;
+ ; define default return arrays
+ S VPRY=$G(VPRY,$NA(^TMP("VPR GET",$J))),VPRI=0 K @VPRY
+ S VPRR=$G(VPRR,$NA(^TMP("VPR ERR",$J))) K @VPRR
+ ;
+ I VPRNM="Patient" D  Q
+ . S VPRE=$O(^DDE("B","VPR PATIENT",0))
+ . D:VPRE GET^DDE(VPRE,DFN,.VPRQ,MTYPE,.VPRMAX,.VPRY,.VPRR)
+ ;
+ ; re-load container for patient
+ S VPRX=$NA(^TMP("VPRHS",$J))
+ S VPRPCH=$G(VPRQ("patch")) Q:VPRPCH=""
+ S VPRCNTR="VPR "_VPRPCH_" "_$$UP^XLFSTR(VPRNM)
+ S VPRNM=$E(VPRCNTR,1,$L(VPRCNTR)-1)
+ F  S VPRNM=$O(^DDE("B",VPRNM)) Q:VPRNM=""  Q:VPRNM'[VPRCNTR  D
+ . S VPRE=$O(^DDE("B",VPRNM,0)) K @VPRX
  . D:VPRE GET^DDE(VPRE,,.VPRQ,MTYPE,.VPRMAX,.VPRX,.VPRR)
  . Q:'$D(VPRX)  Q:+$G(@VPRX@(0))'>0
  . S VPRN=0 F  S VPRN=$O(@VPRX@(VPRN)) Q:VPRN<1  S VPRI=VPRI+1,@VPRY@(VPRI)=@VPRX@(VPRN)

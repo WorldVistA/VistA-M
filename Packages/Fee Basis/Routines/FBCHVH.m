@@ -1,5 +1,5 @@
 FBCHVH ;AISC/DMK - VENDOR PAYMENT HISTORY ;7/17/2003
- ;;3.5;FEE BASIS;**55,61,122,108,135,144,123**;JAN 30, 1995;Build 51
+ ;;3.5;FEE BASIS;**55,61,122,108,135,144,123,164**;JAN 30, 1995;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
 GETVEN K FBAANQ D GETVEN^FBAAUTL1 G END:IFN']""
  D DATE^FBAAUTL G:FBPOP GETVEN S ZZ=9999999.9999,FBBEG=ZZ-ENDDATE,FBEND=ZZ-BEGDATE
@@ -12,6 +12,7 @@ END K DA,BEGDATE,ENDDATE,FBBEG,FBEND,DIC,FBAANQ,FBAAOUT,FBDX,FBI,FBIN,FBPROC,FBV
  D CLOSE^FBAAUTL Q
 GETINV ;
  N FBADJLA,FBADJLR,FBCDAYS,FBCSID,FBFPPSC,FBFPPSL,FBRRMKL,FBY2,FBY3,FBY5,FBADMTDX,FBPOA,FBCNTRN,B
+ N AD
  S FBIN=^FBAAI(FBI,0)
  S FBY2=$G(^FBAAI(FBI,2))
  S FBY3=$G(^FBAAI(FBI,3))
@@ -69,8 +70,29 @@ WRT I $Y+6>IOSL D HANG^FBAAUTL1:$E(IOST,1,2)["C-" Q:FBAAOUT  I $D(^FBAAI(FBI,4))
  .. I STRLEN>65 W !,?4,"PROC: " S STRLEN=0    ; start new line
  .. W WRTPC_" " S STRLEN=1+STRLEN+$L(WRTPC)
  . I F135>22 S F135=0,STRLEN=66,DIR(0)="E" W ! D ^DIR K DIR S:$D(DUOUT)!($D(DTOUT)) FBOUT=1   ; pagination
+ I $D(^FBAAI(FBI,10)) D  Q:FBOUT
+ . N AI,AID,AITI S AI=0 S WRTPC="Attachment ID:"
+ . F  S AI=$O(^FBAAI(FBI,10,AI)) Q:'AI  D  Q:FBOUT
+ . . S AID=$P($G(^FBAAI(FBI,10,AI,0)),"^") I $L(WRTPC)>20 S WRTPC=WRTPC_","
+ . . S WRTPC=WRTPC_" "_AID
+ . . S AITI=$P($G(^FBAAI(FBI,10,AI,0)),"^",2) I AITI D
+ . . . S WRTPC=WRTPC_" ("_$P($G(^IBE(353.3,AITI,0)),"^")
+ . . . S WRTPC=WRTPC_" - "
+ . . . S WRTPC=WRTPC_$P($G(^IBE(353.3,AITI,0)),"^",2)_")"
+ . . I $L(WRTPC)>65 S FBOUT=$$WRTSTR(.WRTPC,65)
+ . I $L(WRTPC)>0 S FBOUT=$$WRTSTR(.WRTPC,65)
  N A2 S A2=FBIN(9) W ! D PMNT^FBAACCB2
  Q
+WRTSTR(STR,MX) ; Wordwrap string
+ N RM,I S FBOUT=0
+WRTSTR1 S RM=$S(STR?1"Attachment ID:".E:MX-4,1:MX-7)
+ F I=1:1:$L(STR," ") Q:$L($P(STR," ",1,I))>RM
+ W !,?4 W:STR'?1"Attachment ID:".E ?7 W $P(STR," ",1,$S(I=$L(STR," "):I,1:I-1))
+ S STR=$P(STR," ",I,999)
+ S F135=F135+1 I F135>22 S F135=0,DIR(0)="E" W ! D ^DIR K DIR S:$D(DUOUT)!($D(DTOUT)) FBOUT=1   ; pagination
+ I FBOUT Q FBOUT
+ I $L(STR)>(MX-3) G WRTSTR1
+ Q FBOUT
 WRTDX ;write dianosis code and present on admission code
  N P3,P4
  S FBDX=$P(P1,"^",K)
@@ -91,6 +113,9 @@ HEDC I $D(FBHEAD) W:'$G(FBPG) @IOF K:$G(FBPG) FBPG W ?25,FBHEAD_" PAYMENT HISTOR
  I '$D(FBHEAD) W:'$G(FBPG) @IOF K:$G(FBPG) FBPG W !?32,"INVOICE DISPLAY",!,?31,$E(Q,1,17),!
  W !,"Veteran's Name",?48,"Patient Control Number"
  W !,"('*'Reimbursement to Veteran   '+' Cancellation Activity)   '#' Voided Payment)"
+ ;FB*3.5*164
+ ;W !,"('&' Additional Payment)"
+ ;
  W !,?4,"Vendor Name",?45,"Vendor ID",?59,"Invoice #"
  ;W !,?3,"Fr Date",?14,"To Date  Claimed   Paid",?41,"Sus Code",?59,"Dt. Rec.",?69,"Inv. Date"
  W !,?4,"FPPS Claim ID",?18,"FPPS Line Item",?35,"Date Rec.",?46,"Inv. Date",?57,"Fr Date",?68,"To Date"

@@ -1,5 +1,5 @@
-MAGDQR21 ;WOIFO/EdM,NST,MLH,JSL,SAF,BT - RPCs for Query/Retrieve SetUp ; 09 May 2011 4:27 PM
- ;;3.0;IMAGING;**83,104,123,119**;Mar 19, 2002;Build 4396;Apr 19, 2013
+MAGDQR21 ;WOIFO/EdM,NST,MLH,JSL,SAF,BT - RPCs for Query/Retrieve SetUp ; 16 JUL,2018@4:27 PM
+ ;;3.0;IMAGING;**83,104,123,119,221**;Mar 19, 2002;Build 4396;Apr 19, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -180,6 +180,7 @@ STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL) ; Generate output in ^TMP based on paramete
  N I0 ;IEN where the patient found
  N D0
  N STUMO ;Procedure array
+ N TDCMIMG ; total number of DICOM images
  ;
  D WRTOUT^MAGDQR21("NEXT_STUDY|"_UID_"|"_IEN)
  ;
@@ -187,11 +188,11 @@ STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL) ; Generate output in ^TMP based on paramete
  D:IEN GETGPIEN^MAGDQR21(IEN,.STUDY,INCDEL) ;add IEN into STUDY
  Q:'$O(STUDY(""))
  ; 
- D GETPAT^MAGDQR21(.STUDY,.PAT,.PATCOUNT,.TOTIMAGES,REQDFN,INCDEL) ;get images for patient
+ D GETPAT^MAGDQR21(.STUDY,.PAT,.PATCOUNT,.TOTIMAGES,.TDCMIMG,REQDFN,INCDEL) ;get images for patient
  Q:'$$VALPAT^MAGDQR21(UID,.PAT,.PATCOUNT,REQDFN)  ;validate to make sure all images belonged to one patient
  ;
  S I0=$O(PAT(REQDFN,"")) ;include the first Image when writing out the STUDY section
- Q:'$$WRTIEN^MAGDQR21(UID,I0,TOTIMAGES,REQDFN)
+ Q:'$$WRTIEN^MAGDQR21(UID,I0,TOTIMAGES,TDCMIMG,REQDFN)
  ;
  Q:'$$INTEGDFN^MAGDQR21(I0,REQDFN,INCDEL)
  ;
@@ -231,7 +232,7 @@ GETGPIEN(IEN,STUDY,INCDEL) ; Add IEN into STUDY (include deleted images)
  . Q
  Q
  ;
-GETPAT(STUDY,PAT,PATCOUNT,TOTIMAGES,REQDFN,INCDEL) ; Get Total Images count and fill Patient array based on STUDY
+GETPAT(STUDY,PAT,PATCOUNT,TOTIMAGES,TDCMIMG,REQDFN,INCDEL) ; Get Total Images count and fill Patient array based on STUDY
  ;Input:
  ;   STUDY     - array of all images
  ;   REQDFN    - patient
@@ -240,9 +241,10 @@ GETPAT(STUDY,PAT,PATCOUNT,TOTIMAGES,REQDFN,INCDEL) ; Get Total Images count and 
  ;   PAT       - array of all images for the patient
  ;   PATCOUNT  - array to validate all images should belonged only to one patient
  ;   TOTIMAGES - total images for the patient
+ ;   TDCMIMG   - total DICOM images 
  ;
- N D0,MAGFIL,DFN,ISGRP
- S TOTIMAGES=0
+ N D0,MAGFIL,DFN,ISGRP,CNT
+ S (TOTIMAGES,TDCMIMG)=0
  S D0=""
  ;
  F  S D0=$O(STUDY(D0)) Q:D0=""  D
@@ -254,8 +256,16 @@ GETPAT(STUDY,PAT,PATCOUNT,TOTIMAGES,REQDFN,INCDEL) ; Get Total Images count and 
  . ;Add image count to Total Images for the study
  . S ISGRP=$$ISGRP^MAGDQR21(D0,INCDEL)
  . I 'ISGRP,REQDFN=DFN S TOTIMAGES=TOTIMAGES+1 Q
- . I MAGFIL=2005 S TOTIMAGES=TOTIMAGES+$$GETGPIM^MAGDQR21(D0,REQDFN,.PATCOUNT) ; count group images
- . I INCDEL S TOTIMAGES=TOTIMAGES+$$GETGPDIM^MAGDQR21(D0,REQDFN,.PATCOUNT) ; count deleted group images
+ . I MAGFIL=2005 D
+ . . S CNT=$$GETGPIM^MAGDQR21(D0,REQDFN,.PATCOUNT)
+ . . S TOTIMAGES=TOTIMAGES+$P(CNT,"^",1) ; count group images
+ . . S TDCMIMG=TDCMIMG+$P(CNT,"^",2)
+ . . Q
+ . I INCDEL D
+ . . S CNT=$$GETGPDIM^MAGDQR21(D0,REQDFN,.PATCOUNT)
+ . . S TOTIMAGES=TOTIMAGES+$P(CNT,"^",1) ; count deleted group images
+ . . S TDCMIMG=TDCMIMG+$P(CNT,"^",2)
+ . . Q
  . Q
  Q
  ;
@@ -267,8 +277,8 @@ ISGRP(D0,INCDEL) ; return 1 if D0 is a group IEN, 0 otherwise
  Q ISGRP
  ;
 GETGPIM(D0,REQDFN,PATCOUNT) ; return total images in the group and PATCOUNT array for patient validation
- N D1,I0,DFN,IMGCNT
- S IMGCNT=0
+ N D1,I0,DFN,IMGCNT,IMGCNTOT,MAGOBJTP
+ S (IMGCNT,IMGCNTOT)=0
  S D1=0 ;go through all images. They should belong to one pt
  F  S D1=$O(^MAG(2005,D0,1,D1)) Q:'D1  D
  . S I0=+$G(^MAG(2005,D0,1,D1,0)) Q:'I0
@@ -277,12 +287,14 @@ GETGPIM(D0,REQDFN,PATCOUNT) ; return total images in the group and PATCOUNT arra
  . ; increment image count unless single pt was requested and this isn't that pt
  . I REQDFN'=DFN Q
  . S IMGCNT=IMGCNT+1
+ . S MAGOBJTP=$P($G(^MAG(2005,I0,0)),"^",6)  ; OBJECT TYPE field (#3)
+ . S:(MAGOBJTP=100)!(MAGOBJTP=3) IMGCNTOT=IMGCNTOT+1   ; 100 - DICOM IMAGE; 3 - XRAY
  . Q
- Q IMGCNT
+ Q IMGCNT_"^"_IMGCNTOT
  ;
 GETGPDIM(D0,REQDFN,PATCOUNT) ; return total images in the group and PATCOUNT array for patient validation
- N I0,DFN,IMGCNT
- S IMGCNT=0
+ N I0,DFN,IMGCNT,IMGCNTOT,MAGOBJTP
+ S (IMGCNT,IMGCNTOT)=0
  S I0="" ;go through all AUDIT images.
  F  S I0=$O(^MAG(2005.1,"AGP",D0,I0)) Q:I0=""  D
  . S DFN=+$P($G(^MAG(2005.1,I0,0)),"^",7)
@@ -290,8 +302,10 @@ GETGPDIM(D0,REQDFN,PATCOUNT) ; return total images in the group and PATCOUNT arr
  . ; increment image count unless single pt was requested and this isn't that pt
  . I REQDFN'=DFN Q
  . S IMGCNT=IMGCNT+1
+ . S MAGOBJTP=$P($G(^MAG(2005.1,I0,0)),"^",6)  ; OBJECT TYPE field (#3)
+ . S:(MAGOBJTP=100)!(MAGOBJTP=3) IMGCNTOT=IMGCNTOT+1   ; 100 - DICOM IMAGE; 3 - XRAY
  . Q
- Q IMGCNT
+ Q IMGCNT_"^"_IMGCNTOT
  ;
 VALPAT(UID,PAT,PATCOUNT,REQDFN) ; Validate - should only have one patient
  N CONT,DFN
@@ -307,13 +321,13 @@ VALPAT(UID,PAT,PATCOUNT,REQDFN) ; Validate - should only have one patient
  ;
  Q CONT
  ;
-WRTIEN(UID,I0,TOTIMAGES,REQDFN) ; Output STUDY UID and IEN line
+WRTIEN(UID,I0,TOTIMAGES,TDCMIMG,REQDFN) ; Output STUDY UID and IEN line
  N OBJGRP
  ; 
  D:UID'="" WRTOUT^MAGDQR21("STUDY_UID|"_UID)
  I 'I0 D WRTOUT^MAGDQR21("STUDY_ERR|"_UID_"|Matching study not found for patient "_REQDFN) Q 0
  S OBJGRP=$$ONEGROUP^MAGDQR21(I0) ; get the first image IEN for group/image I0
- D WRTOUT^MAGDQR21("STUDY_IEN|"_I0_"|"_TOTIMAGES_"|"_OBJGRP_"|"_$$CPTCODE^MAGDQR21(I0)_"|"_$$GETSITE1^MAGDQR21(OBJGRP))
+ D WRTOUT^MAGDQR21("STUDY_IEN|"_I0_"|"_TOTIMAGES_"|"_OBJGRP_"|"_$$CPTCODE^MAGDQR21(I0)_"|"_$$GETSITE1^MAGDQR21(OBJGRP)_"|"_TDCMIMG)
  Q 1
  ; 
 INTEGDFN(I0,REQDFN,INCDEL) ; check integrity of study record

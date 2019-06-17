@@ -1,5 +1,5 @@
 ORRCQLPT  ; SLC/TH - CPRS Query Tools - Libraries ; 25 Jul 2003  9:31 AM
- ;;1.0;CARE MANAGEMENT;;Jul 15, 2003
+ ;;1.0;CARE MANAGEMENT;;Jul 15, 2003;Build 8
  ;
 PTDFN(VAL,ID) ; Return patient info given an order, consult, or note
  N DFN,X,X0,X1,X101

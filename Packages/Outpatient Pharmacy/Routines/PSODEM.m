@@ -1,5 +1,5 @@
 PSODEM ;BHAM ISC/SAB - PATIENT DEMOGRAPHICS ; 02/17/93 12:29
- ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500,452**;DEC 1997;Build 56
+ ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500,452,556**;DEC 1997;Build 2
  ;External reference to ^GMRADPT supported by DBIA 10099
  ;External reference to ^DIC(31 supported by DBIA 658
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
@@ -33,10 +33,12 @@ RE ;
 CRCL S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2))
  S RSLT=$$CRCL^PSOORUT2(DFN)
  ; RSLT -- DATE^CRCL^Serum Creatinine -- Ex.  11/25/11^68.7^1.1
+ ; Display format of CrCL and Creatinine results updated - PSO*7.0*556
  I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
- I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- W !,ZDSPL,?40," BSA (m2): ",PSOBSA K PSOBSA,ZDSPL,RSLT
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ W !,$G(ZDSPL),?40," BSA (m2): ",PSOBSA K PSOBSA,ZDSPL,RSLT
  ;
  S PSLC=0 G MA:$P($G(^DPT(DFN,.17)),"^",2)'="I"
  I '$D(VAEL(1)) D ELIG^VADPT W !!,"ELIGIBILITY: ",$P(VAEL(1),"^",2) W:+VAEL(3) ?$X+5,"SC%: "_$P(VAEL(3),"^",2) S PSLC=PSLC+2

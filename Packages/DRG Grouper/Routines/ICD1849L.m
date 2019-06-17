@@ -1,0 +1,25 @@
+ICD1849L ;ALB/MJB - REMEDY FIXES;12/1/2010
+ ;;18.0;DRG Grouper;**49**;Oct 13,2000;Build 13
+ ;
+ Q
+ADDID ;
+ ; update diagnoses with identifier
+ ;
+ N LINE,ICDX,ICDDIAG,ENTRY,IDENT,DA,DIE,DR,DUPE
+ F LINE=1:1 S ICDX=$T(DXID+LINE) S ICDDIAG=$P(ICDX,";;",2) Q:ICDDIAG="EXIT"  D
+ .S ENTRY=+$O(^ICD9("BA",$P(ICDDIAG,U)_" ",0))
+ .S IDENT=$P($G(^ICD9(ENTRY,0)),U,2)
+ .; check if already done in case patch is being re-installed
+ .S IDENA=$P(ICDDIAG,U,2)
+ .I IDENT[IDENA D ICDMSG Q
+ .S IDENT=IDENT_IDENA  D
+ .S DA=ENTRY,DIE="^ICD9("
+ .S DR="2///^S X=IDENT"
+ .D ^DIE
+ Q
+ICDMSG ;
+ D BMES^XPDUTL(">>> IDENTIFIER ALREADY UPDATED - NO CHANGE HAS BEEN MADE")
+ D MES^XPDUTL("     TO DIAGNOSIS CODE: "_ICDDIAG) Q
+DXID ;
+ ;;659.61^D
+ ;;EXIT

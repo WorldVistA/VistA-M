@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-09-MAY-2019 15:17:05 ZWR
+12-JUN-2019 21:13:01 ZWR
 ^DIC(0)="FILE^1^9999999.64^2798"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5469,7 +5469,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.11","%D",2,0)="developed and associated to the MASTER RADIOLOGY PROCEDURE file (#71.11)."
 ^DIC("71.11","%D",3,0)="After the procedure is created and matched it will be moved to the"
 ^DIC("71.11","%D",4,0)="RAD/NUC MED PROCEDURE file (#71) and then deleted from 71.11."
-^DIC("71.11","%MSC")=3170601.180727
+^DIC("71.11","%MSC")=3190604.175342
 ^DIC("71.2",0)="PROCEDURE MODIFIERS^71.2"
 ^DIC("71.2",0,"GL")="^RAMIS(71.2,"
 ^DIC("71.2","%",0)="^1.005^1^1"
@@ -9950,7 +9950,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(162,"%D",3,0)="Pharmacy payment data."
 ^DIC(162,"%D",4,0)=" "
 ^DIC(162,"%D",5,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(162,"%MSC")=3180424.161821
+^DIC(162,"%MSC")=3190604.180954
 ^DIC("162.1",0)="FEE BASIS PHARMACY INVOICE^162.1"
 ^DIC("162.1",0,"DD")="@"
 ^DIC("162.1",0,"DEL")="#"
@@ -33125,7 +33125,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.941","%D",16,0)=" +---------------------------------------------------------------+"
 ^DIC("2006.941","%D",17,0)=" "
 ^DIC("2006.941","%D",18,0)="This file contains a queue of work items for worklists in the WORKLIST file (#2006.9412)."
-^DIC("2006.941","%MSC")=3170207.132101
+^DIC("2006.941","%MSC")=3190604.180539
 ^DIC("2006.9412",0)="WORKLIST^2006.9412"
 ^DIC("2006.9412",0,"AUDIT")="@"
 ^DIC("2006.9412",0,"DD")="@"

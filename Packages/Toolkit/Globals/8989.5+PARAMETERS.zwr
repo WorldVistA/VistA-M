@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: PARAMETERS
-09-MAY-2019 15:21:36 ZWR
+12-JUN-2019 21:17:15 ZWR
 ^XTV(8989.5,0)="PARAMETERS^8989.5AIV^2228^1798"
 ^XTV(8989.5,1,0)="14;DIC(9.4,^78^1"
 ^XTV(8989.5,1,1)=1
@@ -8755,7 +8755,7 @@ OSEHRA ZGO Export: PARAMETERS
 ^XTV(8989.5,2213,0)="27;DIC(4.2,^866^1"
 ^XTV(8989.5,2213,1)=3190301
 ^XTV(8989.5,2214,0)="27;DIC(4.2,^922^1"
-^XTV(8989.5,2214,1)="1.0.489.2"
+^XTV(8989.5,2214,1)="1.0.505.1"
 ^XTV(8989.5,2215,0)="44;DIC(9.4,^923^Is the overnight cancelled to discontinued job active?"
 ^XTV(8989.5,2215,1)="NO"
 ^XTV(8989.5,2216,0)="44;DIC(9.4,^923^How many days back to start with?"
@@ -12314,7 +12314,7 @@ OSEHRA ZGO Export: PARAMETERS
 ^XTV(8989.5,"AC",880,"27;DIC(4.2,",1,2211)=""
 ^XTV(8989.5,"AC",884,"27;DIC(4.2,",1)=90
 ^XTV(8989.5,"AC",884,"27;DIC(4.2,",1,2212)=""
-^XTV(8989.5,"AC",922,"27;DIC(4.2,",1)="1.0.489.2"
+^XTV(8989.5,"AC",922,"27;DIC(4.2,",1)="1.0.505.1"
 ^XTV(8989.5,"AC",922,"27;DIC(4.2,",1,2214)=""
 ^XTV(8989.5,"AC",923,"44;DIC(9.4,","How many days back to end with?")=365
 ^XTV(8989.5,"AC",923,"44;DIC(9.4,","How many days back to end with?",2217)=""

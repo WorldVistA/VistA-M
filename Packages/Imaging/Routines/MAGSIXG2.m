@@ -1,5 +1,5 @@
-MAGSIXG2 ;WOIFO/SG - LIST OF IMAGES RPCS (PARAMETERS) ; 2/12/09 3:52pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGSIXG2 ;WOIFO/SG,NST - LIST OF IMAGES RPCS (PARAMETERS) ; 5/11/18 3:52pm
+ ;;3.0;IMAGING;**93,221**;Dec 02, 2009;Build 163
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -134,6 +134,7 @@ MISCDEFS ;+++++ DEFINITIONS OF MISCELLANEOUS PARAMETERS
  ;;| Parameter  | File  |Field|Type |Flags|        Comment          |
  ;;|------------+-------+-----+-----+-----+-------------------------|
  ;;|CAPTAPP     |       |  8.1| S   |     | CAPTURE APPLICATION     |
+ ;;|CPTCODE     |       |     |     |     | CPT CODE                |
  ;;|GDESC       |       | 10  |     |     | SHORT DESCRIPTION       |
  ;;|IDFN        |       |  5  | P   |     | Patient IEN (DFN)       |
  ;;|ISTAT       |       |113  | S   |     | STATUS                  |
@@ -143,8 +144,9 @@ MISCDEFS ;+++++ DEFINITIONS OF MISCELLANEOUS PARAMETERS
  ;;|IXPROC      |       | 43  | P   |     | PROC/EVENT INDEX        |
  ;;|IXSPEC      |       | 44  | P   |     | SPEC/SUBSPEC INDEX      |
  ;;|IXTYPE      |       | 42  | P   |     | TYPE INDEX              |
+ ;;|MODALITY    |       |     |     |     | MODALITY                |
  ;;|SAVEDBY     |       |  8  | P   |     | Who captured (DUZ)      |
- ;;|SENSIMG     |       |112  | S   |     | CONTROLLED IMAGE         |
+ ;;|SENSIMG     |       |112  | S   |     | CONTROLLED IMAGE        |
  ;;==================================================================
  ;
  ; Notes
@@ -228,6 +230,14 @@ VALMISC(MISC,MAGFLT) ;
  S VAL=$G(MISC("IXSPEC"))
  S RC=$$VALSPECS(VAL,$NA(MAGFLT("SPEC")),FLAGS)
  I RC  D:RC>0 ERROR^MAGUERR(-16,,$P(VAL,U,RC))  S ERROR=1
+ ;--- CPT Code
+ S VAL=$G(MISC("CPTCODE"))
+ S RC=$$VALCNLST^MAGUTL06(VAL,71,9,$NA(MAGFLT("CPTCODE")))
+ I RC  D:RC>0 ERROR^MAGUERR(-15,,$P(VAL,U,RC))  S ERROR=1
+ ;--- Modality
+ S VAL=$G(MISC("MODALITY"))
+ S RC=$$VALCNLST^MAGUTL06(VAL,2005,6,$NA(MAGFLT("MODALITY")))
+ I RC  D:RC>0 ERROR^MAGUERR(-15,,$P(VAL,U,RC))  S ERROR=1
  ;---
  Q $S(ERROR:-30,1:0)
  ;

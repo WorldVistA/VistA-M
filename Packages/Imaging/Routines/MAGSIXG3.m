@@ -1,5 +1,5 @@
-MAGSIXG3 ;WOIFO/SG/NST - LIST OF IMAGES RPCS (CALLBACK) ;
- ;;3.0;IMAGING;**93,117,150,138,167**;Mar 19, 2002;Build 30;Dec 19, 2016
+MAGSIXG3 ;WOIFO/SG/NST - LIST OF IMAGES RPCS (CALLBACK) ; NOV 20, 2018@3:52pm
+ ;;3.0;IMAGING;**93,117,150,138,167,221**;Mar 19, 2002;Build 30
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -108,13 +108,86 @@ DTE(DTI) ;
  ;           >0  Terminate the query
  ;
 QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
- N CAPTAPP,CLASS,EVT,FLTX,GROUP,GRPCNTS,IIFLAGS,IMGNODE
- N ORIG,PKG,PTIEN,RC,SENSIMG,SKIP,SPEC,STATUS,TYPE
+ N FLTX,IIFLAGS,GRPCNTS,PTIEN,RC
+ ;
+ S RC=$$FILTER(.FLTX,.GRPCNTS,.PTIEN,IMGIEN,FLAGS,.MAGDATA) ; Apply filter 
+ Q:'RC 0  ; Filter is not matched
+ ;
+ Q:RC=2 1  ; Terminate the query when maximum number of records is reached
+ ;
+ ;=== Flags for $$INFO^MAGGAII
+ S IIFLAGS=$$TRFLAGS^MAGUTL05(FLAGS,"DE")
+ ;
+ ;=== Sparse subset query does not append image entries to the result 
+ ;    array right away. It saves them to the temporary buffers in the
+ ;    ^TMP("MAGSIXG3",$J) global node instead. After all images are
+ ;    preselected, the $$SUBSET^MAGSIXG4 processes those buffers and
+ ;=== appends required number of image entries to the result array.
+ I MAGDATA("FLAGS")["S"  S RC=0  D  Q $S(RC<0:RC,1:0)
+ . N I,TCNT,X
+ . S (MAGDATA("TCNT"),TCNT)=$G(MAGDATA("TCNT"))+1
+ . ;--- If the image is associated with the same patient as the
+ . ;--- previous one, save it in the regular temporary buffer.
+ . I PTIEN=$G(MAGDATA("PREVPT")) D  Q
+ . . S I=$O(^TMP("MAGSIXG3",$J,"R",""),-1)+1
+ . . S ^TMP("MAGSIXG3",$J,"R",I)=TCNT_"|"_IMGIEN_"|"_GRPCNTS
+ . . S ^TMP("MAGSIXG3",$J,"R",I,0)=FLTX
+ . . Q
+ . ;--- If the image is associated with a different patient, remember
+ . ;--- the new DFN and store the image into the "priority" buffer.
+ . S MAGDATA("PREVPT")=PTIEN
+ . S ^TMP("MAGSIXG3",$J,"P",TCNT)=TCNT_"|"_IMGIEN_"|"_GRPCNTS
+ . S ^TMP("MAGSIXG3",$J,"P",TCNT,0)=FLTX
+ . ;--- If the image that precedes the patient change is not in the
+ . ;--- "priority" buffer yet, move it there from the regular buffer.
+ . S X=TCNT-1  Q:$D(^TMP("MAGSIXG3",$J,"P",X))
+ . S I=$O(^TMP("MAGSIXG3",$J,"R",""),-1)  Q:I=""
+ . I $P(^TMP("MAGSIXG3",$J,"R",I),"|")'=X  D  Q
+ . . S RC=$$ERROR^MAGUERR(-47)  ; This should never happen!
+ . . Q
+ . M ^TMP("MAGSIXG3",$J,"P",X)=^TMP("MAGSIXG3",$J,"R",I)
+ . K ^TMP("MAGSIXG3",$J,"R",I)
+ . Q
+ ;
+ ;=== Append the image item to the result array
+ S RC=$$APPEND(IMGIEN,FLTX,GRPCNTS,IIFLAGS)  Q:RC<0 RC
+ ;
+ ;=== Success
+ Q 0
+ ;
+ ;+++++ RETURNS THE NOTE TITLE
+RPTITLE(FILE,IEN) ;
+ N TITLE,TMP
+ I FILE=8925,IEN>0  D  S TITLE=$P($G(^TIU(8925.1,TMP,0)),U)  ; IA #2321
+ . S TMP=+$P($G(^TIU(8925,+IEN,0)),U)   ; IA #2937
+ . Q
+ Q $S($G(TITLE)'="":TITLE,1:"   ")
+ ;
+MODALITY(IMGIEN)  ; Get Image modality
+ N G,M,P,MAGFILD,MAGFILG,X
+ S MAGFILD=$$FILE^MAGGI11(IMGIEN)
+ S X=$S(MAGFILD:$G(^MAG(MAGFILD,IMGIEN,0)),1:"")
+ S G=+$P(X,"^",10) ;Group IEN
+ S M=$P(X,"^",8)   ;Procedure
+ S:$E(M,1,4)="RAD " M=$E(M,5,$L(M))
+ Q:M="" ""
+ S MAGFILG=$$FILE^MAGGI11(G)
+ S G=$S(MAGFILG:$P($G(^MAG(MAGFILG,G,2)),"^",6),1:"") ;Parent Data File# for Group IEN
+ S P=$S(MAGFILD:$P($G(^MAG(MAGFILD,IMGIEN,2)),"^",6),1:"") ;Parent Data File# for IEN
+ I P'=74,G'=74 Q ""  ;quit if not RAD/NUC MED REPORTS file (#74)
+ Q M
+ ;
+ ; Filter image based on filter data
+FILTER(FLTX,GRPCNTS,PTIEN,IMGIEN,FLAGS,MAGDATA) ;
+ N CAPTAPP,CLASS,EVT,GROUP,IMGNODE
+ N ORIG,PKG,SENSIMG,SKIP,SPEC,STATUS,TYPE
+ N CPTCODE,MODALITY
  N X,X0,X01,X100,X2,X40
  N MAGFOUND  ; temp loop flag
+ S FLTX=""
  S IMGNODE=$$NODE^MAGGI11(IMGIEN)  Q:IMGNODE="" 0
  ;=== Terminate the query when maximum number of records is reached
- I MAGDATA("MAXNUM"),MAGDATA("RESCNT")'<MAGDATA("MAXNUM")  Q 1
+ I MAGDATA("MAXNUM"),MAGDATA("RESCNT")'<MAGDATA("MAXNUM")  Q 2
  ;
  ;=== Skip, if a group member
  S X0=$G(@IMGNODE@(0))
@@ -154,6 +227,8 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  S SENSIMG=+$P(X100,U,7)  ; CONTROLLED IMAGE (112)
  S STATUS=$P(X100,U,8)    ; STATUS(113)
  S CAPTAPP=$P(X2,U,12)    ; CAPTURE APPLICATION (8.1)
+ S CPTCODE=$$CPTCODE^MAGDQR21(IMGIEN)  ; CPT CODE
+ S MODALITY=$$MODALITY(IMGIEN)  ; Get Modality
  ;
  ; 150 T2 - if Group and Deleted and only 1 child: get Status of child.
  I GROUP,$$ISDEL^MAGGI11(IMGIEN),$P(GRPCNTS,U,2)=1 D  ;
@@ -171,6 +246,10 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  I $D(MAGDATA("ORIG")),ORIG'=""  Q:'$D(MAGDATA("ORIG",ORIG)) 0
  I $D(MAGDATA("CLS")),CLASS'=""  Q:'$D(MAGDATA("CLS",CLASS)) 0
  I $D(MAGDATA("TYPE")),TYPE      Q:'$D(MAGDATA("TYPE",TYPE)) 0
+ I $D(MAGDATA("CPTCODE")),CPTCODE="" Q 0
+ I $D(MAGDATA("MODALITY")),MODALITY="" Q 0
+ I $D(MAGDATA("CPTCODE")),CPTCODE'=""  Q:'$D(MAGDATA("CPTCODE",CPTCODE)) 0
+ I $D(MAGDATA("MODALITY")),MODALITY'=""  Q:'$D(MAGDATA("MODALITY",MODALITY)) 0
  ;
  I '(FLAGS["G") D  Q:'MAGFOUND 0  ; doesn't meet the criteria. One strike and you have to quit
  . S MAGFOUND=1
@@ -225,51 +304,4 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  S $P(FLTX,U,13)=$$EXTERNAL^DILFD(2005,45,,ORIG)     ; Origin
  S $P(FLTX,U,14)=$$DTE($P(X2,U))                     ; Capture date
  S $P(FLTX,U,15)=$$GET1^DIQ(200,+$P(X2,U,2)_",",.01) ; Captured by
- ;
- ;=== Flags for $$INFO^MAGGAII
- S IIFLAGS=$$TRFLAGS^MAGUTL05(FLAGS,"DE")
- ;
- ;=== Sparse subset query does not append image entries to the result 
- ;    array right away. It saves them to the temporary buffers in the
- ;    ^TMP("MAGSIXG3",$J) global node instead. After all images are
- ;    preselected, the $$SUBSET^MAGSIXG4 processes those buffers and
- ;=== appends required number of image entries to the result array.
- I MAGDATA("FLAGS")["S"  S RC=0  D  Q $S(RC<0:RC,1:0)
- . N I,TCNT
- . S (MAGDATA("TCNT"),TCNT)=$G(MAGDATA("TCNT"))+1
- . ;--- If the image is associated with the same patient as the
- . ;--- previous one, save it in the regular temporary buffer.
- . I PTIEN=$G(MAGDATA("PREVPT"))  D  Q
- . . S I=$O(^TMP("MAGSIXG3",$J,"R",""),-1)+1
- . . S ^TMP("MAGSIXG3",$J,"R",I)=TCNT_"|"_IMGIEN_"|"_GRPCNTS
- . . S ^TMP("MAGSIXG3",$J,"R",I,0)=FLTX
- . . Q
- . ;--- If the image is associated with a different patient, remember
- . ;--- the new DFN and store the image into the "priority" buffer.
- . S MAGDATA("PREVPT")=PTIEN
- . S ^TMP("MAGSIXG3",$J,"P",TCNT)=TCNT_"|"_IMGIEN_"|"_GRPCNTS
- . S ^TMP("MAGSIXG3",$J,"P",TCNT,0)=FLTX
- . ;--- If the image that precedes the patient change is not in the
- . ;--- "priority" buffer yet, move it there from the regular buffer.
- . S X=TCNT-1  Q:$D(^TMP("MAGSIXG3",$J,"P",X))
- . S I=$O(^TMP("MAGSIXG3",$J,"R",""),-1)  Q:I=""
- . I $P(^TMP("MAGSIXG3",$J,"R",I),"|")'=X  D  Q
- . . S RC=$$ERROR^MAGUERR(-47)  ; This should never happen!
- . . Q
- . M ^TMP("MAGSIXG3",$J,"P",X)=^TMP("MAGSIXG3",$J,"R",I)
- . K ^TMP("MAGSIXG3",$J,"R",I)
- . Q
- ;
- ;=== Append the image item to the result array
- S RC=$$APPEND(IMGIEN,FLTX,GRPCNTS,IIFLAGS)  Q:RC<0 RC
- ;
- ;=== Success
- Q 0
- ;
- ;+++++ RETURNS THE NOTE TITLE
-RPTITLE(FILE,IEN) ;
- N TITLE,TMP
- I FILE=8925,IEN>0  D  S TITLE=$P($G(^TIU(8925.1,TMP,0)),U)  ; IA #2321
- . S TMP=+$P($G(^TIU(8925,+IEN,0)),U)   ; IA #2937
- . Q
- Q $S($G(TITLE)'="":TITLE,1:"   ")
+ Q 1

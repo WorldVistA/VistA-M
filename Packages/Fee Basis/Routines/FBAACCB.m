@@ -1,5 +1,5 @@
 FBAACCB ;AISC/GRR - CLERK CLOSE BATCH ;7/9/14  16:16
- ;;3.5;FEE BASIS;**4,61,77,116,154**;JAN 30, 1995;Build 12
+ ;;3.5;FEE BASIS;**4,61,77,116,154,164**;JAN 30, 1995;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  K QQ D DT^DICRW
 BT W !! S DIC="^FBAA(161.7,",DIC(0)="AEQ",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"I $G(^(""ST""))=""O""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""O"")") D ^DIC K DIC("S")
@@ -85,6 +85,19 @@ WRT I $Y+8>IOSL D ASKH^FBAACCB0:$E(IOST,1,2)["C-" Q:FBAAOUT  W @IOF D HED
  W ?30,$S(FBADJLR]"":FBADJLR,1:T)
  ; write adjustment amounts, if null then write amount suspended
  W ?41,$S(FBADJLA]"":FBADJLA,1:TAMT)
+ ; write attachment IDs FB*3.5*164
+ I FBTYPE="B3",$D(^FBAAC(J,1,K,1,L,1,M,10)) D
+ . N AI,AID,AITI S AI=0 S WRTPC="Attachment ID:"
+ . F  S AI=$O(^FBAAC(J,1,K,1,L,1,M,10,AI)) Q:'AI  D
+ . . S AID=$P($G(^FBAAC(J,1,K,1,L,1,M,10,AI,0)),U) I AI>1 S WRTPC=WRTPC_","
+ . . S WRTPC=WRTPC_" "_AID
+ . . S AITI=$P($G(^FBAAC(J,1,K,1,L,1,M,10,AI,0)),U,2) I AITI D
+ . . . S WRTPC=WRTPC_" ("_$P($G(^IBE(353.3,AITI,0)),U)
+ . . . S WRTPC=WRTPC_" - "
+ . . . S WRTPC=WRTPC_$P($G(^IBE(353.3,AITI,0)),U,2)_")"
+ . . I $L(WRTPC)>IOM D WRTSTR^FBAACCB1(.WRTPC,IOM)
+ . I $L(WRTPC)>0 D WRTSTR^FBAACCB1(.WRTPC,IOM)
+ ;
  D PMNT^FBAACCB2 S FBINOLD=FBIN
  Q
 HED W "Patient Name",?20,"('*' Reimbursement to Patient   '+' Cancellation Activity)",!,?13,"('#' Voided Payment)",?58,"Batch #",?67,"Voucher Date"

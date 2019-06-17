@@ -1,5 +1,5 @@
-MAGSIXG1 ;WOIFO/EdM/GEK/SEB/SG/NST - LIST OF IMAGES RPCS ; 22 Oct 2010 11:43 AM
- ;;3.0;IMAGING;**8,48,59,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGSIXG1 ;WOIFO/EdM/GEK/SEB/SG/NST - LIST OF IMAGES RPCS ; JUN 11, 2018@11:43 AM
+ ;;3.0;IMAGING;**8,48,59,93,117,221**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -125,43 +125,14 @@ GETIMGS(MAGOUT,FLAGS,FROMDATE,TODATE,MAXNUM,MISCPRMS) ;RPC [MAG4 IMAGE LIST]
  D CLEAR^MAGUERR(1),NETPLCS^MAGGTU6
  K ^TMP("MAGSIXG3",$J)
  ;
+ S MAXNUM=$G(MAXNUM)
  ;=== Validate parameters
- S ERROR=0
- D
- . N MISCDEFS
- . ;--- Control flags
- . S FLAGS=$G(FLAGS)
- . I $TR(FLAGS,"CDESG")'=""  D  S ERROR=1
- . . D IPVE^MAGUERR("FLAGS")     ; Unknown/Unsupported flag(s)
- . . Q
- . I $TR(FLAGS,"DE")=FLAGS  D  S ERROR=1
- . . D ERROR^MAGUERR(-6,,"D,E")  ; Missing required flag
- . . Q
- . ;--- Date range
- . S:$$DTRANGE^MAGUTL03(.FROMDATE,.TODATE)<0 ERROR=1
- . ;--- Miscellaneous parameters
- . S RC=$$LDMPDEFS^MAGUTL01(.MISCDEFS,"MISCDEFS^MAGSIXG2")
- . I RC<0  S ERROR=1  Q
- . S RC=$$RPCMISC^MAGUTL02(.MISCPRMS,.MISC,.MISCDEFS,"UV")
- . I RC<0  S ERROR=1  Q
- . S:$$VALMISC^MAGSIXG2(.MISC,.MAGDATA)<0 ERROR=1
- . ;--- Number/percentage of results
- . I $G(MAXNUM)<0  D
- . . D IPVE^MAGUERR("MAXNUM")  S ERROR=1
- . . Q
- . E  I FLAGS["S"  D
- . . ;--- Check the percentage
- . . S TMP=+$G(MAXNUM)
- . . I 'TMP!(TMP>100)  D IPVE^MAGUERR("MAXNUM")  S ERROR=1  Q
- . . S MAGDATA("SUBSET%")=TMP,MAXNUM=0
- . . ;--- User filter is required for this query
- . . S TMP=$NA(MAGDATA("SAVEDBY"))
- . . I $G(@TMP)'>0  D ERROR^MAGUERR(-8,,TMP)  S ERROR=1  Q
- . . Q
- . S MAXNUM=+$G(MAXNUM)
- . Q
+ S ERROR=$$VALPARAM(.MAGDATA,FLAGS,.FROMDATE,.TODATE,MAXNUM,.MISCPRMS)
+ ;
  ;--- Check for errors
- I ERROR  D ERROR^MAGUERR(-30),ERRORS(.MAGOUT)  Q
+ I ERROR D ERROR^MAGUERR(-30),ERRORS(.MAGOUT)  Q
+ ;
+ S MAXNUM=+$G(MAXNUM)
  ;
  ;=== Query the image file(s)
  S MAGDATA("FLAGS")=FLAGS,MAGDATA("MAXNUM")=MAXNUM
@@ -235,3 +206,38 @@ PGI(MAGOUT,DFN,PKG,CLASS,TYPE,EVENT,SPEC,FROMDATE,TODATE,ORIGIN,DATA,FLAGS) ;RPC
  ;--- Call the new remote procedure implementation
  D GETIMGS(.MAGOUT,FLAGS,.FROMDATE,.TODATE,,.MISCPRMS)
  Q
+ ;
+VALPARAM(MAGDATA,FLAGS,FROMDATE,TODATE,MAXNUM,MISCPRMS)  ; Validate input parameters
+ N ERROR,MISC,MISCDEFS,RC,TMP
+ ;--- Control flags
+ S ERROR=0
+ S FLAGS=$G(FLAGS)
+ I $TR(FLAGS,"CDESG")'=""  D  S ERROR=1
+ . D IPVE^MAGUERR("FLAGS")     ; Unknown/Unsupported flag(s)
+ . Q
+ I $TR(FLAGS,"DE")=FLAGS  D  S ERROR=1
+ . D ERROR^MAGUERR(-6,,"D,E")  ; Missing required flag
+ . Q
+ ;--- Date range
+ S:$$DTRANGE^MAGUTL03(.FROMDATE,.TODATE)<0 ERROR=1
+ ;--- Miscellaneous parameters
+ S RC=$$LDMPDEFS^MAGUTL01(.MISCDEFS,"MISCDEFS^MAGSIXG2")
+ I RC<0  S ERROR=1  Q
+ S RC=$$RPCMISC^MAGUTL02(.MISCPRMS,.MISC,.MISCDEFS,"UV")
+ I RC<0  S ERROR=1  Q
+ S:$$VALMISC^MAGSIXG2(.MISC,.MAGDATA)<0 ERROR=1
+ ;--- Number/percentage of results
+ I $G(MAXNUM)<0  D
+ . D IPVE^MAGUERR("MAXNUM")  S ERROR=1
+ . Q
+ E  I FLAGS["S"  D
+ . ;--- Check the percentage
+ . S TMP=+$G(MAXNUM)
+ . I 'TMP!(TMP>100)  D IPVE^MAGUERR("MAXNUM")  S ERROR=1  Q
+ . S MAGDATA("SUBSET%")=TMP,MAXNUM=0
+ . ;--- User filter is required for this query
+ . S TMP=$NA(MAGDATA("SAVEDBY"))
+ . I $G(@TMP)'>0  D ERROR^MAGUERR(-8,,TMP)  S ERROR=1  Q
+ . Q
+ ;
+ Q ERROR

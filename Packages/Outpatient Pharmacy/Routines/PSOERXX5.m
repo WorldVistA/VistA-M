@@ -1,5 +1,5 @@
 PSOERXX5 ;ALB/BWF - eRx xml utilities ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,508,551**;DEC 1997;Build 37
  ;
  Q
 STRUCSIG(GBL,IENS) ;
@@ -141,14 +141,16 @@ STRUCSIG(GBL,IENS) ;
  I $L(VIM) D C S @GBL@(CNT,0)="<VariableIntervalModifier>"_VIM_"</VariableIntervalModifier>"
  I TIMFLG D C S @GBL@(CNT,0)="</Timing>"
  S DURFLG=0
- F DURVAR="DNV","MVM","DTCQ","DTC" D
+ F DURVAR="DNV","DTEXT","DTCQ","DTC" D
  .I $L(@DURVAR) S DURFLG=1
+ ;/BLB/ PSO*7.0*551 - BEGIN CHANGE
  I DURFLG D C S @GBL@(CNT,0)="<Duration>"
  I $L(DNV) D C S @GBL@(CNT,0)="<DurationNumericValue>"_DNV_"</DurationNumericValue>"
- I $L(MVM) D C S @GBL@(CNT,0)="<DurationText>"_DTEXT_"</DurationText>"
+ I $L(DTEXT) D C S @GBL@(CNT,0)="<DurationText>"_DTEXT_"</DurationText>"
  I $L(DTCQ) D C S @GBL@(CNT,0)="<DurationTextCodeQualifier>"_DTCQ_"</DurationTextCodeQualifier>"
  I $L(DTC) D C S @GBL@(CNT,0)="<DurationTextCode>"_DTC_"</DurationTextCode>"
  I DURFLG D C S @GBL@(CNT,0)="</Duration>"
+ ;/BLB/ PSO*7.0*551 - END CHANGE
  S MDRFLG=0
  F MDVAR="MDRNV","MDRUT","MDRCQ","MDRUC","MDRVN","MDRVUT","MDRVUCQ","MDRVUC","MDRVDM" D
  .I $L(@MDVAR) S MDRFLG=1

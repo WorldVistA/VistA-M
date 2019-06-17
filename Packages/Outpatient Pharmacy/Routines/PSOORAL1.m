@@ -1,5 +1,5 @@
 PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ; 12/4/07 12:25pm
- ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508,551**;DEC 1997;Build 37
  N RX0,VALMCNT K DIR,DTOUT,DUOUT,DIRUT,^TMP("PSOAL",$J) S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)),CMOP=$O(^PSRX(DA,4,0))
  S IEN=0,DIR(0)="LO^1:"_$S(CMOP:10,1:9),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill    2.  Partial     3.  Activity   4.  Labels      5.  Copay"
  S DIR("A")=$S(CMOP:"6.  ECME      7.  SPMP        8.  eRx Log    9.  CMOP Events 10.  All Logs    ",1:"6.  ECME      7.  SPMP        8.  eRx Log    9.  All Logs")
@@ -281,25 +281,30 @@ DISPREJ  ;
  Q
  ;
 ERX ; eRx Log
- N CNT,ARR,G,STR,X,I,TMP
+ ;/BLB/ PSO*7.0*551 - BEGIN CHANGE - ERX LOG 
+ N CNT,G,STR,X,I,TMP,N,ERXREC,ERXCHK,DAT,PSOACBRV,P1
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" "
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="eRx Activity Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Reason         Rx Ref         Initiator Of Activity"
  S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",80)="="
- S IEN=IEN+1
- I '$O(^PSRX(DA,"A",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are no eRx activity logs." Q
+ S ERXCHK=0 F  S ERXCHK=$O(^PSRX(DA,"A",ERXCHK)) Q:'ERXCHK  D
+ .I $P(^PSRX(DA,"A",ERXCHK,0),U,2)="O" S ERXREC=1
+ I '$G(ERXREC) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are no eRx activity logs." Q
  S CNT=0
- D GETS^DIQ(52,DA_",","**","IE","ARR")
- M TMP=ARR(52.3) K ARR
- S N="",G=$NA(TMP) F  S N=$O(@G@(N)) Q:N=""  D
- . I @G@(N,.02,"I")="O" D
- . . S CNT=CNT+1
- . . S P1=@G@(N,.01,"I"),DTT=P1\1 D DAT
- . . S STR=CNT,$E(STR,5)=DAT,$E(STR,17)=@G@(N,.02,"E"),$E(STR,32)=@G@(N,.04,"E"),$E(STR,47)=@G@(N,.03,"E"),^TMP("PSOAL",$J,IEN,0)=STR,IEN=IEN+1
- . . K ^UTILITY($J,"W") S X="Comments: "_@G@(N,.05,"E"),(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S ^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0)),IEN=IEN+1
- . . ;S ^TMP("PSOAL",$J,IEN,0)="Comments: "_@G@(N,.05,"E"),IEN=IEN+1
- K ^UTILITY($J,"W"),DIWF,DIWL,DIWR
+ F N=0:0 S N=$O(^PSRX(DA,"A",N)) Q:'N  S P1=^(N,0) D
+ .I $P(P1,"^",2)'="O" Q
+ .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"             "
+ .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_"   "_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
+ .I $P(P1,"^",5)]"" N PSOACBRK,PSOACBRV D
+ ..S PSOACBRV=$P(P1,"^",5)
+ ..;Use fileman for parsing
+ ..K ^UTILITY($J,"W") S X="Comments: "_PSOACBRV,(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0))
+ .I $P($G(^PSRX(DA,"A",N,1)),"^")]"" S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",5)=$P($G(^PSRX(DA,"A",N,1)),"^") I $P($G(^PSRX(DA,"A",N,1)),"^",2)]"" S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_":"_$P($G(^PSRX(DA,"A",N,1)),"^",2)
+ .I $O(^PSRX(DA,"A",N,2,0)) F I=0:0 S I=$O(^PSRX(DA,"A",N,2,I)) Q:'I  S MIG=^PSRX(DA,"A",N,2,I,0) D
+ ..S:MIG["Mail Tracking Info.: " IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" "
+ ..F SG=1:1:$L(MIG) S:$L(^TMP("PSOAL",$J,IEN,0)_" "_$P(MIG," ",SG))>80 IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0)," ",9)=" " S:$P(MIG," ",SG)'="" ^TMP("PSOAL",$J,IEN,0)=$G(^TMP("PSOAL",$J,IEN,0))_" "_$P(MIG," ",SG)
+ K MIG,SG,I,^UTILITY($J,"W"),DIWF,DIWL,DIWR
  Q
- ;
+ ;/BLB/ PSO*7.0*551 - END CHANGE
 DAT S DAT="",DTT=DTT\1 Q:DTT'?7N  S DAT=$E(DTT,4,5)_"/"_$E(DTT,6,7)_"/"_$E(DTT,2,3)
  Q

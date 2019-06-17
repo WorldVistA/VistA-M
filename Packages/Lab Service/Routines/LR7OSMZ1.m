@@ -1,5 +1,5 @@
-LR7OSMZ1 ;DALOI/JMC - Silent Micro rpt Cont. ;09/02/10  22:14
- ;;5.2;LAB SERVICE;**121,244,350**;Sep 27, 1994;Build 230
+LR7OSMZ1 ;DALOI/JMC - Silent Micro rpt Cont. ;Mar 05, 2019@13:04:42
+ ;;5.2;LAB SERVICE;**121,244,350,520**;Sep 27, 1994;Build 3
  ;
 EN ; from LRMINEW2, LRMIPC, LRMIPLOG, LR7OSMZ, LRMIVER1
  S LRSPEC=$P(LRLLT,U,5)
@@ -19,7 +19,7 @@ EN ; from LRMINEW2, LRMIPC, LRMIPLOG, LR7OSMZ, LRMIVER1
  ;
 RPT ;
  ;
- N J,LRTSTS,LRTS,LRTESTCOMPLE,LRX,LRY
+ N J,LRTSTS,LRTS,LRTESTCOMPLE,LRX,LRY,LRDISP
  ;
  S:'$D(LRSB) LRSB=0
  S LRPRINT=$S($D(^LRO(68,LRAA,1,LRAD,1,LRAN,4)):"",1:1),LRPATLOC=$P(LRLLT,U,8)
@@ -51,9 +51,10 @@ RPT ;
  . . S:'$D(^TMP("LRT",$J,$P(X,"^"))) ^($P(X,"^"))="MICROBIOLOGY"_"^"_GCNT
  . . I '$P(X,U,2) D LN S ^TMP("LRC",$J,GCNT,0)="" Q
  . . S Y=$P(X,U,2)
- . . D D^LRU S LRY="completed: "_Y
+ . . ; LR*5.2*520
+ . . D D^LRU S LRY=$S(LRDISP["Not Performed":"canceled: ",1:"completed: ")_Y
  . . I (19+$L(LRX)+$L(LRY))>GIOM D LN S ^TMP("LRC",$J,GCNT,0)=""
- . . S ^(0)=^TMP("LRC",$J,GCNT,0)_$$S^LR7OS(50,CCNT,"completed: "_Y)
+ . . S ^(0)=^TMP("LRC",$J,GCNT,0)_$$S^LR7OS(50,CCNT,LRY)
  . . D LN S ^TMP("LRC",$J,GCNT,0)=""
  ;
  K ^TMP("LR",$J,"T"),LRTSTS
@@ -73,7 +74,8 @@ RPT ;
  ;
  ;
 EN1 ;
- S LRTS=+^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRBRR,0),LRTS(1)=$P(^(0),U,5)
+ ; LR*5.2*520 Set disposition to LRDISP
+ S LRTS=+^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRBRR,0),LRTS(1)=$P(^(0),U,5),LRDISP=$P(^(0),U,6)
  Q:'$L($P($G(^LAB(60,LRTS,0)),U,3))
  I '$D(LRLABKY),"BO"'[$P($G(^LAB(60,LRTS,0)),U,3) Q
  ;

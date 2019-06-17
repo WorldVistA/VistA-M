@@ -1,5 +1,5 @@
-MAGVIM01 ;WOIFO/DAC/NST/BT - Utilities for RPC calls for DICOM file processing ;  28 Aug 2012 2:13 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVIM01 ;WOIFO/DAC/NST/BT - Utilities for RPC calls for DICOM file processing ;  NOV 01,2018@2:13PM
+ ;;3.0;IMAGING;**118,138,221**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -98,7 +98,7 @@ UPDITEM(OUT,ID,EXPSTAT,NEWSTAT,MESSAGE,UPDUSR,UPDAPP) ; Update work item status 
  I '$D(^MAGV(2006.941,ID)) S OUT="-6"_SSEP_"Work item "_ID_" not found" Q
  I $G(EXPSTAT)="" S OUT=-7_SSEP_"No work item expected status provided" Q
  I ($G(UPDUSR)="")&($G(UPDAPP)="") S OUT=-8_SSEP_"No updated by user/application provided" Q
- L +^MAGV(2006.941,ID):1E9
+ L +^MAGV(2006.941,ID):1999999
  S RSTAT=$$GET1^DIQ(2006.941,ID,"STATUS")
  I EXPSTAT'=RSTAT S OUT=-9_SSEP_"Work item "_ID_" has a status of "_RSTAT_", not the expected status of "_EXPSTAT L -^MAGV(2006.941,ID) Q
  I NEWSTAT'="" S FDA(2006.941,ID_",",3)=NEWSTAT
@@ -166,7 +166,7 @@ FIND(OUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,STOPTAG,MAXROWS,TAGS) ; Find recor
  ;
  K ERR
  S IEN=0,WICOUNT=0
- F  S IEN=$O(^MAGV(2006.941,IEN)) Q:(+IEN=0)!($D(ERR))!((($G(MAXROWS)'="")&($G(MAXROWS)<=WICOUNT)))  D
+ F  S IEN=$O(^MAGV(2006.941,IEN)) Q:(+IEN=0)!($D(ERR))!((($G(MAXROWS)'="")&($G(MAXROWS)<(WICOUNT+1))))  D
  . S IENS=IEN_","
  . K ERR,MAGOUT
  . D GETS^DIQ(2006.941,IENS,FLDS,"IE","MAGOUT","ERR")
@@ -179,7 +179,7 @@ FIND(OUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,STOPTAG,MAXROWS,TAGS) ; Find recor
  . Q:NOMATCH  ; get next one if no match
  . ; Tag matching
  . S J=0,TAGMATCH=1
- . F  S J=$O(TAGS(J)) Q:J=""  D
+ . F  S J=$O(TAGS(J)) Q:(J="")!'TAGMATCH  D
  . . S TAG=$P(TAGS(J),ISEP,1),VALUE=$P(TAGS(J),ISEP,2)
  . . I '$D(^MAGV(2006.941,"H",TAG,IEN)) S TAGMATCH=0 Q
  . . S IEN2=$O(^MAGV(2006.941,"H",TAG,IEN,""))
@@ -205,7 +205,7 @@ GETITEM(OUT,ID,EXPSTAT,NEWSTAT,UPDUSR,UPDAPP) ; Find work item with matching ID 
  I '$D(^MAGV(2006.941,ID)) S OUT(0)=-5_SSEP_"No work item with matching ID provided" Q
  S RSTAT=$$GET1^DIQ(2006.941,ID,"STATUS")
  I EXPSTAT'=RSTAT S OUT(0)=-6_SSEP_"Work item "_ID_" has a status of "_RSTAT_", not the expected status of "_EXPSTAT L -^MAGV(2006.941,ID) Q
- L +^MAGV(2006.941,ID):1E9
+ L +^MAGV(2006.941,ID):1999999
  S OUT(0)=0
  I NEWSTAT'=EXPSTAT D UPUSRAPP(.OUT,ID,NEWSTAT,UPDUSR,UPDAPP) ; Update user, app, updated time fields
  I +OUT(0)=0 D
@@ -249,7 +249,7 @@ ADDTAG(OUT,ID,EXPSTAT,UPDUSR,UPDAPP,TAG) ; Add tags to work item
  . I $P(EXPSTAT,ISEP,I)=STATUS S STATMATCH=1
  . Q
  I STATMATCH=0 S OUT=-9_SSEP_"work item does not have expected status" Q
- L +^MAGV(2006.941,ID):1E9
+ L +^MAGV(2006.941,ID):1999999
  F I=1:1  Q:'$D(TAG(I))  D
  . S FDA1(2006.94111,"+"_I_","_ID_",",.01)=$P(TAG(I),ISEP,1)  ; TAG NAME
  . S FDA1(2006.94111,"+"_I_","_ID_",",1)=$P(TAG(I),ISEP,2)    ; TAG VALUE
@@ -272,8 +272,8 @@ ADDTAG(OUT,ID,EXPSTAT,UPDUSR,UPDAPP,TAG) ; Add tags to work item
  Q
  ; RPC: MAGV GET NEXT WORK ITEM
 GETNEXT(OUT,ETYPE,EXPSTAT,NEWSTAT,UPDUSR,UPDAPP,LOCATION) ; Find last update work item on worklist type provided
- N SSEP,FDA,ID,TYPE,STATUS,MATCH,APPIEN,LOCATIN2,LOCIEN
- N UPDATEDT
+ N SSEP,ID,ETYPEIEN,ESTATIEN,ELOCIEN,UPDATEDT
+ ;
  K OUT
  S SSEP=$$STATSEP
  I $G(ETYPE)="" S OUT(0)=-1_SSEP_"Work Item type not specified" Q
@@ -281,17 +281,21 @@ GETNEXT(OUT,ETYPE,EXPSTAT,NEWSTAT,UPDUSR,UPDAPP,LOCATION) ; Find last update wor
  I $G(NEWSTAT)="" S OUT(0)=-3_SSEP_"Work Item new status not specified" Q
  I ($G(UPDUSR)="")&($G(UPDAPP)="") S OUT(0)=-4_SSEP_"No updated by user/application provided" Q
  I $G(LOCATION)="" S OUT(0)=-5_SSEP_"Work Item Place ID not specified" Q
- ; Loop thru worklist type find last updated record with matching parameters
- S UPDATEDT="",MATCH=0
- F  S UPDATEDT=$O(^MAGV(2006.941,"I",UPDATEDT)) Q:UPDATEDT=""  D  Q:MATCH=1
- . S ID=""
- . F  S ID=$O(^MAGV(2006.941,"I",UPDATEDT,ID)) Q:ID=""  D  Q:MATCH=1
- . . S TYPE=$$GET1^DIQ(2006.941,ID,"TYPE"),STATUS=$$GET1^DIQ(2006.941,ID,"STATUS")
- . . S LOCIEN=$P($G(^MAGV(2006.941,ID,1)),U,1),LOCATIN2=$$STA^XUAF4(LOCIEN) ; IA # 2171
- . . I EXPSTAT=STATUS,ETYPE=TYPE,LOCATION=LOCATIN2 S MATCH=1 L +^MAGV(2006.941,ID):1E9
- . . Q
- . Q
- I 'MATCH S OUT(0)=0_SSEP_"No matching work item found" Q
+ ; 
+ S ETYPEIEN=$O(^MAGV(2006.9412,"B",ETYPE,""))
+ S ESTATIEN=$O(^MAGV(2006.9413,"B",EXPSTAT,""))
+ S ELOCIEN=$$IEN^XUAF4(LOCATION) ; get Location IEN
+ ;
+ I ETYPEIEN'>0 S OUT(0)=-6_SSEP_"Work Item type IEN not found: "_ETYPE Q
+ I ESTATIEN'>0 S OUT(0)=-7_SSEP_"Work Item expected status IEN not found: "_EXPSTAT Q 
+ I ELOCIEN'>0 S OUT(0)=-8_SSEP_"Work Item Place ID not found: "_LOCATION Q
+ ; 
+ ;Get last updated record with matching parameters
+ S UPDATEDT=$O(^MAGV(2006.941,"C",ETYPEIEN,ESTATIEN,ELOCIEN,""))
+ I 'UPDATEDT S OUT(0)=0_SSEP_"No matching work item found" Q
+ S ID=$O(^MAGV(2006.941,"C",ETYPEIEN,ESTATIEN,ELOCIEN,UPDATEDT,""))
+ I 'ID S OUT(0)=0_SSEP_"No matching work item found" Q
+ L +^MAGV(2006.941,ID):1999999
  S OUT(0)=0
  I NEWSTAT'=EXPSTAT D UPUSRAPP(.OUT,ID,NEWSTAT,UPDUSR,UPDAPP) ; Update user, app, updated time fields
  I +OUT(0)=0 D

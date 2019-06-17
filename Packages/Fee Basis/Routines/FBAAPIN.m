@@ -1,5 +1,5 @@
 FBAAPIN ;AISC/GRR - INVOICE DISPLAY ;7/17/2003
- ;;3.5;FEE BASIS;**4,61,122,133,108,135,123**;JAN 30, 1995;Build 51
+ ;;3.5;FEE BASIS;**4,61,122,133,108,135,123,164**;JAN 30, 1995;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  D DT^DICRW
 RD1 W ! S (FBHDONE,FBAAOUT,FBINTOT)=0,FBSW=0 K FBHED S DIR(0)="NO",DIR("A")="Select Invoice Number",DIR("?")="^D HELP^FBAAPIN1" D ^DIR K DIR G Q:$D(DIRUT)!'Y
@@ -61,6 +61,23 @@ WRT I ($Y+5)>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  D HED
  I FBADJLR="",T=4 D ^FBAAPIN1
  I FBCNTRN]"" W !!,?2,"Contract Number: ",FBCNTRN
  I FBIA'=""!(FBDODINV'="") W !!?5,"IPAC Number: ",FBIA,?30,"DoD Invoice Number: ",FBDODINV
+ ;
+ ; write attachment IDs FB*3.5*164
+ I $D(^FBAAC(J,1,K,1,L,1,M,10)) D
+ . N AI,AID,AITI,WRTPC
+ . S AI=0 S WRTPC="Attachment ID:"
+ . F  S AI=$O(^FBAAC(J,1,K,1,L,1,M,10,AI)) Q:'AI  D
+ . . S AID=$P($G(^FBAAC(J,1,K,1,L,1,M,10,AI,0)),U)
+ . . I AI>1 S WRTPC=WRTPC_","
+ . . S WRTPC=WRTPC_" "_AID
+ . . S AITI=$P($G(^FBAAC(J,1,K,1,L,1,M,10,AI,0)),U,2)
+ . . I AITI D
+ . . . S WRTPC=WRTPC_" ("_$P($G(^IBE(353.3,AITI,0)),U)
+ . . . S WRTPC=WRTPC_" - "
+ . . . S WRTPC=WRTPC_$P($G(^IBE(353.3,AITI,0)),U,2)_")"
+ . . I $L(WRTPC)>IOM D WRTSTR^FBAACCB1(.WRTPC,IOM)
+ . I $L(WRTPC)>0 D WRTSTR^FBAACCB1(.WRTPC,IOM)
+ ;
  D PMNT^FBAACCB2
  ; Display LI Rendering Provider data
  N FBLIPRV S FBLIPRV=$G(^FBAAC(J,1,K,1,L,1,M,3))  ; FB*3.5*135

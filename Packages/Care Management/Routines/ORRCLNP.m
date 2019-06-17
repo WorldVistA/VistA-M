@@ -1,5 +1,5 @@
 ORRCLNP ; SLC/JER - Person functions for CM ; 9/23/04 14:30
- ;;1.0;CARE MANAGEMENT;**1**;Jul 15, 2003
+ ;;1.0;CARE MANAGEMENT;**1**;Jul 15, 2003;Build 8
 EMAIL(USER) ; e-mail address
  Q $$NETNAME^XMXUTIL(USER)
 NAME(USER) ; Person Name
