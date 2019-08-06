@@ -1,10 +1,15 @@
-XLFSTR ;ISC-SF/STAFF - String Functions ;04/18/12
- ;;8.0;KERNEL;**112,120,400,437,598**;Jul 10, 1995;Build 2
- ;Per VHA Directive 2004-038, this routine should not be modified
+XLFSTR ;ISC-SF/STAFF - String Functions ;آب 06, 2019@15:21
+ ;;8.0;KERNEL;**112,120,400,437,598,OSE/SMH**;Jul 10, 1995;Build 2
  ;
-UP(X) Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ; OSE/SMH (c) Sam Habiel 2019 i18n upper/lowercasing
  ;
-LOW(X) Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
+UP(X) ;
+ I $G(DUZ("LANG"))>1 Q $$OUT^DIALOGU(X,"UC")
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ ;
+LOW(X) ;
+ I $G(DUZ("LANG"))>1 Q $$OUT^DIALOGU(X,"LC")
+ Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
  ;
 STRIP(X,Y) Q $TR(X,$G(Y),"")
  ;
