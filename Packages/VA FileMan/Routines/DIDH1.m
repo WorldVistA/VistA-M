@@ -1,5 +1,5 @@
 DIDH1 ;SFISC/ALL - HDR FOR DD LISTS;16NOV2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -42,6 +42,9 @@ PAGE1 I 'DIDHJ,'$$WP^DIUTL($NA(^DIC(DA,"%D"))) S M="^" Q
  W:$P($G(^DD(DA,0,"DI")),U)["Y" !,"THIS IS AN ARCHIVE FILE."
  W:$P($G(^DD(DA,0,"DI")),U,2)["Y" !,"EDITING OF FILE IS NOT ALLOWED."
  F N="DD","RD","WR","DEL","LAYGO","AUDIT" I $D(^DIC(DA,0,N)) W !?(Z+Z+14-$L(N)),N," ACCESS: ",^(N)
+ I $O(^DIC(DA,"%",0)) W !!?3,"APPLICATION GROUP(S): " S (%,N)=0 F  S N=$O(^DIC(DA,"%",N)) Q:'N  S X=$G(^(N,0)) D:X]""  ;p14
+ . I ($L(X)+$X)+1>IOM W ",",!?25 S %=0
+ . W $S(%:", ",1:""),X S %=%+1
 AFOF I $D(^VA(200,"AFOF",DA)) W !!?8,"(NOTE: Kernel's File Access Security applies to this File.)",!
  I $O(^DD(DA,0,"ID",""))]"" W !,"IDENTIFIED BY: "
  S X=0 F  S X=$O(^DD(DA,0,"ID",X)) Q:X=""  Q:'$D(^DD(DA,X,0))  S I1=$P(^(0),U)_" (#"_X_")"_$S($P(^(0),U,2)["R":"[R]",1:"") W:($L(I1)+$X)+1>IOM ! W ?15,I1 I $O(^DD(DA,0,"ID",X)) W ", "

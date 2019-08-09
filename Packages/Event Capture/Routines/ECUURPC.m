@@ -1,5 +1,5 @@
-ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;3/29/18  13:59
- ;;2.0;EVENT CAPTURE;**25,42,49,94,95,76,104,124,139**;8 May 96;Build 7
+ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;1/30/19  13:46
+ ;;2.0;EVENT CAPTURE;**25,42,49,94,95,76,104,124,139,145**;8 May 96;Build 6
  ;
  ; Reference to $$CODEN^ICDEX supported by ICR #5747
  ;
@@ -47,14 +47,16 @@ ECDATE(RESULTS,ECARY) ;
  ;        RPC: EC GETDATE
  ;INPUTS   ECARY - Contains the following elements
  ;          DTSTR  - Date String
- ;          FLG    - Date Flag (optional)
+ ;          FLG    - Date Flag (optional) Set to R if time is required
+ ;          FUT    - Future Flag (optional) Set to F to allow date/times through
+ ;                   midnight today
  ;
  ;OUTPUTS  RESULTS - A valid Fileman date format^External format
  ;
- N ECDTSTR,DIC,X,Y,DTSTR,FLG
+ N ECDTSTR,DIC,X,Y,DTSTR,FLG,FUT ;145
  D SETENV^ECUMRPC
- S DTSTR=$P(ECARY,U),FLG=$P(ECARY,U,2) I DTSTR="" Q
- S X=DTSTR,%DT="XT"_$S(FLG="R":"R",1:""),%DT(0)="-NOW" D ^%DT
+ S DTSTR=$P(ECARY,U),FLG=$P(ECARY,U,2),FUT=$P(ECARY,U,3) I DTSTR="" Q  ;145
+ S X=DTSTR,%DT="XT"_$S(FLG="R":"R",1:""),%DT(0)=$S(FUT="F":"-"_$$DT^XLFDT_.24,1:"-NOW") D ^%DT ;145 Set latest date/time allowed
  I +Y<1 S RESULTS="0^Invalid Date/Time" Q
  S RESULTS=Y D D^DIQ
  S RESULTS=RESULTS_U_Y
@@ -88,7 +90,7 @@ VERSRV(RESULTS,ECARY,VERSION)   ; Return server version of option name and
  S ECCLVER=$G(VERSION)
  I $G(ECARY)="" Q
  N ECLST,ECMINV
- S ECMINV="2.5.0.0"  ;139, Minimum version of EC GUI client
+ S ECMINV="2.6.0.0"  ;139,145, Minimum version of EC GUI client
  D FIND^DIC(19,"",1,"X",ECARY,1,,,,"ECLST")
  I 'ECLST("DILIST",0) S RESULTS="" Q
  S RESULTS=ECLST("DILIST","ID",1,1)

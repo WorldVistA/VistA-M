@@ -1,5 +1,6 @@
-XUSTERM1 ;SEA/WDE - DEACTIVATE USER ;06/08/09  15:06
- ;;8.0;KERNEL;**102,180,208,222,274,313,332,360,384,436,514**;Jul 10, 1995;Build 8
+XUSTERM1 ;SEA/WDE - DEACTIVATE USER ;09/18/18
+ ;;8.0;KERNEL;**102,180,208,222,274,313,332,360,384,436,514,693**;Jul 10, 1995;Build 13
+ ;;Per VHA Directive 6402, this routine should not be modified.
 ENALL ;Interactive scan all
  S U="^",DTIME=$G(DTIME,60)
  W !!,"This option can purge all access & verify codes, mail baskets, messages,",!,"authorized senders access, keys, and electronic signature codes of users who have been terminated."
@@ -107,10 +108,32 @@ DQ1 ;Terminate one person.
  ;
 SEND ; send deactivated message to assigned mail group
  K XMB,XMY
- S XMB(1)=$P(XUJ,"^",1)
+ N XUSTN S XUSTN=""
+ S XMB(1)=$$GET1^DIQ(200,XUDA,.01)
  S XMB(2)=$$GET1^DIQ(200,XUDA,8)
  S XMB(3)=$$GET1^DIQ(200,XUDA,29)
- S XMB(4)=$$FMTE^XLFDT(XUDT)
+ S XMB(4)=XUDA
+ S XMB(5)=""
+ S XUSTN=$$SITE^VASITE
+ S XMB(5)=$P(XUSTN,"^",3)_"  STATION NAME: "_$P(XUSTN,"^",2)
+ S XMB(6)=$$FMTE^XLFDT(XUDT)
  S XMB="XUSERDEAC" D ^XMB:$D(^XMB(3.6,"B",XMB))
- K XMB
+ K XMB,XMY
  Q
+ ;
+SEND1(XUDA,X) ; send disusered message to assigned mail group p693
+ K XMB,XMY
+ I +$G(X)'>0 Q
+ N XUSTN S XUSTN=""
+ S XMB(1)=$$GET1^DIQ(200,XUDA,.01)
+ S XMB(2)=$$GET1^DIQ(200,XUDA,8)
+ S XMB(3)=$$GET1^DIQ(200,XUDA,29)
+ S XMB(4)=XUDA
+ S XMB(5)=""
+ S XUSTN=$$SITE^VASITE
+ S XMB(5)=$P(XUSTN,"^",3)_" "_$P(XUSTN,"^",2)
+ S XMB(6)=$$FMTE^XLFDT($$DT^XLFDT())
+ S XMB="XUSERDIS" D ^XMB:$D(^XMB(3.6,"B",XMB))
+ K XMB,XMY
+ Q
+ ;

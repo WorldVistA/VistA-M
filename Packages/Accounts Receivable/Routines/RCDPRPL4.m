@@ -1,6 +1,6 @@
 RCDPRPL4 ;WISC/RFJ/PJH-receipt profile listmanager options ;1 Apr 01
- ;;4.5;Accounts Receivable;**169,172,173,269,276,326**;Mar 20, 1995;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**169,172,173,269,276,326,332**;Mar 20, 1995;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;  this routine contains the entry points for receipt management
@@ -39,7 +39,7 @@ ONLINE ;  allow the supervisor to mark the CR document as input on line
  .   I $$ASKSTAT("REMOVE")'=1 Q
  .   W !,"... removing CR status as entered on line ..."
  .   ;  remove the ON-LINE status on field 201
- .   D EDITREC^RCDPUREC(RCRECTDA,"201///0;")
+ .   D EDITREC^RCDPUREC(RCRECTDA,"201///0")
  .   ;  show the new status
  .   S FMSDOC=$$FMSSTAT^RCDPUREC(RCRECTDA)
  .   W !!,"FMS Cash Receipt Document: ",$P(FMSDOC,"^"),?48,"Status: ",$P(FMSDOC,"^",2)
@@ -52,8 +52,8 @@ ONLINE ;  allow the supervisor to mark the CR document as input on line
  W !!,"... changing status to entered on line ..."
  W !,"... changing the generic code sheet stack file status to ACCEPTED ..."
  ;
- ;  set the status to entered on line in field 201 and FMS reference in field 200 - PRCA*4.5*326
- D EDITREC^RCDPUREC(RCRECTDA,"201///1;")
+ ;  set the status to entered on line in field 201
+ D EDITREC^RCDPUREC(RCRECTDA,"201///1")
  ;
  ;  set the generic code sheet status as accepted
  ;  get the document ien

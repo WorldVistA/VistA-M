@@ -1,5 +1,5 @@
 RCDPLPL3 ;WISC/RFJ - link payments listmanager options (link payment) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,304,301,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**153,304,301,321,332**;Mar 20, 1995;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -145,7 +145,10 @@ DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKS
  .   ; Update EEOB claim number and restore to active status - PRCA*4.5*321
  .   D:RCEEOB RESTORE^RCDPEM5(RCRECTDA,RCTRANDA,RCEEOB,"L")
  .   ;
- .   I $E(RCSTATUS)="A" D
+ .   ; PRCA*4.5*332 - If all money was split off the original EEOB remove it. 
+ .   D CHKEOB^RCDPEU2(RCRECTDA,RCTRANDA)
+ .   ;
+ .   I $E($G(RCSTATUS))="A" D
  .   .   W !,"Since the FMS cash receipt document is Accepted in FMS, you need to go"
  .   .   W !,"online in FMS and transfer the amount paid out of the station's suspense"
  .   .   W !,"account.",!
@@ -155,7 +158,7 @@ DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKS
  .   .   ;  place an x in the fms doc field so it will show on the
  .   .   ;  suspense report
  .   .   D EDITFMS^RCDPURET(RCRECTDA,RCTRANDA,"x")
- .   I $E(RCSTATUS)'="A" D
+ .   I $E($G(RCSTATUS))'="A" D
  .   .   W !,"Since the FMS cash receipt document is NOT Accepted in FMS, you can use"
  .   .   W !,"the option Process Receipt located under the Receipt Processing Menu"
  .   .   W !,"to regenerate the cash receipt document to FMS.",!

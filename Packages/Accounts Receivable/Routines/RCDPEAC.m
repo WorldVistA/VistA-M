@@ -1,10 +1,10 @@
 RCDPEAC ;ALB/TMK/PJH - ACTIVE BILLS WITH EEOB ON FILE ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,269,276,298,303,326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**208,269,276,298,303,326,332**;Mar 20, 1995;Build 40
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for Active Bills With EEOB Report [RCDPE ACTIVE WITH EEOB REPORT]
- N %ZIS,DTOUT,DUOUT,CHAM,HDR,POP,RCCT,RCDISPTY,RCHDR,RCINS,RCLSTMGR,RCPGNUM,RCSORT,RCSTOP,RCTMPND,TRIC,VAUTD,X,Y
- N START,END,RCZRO
+ N %ZIS,CHAM,DTOUT,DUOUT,END,HDR,POP,RCCT,RCDISPTY,RCHDR,RCINS,RCLSTMGR,RCPAR,RCPGNUM,RCSORT,RCSTOP,RCTMPND,RCZRO
+ N START,TRIC,VAUTD,X,Y
  ; PRCA*4.5*276 - IA 1077 - Query Division
  D DIVISION^VAUTOMA
  I 'VAUTD&($D(VAUTD)'=11) Q
@@ -53,7 +53,7 @@ ENQ ; Queued entry point for the report
  ; PRCA*4.5*303 - Changed loop to use the "AD" index on 361.1 so that the number of records checked is limited by
  ; the START and END dates of when the EEOB was recieved in VistA
  ; PRCA*4.5*326 - Start modified block. Change INCLUDE params and shorten line lengths.
- F  S RCDT=$O(^IBM(361.1,"AD",RCDT)) Q:(RCDT>END)!(RCDT="")  D
+ F  S RCDT=$O(^IBM(361.1,"AD",RCDT)) Q:(RCDT>(END_".24"))!(RCDT="")  D
  . S RCEIEN="" F  S RCEIEN=$O(^IBM(361.1,"AD",RCDT,RCEIEN)) Q:RCEIEN=""  D  ;
  . . S RCBILL=$P(^IBM(361.1,RCEIEN,0),U,1)
  . . S RCINC=$$INCLUDE(RCBILL,RCEIEN,RCTYPE) ; PRCA*4.5*326 - Inclusion by payer or payer type
@@ -99,7 +99,6 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
  . I VAUTD=0 Q:$P(RC399,U,22)=""  Q:$G(VAUTD($P(RC399,U,22)))=""
  . ; PRCA*4.5*326 remove phamacy check. Now in $$INCLUDE logic
  . S RCSTOP=$$NEWPG(.RCINS,RCNEW) S RCNEW=0 Q:RCSTOP
- . S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
  . S X=$$GET1^DIQ(430,RCBILL_",",11)
  . ; PRCA*4.5*276 - Row #1: Print last 4 SSN only - Move Bill Number to end
  . S RCSSN=$P($G(^DPT(RCPT,0)),U,9),RCSSN=$E(RCSSN,$L(RCSSN)-3,$L(RCSSN))
@@ -116,10 +115,9 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
  . . D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  . ; PRCA*4.5*276 Do not display Date Referred
  . S RCEOB=0,RCEPD="" F  S RCEOB=$O(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) Q:'RCEOB!RCSTOP  S RCEPD=$G(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) D
- . . S RCSTOP=$$NEWPG(.RCINS,RCNEW)
+ . . S RCSTOP=$$NEWPG(.RCINS,RCNEW,2)
  . . Q:RCSTOP
  . . S RC0=$G(^IBM(361.1,RCEOB,0))
- . . S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
  . . ; PRCA*4.5*276 - Row #3: Trace#, Date Rec'd, Date Posted
  . . I $G(RCDISPTY) W !,RCEX_"^"_$P(RC0,U,7)_"^"_$$FMTE^XLFDT($P(RC0,U,5),"2D")_"^"_$S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_"^"_RCEPD
  . . E  D
@@ -166,11 +164,13 @@ INS(RCZ) ; Returns ien of insurance co for bill ien RCZ from file 430
  S RC=$P($G(^PRCA(430,RCZ,0)),U,9) ;DEBTOR
  Q $S($P($G(^RCD(340,+RC,0)),U)'["DIC(36":"",1:+^(0))
  ;
-NEWPG(RCINS,RCNEW) ; Check for new page needed, output header
+NEWPG(RCINS,RCNEW,RCLINES) ; Check for new page needed, output header
  ; RCINS = ins co selection criteria
  ; RCNEW = 1 to force new page
+ ; RCLINES = Number of lines before IOSL to force new page
  ; Function returns 1 if user chooses to stop output
- I RCNEW!(($Y+5)>IOSL) D
+ S RCLINES=$G(RCLINES,5)
+ I RCNEW!(($Y+RCLINES)>IOSL) D
  . D:'$G(RCDISPTY) HDRLST^RCDPEARL(.RCSTOP,.RCHDR)
  Q RCSTOP
  ;
@@ -189,13 +189,13 @@ EEOB(RCZ,RCEOB,RCZRO) ; Find all non-MRA  EEOBs for bill ien RCZ
  . F  S Z0=$O(^RCY(344.4,"ADET",Z,Z0)) Q:'Z0  F  S DET=$O(^RCY(344.4,"ADET",Z,Z0,DET)) Q:'DET  D  ; ERA Detail
  . . ; PRCA*4.5*303 - added check for Zero paid or Paid > 0 check for report.
  . . S ZINC=0,ZPD=+$P($G(^RCY(344.4,Z0,1,DET,0)),U,3)
+ . . I (RCZRO="A") S ZINC=1 ; PRCA*4.5*332
  . . I (RCZRO="Z"),(ZPD=0) S ZINC=1
- . . I (RCZRO="A"),(ZPD>0) S ZINC=1
+ . . I (RCZRO="P"),(ZPD>0) S ZINC=1 ; PRCA*4.5*332
  . . ; PRCA*4.5*303 - Removed looking for Receipt, include record based on ERA DETAIL POST STATUS
- . . S Z00=$P($G(^RCY(344.4,Z0,0)),U,14)
  . . ; PRCA*4.5*303 - Removed check for Receipt (If Z1 is not empty) Changed date to Piece 7 and
  . . ; added check for either 0 paid or paid >0 depending on selection. Added ERA PD AMOUNT as second piece of RCEOB array
- . . I (ZINC)&((Z00=0)!(Z00=1)!(Z00=2)!(Z00=5)) S SN=SN+1,RCEOB(Z,SN)=+$P($G(^RCY(344.4,Z0,0)),U,7)_U_ZPD,OK=1
+ . . I ZINC S SN=SN+1,RCEOB(Z,SN)=+$P($G(^RCY(344.4,Z0,0)),U,7)_U_ZPD,OK=1 ; PRCA*4.5*332
  ;
  Q OK
  ;
@@ -225,7 +225,9 @@ SELECT(RCINS,RCSORT,RCZRO,RCTYPE) ; Select insurance co, sort criteria, Zero Pay
  ; PRCA*4.5*326 - End changed block
  ;
  ; PRCA*4.5*303 - Add Zero $ Prompt and Medical/Pharmacy EEOBs Prompt
- S DIR(0)="SA^A:ALL;Z:ZERO PAYMENT EEOBs",DIR("A")="RUN REPORT FOR (A)LL EEOBs or (Z)ERO PAYMENT EEOBs only: ",DIR("B")="ALL" W ! D ^DIR K DIR
+ S DIR(0)="SA^P:PAYMENT EEOBs;Z:ZERO PAYMENT EEOBs;A:ALL"
+ S DIR("A")="RUN REPORT FOR (P)AYMENT EEOBs or (Z)ERO PAYMENT EEOBs or (A)LL: ",DIR("B")="ALL"
+ W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G SELQ
  S RCZRO=$E(Y,1)
  ;
@@ -308,7 +310,7 @@ HDRBLD ; create the report header
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Z0)\2)_Z0,Z0=""
  ; PRCA*4.5*326 modify next two lines for tricare filter
  S Z0=Z0_"DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")
- S Z0=Z0_$J("",16)_"  PAYMENT TYPE: "_$S(RCZRO="Z":"ZERO PAYMENT",1:"ALL")
+ S Z0=Z0_$J("",16)_"  PAYMENT TYPE: "_$S(RCZRO="Z":"ZERO PAYMENT",RCZRO="P":"PAYMENT",1:"ALL") ; PRCA*4.5*332
  ; PRCA*4.5*326 - End modified block
  ;
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Z0)\2)_Z0
@@ -341,7 +343,7 @@ HDRLM ; create the list manager version of the report header
  S HCNT=1
  S RCHDR("TITLE")=$$HDRNM,RCHDR("XECUTE")="Q"
  S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")_$J("",16)
- S RCHDR(1)=RCHDR(1)_"  PAYMENT TYPE: "_$S(RCZRO="Z":"ZERO PAYMENT",1:"ALL")
+ S RCHDR(1)=RCHDR(1)_"  PAYMENT TYPE: "_$S(RCZRO="Z":"ZERO PAYMENT",RCZRO="P":"PAYMENT",1:"ALL") ; PRCA*4.5*332
  I VAUTD=1 S Y="DIVISIONS: ALL"
  I VAUTD=0 D
  . S Z0=0,Y="DIVISIONS: " F X=1:1 S Z0=$O(VAUTD(Z0)) Q:Z0=""  S:X>1 Y=Y_", " S Y=Y_VAUTD(Z0)
@@ -361,4 +363,3 @@ HDRLM ; create the list manager version of the report header
  ;
  ; extrinsic variable, name for header PRCA*4.5*298
 HDRNM() Q "EDI LOCKBOX ACTIVE BILLS W/EEOB REPORT"
- ;

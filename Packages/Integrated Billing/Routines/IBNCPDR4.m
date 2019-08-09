@@ -1,21 +1,27 @@
 IBNCPDR4 ;ALB/BDB - ROI MANAGEMENT, ROI CHECK ;30-NOV-07
- ;;2.0;INTEGRATED BILLING;**384,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**384,550,624**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 ROICHK(IBPAT,IBDRUG,IBINS,IBDT) ;Check for ROI
- ; Function returns 1 if ROI on file or new ROI added, 0 if no ROI on file
- ; it returns a 2 if not needed, passes checks
+ ; Function returns:
+ ; 0 - if no ROI on file
+ ; 1 - if ROI on file, new ROI added, or the Date of Service
+ ;     is on or after the Mission Act implementation date
+ ; 2 - if not needed, passes checks
  ;
  ; -- input IBPAT  = patient (req)
  ;          IBDRUG = drug  (req)
  ;          IBINS  = insurance file 36 (req)
  ;          IBDT   = fileman format fill date (req)
  N DIC,DIE,DA,DR,DQ,D0,DI,D,X,Y
+ ; If the DOS is on or after the Mission Act Date skip ROI checks.
+ I $$MACHK^IBNCPDR4(IBDT) Q 2
  I $$ROI(IBPAT,IBDRUG,IBINS,IBDT) Q 1 ;ROI is on file
  K ^TMP($J,"IBDRUG")
  D DATA^PSS50(IBDRUG,,,,,"IBDRUG")
  I '$$SENS^IBNCPDR(IBDRUG) Q 2  ; drug not sensitive, ROI not needed
+ ;
  D EN^DDIOL("This drug requires a Release of Information(ROI) for:","","!!")
  D EN^DDIOL(" PATIENT: ","","!") D EN^DDIOL($E($P($G(^DPT(IBPAT,0)),U),1,20),"","?0")
  D EN^DDIOL(" DRUG: ","","!") D EN^DDIOL($E($G(^TMP($J,"IBDRUG",IBDRUG,.01)),1,30),"","?0")
@@ -49,7 +55,10 @@ ROICLN(IBTRN,IBRX,IBFIL) ;Clean NB reason, set CT ROI flag to 'obtained'
  ;
  ;Check for Release of Information (ROI) on file
 ROI(IBDFN,IBDRUG,IBINS,IBADT) ; -- Check for ROI on file
- ; Function returns 1 if ROI on file, 0 if no ROI on file
+ ; Function returns:
+ ; 1 = if ROI on file or Date of Service is on or after
+ ;     Mission Act implementation date
+ ; 0 = if no ROI on file
  ;
  ; -- input IBDFN  = patient (req)
  ;          IBDRUG = drug  (req)
@@ -58,7 +67,11 @@ ROI(IBDFN,IBDRUG,IBINS,IBADT) ; -- Check for ROI on file
  ;
  N IBROI,IBFLG
  S IBFLG=0 ;No ROI on file
- S IBROI=0 F  S IBROI=$O(^IBT(356.25,"AC",IBDFN,IBDRUG,IBINS,IBROI)) G:'IBROI ROIQ D  G:IBFLG ROIQ ;Check for ROI on file
+ ; If the DOS is on or after the Mission Act Date skip ROI checks.
+ I $$MACHK^IBNCPDR4(IBADT) S IBFLG=1 G ROIQ
+ ;
+ ; Check for ROI on file
+ S IBROI=0 F  S IBROI=$O(^IBT(356.25,"AC",IBDFN,IBDRUG,IBINS,IBROI)) G:'IBROI ROIQ D  G:IBFLG ROIQ
   . I IBADT<$P(^IBT(356.25,IBROI,0),U,5)!(IBADT>$P(^IBT(356.25,IBROI,0),U,6)) Q  ;Date out of range
   . I $P(^IBT(356.25,IBROI,0),U,7)="0" Q  ;Inactive ROI
   . S IBFLG=1 ;ROI on file
@@ -89,14 +102,15 @@ AD(IBDFN,IBDRUG,IBINS,IBDT) ; -- Add tracking entry
  D ^%ZTLOAD K ZTSK,ZTIO,ZTSAVE,ZTDESC,ZTRTN
 ADDQ Q IBQUIT
  ;
- ;Check for ROI on file
+ ; Check for ROI on file
 ROI399(IBIFN) ; -- ROI Complete? in Bill/Claims (#399;157)
  ; Check drugs that contain the sensitive diagnosis drug field=1,
  ; Claims Tracking ROI file (#356.25) to see if an ROI is on file
  ; 
  ; input - IBIFN = IEN of the Bill/Claims file (#399)
  ; output - 0 = sensitive diagnosis drug and no ROI on file
- ;          1 = default, sensitive diagnosis drug and ROI on file
+ ;          1 = default, sensitive diagnosis drug and ROI on file,
+ ;              or DOS is on or after Mission Act implementation date
  N IBX,IBY0,IBRXIEN,IBDT,IBDRUG,ROIQ,IBDFN,IBINS
  N DIC,DIE,DA,DR,DQ,D0,DI,DISYS,D,X,Y,DE,DW,DV,DL,DLB
  S IBDFN=$P(^DGCR(399,IBIFN,0),U,2) ;patient
@@ -108,7 +122,23 @@ ROI399(IBIFN) ; -- ROI Complete? in Bill/Claims (#399;157)
  .S IBDT=$P(IBY0,U,3),IBDRUG=$P(IBY0,U,4)
  .K ^TMP($J,"IBDRUG") D ZERO^IBRXUTL(IBDRUG)
  .I $$SENS^IBNCPDR(IBDRUG) D
+ .. ; Skip ROI check if DOS is on or after the Mission Act implementation date.
+ .. I $$MACHK^IBNCPDR4(IBDT) Q 
  .. I $$ROICHK^IBNCPDR4(IBDFN,IBDRUG,IBINS,IBDT) Q
  .. S ROIQ=0
 ROI399Q ;
  Q ROIQ
+ ;
+ ; Compare a Date of Service to the Mission Act implementation
+ ; date (1/28/2019).
+ ;  input - IBDOS = Date of Service
+ ; output - 1 = DOS is on or after the imp. date, therefore ROI
+ ;              checks do not need to be performed.
+ ;          0 = DOS is before the imp. date, therefore ROI checks
+ ;              should be performed.
+ ;
+MACHK(IBDOS) ;
+ I 'IBDOS Q 0
+ I IBDOS<3190128 Q 0
+ Q 1
+ ;

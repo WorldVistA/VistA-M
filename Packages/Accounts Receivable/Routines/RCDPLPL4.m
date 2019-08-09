@@ -1,5 +1,5 @@
 RCDPLPL4 ;ALB/SAB - Multiple Bill Link Payments ;17 Mar 16
- ;;4.5;Accounts Receivable;**304,301,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**304,301,321,326,332**;Mar 20, 1995;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -188,6 +188,9 @@ MULTIPLE(RCRECTDA,RCTRANDA,RCGECSCR,RCSTATUS) ; Process multiple bills for the s
  . . ; The receipt has not been processed
  . . W !,RCTDNM," - Receipt has not been processed.  Account linked but not"
  . . W !,?6,"updated for the PMT = $",$J(RCTAMT,"",2)
+ ;
+ ; PRCA*4.5*332 - If all money was split off the original EEOB remove it. 
+ D CHKEOB^RCDPEU2(RCRECTDA,RCTRANDA,.RCARRAY)
  ;
  W !!
  ;

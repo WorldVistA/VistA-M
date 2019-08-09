@@ -1,5 +1,5 @@
 GMTSPST1 ;BIR/RMS - MED RECON TOOL #1 (MED REC PROFILE) ;May 14, 2018@20:50
- ;;2.7;Health Summary;**94**;Oct 20, 1995;Build 41
+ ;;2.7;Health Summary;**94,127**;Oct 20, 1995;Build 4
  ;Reference to COVER^ORWPS supported by IA 4926
  ;References to ^ORRDI1 supported by IA 4659
  ;Reference to ^XTMP("ORRDI","PSOO" supported by IA 4660
@@ -150,7 +150,10 @@ OPTDISP ;Display an Outpatient Prescription Entry
  . W !,"OUTPT "_DRUGNM_" (Status = Pending)"
  . D CKP Q:$D(GMTSQIT)
  . D TEXT^ORQ12(.GMTSPSTP,ORDER,60)
- . S ORQLN=1 F  S ORQLN=$O(GMTSPSTP(ORQLN)) Q:'+ORQLN!($E(GMTSPSTP(ORQLN),1,10)="Quantity: ")  D
+ . ;p127 mwa stopped previous instructions from showing, stopped subscript error, and leading space error
+ . S ORQLN=1 F  S ORQLN=$O(GMTSPSTP(ORQLN)) Q:'+ORQLN  Q:$E(GMTSPSTP(ORQLN),1,3+$L($P(DRUGNM," ")))=("to "_$P(DRUGNM," ")) 
+ . S:ORQLN="" ORQLN=1
+ . F  S ORQLN=$O(GMTSPSTP(ORQLN)) Q:'+ORQLN  Q:(GMTSPSTP(ORQLN)?." "1"Quantity: ".E)  D
  .. W !?IND1,GMTSPSTP(ORQLN)
  .. D CKP Q:$D(GMTSQIT)
  . S ORIGRX=$P($G(^TMP($J,"GMTSPST1",DFN,+PACKREF,22.1)),U,2)

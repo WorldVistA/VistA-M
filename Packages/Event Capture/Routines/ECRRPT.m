@@ -1,5 +1,5 @@
-ECRRPT ;ALB/JAM - Event Capture Report RPC Broker ;12/2/14  10:40
- ;;2.0;EVENT CAPTURE;**25,32,41,56,61,82,94,95,108,112,119,122,126**;8 May 96;Build 8
+ECRRPT ;ALB/JAM - Event Capture Report RPC Broker ;10/22/18  15:17
+ ;;2.0;EVENT CAPTURE;**25,32,41,56,61,82,94,95,108,112,119,122,126,145**;8 May 96;Build 6
  ;
  ;119 For patch 119, added comment regarding ECPTYP being set to "E" when exporting, for those reports that are now exportable.
 REQCHK(ECV) ;Required data check
@@ -139,7 +139,7 @@ ECPROV ;Provider Summary Report for RPC Call
  . S DIC=4,DIC(0)="QNZX",X=ECL D ^DIC D:Y<0  Q:Y<0  S ECLN=$P(Y,U,2)
  . . S ^TMP("ECMSG",$J)="1^Invalid Location.",ECERR=1
  I ECD'="ALL" K DIC D  I ECERR Q
- . S DIC=724,DIC(0)="QNMZX",X=ECD D ^DIC D:Y<0  Q:Y<0  S ECDN=$P(Y,U,2)
+ . S DIC=724,DIC(0)="QNZX",X=ECD D ^DIC D:Y<0  Q:Y<0  S ECDN=$P(Y,U,2) ;145
  . . S ^TMP("ECMSG",$J)="1^Invalid Location.",ECERR=1
  I ECD="ALL",'$D(^XUSEC("ECALLU",ECDUZ)) D
  . S (ECD,ECDN)="SOME",(X,CNT)=0
@@ -181,7 +181,7 @@ ECOSSUM ;Ordering Section Summary Report for RPC Call
  . I ECD0="ALL" D  Q
  . . S ECKEY=$S($D(^XUSEC("ECALLU",ECDUZ)):1,1:0) D ALLU^ECRUTL
  . S (ECI,ECNT)=0 F ECI=0:1 S ECX="ECD"_ECI Q:'$D(@ECX)  D
- . . K DIC S DIC=724,DIC(0)="QNMZX",X=@ECX D ^DIC I Y<0 Q
+ . . K DIC S DIC=724,DIC(0)="QNZX",X=@ECX D ^DIC I Y<0 Q  ;145
  . . S ECNT=ECNT+1,ECDSSU(ECNT)=Y
  D DATECHK(.ECSD,.ECED)
  S ECSD=ECSD-.0001,ECED=ECED+.9999

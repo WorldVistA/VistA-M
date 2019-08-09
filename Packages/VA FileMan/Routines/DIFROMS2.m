@@ -1,5 +1,5 @@
 DIFROMS2 ;SFISC/DCL/TKW - INSTALL DD FROM SOURCE ARRAY ;4SEP2016
- ;;22.2;VA FileMan;**3,5**;Jan 05, 2016;Build 28
+ ;;22.2;VA FileMan;**3,5,14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -19,7 +19,7 @@ EN ;CALLED FROM DIFROMS
  ;^XTMP("XPDI",4861,"FIA",21489,0,0)=21489
  ;                                1)="y^y^f^^n^^y^o^n"    --  ^XPD(9.6,D0,4,D1,222)
  ;                                2)="1^^0"
- ;^XTMP("XPDI",4861,"FIA",21489,21489)=0
+ ;^XTMP("XPDI",4861,"FIA",21489,21489)=0  0=full, 1=partial
  ;                          21489.01)=0
  ;AND THEREFORE DIFRFIA=^XTMP("XPDI",4861,"FIA")
  I '$D(@DIFRSA) D ERR(5) Q
@@ -31,7 +31,7 @@ EN ;CALLED FROM DIFROMS
  ;
 FCHK I '$D(@DIFRFIA@(DIFRFILE)) D ERR(6) Q
 FILE ;
- N DIFR01,DIFR02,DIFRVR,DIFRFDD
+ N DIFR01,DIFR02,DIFRVR,DIFRFDD,DIFRQUIT
  S DIFR01=$G(@DIFRFIA@(DIFRFILE,0,1)) ;UPDATE DATA DICTIONARY [1S] ^ (#222.2) SEND SECURITY CODE [2S] ^ (#222.3) SEND FULL
  S DIFR02=$G(@DIFRFIA@(DIFRFILE,0,2))
  I $TR($E(DIFR01),"NY","ny")="n" D ERR(1) Q
@@ -49,13 +49,15 @@ FILE ;
  ;^XTMP("XPDI",4861,"^DD",21489,21489,0,"IX","B",21489,.01)=""
  ;^XTMP("XPDI",4861,"^DD",21489,21489,0,"NM","MSC ORDERS HL7")=""
  ;^XTMP("XPDI",4861,"^DD",21489,21489,.01,0)="NAME^RF^^0;1^K:$L(X)>30
+ ; parital DDs
  I 'DIFRFDD D
  .K @DIFRSA@("DIFRNI",DIFRFILE)
  .N DIFRD
  .S DIFRD=DIFRFILE
+ .; loop thru sub DDs
  .F  S DIFRD=$O(@DIFRFIA@(DIFRFILE,DIFRD)) Q:DIFRD'>0  D
- ..Q:$$UP(DIFRSA,DIFRFILE,DIFRD)  ;abort DIFRD subfile if we can't see its parent
- ..S @DIFRSA@("DIFRNI",DIFRFILE,DIFRD)=""
+ ..Q:$$UP(DIFRSA,DIFRFILE,DIFRD)  ;check parent, quit if everything is OK
+ ..S @DIFRSA@("DIFRNI",DIFRFILE,DIFRD)="" ;there is a problem, this node is process in tag DIKZ
  ..N DIFRNGF,DIFRNGFD
  ..S DIFRNGF=+$G(@DIFRSA@("UP",DIFRFILE,DIFRD,-1))
  ..S DIFRNGFD=.01 F  S DIFRNGFD=$O(@DIFRSA@("^DD",DIFRFILE,DIFRNGF,DIFRNGFD)) Q:DIFRNGFD=""  Q:+$P($G(^(DIFRNGFD,0)),U,2)=DIFRD
@@ -66,7 +68,7 @@ FILE ;
  S DIFRD=0
  F  S DIFRD=$O(@DIFRSA@("^DD",DIFRFILE,DIFRD)) Q:DIFRD'>0  D
  .I '$D(@DIFRFIA@(DIFRFILE,DIFRD)) S @DIFRFIA@(DIFRFILE,DIFRD)=0 ;MAKE SURE WE WILL CROSS-REFERENCE THIS DD
- .S ^DD(DIFRD,0)="FIELD^NL^"
+ .;S ^DD(DIFRD,0)="FIELD^NL^" ;p14 this was masking the problem of a partial multiple where the .01 field is missing
  .I 'DIFRFDD,$D(@DIFRSA@("DIFRNI",DIFRFILE,DIFRD)) Q
  .K:$D(@DIFRSA@("^DD",DIFRFILE,DIFRD,0,"NM"))\10 ^DD(DIFRD,0,"NM")
  .S DIFRFLD=0
@@ -125,6 +127,7 @@ DIKZ I $D(^DD(DIFRFILE,0,"DIK")) D
  .I $D(DIFRDIKA) M @DIFRSA@("DIKZ",DIFRFILE)=DIFRDIKA
  .S @DIFRSA@("DIKZ",DIFRFILE)=^DD(DIFRFILE,0,"DIK")
  .Q
+ ;process errors
  I 'DIFRFDD,$D(@DIFRSA@("DIFRNI",DIFRFILE)) D
  .N DIFRD
  .S DIFRD=0
@@ -138,17 +141,24 @@ K12(DIFRD) N DD,D S DIFRD=+$G(DIFRD) ;DIFRD WILL BE THERE FOR A PARTIAL UPDATE
  .F D=0:0 S D=$O(@DIFRSA@("^DD",DIFRFILE,DD,D)) Q:'D  K ^DD(DD,D,12),^(12.1) ;KILL THE 'SCREEN' NODES, BECAUSE THEY MAY NOT BE COMING IN
  Q
  ;
-UP(ROOT,FILE,DDN) ;Return 1 or 0 to install
- Q:FILE=DDN 1
- Q:$D(^DD(DDN)) 1
- Q:'$D(@ROOT@("UP",FILE,DDN)) 1
- N MP,PARENT,T,X
- S MP=0,X="",T=0
+UP(ROOT,FILE,DDN) ;Return 1 if OK, or 0 for error p14
+ Q:FILE=DDN 1 ;top level file
+ Q:$D(^DD(DDN)) 1 ;subDD already exists
+ Q:'$D(@ROOT@("UP",FILE,DDN)) 1 ;no parent in transport
+ N T S T=0
+ D UP1
+ I $G(@ROOT@("FIA",FILE,DDN))=0 Q T ;full subDD
+ I T,'$D(@ROOT@("FIA",FILE,DDN,.01)) S T=0 ;partial subDD, no subDD at site, no .01 field sent = error
+ Q T
+ ;
+UP1 N MP,PARENT,X ;p14
+ S MP=0,X=""
+ ;checks if parent exists or is in transport
  F  S X=$O(@ROOT@("UP",FILE,DDN,X)) Q:X=""  S PARENT=+^(X) D  Q:T!(MP)
  .I $D(^DD(PARENT))!$D(@ROOT@("FIA",FILE,PARENT)) S:X>-2 T=1 Q  ;***GFT
  .S MP=1
  .Q
- Q T
+ Q
  ;
 ERR(X) D BLD^DIALOG($P($T(ERR+X),";",5)) Q
  ;;FIA Node Is Set To "No DD Update";1;9503

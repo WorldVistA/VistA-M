@@ -1,6 +1,6 @@
 IBCEFG1 ;ALB/TMP - OUTPUT FORMATTER DATA DEFINITION UTILITIES ;18-JAN-96
- ;;2.0;INTEGRATED BILLING;**52,51,137,181,197,232,288,349,371,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,51,137,181,197,232,288,349,371,377,644**;21-MAR-94;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDIBILL(IBXFORM,IBXDA,IBINS,IBTYP) ; Find element associated with form fld
  ; IBXFORM = (REQUIRED) actual form being extracted (in file 353)
@@ -123,6 +123,7 @@ RCDT(IBXSAVE,IBXDATA,IBDT) ; Format date for multiple revenue code transmission)
  ;IBXSAVE = array containing the extracted service line data for the UB format bill
  ;IBXDATA = array returned with service line dates formatted in YYYYMMDD format
  ;IBDT = the default date for the revenue codes on the bill
+ ; *644 - replace 1st date with multiple dates
  N Q,W
- S Q=0 F  S Q=$O(IBXSAVE("INPT",Q)) Q:'Q  S W=$$DT($P(IBXSAVE("INPT",1),U,10),,"D8"),IBXDATA(Q)=$S(W:W,1:IBDT)
+ S Q=0 F  S Q=$O(IBXSAVE("INPT",Q)) Q:'Q  S W=$$DT($P(IBXSAVE("INPT",Q),U,10),,"D8"),IBXDATA(Q)=$S(W:W,1:IBDT)
  Q

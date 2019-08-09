@@ -1,5 +1,5 @@
 IBJTEP1 ;ALB/TJB - TP ERA/835 INFORMATION SCREEN ;01-MAY-2015
- ;;2.0;INTEGRATED BILLING;**530**;21-MAR-94;Build 71
+ ;;2.0;INTEGRATED BILLING;**530,633**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
  Q
@@ -126,3 +126,56 @@ GETRX(IBIEN,IBARRY) ;return pharmacy data to about EEOB items
  I IBARRY("FILL")>0 S IBARRY("RELEASED STATUS")=$S($P(^TMP("PSOR",$J,RXIEN,"REF",IBARRY("FILL"),0),U,8)]"":"Released",1:"Not Released")  ; Release status from Rx refill #
  Q
  ;
+EOBREM(RCEOB,LINE) ; EP from IBJTEP - Show EOB removal details if EOB removed
+ ; Input: RCEOB - Internal entry number from file 361.1
+ ;        LINE  - Line counter for ListMan storage
+ ; Output: To screen
+ ; Get last move/copy history record
+ N I,J,RCEOBH,RCJUST
+ S RCEOBH=$O(^IBM(361.1,RCEOB,101,"A"),-1)
+ ; Quit if EOB if no history found - should not occur since EOB is removed
+ I 'RCEOBH D SET^IBJTEP(.LINE,"**EOB Removed**") Q
+ ;
+ D SET^IBJTEP(.LINE,"EOB Removed by    : "_$$GET1^DIQ(361.1101,RCEOBH_","_RCEOB,.02,"E"))
+ D SET^IBJTEP(.LINE,"Date/Time Removed : "_$$GET1^DIQ(361.1101,RCEOBH_","_RCEOB,.01,"E"))
+ S RCJUST=$$GET1^DIQ(361.1101,RCEOBH_","_RCEOB,.03,"E")
+ I $L(RCJUST>59) D  ;
+ . S I=1
+ . F J=1:1:$L(RCJUST," ") D  ;
+ . . I $L($G(RCJUST(I))_$P(RCJUST," ",J))>60 S I=I+1
+ . . S RCJUST(I)=$G(RCJUST(I))_" "_$P(RCJUST," ",J)
+ E  S RCJUST(1)=RCJUST
+ D SET^IBJTEP(.LINE,"Justification     :"_$G(RCJUST(1)))
+ F J=2:1:I D SET^IBJTEP(.LINE,"                   "_$G(RCJUST(J)))
+ Q
+ ;
+ ; Make CARC or RARC description lines the right length for display - IB*2.0*633 Moved for routine size
+DLN(ZIN,ZARR,FLN,SLN) ;
+ ; ZIN - array to get lines of text
+ ; ZRARR - array for display passed by indirection
+ ; FLN - First line length; SLN - Second and subsequent line lengths
+ N ZI,ZX,ZL,ZXL,ZICT,ZCT,ZSP,ZLN
+ S ZI="",ZCT=0,ZICT=0
+ ; Get number of lines in array
+ F  S ZI=$O(@ZIN@(ZI)) Q:ZI=""  S ZICT=ZICT+1
+ ; If more than one line in array, process the line
+ D:ZICT>1
+ . S ZI="",ZL="" F  S ZI=$O(@ZIN@(ZI)) Q:ZI=""  S ZL=ZL_$S($L(ZL)>1:" ",1:"")_@ZIN@(ZI) D
+ .. F  Q:$L(ZL)<SLN  S ZCT=ZCT+1 D
+ ... I ZCT=1 S:$L(ZL)<FLN @ZARR@(ZCT)=ZL,ZL="" D:$L(ZL)>FLN  ; First line
+ .... S ZXL="" F ZX=1:1 Q:($L(ZXL)+$L($P(ZL," ",ZX)))>FLN  S ZXL=ZXL_$S($L(ZXL)>0:" ",1:"")_$P(ZL," ",ZX)
+ .... K ZSP S @ZARR@(ZCT)=ZXL,ZSP(ZXL)="",ZL=$$REPLACE^XLFSTR(ZL,.ZSP),ZL=$$TRIM^XLFSTR(ZL)
+ ... D:ZCT>1
+ .... S ZXL="" F ZX=1:1 Q:($L(ZXL)+$L($P(ZL," ",ZX)))>SLN  S ZXL=ZXL_$S($L(ZXL)>0:" ",1:"")_$P(ZL," ",ZX)
+ .... K ZSP S @ZARR@(ZCT)=ZXL,ZSP(ZXL)="",ZL=$$REPLACE^XLFSTR(ZL,.ZSP),ZL=$$TRIM^XLFSTR(ZL)
+ . I ($L(ZL)>1) S ZCT=ZCT+1,@ZARR@(ZCT)=ZL,ZL=""
+ . S @ZARR=ZCT
+ ; One line in array break up if necessary
+ I ZICT=1 D
+ . S ZX=$O(@ZIN@(""))
+ . I $L(@ZIN@(ZX))<FLN S @ZARR@(1)=@ZIN@(ZX),@ZARR=1 Q
+ . ; Otherwise we are spanning two lines
+ . S ZL="" F ZI=1:1 Q:($L(ZL)+$L($P(@ZIN@(ZX)," ",ZI)))>FLN  S ZL=ZL_$S($L(ZL)>0:" ",1:"")_$P(@ZIN@(ZX)," ",ZI)
+ . S @ZARR@(1)=ZL,@ZARR@(2)=$P(@ZIN@(ZX)," ",ZI,9999)
+ . S @ZARR=2
+ Q

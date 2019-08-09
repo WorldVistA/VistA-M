@@ -1,5 +1,5 @@
-RCDPESP1 ;BIRM/SAB,hrubovcak - ePayment Lockbox Site Parameter Reports ;7/1/15
- ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
+RCDPESP1 ;BIRM/SAB,hrubovcak - ePayment Lockbox Site Parameter Reports ;27 Nov 2018 09:10:16
+ ;;4.5;Accounts Receivable;**298,304,318,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -36,8 +36,7 @@ SPRPT ; site parameter report entry point
  ; RCHDR - header information
  ; RCPARM - parameters
  ; RCSTOP - exit flag
- N J,RCNTR,RCFLD,RCGLB,RCHDR,RCPARM,RCSTOP,V,X,Y,RCSTRING
- N RCDATA,RCCODE,RCDESC,RCSTAT,RCI,RCCARCD,RCCIEN,RCITEM,RCACTV
+ N J,RCACTV,RCCARCD,RCCIEN,RCCODE,RCDATA,RCDESC,RCFLD,RCGLB,RCHDR,RCI,RCITEM,RCNTR,RCPARM,RCSTAT,RCSTOP,RCSTRING,V,X,Y
  ;
  S X="RC" F  S X=$O(^TMP($J,X)) Q:'($E(X,1,2)="RC")  K ^TMP($J,X) ; clear out old data
  ;
@@ -51,13 +50,13 @@ SPRPT ; site parameter report entry point
  S RCHDR("PGNMBR")=0  ; page number
  ;
  ; AR SITE PARAMETER file (#342)
- D GETS^DIQ(342,"1,",".01;7.02;7.03;7.04;7.05;7.06;7.07;7.08;","E",RCGLB(342))
+ D GETS^DIQ(342,"1,",".01;7.02;7.03;7.04;7.05;7.06;7.07;7.08;7.09;","E",RCGLB(342))
  ; add site to header data
  S RCHDR("SITE")="Site: "_@RCGLB(342)@(342,"1,",.01,"E")
  ;
- F RCFLD=7.02,7.03,7.04,7.05,7.06,7.07,7.08 S RCITEM=$S(RCFLD>7.04:"TITLE",1:"LABEL") D  ; EFT and ERA days unmatched  - PRCA*4.5*321
- . I RCTYPE="P",(RCFLD=7.05)!(RCFLD=7.07) Q  ; Dont display if only showing Pharmacy parameters - PRCA*4.5*321
- . I RCTYPE="M",(RCFLD=7.06)!(RCFLD=7.08) Q  ; Dont display if only showing medical parameters - PRCA*4.5*321
+ F RCFLD=7.02,7.03,7.04,7.05,7.06,7.07,7.08,7.09 S RCITEM=$S(RCFLD>7.04:"TITLE",1:"LABEL") D  ; EFT and ERA days unmatched  - PRCA*4.5*321
+ . I RCTYPE="P",(RCFLD=7.05)!(RCFLD=7.07) Q  ; Don't display if only showing Pharmacy parameters - PRCA*4.5*321
+ . I RCTYPE="M",(RCFLD=7.06)!(RCFLD=7.08) Q  ; Don't display if only showing medical parameters - PRCA*4.5*321
  . S Y=$$GET1^DID(342,RCFLD,,RCITEM)_": "_@RCGLB(342)@(342,"1,",RCFLD,"E")
  . I RCFLD=7.05 D AD2RPT(" ")
  . I (RCFLD=7.06)&(RCTYPE="P") D AD2RPT(" ")
@@ -67,11 +66,10 @@ SPRPT ; site parameter report entry point
  ;
  ; Display Medical Parameters
  ; RCDPE PARAMETER file (#344.61)
- D GETS^DIQ(344.61,"1,",".02;.03;.04;.05;.06;.07;.1;.11;.12;1.01;1.02","E",RCGLB(344.61)) ; PRCA*4.5*321/PRCA*4.5*326
+ D GETS^DIQ(344.61,"1,",".02;.03;.04;.05;.06;.07;.1;.11;.12;.13;1.01;1.02","E",RCGLB(344.61)) ; PRCA*4.5*321/PRCA*4.5*326/PRCA*4.5*332
  ;
  S Y=$$GET1^DID(344.61,.1,,"LABEL")_": "_@RCGLB(344.61)@(344.61,"1,",.1,"E") ; PRCA*4.5*321
- D AD2RPT(Y) ; PRCA*4.5*321
- D AD2RPT(" ") ;  PRCA*4.5*321
+ D AD2RPT(Y),AD2RPT(" ") ; PRCA*4.5*321
  ;
  ; get auto-post and auto-decrease settings, save zero node
  S X=$G(^RCY(344.61,1,0)),RCPARM("AUTO-POST")=$P(X,U,2),RCPARM("AUTO-DECREASE")=$P(X,U,3),RCPARM(344.61,0)=X
@@ -87,7 +85,6 @@ SPRPT ; site parameter report entry point
  .S X=$$GET1^DID(344.61,.02,,"TITLE"),V=" (Y/N)" S:X[V X=$P(X,V)_$P(X,V,2)  ; remove yes/no prompt
  .S Y=X_" "_@RCGLB(344.61)@(344.61,"1,",.02,"E")
  .D AD2RPT(Y)
- .;
  .I (RCPARM("AUTO-POST")!RCPARM("AUTO-DECREASE")) D  ; list auto-post excluded payers
  ..I '$D(@RCGLB(344.6)@("DILIST",1,0)) D  Q
  ...S X="     No payers excluded from medical auto-posting." D AD2RPT($J(" ",80-$L(X)\2)_X)
@@ -99,7 +96,7 @@ SPRPT ; site parameter report entry point
  ...S Y="   "_X_$J(" ",36-$L(X))_$P(V,U,5)
  ...D AD2RPT($E(Y,1,IOM))
  .;
- .I RCPARM("AUTO-POST") D AD2RPT(" ")  ; blank line
+ .I RCPARM("AUTO-POST") D AD2RPT(" ")
  .;
  .K @RCGLB(344.6)  ; delete old data
  .; RCDPE AUTO-PAY EXCLUSION file (#344.6)
@@ -107,12 +104,12 @@ SPRPT ; site parameter report entry point
  .D LIST^DIC(344.6,,"@;.01;.02;.07;2","P",,,,,"I $P(^(0),U,7)=1",,RCGLB(344.6))
  .;
  .; BEGIN PRCA*4.5*326
- .D AD2RPT(" ") ; blank line
+ .D AD2RPT(" ")
  .; Display Auto-Decrease parameters for paid lines
  .D AUTOD(1,.RCGBL,RCTYPE)
  .; Display Auto-Decrease parameters for no-pay lines
  .D AUTOD(0,.RCGBL,RCTYPE)
- .D AD2RPT(" ") ; blank line
+ .D AD2RPT(" ")
  .; END PRCA*4.5*326
  .I (RCPARM("AUTO-POST")!RCPARM("AUTO-DECREASE")) D  ; list excluded auto-decrease payers
  .. Q:'RCPARM("AUTO-DECREASE")
@@ -127,7 +124,7 @@ SPRPT ; site parameter report entry point
  ... S Y="     "_X_$J(" ",36-$L(X))_$P(V,U,5)
  ... D AD2RPT($E(Y,1,IOM))
  .;
- .D AD2RPT(" ")  ; blank line
+ .D AD2RPT(" ")
  ;
  K @RCGLB(344.6)  ; delete old data
  ; RCDPE AUTO-PAY EXCLUSION file (#344.6)
@@ -155,7 +152,7 @@ SPRPT ; site parameter report entry point
  .. S Y="     "_X_" "_$S(@RCGLB(344.61)@(344.61,"1,",1.02,"E")="":"No",1:@RCGLB(344.61)@(344.61,"1,",1.02,"E"))
  .. D AD2RPT(" "),AD2RPT(Y)
  .;
- .I RCPARM("RX AUTO-POST") D AD2RPT(" ")  ; blank line
+ .I RCPARM("RX AUTO-POST") D AD2RPT(" ")
  .;
  .K @RCGLB(344.6)  ; delete old data
  .;
@@ -167,23 +164,26 @@ SPRPT ; site parameter report entry point
  .. ;
  .. ; Loop and print entries
  .. F  S RCI=$O(^RCY(344.62,RCI)) Q:'RCI  D
- .. . S RCDATA=$G(^RCY(344.62,RCI,0)),Y=""
- .. . Q:RCDATA=""
- .. . S RCCODE=$P(RCDATA,U),RCCIEN=$O(^RC(345,"B",RCCODE,""))
- .. . S RCDESC=$G(^RC(345,RCCIEN,1,1,0))
- .. . S RCSTAT=$P(RCDATA,U,2)
- .. . Q:RCSTAT'=1
- .. . I $L(RCDESC)>50 S RCDESC=$E(RCDESC,1,50)_" ..."
- .. . D GETCODES^RCDPCRR(RCCODE,"","A",$$DT^XLFDT,"RCCARCD","1^70")
- .. . S Y="  "_$E(RCCODE,1,4)_"  "
- .. . S Y=Y_$E(RCDESC,1,55)_$J($P(RCDATA,U,6),10,0)
- .. . I '$$ACT^RCDPRU(345,RCCODE,) S Y=Y_" (I)"  ; if inactive, display (i)
- .. . D AD2RPT(Y)
+ ...   S RCDATA=$G(^RCY(344.62,RCI,0)),Y=""
+ ...   Q:RCDATA=""
+ ...   S RCCODE=$P(RCDATA,U),RCCIEN=$O(^RC(345,"B",RCCODE,""))
+ ...   S RCDESC=$G(^RC(345,RCCIEN,1,1,0))
+ ...   S RCSTAT=$P(RCDATA,U,2)
+ ...   Q:RCSTAT'=1
+ ...   I $L(RCDESC)>50 S RCDESC=$E(RCDESC,1,50)_" ..."
+ ...   D GETCODES^RCDPCRR(RCCODE,"","A",$$DT^XLFDT,"RCCARCD","1^70")
+ ...   S Y="  "_$E(RCCODE,1,4)_"  "
+ ...   S Y=Y_$E(RCDESC,1,55)_$J($P(RCDATA,U,6),10,0)
+ ...   I '$$ACT^RCDPRU(345,RCCODE,) S Y=Y_" (I)"  ; if inactive, display (i)
+ ...   D AD2RPT(Y)
  ;
  ; RCDPE PARAMETER file (#344.61)
- F RCFLD=.06,.07 D
- . Q:(RCFLD=.06)&(RCTYPE="P")  ; Dont display if only showing Pharmacy parameters
- . Q:(RCFLD=.07)&(RCTYPE="M")  ; Dont display if only showing medical parameters
+ ;  ^DD(344.61,.06,0) > "MEDICAL EFT POST PREVENT DAYS"
+ ;  ^DD(344.61,.07,0) > "PHARMACY EFT POST PREVENT DAYS"
+ ;  ^DD(344.61,.13,0) > "TRICARE EFT POST PREVENT DAYS"
+ F RCFLD=.06,.07,.13 D
+ . Q:(RCFLD=.06)&(RCTYPE="P")  ; Don't display if only showing Pharmacy parameters
+ . Q:(RCFLD=.07)&(RCTYPE="M")  ; Don't display if only showing medical parameters
  . S Y=$$GET1^DID(344.61,RCFLD,,"TITLE")_" "_@RCGLB(344.61)@(344.61,"1,",RCFLD,"E")
  . D AD2RPT(Y)
  ;
@@ -259,11 +259,10 @@ AUTOD(PAID,RCGBL,RCTYPE) ; Display auto-decrease parameters
  N CNT,FIELD,X,Y
  ; RCDPE PARAMETER file (#344.61), auto-decrease of medical claims 
  S FIELD=$S(PAID:.03,1:.11)
- S X=$$GET1^DID(344.61,FIELD,,"TITLE"),V=" (Y/N): ",V=" Y/N)"
- S:X[V X=$P(X,V)_$P(X,V,2) ; remove yes/no prompt
+ S X=$$GET1^DID(344.61,FIELD,,"TITLE")
+ S X=$P(X," (Y/N): ") ; remove yes/no prompt
  S Y=$J(X,45)_@RCGLB(344.61)@(344.61,"1,",FIELD,"E")
- D AD2RPT(" ")
- D AD2RPT(Y)
+ D AD2RPT(" "),AD2RPT(Y)
  ; If auto-decrease is off - do not display CARCS or auto-decrease days or auto-decrease maximum
  I +$$GET1^DIQ(344.61,"1,",FIELD,"I")=0 Q
  ;

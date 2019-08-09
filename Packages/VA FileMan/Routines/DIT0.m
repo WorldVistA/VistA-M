@@ -1,5 +1,5 @@
 DIT0 ;SFISC/GFT,XAK-PREPARE TO XFR ;15FEB2013
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -13,7 +13,7 @@ S S (D0,DA)=+Y W ! D  G Q:%<0 S (DH,DIT0KILL)=2-% I '% D F^DIT G S
  S ^UTILITY("DIT",$J,+Y)=DFR_";"_$E(DIC,2,999)
  S DTO=0,DIK=DIC,DFR(1)=DIC_DA_"," K DIC D WAIT^DICD
 GO D GO^DITR
- S DIT=DH D KL^DIT,^DIK:$G(DIT0KILL) S DA=DFR K DFR D IX1^DIK ;DELETE OLD ENTRY, CONDITIONALLY
+ K DA S DA=D0,DIT=DH D KL^DIT,^DIK:$G(DIT0KILL) S DA=DFR K DFR D IX1^DIK ;DELETE OLD ENTRY, CONDITIONALLY ;p14
  S DH=DIT D ASK^DITP,PTS^DITP:%=1
 Q G Q^DIT
  ;

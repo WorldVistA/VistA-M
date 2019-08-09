@@ -1,5 +1,5 @@
-MDWOR ; HOIFO/NCA - Main Routine to Decode HL7 ;Jun 20, 2018@17:30
- ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,37,42,54**;Apr 01,2004;Build 14
+MDWOR ; HOIFO/NCA - Main Routine to Decode HL7 ; 1/29/19 4:55pm
+ ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,37,42,54,69**;Apr 01,2004;Build 2
  ; Reference IA# 2263 [Supported] XPAR calls
  ;               3468 [Subscription] Call GMRCCP.
  ;               3071 [Subscription] Call $$PKGID^ORX8.
@@ -174,15 +174,10 @@ HIGHV(MDHV) ; Return flag indicator whether procedure is use for auto check-in
  .I MDHV=+$P(MDKY,"^") S MDANS=MDKY
  Q MDANS
 GETAPPT(MDDPAT,MDDA) ; Get appointment
- N DFN,MDALP,MDARES,MDCT,MDCKDT K ^UTILITY("VASD",$J) S DFN=MDDPAT,MDCT=$$GCT()
+ N DFN,MDALP,MDARES,MDCKDT K ^UTILITY("VASD",$J) S DFN=MDDPAT
  S X1=DT,X2=365 D C^%DTC S VASD("T")=X+.24,VASD("F")=DT,VASD("W")="129",VASD("C",+MDDA)=+MDDA D SDA^VADPT
  S MDARES=0 F MDALP=0:0 S MDALP=$O(^UTILITY("VASD",$J,MDALP)) Q:MDALP<1  D
  . S MDCKDT=$G(^(MDALP,"I")) ;this naked reference refers to the full reference to ^UTILITY("VASD" above
- . I +MDCKDT<MDCT Q
  . S MDARES=MDCKDT
  K ^UTILITY("VASD",$J),VASD,X1,X2,X
  Q MDARES
-GCT() ;GET CURRENT TIME
- N %,%H,%I,X
- D NOW^%DTC
- Q %

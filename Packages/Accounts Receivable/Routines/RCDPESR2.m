@@ -1,5 +1,5 @@
-RCDPESR2 ;ALB/TMK/DWA - Server auto-upd - EDI Lockbox ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,216,208,230,252,264,269,271,298,321**;Mar 20, 1995;Build 48
+RCDPESR2 ;ALB/TMK/DWA - Server auto-upd - EDI Lockbox ;30 July 2018 20:13:45
+ ;;4.5;Accounts Receivable;**173,216,208,230,252,264,269,271,298,321,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4042 (IBCEOB)
  ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
@@ -15,7 +15,7 @@ NEWERA(RCTDA,RCREFILE) ;Tasked
  ; Add new EOB's to IB & ERA tot rec to AR
  ; RCTDA = ien 344.5
  ; RCREFILE = 1: re-filing rec via exc proc
- N RCDUPERR,RCPAYER,RCRTOT,RCE,RCEC,RCERR,RCR1,RCADJ,DIE,DR,DA,Z,Q
+ N DA,DIE,DR,Q,RCADJ,RCDUPERR,RCE,RCEC,RCERR,RCNEWTRC,RCPAYER,RCR1,RCRTOT,Z
  S ZTREQ="@"
  K ^TMP($J,"RCDPERA")
  L +^RCY(344.5,RCTDA):5
@@ -29,19 +29,21 @@ NEWERA(RCTDA,RCREFILE) ;Tasked
  I RCRTOT D UPDCON^RCDPESR6(RCRTOT),UPDADJ^RCDPESR6(RCRTOT),UPD3444^RCDPESR6(.RCRTOT) ; Bills added 344.41
  I RCRTOT,RCTDA S DIE="^RCY(344.5,",DR=".08////0;.1///@",DA=RCTDA D ^DIE
  I 'RCRTOT D  G QNEW
- .I RCDUPERR Q:'RCTDA  D  S RCTDA="" Q
- ..I RCDUPERR=-2 D BULLERA^RCDPESR0("D",RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U,11),"EDI LBOX - DUPLICATE ERA NOT FILED "_$E(RCPAYER,1,20),.RCERR,0)
- ..D TEMPDEL^RCDPESR1(RCTDA)
- .S RCE(1)=$$FMTE^XLFDT($$NOW^XLFDT(),2)_" An error occurred while storing ERA data.",RCE(2)="No totals data was stored for this ERA record"_$S('$G(RCREFILE):" and an",1:" on this re-file attempt.")
- .S RCE(3)=$S('$G(RCREFILE):"ERA transmission exception was created.",1:"")
- .D WP^DIE(344.5,RCTDA_",",5,"A","RCE")
- .S DIE="^RCY(344.5,",DA=RCTDA,DR=".07///@;.08////1;.1////1" D ^DIE
- .K RCERR
- .S RCERR(1)=$$FMTE^XLFDT($$NOW^XLFDT(),2)_" The ERA data could not be stored. The AR receipt",RCERR(2)=" for this data must be created/processed manually for the bills included"
- .S RCERR(3)=" in this ERA."_$S('$G(RCREFILE):"",1:"  This error occurred during a refile attempt."),RCERR(4)=" "
- .D BULLERA^RCDPESR0("DF",RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U,11),"EDI LBOX - TOTALS FILE EXCEPTION "_$E(RCPAYER,1,20),.RCERR,0)
- .K RCERR
- ;-----
+ . I RCDUPERR Q:'RCTDA  D  S RCTDA="" Q
+ . . ;PRCA*4.5*332 - 27 July 2018
+ . . S DIE="^RCY(344.5,",DA=RCTDA,DR=".15///1" D ^DIE
+ . . L -^RCY(344.5,RCTDA)
+ . . ;PRCA*4.5*332 end
+ . S RCE(1)=$$FMTE^XLFDT($$NOW^XLFDT(),2)_" An error occurred while storing ERA data.",RCE(2)="No totals data was stored for this ERA record"_$S('$G(RCREFILE):" and an",1:" on this re-file attempt.")
+ . S RCE(3)=$S('$G(RCREFILE):"ERA transmission exception was created.",1:"")
+ . D WP^DIE(344.5,RCTDA_",",5,"A","RCE")
+ . S DIE="^RCY(344.5,",DA=RCTDA,DR=".07///@;.08////1;.1////1" D ^DIE
+ . K RCERR
+ . S RCERR(1)=$$FMTE^XLFDT($$NOW^XLFDT(),2)_" The ERA data could not be stored. The AR receipt",RCERR(2)=" for this data must be created/processed manually for the bills included"
+ . S RCERR(3)=" in this ERA."_$S('$G(RCREFILE):"",1:"  This error occurred during a refile attempt."),RCERR(4)=" "
+ . D BULLERA^RCDPESR0("DF",RCTDA,$P($G(^RCY(344.5,RCTDA,0)),U,11),"EDI LBOX - TOTALS FILE EXCEPTION "_$E(RCPAYER,1,20),.RCERR,0)
+ . K RCERR
+ ;
  ; PRCA*4.5*298 - MailMan message disabled, logic retained - 14 Feb 2014
  ;I $$ADJ^RCDPEU(RCRTOT,.RCADJ) D  ;Bulletin adjs
  ;.S RCEC=$$ADJERR^RCDPESR3(.RCERR)
@@ -84,6 +86,7 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  .S RCMNUM=+$G(^RCY(344.5,RCTDA,0)),RCXMG=$P($G(^(0)),U,11)
  .I $G(DUP) S RCNOUPD=$S(DUP>0:+DUP,1:RCXMG)
  .S ^TMP($J,"RCDPEOB","HDR")=$G(^RCY(344.5,RCTDA,2,1,0))
+ .I $G(RCNEWTRC)'="" S $P(^TMP($J,"RCDPEOB","HDR"),U,8)=RCNEWTRC ; PRCA*4.5*332 Update EEOB with -DUP trace#
  .I $P(^TMP($J,"RCDPEOB","HDR"),U)["XFR",'$P($G(^RCY(344.5,RCTDA,0)),U,14) D
  ..D SENDACK^RCDPESR5(RCTDA,1)
  ..S DR=".14////1",DIE="^RCY(344.5,",DA=RCTDA D ^DIE
@@ -108,9 +111,9 @@ UPDEOB(RCTDA,RCFILE,DUP) ;Upd 361.1 from ERA msg in 344.5 or .4
  .; service date for possible ECME# matching
  .; PRCA*4.3*321 BEGIN
  .I +RC0=40,$$VALECME^BPSUTIL2(CP5),C5,'$D(@RCSD@(C5)) D
- . I $P(RC0,U,19) S @RCSD@(C5)=+$P(RC0,U,19) Q
- . ; If service date not present use statement start date instead
- . S:RCSTART @RCSD@(C5)=RCSTART
+ ..I $P(RC0,U,19) S @RCSD@(C5)=+$P(RC0,U,19) Q
+ ..; If service date not present use statement start date instead
+ ..S:RCSTART @RCSD@(C5)=RCSTART
  ; PRCA*4.5*321 END
  ;
  S RC=1,(RCCT,RCCT1,RCX,REFORM)=0,RCBILL=""

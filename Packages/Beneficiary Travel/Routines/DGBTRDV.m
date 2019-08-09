@@ -1,7 +1,6 @@
-DGBTRDV ;ALB/BLD - Beneficiary Travel information VIA RDV; 11/20/92@1000; 06/01/12
- ;;1.0;Beneficiary Travel;**20**;September 25, 2001;Build 185
- ;
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+DGBTRDV ;ALB/BLD,KAR - Beneficiary Travel information VIA RDV ;1/16/19  14:05
+ ;;1.0;Beneficiary Travel;**20,35**;September 25, 2001;Build 18
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to exchange insurance information between
  ; facilities.
@@ -67,7 +66,7 @@ BACKGND ; background/tasked entry point
  Q
  ;
 RPC(DGBTRET,DGBTICN,DGBTDTI) ; RPC entry for Beneficiary Travel Claims for a given month
- N DFN
+ N DFN K DGBTRET ;KAR 07/08/18 Removed output parameter from input
  S ^TMP("FROM CHEY246",$H)=""
  S DFN=$$DFN(DGBTICN) I 'DFN S DGBTRET="-1^ICN Not found" Q
  S DGBTRET(0)=$$WAIV^DGBTRDVW(DFN,DGBTDTI)

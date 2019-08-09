@@ -1,6 +1,6 @@
 RCBEUTRA ;WISC/RFJ-utilties for transactions (in file 433)           ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,204,326**;Mar 20, 1995;Build 26
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**153,169,204,326,332**;Mar 20, 1995;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -13,13 +13,14 @@ ADD433(BILLDA,TRANTYPE) ;  add a new transaction to file 433 (silent)
  ;  find next available transaction number
  ;  add an extra level of locks, some operating systems do not process
  ;  the locks correctly if they happen at the same time.
- L +^PRCA(433,"ADDNEWENTRY")
+ L +^PRCA(433,"ADDNEWENTRY"):DILOCKTM
+ I '$T Q "0^Another user is adding an AR Transaction, please try again later."
  ;  start with last entry in file
  ;    -> if no data is in the entry, lock it
  ;       -> if the lock works and no data was added (prior to the lock)
  ;          -> then you have the entry.
  ;          -> otherwise, unlock it and start over
- F DINUM=$P(^PRCA(433,0),"^",3)+1:1 I '$D(^PRCA(433,DINUM)) L +^PRCA(433,DINUM):1 Q:$T&('$D(^PRCA(433,DINUM)))  L -^PRCA(433,DINUM)
+ F DINUM=$P(^PRCA(433,0),"^",3)+1:1 I '$D(^PRCA(433,DINUM)) L +^PRCA(433,DINUM):DILOCKTM Q:$T&('$D(^PRCA(433,DINUM)))  L -^PRCA(433,DINUM)
  L -^PRCA(433,"ADDNEWENTRY")
  ;
  ;  add entry to file

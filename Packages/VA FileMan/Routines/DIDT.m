@@ -1,5 +1,5 @@
 DIDT ;SFISC/GFT-DATE/TIME UTILITY ;2014-12-26  12:32 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -40,7 +40,8 @@ G1 G 1:Y>240000!'Y,1:$E(Y,3,4)#100>59,1:$E(Y,5,6)#100>59 S %(1)=Y/1000000
 R I %DT["F"!(%DT["P") D TY S %(9)=%
 7 G 8:X'?7N1".".E&(X'?7N) S Y=$E(X,8,16),%=$E(Y_"000000",2,7)
  I Y,%DT'["T"!(%DT["M") G NO
- I %DT["E",(%'?.N)!(%>240000)!($E(%,3,4)>59)!($E(%,5,6)>59) G NO
+ ;I %DT["E",(%'?.N)!(%>240000)!($E(%,3,4)>59)!($E(%,5,6)>59) G NO
+ I (%'?.N)!(%>240000)!($E(%,3,4)>59)!($E(%,5,6)>59) G NO ;p14
  S:Y %(1)=+Y S X=$E(X,4,7)_($E(X,1,3)+1700),%(7)=1
  I %DT["I",'$D(%("ALPHA")) S X=$E(X,3,4)_$E(X,1,2)_$E(X,5,9)
 8 S %I=0,%="" I X'?.N G T^%DTC:"T+-"[$E(X),U:X["^",1:$E(X)?1P,MTH:X?3.A&(%DT["M"),X
@@ -62,7 +63,8 @@ TY S %=$H#1461,%=$H\1461*4+(%\365)+141-(%=1460) Q
 1 W:%DT["E"&'$D(DIER) $C(7),$S('$D(DDS):" ??",1:"") ;INPUT IS BAD!
 B G %DT:%DT["A",NO
 U S X="^",%(0)=X
-NO S Y=-1 G Q:%DT'["A",Q:X["^" W $C(7)," ??" G %DT
+ ;S Y=-1 G Q:%DT'["A",Q:X["^" W $C(7)," ??" G %DT
+NO S Y=-1 G Q:%DT'["A"!(%DT'["E"),Q:X["^" W $C(7)," ??" G %DT ;p14
 2 I %DT["M" S %I(3)=%I(2),%I(2)=0 G 3
  I %I(2)>31!'%I(2),%DT'["X" S %I(3)=%I(2),%I(2)=0 G 1:'%I(2)&$G(%(1)) G 3
  D TY S %I(3)=% D PF^%DTC:$D(%(9)) G C

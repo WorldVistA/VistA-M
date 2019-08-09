@@ -1,5 +1,5 @@
 RCDPRLIS ;WISC/RFJ - list of receipts report ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**114,304,321,332**;Mar 20, 1995;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N %ZIS,DATEEND,DATESTRT,POP,RCFILTF,RCFILTT,RCLSTMGR,RCSORT
@@ -41,7 +41,7 @@ RCDPRLIS ;WISC/RFJ - list of receipts report ;1 Jun 99
 DQ ;  queued report starts here
  ; PRCA*4.5*321 Extensive changes to this subroutine for filter/sort/ListMan
  N %,%I,CNT,DATA,DATE,DATEDIS1,DATEDIS2,FMSDOCNO,FMSTATUS,NOW,PAGE,PTYPE,RCDK,RCDPDATA
- N RCDPFPRE,RCIX,RCRECTDA,RCRJFLAG,RCRJLINE,RCUSER,SCREEN,SPACE,TOTALS,TYPE,X,Y
+ N RCDPFPRE,RCIX,RCRECTDA,RCRJFLAG,RCRJLINE,RCUSER,SCREEN,SPACE,TOTALS,TYPE,X,XX,Y,ZZ ; PRCA*4.5*332
  K ^TMP($J,"RCDPRLIS")
  S SPACE=$J("",80)
  S RCDK=$$FMADD^XLFDT(DATESTRT,-1)_".24" ; Initialize start date for first $ORDER
@@ -69,21 +69,25 @@ DQ ;  queued report starts here
  . . ;  opened by
  . . I RCDPDATA(344,RCRECTDA,.02,"I")=.5 D  ;
  . . . S RCUSER="ar"
+ . . ; PRCA*4.5*332 Begin modified code block
  . . E  D  ;
  . . . S RCUSER=RCDPDATA(344,RCRECTDA,.02,"E")
  . . . I RCUSER'="" D
- . . . . S RCUSER=$E($P(RCUSER,",",2))_$E(RCUSER)
+ . . . . S RCUSER=$E($P(RCUSER,",",1),1,5)_","_$E($P(RCUSER,",",2),1)
  . . ;
- . . S DATA=RCDPDATA(344,RCRECTDA,.01,"E")            ;receipt number
- . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,.03,"I")   ;date opened
- . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,.04,"E")   ;payment type
- . . S DATA=DATA_"^"_RCUSER                           ;user initials
- . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,101,"E")   ;payment count
- . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,.15,"E")   ;payment amount
- . . S DATA=DATA_"^"_$S($P(FMSDOCNO,"^",3):"*",1:" ") ;pre lockbox
- . . S DATA=DATA_"^"_$P(FMSDOCNO,"^")                 ;fms cr document
- . . S DATA=DATA_"^"_$P(FMSDOCNO,"^",2)               ;fms cr doc status
- . . S DATA=DATA_"^"_RCRECTDA                         ;ien of file 344
+ . . S DATA=RCDPDATA(344,RCRECTDA,.01,"E")            ; Receipt number
+ . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,.03,"I")   ; Date opened
+ . . S ZZ=$$TYPE(RCDPDATA(344,RCRECTDA,.04,"E"))      ; Payment type
+ . . S DATA=DATA_"^"_ZZ                               ; Payment type
+ . . S DATA=DATA_"^"_RCUSER                           ; User initials
+ . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,101,"E")   ; Payment count
+ . . S DATA=DATA_"^"_RCDPDATA(344,RCRECTDA,.15,"E")   ; Payment amount
+ . . S DATA=DATA_"^"_$S($P(FMSDOCNO,"^",3):"*",1:" ") ; Pre lockbox
+ . . S DATA=DATA_"^"_$P(FMSDOCNO,"^")                 ; FMS CR document
+ . . S ZZ=$$STATUS($P(FMSDOCNO,"^",2))                ; FMS CR doc status
+ . . ; PRCA*4.5*332 End modified code block
+ . . S DATA=DATA_"^"_ZZ                               ; FMS CR doc status
+ . . S DATA=DATA_"^"_RCRECTDA                         ; IEN of file 344
  . . ;
  . . ; Index ^TMP global by user selected sort order
  . . I RCSORT="D" S RCIX=RCDPDATA(344,RCRECTDA,.03,"I")
@@ -107,14 +111,14 @@ DQ ;  queued report starts here
  . . S XX=""
  . . I RCLSTMGR S XX=" "_$E(CNT_SPACE,1,4)_" "                          ; line number (for listman)
  . . S XX=XX_$$FMTE^XLFDT(DATE,"2ZD")_" "                               ; date opened
- . . S XX=XX_$E($P(DATA,"^")_SPACE,1,12)_" "                            ; receipt number
- . . S XX=XX_$E($P($P(DATA,"^",3)," ")_SPACE,1,$S(RCLSTMGR:5,1:8))_" "  ; payment type 
- . . S XX=XX_$E($P(DATA,"^",4)_SPACE,1,2)                               ; user initials
- . . S XX=XX_$J($P(DATA,"^",5),6)                                       ; payment count
+ . . S XX=XX_$E($P(DATA,"^",1)_SPACE,1,12)_" "                          ; receipt number
+ . . S XX=XX_$E($P(DATA,"^",3)_SPACE,1,$S(RCLSTMGR:5,1:6))_" "          ; payment type  PRCA*4.5*332
+ . . S XX=XX_$E($P(DATA,"^",4)_SPACE,1,7)_" "                           ; user initials PRCA*4.5*332
+ . . S XX=XX_$J($P(DATA,"^",5),5)                                       ; payment count
  . . S XX=XX_$J($P(DATA,"^",6),$S(RCLSTMGR:11,1:13),2)_" "              ; payment amount
  . . S XX=XX_$E($P(DATA,"^",7)_SPACE,1)                                 ; pre lockbox
  . . S XX=XX_$E($P(DATA,"^",8)_SPACE,1,16)_" "                          ; fms cr document
- . . S XX=XX_$E($P(DATA,"^",9),1,$S(RCLSTMGR:8,1:9))                    ; fms cr doc status
+ . . S XX=XX_$E($P(DATA,"^",9),1,6)                                     ; fms cr doc status
  . . ;
  . . ; Write line or put it to global
  . . I '$G(RCLSTMGR) D  ;
@@ -149,6 +153,27 @@ DQ ;  queued report starts here
  ;
  I '$G(RCLSTMGR) D CLEAN
  Q
+ ;
+TYPE(AREVENT) ; Returns an abbreviated type of the AR EVENT - PRCA*4.5*332 Subroutine added
+ ; Input:   AREVENT - External AR Event Type (file 344, field .04)
+ ; Returns: 6 character (max) event type abbreviation
+ I AREVENT="EDI LOCKBOX" Q "EDI"
+ I AREVENT="CASH PAYMENT" Q "CASH"
+ I AREVENT="CHECK/MO PAYMENT" Q "CHECK"
+ I AREVENT="LOCKBOX" Q "LOCKBX"
+ Q $E(AREVENT,1,6)
+ ;
+STATUS(STATUS) ; Returns an abbreviated status of the FMS Doc Status - PRCA*4.5*332 Subroutine added
+ ; Input:   STATUS - 2nd word of the FMS Doc Status
+ ; Returns: 9 character (max) status
+ S STATUS=$P(STATUS," ",1)
+ I STATUS="TRANSMITTED" Q "XMIT"
+ I STATUS="ACCEPTED" Q "ACCEPT"
+ I STATUS="REJECTED" Q "REJECT"
+ I STATUS="NOT" Q "NOTENT"
+ I STATUS="ON" Q "ONLINE"
+ Q STATUS
+ ;
 CLEAN ; Clean up ^TMP arrays
  D ^%ZISC
  K ^TMP($J,"RCDPRLIS")
@@ -198,9 +223,9 @@ SELFILTF(RETURN) ; Ask if user want to filter by FMS status. If yes get list of 
  W !
  D FIELD^DID(2100.1,3,"","POINTER","RCOUT")
  S RCODES=RCOUT("POINTER")
- ; Add pseudo code to list for "NOT ENTERED", returned by FMSSTAT^RCDPUREC
+ ; Add pseudo codes to list for "NOT ENTERED" and "ON LINE ENTRY" returned by FMSSTAT^RCDPUREC
  I $E(RCODES,$L(RCODES))'=";" S RCODES=RCODES_";"
- S RCODES=RCODES_"N:NOT ENTERED"
+ S RCODES=RCODES_"O:ON LINE ENTRY;N:NOT ENTERED"
  K DIR
  S DIR(0)="SOA^"_RCODES
  S DIR("A")="Select an FMS Status to include in the report: "
@@ -255,7 +280,7 @@ SELFILTT(RETURN) ; Ask if user want to filter by Payment Type. If yes get list o
  F  S RCNAME=$O(^RC(341.1,"B",RCNAME)) Q:RCNAME=""  D  ;
  . S RCIEN=0 F  S RCIEN=$O(^RC(341.1,"B",RCNAME,RCIEN)) Q:'RCIEN  D  ;
  . . I $$GET1^DIQ(341.1,RCIEN_",",.06,"I")=1 D  ;
- . . . S RCODES=RCODES_RCIEN_":"_$$GET1^DIQ(341.1,RCIEN_",",.01,"E")_";"
+ . . . S RCODES=RCODES_":"_$$GET1^DIQ(341.1,RCIEN_",",.01,"E")_";"
  S DIR(0)="SOA^"_RCODES
  S DIR("A")="Select a Payment Type to include in the report: "
  K DIR("?")
@@ -267,7 +292,7 @@ SELFILTT(RETURN) ; Ask if user want to filter by Payment Type. If yes get list o
  . W !
  . D ^DIR
  . I $D(DTOUT)!$D(DUOUT) K RETURN S RETURN=-1,QUIT=1 Q
- . I Y="" S QUIT=1 Q
+ . I $G(Y(0))="" S QUIT=1 Q
  . S RETURN(Y(0))=""
  . ; Rebuid DIR(0) to only include codes not yet selected
  . S DIR(0)=$$BLDS(RCODES,.RETURN)
@@ -298,7 +323,7 @@ HDR ; Compile header into ^TMP for use in ListMan or report
  ; Output: Header information in ^TMP($J,"RCDPRLIS","HDR",n) for us in report or ListMan formats
  N K,XX
  S ^TMP($J,"RCDPRLIS","HDR",1)="LIST OF RECEIPTS REPORT"
- s XX="  DATE RANGE   : "_DATEDIS1_"  TO  "_DATEDIS2_"         "
+ S XX="  DATE RANGE   : "_DATEDIS1_"  TO  "_DATEDIS2_"         "
  S XX=XX_"SORT ORDER: "_$S(RCSORT="D":"DATE OPENED",RCSORT="F":"FMS STATUS",1:"PAYMENT TYPE")
  S ^TMP($J,"RCDPRLIS","HDR",2)=XX
  ;
@@ -315,7 +340,8 @@ HDR ; Compile header into ^TMP for use in ListMan or report
  . S XX=""
  . S K="" F  S K=$O(RCFILTT(K)) Q:K=""  S:XX'="" XX=XX_"; " S XX=XX_K
  S ^TMP($J,"RCDPRLIS","HDR",4)="  PAYMENT TYPES: "_$S($L(XX)>63:"SELECTED",1:XX)
- S ^TMP($J,"RCDPRLIS","HDR",5)="DATE     RECEIPT      TYPE     US COUNT       AMOUNT  FMS CR DOC       STATUS"
+ ; PRCA*4.5*332
+ S ^TMP($J,"RCDPRLIS","HDR",5)="DATE     RECEIPT      TYPE   USER    COUNT       AMOUNT  FMS CR DOC       STATUS"
  W !,RCRJLINE
  Q
  ;

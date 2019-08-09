@@ -1,5 +1,5 @@
 RCDPEAA2 ;ALB/KML - APAR Screen - SELECTED EOB ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**298,304,318,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -16,7 +16,7 @@ INIT(RCIENS) ; Entry point for List template to build the display of the EEOB on
  ;
  ;
 BLD(RCIENS) ; Display selected EEOB  on APAR screen
- N RCZ0,RCECME,REASON,V1,RCLI1,TLINE,RCSCR,Z,ZZ,Z0,ZZ1,RC0,RCTL,RCTS,RCCL,RCCL1
+ N RCZ0,RCZ41,RCERA,RCECME,REASON,V1,RCLI1,TLINE,RCSCR,Z,ZZ,Z0,ZZ1,RC0,RCTL,RCTS,RCCL,RCCL1 ; PRCA*4.5*332
  S RCSCR=$P(RCIENS,U),Z=$P(^RCY(344.49,RCSCR,1,$P(RCIENS,U,2),0),U),RCPROG="RCDPEAA2"
  I Z#1=0 S ZZ=+$O(^RCY(344.49,RCSCR,1,"B",Z,0)) I ZZ D
  . S Z0=Z F  S Z0=$O(^RCY(344.49,RCSCR,1,"B",Z0)) Q:((Z0\1)'=(Z\1))  S Z=Z0,ZZ1=+$O(^RCY(344.49,RCSCR,1,"B",Z0,0)) I ZZ1 D
@@ -42,8 +42,10 @@ BLD(RCIENS) ; Display selected EEOB  on APAR screen
  . S ZZ1=0 F  S ZZ1=$O(^TMP("RCS",$J,ZZ,ZZ1)) Q:'ZZ1  D
  . . S RCZZ0=$G(^RCY(344.49,RCSCR,1,ZZ1,0))
  . . S RCT=$P(RCZZ0,U),RCTL=$L(RCT)
+ . . S RCERA=+$G(^RCY(344.49,RCSCR,0)) ; PRCA*4.5*332
+ . . S RCZ41=$$IEN41(RCERA,RCT)        ; PRCA*4.5*332
  . . S V1=$S($P(RCZZ0,U,2)'["**ADJ":"",$P($P(RCZZ0,U,2),"ADJ",2):"***ADJUSTMENT AT ERA LEVEL",1:"*** ADJUSTMENT LINE FOR TOTALS MISMATCH")
- . . S RCLI1=$S(V1="":" Claim #: "_$P(RCZZ0,U,2)_" Patient/Last 4: "_$S($P(RCZZ0,U,7):$$PNM4("","",$P(RCZZ0,U,7)),'$P($G(^RCY(344.49,RCSCR,1,ZZ1,2)),U,3):$$PNM4(+$G(^RCY(344.49,RCSCR,0)),ZZ1),1:"??"),1:V1)
+ . . S RCLI1=$S(V1="":" Claim #: "_$P(RCZZ0,U,2)_" Patient/Last 4: "_$S($P(RCZZ0,U,7):$$PNM4("","",$P(RCZZ0,U,7)),'$P($G(^RCY(344.49,RCSCR,1,ZZ1,2)),U,3):$$PNM4(RCERA,RCZ41),1:"??"),1:V1) ; PRCA*4.5*332
  . . D SET($J("",4)_$P("   ^(V)",U,$P(RCZZ0,U,13)+1)_RCT_RCLI1,RCT,RCT,ZZ1)
  . . I $P(RCZZ0,U,7) D CLINES(RCZZ0,RCT,ZZ1)
  . . ;
@@ -337,3 +339,9 @@ UPDERA(ERAIEN,RCDUZ) ; Update MARK FOR AUTOPOST USER top level ERA with DUZ from
  S FDA(344.4,ERAIEN_",",4.04)=RCDUZ
  D FILE^DIE("","FDA")
  Q
+IEN41(IEN,LINE) ; Given a scratch pad line, find the original ERA detail line. PRCA*4.5*332
+ ; Input: IEN - Internal Entry number of ERA scratchpad from file 344.49
+ ;        LINE - Line from ERA scratchpad file 344.49
+ N IEN2
+ S IEN2=$O(^RCY(344.49,IEN,1,"ASEQ",LINE\1,0))
+ Q +$$GET1^DIQ(344.491,IEN2_","_IEN_",",.09,"E")

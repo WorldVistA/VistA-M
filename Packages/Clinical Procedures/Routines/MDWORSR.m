@@ -1,5 +1,5 @@
-MDWORSR ; HOIFO/NCA - Daily Schedule Studies;Apr 4, 2018@11:53 ; 8/29/18 4:36pm
- ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,54**;Apr 01,2004;Build 14
+MDWORSR ; HOIFO/NCA - Daily Schedule Studies;Apr 4, 2018@11:53 ; 2/11/19 10:35am
+ ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,54,69**;Apr 01,2004;Build 2
  ; Reference IA# 2263 [Supported] XPAR calls
  ;               3067 [Private] Read fields in Consult file (#123) w/FM
  ;               3468 [Subscription] Call GMRCCP
@@ -70,7 +70,6 @@ CLINICPT ; Check-in CP study with multiple results
  ..S MDATYP=$G(^TMP($J,"SDAMA202","GETPLIST",MD,3)) Q:MDATYP=""
  ..Q:"RINT"'[MDATYP
  ..S MDT=MDK,MDDX=+$$MATCH(+MDY1,MDT) Q:'MDDX
- ..S X=$$CACI^MDWORSR2(+MDY1,+MDDX,MDSCHD) I X=0 Q
  ..S MDMULT=+$$GET1^DIQ(702,+MDDX,".04:.12","I")
  ..S MDHEMO=+$$GET1^DIQ(702,+MDDX,".04:.06","I"),MDIENS=+MDDX_","
  ..S MDFDA(702,MDIENS,.02)=$$NOW^XLFDT()
@@ -98,6 +97,7 @@ CLINICPT ; Check-in CP study with multiple results
  ..S MDATYP=$G(^TMP($J,"SDAMA202","GETPLIST",MD,3))
  ..Q:"RINT"'[MDATYP
  ..S MDPT=MDY1 Q:+$$GSTUDY(MDPT,MDSCHD)
+ ..S MDDX=$$GETC(MDPT,+$P(MDY,";",2)) Q:'+MDDX
  ..S MDNODE=$G(^MDD(702,+MDDX,0))
  ..S:$G(^DPT(MDY1,.105))'="" MDINP=1
  ..S MDCON=$P(MDNODE,"^",5) Q:'MDCON

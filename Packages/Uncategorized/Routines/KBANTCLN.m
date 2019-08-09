@@ -1,4 +1,4 @@
-KBANTCLN ; VEN/SMH - Clean Taskman Environment ;2018-03-21  10:57 AM
+KBANTCLN ; VEN/SMH - Clean Taskman Environment ;2019-08-05  2:20 PM
  ;;nopackage;0.2
  ; License: Public Domain
  ; Author not responsible for use of this routine.
@@ -30,6 +30,7 @@ START(VOL,UCI,SITENUMBER,SITENAME,FQDN,SOFTCLN)
  D MSP
  D TASKMAN(SOFTCLN)
  D DEVCLEAN
+ D XU522
  QUIT
  ;
 ZTMGRSET(VOL,UCI) ; Silent ZTMGRSET Replacement
@@ -54,7 +55,7 @@ ZTMGRSET(VOL,UCI) ; Silent ZTMGRSET Replacement
  ;
  ;
  ;
- I +$SY=47 D  ; 8^ZTMGRSET
+ I $P($SY,",")=47 D  ; 8^ZTMGRSET
  . S ZTOS=8
  . N I,X F I=1:2 S Z=$P($T(Z+I^ZOSFGUX),";;",2) Q:Z=""  S X=$P($T(Z+1+I^ZOSFGUX),";;",2,99) S ^%ZOSF(Z)=X
  . S ^%ZOSF("OS")="GT.M (Unix)^19"
@@ -79,8 +80,8 @@ DINIT(SITENUMBER,SITENAME) ; Silent Dinit Replacement
  S ^DD("SITE")=SITENAME
  S ^DD("SITE",1)=SITENUMBER
  D
- . I +$SY=47 S ^DD("OS")=$$FIND1^DIC(.7,,"QX","GT.M(UNIX)")
- . I +$SY=0  S ^DD("OS")=$$FIND1^DIC(.7,,"QX","CACHE/OpenM")
+ . I $P($SY,",")=47 S ^DD("OS")=$$FIND1^DIC(.7,,"QX","GT.M(UNIX)")
+ . I $L($SY,":")=2  S ^DD("OS")=$$FIND1^DIC(.7,,"QX","CACHE/OpenM")
  D:$T(NOASK^DINIT)]"" NOASK^DINIT
  ;
  ; Fix ZSAVE bug causing END tag in TIUXRC2 to appear twice - % not newed (https://groups.google.com/forum/#!topic/hardhats/FEeTqYJZVSQ)
@@ -131,9 +132,8 @@ KSP ; Kernel System Parameters cleanup. Fall through.
  S KBANFDA(8989.3,1_",",51)="9.9.9.9"
  ;
  ; Primary HFS Directory
- ; NB: Never tested Cache/NT with c:\windows\temp. I don't have it anywhere to check.
  N OS S OS=$$VERSION^%ZOSV(1)
- S KBANFDA(8989.3,1_",",320)=$S(OS["Linux":"/dev/shm/",OS["NT":"c:\windows\temp\",1:"/tmp/")   ; $I
+ S KBANFDA(8989.3,1_",",320)=$S(OS["NT":^%SYS("TempDir"),1:"/tmp/")   ; $I
  ;
  D FILE^DIE(,$NA(KBANFDA),$NA(KBANERR))
  I $D(KBANERR) S $EC=",U1," ; if error filing, crash
@@ -237,6 +237,14 @@ MSP ; Mailman Site Parameters Clean-up
  QUIT
  ;
 DEVCLEAN ; Device Cleanup
+ D DEVVOL
+ D DEVNULL
+ D DEVHFS
+ D DEVTTY
+ D DEVPTS
+ D DEVZERO
+ QUIT
+ ;
 DEVVOL ; Delete Volume field for each device.
  N KBANI S KBANI=0
  N KBANFDA
@@ -244,6 +252,7 @@ DEVVOL ; Delete Volume field for each device.
  N KBANERR
  D FILE^DIE("",$NA(KBANFDA),$NA(KBANERR))
  I $D(KBANERR) S $EC=",U1,"
+ QUIT
  ;
 DEVNULL ; Fix up null devices
  D FIND^DIC(3.5,,,"PQM","NULL")
@@ -278,6 +287,7 @@ DEVNULL ; Fix up null devices
  N ERR
  D UPDATE^DIE("E",$NA(FDA),,$NA(ERR))
  I $D(DIERR) ZWRITE ERR
+ QUIT
  ;
 DEVHFS ; Fix up HFS device
  N OS S OS=$$VERSION^%ZOSV(1)
@@ -288,7 +298,7 @@ DEVHFS ; Fix up HFS device
  N FDA
  S FDA(3.5,"?+1,",.01)="HFS"          ; NAME
  S FDA(3.5,"?+1,",.02)="Host File Device"   ; LOCATION
- S FDA(3.5,"?+1,",1)=$S(OS["Linux":"/dev/shm/hfs.dat",OS["NT":"c:\hfs.dat",1:"/tmp/hfs.dat")   ; $I
+ S FDA(3.5,"?+1,",1)=$S(OS["NT":"c:\hfs.dat",1:"/tmp/hfs.dat")   ; $I
  S FDA(3.5,"?+1,",1.95)="@"           ; SIGN-ON/SYSTEM DEVICE
  S FDA(3.5,"?+1,",2)="HOST FILE SERVER"       ; TYPE
  S FDA(3.5,"?+1,",3)="`"_HFSSUBTYPE   ; SUBTYPE
@@ -302,6 +312,7 @@ DEVHFS ; Fix up HFS device
  N ERR
  D UPDATE^DIE("E",$NA(FDA),,$NA(ERR))
  I $D(DIERR) ZWRITE ERR
+ QUIT
  ;
 DEVTTY ; Fix TTY
  N OS S OS=$$VERSION^%ZOSV(1)
@@ -312,9 +323,10 @@ DEVTTY ; Fix TTY
  i ttyIEN S IENS=ttyIEN_","
  e  s IENS="+1,"
  S FDA(3.5,IENS,.01)="CONSOLE"
- S FDA(3.5,IENS,.02)="Computer Console"   ; LOCATION
- S FDA(3.5,IENS,1)=dI               ; $I
+ S FDA(3.5,IENS,.02)="Computer Console"     ; LOCATION
+ S FDA(3.5,IENS,1)=dI                       ; $I
  S FDA(3.5,IENS,2)="VIRTUAL TERMINAL"       ; TYPE
+ S FDA(3.5,IENS,4)=1                        ; ASK DEVICE
  N VTIEN S VTIEN=$$FIND1^DIC(3.2,,"XQ","C-VT220")
  I 'VTIEN S VTIEN=$$FIND1^DIC(3.2,,"XQ","C-VT100")
  S FDA(3.5,IENS,3)="`"_VTIEN
@@ -327,6 +339,7 @@ DEVTTY ; Fix TTY
  S FDA(3.5,IENS,1.95)=1           ; SIGN-ON/SYSTEM DEVICE
  D FILE^DIE(,$NA(FDA),$NA(ERR))
  I $D(DIERR) ZWRITE ERR B
+ QUIT
  ;
 DEVPTS ; Fix PTS
  N OS S OS=$$VERSION^%ZOSV(1)
@@ -337,9 +350,10 @@ DEVPTS ; Fix PTS
  e  s IENS="+1,"
  N FDA
  S FDA(3.5,IENS,.01)="VIRTUAL TERMINAL"
- S FDA(3.5,IENS,.02)="Virtual Terminal"   ; LOCATION
- S FDA(3.5,IENS,1)=dI               ; $I
+ S FDA(3.5,IENS,.02)="Virtual Terminal"     ; LOCATION
+ S FDA(3.5,IENS,1)=dI                       ; $I
  S FDA(3.5,IENS,2)="VIRTUAL TERMINAL"       ; TYPE
+ S FDA(3.5,IENS,4)=1                        ; ASK DEVICE
  N VTIEN S VTIEN=$$FIND1^DIC(3.2,,"XQ","C-VT220")
  I 'VTIEN S VTIEN=$$FIND1^DIC(3.2,,"XQ","C-VT100")
  S FDA(3.5,IENS,3)="`"_VTIEN
@@ -352,6 +366,34 @@ DEVPTS ; Fix PTS
  S FDA(3.5,IENS,1.95)=1           ; SIGN-ON/SYSTEM DEVICE
  D FILE^DIE(,$NA(FDA),$NA(ERR))
  I $D(DIERR) ZWRITE ERR B
+ QUIT
+ ;
+DEVZERO ; Fix ZERO Device
+ ; (only needed for Unit Tests from Bash and Web Server)
+ ; GT.M Sets $Principal to 0 in HEREDOCS and jobbed off processes
+ N zeroIEN s zeroIEN=$$FIND1^DIC(3.5,,"MQX",0)
+ ;
+ i zeroIEN S IENS=zeroIEN_","
+ e  s IENS="+1,"
+ N FDA
+ if 'zeroIEN do
+ . S FDA(3.5,IENS,.01)="SLAVE DEVICE"
+ . S FDA(3.5,IENS,.02)="SLAVE"              ; LOCATION
+ . S FDA(3.5,IENS,1)=0                      ; $I
+ . S FDA(3.5,IENS,2)="TERMINAL"             ; TYPE
+ . S FDA(3.5,IENS,4)=1                      ; ASK DEVICE
+ . S FDA(3.5,IENS,3)="`"_$$FIND1^DIC(3.2,,"XQ","P-OTHER") ; TERMINAL TYPE
+ . N ERR,IEN
+ . D UPDATE^DIE("E",$NA(FDA),$NA(IEN),$NA(ERR)) S IENS=IEN(1)_","
+ . I $D(DIERR) ZWRITE ERR B
+ N FDA,ERR
+ S FDA(3.5,IENS,1.95)=1           ; SIGN-ON/SYSTEM DEVICE
+ D FILE^DIE(,$NA(FDA),$NA(ERR))
+ I $D(DIERR) ZWRITE ERR B
+ QUIT
+ ;
+XU522 ; Disable Old CAPRI Log-in
+ D EN^XPAR("SYS","XU522",1,"Y")
  QUIT
  ;
  ;

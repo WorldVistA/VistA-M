@@ -1,17 +1,19 @@
-GMTSADH5 ; SLC/DCM,KER - Health Summary Ad Hoc RPC's ; 02/27/2002
- ;;2.7;Health Summary;**36,35,37,49,63,110,116**;Oct 20, 1995;Build 24
- ;                     
+GMTSADH5 ; SLC/DCM,KER - Health Summary Ad Hoc RPC's ;Nov 26, 2018@22:22
+ ;;2.7;Health Summary;**36,35,37,49,63,110,116,125**;Oct 20, 1995;Build 15
+ ;
  ; External References
  ;   DBIA  1268  ^AUTTHF(
  ;   DBIA  1268  ^AUTTHF("B"
  ;   DBIA    67  ^LAB(60
- ;   DBIA  1256  ^PXD(811.9
+ ;   DBIA  3148  ^PXD(811.9
  ;   DBIA  3059  ^TIU(8925.1
  ;   DBIA 10006  ^DIC
  ;   DBIA  2052  $$GET1^DID
  ;   DBIA  3058  $$ISA^TIULX
  ;   DBIA  6345  SEL^YTQGMTS
- ;                   
+ ;   DBIA  4543  SSET^PSN50P65
+ ;   DBIA  4662  SSET^PSS50P7
+ ;
 COMP(Y) ; Get ADHOC sub components (FILE 142.1)
  ;
  ;  Y(i)=(1)I;IFN^(2)Component Name [Abb]^(3)Occ Limit^
@@ -50,17 +52,17 @@ COMPSUB(Y,GMTSUB) ; Get subcomponents from a predefined ADHOC component
  . I '$D(@("^"_X1_+X_",0)")) Q
  . S X=@("^"_X1_+X_",0)"),GMTSC=GMTSC+1,Y(GMTSC)=GMTSIFN_"^"_$P(X,"^")
  Q
- ;                 
+ ;
 FILES(Y,GMTSCP) ; Get Files to select from for a component
  Q:'$G(GMTSCP)  Q:'$D(^GMT(142.1,GMTSCP,1))
  N GMTSGEC,GMTSI,GMTSC,X
  S (GMTSGEC,GMTSI,GMTSC)=0
  I $P($G(^GMT(142.1,GMTSCP,0)),U,4)="GECH" S GMTSGEC=1
  F  S GMTSI=$O(^GMT(142.1,GMTSCP,1,GMTSI)) Q:'GMTSI  D
- .S X=^(GMTSI,0),GMTSC=GMTSC+1 S:GMTSGEC=1 X=X_"G"
+ .S X=^(GMTSI,0),GMTSC=GMTSC+1 S:GMTSGEC=1 X=X_"G" ;naked reference refers to ^GMT(142.1,GMTSCP,1,GMTSI from previous line
  .S Y(GMTSC)=GMTSI_"^"_$$FNAM^GMTSU(+X)_"^"_X
  Q
- ;                     
+ ;
 FILESEL(GMTSRT,GMTSFI,GMTSFM,DIR) ; Get file entries
  Q:'$G(GMTSFI)
  K ^TMP("ORDATA",$J)
@@ -72,6 +74,7 @@ FILESEL(GMTSRT,GMTSFI,GMTSFM,DIR) ; Get file entries
  . . I $D(^LAB(60,GMTSJ,0)) S X=^(0) I $P(X,"^",4)="CH","BO"[$P(X,"^",3) S GMTSC=GMTSC+1,^TMP("ORDATA",$J,1,GMTSC)=GMTSJ_"^"_GMTSI
  I GMTSFI="9999999.64G" D  Q
  . F  Q:GMTSC'<GMTSCNT  S GMTSI=$O(^AUTTHF("B",GMTSI),DIR) Q:GMTSI=""  S GMTSJ=0 F  S GMTSJ=$O(^AUTTHF("B",GMTSI,GMTSJ)) Q:'GMTSJ  I $D(^AUTTHF(GMTSJ,0)) S X=^(0) D
+ ..;naked references below refers to ^AUTTHF(GMTSJ,0
  ..I (($P(^(0),U,10)="C")&(+$P(^(0),U,11)'=1))&($P(^(0)," ",1)="GEC") D
  ...S GMTSC=GMTSC+1
  ...S HFC=$S($P($G(X),U,10)="F":"Factor",$P($G(X),U,10)="C":"Category")
@@ -98,11 +101,15 @@ FILESEL(GMTSRT,GMTSFI,GMTSFM,DIR) ; Get file entries
  I GMTSFI=601.71 D  Q
  . N GMTSDIR S GMTSDIR=DIR
  . D SEL^YTQGMTS(GMTSRT,GMTSI,GMTSCNT,GMTSDIR)
+ I GMTSFI=50.7 D  Q
+ . D SSET^PSS50P7(GMTSC,GMTSCNT,GMTSI,DIR,"ORDATA")
+ I GMTSFI=50.605 D  Q
+ . D SSET^PSN50P65(GMTSC,GMTSCNT,GMTSI,DIR,"ORDATA")
  S GMTSGL=$$FCLR^GMTSU(+GMTSFI) I $L(GMTSGL) S GMTSGLB=$$FLOC^GMTSU(+GMTSFI)_"""B"")" D
  . F  Q:GMTSC'<GMTSCNT  S GMTSI=$O(@GMTSGLB@(GMTSI),DIR) Q:GMTSI=""  S GMTSJ=0 F  S GMTSJ=$O(@GMTSGLB@(GMTSI,GMTSJ)) Q:'GMTSJ  I $D(@GMTSGL@(GMTSJ,0)) S X=^(0) D
  . . S GMTSC=GMTSC+1,^TMP("ORDATA",$J,1,GMTSC)=GMTSJ_"^"_GMTSI
  Q
- ;                     
+ ;
 REPORT(GMTSEG,GMTSEGC,GMTSEGI,GMTSCPS,DFN) ; Build Report
  ; Uses array of Components passed in GMTSCPS()
  ;   GMTSCPS(i)=array of subcomponents chosen,
@@ -131,12 +138,12 @@ REPORT(GMTSEG,GMTSEGC,GMTSEGI,GMTSCPS,DFN) ; Build Report
  . . . S GMTSEG(GMTSJ,$P(GMTSCPS(GMTSK),"^",9),GMTSCNT)=$P(GMTSCPS(GMTSK),"^",10)
  . . . K GMTSCPS(GMTSK)
  Q
- ;                     
+ ;
 SUBITEM(Y,GMTSTEST) ; Get Subitems for a Test Panel
  Q:'$G(GMTSTEST)  N GMTSCNT S GMTSCNT=0
  I '$L($P(^LAB(60,GMTSTEST,0),"^",5)),$O(^LAB(60,GMTSTEST,2,0)) D COMPILE(GMTSTEST,GMTSCNT)
  Q
- ;                     
+ ;
 COMPILE(GMTSTEST,GMTSCNT) ; Expand lab panels
  N GMTSI,GMTSJ,GMTSRT S GMTSI=0
  F  S GMTSI=$O(^LAB(60,GMTSTEST,2,GMTSI)) Q:GMTSI'>0  D

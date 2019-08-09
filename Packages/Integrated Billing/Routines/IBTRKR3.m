@@ -1,5 +1,5 @@
 IBTRKR3 ;ALB/AAS - CLAIMS TRACKING - ADD/TRACK RX FILLS ;13-AUG-93
- ;;2.0;INTEGRATED BILLING;**13,43,121,160,247,275,260,309,336,312,339,347,405,384,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**13,43,121,160,247,275,260,309,336,312,339,347,405,384,550,624**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; -- entry point for nightly background job
@@ -151,12 +151,20 @@ RXCHK ; -- check and add rx
  ;
  K ^TMP($J,LIST)
  ;
- ; ROI check
+ ; ROI check.  The variable IBSCROI will be set to:
+ ; '1' if NOT REQUIRED  '2' if OBTAINED
+ ; '3' if REQUIRED      '4' if REFUSED
  N IBSCROI
+ ;
+ ; $$SENS^IBNCPDR returns 1 if the drug is sensitive diagnosis drug
+ ;
  I $$SENS^IBNCPDR(IBDRUG) D
  . N IBINS,IBFLG,IBINSP
  . D ALL^IBCNS1(DFN,"IBINS",1,IBDT,1)
  . S IBINSP=$O(IBINS("S",1,99),-1) Q:IBINSP=""
+ . ; If the DOS is on or after to the Mission Act implementation date,
+ . ; skip the ROI check.
+ . I $$MACHK^IBNCPDR4(IBDT) S (IBFLG,IBSCROI)=1,IBRMARK="" Q 
  . S IBFLG=$$ROI^IBNCPDR4(DFN,$G(IBDRUG),+$G(IBINS(IBINSP,"0")),$G(IBDT))
  . I 'IBFLG,$G(IBRMARK)="" S IBRMARK="ROI NOT OBTAINED"      ; IB*2*550
  . I 'IBFLG S IBSCROI=3

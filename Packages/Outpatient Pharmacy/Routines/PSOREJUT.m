@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478,528**;DEC 1997;Build 10
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -101,6 +101,8 @@ CLSALL(RX,RFL,USR,REA,COM,COD1,COD2,COD3,CLA,PA) ; Close/Resolve All Rejects
  ;       (o) PA   - NCPDP Prior Authorization Type and Number (separated by "^")
  N REJ,REJDATA,DIE,DR,DA
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+ ; - if eT,eC Non-Billable and the claim was Re-submitted don't close OPEN/UNRESOLVED rejects
+ I $G(REA)=1 I $$PSOETEC^PSOREJP5(RX,RFL) Q
  ; - Closing OPEN/UNRESOLVED rejects
  I $$FIND(RX,RFL,.REJDATA,,1) D
  . S REJ="" F  S REJ=$O(REJDATA(REJ)) Q:'REJ  D

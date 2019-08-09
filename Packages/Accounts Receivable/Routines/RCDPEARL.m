@@ -1,5 +1,5 @@
 RCDPEARL ;ALB/hrubovcak - Misc. Report utilities for ListMan, etc. ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,321**;15 April 2014;Build 48
+ ;;4.5;Accounts Receivable;**298,321,332**;15 April 2014;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IA 594 - ACCOUNTS RECEIVABLE CATEGORY file (#430.2)
@@ -18,10 +18,15 @@ ASK(STOP) ; Ask to continue
  I ($D(DTOUT))!($D(DUOUT))!(Y="^") S STOP=1
  Q
  ;
-ASKLM() ; extrinsic function, ask for ListMan display using ^DIR
- ; returns zero = No, 1 = yes, -1 on timeout or '^'
- N DIR,RSLT,X,Y S RSLT=0
- S DIR(0)="YA",DIR("A")="Display in List Manager format? (Y/N): ",DIR("B")="NO"
+ASKLM(DEFAULT) ; Extrinsic function, ask for ListMan display using ^DIR
+ ; Input:   DEFAULT - 1 - Default 'YES', 0 - Default 'NO'
+ ;                    Optional defaults to 0
+ ; Returns: 0 - No, 1 - YES, -1 on timeout or '^'
+ N DIR,RSLT,X,Y
+ S:'$D(DEFAULT) DEFAULT=0 ; PRCA*4.5*332
+ S RSLT=0
+ S DIR(0)="YA",DIR("A")="Display in List Manager format? (Y/N): "
+ S DIR("B")=$S(DEFAULT:"YES",1:"NO") ; PRCA*4.5*332
  D ^DIR S RSLT=$S($D(DUOUT)!$D(DTOUT):-1,1:Y)
  Q RSLT
  ;
@@ -95,9 +100,12 @@ HDRLST(RCSTOP,RCHDR) ; write the header in RCHDR
  N J F J=1:1:RCHDR(0) W !,RCHDR(J)
  Q
  ;
-LMEN ; invoke ListMan for RCDPE MISC REPORTS list template
- ; external routines should call LMRPT
- D EN^VALM("RCDPE MISC REPORTS")
+LMEN(LMTMP) ; Invoke ListMan for RCDPE MISC REPORTS list template
+ ; Input:   LMTMP       - Name of a different listman template to use
+ ;                        Optional, defaults to ""
+ N XX
+ S XX=$S($G(LMTMP)'="":LMTMP,1:"RCDPE MISC REPORTS") ; PRCA*4.5*332
+ D EN^VALM(XX)                                       ; PRCA*4.5*332
  Q
  ;
 LMHDR ; ListMan header
@@ -125,11 +133,14 @@ LMEXIT ; performed on exiting ListMan screen
 LMEXPND ; expand code for ListMan
  Q
  ;
-LMRPT(RCLMHDR,RCLMND) ; generate ListMan display
- ; RCLMHDR = header text, passed by ref. (required)
- ; RCLMND = storage node for ListMan data (required)
- Q:'$D(RCLMHDR)  Q:($G(RCLMND)="")  ; both required
- D LMEN
+LMRPT(RCLMHDR,RCLMND,LMTMP) ; Generate ListMan display
+ ; Input:   RCLMHDR     - Header text, passed by ref. (required)
+ ;          RCLMND      - Storage node for ListMan data (required)
+ ;          LMTMP       - Name of a listman template to use
+ ;                        Optional, defaults to ""
+ Q:'$D(RCLMHDR)  Q:($G(RCLMND)="")          ; both required
+ S:'$D(LMTMP) LMTMP="" ; PRCA*4.5*332
+ D LMEN(LMTMP)         ; PRCA*4.5*332
  Q
  ;
 NOW() Q $$FMTE^XLFDT($$NOW^XLFDT,2)  ; extrinsic variable, now as MM/DD/YY@HH:MM:SS

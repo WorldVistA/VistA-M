@@ -1,5 +1,5 @@
 DICR ;SFISC/GFT-RECURSIVE CALL FOR X-REFS ON TRIGGERED FLDS ;6DEC2004
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -9,8 +9,10 @@ DICR ;SFISC/GFT-RECURSIVE CALL FOR X-REFS ON TRIGGERED FLDS ;6DEC2004
  ;DIU is old value, DIV new
 AUDIT I $P(^DD(DIH,DIG,0),U,2)["a" D  ;NOIS ISB-1102-31285
  .N DIANUM,DIIX,C,DP
+ .D SAVE ;p14
  .I DIU]"" S X=DIU,DIIX=2_U_DIG,DP=DIH D AUDIT^DIET
  .I DIV]"",^DD(DIH,DIG,"AUDIT")'="e"!(DIU]"") S X=DIV,DIIX=3_U_DIG,DP=DIH D AUDIT^DIET ;Don't audit NEW if there's no OLD and mode is EDIT ONLY
+ .D RESTORE ;p14
  Q:'$O(^DD(DIH,DIG,1,0))&'$D(^DD("IX","F",DIH,DIG))
  N DICRIENS,DICRBADK
  I $D(^DD("KEY","F",DIH,DIG)) D  Q:$G(DICRBADK)

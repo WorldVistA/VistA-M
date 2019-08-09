@@ -1,5 +1,5 @@
 YTSFTND ;SLC/BLD - Fagerström Test for Nicotine Dependence (FTND)  ; 9/26/2018
- ;;5.01;MENTAL HEALTH;**137**;DEC 30,1994;Build 273
+ ;;5.01;MENTAL HEALTH;**147**;DEC 30,1994;Build 283
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ

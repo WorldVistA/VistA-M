@@ -1,5 +1,5 @@
 DIQ1 ;SFISC/XAK-INQUIRY WITH COMPUTED FIELDS ;26JAN2004
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -20,6 +20,7 @@ CP(C,X) ;
  Q X
  ;
 EN ;
+ N C,DI ;p14
  Q:'$D(DIC)!($D(DA)[0)!($D(DR)[0)  S DIL=0,(DA(0),D0)=DA,DIQ0=""
  I $D(DIQ)#2 G Q:DIQ["^"!($E(DIQ,1,2)="DI") S:DIQ'["(" DIQ=DIQ_"("
  S:'$D(DIQ(0)) DIQ(0)="",DIQ0="DIQ(0),"

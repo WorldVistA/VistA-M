@@ -1,5 +1,5 @@
-XUMVIDTA ;MVI/CKN - MVI New Person Data Analysis ; 10/9/18 9:13am
- ;;8.0;KERNEL;**705**;Jul 10, 1995;Build 1
+XUMVIDTA ;MVI/CKN - MVI New Person Data Analysis ; 6/18/19 2:52pm
+ ;;8.0;KERNEL;**705,711**;Jul 10, 1995;Build 9
  Q
 EP(RETURN,SEL,ACTSEL) ;
  ;RPC - XUS MVI NEW PERSON DATA
@@ -38,6 +38,7 @@ EP(RETURN,SEL,ACTSEL) ;
  .;All Active and Inactive New Person
  .I SEL=1 D
  ..S NONACT=$$NONACT(.ARR) I NONACT S TOTNACT=TOTNACT+1 Q
+ ..I '$$ACT(.ARR) Q
  ..S TOTACT=TOTACT+1
  ..D GETACT(ACTSEL,.ARR)
  ;
@@ -65,7 +66,8 @@ NONACT(ARR) ;
  Q 0
 ACT(ARR) ;
  ;Active Person - not Disuser=Y and/or no Termination date.
- I $G(ARR("DISUSR"))'=1,($G(ARR("TERMDT"))=""!($G(ARR("TERMDT"))>DT)) Q 1
+ ;**711 Story 977780 (ckn) - Add check for primary option assigned.
+ I $G(ARR("DISUSR"))'=1,($G(ARR("TERMDT"))=""!($G(ARR("TERMDT"))>DT)),($G(ARR("PRIMOPT"))'="") Q 1
  Q 0
 GETACT(ACTSEL,ARR) ;
  ;Aggregate total Active records has a SECID value

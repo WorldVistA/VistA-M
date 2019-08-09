@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: REMINDER TAXONOMY
-15-JUL-2019 13:45:12 ZWR
+08-AUG-2019 17:07:21 ZWR
 ^PXD(811.2,0)="REMINDER TAXONOMY^811.2IOs^146^124"
 ^PXD(811.2,1,0)="VA-HYPERTENSION^^"
 ^PXD(811.2,1,1,0)="^^1^1^3150128"
@@ -26041,13 +26041,13 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,15,20,"ATCC","Copy from CPT range 45330 to 45385","CPT",45384)=1
 ^PXD(811.2,15,20,"ATCC","Copy from CPT range 45330 to 45385","CPT",45385)=1
 ^PXD(811.2,15,20,"ATCC","Copy from ICP range 45.24 to 45.24","ICP",45.24)=0
-^PXD(811.2,15,20,"AUID","CPT",45330,2940601,"DT")="45330^Sigmoidoscopy, flexible; diagnostic, including collection of specimen(s) by brushing or washing, when performed (separate procedure)"
+^PXD(811.2,15,20,"AUID","CPT",45330,2940601,"DT")="45330^Sigmoidoscopy, Flexible; Diagnostic, including Collection of Specimen(s) by Brushing or Washing, when Performed (Separate Procedure)"
 ^PXD(811.2,15,20,"AUID","CPT",45331,2940601,"DT")="45331^Sigmoidoscopy, Flexible; with Biopsy, single or Multiple"
-^PXD(811.2,15,20,"AUID","CPT",45332,2940601,"DT")="45332^Sigmoidoscopy, flexible; with removal of foreign body(s)"
-^PXD(811.2,15,20,"AUID","CPT",45333,2901001,"DT")="45333^Sigmoidoscopy, flexible; with removal of tumor(s), polyp(s), or other lesion(s) by hot biopsy forceps"
-^PXD(811.2,15,20,"AUID","CPT",45334,2901001,"DT")="45334^Sigmoidoscopy, flexible; with control of bleeding, any method"
+^PXD(811.2,15,20,"AUID","CPT",45332,2940601,"DT")="45332^Sigmoidoscopy, Flexible; with Removal of Foreign Body(s)"
+^PXD(811.2,15,20,"AUID","CPT",45333,2901001,"DT")="45333^Sigmoidoscopy, Flexible; with Removal of Tumor(s), Polyp(s), or other Lesion(s) by Hot Biopsy Forceps"
+^PXD(811.2,15,20,"AUID","CPT",45334,2901001,"DT")="45334^Sigmoidoscopy, Flexible; with Control of Bleeding, any Method"
 ^PXD(811.2,15,20,"AUID","CPT",45336,2901001,2940601)="45336^Sigmoidoscopy, Flexible Fiberoptic; with Ablation of Tumor or Mucosal Lesion (eg, Electrocoagulation, Photocoagulation, Hot Biopsy/Fulguration)"
-^PXD(811.2,15,20,"AUID","CPT",45337,2940601,"DT")="45337^Sigmoidoscopy, flexible; with decompression (for pathologic distention) (eg, volvulus, megacolon), including placement of decompression tube, when performed"
+^PXD(811.2,15,20,"AUID","CPT",45337,2940601,"DT")="45337^Sigmoidoscopy, Flexible; with Decompression (for Pathologic Distention) (eg, Volvulus, Megacolon), including Placement of Decompression Tube, when Performed"
 ^PXD(811.2,15,20,"AUID","CPT",45338,2940601,"DT")="45338^Sigmoidoscopy, Flexible; with Removal of Tumor(s), Polyp(s), or other Lesion(s) by Snare Technique"
 ^PXD(811.2,15,20,"AUID","CPT",45339,2940601,3150101)="45339^Sigmoidoscopy, Flexible; with Ablation of Tumor(s), Polyp(s), or other Lesion(s) not Amenable to Removal by Hot Biopsy Forceps, Bipolar Cautery or Snare Technique"
 ^PXD(811.2,15,20,"AUID","CPT",45355,2890801,3150701)="45355^Colonoscopy, Rigid or Flexible, Transabdominal via Colotomy, single or Multiple"
@@ -26058,13 +26058,13 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,15,20,"AUID","CPT",45369,2890101,2940601)="45369^Colonoscopy, Fiberoptic, Beyond 25 cm to Splenic Flexure; for Ablation of Tumor or Mucosal Lesion (eg, Electrocoagulation, Laser Photocoagulation)"
 ^PXD(811.2,15,20,"AUID","CPT",45370,2890101,2940601)="45370^Colonoscopy, Fiberoptic, Beyond 25 cm to Splenic Flexure; for Removal of Polypoid Lesion(s)"
 ^PXD(811.2,15,20,"AUID","CPT",45372,2890101,2940601)="45372^Colonoscopy, Fiberoptic, Beyond 25 cm to Splenic Flexure; for Decompression of Volvulus"
-^PXD(811.2,15,20,"AUID","CPT",45378,2890801,"DT")="45378^Colonoscopy, flexible; diagnostic, including collection of specimen(s) by brushing or washing, when performed (separate procedure)"
-^PXD(811.2,15,20,"AUID","CPT",45379,2890801,"DT")="45379^Colonoscopy, flexible; with removal of foreign body(s)"
-^PXD(811.2,15,20,"AUID","CPT",45380,2890801,"DT")="45380^Colonoscopy, flexible; with biopsy, single or multiple"
-^PXD(811.2,15,20,"AUID","CPT",45382,2890801,"DT")="45382^Colonoscopy, flexible; with control of bleeding, any method"
+^PXD(811.2,15,20,"AUID","CPT",45378,2890801,"DT")="45378^Colonoscopy, Flexible; Diagnostic, including Collection of Specimen(s) by Brushing or Washing, when Performed (Separate Procedure)"
+^PXD(811.2,15,20,"AUID","CPT",45379,2890801,"DT")="45379^Colonoscopy, Flexible; with Removal of Foreign Body(s)"
+^PXD(811.2,15,20,"AUID","CPT",45380,2890801,"DT")="45380^Colonoscopy, Flexible; with Biopsy, single or Multiple"
+^PXD(811.2,15,20,"AUID","CPT",45382,2890801,"DT")="45382^Colonoscopy, Flexible; with Control of Bleeding, any Method"
 ^PXD(811.2,15,20,"AUID","CPT",45383,2890801,3150101)="45383^Colonoscopy, Flexible, Proximal to Splenic Flexure; with Ablation of Tumor(s), Polyp(s), or other Lesion(s) not Amenable to Removal by Hot Biopsy Forceps, Bipolar Cautery or Snare Technique"
-^PXD(811.2,15,20,"AUID","CPT",45384,2940601,"DT")="45384^Colonoscopy, flexible; with removal of tumor(s), polyp(s), or other lesion(s) by hot biopsy forceps"
-^PXD(811.2,15,20,"AUID","CPT",45385,2890801,"DT")="45385^Colonoscopy, flexible; with removal of tumor(s), polyp(s), or other lesion(s) by snare technique"
+^PXD(811.2,15,20,"AUID","CPT",45384,2940601,"DT")="45384^Colonoscopy, Flexible; with Removal of Tumor(s), Polyp(s), or other Lesion(s) by Hot Biopsy Forceps"
+^PXD(811.2,15,20,"AUID","CPT",45385,2890801,"DT")="45385^Colonoscopy, Flexible; with Removal of Tumor(s), Polyp(s), or other Lesion(s) by Snare Technique"
 ^PXD(811.2,15,20,"B","Copy from CPT range 45330 to 45385",1)=""
 ^PXD(811.2,15,20,"B","Copy from ICP range 45.24 to 45.24",2)=""
 ^PXD(811.2,15,30,0)="^811.24A^24^24"
@@ -27439,7 +27439,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,20,20,"AUID","CPT",43842,2940601,"DT")="43842^Gastric Restrictive Procedure, without Gastric Bypass, for Morbid Obesity; Vertical-Banded Gastroplasty"
 ^PXD(811.2,20,20,"AUID","CPT",43846,2940601,"DT")="43846^Gastric Restrictive Procedure, with Gastric Bypass for Morbid Obesity; with Short Limb (150 cm or less) Roux-EN-Y Gastroenterostomy"
 ^PXD(811.2,20,20,"AUID","CPT",44131,2890101,2940601)="44131^Enteroenterostomy, Anastomosis of Intestine; Intestinal Bypass for Morbid Obesity"
-^PXD(811.2,20,20,"AUID","CPT",99078,2940601,"DT")="99078^Physician or other qualified health care professional qualified by education, training, licensure/regulation (when applicable) educational services rendered to patients in a group setting (eg, prenatal, obesity, or diabetic instructions)"
+^PXD(811.2,20,20,"AUID","CPT",99078,2940601,"DT")="99078^Physician or other Qualified Health Care Professional Qualified by Education, Training, Licensure/Regulation (when Applicable) Educational Services Rendered to Patients in a Group Setting (eg, Prenatal, Obesity, or Diabetic Instructions)"
 ^PXD(811.2,20,20,"AUID","ICD",278.01,2781001,3151001)="13155^Morbid Obesity"
 ^PXD(811.2,20,20,"AUID","ICD",783.1,2781001,3151001)="5436^Abnormal weight gain"
 ^PXD(811.2,20,20,"AUID","ICD","278.0",2781001,2951001)="8756^Obesity"
@@ -28537,7 +28537,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,25,20,"ATCC","Copy from ICP range 99.55 to 99.55","ICP",99.55)=0
 ^PXD(811.2,25,20,"ATCC","Copy from ICP range 99.59 to 99.59","ICP",99.59)=0
 ^PXD(811.2,25,20,"AUID","CPC","G0009",2950701,"DT")="104193^Administration of Pneumococcal Vaccine"
-^PXD(811.2,25,20,"AUID","CPT",90732,2940601,"DT")="90732^Pneumococcal Polysaccharide Vaccine, 23-Valent (PPSV23), Adult OR Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years OR Older, for Subcutaneous OR Intramuscular use"
+^PXD(811.2,25,20,"AUID","CPT",90732,2940601,"DT")="90732^Pneumococcal Polysaccharide Vaccine, 23-Valent (PPSV23), Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use"
 ^PXD(811.2,25,20,"AUID","ICD","V06.6",2781001,3151001)="13074^Need for Prophylactic Vaccination against Streptococcus Pneumoniae and Influenza"
 ^PXD(811.2,25,20,"B","Copy from CPT range 90732 to 90732",1)=""
 ^PXD(811.2,25,20,"B","Copy from CPT range G0009 to G0009",2)=""
@@ -30723,7 +30723,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,29,20,"ATCC","Copy from ICP range 99.36 to 99.38","ICP",99.36)=0
 ^PXD(811.2,29,20,"ATCC","Copy from ICP range 99.36 to 99.38","ICP",99.37)=0
 ^PXD(811.2,29,20,"ATCC","Copy from ICP range 99.36 to 99.38","ICP",99.38)=0
-^PXD(811.2,29,20,"AUID","CPT",90700,2940601,"DT")="90700^Diphtheria, Tetanus Toxoids, and Acellular Pertussis Vaccine (DTAP), when Administered to Individuals Younger than 7 Years, for Intramuscular use"
+^PXD(811.2,29,20,"AUID","CPT",90700,2940601,"DT")="90700^Diphtheria, Tetanus Toxoids, and Acellular Pertussis Vaccine (DTaP), when Administered to Individuals Younger than 7 Years, for Intramuscular use"
 ^PXD(811.2,29,20,"AUID","CPT",90701,2940601,3130101)="90701^Diphtheria, Tetanus Toxoids, and Whole Cell Pertussis Vaccine (DTP), for Intramuscular use"
 ^PXD(811.2,29,20,"AUID","CPT",90702,2940601,"DT")="90702^Diphtheria and Tetanus Toxoids Adsorbed (DT) when Administered to Individuals Younger than 7 Years, for Intramuscular use"
 ^PXD(811.2,29,20,"AUID","CPT",90703,2940601,3160101)="90703^Tetanus Toxoid Adsorbed, for Intramuscular use"
@@ -30731,7 +30731,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,29,20,"AUID","CPT",90718,2940601,3130101)="90718^Tetanus and Diphtheria Toxoids (TD) Adsorbed when Administered to Individuals 7 Years or Older, for Intramuscular use"
 ^PXD(811.2,29,20,"AUID","CPT",90719,2940601,3160101)="90719^Diphtheria Toxoid, for Intramuscular use"
 ^PXD(811.2,29,20,"AUID","CPT",90720,2940601,3160101)="90720^Diphtheria, Tetanus Toxoids, and Whole Cell Pertussis Vaccine and Hemophilus Influenza B Vaccine (DTP-HIB), for Intramuscular use"
-^PXD(811.2,29,20,"AUID","CPT",90721,2960415,3160101)="90721^Diphtheria, tetanus toxoids, and acellular pertussis vaccine and Hemophilus influenza B vaccine (DTaP/Hib), for intramuscular use"
+^PXD(811.2,29,20,"AUID","CPT",90721,2960415,3160101)="90721^Diphtheria, Tetanus Toxoids, and Acellular Pertussis Vaccine and Hemophilus Influenza B Vaccine (DTaP/HIB), for Intramuscular use"
 ^PXD(811.2,29,20,"AUID","ICD","V03.5",2781001,3151001)="11253^Need for Prophylactic Vaccination against Diphtheria"
 ^PXD(811.2,29,20,"AUID","ICD","V03.7",2781001,3151001)="11255^Need for Prophylactic Vaccination with Tetanus Toxoid Alone"
 ^PXD(811.2,29,20,"AUID","ICD","V06.1",2781001,3151001)="11273^Diphtheria-Tetanus-Pertussis Combined (DPT) (DTAP)"
@@ -30921,10 +30921,10 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,30,20,"ATCC","Copy from ICD range V76.2 to V76.2","ICD","V76.2")=1
 ^PXD(811.2,30,20,"ATCC","Copy from ICP range 91.46 to 91.46","ICP",91.46)=0
 ^PXD(811.2,30,20,"AUID","CPC","P3000",2940601,"DT")="103855^Screening Papanicolaou Smear, Cervical or Vaginal, up to three Smears, by Technician Under Physician Supervision"
-^PXD(811.2,30,20,"AUID","CPC","P3001",2940601,"DT")="103856^Screening papanicolaou smear, cervical or vaginal, up to three smears, requiring interpretation by physician"
+^PXD(811.2,30,20,"AUID","CPC","P3001",2940601,"DT")="103856^Screening Papanicolaou Smear, Cervical or Vaginal, up to three Smears, Requiring Interpretation by Physician"
 ^PXD(811.2,30,20,"AUID","CPC","Q0060",2890101,2940601)="103710^Screening Papanicolaou Smear, Cervical or Vaginal, up to three Smears, by Technician Under Physician Supervision"
 ^PXD(811.2,30,20,"AUID","CPC","Q0061",2890101,2940601)="103711^Screening, Papanicolaou Smear,Cervical or Vaginal, up to three Smears, Requiring Interpretation by Physician"
-^PXD(811.2,30,20,"AUID","CPC","Q0091",2940601,"DT")="103863^Screening papanicolaou smear; obtaining, preparing and conveyance of cervical or vaginal smear to laboratory"
+^PXD(811.2,30,20,"AUID","CPC","Q0091",2940601,"DT")="103863^Screening Papanicolaou Smear; Obtaining, Preparing and Conveyance of Cervical or Vaginal Smear to Laboratory"
 ^PXD(811.2,30,20,"AUID","CPT",88150,2940601,"DT")="88150^Cytopathology, Slides, Cervical or Vaginal; Manual Screening Under Physician Supervision"
 ^PXD(811.2,30,20,"AUID","ICD","V76.2",2781001,3151001)="11779^Screening for Malignant Neoplasms of the Cervix"
 ^PXD(811.2,30,20,"B","Copy from CPT range 88150 to 88150",1)=""
@@ -40557,7 +40557,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,60,20,"ATC",90714,"CPT")="1^1"
 ^PXD(811.2,60,20,"ATCC",90471,"CPT",90471)=1
 ^PXD(811.2,60,20,"ATCC",90714,"CPT",90714)=1
-^PXD(811.2,60,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,60,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
 ^PXD(811.2,60,20,"AUID","CPT",90714,2940601,2990401)="90714^Active Immunization of Typhoid Vaccine"
 ^PXD(811.2,60,20,"AUID","CPT",90714,3050701,"DT")="90714^Tetanus and Diphtheria Toxoids Adsorbed (TD), Preservative Free, when Administered to Individuals 7 Years or Older, for Intramuscular use"
 ^PXD(811.2,60,20,"B",90471,2)=""
@@ -49040,8 +49040,8 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,71,20,"ATC","Pneumococcal Polysaccharide Vaccine, 23-Valent, Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use","CPT")="2^1"
 ^PXD(811.2,71,20,"ATCC","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)","CPT",90471)=1
 ^PXD(811.2,71,20,"ATCC","Pneumococcal Polysaccharide Vaccine, 23-Valent, Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use","CPT",90732)=1
-^PXD(811.2,71,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
-^PXD(811.2,71,20,"AUID","CPT",90732,2940601,"DT")="90732^Pneumococcal Polysaccharide Vaccine, 23-Valent (PPSV23), Adult OR Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years OR Older, for Subcutaneous OR Intramuscular use"
+^PXD(811.2,71,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,71,20,"AUID","CPT",90732,2940601,"DT")="90732^Pneumococcal Polysaccharide Vaccine, 23-Valent (PPSV23), Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use"
 ^PXD(811.2,71,20,"B","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)",1)=""
 ^PXD(811.2,71,20,"B","Pneumococcal Polysaccharide Vaccine, 23-Valent, Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use",2)=""
 ^PXD(811.2,71,30,0)="^811.24A^2^2"
@@ -57891,7 +57891,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,93,20,"AE","CPT","1123F")="109535^1"
 ^PXD(811.2,93,20,"ATC","Advance Care Planning Discussed and Documented Advance Care Plan or Surrogate Decision Maker Documented in the Medical Record (DEM) (Ger, Pall CR)","CPT")="1^1"
 ^PXD(811.2,93,20,"ATCC","Advance Care Planning Discussed and Documented Advance Care Plan or Surrogate Decision Maker Documented in the Medical Record (DEM) (Ger, Pall CR)","CPT","1123F")=1
-^PXD(811.2,93,20,"AUID","CPT","1123F",3080101,"DT")="109535^Advance Care Planning Discussed and Documented Advance Care Plan or Surrogate Decision Maker Documented in the Medical Record (DEM) (Ger, Pall CR)"
+^PXD(811.2,93,20,"AUID","CPT","1123F",3080101,"DT")="109535^Advance Care Planning Discussed and Documented Advance Care Plan or Surrogate Decision Maker Documented in the Medical Record (DEM) (GER, Pall CR)"
 ^PXD(811.2,93,20,"B","Advance Care Planning Discussed and Documented Advance Care Plan or Surrogate Decision Maker Documented in the Medical Record (DEM) (Ger, Pall CR)",1)=""
 ^PXD(811.2,93,30,0)="^811.24A^1^1"
 ^PXD(811.2,93,30,1,0)="1123F^CPT"
@@ -58086,7 +58086,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,96,20,"AE","CPT","1125F")="109537^1"
 ^PXD(811.2,96,20,"ATC","Pain Severity Quantified; Pain Present (CoA) (Onc)","CPT")="1^1"
 ^PXD(811.2,96,20,"ATCC","Pain Severity Quantified; Pain Present (CoA) (Onc)","CPT","1125F")=1
-^PXD(811.2,96,20,"AUID","CPT","1125F",3080101,"DT")="109537^Pain Severity Quantified; Pain Present (CoA) (Onc)"
+^PXD(811.2,96,20,"AUID","CPT","1125F",3080101,"DT")="109537^Pain Severity Quantified; Pain Present (CoA) (ONC)"
 ^PXD(811.2,96,20,"B","Pain Severity Quantified; Pain Present (CoA) (Onc)",1)=""
 ^PXD(811.2,96,30,0)="^811.24A^1^1"
 ^PXD(811.2,96,30,1,0)="1125F^CPT"
@@ -58151,7 +58151,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,97,20,"AE","CPT","1126F")="109538^1"
 ^PXD(811.2,97,20,"ATC","Pain Severity Quantified; no Pain Present (CoA) (Onc)","CPT")="1^1"
 ^PXD(811.2,97,20,"ATCC","Pain Severity Quantified; no Pain Present (CoA) (Onc)","CPT","1126F")=1
-^PXD(811.2,97,20,"AUID","CPT","1126F",3080101,"DT")="109538^Pain Severity Quantified; no Pain Present (CoA) (Onc)"
+^PXD(811.2,97,20,"AUID","CPT","1126F",3080101,"DT")="109538^Pain Severity Quantified; no Pain Present (CoA) (ONC)"
 ^PXD(811.2,97,20,"B","Pain Severity Quantified; no Pain Present (CoA) (Onc)",1)=""
 ^PXD(811.2,97,30,0)="^811.24A^1^1"
 ^PXD(811.2,97,30,1,0)="1126F^CPT"
@@ -58354,7 +58354,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,100,20,"ATC","Pneumococcal Conjugate Vaccine, 13 Valent, for Intramuscular use","CPT")="2^1"
 ^PXD(811.2,100,20,"ATCC","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)","CPT",90471)=1
 ^PXD(811.2,100,20,"ATCC","Pneumococcal Conjugate Vaccine, 13 Valent, for Intramuscular use","CPT",90670)=1
-^PXD(811.2,100,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,100,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
 ^PXD(811.2,100,20,"AUID","CPT",90670,3090701,"DT")="90670^Pneumococcal Conjugate Vaccine, 13 Valent (PCV13), for Intramuscular use"
 ^PXD(811.2,100,20,"B","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)",1)=""
 ^PXD(811.2,100,20,"B","Pneumococcal Conjugate Vaccine, 13 Valent, for Intramuscular use",2)=""
@@ -58504,7 +58504,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,102,20,"ATC",90715,"CPT")="1^1"
 ^PXD(811.2,102,20,"ATCC",90471,"CPT",90471)=1
 ^PXD(811.2,102,20,"ATCC",90715,"CPT",90715)=1
-^PXD(811.2,102,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,102,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
 ^PXD(811.2,102,20,"AUID","CPT",90715,3040101,"DT")="90715^Tetanus, Diphtheria Toxoids and Acellular Pertussis Vaccine (TDAP), when Administered to Individuals 7 Years or Older, for Intramuscular use"
 ^PXD(811.2,102,20,"B",90471,2)=""
 ^PXD(811.2,102,20,"B",90715,1)=""
@@ -58587,8 +58587,8 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,103,20,"ATC","Pneumococcal Polysaccharide Vaccine, 23-Valent, Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use","CPT")="2^1"
 ^PXD(811.2,103,20,"ATCC","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)","CPT",90471)=1
 ^PXD(811.2,103,20,"ATCC","Pneumococcal Polysaccharide Vaccine, 23-Valent, Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use","CPT",90732)=1
-^PXD(811.2,103,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
-^PXD(811.2,103,20,"AUID","CPT",90732,2940601,"DT")="90732^Pneumococcal Polysaccharide Vaccine, 23-Valent (PPSV23), Adult OR Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years OR Older, for Subcutaneous OR Intramuscular use"
+^PXD(811.2,103,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,103,20,"AUID","CPT",90732,2940601,"DT")="90732^Pneumococcal Polysaccharide Vaccine, 23-Valent (PPSV23), Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use"
 ^PXD(811.2,103,20,"B","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)",1)=""
 ^PXD(811.2,103,20,"B","Pneumococcal Polysaccharide Vaccine, 23-Valent, Adult or Immunosuppressed Patient Dosage, when Administered to Individuals 2 Years or Older, for Subcutaneous or Intramuscular use",2)=""
 ^PXD(811.2,103,30,0)="^811.24A^2^2"
@@ -59447,7 +59447,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,149,20,"ATC","Pneumococcal Conjugate Vaccine, 13 Valent, for Intramuscular use","CPT")="2^1"
 ^PXD(811.2,149,20,"ATCC","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)","CPT",90471)=1
 ^PXD(811.2,149,20,"ATCC","Pneumococcal Conjugate Vaccine, 13 Valent, for Intramuscular use","CPT",90670)=1
-^PXD(811.2,149,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,149,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
 ^PXD(811.2,149,20,"AUID","CPT",90670,3090701,"DT")="90670^Pneumococcal Conjugate Vaccine, 13 Valent (PCV13), for Intramuscular use"
 ^PXD(811.2,149,20,"B","Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)",1)=""
 ^PXD(811.2,149,20,"B","Pneumococcal Conjugate Vaccine, 13 Valent, for Intramuscular use",2)=""
@@ -66369,7 +66369,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,157,20,"ATC",90718,"CPT")="7^1"
 ^PXD(811.2,157,20,"ATCC",90471,"CPT",90471)=1
 ^PXD(811.2,157,20,"ATCC",90718,"CPT",90718)=1
-^PXD(811.2,157,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,157,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
 ^PXD(811.2,157,20,"AUID","CPT",90718,2940601,3130101)="90718^Tetanus and Diphtheria Toxoids (TD) Adsorbed when Administered to Individuals 7 Years or Older, for Intramuscular use"
 ^PXD(811.2,157,20,"B",90471,8)=""
 ^PXD(811.2,157,20,"B",90718,7)=""
@@ -66450,7 +66450,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,159,20,"ATC","SHINGLES","CPT")="1^1"
 ^PXD(811.2,159,20,"ATCC",90471,"CPT",90471)=1
 ^PXD(811.2,159,20,"ATCC","SHINGLES","CPT",90736)=1
-^PXD(811.2,159,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
+^PXD(811.2,159,20,"AUID","CPT",90471,2990101,"DT")="90471^Immunization Administration (Includes Percutaneous, Intradermal, Subcutaneous, or Intramuscular Injections); 1 Vaccine (single or Combination Vaccine/Toxoid)"
 ^PXD(811.2,159,20,"AUID","CPT",90736,3060101,"DT")="90736^Zoster (Shingles) Vaccine (HZV), Live, for Subcutaneous Injection"
 ^PXD(811.2,159,20,"B",90471,2)=""
 ^PXD(811.2,159,20,"B","SHINGLES",1)=""

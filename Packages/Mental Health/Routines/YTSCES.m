@@ -1,5 +1,5 @@
 YTSCES ;SLC/BLD - Score for Combat Exposure Scale (CES) ; 9/26/2018
- ;;5.01;MENTAL HEALTH;**123,137**;DEC 30,1994;Build 273
+ ;;5.01;MENTAL HEALTH;**123,147**;DEC 30,1994;Build 283
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ

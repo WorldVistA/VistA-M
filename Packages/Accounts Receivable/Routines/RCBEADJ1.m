@@ -1,6 +1,6 @@
 RCBEADJ1 ;ALB/PJH - PENDING PAYMENTS ;24-FEB-03
- ;;4.5;Accounts Receivable;**173,276,321,326**;Mar 20, 1995;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,276,321,326,332**;Mar 20, 1995;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
 WARN(RCBILLDA) ; Display warning if pending payments exist EP ^RCBEADJ 
  ; Input - RCBILLDA - Pointer #430 - required

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: DEVICE
-15-JUL-2019 13:41:17 ZWR
+08-AUG-2019 17:01:45 ZWR
 ^%ZIS(1,0)="DEVICE^3.5Is^53^53"
 ^%ZIS(1,1,0)="TIS51^51^1^1^^^^^^^1"
 ^%ZIS(1,1,"SUBTYPE")=9
@@ -25,13 +25,13 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,7,"TYPE")="VTRM"
 ^%ZIS(1,8,0)="ZZNULL^NLA0:^0^0^^^^^^^1"
 ^%ZIS(1,8,1)="NT SYSTEM"
-^%ZIS(1,8,5)=89254
+^%ZIS(1,8,5)=89439
 ^%ZIS(1,8,"SUBTYPE")=12
 ^%ZIS(1,8,"TYPE")="TRM"
 ^%ZIS(1,9,0)="LMINIOUT0^64^^^^^^^"
 ^%ZIS(1,9,1)="PORT"
 ^%ZIS(1,9,"TYPE")="TRM"
-^%ZIS(1,10,0)="HFS^/dev/shm/hfs.dat^^^^^^^^^"
+^%ZIS(1,10,0)="HFS^/tmp/hfs.dat^^^^^^^^^"
 ^%ZIS(1,10,1)="Host File Device^^^^1^"
 ^%ZIS(1,10,5)=""
 ^%ZIS(1,10,"IOPAR")="""NWS"""
@@ -105,7 +105,7 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,21,0)="TIU/PXAPI RESOURCE^TIU/PXAPI RESOURCE^^^^^^^"
 ^%ZIS(1,21,1)="NA^^^^^^^^^10"
 ^%ZIS(1,21,"TYPE")="RES"
-^%ZIS(1,22,0)="TELNET^|TNT|^1^1^^^^^^^1"
+^%ZIS(1,22,0)="TELNET^TNA^1^1^^^^^^^1"
 ^%ZIS(1,22,1)="TELNET"
 ^%ZIS(1,22,5)=6712
 ^%ZIS(1,22,"SUBTYPE")=9
@@ -248,13 +248,13 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,50,1)="CPRS GUI graphing data retrieval^^^^^^^^^3"
 ^%ZIS(1,50,"SUBTYPE")=16
 ^%ZIS(1,50,"TYPE")="RES"
-^%ZIS(1,51,0)="HOME^0^1^^^^^^"
+^%ZIS(1,51,0)="HOME^0^1^^^^^^^^1"
 ^%ZIS(1,51,1)="HOME"
 ^%ZIS(1,51,"SUBTYPE")=9
 ^%ZIS(1,51,"TYPE")="VTRM"
 ^%ZIS(1,52,0)="FTA^FTA^1^^^^^^^^1"
 ^%ZIS(1,52,1)="SSH VIRTUAL TERMINAL"
-^%ZIS(1,52,5)=6162
+^%ZIS(1,52,5)=6320
 ^%ZIS(1,52,"SUBTYPE")=92
 ^%ZIS(1,52,"TYPE")="VTRM"
 ^%ZIS(1,53,0)="HMP EXTRACT RESOURCE^HMP EXTRACT RESOURCE^^^^^^^"
@@ -335,8 +335,8 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,"C",64,9)=""
 ^%ZIS(1,"C","/dev/null",39)=""
 ^%ZIS(1,"C","/dev/pts",40)=""
-^%ZIS(1,"C","/dev/shm/hfs.dat",10)=""
 ^%ZIS(1,"C","/dev/tty",41)=""
+^%ZIS(1,"C","/tmp/hfs.dat",10)=""
 ^%ZIS(1,"C","DDBR.TXT",12)=""
 ^%ZIS(1,"C","DG FIELD MONITOR",38)=""
 ^%ZIS(1,"C","FAUX",19)=""
@@ -388,8 +388,8 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,"CPU",.64,9)=""
 ^%ZIS(1,"CPU","./dev/null",39)=""
 ^%ZIS(1,"CPU","./dev/pts",40)=""
-^%ZIS(1,"CPU","./dev/shm/hfs.dat",10)=""
 ^%ZIS(1,"CPU","./dev/tty",41)=""
+^%ZIS(1,"CPU","./tmp/hfs.dat",10)=""
 ^%ZIS(1,"CPU",".0",51)=""
 ^%ZIS(1,"CPU",".DDBR.TXT",12)=""
 ^%ZIS(1,"CPU",".DG FIELD MONITOR",38)=""
@@ -431,6 +431,7 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,"CPU",".|TRM|",48)=""
 ^%ZIS(1,"G","SYS../dev/pts",40)=""
 ^%ZIS(1,"G","SYS../dev/tty",41)=""
+^%ZIS(1,"G","SYS..0",51)=""
 ^%ZIS(1,"G","SYS..51",1)=""
 ^%ZIS(1,"G","SYS..52",2)=""
 ^%ZIS(1,"G","SYS..53",3)=""
@@ -440,10 +441,9 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,"G","SYS..NLA0:",8)=""
 ^%ZIS(1,"G","SYS..RTA",47)=""
 ^%ZIS(1,"G","SYS..TNA",22)=""
-^%ZIS(1,"G","SYS..|TNT|",22)=""
 ^%ZIS(1,"G","SYS..TRM",49)=""
 ^%ZIS(1,"G","SYS..|TCP|",7)=""
-^%ZIS(1,"G","SYS.PLA.|TRM|",48)=""
 ^%ZIS(1,"G","SYS.PLA.|TNT|",22)=""
+^%ZIS(1,"G","SYS.PLA.|TRM|",48)=""
 ^%ZIS(1,"LSYN","P-BROWSER",14)=""
 ^%ZIS(1,"LSYN","P-BROWSER",29)=""

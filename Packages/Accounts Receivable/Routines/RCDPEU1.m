@@ -1,6 +1,6 @@
 RCDPEU1 ;AITC/CJE - ELECTRONIC PAYER UTILITIES ;05-NOV-02
- ;;4.5;Accounts Receivable;**326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**326,332**;Mar 20, 1995;Build 40
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
 SELPAY(PARAM) ; EP
  ; New all purpose payer selection subroutine. Based off file 344.6
@@ -341,7 +341,7 @@ GETTIN(FILE,IEN) ; Get Payer TIN give file and IEN
  S FIELD=.03
  Q $$GET1^DIQ(FILE,IEN_",",FIELD,"E")
  ;
-PAYRNG(MIXED,BLANKLN,NMORTIN) ; How does the user want to select payers?
+PAYRNG(MIXED,BLANKLN,NMORTIN,PROMPT) ; How does the user want to select payers?
  ; Input:   MIXED   - 1 to display prompts in mixed case
  ;                    Optional, defaults to 0
  ;          BLANKLN - 0 skip initial blank line
@@ -349,6 +349,8 @@ PAYRNG(MIXED,BLANKLN,NMORTIN) ; How does the user want to select payers?
  ;          NMORTIN - 1 to look-up Payer by Payer Name, 2 to look-up by TIN
  ;                    0 or undefined - pre-326 behavior, look-up by payer name and don't include TIN in output array.
  ;                    Optional, defaults to 0
+ ;          PROMPT - Alternative prompt
+ ;
  ; Output:  ^TMP("RCSELPAY",$J) - Array of selected Payers
  ; Returns: A - All, S - Selected, R - Range, (-1) - User '^' or timeout
  ;
@@ -356,18 +358,19 @@ PAYRNG(MIXED,BLANKLN,NMORTIN) ; How does the user want to select payers?
  S:'$D(MIXED) MIXED=0
  S:'$D(BLANKLN) BLANKLN=1
  S:'$D(NMORTIN) NMORTIN=0
+ I '$D(PROMPT) S PROMPT=$S(MIXED:"Run Report for",1:"RUN REPORT FOR") ; PRCA*4.5*332
  ;
  S RTNFLG=0
  ;
  ; Select option required (All, Selected or Range)
  I NMORTIN=2 D
  . S DIR(0)="SA^A:ALL;S:SPECIFIC"
- . S:MIXED DIR("A")="Run Report for (A)LL or (S)PECIFIC Insurance Companies?: "
- . S:'MIXED DIR("A")="RUN REPORT FOR (A)LL OR (S)PECIFIC INSURANCE COMPANIES?: "
+ . S:MIXED DIR("A")=PROMPT_" (A)LL or (S)PECIFIC Insurance Companies?: "               ; PRCA*4.5*332
+ . S:'MIXED DIR("A")=PROMPT_" (A)LL OR (S)PECIFIC INSURANCE COMPANIES?: "              ; PRCA*4.5*332
  E  D
  . S DIR(0)="SA^A:ALL;S:SPECIFIC;R:RANGE"
- . S:MIXED DIR("A")="Run Report for (A)LL, (S)PECIFIC, or (R)ANGE of Insurance Companies?: "
- . S:'MIXED DIR("A")="RUN REPORT FOR (A)LL, (S)PECIFIC, OR (R)ANGE OF INSURANCE COMPANIES?: "
+ . S:MIXED DIR("A")=PROMPT_" (A)LL, (S)PECIFIC, or (R)ANGE of Insurance Companies?: "  ; PRCA*4.5*332
+ . S:'MIXED DIR("A")=PROMPT_" (A)LL, (S)PECIFIC, OR (R)ANGE OF INSURANCE COMPANIES?: " ; PRCA*4.5*332
  . S DIR("?",2)="Enter 'RANGE' to select an Insurance Company range."
  S DIR("B")="ALL"
  S DIR("?",1)="Enter 'ALL' to select all Insurance Companies."

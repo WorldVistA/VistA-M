@@ -1,5 +1,5 @@
-ECRRPT1 ;ALB/JAM;Event Capture Report RPC Broker ;2/1/18  13:59
- ;;2.0;EVENT CAPTURE;**25,32,33,61,78,72,90,95,100,107,112,119,139**;8 May 96;Build 7
+ECRRPT1 ;ALB/JAM;Event Capture Report RPC Broker ;3/7/19  14:22
+ ;;2.0;EVENT CAPTURE;**25,32,33,61,78,72,90,95,100,107,112,119,139,145**;8 May 96;Build 6
  ;
  ;119 Updated comments for reports to include (E)xport as a value for ECPTYP
 ECRPRSN ;Procedure Reason Report for RPC Call
@@ -25,7 +25,7 @@ ECRPRSN ;Procedure Reason Report for RPC Call
  . . I '$D(ECDUZ) Q
  . . S ECKEY=$S($D(^XUSEC("ECALLU",ECDUZ)):1,1:0) D ALLU^ECRUTL
  . S (ECI,ECNT)=0 F ECI=0:1 S ECX="ECD"_ECI Q:'$D(@ECX)  D
- . . K DIC S DIC=724,DIC(0)="QNMZX",X=@ECX D ^DIC I Y<0 Q
+ . . K DIC S DIC=724,DIC(0)="QNZX",X=@ECX D ^DIC I Y<0 Q  ;145
  . . S ECNT=ECNT+1,ECDSSU(ECNT)=Y
  S ECX=0 D
  .I ECRY0="ALL" D PXREAS Q
@@ -101,7 +101,7 @@ ECDSS1 ;National/Local Procedure Reports for RPC Call
  . ;S ECSAVE("IO*")=""
  .D QUEDIP D @$S(ECRTN="I":"LISTI^ECDSS1",1:"PRT^ECDSS1")
  D CLOSE^%ZISH(ECDIRY_ECFILER)
- S %ZIS("HFSNAME")=ECDIRY_ECFILER,%ZIS("HFSMODE")="W",IOP="HFS"
+ S %ZIS("HFSNAME")=ECDIRY_ECFILER,%ZIS("HFSMODE")="W",IOP="HFS"_";132" ;145 Add right margin width
  D @$S(ECRTN="I":"LISTI^ECDSS1",1:"PRT^ECDSS1")
  Q
 ECDSS3 ;Category Reports for RPC Call
@@ -122,7 +122,7 @@ ECDSS3 ;Category Reports for RPC Call
  . S ECDESC="Event Capture Category Reports"
  . D QUEDIP D PRINT^ECDSS3
  D CLOSE^%ZISH(ECDIRY_ECFILER)
- S %ZIS("HFSNAME")=ECDIRY_ECFILER,%ZIS("HFSMODE")="W",IOP="HFS"
+ S %ZIS("HFSNAME")=ECDIRY_ECFILER,%ZIS("HFSMODE")="W",IOP="HFS"_";132" ;145 Add right margin width
  D PRINT^ECDSS3
  Q
 QUEDIP ;Queue when using DIP
@@ -199,7 +199,7 @@ ECSCPT ;Event Code Screens with CPT Codes
  . S DIC=4,DIC(0)="QNZX",X=ECL D ^DIC Q:Y<0  S ECLOC(1)=+Y_U_$P(Y,U,2)
  D  I ECERR S ^TMP("ECMSG",$J)="1^Invalid DSS Unit." Q
  . I ECD="ALL" S ECALL=1 Q
- . K DIC S DIC=724,DIC(0)="QNMZX",X=ECD D ^DIC I Y<0 S ECERR=1 Q
+ . K DIC S DIC=724,DIC(0)="QNZX",X=ECD D ^DIC I Y<0 S ECERR=1 Q  ;145
  . S ECDN=$P(Y,U,2)_$S($P($G(^ECD(+ECD,0)),"^",6):" **Inactive**",1:"")
  . S ECJLP=+$P(^ECD(ECD,0),"^",11)
  . I 'ECJLP S ECC=0,ECCN="None"

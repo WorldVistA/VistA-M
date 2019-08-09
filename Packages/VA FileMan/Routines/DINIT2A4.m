@@ -1,5 +1,5 @@
 DINIT2A4 ;SFISC/MKO-KEY AND INDEX FILES ;3:01 PM  10 Jan 2000
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -81,9 +81,9 @@ Q Q
  ;;^DD(.114,5.5,"DT")
  ;;=2980731
  ;;^DD(.114,6,0)
- ;;=MAXIMUM LENGTH^NJ3,0^^0;5^K:+X'=X!(X>240)!(X<1)!(X?.E1"."1N.N) X
+ ;;=MAXIMUM LENGTH^NJ3,0^^0;5^K:+X'=X!(X>999)!(X<1)!(X?.E1"."1N.N) X
  ;;^DD(.114,6,3)
- ;;=Answer must be between 1 and 240, with no decimal digits. Answer '??' for more help.
+ ;;=Answer must be between 1 and 999, with no decimal digits. Answer '??' for more help.
  ;;^DD(.114,6,21,0)
  ;;=^^7^7^2980911^
  ;;^DD(.114,6,21,1,0)

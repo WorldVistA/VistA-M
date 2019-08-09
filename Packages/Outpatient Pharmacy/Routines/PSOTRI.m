@@ -1,5 +1,5 @@
 PSOTRI ;BIRM/BNT - OP TRICARE/CHAMPVA Audit Log Utilities ;07/21/2010
- ;;7.0;OUTPATIENT PHARMACY;**358,385,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**358,385,427,528**;DEC 1997;Build 10
  ;
  ; Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;
@@ -28,6 +28,8 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  ;
  N PSOTRIC,PSODIV,RXFLDS,RFLFLDS,RXECME,PSOFDA,FN,SFN,PSOIEN,PSOIENS,PSOUSER,PSOTC,PSOET
  N I,PSOAIEN,PSOREJ,DFN,PSODOA,PSODOS,PSOERR,PSOX,PSOY,RXARR,RFLARR,PSOPHRM,PSOQTY
+ N PDDATE,PFARR,PFFLDS,PFIEN,PSOPFIEN,PSOUNITCOST
+ ;
  Q:'$D(^PSRX(RX,0)) "0^Prescription does not exist"
  ; Verify refill exists
  I RFL=""!RFL<0 S RFL=$$LSTRFL^PSOBPSU1(RX)
@@ -35,15 +37,16 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  ; Not original fill
  I RFL Q:'$D(^PSRX(RX,1,RFL)) "0^Refill "_RFL_" does not exist"
  ;
- ; Verify RX is for a TRICARE or CHAMPVA patient
+ ; Verify eligibility exists
+ Q:ELIG="" "0^Eligibiltiy does not exist"
+ ;
+ ; Verify Eligibility Type - TRICARE or CHAMPVA patient 
+ I ("/T/C/")'[("/"_ELIG_"/") Q "0^Invalid Eligibility Type "_ELIG
+ ; PSOTRIC is used below to determine if there is a eT or eC reject code
  S (PSOTRIC,PSOTC)="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
- Q:'PSOTRIC "0^Not a TRICARE or CHAMPVA RX"
  ;
  ; Verify Audit Type
  I ("/R/N/I/P/")'[("/"_AUD_"/") Q "0^Invalid Audit Type "_AUD
- ;
- ; Verify Eligibility Type
- I ("/T/C/")'[("/"_ELIG_"/") Q "0^Invalid Eligibility Type "_ELIG
  ;
  ; Coordination of Benefits (default is Primary)
  S RXCOB=+$G(RXCOB) I RXCOB=0 S RXCOB=1
@@ -72,12 +75,43 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  ; User (If null OR Audit Type is Inpatient OR bypass-type reject, set to POSTMASTER)
  S PSOUSER=DUZ
  I (PSOUSER="")!(AUD="I")!$$BYPASS^PSOBPSU1(ELIG,JST) S PSOUSER=.5
- ; Quantity
- S PSOQTY=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",1,"I")),1:$G(RXARR(52,RX_",",7,"I")))
- ;
  ; Set up FDA array
  S PSOIEN="+1,"
  S PSOAIEN=$P($G(^PS(52.87,0)),U,3)+1
+ ;
+ ; Quantity, Provider and NDC fields
+ I AUD="P" D
+ . ; For Partial Fills pull the QTY, PROVIDER and NDC and from
+ . ; the appropriate entry in the PARTIAL DATE sub-file #52.2.
+ . ; Attempt to identify a partial fill for today's date.
+ . S PSOPFIEN=""
+ . S PFIEN=0 F  S PFIEN=$O(^PSRX(RX,"P",PFIEN)) Q:'PFIEN  S PDDATE=$P($G(^PSRX(RX,"P",PFIEN,0)),U,8) I $P(PDDATE,".")=$P(PSODOA,".") S PSOPFIEN=PFIEN
+ . ; partial fill entry for today not found
+ . I 'PSOPFIEN Q 
+ . ;
+ . ;QTY;CURRENT UNIT PRICE OF DRUG;PROVIDER;NDC
+ . S PFFLDS=".04;.042;6;1"
+ . D GETS^DIQ(52.2,PSOPFIEN_","_RX,PFFLDS,"I","PFARR")
+ . S PSOQTY=$G(PFARR(52.2,PSOPFIEN_","_RX_",",.04,"I"))
+ . ;Get the UNIT PRICE OF DRUG from the Prescription, the UNIT PRICE isn't stored
+ . ;  with the partial fill until later in the processing.
+ . S PSOUNITCOST=$G(RXARR(52,RX_",",17,"I"))
+ . ; PROVIDER field
+ . S PSOFDA(FN,PSOIEN,5)=$G(PFARR(52.2,PSOPFIEN_","_RX_",",6,"I"))
+ . ; NDC field
+ . S PSOFDA(FN,PSOIEN,6)=$G(PFARR(52.2,PSOPFIEN_","_RX_",",1,"I"))
+ . I PSOFDA(FN,PSOIEN,6)'="" S PSOFDA(FN,PSOIEN,6)=$G(RXARR(52,RX_",",27,"I"))
+ . ; BILL COST field
+ . S PSOFDA(FN,PSOIEN,8)=(PSOUNITCOST*PSOQTY)+8
+ E  D
+ . S PSOQTY=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",1,"I")),1:$G(RXARR(52,RX_",",7,"I")))
+ . ; PROVIDER field
+ . S PSOFDA(FN,PSOIEN,5)=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",15,"I")),1:$G(RXARR(52,RX_",",4,"I")))
+ . ; NDC field
+ . S PSOFDA(FN,PSOIEN,6)=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",11,"I")),1:$G(RXARR(52,RX_",",27,"I")))
+ . ; BILL COST field
+ . S PSOFDA(FN,PSOIEN,8)=$G(RXARR(52,RX_",",17,"I"))*PSOQTY+8 ;This needs to be verified
+ ;
  ; AUDIT ID field
  S PSOFDA(FN,PSOIEN,.01)=PSOAIEN
  ; PRESCRIPTION field
@@ -86,16 +120,10 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  S PSOFDA(FN,PSOIEN,2)=RFL
  ; PATIENT field
  S PSOFDA(FN,PSOIEN,3)=$G(RXARR(52,RX_",",2,"I"))
- ; DIVISOIN field
+ ; DIVISION field
  S PSOFDA(FN,PSOIEN,4)=PSODIV
- ; PROVIDER field
- S PSOFDA(FN,PSOIEN,5)=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",15,"I")),1:$G(RXARR(52,RX_",",4,"I")))
- ; NDC field
- S PSOFDA(FN,PSOIEN,6)=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",11,"I")),1:$G(RXARR(52,RX_",",27,"I")))
  ; DRUG field
  S PSOFDA(FN,PSOIEN,7)=$G(RXARR(52,RX_",",6,"I"))
- ; BILL COST field (This needs to be verified)
- S PSOFDA(FN,PSOIEN,8)=$G(RXARR(52,RX_",",17,"I"))*PSOQTY+8
  ; ECME NUMBER field
  S PSOFDA(FN,PSOIEN,9)=RXECME
  ; QTY field
@@ -114,6 +142,7 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  S PSOFDA(FN,PSOIEN,17)=JST
  ; Eligibility Code
  S PSOFDA(FN,PSOIEN,18)=ELIG
+ ; 
  D DUR1^BPSNCPD3(RX,RFL,.PSOREJ,.PSOERR,RXCOB)
  S PSOET=$$PSOET^PSOREJP3(RX,RFL)    ;check to see if eT or eC is the reject code as no ecme claim.
  I PSOET S PSOTC=$S(PSOTRIC=1:"eT",PSOTRIC=2:"eC",1:"")

@@ -1,5 +1,5 @@
-ECRECER ;ALB/DAN-Event Capture Encounter Report ;10/12/17  08:44
- ;;2.0;EVENT CAPTURE;**112,122,126,139**;8 May 96;Build 7
+ECRECER ;ALB/DAN-Event Capture Encounter Report ;9/26/18  13:24
+ ;;2.0;EVENT CAPTURE;**112,122,126,139,145**;8 May 96;Build 6
  ;
 STRPT ;
  K ^TMP("ECRECER",$J),^TMP($J,"ECRPT")
@@ -18,25 +18,27 @@ GETREC ;Find records to put on report
  ..F  S ECD=$O(ECDSSU(ECD)) Q:'ECD  D
  ...S ECDT=ECSD-.1
  ...F  S ECDT=+$O(^ECH("ADT",ECLI,ECDFN,ECD,ECDT)) Q:'ECDT!(ECDT>(ECED_.24))  D
- ....S ECIEN=0
+ ....S ECIEN=0,ECVOL=0 ;145 Reset volume total
  ....F  S ECIEN=+$O(^ECH("ADT",ECLI,ECDFN,ECD,ECDT,ECIEN)) Q:'ECIEN  D
- .....S ECPROV=$$GETPROV^ECRDSSA(ECIEN)
- .....Q:$D(^TMP("UNI",$J,ECDFN,ECDT,ECD))  S ^TMP("UNI",$J,ECDFN,ECDT,ECD)="" ;126 don't count if already counted
- .....K ECARR D GETS^DIQ(721,ECIEN,"1;9;26;29","IE","ECARR","ECERROR") ;122 Add associated clinic (26) to list of fields returned
- .....S ECPATN=ECARR(721,ECIEN_",",1,"E")_"~"_ECDFN
- .....S ECSSN=$$GETSSN^ECRDSSA(ECIEN)
- .....S ECVOL=ECARR(721,ECIEN_",",9,"E"),ECIO=ECARR(721,ECIEN_",",29,"I")
- .....S CLNODE=$G(^ECX(728.44,+$G(ECARR(721,ECIEN_",",26,"I")),0)) ;122
- .....I $G(ECSORT)="P" D
- ......S ^TMP("ECRECER",$J,ECLOC1(ECLI),ECPATN,ECPROV,ECIEN)=ECIO_U_ECDT_U_ECD_U_ECVOL_U_ECSSN_U_$G(ECARR(721,ECIEN_",",26,"E"))_U_$P(CLNODE,U,2)_U_$P(CLNODE,U,3)_U_$P($G(^ECX(728.441,+$P(CLNODE,U,8),0)),U)_U_$P(CLNODE,U,14) ;122,139
- .....I $G(ECSORT)="D" D
- ......S ^TMP("ECRECER",$J,ECLOC1(ECLI),ECPROV,ECPATN,ECIEN)=ECIO_U_ECDT_U_ECD_U_ECVOL_U_ECSSN_U_$G(ECARR(721,ECIEN_",",26,"E"))_U_$P(CLNODE,U,2)_U_$P(CLNODE,U,3)_U_$P($G(^ECX(728.441,+$P(CLNODE,U,8),0)),U)_U_$P(CLNODE,U,14) ;122,139
+ .....I '+$G(^TMP("UNI",$J,ECDFN,ECDT,ECD)) S ^TMP("UNI",$J,ECDFN,ECDT,ECD)=ECIEN ;145 Store 1st IEN in this group
+ .....S ECVOL=ECVOL+$$GET1^DIQ(721,ECIEN,9) ;145 add to total procedure volume
+ ....S ECIEN=^TMP("UNI",$J,ECDFN,ECDT,ECD) ;145 Retrieve 1st record in group
+ ....S ECPROV=$$GETPROV^ECRDSSA(ECIEN)
+ ....K ECARR D GETS^DIQ(721,ECIEN,"1;26;29","IE","ECARR","ECERROR") ;122,145
+ ....S ECIO=ECARR(721,ECIEN_",",29,"I")
+ ....S ECPATN=ECARR(721,ECIEN_",",1,"E")_"~"_ECDFN
+ ....S ECSSN=$$GETSSN^ECRDSSA(ECIEN)
+ ....S CLNODE=$G(^ECX(728.44,+$G(ECARR(721,ECIEN_",",26,"I")),0)) ;122
+ ....I $G(ECSORT)="P" D
+ .....S ^TMP("ECRECER",$J,ECLOC1(ECLI),ECPATN,ECPROV,ECIEN)=ECIO_U_ECDT_U_ECD_U_ECVOL_U_ECSSN_U_$G(ECARR(721,ECIEN_",",26,"E"))_U_$P(CLNODE,U,2)_U_$P(CLNODE,U,3)_U_$P($G(^ECX(728.441,+$P(CLNODE,U,8),0)),U)_U_$P(CLNODE,U,14) ;122,139
+ ....I $G(ECSORT)="D" D
+ .....S ^TMP("ECRECER",$J,ECLOC1(ECLI),ECPROV,ECPATN,ECIEN)=ECIO_U_ECDT_U_ECD_U_ECVOL_U_ECSSN_U_$G(ECARR(721,ECIEN_",",26,"E"))_U_$P(CLNODE,U,2)_U_$P(CLNODE,U,3)_U_$P($G(^ECX(728.441,+$P(CLNODE,U,8),0)),U)_U_$P(CLNODE,U,14) ;122,139
  Q
  ;
 EXPORT ;Put in delimited format for exporting
  N CNT,LOC,PATN,PROV,IEN,DATA,MCA ;139
  Q:'$D(^TMP("ECRECER",$J))
- S CNT=1,^TMP($J,"ECRPT",CNT)="LOCATION^PATIENT^SSN^I/O^DATE/TIME^PROVIDER #1^DSS UNIT^VOLUME^CLINIC^STOP CODE^CREDIT STOP CODE^CHAR4 CODE^MCA LABOR CODE" ;122,139
+ S CNT=1,^TMP($J,"ECRPT",CNT)="LOCATION^PATIENT^SSN^I/O^DATE/TIME^PROVIDER #1^DSS UNIT^TOTAL PROCEDURE VOLUME^CLINIC^STOP CODE^CREDIT STOP CODE^CHAR4 CODE^MCA LABOR CODE" ;122,139,145
  I ECSORT="P" D
  .S LOC="" F  S LOC=$O(^TMP("ECRECER",$J,LOC)) Q:LOC=""  D
  ..S PATN="" F  S PATN=$O(^TMP("ECRECER",$J,LOC,PATN)) Q:PATN=""  D
@@ -89,20 +91,20 @@ HDR ;Print Header
  W !,?47,"From ",$$FMTE^XLFDT(ECSD)," through ",$$FMTE^XLFDT(ECED)
  S SORT=$S(ECSORT="P":"Patient Name",1:"Provider")
  W !,?(132-(9+$L(SORT))\2),"Sorted by ",SORT,!
- W !,"Patient",?32,"SSN",?38,"I/O",?43,"Date/Time",?59,"Provider #1",?91,"DSS Unit",?123,"Vol"
- W !,?4,"Clinic",?36,"Stop Code",?47,"Credit Stop",?60,"CHAR4",?68,"MCA Labor Code" ;122,139
+ W !,"Patient",?32,"SSN",?38,"I/O",?43,"Date/Time",?59,"Provider #1",?91,"DSS Unit",?123,"Total" ;145
+ W !,?4,"Clinic",?36,"Stop Code",?47,"Credit Stop",?60,"CHAR4",?68,"MCA Labor Code",?123,"Proc Vol" ;122,139,145
  W !,$$REPEAT^XLFSTR("-",132)
  Q
 SUB ;Print totals
  N ARR,DISP
  I ECSORT="P" D
  .W !
- .S ARR="" F  S ARR=$O(PROTOT(ARR)) Q:ARR=""  S DISP="Subtotal for provider "_ARR W !,$J(DISP,128),$J(PROTOT(ARR),4)
+ .S ARR="" F  S ARR=$O(PROTOT(ARR)) Q:ARR=""  S DISP="Encounter subtotal for provider "_ARR W !,$J(DISP,128),$J(PROTOT(ARR),4) ;145
  .W !,?128,"===="
- .S DISP="Total for patient "_$P(PATN,"~") W !,$J(DISP,128),$J(PTOT,4),!
+ .S DISP="Encounter total for patient "_$P(PATN,"~") W !,$J(DISP,128),$J(PTOT,4),! ;145
  I ECSORT="D" D
  .W !
- .S ARR="" F  S ARR=$O(PTOT(ARR)) Q:ARR=""  S DISP="Subtotal for patient "_$P(ARR,"~") W !,$J(DISP,128),$J(PTOT(ARR),4)
+ .S ARR="" F  S ARR=$O(PTOT(ARR)) Q:ARR=""  S DISP="Encounter subtotal for patient "_$P(ARR,"~") W !,$J(DISP,128),$J(PTOT(ARR),4) ;145
  .W !,?128,"===="
- .S DISP="Total for provider "_PROV W !,$J(DISP,128),$J(PROTOT,4),!
+ .S DISP="Encounter total for provider "_PROV W !,$J(DISP,128),$J(PROTOT,4),! ;145
  Q

@@ -1,5 +1,5 @@
 RCDPAYER ;ALB/PJH - TPJI Utility ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**269,276,298,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**269,276,298,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Integration Agreement 5549
@@ -135,6 +135,7 @@ AUDIT(ORIG,TEXT,MODE) ;
  I MODE="C" S MTEXT="EEOB COPIED BY "_INIT
  I MODE="R" S MTEXT="EEOB REMOVED BY "_INIT
  I MODE="W" S MTEXT="EEOB MOVE/COPY IN SPLIT/EDIT"
+ I MODE="L" S MTEXT="EEOB MOVE/COPY IN LINK PAYMENT"
  ;Direct update of [PRCA COMMENT] edit template fields 
  ;(excluding Date of Contact, Extended Comments and Follow-up Date)
  S DIE="^PRCA(433,",DA=PRCAEN

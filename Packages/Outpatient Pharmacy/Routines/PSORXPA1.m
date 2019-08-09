@@ -1,5 +1,5 @@
 PSORXPA1 ;BIR/SAB - listman partial prescriptions ;07/14/93
- ;;7.0;OUTPATIENT PHARMACY;**11,27,56,77,130,152,181,174,287,385,442**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,56,77,130,152,181,174,287,385,442,528**;DEC 1997;Build 10
  ;External references L,UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DD(52 supported by DBIA 999
@@ -14,9 +14,13 @@ PSORXPA1 ;BIR/SAB - listman partial prescriptions ;07/14/93
  D FULL^VALM1 I '$D(PSOPAR) D ^PSOLSET D:'$D(PSOPAR) ULK G:'$D(PSOPAR) KL
  S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)) S:'$G(BBFLG) BBRX(1)=""
  ; BNT PSO*7*385
- N PSORF,PSOTRIC,PSOTCQ
+ N PSOELIG,PSORF,PSOTRIC,PSOTCQ
+ ; Get Patient Eligibility from PSORX("PATIENT STATUS") or PTST.
+ S PSOELIG=0
+ S PSOELIG=$S($E(PSORX("PATIENT STATUS"),1)="T":1,$G(PTST)="TRICARE":1,$E(PSORX("PATIENT STATUS"),1)="C":2,$G(PTST)="CHAMPVA":2,1:0)
  S PSORF=$$LSTRFL^PSOBPSU1(DA),PSOTRIC=$$TRIC^PSOREJP1(DA,PSORF),PSOTCQ=0
- I PSOTRIC D  Q:PSOTCQ
+ ; PSOELIG will contain the Patient's eligibility for Rx's where the BILLING ELIGIBILITY INDICATOR isn't populated.
+ I PSOTRIC!PSOELIG D  Q:PSOTCQ
  . ; Check for PSO TRICARE/CHAMPVA security key
  . I '$D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) D  Q
  . . S PSOTCQ=1,VALMBCK="R",VALMSG="Action Requires <PSO TRICARE/CHAMPVA> security key"
@@ -82,9 +86,10 @@ ACT ;adds activity info for partial rx
  S DA=DA+1,^PSRX(RXN,"A",0)="^52.3DA^"_DA_"^"_DA,^PSRX(RXN,"A",DA,0)=DT_"^"_"P"_"^"_DUZ_"^"_RXF_"^"_PRMK
  ; BNT PSO*7*385 Add audit log entry for TRICARE or CHAMPVA RX
  N RXJST
- I PSOTRIC D
- . S RXJST=$S(PSOTRIC=1:"TRICARE",PSOTRIC=2:"CHAMPVA",1:"")_" Partial Fill"
- . D AUDIT^PSOTRI(RXN,RXF,,RXJST,"P",$S(PSOTRIC=1:"T",1:"C"))
+ I PSOTRIC!PSOELIG D
+ . I PSOTRIC S RXJST=$S(PSOTRIC=1:"TRICARE",PSOTRIC=2:"CHAMPVA",1:"")_" Partial Fill"
+ . I PSOELIG S RXJST=$S(PSOELIG=1:"TRICARE",PSOELIG=2:"CHAMPVA",1:"")_" Partial Fill"
+ . D AUDIT^PSOTRI(RXN,RXF,,RXJST,"P",$S(PSOTRIC=1:"T",PSOELIG=1:"T",1:"C"))
 EX K RXF,I,FDA S DA=RXN
  Q
 ULK ;

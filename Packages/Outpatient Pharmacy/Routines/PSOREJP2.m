@@ -1,5 +1,5 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482,512**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482,512,528**;DEC 1997;Build 10
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
@@ -75,7 +75,7 @@ SEL ; - Field Selection (Patient/Drug/Rx)
 EXIT Q
  ;
 CLO ; - Ignore a REJECT hidden action
- N PSOTRIC,X,PSOET,PSOIT
+ N PSOTRIC,X,PSOETEC,PSOIT
  ;
  ; ESG - PSO*7*448 - Bug fix, should pull FILL from sub-file 52.25.
  I '$D(FILL) S FILL=+$$GET1^DIQ(52.25,REJ_","_RX,5)
@@ -114,8 +114,8 @@ CLO ; - Ignore a REJECT hidden action
  ;
  I $$PTLBL(RX,FILL) D PRINT^PSOREJP3(RX,FILL)
  I PSOTRIC D
- .S PSOET=$$PSOET^PSOREJP3(RX,FILL)
- .D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOET:"N",1:"R"),$S(PSOTRIC=1:"T",PSOTRIC=2:"C",1:""))
+ .S PSOETEC=$$PSOETEC^PSOREJP5(RX,FILL)
+ .D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOETEC:"N",1:"R"),$S(PSOTRIC=1:"T",PSOTRIC=2:"C",1:""))
  ;
  Q
  ;

@@ -1,5 +1,5 @@
 DINIT20 ;SFISC/XAK - INITIALIZE VA FILEMAN ;9JAN2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -45,7 +45,7 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT22:X?.P S @("^DD(1.1,"_$E($P(X,
  ;;1.1,9 ^
  ;;1.1,9.2 X ^DD(1.1,1.1,9.3) S X="" F %=1:1:%-1 S X=X_Y(1.1,%)_","
  ;;1.1,9.3 S X1=DIA F %=1:1 S X=$P(Y(1.1,1.1),",",%) Q:X=""  S Y(1.1,%)=$S($D(^DD(X1,X,0)):$P(^(0),U,1,2),1:"????"),X1=+$P(Y(1.1,%),U,2),Y(1.1,%)=$P(Y(1.1,%),U,1)
- ;;2,0 OLD VALUE^CJ80^^ ; ^S X=$G(^DIA(DIA,D0,2)) I X="" Q:$P($G(^(0)),U,6)="i"!$D(^(2.14))  S X="<no previous value>"
+ ;;2,0 OLD VALUE^CJ80^^ ; ^S X=$G(^DIA(DIA,D0,2)),X=$S(X]"":X,($P($G(^(0)),U,6)="i"!$D(^(2.14))):"",1:"<no previous value>")
  ;;2,9 ^
  ;;2.1,0 OLD INTERNAL VALUE^F^^2.1;1^K:$L(X)>30 X
  ;;2.2,0 DATATYPE OF OLD VALUE^S^S:SET;P:POINTER;V:VARIABLE POINTER;^2.1;2^Q
@@ -62,7 +62,7 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT22:X?.P S @("^DD(1.1,"_$E($P(X,
  ;;2.9,21,0 ^^2^2
  ;;2.9,21,1,0 If the audited File is #2 or #9000001, or if there is a pointer back to either of these Files from the audited File,
  ;;2.9,21,2,0 then this field shows which particular Patient is involved in the audited data.
- ;;3,0 NEW VALUE^CJ80^^ ; ^S X=$G(^DIA(DIA,D0,3)) I X="",$G(^(2))]"" S X="<deleted>"
+ ;;3,0 NEW VALUE^CJ80^^ ; ^S X=$G(^DIA(DIA,D0,3)),X=$S(X]"":X,$G(^(2))]"":"<deleted>",1:"")
  ;;3,9 ^
  ;;3.1,0 NEW INTERNAL VALUE^F^^3.1;1^K:$L(X)>30 X
  ;;3.2,0 DATATYPE OF NEW VALUE^S^S:SET;P:POINTER;V:VARIABLE POINTER;^3.1;2^Q

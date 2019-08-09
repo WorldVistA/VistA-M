@@ -1,130 +1,11 @@
-RCDPESP2 ;BIRM/SAB - ePayment Lockbox Parameter Audit and Exclusion Reports ;07/01/15
- ;;4.5;Accounts Receivable;**298,304,317,321,326**;Mar 20, 1995;Build 26
+RCDPESP2 ;BIRM/SAB - ePayment Lockbox Parameter Audit and Exclusion Reports ;17 Oct 2018 18:52:41
+ ;;4.5;Accounts Receivable;**298,304,317,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
 RPT1 ; EDI Lockbox Parameters Report [RCDPE SITE PARAMETER REPORT]
- ;
- ; DESCRIPTION: This report is a simple listing of the RCDPE PARAMETER AUDIT file
- ;              including data concerning changes to the RCDPE PPARAMETER file.
- ;
- ; Input:       None
- ;
- ; GLOBALS:     ^RCY(344.7,              RCDPE PARAMETER AUDIT
- ;              ^TMP("RCDPESP2",$J,      TMP FILE FOR LIST^DIC OUTPUT
- ;
- ; GLOBALS:     ^RCY(344.7, - RCDPE PARAMETER AUDIT
- ;
- ; INPUT PARAMETERS: NONE
- ;
- ; LOCAL VARIABLES:
- ;    RCRANGE - RETURN VALUE FOR DATE RANGE FOR THE REPORT
- ;    RCSTDT  - STARTING DATE FOR THE REPORT
- ;    RCENDT  - END DATE FOR THE REPORT
- ;    RCEXCEL - INDIATES IF OUTPUT IS GOING TO EXCEL
- ;    RCSCR   - SCREEN FOR LIST^DIC CALL
- ;    RCFLDS  - FIELDS TO BE CAPTURED IN LIST^DIC CALL
- ;    RCDIGET   - ^TMP GLOBAL RESULTS FROM LIST^DIC CALL
- ;    RCDIERR   - HOLDS ERRORS FROM LIST^DIC
- ;    RCHDR("RUNDATE")   - DATE THE REPORT RAN
- ;    RCHDR("PAGE")  - PAGE COUNTER
- ;    RCSTOP  - STOP DISPLAYING THE REPORT
- ;    RCPARAM - PARAMETER THAT WAS CHANGED
- ;    RCPARAM("OLDVAL")   - OLD PARAMETER VALUE
- ;    RCPARAM("TIME")  - TIME PARAMETER WAS CHANGED
- ;    RCPARAM("NEWVAL")   - NEW PARAMETER VALUE
- ;    RCPARAM("USER")  - USER WHO CHANGED A PARAMETER
- ;    RCTMP   - HOLDS ONE LINE OF DATA FROM LIST^DIC OUTPUT
- ;    RCTYPE  - TYPE OF REPORT TO RUN (MEDICAL, PHARMACY, OR BOTH)
- ;    RCTF - FIELD NUMBER FROM RCTMP VARIABLE
- ;
- N RCDIERR,RCDIGET,RCENDT,RCEXCEL,RCFLDS,RCHDR,RCIEN,RCPARAM,RCRANGE,RCSCR,RCSTDT,RCSTOP
- N RCTF,RCTMP,RCTYPE,RCFILE,RCSL ; RCTF added PRCA*4.5*326
- ; Kernel variables
- N X1,X2,X,Y,%ZIS,POP
- S RCSTOP=0,RCSL=0
- W !!,"EDI Lockbox Parameters Audit Report",!
- ;
- S (RCHDR("PAGE"),RCSTOP,RCHDR,RCEXCEL)=0
- ;
- ; retrieve report type (Medical, Pharmacy, or Both)
- S RCTYPE=$$RTYPE()
- Q:RCTYPE=-1
- S RCHDR("REPORTTYPE")=RCTYPE
- ;
- S RCRANGE=$$DTRNG()
- Q:RCRANGE=0
- S RCSTDT=$P(RCRANGE,U,2),RCENDT=$P(RCRANGE,U,3)
- S RCEXCEL=$$DISPTY^RCDPEM3() Q:+RCEXCEL=-1
- ; Display capture information for Excel
- I RCEXCEL D INFO^RCDPEM6
- ;Select output device
- S %ZIS="M" D ^%ZIS Q:POP  U IO
- ; INPUT PARAMETER:
- ;   RCEXCEL - IF 1 THEN OUTPUT FOR EXCEL
- ;
- S RCHDR("RUNDATE")=$$FMTE^XLFDT($$NOW^XLFDT,"5S")
- S RCHDR("DATERANGE")=$$FMTE^XLFDT(RCSTDT,"5D")_" - "_$$FMTE^XLFDT(RCENDT,"5D")
- ;
- S RCENDT=RCENDT+.999999
- ;S RCSCR="I ($P(^(0),U,5)=344.61)&($P(^(0),U,1)>"_RCSTDT_")&($P(^(0),U,1)<"_RCENDT_")"
- S RCSCR="I ($P(^(0),U,1)>"_RCSTDT_")&($P(^(0),U,1)<"_RCENDT_")"
- S RCFLDS="@;.04;.01I;.07;.06;.03;.05I;.02"
- S RCDIGET=$NA(^TMP("RCDPESP2",$J)) K @RCDIGET
- D LIST^DIC(344.7,,RCFLDS,"P",,,,,RCSCR,,RCDIGET,"RCDIERR")
- I $D(RCDIERR) W !!,"ERROR COLLECTING THE REPORT DATA" D ASK^RCDPEARL() Q
- ; No changes found for date range - quit - comment added PRCA*4.5*326
- I '$D(@RCDIGET@("DILIST",1)) D  Q
- . D HDRLPR(RCEXCEL,.RCHDR,.RCSTOP) S RCSL=9
- . W !,"NO PARAMETER AUDIT ENTRIES TO REPORT",!
- . D ASK^RCDPEARL(.RCSTOP)
- ; Loop though changes from #344.7 - comment added PRCA*4.5*326
- S RCIEN=0
- F  S RCIEN=$O(@RCDIGET@("DILIST",RCIEN)) Q:RCSTOP!('RCIEN)  D
- . I 'RCHDR("PAGE") D
- . . D HDRLPR(RCEXCEL,.RCHDR,.RCSTOP) S RCSL=9
- . Q:RCSTOP
- . K RCPARAM
- . S RCTMP=$P(@RCDIGET@("DILIST",RCIEN,0),U,2,8)
- . S RCFILE=$P(RCTMP,U,6)
- . S RCTF=$P(RCTMP,U) ; PRCA*4.5*326
- . ;
- . Q:RCFILE=344.6  ; Excluded payers reported elswhere
- . ;
- . S RCPARAM=$$GET1^DID(RCFILE,RCTF,,"LABEL") ; PRCA*4.5*326
- . ;
- . Q:'$$RPTYPE(RCTYPE,RCPARAM)
- . ;
- . I RCFILE=344.61,RCTF=.11 S RCPARAM="AUTO-DECREASE MED NOPAY ENABLED" ; PRCA*4.5*326
- . I RCFILE=344.61,RCTF=.12 S RCPARAM="AUTO-DECREASE MED DAYS (NO-PAY)" ; PRCA*4.5*326
- . ;
- . S RCPARAM("TIME")=$$FMTE^XLFDT($P(RCTMP,U,2),"2")
- . S RCPARAM("USER")=$P(RCTMP,U,5)
- . ; Next line - added EDI claim auto-decrease no-pay parameter field .08 - PRCA*4.5*326
- . I (RCTF=.02)!(RCTF=1.01)!(RCTF=.08) D
- . . I RCFILE=344.62 S RCPARAM=RCPARAM_" ("_$S($P(RCTMP,U,7)'="":$P($G(^RCY(RCFILE,$P(RCTMP,U,7),0)),U,1),1:"ERR")_")"
- . . S RCPARAM("OLDVAL")=$S(+$P(RCTMP,U,3)=0:"No",+$P(RCTMP,U,3)=1:"Yes",1:"Err")
- . . S RCPARAM("NEWVAL")=$S(+$P(RCTMP,U,4)=0:"No",+$P(RCTMP,U,4)=1:"Yes",1:"Err")
- . ; Next line - added EDI claim auto-audit parameter fields - PRCA*4.5*321
- . I (RCTF=.03)!(RCTF=.11)!(RCTF=7.05)!(RCTF=7.06)!(RCTF=7.07)!(RCTF=7.08) D
- . . S RCPARAM("OLDVAL")=$S($P(RCTMP,U,3):"Yes",1:"No")
- . . S RCPARAM("NEWVAL")=$S($P(RCTMP,U,4):"Yes",1:"No")
- . ; Next line - added EDI claim auto-decrease no-pay parameter field .12 - PRCA*4.5*326
- . I (RCFILE=344.62)&((RCTF=.12)!(RCTF=.06)) D
- . . S RCPARAM=RCPARAM_" ("_$S($P(RCTMP,U,7)'="":$P($G(^RCY(RCFILE,$P(RCTMP,U,7),0)),U,1),1:"ERR")_")"
- . ; Next line - added EDI claim auto-audit parameter fields - PRCA*4.5*321
- . I '$F("^.02^.03^1.01^7.05^7.06^7.07^7.08^.08^.11^",U_RCTF_U) D  ; Add .08 and .11 PRCA*4.5*326
- . . S RCPARAM("OLDVAL")=$P(RCTMP,U,3)
- . . S RCPARAM("NEWVAL")=$P(RCTMP,U,4)
- . I 'RCEXCEL D
- . . W !,RCPARAM,?32,RCPARAM("TIME"),?51,RCPARAM("OLDVAL"),?56,RCPARAM("NEWVAL"),?61,$E(RCPARAM("USER"),1,IOM-61) S RCSL=RCSL+1
- . . I RCSL>=(IOSL-2) D HDRLPR(RCEXCEL,.RCHDR,.RCSTOP) Q:RCSTOP  S RCSL=9
- . I RCEXCEL W !,RCPARAM_U_RCPARAM("TIME")_U_RCPARAM("OLDVAL")_U_RCPARAM("NEWVAL")_U_RCPARAM("USER")
- ;
- ; end of report
- I 'RCSTOP W !!,$$ENDORPRT^RCDPEARL D ASK^RCDPEARL(.RCSTOP)
-RPT1Q K @RCDIGET
+ G AUDPARM^RCDPESPA  ; PRCA*4.5*332, report moved, 11 October 2018
  Q
  ;
 HDRLPR(RCEXCEL,RCHDR,RCSTOP) ; Report header Lockbox Parameter Report
@@ -432,3 +313,4 @@ RPTYPE(RCTYPE,RCPARAM) ;
  Q:(RCTYPE="M")&(RCMEN)&(RCPARAM["DECREASE") 1         ; Auto-decrease for med is on
  Q:(RCTYPE="P")&(RCREN)&(RCPARAM["DECREASE") 1         ; Auto-decrease for pharmacy
  Q 0
+ ;

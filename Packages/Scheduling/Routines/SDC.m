@@ -1,5 +1,5 @@
 SDC ;MAN/GRR,ALB/LDB - CANCEL A CLINIC'S AVAILABILITY ;JAN 15, 2016
- ;;5.3;Scheduling;**15,32,79,132,167,478,487,523,545,627,684**;Aug 13, 1993;Build 1
+ ;;5.3;Scheduling;**15,32,79,132,167,478,487,523,545,627,684,724**;Aug 13, 1993;Build 4
  N SDATA,SDCNHDL ; for evt dvr
 SDC1 K SDLT,SDCP S NOAP="" D LO^DGUTL
  S DIC=44,DIC(0)="MEQA",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))",DIC("A")="Select CLINIC NAME: " D ^DIC K DIC("S"),DIC("A") G:'$D(^SC(+Y,"SL")) END^SDC0
@@ -39,17 +39,18 @@ ALL N CANREM
  W !,"Reason for cancellation: " R CANREM:DTIME I $L(CANREM)>160!($L(CANREM)<3) W !,*7,"Reason must be between 3 to 160 characters long",! G ALL
  D S S ^(1)="   "_$E(SD,6,7)_"    **CANCELLED**",FR=SD,TO=SD+.9 ;NAKED REFERENCE - ^SC(IFN,"ST",Date,1)
 C S FR=$O(^SC(SC,"S",FR)) I FR<1!(FR'<TO) W !!,"CANCELLED!  " K SDX G CHKEND^SDC0
- N TDH,TMPD,DIE,DR,NODE
- F I=0:0 S I=$O(^SC(SC,"S",FR,1,I)) Q:I'>0  D
- .I '$D(^SC(SC,"S",FR,1,I,0)) I $D(^("C")) S J=FR,J2=I D DELETE^SDC1 K J,J2 Q  ;SD*5.3*545 delete corrupt node
- .I '+$G(^SC(SC,"S",FR,1,I,0)) S J=FR,J2=I D DELETE^SDC1 K J,J2 Q  ;SD*5.3*545 if DFN is missing delete record
- .S DFN=+^SC(SC,"S",FR,1,I,0),SDCNHDL=$$HANDLE^SDAMEVT(1)
- .D BEFORE^SDAMEVT(.SDATA,DFN,FR,SC,I,SDCNHDL)
- .S $P(^SC(SC,"S",FR,1,I,0),"^",9)="C"
+ N TDH,TMPD,DIE,DR,NODE,SDI
+ ; SD*724 - Replace 'I' with 'SDI'
+ F SDI=0:0 S SDI=$O(^SC(SC,"S",FR,1,SDI)) Q:SDI'>0  D
+ .I '$D(^SC(SC,"S",FR,1,SDI,0)) I $D(^("C")) S J=FR,J2=SDI D DELETE^SDC1 K J,J2 Q  ;SD*5.3*545 delete corrupt node
+ .I '+$G(^SC(SC,"S",FR,1,SDI,0)) S J=FR,J2=SDI D DELETE^SDC1 K J,J2 Q  ;SD*5.3*545 if DFN is missing delete record
+ .S DFN=+^SC(SC,"S",FR,1,SDI,0),SDCNHDL=$$HANDLE^SDAMEVT(1)
+ .D BEFORE^SDAMEVT(.SDATA,DFN,FR,SC,SDI,SDCNHDL)
+ .S $P(^SC(SC,"S",FR,1,SDI,0),"^",9)="C"
  .S:$D(^DPT(DFN,"S",FR,0)) NODE=^(0)  ;added SD/523
  .Q:$P(NODE,U,1)'=SC                  ;added SD/523
  .S ^DPT("ASDCN",SC,FR,DFN)=""
- .S SDSC=SC,SDTTM=FR,SDPL=I,TDH=DH,TMPD=CANREM D CANCEL^SDCNSLT S DH=TDH ;SD/478
+ .S SDSC=SC,SDTTM=FR,SDPL=SDI,TDH=DH,TMPD=CANREM D CANCEL^SDCNSLT S DH=TDH ;SD/478
  .I $D(^DPT(DFN,"S",FR,0)),$P(^(0),"^",2)'["C" S $P(^(0),"^",2)="C",$P(^(0),"^",12)=DUZ,$P(^(0),"^",14)=SDTIME,DH=DH+1,TDH=DH,DIE="^DPT(DFN,"_"""S"""_",",DR="17///^S X=CANREM",DA=FR D ^DIE S DH=TDH D MORE
  .D SDEC^SDCNP0(DFN,FR,SC,"C","",$G(CANREM),SDTIME,DUZ)   ;alb/sat 627
  G C
@@ -58,7 +59,8 @@ B S X=SD D DOW^SDM0 S DOW=Y,SS=+$O(^SC(SC,"T"_Y,X)) I $D(^(SS,1)),^(1)]"" S DH=^
  Q
 MORE I $D(^SC("ARAD",SC,FR,DFN)) S ^(DFN)="N"
  S SDIV=$S($P(^SC(SC,0),"^",15)]"":$P(^(0),"^",15),1:" 1"),SDV1=$S(SDIV:SDIV,1:+$O(^DG(40.8,0))) I $D(^DPT("ASDPSD","C",SDIV,SC,FR,DFN)) K ^(DFN)
- S SDH=DH,SDTTM=FR,SDSC=SC,SDPL=I,SDRT="D" D RT^SDUTL
+ ; SD*724 - set SDPL with value from SDI
+ S SDH=DH,SDTTM=FR,SDSC=SC,SDPL=SDI,SDRT="D" D RT^SDUTL
  S DH=SDH K SDH D CK1,EVT
  K SD1,SDIV,SDPL,SDRT,SDSC,SDTTM,SDX Q
 CK1 S SDX=0 F SD1=FR\1:0 S SD1=$O(^DPT(DFN,"S",SD1)) Q:'SD1!((SD1\1)'=(FR\1))  I $P(^(SD1,0),"^",2)'["C",$P(^(0),"^",2)'["N" S SDX=1 Q

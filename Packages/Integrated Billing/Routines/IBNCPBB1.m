@@ -1,5 +1,5 @@
 IBNCPBB1 ;ALB/BDB - CONTINUATION OF ECME BACKBILLING ;24-JUN-2003
- ;;2.0;INTEGRATED BILLING;**384,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**384,550,624**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -21,7 +21,12 @@ PROCESS ;
  .. S IBDT=$P(IBD,U,4)
  .. I '$$INSUR^IBBAPI(IBPAT,IBDT,"P",.IBANY,1) S IBQ=1 Q
  .. S IBINS=+$G(IBANY("IBBAPI","INSUR",1,1))
- .. S IBQ=$$ROICHK^IBNCPDR4(IBPAT,IBDRUG,IBINS,IBDT) D:IBQ ROICLN^IBNCPDR4("",IBRX,IBFIL)
+ .. ; If the Date of Service is on or after the Mission Act
+ .. ; implementation date, set IBQ to 1 and do not check for ROI on file.
+ .. I $$MACHK^IBNCPDR4(IBDT) S IBQ=1 Q
+ .. ; If there's an ROI on file (IBQ=1) then D ROICLN^IBNCPDR4.
+ .. S IBQ=$$ROICHK^IBNCPDR4(IBPAT,IBDRUG,IBINS,IBDT)
+ .. I IBQ=1 D ROICLN^IBNCPDR4("",IBRX,IBFIL)
  .. I 'IBQ S IBERR=IBERR+1
  . S RES=$$SUBMIT^IBNCPDPU(IBRX,IBFIL) W "  ",$S(+RES=0:"Sent through ECME",1:"Not sent")
  . I +RES'=0 W !?5,"*** ECME returned status: ",$$STAT^IBNCPBB(RES) S IBERR=IBERR+1

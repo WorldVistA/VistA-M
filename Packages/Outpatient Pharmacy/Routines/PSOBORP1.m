@@ -1,5 +1,5 @@
 PSOBORP1 ;ALBANY/BLD - TRICARE-CHAMPVA BYPASS/OVERRIDE AUDIT REPORT (CONT) ;10/17/12 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**358,385,415,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**358,385,415,427,528**;DEC 1997;Build 10
  ;
  ;***********copied from routine BPSRPT3 AND BPSRPT4************
  ;
@@ -15,12 +15,12 @@ SELPHARM(PSOSEL) N DIC,DIR,DIRUT,DTOUT,DUOUT,X,Y
  ; Return Value ->   "" = Valid Entry or Entries Selected
  ;                                        ^ = Exit
  ;                                       
- ; Output Variable -> PSOPHARM = 1 One or More Pharmacies Selected
- ;                          = 0 User Entered 'ALL'
+ ; Output Variable -> PSOPHARM = "D" One or More Pharmacies Selected
+ ;                             = "A" User Entered 'ALL'
  ;                            
  ; If PSOPHARM = 1 then the PSOPHARM array will be defined where:
  ;    PSOPHARM(ptr) = ptr ^ BPS PHARMACY NAME and
- ;    ptr = Internal Pointer to BPS PHARMACIES file (#9002313.56)
+ ;    ptr = Internal Pointer to OUTPATIENT SITE file (#59)
  ;
  ;Reset PSOPHARM array
  K PSOPHARM
@@ -78,7 +78,6 @@ SELPHARM(PSOSEL) N DIC,DIR,DIRUT,DTOUT,DUOUT,X,Y
  Q Y
  ;
  ;
- ;
 SELSMDET(DFLT) ;
  ;
  ; Display (S)ummary or (D)etail Format
@@ -86,13 +85,13 @@ SELSMDET(DFLT) ;
  ; Input Variable -> DFLT = 1 Summary
  ;                          2 Detail
  ;                          
- ; Return Value ->   1 = Summary
- ;                   0 = Detail
- ;                   ^ = Exit
+ ; Return Value ->   "S" = Summary
+ ;                   "D" = Detail
+ ;                    ^  = Exit
  ;
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  ;
- S DFLT=$S($G(DFLT)=1:"Summary",$G(DFLT)=0:"Detail",1:"Detail")
+ S DFLT=$S($G(DFLT)=1:"Summary",$G(DFLT)=2:"Detail",1:"Detail")
  S DIR(0)="S^S:Summary;D:Detail",DIR("A")="Display (S)ummary or (D)etail Format",DIR("B")=DFLT
  D ^DIR
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
@@ -159,15 +158,12 @@ SELATYP(DFLT) ;
  .S PSOSEL("ELIG_TYPE","C")="CHAMPVA"
  .S EXIT=1
  I EXIT Q Y
- I Y'="" S PSOSEL("ELIG_TYPE",Y)=$S(Y="T":"TRICARE",Y="C":"CHAMPVA",1:"ALL")
+ I Y'="" S PSOSEL("ELIG_TYPE")=Y,PSOSEL("ELIG_TYPE",Y)=$S(Y="T":"TRICARE",Y="C":"CHAMPVA",1:"ALL")
  Q Y
  ;
 SELTCCD(PSOSEL) ;
  ;
- ; Select to Include (S)pecific Reject Code or (A)ll
- ;
- ;
- ;Prompt to Include (I)patient, (N)on-Billable, (R)eject, (P)artial, or A)ll: (no default)
+ ;Prompt to Include (I)npatient,(N)on-Billable, (R)eject, (P)artial, or A)ll: (no default)
  ;
  N DIC,DIR,DIRUT,DUOUT,EXIT,REJ,X,Y,I
  S EXIT=0

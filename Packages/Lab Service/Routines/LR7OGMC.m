@@ -1,5 +1,5 @@
 LR7OGMC ;DALOI/STAFF- Interim report rpc memo chem ;11/19/09  17:59
- ;;5.2;LAB SERVICE;**187,230,312,286,356,372,395,350,516**;Sep 27, 1994;Build 3
+ ;;5.2;LAB SERVICE;**187,230,312,286,356,372,395,350,516,523**;Sep 27, 1994;Build 4
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; sets lab data into ^TMP("LR7OG",$J,"TP"
@@ -31,6 +31,9 @@ CH(LRDFN,IDT,ALL,OUTCNT,FORMAT,DONE,SKIP) ; from LR7OGM
  D ACC:UID,VER
  I '$O(^TMP("LR7OG",$J,"TP",CDT,0)) S SKIP=1 Q
  I '$O(^LR(LRDFN,"CH",IDT,1)) D CHKNP
+ ;
+ ;LR 523 quit out when only calling for info only for LR7OGM
+ I FORMAT=4 Q
  ;
  I FORMAT D
  . S ^TMP("LR7OGX",$J,"OUTPUT",OUTCNT)="0^CH^"_(9999999-IDT)

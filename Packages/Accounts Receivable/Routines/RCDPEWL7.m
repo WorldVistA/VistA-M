@@ -1,5 +1,5 @@
 RCDPEWL7 ;ALB/TMK/KML - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -157,7 +157,7 @@ INIT ; Entry point for List template to build the display of ERAs
  W !!,"SEARCHING, PLEASE STANDBY (PRESS '^' TO QUIT SEARCH)",!!
  F  S RCINDX=$O(^RCY(344.4,"AFD",RCINDX)) Q:'RCINDX!(RCINDX\1>RCDTTO)!RCQUIT  S RCZ=0 F  S RCZ=$O(^RCY(344.4,"AFD",RCINDX,RCZ)) Q:'RCZ  D  Q:RCQUIT
  . S RCTT=RCTT+1
- . I (RCTT#10000=0) D  Q:RCQUIT=1
+ . I RCTT>19999 D  Q:RCQUIT=1
  . . S RCTT=0
  . . D WAIT^DICD
  . . D INITKB^XGF ; supported by DBIA 3173
@@ -193,7 +193,7 @@ HDR ; Header for ERA Worklist (List user Current Screen View selections)
  . I $P(X,U,2) S XX=XX_"-"_$$FMTE^XLFDT($P(X,U,2),2)
  E  S XX=XX_"NONE SELECTED"
  S X=$G(^TMP("RCERA_PARAMS",$J,"RCTYPE"))
- S XX2="PHARM/TRIC/MEDICAL: "
+ S XX2="MEDICAL/PHARM/TRIC: " ; PRCA*4.5*332
  S XX2=XX2_$S(X="M":"MEDICAL ONLY",X="P":"PHARMACY ONLY",X="T":"TRICARE ONLY",1:"ALL")
  S XX=$$SETSTR^VALM1(XX2,XX,40,41)
  S VALMHDR(1)=XX
@@ -269,7 +269,7 @@ WL(RCERA) ; Enter worklist
  Q:RCERA'>0
  ; PRCA*4.5*304 - Reentry if we cleared exceptions
 WL1 ; retest to make sure this ERA does not have an exception
- S TYPE=$S($$PAYTYPE("P"):"P",1:"M"),RCEXC=0 ; PRCA*4.5*321
+ S TYPE=$S($$PAYTYPE(RCERA,"P"):"P",1:"M"),RCEXC=0 ; PRCA*4.5*321
  ; PRCA*4.5*304 - see if we have the ERA and go to WL1 to retest.
  I ($$XCEPT^RCDPEWLP(RCERA)]"")&(TYPE="M") D EXCDENY^RCDPEWLP Q  ;cannot process MEDICAL ERA if exception exists then fall back to Worklist.
  ; PRCA*4.5*304 - Removed the G:($G(RCERA)'="")&&($G(RCEXC)=1) WL1 from above so it falls back to the worklist instead of going forward to the "Select ERA"
@@ -287,8 +287,10 @@ WL1 ; retest to make sure this ERA does not have an exception
  G:RCNOED WLD   ; already has a receipt so no need to check for older unposted EFTs
  ; function $$AGEDEFTS - search for any UNPOSTED EFTs older than 14 days (medical) or 30 days (pharmacy)
  ; return value of 0, 2, or 3 represent that entry into scratchpad can occur
- S RETCODES=$$AGEDEFTS^RCDPEWLP(RCERA,TYPE)
- F I=1:1 S STATE=$P(RETCODES,U,I) Q:STATE=""  S PREVENT=$S($E(STATE,1)=1:1,1:0)
+ S TYPE=$S(TYPE="P":"P",$$PAYTYPE(RCERA,"T"):"T",1:"M") ; PRCA*4.5*332
+ S RETCODES=$$AGEDEFTS^RCDPEWLP(RCERA,TYPE) ; PRCA*4.5*332
+ S PREVENT=0
+ F I=1:1 S STATE=$P(RETCODES,U,I) Q:STATE=""  I $E(STATE,2)=TYPE,$E(STATE,1)=1 S PREVENT=1 ; PRCA*4.5*332
  Q:PREVENT   ; prevent user from entering scratchpad; there are older EFTs on the system that need to be worked.
 WLD ;
  D DISP^RCDPEWL(RCERA,RCNOED)

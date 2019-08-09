@@ -1,5 +1,5 @@
-ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;7/30/15  15:44
- ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122,126,130**;8 May 96;Build 1
+ECUTL1 ;ALB/ESD - Event Capture Classification Utilities ;11/5/18  12:35
+ ;;2.0;EVENT CAPTURE;**10,13,17,42,54,76,107,122,126,130,145**;8 May 96;Build 6
  ;
 ASKCLASS(DFN,ECANS,ERR,ECTOPCE,ECPATST,ECHDA) ;  Ask classification questions
  ; (Agent Orange, Ionizing Radiation, Environmental Contaminants/South 
@@ -204,19 +204,24 @@ UNLOCK(ECIEN) ;  Unlock EC Patient record
  Q
 RCNTVST(RESULT,ECARY) ;126 Changed parameter name from DFN to ECARY
  ;
- ;This call uses the Patient and Visit file to return a list of recent
- ;visits. It returns the most recent 20 visits using both files but does 
- ;not return future visits from the Patient file.  It also filters out 
- ;canceled, rescheduled or no-show appts.  For the Patient file it uses 
- ;a start date of "" and an end date of "NOW". For the selected visit
- ;call, it only passes in and uses the DFN.
+ ;   Input: RESULT - return array of appt/visits
+ ;          ECARY  - DFN^LOCATION (optional if list should be filtered)
+ ;
+ ;   Output: FM date/time^readable d/t and clinic name^readable d/t
+ ;           ^clinic name
+ ;
+ ;This call uses the Patient and Visit files to return a list of recent
+ ;visits. It returns the most recent 40 visits using both files through 
+ ;midnight of the current day.  It also filters out canceled,
+ ;rescheduled or no-show appts.  
  ;
  ;126 Updated code so that it filters visit by selected location.
  ;Only visits/appts with clinics in the location will be shown.
+ ;
  ;API 1905
  ;Calls    
- ;  SELECTED^VSIT(DFN,SDT,EDT,HOSLOC,ENCTPE,NNCTPE,SRVCAT,NSRVCAT,LASTN) 
- ;  See API for detailed documentation
+ ; SELECTED^VSIT(DFN,SDT,EDT,HOSLOC,ENCTPE,NNCTPE,SRVCAT,NSRVCAT,LASTN) 
+ ; See API for detailed documentation
  ;
  ;API 3859
  ;Calls    GETAPPT^SDAMA201(DFN,SDFIELDS,SDAPSTAT,SDT,EDT,SDCNT)
@@ -226,16 +231,16 @@ RCNTVST(RESULT,ECARY) ;126 Changed parameter name from DFN to ECARY
  ;           non clinics visits from being included in API 1905
  ;           not needed in 3859 as it contains a filter for clinics
  ;
- N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,Y,SDRESULT,DFN,LOC ;122,126
+ N ARR,CNT,DATE,NUM,PARAMS,P1,P1DT,P2,PDT,VDT,VIEN,X,X1,X2,SDRESULT,DFN,LOC ;122,126,145
  S DFN=$P(ECARY,U),LOC=$P(ECARY,U,2) ;126
- D NOW^%DTC S DATE=%,Y=DATE
+ S DATE=$$DT^XLFDT_.24 ;145 Set latest date/time for search
  S VDT=3050101
- S X1=DT,X2=(-15) D C^%DTC S PDT=X    ;get appts within last 15 days
+ S X1=DT,X2=(-30) D C^%DTC S PDT=X ;145 get appts within last 30 days
  S RESULT(0)=0
  I '$G(DFN) Q
  K ^TMP("VSIT",$J)
  K ^TMP($J,"SDAMA201","GETAPPT")
- D SELECTED^VSIT(DFN,VDT,"","","","","","HE",30) ;126 Changed call to filter out hospitalization and event (historical) categories
+ D SELECTED^VSIT(DFN,VDT,DATE,"","","","","HE",60) ;126,145 Changed call to filter out hospitalization and event (historical) categories, 145 added ending date range and increased records returned to 60
  D GETAPPT^SDAMA201(DFN,"1;2","R;NT",PDT,DATE,.SDRESULT)
  S VIEN=0
  F  S VIEN=$O(^TMP("VSIT",$J,VIEN)) Q:VIEN=""  S NUM=0 D
@@ -261,7 +266,7 @@ RCNTVST(RESULT,ECARY) ;126 Changed parameter name from DFN to ECARY
  .;;cntrl array, filter visits from PT file
  .S ARR(P1DT,P2)=P1DT_U_$$LJ^XLFSTR(P1,25)_$$LJ^XLFSTR(P2,30)_U_P1_U_P2_U
  S VIEN=9999999999,CNT=1
- F  S VIEN=$O(ARR(VIEN),-1) Q:((VIEN="")!(CNT>20))  D
+ F  S VIEN=$O(ARR(VIEN),-1) Q:((VIEN="")!(CNT>40))  D  ;145 upped limit from 20 to 40
  .S NUM=0 F  S NUM=$O(ARR(VIEN,NUM)) Q:NUM=""  D
  ..S RESULT(CNT)=ARR(VIEN,NUM),CNT=CNT+1
  I $D(ARR) S RESULT(0)=CNT

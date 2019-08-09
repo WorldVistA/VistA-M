@@ -1,5 +1,5 @@
 RCDPEM5 ;ALB/PJH - EPAYMENTS MOVE EEOB TO NEW CLAIM ;Oct 29, 2014@16:43:51
- ;;4.5;Accounts Receivable;**173,208,276,298,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,208,276,298,321,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -154,7 +154,7 @@ JUST(ORIG,NCLAIM,MODE,TYPE,SRC) ;Construct justification text for automatic upda
  ;       - NCLAIM - New claim (s)
  ;       - MODE - "M" = Move "C" =Copy "R" = Remove
  ;       - TYPE - 0 = old EOB 1 = new EOB
- ;       - SRC - "W" = Worklist "A" = Auto-post  
+ ;       - SRC - "W" = Worklist "A" = Auto-post, "L" = Link Payment  
  ; Output - Justification text
  N FIRST,STR,STR1,SUB,TEXT
  ;Original bill number
@@ -175,8 +175,7 @@ JUST(ORIG,NCLAIM,MODE,TYPE,SRC) ;Construct justification text for automatic upda
  .I MODE="M" S STR="EEOB moved from EEOB for claim "_TEXT,STR1=""
  .I MODE="C" S STR="EEOB copied from EEOB for claim "_TEXT,STR1=""
  ;Return full justification text
- Q STR_STR1_" automatically by "_$S(SRC="A":"Auto-post",1:"Worklist")
- ;
+ Q STR_STR1_" automatically by "_$S(SRC="A":"Auto-post",SRC="L":"Link Payment",1:"Worklist")
  ;
 JUST1(ORIG,NCLAIM,MODE,TYPE) ;Construct AR comment for stand-alone MCR option
  ; Input - ORIG - Original EOB
@@ -252,66 +251,59 @@ VALSTAT(CLIEN) ; validation on current status of the AR claim selected for the m
  Q FLAG
  ;
  ; BEGIN - PRCA*4.5*321
-AUTO(OBILL,RCSPLIT,RCERA,SRC,ORIG) ;  Automatic move copy of EOB - EP for RCDPEM and RCDPEMA
- ; Input - OBILL - Original Bill number in #399 
- ;       - RCSPLIT - Array of split lines
- ;       - RCERA - ERA ien #344.4
- ;       - SRC - "W" = Worklist "A" = APAR/Autopost
- ;       - ORIG - IEN of EOB in file #361.1
+AUTO(OBILL,RCSPLIT,RCERA,SRC,ORIG) ;EP from RCDPEM and RCDPEMA
+ ; Automatic move copy of EOB
+ ; Input:   OBILL       - Original Bill number in #399 
+ ;          RCSPLIT     - Array of split lines
+ ;          RCERA       - ERA ien #344.4
+ ;          SRC         - "W" = Worklist "A" = APAR/Autopost
+ ;          ORIG        - IEN of EOB in file #361.1
  ; Output - Update EOBs and audit trail
- N CCLAIM,IFN,NCLAIM,SUB,SUB1,NBILL,MOVE,JUST,JUST1,VALID
+ N CCLAIM,FLAG,IFN,J,NCLAIM,NBILL,JUST,JUST1,SUB,SUB1,VALID ; PRCA*4.5*332
  ; EOB for the original claim must be present
  I 'ORIG Q 1
- ; Default operation is move
- S (SUB,SUB1)=0,MOVE=1,VALID=1
+ S (SUB,SUB1)=0,VALID=1 ; ; PRCA*4.5*332
+ F J="O","N","S" S FLAG(J)=0 ; PRCA*4.5*332 Initialize flags for original, new and suspense EEOBs
  ; Loop through split lines 
  F  S SUB=$O(RCSPLIT(SUB)) Q:'SUB  D
- .; Bill Number on split line
- .S NBILL=$P(RCSPLIT(SUB),U,2)
- .; Ignore suspense claims, piece 7 is pointer to AR claim file 430
- .S IFN=$P(RCSPLIT(SUB),U,7) Q:'IFN
- .; Ignore split lines with zero value
- .Q:+$P(RCSPLIT(SUB),U,3)=0
- .; If original bill is in the array then default operation is copy
- .I OBILL=NBILL S MOVE=0
- .; Save POINTER to AR Claim file 430 (DINUM to 399)
- .S SUB1=SUB1+1,NCLAIM(SUB1)=IFN
- .; Build list of new claims to copy
- .S:OBILL'=NBILL CCLAIM(IFN)=IFN
+ . ; Bill Number on split line
+ . S NBILL=$P(RCSPLIT(SUB),U,2)
+ . S IFN=$P(RCSPLIT(SUB),U,7)   ; PRCA*4.5*332
+ . ; Ignore split lines with zero value
+ . Q:+$P(RCSPLIT(SUB),U,3)=0
+ . ; Suspense claims, piece 7 is pointer to AR claim file 430
+ . I 'IFN S FLAG("S")=1 Q      ; PRCA*4.5*332
+ . ; Is original bill is in the array?
+ . I OBILL=NBILL S FLAG("O")=1 ; PRCA*4.5*332
+ . ; Save POINTER to AR Claim file 430 (DINUM to 399)
+ . S SUB1=SUB1+1,NCLAIM(SUB1)=IFN
+ . ; Build list of new claims to copy
+ . I OBILL'=NBILL D    ; PRCA*4.5*332
+ . . S CCLAIM(IFN)=IFN ; PRCA*4.5*332
+ . . S FLAG("N")=1     ; PRCA*4.5*332
  ;
- ; If split is between original claim and suspense (and no other claims) -  do nothing
- I SUB1=1,MOVE=0 Q 1
- ; If split was to move entire claim payment to suspense - mark EOB as removed
- I SUB1=0 D AUTOREM(ORIG,$$JUST(ORIG,"","R",0,SRC)) Q 1
+ ; No new claims. Payment must have been split to suspense, or suspense and original payment - no action
+ I 'FLAG("N") Q 1 ; PRCA*4.5*332
  ;
  ; Lock Original EOB
  I '$$LOCK(ORIG) Q 0
  ;
+ ; PRCA*4.5*332 - Start modified code block
  ; If split to single new claim move EOB - i.e. change claim number on EOB
- I MOVE,SUB1=1 D  Q 1
- .S JUST=$$JUST(ORIG,.NCLAIM,"C",0,SRC) ;Just. Text for original EOB
- .; Change claim number on original EOB attached to ERA
- .D MOVE^IBCEOB4(ORIG,NCLAIM(1),DUZ,$$NOW^XLFDT,JUST,"M")
- .; Update AR Transaction for original claim
- .D AUDIT^RCDPAYER(ORIG,JUST,"W")
+ I SUB1=1,'FLAG("S") D  ;
+ . ; Change claim number on original EOB attached to ERA
+ . D AUTOMOVE(ORIG,.NCLAIM,SRC) ; PRCA*4.5*332
  ;
- ; If split was to new claims - copy original EOB to new claims and then mark original EOB as removed
- I MOVE,SUB1>1 D
- .S JUST=$$JUST(ORIG,.NCLAIM,"C",0,SRC) ;Just. Text for original EEOB (copied to claims x,y,z - then removed)
- .S JUST1=$$JUST(ORIG,.NCLAIM,"C",1,SRC) ;Just. Text for copied to EEOB (copied from claim w)
- .; Copy EOB to new EOBs for "to" claims
- .;;D AUTOCOPY^IBCEOB5(ORIG,.CCLAIM,DUZ,$$NOW^XLFDT,JUST1,"C")
- .D COPY^IBCEOB4(ORIG,.CCLAIM,DUZ,$$NOW^XLFDT,JUST1,"C")
- .; Mark original EOB removed but with text of 'copied to claims....'
- .D AUTOREM(ORIG,JUST)
- ;
- ; If split was between original claim and other claims - copy all new claims to new EOBs
- I 'MOVE D
- .S JUST=$$JUST(ORIG,.NCLAIM,"C",0,SRC) ;Just. Text for original EEOB
- .S JUST1=$$JUST(ORIG,.NCLAIM,"C",1,SRC) ;Just. Text for copied to EEOB
- .D COPY^IBCEOB4(ORIG,.CCLAIM,DUZ,$$NOW^XLFDT,JUST,"C")
- .; Update AR Transaction for 'from claim'
- .D AUDIT^RCDPAYER(ORIG,JUST,"W")
+ ; Split was to multiple new claims or new claim(s) and suspense - copy original EOB to new claim(s)
+ E  D  ;
+ . ; Copy EOB to new EOBs for "to" claims
+ . D AUTOCOPY(ORIG,.CCLAIM,SRC) ; PRCA*4.5*332
+ . ; If no money went to suspense or the original EOB
+ . ; mark original EOB removed but with text of 'copied to claims....'
+ . I 'FLAG("O"),'FLAG("S") D   ;
+ . . S JUST=$$JUST(ORIG,.CCLAIM,"C",0,SRC)_" then removed"
+ . . D AUTOREM(ORIG,JUST)
+ ; PRCA*4.5*332 - End modified code block
  ;
  D UNLOCK(ORIG)
  Q 1
@@ -330,6 +322,43 @@ AUTOREM(ORIG,JUST) ;Silent remove of EEOB where entire payment is suspensed or m
  ;Unlock original EOB
  D UNLOCK(ORIG)
  ;
+ Q
+ ;
+AUTOCOPY(ORIG,CCLAIM,SRC) ; EP from RCDPEU2 - Copy EOBs and upate AR TRANSACTION file - PRCA*4.5*332
+ ; Input: ORIG  - IEN for file 361.1 of original EOB
+ ;        CCLAIM - Array of claims to copy to
+ ;        SRC   - "W" = Worklist "A" = APAR/Autopost "L" = Link Payments
+ N JUST,JUST1,MODE,SUB,NEWEOB
+ S MODE=$S(SRC="L":"L",1:"W")
+ S JUST=$$JUST(ORIG,.CCLAIM,"C",0,SRC) ; Text for original EEOB (copied to claims x,y,z - then removed)
+ S JUST1=$$JUST(ORIG,.CCLAIM,"C",1,SRC) ; Text for copied to EEOB (copied from claim w)
+ ; Copy EOB to new EOBs for "to" claims
+ D COPY^IBCEOB4(ORIG,.CCLAIM,DUZ,$$NOW^XLFDT,JUST1,"C")
+ ;
+ ; Auto generate text for AR comments on original claim
+ D AUDIT^RCDPAYER(ORIG,JUST,MODE)
+ ; Auto generate text for AR comments on new claim
+ S SUB=0
+ F  S SUB=$O(CCLAIM(SUB)) Q:'SUB  D
+ . ; Convert Claim pointer to EOB pointer
+ . S NEWEOB=$O(^IBM(361.1,"B",CCLAIM(SUB),""),-1) Q:'NEWEOB
+ . D AUDIT^RCDPAYER(NEWEOB,JUST1,MODE)
+ Q
+ ;
+AUTOMOVE(ORIG,NCLAIM,SRC) ; EP from RCDPEU2 - Move EOB from one claim to another PRCA*4.5*332
+ ; Input: ORIG  - IEN for file 361.1 of original EOB
+ ;        NCLAIM - Array of new claims
+ ;        SRC   - "W" = Worklist "A" = APAR/Autopost "L" = Link Payments
+ N JUST,JUST1,MODE,SUB
+ S MODE=$S(SRC="L":"L",1:"W")
+ S JUST=$$JUST(ORIG,.NCLAIM,"M",0,SRC) ;Just. Text for original claim
+ S JUST1=$$JUST(ORIG,.NCLAIM,"M",1,SRC) ;Just. Text for new claim
+ ; Update AR Transaction for original claim
+ D AUDIT^RCDPAYER(ORIG,JUST,MODE)
+ ; Change claim number on original EOB attached to ERA
+ D MOVE^IBCEOB4(ORIG,NCLAIM(1),DUZ,$$NOW^XLFDT,JUST,"M")
+ ; Update AR Transaction for new claim
+ D AUDIT^RCDPAYER(ORIG,JUST1,MODE)
  Q
  ;
  ;Read access to file #361.1 under IA 4051
