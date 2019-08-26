@@ -1,5 +1,5 @@
 XVEMDI ;DJB/VEDD**Indiv Fld Sum ;2017-08-15  12:08 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ;
  NEW %,%XX,%Y,%YY,D,DDH,DIC,X,Y

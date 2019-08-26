@@ -1,7 +1,8 @@
-XVEMRMS ;DJB/VRR**Save Changes ;2017-08-15  4:24 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRMS ;DJB/VRR**Save Changes ;2019-06-12  9:51 AM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; New Error trap in SAVE (c) 2016 Sam Habiel
+ ; SAVE1 didn't ZLINK; changed to E2^XVSE (c) 2019 Sam Habiel
  ;
 SAVE ;Save changes on-the-fly.
  N $ESTACK,$ETRAP S $ETRAP="D ERROR,UNWIND^XVEMSY"
@@ -21,7 +22,7 @@ SAVE1 ; [Internal] Extra level so unwind will pop appropriatly
  D BUILD G:$G(VRRPGM)']"" EX
  G:$$DUP() EX
  D VERIFY^XVEMRV(VRRS) G:'FLAGQ EX
- X "S X=VRRPGM X XVVS(""ZS"")"
+ D E2^XVSE
  I VRRS>1 L -VRRLOCK(VRRPGM)
  W !!,"Changes saved to disk..."
  ;

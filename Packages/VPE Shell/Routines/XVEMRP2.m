@@ -1,5 +1,5 @@
-XVEMRP2 ;DJB/VRR**Block Mode - Highlight Characters ;2017-08-15  4:25 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRP2 ;DJB/VRR**Block Mode - Highlight Characters ;2019-05-23  10:14 AM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ;
 LEFT ;Char highlight - cursor left
@@ -50,7 +50,10 @@ LEFTOFF ;Remove highlight character
  ;
  S ^TMP("XVV","SAVECHAR",$J)=$E(TMP,1,$L(TMP)-1) ;Strip last char
  KILL ^TMP("XVV","SAVECHAR",$J,"CHAR",YND,CHAR)
- W $E(ND,CHAR)
+ I XVV("SYN")="ON" D
+ . D SYNTAX^XVEMSYN(ND,YND,"+"_CHAR)
+ E  D
+ . W $E(ND,CHAR)
  X XVVS("CRSR")
  ;
  ;If MARK=1, next <AL> moves up a line
@@ -110,7 +113,10 @@ RIGHTOFF ;Remove highlight character
  ;
  S ^TMP("XVV","SAVECHAR",$J)=$E(TMP,2,$L(TMP)) ;Strip last char
  KILL ^TMP("XVV","SAVECHAR",$J,"CHAR",YND,CHAR)
- W $E(ND,CHAR)
+ I XVV("SYN")="ON" D
+ . D SYNTAX^XVEMSYN(ND,YND,"-"_CHAR)
+ E  D
+ . W $E(ND,CHAR)
  X XVVS("CRSR")
  ;
  ;If MARK=1, next <AR> moves down a line

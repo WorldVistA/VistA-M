@@ -1,6 +1,7 @@
-XVEMREA ;DJB/VRR**EDIT - Add Character ;2017-08-15  1:41 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMREA ;DJB/VRR**EDIT - Add Character ;2019-05-20  6:43 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 TOP ;Add a character to CD string
  NEW CD,FLAGNEW,HLD,HLDX,HLDY1,HLDY2,I,NUM,WHERE,XSAVE,YSAVE,YNDSAVE
@@ -34,7 +35,11 @@ SIMPLE ;Process a line that hasn't reached end yet
  S DX=XCUR,DY=YCUR X XVVS("CRSR")
  W @XVVS("BLANK_C_EOL")
  X XVVS("XY")
- W $E(CD(NUM),XCHAR,9999)
+ I XVV("SYN")="ON" D
+ . W $$CONTROL^XVEMSYN("MOV",DY+1) W @XVVS("BLANK_C_EOL")
+ . D SYNTAX^XVEMSYN(CD(NUM),NUM)
+ E  D
+ . W $E(CD(NUM),XCHAR,9999)
  Q
  ;
 ADJARRAY ;Adjust CD() array for new character. FLAGNEW=1 Open new line
@@ -50,6 +55,7 @@ ADJARRAY ;Adjust CD() array for new character. FLAGNEW=1 Open new line
  ;
 REDRAW ;Redraw rest of adjusted current line
  I XCUR<(XVV("IOM")-2) D SIMPLE Q
+ I XCUR<(XVV("IOM")-1),XVV("SYN")="ON" D SIMPLE
  ;If cursor at line end, move cursor down
  S DX=XVV("IOM")-2,DY=YCUR X XVVS("CRSR")
  W " "
@@ -65,13 +71,26 @@ REDRAW ;Redraw rest of adjusted current line
 COMPLEX ;Multiple lines and cursor position, need to be adjusted.
  S DY=YCUR
  F I=NUM+1:1 Q:'$D(CD(I))  D  Q:FLAGQ
- . I I=FLAGNEW D OPEN W $P(CD(I),$C(30),1),$P(CD(I),$C(30),2,99) Q
+ . I I=FLAGNEW D OPEN D  Q
+ . . I XVV("SYN")="ON" D
+ . . . N J,K,DDY,QUIT S QUIT=0,J=I,DDY=DY+1
+ . . . F  Q:J=""!(QUIT)  S J=$O(^TMP("XVV","IR"_VRRS,$J,J),-1),DDY=DDY-1 I $D(^(J,"STATE"))=0 S QUIT=1
+ . . . F K=J:1:I D
+ . . . . W $$CONTROL^XVEMSYN("MOV",DDY) W @XVVS("BLANK_C_EOL")
+ . . . . D SYNTAX^XVEMSYN(^TMP("XVV","IR"_VRRS,$J,K),K)
+ . . . . S DDY=DDY+1
+ . . E  D
+ . . . W $P(CD(I),$C(30),1),$P(CD(I),$C(30),2,99)
  . S DX=9,DY=DY+1
  . I DY>(XVVT("BOT")-XVVT("TOP")) S FLAGQ=1 Q  ;Quit at screen bottom
  . X XVVS("CRSR")
  . W @XVVS("BLANK_C_EOL")
  . X XVVS("XY")
- . W $E(CD(I),10,9999)
+ . I XVV("SYN")="ON" D
+ . . W $$CONTROL^XVEMSYN("MOV",DY+1) W @XVVS("BLANK_C_EOL")
+ . . D SYNTAX^XVEMSYN(CD(I),I)
+ . E  D
+ . . W $E(CD(I),10,9999)
  Q
  ;
 OPEN ;Open new next line.

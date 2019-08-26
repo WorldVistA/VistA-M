@@ -1,14 +1,17 @@
-XVEMKC ;DJB/KRN**Select Choices ;2017-08-15  12:50 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMKC ;DJB/KRN**Select Choices ;2019-06-12  4:00 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; NOESC in $$CHOICE (c) Sam Habiel 2019
  ;
-CHOICE(OPTIONS,LEV,DX,DY) ;
+CHOICE(OPTIONS,LEV,DX,DY,NOESC) ;
  ;;OPTIONS=String containing options. Ex: "YES^NO"
  ;;LEV=Number of option to be highlighted
  ;;DX,DY=Pass DX&DY to place prompts on the screen
+ ;;NOESC=ESC-ESC cannot get you out
  ;
  I $G(OPTIONS)']"" Q 0
  NEW ALLCAPS,ANS,FLAGQ,I,LIMIT,PIECE,XVVS,X
+ S NOESC=$G(NOESC,0)
  S FLAGQ=0 D INIT Q:FLAGQ
  D LOCATION
  X XVVS("RM0")
@@ -30,7 +33,8 @@ LOOP ;Get users response
  D DRAW
  S ANS=$$READ^XVEMKRN("",1,1)
  I XVV("K")="<RET>" Q
- I ANS="^"!(",<ESC>,<F1E>,<F1Q>,<TO>,"[(","_XVV("K")_",")) S LEV=0 Q
+ I 'NOESC,",<ESC>,"[(","_XVV("K")_",") S LEV=0 Q
+ I ANS="^"!(",<F1E>,<F1Q>,<TO>,"[(","_XVV("K")_",")) S LEV=0 Q
  I XVV("K")="<AL>" S LEV=LEV-1 S:LEV<1 LEV=1 G LOOP
  I XVV("K")="<AR>" S LEV=LEV+1 S:LEV>LIMIT LEV=LIMIT G LOOP
  I ANS=" " S LEV=LEV+1 S:LEV>LIMIT LEV=1 G LOOP

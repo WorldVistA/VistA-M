@@ -1,7 +1,8 @@
-XVEMRI ;DJB/VRR**INSERT - READ,HELP,ADD,DELETE ;2017-08-15  1:59 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRI ;DJB/VRR**INSERT - READ,HELP,ADD,DELETE ;2019-05-20  6:40 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; Allow space to act like tab in READ (c) Sam Habiel 2016
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 INSERT(MODE) ;Processes the line tag portion of a new line. When user
  ;hits <TAB> OR <SPACE>, return to EDIT mode.
@@ -56,7 +57,11 @@ ADD ;Add character
  S DX=XCUR,DY=YCUR X XVVS("CRSR")
  W @XVVS("BLANK_C_EOL")
  X XVVS("XY")
- W $E(CD,XCUR+1,9999)
+ I XVV("SYN")="ON" D
+ . W $$CONTROL^XVEMSYN("MOV",DY+1) W @XVVS("BLANK_C_EOL")
+ . D SYNTAX^XVEMSYN(CD,DY+1)
+ E  D
+ . W $E(CD,XCUR+1,9999)
  S DX=XCUR,DY=YCUR X XVVS("CRSR")
  Q
  ;
@@ -68,7 +73,12 @@ DELETE ;Delete character
  E  S XCUR=XCUR-1,CD=$E(CD,1,XCUR)_$E(CD,XCUR+2,9999)
  S DX=XCUR,DY=YCUR X XVVS("CRSR")
  W @XVVS("BLANK_C_EOL")
- X XVVS("XY") W $E(CD,XCUR+1,9999)
+ X XVVS("XY")
+ I XVV("SYN")="ON" D
+ . W $$CONTROL^XVEMSYN("MOV",DY+1) W @XVVS("BLANK_C_EOL")
+ . D SYNTAX^XVEMSYN(CD,DY+1)
+ E  D
+ . W $E(CD,XCUR+1,9999)
  S DX=XCUR,DY=YCUR X XVVS("CRSR")
  Q
  ;====================================================================

@@ -1,6 +1,7 @@
-XVEMREL ;DJB/VRR**EDIT - Process Line Tags ;2017-08-15  1:42 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMREL ;DJB/VRR**EDIT - Process Line Tags ;2019-05-20  6:43 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
  ;Determine location of cursor in relation to the line of code, and
  ;allow the editing of line tags.
@@ -23,7 +24,12 @@ CHKADD() ;Check for valid addition. Process certain additions.
  . I CD(NUM)[$C(30) S X=$S((XCUR+3)>$F(CD(NUM),$C(30)):2,1:1)
  . S DX=XCUR,DY=YCUR X XVVS("CRSR")
  . I $E(CD(NUM),XCUR+X)']"" W " "
- . E  W $E(CD(NUM),XCUR+X)
+ . E  D
+ . . I XVV("SYN")="ON" D
+ . . . W $$CONTROL^XVEMSYN("MOV",DY+1) W @XVVS("BLANK_C_EOL")
+ . . . D SYNTAX^XVEMSYN(CD(NUM),NUM)
+ . . E  D
+ . . . W $E(CD(NUM),XCUR+X)
  I "C,Q"[PART Q PART ;..................Quit if [Q]uit or [C]ontinue
  I $P(PART,"^",1)=1 Q "C" ;.............Tag flush with left side
  S TG=$P(CD(NUM),$C(30),1) ;............Set TG=Line Tag
@@ -67,7 +73,10 @@ WRITE ;Display adjusted tag
  S CD(NUM)=TG_$C(30)_$P(CD(NUM),$C(30),2)
  S DX=0,DY=YCUR X XVVS("CRSR")
  W @XVVS("BLANK_C_EOL") X XVVS("XY")
- W $P(CD(NUM),$C(30),1)
- W $P(CD(NUM),$C(30),2)
+ I XVV("SYN")="ON" D
+ . D SYNTAX^XVEMSYN(CD(NUM),NUM)
+ E  D
+ . W $P(CD(NUM),$C(30),1)
+ . W $P(CD(NUM),$C(30),2)
  D ADJOPEN1^XVEMREA
  Q

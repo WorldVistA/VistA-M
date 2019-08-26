@@ -1,12 +1,14 @@
-XVEMGR ;DJB/VGL**Process a Range of nodes [02/03/95];2017-08-15  12:46 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMGR ;DJB/VGL**Process a Range of nodes [02/03/95];2019-06-18  2:13 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; Changes to add global name to no data message in RANGE (c) Sam Habiel 2019
  ;
 RANGE ;User asked for a range with ":" or ",,"
  ;Set up GLOBAL,START(),END()
  I ZGL'?.E1"(".E D TOP^XVEMGI(ZGL) D  Q
  . Q:XVVT("STATUS")["START"  Q:XVVT("STATUS")["PROT"
- . W !!?1,"No data" D VRR
+ . W !!?1,"No data in global ",ZGL
+ . D VRR
  NEW END,HOLD,I1,II,GLOBAL,LIMIT,START
  S GLOBAL=$P(ZGL,"(")
  ;Replace variables with their values.
@@ -16,7 +18,8 @@ RANGE ;User asked for a range with ":" or ",,"
  ;Process a range entered with ":" or ",,".
  D SETPARAM I FLAGQ W !!?1,"Invalid quote marks" D VRR Q
  D START I XVVT("STATUS")'["START",XVVT("STATUS")'["PROT" D  Q
- . W !!?1,"No data" D VRR
+ . W !!?1,"No data in global ",ZGL
+ . D VRR
  Q
 VRR ;Pause screen if VGL was called from VRR.
  I $G(FLAGVPE)["VRR" D PAUSE^XVEMKU(2)

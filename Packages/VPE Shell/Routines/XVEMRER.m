@@ -1,6 +1,7 @@
-XVEMRER ;DJB/VRR**EDIT - RUN menu choices ;2017-08-16  12:14 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRER ;DJB/VRR**EDIT - RUN menu choices ;2019-04-11  10:53 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 RUN ;
  KILL DIRHLD ;Tracks cursor for <AU> & <AD>
@@ -29,6 +30,7 @@ RUN2 ;Help Text
 RUN3 ;Goto Top/Bottom of Rtn
  KILL DIRHLD ;Tracks cursor for <AU> & <AD>
  I ",<F4AR>,<END>,"[(","_VK_",") D  Q  ;Goto bottom of rtn
+ . I XVV("SYN")="ON" N I S I=0 F  S I=$O(^TMP("XVV","IR"_VRRS,$J,I)) Q:I=""  D SYNTAX^XVEMSYN(^(I),I,0)
  . D BOTTOM^XVEMKT2("IR"_VRRS,1)
  . S YND=XVVT("TOP")
  . S YCUR=$O(^TMP("XVV","IR"_VRRS,$J,""),-1)-YND

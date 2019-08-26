@@ -1,6 +1,7 @@
-XVEMRH1 ;DJB/VRR**Help Text [10/22/96 8:35am];2017-08-15  1:47 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRH1 ;DJB/VRR**Help Text [10/22/96 8:35am];2017-08-15  1:47 PM ; 6/18/19 2:53pm
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; VGL nodes (c) Sam Habiel 2019
  ;
 VRR1 ;;;
  ;;;  B L O C K   M O D E:
@@ -57,10 +58,12 @@ VRR1 ;;;
  ;;;    VGL       Branch to Global Lister
  ;;;              NOTE: You may also branch to a global while in EDIT mode,
  ;;;              by passing the global reference as a parameter. To do so,
- ;;;              find the global reference on the screen, position the curosr
- ;;;              at the start of the name and hit <ESC>G. Then position the
- ;;;              cursor as far to the right as you want to include as your
- ;;;              parameter, and hit <ESC>G again.
+ ;;;              find the global reference on the screen, position the cursor
+ ;;;              at the "^" and hit <ESC>G. VPE will try to guess the correct
+ ;;;              global from the code. You can also move your cursor to the
+ ;;;              parentheses or commas in the global and then press <ESC>G; this
+ ;;;              will make VPE only include as much of the global depending on
+ ;;;              how far your cursor is from the "^".
  ;;;
  ;;;    CALL      Helps you construct certain programmer calls and inserts
  ;;;              them into your code.

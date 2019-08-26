@@ -1,6 +1,7 @@
-XVEMRP ;DJB/VRR**Block Mode - Highlight Lines ;2017-08-15  4:26 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRP ;DJB/VRR**Block Mode - Highlight Lines ;2019-04-11  10:55 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 UP ;F3 Up-arrow highlight
  Q:$$CHECK()
@@ -72,8 +73,11 @@ CLEARUP ;Clear one highlighted line - Cursor UP
  F  D UP^XVEMRE(1) D  Q:FLAGQ  Q:'$D(^(YND-1))
  . S DX=0,DY=YCUR X XVVS("CRSR")
  . S TMP=$G(^TMP("XVV","SAVE",$J,YND))
- . W $P(TMP,$C(30),1)
- . W $P(TMP,$C(30),2)
+ . I XVV("SYN")="ON" D
+ . . D SYNTAX^XVEMSYN(TMP,YND)
+ . E  D
+ . . W $P(TMP,$C(30),1)
+ . . W $P(TMP,$C(30),2)
  . W ?XVV("IOM")-1
  . S DX=XCUR,DY=YCUR X XVVS("CRSR")
  . S:TMP[$C(30) FLAGQ=1
@@ -86,8 +90,11 @@ CLEARDN ;Clear one highlighted line - Cursor DOWN
  F  D DOWN^XVEMRE(1) D  Q:'$D(^(YND+1))  Q:^(YND+1)[$C(30)
  . S DX=0,DY=YCUR X XVVS("CRSR")
  . S TMP=$G(^TMP("XVV","SAVE",$J,YND))
- . W $P(TMP,$C(30),1)
- . W $P(TMP,$C(30),2)
+ . I XVV("SYN")="ON" D
+ . . D SYNTAX^XVEMSYN(TMP,YND)
+ . E  D
+ . . W $P(TMP,$C(30),1)
+ . . W $P(TMP,$C(30),2)
  . W ?(XVV("IOM")-1)
  . S DX=XCUR,DY=YCUR X XVVS("CRSR")
  . KILL ^TMP("XVV","SAVE",$J,YND)
@@ -98,8 +105,11 @@ CLEARDN1 ;Clear highlighted top line - Cursor DOWN
  F  D  Q:'$D(^(YND+1))  Q:^(YND+1)[$C(30)  D DOWN^XVEMRE(1)
  . S DX=0,DY=YCUR X XVVS("CRSR")
  . S TMP=$G(^TMP("XVV","SAVE",$J,YND))
- . W $P(TMP,$C(30),1)
- . W $P(TMP,$C(30),2)
+ . I XVV("SYN")="ON" D
+ . . D SYNTAX^XVEMSYN(TMP,YND)
+ . E  D
+ . . W $P(TMP,$C(30),1)
+ . . W $P(TMP,$C(30),2)
  . W ?(XVV("IOM")-1)
  . S DX=XCUR,DY=YCUR X XVVS("CRSR")
  . KILL ^TMP("XVV","SAVE",$J,YND)
@@ -117,13 +127,18 @@ CLEARALL ;Clear all highlighted lines
  . X XVVS("CRSR")
  . ;
  . I TMP]"" D  ;
- .. W $P(TMP,$C(30),1)
- .. W $P(TMP,$C(30),2)
- .. W ?(XVV("IOM")-1)
+ . . I XVV("SYN")="ON" D
+ . . . D SYNTAX^XVEMSYN(TMP,I)
+ . . E  D
+ . . . W $P(TMP,$C(30),1)
+ . . . W $P(TMP,$C(30),2)
  . E  D  ;
- .. W $P(TMP1,$C(30),1)
- .. W $P(TMP1,$C(30),2)
- .. W ?(XVV("IOM")-1)
+ . . I XVV("SYN")="ON" D
+ . . . D SYNTAX^XVEMSYN(TMP1,I)
+ . . E  D
+ . . . W $P(TMP1,$C(30),1)
+ . . . W $P(TMP1,$C(30),2)
+ . W ?(XVV("IOM")-1)
  ;
  KILL ^TMP("XVV","SAVE",$J)
  KILL ^TMP("XVV","SAVECHAR",$J)

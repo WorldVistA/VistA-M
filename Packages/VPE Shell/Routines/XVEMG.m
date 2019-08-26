@@ -1,7 +1,8 @@
-XVEMG ;DJB/VGL**VGlobal Lister ;2017-08-15  12:39 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMG ;DJB/VGL**VGlobal Lister ;2019-06-18  2:13 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; New Error trap in EN+2,IMPORT+1 (c) 2016 Sam Habiel
+ ; Change where IMPORT is called + add global name (c) 2019 Sam Habiel
  ;
 EN ;Entry point
  I $G(DUZ)'>0 D ID^XVEMKU Q:$G(DUZ)=""
@@ -19,7 +20,7 @@ START ;
  I $D(XVV("OS"))#2=0 NEW XVV
  S VGLREV=0 I $G(REVERSE)="YES" S VGLREV=1 KILL REVERSE
  ;
- S FLAGQ=0 D INIT^XVEMGY G:FLAGQ EX D IMPORT
+ S FLAGQ=0 D INIT^XVEMGY G:FLAGQ EX
  ;
  S $P(FLAGVPE,"^",2)="VGL" ;Marks that VGL is running.
 TOP ;Start of Loop
@@ -33,6 +34,7 @@ TOP ;Start of Loop
  KILL ^TMP("XVV","IG"_GLS,$J),^TMP("XVV","VGL"_GLS,$J),^TMP("XVV",$J)
  S (CODE,FLAGC,FLAGC1,FLAGE,FLAGOPEN,FLAGQ)=0,ZREF=1
  D GETGL^XVEMG1 G:FLAGQ=1 EX G:FLAGQ=2 TOP
+ D IMPORT
  I $G(XVVSHL)="RUN" D  ;Cmnd Line History
  . S:$G(FLAGPAR)=1 ZGL=$E(ZGL,1,$L(ZGL)-1)
  . D CLHSET^XVEMSCL("VGL",ZGL)
@@ -40,13 +42,15 @@ TOP ;Start of Loop
  G TOP
 IMPORT ;Set up for scroller
  I $D(XVSIMERR) S $EC=",U-SIM-ERROR,"
- NEW LINE,MAR
+ NEW LINE,MAR,HEADER,LHEADER
+ S HEADER="[Session "_GLS_" "_ZGL_"]"
+ s LHEADER=$L(HEADER)
  S MAR=$G(XVV("IOM")) S:'MAR MAR=80
  S $P(LINE,"=",MAR)=""
  S XVVT("S2")=(XVV("IOSL")-3)
  S XVVT("GET")="D SETARRAY^XVEMGI"
  S XVVT("HD")=1,XVVT("FT")=3
- S XVVT("HD",1)=$E(LINE,1,(MAR-12)\2)_"[Session "_GLS_"]"_$E(LINE,1,(MAR-12)\2)
+ S XVVT("HD",1)=$E(LINE,1,(MAR-LHEADER+1)\2)_HEADER_$E(LINE,1,(MAR-LHEADER+1)\2)
  S XVVT("FT",1)=LINE
  S XVVT("FT",2)="<>  'n'=Pieces  A=Alt  G=Goto  S'n'=Skip  C=CdSrch  ?=Help  M=More..."
  S XVVT("FT",3)=" Select: "

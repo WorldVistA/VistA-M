@@ -1,6 +1,7 @@
-XVEMRC ;DJB/VRR**Saves editing changes ;2017-08-15  1:39 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRC ;DJB/VRR**Saves editing changes ;2019-06-12  4:01 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
+ ; ASK+4 modified by Sam Habiel (c) 2019 to prevent ESC-ESC
  ;
 SAVE(ND) ;Sets up ^UTILITY so rtn editor can save changes.
  ;ND=Rtn Session # (VRRS)
@@ -54,7 +55,7 @@ ASK ;Ask to save changes
  NEW DEFAULT
  S DEFAULT=$S($G(FLAGSAVE)>0:2,1:1)
  W !,"Routine: ^",VRRPGM,!,"Save your changes?",!!
- S XX=$$CHOICE^XVEMKC("QUIT^SAVE^SAVE_AS^SAVE_NODT",DEFAULT)
+ S XX=$$CHOICE^XVEMKC("QUIT^SAVE^SAVE_AS^SAVE_NODT",DEFAULT,,,1) ; 1 to prevent ESC-ESC from exiting
  I XX<2 S VRRPGM="" Q
  D:XX=3 SAVEAS
  S:XX=4 VRRNODT=1

@@ -1,7 +1,8 @@
-XVEMKY3 ;DJB/KRN**Screen Variables ;2017-08-16  12:12 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMKY3 ;DJB/KRN**Screen Variables ;2019-05-02  6:46 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; GT.M support and Mumps V1 support by Sam Habiel (c) 2016-2017
+ ; ZSAVE bug fix for GT.M by David Wicksell (c) 2019
  ;
 BLANK ;
  D BLANK1,BLANK2,BLANK3,BLANK4
@@ -29,10 +30,6 @@ BLANK4 ;Blank - start-of-line to cursor
  ;====================================================================
 ZSAVE ;Set up XVVS("ZS") to zsave a routine.
  ;
- I $D(^DD("OS",XVV("OS"),"ZS")) S XVVS("ZS")=^("ZS") Q:XVVS("ZS")]""
- I $D(^DD("OS")),'$D(^DD("OS",XVV("OS"),"ZS")) S FLAGQ=1 D  Q
- . W $C(7),!!?5,"Your Mumps system has no way to ZSAVE a routine. I'm aborting.",!!
- ;
  ;DSM,MSM,DSM for Open VMS
  I ",2,8,16,"[(","_XVV("OS")_",") D  Q
  . S XVVS("ZS")="NEW %Y ZR  S %Y=0 X ""F  S %Y=$O(^UTILITY($J,0,%Y)) Q:%Y'>0  ZI ^(%Y)"" ZS @X"
@@ -55,6 +52,9 @@ ZSAVE ;Set up XVVS("ZS") to zsave a routine.
  ; -> MV1
  I XVV("OS")=20 D  Q
  . S XVVS("ZS")="M ^$ROUTINE(X)=^UTILITY($J,0) N % S %=$&%ROUCHK(X)"
+ ;
+ ; -> VA Fileman
+ I $D(^DD("OS",XVV("OS"),"ZS")) S XVVS("ZS")=^("ZS") Q:XVVS("ZS")]""
  ;
  ;-> Abort if no XVVS("ZS")
  D ZSAVEMSG S FLAGQ=1

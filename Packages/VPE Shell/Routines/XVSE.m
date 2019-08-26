@@ -1,7 +1,7 @@
-XVSE ; VEN/SMH - VPE Editor Init Code;2017-08-16  12:17 PM; 3/1/17 3:28pm
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVSE ; VEN/SMH - VPE Editor Init Code ;2019-05-20  9:21 AM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; (c) 2010-2016 Sam Habiel
- ;
+ ; ZLINK bug fix for GT.M by David Wicksell (c) 2019
  ;
 E ; Edit Entry Point
  S $EC="" ; Clear error code b/c save part aborts if there is one.
@@ -59,7 +59,7 @@ E4 ; Open for editing at Routine %1 tag %2
  ;
  ;
 E5 ; GT.M ZLINK Routine
- I XVV("OS")'=19!(XVV("OS")'=17) QUIT  ; GTM/UNIX,VAX only
+ I XVV("OS")'=19&(XVV("OS")'=17) QUIT  ; GTM/UNIX,VAX only
  ;
  NEW PGM SET PGM=VRRPGM,PGM=$TR(PGM,"%","_")
  ZLINK PGM

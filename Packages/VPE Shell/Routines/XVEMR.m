@@ -1,7 +1,9 @@
-XVEMR ;DJB/VRR**SCROLL VRoutine Reader ;2017-08-15  4:20 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMR ;DJB/VRR**SCROLL VRoutine Reader ;2019-05-29  4:24 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; Various bug fixes throughout Sam Habiel (c) 2016
+ ; Syntax highlighting support by David Wicksell (c) 2019
+ ; IMPORT display bug fix for routines > 999 lines by David Wicksell (c) 2019
  ;
 EN ;Entry Point
  I $G(DUZ)'>0 D ID^XVEMKU Q:$G(DUZ)=""
@@ -62,15 +64,18 @@ GETXVVT ;Set XVVT=Display text
  ;
 LIST ;Display text
  D GETXVVT
- W !,$P(XVVT,$C(30),1)
- W $P(XVVT,$C(30),2,99)
+ I XVV("SYN")="ON" D
+ . W ! D SYNTAX^XVEMSYN(XVVT,XVVT("BOT"))
+ E  D
+ . W !,$P(XVVT,$C(30),1)
+ . W $P(XVVT,$C(30),2,99)
  S XVVT("BOT")=XVVT("BOT")+1 ;Bottom line #
  S:XVVT("GAP") XVVT("GAP")=XVVT("GAP")-1 ;Empty lines left on page
  I XVVT=" <> <> <>"!'XVVT("GAP") D READ^XVEMRE Q:FLAGQ
  G LIST
  ;
 IMPORT ;Set up for scroller
- NEW LINE,MAR,NAME,SPACE,TMP
+ NEW LINE,MAR,NAME,SPACE,TMP,LINES
  S VRRHIGH=+$G(VRRHIGH)
  S MAR=$G(XVV("IOM")) S:MAR'>0 MAR=80
  S $P(LINE,"=",MAR)=""
@@ -79,7 +84,8 @@ IMPORT ;Set up for scroller
  S NAME=NAME_$E(SPACE,1,8-$L(NAME))
  S XVVT("HD")=1
  S XVVT("FT")=2
- S XVVT("HD",1)="|=======|"_$E(LINE,1,11)_"[^"_NAME_"]======["_VRRS_" of 1024]===[Lines: "_VRRHIGH_$E("    ",1,3-$L(VRRHIGH))_"]"_$E(LINE,1,MAR-65)_"|"
+ S LINES=$E("   ",1,3-$L(VRRHIGH))_VRRHIGH
+ S XVVT("HD",1)="|=======|"_$E(LINE,1,11)_"[^"_NAME_"]======["_VRRS_" of 1024]===[Lines: "_LINES_"]"_$E(LINE,1,MAR-62-$L(LINES))_"|"
  S XVVT("FT",1)="|=======|"_$E(LINE,1,MAR-11)_"|"
  S XVVT("FT",2)="<>  <TAB>=MenuBar  <F3>=Block  <RET>=Insert  <ESC>K=Keybrd  <ESC><ESC>=Quit"
  S XVVT("GET")=1

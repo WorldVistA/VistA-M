@@ -1,7 +1,7 @@
-XVEMREP ;DJB/VRR**EDIT - Web,Html,Parse Rtn/Global,RETURN ;2017-08-16  12:13 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMREP ;DJB/VRR**EDIT - Web,Html,Parse Rtn/Global,RETURN ; 6/18/19 3:33pm
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
- ; ESC-R & ESC-G code refactored by Sam Habiel (c) 2016
+ ; ESC-R & ESC-G code refactored by Sam Habiel (c) 2016,2019
  ;
 WEB ;Web Mode
  I FLAGMODE["WEB" D WEB^XVEMRER Q
@@ -46,7 +46,7 @@ PARSE ;Run rtn name from code at cursor position
  . S RTN=RTN_$E(TMP,10,9+8-$L(RTN))
  ;
  ; Check the routine exists
- I $T(@(TAG_"^"_RTN))="" W $C(7) Q
+ I RTN'="",$T(@(TAG_"^"_RTN))="" W $C(7) Q
  ;
  ;Save RTN & TAG before clearing symbol table.
  S ^TMP("XVV",$J)=RTN_"^"_TAG
@@ -74,29 +74,34 @@ GETRTN() ;Parse routine name
  Q RTN
  ;===================================================================
 GLB ;Select global for viewing by hitting <ESCG>
+ ; ZEXCEPT: KEY. See below for note.
  ;(sam): Notes below.
- NEW DIFF,TMP,TMP1,ZX,ZY,ZZ,KEY
- I $G(FLAGGLB)']"" D  S KEY="S"  ; Don't know what KEY="S" means now.
- . S TMP=$G(^TMP("XVV","IR"_VRRS,$J,YND)) ; Get line
- . I TMP[$C(30) S TMP=XCUR+2_"^"_$E(TMP,XCUR+2,XCUR+32) ; Get cursor posotion ^ read 30 chars
- . E  S TMP=XCUR+1_"^"_$E(TMP,XCUR+1,XCUR+31) ; shouldn't run
- . S FLAGGLB=$P(TMP,"^",1)_"^"_YND_"^"_$P(TMP,"^",2,999) ; FLAGGLB = Cursor pos ^ line number ^ global
- . S TMP=$P(FLAGGLB,"^",3,999)  Q:$L(TMP)>29  ; Read the next line for continuation
- . S TMP1=$G(^(YND+1))  Q:TMP1[$C(30)  Q:TMP1=" <> <> <>"
- . S FLAGGLB=FLAGGLB_$E(TMP1,10,10+30-$L(TMP))
+ NEW GLB S GLB="" ; Global Name
+ NEW RCUR SET RCUR=XCUR-8 ; Real Cursor
+ NEW CARET S CARET=0 ; Look for ^
  ;
- ; ZX = cur pos, ZY = line number; ZZ global
- S ZX=$P(FLAGGLB,"^",1),ZY=$P(FLAGGLB,"^",2),ZZ=$P(FLAGGLB,"^",3,999)
- ; (sam): Next 5 lines make no sense to me.
- ;S DIFF=$S($G(^TMP("XVV","IR"_VRRS,$J,YND))[$C(30):XCUR+2,1:XCUR+1)
- ;I (YND-ZY)>1 KILL FLAGGLB Q  ;Moved cursor too far
- ;I (ZY>YND) KILL FLAGGLB Q  ;Moved cursor up
- ;I YND>ZY S DIFF=ZX+(XVV("IOM")-ZX)+DIFF-10 I ZX>DIFF KILL FLAGGLB Q
- ;S DIFF=DIFF-ZX+1,FLAGGLB=$E(ZZ,1,DIFF)
- ;S ^TMP("XVV",$J)=FLAGGLB KILL FLAGGLB
- S ZZ=$$PARSEGLB(ZZ)
- I ZZ="" QUIT
- S ^TMP("XVV",$J)=ZZ KILL FLAGGLB
+ N ELINE   S ELINE=$G(^TMP("XVV","IR"_VRRS,$J,YND))   ; Editor line
+ N NELINE S NELINE=$G(^TMP("XVV","IR"_VRRS,$J,YND+1)) ; Next Line
+ I NELINE'="",NELINE'[$C(30),NELINE'=" <> <> <>" S ELINE=ELINE_$E(NELINE,10,999) ; Concatentate
+ N LLINE
+ I ELINE[$C(30) S LLINE=$P(ELINE,$C(30),2,99)            ; Level Line
+ E              S LLINE=$E(ELINE,10,999)                 ; Continuation line
+ N CHAR S CHAR=$E(LLINE,RCUR)          ; Char at Cursor
+ I CHAR="^" S GLB=$E(LLINE,RCUR,999) ; Get Global
+ I CHAR="("!(CHAR=")")!(CHAR=",") N DONE S DONE=0 FOR  DO  Q:CARET  Q:DONE  ; If ESC-G over ( or , construct global to Caret
+ . N I F I=RCUR:-1:0 S CHAR=$E(LLINE,I) I CHAR="^" S CARET=I QUIT  ; Find Caret
+ . I CARET QUIT
+ . N PLINE S PLINE=$G(^TMP("XVV","IR"_VRRS,$J,YND-1)) ; prev line
+ . I PLINE="" S DONE=1 QUIT                           ; no prev line to be found
+ . I PLINE[$C(30) S PLINE=$P(PLINE,$C(30),2,99)  ; Full line
+ . E              S PLINE=$E(PLINE,10,999)       ; Actually a continuation itself
+ . S LLINE=PLINE_LLINE,RCUR=RCUR+$L(PLINE)       ; Construction full line for another search
+ I CARET S GLB=$E(LLINE,CARET,RCUR) ; Get Global
+ ;
+ I GLB="" S KEY="S" W $C(7) QUIT  ; KEY="S" will keep us in the reader
+ S GLB=$$PARSEGLB(GLB) ; Parse global, replacing variables with :
+ I GLB="" S KEY="S" W $C(7) QUIT  ; KEY="S" will keep us in the reader
+ S ^TMP("XVV",$J)=GLB
  D ENDSCR^XVEMKT2
  D SYMTAB^XVEMKST("C","VRR",VRRS) ;Save symbol table
  D PARAM^XVEMG(^TMP("XVV",$J))
@@ -108,6 +113,7 @@ PARSEGLB(G) ; [Internal] Parse the global into a format XVEMG recognizes
  N FLAGQ S FLAGQ=0
  N DONE S DONE=0
  N GOUT S GOUT=""
+ N GOPAR S GOPAR=0 ; Paren count
  N MODE S MODE="GNAME"
  N I,C
  D
@@ -115,31 +121,52 @@ PARSEGLB(G) ; [Internal] Parse the global into a format XVEMG recognizes
  . S GOUT="^"
  . F I=2:1:$L(G) Q:FLAGQ  Q:DONE  S C=$E(G,I) D @MODE
  I MODE="GPQUOTE" S GOUT=$P(GOUT,"""") ; Abnormal termination. Get first part.
+ I $E(GOUT,$L(GOUT)-1,$L(GOUT))=",0" S $E(GOUT,$L(GOUT)-1,$L(GOUT))="" ; For $Ordering of 0 node
  I $E(GOUT,$L(GOUT))="," S $E(GOUT,$L(GOUT))=""
- I $E(GOUT,$L(GOUT)-1,$L(GOUT))=",0" S $E(GOUT,$L(GOUT)-1,$L(GOUT))=""
  Q GOUT
 GNAME ; [Internal] Get global name
  I C?.1"%".A S GOUT=GOUT_C QUIT
- I C="(" S GOUT=GOUT_C,MODE="GOPAR" QUIT
+ I C="(" S GOUT=GOUT_C,GOPAR=GOPAR+1,MODE="GOPAR" QUIT
  S FLAGQ=1
  QUIT
 GOPAR ; [Internal] Open parens
  I C="""" S GOUT=GOUT_C S MODE="GPQUOTE" QUIT
- I C?1N!(C=".") S GOUT=GOUT_C QUIT  ; Numbers are literals
- I C="," S GOUT=GOUT_C QUIT  ; Commas are okay
- I C="$",$E(G,I+1)?1A S GOUT=GOUT_C QUIT  ; ISVs are okay.
+ I C?1N!(C=".") S GOUT=GOUT_C QUIT        ; Numbers are literals
+ I C="," S GOUT=GOUT_C QUIT               ; Commas are okay
+ I C="$" S MODE="GISVFUNC" QUIT           ; ISVs or Functions (int/ext)
  I C?1A,$E(G,I-1)="$" S GOUT=GOUT_C QUIT  ; Ditto
- I C=")" S DONE=1,MODE="GCPAR" QUIT  ; Done; don't append
- S GOUT=GOUT_":,",MODE="GCADV"  ; advance past next comma
+ I C=")" S GOPAR=GOPAR-1,DONE=1 QUIT      ; Done; don't append
+ S GOUT=GOUT_":,",MODE="GCADV"            ; advance past next comma
  QUIT
 GCADV ; [Internal] Advance till next comma
- I C'="," QUIT
+ I C="(" S GOPAR=GOPAR+1 QUIT  ; Increment paren count
+ I C=")" S GOPAR=GOPAR-1 QUIT  ; decrement ditto
+ I GOPAR>1 QUIT                ; if inside parens (e.g. function) keep going. Ignore comma.
+ I C'="," QUIT                 ; terminate at comma only if at bottom parens
  S MODE="GOPAR"
+ QUIT
+GISVFUNC ; [Internal] Handle $ - ISV/Functions inside globals
+ ; By the time we are here, the dollar was traversed and discarded
+ ; Only allowable ISV is $J otherwise discard
+ I $E(G,I)="J",'($E(G,I+1)="(") S GOUT=GOUT_"$J",MODE="GOPAR" QUIT  ; $JOB not $JUSTIFY
+ I $E(G,I,I+2)="JOB"            S GOUT=GOUT_"$J",MODE="GOPAR" QUIT  ; $JOB for sure
+ S GOUT=GOUT_":,"
+ S MODE="GCADV"
  QUIT
 GPQUOTE ; [Internal] Quote inside parens
  I C'="""" S GOUT=GOUT_C QUIT
  S MODE="GOPAR",GOUT=GOUT_C
  QUIT
+TEST ; [Public] Tests Global parser
+ i $t(+0^%ut)="" quit
+ do EN^%ut($t(+0),1)
+ quit
+TEST1 ; @TEST Test Global parser with $J
+ do CHKEQ^%ut($$PARSEGLB^XVEMREP("^UTILITY($J,""BOO"",99,""FOO"")"),"^UTILITY($J,""BOO"",99,""FOO""")
+ quit
+TEST2 ; @TEST Test Global parser with embedded functions and parens
+ do CHKEQ^%ut($$PARSEGLB^XVEMREP("^PSRX(RX,1,$P($G(RXFL(RX)),""^""),0)) K RXY,RXP,REPRINT Q"),"^PSRX(:,1,:,0")
+ quit
  ;===================================================================
 RETURN ;Process <RET> key
  ;If new rtn, open new line regardless of parameter setting.

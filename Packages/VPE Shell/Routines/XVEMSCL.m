@@ -1,7 +1,8 @@
-XVEMSCL ;DJB/VSHL**Command Line History ;2017-08-15  4:45 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMSCL ;DJB/VSHL**Command Line History ;2019-04-30  2:49 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; CHLSET, CLHEDIT Remove refs to code in globals -> routines (c) 2016 Sam Habiel
+ ; Removed calls to HELP^XVEMSCU as this entry point doesn't exist (c) 2019 Sam Habiel
  ;
 EN(TYPE) ;TYPE=SHL/VEDD/VGL/VRR
  NEW CD,FLAGCLH,HOLD,X
@@ -22,7 +23,6 @@ STEP1 D SCREEN^XVEMKEA("",0,XVV("IOM")-2)
  I XVVSHC="<ESCQ>" D QWIK^XVEMSCU(CD) Q
  I XVVSHC="<RET>" S XVVSHC="**"_CD Q
  I XVVSHC="<AU>"!(XVVSHC="<AD>") S HOLD=X G STEP
- I XVVSHC="<ESCH>" D HELP^XVEMSCU G STEP1
  Q
  ;===================================================================
 LIST ;List Command History (<AL>)
@@ -36,7 +36,6 @@ LIST1 R !?1,"Select: ",X:500 S:'$T X="^" I "^"[X Q
 LIST2 D SCREEN^XVEMKEA("",0,XVV("IOM")-2)
  I XVVSHC="<ESCQ>" D QWIK^XVEMSCU(CD) Q
  I XVVSHC="<RET>" S XVVSHC="**"_CD
- I XVVSHC="<ESCH>" D HELP^XVEMSCU G STEP1
  Q
  ;===================================================================
 CLEANUP ;Clean up extra characters if user hits arrow keys at the wrong time

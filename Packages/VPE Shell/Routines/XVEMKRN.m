@@ -1,7 +1,9 @@
-XVEMKRN ;DJB/KRN**NEW Single Character Read ;2017-08-15  1:00 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMKRN ;DJB/KRN**NEW Single Character Read ;2019-04-11  10:44 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; READ+23,GETCHAR+12 Bug fix by Kevin Toppenberg, MD (c) 2017
+ ; <END> key support for YottaDB/GT.M on Linux by David Wicksell (c) 2019
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 READ(PROMPT,LENGTH,NOECHO) ;
  ;PROMPT  Display prompt.
@@ -37,7 +39,7 @@ READ(PROMPT,LENGTH,NOECHO) ;
 GETCHAR ;Single character READ to get individual characters
  R CHAR#1:XVV("TIME")
  I '$T S CHAR="<TO>" Q
- I $A(CHAR)>31,$A(CHAR)<127 W:$G(NOECHO)'=1 CHAR Q
+ I $A(CHAR)>31,$A(CHAR)<127 W:$G(NOECHO)'=1&($G(FLAGMODE)'["BLOCK") CHAR Q
  X XVV("TRMRD") S CHAR=Y
  D:(CHAR=0) OTHER
  D:(CHAR=27) ESCAPE
@@ -66,7 +68,7 @@ ESCAPE ;Process Escape Sequences
 CURSOR ;Arrow Keys
  ;<AU>,<AD>,<AL>,<AR>
  R *CHAR:50
- S CHAR=$S(CHAR=65:"AU",CHAR=66:"AD",CHAR=67:"AR",CHAR=68:"AL",CHAR=72:"HOME",CHAR=75:"END",1:CHAR)
+ S CHAR=$S(CHAR=65:"AU",CHAR=66:"AD",CHAR=67:"AR",CHAR=68:"AL",CHAR=72:"HOME",CHAR=75!(CHAR=70):"END",1:CHAR)
  I "1,3,4,5,6"[$C(CHAR) D OTHERDTM Q  ;"Other" Keys under DTM
  Q
 PFKEYS ;F Keys. Call here when F Keys are to be used alone

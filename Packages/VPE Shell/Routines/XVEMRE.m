@@ -1,7 +1,8 @@
-XVEMRE ;DJB/VRR**EDIT - READ,UP,DOWN,LEFT,RIGHT ;2017-08-15  1:43 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMRE ;DJB/VRR**EDIT - READ,UP,DOWN,LEFT,RIGHT ;2019-04-11  10:49 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; New Error trap in READ (c) 2016 Sam Habiel
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 READ ;Get input
  N $ETRAP S $ETRAP="D ERROR1^XVEMRY"
@@ -66,7 +67,10 @@ UP(NUM) ;Scroll up NUM lines. Insert line at top.
  . S DX=0,DY=(XVVT("S1")-1) X XVVS("CRSR")
  . S XVVT("TOP")=XVVT("TOP")-1
  . S TMP=$G(^TMP("XVV","IR"_VRRS,$J,XVVT("TOP")))
- . W $P(TMP,$C(30),1),$P(TMP,$C(30),2,99)
+ . I XVV("SYN")="ON" D
+ . . D SYNTAX^XVEMSYN(TMP,XVVT("TOP"))
+ . E  D
+ . . W $P(TMP,$C(30),1),$P(TMP,$C(30),2,99)
  I YCUR=1 W $C(7) Q
  F I=1:1:NUM I YCUR>1 S YCUR=YCUR-1,YND=YND-1
  D CURSOR("U"),HIGHON
@@ -81,7 +85,10 @@ DOWN(NUM) ;Scroll down NUM lines. Insert line at bottom.
  . I NUM>1 W $C(7) Q  ;Don't allow cursor jump
  . S YND=YND+1,XVVT("BOT")=XVVT("BOT")+1,XVVT("TOP")=XVVT("TOP")+1
  . S TMP=$G(^TMP("XVV","IR"_VRRS,$J,YND))
- . W !,$P(TMP,$C(30),1),$P(TMP,$C(30),2,99)
+ . I XVV("SYN")="ON" D
+ . . W ! D SYNTAX^XVEMSYN(TMP,YND)
+ . E  D
+ . . W !,$P(TMP,$C(30),1),$P(TMP,$C(30),2,99)
  ;--> Move cursor down
  F I=1:1:NUM Q:YCUR'<(XVVT("BOT")-XVVT("TOP"))  D  ;
  . S YCUR=YCUR+1,YND=YND+1

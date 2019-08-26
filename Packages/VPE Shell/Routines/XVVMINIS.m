@@ -1,5 +1,5 @@
 XVVMINIS ; ; 04-JAN-2004
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
 PAC(PKG,VER) ; called from package init (DIFROM7 created this routine)
  ; PKG = $T(IXF) of the INIT routine.
  ; VER is an array that is contained in DIFROM from the INIT routine

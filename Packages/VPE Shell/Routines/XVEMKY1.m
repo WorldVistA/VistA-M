@@ -1,13 +1,20 @@
-XVEMKY1 ;DJB/KRN**BS,TRMREAD,ECHO,EXIST,XY,$ZE ;2017-08-15  1:24 PM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVEMKY1 ;DJB/KRN**BS,TRMREAD,ECHO,EXIST,XY,$ZE ;2019-04-11  10:45 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; Original Code authored by David J. Bolduc 1985-2005
  ; GT.M support by Brian Lord (c) 2005
  ; Mumps V1 support,EXIST tag changes by Sam Habiel (c) 2017
+ ; Syntax highlighting support by David Wicksell (c) 2019
  ;
 BS ;Backspace options
  I '$D(XVV("ID")) S XVV("BS")="SAME" Q
  S XVV("BS")=$G(^XVEMS("PARAM",XVV("ID"),"BS"))
  I XVV("BS")']"" S XVV("BS")="SAME"
+ Q
+ ;
+SYNTAX ;Syntax Highlighting options and settings
+ I '$D(XVV("ID")) S XVV("SYN")="OFF" Q
+ S XVV("SYN")=$G(^XVEMS("PARAM",XVV("ID"),"SYNTAX"))
+ I XVV("SYN")']"" S XVV("SYN")="OFF"
  Q
  ;
 ZE ;$ZE Error info

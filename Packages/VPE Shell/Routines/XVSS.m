@@ -1,7 +1,8 @@
-XVSS ; Paideia/SMH,TOAD - VPE Symbol Table Save ;2017-08-16  10:59 AM
- ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+XVSS ; Paideia/SMH,TOAD - VPE Symbol Table Save ;2019-04-09  6:04 PM
+ ;;15.1;VICTORY PROG ENVIRONMENT;;Jun 19, 2019
  ; (c) 2010-2016 Sam Habiel
  ; Sam's Notes: = ^XVEMS("ZS")
+ ;
 SAVE ; Save XVV variables (= ZS1,7,9)
 ZS1 ;
  N %,LIST,VAR
@@ -22,6 +23,7 @@ ZS2 ;
 RESET ; Reset XVV variables and backspace (ZS3)
 ZS3 ;
  D RESTORE
+ D IO^XVEMKY
  D BS^XVEMKY1 ; backspace
  NEW I
  F I=1:1:9 KILL @("%"_I) ; kill parameter variables
