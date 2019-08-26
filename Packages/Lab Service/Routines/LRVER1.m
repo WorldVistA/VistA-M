@@ -1,5 +1,5 @@
-LRVER1 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;01/20/11  18:00
- ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468,484,461**;Sep 27, 1994;Build 15
+LRVER1 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION;Sep 27, 2018@10:00:00
+ ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468,484,461,512**;Sep 27, 1994;Build 7
  ;
  ;5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*468; Feb 10 2016
  ;
@@ -34,7 +34,13 @@ EXP ; Get the list of tests for this ACC. from LRGVG1
  . S X=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I,0))
  . I 'X Q
  . I $P(X,"^",6)="*Not Performed"!($P(X,"^",6)="*Merged") Q
- . S N=N+1,LRTEST(N)=I,LRNLT=$S($P(X,"^",2)>50:$P(X,U,9),1:$P(X,"^"))
+ . ;LR*5.2*512: modified line below to always set the panel as the parent test
+ . ;line was formerly:
+ . ; . S N=N+1,LRTEST(N)=I,LRNLT=$S($P(X,"^",2)>50:$P(X,U,9),1:$P(X,"^")
+ . ;The line above may have been coded based on the urgency field in LR*5.2*291
+ . ;which was released in 2006 but the functionality regarding bundling/unbundling
+ . ;was not implemented.
+ . S N=N+1,LRTEST(N)=I,LRNLT=$P(X,U,9)
  . I $P(X,"^",9),$P(X,"^")'=$P(X,"^",9),'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,$P(X,"^",9))) S LRNLT=$P(X,"^",9)
  . S LRTEST(N,"P")=LRNLT_U_$$NLT(LRNLT)
  . S LRAL=$P(X,U,2)#50
