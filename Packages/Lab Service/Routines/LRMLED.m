@@ -1,5 +1,5 @@
 LRMLED ;BPFO/DTG - NTRT MESSAGE PROCESS AND EDITS UPDATE ;12/26/2016
- ;;5.2;LAB SERVICE;**468,500**;Sep 27, 1994;Build 29
+ ;;5.2;LAB SERVICE;**468,500,517**;Sep 27, 1994;Build 5
  ;
  ; ESTART is called from a 'NEW' format cross reference on the 60 file AMLTFNTRT
  ; and will send NTRT message if appropiate.
@@ -109,6 +109,7 @@ ES ; LRS is passed in and is the specimen IEN
  ; since making exception flag uneditable must do physical set
  ;START OF CHANGE FOR LR*5.2*500
  ;I (LRNOS1'=1&(LRNOS2'=1)) D  ;<
+ G:'$G(^LAB(60,LR60IEN,1,LRS,0)) EOUT ; p517 exit if missing 0 node rec for SITE/SPECIMEN
  N A,B,LRO,LRN,I S A=$G(^LAB(60,LR60IEN,1,LRS,5)),B=A,$P(B,U,3)="Y",^LAB(60,LR60IEN,1,LRS,5)=B
  ; need to build array for saving in audit section
  F I=1,2,4 S LRO(I)="",LRN(I)=""
