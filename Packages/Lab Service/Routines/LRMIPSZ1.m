@@ -1,5 +1,5 @@
 LRMIPSZ1 ;DALOI/STAFF - MICRO PATIENT REPORT ;09/02/10  22:20
- ;;5.2;LAB SERVICE;**283,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**283,350,520**;Sep 27, 1994;Build 3
  ;
  ;
 DQ ;tasked from LRTASK from IMMEDIATE INTERIM REPORTING thru LRTP
@@ -42,7 +42,7 @@ EN ;
  ;
 RPT ;
  ;
- N LRABORT,LRPGDATA,LRPRNTED
+ N LRABORT,LRPGDATA,LRPRNTED,LRDISP
  ;
  ; If called by another process, i.e. interim reports, then don't reset current page number
  S LRPG=$G(LRPG,0)
@@ -101,7 +101,8 @@ RPT ;
  . . W ?19,LRX
  . . I '$P(X,U,2) W ! D NP Q
  . . S Y=$P(X,U,2)
- . . D D^LRU S LRY="completed: "_Y
+  . . ; LR*5.2*520
+ . . D D^LRU S LRY=$S(LRDISP["Not Performed":"canceled: ",1:"completed: ")_Y
  . . I (19+$L(LRX)+$L(LRY))>IOM W !
  . . W ?50,LRY,! D NP
  ;
@@ -180,7 +181,8 @@ RPT ;
  ;
  ;
 EN1 ;
- S LRTS=+^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRBRR,0),LRTS(1)=$P(^(0),U,5)
+ ; LR*5.2*520 Set disposition to LRDISP
+ S LRTS=+^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRBRR,0),LRTS(1)=$P(^(0),U,5),LRDISP=$P(^(0),U,6)
  Q:'$L($P($G(^LAB(60,LRTS,0)),U,3))
  I '$D(LRLABKY),"BO"'[$P($G(^LAB(60,LRTS,0)),U,3) Q
  ;
