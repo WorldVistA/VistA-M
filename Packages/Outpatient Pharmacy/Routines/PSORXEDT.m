@@ -1,5 +1,5 @@
 PSORXEDT ;BIR/SAB - edit rx routine ;10/21/98
- ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422,402,500,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422,402,500,482,556**;DEC 1997;Build 2
  ;External Reference to ^PS(55 supported by DBIA 2228
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) G EOJ Q
@@ -87,10 +87,12 @@ PT ;
  ; Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
  S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2)) S ^TMP("PSOHDR",$J,12,0)=PSOBSA
  S RSLT=$$CRCL^PSOORUT2(DFN)
+ ; Display format of CrCL and Creatinine results updated - PSO*7.0*556
  I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
- I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- S ^TMP("PSOHDR",$J,13,0)=ZDSPL
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ S ^TMP("PSOHDR",$J,13,0)=$G(ZDSPL)
  K PSOBSA,RSLT,ZDSPL
  ;
  D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2) S ^TMP("PSOBB",$J)=TM_"^"_TM1
