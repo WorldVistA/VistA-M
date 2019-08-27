@@ -1,5 +1,5 @@
 PSOERXU6 ;ALB/BWF - eRx utilities ; 5/4/2018 9:57am
- ;;7.0;OUTPATIENT PHARMACY;**508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**508,551**;DEC 1997;Build 37
  ;
  Q
  ; auto discontinue orders related to cancel request
@@ -257,3 +257,12 @@ SH(ERXIEN) ;
  .W !
  D DIRE^PSOERXX1
  Q
+ ;/BLB/ PSO*7.0*551 - BEGIN CHANGE - ADDED NEW CALL TO AVOID CONCATENATING A SPACE ONTO PATIENT INSTRUCTIONS
+LSIG(SIG) ;
+  N P,SGY
+ S SGY="" F P=1:1:$L(SIG," ") S X=$P(SIG," ",P) D:X]""  ;
+ .;PSO*7*282 Intended Use Check
+ .N PSOIN S PSOIN=$O(^PS(51,"B",X,0)) I PSOIN,($P(^PS(51,PSOIN,0),"^",4)<2)&($D(^PS(51,"A",X))) S %=^(X),X=$P(%,"^") I $P(%,"^",2)]"" S Y=$P(SIG,"",P-1),Y=$E(Y,$L(Y)) S:Y>1 X=$P(%,"^",2)
+ .S SGY=SGY_" "_X
+ Q SGY
+ ;/BLB/ PSO*7.0*551 - END CHANGE

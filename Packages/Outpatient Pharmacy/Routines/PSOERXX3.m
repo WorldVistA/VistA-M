@@ -1,5 +1,5 @@
 PSOERXX3 ;ALB/BWF - eRx xml utilities ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,508,551**;DEC 1997;Build 37
  ;
  Q
 PATIENT(GBL,PSOISTE,IEN) ;
@@ -89,7 +89,7 @@ FILLST(GBL,FTYPE,FNOTE) ;
  D C S @GBL@(CNT,0)="</FillStatus>"
  Q
 BENEFITS(GBL,IEN) ;
- N F,NCPDPID,NCPDPID,PAYNAME,CARDID,LNAME,FNAME,MNAME,SUFF,PREF,GID,PSDAT,BIENS,BLOOP
+ N F,NCPDPID,NCPDPID,PAYNAME,CARDID,LNAME,FNAME,MNAME,SUFF,PREF,GID,PSDAT,BIENS,BLOOP,IDLOOP
  S IENS=IEN_","
  S F=52.4918
  I '$O(^PS(52.49,IEN,18,0)) Q
@@ -103,36 +103,44 @@ BENEFITS(GBL,IEN) ;
  .;S NCPDPID=$G(PSDAT(F,IENS,1,"E"))
  .;FUTURE ENHANCEMENT - STORE PAYER NAME DIFFERENTLY AN..35
  .S PAYNAME=$E($G(PSDAT(F,BIENS,.03,"E")),1,35)
- .S CARDID=$G(PSDAT(F,BIENS,.01,"E"))
+ .S CARDID=$G(PSDAT(F,BIENS,7,"E"))
  .S LNAME=$G(PSDAT(F,BIENS,1,"E"))
  .S FNAME=$G(PSDAT(F,BIENS,2,"E"))
  .S MNAME=$G(PSDAT(F,BIENS,3,"E"))
  .S SUFF=$G(PSDAT(F,BIENS,4,"E"))
  .S PREF=$G(PSDAT(F,BIENS,5,"E"))
  .S GID=$G(PSDAT(F,BIENS,.02,"E"))
- .; FUTURE ENHANCEMENT, INCLUDE PAYER IDENTIFICATION INFORMATION
- .;D C S @GBL@(CNT,0)="<PayerIdentification>"
- .;S IDLOOP=0 F  S IDLOOP=$O(^PS(52.49,IEN,18,BLOOP,6,IDLOOP)) Q:'IDLOOP  D
- .;.S ITYP=$$GET1^DIQ(52.49186,IDLOOP_","_BLOOP_","_IENS,.01,"E")
- .;.S IVAL=$$GET1^DIQ(52.49186,IDLOOP_","_BLOOP_","_IENS,.02,"E")
- .;.D IDENT(.GBL,ITYP,IVAL)
- .;D C S @GBL@(CNT,0)="</PayerIdentification>"
- .;D C S @GBL@(CNT,0)="<PayerName>"_PAYNAME_"</PayerName>"
+ .; PAYER IDENTIFICATION INFORMATION
+ .I $D(^PS(52.49,IEN,18,BLOOP,6)) D
+ ..S IDLOOP=0 F  S IDLOOP=$O(^PS(52.49,IEN,18,BLOOP,6,IDLOOP)) Q:'IDLOOP  D
+ ...D C S @GBL@(CNT,0)="<PayerIdentification>"
+ ...S ITYP=$$GET1^DIQ(52.49186,IDLOOP_","_BLOOP_","_IENS,.01,"E")
+ ...S IVAL=$$GET1^DIQ(52.49186,IDLOOP_","_BLOOP_","_IENS,.02,"E")
+ ...D C S @GBL@(CNT,0)="<"_ITYP_">"_IVAL_"</"_ITYP_">"
+ ...D C S @GBL@(CNT,0)="</PayerIdentification>"
+ ..;D C S @GBL@(CNT,0)="</PayerIdentification>"
+ .I $L(PAYNAME) D C S @GBL@(CNT,0)="<PayerName>"_PAYNAME_"</PayerName>"
  .I $L(CARDID) D C S @GBL@(CNT,0)="<CardholderID>"_CARDID_"</CardholderID>"
- .D C S @GBL@(CNT,0)="<CardHolderName>"
- .I $L(LNAME) D C S @GBL@(CNT,0)="<LastName>"_LNAME_"</LastName>"
- .I $L(FNAME) D C S @GBL@(CNT,0)="<FirstName>"_FNAME_"</FirstName>"
- .I $L(MNAME) D C S @GBL@(CNT,0)="<MiddleName>"_MNAME_"</MiddleName>"
- .I $L(SUFF) D C S @GBL@(CNT,0)="<Suffix>"_SUFF_"</Suffix>"
- .I $L(PREF) D C S @GBL@(CNT,0)="<Prefix>"_PREF_"</Prefix>"
- .D C S @GBL@(CNT,0)="</CardHolderName>"
+ .I ($L(LNAME))!($L(FNAME))!($L(MNAME))!($L(SUFF))!($L(PREF)) D
+ ..D C S @GBL@(CNT,0)="<CardHolderName>"
+ ..;/BLB/ - PSO*7*551 BEGIN CHANGE - PREVENT EMPTY SECTIONS
+ ..I $L(LNAME) D C S @GBL@(CNT,0)="<LastName>"_LNAME_"</LastName>"
+ ..I $L(FNAME) D C S @GBL@(CNT,0)="<FirstName>"_FNAME_"</FirstName>"
+ ..I $L(MNAME) D C S @GBL@(CNT,0)="<MiddleName>"_MNAME_"</MiddleName>"
+ ..I $L(SUFF) D C S @GBL@(CNT,0)="<Suffix>"_SUFF_"</Suffix>"
+ ..I $L(PREF) D C S @GBL@(CNT,0)="<Prefix>"_PREF_"</Prefix>"
+ ..D C S @GBL@(CNT,0)="</CardHolderName>"
  .I $L(GID) D C S @GBL@(CNT,0)="<GroupID>"_GID_"</GroupID>"
  D C S @GBL@(CNT,0)="</BenefitsCoordination>"
  Q
+ ;/BLB/ PSO*7.0*551 - END CHANGE
 OBSERVE(GBL,IEN) ;
  N F,DIMENS,VALUE,OBDATE,MDQ,MSC,MUC,OBNOTE,PSDAT,OIENS,OLOOP
  S F=52.4914
+ S OBNOTE=$$GET1^DIQ(52.49,IEN,15,"E") S OBNOTE=$$SYMENC^MXMLUTL(OBNOTE)
  S IENS=IEN_","
+ I '$O(^PS(52.49,IEN,14,0)) Q
+ D C S @GBL@(CNT,0)="<Observation>"
  S OLOOP=0 F  S OLOOP=$O(^PS(52.49,IEN,14,OLOOP)) Q:'OLOOP  D
  .S OIENS=OLOOP_","_IENS
  .K PSDAT
@@ -145,8 +153,6 @@ OBSERVE(GBL,IEN) ;
  .S MDQ=$G(PSDAT(F,OIENS,.05,"I"))
  .S MSC=$G(PSDAT(F,OIENS,.06,"E"))
  .S MUC=$G(PSDAT(F,OIENS,.07,"E"))
- .S OBNOTE=$G(PSDAT(F,OIENS,15,"E"))
- .D C S @GBL@(CNT,0)="<Observation>"
  .D C S @GBL@(CNT,0)="<Measurement>"
  .D C S @GBL@(CNT,0)="<Dimension>"_DIMENS_"</Dimension>"
  .D C S @GBL@(CNT,0)="<Value>"_VALUE_"</Value>"
@@ -158,9 +164,9 @@ OBSERVE(GBL,IEN) ;
  .I $L(MSC) D C S @GBL@(CNT,0)="<MeasurementSourceCode>"_MSC_"</MeasurementSourceCode>"
  .I $L(MUC) D C S @GBL@(CNT,0)="<MeasurementUnitCode>"_MUC_"</MeasurementUnitCode>"
  .D C S @GBL@(CNT,0)="</Measurement>"
- .I $L(OBNOTE) D
- ..D C S @GBL@(CNT,0)="<ObservationNotes>"_OBNOTE_"</ObservationNotes>"
- .D C S @GBL@(CNT,0)="</Observation>"
+ I $L(OBNOTE) D
+ .D C S @GBL@(CNT,0)="<ObservationNotes>"_OBNOTE_"</ObservationNotes>"
+ D C S @GBL@(CNT,0)="</Observation>"
  Q
 DRUGEVAL(GBL,IEN) ;
  N F,SRC,PSC,SERVRC,CAID,CAQ,CSC,AR,PSDAT,DLOOP

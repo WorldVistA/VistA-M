@@ -1,5 +1,5 @@
 PSOERX1A ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,527,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,527,508,551**;DEC 1997;Build 37
  ;
  Q
  ; select an item
@@ -14,10 +14,13 @@ SI ;
  S ERXPAT=$$GETPAT^PSOERXU5(ERXIEN)
  S MTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I")
  I 'ERXPAT,"IEOE"[MTYPE D EN^PSOERX1(ERXIEN) S VALMBCK="R" Q
- S ERXLOCK=$$L(ERXPAT,1)
- I 'ERXLOCK S DIR(0)="E" D ^DIR K DIR S VALMBCK="R" Q
+ I '$D(PCV) D  Q
+ .S ERXLOCK=$$L(ERXPAT,1)
+ .I 'ERXLOCK S DIR(0)="E" D ^DIR K DIR S VALMBCK="R" Q
+ .D EN^PSOERX1(ERXIEN)
+ .D UL(ERXPAT)
+ .K % S VALMBCK="R"
  D EN^PSOERX1(ERXIEN)
- I '$D(PCV) D UL(ERXPAT)
  K %
  S VALMBCK="R"
  Q
@@ -29,24 +32,34 @@ SBN ;
  S ERXIEN=$O(@VALMAR@("IDX",Y,"")) Q:'ERXIEN
  S ERXPAT=$$GETPAT^PSOERXU5(ERXIEN)
  S MTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I")
- I 'ERXPAT,"IEOE"[MTYPE D EN^PSOERX1(ERXIEN) S VALMBCK="R" Q 
- S ERXLOCK=$$L(ERXPAT,1)
- I 'ERXLOCK S DIR(0)="E" D ^DIR K DIR S VALMBCK="R" Q
+ I 'ERXPAT,"IEOE"[MTYPE D EN^PSOERX1(ERXIEN) S VALMBCK="R" Q
+ I '$D(PCV) D  Q
+ .S ERXLOCK=$$L(ERXPAT,1)
+ .I 'ERXLOCK S DIR(0)="E" D ^DIR K DIR S VALMBCK="R" Q
+ .D EN^PSOERX1(ERXIEN)
+ .D UL(ERXPAT)
+ .S VALMBCK="R" K %
  D EN^PSOERX1(ERXIEN)
- I '$D(PCV) D UL(ERXPAT)
  S VALMBCK="R"
  K %
  Q
-L(DFN,DIS) ; 
+L(DFN,DIS) ;
  I $G(PSONOLCK) Q 1
  N FLAG S ^XTMP("PSOERXLOCK",0)=$$PDATE
+ ; if a lock is already established for this patient and is associated with the current user
+ ;/BLB/ PSO*7.0*551 - BEGIN CHANHE
+ I $P($G(^XTMP("PSOERXLOCK",DFN)),"^",1)=DUZ D  Q FLAG
+ .L +^XTMP("PSOERXLOCK",DFN):$S($G(DILOCKTM)>0:DILOCKTM,1:3) S FLAG=$S($T=1:$T,1:0)
+ .I 'FLAG W !,"You have this patient locked in another open session"
  I '$D(^XTMP("PSOERXLOCK",DFN)) D  Q FLAG
- . D NOW^%DTC S ^XTMP("PSOERXLOCK",DFN)=DUZ_"^"_%
+ . ;D NOW^%DTC S ^XTMP("PSOERXLOCK",DFN)=DUZ_"^"_%
  . L +^XTMP("PSOERXLOCK",DFN):$S($G(DILOCKTM)>0:DILOCKTM,1:3) S FLAG=$S($T=1:$T,1:0)
  . I FLAG D
+ . . D NOW^%DTC S ^XTMP("PSOERXLOCK",DFN)=DUZ_"^"_%
  . . S FDA(52.46,DFN_",",6)=DUZ
  . . D UPDATE^DIE(,"FDA") K FDA
  I $D(^XTMP("PSOERXLOCK",DFN)) Q $$R
+ ;/BLB/ PSO*7.0*551 - END CHANGE
 UL(DFN) ; unlock
  I $G(PSONOLCK) Q
  L -^XTMP("PSOERXLOCK",DFN) K ^XTMP("PSOERXLOCK",DFN)
@@ -210,18 +223,18 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  F  D  Q:DONE
  .I $$GET1^DIQ(52.49,PSOIEN,3.2,"I")="" S Y="A"
  .I '$D(Y),'$O(^PS(52.49,PSOIEN,21,0)) S Y="A"
- .I SBN']"",'$D(Y) D
+ .I SBN']"",'$D(Y)!($G(Y)[" ")!($G(Y)[".") D
  ..S DIR(0)="FO^",DIR("A")="Which field(s) would you like to edit? ("_LOW_"-"_HIGH_") or 'A'll"
  ..S DIR("?")="Enter a number, range, or a list of numbers (i.e. 3, 1-5, 3,7,9, or 'A'll)"
  ..S DIR("B")="A"
  ..D ^DIR K DIR
  ..I Y="^" S DONE=1 Q
  .;/BLB/ PSO*7.0*527 - BEGIN CHANGE - PREVENTING INVALID VALUES FROM BEING ENTERED IN VD
- .I Y["-",Y["," D  Q
+ .I SBN']"",Y["-",Y["," D  Q
  ..W !!,"Invalid Response."
  ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
  ..S DIR(0)="E" D ^DIR K Y,DIR
- .I (Y[".")!(Y[" ") D  Q
+ .I SBN']"",(Y[".")!(Y[" ") D  Q
  ..W !!,"Invalid Response."
  ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
  ..S DIR(0)="E" D ^DIR K DIR

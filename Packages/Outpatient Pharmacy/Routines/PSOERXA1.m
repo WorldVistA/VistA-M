@@ -1,5 +1,5 @@
 PSOERXA1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,508,551**;DEC 1997;Build 37
  ;
  Q
  ; File incoming XML into appropriate file
@@ -231,15 +231,15 @@ HDR(MTYPE) ; header information
  ; Future consideration - XSD shows digital signature. Do we need to collect this?
  Q ERXIEN
 OBS(ERXIEN,MTYPE) ; Observation
- N GL,I,LAST,DIM,MSOURCE,MUNIT,OBSDT,MVAL,OBSNOTE,OBSCNT,F,EIENS,FDA
+ N GL,I,LAST,DIM,MSOURCE,MUNIT,OBSDT,MVAL,OBSNOTE,OBSCNT,F,EIENS,FDA,MDQUAL
  S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,"Observation",0))
  S F=52.4914,EIENS=ERXIEN_","
  S I=-1,OBSCNT=0 F  S I=$O(@GL@("Measurement",I)) Q:I=""  D
  .S OBSCNT=OBSCNT+1,FDA(F,"+1,"_EIENS,.01)=OBSCNT
  .S DIM=$G(@GL@("Measurement",I,"Dimension",0)),FDA(F,"+1,"_EIENS,.02)=DIM
+ .S MDQUAL=$G(@GL@("Measurement",I,"MeasurementDataQualifier",0)),FDA(F,"+1,"_EIENS,.05)=MDQUAL
  .S MSOURCE=$G(@GL@("Measurement",I,"MeasurementSourceCode",0)),FDA(F,"+1,"_EIENS,.06)=MSOURCE
  .S MUNIT=$G(@GL@("Measurement",I,"MeasurementUnitCode",0)),FDA(F,"+1,"_EIENS,.07)=MUNIT
- .; Future enhancement - we have a field for MeasurementDataQualifier (.05) - is this valid?
  .S OBSDT=$G(@GL@("Measurement",I,"ObservationDate",0,"Date",0)),OBSDT=$$CONVDTTM^PSOERXA1(OBSDT),FDA(F,"+1,"_EIENS,.04)=OBSDT
  .S MVAL=$G(@GL@("Measurement",I,"Value",0)),FDA(F,"+1,"_EIENS,.03)=MVAL
  .D UPDATE^DIE(,"FDA") K FDA
