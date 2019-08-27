@@ -1,5 +1,5 @@
-RAHLACK ;HISC/PAV - Process Appl Ack for (ORM) and (ORU) Msgs; 06/23/2006  10:42
- ;;5.0;Radiology/Nuclear Medicine;**47**;June 16, 2006;Build 21
+RAHLACK ;HISC/PAV - Process Appl Ack for (ORM) and (ORU) Msgs;14 Feb 2019 10:40 AM
+ ;;5.0;Radiology/Nuclear Medicine;**47,154**;June 16, 2006;Build 1
  ; Based on information from incoming Ack, e-mail message is
  ; sent to Mail group: G.RAD HL7 MESSAGES
  ;
@@ -58,7 +58,8 @@ EM(MID,ERROR,RAERR,XMSUB,XMY) ; error message
  S RAX(.1)="HL7 message ID: "_$G(MID)
  S RAX(.2)="",RAX(.3)=$G(ERROR)
  S:$G(XMSUB)="" XMSUB="RAD ACK ERROR/WARNING/INFO"
- S RAMPG=$P($$GETAPP^HLCS2(HL("SAN")),U,1) ;RAMPG="G.RAD HL7 MESSAGES"
+ ;p154 - undefined HL("SAN") error, add $D check
+ S RAMPG=$S($D(HL("SAN")):$P($$GETAPP^HLCS2(HL("SAN")),U,1),1:"") ;RAMPG="G.RAD HL7 MESSAGES"
  S:'$L(RAMPG) RAMPG="G.RAD HL7 MESSAGES"
  S XMY(RAMPG)="",XMDUZ=.5
  S XMTEXT="RAX("

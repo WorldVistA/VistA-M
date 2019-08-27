@@ -1,5 +1,5 @@
-RADD3 ;HISC/SWM-Radiology Data Dictionary Utility Routine ;9/11/97  16:23
- ;;5.0;Radiology/Nuclear Medicine;**18,65**;Mar 16, 1998;Build 8
+RADD3 ;HISC/SWM-Radiology Data Dictionary Utility Routine ;12 Feb 2019 12:31 PM
+ ;;5.0;Radiology/Nuclear Medicine;**18,65,154**;Mar 16, 1998;Build 1
  ;
  ;Supported IA #2056 reference to GET1^DIQ
  ;Supported IA #10142 reference to EN^DDIOL
@@ -131,13 +131,14 @@ A7007(RADFN,RADTI,RACNI,RAWHO,RATC) ; update the ACTIVITY LOG (70.07)
  ; RACNI=exam record ien (70.03), RAWHO=editing person
  ; RATC=technologist comments (optional)
  ;
- N %,D,D0,DA,DIC,DIE,DQ,DR,RAFDA,RAIEN,RAIENS,X,Y
+ N %,D,D0,DA,DIC,DIE,DQ,DR,RAFDA,RAIEN,RAIENS,RATOA,X,Y
+ S RATOA=$S($D(RAOPT("STATRACK")):"S",1:"U") ;p154 Reflect option used
  S RAIENS="+1,"_RACNI_","_RADTI_","_RADFN_","
  S RAFDA(70.07,RAIENS,.01)="NOW"
  D UPDATE^DIE("E","RAFDA","RAIEN") ;RAIEN(1)=ien of new record
  K RAFDA,RAIENS  Q:'$D(RAIEN(1))  ; record not added
  S RAIENS=RAIEN(1)_","_RACNI_","_RADTI_","_RADFN_","
- S RAFDA(70.07,RAIENS,2)="U"
+ S RAFDA(70.07,RAIENS,2)=RATOA
  S RAFDA(70.07,RAIENS,3)=$G(RAWHO)
  S:$G(RATC)]"" RAFDA(70.07,RAIENS,4)=RATC
  D FILE^DIE(,"RAFDA")

@@ -1,5 +1,5 @@
-RASTED ;HISC/CAH,FPT,GJC,SS AISC/TMP,TAC,RMO-Edits for status tracking ;05/22/09  12:30
- ;;5.0;Radiology/Nuclear Medicine;**1,10,18,28,45,71,82,99**;Mar 16, 1998;Build 5
+RASTED ;HISC/CAH,FPT,GJC,SS AISC/TMP,TAC,RMO-Edits for status tracking ;12 Feb 2019 12:26 PM
+ ;;5.0;Radiology/Nuclear Medicine;**1,10,18,28,45,71,82,99,154**;Mar 16, 1998;Build 1
  ;last modif by SS for P18 JUN 19,2000
  ;02/10/2006 BAY/KAM RA*5*71 Add ability to update exam data to V/R
  ; *** 'RASTED' is called from the routine; 'CASE^RASTEXT1'. ***
@@ -68,7 +68,8 @@ ASK R !,"Do you wish to continue? YES// ",X1:DTIME S:X1="" X1="Y" Q:'$T!(X1["^")
  D SVBEFOR^RAO7XX(RADFN,RADTI,RACNI) ;P18 save before edit to compare later
  K RACOMP D ^DIE
  ;P18. $D(RABEFORE)=0 means that RASTREQ was not run - the user has interrupted input or timeout happened. So we must call it, then check result (is status changed) and if so - update 70.03 #3 and set RA70033=X
- I '$D(RABEFORE) K DA S X=RANXT72 D:X ^RASTREQ  I $D(X)#2 S RA70033=X D U70033^RADD3(RADFN,RADTI,RACNI,X)
+ ;P154 Removed status update from RA STATUS CHANGE template - $D(RABEFORE) check no longer needed. Do update here every time.
+ K DA S X=RANXT72 D:X ^RASTREQ  I $D(X)#2 S RA70033=X D U70033^RADD3(RADFN,RADTI,RACNI,X)
  ;
  ;1) check data consistency between 'CONTRAST MEDIA USED' & 'CONTRAST
  ;MEDIA'
