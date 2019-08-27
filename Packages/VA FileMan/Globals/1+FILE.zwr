@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-27-AUG-2019 09:23:09 ZWR
+27-AUG-2019 13:40:43 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2837,10 +2837,12 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.7",0)="PHARMACY ORDERABLE ITEM^50.7I"
 ^DIC("50.7",0,"DD")="@"
 ^DIC("50.7",0,"GL")="^PS(50.7,"
-^DIC("50.7","%",0)="^1.005^^0"
+^DIC("50.7","%",0)="^1.005^1^1"
+^DIC("50.7","%",1,0)="GMTS"
+^DIC("50.7","%","B","GMTS",1)=""
 ^DIC("50.7","%D",0)="^^1^1^2941026^"
 ^DIC("50.7","%D",1,0)="Order Entry name for items that can be ordered in the Pharmacy package."
-^DIC("50.7","%MSC")=3190314.235357
+^DIC("50.7","%MSC")=3190827.133645
 ^DIC("50.713","%MSC")=3180609.221044
 ^DIC("50.8",0)="IV STATS^50.8P"
 ^DIC("50.8",0,"DD")="@"
@@ -20607,7 +20609,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.71","%D",5,0)="and transmission to the Mental Health National Database are also specified. "
 ^DIC("601.71","%D",6,0)=" "
 ^DIC("601.71","%D",7,0)="Direct entry via FileMan is prohibited."
-^DIC("601.71","%MSC")=3190519.185316
+^DIC("601.71","%MSC")=3190827.124502
 ^DIC("601.72",0)="MH QUESTIONS^601.72"
 ^DIC("601.72",0,"AUDIT")="@"
 ^DIC("601.72",0,"DD")="@"
@@ -37986,6 +37988,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("AC","ECX","727.826",1)=""
 ^DIC("AC","FHAS",743,3)=""
 ^DIC("AC","GMRC",123,1)=""
+^DIC("AC","GMTS","50.7",1)=""
 ^DIC("AC","GMTS",60,2)=""
 ^DIC("AC","GMTS",71,2)=""
 ^DIC("AC","GMTS",81,2)=""
