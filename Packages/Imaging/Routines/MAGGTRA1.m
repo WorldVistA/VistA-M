@@ -1,5 +1,5 @@
-MAGGTRA1 ;WOIFO/GEK - RPC Call to list Patient's Rad/Nuc Exams, Reports ; [ 11/08/2001 17:18 ]
- ;;3.0;IMAGING;;Mar 01, 2002
+MAGGTRA1 ;WOIFO/GEK,DAC - RPC Call to list Patient's Rad/Nuc Exams, Reports ; 20 Feb 2019 4:45PM 
+ ;;3.0;IMAGING;**234**;Mar 01, 2002;Build 2
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -52,12 +52,19 @@ CONVERT ; Convert the ^TMP($J,"RAE1",MAGDFN  to our output array.
  N XRPT
  S MAGCNT=1
  S I=0 F  S I=$O(^TMP($J,"RAE1",MAGDFN,I)) Q:'I  D
+ . N SITE,SITEACN,I2 ; P234
  . S MAGCNT=MAGCNT+1
  . S J=^TMP($J,"RAE1",MAGDFN,I) ; Changed to full reference /gek
  . S X=9999999.9999-$P(I,"-"),X=$E(X,4,7)_$E(X,2,3)
+ . S I2=$P(I,"-")
+ . ; P234 DAC - Add site when there is a long accession number 
+ . S SITE="",SITEACN=$P(^RADPT(MAGDFN,"DT",I2,"P",1,0),U,31) ; ICR #1172 (Private)
+ . I SITEACN S SITE=$P(SITEACN,"-",1)_"-"
+ . ;
  . ; Y2K not needed on day-case - Rad uses as string variable.
  . ;   1 #         2  day-case       3  desc
- . S Z=MAGCNT-1_U_X_"-"_$P(J,"^",2)_U_$P(J,U)_U
+ . ; P234 DAC - Add site when there is a long accession number
+ . S Z=MAGCNT-1_U_SITE_X_"-"_$P(J,"^",2)_U_$P(J,U)_U
  . S X=9999999.9999-$P(I,"-")
  . ;    4  date
  . S Z=Z_$E(X,4,5)_"/"_$E(X,6,7)_"/"_(1700+$E(X,1,3))_U
