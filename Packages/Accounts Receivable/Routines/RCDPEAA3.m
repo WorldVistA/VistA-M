@@ -1,5 +1,5 @@
 RCDPEAA3 ;ALB/KML - APAR Screen - callable entry points ;Nov 24, 2014@23:32:24
- ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,304,318,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -14,8 +14,10 @@ SPLIT(RCIENS) ;EP - Protocol action - RCDPE APAR SPLINE LINE
  . S VALMBCK="R"
  . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
  . D PAUSE^VALM1
- S L=0 F  S L=$O(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),1,L)) Q:'L  D
- . I "01"[$P($G(^(L,0)),U,2) S DIR(0)="EA",DIR("A",1)="THIS EEOB IS NOT AVAILABLE TO EDIT/SPLIT",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR G SPLITQ
+ S L=0
+ F  S L=$O(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),1,L)) Q:'L  I "01"[$P($G(^(L,0)),U,2) D  G SPLITQ
+ . S DIR(0)="EA",DIR("A",1)="THIS EEOB IS NOT AVAILABLE TO EDIT/SPLIT",DIR("A")="PRESS RETURN TO CONTINUE "
+ . W ! D ^DIR K DIR
  I $P($G(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),0)),U,13) D  G:RCQUIT SPLITQ
  . S DIR("A",1)="WARNING!  THIS LINE HAS ALREADY BEEN VERIFIED",DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE?: ",DIR(0)="YA",DIR("B")="NO" W ! D ^DIR K DIR
  . I Y'=1 S RCQUIT=1
@@ -27,26 +29,83 @@ SPLIT(RCIENS) ;EP - Protocol action - RCDPE APAR SPLINE LINE
 SPLITQ S VALMBCK="R"
  Q
  ;
-REFRESH(RCIENS) ;EP - Protocol action - RCDPE APAR EEOB REFRESH
+REFRESH(RCIENS) ;EP - Protocol action - RCDPE APAR EEOB REFRESH - PRCA*4.5*332 subroutine re-written
  ; Refresh the entry in file 344.49 to remove all user adjustments
  ;  Input:  RCIENS  - Internal IEN of entry in file 344.49^ien of 
  ;                    344.491^selectable line item from listman screen
- N DA,DIK,DIR,X,Y,Z,Z0
+ N DA,DIK,DIR,DONE,IENS,OSEQ,SEQ,X,XX,Y,Z,ZZ,Z0
  D FULL^VALM1
+ S XX=$P(RCIENS,"^",2)_","_$P(RCIENS,"^",1)_","
+ S SEQ=$$GET1^DIQ(344.491,XX,.01,"I")       ; Line Sequence #
  I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
  . S VALMBCK="R"
  . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
  . D PAUSE^VALM1
  ;
  S DIR(0)="YA"
- S DIR("A",1)="THIS ACTION WILL DELETE AND REBUILD THIS EEOB WORKLIST SCRATCH PAD ENTRY",DIR("A",2)="ALL EDITS/SPLITS/DISTRIBUTE ADJUSTMENTS ENTERED FOR THIS ERA WILL BE ERASED"
- S DIR("A",3)="AND ALL ENTRIES MARKED AS MANUALLY VERIFIED WILL BE UNMARKED",DIR("A",4)=" "
- S DIR("A")="ARE YOU SURE YOU WANT TO DO THIS?: "
- W ! D ^DIR K DIR
- I Y'=1 G REFQ
- D ADDLINES^RCDPEWLA($P(RCIENS,U))
+ S DIR("A",1)="This action will delete and rebuild this EEOB Worklist Scratch Pad for Line "_SEQ_"."
+ S DIR("A",2)="All Splits/Edits/Reviews entered for this line will be erased and all entries"
+ S DIR("A",3)="marked as manually verified will be unmarked.",DIR("A",4)=" "
+ S DIR("A")="ARE YOU SURE YOU WANT TO DO THIS? "
+ W !
+ D ^DIR
+ K DIR
+ I Y'=1 D REFQ Q
+ ;
+ ; First remove Review and Verify information
+ S DA=$P(RCIENS,"^",2),DA(1)=$P(RCIENS,"^",1)
+ S DIE="^RCY(344.49,"_DA(1)_",1,",DA=$P(RCIENS,"^",2),DA(1)=$P(RCIENS,"^",1)
+ S DR=".1///@;.11///@;.12///@;.13///@"
+ D ^DIE
+ S XX=0,DA(2)=DA(1),DA(1)=DA
+ F  D  Q:'XX
+ . S XX=$O(^RCY(344.49,DA(2),1,DA(1),4,XX))
+ . Q:'XX
+ . S DA=XX
+ . S DIK="^RCY(344.49,"_DA(2)_",1,"_DA(1)_",4,"
+ . D ^DIK
+ ;
+ ; Next remove distributed adjustments
+ S XX=0
+ F  D  Q:'XX
+ . S XX=$O(^RCY(344.49,DA(2),1,DA(1),1,XX))
+ . Q:'XX
+ . S DA=XX,DIK="^RCY(344.49,"_DA(2)_"1,"_DA(1)_",1,"
+ . D ^DIK
+ ;
+ ; Finally remove Split/Edited lines
+ K DA
+ S IENS=$P(RCIENS,"^",2)_","_$P(RCIENS,"^",1)_","
+ D GETS^DIQ(344.491,IENS,"**","I","OSEQ")               ; Get Original line values
+ S DA=$P(RCIENS,"^",2)+1,DA(1)=$P(RCIENS,"^",1)
+ K DR
+ S DIE="^RCY(344.49,"_DA(1)_",1,"
+ S DR=".02///"_OSEQ(344.491,IENS,.02,"I")_";"           ; Original Claim #
+ S DR=DR_".03///"_OSEQ(344.491,IENS,.03,"I")_";"        ; Amount to Post on Receipt
+ S DR=DR_".04///"_OSEQ(344.491,IENS,.04,"I")_";"        ; Include on Receipt
+ S DR=DR_".05///"_OSEQ(344.491,IENS,.05,"I")_";"        ; Amount of Payment
+ S DR=DR_".06///"_OSEQ(344.491,IENS,.06,"I")_";"        ; Net Amount of Payment
+ ;
+ ; PRCA*4.5*332 - AR Bill pointer goes in .07 field.  It is populated during scratchpad creation
+ ; but when refreshing we need to derive it from the old bill number in the .02 field.
+ S Z0=""
+ S ZZ=OSEQ(344.491,IENS,.02,"I")
+ I ZZ'="" S Z0=$O(^DGCR(399,"B",ZZ,""))
+ S DR=DR_".07///"_$S(Z0:Z0,1:"@")_";"                   ; AR Bill (399 or 430 IEN)
+ ;
+ S DR=DR_".08///@;.09///@;.10///@;2.03///@;2.04///@"    ; Null out the other fields
+ D ^DIE
+ S XX=DA,DONE=0
+ F  D  Q:DONE
+ . S XX=$O(^RCY(344.49,DA(1),1,XX))
+ . I 'XX S DONE=1 Q
+ . Q:$P($P(^RCY(344.49,DA(1),1,XX,0),"^",1),".",1)'=SEQ     ; Not line being refreshed
+ . S DA=XX,DIK="^RCY(344.49,"_DA(1)_",1,"
+ . D ^DIK
+ ;
  D INIT^RCDPEAA2(RCIENS)
-REFQ S VALMBG=1,VALMBCK="R"
+REFQ ;
+ S VALMBG=1,VALMBCK="R"
  Q
  ;
 RESEARCH ; Invoke the research menu off APAR

@@ -1,5 +1,5 @@
 IBCEOB0 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 8/24/10 7:23pm
- ;;2.0;INTEGRATED BILLING;**135,280,155,431,488,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**135,280,155,431,488,516,633**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -56,7 +56,7 @@ Q30 Q
  . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=" "
  . S ETEXT=$P("Revenue Code^Procedure Code^Amount of Units^Charge Amount^Procedure Code Modifier",U,+ERRCOD)
  . I ETEXT="" S ETEXT="Data"
- . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)="Mismatched "_ETEXT_":"
+ . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=$$ERRTXT(ETEXT,IBEOB) ; IB*2.0*633
  . S ^TMP(IBEGBL,$J,+$O(^TMP(IBEGBL,$J,""),-1)+1)=" "
  . D DET40^IBCEOB00(IB0,.Z0,ERRCOD)
  . S CT=+$O(^TMP(IBEGBL,$J,""),-1),Z=0 F  S Z=$O(Z0(Z)) Q:'Z  S CT=CT+1,^TMP(IBEGBL,$J,CT)=Z0(Z)
@@ -230,3 +230,26 @@ Q45 Q
  ;
 Q46 Q
  ;
+ ; IB*2.0*633 - Begin modified code block
+ERRTXT(X,IBEOB) ; Set error text based on circumstances
+ ; Input - X = Standard Error message passed in
+ ;         IB0 
+ ; Returns modified error message text
+ N RETURN
+ S RETURN="Mismatched "_X_":"
+ I '$$EBILL(IBEOB) S RETURN="Claim was not Billed Electronically:"
+ Q RETURN
+ ;
+EBILL(IBEOB) ; Check If EOB was billed electronically
+ ; Input : IBEOB = Internal entry number from file 361.1
+ ; Returns : 1 - Billed electronically
+ ;           0 - Not billed electronically
+ N IEN399,IEN364,STATUS
+ S IEN399=$$GET1^DIQ(361.1,IBEOB_",",.01,"I")
+ S IEN364=$O(^IBA(364,"B",+IEN399,0))
+ I 'IEN364 Q 0 ; No EDI TRANSMIT BILL
+ ;
+ S STATUS=$$GET1^DIQ(364,IEN364,.03,"I")
+ I STATUS="E"!(STATUS="C") Q 0 ; Error or canceled
+ Q 1
+ ; IB*2.0*633 - End modified code block

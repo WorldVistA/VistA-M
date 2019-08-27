@@ -1,27 +1,34 @@
-PRCAEXM ;SF-ISC/YJK-ADMIN.COST CHARGE TRANSACTION ;3/30/94  11:19 AM
- ;;4.5;Accounts Receivable;**67,103,196,301,318,315**;Mar 20, 1995;Build 67
- ;;Per VA Directive 6402, this routine should not be modified.
+PRCAEXM ;SF-ISC/YJK-ADMIN.COST CHARGE TRANSACTION ;15 Nov 2018 13:51:18
+ ;;4.5;Accounts Receivable;**67,103,196,301,318,315,332**;Mar 20, 1995;Build 40
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;Update Int/adm.balance and Administrative cost charge transaction, is called by ^PRCAWO.
  ;
-EN1 ;Adjustment Interest/admin.cost from an AR - this makes the int/adm.balance
+ D EN1(0)  ; Administrative Cost Adjustment [PRCAF ADJ ADMIN] option entry point, PRCA*4.5*332
+ Q
+ ;
+EN1(KEYCHK) ;Adjustment Interest/admin.cost from an AR - this makes the int/adm.balance
  ;  ,marshal fee and court cost zero,0.
+ ; KEYCHK (optional) - 1 check for RCDPEAR security key, zero otherwise, defaults to zero
  N PRCAIND,ADMINTOT,PRCAERR,PRCABN0
- I '$D(^XUSEC("RCDPEAR",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ I '$D(KEYCHK) N KEYCHK S KEYCHK=0
+ I $G(KEYCHK)=1,'$D(^XUSEC("RCDPEAR",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
  . W !!,"This action can only be taken by users that have the RCDPEAR security key.",!
  . S VALMBCK="R"
  . D PAUSE^VALM1
+RTRN ; line tag for GOTO return
  D BEGIN^PRCAWO G:('$D(PRCABN))!('$D(PRCAEN)) END G:'$D(^PRCA(430,PRCABN,7)) END
- L +^PRCA(430,PRCABN):1 I '$T W !!,*7,"ANOTHER USER IS EDITING THIS BILL" G EN1
+ L +^PRCA(430,PRCABN):1 I '$T W !!,*7,"ANOTHER USER IS EDITING THIS BILL" G RTRN
  S PRCABN0=PRCABN
  S PRCAIND=$G(^PRCA(430,PRCABN,7))
  S PRCAMT=$P(PRCAIND,U,2)+$P(PRCAIND,U,3)+$P(PRCAIND,U,4)+$P(PRCAIND,U,5)
  S %=$P(^PRCA(430,PRCABN,0),U,2) I "PC"'[$P(^PRCA(430.2,%,0),U,6) W *7,!,"This AR may not be appropriate to charge Interest/Administrative cost.",!,"Please check the category of this AR.",! H 3
  K % W !!,"You may exempt the account from all the interest and administrative cost balances - making those balances zero (0),",!,"or adjust them."
-EN011 S %=2 W !!,"Do you want to exempt the account from all the Int/Adm. costs" D YN^DICN I %<0 S PRCACOMM="User Canceled" D DELETE^PRCAWO1 K PRCACOMM G EN1
- I %=1 D EN11,END G EN1
+EN011 S %=2 W !!,"Do you want to exempt the account from all the Int/Adm. costs" D YN^DICN I %<0 S PRCACOMM="User Cancelled" D DELETE^PRCAWO1 K PRCACOMM G RTRN
+ I %=1 D EN11,END G RTRN
  I %=0 W !,"ANSWER 'YES' OR 'NO' " G EN011
  W !,"Adjusting the administrative/Interest charge ...",!
- D DIEEN^PRCAWO1,END G EN1
+ D DIEEN^PRCAWO1,END G RTRN
  ;
  ;  exempt interest and admin charges
 EN11 S PRCATYPE=14,DIE="^PRCA(433,",DA=PRCAEN
@@ -47,3 +54,4 @@ END L -^PRCA(433,+$G(PRCAEN)),-^PRCA(430,+$G(PRCABN))
  .S:'$D(PRCA("STATUS")) PRCA("STATUS")=$O(^PRCA(430.3,"AC",111,0))
  .S DA=PRCABN0,DIE="^PRCA(430,",DR="8////"_PRCA("STATUS") D ^DIE
  K PRCATY,PRCA,PRCA2,PRCAD,PRCABN,PRCAEN,PRCATYPE,DA,DIE,DIC,PRCAMT,DR,X,% Q
+ ;

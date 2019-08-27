@@ -1,6 +1,6 @@
 RCDPEWLZ ;ALB/PJH-Block Auto-decrease protocol ;09 Feb 2018
- ;;4.5;Accounts Receivable;**326**;Mar 20, 1995;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**326,332**;Mar 20, 1995;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BLOCK(RCERA) ;  Stop/Allow Auto Decrease of zero balance denials

@@ -1,5 +1,5 @@
 RCDPEAD ;ALB/PJH - AUTO DECREASE ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,318,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**298,304,318,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
@@ -110,6 +110,12 @@ EN3(RCDATE,RCERA,RCARRAY,PAID) ; Scan ERA DETAIL entries in #344.41 for auto-pos
  Q
  ; 
 EN4(RCDATE,RCERA,RCARRAY,PAID,RCLINE) ; Auto-decrease selected lines
+ ; Input:   RCDATE      - Auto-Post Date
+ ;          RCERA       - IEN of the ERA (#344.4)
+ ;          RCARRAY     - Array of scratch pad lines
+ ;          PAID        - 1 - Decrease paid lines
+ ;                        2 - Decrease no-pay lines
+ ;          RCLINE      - IEN of the detail ilne in sub-file 344.41
  ;
  ; Get claim number RCBILL for the ERA line using EOB #361.1 pointer
  ; BEGIN PRCA*4.5*326
@@ -150,7 +156,6 @@ EN4(RCDATE,RCERA,RCARRAY,PAID,RCLINE) ; Auto-decrease selected lines
  S STATUS=$P($G(^PRCA(430,RCBILL,0)),"^",8)
  I STATUS'=42,STATUS'=16 Q 
  ;
- ; PRCA*4.5*304 - A CARC must be included and have an auto-decrease limit before auto-decreasing can occur.
  S RCAMT=$$CARCLMT(EOBIEN,RCZERO) ; PRCA*4.5*326 - added RCZERO
  Q:$L(RCAMT)=0         ; No CARCs on EOB were eligible for auto-decrease
  ;
@@ -186,9 +191,15 @@ EN4(RCDATE,RCERA,RCARRAY,PAID,RCLINE) ; Auto-decrease selected lines
  . S RCADJ=RCADJ+$P(RCIARR(RCJ,RCK),";",1)
  ; Update auto-decrease indicator, auto decrease amount and auto decrease date
  N DA,DIE,DR S DA(1)=RCERA,DA=RCLINE,DIE="^RCY(344.4,"_DA(1)_",1,",DR="7///1;8///"_RCADJ_";10///"_DT D ^DIE
- ; PRCA*4.5*304 - End of updates
  ; Update last auto decrease date on ERA
- N DA,DIE,DR S DA=RCERA,DIE="^RCY(344.4,",DR="4.03///"_DT D ^DIE
+ N DA,DIE,DR
+ S DA=RCERA,DIE="^RCY(344.4,",DR="4.03///"_DT
+ ;
+ ; PRCA*4.5*332 - If we just did an Auto-Decrease of a zero-dollar ERA set
+ ; the Match Status to MATCH - 0 PAYMENT and the Posting Status to POSTING NOT NEEDED
+ I PAID=0,RCZERO D
+ . S DR=DR_";.09////3;.14////3"
+ D ^DIE
  Q
  ;
 REJ ; Process zero balance denial ERA's - PRCA*4.5*326

@@ -1,6 +1,6 @@
-RCDPESP5 ;ALB/SAB - ePayment Lockbox Site Parameters Definition - Files 344.71 ;03/19/2015
- ;;4.5;Accounts Receivable;**304,321,326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+RCDPESP5 ;ALB/SAB - ePayment Lockbox Site Parameters Definition - Files 344.71 ;17 Oct 2018 18:52:41
+ ;;4.5;Accounts Receivable;**304,321,326,332**;Mar 20, 1995;Build 40
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -318,13 +318,17 @@ ADDDATA(RCCARC,RCAMT,RCRSN,PAID) ; PAID added PRCA*4.5*326
  ;file entry
  D UPDATE^DIE(,"RCENTRY","RCROOT","MSGROOT")
  Q
+ ;
 AUDIT() ;
  ;
- N EMEDANS,EOLDMED,EOLDRX,ERXANS,MEDANS,OLDMED,OLDRX,RXANS ; PRCA*4.5*321
+ N EMEDANS,EOLDMED,EOLDRX,ERXANS,MEDANS,OLDMED,OLDRX,RXANS,TRICAA ; PRCA*4.5*321
  ;
  ; Get existing answers for Medical and Pharmacy paper bills
  S OLDMED=$$GET1^DIQ(342,"1,",7.05,"I")
  S OLDRX=$$GET1^DIQ(342,"1,",7.06,"I")
+ ;
+ ; Get existing (#7.09) AUTO-AUDIT TRICARE EDI BILLS [9S]
+ S TRICAA("old")=$$GET1^DIQ(342,"1,",7.09,"I")
  ;
  ; Get existing answers for Medical and Pharmacy EDI (electronic) bills ; PRCA*4.5*321
  S EOLDMED=$$GET1^DIQ(342,"1,",7.07,"I") ; PRCA*4.5*321
@@ -351,7 +355,7 @@ AUDIT() ;
  . D FILEANS(7.06,RXANS)
  . S RCAUDVAL(1)="342^7.06^1^"_RXANS_U_OLDRX_U_"Updating the Pharmacy Auto-Audit of paper bills"
  . D AUDIT^RCDPESP(.RCAUDVAL)
- ; 
+ ;
  ; BEGIN PRCA*4.5*321
  ; Get Medical electronic bills
  S EMEDANS=$$GETAUDIT(3)
@@ -376,17 +380,27 @@ AUDIT() ;
  . D AUDIT^RCDPESP(.RCAUDVAL)
  ; END PRCA*4.5*321
  ;
+ S TRICAA("new")=$$GETAUDIT(5)
+ Q:TRICAA("new")=-1 1
+ ; File (#7.09) AUTO-AUDIT TRICARE EDI BILLS [9S] - PRCA*4.5*332
+ I TRICAA("new")'=TRICAA("old") D
+ . N RCAUDVAL
+ . D FILEANS(7.09,TRICAA("new"))
+ . ; FILE NUMBER^FIELD NUMBER^IEN^NEW VALUE^OLD VALUE^COMMENT
+ . S RCAUDVAL(1)="342^7.09^1^"_TRICAA("new")_U_TRICAA("old")_U_"Updating the Auto-Audit of Tricare bills"
+ . D AUDIT^RCDPESP(.RCAUDVAL)
+ ;
  Q 0
  ;
  ;Retrieve the parameter for the bill type
 GETAUDIT(FLAG) ;
  ; BEGIN PRCA*4.5*321
- ;FLAG - What audit type (1=Med Paper, 2=RX Paper, 3=Med EDI, 4=Rx EDI)
+ ;FLAG - What audit type (1=Med Paper, 2=RX Paper, 3=Med EDI, 4=Rx EDI, 5=Tricare)
  Q:'$G(FLAG) -1
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FLDNO,RCANS,TYPL,TYPU,X,Y
  S TYPL=$S(FLAG>2:"electronic",1:"paper")
  S TYPU=$S(FLAG>2:"ELECTRONIC",1:"PAPER")
- S FLDNO=$S(FLAG=1:7.05,FLAG=2:7.06,FLAG=3:7.07,FLAG=4:7.08,1:0)
+ S FLDNO=$S(FLAG=1:7.05,FLAG=2:7.06,FLAG=3:7.07,FLAG=4:7.08,FLAG=5:7.09,1:0)
  Q:'FLDNO -1
  ;
  ; Prompt for Medical Auto-audit
@@ -405,6 +419,14 @@ GETAUDIT(FLAG) ;
  . S DIR("?",3)=" "
  . S RCANS=$$GET1^DIQ(342,"1,",FLDNO)
  ; END PRCA*4.5*321
+ ;
+ ; Prompt for Tricare Auto-audit PRCA*4.5*332
+ D:$G(FLAG)=5
+ . S DIR("A")="ENABLE AUTO-AUDIT FOR TRICARE BILLS (Y/N): "
+ . S DIR("?",1)="Allow a site to automatically audit their Tricare Bills"
+ . S DIR("?",2)="during the AR Nightly Process."
+ . S DIR("?",3)=" "
+ . S RCANS=$$GET1^DIQ(342,"1,",7.09)
  ;
  S DIR(0)="YAO"
  S DIR("?")="Enter Yes or No to select automatic processing of "_TYPL_" bills." ; PRCA*4.5*321

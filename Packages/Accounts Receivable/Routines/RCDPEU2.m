@@ -1,5 +1,5 @@
 RCDPEU2 ;AITC/CJE - ELECTRONIC PAYER UTILITIES ;05-NOV-02
- ;;4.5;Accounts Receivable;**326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**326,332**;Mar 20, 1995;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 EFT344(PROMPT,IEN344) ; Select and EFT and update reciept - EP
@@ -51,7 +51,7 @@ PICKEFT() ; Given output from FIND^DIC, pick an EFT from the list
  ;
  N CNT,COUNT,QUIT,RETURN
  S COUNT=$P($G(^TMP("DILIST",$J,0)),"^",1)
- S (QUIT,RETURN)=0
+ S (RETURN,QUIT)=0
  F CNT=1:1:COUNT D  Q:QUIT  ;
  . D WRITE(CNT)
  . I CNT#10=0!(CNT=COUNT) D  Q:QUIT  ;
@@ -87,3 +87,105 @@ WRITE(X) ; Write out one entry from 344.31
  W !,?16," ",PAYTR,?48," ",$J(PAYAMT,10)
  W ?59," ",DEPNO,?71," ",DEPDAT
  Q
+ ;
+ ; PRCA*4.5*332 - Start modified code block
+CHKEOB(RCRECTDA,RCTRANDA,RCARRAY) ; EP from RCDPLPL3/4- Link payment to account, move/copy remove EOBs
+ ; Inputs RCRECTDA - Receipt IEN file 344
+ ;        RCTRANDA  - Payment multiple 344.01 IEN under RCRECTDA
+ ;        RCARRAY  - If linking to multiple claims this array contains the list of claims
+ ;                   A1^A2^A3^A4 where A1=Account Linked to, A2=Amount, A3=Comment, A4=Account Name
+ ; Outputs None
+ N CCLAIM,CLAIM,IEN344491,IEN3611,IFN,JUST,JUST1,LCLAIM,NCLAIM,NCLAIMS,OIFN,ORIG,QUIT
+ N RCERA,RCORIG,RCOSEQ,RCSEQ,RCLORIG,RCSORIG,SCLAIM,X
+ ;
+ S RCERA=$$GET1^DIQ(344,RCRECTDA_",",.18,"I")
+ S RCSEQ=$$GET1^DIQ(344.01,RCTRANDA_","_RCRECTDA_",",.27,"I")
+ S RCOSEQ=$$GET1^DIQ(344.491,RCSEQ_","_RCERA_",",.01,"E")\1
+ I 'RCOSEQ Q  ; No scratch pad entry for this payment, can not proceed.
+ S IEN3611=$$ORIG(RCERA,RCOSEQ)
+ I 'IEN3611 Q  ; Can not identify original EOB, can not proceed
+ S ORIG=$$GET1^DIQ(361.1,IEN3611_",",.01,"E") ; Original Claim#
+ S OIFN=$$GET1^DIQ(361.1,IEN3611_",",.01,"I") ; Original Bill IEN 399
+ ;
+ S (RCSORIG,RCLORIG,RCLSUSP)=0
+ ; Check the scratch pad.  Get claims used in initial split/edit.
+ ; Store claims other than original in SCLAIM array.
+ ; If part payment was left on original claim set RCSORIG=1
+ S X=RCOSEQ
+ F  S X=$O(^RCY(344.49,RCERA,1,"B",X)) Q:((X\1)'=RCOSEQ)  D  ;
+ . S IEN344491=""
+ . F  S IEN344491=$O(^RCY(344.49,RCERA,1,"B",X,IEN344491)) Q:'IEN344491  D  ;
+ . . I +$$GET1^DIQ(344.491,IEN344491_","_RCERA_",",.03)=0 Q  ; Ignore lines with zero value
+ . . S CLAIM=$$GET1^DIQ(344.491,IEN344491_","_RCERA_",",.02,"E")
+ . . I CLAIM=ORIG D  ;
+ . . . S RCSORIG=1
+ . . E  D  ;
+ . . . S IFN=$$GET1^DIQ(344.491,IEN344491_","_RCERA_",",.07,"I")
+ . . . I IFN S SCLAIM(IFN)=IFN
+ ;
+ ; Check link payment details.  Get claims we are linking to now.
+ ; Store claims other than original in LCLAIM array.
+ ; If part payment was left on original claim set RCLORIG=1
+ S (NCLAIM,NCLAIMS)=""
+ I '$D(RCARRAY) D
+ . S NCLAIM=$$GET1^DIQ(344.01,RCTRANDA_","_RCRECTDA_",",.03,"E")
+ . I NCLAIM["-" S NCLAIM=$P(NCLAIM,"-",2)
+ . I NCLAIM=ORIG S RCLORIG=1 Q
+ . ; Money is going on a new claim.
+ . S IFN=$O(^DGCR(399,"B",NCLAIM,""))
+ . I IFN S LCLAIM(IFN)=IFN
+ E  D
+ . S X=0
+ . F  S X=$O(RCARRAY(X)) Q:'X  D
+ . . ; Check if some money is going back to the original claim or remains in suspense.
+ . . I $P(RCARRAY(X),"^",2)'=0 D  ;
+ . . . I $P(RCARRAY(X),"^",1)="" S RCLSUSP=1  Q  ; Some money going back to suspense
+ . . . S CLAIM=$P(RCARRAY(X),"^",4)
+ . . . I CLAIM=ORIG S RCLORIG=1 Q  ; Money going back to original claim
+ . . . I NCLAIMS'="" S NCLAIMS=NCLAIMS_","
+ . . . S NCLAIMS=NCLAIMS_CLAIM
+ . . . S IFN=$O(^DGCR(399,"B",CLAIM,""))
+ . . . I IFN S LCLAIM(IFN)=IFN
+ ;
+ ; Do we need to move the EOB or copy it to new claims
+ ; We will move the EOB, if the whole payment was put in suspense then linked to a single new claim
+ I '$D(SCLAIM),'$D(RCARRAY),'RCLORIG,'RCSORIG D  Q  ;
+ . K CLAIM
+ . S IFN=$O(^DGCR(399,"B",NCLAIM,""))
+ . I IFN D  ;
+ . . S CLAIM(1)=IFN
+ . . ; Change claim number on original EOB attached to ERA
+ . . D AUTOMOVE^RCDPEM5(IEN3611,.CLAIM,"L")
+ ;
+ ; We will copy the EOB if money put into suspense is linked to multiple claims.
+ ; *Or* if some money went to other claims in the original split.
+ I $D(SCLAIM)!(RCSORIG)!($D(RCARRAY)) D  ;
+ . K CLAIM
+ . I '$D(RCARRAY),'RCLORIG D  ;
+ . . S IFN=$O(^DGCR(399,"B",NCLAIM,""))
+ . . I '$D(SCLAIM(IFN)) S CLAIM(IFN)=IFN ; Link to single claim not in the original split
+ . I $D(RCARRAY) D  ;
+ . . S X="" F  S X=$O(LCLAIM(X)) Q:'X  D  ;
+ . . . I '$D(SCLAIM(X)) S CLAIM(X)=X ; Link to a claim that was not included in original split
+ . I $D(CLAIM) D  ; Copy EOB to CLAIM(s)
+ . . ; Copy EOB to new EOBs for "to" claims
+ . . D AUTOCOPY^RCDPEM5(IEN3611,.CLAIM,"L")
+ ;
+ ; Remove the original EOB if no money left in suspense, or split or linked to original claim
+ I 'RCSORIG,'RCLORIG,'RCLSUSP D  ;
+ . S JUST="EEOB removed when payment from suspense was linked to claim(s) "_NCLAIMS
+ . D AUTOREM^RCDPEM5(IEN3611,JUST)
+ ;
+ Q
+ ;
+ORIG(RCERA,RCOSEQ) ; Get the original claim from the EOB worklist
+ ; Inputs RCERA - ERA IEN from file 344.49
+ ;        RCOSEQ - Sequence number IEN from multiple 344.491
+ ; Returns IEN from 361.1. EOB from 344.41
+ N EEOBS,IEN491
+ S IEN491=$O(^RCY(344.49,RCERA,1,"ASEQ",RCOSEQ,0))
+ I IEN491="" Q "" ; Can't find referenced sequence number.
+ S EEOBS=$$GET1^DIQ(344.491,IEN491_","_RCERA_",",.09,"E")
+ I EEOBS["ADJ"!(EEOBS[",") Q ""  ; Don't proceed if this is not a split line.
+ Q $$GET1^DIQ(344.41,(+EEOBS)_","_RCERA_",",.02,"I")
+ ; PRCA*4.5*332 - End modified code block

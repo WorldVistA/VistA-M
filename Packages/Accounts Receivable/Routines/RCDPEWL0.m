@@ -1,5 +1,5 @@
 RCDPEWL0 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,252,269,298,317,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**173,208,252,269,298,317,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -280,9 +280,12 @@ SPLIT ; Split line in ERA list
 SPLITQ S VALMBCK="R"
  Q
  ;
-PRTERA ; View/prt
- N DIC,X,Y,RCSCR
- S DIC="^RCY(344.4,",DIC(0)="AEMQ" D ^DIC
+PRTERA ; EP from menu option View/Print ERA (VP) [RCDPE VIEW/PRINT ERA]
+ ; View the selected ERA in a listman template
+ ; Input: RCSCR - IEN of the ERA to be viewed
+ N DIC,RCSCR,X,Y
+ S DIC="^RCY(344.4,",DIC(0)="AEMQ"
+ D ^DIC
  Q:Y'>0
  S RCSCR=+Y
  D PRERA1
@@ -291,28 +294,35 @@ PRTERA ; View/prt
 PRERA ; RCSCR is assumed to be defined
  D FULL^VALM1 ; Protocol entry
 PRERA1 ; Option entry
- N %ZIS,ZTRTN,ZTSAVE,ZTDESC,POP,DIR,X,Y,RCERADET
+ N DIR,X,Y,RCERADET,RCLSTMGR,POP,ZTRTN,ZTSAVE,ZTDESC,%ZIS ; PRCA*4.5*332
  D EXCWARN^RCDPEWLP(RCSCR)
  S DIR("?",1)="Including expanded detail will significantly increase the size of this report",DIR("?",2)="IF YOU CHOOSE TO INCLUDE IT, ALL PAYMENT DETAILS FOR EACH EEOB WILL BE"
  S DIR("?")="listed.  If you want just summary data for each EEOB, do NOT include it."
- S DIR(0)="YA",DIR("A")="Do you want to include expanded EEOB detail?: ",DIR("B")="NO" W ! D ^DIR K DIR
+ S DIR(0)="YA",DIR("A")="Do you want to include expanded EEOB detail?: ",DIR("B")="NO"
+ W !
+ D ^DIR
+ K DIR
  I $D(DUOUT)!$D(DTOUT) G PRERAQ
  S RCERADET=+Y
+ S RCLSTMGR=$$ASKLM^RCDPEARL(1)          ; PRCA*4.5*332
+ I RCLSTMGR=-1 G PRERAQ                  ; PRCA*4.5*332
+ I RCLSTMGR D VPERA(RCSCR,RCERADET,1) Q  ; PRCA*4.5*332
  S %ZIS="QM" D ^%ZIS G:POP PRERAQ
  I $D(IO("Q")) D  G PRERAQ
- . S ZTRTN="VPERA^RCDPEWL0("_RCSCR_","_RCERADET_")",ZTDESC="AR - Print ERA From Worklist"
+ . S ZTRTN="VPERA^RCDPEWL0("_RCSCR_","_RCERADET_",0)",ZTDESC="AR - Print ERA From Worklist"
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Your task # "_ZTSK_" has been queued.",1:"Unable to queue this job.")
  . K ZTSK,IO("Q") D HOME^%ZIS
  U IO
- D VPERA(RCSCR,RCERADET)
+ D VPERA(RCSCR,RCERADET,0) ; PRCA*4.5*332
  Q
  ;
-VPERA(RCSCR,RCERADET) ; Queued entry
- ; RCSCR = ien of entry in file 344.4
- ; RCERADET = 1 if inclusion of all EOB details from file 361.1 is
- ;  desired, 0 if not
- N Z,Z0,RCSTOP,RCZ,RCPG,RCDOT,RCDIQ,RCDIQ1,RCDIQ2,RCXM1,RC,RCSCR1,RC3611
+VPERA(RCSCR,RCERADET,LSTMGR) ; Queued entry
+ ; Input: RCSCR - IEN of ERA to be viewed (#344.4)
+ ; RCERADET - 1 if inclusion of all EOB details from file 361.1 is
+ ; desired, 0 if not
+ ; LSTMGR - 1 display in list manager, 0 otherwise
+ N RC,RCDIQ,RCDIQ1,RCDIQ2,RCDOT,RCPG,RCSCR1,RC3611,RCXM1,RCZ,RC3611,XX,Z,Z0
  K ^TMP($J,"RC_SUMRAW"),^TMP($J,"RC_SUMOUT"),^TMP($J,"RC_SUMALL")
  S (RCSTOP,RCPG)=0,RCDOT="",$P(RCDOT,".",79)=""
  D GETS^DIQ(344.4,RCSCR_",","*","IEN","RCDIQ")
@@ -355,6 +365,7 @@ VPERA(RCSCR,RCERADET) ; Queued entry
  . S Z=0 F  S Z=$O(RCXM1(Z)) Q:'Z  S Z0=Z0+1,^TMP($J,"RC_SUMALL",Z0)=RCXM1(Z)
  . K RCXM1 S RC=0
  . S Z=0 F  S Z=$O(^TMP($J,"RC_SUMOUT",Z)) Q:'Z  S Z0=Z0+1,^TMP($J,"RC_SUMALL",Z0)=$G(^TMP($J,"RC_SUMOUT",Z))
+ I LSTMGR D DOLSTMAN,PRERAQ Q  ; PRCA*4.5*332
  S RCSTOP=0,Z=""
  F  S Z=$O(^TMP($J,"RC_SUMALL",Z)) Q:'Z  D  Q:RCSTOP
  . I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPG) W !!,"***TASK STOPPED BY USER***" Q
@@ -370,6 +381,12 @@ VPERA(RCSCR,RCERADET) ; Queued entry
  ;
 PRERAQ K ^TMP($J,"RC_SUMRAW"),^TMP($J,"RC_SUMOUT"),^TMP($J,"SUMALL")
  S VALMBCK="R"
+ Q
+ ; PRCA*4.5*332 - Subroutine added
+DOLSTMAN ; Display the ERA Detail in a listman format
+ N HDR
+ S HDR("TITLE")="VIEW ERA DETAIL"
+ D LMRPT^RCDPEARL(.HDR,$NA(^TMP($J,"RC_SUMALL")),"RCDPE VIEW ERA DETAIL") ; generate ListMan display
  Q
  ;
 HDR(RCPG) ;Report hdr

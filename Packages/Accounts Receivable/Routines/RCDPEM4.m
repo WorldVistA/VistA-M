@@ -1,5 +1,5 @@
 RCDPEM4 ;OIFO-BAYPINES/PJH - EPAYMENTS AUDIT REPORTS ;Nov 17, 2014@17:00:41
- ;;4.5;Accounts Receivable;**276,284,298,304,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**276,284,298,304,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EOB ; EEOB Move/Copy/Rmove Audit Report [RCDPE EEOB MOVE/COPY/RMOVE RPT]
@@ -118,14 +118,14 @@ CMPLEOB ;Generate the EOB Moved/Copy/Remove report ^TMP array
  .S EOBIEN=""
  .F  S EOBIEN=$O(^IBM(361.1,"AEOB",START,EOBIEN)) Q:'EOBIEN  D
  ..; Ignore if not MOVED/COPIED
- ..S IEN101=$O(^IBM(361.1,"AEOB",START,EOBIEN,"")) Q:'IEN101
- ..; Check division
- ..D EOBSTA(EOBIEN,.STA,.STNUM,.STNAM)
- ..I RCDIV=2,'$D(VAUTD(STA)) Q
- ..I '$$ISTYPE^RCDPEU1(361.1,EOBIEN,RCTYPE) Q  ; PRCA*4.5*326 - M/P/T/A filter
- ..;
- ..;
- ..D SVEOB^RCDPEM41(EOBIEN,IEN101,STA,STNUM,STNAM)
+ ..S IEN101="" F  S IEN101=$O(^IBM(361.1,"AEOB",START,EOBIEN,IEN101)) Q:'IEN101  D  ;
+ ...; Check division
+ ...D EOBSTA(EOBIEN,.STA,.STNUM,.STNAM)
+ ...I RCDIV=2,'$D(VAUTD(STA)) Q
+ ...I '$$ISTYPE^RCDPEU1(361.1,EOBIEN,RCTYPE) Q  ; PRCA*4.5*326 - M/P/T/A filter
+ ...;
+ ...;
+ ...D SVEOB^RCDPEM41(EOBIEN,IEN101,STA,STNUM,STNAM)
  ;
  Q
  ;

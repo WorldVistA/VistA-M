@@ -1,5 +1,5 @@
-RCDPENR3 ;ALB/SAB - EPay National Reports - ERA/EFT Trending Report, part 2 ;06/30/15
- ;;4.5;Accounts Receivable;**304,321,326**;Mar 20, 1995;Build 26
+RCDPENR3 ;ALB/SAB - EPay National Reports - ERA/EFT Trending Report, part 2 ;20 Aug 2018 13:01:41
+ ;;4.5;Accounts Receivable;**304,321,326,332**;Mar 20, 1995;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Read ^DGCR(399) via Private IA 3820
@@ -288,9 +288,25 @@ GETEFT(RCSDATE,RCEDATE,RCRATE) ;
  Q
  ;
  ;Print the Grand Total/Summary data for the EFT/ERA Trending Report
-PRINTGT(RCTITLE,RCDATA,RCDISP,RCERAFLG,RCEXCEL) ;
+PRINTGT(RCTITLE,RCDATA,RCDISP,RCERAFLG,RCEXCEL) ;PRCA*4.5*332 - added comments below, 20 August 2018
+ ; Print the Grand Total/Summary data for the EFT/ERA Trending Report
+ ; Input: RCTITLE - Name of the report
+ ; RCDATA - Line of compiled data being processed
+ ; RCDISP - 1 - Display to screen, 0 otherwise 
+ ; RCERAFLG - 1 if we're in the ERA matched to an EFT section
+ ; 0 otherwise
+ ; RCEXCEL - 1 output to excel, 0 otherwise
+ ; RCSTOP - Initialized to 0
+ ; Output: RCSTOP - User stopped the display of the report
  ;
  ; Undeclared Parameter(s) - RCRPIEN,RCLINE,RCSTOP
+ ; RCRPIEN - IEN of the archive file (344.91(
+ ; RCLINE - String of '-' to be used as a separator line
+ ; RCSUMFLG - 'M' - Main Report
+ ; 'G' - Grand totals
+ ; 'S' - Summary
+ ;
+ ;PRCA*4.5*332 comments end 
  ;
  N RCCOUNT,RCBILL,RCPAID,RCPCT,RCBECT,RCBEDY,RCAVGBE,RCEECT,RCEEDY
  N RCEPCT,RCEPDY,RCAVGEP,RCBPCT,RCBPDY,RCAVGBP,RCBORDER,RCSCDATA
@@ -327,7 +343,8 @@ PRINTGT(RCTITLE,RCDATA,RCDISP,RCERAFLG,RCEXCEL) ;
  S $P(RCSCDATA,U,15)=+$P(RCDATA,U,15)
  S $P(RCSCDATA,U,16)=RCPAID-$P(RCDATA,U,15)
  F I=1:1:16 D  Q:RCSTOP
- . I RCDISP,($Y>(IOSL-4)) D  Q:RCSTOP
+ . ; PRC*4.5*332, added (RCSUMFLG'="G") below
+ . I (RCSUMFLG'="G"),RCDISP,($Y>(IOSL-4)) D  Q:RCSTOP
  . .  D ASK^RCDPEADP(.RCSTOP,0)
  . .  Q:RCSTOP
  . .  D HEADER^RCDPENR2

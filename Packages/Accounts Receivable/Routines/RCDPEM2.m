@@ -1,36 +1,39 @@
 RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;Jun 11, 2014@13:24:36
- ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304,321,326,332**;Mar 20, 1995;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ; PRCA*4.5*303 - Manually Match EFT from Worklist screen
+ ;
 MATCHWL ; Manually 'match' ERA to an EFT that originates from [RCDPE WORKLIST ERA LIST]
  N DA,DIC,DIE,DIR,DR,DTRNG,DTOUT,DUOUT,EFTTOT,END,ERATOT,RCEFT,RCERA,RCMBG,RCMATCH,RCNAME,RCQUIT,START,X,Y
  D FULL^VALM1
+ ; PRCA*4.5*332 - Begin modified code block
+ S RCMBG=VALMBG
+ S RCERA=$$SEL^RCDPEWL7()                   ; Select ERA to use from screen
+ I RCERA=0 D MWQ Q
  ;
- ; PRCA*4.5*303 moved code out because this routine grew too large
- I $$ML0^RCDPRU() G MWQ ; if true then quit, othewise continue
+ ; Save the line, we need it when we go back to the worklist.
+ S RCERA(0)=^RCY(344.4,RCERA,0)             ; Get the zero node for this ERA 
+ I ((+($P(RCERA(0),U,9)))>0)!($P(RCERA(0),U,8)'="") D  Q  ; PRCA*4.5*326
+ . W !,"ERA is already matched please select another ERA..."
+ . D WAIT^VALM1
+ . D MWQ
+ D EN^RCDPEE(RCERA)                 ; Select EFT by partial matches?
+ D MWQ
+ Q
+ ; PRCA*4.5*332 - End modified code block
  ;
-ML1 ; Select EFT to Match to this ERA
- ; BEGIN PRCA*4.5*326 - replace ^DIC call to EFT picker utility
- S DIC("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
- S DIC("S")="I ('$P(^(0),U,8))&($P($G(^(0)),U,7))&('$P($G(^(3)),U))"
- S:$G(DTRNG) DIC("S")=DIC("S")_"&'($P($G(^(0)),U,13)<START)&'($P($G(^(0)),U,13)>END)"
- ; end PRCA*4.5*293
- ;
- W !
- S Y=$$ASKEFT^RCDPEU2(DIC("A"),DIC("S"))
- I Y'>0 G MWQ
- S RCEFT=+Y,RCEFT(0)=$G(^RCY(344.31,+Y,0))
- ; END PRCA*4.5*326
- W !
- S DIC="^RCY(344.31,",DR="0",DA=RCEFT D EN^DIQ
- W !
- S DIR("A")="ARE YOU SURE THIS IS THE EFT YOU WANT TO MATCH?: ",DIR(0)="YA",DIR("B")="YES" D ^DIR K DIR
- I $D(DUOUT)!$D(DTOUT) G MWQ
- I Y'=1 G ML1
- ; Go to the Manual match, we have the ERA and EFT
- D M12A
+GETDINFO(RCEFT,DEPNUM,DEPDT)    ;EP from RCDPEE
+ ; Get the Deposit Date and Deposit Number for the specified EFT
+ ; Input:   RCEFT       - IEN for file #344.31
+ ; Output:  DEPNUM      - Deposit Number (#344.3, .06)
+ ;          DEPDT       - Deposit Date (#344.3, .07)
+ N IEN3443
+ S IEN3443=$$GET1^DIQ(344.31,RCEFT_",",.01,"I")     ; IEN for file 344.3
+ S DEPNUM=$$GET1^DIQ(344.3,IEN3443_",",.06,"E")     ; Deposit Number
+ S DEPDT=$$GET1^DIQ(344.3,IEN3443_",",.07,"E")      ; Deposit Number
+ Q
  ;
  ; Quit back to the worklist VALMBCK will be killed by List Manager.
  ; Rebuild the screen because we may have changed it.
@@ -43,6 +46,7 @@ MATCH1 ; Manually 'match' an ERA to an EFT
  N RCEFT,RCERA,RCMATCH,RCMTFLG,RCNAME,RCQUIT,START,X,XX,Y,YY
  W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MATCH AN EFT DETAIL RECORD"
  W !,"WITH AN ERA RECORD."
+ ;S XX=$$PMATCH(RCERA)
  ; PRCA*4.5*298 - Add ability to specify a date range
  S DIR("A")="Select by date Range? (Y/N) ",DIR(0)="YA",DIR("B")="NO"
  D ^DIR K DIR
@@ -63,7 +67,7 @@ MATCH1 ; Manually 'match' an ERA to an EFT
  I $D(DTOUT)!$D(DUOUT)!(Y="") G M1Q
  S END=Y
  ;
- ; Replace DIC call to EFT selector utility - PRCA*4.5*326
+ ; Replace DIR with DIC call for EFT line identifier - PRCA*4.5*326
 M1 S DIC("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
  ;
  ; start PRCA*4.5*293 Add extra checks to filter out EFTs that have 
@@ -71,14 +75,22 @@ M1 S DIC("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
  ; Only UNMATCHED EFTs with payment amt >0 and not removed should
  ; be selectable by the user.
  ;
+ N DEPDT,DEPNUM
+ S DIC("W")="D DICW^RCDPEM3"
+ S DIC(0)="AEMQ"
+ S DIC=344.31
  S DIC("S")="I ('$P(^(0),U,8))&($P($G(^(0)),U,7))&('$P($G(^(3)),U))"
  S:$G(DTRNG) DIC("S")=DIC("S")_"&'($P($G(^(0)),U,13)<START)&'($P($G(^(0)),U,13)>END)"
- S Y=$$ASKEFT^RCDPEU2(DIC("A"),DIC("S"))
- I Y'>0 G M1Q
- S RCEFT=+Y
  ; end PRCA*4.5*293
+ ;
+ W !
+ D ^DIC K DIC
+ I $D(DUOUT)!$D(DTOUT)!(Y<0) G M1Q
+ S RCEFT=+Y
+ D GETDINFO(RCEFT,.DEPNUM,.DEPDT)
  W !
  S DIC="^RCY(344.31,",DR="0",DA=RCEFT D EN^DIQ
+ W "  DEPOSIT NUMBER: ",DEPNUM,?40,"DEPOSIT DATE: ",DEPDT
  W !
  S DIR("A")="ARE YOU SURE THIS IS THE EFT YOU WANT TO MATCH?: "
  S DIR(0)="YA",DIR("B")="YES"
@@ -156,10 +168,13 @@ MATCH2 ; Manually 'match' a 0-balance EFT to a paper EOB
  W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MARK A 0-BALANCE EFT DETAIL RECORD",!,"AS MATCHED TO A PAPER EOB"
  ; BEGIN PRCA*4.5*326
 M2 S DIC("A")="SELECT THE UNMATCHED 0-BALANCE EFT TO MARK AS MATCHED TO PAPER EOB: "
+ S DIC("W")="D DICW^RCDPEM3"
+ S DIC(0)="AEMQ"
  S DIC("S")="I '$P(^(0),U,8),'$P(^(0),U,7)"
- S Y=$$ASKEFT^RCDPEU2(DIC("A"),DIC("S"))
- I Y'>0 G M2Q
+ S DIC=344.31
+ D ^DIC
  ; END PRCA*4.5*326
+ I $D(DUOUT)!$D(DTOUT)!(Y'>0) G M2Q
  S RCEFT=+Y
  W !
  S DIC="^RCY(344.31,",DR="0",DA=RCEFT D EN^DIQ

@@ -1,5 +1,5 @@
 RCDPEX ;ALB/TMK,DWA - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.5 ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,269,298,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -29,7 +29,7 @@ UPD ; Update (File) ERA msgs manually from EOB exception list for file 344.5
  I 'RCTSK W !,*7,"File update could not be tasked.  Please try again later!!!"
  D PAUSE^VALM1
  ;
- D BLD^RCDPEX1
+ D BLD^RCDPEX1("TRANSMISSION")
 UPDQ I $G(RCTDA) L -^RCY(344.5,RCTDA,0)
  S VALMBCK="R"
  Q
@@ -163,7 +163,7 @@ DEL ; Delete messages from messages list - file 344.5
  W !,"A bulletin has been sent to report this deletion",!
  D PAUSE^VALM1
  ;
- D BLD^RCDPEX1
+ D BLD^RCDPEX1("TRANSMISSION")
 DELQ L -^RCY(344.5,RCTDA,0)
  S VALMBCK="R"
  Q

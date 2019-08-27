@@ -1,5 +1,5 @@
 RCDPEWLD ;ALB/CLT - Continuation of routine RCDPEWL0 ;09 DEC 2016
- ;;4.5;Accounts Receivable;**252,317,321,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**252,317,321,326,332**;Mar 20, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -204,52 +204,54 @@ CLAIMTYP()  ; Claim Type (Medical/Pharmacy/Both) Selection
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q 1
  S ^TMP("RCERA_PARAMS",$J,"RCTYPE")=Y
- I ($E(Y)="P"&('$D(^RCY(344.6,"ARX",1)))) D WARN^RCDPEU1("pharmacy") ; PRCA*4.5*326
- I ($E(Y)="T"&('$D(^RCY(344.6,"ATR",1)))) D WARN^RCDPEU1("tricare")  ; PRCA*4.5*326
  Q 0
  ;
 PAYR() ; Payer Selection
  ; Input:   ^TMP("RCERA_PARAMS",$J)          - Global array of preferred values (if any)
  ; Output:  ^TMP("RCERA_PARAMS",$J,"RCTYPE") - ERA Posting Status filter
  ; Returns: 1 if user quit or timed out, 0 otherwise
- N DIR,DTOUT,DUOUT,PQUIT,RCPAYR,RCPAYRDF
+ N DIR,DTOUT,DUOUT,RCPAYR,RCPAYRDF,RCOUT,RCDONE
  S RCPAYRDF=$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))
- S RCQUIT=0
- K DIR S DIR(0)="SA^A:ALL;R:RANGE"
- S DIR("A")="(A)LL payers, (R)ANGE of payer names: "
- S DIR("B")="ALL"
- S DIR("?",1)="Entering ALL will select all payers."
- S DIR("?")="If RANGE is entered, you will be prompted for a payer range."
- S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^",1)      ;Stored preferred value, use as default
- W !
- D ^DIR
- I $D(DTOUT)!$D(DUOUT) Q 1
- S RCPAYR=Y
- I RCPAYR="A" S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=Y       ;All payers selected
- I RCPAYR="R" D  G:PQUIT PAYR
- . S PQUIT=0
- . W !,"Names you select here will be the payer names from the ERA, not the ins. file"
- . K DIR
- . S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
- . S DIR(0)="FA^1:30^K:X'?.U X"
- . S DIR("A")="Start with payer name: "
- . S:$P(RCPAYRDF,"^",2)'="" DIR("B")=$P(RCPAYRDF,"^",2)  ;Stored preferred value, use as default
+ ; PRCA*4.5*332 - wrapped prompts in a for loop to allow the payer range prompt to return to inital prompt if
+ ;                user cancels out
+ S (RCQUIT,RCDONE,RCOUT)=0
+ F  Q:RCDONE  D  ; PRCA*4.5*332 - Remove GOTO and instead make FOR loop
+ . K DIR S DIR(0)="SA^A:ALL;R:RANGE"
+ . S DIR("A")="(A)LL payers, (R)ANGE of payer names: "
+ . S DIR("B")="ALL"
+ . S DIR("?",1)="Entering ALL will select all payers."
+ . S DIR("?")="If RANGE is entered, you will be prompted for a payer range."
+ . S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^",1)      ;Stored preferred value, use as default
  . W !
  . D ^DIR
- . I $D(DTOUT)!$D(DUOUT) D  Q
- . . S PQUIT=1
- . . K ^TMP("RCERA_PARAMS",$J,"RCPAYR")
- . S RCPAYR("FROM")=Y
- . K DIR
- . S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="Go to payer name: "
- . S DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
- . S:$P(RCPAYRDF,"^",3)'="" DIR("B")=$P(RCPAYRDF,"^",3)   ;Stored preferred value, use as default
- . W !
- . D ^DIR
- . I $D(DTOUT)!$D(DUOUT) S PQUIT=1 Q
- . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
- Q 0
+ . I $D(DTOUT)!$D(DUOUT) S (RCDONE,RCOUT)=1 Q
+ . S RCPAYR=Y
+ . I RCPAYR="A" D  Q
+ . . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=Y       ;All payers selected
+ . . S RCDONE=1
+ . I RCPAYR="R" D
+ . . W !,"Names you select here will be the payer names from the ERA, not the ins. file"
+ . . K DIR
+ . . S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
+ . . S DIR(0)="FA^1:30^K:X'?.U X"
+ . . S DIR("A")="Start with payer name: "
+ . . S:$P(RCPAYRDF,"^",2)'="" DIR("B")=$P(RCPAYRDF,"^",2)  ;Stored preferred value, use as default
+ . . W !
+ . . D ^DIR
+ . . I $D(DTOUT)!$D(DUOUT) D  Q
+ . . . K ^TMP("RCERA_PARAMS",$J,"RCPAYR")
+ . . S RCPAYR("FROM")=Y
+ . . K DIR
+ . . S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
+ . . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="Go to payer name: "
+ . . S DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
+ . . S:$P(RCPAYRDF,"^",3)'="" DIR("B")=$P(RCPAYRDF,"^",3)   ;Stored preferred value, use as default
+ . . W !
+ . . D ^DIR
+ . . I $D(DTOUT)!$D(DUOUT) Q
+ . . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
+ . . S RCDONE=1
+ Q RCOUT
  ;
  ; BEGIN PRCA*4.5*326
 AUTOPST() ; Auto-post Status (Marked/Partial/Complete/All) Selection

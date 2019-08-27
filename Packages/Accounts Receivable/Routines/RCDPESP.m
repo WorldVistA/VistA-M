@@ -1,6 +1,6 @@
-RCDPESP ;BIRM/EWL - ePayment Lockbox Site Parameters Definition - Files 344.61 & 344.6 ;Nov 19, 2014@15:26:16
- ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+RCDPESP ;BIRM/EWL - ePayment Lockbox Site Parameters Definition - Files 344.61 & 344.6 ;27 Sept 2018 15:56:10
+ ;;4.5;Accounts Receivable;**298,304,318,321,326,332**;Mar 20, 1995;Build 40
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  N DA,DIC,DIE,DIR,DIRUT,DLAYGO,DR,DTOUT,DUOUT,X,Y  ; FileMan variables
@@ -10,8 +10,8 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  S X="RCDPE AUTO DEC" I '$D(^XUSEC(X,DUZ)) W !!,"You do not hold the "_X_" security key." Q
  ; Lock the parameter file
  L +^RCY(344.61,1):DILOCKTM E  D  Q
- .W !!," Another user is currently using the AR Site Parameters option."
- .W !," Please try again later."
+ . W !!," Another user is currently using the AR Site Parameters option."
+ . W !," Please try again later."
  ;
  ; PRCA*4.5*326 - Once lock is successful, take a snapshot of the parameters for monitoring
  D EN^RCDPESP6
@@ -29,11 +29,7 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  S Y=$$EDILOCK^RCMSITE  ; Update EDI Lockbox site parameters
  I 'Y G ABORT  ; user entered '^'
  ;
- ;----------------------------------------------
- ; prca*4.5*304
- ; Enable/disable auto-auditing of paper bills
- ;----------------------------------------------
- ;
+ ; PRCA*4.5*304 - Enable/disable auto-auditing of paper bills
  S RCQUIT=0 W !
  S RCQUIT=$$AUDIT^RCDPESP5
  I RCQUIT G ABORT ; PRCA*4.5*326 must have single exit point
@@ -41,10 +37,8 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  W !
  I '$D(^RCY(344.61,1,0)) W !,"There is a problem with the RCDPE PARAMETER file (#344.61)." G EXIT
  ;
- ;----------------------------------------------
- ; prca*4.5*321
+ ; PRCA*4.5*321
  ; WORKLOAD NOTIFICATION BULLETIN DAYS
- ;----------------------------------------------
  N BULL S BULL=$$GET1^DIQ(344.61,"1,",.1,"I")
  K DIR S:BULL]"" DIR("B")=$$GET1^DIQ(344.61,"1,",.1,"E")
  S DIR("?")=$$GET1^DID(344.61,.1,,"HELP-PROMPT")
@@ -52,17 +46,15 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  S DIR(0)="344.61,.1"
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  I BULL'=Y D  ; update and audit
- .S RCAUDVAL(1)="344.61^.1^1^"_Y_U_BULL
- .S FDAEDI(344.61,"1,",.1)=Y D FILE^DIE(,"FDAEDI")
- .D AUDIT(.RCAUDVAL) K RCAUDVAL
+ . S RCAUDVAL(1)="344.61^.1^1^"_Y_U_BULL
+ . S FDAEDI(344.61,"1,",.1)=Y D FILE^DIE(,"FDAEDI")
+ . D AUDIT(.RCAUDVAL) K RCAUDVAL
  W !
  ;
- ;----------------------------------------------
  ; Enable/disable auto-posting of medical claims
- ;----------------------------------------------
  N APMC,APMCT
  ;PRCA*4.5*304 Move from Medical Auto decrease section below
- N ADMC  ; ^DD(344.61,.03,0)="AUTO-DECREASE MED ENABLED^S^0:No;1:Yes;^0;3^Q"
+ N ADMC  ; ^DD(344.61,.02,0)="AUTO-POST MED CLAIMS ENABLED^S^0:No;1:Yes;^0;2^Q"
  S ADMC=""  ; Init in case Medical Auto Posting is turned off.
  ;end PRCA*4.5*304
  ; APMC=AUTO POSTING OF MEDICAL CLAIMS ENABLED
@@ -104,9 +96,8 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  ; code falls through
  ;
 RXPARMS ; branch here from above
- ;----------------------------------------------
+ ;
  ; Enable/disable auto-posting of pharmacy claims
- ;----------------------------------------------
  N APPC,APPCT
  ; APPC=AUTO POSTING OF PHARMACY CLAIMS ENABLED
  ; APPCT=TEMP APMC
@@ -116,9 +107,9 @@ RXPARMS ; branch here from above
  S DIR("?")=$$GET1^DID(344.61,1.01,,"HELP-PROMPT")
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  I APPCT'=Y D  ; user updated value
- .S FDAEDI(344.61,"1,",1.01)=Y D FILE^DIE(,"FDAEDI") K FDAEDI
- .D NOTIFY($S(Y=1:"Yes",Y=0:"No",1:"*missing*"),1)
- .S RCAUDVAL(1)="344.61^1.01^1^"_Y_U_('Y) D AUDIT(.RCAUDVAL) K RCAUDVAL
+ . S FDAEDI(344.61,"1,",1.01)=Y D FILE^DIE(,"FDAEDI") K FDAEDI
+ . D NOTIFY($S(Y=1:"Yes",Y=0:"No",1:"*missing*"),1)
+ . S RCAUDVAL(1)="344.61^1.01^1^"_Y_U_('Y) D AUDIT(.RCAUDVAL) K RCAUDVAL
  ;
  ; If yes, set/Reset payer exclusions for pharmacy claims posting
  I Y=1 D  G:$G(RCQUIT)=1 ABORT
@@ -126,7 +117,6 @@ RXPARMS ; branch here from above
  . D SETEXCL(3) Q:$G(RCQUIT)  ; SET/RESET exclusions
  . D EXCLLIST(3) ; Display the exclusion list
  . W !
- . ;
  ;
  ; Show Pharmacy prompt but don't allow change
  D:$$GET1^DIQ(344.61,"1,",1.01,"I")=1  G:$G(RCQUIT)=1 ABORT
@@ -138,29 +128,40 @@ RXPARMS ; branch here from above
  . D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1
  . W !
  ;
- ; set MEDICAL EFT OVERRIDE ^DD(344.61,.06,0) = MEDICAL EFT POST PREVENT DAYS
+ ; ^DD(344.61,.06,0) = MEDICAL EFT POST PREVENT DAYS
  N MEO S MEO=$$GET1^DIQ(344.61,"1,",.06)
  K DIR S:MEO]"" DIR("B")=MEO
  S DIR("?")=$$GET1^DID(344.61,.06,,"HELP-PROMPT")
  S DIR(0)="NA^14:60:0",DIR("A")=$$GET1^DID(344.61,.06,,"TITLE") ; PRCA*4.5*321 Change max from 99 to 60
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  I MEO'=Y D  ; update and audit
- .S RCAUDVAL(1)="344.61^.06^1^"_Y_U_MEO
- .S FDAEDI(344.61,"1,",.06)=Y D FILE^DIE(,"FDAEDI")
- .D AUDIT(.RCAUDVAL) K RCAUDVAL
+ . S RCAUDVAL(1)="344.61^.06^1^"_Y_U_MEO
+ . S FDAEDI(344.61,"1,",.06)=Y D FILE^DIE(,"FDAEDI")
+ . D AUDIT(.RCAUDVAL) K RCAUDVAL
  ;
- ;----------------------------------------------
- ; Set PHARMACY EFT OVERRIDE
- ;----------------------------------------------
+ ; (#.07) PHARMACY EFT POST PREVENT DAYS [7N]
  N PEO S PEO=$$GET1^DIQ(344.61,"1,",.07)
  K DIR S:PEO]"" DIR("B")=PEO
  S DIR("?")=$$GET1^DID(344.61,.07,,"HELP-PROMPT")
- S DIR(0)="NA^21:365:0",DIR("A")=$$GET1^DID(344.61,.07,,"TITLE") ; PRCA*4.5*321 Change max from 999 to 365
+ S DIR(0)="NA^21:99:0",DIR("A")=$$GET1^DID(344.61,.07,,"TITLE") ; PRCA*4.5*332 Change max from 365 TO 99
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  I PEO'=Y D  ; update and audit
- .S RCAUDVAL(1)="344.61^.07^1^"_Y_U_PEO
- .S FDAEDI(344.61,"1,",.07)=Y D FILE^DIE(,"FDAEDI")
- .D AUDIT(.RCAUDVAL) K RCAUDVAL
+ . S RCAUDVAL(1)="344.61^.07^1^"_Y_U_PEO
+ . S FDAEDI(344.61,"1,",.07)=Y D FILE^DIE(,"FDAEDI")
+ . D AUDIT(.RCAUDVAL) K RCAUDVAL
+ ;
+ ; (#.13) TRICARE EFT POST PREVENT DAYS [13N] - PRCA*4.5*332
+ N PEO S PEO=$$GET1^DIQ(344.61,"1,",.13)
+ K DIR
+ S:PEO]"" DIR("B")=PEO
+ S DIR("?")=$$GET1^DID(344.61,.13,,"HELP-PROMPT")
+ S DIR(0)="NA^14:60:0",DIR("A")=$$GET1^DID(344.61,.13,,"TITLE")_" "
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) D ABORT Q
+ I PEO'=Y D  ; Update and audit
+ . S RCAUDVAL(1)="344.61^.13^1^"_Y_U_PEO
+ . S FDAEDI(344.61,"1,",.13)=Y D FILE^DIE(,"FDAEDI")
+ . D AUDIT(.RCAUDVAL) K RCAUDVAL
  ;
  G EXIT
  ;
@@ -205,7 +206,7 @@ EXCLLIST(TYP) ; CHOICE determines which exclusions to list
  ;
 SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
  ; TYP - TYPE OF EXLUSION - REQUIRED
- N FDAPAYER,IEN,DONE,CT,X,Y,FLD,RTYP,DIC,DIR,RCAUDVAL,PREC,CMT
+ N CMT,CT,DIC,DIR,DONE,FDAPAYER,FLD,IEN,PREC,RCAUDVAL,RTYP,X,Y
  ; FDAPAYER - FDA FOR FILE 344.6
  ; FLD - FIELD BEING MODIFIED
  ; RTYP - STRING REPRESENTING FIELD
@@ -220,15 +221,12 @@ SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
  ;
  W !!,"Select a Payer to add or remove from the exclusion list.",!
  S (RCQUIT,CT,DONE)=0 F  Q:DONE!RCQUIT  D
- . S DIC="^RCY(344.6,",DIC(0)="AEMQZ",DIC("A")="Payer: "
- . S DIC("S")="I $$SCREEN^RCDPESP(Y)" ; PRCA*4.5*326
- . D ^DIC I X="^" S RCQUIT=1 Q
+ . S DIC="^RCY(344.6,",DIC(0)="AEMQZ",DIC("A")="Payer: " D ^DIC I X="^" S RCQUIT=1 Q
  . I +$G(Y)<1 S DONE=1 Q
  . S CT=CT+1,IEN=+Y,IENS=IEN_",",PREC=Y(0)
  . K FDAPAYER
  . N COMMENT,STAT
- . S COMMENT=""
- . S STAT='$$GET1^DIQ(344.6,IENS,FLD,"I")
+ . S COMMENT="",STAT='$$GET1^DIQ(344.6,IENS,FLD,"I")
  . S FDAPAYER(344.6,IENS,FLD)=STAT
  . ; GET COMMENT HERE
  . K Y S DIR("A")="COMMENT: ",DIR(0)="FA^3:72"
@@ -237,19 +235,18 @@ SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
  . D ^DIR I $D(DTOUT)!$D(DUOUT)!(Y="") S RCQUIT=1 Q
  . S COMMENT=Y
  . I COMMENT]"" D
- . . I STAT S FDAPAYER(344.6,IENS,CMT)=COMMENT
- . . E  S FDAPAYER(344.6,IENS,CMT)=""
- . . W !,$P(PREC,U,1)_" "_$P(PREC,U,2)_" has been "
- . . W $S(STAT:"added to",1:"removed from")_" the list of Excluded Payers"
- . . I TYP=1 D
- . . . W !,"If medical auto-decrease is turned on, "
- . . . I STAT W "this payer will be excluded from medical auto-decrease too."
- . . . I 'STAT,'$$GET1^DIQ(344.6,IEN_",",.07,"I") W "this payer will no longer be excluded from Medical Auto-Decrease."
- . . . I 'STAT,$$GET1^DIQ(344.6,IEN_",",.07,"I") W "Medical Auto-Decrease is set to be excluded for this payer."
- . . K RCAUDVAL
- . . D FILE^DIE(,"FDAPAYER")
- . . S RCAUDVAL(1)="344.6"_U_FLD_U_IEN_U_STAT_U_('STAT)_U_COMMENT
- . . D AUDIT(.RCAUDVAL) K RCAUDVAL
+ ..  S FDAPAYER(344.6,IENS,CMT)=$S(STAT:COMMENT,1:"")
+ ..  W !,$P(PREC,U)_" "_$P(PREC,U,2)_" has been "
+ ..  W $S(STAT:"added to",1:"removed from")_" the list of Excluded Payers"
+ ..  I TYP=1 D
+ ...   W !,"If medical auto-decrease is turned on, "
+ ...   I STAT W "this payer will be excluded from medical auto-decrease too."
+ ...   I 'STAT,'$$GET1^DIQ(344.6,IEN_",",.07,"I") W "this payer will no longer be excluded from Medical Auto-Decrease."
+ ...   I 'STAT,$$GET1^DIQ(344.6,IEN_",",.07,"I") W "Medical Auto-Decrease is set to be excluded for this payer."
+ ..  K RCAUDVAL
+ ..  D FILE^DIE(,"FDAPAYER")
+ ..  S RCAUDVAL(1)="344.6"_U_FLD_U_IEN_U_STAT_U_('STAT)_U_COMMENT
+ ..  D AUDIT(.RCAUDVAL) K RCAUDVAL
  Q
  ;
 NOTIFY(VAL,TYPE) ; Notify CBO team of change to Site Parameters
@@ -269,7 +266,7 @@ NOTIFY(VAL,TYPE) ; Notify CBO team of change to Site Parameters
  S MSG(9)=" "
  ;Copy message to ePayments CBO team
  S XMTO(DUZ)=""
- ; S:$$PROD^XUPROD XMTO("PAYMENTS@DOMAIN.EXT")="" ; PRCA*4.5*326 autopost on/off message no longer required by ePay
+ ; S:$$PROD^XUPROD XMTO("VHAEPAYMENTS@domain.ext")="" ; PRCA*4.5*326 autopost on/off message no longer required by ePay
  ;
  K ^TMP("XMERR",$J)
  D SENDMSG^XMXAPI(DUZ,SUBJ,"MSG",.XMTO,.XMINSTR)
@@ -307,24 +304,13 @@ AUDIT(INP) ; WRITE AUDIT RECORD(S)
  ; *************************************************************
  ;
 NEWPYR ;Add new payers to payer table - called from AR Nightly Job (EN^RCDPEM)
- ; PRCA*4.5*326 - Add payers that are just on EFTs to file 344.6
- N RCDATE,RCFDA,RCEFT,RCERA,RCUPD,RCXD
+ N RCDATE,RCERA,RCUPD
  ;Get date/time of last run otherwise start at previous day
  S RCDATE=$P($G(^RCY(344.61,1,0)),U,8) S:RCDATE="" RCDATE=$$FMADD^XLFDT($$NOW^XLFDT\1,-1)
- S RCXD=RCDATE
- F  S RCXD=$O(^RCY(344.4,"AFD",RCXD)) Q:'RCXD  D
- . S RCERA="" F  S RCERA=$O(^RCY(344.4,"AFD",RCXD,RCERA)) Q:'RCERA  D  ;
- . . S RCUPD=$$PAYRINIT(RCERA,344.4)
- ;
- S RCXD=$$FMADD^XLFDT($P(RCDATE,".",1),-1)
- F  S RCXD=$O(^RCY(344.31,"ADR",RCXD)) Q:'RCXD  D
- . S RCEFT="" F  S RCEFT=$O(^RCY(344.31,"ADR",RCXD,RCEFT)) Q:'RCEFT  D  ;
- . . S RCUPD=$$PAYRINIT(RCEFT,344.31)
- ;
+ F  S RCDATE=$O(^RCY(344.4,"AFD",RCDATE)) Q:'RCDATE  D
+ .S RCERA="" F  S RCERA=$O(^RCY(344.4,"AFD",RCDATE,RCERA)) Q:'RCERA  S RCUPD=$$PAYRINIT(RCERA)
  ;Update last run date
- S RCFDA(344.61,"1,",.08)=$$NOW^XLFDT()
- D FILE^DIE("","RCFDA")
- ; PRCA*4.5*326 - End modified block
+ S $P(^RCY(344.61,1,0),U,8)=$$NOW^XLFDT
  Q
  ;
 PAYERPRM(IEN,EXMDPOST,EXMDDECR) ; USED TO UPDATE A NEW PAYER
@@ -344,22 +330,15 @@ PAYERPRM(IEN,EXMDPOST,EXMDDECR) ; USED TO UPDATE A NEW PAYER
  D FILE^DIE(,"PFDA")
  Q 1
  ;
-PAYRINIT(IEN,FILE) ; Add Payer Name and Payer ID to Payer table #344.6 
+PAYRINIT(IEN) ; Add Payer Name and Payer ID to Payer table #344.6 
  ;
- N PFDA,PAYER,ID,PIENS,ERADATE,RCFLD
+ N PFDA,PAYER,ID,PIENS,ERADATE
  ;
  Q:'$G(IEN)!('$D(^RCY(344.4,+$G(IEN)))) 0
- ; PRCA*4.5*326 - Add payers from EFTs
- S RCFLD("NAME")=$S(FILE=344.4:.06,1:.02)
- S RCFLD("ID")=.03
- S RCFLD("DATE")=$S(FILE=344.4:.07,1:.13)
- ;
- S PAYER=$$GET1^DIQ(FILE,IEN_",",RCFLD("NAME")) Q:PAYER="" 0
- S ID=$$GET1^DIQ(FILE,IEN_",",RCFLD("ID")) Q:ID="" 0
+ S PAYER=$P($G(^RCY(344.4,IEN,0)),U,6) Q:PAYER="" 0
+ S ID=$P($G(^RCY(344.4,IEN,0)),U,3) Q:ID="" 0
  I $D(^RCY(344.6,"CPID",PAYER,ID)) Q 1
- S ERADATE=$$GET1^DIQ(FILE,IEN_",",RCFLD("DATE"),"I")
- ; PRCA*4.5*326 - End modified block
- ;
+ S ERADATE=$P($G(^RCY(344.4,IEN,0)),U,7)
  ; UPDATE PAYER PARAMETERS
  S PIENS="+1,"
  S PFDA(344.6,PIENS,.01)=PAYER
@@ -369,16 +348,6 @@ PAYRINIT(IEN,FILE) ; Add Payer Name and Payer ID to Payer table #344.6
  S PFDA(344.6,PIENS,.05)=$$NOW^XLFDT
  S PFDA(344.6,PIENS,.06)=0
  S PFDA(344.6,PIENS,.07)=0
- I FILE=344.31 S PFDA(344.6,PIENS,.11)=1 ; PRCA*4.5*326
  D UPDATE^DIE(,"PFDA")
  Q 1
  ;
-SCREEN(IEN) ; Screen out payers that don't have an associated ERA - PRCA*4.5*326
- ; Input: IEN - Internal entry number from file 344.6
- ; Returns: 1 - Payer has an associated ERA, otherwise 0.
- N NAME,ID
- S NAME=$$GET1^DIQ(344.6,IEN_",",.01)
- S ID=$$GET1^DIQ(344.6,IEN_",",.02)
- I NAME=""!(ID="") Q 0
- I $D(^RCY(344.4,"APT",NAME,ID)) Q 1
- Q 0

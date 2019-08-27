@@ -1,6 +1,6 @@
 RCDPEM9 ;OIFO-BAYPINES/PJH - PAYER SELECTION ;10/18/11 6:17pm
- ;;4.5;Accounts Receivable;**276,284,318,326**;Mar 20, 1995;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**276,284,318,326,332**;Mar 20, 1995;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; PRCA*4.5*318 - Added parameters MIXED and BLANKLN
  ; PRCA*4.5*326 - Extensive rewrite to include selection/sort by payer TIN in the Auto Post Report

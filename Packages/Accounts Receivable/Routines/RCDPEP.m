@@ -1,5 +1,5 @@
 RCDPEP ;AITC/CJE - FLAG PAYERS AS PHARMACY/TRICARE ; 19-APR-2017
- ;;4.5;Accounts Receivable;**321,326**;;Build 26
+ ;;4.5;Accounts Receivable;**321,326,332**;;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(FILTER,DATEFILT) ; -- main entry point for RCDPE PAYER FLAGS template
@@ -15,7 +15,9 @@ EN(FILTER,DATEFILT) ; -- main entry point for RCDPE PAYER FLAGS template
  I '$D(FILTER) S FILTER=$$GETFILT()
  I FILTER=-1 Q  ;
  ;
+ D PAYEN^RCDPESP6 ; PRCA*4.5*332
  D EN^VALM("RCDPE PAYER FLAGS")
+ D PAYEX^RCDPESP6 ; PRCA*4.5*332
  Q
  ;
 GETDATE() ; Ask if the user wants to filter by date. If so prompt for start

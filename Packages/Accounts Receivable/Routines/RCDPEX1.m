@@ -1,6 +1,6 @@
-RCDPEX1 ;ALB/TMK - ELECTRONIC EOB MESSAGE EXCEPTIONS PROCESS ;Aug 14, 2014@15:07:12
- ;;4.5;Accounts Receivable;**173,262,298,304,326**;Mar 20, 1995;Build 26
- ;;Per VA Directive 6402, this routine should not be modified.
+RCDPEX1 ;ALB/TMK - ELECTRONIC EOB MESSAGE EXCEPTIONS PROCESS ;2 Aug 2018 21:41:05
+ ;;4.5;Accounts Receivable;**173,262,298,304,326,332**;Mar 20, 1995;Build 40
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point
  D DT^DICRW
@@ -21,10 +21,10 @@ EN ; Main entry point
  . S RCPAY=$$PAYRNG^RCDPEU1()    ; PRCA*4.5*326 New payer selection
  . I RCTYPE=-1 S RCQUIT=1 Q
  . I RCPAY'="A" D  ;
- . . S RCPAR("TYPE")=RCTYPE,RCPAR("SELC")=RCPAY
- . . S RCPAR("DICA")="Select Insurance Company NAME: "
- . . S XX=$$SELPAY^RCDPEU1(.RCPAR)
- . . I XX=-1 S RCQUIT=1
+ ..  S RCPAR("TYPE")=RCTYPE,RCPAR("SELC")=RCPAY
+ ..  S RCPAR("DICA")="Select Insurance Company NAME: "
+ ..  S XX=$$SELPAY^RCDPEU1(.RCPAR)
+ ..  I XX=-1 S RCQUIT=1
  ;
  ; Exit if the user asks to exit. 
  I RCQUIT Q
@@ -35,38 +35,47 @@ EN ; Main entry point
  K RCFASTXT,RCDA
  Q
  ;
-INIT ; -- set up initial variables
- S U="^",VALMCNT=0,VALMBG=1
- D BLD
+EN1 ; Duplicate ERA Worklist [RCDPE DUPLICATE ERA WORKLIST] option
+ D EN^VALM("RCDPEX DUPLICATE ERA LIST")
+ K RCFASTXT,RCDA
  Q
  ;
-REBLD ; Set up formatted global
+INITD ; set up initial variables (RCDPEX DUPLICATE ERA LIST)
+ S U="^",VALMCNT=0,VALMBG=1
+ D BLD("DUPLICATE ERA")
+ Q
  ;
-BLD ; -- build list of messages
- N DA,DR,RCSEQ,RCMSG,RCS,RCER,RCDPDATA,RC0,TOOSOON,X,Z
+INIT ; set up initial variables
+ S U="^",VALMCNT=0,VALMBG=1
+ D BLD("TRANSMISSION")
+ Q
+ ;
+BLD(MODE) ; EP - from RCDPEX -- build list of messages
+ ; INPUT: MODE = "TRANSMISSION" or "DUPLICATE ERA"
+ ; OUTPUT: ^TMP("RCDPEX-EOB",$J)
+ N DA,DR,RCSEQ,RCMSG,RCS,RCER,RCDPDATA,RC0,RCDUP,X,Z
  K ^TMP("RCDPEX-EOB",$J),^TMP("RCDPEX-EOBDX",$J)
  S (RCMSG,RCSEQ,VALMCNT)=0
- ;
  ; Extract from 344.5
- F  S RCMSG=$O(^RCY(344.5,"AEXC",1,RCMSG)) Q:'RCMSG  S RC0=$G(^(RCMSG,0)) D
- . I ($P(RC0,U,3)\1)=DT S TOOSOON=0 D  Q:TOOSOON
- .. ; If partial msg, allow a day before it's an exception
- .. I $P(RC0,U,10)=2 Q
- . ;
- . ; -- add to list
- . ;Display message id, type, date recorded, exception, mail msg #
+ F  S RCMSG=$O(^RCY(344.5,"AEXC",1,RCMSG)) Q:'RCMSG  S RC0=$G(^RCY(344.5,RCMSG,0)) D
+ . ; Check if message is on duplicate ERA worklist
+ . S RCDUP=+$$GET1^DIQ(344.5,RCMSG_",",.15,"I")
+ . ; Only display messages relevant to worklist type
+ . I MODE="TRANSMISSION",RCDUP Q
+ . I MODE="DUPLICATE ERA",'RCDUP Q
+ . ; add to list
  . S RCSEQ=RCSEQ+1
  . S DR=".01:.03;.1;.11",DA=RCMSG D DIQ3445(DA,DR)
  . S X=""
- . S X=$$SETSTR^VALM1($E(RCSEQ_$J("",4),1,4)_"  "_$G(RCDPDATA(344.5,RCMSG,.01,"E")),"",1,26)
- . S X=$$SETSTR^VALM1("  "_$E($G(RCDPDATA(344.5,RCMSG,.02,"I")),4,6),X,27,9)
- . S X=$$SETSTR^VALM1("  "_$G(RCDPDATA(344.5,RCMSG,.03,"E")),X,36,22)
- . S X=$$SETSTR^VALM1("  "_$G(RCDPDATA(344.5,RCMSG,.11,"E")),X,58,17)
+ . S X=$$SETSTR^VALM1($E(RCSEQ_"    ",1,4)_"  "_$G(RCDPDATA(344.5,RCMSG,.01,"E")),"",1,26)  ;(#.01) MESSAGE ID [1F]
+ . S X=$$SETSTR^VALM1("  "_$E($G(RCDPDATA(344.5,RCMSG,.02,"I")),4,6),X,27,9)  ;(#.02) MESSAGE TYPE [2S]
+ . S X=$$SETSTR^VALM1("  "_$G(RCDPDATA(344.5,RCMSG,.03,"E")),X,36,22)  ;(#.03) DATE RECORDED [3D]
+ . S X=$$SETSTR^VALM1("  "_$G(RCDPDATA(344.5,RCMSG,.11,"E")),X,58,17)  ;(#.11) MAIL MESSAGE [11F] 
  . D SET(X,344.5,RCMSG,RCSEQ)
- . S X=$J("",4)_"EXCEPTION: "_$G(RCDPDATA(344.5,RCMSG,.1,"E"))
+ . S X="    EXCEPTION: "_$G(RCDPDATA(344.5,RCMSG,.1,"E"))  ;(#.1) EXCEPTION CATEGORY [10S]
  . D SET(X,344.5,RCMSG,RCSEQ)
- . S DR=1,DA=RCMSG D DIQ3445(DA,DR) ; Get display data
- . S Z=0 F  S Z=$O(RCDPDATA(344.5,RCMSG,1,Z)) Q:'Z  S X=$J("",6)_RCDPDATA(344.5,RCMSG,1,Z) D SET(X,344.5,RCMSG,RCSEQ)
+ . S DR=1,DA=RCMSG D DIQ3445(DA,DR) ;(#1) DISPLAY DATA
+ . S Z=0 F  S Z=$O(RCDPDATA(344.5,RCMSG,1,Z)) Q:'Z  S X="      "_RCDPDATA(344.5,RCMSG,1,Z) D SET(X,344.5,RCMSG,RCSEQ)
  ;
  I '$D(^TMP("RCDPEX-EOB",$J)) S VALMCNT=2,^TMP("RCDPEX-EOB",$J,1,0)=" ",^TMP("RCDPEX-EOB",$J,2,0)="   There Are No EEOB Exception Records On File"
  Q
@@ -87,6 +96,10 @@ SET(X,FILE,RCMSG,RCSEQ) ; -- set arrays for EOB exception records
 HDR ;
  S VALMHDR(1)=$J("",21)_"ERA/EEOB MESSAGES WITH EXCEPTION CONDITIONS"
  S VALMHDR(2)=" "
+ Q
+ ;
+HDR1 ;
+ S VALMHDR(1)=$J("",21)_"Duplicate 835ERA Messages",VALMHDR(2)=" "
  Q
  ;
 DIQ3445(DA,DR) ; DIQ call to retrieve data for DR fields in file 344.5

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-26-AUG-2019 19:55:40 ZWR
+26-AUG-2019 22:38:25 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5461,7 +5461,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.11","%D",2,0)="developed and associated to the MASTER RADIOLOGY PROCEDURE file (#71.11)."
 ^DIC("71.11","%D",3,0)="After the procedure is created and matched it will be moved to the"
 ^DIC("71.11","%D",4,0)="RAD/NUC MED PROCEDURE file (#71) and then deleted from 71.11."
-^DIC("71.11","%MSC")=3170819.134749
+^DIC("71.11","%MSC")=3190826.215118
 ^DIC("71.2",0)="PROCEDURE MODIFIERS^71.2"
 ^DIC("71.2",0,"GL")="^RAMIS(71.2,"
 ^DIC("71.2","%",0)="^1.005^1^1"
@@ -11719,7 +11719,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(342,"%D",2,0)="functionality of the AR package."
 ^DIC(342,"%D",3,0)=""
 ^DIC(342,"%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(342,"%MSC")=3190220.162322
+^DIC(342,"%MSC")=3190826.223416
 ^DIC("342.1",0)="AR GROUP^342.1I"
 ^DIC("342.1",0,"GL")="^RC(342.1,"
 ^DIC("342.1","%D",0)="^^7^7^2941108^^^^"
@@ -11827,6 +11827,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.5","%D",3,0)="summaries are kept (#344.4) and the detail is stored in Integrated"
 ^DIC("344.5","%D",4,0)="Billing's file #361.1.  Once permanently filed, the raw data is deleted"
 ^DIC("344.5","%D",5,0)="from this file."
+^DIC("344.5","%MSC")=3190826.223416
 ^DIC("344.6",0)="RCDPE AUTO-PAY EXCLUSION^344.6"
 ^DIC("344.6",0,"GL")="^RCY(344.6,"
 ^DIC("344.6","%",0)="^1.005^^0"
@@ -11846,7 +11847,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.61","%D",0)="^1.001^2^2^3140813^^^"
 ^DIC("344.61","%D",1,0)="This file holds the parameters specific to the EDI Lockbox processes "
 ^DIC("344.61","%D",2,0)="(ePayments)."
-^DIC("344.61","%MSC")=3190221.024403
+^DIC("344.61","%MSC")=3190826.223416
+^DIC("344.611","%MSC")=3190826.223416
 ^DIC("344.62",0)="RCDPE CARC-RARC AUTO DEC^344.62"
 ^DIC("344.62",0,"AUDIT")=""
 ^DIC("344.62",0,"DD")=""
