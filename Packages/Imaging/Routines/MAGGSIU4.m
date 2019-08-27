@@ -1,5 +1,5 @@
-MAGGSIU4 ;WOIFO/NST/GEK - Utilities for Image Import API ; 16 Apr 2013 8:49 AM
- ;;3.0;IMAGING;**121,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+MAGGSIU4 ;WOIFO/NST/GEK/DAC - Utilities for Image Import API ; 24 Jan 2019 2:49 PM
+ ;;3.0;IMAGING;**121,135,235**;Mar 19, 2002;Build 8
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -283,7 +283,7 @@ DELETE(IEN,REASON) ; Delete Image by IEN
  ;  delete the Image Files associated with the Image that was Rescinded.
 DELFILES(IDATA) ;This will format the data for the call to set the Delete Queue.
  N RSN1,RSN2,I,RSNF
- N MAGPLC,MAGFILE2,X,X2,ALTEXT,ALTPATH
+ N MAGPLC,MAGFILE2,X,X2,ALTEXT,ALTPATH,ALTPIECE
  ; Only 1 image is in a Rescind Import.
  ; example : 
  ; ..IMAGE,1)=20467~c:\image\SLA0\00\00\02\04\SLA00000020467.TIF~c:\image\SLA0\00\00\02\04\SLA00000020467.ABS~|1~1~1
@@ -309,7 +309,8 @@ DELFILES(IDATA) ;This will format the data for the call to set the Delete Queue.
  I (MAGFILE2="")!(MAGPLC="") Q
  F  S X2=$O(^MAG(2006.1,MAGPLC,2,X2)) Q:'X2  D
  . S ALTEXT=^MAG(2006.1,MAGPLC,2,X2,0)
- . S ALTPATH=$P(MAGFILE2,".")_"."_ALTEXT
+ . S ALTPIECE=$L(MAGFILE2,".")-1 ; P235 DAC - Fix incomplete FQDN paths for TXT files
+ . S ALTPATH=$P(MAGFILE2,".",1,ALTPIECE)_"."_ALTEXT
  . S X=$$DELETE^MAGBAPI(ALTPATH,MAGPLC)
  . Q
  Q
