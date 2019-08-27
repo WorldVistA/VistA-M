@@ -1,0 +1,56 @@
+YTSMPIPN ;SLC/BLD - Score for MPI-PAIN-INTRF (MPI-PAIN-INTRF) ; 01/08/2016
+ ;;5.01;MENTAL HEALTH;**123,147**;DEC 30,1994;Build 283
+ ;
+ ;Public, Supported ICRs
+ ; #2056 - Fileman API - $$GET1^DIQ
+ ;
+ Q
+ ;
+DATA1 ;
+ S YSINSNAM=$P(YSDATA(2),U,3)
+ I $G(YSINSNAM)="" S YSINSNAM=$G(YS("CODE"),"NO NAME PASSED")
+ N TOTAL,TXT,WHYMPI,TEXT1,TEXT2,QUETOT,WHYMPI
+ S N=N+1
+ F I=3:1:13 D
+ .I $L($P(YSDATA(I),"^",3))<2 S STRING=$G(STRING)+$P(YSDATA(I),"^",3),QUETOT=$G(QUETOT)+1
+ S STRING=+$FN(STRING/QUETOT,"",2)
+ ;
+ Q
+ ;
+SCORESV ;
+ ;
+ D DATA1
+ I $D(^TMP($J,"YSG",1)),^TMP($J,"YSG",1)="[ERROR]" D  Q  ;-->out
+ .K ^TMP($J,"YSCOR")
+ .S ^TMP($J,"YSCOR",1)="[ERROR]"
+ .S ^TMP($J,"YSCOR",2)=$G(YSINSNAM)_" Scale not found"
+ S YSSCNAM=$P($G(^TMP($J,"YSG",3)),U,4)             ; Scale Name
+ ;
+ K ^TMP($J,"YSCOR")
+ S ^TMP($J,"YSCOR",1)="[DATA]"
+ S YSSCALIEN=1113   ;this needs to be changed to the current instrument scale
+ S ^TMP($J,"YSCOR",2)=$$GET1^DIQ(601.87,YSSCALIEN_",",3,"I")_"="_STRING
+ Q
+ ;
+DLLSTR(YSDATA,YS,YSTRNG) ;
+ ;  YSTRNG = 1 Score Instrument
+ ;  YSTRNG = 2 get Report Answers and Text
+ N DATA,DES,LEG,NODE,STAGE,YSQN,YSSCALIEN,STRING1,TMP,TSTNM
+ N YSCDA,YSSCNAM,YSINSNAM,STRING,YSCORE,I
+ ;
+ ; WHYMPI-INTRF returns a scale score which is calculated and stored, no special text in report
+ I YSTRNG=1 D SCORESV
+ I YSTRNG=2 D
+ .I '$D(^TMP($J,"YSCOR",2)) D LDSCORES^YTSCORE(.YSDATA,.YS)
+ .S YSDATA($O(YSDATA(""),-1)+1)=999999999999_U_U_$P(^TMP($J,"YSCOR",2),"=",2)
+ ;
+ Q
+ ;
+ I YSTRNG=1 D SCORESV
+ I YSTRNG=2 D
+ .D LDSCORES^YTSCORE(.YSDATA,.YS)
+ .;D TRANS
+ .S STRING=STRING_STRING1
+ .S YSDATA($O(YSDATA(""),-1)+1)=999999999999_U_U_STRING
+ Q
+ ;

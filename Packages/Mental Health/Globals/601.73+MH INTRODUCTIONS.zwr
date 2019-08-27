@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MH INTRODUCTIONS
-19-MAY-2019 19:01:11 ZWR
-^YTT(601.73,0)="MH INTRODUCTIONS^601.73^2370^2353"
+27-AUG-2019 12:51:52 ZWR
+^YTT(601.73,0)="MH INTRODUCTIONS^601.73^2375^2359"
 ^YTT(601.73,1,0)=1
 ^YTT(601.73,1,1,0)="^^5^5^3110104^"
 ^YTT(601.73,1,1,1,0)=" "
@@ -8800,6 +8800,45 @@ OSEHRA ZGO Export: MH INTRODUCTIONS
 ^YTT(601.73,2370,1,2,0)="Please read each statement carefully, with regard to your own current recovery process. For each question, indicate the statement that best represents the way you feel:| |"
 ^YTT(601.73,2370,1,3,0)=" "
 ^YTT(601.73,2370,1,4,0)="1. Strongly Disagree 2. Disagree 3. Not sure 4. Agree 5. Strongly Agree"
+^YTT(601.73,2372,0)=2372
+^YTT(601.73,2372,1,0)="^^13^13^3190827"
+^YTT(601.73,2372,1,1,0)="As you are pregnant or have recently had a baby, we would like to know "
+^YTT(601.73,2372,1,2,0)="how you are feeling. Please check the answer that comes closest to how "
+^YTT(601.73,2372,1,3,0)="you have felt IN THE PAST 7 DAYS, not just how you feel today. Here is an "
+^YTT(601.73,2372,1,4,0)="example, already completed.|"
+^YTT(601.73,2372,1,5,0)=" "
+^YTT(601.73,2372,1,6,0)="| I have felt happy:  |"
+^YTT(601.73,2372,1,7,0)="|     Yes, all the time"
+^YTT(601.73,2372,1,8,0)="|  X  Yes, most of the time (This would mean: ""I have felt happy most of the time"" during the past week.)"
+^YTT(601.73,2372,1,9,0)="|     No, not very often"
+^YTT(601.73,2372,1,10,0)="|     No, not at all  | |"
+^YTT(601.73,2372,1,11,0)=" "
+^YTT(601.73,2372,1,12,0)="Please complete the other questions in the same way. Please complete the "
+^YTT(601.73,2372,1,13,0)="other questions in the same way."
+^YTT(601.73,2373,0)=2373
+^YTT(601.73,2373,1,0)="^^2^2^3190827"
+^YTT(601.73,2373,1,1,0)="Please select the number with the answer that best describes your "
+^YTT(601.73,2373,1,2,0)="experience."
+^YTT(601.73,2374,0)=2374
+^YTT(601.73,2374,1,0)="^^1^1^3190827"
+^YTT(601.73,2374,1,1,0)="Please read each item carefully and give your best response."
+^YTT(601.73,2375,0)=2375
+^YTT(601.73,2375,1,0)="^^7^7^3190827"
+^YTT(601.73,2375,1,1,0)="This survey asks about how you are feeling and doing in different areas "
+^YTT(601.73,2375,1,2,0)="of life. Please check the item that best describes yourself during the "
+^YTT(601.73,2375,1,3,0)="PAST WEEK. Please answer every question. If you are unsure about how to "
+^YTT(601.73,2375,1,4,0)="answer, please give the best answer you can."
+^YTT(601.73,2375,1,5,0)=" "
+^YTT(601.73,2375,1,6,0)=" "
+^YTT(601.73,2375,1,7,0)="||During the PAST WEEK, how often did you ..."
+^YTT(601.73,2377,0)=2377
+^YTT(601.73,2377,1,0)="^^2^2^3190827"
+^YTT(601.73,2377,1,1,0)="In the following 9 questions, you will be asked to describe your pain and how it affects your life.  Under each question is a scale to record your answer.  Read each question carefully and then select a number on the scale under that question to"
+^YTT(601.73,2377,1,2,0)="indicate how that specific question applies to you. It is recommended that you use the number keys on the keyboard to select the response for each question."
+^YTT(601.73,2378,0)=2378
+^YTT(601.73,2378,1,0)="^^2^2^3190827"
+^YTT(601.73,2378,1,1,0)="Please select the number aligned with each statement that best describes "
+^YTT(601.73,2378,1,2,0)="your experience."
 ^YTT(601.73,"B",1,1)=""
 ^YTT(601.73,"B",2,2)=""
 ^YTT(601.73,"B",3,3)=""
@@ -11153,3 +11192,9 @@ OSEHRA ZGO Export: MH INTRODUCTIONS
 ^YTT(601.73,"B",2368,2368)=""
 ^YTT(601.73,"B",2369,2369)=""
 ^YTT(601.73,"B",2370,2370)=""
+^YTT(601.73,"B",2372,2372)=""
+^YTT(601.73,"B",2373,2373)=""
+^YTT(601.73,"B",2374,2374)=""
+^YTT(601.73,"B",2375,2375)=""
+^YTT(601.73,"B",2377,2377)=""
+^YTT(601.73,"B",2378,2378)=""

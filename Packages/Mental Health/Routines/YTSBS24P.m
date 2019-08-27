@@ -1,0 +1,74 @@
+YTSBS24P ;SLC/BLD- MHAX ANSWERS SPECIAL HANDLING FOR BASIS-24 PSYCHOSIS ;2/7/2018
+ ;;5.01;MENTAL HEALTH;**123,147**;DEC 30,1994;Build 283
+ ;
+ ;Public, Supported ICRs
+ ; #2056 - Fileman API - $$GET1^DIQ
+ ;
+ Q
+ ;
+DLLSTR(YSDATA,YS,YSTRNG) ;
+ ;  YSTRNG = 1 Score Instrument
+ ;  YSTRNG = 2 get Report Answers and Text
+ N DATA,DES,LEG,NODE,YSQN,YSSCALIEN,TOTSCORE,QUES,BASIS,PYSTOTT,PYSTOT
+ N YSCDA,YSSCNAM,YSINSNAM,STRING,STRING1,PYSTOT
+ ;
+ ; Basis-24 Psychosis returns a scale score which is calculated and stored, no special text in report
+ I YSTRNG=1 D SCORESV
+ I YSTRNG=2 D
+ .D STRING
+ .S YSDATA($O(YSDATA(""),-1)+1)=999999999999_U_U_STRING
+ ;
+ Q
+ ;
+STRING ;
+ ;
+ I '$D(^TMP($J,"YSCOR",2)) D LDSCORES(.YSDATA,.YS)
+ S STRING="Psychotic Symptoms: "_$P(^TMP($J,"YSCOR",2),"=",2)
+ Q
+ ;
+DATA1 ;
+ ;
+ S N=N+1
+ S QUES=0
+ F QUES=3:1:6 D
+ .S PYSTOTT=+$$GET1^DIQ(601.75,$P(YSDATA(QUES),"^",3)_",",4,"I")
+ .I QUES=3 S PYSTOT=$G(PYSTOT)+(0.1049*PYSTOTT) Q
+ .I QUES=4 S PYSTOT=$G(PYSTOT)+(0.136*PYSTOTT) Q
+ .I QUES=5 S PYSTOT=$G(PYSTOT)+(0.4636*PYSTOTT) Q
+ .I QUES=6 S PYSTOT=$G(PYSTOT)+(0.2955*PYSTOTT) Q
+ ;
+ Q
+ ;
+SCORESV ;
+ N YSSCGROUP
+ D DATA1
+ I $D(^TMP($J,"YSG",1)),^TMP($J,"YSG",1)="[ERROR]" D  Q  ;-->out
+ .K ^TMP($J,"YSCOR")
+ .S ^TMP($J,"YSCOR",1)="[ERROR]"
+ .S ^TMP($J,"YSCOR",2)=$G(YSINSNAM)_" Scale not found"
+ S YSSCNAM=$P($G(^TMP($J,"YSG",3)),U,4)             ; Scale Name
+ ;
+ K ^TMP($J,"YSCOR")
+ S ^TMP($J,"YSCOR",1)="[DATA]"
+ ;
+ S YSSCGROUP=$P($P(^TMP($J,"YSG",2),"^",1),"=",2)
+ S YSSCALIEN=$P($P(^TMP($J,"YSG",3),"^",1),"=",2)
+ ;
+ S ^TMP($J,"YSCOR",2)=$$GET1^DIQ(601.87,YSSCALIEN_",",3,"I")_"="_+$FN(PYSTOT,"",2)
+ Q
+ ;
+LDSCORES(YSDATA,YS) ;  new call for patch 123
+ ;input:AD = ADMINISTRATION #
+ ;output: [DATA]
+ N G,N,IEN71,SCALE,YSAD,YSCODEN,YSCALE
+ S YSAD=$G(YS("AD"))
+ ;
+ S YSDATA=$NA(^TMP($J,"YSCOR"))
+ S ^TMP($J,"YSCOR",1)="[DATA]",N=1
+ ;
+ S YSCALE="",N=1
+ F  S YSCALE=$O(^YTT(601.92,"AC",YSAD,YSCALE))  Q:'YSCALE  D
+ .S G=$G(^YTT(601.92,YSCALE,0))
+ .S SCALE=$P(G,U,3),N=N+1
+ .S ^TMP($J,"YSCOR",N)=SCALE_"="_$P(G,U,4,7)
+ Q
