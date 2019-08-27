@@ -1,5 +1,5 @@
 PSGOE92 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;2/18/10 4:15pm
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317,366**;16 DEC 97;Build 7
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317,366,327**;16 DEC 97;Build 114
  ;
  ;Reference to ^DD(53.1 is supported by DBIA #2256.
  ;Reference to ^PS(55 is supported by DBIA #2191.
@@ -11,12 +11,18 @@ PSGOE92 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;2/18/10 4:15pm
 A1 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  . W !!?5,"Provider may not be edited for active complex orders." D PAUSE^VALM1
  W !,"PROVIDER: ",$S(PSGPR:PSGPRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOEE=0 G DONE
+ ;; START NCC T4 MODS >> 327*RJS
+ S PSTMPI=PSGPR,PSTMPN=PSGPRN
  I $S(X="":'PSGPR,1:X="@") W $C(7),"  (Required)" S X="?" D ENHLP^PSGOEM(55.06,1) G A1
- I X="",PSGPR S X=PSGPRN I PSGPR'=PSGPRN,$D(^VA(200,PSGPR,"PS")) W:0 "    "_$P(^("PS"),"^",2)_"    "_$P(^("PS"),"^",3) G DONE
+ I +$G(ANQX) G A2
+ I X="",PSGPR S X=PSGPRN I PSGPR'=PSGPRN,$L($$GET1^DIQ(200,PSGPR,53.1)) G DONE
  I X?1."?" D ENHLP^PSGOEM(55.06,1)
  I $E(X)="^" D ENFF G:Y>0 @Y G A1
  ;*366 - check provider credentials
  K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y'>0 G A1
+A2 D CLOZPRV^PSGOE82
+ I $G(ANQX) W ! S PSGPR=PSTMPI,PSGPRN=PSTMPN  K PSTMPN,PSTMPI,ANQX G A1
+ ;; END NCC T4 MODS << 327*RJS
  S PSGPR=+Y,PSGPRN=Y(0,0) G DONE
  ;
 5 ; self med
@@ -47,45 +53,48 @@ A6 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  ;*276 - Disallow unauthorized nurses from editing Dispense Drug
  I '$P($G(PSJSYSU),";",4) W !,"You are not authorized to edit Dispense Drugs." D PAUSE^VALM1 Q
  I $G(PSGP),$G(PSGORD) I $$COMPLEX^PSJOE(PSGP,PSGORD) D
- . N X,Y,PARENT,P2ND S P2ND=$S(PSGORD["U":$G(^PS(55,PSGP,5,+PSGORD,.2)),1:$G(^PS(53.1,+PSGORD,.2))),PARENT=$P(P2ND,"^",8)
- . I PARENT D FULL^VALM1 W !!?5,"This order is part of a complex order. Please review the following ",!?5,"associated orders before changing this order." D CMPLX^PSJCOM1(PSGP,PARENT,PSGORD)
+ .N X,Y,PARENT S PARENT=$S(PSGORD["U":$$GET1^DIQ(55.06,+PSGORD_","_PSGP,125,"I"),1:$$GET1^DIQ(53.1,+PSGORD,125,"I"))
+ .I PARENT D FULL^VALM1 W !!?5,"This order is part of a complex order. Please review the following ",!?5,"associated orders before changing this order." D CMPLX^PSJCOM1(PSGP,PARENT,PSGORD)
  S MSG=0,PSGF2=2,BACK="2^PSGOE92",PSGOEEND=1
- NEW PSGX,PSGXX F PSGXX=0:0 S PSGX=PSGXX,PSGXX=$O(^PS(53.45,PSJSYSP,2,PSGXX)) Q:'PSGXX
- K PSGXX
+ N PSGX,ARRAY D LIST^DIC(53.4502,","_PSJSYSP_",",,"I",,,,,,,"ARRAY") S PSGX=+ARRAY("DILIST",0)
  ; PSJ*5*317 - If PSJ PADE OE BALANCES parameter is YES, PADE balances should display as identifier.
  N PSJPADLK S PSJPADLK=0  ; Flag indicating PADE drug lookup was done, don't do drug lookup twice - PSJ*5*317
  I $$GET^XPAR("SYS","PSJ PADE OE BALANCES") D
- .N DA,DIC,DIE,DR,DIR,PSJLOC,PSJDRG,PSJDDC,PSJORD,DFN,PSJORCL,PSJCLNK,PSJCLND
+ .N DA,DIC,DIE,DR,DIR,PSJLOC,PSJDRG,PSJDDC,PSJORD,DFN,PSJORCL,PSJCLNK,PSJCLND S PSJCLND=""
  .; If clinic order, quit if clinic location is not linked to PADE
- .S PSJCLND=$S($G(PSGORD)["P":$G(^PS(53.1,+$G(PSGORD),"DSS")),$G(PSGORD)["U":$G(^PS(55,+$G(PSGP),5,+$G(PSGORD),8)),$G(PSGORD)["V":$G(^PS(55,+$G(PSGP),"IV",+$G(PSGORD),"DSS")),1:"")
+ .I $G(PSGORD)["P" S PSJCLND=$$GET1^DIQ(53.1,+$G(PSGORD),113,"I")_"^"_$$GET1^DIQ(53.1,+$G(PSGORD),126,"I") I 1
+ .E  I $G(PSGORD)["U" S PSJCLND=$$GET1^DIQ(55.06,+$G(PSGORD)_","_+$G(PSGP),130,"I")_"^"_$$GET1^DIQ(55.06,+$G(PSGORD)_","_+$G(PSGP),131,"I") I 1
+ .E  I $G(PSGORD)["V" S PSJCLND=$$GET1^DIQ(55.01,+$G(PSGORD)_","_+$G(PSGP),136,"I")_"^"_$$GET1^DIQ(55.01,+$G(PSGORD)_","_+$G(PSGP),139,"I")
  .S PSJORCL=$S(PSJCLND&$P(PSJCLND,"^",2):+PSJCLND_"C",1:"")
- .;S PSJORCL=$S($G(PSGORD)["P":$G(^PS(53.1,+$G(PSGORD),"DSS")),$G(PSGORD)["U":$G(^PS(55,+$G(PSGP),5,+$G(PSGORD),8)),$G(PSGORD)["V":$G(^PS(55,+$G(PSGP),"IV",+$G(PSGORD),"DSS")),1:"")
  .I PSJORCL S PSJCLNK=$$PADECL^PSJPAD50(+$G(PSJORCL)) Q:'PSJCLNK
  .I '$G(PSJCLNK) Q:'$$PADEWD^PSJPAD50(+$G(VAIN(4)))
  .S DFN=$G(PSGP),PSJORD=$G(PSGORD)
- .S PSJDDC=0 F  S PSJDDC=$O(^PS(53.45,PSJSYSP,2,PSJDDC)) Q:'PSJDDC  S PSJDRG(PSJDDC)=^(PSJDDC,0)
- .S PSJLOC=$S($G(PSJORD)["U":+$G(^PS(55,DFN,5,+PSJORD,8))_"C",$G(PSJORD)["P":+$G(^PS(53.1,+PSJORD,"DSS"))_"C",1:"")
+ .N ARRAY D LIST^DIC(53.4502,","_PSJSYSP_",",,"I",,,,,,,"ARRAY")
+ .F I=1:1 Q:'$D(ARRAY("DILIST",2,I))  S PSJDDC=ARRAY("DILIST",2,I),PSJDRG(PSJDDC)=$$GET1^DIQ(53.4502,PSJDDC_","_PSJSYSP,.01,"I")
+ .S PSJLOC=$S($G(PSJORD)["U":+$$GET1^DIQ(55.06,+PSJORD_","_DFN,130,"I")_"C",$G(PSJORD)["P":+$$GET1^DIQ(53.1,+$G(PSGORD),113,"I")_"C",1:"")
  .S:'PSJLOC PSJLOC=+$G(VAIN(4)) I '$G(PSJLOC) D
  ..N VAIN D INP^VADPT S PSJLOC=$G(VAIN(4))
  .S PSJPADLK=1
  .D READDD^PSJPAD50(.PSJDRG,$G(PSGPDRG),PSJLOC,PSJORD,$G(PSGORD))
  ; PSJ*5*317 - If PSJ PADE OE BALANCES parameter is NO, PADE balances should NOT display as identifer.
  I '$G(PSJPADLK) N DA,DIE,DR S DIE="^PS(53.45,",DA=PSJSYSP,DR=2,DR(2,53.4502)=".02//1;.03" D ^DIE
- I '$O(^PS(53.45,PSJSYSP,2,0)) W $C(7),!!,"WARNING: This order must have at least one dispense drug before pharmacy can",!?9,"verify it!",! S MSG=1
+ I '$G(ARRAY("DILIST",0)) W $C(7),!!,"WARNING: This order must have at least one dispense drug before pharmacy can",!?9,"verify it!",! S MSG=1
  D DDOC^PSGOE82(PSGX) ;* Perform allergy/adv. reaction order checks
- NEW PSJDOSE
+ N PSJDOSE
  D DOSECHK^PSJDOSE
  I +$G(PSJDSFLG) D DSPWARN^PSJDOSE S:$G(PSGOEEF(109))="" PSGOEEF(109)=1 ; PSJ*5*237 - Check PSGOEEF(109) to prevent infinite loop
  ; PSJ*5*215 - If Dispense Drug(s) changed, make entry in Activity Log.
  ; Compare the edited dispense drug information in ^PS(53.45 to the active
  ; order dispense drug information in ^PS(55.
  S (PSJDDTMP,PSJDD55,PSJDTMP1,PSJDD551)=""
- F PSJDDTMP=0:0 S PSJDDTMP=$O(^PS(53.45,PSJSYSP,2,PSJDDTMP)) Q:'PSJDDTMP  D
- . S PSJDDTMP(PSJDDTMP)=$G(^PS(53.45,PSJSYSP,2,PSJDDTMP,0))
- . S PSJDTMP1="Disp Drug: "_"("_$P($G(PSJDDTMP(PSJDDTMP)),"^",1)_") "_$P($G(^PSDRUG($P($G(PSJDDTMP(PSJDDTMP)),"^",1),0)),"^")_" Units: "_$P($G(PSJDDTMP(PSJDDTMP)),"^",2)_" "
- F PSJDD55=0:0 S PSJDD55=$O(^PS(55,DFN,5,+ON,1,PSJDD55)) Q:'PSJDD55  D
- . S PSJDD55(PSJDD55)=$G(^PS(55,DFN,5,+ON,1,PSJDD55,0))
- . S PSJDD551="Disp Drug: "_"("_$P($G(PSJDD55(PSJDD55)),"^",1)_") "_$P($G(^PSDRUG($P($G(PSJDD55(PSJDD55)),"^",1),0)),"^")_" Units: "_$P($G(PSJDD55(PSJDD55)),"^",2)_" "
+ N ARRAY D LIST^DIC(53.4502,","_PSJSYSP_",",.02,"I",,,,,,,"ARRAY")
+ F I=1:1 Q:'$D(ARRAY("DILIST",2,I))  S PSJDDTMP=ARRAY("DILIST",2,I) D
+ .S PSJDDTMP(PSJDDTMP)=ARRAY("DILIST",1,I)_"^"_ARRAY("DILIST","ID",I,.02)
+ .S PSJDTMP1="Disp Drug: "_"("_$P($G(PSJDDTMP(PSJDDTMP)),"^",1)_") "_$$GET1^DIQ(50,$P($G(PSJDDTMP(PSJDDTMP)),"^",1),.01)_" Units: "_$P($G(PSJDDTMP(PSJDDTMP)),"^",2)_" "
+ N ARR1 D LIST^DIC(55.07,","_+ON_","_DFN_",",.02,"I",,,,,,,"ARR1")
+ F I=1:1 Q:'$D(ARR1("DILIST",2,I))  S PSJDD55=ARR1("DILIST",2,I) D
+ .S PSJDD55(PSJDD55)=ARR1("DILIST",1,I)_"^"_ARR1("DILIST","ID",I,.02)
+ .S PSJDD551="Disp Drug: "_"("_$P($G(PSJDD55(PSJDD55)),"^",1)_") "_$$GET1^DIQ(50,$P($G(PSJDD55(PSJDD55)),"^",1),.01)_" Units: "_$P($G(PSJDD55(PSJDD55)),"^",2)_" "
  ; If the two temporary strings PSJDTMP1 and PSJDD551 do not match each other exactly
  ; then an edit has been made to the Dispense Drug Field.  Make a new entry in
  ; the Activity Log for this order.

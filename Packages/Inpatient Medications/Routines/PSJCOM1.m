@@ -1,13 +1,13 @@
-PSJCOM1 ;BIR/CML3-DISPLAY COMPLEX ORDERS FOR DISCONTINUE ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,281,315**;16 DEC 97;Build 73
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ; Reference to ^VALM1 is supported by DBIA 10116.
- ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to ^%DTC is supported by DBIA 10000.
- ; Reference to ^PS(51.2 is supported by DBIA 2178.
- ; Reference to ^DIE is supported by DBIA 10018.
- ; Reference to ^DIR is supported by DBIA 10026.
- ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
+PSJCOM1 ;BIR/CML3-DISPLAY COMPLEX ORDERS FOR DISCONTINUE ;12 June 2019 09:31:53
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,281,315,327**;16 DEC 97;Build 114
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ; Reference to ^VALM1 via DBIA 10116
+ ; Reference to ^PS(55 via DBIA 2191
+ ; Reference to ^%DTC via DBIA 10000
+ ; Reference to ^PS(51.2 via DBIA 2178
+ ; Reference to ^DIE via DBIA 10018
+ ; Reference to ^DIR via DBIA 10026
+ ; Reference to ^TMP("PSODAOC",$J) via DBIA 6071
  ;
 CMPLX(PSGP,ON,PSGORD) ;
  D PAUSE K PSJCM
@@ -25,6 +25,13 @@ CMPLX(PSGP,ON,PSGORD) ;
  ;
 CMPLX2(PSGP,ON,PSGORD) ;
  Q:$G(PSGORD)'["U"
+ ;; START NCC REMEDIATION >> 327*RJS
+ N CLOZFLG I PSGORD["U" S CLOZFLG=$$ISCLOZ^PSJCLOZ(,,PSGP,+PSGORD) I 1
+ E  S CLOZFLG=$$ISCLOZ^PSJCLOZ(+PSGORD)
+ I CLOZFLG D
+ .N PSGDN S PSGDN=$P(CLOZFLG,U,2)
+ .D PSJFILE^PSJCLOZ(PSGP),INPSND^YSCLTST5 K:$D(^TMP($J,"CLOZFLG",PSGP)) ^TMP($J,"CLOZFLG",PSGP)
+ ;; END NCC REMEDIATION >> 327*RJS
  N PSJLINE S PSJLINE=0
  D FULL^VALM1
  D DSPLORDU(PSGP,PSGORD)
@@ -54,6 +61,7 @@ DSPLORDU(PSGP,ON)   ; Display UD order for order check as in the Inpat Profile.
  I STAT="A",$P(NODE0,U,27)="R" S STAT="R"
  I STAT'="P" S PSJID=$E($$ENDTC^PSGMI($P(NODE2,U,2)),1,5),SD=$E($$ENDTC^PSGMI($P(NODE2,U,4)),1,5)
  I STAT="P" S (PSJID,SD)="*****",SCH="?"
+ I $G(PSGPDN)["CLOZ" N PSGORD S PSGORD=+$G(NODE0),PSSD="" D DISPCMP^PSJCLOZ(PSGORD,.PSSD) I $G(PSSD) S SD=$E($$ENDTC^PSGMI(PSSD),1,5) K PSSD
  F PSJX=0:0 S PSJX=$O(DRUGNAME(PSJX)) Q:'PSJX  D
  . S:PSJX=1 X=SCH_"  "_PSJID_"  "_SD_"  "_$E(STAT,1)
  . S:PSJX=1 DRUGNAME(1)=$$SETSTR^VALM1(X,$E(DRUGNAME(1),1,40),42,20)

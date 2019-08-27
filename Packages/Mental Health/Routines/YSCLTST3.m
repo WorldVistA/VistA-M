@@ -1,73 +1,104 @@
-YSCLTST3 ;DALOI/LB/RLM-TRANSMISSION FOR CLOZAPINE REPORTING SYSTEM ;26 June 91
- ;;5.01;MENTAL HEALTH;**18,22,25,26,47,61,69,74,90**;Dec 30, 1994;Build 18
+YSCLTST3 ;DALOI/LB/RLM-TRANSMISSION FOR CLOZAPINE REPORTING SYSTEM ; 11/27/18 5:17pm
+ ;;5.01;MENTAL HEALTH;**18,22,25,26,47,61,69,74,90,122**;Dec 30, 1994;Build 112
  ; Reference to ^DPT supported by IA #10035
  ; Reference to ^PS(55 supported by IA #787
  ; Reference to ^PS(59 supported by IA #783
  ; Reference to ^VA(200 supported by IA #10060
  ; Reference to ^LAB(60 supported by IA #333
  ; Reference to ^XMD supported by IA #10070
+ ; Reference to ^DIC supported by DBIA #2051
+ ; Reference to ^DIE supported by DBIA #2053
+ ; Reference to ^DIQ supported by DBIA #2056
+ ; Reference to ^DIR supported by DBIA #10026
+ ; Reference to ^VADPT supported by DBIA #10061
+ ; Reference to $$SITE^VASITE supported by DBIA #10112
+ ; Reference to ^XLFDT supported by DBIA #10103
+ ; Reference to ^%ZTLOAD supported by DBIA #10063
+ ; Reference to ^%DT supported by DBIA #10003
+ ;
 DEMOG ; Old entry point to send demographic data for patients from task. Obsolete
  Q
 DMG ; Called by YSCLTEST
- S YSDEBUG=$P(^YSCL(603.03,1,0),"^",3)
+ S YSDEBUG=$$GET1^DIQ(603.03,1,3,"I")
  K ^TMP($J),^TMP("YSCL",$J),^TMP("YSCLL",$J) S YSCLLN=0,YSCLNO=20,DFN=0,YSCLIEN=0
- F  K YSCLA S YSCLIEN=$O(^YSCL(603.01,YSCLIEN)) Q:'YSCLIEN  S DFN=$P($G(^YSCL(603.01,YSCLIEN,0)),"^",2) S $P(YSSTOP,",",8)=8 Q:$$S^%ZTLOAD  D:DFN
-  . I $D(^DPT(DFN,0)),$D(^YSCL(603.01,YSCLIEN,0)) S YSCLC=$P($G(^YSCL(603.01,YSCLIEN,0)),"^",1) D GET
+ N ARRAY D LIST^DIC(603.01,,1,"I",,,,,,,"ARRAY")
+ F I=1:1 Q:'$D(ARRAY("DILIST",2,I))  K YSCLA S YSCLIEN=ARRAY("DILIST",2,I)  D
+ .S DFN=ARRAY("DILIST","ID",I,1),$P(YSSTOP,",",8)=8 Q:$$S^%ZTLOAD!'DFN
+ .I $L($$GET1^DIQ(2,DFN,.01)) S YSCLC=$$GET1^DIQ(603.01,YSCLIEN,.01) D GET
  D TRANSMIT:YSCLLN G END
  ;
 GET ;
  S $P(YSSTOP,",",9)=9 Q:$$S^%ZTLOAD
- Q:'$D(^PS(55,DFN,"SAND"))  ;Don't try to transmit if no pharmacy record
- Q:$P(^PS(55,DFN,"SAND"),"^",4)  ;Don't retransmit demographics.
+ Q:'$L($$GET1^DIQ(55,DFN,53))  ;Don't try to transmit if no pharmacy record
+ Q:$$GET1^DIQ(55,DFN,56,"I")   ;Don't retransmit demographics.
  Q:$D(^TMP("YSCLL",$J,DFN))
  S ^TMP("YSCLL",$J,DFN)=1
- S YSCLP=+$P($G(^PS(55,DFN,"SAND")),"^",5),YSCLDEA=$P($G(^VA(200,YSCLP,"PS")),"^",2),YSCLP=$P($G(^VA(200,YSCLP,0)),"^")
+ S YSCLP=$$GET1^DIQ(55,DFN,57,"I"),YSCLDEA=$$GET1^DIQ(200,YSCLP,53.2),YSCLP=$$GET1^DIQ(200,YSCLP,.01)
  D DEM^VADPT,ADD^VADPT S YSCL=YSCLC_"^"_$E($P(VADM(1),",",2))_$E(VADM(1))_"^"_$P(VADM(3),"^")_"^"_$P(VADM(2),"^")_"^"_$P(VADM(5),"^")_"^"_VAPA(6)_"^"_DT
  D
-  . S YSRACE="*"
-  . S YSRC=0 F  S YSRC=$O(VADM(11,YSRC)) Q:'YSRC  S YSRACE=YSRACE_+VADM(11,YSRC)_"-"_+VADM(11,YSRC,1)_","
-  . S YSRACE=YSRACE_"~"
-  . S YSRC=0 F  S YSRC=$O(VADM(12,YSRC)) Q:'YSRC  S YSRACE=YSRACE_+VADM(12,YSRC)_"-"_+VADM(12,YSRC,1)_","
+ .S YSRACE="*"
+ .S YSRC=0 F  S YSRC=$O(VADM(11,YSRC)) Q:'YSRC  S YSRACE=YSRACE_+VADM(11,YSRC)_"-"_+VADM(11,YSRC,1)_","
+ .S YSRACE=YSRACE_"~"
+ .S YSRC=0 F  S YSRC=$O(VADM(12,YSRC)) Q:'YSRC  S YSRACE=YSRACE_+VADM(12,YSRC)_"-"_+VADM(12,YSRC,1)_","
  S YSCL=YSCL_"^"_YSRACE_"^"_YSCLP_"^"_YSCLDEA
- S YSCLGL=$S($D(^PS(59)):"^PS",1:"^DIC")
- ;YSCLGL is used to indirectly hold the global reference for file 59. This is necessary due to changes in the file location. The $select may be expanded to cover future moves. DBIA 273-B
- F YSCLJ=0:0 S YSCLJ=$O(@YSCLGL@(59,YSCLJ)) Q:'YSCLJ  I $D(^(YSCLJ,"SAND")) S YSCLJ=$P(^(0),"^",5) Q
+ ; YSCLJ containing a ZIP code
+ N ARRAY59 D LIST^DIC(59,,"1;.05",,,,,,,,"ARRAY59")
+ F YSCLJ=1:1 Q:'$D(ARRAY59("DILIST","ID",YSCLJ))  I ARRAY59("DILIST","ID",YSCLJ,1)'="" S YSCLJ=ARRAY59("DILIST","ID",YSCLJ,.05) Q
  S YSCL=YSCL_"^"_YSCLJ
  ;registration number^initials^dob^ssn^sex^zip^today^race^physician^dea^zip code (hosp)
  S YSCLLN=YSCLLN+1,^TMP($J,YSCLLN,0)=YSCL
  I VADM(5)=""!(VAPA(6)="")!('VADM(11))!('VADM(12)) D  ;RLM RACETEST
-  . S ^TMP("YSCL",$J,YSCLNO,0)=$P(VADM(2),"^",1)_"   "_VADM(1)
-  . S:VADM(5)="" ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (SEX)"
-  . S:VAPA(6)="" ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (ZIP)"
-  . S:'VADM(12) ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (RACE, NEW FORMAT)"
-  . S:'VADM(11) ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (ETHNICITY)"
-  . S YSCLNO=YSCLNO+1
-  . S ^TMP("YSCLL",$J,DFN)=0 ; leave unmarked pending demographic data
-  . I ('VADM(11))!('VADM(12)) D
-  . . S ^TMP("YSCL",$J,YSCLNO,0)="NOTE: Race and Ethnicity may be entered if permission is obtained in the informed consent",YSCLNO=YSCLNO+1
-  . . S ^TMP("YSCL",$J,YSCLNO,0)="document. See VHA Directive 99-035.",YSCLNO=YSCLNO+1
+ .S ^TMP("YSCL",$J,YSCLNO,0)=$P(VADM(2),"^",1)_"   "_VADM(1)
+ .S:VADM(5)="" ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (SEX)"
+ .S:VAPA(6)="" ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (ZIP)"
+ .S:'VADM(12) ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (RACE, NEW FORMAT)"
+ .S:'VADM(11) ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (ETHNICITY)"
+ .S YSCLNO=YSCLNO+1
+ .S ^TMP("YSCLL",$J,DFN)=0 ; leave unmarked pending demographic data
+ .I ('VADM(11))!('VADM(12)) D
+ ..S ^TMP("YSCL",$J,YSCLNO,0)="NOTE: Race and Ethnicity may be entered if permission is obtained in the informed consent",YSCLNO=YSCLNO+1
+ ..S ^TMP("YSCL",$J,YSCLNO,0)="document. See VHA Directive 99-035.",YSCLNO=YSCLNO+1
  ;
  Q
  ;
 TRANSMIT ; remote and local messages
  S $P(YSSTOP,",",10)=10 Q:$$S^%ZTLOAD
- S XMY("S.RUCLDEM@FO-HINES.DOMAIN.EXT")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")="",XMY("G.RUCLDEM@FO-DALLAS.DOMAIN.EXT")=""
- S XMDUZ="CLOZAPINE MONITOR",XMTEXT="^TMP($J,",XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine demographics" D ^XMD S $P(^YSCL(603.03,1,0),"^",6)=$$NOW^XLFDT
- K XMY S XMY("G.PSOCLOZ")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
- S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine demographics",^TMP("YSCL",$J,2,0)=" ",XMDUZ="CLOZAPINE MONITOR",^TMP("YSCL",$J,1,0)="Clozapine demographic data was transmitted, "_YSCLLN_" records were sent.",XMTEXT="^TMP(""YSCL"",$J,"
+ S YSDEBUG=$$GET1^DIQ(603.03,1,3,"I"),YSPROD=$$GET1^DIQ(8989.3,1,501,"I")
+ S YSPRODST=$$GET1^DIQ(603.03,1,9) ;S:YSPRODST="" YSPRODST="S.RUCLDEM@FO-HINES.DOMAIN.EXT"
+ S YSDBGST=$$GET1^DIQ(603.03,1,11) ;S:YSDBGST="" YSDBGST="G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT"
+ ;/RBN - Begin modifications for YS*5.01*122
+ I YSCLLN D
+ .I YSPROD D
+ ..I 'YSDEBUG S XMY(YSPRODST)="" ;XMY("G.CLOZAPINE ROLL-UP")="" ;,
+ ..E  S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")="",XMY("G.RUCLDEM@FO-DALLAS.DOMAIN.EXT")=""
+ .E  D
+ ..I 'YSDEBUG S XMY(YSDBGST)=""
+ ..E  S XMY("G.CLOZAPINE DEBUG")=""
+ .S XMDUZ="CLOZAPINE MONITOR",XMTEXT="^TMP($J,",XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine demographics" D ^XMD
+ .N DIE,DA,DR S DIE="^YSCL(603.03,",DA=1,DR="6///"_$$NOW^XLFDT D ^DIE
+ K XMY
+ I 'YSDEBUG S XMY("G.PSOCLOZ")="" S:YSPROD XMY("G.CLOZAPINE ROLL-UP@AADOMAIN.EXT")=""
+ E  S XMY("G.CLOZAPINE DEBUG")="" S:YSPROD XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
+ S XMDUZ="CLOZAPINE MONITOR",XMTEXT="^TMP($J,"
+ S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine demographics",^TMP("YSCL",$J,2,0)=" "
+ S ^TMP("YSCL",$J,1,0)="Clozapine demographic data was transmitted, "_YSCLLN_" records were sent.",XMTEXT="^TMP(""YSCL"",$J,"
  I $O(^TMP("YSCL",$J,10)) S ^TMP("YSCL",$J,3,0)="For the following patients, one or more of the required data",^TMP("YSCL",$J,4,0)="elements (race, sex, ZIP code) were missing.",^TMP("YSCL",$J,5,0)=" "
  I  S ^TMP("YSCL",$J,6,0)="Please have this information entered.",^TMP("YSCL",$J,7,0)="The available data was transmitted.",^TMP("YSCL",$J,8,0)=" "
  D ^XMD
  ; set transmitted field in 55 from ^TMP("YSCLL",$J)
- F DFN=0:0 S DFN=$O(^TMP("YSCLL",$J,DFN)) Q:'DFN  I ^TMP("YSCLL",$J,DFN) S $P(^PS(55,DFN,"SAND"),"^",4)=1
+ F DFN=0:0 S DFN=$O(^TMP("YSCLL",$J,DFN)) Q:'DFN  I ^TMP("YSCLL",$J,DFN) S DIE="^PS(55,",DA=DFN,DR="56///1" D ^DIE
  Q
  ;
 FLERR ;
  K XMY
- S XMY("G.CLOZAPINE ROLL-UP@DOMAIN.EXT")=""
- I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
+ ;/RBN - Begin modifications for YS*5.01*122
+ X ^%ZOSF("UCI") I Y=^%ZOSF("PROD") D
+ .S XMY("G.CLOZAPINE ROLL-UP@AADOMAIN.EXT")=""
+ .I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG@FO-DALLAS.DOMAIN.EXT")=""
+ I Y'=^%ZOSF("PROD") D
+ .S XMY("G.CLOZAPINE ROLL-UP")=""
+ .I YSDEBUG K XMY S XMY("G.CLOZAPINE DEBUG")=""
+ ;/RBN - End modifications for YS*5.01*122
  S %DT="T",X="NOW" D ^%DT S YSCLNOW=$P(Y,".",2)
  S YSCLSITE=$P($$SITE^VASITE,"^",2)
  S XMSUB=$S(YSDEBUG:"DEBUG ",1:"")_"Clozapine lab data error at "_YSCLSITE_" on "_DT_" at "_YSCLNOW,^TMP("YSCL",$J,1,0)=" "

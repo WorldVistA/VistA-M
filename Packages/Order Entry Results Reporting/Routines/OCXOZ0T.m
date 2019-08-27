@@ -1,4 +1,4 @@
-OCXOZ0T ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
+OCXOZ0T ;SLC/RJS,CLA - Order Check Scan ;AUG 27,2019 at 09:18
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -44,7 +44,7 @@ R49R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #49
  Q
  ;
 R50R1A ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHE...'  Relation #1 'CONTRAST MEDIA ORDER AND ABNORMAL RENAL RESULTS'
- ;  Called from EL129+5^OCXOZ0G, and EL130+5^OCXOZ0H.
+ ;  Called from EL129+5^OCXOZ0G, and EL130+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;
@@ -81,7 +81,7 @@ R50R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #50
  Q
  ;
 R50R2A ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHE...'  Relation #2 'CONTRAST MEDIA ORDER AND NO CREAT RESULTS W/IN X D...'
- ;  Called from EL130+6^OCXOZ0H, and EL133+5^OCXOZ0H.
+ ;  Called from EL130+6^OCXOZ0G, and EL133+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;

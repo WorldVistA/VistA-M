@@ -1,13 +1,13 @@
-PSJOEA ;BIR/MLM-INPATIENT ORDER ENTRY ;23 Jun 98 / 1:46 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,133,167,171,254,315,367**;16 DEC 97;Build 7
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ; Reference to ^PS(55 is supported by DBIA #2191.
- ; Reference to EN^VALM is supported by DBIA #10118.
- ; Reference to ^PSSLOCK is supported by DBIA #2789
- ; Reference to ^DPT is supported by DBIA #10035.
- ; Reference to SDIMO^SDAMA203 is supported by DBIA #4133.
+PSJOEA ;BIR/MLM-INPATIENT ORDER ENTRY ;12 June 2019 09:31:53
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,133,167,171,254,315,367,327**;16 DEC 97;Build 114
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ; Reference to ^PS(55 via DBIA #2191
+ ; Reference to EN^VALM via DBIA #10118
+ ; Reference to ^PSSLOCK via DBIA #2789
+ ; Reference to ^DPT via DBIA #10035
+ ; Reference to SDIMO^SDAMA203 via DBIA #4133
  ;
-LOCK(DFN,PSJORD) ; Check to see if the order is already locked
+LOCK(DFN,PSJORD) ; Check if the order is locked
  N Q S Q=0
  I PSJORD=+PSJORD N PSJO S PSJO=0 F  S PSJO=$O(^PS(53.1,"ACX",PSJORD,PSJO)) Q:'PSJO  S Q=$$LS^PSSLOCK(DFN,PSJO_"P") I 'Q Q
  I Q Q 1
@@ -19,6 +19,7 @@ SELECT ;
  N PSJO S PSJO=0 F  S PSJO=$O(^PS(53.1,"ACX",PSJORD,PSJO)) Q:'PSJO  D
  .S PSGORD="" S ON=PSJO_"P"
  .D DISACTIO(PSGP,PSJO_"P",$G(PSJPNV)) S:$G(PSJO)["V" O=ON
+ K PSGCOMP,PSGFLG  ; CLEAN UP VARIABLE FOR COMPLEX ORDER MESSAGE  RJS*327
  I $D(^TMP("PSJCOM",$J)) D CHK^PSJOEA1
  S:'$G(PSGP) PSGP=$G(DFN)
  N PSJO S PSJO=0 F  S PSJO=$O(^PS(53.1,"ACX",PSJORD,PSJO)) Q:'PSJO  D

@@ -1,4 +1,4 @@
-OCXOZ0D ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
+OCXOZ0D ;SLC/RJS,CLA - Order Check Scan ;AUG 27,2019 at 09:18
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,127 +10,12 @@ OCXOZ0D ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;
  Q
  ;
-CHK381 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK377+13^OCXOZ0C.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK381 Variables
- ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(130) --> Data Field: CLOZAPINE LAB RESULTS (FREE TEXT)
- ; OCXDF(131) --> Data Field: PHARMACY LOCAL ID (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,119, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE WBC < 3.0)
- ;
- S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,119,"130") Q:OCXOERR 
- Q
- ;
-CHK387 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK377+14^OCXOZ0C.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK387 Variables
- ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(130) --> Data Field: CLOZAPINE LAB RESULTS (FREE TEXT)
- ; OCXDF(131) --> Data Field: PHARMACY LOCAL ID (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,120, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE WBC >= 3.0 & < 3.5)
- ;
- S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,120,"130") Q:OCXOERR 
- Q
- ;
-CHK392 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK377+15^OCXOZ0C.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK392 Variables
- ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(130) --> Data Field: CLOZAPINE LAB RESULTS (FREE TEXT)
- ; OCXDF(131) --> Data Field: PHARMACY LOCAL ID (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,121, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CLOZAPINE WBC >= 3.5)
- ;
- S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,121,"130") Q:OCXOERR 
- Q
- ;
-CHK397 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK58+21^OCXOZ05.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK397 Variables
- ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(62) ---> Data Field: PATIENT AGE (NUMERIC)
- ; OCXDF(141) --> Data Field: AMITRIPTYLINE TEXT (FREE TEXT)
- ; OCXDF(143) --> Data Field: DANGEROUS MEDS FOR PT > 64 NAME (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; MSGTEXT( ---------> MESSAGE TEXT
- ;
- I (OCXDF(143)["AMITRIPTYLINE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK402
- I (OCXDF(143)["CHLORPROPAMIDE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK409
- I (OCXDF(143)["DIPYRIDAMOLE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK416
- Q
- ;
-CHK402 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK397+14.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK402 Variables
- ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
- ; OCXDF(144) --> Data Field: DIPYRIDAMOLE TEXT (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,122, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: AMITRIPTYLINE ORDER)
- ; MSGTEXT( ---------> MESSAGE TEXT
- ;
- S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,122,"62,141,142,144") Q:OCXOERR 
- Q
- ;
-CHK409 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK397+15.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK409 Variables
- ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
- ; OCXDF(144) --> Data Field: DIPYRIDAMOLE TEXT (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,123, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: CHLORPROPAMIDE ORDER)
- ; MSGTEXT( ---------> MESSAGE TEXT
- ;
- S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,123,"62,141,142,144") Q:OCXOERR 
- Q
- ;
-CHK416 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK397+16.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK416 Variables
- ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
- ; OCXDF(144) --> Data Field: DIPYRIDAMOLE TEXT (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,124, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: DIPYRIDAMOLE ORDER)
- ; MSGTEXT( ---------> MESSAGE TEXT
- ;
- S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,124,"62,141,142,144") Q:OCXOERR 
- Q
- ;
-CHK425 ; Look through the current environment for valid Event/Elements for this patient.
+CHK395 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK163+16^OCXOZ08.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK425 Variables
+ ;    Local CHK395 Variables
  ; OCXDF(62) ---> Data Field: PATIENT AGE (NUMERIC)
  ; OCXDF(141) --> Data Field: AMITRIPTYLINE TEXT (FREE TEXT)
  ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
@@ -139,11 +24,11 @@ CHK425 ; Look through the current environment for valid Event/Elements for this 
  ;      Local Extrinsic Functions
  ; MSGTEXT( ---------> MESSAGE TEXT
  ;
- I (OCXDF(62)>64) S OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE"),OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE") D CHK429
+ I (OCXDF(62)>64) S OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE"),OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE") D CHK399
  Q
  ;
-CHK429 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK425+14.
+CHK399 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK395+14.
  ;
  Q:$G(OCXOERR)
  ;
@@ -153,16 +38,88 @@ CHK429 ; Look through the current environment for valid Event/Elements for this 
  S OCXOERR=$$FILE(DFN,125,"62,141,142,144") Q:OCXOERR 
  Q
  ;
-CHK437 ; Look through the current environment for valid Event/Elements for this patient.
+CHK407 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK1+35^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK437 Variables
+ ;    Local CHK407 Variables
  ; OCXDF(161) --> Data Field: ORDER TYPE (FREE TEXT)
  ;
- I $L(OCXDF(161)) D CHK438^OCXOZ0E
+ I $L(OCXDF(161)) D CHK408
  Q
+ ;
+CHK408 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK407+8.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK408 Variables
+ ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
+ ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
+ ; OCXDF(96) ---> Data Field: ORDERABLE ITEM NAME (FREE TEXT)
+ ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
+ ; OCXDF(161) --> Data Field: ORDER TYPE (FREE TEXT)
+ ;
+ ;      Local Extrinsic Functions
+ ; FILE(DFN,127, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: INPATIENT)
+ ; FILE(DFN,128, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: OUTPATIENT)
+ ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
+ ; PATLOC( ----------> PATIENT LOCATION
+ ;
+ I (OCXDF(161)="I") S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,127,"9,34,96,146,147") Q:OCXOERR 
+ I (OCXDF(161)="O") S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,128,"9,34,96,146,147") Q:OCXOERR 
+ Q
+ ;
+CHK416 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK58+22^OCXOZ05.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK416 Variables
+ ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
+ ; OCXDF(57) ---> Data Field: MOST RECENT RENAL TEST ABNORMAL FLAG (BOOLEAN)
+ ; OCXDF(58) ---> Data Field: ABNORMAL RENAL BIOCHEM RESULTS (FREE TEXT)
+ ; OCXDF(154) --> Data Field: RECENT CONTRAST MEDIA CREATININE DAYS (NUMERIC)
+ ; OCXDF(155) --> Data Field: RECENT CONTRAST MEDIA CREATININE FLAG (BOOLEAN)
+ ;
+ ;      Local Extrinsic Functions
+ ; ABREN( -----------> DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
+ ; RECCREAT( --------> RECENT CREATININE LAB PROCEDURE
+ ;
+ S OCXDF(57)=$P($$ABREN(OCXDF(37)),"^",1) I $L(OCXDF(57)),(OCXDF(57)) S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1) D CHK421
+ S OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1) I $L(OCXDF(154)) S OCXDF(155)=$P($$RECCREAT(OCXDF(37),OCXDF(154)),"^",1) I $L(OCXDF(155)),'(OCXDF(155)) D CHK452^OCXOZ0E
+ Q
+ ;
+CHK421 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK416+16.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; FILE(DFN,129, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: ABNORMAL RENAL RESULTS)
+ ;
+ S OCXOERR=$$FILE(DFN,129,"58,154") Q:OCXOERR 
+ Q
+ ;
+ABREN(DFN) ;  Compiler Function: DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
+ ;
+ N OCXFLAG,OCXVAL,OCXLIST,OCXTEST,UNAV,OCXTLIST,OCXTERM,OCXSLIST,OCXSPEC
+ S (OCXLIST,OCXTLIST)="",UNAV="0^<Unavailable>"
+ S OCXSLIST="" Q:'$$TERMLKUP("SERUM SPECIMEN",.OCXSLIST) UNAV
+ F OCXTERM="SERUM CREATININE","SERUM UREA NITROGEN" D  Q:($L(OCXLIST)>130)
+ .Q:'$$TERMLKUP(OCXTERM,.OCXTLIST)
+ .S OCXTEST=0 F  S OCXTEST=$O(OCXTLIST(OCXTEST)) Q:'OCXTEST  D  Q:($L(OCXLIST)>130)
+ ..S OCXSPEC=0 F  S OCXSPEC=$O(OCXSLIST(OCXSPEC)) Q:'OCXSPEC  D  Q:($L(OCXLIST)>130)
+ ...S OCXVAL=$$LOCL^ORQQLR1(DFN,OCXTEST,OCXSPEC),OCXFLAG=$P(OCXVAL,U,5)
+ ...I $L(OCXVAL),((OCXFLAG["H")!(OCXFLAG["L")) D 
+ ....N OCXY S OCXY=""
+ ....S OCXY=$P(OCXVAL,U,2)_": "_$P(OCXVAL,U,3)_" "_$P(OCXVAL,U,4)
+ ....S OCXY=OCXY_" "_$S($L(OCXFLAG):"["_OCXFLAG_"]",1:"")
+ ....S OCXY=OCXY_" "_$$FMTE^XLFDT($P(OCXVAL,U,7),"2P")
+ ....S:$L(OCXLIST) OCXLIST=OCXLIST_" " S OCXLIST=OCXLIST_OCXY
+ Q:'$L(OCXLIST) UNAV  Q 1_U_OCXLIST
+ ;  
  ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.
  ;
@@ -207,4 +164,55 @@ MSGTEXT(ID)    ;  Compiler Function: MESSAGE TEXT
  .S MSG=MSG_" immediately."
  ;
  Q MSG
+ ;
+ORDITEM(OIEN) ;  Compiler Function: GET ORDERABLE ITEM FROM ORDER NUMBER
+ Q:'$G(OIEN) ""
+ ;
+ N OITXT,X S OITXT=$$OI^ORQOR2(OIEN) Q:'OITXT "No orderable item found."
+ S X=$G(^ORD(101.43,+OITXT,0)) Q:'$L(X) "No orderable item found."
+ Q $P(X,U,1)
+ ;
+PATLOC(DFN) ;  Compiler Function: PATIENT LOCATION
+ ;
+ N OCXP1,OCXP2
+ S OCXP1=$G(^TMP("OCXSWAP",$J,"OCXODATA","PV1",2))
+ S OCXP2=$P($G(^TMP("OCXSWAP",$J,"OCXODATA","PV1",3)),"^",1)
+ I OCXP2 D
+ .S OCXP2=$P($G(^SC(+OCXP2,0)),"^",1,2)
+ .I $L($P(OCXP2,"^",2)) S OCXP2=$P(OCXP2,"^",2)
+ .E  S OCXP2=$P(OCXP2,"^",1)
+ .S:'$L(OCXP2) OCXP2="NO LOC"
+ I $L(OCXP1),$L(OCXP2) Q OCXP1_"^"_OCXP2
+ ;
+ S OCXP2=$G(^DPT(+$G(DFN),.1))
+ I $L(OCXP2) Q "I^"_OCXP2
+ Q "O^OUTPT"
+ ;
+RECCREAT(ORDFN,ORDAYS)  ;extrinsic function to return most recent 
+ ;SERUM CREATININE within <ORDAYS> in format:
+ ; test id^result units flag ref range collection d/t
+ N BDT,CDT,ORY,ORX,ORZ,X,ORI,ORJ,CREARSLT,LABFILE,SPECFILE
+ Q:'$L($G(ORDFN)) "0^"
+ Q:'$L($G(ORDAYS)) "0^"
+ D NOW^%DTC
+ S BDT=$$FMADD^XLFDT(%,"-"_ORDAYS,"","","")
+ K %
+ Q:'$L($G(BDT)) "0^"
+ S LABFILE=$$TERMLKUP("SERUM CREATININE",.ORY)
+ Q:$G(LABFILE)'=60 "0^"
+ Q:+$D(ORY)<1 "0^"
+ S SPECFILE=$$TERMLKUP("SERUM SPECIMEN",.ORX)
+ Q:$G(SPECFILE)'=61 "0^"
+ Q:+$D(ORX)<1 "0^"
+ S ORI=0 F  S ORI=$O(ORY(ORI)) Q:'ORI  I +$G(CREARSLT)<1 D
+ .S ORJ=0 F  S ORJ=$O(ORX(ORJ)) Q:'ORJ  I +$G(CREARSLT)<1 D
+ ..S ORZ=$$LOCL^ORQQLR1(ORDFN,ORI,ORJ)
+ ..Q:'$L($G(ORZ))
+ ..S CDT=$P(ORZ,U,7)
+ ..I CDT'<BDT S CREARSLT=1
+ Q:+$G(CREARSLT)<1 "0^"
+ Q $P(ORZ,U)_U_$P(ORZ,U,3)_" "_$P(ORZ,U,4)_" "_$P(ORZ,U,5)_" ("_$P(ORZ,U,6)_")  "_$$FMTE^XLFDT(CDT,"2P")_U_$P(ORZ,U,3)
+ ;
+TERMLKUP(OCXTERM,OCXLIST) ;
+ Q $$TERM^OCXOZ01(OCXTERM,.OCXLIST)
  ;

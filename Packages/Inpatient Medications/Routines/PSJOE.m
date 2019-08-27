@@ -1,15 +1,15 @@
-PSJOE ;BIR/MLM - INPATIENT ORDER ENTRY ; 3/5/18 1:49pm
- ;;5.0;INPATIENT MEDICATIONS;**7,26,29,33,42,50,56,72,58,85,95,80,110,111,133,140,151,149,181,252,281,315,256,344**;16 DEC 97;Build 7
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ; Reference to ^PS(55 is supported by DBIA #2191.
- ; Reference to EN^VALM is supported by DBIA #10118.
- ; Reference to FULL^VALM1 is supported by DBIA #10116.
- ; Reference to PAUSE^VALM1 is supported by DBIA #10116.
- ; Reference to ^PSSLOCK is supported by DBIA #2789
- ; Reference to ^DPT( is supported by DBIA #10035.
- ; Reference to ^ORCFLAG is supported by DBIA #3620.
- ; Reference to ^SDAMA203 is supported by DBIA #4133.
- ; Reference to ^TMP("PSODAOC" is supported by DBIA #6071.
+PSJOE ;BIR/MLM - INPATIENT ORDER ENTRY ;12 June 2019 09:31:53
+ ;;5.0;INPATIENT MEDICATIONS;**7,26,29,33,42,50,56,72,58,85,95,80,110,111,133,140,151,149,181,252,281,315,256,344,327**;16 DEC 97;Build 114
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ; Reference to ^PS(55 via DBIA 2191
+ ; Reference to EN^VALM via DBIA 10118
+ ; Reference to FULL^VALM1 via DBIA 10116
+ ; Reference to PAUSE^VALM1 via DBIA 10116
+ ; Reference to ^PSSLOCK via DBIA 2789
+ ; Reference to ^DPT( via DBIA 10035
+ ; Reference to ^ORCFLAG via DBIA #3620
+ ; Reference to ^SDAMA203 via DBIA #4133
+ ; Reference to ^TMP("PSODAOC" via DBIA 6071
  ;
 EN ; Start Inpatient LM OE
  N PSJLK,PSJNEWOE,PSJLMCON,PSJPROT,XQORS,VALMEVL D ENCV^PSGSETU,^PSIVXU
@@ -82,7 +82,7 @@ DISACTIO(DFN,PSJORD,PSJPNV)       ; Display UD order and allow actions.
  ;N PSGP,PSJIVFLG,PSGSDX,PSGFDX,PSJXX1,ON55,PSJDSVFY,PSJENHOC,PSJAGYSV
  N PSGP,PSJIVFLG,PSGSDX,PSGFDX,PSJXX1,ON55,PSJDSVFY,PSJENHOC,PSIVENO,PSJBACK
  K PSGDUR,PSGRMVT,PSGRMV,PSGRF,ND2P1 ;*315
- K PSJEXCPT("PROSPECTIVE") ;*256
+ K PSJEXCPT("PROSPECTIVE") ;*256  
  D OLDCOM^PSJOE0(DFN,PSJORD)
  S PSGP=DFN D ENIV^PSJAC I PSJORD["V" D EN^PSJLIORD(DFN,PSJORD) Q
  D GETUD^PSJLMGUD(DFN,PSJORD)
@@ -129,6 +129,11 @@ SETOC ;
  K ^TMP("PSODAOC",$J),^TMP("PSJDAOC",$J),PSJAGYSV,PSJOCFG
  Q
 EDIT(PSGP,PSGORD,PROMPT) ;
+ N PSJOP,ANQX,PSGEDT
+ S (ANQX,PSJOP)=0,PSGEDT=1
+ S PSJOP=+Y(1)
+ S PSJOP=$S(PSJOP=9:0,PSJOP=11:0,1:1)
+ ;/RBN Begin modification for NCC moved code to ACT^PSGOEE
  I "DE"[$$GTSTATUS(PSGP,PSGORD) W !,"This order may not be edited." D PAUSE^VALM1 Q
  I PSGACT'["E" W !,"This order may not be edited." D PAUSE^VALM1 Q
  N PSJEDITO S PSJEDITO=1
@@ -139,6 +144,12 @@ EDIT(PSGP,PSGORD,PROMPT) ;
  Q
 RENEW(PSGP,PSGORD) ;
  ;PSJOCFG - If defined, it's for new order, renew or copy. ^PSJOCDSD using this flag to not display drug error.
+ ;/RJS Begin modifications for PSJ*5.0*327
+ I $$ISCLOZ^PSJCLOZ(,,PSGP,+PSGORD) D  Q
+ .W !,"Clozapine orders cannot be renewed."
+ .W !,"No order entered!"
+ .D PAUSE^VALM1
+ ;/RJS End modifications for PSJ*5.0*327
  NEW PSJOCFG
  S PSJOCFG="RENEW UD"
  D HOLDHDR
@@ -164,7 +175,9 @@ HOLD(DFN,PSJORD) ; Change order's status from ACTIVE<->HOLD
  D GETUD^PSJLMGUD(DFN,PSJORD),INIT^PSJLMUDE(DFN,PSJORD) S PSGACT=$$ENACTION^PSGOE1(DFN,PSJORD),VALMBCK="R"
  Q
 COPY(PSGP,PSGORD)  ; Copy an order (does not discontinue original order)
- NEW PSJOCFG
+ N PSJOCFG
+ ; PSJ*5*327 - disallow copy for clozapine
+ I $D(^PS(55,PSGP,5,+PSGORD,"SAND")) W !!,"You cannot copy a clozapine order." D PAUSE^VALM1 Q
  I $D(PSGCOPY) W !!,"You cannot copy the order at this time" D PAUSE^VALM1 Q
  I PSGORD["P" W !!,"You cannot copy this "_$S($G(PSGSTAT)]"":PSGSTAT,1:"PENDING IV")_" order." D PAUSE^VALM1 Q
  I PSGORD["V" D  Q
@@ -176,31 +189,37 @@ COPY(PSGP,PSGORD)  ; Copy an order (does not discontinue original order)
  I $P($G(^PS(55,PSGP,5,+PSGORD,.2)),U,4)="D",'$P($G(^(4)),"^",3) W !!,"Nurse verified orders with a priority of DONE may not be Copied." D PAUSE^VALM1 Q
  S PSJOCFG="COPY UD"
  S PSGOEAV=$P(PSJSYSP0,U,9)&PSJSYSU
- S PSGCOPY=1
+ S PSGCOPY=1,ANQX=0
  D FULL^VALM1,^PSGOD
+ ;/RBN Begin modifications PSJ*5.0*327
+ I $G(ANQX) K PSGCOPY Q
+ ;/RBN End modifications PSJ*5.0*327
  S VALMBCK="R"
  K PSGCOPY,PSJOCFG
  S PSGACT=$$ENACTION^PSGOE1(PSGP,PSGORD) ; resets PSGACT after copy
  I $G(PSGPXN) N PSGTMPXN S PSGTMPXN=PSGPXN
  D RESTORE^PSJHVARS I $G(PSGTMPXN) S PSGPXN=PSGTMPXN
  Q
-UPDATE ; Refresh array, actions, & display.
+UPDATE  ; Refresh array, actions, & display.
  D GETUD^PSJLMGUD(DFN,ON),INIT^PSJLMUDE(DFN,ON) S VALMBCK="R"
  Q
 FINISH ;
  D FINISH^PSGOEF,PAUSE^VALM1
  Q
-LOG(DFN,PSGORD)        ;
+LOG(DFN,PSGORD) ;
  D FULL^VALM1,ENLM^PSGOEL(DFN,PSGORD),PAUSE^VALM1 S VALMBCK="R"
  Q
 NEWSEL ;
  N PSGLMT,PSGODDD,PSJLMQT,PSJLMFIN,PSJUDPRF,PSGRDTX,PSJOCDSC,PSJAGYSV K ^TMP("PSJCOM",$J),^TMP("PSJCOM2",$J),^TMP("PSODAOC",$J),^TMP("PSJDAOC",$J)
  K PSGRMVT,PSGRMV,PSGDUR,PSGRF,ND2P1,PSGOROE1
+ ;; START NCC REMEDIATION >> 327*RJS  ; Freeze header text while processing order actions
+ S IOTM=VALM("TM"),IOBM=IOSL W IOSC W @IOSTBM W IORC
+ ;; END NCC REMEDIATION << 327*RJS
  S X=$P(XQORNOD(0),"=",2)
  S PSGONC=1,PSGLMT=^TMP("PSJPRO",$J,0)
  D ENCHK^PSGON I '$O(PSGODDD(0)) S VALMQUIT=1 Q
  S PSJLM=1,PSJSEL=0 F  S PSJSEL=$O(PSGODDD(PSJSEL)) Q:'PSJSEL  F PSJSEL1=1:1:$L(PSGODDD(PSJSEL),",")-1 D
- .K PSJOCDSC
+ .K PSJOCDSC,PSGDRG
  .S PSJORD=$G(^TMP("PSJON",$J,+$P(PSGODDD(PSJSEL),",",PSJSEL1))) D:PSJORD=+PSJORD SELECT^PSJOEA
  .Q:PSJORD=+PSJORD 
  .Q:PSJORD=""!($G(Y)<0)  Q:('$$LS^PSSLOCK(PSGP,PSJORD))  D
@@ -236,3 +255,8 @@ COMPLEX(DFN,ON) ;
  S NDP2=$S(ON["P":$G(^PS(53.1,+ON,.2)),ON["U":$G(^PS(55,DFN,5,+ON,.2)),ON["V":$G(^PS(55,DFN,"IV",+ON,.2)),1:"")
  S COM=$P(NDP2,"^",8) I COM Q 1
  Q 0
+CLOZSND ; SEND CLOZAPINE OVERRIDE MESSAGE AND ORDER TO HINES DB
+ ; START NCC REMEDIATION >> 327*RJS
+ D PSJFILE^PSJCLOZ(DFN),INPSND^YSCLTST5
+ ; END NCC REMEDIATION << 327*RJS
+ Q

@@ -1,4 +1,4 @@
-OCXOZ09 ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
+OCXOZ09 ;SLC/RJS,CLA - Order Check Scan ;AUG 27,2019 at 09:18
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -58,7 +58,7 @@ CHK195 ; Look through the current environment for valid Event/Elements for this 
  ; CLIST( -----------> STRING CONTAINS ONE OF A LIST OF VALUES
  ;
  S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)) D CHK197
- S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK458^OCXOZ0E
+ S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK428^OCXOZ0E
  Q
  ;
 CHK197 ; Look through the current environment for valid Event/Elements for this patient.
@@ -70,7 +70,7 @@ CHK197 ; Look through the current environment for valid Event/Elements for this 
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ;
  I (OCXDF(2)="RA") D CHK198
- I ($E(OCXDF(2),1,2)="PS") D CHK359^OCXOZ0C
+ I ($E(OCXDF(2),1,2)="PS") D CHK343^OCXOZ0C
  Q
  ;
 CHK198 ; Look through the current environment for valid Event/Elements for this patient.

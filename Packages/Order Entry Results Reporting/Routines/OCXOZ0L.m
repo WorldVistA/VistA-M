@@ -1,4 +1,4 @@
-OCXOZ0L ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
+OCXOZ0L ;SLC/RJS,CLA - Order Check Scan ;AUG 27,2019 at 09:18
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -43,7 +43,7 @@ R11R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #11
  Q
  ;
 R11R3A ; Verify all Event/Elements of  Rule #11 'IMAGING REQUEST CANCELLED/HELD'  Relation #3 'DISCONTINUED AND CANCELED BY NON-ORIG ORDERER'
- ;  Called from EL100+7^OCXOZ0G, and EL32+5^OCXOZ0G.
+ ;  Called from EL100+7^OCXOZ0F, and EL32+5^OCXOZ0F.
  ;
  Q:$G(OCXOERR)
  ;
@@ -90,7 +90,7 @@ R11R3B ; Send Order Check, Notication messages and/or Execute code for  Rule #11
  Q
  ;
 R16R1A ; Verify all Event/Elements of  Rule #16 'SERVICE ORDER REQUIRES CHART SIGNATURE'  Relation #1 'SERVICE'
- ;  Called from EL46+5^OCXOZ0G.
+ ;  Called from EL46+5^OCXOZ0F.
  ;
  Q:$G(OCXOERR)
  ;
@@ -134,7 +134,7 @@ R16R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #16
  Q
  ;
 R18R1A ; Verify all Event/Elements of  Rule #18 'STAT RESULTS AVAILABLE'  Relation #1 'STAT LAB RESULT'
- ;  Called from EL76+5^OCXOZ0G.
+ ;  Called from EL76+5^OCXOZ0F.
  ;
  Q:$G(OCXOERR)
  ;

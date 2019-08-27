@@ -1,5 +1,5 @@
-PSODIR ;BHAM ISC/SAB - asks data for rx order entry ; 9/17/07 5:03pm
- ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504**;DEC 1997;Build 15
+PSODIR ;BHAM ISC/SAB - asks data for rx order entry ;10 May 2019 09:01:28
+ ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504,457**;DEC 1997;Build 116
  ;External reference PSDRUG( supported by DBIA 221
  ;External reference PS(50.7 supported by DBIA 2223
  ;External reference to VA(200 is supported by DBIA 10060
@@ -28,7 +28,7 @@ PROVEN ; Entry point for failed lookup
  ;PSO*7.0*391; Added check for DETOX#
  I $$DETOX^PSSOPKI($G(PSODRUG("IEN"))),$$DETOX^XUSER(+Y)="" W $C(7),!!,"Provider must have a DETOX# to order this drug.",! G PROVEN
  I $D(CLOZPAT),'$D(^XUSEC("YSCL AUTHORIZED",+Y)) D  G PROVEN
- .W $C(7),!!,"Provider must hold YSCL AUTHORIZED key to write prescriptions for clozapine.",!
+ .W $C(7),!!,$$CLKEYWRN^PSOCLUTL,!  ; PSO*7*457
  I '$G(PSODRUG("IEN")),'$G(PSORENW("DRUG IEN")) G NODRUG
 NODRUG S PSODIR("PROVIDER")=+Y
  S (PSODIR("PROVIDER NAME"),PSORX("PROVIDER NAME"))=$P(Y,"^",2)
@@ -127,3 +127,4 @@ JUMP ;
  I $G(PSORENW3)=0 D JUMP^PSORENW3 G JUMPX
 JUMPX S X="^"_X
  Q
+ ;

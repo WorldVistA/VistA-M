@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-27-AUG-2019 00:06:38 ZWR
+27-AUG-2019 09:23:09 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -3178,6 +3178,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.52","%D",11,0)="UNDER NO CIRCUMSTANCES SHOULD THE DATA DICTIONARY FOR THIS FILE"
 ^DIC("52.52","%D",12,0)="                         BE MODIFIED"
 ^DIC("52.52","%D",13,0)=" "
+^DIC("52.52","%MSC")=3190827.091858
 ^DIC("52.53",0)="PHARMACY AUTOMATED DISPENSING DEVICES^52.53"
 ^DIC("52.53",0,"AUDIT")=" "
 ^DIC("52.53",0,"DD")=" "
@@ -3192,6 +3193,12 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.53","%D",0)="^^2^2^3101130^"
 ^DIC("52.53","%D",1,0)="This file stores the automated dispensing devices used by the Outpatient"
 ^DIC("52.53","%D",2,0)="Pharmacy application."
+^DIC("52.54",0)="CLOZAPINE OVERRIDE REASONS^52.54"
+^DIC("52.54",0,"GL")="^PS(52.54,"
+^DIC("52.54","%D",0)="^^2^2^3160310^"
+^DIC("52.54","%D",1,0)="This file contains the possible reasons for overriding a Clozapine "
+^DIC("52.54","%D",2,0)="prescription or order lockout."
+^DIC("52.54","%MSC")=3190827.091858
 ^DIC("52.6",0)="IV ADDITIVES^52.6I"
 ^DIC("52.6",0,"DD")="@"
 ^DIC("52.6",0,"GL")="^PS(52.6,"
@@ -3578,6 +3585,29 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.79","%D",4,0)=" "
 ^DIC("53.79","%D",5,0)="Due to the size of this file Re-Indexing is also not recommended unless"
 ^DIC("53.79","%D",6,0)="directed by customer support."
+^DIC("53.8",0)="CLOZAPINE MEDICATION OVERRIDES^53.8"
+^DIC("53.8",0,"AUDIT")="@"
+^DIC("53.8",0,"DD")="@"
+^DIC("53.8",0,"DEL")="@"
+^DIC("53.8",0,"GL")="^PS(53.8,"
+^DIC("53.8",0,"LAYGO")="@"
+^DIC("53.8",0,"RD")="@"
+^DIC("53.8",0,"WR")="@"
+^DIC("53.8","%",0)="^1.005^^0"
+^DIC("53.8","%D",0)="^^12^12^3160310^"
+^DIC("53.8","%D",1,0)="This file contains information regarding who, when and why the"
+^DIC("53.8","%D",2,0)="prohibition on a order for clozapine was overridden "
+^DIC("53.8","%D",3,0)="member of the team.  Because of the nature of this drug and the"
+^DIC("53.8","%D",4,0)="restrictions placed upon dispensing it, all fields in this file"
+^DIC("53.8","%D",5,0)="are not to be edited through the VA FileManager, but are to be set"
+^DIC("53.8","%D",6,0)="ONLY through the order entry options of the inpatient pharmacy"
+^DIC("53.8","%D",7,0)="package.  Reports generated from this file should be generated only"
+^DIC("53.8","%D",8,0)="from the option provided by the package.  For these reasons, READ,"
+^DIC("53.8","%D",9,0)="WRITE, DELETE and LAYGO access to this file are severely restricted."
+^DIC("53.8","%D",10,0)=" "
+^DIC("53.8","%D",11,0)="UNDER NO CIRCUMSTANCES SHOULD THE DATA DICTIONARY FOR THIS FILE"
+^DIC("53.8","%D",12,0)="                         BE MODIFIED"
+^DIC("53.8","%MSC")=3190827.091858
 ^DIC(54,0)="RX CONSULT^54N"
 ^DIC(54,0,"GL")="^PS(54,"
 ^DIC(54,"%",0)="^1.005^2^2"
@@ -3612,7 +3642,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(55,"%D",5,0)=" "
 ^DIC(55,"%D",6,0)="This file is also shared with inpatient pharmacy and promises to become a"
 ^DIC(55,"%D",7,0)="very central file to the pharmacy."
-^DIC(55,"%MSC")=3190221.135346
+^DIC(55,"%MSC")=3190827.091858
 ^DIC("55.17","%MSC")=3181130.231402
 ^DIC("55.174","%MSC")=3181130.231402
 ^DIC("55.95",0)="DRUG MANUFACTURER^55.95"
@@ -20982,6 +21012,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("603.03","%D",9,0)="test location without contaminating the database in Hines. The three date"
 ^DIC("603.03","%D",10,0)="fields TRANSMISSION START, TRANSMISSION END and LAST DEMOGRAPHICS"
 ^DIC("603.03","%D",11,0)="TRANSMISSION report back to the NCCC through the server."
+^DIC("603.03","%MSC")=3190827.091858
 ^DIC("603.04",0)="CLOZAPINE TESTS^603.04"
 ^DIC("603.04",0,"GL")="^YSCL(603.04,"
 ^DIC("603.04","%",0)="^1.005^^0"
@@ -38597,6 +38628,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","CLINICAL SPECIALTY DICOM & HL7","2006.5831")=""
 ^DIC("B","CLINICS AND STOP CODES","728.44")=""
 ^DIC("B","CLOZAPINE LAB TEST","603.02")=""
+^DIC("B","CLOZAPINE MEDICATION OVERRIDES","53.8")=""
+^DIC("B","CLOZAPINE OVERRIDE REASONS","52.54")=""
 ^DIC("B","CLOZAPINE PARAMETERS","603.03")=""
 ^DIC("B","CLOZAPINE PATIENT LIST","603.01")=""
 ^DIC("B","CLOZAPINE PRESCRIPTION OVERRID","52.52")=""
