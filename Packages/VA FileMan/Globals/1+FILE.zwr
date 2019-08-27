@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-23-MAY-2019 09:47:37 ZWR
+26-AUG-2019 19:55:40 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -33155,6 +33155,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.941","%D",16,0)=" +---------------------------------------------------------------+"
 ^DIC("2006.941","%D",17,0)=" "
 ^DIC("2006.941","%D",18,0)="This file contains a queue of work items for worklists in the WORKLIST file (#2006.9412)."
+^DIC("2006.941","%MSC")=3190826.19514
 ^DIC("2006.9412",0)="WORKLIST^2006.9412"
 ^DIC("2006.9412",0,"AUDIT")="@"
 ^DIC("2006.9412",0,"DD")="@"

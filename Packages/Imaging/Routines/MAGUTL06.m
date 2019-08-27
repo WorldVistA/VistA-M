@@ -1,5 +1,5 @@
-MAGUTL06 ;WOIFO/SG - VALIDATION OF MULTI-VALUE PARAMETERS ; 3/9/09 12:53pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGUTL06 ;WOIFO/SG,NST - VALIDATION OF MULTI-VALUE PARAMETERS ; OCT 18, 2018@12:53pm
+ ;;3.0;IMAGING;**93,221**;Dec 02, 2009;Build 163
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -55,15 +55,15 @@ MAGUTL06 ;WOIFO/SG - VALIDATION OF MULTI-VALUE PARAMETERS ; 3/9/09 12:53pm
  ;               contains an invalid code or name.
  ;
 VALCNLST(CDNMLIST,FILE,FIELD,MAG8NODE,FLAGS) ;
- N ERR,I,ICNT,ITEM,LS,MAG8MSG,MAG8RES,NAME,RC
+ N ERR,I,ICNT,ITEM,LS,MAG8MSG,MAG8RES,MAGI,NAME,RC
  S FLAGS=$G(FLAGS),LS=$S(FLAGS[",":",",1:"^")
  Q:$TR(FLAGS,"C,Z")'="" $$IPVE^MAGUERR("FLAGS")
  K @MAG8NODE  S (ICNT,RC)=0
  ;
  ;=== Process items of the list
- F I=1:1:$L(CDNMLIST,LS)  D  Q:RC
+ F MAGI=1:1:$L(CDNMLIST,LS)  D  Q:RC
  . ;--- Get item name or code
- . S ITEM=$$TRIM^XLFSTR($P(CDNMLIST,LS,I))  Q:ITEM=""
+ . S ITEM=$$TRIM^XLFSTR($P(CDNMLIST,LS,MAGI))  Q:ITEM=""
  . ;--- Special check for zero
  . I ITEM=0,FLAGS["Z"  D  Q
  . . S ICNT=ICNT+1,NAME="<empty>"
@@ -72,7 +72,7 @@ VALCNLST(CDNMLIST,FILE,FIELD,MAG8NODE,FLAGS) ;
  . . Q
  . ;--- Validate the item
  . D CHK^DIE(FILE,FIELD,"E",ITEM,.MAG8RES,"MAG8MSG")
- . I MAG8RES="^"  S RC=I,ERR=$G(MAG8MSG("DIERR",1))  D:ERR'=701  Q
+ . I MAG8RES="^"  S RC=MAGI,ERR=$G(MAG8MSG("DIERR",1))  D:ERR'=701  Q
  . . I ERR=401  S RC=$$IPVE^MAGUERR("FILE")   Q
  . . I ERR=501  S RC=$$IPVE^MAGUERR("FIELD")  Q
  . ;--- Store external and internal values
@@ -121,16 +121,16 @@ VALCNLST(CDNMLIST,FILE,FIELD,MAG8NODE,FLAGS) ;
  ;               contains an invalid code or name.
  ;
 VALPNLST(PTNMLIST,FILE,MAG8NODE,FLAGS) ;
- N I,ICNT,IEN,ITEM,LS,MAGMSG,NAME,RC,ROOT,TMP
+ N MAGI,ICNT,IEN,ITEM,LS,MAGMSG,NAME,RC,ROOT,TMP,DIERR
  S FLAGS=$G(FLAGS),LS=$S(FLAGS[",":",",1:"^")
  Q:$TR(FLAGS,"C,")'="" $$IPVE^MAGUERR("FLAGS")
  K @MAG8NODE  S (ICNT,RC)=0,ROOT=$$ROOT^DILFD(FILE,,1)
  Q:ROOT="" $$IPVE^MAGUERR("FILE")
  ;
  ;=== Process items of the list
- F I=1:1:$L(PTNMLIST,LS)  D  Q:RC
+ F MAGI=1:1:$L(PTNMLIST,LS)  D  Q:RC
  . ;--- Get name or IEN
- . S ITEM=$$TRIM^XLFSTR($P(PTNMLIST,LS,I))  Q:ITEM=""
+ . S ITEM=$$TRIM^XLFSTR($P(PTNMLIST,LS,MAGI))  Q:ITEM=""
  . ;--- IEN
  . I +ITEM=ITEM,$D(@ROOT@(ITEM))  D  Q
  . . S NAME=$$GET1^DIQ(FILE,ITEM_",",.01,,,"MAGMSG")
@@ -141,7 +141,7 @@ VALPNLST(PTNMLIST,FILE,MAG8NODE,FLAGS) ;
  . . S @MAG8NODE@(ITEM)=NAME       ; IEN
  . . Q
  . ;--- Name
- . I $D(@ROOT@("B",ITEM))<10  S RC=I  Q
+ . I $D(@ROOT@("B",ITEM))<10  S RC=MAGI  Q
  . S ICNT=ICNT+1
  . S NAME=$S(FLAGS["C":$$SNTC^MAGUTL05(ITEM),1:ITEM)
  . S $P(@MAG8NODE,LS,ICNT)=NAME
