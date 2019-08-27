@@ -1,5 +1,5 @@
 DIEZ ;SFISC/GFT-COMPILE INPUT TEMPLATE ;30NOV2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -14,11 +14,14 @@ TEM K DIC S DIC="^DIE(",DIC(0)="AEQ",DIC("W")="W ?40,""FILE #"",$P(^(0),U,4) W:$
  D RNM^DIPZ0(8033) G:$D(DTOUT)!($D(DUOUT))!(X="") K S DNM=X K DIC
  W ! S DIR(0)="Y",DIR("A")=$$EZBLD^DIALOG(8020) D ^DIR K DIR G:'Y!($D(DIRUT)) K
  S X=DNM,Y=DIPZ K DIPZ
-EN ;
- W:'$G(DIEZS) ! K ^UTILITY($J),DRN N L,DIEZQ,DIR S DMAX=DMAX-2150,DNM=X,DIEZ=+Y,DRN="",DRD=0,DIEZQ=0 D DELETROU(X)
+EN ; compile INPUT template
+ ;INPUT: X=name of routine for compiling, Y=ien of INPUT template
+ W:'$G(DIEZS) ! K ^UTILITY($J),DRN
+ N L,DIEZQ,DIR S DMAX=DMAX-2150,DNM=X,DIEZ=+Y,DRN="",DRD=0,DIEZQ=0
+ D DT^DICRW,DELETROU(DNM) S X=-1 ;p14
  S DP=$P(^DIE(DIEZ,0),U,4),DIE=^DIC(DP,0,"GL")
  I '$D(^DIE(DIEZ,"DR",1,DP)) S ^DIE(DIEZ,"DR",1,DP)=^DIE(DIEZ,"DR")
- D DT^DICRW S X=-1
+ ;D DT^DICRW S X=-1 ;p14 move this line before DELETROU to define DISYS
  K T S T(1)=$P(^DIE(DIEZ,0),U),T(2)=$$EZBLD^DIALOG(8033),T(3)=DP D BLD^DIALOG(8024,.T,"","DIR") W:'$G(DIEZS) !,DIR K T
  D UNCAF(DIEZ)
  K DOV,^DIE(DIEZ,"RD"),DR S DR=^("DR",1,DP),(DIER,DL)=1,DIEZL=0,DIEZAB=U

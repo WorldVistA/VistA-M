@@ -1,5 +1,5 @@
 DIP1 ;SFISC/GFT,TKW-PROCESS FROM-TO ;24APR2014
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -43,7 +43,7 @@ J ;
 S K DIERR,DPP(DJ,"SRTTXT")
  S A=$$EZBLD^DIALOG(7070),DIFRTO="?" I 'L I $D(FR)#2!($O(FR(0))) D Z("FR") I DIFRTO'="?" G S0 ;PROMPT 'FIRST'
  I $D(DISV) D FROM^DIARCALC
-PREV K DIR I $G(F3)]"" S A=F3,X=$G(DPP(DJ,"TXT")) S:X="" X=$G(DIPP(DIJ,"TXT")) I X]"" ;S DIR("A",1)=$J("",DJ-1*2)_"* Previous selection: "_X
+PREV K DIR I $G(F3)]"" S A=F3,X=$G(DPP(DJ,"TXT")) S:X="" X=$G(DIPP(DIJ,"TXT")) I X]"" S DIR("A",1)=$J("",DJ-1*2)_"* Previous selection: "_X ;p14
  S DIR(0)="FOU^1:245",DIR("A")=$J("",DJ-1*2)_$$EZBLD^DIALOG(7068,DIPR),DIR("?")="^D DIP1^DIQQ(1)" S:A]"" DIR("B")=A ;**CCO/NI 'START WITH'
  D ^DIR W:$D(DTOUT) $C(7) G Q:$D(DTOUT)!$D(DUOUT)
  I X=$$EZBLD^DIALOG(7070) S A=X,X="" ;**CCO/NI

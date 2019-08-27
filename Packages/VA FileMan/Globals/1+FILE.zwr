@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-27-AUG-2019 13:40:43 ZWR
+27-AUG-2019 14:32:19 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -222,6 +222,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.1",0,"WR")="^"
 ^DIC("1.1","%D",0)="^^1^1^2940908^"
 ^DIC("1.1","%D",1,0)="This file stores an audit trail of changes made to data fields."
+^DIC("1.1","%MSC")=3190827.142812
 ^DIC("1.11",0)="ARCHIVAL ACTIVITY^1.11I"
 ^DIC("1.11",0,"DD")="^"
 ^DIC("1.11",0,"DEL")="^"

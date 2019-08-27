@@ -1,5 +1,5 @@
 DICN ;SFISC/GFT,XAK,TKW,SEA/TOAD - ADD NEW ENTRY ;23JUN2017
- ;;22.2;VA FileMan;**2,5,13**;Jan 05, 2016;Build 4
+ ;;22.2;VA FileMan;**2,5,13,14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -43,10 +43,16 @@ VAL I X'?.ANP K X Q
  I X[""""!(X["^") K X Q
  I $P(DS,U,2)'["N",$A(X)=45 K X Q
  I $P(DS,U,2)["*" S:DS["DINUM" DINUM=X Q
- I $P($P(DS,U,2),"t",2) S %=$$VALEXT^DIETLIBF(+DO(2),.01) D  ;FOR VERSION 23
- .N DS,%T,%DT,C,DIG,DIH,DIU,DIV,DICR ;PRESERVE VARIABLES WHILE WE XECUTE INPUT TRANSFORM ON THE .01 FIELD
- .X %
- E  S %=$F(DS,"%DT=""E"),DS=$E(DS,1,%-2)_$E(DS,%,999) N DICTST S DICTST=DS["+X=X"&(X?16.N) K:DICTST X X:'DICTST $P(DS,U,5,99)
+ ;preserve variables before execution of INPUT TRANSFORM on .01 field
+ I $P($P(DS,U,2),"t",2) D  ;extensible data type
+ . S %=$$VALEXT^DIETLIBF(+DO(2),.01)
+ . N %T,%DT,C,DIG,DIH,DIU,DIV,DICR,DS
+ . X %
+ E  S %=$F(DS,"%DT=""E"),DS=$E(DS,1,%-2)_$E(DS,%,999) D
+ . I DS["+X=X",(X?16.N) K X Q  ;this used to be handled by DICTST variable ;p14
+ . S %=$P(DS,U,5,99)
+ . N %T,%DT,C,DIG,DIH,DIU,DIV,DICR,DS ;p14
+ . X %
 UNIQ I $P(DS,U,2)["U",$D(X),$D(@(DIC_"""B"",X)")) K X
  Q
  ;

@@ -1,11 +1,11 @@
 DICOMP0 ;SFISC/GFT - EVALUATE COMPUTED FLD EXPR ;20JAN2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,14**;Jan 05, 2016;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
- ;
+ ;X IS INPUT
  N DICOMPI
 SETFUNC I DPS,$D(DPS(DPS,"SET")),'$D(W(DPS)) S T="""",D=$P(X,T)_$P(X,T,2) G BAD:$L(D)+2\5-1!(D'?.UN)!(D?1"D".E)!(DUZ(0)'="@") S X=T_D_T,DICOMPX(D)=D,Y=0 Q
 LIT I X?1"""".E1"""" S Y=0,%=$E(X,2,$L(X)-1) K:%[""" X "!(%[""" D @") Y S X=""""_$$CONVQQ^DILIBF(%)_"""" Q
@@ -16,7 +16,7 @@ TRY G M:'$D(J(T))!'$D(I(T)),M:+J(T)'=J(T),M:$G(^DD(J(T),.01,0))="",UP:$P(^(0),U,
 R I X?1"#"1.NP S X=$E(X,2,99) D ^DIC G:Y>0 A:DLV,X S X="#"_X ;HERE IS WHERE WE PROCESS THE NUMBER OR NAME OF A FIELD
  D ^DIC G A:Y>0
 N I $P(X,DG)="",X=DICN S X=$P(X,DG,2,9) G R
-NUMBER I X=$$EZBLD^DIALOG(7099) S Y=.001,Y(0)=0 G D ;**CCO/NI THE WORD 'NUMBER' IN A COMPUTED EXPRESSION
+NUMBER I X=$$EZBLD^DIALOG(7099) S Y=.001,Y(0)=0 G D ;THE WORD 'NUMBER' IN A COMPUTED EXPRESSION
 UP S T=T-1,X=DICN G M:T<0,TRY:$D(J(T)) F T=T-99:1 G TRY:'$D(J(T+1))
  ;
 A F D=M:1:$L(I)+1 Q:$F(X,$E(I,1,D))-1-D  S W=$E(I,D+1)
@@ -38,6 +38,18 @@ O Q:DICOMPI
  S T=J(T)
 S ;
  S %=DLV0,DG=W=":"&'$D(DPS(DPS,"$S"))
+V I D["V",DG N DICOMPV D  I $D(DICOMPV) Q  ;p14
+ .N FILE,Y,FS S FILE=$P($E(I,M,999),":",2) Q:FILE=""
+ .S FS=$O(^DD(T,DICN,"V","M",FILE,0)) Q:'FS
+ .S Y=+^DD(T,DICN,"V",FS,0) Q:'Y
+ .S FILE=$P($G(^DIC(Y,0,"GL")),"^",2) Q:FILE=""
+ .S DICOMPV=" S D0="_X_",D0=$S($P(D0,"";"",2)="""_FILE_""":+D0,1:-1)" I $D(DICOMPX(0)) S DICOMPV=DICOMPV_","_DICOMPX(0)_"0)=D0"
+ .D Y^DICOMPX ;S (DLV,DLV0)=DLV0+100,I(DLV0)=U_FILE,J(DLV0)=FN 
+ .D I^DICOMP
+ .S X=DICOMPV
+ .I W'=":" S I="#.01"_$E(I,M,999),M=0 Q  ;IF WE HAVE NO TARGET FIELD IN THE NAVIGATED-TO FILE, USE .01
+ .S M=M+1,W="",DG(DLV0)=1
+ ;
 OUT I D["t"!(D["O"&(D'["P"!'DG))!(D["V"&'$D(DPS(DPS,"FILE"))) D  Q  ;OUTPUT TRANSFORM ON FIELD
  .K DATE(K+1) S X="$$EXTERNAL^DIDU("_T_","_DICN_","""","_X_")",DICO("DIERR")=1 ;$$EXTERNAL may set an error condition, so stifle DIERR
 SET I D["S" S DG(%)=DG(%)+1,DG(%,DG(%))="$C(59)_$P($G(^DD("_T_","_DICN_",0)),U,3)",X="$P($P("_DQI_DG(%)_"),$C(59)_"_X_"_"":"",2),$C(59))" ;S X="$$SET^DIQ("_T_","_DICN_","_X_")"
