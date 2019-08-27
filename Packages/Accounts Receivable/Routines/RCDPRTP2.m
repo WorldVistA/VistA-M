@@ -1,5 +1,5 @@
 RCDPRTP2 ;ALB/LDB - CLAIMS MATCHING REPORT ;1/26/01  3:16 PM
- ;;4.5;Accounts Receivable;**151,276,303,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**151,276,303,315,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$TYP^IBRFN supported by DBIA# 2031
@@ -32,7 +32,7 @@ PRINT1 ;
  ;
 PRINT2  ; Print the detail line for a first party bill.
  I $Y>(IOSL-2) D PAUSE Q:$G(RCQ)  D HDR^RCDPRTP1,HDR2
- W !," ",$P(RCIBDAT,"^",4),?14,$P(RCIBDAT,"^",6)
+ W !," ",$P(RCIBDAT,"^",4),?14,$E($P(RCIBDAT,"^",6),1,18)  ;PRCA*4.5*338
  S RCIBFN=$P(RCIBDAT,"^",4) I RCIBFN S RCIBFN=$O(^PRCA(430,"B",RCIBFN,0))
  ; PRCA*4.5*276 - adjust report tabs to make room for EEOB indicator '%'.
  W ?36,$$STAT(RCIBFN),?42,$$DATE(+RCIBDAT),?54,$$DATE($P(RCIBDAT,"^",2))

@@ -1,5 +1,5 @@
 PRCABIL1 ;SF-ISC/RSD - ENTER BILL INFO ;10/16/96  7:04 PM
-V ;;4.5;Accounts Receivable;**57,64,109,147,220,276,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**57,64,109,147,220,276,315,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN1 ;ENTER NEW BILL
@@ -49,7 +49,7 @@ FORM N PRCACAT,PRCAFUND,PRCABENE,PRCACA,PRCATYP,PRCAADD,PRCAAD1D,PRCAAD2D,PRCAAD
  .Q
  I PRCACAT=47 D  ;315
  .N FUND
- .S FUND="0160A1"
+ .S FUND="0160R1" ; patch PRCA*4.5*338
  .S DR="259////"_"02;203////^S X=FUND"
  .D ^DIE
  .K Y,X

@@ -1,12 +1,12 @@
 RCTOPD ;WASH IRMFO@ALTOONA,PA/TJK-TOP TRANSMISSION ;2/11/00 3:34 PM
-V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337**;Mar 20, 1995;Build 14
+V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*337 Keep XTMP work file for 5 days
  ;
 ENTER ;Entry point from nightly process
  Q:'$D(RCDOC)
- N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P121DT,PRIN,INT,ADMIN,B4  ;PRCA*4.5*315 - P181Dt change to P121DT - FY16 HAPE RRE [TOPS]
+ N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P121DT,PRIN,INT,ADMIN,B4,B14  ;PRCA*4.5*315 - P181Dt change to P121DT - FY16 HAPE RRE [TOPS]
  N EFFDT,DFN,CNTR,SITE,LN,FN,MN,DOB,SITE,F60DT,VADM,DEBTOR4,DEBTOR6
  N PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2
  N ERROR,ADDR,CAT,BILLDT,P10YDT,CURRTOT,HOLD,SITECD,RCNEW,ACTDT
@@ -174,13 +174,18 @@ PROC(DEBTOR,QUIT,FILE,HOLD,EFFDT) ;process bills for a specific debtor
     .S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7)),B14=$G(^(14))
     .Q:$P(B0,U,8)'=16
     .Q:B4
-    .Q:'$P(B0,U,2)  S CAT=$P($G(^PRCA(430.2,$P(B0,U,2),0)),U,7)
-    .Q:'CAT  I ",16,17,21,22,23,26,27,33,"[(","_CAT_",") Q
+    .Q:'$P(B0,U,2)
+    .S CAT=$P($G(^PRCA(430.2,$P(B0,U,2),0)),U,7)
+    .;*** PRCA*4.5*338 start
+    .Q:'CAT
+    .;Check the Refer to TOP field to see if this should be referred, based on AR Category
+    .S BILLDT=$P(B6,U,21)
+    .Q:'$$RFCHK(CAT,"N",1.02,BILLDT)    ;PRCA*4.5*338
+    .;*** PRCA*4.5*338 end
     .Q:$D(^PRCA(430,"TCSP",BILL))  ;cross-serviced bills
-    .I '+B14,($P(B6,U,21)'<ACTDT) I ",1,2,3,24,29,30,31,32,40,41,42,43,44,45,46,"[(","_CAT_",") Q  ;prca*4.5*301 cs activation date and 1st party bill
     .;check for DOJ referral here
     .I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
-    .S BILLDT=$P(B6,U,21) I (BILLDT<P10YDT)!(BILLDT>P121DT)!(BILLDT<$P(DEBTOR6,U,3)) Q
+    .I (BILLDT<P10YDT)!(BILLDT>P121DT)!(BILLDT<$P(DEBTOR6,U,3)) Q
     .I '$P(B6,U,3) D  Q
     ..;no 3rd letter being sent 
     ..N TDEB,TFIL
@@ -209,3 +214,34 @@ FILE(DEBTOR0) ;gets file number for debtor
  S FILE=$P($P(DEBTOR0,U),";",2)
  S FILE=$S(FILE["DPT(":2,FILE["PRC(440":440,FILE["VA(200":200,1:0)
 FILEQ Q FILE
+ ;
+ ;PRCA*4.5*338
+RFCHK(RCXCAT,RCIENFLG,RCXRFCD,RCXDT) ;Check to see if bill can be referred to requested collections program
+ ;
+ ;Input:
+ ;   RCXCAT    - (Required) AR Category to check.
+ ;   RCXIENFLG - Is the AR Category an IEN (I) or a number (N).
+ ;   RCXRFCD   - (Required) FileMan Field number for the Referral type being checked. 
+ ;               1.01 - DMC
+ ;               1.02 - TOP
+ ;               1.03 - CS
+ ;   RCXDT     - (Required) Date of service to be checked.
+ ;
+ N RCXFLG,RCXCTIEN,RCXSPDT
+ ;
+ ; Set the initial split date for the TOP and CS referral programs
+ S RCXSPDT=3150801
+ ; Get the category IEN.
+ S RCXCTIEN=RCXCAT  ;Initially assume it is an IEN
+ ; Update to IEN if AR Category is the Category Number
+ I RCIENFLG="N" S RCXCTIEN=$O(^PRCA(430.2,"AC",RCXCAT,""))
+ ; Quit if Category not found
+ Q:RCXCTIEN="" 0
+ ;
+ ; Extract the flag for the category from the AR Category file (430.2), using the field number sent in
+ S RCXCTIEN=RCXCTIEN_","
+ S RCXFLG=$$GET1^DIQ(430.2,RCXCTIEN,RCXRFCD,"I")
+ I RCXFLG<2 Q RCXFLG
+ I RCXFLG=2,(RCXDT<RCXSPDT) Q 1
+ I RCXFLG=3,(RCXDT'<RCXSPDT) Q 1
+ Q 0

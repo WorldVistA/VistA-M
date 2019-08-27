@@ -1,5 +1,5 @@
 RCDPRTP  ;ALB/LDB-CLAIMS MATCHING REPORT ;1/11/01  2:03 PM
- ;;4.5;Accounts Receivable;**151,186,315,339**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**151,186,315,339,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
@@ -58,7 +58,7 @@ DQ     ;  queued report starts here
 2 ; 
  N DIC,DUOUT
  K ^TMP("IBRBF",$J)
- S DIC(0)="QEAM",DIC=430,DIC("S")="I $P(^(0),U,2)=9" D ^DIC I Y<0 S RCQUIT=1 Q
+ S DIC(0)="QEAM",DIC=430,DIC("S")="I $$SCRNARCT^RCDPRTP($P(^(0),U,2))" D ^DIC I Y<0 S RCQUIT=1 Q
  S RCBILL=+Y,RCDFN=$P($G(^PRCA(430,+RCBILL,0)),"^",7) Q:'RCDFN
  S RCDEBT=$O(^RCD(340,"B",RCDFN_";DPT(",0))
  I (RCDFN="")!(RCDEBT="") W !,"This bill has no matching first party bills." G 2
@@ -85,3 +85,10 @@ EXIT ;
  K ^TMP("IBRBT1",$J),^TMP("IBRBF",$J),^TMP("IBRBF1",$J),RCTYPE
  Q
  ;
+ ;PRCA*4.5*338 - update AR Cat screen to include FEE and CC Reimb Ins Types
+SCRNARCT(RCARCT) ;
+ ;
+ Q:RCARCT=9 1       ;Allow Reimb Insurance
+ Q:RCARCT=45 1      ;Allow FEE Reimb Insurance
+ I RCARCT>47,(RCARCT<52) Q 1    ;Allow CC Reimb Insurances
+ Q 0                ;Disallow everything else

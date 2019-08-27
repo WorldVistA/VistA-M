@@ -1,5 +1,5 @@
 RCBEADJ ;WISC/RFJ-adjustment ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326**;Mar 20, 1995;Build 26
+ ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -108,8 +108,8 @@ ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  ;  if decrease, make negative
  I RCBETYPE="DECREASE" S RCAMOUNT=-RCAMOUNT
  ;
- ;  ask if it is a contract adjustment (45,46,47 added PRCA*4.5*315)/DRF)
- I RCBETYPE="DECREASE","^9^28^29^30^32^45^46^47^"[("^"_$P($G(^PRCA(430,RCBILLDA,0)),"^",2)_"^") S RCONTADJ=$$ASKCONT I RCONTADJ<0 D UNLOCK Q
+ ;  ask if it is a contract adjustment (Community Care added check for all 3rd party categories PRCA*4.5*338)
+ I RCBETYPE="DECREASE",$$THRDPRTY(RCBILLDA) S RCONTADJ=$$ASKCONT I RCONTADJ<0 D UNLOCK Q
  ;
  ;  show what the new transaction will look like
  S RCDATA7=$G(^PRCA(430,RCBILLDA,7))
@@ -199,9 +199,11 @@ ASKAUPO() ;  ask record even though marked for auto post PRCA*4.5*298
  I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
  ;
+ ;PATCH 313
 ASKFIX() ;  ask to fix bill's balance
  N DIR,DIQ2,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="YO",DIR("B")="YES"
+ ;S DIR(0)="YO",DIR("B")="NO"
  S DIR("A")="  Do you want to FIX the balance discrepancy "
  W ! D ^DIR
  I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
@@ -253,6 +255,7 @@ AMOUNT(RCBILLDA,RCBETYPE) ;  enter the adjustment amount for a bill
  I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q $S(Y'="":Y,1:-1)
  ;
+ ;
 ASKCM() ;  ask if the action is being performed due to the claims matching process  *315
  N DIR,DIQ2,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="YO",DIR("B")="NO"
@@ -261,3 +264,8 @@ ASKCM() ;  ask if the action is being performed due to the claims matching proce
  I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
  ;
+THRDPRTY(RCBILLDA) ; check whether or not bill is THIRD PARTY
+ N CAT
+ S CAT=$$GET1^DIQ(430,RCBILLDA,2,"I")   ; get account receivable category  
+ I $$GET1^DIQ(430.2,CAT,5,"I")="T" Q 1  ; return true if AR Category is THIRD PARTY
+ Q 0

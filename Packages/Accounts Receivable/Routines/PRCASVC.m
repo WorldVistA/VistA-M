@@ -1,5 +1,5 @@
 PRCASVC ;SF-ISC/YJK-ACCEPT, AMMEND AND CANCEL AR BILL ;9/6/95  2:09 PM
-V ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**1,21,48,90,136,138,249,274,315,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
 REL ;Accept bill into AR
  N X,Y
@@ -31,6 +31,48 @@ Q3 K PRCAT,PRCAORA,PRCADEBT,DIE,DR,%
  .S $P(^PRCA(430,DA,11),"^",18)=""
  .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)=$S(RCCARE="I":"841Z",RCCARE="O":"842Z",1:"842Z"),$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
  ; 
+ I PRCASV("CAT")=75 D  ;PRCA*4.5*338 Tricare DES
+ .N RCCARE,P
+ .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+ .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+ .S $P(^PRCA(430,DA,11),"^",18)=""
+ .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)="8085",$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
+ ; 
+ I PRCASV("CAT")=76 D  ;PRCA*4.5*338  Tricare Spinal
+ .N RCCARE,P
+ .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+ .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+ .S $P(^PRCA(430,DA,11),"^",18)=""
+ .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)=$S(RCCARE="I":"8086",RCCARE="O":"8087",1:"8088"),$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
+ ; 
+ I PRCASV("CAT")=77 D  ;PRCA*4.5*338 Tricare TBI
+ .N RCCARE,P
+ .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+ .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+ .S $P(^PRCA(430,DA,11),"^",18)=""
+ .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)=$S(RCCARE="I":"8089",RCCARE="O":"8090",1:"8091"),$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
+ ; 
+ I PRCASV("CAT")=78 D  ;PRCA*4.5*338 Tricare Blind Rehab
+ .N RCCARE,P
+ .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+ .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+ .S $P(^PRCA(430,DA,11),"^",18)=""
+ .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)=$S(RCCARE="I":"8092",RCCARE="O":"8093",1:"8094"),$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
+ ;
+ ; 
+ I PRCASV("CAT")=79 D  ;PRCA*4.5*338 Tricare Dental
+ .N RCCARE,P
+ .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+ .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+ .S $P(^PRCA(430,DA,11),"^",18)=""
+ .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)="8096",$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
+ ; 
+ I PRCASV("CAT")=80 D  ;PRCA*4.5*338 Tricare Pharmacy
+ .N RCCARE,P
+ .S:'$G(PRCASV("SITE")) PRCASV("SITE")=$P($$SITE^VASITE,"^",3)
+ .F P=8,9,10,15 S $P(^PRCA(430,DA,11),"^",P)=$S(P=8:$G(PRCASV("SITE")),P=9:1,P=10:"02",1:$P($G(PRCASV("FY")),"^"))
+ .S $P(^PRCA(430,DA,11),"^",18)=""
+ .S RCCARE=$$TYP^IBRFN(DA),RCCARE(1)="8095",$P(^PRCA(430,DA,11),"^",6)=RCCARE(1)
  I $G(PRCASV("MEDCA"))!$G(PRCASV("MEDURE")) D MEDICARE
  K DA
  Q

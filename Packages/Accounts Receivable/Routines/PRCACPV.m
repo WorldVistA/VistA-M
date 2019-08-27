@@ -1,5 +1,5 @@
 PRCACPV ;WASH-ISC@ALTOONA,PA/LDB- CHAMPVA FMS DOCUMENTS ;5/1/95  3:06 PM
-V ;;4.5;Accounts Receivable;**1,48,90,119,204,192,235,295,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**1,48,90,119,204,192,235,295,315,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Add CAT=47:"INELIGIBLE REIMB. ins. code for PRCA*4.5*315
@@ -30,7 +30,7 @@ EN(BILL,ERR) ;Send CHAMPVA SUBSISTENCE bill to FMS
  S ^TMP("PRCACPV",$J,1)="BD2^"_$E(FMSDT,4,5)_"^"_$E(FMSDT,6,7)_"^"_$E(FMSDT,2,3)
  S ^TMP("PRCACPV",$J,1)=^TMP("PRCACPV",$J,1)_"^^^^^^E^"_VENDORID_"^^"_AMT_"^^^^"_$E(ADDR(1),1,30)_"^"_$E(ADDR(2),1,30)_"^"_$E(ADDR(3),1,30)_"^"_$E(ADDR(4),1,19)_"^"_ADDR(5)_"^"_ADDR(6)_"^"_$G(ADDR(7))_"^"_"N^^^^^^W^~"
  ;Add ineligible reimb ins *315
- S ^TMP("PRCACPV",$J,2)="LIN^~BDA^"_$$LINE^RCXFMSC1(BILL)_"^"_FY_"^^"_$S(CAT=28:"0160A1",CAT<30:"3220",CAT=47:"0160A1",1:"0160A1")_"^"_SITE_"^^^"
+ S ^TMP("PRCACPV",$J,2)="LIN^~BDA^"_$$LINE^RCXFMSC1(BILL)_"^"_FY_"^^"_$S(CAT=28:"0160R1",CAT<30:"3220",CAT=47:"0160R1",1:"0160R1")_"^"_SITE_"^^^" ; patch PRCA*4.5*338
  S:CAT<30 CAT("R")=1000
  I CAT'<30 S CAT("R")=$P($G(^PRCA(430,+BILL,11)),U,6)
  ;Add ineligible reimb ins *315

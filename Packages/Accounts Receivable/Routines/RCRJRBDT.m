@@ -1,5 +1,5 @@
 RCRJRBDT ;WISC/RFJ-bad debt retransmit ;9/2/10 8:47am
- ;;4.5;Accounts Receivable;**101,170,191,138,239,273,310**;Mar 20, 1995;Build 14
+ ;;4.5;Accounts Receivable;**101,170,191,138,239,273,310,338**;Mar 20, 1995;Build 69
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -130,10 +130,11 @@ BDR ; Compile new Bad Debt Report.
  ;
  ;  show mccf
  ; PRCA*4.5*310/DRF - add fee basis fund (528713) to report
+ ; PRCA*4.5*338/DRF - add fund (528714) to report
  D SETLINE(" ")
  D SETLINE($E(SPACE,1,26)_"Medical Care Collection Fund")
- D SETLINE($E(SPACE,1,20)_" Funds 528701; 528703; 528704; 528709; 528711; and 528713")
- D SETLINE($E(SPACE,1,26)_"----------------------------")
+ D SETLINE($E(SPACE,1,2)_" Funds 528701; 528703; 528704; 528709; 528711; 528713; and 528714")
+ D SETLINE($E(SPACE,1,2)_" ----------------------------------------------------------------")
  D SETLINE(" ")
  D SETLINE(" ")
  D SETLINE($E(SPACE,1,57)_"Contract           EOM")
@@ -157,6 +158,9 @@ BDR ; Compile new Bad Debt Report.
  ;    12            1339.1             528713 - 1339
  ;    13            133N.3             528713 - 133N
  ;    14            1338.3             528713 - 1338
+ ;    15            1319.7             528714 - 1319
+ ;    16            1319.8             528714 - 1319
+ ;    17            1319.9             528714 - 1319
  ;
  S RCARR(1)="1319.3^528701 - 1319"
  S RCARR(2)="1319^528703 - 1319"
@@ -172,11 +176,15 @@ BDR ; Compile new Bad Debt Report.
  S RCARR(12)="1339.1^528713 - 1339"
  S RCARR(13)="133N.3^528713 - 133N"
  S RCARR(14)="1338.3^528713 - 1338"
+ S RCARR(15)="1319.7^528714 - 1319.7"
+ S RCARR(16)="1319.8^528714 - 1319.8"
+ S RCARR(17)="1319.9^528714 - 1319.9"
  ;
  S RCX="" F  S RCX=$O(RCARR(RCX)) Q:RCX=""  S RCD=RCARR(RCX) D
  .S RCDATA=$G(^RC(348.1,+$O(^RC(348.1,"B",$P(RCD,"^"),0)),0))
  .Q:RCDATA=""
  .S RCREC=$P(RCD,"^",2)_$J($P(RCDATA,"^",2),21,2)
+ .I RCD[528714 S RCREC=$P(RCD,"^",2)_$J($P(RCDATA,"^",2),19,2) ; patch PRCA*4.5*338 align subcategory format for first party 
  .S RCREC=RCREC_$J($P(RCDATA,"^",3),15,2)
  .S RCREC=RCREC_$J($P(RCDATA,"^",4),16,2)
  .S X=+$P(RCDATA,"^",8)
@@ -188,10 +196,13 @@ BDR ; Compile new Bad Debt Report.
  D SETLINE(" ")
  D SETLINE("SGL Definitions")
  D SETLINE(" ")
- D SETLINE("1319 - Allowance for Bad Debt")
- D SETLINE("1338 - Allowance for Tort Feasors")
- D SETLINE("1339 - Allowance for Contract Adjustments pre-MRA (Medicare Remittance Advice)")
- D SETLINE("133N - Allowance for Contract Adjustments post-MRA")
+ D SETLINE("1319   Allowance for Bad Debt")
+ D SETLINE("1319.7 Allowance Community Care Inpatient/Outpatient copayments")
+ D SETLINE("1319.8 Allowance Community Care RX copayments")
+ D SETLINE("1319.9 Allowance Community Care LTC copayments")
+ D SETLINE("1338   Allowance for Tort Feasors")
+ D SETLINE("1339   Allowance for Contract Adjustments pre-MRA (Medicare Remittance Advice)")
+ D SETLINE("133N   Allowance for Contract Adjustments post-MRA")
  D SETLINE(" ")
  D SETLINE(" ")
  D SETLINE("Only members in the facility's local RC AR DATA COLLECTOR mail group")
