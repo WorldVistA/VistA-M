@@ -1,5 +1,5 @@
 RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ; 10/20/10 10:37am
- ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,315,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310,315,338,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modifieD
  Q
  ;

@@ -1,11 +1,11 @@
 RCDPRTP1  ;ALB/LDB - CLAIMS MATCHING REPORT (PRINT) ;1/26/01  2:56 PM
- ;;4.5;Accounts Receivable;**151,169,276,284,315,339**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**151,169,276,284,315,339,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN       ; Entry point to print the Claims Matching Report.
  N %,DATEDIS1,DATEDIS2,NOW,PG,RCBILL,RCAMT,RCAMT1,RCIBDAT,RCIBFN,RCNAM,RCNAM1,RCNO,RCNOW,RCDLINE,RCLINE,RCPHIT
  ; PRCA*4.5*284 - Remove RCPT 'new' as this is the receipt # from user entry
- N RCQ,RCSSN,RCSTAT,RCTP,X,Y
+ N RCQ,RCSSN,RCSTAT,RCTP,X,Y,RCLPFLG
  ;
  ; - initialize report header variables
  S PG=0
@@ -108,17 +108,22 @@ PROC     ; Process each third party bill for a patient.
  ; We must loop through all Bills and First party charges for this screening
  I $D(RCTYPE)>1 S I=0 F  S I=$O(^TMP("IBRBF",$J,I)) Q:'I  S J=0 F  S J=$O(^TMP("IBRBF",$J,I,J)) Q:'J  D
  . S RCACTYP=$P(^TMP("IBRBF",$J,I,J),U,6) Q:RCACTYP=""  ;6th piece is Action Type
- . I RCACTYP["TRICARE"!(RCACTYP["CHAMPA") Q  ;Not needed for screening 1st party charges
- . I RCACTYP["RX" S RCTYP="R" D KILFPTY Q
+ . I RCACTYP["TRICARE"!(RCACTYP["CHAMPVA") Q  ;Not needed for screening 1st party charges
+ . ;PRCA*4.5*351 - Allow Community Care RX to appear on the Outpatient Care Type Reports
+ . I RCACTYP["RX" D  Q
+ .. Q:RCACTYP["CC"
+ .. Q:RCACTYP["CHOICE"
+ .. S RCTYP="R" D KILFPTY
+ . ;end PRCA*4.5*351
  . I RCACTYP["OPT"!(RCACTYP["OBSERV") S RCTYP="O" D KILFPTY Q
- . I RCACTYP["INPT"!(RCACTYP["NHCU")!(RCACTYP["ADMIS")!(RCACTYP["MEDICARE DECUCTIBLE") S RCTYP="I" D KILFPTY Q
+ . I RCACTYP["INPT"!(RCACTYP["NHCU")!(RCACTYP["ADMIS")!(RCACTYP["MEDICARE DEDUCTIBLE")!(RCACTYP["PER DIEM") S RCTYP="I" D KILFPTY Q
  . Q
  ;
- S RCTP(0)=0 F  S RCTP(0)=$O(^TMP("IBRBF",$J,RCTP(0))) Q:'RCTP(0)!$G(RCQ)  D
- .I RCTP(0)=$O(^TMP("IBRBF",$J,0)) Q:$D(^TMP("IBRBF",$J,RCTP(0)))<10  D   ;New code - quit if ^TMP("IBRBF" has no sub nodes
- ..I $Y>(IOSL-5) D PAUSE^RCDPRTP2 Q:$G(RCQ)  D HDR
- ..; - print the header for the first charge
- ..D HDR2^RCDPRTP2
+ S RCTP(0)=0,RCLPFLG=0 F  S RCTP(0)=$O(^TMP("IBRBF",$J,RCTP(0))) Q:'RCTP(0)!$G(RCQ)  D
+ .Q:$D(^TMP("IBRBF",$J,RCTP(0)))<10     ;New code - quit if ^TMP("IBRBF" has no sub nodes
+ .I $Y>(IOSL-5) D PAUSE^RCDPRTP2 Q:$G(RCQ)  D HDR
+ .; - print the header for the first charge
+ .I 'RCLPFLG D HDR2^RCDPRTP2 S RCLPFLG=1
  .S RCTP=0 F  S RCTP=$O(^TMP("IBRBF",$J,RCTP(0),RCTP)) Q:'RCTP!$G(RCQ)  D
  ..S RCNO=1 ; set flag for at least one match
  ..S RCIBDAT=$G(^TMP("IBRBF",$J,RCTP(0),RCTP))

@@ -1,5 +1,5 @@
 RCRJRCOU ;WISC/RFJ-ar data collector summary report ;1 Mar 97
- ;;4.5;Accounts Receivable;**103,320,335,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**103,320,335,338,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; IA - 4398        FIRST^VAUTOMA
@@ -69,7 +69,7 @@ DQ ;  generate user detailed report
  ... S RCSTAT=$P($G(^PRCA(430.3,+$P(DATA,"^",8),0)),"^")
  ... ;PRCA*4.5*338 - re-wrote section to correctly retrieve RSCs, properly ID TRICARE, CHAMPVA BD doc types, and TORT/MRA SV doc types
  ... ;             - grab fund and RSC from Bill instead of recalculating.  Recalculate only if they are NULL
- ... S RCRSC=$$GET1^DIQ(430,BILLDA_",",255)
+ ... S RCRSC=$$GET1^DIQ(430,BILLDA_",",255,"I")
  ... S:RCRSC="" RCRSC=$$GET1^DIQ(430,BILLDA_",",255.1)
  ... I $$ACCK^PRCAACC(BILLDA) S:RCRSC="" RCRSC=$$CALCRSC^RCXFMSUR(BILLDA) ;          (as per CURRENT^RCRJRCOC)
  ... ;Fund

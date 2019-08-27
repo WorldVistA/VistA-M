@@ -1,5 +1,5 @@
 RCXFMSPR ;WISC/RFJ-print revenue source codes ;8/31/10 11:34am
- ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310,315,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310,315,338,351**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  W !,"This option will print out a list of the revenue source codes sent from"
  W !,"the VISTA system to FMS."
@@ -71,15 +71,6 @@ DQ ; queue starts here
  . S COLUMN2=DECIMAL
  . D WRITEIT
  ;
- ; print INELIGIBLE HOSP. REIMB.  PRCA*4.5*315
- ; 841Z;INELI 3RD-PARTY INPATIENT
- ; 842Z;INELI 3RD-PARTY OUTPATIENT 
- S COLUMN2="4"
- W !!?6,"For INELIGIBLE HOSPITAL REIMBURSABLE HEALTH INSURANCE [84*Z]:"
- F DECIMAL=1,2 D  Q:$G(RCSTFLAG)
- . S DESCRIP="INELIGIBLE HOSP. REIMB. INS., "_$S(DECIMAL=1:"INPATIENT",DECIMAL=2:"OUTPATIENT",1:"")
- . S COLUMN3=DECIMAL
- . D WRITEIT
 Q D ^%ZISC
  ; print CCAD rsc's (PRCA*4.5*338)
  N DATA,LOOP
@@ -93,9 +84,7 @@ Q D ^%ZISC
  ;
 GETDESC(RSC) ; return the description for the revenue source code
  N BINARY,COL3DESC,COLUMN2,COLUMN3,DESC,RCARY
- ;new resource codes for ineligible hosp reimb. and emergency/humanitarian reimb. PRCA*4.5*315
- I RSC="841Z" Q "Ineligible Hosp. Reimb. Ins., Inpatient"
- I RSC="842Z" Q "Ineligible Hosp. Reimb. Ins., Outpatient"
+ ;new resource codes for emergency/humanitarian reimb. PRCA*4.5*315
  I RSC="8UZZ" Q "Emergency/Humanitarian Reimb. Ins., Inpatient"
  I RSC="8VZZ" Q "Emergency/Humanitarian Reimb. Ins., Outpatient"
  I RSC="ARRV" Q "Miscellaneous"
@@ -247,16 +236,4 @@ CCADRSC ;;
  ;;8CD1;CC DOD 1st-Pty Inpatient
  ;;8CD2;CC DOD 1st-Pty Outpatient
  ;;8CD3;CC DOD 1st-Pty RX
- ;;8085;DOD Disability Evaluation System (DES)
- ;;8086;DOD Spinal Cord Inpatient
- ;;8087;DOD Spinal Cord Outpatient
- ;;8088;DOD Spinal Cord Other
- ;;8089;Traumatic Brain Injury Inpatient
- ;;8090;Traumatic Brain Injury Outpatient
- ;;8091;Traumatic Brain Injury Other
- ;;8092;Blind Rehabilitation Inpatient
- ;;8093;Blind Rehabilitation Outpatient
- ;;8094;Blind Rehabilitation Other
- ;;8095;TRICARE Pharmacy
- ;;8096;TRICARE Active Duty Dental
  ;;END

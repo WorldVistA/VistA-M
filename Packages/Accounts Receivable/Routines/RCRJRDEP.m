@@ -1,5 +1,5 @@
 RCRJRDEP ;WISC/RFJ-Deposit Reconciliation Report ;9/7/10 8:19am
- ;;4.5;Accounts Receivable;**101,114,203,220,273,310,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**101,114,203,220,273,310,338,351**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  W !!,"This option will print the Deposit Reconciliation Report.  The report will"
@@ -103,7 +103,7 @@ DQ ;  report (queue) starts here
  . . S FUND=$P(LINEDATA,"^",6)
  . . I FUND="" S FUND="0160"
  . . S FUNDTOTL(FUND)=$G(FUNDTOTL(FUND))+$P(LINEDATA,"^",20)
- . . ;  totals by rsc for the accrued 5287 funds (01,03,04,09,11)
+ . . ;  totals by rsc for the accrued 5287 funds (01,03,04,09,11,13,14)
  . . S RSC=$P(LINEDATA,"^",10)
  . . I RSC'="",($$PTACCT^PRCAACC(FUND)!(FUND=4032)) S RSCTOTL(RSC)=$G(RSCTOTL(RSC))+$P(LINEDATA,"^",20)
  . I $G(RCRJSUMM)=1 Q
@@ -115,9 +115,10 @@ DQ ;  report (queue) starts here
  . S CHAMPVA=$P(RCDATA,"^",8)
  . S FEE=$P(RCDATA,"^",9)
  . I CHAMPVA W !?35,"CHAMPVA TOTAL: ",$J(CHAMPVA,10,2)
- . I FEE W !?35,"NON-VA  TOTAL: ",$J(FEE,10,2)
+ . I FEE W !?25,"NON-VA PORTION OF TOTAL: ",$J(FEE,10,2)
  . W !?35,"DEPOSIT TOTAL: ",$J(TOTAL,10,2)
- . I (DOCTOTAL+CHAMPVA+FEE)'=TOTAL W !," WARNING: TOTALS DO NOT MATCH, CHECK THE DEPOSIT: **********"
+ . ;I (DOCTOTAL+CHAMPVA+FEE)'=TOTAL W !," WARNING: TOTALS DO NOT MATCH, CHECK THE DEPOSIT: **********"
+ . I (DOCTOTAL+CHAMPVA)'=TOTAL W !," WARNING: TOTALS DO NOT MATCH, CHECK THE DEPOSIT: **********"
  . W !
  ;
  I $G(RCRJFLAG) D Q Q
@@ -177,12 +178,14 @@ FEE(RECEIPDA) ;  return dollars for Fee Basis PRCA*4.5*310/DRF 12/9/2015
  S TOTAL=0
  S TRANDA=0 F  S TRANDA=$O(^PRCA(433,"AF",RECEIPT,TRANDA)) Q:'TRANDA  D
  . S CATEGORY=$P($G(^PRCA(430,+$P($G(^PRCA(433,TRANDA,0)),"^",2),0)),"^",2)
- . I '$$CHKIEN(CATEGORY) Q  ; verify category for 1st and 3rd party(PRCA*4.5*338)
+ . I '$$CHKIEN(CATEGORY) Q  ; verify category is Non-VA care (PRCA*4.5*338)
  . S TRAN3=$G(^PRCA(433,TRANDA,3))
  . F %=1:1:5 S TOTAL=TOTAL+$P(TRAN3,"^",%)
  Q TOTAL
  ;
-CHKIEN(RCCAT) ; return true if AR CATEGORIES are 1ST and 3RD party (PRCA*4.5*338)
+CHKIEN(RCCAT) ; return true if AR CATEGORIES are Non-VA Care (PRCA*4.5*338)
  I RCCAT=45 Q 1
- I RCCAT>47&(RCCAT<76) Q 1
+ ;PRCA*4.5*351 - Added Community Care to Non-VA check
+ I RCCAT>47&(RCCAT<75) Q 1
+ I RCCAT>80&(RCCAT<85) Q 1
  Q 0
