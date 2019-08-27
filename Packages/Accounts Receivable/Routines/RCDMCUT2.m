@@ -1,6 +1,6 @@
 RCDMCUT2 ;HEC/SBW - Utility Functions for Hold Debt to DMC Project ;30/AUG/2007
- ;;4.5;Accounts Receivable;**253**;Mar 20, 1995;Build 9
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**253,347**;Mar 20, 1995;Build 47
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -106,6 +106,39 @@ GETTYPE(STOPIT) ; Choose a (S)ummary or (D)etail or (E)xcel Delimited Report
  D ^DIR
  S:$D(DIRUT)!$D(DUOUT)!$D(DTOUT)!$D(DIROUT) STOPIT=1,Y=""
  Q Y
+GETTYPE2(STOPIT) ; Choose a (S)ummary or (D)etail
+ ;INPUT
+ ;   STOPIT  - Variable to be set if user '^' out or time out
+ ;OUTPUT
+ ;   STOPIT  - Variable to be set if user '^' out or time out
+ ;   Function returns the Report Type (D,S,E)
+ ;
+ N Y,X,DIR,DIRUT,DUOUT,DTOUT,DIROUT
+ S DIR(0)="S^D:DETAILED;S:SUMMARY"
+ S DIR("A")="Select Type of Report"
+ S DIR("B")="DETAILED"
+ W !
+ D ^DIR
+ S:$D(DIRUT)!$D(DUOUT)!$D(DTOUT)!$D(DIROUT) STOPIT=1,Y=""
+ Q $E(Y)
+ ;
+BILLPAYS() ; Do you want to see only bills with payments? 
+ ;INPUT:
+ ;  None
+ ; Output:
+ ;   Returns 1 - YES (Bills with payments) / 0 - NO (All bills) /
+ ;           "^" - Exit report
+ ;
+ N BP,X,Y,DIR,DIRUT,DTOUT,DUOUT,DIROUT
+ ;
+ S BP=0
+ S DIR(0)="Y",DIR("B")="YES",DIR("T")=DTIME W !
+ S DIR("A")="Do you want to see only bills with payments"
+ ;S DIR("?")="^D HEXC^RCDMCUT2"
+ D ^DIR
+ S:$D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) BP="^"
+ S:$G(Y)>0 BP=1
+ Q BP
  ;
 GETDMC(STOPIT) ;Chose DMC Debt Valid field value to include Null, Pending,
  ; Yes, No and All vallues
@@ -149,19 +182,27 @@ EXTDMC(VAL) ;Get Set of Code external format for DMC Debt Valid field value
  S VAL=$G(VAL)
  Q $S(VAL="A":"ALL",VAL="B":"BLANK/NULL",VAL="P":"PENDING",VAL="Y":"YES",VAL="N":"NO",1:"")
  ;
-DATE(PROMPT) ;Get beginning and Ending dates
+DATE(PROMPT,PROMPT2,BEG,END,DTYPE) ;Get beginning and Ending dates
  ;INPUT:
  ;   PROMPT - Message to display prior to prompting for dates
+ ;   PROMPT2 - (Optional) Message to display on second line
+ ;   BEG - (Optional) default begin date
+ ;   END - (Optional) default end date
+ ;   DTYPE - (Optional) date type
  ;OUTPUT:
  ;    1^BEGDT^ENDDT - Data found
  ;    0             - User up arrowed or timed out
+ ;NOTE:
+ ;    Optional Parameters added by Glaz to support date range from other reports
  ;
  N %DT,Y,X,BEGDT,ENDDT,DTOUT,OUT,DIRUT,DUOUT,DIROUT
  S OUT=0
  W !,$G(PROMPT)
+ I $G(PROMPT2)'="" W !,$G(PROMPT2)
  S %DT="AEX"
- S %DT("A")="Enter Beginning Date: "
- S %DT("B")="TODAY"
+ S %DT("A")="Enter "_$S($G(DTYPE)="":"",1:DTYPE_" ")_"Beginning Date: "
+ I $G(BEG)="" S %DT("B")="TODAY"
+ E  S Y=BEG X ^DD("DD") S %DT("B")=Y
  W !
  D ^%DT
  K %DT
@@ -169,7 +210,9 @@ DATE(PROMPT) ;Get beginning and Ending dates
  Q:Y<0 OUT
  S BEGDT=+Y
  S %DT="AEX"
- S %DT("A")="Enter Ending Date: ",%DT("B")="TODAY"
+ S %DT("A")="Enter "_$S($G(DTYPE)="":"",1:DTYPE_" ")_"Ending Date: "
+ I $G(END)="" S %DT("B")="TODAY"
+ E  S Y=END X ^DD("DD") S %DT("B")=Y
  D ^%DT
  K %DT
  ;Quit if user time out or didn't enter valid date
@@ -181,20 +224,63 @@ DATE(PROMPT) ;Get beginning and Ending dates
  S:BEGDT>ENDDT OUT=1_U_ENDDT_U_BEGDT
  Q OUT
  ;
-GETBEGDT(PROMPT1,PROMPT2) ;Get beginning date
+DATE2(PROMPT,PROMPT2,BEG,END,DTYPE) ;Get beginning and Ending dates
+ ;INPUT:
+ ;   PROMPT - Message to display prior to prompting for dates
+ ;   PROMPT2 - (Optional) Message to display on second line
+ ;   BEG - (Optional) default begin date
+ ;   END - (Optional) default end date
+ ;   DTYPE - (Optional) date type
+ ;OUTPUT:
+ ;    1^BEGDT^ENDDT - Data found
+ ;    0             - User up arrowed or timed out
+ ;NOTE:
+ ;    Optional Parameters added to support date range from other reports
+ ;
+ N %DT,Y,X,BEGDT,ENDDT,DTOUT,OUT,DIRUT,DUOUT,DIROUT
+ S OUT=0
+ W !,$G(PROMPT)
+ I $G(PROMPT2)'="" W !,$G(PROMPT2)
+ S %DT="AEX"
+ S %DT("A")="Enter "_$S($G(DTYPE)="":"",1:DTYPE_" ")_"Begin Date: "
+ I $G(BEG)="" S %DT("B")="TODAY"
+ I $G(BEG)'="" S Y=BEG X ^DD("DD") S %DT("B")=Y
+ W !
+ D ^%DT
+ K %DT
+ ;Quit if user time out or didn't enter valid date
+ Q:Y<0 OUT
+ S BEGDT=+Y
+ S %DT="AEX"
+ S %DT("A")="Enter "_$S($G(DTYPE)="":"",1:DTYPE_" ")_"End Date: "
+ I $G(END)="" S %DT("B")="TODAY"
+ I $G(END)'="" S Y=END X ^DD("DD") S %DT("B")=Y
+ D ^%DT
+ K %DT
+ ;Quit if user time out or didn't enter valid date
+ Q:Y<0 OUT
+ S ENDDT=+Y
+ S OUT=1_U_BEGDT_U_ENDDT
+ ;Switch dates when user enters more recent date for Begin Date
+ ;than End Date
+ S:BEGDT>ENDDT OUT=1_U_ENDDT_U_BEGDT
+ Q OUT
+ ;
+GETBEGDT(PROMPT1,PROMPT2,DTPROMPT) ;Get beginning date
  ;INPUT:
  ;   PROMPT1 - Message to display prior to prompting for date
  ;   PROMPT2 - Message to display prior to prompting for date
+ ;  DTPROMPT - Date query verbiage, if defined
  ;OUTPUT:
  ;    1^BEGDT - Data found
- ;    0             - User up arrowed or timed out
+ ;    0       - User up arrowed or timed out
  ;
  N %DT,Y,X,BEGDT,DTOUT,OUT,DIRUT,DUOUT,DIROUT
  S OUT=0
  W !!,$G(PROMPT1)
  W:$G(PROMPT2)]"" !,PROMPT2
  S %DT="AEX"
- S %DT("A")="Enter Beginning Date: "
+ S %DT("A")="Enter Beginning Date: " I $G(DTPROMPT)]"" S %DT("A")=DTPROMPT
  S %DT("B")=$$FMTE^XLFDT($$FMADD^XLFDT(DT,-365,0,0,0),"1D")
  S %DT(0)=-$$FMADD^XLFDT(DT,-365,0,0,0)
  W !
@@ -205,6 +291,25 @@ GETBEGDT(PROMPT1,PROMPT2) ;Get beginning date
  S BEGDT=+Y
  S OUT=1_U_BEGDT
  Q OUT
+ARSTAT(STOPIT) ;Chose AR status
+ ; Yes, No and All vallues
+ ;INPUT
+ ;   STOPIT  - Variable to be set if user '^' out or time out
+ ;OUTPUT
+ ;   STOPIT  - Variable to be set if user '^' out or time out
+ ;   Function returns 1-7 (1:Active;2:Open;3:Suspended;4:Collected/Closed;5:On-Hold;6:Write Off;7:All)
+ ;
+ N Y,X,DIR,DIRUT,DUOUT,DTOUT,DIROUT
+ ;W !,"Report to Include Bills for charges without an IB status of Cancelled, with an"
+ ;W !,"AR Status of Active, Open, Suspended, Write-Off, Collected/Closed, or with IB"
+ ;W !,"Status of On-Hold, and date of service on or after the exemption effective date."
+ S DIR(0)="S^1:Active;2:Open;3:Suspended;4:Collected/Closed;5:On-Hold;6:Write-Off;7:ALL (Includes 1-6 and AR CANCELLATIONS)"
+ S DIR("A")="Select a Status"
+ S DIR("B")=7
+ W !
+ D ^DIR
+ S:$D(DIRUT)!$D(DUOUT)!$D(DTOUT)!$D(DIROUT) STOPIT=1,Y=""
+ Q Y
  ;
 PAUSE ;If sending report to screen display pause message at screen bottom
  N X

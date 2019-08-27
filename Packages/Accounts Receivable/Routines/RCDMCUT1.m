@@ -1,6 +1,6 @@
 RCDMCUT1 ;HEC/SBW - Utility Functions for Hold Debt to DMC Project ;30/AUG/2007
- ;;4.5;Accounts Receivable;**253**;Mar 20, 1995;Build 9
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**253,347**;Mar 20, 1995;Build 47
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -156,19 +156,20 @@ GETSERDT(BILLNUM) ; Get most recent Outpatient Date, Inpatient Date and RX Date
  ;   BILLNUM - Bill No. (.01) field in AR (#430) file
  ;OUTPUT
  ;   0 - No data
- ;   1 ^ Outpatient Date ^ Discharge Date ^ RX/Refill Date
+ ;   1 ^ Outpatient Date ^ Discharge Date ^ RX/Refill Date ^ Status
  N OUT,IEN
  S OUT=0,IEN=0
  ;Quit if a Bill Number wasn't passed
  Q:$G(BILLNUM)']"" OUT
  F  S IEN=$O(^IB("ABIL",BILLNUM,IEN)) Q:IEN'>0  D
- . N IBDATA,IENS,DFN,ACTTYPE,RESULT,DTBILLFR,BILGROUP,OPDT,DISCHARG,RXDT
+ . N IBDATA,IENS,DFN,ACTTYPE,RESULT,DTBILLFR,BILGROUP,OPDT,DISCHARG,RXDT,STATUS,RXNUM,RXNAM
  . S IENS=IEN_","
  . D GETS^DIQ(350,IENS,".02;.03;.04;.14","IN","IBDATA")
  . S DFN=$G(IBDATA(350,IENS,.02,"I"))
  . S ACTTYPE=$G(IBDATA(350,IENS,.03,"I"))
  . S RESULT=$G(IBDATA(350,IENS,.04,"I"))
  . S DTBILLFR=$G(IBDATA(350,IENS,.14,"I"))
+ . S STATUS=$$GET1^DIQ(350,IENS,.05)
  . ;
  . ;Child charge. Need to get Parent Charge
  . I $P(RESULT,":",1)=350 D
@@ -180,6 +181,7 @@ GETSERDT(BILLNUM) ; Get most recent Outpatient Date, Inpatient Date and RX Date
  . . S ACTTYPE=$G(IBDATA(350,IENS,.03,"I"))
  . . S RESULT=$G(IBDATA(350,IENS,.04,"I"))
  . . S DTBILLFR=$G(IBDATA(350,IENS,.14,"I"))
+ . . S STATUS=$$GET1^DIQ(350,IENS,.05)
  . Q:$G(DFN)']""
  . ;
  . ;Get Billing Group in the IB Action Type File. If internal Set 
@@ -192,7 +194,7 @@ GETSERDT(BILLNUM) ; Get most recent Outpatient Date, Inpatient Date and RX Date
  . . I $P(RESULT,":",1)=44 S OPDT=$P($P(RESULT,";",2),":",2)
  . . I $P(RESULT,":",1)=409.68 S OPDT=$$GET1^DIQ(409.68,+$P(RESULT,":",2)_",",.01,"I")
  . . I $G(OPDT)'>0 S OPDT=DTBILLFR
- . . I $G(OPDT)>$P(OUT,U,2) S $P(OUT,U,1)=1,$P(OUT,U,2)=OPDT
+ . . I $G(OPDT)>$P(OUT,U,2) S $P(OUT,U,1)=1,$P(OUT,U,2)=OPDT,$P(OUT,U,5)=STATUS
  . ;
  . ;Quit if RESULTING FROM field is blank
  . Q:$G(RESULT)']""
@@ -205,7 +207,7 @@ GETSERDT(BILLNUM) ; Get most recent Outpatient Date, Inpatient Date and RX Date
  . . Q:VAERR>0
  . . S DISCHARG=$P($G(VAIP(17,1)),U,1)
  . . ;Ensure get most current Discharge Date
- . . I DISCHARG>$P(OUT,U,3) S $P(OUT,U,1)=1,$P(OUT,U,3)=DISCHARG
+ . . I DISCHARG>$P(OUT,U,3) S $P(OUT,U,1)=1,$P(OUT,U,3)=DISCHARG,$P(OUT,U,5)=STATUS
  . . D KVAR^VADPT
  . ;
  . ;RX Event
@@ -215,15 +217,16 @@ GETSERDT(BILLNUM) ; Get most recent Outpatient Date, Inpatient Date and RX Date
  . . I $P(RESULT,";",2)]"" D
  . . . S PSOFILE=52.1
  . . . S IENS=+$P($P(RESULT,";",2),":",2)_","_+$P($P(RESULT,";",1),":",2)_","
- . . . S FLD=.01
+ . . . S RXDT=$$GET1^PSODI(PSOFILE,IENS,.01,"I")
+ . . . S RXNAM="1^TBD",RXNUM="1^TBD"
  . . ;Set up for RX Data (No refill)
  . . I $P(RESULT,";",2)']"" D
  . . . S PSOFILE=52
  . . . S IENS=+$P($P(RESULT,";",1),":",2)_","
- . . . S FLD=1
- . . ;Call Pharmacy API to get RX/Refill Date
- . . S RXDT=$$GET1^PSODI(PSOFILE,IENS,FLD,"I")
+ . . . S RXDT=$$GET1^PSODI(PSOFILE,IENS,1,"I")
+ . . . S RXNUM=$$GET1^PSODI(PSOFILE,IENS,.01,"I")
+ . . . S RXNAM=$$GET1^PSODI(PSOFILE,IENS,6,"E")
  . . ;Ensure get most current RX/Refill Date
- . . I RXDT>$P(OUT,U,4) S $P(OUT,U,1)=1,$P(OUT,U,4)=$P(RXDT,U,2)
+ . . I RXDT>$P(OUT,U,4) S $P(OUT,U,1)=1,$P(OUT,U,4)=$P(RXDT,U,2),$P(OUT,U,5)=STATUS,$P(OUT,U,6)=$P(RXNUM,U,2),$P(OUT,U,7)=$P(RXNAM,U,2)
  Q OUT
  ;
