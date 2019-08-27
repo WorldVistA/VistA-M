@@ -1,5 +1,5 @@
 PSOORRL ;BHAM ISC/SAB - returns patient's outpatient meds ; 7/3/13 4:00pm
- ;;7.0;OUTPATIENT PHARMACY;**4,20,9,34,54,82,124,132,159,214,225,318**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,9,34,54,82,124,132,159,214,225,318,558**;DEC 1997;Build 1
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^VA(200 supported by DBIA 10060
@@ -106,6 +106,7 @@ NVA ; Set Non-VA Med Orders in the ^TMP Global
  N SDT,SDT1
  F I=0:0 S I=$O(^PS(55,DFN,"NVA",I)) Q:'I  S X=$G(^PS(55,DFN,"NVA",I,0)) D
  .Q:'$P(X,"^")
+ .I $L($P(X,"^",7)),($P(X,"^",7)<PSBDT)!($P(X,"^",7)>PSEDT) Q  ;p558 bypass if DISCONTINUED DATE outside reported date range
  .S DRG=$S($P(X,"^",2):$P($G(^PSDRUG($P(X,"^",2),0)),"^"),1:$P(^PS(50.7,$P(X,"^"),0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,$P(X,"^"),0),"^",2),0),"^"))
  .S SDT=$P(X,"^",9) I 'SDT D TMPBLD Q
  .I $E(SDT,4,5),$E(SDT,6,7) D
