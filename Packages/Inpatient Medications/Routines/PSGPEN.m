@@ -1,5 +1,5 @@
-PSGPEN ;BIR/CML3 - FIND DEFAULT FOR PRE-EXCHANGE NEEDS ;15 May 2019 16:15:59
- ;;5.0;INPATIENT MEDICATIONS ;**30,37,50,58,115,110,127,129,323,317,357,386,327**;16 DEC 97;Build 114
+PSGPEN ;BIR/CML3 - FIND DEFAULT FOR PRE-EXCHANGE NEEDS ;03 Feb 99 / 9:13 AM
+ ;;5.0;INPATIENT MEDICATIONS ;**30,37,50,58,115,110,127,129,323,317,357,386**;16 DEC 97;Build 3
  ;
  ; References to ^PSD(58.8 supported by DBIA #2283.
  ; References to ^PSI(58.1 supported by DBIA #2284.
@@ -19,7 +19,7 @@ EN(PSGPENO) ;
  I PSJPADE&'PSGPENWS W !!,"The dispense drug",$S(PSJPADE>1:"s",1:"")," for this order ",$S(PSJPADE>1:"are",1:"is a")," PADE item",$S(PSJPADE>1:"s",1:""),"." S PSGPEN=0
  I PSJPADE&PSGPENWS W !!,"The dispense drug",$S(PSJPADE>1:"s",1:"")," for this order ",$S(PSJPADE>1:"are",1:"is a")," WARD STOCK/PADE item",$S(PSJPADE>1:"s",1:""),"." S PSGPEN=0
  I PSGPENWS&'PSJPADE W !!,"The dispense drug",$E("s",$P(PSGPENWS,"^",2))," for this order ",$S($P(PSGPENWS,"^",2):"are",1:"is a")," WARD STOCK item",$E("s",$P(PSGPENWS,"^",2)),"." S PSGPEN=0
- I '$G(PSJCLO),'PSGPENWS,PSJPWD,'PSJPADE S WG=+$O(^PS(57.5,"AB",PSJPWD,0)),PSGPLS=$P($G(^PS(55,PSGP,5,PSGPENO,2)),"^",2) I PSGPLS D
+ I '$G(PSJCLO) I 'PSGPENWS,PSJPWD,'PSJPADE S WG=+$O(^PS(57.5,"AB",PSJPWD,0)),PSGPLS=$P($G(^PS(55,PSGP,5,PSGPENO,2)),"^",2) I PSGPLS D
  .S PSGPLF=$O(^PS(53.5,"AB",WG,PSGDT))
  .N RNDT,PSJRNOS S RNDT=$$LASTREN^PSJLMPRI(PSGP,$S($G(PSJORD)["P":PSJORD,1:"")),PSJRNOS=$P(RNDT,"^",4) I PSJRNOS,'$G(PSJREN) S PSGPLS=PSJRNOS
  .I $G(PSJREN),$G(PSJORD)["U" S PSJRNOS=$P(^PS(55,PSGP,5,+PSJORD,2),"^",4) S PSGPLS=$S(PSJRNOS>PSGDT:PSJRNOS,1:$$DATE2^PSJUTL2(PSGDT))
@@ -45,7 +45,7 @@ GF ;
 DD ;
  N DA S DRG=$S($P(ND,"^")="":"NOT FOUND",'$D(^PSDRUG(+ND,0)):"NOT FOUND ("_$P(ND,"^")_")",$P(^(0),"^")]"":$P(^(0),"^"),1:$P(ND,"^")_";PSDRUG("),UD=$S('$P(ND,"^",2):1,1:$P(ND,"^",2))
  W !,"...",DRG,?45,"U/D: ",UD,"..."
- S PSGDA=PSGY I 'PSGPENWS,'$G(PSJCLO),ND,PSJPWD,($D(^PSI(58.1,"D",+ND,PSJPWD))!$D(^PSD(58.8,"D",+ND,PSJPWD))) D PSGPENWS Q:'PSGDA
+ S PSGDA=PSGY I 'PSGPENWS,'PSJCLO,ND,PSJPWD,($D(^PSI(58.1,"D",+ND,PSJPWD))!$D(^PSD(58.8,"D",+ND,PSJPWD))) D PSGPENWS Q:'PSGDA
  K DA,DR S PSGDA=$S(UD#1:(PSGDA*((UD\1)+1)),1:PSGDA*UD)
  S DIE="^PS(55,"_PSGP_",5,"_PSGPENO_",1,",DA(2)=PSGP,DA(1)=PSGPENO,DA=FQ,DR=".09////"_PSGDA D ^DIE
  S PSGPXN=$G(PSGPXN)
@@ -66,8 +66,8 @@ DD ;
  ;
 DH ;
  W !!?2,"Enter a number from 0 to 9999, 0 decimal digits."
- W !!?2,"Enter the number of DOSES needed for this order until the next cart exchange.",!,"This will be the number of times the order will be administered to the patient",!,"from the start of the order until the next cart exchange."
- W !!?2,"PLEASE NOTE that this is DOSES, and NOT UNITS.  The doses entered will be",!,"converted to units for each dispense drug of this order, as each dispense drug",!,"may have different units per dose." Q
+ W !!?2,"Enter the number DOSES needed for this order until the next cart exchange.",!,"This will be the number of times the order will be administered to the patient",!,"from the start of the order until the next cart exchange."
+ W !!?2,"PLEASE NOTE that this is DOSES, and NOT UNITS.  The doses entered will be",!,"converted to units for each dispense drug of this order, as each dispense drug",!,"may have a different units per dose." Q
  ;
 PSGPENWS ;
  W !,"This dispense drug is a WARD STOCK item."
@@ -109,4 +109,3 @@ PADE(PSJPWD,PSGP,PSGORD)  ; Pharmacy Automation Dispensing Equipment (PADE) chec
  ..S PADEFLAG=+$$DRGQTY^PSJPADSI(+PSJDDND,$S(PSJPDLOC["C":"CL",1:"WD"),+PSJPDLOC)
  .I DDCNT,PADEFLAG S PADE=DDCNT
  Q PADE
- ;
