@@ -1,10 +1,10 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646**;21-MAR-94;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
- N IBGMT,IBGMTR,IBUSNM    ;IN*2.0*618 Add IBUSNM
- S (IBGMT,IBGMTR)=0
+ N IBGMT,IBGMTR,IBUSNM,IBUC    ;IB*2.0*618 Add IBUSNM IB*2.0*646 Add IBUC
+ S (IBGMT,IBGMTR,IBUC)=0
  S IBCOMMIT=0,IBEXSTAT=$$RXST^IBARXEU(DFN,DT),IBCATC=$$BILST^DGMTUB(DFN),IBCVAEL=$$CVA^IBAUTL5(DFN),IBLTCST=$$LTCST^IBAECU(DFN,DT,1)
  ;I 'IBCVAEL,'IBCATC,'$G(IBRX),+IBEXSTAT<1 W !!,"This patient has never been Means Test billable." S VALMBCK="" D PAUSE^VALM1 G ADDQ1
  ;
@@ -24,7 +24,7 @@ ADD ; Add a Charge protocol
  I IBUSNM'="" D
  . I IBUSNM="FEE SERVICE/OUTPATIENT" S IBAFEE=IBATYP Q
  . I (IBUSNM["CC")!(IBUSNM["CHOICE") D 
- . . I (IBUSNM["OPT")!(IBUSNM["OUTPATIENT") S IBAFEE=IBATYP
+ . . I (IBUSNM["OPT")!(IBUSNM["OUTPATIENT")!(IBUSNM["URGENT") S IBAFEE=IBATYP  ;IB*2.0*646  added URGENT 
  ;*** END IB*2.0*618 ***
  ;
  ; - process CHAMPVA charges
@@ -85,6 +85,10 @@ ADD ; Add a Charge protocol
 FR ; - ask 'bill from' date
  D FR^IBECEAU2(0) G:IBY<0 ADDQ
  ;
+ ;IB*2.0*646
+ ; If Urgent Care copay, skip clock checks, go to prompt for copay amount.
+ G:$G(IBUC) UCPAY
+ ; end IB*2.0*646
  S IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR),IBGMTR=0 ;GMT Copayment Status
  I IBGMT>0,IBXA>0,IBXA<4 W !,"The patient has GMT Copayment Status."
  ; - check the MT billing clock
@@ -111,8 +115,13 @@ FR ; - ask 'bill from' date
  ; - find the correct clock from the 'bill from' date (ignore LTC)
  I IBXA'=8,IBXA'=9,('IBCLDA!(IBCLDA&(IBFR<IBCLDT))) D NOCL^IBECEA33 G:IBY<0 ADDQ
  ;
+UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent Care Copays
  ; - perform outpatient edits
  N IBSTOPDA
+ ;IB*2.0*646 If urgent care, process using UC criteria and go to process
+ I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
+ ;end IB*2.0*646
+ ;
  I IBXA=4,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
  I IBXA=4 D  G ADDQ:IBY<0,PROC
  .   ;  for visits prior to 12/6/01 or FEE
@@ -193,7 +202,7 @@ PROC ; - okay to proceed?
  I $G(IBSIBC1) D CHK^IBAMTI1(IBSIBC1,IBEVDA)
  ;
  ; - handle updating of clock
- I IBXA'=8,IBXA'=9 D CLUPD^IBECEA32
+ I IBXA'=8,IBXA'=9,'IBUC D CLUPD^IBECEA32  ;IB*2.0*646
  ;
 ADDQ ; - display error, rebuild list, and quit
  D ERR^IBECEAU4:IBY<0,PAUSE^IBECEAU S VALMBCK="R"
