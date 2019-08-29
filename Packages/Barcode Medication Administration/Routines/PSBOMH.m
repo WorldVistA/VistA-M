@@ -1,5 +1,5 @@
 PSBOMH ;BIRMINGHAM/EFC-MAH ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68,70,76,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68,70,76,83,116**;Mar 2004;Build 2
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -27,7 +27,7 @@ EN ; Called from DQ^PSBO
  D CLEAN^PSBVT                                                    ;*83
  Q
 EN1 ; Expects DFN,STRT,STOP
- N PSBGBL,PSBHDR,PSBX,PSBFLAG,PSBHLDFL,PSBADST1,PSBOST1,PSBCLINIC ;*70
+ N PSBGBL,PSBHDR,PSBX,PSBFLAG,PSBHLDFL,PSBADST1,PSBOST1,PSBCLINIC,PSBORSTP ;*70
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
  S PSBEVDT=PSBSTRT
  D EN^PSJBCMA(DFN,PSBSTRT)
@@ -37,7 +37,8 @@ EN1 ; Expects DFN,STRT,STOP
  S PSBX=""
  F  S PSBX=$O(^TMP("PSJ",$J,PSBX)) Q:PSBX=""  D
  .Q:$P(^TMP("PSJ",$J,PSBX,0),U,3)?.N1"P"  ; No Pnd
- .Q:$P(^TMP("PSJ",$J,PSBX,1),U,5)<PSBSTRT!($P(^TMP("PSJ",$J,PSBX,1),U,4)>PSBSTOP)  ;display orders active in date range of report
+ .S PSBORSTP=$P(^TMP("PSJ",$J,PSBX,1),U,5) S:$P(^TMP("PSJ",$J,PSBX,1),U,15)>PSBORSTP PSBORSTP=$P(^TMP("PSJ",$J,PSBX,1),U,15)
+ .Q:PSBORSTP<PSBSTRT!($P(^TMP("PSJ",$J,PSBX,1),U,4)>PSBSTOP)  ;display orders active in date range of report
  .S X=$P(^TMP("PSJ",$J,PSBX,1),U,2)
  .S ^TMP("PSB",$J,"ORDERS",$P(^TMP("PSJ",$J,PSBX,0),U,3))=X
  I '$D(^TMP("PSB",$J,"ORDERS")) D  Q        ;No Orders
