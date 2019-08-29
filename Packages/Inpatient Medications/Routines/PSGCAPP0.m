@@ -1,5 +1,5 @@
 PSGCAPP0 ;BIR/CML3-PRINT DATA FOR ACTION PROFILE CONT. ; 4/1/08 3:05pm
- ;;5.0;INPATIENT MEDICATIONS;**8,20,85,169,203,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS;**8,20,85,169,203,256,387**;16 DEC 97;Build 1
  ; Reference to BSA^PSSDSAPI supported by DBIA #5425
 H1 ; first header for patient
  I $E(IOST,1)="C" K DIR S DIR(0)="E" D ^DIR K DIR S:$D(DTOUT)!$D(DUOUT) PSJDLW=1 I $D(DTOUT)!$D(DUOUT) Q
@@ -15,10 +15,12 @@ H1 ; first header for patient
  ;   Display serum creatinine if CrCl can't be calculated
  S PSJBSA=$$BSA^PSSDSAPI(DFN),PSJBSA=$P(PSJBSA,"^",3),PSJBSA=$S(PSJBSA'>0:"_________",1:$J(PSJBSA,4,2))
  S RSLT=$$CRCL^PSJLMHED(DFN)
+ ; Display format of CrCL and Creatinine results updated - PSJ*5.0*387
  I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
- I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- W !?2,ZDSPL,?51,"BSA (m2): ",$G(PSJBSA) K ZDSPL,RSLT,PSJBSA
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)'["Not Found")&($P($G(RSLT),"^",3)>=.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ W !?2,$G(ZDSPL),?51,"BSA (m2): ",$G(PSJBSA) K ZDSPL,RSLT,PSJBSA
  ;  
  S PSGP=$P(PN,U,2) S:PSGP=$G(PSGPTMP) PPAGE=PPAGE+1 I PSGP'=$G(PSGPTMP) S PSGPTMP=PSGP,PPAGE=1
  S ALFLG=0 D ATS^PSJMUTL(68,68,2)
