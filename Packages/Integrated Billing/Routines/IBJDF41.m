@@ -1,5 +1,5 @@
 IBJDF41 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568**;21-MAR-94;Build 40
+ ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
@@ -9,8 +9,12 @@ ST ; - Tasked entry point.
  ; - Set selected categories for report.
  I IBSEL[1 S IBCAT(2)=1
  I IBSEL[2 S IBCAT(1)=2
- I IBSEL[3 S IBCAT(18)=3 F X=22,23 S IBCAT(X)=4
- I IBSEL[4 F X=33:1:39 S IBCAT(X)=5
+ I IBSEL[3 S IBCAT(18)=3 F X=22,23 S IBCAT(X)=3
+ I IBSEL[4 F X=33:1:39 S IBCAT(X)=4
+ ; *** new code
+ I IBSEL[5 D
+ . F X=61:1:74 S IBCAT(X)=5
+ . F X=81:1:84 S IBCAT(X)=5
  ;
  ; - Print the header line for the Excel spreadsheet
  I $G(IBEXCEL) D PHDL
@@ -64,8 +68,8 @@ PROC ; - Process data for report(s).
  ;
  I IBSAM,IBBA<IBSAM Q
  ;
- ; - Check if AR was referred to R-Regional Counsel, D-DMC, or T-TOP
- ;   and exclude, if necessary.
+ ; - Check if AR was referred to R-Regional Counsel, D-DMC, T-TOP,
+ ;   or C-CROSS SERVICING and exclude, if necessary.
  S IB0=$S(IB=40:19,1:IB),IBIDX=0,IBRFT=""
  S IBAIQ=0,IBAI=$G(^TMP("IBJDF4",$J,IBPAT,0,"A"))
  S IBRFD=$P($G(^PRCA(430,IBA,6)),U,4)
@@ -81,6 +85,11 @@ PROC ; - Process data for report(s).
  I IBRPT="D",IBRFD D                              ; Referred to TOP
  . S IBRFT=IBRFT_"T" I IBAI'["T" S IBAI=IBAI_"T"
  . D SREF("T",IBRFD,IB0,,.IBIDX)
+ ; PRCA*4.5*338 added CS 
+ S IBRFD=+$G(^PRCA(430,IBA,15))
+ I IBRPT="D",IBRFD D                              ; Referred to CS 
+ . S IBRFT=IBRFT_"C" I IBAI'["C" S IBAI=IBAI_"C"
+ . D SREF("C",IBRFD,IB0,,.IBIDX)
  ;
  ; - Check if AR is on P-Repayment plan or F-Defaulted repayment plan.
  ;   and exclude if repayment plan is active.
@@ -190,7 +199,7 @@ MTRX(X) ; - Return patient's means test and/or RX copay status and most recent
  ;
 SREF(RFT,DAT,STS,DEF,IDX) ; Set the "referred to" information on the 
  ;                         temporary global ^TMP
- ;Input: RFT: "R": RC, "D": DMC, "T": TOP, "P": REPAYMENT PLAN
+ ;Input: RFT: "R": RC, "D": DMC, "T": TOP, "C": CROSS SERVICING, "P": REPAYMENT PLAN
  ;       DAT: Date it was referred/established
  ;       STS: Receivable status (16-Active,19-Suspended)
  ;       DEF: Repayment Plan in Default? (1 - YES, 0 - NO)
@@ -202,6 +211,7 @@ SREF(RFT,DAT,STS,DEF,IDX) ; Set the "referred to" information on the
  I RFT="R" S SREF="REFERRED TO RC"
  I RFT="D" S SREF="REFERRED TO DMC"
  I RFT="T" S SREF="REFERRED TO TOP"
+ I RFT="C" S SREF="REFERRED TO CS" ; PRCA*4.5*338
  I RFT="P" D
  . S SREF="REPAYMENT PLAN ESTABLISHED"
  . I $G(DEF) S SREF=SREF_" (CURRENTLY IN DEFAULT)"

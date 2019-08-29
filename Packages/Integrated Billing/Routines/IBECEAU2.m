@@ -1,5 +1,5 @@
 IBECEAU2 ;ALB/CPM-Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
@@ -97,6 +97,11 @@ TIER(IBATYP,IBEFDT,TIER) ; Prompt if needed for copay tier
  ; TIER - {optional) default tier, if none specified, then 2 used
  N IB,IBN,IBD,IBEND,IBFTIER,IBLTIER,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,DIR,IBTIER
  S IBD=-($G(IBEFDT,DT)+.9),IBD=$O(^IBE(350.2,"AIVDT",IBATYP,IBD)),IBEND=$O(^IBE(350.2,"AIVDT",IBATYP,IBD))
+ I IBD="" D  Q 0
+ . W !!,"Rx Date entered is invalid for the charge type.  Please confirm",!
+ . W "the date and re-enter."
+ . S IBY=-1
+ S IBEND=$O(^IBE(350.2,"AIVDT",IBATYP,IBD))
  S IBN=0 F  S IBN=$O(^IBE(350.2,"AIVDT",IBATYP,IBD,IBN)) Q:'IBN  S IB=$G(^IBE(350.2,IBN,0)) I IB]"",'$P(IB,"^",5)!($P(IB,"^",5)>IBEFDT) S IBTIER($P(IB,"^",7))=""
  ; if only one tier don't prompt just use it
  S IBFTIER=$O(IBTIER(0)) I '$O(IBTIER(IBFTIER)) Q IBFTIER

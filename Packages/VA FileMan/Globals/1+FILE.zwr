@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-27-AUG-2019 14:32:19 ZWR
+29-AUG-2019 12:43:56 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -12279,6 +12279,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.1","%D",3,0)="are associated with the type rather than each entry."
 ^DIC("350.1","%D",4,0)=" "
 ^DIC("350.1","%D",5,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC("350.1","%MSC")=3190829.1239
 ^DIC("350.2",0)="IB ACTION CHARGE^350.2I"
 ^DIC("350.2",0,"AUDIT")="@"
 ^DIC("350.2",0,"DD")="@"
@@ -12656,6 +12657,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("351.7","%D",2,0)="data collected via the Diagnostic Measures Extraction process."
 ^DIC("351.7","%D",3,0)=" "
 ^DIC("351.7","%D",4,0)="Per VHA directive 10-93-142, this file definition should not be modified."
+^DIC("351.7","%MSC")=3190829.1239
 ^DIC("351.701",0)="IB DM EXTRACT DATA ELEMENTS^351.701"
 ^DIC("351.701",0,"GL")="^IBE(351.701,"
 ^DIC("351.701","%D",0)="^^5^5^2990406^^^"

@@ -1,5 +1,5 @@
 IBOHLD1 ;ALB/CJM -  REPORT OF CHARGES ON HOLD W/INS INFO ;MARCH 3 1992
- ;;2.0;INTEGRATED BILLING;**70,95,133,356,347**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**70,95,133,356,347,618**;21-MAR-94;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; modified HELD CHARGES REPORT - includes INS info
@@ -55,12 +55,27 @@ PAT ; patient name
  Q
 BILLS ; find bills for charges on hold
  N IBFR,IBT,IBATYPE,IBTO
- S IBATYPE=$S($P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^")["OPT":"O",$P($G(^IBE(350.1,+IBND,"^",3,0)),"^")["PSO":"RX",1:"I")
+ ;***IB*2.0*618
+ ; Look up the type to match to using the Action Type name
+ S IBATYPE=$$FNDBTYP($P(IBND,"^",3))   ;end IB*2.0*618
  S IBFR=$P(IBND,"^",14),IBTO=$P(IBND,"^",15)
  I IBATYPE="I" D INP
  I IBATYPE="O" D OTP
  E  D RX
  Q
+ ;
+FNDBTYP(IBACTIEN) ;Determine what type of 3rd party bill to try and match the
+ ;                 held charge to.
+ ; INPUT - IB Action Type IEN (350.1,.01)
+ ;
+ N IBACTPNM
+ ;
+ S IBACTPNM=$P($G(^IBE(350.1,IBACTIEN,0)),"^")
+ I IBACTPNM["OPT" Q "O"
+ I IBACTPNM["PSO" Q "RX"
+ I IBACTPNM["RX" Q "O"  ;any other RX after PSO link to Outpatient
+ Q "I"  ;assume inpatient if not matched above
+ ;
 INP ; inpatient bills
  N IBEV,IBBILL,IBT,X,X1,X2,IBEND,IBOK
  S IBEV=$P(IBND,"^",16) Q:'IBEV  ; parent event

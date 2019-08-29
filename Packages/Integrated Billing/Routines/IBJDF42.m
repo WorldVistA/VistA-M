@@ -1,5 +1,5 @@
 IBJDF42 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (PRINT);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,568**;21-MAR-94;Build 40
+ ;;2.0;INTEGRATED BILLING;**123,204,568,618**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -13,6 +13,28 @@ EN ; - Print the Follow-up report.
  S IBCT(37)="GERIATRIC INPT LTC"
  S IBCT(38)="GERIATRIC OPT LTC"
  S IBCT(39)="NURSING HOME LTC"
+ ;
+ ; PRCA*4.5*338 Adding new categories for community care
+ ;
+ ; next are the new AR categories
+ S IBCT(61)="CHOICE INPT"
+ S IBCT(62)="CHOICE RX CO-PAYMENT"
+ S IBCT(63)="CC INPT"
+ S IBCT(64)="CC RX CO-PAYMENT"
+ S IBCT(65)="CCN INPT"
+ S IBCT(66)="CCN RX CO-PAYMENT"
+ S IBCT(67)="CC MTF INPT"
+ S IBCT(68)="CC MTF RX CO-PAYMENT"
+ S IBCT(69)="CC NURSING HOME CARE - LTC"
+ S IBCT(70)="CC RESPITE CARE"
+ S IBCT(71)="CCN NURSING HOME CARE - LTC"
+ S IBCT(72)="CCN RESPITE CARE"
+ S IBCT(73)="CHOICE NURSING HOME CARE - LTC"
+ S IBCT(74)="CHOICE RESPITE CARE"
+ S IBCT(81)="CHOICE OPT"
+ S IBCT(82)="CC OPT"
+ S IBCT(83)="CCN OPT"
+ S IBCT(84)="CC MTF OPT"
  ;
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%) G:IBRPT="S" SUM
  S IBPRTFLG=0 D DET D PAUSE:'IBPRTFLG I IBQ!'IBPRTFLG G ENQ
@@ -79,7 +101,7 @@ WPAT ; - Write patient data.
  Q
  ;
 WBIL ; - Write bill data.
- W ! W:'$D(IBFLG(IBCAT)) IBCT(IBCAT) W ?13,IB0
+ W ! W:'$D(IBFLG(IBCAT)) $E(IBCT(IBCAT),1,11) W ?13,IB0   ;IB*2.0*618 - Limit length to 11 chars
  W:$P(IBN,"^",6) ?25,$J("("_$P(IBN,"^",6)_")",4)
  W ?30,$$DAT1^IBOUTL(+IBN)
  W ?39,$J($FN($P(IBN,U,2),",",2),10),?50,$J($FN($P(IBN,U,3),",",2),10)
@@ -145,7 +167,7 @@ HDR1 ; - Write the report header.
  S IBPAG=$G(IBPAG)+1 W "First Party Follow-Up Report"
  W ?34,"Run Date: ",IBRUN,?71,"Page: ",$J(IBPAG,3)
  S X="ALL "_$S(IBSTA'="S":"ACTIVE",1:"")_$S(IBSTA="B":" AND ",1:"")
- S X=X_$S(IBSTA'="A":"SUSPENDED",1:"")_$$TYPE(IBSEL)_" RECEIVABLES"
+ S X=X_$S(IBSTA'="A":"SUSPENDED",1:"")_" RECEIVABLES"
  I IBSMN'="A" S X=X_" OVER "_IBSMN_" AND UNDER "_IBSMX_" DAYS OLD"
  S X=X_" / BY "_$S(IBSN="N":"NAME",1:"LAST 4 SSN")
  S X=X_" ("_$S($G(IBSNA)="ALL":"ALL",1:"From "_$S(IBSNF="":"FIRST",1:IBSNF)_" to "_$S(IBSNL="zzzzz":"LAST",1:IBSNL))_")"

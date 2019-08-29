@@ -1,5 +1,6 @@
 IBJDF53 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (SUMMARY);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,185,240**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,185,240,618**;21-MAR-94;Build 61
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 INIT ; - Initialize counters, if necessary.
  ;   Pre-set variables  IBCAT, IBDIV, IBSEL1 required.
@@ -49,6 +50,12 @@ EXTMO(IBS) ; Extract/transmit data to DM Extract Module
  . I IBCT=31 S IBTP=1      ;  TRICARE Patient
  . I IBCT=19 Q             ;  Sharing Agreements (NOT EXTRACTED)
  . I IBCT=30 S IBTP=2      ;  TRICARE
+ . I IBCT=75 S IBTP=2      ;  TRICARE DES  IB*2.0*618
+ . I IBCT=76 S IBTP=2      ;  TRICARE SCI  IB*2.0*618
+ . I IBCT=77 S IBTP=2      ;  TRICARE TBI  IB*2.0*618
+ . I IBCT=78 S IBTP=2      ;  TRICARE BLIND  IB*2.0*618
+ . I IBCT=79 S IBTP=2      ;  TRICARE DENTAL  IB*2.0*618
+ . I IBCT=80 S IBTP=2      ;  TRICARE PHARMACY  IB*2.0*618
  . I IBCT=32 S IBTP=3      ;  TRICARE THIRD PARTY
  . I IBCT=28 S IBTP=4      ;  CHAMPVA
  . I IBCT=29 S IBTP=5      ;  CHAMPVA THRID PARTY
@@ -69,11 +76,13 @@ SUM(IBCAT) ; - Print summary for AR category.
  ;  Input: IBCAT=AR category pointer to file #430.2, and pre-set
  ;         variables IBDIV and IBRPT
  N IBDH,IBTYP,IBTYPH,I,J
+ N IBCATNM  ; patch IB*2.0*618
  ;
  S (IBFLG,IBTYP)=0 D HDR
  F  S IBTYP=$O(IB(IBDIV,IBCAT,IBTYP)) Q:'IBTYP  D  Q:IBQ
+ . S IBCATNM=$$ARCAT^IBJDF62(IBCAT)  ; patch IB*2.0*618
  . I $Y>(IOSL-16) D HDR Q:IBQ
- . S IBTYPH=$G(IBCTG(IBCAT(IBCAT)))_" RECEIVABLES ("_$G(IBTPR(IBTYP))_")"
+ . S IBTYPH=$G(IBCATNM)_" RECEIVABLES ("_$G(IBTPR(IBTYP))_")"
  . W !!!?(80-$L(IBTYPH))\2,IBTYPH
  . W !?(80-$L(IBTYPH)\2),$$DASH($L(IBTYPH))
  . I IBDIV D
@@ -144,4 +153,4 @@ CATN ; - List of category names.
  ;;121-180 days
  ;;181-365 days
  ;;Over 365 days
- ;;Total C/C-Tricare Receivables
+ ;;Total

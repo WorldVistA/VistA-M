@@ -1,5 +1,6 @@
 IBJDF52 ;ALB/RB - CHAMPVA/TRICARE FOLLOW-UP REPORT (PRINT) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,240**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,159,240,618**;21-MAR-94;Build 61
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
  S (IBQ,IBFLG)=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%) G:IBRPT="S" SUM
@@ -53,7 +54,7 @@ PAUSE ; - Page break.
  Q
  ;
 HDR1 ; - Write the primary report header.
- N FLG,X
+ N FLG,X,IBCATNM
  ;
  S FLG=1 I $G(IBFLG) S FLG=0
  I '$G(IBFLG),$E(IOST,1,2)="C-"!$G(IBPAG) D
@@ -67,7 +68,8 @@ HDR1 ; - Write the primary report header.
  . W "CHAMPVA/TRICARE Follow-Up Report"
  . I IBDIV W " for ",$P($G(^DG(40.8,IBDIV,0)),U),"  "
  . W ?75,"Run Date: ",IBRUN W:FLG ?123,"Page: ",$J(IBPAG,3)
- S X="ALL ACTIVE "_$G(IBCTG(IBCAT(IBCAT)))_" RECEIVABLES "
+ S IBCATNM=$$ARCAT^IBJDF62(IBCAT)  ; patch IB*2.0*618
+ S X="ALL ACTIVE "_$G(IBCATNM)_" RECEIVABLES " ; patch IB*2.0*618
  I IBTYP'=4 S X=X_"("_$G(IBTPR(IBTYP))_") "
  I IBSMN S X=X_"OVER "_IBSMN_" AND UNDER "_IBSMX_" DAYS OLD "
  S X=X_" / BY PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4 DIGITS OF SSN")

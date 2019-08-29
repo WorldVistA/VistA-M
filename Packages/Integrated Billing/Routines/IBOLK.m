@@ -1,6 +1,6 @@
 IBOLK ;ALB/AAS - INTEGRATED BILLING - DISPLAY BY BILL NUMBER ;6-MAR-91
- ;;2.0; INTEGRATED BILLING ;**199,420,433**;21-MAR-94;Build 36
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING ;**199,420,433,618**;21-MAR-94;Build 61
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 % ;
  ;***
@@ -54,7 +54,13 @@ LINE ;  -find data for one line, write line, accumulate totals
  I IBFULL,$D(^IBE(350.1,+$P(IBND,"^",3),30)),+$P(IBND,"^",4)=52 W ! S X1=$P($P($P(IBND,"^",4),";",1),":",2),X2=$P($P($P(IBND,"^",4),";",2),":",2),X=X1_"^"_$S(X2:X2,1:0) X ^(30)
  S IBTYP=$G(^IBE(350.1,+$P(IBND,"^",3),0)),IBSEQNO=$P(IBTYP,"^",5)
  W ! S Y=$P($P(IBND1,"^",2),".",1) D DT^DIQ
- W ?15,$E($P($P(IBTYP,"^")," ",2,99),1,20),?37,$E($P(IBND,"^",8),1,20),?60,$J($P(IBND,"^",6),5)
+ ;IB*2.0*618 Corrected display for new Action Types
+ S IBTYP=$S($E(IBTYP,1,2)="DG":$P(IBTYP," ",2,99),$E(IBTYP,1,3)="PSO":$P(IBTYP," ",2,99),1:IBTYP)
+ W ?15,$E($P(IBTYP,"^"),1,20)
+ ; display brief description if not a CC action type
+ I ($P(IBTYP,U)'["CC"),($P(IBTYP,U)'["CHOICE") W ?37,$E($P(IBND,"^",8),1,20)
+ ;end IB*2.0*618
+ W ?60,$J($P(IBND,"^",6),5)
  S IBCHRG=$P(IBND,"^",7) I IBSEQNO=2 S IBCHRG=(-IBCHRG) ;cancel types are decrease adjustments
  S X=IBCHRG,X2="2$",X3=10 D COMMA^%DTC W ?69,X
  S IBTOTL=IBTOTL+IBCHRG

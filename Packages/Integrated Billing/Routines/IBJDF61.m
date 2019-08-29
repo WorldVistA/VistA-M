@@ -1,27 +1,41 @@
 IBJDF61 ;ALB/RB - MISC. BILLS FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,356**;21-MAR-94
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**123,159,356,618**;21-MAR-94;Build 61
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
  K IB,IBCAT,^TMP("IBJDF6P",$J),^TMP("IBJDF6D",$J) S IBQ=0
+ N IBPDFLG   ;Patient (1) or Debtor (0) flag
  ;
  ; - Set selected categories for report.
+ ; IB*2.0*618 - Added Community Care Misc. Categories
  I IBSEL[",1," S IBCAT(21)=1        ; MEDICARE
- I IBSEL[2 S IBCAT(7)=2             ; NO-FAULT AUTO ACCIDENT
- I IBSEL[3 S IBCAT(10)=3            ; TORT FEASOR
- I IBSEL[4 S IBCAT(6)=4             ; WORKMEN'S COMP
- I IBSEL[5 S IBCAT(16)=5            ; CURRENT EMPLOYEE
- I IBSEL[6 S IBCAT(15)=6            ; EX-EMPLOYEE
- I IBSEL[7 S IBCAT(13)=7            ; FEDERAL AGENCIES-REFUND
- I IBSEL[8 S IBCAT(14)=8            ; FEDERAL AGENCIES-REIMBURSEMENT
- I IBSEL[9 S IBCAT(20)=9            ; MILITARY
- I IBSEL[10 S IBCAT(12)=10          ; INTERAGENCY
- I IBSEL[11 S IBCAT(17)=11          ; VENDOR
+ I IBSEL[",2," S IBCAT(7)=2         ; NO-FAULT AUTO ACCIDENT
+ I IBSEL[",3," D                    ; COMMUNITY CARE NO-FAULT AUTO
+ . S IBCAT(52)=3
+ . S IBCAT(55)=3
+ . S IBCAT(58)=3
+ I IBSEL[",4," S IBCAT(10)=4        ; TORT FEASOR
+ I IBSEL[",5," D                    ; COMMUNITY CARE TORT FEASOR
+ . S IBCAT(53)=5
+ . S IBCAT(56)=5
+ . S IBCAT(59)=5
+ I IBSEL[6 S IBCAT(6)=6             ; WORKMEN'S COMP
+ I IBSEL[7 D                        ; COMMUNITY CARE NO-FAULT AUTO
+ . S IBCAT(54)=7
+ . S IBCAT(57)=7
+ . S IBCAT(60)=7
+ I IBSEL[8 S IBCAT(16)=8            ; CURRENT EMPLOYEE
+ I IBSEL[9 S IBCAT(15)=9            ; EX-EMPLOYEE
+ I IBSEL[10 S IBCAT(13)=10          ; FEDERAL AGENCIES-REFUND
+ I IBSEL[11 S IBCAT(14)=11          ; FEDERAL AGENCIES-REIMBURSEMENT
+ I IBSEL[12 S IBCAT(12)=12          ; MILITARY
+ I IBSEL[13 S IBCAT(20)=13          ; INTERAGENCY
+ I IBSEL[14 S IBCAT(17)=14          ; VENDOR
  ;
  ; Initialize the Summary Information
  S IBCAT="" F  S IBCAT=$O(IBCAT(IBCAT)) Q:IBCAT=""  D
  . S IBDIV=0
- . I IBSDV," 6 7 10 21 "[(" "_IBCAT_" ") D  Q
+ . I IBSDV,$$CATCHK(IBCAT) D  Q    ;IB*2.0*618
  . . F  S IBDIV=$O(VAUTD(IBDIV)) Q:IBDIV=""  D INIT^IBJDF63
  . D INIT^IBJDF63
  ;
@@ -34,11 +48,12 @@ ST ; - Tasked entry point.
  . . S IBQ=$$STOP^IBOUTL("Miscellaneous Bills Follow-Up Report")
  . S IBAR=$G(^PRCA(430,IBA,0)) Q:'IBAR
  . S IBCAT=+$P(IBAR,U,2) Q:'$D(IBCAT(IBCAT))  ;     Invalid AR category.
- . S IBCAT1=IBCAT(IBCAT) I IBCAT1<5,'$D(^DGCR(399,IBA,0)) Q  ; No claim.
- . I IBCAT1<5,$P($G(^DGCR(399,IBA,0)),U,13)=7 Q  ;      Cancelled claim.
+ . S IBCAT1=IBCAT(IBCAT),IBPDFLG=$$CATCHK(IBCAT)
+ . I IBPDFLG,'$D(^DGCR(399,IBA,0)) Q  ; No claim.
+ . I IBPDFLG,$P($G(^DGCR(399,IBA,0)),U,13)=7 Q  ;      Cancelled claim.
  . ;
  . ; - Get division, if necessary.
- . I IBCAT1>4 S IBDIV=0
+ . I (IBCAT1>7),(IBCAT1<15) S IBDIV=0   ;IB*2.0*618
  . E  D
  . . I 'IBSDV S IBDIV=0
  . . E  S IBDIV=$$DIV^IBJDF51(IBA)
@@ -62,7 +77,7 @@ ST ; - Tasked entry point.
  . ; - Get remaining AR/claim info and set indexes for detailed report.
  . S (IBFR,IBLP,IBOI,IBTO,IBCLM)="",IBIN=0
  . S IBBN=$P(IBAR,U),IBOR=$P(IBAR,U,3),IBDP=$P(IBAR,U,10)
- . I IBCAT1<5 D  Q:'IBI!('IBCLM)
+ . I IBPDFLG D  Q:'IBI!('IBCLM)     ;IB*2.0*618
  . . S IBI=+$G(^DGCR(399,IBA,"MP")) Q:'IBI  ; Get primary ins carrier.
  . . S IBIN=$P($G(^DIC(36,IBI,0)),U)_"@@"_IBI,DFN=$P($P(IBPTDB,U),"@@",2)
  . . S IBDP=$P(IBAR,U,10),IBCLM=$$CLMACT^IBJD(IBA,IBCAT) Q:IBCLM=""
@@ -73,7 +88,7 @@ ST ; - Tasked entry point.
  . . I '($D(^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U)))#10) D
  . . . S ^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U))=$P(IBPTDB,U,2)_" "_$P(IBPTDB,U,6)_U_$P(IBPTDB,U,3,4)_U_IBOI
  . . S ^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U),IBBN)=IBDP_U_IBFR_U_IBTO_U_IBOR_U_IBBA
- . E  D
+ . I 'IBPDFLG D
  . . S IBLP=+$P($$PYMT^IBJD1(IBA),U,2)
  . . I '($D(^TMP("IBJDF6D",$J,IBDIV,IBCAT,0,$P(IBPTDB,U)))#10) D
  . . . S ^TMP("IBJDF6D",$J,IBDIV,IBCAT,0,$P(IBPTDB,U))=$P(IBPTDB,U,2)_" "_$P(IBPTDB,U,6)
@@ -109,22 +124,22 @@ PTDB(X) ; - Find Patient/Debtor and decide to include the AR.
  ;             ^ Patient/Debtor name (1st 25 chars) ^ Age ^ SSN
  ;             ^ Processed by (File #200) ^ Current VA Employee? (*=Yes)
  N AGE,ALL,ARZ,CAT,DEB,DA,DFN,DIC,DIQ,DR,END,IBZ,INI,KEY,NAME,PRC,SSN
- N VA,VADM,VAERR,Y
+ N VA,VADM,VAERR,Y,IBPTFLG
  ;
  S Y="" I '$G(X) G PDQ
  S DFN=0,ARZ=$G(^PRCA(430,X,0)),CAT=$P(ARZ,"^",2)
  S (NAME,AGE,SSN,PRC)=""
  ;
- ; - Look for Patient(Medicare,Tort Feasor,Work's Comp,No-Fault Auto Acc)
- I " 6 7 10 21 "[(" "_CAT_" ") D  I 'DFN S Y="" G PDQ
+ ; - Look for Patient (Medicare,Tort Feasor,Work's Comp,No-Fault Auto Acc)
+ S IBPTFLG=$$CATCHK(CAT)   ;IB*2.0*618
+ I IBPTFLG D  I 'DFN S Y="" G PDQ
  . I '$D(^DGCR(399,X,0)) Q
  . S IBZ=^DGCR(399,X,0),DFN=+$P(IBZ,"^",2)
  . S INI=IBSNF,END=IBSNL,ALL=IBSNA
  . D DEM^VADPT S NAME=VADM(1),SSN=$P(VADM(2),"^",2),AGE=VADM(4)
  . S KEY=$S(IBSN="N":NAME,1:$P(SSN,"-",3))
- ;
- ; - Look for Debtor (All the other Categories)
- I " 6 7 10 21 "'[(" "_CAT_" ") D  I 'DFN S Y="" G PDQ
+ . ; - Look for Debtor (All the other Categories)
+ I 'IBPTFLG  D  I 'DFN S Y="" G PDQ
  . S DIC="^PRCA(430,",DA=X,DR="9;97",DIQ="DEB" D EN^DIQ1
  . S DFN=+$P(ARZ,"^",9) I 'DFN Q
  . S NAME=$G(DEB(430,DA,9)),PRC=$G(DEB(430,DA,97)),KEY=NAME
@@ -193,7 +208,15 @@ COM ; - Get bill comments.
  . S X2=0 F  S X2=$O(^PRCA(433,IBA1,7,X2)) Q:'X2  S COM($S(X1:X2+1,1:X2))=^(X2,0)
  . ;
  . S X1="" F  S X1=$O(COM(X1)) Q:X1=""  D
- . . S IBGLB=$S(IBCAT1<5:"IBJDF6P",1:"IBJDF6D")
+ . . S IBGLB=$S(IBCAT1<8:"IBJDF6P",1:"IBJDF6D")    ;IB*2.0*618
  . . S ^TMP(IBGLB,$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U),IBBN,IBA1,X1)=COM(X1)
  ;
  Q
+CATCHK(IBCAT) ; Check to see if the AR Category should be a patient or Debtor Category
+ ; Output: 1 - Patient, 0 - Debtor (default)
+ Q:IBCAT=6 1    ;Worker's Comp
+ Q:IBCAT=7 1    ;No Fault
+ Q:IBCAT=10 1   ;Tort
+ Q:IBCAT=21 1   ;Medicare
+ I (IBCAT>51),(IBCAT<61) Q 1  ; a WC, TORT or NF category for Community Care
+ Q 0

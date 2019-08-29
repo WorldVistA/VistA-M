@@ -1,5 +1,5 @@
 IBOHLS1 ;ALB/BAA - IB HELD CHARGES LIST MANAGER ;08-SEP-2015
- ;;2.0;INTEGRATED BILLING;**554,616**;21-MAR-94;Build 7
+ ;;2.0;INTEGRATED BILLING;**554,616,618**;21-MAR-94;Build 61
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 SORT ; get the data
@@ -81,9 +81,13 @@ PAT ; patient name
  ;
 BILLS ; find bills for charges on hold
  N IBT,IBATYPE,IBCHRG,IBTP
- S IBATYPE=$S($P($G(^IBE(350.1,+$P(IBND,U,3),0)),U)["OPT":"O",$P($G(^IBE(350.1,+IBND,U,3,0)),U)["PSO":"RX",1:"I")
+ ; Look up the type to match to using the Action Type name
+ S IBATYPE=$$FNDBTYP^IBOHLD1($P(IBND,"^",3))   ;IB*2.0*618
  S CNT=CNT+1
- S IBTP=$P(IBND,"^",3),IBTP=$P($G(^IBE(350.1,IBTP,0)),"^",1),IBTP=$S(IBTP["PSO NSC":"RXNSC",IBTP["PSO SC":"RX SC",1:$E(IBTP,4,7))
+ ; Patch IB*2.0*618 - added community care - action types to HELD CHARGES report
+ S IBTP=$P(IBND,"^",3),IBTP=$P($G(^IBE(350.1,IBTP,0)),"^",1)
+ S IBTP=$$IBACTYPE^IBOHLD2(IBTP)
+ ; end of Patch IB*2.0*618
  S ^TMP($J,"IBOHLS",NAME,CNT)=NAME_U_ID_U_IBTP_U_IBFR_U_IBTO_U_HDAYS_U_IBCHG
  S ^TMP($J,"IBOHLS",NAME,CNT,"IBND")=DFN_U_NAME_U_IBN_U_IBFR_U_IBTO_U_SINST_U_FLAG_U_CLINIC
  I IBATYPE="I" D INP

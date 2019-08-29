@@ -1,9 +1,9 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
- N IBGMT,IBGMTR
+ N IBGMT,IBGMTR,IBUSNM    ;IN*2.0*618 Add IBUSNM
  S (IBGMT,IBGMTR)=0
  S IBCOMMIT=0,IBEXSTAT=$$RXST^IBARXEU(DFN,DT),IBCATC=$$BILST^DGMTUB(DFN),IBCVAEL=$$CVA^IBAUTL5(DFN),IBLTCST=$$LTCST^IBAECU(DFN,DT,1)
  ;I 'IBCVAEL,'IBCATC,'$G(IBRX),+IBEXSTAT<1 W !!,"This patient has never been Means Test billable." S VALMBCK="" D PAUSE^VALM1 G ADDQ1
@@ -15,7 +15,17 @@ ADD ; Add a Charge protocol
  ;
  ; - ask for the charge type
  D CHTYP^IBECEA33 G:IBY<0 ADDQ
- N IBAFEE S:$P($G(^IBE(350.1,+$G(IBATYP),0)),"^",8)="FEE SERVICE/OUTPATIENT" IBAFEE=IBATYP
+ ;
+ ;***IB*2.0*618 change to add more Action Types to this list...
+ ; Allow user to add an extra "co-payment" charge if the Action Type
+ ; selected is an Outpatient FEE BASIS, CHOICE, CC or CCN charge type
+ N IBAFEE
+ S IBUSNM=$P($G(^IBE(350.1,+$G(IBATYP),0)),"^",8)
+ I IBUSNM'="" D
+ . I IBUSNM="FEE SERVICE/OUTPATIENT" S IBAFEE=IBATYP Q
+ . I (IBUSNM["CC")!(IBUSNM["CHOICE") D 
+ . . I (IBUSNM["OPT")!(IBUSNM["OUTPATIENT") S IBAFEE=IBATYP
+ ;*** END IB*2.0*618 ***
  ;
  ; - process CHAMPVA charges
  I IBXA=6 D CHMPVA^IBECEA32 G ADDQ
@@ -46,6 +56,9 @@ ADD ; Add a Charge protocol
  . N IBA,IBB,IBC,IBX
  . S IBLIM=DT D FR^IBECEAU2(0) Q:IBY<0
  . S (IBTO,IBEFDT)=IBFR
+ . ;
+ . ;PRCA*4.5*338 - if Community Care RX copay, set event date
+ . I (IBXA=5),(IBUSNM["RX"),((IBUSNM["CC")!(IBUSNM["CHOICE")) S IBEVDA="*",IBEVDT=IBEFDT
  . ;
  . ; ask tier if needed
  . S IBTIER=$$TIER^IBECEAU2(IBATYP,IBEFDT) Q:IBY<0
@@ -168,8 +181,8 @@ PROC ; - okay to proceed?
  ; - disposition the special inpatient billing case, if necessary
  I $G(IBSIBC) D CEA^IBAMTI1(IBSIBC,IBEVDA)
  ;
- ; - generate entry in file #354.71 and #350
- I IBXA=5 W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE_"^^^^^^^"_$G(IBTIER)) G:IBAM<0 ADDQ
+ ; - generate entry in file #354.71 (for VA RX only per IB*2.0*618) and #350
+ I IBXA=5,(IBUSNM'["CC"),(IBUSNM'["CHOICE") W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE_"^^^^^^^"_$G(IBTIER)) G:IBAM<0 ADDQ
  D ADD^IBECEAU3 G:IBY<0 ADDQ W "done."
  ;
  ; - pass the charge off to AR on-line

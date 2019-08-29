@@ -1,6 +1,6 @@
 IBOHLD2 ;ALB/CJM  -  REPORT OF CHARGES ON HOLD W/INS ;MAR 6,1991
- ;;2.0;INTEGRATED BILLING;**70,95,133,153,347,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**70,95,133,153,347,452,618**;21-MAR-94;Build 61
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$CLAIM^BPSBUTL supported by DBIA# 4719
 REPORT ;
@@ -81,7 +81,10 @@ PRNTCHG ; prints a charge
  ; action id
  S IBACT=+IBND
  ; type
- S IBTYPE=$P(IBND,"^",3),IBTYPE=$P($G(^IBE(350.1,IBTYPE,0)),"^",1),IBTYPE=$S(IBTYPE["PSO NSC":"RXNSC",IBTYPE["PSO SC":"RX SC",1:$E(IBTYPE,4,7))
+ ; begin of Patch IB*2.0*618 - added community care - action types to HELD CHARGES report
+ S IBTYPE=$P(IBND,"^",3),IBTYPE=$P($G(^IBE(350.1,IBTYPE,0)),"^",1)
+ S IBTYPE=$$IBACTYPE(IBTYPE)
+ ; end of Patch IB*2.0*618
  ; bill #
  S IBBILL=$P($P(IBND,"^",11),"-",2)
  ; rx info
@@ -117,3 +120,11 @@ HEADER ; writes the report header
  W ?20,"'*' = outpt visit on same day as Rx fill date",?85,"||",!,IBLINE,!
  S IBPAGE=IBPAGE+1
  Q
+IBACTYPE(IBTYPE) ; Patch IB*2.0*618 - added community care - action types to HELD CHARGES report
+ I IBTYPE["CC " Q "NVC"
+ I IBTYPE["CCN " Q "NVC"
+ I IBTYPE["CHOICE" Q "NVC"
+ I IBTYPE["PSO NSC" Q "RXNSC"
+ I IBTYPE["PSO SC" Q "RX SC"
+ Q $E(IBTYPE,4,7)
+ ;

@@ -1,5 +1,5 @@
 IBOHDT1 ;ALB/EMG  -  REPORT OF CHARGES ON HOLD > 60 DAYS-CONT ;FEB 18 1997
- ;;2.0;INTEGRATED BILLING;**70,95,347,452**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**70,95,347,452,618**;21-MAR-94;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 REPORT ;
@@ -41,7 +41,10 @@ PRNTCHG ; prints a charge
  ; action id
  S IBACT=+IBND
  ; type
- S IBTYPE=$P(IBND,"^",3),IBTYPE=$P($G(^IBE(350.1,IBTYPE,0)),"^",1),IBTYPE=$S(IBTYPE["PSO NSC":"RXNSC",IBTYPE["PSO SC":"RX SC",1:$E(IBTYPE,4,7))
+ ; Patch IB*2.0*618 - added community care - action types to DAYS ON HOLD report
+ S IBTYPE=$P(IBND,"^",3),IBTYPE=$P($G(^IBE(350.1,IBTYPE,0)),"^",1)
+ S IBTYPE=$$IBACTYPE^IBOHLD2(IBTYPE)
+ ; end of Patch IB*2.0*618
  ; bill #
  ; S IBBILL=$P($P(IBND,"^",11),"-",2)
  ;
@@ -66,7 +69,7 @@ PRNTCHG ; prints a charge
  S X1=DT,X2=$P(IBND1,"^",6) D ^%DTC S IBDAY=$J(X,7)
  ; charge$
  S IBCHG=$J(+$P(IBND,"^",7),9,2)
- W ?29,IBACT,?39,IBTYPE W:IBRX>0 ?46,"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),?68,$S(IBECME:"ECME #: "_IBECME,1:""),?95,"||",!
+ W ?29,IBACT,?40,IBTYPE W:IBRX>0 ?46,"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),?68,$S(IBECME:"ECME #: "_IBECME,1:""),?95,"||",!
  W:IBX=1 ?45,"*"
  W ?46,IBFR,?55,IBTO,?66,IBOHDT,?77,IBDAY,?86,IBCHG
  Q
@@ -78,7 +81,7 @@ HEADER ; writes the report header
  I IBPAGE>1 W !,@IOF
  W ?53,"CHARGES ON HOLD LONGER THAN "_IBNUM_" DAYS",?110,IBNOW,"  PAGE ",IBPAGE,!,"HELD CHARGES",?98,"CORRESPONDING THIRD PARTY BILLS",!,IBLINE
  W !,?46,"From/",?55,"To/",?66,"On Hold",?77,"# Days",?95,"||",?105,"AR"
- W !,"Name",?22,"Pt.ID",?29,"Act.ID",?39,"Type",?46,"Fill Dt",?55,"Rls Dt",?66,"Date",?77,"On Hold",?89,"Charge",?95,"||",?98,"Bill#",?105,"Status",?113,"Charge",?125,"Paid"
+ W !,"Name",?22,"Pt.ID",?29,"Act.ID",?40,"Type",?46,"Fill Dt",?55,"Rls Dt",?66,"Date",?77,"On Hold",?89,"Charge",?95,"||",?98,"Bill#",?105,"Status",?113,"Charge",?125,"Paid"
  W !,IBLINE,!
  W ?44,"'*' = outpt visit on same day as Rx fill date",?95,"||",!,IBLINE,!
  S IBPAGE=IBPAGE+1
