@@ -1,5 +1,5 @@
 PSOREJP5 ;ALB/BNT - Third Party Reject Additional Reject Information Screen ;02/14/11
- ;;7.0;OUTPATIENT PHARMACY;**359,421,512**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**359,421,512,528**;DEC 1997;Build 10
  ;
  ; Reference to $$BBILL^BPSBUTL and $$RESUBMIT^BPSBUTL supported by IA 4719
  ; Reference to BPSNCPD3 supported by IA 4560
@@ -171,3 +171,13 @@ REJ ; - DUR Information - called from REJ^PSOREJP1
  D SET^PSOREJP1("DUR TEXT",63,$S(PFLDT="":1,1:0))
  I PFLDT'="" D SETLN^PSOREJP1("Last Fill Date : "_PFLDT_" (from payer)",,1,18)
  Q
+ ;
+PSOETEC(RX,FILL) ; Returns flag for TRICARE or CHAMPVA non-billable claims 
+ ;This function is used to determine how a claim is stored in the PSO AUDIT LOG (file #56.87),
+ ;it is not necessary to check to see if the claim has a reject that is resolved or unresolved
+ ; Returns: 1 - if rejection code is eT or eC (pseudo-reject code) / 0 - otherwise
+ I '$G(RX) Q 0
+ I $D(^PSRX(RX,"REJ","B","eT")) Q 1
+ I $D(^PSRX(RX,"REJ","B","eC")) Q 1
+ Q 0
+ ;

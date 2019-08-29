@@ -1,5 +1,5 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512,528**;DEC 1997;Build 10
  ;Reference to GETDAT^BPSBUTL supported by IA 4719
  ;Reference to COM^BPSSCRU3 supported by IA 6214
  ;Reference to IEN59^BPSOSRX supported by IA 4412
@@ -65,9 +65,9 @@ COM ; Builds the Comments section in the Reject Information Screen.
  . Q
  ;
  ; At this point, all of the comments to be displayed are in the array
- ; PSOARRAY, sorted by date/time.  If that array is empty, then Quit
- ; out.  Otherwise, loop through the comments backwards to display in
- ; reverse chronological order.
+ ; PSOARRAY, sorted by date/time.  If that array is empty, then skip
+ ; down to PTC.  Otherwise, loop through the comments backwards to
+ ; display in reverse chronological order.
  ;
  I '$O(PSOARRAY("")) G PTC
  D SETLN^PSOREJP1()
@@ -391,7 +391,7 @@ DC ;Discontinue TRICARE Rx
  ;
 FILLTR ;TRICARE/CHAMPVA specific logic  ;cnf, PSO*7*358
  ;COM is not new'd so the variable can be used in FILL tag
- N CONT,PSOET,PSQSTR
+ N CONT,PSOETEC,PSQSTR
  ;
 FILLTR2 ;Use for looping if user enters ^ in required comment field  ;cnf, PSO*7*358
  ;
@@ -411,8 +411,8 @@ FILLTR2 ;Use for looping if user enters ^ in required comment field  ;cnf, PSO*7
  S COM=$$TCOM(RX,FILL) G:COM="^" FILLTR2                    ;loop back to "continue?" question if ^ entry
  ;
  ;audit log
- S PSOET=$$PSOET(RX,FILL)
- D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOET:"N",1:"R"),$S($G(PSOTRIC)=1:"T",$G(PSOTRIC)=2:"C",1:""))
+ S PSOETEC=$$PSOETEC^PSOREJP5(RX,FILL)
+ D AUDIT^PSOTRI(RX,FILL,,COM,$S(PSOETEC:"N",1:"R"),$S($G(PSOTRIC)=1:"T",$G(PSOTRIC)=2:"C",1:""))
  Q
  ;
 TCOM(RX,RFL) ; - Ask for TRICARE or CHAMPVA Justification
@@ -442,7 +442,7 @@ SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  ;         CLA - Submission Clarification Code #1 ~ SCC #2 ~ SCC #3 
  ;         PA - Prior Auth Type ^ Prior Auth Number 
  ;         PSOET - 1 if eT/eC pseudo-reject on claim
- N ALTXT,COM,DIR,PSO59,PSOCOB,PSOPLAN,PSORTYPE,RESP,SMA
+ N ALTXT,COM,DIR,PSO59,PSOCOB,PSOETEC,PSOPLAN,PSORTYPE,RESP,SMA
  S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
  S DIR("A",1)="     When you confirm, a new claim will be submitted for"
  S DIR("A",2)="     the prescription and this REJECT will be marked"
@@ -461,9 +461,13 @@ SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  S PSO59=$$IEN59^BPSOSRX(RX,FILL,PSOCOB)
  S PSOPLAN=$$GETPL59^BPSPRRX5(PSO59)  ; IA 6939
  S PSORTYPE=$$GETRTP59^BPSPRRX5(PSO59)  ; IA 6939
+ ; Check for Tricare/Champva Non-Billable eT,eC pseudo reject set PSOETEC=1
+ S PSOETEC=""
+ I ($D(^PSRX(RX,"REJ","B","eT")))!($D(^PSRX(RX,"REJ","B","eC"))) S PSOETEC=1
  ;
  D ECMESND^PSOBPSU1(RX,FILL,,$S($G(PSOET):"RSNB",1:"ED"),$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),PSOCOB,,PSOPLAN,PSORTYPE)
- I $G(RESP) D  Q
+ ;If PSOETEC=1 RESP will exist because its a Non-Billable Rx, do not Quit continue processing
+ I PSOETEC'=1 I $G(RESP) D  Q
  . W !!?10,"Claim could not be submitted. Please try again later!"
  . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2
  ;

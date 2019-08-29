@@ -1,5 +1,5 @@
 IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPDP ;Jun 06, 2014@19:13:12
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534,550,624**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to ECMEACT^PSOBPSU1 supported by IA# 4702
@@ -31,14 +31,21 @@ CT(DFN,IBRXN,IBFIL,IBADT,IBRMARK) ; files in claims tracking
  S IBEABD=$$EABD^IBTUTL(IBRXTYP,$$FMADD^XLFDT(IBADT,60))
  ; space out earliest auto bill date
  ;
- ; ROI check
+ ; ROI check.  The variable IBSCROI will be set to:
+ ; '1' if NOT REQUIRED    '2' if OBTAINED
+ ; '3' if REQUIRED        '4' if REFUSED
  N IBSCROI,IBDRUG,IBDEA,IBRXDATA
  S IBRXDATA=$$RXZERO^IBRXUTL(DFN,IBRXN)
  S IBDRUG=$P(IBRXDATA,U,6)
+ ;
+ ; $$SENS^IBNCPDR returns 1 if the drug is sensitive diagnosis drug
  I $$SENS^IBNCPDR(IBDRUG) D
  . N IBINS,IBFLG,IBINSP
  . D ALL^IBCNS1(DFN,"IBINS",1,IBADT,1)
  . S IBINSP=$O(IBINS("S",1,99),-1) Q:IBINSP=""
+ . ; If the Date of Service (DOS) is on or after to the Mission Act
+ . ; implementation date (MAID), skip ROI check.
+ . I $$MACHK^IBNCPDR4($G(IBADT)) S (IBFLG,IBSCROI)=1,IBRMARK="" Q
  . S IBFLG=$$ROI^IBNCPDR4(DFN,$G(IBDRUG),+$G(IBINS(IBINSP,"0")),$G(IBADT))
  . I 'IBFLG,$G(IBRMARK)="" S IBRMARK="ROI NOT OBTAINED"     ; IB*2*550
  . I 'IBFLG S IBSCROI=3
@@ -104,7 +111,7 @@ RT(DFN,IBDT,IBINS,IBPTYP) ; returns rate type to use for bill
  ;        - (V=VETERAN, T=TRICARE, C=CHAMPVA)
  ;        - NOT the same thing as [3] of this function
  ;
- N VAEL,VAERR,IBPT,IBRT,IBX,IBE,IBI,IBRET,IBRS
+ N IBPT,IBRT,IBE,IBI,IBRET,IBRS,IBX,VAEL,VAERR
  S IBPTYP=""
  D ELIG^VADPT
  ;
@@ -131,13 +138,15 @@ RT(DFN,IBDT,IBINS,IBPTYP) ; returns rate type to use for bill
  ;  -  determine insurance policies - build the IBI array
  S IBX=0 F  S IBX=$O(IBINS(IBX)) Q:'IBX  S IBI=$P($G(^IBE(355.1,+$P($G(IBINS(IBX,355.3)),U,9),0)),U,1) S IBI($S(IBI="TRICARE":"T",IBI="CHAMPVA":"C",1:"O"))=""
  ;
- ;  -  if patient is only TRICARE elig and only TRICARE ins bill for TRICARE
- I $D(IBE("T")),'$D(IBE("O")),'$D(IBE("C")),$D(IBI("T")),'$D(IBI("O")),'$D(IBI("C")) S IBRT=$O(^DGCR(399.3,"B","TRICARE",0)) Q:IBRT IBRT_"^C^T"
+ ; If patient is only TRICARE eligible, and has TRICARE insurance,
+ ; regardless of the presence of other insurance, set eligibility to
+ ; TRICARE and Quit.
+ I $D(IBE("T")),'$D(IBE("O")),'$D(IBE("C")),$D(IBI("T")) S IBRT=$O(^DGCR(399.3,"B","TRICARE",0)) Q:IBRT IBRT_"^C^T"
  ;
  ; IB*2*452 - check for CHAMPVA
  I $D(IBE("C")),$D(IBI("C")) S IBRT=$O(^DGCR(399.3,"B","CHAMPVA",0)) Q:IBRT IBRT_"^C^C"
  ;
- Q $S($D(IBRT):IBRT,1:"0^unable to determine rate type")
+ Q "0^unable to determine rate type"
  ;
  ;
 BS() ; returns the mccr utility to use

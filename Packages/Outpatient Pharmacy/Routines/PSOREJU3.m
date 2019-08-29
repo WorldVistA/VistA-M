@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513,482,528**;DEC 1997;Build 10
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;Reference to LOG^BPSOSL supported by ICR# 6764
@@ -39,10 +39,21 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX) ;check to see if Rx is non-billable or in an "In 
  Q
  ;
 TRIC2 ;
- N ACTION,REJCOD,REJ,DIR,DIRUT,REA,DA,PSCAN,PSOTRIC,ZZZ
- N PSORESP,PSOIT
+ N ACTION,DA,DIR,DIRUT,PSCAN,PSOIT,PSORESP,PSOTRIC
+ N REA,REJ,REJCOD,REJDATA,X,ZZZ
  S PSOTRIC=1,REJ=9999999999
- I $G(CMOP)&($G(PSONPROG)) D TACT Q 
+ I $G(CMOP)&($G(PSONPROG)) D TACT Q
+ ;
+ ; If the prescription is non-billable, put the eT/eC reject on the
+ ; Prescription (WRKLST^PSOREJU4), then determine the reject number.
+ ;
+ I +RESP=2 D
+ . D WRKLST^PSOREJU4(RX,RFL,,DUZ,DT,1,"",RESP)
+ . S X=$$FIND^PSOREJUT(RX,RFL,.REJDATA,"eT,eC",1)
+ . S REJ=0
+ . F  S REJ=$O(REJDATA(REJ)) Q:'REJ  I "eT,eC"[REJDATA(REJ,"CODE") Q
+ . Q
+ ;
  Q:$G(CMOP)
  I 'NFROM D DISPLAY(RX,REJ)
  I 'NFROM&($G(PSONPROG)) D  D SUSP Q
@@ -55,7 +66,7 @@ TRIC3 ;
  D MSG
  I FROM="PL"!(FROM="PC") D SUSP Q
  ;cnf, PSO*7*358, add code for options
- N ACTION,DIR,DIRUT,OPTS,DEF,COM
+ N ACTION,COM,DEF,DIR,DIRUT,OPTS
 TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
  S PSORESP=$P($G(RESP),U,2)
  I PSORESP["NO ACTIVE/VALID ROI" S DEF="Q"  ;IB routine IBNCPDP1 contains this text.
@@ -69,15 +80,14 @@ TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
  ;
  S ACTION=Y
  I ACTION="D" S ACTION=$$DC^PSOREJU1(RX,ACTION)    ;cnf, PSO*7*358
- I ACTION="Q" D WRKLST^PSOREJU4(RX,RFL,,DUZ,DT,1,"",RESP)    ;cnf, PSO*7*358
  S PSOIT=""
  I ACTION="I" S PSOIT=$$IGNORE^PSOREJU1(RX,RFL)
  I $P(PSOIT,"^")=0 D  G TRIC4
  . I $P(PSOIT,"^",2)'="" D
  . . W $C(7),!,"Gross Amount Due is $"_$P(PSOIT,"^",2)_". IGNORE requires EPHARMACY SITE MANAGER key."
  I ACTION="I" G TRIC4:'$$CONT^PSOREJU1() S COM=$$TCOM^PSOREJP3(RX,RFL) G TRIC4:COM="^" G TRIC4:'$$SIG^PSOREJU1() D
- . D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,COM)   ;TRICARE/CHAMPVA non-billable should have only 1 reject - eT/eC
- . D AUDIT^PSOTRI(RX,RFL,,COM,$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R"),$P(RESP,"^",3))
+ . D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,COM,"","","","","",1)   ;TRICARE/CHAMPVA non-billable should have only 1 reject - eT/eC
+ . D AUDIT^PSOTRI(RX,RFL,,COM,$S($$PSOETEC^PSOREJP5(RX,RFL):"N",1:"R"),$P(RESP,"^",3))
  Q
  ;
 MSG ;

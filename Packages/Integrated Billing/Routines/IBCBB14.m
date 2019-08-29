@@ -1,5 +1,5 @@
 IBCBB14 ;ALB/WCJ - CONTINUATION OF EDIT CHECK ROUTINE FOR EPHARM ;15 Mar 2018  9:50 PM
- ;;2.0;INTEGRATED BILLING;**591,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**591,592,624**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -23,9 +23,10 @@ RXNPI(IBIFN) ; check for multiple pharmacy npi's on the same bill
  I IBY>1 D WARN^IBCBB11("Bill has prescriptions resulting from "_IBY_" different NPI locations")
  Q
  ;
-ROICHK(IBIFN,IBDFN,IBINS) ; IB*2.0*384 - check prescriptions that contain the
- ; SENSITIVE DIAGNOSIS DRUG field #87 in the DRUG File #50 set to 1 against
- ; the Claims Tracking ROI file (#356.25) to see if an ROI is on file
+ROICHK(IBIFN,IBDFN,IBINS) ; ROI Check
+ ; Verify that an ROI is on file if the drug is flagged as sensitive.
+ ; No ROI is required if the Date of Service is on or after the
+ ; Mission Act Implementation Date (1/28/2019).
  ; input - IBIFN = IEN of the Bill/Claims file (#399)
  ;         IBDFN = IEN of the patient
  ;         IBINS = IEN of the payer insurance company (#36)
@@ -39,6 +40,8 @@ ROICHK(IBIFN,IBDFN,IBINS) ; IB*2.0*384 - check prescriptions that contain the
  .S IBDT=$P(IBY0,U,3),IBDRUG=$P(IBY0,U,4)
  .D ZERO^IBRXUTL(IBDRUG)
  .I $$SENS^IBNCPDR(IBDRUG) D  ; Sensitive Diagnosis Drug - check for ROI
+ .. ; Skip ROI check if the DOS is on or after the Mission Act date.
+ .. I $$MACHK^IBNCPDR4(IBDT) Q
  .. I $$ROI^IBNCPDR4(IBDFN,IBDRUG,IBINS,IBDT) Q  ;ROI is on file
  .. D WARN^IBCBB11("ROI not on file for prescription "_$$RXAPI1^IBNCPUT1(IBRXIEN,.01,"E"))
  .. S ROIQ=1

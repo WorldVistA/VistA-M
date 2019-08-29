@@ -1,5 +1,5 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617**;21-MAR-94;Build 43
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617,624**;21-MAR-94;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
@@ -51,7 +51,6 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  . S IBRES=1
  . D SETINSUR(IBADT,IBRT,IBELIG,.IBINS,.IBD,.IBRES)
  . Q
- ;
  ; additional data integrity checks
  S IBRXN=+$G(IBD("IEN")) I 'IBRXN S IBRES="0^No Rx IEN" G RXQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G RXQ
@@ -98,7 +97,11 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  I '$$BILLABLE^IBNCPDP($G(IBD("DRUG")),$P(IBRT,U,3),.IBRMARK,.IBD) S IBRES="0^"_IBRMARK D CT G RXQ
  ;
  ; -- check for sensitive diagnosis drug and ROI on file
+ ; $$SENS^IBNCPDR returns 1 if the drug is a sensitive diagnosis drug
  I $$SENS^IBNCPDR($G(IBD("DRUG")),.IBD),$D(IBD("INS",1,3)) D
+ . ; If the Date of Service is on or after the Mission Act
+ . ; implementation date do not perform ROI checks.
+ . I $$MACHK^IBNCPDR4(IBADT) Q
  . I '$$ROI^IBNCPDR4(DFN,$G(IBD("DRUG")),+$P($G(IBD("INS",1,3)),U,5),IBADT) D  Q
  .. ;
  .. ; no active ROI found for patient/drug/insurance/DOS
