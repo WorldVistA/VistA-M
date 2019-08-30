@@ -1,5 +1,5 @@
-XUSTERM ;SEA/AMF/WDE - DEACTIVATE USER ;01/04/12
- ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527,588,645**;Jul 10, 1995;Build 1
+XUSTERM ;SEA/AMF/WDE - DEACTIVATE USER ;10/01/18
+ ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527,588,645,693**;Jul 10, 1995;Build 13
  ;;"Per VHA Directive 2004-038, this routine should not be modified".
 LKUP N DIRUT,DIC,DIR,XUDA,DA
  S DIC=200,DIC("S")="I $L($P(^(0),U,3))",DIC(0)="AEQMZ",DIC("A")="Select USER to be deactivated: "
@@ -57,7 +57,10 @@ ACT ;First let others clean-up, Then do our part.
  L +^VA(200,XUDA,0):6
  ;Delete Verify code, prevents user from logging on p645
  ;need Access code for XUSTERM1 to find terminated users
+ N XUSVC S XUSVC=$$GET1^DIQ(200,XUDA,11) ;p693 prevent the Bulletin fires for users had already been deactivated
  S DIE=200,DA=XUDA,DR="11///@" D ^DIE
+ ;send a bullentin to ISO SECURITY mail group, p693
+ I $L(XUSVC)>0 D SEND^XUSTERM1
  ;check Purge flag, quit if no p645
  I '$$GET^XPAR("SYS","XU645",1,"Q") L -^VA(200,XUDA,0) Q 
  ;Delete other fields
@@ -86,7 +89,6 @@ ACT1 K ^DISV(XUDA) ; WARNING: This only gets ^DISV entries on current CPU
  ;
 ACT2 ;XUACT(5) All Mail access,  Mail groups
  D MAIL
- D SEND^XUSTERM1
  W:XUVE "... DONE"
  Q
  ;
