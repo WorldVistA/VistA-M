@@ -1,5 +1,5 @@
 RMPRPIX1 ;HINCIO/ODJ - PIP HCPCS ITEM FILE 661.11 APIs ;3/8/01
- ;;3.0;PROSTHETICS;**61**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**61,201**;Feb 09, 1996;Build 4
  Q
  ;
  ;***** IEN - get the ien for a HCPCS item
@@ -52,10 +52,11 @@ CRE(RMPR) ;
  S RMPR("IEN")=RMPRIEN(1)
  ;
  ; Update Inventory Flag
+ ; RMPR*3.0*201 Removes Inventory Flag update
  K RMPRFDA,RMPRFME
- S RMPRIEN=$O(^RMPR(661.1,"B",RMPR("HCPCS"),""))_","
- S RMPRFDA(661.1,RMPRIEN,10)=1
- D FILE^DIE("","RMPRFDA","RMPRFME")
+ ;S RMPRIEN=$O(^RMPR(661.1,"B",RMPR("HCPCS"),""))_","
+ ;S RMPRFDA(661.1,RMPRIEN,10)=1
+ ;D FILE^DIE("","RMPRFDA","RMPRFME")
 CREX Q RMPRCRE
  ;
  ;***** UPD - Update HCPCS Item record (661.11)
