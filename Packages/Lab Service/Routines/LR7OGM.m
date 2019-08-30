@@ -1,5 +1,6 @@
 LR7OGM ;DALOI/STAFF- Interim report rpc memo ;11/19/09  17:38
- ;;5.2;LAB SERVICE;**187,220,312,286,395,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**187,220,312,286,395,350,523**;Sep 27, 1994;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ;
 TEST ; test use only
  N TESTS,I K TESTS,^TMP("LR7OGX",$J)
@@ -50,6 +51,8 @@ SELECT(DFN,SDATE,EDATE,TESTS,FORMAT,MICROCHK) ;
  D DEMO^LR7OGU(DFN,.LRDFN,.PNM,.AGE,.SEX)
  I '$G(LRDFN) Q
  D NEWOLD^LR7OGMU(.NEWOLD,DFN)
+ ;LR*523 Make NEWOLD date format match IDT format - reverse date
+ S $P(NEWOLD,U)=9999999-$P(NEWOLD,U),$P(NEWOLD,U,2)=9999999-$P(NEWOLD,U,2)
  S ^TMP("LR7OG",$J,"G")=DFN_U_PNM_U_LRDFN_U_AGE_U_SEX_"^8"
  S ALL=$S($O(TESTS(0)):0,1:1)
  I 'ALL D TESTSGET^LR7OGU(.TESTS,.MICROSUB)
@@ -125,6 +128,10 @@ SELECT(DFN,SDATE,EDATE,TESTS,FORMAT,MICROCHK) ;
  . . . . . . . I $P(NEWOLD,U),$P(NEWOLD,U)'=IDT D  Q
  . . . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
  . . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=1
+ . . . . . . ;LR 523 Check if a CH test at same date/time is displayable
+ . . . . . . ; necessary to correctly enable/disable NEXT button
+ . . . . . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,4,.DONE,.SKIP)
+ . . . . . . I SKIP S SKIP=0,$P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=($S(DIRECT=-1:1,1:2)) Q
  . . . . . . S $P(^TMP("LR7OGX",$J,"OUTPUT",1),U,9)=3
  . . . . . D CH^LR7OGMC(LRDFN,IDT,ALL,.OUTCNT,FORMAT,.DONE,.SKIP)
  . . . . . I SKIP S SKIP=0 D  Q
