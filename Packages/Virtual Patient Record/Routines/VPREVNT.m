@@ -1,5 +1,5 @@
 VPREVNT ;SLC/MKB -- VistA event listeners ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15**;Sep 01, 2011;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -153,9 +153,9 @@ XQOR(MSG,FD) ; -- CPRS protocol event listener
  N VPRMSG,MSH,VPRPKG,VPRSDA,DFN,ORC,ACT
  S VPRMSG=$S($L($G(MSG)):MSG,1:"MSG") Q:'$O(@VPRMSG@(0))
  S MSH=0 F  S MSH=$O(@VPRMSG@(MSH)) Q:MSH'>0  Q:$E(@VPRMSG@(MSH),1,3)="MSH"
- Q:'MSH  Q:'$L($G(@VPRMSG@(MSH)))
- S VPRPKG=$S($G(FD):$P(@VPRMSG@(MSH),"|",5),1:$P(@VPRMSG@(MSH),"|",3))
- S VPRSDA=$$ORDCONT(VPRPKG),DFN=$$PID Q:DFN<1
+ Q:'MSH  Q:'$L($G(@VPRMSG@(MSH)))  S DFN=$$PID Q:DFN<1
+ ;S VPRPKG=$S($G(FD):$P(@VPRMSG@(MSH),"|",5),1:$P(@VPRMSG@(MSH),"|",3))
+ ;S VPRSDA=$$ORDCONT(VPRPKG),DFN=$$PID Q:DFN<1
  S ORC=MSH F  S ORC=$O(@VPRMSG@(+ORC)) Q:ORC'>0  I $E($G(@VPRMSG@(ORC)),1,3)="ORC" D
  . N ORDCNTRL,PKGIFN,ORIFN
  . S ORC=ORC_U_@VPRMSG@(ORC),ORDCNTRL=$TR($P(ORC,"|",2),"@","P")
@@ -164,30 +164,31 @@ XQOR(MSG,FD) ; -- CPRS protocol event listener
  . I $G(FD),ORDCNTRL'="NA" Q  ;only want NA msg, from CPRS
  . S ACT=$S(ORDCNTRL="OC":"@",1:"")
  . ; Update *Order containers
- . S ORIFN=+$P($P(ORC,"|",3),U),PKGIFN=$P($P(ORC,"|",4),U)
+ . S ORIFN=+$P($P(ORC,"|",3),U),PKGIFN=$G(^OR(100,ORIFN,4))
  . Q:$O(^OR(100,ORIFN,2,0))  ;should not be getting parent orders
+ . S VPRPKG=$$NMSP(ORIFN),VPRSDA=$$ORDCONT(VPRPKG)
  . D POST^VPRHS(DFN,VPRSDA,ORIFN_";100",ACT)
  . I ORIFN D  ;update replaced order
  .. N ORIG S ORIG=+$P($G(^OR(100,ORIFN,3)),U,5)
  .. I ORIG D POST^VPRHS(DFN,VPRSDA,ORIG_";100")
  . ; Update Referral or Document containers
- . I VPRPKG="CONSULTS"!(VPRPKG="PROCEDURES") D GMRC
+ . I VPRPKG="GMRC",PKGIFN D GMRC
  . Q:ORDCNTRL'="RE"
- . I VPRPKG="RADIOLOGY"!(VPRPKG="IMAGING") D RAD
- . I VPRPKG="LABORATORY" D LRD
+ . I $E(VPRPKG,1,2)="RA" D RAD Q
+ . I $E(VPRPKG,1,2)="LR" D LRD Q
  Q
  ;
-ORDCONT(NAME) ; -- Returns SDA Order container name
- I NAME="LABORATORY"  Q "LabOrder"
- I NAME="PHARMACY"    Q "Medication"
- I NAME="RADIOLOGY"   Q "RadOrder"
- I NAME="IMAGING"     Q "RadOrder"
- Q "OtherOrder"
+NMSP(IFN) ; -- Returns package namespace from pointer
+ N X,Y S X=$P($G(^OR(100,+$G(IFN),0)),U,14)
+ S Y=$$GET1^DIQ(9.4,+X_",",1)
+ Q Y
  ;
- I NAME="CONSULTS"    Q "Referral"
- I NAME="PROCEDURES"  Q "Referral"
- I NAME="ORDER ENTRY" Q "OtherOrder"
- I NAME="DIETETICS"   Q "OtherOrder"
+ORDCONT(NMSP) ; -- Returns SDA Order container name
+ S NMSP=$G(NMSP)
+ I $E(NMSP,1,2)="LR"  Q "LabOrder"
+ I $E(NMSP,1,2)="PS"  Q "Medication"
+ I $E(NMSP,1,2)="RA"  Q "RadOrder"
+ Q "OtherOrder"
  ;
 GMRC ; -- Referrals
  N VST S VST=$$GET1^DIQ(123,+PKGIFN,"16:.03","I")
