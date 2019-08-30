@@ -1,5 +1,7 @@
-HLTPCK1A ;SAW/AISC-Message Header Validation Routine for HL7 (Con't) ;03/24/2004  15:12
- ;;1.6;HEALTH LEVEL SEVEN;**2,25,34,57,59,108**;Oct 13, 1995
+HLTPCK1A ;SAW/AISC - Message Header Validation Routine for HL7 (Con't) ;03/24/2004  15:12
+ ;;1.6;HEALTH LEVEL SEVEN;**2,25,34,57,59,108,171**;Oct 13, 1995;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  S ERR=""
 SP ;Get local site parameters
  S HLPARAM=$$PARAM^HLCS2,HLDOM=$P(HLPARAM,U,2),HLINSTN=$P(HLPARAM,U,6)
@@ -104,11 +106,18 @@ MSA ;Get receiving application data from Protocol file
  I ARY("MTP") D
  .;Find Server Protocol - based on sending application, message type,
  .;event type and version ID
- .I ARY("ETP") S ARY("EID")=+$O(^ORD(101,"AHL1",ARY("SAP"),ARY("MTP"),ARY("ETP"),ARY("VEP"),0))
+ .;I ARY("ETP") S ARY("EID")=+$O(^ORD(101,"AHL1",ARY("SAP"),ARY("MTP"),ARY("ETP"),ARY("VEP"),0)) ; Removed in HL*1.6*171
  .;
  .;Find Server Protocol - based on sending application, message type,
  .;and version ID
- .I 'ARY("ETP") S ARY("EID")=+$O(^ORD(101,"AHL21",ARY("SAP"),ARY("MTP"),ARY("VEP"),0))
+ .;I 'ARY("ETP") S ARY("EID")=+$O(^ORD(101,"AHL21",ARY("SAP"),ARY("MTP"),ARY("VEP"),0)) ; Removed in HL*1.6*171
+ .;
+ .N HL772 S HL772=0 F  S HL772=$O(^HL(772,"C",ARY("MID"),HL772)) Q:HL772'>0  D  Q:ARY("EID")  ; HL*171 - Get file #772 IEN from "C" xref using message ID
+ ..S ARY("EID")=HL772
+ ..;HL*171 - If #772 entry matches date/time and sending application of message, save protocol from RELATED EVENT PROTOCOL field (#10) to ARY("EID")
+ ..S:ARY("EID") ARY("EID")=$S($P(^HL(772,ARY("EID"),0),U,1)=$$HL7TFM^XLFDT(ARY("DTM"))&($P(^HL(772,ARY("EID"),0),U,2)=ARY("SAP")):$P(^HL(772,ARY("EID"),0),U,10),1:"")
+ .;HL*171 - If message was not found in file #772, try file #773
+ .I '$G(ARY("EID")) S ARY("EID")=$O(^HLMA("C",ARY("MID"),0)) S:ARY("EID") ARY("EID")=$P(^HLMA(ARY("EID"),0),U) S:ARY("EID") ARY("EID")=$P(^HL(772,ARY("EID"),0),U,10)
  .;
  .I ('ARY("EID")) S:(ERR="") ERR="Event Protocol not found" Q
  .;Find Client Protocol - in ITEM multiple of Server Protocol
