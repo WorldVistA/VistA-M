@@ -1,5 +1,5 @@
-ECSCPT1 ;ALB/JAM - Event Code Screens with CPT Codes ;1/26/16  16:13
- ;;2.0;EVENT CAPTURE;**72,95,119,131**;8 May 96;Build 13
+ECSCPT1 ;ALB/JAM - Event Code Screens with CPT Codes ;10/19/17  15:50
+ ;;2.0;EVENT CAPTURE;**72,95,119,131,139**;8 May 96;Build 7
 EN ;entry point
  N UCNT,ECDO,ECCO,ECNT,ECINDT,ECP0
  S (ECMORE,ECNT,ECDO,ECCO)=0,ECPG=$G(ECPG,1),ECCPT=$G(ECCPT,"B")
@@ -47,6 +47,9 @@ PROC ;
 SETP ;set procs
  S ECPSY=+$O(^ECJ("AP",ECL,ECD,ECC,ECP,"")),ECPI=""
  S ECPSYN=$P($G(^ECJ(ECPSY,"PRO")),"^",2),ECFILE=$P(ECP,";",2)
+ S ECACIEN=+$P($G(^ECJ(ECPSY,"PRO")),U,4) ;Get clinic IEN
+ S ECAC=$$GET1^DIQ(44,ECACIEN,.01) ;139 Get associated clinic
+ S ECMCA=$$GET1^DIQ(728.442,$P($G(^ECX(728.44,+ECACIEN,0)),U,14),.01) ;139 Get MCA Labor Code for associated clinic
  S ECFILE=$S($E(ECFILE)="I":81,$E(ECFILE)="E":725,1:"")
  I ECFILE="" Q
  S (ECPN,ECPT,NATN)="",ECPI=0
@@ -64,9 +67,11 @@ SETP ;set procs
  I ECD'=ECDO D HEADER S ECDO=ECD
  I ECC'=ECCO D  S ECCO=ECC I ECOUT Q
  .W !!,"Category:  "_ECCN D:$Y+4>IOSL CONTD
- S ECPN=$S(ECPSYN]"":ECPSYN,1:ECPN),ECNT=ECNT+1,UCNT=UCNT+1
+ S ECNT=ECNT+1,UCNT=UCNT+1 ;139
  W !,"Procedure: ",$E(ECPN,1,30)," (",$S(ECFILE=81:"CPT",1:"EC"),")",?48,"Nat'l #: ",NATN,?64,"CPT: ",ECPT
  I ECCPT="B",'ECINDT W ?70," *I*"
+ I $G(ECPSYN)'="" W !,"  Synonym: ",ECPSYN ;139
+ I $G(ECAC)'="" W !,"  Associated Clinic: ",ECAC,?52,"MCA Labor Code: ",ECMCA ;139
  D:($Y+3)>IOSL CONTD I ECOUT Q
  Q
 CONTD ;Check whether to continue or exit
@@ -85,5 +90,5 @@ MORE I ECMORE W !!,"Category:  "_ECCN
  ;
 EXPORT ;Section added in patch 119
  S CNT=CNT+1
- S ^TMP($J,"ECRPT",CNT)=ECLN_U_ECDN_U_ECCN_U_ECPT_$S('ECINDT:" **Inactive**",1:"")_U_NATN_U_$S(ECPSYN]"":ECPSYN,1:ECPN)_" ("_$S(ECFILE=81:"CPT",1:"EC")_")"
+ S ^TMP($J,"ECRPT",CNT)=ECLN_U_ECDN_U_ECCN_U_ECPT_$S('ECINDT:" **Inactive**",1:"")_U_NATN_U_ECPN_" ("_$S(ECFILE=81:"CPT",1:"EC")_")"_U_ECPSYN_U_ECAC_U_ECMCA ;139
  Q

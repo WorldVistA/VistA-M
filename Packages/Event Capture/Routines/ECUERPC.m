@@ -1,5 +1,5 @@
-ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;6/20/16  12:13
- ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114,126,129,131**;8 May 96;Build 13
+ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;1/25/18  12:38
+ ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114,126,129,131,139**;8 May 96;Build 7
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR5747
@@ -7,11 +7,15 @@ ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;6/20/16  12:13
 USRUNT(RESULTS,ECARY) ;
  ;This broker call returns an array of DSS units for a user & location
  ;        RPC: EC GETUSRDSSUNIT
- ;INPUTS     ECARY  - Contains the following subscripted elements
- ;            1. ECL   - Location IEN (if define gives User's DSS 
- ;                       units for a location)
- ;            2. ECDUZ - New Person IEN (if define gives list of 
- ;                       DSS Units available to user)
+ ;INPUTS     ECARY  - Contains the following delimited elements
+ ;            1. ECL      - Location IEN (if define gives User's DSS 
+ ;                          units for a location)
+ ;            2. ECDUZ    - New Person IEN (if define gives list of 
+ ;                          DSS Units available to user)
+ ;            3. ECSUMUSR - Indicates which report is requesting this
+ ;                          list. (optional)
+ ;            4. ECDUST   - Indicates DSS unit status requested (A)ctive
+ ;                          (I)nactive or (B)oth. (optional)
  ;
  ;OUTPUTS     RESULTS - Array of DSS Units. Data pieces as follows:-
  ;            PIECE - Description
@@ -19,12 +23,13 @@ USRUNT(RESULTS,ECARY) ;
  ;              2     Name of DSS Unit
  ;              3     Send to PCE Flag
  ;              4     Data Entry Date/Time Default
- N ECL,ECDUZ,CNT,STR,DPT,IEN
+ N ECL,ECDUZ,CNT,STR,DPT,IEN,ECSUMUSR,ECDUST ;139
  D SETENV^ECUMRPC
  S ECL=$P(ECARY,U),ECDUZ=$P(ECARY,U,2) I ECL="",ECDUZ="" Q
- ;S ECDUZ=$G(DUZ,U),ECL=$P(ECARY,U) I (ECDUZ="")!(ECL="") Q
+ S ECSUMUSR=$P(ECARY,U,3),ECDUST=$P(ECARY,U,4) S:ECDUST="" ECDUST="B" ;139
  K ^TMP($J,"ECUSRUNT") S (DPT,CNT)=0
  I ECL'="",ECDUZ="" S ECDUZ=$G(DUZ,U) I ECDUZ="" Q
+ I $G(ECSUMUSR)="ECSUM" D ECSUM S RESULTS=$NA(^TMP($J,"ECUSRUNT")) Q  ;139 Add special branch for the ECSUM report
  I $D(^XUSEC("ECALLU",ECDUZ)) S DPT="" D
  .I ECL="" S ^TMP($J,"ECUSRUNT",CNT+1)="ALL^ALL" Q
  .I ECL="ALL" S ECL=""
@@ -55,6 +60,20 @@ ECSCHK(ECL,ECIEN) ;Check if any event code screens associated with DSS unit are 
  ..S ECS=0 F  S ECS=$O(^ECJ("AP",ECL,ECIEN,ECAT,ECPRX,ECS)) Q:'ECS  D  Q:ECFLG
  ...S ECNODE=$G(^ECJ(ECS,0)) I $P(ECNODE,"^",2)="" S ECFLG=1
  Q ECFLG
+ ;
+ECSUM ;139 Section added to allow for sorting DSS units by status
+ N DSSIEN,DSSNAME,NODE,STAT,DSSF,DFO,STR
+ S DSSNAME="" F  S DSSNAME=$O(^ECD("B",DSSNAME)) Q:DSSNAME=""  S DSSIEN=0 F  S DSSIEN=$O(^ECD("B",DSSNAME,DSSIEN)) Q:'+DSSIEN  D
+ .S NODE=$G(^ECD(DSSIEN,0)) Q:NODE=""
+ .I '$P(NODE,U,8) Q  ;DSS Unit not for use in Event Capture
+ .S STAT=$S($P(NODE,U,6):"I",1:"A") ;DSS Unit status
+ .I ECDUST'="B",STAT'=ECDUST Q  ;If not getting both active and inactive units, quit if unit status isn't what we're looking for
+ .I ECL'="ALL",'$D(^ECJ("AP",ECL,DSSIEN)) Q  ;For all locations, no need to check for event code screens. For single location, DSS unit must have at least one event code screen
+ .S DSSF=$P(NODE,U,14) S:DSSF="" DSSF="N" ;Send to PCE setting
+ .S DFD=$S($P(NODE,U,12)="N":"N",1:"X") ;Unit's default date/time setting
+ .S CNT=CNT+1,STR=DSSIEN_U_$P(NODE,U)_U_DSSF_U_DFD
+ .S ^TMP($J,"ECUSRUNT",CNT)=STR
+ Q
  ;
 CAT(RESULTS,ECARY) ;
  ;This broker entry point returns an array of categories for an Event 

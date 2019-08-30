@@ -1,5 +1,5 @@
-ECV1RPC ;ALB/ACS;Event Capture Spreadsheet Upload Broker Utilities ;2/9/16  13:14
- ;;2.0;EVENT CAPTURE;**25,33,49,61,131**;8 May 96;Build 13
+ECV1RPC ;ALB/ACS;Event Capture Spreadsheet Upload Broker Utilities ;3/1/18  10:24
+ ;;2.0;EVENT CAPTURE;**25,33,49,61,131,139**;8 May 96;Build 7
  ;
 IN(RESULTS,ECDATA) ;
  ;----------------------------------------------------------------------
@@ -49,7 +49,7 @@ IN(RESULTS,ECDATA) ;
  ;                    Associated ClinicCPT Mod #1 IEN^CPT Mod #2 IEN^
  ;                    CPT Mod #3 IEN^CPT Mod #4 IEN^CPT Mode #5 IEN^
  ;                    AO^Ion Rad^SC^SW Asia^MST^HNC^CV^SHAD^Camp 
- ;                    Lejeune^rov 1^Prov 2^Prov 3^Prov 4^Prov 5^Prov 6^
+ ;                    Lejeune^Prov 1^Prov 2^Prov 3^Prov 4^Prov 5^Prov 6^
  ;                    Prov 7^Patient Status^
  ;                 
  ;OTHER     ^TMP($J,"COLS") will store the column/data order
@@ -69,7 +69,11 @@ IN(RESULTS,ECDATA) ;
  ;          Both of those providers and their associated information 
  ;          will be sent with the error message.
  ;       
- ;
+ ;State Home Spreadsheet
+ ;        If incoming data in ECDATA is from a state home spreadsheet
+ ;        then the first piece of ECDATA will be set to 'State Home
+ ;        Record'.  This identifier will be used when processing the
+ ;        location associated with the record.
  ;----------------------------------------------------------------------
  ;
 INIT ;-- piece numbers (associated with column numbers in the spreadsheet)
@@ -85,7 +89,7 @@ INIT ;-- piece numbers (associated with column numbers in the spreadsheet)
  ;-- error flags and derived data
  N ECERR,ECERRFLG,ECERRMSG,ECCOLERR,ECPRVIEN,ECOSIEN,ECVSSN,ECDSSIEN
  N ECINDEX,ECSSNIEN,ECPCLASS,ECPRVTYP,ECCATIEN,ECDXIEN,ECCLNIEN
- N ECPSTAT
+ N ECPSTAT,ECSOURCE ;139
  ;
  S U="^"
  S (ECINDEX,ECERR)=0
@@ -95,6 +99,7 @@ INIT ;-- piece numbers (associated with column numbers in the spreadsheet)
  I ECDATA["COLHEADERS" D ECHDRS^ECU1RPC(ECDATA) Q
  ;
  I ECDATA["END OF PROCESSING" D CLEANUP Q
+ I $P(ECDATA,U)="State Home Record" S ECSOURCE="STATE HOME",ECDATA=$P(ECDATA,U,2,999) ;139 For state home records, strip off state home identifier before processing
  ;
 MAIN ;--Call utility program to get piece numbers and set up data values
  D GETDATA^ECU1RPC(ECDATA)
@@ -105,8 +110,10 @@ MAIN ;--Call utility program to get piece numbers and set up data values
  D ^ECV4RPC
  ;
 FINAL ;If no errors, send data back to spreadsheet module
- ;note: ECDXIEN and ECCLNIEN will not be sent back if the record is 
- ;not being sent to PCE.
+ ;note: ECDXIEN and ECCLNIEN will be set to null if the record is 
+ ;not being sent to PCE or the DSS Unit is an OOS type unit.
+ ;For OOS type DSS units, the encoutner status values (combat vet, etc.)
+ ;will be returned as null as they aren't needed.
  ;
  I '($D(RESULTS(1))) D
  . N RESDATA

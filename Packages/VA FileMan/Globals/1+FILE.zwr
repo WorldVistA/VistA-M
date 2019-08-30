@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-29-AUG-2019 12:43:56 ZWR
+29-AUG-2019 20:19:01 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -22720,7 +22720,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.101","%D",7,0)="application. The entries in this file are called ""terms"".  These terms "
 ^DIC("704.101","%D",8,0)="along with CP files #704.102 - #704.109 constitute the Clinical Data "
 ^DIC("704.101","%D",9,0)="Model."
-^DIC("704.101","%MSC")=3181202.122627
+^DIC("704.101","%MSC")=3190829.192621
 ^DIC("704.102",0)="TERM_TYPE^704.102"
 ^DIC("704.102",0,"AUDIT")="@"
 ^DIC("704.102",0,"DD")="@"
@@ -22747,7 +22747,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.102","%D",14,0)="  TTermType = (ttUnknown, ttObservation, ttUnit, ttMethod, ttPosition, "
 ^DIC("704.102","%D",15,0)="               ttLocation, ttQuality, ttProduct, ttNullFlavor, ttTask,"
 ^DIC("704.102","%D",16,0)="               ttSchedule, ttValue, ttConcept);"
-^DIC("704.102","%MSC")=3181202.122627
+^DIC("704.102","%MSC")=3190829.192621
 ^DIC("704.103",0)="TERM_QUALIFIER_PAIR^704.103"
 ^DIC("704.103",0,"AUDIT")="@"
 ^DIC("704.103",0,"DD")="@"
@@ -23367,6 +23367,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(721,"%D",4,0)="Capture Data Entry menu."
 ^DIC(721,"%D",5,0)=" "
 ^DIC(721,"%D",6,0)="This file should NOT be modified directly using VA FileMan."
+^DIC(721,"%MSC")=3190829.201416
 ^DIC(722,0)="EVENT CAPTURE PROVIDER^722"
 ^DIC(722,0,"GL")="^EC(722,"
 ^DIC(722,"%D",0)="^1.001^8^8^3161121^^"
@@ -23410,6 +23411,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(724,"%D",9,0)="This file should NOT be modified directly using VA FileMan."
 ^DIC(724,"%D",10,0)="The Event Capture Management Menu provides the options"
 ^DIC(724,"%D",11,0)="necessary to create, edit, and inactivate all DSS units."
+^DIC(724,"%MSC")=3190829.201416
 ^DIC(725,0)="EC NATIONAL PROCEDURE^725I"
 ^DIC(725,0,"GL")="^EC(725,"
 ^DIC(725,"%D",0)="^^14^14^2970121^^^^"

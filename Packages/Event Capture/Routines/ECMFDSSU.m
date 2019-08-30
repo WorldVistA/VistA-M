@@ -1,5 +1,5 @@
-ECMFDSSU ;ALB/JAM-Event Capture Management Filer DSS Unit ;1/22/16  16:28
- ;;2.0;EVENT CAPTURE ;**25,30,33,126,131**;8 May 96;Build 13
+ECMFDSSU ;ALB/JAM-Event Capture Management Filer DSS Unit ;2/6/18  14:41
+ ;;2.0;EVENT CAPTURE ;**25,30,33,126,131,139**;8 May 96;Build 7
  ;
 FILE ;Used by the RPC broker to file DSS Units in file #724
  ;     Variables passed in
@@ -15,8 +15,10 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  ;       ECDFDT - Default Data Entry Date
  ;       ECPCE  - Send to PCE
  ;       ECSCN  - Event Code Screens status
- ;       ECCSC  - Credit stop code, can be used when PCE status is "no records"
- ;       ECHAR4 - CHAR4 code, can be used when PCE status is "no records"
+ ;       ECCSC  - Credit stop code, can be used when PCE status is
+ ;                no records
+ ;       ECHAR4 - CHAR4 code, can be used when PCE status is no records
+ ;       ECADUP - DSS Unit allows duplicate records during upload
  ;
  ;     Variable return
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #724^Message
@@ -36,18 +38,19 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  . I (ECFLG)!((ECONAM'="")&(ECONAM'=ECDUNM)),$D(^ECD("B",ECDUNM)) D  Q
  . . S ECERR=1,^TMP($J,"ECMSG",1)="0^DSS Unit Name already exist"
  . I 'ECFLG K DIE S DIE="^ECD(",DA=ECIEN,DR=".01////"_ECDUNM D ^DIE
- S ECPCE=$S(ECPCE="A":"A",ECPCE="O":"O",1:"N")
- I ECPCE="N",$G(ECASC)="" D  D END Q
- . S ECERR=1,^TMP($J,"ECMSG",1)="0^No associated stop code, Send to PCE=N" ;126 Corrected error message
- I 'ECFLG,ECPCE="N",$P($G(^ECD(+$G(ECIEN),0)),U,14)'="N" D UPDSCRN ;131 If existing DSS unit and PCE is being changed to "send no records" then update related EC screens
+ S ECPCE=$S(ECPCE="A":"A",ECPCE="OOS":"OOS",1:"N") ;139
+ I ECPCE'="A",$G(ECASC)="" D  D END Q  ;139
+ . S ECERR=1,^TMP($J,"ECMSG",1)="0^No associated stop code, send to PCE setting requires an associated stop code" ;126,139 Corrected error message
+ I 'ECFLG,ECPCE'="A",$P($G(^ECD(+$G(ECIEN),0)),U,14)="A" D UPDSCRN ;131,139 If existing DSS Unit and PCE is changing from All records then update related EC screens
  I ECIEN="" D NEWIEN
  K DA,DR,DIE
  S ECST=$E($G(ECST)),ECST=$S(ECST="I":1,1:0),ECDFDT=$E($G(ECDFDT))
  S ECDFDT=$S(ECDFDT="N":"N",1:"X"),DIE="^ECD(",DA=ECIEN
  S DR="1////"_ECS_";2////"_ECM_";3////"_ECTR_";4////"_$G(ECUN)
- S DR=DR_";5////"_ECST_";7////1;9////"_$S(ECPCE'="N":"@",1:$G(ECASC))
+ S DR=DR_";5////"_ECST_";7////1;9////"_$S(ECPCE="A":"@",1:$G(ECASC)) ;139
  S DR=DR_";10////"_ECC_";11////"_ECDFDT_";13////"_ECPCE
- S DR=DR_";14////"_$S(ECPCE'="N":"@",$G(ECCSC)="":"@",1:$G(ECCSC))_";15////"_$S(ECPCE'="N":"@",$G(ECHAR4)="":"@",1:$G(ECHAR4)) ;126 Add credit stop and char4 fields
+ S DR=DR_";14////"_$S(ECPCE="A":"@",$G(ECCSC)="":"@",1:$G(ECCSC))_";15////"_$S(ECPCE'="N":"@",$G(ECHAR4)="":"@",1:$G(ECHAR4)) ;126,139 Add credit stop and char4 fields, 139 Update logic for deleting stop code
+ S DR=DR_";16////"_$G(ECADUP,"N") ;139 Does DSS Unit allow duplicate records to be uploaded
  D ^DIE I $D(DTOUT) D RECDEL D  D END Q
  . S ^TMP($J,"ECMSG",1)="0^DSS Unit Record not Filed"
  I 'ECFLG D ECSCRNS

@@ -1,5 +1,5 @@
-ECBEN2U ;BIR/MAM,JPW-Categories and Procedures Selection ;12 Feb 96
- ;;2.0; EVENT CAPTURE ;**4,5,7,10,17,18,23,42,47,54,72,95,76**;8 May 96;Build 6
+ECBEN2U ;BIR/MAM,JPW-Categories and Procedures Selection ;2/16/18  16:40
+ ;;2.0;EVENT CAPTURE;**4,5,7,10,17,18,23,42,47,54,72,95,76,139**;8 May 96;Build 7
 END Q
 HDR ;screen header
  W @IOF,!,"Location: ",ECLN
@@ -65,14 +65,14 @@ DEL ;delete visit and refresh data to PCE
  ;- Resend to PCE task
  D PCETASK^ECPCEU(.EC2PCE) K EC2PCE
 PCE ;set data for PCE filing
- Q:$P(ECPCE,"~",2)="N"  I $P(ECPCE,"~",2)="O"&(ECINP'="O") Q
+ Q:$P(ECPCE,"~",2)="N"  ;139
  S ECREAS=""
  ;
  ;- Kill Reason node
  D KILLR
  I EC4 D CLIN^ECPCEU
  I 'EC4 S ECREAS="Clinic missing;"
- I 'ECDX S ECREAS="Diagnosis not entered;"
+ I 'ECDX S:$P(ECPCE,"~",2)="A" ECREAS="Diagnosis not entered;" ;139
  I EC4,'ECPCL S ECREAS=ECREAS_"Clinic inactive;"
  I 'ECCPT S ECREAS=ECREAS_"CPT code missing;"
  I ECREAS]"" S ^ECH(ECFN,"R")=ECREAS K ECPCL,ECREAS Q
@@ -92,7 +92,7 @@ SET ;set data pieces
  S ECP20=+$P(PN,"^",20) I 'ECP20 K ECP20 D DELNOD Q
  S ECP10=+$P(PN,"^",10) I 'ECP10 K ECP10 D DELNOD Q
  S ECPP1=+$P(PNP,"^") I 'ECPP1 K ECPP1 D DELNOD Q
- S ECPP2=+$P(PNP,"^",2) I 'ECPP2 K ECPP2 D DELNOD Q
+ S ECPP2=+$P(PNP,"^",2) I $P(ECPCE,"~",2)="A" I 'ECPP2 K ECPP2 D DELNOD Q  ;139 Must have primary diagnosis if sending all records
  S ECPP3=$P(PNP,"^",3),ECPP3=$S(ECPP3="Y":1,ECPP3="N":0,1:"")
  S ECPP4=$P(PNP,"^",4),ECPP4=$S(ECPP4="Y":1,ECPP4="N":0,1:"")
  S ECPP5=$P(PNP,"^",5),ECPP5=$S(ECPP5="Y":1,ECPP5="N":0,1:"")
