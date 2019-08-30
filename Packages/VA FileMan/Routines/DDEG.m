@@ -1,5 +1,5 @@
 DDEG ;SPFO/RAM,MKB - Entity GET Extract ;AUG 1, 2018  12:37
- ;;22.2;VA FileMan;**9**;Jan 05, 2016;Build 73
+ ;;22.2;VA FileMan;**9,16**;Jan 05, 2016;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -39,10 +39,10 @@ ENQ ;
  Q DRES
  ;
 VALUE(ITM,NOTAG) ; -- build a complete ITEM value
- N ITM0,NAME,ITEM,TYPE,FILE,FIELD,IEN
+ N ITM0,TAG,ITEM,TYPE,FILE,FIELD,IEN
  ;
  S ITM0=$G(^DDE(+DIENTY,1,+ITM,0)),IEN=$G(DIEN)
- S NAME=$P(ITM0,U),FILE=$P(ITM0,U,4),FIELD=$P(ITM0,U,5)
+ S TAG=$P(ITM0,U),FILE=$P(ITM0,U,4),FIELD=$P(ITM0,U,5)
  S:'FILE FILE=DIFN ;default file#
  S TYPE=$P($$GET1^DIQ(1.51,(+ITM_","_+DIENTY_","),.03)," ")
  ;
@@ -68,7 +68,7 @@ SIMPLE ; -- retrieve simple ITEM (from $$VALUE)
  I $$VALID(VALUE) D  ;add tags
  . S VALUE=$$ESC(VALUE)
  . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
- . S ITEM=$$ELEMENT("",NAME,VALUE)
+ . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
 FIXED ; -- build one FIXED item (from $$VALUE)
@@ -81,7 +81,7 @@ FIXED ; -- build one FIXED item (from $$VALUE)
  I $$VALID(VALUE) D  ;add tags
  . S VALUE=$$ESC(VALUE)
  . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
- . S ITEM=$$ELEMENT("",NAME,VALUE)
+ . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
 ID ; -- build one ID item (from $$VALUE)
@@ -98,7 +98,7 @@ ID ; -- build one ID item (from $$VALUE)
  I $$VALID(VALUE) D  ;add tags
  . S VALUE=$$ESC(VALUE)
  . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
- . S ITEM=$$ELEMENT("",NAME,VALUE)
+ . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
 WORD ; -- build one WP ITEM (from $$VALUE)
@@ -120,9 +120,10 @@ WORD ; -- build one WP ITEM (from $$VALUE)
  . S VALUE=VALUE_$S($E(VALUE,$L(VALUE))=" ":"",1:" ")_X
  ;
  I $$VALID(VALUE) D  Q  ;add tags
+ . I $L(VALUE)>2999999 S VALUE="Text exceeds 3 megabyte limit and could not be saved. Please contact the site for full original text." ;p16
  . S VALUE=$$ESC(VALUE)
  . I 'DFORM,$G(NOTAG) S ITEM=VALUE Q  ;for List items
- . S ITEM=$$ELEMENT("",NAME,VALUE)
+ . S ITEM=$$ELEMENT("",TAG,VALUE)
  Q
  ;
 ENTITY ; -- build an entity ITEM (from $$VALUE)
@@ -147,18 +148,18 @@ ENTITY ; -- build an entity ITEM (from $$VALUE)
  I $L(VALUE) D  Q   ;add tags
  . I VALUE<0 S ERROR=VALUE Q
  . I $G(NOTAG) S ITEM=VALUE Q  ;for embedded or list items
- . S ITEM=$$ELEMENT("",NAME,VALUE,,,"C")
+ . S ITEM=$$ELEMENT("",TAG,VALUE,,,"C")
  Q
  ;
 COMPLEX ; -- build a complex ITEM (from $$VALUE)
- N SEQ,IDX1,NAME1,IDX0,VALUE
+ N SEQ,IDX1,TAG1,IDX0,VALUE
  ;
  D ITMPROC I $G(DDEOUT) K DDEOUT Q
  ;
  S SEQ=0 F  S SEQ=$O(^DDE(DIENTY,1,ITM,3,"B",SEQ)) Q:'SEQ  D  Q:$G(ERROR)
  . S IDX1=$O(^DDE(DIENTY,1,ITM,3,"B",SEQ,0))
- . S NAME1=$P(^DDE(DIENTY,1,ITM,3,IDX1,0),U,2) Q:NAME1=""
- . S IDX0=+$O(^DDE(DIENTY,1,"B",NAME1,0))
+ . S TAG1=$P(^DDE(DIENTY,1,ITM,3,IDX1,0),U,2) Q:TAG1=""
+ . S IDX0=+$O(^DDE(DIENTY,1,"B",TAG1,0))
  . I IDX0<1!'$D(^DDE(DIENTY,1,IDX0,0)) Q
  . ;
  . S VALUE=$$VALUE(IDX0) Q:$G(ERROR)
@@ -166,7 +167,7 @@ COMPLEX ; -- build a complex ITEM (from $$VALUE)
  ;
  Q:$G(ERROR)  I $L(ITEM) D  ;add tags
  . S:'DFORM ITEM="{"_ITEM_"}" Q:$G(NOTAG)  ;for List items
- . S ITEM=$$ELEMENT("",NAME,ITEM,,,"C")
+ . S ITEM=$$ELEMENT("",TAG,ITEM,,,"C")
  Q
  ;
 LIST ; -- build an array of values in ITEM (from $$VALUE)
@@ -176,13 +177,13 @@ LIST ; -- build an array of values in ITEM (from $$VALUE)
  ;
  Q:$G(ERROR)  I $L(ITEM) D  ;add tags
  . S:'DFORM ITEM="["_ITEM_"]" Q:$G(NOTAG)  ;for List items
- . S ITEM=$$ELEMENT("",NAME,ITEM,,,"L")
+ . S ITEM=$$ELEMENT("",TAG,ITEM,,,"L")
  Q
  ;
 LIST1 ; -- list of values in FILE (from LIST)
- N C,NAME,XREF,FILTER,SCREEN,FMT,XFRM,ENTITY,QUERY,DDELIST,DLIST,SEQ,IEN1,VALUE,ERR
+ N C,TAG,XREF,FILTER,SCREEN,FMT,XFRM,ENTITY,QUERY,DDELIST,DLIST,SEQ,IEN1,VALUE,ERR
  S C=","
- S NAME=$P(ITM1,U,2),XREF=$P(ITM1,U,3),FILTER=$P(ITM1,U,4)
+ S TAG=$P(ITM1,U,2),XREF=$P(ITM1,U,3),FILTER=$P(ITM1,U,4)
  S SCREEN=$G(^DDE(+DIENTY,1,+ITM,1.1))
  ;
  D ITMPROC I $G(DDEOUT) K DDEOUT Q
@@ -191,7 +192,7 @@ LIST1 ; -- list of values in FILE (from LIST)
  I FIELD S FMT=$S(+$P(ITM0,U,7):"I",1:"E"),XFRM=$G(^DDE(+DIENTY,1,+ITM,4))
  E  D  Q:'ENTITY
  . S ENTITY=+$P(ITM0,U,8) Q:'ENTITY
- . N X0 S X0=$G(^DDE(ENTITY,0)) S:'$L(NAME) NAME=$G(^(.1))
+ . N X0 S X0=$G(^DDE(ENTITY,0)) S:'$L(TAG) TAG=$G(^(.1))
  . ; get defaults from Entity if not defined in Item
  . S:'$L(XREF) XREF=$P(X0,U,3)
  . S:'$L(FILTER) FILTER=$P(X0,U,4)
@@ -199,7 +200,7 @@ LIST1 ; -- list of values in FILE (from LIST)
  . S QUERY=$G(^DDE(ENTITY,5))
  . D PREPROC(ENTITY)
  I $L(FILTER) S FILTER=$S($D(@FILTER):@FILTER,1:FILTER)
- S:NAME="" NAME=$P(ITM0,U)
+ S:TAG="" TAG=$P(ITM0,U)
  ;
 L1 ; find appropriate records and process
  I $L(QUERY)>1,$L($T(@($P(QUERY,"(")))) D @QUERY I 1
@@ -214,15 +215,15 @@ L1 ; find appropriate records and process
  . I 'FIELD,ENTITY S VALUE=$$EN1^DDEG(ENTITY,IEN1,1,.ERR)
  . ;
  . Q:VALUE=""  Q:$G(ERR)
- . S ITEM=$$ELEMENT(ITEM,NAME,VALUE,SEQ,"addList")
+ . S ITEM=$$ELEMENT(ITEM,TAG,VALUE,SEQ,"addList")
  ;
  D:ENTITY POST(ENTITY)
  Q
  ;
 LIST2 ; -- list of values in SUBFILE (from LIST)
- N IENS,C,NAME,SCREEN,FMT,XFRM,ENTITY,DLIST,SEQ,IEN1,VALUE,ERR
+ N IENS,C,TAG,SCREEN,FMT,XFRM,ENTITY,DLIST,SEQ,IEN1,VALUE,ERR
  S IENS=","_IEN,C=","
- S NAME=$P(ITM1,U,2),SCREEN=$G(^DDE(+DIENTY,1,+ITM,1.1))
+ S TAG=$P(ITM1,U,2),SCREEN=$G(^DDE(+DIENTY,1,+ITM,1.1))
  ;
  D ITMPROC I $G(DDEOUT) K DDEOUT Q
  ;
@@ -230,10 +231,10 @@ LIST2 ; -- list of values in SUBFILE (from LIST)
  I FIELD S FMT=$S(+$P(ITM0,U,7):"I",1:"E"),XFRM=$G(^DDE(+DIENTY,1,+ITM,4))
  E  D  Q:'ENTITY
  . S ENTITY=$P(ITM0,U,8) Q:'ENTITY
- . S:'$L(NAME) NAME=$G(^DDE(ENTITY,.1)) ;defaults
+ . S:'$L(TAG) TAG=$G(^DDE(ENTITY,.1)) ;defaults
  . S:'$L(SCREEN) SCREEN=$G(^DDE(ENTITY,5.1))
  . D PREPROC(ENTITY)
- S:NAME="" NAME=$P(ITM0,U)
+ S:TAG="" TAG=$P(ITM0,U)
  ;
 L2 ; find appropriate records and process
  D LIST^DIC(FILE,IENS_C,"@","Q",,,,,SCREEN,,"DLIST")
@@ -247,14 +248,14 @@ L2 ; find appropriate records and process
  . I 'FIELD,ENTITY S VALUE=$$EN1^DDEG(ENTITY,IEN1,1,.ERR)
  . ;
  . Q:VALUE=""  Q:$G(ERR)
- . S ITEM=$$ELEMENT(ITEM,NAME,VALUE,SEQ,"addList")
+ . S ITEM=$$ELEMENT(ITEM,TAG,VALUE,SEQ,"addList")
  ;
  D:ENTITY POST(ENTITY)
  Q
  ;
 LIST3 ; -- list of values in COMPLEX FIELDS (from LIST)
- N NAME,SEQ,IDX1,NM1,IDX0,VALUE
- S NAME=$P(ITM1,U,2) S:NAME="" NAME=$P(ITM0,U)
+ N TAG,SEQ,IDX1,NM1,IDX0,VALUE
+ S TAG=$P(ITM1,U,2) S:TAG="" TAG=$P(ITM0,U)
  ;
  D ITMPROC I $G(DDEOUT) K DDEOUT Q
  ;
@@ -268,21 +269,21 @@ LIST3 ; -- list of values in COMPLEX FIELDS (from LIST)
  . S VALUE=$$VALUE(IDX0,1)
  . ;
  . Q:VALUE=""  Q:$G(ERROR)
- . S ITEM=$$ELEMENT(ITEM,NAME,VALUE,SEQ,"addList")
+ . S ITEM=$$ELEMENT(ITEM,TAG,VALUE,SEQ,"addList")
  Q
  ;
 LIST4 ; -- list of values in DLIST()
- N DLIST,NAME,ENTITY,SEQ,X,VALUE,ERR
- S NAME=$P(ITM1,U,2)
+ N DLIST,TAG,ENTITY,SEQ,X,VALUE,ERR
+ S TAG=$P(ITM1,U,2)
  ;
  ;create DLIST()=data value or ID for Entity
  D ITMPROC I $G(DDEOUT) K DDEOUT Q
  ;
  ; set up for results: single FIELD or multi-field ENTITY
  S ENTITY=$P(ITM0,U,8) I ENTITY D
- . S:'$L(NAME) NAME=$G(^DDE(ENTITY,.1))
+ . S:'$L(TAG) TAG=$G(^DDE(ENTITY,.1))
  . D PREPROC(ENTITY)
- I NAME="" S NAME=$P(ITM0,U)
+ I TAG="" S TAG=$P(ITM0,U)
  ;
  ; process list items
  S SEQ=0 F  S SEQ=$O(DLIST(SEQ)) Q:'SEQ  D  Q:$G(ERR)
@@ -292,26 +293,26 @@ LIST4 ; -- list of values in DLIST()
  . E  S VALUE=$$EN1^DDEG(ENTITY,X,1,.ERR)
  . ;
  . Q:VALUE=""  Q:$G(ERR)
- . S ITEM=$$ELEMENT(ITEM,NAME,VALUE,SEQ,"addList")
+ . S ITEM=$$ELEMENT(ITEM,TAG,VALUE,SEQ,"addList")
  ;
  D:ENTITY POST(ENTITY)
  Q
  ;
-ADD(XSTRING,NAME,SEQ) ; -- add element to result string
- Q:$G(NAME)="" XSTRING
+ADD(STRING,ELEMENT,SEQ) ; -- add ELEMENT to result STRING
+ Q:$G(ELEMENT)="" STRING
  ;
  ; JSON:0  XML:1  TEXT:2
  S DFORM=+$G(DFORM),SEQ=+$G(SEQ)
  ;
- N RES S RES=$G(XSTRING)
- I DFORM=0 S RES=RES_$S($L($G(XSTRING)):", ",1:"")_NAME ;SEQ>1
- I DFORM=1 S RES=RES_NAME
- I DFORM=2 S RES=RES_$S($L($G(XSTRING)):U,1:"")_NAME ;SEQ>1
+ N RES S RES=$G(STRING)
+ I DFORM=0 S RES=RES_$S($L($G(STRING)):", ",1:"")_ELEMENT ;SEQ>1
+ I DFORM=1 S RES=RES_ELEMENT
+ I DFORM=2 S RES=RES_$S($L($G(STRING)):U,1:"")_ELEMENT ;SEQ>1
  Q RES
  ;
-ELEMENT(XSTRING,NAME,VALUE,SEQ,OPTION,DTYPE) ; -- build an element string
- ; XSTRING=SERIALIZED RESPONSE
- S XSTRING=$G(XSTRING) Q:$G(NAME)="" XSTRING
+ELEMENT(STRING,NAME,VALUE,SEQ,OPTION,DTYPE) ; -- build an element STRING
+ ; STRING=SERIALIZED RESPONSE
+ S STRING=$G(STRING) Q:$G(NAME)="" STRING
  S:NAME["." NAME=$P(NAME,".",2)
  S VALUE=$G(VALUE)
  S SEQ=+$G(SEQ),OPTION=$G(OPTION,"addTags")
@@ -321,17 +322,17 @@ ELEMENT(XSTRING,NAME,VALUE,SEQ,OPTION,DTYPE) ; -- build an element string
  N X,Y S X="""",Y=$S(DTYPE:"",1:"""")
  ;
  S DFORM=+$G(DFORM) ; JSON:0  XML:1  TEXT:2
- I OPTION="addTags" D  Q XSTRING
- . S:DFORM=0 XSTRING=X_NAME_X_":"_Y_VALUE_Y
- . S:DFORM=1 XSTRING="<"_NAME_">"_VALUE_"</"_NAME_">"
- . S:DFORM=2 XSTRING=VALUE
+ I OPTION="addTags" D  Q STRING
+ . S:DFORM=0 STRING=X_NAME_X_":"_Y_VALUE_Y
+ . S:DFORM=1 STRING="<"_NAME_">"_VALUE_"</"_NAME_">"
+ . S:DFORM=2 STRING=VALUE
  ;
- I OPTION="addList" D  Q XSTRING
- . S:DFORM=0 XSTRING=XSTRING_$S($L(XSTRING):", ",1:"")_Y_VALUE_Y ;SEQ>1
- . S:DFORM=1 XSTRING=XSTRING_"<"_NAME_">"_VALUE_"</"_NAME_">"
- . S:DFORM=2 XSTRING=XSTRING_$S($L(XSTRING):"~",1:"")_Y_VALUE_Y ;SEQ>1
+ I OPTION="addList" D  Q STRING
+ . S:DFORM=0 STRING=STRING_$S($L(STRING):", ",1:"")_Y_VALUE_Y ;SEQ>1
+ . S:DFORM=1 STRING=STRING_"<"_NAME_">"_VALUE_"</"_NAME_">"
+ . S:DFORM=2 STRING=STRING_$S($L(STRING):"~",1:"")_Y_VALUE_Y ;SEQ>1
  ;
- Q XSTRING
+ Q STRING
  ;
 VALID(X) ; -- return 1 or 0, if X is a valid string
  ; Cannot be null or only white space
@@ -346,18 +347,20 @@ ESC(X) ; -- convert key characters for outgoing XML/JSON
  I DFORM=0 Q $$ESC^XLFJSON(X)
  ; DFORM=1 XML
  N I,Y,QOT S QOT=""""
- ; strip control characters
- F I=1:1:8,11,12,14:1:31 S X=$TR(X,$C(I))
+ ; strip control characters ;p16 add $C(0)
+ F I=0:1:8,11,12,14:1:31 I X[$C(I) S X=$TR(X,$C(I))
  ; handle special characters:
  ;  DDESC = 1 ('&' only), 2 ('&' + CDATA), or
  ;  default (0/null/undefined) = CDATA only
  I (X["&")!(X["<")!(X[">")!(X["'")!(X[QOT) D  Q Y
- . I $G(DDESC) D  Q:DDESC=1
+ . I $G(DDESC) D  Q:DDESC=1  S X=Y
  .. S Y=$P(X,"&") F I=2:1:$L(X,"&") S Y=Y_"&amp;"_$P(X,"&",I)
  .. S X=Y,Y=$P(X,"<") F I=2:1:$L(X,"<") S Y=Y_"&lt;"_$P(X,"<",I)
  .. S X=Y,Y=$P(X,">") F I=2:1:$L(X,">") S Y=Y_"&gt;"_$P(X,">",I)
  .. S X=Y,Y=$P(X,"'") F I=2:1:$L(X,"'") S Y=Y_"&apos;"_$P(X,"'",I)
  .. S X=Y,Y=$P(X,QOT) F I=2:1:$L(X,QOT) S Y=Y_"&quot;"_$P(X,QOT,I)
+ . I X["]]>" D  S X=Y ;p16 strip end brackets from transcription upload
+ .. S Y=$P(X,"]]>") F I=2:1:$L(X,"]]>") S Y=Y_$P(X,"]]>",I)
  . S Y="<![CDATA["_X_"]]>"
  Q X
  ;
