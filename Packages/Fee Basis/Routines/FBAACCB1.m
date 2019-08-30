@@ -1,5 +1,5 @@
 FBAACCB1 ;AISC/GRR-CLERK CLOSE BATCH CONTINUED ; 11/24/10 10:27am
- ;;3.5;FEE BASIS;**55,61,116,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**55,61,116,108,164**;JAN 30, 1995;Build 28
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 PHARM ;ENTRY FOR PHARMACY BATCH CALCULATE TOTAL DOLLARS AND LINE COUNT
  ; HIPAA 5010 - count line items that have 0.00 amount paid
@@ -53,11 +53,33 @@ WRITC I $Y+7>IOSL D ASKH^FBAACCB0:$E(IOST,1,2)["C-" Q:FBAAOUT  W @IOF D HEDC
  N P5
  S P5=$G(^FBAAI(I,"PROC"))
  F FBL=1:1:25 D WRTPC
+ ; write attachment IDs
+ I $D(^FBAAI(I,10)) D
+ . N AI,AID,AITI,WRTPC
+ . S AI=0 S WRTPC="Attachment ID:"
+ . F  S AI=$O(^FBAAI(I,10,AI)) Q:'AI  D
+ . . S AID=$P($G(^FBAAI(I,10,AI,0)),"^") I AI>1 S WRTPC=WRTPC_","
+ . . S WRTPC=WRTPC_" "_AID
+ . . S AITI=$P($G(^FBAAI(I,10,AI,0)),"^",2) I AITI D
+ . . . S WRTPC=WRTPC_" ("_$P($G(^IBE(353.3,AITI,0)),"^")
+ . . . S WRTPC=WRTPC_" - "
+ . . . S WRTPC=WRTPC_$P($G(^IBE(353.3,AITI,0)),"^",2)_")"
+ . . I $L(WRTPC)>IOM D WRTSTR(.WRTPC,IOM)
+ . I $L(WRTPC)>0 D WRTSTR(.WRTPC,IOM)
  S A2=FBAP D PMNT^FBAACCB2 K A2
+ Q
+WRTSTR(STR,MX) ; Wordwrap string
+ N RM,I
+WRTSTR1 S RM=$S(STR?1"Attachment ID:".E:MX-4,1:MX-7)
+ F I=1:1:$L(STR," ") Q:$L($P(STR," ",1,I))>RM
+ W !,?4 W:STR'?1"Attachment ID:".E ?7
+ I $L($P(STR," ",1,I))>RM W $P(STR," ",1,I-1) S STR=$P(STR," ",I,999)
+ E  W $P(STR," ",1,I) S STR=""
+ I $L(STR)>(MX-3) G WRTSTR1
  Q
 CDAT S FBPDT=$E(FBPDT,4,5)_"/"_$S($E(FBPDT,6,7)="00":$E(FBPDT,2,3),1:$E(FBPDT,6,7)_"/"_$E(FBPDT,2,3))
  Q
-HEDC W "Patient Name",?20,"('*' Reimbursement to Veteran   '+' Cancellation Activity)",!,?13,"('#' Voided Payment)",?60,"Batch Number"
+HEDC W "Patient Name",?20,"('*' Reimbursement to Veteran   '+' Cancellation Activity)",!,?13,"('#' Voided Payment '&' Additional Payment)",?60,"Batch Number"
  W !,?3,"Vendor Name",?45,"Vendor ID",?57,"Invoice #",?68,"Dt Inv Rec'd",!,?3,"FR DATE",?14,"TO DATE  CLAIMED   PAID",?41,"ADJ CODE",!,Q,!
  Q
 CHNH ; FB*3.5*116
