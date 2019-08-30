@@ -1,13 +1,14 @@
-RAHLRS ;HIRMFO/CRT/PDW - Resend HL7 messages for selected cases ;16 Jan 2018 9:32 AM
- ;;5.0;Radiology/Nuclear Medicine;**25,54,60,71,82,95,137**;Mar 16, 1998;Build 4
+RAHLRS ;HIRMFO/CRT/PDW - Resend HL7 messages for selected cases ;11 Mar 2019 10:07 AM
+ ;;5.0;Radiology/Nuclear Medicine;**25,54,60,71,82,95,137,156**;Mar 16, 1998;Build 1
  ;
  ; Utility to RESEND HL7 messages
  ;
  ;Integration Agreements
  ;----------------------
- ;SENDA08^MAGDHLE (6761 - Private)
+ ;SENDA08^MAGDHLE       (6761 - Private)
  ;^MAG(2006.1, IHE flag (6860 - Private)
- ;$$PATCH^XPDUTL(10141 - Supported)
+ ;$$PATCH^XPDUTL        (10141 - Supported)
+ ;$$KSP^XUPARAM("INST") (2541 - Supported) 
  ;
  ;;02/14/2006 BAY/KAM RA*5*71 Add ability to update exam data to V/R
  N RACNI,RADFN,RADTI,RARPT,X
@@ -105,8 +106,10 @@ SETVARS ; Setup key Rad/Nuc Med variables
 RAADT ;Send patient demographic update (A47/A08) to PACS - P137/KLM
  ;check if MAG*3*183 is installed
  I '$$PATCH^XPDUTL("MAG*3.0*183") W !,"You need imaging patch MAG*3.0*183 installed to use this option!" Q
- ;check if the IHE switch is on
- I $$GET1^DIQ(2006.1,1,3.01,"I")'="Y" W !!,"IHE is not enabled!",!,"See MAG*3.0*183 patch instructions to setup/enable ADT messages to PACS." Q
+ ;check if the IHE interface is enabled 
+ ;Get appropriate entry from IMAGING SITE PARAMETERS based on institution from Kernel Site Params
+ N RA20061 S RA20061=$O(^MAG(2006.1,"B",$$KSP^XUPARAM("INST"),"")) Q:RA20061<1  ;DBIA 2541,6860
+ I $$GET1^DIQ(2006.1,RA20061,3.01,"I")'="Y" W !!,"IHE is not enabled!",!,"See MAG*3.0*183 patch instructions to setup/enable ADT messages to PACS." Q
  W !!,"This option will send patient demographic updates for selected patients.",!
  W !,"It is recommended that you task this if you select 'ALL' patients.",!!
  N RADFN,DIR,Y
