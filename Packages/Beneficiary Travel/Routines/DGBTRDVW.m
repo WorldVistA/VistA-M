@@ -1,5 +1,5 @@
-DGBTRDVW ;ALB/RFE - BENEFICIARY/TRAVEL UTILITY ROUTINES;07/03/12
- ;;1.0;Beneficiary Travel;**20,25,30**;September 25, 2001;Build 4
+DGBTRDVW ;ALB/RFE - BENEFICIARY/TRAVEL UTILITY ROUTINES ;07/03/12
+ ;;1.0;Beneficiary Travel;**20,25,30,38**;September 25, 2001;Build 2
  Q
 WAIV(DFN,DGBTDTI) ;
  N %H,DED,I,TRIP,TRIPCT,RETURN,DGBTDW,EXPDT,FUTURE,FDED,WAIVER
@@ -59,7 +59,7 @@ MANRQ() ; Manual waiver request
  .S EXPDT=$$GET1^DIQ(392.7,I,8,"I")
  .I EXPDT="PENSION" S DGBTDW=1 Q
  .I $E(I,1,3)=$E(DGBTDTI,1,3) S DGBTDW=^DGBT(392.7,I,0) Q
- .I $E(I,1,3)'=($E(DGBTA,1,3)-1) Q
+ .I $E(I,1,3)'=($E(DGBTDTI,1,3)-1) Q  ;*38 - changed variable to DGBTDTI to prevent undefined error when called via rpc
  .I $$GET1^DIQ(392.7,I,8,"I")<$P(DGBTDTI,".") Q
  .S DGBTDW=^DGBT(392.7,I,0)
  I DGBTDW="" Q 0
