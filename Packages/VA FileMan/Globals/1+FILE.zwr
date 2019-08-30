@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-30-AUG-2019 03:17:05 ZWR
+30-AUG-2019 04:10:06 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -9335,6 +9335,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(142,"%D",14,0)="Specifically, fields 4 (MEASUREMENT PANEL) and 6 (SURVEILLANCE PANEL)"
 ^DIC(142,"%D",15,0)="point to files 9001017 and 9001018 respectively, which WILL NOT be"
 ^DIC(142,"%D",16,0)="present at non-PCC sites."
+^DIC(142,"%MSC")=3190830.040509
 ^DIC("142.1",0)="HEALTH SUMMARY COMPONENT^142.1I"
 ^DIC("142.1",0,"AUDIT")="@"
 ^DIC("142.1",0,"DD")="@"
