@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MESSAGE
-27-AUG-2019 12:01:06 ZWR
-^XMB(3.9,0)="MESSAGE^3.9s^304^304"
+30-AUG-2019 06:09:21 ZWR
+^XMB(3.9,0)="MESSAGE^3.9s^306^306"
 ^XMB(3.9,1,0)="PATCH OR*3*389 POSTINIT COMPLETED^PATCH OR*3*389 POSTINIT^3160526.130443"
 ^XMB(3.9,1,.6)=3160526
 ^XMB(3.9,1,1,0)="^3.91A^2^2"
@@ -47391,6 +47391,37 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,304,6,0)="^3.911A^1^1"
 ^XMB(3.9,304,6,1,0)="USER,SEVENTEEN"
 ^XMB(3.9,304,6,"B","USER,SEVENTEEN",1)=""
+^XMB(3.9,305,0)="Event Capture Location review^PATCH EC*2*145 POST-INSTALL^3190830.055819"
+^XMB(3.9,305,.6)=3190830
+^XMB(3.9,305,1,0)="^3.91A^1^1"
+^XMB(3.9,305,1,1,0)=17
+^XMB(3.9,305,1,"C",17,1)=""
+^XMB(3.9,305,2,0)="^^6^6^3190830"
+^XMB(3.9,305,2,1,0)="A review of Event Capture Location names has completed."
+^XMB(3.9,305,2,2,0)="Event Capture Location names were checked to make sure they are using the"
+^XMB(3.9,305,2,3,0)="correct name as found in the INSTITUTION file (#4)."
+^XMB(3.9,305,2,4,0)=""
+^XMB(3.9,305,2,5,0)="No differences were found between your Event Capture Locations and the"
+^XMB(3.9,305,2,6,0)="INSTITUTION file.  No further action is required."
+^XMB(3.9,305,6,0)="^3.911A^1^1"
+^XMB(3.9,305,6,1,0)="USER,SEVENTEEN"
+^XMB(3.9,305,6,"B","USER,SEVENTEEN",1)=""
+^XMB(3.9,306,0)="DSS Unit review^PATCH EC*2*145 POST-INSTALL^3190830.055819"
+^XMB(3.9,306,.6)=3190830
+^XMB(3.9,306,1,0)="^3.91A^1^1"
+^XMB(3.9,306,1,1,0)=17
+^XMB(3.9,306,1,"C",17,1)=""
+^XMB(3.9,306,2,0)="^^7^7^3190830"
+^XMB(3.9,306,2,1,0)="A review of Event Capture DSS Units has completed."
+^XMB(3.9,306,2,2,0)="DSS units were reviewed to ensure they're correctly set up for use"
+^XMB(3.9,306,2,3,0)="in the Event Capture program."
+^XMB(3.9,306,2,4,0)=""
+^XMB(3.9,306,2,5,0)="All DSS units are correctly set up."
+^XMB(3.9,306,2,6,0)=""
+^XMB(3.9,306,2,7,0)="No further action is required."
+^XMB(3.9,306,6,0)="^3.911A^1^1"
+^XMB(3.9,306,6,1,0)="USER,SEVENTEEN"
+^XMB(3.9,306,6,"B","USER,SEVENTEEN",1)=""
 ^XMB(3.9,"B","050 PCE CODE MAPPING DATA FOR ",70)=""
 ^XMB(3.9,"B","DATA UPDATE FOR NDF",3)=""
 ^XMB(3.9,"B","DATA UPDATE FOR NDF",7)=""
@@ -47460,6 +47491,7 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,"B","DRUGS UNMATCHED FROM NATIONAL ",264)=""
 ^XMB(3.9,"B","DRUGS UNMATCHED FROM NATIONAL ",270)=""
 ^XMB(3.9,"B","DRUGS UNMATCHED FROM NATIONAL ",276)=""
+^XMB(3.9,"B","DSS Unit review",306)=""
 ^XMB(3.9,"B","DSS Unit send no records revie",42)=""
 ^XMB(3.9,"B","DSS Unit send to PCE review",41)=""
 ^XMB(3.9,"B","DSS Unit stop code review",123)=""
@@ -47477,6 +47509,7 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,"B","ECME Registration Problem.",39)=""
 ^XMB(3.9,"B","ERROR: PPS-N/NDF File PPS_0PRV",209)=""
 ^XMB(3.9,"B","Event Capture Location review",107)=""
+^XMB(3.9,"B","Event Capture Location review",305)=""
 ^XMB(3.9,"B","GMRA*4*49 Post-Install Results",46)=""
 ^XMB(3.9,"B","INTERACTIONS AND ALLERGIES UPD",248)=""
 ^XMB(3.9,"B","INTERACTIONS AND ALLERGIES UPD",254)=""
@@ -47999,3 +48032,5 @@ OSEHRA ZGO Export: MESSAGE
 ^XMB(3.9,"C",3190826,302)=""
 ^XMB(3.9,"C",3190827,303)=""
 ^XMB(3.9,"C",3190827,304)=""
+^XMB(3.9,"C",3190830,305)=""
+^XMB(3.9,"C",3190830,306)=""
