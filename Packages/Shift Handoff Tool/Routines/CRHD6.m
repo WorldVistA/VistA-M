@@ -1,5 +1,5 @@
-CRHD6 ; CAIRO/CLC - MISC ROUTINE FOR CAIRO HAND-OFF TOOL ;04-Mar-2008 16:00;CLC
- ;;1.0;CRHD;****;Jan 28, 2008;Build 19
+CRHD6 ; CAIRO/CLC - MISC ROUTINE FOR CAIRO HAND-OFF TOOL ;06-Aug-2018 15:00;
+ ;;1.0;CRHD;**8**;Jan 28, 2008;Build 14
  ;=================================================================
 GETP(CRHDRTN,CRHDE) ;
  N CRHDPAR,Y,CRHDX,CRHDCT,CRHDMN,CRHDP,CRHDE1,CRHDE2,CRHDE3,CRHDE4
@@ -110,4 +110,8 @@ GETPAR2(CRHDRTN,CRHDE,CRHDPN) ;
  E  K CRHDRTN D
  .S CRHDI=0
  .F  S CRHDI=$O(CRHDOLST(CRHDI)) Q:'CRHDI  S CRHDRTN(CRHDI)=$P(CRHDOLST(CRHDI),"^",2)
+ Q
+PARAM(VAL,APARAM) ; return a parameter value for a user
+ ; call assumes current user, default entities, single instance
+ S VAL=$$GET^XPAR("ALL",APARAM,1,"I")
  Q
