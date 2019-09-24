@@ -1,5 +1,5 @@
 SDCO3 ;ALB/RMO - Provider - Check Out;08 DEC 1992 4:05 pm
- ;;5.3;Scheduling;**28,27,44,67,71,132,466**;08/13/93;Build 2
+ ;;5.3;Scheduling;**28,27,44,67,71,132,466,717**;08/13/93;Build 12
  ;
 EN ;Entry point for SDCO PROVIDER protocol
  ; Input  -- SDOE
@@ -60,7 +60,7 @@ EDITOK(SDOE,SDMODE) ; -- ok to edit?
  ;
  N DIR,SDOK
  S SDOK=$$NEW^SDPCE($P($G(^SCE(+$G(SDOE),0)),U))
- IF 'SDOK,SDMODE D OLDMSG
+ IF 'SDOK,SDMODE=1 D OLDMSG  ;*zeb 10/25/18 717 support SDMODE=2 for GUI
 EDITOKQ Q SDOK
  ;
 OLDMSG ; -- display message to user

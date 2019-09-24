@@ -1,5 +1,5 @@
 XINDX6 ;ISC/REL,GRK - GET SET OF ROUTINES TO INDEX ;07/22/08  13:54
- ;;7.3;TOOLKIT;**20,27,66,110,132**;Apr 25, 1995;Build 13
+ ;;7.3;TOOLKIT;**20,27,66,110,132,140**;Apr 25, 1995;Build 40
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;INP(1=Print more than warnings, 2= Print routines, 3= Print warnings, 4= Print DDs & Functions & Options, 5= Type of List, 6= Summary only, 7= Save Parameters
  ;INP(8= Index called routines, 9= Include the Compiled template routines, 10 = Build or Package file DA
@@ -15,8 +15,8 @@ XINDX6 ;ISC/REL,GRK - GET SET OF ROUTINES TO INDEX ;07/22/08  13:54
  D ANS("Print more than compiled errors and warnings? YES//","YN","Print detailed info") G:X="^" END S INP(1)="Yy"[X G:'INP(1) L7
  D ANS("Print summary only? NO//","NY","Skip detail on each routine") G:X="^" END S INP(6)="Yy"[X G L7:INP(6)
  D ANS("Print routines? YES//","YN","Print routines code also") G:X="^" END S INP(2)="Yy"[X
- I INP(2) D ANS("Print (R)egular,(S)tructured or (B)oth?  R//","RLIST") G:X="^" END S INP(5)=X
- I INDDA>0,INP(10)'=9.7 D ANS("Print the DDs, Functions, and Options? YES//","YN","Gather other package code.") G:X="^" END S INP(4)="Yy"[X
+ I INP(2) D ANS("Print (R)egular,(S)tructured or (B)oth or Control (F)low ?  R//","RLIST") G:X="^" END S INP(5)=X
+ I INDDA>0,INP(10)'=9.7 D ANS("Print the DDs, Functions, Options, and other package code? YES//","YN","Gather other package code.") G:X="^" END S INP(4)="Yy"[X
  D ANS("Print errors and warnings with each routine? YES//","YN") G:X="^" END S INP(3)="Yy"[X
 L7 I $D(^DIC(9.8,0)),$D(DUZ) D ANS("Save parameters in ROUTINE file? NO//","NY","Update the ROUTINE file with details") G:X="^" END S INP(7)="Yy"[X
  D ANS("Index all called routines? NO//","NY","Add called routines") G:X="^" END S INP(8)="Yy"[X

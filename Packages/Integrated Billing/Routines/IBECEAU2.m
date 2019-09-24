@@ -1,5 +1,5 @@
 IBECEAU2 ;ALB/CPM-Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646**;21-MAR-94;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
@@ -34,7 +34,7 @@ FRA S:$G(DEF) DIR("B")=$$DAT2^IBOUTL(DEF)
  S DIR(0)="DA^2901001:"_IBLIM_":EX",DIR("A")=$S(IBXA=4!(IBXA=7):"Visit Date: ",IBXA=5:"Rx Date: ",1:"Charge for services from: "),DIR("?")="^D HFR^IBECEAU2"
  D ^DIR K DIR S IBFR=Y I 'Y W !!,$S(IBXA=4!(IBXA=7):"Visit",IBXA=5:"Rx",1:"Bill From")," Date not entered - transaction cannot be completed." S IBY=-1 G FRQ
  I IBXA=7 G FRQ
- I IBXA'=8,IBXA'=9,IBXA'=5,'$$BIL^DGMTUB(DFN,IBFR+.24) D CATC G FRA
+ I IBXA'=8,IBXA'=9,IBXA'=5,'IBUC,'$$BIL^DGMTUB(DFN,IBFR+.24) D CATC G FRA    ;IB*2.0*646 - added UC check.
  I IBXA>7,IBXA<10,$$LTCST^IBAECU(DFN,IBFR,1)<2 W !,"This patient is not LTC billable on this date.",! G FRA
  I IBXA=4,$$BFO^IBECEAU(DFN,IBFR) W !!,"This patient has already been billed the outpatient copay charge for ",$$DAT1^IBOUTL(IBFR),".",! G FRA
 FRQ Q
@@ -97,6 +97,11 @@ TIER(IBATYP,IBEFDT,TIER) ; Prompt if needed for copay tier
  ; TIER - {optional) default tier, if none specified, then 2 used
  N IB,IBN,IBD,IBEND,IBFTIER,IBLTIER,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,DIR,IBTIER
  S IBD=-($G(IBEFDT,DT)+.9),IBD=$O(^IBE(350.2,"AIVDT",IBATYP,IBD)),IBEND=$O(^IBE(350.2,"AIVDT",IBATYP,IBD))
+ I IBD="" D  Q 0
+ . W !!,"Rx Date entered is invalid for the charge type.  Please confirm",!
+ . W "the date and re-enter."
+ . S IBY=-1
+ S IBEND=$O(^IBE(350.2,"AIVDT",IBATYP,IBD))
  S IBN=0 F  S IBN=$O(^IBE(350.2,"AIVDT",IBATYP,IBD,IBN)) Q:'IBN  S IB=$G(^IBE(350.2,IBN,0)) I IB]"",'$P(IB,"^",5)!($P(IB,"^",5)>IBEFDT) S IBTIER($P(IB,"^",7))=""
  ; if only one tier don't prompt just use it
  S IBFTIER=$O(IBTIER(0)) I '$O(IBTIER(IBFTIER)) Q IBFTIER

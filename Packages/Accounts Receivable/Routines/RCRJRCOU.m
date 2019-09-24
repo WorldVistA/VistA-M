@@ -1,5 +1,5 @@
 RCRJRCOU ;WISC/RFJ-ar data collector summary report ;1 Mar 97
- ;;4.5;Accounts Receivable;**103,320,335**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**103,320,335,338,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; IA - 4398        FIRST^VAUTOMA
@@ -37,6 +37,7 @@ START ;  Entry point from the Option
 DQ ;  generate user detailed report
  N DATEEND,RCDATE,BILLDA,DATA,RCLINE,REPTDATA,Y,RCBILLN,RCDTAC,RCCAT,RCSTAT,TRANTYP,RCTOT,RCPRIN,RCRSC,PRCASITE,VAUTVB,XMNOW
  N STAT,BILLDA,RCRSC,RECORD,RCBAL,ARACTDT,DATEMOYR,MRATYPE,POP,RCFUND,RCOTHER,TYPE,RCOUT,CURDT,DTFRM,DTFROM,DTTO,RCRET,LIST,ERR
+ N RCACCRD,RCRHITYP
  ;
  S (RCDATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3),CURDT=0
  S XMNOW=$$NOW^XLFDT  ;Capture the date and time the report was started for the header
@@ -63,27 +64,34 @@ DQ ;  generate user detailed report
  ... S RCDTAC=$$FMTE^XLFDT(RCDATE,"2Z")
  ... ;  category
  ... S RCCAT=$P($G(^PRCA(430.2,+$P(DATA,"^",2),0)),"^")
+ ... S RCACCRD=$$GET1^DIQ(430.2,+$P(DATA,"^",2)_",",12,"I")
  ... ;  status
  ... S RCSTAT=$P($G(^PRCA(430.3,+$P(DATA,"^",8),0)),"^")
- ... S TYPE="SV21" I $$ACCK^PRCAACC(BILLDA) S RCRSC=$$CALCRSC^RCXFMSUR(BILLDA) ;                     (as per CURRENT^RCRJRCOC)
- ... I $E(RCRSC,1,2)=86!($E(RCRSC,1,2)="8S") S TYPE="2A"
+ ... ;PRCA*4.5*338 - re-wrote section to correctly retrieve RSCs, properly ID TRICARE, CHAMPVA BD doc types, and TORT/MRA SV doc types
+ ... ;             - grab fund and RSC from Bill instead of recalculating.  Recalculate only if they are NULL
+ ... S RCRSC=$$GET1^DIQ(430,BILLDA_",",255,"I")
+ ... S:RCRSC="" RCRSC=$$GET1^DIQ(430,BILLDA_",",255.1)
+ ... I $$ACCK^PRCAACC(BILLDA) S:RCRSC="" RCRSC=$$CALCRSC^RCXFMSUR(BILLDA) ;          (as per CURRENT^RCRJRCOC)
+ ... ;Fund
+ ... S RCFUND=$$GET1^DIQ(430,BILLDA_",",203)
+ ... I RCFUND="" S RCFUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ ... S TYPE="SV21"       ; Default the doc type.
+ ... ;  special type for tort feasor
+ ... I RCCAT["TORT" S TYPE="2A"  ;Using the category name to look for TORTs
  ... ;  Get AR Date Active for bill
  ... S ARACTDT=+$P($P($G(^PRCA(430,BILLDA,6)),"^",21),".")  ;                          (as per START^RCRJRBD)
- ...  ;  determine Receivable Type: 1=pre-MRA, 2=post-MRA Medicre, 3=post-MRA non-Medicare
+ ... ;  determine Receivable Type: 1=pre-MRA, 2=post-MRA Medicre, 3=post-MRA non-Medicare
  ... ;  fms report type - TRANTYP variable
  ... S MRATYPE=$$MRATYPE^IBCEMU2(BILLDA,ARACTDT) ;                                     (as per CURRENT^RCRJRCOC)
- ... ;  set TYPE to 2F for post-MRA Medicare bills or to 2L for post-MRA non-Medicare bills (for RHI receivables only)
- ... I $E(RCRSC,1,2)=85!($E(RCRSC,1,2)="8R"),MRATYPE>1 S TYPE=$S(MRATYPE=2:"2F",1:"2L")
- ... I $E(RCRSC,1,2)=86!($E(RCRSC,1,2)="8S") S TYPE="SV21"
+ ... ; Set TYPE to 2F for post-MRA Medicare bills or to 2L for post-MRA non-Medicare bills (for RHI receivables only)
+ ... ; Moved TYPE set for RHI to function call to ensure Community Care RSCs are captured correctly.
+ ... S RCRHITYP=$$RHITYPE^RCRJRCOC(RCRSC,MRATYPE,RCCAT) S:+RCRHITYP TYPE=$P(RCRHITYP,U,2)
+ ... I 'RCACCRD S TYPE="BD"                 ; Non accrued have BD FMS doc types.
  ... S TRANTYP=$G(TYPE),REPTDATA=""
  ... K LIST D FIND^DIC(430,,"@;71;11;IX","M","`"_BILLDA,,,,,"LIST","ERR")
  ... S RCPRIN=$G(LIST("DILIST","ID",1,71)),RCBAL=$G(LIST("DILIST","ID",1,11))
  ... I RCBAL'>0 Q  ;Don't show if current balance not greater than $0
  ... S RCPRIN=$J(RCPRIN,9,2),RCBAL=$J(RCBAL,10,2)
- ... ;Revenue Service Code  
- ... S RCRSC="" I $$ACCK^PRCAACC(BILLDA) S RCRSC=$$CALCRSC^RCXFMSUR(BILLDA) ;          (as per CURRENT^RCRJRCOC)
- ... ;Fund
- ... S RCFUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
  ... S RCLINE=RCLINE+1  ;(record counter)
  ... S @RCRET@(RCLINE)=RCBILLN_U_RCDTAC_U_RCCAT_U_RCSTAT_U_TRANTYP_U_RCFUND_U_RCRSC_U_RCPRIN_U_RCBAL
  ; end of gathering data
@@ -193,7 +201,7 @@ DESCTEXT ;
  ;; 
  Q
  ;
-STORE(BILLDA,DATEBEG,DATEEND,ARACTDT,CATEGORY,TYPE,RCFUND,RSC,RCVALUE,SCREEN) ; 
+STORE(BILLDA,DATEBEG,DATEEND,ARACTDT,CATEGORY,TYPE,RCFUND,RCRSC,RCVALUE,SCREEN) ; 
  ;called by ^RCRJRCOC to store the bills in the AR DEBT COLLECTOR DATA (430.7) file.
  ; BILLDA - IEN of 430
  ; DATEBEG - Beginning date of accounting month

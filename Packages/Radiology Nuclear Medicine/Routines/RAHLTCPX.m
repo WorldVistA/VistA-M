@@ -1,5 +1,5 @@
-RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ;06 Apr 2018 11:45 AM
- ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144**;Mar 16, 1998;Build 1
+RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ;10 Apr 2019 3:05 PM
+ ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144,157**;Mar 16, 1998;Build 2
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -204,7 +204,11 @@ OBX ; Pick data off the 'OBX' segments
  ; For DX Codes we are expecting only the # (ie, 1,2,5 etc not the text)
  ; If VR (PSCRIBE) sends text with DX Code, strip off text in next line
  ; Text only will be rejected
- I RAOBX3(1)="D" S RAX=+RAX
+ ; KLM/p157 - PS to send usage code in third piece (ie 1^NORMAL^P). P is for primary.
+ I RAOBX3(1)="D" D
+ .I $P($G(RAX),U,3)="P" S ^TMP("RARPT-REC",$J,RASUB,RANODE,"PDX",RARCNT(RAOBX3(1)))=+RAX
+ .S RAX=+RAX
+ .Q
  S ^TMP("RARPT-REC",$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=RAX
  F RAI=1:1:RACNPPP S RARRR="RARPT-REC-"_RAI S ^TMP(RARRR,$J,RASUB,RANODE,RARCNT(RAOBX3(1)))=RAX
  K RAOBX3,RASTR

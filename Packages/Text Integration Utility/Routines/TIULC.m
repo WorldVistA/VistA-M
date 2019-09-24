@@ -34,7 +34,7 @@ VBCCNT(DA,ROOT) ; Compute Visible Black Character (VBC) Count for a record
  . F  S TIUI=$O(^TIU(8925,"DAD",DA,TIUI)) Q:+TIUI'>0!+$$ISADDNDM^TIULC1(+TIUI)  S CCNT=$$VBCCNT(TIUI)
  Q +$G(VBCCNT)
 VBC() ; Return string of Visible Black Characters (VBC)
- Q "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@#$%^&*()_+{}|:<>?÷±`1234567890-=[]\;',./"""
+ Q "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@#$%^&*()_+{}|:<>?Ã·Â±`1234567890-=[]\;',./"""
 STATUS(DA) ; Evaluate Status of Reports
  N NODE12,NODE13,NODE15,NODE16,AMENDED,STATUS,SIGNED,COSIGNED,PURGED
  N VERIFIED,RELEASED,SIGNER,COSIGNER,SIGSTAT,TYPE,REQVER,REQREL,REQCOS

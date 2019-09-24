@@ -1,5 +1,5 @@
 IBJDF6 ;ALB/RB - MISCELLANEOUS BILLS FOLLOW-UP REPORT ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,159,618**;21-MAR-94;Build 61
  ;
 EN ; - Option entry point.
  ;
@@ -7,21 +7,24 @@ SEL ; - Select type of receivables to print.
  K IBCTG S IBPRT="Choose which type of receivables to print:"
  S IBCTG(1)="MEDICARE"
  S IBCTG(2)="NO-FAULT AUTO ACCIDENT"
- S IBCTG(3)="TORT FEASOR"
- S IBCTG(4)="WORKMEN'S COMP"
- S IBCTG(5)="CURRENT EMPLOYEE"
- S IBCTG(6)="EX-EMPLOYEE"
- S IBCTG(7)="FEDERAL AGENCIES-REFUND"
- S IBCTG(8)="FEDERAL AGENCIES-REIMBURSEMENT"
- S IBCTG(9)="MILITARY"
- S IBCTG(10)="INTERAGENCY"
- S IBCTG(11)="VENDOR"
- S IBCTG(12)="ALL OF THE ABOVE"
+ S IBCTG(3)="COMMUNITY CARE NO-FAULT AUTO ACCIDENT"
+ S IBCTG(4)="TORT FEASOR"
+ S IBCTG(5)="COMMUNITY CARE TORT FEASOR"
+ S IBCTG(6)="WORKMEN'S COMP"
+ S IBCTG(7)="COMMUNITY CARE WORKMEN'S COMP"
+ S IBCTG(8)="CURRENT EMPLOYEE"
+ S IBCTG(9)="EX-EMPLOYEE"
+ S IBCTG(10)="FEDERAL AGENCIES-REFUND"
+ S IBCTG(11)="FEDERAL AGENCIES-REIMBURSEMENT"
+ S IBCTG(12)="MILITARY"
+ S IBCTG(13)="INTERAGENCY"
+ S IBCTG(14)="VENDOR"
+ S IBCTG(15)="ALL OF THE ABOVE"
  ;
  S IBSEL=$$MLTP^IBJD(IBPRT,.IBCTG,1) I 'IBSEL G ENQ
  S (IB0,IB1)=0
  F X=1:1 S Y=$P(IBSEL,",",X) Q:'Y  D
- . I Y=1!(Y=2)!(Y=3)!(Y=4) S IB0=1 Q
+ . I Y<8 S IB0=1 Q   ;IB*2.0*618
  . S IB1=1
  G ENQ:'IBSEL S IBSEL=","_IBSEL
  ;
@@ -31,10 +34,16 @@ SEL ; - Select type of receivables to print.
  ; - Select a detailed or summary report.
  D DS^IBJD I IBRPT["^" G ENQ
  ;
- I IBSDV S IB2=0 F X=2:1 S Y=$P(IBSEL,",",X) Q:'Y  D:Y>4
+ ;IB*2.0*618 - changed starting point from selection 4 to selection 8
+ ; Display receivables not sorting by division
+ I IBSDV S IB2=0 F X=2:1 S Y=$P(IBSEL,",",X) Q:'Y  D
+ . ; Only display options 8-14
+ . Q:Y<8
+ . Q:Y>14
  . I 'IB2 D  S IB2=1
  . . W !!,"NOTE: The receivables of these types will NOT be sorted by division:",!,*7
  . W !?6,IBCTG(Y)
+ ;end IB*2.0*618
  ;
  G DEV:IBRPT="S"
  ;
@@ -43,7 +52,7 @@ SEL ; - Select type of receivables to print.
  I IB0 D  I IBSN="^"!(X="^") G ENQ
  . S IBSN=$$SNL^IBJD() Q:IBSN="^"
  . W !!,"These receivables will be sorted by PATIENT/SSN:",!
- . F X=2:1 S Y=$P(IBSEL,",",X) Q:'Y  I Y<5 W !?6,IBCTG(Y)
+ . F X=2:1 S Y=$P(IBSEL,",",X) Q:'Y  I Y<8 W !?6,IBCTG(Y)
  . ; - Determine the PATIENT range
  . S X=$$INTV^IBJD("PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4")) Q:X="^"
  . S IBSNF=$P(X,"^",1),IBSNL=$P(X,"^",2),IBSNA=$P(X,"^",3)
@@ -51,7 +60,7 @@ SEL ; - Select type of receivables to print.
  ; - Determine range of debtors.
  I 'IB1 G AGE
  ;
- I IB0 D
+ I IB1 D
  . W !!,"These receivables will be sorted by DEBTOR:",!
  . F X=2:1 S Y=$P(IBSEL,",",X) Q:'Y  I Y>4 W !?6,IBCTG(Y)
  S VAUTD(0)=""

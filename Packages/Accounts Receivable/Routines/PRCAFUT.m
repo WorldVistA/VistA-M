@@ -1,5 +1,5 @@
 PRCAFUT ;WASH-ISC@ALTOONA/CLH-FMS Utilities ;10/8/96  10:50 AM
-V ;;4.5;Accounts Receivable;**5,39,64,92,104,169,188,194,220,231,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**5,39,64,92,104,169,188,194,220,231,315,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
 CPLK(PRCABN) ;get control point from file 430 and set DR string to edit CP data
  N DR,X,Y,QUIT,FUND,FTBL,CAT,CATTYP,CATTYPE,CP,BBFY,EBFY,DIC,BGFY,CPTBL,CC,SCC,EXIT,FYERROR
@@ -14,7 +14,7 @@ CPLK(PRCABN) ;get control point from file 430 and set DR string to edit CP data
     .D DIE
     .Q
  I CAT=47 D  G END ;315
- .S TYPE="02",FUND="0160A1"
+ .S TYPE="02",FUND="0160R1" ; patch PRCA*4.5*338
  .S DR="259///"_TYPE_";203///^S X=FUND"
  .D DIE
  .Q

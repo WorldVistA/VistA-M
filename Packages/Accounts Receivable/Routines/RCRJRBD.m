@@ -1,12 +1,11 @@
 RCRJRBD ;WISC/RFJ,TJK-bad debt extractor and report ;10/18/10 9:00am
- ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340,346**;Mar 20, 1995;Build 1
+ ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340,346,338,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for calls to $$MRATYPE^IBCEMU2 and $$MRADTACT^IBCEMU2
+ Q
  ;
  ;PRCA*4.5*346 Modify SGL compile code 133.N3 to 133N.3 to
  ;             ensure line item 528713 - 133N dollars are accrued
- ;
- Q
  ;
  ;
 START(DATEEND) ;  run bad debt report
@@ -42,7 +41,10 @@ START(DATEEND) ;  run bad debt report
  . . I $P($G(^PRCA(430,BILLDA,7)),"^") Q
  . . ;
  . . ;  only report fund 528701,03,04,11 and 4032/528709 bills
- . . S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ . . ;PRCA*4.5*338 - grab existing FUND for bill.  Only recalculate if FUND = NULL
+ . . S FUND=$$GET1^DIQ(430,BILLDA_",",203)
+ . . I FUND="" S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ . . ;end PRCA*4.5*338
  . . I '$$PTACCT^PRCAACC(FUND),$E(FUND,1,4)'=4032 Q
  . . ;
  . . ;  determine MRA type of bill, given bill# and bill active date
@@ -95,7 +97,10 @@ START(DATEEND) ;  run bad debt report
  . . . I 'CATEGORY!(CATEGORY=26) Q
  . . . ;
  . . . ;  only report fund 528701,03,04,11 and 4032/528709 (ltc) bills
- . . . S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ . . . ;PRCA*4.5*338 - grab existing FUND for bill.  Only recalculate if FUND = NULL
+ . . . S FUND=$$GET1^DIQ(430,BILLDA_",",203)
+ . . . I FUND="" S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ . . . ;end PRCA*4.5*338
  . . . I '$$PTACCT^PRCAACC(FUND),$E(FUND,1,4)'=4032 Q
  . . . ;
  . . . ;  get bill active date
@@ -116,14 +121,19 @@ START(DATEEND) ;  run bad debt report
  . . . I TRANTYPE'=35 S ACTUALWO(SGL)=$G(ACTUALWO(SGL))+RCVALUE
  . . . ;  add actual contract adjustments for fiscal year
  . . . I TRANTYPE=35 S ACTUALCA(SGL)=$G(ACTUALCA(SGL))+RCVALUE
- . . . S RSC=$$CALCRSC^RCXFMSUR(BILLDA)
+ . . . ;PRCA*4.5*338 - retrieve RSC from Bill.  If no RSC in BILL, calculate it.
+ . . . S RSC=$$GET1^DIQ(430,BILLDA_",",255.1)       ;Check for accrued RSC
+ . . . S:RSC="" RSC=$$GET1^DIQ(430,BILLDA_",",255)  ;if no accrued RSC, check for non-accrued.
+ . . . S:RSC="" RSC=$$CALCRSC^RCXFMSUR(BILLDA)      ;if neither present, calculate
+ . . . ;end PRCA*4.5*338
  . . . S ^XTMP("PRCABDET",BILLDA,CATEGORY,FUND,RSC,SGL,TRANDA,TRANDATE,TRANTYPE,RCPRIN,RCVALUE,0,0)=""
  ;
  ;  remove all the entries from the bad debt file
  D DELETALL
  ;
  ;  calculate percentages and store them
- F SGL=1319,1319.2,1319.3,1319.4,1319.5,1319.6,1338,1338.2,1338.3,1339,1339.1,"133N","133N.2","133N.3" D   ;PRCA*4.5*346
+ ; PRCA*4.5*338 - corrected 133.N3 to 133N.3, also added 1319.7, 1319.8, 1319.9
+ F SGL=1319,1319.2,1319.3,1319.4,1319.5,1319.6,1319.7,1319.8,1319.9,1338,1338.2,1338.3,1339,1339.1,"133N","133N.2","133N.3" D    ;PRCA*4.5*346
  . ;  collection %
  . S COLLECT=0 I $G(PRINCPAL(SGL)) S COLLECT=$J($G(PAYMENT(SGL))/PRINCPAL(SGL)*100,0,2)
  . ;  patch PRCA*4.5*138: for the first year from when MRA is activated at a site, there is no collection
@@ -146,7 +156,7 @@ START(DATEEND) ;  run bad debt report
  . ;  calculate allowance estimate for 1319 and 1338
  . ;  .08 allowance estimate = (writeoff % * current receivables)
  . ;  .09 actual writeoffs fytd
- . I SGL=1319!(SGL=1319.2)!(SGL=1319.3)!(SGL=1319.4)!(SGL=1319.5)!(SGL=1319.6)!(SGL=1338)!(SGL=1338.2)!(SGL=1338.3) D
+ . I SGL=1319!(SGL=1319.2)!(SGL=1319.3)!(SGL=1319.4)!(SGL=1319.5)!(SGL=1319.6)!(SGL=1319.7)!(SGL=1319.8)!(SGL=1319.9)!(SGL=1338)!(SGL=1338.2)!(SGL=1338.3) D
  . . S WRITEOFF=100-COLLECT
  . . S DR=DR_".03////"_WRITEOFF_";"
  . . S DR=DR_".08////"_$J((WRITEOFF/100)*$G(^TMP($J,"RCRJRBD",SGL)),0,2)_";"
@@ -246,6 +256,9 @@ BDRSGL(CAT,FUND,MRATYPE) ; Calculate SGLs for the BDR process
  ; Non-VA RHI (45), post-MRA, non-MRA rec.  528713    133N.3
  ; Crimes of Personal Violence (8),         528713    1319.6
  ;  Medicare (21), No-Fault Auto
+ ; Inpat./Outpat. Community Care copayments 528714    1319.7
+ ; RX Community Care copayments             528714    1319.8
+ ; LTC Community Care copayments            528714    1319.9
  ;  (7), Workman's Comp (6)
  ; Pharmacy No Fault Auto(7),               528711    1319.5
  ; Pharmacy Workman's Comp(6)
@@ -263,8 +276,16 @@ BDRSGL(CAT,FUND,MRATYPE) ; Calculate SGLs for the BDR process
  I $G(FUND)=528711&((CAT=6)!(CAT=7)) Q 1319.5
  I $G(FUND)=528711&(CAT=9) Q "133N.2"
  I $G(FUND)=528711&(CAT=10) Q 1338.2
- I $G(FUND)=528713&(CAT=10) Q 1338.3
- I $G(FUND)=528713&(CAT=8!(CAT=21)!(CAT=6)!(CAT=7)) Q 1319.6
+ ;PRCA*4.5*338 - Add new Community Care Categories
+ ; THIRD PARTY =528713 new code begins
+ I $G(FUND)=528713&(CAT=10!(CAT=53)!(CAT=56)!(CAT=59)) Q 1338.3   ;patch 338 Add Comm Care Tort Feasor
+ I $G(FUND)=528713&(CAT=8!(CAT=21)!(CAT=6)!(CAT=7)!(CAT=52)!(CAT=54)!(CAT=55)!(CAT=57)!(CAT=59)!(CAT=60)) Q 1319.6  ;patch 338 Added Comm Care No Fault and Workers Comp
+ I ((CAT>47)&(CAT<52)) Q $S(MRATYPE=2:"133H.2",MRATYPE=3:"133N.3",1:1339.1)  ;patch 338 Comm Care Reimb ins types.
+ ; FIRST PARTY = 528714  - Community Care Copays
+ I $G(FUND)=528714&(CAT=61!(CAT=81)!(CAT=63)!(CAT=82)!(CAT=65)!(CAT=83)!(CAT=67)!(CAT=84)) Q 1319.7    ;INP/OPT copays
+ I $G(FUND)=528714&(CAT=62!(CAT=64)!(CAT=66)!(CAT=68)) Q 1319.8    ;rx copays
+ I $G(FUND)=528714&(CAT>68)&(CAT<75) Q 1319.9    ;LTC copays
+ ;end PRCA*4.5*338
  I CAT=8!(CAT=21)!(CAT=7)!(CAT=6) Q 1319.4
  I CAT=10 Q 1338
  I CAT=9 Q $S(MRATYPE=2:"133H",MRATYPE=3:"133N",1:1339)

@@ -1,5 +1,5 @@
-RAHLR1 ;HISC/GJC - Generate Common Order (ORM) Message ;11/10/99  10:42
- ;;5.0;Radiology/Nuclear Medicine;**47,125,129**;Mar 16, 1998;Build 1
+RAHLR1 ;HISC/GJC - Generate Common Order (ORM) Message ;18 Jul 2019 9:17 AM
+ ;;5.0;Radiology/Nuclear Medicine;**47,125,129,158**;Mar 16, 1998;Build 2
  ;Generates msg whenever a case is registered or cancelled or examined
  ;              registered   cancelled   examined   complete
  ; Order control : NW            CA         XO         XO
@@ -50,6 +50,17 @@ ORC ;build the 'common order segment (ORC) segment
  ; define ORC-2 & ORC-3 to 'site id-mmddyy-case#' ex: 141-041106-6
  ; 9/2008 -- check Site Acc Number division parameter (79,.131) and only
  ; use the long site specific acc num if set to YES, else use old form
+ ;
+ ;iff pset: build the following unique patient/study identifier
+ ;@Indy INC6620428
+ ;ORC(4)=141-76-6809282.8562
+ ;1st piece = 141 (station # 3 chars fixed)
+ ;2nd piece = 76 (patient DFN)
+ ;3rd piece = 6809282.8562 (inverse date/time of study)
+ I $P(RAZXAM,U,25)=2 D  ;DD - 70.03;25 (combined report)
+ .S RAORC(5)=$P(RAPID(3),HLCS)_"-"_RADTI
+ .Q
+ ;
  S (RAORC(3),RAORC(4))=RAZDAYCS
  S RAORC(6)=$S(RACANC:"CA",RACOMP:"CM",1:"IP")
  ;

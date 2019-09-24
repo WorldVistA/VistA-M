@@ -1,5 +1,5 @@
 RCRJRCOC ;WISC/RFJ/BGJ-count current receivables ; 11/2/10 10:53am
- ;;4.5;Accounts Receivable;**156,170,182,203,220,138,239,272,273,334,335**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**156,170,182,203,220,138,239,272,273,334,335,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for call to $$MRATYPE^IBCEMU2
  Q
@@ -8,12 +8,15 @@ RCRJRCOC ;WISC/RFJ/BGJ-count current receivables ; 11/2/10 10:53am
 CURRENT(RCBILLDA,RCVALUE) ;  count current bills balance
  ;  rcvalue = prin ^ int ^ admin ^ mf ^ cc
  ;
- N %,RCFUND,RCRSC,RCTOHSIF,RCTOMCCF,SGL,TYPE,MRATYPE,ARACTDT,CATEGORY
+ N %,RCFUND,RCRSC,RCTOHSIF,RCTOMCCF,SGL,TYPE,MRATYPE,ARACTDT,CATEGORY,RCRHITYP,RCCATNM
  ;
  ;  calculate the rsc for the bill.  the rsc is only used for
  ;  mccf bills
  S RCRSC=""
- I $$ACCK^PRCAACC(RCBILLDA) S RCRSC=$$CALCRSC^RCXFMSUR(RCBILLDA)
+ ;PRCA*4.5*338 - Modified the code to only recalculate RSCs if none currently calculated.
+ S RCRSC=$$GET1^DIQ(430,BILLDA_",",255)
+ S:RCRSC="" RCRSC=$$GET1^DIQ(430,BILLDA_",",255.1)
+ I $$ACCK^PRCAACC(RCBILLDA) S:RCRSC="" RCRSC=$$CALCRSC^RCXFMSUR(RCBILLDA)
  ;
  ;  calculate the amount that goes to mccf and hsif
  D MCCFHSIF(RCBILLDA,RCVALUE,RCRSC,DATEEND+1)
@@ -26,14 +29,17 @@ CURRENT(RCBILLDA,RCVALUE) ;  count current bills balance
  ;  do not include prepayments (26)
  I $$ACCK^PRCAACC(RCBILLDA),$P($G(^PRCA(430,RCBILLDA,0)),"^",2)'=26 D
  .   ;  get the bills fund and category
- .   S RCFUND=$$GETFUNDB^RCXFMSUF(RCBILLDA)
+ .   ;PRCA*4.5*338 Calculate fund only if it is not stored in the bill
+ .   S RCFUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   I RCFUND="" S RCFUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   ;end PRCA*4.5*338
  .   S RCFUND=$$ADJFUND^RCRJRCO(RCFUND) ; may remove the line after 10/1/03
- .   S CATEGORY=+$P($G(^PRCA(430,RCBILLDA,0)),"^",2)
+ .   S CATEGORY=+$P($G(^PRCA(430,RCBILLDA,0)),"^",2),RCCATNM=$$GET1^DIQ(430.2,CATEGORY_",",.01) ; retrieve CAT name PRCA*4.5*338
  .   ;
  .   ;  ----- this code is used to set up the SV code sheet -----
  .   S TYPE=21
  .   ;  special type for tort feasor
- .   I $E(RCRSC,1,2)=86!($E(RCRSC,1,2)="8S") S TYPE="2A"
+ .   I RCCATNM["TORT" S TYPE="2A"  ;Using the category name to look for TORTs - PRCA*4.5*338
  .   ;
  .   ;  Get ARACTDT=AR Date Active for bill
  .   S ARACTDT=+$P($P($G(^PRCA(430,RCBILLDA,6)),"^",21),".")
@@ -42,7 +48,8 @@ CURRENT(RCBILLDA,RCVALUE) ;  count current bills balance
  .   S MRATYPE=$$MRATYPE^IBCEMU2(RCBILLDA,ARACTDT)
  .   ;  set TYPE to 2F for post-MRA Medicare bills or to 2L for
  .   ;  post-MRA non-Medicare bills (for RHI receivables only)
- .   I $E(RCRSC,1,2)=85!($E(RCRSC,1,2)="8R"),MRATYPE>1 S TYPE=$S(MRATYPE=2:"2F",1:"2L")
+ .   ; PRCA*4.5*338 moved TYPE set for RHI to function call to ensure Community Care RSCs are captured correctly.
+ .   S RCRHITYP=$$RHITYPE(RCRSC,MRATYPE,RCCATNM) S:+RCRHITYP TYPE=$P(RCRHITYP,U,2)
  .   ;
  .   ;  store dollars to mccf and hsif
  .   I RCTOMCCF S ^TMP($J,"RCRJRCOLSV",TYPE,RCFUND,RCRSC)=$G(^TMP($J,"RCRJRCOLSV",TYPE,RCFUND,RCRSC))+RCTOMCCF
@@ -85,6 +92,22 @@ CURRENT(RCBILLDA,RCVALUE) ;  count current bills balance
  I % S ^TMP($J,"RCRJRCOLSV","P2","0869",8048)=$G(^TMP($J,"RCRJRCOLSV","P2","0869",8048))+%
  Q
  ;
+RHITYPE(RCRSC,MRATYPE,RCCATNM) ;
+ ; Input - RCRSC - Revenue Source Code from a Bill
+ ;         RCMRATYP - Type of MRA as determined by the call to $$MRATYPE^IBCEMU2 
+ ; Output - Is it a RHI Bill (0 - No, 1 - Yes) ^ SV Type to return (2F or 2L) [required if an RHI Bill]
+ ;
+ N RCTYPE
+ S RCTYPE=0
+ I MRATYPE>1 D
+ . Q:RCRSC="85CC"  ; This specific RSC is a TORT RSC for the CHOICE program
+ . I $E(RCRSC,1,2)=85!($E(RCRSC,1,2)="8R") S RCTYPE="1^"_$S(MRATYPE=2:"2F",1:"2L") Q
+ . I RCCATNM["THIRD PARTY" D  Q
+ . . Q:RCCATNM["CHAMPVA"    ;Exclude CHAMPVA
+ . . Q:RCCATNM["TRICARE"    ;Exclude TRICARE
+ . . ;otherwise this is a Community Care Bill, set the SV type
+ . . S RCTYPE="1^"_$S(MRATYPE=2:"2F",1:"2L")
+ Q RCTYPE
  ;
 WRITEOFF(RCBILLDA,RCVALUE,RCRITER2) ;  count write offs
  ;  rcvalue = prin ^ int ^ admin ^ mf ^ cc
@@ -95,7 +118,10 @@ WRITEOFF(RCBILLDA,RCVALUE,RCRITER2) ;  count write offs
  ;  calculate the rsc for the bill.  the rsc is only used for
  ;  mccf bills
  S RCRSC=""
- I $$ACCK^PRCAACC(RCBILLDA) S RCRSC=$$CALCRSC^RCXFMSUR(RCBILLDA)
+ ;PRCA*4.5*338 - Modified the code to only recalculate RSCs if none currently calculated.
+ S RCRSC=$$GET1^DIQ(430,BILLDA_",",255)
+ S:RCRSC="" RCRSC=$$GET1^DIQ(430,BILLDA_",",255.1)
+ I $$ACCK^PRCAACC(RCBILLDA) S:RCRSC="" RCRSC=$$CALCRSC^RCXFMSUR(RCBILLDA)
  ;
  ;  calculate the amount that goes to mccf and hsif
  D MCCFHSIF(RCBILLDA,RCVALUE,RCRSC,DATEEND+1)
@@ -108,12 +134,16 @@ WRITEOFF(RCBILLDA,RCVALUE,RCRITER2) ;  count write offs
  ;  do not include prepayments (26)
  I $$ACCK^PRCAACC(RCBILLDA),$P($G(^PRCA(430,RCBILLDA,0)),"^",2)'=26 D
  .   ;  get the bills fund
- .   S RCFUND=$$GETFUNDB^RCXFMSUF(RCBILLDA)
+ .   ;PRCA*4.5*338 Calculate fund only if it is not stored in the bill
+ .   S RCFUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   I RCFUND="" S RCFUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   ;end PRCA*4.5*338
  .   S RCFUND=$$ADJFUND^RCRJRCO(RCFUND) ; may remove the line after 10/1/03
+ .   S CATEGORY=+$P($G(^PRCA(430,RCBILLDA,0)),"^",2),RCCATNM=$$GET1^DIQ(430.2,CATEGORY_",",.01) ; retrieve CAT name PRCA*4.5*338
  .   ;
  .   S TYPE=37
  .   ;  special type for tort feasor
- .   I $E(RCRSC,1,2)=86!($E(RCRSC,1,2)="8S") S TYPE=39
+ .   I RCCATNM["TORT" S TYPE="39"  ;Using the category name to look for TORTs - PRCA*4.5*338
  .   S ARACTDT=+$P($P($G(^PRCA(430,RCBILLDA,6)),"^",21),".")
  .   ;  DBIA #4385 activated on 31-Mar-2004
  .   S MRATYPE=$$MRATYPE^IBCEMU2(RCBILLDA,ARACTDT)

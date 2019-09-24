@@ -1,5 +1,6 @@
-XINDX53 ;SF-ISC/RWF - LOAD ROUTINE FILE ;05/13/97  16:11
- ;;7.3;TOOLKIT;**20**;Apr 25, 1995
+XINDX53 ;SF-ISC/RWF - LOAD ROUTINE FILE ;03/17/98  14:33
+ ;;7.3;TOOLKIT;**20,140**;Apr 25, 1995;Build 40
+ ; Per VHA Directive 2004-038, this routine should not be modified.
 A S RTN="$",DLAYGO=9.8 W !!," Loading the ROUTINE file now.",!
 B S RTN=$O(^UTILITY($J,1,RTN)) I RTN'?1U.UN&(RTN'?1"%".UN) G C
  D GETDA G B:DA'>0 W:$X>70 ! W $J(RTN,10)
@@ -17,7 +18,7 @@ B S RTN=$O(^UTILITY($J,1,RTN)) I RTN'?1U.UN&(RTN'?1"%".UN) G C
 P S %IN2=-1,PC=0
  F %IN1=0:0 S %IN2=$O(^UTILITY($J,1,RTN,LOC,%IN2)) Q:%IN2=""  D S
  K DR,DIE Q
-S S %IN3=$S("G"[LOC:$E(%IN2,2,99),1:%IN2),Y=$O(^DIC(9.8,DA,IND,"B",%IN3,0)) G S2:Y>0 Q:%IN3[""""
+S S %IN3=$S("G"[LOC:$E(%IN2,2,99),1:%IN2),%IN3=$TR(%IN3,$C(34),$C(39)),Y=$O(^DIC(9.8,DA,IND,"B",%IN3,0)) G S2:Y>0 ;Translate " to '
  S DIC="^DIC(9.8,DA(1),"_$C(34)_IND_$C(34)_",",DA(1)=DA,X=%IN3,DIC("P")=+$P(^DD(9.8,$S(LOC="L":21,LOC="G":22,LOC="T":5,LOC="X":19),0),U,2) D FILE^DICN
 S2 S $P(^DIC(9.8,DA,IND,+Y,0),U,3)="y"
  Q
@@ -27,7 +28,7 @@ C1 S ROU=$O(^UTILITY($J,1,ROU)) I ROU'?1U.UN&(ROU'?1"%".UN) G END
  G C1
 GETDA S Y=0,DIC="^DIC(9.8,",DIC(0)="MXZL"
 GET1 S Y=$O(^DIC(9.8,"B",RTN,Y)) I Y>0 G GOT:"R"[$P(^DIC(9.8,Y,0),U,2),GET1
-GET2 S X=""""_RTN_"""",DIC("DR")="1///R" D ^DIC
+GET2 S X=""""_RTN_"""",DIC("DR")="1///R" D ^DIC K DIC("DR")
 GOT S DA=+Y I $P(^DIC(9.8,DA,0),U,2)="" S $P(^(0),U,2)="R"
  Q
 ETAG S DA=0 Q:'$D(^UTILITY($J,1,RTN))

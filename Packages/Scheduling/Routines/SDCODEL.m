@@ -1,9 +1,9 @@
 SDCODEL ;ALB/RMO - Delete Check Out ;JAN 15, 2016
- ;;5.3;Scheduling;**20,27,44,97,105,110,132,257,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**20,27,44,97,105,110,132,257,627,717**;Aug 13, 1993;Build 12
  ;
 EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ; Input  -- SDOE     Outpatient Encounter file IEN
- ;           SDMOD    1=Interactive and 0=Non-interactive
+ ;           SDMOD    1=Interactive and 0=Non-interactive, 2=Non-interactive/from GUI
  ;           SDELHDL  Check Out Deletion Handle  [Optional]
  ;           SDELSRC  Source of delete
  ; Output -- Delete Check Out
@@ -14,13 +14,14 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ; -- ok to delete?
  IF '$$EDITOK^SDCO3(SDOE,SDMOD) G ENQ
  ;
- IF $G(SDELSRC)'="PCE" S X=$$DELVFILE^PXAPI("ALL",$P($G(^SCE(SDOE,0)),U,5),"","","",1)
+ S SDELSRC=$G(SDELSRC)  ;*zeb+1 717 11/6/18 suppress event if coming from cancel appointment
+ IF SDELSRC'="PCE" S X=$$DELVFILE^PXAPI("ALL",$P($G(^SCE(SDOE,0)),U,5),"","","",1)
  S SDVFLG=1
  ;
  ; -- get handle if not passed and do 'before'
- I '$G(SDELHDL) N SDATA,SDELHDL S SDEVTF=1 D EVT^SDCOU1(SDOE,"BEFORE",.SDELHDL,.SDATA)
+ I '$G(SDELHDL),("^CANCEL^NOSHOW^"'["^"_SDELSRC_"^") N SDATA,SDELHDL S SDEVTF=1 D EVT^SDCOU1(SDOE,"BEFORE",.SDELHDL,.SDATA)  ;*zeb 717 11/6/18 suppress event if coming from cancel or no show
  ;
- I $G(SDMOD) W !!,">>> Deleting check out information..."
+ I $G(SDMOD)=1 W !!,">>> Deleting check out information..."  ;*zeb 10/25/18 717 fix test for SDMOD=2 for GUI
  ;
  ; -- delete child data for appts, disposition and stop code addition
  I "^1^2^3^"[("^"_SDORG_"^") D CHLD(SDOE,SDMOD) ;SD/257
@@ -41,7 +42,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  I $G(SDMOD) W !,">>> done."
  ;
  ; -- if handle not passed, then 'after' and event
- I $G(SDEVTF) D EVT^SDCOU1(SDOE,"AFTER",SDELHDL,.SDATA,SDOE0)
+ I $G(SDEVTF),(SDELSRC'="CANCEL") D EVT^SDCOU1(SDOE,"AFTER",SDELHDL,.SDATA,SDOE0)  ;*zeb 717 11/6/18 suppress event if coming from cancel appointment
  ;
  ; -- call pce to make sure its data is gone
  I $G(SDVFLG) D DEAD^PXUTLSTP(SDVSAV)

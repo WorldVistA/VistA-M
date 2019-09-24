@@ -1,7 +1,10 @@
 PRCOVUP ;WISC/DJM/AS-VENDOR UPDATE SERVER ROUTINE ; 17 Dec 2009  11:05 AM
-V ;;5.1;IFCAP;**81,144**;Oct 20, 2000;Build 2
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**81,144,211**;Oct 20, 2000;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;;
+ ;PRC*5.1*211 Status update to VR document found in ^GECS(2100.1
+ ;             when 'VUP' record returned and processed by Vista
+ ;
 IN ;THIS ROUTINE WILL BE CALLED FROM THE 'FMS' SERVER VIA FILE 423.5
  ;ENTRY FOR THE VENDOR UPDATE TRANSACTION (VUP).
  ;PRCDA IS THE INTERNAL ENTRY NUMBER FOR THE RECORD FROM FILE 423.6.
@@ -67,6 +70,14 @@ ENCK S ALTFLG=0
  I $P(LINE,U,12)]"" S $P(VEN7,U,8)=$O(^DIC(5,"C",$P(LINE,U,12),0))
  S ^PRC(440,ENTRY,3)=VEN3
  S ^PRC(440,ENTRY,7)=VEN7
+ ;Set file 2100.1 corresponding vendor update doc to accepted   PRC*5.1*211
+ N PRCGEC1,PRCGEC2,PRCGECX
+ S PRCGEC1="VR-6939999999999",PRCGECEX=0,U="^"   ;PRC*5.1*211
+ F  S PRCGEC1=$O(^GECS(2100.1,"B",PRCGEC1),-1) Q:PRCGEC1'["VR"!(PRCGEC1="")  D  Q:PRCGECEX  ;PRC*5.1*211
+ . S PRCGEC2=$O(^GECS(2100.1,"B",PRCGEC1,0)) Q:'PRCGEC2
+ . I $P(^GECS(2100.1,PRCGEC2,10,2,0),U,5)'=ENTRY Q
+ . S PRCGECEX=1
+ . S DA=PRCGEC2,DR="3///"_"A",DIE="^GECS(2100.1," D ^DIE K DA,DR,DIE
  S DIE="^PRC(440,"
  S DA=ENTRY
  S FMSVC=$P(LINE,U,6)

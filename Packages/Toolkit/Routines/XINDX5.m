@@ -1,5 +1,5 @@
 XINDX5 ;SF-ISC/RWF - CROSS REFERENCE ALL ROUTINES ;03/26/2002  09:57
- ;;7.3;TOOLKIT;**20,27,61,121,133**;Apr 25, 1995;Build 15
+ ;;7.3;TOOLKIT;**20,27,61,121,133,140**;Apr 25, 1995;Build 40
  ; Per VHA Directive 2004-038, this routine should not be modified.
  G END:$D(IND("QUIT")) I INP(8) W !,"Called Routines",! D ^XINDX52 ;Get called routines
  K ARG,CCN,CH,COM,ERR,GK,GRB,I,INDDA,INDDS,L,LAB,LAB0,LC,LIN,LOC,PC,PRV,R,RTN,S,STR,TXT,V,X,Y
@@ -26,7 +26,7 @@ AAER(ERR,RTN,LAB,LABO) ;Report error. error code, routine, label, label offset
  D ^XINDX1
  Q
 VTAG(K) ;Check for a valid tag. works for routine name.
- Q (K?1(1"%",1A).7NA)!(K?1.8N)
+ Q (K?1(1"%",1A).15NA)!(K?1.16N)
  ;
 B D ^XINDX51
 END W:$D(IND("QUIT")) !!,"--- ",$S($D(ZTSTOP):"TASK ",1:""),"STOPPED ---" W !!,"--- END ---"

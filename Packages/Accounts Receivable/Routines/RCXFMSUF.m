@@ -1,6 +1,6 @@
-RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ;10/20/10 10:37am
- ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310,315**;Mar 20, 1995;Build 67
- ;;Per VA Directive 6402, this routine should not be modified.
+RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ; 10/20/10 10:37am
+ ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310,315,338,351**;Mar 20, 1995;Build 15
+ ;;Per VA Directive 6402, this routine should not be modifieD
  Q
  ;
  ;
@@ -28,7 +28,7 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  ;  calculate a bills fund
  I $G(RCEFT)=1 S FUND="5287"_$S(DT<3030926:"",DT'<3030926&(DT<$$ADDPTEDT^PRCAACC()):".4",1:"04") Q FUND
  S CATEGDA=+$P($G(^PRCA(430,BILLDA,0)),"^",2)
- I CATEGDA>47 Q ""
+ I CATEGDA>84 Q ""
  ;
  ;  piece 5 is new fund, remove spaces
  S FUND=$P($TR($T(@CATEGDA)," "),";",5)
@@ -64,10 +64,13 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  ;
  ;  set the fund for the bill
  ; PRCA*4.5*310/DRF Add Non-VA fund 528713
+ ;
  I $G(DONTSTOR)'=1 D STORE^RCXFMSUR(BILLDA,"",FUND)
  ; 
+ ; PRCA*4.5*338 Added funds for Community Care 
  I FUND>528704,FUND<528709!(FUND=528710)!(FUND=528711) Q FUND
  I FUND=528713 Q FUND
+ I FUND=528714 Q FUND
  ;
  I $G(REPRODT),REPRODT<3030926,$E(FUND,1,4)=5287 Q 5287
  I $G(REPRODT),REPRODT<3031001,$E(FUND,1,4)=5287,$G(REFMS) Q 5287
@@ -105,27 +108,27 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
  ;  file 430.2.  piece 3 is a description, piece 4 is the old fund,
  ;  piece 5 is the new fund
  ;  PRCA*4.5*310/DRF Added 45 - FEE REIMB INS to routine.
-0 ;;no fund                       ;       ;    
-1 ;;INELIGIBLE HOSP.              ;3220   ;0160A1
-2 ;;EMERGENCY/HUMANITARIAN        ;0160A1 ;528703
-3 ;;NURSING HOME CARE(NSC)        ;2431   ;528703
-4 ;;OUTPATIENT CARE(NSC)          ;2431   ;528703
-5 ;;HOSPITAL CARE (NSC)           ;2431   ;528703
-6 ;;WORKMAN'S COMP.               ;5014   ;528704
-7 ;;NO-FAULT AUTO ACC.            ;5014   ;528704
-8 ;;CRIME OF PER.VIO.             ;5014   ;528704
-9 ;;REIMBURS.HEALTH INS.          ;5014   ;528704
+0 ;;no fund                        ;       ;
+1 ;;INELIGIBLE HOSP.               ;3220   ;0160R1
+2 ;;EMERGENCY/HUMANITARIAN         ;0160A1 ;528703
+3 ;;NURSING HOME CARE(NSC)         ;2431   ;528703
+4 ;;OUTPATIENT CARE(NSC)           ;2431   ;528703
+5 ;;HOSPITAL CARE (NSC)            ;2431   ;528703
+6 ;;WORKMAN'S COMP.                ;5014   ;528704
+7 ;;NO-FAULT AUTO ACC.             ;5014   ;528704
+8 ;;CRIME OF PER.VIO.              ;5014   ;528704
+9 ;;REIMBURS.HEALTH INS.           ;5014   ;528704
 10 ;;TORT FEASOR                   ;0160A1 ;528704
 11 ;;no entry                      ;       ;
-12 ;;MILITARY                      ;0160A1 ;0160A1
+12 ;;MILITARY                      ;0160A1 ;0160R1
 13 ;;FEDERAL AGENCIES-REFUND       ;0160A1 ;0160A1
-14 ;;FEDERAL AGENCIES-REIMB.       ;0160A1 ;0160A1
+14 ;;FEDERAL AGENCIES-REIMB.       ;0160R1 ;0160R1
 15 ;;EX-EMPLOYEE                   ;0160A1 ;0160A1
 16 ;;CURRENT EMP.                  ;0160A1 ;0160A1
 17 ;;VENDOR                        ;0160A1 ;0160A1
 18 ;;C (MEANS TEST)                ;2431   ;528703
-19 ;;SHARING AGREEMENTS            ;0160A1 ;0160A1
-20 ;;INTERAGENCY                   ;0160A1 ;0160A1
+19 ;;SHARING AGREEMENTS            ;0160A1 ;0160R1
+20 ;;INTERAGENCY                   ;0160A1 ;0160R1
 21 ;;MEDICARE                      ;5014   ;528704
 22 ;;RX CO-PAYMENT/SC VET          ;5014   ;528701
 23 ;;RX CO-PAYMENT/NSC VET         ;5014   ;528701
@@ -133,11 +136,11 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
 25 ;;HOSPITAL CARE PER DIEM        ;2431   ;528703
 26 ;;PREPAYMENT                    ;5014   ;528703
 27 ;;CHAMPVA SUBSISTENCE           ;3220   ;3220
-28 ;;CHAMPVA THIRD PARTY           ;3220   ;0160A1
-29 ;;CHAMPVA                       ;0160A1 ;0160A1
-30 ;;TRICARE                       ;0160A1 ;0160A1
-31 ;;TRICARE PATIENT               ;0160A1 ;0160A1
-32 ;;TRICARE THIRD PARTY           ;0160A1 ;0160A1
+28 ;;CHAMPVA THIRD PARTY           ;3220   ;0160R1
+29 ;;CHAMPVA                       ;0160A1 ;0160R1
+30 ;;TRICARE                       ;0160A1 ;0160R1
+31 ;;TRICARE PATIENT               ;0160A1 ;0160R1
+32 ;;TRICARE THIRD PARTY           ;0160A1 ;0160R1
 33 ;;ADULT DAY HEALTH CARE         ;4032   ;528709
 34 ;;DOMICILIARY                   ;4032   ;528709
 35 ;;RESPITE CARE-INSTITUTIONAL    ;4032   ;528709
@@ -152,5 +155,41 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
 44 ;;ENHANCED USE LEASE PROCEEDS   ;5358.3 ;528710
 45 ;;FEE REIMB INS                 ;       ;528713
 46 ;;EMERGENCY/HUMANITARIAN REIMB. ;       ;528704  ;315
-47 ;;INELIGIBLE REIMB. INS.        ;       ;0160A1  ;315
- ;    
+47 ;;INELIGIBLE REIMB. INS.        ;       ;0160R1  ;315
+48 ;;CHOICE THIRD PARTY            ;       ;528713
+49 ;;CC THIRD PARTY                ;       ;528713
+50 ;;CCN THIRD PARTY               ;       ;528713
+51 ;;CC MTF THIRD PARTY            ;       ;528713
+52 ;;CHOICE NO-FAULT AUTO          ;       ;528713
+53 ;;CHOICE TORT FEASOR            ;       ;528713
+54 ;;CCN WORKERS' COMP             ;       ;528713
+55 ;;CCN NO-FAULT AUTO             ;       ;528713
+56 ;;CCN TORT FEASOR               ;       ;528713
+57 ;;CC WORKERS' COMP              ;       ;528713
+58 ;;CC NO-FAULT AUTO              ;       ;528713
+59 ;;CC TORT FEASOR                ;       ;528713
+60 ;;CHOICE WORKERS' COMP          ;       ;528713
+61 ;;CHOICE INPT                   ;       ;528714
+62 ;;CHOICE RX CO-PAYMENT          ;       ;528714
+63 ;;CC INPT                       ;       ;528714
+64 ;;CC RX CO-PAYMENT              ;       ;528714
+65 ;;CCN INPT                      ;       ;528714
+66 ;;CCN RX CO-PAYMENT             ;       ;528714
+67 ;;CC MTF INPT                   ;       ;528714
+68 ;;CC MTF RX CO-PAYMENT          ;       ;528714
+69 ;;CC NURSING HOME CARE - LTC    ;       ;528714
+70 ;;CC RESPITE CARE               ;       ;528714
+71 ;;CCN NURSING HOME CARE - LTC   ;       ;528714
+72 ;;CCN RESPITE CARE              ;       ;528714
+73 ;;CHOICE NURSING HOME CARE - LTC ;      ;528714
+74 ;;CHOICE RESPITE CARE           ;       ;528714
+75 ;;TRICARE DES                   ;       ;0160R1
+76 ;;TRICARE SCI                   ;       ;0160R1
+77 ;;TRICARE TBI                   ;       ;0160R1
+78 ;;TRICARE BLIND REHABILITATION  ;       ;0160R1
+79 ;;TRICARE DENTAL                ;       ;0160R1
+80 ;;TRICARE PHARMACY              ;       ;0160R1
+81 ;;CHOICE OPT                    ;       ;528714
+82 ;;CC OPT                        ;       ;528714
+83 ;;CCN OPT                       ;       ;528714
+84 ;;CC MTF OPT                    ;       ;528714

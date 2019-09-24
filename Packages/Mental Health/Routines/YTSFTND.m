@@ -1,4 +1,4 @@
-YTSFTND ;SLC/BLD - Fagerström Test for Nicotine Dependence (FTND)  ; 9/26/2018
+YTSFTND ;SLC/BLD - FagerstrÃ¶m Test for Nicotine Dependence (FTND)  ; 9/26/2018
  ;;5.01;MENTAL HEALTH;**147**;DEC 30,1994;Build 283
  ;
  ;Public, Supported ICRs

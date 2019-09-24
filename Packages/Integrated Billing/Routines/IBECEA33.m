@@ -1,5 +1,5 @@
 IBECEA33 ;ALB/CPM-Cancel/Edit/Add... More Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646**;21-MAR-94;Build 5
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 NOCL ; Find the correct clock from the 'bill from' date.
@@ -34,11 +34,19 @@ OPT ; Check for a C&P exam and determine the outpatient copay rate.
 OPTQ Q
  ;
 CHTYP ; Ask for the Charge Type
- S DIC="^IBE(350.1,",DIC(0)="AEMQZ",D="E",DIC("S")="I $P(^(0),U)'[""MEDICARE"",$P(^(0),U)'[""CHAMPVA SUB""",DIC("A")="Select CHARGE TYPE: "
+ ;*** IB*2.0*618 add check for inactive field when building the list of Action Types.
+ S DIC="^IBE(350.1,",DIC(0)="AEMQZ",D="E",DIC("S")="I '$P($G(^(0)),U,12),$P(^(0),U)'[""MEDICARE"",$P(^(0),U)'[""CHAMPVA SUB""",DIC("A")="Select CHARGE TYPE: "
  D IX^DIC K DIC S IBATYP=+Y I Y<0 S IBY=-1 W !!,"No CHARGE TYPE entered - transaction cannot be completed." G CHTYPQ
  ;
  ; - perform charge type edits
  S IBSEQNO=$P(Y(0),"^",5),IBXA=$P(Y(0),"^",11),IBNH=$S(IBXA=1:2,IBXA=9&(Y(0)["FEE"):2,1:$P(Y(0),"^",8)["NHCU")
+ ;
+ ;IB*2.0*646 Start
+ ;If the action type is DG FEE SERVICE (OPT) its an urgent care visit now and all eligibility checks and clocks can be skipped. 
+ ;  will convert to new Urgent Care Action type(s) in a future patch
+ I $P(Y(0),U)="DG FEE SERVICE (OPT) NEW" S IBUC=1 G CHTYPQ
+ ;end IB*2.0*646
+ ;
  I 'IBSEQNO S IBY="-1^IB023" G CHTYPQ
  I IBXA=7 G CHTYPQ
  I IBXA=6 G:IBCVAEL CHTYPQ W !!,"This patient does not have a Primary Eligibility of CHAMPVA.",! G CHTYP

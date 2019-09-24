@@ -1,5 +1,5 @@
 XINDX2 ;ISC/REL,GRK,RWF - PROCESS "GRB" ;4/2/08  16:35
- ;;7.3;TOOLKIT;**20,27,48,110,121,133**;Apr 25, 1995;Build 15
+ ;;7.3;TOOLKIT;**20,27,48,110,121,133,140**;Apr 25, 1995;Build 40
  ; Per VHA Directive 2004-038, this routine should not be modified.
 % S LINE=GRB,(CM,COM)="" F I=0:0 S STR=$P(LINE,$C(9),1),LINE=$P(LINE,$C(9),2,999),NOA=0 D:STR]"" ARGG Q:LINE']""
  Q
@@ -139,8 +139,8 @@ ST(LOC,S) S:'$D(V(LOC,S)) V(LOC,S)="" I $D(GK),GK]"",V(LOC,S)'[GK S V(LOC,S)=V(L
 VT(X) ;Check if a valid label
  Q (X?1A.31AN)!(X?1"%".31UN)!(X?1.31N)
  ;
-VA(X) ;Check if VA Standard label
- Q (X?1U.7UN)!(X?1"%".7UN)!(X?1.8N)
+VA(X) ;Check if VA Standard label ;P140
+ Q (X?1U.15UN)!(X?1"%".15UN)!(X?1.16N)
  ;
 FLUSH(L) ;Flush rest of list with this offset
  N I,CH S I=LI(L)+1 F I=I:1 S CH=$G(LV(L,I)) Q:$C(10)[CH  D:CH="(" FLUSH(L+1)
@@ -158,6 +158,7 @@ OP(NEW) ;Sets or returns the current operator
  Q $G(LV(LV,"OP",W))
  ;
 OBJTST(OBJ) ;test if OBJ exists, returns 1 if exists
+ Q:^%ZOSF("OS")'["OpenM" 1
  Q:$G(OBJ)="" 0
  Q ##class(%Dictionary.ClassDefinition).%ExistsId(""_OBJ_"")
  ;

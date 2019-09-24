@@ -19,7 +19,7 @@ PRI1 W !,"B.      If any contractor/sub-contractor retained to do work for VA un
  W !,"enhancements, compensating controls, protocols, and/or measures, including,"
  W !,"but not limited to the sources above, the contractor/subcontractor is"
  W !,"further subject to the statutory requirement to assess liquidated damages"
- W !,"against contractors and/or subcontractors under 38 U.S.C. ง5725 in the event"
+ W !,"against contractors and/or subcontractors under 38 U.S.C. ยง5725 in the event"
  W !,"of a breach of Sensitive Personal Information (SPI)/Personally Identifiable"
  W !,"Information (PII).  Said liquidated damages shall be assessed at $37.50"
  W !,"per affected Veteran or beneficiary.  A breach in this context includes"

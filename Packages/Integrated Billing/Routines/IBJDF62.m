@@ -1,5 +1,8 @@
 IBJDF62 ;ALB/RB - MISC. BILLS FOLLOW-UP REPORT (PRINT) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,159,618**;21-MAR-94;Build 61
+ ;;Per VHA Directive 6402, this routine should not be modified.
+ ;
+ ;Read ^PRCA(430.2) via Private IA 594
  ;
 EN ; - Print the Follow-up report.
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%) G:IBRPT="S" SUM
@@ -16,9 +19,9 @@ DET(IBDIV) ; - Print report for a specific division.
  ; Input: IBDIV=Pointer to the division in file #40.8
  S IBCAT=0
  F  S IBCAT=$O(IBCAT(IBCAT)) Q:'IBCAT  D  Q:IBQ
- . S IBCAT1=IBCAT(IBCAT),IBGBL=$S(IBCAT1<5:"IBJDF6P",1:"IBJDF6D")
- . I IBDIV,IBCAT1'<5 Q
- . I IBSDV,'IBDIV,IBCAT1<5 Q
+ . S IBCAT1=IBCAT(IBCAT),IBGBL=$S(IBCAT1<8:"IBJDF6P",1:"IBJDF6D")   ;IB*2.0*618
+ . I IBDIV,IBCAT1'<8 Q    ;IB*2.0*618
+ . I IBSDV,'IBDIV,IBCAT1<8 Q   ;IB*2.0*618
  . I '$D(^TMP(IBGBL,$J,IBDIV,IBCAT)) D HDR1 Q:IBQ  D NAR,PAUSE Q
  . D HDR1 Q:IBQ
  . S IBIN="" F  S IBIN=$O(^TMP(IBGBL,$J,IBDIV,IBCAT,IBIN)) Q:IBIN=""  D  Q:IBQ
@@ -32,7 +35,7 @@ DET(IBDIV) ; - Print report for a specific division.
  . . . F  S IB0=$O(^TMP(IBGBL,$J,IBDIV,IBCAT,IBIN,IBPTD,IB0)) Q:IB0=""  D  Q:IBQ
  . . . . S IBN=$G(^TMP(IBGBL,$J,IBDIV,IBCAT,IBIN,IBPTD,IB0))
  . . . . I $Y>(IOSL-3) D PAUSE Q:IBQ  D HDR1,HDR2 Q:IBQ  D WPAT
- . . . . I IBCAT1<5 D
+ . . . . I IBCAT1<8 D      ;IB*2.0*618
  . . . . . W ?71,IB0,?84,$$DAT1^IBOUTL(+IBN),?94,$$DAT1^IBOUTL($P(IBN,U,2))
  . . . . . W ?104,$$DAT1^IBOUTL($P(IBN,U,3)),?114,$J($P(IBN,U,4),8,2)
  . . . . . W ?124,$J($P(IBN,U,5),8,2),!
@@ -58,18 +61,20 @@ PAUSE ; - Page break.
  S DIR(0)="E" D ^DIR S:$D(DIRUT)!($D(DUOUT)) IBQ=1
  Q
  ;
-HDR1 ; - Write the primary report header.
+HDR1 ; - Write the primary report header. 
+ N IBCATNM
  I $E(IOST,1,2)="C-"!$G(IBPAG) W @IOF,*13
  S IBPAG=$G(IBPAG)+1 W "Miscellaneous Bills Follow-Up Report"
  I IBDIV W " for ",$P($G(^DG(40.8,IBDIV,0)),U)
  W ?60,"   Run Date: ",IBRUN,?123,"Page: ",$J(IBPAG,3)
  ;
- S X="ALL ACTIVE "_$G(IBCTG(IBCAT(IBCAT)))_" RECEIVABLES "
+ S IBCATNM=$$ARCAT(IBCAT)  ; patch IB*2.0*618
+ S X="ALL ACTIVE "_$G(IBCATNM)_" RECEIVABLES "
  I IBSMN S X=X_"OVER "_IBSMN_" AND LESS THAN "_IBSMX_" DAYS OLD "
- I IBCAT(IBCAT)<5 D
+ I IBCAT(IBCAT)<8 D    ;IB*2.0*618
  . S X=X_" / BY PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4 DIGITS OF SSN")
  . S X=X_" ("_$S($G(IBSNA)="ALL":"ALL",1:"From "_$S(IBSNF="":"FIRST",1:IBSNF)_" to "_$S(IBSNL="zzzzz":"LAST",1:IBSNL))_") / "
- I IBCAT(IBCAT)>4 D
+ I IBCAT(IBCAT)>7 D     ;IB*2.0*618
  . S X=X_" / BY DEBTOR NAME"
  . S X=X_" ("_$S($G(IBSDA)="ALL":"ALL",1:"From "_$S(IBSDF="":"FIRST",1:IBSDF)_" to "_$S(IBSDL="zzzzz":"LAST",1:IBSDL))_") / "
  S X=X_$S('IBSAM:"NO ",1:"")_" MINIMUM BALANCE"
@@ -79,7 +84,7 @@ HDR1 ; - Write the primary report header.
  S X=X_" / '*' AFTER THE PATIENT/DEBTOR NAME = VA EMPLOYEE"
  F I=1:1 W !,$E(X,1,132) S X=$E(X,133,999) I X="" Q
  ;
- I IBCAT1<5 D  G HDQ
+ I IBCAT1<8 D  G HDQ     ;IB*2.0*618
  .W !!?84,"Date",?94,"Bill",?104,"Bill",?114,"Original   Current"
  .W !,"Patient (Age)",?33,"SSN",?47,"Other Insurance",?71,"Bill Number"
  .W ?84,"Prepared  From Dte  To Date",?116,"Amount   Balance"
@@ -92,7 +97,7 @@ HDQ W !,$$DASH(IOM),!
  Q
  ;
 HDR2 ; - Write the insurance company sub-header.
- N X,X13 Q:IBCAT1>4
+ N X,X13 Q:IBCAT1>7    ;IB*2.0*618
  W ?2,"Carrier: ",$P(IBIN,"@@")
  S X=$G(^DIC(36,+$P(IBIN,"@@",2),.11)),X13=$G(^(.13))
  I X]"" D
@@ -108,13 +113,13 @@ NAR ; - Write detail line (if '$D).
  W !!,"There are no active receivables "
  I IBSMN W IBSMN,$S(IBSMX>IBSMN:" to "_IBSMX,1:"")," days old "
  I IBDIV W "for this division."
- I IBSDV,IBDIV,IBCAT1<5 Q
- I IBSDV,'IBDIV,IBCAT1'<5 Q
+ I IBSDV,IBDIV,IBCAT1<8 Q     ;IB*2.0*618
+ I IBSDV,'IBDIV,IBCAT1'<8 Q    ;IB*2.0*618
  F I=1:1:8 S IB(+IBDIV,IBCAT,I)=""
  Q
  ;
 WPAT ; - Write patient data.
- I IBCAT1<5 D  Q
+ I IBCAT1<8 D  Q     ;IB*2.0*618
  . W $P(IBPD,U)," (",$P(IBPD,U,2),")",?33,$P(IBPD,U,3),?47,$P(IBPD,U,4)
  W $P(IBPD,U)
  Q
@@ -156,3 +161,8 @@ WCPB ; - Page Break in the middle of Comments
 WCD ; - Write comment date.
  W ?2,"Comment Date: ",$$DAT1^IBOUTL(IBCD)
  Q
+ ;
+ARCAT(IBCAT) ; obtain AR Category's name - patch IB*2.0*618
+ N IBCATNAM
+ S IBCATNAM=$$GET1^DIQ(430.2,IBCAT,.01)   ; get AR CATEGORY
+ Q IBCATNAM

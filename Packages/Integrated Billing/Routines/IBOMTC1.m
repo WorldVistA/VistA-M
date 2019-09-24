@@ -1,11 +1,12 @@
 IBOMTC1 ;ALB/CPM-BILLING ACTIVITY LIST (CON'T) ; 09-JAN-92
- ;;2.0;INTEGRATED BILLING;**145,176**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**145,176,618**;21-MAR-94;Build 61
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;***
  ;S XRTL=$ZU(0),XRTN="IBOMTC-2" D T0^%ZOSV ;start rt clock
  ; Select charges from file #350.
  K ^TMP($J,"IBPHT")
+ N IBTYPE,IBIEN  ; Patch IB*2.0*618
  S DFN="" F  S DFN=$O(^IB("AFDT",DFN)) Q:'DFN  S IBHEART=$$PH(DFN) D:'$G(IBPURPHT)!($G(IBPURPHT)&(IBHEART))
  . S EVDT=-(IBEDT+.99) F  S EVDT=$O(^IB("AFDT",DFN,EVDT)) Q:'EVDT  D
  ..  S EVDA=0 F  S EVDA=$O(^IB("AFDT",DFN,EVDT,EVDA)) Q:'EVDA  D
@@ -30,8 +31,11 @@ IBOMTC1 ;ALB/CPM-BILLING ACTIVITY LIST (CON'T) ; 09-JAN-92
  ..  S IBDA="" F  S IBDA=$O(^TMP($J,"IBOMTC",NAM,IBDT,IBDA)) Q:'IBDA  D  Q:IBQUIT
  ...  I $Y>(IOSL-4) D PHT,PAUSE^IBOUTL Q:IBQUIT  D HDR Q:IBQUIT  W !,$S($D(^TMP($J,"IBPHT",NAM)):"*",1:" ")_$E($P(IBPT,"^"),1,9),?11,$P(IBPT,"^",3)
  ...  S IBD0=$G(^IB(+IBDA,0)) Q:'IBD0
- ...  S X=$P($P($G(^IBE(350.1,+$P(IBD0,"^",3),0)),"^")," ",2,99)
- ...  W ?17,$E($P(X," ",1,$L(X," ")-1),1,16)
+ ...  S X=$P($G(^IBE(350.1,+$P(IBD0,"^",3),0)),"^")
+ ...  ; begin of Patch IB*2.0*618 - added community care - action types
+ ...  S IBIEN=$P(IBD0,"^",3),IBTYPE=$$GETATYPE(IBIEN)
+ ...  W ?17,IBTYPE
+ ...  ; end of Patch IB*2.0*618
  ...  W ?35,$E($P($G(^IBE(350.21,+$P(IBD0,"^",5),0)),"^",2),1,11)
  ...  W ?47,$$DAT1^IBOUTL($P(IBD0,"^",14)),?57,$$DAT1^IBOUTL($P(IBD0,"^",15))
  ...  W ?66,$J($P(IBD0,"^",6),3)
@@ -71,3 +75,8 @@ PH(DFN) ;Call to find out if a patient is a Purple Heart recipient.
  S IBPHT=$P($G(VASV(9,1)),"^",1)
  I IBPHT'=3 S IBPHT=0
  Q IBPHT
+ ;
+GETATYPE(IBIEN) ; Patch IB*2.0*618 - added community care - action types
+ S IBTYPE=$P(^IBE(350.1,IBIEN,0),"^") I $E(IBTYPE,1,2)="DG" Q $E($P(IBTYPE," ",2,99),1,16)
+ I $E(IBTYPE,1,3)="PSO" Q $E($P(IBTYPE," ",2,99),1,16)
+ Q $E(IBTYPE,1,16)

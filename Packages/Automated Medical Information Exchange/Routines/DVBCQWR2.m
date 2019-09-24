@@ -185,7 +185,7 @@ TXT ;
  ;;    ___ Unfavorable, in any degree of      ___ Right   ___ Left   ___ Both
  ;;        palmar flexion
  ;;    ___ Any other unfavorable position     ___ Right   ___ Left   ___ Both
- ;;    ___ Favorable in 20บ to 30บ            ___ Right   ___ Left   ___ Both
+ ;;    ___ Favorable in 20ยบ to 30ยบ            ___ Right   ___ Left   ___ Both
  ;;        dorsiflexion
  ;;^TOF^
  ;; 10.  Joint replacement and/or other surgical procedures

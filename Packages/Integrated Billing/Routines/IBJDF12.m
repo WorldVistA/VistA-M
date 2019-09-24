@@ -1,5 +1,5 @@
 IBJDF12 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (PRINT) ;10-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,118,128,123,204,205,554**;21-MAR-94;Build 81
+ ;;2.0;INTEGRATED BILLING;**69,118,128,123,204,205,554,618**;21-MAR-94;Build 61
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -14,7 +14,7 @@ DET(IBDIV) ; - Print report for a specific division.
  ;  Input: IBDIV=Pointer to the division in file #40.8
  S IBPAG=0
  I '$D(^TMP("IBJDF1",$J,IBDIV)) D  G DETQ
- .S IBSEL=5 D HDR1 I IBQ Q
+ .S IBSEL=10 D HDR1 I IBQ Q            ;IB*2.0*618 all changed from selection 5 to 10.
  .W !!,"There are no active receivables "
  .I IBSMN W IBSMN,$S(IBSMX>IBSMN:" to "_IBSMX,1:"")," days old "
  .I IBDIV W "for this division."
@@ -52,7 +52,8 @@ HDR1 ; - Write the primary report header.
  I IBDIV W " for ",$P($G(^DG(40.8,IBDIV,0)),U)
  W ?88,"Run Date: ",IBRUN,?123,"Page: ",$J(IBPAG,3)
  ; IB*2*554/DRF - Add NON-VA to header
- W !,"All active ",$S(IBSEL[1:"INPATIENT ",IBTYP[2:"OUTPATIENT ",IBSEL[3:"RX REFILL ",IBSEL[4:"NON-VA ",1:""),"receivables "
+ ; IB*2.0*618 - Add Comunity Care headers - Corrected Select Statement to prevent error.
+ W !,"All active ",$$GETHDR(IBSEL),"receivables "
  I IBSMN W IBSMN,$S(IBSMX>IBSMN:" to "_IBSMX,1:"")," days old "
  I IBSAM W "with balances of at least $",IBSAM
  W !!?37,"Other",?51,"Date",?92,"Original",?103,"Current"
@@ -70,6 +71,24 @@ HDR2 ; - Write the insurance company sub-header.
  .I $P(X13,U,2)]"" W "   Billing Phone: ",$P(X13,U,2) Q
  .I $P(X13,U)]"" W "   Main Phone: ",$P(X13,U)
  Q
+ ;
+ ;IB*2.0*618 - Centralize header phrases for all Third Party Follow-up reports
+GETHDR(IBSEL,IBFLG) ; - retrieve the text display for the header, based upon selection type.
+ ; IBSEL = (Required) Type of Report
+ ; IBFLG = (Optional) Summary Report = 1, Detail Report = NULL
+ ;
+ S IBFLG=$G(IBFLG)
+ Q:IBSEL="1," "INPATIENT "
+ Q:IBSEL="2," "OUTPATIENT "
+ Q:IBSEL="3," "RX REFILL "
+ Q:IBSEL="4," "ALL COMMUNITY CARE AND FEE "
+ Q:IBSEL="5," "FEE REIMB INS "
+ Q:IBSEL="6," "COMMUNITY CARE "
+ Q:IBSEL="7," "COMMUNITY CARE CHOICE "
+ Q:IBSEL="8," "COMMUNITY CARE NETWORK "
+ Q:IBSEL="9," "COMMUNITY CARE MTF "
+ Q:IBFLG "ALL "     ; Used in the Third Party Summary
+ Q ""
  ;
 WPAT ; - Write patient data.
  W $P(IBZ,U),?24,$$SSN($P(IBZ,U,2)),?37,$P(IBZ,U,3)

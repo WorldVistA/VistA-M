@@ -1,10 +1,10 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646**;21-MAR-94;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
- N IBGMT,IBGMTR
- S (IBGMT,IBGMTR)=0
+ N IBGMT,IBGMTR,IBUSNM,IBUC    ;IB*2.0*618 Add IBUSNM IB*2.0*646 Add IBUC
+ S (IBGMT,IBGMTR,IBUC)=0
  S IBCOMMIT=0,IBEXSTAT=$$RXST^IBARXEU(DFN,DT),IBCATC=$$BILST^DGMTUB(DFN),IBCVAEL=$$CVA^IBAUTL5(DFN),IBLTCST=$$LTCST^IBAECU(DFN,DT,1)
  ;I 'IBCVAEL,'IBCATC,'$G(IBRX),+IBEXSTAT<1 W !!,"This patient has never been Means Test billable." S VALMBCK="" D PAUSE^VALM1 G ADDQ1
  ;
@@ -15,7 +15,17 @@ ADD ; Add a Charge protocol
  ;
  ; - ask for the charge type
  D CHTYP^IBECEA33 G:IBY<0 ADDQ
- N IBAFEE S:$P($G(^IBE(350.1,+$G(IBATYP),0)),"^",8)="FEE SERVICE/OUTPATIENT" IBAFEE=IBATYP
+ ;
+ ;***IB*2.0*618 change to add more Action Types to this list...
+ ; Allow user to add an extra "co-payment" charge if the Action Type
+ ; selected is an Outpatient FEE BASIS, CHOICE, CC or CCN charge type
+ N IBAFEE
+ S IBUSNM=$P($G(^IBE(350.1,+$G(IBATYP),0)),"^",8)
+ I IBUSNM'="" D
+ . I IBUSNM="FEE SERVICE/OUTPATIENT" S IBAFEE=IBATYP Q
+ . I (IBUSNM["CC")!(IBUSNM["CHOICE") D 
+ . . I (IBUSNM["OPT")!(IBUSNM["OUTPATIENT")!(IBUSNM["URGENT") S IBAFEE=IBATYP  ;IB*2.0*646  added URGENT 
+ ;*** END IB*2.0*618 ***
  ;
  ; - process CHAMPVA charges
  I IBXA=6 D CHMPVA^IBECEA32 G ADDQ
@@ -47,6 +57,9 @@ ADD ; Add a Charge protocol
  . S IBLIM=DT D FR^IBECEAU2(0) Q:IBY<0
  . S (IBTO,IBEFDT)=IBFR
  . ;
+ . ;PRCA*4.5*338 - if Community Care RX copay, set event date
+ . I (IBXA=5),(IBUSNM["RX"),((IBUSNM["CC")!(IBUSNM["CHOICE")) S IBEVDA="*",IBEVDT=IBEFDT
+ . ;
  . ; ask tier if needed
  . S IBTIER=$$TIER^IBECEAU2(IBATYP,IBEFDT) Q:IBY<0
  . ;
@@ -72,6 +85,10 @@ ADD ; Add a Charge protocol
 FR ; - ask 'bill from' date
  D FR^IBECEAU2(0) G:IBY<0 ADDQ
  ;
+ ;IB*2.0*646
+ ; If Urgent Care copay, skip clock checks, go to prompt for copay amount.
+ G:$G(IBUC) UCPAY
+ ; end IB*2.0*646
  S IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR),IBGMTR=0 ;GMT Copayment Status
  I IBGMT>0,IBXA>0,IBXA<4 W !,"The patient has GMT Copayment Status."
  ; - check the MT billing clock
@@ -98,8 +115,13 @@ FR ; - ask 'bill from' date
  ; - find the correct clock from the 'bill from' date (ignore LTC)
  I IBXA'=8,IBXA'=9,('IBCLDA!(IBCLDA&(IBFR<IBCLDT))) D NOCL^IBECEA33 G:IBY<0 ADDQ
  ;
+UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent Care Copays
  ; - perform outpatient edits
  N IBSTOPDA
+ ;IB*2.0*646 If urgent care, process using UC criteria and go to process
+ I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
+ ;end IB*2.0*646
+ ;
  I IBXA=4,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
  I IBXA=4 D  G ADDQ:IBY<0,PROC
  .   ;  for visits prior to 12/6/01 or FEE
@@ -168,8 +190,8 @@ PROC ; - okay to proceed?
  ; - disposition the special inpatient billing case, if necessary
  I $G(IBSIBC) D CEA^IBAMTI1(IBSIBC,IBEVDA)
  ;
- ; - generate entry in file #354.71 and #350
- I IBXA=5 W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE_"^^^^^^^"_$G(IBTIER)) G:IBAM<0 ADDQ
+ ; - generate entry in file #354.71 (for VA RX only per IB*2.0*618) and #350
+ I IBXA=5,(IBUSNM'["CC"),(IBUSNM'["CHOICE") W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE_"^^^^^^^"_$G(IBTIER)) G:IBAM<0 ADDQ
  D ADD^IBECEAU3 G:IBY<0 ADDQ W "done."
  ;
  ; - pass the charge off to AR on-line
@@ -180,7 +202,7 @@ PROC ; - okay to proceed?
  I $G(IBSIBC1) D CHK^IBAMTI1(IBSIBC1,IBEVDA)
  ;
  ; - handle updating of clock
- I IBXA'=8,IBXA'=9 D CLUPD^IBECEA32
+ I IBXA'=8,IBXA'=9,'IBUC D CLUPD^IBECEA32  ;IB*2.0*646
  ;
 ADDQ ; - display error, rebuild list, and quit
  D ERR^IBECEAU4:IBY<0,PAUSE^IBECEAU S VALMBCK="R"

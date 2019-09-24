@@ -1,8 +1,11 @@
-ORKLR2 ; slc/CLA - Order checking support proc for lab orders, part 2;2/13/97  10:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;;Dec 17, 1997
+ORKLR2 ; slc/CLA - Order checking support proc for lab orders, part 2 ;May 17, 2019 17:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**510**;Dec 17, 1997;Build 11
+ ;
+ ;IA #2387 - ^LAB(60 fields retrieved by routine LR7OR3
+ ;
  Q
 ORFREQ(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ;lab order freq restrictions order check
- N LRID,LFREQS,MAX,DAILY,MAXDT,EARLYDT,ORM,ORD,X1,X2
+ N LRID,LFREQS,MAX,DAILY,MAXDT,EARLYDT,ORM,ORD,X1,X2,X,ORDIFF
  S EARLYDT=NEWORDT
  ;get lab id from orderable item (OI):
  S LRID=$P(^ORD(101.43,OI,0),U,2) I $L($G(LRID)) D
@@ -10,6 +13,10 @@ ORFREQ(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ;lab order freq restrictions order check
  .;if max order freq exists, don't process for daily order max:
  .I '$L($G(MAX)) S:$L($G(DAILY)) ORD(LRID_";"_SPECIMEN)=DAILY_"^0"
  .I $L($G(MAX)) D
+ ..;decrease by 1 since order frequency occurs for calendar days
+ ..;example: every two days = equals today and tomorrow - not including
+ ..;         the day after tomorrow
+ ..S MAX=MAX-1
  ..S X1=NEWORDT,X2="-"_MAX D C^%DTC Q:X<1  S MAXDT=X
  ..I MAXDT<EARLYDT S EARLYDT=MAXDT ;find and keep earliest MAXDT
  ..;
@@ -31,10 +38,21 @@ ORFREQ(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ;lab order freq restrictions order check
  .;if max order freq exists, don't process for daily order max:
  .I '$L($G(MAX)),($L($G(DAILY))) S ORD(LRID_";"_SPECIMEN)=DAILY
  .I $L($G(MAX)) D
+ ..;decrease by 1 since order frequency occurs for calendar days
+ ..;example: every two days = equals today and tomorrow - not including
+ ..;         the day after tomorrow
+ ..S MAX=MAX-1
  ..S X1=NEWORDT,X2="-"_MAX D C^%DTC Q:X<1  S MAXDT=X
  ..I MAXDT<EARLYDT S EARLYDT=MAXDT ;find and keep earliest MAXDT
  ..S ORM(LRID_";"_SPECIMEN)=MAXDT
- I $D(ORM) D MAXFREQ(.ORM,EARLYDT)
+ I $D(ORM) D
+ . ;expand the search range to include orders with a collection date
+ . ;after this order's collection date
+ . S ORDIFF=$$FMDIFF^XLFDT(NEWORDT,EARLYDT,"")
+ . S NEWORDT=$$FMADD^XLFDT(NEWORDT,ORDIFF)
+ . ;start EARLYDT at midnight of previous date
+ . S EARLYDT=$$FMADD^XLFDT(EARLYDT,"","","",-60)
+ . D MAXFREQ(.ORM,EARLYDT)
  I $D(ORD) D DAILY(.ORD)
  Q
 MAXFREQ(ORM,EARLYDT) ;check for maximum order frequency violation
@@ -43,7 +61,7 @@ MAXFREQ(ORM,EARLYDT) ;check for maximum order frequency violation
  ;get all lab orders since earliest max order freq d/t:
  S DGIEN=0,DGIEN=$O(^ORD(100.98,"B","LAB",DGIEN))
  K ^TMP("ORR",$J)
- D EN^ORQ1(ORDFN,DGIEN,1,"",EARLYDT,NEWORDT,1,0)
+ D EN^ORQ1(ORDFN,DGIEN,1,"",EARLYDT,NEWORDT+.2359,1,0,"AW")
  S HOR=$O(^TMP("ORR",$J,HOR)) Q:+HOR<1
  F  S SEQ=$O(^TMP("ORR",$J,HOR,SEQ)) Q:+SEQ<1  D
  .S X=^TMP("ORR",$J,HOR,SEQ),ORIFN=+$P(X,U),ODT=$P(X,U,4)
@@ -70,19 +88,23 @@ MAXFREQ2(ORIFN,ODT,ORL) ;second part of max order freq order check
  S:$L($G(^ORD(101.43,OROI,0))) LRIDX=$P(^ORD(101.43,OROI,0),U,2)_";"_ORSP I $L($G(LRIDX)) D
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDX D
  ..S MAXDT=ORL(LRID)
- ..;if order's dt > max dt and (order's dt < new order's dt or 
+ ..;if order's dt > or equal to max dt and (order's dt < or equal to new order's dt or 
  ..;   order's date = new order's date), max order freq violated:
- ..I ODT>MAXDT,((ODT<NEWORDT)!($P(ODT,".")=$P(NEWORDT,"."))) D
+ ..;   (The $P(ODT,".")=$P(NEWORDT,".") might not be necessary, but keeping it
+ ..;   in case a scenario depends on it.)
+ ..I ODT'<MAXDT,((ODT'>NEWORDT)!($P(ODT,".")=$P(NEWORDT,"."))) D
  ...S ORKMSG="Max lab test order freq exceeded for: "_$E($P(^LAB(60,+LRID,0),U),1,30)
  ...S ORKLR(ORKMSG)=ORIFN_U_ORKMSG
  ;get children lab ids and check against ordered array  ORD
- S LRIDX="" F  S LRIDX=$O(^ORL(101.43,OROI,10,"AID",LRIDX)) Q:LRIDX=""  D
+ S LRIDX="" F  S LRIDX=$O(^ORD(101.43,OROI,10,"AID",LRIDX)) Q:LRIDX=""  D
  .S LRIDXC=LRIDX_";"_ORSP
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDXC D
  ..S MAXDT=ORL(LRID)
- ..;if order's dt > max dt and (order's dt < new order's dt or 
+ ..;if order's dt > or equal to max dt and (order's dt < or equal to new order's dt or 
  ..;   order's date = new order's date), max order freq violated:
- ..I ODT>MAXDT,((ODT<NEWORDT)!($P(ODT,".")=$P(NEWORDT,"."))) D
+ ..;   (The $P(ODT,".")=$P(NEWORDT,".") might not be necessary, but keeping it
+ ..;   in case a scenario depends on it.)
+ ..I ODT'<MAXDT,((ODT'>NEWORDT)!($P(ODT,".")=$P(NEWORDT,"."))) D
  ...S ORKMSG="Max lab test order freq exceeded for: "_$E($P(^LAB(60,+LRID,0),U),1,30)
  ...S ORKLR(ORKMSG)=ORIFN_U_ORKMSG
  Q
@@ -93,7 +115,7 @@ DAILY(ORD) ;check for daily order maximum violation
  S NEWORDAY=$P(NEWORDT,".")
  S DGIEN=0,DGIEN=$O(^ORD(100.98,"B","LAB",DGIEN))
  K ^TMP("ORR",$J)
- D EN^ORQ1(ORDFN,DGIEN,1,"",NEWORDAY+.0001,NEWORDAY+.24,1,0)
+ D EN^ORQ1(ORDFN,DGIEN,1,"",$$FMADD^XLFDT(NEWORDAY,"","","",-60),NEWORDAY+.2359,1,0,"AW")
  S HOR=$O(^TMP("ORR",$J,HOR)) Q:+HOR<1
  S SEQ=0 F  S SEQ=$O(^TMP("ORR",$J,HOR,SEQ)) Q:+SEQ<1  D
  .S X=^TMP("ORR",$J,HOR,SEQ),ORIFN=+$P(X,U),ODT=$P(X,U,4)
@@ -126,7 +148,7 @@ DAILY2(ORIFN,ODT,CNT,ORL) ;second part of daily order max order check
  ...S ORKMSG="Lab test daily order max exceeded for: "_$E($P(^LAB(60,+LRID,0),U),1,30)
  ...S ORKLR(ORKMSG)=ORIFN_U_ORKMSG
  ;get children lab ids and check against ordered array  ORD
- S LRIDX="" F  S LRIDX=$O(^ORL(101.43,OROI,10,"AID",LRIDX)) Q:LRIDX=""  D
+ S LRIDX="" F  S LRIDX=$O(^ORD(101.43,OROI,10,"AID",LRIDX)) Q:LRIDX=""  D
  .S LRIDXC=LRIDX_";"_ORSP
  .;use 2nd piece of the lab id array as a counter to keep counter specific to the lab test_specimen: 
  .S LRID="" F  S LRID=$O(ORL(LRID)) Q:LRID=""  I LRID=LRIDXC D

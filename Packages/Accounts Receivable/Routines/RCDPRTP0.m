@@ -1,12 +1,12 @@
 RCDPRTP0 ;ALB/LDB - CLAIMS MATCHING REPORT ;5/24/00 10:48 AM
- ;;4.5;Accounts Receivable;**151,315,339**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**151,315,339,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PAT      ;find patient bills
  S RCNAM=$$NAM^RCFN01(RCDEBT)
  S RCSSN=$$SSN^RCFN01(RCDEBT)
  S RCBIL=0 F  S RCBIL=$O(^PRCA(430,"E",RCDFN,RCBIL)) Q:'RCBIL  D
- .I $P($G(^PRCA(430,+RCBIL,0)),"^",2)'=9 Q
+ .I '$$SCRNARCT^RCDPRTP($P($G(^PRCA(430,+RCBIL,0)),"^",2)) Q
  .S RCPAY=0 F  S RCPAY=$O(^PRCA(433,"C",RCBIL,RCPAY)) Q:'RCPAY  D
  ..S RCPAY1=$G(^PRCA(433,+RCPAY,1)) Q:RCPAY1=""
  ..I "^2^34^"[("^"_$P(RCPAY1,"^",2)_"^"),($P(RCPAY1,"^",9)'<DATESTRT),($P(RCPAY1,"^",9)<(DATEEND_".999999")) D
@@ -26,7 +26,7 @@ DATE     ;find third party bills by date of payments
  .S RCPAY=0 F  S RCPAY=$O(^PRCA(433,"AT",RCTYP,DAT,RCPAY)) Q:'RCPAY  D
  ..S RCBIL=$P($G(^PRCA(433,+RCPAY,0)),"^",2)
  ..S RCBIL0=$G(^PRCA(430,+RCBIL,0)) Q:RCBIL0=""
- ..Q:$P(RCBIL0,"^",2)'=9
+ ..Q:'$$SCRNARCT^RCDPRTP($P(RCBIL0,"^",2))   ;PRCA*4.5*338
  ..S RCDFN=$P(RCBIL0,"^",7)
  ..S RCDEBT=$O(^RCD(340,"B",RCDFN_";DPT(",0)) Q:'RCDEBT
  ..S RCNAM=$$NAM^RCFN01(RCDEBT)
@@ -43,7 +43,7 @@ TYPE     ;find third party bills by care type PRCA*4.5*315
  .S RCPAY=0 F  S RCPAY=$O(^PRCA(433,"AT",RCTYP,DAT,RCPAY)) Q:'RCPAY  D
  ..S RCBIL=$P($G(^PRCA(433,+RCPAY,0)),"^",2)
  ..S RCBIL0=$G(^PRCA(430,+RCBIL,0)) Q:RCBIL0=""
- ..Q:$P(RCBIL0,"^",2)'=9
+ ..Q:'$$SCRNARCT^RCDPRTP($P(RCBIL0,"^",2))   ;PRCA*4.5*338
  ..S RCDFN=$P(RCBIL0,"^",7)
  ..S RCDEBT=$O(^RCD(340,"B",RCDFN_";DPT(",0)) Q:'RCDEBT
  ..S RCNAM=$$NAM^RCFN01(RCDEBT)
@@ -75,7 +75,7 @@ REC      ;find receipt payments
  .S RCBIL=0 I "^2^34^"[("^"_$P(RCPAY1,"^",2)_"^") S RCBIL=$P($G(^PRCA(433,+RCREC1,0)),"^",2)
  .Q:'RCBIL
  .S RCBIL0=$G(^PRCA(430,+RCBIL,0))
- .Q:$P(RCBIL0,"^",2)'=9
+ .Q:'$$SCRNARCT^RCDPRTP($P(RCBIL0,"^",2))   ;PRCA*4.5*338
  .S RCDFN=$P(RCBIL0,"^",7) Q:'RCDFN
  .S RCDEBT=$O(^RCD(340,"B",RCDFN_";DPT(",0)) Q:'RCDEBT
  .S RCSSN=$$SSN^RCFN01(RCDEBT)

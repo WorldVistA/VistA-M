@@ -1,5 +1,5 @@
 SDEC25 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAY 15, 2017
- ;;5.3;Scheduling;**627,665,671**;Aug 13, 1993;Build 25
+ ;;5.3;Scheduling;**627,665,671,717**;Aug 13, 1993;Build 12
  ;
  Q
  ;
@@ -70,12 +70,36 @@ ENDBG ;
  . ;Hospital Location is required for CHECKIN
  . ;I 'SDECSC1]"",'$D(^SC(+SDECSC1,0)) D ERR("SDEC25: Clinic not defined for this Resource: "_$P(SDECNOD,U,1)_" ("_SDECSC1_")") Q
  . I 'SDECSC1]"",'$D(^SC(+SDECSC1,0)) D ERR("Clinic not defined for this Resource: "_$P(SDECNOD,U,1)_" ("_SDECSC1_")") Q
- . ;Checkin SDEC APPOINTMENT entry
- . D SDECCHK(SDECAPTID,$S(SDECCAN:"",1:SDECCDT)) ; sets field .03 (Checkin), in file 409.84
- . ;Process cancel checkin
- . I $G(SDECCAN) D CANCHKIN(SDECPATID,SDECSC1,SDECSTART) Q
- . D APCHK(.SDECZ,SDECSC1,SDECPATID,SDECCDT,SDECSTART)
- . I $G(SDECPRV) S DIE="^SDEC(409.84,",DA=SDECAPTID,DR=".16///"_SDECPRV D ^DIE
+ . ;
+ . ;  Event driver "BEFORE" actions - wtc SD*5.3*717 10/24/18
+ . ;
+ . N SDATA,SDDA,SDCIHDL ;
+ . S SDDA=$$FIND(DFN,SDECSTART,SDECSC1),SDATA=SDDA_U_DFN_U_SDECSTART_U_SDECSC1,SDCIHDL=$$HANDLE^SDAMEVT(1) ;
+ . D BEFORE^SDAMEVT(.SDATA,DFN,SDECSTART,SDECSC1,SDDA,SDCIHDL) ;
+ . ;
+ . I 'SDECCAN D  ;
+ .. ;
+ .. ;  Checkin SDEC APPOINTMENT entry - wtc SD*5.3*717 10/24/18
+ .. ;
+ .. D SDECCHK(SDECAPTID,SDECCDT) ; sets field .03 (Checkin), in file 409.84
+ .. D APCHK(.SDECZ,SDECSC1,SDECPATID,SDECCDT,SDECSTART)
+ .. I $G(SDECPRV) S DIE="^SDEC(409.84,",DA=SDECAPTID,DR=".16///"_SDECPRV D ^DIE
+ . ;
+ . I SDECCAN D  ;
+ .. ;
+ .. ;  Cancel check in - wtc SD*5.3*717 10/24/18
+ .. ;
+ .. D SDECCHK(SDECAPTID,"") ; sets field .03 (Checkin), in file 409.84
+ .. D CANCHKIN(SDECPATID,SDECSC1,SDECSTART) ;
+ . ;
+ . ;  Event driver "AFTER" actions - wtc SD*5.3*717 10/24/18
+ . ;
+ . D AFTER^SDAMEVT(.SDATA,DFN,SDECSTART,SDECSC1,SDDA,SDCIHDL) ;
+ . ;
+ . ;  Execute event driver.  4=check in (see #409.66), 2=non-interactive - wtc SD*5.3*717 10/25/18
+ . ;
+ . ;*zeb+1 717 3/19/19 prevent extra cancel check-in when canceling a checked-in appointment
+ . I '((SDECCDT="@")&($G(SDECTYP)]"")) D EVT^SDAMEVT(.SDATA,4,2,SDCIHDL) ;assumes SDECTYP, which is defined if coming from APPDEL^SDEC08
  ;
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)="0^"_$S($G(EMSG)'="":EMSG,1:"")_$C(30)
@@ -135,12 +159,15 @@ CANCHKIN(DFN,SDCL,SDT) ; Logic to cancel a checkin if the checkin date/time is p
  N SDDA
  S SDDA=$$FIND(DFN,SDT,SDCL)
  ;I 'SDDA D ERR("SDEC25: Could not locate appointment in database or appointment is cancelled.") Q
- I 'SDDA D ERR("Could not locate appointment in database or appointment is cancelled.") Q
- N SDATA,SDCIHDL,X S SDATA=SDDA_U_DFN_U_SDT_U_SDCL,SDCIHDL=$$HANDLE^SDAMEVT(1)
- D BEFORE^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL)
+ ;I 'SDDA D ERR("Could not locate appointment in database or appointment is cancelled.") Q
+ ;
+ ;  Disabled event driver calls as they are present above in CHECKIN.  SD*5.3*717 wtc 10/25/2018
+ ;
+ ;N SDATA,SDCIHDL,X S SDATA=SDDA_U_DFN_U_SDT_U_SDCL,SDCIHDL=$$HANDLE^SDAMEVT(1)
+ ;D BEFORE^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL)
  S FDA(44.003,SDDA_","_SDT_","_SDCL_",",309)="" D FILE^DIE(,"FDA","ERR")
- D AFTER^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL)
- D CHKEVTD(DFN,SDT,SDCL)
+ ;D AFTER^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL)
+ ;D CHKEVTD(DFN,SDT,SDCL)
  K FDA,ERR
  Q
  ;
@@ -271,7 +298,30 @@ CHECKOUT(SDECY,DFN,SDT,SDCODT,SDECAPTID,VPRV) ;Check Out appointment
  S SDQUIET=1
  K APIERR
  S APIERR=0
+ ;
+ ;  Event driver "BEFORE" actions - wtc SD*5.3*717 10/25/18
+ ;
+ N SDATA,SDDA,SDCIHDL ;
+ S SDDA=$$FIND(DFN,SDT,SDCL),SDATA=SDDA_U_DFN_U_SDT_U_SDCL,SDCIHDL=$$HANDLE^SDAMEVT(1) ;
+ ;
+ ;  Event driver "BEFORE" actions - wtc SD*5.3*717 10/25/18
+ ;
+ D BEFORE^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL) ;
+ ;
  D CO^SDEC25A(DFN,SDT,SDCL,SDDA,SDASK,SDCODT,SDCOACT,SDLNE,.SDCOALBF,SDECAPTID,SDQUIET,VPRV,.APIERR) ;Appt Check Out
+ ;
+ ;  Skip event driver actions if error occurred checking appointment out. - wtc SD*5.3*717 10/25/2018
+ ;
+ I 'APIERR D  ;
+ . ;
+ . ;  Event driver "AFTER" actions - wtc SD*5.3*717 10/25/18
+ . ;
+ . D AFTER^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL) ;
+ . ;
+ . ;  Execute event driver.  5=check out (see #409.66), 2=non-interactive - wtc SD*5.3*717 10/25/18
+ . ;
+ . D EVT^SDAMEVT(.SDATA,5,2,SDCIHDL) ;
+ ;
  ;ERROR(S) FOUND
  I APIERR>0 D
  . S CNT=""
@@ -307,6 +357,16 @@ CANCKOUT(SDECY,SDECAPTID) ;Cancel Check Out appointment
  S RES=$P(SDECNOD,U,7)
  S SDCL=$P(^SDEC(409.831,RES,0),U,4)
  I $P(SDECNOD,U,14)="" D ERR("Appointment is not Checked Out.") Q
+ ;
+ ;  Event driver "BEFORE" actions - wtc SD*5.3*717 10/25/18
+ ;
+ N SDATA,SDDA,SDCIHDL ;
+ S SDDA=$$FIND(DFN,SDT,SDCL),SDATA=SDDA_U_DFN_U_SDT_U_SDCL,SDCIHDL=$$HANDLE^SDAMEVT(1) ;
+ ;
+ ;  Event driver "BEFORE" actions - wtc SD*5.3*717 10/25/18
+ ;
+ D BEFORE^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL) ;
+ ;
  ; ^SDECAPPT: update piece 8: Data Entry Clerk; clear piece 14: CHECKOUT;
  S DIE="^SDEC(409.84,"
  S DA=SDECAPTID
@@ -328,6 +388,15 @@ CANCKOUT(SDECY,SDECAPTID) ;Cancel Check Out appointment
  I +APS D
  . S DIE=409.68,DA=SDOE,DR=".07///@;.12///"_APS_";101///"_DUZ_";102///"_$$NOW^XLFDT
  . D ^DIE
+ ;
+ ;  Event driver "AFTER" actions - wtc SD*5.3*717 10/25/18
+ ;
+ D AFTER^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL) ;
+ ;
+ ;  Execute event driver.  5=check out (see #409.66), 2=non-interactive - wtc SD*5.3*717 10/25/18
+ ;
+ D EVT^SDAMEVT(.SDATA,5,2,SDCIHDL) ;
+ ;
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)="0"_$C(30)
  S SDECI=SDECI+1

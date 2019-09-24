@@ -1,5 +1,5 @@
 IBECEAU3 ;ALB/CPM-Cancel/Edit/Add... Add New IB Action;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a new Integrated Billing Action entry.
@@ -40,6 +40,14 @@ ADD ; Add a new Integrated Billing Action entry.
  I $G(IBSTOPDA) S $P(IBND,"^",19)=IBSTOPDA
  I $G(IBTIER) S $P(IBND,"^",21)=IBTIER
  S $P(^IB(IBN,0),"^",2,20)=IBND
+ ; IB*2.0*618 Allow Event date to File for Community Care RX
+ I IBDESC["RX COPAY",$G(IBEVDT) D
+ . N DIE,DR,DTOUT
+ . S DA=IBN,DIE="^IB("
+ . S DR=".16///"_IBEVDA_";.17///"_IBEVDT
+ . D ^DIE
+ ; end IB*2.0*618
+ ;
  I $G(IBGMTR) S $P(^IB(IBN,0),"^",21)=1 ; GMT Related
  ; DUZ may be null if this code is called by a process started by an HL7 multi-threaded listener
  ; if this condition occurs the approved fix is to use the Postmaster IEN.  2/27/06, IB*2.0*341

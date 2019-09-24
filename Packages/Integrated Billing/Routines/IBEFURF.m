@@ -1,5 +1,5 @@
 IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ;3/7/00
- ;;2.0;INTEGRATED BILLING;**130,347,459,604**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**130,347,459,604,618**;21-MAR-94;Build 61
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; the following procedures search for First Party charges for specific events, matchs are returned in TMP
@@ -26,7 +26,7 @@ FPOPV(DFN,DT1,DT2,XRF) ; given a patient and date range, find any Outpatient Cha
  N IBFPIFN,IBEVDT,IB0 I '$G(DT2) S DT2=+$G(DT1)
  I +$G(DFN),+$G(DT1) S IBEVDT=-(DT2+.01) F  S IBEVDT=$O(^IB("AFDT",DFN,IBEVDT)) Q:'IBEVDT!(-IBEVDT<DT1)  D
  . S IBFPIFN=0 F  S IBFPIFN=$O(^IB("AFDT",DFN,IBEVDT,IBFPIFN)) Q:'IBFPIFN  D
- .. S IB0=$G(^IB(IBFPIFN,0)) Q:IB0=""  I $P($G(^IBE(350.1,+$P(IB0,U,3),0)),U,1)'["OPT" Q
+ .. S IB0=$G(^IB(IBFPIFN,0)) Q:IB0=""  I '$$CHKOPRX(+$P(IB0,U,3)) Q
  .. D FPONE(IBFPIFN,$G(XRF))
  Q
  ;
@@ -117,3 +117,22 @@ OHDT(FPIFN) ; return the bills # DAYS ON HOLD, if the bill is currently in the O
  S IBY=$P($G(^IBE(350.21,+$P(IB0,U,5),0)),U,6)
  I +IBY S IBY=$P($G(^IB(+FPIFN,1)),U,6) I +IBY S IBX=$$FMDIFF^XLFDT(DT,IBY)
 OHDQ Q IBX
+ ;
+ ;IB*2.0*618
+ ;-Outpatient Action type check
+ ;-This includes Tricare and Community Care RX Action types that will only
+ ; have an Outpatient billable event to reference.
+CHKOPRX(IBACTIEN) ;
+ ;Output: 1-Outpatient Action Type
+ ;          (including CC and Tricare RX)
+ ;        0-Not Outpatient Action Type
+ N IBACTNM
+ ;Retrieve the name
+ S IBACTNM=$P($G(^IBE(350.1,IBACTIEN,0)),U,1)
+ ;Outpatient type found
+ Q:IBACTNM["OPT" 1
+ ;Comm Care RX found
+ I IBACTNM["RX",IBACTNM["CC" Q 1
+ I IBACTNM["RX",IBACTNM["CHOICE" Q 1
+ ;Otherwise, not and Outpatient Action
+ Q 0

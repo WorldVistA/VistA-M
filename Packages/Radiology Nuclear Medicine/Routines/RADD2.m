@@ -1,21 +1,49 @@
-RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ;08 Jun 2018 1:47 PM
- ;;5.0;Radiology/Nuclear Medicine;**84,47,124**;Mar 16, 1998;Build 4
+RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ;30 May 2019 8:39 AM
+ ;;5.0;Radiology/Nuclear Medicine;**84,47,124,158**;Mar 16, 1998;Build 2
  ;
  ;Integration Agreements
  ;----------------------
  ;EN^DDIOL(10142); FILE^DIE(2053);NOTE^ORX3(868);MES^XPDUTL(10141)
  ;
-EN1(RAX,RAY) ; Input transform for the .01 field (Procedure) for the Rad/Nuc
- ; Med Common Procedure file i.e, ^RAMIS(71.3
+EN1(RA71) ; Input transform for the .01 field (Procedure) for the Rad/Nuc
+ ; Med Common Procedure file i.e, ^RAMIS(71.3 (reworked for RA*5.0*158)
  ; Procedure must not have an inactive date before today in file 71
  ; Procedure in file 71 must have same imaging type as the one
  ;   selected before editing this record in file 71.3
- ; If 'Parent' type procedure, it must have at least 1 descendent
- ; 'RAX' is the value of the .01 field in ^RAMIS(71.3,
- ; 'RAY' are ien's of entries in ^RAMIS(71,
- I '$G(RAIMGTYI) Q 0
- I $S('$D(^("I")):1,'^("I"):1,DT'>^("I"):1,1:0),$S(RAIMGTYI=$P($G(^RAMIS(71,+RAY,0)),"^",12):1,1:0),$S($P(^RAMIS(71,+RAY,0),U,6)'="P":1,$O(^RAMIS(71,+RAY,4,0)):1,1:0)
- Q $T
+ ;
+ ; A PARENT type procedure must have at least one descendent
+ ; Output:
+ ; -If at least one descendant return one
+ ; -else return 0
+ ;
+ ; Input:
+ ; RA71 = IENS of entries in ^RAMIS(71,
+ ; RAIMGTYI = IEN of an IMAGING TYPE record (global scope)
+ ;
+ Q:'$G(RAIMGTYI) 0
+ ;
+ S RA71("I")=$G(^RAMIS(71,+RA71,"I")),RA71(0)=$G(^RAMIS(71,+RA71,0))
+ ;parent procedure?
+ S RAPARENT=$S($P(RA71(0),"^",6)="P":1,1:0)
+ ;does the parent have a descendant?
+ S:RAPARENT RAPFLG=+$O(^RAMIS(71,+RA71,4,0))
+ ;
+ ;if no "I" node or "I" node null ok, if DT is before today ok, else not ok
+ S RA71ACTIVE=$S(RA71("I")="":1,DT<RA71("I"):1,1:0)
+ Q:RA71ACTIVE=0 0
+ ;
+ ;match i-type?
+ S RA71ITYPE=$S(RAIMGTYI=$P($G(RA71(0)),"^",12):1,1:0)
+ Q:RA71ITYPE=0 0
+ ;
+ ;if active, w/i-type match & non-parent quit 1
+ Q:RAPARENT=0 1
+ ;
+ ;if active, w/i-type match & parent w/descendant quit 1
+ Q:RAPARENT&RAPFLG 1
+ ;
+ K RA71ACTIVE,RA71ITYPE,RAPARENT,RAPFLG
+ Q 0
  ;
 CH(RAY,RAX) ; This subroutine will fire off the 'Radiology Request Cancel
  ; /Hold' notification as defined in the 'OE/RR NOTIFICATIONS' file.

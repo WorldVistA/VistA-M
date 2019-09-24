@@ -1,5 +1,5 @@
 GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112**;JUN 1, 2018;Build 28
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123**;JUN 1, 2018;Build 51
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -25,6 +25,8 @@ GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ;;Patch 106 added code to include IN1 segments with reimburse flag, and division value in PV1.
  ;;Patch 106 cleaned up per several ICRs.
  ;;Patch 112 critical fix to remove control characters before sending consult, as bad data was causing infinite loop of HL7 process.
+ ;;Patch 123 consult status updates inbound to VistA, OHI additions outbound from VistA in IN1 segment
+ ;
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to GMRC EVSEND OR
  ;MSG = local array which contains the HL7 segments
@@ -35,9 +37,9 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  .S MSGTYP=$P(MSG,FS,9) I ",ORR,ORM,"'[","_MSGTYP_"," S QUIT=1 Q  ;ORR is new consult, ORM are updates
  .Q
  F  S I=$O(MSG(I)) Q:'I!QUIT  S MSG=MSG(I) D
- .I $E(MSG,1,3)="PID" S DFN=$P(MSG,FS,4) I 'DFN!('$D(^DPT(DFN))) S QUIT=1 Q
+ .I $E(MSG,1,3)="PID" S DFN=+$P(MSG,FS,4) I 'DFN!('$D(^DPT(DFN))) S QUIT=1 Q
  .I $E(MSG,1,3)="ORC" S ORC=MSG S GMRCDA=+$P(ORC,FS,4),MSGTYP2=$P(ORC,FS,2),MSGTYP3=$P(ORC,FS,6) D
- ..D CCONTROL^GMRCCCR1(GMRCDA) ; strip out control characters to fix infinite msg loop - patch 112
+ ..D CCONTROL^GMRCCCR1(GMRCDA) ; strip out consult lines that contain only $C(13,10,10) to fix infinite msg loop - patch 112
  ..I MSGTYP3="IP" S ACTIEN=$O(^GMR(123,GMRCDA,40,99999),-1) D
  ...I ACTIEN S FROMSVC=$P($G(^GMR(123,GMRCDA,40,ACTIEN,0)),U,6) I FROMSVC S OKFROM=$$FEE(FROMSVC)
  ..S OK=$$FEE($$GET1^DIQ(123,GMRCDA,1,"I"))
@@ -70,35 +72,55 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  S:$G(UCID)'="" GMRCM(ZCNT)="RF1|"_STATUS_"|"_URG_"|"_TYP_"||"_$G(@GDATA@(14,"I"))_"|"_UCID_"|"_EFFDT_"||||"
  S:$G(UCID)="" ^XTMP("GMRCHL7H","UCID IS EMPTY",GMRCDA)=GMRCDA ;TEMP ERROR HANDLER
  ;PRD segments 
- ;"RP"- Referring Provider Provider segment  
- S PDUZ=$G(@GDATA@(10,"I")),PN=$G(@GDATA@(10,"E")),PN=$$HLNAME^XLFNAME(PN,"S",ECH),$P(PN,ECH,9)=PDUZ
+ ;"RP"- Referring Provider segment 
+ S PDUZ=+$G(@GDATA@(10,"I")),PN=$G(@GDATA@(10,"E")),PN=$$HLNAME^XLFNAME(PN,"S",ECH),$P(PN,ECH,9)=PDUZ
+ N NPI S NPI=$P($G(^VA(200,PDUZ,"NPI")),"^")
  S ADDR=$$ADDR^GMRCHL7P(PDUZ,.GMRCHL),PH=$$PH^GMRCHL7P(PDUZ,.GMRCHL)
- S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|RP|"_PN_"|"_$G(ADDR)_"||"_$G(PH)_"|"
- ;;commented out PCP code- 2nd  PRD  segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
+ S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|RP|"_PN_"|"_$G(ADDR)_"||"_$G(PH)_"||"_+$G(NPI)
+ ;;commented out PCP code- 2nd PRD segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
  ;;PCP code-starts here-
  ;;"PP"- Primary Care Provider segment if the info exists 
  S PCP=$$OUTPTPR^SDUTL3(DFN)
  I +PCP  D
  . S PCDUZ=+PCP,PCPN=$P(PCP,"^",2),PCPN=$$HLNAME^XLFNAME(PCPN,"S",ECH),$P(PCPN,ECH,9)=PCDUZ
  . S PCADDR=$$ADDR^GMRCHL7P(PCDUZ,.GMRCHL),PCPH=$$PH^GMRCHL7P(PCDUZ,.GMRCHL)
- . S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|PP|"_PCPN_"|"_$G(PCADDR)_"||"_$G(PCPH)_"|"
+ . S NPI=$P($G(^VA(200,PCDUZ,"NPI")),"^")
+ . S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|PP|"_PCPN_"|"_$G(PCADDR)_"||"_$G(PCPH)_"||"_+$G(NPI)
  ;;PCP code-ends here-
- ;PID segment  May be multiple nodes in the return array - make nodes 2-n sub nodes
+ ;PID segment May be multiple nodes in the return array - make nodes 2-n sub nodes
  D BLDPID^VAFCQRY(DFN,1,"ALL",.GMRCP,.GMRCHL,ZERR)
  S I=0 F  S I=$O(GMRCP(I)) Q:'I  D
  .I I=1 S ZCNT=ZCNT+1,GMRCM(ZCNT)=$TR(GMRCP(I),"""") Q
  .S GMRCM(ZCNT,I)=$TR(GMRCP(I),"""")
  K GMRCP
  ; MJ - 5/24/2018 patch 106 changes to add - IN1 segments
- N GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR
+ N GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR,PLAN,PRECERT,TYPE ; PLAN, PRECERT, TYPE added for patch 123
  S GMRCSTR=",3,4,5,7,8,9,12,13,15,16,17,28,36"    ; IN1 fields to capture
  D EN^VAFHLIN1(DFN,GMRCSTR,,"|","GMRCIN1","^~\&") ; get IN1 segments
  ; loop through IN1 segments found
  F I=0:0 S I=$O(GMRCIN1(I)) Q:'I  I I>0 D
  . S GMRC0=$G(GMRCIN1(I,0)) I GMRC0']"" Q
  . S INSP=$P(GMRC0,"|",4)
+ . S PRECERT=""  ; added for patch 123
  . S N=0 F  S N=$O(^DPT(DFN,.312,N)) Q:'N  I $D(^(N,0)) D
  .. S X=^DPT(DFN,.312,N,0)
+ .. ; begin patch 123 mods
+ .. N COORDBEN,LASTVER,Y
+ .. S COORDBEN=$P(X,"^",20)
+ .. S COORDBEN=$S(COORDBEN=1:"PRIMARY",COORDBEN=2:"SECONDARY",COORDBEN=3:"TERTIARY",1:"")
+ .. S $P(GMRC0,"|",22)=COORDBEN
+ .. S Y=$G(^DPT(DFN,.312,N,1)),LASTVER=$P(Y,"^",3)
+ .. I +LASTVER>0 S LASTVER=LASTVER+17000000
+ .. S $P(GMRC0,"|",30)=LASTVER
+ .. S PLAN=+$P(X,"^",18)
+ .. S PRECERT=$G(^IBA(355.3,PLAN,0)),TYPE=$P(PRECERT,"^",15),PRECERT=$P(PRECERT,"^",6)
+ .. S PRECERT=$S(PRECERT=1:"YES",0:"NO",1:"")
+ .. S $P(GMRC0,"|",16)=TYPE
+ .. S PLANID=+$G(^IBA(355.3,PLAN,6)) S:PLANID=0 PLANID=""
+ .. I $L(PLANID)>0 S PLANID=$P($G(^IBCNR(366.03,PLANID,0)),"^",1)
+ .. S $P(GMRC0,"|",3)=PLANID ; 
+ .. K COORDBEN,LASTVER,PLANID,Y
+ .. ; end patch 123 mods
  .. N X1 S X1=$G(^DIC(36,+X,0)) I X1="" Q   ; no insurance company entry
  .. S INSPX=$P(X,U,1)
  .. I INSP=INSPX D                          ; insurance plan found matches that of the segment
@@ -108,8 +130,11 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  ... ; get address
  ... S $P(GMRC0,"|",6)=$$GETADD^GMRCCCR1(INSP) ; get address info and put it into segment field 5
  ... S GMRCIN1(I,0)=GMRC0
- . S ZCNT=ZCNT+1,GMRCM(ZCNT)=GMRCIN1(I,0)   ; add segment to message
- K GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR
+ . S ZCNT=ZCNT+1,GMRCM(ZCNT)=GMRCIN1(I,0) ; add segment to message
+ . ; patch 123 mods - if PRECERT value exists, create IN3 segment
+ . I $L(PRECERT) S ZCNT=ZCNT+1,GMRCM(ZCNT)="IN3",$P(GMRCM(ZCNT),"|",21)="^"_PRECERT,PRECERT=""
+ . ; end patch 123 mods
+ K GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR,PLAN,PRECERT,TYPE ; PLAN, PRECERT, TYPE added for patch 123
  ; end patch 106 changes
  ;DG1 segment ;Patch 85 modified
  S DX=$G(@GDATA@(30,"E"))
@@ -153,6 +178,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .S I=0 F  S I=$O(@GDATA@(20,I)) Q:'I  S X=@GDATA@(20,I) Q:X["^TMP"  D
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..I X=$C(9,9) Q
+ ..; S X=$$TIUC^GMRCCCR1(X)
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
@@ -166,7 +192,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .D TGET^TIUSRVR1(.GMRCTXT,$S(+$G(GMRCPARN):+GMRCPARN,+$G(TIUDA):+TIUDA,1:+GMRCN),"VIEW")
  .;
  .; line below modified in patch 106 to use GET1^DIQ call for date
- .S GMRCCMP=$$DATE^GMRCCCRA($$GET1^DIQ(8925,+TIUDA_",",1301,"I"),"MM/DD/CCYY")_" ADDENDUM"_"                      STATUS: "_$$GET1^DIQ(8925,+TIUDA_",",.05)
+ .S GMRCCMP=$$DATE^GMRCCCRA($$GET1^DIQ(8925,+TIUDA_",",1301,"I"),"MM/DD/CCYY")_" ADDENDUM"_" STATUS: "_$$GET1^DIQ(8925,+TIUDA_",",.05)
  .S (I,GMRCASTR)=0
  .F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ..I X=GMRCCMP S GMRCASTR=I
@@ -176,6 +202,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ...S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ...D HL7TXT^GMRCHL7P(.X,.HL,"\")
+ ...; S X=$$TIUC^GMRCCCR1(X)
  ...S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
  ;
@@ -188,6 +215,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
+ ..; S X=$$TIUC^GMRCCCR1(X)
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
@@ -197,8 +225,10 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .D AUTHDTTM
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"|L|Activity Comment"
  .S ORIEN=$G(@GDATA@(.03,"I")) I 'ORIEN Q
- .S CMT=$$GET1^DIQ(100,ORIEN_",",64),CMT=$$TRIM^XLFSTR(CMT)
+ .S CMT=$$GET1^DIQ(100,ORIEN_",",64),CMT=$$TRIM^XLFSTR($G(CMT))
+ .S CMT=$TR($G(CMT),$C(13,10,10),$C(10,10))
  .D HL7TXT^GMRCHL7P(.CMT,.HL,"\")
+ .;S CMT=$$TIUC^GMRCCCR1(CMT)
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|2||"_CMT
  .Q
  N ACT,ACTD,ACTIEN,Q
@@ -210,6 +240,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..I 'Q S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"|L|Activity Comment",Q=1
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
+ ..; S X=$$TIUC^GMRCCCR1(X)
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
  .Q
@@ -248,14 +279,14 @@ FEE(FEESVC) ;send only if name contains HCPS
  N VAL
  S VAL=0
  I $$UP^XLFSTR($$GET1^DIQ(123.5,FEESVC,.01,"E"))["HCPS" S VAL=1
- I $$UP^XLFSTR($$GET1^DIQ(123.5,FEESVC,.01,"E"))["COMMUNITY CARE" S VAL=1  ;*99 - PB - Mar 5, 2018
- I $$UP^XLFSTR($$GET1^DIQ(123.5,FEESVC,.01,"E"))["DOD TREATMENT" S VAL=1  ;*99 - PB - Mar 5, 2018
+ I $$UP^XLFSTR($$GET1^DIQ(123.5,FEESVC,.01,"E"))["COMMUNITY CARE" S VAL=1 ;*99 - PB - Mar 5, 2018
+ I $$UP^XLFSTR($$GET1^DIQ(123.5,FEESVC,.01,"E"))["DOD TREATMENT" S VAL=1 ;*99 - PB - Mar 5, 2018
  Q VAL
 COMMENT(GMRCDA) ;send comments on Non VA Care consults to HCP
  ;create a fake event for HCP since there is no HL7 event passed to GMRC EVSEND OR
  I '$G(GMRCDA) Q
  ;N DFN S DFN=$$GET1^DIQ(123,GMRCDA,.02,"I") I 'DFN,'$D(^DPT(DFN)) Q ; modified "," to "!" within patch 106
- N DFN S DFN=$$GET1^DIQ(123,GMRCDA,.02,"I") I 'DFN!('$D(^DPT(DFN))) Q
+ N DFN S DFN=+$$GET1^DIQ(123,GMRCDA,.02,"I") I 'DFN!('$D(^DPT(DFN))) Q
  N T S T(1)="MSH|^~\&|CONSULTS||||||ORM"
  S T(2)="PID|||"_DFN
  S T(4)="ORC|XX|"_$$GET1^DIQ(123,GMRCDA,.03,"I")_";"_$$OITEM($$GET1^DIQ(123,GMRCDA,.03,"I"))_"^OR|"_GMRCDA_";GMRC^GMRC||XX|"
@@ -271,14 +302,14 @@ ADDEND(TIUDA) ;send addendums on Non VA Care consults to HCP
  D EXTRACT^TIULQ(TIUDA)
  ;
  ; Quit if not an addendum
- S TIUTYP=^TMP("TIULQ",$J,TIUDA,.01,"I")
+ S TIUTYP=^TMP("TIULQ",$J,+TIUDA,.01,"I")
  I TIUTYP'=81 Q
  ;
- S DFN=^TMP("TIULQ",$J,TIUDA,.02,"I")
+ S DFN=^TMP("TIULQ",$J,+TIUDA,.02,"I")
  I 'DFN!('$D(^DPT(DFN))) Q
  ;
  ; Get parent note IEN, if addendum IEN is passed in:
- S GMRCPARN=^TMP("TIULQ",$J,TIUDA,.06,"I")
+ S GMRCPARN=^TMP("TIULQ",$J,+TIUDA,.06,"I")
  ;
  ; Quit if not an addendum
  ;S TIUTYP=$$GET1^DIQ(8925,TIUDA,.01,"I")
@@ -358,25 +389,4 @@ ACK ; Process ACK HL7 messages
  I $D(ERRARY) D MESSAGE(MSGID,.ERRARY)
  Q
 MESSAGE(MSGID,ERRARY) ; Send a MailMan Message with the errors
- N MSGTEXT,DUZ,XMDUZ,XMSUB,XMTEXT,XMY,XMMG,XMSTRIP,XMROU,DIFROM,XMYBLOB,XMZ,XMMG,DATE,J
- S DATE=$$FMTE^XLFDT($$FMDATE^HLFNC($P(HL("DTM"),"-",1)))
- S XMSUB="GMRC CCRA Consults to HSRM HL7 Error"
- S MSGTEXT(1)=" "
- S MSGTEXT(2)="Error in transmitting HL7 message to HSRM"
- S MSGTEXT(3)="Date:       "_DATE
- S MSGTEXT(4)="Message ID: "_MSGID
- S MSGTEXT(5)="Error(s):"
- S I=0,J=5 F  S I=$O(ERRARY(I)) Q:'I  D
- . S J=J+1,MSGTEXT(J)=" "
- . S J=J+1,MSGTEXT(J)="   "_$P($G(ERRARY(I,3)),U)_" - "_$P($G(ERRARY(I,3)),U,2)
- . I $P($G(ERRARY(I,2)),U,1)'="" S J=J+1,MSGTEXT(J)="      Segment:       "_$P($G(ERRARY(I,2)),U,1)
- . I $P($G(ERRARY(I,2)),U,2)'="" S J=J+1,MSGTEXT(J)="      Sequence:      "_$P($G(ERRARY(I,2)),U,2)
- . I $P($G(ERRARY(I,2)),U,3)'="" S J=J+1,MSGTEXT(J)="      Field:         "_$P($G(ERRARY(I,2)),U,3)
- . I $P($G(ERRARY(I,2)),U,4)'="" S J=J+1,MSGTEXT(J)="      Fld Rep:       "_$P($G(ERRARY(I,2)),U,4)
- . I $P($G(ERRARY(I,2)),U,5)'="" S J=J+1,MSGTEXT(J)="      Component:     "_$P($G(ERRARY(I,2)),U,5)
- . I $P($G(ERRARY(I,2)),U,6)'="" S J=J+1,MSGTEXT(J)="      Sub-component: "_$P($G(ERRARY(I,2)),U,6)
- S XMTEXT="MSGTEXT("
- S XMDUZ="GMRC-CCRA->HSRP Transaction Error"
- S XMY("G.GMRC HCP HL7 MESSAGES")=""
- D ^XMD
- Q
+ D MESSAGE^GMRCCCR1(MSGID,.ERRARY)

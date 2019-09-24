@@ -1,5 +1,6 @@
 DVBCSDEV ;ALB/GTS-AMIE C&P APPT EVENT DRIVER ; 10/19/94  3:45 PM
- ;;2.7;AMIE;**1**;Apr 10, 1995
+ ;;2.7;AMIE;**1,208**;Apr 10, 1995;Build 1
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;** NOTICE: This routine is part of an implementation of a Nationally
  ;**         Controlled Procedure.  Local modifications to this routine
@@ -17,8 +18,12 @@ DVBCSDEV ;ALB/GTS-AMIE C&P APPT EVENT DRIVER ; 10/19/94  3:45 PM
  ;**  cancel/no show part of auto-rebook updated 396.95
  ;** DVBAXST=1 - ^TMP("SDEVT",$J) exists
  ;** DVBATYPE=1 - C&P type appointment
+ ;** If SDMODE=2, AMIE events are not executed because
+ ;**  this call is part of a GUI process and cannot interact with
+ ;**  the user
  ;
 EN ;**AMIE Scheduling event driver main entry point
+ Q:$G(SDMODE)=2  ;SDMODE will be set when called from SDAM APPOINTMENT EVENTS ;*zeb 208 10/31/18 skip if called in non-interactive context
  K KDFN I '$D(DFN) N DFN S DFN=$P(SDATA,U,2),KDFN=""
  S DVBAORG=$$SDORGST^DVBCUTL5
  I +DVBAORG=1 DO

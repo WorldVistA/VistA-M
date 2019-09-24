@@ -1,5 +1,5 @@
-RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ;6/25/04  11:49
- ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47**;Mar 16, 1998;Build 21
+RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ;16 Apr 2019 2:18 PM
+ ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47,157**;Mar 16, 1998;Build 2
  ; 12/15/2009 BAY/KAM RA*5*104 Rem Call 359702 On-line Verification issue
  ; 11/15/2007 BAY/KAM RA*5*87 Rem Call 216332 Correct UNDEF on null dx code
  ; 09/07/2005 108405 - KAM/BAY Allow Radiology to accept dx codes from Talk Technology
@@ -161,7 +161,8 @@ LOCK1 I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
  N RA13,RA12,RA15 ;prim dx, prim resid, prim staff, rpt pointer
  S RACNISAV=RACNI,RA7=0
  S RA13=$P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),U,13),RA12=$P(^(0),U,12),RA15=$P(^(0),U,15)
- F  S RA7=$O(RAMEMARR(RA7)) Q:RA7=""  I RACNISAV'=RA7 S RACNI=RA7 D UPMEM^RAHLO4 I $D(RASECDX),('$D(RADENDUM)#2) D SECDX^RAHLO2
+ ;KLM/p157 - Remove Addendum check next line (need secondary DX codes updated on all descendants)
+ F  S RA7=$O(RAMEMARR(RA7)) Q:RA7=""  I RACNISAV'=RA7 S RACNI=RA7 D UPMEM^RAHLO4 I $D(RASECDX) D SECDX^RAHLO2
  S RACNI=RACNISAV
  ;
 UPACT ;Update the Activity Log (74.01) w/DBS call

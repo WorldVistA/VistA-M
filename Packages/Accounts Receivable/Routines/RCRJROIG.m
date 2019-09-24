@@ -1,5 +1,5 @@
 RCRJROIG ;WISC/RFJ-send data for oig extract ;1 Jul 99
- ;;4.5;Accounts Receivable;**103,174,203,205,220,270,335**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**103,174,203,205,220,270,335,338**;Mar 20, 1995;Build 69
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -7,7 +7,7 @@ RCRJROIG ;WISC/RFJ-send data for oig extract ;1 Jul 99
 NONMCCF(DATEEND) ;  build the non-mccf bills for user report and submission to oig
  N BILLDA,DATE,DATA7,OTHER,PRINCPAL
  S BILLDA=0 F  S BILLDA=$O(^PRCA(430,BILLDA)) Q:'BILLDA  D
- .   N FUND,RCRSC
+ .   N RCFUND,RCRSC
  .   ;  if already stored, then it is a current receivable
  .   I $D(^TMP($J,"RCRJROIG",BILLDA)) Q
  .   ;  calculate principal and other (int + admin) balance
@@ -22,8 +22,10 @@ NONMCCF(DATEEND) ;  build the non-mccf bills for user report and submission to o
  .   ;  store the data for the user report (only if bill activated)
  .   S DATE=+$P($P($G(^PRCA(430,BILLDA,6)),"^",21),".") I 'DATE Q
  .   S ^TMP($J,"RCRJRCOLREPORT",DATE,BILLDA)=PRINCPAL_"^"_OTHER
- .   S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1),RCRSC=$$GETRSC(BILLDA,FUND)
- .   D STORE^RCRJRCOU(BILLDA,DATEBEG,DATEEND,DATE,$P(^PRCA(430,BILLDA,0),"^",2),"",FUND,RCRSC,$P(DATA7,"^",1,5),1)
+ .   S RCFUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   I RCFUND="" S RCFUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   S RCRSC=$$GETRSC(BILLDA,RCFUND)
+ .   D STORE^RCRJRCOU(BILLDA,DATEBEG,DATEEND,DATE,$P(^PRCA(430,BILLDA,0),"^",2),"",RCFUND,RCRSC,$P(DATA7,"^",1,5),1)
  Q
  ;
  ;
@@ -59,7 +61,9 @@ OIG(DATEEND) ;  send data to the OIG
  .   ;  date status last updated, position 66-76 (example APR 08,1999)
  .   S OIGDATA=OIGDATA_$$DATE($P(DATA0,"^",14))
  .   ;  fms fund, position 77-82
- .   S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   S FUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   I FUND="" S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   ;S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
  .   S FUND=$$ADJFUND^RCRJRCO(FUND) ; may delete this line after 10/1/03
  .   S OIGDATA=OIGDATA_$J(FUND,6)
  .   ;  revenue source code, position 83-86
@@ -126,7 +130,13 @@ DATE(DATE) ;  format date
  ;
  ;
 GETRSC(BILLDA,FUND) ;  return the rsc for a bill
+ N RCRSC
  I '$$PTACCT^PRCAACC(FUND),FUND'=4032 Q $P($G(^PRCA(430,BILLDA,11)),"^",6)
  ;  check missing patient for reimbursable health insurance
  I $P(^PRCA(430,BILLDA,0),"^",2)=9,'$P(^PRCA(430,BILLDA,0),"^",7) Q "    "
+ ;PRCA*4.5*338 - retrieve existing RSC before calculating a new one
+ S RCRSC=$$GET1^DIQ(430,BILLDA_",",255)
+ S:RCRSC="" RCRSC=$$GET1^DIQ(430,BILLDA_",",255.1)
+ Q:RCRSC'="" RCRSC
+ ;end RCRSC
  Q $$CALCRSC^RCXFMSUR(BILLDA)

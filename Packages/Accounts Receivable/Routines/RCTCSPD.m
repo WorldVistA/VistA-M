@@ -1,5 +1,5 @@
 RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,327,315,336**;Mar 20, 1995;Build 45
+ ;;4.5;Accounts Receivable;**301,327,315,336,338,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 a. Add check to insure debtor exists to prevent 
@@ -77,7 +77,10 @@ RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  ..Q:'$P(B0,U,2)  ;no category
  ..S CAT=$P($G(^PRCA(430.2,$P(B0,U,2),0)),U,7)
  ..Q:'CAT
- ..I ",4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,33,34,35,36,37,38,39,47,48,49,"[(","_CAT_",") Q
+ ..;PRCA*4.5*338 - Use RFCHK^RCTOPD to determine if the Category can be referred
+ ..;               using the new date based algorithm.
+ ..Q:'$$RFCHK^RCTOPD(CAT,"N",1.03,$P(B6,U,21))
+ ..;end PRCA*4.5*338
  ..;dpn checks
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,'$P(B20,U,4) D DUEPROC^RCTCSP3 Q  ;check to send dpn file to aitc
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,$P(B20,U,4),'$P(B20,U,5) Q  ;check for print letter date

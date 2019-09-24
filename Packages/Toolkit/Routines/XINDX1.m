@@ -1,5 +1,5 @@
 XINDX1 ;ISC/REL,GRK,RWF - ERROR ROUTINE ;08/05/08  13:59
- ;;7.3;TOOLKIT;**20,61,66,68,110,121,128,133**;Apr 25, 1995;Build 15
+ ;;7.3;TOOLKIT;**20,61,66,68,110,121,128,133,140**;Apr 25, 1995;Build 40
  ; Per VHA Directive 2004-038, this routine should not be modified.
  G A
 E(ERR) ;
@@ -83,3 +83,4 @@ ERROR ;
 62 ;;;S - First line of routine violates the SAC.
 63 ;;;F - GO or DO mismatch from block structure (M45).
 64 ;;;F - Cache Object doesn't exist.
+65 ;;X,Z,DI,DD,KMP;S - Vendor specific code is restricted.

@@ -1,5 +1,5 @@
 PRCABJ2 ;OIT/hrub - NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;31 Oct 2018 16:00:59
- ;;4.5;Accounts Receivable;**304,321,326,332**;Mar 20, 1995;Build 40
+ ;;4.5;Accounts Receivable;**304,321,326,332,338,351**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; read of ^DGCR(399.2 allowed by DBIA 3822

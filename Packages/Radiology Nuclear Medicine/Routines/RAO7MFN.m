@@ -1,5 +1,5 @@
-RAO7MFN ;HISC/GJC-Create MFN orderable item update msg ;6/11/97  08:47
- ;;5.0;Radiology/Nuclear Medicine;**1,6,10,18,45**;Mar 16, 1998
+RAO7MFN ;HISC/GJC-Create MFN orderable item update msg ;24 Apr 2019 2:22 PM
+ ;;5.0;Radiology/Nuclear Medicine;**1,6,10,18,45,158**;Mar 16, 1998;Build 2
  ;Last midification by SS for P18 JUN 19, 2000
  ;Last modification: 12.16.03 patch 45 Contrast Media by CPT gjc
 PROC(RAENALL,RAFILE,RASTAT,RAY) ; Entry point to update a single procedure.
@@ -62,21 +62,96 @@ PROC(RAENALL,RAFILE,RASTAT,RAY) ; Entry point to update a single procedure.
  ; If parent with no descendents, send deactivate msg even if active
  I $P($G(RA71(0)),"^",6)="P",'$O(^RAMIS(71,$S(RAFILE=71.3:+$P(RAY,"^",2),1:+RAY),4,0)) S RAMFE="MDC"
  ;
+ ;* begin 1 * build the non-repeating message segments (MSH, MFI) once
+ I 'RAENALL D
+ . X RAINCR
+ . S @(RAVAR_RACNT_")")=$$MSH^RAO7UTL("MFN^M01") X RAINCR ;P18 event type
+ . D MFI^RAO7UTL("UPD") ;P18
+ . Q
+ ;* end 1 *
+ ;
+ ;if var1 '= var2 translated:
+ ;the user changed the procedure for this common...
+ ;if the current pointed to procedure (var1) differs
+ ;from the original pointed to procedure (var2)
+ I RAFILE=71.3,$P(RAMIS713(0),U)>0,($P(RAMIS713(0),U)'=$P(RAY,U,2)) D
+ .;first tackle the 'changed to' procedure (is common)
+ .S RA713(0)=RAMIS713(0)
+ .S RA71(0)=$G(^RAMIS(71,+RAMIS713(0),0))
+ .S RA71("I")=$G(^RAMIS(71,+RAMIS713(0),"I"))
+ .D MSGBODY($P($G(RA713(0)),"^",4)) ;pass sequence number
+ .;now tackle the 'changed from' procedure (not common)
+ .S RA713(0)=$P(RAY,U,2)_"^^^" ;4th piece seq. num.
+ .S RA71(0)=$G(^RAMIS(71,+RA713(0),0))
+ .S RA71("I")=$G(^RAMIS(71,+RA713(0),"I"))
+ .D MSGBODY(0) ;'0' indicates not a common
+ .Q
+ D MSGBODY("") ;determine the common flag on the fly.
+ ;
+ I 'RAENALL D
+ . D MSG^XQOR("RA ORDERABLE ITEM UPDATE",RAVARBLE)
+ . D PURGE^RAO7UTL
+ . Q
+ X:RAENALL RAINCR
+ ;
+ Q
+ENALL ; Whole Rad/Nuc Med Procedure file update.  Called only when Rad/Nuc
+ ; Med or OE/RR are being installed.
+ QUIT  ;never execute this code disabled w/RA5P158
+ Q:'$D(XPDNM)  ; quit if not KIDS, xists during pre/post inits
+ ; & environment check routines.
+ L +^RAMIS(71.3):300 D ^RACOMDEL L -^RAMIS(71.3)
+ L +^RAMIS(71):300
+ I '$T D  Q
+ . N TXT S TXT(1)=" "
+ . S TXT(2)="Another user is editing a record in the "
+ . S TXT(2)=TXT(2)_$P($G(^DIC(71,0)),"^")
+ . S TXT(3)="file.  Try again later!"
+ . S XPDQUIT=1 D MES^XPDUTL(.TXT)
+ . Q
+ N RA,RACNT,RAECH,RAENALL,RAFILE,RAFNAME,RAFNUM,RAHLFS,RAINCR,RASTAT
+ N RASUB,RATSTMP,RAVAR,RAXIT,RAY
+ S (RA,RACNT)=0,RAENALL=1,RATSTMP=$$NOW^XLFDT(),RAINCR="S RACNT=RACNT+1"
+ S RASUB="""RAO7""",RAVAR="^TMP("_RASUB_","_RATSTMP_","
+ S RAVARBLE="^TMP("_RASUB_","_RATSTMP_")"
+ D EN1^RAO7UTL ; sets up RAECH & RAHLFS
+ S (RAFILE,RAFNUM)=71,RAFNAME=$P($G(^DIC(RAFNUM,0)),"^"),RASTAT="0^1"
+ X RAINCR S @(RAVAR_RACNT_")")=$$MSH^RAO7UTL("MFN^M01") X RAINCR ;P18 event type
+ D MFI^RAO7UTL("REP")
+ F  S RA=$O(^RAMIS(71,RA)) Q:RA'>0  D  D PURGE1^RAO7UTL
+ . S RA(0)=$G(^RAMIS(71,RA,0)),RA("I")=$G(^RAMIS(71,RA,"I"))
+ . Q:$P(RA("I"),"^")]""&($P(RA("I"),"^")'>DT)  ; inactive date present
+ . S RAY=RA_"^"_$P(RA(0),"^")_"^"_1 D PROC(RAENALL,RAFILE,RASTAT,RAY)
+ . Q
+ D EN^ORMFN(RAVARBLE) K @RAVARBLE,RAVARBLE
+ L -^RAMIS(71) ; unlock whole file
+PARM ;Send Div params for SUBMIT TO prompt and allowing BROAD procedures
+ ;to OE3 so they can populate their OE/RR Parameter Instance file
+ N DIK S DIK="^RA(79,",DIK(1)=".121^AC1" D ENALL^DIK
+ N DIK S DIK="^RA(79,",DIK(1)=".17^AC" D ENALL^DIK
+ Q
+ ;
+MSGBODY(RASEQNUM) ;Build the HL7 message to be broadcast to CPRS RA5P158
+ ;if the common is question has a sequence number use it
+ ;Input: RASEQNUM > 0 if a common procedure (w/seq. #)
+ ;       RASEQNUM = 0 if not a common procedure (w/o seq. #)
+ ;       RASEQNUM = "" if common procedure status is settled w/ old logic
+ ;               
  S RACPT(0)=$$NAMCODE^RACPTMSC(+$P(RA71(0),"^",9),DT)
  S:RAFILE=71 RAIEN71=+RAY S:RAFILE=71.3 RAIEN71=+$P(RAY,"^",2)
  S RAXT71=$P(RA71(0),"^")
  S RAIMGAB=$P($G(^RA(79.2,+$P(RA71(0),"^",12),0)),"^",3)
  S RAPHYAP=$S($P(RA71(0),"^",11)="":"","Yy"[$P(RA71(0),"^",11):"Y",1:"N")
  S RACOST=$P(RA71(0),"^",10),RAPRCTY=$P(RA71(0),"^",6)
- S RACMNOR=$S($P($G(RA713(0)),"^",4)]"":"Y",1:"N") ;can't be an active common w/o a seq #
+ S:RASEQNUM>0 RACMNOR="Y"
+ S:RASEQNUM=0 RACMNOR="N"
+ ;if this is not a case where the procedure for the common was not changed
+ ;determine if it is to be a common from the old logic pre 158
+ S:RASEQNUM="" RACMNOR=$S($P($G(RA713(0)),"^",4)]"":"Y",1:"N")
+ ;
  ;determine CM associations for active & inactive procedures
  S RACMCODE=$$CMEDIA^RAO7UTL(RAIEN71,$P(RA71(0),U,6)) ;ien, proc. type
  S RAINACT=$S(RA71("I")]"":$$HLDATE^HLFNC(RA71("I"),"DT"),1:"")
- I 'RAENALL D
- . X RAINCR
- . S @(RAVAR_RACNT_")")=$$MSH^RAO7UTL("MFN^M01") X RAINCR ;P18 event type
- . D MFI^RAO7UTL("UPD") ;P18
- . Q
  S @(RAVAR_RACNT_")")="MFE"_RAHLFS_RAMFE_RAHLFS_RAHLFS_RAINACT_RAHLFS
  S @(RAVAR_RACNT_")")=@(RAVAR_RACNT_")")_$P(RACPT(0),"^")
  S @(RAVAR_RACNT_")")=@(RAVAR_RACNT_")")_RAECH(1)
@@ -119,43 +194,5 @@ PROC(RAENALL,RAFILE,RASTAT,RAY) ; Entry point to update a single procedure.
  ... Q
  .. Q
  . Q
- I 'RAENALL D
- . D MSG^XQOR("RA ORDERABLE ITEM UPDATE",RAVARBLE)
- . D PURGE^RAO7UTL
- . Q
- X:RAENALL RAINCR
  Q
-ENALL ; Whole Rad/Nuc Med Procedure file update.  Called only when Rad/Nuc
- ; Med or OE/RR are being installed.
- Q:'$D(XPDNM)  ; quit if not KIDS, xists during pre/post inits
- ; & environment check routines.
- L +^RAMIS(71.3):300 D ^RACOMDEL L -^RAMIS(71.3)
- L +^RAMIS(71):300
- I '$T D  Q
- . N TXT S TXT(1)=" "
- . S TXT(2)="Another user is editing a record in the "
- . S TXT(2)=TXT(2)_$P($G(^DIC(71,0)),"^")
- . S TXT(3)="file.  Try again later!"
- . S XPDQUIT=1 D MES^XPDUTL(.TXT)
- . Q
- N RA,RACNT,RAECH,RAENALL,RAFILE,RAFNAME,RAFNUM,RAHLFS,RAINCR,RASTAT
- N RASUB,RATSTMP,RAVAR,RAXIT,RAY
- S (RA,RACNT)=0,RAENALL=1,RATSTMP=$$NOW^XLFDT(),RAINCR="S RACNT=RACNT+1"
- S RASUB="""RAO7""",RAVAR="^TMP("_RASUB_","_RATSTMP_","
- S RAVARBLE="^TMP("_RASUB_","_RATSTMP_")"
- D EN1^RAO7UTL ; sets up RAECH & RAHLFS
- S (RAFILE,RAFNUM)=71,RAFNAME=$P($G(^DIC(RAFNUM,0)),"^"),RASTAT="0^1"
- X RAINCR S @(RAVAR_RACNT_")")=$$MSH^RAO7UTL("MFN^M01") X RAINCR ;P18 event type
- D MFI^RAO7UTL("REP")
- F  S RA=$O(^RAMIS(71,RA)) Q:RA'>0  D  D PURGE1^RAO7UTL
- . S RA(0)=$G(^RAMIS(71,RA,0)),RA("I")=$G(^RAMIS(71,RA,"I"))
- . Q:$P(RA("I"),"^")]""&($P(RA("I"),"^")'>DT)  ; inactive date present
- . S RAY=RA_"^"_$P(RA(0),"^")_"^"_1 D PROC(RAENALL,RAFILE,RASTAT,RAY)
- . Q
- D EN^ORMFN(RAVARBLE) K @RAVARBLE,RAVARBLE
- L -^RAMIS(71) ; unlock whole file
-PARM ;Send Div params for SUBMIT TO prompt and allowing BROAD procedures
- ;to OE3 so they can populate their OE/RR Parameter Instance file
- N DIK S DIK="^RA(79,",DIK(1)=".121^AC1" D ENALL^DIK
- N DIK S DIK="^RA(79,",DIK(1)=".17^AC" D ENALL^DIK
- Q
+ ;

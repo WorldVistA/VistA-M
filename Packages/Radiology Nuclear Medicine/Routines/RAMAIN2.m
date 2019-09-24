@@ -1,5 +1,5 @@
-RAMAIN2 ;HISC/GJC-Radiology Utility File Maintenance (Part Two) ; 21 Oct 2016  3:21 PM
- ;;5.0;Radiology/Nuclear Medicine;**45,62,71,65,127,138**;Mar 16, 1998;Build 22
+RAMAIN2 ;HISC/GJC-Radiology Utility File Maintenance (Part Two) ;19 Apr 2019 2:40 PM
+ ;;5.0;Radiology/Nuclear Medicine;**45,62,71,65,127,138,158**;Mar 16, 1998;Build 2
  ; 08/12/2005 bay/kam Remedy Call 104630 Patch 62
  ; 03/02/2006 BAY/KAM Remedy Call 131482 Patch RA*5*71
  ; 
@@ -108,16 +108,16 @@ RAMAIN2 ;HISC/GJC-Radiology Utility File Maintenance (Part Two) ; 21 Oct 2016  3
 EXIT K RADA,RANEW71,X,Y
  Q
 13 ;;Rad/Nuc Med Common Procedure File Enter/Edit
- ; RA COMMON PROCEDURE option
+ ; RA COMMON PROCEDURE option RA5P158
  N RADA,RAENALL,RAY,RAFILE,RALOW,RAMIS713,RASTAT,RAIMGTYI S RAENALL=0
  W ! D EN1^RAUTL17 G:Y'>0 Q13 S RAIMGTYI=Y
 131 S DIC="^RAMIS(71.3,",DIC(0)="AELMQZ",DLAYGO=71.3
- S DIC("S")="N RA S RA=+$P(^(0),U) I RAIMGTYI=$P($G(^RAMIS(71,RA,0)),U,12)"
- S DIC("W")="N RA4 S RA4=$P($G(^(0)),""^"",4) W:RA4]"""" ""   (""_RA4_"")"" W:RA4']"""" ""   (no sequence number)"""
+ S DIC("S")="I $$SCRN713^RAMAIN2(+$P(^(0),U),RAIMGTYI)"
+ S DIC("W")="W $$DICW713^RAMAIN2($P($G(^(0)),U,4))"
  W ! D ^DIC K DIC,DLAYGO,D,X
  I Y<0 D Q13 G RESEQ
  ; If a sequence # exists, the Common Proc. is active
- S RADA=+Y,RAY=Y,RAFILE=71.3 L +^RAMIS(RAFILE,RADA):5
+ MERGE RAY=Y S RADA=+Y,RAFILE=71.3 L +^RAMIS(RAFILE,RADA):5
  I '$T D  G Q13
  . W !?5,"This record is currently being edited by another user."
  . W !?5,"Try again later!",$C(7)
@@ -209,3 +209,17 @@ END ;KILL LOGIC AND END ROUTINE
  K RACODE,RACPT,RAGOLD,RAMATCH,RANEW71,RANM,RAPROIEN,RATYPE,RAYY
  K DDC,DDH,DISYS,I,POP,RA713,DIK,DA
  Q
+ ;
+SCRN713(Y,RAIMGTYI) ;screen common procedures by i-type
+ ;RAIMGTYI set above in 13^RAMAIN2
+ ;'Y' = the IEN of the common procedure as it exists in file 71
+ ;'RAIMGTYI' = IEN of the imaging type for the common procedure
+ QUIT:(RAIMGTYI=$P($G(^RAMIS(71,Y,0)),U,12)) 1
+ Q 0
+ ;
+DICW713(RAX) ;display the sequence number or a message is the sequence
+ ;number is missing. ^DD(71.3,3,0)="SEQUENCE NUMBER" 0;4
+ ;'RAX' the sequence number or null statement
+ N RASEQTXT S RASEQTXT="   "_$S(RAX>0:"("_RAX_")",1:"(no sequence number)")
+ Q RASEQTXT
+ ;

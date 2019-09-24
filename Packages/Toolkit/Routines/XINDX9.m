@@ -1,5 +1,5 @@
 XINDX9 ;SF/RWF - XINDEX SYNTAX CHECKER ;06/24/08  15:39
- ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,132,133**;Apr 25, 1995;Build 15
+ ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,132,133,140**;Apr 25, 1995;Build 40
  ; Per VHA Directive 2004-038, this routine should not be modified.
  N CH1,CHO,EC,OP
  D PARSE S LI=0,AC=255 F %=0:0 S %=$O(LV(%)) Q:%'>0  S LI(%)=0
@@ -72,6 +72,7 @@ GVAR() ;EF get var
  ;
 OBJ ;check Cache Object
  S J=$E(STR,I,I+7),J=$$CASE(J) I J'="##CLASS(" D E^XINDX1(3) Q
+ D E^XINDX1(65) ;vendor specific code
  S LL=I,I=I+7,CH=$E(STR,I) D SUM("F"),DN
  ;get the class
  S LL=I+1,I=$$CLS(LL),CH=$E(STR,I),CH1=$E(STR,I+1),LV(LV,"OBJ",LI+1)=""
@@ -100,6 +101,7 @@ VAR1 ;check if var is Object
  F J=I+1:1 S CH=$E(STR,J) I CH'?1AN Q:CH'="."  S %=1
  G:'% VAR
  ;save summary and ref. of Object/method
+ D E^XINDX1(65) ;vendor specific code
  S LL=I,I=J-1,LV(LV,"OBJ",LI+1)=""
  D SUM("O")
  Q

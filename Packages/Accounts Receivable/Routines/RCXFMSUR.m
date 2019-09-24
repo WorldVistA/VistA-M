@@ -1,6 +1,7 @@
 RCXFMSUR ;WISC/RFJ-revenue source codes ;10/19/10 1:47pm
- ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310,315,338**;Mar 20, 1995;Build 69
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;Read ^DGCR(399) via IA 3820
  Q
  ;
  ;
@@ -15,6 +16,14 @@ CALCRSC(BILLDA,RCEFT) ;  calculate the revenue source code for a bill
  ;
  ;  calculate it and store it
  S CATEGDA=+$P($G(^PRCA(430,BILLDA,0)),"^",2)
+ ;
+ ;PRCA$4.5*338 If a Community Care Category, retrieve RSC, store it and exit.
+ I CATEGDA>47,(CATEGDA<75) D  Q RSC
+ . S RSC=$$GETCCRSC(CATEGDA,BILLDA)
+ . D STORE(BILLDA,RSC)
+ I CATEGDA>80,(CATEGDA<85) D  Q RSC
+ . S RSC=$$GETCCRSC(CATEGDA,BILLDA)
+ . D STORE(BILLDA,RSC)
  ;
  ;  if prepayment, send ARRV
  I CATEGDA=26 D STORE(BILLDA,"ARRV") Q "ARRV"
@@ -203,7 +212,7 @@ RSC ;revenue code (#430/255)
 SHOW ;  show/calculate revenue source code for a selected bill
  W !!,"This option will show the calculated Revenue Source Code for a selected"
  W !,"bill.  The Revenue Source Code is only calculated for accrued bills in"
- I DT'<$$ADDPTEDT^PRCAACC() W !,"funds 528701,528703,528704,528709/4032,528711,528713"
+ I DT'<$$ADDPTEDT^PRCAACC() W !,"funds 528701,528703,528704,528709/4032,528711,528713,528714"
  I DT<$$ADDPTEDT^PRCAACC() W !,"funds 5287.1,5287.3,5287.4,4032"
  ;
  N %,%Y,BILLDA,C,DIC,FUND,I,RCRJFLAG,RSC,X,Y
@@ -213,7 +222,12 @@ SHOW ;  show/calculate revenue source code for a selected bill
  .   W ! D ^DIC
  .   I Y<1 S RCRJFLAG=1 Q
  .   S BILLDA=+Y
- .   S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   ;PRCA*4.5*338 - prevent Non-accrued funds from recalculating Fund Number) 
+ .   ; look for an existing fund number
+ .   S FUND=$P($G(^PRCA(430,BILLDA,11)),"^",17)
+ .   ; only recalculate fund number if Accrued fund
+ .   I $$PTACCT^PRCAACC(FUND) S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1)
+ .   ;end PRCA*4.5*338
  .   W !!,"        Bill Number: ",$P($G(^PRCA(430,BILLDA,0)),"^")
  .   W !,"               Fund: ",FUND
  .   I '$$PTACCT^PRCAACC(FUND),FUND'=4032 D  Q
@@ -226,3 +240,56 @@ SHOW ;  show/calculate revenue source code for a selected bill
  .   S RSC=$$CALCRSC(BILLDA)
  .   W !,"Revenue Source Code: ",RSC
  Q
+ ;
+ ;PRCA*4.5*338 
+GETCCRSC(CATEGDA,BILLDA) ;Retrieve the RSC for Community Care Categories
+ N RCRSC,IBCNDATA,RCIOPFLG,RX3P
+ S RCRSC=""
+ Q:CATEGDA=52 "84CC"    ;Choice No-Fault Auto AR Category
+ Q:CATEGDA=53 "85CC"    ;Choice TORT Feasor AR Category
+ Q:CATEGDA=60 "86CC"    ;Choice Workers' Comp AR Category
+ Q:CATEGDA=54 "8CNW"    ;CCN Workers' Comp AR Category
+ Q:CATEGDA=56 "8CN9"    ;CCN TORT Feasor AR Category
+ Q:CATEGDA=55 "8CN8"    ;CCN No-Fault Auto AR Category
+ Q:CATEGDA=57 "8C6C"    ;CC Workers' Comp AR Category
+ Q:CATEGDA=59 "8C5C"    ;CC TORT Feasor AR Category
+ Q:CATEGDA=58 "8C4C"    ;CC No-Fault Auto AR Category
+ Q:CATEGDA=61 "8CC5"    ;CHOICE Inpatient Copay
+ Q:CATEGDA=62 "8CC7"    ;CHOICE RX CO-PAYMENT Copay
+ Q:CATEGDA=63 "8CC1"    ;CC Inpatient Copay
+ Q:CATEGDA=64 "8CC3"    ;CC RX CO-PAYMENT
+ Q:CATEGDA=65 "8CN1"    ;CCN Inpatient Copay
+ Q:CATEGDA=66 "8CN3"    ;CCN RX CO-PAYMENT
+ Q:CATEGDA=67 "8CD1"    ;CC MTF C (MEANS TEST)
+ Q:CATEGDA=68 "8CD3"    ;CC MTF RX CO-PAYMENT
+ Q:CATEGDA=69 "8CC4"    ;CC NURSING HOME CARE - LTC
+ Q:CATEGDA=70 "8CC4"    ;CC RESPITE CARE
+ Q:CATEGDA=71 "8CN4"    ;CCN NURSING HOME CARE - LTC
+ Q:CATEGDA=72 "8CN4"    ;CCN RESPITE CARE
+ Q:CATEGDA=73 "8CC8"    ;CHOICE NURSING HOME CARE - LTC
+ Q:CATEGDA=74 "8CC8"    ;CHOICE RESPITE CARE
+ Q:CATEGDA=81 "8CC6"    ;CHOICE OPT
+ Q:CATEGDA=82 "8CC2"    ;CC OPT
+ Q:CATEGDA=83 "8CN2"    ;CCN OPT
+ Q:CATEGDA=84 "8CD2"    ;CC MTF OPT
+ I (CATEGDA>47),(CATEGDA<52) D  Q RCRSC
+ . S RCIOPFLG=""
+ . S RX3P=0
+ . I ("PH"=$$TYP^IBRFN(BILLDA)) D
+ . . S RX3P=$$CHECKRXS^RCXFMSUF(BILLDA)
+ . D DIQ399(BILLDA)
+ . ;  for Community Care, 1 (inpatient) or 2 (outpatient -everything else)
+ . S RCIOPFLG=$S($G(IBCNDATA(399,BILLDA,.05,"I"))=1:1,1:2)
+ . I (CATEGDA=48),RX3P S RCRSC="83CC" Q   ;CHOICE INS RX
+ . I (CATEGDA=48),(RCIOPFLG=1) S RCRSC="81CC" Q   ;CHOICE INS INPATIENT
+ . I (CATEGDA=48),(RCIOPFLG=2) S RCRSC="82CC" Q   ;CHOICE INS OUTPATIENT
+ . I (CATEGDA=49),RX3P S RCRSC="8C3C" Q   ;CC INS RX
+ . I (CATEGDA=49),(RCIOPFLG=1) S RCRSC="8C1C" Q   ;CC INS INPATIENT
+ . I (CATEGDA=49),(RCIOPFLG=2) S RCRSC="8C2C" Q   ;CC INS OUTPATIENT
+ . I (CATEGDA=50),RX3P S RCRSC="8CN7" Q   ;CCN INS RX
+ . I (CATEGDA=50),(RCIOPFLG=1) S RCRSC="8CN5" Q   ;CCN INS INPATIENT
+ . I (CATEGDA=50),(RCIOPFLG=2) S RCRSC="8CN6" Q   ;CCN INS OUTPATIENT
+ . I (CATEGDA=51),RX3P S RCRSC="8CD6" Q   ;CC MTF INS RX
+ . I (CATEGDA=51),(RCIOPFLG=1) S RCRSC="8CD4" Q   ;CC MTF INS INPATIENT
+ . I (CATEGDA=51),(RCIOPFLG=2) S RCRSC="8CD5" Q   ;CC MTF INS OUTPATIENT
+ Q 0

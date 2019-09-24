@@ -1,5 +1,6 @@
-SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;MAY 15, 2017
- ;;5.3;Scheduling;**627,658,665,669**;Aug 13, 1993;Build 16
+SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ; 26 Mar 2019  7:44 AM
+ ;;5.3;Scheduling;**627,658,665,669,717**;Aug 13, 1993;Build 12
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -44,7 +45,9 @@ MAKE(BSDR) ;PEP; call to store appt made
  ;
  N DIC,DA,Y,X,DD,DO,DLAYGO
  N SDECERR
- N SDFU,SDNA,SDRET,SDSRT
+ N SDFU,SDNA,SDRET,SDSRT,PATCH722,PATCH717 ; 717/722 WTC 3/26/19
+ S PATCH722=$$PATCHSTS(722) ;
+ S PATCH717=$$PATCHSTS(717) ;
  ;
  S BSDR("APT")=+$G(BSDR("APT"))
  S BSDR("COL")=+$G(BSDR("COL"))
@@ -61,31 +64,61 @@ MAKE(BSDR) ;PEP; call to store appt made
  S SDFU=$S(SDFU="YES":1,1:0)
  K @SDRET
  ;store
- I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),(($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="C")!($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="PC")) D
+ N SDECCOND ;  722/717 wtc 3/26/2019 
+ S SDECCOND=0 I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),(($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="C")!($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="PC")) S SDECCOND=1 ;
+ ;
+ I SDECCOND D
  . ; "un-cancel" existing appt in file 2
  . N SDECFDA,SDECIENS,SDECMSG
  . S SDECIENS=BSDR("ADT")_","_BSDR("PAT")_","
- . S SDECFDA(2.98,SDECIENS,".01")=BSDR("CLN")
- . S SDECFDA(2.98,SDECIENS,"3")=$S($G(^DPT(+$G(BSDR("PAT")),.1))'="":"I",1:"")
- . S SDECFDA(2.98,SDECIENS,"5")=BSDR("LAB")    ;lab date/time
- . S SDECFDA(2.98,SDECIENS,"6")=BSDR("XRA")    ;xray date/time
- . S SDECFDA(2.98,SDECIENS,"7")=BSDR("EKG")    ;ekg date/time
- . S SDECFDA(2.98,SDECIENS,"9")=BSDR("TYP")
- . S:+BSDR("APT") SDECFDA(2.98,SDECIENS,"9.5")=BSDR("APT")
- . S:+BSDR("COL") SDECFDA(2.98,SDECIENS,"13")=BSDR("COL")
- . S SDECFDA(2.98,SDECIENS,"14")=""
- . S SDECFDA(2.98,SDECIENS,"15")=""
- . S SDECFDA(2.98,SDECIENS,"16")=""
- . S SDECFDA(2.98,SDECIENS,"17")=""   ;alb/sat 658
- . S SDECFDA(2.98,SDECIENS,"19")=DUZ           ;data entry clerk
- . S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
- . S SDECFDA(2.98,SDECIENS,"25")=SDSRT         ;scheduling request type
- . S SDECFDA(2.98,SDECIENS,"26")=SDNA          ;next ava. appt. indicator
- . S SDECFDA(2.98,SDECIENS,"27")=BSDR("DDT")   ;desired date of appt
- . S SDECFDA(2.98,SDECIENS,"28")=SDFU          ;follow-up visit  yes/no
+ . ;
+ . I PATCH722'=3 D  ;  Execute code if patch 722 not installed.
+ .. S SDECFDA(2.98,SDECIENS,".01")=BSDR("CLN")
+ .. S SDECFDA(2.98,SDECIENS,"3")=$S($G(^DPT(+$G(BSDR("PAT")),.1))'="":"I",1:"")
+ .. S SDECFDA(2.98,SDECIENS,"5")=BSDR("LAB")    ;lab date/time
+ .. S SDECFDA(2.98,SDECIENS,"6")=BSDR("XRA")    ;xray date/time
+ .. S SDECFDA(2.98,SDECIENS,"7")=BSDR("EKG")    ;ekg date/time
+ .. S SDECFDA(2.98,SDECIENS,"9")=BSDR("TYP")
+ .. S:+BSDR("APT") SDECFDA(2.98,SDECIENS,"9.5")=BSDR("APT")
+ .. S:+BSDR("COL") SDECFDA(2.98,SDECIENS,"13")=BSDR("COL")
+ .. S SDECFDA(2.98,SDECIENS,"14")=""
+ .. S SDECFDA(2.98,SDECIENS,"15")=""
+ .. S SDECFDA(2.98,SDECIENS,"16")=""
+ .. S SDECFDA(2.98,SDECIENS,"17")=""   ;alb/sat 658
+ .. S SDECFDA(2.98,SDECIENS,"19")=DUZ           ;data entry clerk
+ .. S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
+ .. S SDECFDA(2.98,SDECIENS,"25")=SDSRT         ;scheduling request type
+ .. S SDECFDA(2.98,SDECIENS,"26")=SDNA          ;next ava. appt. indicator
+ .. S SDECFDA(2.98,SDECIENS,"27")=BSDR("DDT")   ;desired date of appt
+ .. S SDECFDA(2.98,SDECIENS,"28")=SDFU          ;follow-up visit  yes/no
+ . ;
+ . I PATCH722=3 D  ;  Excecute code if patch 722 is installed
+ .. S SDECFDA(2.98,SDECIENS,".01")=$$NULLDEL(BSDR("CLN")) ;*zeb+19 722 2/19/19 completely replace old appt's data if overlaying; prevent chimera appt
+ .. S SDECFDA(2.98,SDECIENS,"3")=$$NULLDEL($S($G(^DPT(+$G(BSDR("PAT")),.1))'="":"I",1:""))
+ .. S SDECFDA(2.98,SDECIENS,"5")=$$NULLDEL(BSDR("LAB"))    ;lab date/time
+ .. S SDECFDA(2.98,SDECIENS,"6")=$$NULLDEL(BSDR("XRA"))    ;xray date/time
+ .. S SDECFDA(2.98,SDECIENS,"7")=$$NULLDEL(BSDR("EKG"))    ;ekg date/time
+ .. S SDECFDA(2.98,SDECIENS,"9")=$$NULLDEL(BSDR("TYP"))
+ .. S SDECFDA(2.98,SDECIENS,"9.5")=$$NULLDEL(BSDR("APT"))
+ .. S SDECFDA(2.98,SDECIENS,"13")=$$NULLDEL(BSDR("COL"))
+ .. S SDECFDA(2.98,SDECIENS,"14")="@"
+ .. S SDECFDA(2.98,SDECIENS,"15")="@"
+ .. S SDECFDA(2.98,SDECIENS,"16")="@"
+ .. S SDECFDA(2.98,SDECIENS,"17")="@"   ;alb/sat 658
+ .. S SDECFDA(2.98,SDECIENS,"19")=$$NULLDEL(DUZ)           ;data entry clerk
+ .. S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
+ .. S SDECFDA(2.98,SDECIENS,"21")="@"                      ;outpatient encounter ;*zeb 722 2/26/19 clear to fix OE link issue if cancelled again
+ .. S SDECFDA(2.98,SDECIENS,"25")=$$NULLDEL(SDSRT)         ;scheduling request type
+ .. S SDECFDA(2.98,SDECIENS,"26")=$$NULLDEL(SDNA)          ;next ava. appt. indicator
+ .. S SDECFDA(2.98,SDECIENS,"27")=$$NULLDEL(BSDR("DDT"))   ;desired date of appt
+ .. S SDECFDA(2.98,SDECIENS,"28")=$$NULLDEL(SDFU)          ;follow-up visit  yes/no. ;
+ . ;
  . D FILE^DIE("","SDECFDA","SDECMSG")
- . N SDECTEMP S SDECTEMP=$G(SDECMSG)
- E  D  I $G(SDECERR(1)) Q 1_U_"FileMan add to DPT error: Patient="_BSDR("PAT")_" Appt="_BSDR("ADT")
+ . ;
+ . I PATCH722'=3 N SDECTEMP S SDECTEMP=$G(SDECMSG)
+ . I PATCH722=3 N SDECTEMP S SDECTEMP=$$NULLDEL($G(SDECMSG))
+ . ;
+ I 'SDECCOND D  I $G(SDECERR(1)) Q 1_U_"FileMan add to DPT error: Patient="_BSDR("PAT")_" Appt="_BSDR("ADT")
  . ; add appt to file 2
  . N SDECFDA,SDECIENS,SDECMSG
  . S SDECIENS="?+2,"_BSDR("PAT")_","
@@ -132,13 +165,16 @@ MAKE(BSDR) ;PEP; call to store appt made
  .S SDFDA(44.003,SDIEN_","_BSDR("ADT")_","_BSDR("CLN")_",",688)=BSDR("CON")
  .D UPDATE^DIE("","SDFDA")
  ;
- Q 0
+ I PATCH717'=3 Q 0  ;*zeb 10/24/18 717 comment out quit to enable event driver ; WTC 3/26/19 Enable line only if patch 717 not installed yet.
  ; call event driver
  NEW DFN,SDT,SDCL,SDDA,SDMODE
  S DFN=BSDR("PAT"),SDT=BSDR("ADT"),SDCL=BSDR("CLN"),SDMODE=2
  S SDDA=$$SCIEN^SDECU2(BSDR("PAT"),BSDR("CLN"),BSDR("ADT"))
  D MAKE^SDAMEVT(DFN,SDT,SDCL,SDDA,SDMODE)
  Q 0
+ ;
+NULLDEL(STR) ;return "@" to delete a field if the new data would be null ;*zeb+tag 722 2/19/19 added to support APPADD
+ Q $S(STR]"":STR,1:"@")
  ;
 SDSRT(TYP,MTR,DDT,REQ) ;get SCHEDULING REQUEST TYPE and NEXT AVA.APPT. INDICATOR
  ;INPUT:
@@ -213,3 +249,12 @@ APPVISTA(SDECLEN,SDECNOTE,DFN,SDECRESD,SDECSTART,SDECWKIN,SDCL,SDECI) ;
  . ;L
  . Q
  Q +SDECERR
+ ;
+PATCHSTS(NUMBER) ; 717/722 WTC 3/26/19
+ ;
+ ;  Determine if patch has been installed.  Return status from Install file (#9.7).
+ ;
+ N X,DA ;
+ S DA=$O(^XPD(9.7,"B","SD*5.3*"_NUMBER,99999),-1) I 'DA Q "" ;
+ S X=$P($G(^XPD(9.7,DA,0)),U,9) Q X ;
+ ;

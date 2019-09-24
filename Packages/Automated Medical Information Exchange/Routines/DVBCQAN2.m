@@ -209,11 +209,11 @@ TXT ;
  ;; ___ Yes   ___ No
  ;; If yes, indicate severity of ankylosis and side affected (check all that
  ;; apply):
- ;;   ___ In plantar flexion, less than 30บ       ___ Right  ___ Left  ___ Both
- ;;   ___ In plantar flexion, between 30บ and 40บ ___ Right  ___ Left  ___ Both
- ;;   ___ In plantar flexion, at more than 40บ    ___ Right  ___ Left  ___ Both
- ;;   ___ In dorsiflexion, between 0บ and 10บ     ___ Right  ___ Left  ___ Both
- ;;   ___ In dorsiflexion, at more than 10บ       ___ Right  ___ Left  ___ Both
+ ;;   ___ In plantar flexion, less than 30ยบ       ___ Right  ___ Left  ___ Both
+ ;;   ___ In plantar flexion, between 30ยบ and 40ยบ ___ Right  ___ Left  ___ Both
+ ;;   ___ In plantar flexion, at more than 40ยบ    ___ Right  ___ Left  ___ Both
+ ;;   ___ In dorsiflexion, between 0ยบ and 10ยบ     ___ Right  ___ Left  ___ Both
+ ;;   ___ In dorsiflexion, at more than 10ยบ       ___ Right  ___ Left  ___ Both
  ;;   ___ With abduction, adduction, inversion    ___ Right  ___ Left  ___ Both
  ;;       or eversion deformity
  ;;   ___ In good weight-bearing position         ___ Right  ___ Left  ___ Both

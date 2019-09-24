@@ -1,5 +1,5 @@
 IBOCDRPT ;ELZ/OAK - CATASTROPHICALLY DISABLED PATIENT BILLING ;03/21/2011
- ;;2.0;INTEGRATED BILLING;**449**;21-MAR-94;Build 15
+ ;;2.0;INTEGRATED BILLING;**449,618**;21-MAR-94;Build 61
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -46,8 +46,9 @@ DQ U IO
  . Q:IBDT<3100505!(IBDT<$G(IBDG("DATE")))
  . ; quit if not within specified date range
  . Q:IBDT<IBBDT!($P(IBDT,".")>(IBEDT+1))
+ . ;IB*2.0*618 - modified LTC check to include new LTC patients
  . ; quit if LTC inpatient
- . I $P($G(^IBE(350.1,+$P(IBZ,"^",3),0)),"^")["DG LTC INPT"!($P($G(^(0)),"^")["DG LTC FEE INPT") Q
+ . Q:'$$LTCCHK(IBZ)
  . ;
  . S IBDPT=$G(^DPT(DFN,0))
  . W !,$E($P(IBDPT,"^"),1,20) ; patient name
@@ -70,6 +71,19 @@ DQ U IO
  D ^%ZISC
 EXIT S:$D(ZTQUEUED) ZTREQ="@"
  Q
+ ;
+ ;IB*2.0*618 Converted LTC check to a function call to allow ability to 
+ ;           look for new CC LTC Action Types.
+LTCCHK(IBZ) ; Check for all LTC Action Types.  Return 1 if Action Type is LTC, 0 if not.
+ N IBLTCNM
+ S IBLTCNM=$P($G(^IBE(350.1,+$P(IBZ,"^",3),0)),"^")
+ Q:IBLTCNM["DG LTC INPT" 1
+ Q:IBLTCNM["DG LTC FEE INPT" 1
+ Q:IBLTCNM["LTC CHOICE INPT" 1
+ Q:IBLTCNM["LTC CC INPT" 1
+ Q:IBLTCNM["LTC CCN INPT" 1
+ Q 0
+ ;
 HEAD ;
  N IBL,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  I IBP,$E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR I $D(DIRUT) S IBQUIT=1 Q

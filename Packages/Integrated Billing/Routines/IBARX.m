@@ -1,5 +1,5 @@
 IBARX ;ALB/AAS - INTEGRATED BILLING, PHARMACY COPAY INTERFACE;8/30/17 3:42pm
- ;;2.0;INTEGRATED BILLING;**101,150,156,168,186,237,308,563,604**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**101,150,156,168,186,237,308,563,604,645**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 XTYPE ; - tag XTYPE - returns array of billable action types for service
@@ -15,7 +15,8 @@ X1 K Y D INSTAL I '$T S Y=-1 Q
  .D E3^IBAERR
  ;
  N X D ELIG^VADPT,INP^VADPT,DOM S Y=1
- F I=0:0 S I=$O(^IBE(350.1,"ANEW",IBSERV,1,I)) Q:'I  I $D(^IBE(350.1,I,40)),$P(^IBE(350.1,I,0),U,1)'["FEE SERV NSC RX COPAY" S DA=I X ^IBE(350.1,DA,40) S Y(DA,X)=I_"^"_X1_"^"_X2 S:'$G(IBCAP) IBCAP=X
+ ;IB*2.0*645  - Modified copay check to include Community Care Action Types with Fee Basis.
+ F I=0:0 S I=$O(^IBE(350.1,"ANEW",IBSERV,1,I)) Q:'I  I $D(^IBE(350.1,I,40)),$$NFEECCRX($P(^IBE(350.1,I,0),U,1)) S DA=I X ^IBE(350.1,DA,40) S Y(DA,X)=I_"^"_X1_"^"_X2 S:'$G(IBCAP) IBCAP=X
  ;
  I $G(IBCAP),$G(DFN) D NEW^IBARXPFS(DFN)
  ;
@@ -185,3 +186,17 @@ UPIBAM ;  - will cancel current potential charge and create updated entry
  S Y(IBA)=IBAM,Y=1
  ;
  Q
+ ;
+ ;IB*2.0*645 - added routine NFEECCRX
+NFEECCRX(IBACTNM) ;Determine if the Action Type is a Non-Fee RX Action type for the co-payment indicator
+ ;
+ ;Input:  IBACTNM  Name of the Action Type from File 350.1, field 1
+ ;Output:  0 - Fee or Community Care RX copay or non RX
+ ;         1 - Non Fee Basis or Community Care RX Copay
+ N IBFLG
+ S IBFLG=1
+ I IBACTNM'["RX" Q 0     ;Non RX Copay
+ I IBACTNM["FEE" Q 0     ;Fee Basis NSC RX Copay
+ I IBACTNM["CHOICE" Q 0  ;Choice RX Copay
+ I IBACTNM["CC" Q 0      ;CC, CCN, or CC MTF RX Copays
+ Q IBFLG                 ;Copay is NSC or SC RX

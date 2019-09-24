@@ -1,12 +1,12 @@
 IBOA32 ;ALB/CPM - PRINT ALL BILLS FOR A PATIENT (CON'T) ;28-JAN-92
- ;;2.0;INTEGRATED BILLING;**7,95,347,433,451**;21-MAR-94;Build 47
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**7,95,347,433,451,645**;21-MAR-94;Build 16
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRA32
  ;
  ; Print out IB Actions onto the list.
  D:($Y>(IOSL-5)) HDR^IBOA31 Q:IBQUIT
- N IBND,IBND1,X,IBX,IENS,IBRXN,IBRX,IBRF,IBRDT,IBPFLAG
+ N IBND,IBND1,X,IBX,IENS,IBRXN,IBRX,IBRF,IBRDT,IBPFLAG,IBIEN,IBTYPE
  S IBND=$G(^IB($E(IBIFN,1,$L(IBIFN)-1),0)),IBND1=$G(^(1))
  S (IBRXN,IBRX,IBRF,IBRDT,IBX)=0
  I $P(IBND,"^",4)["52:" S IBRXN=$P($P(IBND,"^",4),":",2),IBRX=$P($P(IBND,"^",8),"-"),IBRF=$P($P(IBND,"^",4),":",3)
@@ -17,8 +17,12 @@ IBOA32 ;ALB/CPM - PRINT ALL BILLS FOR A PATIENT (CON'T) ;28-JAN-92
  W !,IBPFLAG,$S($P(IBND,"^",11)]"":$P($P(IBND,"^",11),"-",2),$P(IBND,"^",5)=99:"",$P(IBND,"^",5)=10:"",1:"Pending")
  ; IB*2.0*451 - make space for EEOB indicator '%' next to the bill #
  W ?9,$$DAT1^IBOUTL($S($P(IBND,"^",11)="":"",$P(IBND,"^",5)>2&($P(IBND,"^",5)'=99):$P(IBND1,"^",4)\1,1:""))
- S X=$P($P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^")," ",2,99)
- W ?19,$E($P(X," ",1,$L(X," ")-1),1,17)
+ ; Patch IB*2.0*645 - adding community care - action types
+ S IBIEN=$G(^IBE(350.1,+$P(IBND,"^",3),0))
+ S IBIEN=+$P(IBND,"^",3)
+ S IBTYPE=$$GETATYPE(IBIEN)
+ ;W ?19,$E($P(IBTYPE," ",1,$L($P($P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^")," ",2,99)," ")-1),1,17)
+ W ?19,IBTYPE
  W ?38,$E($S($P(IBND,"^",4)["350:":$E($P(IBND,"^",8),1,14),$P(IBND,"^",3)<7:"Rx:"_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),$P(IBND1,"^",5):"CHAMPVA SUBSIST",1:"AUT MEANS TEST"),1,14)
  W:IBX=1 ?54,"*"
  W ?55,$$DAT1^IBOUTL(-IBDT)
@@ -45,3 +49,8 @@ UTIL ; Gather all IB Actions for a patient.
  . S:'DATE DATE=$P($G(^IB(IBNX,1)),"^",2)\1
  . S:DATE ^UTILITY($J,-DATE,IBNX_"X")=""
  Q
+ ;
+GETATYPE(IBIEN) ; Patch IB*2.0*645 - added community care - action types
+ S IBTYPE=$P(^IBE(350.1,IBIEN,0),"^") I $E(IBTYPE,1,2)="DG" Q $E($P(IBTYPE," ",2,99),1,17)
+ I $E(IBTYPE,1,3)="PSO" Q $E($P(IBTYPE," ",2,99),1,17)
+ Q $E(IBTYPE,1,17)

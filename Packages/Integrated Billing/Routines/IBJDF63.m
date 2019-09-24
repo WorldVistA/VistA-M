@@ -1,9 +1,14 @@
 IBJDF63 ;ALB/RB - MISC. BILLS FOLLOW-UP REPORT (COMPILE/PRINT SUMMARY);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,618**;21-MAR-94;Build 61
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 INIT ; - Initialize counters, if necessary.
- I IBSDV,IBDIV," 6 7 10 21 "'[(" "_IBCAT_" ") Q
- I IBSDV,'IBDIV," 6 7 10 21 "[(" "_IBCAT_" ") Q
+ ; Quit if division selected for Debtor (doesn't split by division)
+ I IBSDV,IBDIV,'$$CATCHK^IBJDF61(IBCAT) Q
+ ; Quit if division flag is false when a patient category and requested to
+ ;   sort by division
+ I IBSDV,'IBDIV,$$CATCHK^IBJDF61(IBCAT) Q
+ ; Initialize division counters
  F I=1:1:8 S IB(IBDIV,IBCAT,I)=0
  Q
  ;
@@ -58,11 +63,13 @@ SUM(IBDIV) ; - Print summary for division.
  ;  Input: IBDIV=Pointer to the division in file #40.8 and pre-set
  ;         variable IBRPT
  N IBDH,IBTYP,I,J,Z,%
+ N IBCATNM  ; patch IB*2.0*618
  ;
  S IBCAT=0
  F  S IBCAT=$O(IB(IBDIV,IBCAT)) Q:'IBCAT  D  Q:IBQ
+ . S IBCATNM=$$ARCAT^IBJDF62(IBCAT)  ; patch IB*2.0*618
  . D HDR Q:IBQ
- . S IBTYP=$G(IBCTG(IBCAT(IBCAT)))_" RECEIVABLES"
+ . S IBTYP=$G(IBCATNM)_" RECEIVABLES"
  . W !!?(80-$L(IBTYP))\2,IBTYP
  . W !?(80-$L(IBTYP)\2),$$DASH($L(IBTYP))
  . I IBDIV D
@@ -102,8 +109,9 @@ HDR ; - Write the summary report header.
  I IBRPT="D" D
  . I IBSMN'="A" D
  . . S X="  RECEIVABLES OVER "_IBSMN_" AND LESS THAN "_IBSMX_" DAYS OLD "
- . I IBCAT(IBCAT)>4 S PD="DEBTORS",PDA=IBSDA,PDF=IBSDF,PDL=IBSDL
- . I IBCAT(IBCAT)<5 S PD="PATIENTS",PDA=IBSNA,PDF=IBSNF,PDL=IBSNL
+ . ; Modified the Patient/Debtor dividing line
+ . I IBCAT(IBCAT)>7 S PD="DEBTORS",PDA=IBSDA,PDF=IBSDF,PDL=IBSDL
+ . I IBCAT(IBCAT)<8 S PD="PATIENTS",PDA=IBSNA,PDF=IBSNF,PDL=IBSNL
  . I $G(PDA)'="ALL" D
  . . S X=X_"/ "_PD_" FROM '"_$S(PDF="":"FIRST",1:PDF)_"' TO '"
  . . S X=X_$S(PDL="zzzzz":"LAST",1:PDL)_"' "
@@ -133,4 +141,4 @@ CATN ; - List of category names.
  ;;121-180 days
  ;;181-365 days
  ;;Over 365 days
- ;;Total Misc. Receivables
+ ;;Total

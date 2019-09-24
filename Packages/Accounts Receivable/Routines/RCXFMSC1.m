@@ -1,5 +1,5 @@
 RCXFMSC1 ;WISC/RFJ-fms cash receipt (cr) build lines ;1 Oct 97
- ;;4.5;Accounts Receivable;**90,96,106,113,135,98,173,220**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**90,96,106,113,135,98,173,220,338**;Mar 20, 1995;Build 69
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -22,7 +22,12 @@ FMSLINES(RECEIPDA,RCTR) ;  receipda is the ien for the receipt in file 344
  .   S BILLDA=+$P(TRAN0,"^",2)
  .   ;
  .   ;  do not send champva
- .   I CATEGORY=29 S FUND="0160a1" D SETTMP Q
+ .   I CATEGORY=29 D  Q
+ .   .   ;PRCA*4.5*338 get fund only if not defined
+ .   .   S FUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   .   I FUND="" S FUND=$$GETFUNDB^RCXFMSUF(BILLDA)
+ .   .   ;end PRCA*4.5*338
+ .   .   D SETTMP
  .   ;
  .   S ACCRUAL=$$ACCK^PRCAACC(BILLDA)
  .   ;
@@ -33,7 +38,11 @@ FMSLINES(RECEIPDA,RCTR) ;  receipda is the ien for the receipt in file 344
  .   .   ;  send a detail document only if there is principal
  .   .   I $P(TRAN3,"^") S DETAIL(FMSTYPE,BILLDA)=$G(DETAIL(FMSTYPE,BILLDA))+$P(TRAN3,"^")
  .   .   ;  set tmp global which is used by the 215 report
- .   .   S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,,RECEFT) D SETTMP
+ .   .   ;PRCA*4.5*338 get fund only if not defined
+ .   .   S FUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   .   I FUND="" S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,,RECEFT)
+ .   .   ;end PRCA*4.5*338
+ .   .   D SETTMP
  .   .   ;
  .   .   ;  look for interest and admin charges
  .   .   ;  use vendorid x for totals
@@ -43,13 +52,18 @@ FMSLINES(RECEIPDA,RCTR) ;  receipda is the ien for the receipt in file 344
  .   .   D INTADMIN
  .   ;
  .   ;  get the fund for the bill
- .   S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,,RECEFT)
+ .   ;PRCA*4.5*338 get fund only if not defined
+ .   S FUND=$$GET1^DIQ(430,BILLDA_",",203)
+ .   I FUND="" S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,,RECEFT)
+ .   ;end PRCA*4.5*338
  .   ;
  .   ;  get the vendor id $p(2) for the bill
  .   S VENDORID=$S(FUND=528709:"EXCFVALUE",FUND=4032:"EXCFVALUE",1:"MCCFVALUE")
  .   ;
  .   ;  get the revenue source code for the bill
- .   S REVSRCE=$$CALCRSC^RCXFMSUR(BILLDA,RECEFT)
+ .   S REVSRCE=$$GET1^DIQ(430,BILLDA_",",255)
+ .   S:REVSRCE="" REVSRCE=$$GET1^DIQ(430,BILLDA_",",255.1)
+ .   S:REVSRCE="" REVSRCE=$$CALCRSC^RCXFMSUR(BILLDA) ;          (as per CURRENT^RCRJRCOC)
  .   ;
  .   ;  get the principle collected, $p(tran3,"^"), if prepayment
  .   ;  set it to 1;5 with no interest, admin, etc.

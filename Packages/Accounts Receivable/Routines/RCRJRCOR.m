@@ -1,5 +1,5 @@
 RCRJRCOR ;WISC/RFJ-ar data collector summary report ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,96,139,103,156,170,174,191,220,138,239,320**;Mar 20, 1995;Build 30
+ ;;4.5;Accounts Receivable;**68,96,139,103,156,170,174,191,220,138,239,320,338,351**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -74,8 +74,10 @@ SEND ;  send data to ndb and data to FMS
  .   .   .   .   S TOTALTYP=TOTALTYP+AMOUNT
  .   .   .   .   S TOTAL=TOTAL+AMOUNT
  .   .   .   ;
- .   .   .   N RCFUND S RCFUND=$S($E(DATEEND,2,5)<"0410":$E(FUND,1,4)_"."_$E(FUND,6),1:$E(FUND,1,4)_"0"_$E(FUND,6))
- .   .   .   I TYPE=21 D SET($E("            Sub-Total by Fund "_RCFUND_":"_SPACE,1,38)_$J(TOTALFUN,12,2))
+ .   .   .   ;N RCFUND S RCFUND=$S($E(DATEEND,2,5)<"0410":$E(FUND,1,4)_"."_$E(FUND,6),1:$E(FUND,1,4)_"0"_$E(FUND,6))
+ .   .   .   N RCFUND S RCFUND=$S($L(FUND)<6:FUND,$E(DATEEND,2,5)<"0410":$E(FUND,1,4)_"."_$E(FUND,6),FUND>528700:FUND,1:$E(FUND,1,4)_"0"_$E(FUND,6))   ;PRCA*4.5*338,351
+ .   .   .   ;I TYPE=21 D SET($E("            Sub-Total by Fund "_RCFUND_":"_SPACE,1,38)_$J(TOTALFUN,12,2))
+ .   .   .   D SET($E("            Sub-Total by Fund "_RCFUND_":"_SPACE,1,38)_$J(TOTALFUN,12,2))
  .   .   ;
  .   .   D SET("                                                                    ----------")
  .   .   D SET("                                                    TOTAL TYPE "_TYPE_$J(TOTALTYP,13,2))
@@ -109,8 +111,9 @@ SEND ;  send data to ndb and data to FMS
  .   .   .   .   S TOTALTYP=TOTALTYP+AMOUNT
  .   .   .   .   S TOTAL=TOTAL+AMOUNT
  .   .   .   ;
- .   .   .   N RCFUND S RCFUND=$S($E(DATEEND,2,5)<"0410":$E(FUND,1,4)_"."_$E(FUND,6),1:$E(FUND,1,4)_"0"_$E(FUND,6))
- .   .   .   I TYPE=37 D SET($E("            Sub-Total by Fund "_RCFUND_":"_SPACE,1,38)_$J(TOTALFUN,12,2))
+ .   .   .   N RCFUND S RCFUND=$S($L(FUND)<6:FUND,$E(DATEEND,2,5)<"0410":$E(FUND,1,4)_"."_$E(FUND,6),FUND>528700:FUND,1:$E(FUND,1,4)_"0"_$E(FUND,6))     ;PRCA*4.5*338,351
+ .   .   .   ;I TYPE=37 D SET($E("            Sub-Total by Fund "_RCFUND_":"_SPACE,1,38)_$J(TOTALFUN,12,2))
+ .   .   .   D SET($E("            Sub-Total by Fund "_RCFUND_":"_SPACE,1,38)_$J(TOTALFUN,12,2))
  .   .   ;
  .   .   D SET("                                                                    ----------")
  .   .   D SET("                                                    TOTAL TYPE "_TYPE_$J(TOTALTYP,13,2))
