@@ -1,28 +1,60 @@
-PSOCLOLS ; BHAM ISC/DMA - LIST CLOZAPINE RXS ENTERED BY OVERRIDE ; 04/06/93 15:01
- ;;7.0;OUTPATIENT PHARMACY;;DEC 1997
- W !,"Print list of clozapine prescriptions overriding lockout",!
-DATE S %DT="EAX",%DT("A")="Beginning date : " D ^%DT G EXIT:Y<0 S PSOBD=Y
- S %DT("A")="Ending date : " D ^%DT G EXIT:Y<0 S PSOED=Y+.3 I PSOED<PSOBD W !!,"Ending date must be after beginning date" G DATE
-DEV S %ZIS("B")="",%ZIS="MQ" D ^%ZIS G EXIT:POP I $E(IOST)'="P" W !,"Select a printer " G DEV
- I $D(IO("Q")) G QUE
-DQ ;Entry to report
- W:$Y @IOF D HD I '$O(^PS(52.52,"B",PSOBD)) W !,?5,"NO PRESCRIPTIONS FOUND",@IOF G EXIT
- I $O(^PS(52.52,"B",PSOBD))>PSOED W !,?5,"NO PRESCRIPTIONS FOUND",@IOF G EXIT
- F PSOD=PSOBD-.1:0 S PSOD=$O(^PS(52.52,"B",PSOD)) Q:'PSOD  Q:PSOD>PSOED  S PSOI=+$O(^(PSOD,0)) I $D(^PS(52.52,PSOI,0)) S DATA=^(0) D PRINT
- W @IOF
-EXIT D ^%ZISC K %DT,DRG,POP,PSOD,PSOI,DATA,RX,USR,APR,REA,COM,PAT,PSOBD,PSOED,X,J,ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK Q
+PSOCLOLS ; HEC/hrub ;4 May 2019 18:48:29
+ ;;7.0;OUTPATIENT PHARMACY;**457**;DEC 1997;Build 116
  ;
-PRINT I $Y+9>IOSL W @IOF D HD
- S RX=+$P(DATA,"^",2),USR=$P(DATA,"^",3),APR=$P(DATA,"^",4),REA=$P(DATA,"^",5),USR=$P(^VA(200,USR,0),"^"),APR=$P(^VA(200,APR,0),"^"),COM=$P(DATA,"^",6),RX=$S($D(^PSRX(RX,0)):^(0),1:""),PAT=$P(RX,"^",2),DRG=$P(RX,"^",6),RX=$P(RX,"^")
- I RX]"" S PAT=$P(^DPT(PAT,0),"^"),DRG=$P(^PSDRUG(DRG,0),"^")
- W !,?3,"Date : ",$E(PSOD,4,5),"/",$E(PSOD,6,7),"/",$E(PSOD,2,3),?25,"RX # : ",$S(RX]"":RX,1:"UNKNOWN"),?45,"Patient : ",$S(RX]"":PAT,1:"UNKNOWN")
- W !,?3,"DRUG : ",$S(RX]"":DRG,1:"UNKNOWN (PRESCRIPTION DELETED)")
- W !,?3,"Entered by : ",USR,!,?3,"Approved by : ",APR
- W !,?3,"Lockout reason : ",$P($P($P(^DD(52.52,4,0),"^",3),";",REA),":",2)
- W !,?3,"Comments : " I $L(COM)<65 W COM,!! Q
- F J=1:1 Q:$P(COM," ",J,9999)=""  S X=$P(COM," ",J) W:$L(X)+$X>70 !,?14 W X," "
- W !! Q
-HD U IO W !!,?5,"LIST OF PRESCRIPTIONS WRITTEN FOR CLOZAPINE OVERRIDING LOCKOUT",!,?10,"FOR THE DATE RANGE ",$E(PSOBD,4,5),"/",$E(PSOBD,6,7),"/",$E(PSOBD,2,3)," THROUGH ",$E(PSOED,4,5),"/",$E(PSOED,6,7),"/",$E(PSOED,2,3),! Q
+ W !,"Print clozapine prescriptions with lockout override.",!
+ D DT^DICRW N %ZIS,DIR,PSOCLDT
+ S DIR(0)="DA^:"_DT_":XE",DIR("A")="Override Beginning date: " D ^DIR G EXIT:'(Y>0) S PSOCLDT("beg")=Y
+ K DIR S DIR(0)="DA^"_Y_":"_DT_":XE",DIR("A")="   Override Ending date: " D ^DIR G EXIT:Y<0 S PSOCLDT("end")=Y
+ K %ZIS S %ZIS="Q" D ^%ZIS G EXIT:POP
+ I $D(IO("Q")) D QUE G EXIT
+DQ ; List of Override Prescriptions [PSOLIST OVERRIDES] report
+ N PSIEN,PSOHDR,PSOLPDT,X
+ S PSOHDR(1)=" Clozapine Lockout Override Prescriptions - "_$$FMTE^XLFDT($$NOW^XLFDT)_"   Page: "
+ S PSOHDR(2)="    From "_$$FMTE^XLFDT(PSOCLDT("beg"))_" through "_$$FMTE^XLFDT(PSOCLDT("end"))
+ S PSOHDR(0,"pg#")=0
+ W:$Y @IOF D PGHDR(.PSOHDR) I '$O(^PS(52.52,"B",PSOCLDT("beg"))) D NOTFND(.PSOHDR) G EXIT
+ I $O(^PS(52.52,"B",PSOCLDT("beg")))>PSOCLDT("end") D NOTFND(.PSOHDR) G EXIT
+ S PSOLPDT=PSOCLDT("beg")-.1,PSOLPDT("stop")=0  ; PSOLPDT("stop") - flag to exit loop
+ F  S PSOLPDT=$O(^PS(52.52,"B",PSOLPDT)) Q:'PSOLPDT!PSOLPDT("stop")!(PSOLPDT>PSOCLDT("end"))  D
+ . S PSIEN=0 F  S PSIEN=$O(^PS(52.52,"B",PSOLPDT,PSIEN)) Q:'PSIEN  S X=$G(^PS(52.52,PSIEN,0)) D:$L(X) PRINT(X)
  ;
+ D:'PSOLPDT("stop") RPTEND  ; only if user didn't enter '^'
+ ;
+EXIT ;
+ D ^%ZISC Q
+ ;
+PRINT(OVRDND) ;OVRDND - zero node of entry in file 52.52
+ I $Y+7>IOSL D
+ . I '$G(ZTSK),$E(IOST,1,2)="C-"  D   ; only if interactive user
+ ..  N DIR S DIR(0)="E" D ^DIR S:'Y PSOLPDT("stop")=1
+ . I 'PSOLPDT("stop") W @IOF D PGHDR(.PSOHDR)
+ N CLUSR,RPTLN,RXCLO,Y
+ S RXCLO("rxIen")=+$P(OVRDND,U,2),RXCLO("ntryDuz")=+$P(OVRDND,U,3),RXCLO("apprvDuz")=+$P(OVRDND,U,4),RXCLO("ovrdRsn")=$P(OVRDND,U,6)
+ S RXCLO("ntryNm")=$P($G(^VA(200,RXCLO("ntryDuz"),0)),U),RXCLO("apprvNm")=$P($G(^VA(200,RXCLO("apprvDuz"),0)),U)
+ S RXCLO("cmmnt")=$P(OVRDND,U,6),RXCLO("rxZroNd")=$S($D(^PSRX(RXCLO("rxIen"),0)):^(0),1:""),RXCLO("rxDfn")=$P(RXCLO("rxZroNd"),U,2),RXCLO("rxDrgIen")=$P(RXCLO("rxZroNd"),U,6),RXCLO("rx#")=$P(RXCLO("rxZroNd"),U)
+ I RXCLO("rxIen") S RXCLO("rxPtNm")=$P(^DPT(RXCLO("rxDfn"),0),U),RXCLO("drugNm")=$P($G(^PSDRUG(RXCLO("rxDrgIen"),0)),U)
+ S Y=$$FMTE^XLFDT(PSOLPDT,2),RPTLN="Date: "_Y_$J(" ",18-$L(Y))_" Rx #"_$S(RXCLO("rxIen"):RXCLO("rx#"),1:" UNKNOWN (Rx Deleted)")
+ S RPTLN=RPTLN_"   Patient: "_$S(RXCLO("rxIen"):RXCLO("rxPtNm"),1:"UNKNOWN")
+ W !,RPTLN
+ W !,"  Drug: "_$S(RXCLO("rxIen"):RXCLO("drugNm"),1:"UNKNOWN (PRESCRIPTION DELETED)")
+ W !,"  Entered by: "_RXCLO("ntryNm")_"  Approved by: "_RXCLO("apprvNm")
+ W !,"  Override reason: "_$P(RXCLO("ovrdRsn"),":",2)
+ W !,"  Comments: "_RXCLO("cmmnt"),!
+ Q
+PGHDR(PSOHDR) ; header, PSOHDR passed by ref.
+ S PSOHDR(0,"pg#")=PSOHDR(0,"pg#")+1
+ U IO W !,PSOHDR(1)_PSOHDR(0,"pg#"),!,PSOHDR(2),! Q
+ ;
+RPTEND ;
+ W !," ** End of Clozapine Override Report **",! Q
 QUE ;queue job
- S ZTRTN="DQ^PSOCLOLS",ZTDESC="CLOZAPINE LIST",ZTSAVE("PSOBD")="",ZTSAVE("PSOED")="" D ^%ZTLOAD G EXIT
+ N ZTDESC,ZTRTN,ZTSAVE,ZTSK
+ S ZTRTN="DQ^"_$T(+0),ZTDESC="Clozapine Override Report",ZTSAVE("PSOCLDT")="" D ^%ZTLOAD
+ W !,$S($G(ZTSK):"Override Report queued as task #"_ZTSK,1:"* Report NOT queued.")
+ Q
+ ;
+NOTFND(PSOHDR) ;
+ W !," * No CLOZAPINE PRESCRIPTION OVERRIDES"_PSOHDR(2)_" *",!
+ D RPTEND
+ Q
+ ;

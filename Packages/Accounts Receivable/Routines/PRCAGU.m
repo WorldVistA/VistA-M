@@ -1,6 +1,10 @@
 PRCAGU ;WASH-ISC@ALTOONA,PA/CMS-Patient Statement Utility ;8/23/94  8:06 AM
-V ;;4.5;Accounts Receivable;**181,219,301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**181,219,301,348**;Mar 20, 1995;Build 20
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*348 Ensure veterans get a bill even though they
+ ;             have no last statement (2) event in file 341
+ ;
  Q  ;This routine should not be called from the top
 SITE ;Set statement variables from Site Parameter File
  NEW SP0,SP2
@@ -13,10 +17,10 @@ SITE ;Set statement variables from Site Parameter File
  S SITE("SCAN")=$G(^RC(342,1,5)) ;mark for auto stuffer
  S SITE("ZERO")=$P($G(SP0),U,9) ;suppress zero balance
 SITEQ Q
-PBAL(DEB,DAT,PBAL) ;get previous balance and date of last transaction
+PBAL(DEB,DAT,PBAL,PRCASTMT) ;get previous balance and date of last transaction
  N EVN,I,Y G:'DEB PBALQ
  S EVN=$O(^RC(341,"AD",DEB,+$O(^RC(341.1,"AC",2,0)),DAT,0))
- I '$G(EVN) G PBALQ
+ I '$G(EVN) S:$G(PRCASTMT) DAT=PDAT G PBALQ       ;PRCA*4.5*348
  S Y=$G(^RC(341,EVN,1)) F I=1:1:5 S PBAL=PBAL+$P(Y,U,I)
  S DAT=$P($G(^RC(341,EVN,0)),U,6)
 PBALQ Q

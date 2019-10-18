@@ -1,14 +1,14 @@
-PSGOER ;BIR/CML3 - RENEW A SINGLE ORDER ;4/27/11 9:54am
- ;;5.0;INPATIENT MEDICATIONS ;**11,30,29,35,70,58,95,110,111,133,141,198,181,246,278,281,315,338,256,347**;16 DEC 97;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+PSGOER ;BIR/CML3 - RENEW A SINGLE ORDER ;12 June 2019 09:31:53
+ ;;5.0;INPATIENT MEDICATIONS ;**11,30,29,35,70,58,95,110,111,133,141,198,181,246,278,281,315,338,256,347,327**;16 DEC 97;Build 114
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ; Reference to ^PS(51.1 supported by DBIA 2177.
- ; Reference to ^PS(55 supported by DBIA 2191.
- ; Reference to ^PSSLOCK is supported by DBIA 2789.
- ; Reference to ^PSBAPIPM is supported by DBIA 3564.
- ; Reference to ^PS(59.7 is supported by DBIA 2181.
- ; Reference to ^PSDRUG( is supported by DBIA 2192.
- ; Reference to ^TMP("PSODAOC",$J is supported by DBIA 6071.
+ ; Reference to ^PS(51.1 via DBIA 2177
+ ; Reference to ^PS(55 via DBIA 2191
+ ; Reference to ^PSSLOCK via DBIA 2789
+ ; Reference to ^PSBAPIPM via DBIA 3564
+ ; Reference to ^PS(59.7 via DBIA 2181
+ ; Reference to ^PSDRUG( via DBIA 2192
+ ; Reference to ^TMP("PSODAOC",$J via DBIA 6071
  ;
  ; renew a single order
  I $G(PSJCOM) D ^PSJCOMR Q
@@ -50,6 +50,10 @@ EXTEND ; extend stop date on renewal order
  . W !!?5,"THIS ONE-TIME ORDER HAS ALREADY BEEN GIVEN AND CANNOT BE RENEWED",! S (DIRUT,PSGORQF)=1 D READ
  ;D OC55
  ;Q:$D(PSGORQF)  ; quit if not to continue
+ ;; START NCC T4 MODS >> 327*RJS
+ N CLOZFLG S CLOZFLG=$$ISCLOZ^PSJCLOZ(,,PSGP,+PSGORD) I CLOZFLG D
+ .N PSGDRG,PSGPR S PSGDRG=$P(CLOZFLG,U,2),PSGPR=PSGOPR D CLOZ^PSJCLOZ(DFN,PSGDRG) S:$G(ANQX) PSGCANFL=1
+ ;; END NCC T4 MODS >> 327*RJS
  D NOW^%DTC S PSGDT=%,PSGND4=$G(^PS(55,PSGP,5,+PSGORD,4)) I '$P(PSJSYSP0,"^",3) D MARK Q
  S PSGWLL=$S('$P(PSJSYSW0,"^",4):0,1:+$G(^PS(55,PSGP,5.1))),PSGOEE="R" K PSGOEOS
  K ^PS(53.45,PSJSYSP,1),^(2) D MOVE(3,1),MOVE(1,2)

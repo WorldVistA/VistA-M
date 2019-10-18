@@ -1,14 +1,12 @@
-PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;04/17/95
- ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402,518,525,538**;DEC 1997;Build 2
+PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;10 May 2019 08:19:50
+ ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402,518,525,538,457**;DEC 1997;Build 116
  ;Ref PS(50.607 IA 2221
  ;Ref PS(50.7 IA 2223
  ;Ref PS(51.2 IA 2226
  ;Ref PSDRUG( IA 221
  ;Ref DOSE^PSSORPH IA 3234
  ;Ref PS(55 IA 2228
- ; PSO*7*538/INC1491667 Modification to review Issue Date During Rx   Copy
- ;
-1 S %DT="AEX",%DT(0)=-PSONEW("FILL DATE"),Y=PSONEW("ISSUE DATE") X ^DD("DD") S %DT("A")="ISSUE DATE: ",%DT("B")=Y D ^%DT D CID^PSOUTL
+1 S %DT="AEX",%DT(0)=-PSONEW("FILL DATE"),Y=PSONEW("ISSUE DATE") X ^DD("DD") S %DT("A")="ISSUE DATE: ",%DT("B")=Y D ^%DT
  I "^"[$E(X) D KX K %DT Q
  ; PSO*7*538 Added Next Line
  I Y=-1 W ! D CIDH^PSOUTL W ! G 1
@@ -52,7 +50,7 @@ INS S PSONEW("FLD")="3B" D INS^PSODIR(.PSONEW) ;Ins
  Q
 DOSE ;backdoor
  I '$G(PSONEW("ENT")) S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5) Dosage Ordered: " G INS1
- S SD=1 F I=1:1:PSONEW("ENT") D
+ S SD=1 F I=1:1:PSONEW("ENT") D 
  .I '$G(PSONEW("DOSE ORDERED",I)),$G(PSONEW("VERB",I))]"" S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="                Verb: "_$G(PSONEW("VERB",I))
  .S:$G(SD)=1 IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="  (5)",DS=1 K SD
  .D DOSE1
@@ -123,9 +121,8 @@ ASK1 S STRE=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",5),UNITN=$P($G(DOSE("DD",PSODRU
  I PSODOSCT=1,($P($G(DOSE(1)),"^")=""&($P($G(DOSE(1)),"^",3)="")) S PSODOSFL=1
  S:$G(PSODOSFL) DIR("A")="     Please Enter a Free Text Dose"
  S:'$G(PSODOSFL) DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
- I $G(PSORXED("DOSE",ENT))]"" S DIR("B")=PSORXED("DOSE",ENT) D
- .I $G(PSORXED("UNITS",ENT))]"",DIR("B")'[($P($G(^PS(50.607,PSORXED("UNITS",ENT),0)),"^")) S DIR("B")=DIR("B")_$P($G(^PS(50.607,PSORXED("UNITS",ENT),0)),"^")
- K:$G(PSOREEDQ)!($G(PSOBDRG)) DIR("B")
+ ;
+ K DIR("B")  ; PSO*7.0*457 - removed dose default logic that set DIR("B")
  D ^DIR
  I X[U,$L(X)>1 S FIELD="ASK",JUMP=1 K DIRUT,DTOUT Q
  I $D(DIRUT) S:$G(ORD) PSODSPL=1 Q

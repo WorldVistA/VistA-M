@@ -1,4 +1,4 @@
-OCXOZ0P ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ0P ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -11,7 +11,7 @@ OCXOZ0P ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  Q
  ;
 R35R1A ; Verify all Event/Elements of  Rule #35 'LAB ORDER CANCELLED'  Relation #1 '(CANCEL OR REQCANCEL) AND CANCELED BY NON-ORIG ORD...'
- ;  Called from EL100+8^OCXOZ0G, and EL20+5^OCXOZ0G, and EL40+5^OCXOZ0G.
+ ;  Called from EL100+8^OCXOZ0F, and EL20+5^OCXOZ0G, and EL40+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;

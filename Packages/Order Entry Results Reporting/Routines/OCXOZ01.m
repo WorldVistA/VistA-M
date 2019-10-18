@@ -1,4 +1,4 @@
-OCXOZ01 ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ01 ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -16,7 +16,7 @@ OCXOZ01 ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;
  ;               Raw Data Logging: OFF
  ; Compiler mode:  ON
- ;   Compiled by: SPIVEY,RICK  (DUZ=54)
+ ;   Compiled by: WALLING,AMANDA  (DUZ=65)
  Q
  ;
 LOG() ; Returns the number of days to keep the Raw Data Log or 0 if logging is disabled.

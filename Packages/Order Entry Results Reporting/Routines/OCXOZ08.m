@@ -1,4 +1,4 @@
-OCXOZ08 ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ08 ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -26,7 +26,7 @@ CHK163 ; Look through the current environment for valid Event/Elements for this 
  ; CH( --------------> IS THIS A CHOLECYSTOGRAM RADIOLOGY PROCEDURE
  ;
  S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(59)=$P($$CH(OCXDF(73)),"^",1) I $L(OCXDF(59)),(OCXDF(59)) S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK170
- S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)) D CHK425^OCXOZ0D
+ S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)) D CHK395^OCXOZ0D
  Q
  ;
 CHK170 ; Look through the current environment for valid Event/Elements for this patient.

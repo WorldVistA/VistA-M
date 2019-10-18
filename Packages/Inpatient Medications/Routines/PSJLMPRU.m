@@ -1,5 +1,5 @@
-PSJLMPRU ;BIR/MLM - INPATIENT LISTMAN UD PROFILE UTILITIES ;Jul 12, 2018@09:55
- ;;5.0;INPATIENT MEDICATIONS;**16,58,85,110,185,181,267,323,317,373**;16 DEC 97;Build 3
+PSJLMPRU ;BIR/MLM - INPATIENT LISTMAN UD PROFILE UTILITIES ;Jul 26, 2017@18:04:02
+ ;;5.0;INPATIENT MEDICATIONS;**16,58,85,110,185,181,267,323,317,373,327**;16 DEC 97;Build 114
  ;
  ; Reference to ^PSDRUG is supported by DBIA 2192.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -29,9 +29,13 @@ PUD(DFN,ON,PSJF,DN) ; Setup LM profile view for UD
  .S PADE=$$DRGFLAG^PSJPADSI(PSGP,$G(ON),,$G(ON),$G(PSJNEWOE)) S:PADE=0 PADE=1
  N PSJDISP F PSJDISP=0:0 S PSJDISP=$O(@(PSJF_+ON_",1,"_PSJDISP_")")) Q:'PSJDISP  D
  .I $P($G(^PSDRUG(+$P($G(@(PSJF_+ON_",1,"_PSJDISP_",0)")),"^"),0)),"^",9)=1 S NF=1
- ;NEW DRUGNAME,PSGID1,SD1,LEN,PSGID1,SD1 S LEN=$S($D(PSJEXPT):8,1:5) ;#373
- ;F X="PSGID","SD" S @(X_1)=$S(PSJC["C":"*****",1:$E($$ENDTC^PSGMI(@X),1,LEN)) ;#373
+ ;NEW DRUGNAME,PSGID1,SD1,LEN,PSGID1,SD1 S LEN=$S($D(PSJEXPT):8,1:5)  ;#373
  NEW DRUGNAME,PSGID1,SD1,LEN,PSGID1,SD1 S LEN=$S($D(PSJEXPT):8,1:10) ;#373
+ ; START NCC REMEDIATION RJS-327
+ I $$ISCLOZ^PSJCLOZ(,,DFN,+ON) D
+ .D DISPCMP^PSJCLOZ(+$G(ND),.PSSD) S:$G(PSSD) SD=PSSD K PSSD
+ ; END NCC REMEDIATION RJS-327
+ ;F X="PSGID","SD" S @(X_1)=$S(PSJC["C":"*****",1:$E($$ENDTC^PSGMI(@X),1,LEN)) ;#373
  F X="PSGID","SD" S @(X_1)=$S(PSJC["C":"*****",1:$E($$ENDTC2^PSGMI(@X),1,LEN)) ;#373
  ;D DRGDISP^PSJLMUT1(PSGP,ON,39,54,.DRUGNAME,0)  ;#373
  D DRGDISP^PSJLMUT1(PSGP,ON,33,27,.DRUGNAME,0)   ;#373
@@ -44,7 +48,7 @@ PUD(DFN,ON,PSJF,DN) ; Setup LM profile view for UD
  ..;S PSJL=PSJL_PSGID1_"  "_SD1_" "_$E(STAT,1,2)_$S($L(STAT)=1:"     ",1:"    ")_$S($G(RNDT):$E($$ENDTC^PSGMI(RNDT),1,LEN),1:"") ;#373
  ..S PSJL=$$SETSTR^VALM1(PSGID1,PSJL,49,10),PSJL=$$SETSTR^VALM1(SD1,PSJL,60,10)  ;#373
  ..S PSJL=$$SETSTR^VALM1($E(STAT,1,2)_$S($L(STAT)=1:" ",1:""),PSJL,71,2)  ;#373
- ..;S PSJL=PSJL_PSGID1_"  "_SD1_" "_$E(STAT,1,2)_$S($L(STAT)=1:"     ",1:"    ")
+ ..;S PSJL=PSJL_PSGID1_"  "_SD1_" "_$E(STAT,1,2)_$S($L(STAT)=1:"     ",1:"    ") 
  ..;I NF!WS!SM!PF!$G(PADE) S PSJL=$$SETSTR^VALM1($S(NF:"NF ",(WS&PADE):"WP ",(PADE&'WS):"PD ",WS:"WS ",SM:$E("HSM",SM,3),1:""),PSJL,69,3) S:PF PSJL=$$SETSTR^VALM1("*",PSJL,79,1) ;#373
  ..I NF!WS!SM!PF!$G(PADE) S PSJL=$$SETSTR^VALM1($S(NF:"NF ",(WS&PADE):"WP ",(PADE&'WS):"PD ",WS:"WS ",SM:$E("HSM",SM,3),1:""),PSJL,74,3) S:PF PSJL=$$SETSTR^VALM1("*",PSJL,78,1) ;#373
  . I PSJX>1 S PSJL="",PSJL=$$SETSTR^VALM1(DRUGNAME(PSJX),PSJL,11,33)
@@ -72,13 +76,13 @@ PTXT(TXT,SUB,LM,RM) ; Display Instructions/dosage ordered.
  ;                       SUB = First subscript for ^TMP node, ** MUST be PSJ namespace **
  ;                       LM  = Begin display of text after LM spaces.
  ;                       RM  = Length of display text.
- ;
- ;BHW;PSJ*5*185;Extra spaces causes display to "skip" part of the field.
+ ;                       
+ ;BHW;PSJ*5*185;Extra spaces causes display to "skip" part of the field. 
  ;S PSJL="",$P(PSJL," ",LM)="" F X=1:1 S WRD=$P(TXT," ",X) Q:WRD=""  D
  S PSJL="",$P(PSJL," ",LM)=""
  F X=1:1:$L(TXT," ") S WRD=$P(TXT," ",X) D
  .;BHW;PSJ*5*185;check if end of string or just extra space
- .I WRD="" S PSJL=PSJL_" " Q
+ .I WRD="" S PSJL=PSJL_" " Q 
  .I $L(PSJL_" "_WRD)'<RM D SETTMP(SUB,PSJL) S PSJL="",$P(PSJL," ",10)=""
  .I $L(PSJL_" "_WRD)'<RM S PSJL=PSJL_" "_$E(WRD,1,(RM-10)) D SETTMP(SUB,PSJL) S PSJL="",$P(PSJL," ",10)="",WRD=$E(WRD,(RM-9),$L(WRD))
  .S PSJL=PSJL_" "_WRD

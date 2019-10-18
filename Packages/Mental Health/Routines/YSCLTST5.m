@@ -1,0 +1,267 @@
+YSCLTST5 ;HINOI/RSJ-TRANSMISSION FOR REAL-TIME CLOZAPINE ORDERS ;10 May 2019 12:09:40
+ ;;5.01;MENTAL HEALTH;**122**;Dec 30, 1994;Build 112
+ ; Reference to $$SITE^VASITE supported by IA #10112
+ ; Reference to ^DPT supported by IA #10035
+ ; Reference to ^PS(55 supported by IA #787
+ ; Reference to ^PS(59 supported by IA #783
+ ; Reference to ^VA(200 supported by IA #10060
+ ; Reference to ^LAB(60 supported by IA #333
+ ; Reference to ^DIC supported by DBIA #2051
+ ; Reference to ^DIE supported by DBIA #2053
+ ; Reference to ^DIQ supported by DBIA #2056
+ ; Reference to ^DIR supported by DBIA #10026
+ ; Reference to ^VADPT supported by DBIA #10061
+ ; Reference to ^XLFDT supported by DBIA #10103
+ ; Reference to ^%ZTLOAD supported by DBIA #10063
+ ; Reference to ^%DTC supported by DBIA #10000
+ ; Reference to ^%DT supported by DBIA #10003
+ ;
+ Q
+INPSND ; Build inpatient clozapine data for transmision
+ N PSJPAT,PSJIOF,YCLSCNTR,PSGTIM,X,X1,X2 S YSCLRET="",PSJPAT=DFN,PSJIOF=IOF,YCLSCNTR=0
+ S X1=DT,X2=365 D C^%DTC S YSEND=X
+ S $P(^XTMP("YSCLTRN",0),"^",1)=YSEND,$P(^XTMP("YSCLTRN",0),"^",2)=DT
+ S:'$G(^XTMP("YSCLTRN",DT)) ^XTMP("YSCLTRN",DT)=0
+ D DMG,DMG1,GETINP,INPCHK
+ I YSCLT D LOAD
+ S DFN=PSJPAT,IOF=PSJIOF
+ K ^TMP("YSCL",$J),^TMP("YSCLL",$J),^TMP($J)
+ Q
+DMG ; Called by PSGOETO
+ Q:'DFN
+ N PSDFN
+ S YSDEBUG=$$GET1^DIQ(603.03,1,3,"I"),PSDFN=DFN    ;$P(^YSCL(603.03,1,0),"^",3)
+ K ^TMP($J),^TMP("YSCL",$J) S (YSCLIEN,YSCLLN)=0,YSCLNO=20
+ N ARRAY D LIST^DIC(603.01,,1,"I",,,DFN,"C",,,"ARRAY")
+ S YSCLIEN=$G(ARRAY("DILIST",2,1)) Q:'YSCLIEN
+ S $P(YSSTOP,",",8)=8 Q:$$S^%ZTLOAD
+ I $L($$GET1^DIQ(2,DFN,.01)) S YSCLC=ARRAY("DILIST","ID",1,.01) D GET
+ I $D(^TMP("YSCLL",$J,DFN)) D
+ . S $P(^XTMP("YSCLTRN",0),"^",1)=YSEND,$P(^XTMP("YSCLTRN",0),"^",2)=DT
+ . S:'$G(^XTMP("YSCLDEM",DT)) ^XTMP("YSCLDEM",DT)=0
+ . I '$G(YSCLDIS2) S ^XTMP("YSCLDEM",DT,DFN,0)=0 ;RTW 
+ . I $G(YSCLDIS2) S ^XTMP("YSCLDIS",DT,DFN,0)=$G(YSCLDIS2) ;RTW
+ I $G(YSCLDIS2) S ^XTMP("YSCLDIS",DT,DFN,0)=$G(YSCLDIS2) ;RTW
+ S DFN=PSDFN
+ Q
+DMG1 ; GATHER FACILITY INFORMATION
+ S YSCLLN=0,YSCLLLN=3,(X1,YSCLED)=DT,X2=-60 D C^%DTC S YSCLM28=X,X1=$P(YSCLED,"."),X2=-28 D C^%DTC S YSCLM7=X,YSCLED=YSCLED+.5 ;28 TO 60 and 14 to 28 6/15/05
+ S X1=$P(YSCLED,"."),X2=-180 D C^%DTC S YSCLM180=X
+ S X1=$P(YSCLED,"."),X2=-56 D C^%DTC S YSCLM56=X
+ S YSCLIF=+$$SITE^VASITE_","
+ D GETS^DIQ(4,YSCLIF,"1.01;1.02;1.03;.02;1.04","I","YSCLFF")
+ S $P(YSCLDEMO,"^",1)=YSCLFF(4,YSCLIF,1.01,"I")
+ S $P(YSCLDEMO,"^",2)=YSCLFF(4,YSCLIF,1.02,"I")
+ S $P(YSCLDEMO,"^",3)=YSCLFF(4,YSCLIF,1.03,"I")
+ S $P(YSCLDEMO,"^",4)=$P(^DIC(5,YSCLFF(4,YSCLIF,.02,"I"),0),"^",2)
+ S $P(YSCLDEMO,"^",5)=YSCLFF(4,YSCLIF,1.04,"I")
+ S $P(YSCLDEMO,"^",6)=""
+ K J,YSCLF,YSCLFF,YSCLIF,X
+ Q
+GET ; GATHER PATIENT DEMOGRAPHICS
+ S $P(YSSTOP,",",9)=9 Q:$$S^%ZTLOAD
+ Q:'$L($$GET1^DIQ(55,DFN,53))  ; Don't try to transmit if no pharmacy record
+ Q:$$GET1^DIQ(55,DFN,56,"I")   ; Don't retransmit demographics.
+ Q:$D(^TMP("YSCLL",$J,DFN))
+ S ^TMP("YSCLL",$J,DFN)=1
+ S YSCLP=$$GET1^DIQ(55,DFN,57,"I"),YSCLDEA=$$GET1^DIQ(200,YSCLP,53.2),YSCLP=$$GET1^DIQ(200,YSCLP,.01)
+ D DEM^VADPT,ADD^VADPT S YSCL=$G(YSCLC)_"^"_$E($P(VADM(1),",",2))_$E(VADM(1))_"^"_$P(VADM(3),"^")_"^"_$P(VADM(2),"^")_"^"_$P(VADM(5),"^")_"^"_VAPA(6)_"^"_DT
+ D
+ . S YSRACE="*"
+ . S YSRC=0 F  S YSRC=$O(VADM(11,YSRC)) Q:'YSRC  S YSRACE=YSRACE_+VADM(11,YSRC)_"-"_+VADM(11,YSRC,1)_","
+ . S YSRACE=YSRACE_"~"
+ . S YSRC=0 F  S YSRC=$O(VADM(12,YSRC)) Q:'YSRC  S YSRACE=YSRACE_+VADM(12,YSRC)_"-"_+VADM(12,YSRC,1)_","
+ S YSCL=YSCL_"^"_YSRACE_"^"_YSCLP_"^"_YSCLDEA
+ ; YSCLJ contains a ZIP code
+ N ARRAY59 D LIST^DIC(59,,"1;.05",,,,,,,,"ARRAY59")
+ S YSCLJ="" F  S YSCLJ=$O(ARRAY59("DILIST","ID",YSCLJ)) Q:'YSCLJ  I ARRAY59("DILIST","ID",YSCLJ,1)'="" S YSCLJ=ARRAY59("DILIST","ID",YSCLJ,.05) Q
+ S YSCL=YSCL_"^"_YSCLJ
+ ;registration number^initials^dob^ssn^sex^zip^today^race^physician^dea^zip code (hosp)
+ S YSCLLN=YSCLLN+1,^TMP($J,YSCLLN,0)=YSCL
+ I VADM(5)=""!(VAPA(6)="")!('VADM(11))!('VADM(12)) D  ;RLM RACETEST
+ . S ^TMP("YSCL",$J,YSCLNO,0)=$P(VADM(2),"^",1)_"   "_VADM(1)
+ . S:VADM(5)="" ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (SEX)"
+ . S:VAPA(6)="" ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (ZIP)"
+ . S:'VADM(12) ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (RACE, NEW FORMAT)"
+ . S:'VADM(11) ^TMP("YSCL",$J,YSCLNO,0)=^TMP("YSCL",$J,YSCLNO,0)_" (ETHNICITY)"
+ . S YSCLNO=YSCLNO+1
+ . S ^TMP("YSCLL",$J,DFN)=0 ; leave unmarked pending demographic data
+ . I ('VADM(11))!('VADM(12)) D
+ . . S ^TMP("YSCL",$J,YSCLNO,0)="NOTE: Race and Ethnicity may be entered if permission is obtained in the informed consent",YSCLNO=YSCLNO+1
+ . . S ^TMP("YSCL",$J,YSCLNO,0)="document. See VHA Directive 99-035.",YSCLNO=YSCLNO+1
+ ;
+ Q
+GETINP ;Inpatient Medications
+ Q:$$S^%ZTLOAD  D DEM^VADPT
+ S YSCLX=$E($P(VADM(1),",",2))_$E(VADM(1))_"^"_$P(VADM(2),"^")
+ S YSCLPHY="",$P(YSCLX,"^",6)=$P(YSCLDEMO,"^",5),$P(YSCLX,"^",11)=$G(YSCLC),$P(YSCLX,"^",16)=DT
+ ;site zip(p6),registration number (p11), today (p16)
+ S YSSTRT=$$GET1^DIQ(55.06,+PSGORD_","_DFN,10,"I"),YSSTOP=$$GET1^DIQ(55.06,+PSGORD_","_DFN,34,"I")
+ ;S YSSTRT=$P($G(^PS(55,DFN,5,+PSGORD,2)),"^",2),YSSTOP=$P($G(^PS(55,DFN,5,+PSGORD,2)),"^",4)
+ S PSJOR=$$GET1^DIQ(55.06,+PSGORD_","_DFN,66) ;$P($G(^PS(55,DFN,5,+PSGORD,0)),"^",21)
+ Q
+INPCHK ;for data to send
+ S YSCLT=0,YSCLWBC=0
+ S $P(YSSTOP,",",3)=3 Q:$$S^%ZTLOAD
+ K PNM,SEX,DOB,AGE,SSN D DEM^VADPT I 'VAERR S PNM=VADM(1),SEX=$P(VADM(5),U),DOB=$P(VADM(3),U),AGE=VADM(4),SSN=$P(VADM(2),U)
+ I $G(PSGSD)=0,$$GET1^DIQ(55,DFN,54,"I")="P" Q  ;no transmit for pretreatment
+ I $G(PSGSD),$G(PSGSD)<YSCLM180 Q  ;Don't report if over 6 months old.
+ S YSCL=$O(YSCLA("")) I 'YSCL D LAB^YSCLTST1 S YSCLT=1  ;Q  ;get latest WBC results even if no script.
+ S YSCLT=1,YSCLRXPR=$$GET1^DIQ(55.06,+PSGORD_","_DFN,1,"I") ;we've got provider
+ N PSJWRD,PSJDIV,PSJINST S PSJWRD=$$GET1^DIQ(55.06,+PSGORD_","_DFN,68,"I")
+ S:'PSJWRD PSJWRD=$$GET1^DIQ(5506,+PSGORD_","_DFN,9,"I")
+ I PSJWRD S PSJINST=$$GET1^DIQ(42,PSJWRD,44,"I") I PSJINST S PSJDIV=$$GET1^DIQ(44,PSJINST,3,"I")
+ S YSCLD=$G(PSJDIV) I YSCLD S $P(YSCLX,"^",10)=$$GET1^DIQ(4,YSCLD,52),$P(YSCLX,"^",12)=YSCLD
+ ;site DEA# (p10), site pointer (p12)
+ ;here if active
+ I $$GET1^DIQ(55,DFN,54,"I")="A" S $P(YSCLX,"^",5)="A" ;force active
+ S $P(YSCLX,"^",13)=1,$P(YSCLX,"^",9)=PSGLI\1
+ I '$L($$GET1^DIQ(55.06,+PSGORD_","_DFN,301)),$G(^TMP("PSJCOM",$J,+$G(PSGORD),"SAND")) D
+ .S DIE="^PS(55,"_DFN_",5,",DA(1)=DFN,DA=+PSGORD,DR="301////"_^TMP("PSJCOM",$J,+PSGORD,"SAND") D ^DIE
+ S $P(YSCLX,"^",8)=+$$GET1^DIQ(55.06,+PSGORD_","_DFN,301)
+ ;status(p5),dosage(p8),rx count(p13),issue date(p9)
+ S YSCLLO=$O(^PS(53.8,"A",+$G(PSJOR),0)) I YSCLLO D
+ .S $P(YSCLX,"^",14)=$$GET1^DIQ(53.8,YSCLLO,4,"I")
+ .S:$P(YSCLX,"^",14)=9 $P(YSCLX,"^",14)=94
+ .S $P(YSCLX,"^",15)=$$GET1^DIQ(53.8,YSCLLO,3)       ;$P(^VA(200,YSCLLO,0),"^")
+ ;lockout reason (p14), approving official (p15)
+ S $P(YSSTOP,",",4)=4 Q:$$S^%ZTLOAD
+ S YSCLPHY=$$GET1^DIQ(200,+YSCLRXPR,.01),$P(YSCLX,"^",7)=$$GET1^DIQ(200,+YSCLRXPR,53.2)  ;,YSCLPHY=$P(YSCLPHY,"^")
+ ; add if prescription on same day for different drug and different dose
+ S $P(YSCLX,"^",21)=$$GET1^DIQ(50,+PSGDN,31)  ;$P(^PSDRUG(+PSGDN,2),"^",4) ;Add NDC to string
+ S YCLSCNTR=YCLSCNTR+1
+ I $D(^XTMP("YSCLTRN",DT,DFN,PSGLI)) D
+ .S PSGTIM=PSGLI+.000001,PSHLI1=PSGTIM
+ .I $D(^XTMP("YSCLTRN",DT,DFN,PSGTIM)) D
+ ..S PSHLI2=0 F  S PSHLI2=$O(^XTMP("YSCLTRN",DT,DFN,PSHLI2)) Q:'PSHLI2  D
+ ...I $P(PSHLI2,".",1)=$P(PSGTIM,".",1) D
+ ....I $P(PSHLI2,".",2)<$P(PSGTIM,".",2)!($P(PSHLI2,".",2)=$P(PSGTIM,".",2)) S (PSHLI1,PSGTIM)=PSHLI2+.000001
+ I $G(PSGTIM) N PSGLI S (PSGLI,PSGLI1)=PSGTIM
+ S ^XTMP("YSCLTRN",DT,DFN,PSGLI,0)=0_"^I^"_PSJOR
+ S ^XTMP("YSCLTRN",DT,DFN,PSGLI,YCLSCNTR)=YSCLX
+ Q
+LOAD ;
+ S $P(YSSTOP,",",6)=6 Q:$$S^%ZTLOAD
+ I YSCLWBC="",YSCLLD<YSCLM28 Q
+ ; don't send for pretest or older that 28 days
+ S YSCLNSTE=$P(YSCLX,"^",12)
+ S YSCLNST1=$P($$SITE^VASITE,"^",2),YSCLNSTE=$P($$SITE^VASITE,"^",3)
+ S YSCLLN=YSCLLN+1,$P(YSCLX,"^",18)=YSCLRET,^TMP($J,YSCLLN,0)=YSCLX,YSCLLN=YSCLLN+1,^TMP($J,YSCLLN,0)=YSCLPHY_"^"_YSCLDEMO_"^"_YSCLNSTE_"^"_YSCLNST1
+ I $G(PSGLI1) N PSGLI S PSGLI=PSGLI1
+Z2 I $D(^TMP($J,YSCLLN,0)) D
+ .S YCLSCNTR=YCLSCNTR+1,^XTMP("YSCLTRN",DT,DFN,PSGLI,YCLSCNTR)=^TMP($J,YSCLLN,0)
+ ;site number and name
+ S YSCLLLN=YSCLLLN+1,^TMP("YSCL",$J,YSCLLLN,0)=$P(^DPT(DFN,0),"^",9)_"   "_$P(^(0),"^")_"  (R) "_$S($P(YSCLX,"^",13)="":"NO RX   ",1:$$FMTE^XLFDT($P(YSCLX,"^",9),"D"))_" (W) "
+ S ^TMP("YSCL",$J,YSCLLLN,0)=^TMP("YSCL",$J,YSCLLLN,0)_$S($P(YSCLX,"^",3)="":"NO WBC   ",1:$$FMTE^XLFDT($P(YSCLX,"^",3),"D"))_" (N) "_$S($P(YSCLX,"^",20)="":"NO NEUT  ",1:$$FMTE^XLFDT($P(YSCLX,"^",19),"D")) ;Q
+ I $D(^TMP("YSCL",$J)) D
+ .S YCLSCNTR=YCLSCNTR+1,^XTMP("YSCLTRN",DT,DFN,PSGLI,YCLSCNTR)=$G(^TMP("YSCL",$J,YSCLLLN,0)) K PSGLI1
+ ;9the piece for issue date, 16th piece for WBC date ;RLM 06/16/05
+ S ^XTMP("YSCLTRN",DT,0)=+$G(^XTMP("YSCLTRN",DT,0))+1
+ Q
+DOSE ; GET DOSE
+ N YSCLPS55,YSCLPTR,YSCLDFN,YSCLDOSE
+ S YSCLPS55=+$$GET1^DIQ(100,+PSJOR,33),PSJDOSE=0,YSCLDFN=DFN    ;+$G(^OR(100,+PSJOR,4))
+ S YSCLDOSE=$$GET1^DIQ(55.06,YSCLPS55_","_DFN,120)
+ N ARRAY D LIST^DIC(55.07,","_YSCLPS55_","_DFN_",",.02,"I",,,,,,,"ARRAY")
+ F YSCLPTR=1:1 Q:'$D(ARRAY("DILIST","ID",YSCLPTR))  D
+ .S PSJDOSE=PSJDOSE+(ARRAY("DILIST","ID",YSCLPTR,.02)*YSCLDOSE)
+ .D FRQ S PSJDOSE=PSJDOSE*PSJFRQ
+ Q
+FRQ ; GET ADMIN FREQUENCY
+ N PSJDI
+ S PSJFRQ(0)=+$$GET1^DIQ(55.06,YSCLPS55_","_YSCLDFN_",",42)
+ I 'PSJFRQ(0) D   ;Get administration times
+ .S PSJFRQ=+$$GET1^DIQ(55.06,YSCLPS55_","_YSCLDFN_",",41)
+ .I $$GET1^DIQ(55.06,YSCLPS55_","_YSCLDFN_",",26)["@" D  ; CHECK FOR @ IN DAY OF WEEK SCHEDULE
+ .. S PSJFRQ(0)=1440/$L(PSJFRQ,"-") Q                  ; THEN CALCULATE CORRECT FRUENCY
+ . Q:+$G(PSJFRQ(0))
+ . I '$L($TR(PSJFRQ,"0123456789-")) Q          ; no good - we have non numeric characters
+ . F PSJDI=1:1:$L(PSJFRQ,"-") I $P(PSJFRQ,"-",PSJDI)]"" D      ; If we have data in the piece
+ .. I $L($P(PSJFRQ,"-",PSJDI))>2,$L($P(PSJFRQ,"-",PSJDI))<5                                         ;
+ .. E  S PSJFRQ="" Q                                        ; only allow 3 or 4 digits
+ .. I $L($P(PSJFRQ,"-",PSJDI))=4 D  Q
+ ... I $E($P(PSJFRQ,"-",PSJDI),3,4)<60,$E($P(PSJFRQ,"-",PSJDI),1,2)<25 S PSJFRQ(0)=1+PSJFRQ(0) Q
+ ... S PSJFRQ="" Q                                          ; Out of range
+ .. I $L($P(PSJFRQ,"-",PSJDI))=3,$E($P(PSJFRQ,"-",PSJDI),2,3)<60 S PSJFRQ(0)=1+PSJFRQ(0) Q
+ .. S PSJFRQ="" Q                                     ; Out of range
+ S:PSJFRQ(0)=0 PSJFRQ(0)=1440
+ S PSJFRQ=1440/PSJFRQ(0)
+ Q
+XMIT ;
+ D START^YSCLDIS ; THIS WILL CHECK FOR CLOZAPINE PATIENTS THAT NEED TO BE DISCONTINUED AND DISCONTIUNE THEM & SEND MESSAGE TO NCCC
+ N YSCLDT,YSCLTRDT ;D NOW^%DTC S YSCLDT=%-1
+ S YSCLLST=$P($G(^XTMP("YSCLDEM",0)),"^",4),YSCLTRDT=$P(YSCLLST,".",1)
+REXMIT ;
+ N YSCLDT S %DT="T",X="N-1" D ^%DT S YSCLDT=Y  ;D NOW^%DTC S YSCLDT=%-1
+ I $O(^XTMP("YSCLDEM",YSCLTRDT)) D
+ .;/RBN Begin modification for retransmit
+ .I $G(YSCLREX) N DT S DT=YSCLEDDT
+ .;/RBN End modification for retransmit
+ .N DFN,PSDFN,VA,VACNTRY,VADM,VAERR,VAPA,XMDUN,XMDUZ,XMZ,Y,YSCL,YSCLDEA,YSCLGL,YSCLJ,YSCLEND
+ .N YSCLLN,YSCLORD,YSCLP,YSCLX,YSRACE,YSRC,YSDEBUG,YSCLIEN,YSSTOP,YSCLC,YSCLCNTR,YSCLNO
+ .F  S YSCLTRDT=$O(^XTMP("YSCLDEM",YSCLTRDT)) Q:'YSCLTRDT!(YSCLTRDT'<DT)  D
+ ..S YSDEBUG=$$GET1^DIQ(603.03,1,3,"I")  ;$P(^YSCL(603.03,1,0),"^",3)
+ ..K ^TMP($J),^TMP("YSCL",$J),^TMP("YSCLL",$J) S (YSCLIEN,YSCLLN)=0,YSCLNO=20
+ ..S YSCLCNTR=0,YSCLC=""  ; set YSCLC, may not get value from FM call
+ ..S DFN=0 F  S DFN=$O(^XTMP("YSCLDEM",YSCLTRDT,DFN)) Q:'DFN  D
+ ...S YSCLIEN=$O(^YSCL(603.01,"C",DFN,0)) Q:'YSCLIEN
+ ...S $P(YSSTOP,",",8)=8 Q:$$S^%ZTLOAD
+ ...I $L($$GET1^DIQ(2,DFN,.01)) S YSCLC=$$GET1^DIQ(603.01,YSCLIEN,.01) D GET
+ ...S ^XTMP("YSCLDEM",YSCLTRDT,DFN,0)=1,YSCLCNTR=YSCLCNTR+1
+ ..D TRANSMIT^YSCLTST3:YSCLLN
+ ..S ^XTMP("YSCLDEM",YSCLTRDT)=YSCLCNTR
+ ..K ^TMP("YSCLL",$J),^TMP("YSCL",$J)
+ .S $P(^XTMP("YSCLDEM",0),"^",4)=YSCLDT
+ ;
+ S YSCLCT=4,YSCLCNTR=1
+ ;RBN Modificaton for retransmit
+ I '$G(YSCLREX) S YSCLTRDT=$P($P($G(^XTMP("YSCLTRN",0)),"^",4),"."),YSCLEND=DT
+ E  S YSCLTRDT=YSCLSTDT,YSCLEND=YSCLEDDT
+ ;RBN End modification for retransmit
+ I $O(^XTMP("YSCLTRN",YSCLTRDT)) D
+ .F  S YSCLTRDT=$O(^XTMP("YSCLTRN",YSCLTRDT)) Q:'YSCLTRDT!(YSCLTRDT'<YSCLEND)  D
+ ..S YSCLCNTR=1
+ ..D ORDBLD
+ ..S YSCLLN=$G(^XTMP("YSCLTRN",YSCLTRDT,0)) D TRANSMIT^YSCLTST2
+ ..I $G(YSCLREX) S DT=YSCLEDDT
+ ..S ^XTMP("YSCLTRN",YSCLTRDT)=1
+ ..K ^TMP("YSCLL",$J),^TMP("YSCL",$J)
+ .S $P(^XTMP("YSCLTRN",0),"^",4)=YSCLDT
+ Q
+ ;
+ORDBLD ;
+ N YSCLDFN,YSCLCNT ;,YSCLCT
+ S YSCLDFN=0 F  S YSCLDFN=$O(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN)) Q:'YSCLDFN  D
+ .S YSCLORD=0 F  S YSCLORD=$O(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD)) Q:'YSCLORD!(YSCLORD>DT)  D
+ ..S YSCLCNT=0 F  S YSCLCNT=$O(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD,YSCLCNT)) Q:'YSCLCNT  D
+ ...S:YSCLCNT=1 ^TMP($J,YSCLCNTR,0)=$G(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD,YSCLCNT)),^TMP($J,YSCLCNTR,0)=$G(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD,YSCLCNT)),YSCLCNTR=YSCLCNTR+1
+ ...S:YSCLCNT=2 ^TMP($J,YSCLCNTR,0)=$G(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD,YSCLCNT)),^TMP($J,YSCLCNTR,0)=$G(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD,YSCLCNT)),YSCLCNTR=YSCLCNTR+1
+ ...S:YSCLCNT=3 ^TMP("YSCL",$J,YSCLCT,0)=$G(^XTMP("YSCLTRN",YSCLTRDT,YSCLDFN,YSCLORD,YSCLCNT)),YSCLCT=YSCLCT+1
+ Q
+ ;
+REX ; Alternate retransmit
+  ; First get the date range to be resent
+  N DA,DATE,DFN,DIR,DTRUT,YSCLREX,X,Y,YSCLCT,YSCLDT,YSCLLN,YSCLTRDT,YSCLEDDT,YSCLSTDT
+  K ^TMP($J),^TMP("YSCL")
+  S DIR(0)="D"
+  S DIR("A")="Enter the starting date"
+  S DIR("?",1)="Enter the starting date of the orders you want"
+  S DIR("?")="to retransmit"
+  D ^DIR
+  I $D(DIRUT) W !,"Aborting retransmit",! Q
+  S YSCLSTDT=Y
+  K Y
+  S DIR("A")="Enter the ending date"
+  S DIR("?",1)="Enter the ending date of the orders you want"
+  S DIR("?")="to retransmit"
+  D ^DIR
+  I $D(DIRUT) W !,"Aborting retransmit",! Q
+  S YSCLEDDT=Y
+  S X1=YSCLEDDT,X2=YSCLSTDT D ^%DTC I X<0 W !,"The ending date cannot be before the start date!",! G REX
+  ;
+  ;D NOW^%DTC S YSCLDT=%-1
+  S YSCLREX=1
+  S X1=YSCLSTDT,X2=-1 D C^%DTC S YSCLSTDT=X
+  S YSCLTRDT=YSCLSTDT,X1=YSCLEDDT,X2=1 D C^%DTC S YSCLEDDT=X
+  D REXMIT
+  Q

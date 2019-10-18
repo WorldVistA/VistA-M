@@ -1,5 +1,5 @@
 IBJDF42 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (PRINT);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,568,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,204,568,618,651**;21-MAR-94;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -35,6 +35,7 @@ EN ; - Print the Follow-up report.
  S IBCT(82)="CC OPT"
  S IBCT(83)="CCN OPT"
  S IBCT(84)="CC MTF OPT"
+ S IBCT(85)="CC URGENT CARE"     ;IB*2.0*651 - added
  ;
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%) G:IBRPT="S" SUM
  S IBPRTFLG=0 D DET D PAUSE:'IBPRTFLG I IBQ!'IBPRTFLG G ENQ

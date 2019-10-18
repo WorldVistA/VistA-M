@@ -1,5 +1,5 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646**;21-MAR-94;Build 5
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651**;21-MAR-94;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
@@ -118,6 +118,13 @@ FR ; - ask 'bill from' date
 UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent Care Copays
  ; - perform outpatient edits
  N IBSTOPDA
+ ;
+ ;Start- IB*2.0*651
+ ;Check to see if there is another medical copay (inpatient or outpatient) on that same day for this patient.
+ ;If there is, print warning message to user and abort copay entry.
+ I ((IBXA=4)!(IBXA=8)),$$BFCHK^IBECEAU(DFN,IBFR) D PRTWRN G ADDQ
+ ;end IB*2.0*651
+ ;
  ;IB*2.0*646 If urgent care, process using UC criteria and go to process
  I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
  ;end IB*2.0*646
@@ -149,6 +156,12 @@ UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent 
  ;
 TO ; - ask 'bill to' date
  D TO^IBECEAU2(0) G:IBY<0 ADDQ
+ ;
+ ;Start- IB*2.0*651
+ ;Check to see if there is another medical copay (inpatient or outpatient) on that same day for this patient.
+ ;If there is, print warning message to user and abort copay entry.
+ I ((IBXA<4)!(IBXA=9)),$$BFCHK^IBECEAU(DFN,IBFR) D PRTWRN G ADDQ
+ ;end IB*2.0*651
  ;
  I IBXA>0,IBXA<4,IBGMT'=$$ISGMTPT^IBAGMT(DFN,IBTO) W !!,"The patient's GMT Copayment status changed within the specified period!",! G ADDQ
  ;
@@ -220,3 +233,10 @@ TYP() ; Return descriptive admission type.
  E  S X=$S($P($G(^IBE(350.1,+IBATYP,0)),"^")["NHCU":"C",1:"H")
  S X=$S(X="C":"CNH ",1:"Contract Hospital ")
 TYPQ Q X
+ ;
+ ;IB*2.0*651
+PRTWRN ; Print warning message about medical copayment already applied 
+ ;
+ W !!!,"This patient has already been billed a medical copayment for this date."
+ W !,"Please review the associated dates and charges for this patient.",!
+ Q

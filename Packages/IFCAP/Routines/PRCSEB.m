@@ -1,5 +1,5 @@
 PRCSEB ;SF-ISC/LJP/SAW/DXH/DAP - CPA EDITS CON'T ;7.26.99
-V ;;5.1;IFCAP;**81,174,184,196,204**;Oct 20, 2000;Build 14
+V ;;5.1;IFCAP;**81,174,184,196,204,209**;Oct 20, 2000;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*184  Check for error message indicating no 2237 seq nos.
@@ -78,10 +78,11 @@ CKPRM I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")=1 S PRCVX="I Y>1&(Y<5)",PR
  Q
  ;
 CHKREQ ;Check Date to insure it is within the FY/FQ range during option entry for 'NEW 2237'    ;PRC*5.1*196
- N PRCDT,PRCDT1
+ N PRCDT,PRCDT1,PRCTAPPR
+ S PRCTAPPR=$P($G(^PRC(420,PRC("SITE"),1,+PRC("CP"),4,+PRC("FY"),2)),"^",9) ;PRC*5.1*209 use appropriation code from node 4, check both X and x
  I $D(PRCBBMY) S PRCCKERR=0 Q
  S PRCDTT=1700+$E(DT,1,3)
- I '$D(PRC("BBFY"))!(+$P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",12)>0)!($P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",3)["X") S PRC("BBFY")=PRC("FY")+2000
+ I '$D(PRC("BBFY"))!(+$P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",12)>0)!(PRCTAPPR["X")!(PRCTAPPR["x") S PRC("BBFY")=PRC("FY")+2000
  S PRCCKERR=0,PRCDT=(PRC("BBFY")-$S(PRC("QTR")=1:1701,1:1700))_$P("10:01:04:07",":",PRC("QTR"))_"01",PRCDT1=(PRC("BBFY")-1700)_"0930"
  I PRCSTDT<PRCDT!(PRCSTDT>PRCDT1) D
  . S PRCCKERR=1

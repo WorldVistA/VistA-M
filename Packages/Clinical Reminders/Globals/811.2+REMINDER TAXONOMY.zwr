@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: REMINDER TAXONOMY
-23-SEP-2019 15:37:19 ZWR
+17-OCT-2019 20:48:00 ZWR
 ^PXD(811.2,0)="REMINDER TAXONOMY^811.2IOs^146^124"
 ^PXD(811.2,1,0)="VA-HYPERTENSION^^"
 ^PXD(811.2,1,1,0)="^^1^1^3150128"
@@ -423,7 +423,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,1,20,"AUID","SCT",57684003,3050701,"DT")="^Parenchymal renal hypertension"
 ^PXD(811.2,1,20,"AUID","SCT",59621000,3050701,"DT")="^Essential hypertension"
 ^PXD(811.2,1,20,"AUID","SCT",59720008,3050701,"DT")="^Sustained diastolic hypertension"
-^PXD(811.2,1,20,"AUID","SCT",59997006,3050701,"DT")="^Endocrine hypertension"
+^PXD(811.2,1,20,"AUID","SCT",59997006,3050701,3190731)="^Endocrine hypertension"
 ^PXD(811.2,1,20,"AUID","SCT",62240004,3050701,"DT")="^Benign arteriolar nephrosclerosis"
 ^PXD(811.2,1,20,"AUID","SCT",62275004,3050701,3190131)="^Hypertensive episode"
 ^PXD(811.2,1,20,"AUID","SCT",65443008,3050701,"DT")="^Malignant hypertensive renal disease"
@@ -33327,7 +33327,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,46,20,"AUID","SCT",57684003,3050701,"DT")="^Parenchymal renal hypertension"
 ^PXD(811.2,46,20,"AUID","SCT",59621000,3050701,"DT")="^Essential hypertension"
 ^PXD(811.2,46,20,"AUID","SCT",59720008,3050701,"DT")="^Sustained diastolic hypertension"
-^PXD(811.2,46,20,"AUID","SCT",59997006,3050701,"DT")="^Endocrine hypertension"
+^PXD(811.2,46,20,"AUID","SCT",59997006,3050701,3190731)="^Endocrine hypertension"
 ^PXD(811.2,46,20,"AUID","SCT",62240004,3050701,"DT")="^Benign arteriolar nephrosclerosis"
 ^PXD(811.2,46,20,"AUID","SCT",62275004,3050701,3190131)="^Hypertensive episode"
 ^PXD(811.2,46,20,"AUID","SCT",65443008,3050701,"DT")="^Malignant hypertensive renal disease"
@@ -42190,8 +42190,8 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,61,20,"AUID","10D","G43.809",3151001,"DT")="504513^Other Migraine, not Intractable, without Status Migrainosus"
 ^PXD(811.2,61,20,"AUID","10D","G43.811",3151001,"DT")="504514^Other Migraine, Intractable, with Status Migrainosus"
 ^PXD(811.2,61,20,"AUID","10D","G43.819",3151001,"DT")="504515^Other Migraine, Intractable, without Status Migrainosus"
-^PXD(811.2,61,20,"AUID","10D","G43.A0",3151001,"DT")="504524^Cyclical Vomiting, not Intractable"
-^PXD(811.2,61,20,"AUID","10D","G43.A1",3151001,"DT")="504525^Cyclical Vomiting, Intractable"
+^PXD(811.2,61,20,"AUID","10D","G43.A0",3151001,"DT")="504524^Cyclical vomiting, in migraine, not intractable"
+^PXD(811.2,61,20,"AUID","10D","G43.A1",3151001,"DT")="504525^Cyclical vomiting, in migraine, intractable"
 ^PXD(811.2,61,20,"AUID","10D","G43.B0",3151001,"DT")="504526^Ophthalmoplegic Migraine, not Intractable"
 ^PXD(811.2,61,20,"AUID","10D","G43.B1",3151001,"DT")="504527^Ophthalmoplegic Migraine, Intractable"
 ^PXD(811.2,61,20,"AUID","10D","G43.C0",3151001,"DT")="504528^Periodic Headache Syndromes in Child or Adult, not Intractable"

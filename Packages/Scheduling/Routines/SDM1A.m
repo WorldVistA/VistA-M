@@ -1,5 +1,5 @@
-SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;JUN 21, 2017
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650**;Aug 13, 1993;Build 3
+SDM1A ;SF/GFT,ALB/TMP,MS/PB - MAKE APPOINTMENT ;JUN 21, 2017
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650,704**;Aug 13, 1993;Build 64
  ;
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
  S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
@@ -17,6 +17,7 @@ S1 L +^SC(SC,"S",SD,1):$G(DILOCKTM,5) W:'$T "Another user is editing this record
  D
  .N DIV,DA,DIK
  .S DA=SD,DA(1)=DFN,DIK="^DPT(DA(1),""S"",",DIK(1)=20 D EN1^DIK
+ .D EN^SDTMPHLA(DFN,SD) ; Patch 704 - added to send the update to TMP when an appointment is scheduled with VistA roll and scroll options
  .Q
  K:$D(^DPT(DFN,"S",SD,"R")) ^("R") K:$D(^DPT("ASDCN",SC,SD,DFN)) ^(DFN)
  S SDRT="A",SDTTM=SD,SDPL=SDY,SDSC=SC D RT^SDUTL

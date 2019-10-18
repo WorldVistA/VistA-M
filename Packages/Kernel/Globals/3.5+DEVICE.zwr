@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: DEVICE
-23-SEP-2019 15:32:01 ZWR
+17-OCT-2019 20:40:32 ZWR
 ^%ZIS(1,0)="DEVICE^3.5Is^53^53"
 ^%ZIS(1,1,0)="TIS51^51^1^1^^^^^^^1"
 ^%ZIS(1,1,"SUBTYPE")=9
@@ -25,7 +25,7 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,7,"TYPE")="VTRM"
 ^%ZIS(1,8,0)="ZZNULL^NLA0:^0^0^^^^^^^1"
 ^%ZIS(1,8,1)="NT SYSTEM"
-^%ZIS(1,8,5)=89697
+^%ZIS(1,8,5)=89797
 ^%ZIS(1,8,"SUBTYPE")=12
 ^%ZIS(1,8,"TYPE")="TRM"
 ^%ZIS(1,9,0)="LMINIOUT0^64^^^^^^^"
@@ -105,7 +105,7 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,21,0)="TIU/PXAPI RESOURCE^TIU/PXAPI RESOURCE^^^^^^^"
 ^%ZIS(1,21,1)="NA^^^^^^^^^10"
 ^%ZIS(1,21,"TYPE")="RES"
-^%ZIS(1,22,0)="TELNET^|TNT|^1^1^^^^^^^1"
+^%ZIS(1,22,0)="TELNET^TNA^1^1^^^^^^^1"
 ^%ZIS(1,22,1)="TELNET"
 ^%ZIS(1,22,5)=6712
 ^%ZIS(1,22,"SUBTYPE")=9
@@ -194,7 +194,7 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,39,"TYPE")="TRM"
 ^%ZIS(1,40,0)="VIRTUAL TERMINAL^/dev/pts^1^^^^^^^^1^0"
 ^%ZIS(1,40,1)="Virtual Terminal^^^^1"
-^%ZIS(1,40,5)=11
+^%ZIS(1,40,5)=1
 ^%ZIS(1,40,"MN",0)="^3.501^2^2"
 ^%ZIS(1,40,"MN",1,0)="GTM-LINUX-TELNET"
 ^%ZIS(1,40,"MN",2,0)="TELNET"
@@ -254,7 +254,7 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,51,"TYPE")="VTRM"
 ^%ZIS(1,52,0)="FTA^FTA^1^^^^^^^^1"
 ^%ZIS(1,52,1)="SSH VIRTUAL TERMINAL"
-^%ZIS(1,52,5)=6426
+^%ZIS(1,52,5)=6546
 ^%ZIS(1,52,"SUBTYPE")=92
 ^%ZIS(1,52,"TYPE")="VTRM"
 ^%ZIS(1,53,0)="HMP EXTRACT RESOURCE^HMP EXTRACT RESOURCE^^^^^^^"
@@ -441,8 +441,8 @@ OSEHRA ZGO Export: DEVICE
 ^%ZIS(1,"G","SYS..NLA0:",8)=""
 ^%ZIS(1,"G","SYS..RTA",47)=""
 ^%ZIS(1,"G","SYS..TNA",22)=""
-^%ZIS(1,"G","SYS..|TNT|",22)=""
 ^%ZIS(1,"G","SYS..TRM",49)=""
+^%ZIS(1,"G","SYS..|TNT|",22)=""
 ^%ZIS(1,"G","SYS..|TCP|",7)=""
 ^%ZIS(1,"G","SYS.PLA.|TNT|",22)=""
 ^%ZIS(1,"G","SYS.PLA.|TRM|",48)=""

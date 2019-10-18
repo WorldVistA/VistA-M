@@ -1,5 +1,10 @@
-ORALWORD ; SLC/JMH - Utilities for Checking if an order can be ordered ; 5/10/07 5:55am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243**;Dec 17, 1997;Build 242
+ORALWORD ; SLC/JMH - Utilities for Checking if an order can be ordered ; 11/28/18 3:37pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,427**;Dec 17, 1997;Build 105
+ ;External reference $$CL^YSCLTST2 controlled by DBIA 4556
+ ;External reference $$OVERRIDE^YSCLTST2 controlled by DBIA 4556
+ ;Reference to ^DIQ supported by DBIA #2056
+ ;Reference to ^PSS50 supported by DBIA #4533
+ ;Reference to $$DEA^XUSER supported by DBIA #2343
  ;
 ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
  N OROI,ORYS,QOIEN,QPIEN,ORCLOZ,QOAA
@@ -52,31 +57,73 @@ ALLWORD(ORY,DFN,ORX,ORTYPE,PROV) ;
  ;    ORY(1-N)=MESSAGE TO DISPLAY
  S ORY=1_U_ORCLOZ,ORY(0)="Problem Ordering Clozapine Related Medication"_U_ORCLOZ
  ;patient not in clozapine patient program
+ ;; START NCC REMEDIATION >> 427*RJS
  I +ORYS<0 D  Q
  .S ORY(1)="*** This patient is not registered in the clozapine treatment "
- .S ORY(2)="program or has been discontinued from the program and must "
- .S ORY(3)="have a new registration number assigned.  Contact the NCCC to "
- .S ORY(4)="get this patient registered in the program. ***"
+ .S ORY(2)="program or has been discontinued from the program. A new"
+ .S ORY(3)="registration number must be assigned. If this is not an emergency,"
+ .S ORY(4)="contact the NCCC. For emergency registration during non-NCCC duty"
+ .S ORY(5)="hours, a written order to the pharmacist can be used to process a"
+ .S ORY(6)="registration override. ***"
  ;problem with lab tests
  I +ORYS=0 D  Q
  .I $$OVERRIDE^YSCLTST2(DFN) S ORY=0_U_ORCLOZ,ORY(0)=U_ORCLOZ D BEFQUIT  Q  ;override allowed
- .N COUNT S COUNT=0
- .S COUNT=COUNT+1,ORY(COUNT)="*** This clozapine drug may not be dispensed to the patient at this "
- .S COUNT=COUNT+1,ORY(COUNT)="time based on the available lab tests related to the clozapine "
- .S COUNT=COUNT+1,ORY(COUNT)="treatment program. Please contact the NCCC to request an override in"
- .S COUNT=COUNT+1,ORY(COUNT)="order to proceed with dispensing this drug. ***"
- .Q:'$L($P(ORYS,U,3))!('$L($P(ORYS,U,5)))
- .S COUNT=COUNT+1,ORY(COUNT)="Related Lab Test(s)"
- .S COUNT=COUNT+1,ORY(COUNT)="==================="
- .;the lab values returned by Mental Health are given in 4 digit numbers to be standard with 
- .;reporting formats to the NCCC, we are dividing by 1000 to align it with the display of the
- .;labs on the lab tab
- .;S:$L($P(ORYS,U,3)) COUNT=COUNT+1,ORY(COUNT)=$P(ORYS,U,3)_":  "_($P(ORYS,U,2)/1000)_" K/cmm"
- .;S:$L($P(ORYS,U,5)) COUNT=COUNT+1,ORY(COUNT)=$P(ORYS,U,5)_":  "_($P(ORYS,U,4)/1000)_" K/cmm"
- .S:$L($P(ORYS,U,3)) COUNT=COUNT+1,ORY(COUNT)="WBC:  "_($P(ORYS,U,2)/1000)_" K/cmm"
- .S:$L($P(ORYS,U,5)) COUNT=COUNT+1,ORY(COUNT)="ANC:  "_($P(ORYS,U,4)/1000)_" K/cmm"
- .S COUNT=COUNT+1,ORY(COUNT)="Date/Time of last tests: "_$$DATE^ORU($P(ORYS,U,6))
+ .I +$P(ORYS,"^",2),$P(ORYS,"^",4)<1000 D
+ ..N COUNT S COUNT=0
+ ..S COUNT=COUNT+1,ORY(COUNT)="*** This clozapine drug may not be dispensed to the patient at this "
+ ..S COUNT=COUNT+1,ORY(COUNT)="time based on the available lab tests related to the clozapine "
+ ..S COUNT=COUNT+1,ORY(COUNT)="treatment program. Please contact the NCCC to request an override in"
+ ..S COUNT=COUNT+1,ORY(COUNT)="order to proceed with dispensing this drug. ***"
+ ..D DISPRSLT
+ .I '$P(ORYS,U,2),$P(ORYS,U,4) D
+ ..N COUNT S COUNT=0
+ ..S COUNT=COUNT+1,ORY(COUNT)="*** Permission to dispense clozapine has been denied based on the available"
+ ..S COUNT=COUNT+1,ORY(COUNT)="lab tests related to the clozapine treatment program.***"
+ ..S COUNT=COUNT+1,ORY(COUNT)=""
+ ..S COUNT=COUNT+1,ORY(COUNT)="The latest lab test results drawn in the past 7 days have ANC results but no"
+ ..S COUNT=COUNT+1,ORY(COUNT)="matching WBC. Redo the lab tests or contact the NCCC for a National Override"
+ ..S COUNT=COUNT+1,ORY(COUNT)="to dispense clozapine with no matching WBC results."
+ ..D DISPRSLT
+ .I '+$P(ORYS,"^",4) D MSG
  Q
+MSG ;
+ N COUNT S COUNT=0
+ S COUNT=COUNT+1,ORY(COUNT)="*** Permission to dispense clozapine has been denied based on the"
+ S COUNT=COUNT+1,ORY(COUNT)="available lab tests related to the clozapine treatment program. ***"
+ S COUNT=COUNT+1,ORY(COUNT)=""
+ I $P($G(X0),U)["PSJ" D DISPRSLT S COUNT=COUNT+1,ORY(COUNT)=""
+ S COUNT=COUNT+1,ORY(COUNT)="For a National Override to dispense at the patient's normal"
+ S COUNT=COUNT+1,ORY(COUNT)="frequency, contact the NCCC."
+ S COUNT=COUNT+1,ORY(COUNT)=""
+ D:$D(X0)  ;; NCC REMEDIATION << 427 RTW Special Conditions selections for outpatient and inpatient RTW
+ .I $P(X0,U,1)["PSO" D
+ ..S COUNT=COUNT+1,ORY(COUNT)="A local emergency override for an Outpatient can be approved for:"
+ ..S COUNT=COUNT+1,ORY(COUNT)="(1) weather-related conditions, (2) mail order delays of clozapine,"
+ ..S COUNT=COUNT+1,ORY(COUNT)="or (3) inpatient going on leave."
+ ..S COUNT=COUNT+1,ORY(COUNT)=""
+ ..S COUNT=COUNT+1,ORY(COUNT)="For an Outpatient Special Conditions Local Override, a written prescription from"
+ ..S COUNT=COUNT+1,ORY(COUNT)="the provider with documentation to the pharmacist is required to dispense"
+ ..S COUNT=COUNT+1,ORY(COUNT)="a one-time emergency 4-day supply."
+ .I $P(X0,U,1)["PSJ" D
+ ..S COUNT=COUNT+1,ORY(COUNT)="A local emergency override for an Inpatient can be approved for:"
+ ..S COUNT=COUNT+1,ORY(COUNT)="IP Order Override with Outside Lab Results"
+ ..S COUNT=COUNT+1,ORY(COUNT)=""
+ ..S COUNT=COUNT+1,ORY(COUNT)="For a Special Conditions Local Override, a written order from"
+ ..S COUNT=COUNT+1,ORY(COUNT)="the provider with documentation to the pharmacist is required to"
+ ..S COUNT=COUNT+1,ORY(COUNT)="dispense a one-time 4-day supply."
+ ..S COUNT=COUNT+1,ORY(COUNT)=""
+ ..S COUNT=COUNT+1,ORY(COUNT)="The provider must record the ANC from another facility including date/time in both the Provider Progress Note and Comment field in CPRS."
+ Q
+DISPRSLT ; Display Lab Tests
+ S COUNT=COUNT+1,ORY(COUNT)="Related Lab Test(s)"
+ S COUNT=COUNT+1,ORY(COUNT)="==================="
+ I $L($P(ORYS,U,3)) S COUNT=COUNT+1,ORY(COUNT)="WBC:  "_($P(ORYS,U,2)/1000)_" K/cmm"
+ E  S COUNT=COUNT+1,ORY(COUNT)="WBC:  NO TEST RESULTS FOUND"
+ I $L($P(ORYS,U,5)) S COUNT=COUNT+1,ORY(COUNT)="ANC:  "_($P(ORYS,U,4)/1000)_" K/cmm"
+ E  S COUNT=COUNT+1,ORY(COUNT)="ANC:  NO TEST RESULTS FOUND"
+ S COUNT=COUNT+1,ORY(COUNT)="Date/Time of last tests: "_$$DATE^ORU($P(ORYS,U,6))
+ Q
+ ;; END NCC REMEDIATION << 427*RTW
 BEFQUIT ;
  Q:'$G(QOAA)
  N QODS,QORF,ORMAX,ORCLPAT
@@ -96,18 +143,18 @@ BEFQUIT ;
  .S ORY(2)="This includes the amounts added by any refills entered in with the order also."
  Q
 ISCLOZ(OROI) ;
- N ORPSOI,ORPSDRUG
- S ORPSOI=$P(^ORD(101.43,OROI,0),U,2)
+ N ORPSOI,ORPSDRUG,ISCLOZ
+ S ORPSOI=$$GET1^DIQ(101.43,OROI,2)
  I $P(ORPSOI,";",2)'="99PSP" Q 0
  K ^TMP($J,"ORCLOZ")
  D ASP^PSS50(+ORPSOI,,,"ORCLOZ")
- S ORPSDRUG=$O(^TMP($J,"ORCLOZ",0))
- I 'ORPSDRUG K ^TMP($J,"ORCLOZ") Q 0
- K ^TMP($J,"ORCLOZ")
- D CLOZ^PSS50(ORPSDRUG,,,,,"ORCLOZ")
- I $G(^TMP($J,"ORCLOZ",ORPSDRUG,"CLOZ",0))>0 K ^TMP($J,"ORCLOZ") Q 1
- K ^TMP($J,"ORCLOZ")
- Q 0
+ S (ORPSDRUG,ISCLOZ)=0
+ F  S ORPSDRUG=$O(^TMP($J,"ORCLOZ",ORPSDRUG)) Q:'ORPSDRUG  D  Q:ISCLOZ
+ .K ^TMP($J,"ORCLOZ2")
+ .D CLOZ^PSS50(ORPSDRUG,,,,,"ORCLOZ2")
+ .I $G(^TMP($J,"ORCLOZ2",ORPSDRUG,"CLOZ",0))>0 S ISCLOZ=1
+ K ^TMP($J,"ORCLOZ"),^TMP($J,"ORCLOZ2")
+ Q ISCLOZ
 ALLWRN(ORY,ORN,REFILLS) ;allow order to be renewed
  ;ORN is the order number
  ;REFILLS is the number of refills to be included with the renewed order

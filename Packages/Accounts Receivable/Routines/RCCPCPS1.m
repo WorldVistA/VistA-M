@@ -1,6 +1,6 @@
 RCCPCPS1 ;WISC/RFJ-build description for patient statement ;08 Aug 2001
- ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265**;Mar 20, 1995;Build 5
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265,362**;Mar 20, 1995;Build 1
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -24,6 +24,16 @@ TRANDESC(RCTRANDA,RCWIDTH) ;  build the description array for a transaction
  .   ;  if c means test, set description to category for c means test
  .   I RCCATEG=18 S DESCRIPT=$S($P(RCDATA0,"^",16):$P(^PRCA(430.2,$P(RCDATA0,"^",16),0),"^"),1:RCCATTXT) Q
  .   ;  otherwise, set to category name
+ .   ;PRCA*4.5*362
+ .   I RCCATEG>47,RCCATEG<86 D  Q
+ .   . I RCCATTXT["RX" S DESCRIPT="COMMUNITY CARE RX" Q
+ .   . I RCCATTXT["INPT" S DESCRIPT="COMMUNITY CARE INPT" Q
+ .   . I RCCATTXT["OPT" S DESCRIPT="COMMUNITY CARE OUTPATIENT" Q
+ .   . I RCCATTXT["URGENT" S DESCRIPT="COMMUNITY CARE URGENT CARE" Q
+ .   . I RCCATTXT["RESPITE" S DESCRIPT="COMMUNITY CARE RESPITE CARE" Q
+ .   . I RCCATTXT["NURSING" S DESCRIPT="COMMUNITY CARE NURSING HOME"
+ .   ;end PRCA*4.5*362
+ .   ;
  .   S DESCRIPT=RCCATTXT
  ;
  ;  if the bill category is a rx-copay and it is an increase adjustment
@@ -77,11 +87,20 @@ TRANDESC(RCTRANDA,RCWIDTH) ;  build the description array for a transaction
  I TRANTYPE'=1 Q
  ;
  ;  increase to c means test, ltc or rx-copay, get data from ib
- I RCCATEG=18!(RCCATEG=22)!(RCCATEG=23)!((RCCATEG>32)&(RCCATEG<40)) D
+ I RCCATEG=18!(RCCATEG=22)!(RCCATEG=23)!((RCCATEG>32)&(RCCATEG<40)) D  Q     ;PRCA*4.5*362 - added quit, no longer the last check
  .   S X="IBRFN1" X ^%ZOSF("TEST") I '$T Q
  .   K ^TMP("IBRFN1",$J)
  .   D STMT^IBRFN1(RCTRANDA)
  .   D IBDATA
+ ;
+ ; PRCA*4.5*362
+ ; Community Care Transaction Description Adjustments
+ I RCCATEG>47,RCCATEG<86 D
+ .   S X="IBRFN1" X ^%ZOSF("TEST") I '$T Q
+ .   K ^TMP("IBRFN1",$J)
+ .   D STMT^IBRFN1(RCTRANDA)
+ .   D IBDATA
+ ;END PRCA*4.5*362
  Q
  ;
  ;
@@ -121,6 +140,19 @@ IBDATA ;  get data from IB for description
  S IBJ=0 F  S IBJ=$O(^TMP("IBRFN1",$J,IBJ)) Q:'IBJ  S IBDATA=^TMP("IBRFN1",$J,IBJ) D
  .   ;
  .   ;  if no drug or bill date returned from IB, then it is outpatient
+ .   ;PRCA*4.5*362 - finish completing line 1 of the Transaction for Community Care copays
+ .   I RCDESC(1)["COMMUNITY CARE RESPITE" D       ;determine if inpatient or outpatient
+ .   . I $P(IBDATA,"^",5) D SETDESC("INPATIENT") Q
+ .   . D SETDESC("OUTPATIENT")
+ .   ;
+ .   I RCDESC(1)["COMMUNITY CARE NURSING" D       ;determining if Nursing Home or Adult Day Care
+ .   . I $P(IBDATA,"^",5) D SETDESC("INPATIENT") Q
+ .   . S RCDESC(1)="" S DESCRIPT="COMMUNITY CARE ADULT DAY CARE" D SETDESC(DESCRIPT)
+ .   ;
+ .   I RCDESC(1)["COMMUNITY CARE RX" D  Q       ;Use Bill from date as Fill Date
+ .   . D:$P(IBDATA,"^",3) SETDESC("FD:"_$$DATE($P(IBDATA,"^",3)))
+ .   ;END PRCA*4.5*362
+ .   ;
  .   I $P(IBDATA,"^",3)="" D:$P(IBDATA,"^",2) SETDESC("VISIT DATE: "_$$DATE($P(IBDATA,"^",2))) Q
  .   ;
  .   ;  if no drug quantity returned from ib, then it is inpatient

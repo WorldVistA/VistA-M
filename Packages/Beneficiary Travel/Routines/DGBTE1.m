@@ -1,5 +1,5 @@
-DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES ;10/10/06@11:17am
- ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33,34**;September 25, 2001;Build 3
+DGBTE1 ;ALB/SCK/GAH,LAB - BENEFICIARY TRAVEL FIND OLD CLAIM DATES ;03/20/2019
+ ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33,34,37**;September 25, 2001;Build 1
 DATE ;  get date for claim, either new or past date
  N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
@@ -37,7 +37,8 @@ ASKADD ;
  I '% W !!,"Enter 'YES' to add a new claim, or 'NO' not to add the claim." G ASKADD
  K DD,DO
  ; create new file entry, stuff patient DFN into name field(pointer)
- S (X,DINUM)=DGBTA,DIC="^DGBT(392,",DIC(0)="L",DIC("DR")="2////"_DFN
+ ;DGBT*1.0*37 replace 4 slashes with ///, 2///' - ' allows for internal value to be validated and pushed in.
+ S (X,DINUM)=DGBTA,DIC="^DGBT(392,",DIC(0)="L",DIC("DR")="2///`"_DFN
  D FILE^DICN K DIC L -^DGBT(392,DGBTA)
  ; go back to patient if no file entry
  G:Y'>0 PATIENT^DGBTE

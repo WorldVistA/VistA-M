@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FILE
-23-SEP-2019 15:32:21 ZWR
-^DIC(0)="FILE^1^9999999.64^2798"
+17-OCT-2019 20:40:47 ZWR
+^DIC(0)="FILE^1^9999999.64^2801"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
 ^DIC(".11",0,"DEL")="^"
@@ -563,7 +563,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")=3190201.160452
+^DIC(2,"%MSC")=3190916.094309
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -1989,6 +1989,23 @@ OSEHRA ZGO Export: FILE
 ^DIC("40.5","%D",1,0)="This file is used to record institutional holidays.  It is referenced"
 ^DIC("40.5","%D",2,0)="by the XUWORKDY routine.  It is not distributed with data.  It is"
 ^DIC("40.5","%D",3,0)="cross-referenced by date."
+^DIC("40.6",0)="SD TELE HEALTH STOP CODE FILE^40.6"
+^DIC("40.6",0,"AUDIT")="@"
+^DIC("40.6",0,"DD")="@"
+^DIC("40.6",0,"DEL")="@"
+^DIC("40.6",0,"GL")="^SD(40.6,"
+^DIC("40.6",0,"LAYGO")="@"
+^DIC("40.6",0,"RD")="@"
+^DIC("40.6",0,"WR")="@"
+^DIC("40.6","%",0)="^1.005^^0"
+^DIC("40.6","%D",0)="^^6^6^3190107^"
+^DIC("40.6","%D",1,0)="This file stores the list of current tele health stop codes. The Tele "
+^DIC("40.6","%D",2,0)="Health Management Platform (TMP) uses this file to identify tele health "
+^DIC("40.6","%D",3,0)="clinics as part of the TMP real time updates. TMP is monitoring the "
+^DIC("40.6","%D",4,0)="Hospital Location File (#44) for edits to tele health clinics. These "
+^DIC("40.6","%D",5,0)="edits are sent to TMP in real time in order to keep TMP in sync with each "
+^DIC("40.6","%D",6,0)="VistA system. "
+^DIC("40.6","%MSC")=3190916.094311
 ^DIC("40.8",0)="MEDICAL CENTER DIVISION^40.8I"
 ^DIC("40.8",0,"DD")="@"
 ^DIC("40.8",0,"DEL")="@"
@@ -2206,7 +2223,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(44,"%D",0)=1
 ^DIC(44,"%D",1,0)="Contains locations found in the hospital (ie. Wards, Clinics)"
 ^DIC(44,"%D",2,0)=" *********DO NOT RE-INDEX THIS FILE**********"
-^DIC(44,"%MSC")=3170929.16433
+^DIC(44,"%MSC")=3190916.094311
 ^DIC("44.3",0)="SDAM DATA MAP^44.3"
 ^DIC("44.3",0,"AUDIT")="@"
 ^DIC("44.3",0,"DD")="@"
@@ -3175,6 +3192,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.52","%D",11,0)="UNDER NO CIRCUMSTANCES SHOULD THE DATA DICTIONARY FOR THIS FILE"
 ^DIC("52.52","%D",12,0)="                         BE MODIFIED"
 ^DIC("52.52","%D",13,0)=" "
+^DIC("52.52","%MSC")=3190930.103646
 ^DIC("52.53",0)="PHARMACY AUTOMATED DISPENSING DEVICES^52.53"
 ^DIC("52.53",0,"AUDIT")=" "
 ^DIC("52.53",0,"DD")=" "
@@ -3189,6 +3207,12 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.53","%D",0)="^^2^2^3101130^"
 ^DIC("52.53","%D",1,0)="This file stores the automated dispensing devices used by the Outpatient"
 ^DIC("52.53","%D",2,0)="Pharmacy application."
+^DIC("52.54",0)="CLOZAPINE OVERRIDE REASONS^52.54"
+^DIC("52.54",0,"GL")="^PS(52.54,"
+^DIC("52.54","%D",0)="^^2^2^3160310^"
+^DIC("52.54","%D",1,0)="This file contains the possible reasons for overriding a Clozapine "
+^DIC("52.54","%D",2,0)="prescription or order lockout."
+^DIC("52.54","%MSC")=3190930.103646
 ^DIC("52.6",0)="IV ADDITIVES^52.6I"
 ^DIC("52.6",0,"DD")="@"
 ^DIC("52.6",0,"GL")="^PS(52.6,"
@@ -3580,6 +3604,29 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.79","%D",5,0)="Due to the size of this file Re-Indexing is also not recommended unless"
 ^DIC("53.79","%D",6,0)="directed by customer support."
 ^DIC("53.79","%MSC")=3161220.144407
+^DIC("53.8",0)="CLOZAPINE MEDICATION OVERRIDES^53.8"
+^DIC("53.8",0,"AUDIT")="@"
+^DIC("53.8",0,"DD")="@"
+^DIC("53.8",0,"DEL")="@"
+^DIC("53.8",0,"GL")="^PS(53.8,"
+^DIC("53.8",0,"LAYGO")="@"
+^DIC("53.8",0,"RD")="@"
+^DIC("53.8",0,"WR")="@"
+^DIC("53.8","%",0)="^1.005^^0"
+^DIC("53.8","%D",0)="^^12^12^3160310^"
+^DIC("53.8","%D",1,0)="This file contains information regarding who, when and why the"
+^DIC("53.8","%D",2,0)="prohibition on a order for clozapine was overridden "
+^DIC("53.8","%D",3,0)="member of the team.  Because of the nature of this drug and the"
+^DIC("53.8","%D",4,0)="restrictions placed upon dispensing it, all fields in this file"
+^DIC("53.8","%D",5,0)="are not to be edited through the VA FileManager, but are to be set"
+^DIC("53.8","%D",6,0)="ONLY through the order entry options of the inpatient pharmacy"
+^DIC("53.8","%D",7,0)="package.  Reports generated from this file should be generated only"
+^DIC("53.8","%D",8,0)="from the option provided by the package.  For these reasons, READ,"
+^DIC("53.8","%D",9,0)="WRITE, DELETE and LAYGO access to this file are severely restricted."
+^DIC("53.8","%D",10,0)=" "
+^DIC("53.8","%D",11,0)="UNDER NO CIRCUMSTANCES SHOULD THE DATA DICTIONARY FOR THIS FILE"
+^DIC("53.8","%D",12,0)="                         BE MODIFIED"
+^DIC("53.8","%MSC")=3190930.103647
 ^DIC(54,0)="RX CONSULT^54N"
 ^DIC(54,0,"GL")="^PS(54,"
 ^DIC(54,"%",0)="^1.005^2^2"
@@ -3614,7 +3661,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(55,"%D",5,0)=" "
 ^DIC(55,"%D",6,0)="This file is also shared with inpatient pharmacy and promises to become a"
 ^DIC(55,"%D",7,0)="very central file to the pharmacy."
-^DIC(55,"%MSC")=3181206.161704
+^DIC(55,"%MSC")=3190930.103647
 ^DIC("55.0109","%MSC")=3181206.161704
 ^DIC("55.17","%MSC")=3180907.122414
 ^DIC("55.174","%MSC")=3180907.122414
@@ -4689,7 +4736,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(64,"%D",11,0)="FILE WITH SPECIFIC INFORMATION AT SPECIFIC INTERNAL FILE NUMBERS. NO"
 ^DIC(64,"%D",12,0)="ENTRIES SHOULD EVER BE DELETED. ADDITIONAL ENTRIES WILL BE DISTRIBUTED"
 ^DIC(64,"%D",13,0)="VIA GLOBAL TAPE WHEN NECESSARY."
-^DIC(64,"%MSC")=3190402.165736
+^DIC(64,"%MSC")=3190930.105651
 ^DIC("64.03",0)="WKLD LOG FILE^64.03"
 ^DIC("64.03",0,"GL")="^LRO(64.03,"
 ^DIC("64.03","%D",0)="^1.001^13^13^3101004^^"
@@ -4749,7 +4796,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.061","%D",5,0)=" "
 ^DIC("64.061","%D",6,0)="This file is a standard file for many types of terms used in electronic"
 ^DIC("64.061","%D",7,0)="messaging."
-^DIC("64.061","%MSC")=3190402.165736
+^DIC("64.061","%MSC")=3190930.105651
 ^DIC("64.062",0)="LAB ELECTRONIC SUBTYPES^64.062"
 ^DIC("64.062",0,"GL")="^LAB(64.062,"
 ^DIC("64.062","%",0)="^1.005^^0"
@@ -4777,7 +4824,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.2","%D",6,0)="will be distributed to all VAMC sites."
 ^DIC("64.2","%D",7,0)="  Forward all request for additional codes not found in this file, contact"
 ^DIC("64.2","%D",8,0)="Pathology Central Office, Attention Asst. Director for DHCP affairs. "
-^DIC("64.2","%MSC")=3190402.165736
+^DIC("64.2","%MSC")=3190930.105651
 ^DIC("64.21",0)="WKLD CODE LAB SECT^64.21"
 ^DIC("64.21",0,"GL")="^LAB(64.21,"
 ^DIC("64.21","%D",0)="^^4^4^2900306^"
@@ -4853,7 +4900,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.81","%D",9,0)="UPGRADE."
 ^DIC("64.81","%D",10,0)=" "
 ^DIC("64.81","%D",11,0)="The end user never uses this file for day to day laboratory activities. "
-^DIC("64.81","%MSC")=3190402.165736
+^DIC("64.81","%MSC")=3190930.105651
 ^DIC("64.9178",0)="LSRP AUDIT CONFIG^64.9178"
 ^DIC("64.9178",0,"GL")="^LABAUD(64.9178,"
 ^DIC("64.9178","%",0)="^1.005^^0"
@@ -7127,7 +7174,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.3","%D",62,0)="liability for any omissions or errors in the LOINC database, and all "
 ^DIC("95.3","%D",63,0)="EXPRESS AND IMPLIED WARRANTIES, INCLUDING THOSE RELATED TO MERCHANTABILITY"
 ^DIC("95.3","%D",64,0)="OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED."
-^DIC("95.3","%MSC")=3190402.165737
+^DIC("95.3","%MSC")=3190930.105651
 ^DIC("95.31",0)="LAB LOINC COMPONENT^95.31"
 ^DIC("95.31",0,"AUDIT")="@"
 ^DIC("95.31",0,"DD")="@"
@@ -7140,7 +7187,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.31","%D",1,0)="This file contains the name of the component or analyte measured for the "
 ^DIC("95.31","%D",2,0)="LAB LOINC file (#95.3).  This file is a standard file distributed"
 ^DIC("95.31","%D",3,0)="by Dallas CIOFO and should not be edited locally."
-^DIC("95.31","%MSC")=3190402.165737
+^DIC("95.31","%MSC")=3190930.105651
 ^DIC("95.4",0)="LAB MAPPING TRANSPORT^95.4"
 ^DIC("95.4",0,"AUDIT")=""
 ^DIC("95.4",0,"DD")=""
@@ -11642,6 +11689,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("301.7","%D",10,0)="stored along with the Date/Time the address was changed, the Source of the"
 ^DIC("301.7","%D",11,0)="change, and User ID of the person who made the change.  In the case of an"
 ^DIC("301.7","%D",12,0)="update via an ORU~Z05, the User ID will be POSTMASTER."
+^DIC("301.7","%MSC")=3190912.115534
 ^DIC("301.9",0)="IVM SITE PARAMETER^301.9"
 ^DIC("301.9",0,"GL")="^IVM(301.9,"
 ^DIC("301.9","%D",0)="^^14^14^2940825^^^^"
@@ -20703,7 +20751,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.75","%D",8,0)="Choices are pointed to by the MH CHOICETYPES file (#601.751) which is a "
 ^DIC("601.75","%D",9,0)="collection of choices.  Choices are referenced in the MH ANSWERS file "
 ^DIC("601.75","%D",10,0)="(#601.85) as a pointer to the full response."
-^DIC("601.75","%MSC")=3190722.171505
+^DIC("601.75","%MSC")=3190912.120753
 ^DIC("601.751",0)="MH CHOICETYPES^601.751"
 ^DIC("601.751",0,"AUDIT")="@"
 ^DIC("601.751",0,"DD")="@"
@@ -21045,6 +21093,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("603.03","%D",9,0)="test location without contaminating the database in Hines. The three date"
 ^DIC("603.03","%D",10,0)="fields TRANSMISSION START, TRANSMISSION END and LAST DEMOGRAPHICS"
 ^DIC("603.03","%D",11,0)="TRANSMISSION report back to the NCCC through the server."
+^DIC("603.03","%MSC")=3190930.103646
 ^DIC("603.04",0)="CLOZAPINE TESTS^603.04"
 ^DIC("603.04",0,"GL")="^YSCL(603.04,"
 ^DIC("603.04","%",0)="^1.005^^0"
@@ -38560,6 +38609,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","CLINICAL SPECIALTY DICOM & HL7","2006.5831")=""
 ^DIC("B","CLINICS AND STOP CODES","728.44")=""
 ^DIC("B","CLOZAPINE LAB TEST","603.02")=""
+^DIC("B","CLOZAPINE MEDICATION OVERRIDES","53.8")=""
+^DIC("B","CLOZAPINE OVERRIDE REASONS","52.54")=""
 ^DIC("B","CLOZAPINE PARAMETERS","603.03")=""
 ^DIC("B","CLOZAPINE PATIENT LIST","603.01")=""
 ^DIC("B","CLOZAPINE PRESCRIPTION OVERRID","52.52")=""
@@ -40456,6 +40507,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","SCHEDULING REPORT QUERY TEMPLA","404.95")=""
 ^DIC("B","SCHEDULING USER PREFERENCE","403.35")=""
 ^DIC("B","SCHEDULING VISITS","409.5")=""
+^DIC("B","SD TELE HEALTH STOP CODE FILE","40.6")=""
 ^DIC("B","SD WAIT LIST","409.3")=""
 ^DIC("B","SD WL CLINIC LOCATION","409.32")=""
 ^DIC("B","SD WL SERVICE/SPECIALTY","409.31")=""

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: ORDER CHECK COMPILER FUNCTIONS
-23-SEP-2019 15:36:27 ZWR
+17-OCT-2019 20:46:15 ZWR
 ^OCXS(860.8,0)="ORDER CHECK COMPILER FUNCTIONS^860.8^54^56"
 ^OCXS(860.8,1,0)="CONVERT DATE FROM FILEMAN FORMAT TO OCX FORMAT^DT2INT"
 ^OCXS(860.8,1,"CODE",0)="^^38^38^3011210^"
@@ -607,12 +607,10 @@ OSEHRA ZGO Export: ORDER CHECK COMPILER FUNCTIONS
 ^OCXS(860.8,38,"CODE",2,0)="  ; ;"
 ^OCXS(860.8,38,"CODE",3,0)="  ; Q"
 ^OCXS(860.8,38,"CODE",4,0)="  ; ;"
-^OCXS(860.8,38,"DESC",0)="^^5^5^2970416^"
-^OCXS(860.8,38,"DESC",1,0)=" "
-^OCXS(860.8,38,"DESC",2,0)="  This function allows a local site to define to Order Checking"
-^OCXS(860.8,38,"DESC",3,0)=" a term specific to that site. (ie. Lab Test Name, Radiology"
-^OCXS(860.8,38,"DESC",4,0)=" procedure name, etc.)"
-^OCXS(860.8,38,"DESC",5,0)=" "
+^OCXS(860.8,38,"DESC",0)="^^3^3^3190930^"
+^OCXS(860.8,38,"DESC",1,0)="  This function allows a local site to define to Order Checking"
+^OCXS(860.8,38,"DESC",2,0)=" a term specific to that site. (ie. Lab Test Name, Radiology"
+^OCXS(860.8,38,"DESC",3,0)=" procedure name, etc.)"
 ^OCXS(860.8,39,0)="GET LOCAL LIST FOR STANDARD TERM"
 ^OCXS(860.8,40,0)="GENERATE STRING CHECKSUM^CKSUM"
 ^OCXS(860.8,40,"CODE",0)="^^7^7^2970722^"

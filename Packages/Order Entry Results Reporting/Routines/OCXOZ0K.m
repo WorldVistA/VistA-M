@@ -1,4 +1,4 @@
-OCXOZ0K ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ0K ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,21 +10,8 @@ OCXOZ0K ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;
  Q
  ;
-R7R1A ; Verify all Event/Elements of  Rule #7 'PATIENT ADMISSION'  Relation #1 'ADMISSION'
- ;  Called from EL21+5^OCXOZ0G.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; MCE21( ----------->  Verify Event/Element: 'PATIENT ADMISSION'
- ;
- Q:$G(^OCXS(860.2,7,"INACT"))
- ;
- I $$MCE21 D R7R1B
- Q
- ;
 R7R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #7 'PATIENT ADMISSION'  Relation #1 'ADMISSION'
- ;  Called from R7R1A+10.
+ ;  Called from R7R1A+10^OCXOZ0J.
  ;
  Q:$G(OCXOERR)
  ;
@@ -57,7 +44,7 @@ R7R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #7 '
  Q
  ;
 R11R1A ; Verify all Event/Elements of  Rule #11 'IMAGING REQUEST CANCELLED/HELD'  Relation #1 'CANCELLED AND CANCELED BY NON-ORIG ORDERER'
- ;  Called from EL31+5^OCXOZ0G, and EL100+5^OCXOZ0G.
+ ;  Called from EL31+5^OCXOZ0F, and EL100+5^OCXOZ0F.
  ;
  Q:$G(OCXOERR)
  ;
@@ -104,7 +91,7 @@ R11R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #11
  Q
  ;
 R11R2A ; Verify all Event/Elements of  Rule #11 'IMAGING REQUEST CANCELLED/HELD'  Relation #2 'ON HOLD AND CANCELED BY NON-ORIG ORDERER'
- ;  Called from EL100+6^OCXOZ0G, and EL30+5^OCXOZ0G.
+ ;  Called from EL100+6^OCXOZ0F, and EL30+5^OCXOZ0F.
  ;
  Q:$G(OCXOERR)
  ;
@@ -161,15 +148,6 @@ MCE100() ; Verify Event/Element: CANCELED BY NON-ORIG ORDERING PROVIDER
  N OCXRES
  I $L(OCXDF(37)) S OCXRES(100,37)=OCXDF(37)
  Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),100)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),100))
- Q 0
- ;
-MCE21() ; Verify Event/Element: PATIENT ADMISSION
- ;
- ;  OCXDF(37) -> PATIENT IEN data field
- ;
- N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(21,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),21)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),21))
  Q 0
  ;
 MCE30() ; Verify Event/Element: RADIOLOGY ORDER PUT ON-HOLD

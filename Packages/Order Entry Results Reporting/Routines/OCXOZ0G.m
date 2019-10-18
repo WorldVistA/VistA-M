@@ -1,4 +1,4 @@
-OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -8,73 +8,6 @@ OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ; ** will be lost the next time the rule compiler executes.    **
  ; ***************************************************************
  ;
- Q
- ;
-EL45 ; Examine every rule that involves Element #45 [ORDER REQUIRES CHART SIGNATURE]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R6R1A^OCXOZ0J   ; Check Relation #1 in Rule #6 'ORDER REQUIRES CHART SIGNATURE'
- Q
- ;
-EL21 ; Examine every rule that involves Element #21 [PATIENT ADMISSION]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R7R1A^OCXOZ0K   ; Check Relation #1 in Rule #7 'PATIENT ADMISSION'
- Q
- ;
-EL31 ; Examine every rule that involves Element #31 [RADIOLOGY ORDER CANCELLED]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R11R1A^OCXOZ0K   ; Check Relation #1 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
- Q
- ;
-EL100 ; Examine every rule that involves Element #100 [CANCELED BY NON-ORIG ORDERING PROVIDER]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R11R1A^OCXOZ0K   ; Check Relation #1 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
- D R11R2A^OCXOZ0K   ; Check Relation #2 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
- D R11R3A^OCXOZ0L   ; Check Relation #3 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
- D R35R1A^OCXOZ0P   ; Check Relation #1 in Rule #35 'LAB ORDER CANCELLED'
- Q
- ;
-EL30 ; Examine every rule that involves Element #30 [RADIOLOGY ORDER PUT ON-HOLD]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R11R2A^OCXOZ0K   ; Check Relation #2 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
- Q
- ;
-EL32 ; Examine every rule that involves Element #32 [RADIOLOGY ORDER DISCONTINUED]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R11R3A^OCXOZ0L   ; Check Relation #3 in Rule #11 'IMAGING REQUEST CANCELLED/HELD'
- Q
- ;
-EL46 ; Examine every rule that involves Element #46 [SERVICE ORDER REQUIRES CHART SIGNATURE]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R16R1A^OCXOZ0L   ; Check Relation #1 in Rule #16 'SERVICE ORDER REQUIRES CHART SIGNATURE'
- Q
- ;
-EL76 ; Examine every rule that involves Element #76 [STAT LAB RESULT]
- ;  Called from SCAN+9^OCXOZ01.
- ;
- Q:$G(OCXOERR)
- ;
- D R18R1A^OCXOZ0L   ; Check Relation #1 in Rule #18 'STAT RESULTS AVAILABLE'
  Q
  ;
 EL75 ; Examine every rule that involves Element #75 [STAT IMAGING RESULT]
@@ -115,8 +48,8 @@ EL5 ; Examine every rule that involves Element #5 [HL7 FINAL LAB RESULT]
  Q:$G(OCXOERR)
  ;
  D R24R1A^OCXOZ0N   ; Check Relation #1 in Rule #24 'ORDERER FLAGGED RESULTS AVAILABLE'
- D R66R1A^OCXOZ0Y   ; Check Relation #1 in Rule #66 'LAB RESULTS'
- D R69R1A^OCXOZ10   ; Check Relation #1 in Rule #69 'LAB THRESHOLD'
+ D R66R1A^OCXOZ0X   ; Check Relation #1 in Rule #66 'LAB RESULTS'
+ D R69R1A^OCXOZ0Z   ; Check Relation #1 in Rule #69 'LAB THRESHOLD'
  Q
  ;
 EL49 ; Examine every rule that involves Element #49 [ORDER FLAGGED FOR RESULTS]
@@ -283,5 +216,80 @@ EL129 ; Examine every rule that involves Element #129 [ABNORMAL RENAL RESULTS]
  Q:$G(OCXOERR)
  ;
  D R50R1A^OCXOZ0T   ; Check Relation #1 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ Q
+ ;
+EL130 ; Examine every rule that involves Element #130 [CONTRAST MEDIA ORDER]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R50R1A^OCXOZ0T   ; Check Relation #1 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ D R50R2A^OCXOZ0T   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ Q
+ ;
+EL133 ; Examine every rule that involves Element #133 [NO CREAT RESULTS W/IN X DAYS]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R50R2A^OCXOZ0T   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ Q
+ ;
+EL63 ; Examine every rule that involves Element #63 [PATIENT HAS RECENT CHOLECYSTOGRAM]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R51R1A^OCXOZ0U   ; Check Relation #1 in Rule #51 'RECENT CHOLECYSTOGRAM ORDER'
+ Q
+ ;
+EL64 ; Examine every rule that involves Element #64 [PHARMACY PATIENT OVER 65]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R53R1A^OCXOZ0U   ; Check Relation #1 in Rule #53 'RENAL FUNCTIONS OVER AGE 65 CHECK'
+ Q
+ ;
+EL65 ; Examine every rule that involves Element #65 [SESSION ORDER FOR ANGIOGRAM]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R54R1A^OCXOZ0U   ; Check Relation #1 in Rule #54 'CONCURRENT LAB ORDERS FOR ANGIOGRAM, CATH - PERIPHERAL'
+ Q
+ ;
+EL66 ; Examine every rule that involves Element #66 [CONTRAST MEDIA ALLERGY]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R55R1A^OCXOZ0U   ; Check Relation #1 in Rule #55 'ALLERGY - CONTRAST MEDIA REACTION'
+ Q
+ ;
+EL67 ; Examine every rule that involves Element #67 [RECENT BARIUM STUDY ORDERED]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R56R1A^OCXOZ0U   ; Check Relation #1 in Rule #56 'RECENT BARIUM STUDY'
+ Q
+ ;
+EL116 ; Examine every rule that involves Element #116 [CLOZAPINE DRUG SELECTED]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R57R1A^OCXOZ0U   ; Check Relation #1 in Rule #57 'CLOZAPINE'
+ D R57R2A^OCXOZ0V   ; Check Relation #2 in Rule #57 'CLOZAPINE'
+ D R57R3A^OCXOZ0V   ; Check Relation #3 in Rule #57 'CLOZAPINE'
+ Q
+ ;
+EL117 ; Examine every rule that involves Element #117 [CLOZAPINE NO ANC W/IN 7 DAYS]
+ ;  Called from SCAN+9^OCXOZ01.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ D R57R1A^OCXOZ0U   ; Check Relation #1 in Rule #57 'CLOZAPINE'
  Q
  ;

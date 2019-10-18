@@ -1,4 +1,4 @@
-OCXOZ0E ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ0E ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,65 +10,12 @@ OCXOZ0E ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;
  Q
  ;
-CHK438 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK437+8^OCXOZ0D.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK438 Variables
- ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
- ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(96) ---> Data Field: ORDERABLE ITEM NAME (FREE TEXT)
- ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
- ; OCXDF(161) --> Data Field: ORDER TYPE (FREE TEXT)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,127, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: INPATIENT)
- ; FILE(DFN,128, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: OUTPATIENT)
- ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
- ; PATLOC( ----------> PATIENT LOCATION
- ;
- I (OCXDF(161)="I") S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,127,"9,34,96,146,147") Q:OCXOERR 
- I (OCXDF(161)="O") S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,128,"9,34,96,146,147") Q:OCXOERR 
- Q
- ;
-CHK446 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK58+22^OCXOZ05.
- ;
- Q:$G(OCXOERR)
- ;
- ;    Local CHK446 Variables
- ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(57) ---> Data Field: MOST RECENT RENAL TEST ABNORMAL FLAG (BOOLEAN)
- ; OCXDF(58) ---> Data Field: ABNORMAL RENAL BIOCHEM RESULTS (FREE TEXT)
- ; OCXDF(154) --> Data Field: RECENT CONTRAST MEDIA CREATININE DAYS (NUMERIC)
- ; OCXDF(155) --> Data Field: RECENT CONTRAST MEDIA CREATININE FLAG (BOOLEAN)
- ;
- ;      Local Extrinsic Functions
- ; ABREN( -----------> DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
- ; RECCREAT( --------> RECENT CREATININE LAB PROCEDURE
- ;
- S OCXDF(57)=$P($$ABREN(OCXDF(37)),"^",1) I $L(OCXDF(57)),(OCXDF(57)) S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1) D CHK451
- S OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1) I $L(OCXDF(154)) S OCXDF(155)=$P($$RECCREAT(OCXDF(37),OCXDF(154)),"^",1) I $L(OCXDF(155)),'(OCXDF(155)) D CHK482^OCXOZ0F
- Q
- ;
-CHK451 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK446+16.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,129, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: ABNORMAL RENAL RESULTS)
- ;
- S OCXOERR=$$FILE(DFN,129,"58,154") Q:OCXOERR 
- Q
- ;
-CHK458 ; Look through the current environment for valid Event/Elements for this patient.
+CHK428 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK195+15^OCXOZ09.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK458 Variables
+ ;    Local CHK428 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(58) ---> Data Field: ABNORMAL RENAL BIOCHEM RESULTS (FREE TEXT)
  ; OCXDF(154) --> Data Field: RECENT CONTRAST MEDIA CREATININE DAYS (NUMERIC)
@@ -80,12 +27,12 @@ CHK458 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXDF(154)=$P($$CMCDAYS^ORKRA(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,130,"58,154") Q:OCXOERR 
  Q
  ;
-CHK463 ; Look through the current environment for valid Event/Elements for this patient.
+CHK433 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK1+36^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK463 Variables
+ ;    Local CHK433 Variables
  ; OCXDF(12) ---> Data Field: LAB RESULT (FREE TEXT)
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
@@ -99,8 +46,56 @@ CHK463 ; Look through the current environment for valid Event/Elements for this 
  ; LABTHRSB( --------> LAB THRESHOLD EXCEEDED BOOLEAN
  ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
  ;
- S OCXDF(151)=$P($$LABTHRSB(OCXDF(113),OCXDF(152),OCXDF(12),">"),"^",1) I $L(OCXDF(151)),(OCXDF(151)),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(37)) D CHK469^OCXOZ0F
- S OCXDF(150)=$P($$LABTHRSB(OCXDF(113),OCXDF(152),OCXDF(12),"<"),"^",1) I $L(OCXDF(150)),(OCXDF(150)),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(37)) D CHK476^OCXOZ0F
+ S OCXDF(151)=$P($$LABTHRSB(OCXDF(113),OCXDF(152),OCXDF(12),">"),"^",1) I $L(OCXDF(151)),(OCXDF(151)),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(37)) D CHK439
+ S OCXDF(150)=$P($$LABTHRSB(OCXDF(113),OCXDF(152),OCXDF(12),"<"),"^",1) I $L(OCXDF(150)),(OCXDF(150)),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(37)) D CHK446
+ Q
+ ;
+CHK439 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK433+19.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK439 Variables
+ ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
+ ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
+ ;
+ ;      Local Extrinsic Functions
+ ; FILE(DFN,131, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: GREATER THAN LAB THRESHOLD)
+ ; PATLOC( ----------> PATIENT LOCATION
+ ;
+ S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,131,"12,37,96,113,147,152") Q:OCXOERR 
+ Q
+ ;
+CHK446 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK433+20.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK446 Variables
+ ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
+ ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
+ ;
+ ;      Local Extrinsic Functions
+ ; FILE(DFN,132, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: LESS THAN LAB THRESHOLD)
+ ; PATLOC( ----------> PATIENT LOCATION
+ ;
+ S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,132,"12,37,96,113,147,152") Q:OCXOERR 
+ Q
+ ;
+CHK452 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK416+17^OCXOZ0D.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK452 Variables
+ ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
+ ; OCXDF(58) ---> Data Field: ABNORMAL RENAL BIOCHEM RESULTS (FREE TEXT)
+ ;
+ ;      Local Extrinsic Functions
+ ; ABREN( -----------> DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
+ ; FILE(DFN,133, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: NO CREAT RESULTS W/IN X DAYS)
+ ;
+ S OCXDF(58)=$P($$ABREN(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,133,"58,154") Q:OCXOERR 
  Q
  ;
 ABREN(DFN) ;  Compiler Function: DETERMINE IF RENAL LAB RESULTS ARE ABNORMAL HIGH OR LOW
@@ -176,31 +171,6 @@ PATLOC(DFN) ;  Compiler Function: PATIENT LOCATION
  S OCXP2=$G(^DPT(+$G(DFN),.1))
  I $L(OCXP2) Q "I^"_OCXP2
  Q "O^OUTPT"
- ;
-RECCREAT(ORDFN,ORDAYS)  ;extrinsic function to return most recent 
- ;SERUM CREATININE within <ORDAYS> in format:
- ; test id^result units flag ref range collection d/t
- N BDT,CDT,ORY,ORX,ORZ,X,ORI,ORJ,CREARSLT,LABFILE,SPECFILE
- Q:'$L($G(ORDFN)) "0^"
- Q:'$L($G(ORDAYS)) "0^"
- D NOW^%DTC
- S BDT=$$FMADD^XLFDT(%,"-"_ORDAYS,"","","")
- K %
- Q:'$L($G(BDT)) "0^"
- S LABFILE=$$TERMLKUP("SERUM CREATININE",.ORY)
- Q:$G(LABFILE)'=60 "0^"
- Q:+$D(ORY)<1 "0^"
- S SPECFILE=$$TERMLKUP("SERUM SPECIMEN",.ORX)
- Q:$G(SPECFILE)'=61 "0^"
- Q:+$D(ORX)<1 "0^"
- S ORI=0 F  S ORI=$O(ORY(ORI)) Q:'ORI  I +$G(CREARSLT)<1 D
- .S ORJ=0 F  S ORJ=$O(ORX(ORJ)) Q:'ORJ  I +$G(CREARSLT)<1 D
- ..S ORZ=$$LOCL^ORQQLR1(ORDFN,ORI,ORJ)
- ..Q:'$L($G(ORZ))
- ..S CDT=$P(ORZ,U,7)
- ..I CDT'<BDT S CREARSLT=1
- Q:+$G(CREARSLT)<1 "0^"
- Q $P(ORZ,U)_U_$P(ORZ,U,3)_" "_$P(ORZ,U,4)_" "_$P(ORZ,U,5)_" ("_$P(ORZ,U,6)_")  "_$$FMTE^XLFDT(CDT,"2P")_U_$P(ORZ,U,3)
  ;
 TERMLKUP(OCXTERM,OCXLIST) ;
  Q $$TERM^OCXOZ01(OCXTERM,.OCXLIST)

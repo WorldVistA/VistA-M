@@ -1,5 +1,5 @@
 PSOCAN3 ;BIR/RTR/SAB - auto dc rxs due to death ;2/05/97 2:59pm
- ;;7.0;OUTPATIENT PHARMACY;**15,24,27,32,36,94,88,117,131,146,139,132,223,235,148,249,225,324,251,375,379,372,540,508**;DEC 1997;Build 295
+ ;;7.0;OUTPATIENT PHARMACY;**15,24,27,32,36,94,88,117,131,146,139,132,223,235,148,249,225,324,251,375,379,372,540,508,457**;DEC 1997;Build 116
  ;External reference to File #55 supported by DBIA 2228
  ;External references to L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  Q
@@ -76,6 +76,7 @@ ADD S DA=RXDA,RXREF=0,PSODFN=+$P(^PSRX(DA,0),"^",2) S:$G(PSOOPT)=3 REA="L"
  I REA="C" D
  .S $P(^PSRX(DA,3),"^",10)=$P(^PSRX(DA,3),"^")
  .S:'$P(^PSRX(DA,3),"^",5) $P(^PSRX(DA,3),"^",5)=DT
+ .K ^XTMP("PSO4D-"_PSODFN) ; p457 clear clozapine 4-day supply
  .I $O(^PS(52.41,"ARF",DA,0)),'$O(^PS(52.41,"APSOD",PSODFN,0)) S HLDDA=DA,DA=$O(^PS(52.41,"ARF",DA,0)),DIK="^PS(52.41," D ^DIK S DA=HLDDA K HLDDA
  .;check for label/release/pending release
  .I $G(PSOOPT)'=3 D FILX

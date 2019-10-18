@@ -1,13 +1,13 @@
-PSJCOM ;BIR/CML3-FINISH COMPLEX UNIT DOSE ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,186,267,281,315,338**;16 DEC 97;Build 8
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ; Reference to ^VALM1 is supported by DBIA 10116.
- ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to ^%DTC is supported by DBIA 10000.
- ; Reference to ^%RCR is supported by DBIA 10022.
- ; Reference to ^DIR is supported by DBIA 10026.
- ; Reference to ^TIUEDIT is supported by DBIA 2410.
- ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071.
+PSJCOM ;BIR/CML3-FINISH COMPLEX UNIT DOSE ORDERS ENTERED THROUGH OE/RR ;12 June 2019 09:31:53
+ ;;5.0;INPATIENT MEDICATIONS;**110,186,267,281,315,338,327**;16 DEC 97;Build 114
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ; Reference to ^VALM1 via DBIA 10116
+ ; Reference to ^PS(55 via DBIA 2191
+ ; Reference to ^%DTC via DBIA 10000
+ ; Reference to ^%RCR via DBIA 10022
+ ; Reference to ^DIR via DBIA 10026
+ ; Reference to ^TIUEDIT via DBIA 2410
+ ; Reference to ^TMP("PSODAOC",$J) via DBIA 6071
  ;
 UPD ;
  Q:'PSJCOM
@@ -44,6 +44,12 @@ VFY ; change status, move to 55, and change label record
  . S PSGOEEF(109)=1
  . S PSJACEPT=0
  D DDCHK G:CHK DONE
+ ;; START NCC REMEDIATION >> 327*RJS
+ N CLOZFLG S CLOZFLG=$$ISCLOZ^PSJCLOZ(+PSGORD)
+ I CLOZFLG,'$G(^TMP("PSJCOM",$J,+PSGORD,"SAND")) D  G:CHK DONE
+ .S DIR(0)="N^12.5:3000:1",DIR("A")="CLOZAPINE dosage (mg/day) ? " D ^DIR K DIR I $D(DIRUT) S CHK=1 Q  ;G DONE:$G(CHK)
+ .S (^TMP("PSJCOM",$J,+PSGORD,"SAND"),PSOSAND)=X
+ ;; END NCC REMEDIATION >> 327*RJS
  W !,"...a few moments, please..."
  I PSGORD["P" D
  . S PSGORDP=PSGORD ;Used in ACTLOG to update activity log in ^TMP
@@ -69,6 +75,7 @@ VFY ; change status, move to 55, and change label record
  S $P(VND4,"^",PSJSYSU,PSJSYSU+1)=DUZ_"^"_PSGDT
  S:'$D(^TMP("PSJCOM2",$J,+PSGORD)) ^TMP("PSJCOM",$J,+PSGORD,4)=VND4 S:$D(^TMP("PSJCOM2",$J,+PSGORD)) ^TMP("PSJCOM2",$J,+PSGORD,4)=VND4
  W:'$D(PSJSPEED) ! W !,"ORDER VERIFIED.",!
+ I CLOZFLG,$L($G(ANQDATA)) S ^TMP("PSJCOM",$J,+PSGORD,"ANQDATA")=ANQDATA
  I '$D(PSJSPEED) K DIR S DIR(0)="E" D ^DIR K DIR
  S VALMBCK="Q"
  S ^TMP("PSJCOM",$J)="A" S:$D(^TMP("PSJCOM2",$J,+PSGORD)) ^TMP("PSJCOM2",$J)="A"

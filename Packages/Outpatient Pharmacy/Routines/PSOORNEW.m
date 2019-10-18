@@ -1,5 +1,5 @@
-PSOORNEW ;BIR/SAB - display orders from oerr ;6/19/06 3:53pm
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505,517,508**;DEC 1997;Build 295
+PSOORNEW ;BIR/SAB - display orders from oerr ; 8/14/18 1:29pm
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505,517,508,457**;DEC 1997;Build 116
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -48,7 +48,7 @@ PT D DOSE2^PSOORFI4
  .S $P(RN," ",79)=" ",IEN=IEN+1
  .S ^TMP("PSOPO",$J,IEN,0)=$E(RN,$L("QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^"))+1,79)_"QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^") K RN
  S IEN=IEN+1
- I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
+ I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_+$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
  E  S ^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
  D:$D(CLOZPAT) PQTY^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_$S($G(PSONEW("# OF REFILLS"))]"":PSONEW("# OF REFILLS"),1:$P(OR0,"^",11))_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
@@ -78,11 +78,11 @@ EDTSEL N LST,FLD,OUT,CHECK,CSDRG D KV S (OUT,CSDRG)=0 ;/BLB/ PSO*7.0*505/517 MOD
  I '$D(PSODRG) S PSODRG=$G(PSODRUG("IEN"))
  I PSODRG,$$NDF(PSODRG)!($$CSDRG(PSODRG)) S CSDRG=1
  I +Y S LST=Y D FULL^VALM1 N PSODOSE M PSODOSE=PSONEW D  G DSPL
- .I CSDRG,(","_LST[",1,")!(","_LST[",3,")!(","_LST[",13,") D
+ .I CSDRG,(","_LST[",1,")!(","_LST[",3,")!(","_LST[",10,")!(","_LST[",13,") D
  ..W !!,"The selection includes field(s) that are not editable" W !,"for controlled substances. These field(s) will be skipped.",!
  ..S DIR(0)="E" D ^DIR K DIR
  .F FLD=1:1:$L(LST,",") Q:$P(LST,",",FLD)']""!(OUT)  D
- ..S CHECK=","_+$P(LST,",",FLD)_"," I CSDRG,",1,3,13,"[CHECK Q
+ ..S CHECK=","_+$P(LST,",",FLD)_"," I CSDRG,",1,3,10,13,"[CHECK Q
  ..D @(+$P(LST,",",FLD)) D:$P(LST,",",FLD)=8 REF D KV
  E  S VALMBCK="" Q
 ACP ;
@@ -102,7 +102,8 @@ ACP ;
  . W ! D ^DIR I $D(DIRUT)!'Y S VALMBCK="Q"
  I $G(ORD),+$P($G(^PS(52.41,+ORD,0)),"^",23)=1 Q
  ;
- I $D(CLOZPAT),+$G(PSONEW("QTY"))=0 S VALMSG="Unable to calculate the quantity, enter a quantity" G DSPL
+ ;/MZR edited next line in case QTY not defined *457
+ I $D(CLOZPAT),+$G(PSONEW("QTY"))=0 S PSONEW("QTY")=$P(OR0,"^",10)
  S (PSODIR("DFLG"),PSORX("DFLG"),PSODIR("QFLD"))=0,ACP=1 D ORCHK
  G:$G(PSONEW("QFLG")) DSPL
  I $G(PSODIR("DFLG"))!$G(PSORX("DFLG")) Q
@@ -114,7 +115,7 @@ ACP ;
  .W !,"patient address information. This action will also invalidate a digitally"
  .W !,"signed prescription and require the provider to re-enter the order."
  ;PSO*7*517 - END
- I $G(PSODRUG("NAME"))]"",'$G(ORCHK)!($G(ORDRG)'=PSODRUG("NAME")) D  I $G(PSORX("DFLG")) D CLEAN^PSOVER1 G DSPL
+ I $G(PSODRUG("NAME"))]"",'$G(ORCHK)!($G(ORDRG)'=PSODRUG("NAME")) D  I $G(PSORX("DFLG")) Q  ; *457 fixed wrong flow D CLEAN^PSOVER1 G DSPL
  . D POST^PSODRG S:'$G(PSORX("DFLG")) ORCHK=1,ORDRG=PSODRUG("NAME")
  D:'$G(PSORX("DFLG")) DOSCK^PSODOSUT("N") I $G(PSORX("DFLG")) G DSPL
  I '$D(PSONEW("RX #")) S PSOFROM="NEW",RTN=$S($P($G(PSOPAR),"^",7):"AUTO^PSONRXN",1:"MANUAL^PSONRXN") D @RTN Q:PSONEW("QFLG")  I '$P($G(PSOPAR),"^",7) S PSOX=PSONEW("RX #") D CHECK^PSONRXN
@@ -207,7 +208,7 @@ PZ ;
  N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  Q
 CSDRG(DRGIEN) ;/BLB/ Patch PSO*7*505/517 Controlled Substance drug?
- ; Input: DRGIEN - DRUG file (#50) pointer
+ ; Input: DRGIEN - DRUG file (#50) pointer 
  ;Output: $$CS - 1:YES / 0:NO
  N DEA
  Q:'DRGIEN 0

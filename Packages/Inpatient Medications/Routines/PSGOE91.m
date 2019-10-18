@@ -1,9 +1,10 @@
-PSGOE91 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;Jul 02, 2018@09:13
- ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265,267,285,315,334,373,366**;16 DEC 97;Build 7
+PSGOE91 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;12 June 2019 09:31:53
+ ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265,267,285,315,334,373,366,327**;16 DEC 97;Build 114
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
+ ; External reference YSCLTST2 supported by DBIA 4556
  ;
 41 ; admin times
  ;S MSG=0,PSGF2=41,ORIG=$G(PSGAT) S:PSGOEEF(PSGF2) BACK="41^PSGOE91"
@@ -13,7 +14,7 @@ PSGOE91 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;Jul 02, 2018@09:13
  I (PSGST="P")!$$PRNOK^PSGS0($G(PSGSCH)) G DONE
  I $$ODD^PSGS0(PSGS0XT) D PSGDUR G DONE
 A41 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
- . W !!?5,"ADMIN TIMES may not be edited for active complex orders." D PAUSE^VALM1
+ .W !!?5,"ADMIN TIMES may not be edited for active complex orders." D PAUSE^VALM1
  W !,"ADMIN TIMES: "_$S(PSGAT:PSGAT_"// ",1:"") R X:DTIME I X="^"!('$T) W:'$T $C(7) S PSGOEE=0 S:X="^" (X,PSGAT)=$G(ORIG),PSGDUR="" G DONE
  I X="" S:$G(PSGAT) X=PSGAT,PSGNOHI=1 ;*315 If admin time default was taken then don't highlight admin time.
  I $E(X)="^" D ENFF^PSGOE92 G:Y>0 @Y G A41
@@ -21,8 +22,8 @@ A41 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  .W $C(7),"  ??" S X="?" W:PSGS0XT="D"!(PSGSCH["@") !,"This is a 'DAY OF THE WEEK' schedule and MUST have admin times." D ENHLP^PSGOEM(55.06,41)
  I X="@" D DEL G:%'=1 A41 S PSGAT="",X=""
  I ((PSGST="O")!($G(PSGST)="OC")!($G(PSGST)="P")!$$ODD^PSGS0($P($G(ZZND),"^",3))!($P($G(ZZND),"^",5)="O")),X="" D  G DONE
- . S (PSGS0Y,PSGAT)=X
- . I (($G(PSGRF))&($G(PSGST)="O")) N PSGRO S PSGOEEF(34)=1,PSGOEEF(41)=1,PSGRO=1 D 34
+ .S (PSGS0Y,PSGAT)=X
+ .I (($G(PSGRF))&($G(PSGST)="O")) N PSGRO S PSGOEEF(34)=1,PSGOEEF(41)=1,PSGRO=1 D 34
  .Q
  I $G(PSGS0XT) I '$$ODD^PSGS0(PSGS0XT),$G(PSGST)'="P",$G(PSGST)'="OC",'$$PRNOK^PSGS0(PSGSCH) I ($G(PSGST)'="O") D TIMES G:'$D(X) A41 D PSGDUR G:'$D(X) A41 G:$G(X)="^" DONE ;*315
  I X?1."?" D ENHLP^PSGOEM(55.06,41) G A41
@@ -33,11 +34,11 @@ A41 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
 8 ; special instructions
  S MSG=0,PSGF2=8 S:PSGOEEF(PSGF2) BACK="8^PSGOE91"
 A8 I $G(PSGP),$G(PSGORD) I $$COMPLEX^PSJOE(PSGP,PSGORD) D
- . N X,Y,PARENT,P2ND S P2ND=$S(PSGORD["U":$G(^PS(55,PSGP,5,+PSGORD,.2)),1:$G(^PS(53.1,+PSGORD,.2))),PARENT=$P(P2ND,"^",8)
- . I PARENT D FULL^VALM1 W !!?5,"This order is part of a complex order. Please review the following ",!?5,"associated orders before changing this order." D CMPLX^PSJCOM1(PSGP,PARENT,PSGORD)
+ .N X,Y,PARENT S PARENT=$S(PSGORD["U":$$GET1^DIQ(55.06,+PSGORD_","_PSGP,125,"I"),1:$$GET1^DIQ(53.1,+PSGORD,125,"I"))
+ .I PARENT D FULL^VALM1 W !!?5,"This order is part of a complex order. Please review the following ",!?5,"associated orders before changing this order." D CMPLX^PSJCOM1(PSGP,PARENT,PSGORD)
  I $E(X)=U D ENFF^PSGOE92 G:Y>0 @Y G A8
  S PSGSI=$$EDITSI^PSJBCMA5($G(PSGP),$G(PSGORD)) I $G(PSGP),$G(PSGORD) I '$$DIFFSI^PSJBCMA5(PSGP,PSGORD) S PSGOEE=0 G DONE
- S PSGSI=$S((PSGSI>0&(PSGSI<4)):$G(^PS(53.45,+PSJSYSP,5,1,0))_" "_$G(^PS(53.45,+PSJSYSP,5,2,0)),PSGSI>3:"Instructions too long. See Order View or BCMA for full text.",1:"")
+ S PSGSI=$S((PSGSI>0&(PSGSI<4)):$$GET1^DIQ(53.455,"1,"_+PSJSYSP,.01)_" "_$$GET1^DIQ(53.455,"2,"_+PSJSYSP,.01),PSGSI>3:"Instructions too long. See Order View or BCMA for full text.",1:"")
  S:PSGSI=" " PSGSI="" I PSGSI]"" S PSGSI=$$ENBCMA^PSJUTL("U") G DONE
  Q
  ;
@@ -59,36 +60,57 @@ A10 ; start date/time edit
  ; RBD PSJ*5*373 Soft stop when Start Date more than 7 days after Order's LOGIN DATE
  S X1=+$G(PSGDT),X2=+7 D C^%DTC
  I +Y>X W !!,$C(7),"Start date/time should not be entered for more than 7 days after the",!,"order's LOGIN DATE.",! K DIR D WAIT^VALM1
+ N X1,X2,DIFF,PSGEMRG,PSGBACK S X1=PSGFD,X2=Y D ^%DTC S DIFF=X
+ N CLOZFLG S CLOZFLG=$$ISCLOZ^PSJCLOZ(,,PSGP,+$G(PSJORD))
+ ;S PSGEMRG=$S($$GET1^DIQ(55,DFN,53)?2U5N:1,1:0),PSGBACK=0
+ S PSGEMRG=0,PSGBACK=0
+ I ($$GET1^DIQ(55,DFN,53)?2U5N),($P($G(^XTMP("PSJ4D-"_DFN,0)),"^",1))>$$HTFM^XLFDT($H,1) S PSGEMRG=1
+ I PSGEMRG,$G(CLOZFLG),DIFF>4 D  G A10   ; Emergency Registration period not to exceed 4 days
+ .W !!?13,"*** EMERGENCY SUPPLY NOT TO EXCEED 4 DAYS! ***",!
+ I 'PSGEMRG,$G(CLOZFLG) D  G:PSGBACK A10
+ .N CLOZPAT,X2,PSGCFLG,PSGANC D CLOZPAT^PSJCLOZ
+ .S PSGCFLG=1,PSGANC=$$CL^YSCLTST2(DFN)
+ .I '$$OVERRIDE^YSCLTST2(DFN),'+$P(PSGANC,"^",4) S X2=4
+ .E  S X2=$S($G(CLOZPAT)=2:28,$G(CLOZPAT)=1:14,$G(CLOZPAT)=0:7,1:90)
+ .I DIFF>X2 W !!,"*** SUPPLY PERIOD NOT TO EXCEED "_X2_" DAYS! ***",! S PSGBACK=1
  ;S (PSGSDX,PSGSD)=+Y,PSGSDN=$$ENDD^PSGMI(PSGSD)_"^"_$$ENDTC^PSGMI(PSGSD) G DONE  ;373
  S (PSGSDX,PSGSD)=+Y,PSGSDN=$$ENDD^PSGMI(PSGSD)_"^"_$$ENDTC2^PSGMI(PSGSD) G DONE  ;373
  ;
 34 ; stop date
  S MSG=0,PSGF2=34 S:PSGOEEF(PSGF2) BACK="34^PSGOE91"
 A34 ;
- K PSGFDX
- I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
- . W !!?5,"Stop Date/Time may not be edited for active complex orders." D PAUSE^VALM1
- N MSG,PSGTMPST S PSGTMPST=$G(PSGST) S:'+$G(PSGRF) PSGRF=$P($G(^PS(50.7,$G(PSGPDRG),4),0),U,1) ;*315 One time orders for MRR's require message to instruct pharmacists
- I +$G(PSGRF),$D(^PS(51.1,"AC","PSJ",$G(PSGSCH))) D
- . S:PSGTMPST=($G(PSGST)="R") PSGST=$P($G(^PS(51.1,$O(^PS(51.1,"AC","PSJ",$G(PSGSCH),"")),0)),"^",5) ;Handle "Fill on Request"
+ ;
+ K PSGFDX N PSGEMRG
+ I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD),'$$LASTCHLD^PSJCLOZ(PSGP,PSJORD) S PSGOEE=0 D  G DONE
+ .W !!?5,"Stop Date/Time may not be edited for active complex orders." D PAUSE^VALM1
+ ;; START NCC REMEDIATION RJS*327
+ N CLOZFLG S CLOZFLG=$$ISCLOZ^PSJCLOZ(,,PSGP,+$G(PSJORD))
+ I $G(CLOZFLG) N CLOZPAT,PSGDRG S PSGDRG=$P(CLOZFLG,U,2) D CLOZPAT^PSJCLOZ
+ I $D(CLOZPAT) N PSGOLDED,PSGFDNOLD S PSGOLDED=PSGFD,PSGFDNOLD=PSGFDN
+ ;; END NCC REMEDIATION RJS*327
+ N MSG,PSGTMPST S PSGTMPST=$G(PSGST) S:'+$G(PSGRF) PSGRF=+$$GET1^DIQ(50.7,$G(PSGPDRG),12,"I") ;*315 One time orders for MRR's require message to instruct pharmacists
+ I +$G(PSGRF),$$FIND1^DIC(51.1,,"X",$G(PSGSCH)) D
+ .S:PSGTMPST=($G(PSGST)="R") PSGST=$$GET1^DIQ(51.1,$$FIND1^DIC(51.1,,"X",$G(PSGSCH)),5,"I") ;Handle "Fill on Request"
  .Q
  I $G(PSGTMPST)="O",+$G(PSGRF) S (PSGFDN,PSGFD)="" D
- . I +$G(PSGRF)=1 S MSG(1)="This NOW order has an Orderable Item for which a removal is required" D
- .. S MSG(2)=" at the next administration."
- .. S MSG(3)="The Stop DATE/TIME entered should be the next anticipated administration for the medication.",MSG(3,"F")="!"
+ .I +$G(PSGRF)=1 S MSG(1)="This NOW order has an Orderable Item for which a removal is required" D
+ ..S MSG(2)=" at the next administration."
+ ..S MSG(3)="The Stop DATE/TIME entered should be the next anticipated administration for the medication.",MSG(3,"F")="!"
  ..Q
- . I +$G(PSGRF)=2 S MSG(1)="This NOW order has an Orderable Item for which a removal period is optional",MSG(1,"F")="!!" D
- .. S MSG(2)="prior to the next administration.",MSG(2,"F")="!"
- .. S MSG(3)="If Early Removal is needed, enter Removal Time in Stop DATE/TIME field.",MSG(3,"F")="!"
- .. S MSG(4)="If an Early Removal is not required, the Stop DATE/TIME entered"
- .. S MSG(5)="should be the next anticipated administration for the medication.",MSG(5,"F")="!"
+ .I +$G(PSGRF)=2 S MSG(1)="This NOW order has an Orderable Item for which a removal period is optional",MSG(1,"F")="!!" D
+ ..S MSG(2)="prior to the next administration.",MSG(2,"F")="!"
+ ..S MSG(3)="If Early Removal is needed, enter Removal Time in Stop DATE/TIME field.",MSG(3,"F")="!"
+ ..S MSG(4)="If an Early Removal is not required, the Stop DATE/TIME entered"
+ ..S MSG(5)="should be the next anticipated administration for the medication.",MSG(5,"F")="!"
  ..Q
- . I +$G(PSGRF)=3 S MSG(1)="This NOW order has an Orderable Item that requires a removal period prior",MSG(1,"F")="!!" D
- .. S MSG(2)=" to the next administration.",MSG(2,"F")="!"
- .. S MSG(3)="Please Enter the Stop DATE/TIME to reflect the Removal Time for this medication.",MSG(3,"F")="!"
+ .I +$G(PSGRF)=3 S MSG(1)="This NOW order has an Orderable Item that requires a removal period prior",MSG(1,"F")="!!" D
+ ..S MSG(2)=" to the next administration.",MSG(2,"F")="!"
+ ..S MSG(3)="Please Enter the Stop DATE/TIME to reflect the Removal Time for this medication.",MSG(3,"F")="!"
  ..Q
- . D EN^DDIOL(.MSG)
+ .D EN^DDIOL(.MSG)
  .Q
+ I $D(PSGFDORG) S PSGFDN=PSGFDORG,PSGFD=PSGFDORX
+ I '$D(PSGFDORG) N PSGFDORG,PSGFDORX S PSGFDORG=PSGFDN,PSGFDORX=PSGFD
  W !,"STOP DATE/TIME: "_$S($P(PSGFDN,"^")]"":$P(PSGFDN,"^")_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOEE=0 G DONE
  I X="",PSGFD W "   "_$P(PSGFDN,"^") G W34
  I $E(X)="^" D ENFF^PSGOE92 G:Y>0 @Y G A34
@@ -100,12 +122,29 @@ A34 ;
  I X>367 W $C(7),!!?13,"*** STOP DATE cannot be more than 367 days from START DATE ***",! G A34
  ;S (PSGFDX,PSGFD)=+Y,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC^PSGMI(PSGFD)  ;373
  S (PSGFDX,PSGFD)=+Y,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC2^PSGMI(PSGFD)  ;373
+ ;/RJS Begin changes for emergency registration of clozapine patient Set end date to start date + 4 days at midnight.
+ S PSGEMRG=$$GET1^DIQ(55,DFN,53)?1U6N
+ I $G(CLOZFLG) N PSGBACK D  G:$G(PSGBACK) A34
+ .N PSGANC,PSGOVRD,PSGCFLG S PSGCFLG=1
+ .S:$$OVERRIDE^YSCLTST2(DFN) PSGOVRD=1
+ .S PSGANC=$$CL^YSCLTST2(DFN)
+ .N X,X1,X2 S X1=+Y,X2=PSGSD D ^%DTC
+ .I '$G(PSGOVRD),'+$P(PSGANC,"^",4) S X2=4
+ .E  I PSGEMRG S X2=4
+ .E  S X2=$S($G(CLOZPAT)=2:28,$G(CLOZPAT)=1:14,$G(CLOZPAT)=0:7,1:90)
+ .I X>X2 S PSGBACK=1 D
+ ..I X2=4
+ ..I PSGEMRG W !!?13,"*** EMERGENCY SUPPLY NOT TO EXCEED 4 DAYS! ***",! Q
+ ..W !!,"*** STOP DATE/TIME NOT TO EXCEED "_X2_" DAYS! ***",!
+ K:$G(PSGEMRG) PSGEMRG
+ ;/RJS End verify that stop date does not exceed maximum days supply based on lab frequency.
+ ;; END NCC REMEDIATION RJS*327
 W34 ;Compare to Start Date
  N Z,MSG
  D DOSE I $G(Z)]"",Z>$S($G(PSGFD):PSGFD,1:$G(PSGNEFD)) D  G A34
- . S MSG(1)="There is no administration time that falls between the Start Date/Time"
- . S MSG(2)="and the Stop Date/Time."
- . D EN^DDIOL(.MSG)
+ .S MSG(1)="There is no administration time that falls between the Start Date/Time"
+ .S MSG(2)="and the Stop Date/Time."
+ .D EN^DDIOL(.MSG)
  I PSGFD<PSGDT W $C(7),!!?13,"*** WARNING! THE STOP DATE ENTERED IS IN THE PAST! ***",! S MSG=1
  Q:+$G(PSGRO)
  ;
@@ -114,7 +153,7 @@ DONE ;
  ;BHW;PSJ*5*179; - Remove EFD call.  Added to PSGOEE.
  I PSGOEE G:'PSGOEEF(PSGF2) @BACK S PSGOEE=PSGOEEF(PSGF2)
  D:+$G(PSGDUR) VERTIMES ;*315
- S:'+$G(PSGRF) PSGRF=$P($G(^PS(50.7,$G(PSGPDRG),4),0),U,1)
+ S:'+$G(PSGRF) PSGRF=+$$GET1^DIQ(50.7,$G(PSGPDRG),12,"I")
  K F,F0,F1,PSGF2,F3,PSG,SDT,ORIG Q
  ;
 FF ; up-arrow to another field
@@ -128,7 +167,7 @@ DEL ; delete entry
 TIMES ;At least one admin time, not more than interval allows.
  I $G(PSGST)'="O",($G(PSGST)'="OC"),($G(PSGST)'="R") I X="" D EN^DDIOL("This order requires at least one administration time.") K X Q  ;No times
  N H,I,MAX
- I PSGSCH]"" I $D(^PS(51.1,"AC","PSJ",PSGSCH)) S H=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0)) S I=$P($G(^PS(51.1,H,0)),"^",3)
+ I PSGSCH]"" S H=$$FIND1^DIC(51.1,,"X",PSGSCH) I H S I=$$GET1^DIQ(51.1,H,2,"I")
  I $G(PSGST)="O",$L(X,"-")>1 D EN^DDIOL("This is a One Time Order. Only one administration time is permitted.") K X Q
  I $G(PSGST)="O" Q  ;Done validating One Time
  I +$G(I)=0 Q  ;No frequency - can not check frequency related items
@@ -151,11 +190,11 @@ PSGDUR ; Prompt for Removal times if admin times are on 24hr rotations and Site 
  ; if enabled determine type (hard vers soft stop)
  ;0 = no removal (current cap/tab functionality)
  ;1 = removal at next admin (current patch functionality)
- ;2 = removal prior to next admin; soft stop (pharmacist optional prompt to designate duration of administration
+ ;2 = removal prior to next admin; soft stop (pharmacist optional prompt to designate duration of administration)
  ;3 = removal prior to next admin; hard stop (pharmacist required prompt to designate duration of administration)
  ; prompt for removal if = 2 then allow skip, if = 3 then force entry
  ;
- S PSGRF=$P($G(^PS(50.7,$G(PSGPDRG),4),0),U,1) Q:((PSGRF<2)!($G(PSGST)="O")!($G(PSGST)="P")!($G(PSGST)="OC"))  ; no removal flag or no removal rotation
+ S PSGRF=+$$GET1^DIQ(50.7,$G(PSGPDRG),12,"I") Q:((PSGRF<2)!($G(PSGST)="O")!($G(PSGST)="P")!($G(PSGST)="OC"))  ; no removal flag or no removal rotation
  Q:$G(PSGS0XT)>1440  ; Duration of Administration valid only for 24 hours - subject to change in future.
  N RP,PSGIDF,WMSG,PSGDERR S (PSGIDF,PSGDERR)=0 S:$G(PSGDUR)>0 RP=(PSGDUR/60) S:"BID,TID,QID"[$G(PSGSCH) PSGIDF=1  ; Use separate validation for Times per day type orders
  S PSGF2=41
@@ -166,25 +205,25 @@ PSGDUR ; Prompt for Removal times if admin times are on 24hr rotations and Site 
  I (RP'=""),(RP'="@"),($E(RP)'="^"),($E(RP)'="?") S:(RP'?1N.2N)!(+(RP)<1) RP="?"
  I RP?1."?" D DURHLP^PSGOEM(RP,PSGRF) G PSGDUR
  I $E(RP)="^" D FF G:Y>0 @Y G PSGDUR
- I (+RP>0),'PSGIDF D  ; exclude BID,TID or QID schedules
+ I (+RP>0),'PSGIDF D  I PSGRMV<1 K PSGRMV G PSGDUR ; exclude BID,TID or QID schedules
  . S PSGDUR=(RP*60),PSGRMV=$G(PSGS0XT)-PSGDUR
- . I PSGRMV<1 W !,"DURATION OF ADMINISTRATION MATCHES OR EXCEEDS ORDER FREQUENCY" S RP="",PSGDERR=1 K PSGDUR,PSGRMV G PSGDUR Q
+ . I PSGRMV<1 W !,"DURATION OF ADMINISTRATION MATCHES OR EXCEEDS ORDER FREQUENCY" S RP="",PSGDERR=1 K PSGDUR ;,PSGRMV G PSGDUR Q
  .Q
  Q:$G(PSGDERR)=1
  I PSGRF=3,(+RP<1) W $C(7),!,"ENTRY IS REQUIRED" S RP="" G PSGDUR
  I PSGRF=2,(+RP<1) D
- . W !,"You have not entered Duration of Administration for this medication order, "
- . W !,"therefore the BCMA user will not be prompted to remove the medication prior "
- . W !,"to the next Admin Time."
- . S PSGRMV=-1,RP=0
+ .W !,"You have not entered Duration of Administration for this medication order, "
+ .W !,"therefore the BCMA user will not be prompted to remove the medication prior "
+ .W !,"to the next Admin Time."
+ .S PSGRMV=-1,RP=0
  .Q
  I PSGIDF,(+RP>0) D  ;Only for TPD schedules
- . N F,P,PSGARR
- . S PSGADT=$S($G(PSGDUR)=-1:X,$G(PSGS0Y):PSGS0Y,$G(PSGAT):PSGAT,1:""),PSGS0Y=PSGADT
- . S PSGARR=$L($G(PSGADT),"-")
- . F P=1:1:PSGARR D
- .. S PSGARR(P)=($P(PSGADT,"-",P)/100) S:(P>1) F(P)=PSGARR(P)-PSGARR(P-1)
- .. I $G(F(P)),($G(F(P))'=RP) S WMSG=1_U_"Duration of Administration does not correspond to one or more",WMSG(1)="of this order's scheduled Administration Times!"
+ .N F,P,PSGARR
+ .S PSGADT=$S($G(PSGDUR)=-1:X,$G(PSGS0Y):PSGS0Y,$G(PSGAT):PSGAT,1:""),PSGS0Y=PSGADT
+ .S PSGARR=$L($G(PSGADT),"-")
+ .F P=1:1:PSGARR D
+ ..S PSGARR(P)=($P(PSGADT,"-",P)/100) S:(P>1) F(P)=PSGARR(P)-PSGARR(P-1)
+ ..I $G(F(P)),($G(F(P))'=RP) S WMSG=1_U_"Duration of Administration does not correspond to one or more",WMSG(1)="of this order's scheduled Administration Times!"
  ..Q
  .Q
  S:(+RP>0) PSGDUR=(RP*60)
@@ -193,27 +232,27 @@ PSGDUR ; Prompt for Removal times if admin times are on 24hr rotations and Site 
  Q
  ;
 VERTIMES ; Redisplay Admin and Removal times *315
- S PSGRF=$P($G(^PS(50.7,$G(PSGPDRG),4),0),U,1) Q:(PSGRF<2)!($G(PSGST)="O")
+ S PSGRF=+$$GET1^DIQ(50.7,$G(PSGPDRG),12,"I") Q:(PSGRF<2)!($G(PSGST)="O")
  N PSGADT,PSGRARR,PSGAARR
  ;If we have a frequency and this is odd type order then we need to start calculations with order start time.
  I $G(PSGS0XT),$G(PSGNESD),+$G(PSGDUR),$G(PSGAT)="" D  Q
- . N L
- . S (PSGAARR,PSGRARR)=1,PSGADT=$P($P(PSGNESD,U,1),".",2),L=$L(PSGADT)
- . S PSGRARR(1)=(((((PSGADT*60)+PSGDUR)/60)#24)*100) S:PSGRARR(1)=0 PSGRARR(1)=2400 S:$L(PSGRARR(1))=3 PSGRARR(1)="0"_PSGRARR(1)
- . S PSGRARR(1)=$E(PSGRARR(1),1,L)_"(R)"
- . S PSGAARR(1)=PSGADT,PSGAARR(1)=$E(PSGAARR(1),1,L)_"(A)"
-  . D WRITE
+ .N L
+ .S (PSGAARR,PSGRARR)=1,PSGADT=$P($P(PSGNESD,U,1),".",2),L=$L(PSGADT)
+ .S PSGRARR(1)=(((((PSGADT*60)+PSGDUR)/60)#24)*100) S:PSGRARR(1)=0 PSGRARR(1)=2400 S:$L(PSGRARR(1))=3 PSGRARR(1)="0"_PSGRARR(1)
+ .S PSGRARR(1)=$E(PSGRARR(1),1,L)_"(R)"
+ .S PSGAARR(1)=PSGADT,PSGAARR(1)=$E(PSGAARR(1),1,L)_"(A)"
+ .D WRITE
  .Q
  ;
  S (PSGRARR,PSGAARR)=$S($G(PSGAT):$L(PSGAT,"-"),1:$L(PSGS0Y,"-"))
  N P,L
  F P=1:1:PSGRARR D
- . S PSGADT=$S($G(PSGAT):$P(PSGAT,"-",P),1:$P(PSGS0Y,"-",P)),L=$L(PSGADT)
- . S PSGADT=$S($L(PSGADT)=4:PSGADT/100,1:PSGADT*1)
- . S PSGRARR(P)=(((((PSGADT*60)+PSGDUR)/60)#24)*100) S:PSGRARR(P)=0 PSGRARR(P)=2400 S:$L(PSGRARR(P))=3 PSGRARR(P)="0"_PSGRARR(P)
- . S PSGRARR(P)=$E(PSGRARR(P),1,L)_"(R)"
- . S PSGAARR(P)=(PSGADT*100) S:$L(PSGAARR(P))=3 PSGAARR(P)="0"_PSGAARR(P)
- . S PSGAARR(P)=$E(PSGAARR(P),1,L)_"(A)"
+ .S PSGADT=$S($G(PSGAT):$P(PSGAT,"-",P),1:$P(PSGS0Y,"-",P)),L=$L(PSGADT)
+ .S PSGADT=$S($L(PSGADT)=4:PSGADT/100,1:PSGADT*1)
+ .S PSGRARR(P)=(((((PSGADT*60)+PSGDUR)/60)#24)*100) S:PSGRARR(P)=0 PSGRARR(P)=2400 S:$L(PSGRARR(P))=3 PSGRARR(P)="0"_PSGRARR(P)
+ .S PSGRARR(P)=$E(PSGRARR(P),1,L)_"(R)"
+ .S PSGAARR(P)=(PSGADT*100) S:$L(PSGAARR(P))=3 PSGAARR(P)="0"_PSGAARR(P)
+ .S PSGAARR(P)=$E(PSGAARR(P),1,L)_"(A)"
  .Q
  D WRITE
  Q
@@ -232,7 +271,7 @@ ASK ;
  I 'Y K X S PSGDUR=-1,PSGFOK(8)="" G A41
  N P S P=1,PSGRMVT=$P(PSGRARR(P),"(",1)
  F  S P=$O(PSGRARR(P)) Q:P=""  D
- . S PSGRMVT=PSGRMVT_"-"_$P(PSGRARR(P),"(",1)
+ .S PSGRMVT=PSGRMVT_"-"_$P(PSGRARR(P),"(",1)
  .Q
  Q
  ;

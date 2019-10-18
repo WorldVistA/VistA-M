@@ -1,5 +1,6 @@
 TIULX ; SLC/JER - Cross-reference library functions ; 10/1/10 2:31pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,28,79,100,136,219,255**;Jun 20, 1997;Build 2
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,28,79,100,136,219,255,326**;Jun 20, 1997;Build 1
+ ;Per VHA Directive 2004-038, this routine should not be modified
  ; File 200 - IA 10060
  ; ^ORD(101 - IA 872
  ; ^DISV    - IA 510
@@ -120,7 +121,9 @@ IDSIGNRS(TIUY,TIUDA,TIULIST) ; Add list of Add'l Signers for a TIU Document
  . S DIE=DIC,TIUY=$G(TIUY)_$S($G(TIUY)]"":U,1:"")_+TIULIST(TIUI)
  . S DR=".02////"_0_";.03////"_+$G(TIULIST(TIUI))
  . D ^DIE
- . D SEND^TIUALRT(TIUDA)
+ . ; TIU*1.0*326 Only call SEND^TIUALRT once instead of for each add. signer 
+ . ;D SEND^TIUALRT(TIUDA)
+ I $O(TIULIST(0)) D SEND^TIUALRT(TIUDA)
  Q
 REMSIGNR(TIUDA,TIUDUZ) ; Remove user from additional signer list
  N DA,DIE,DR,DIDEL

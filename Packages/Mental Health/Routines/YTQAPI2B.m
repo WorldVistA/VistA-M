@@ -1,5 +1,5 @@
 YTQAPI2B ;SLC/BLD- MHAX ANSWERS SPECIAL HANDLING #2 ;2/7/2018  17:35
- ;;5.01;MENTAL HEALTH;**134,136**;Dec 30, 1994;Build 235
+ ;;5.01;MENTAL HEALTH;**134,139**;Dec 30, 1994;Build 134
  ;
  ; This routine was split from YTQAPI2A.
  ; This routine handles limited complex reporting requirements without
@@ -20,22 +20,25 @@ SPECIAL(TSTNM,YSDATA,N,YSAD,YSTSTN) ; 1 add "hidden" computed question text
  .D GETSCORE^YTQAPI8(.YSCORE,.YS)
  .S SCORES=$P(^TMP($J,"YSCOR",2),"=",2)
  .I SCORES=0 D
+ ..S YSDATA(N)="7776^9999;1^"_SCORES,N=N+1
  ..S YSDATA(N)="7771^9999;1^The score for this administration indicates a NEGATIVE screen for PTSD." S N=N+1
  .S SUISCORE=$P(^TMP($J,"YSCOR",3),"=",2)
  .I $G(SCORES)<4,$G(SCORES)>0 D
+ ..S YSDATA(N)="7776^9999;1^"_SCORES,N=N+1
  ..S YSDATA(N)="7771^9999;1^The score for this administration is "_SCORES_", which indicates ",N=N+1
  ..S YSDATA(N)="7772^9999;1^   a NEGATIVE screen for PTSD in the past month." S N=N+1
  .I $G(SCORES)>3 D
+ ..S YSDATA(N)="7776^9999;1^"_SCORES,N=N+1
  ..S YSDATA(N)="7771^9999;1^The score for this administration is "_SCORES_", which indicates ",N=N+1
  ..S YSDATA(N)="7772^9999;1^   a POSITIVE screen for PTSD in the past month. Further assessment is recommended.",N=N+1
  .;
  .I $G(SUISCORE)=0 D
- ..;S YSDATA(N)="7773^9999;1^The results of this administration indicates a NEGATIVE screen ",N=N+1
- ..;S YSDATA(N)="7774^9999;1^   for Risk of Suicide over the last 2 weeks.",N=N+1
+ ..S YSDATA(N)="7777^9999;1^"_SUISCORE,N=N+1
  ..S YSDATA(N)="7773^9999;1^The score on this administration is 0, which indicates a NEGATIVE ",N=N+1
  ..S YSDATA(N)="7774^9999;1^   screen for Risk of Suicide over the last 2 weeks."
  .S SUISCRN=$P(^TMP($J,"YSCOR",3),"=",2)
  .I SUISCRN>0 D
+ ..S YSDATA(N)="7777^9999;1^"_SUISCORE,N=N+1
  ..I SUISCRN=1 S TEXT="SEVERAL DAYS"
  ..I SUISCRN=2 S TEXT="MORE THAN HALF THE DAYS"
  ..I SUISCRN=3 S TEXT="NEARLY EVERY DAY"

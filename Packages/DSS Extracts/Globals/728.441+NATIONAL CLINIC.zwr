@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: NATIONAL CLINIC
-23-SEP-2019 15:32:24 ZWR
+17-OCT-2019 20:40:48 ZWR
 ^ECX(728.441,0)="NATIONAL CLINIC^728.441^2929^2928"
 ^ECX(728.441,1,0)="SSGD^Stop Smoking Group Double Provider"
 ^ECX(728.441,1,1,0)="^^1^1^2940512^^"
@@ -305,7 +305,7 @@ OSEHRA ZGO Export: NATIONAL CLINIC
 ^ECX(728.441,273,0)="CGAC^CHAR4 COUNCIL"
 ^ECX(728.441,274,0)="DEAC^CHAR4 COUNCIL"
 ^ECX(728.441,275,0)="DMAC^CHAR4 COUNCIL"
-^ECX(728.441,276,0)="HTAC^Whole Health Partner Group"
+^ECX(728.441,276,0)="HTAC^Take Chrg MyLife&Hlth Grp"
 ^ECX(728.441,277,0)="IDAC^Infectious Disease V1 CCS"
 ^ECX(728.441,278,0)="MHAC^Mental Health V1 CCS"
 ^ECX(728.441,279,0)="PNAC^Pain Management V1 CCS"
@@ -390,7 +390,7 @@ OSEHRA ZGO Export: NATIONAL CLINIC
 ^ECX(728.441,358,0)="DEHC^CHAR4 COUNCIL"
 ^ECX(728.441,359,0)="DMHC^PRRC Day Hospital"
 ^ECX(728.441,360,0)="HDHC^HIH Step Down"
-^ECX(728.441,361,0)="IDHC^Integrative Health Consult"
+^ECX(728.441,361,0)="IDHC^Whole Health Clinical Care"
 ^ECX(728.441,362,0)="MHHC^Mental Health V8 CCS"
 ^ECX(728.441,363,0)="PNHC^Pain Management V8 CCS"
 ^ECX(728.441,364,0)="PDHC^Pulmonary Disease V8 CCS"
@@ -4041,7 +4041,7 @@ OSEHRA ZGO Export: NATIONAL CLINIC
 ^ECX(728.441,2645,2)=3141001
 ^ECX(728.441,2646,0)="CD00^Cardiac Disease Non-Specified Provider"
 ^ECX(728.441,2647,0)="CG00^Coag Management Non-Specified Provider"
-^ECX(728.441,2648,0)="DE00^Dementia Non-Specified Provider"
+^ECX(728.441,2648,0)="DE00^SVH Telehealth (StateVetHom)"
 ^ECX(728.441,2649,0)="DM00^Diabetes Mellitus Non-Specified Provider"
 ^ECX(728.441,2650,0)="HT00^Hypertension Non-Specified Provider"
 ^ECX(728.441,2651,0)="ID00^Infectious Disease Non-Specified Provider"
@@ -4281,7 +4281,7 @@ OSEHRA ZGO Export: NATIONAL CLINIC
 ^ECX(728.441,2835,0)="PILA^Pilates"
 ^ECX(728.441,2836,0)="PLMT^CHAR4 COUNCIL"
 ^ECX(728.441,2837,0)="PLPS^CHAR4 COUNCIL"
-^ECX(728.441,2838,0)="RFLX^Reflexology"
+^ECX(728.441,2838,0)="RFLX^Intro to Whole Health"
 ^ECX(728.441,2839,0)="RLXT^Relaxation techniques"
 ^ECX(728.441,2840,0)="TAIC^Tai chi"
 ^ECX(728.441,2841,0)="TPHT^Therapeutic or healing touch"

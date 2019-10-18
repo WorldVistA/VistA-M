@@ -1,4 +1,4 @@
-OCXOZ0U ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
+OCXOZ0U ;SLC/RJS,CLA - Order Check Scan ;SEP 30,2019 at 10:36
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -11,7 +11,7 @@ OCXOZ0U ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  Q
  ;
 R51R1A ; Verify all Event/Elements of  Rule #51 'RECENT CHOLECYSTOGRAM ORDER'  Relation #1 'RECENT CHOLECGRM'
- ;  Called from EL63+5^OCXOZ0H.
+ ;  Called from EL63+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;
@@ -46,7 +46,7 @@ R51R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #51
  Q
  ;
 R53R1A ; Verify all Event/Elements of  Rule #53 'RENAL FUNCTIONS OVER AGE 65 CHECK'  Relation #1 'PHARM PAT OVER 65'
- ;  Called from EL64+5^OCXOZ0H.
+ ;  Called from EL64+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;
@@ -81,7 +81,7 @@ R53R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #53
  Q
  ;
 R54R1A ; Verify all Event/Elements of  Rule #54 'CONCURRENT LAB ORDERS FOR ANGIOGRAM, CAT...'  Relation #1 'ANGIOGRAM'
- ;  Called from EL65+5^OCXOZ0H.
+ ;  Called from EL65+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;
@@ -116,7 +116,7 @@ R54R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #54
  Q
  ;
 R55R1A ; Verify all Event/Elements of  Rule #55 'ALLERGY - CONTRAST MEDIA REACTION'  Relation #1 'ALLERGY'
- ;  Called from EL66+5^OCXOZ0H.
+ ;  Called from EL66+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;
@@ -151,7 +151,7 @@ R55R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #55
  Q
  ;
 R56R1A ; Verify all Event/Elements of  Rule #56 'RECENT BARIUM STUDY'  Relation #1 'BARIUM'
- ;  Called from EL67+5^OCXOZ0H.
+ ;  Called from EL67+5^OCXOZ0G.
  ;
  Q:$G(OCXOERR)
  ;
@@ -186,7 +186,7 @@ R56R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #56
  Q
  ;
 R57R1A ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #1 'CLOZAPINE AND (NO WBC W/IN 7 DAYS OR NO ANC W/IN 7...'
- ;  Called from EL116+5^OCXOZ0H, and EL117+5^OCXOZ0H, and EL118+5^OCXOZ0H.
+ ;  Called from EL116+5^OCXOZ0G, and EL117+5^OCXOZ0G, and EL118+5^OCXOZ0H.
  ;
  Q:$G(OCXOERR)
  ;
