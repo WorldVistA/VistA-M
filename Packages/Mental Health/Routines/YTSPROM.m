@@ -1,5 +1,5 @@
 YTSPROM ;SLC/MJB- Score PROMIS29 ; 10/14/18 2:02pm
- ;;5.01;MENTAL HEALTH;**138**;Dec 30, 1994;Build 68
+ ;;5.01;MENTAL HEALTH;**151**;Dec 30, 1994;Build 92
  ;
  ; This routine was split from YTQAPI2A.
  ; This routine handles limited complex reporting requirements without

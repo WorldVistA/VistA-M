@@ -1,5 +1,5 @@
-ECXCPRO1 ;ALB/JAP - PRO Extract YTD Report (cont) ;3/4/13  07:44
- ;;3.0;DSS EXTRACTS;**21,84,132,144**;Dec 22, 1997;Build 9
+ECXCPRO1 ;ALB/JAP - PRO Extract YTD Report (cont) ;2/14/19  14:56
+ ;;3.0;DSS EXTRACTS;**21,84,132,144,174**;Dec 22, 1997;Build 33
  ;
 PRINT ;print report
  N PG,LN,QFLG,NODE,DESC,AVE,JJ,SS,TOTAL,TOT,TQTY
@@ -44,6 +44,9 @@ PRINT ;print report
  ...S CNT=CNT+1 ;144
  ..W !,DESC,?33,$J(X(1),8,0),?43,$J(X(2),8,0),?53,$J(AVE("C"),8,2),?63,$J(X(3),8,0),?73,$J(X(4),8,0),?83,$J(AVE("V"),8,2),?93,$J(X(5),8,0),?103,$J(TOT("L"),8,0),?113,$J(AVE("L"),8,2),?123,$J(AVE("ALL"),8,2)
  .Q:$G(ECXPORT)  ;144 Don't continue if exporting
+ .I ECXTYPE="R" D  ;174 Section added for note to display after rental information
+ ..I $Y+3>IOSL D HEADER ;Print header if not enough room for the note
+ ..W !!,"NOTE: For Vista records with Unit of Issue=MO, the extract Unit of Issue and Quantity have been converted from months to days."
  .I 'QFLG,$E(IOST)="C" D
  ..S SS=22-$Y F JJ=1:1:SS W !
  ..S DIR(0)="E" D ^DIR K DIR S:'Y QFLG=1

@@ -1,5 +1,5 @@
-ECXSCXN ;ALB/JAP  Clinic Extract ;7/3/18  14:06
- ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149,156,154,161,166,170**;Dec 22, 1997;Build 12
+ECXSCXN ;ALB/JAP  Clinic Extract ;2/19/19  16:09
+ ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149,156,154,161,166,170,174**;Dec 22, 1997;Build 33
  ;
 BEG ;entry point from option
  D SETUP Q:ECFILE=""  D ^ECXTRAC,^ECXKILL
@@ -20,12 +20,12 @@ START ;entry point from taskmgr
  D ^DIC S TIU=+Y,ECED=ECED+.3,ECXCLIN=0 K DIC,Y
  ;get clinic default appt length, type, division
  F  S ECXCLIN=$O(^SC(ECXCLIN)) Q:'ECXCLIN  D
- .K LOCARR S DIC=44,DA=ECXCLIN,DR="2;3.5;1912",DIQ(0)="I",DIQ="LOCARR"
+ .K LOCARR S DIC=44,DA=ECXCLIN,DR="2;3.5;1912;2502",DIQ(0)="I",DIQ="LOCARR" ;174 Added 2502, non-count field
  .D EN^DIQ1
  .Q:$G(LOCARR(44,ECXCLIN,2,"I"))'="C"
  .S ALEN=+$G(LOCARR(44,ECXCLIN,1912,"I"))
  .S ^TMP($J,"ECXCL",ECXCLIN)=ALEN,ALEN=$$RJ^XLFSTR(ALEN,3,0)
- .S ^TMP($J,"ECXCL",ECXCLIN)=^TMP($J,"ECXCL",ECXCLIN)_"^"_ALEN_"^"_$G(LOCARR(44,ECXCLIN,2,"I"))_"^"_+$G(LOCARR(44,ECXCLIN,3.5,"I"))
+ .S ^TMP($J,"ECXCL",ECXCLIN)=^TMP($J,"ECXCL",ECXCLIN)_"^"_ALEN_"^"_$G(LOCARR(44,ECXCLIN,2,"I"))_"^"_+$G(LOCARR(44,ECXCLIN,3.5,"I"))_"^"_$S($G(LOCARR(44,ECXCLIN,2502,"I"))="Y":"Y",1:"") ;174 Set non-count flag
  .D FEEDER^ECXSCX1(ECXCLIN,ECSD1,.P1,.P2,.P3,.TOSEND,.ECXDIV,.P4) ;166
  .K P1,P2,P3,P4,TOSEND,ECXDIV ;166
  ;get from file #44 any no-shows & get encounters from #409.68
@@ -37,7 +37,7 @@ START ;entry point from taskmgr
  ;
 ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  N CHKOUT,ECD,STAT,STOP,MDIV,ECXEDIS,CNT,ECXARR,NODE ;136
- N ECXESC,ECXECL,ECXCLST,ECXPP,ECXASIH ;149,170
+ N ECXESC,ECXECL,ECXCLST,ECXPP,ECXASIH,ECXSCST,ECXNOCNT ;149,170,174
  S ECD=ECSD1
  F  S ECD=$O(^SCE("B",ECD)) Q:('ECD!(ECD>ECED))!(QFLG)  S ECXIEN=0 D
  .F  S ECXIEN=$O(^SCE("B",ECD,ECXIEN)) Q:'ECXIEN  D  Q:QFLG
@@ -66,6 +66,7 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  ..D PAT1^ECXSCX2(ECXDFN,ECXDATE,.ECXERR) Q:ECXERR
  ..D FEEDER^ECXSCX1(ECXCLIN,ECSD1,.P1,.P2,.P3,.TOSEND,.ECXDIV,.P4) ;166
  ..Q:TOSEND=6
+ ..S ECXNOCNT=$P($G(^TMP($J,"ECXCL",ECXCLIN)),U,5) ;174 Get non-count flag
  ..K LOCARR S DIC=40.7,DA=STOP,DR="1",DIQ(0)="I",DIQ="LOCARR" D EN^DIQ1
  ..S ECXSTOP=$$RJ^XLFSTR($G(LOCARR(40.7,STOP,1,"I")),3,0)
  ..; ******* - PATCH 127, ADD PATCAT CODE ********
@@ -151,9 +152,9 @@ FILE ;record setup for file #727.827
  ;date of birth (ECDOB)^Eligibility (ECXELIG)^Veteran (ECXVET)^
  ;Placehold Race (ECXRACE)^POW status (ECXPST)^POW Location (ECXPLOC)^ Radiation Status(ECXRST)^
  ;Radiation Encounter Indicator (ECXIR)^Agent Orange Status (ECXAST)^
- ;Agent Orange Location(ECXAO)^Master Patient Index ((ECXMPI)^DSS Product Department (ECXDSSD)^
+ ;Agent Orange Location(ECXAO)^Master Patient Index ((ECXMPI)^PLACEHOLD DSS Product Department (ECXDSSD)^
  ;Sex (ECXSEX)^zip code (ECXZIP)^Place Holder^Place Holder^Encounter Eligibility (ECXENEL)^
- ;MST Status(ECXMST)^MST Encounter Indicator (ECXMIL)^Place Holder^Place Holder^
+ ;MST Status(ECXMST)^MST Encounter Indicator (ECXMIL)^PLACEHOLD Sharing Payor^PLACEHOLD Sharing Ins^
  ;Enrollment Location ((ECXENRL)^State (ECXSTATE)^County (ECXCNTY)^
  ;Placehold Associate PC Provider (ECASPR)^Placehold Associate PC Prov. Person Class (ECCLAS2)^Place Holder^
  ;DOM, PRRTP AND SAARTP Indicator (ECXDOM)^ Enrollment Category (ECXCAT)^
@@ -163,9 +164,9 @@ FILE ;record setup for file #727.827
  ;Observation Patient Indicator (ECXOBS)^ Encounter Number (ECXENC)^
  ;Agent Orange Location (ECXAOL)^Production Division Code (ECXPDIV)^ Appointment Type (ECXATYP)^
  ;Purpose of Visit (ECXPVST)^Means Test (ECXMTST)^Head & Neck Cancer Indicator (ECXHNCI)^
- ;Placehold Ethnicity(ECXETH)^Placehold Race 1(ECXRC1)^CBOC Status (ECXCBOC)^Place Holder^Enrollment Priority (ECXPRIOR_ECXSBGRP)^
+ ;Placehold Ethnicity(ECXETH)^Placehold Race 1(ECXRC1)^CBOC Status (ECXCBOC)^PLACEHOLD DSS IP #^Enrollment Priority (ECXPRIOR_ECXSBGRP)^
  ;User Enrollee (ECXUESTA)^ Patient Type(ECXPTYPE)^CV Status Eligibility (ECXCVE)^
- ;CV Eligibility End Date (ECXCVEDT)^Encounter CV (ECXCVENC)^National Patient Record Flag (ECXNPRFI)^
+ ;CV Eligibility End Date (ECXCVEDT)^Encounter CV (ECXCVENC)^PLACEHOLD National Patient Record Flag (ECXNPRFI)^
  ;SW Asia Conditions (ECXEST)^Encounter SWAC (ECXECE)^ERI (ECXERI)^Enc Head/Neck CA (ECXHNC)^
  ;OEF/OIF (ECXOEF)^ OEF/OIF Return Date (ECXOEFDT)^Placehold Associate PC Provider NPI (ECASNPI)^
  ;Placehold Primary Care Provider NPI (ECPTNPI)^Provider NPI(ECPRNPI)^
@@ -195,7 +196,8 @@ FILE ;record setup for file #727.827
  ;NODE(6)
  ;CPT, Qty & Modifiers #18 (ECXCQM18)^CPT, Qty & Modifiers #19 (ECXCQM19)^CPT, Qty & Modifiers #20 (ECXCQM20)^
  ;CPT, Qty & Modifiers #21 (ECXCQM21)^CPT, Qty & Modifiers #22 (ECXCQM22)^CPT, Qty & Modifiers #23 (ECXCQM23)
- ;CPT, Qty & Modifiers #24 (ECXCQM24)^CPT, Qty & Modifiers #25 (ECXCQM25)
+ ;CPT, Qty & Modifiers #24 (ECXCQM24)^CPT, Qty & Modifiers #25 (ECXCQM25)^
+ ;Service Connected Status (ECXSCST)^Non-count flag (ECXNOCNT)
  ;
  N STR
  N ECXSTANO  ;161 tjl
@@ -205,6 +207,7 @@ FILE ;record setup for file #727.827
  S EC7=$O(^ECX(727.827,999999999),-1),EC7=EC7+1
  I ECXLOGIC>2018 D  ;170 Fields will now be null
  . S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)=""
+ I ECXLOGIC>2019 S ECXNPRFI=""  ;174 - TJL - Field retired
  S STR(0)=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S STR(0)=STR(0)_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_$S($G(ECXLOGIC)>2017:"",1:ECXKEY)_U_ECXOBI_U ;166 Feeder key will be here if FY<2018, otherwise it will be null
  ;convert specialty to PTF Code for transmission
@@ -246,6 +249,7 @@ FILE ;record setup for file #727.827
  . S STR(5)=ECXCQM7_U_ECXCQM8_U_ECXCQM9_U_ECXCQM10_U_ECXCQM11_U_ECXCQM12
  . S STR(5)=STR(5)_U_ECXCQM13_U_ECXCQM14_U_ECXCQM15_U_ECXCQM16_U_ECXCQM17_U
  . S STR(6)=ECXCQM18_U_ECXCQM19_U_ECXCQM20_U_ECXCQM21_U_ECXCQM22_U_ECXCQM23_U_ECXCQM24_U_ECXCQM25
+ I ECXLOGIC>2019 S STR(6)=STR(6)_U_ECXSCST_U_$G(ECXNOCNT) ;174 Add Service Connected Status and non-count flag
  D FILE2^ECXSCX2(727.827,EC7,.STR)
  S ECRN=ECRN+1,$P(^ECX(727.827,0),U,3)=EC7
  Q

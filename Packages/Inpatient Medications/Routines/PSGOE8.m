@@ -1,5 +1,5 @@
 PSGOE8 ;BIR/CML3 - EDIT ORDERS IN 53.1 ;12 June 2019 09:31:53
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338,366,327**;16 DEC 97;Build 114
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338,366,327,380**;16 DEC 97;Build 10
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -59,6 +59,7 @@ A109 ;
  S PSGDO=X G DONE
  ;
 3 ; med route
+ N PSGS0XT
  S MSG=0,F2=3 S:PSGOEEF(F2) BACK="3^PSGOE8"
 A3 I $$PNDREN($G(PSGORD)) D  Q
  . W !!?5,"Med Route may not be edited at this point." D PAUSE^VALM1

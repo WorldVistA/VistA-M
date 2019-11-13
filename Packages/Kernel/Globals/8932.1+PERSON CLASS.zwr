@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: PERSON CLASS
-17-OCT-2019 20:48:32 ZWR
+12-NOV-2019 14:52:48 ZWR
 ^USC(8932.1,0)="PERSON CLASS^8932.1OIs^1619^1619"
 ^USC(8932.1,1,0)="Physicians (M.D. and D.O.)^Physician/Osteopath^^i^3051115^V110000^^^"
 ^USC(8932.1,1,90002)="^I"
@@ -8735,16 +8735,18 @@ OSEHRA ZGO Export: PERSON CLASS
 ^USC(8932.1,1152,"TERMSTATUS",1,0)="3180402.153539^1"
 ^USC(8932.1,1152,"TERMSTATUS","B",3180402.153539,1)=""
 ^USC(8932.1,1152,"VUID")="5251916^1^"
-^USC(8932.1,1153,0)="Other Service Providers^Health Educator^^i^3191001^V081902^174H00000X^^"
-^USC(8932.1,1153,11,0)="^^2^2^3180402"
+^USC(8932.1,1153,0)="Other Service Providers^Health Educator^^a^^V081902^174H00000X^^"
+^USC(8932.1,1153,11,0)="^^2^2^3191021"
 ^USC(8932.1,1153,11,1,0)="Health educators work in a variety of settings providing education to individuals or groups of individuals on healthy behaviors, wellness, and health-related topics with the goal of preventing diseases and health problems. Health educators generally "
 ^USC(8932.1,1153,11,2,0)="require a bachelor's degree and may receive additional training, such as through mentoring, internships, or volunteer work."
 ^USC(8932.1,1153,90002)="^I"
-^USC(8932.1,1153,"TERMSTATUS",0)="^8932.199DA^2^2"
+^USC(8932.1,1153,"TERMSTATUS",0)="^8932.199DA^3^3"
 ^USC(8932.1,1153,"TERMSTATUS",1,0)="3180402.153556^1"
 ^USC(8932.1,1153,"TERMSTATUS",2,0)="3191001.082505^0"
+^USC(8932.1,1153,"TERMSTATUS",3,0)="3191021.145553^1"
 ^USC(8932.1,1153,"TERMSTATUS","B",3180402.153556,1)=""
 ^USC(8932.1,1153,"TERMSTATUS","B",3191001.082505,2)=""
+^USC(8932.1,1153,"TERMSTATUS","B",3191021.145553,3)=""
 ^USC(8932.1,1153,"VUID")="5253218^1^"
 ^USC(8932.1,1154,0)="Allopathic & Osteopathic Physicians^Pediatrics^Child Abuse Pediatrics^a^^V180506^2080C0008X^^37"
 ^USC(8932.1,1154,11,0)="^^2^2^3180402"

@@ -1,7 +1,7 @@
-ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ;4/18/17  12:21
- ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132,136,149,166**;Dec 22, 1997;Build 24
+ECXFEKEY ;BIR/DMA,CML-Print Feeder Keys; [ 05/15/96  9:44 AM ] ;5/29/19  08:51
+ ;;3.0;DSS EXTRACTS;**10,11,8,40,84,92,123,132,136,149,166,174**;Dec 22, 1997;Build 33
 EN ;entry point from option
- N ECXPORT,CNT,COL,LECOL,PCOL ;149
+ N ECXPORT,CNT,COL,LECOL,PCOL,PHATYPE,DIR,DIRUT,DTOUT,DUOUT,Y ;149,174
  S ECXPORT=$$EXPORT Q:ECXPORT=-1  ;149
  W !!,"Print list of Feeder Keys:",!
  S DIR("?")=$S('$G(ECXPORT):"Select one or more feeder key systems to display",1:"Select one feeder key system to export") ;149
@@ -13,12 +13,16 @@ EN ;entry point from option
  S:ECY["3" ECLAB=$$SELLABKE^ECXFEKE1() ;**Prompt to select Lab Feeder key
  G:($G(ECLAB)=-1) QUIT ;**GOTO Exit point
  G:$D(DIRUT) QUIT
+ I ECY[4 D  I $G(DIRUT) Q  ;Section added in 174
+ .W !!,"The feeder key list for PHA can be printed by Drug, Non-Drug or both."
+ .S DIR(0)="S^D:Drugs;N:Non-Drugs;B:Both",DIR("B")="B"
+ .D ^DIR S PHATYPE=Y K DIR
  I ECXPORT D  Q  ;Section added in 149
  .K ^TMP($J),^TMP("ECXPORT",$J) ;Temp storage for results as regular report stores in ^TMP($J)
  .W !!,"Gathering data for export..."
  .S COL="FEEDER SYSTEM^FEEDER KEY^DESCRIPTION"
  .S LECOL="SORT METHOD"_U_COL
- .S PCOL=COL_U_"PRICE PER DISPENSE UNIT"
+ .S PCOL=COL_U_"PRICE PER DISPENSE UNIT"_U_"TYPE" ;174
  .S CNT=0
  .D START
  .M ^TMP($J,"ECXPORT")=^TMP("ECXPORT",$J) ;copy temp into exportable area
@@ -28,7 +32,7 @@ EN ;entry point from option
  I POP W !,"NO DEVICE SELECTED!!" G QUIT
  I $D(IO("Q")) K IO("Q") D  G QUIT
  .S ZTRTN="START^ECXFEKEY",ZTDESC="Feeder Key List (DSS)"
- .S ZTSAVE("ECY")="",ZTSAVE("ECPHA")="",ZTSAVE("ECPHA2")="",ZTSAVE("ECECS")="",ZTSAVE("ECLAB")=""
+ .S ZTSAVE("ECY")="",ZTSAVE("ECPHA")="",ZTSAVE("ECPHA2")="",ZTSAVE("ECECS")="",ZTSAVE("ECLAB")="",ZTSAVE("PHATYPE")="" ;174
  .D ^%ZTLOAD I $D(ZTSK) W !,"Queued Task #: "_ZTSK
  .D HOME^%ZIS K ZTSK
  ;
@@ -93,7 +97,7 @@ UPP(X) ;convert string to uppercase
  Q X
  ;
 PHA ;NEW PHA Feeder Key List sorted by NDF Match
- N ECPPDU,ECXPHA,ARRAY
+ N ECPPDU,ECXPHA,ARRAY,DEA,TYPE ;174
  S ARRAY="^TMP($J,""ECXLIST"")"
  K @ARRAY
  ;Call pharmacy drug file (#50) api dbia 4483 and create ^TMP global
@@ -104,12 +108,16 @@ PHA ;NEW PHA Feeder Key List sorted by NDF Match
  .S EC=0 F  S EC=$O(@ARRAY@("B",ECD,EC)) Q:EC'>0  D
  ..S ECD=$P(@ARRAY@(EC,.01),U),ECNDC=@ARRAY@(EC,31),ECNFC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNFC=$TR(ECNFC,"*",0)
  ..S P1=$P(@ARRAY@(EC,20),U),P3=$P(@ARRAY@(EC,22),U)
+ ..S DEA=@ARRAY@(EC,3) ;174 Get DEA value
+ ..S TYPE=$S(DEA["S":"N",1:"D") ;174 Look at DEA to find supply (non-drug) items, all else are considered drugs
+ ..I PHATYPE="N"&(TYPE="D") Q  ;174 Don't count if item is a drug and we're looking for non-drug
+ ..I PHATYPE="D"&(TYPE="N") Q  ;174 Don't count if item is a non-drug and we're looking for drug
  ..;get the 17 character key
  ..S ECNFC=$$DSS^PSNAPIS(P1,P3,ECXYM)_ECNFC
- ..Q:+ECNFC=0
- ..S ECNFC="A"_ECNFC
- ..S ECPPDU=@ARRAY@(EC,16),ECPPDU=$FNUMBER(ECPPDU,"P",4)
- ..S ^TMP($J,"PHA",ECNFC,0)=ECD_U_ECPPDU
+ ..I ECNFC="00000000000000000" S ECNFC="00000"_$S(TYPE="N":"LCL",1:"LCD")_$$RJ^XLFSTR($E(EC,$S($L(EC)'>9:1,1:1+($L(EC)-9)),$L(EC)),9,0) ;174
+ ..S ECNFC=TYPE_ECNFC ;174 Force sorting order by type and then by key
+ ..S ECPPDU=@ARRAY@(EC,16),ECPPDU=$FNUMBER(ECPPDU,"",4) ;174
+ ..S ^TMP($J,"PHA",ECNFC,0)=ECD_U_ECPPDU_U_TYPE ;174 Add type for exporting
  K @ARRAY
  Q
 CLI S SC=0 F  S SC=$O(^SC(SC)) Q:'SC  I $D(^(SC,0)) S EC=^(0),ECD=$P(EC,U) I $P(EC,U,3)="C" D  S ^TMP($J,"CLI","A;"_P1_P2_ECLEN_P3_"0"_P4,SC)=ECD ;166

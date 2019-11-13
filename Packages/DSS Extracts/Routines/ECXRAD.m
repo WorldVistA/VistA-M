@@ -1,5 +1,5 @@
-ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;6/29/18  14:29
- ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154,161,166,170**;Dec 22, 1997;Build 12
+ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;2/6/19  12:54
+ ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154,161,166,170,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -136,12 +136,12 @@ FILE ;file record
  ;mpi^placeholder^placeholder^placeholder^Placehold pc prov person class^
  ;Placehold assoc pc provider^assoc pc prov person class^placeholder^dom^
  ;observ pat ind^encounter num^ord stop code^ord date^division^
- ;dss product ECXDSSP^requesting provider person class ECDOCPC^interp-
+ ;PLACEHOLD dss product ECXDSSP^requesting provider person class ECDOCPC^interp-
  ;reting radiologist ECXIS^interpreting radiologist pc ECXISPC^princi-
  ;pal clinic ECXPRCL^clinc stop code ECXCSC^emergency response indicator
  ;(FEMA) ECXERI^Placehold assoc pc provider npi^interpreting rad npi^Placehold pc provider npi^req physician npi^Patient Category (PATCAT) ECXPATCAT^Credit Method ECXCM
  ;NODE2
- ;Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Exam verification date ECXMVDT
+ ;PLACEHOLD Encounter SC ECXESC^Camp Lejeune Status ECXCLST^PLACEHOLD Encounter Camp Lejeune ECXECL^Exam verification date ECXMVDT
  ;^Patient Division (ECXSTANO)  ;166 tjl
  ;
  ;convert specialty to PTF Code for transmission
@@ -165,7 +165,7 @@ FILE ;file record
  I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECASNPI_U_ECISNPI_U_ECPTNPI_U_ECDOCNPI
  I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT ;127 PATCAT
  I ECXLOGIC>2012 S ECODE1=ECODE1_U_ECXCM_U ;136 Credit Method 144 End of node needs an ^
- I ECXLOGIC>2013 S ECODE2=ECXESC_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2013 S ECODE2=$S(ECXLOGIC>2019:"",1:ECXESC)_U_ECXCLST_U_$S(ECXLOGIC>2019:"",1:ECXECL) ;144/174 - TJL - Encounter Service Connected and Encounter Camp Lejeune null in FY20
  I ECXLOGIC>2015 S ECODE2=ECODE2_U_ECXMVDT ;154 Add verification date
  I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO  ;166 tjl
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1 ;144

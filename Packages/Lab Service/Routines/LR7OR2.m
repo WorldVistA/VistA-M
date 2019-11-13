@@ -1,18 +1,18 @@
-LR7OR2 ;DALOI/dcm - Get Lab results (cont.) ;02/11/11  14:39
- ;;5.2;LAB SERVICE;**121,187,219,285,286,372,350,453**;Sep 27, 1994;Build 4
+LR7OR2 ;DALOI/dcm - Get Lab results (cont.) ; 3/29/19 8:12am
+ ;;5.2;LAB SERVICE;**121,187,219,285,286,372,350,453,519**;Sep 27, 1994;Build 16
  ;
  ;
 CH(SDATE,EDATE,TEST,COUNT,SPEC,UNVER) ;Get CH subscript data
  ;
  Q:'$D(SDATE)  Q:'$D(EDATE)  Q:'$D(COUNT)  Q:'$D(CT1)
  N GOTIT,I,IVDT,ITST,IST,TSTY,X,X0,ORD,Y6,Y12,Y16,Y19
- F I="LRPLS","LRPLS-ADDR" K ^TMP(I,$J)
+ I '($D(^TMP("LRORID",$J))>10) F I="LRPLS","LRPLS-ADDR" K ^TMP(I,$J)
  ;
  I $G(TEST) Q:'$D(^LAB(60,TEST,0))  S X=^(0) Q:$P(X,"^",4)'="CH"  D
  . I $P(X,"^",5)'="" S TSTY($P($P(X,"^",5),";",2))=TEST
  . I $P(X,"^",5)="" D EN^LR7OU1(TEST)
  ;
- S IVDT=SDATE
+ S IVDT=SDATE I $D(^LR(LRDFN,"CH",SDATE)) S IVDT=SDATE-.000001
  F  S IVDT=$O(^LR(LRDFN,"CH",IVDT)) Q:IVDT<1!(IVDT>EDATE)!(CT1>COUNT)  D
  . S X0=^LR(LRDFN,"CH",IVDT,0),Y6=$S($P(X0,"^",3):"F",1:"P"),Y12=$P(X0,"^",4),Y19=$P(X0,"^",5),Y16=$P(X0,"^",6),ORD=$$ORD(LRDFN,IVDT)
  . S GOTIT=0
@@ -30,7 +30,7 @@ CH(SDATE,EDATE,TEST,COUNT,SPEC,UNVER) ;Get CH subscript data
  . ; List performing laboratories
  . D PLS
  ;
- F I="LRPLS","LRPLS-ADDR" K ^TMP(I,$J)
+ I '($D(^TMP("LRORID",$J))>10) F I="LRPLS","LRPLS-ADDR" K ^TMP(I,$J)
  Q
  ;
  ;

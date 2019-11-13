@@ -1,5 +1,5 @@
 VAFCTFU2 ;BHM/CMC,CKN-Utilities for the Treating Facility file 391.91, CONTINUED ; 5/23/12 6:25pm
- ;;5.3;Registration;**821,856,863**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**821,856,863,981**;Aug 13, 1993;Build 1
 TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list of treating facilities
  ; CALLED FROM RPC VAFC LOCAL GET CORRESPONDINGIDS
  ; PT values -->
@@ -129,6 +129,8 @@ SET(TFIEN,ARY,CTR) ;This sets the array with the treating facility list.
  I ASSAUTH="" S ASSAUTH="USVHA"
  I SITEN["200N"&(IDTYPE="NI")&(ASSAUTH="USVHA") S ASSAUTH=""
  ;S SDFN=$P(NODE,"^"),STATUS=$P(NODE,"^",2)
+ ;**981, Story 961754 (jfw) - Allow for Status of CERNER if NOT currently MERGED
+ S:(STATUS'="H") STATUS=$S($D(^DGCN(391.919,"ACRNR",SITEN)):"C",1:STATUS)
  I SDFN'="" S CTR=CTR+1,@ARY@(CTR)=SDFN_"^"_IDTYPE_"^"_ASSAUTH_"^"_SITEN_"^"_STATUS,FOUND=1
  ;I FOUND=0 S CTR=CTR+1,@ARY@(CTR)=""_"^"_IDTYPE_"^"_ASSAUTH_"^"_SITEN
  Q

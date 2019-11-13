@@ -1,5 +1,5 @@
-ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;6/29/18  13:35
- ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154,161,166,170**;Dec 22, 1997;Build 12
+ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;6/26/19  10:46
+ ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154,161,166,170,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  I '$O(^ECX(728.904,"A",0)) W !,"There are no unit dose orders to extract",!! R X:5 K X Q
  D SETUP I ECFILE="" Q
@@ -22,7 +22,7 @@ START ;start package specific extract
  ;
 STUFF ;get data
  N X,W,OK,P1,P3,PSTAT,PT,ECXPHA,ON,ECDRG,ECXESC,ECXECL,ECXCLST,ECPROIEN,ECXUDDT,ECXUDTM,ECXNEW ;144,149
- N ECXSTANO,ECXASIH  ;166,170
+ N ECXSTANO,ECXASIH,ECXDEA,ECXCLIN  ;166,170,174
  S (ECXESC,ECXECL,ECXCLST)="" ;144
  S ECXDFN=$P(DATA,U,2),ECDRG=$P(DATA,U,4)
  ;
@@ -34,21 +34,27 @@ STUFF ;get data
  S ECXPRNPI=$$NPI^XUSNPI("Individual_ID",ECPROIEN,ECD)
  S:+ECXPRNPI'>0 ECXPRNPI="" S ECXPRNPI=$P(ECXPRNPI,U)
  S W=$P(DATA,U,6)
- S ECXDIV=$P($G(^DIC(42,+W,0)),U,11),ECXW=$S(ECXADM="":"",1:$P($G(^DIC(42,+W,44)),U)) ;154 Ward gets set to null if this is an order for an outpatient
+ S ECXW=$S(ECXADM="":"",1:$P($G(^DIC(42,+W,44)),U)) ;154 Ward gets set to null if this is an order for an outpatient
+ S ON=$P(DATA,U,10) ;174 Setting of Order Number moved up
+ I ECXW S ECXDIV=$P($G(^DIC(42,+W,0)),U,11) ;174 For inpt get division from ward
+ I ECXW="" D  ;174 Handle outpt with no ward (clinic order)
+ .S ECXCLIN=+$$GET1^DIQ(55.06,ON_","_ECXDFN_",",130,"I") ;174 Get clinic med was given in
+ .S ECXDIV=$$GET1^DIQ(44,ECXCLIN,3.5,"I") ;174 Medical center division associated with clinic
+ I $$GET1^DIQ(4,+$P($G(^DG(40.8,+ECXDIV,0)),U,7),101,"I")!(ECXDIV="") S ECXDIV=$O(^DG(40.8,"AD",+$G(^ECX(728,1,0)),0)) ;174 If institution is inactive or blank then set division to DSS default
  S ECXSTANO=$$GETDIV^ECXDEPT(ECXDIV) ;166 tjl - Get Patient Division based on Facility
  S ECXUDDT=$$ECXDATE^ECXUTL($P(DATA,U,3),ECXYM)
  S ECXUDTM=$E($P($P(DATA,U,3),".",2)_"000000",1,6)
- S ECXQTY=$P(DATA,U,5),ECXCOST=$P(DATA,U,8),ON=$P(DATA,U,10)
+ S ECXQTY=$P(DATA,U,5),ECXCOST=$P(DATA,U,8) ;174
  ;call pharmacy drug file (#50) api via ecxutl5
  S ECXPHA=$$PHAAPI^ECXUTL5(ECDRG)
- S ECCAT=$P(ECXPHA,U,2),ECINV=$P(ECXPHA,U,4)
+ S ECCAT=$P(ECXPHA,U,2),(ECINV,ECXDEA)=$P(ECXPHA,U,4) ;174
  I ECXLOGIC<2014 D  ;New way to calculate cost dea spl hndlg **144
  .S ECINV=$S(ECINV["I":"I",1:"")
  I ECXLOGIC>2013 D
  .S ECINV=$S((+ECINV>0)&(+ECINV<6):+ECINV,ECINV["I":"I",1:"")
  S ECNDC=$P(ECXPHA,U,3)
  S ECNFC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNFC=$TR(ECNFC,"*",0)
- I ECNDC["LCL" S ECNDC="" ;170 Reset NDC to null if it's missing from file 50
+ I ECNDC["LCL"!(ECNDC["LCD") S ECNDC="" ;170,174 Reset NDC to null if it's missing from file 50
  S P1=$P(ECXPHA,U,5),P3=$P(ECXPHA,U,6),X="PSNAPIS"
  X ^%ZOSF("TEST") I $T S ECNFC=$$DSS^PSNAPIS(P1,P3,ECXYM)_ECNFC
  I $L(ECNFC)=12 S ECNFC=$$RJ^XLFSTR(P1,4,0)_$$RJ^XLFSTR(P3,3,0)_ECNFC
@@ -169,6 +175,8 @@ FILE ;file record
  ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
  ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL) ^ New Script (ECXNEW)
  ;^Patient Division (ECXSTANO)
+ ;Node 3
+ ;Vista DEA Special Hdlg (ECXDEA)
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -199,9 +207,10 @@ FILE ;file record
  I ECXLOGIC>2010 S ECODE2=ECODE2_U_ECXPATCAT ; 127 PATCAT ADDED
  I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXCLST_U_ECXECL ;144
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL_U_ECXNEW ;149
- I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO ;166 tjl
+ I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO_$S(ECXLOGIC>2019:"^",1:"") ;166 tjl,174
+ I ECXLOGIC>2019 S ECODE3=ECXDEA ;174
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1
- S ^ECX(ECFILE,EC7,2)=ECODE2,ECRN=ECRN+1
+ S ^ECX(ECFILE,EC7,2)=ECODE2 S:ECXLOGIC>2019 ^ECX(ECFILE,EC7,3)=ECODE3 S ECRN=ECRN+1 ;174
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1
  Q

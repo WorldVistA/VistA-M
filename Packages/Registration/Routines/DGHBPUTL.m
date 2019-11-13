@@ -1,5 +1,5 @@
-DGHBPUTL ;ALB/PWC - Health Benefit Plan Utility Routine ;5/22/13 11:50am
- ;;5.3;Registration;**871**;08/13/93;Build 84
+DGHBPUTL ;ALB/PWC,JAM - Health Benefit Plan Utility Routine ;5/22/13 11:50am
+ ;;5.3;Registration;**871,987**;08/13/93;Build 22
  ;
  ;
 GETHBP(DFN) ;Return all records in HBP sub-file #25.01 in HBP array
@@ -34,9 +34,11 @@ GETDETL(HBPNUM) ;Return detail for each HBP in an array for display purposes
 GETPLAN ; Return all Health Benefit Plans from file #25.11 in array
  N HBPLAN,HBIEN,PLAN S HBPLAN="" K HBP("PLAN")
  F  S HBPLAN=$O(^DGHBP(25.11,"B",HBPLAN)) Q:HBPLAN=""  D
- . S HBIEN=$O(^DGHBP(25.11,"B",HBPLAN,0)) Q:HBIEN=""  D
- . S PLAN=$P(^DGHBP(25.11,HBIEN,0),"^",1)
- . S HBP("PLAN",PLAN)=HBIEN
+ . ; DG*5.3*987; jam; Fix for DGHBP array - "B" xref can have multiple IENs under a plan name
+ . S HBIEN=""
+ . F  S HBIEN=$O(^DGHBP(25.11,"B",HBPLAN,HBIEN)) Q:HBIEN=""  D
+ . . S PLAN=$P(^DGHBP(25.11,HBIEN,0),"^",1)
+ . . S HBP("PLAN",PLAN)=HBIEN
  Q
  ;
 SETPLAN(DFN,PLAN,SITE) ;Set Health Benefit Plan and History into file 25.01 and 25.02 for input DFN

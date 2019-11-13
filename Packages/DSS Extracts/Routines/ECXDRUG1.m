@@ -1,5 +1,5 @@
-ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/31/18  11:51
- ;;3.0;DSS EXTRACTS;**40,68,144,166,170**;Dec 22, 1997;Build 12
+ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/9/19  16:47
+ ;;3.0;DSS EXTRACTS;**40,68,144,166,170,174**;Dec 22, 1997;Build 33
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG,ECXPORT,CNT,ECXRPT ;144,170
@@ -108,7 +108,6 @@ PRINT ; process temp file and print report
  .I $Y+5>IOSL D HEADER Q:QFLG  ;170
  .S GTOT="$"_$FNUMBER(GTOT,",",2)
  .W !!,?104,"GRAND TOTAL",?116,$$RJ^XLFSTR(GTOT,14),! ;170
- I 'QFLG W !,"** Supply items with no NDC will print as 'LCL'+ local IEN in the NDC portion of the feeder key for other reports and extracts. **" ;170 Add note
  ;
 CLOSE ;
  I $E(IOST)="C",'QFLG D

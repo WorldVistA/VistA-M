@@ -1,5 +1,5 @@
-ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ;5/21/18  11:06
- ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127,154,170**;Dec 22,1997;Build 12
+ECXUTL4 ;ALB/ESD - Utilities for DSS Extracts ;4/24/19  09:44
+ ;;3.0;DSS EXTRACTS;**39,41,46,49,78,92,105,112,120,127,154,170,174**;Dec 22,1997;Build 33
  ;
 OBSPAT(ECXIO,ECXTS,DSSID) ;
  ; Get observation patient indicator from DSS TREATING SPECIALTY
@@ -116,9 +116,9 @@ ENCNUM(ECXIO,ECXSSN,ECXADT,ECXVDT,ECXTRT,ECXOBS,ECXEXT,ECXSTP,ECXSTP2) ;
  ... ;- If Imaging Type fld=2, use 109 otherwise use 105
  ... I ECXEXT="RAD" S ECXSTCD=$S(ECXSTP=2:109,1:105)
  ... ;
- ... ;- Use DSS STOP CODE fld if populated or if SURG SPEC fld=59 use 430
+ ... ;- Use STOP CODE fld if populated or if non-OR procedure use 435
  ... ;- otherwise if null use 429
- ... I ECXEXT="SUR" S ECXSTCD=$S(ECXSTP:ECXSTP,ECXSTP2=59:430,1:429)
+ ... I ECXEXT="SUR" S ECXSTCD=$S(ECXSTP:ECXSTP,$P($G(ECNO),U)="Y":435,1:429) ;174 If no stop code, default to 435 for non-OR procedure else 429
  ... ;
  ... ;- Get Julian Date
  ... S ECXDATE=$$JULDT(ECXVDT)

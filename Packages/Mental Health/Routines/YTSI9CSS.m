@@ -1,5 +1,5 @@
 YTSI9CSS ;SLC/BLD- MHAX ANSWERS SPECIAL HANDLING FOR I9-CSS; 10/11/18 2:18pm
- ;;5.01;MENTAL HEALTH;**138**;DEC 30,1994;Build 68
+ ;;5.01;MENTAL HEALTH;**151**;DEC 30,1994;Build 92
  ;
 DATA1(SCORE) ;expects YSDATA, returns SCORE, multiple scales so we use nodes i.e. SCORE(SCALEIEN)=###
  ;specialized DATA1 uses SCOREDATA table to map question to score relationships

@@ -1,5 +1,5 @@
-ECXSCLD1 ;ALB/DAN <CONT> Enter, Print and Edit Entries in 728.44 ;2/13/17  15:35
- ;;3.0;DSS EXTRACTS;**132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
+ECXSCLD1 ;ALB/DAN <CONT> Enter, Print and Edit Entries in 728.44 ;4/4/19  15:52
+ ;;3.0;DSS EXTRACTS;**132,136,144,149,154,161,166,174**;Dec 22, 1997;Build 33
  ;
 HEAD ; header for worksheet 149 - moved from ECXSCLD due to size restraints. 
  D:PG SS Q:QFLG
@@ -142,9 +142,15 @@ EXPORT ;Export clinic review data to spreedsheet
  S ECALL=$E(Y)
  I ECALL'="D" D
  .W !!,"To ensure all data is captured during the export:" ;144
- .W !!,"1. Select 'Logging...' from the File Menu. Select your file, and where to save." ;144
- .W !,"2. On the Setup menu, select 'Display...',then 'screen' tab and modify 'columns'",!,"   setting to at least 225 characters." ;144
- .W !,"3. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be." ;144
+ .;174 Update logging instructions
+ .W !!,"1. In reflections, change the row margin by clicking on one of the change margin",!,"   icons with a value of 225 or higher if you have them."
+ .W !,"   You may also set the margin manually by clicking on appearance, expanded",!,"   terminal settings (arrow in lower right corner), set up display settings."
+ .W !,"   Scroll to the bottom and change the number of characters per row to 225"
+ .W !,"   or higher.  Click 'OK' to save your change."
+ .W !,"2. Click on 'capture setup' or 'tools, logging (arrow in lower right corner)'",!,"   depending on your setup.  Ensure the logging settings form only has 'to disk'",!,"   selected and enter"
+ .W " the path and filename where the output should be stored."
+ .W !,"3. Click 'start capture' or 'start logging', depending on your interface."
+ .W !,"4. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be." ;144
  .W !,"Example: DEVICE: 0;225;99999 *Where 0 is your screen, 225 is the margin width",!?17,"and 99999 is the screen length."
  .W !!,"NOTE:  In order for all number fields, such as SSN and Feeder Key, to be",!,"displayed correctly in the spreadsheet, these fields must be formatted as Text",!,"when importing the data into the spreadsheet.",! ;144
  .S DIC="^ECX(728.44,",FLDS="[ECX CLINIC REVIEW EXPORT]",BY="NUMBER",FR="",L=0
@@ -179,7 +185,7 @@ EXPORT ;Export clinic review data to spreedsheet
  .D EXPDISP^ECXUTL1
  I '$G(POP) D  ;144 Don't print the following lines if the report didn't print
  .I ECALL'="D" D
- ..W !!,"Turn off your logging..." ;144
+ ..W !!,"Click 'stop capture' or 'tools, stop logging' to end logging..." ;174
  ..W !,"...Then, pull your export text file into your spreadsheet.",! ;144
  ..S DIR(0)="E",DIR("A")="Press any key to continue" D ^DIR K DIR
  I IO'=IO(0) D ^%ZISC

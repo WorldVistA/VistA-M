@@ -1,5 +1,5 @@
-ECXDRUG2 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;3/5/13  15:52
- ;;3.0;DSS EXTRACTS;**40,68,84,105,111,144**;Dec 22, 1997;Build 9
+ECXDRUG2 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/9/19  17:13
+ ;;3.0;DSS EXTRACTS;**40,68,84,105,111,144,174**;Dec 22, 1997;Build 33
  ;
 EN ; entry point
  N ECD,LINE,ECDRG,ECQTY,ECPRC
@@ -63,14 +63,15 @@ UDP ; entry point for UDP data
  Q
  ;
 TEST ; retrieve NDC and PSNDF VA Product Code Entry and test for missing NDC or VA Prod Code
- N ECTYPE,ECNDC,ECZERO,K,ECPROD,ECFCHAR,ECSTOCK,ECXPHA
+ N ECTYPE,ECNDC,ECZERO,K,ECPROD,ECFCHAR,ECSTOCK,ECXPHA,LOCAL ;174
  S ECTYPE=0,ECXPHA=""
  ; call pharmacy drug file (#50) api via ecxutl5
  S ECXPHA=$$PHAAPI^ECXUTL5(ECDRG)
  S ECNDC=$P(ECXPHA,U,3)
  S ECNDC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNDC=$TR(ECNDC,"*",0)
- S ECZERO=1,ECSTOCK=0 F K=1:1:$L(ECNDC) D  Q:'ECZERO!ECSTOCK
+ S ECZERO=1,ECSTOCK=0,LOCAL=0 F K=1:1:$L(ECNDC) D  Q:'ECZERO!ECSTOCK!LOCAL  ;174
  .S ECFCHAR=$E(ECNDC,K)
+ .I $E(ECNDC,1)="L" S LOCAL=1 Q  ;174 If NDC is blank and marked with LCL or LCD, stop processing
  .I ECFCHAR="S" S ECSTOCK=1 Q
  .I ECFCHAR'=0 S ECZERO=0 Q
  I ECZERO!ECSTOCK!(ECNDC["N/A") S ECTYPE=2

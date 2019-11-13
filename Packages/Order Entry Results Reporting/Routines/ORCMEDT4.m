@@ -1,5 +1,5 @@
-ORCMEDT4 ;SLC/MKB-Prompt Editor ;04/01/15  13:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,245,313,389**;Dec 17, 1997;Build 17
+ORCMEDT4 ;SLC/MKB-Prompt Editor ;07/29/16  09:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,245,313,389,397**;Dec 17, 1997;Build 22
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN ; -- Enter/edit prompts
  N PRMT F  S PRMT=+$$PROMPT Q:PRMT'>0  D  W !
@@ -41,7 +41,9 @@ NM I $L($P($G(^ORD(101.41,IFN,0)),U,3))>0 W !,!,"(This "_$$GETITM(IFN)_" has bee
  I X="@" D  G NM:X=""
  . I $D(^ORD(101.41,"AD",IFN)) W $C(7),!,"Cannot delete - currently in use!",! S X="" Q
  . I $$INUSE^ORCMEDT5(IFN) W $C(7),!,"Cannot delete - currently an Add Orders Menu!",! S X="" Q
- . S NODELETE=$$PTRCHK(IFN,"ORDLG PTRS") I NODELETE W $C(7),!,"Cannot delete - other file entries point to this order dialog!",! D PTRRPT("ORDLG PTRS",IFN)
+ . S NODELETE=$$PTRCHK(IFN,"ORDLG PTRS") I NODELETE D
+ . . N CONTINUE W $C(7),!,"Cannot delete - other file entries point to this order dialog!",!
+ . . S CONTINUE=$$CONT D:CONTINUE'["^" PTRRPT("ORDLG PTRS",IFN)
  . I NODELETE D DISABLE(IFN) S X="" Q
  . I '$$SURE(IFN) S X="" Q  ;reask
  . N IDX1,IDX2 S IDX1=0
@@ -211,26 +213,36 @@ PTRCHK(DLG,ARRNAME) ; --check for pointers to order dialog
  S AREPTRS=$D(^TMP($J,ARRNAME))
  Q +AREPTRS
 PTRRPT(ARRNAME,ORIFN) ; --show list of pointers to order dialog
- N FILENUM,ITEMIEN,IEN,TAB,ITEM S FILENUM="",ITEMIEN="",IEN=""
- W !,$P(^ORD(101.41,ORIFN,0),U)_" is pointed to by:"
- W !,"FILE #",?10,"IEN",?20,"NAME"
- W !,$$REPEAT^XLFSTR("-",24)
- F FILENUM=100,100.98,801.41 D
+ N FILENUM,ITEMIEN,IEN,TAB,ITEM,LINCNT,CONTINUE S (FILENUM,ITEMIEN,IEN,CONTINUE)="",LINCNT=0
+ F FILENUM=100.98,801.41,100 D
  .I $D(^TMP($J,ARRNAME,FILENUM)) D
- ..F  S ITEMIEN=$O(^TMP($J,ARRNAME,FILENUM,ITEMIEN)) Q:ITEMIEN=""  D
+ ..W @IOF S (CONTINUE,ITEMIEN)=""
+ ..W !,$P(^ORD(101.41,ORIFN,0),U)_" is pointed to by:"
+ ..W !,"FILE  ",?13,"IEN",?23,"NAME"
+ ..W !,$$REPEAT^XLFSTR("-",27)
+ ..F  S ITEMIEN=$O(^TMP($J,ARRNAME,FILENUM,ITEMIEN)) Q:ITEMIEN=""!(CONTINUE["^")  D
  ...S ITEM=^TMP($J,ARRNAME,FILENUM,ITEMIEN)
- ...W !,FILENUM,?10,ITEMIEN
- ...W ?20,$S(FILENUM=100:"N/A",1:ITEM),!
+ ...W !,$S(FILENUM=100:"ORDER",FILENUM=100.98:"DISPLAY GRP",FILENUM=801.41:"REMINDER DLG",1:FILENUM),?13,ITEMIEN
+ ...W ?23,$S(FILENUM=100:"N/A",1:ITEM)
+ ...S LINCNT=LINCNT+1
+ ...I LINCNT#20=0 S CONTINUE=$$CONT I CONTINUE'["^" D HDR
+ ...Q:CONTINUE["^"
+ ..Q:$G(CONTINUE)="^"  S CONTINUE=$$CONT Q:CONTINUE["^"
+ K ^TMP($J,ARRNAME)
  Q
+ ;
 OR100(DLG,ARR) ;100
  N ORIFN,TEMP
  S TEMP=DLG_";ORD(101.41,",ORIFN=""
  I $D(^OR(100,"C",TEMP)) D
  .F  S ORIFN=$O(^OR(100,"C",TEMP,ORIFN)) Q:ORIFN=""  D
+ ..Q:$D(^OR(100,ORIFN))=0
  ..I $P(^OR(100,ORIFN,0),U,5)=TEMP D  ;if DIALOG has pointer to order dialog
  ...S ^TMP($J,ARR,100,ORIFN)=$P(^OR(100,ORIFN,0),U,5)
+ S ORIFN=""
  I $D(^OR(100,"D",TEMP)) D
  .F  S ORIFN=$O(^OR(100,"D",TEMP,ORIFN)) Q:ORIFN=""  D
+ ..Q:$D(^OR(100,ORIFN))=0
  ..I $P(^OR(100,ORIFN,3),U,4)=TEMP D  ;if ITEM ORDERED has pointer to order dialog
  ...S ^TMP($J,ARR,100,ORIFN)=$P(^OR(100,ORIFN,3),U,4)
  Q
@@ -243,4 +255,16 @@ ORD10098(DLG,ARR) ;100.98
  ..I $P(^ORD(100.98,DISIEN,0),U,4)=DLG D  ;if DEFAULT DIALOG has pointer to order dialog
  ...S ^TMP($J,ARR,100.98,DISIEN)=$P(^ORD(100.98,DISIEN,0),U)
  Q
+ ;
+HDR ;header
+ W @IOF
+ W !,"FILE  ",?13,"IEN",?23,"NAME"
+ W !,$$REPEAT^XLFSTR("-",27)
+ Q
+CONT() ; -- gives user a chance to read output from pointer check
+ N X,Y,DIR
+ S DIR(0)="FO",DIR("A")="Press any key to continue reviewing pointer report"
+ S DIR("?")="Enter any key to continue; enter ^ to exit."
+ D ^DIR
+ Q X
  ;

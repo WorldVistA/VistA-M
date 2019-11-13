@@ -1,5 +1,5 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;12/14/18  15:56
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170,173**;Dec 22, 1997;Build 3
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;5/31/19  11:28
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170,173,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -26,7 +26,7 @@ START ;begin EC extract
  ;
 UPDATE ;sets record and updates counters
  N ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3,ECPNM,ECDSSE,ROOT ;149,154
- N ECXTEMPW,ECXTEMPD,ECXSTANO,ECXASIH  ;166,170
+ N ECXTEMPW,ECXTEMPD,ECXSTANO,ECXASIH,ECXSVH  ;166,170,174
  S (ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3)="" ;144
  S ECCH=^ECH(ECDA,0),ECL=$P(ECCH,U,4),ECXDFN=$P(ECCH,U,2)
  S ECXPDIV=$$RADDIV^ECXDEPT(ECL)  ;Get production division from file 4
@@ -148,6 +148,7 @@ UPDATE ;sets record and updates counters
  ; - Get national patient record flag Indicator if exist
  D NPRF^ECXUTL5
  ;
+ S ECXSVH=$P($G(^ECH(ECDA,2)),U,5) ;174 Set state veteran home name from field in the EVENT CAPTURE PATIENT file
  ; - If no encounter number don't file record
  S ECDSSE=$S(ECAC1S<101!(ECAC1S>999):"ECS",1:ECAC1S)_ECAC2S ;154 If stop code is invalid set it to ECS for encounter number creation
  I ECXLOGIC>2018 D  ;170 If procedure is in range, change specific patient data for record
@@ -208,7 +209,7 @@ FILE ;file record in #727.815
  ;National 4CHAR code ECX4CHAR^NULL^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
  ;Reason #1 (ECXRES1) ^ Reason #2 (ECXRES2) ^ Reason #3 (ECXRES3) ^ Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;Clinic IEN (ECAC) 154
- ;^ Patient Division (ECXSTANO) 166
+ ;^ Patient Division (ECXSTANO) 166^State Home Name (ECXSVH) 174
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -248,6 +249,7 @@ FILE ;file record in #727.815
  I ECXLOGIC>2014 S ECODE3=ECODE3_U_ECXRES1_U_ECXRES2_U_ECXRES3_U_ECXSVCI_U_ECXSVCL ;149
  I ECXLOGIC>2015 S ECODE3=ECODE3_U_ECAC ;154 MOVED CLINIC IEN
  I ECXLOGIC>2017 S ECODE3=ECODE3_U_ECXSTANO  ;166
+ I ECXLOGIC>2019 S ECODE3=ECODE3_U_ECXSVH ;174
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3),ECRN=ECRN+1 ;144
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD

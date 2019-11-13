@@ -1,5 +1,5 @@
 YTSWHOQO ;SLC/DJE- ANSWERS SPECIAL HANDLING - WHOQOL-BREF ; 10/16/18 9:35am
- ;;5.01;MENTAL HEALTH;**138**;DEC 30,1994;Build 68
+ ;;5.01;MENTAL HEALTH;**151**;DEC 30,1994;Build 92
  ;
 DATA1(SCORE) ;expects YSDATA, returns SCORE, multiple scales so we use nodes i.e. SCORE(SCALEIEN)=###
  ;specialized DATA1 uses SCOREDATA table to map question to score relationships

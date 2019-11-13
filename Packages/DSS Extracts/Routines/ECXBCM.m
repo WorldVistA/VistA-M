@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;6/29/18  16:00
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161,166,170**;Dec 22, 1997 ;Build 12
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;6/13/19  12:36
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161,166,170,174**;Dec 22, 1997 ;Build 33
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -23,7 +23,7 @@ START ; start package specific extract
  Q
  ;
 GET(ECSD,ECED) ;get extract data
- N ECXESC,ECXECL,ECXCLST,ECXASIH ;144,170
+ N ECXESC,ECXECL,ECXCLST,ECXASIH,ECXDEA ;144,170,174
  S (ACTDT,ECXADT,ECXAMED,ECXASTA,ECXATM,ECXORN,ECXORT,ECXOSC,ECPRO,PLACEHLD,ECXFAC,DRG,ECXESC,ECXECL,ECXCLST)="" ;144
  ; get needed YYYYDD variable
  I $G(ECXYM)="" S ECXYM=$$ECXYM^ECXUTL(DT)
@@ -67,11 +67,11 @@ GET(ECSD,ECED) ;get extract data
  Q
  ;
 CMPT ; during component/sequence processing, retrieve rest of data record then file it.
- S (ECXSCADT,ECXOS,ECXIVID,ECXIR,SCADT,ECXSCADT,ECXSCATM,DRUG,ECVNDC,ECINV,ECVACL,ECXVAP)="" ;143
+ S (ECXSCADT,ECXOS,ECXIVID,ECXIR,SCADT,ECXSCADT,ECXSCATM,DRUG,ECVNDC,ECINV,ECVACL,ECXVAP,ECXDEA)="" ;143,174
  I $G(DRG) D
  .S DRUG=$$PHAAPI^ECXUTL5(DRG)
  .S ECVNDC=$P(DRUG,U,3)
- .S ECINV=$P(DRUG,U,4)
+ .S (ECINV,ECXDEA)=$P(DRUG,U,4) ;174
  .I ECXLOGIC<2014 D
  ..S ECINV=$S(ECINV["I":"I",1:"")
  .;New way to calculate cost dea spl hndlg **144
@@ -86,6 +86,11 @@ CMPT ; during component/sequence processing, retrieve rest of data record then f
  S ECXIVID=$$GET1^DIQ(53.79,RIEN,.26)
  S ECXIR=$$GET1^DIQ(53.79,RIEN,.35)
  S ECXDIV=$$RADDIV^ECXDEPT($$GET1^DIQ(53.79,RIEN,.03,"I"))
+ I ECXDIV="" D  S:ECXDIV="" ECXDIV=$G(ECXFAC) ;174, get production division from location if available else set to facility value
+ .N X,Y,DIC
+ .S X=$$GET1^DIQ(53.79,RIEN,.02) ;Get patient location from 53.79
+ .Q:X=""  S DIC=44,DIC(0)="" D ^DIC
+ .Q:Y<0  S ECXDIV=$$GETDIV^ECXDEPT($$GET1^DIQ(44,+Y_",",3.5,"I"))
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADM,ACTDT,ECXTS,ECXOBS,ECHEAD,,)
  I $G(ECXASIH) S ECXA="A" ;170
@@ -157,7 +162,8 @@ CCODE(RIEN) ; get component information
  .S J=0 F  S J=$O(^PSB(53.79,RIEN,I,J)) Q:'J  D
  ..S DATA=^PSB(53.79,RIEN,I,J,0)
  ..S (UNITCOST,ECXDRGC,ECXIVSC,ECXIVAC)=0 ;144 NEW COST FIELDS
- ..S CCIEN=$P(DATA,U),CCDORD=$P(DATA,U,2),CCDGVN=$S(+($P(DATA,U,3))>0:+($P(DATA,U,3)),1:1),CCUNIT=$S(+($P(DATA,U,4))>0:+($P(DATA,U,4)),1:1)
+ ..S CCIEN=$P(DATA,U),CCDORD=$P(DATA,U,2),CCDGVN=$S($P(DATA,U,3)?1.N1"E"1.N.E:1,+($P(DATA,U,3))>0:+($P(DATA,U,3)),1:1) ;174 Added check for exponential numbers
+ ..S CCUNIT=$S($P(DATA,U,4)?1.N1"E"1.N.E:1,+($P(DATA,U,4))>0:+($P(DATA,U,4)),1:1) ;174 Added check for exponential numbers
  ..I I=.5 D  ;144 New drug Cost Fields added
  ...S DRG=CCIEN,UNITCOST=$$GET1^DIQ(50,DRG,16,"I")
  ...S ECXDRGC=(CCDGVN*CCUNIT)*UNITCOST

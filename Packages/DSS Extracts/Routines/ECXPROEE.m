@@ -1,5 +1,5 @@
-ECXPROEE ;ALB/DAN - Prosthetics Extract Edit ;4/5/16  15:15
- ;;3.0;DSS EXTRACTS;**161**;Dec 22, 1997;Build 6
+ECXPROEE ;ALB/DAN - Prosthetics Extract Edit ;2/14/19  15:21
+ ;;3.0;DSS EXTRACTS;**161,174**;Dec 22, 1997;Build 33
  ;
 EN ;entry point from menu option
  N DIR,DIRUT,ECXX,Y,STOP,ECPIECE
@@ -68,6 +68,7 @@ HELP ;
  ;
 GETSSN() ;
  N DIR,NUM,DUOUT,DTOUT
+ W !!,"NOTE: For Vista records with Unit of Issue=MO, the extract Unit of Issue",!,"and Quantity have been converted from months to days.",! ;174
  S NUM=0
  S DIR(0)="FAO^9:10^K:X'?9N&(X'?9N1""P"") X"
  S DIR("A")="Enter patient's SSN, if known, or press ENTER to continue: "

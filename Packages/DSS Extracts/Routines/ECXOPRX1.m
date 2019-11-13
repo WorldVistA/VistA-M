@@ -1,10 +1,10 @@
-ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/24/18  15:00
- ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154,161,166,170**;Dec 22, 1997;Build 12
+ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;3/11/19  15:37
+ ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154,161,166,170,174**;Dec 22, 1997;Build 33
  ;
 FILE ;file record
  ;node0
  ;inst^dfn^ssn^name^in/out ECXA^day^division^provider^drug category^mail^
- ;placeholder1^new^shad indicator^qty^cost^encounter shad^mov #^treat spec^placeholder4^unit of issue^dob^elig^vet^copay^
+ ;placeholder1^new^shad indicator^qty^cost^PLACEHOLD encounter shad^mov #^treat spec^placeholder4^unit of issue^dob^elig^vet^copay^
  ;feeder key^investigational^days supply^Placehold primary care team^Placehold primary care provider^time^race
  ;node1
  ;mpi^placeholder ECXDSSD^sex^zip+4^placeholder^placeholder^state^county^Placehold pc prov person class^pow status^pow location^
@@ -16,14 +16,15 @@ FILE ;file record
  ;enrollment subgroup ECXSBGRP^user enrollee ECXUESTA
  ;NODE 2
  ;patient type ECXPTYPE^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^
- ;enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^rx patient status ECRXPTST^non-va prescriber ECNONVAP^rx # ECRXNUM
- ;^emergency response indicator(FEMA) ECXERI^agent orange enc ECXAO^environ cont PGE ECXECE^head/neck ECXHNC^enc mst ECXMIL^environ contamin ECXEST^ion radiat ECXIR
+ ;PLACEHOLD enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^rx patient status ECRXPTST^non-va prescriber ECNONVAP^rx # ECRXNUM
+ ;^emergency response indicator(FEMA) ECXERI^PLACEHOLD agent orange enc ECXAO^PLACEHOLD environ cont PGE ECXECE^PLACEHOLD head/neck ECXHNC^PLACEHOLD enc mst ECXMIL^environ contamin ECXEST^PLACEHOLD ion radiat ECXIR
  ;^OEF/OIF data ECXOEF^OEFOIF return date ECXOEFDT^Placehold associate pc provider npi ECASNPI^Placehold primary care provider npi ECPTNPI^provider npi ECPRVNPI
- ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Vietnam ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ^Combat Service Ind ECXSVCI ^Combat Service Loc ECXSVCL^Choice RX ECXCHOCE
- ;^ Patient Division ECXSTANO
+ ;^country ECXCNTRY^PATCAT^PLACEHOLD Encounter SC ECXESC^Vietnam ECXVNS^Camp Lejeune Status ECXCLST^PLACEHOLD Encounter Camp Lejeune ECXECL^Combat Service Ind ECXSVCI ^Combat Service Loc ECXSVCL^Choice RX ECXCHOCE
+ ;^ Patient Division ECXSTANO ^ Vista DEA Special Handling (ECXDEA)
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  I ECXLOGIC>2018 S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
+ I ECXLOGIC>2019 S (ECXSHAD,ECXCVENC,ECXAO,ECXECE,ECXHNC,ECXMIL,ECXIR,ECXESC,ECXECL)="" ;174 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_ECXDIV_U
  S ECODE=ECODE_ECXPROV_U_ECCAT_U_ECMW_U_ECXPROVP_U_ECXNEW_U_$S(ECXLOGIC>2010:ECXSHADI,1:"")_U_ECQTY_U
@@ -54,6 +55,7 @@ FILE ;file record
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
  I ECXLOGIC>2015 S ECODE2=ECODE2_U_ECXCHOCE ;154
  I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO  ;166 tjl
+ I ECXLOGIC>2019 S ECODE2=ECODE2_U_ECXDEA ;174
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

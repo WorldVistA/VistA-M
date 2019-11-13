@@ -1,5 +1,5 @@
 YTSQLES ;SLC/MJB- SCORE QLES ; 9/26/2018
- ;;5.01;MENTAL HEALTH;**138**;DEC 30,1994;Build 68
+ ;;5.01;MENTAL HEALTH;**151**;DEC 30,1994;Build 92
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ

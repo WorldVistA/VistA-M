@@ -1,5 +1,5 @@
 IBCNEMS1 ;AITC/DM - Consolidated Mailman messages; 12-JUNE-2018
- ;;2.0;INTEGRATED BILLING;**621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**621,631**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; 
@@ -48,4 +48,21 @@ MSG002(MSG,ERRGB,TQ) ; error msg when writing to EIV EICD TRACKING (#365.18) fro
  S MSG(8)="If you continue to receive this error message, you should contact"
  S MSG(9)="your IRM and possibly call the Help Desk for assistance."
  Q
- ; 
+ ;
+MSG003(MSG,ERRGB,TQN,RESP,BUFF) ;  Create and send a response processing error warning message
+ ; Output Variables
+ ; ERFLG=1
+ ;
+ S MSG(1)="Tried to create an entry in the CREATION TO PROCESSING TRACKING file #355.36"
+ S MSG(2)="without success."
+ S MSG(3)=""
+ S MSG(4)="Error encountered: "_$G(ERRGB("DIERR",1,"TEXT",1))
+ S MSG(5)=""
+ S MSG(6)="The associated IIV Transmission Queue IEN: "_$G(TQN)
+ S MSG(7)="The associated IIV Repsonse IEN: "_$G(RESP)
+ S MSG(8)="The associated INSURANCE VERIFICATION PROCESSOR IEN: "_$G(BUFF)
+ S MSG(9)=""
+ S MSG(10)="If you continue to receive this error message, you should contact"
+ S MSG(11)="your IRM and possibly call the Help Desk for assistance."
+ Q
+ ;

@@ -1,7 +1,7 @@
 LRGV ;DALIO/RWF - INSTRUMENT GROUP VERIFY DATA ;2/5/91  13:26
- ;;5.2;LAB SERVICE;**269,411**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**269,411,519**;Sep 27, 1994;Build 16
  ;
- N LRANYAA,LRDUZ,LRUID,LRVBY
+ N LRANYAA,LRDUZ,LRUID,LRVBY,LRGVP
  ;
  D ^LRGVK,^LRPARAM
  I $G(LREND) D END Q
@@ -29,6 +29,8 @@ LRGV ;DALIO/RWF - INSTRUMENT GROUP VERIFY DATA ;2/5/91  13:26
  I $D(IO("Q")) D  Q
  . N ZTDTH,ZTRTN,ZTSAVE,ZTDESC
  . K IO("Q")
+ . ;LRGVP = indicates to downstream routines that sending to a printer
+ . S LRGVP=1
  . S ZTRTN="DQ^LRGV",ZTSAVE("LR*")="",ZTSAVE("^TMP(""LR"",$J,")="",ZTDESC="Group verify (EA, EL, EW)"
  . D ^%ZTLOAD
  . U IO(0) W !,"Task ",$S($G(ZTSK):ZTSK,1:"NOT")," Queued"

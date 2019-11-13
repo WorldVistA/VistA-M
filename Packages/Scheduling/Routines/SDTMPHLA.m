@@ -1,5 +1,5 @@
 SDTMPHLA ;MS/PB - TMP HL7 Routine;May 29, 2018
- ;;5.3;Scheduling;**704**;SEP 26, 2018;Build 64
+ ;;5.3;Scheduling;**704,733**;SEP 26, 2018;Build 72
  Q
 EN(DFN,APTTM) ; Entry to the routine to build an HL7 message
  ;notification to TMP about a new appointment in a TeleHealth Clinic
@@ -28,19 +28,19 @@ EN(DFN,APTTM) ; Entry to the routine to build an HL7 message
  Q:($G(PSTOP)="")&(($G(SSTOP))="")
  S STOP=$$CHKCLIN(PSTOP) ;if STOP=0, primary stop code is not a tele health stop code so check secondary stop code to see if it is a tele health clinic
  ;I $G(STOP)=0,($$CHKCLIN(SSTOP)=0) Q  ;if primary stop code is not tele health check secondary stop code if secondary not tele health stop
- I $G(STOP)=0 Q:$Q(SSTOP)=""  S STOP=$$CHKCLIN(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop
+ I $G(STOP)=0 Q:$Q(SSTOP)'>0  S STOP=$$CHKCLIN(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop
  Q:$G(STOP)=0  ; Double check for either primary or secondary stop code to be a tele health clinic
  ; need code to stop processing if the appointment was made by TMP
- I $P($G(ANODE),"^",2)'="" S CAN=1
+ I $P($G(ANODE),"^",2)["C" S CAN=1
  S SNODE=$G(^SC(CLINID,"S",APTTM,1,1,0))
  S APTSTATUS=$$GET1^DIQ(2.98,APTTM_","_DFN_",",9.5,"E")
  S:CAN=0 PARMS("MESSAGE TYPE")="SIU",PARMS("EVENT")="S12"
  S:CAN=1 PARMS("MESSAGE TYPE")="SIU",PARMS("EVENT")="S15"
  I '$$NEWMSG^HLOAPI(.PARMS,.MSG,.ERROR) Q 0
  S SEQ=1
- D:CAN=0 SCH(DFN,SEQ,.SEG,ANODE,SNODE)
+ D:CAN=0 SCH(DFN,SEQ,.SEG,$G(ANODE),$G(SNODE))
  I (CAN=0&('$$ADDSEG^HLOAPI(.MSG,.SEG,.ERROR))) Q 0
- D:CAN=1 SCHCAN(DFN,SEQ,.SEG,ANODE,SNODE,CNODE)
+ D:CAN=1 SCHCAN(DFN,SEQ,.SEG,$G(ANODE),$G(SNODE),$G(CNODE))
  I (CAN=1&('$$ADDSEG^HLOAPI(.MSG,.SEG,.ERROR))) Q 0
  D NTE(.SEQ,.SEG)
  I '$$ADDSEG^HLOAPI(.MSG,.SEG,.ERROR) Q 0
@@ -223,7 +223,7 @@ TEST ;
  W !,START,"  ",END
  Q
 CHKCLIN(X) ; check to see if this is a primary or secondary stop code for a tele health clinic
- I $G(X)'>0 S STOP=0 Q
+ I $G(X)'>0 S STOP=0 Q STOP
  S STOP=0
  N TEST,I,CODE,X1,X2
  S X2=0

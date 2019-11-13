@@ -1,9 +1,11 @@
-ECXSCXN1 ;ALB/JAP  Clinic Extract No Shows; 8/28/02 1:11pm ;6/29/18  15:37
- ;;3.0;DSS EXTRACTS;**71,105,127,132,136,144,166,170**;Dec 22, 1997;Build 12
+ECXSCXN1 ;ALB/JAP  Clinic Extract No Shows; 8/28/02 1:11pm ;1/25/19  10:50
+ ;;3.0;DSS EXTRACTS;**71,105,127,132,136,144,166,170,174**;Dec 22, 1997;Build 33
 NOSHOW(ECXSD,ECXED) ;get noshows from file #44
  ;      ECXSD  = start date, ECXED  = end date
  N ALEN,CLIN,JDATE,JJ,NODE,NOSHOW,PP,STAT,MDIV,ECXEDIS,CNT,ECXARR,ECXSDSC,ECXEDSC,ECXASIH ;136,170
  N ECXECL,ECXESC,ECXCLST ;144 Call to INTPAT^ECXSCX2 sets variables to null.  Call to PAT1^ECXSCX2 will set camp lejeune status when available.  Encounter values remain null as appt is a no-show
+ N ECXSCST ;174 Call to PAT1^ECXSCX2 will set the service connected status
+ N ECXNOCNT ;174 Clinic non-count flag
  S CLIN=0
  F  S CLIN=$O(^TMP($J,"ECXCL",CLIN)) Q:'CLIN!($G(QFLG))  D  ;136
  .Q:$P($G(^TMP($J,"ECXCL",CLIN)),U,3)'="C"
@@ -23,6 +25,7 @@ NOSHOW(ECXSD,ECXED) ;get noshows from file #44
  ..S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN) ;added in patch 127
  ..S NODE=$G(^TMP($J,"SDAMA301",CLIN,JJ,JDATE)),MDIV=$P($G(^SC(CLIN,0)),U,15) ;136
  ..Q:NODE=""  ;136
+ ..S ECXNOCNT=$P($G(^TMP($J,"ECXCL",CLIN)),U,5) ;174 Get non-count status
  ..S ECXSHAD=$$GETSHAD ;added in patch 127, finds shad status for appt
  ..S ECXOBI=$S($P(NODE,U,7)="Y":"O",1:"") ;136
  ..S NOSHOW="N" ;136 only no-show entries are returned from the SDAMA301 call

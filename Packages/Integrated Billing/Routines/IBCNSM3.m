@@ -1,5 +1,5 @@
 IBCNSM3 ;ALB/AAS - INSURANCE MANAGEMENT - OUTPUTS ; 4/7/03 9:56am
- ;;2.0;INTEGRATED BILLING;**6,28,85,211,251,399,506,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**6,28,85,211,251,399,506,516,631**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % G EN^IBCNSM
@@ -33,8 +33,11 @@ AD ; -- Add new insurance policy
  ;
  ; -- file new patient policy
  ;IB*2.0*516/baa - Use HIPAA Compliant fields
- ;S DIC("DR")=".18////"_IBCPOL_";1.09////1;1.05///NOW;1.06////"_DUZ
- S DIC("DR")=".18////"_IBCPOL_";1.09////7.02;1.05///NOW;1.06////"_DUZ
+ ;S DIC("DR")=".18////"_IBCPOL_";1.09////7.02;1.05///NOW;1.06////"_DUZ
+ ;/IB*2.0*631/vd - Replaced the original code which was accidentally stepped on by
+ ; the IB*2.0*516 patch and caused an invalid value to appear in the SOI field when
+ ; entering a new patient policy. (US7912)
+ S DIC("DR")=".18////"_IBCPOL_";1.09////1;1.05///NOW;1.06////"_DUZ
  K DD,DO S DA(1)=DFN,DIC="^DPT("_DFN_",.312,",DIC(0)="L",X=IBCNSP D FILE^DICN K DIC S IBCDFN=+Y,IBNEW=1 I +Y<1 G ADQ
  D BEFORE^IBCNSEVT
  ;

@@ -1,5 +1,5 @@
-ECXBCM1 ;ALB/JAP-Bar Code Medical Administration Extract Cont. ;4/24/18  13:43
- ;;3.0;DSS EXTRACTS;**154,170**;Dec 22, 1997 ;Build 12
+ECXBCM1 ;ALB/JAP-Bar Code Medical Administration Extract Cont. ;3/12/19  10:51
+ ;;3.0;DSS EXTRACTS;**154,170,174**;Dec 22, 1997 ;Build 33
  ;
 FILE ;file the extract record
  ;node0
@@ -37,7 +37,7 @@ FILE ;file the extract record
  ;National Patient Record Flag(ECXNPRFI)^ERI(ECXERI)^SW Asia Conditions(ECXEST)^
  ;OEF/OIF(ECXOEF)^OEF/OIF Return Date(ECXOEFDT)^PATCAT(ECXPATCAT)
  ;Encounter SC (ECXESC)^IV Additives Cost ECXIVAC^IV Solutions Cost ECXIVSC^Drug cost ECXDRGC^Camp Lejeune Status (ECXCLST)^Encounter Camp Lejeune (ECXECL)
- ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)^ Vista DEA special hdlg (ECXDEA)
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
@@ -60,6 +60,7 @@ FILE ;file the extract record
  S ECODE(3)=ECODE(3)_U_ECXPATCAT
  I ECXLOGIC>2013 S ECODE(3)=ECODE(3)_U_ECXESC_U_ECXIVAC_U_ECXIVSC_U_ECXDRGC_U_ECXCLST_U_ECXECL ;144
  I ECXLOGIC>2014 S ECODE(3)=ECODE(3)_U_ECXSVCI_U_ECXSVCL ;149
+ I ECXLOGIC>2019 S ECODE(3)=ECODE(3)_U_ECXDEA ;174
  ;
  N DA,DIK,X S X=""
  F X=0:1:3 S ^ECX(ECFILE,EC7,X)=ECODE(X)

@@ -1,5 +1,5 @@
-ECXAPHA2 ;ALB/TMD-Pharmacy Extracts Unusual Volumes Report ;5/20/13  16:59
- ;;3.0;DSS EXTRACTS;**40,49,84,104,105,113,136,143,144**;Dec 22, 1997;Build 9
+ECXAPHA2 ;ALB/TMD-Pharmacy Extracts Unusual Volumes Report ;4/9/19  15:47
+ ;;3.0;DSS EXTRACTS;**40,49,84,104,105,113,136,143,144,174**;Dec 22, 1997;Build 33
  ;
 EN ; entry point
  N COUNT,ECUNIT,LINE,ECDFN,ECD,ECDRG,ECDAY,ECDFN,ECQTY,ECUNIT,ECCOST,ECDS,ECXCOUNT
@@ -123,7 +123,8 @@ CCODE(RIEN) ; 144 get component information added in patch 144
  .S J=0 F  S J=$O(^PSB(53.79,RIEN,I,J)) Q:'J  Q:ECXERR  D
  ..S (UNITCOST,ECXDRGC,ECXIVSC,ECXIVAC)=0
  ..S DATA=^PSB(53.79,RIEN,I,J,0)
- ..S CCIEN=$P(DATA,U),CCDORD=$P(DATA,U,2),CCDGVN=$S(+($P(DATA,U,3))>0:+($P(DATA,U,3)),1:1),CCUNIT=$S(+($P(DATA,U,4))>0:+($P(DATA,U,4)),1:1)
+ ..S CCIEN=$P(DATA,U),CCDORD=$P(DATA,U,2),CCDGVN=$S($P(DATA,U,3)?1.N1"E"1.N.E:1,+($P(DATA,U,3))>0:+($P(DATA,U,3)),1:1) ;174 Added check for exponential numbers
+ ..S CCUNIT=$S($P(DATA,U,4)?1.N1"E"1.N.E:1,+($P(DATA,U,4))>0:+($P(DATA,U,4)),1:1) ;174 Added check for exponential numbers
  ..I I=.5 D
  ...S DRG=CCIEN,UNITCOST=$$GET1^DIQ(50,DRG,16,"I")
  ...S ECXDRGC=(CCDGVN*CCUNIT)*UNITCOST

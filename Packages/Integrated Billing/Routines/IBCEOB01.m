@@ -1,5 +1,5 @@
 IBCEOB01 ;ALB/ESG - 835 EDI EOB MSG PROCESSING CONT ;16-JAN-2008
- ;;2.0;INTEGRATED BILLING;**377,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**377,516,631**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -109,9 +109,12 @@ UPDNM(DFN,DA,NM) ; update the subscriber name field
 UPDAUD(DFN,DA) ; update the audit information for this patient insurance policy
  N DR,DIE,DIC
  D UPDATPT^IBCNSP3(DFN,DA)   ; date and time last edited and by whom
- S DIE="^DPT("_DFN_",.312,",DA(1)=DFN
- S DR="1.09///MEDICARE"      ; source of information is MEDICARE
- D ^DIE
+ ; Check for SOI being populated in (#2.312,1.09) before setting it.
+ ;IB*2.0*631/TAZ - Changed logic to only update to Medicare if no other SOI exists.
+ I $$GET1^DIQ(2.312,DA_","_DFN_",",1.09)="" D
+ . S DIE="^DPT("_DFN_",.312,",DA(1)=DFN
+ . S DR="1.09///MEDICARE"      ; source of information is MEDICARE
+ . D ^DIE
  D UPDCLM^IBCNSP1(DFN,DA)    ; update editable claims
  Q
  ;

@@ -1,5 +1,6 @@
-ORCACT01 ;SLC/MKB-Validate order actions cont ;05/21/15  11:14
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350**;Dec 17, 1997;Build 77
+ORCACT01 ;SLC/MKB-Validate order actions cont ;Aug 24, 2018@08:17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350,397**;Dec 17, 1997;Build 22
+ ;
  ;
  ;
 ES ; -- sign [on chart]
@@ -14,6 +15,23 @@ ES ; -- sign [on chart]
  I DG="O RX",ACTION="RS",$G(NATR)="I",ORCS=1 S ERROR="Controlled Substance outpatient meds may not be released without a clinician's signature!" Q
  I DG="O RX",ACTION'="ES",ACTION'="DS",$G(NATR)'="I" S ERROR="Outpatient meds may not be released without a clinician's signature!" Q
  I (ACTION="ES"!(ACTION="DS")),$D(^XUSEC("ORELSE",DUZ)),$P(OR0,U,16)'<2 S ERROR="You are not privileged to sign this order!" Q
+ ;
+ I DG="SPLY" D  Q:$D(ERROR)
+ . N ORALLOWED,ORAUTHMEDS,ORHASSUPKEY,ORX
+ . ; User must have ORSUPPLY or Auth to Write Meds to release supply items
+ . S ORHASSUPKEY=$D(^XUSEC("ORSUPPLY",DUZ))
+ . S ORAUTHMEDS=1
+ . S ORX=$G(^VA(200,DUZ,"PS"))
+ . I '$P(ORX,U)!($P(ORX,U,4)&(DT>$P(ORX,U,4))) S ORAUTHMEDS=0
+ . I 'ORHASSUPKEY,'ORAUTHMEDS D  Q
+ . . S ERROR="You are not authorized to release supply orders."
+ . ; only allow release by policy, signed on chart, or ES
+ . ; release via verbal or telephone is not allowed
+ . S ORALLOWED=0
+ . I ACTION?1(1"ES",1"DS",1"OC") S ORALLOWED=1
+ . I ACTION="RS",$G(NATR)?1(1"I",1"W") S ORALLOWED=1
+ . I 'ORALLOWED S ERROR="Supplies may not be released with this action."
+ ;
  I ACTION="OC" S:MEDPARM<2 ERROR="You are not authorized to release med orders!" Q
  I ACTION="RS" D  Q:$D(ERROR)  Q:$G(NATR)'="I"
  . Q:ACTSTS=11  Q:ACTSTS=10  ;unreleased - ok
@@ -104,7 +122,7 @@ RN ; -- renew
  I '$$MEDOK^ORCACT03 S ERROR="This drug may not be ordered!" Q
 RN1 N PSIFN S PSIFN=$G(^OR(100,+IFN,4))
  I PSIFN<1,'$O(^OR(100,+IFN,2,0)) S ERROR="Missing or invalid order number!" Q
- I DG="O RX" D  Q  ;Outpt Meds
+ I DG="O RX"!(DG="SPLY") D  Q  ;Outpt Meds
  . N ORZ,ORD S ORZ=$L($T(RENEW^PSORENW),",")
  . I ORZ>1 S ORD=+$$VALUE^ORX8(+IFN,"DRUG"),X=$$RENEW^PSORENW(PSIFN,ORD)
  . S:ORZ'>1 X=$$RENEW^PSORENW(PSIFN) I X<1 S ERROR=$P(X,U,2) Q

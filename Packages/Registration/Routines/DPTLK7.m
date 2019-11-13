@@ -1,5 +1,5 @@
-DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 8/24/15 2:38pm
- ;;5.3;Registration;**915,919,926,967**;Aug 13, 1993;Build 3
+DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 4/3/19 5:12pm
+ ;;5.3;Registration;**915,919,926,967,981**;Aug 13, 1993;Build 1
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -55,6 +55,8 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
  . S DGMPIR("mcid")=DGMCID
+ .;**981 - Story 841885 (ckn)
+ . S DGMPIR("SelIdentifier")=""
  . D MPIADD(.DGMPIR)
  ;
  ; do I have some records that are in autolink threshold? - key required
@@ -73,6 +75,9 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
  . S DGMPIR("mcid")=DGMCID
+ .;**981 - Story 841885 (ckn)
+ . I $G(DGMPIR(1,"ICN"))'="" S DGMPIR("SelIdentifier")=DGMPIR(1,"ICN")_"^NI^200M^USVHA"
+ . I $G(DGMPIR(1,"IDS",1,"ID"))'="" S DGMPIR("SelIdentifier")=DGMPIR(1,"IDS",1,"ID")_"^NI^200DOD^USDOD"
  . D MPIADD(.DGMPIR)
  . W !
  . ;
@@ -108,6 +113,8 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . S DGMPIR("AddType")=$S(DGKEYREQ:"Explicit",1:"Implicit")
  . S DGMPIR("mcid")=DGMCID
+ .;**981 - Story 841885 (ckn)
+ . S DGMPIR("SelIdentifier")=""
  . D MPIADD(.DGMPIR)
  ;
 QUIT Q $S(DGDFN:DGDFN,1:0)

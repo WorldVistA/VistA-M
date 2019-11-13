@@ -1,5 +1,6 @@
-ORUPREF1 ; slc/dcm - Key allocation ;12/11/91  08:12 [3/13/02 11:42am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132**;Dec 17, 1997
+ORUPREF1 ; slc/dcm - Key allocation ;04/22/16  07:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132,397**;Dec 17, 1997;Build 22
+ ;;397 - WAT Add ORSUPPLY to KEY
 EN ;
  K ORC W $C(27),"[44;37m"
  S ORC(1)="Black^0",ORC(2)="Red^1",ORC(3)="Green^2",ORC(4)="Yellow^3",ORC(5)="Blue^4",ORC(6)="Magenta^5",ORC(7)="Cyan^6",ORC(8)="White^7"
@@ -23,11 +24,12 @@ UP ;Upper case
  F %=1:1:$L(X) I $E(X,%)?1L S X=$E(X,1,%-1)_$C($A(X,%)-32)_$E(X,%+1,99)
  Q
 KEY ;Edit user security keys
+ N I
  S OREND=0,ORVER=+($G(^DD(200,0,"VR")))
- F ORKEY="ORES","ORELSE","OREMAS" D K1 Q:OREND  W ! F I=1:1:(IOM-1) W "="
+ F ORKEY="ORES","ORELSE","OREMAS","ORSUPPLY" D K1 Q:OREND  W ! F I=1:1:(IOM-1) W "="
  S OREND=0 K DLAYGO,DA,DR,DIE,DIC,OREND,ORK,ORKEY,ORHEAD,ORVER
  Q
-K1 I '$D(^DIC(19.1,"B",ORKEY)) W !,ORKEY_" is not in the Security Key file" Q
+K1 N % I '$D(^DIC(19.1,"B",ORKEY)) W !,ORKEY_" is not in the Security Key file" Q
  S ORK=$O(^DIC(19.1,"B",ORKEY,0)) I 'ORK!('$D(^DIC(19.1,ORK))) W !,ORKEY_" is not in the Security Key file" Q
  W !!,"KEY: "_ORKEY,! S I=0 F  S I=$O(^DIC(19.1,ORK,1,I)) Q:I<1  W !,^(I,0)
 K2 W !!,"Edit Holders" S %=1 D YN^DICN S:%=-1 OREND=1
@@ -36,11 +38,12 @@ K2 W !!,"Edit Holders" S %=1 D YN^DICN S:%=-1 OREND=1
  W ! D K7
  Q
 K7 ;edits holders for Kernel V7.0 in file #200
+ N DIC,Y
  S DIC=200,DIC(0)="AEQM",DIC("A")="Select HOLDER: "
  F  D ^DIC Q:Y<1  S ORDUZ=Y,ORHAVE=$D(^XUSEC(ORKEY,+ORDUZ)) D K7SET:'ORHAVE,K7DEL:ORHAVE Q:OREND
  K ORDUZ,ORHAVE Q
 K7DEL ;deletes ORKEY from person
- N DA,DIC,DIK
+ N DA,DIK
  W !?10,"Delete key" S %=1 D YN^DICN I (%<0) S OREND=1 Q
  I %=2 W !?15,"Nothing changed!",! Q
  I %=0 D  G K7DEL
@@ -52,7 +55,7 @@ K7DEL ;deletes ORKEY from person
  W !?15,$S(DA:"DELETED!",1:"Error: ^XUSEC not consistent with keys in User file"),!
  Q
 K7SET ;allocates ORKEY to person
- N DIC,DA
+ N DIC,DA,DINUM,X
  I '$D(^VA(200,+ORDUZ,51,0)) S ^VA(200,+ORDUZ,51,0)="^200.051PA^^"
  S DA(1)=+ORDUZ,DIC="^VA(200,"_DA(1)_",51,",DIC(0)="L",(DINUM,X)=ORK
  D FILE^DICN W !?15,$S(Y>0:"Added.",1:"Error - not added."),!

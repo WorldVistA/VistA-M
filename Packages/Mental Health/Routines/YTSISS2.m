@@ -1,5 +1,5 @@
 YTSISS2 ;SLC/MJB- SCORE ISS2 ; 10/30/18 9:35am
- ;;5.01;MENTAL HEALTH;**138**;Dec 30, 1994;Build 68
+ ;;5.01;MENTAL HEALTH;**151**;Dec 30, 1994;Build 92
  ;
  ; This routine was split from YTQAPI2A.
  ; This routine handles limited complex reporting requirements without
@@ -98,4 +98,5 @@ SCALES(STRING1) ;
  S STRING1=STRING1_"  Perceived Conflict: "_$J(YSRSC3,3)_"   (Global Psychopathology Range 0 to 500)|"
  S STRING1=STRING1_"    Depression Index: "_$J(YSRSC4,3)_"   (Range 0 to 200)|"
  S STRING1=STRING1_"Global Bipolar Scale: "_$J(YSRSC5,3)_"   (0=depressed/down < 50=normal > 100=high/manic)|"
+ ;
  Q

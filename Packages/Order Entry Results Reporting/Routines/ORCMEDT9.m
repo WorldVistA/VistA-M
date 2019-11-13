@@ -1,7 +1,8 @@
-ORCMEDT9 ;ISP/WAT - Move/copy utility for QOs ;05/31/16  14:18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**389,423**;Dec 17, 1997;Build 19
+ORCMEDT9 ;ISP/WAT - Move/copy utility for QOs ;08/03/16  11:56
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**389,423,397**;Dec 17, 1997;Build 22
 UDQO ; -- unit dose quick order
  N ORQDLG,ORDG,ORCMDG,ORCIDG,ORABORT,ORPMAX,ORINDEX
+ N ORSTART S ORSTART=""
  S ORABORT=0,ORPMAX=IOSL-5,ORINDEX=""
  S ORCMDG=$O(^ORD(100.98,"B","CLINIC MEDICATIONS",""))
  S ORCIDG=$O(^ORD(100.98,"B","CLINIC INFUSIONS",""))
@@ -32,6 +33,7 @@ CHOOSE(ORABORT) ;select qo for action
 ACTION(ORGO,ORNUMBER) ;
  ;ORGO=1 MOVE, ORGO=2 COPY
  N ORTEMP,ORCOUNT
+ S ORINDEX=ORSTART-1 ;if user comes to action, try to return them to list in the same set of QOS i.e. #21-40
  I $G(ORGO)=2 D COPY(ORNUMBER) Q
  I '$$MOVOK() Q
  W !,"Moving selected quick order(s)..." H 5
@@ -53,6 +55,7 @@ DISP(ORPMAX,ORINDEX) ; show qo dialogs for action choices
  . S ORDG=$P(^TMP("ORUDQO",$J,ORINDEX),U,3)
  . S ORDISABL=$P(^TMP("ORUDQO",$J,ORINDEX),U,4)
  . W !,$J(ORINDEX,5)_". "_ORQONAM,?60,ORDG,?70,ORDISABL
+ S ORSTART=ORINDEX-ORPMAX
  Q
  ;
 MOVE(ORQDLG) ;Move changes the DISPLAY GROUP to CLINIC MEDICATIONS or CLINIC INFUSIONS
@@ -76,7 +79,7 @@ COPY(ORQDLG) ;copy creates a new CLINIC MEDICATIONS or CLINIC INFUSIONS qo dialo
  S ORDIGP=$S(ORDIGP="UDM":ORCMDG,1:ORCIDG)
  Q:'$D(^ORD(101.41,ORQIFN,0))
  S ORNUNAME=$$GETNAME() I $G(ORNUNAME)="^" S ORQDLG=ORNUNAME Q
- S ORNUIFN=$$STUB(101.41,ORNUNAME) I +$G(ORNUIFN)'>0 W !,"Error creating new entry. Please try again later."  Q
+ S ORNUIFN=$$STUB(101.41,ORNUNAME) I +$G(ORNUIFN)'>0 W !,"Error creating new entry. Please try again later." Q
  N I,DA,DIE,DR,DIK,ORTEMP
  S ORCUR0=^ORD(101.41,ORQIFN,0) ;get 0 node of current QO
  F I=2,4,6,8,9 S $P(^ORD(101.41,ORNUIFN,0),U,I)=$P(ORCUR0,U,I)
@@ -89,9 +92,9 @@ COPY(ORQDLG) ;copy creates a new CLINIC MEDICATIONS or CLINIC INFUSIONS qo dialo
  I ($G(OR30350)=1) D  Q
  . I '$$DELOK() D  Q
  . . W !,"OK - If desired, you can manually delete the QO via the QO editor."
- . . S ORQDLG="^" D CONT
+ . . S ORQDLG="^" D CONT("using the conversion utility")
  . S ORPOINT=$$PTRCHECK(ORQIFN) I +$G(ORPOINT)>0 D  Q
- . . S ORQDLG="^" D CONT
+ . . S ORQDLG="^" D CONT("using the conversion utility")
  . Q:$G(ORQDLG)="^"
  . W !,"Now deleting original quick order..."
  . S ORESULT=$$DELETE(ORQIFN)
@@ -134,6 +137,7 @@ PTRCHECK(ORIEN) ; check for pointers if Copy action
  S IHAZPTR=$$PTRCHK^ORCMEDT4(ORIEN,"QO PTRS")
  I IHAZPTR D
  . W $C(7),!,"Cannot delete order dialog - other file entries point to this order dialog!",!
+ . D CONT("reviewing pointer report")
  . D PTRRPT^ORCMEDT4("QO PTRS",ORIEN)
  Q IHAZPTR
  ;
@@ -165,9 +169,10 @@ STUB(ORFILE,ORNAME) ; create new entry in file
  D CLEAN^DILF
  Q IEN(1)
  ;
-CONT() ; -- gives user a chance to read output from pointer check
+CONT(MSG) ; -- gives user a chance to read output from pointer check
  N X,Y,DIR
- S DIR(0)="FO",DIR("A")="Press any key to continue"
+ S DIR(0)="FO",DIR("A")="Press any key to continue "_MSG
+ S DIR("?")="Enter any key to continue; enter ^ to exit."
  D ^DIR
  Q
 DELOK() ; -- Are you ready?

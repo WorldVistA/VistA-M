@@ -1,5 +1,5 @@
 PSODDPRE ; BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518**;DEC 1997;Build 3
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518,568**;DEC 1997;Build 5
  ;External reference to PSOL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PSSDSAPM supported by DBIA 5570
@@ -193,7 +193,9 @@ PRSTAT(DA) ;Displays the prescription's status
  .S PSOREL=$E(PSOREL,4,5)_"/"_$E(PSOREL,6,7)_"/"_$E(PSOREL,2,3)_"@"_$E($P(PSOREL,".",2),1,4)
  .I '$D(IOINORM)!('$D(IOINHI)) S X="IORVOFF;IORVON;IOINHI;IOINORM" D ENDR^%ZISS
  .I $P($G(^PSRX(RXREC,"STA")),"^")=0 W:$$TRANCMOP^PSOUTL(RXREC) ?5,IORVON_IOINHI
- .S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) !,$J(RXPSTA,24)_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,1:"Not Dispensed"),IOINORM_IORVOFF
+ .S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1
+ .W:'$G(PSODUPF) !,$J(RXPSTA,24)_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,$P(PSOCMOP,"^")=3&(PSOLRD):"Dispensed locally NOT by CMOP",1:"Not Dispensed")
+ .W:'$G(PSODUPF) IOINORM_IORVOFF
  D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  I $G(PSOCMOP)']"" D
  .F PSOX=0:0 S PSOX=$O(^PSRX(RXREC,1,PSOX)) Q:'PSOX  D

@@ -1,5 +1,7 @@
-ORSPUTIL ; SUPPLY CONVERSION UTILITY [3/28/16 11:24am] ;05/03/16  09:15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**423**;Dec 17, 1997;Build 19
+ORSPUTIL ;SLC/JMH - SUPPLY CONVERSION UTILITY ;08/29/17  08:48
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**423,397**;Dec 17, 1997;Build 22
+ ;
+ ;
  ;
 SUPPLYNF ;if OI is marked as NON-FORMULARY and SUPPLY then set QO-ONLY to yes for SUPPLY
  W @IOF
@@ -31,6 +33,66 @@ COPYO2S ;if OI is marked QO-ONLY for OUTPATIENT Med then set QO-ONLY to yes for 
  .D SET("SPLY",I)
  Q
  ;
+SUPPLYQO ; Convert Outpatient Med QO to Supply dialog
+ ;
+ N ORCOUNT,ORDGPSO,ORDGSUP,ORDLGOI,ORERR,ORERRFLAG,ORFDA,ORIEN,OROIIEN,ORX
+ ;
+ W @IOF
+ W "This utility will convert all Outpatient Medication quick orders that were"
+ W !,"built for orderable items that are considered supply items, to use the"
+ W !,"PSO SUPPLY dialog."
+ I '$$SURE("Are you sure you want to continue?") Q
+ W !!
+ ;
+ S ORDGPSO=+$O(^ORD(100.98,"B","OUTPATIENT MEDICATIONS",0))
+ I 'ORDGPSO D ERROR("Unable to find the OUTPATIENT MEDICATIONS display group.") Q
+ S ORDGSUP=+$O(^ORD(100.98,"B","SUPPLIES/DEVICES",0))
+ I 'ORDGSUP D ERROR("Unable to find the SUPPLIES/DEVICES display group.") Q
+ S ORDLGOI=+$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
+ I 'ORDLGOI D ERROR("Unable to find the OR GTX ORDERABLE ITEM dialog.") Q
+ ;
+ S ORCOUNT=0
+ S ORIEN=0
+ F  S ORIEN=$O(^ORD(101.41,ORIEN)) Q:'ORIEN  D
+ . ; Skip disabled quick order (field #3 not blank)
+ . I $P(^ORD(101.41,ORIEN,0),U,3)'="" Q
+ . ; Skip non-quick order
+ . I $P(^ORD(101.41,ORIEN,0),U,4)'="Q" Q
+ . ; Skip non-outpatient medications
+ . I $P(^ORD(101.41,ORIEN,0),U,5)'=ORDGPSO Q
+ . ;
+ . ; Determine if the orderable item is a supply
+ . S ORX=+$O(^ORD(101.41,ORIEN,6,"D",ORDLGOI,0))
+ . I 'ORX Q
+ . S OROIIEN=+$P($G(^ORD(101.41,ORIEN,6,ORX,1)),U,1)
+ . I 'OROIIEN Q
+ . I $P($P($G(^ORD(101.43,OROIIEN,0)),U,2),";",2)'="99PSP" Q
+ . I $$ISOISPLY^ORUTL3(OROIIEN) D
+ . . K ORERR,ORFDA
+ . . S ORFDA(101.41,ORIEN_",",5)=ORDGSUP
+ . . D FILE^DIE("K","ORFDA","ORERR")
+ . . I $D(ORERR) D
+ . . . D ERRORFM("Unable to convert quick order '"_$P($G(^ORD(101.41,ORIEN,0)),U,1)_"' (IEN #"_ORIEN_")",.ORERR)
+ . . . S ORERRFLAG=1
+ . . E  D
+ . . . W !,"QO IEN: ",ORIEN,?20,"QO NAME: ",$P($G(^ORD(101.41,ORIEN,0)),U,1)
+ . . . S ORCOUNT=ORCOUNT+1
+ ;
+ I $G(ORERRFLAG) D
+ . W !!,"There were some quick orders that could not be converted."
+ . W !,"Please see output above for more information."
+ . W !!,"Please log a CA SDM ticket for assistance.",!
+ E  D
+ . W !!,"The quick order conversion completed successfully."
+ ;
+ I ORCOUNT>0 D
+ . W !,ORCOUNT_" quick order"_$S(ORCOUNT=1:" was",1:"s were")_" converted.",!!
+ E  D
+ . W !,"No quick orders were converted"_$S('$G(ORERRFLAG):", as none met the search criteria.",1:"."),!!
+ H 1
+ ;
+ Q
+ ;
 GET(CODE,ORIEN) ;get the current status of QO-ONLY for a specific package type(CODE)
  N DA,ORY S ORY=0
  S DA=$O(^ORD(101.43,ORIEN,9,"B",CODE,""))
@@ -53,3 +115,16 @@ SURE(ORMSG) ; -- sure you want to delete?
  S:$D(DTOUT) Y="^"
  Q Y
  ;
+ERROR(ORERROR) ;
+ W !!,ORERROR
+ W !,"Please log a CA SDM ticket for assistance.",!
+ H 2
+ Q
+ ;
+ERRORFM(ORTEXT,ORERROR) ; Output FileMan Error Messages
+ N ORX
+ W !!,"ERROR: "_ORTEXT_"."
+ W !,"VA FileMan Error #"_$G(ORERROR("DIERR",1))_":"
+ F ORX=1:1:+$O(ORERROR("DIERR",1,"TEXT","A"),-1) D
+ . W !,$G(ORERROR("DIERR",1,"TEXT",ORX))
+ Q

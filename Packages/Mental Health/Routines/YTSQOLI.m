@@ -1,5 +1,5 @@
 YTSQOLI ;SLC/PIJ - Score QOLI ; 01/08/2016
- ;;5.01;MENTAL HEALTH;**123**;DEC 30,1994;Build 73
+ ;;5.01;MENTAL HEALTH;**123,142**;DEC 30,1994;Build 14
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ
@@ -21,12 +21,14 @@ DATA1 ;
  .I YSCDA=3131 S LEG=0  ; Not Important
  .I YSCDA=3132 S LEG=1  ; Important
  .I YSCDA=3133 S LEG=2  ; Extremely Important
- .I YSCDA=1718 S LEG=0  ; S LEG=-3   ; Very dissatisfied
+ .I YSCDA=1718 S LEG=0  ; S LEG=-3   ; Very dissatisfied (prior to 139)
+ .I YSCDA=4110 S LEG=0  ; S LEG=-3   ; Very dissatisfied
  .I YSCDA=2357 S LEG=1  ; S LEG=-2   ; Somewhat dissatisfied
  .I YSCDA=3134 S LEG=2  ; S LEG=-1   ; A little dissatisfied
  .I YSCDA=3135 S LEG=3  ; S LEG=1    ; A little satisfied
  .I YSCDA=2356 S LEG=4  ; S LEG=2    ; Somewhat satisfied
- .I YSCDA=1714 S LEG=5  ; S LEG=3    ; Very satisfied
+ .I YSCDA=1714 S LEG=5  ; S LEG=3    ; Very satisfied    (prior to 139)
+ .I YSCDA=4109 S LEG=5  ; S LEG=3    ; Very satisfied
  .D SCORANS
  D SCORANS1
  Q
