@@ -1,9 +1,9 @@
-ORKLR ;slc/CLA - Order checking support procedure for lab orders ;7/23/96  14:31
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,51,92,105,243,331**;Dec 17, 1997;Build 30
+ORKLR ;slc/CLA - Order checking support procedure for lab orders ;May 17, 2019@17:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,51,92,105,243,331,510**;Dec 17, 1997;Build 11
  ;
  Q
 DUP(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ; return duplicate lab order info
- N ORL,DDT,ODT,ORN,ORNC,LRID,DGIEN,ORPANEL
+ N ORL,DDT,ODT,ORN,ORNC,LRID,DGIEN,ORPANEL,ORDIFF
  ;get lab id from orderable item (OI):
  S LRID=$P(^ORD(101.43,OI,0),U,2) S:$L($G(LRID)) ORL(LRID_";"_SPECIMEN)=""
  ;expand into child-level lab identifiers if children exist for this OI:
@@ -13,10 +13,15 @@ DUP(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ; return duplicate lab order info
  S DDT=$P($$DUPRANGE^ORQOR2(OI,"LR",NEWORDT,ORDFN),U)
  Q:DDT=0  ;if dup range for this OI = zero, don't process dup order oc
  ;
- ;get all lab orders since dup beg d/t:
+ ;get all signed/not canceled lab orders since dup beg d/t:
  S DGIEN=0,DGIEN=$O(^ORD(100.98,"B","LAB",DGIEN))
+ ;expand the search range to look for future orders
+ S ORDIFF=$$FMDIFF^XLFDT(NEWORDT,DDT,2)
+ S NEWORDT=$$FMADD^XLFDT(NEWORDT,"","","",ORDIFF)
+ ;start DDT at one minute previous so that search begins correctly
+ S DDT=$$FMADD^XLFDT(DDT,"","","",-60)
  K ^TMP("ORR",$J)
- D EN^ORQ1(ORDFN_";DPT(",DGIEN,1,"",DDT,NEWORDT,1,0)
+ D EN^ORQ1(ORDFN_";DPT(",DGIEN,1,"",DDT,NEWORDT+.2359,1,0,"AW")
  N J,HOR,SEQ,X S J=1,HOR=0,SEQ=0
  S HOR=$O(^TMP("ORR",$J,HOR)) Q:+HOR<1
  F  S SEQ=$O(^TMP("ORR",$J,HOR,SEQ)) Q:+SEQ<1  D
@@ -30,8 +35,9 @@ DUP(ORKLR,OI,ORDFN,NEWORDT,SPECIMEN) ; return duplicate lab order info
  .I '$D(^OR(100,ORN,2,0)) D DUP2(.ORKLR,ORN,ODT,.ORL,$G(ORPANEL))
  K ^TMP("ORR",$J)
  Q
+ ;
 DUP2(ORKLR,ORN,ODT,ORL,ORPANEL) ;second part of dup lab order check
- N ORS,ORST,ORSI,ORSP,OROI,LRID,LRIDX,LRIDXC,EXDT,INVDT,RCNT,ORY,ORX,ORQ
+ N ORS,ORST,ORSI,ORSP,OROI,LRID,LRIDX,LRIDXC,EXDT,INVDT,RCNT,ORY,ORX,ORQ,ORXI
  S ORS=$$STATUS^ORQOR2(ORN),ORSI=$P(ORS,U),ORST=$P(ORS,U,2)
  ;quit if order status is canceled/discontinued/expired/lapsed/changed/delayed:
  I (ORSI=13)!(ORSI=1)!(ORSI=7)!(ORSI=14)!(ORSI=12)!(ORSI=10) Q
@@ -53,10 +59,12 @@ DUP2(ORKLR,ORN,ODT,ORL,ORPANEL) ;second part of dup lab order check
  ..Q:+$G(ORQ)=1  ;quit if lab test cancelled in lab
  ..;
  ..S EXDT=$$FMTE^XLFDT(ODT,"2P"),INVDT=9999999-ODT
+ ..;if previous orders have same date/time, do not overlay
+ ..F ORXI=0:0 Q:'$D(ORKLR(INVDT))  S INVDT=INVDT+.000001
  ..;get most recent lab results:
  ..S RCNT=$$LOCLFORM^ORQQLR1(ORDFN,+LRID,ORSP)
  ..;
- ..S ORKLR(INVDT)=ORN_U_$P($$TEXT^ORKOR(ORN,60),U,2)_" "_$G(EXDT)_" ["_$S(ORST="COMPLETE":"COLLECTED",ORST="PENDING":"UNCOLLECTED",1:ORST)_"]"
+ ..S ORKLR(INVDT)=ORN_U_$P($$TEXT^ORKOR(ORN,60),U,2)_" "_$G(EXDT)_" ["_$S(ORST="ACTIVE":"COLLECTED",ORST="PENDING":"UNCOLLECTED",1:ORST)_"]"
  ..I +RCNT>0 S ORKLR(INVDT)=ORKLR(INVDT)_"  *Most recent result: "_$P(RCNT,U,2)_"*"
  ;get children lab ids and check against ordered array  ORL
  S LRIDX="" F  S LRIDX=$O(^ORD(101.43,OROI,10,"AID",LRIDX)) Q:LRIDX=""  D
@@ -69,10 +77,13 @@ DUP2(ORKLR,ORN,ODT,ORL,ORPANEL) ;second part of dup lab order check
  ..Q:+$G(ORQ)=1  ;quit if lab test cancelled in lab
  ..;
  ..S EXDT=$$FMTE^XLFDT(ODT,"2P"),INVDT=9999999-ODT
+ ..;if previous orders have same date/time, do not overlay
+ ..F ORXI=0:0 Q:'$D(ORKLR(INVDT))  S INVDT=INVDT+.000001
+ ..;
  ..;get most recent lab results:
  ..S RCNT=$S($G(ORPANEL)=1:"",1:$$LOCLFORM^ORQQLR1(ORDFN,+LRID,ORSP))
  ..;
- ..S ORKLR(INVDT)=ORN_U_$P($$TEXT^ORKOR(ORN,60),U,2)_" "_$G(EXDT)_" ["_$S(ORST="COMPLETE":"COLLECTED",ORST="PENDING":"UNCOLLECTED",1:ORST)_"]"
+ ..S ORKLR(INVDT)=ORN_U_$P($$TEXT^ORKOR(ORN,60),U,2)_" "_$G(EXDT)_" ["_$S(ORST="ACTIVE":"COLLECTED",ORST="PENDING":"UNCOLLECTED",1:ORST)_"]"
  ..I +RCNT>0 S ORKLR(INVDT)=ORKLR(INVDT)_"  *Most recent result: "_$P(RCNT,U,2)_"*"
  Q
 RECNTWBC(ORDFN,ORDAYS) ;extrinsic function to return most recent WBC within <ORDAYS> in format:
