@@ -1,5 +1,5 @@
-DGENACL1 ;ALB/MRY - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ;02/15/2008
- ;;5.3;Registration;**779,788**;08/13/93;Build 18
+DGENACL1 ;ALB/MRY,JAM - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ;02/15/2008
+ ;;5.3;Registration;**779,788,978**;08/13/93;Build 19
  ;
 PRINT N DGLN,PAGE,QUIT,DGTOTAL
  S QUIT=""
@@ -23,7 +23,8 @@ HEADER ;
  . D EN^DDIOL("Page: "_PAGE,"","!?60")
  . D:DGPFTFLG EN^DDIOL("PREFERRED FACILITY: "_DGPFTF,"","!!") D EN^DDIOL("","","!!")
  . I ($G(DGFMT1)="S") D
- . . D EN^DDIOL("1010EZ APPT.","","?30"),EN^DDIOL("REQ","","?45"),EN^DDIOL("RESIDENCE","","?52"),EN^DDIOL("CELLULAR","","?67")
+ . . ; jam DG*5.3*978 - modified column header - remove "1010EZ" from "APPT. REQUEST DATE" column
+ . . D EN^DDIOL("APPT.","","?30"),EN^DDIOL("REQ","","?45"),EN^DDIOL("RESIDENCE","","?52"),EN^DDIOL("CELLULAR","","?67")
  . . D EN^DDIOL("NAME(SSN)"),EN^DDIOL("REQUEST DATE","","?30"),EN^DDIOL("STA","","?45"),EN^DDIOL("PHONE","","?54"),EN^DDIOL("PHONE","","?68")
  . . D EN^DDIOL("","","!")
  I DGRPT=2 D
@@ -34,9 +35,15 @@ HEADER ;
  . D EN^DDIOL(DG1_" TO "_DG2,"","!?20"),EN^DDIOL("Page: "_PAGE,"","?60")
  . D:DGPFTFLG EN^DDIOL("PREFERRED FACILITY: "_DGPFTF,"","!!")
  . I ($G(DGFMT2)="D") D
- . . D EN^DDIOL("1010EZ APPT.","","!!?37"),EN^DDIOL("SCHEDULED","","?54"),EN^DDIOL("#","","?71"),EN^DDIOL("REQ","","?76")
- . . D EN^DDIOL("NAME"),EN^DDIOL("EP/CV","","?31"),EN^DDIOL("REQUEST DATE","","?37"),EN^DDIOL("APPOINTMENT DATE","","?51"),EN^DDIOL("DAYS","","?70"),EN^DDIOL("STA","","?76")
- . . D EN^DDIOL("============================"),EN^DDIOL("=====","","?31"),EN^DDIOL("============","","?37"),EN^DDIOL("==================","","?51"),EN^DDIOL("====","","?70"),EN^DDIOL("===","","?76")
+ . . ; jam DG*5.3*978 - modified column headers text - "APPT. REQUEST" and "SCHEDULED APPT. DATE" column
+ . . ; added column ORIGINAL APPT. REQUEST 
+ . . D EN^DDIOL("ORIGINAL","","!!?47"),EN^DDIOL("SCHEDULED","","?57")
+ . . D EN^DDIOL("APPT.","","!?37"),EN^DDIOL("APPT.","","?47"),EN^DDIOL("APPT.","","?57"),EN^DDIOL("#","","?67"),EN^DDIOL("REQ","","?72")
+ . . D EN^DDIOL("NAME"),EN^DDIOL("EP/CV","","?31"),EN^DDIOL("REQUEST","","?37"),EN^DDIOL("REQUEST","","?47"),EN^DDIOL("DATE","","?57"),EN^DDIOL("DAYS","","?67"),EN^DDIOL("STA","","?72")
+ . . D EN^DDIOL("============================"),EN^DDIOL("=====","","?31"),EN^DDIOL("=========","","?37"),EN^DDIOL("=========","","?47"),EN^DDIOL("=========","","?57"),EN^DDIOL("====","","?67"),EN^DDIOL("===","","?72")
+ . . ;D EN^DDIOL("APPT.","","!!?37"),EN^DDIOL("SCHEDULED","","?54"),EN^DDIOL("#","","?71"),EN^DDIOL("REQ","","?76")
+ . . ;D EN^DDIOL("NAME"),EN^DDIOL("EP/CV","","?31"),EN^DDIOL("REQUEST DATE","","?37"),EN^DDIOL("APPOINTMENT DATE","","?51"),EN^DDIOL("DAYS","","?70"),EN^DDIOL("STA","","?76")
+ . . ;D EN^DDIOL("============================"),EN^DDIOL("=====","","?31"),EN^DDIOL("============","","?37"),EN^DDIOL("==================","","?51"),EN^DDIOL("====","","?70"),EN^DDIOL("===","","?76")
  I +DGERROR D  Q
  . D EN^DDIOL($P(DGERROR,"^",2),"","!!!")
  . I $E(IOST,1,2)="C-" D PAUSE
@@ -97,7 +104,10 @@ LINE ;add a line to the report
  . I $D(^DPT("AXFFP",1,+Y)) S DGCLIST=1 D FFP^DPTLK5 K DGCLIST D ADD Q:QUIT
  . D ENR^DPTLK,ADD Q:QUIT
  . D CV^DPTLK,ADD Q:QUIT
- . D EN^DDIOL("1010EZ APPT. REQUEST DATE: ") D EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.1511),"","?28") D ADD Q:QUIT
+ . ; jam DG*5.3*978 - modified field label - remove "1010EZ" from "APPT. REQUEST DATE" 
+ . D EN^DDIOL("APPT. REQUEST DATE: ") D EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.1511),"","?28") D ADD Q:QUIT
+ . ; jam DG*5.3*978 - add Original Appt. Request Date field to the report - display the field only if 1010.1512 is 1 (YES)
+ . D EN^DDIOL("ORIGINAL APPT. REQUEST DATE: ") D:$$GET1^DIQ(2,DFNIEN,1010.1512,"I")=1 EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.1513),"","?30") D ADD Q:QUIT
  . D EN^DDIOL("REQUEST STATUS: ") D EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.161),"","?18") D ADD Q:QUIT
  . D EN^DDIOL("COMMENT: "_$$GET1^DIQ(2,DFNIEN,1010.163)) D ADD Q:QUIT
  . D EN^DDIOL("PHONE [RESIDENCE]: "_$$GET1^DIQ(2,DFNIEN,.131))
@@ -114,7 +124,13 @@ LINE ;add a line to the report
  . D ADD Q:QUIT
  I DGRPT=2,($G(DGFMT2)="D") D
  . D EN^DDIOL(DGNAMX) I $L(DGNAMX)>29 D EN^DDIOL("","","!") D ADD Q:QUIT
- . D EN^DDIOL(DATA3,"","?31"),EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.1511),"","?37"),EN^DDIOL(SDADT,"","?51"),EN^DDIOL($J(DGDAYS,3)_$S(DGFLG:"*",1:""),"","?71"),EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.161,"I"),"","?77") D ADD Q:QUIT
+ . ; jam DG*5.3*978 added new column ORIGINAL APPT REQUEST DATE field 1010.1513
+ . ; this requires changes for the date fields to print out in mm/dd/yy format
+ . ;D EN^DDIOL(DATA3,"","?31"),EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.1511),"","?37"),EN^DDIOL(SDADT,"","?51"),EN^DDIOL($J(DGDAYS,3)_$S(DGFLG:"*",1:""),"","?71"),EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.161,"I"),"","?77") D ADD Q:QUIT
+ . D EN^DDIOL(DATA3,"","?31"),EN^DDIOL($$FMTE^XLFDT($$GET1^DIQ(2,DFNIEN,1010.1511,"I"),"2DZ"),"","?37")
+ . ; DG*5.3*978 only display the field if ORIGINAL APPT REQUEST (field 1010.1512) is 1 (YES) 
+ . I $$GET1^DIQ(2,DFNIEN,1010.1512,"I")=1 D EN^DDIOL($$FMTE^XLFDT($$GET1^DIQ(2,DFNIEN,1010.1513,"I"),"2DZ"),"","?47")
+ . D EN^DDIOL($$FMTE^XLFDT(SDADTI,"2DZ"),"","?57"),EN^DDIOL($J(DGDAYS,3)_$S(DGFLG:"*",1:""),"","?67"),EN^DDIOL($$GET1^DIQ(2,DFNIEN,1010.161,"I"),"","?73") D ADD Q:QUIT
  . S DGCMT=$$GET1^DIQ(2,DFNIEN,1010.163) I $G(DGCMT)'="" D EN^DDIOL("COMMENT: "_DGCMT,"","!?3") D ADD Q:QUIT
  S DGLN=1
  Q

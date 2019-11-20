@@ -1,5 +1,5 @@
-DGENUPLA ;ALB/CKN,TDM,PJR,RGL,EG,TMK,CKN,TDM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;15 Jan 2015  4:35 PM
- ;;5.3;REGISTRATION;**397,379,497,451,564,672,659,583,653,688,754,909**;Aug 13,1993;Build 32
+DGENUPLA ;ALB/CKN,TDM,PJR,RGL,EG,TMK,CKN,TDM,JAM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;23 Feb 2017  11:30 AM
+ ;;5.3;REGISTRATION;**397,379,497,451,564,672,659,583,653,688,754,909,978**;Aug 13,1993;Build 19
  ;
  ;***************************************************************
  ; This routine was created because DGENUPL2 had reached it's
@@ -149,6 +149,47 @@ ZIO ;New segment - DG*5.3*653
  S DGPAT("APPREQDT")=$$CONVERT^DGENUPL1(SEG(6),"DATE",.ERROR)
  I ERROR D  Q
  . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 6, APPOINTMENT REQUEST DATE",.ERRCOUNT)
+ ; jam; DG*5.3*978 - segments 7-10 added
+ S DGPAT("APPREQTS")=$$CONVERT^DGENUPL1(SEG(7),"TS",.ERROR)
+ I ERROR D  Q
+ . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 7, APPOINTMENT REQUEST ON 1010EZ CHG DATE/TIME",.ERRCOUNT)
+ S DGPAT("ORIGAPPREQ")=$$CONVERT^DGENUPL1(SEG(8),"1/0",.ERROR)
+ I ERROR D  Q
+ . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 8, ORIGINAL APPOINTMENT REQUEST",.ERRCOUNT)
+ S DGPAT("ORIGAPPREQDT")=$$CONVERT^DGENUPL1(SEG(9),"DATE",.ERROR)
+ I ERROR D  Q
+ . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 9, ORIGINAL APPOINTMENT REQUEST DATE",.ERRCOUNT)
+ S DGPAT("ORIGAPPREQTS")=$$CONVERT^DGENUPL1(SEG(10),"TS",.ERROR)
+ I ERROR D  Q
+ . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 10, ORIGINAL APPOINTMENT REQUEST CHG DT/TIME",.ERRCOUNT)
+ ; jam; DG*5.3*978 - begin various validations that are done to detemine whether certain fields should be filed or dropped or an error sent back
+ ; If not deleting ORIGINAL APPT REQUEST, Do not store Original Appt Request fields (1010.1512, 1010.1513, 1010.1514) if current value of field 1010.1512 in Vista is not blank
+ I DGPAT("ORIGAPPREQ")'="@" D
+ . I $$GET1^DIQ(2,DFN,1010.1512,"I")'="" K DGPAT("ORIGAPPREQ"),DGPAT("ORIGAPPREQDT"),DGPAT("ORIGAPPREQTS")
+ ;
+ ;These are the rules for the other 1010 fields (1010.159, 1010.1511 and 1010.1515):
+ ;
+ ;Value of           Value of 1010.159    Compare 1010.1515 
+ ;1010EZ field         1010EZ field       with Z11 "APPREQTS"  
+ ;Incoming Z11          in Vista DB       Which is more recent?      Resulting Process
+ ;------------------------------------------------------------------------------------------------------------------------
+ ;1. YES/NO              YES/NO                 Vista                Ignore the ZIO 1010 fields - no error is sent, process the Z11
+ ;2. NO                  YES                    Z11                  Reject the Z11 - send error back
+ ;3. All other cases     ---                    ---                  File the fields
+ ;
+ ; Case 1: If the incoming Z11 appt request date/time change is not "@" and is older that the Vista date/time change, 
+ ;  don't file the fields - we don't throw an error for these cases.
+ I DGPAT("APPREQTS")'="@",DGPAT("APPREQTS")<$$GET1^DIQ(2,DFN,1010.1515,"I") K DGPAT("APPREQTS"),DGPAT("APPREQ"),DGPAT("APPREQDT") Q
+ ; Case 2 - If not deleting Appt. Request, changing a YES in Vista to a NO is not allowed and an error is generated
+ I DGPAT("APPREQ")'="@",(DGPAT("APPREQ")=0)&($$GET1^DIQ(2,DFN,1010.159,"I")=1) D  Q
+ .S ERROR=1
+ .D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 6, APPOINTMENT REQUEST ON 1010EZ - VISTA VALUE IS YES",.ERRCOUNT)
+ ; 
+ ; last check - field 1010.1511 APPOINTMENT REQUEST DATE must not be a future date
+ I DGPAT("APPREQDT")>DT D  Q
+ .S ERROR=1
+ .D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZIO SEGMENT, SEQ 7, APPOINTMENT REQUEST DATE - FUTURE DATE",.ERRCOUNT)
+ ; jam; DG*5.3*978 - end of validations - data can be filed.
  Q
  ;
 ZPD ;

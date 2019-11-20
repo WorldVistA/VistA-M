@@ -1,5 +1,5 @@
-DGENACL ;ALB/MRY,LBD - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ; 6/9/10 2:09pm
- ;;5.3;Registration;**779,788,824**;08/13/93;Build 2
+DGENACL ;ALB/MRY,LBD,JAM - NEW ENROLLEE APPOINTMENT CALL LIST - UPDATE ;6/9/10 2:09pm
+ ;;5.3;Registration;**779,788,824,978**;08/13/93;Build 19
  ;
 EDIT ;-Entry point - Edit Appointment Request Status and Comment option
  N DIC,DIE,DA,DR,Y,DFN
@@ -54,7 +54,8 @@ DATE N X1,X2
  S DIR(0)="DAO^,"_DT_",::EX"
  S X1=DT,X2=-7 D C^%DTC
  S Y=X D DD^%DT
- S DIR("A")="APPOINTMENT REQUEST ON 1010EZ START DATE: "
+ ; jam DG*5.3*978 - modified prompt - remove "ON 1010EZ" from "APPT. REQUEST START DATE"
+ S DIR("A")="APPOINTMENT REQUEST START DATE: "
  S DIR("B")=Y
  S DIR("?")="Enter a date that an enrollee was asked question."
  D ^DIR K DIR
@@ -64,7 +65,8 @@ DATE N X1,X2
  S DIR(0)="DAO^"_DGBEG_","_DT_"::EX"
  S Y=DT D DD^%DT S DGDT=Y
  S DIR("B")=DGDT
- S DIR("A")="APPOINTMENT REQUEST ON 1010EZ END DATE: "
+ ; jam DG*5.3*978 - modified prompt - remove "ON 1010EZ" from "APPT. REQUEST END DATE"
+ S DIR("A")="APPOINTMENT REQUEST END DATE: "
  S DIR("?")="Enter a date that an enrollee was asked question."
  D ^DIR K DIR
  I $D(DIRUT) S DTOUT=1
