@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-30-AUG-2019 04:10:06 ZWR
+20-NOV-2019 10:49:33 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4394,7 +4394,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(60,"%","B","PXRM",3)=""
 ^DIC(60,"%D",0)="^^1^1^2940316^^^^"
 ^DIC(60,"%D",1,0)="This is the file that holds the names and ordering, display of tests."
-^DIC(60,"%MSC")=3180811.075959
+^DIC(60,"%MSC")=3191119.120634
 ^DIC(61,0)="TOPOGRAPHY FIELD^61I"
 ^DIC(61,0,"GL")="^LAB(61,"
 ^DIC(61,"%D",0)="^^1^1^2930325^^^^"
@@ -11667,6 +11667,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("301.7","%D",10,0)="stored along with the Date/Time the address was changed, the Source of the"
 ^DIC("301.7","%D",11,0)="change, and User ID of the person who made the change.  In the case of an"
 ^DIC("301.7","%D",12,0)="update via an ORU~Z05, the User ID will be POSTMASTER."
+^DIC("301.7","%MSC")=3191120.104534
 ^DIC("301.9",0)="IVM SITE PARAMETER^301.9"
 ^DIC("301.9",0,"GL")="^IVM(301.9,"
 ^DIC("301.9","%D",0)="^^14^14^2940825^^^^"
