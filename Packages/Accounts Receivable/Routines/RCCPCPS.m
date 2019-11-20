@@ -1,6 +1,10 @@
 RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB-Build Patient Statement File ;12/19/96  4:14 PM
-V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301**;Mar 20,1995;Build 144
+V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348**;Mar 20,1995;Build 20
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*348 Set 'BEG' lookup to handle last statement event
+ ;             whether exists or not
+ ;
 EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SVINT,SVOTH,SITE,TXT,VAR,X,%
  N RCINFULL,RCINPART S COMM=0
  K ^RCPS(349.2)
@@ -23,12 +27,12 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   S (SVADM,SVAMT,SVINT,SVOTH)=0
  .   N REF,SBAL,SDT,TBAL,TN,TTY,X,Y
  .   K ^TMP("PRCAGT",$J)
- .   S BEG=+$$LST^RCFN01(DEB,2)
+ .   S BEG=+$$LST^RCFN01(DEB,2,1)
  .   S LDT3=$S(BEG>0:$$FPS^RCAMFN01($P(BEG,"."),-3),1:0)
  .   I $P(BEG,".")'<$P(RCDATE,".") Q
  .   D NOW^%DTC S END=%
  .   I BEG<1 S PDAT="",BEG=0,PBAL=0
- .   I BEG S PDAT=BEG,BEG=9999999.999999-BEG,PBAL=0 D PBAL^PRCAGU(DEB,.BEG,.PBAL) ;get prev bal
+ .   I BEG S PDAT=BEG,BEG=9999999.999999-BEG,PBAL=0 D PBAL^PRCAGU(DEB,.BEG,.PBAL,1) ;get prev bal ; PRCA*4.5*348 set statement flag
  .   D EN^PRCAGT(DEB,BEG,.END)
  .   S TBAL=0 D TBAL^PRCAGT(DEB,.TBAL) ;get trans bal
  .   S BBAL=0 D BBAL^PRCAGU(DEB,.BBAL) ;get bill bal
@@ -125,7 +129,7 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   ;
  .   ;  set 0th node
  .   I RCPSDA S ^RCPS(349.2,RCDEBTDA,2,0)="^349.21DA^"_RCPSDA_"^"_RCPSDA
- .   ;
+ .   ;  
  .   I RCPSDA'<287 S ^XTMP("RCCPC",0)=DT,^XTMP("RCCPC",RCDEBTDA)="" Q
  .   D NO
  ;
@@ -172,9 +176,10 @@ BUILD ;This is the entry point from the BUILD CCPC file option
  ..W !!,"PLEASE CONTACT CUSTOMER SUPPORT BEFORE PROCEEDING.",!!
 TIME S ZTIO="",ZTRTN="EN^RCCPCPS",ZTDESC="Build CCPC Statement File"
  S ZTDTH="" D ^%ZTLOAD Q:$G(ZTSK)=""
+ S %H=ZTSK("D") D YX^%DTC,H^%DTC I %Y=0!(%Y=6) W !,"Queued for Building." Q   ;PRC*4.5*348
  S %H=ZTSK("D") D YMD^%DTC S QDT=X_%
- I (QDT>DT_"."_0800)&(QDT<(DT_"."_1801)) D  G TIME
- .W !!,*7,"You Can Not Queue this Job Between 8:00am and 6:00pm.",!
+ I (QDT>(X_".0800"))&(QDT<(X_".1801")) D  G TIME   ;PRC*4.5*348
+ .W !!,*7,"You Can Not Queue this Job on a weekday Between 8:00am and 6:00pm.",!
  .D KILL^%ZTLOAD
  W !,"Queued for Building."
  Q
