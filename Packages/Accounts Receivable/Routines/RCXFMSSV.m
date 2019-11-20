@@ -1,5 +1,5 @@
 RCXFMSSV ;WISC/RFJ-fms standard voucher (sv) code sheet generator ; 9/7/10 7:43am
- ;;4.5;Accounts Receivable;**96,101,135,139,98,156,170,191,203,220,138,184,239,273**;Mar 20, 1995;Build 3
+ ;;4.5;Accounts Receivable;**96,101,135,139,98,156,170,191,203,220,138,184,239,273,357**;Mar 20, 1995;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -163,7 +163,19 @@ BADDEBT(RCRJDATE) ;  top entry point to generate a sv code sheet
  S DATA133R=$G(^RC(348.1,+$O(^RC(348.1,"B","133N.2",0)),0))
  S DATA133S=$G(^RC(348.1,+$O(^RC(348.1,"B",1338.2,0)),0))
  ;
+ ;PRCA*4.5*357 - add missing SGLS to report
+ S DATA13N3=$G(^RC(348.1,+$O(^RC(348.1,"B","133N.3",0)),0))  ;1339.N3
+ S DATA1396=$G(^RC(348.1,+$O(^RC(348.1,"B",1319.6,0)),0))    ;1319.6
+ S DATA1397=$G(^RC(348.1,+$O(^RC(348.1,"B",1319.7,0)),0))    ;1319.7
+ S DATA1398=$G(^RC(348.1,+$O(^RC(348.1,"B",1319.8,0)),0))    ;1319.8
+ S DATA1399=$G(^RC(348.1,+$O(^RC(348.1,"B",1319.9,0)),0))    ;1319.9
+ S DATA1383=$G(^RC(348.1,+$O(^RC(348.1,"B",1338.3,0)),0))    ;1338.3
+ S DATA1391=$G(^RC(348.1,+$O(^RC(348.1,"B",1339.1,0)),0))    ;1339.1
+ ;end PRCA*4.5*357
+ ;
+ ;
  ; the revenue source code here is a 0
+ ;23
  S ^TMP($J,"RCRJRCOLSV","23",$$ADJFUND^RCRJRCO($S(DT<$$ADDPTEDT^PRCAACC():5287.3,1:528703)),0)=$P(DATA1319,"^",8)
  I 'RCNOHSIF S ^TMP($J,"RCRJRCOLSV","23",5358.1,0)=$P(DATAHSIF,"^",8)
  ;patch 220 replaces 4032 fund with 528709
@@ -172,9 +184,18 @@ BADDEBT(RCRJDATE) ;  top entry point to generate a sv code sheet
  S ^TMP($J,"RCRJRCOLSV","23",528701,0)=$P(DATA133M,"^",8)
  S ^TMP($J,"RCRJRCOLSV","23",528704,0)=$P(DATA133T,"^",8)
  S ^TMP($J,"RCRJRCOLSV","23",528711,0)=$P(DATA133Q,"^",8)
+ S ^TMP($J,"RCRJRCOLSV","23",528713,0)=$P(DATA1396,"^",8)
+ S ^TMP($J,"RCRJRCOLSV","23",528714,0)=$P(DATA1397,"^",8)+$P(DATA1398,"^",8)+$P(DATA1399,"^",8)
+ ;27
+ S ^TMP($J,"RCRJRCOLSV","27",528713,0)=$P(DATA1391,"^",8)
+ ;2J
  S ^TMP($J,"RCRJRCOLSV","2J",528711,0)=$P(DATA133R,"^",8)
+ S ^TMP($J,"RCRJRCOLSV","2J",528713,0)=$P(DATA13N3,"^",8)
+ ;2B
  S ^TMP($J,"RCRJRCOLSV","2B",528711,0)=$P(DATA133S,"^",8)
+ S ^TMP($J,"RCRJRCOLSV","2B",528713,0)=$P(DATA1383,"^",8)
  ;
+ ;Pre MRA funds
  S ^TMP($J,"RCRJRCOLSV","2B",$$ADJFUND^RCRJRCO($S(DT<$$ADDPTEDT^PRCAACC():5287.4,1:528704)),0)=$P(DATA1338,"^",8)
  S ^TMP($J,"RCRJRCOLSV","27",$$ADJFUND^RCRJRCO($S(DT<$$ADDPTEDT^PRCAACC():5287.4,1:528704)),0)=$P(DATA1339,"^",8)
  ; post-MRA non-Medicare bills

@@ -1,5 +1,5 @@
 RCXFMSPR ;WISC/RFJ-print revenue source codes ;8/31/10 11:34am
- ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310,315,338,351**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310,315,338,351,357**;Mar 20, 1995;Build 6
  ;Per VA Directive 6402, this routine should not be modified.
  W !,"This option will print out a list of the revenue source codes sent from"
  W !,"the VISTA system to FMS."
@@ -102,7 +102,7 @@ GETDESC(RSC) ; return the description for the revenue source code
  ;end PRCA*4.5*338
  S DESC="UNKNOWN"
  S COLUMN2=$E(RSC,2)
- I "123456789ABCDEFGHIJKLMQRST"[COLUMN2 S DESC=$P($T(@("A"_COLUMN2)),";",3)
+ I "123456789ABCDEFGHIJKLMNQRST"[COLUMN2 S DESC=$P($T(@("A"_COLUMN2)),";",3)   ;PRCA*4.5*357
  ; HSIF reference disabled by patch 203
  ; I RSC="8B1Z"!(RSC="8C1Z") S DESC=DESC_" (HSIF)"
  I COLUMN2'=5 Q DESC
@@ -169,6 +169,7 @@ AJ ;;Respite Care-Non-Institutional (LTC)
 AK ;;Geriatric Eval-Institutional (LTC)
 AL ;;Geriatric Eval-Non-Institutional (LTC)
 AM ;;Nursing Home Care-Long Term Care (LTC)
+AN ;;EDI 3RD PARTY LOCKBOX
 AQ ;;Pharmacy No Fault Auto Acc
 AR ;;Pharmacy Reimburs Health Ins
 AS ;;Pharmacy Tort Feasor
@@ -236,4 +237,5 @@ CCADRSC ;;
  ;;8CD1;CC DOD 1st-Pty Inpatient
  ;;8CD2;CC DOD 1st-Pty Outpatient
  ;;8CD3;CC DOD 1st-Pty RX
+ ;;8CCU;CC 1st-Pty Urgent Care
  ;;END

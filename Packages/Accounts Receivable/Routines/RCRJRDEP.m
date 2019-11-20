@@ -1,5 +1,5 @@
 RCRJRDEP ;WISC/RFJ-Deposit Reconciliation Report ;9/7/10 8:19am
- ;;4.5;Accounts Receivable;**101,114,203,220,273,310,338,351**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**101,114,203,220,273,310,338,351,357**;Mar 20, 1995;Build 6
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  W !!,"This option will print the Deposit Reconciliation Report.  The report will"
