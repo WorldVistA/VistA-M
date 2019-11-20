@@ -1,5 +1,5 @@
 VPRSDA ;SLC/MKB -- SDA utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10**;Sep 01, 2011;Build 16
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,16**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -49,13 +49,17 @@ INTDATE(X) ; -- Return internal form of date X
  S %DT="TSX" D ^%DT
  Q Y
  ;
-DATE(X,DTO) ; -- return FM date X as SDA date
+DATE(X,DTO) ; -- return FM date X as SDA Timestamp
  N D,T,Y
  S X=$G(X) I X'?7N.1".".7N Q ""
- ; convert to SDA format
- S X=$$IMPREC(X),D=$P(X,"."),T=$P(X,".",2)
+ S D=$P(X,"."),T=$P(X,".",2)
+ ; validate date
+ I '$$VALID(D) Q ""
  S Y=(1700+$E(D,1,3))_"-"_$E(D,4,5)_"-"_$E(D,6,7)
+ ; if imprecise, add month or day of 01
+ F I=2,3 I $P(Y,"-",I)="00" S $P(Y,"-",I)="01"
  I $G(DTO) Q Y  ;date only
+ ;
  ; validate T = time
  I T=24 S T=235959 ;for SDA
  S:$L(T)<6 T=$E((T_"000000"),1,6)  ;pad the time to 6 digits
@@ -63,15 +67,15 @@ DATE(X,DTO) ; -- return FM date X as SDA date
  I $E(T,3,4)>59 S $E(T,3,6)="0000" ;strip invalid minutes/seconds
  I $E(T,5,6)>59 S $E(T,5,6)="00"   ;strip invalid seconds
  S Y=Y_"T"_$E(T,1,2)_":"_$E(T,3,4)_":"_$E(T,5,6)
- ; time zone?
  Q Y
  ;
-IMPREC(X) ; -- if X is imprecise, make actual date
- N Y S Y=$E(X,1,3)
- S Y=Y_$S($E(X,4,5)="00":"01",1:$E(X,4,5))
- S Y=Y_$S($E(X,6,7)="00":"01",1:$E(X,6,7))
- I X["." S Y=Y_"."_$P(X,".",2)
- Q Y
+VALID(X) ; -- returns 1 or 0, if valid FM date
+ N %DT,Y S %DT="",X=$G(X) D ^%DT
+ I X["." S X=$P(X,".") ;ck date only
+ I Y<1 Q 0
+ ; check if out of HL7 range
+ I (Y<1410102)!(Y>4141015) Q 0
+ Q 1
  ;
 NAMECOMP(NAME) ; -- return name as string of component pieces
  ; NAME -> FAMILY^GIVEN^MIDDLE^SUFFIX
@@ -300,6 +304,9 @@ VST(VISIT) ; -- get info for a VISIT in @VPRVST
  S VISIT=+$G(VISIT) Q:VISIT<1
  D ENCEVENT^PXAPI(VISIT)
  S VPRVST=$NA(^TMP("PXKENC",$J,VISIT,"VST",VISIT))
+ ; validate Check-Out D/T
+ N D S D=$P($G(@VPRVST@(0)),U,18)
+ I D,'$$VALID(D) S $P(@VPRVST@(0),U,18)=""
  Q
  ;
 VAIP(MVT,DFN) ; -- get admission info & Visit#
