@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM-PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941**;Aug 13, 1993;Build 73
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM,HM -PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987**;Aug 13, 1993;Build 22
  ; *286* Newing variables X,Y in OKLINE subroutine
  ; *358* If a patient is on a domiciliary ward, don't display MEANS
  ; TEST required/Medication Copayment Exemption messages
@@ -10,7 +10,7 @@ DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM-PATIENT INQUIRY (NEW) ;July 09, 20
  ; *688* Modified to display Country and Foreign Address
  ; *936* Modified to display Health Benefit Plans
  ; *940* #879316,#879318 - Display Permanent & Total Disabled Status
- ; *941* #887088 - Redesign of Inquiry Screen layout for displaying the addresses 
+ ; *941* #887088 - Redesign of Inquiry Screen layout for displaying the addresses
  ;
  ; Integration Agreements:
  ; 6138 - DGHBPUTL API
@@ -214,12 +214,21 @@ RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(15)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10)
  K DGARRAY,SDCNT,^TMP($J,"SDAMA301"),ADM,L,TRN,DIS,SSN,FA,C,COV,NOW,CT,DGD,DGD1,I ;Y killed after dghinqky
  Q
  ; KUM DG*5.3*936 Display Health Benefit Plans assigned to Veteran
-HBP W !!,"Health Benefit Plans Currently Assigned to Veteran:"
- N DGHBP,HBP,DGCOUNT
+HBP W !!,"Veteran Medical Benefit Plan Currently Assigned to Veteran:" ;DG*5.3*987 HM
+ N DGHBP,HBP,DGCOUNT,DGHBIEN,DGPNAME,X,DGCNT,DGLN,DGLINE
  S DGCOUNT=0
  D GETHBP^DGHBPUTL(DFN)
  S DGHBP="" F  S DGHBP=$O(HBP("CUR",DGHBP)) Q:DGHBP=""  D
- .W !,?3,DGHBP
+ .; DG*5.3*987; jam; Place "zz" before the plan name for inactive plans
+ .S DGHBIEN=+HBP("CUR",DGHBP)
+ .I $P($G(^DGHBP(25.11,DGHBIEN,0)),"^",4)="Y" S DGPNAME="zz "_DGHBP
+ .E  S DGPNAME=DGHBP
+ .; DG*5.3*987; arf; Add word wrapping for plan names
+ .S X=DGPNAME
+ .K ^UTILITY($J,"W") S DIWL=0,DIWR=70,DIWF="" D ^DIWP
+ .S DGCNT=^UTILITY($J,"W",0)
+ .F DGLN=1:1:DGCNT S DGLINE=^UTILITY($J,"W",0,DGLN,0) W !,?3,DGLINE
+ .K ^UTILITY($J,"W")
  .S DGCOUNT=DGCOUNT+1
  I DGCOUNT=0 W !,?3,"None"
  Q

@@ -1,5 +1,5 @@
-DGR114 ;ALB/TGH - Health Benefit Plan View Detail - List Manager Screen ;4/11/13 10:56am 
- ;;5.3;Registration;**871**;Aug 13, 1993;Build 84
+DGR114 ;ALB/TGH,JAM - Health Benefit Plan View Detail - List Manager Screen ;7/8/19 10:56am 
+ ;;5.3;Registration;**871,987**;Aug 13, 1993;Build 22
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP DETAIL list
  ; Input  -- DFN      Patient IEN
@@ -25,10 +25,14 @@ INIT ;Build patient HBP current screen
  Q
  ;
 GETPLAN ;Load Plans from HBP array into TMP(VALMAR global for display
- N DGPLAN,Z
+ N DGPLAN,Z,DGHBIEN
  D GETPLAN^DGHBPUTL
  S DGPLAN="",VALMCNT=0
  F  S DGPLAN=$O(HBP("PLAN",DGPLAN)) Q:DGPLAN=""  D
+ . ;DG*5.3*987 - JAM - Filter out Inactive Plans
+ . S DGHBIEN=HBP("PLAN",DGPLAN)
+ . I $P($G(^DGHBP(25.11,DGHBIEN,0)),"^",4)="Y" Q
+ .;
  . S VALMCNT=VALMCNT+1
  . S Z="["_VALMCNT_"]"_"  "_DGPLAN
  . D SET^VALM10(VALMCNT,Z,VALMCNT)
@@ -70,10 +74,10 @@ PEXIT ; MENU protocol exit code
 EXPND ; -- expand code
  N CNT,LST,ACT,DGNAME,DGACT
  D ACTION
- S VALMBCK="R"   ; CCR 13613 - fix
+ S VALMBCK="R"
  I $G(DGACT)="" Q
  S LST=$P(HBP("DETAIL",0),"^",4)
- I LST="" W !,"No detail description is available for this Health Benefit Plan"
+ I LST="" W !,"No detail description is available for this Veteran Medical Benefit Plan" ;DG*5.3*987 HM
  F CNT=1:1:LST W !,HBP("DETAIL",DGACT,CNT)
  S VALMBCK="R"
  D PAUSE^VALM1

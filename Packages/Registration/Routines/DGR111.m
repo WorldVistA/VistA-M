@@ -1,5 +1,5 @@
-DGR111 ;ALB/TGH,LMD - Health Benefit Plan Main Menu - List Manager Screen ;4/11/13 10:56am 
- ;;5.3;Registration;**871**;Aug 13, 1993;Build 84
+DGR111 ;ALB/TGH,LMD,JAM - Health Benefit Plan Main Menu - List Manager Screen ;4/11/13 10:56am 
+ ;;5.3;Registration;**871,987**;Aug 13, 1993;Build 22
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -20,7 +20,8 @@ HDR ;Header code
  S X="PATIENT TYPE UNKNOWN"
  I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
  S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)
- I '$D(^DPT(DFN,"HBP")) S VALMHDR(2)="No Currently Stored HBP Data"
+ ; DG*5.3*987; JAM; check for at least 1 plan and modify the message text
+ I '$D(^DPT(DFN,"HBP",1)) S VALMHDR(2)="No Currently Stored VMBP Data"
  Q
  ; 
 INIT ;Build patient HBP current screen
@@ -31,7 +32,7 @@ INIT ;Build patient HBP current screen
  ;
 GETHBP(DFN) ;Load HBPs from HBP array into TMP(VALMAR global for display
  ; INPUT:    DFN = Patient IEN
- N DGHBP,DGSEL,DGDATA,Z,HBPSRC,BRACKET
+ N DGHBP,DGSEL,DGDATA,Z,HBPSRC,BRACKET,DGHBIEN,DGPNAME
  S VALMCNT=0,(DGDATA,HBPSRC)=""
  D GETHBP^DGHBPUTL(DFN)
  S DGHBP=""
@@ -40,14 +41,20 @@ GETHBP(DFN) ;Load HBPs from HBP array into TMP(VALMAR global for display
  S BRACKET=$S(HBPSRC="E":"<>",1:"[]")
  F  S DGHBP=$O(HBP("CUR",DGHBP)) Q:DGHBP=""  D
  . S DGDATA=HBP("CUR",DGHBP)
+ . ; DG*5.3*987; jam; Place "zz" before the plan name for inactive plans
+ . S DGHBIEN=+DGDATA
+ . I $P($G(^DGHBP(25.11,DGHBIEN,0)),"^",4)="Y" S DGPNAME="zz "_DGHBP
+ . E  S DGPNAME=DGHBP
  . S VALMCNT=VALMCNT+1
- . S Z=$E(BRACKET)_VALMCNT_$E(BRACKET,2)_"  "_DGHBP
- . S DGSEL(VALMCNT)=DGHBP
+ . S Z=$E(BRACKET)_VALMCNT_$E(BRACKET,2)_"  "_DGPNAME
+ . S DGSEL(VALMCNT)=DGPNAME
  . D SET^VALM10(VALMCNT,Z,VALMCNT)
  Q
  ;
 HELP ;Help code
  S X="?" D DISP^XQORM1 W !!
+ ; DG*53*987; jam;  Add this to the help screen.
+ W "Plan name preceded by 'zz' indicates the plan is inactive.",!
  Q
  ;
 EXIT ;Exit code
