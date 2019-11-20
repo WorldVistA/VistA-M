@@ -1,5 +1,5 @@
 PSJHL2 ;BIR/RLW-PATIENT ID AND VISIT SEGMENTS ; 9/24/12 3:17pm
- ;;5.0;INPATIENT MEDICATIONS;**1,18,16,23,28,42,50,70,58,100,102,110,111,112,144,141,134,279**;16 DEC 97;Build 150
+ ;;5.0;INPATIENT MEDICATIONS;**1,18,16,23,28,42,50,70,58,100,102,110,111,112,144,141,134,279,391**;16 DEC 97;Build 2
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^ORERR is supported by DBIA# 2187.
@@ -98,7 +98,9 @@ ORC ; order control segment
  I $S(RXORDER["V":$P(NODE2,"^",8)="R",1:$P(NODE1,"^",24)="R")
  ; PSJ*5*141 - If this is a renewal order, update FIELD(10) with the person who entered the renewal order.
  N FIELD9 S FIELD9=$$FMTHL7^XLFDT($$LASTREN^PSJLMPRI(PSJHLDFN,RXORDER)) I FIELD9>FIELD(9) S FIELD(9)=FIELD9,FIELD(15)=FIELD9,FIELD(10)=$$LASTRNBY^PSJLMPRI(PSJHLDFN,RXORDER)
- S NOO=$S(PSJORDER["IV":$G(P("NAT")),(($G(PSJNOO)="")&($G(P("NAT"))]"")):$G(P("NAT")),1:$G(PSJNOO)),PSREASON=$S(NOO="D":"",1:$G(PSREASON))
+ ; PSJ*5*391 - Modified the following 2 lines to correct Nature of Order mismatch between IPMEDS and CPRS for IVs
+ I ((RXORDER["P")!(RXORDER["N")) S NOO=$S(($P(NODE1,U,4)["F")!($P(NODE1,U,4)["H"):$G(P("NAT")),(($G(PSJNOO)="")&($G(P("NAT"))]"")):$G(P("NAT")),1:$G(PSJNOO)),PSREASON=$S(NOO="D":"",1:$G(PSREASON))
+ E  S NOO=$S(PSJORDER["IV":$G(P("NAT")),(($G(PSJNOO)="")&($G(P("NAT"))]"")):$G(P("NAT")),1:$G(PSJNOO)),PSREASON=$S(NOO="D":"",1:$G(PSREASON))
  S FIELD(16)=NOO_U_$S(NOO="P":"Telephoned",NOO="D":"Duplicate",NOO="X":"Rejected",NOO="A":"Auto",NOO="S":"Service Correction",NOO="W":"Written",NOO="V":"Verbal",NOO="E":"Physician Entered",NOO="I":"Policy",1:"")_U_"99ORN"_U_U_$G(PSREASON)_U
  ;*279 is clinic order?  if so save clinic name
  I $D(NODE8),$P(NODE8,U)]"",$P(NODE8,U,2) D
