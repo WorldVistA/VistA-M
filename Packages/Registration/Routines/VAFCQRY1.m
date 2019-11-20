@@ -1,5 +1,5 @@
-VAFCQRY1 ;BIR/DLR-Query for patient demographics ;3 Dec 2018  12:56 PM
- ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937,974**;Aug 13, 1993;Build 2
+VAFCQRY1 ;BIR/DLR-Query for patient demographics ; 4/19/19 2:15pm
+ ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937,974,981**;Aug 13, 1993;Build 1
  ;
  ;Reference to $$GETDFNS^MPIF002 supported by IA #3634.
  ;
@@ -13,6 +13,8 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  ;        result, the array can have existing values when passed.
  ;   HL - array that contains the necessary HL variables (init^hlsub)
  ;  ERR - array that is used to return an error
+ ;
+ ; DG*5.3*981 introduced changes to support the local modifications for HAC/MVI integration in CH*1.3*22529.
  ;
  N VAFCMN,VAFCMMN,SITE,VAFCZN,SSN,SITE,APID,HIST,HISTDT,VAFCHMN,NXT,NXTC,COMP,REP,SUBCOMP,STATE,CITY,CLAIM,HLECH,HLFS,HLQ,STATEIEN,SARY,LVL,LNGTH,X,STN,SITA,HLES
  I '$D(SEQ) S SEQ="ALL"
@@ -38,7 +40,8 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  .;I $G(VAFCA(2.01,ENT,1,"E"))'="" S VAFCA1("SSN")="",VAFCA1(CT,"SSN")=$G(VAFCA(2.01,ENT,1,"E"))
  .S VAFCA1(CT,"SSN")=$G(VAFCA(2.01,ENT,1,"I"))
  .S VAFCA1(CT,"NCIEN")=$G(VAFCA(2.01,ENT,100.03,"I"))_"^"_ENT ;**974,Story 841921 (mko): Get Name Components pointer and save IENS of Alias subentry
- S SITE=$$SITE^VASITE,STN=$P($$SITE^VASITE,"^",3)
+ ;custom change - if current site is HAC then use station number 741MM - CH*1.3*22529
+ S SITE=$$SITE^VASITE,STN=$P($$SITE^VASITE,"^",3) I STN=741 S STN="741MM"
  N TMP F TMP=1:1:31 S APID(TMP)=""
  S APID(2)=CNT
  ;list of fields used for backwards compatibility with HDR
@@ -49,25 +52,27 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  .;National Identifier (ICN)
  .I VAFCMN'="",+VAFCMN>0 D
  ..I $E($P(VAFCMN,"^"),1,3)=STN S SITA=STN
- ..I $E($P(VAFCMN,"^"),1,3)'=STN S SITA="200M" ; **707 update assigning authority for national ICNs to 200M for MPI
+ ..; custom change - if current site is HAC then use station number 741MM - CH*1.3*22529
+ ..I $E($P(VAFCMN,"^"),1,3)=+STN I +STN="741" S SITA=+STN I SITA=741 S SITA="741MM"
+ ..I $E($P(VAFCMN,"^"),1,3)'=+STN S SITA="200M" ; **707 update assigning authority for national ICNs to 200M for MPI
  ..S APID(4)=$P(VAFCMN,"^")_"V"_$P(VAFCMN,"^",2)_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_SITA_SUBCOMP_"L" D
  ..;Assumption that if this is a local ICN at this point send the message with an expiration date of today, so that it will be treated as a deprecated ID and stored on the MPI as such
- ..I $E($P(VAFCMN,"^"),1,3)=$P($$SITE^VASITE,"^",3) S APID(4)=APID(4)_COMP_COMP_$$HLDATE^HLFNC(DT,"DT") ;**707 TO ONLY SEND DATE NO TIME
- .I $G(SSN)'="" S APID(4)=APID(4)_$S(APID(4)'="":REP,1:"")_SSN_COMP_COMP_COMP_"USSSA"_SUBCOMP_SUBCOMP_"0363"_COMP_"SS"_COMP_"VA FACILITY ID"_SUBCOMP_$$STA^XUAF4(+SITE)_SUBCOMP_"L"
+ ..I $E($P(VAFCMN,"^"),1,3)=STN S APID(4)=APID(4)_COMP_COMP_$$HLDATE^HLFNC(DT,"DT") ;**707 TO ONLY SEND DATE NO TIME
+ .I $G(SSN)'="" S APID(4)=APID(4)_$S(APID(4)'="":REP,1:"")_SSN_COMP_COMP_COMP_"USSSA"_SUBCOMP_SUBCOMP_"0363"_COMP_"SS"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L"
  .S NXTC=0,LVL=0 ;**837,MVI_879: Move here, so that LVL gets set before pulling in TIN and FIN
  .;**837,MVI_879: Get TIN and FIN from Patient file and put in PID-3
  .N TIN,FIN,REF
  .S TIN=$P(VAFCMN,"^",8),FIN=$P(VAFCMN,"^",9),REF=$NA(APID(4))
- .D ADDLINE($S(TIN="":HLQ,1:TIN)_COMP_COMP_COMP_"USDOD"_SUBCOMP_SUBCOMP_"0363"_COMP_"TIN"_COMP_"VA FACILITY ID"_SUBCOMP_$$STA^XUAF4(+SITE)_SUBCOMP_"L",.LVL,REF,REP)
- .D ADDLINE($S(FIN="":HLQ,1:FIN)_COMP_COMP_COMP_"USDOD"_SUBCOMP_SUBCOMP_"0363"_COMP_"FIN"_COMP_"VA FACILITY ID"_SUBCOMP_$$STA^XUAF4(+SITE)_SUBCOMP_"L",.LVL,REF,REP)
+ .D ADDLINE($S(TIN="":HLQ,1:TIN)_COMP_COMP_COMP_"USDOD"_SUBCOMP_SUBCOMP_"0363"_COMP_"TIN"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
+ .D ADDLINE($S(FIN="":HLQ,1:FIN)_COMP_COMP_COMP_"USDOD"_SUBCOMP_SUBCOMP_"0363"_COMP_"FIN"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
  .I $G(DFN)'="" D
- ..D ADDLINE(DFN_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"PI"_COMP_"VA FACILITY ID"_SUBCOMP_$$STA^XUAF4(+SITE)_SUBCOMP_"L",.LVL,REF,REP)
+ ..D ADDLINE(DFN_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"PI"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
  ..;CLAIM# **707 moved dfn and claim number up here since Alias SSN could be many
- ..I $D(^DPT(DFN,.31)) S CLAIM=$P(^DPT(DFN,.31),"^",3) I +CLAIM>0 D ADDLINE(CLAIM_COMP_COMP_COMP_"USVBA"_SUBCOMP_SUBCOMP_"0363"_COMP_"PN"_COMP_"VA FACILITY ID"_SUBCOMP_$$STA^XUAF4(+SITE)_SUBCOMP_"L",.LVL,REF,REP)
+ ..I $D(^DPT(DFN,.31)) S CLAIM=$P(^DPT(DFN,.31),"^",3) I +CLAIM>0 D ADDLINE(CLAIM_COMP_COMP_COMP_"USVBA"_SUBCOMP_SUBCOMP_"0363"_COMP_"PN"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L",.LVL,REF,REP)
  .I $D(VAFCA1) D
  ..;Have Alias SSNs
  ..S CT=0 F  S CT=$O(VAFCA1(CT)) Q:+CT<1  D
- ...S NXT=$S($G(VAFCA1(CT,"SSN"))="":HL("Q"),1:$G(VAFCA1(CT,"SSN")))_COMP_COMP_COMP_"USSSA"_SUBCOMP_SUBCOMP_"0363"_COMP_"SS"_COMP_"VA FACILITY ID"_SUBCOMP_$$STA^XUAF4(+SITE)_SUBCOMP_"L"_COMP_COMP_$$HLDATE^HLFNC(DT,"DT")
+ ...S NXT=$S($G(VAFCA1(CT,"SSN"))="":HL("Q"),1:$G(VAFCA1(CT,"SSN")))_COMP_COMP_COMP_"USSSA"_SUBCOMP_SUBCOMP_"0363"_COMP_"SS"_COMP_"VA FACILITY ID"_SUBCOMP_STN_SUBCOMP_"L"_COMP_COMP_$$HLDATE^HLFNC(DT,"DT")
  ...I LVL=0 D
  ....I $L(APID(4)_NXT)'>244 S APID(4)=APID(4)_REP_NXT Q
  ....I $L(APID(4)_NXT)>244 S LVL=1 S LNGTH=244-$L(APID(4)),APID(4)=APID(4)_REP_$E(NXT,1,LNGTH) S LNGTH=LNGTH+1,NXT=$E(NXT,LNGTH,$L(NXT)),NXTC=1
@@ -76,11 +81,12 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  ....I $L($G(APID(4,LVL))_NXT)>245 S LNGTH=244-$L(APID(4,LVL)),APID(4,LVL)=APID(4,LVL)_REP_$E(NXT,1,LNGTH) S LNGTH=LNGTH+1,NXT=$E(NXT,LNGTH,$L(NXT)) S LVL=LVL+1 S APID(4,LVL)=NXT
  ...I NXTC=1 S NXTC=0
  .I $D(^DPT(DFN,"MPIFHIS")) N HIST S HIST=0  F  S HIST=$O(^DPT(DFN,"MPIFHIS",HIST)) Q:'HIST  S VAFCHMN=^DPT(DFN,"MPIFHIS",HIST,0) S HISTDT=$P(VAFCHMN,"^",4) D
- ..;**477 due to a timing issue if checksum and D/T of deprication of ICN is not present hang two seconds and try again if still not able to get ICN set D/T to DT
+ ..;**477 due to a timing issue if checksum and D/T of deprecation of ICN is not present hang two seconds and try again if still not able to get ICN set D/T to DT
  ..I $G(HISTDT)="" H 2 S VAFCHMN=^DPT(DFN,"MPIFHIS",HIST,0) S HISTDT=$P(VAFCHMN,"^",4) I HISTDT="" S HISTDT=DT
  ..I APID(4)'="" D
- ...I $E($P(VAFCHMN,"^"),1,3)=STN S SITA=STN
- ...I $E($P(VAFCHMN,"^"),1,3)'=STN S SITA="200M" ; **707 update assigning authority for national ICNs to 200M for MPI
+ ...; custom change - if current site is HAC then use station number 741MM - CH*1.3*22529
+ ...I $E($P(VAFCHMN,"^"),1,3)=+STN S SITA=+STN I SITA=741 S SITA="741MM"
+ ...I $E($P(VAFCHMN,"^"),1,3)'=+STN S SITA="200M" ; **707 update assigning authority for national ICNs to 200M for MPI
  ...S NXT=$P(VAFCHMN,"^")_"V"_$P(VAFCHMN,"^",2)_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_SITA_SUBCOMP_"L"_COMP_COMP_$$HLDATE^HLFNC(HISTDT,"DT") ;**648 only send date not time
  ...I LVL=0 D
  ....I $L(APID(4)_NXT)'>244 S APID(4)=APID(4)_REP_NXT Q
@@ -90,8 +96,9 @@ BLDPID(DFN,CNT,SEQ,PID,HL,ERR) ;build PID from File #2
  ....I $L($G(APID(4,LVL))_NXT)>245 S LNGTH=244-$L(APID(4,LVL)),APID(4,LVL)=APID(4,LVL)_REP_$E(NXT,1,LNGTH) S LNGTH=LNGTH+1,NXT=$E(NXT,LNGTH,$L(NXT)) S LVL=LVL+1 S APID(4,LVL)=NXT
  ..I NXTC=1 S NXTC=0
  ..I APID(4)="" D
- ...I $E($P(VAFCHMN,"^"),1,3)=STN S SITA=STN
- ...I $E($P(VAFCHMN,"^"),1,3)'=STN S SITA="200M"
+ ...; custom change - if current site is HAC then use station number 741MM - CH*1.3*22529
+ ...I $E($P(VAFCHMN,"^"),1,3)=+STN S SITA=+STN I SITA=741 S SITA="741MM"
+ ...I $E($P(VAFCHMN,"^"),1,3)'=+STN S SITA="200M"
  ...S APID(4)=$P(VAFCHMN,"^")_COMP_COMP_COMP_"USVHA"_SUBCOMP_SUBCOMP_"0363"_COMP_"NI"_COMP_"VA FACILITY ID"_SUBCOMP_SITA_SUBCOMP_"L"_COMP_COMP_$$HLDATE^HLFNC(HISTDT,"DT") ;**707 ONLY DATE NOT TIME
  ;
 ALTID ;**874 MVI_3035 (elz) alternate ID

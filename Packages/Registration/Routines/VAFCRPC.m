@@ -1,5 +1,5 @@
 VAFCRPC ;BIR/DLR-RPC ENTRY POINTS ; 8/11/10 6:18pm
- ;;5.3;Registration;**414,440,474,477,479,825**;Aug 13, 1993;Build 1
+ ;;5.3;Registration;**414,440,474,477,479,825,981**;Aug 13, 1993;Build 1
  ;;Routine uses the following supported IAs #2701 and #3027.
 PDAT(RETURN,VALUE,SSN) ;remote pdat display
  ;'value' will pass in either an icn, ssn, dfn or patient name
@@ -44,4 +44,17 @@ AUDIT(RETURN,VALUE,SSN,SDT,EDT) ;remote audit display
 AAUPD(RETURN,ARRAA) ;Assigning authority update
  ;RPC: VAFC AA UPDATE
  S RETURN=$$ADD^VAFCAAUT(.ARRAA,.ERR)
+ Q
+ ;
+ ;**128, Story 951754 (jfw) - Maintain EHRM MIGRATED FACILITIES File #391.919
+ ;Input: ARRCRNR - List of Sites that have migrated to CERNER.
+ ;       ie. ARRCRN(<Station#>)=""
+ ;           ARRCRN(<Station#>)=""
+ ;           etc..
+ ;Output: 1 if successful else ERROR CODE ^ ERROR MESSAGE
+UPDMFAC(RETURN,ARRCRNR) ;Update EHRM MIGRATED FACILITIES (#391.919) file
+ ;RPC: VAFC MVI MGRTD FACILITIES UPDT
+ ;MVI will remotely update the EHRM MIGRATED FACILITIES (#391.919) file
+ ;with sites that have Migrated to using the CERNER application.
+ D UPDT^VAFCCRNR(.ARRCRNR,.RETURN)
  Q

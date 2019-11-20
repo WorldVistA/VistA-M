@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-20-NOV-2019 10:49:33 ZWR
+20-NOV-2019 14:01:23 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -564,7 +564,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")=3190315.052606
+^DIC(2,"%MSC")=3191120.113059
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -1690,7 +1690,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("25.11","%D",0)="^1.001^2^2^3150209^^^^"
 ^DIC("25.11","%D",1,0)="This file contains the Health Benefit Plan names and their short and long "
 ^DIC("25.11","%D",2,0)="descriptions."
-^DIC("25.11","%MSC")=3180223.013044
+^DIC("25.11","%MSC")=3191120.12175
 ^DIC("26.11",0)="PRF LOCAL FLAG^26.11"
 ^DIC("26.11",0,"GL")="^DGPF(26.11,"
 ^DIC("26.11","%",0)="^1.005^^0"
@@ -16017,6 +16017,23 @@ OSEHRA ZGO Export: FILE
 ^DIC("391.91","%D",0)="^^2^2^2990302^^^^"
 ^DIC("391.91","%D",1,0)="This file holds the Treating Facility List, a list of "
 ^DIC("391.91","%D",2,0)="institutions where the patient has had treatment."
+^DIC("391.919",0)="EHRM MIGRATED FACILITIES^391.919"
+^DIC("391.919",0,"AUDIT")="@"
+^DIC("391.919",0,"DD")="@"
+^DIC("391.919",0,"DEL")="@"
+^DIC("391.919",0,"GL")="^DGCN(391.919,"
+^DIC("391.919",0,"LAYGO")="@"
+^DIC("391.919",0,"RD")="@"
+^DIC("391.919",0,"WR")="@"
+^DIC("391.919","%D",0)="^^7^7^3190329^"
+^DIC("391.919","%D",1,0)="This file contains a list of all of the facilities that have migrated "
+^DIC("391.919","%D",2,0)="to/implemented the CERNER application in support of the Electronic Health "
+^DIC("391.919","%D",3,0)="Record Modernization (EHRM)."
+^DIC("391.919","%D",4,0)=" "
+^DIC("391.919","%D",5,0)="NOTE: Entries will be added/updated to this file remotely and distributed "
+^DIC("391.919","%D",6,0)="      out to all sites through a Remote Procedure Call (RPC) executed on "
+^DIC("391.919","%D",7,0)="      the Master Patient Index."
+^DIC("391.919","%MSC")=3191120.13571
 ^DIC("391.98",0)="PATIENT DATA EXCEPTION^391.98"
 ^DIC("391.98",0,"AUDIT")="@"
 ^DIC("391.98",0,"DD")="@"
@@ -38964,6 +38981,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","EEO CORRECTIVE ACTIONS","785.2")=""
 ^DIC("B","EEO INFORMAL COMPLAINTS","785.5")=""
 ^DIC("B","EEO SERVER PARAMETERS","789.5")=""
+^DIC("B","EHRM MIGRATED FACILITIES","391.919")=""
 ^DIC("B","EIV EICD TRACKING","365.18")=""
 ^DIC("B","ELEC RECEIVING REPORT BATCH","442.9")=""
 ^DIC("B","ELECTROCARDIOGRAM (EKG)","691.5")=""
