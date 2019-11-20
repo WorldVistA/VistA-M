@@ -1,5 +1,5 @@
-DGENA2 ;ALB/CJM,RTK,TDM - Enrollment API - Automatic Update; 9/19/2002 ; 1/31/03 11:54am
- ;;5.3;Registration;**121,122,147,232,327,469,491,779,788,824**;Aug 13,1993;Build 2
+DGENA2 ;ALB/CJM,RTK,TDM,JAM - Enrollment API - Automatic Update; 9/19/2002 ;1/31/03 11:54am
+ ;;5.3;Registration;**121,122,147,232,327,469,491,779,788,824,982**;Aug 13,1993;Build 5
  ;
 AUTOUPD(DFN,EVENT) ;
  ;Description: If the patient meets the criteria for transmission to HEC,
@@ -146,6 +146,8 @@ REQUST(SDAMEVT,SDATA) ;
  ; Input  -- SDATA and SDAMEVT defined by scheduling event driver
  ; Output -- none
  ;
+ ; $$GET1^DIQ to file #44 supported by ICR #93-A 
+ ; and file #40.07 supported by ICR #93-C (only FM read to access field 1 - not using the "C" cross reference)
  N DGENRIEN,DGENR,DPTERR,DGCOM,DGADT,DFN,DGCLN
  I ($G(SDAMEVT)=2)!($G(SDAMEVT)=3) G CANNS
  ;apointment made?
@@ -158,9 +160,9 @@ REQUST(SDAMEVT,SDATA) ;
  S DGENRIEN=$$FINDCUR^DGENA(DFN)
  I DGENRIEN,$$GET^DGENA(DGENRIEN,.DGENR) ;set-up enrollment array
  I $G(DGENR("APP"))>3050731 D
- . ;and, no appointment request date. Set request="yes", request date 
+ . ;and, no appointment request date. Set request="yes", request date
  . I '$$GET1^DIQ(2,DFN,1010.1511,"I") D
- . . ;quit if 'no-count' clinic
+ . . ;quit if 'non-count' clinic
  . . I ($$GET1^DIQ(44,DGCLN,2502,"I")="Y") Q
  . . ;quit if appt. date/time < date notified of request for appointment
  . . I DGADT<DT Q
@@ -174,6 +176,12 @@ REQUST(SDAMEVT,SDATA) ;
  . ; also, if non count clinic, do not file data.
  . I ($$GET1^DIQ(44,DGCLN,2502,"I")="Y") Q
  . I ($$GET1^DIQ(2,DFN,1010.159,"I")),($$GET1^DIQ(2,DFN,1010.161,"I")'="F") D
+ . . ; jam; DG*5.3*982 - If not a Primary Care appointment, do not file data
+ . . ;   -get clinic stop codes and call logic to check for and quit if this is a Primary Care Appt.
+ . . N DGSCODE,DGCRCODE
+ . . S DGSCODE=$$GET1^DIQ(44,DGCLN,8,"I"),DGCRCODE=$$GET1^DIQ(44,DGCLN,2503,"I")
+ . . S DGSCODE=$$GET1^DIQ(40.7,DGSCODE,1),DGCRCODE=$$GET1^DIQ(40.7,DGCRCODE,1)
+ . . I '$$PCACHK^DGENACL2(DGSCODE,DGCRCODE) Q
  . . ;set fields
  . . N FDATA
  . . S FDATA(2,DFN_",",1010.161)="F"
@@ -193,15 +201,22 @@ CANNS ;If appointment cancelled or no-show, no appts made, put back on call list
  S SDARRY(1)=DGRDTI_";" ;Look out from 'notify of request date' to future.
  S SDARRY(3)="R;I;NT" ;appointments made
  S SDARRY(4)=DFN
- S SDARRY("FLDS")=1
+ ; jam; DG*5.3*982 - Modify this logic to add check for Primary Care Appointments.  If no PCA, put on the call list
+ ; jam; DG*5.3*982; get fields 13, 14 and 15 (Primary Stop Code and IEN and Credit Stop Code and IEN and Non-Count Clinic indicator)
+ S SDARRY("FLDS")="13;14;15"
  S SDCNT=$$SDAPI^SDAMA301(.SDARRY)
- I SDCNT>0 D  ;If only no-count clinic appts. put on call list
- . N SDCOUNT,SDCL
- . S SDCOUNT=0 ; count clinic
- . S SDCL=0 F  S SDCL=$O(^TMP($J,"SDAMA301",DFN,SDCL)) Q:'SDCL  D  Q:SDCOUNT
- .. I $$GET1^DIQ(44,SDCL,2502,"I")="Y" Q
- .. S SDCOUNT=SDCOUNT+1
- . I SDCOUNT=0 S SDCNT=0  ;if only no-count clinic appts., put on call list
+ I SDCNT>0 D  ;If only non-count clinic appts. put on call list, (DG*5.3*982 - or if no Primary Care appts, put on call list)
+ . N DGCOUNT,DGSDCL,DGSDADT,DGAPPT,DGCREDIT,DGSTOP
+ . S DGCOUNT=0 ; count clinic
+ . S DGSDCL=0 F  S DGSDCL=$O(^TMP($J,"SDAMA301",DFN,DGSDCL)) Q:'DGSDCL  D  Q:DGCOUNT
+ . . S DGSDADT="" F  S DGSDADT=$O(^TMP($J,"SDAMA301",DFN,DGSDCL,DGSDADT)) Q:'DGSDADT  D  Q:DGCOUNT
+ . . . S DGAPPT=^TMP($J,"SDAMA301",DFN,DGSDCL,DGSDADT)
+ . . . I $P(DGAPPT,U,15)="Y" Q   ; DG*5.3*982 - quit if this is a Non-Count Clinic - no need to go to the global
+ . . . ; DG*5.3*982 - code below added to check for Primary Care appt
+ . . . S DGCREDIT=$P($P(DGAPPT,U,14),";",2)   ;-Set the appointment's Credit Stop Code
+ . . . S DGSTOP=$P($P(DGAPPT,U,13),";",2)     ;-Set the appointment's Stop Code Number
+ . . . I $$PCACHK^DGENACL2(DGSTOP,DGCREDIT) S DGCOUNT=DGCOUNT+1    ;-Check for a Primary Care Appointment match
+ . I DGCOUNT=0 S SDCNT=0  ;if only non-count clinic appts. (DG*5.3*982 - or no Prim Care appt), put on call list
  I SDCNT=0 D
  . S FDATA(2,DFN_",",1010.161)="@" ;delete status
  . S FDATA(2,DFN_",",1010.163)="@" ;delete comment
