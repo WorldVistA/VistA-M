@@ -1,5 +1,5 @@
 GMRANKA ;HIRMFO/WAA - ALLERGY/ADVERSE REACTION PATIENT NKA DRIVE ;04/13/2017  13:21
- ;;4.0;Adverse Reaction Tracking;**2,21,36,48,54**;Mar 29, 1996;Build 5
+ ;;4.0;Adverse Reaction Tracking;**2,21,36,48,54,60**;Mar 29, 1996;Build 13
 NKA(DFN) ;See if patient has reaction on file
  ;  Input Variables:
  ;       DFN = Patient Internal Entry Number
@@ -30,13 +30,16 @@ NKAASK(DFN,GMRAOUT) ; Ask a Patient if patient has any known allergens
  I $G(X)="@" D:GMAOLD=0 CLN W:GMAOLD=0 !,"Assessment deleted." Q  ;21 Allow removal of NKA
  I $D(DTOUT)!$D(DIROUT) S GMRAOUT=1 Q  ;36
  I $D(DUOUT) S GMRAOUT=2 Q  ;36
+ ; P60 update GMRAIEN,GMAOLD as record may have been added durring read
+ S GMRAIEN=+$O(^GMR(120.86,"B",DFN,0))
+ S GMAOLD=$S(GMRAIEN>0:$P($G(^GMR(120.86,GMRAIEN,0)),U,2),1:"")
  ; User Hits return and doesn't answer question
  I Y="",GMAOLD="" Q  ;36
  I Y'="",GMAOLD'=Y D
  . N DIE,DA,DR,DO,DIC,X,DINUM
  . I 'GMRAIEN D
  . . S DIC="^GMR(120.86,",DIC(0)="",X=DFN,DIC("DR")="1////"_Y_";2////"_DUZ_";3///NOW"
- . . I '$D(^GMR(120.86,DFN)) S DA=DFN,DINUM=DFN
+ . . S DA=DFN,DINUM=DFN
  . . D FILE^DICN
  . I GMRAIEN>0 D
  . . S DIE="^GMR(120.86,",DA=GMRAIEN,DR=$S(GMAOLD=""&($P($G(^GMR(120.86,GMRAIEN,0)),"^")'=GMRAIEN):(".01////"_DFN_";"),1:"")_"1////"_Y_";2////"_DUZ_";3///NOW" ;36,54
