@@ -1,5 +1,5 @@
 RGADTP2 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ;16 Nov 2018  4:06 PM
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54,58,59,64,66,67,71**;30 Apr 99;Build 2
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54,58,59,64,66,67,71,72**;30 Apr 99;Build 1
 DBIA ;
  ;Reference to $$ADD^VAFCEHU1 supported by IA #2753
  ;Reference to EDIT^VAFCPTED supported by IA #2784
@@ -73,8 +73,8 @@ NOTLOC I 'RGLOCAL D
  ..;getting set to "Yes". By setting RGER to error,App Ack in MPI will
  ..;log request (request type #6230) to TK.
  ..I $G(^DPT(RGRSDFN,.105)) D
- ...I DR="" Q  ;No edit
- ...N I F I=".01",".02",".03",".09",".351" I (";"_DR)[(";"_I_";") S INPFLG=1 Q
+ ...I DR="" Q  ;No edit  **72 (cmc) story 1104673 changed name from .01 to 1.01 \/ from patch 71 change to name
+ ...N I F I="1.01",".02",".03",".09",".351" I (";"_DR)[(";"_I_";") S INPFLG=1 Q
  ...I ((";"_DR)[(";"_994_";")),($G(ARRAY("MBI"))="Y") S INPFLG=1 Q
  ..I INPFLG S RGER="-1^DFN "_RGRSDFN_":  is currently an Inpatient, MPI update not processed." Q:+RGER<0
  ..;**44 is there an outstanding edit in the ADT/HL7 PIVOT file for this patient for an identity element
