@@ -1,5 +1,5 @@
-USRMEMBR ; SLC/JER - User Class Management actions ;3/5/10
- ;;1.0;AUTHORIZATION/SUBSCRIPTION;**2,3,6,7,29,33**;Jun 20, 1997;Build 7
+USRMEMBR ;SLC/JER,PWC - User Class Management actions ;Sep 04, 2019@16:18
+ ;;1.0;AUTHORIZATION/SUBSCRIPTION;**2,3,6,7,29,33,39**;Jun 20, 1997;Build 3
 EDIT ; Edit user's class membership
  ;N USRDA,USRDATA,USREXPND,USRI,USRSTAT,DIROUT,USRCHNG,USRLST
  N USRDA,USRDATA,USRI,DIROUT,USRCHNG,USRLST
@@ -115,9 +115,10 @@ SCHEDULE ; Schedule changes in class membership
  . D ^DIC Q:+Y'>0
  . S (DIC,DLAYGO)=8930.3,DIC(0)="LM",X=""""_$P(Y,U,2)_""""
  . D ^DIC Q:+Y'>0
+ . ; pwc (VSR) USR*1*39 changed //// to /// slashes (3)
  . S USRCREAT=+$P(Y,U,3)
  . S DA=+Y,DIE=DIC
- . S DR=".02////"_USRCLASS_";.03////"_USREFF_";.04////"_USREXP
+ . S DR=".02///"_USRCLASS_";.03///"_+USREFF_";.04///"_+USREXP
  . D ^DIE
  W !,"Rebuilding membership list."
  S VALMBCK="R"
