@@ -1,6 +1,6 @@
 IBOHLD1 ;ALB/CJM -  REPORT OF CHARGES ON HOLD W/INS INFO ;MARCH 3 1992
- ;;2.0;INTEGRATED BILLING;**70,95,133,356,347,618**;21-MAR-94;Build 61
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**70,95,133,356,347,618,651**;21-MAR-94;Build 9
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; modified HELD CHARGES REPORT - includes INS info
  ;
@@ -72,6 +72,7 @@ FNDBTYP(IBACTIEN) ;Determine what type of 3rd party bill to try and match the
  ;
  S IBACTPNM=$P($G(^IBE(350.1,IBACTIEN,0)),"^")
  I IBACTPNM["OPT" Q "O"
+ I IBACTPNM["URGENT" Q "O"   ;IB*2.0*651 - add CC URGENT CARE as an outpatient
  I IBACTPNM["PSO" Q "RX"
  I IBACTPNM["RX" Q "O"  ;any other RX after PSO link to Outpatient
  Q "I"  ;assume inpatient if not matched above

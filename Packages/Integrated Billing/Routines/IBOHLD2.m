@@ -1,5 +1,5 @@
 IBOHLD2 ;ALB/CJM  -  REPORT OF CHARGES ON HOLD W/INS ;MAR 6,1991
- ;;2.0;INTEGRATED BILLING;**70,95,133,153,347,452,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**70,95,133,153,347,452,618,651**;21-MAR-94;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$CLAIM^BPSBUTL supported by DBIA# 4719
@@ -121,6 +121,7 @@ HEADER ; writes the report header
  S IBPAGE=IBPAGE+1
  Q
 IBACTYPE(IBTYPE) ; Patch IB*2.0*618 - added community care - action types to HELD CHARGES report
+ I IBTYPE["URGENT " Q "NVCUC"
  I IBTYPE["CC " Q "NVC"
  I IBTYPE["CCN " Q "NVC"
  I IBTYPE["CHOICE" Q "NVC"

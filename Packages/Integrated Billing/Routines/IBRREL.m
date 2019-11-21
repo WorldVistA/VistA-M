@@ -1,6 +1,6 @@
 IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD' ; 03-MAR-92
- ;;2.0;INTEGRATED BILLING;**95,153,199,347,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651**;21-MAR-94;Build 9
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for stand-alone 'release' option
  I '$D(^IB("AH")) W !!,"There are no patients with charges 'on hold' at this time.",! Q
@@ -88,7 +88,7 @@ LST ; Display individual IB Action.
  . Q
  ;
  W !?1,$J(IBNUM,2),?6,$J(+IBND,9)
- W ?19,$S(IBRXN>0:"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),1:$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^",8))
+ W ?19,$S(IBRXN>0:"Rx #: "_IBRX_$S(IBRF>0:"("_IBRF_")",1:""),1:$P(IBND,"^",8)) ;IB*2.0*651
  W ?42,$P($P(IBND,"^",11),"-",2)
  W ?51,$$DAT1^IBOUTL($S(IBRXN>0:IBRDT,1:$P(IBND,"^",14)))
  W ?61,$$DAT1^IBOUTL($S($P(IBND,"^",15)'="":($P(IBND,"^",15)),1:$P(IBND1,"^",2)))

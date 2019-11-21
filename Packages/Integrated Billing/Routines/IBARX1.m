@@ -1,5 +1,5 @@
 IBARX1 ;ALB/AAS - INTEGRATED BILLING, PHARMACY COPAY INTERFACE (CONT.) ;21-FEB-91
- ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563,614**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563,614,651**;21-MAR-94;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  - process 1 rx entry and accumulate totals
@@ -59,7 +59,9 @@ RX N IBAM,IBNOCH,IBTIER
  D ADD^IBAUTL
  I +Y<1 G RXQ
  S IBPARNT=$S($D(IBPARNT):IBPARNT,1:IBN)
- S $P(^IB(IBN,1),"^")=IBDUZ,$P(^IB(IBN,0),"^",2,15)=DFN_"^"_IBATYP_"^"_$P(IBX,"^")_"^2^"_$P(IBX,"^",2)_"^"_IBCHRG_"^"_IBDESC_"^"_IBPARNT_"^^"_IBIL_"^"_IBTRAN_"^"_IBFAC_"^"_IBEFDT_"^"_IBEFDT,$P(^(0),"^",19,22)=IBAM_"^^^"_$G(IBTIER)
+ ;IB*2.0*651 - Add now as event date
+ S $P(^IB(IBN,1),"^")=IBDUZ
+ S $P(^IB(IBN,0),"^",2,17)=DFN_"^"_IBATYP_"^"_$P(IBX,"^")_"^2^"_$P(IBX,"^",2)_"^"_IBCHRG_"^"_IBDESC_"^"_IBPARNT_"^^"_IBIL_"^"_IBTRAN_"^"_IBFAC_"^"_IBEFDT_"^"_IBEFDT_"^^"_$$NOW^XLFDT(),$P(^(0),"^",19,22)=IBAM_"^^^"_$G(IBTIER)
  K IBPARNT,^IB("AC",1,IBN) ;S ^IB("AC",2,IBN)=""
  D INDEX
  S $P(IBSAVY(IBJ),"^",1,3)=IBN_"^"_IBCHRG_"^"_IBIL

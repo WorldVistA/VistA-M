@@ -1,5 +1,5 @@
 IBJDF41 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618,651**;21-MAR-94;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
@@ -14,7 +14,7 @@ ST ; - Tasked entry point.
  ; *** new code
  I IBSEL[5 D
  . F X=61:1:74 S IBCAT(X)=5
- . F X=81:1:84 S IBCAT(X)=5
+ . F X=81:1:85 S IBCAT(X)=5
  ;
  ; - Print the header line for the Excel spreadsheet
  I $G(IBEXCEL) D PHDL
