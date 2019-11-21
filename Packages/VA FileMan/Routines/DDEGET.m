@@ -1,5 +1,5 @@
 DDEGET ;SPFO/RAM - Entity GET Handler ;AUG 1, 2018  12:37
- ;;22.2;VA FileMan;**9**;Jan 05, 2016;Build 73
+ ;;22.2;VA FileMan;**9,17**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -25,12 +25,12 @@ EN(ENTITY,ID,FILTER,MAX,FORMAT,TARGET,ERROR) ; -- Return [list of] data entities
  S DSYS=$$SYS,ID=$G(ID)
  ;
 A ; parse & validate input parameters
- I $G(ENTITY)="" D ERROR("Entity parameter invalid") Q
+ I $G(ENTITY)="" D ERROR("Entity parameter invalid") G ENQ
  S DTYPE=$S((+ENTITY=ENTITY):+ENTITY,1:+$O(^DDE("B",ENTITY,0))) ;IEN or Name
- I DTYPE<1!'$D(^DDE(DTYPE)) D ERROR("Entity "_ENTITY_" does not exist") Q
+ I DTYPE<1!'$D(^DDE(DTYPE)) D ERROR("Entity "_ENTITY_" does not exist") G ENQ
  ;
  S FILE=$P($G(^DDE(DTYPE,0)),U,2)
- I FILE,'$$VFILE^DILFD(FILE) D ERROR("Invalid file number for Entity "_DTYPE) Q
+ I FILE,'$$VFILE^DILFD(FILE) D ERROR("Invalid file number for Entity "_DTYPE) G ENQ
  ;
  S DSTRT=+$G(FILTER("start"),1410102)
  S DSTOP=+$G(FILTER("stop"),4141015)
@@ -43,6 +43,7 @@ A ; parse & validate input parameters
  S DFN=$G(FILTER("patient")),ICN=+$P($G(DFN),";",2),DFN=+$G(DFN)
  I DFN<1,ICN S DFN=+$$GETDFN^MPIF001(ICN)
  I FILE=2,DFN<1,ID S DFN=ID
+ I DFN,'$$VALID(DFN) D ERROR("Invalid Patient file DFN: "_DFN) G ENQ
  ;
  ; DFORM 2:TEXT 1:XML 0:JSON  (default = JSON)
  S DFORM=$$UP^XLFSTR($G(FORMAT))
@@ -71,6 +72,8 @@ B ; extract data
  S @DDEY@(0)=DDEI
  ;
  D POST(DTYPE)
+ ;
+ENQ ;exit
  S TARGET=DDEY,ERROR=DDER
  ;
  Q
@@ -89,6 +92,17 @@ ERROR(MSG) ; -- return error MSG
  N I S I=+$O(@DDER@("A"),-1)
  S I=I+1,@DDER@(I)=$G(MSG)
  Q
+ ;
+VALID(PAT) ; -- return 1 or 0, if valid PATient #2 ien
+ S PAT=+$G(PAT)
+ ; invalid pointer?
+ I PAT<1 Q 0
+ I '$D(^DPT(PAT,0)) Q 0
+ ; merged [from] patient?
+ I $P(^DPT(PAT,0),U)["MERGING INTO" Q 0
+ I $G(^DPT(PAT,-9)) Q 0
+ ; ok
+ Q 1
  ;
 SYS() ; -- return hashed system name
  Q $$BASE^XLFUTL($$CRC16^XLFCRC($$KSP^XUPARAM("WHERE")),10,16)

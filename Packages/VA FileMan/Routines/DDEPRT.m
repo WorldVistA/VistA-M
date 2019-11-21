@@ -1,5 +1,5 @@
 DDEPRT ;SLC/MKB -- Entity Print Utilities ;09/18/18 4:36pm
- ;;22.2;VA FileMan;**16**;Jan 05, 2016;Build 10
+ ;;22.2;VA FileMan;**16,17**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -149,13 +149,13 @@ ITEM(DA,NUM,LVL) ; -- print single item
  . W !,TAB,"VALUE:   "_^DDE(+DDENT,1,DA,2)
  I $L($G(^DDE(+DDENT,1,DA,4))) D MCODE(TAB_"XFORM:   ",^(4)) Q:$D(DIRUT)
  I $P(X0,U,8) D PG Q:$D(DIRUT)  W !,TAB,"ENTITY:  "_$P($G(^DDE(+$P(X0,U,8),0)),U)
- I TYPE="L",$L($P(X1,U,2)) D PG Q:$D(DIRUT)  W !,TAB,"TAG:     "_$P(X1,U,2) Q:X1>2
+ I TYPE="L",$L($P(X1,U,2)) D PG Q:$D(DIRUT)  W !,TAB,"TAG:     "_$P(X1,U,2)
  ;
- I TYPE="C"!(TYPE="L"&(+X1=3)) D  Q:$D(DIRUT)
+ I TYPE="C"!((TYPE="L")&(+X1=3)) D  Q:$D(DIRUT)
  . D PG Q:$D(DIRUT)  W !!,TAB,"Group    Item"
  . D PG Q:$D(DIRUT)  W !,TAB,"Order    Properties"
  . D PG Q:$D(DIRUT)  W !,TAB,"-----    ----------"
- . S CSEQ=0 F  S CSEQ=$O(^DDE(+DDENT,1,DA,3,"B",CSEQ)) Q:'CSEQ  D
+ . S CSEQ=0 F  S CSEQ=$O(^DDE(+DDENT,1,DA,3,"B",CSEQ)) Q:'CSEQ  D  Q:$D(DIRUT)
  .. S I=$O(^DDE(+DDENT,1,DA,3,"B",CSEQ,0))
  .. S NM=$P(^DDE(+DDENT,1,DA,3,I,0),U,2) Q:NM=""
  .. S CDA=+$O(^DDE(+DDENT,1,"B",NM,0))

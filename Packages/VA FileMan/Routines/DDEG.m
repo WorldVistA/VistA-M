@@ -1,5 +1,5 @@
 DDEG ;SPFO/RAM,MKB - Entity GET Extract ;AUG 1, 2018  12:37
- ;;22.2;VA FileMan;**9,16**;Jan 05, 2016;Build 10
+ ;;22.2;VA FileMan;**9,16,17**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -318,7 +318,7 @@ ELEMENT(STRING,NAME,VALUE,SEQ,OPTION,DTYPE) ; -- build an element STRING
  S SEQ=+$G(SEQ),OPTION=$G(OPTION,"addTags")
  ;
  ; does DataTYPE not require quotes?
- S DTYPE=$S($G(DTYPE)="C":1,$G(DTYPE)="L":1,"[{"[$E(VALUE):1,VALUE?1.N1"E"1N.E:0,+VALUE=VALUE:1,1:0)
+ S DTYPE=$S($G(DTYPE)="C":1,$G(DTYPE)="L":1,"[{"[$E(VALUE):1,VALUE?1.N1"E"1N.E:0,VALUE?1.N1"e"1N.E:0,+VALUE=VALUE:1,1:0)
  N X,Y S X="""",Y=$S(DTYPE:"",1:"""")
  ;
  S DFORM=+$G(DFORM) ; JSON:0  XML:1  TEXT:2
@@ -349,6 +349,8 @@ ESC(X) ; -- convert key characters for outgoing XML/JSON
  N I,Y,QOT S QOT=""""
  ; strip control characters ;p16 add $C(0)
  F I=0:1:8,11,12,14:1:31 I X[$C(I) S X=$TR(X,$C(I))
+ ; p17 strip non-printable characters
+ F I=127:1:159 I X[$C(I) S X=$TR(X,$C(I))
  ; handle special characters:
  ;  DDESC = 1 ('&' only), 2 ('&' + CDATA), or
  ;  default (0/null/undefined) = CDATA only
