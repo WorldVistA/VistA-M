@@ -1,5 +1,5 @@
 IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621,631**;21-MAR-94;Build 23
   ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -92,7 +92,9 @@ IN(RTN,BDT,EDT,TOT) ; Determine Incoming Data
  . . . . S $P(RPTDATA,U,1)=$P($G(RPTDATA),U,1)+1
  . . . . ; Update extract type total
  . . . . ; Get the data for the report - build RPTDATA
- . . . . S IBTYP=5,TRANSIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
+ . . . . ;IB*2.0*631/TAZ
+ . . . . ;S IBTYP=5,TRANSIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
+ . . . . S TRANSIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
  . . . . ; IB*2.0*621
  . . . . S TQIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
  . . . . I TQIEN="" Q
@@ -101,9 +103,9 @@ IN(RTN,BDT,EDT,TOT) ; Determine Incoming Data
  . . . . S IBMBI=$$GET1^DIQ(365.1,TQIEN_",",.16,"I")
  . . . . I IBTYP'="" D
  . . . . . I IBTYP=3 Q
- . . . . . I IBTYP=1 D  Q
- . . . . . . I IBMBI="MBIrequest" S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1 ; MBI Request
- . . . . . . I IBMBI'="MBIrequest" S $P(RPTDATA,U,IBTYP+1)=$P($G(RPTDATA),U,IBTYP+1)+1
+ . . . . . ;IB*2.0*631
+ . . . . . I IBTYP=7 S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1  Q  ; MBI Request``
+ . . . . . I ("~1~5~6~"[("~"_IBTYP_"~")) S $P(RPTDATA,U,2)=$P($G(RPTDATA),U,2)+1 Q
  . . . . . I IBTYP=4 D  Q
  . . . . . . I IBQUERY="I" S $P(RPTDATA,U,4)=$P($G(RPTDATA),U,4)+1 ; EICD Queries
  . . . . . . I IBQUERY="V" S $P(RPTDATA,U,5)=$P($G(RPTDATA),U,5)+1 ; EICD Verification
@@ -156,9 +158,9 @@ OUT(RTN,BDT,EDT,TOT) ; Outgoing Data
  . . S IBMBI=$$GET1^DIQ(365.1,TQIEN_",",.16,"I")
  . . I IBTYP'="" D
  . . . I IBTYP=3 Q
- . . . I IBTYP=1 D  Q
- . . . . I IBMBI="MBIrequest" S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1 ; MBI Request
- . . . . I IBMBI'="MBIrequest" S $P(RPTDATA,U,IBTYP+1)=$P($G(RPTDATA),U,IBTYP+1)+1
+ . . . ;I IBTYP=1 D  Q  ;IB*2.0*631/TAZ
+ . . . I IBTYP=7 S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1  Q  ; MBI Request``
+ . . . I ("~1~5~6~"[("~"_IBTYP_"~")) S $P(RPTDATA,U,2)=$P($G(RPTDATA),U,2)+1 Q
  . . . I IBTYP=4 D  Q
  . . . . I IBQUERY="I" S $P(RPTDATA,U,4)=$P($G(RPTDATA),U,4)+1 ; EICD Queries
  . . . . I IBQUERY="V" S $P(RPTDATA,U,5)=$P($G(RPTDATA),U,5)+1 ; EICD Verification
@@ -220,10 +222,10 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  .  S IBQUERY=$$GET1^DIQ(365.1,TQIEN_",",.11,"I")
  .  S IBMBI=$$GET1^DIQ(365.1,TQIEN_",",.16,"I")
  .  I IBTYP'="" D
- .  . I IBTYP=3 Q
- .  . I IBTYP=1 D  Q
- .  . . I IBMBI="MBIrequest" S $P(RPTDATA,U,21)=$P($G(RPTDATA),U,21)+1 ; MBI Request
- .  . . I IBMBI'="MBIrequest" S $P(RPTDATA,U,17)=$P($G(RPTDATA),U,17)+1 ; Insurance Buffer
+ . . I IBTYP=3 Q
+ . . ;I IBTYP=1 D  Q ;IB*2.0*631
+ . . I IBTYP=7 S $P(RPTDATA,U,21)=$P($G(RPTDATA),U,21)+1  Q  ; MBI Request``
+ . . I ("~1~5~6~"[("~"_IBTYP_"~")) S $P(RPTDATA,U,17)=$P($G(RPTDATA),U,17)+1 Q
  .  S:IBTYP=2 $P(RPTDATA,U,18)=$P($G(RPTDATA),U,18)+1 ; Appointment
  .  I IBTYP=4 D  Q
  .  . I IBQUERY="I" S $P(RPTDATA,U,19)=$P($G(RPTDATA),U,19)+1 ; EICD Queries

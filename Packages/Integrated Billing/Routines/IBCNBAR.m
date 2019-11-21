@@ -1,5 +1,5 @@
 IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
- ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595,631**;21-MAR-94;Build 23
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -101,6 +101,9 @@ CLEANUP ; general updates and checks done whenever insurance is added/edited and
  . . S IBSIEN=$S(+IBPOLDA:IBPOLDA_","_DFN_",",1:0)
  . . I +IBSIEN,+$G(IBSEL) D SBDISP^IBCNBCD4(IBBUFDA,DFN,IBPOLDA,IBSEL,IBRIEN,IBSIEN,IBFNAM,IBVAL,.IBHOLD,.IBXHOLD),WAIT^IBCNBUH
  ;
+ ; IB*2.0*631/TAZ Add CREATION TO PROCESSING Tracking
+ D TRACK
+ ;
  ; IB*2*595/DM if SOI is eIV, update insurance record IEN field in response file (#365/.12)
  I $P(^IBA(355.33,IBBUFDA,0),U,3)=$$FIND1^DIC(355.12,,,"eIV","C") D UPDIREC^IBCNEHL3($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
  ; update buffer file entry so only stub remains and status is changed
@@ -135,6 +138,9 @@ REJPROC ;Entry point for REJECAPI^IBCNICB (Patch 413)
  N RELHLD S RELHLD=0
  S RESULT="-1^PATIENT IEN MISSING FROM BUFFER ENTRY" Q:'$G(DFN)
  I +$P($G(^IBA(355.33,+IBBUFDA,0)),U,3)=3 D IVM(0,IBBUFDA,$G(IVMREPTR),$G(IBSUPRES))
+ ;
+ ; IB*2.0*631/TAZ Add CREATION TO PROCESSING Tracking
+ D TRACK
  ;
  S RESULT=0
  D STATUS^IBCNBEE(+IBBUFDA,"R",0,0,0),DELDATA^IBCNBED(+IBBUFDA) W:$G(IBSUPRES)'>0 " ... done."
@@ -214,3 +220,36 @@ CHKREL(DFN,IBINDT,IBN,IBCAT) ; -- release copay
  ; remove hold if no TRICARE or CHAMPVA and no ibcov
  I 'TRICHP,'IBCOV D RELEASE^IBOHCR(IBN)
  Q
+ ;
+ ;IB*2.0*631/TAZ Added Tracking for CREATION TO PROCESSING TRACKING File
+TRACK ;Build CREATION TO PROCESSING TRACKING File (#355.36)
+ N ERROR,FDA,IBMSG,RESP,SOI,TQN,WE
+ S WE=""
+ S RESP=$O(^IBCN(365,"AF",IBBUFDA,""),-1) I RESP D
+ . S TQN=$$GET1^DIQ(365,RESP_",",.05,"I")
+ . S WE=$$GET1^DIQ(365.1,TQN_",",.1,"I")
+ . S SOI=$$GET1^DIQ(365.1,TQN_",",3.02,"I")
+ I 'RESP D
+ . ; Get data when a user processes a buffer entry before EIV can create an HL7 for a transmission
+ . S TQN=$O(^IBCN(365.1,"D",IBBUFDA,""),-1)
+ . I TQN D  Q
+ .. S WE=$$GET1^DIQ(365.1,TQN_",",.1,"I")
+ .. S SOI=$$GET1^DIQ(365.1,TQN_",",3.02,"I")
+ . S WE=6
+ . S SOI=$$GET1^DIQ(355.33,IBBUFDA_",",.03,"I")
+ I WE=7 Q   ; Do not want to track.
+ S FDA(355.36,"+1,",.01)=$$NOW^XLFDT ; DATE PROCESSED
+ S FDA(355.36,"+1,",.02)=$S("^1^2^3^4^"[(U_WE_U):2,"^5^6^"[(U_WE_U):4,1:"") ;TYPE OF PROCESSING
+ S FDA(355.36,"+1,",.03)=SOI ; SOURCE OF INFORMATION
+ S FDA(355.36,"+1,",.04)=0 ; EIV AUTO-UPDATE (always 0 for No if it hits this code.)
+ S FDA(355.36,"+1,",.05)=$G(TQN) ; EIV INQUIRY
+ S FDA(355.36,"+1,",.06)=RESP ; EIV RESPONSE
+ S FDA(355.36,"+1,",.07)=$G(IBBUFDA) ; BUFFER
+ S FDA(355.36,"+1,",.08)=WE ; WHICH EXTRACT (SOURCE OF REQUEST)
+ D UPDATE^DIE("","FDA",,"ERROR")
+ ;
+ I $D(ERROR) D
+ . D MSG003^IBCNEMS1(.IBMSG,.ERROR,TQN,RESP,$G(IBBUFDA))
+ . D MSG^IBCNEUT5($$MGRP^IBCNEUT5(),"eIV Problem: Error writing to the CREATION TO PROCESSING TRACKING File (#355.36)","IBMSG(")
+ Q
+ ;

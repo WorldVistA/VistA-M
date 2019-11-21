@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-21-NOV-2019 01:38:59 ZWR
+21-NOV-2019 05:04:30 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -13311,6 +13311,17 @@ OSEHRA ZGO Export: FILE
 ^DIC("355.351","%D",1,0)="This file keeps track of date/time that HMS result file messages are"
 ^DIC("355.351","%D",2,0)="received from HMS. In addition the Activity Log sub-file keeps track of the"
 ^DIC("355.351","%D",3,0)="history of the message transfers.  "
+^DIC("355.36",0)="CREATION TO PROCESSING TRACKING^355.36"
+^DIC("355.36",0,"GL")="^IBA(355.36,"
+^DIC("355.36","%",0)="^1.005^1^1"
+^DIC("355.36","%",1,0)="IB"
+^DIC("355.36","%","B","IB",1)=""
+^DIC("355.36","%D",0)="^^4^4^3190321^"
+^DIC("355.36","%D",1,0)="This file will track transaction from creation until final processing. "
+^DIC("355.36","%D",2,0)="This file tracks insurance records that are processed through the "
+^DIC("355.36","%D",3,0)="INSURANCE VERIFICATION PROCESSOR (355.33), in addition to records that "
+^DIC("355.36","%D",4,0)="are processed via auto update."
+^DIC("355.36","%MSC")=3191121.050013
 ^DIC("355.4",0)="ANNUAL BENEFITS^355.4ID"
 ^DIC("355.4",0,"AUDIT")="@"
 ^DIC("355.4",0,"DD")="@"
@@ -15463,7 +15474,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.1","%D",2,0)="specific criteria to generate an HL7 message.  These messages"
 ^DIC("365.1","%D",3,0)="will be sent to the Eligibility Communicator for processing."
 ^DIC("365.1","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.1","%MSC")=3190314.185055
+^DIC("365.1","%MSC")=3191121.050013
 ^DIC("365.11",0)="IIV AUTO MATCH^365.11"
 ^DIC("365.11",0,"AUDIT")=""
 ^DIC("365.11",0,"DD")="@"
@@ -38029,6 +38040,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("AC","GMTS","853.875",1)=""
 ^DIC("AC","GMTS","8925.1",2)=""
 ^DIC("AC","GMTS","9999999.64",1)=""
+^DIC("AC","IB","355.36",1)=""
 ^DIC("AC","LR",2,1)=""
 ^DIC("AC","LR",44,2)=""
 ^DIC("AC","LR","62.3",1)=""
@@ -38755,6 +38767,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","CP_SCHEDULE","704.008")=""
 ^DIC("B","CP_SHIFT","704.007")=""
 ^DIC("B","CP_TRANSACTION_TIU_HISTORY","702.001")=""
+^DIC("B","CREATION TO PROCESSING TRACKIN","355.36")=""
 ^DIC("B","CRHD HANDOFF PARAMETERS",183)=""
 ^DIC("B","CRHD HOT TEAM PATIENT LIST","183.3")=""
 ^DIC("B","CRHD TEAM CONTACT LIST","183.4")=""

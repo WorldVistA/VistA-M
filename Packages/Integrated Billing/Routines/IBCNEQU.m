@@ -1,5 +1,5 @@
 IBCNEQU ;DAOU/BHS - eIV REQUEST ELECTRONIC INSURANCE INQUIRY ;24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -286,7 +286,7 @@ BLKTQ ;  Create a ~NO PAYER request for 'Search for All'
  D NPINIT ; Update service date and freshness
  ; Update service dates for inquiries to be transmitted
  S DATA1=DFN_U_PAYER_U_1_U_""_U_""_U_FRESHDT
- S DATA2=4_U_"I"_U_SRVICEDT
+ S DATA2=5_U_"I"_U_SRVICEDT ;IB*2.0*631/TAZ
  S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2,"",1)
  Q
  ;

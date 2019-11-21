@@ -1,5 +1,5 @@
 IBCNEHLQ ;DAOU/ALA - HL7 RQI Message ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467,497,533,516,601,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467,497,533,516,601,621,631**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -35,14 +35,14 @@ PID ; Patient Identification Segment
  ;         need to be modified as they currently expect 11 pieces to be returned.
  I DFN D
  .; try to get name of insured from NAME OF INSURED
- .I EXT'=1,$G(IRIEN)'="" D
+ .I ";1;5;6;7;"'[(";"_EXT_";"),$G(IRIEN)'="" D
  .. S IBWHO=$P($G(^DPT(DFN,.312,IRIEN,0)),U,6)
  .. I IBWHO'="",IBWHO'="v" Q
  ..;IB*2.0*601/DM for "self" appt extract, use patient's insurance insured DOB
  .. S IBDOB=$$GET1^DIQ(2.312,IRIEN_","_DFN_",","INSURED'S DOB","I")
  .. I IBDOB S $P(PID,HLFS,8)=$$HLDATE^HLFNC(IBDOB)
  .. S NM=$P($G(^DPT(DFN,.312,IRIEN,7)),U,1)
- .I EXT=1,BUFF,$G(NM)="" D
+ .I ";1;5;6;7;"[(";"_EXT_";"),BUFF,$G(NM)="" D
  .. S IBWHO=$P($G(^IBA(355.33,BUFF,60)),U,5)
  .. I IBWHO'="",IBWHO'="v" Q
  ..;IB*2.0*601/DM for "self" buffer extract, use buff's insured DOB
@@ -76,7 +76,7 @@ GT1 ;  Guarantor Segment
  I $G(QUERY)="I" Q
  ;
  ;  If the data was extracted from Buffer get specifics from Buffer file
- I EXT=1 D
+ I ";1;5;6;7;"[(";"_EXT_";") D
  . S WHO=$P($G(^IBA(355.33,BUFF,60)),U,5)
  . I WHO="v"!(WHO="") Q
  . ;S NM=$P($G(^IBA(355.33,BUFF,60)),U,7),NM=$$NAME^IBCNEHLU(NM)
@@ -147,7 +147,7 @@ IN1 ;  Insurance Segment
  S IN1=""
  ;
  ;  If the data was extracted from Buffer get specifics from Buffer file
- I EXT=1 D
+ I ";1;5;6;7;"[(";"_EXT_";") D
  .S PREL=$P($G(^IBA(355.33,BUFF,60)),U,14)
  .S ELIGDT=$P($G(TRANSR),U,12) I ELIGDT=DT S ELIGDT=""
  .S $P(IN1,HLFS,2)=$S(PREL=18:$$SCRUB($G(SUBID)),PREL="":$$SCRUB($G(SUBID)),1:$$SCRUB($G(PATID)))
@@ -215,7 +215,23 @@ NTE(CTR) ;  NTE Segment
  I CTR=2 D
  . S NTE=$$GET1^DIQ(365.1,IEN_",","SOURCE OF INFORMATION","I")  ; IEN = ien of TQ
  . S NTE=$$GET1^DIQ(355.12,NTE_",","IB BUFFER ACRONYM")
- I CTR=3 S NTE=$S(((EXT=4)&(QUERY="I")):"OHI",$$MBICHK^IBCNEUT7(BUFF):"MBI",1:"ELI") ; IB*2.0*621
+ ; IB*2.0*631/TAZ restructure NTE(3)
+ I CTR=3 D
+ . N TYPE,WHICH
+ . S NTE=$S(((EXT=4)&(QUERY="I")):"OHI",$$MBICHK^IBCNEUT7(BUFF):"MBI",1:"ELI") ; IB*2.0*621
+ . S WHICH=$$GET1^DIQ(365.1,IEN_",",.1,"I") ;WHICH EXTRACT
+ . S TYPE="" D
+ .. I $$GET1^DIQ(365.1,IEN_",",.04)="Retry" S TYPE="RETRY" Q
+ .. I WHICH=1 S TYPE="BUFFER" Q
+ .. I WHICH=2 S TYPE="APPT" Q
+ .. I WHICH=3 S TYPE="NON-VERIFIED" Q
+ .. I EXT=4 D  Q
+ ... I QUERY="I" S TYPE="EICD-I" Q
+ ... S TYPE="EICD-V"
+ .. I WHICH=5 S TYPE="REQUEST ELECTRONIC" Q
+ .. I WHICH=6 S TYPE="ICB/VISTA" Q
+ .. I WHICH=7 S TYPE="MBI REQUEST"
+ . S NTE=NTE_"~"_TYPE
  ; IB*2.0*621
  I CTR=4 S NTE="" ; Reporting of known insurance information will happen at a later release
  I CTR=5 S NTE=""

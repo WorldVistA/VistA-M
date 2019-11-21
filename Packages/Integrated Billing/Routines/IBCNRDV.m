@@ -1,5 +1,5 @@
 IBCNRDV ;OAKFO/ELZ - INSURANCE INFORMATION EXCHANGE VIA RDV ;27-MAR-03
- ;;2.0;INTEGRATED BILLING;**214,231,361,371,452,593**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**214,231,361,371,452,593,631**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to exchange insurance information between
@@ -61,7 +61,8 @@ BACKGND ; background/tasked entry point
  .. F IBL=5:1  S IBT=$P($T(MAP+IBL),";",3) Q:IBT=""  D
  ... ;
  ... ; am I on the right MAP line
- ... I $P(IBT,IBP,3)=$S(IBY#6:IBY#6,1:6) S IBZ=$P(IBR(IBY),"^",$P(IBT,IBP,4)) I $L(IBZ) D
+ ... ;IB*2.0*631/TAZ - Insurance data comes in multiples of 7
+ ... I $P(IBT,IBP,3)=$S(IBY#7:IBY#7,1:7) S IBZ=$P(IBR(IBY),"^",$P(IBT,IBP,4)) I $L(IBZ) D
  .... ;
  .... ; xecute code to change external to internal
  .... X:$L($P(IBT,IBP,7)) $P(IBT,IBP,7)
@@ -73,7 +74,8 @@ BACKGND ; background/tasked entry point
  .. ;I $G(IBB(20.01))["MEDICARE (WNR)" S X=0 F  S X=$O(^DPT(DFN,.312,X)) Q:X<1  I $P($G(^DIC(36,+$P($G(^DPT(DFN,.312,X,0)),"^"),0)),"^")["MEDICARE (WNR)" K IBB Q
  .. ;
  .. ; file in the buffer file & where else needed
- .. I IBY#6=0 D
+ .. ;IB*2.0*631/TAZ - File on the 7th multiple line (i.e. 7,14,21...)
+ .. I IBY#7=0 D
  ... I $L($G(IBB(20.01))) D
  .... N IBOK S IBOK=1
  .... S IBB(.14)=$$IEN^XUAF4(+IBT(IBX))
