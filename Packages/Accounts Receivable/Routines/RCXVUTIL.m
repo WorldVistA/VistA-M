@@ -1,5 +1,5 @@
 RCXVUTIL ;DAOU/ALA - AR Data Extract Utility Program ;29-JUL-03
- ;;4.5;Accounts Receivable;**201,299,308**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**201,299,308,356**;Mar 20, 1995;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SPAR(REF) ;  HL7 Segment Parsing
@@ -203,7 +203,7 @@ CARE(RCXVIEN) ;  Is bill VA or NON-VA care?
  ; If at least bedsection=non-va care, it's non-va care
  S (RCIBX,RCTYPE)=0
  F  S RCIBX=$O(^DGCR(399,RCXVIEN,"RC",RCIBX)) Q:'RCIBX  D  Q:RCTYPE
- . S RCIBY=$P($G(^DGCR(399,RCXVIEN,"RC",RCIBX,0)),U,5)
+ . S RCIBY=$P($G(^DGCR(399,RCXVIEN,"RC",RCIBX,0)),U,5) Q:RCIBY=""
  . S RCIBY=$P(^DGCR(399.1,+RCIBY,0),U) Q:RCIBY=""
  . I $F(",NON-VA CARE,NON-VA CARE AT VA EXPENSE,NON-VA CARE%,",","_RCIBY_",") S RCTYPE=1
  I RCTYPE S RCXVCFL=0 Q
