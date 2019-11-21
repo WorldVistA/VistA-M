@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-20-NOV-2019 14:01:23 ZWR
+21-NOV-2019 01:38:59 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -20698,6 +20698,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.75","%D",8,0)="Choices are pointed to by the MH CHOICETYPES file (#601.751) which is a "
 ^DIC("601.75","%D",9,0)="collection of choices.  Choices are referenced in the MH ANSWERS file "
 ^DIC("601.75","%D",10,0)="(#601.85) as a pointer to the full response."
+^DIC("601.75","%MSC")=3191121.013422
 ^DIC("601.751",0)="MH CHOICETYPES^601.751"
 ^DIC("601.751",0,"AUDIT")="@"
 ^DIC("601.751",0,"DD")="@"

@@ -1,5 +1,5 @@
 YTQAPI2C ;SLC/BLD- MHAX ANSWERS SPECIAL HANDLING #2 ;2/7/2018  17:35
- ;;5.01;MENTAL HEALTH;**136**;Dec 30, 1994;Build 235
+ ;;5.01;MENTAL HEALTH;**136,139**;Dec 30, 1994;Build 134
  ;
  ; This routine was split from YTQAPI2A.
  ; This routine handles limited complex reporting requirements without
@@ -20,7 +20,8 @@ SPECIAL(TSTNM,YSDATA,N,YSAD,YSTSTN) ; add "hidden" computed question text
  .S TOT=0,TOTARRAY="",YSCORE="",II=1
  .D GETSCORE^YTQAPI8(.YSCORE,.YS)
  .I ^TMP($J,"YSCOR",1)'="[DATA]" Q
- .D YSARRAY(.YSBPRS)
+ .F I=3:1 Q:'$D(YSDATA(I))  S YSBPRS(I-2)=$$GET1^DIQ(601.75,$P(YSDATA(I),"^",3)_",",4,"I")
+ .;D YSARRAY(.YSBPRS)
  .S TOTDIST=YSBPRS(4)+(YSBPRS(12))+YSBPRS(15)   ;Thinking Disturbance 
  .S TOTANX=YSBPRS(2)+(YSBPRS(5))+YSBPRS(9)     ;Anxious Depression
  .S TOTPARNA=YSBPRS(10)+(YSBPRS(11))+YSBPRS(14)    ;Paranoid Disturbances
