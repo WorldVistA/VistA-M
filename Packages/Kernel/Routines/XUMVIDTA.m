@@ -1,5 +1,5 @@
-XUMVIDTA ;MVI/CKN - MVI New Person Data Analysis ; 6/18/19 2:52pm
- ;;8.0;KERNEL;**705,711**;Jul 10, 1995;Build 9
+XUMVIDTA ;MVI/CKN - MVI New Person Data Analysis ;8/20/19  11:03
+ ;;8.0;KERNEL;**705,711,710**;Jul 10, 1995;Build 2
  Q
 EP(RETURN,SEL,ACTSEL) ;
  ;RPC - XUS MVI NEW PERSON DATA
@@ -25,7 +25,7 @@ EP(RETURN,SEL,ACTSEL) ;
  .K ARR
  .S TOTCNT=TOTCNT+1
  .D GET(XUDUZ,.ARR)
- .I $G(ARR("VISITOR"))=1 S TOTVIS=TOTVIS+1 Q  ;Filter Visitor records
+ .I $G(ARR("VISITOR"))=1 S TOTVIS=TOTVIS+1 ; Visitor records ;**710 - STORY_952862 (dri) remove QUIT to stop filtering, allow person to also be counted as active
  .;Inactive New Person
  .I SEL=3 D  Q
  ..S NONACT=$$NONACT(.ARR)

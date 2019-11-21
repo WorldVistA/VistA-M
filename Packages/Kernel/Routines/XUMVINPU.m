@@ -1,5 +1,5 @@
 XUMVINPU ;MVI/DRI - Master Veteran Index New Person Utilities ;3/21/18  10:15
- ;;8.0;KERNEL;**691,711**;Jul 10, 1995;Build 9
+ ;;8.0;KERNEL;**691,711,710**;Jul 10, 1995;Build 2
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**711, Story 977780 (jfw)
@@ -289,6 +289,8 @@ UPDATE(XURET,XUARR) ;rpc to update new person file data
  ;   **711, Story 977821 (jfw) - Allow additional fields to be updated.
  ;   XUARR(#)="200;.151^EMAIL ADDRESS^^^"
  ;   XUARR(#)="200;501.1^NETWORK USERNAME^^^"
+ ;   **710, Story 1100018 (jfw) - Add NPI field to be updated.
+ ;   XUARR(#)="200;41.99^NPI^^^"
  ;
  ;  Success:
  ;   XURET(0) = 1
@@ -333,7 +335,8 @@ UPDATE(XURET,XUARR) ;rpc to update new person file data
  I '$D(FDA) S XURET(0)="-1^No data to file for record '"_XUDUZ_"' in file 200" Q
  ;
  L +^VA(200,XUDUZ):10 I '$T S XURET(0)="-1^Unable to lock record '"_XUDUZ_"' in file 200" Q
- D FILE^DIE(,"FDA","XUERR") I $D(XUERR("DIERR")) S XURET(0)="-1^"_$G(XUERR("DIERR",1,"TEXT",1)) Q
+ ;**710, Story 1100018 (jfw) - Process fields as External Values now so Input Transform checks fire
+ D FILE^DIE("E","FDA","XUERR") I $D(XUERR("DIERR")) S XURET(0)="-1^"_$G(XUERR("DIERR",1,"TEXT",1)) Q
  L -^VA(200,XUDUZ)
  ;
  S XURET(0)=1 ;successfully filed
