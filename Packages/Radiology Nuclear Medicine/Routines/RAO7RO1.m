@@ -1,5 +1,5 @@
-RAO7RO1 ;HISC/FPT-RAD/NM Error Messages ;8/28/97  14:16
- ;;5.0;Radiology/Nuclear Medicine;**2,75,86**;Mar 16, 1998;Build 7
+RAO7RO1 ;HISC/FPT-RAD/NM Error Messages ;23 Apr 2019 1:15 PM
+ ;;5.0;Radiology/Nuclear Medicine;**2,75,86,158**;Mar 16, 1998;Build 2
  ;
 EN1(RAERR) ; errors encountered with OE v3.0 back & frontdoor transmission
  S RAEMSG=$P($T(MSG+RAERR),";",4)
@@ -42,7 +42,7 @@ MSG ; error messages
  ;;31;Imaging Type mismatch between the Procedure and Imaging Location
  ;;32;Parent procedure does not have descendents
  ;;33;Imaging Type mismatch between the Procedure and MODIFIER(s)
- ;;34;Invalid MODFIERS(s) for a series procedure
+ ;;34;*** REMOVED W/RA*5.0*158 ***;Invalid MODFIERS(s) for a series procedure
  ;;35;FileMan rejected date/time
  ;;36;Invalid Approving Rad/Nuc Med physician
  ;;37;Rad/Nuc Med order not placed in a DISCONTINUED status

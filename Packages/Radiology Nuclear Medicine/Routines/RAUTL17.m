@@ -1,5 +1,5 @@
-RAUTL17 ;HISC/DAD-RAD/NUC MED COMMON PROCEDURE FILE (#71.3) UTILITIES ;6/14/96  11:34
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+RAUTL17 ;HISC/DAD-RAD/NUC MED COMMON PROCEDURE FILE (#71.3) UTILITIES ;19 Apr 2019 3:32 PM
+ ;;5.0;Radiology/Nuclear Medicine;**158**;Mar 16, 1998;Build 2
 EN1 ; *** Get an imaging type
  ; Input:  None
  ; Output: The variable 'Y' will be one of the following
@@ -33,24 +33,24 @@ EN1 ; *** Get an imaging type
  W ! D ^DIC S Y=+Y
 EN1EXIT Q
  ;
-EN2(RAIMGTYI,RAPROCD0) ; *** Common procedure file error check
- ; Input:  IMAGING TYPE file (#79.2) IEN (RAIMGTYI)
- ;         PROCEDURE file (#71) IEN (RAPROCD0) (Optional)
+EN2(RAIMGTYI,RA71) ; *** Common procedure file error check
+ ; Input:  RAIMGTYI = IMAGING TYPE file (#79.2) IEN
+ ;         RA71 = PROCEDURE file (#71) IEN (Optional)
  ; Output: Number_of_Common_Proccedures ^ $S(Duplicate_Sequence#:1,1:0)
  ;
- N RA,RACNT,RAD0,RADUP,RASEQ
+ N RA713,RACNT,RAD0,RADUP,RASEQ
  S (RASEQ,RACNT,RADUP)=0
  F  S RASEQ=$O(^RAMIS(71.3,"AA",RAIMGTYI,RASEQ)) Q:RASEQ'>0  D
- . S RAD0=0
- . F  S RAD0=$O(^RAMIS(71.3,"AA",RAIMGTYI,RASEQ,RAD0)) Q:RAD0'>0  D
+ . S RA713=0
+ . F  S RA713=$O(^RAMIS(71.3,"AA",RAIMGTYI,RASEQ,RA713)) Q:RA713'>0  D
  .. S RACNT=RACNT+1 I $G(RASEQ(RASEQ)) S RADUP=1
- .. S RASEQ(RASEQ)=$S($G(RASEQ(RASEQ)):RASEQ(RASEQ)_U,1:"")_RAD0
+ .. S RASEQ(RASEQ)=$S($G(RASEQ(RASEQ)):RASEQ(RASEQ)_U,1:"")_RA713
  .. Q
  . Q
- I $G(RAPROCD0),RADUP'>0 D
- . S RAD0=0 K RASEQ
- . F  S RAD0=$O(^RAMIS(71.3,"B",RAPROCD0,RAD0)) Q:RAD0'>0  D
- .. S RA=$G(^RAMIS(71.3,RAD0,0)),RASEQ=$P(RA,U,4)
+ I $G(RA71),RADUP'>0 D
+ . S RA713=0 K RASEQ
+ . F  S RA713=$O(^RAMIS(71.3,"B",RA71,RA713)) Q:RA713'>0  D
+ .. S RA713(0)=$G(^RAMIS(71.3,RA713,0)),RASEQ=$P(RA713(0),U,4)
  .. I RASEQ S RASEQ(RASEQ)=""
  .. Q
  . S RASEQ=0
@@ -75,13 +75,13 @@ EN5(RAD0,RAIMGTYI,RASEQ,SK) ; *** Update ^RAMIS(71.3,"AA", xref
  I SK="K" K ^RAMIS(71.3,"AA",RAIMGTYI,RASEQ,RAD0)
  Q
  ;
-EN6(RAIMGTYI,RAPROCD0) ; *** Common procedure file error messages
+EN6(RAIMGTYI,RA71) ; *** Common procedure file error messages
  ;Invoked when .01 field of file 71.3 is edited, allowing the user
  ;to change the procedure that the .01 field points to
- ; Input:  IMAGING TYPE file (#79.2) IEN (RAIMGTYI)
- ;         PROCEDURE file (#71) IEN (RAPROCD0)
+ ; Input:  RAIMGTYI = IMAGING TYPE file (#79.2) IEN
+ ;         RA71 = PROCEDURE file (#71) IEN
  N RA,RACNT,RADUP
- S RA=$$EN2(RAIMGTYI,RAPROCD0),RACNT=$P(RA,U),RADUP=$P(RA,U,2)
+ S RA=$$EN2(RAIMGTYI,RA71),RACNT=$P(RA,U),RADUP=$P(RA,U,2)
  I RACNT>40!RADUP D  K X
  . N RATXT
  . S RATXT(1)=""
@@ -120,3 +120,12 @@ DESC(RAD0,RAY) ; Detemine if a procedure qualifies as a descendent for this
  S RAI=$S(RADESC("I")=0:1,RADESC("I")>DT:1,1:0)
  I RADESC(12)=RAPARNT(12),("^D^S^"[(U_RADESC(6)_U)),(RAI) S RA=1
  Q RA
+ ;
+EN713(RAX) ;is this procedure from file 71 already a common procedure?
+ ;RAX = PROCEDURE [.01] field value from 71.3 (ptr to file 71)
+ ;
+ ;returns 1 if the PROCEDURE field value is not a duplicate, else 0
+ Q:+$O(^RAMIS(71.3,"B",+RAX,0))=0 1
+ D EN^DDIOL("`"_$P($G(^RAMIS(71,+RAX,0)),"^")_"' already exists as a Common Procedure.")
+ Q 0
+ ;

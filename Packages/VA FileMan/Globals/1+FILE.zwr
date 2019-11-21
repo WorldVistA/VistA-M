@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-21-NOV-2019 05:04:30 ZWR
+21-NOV-2019 10:04:29 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5569,6 +5569,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.3","%D",3,0)="allowed per imaging type.  Active common procedures have a sequence number"
 ^DIC("71.3","%D",4,0)="that determines their display order on the common procedure selection"
 ^DIC("71.3","%D",5,0)="screen."
+^DIC("71.3","%MSC")=3191121.095948
 ^DIC("71.4",0)="RAD/NUC MED PROCEDURE MESSAGE^71.4"
 ^DIC("71.4",0,"GL")="^RAMIS(71.4,"
 ^DIC("71.4","%D",0)="^^14^14^2950822^^^^"
@@ -6098,7 +6099,13 @@ OSEHRA ZGO Export: FILE
 ^DIC("75.1","%D",44,0)="There are no sort templates associated with this file."
 ^DIC("75.1","%MSC")=3180612.175843
 ^DIC("75.2",0)="RAD/NUC MED REASON^75.2I"
+^DIC("75.2",0,"AUDIT")=""
+^DIC("75.2",0,"DD")="@"
+^DIC("75.2",0,"DEL")="@"
 ^DIC("75.2",0,"GL")="^RA(75.2,"
+^DIC("75.2",0,"LAYGO")="@"
+^DIC("75.2",0,"RD")=""
+^DIC("75.2",0,"WR")="@"
 ^DIC("75.2","%D",0)="^^24^24^2950822^^^"
 ^DIC("75.2","%D",1,0)="This file contains the reasons a user may select from when placing an"
 ^DIC("75.2","%D",2,0)="order in the 'HOLD' or 'CANCELLED' status."
