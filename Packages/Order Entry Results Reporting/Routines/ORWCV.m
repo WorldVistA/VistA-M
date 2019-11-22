@@ -1,5 +1,5 @@
-ORWCV ; SLC/KCM - Background Cover Sheet Load; ; 06/10/09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,209,214,195,215,260,243,282,302,280**;Dec 17, 1997;Build 85
+ORWCV ; SLC/KCM,MS/PB - Background Cover Sheet Load; ; 06/10/09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,109,132,209,214,195,215,260,243,282,302,280,496**;Nov 19, 2018;Build 2
  ;
  ;
  ; DBIA 1096    Reference to ^DGPM("ATID1"
@@ -207,6 +207,18 @@ DTLVST(RPT,DFN,IEN,APPTINFO) ; return progress notes / discharge summary
  . S VISIT=$$APPT2VST^PXAPI(DFN,$P(APPTINFO,";",2),$P(APPTINFO,";",3))
  . I VISIT=0 S VISIT=+$$GETENC^PXAPI(DFN,$P(APPTINFO,";",2),$P(APPTINFO,";",3))
  . D DETNOTE^ORQQVS(.RPT,DFN,VISIT)
+ . N X1,X2 S (X1,X2)=0 F  S X1=$O(RPT(X1)) Q:X1'>0  S X2=X1  ;get the last entry in the RPT list
+ . I X2'>0 S X2=1
+ . N XSD,XSDDT,SDURL
+ . S XSD=$P(APPTINFO,";",3),XSDDT=$P(APPTINFO,";",2) ;look up the entry in the appointment multiple and get the url
+ . Q:'$D(^SC($G(XSD),0))  ; No clinic
+ . Q:'$D(^SC($G(XSD),"S",XSDDT))  ; No appointment at that time
+ . K XX1 S XX1=0 F  S XX1=$O(^SC(XSD,"S",XSDDT,1,XX1)) Q:$G(XX1)'>0  D
+ . . Q:$P(^SC(XSD,"S",XSDDT,1,XX1,0),"^",1)'=DFN
+ . . Q:$G(SDURL)'=""
+ . . S SDURL=$G(^SC(XSD,"S",XSDDT,1,XX1,"URL"))
+ . S RPT(X2)=$G(SDURL)
+ . K XSD,XSDDT,SDURL
  I $P(APPTINFO,";")="V" D  Q
  . S VISIT=+$$GETENC^PXAPI(DFN,$P(APPTINFO,";",2),$P(APPTINFO,";",3))
  . D DETNOTE^ORQQVS(.RPT,DFN,VISIT)
