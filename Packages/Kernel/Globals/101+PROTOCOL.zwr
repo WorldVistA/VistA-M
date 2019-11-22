@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: PROTOCOL
-22-NOV-2019 08:19:32 ZWR
-^ORD(101,0)="PROTOCOL^101I^5251^4729"
+22-NOV-2019 10:10:13 ZWR
+^ORD(101,0)="PROTOCOL^101I^5252^4730"
 ^ORD(101,1,0)="ORU PATIENT MOVMT^Review Orders on Patient Movement^^A^1^^^^^^^"
 ^ORD(101,1,1,0)="^^2^2^2960720^^^^"
 ^ORD(101,1,1,1,0)="This is the option used to review orders when a patient is discharged or"
@@ -42867,6 +42867,15 @@ OSEHRA ZGO Export: PROTOCOL
 ^ORD(101,5250,99)="65339,29705"
 ^ORD(101,5251,0)="ORNOT LISTMAN BLANK^^^A^17^^^^^^^"
 ^ORD(101,5251,15)="Q"
+^ORD(101,5252,0)="OR COMPLETE ORDER^Complete^^X^17^^^^^^^"
+^ORD(101,5252,1,0)="^101.06^5^5^3180914^^^^"
+^ORD(101,5252,1,1,0)="The purpose of this protocol is to create a way for packages (including "
+^ORD(101,5252,1,2,0)="COTS or Class 3) to receive notifications when an order is set to a "
+^ORD(101,5252,1,3,0)="complete status in CPRS."
+^ORD(101,5252,1,4,0)=" "
+^ORD(101,5252,1,5,0)="The array ORINFO will be passed to the protocol. "
+^ORD(101,5252,10,0)="^101.01PA^1^1"
+^ORD(101,5252,99)="65339,36354"
 ^ORD(101,"AB",1496,1495,1)=""
 ^ORD(101,"AB",1591,1590,1)=""
 ^ORD(101,"AB",1593,1469,1)=""
@@ -51835,6 +51844,7 @@ OSEHRA ZGO Export: PROTOCOL
 ^ORD(101,"B","OP",497,1)=1
 ^ORD(101,"B","OP",2592,1)=1
 ^ORD(101,"B","OQ",3945,2)=1
+^ORD(101,"B","OR COMPLETE ORDER",5252)=""
 ^ORD(101,"B","OR EVSEND DGPM",2185)=""
 ^ORD(101,"B","OR EVSEND FH",2186)=""
 ^ORD(101,"B","OR EVSEND GMRC",2190)=""
@@ -55367,6 +55377,7 @@ OSEHRA ZGO Export: PROTOCOL
 ^ORD(101,"C","COMPLETE",559)=""
 ^ORD(101,"C","COMPLETE",2386)=""
 ^ORD(101,"C","COMPLETE",2409)=""
+^ORD(101,"C","COMPLETE",5252)=""
 ^ORD(101,"C","COMPLETE (BILLABLE)",4989)=""
 ^ORD(101,"C","COMPLETE BATCH",4340)=""
 ^ORD(101,"C","COMPLETE BUFFER",4620)=""
