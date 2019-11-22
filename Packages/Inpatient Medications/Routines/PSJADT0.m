@@ -1,5 +1,5 @@
 PSJADT0 ;BIR/CML3,PR,MLM-AUTO DC/HOLD CANCEL ;11 Aug 98 / 8:25 AM
- ;;5.0;INPATIENT MEDICATIONS ;**17,111,112,135,181,274**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS ;**17,111,112,135,181,274,390**;16 DEC 97;Build 7
  ;
  ;Reference to ^PS(55 supported by DBIA #2191.
  ;
@@ -100,4 +100,5 @@ DCIMO(DFN,ON,TYP) ; Check parameter before DC'ing clinic order
  S GLO=GLO_+ON_","_IMOND_")",A=$G(@GLO),CLINIC=$P(A,"^"),APPT=$P(A,"^",2)
  Q:'$$CLINIC^PSJBCMA(A) 1
  I '$D(^PS(53.46,"B",CLINIC)) Q 1
+ I $$GET1^DIQ(2,DFN,.351,"I") Q 1 ;p390 .351 Patient DATE OF DEATH
  S B=$O(^PS(53.46,"B",CLINIC,"")),C=+$P(^PS(53.46,B,0),"^",3) Q C
