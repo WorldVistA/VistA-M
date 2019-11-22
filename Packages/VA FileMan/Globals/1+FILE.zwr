@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-21-NOV-2019 10:04:29 ZWR
+21-NOV-2019 19:36:18 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -36119,6 +36119,33 @@ OSEHRA ZGO Export: FILE
 ^DIC("8992.7","%D",14,0)="Otherwise, logging is initiated at the level specified for the entry in "
 ^DIC("8992.7","%D",15,0)="the file."
 ^DIC("8992.7","%MSC")=3180814.043352
+^DIC(8993,0)="XULM LOCK DICTIONARY^8993"
+^DIC(8993,0,"GL")="^XLM(8993,"
+^DIC(8993,"%",0)="^1.005^^0"
+^DIC(8993,"%D",0)="^^4^4^3120618^"
+^DIC(8993,"%D",1,0)="This file contains descriptions and specifications for locks held"
+^DIC(8993,"%D",2,0)="by various applications.  The Lock Manager uses it to provide information"
+^DIC(8993,"%D",3,0)="and guidance to the user about locks found in the lock table."
+^DIC(8993,"%D",4,0)=""
+^DIC(8993,"%MSC")=3191121.1932
+^DIC("8993.1",0)="XULM LOCK MANAGER PARAMETERS^8993.1"
+^DIC("8993.1",0,"GL")="^XLM(8993.1,"
+^DIC("8993.1","%",0)="^1.005^^0"
+^DIC("8993.1","%D",0)="^1.001^5^5^3120625^^^^"
+^DIC("8993.1","%D",1,0)="This is the parameter file for the Kernel Lock Manager.  It should contain"
+^DIC("8993.1","%D",2,0)="only one entry."
+^DIC("8993.1","%D",3,0)=""
+^DIC("8993.1","%D",4,0)=""
+^DIC("8993.1","%D",5,0)=""
+^DIC("8993.1","%MSC")=3191121.1932
+^DIC("8993.2",0)="XULM LOCK MANAGER LOG^8993.2"
+^DIC("8993.2",0,"GL")="^XLM(8993.2,"
+^DIC("8993.2","%",0)="^1.005^^0"
+^DIC("8993.2","%D",0)="^^3^3^3120618^"
+^DIC("8993.2","%D",1,0)="This file records each instance of the Kernel Lock Manager being used"
+^DIC("8993.2","%D",2,0)="to terminate a process and the locks that the process held."
+^DIC("8993.2","%D",3,0)=""
+^DIC("8993.2","%MSC")=3191121.1932
 ^DIC(8994,0)="REMOTE PROCEDURE^8994"
 ^DIC(8994,0,"AUDIT")="@"
 ^DIC(8994,0,"DD")="@"
@@ -41114,5 +41141,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","XTV VERIFICATION PACKAGE","8991.19")=""
 ^DIC("B","XUEPCS DATA","8991.6")=""
 ^DIC("B","XUEPCS PSDRPH AUDIT","8991.7")=""
+^DIC("B","XULM LOCK DICTIONARY",8993)=""
+^DIC("B","XULM LOCK MANAGER LOG","8993.2")=""
+^DIC("B","XULM LOCK MANAGER PARAMETERS","8993.1")=""
 ^DIC("B","Y2K CATEGORY LOG",6918)=""
 ^DIC("B","ZIP CODE","5.11")=""
