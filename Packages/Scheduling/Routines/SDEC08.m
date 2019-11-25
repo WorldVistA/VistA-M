@@ -1,5 +1,6 @@
 SDEC08 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,651,658,665**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**627,651,658,665,717**;Aug 13, 1993;Build 12
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -269,8 +270,8 @@ CANCEL(BSDR) ;EP; called to cancel appt
  I '$D(^VA(200,+$G(BSDR("USR")),0)) Q 1_U_"User Who Canceled Appt Error: "_$G(BSDR("USR"))
  I '$D(^SD(409.2,+$G(BSDR("CR")))) Q 1_U_"Cancel Reason error: "_$G(BSDR("CR"))
  ;
- NEW IEN,DIE,DA,DR,SDMODE
- S IEN=$$SCIEN^SDECU2(BSDR("PAT"),BSDR("CLN"),BSDR("ADT"))
+ NEW IEN,DIE,DA,DR,SDMODE,HLAPTIEN ;*zeb+1 722 2/21/19 save IEN for canceling appt
+ S IEN=$$SCIEN^SDECU2(BSDR("PAT"),BSDR("CLN"),BSDR("ADT")),HLAPTIEN=IEN
  I 'IEN Q 1_U_"Error trying to find appointment for cancel: Patient="_BSDR("PAT")_" Clinic="_BSDR("CLN")_" Appt="_BSDR("ADT")
  ;
  I $$CI^SDECU2(BSDR("PAT"),BSDR("CLN"),BSDR("ADT"),IEN) Q 1_U_"Patient already checked in; cannot cancel until check-in deleted: Patient="_BSDR("PAT")_" Clinic="_BSDR("CLN")_" Appt="_BSDR("ADT")
@@ -301,16 +302,17 @@ CANCEL(BSDR) ;EP; called to cancel appt
  D UPDATE^DIE("","SDFDA")
  N SDPCE
  S SDPCE=$P($G(^DPT(DFN,"S",SDT,0)),U,20)
- D:+SDPCE EN^SDCODEL(SDPCE,0)  ;remove OUTPATIENT ENCOUNTER link
+ D:+SDPCE EN^SDCODEL(SDPCE,2,"","CANCEL")  ;remove OUTPATIENT ENCOUNTER link  ;*zeb 10/25/18 717 pass in correct SDMODE and delete source
  ;
- ; delete data in ^SC
- NEW DIK,DA
- S DIK="^SC("_BSDR("CLN")_",""S"","_BSDR("ADT")_",1,"
- S DA(2)=BSDR("CLN"),DA(1)=BSDR("ADT"),DA=IEN
- D ^DIK
+ ; cancel appointment in ^SC
+ ;NEW DIK,DA  ;*zeb+4 722 2/21/19 mark as canceled instead of (failing to) delete so expand entry works correctly
+ ;S DIK="^SC("_BSDR("CLN")_",""S"","_BSDR("ADT")_",1,"
+ ;S DA(2)=BSDR("CLN"),DA(1)=BSDR("ADT"),DA=IEN
+ ;D ^DIK
+ S $P(^SC(BSDR("CLN"),"S",BSDR("ADT"),1,HLAPTIEN,0),"^",9)="C"
  ; call event driver
  S SDATA=SDDA_U_DFN_U_SDT_U_SDCL
- ;D CANCEL^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDMODE,SDCPHDL)
+ D CANCEL^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDMODE,SDCPHDL)  ;*zeb 10/25/18 717 uncomment to re-enable event driver
  Q 0
  ;
 UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment

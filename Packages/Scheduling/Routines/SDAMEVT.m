@@ -1,5 +1,6 @@
 SDAMEVT ;ALB/MJK - Appt Event Driver Utilities ; 12/1/91 [ 09/19/96  1:39 PM ]
- ;;5.3;Scheduling;**15,132,443**;Aug 13, 1993
+ ;;5.3;Scheduling;**15,132,443,717**;Aug 13, 1993;Build 12
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
 BEFORE(SDATA,DFN,SDT,SDCL,SDDA,SDHDL) ; -- get before values
  K ^TMP("SDAMEVT",$J)
@@ -37,6 +38,7 @@ EVT(SDATA,SDAMEVT,SDMODE,SDHDL) ; -- calls the sdam event protocol
  K DTOUT,DIROUT
  I $G(SDATA("BEFORE","STATUS"))=$G(SDATA("AFTER","STATUS")),'$$COMP^SDAMEVT4(SDHDL,SDAMEVT) G EVTQ  ; SD*5.3*443
  S:$P(SDATA,U,3) $P(SDATA,U,5)=$$REQ^SDM1A(+$P(SDATA,U,3))
+ I SDMODE=2 N DGQUIET S DGQUIET=1  ;*zeb 10/4/18 717 set DGQUIET to suppress user interaction when called from GUI
  S X=+$O(^ORD(101,"B","SDAM APPOINTMENT EVENTS",0))_";ORD(101,"
  D EN^XQOR
 EVTQ K XQORPOP,X,^TMP("SDAMEVT",$J) D CLEAN(SDHDL) Q
@@ -48,7 +50,8 @@ MAKE(DFN,SDT,SDCL,SDDA,SDMODE) ; -- make appt event #1
  S (^TMP("SDAMEVT",$J,"BEFORE","DPT"),^TMP("SDAMEVT",$J,"BEFORE","SC"),SDATA("BEFORE","STATUS"),^TMP("SDAMEVT",$J,"BEFORE","STATUS"),^TMP("SDEVT",$J,SDMKHDL,1,"DPT",0,"BEFORE"),^TMP("SDEVT",$J,SDMKHDL,1,"SC",0,"BEFORE"))=""
  D AFTER(.SDATA,DFN,SDT,SDCL,SDDA,SDMKHDL)
  S SDATA=SDDA_U_DFN_U_SDT_U_SDCL
- D EVT(.SDATA,1,+$G(SDAMODE),SDMKHDL)
+ D EVT(.SDATA,1,+$G(SDMODE),SDMKHDL)  ;*zeb 10/25/18 717 fix typo with SDMODE so SDMODE is passed correctly
+ Q:SDMODE=2  ;*zeb 10/24/18 717 don't need check in/out code below if calling from GUI
  ; -- if appt d/t is less than NOW then check-in
  D NOW^%DTC
  I SDT<% W:'$G(SDMODE) ! D
@@ -63,9 +66,9 @@ MAKE(DFN,SDT,SDCL,SDDA,SDMODE) ; -- make appt event #1
  ;
 CANCEL(SDATA,DFN,SDT,SDCL,SDDA,SDMODE,SDHDL) ; -- cancel event #2
  D AFTER(.SDATA,DFN,SDT,SDCL,SDDA,SDHDL)
- I "^5^7^9^10^"[("^"_+SDATA("AFTER","STATUS")_"^"),$P($G(^DPT(DFN,"S",SDT,0)),"^",20) D EN^SDCODEL(+$P(^(0),"^",20),0,SDHDL),OENUL^SDAMEVT1("AFTER",SDHDL)
+ I (SDMODE'=2),("^5^7^9^10^"[("^"_+SDATA("AFTER","STATUS")_"^")),($P($G(^DPT(DFN,"S",SDT,0)),"^",20)) D EN^SDCODEL(+$P(^(0),"^",20),0,SDHDL),OENUL^SDAMEVT1("AFTER",SDHDL)  ;*zeb 10/25/18 717 status has already changed for GUI calls
  S SDATA=SDDA_U_DFN_U_SDT_U_SDCL
- D EVT(.SDATA,2,0,SDHDL)
+ D EVT(.SDATA,2,$S(SDMODE=2:2,1:0),SDHDL)  ;*zeb 10/25/18 717 don't assume SDMODE is 0 if it is 2
  Q
  ;
  ;
