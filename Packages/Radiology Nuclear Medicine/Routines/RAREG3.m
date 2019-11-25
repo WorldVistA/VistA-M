@@ -1,5 +1,6 @@
-RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;27 Dec 2018 10:03 AM
- ;;5.0;Radiology/Nuclear Medicine;**8,137,144,154**;Mar 16, 1998;Build 1
+RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;24 Jul 2019 9:18 AM
+ ;;5.0;Radiology/Nuclear Medicine;**8,137,144,154,157**;Mar 16, 1998;Build 2
+ ;Supported IA #10076 ^XUSEC(
  ;
 RSBIT ; renumber selections by imaging type
  ; The RAORDS array has the list of orders the user selected to register
@@ -37,8 +38,9 @@ SL ; switch locations
  ; type does not match the procedure's imaging type.
  ; comment out 06/10/97 D EXAMSET^RAREG2 S RAPARENT=0
  S RAITN=$P(^RAMIS(71,+$P(Y,U,2),0),U,12)
- ;P154 Check switched to location until it's correct or user ^ out.
- F  Q:RAITN=+$O(^RA(79.2,"B",RAIMGTY,0))!(RAQUIT=1)  D
+ ;P154 Check switched to location until it's correct or ^ out
+ ;p157 users holding the RA SWITCHLOC can proceed under different modality
+ F  Q:RAITN=+$O(^RA(79.2,"B",RAIMGTY,0))!(RAQUIT=1)  D  Q:($D(^XUSEC("RA SWITCHLOC",DUZ))) 
  .S RAMLCHLD=RAMLC,RAYHOLD=Y,RAPROLOC=$P(^RA(79.2,RAITN,0),U,1),RAMDIVHD=RAMDIV
  .D LABEL
  .W !!?7,"Current Imaging Type: ",RAIMGTY

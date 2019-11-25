@@ -1,5 +1,5 @@
-RAHLO2 ;HIRMFO/GJC-File rpt (data from bridge program) ;23 Feb 2018 1:44 PM
- ;;5.0;Radiology/Nuclear Medicine;**55,80,84,144**;Mar 16, 1998;Build 1
+RAHLO2 ;HIRMFO/GJC-File rpt (data from bridge program) ;10 Apr 2019 3:05 PM
+ ;;5.0;Radiology/Nuclear Medicine;**55,80,84,144,157**;Mar 16, 1998;Build 2
  ;
  ;Integration Agreements
  ;----------------------
@@ -50,6 +50,9 @@ DIAG ; Check if the Diagnostic Codes passed are valid.  Set RADX equal
  N RAXFIRST
  S I=0,RAXFIRST=1
  K RASECDX
+ ; KLM/p157 Check for primary designation and save position.
+ I $D(^TMP("RARPT-REC",$J,RASUB,"RADX","PDX")) S RAPRIM=$O(^TMP("RARPT-REC",$J,RASUB,"RADX","PDX",0))
+ I $G(RAPRIM)>0 S RAXFIRST=0 ;if primary designation, don't need RAXFIRST
  F  S I=$O(^TMP("RARPT-REC",$J,RASUB,"RADX",I)) Q:I'>0  D  Q:$D(RAERR)
  . S RADIAG=$G(^TMP("RARPT-REC",$J,RASUB,"RADX",I))
  . ;S:RADIAG']"" RAERR="Missing Diagnostic Code" Q:$D(RAERR)
@@ -63,10 +66,11 @@ DIAG ; Check if the Diagnostic Codes passed are valid.  Set RADX equal
  . I '$D(^RA(78.3,RADXIEN,0)) S RAERR="Invalid Diagnostic Code" Q
  . ;KLM/p144 Reject inactive DX codes
  . I $P(^RA(78.3,RADXIEN,0),U,5)="Y" S RAERR="Inactive Diagnostic Code: "_RADXIEN Q
- . IF RAXFIRST S RADX=RADXIEN,RAXFIRST=0 Q  ; RADX=pri. Dx Code
+ . ;p157 Primary may not be the first entry.. check if RAPRIM is the same as count.
+ . I RAXFIRST!($G(RAPRIM)=I) S RADX=RADXIEN,RAXFIRST=0 Q  ; RADX=pri. Dx Code
  . ; are any of the sec. Dx codes equal to our pri. Dx code?
  . ;S:RADXIEN=RADX RAERR="Secondary Dx codes must differ from the primary Dx code." Q:$D(RAERR)
- . Q:RADXIEN=RADX  ;Secondary Dx codes must differ from the primary Dx code  Patch 80
+ . Q:RADXIEN=$G(RADX)  ;Secondary Dx codes must differ from the primary Dx code  Patch 80
  . ;S:$D(RASECDX(RADXIEN))#2 RAERR="Duplicate secondary Dx codes." Q:$D(RAERR)
  . Q:$D(RASECDX(RADXIEN))#2  ;Duplicate secondary Dx codes. Patch 80
  . S RASECDX(RADXIEN)="" ; set the sec. Dx array

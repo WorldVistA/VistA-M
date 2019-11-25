@@ -1,5 +1,5 @@
-RAPRINT1 ;HISC/FPT-Abnormal Exam Report (cont.) ;4/5/96  10:49
- ;;5.0;Radiology/Nuclear Medicine;**34,97,47**;Mar 16, 1998;Build 21
+RAPRINT1 ;HISC/FPT-Abnormal Exam Report (cont.) ;20 Mar 2019 1:44 PM
+ ;;5.0;Radiology/Nuclear Medicine;**34,97,47,157**;Mar 16, 1998;Build 2
 DIV ; walk through tmp global, start with 'division'
  Q:'$D(^TMP($J))
  N RAFIRST,RAPRTSET,RASAME,RACURR,RAPREV,L1
@@ -59,8 +59,9 @@ PRINT ; print entries
  I I1("DIV")'=RADIVNME!(I1("IT")'=RAITNAME) D HANG Q:RAOUT  D HDR Q:RAOUT  S I1("DIV")=RADIVNME S I1("IT")=RAITNAME D
  .W !?22,"Division: ",RADIVNME
  .W !?18,"Imaging Type: ",RAITNAME
- .I I1("DX")=I W !?15,"Diagnostic Code: ",RADIAG W !?15,"----------------" D EXPRESS
- I I1("DX")'=I W !?15,"Diagnostic Code: ",RADIAG W !?15,"----------------" D EXPRESS
+ .;p157/KLM - format change, left justify and add another newline for DX codes.
+ .I I1("DX")=I W !!,"Diagnostic Code: ",RADIAG W !,"----------------" D EXPRESS
+ I I1("DX")'=I W !!,"Diagnostic Code: ",RADIAG W !,"----------------" D EXPRESS
  S RADFN=J,RAPAT=$S($D(^DPT(J,0)):^(0),1:""),RASSN=$$SSN^RAUTL(RADFN,1)
  S RAPAT=$S($P(RAPAT,U)]"":$P(RAPAT,U),1:"Not Found")
  S Y=9999999.9999-K X ^DD("DD") S RAEXDT=Y
