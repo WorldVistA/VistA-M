@@ -1,23 +1,30 @@
 LRWU6 ;DALOI/STAFF - MODIFY AN EXISTING DATA NAME ;11/04/11  10:19
- ;;5.2;LAB SERVICE;**316,402,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**316,402,350,519**;Sep 27, 1994;Build 16
+ ;
+ ; Reference to ^DD(63.04 supported by DBIA #7053
+ ; Reference to ^XUSEC supported by DBIA #10076
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
  ;
  ;
 ACCESS ;
- N %,DA,DIC,DIK,I,LRDEC,LRFIX,LRHI,LRLO,LRMAX,LRMIN,LRNAME,LROK,LRPIECE,LRSET,LRTYPE,LROK1,Q1,Q2,Q3,Q4,Q5,X,Y
+ N %,DA,DIC,DIK,I,LRDEC,LRFIX,LRHI,LRLO,LRMAX,LRMIN,LRNAME,LROK
+ N LRPIECE,LRSET,LRTYPE,LROK1,Q1,Q2,Q3,Q4,Q5,X,Y,LRMOD
  ;
  ;ZEXCEPT: DTIME
  ;
  I '$D(^XUSEC("LRLIASON",DUZ)) W $C(7),!,"You do not have access to this option" Q
  ;
 BEGIN ;
- S U="^",DTIME=$$DTIME^XUP(DUZ)
+ ;Variable LRMOD is used by LRWU5 in determining whether the "add" or "modify"
+ ;option is being invoked
+ S U="^",DTIME=$$DTIME^XUP(DUZ),LRMOD=1
  W !!,"This option allows modifying an existing data name."
  D DT^LRX,TEST
  ;
 END K %,DA,DIC,DIK,I,LRDEC,LRHI,LRLO,LRMAX,LRMIN,LRNAME,LROK,LRPIECE,LRSET,LRTYPE,LROK1,Q1,Q2,Q3,Q4,Q5,X,Y
+ I $G(DA)]"" L -^DD(63.04,DA)
  Q
  ;
  ;
@@ -30,6 +37,8 @@ TEST ;
  S DA=+Y,LRNAME=$P(^DD(63.04,DA,0),U)
  ;
  D DISPLAY
+ D LOCK
+ Q:'LROK
  W !
  F  W !,"Do you wish to modify this data name" S %=2 D YN^DICN Q:%  W "Answer 'Y'es or 'N'o"
  Q:%'=1
@@ -55,6 +64,13 @@ DDFIX ;Called from LRWU9 to fix piece position of data name
  D:'+$G(INSTALL) DISPLAY
  Q
  ;
+LOCK ;
+ ;is another session also editing this entry
+ L +^DD(63.04,DA):$G(DILOCKTM,5)
+ I '$T D
+ . S LROK=0
+ . W !,$C(7),"Someone else is editing this data name."
+ Q
  ;
 DISPLAY ;
  ;

@@ -1,7 +1,8 @@
-LRWU9 ;DALOI/CKA - TOOL TO DETECT, FIX, AND REPORT BAD DATA NAMES ;05/02/13
- ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
+LRWU9 ;DALOI/CKA - TOOL TO DETECT, FIX, AND REPORT BAD DATA NAMES ; 15 Apr 2019  2:27 PM
+ ;;5.2;LAB SERVICE;**350,427,519**;Sep 27, 1994;Build 16
  ;
  ;Reference to ^PXRMINDX supported by ICR# 4290
+ ;Reference to ^DD(63.04 supported by DBIA #7053
  ;
 EN ; Interactive entry point.
  ;
@@ -26,7 +27,7 @@ KIDS ; Entry point for post install run.
  ;
  N INSTALL,LRFIX,LRNUM,LRSITE,LRSUPFLG,XMY
  ;
- I $G(^XMB("NETNAME"))["DOMAIN.EXT",$$PROD^XUPROD() S XMY("G.LAB DEV IRMFO@DOMAIN.EXT")="",XMY("G.CSCLIN4@DOMAIN.EXT")=""
+ I $G(^XMB("NETNAME"))["DOMAIN.EXT",$$PROD^XUPROD() S XMY("G.LAB DEV IRMFO@FORUM.DOMAIN.EXT")="",XMY("G.CSCLIN4@FORUM.DOMAIN.EXT")=""
  S XMY(DUZ)="",XMY("G.LMI")="",INSTALL=1
  D INIT
  ;S LRFIX=1   ; [ccr-8167] - LRFIX is set to 0 in INIT subroutine.
@@ -43,10 +44,10 @@ LRNIGHT ; Entry point for ^LRNIGHT run.
  S INSTALL=1
  D INIT,CHKDD,CHK63
  S (XMY(DUZ),XMY("G.LMI"))=""
- I $G(^XMB("NETNAME"))["DOMAIN.EXT",$$PROD^XUPROD() S XMY("G.LAB DEV IRMFO@DOMAIN.EXT")="",XMY("G.CSCLIN4@DOMAIN.EXT")=""
+ I $G(^XMB("NETNAME"))["DOMAIN.EXT",$$PROD^XUPROD() S XMY("G.LAB DEV IRMFO@FORUM.DOMAIN.EXT")="",XMY("G.CSCLIN4@FORUM.DOMAIN.EXT")=""
  I $O(^TMP("LR",$J,"DD63.04",5))]"" D SENDMM
  ;
- K ^TMP("LR",$J)
+ K ^TMP("LR",$J),^TMP("DD63.04B",$J)
  ;
  Q
  ;-------------------------------------------------------
@@ -62,7 +63,7 @@ INIT ; Initialize variables.
 CHKDD ; CHECK DD FOR BAD DATA NAMES.
  ;First check for DDs with the same subscript
  N CNT,DA,DIK,LR60CNT,LR60IEN,LRLOC,LRDATA,LRD0,LRPC,LRSUB,LRX,LRDD,LRDDA,LRNOTEST,LRNOFIX,LRSUBCNT
- K ^TMP("LR",$J)
+ K ^TMP("LR",$J),^TMP("LR63.04B",$J)
  S LRNUM=1
  ;
  S ^TMP("LR",$J,"DD63.04",LRNUM)=$$NAME^XUAF4($$KSP^XUPARAM("INST"))_" ("_$$KSP^XUPARAM("WHERE")_")      "_$$FMTE^XLFDT(DT)
@@ -152,6 +153,8 @@ CHKDD ; CHECK DD FOR BAD DATA NAMES.
  . . . I LRFIX S ^(LRNUM)=^TMP("LR",$J,"DD63.04",LRNUM)_" ***NOT FIXED***",LRSUPFLG=1
  . . . S LRNUM=LRNUM+1
  ;
+ ;Check "B" cross reference - LR*5.2*519
+ D B6304^LRWU9A
  Q
  ;-------------------------------------------------------
 CHK63 ;CHECK FILE 63 FOR TEST DATA WITH NO DATA NAME
