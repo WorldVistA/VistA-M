@@ -1,5 +1,5 @@
 PSJPDV0 ;BIR/KKA-LIST PATIENTS ON SPECIFIC DRUGS (CONT.) ; 7/6/09 2:20pm
- ;;5.0; INPATIENT MEDICATIONS ;**12,22,33,214**;16 DEC 97;Build 8
+ ;;5.0;INPATIENT MEDICATIONS;**12,22,33,214,380**;16 DEC 97;Build 10
  ;
  ;Reference to ^PS(52.6 is supported by DBIA 1231
  ;Reference to ^PS(52.7 is supported by DBIA 2173
@@ -20,10 +20,12 @@ DONE K ^TMP("PSJ",$J),^TMP("PSJPDV",$J),%,ADD,CHOICE,CLS,DFN,DO,DRG,IVDO,IVDRG,I
  ;
 DIVWARD() ;DIVISION/WARD MATCH FOR PATIENT (PSJ*5*214)
  N PSJV,PSJVA,PSJVC
+ S PSJVA=0
  I $G(VAUTD) I $G(VAUTW) Q 1  ;ALL DIVISIONS/ALL WARDS
  I $D(VAUTW(PSJPWD)) Q 1  ;SPECIFIC WARD MATCHES
- I $G(VAUTW) S PSJVC=0 D  Q $G(PSJVA,0)  ;SPECIFIC DIVISION MATCHES
- . F  S PSJVC=$O(VAUTD(PSJVC)) Q:PSJVC'=+PSJVC  S PSJV=VAUTD(PSJVC) I PSJV=$P($G(^DG(40.8,+$P($G(^DIC(42,(+PSJPWD),0)),"^",11),0)),U,1) S PSJVA=1
+ I '$G(VAUTD),'$G(PSJPWD) Q 1 ;specific division & no ward. Elimination will be at order level (CLN label)
+ I $G(VAUTW) D  Q PSJVA  ;SPECIFIC DIVISION MATCHES
+ . S PSJVC=0 F  S PSJVC=$O(VAUTD(PSJVC)) Q:PSJVC'=+PSJVC  S PSJV=VAUTD(PSJVC) I $G(PSJPWD) I PSJV=$P($G(^DG(40.8,+$P($G(^DIC(42,(+PSJPWD),0)),"^",11),0)),U,1) S PSJVA=1
  Q 0
  ;
 UDORD ;find all Unit Dose orders with specified dispense drugs
@@ -35,6 +37,9 @@ UDORD ;find all Unit Dose orders with specified dispense drugs
  Q
  ;
 UDSET ;get patient and order information and set in global
+ N CLN,SC0
+ I '$G(VAUTD),'$G(PSJPWD) D  Q:'$$CLN(SC0)
+ . S CLN=$P($G(^PS(55,PSGP,5,PSJJORD,8)),U),SC0=$P($G(^SC(CLN,0)),U,15)
  S ND=$G(^PS(55,PSGP,5,PSJJORD,0)),MR=$P(ND,"^",3),MR=$$ENMRN^PSGMI(MR)
  S ND=$G(^PS(55,PSGP,5,PSJJORD,2)),DRG=$G(^(.2)),SCH=$P(ND,"^"),SPD=^TMP("PSJPDV",$J,PSGP,PSJJORD),STD=$S($P(ND,"^",2):$P(ND,"^",2),1:"NOT FOUND"),DO=$P(DRG,"^",2),DRG=$$ENPDN^PSGMI($P(DRG,"^")) I DO]"",$E(DO,$L(DO))'=" " S DO=DO_" "
  N X,PSJ
@@ -62,12 +67,21 @@ MATSOL ;see if solutions of the order match the drug
 IVSET ;S IVND=$G(^PS(55,PSGP,"IV",+PSJJORD,0)),IVSCH=$P(IVND,"^",9),IVSTD=$P(IVND,"^",2),IVSPD=^TMP("PSJPDV",$J,PSGP,PSJJORD),IVMR=$P($G(^PS(55,PSGP,"IV",+PSJJORD,6)),"^",3),IVIR=$P(IVND,"^",8)
  ;S IVMR=$$ENMRN^PSGMI(IVMR)
  ;S IVDRG=$G(^PS(55,PSGP,"IV",+PSJJORD,6)),IVDO=$P(IVDRG,"^",2),IVDRG=$$ENPDN^PSGMI($P(IVDRG,"^")) I IVDO]"",$E(IVDO,$L(IVDO))'=" " S IVDO=IVDO_" "
- N X,ON55 S DFN=PSGP,ON=PSJJORD D GT55^PSIVORFB
+ N X,ON55,CLN,SC0 S DFN=PSGP,ON=PSJJORD D GT55^PSIVORFB
  S DRG=$S($D(DRG("AD",1)):$P(DRG("AD",1),U,2),1:$P(DRG("SOL",1),U,2)),IVSCH=P(9),IVSTD=P(2),IVSPD=^TMP("PSJPDV",$J,PSGP,PSJJORD),IVMR=$P(P("MR"),U,2),IVIR=P(8),IVDRG=DRG
  S PSJPWDN=$S($G(^PS(55,PSGP,"IV",+ON,"DSS")):$P($G(^SC(+$G(^PS(55,PSGP,"IV",+ON,"DSS")),0)),"^"),($G(PSJPDD)]""&(IVSTD>+PSJPDD)):"",1:TMPWD),PSJPRB=$S($G(^PS(55,PSGP,"IV",+ON,"DSS")):"",($G(PSJPDD)]""&(IVSTD>+PSJPDD)):"",1:TMPRB)
+ I '$G(VAUTD),'$G(PSJPWD) D  Q:'$$CLN(SC0)
+ . S CLN=$P($G(^PS(55,PSGP,"IV",+ON,"DSS")),"^"),SC0=$P($G(^SC(CLN,0)),U,15)
  S ^TMP("PSJ",$J,$S(PSJSRT="P":NM_";"_DFN,1:+$G(IVSTD)),$S(PSJSRT="P":+$G(IVSTD),1:NM_";"_DFN),PSJJORD)=VA("PID")_"^"_PSJPWDN_"^"_PSJPRB_"^"_IVDRG_"^"_IVMR_" "_IVSCH_" "_IVIR_"^"_IVSPD
  ;
 GETMAT ;see if the patient has the number of drugs necessary to be printed on
  ;the report
  S MATCHES=0 F GG=1:1:$L(PMATCH(PSGP),"^") S GGG=$P(PMATCH(PSGP),"^",GG) S:GGG MATCHES=MATCHES+1
  Q
+ ;
+CLN(SDIV) ; check Out patient clinic orders 
+ N DIV,FLG,PSJVC
+ I 'SDIV Q 0
+ S FLG=0 I SDIV>0 S DIV=$P(^DG(40.8,SDIV,0),U)
+ I DIV]"" S PSJVC=0 F  S PSJVC=$O(VAUTD(PSJVC)) Q:PSJVC'=+PSJVC  S PSJV=VAUTD(PSJVC) I PSJV=DIV S FLG=1 Q
+ Q FLG

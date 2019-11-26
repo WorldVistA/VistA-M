@@ -1,5 +1,5 @@
 PSGOE9 ;BIR/CML3 - EDIT ORDERS IN 55 ; 7/6/11 9:45am
- ;;5.0;INPATIENT MEDICATIONS ;**11,47,50,72,110,111,188,192,207,113,223,269,315,338,352,366**;16 DEC 97;Build 7
+ ;;5.0;INPATIENT MEDICATIONS ;**11,47,50,72,110,111,188,192,207,113,223,269,315,338,352,366,380**;16 DEC 97;Build 10
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -49,6 +49,7 @@ A109 ;
  S PSGDO=X G DONE
  ;
 3 ; med route
+ N PSGS0XT
  S MSG=0,PSGF2=3 S:PSGOEEF(PSGF2) BACK="3^PSGOE9"
 A3 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  . W !!?5,"Med Route may not be edited for active complex orders." D PAUSE^VALM1
