@@ -1,5 +1,5 @@
 SDTMPHLB ;MS/PB - TMP HL7 Routine;MAY 29, 2018
- ;;5.3;Scheduling;**704**;May 29, 2018;Build 64
+ ;;5.3;Scheduling;**704,733**;May 29, 2018;Build 72
  Q
 EN(CLINID) ; Entry to the routine to build an HL7 message
  ;notification to TMP about a new appointment in a TeleHealth Clinic
@@ -12,7 +12,8 @@ EN(CLINID) ; Entry to the routine to build an HL7 message
  S PSTOP=$P(^SC(CLINID,0),"^",7),SSTOP=$P(^SC(CLINID,0),"^",18)
  I ($G(PSTOP)=""&($G(SSTOP)="")) Q 0 ;if both PSTOP and SSTOP are null, the clinic is not a tele health clinic so quit
  S:$G(PSTOP)'="" STOP=$$CHKCLIN^SDTMPHLA($G(PSTOP)) ;if STOP=0, primary stop code is not a tele health stop code so check secondary stop code to see if it is a tele health clinic
- I $G(STOP)=0,($$CHKCLIN^SDTMPHLA($G(SSTOP))="") Q  ;if primary stop code is not tele health check secondary stop code if secondary not tele health stop
+ ;I $G(STOP)=0,($$CHKCLIN^SDTMPHLA($G(SSTOP))'="") Q  ;if primary stop code is not tele health check secondary stop code if secondary not tele health stop
+ I $G(STOP)=0 Q:$Q(SSTOP)'>0  S STOP=$$CHKCLIN^SDTMPHLA(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop
  Q:$G(STOP)=0  ; Double check for either primary or secondary stop code to be a tele health clinic
  N PARMS,SEG,WHOTO,ERROR,SEQ
  S PARMS("MESSAGE TYPE")="MFN",PARMS("EVENT")="M05"
