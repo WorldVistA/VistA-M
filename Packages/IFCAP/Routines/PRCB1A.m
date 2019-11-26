@@ -1,6 +1,6 @@
-PRCB1A ;WISC/PLT-CONTROL POINT ENTER/EDIT ; 12/10/97  1600
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCB1A ;WISC/PLT - CONTROL POINT ENTER/EDIT;12/10/97  1600
+V ;;5.1;IFCAP;**209**;Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
  QUIT  ;invalid entry
  ;
 EN N PRC,PRCDD,PRCDR,PRCDI,PRCRI,PRCPR,PRCAED,PRCQT,PRCU S PRCU="^"
@@ -67,10 +67,10 @@ KEY1 F I=1,26,27,28,29 S @("PRCK"_I_"=""""")
  S:PRCK25D5="" PRCK25D5=" "
  QUIT
  ;
-UNQCHK(PRCK1,PRCK25D5,PRCK26,PRCK27,PRCK28,PRCK29) ;check uniqeness
- S PRCUNQ=""
- S PRCK=","_$G(PRCK1)_","""_$G(PRCK25D5)_""","""_$G(PRCK26)_""","""_$G(PRCK27)_""","""_$G(PRCK28)_""","""_$G(PRCK29)_""","
- I PRCK'[",," S @("PRCUQ=$O(^PRC(420,PRCRI(420),1,""UNQ"""_PRCK_"0))") I PRCUQ,PRCUQ-PRCRI(420.01) D UNQMES^PRCB1A1
+UNQCHK(PRCK1,PRCK25D5,PRCK26,PRCK27,PRCK28,PRCK29) ;check uniqueness - modified in PRC*5.1*209 to check for multiple uniqueness
+ S PRCUNQ="",PRCUQ=0
+ F  S PRCUQ=$O(^PRC(420,PRCRI(420),1,"UNQ",$G(PRCK1),$G(PRCK25D5),$G(PRCK26),$G(PRCK27),$G(PRCK28),$G(PRCK29),PRCUQ)) I (PRCUQ-PRCRI(420.01)=0)!(PRCUQ="") Q
+ I PRCUQ="" S PRCUQ=PRCRI(420.01) D UNQMES^PRCB1A1
  QUIT
  ;
 UNQCRS ;set unique cross reference
