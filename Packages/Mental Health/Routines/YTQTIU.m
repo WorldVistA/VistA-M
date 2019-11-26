@@ -1,5 +1,6 @@
-YTQTIU ;ASF/ALB- MHAX TIU ;2/14/05 6:57pm ; 12/7/09 3:10pm
- ;;5.01;MENTAL HEALTH;**85,96,123**;Dec 30, 1994;Build 72
+YTQTIU ;ASF/ALB - MHAX TIU ; 12/7/09 3:10pm
+ ;;5.01;MENTAL HEALTH;**85,96,123,142**;Dec 30, 1994;Build 14
+ ;
  ;Reference to TIUPUTU APIs supported by DBIA #3351
  ;Reference to TIUSRVA APIs supported by DBIA #5541
  ;Reference to VADPT APIs supported by DBIA #10061
@@ -49,7 +50,9 @@ PCREATE(YSDATA,YS) ;pn creation
  ;
  D DEM^VADPT,PID^VADPT S YSNM=VADM(1),YSSEX=$P(VADM(5),U),YSDOB=$P(VADM(3),U,2),YSAGE=VADM(4),YSSSN=VA("PID")
  S $P(YSHDR," ",60)="",YSHDR=YSSSN_"  "_YSNM_YSHDR,YSHDR=$E(YSHDR,1,44)_YSSEX_" AGE "_YSAGE
- D:'$D(^YTT(601.93,"C",YSINS)) BOTTOM ;add boilerplate at end if no report ASF 8/20/08
+ ;add boilerplate at end if no report ASF 8/20/08
+ ;don't add boilerplate for AIMS      KCM 8/15/19
+ I '$D(^YTT(601.93,"C",YSINS)),($P(^YTT(601.71,YSINS,0),U)'="AIMS") D BOTTOM
  I YSTIUDA>0 D UPDATE Q  ;-->out
  D TXTCK(0)
  ;

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MH INTRODUCTIONS
-25-NOV-2019 23:23:59 ZWR
-^YTT(601.73,0)="MH INTRODUCTIONS^601.73^2386^2374"
+26-NOV-2019 00:23:45 ZWR
+^YTT(601.73,0)="MH INTRODUCTIONS^601.73^889^2374"
 ^YTT(601.73,1,0)=1
 ^YTT(601.73,1,1,0)="^^5^5^3110104^"
 ^YTT(601.73,1,1,1,0)=" "
@@ -3418,6 +3418,11 @@ OSEHRA ZGO Export: MH INTRODUCTIONS
 ^YTT(601.73,888,0)=888
 ^YTT(601.73,888,1,0)="^^1^1^3120117"
 ^YTT(601.73,888,1,1,0)="NEIGHBORHOOD is the area around your home. Think about how nice it looks, the amount of crime in the area, and how well you like the people.  "
+^YTT(601.73,889,0)=889
+^YTT(601.73,889,1,0)="^^3^3^3191126"
+^YTT(601.73,889,1,1,0)="COMMUNITY is the whole city, town, or rural area where you live (it is not just your neighborhood). COMMUNITY includes how nice the area looks, the amount of crime, and how well you like the people. "
+^YTT(601.73,889,1,2,0)="It also includes places to go for fun like parks,concerts, sporting events, and restaurants. You may also consider the cost of things you need to buy, the availability of jobs, the government,  "
+^YTT(601.73,889,1,3,0)="schools, taxes, and pollution."
 ^YTT(601.73,890,0)=890
 ^YTT(601.73,890,1,0)="^^6^6^3120620^"
 ^YTT(601.73,890,1,1,0)="Terms used in next item. VERY POOR: Never eats a complete meal. Rarely eats more than half of any food offered. Eats two servings or less of protein (meat or dairy products) per day. Takes fluids "
@@ -8922,14 +8927,6 @@ OSEHRA ZGO Export: MH INTRODUCTIONS
 ^YTT(601.73,2394,0)=2394
 ^YTT(601.73,2394,1,0)="^^1^1^3191121"
 ^YTT(601.73,2394,1,1,0)="Rating should be based on symptoms and signs occurring during two weeks prior to the interview. If symptom is due to physical disability or illness choose response option 5."
-^YTT(601.73,2402,0)=2402
-^YTT(601.73,2402,1,0)="^^6^6^3191121"
-^YTT(601.73,2402,1,1,0)="COMMUNITY is the whole city, town, or rural area where you live (it is "
-^YTT(601.73,2402,1,2,0)="not just your neighborhood). COMMUNITY includes how nice the area looks,|"
-^YTT(601.73,2402,1,3,0)="the amount of crime, and how well you like the people. It also includes"
-^YTT(601.73,2402,1,4,0)="places to go for fun like parks,concerts, sporting events, and "
-^YTT(601.73,2402,1,5,0)="restaurants. You may also consider the cost of things you need to buy, |"
-^YTT(601.73,2402,1,6,0)="the availability of jobs, the government, schools, taxes, and pollution."
 ^YTT(601.73,"B",1,1)=""
 ^YTT(601.73,"B",2,2)=""
 ^YTT(601.73,"B",3,3)=""
@@ -9818,6 +9815,7 @@ OSEHRA ZGO Export: MH INTRODUCTIONS
 ^YTT(601.73,"B",886,886)=""
 ^YTT(601.73,"B",887,887)=""
 ^YTT(601.73,"B",888,888)=""
+^YTT(601.73,"B",889,889)=""
 ^YTT(601.73,"B",890,890)=""
 ^YTT(601.73,"B",891,891)=""
 ^YTT(601.73,"B",892,892)=""
@@ -11303,4 +11301,3 @@ OSEHRA ZGO Export: MH INTRODUCTIONS
 ^YTT(601.73,"B",2392,2392)=""
 ^YTT(601.73,"B",2393,2393)=""
 ^YTT(601.73,"B",2394,2394)=""
-^YTT(601.73,"B",2402,2402)=""

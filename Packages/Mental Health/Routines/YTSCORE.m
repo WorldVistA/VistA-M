@@ -1,5 +1,5 @@
 YTSCORE ;SLC/KCM - Scoring for complex instruments ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**119,123**;Dec 30, 1994;Build 72
+ ;;5.01;MENTAL HEALTH;**119,123,142**;Dec 30, 1994;Build 14
  ;
  ;
  Q
@@ -44,6 +44,7 @@ SCOREINS(YSDATA,IEN71) ;
  ; patch 123, scores responses (answers) for a given instrument
  ; YSDATA contains Answers for instrument
  N I,G,N,YSAI,YSAN,YSCALEI,YSKEYI,YSRAW,YSRTN,YSTARG,YSQN,YSVAL
+ K ^TMP($J,"YSCOR"),^TMP($J,"YSG")
  I '$D(^YTT(601.86,"AD",IEN71)) S ^TMP($J,"YSCOR",1)="[ERROR]",^TMP($J,"YSCOR",2)="Scale grp not found" Q  ;-->out
  S YS("CODE")=$$GET1^DIQ(601.71,IEN71_",",.01) ; get the Instrument Name
  D SCALEG^YTQAPI3(.YSDATA,.YS)
@@ -77,7 +78,7 @@ CHKSCRE() ;
  ;
 LDSCORES(YSDATA,YS) ;  new call for patch 123
  ;input:AD = ADMINISTRATION #
- ;output: [DATA]
+ ;output: [DATA] in ^TMP($J,"YSCOR")
  N G,N,IEN71,SCALE,YSAD,YSCODEN,YSCALE
  S YSAD=$G(YS("AD"))
  K ^TMP($J,"YSCOR") S YSDATA=$NA(^TMP($J,"YSCOR"))
