@@ -1,5 +1,5 @@
 PSOCROC ;HP/MJE - CLINICAL REMINDER ORDER CHECK FOR OP ORDER CHECKS ;09/22/11 5:00pm
- ;;7.0;OUTPATIENT PHARMACY;**411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**411,569**;DEC 1997;Build 1
  ;
  ;Reference to ORDERCHK^PXRMORCH supported by DBIA 5531
  ;Reference to SIG^XUSESIG supported by DBIA 10050
@@ -8,6 +8,7 @@ CK ;CHECK FOR CROCS AGAINST PROSPECTIVE DRUG
  S $P(CROCLN,"=",60)="=",$P(CROCLN2,"-",60)="-"
  I CROCPFLG&(($Y+4)>IOSL) D WAIT^PSODRG W ! K CROCPFLG
  D ORDERCHK^PXRMORCH(DFN,-1,0,$G(PSODRUG("IEN")),0)
+ I '$D(VADM) D DEM^VADPT ;restore VA & VADM array variable after calling CROC by *569
  I '$D(^TMP($J,$G(PSODRUG("IEN")))) W !,"Now processing Clinical Reminder Order Checks. Please wait ..."
  N PSOFIRST
  I $D(^TMP($J,$G(PSODRUG("IEN")))) D
