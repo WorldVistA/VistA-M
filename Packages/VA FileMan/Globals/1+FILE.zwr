@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-25-NOV-2019 17:51:22 ZWR
+26-NOV-2019 11:43:42 ZWR
 ^DIC(0)="FILE^1^9999999.41^2704"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -23634,7 +23634,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.802","%D",15,0)="modified."
 ^DIC("727.802","%D",16,0)="  "
 ^DIC("727.802","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.802","%MSC")=3190220.20094
+^DIC("727.802","%MSC")=3191126.032624
 ^DIC("727.804",0)="CLINIC NOSHOW EXTRACT^727.804"
 ^DIC("727.804",0,"GL")="^ECX(727.804,"
 ^DIC("727.804","%D",0)="^^17^17^2990222^^^^"
@@ -23716,7 +23716,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.808","%D",16,0)="modified."
 ^DIC("727.808","%D",17,0)="  "
 ^DIC("727.808","%D",18,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.808","%MSC")=3190220.20094
+^DIC("727.808","%MSC")=3191126.032624
 ^DIC("727.809",0)="UNIT DOSE LOCAL EXTRACT^727.809"
 ^DIC("727.809",0,"GL")="^ECX(727.809,"
 ^DIC("727.809","%D",0)="^^17^17^2990222^^^^"
@@ -23737,7 +23737,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.809","%D",15,0)="modified."
 ^DIC("727.809","%D",16,0)="  "
 ^DIC("727.809","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.809","%MSC")=3190220.20094
+^DIC("727.809","%MSC")=3191126.032624
 ^DIC("727.81",0)="PRESCRIPTION EXTRACT^727.81"
 ^DIC("727.81",0,"GL")="^ECX(727.81,"
 ^DIC("727.81","%D",0)="^^18^18^2990222^^^^"
@@ -23759,7 +23759,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.81","%D",16,0)="modified."
 ^DIC("727.81","%D",17,0)="  "
 ^DIC("727.81","%D",18,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.81","%MSC")=3190220.20094
+^DIC("727.81","%MSC")=3191126.032624
 ^DIC("727.811",0)="SURGERY EXTRACT^727.811"
 ^DIC("727.811",0,"GL")="^ECX(727.811,"
 ^DIC("727.811","%D",0)="^^17^17^2990222^^^^"
@@ -23808,7 +23808,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.813","%D",20,0)="modified."
 ^DIC("727.813","%D",21,0)="  "
 ^DIC("727.813","%D",22,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.813","%MSC")=3190220.20094
+^DIC("727.813","%MSC")=3191126.032624
 ^DIC("727.814",0)="RADIOLOGY EXTRACT^727.814"
 ^DIC("727.814",0,"GL")="^ECX(727.814,"
 ^DIC("727.814","%",0)="^1.005^^0"
@@ -23830,7 +23830,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.814","%D",15,0)="modified."
 ^DIC("727.814","%D",16,0)="  "
 ^DIC("727.814","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.814","%MSC")=3190220.20094
+^DIC("727.814","%MSC")=3191126.032624
 ^DIC("727.815",0)="EVENT CAPTURE LOCAL EXTRACT^727.815"
 ^DIC("727.815",0,"GL")="^ECX(727.815,"
 ^DIC("727.815","%D",0)="^^19^19^2990222^^^^"
@@ -23853,7 +23853,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.815","%D",17,0)="modified."
 ^DIC("727.815","%D",18,0)="  "
 ^DIC("727.815","%D",19,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.815","%MSC")=3190220.20094
+^DIC("727.815","%MSC")=3191126.032624
 ^DIC("727.816",0)="CLINIC I EXTRACT^727.816"
 ^DIC("727.816",0,"AUDIT")="@"
 ^DIC("727.816",0,"DD")="@"
@@ -23913,7 +23913,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.819","%D",15,0)="modified."
 ^DIC("727.819","%D",16,0)="  "
 ^DIC("727.819","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.819","%MSC")=3190220.20094
+^DIC("727.819","%MSC")=3191126.032624
 ^DIC("727.82",0)="ADMISSION SETUP EXTRACT^727.82"
 ^DIC("727.82",0,"GL")="^ECX(727.82,"
 ^DIC("727.82","%D",0)="^^12^12^2960807^^^^"
@@ -24000,7 +24000,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.824","%D",15,0)="modified."
 ^DIC("727.824","%D",16,0)="  "
 ^DIC("727.824","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.824","%MSC")=3190220.20094
+^DIC("727.824","%MSC")=3191126.032624
 ^DIC("727.825",0)="QUASAR EXTRACT^727.825"
 ^DIC("727.825",0,"GL")="^ECX(727.825,"
 ^DIC("727.825","%",0)="^1.005^^0"
@@ -24022,7 +24022,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.825","%D",15,0)="modified."
 ^DIC("727.825","%D",16,0)="  "
 ^DIC("727.825","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.825","%MSC")=3190220.20094
+^DIC("727.825","%MSC")=3191126.032624
 ^DIC("727.826",0)="PROSTHETICS EXTRACT^727.826"
 ^DIC("727.826",0,"AUDIT")="@"
 ^DIC("727.826",0,"DD")="@"
@@ -24056,7 +24056,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.826","%D",19,0)="modified."
 ^DIC("727.826","%D",20,0)="  "
 ^DIC("727.826","%D",21,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.826","%MSC")=3190220.20094
+^DIC("727.826","%MSC")=3191126.032624
 ^DIC("727.827",0)="CLINIC EXTRACT^727.827"
 ^DIC("727.827",0,"AUDIT")="@"
 ^DIC("727.827",0,"DD")="@"
@@ -24084,7 +24084,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.827","%D",15,0)="modified."
 ^DIC("727.827","%D",16,0)="  "
 ^DIC("727.827","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.827","%MSC")=3190220.20094
+^DIC("727.827","%MSC")=3191126.032624
 ^DIC("727.829",0)="BLOOD BANK EXTRACT^727.829"
 ^DIC("727.829",0,"GL")="^ECX(727.829,"
 ^DIC("727.829","%",0)="^1.005^^0"
@@ -24107,7 +24107,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.829","%D",16,0)="modified.  "
 ^DIC("727.829","%D",17,0)="  "
 ^DIC("727.829","%D",18,0)="This file should NOT be modified directly using VA FileMan."
-^DIC("727.829","%MSC")=3190220.20094
+^DIC("727.829","%MSC")=3191126.032624
 ^DIC("727.831",0)="DSS TREATING SPECIALTY TRANSLATION^727.831"
 ^DIC("727.831",0,"AUDIT")="@"
 ^DIC("727.831",0,"DD")="@"
@@ -24173,7 +24173,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.833","%D",17,0)="modified.  "
 ^DIC("727.833","%D",18,0)="   "
 ^DIC("727.833","%D",19,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.833","%MSC")=3190220.20094
+^DIC("727.833","%MSC")=3191126.032624
 ^DIC(728,0)="DSS EXTRACTS^728"
 ^DIC(728,0,"GL")="^ECX(728,"
 ^DIC(728,"%",0)="^1.005^^0"
@@ -24217,7 +24217,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("728.44","%D",11,0)="fields in this file are linked to fields in the HOSPITAL LOCATION"
 ^DIC("728.44","%D",12,0)="file (#44), data in this file should be entered and edited only by using"
 ^DIC("728.44","%D",13,0)="the DSS software and not by direct access via VA FileMan."
-^DIC("728.44","%MSC")=3180104.013629
+^DIC("728.44","%MSC")=3191126.032624
 ^DIC("728.441",0)="NATIONAL CLINIC^728.441"
 ^DIC("728.441",0,"GL")="^ECX(728.441,"
 ^DIC("728.441","%D",0)="^^8^8^2951022^^^^"
@@ -35071,6 +35071,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("8925.71","%D",3,0)="specialty areas of monitored concerns when a patient is seen.  Setting up "
 ^DIC("8925.71","%D",4,0)="entries in this file will cause alerts to be sent to providers and "
 ^DIC("8925.71","%D",5,0)="services to indicate a possible care opportunity."
+^DIC("8925.71","%MSC")=3191126.113925
 ^DIC("8925.8",0)="TIU SEARCH CATEGORIES^8925.8"
 ^DIC("8925.8",0,"AUDIT")="@"
 ^DIC("8925.8",0,"DD")="@"

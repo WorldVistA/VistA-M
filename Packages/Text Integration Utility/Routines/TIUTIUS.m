@@ -1,9 +1,9 @@
 TIUTIUS ; MILW/JMC - Functions to search TIU documents; May 24, 2006 ; 2/16/16 1:49pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**296**;JUN 20, 1997;Build 25;Build 13
+ ;;1.0;TEXT INTEGRATION UTILITIES;**296,324**;JUN 20, 1997;Build 4;Build 13
  ;
  ;
 TASK(AUMTDA) ; Task searching of document for specified text
- N AUMTADD,I,ZTDESC,ZTDTH,ZTRTN,ZTIO,ZTSAVE,X
+ N AUMTADD,I,ZTDESC,ZTDTH,ZTRTN,ZTIO,ZTSAVE,X,ZTSK
  I $G(AUMTDA)<1 Q
  ;
  ; Check if document is an addendum
@@ -15,21 +15,31 @@ TASK(AUMTDA) ; Task searching of document for specified text
  ; If addendum and not complete then don't check.
  I AUMTADD,$P(X(0),"^",5)'=7 Q
  ;
- S ZTDTH=$H,ZTIO="",ZTSAVE("AUMTDA")=""
+ ; TIU*1.0*324 Pass AUMTADD
+ S ZTDTH=$H,ZTIO="",ZTSAVE("AUMTDA")="",ZTSAVE("AUMTADD")=""
  S ZTRTN="DQ^TIUTIUS",ZTDESC="Search TIU document for specified text"
+ ; TIU 324 TESTING
  D ^%ZTLOAD
+ ; TIU*1.0*324 Call in foreground of it failed to queue
+ I '$D(ZTSK) D DQ^TIUTIUS
  Q
  ;
  ;
 DQ ; Tasked entry point to search TIU document for specified text 
  ; that should generate an alert to appropriate CPRS team.
  ;
- N AUMTI,AUMTJ,AUMTK,AUMTMSPT,AUMTXT,AUMTVL,AUMTVLS,AUMTXQA,X,X0,X1,Y
+ N AUMTI,AUMTJ,AUMTK,AUMTMSPT,AUMTXT,AUMTVL,AUMTVLS,AUMTXQA,X,X0,X1,Y,AUMTZ,AUMPRT
  ;
  I '$D(^TIU(8925,AUMTDA,0)) Q
  ;
  ; Get visit location
- S AUMTVL=+$P($G(^TIU(8925,AUMTDA,12)),"^",11)
+ ; TIU*1.0*324 Get location from parent if an addendum
+ I AUMTADD D
+ . S AUMTVL=+$P($G(^TIU(8925,AUMTDA,12)),"^",11)
+ . I 'AUMTVL D
+ . . S AUMPRT=$P(^TIU(8925,AUMTDA,0),U,6)
+ . . S AUMTVL=+$P($G(^TIU(8925,AUMPRT,12)),"^",11)
+ E  S AUMTVL=+$P($G(^TIU(8925,AUMTDA,12)),"^",11)
  S AUMTVL(0)=$$GET1^DIQ(44,AUMTVL_",",.01)
  ;
  ; Setup array of text events to search in the document.
@@ -38,24 +48,30 @@ DQ ; Tasked entry point to search TIU document for specified text
  . I '$P(^TIU(8925.71,AUMTI,0),"^",2) Q
  . S X=$G(^TIU(8925.71,AUMTI,3))
  . I X="" Q
- . S AUMTXT(AUMTI)=$P(^TIU(8925.71,AUMTI,0),"^",3,4)
- . S AUMTVLS=$P(^TIU(8925.71,AUMTI,0),"^",5)
- . S X=$$LOW^XLFSTR(X) S AUMTXT(AUMTI,"T")=X
+ . ; TIU*1.0*324 these parameters no longer used
+ . ;S AUMTXT(AUMTI)=$P(^TIU(8925.71,AUMTI,0),"^",3,4)
+ . ; TIU*1.0*324 Compare Visit Search String in upper case only
+ . S AUMTVLS=$$UPPER^TIULS($P(^TIU(8925.71,AUMTI,0),"^",5))
+ . ; TIU*1.0*324 not case sensitive and remove spaces
+ . S X=$$LOW^XLFSTR(X),X=$TR(X," ","") S AUMTXT(AUMTI,"T")=X
+ . ; visit location or visit location string defined
  . I $O(^TIU(8925.71,AUMTI,5,0))!(AUMTVLS'="") D
  . . I $D(^TIU(8925.71,AUMTI,5,"B",AUMTVL)) S AUMTXT(AUMTI,"VL")="" Q
  . . I AUMTVLS'="",AUMTVL(0)[AUMTVLS S AUMTXT(AUMTI,"VL")="" Q
  . . K AUMTXT(AUMTI)
  ;
+ ; TIU*1.0*324 - Removing this logic so all alerts setup are sent even 
+ ; for the same search text
  ; Check if same alert text is for two or more events and one of the
  ; events is for this document's visit location then check for specific
  ; location event text and suppress the general event.
- S AUMTI=0
- F  S AUMTI=$O(AUMTXT(AUMTI)) Q:'AUMTI  D
- . I '$D(AUMTXT(AUMTI,"VL")) Q
- . S AUMTK=0
- . F  S AUMTK=$O(AUMTXT(AUMTK)) Q:'AUMTK  D
- . . I AUMTK=AUMTI!($D(AUMTXT(AUMTK,"VL"))) Q
- . . I AUMTXT(AUMTK,"T")=AUMTXT(AUMTI,"T") K AUMTXT(AUMTK)
+ ;S AUMTI=0
+ ;F  S AUMTI=$O(AUMTXT(AUMTI)) Q:'AUMTI  D
+ ;. I '$D(AUMTXT(AUMTI,"VL")) Q
+ ;. S AUMTK=0
+ ;. F  S AUMTK=$O(AUMTXT(AUMTK)) Q:'AUMTK  D
+ ;. . I AUMTK=AUMTI!($D(AUMTXT(AUMTK,"VL"))) Q
+ ;. . I AUMTXT(AUMTK,"T")=AUMTXT(AUMTI,"T") K AUMTXT(AUMTK)
  ;
  ; If no active text events then quit
  I '$D(AUMTXT) Q
@@ -63,18 +79,28 @@ DQ ; Tasked entry point to search TIU document for specified text
  ; Search the current and preceeding line for matching text, deal with
  ; text that spans two lines.
  ; Skip the event if we've already found a match on a given text event.
+ ; TIU*1.0*324 - REWRITE THIS CODE
+ ;S AUMTI=0,X1=""
+ ;F  S AUMTI=$O(^TIU(8925,AUMTDA,"TEXT",AUMTI)) Q:'AUMTI  D
+ ;. S X0=X1,X1=^TIU(8925,AUMTDA,"TEXT",AUMTI,0)
+ ;. S X=X0_X1
+ ;. S AUMTJ=0
+ ;. F  S AUMTJ=$O(AUMTXT(AUMTJ)) Q:AUMTJ=""  I '$D(AUMTXQA(AUMTJ)) D
+ ;. . S Y=X
+ ;. . S Y=$$LOW^XLFSTR(Y)
+ ;. . I '$P(AUMTXT(AUMTJ),"^",2) S Y=$TR(Y," ","")
+ ;. . S AUMTZ=0 F  S AUMTZ=$O(AUMTXT(AUMTZ)) Q:AUMTZ=""  S AUMTJ=AUMTZ D
+ ;...I $G(Y)'="" S:Y[AUMTXT(AUMTJ,"T") AUMTXQA(AUMTJ)=AUMTJ
+ ;
+ ; TIU*1.0*324 REPLACEMENT CODE
  S AUMTI=0,X1=""
  F  S AUMTI=$O(^TIU(8925,AUMTDA,"TEXT",AUMTI)) Q:'AUMTI  D
- . S X0=X1,X1=^TIU(8925,AUMTDA,"TEXT",AUMTI,0)
- . S X=X0_X1
- . S AUMTJ=0
- . F  S AUMTJ=$O(AUMTXT(AUMTJ)) Q:AUMTJ=""  I '$D(AUMTXQA(AUMTJ)) D
- . . S Y=X
- . . S Y=$$LOW^XLFSTR(Y)
- . . I '$P(AUMTXT(AUMTJ),"^",2) S Y=$TR(Y," ","")
- . . S AUMTZ=0 F  S AUMTZ=$O(AUMTXT(AUMTZ)) Q:AUMTZ=""  S AUMTJ=AUMTZ D
- ...I $G(Y)'="" S:Y[AUMTXT(AUMTJ,"T") AUMTXQA(AUMTJ)=AUMTJ
- ;
+ . S X1=X1_^TIU(8925,AUMTDA,"TEXT",AUMTI,0)
+ S X1=$$LOW^XLFSTR(X1)
+ ;strip out spaces (should all punctuation be stripped?
+ S X1=$TR(X1," ",""),AUMTJ=0
+ F  S AUMTJ=$O(AUMTXT(AUMTJ)) Q:AUMTJ=""  D
+ . S:X1[AUMTXT(AUMTJ,"T") AUMTXQA(AUMTJ)=AUMTJ
  ; Send any alerts
  S AUMTZ=0 S AUMTZ=$O(AUMTXQA(AUMTZ)) D:AUMTZ'="" SENDXQA
  ;
