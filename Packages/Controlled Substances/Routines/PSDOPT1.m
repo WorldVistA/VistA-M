@@ -1,5 +1,5 @@
 PSDOPT1 ;BIR/JPW,LTL - Outpatient Rx Entry (cont'd) ;20 July 94
- ;;3.0;CONTROLLED SUBSTANCES;**30,66,71**;13 Feb 97;Build 29
+ ;;3.0;CONTROLLED SUBSTANCES;**30,66,71,88**;13 Feb 97;Build 1
  ;Reference to PS(52.5 supported by DBIA #786
  ;References to ^PSD(58.8 are covered by DBIA #2711
  ;References to file 58.81 are covered by DBIA #2808
@@ -55,7 +55,7 @@ PSDORIG ;Check original labels
  ;Check for suspense
  I +$P($G(^PSRX(PSDRX,2)),U,2)'<PSDOIN S PSDRXFD=$P(^(2),U,2) D
  .S PSDSUPN=$O(^PS(52.5,"B",PSDRX,0))
- .I PSDSUPN,$D(^PS(52.5,"C",PSDRXFD,PSDSUPN)),$G(^PS(52.5,PSDSUPN,"P"))'=1 W !!,"Original suspended." S PSDRX(1)="" Q
+ .I PSDSUPN,$D(^PS(52.5,"C",PSDRXFD,PSDSUPN)),$G(^PS(52.5,PSDSUPN,"P"))'=1 W !!,"Original suspended." S PSDRX(1)="",PSDOUT=1 Q
  .K PSDLBL D VER^PSDOPT
  .I $G(PSOVR) F PSDLBL=0:0 S PSDLBL=$O(^PSRX(PSDRX,"L",PSDLBL)) Q:'PSDLBL  I '+$P($G(^PSRX(PSDRX,"L",PSDLBL,0)),"^",2),'$P($G(^(0)),"^",5) S PSDLBL(1)=1
  .I '$G(PSOVR) F PSDLBL=0:0 S PSDLBL=$O(^PSRX(PSDRX,"L",PSDLBL)) Q:'PSDLBL  I '+$P($G(^PSRX(PSDRX,"L",PSDLBL,0)),"^",2),$P($G(^(0)),"^",5)'["INTERACTION" S PSDLBL(1)=1
