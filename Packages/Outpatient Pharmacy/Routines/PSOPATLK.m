@@ -1,5 +1,5 @@
 PSOPATLK ;BIR/JAM - Patient Lookup utility ;7/21/08
- ;;7.0;OUTPATIENT PHARMACY;**326,348,438**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**326,348,438,564**;DEC 1997;Build 6
  ;
  ; This API looks for a patient using a prescription number, barcode,
  ; universal Member ID number from the patient's VHIC Card
@@ -13,7 +13,7 @@ EN ;Entry point - Prompts for Patient, Prescription Number or Barcode
  ; Output - PSOPTLK [Processed user response]
  ;
  N DIR
- K PSOPTLK
+ K PSOPTLK,PAGE
  S DIR(0)="FOU"_$S($D(DIC("A")):"A",1:"")_"^^K:$$PATVAL^PSOPATLK() X"
  S DIR("A")=$S($D(DIC("A")):DIC("A"),1:"Select PATIENT NAME")
  S (DIR("?"),DIR("??"))="^D PATHLP^PSOPATLK"
