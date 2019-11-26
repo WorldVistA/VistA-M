@@ -1,13 +1,13 @@
-ECXAPRO1 ;ALB/JAP - PRO Extract Audit Report (cont) ;3/14/13  14:50
- ;;3.0;DSS EXTRACTS;**9,21,132,144**;Dec 22, 1997;Build 9
+ECXAPRO1 ;ALB/JAP - PRO Extract Audit Report (cont) ;7/17/19  14:44
+ ;;3.0;DSS EXTRACTS;**9,21,132,144,174**;Dec 22, 1997;Build 33
  ;
 DISP ;entry point
  N DIC,DA,DR,DIRUT,DTOUT,DUOUT,JJ,SS,LN,PG,QFLG,STN,TYPE
  N A1,A2,A3,CA,CB,CC,GCA,GCB,GCC,GRP,GRPHEAD,LINE,LINEP
  U IO
  S (QFLG,PG)=0,$P(LN,"-",80)=""
- F TYPE="N","R","RT" S STN="",STN=$O(^TMP($J,TYPE,STN)) D  Q:QFLG
- .I '$G(ECXPORT) D HEADER ;144
+ F TYPE="N","R","RT" Q:QFLG  S STN="",STN=$O(^TMP($J,TYPE,STN)) D  ;174
+ .I '$G(ECXPORT) D HEADER Q:QFLG  ;144,174
  .D CDATA Q:QFLG
  I $G(ECXPORT) Q  ;144 Stop processing if exporting
  I $E(IOST)'="C" D
@@ -30,9 +30,7 @@ CDATA ;accummulate data within each nppd group
  I '$D(^TMP($J,TYPE)) D  Q
  .I $G(ECXPORT) Q  ;144 Stop processing if exporting
  .W !,?26,"No data available.",!
- .I $E(IOST)="C",'QFLG D
- ..S SS=22-$Y F JJ=1:1:SS W !
- ..S DIR(0)="E" D ^DIR K DIR
+ .Q  ;174
  F  S LINE=$O(^TMP($J,TYPE,STN,LINE)) Q:LINE=""  D  Q:QFLG
  .S GRP=$E(LINE,1,3) D  Q:QFLG
  ..I TYPE="R",GRP["R9" S GRP="R90"
@@ -63,11 +61,12 @@ CDATA ;accummulate data within each nppd group
  .S LINEP=LINE
  I $G(ECXPORT) Q  ;144 Stop processing if exporting
  Q:QFLG
+ D:($Y+5>IOSL) HEADER Q:QFLG  W !,LN,!,?26,$J(CA,5,0),?34,$J(CB,5,0),?42,$J((CA+CB),5,0),?51,$J(CC,7,0),! ;174 print totals for final group
  D SUM
  Q
  ;
 SUM ;print summary for type
- D:($Y+7>IOSL) HEADER Q:QFLG 
+ D:($Y+11>IOSL) HEADER Q:QFLG  ;174
  W:TYPE="N" !!!,"STATION SUMMARY (NEW)"
  W:TYPE="R" !!!,"STATION SUMMARY (REPAIR)"
  W:TYPE="RT" !!!,"STATION SUMMARY (RENTAL)"
@@ -75,6 +74,7 @@ SUM ;print summary for type
  W !,LN
  W !,?26,$J(GCA,5,0),?34,$J(GCB,5,0),?42,$J((GCA+GCB),5,0),?51,$J(GCC,7,0)
  W !,LN
+ I TYPE="RT" W !!,"NOTE: For Vista records with Unit of Issue=MO, the extract Unit of Issue",!,"and Quantity have been converted from months to days." ;174
  Q
  ;
 HEADER ;header and page control

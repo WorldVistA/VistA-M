@@ -1,5 +1,5 @@
-ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;7/5/18  12:02
- ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149,154,161,170**;Dec 22, 1997;Build 12
+ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;6/4/19  14:40
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149,154,161,170,174**;Dec 22, 1997;Build 33
 BEG ;entry point
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -47,7 +47,7 @@ GET ;get data
  S ECWKLD=$P(EC1,U,11),ECWK="" I $D(^LAM(ECWKLD,0)) S ECWK=$P(^(0),U,2)
  S CPT1="" ;170
  D GETCPT(.ECXCPT,ECWKLD) ;170 Get CTP codes related to the workload code
- I "^5184^5186^"[("^"_$P(ECWK,".",2)_"^") S CPTNUM=0 F  S CPTNUM=$O(ECXCPT(CPTNUM)) Q:CPTNUM=""!(CPT1'="")  S CPT1=ECXCPT(CPTNUM) ;170 If it's the workload codes we want, store the CPT
+ S CPTNUM=0 F  S CPTNUM=$O(ECXCPT(CPTNUM)) Q:CPTNUM=""!(CPT1'="")  S CPT1=ECXCPT(CPTNUM) ;170,174 Get CPT for the workload code if available
  S (ECXADMDT,ECTREAT,ECNA,ECSN,ECMN,ECPTTM,ECPTPR,ECCLAS)="",ECA="O",ECXERR=0
  S (ECPTNPI,ECASPR,ECCLAS2,ECASNPI)=""
  ;get the patient data if record is in file #2
@@ -118,7 +118,7 @@ GET ;get data
  .I ECXLOGIC>2018 D  ;170 Added section to update facility and/or production division with accessioning facility and releasing facility
  ..N ECXACC,ECXRF,ECXACCSN,ECXRFSN
  ..S ECXACC=$P($G(^LR(ECLRID,"CH",LRIDT,0)),U,14) S ECXACCSN=$$RADDIV^ECXDEPT(ECXACC) S ECXFAC=$S(ECXACC&(ECXACCSN'=""):ECXACCSN,ECXACC&(ECXACCSN=""):"9999A",1:ECXFAC) ;Set facility field based on accessioning site value
- ..S ECXRF=$P($G(^LR(ECLRID,"CH",LRIDT,"RF")),U) S ECXRFSN=$$RADDIV^ECXDEPT(ECXRF) S ECXPDIV=$S(ECXRF&(ECXRFSN'=""):ECXRFSN,ECXRF&(ECXRFSN=""):"999R",1:ECXPDIV) ;Set production division field based on releasing site
+ ..S ECXRF=$P($G(^LR(ECLRID,"CH",LRIDT,"RF")),U) S ECXRFSN=$$RADDIV^ECXDEPT(ECXRF) S ECXPDIV=$S(ECXRF&(ECXRFSN'=""):ECXRFSN,ECXRF&(ECXRFSN=""):"9999R",1:ECXPDIV) ;Set production division field based on releasing site
  .I $G(ECXASIH) S ECA="A" ;170
  .D FILE
  Q

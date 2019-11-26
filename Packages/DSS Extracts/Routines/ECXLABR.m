@@ -1,5 +1,5 @@
-ECXLABR ;ALB/JAP,BIR/CML-LAR Extract for DSS (New Format - With LMIP Codes) ;6/29/18  15:03
- ;;3.0;DSS EXTRACTS;**8,24,33,37,39,46,71,80,107,105,112,127,144,154,161,170**;Dec 22, 1997;Build 12
+ECXLABR ;ALB/JAP,BIR/CML-LAR Extract for DSS (New Format - With LMIP Codes) ;2/6/19  12:50
+ ;;3.0;DSS EXTRACTS;**8,24,33,37,39,46,71,80,107,105,112,127,144,154,161,170,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -88,9 +88,9 @@ FILE ;file record
  ;node1
  ;mpi (ECXMPI)^placeholder (ECXDSSD)^dom (ECXDOM)^time (ECSCTM)^
  ;observ pat ind (ECXOBS)^encounter num (ECXENC)^prod div ECXPDIV^
- ;lab results translation ECXTRANS^ordering provider (ECPTPR)^
+ ;placehold lab results translation ECTRANS^ordering provider (ECPTPR)^
  ;ordering provider person class (ECCLASS)^ordering provider npi ECPTNPI^LOINC code ECLNC
- ;Patient Category PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Long Results (ECRS) post-2018
+ ;Patient Category PATCAT^PLACEHOLD Encounter SC ECXESC^Camp Lejeune Status ECXCLST^PLACEHOLD Encounter Camp Lejeune ECXECL^Long Results (ECRS) post-2018
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
@@ -102,7 +102,7 @@ FILE ;file record
  S ECXTSC=$G(ECXDATA(7))
  ;done
  S ECODE=ECODE_ECREDT_U_$$LJ^XLFSTR(ECRETM,6,0)_U_ECXMN_U_ECXTSC_U_ECWC_U
- S ECODE1=ECXMPI_U_ECXDSSD_U_ECXDOM_U_ECSCTM_U_ECXOBS_U_ECXENC_U_ECXPDIV_U_ECTRANS
+ S ECODE1=ECXMPI_U_ECXDSSD_U_ECXDOM_U_ECSCTM_U_ECXOBS_U_ECXENC_U_ECXPDIV_U_$S(ECXLOGIC>2019:"",1:ECTRANS) ;174 Remove translated results after FY2019
  I ECXLOGIC>2004 S ECODE1=ECODE1_U_2_ECPTPR_U_ECCLASS
  I ECXLOGIC>2007 S ECODE1=ECODE1_U_ECPTNPI
  I ECXLOGIC>2008 S ECODE1=ECODE1_U_ECLNC

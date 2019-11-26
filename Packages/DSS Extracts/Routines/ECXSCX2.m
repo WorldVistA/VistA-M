@@ -1,5 +1,5 @@
-ECXSCX2 ;ALB/ESD  DSS Clinic Extract Utilities (continued) ;6/29/18  15:30
- ;;3.0;DSS EXTRACTS;**39,46,49,71,84,92,105,120,127,144,149,170**;Dec 22, 1997;Build 12
+ECXSCX2 ;ALB/ESD  DSS Clinic Extract Utilities (continued) ;1/30/19  15:36
+ ;;3.0;DSS EXTRACTS;**39,46,49,71,84,92,105,120,127,144,149,170,174**;Dec 22, 1997;Build 33
  ;
  ;
 INTPAT ;initialize patient variables
@@ -48,6 +48,7 @@ PAT1(ECXDFN,ECXDATE,ECXERR)     ;get patient demographic data
  S ECXCLST=ECXPAT("CL STAT") ;144 Camp Lejeune Status
  S ECXSVCI=ECXPAT("COMBSVCI") ;149 COMBAT SVC IND
  S ECXSVCL=ECXPAT("COMBSVCL") ;149 COMBAT SVC LOC
+ S ECXSCST=ECXPAT("SC STAT") ;174 Service Connected Status
  Q
  ;
 PAT2(ECXDFN,ECXDATE)    ;get date specific patient data

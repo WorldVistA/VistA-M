@@ -1,5 +1,5 @@
-ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;9/4/18  13:23
- ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149,154,166,170**;Dec 22, 1997;Build 12
+ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;2/25/19  11:55
+ ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149,154,166,170,174**;Dec 22, 1997;Build 33
 EN ;entry point from ecxscx
  N ECX
  ;send missing clinic message
@@ -7,7 +7,7 @@ EN ;entry point from ecxscx
  .Q:ECX=""
  .S XMSUB="MISSING CLINICS in File #728.44",XMDUZ="DSS SYSTEM"
  .K XMY S XMY("G.DSS-"_ECGRP_"@"_^XMB("NETNAME"))=""
- .F ECX=1:1:5 S ^TMP($J,"ECXS","MISS",ECX,0)=$P($T(MSG+ECX),";;",2)
+ .F ECX=1:1:8 S ^TMP($J,"ECXS","MISS",ECX,0)=$P($T(MSG+ECX),";;",2) ;174 Add more lines to text
  .S XMTEXT="^TMP($J,""ECXS"",""MISS""," D ^XMD
  ;send no division message
  S ECX=$O(^TMP($J,"ECXS","DIV",0)) D
@@ -25,6 +25,9 @@ MSG ;text for missing clinic
  ;;active, please use the options 'Create DSS Clinic Stop Code File'
  ;;and 'Enter/Edit DSS Stop Codes for Clinics' to update this file.
  ;;  
+ ;;CLIN IEN  CLINIC NAME                     STOP/CREDIT STOP
+ ;;----------------------------------------------------------
+ ;;
  ;
 MSG2 ;text for missing division
  ;;The following clinics in the HOSPITAL LOCATION file (#44) have not
@@ -41,7 +44,7 @@ MISS ;load ^tmp if clinic missing from #728.44
  I ID,ID<DT I 'RD!(RD>DT) Q
  I '$D(^TMP($J,"ECXS","ECXMISS")) S ^TMP($J,"ECXS","ECXMISS")=10
  S ECXMISS=^TMP($J,"ECXS","ECXMISS")
- S ^TMP($J,"ECXS","MISS",ECXMISS,0)=$J(SC,6)_"    "_$$LJ^XLFSTR($P(^SC(SC,0),U),40)_ECSC_"/"_ECCSC
+ S ^TMP($J,"ECXS","MISS",ECXMISS,0)=$J(SC,8)_"  "_$$LJ^XLFSTR($P(^SC(SC,0),U),32)_$S(ECSC:$$GET1^DIQ(40.7,ECSC_",",1),1:"")_"/"_$S(ECCSC:$$GET1^DIQ(40.7,ECCSC_",",1),1:"") ;174 Report codes instead of IENs
  S ^TMP($J,"ECXS","ECXMISS")=ECXMISS+1
  Q
  ;

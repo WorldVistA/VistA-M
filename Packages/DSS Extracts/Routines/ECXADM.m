@@ -1,5 +1,5 @@
-ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;6/29/18  09:20
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161,166,170**;Dec 22, 1997;Build 12
+ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;2/15/19  13:54
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161,166,170,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -99,7 +99,7 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get patient demographic data
  S ECXPOS=ECXPAT("POS")
  S ECXMNS=ECXPAT("MEANS")
  S ECXRACE=ECXPAT("RACE")
- S ECXRELG=ECXPAT("RELIGION")
+ S ECXRELG=ECXPAT("RELIGION") S:ECXLOGIC>2019 ECXRELG=""  ;174 - TJL - Field retired
  S ECXEMP=ECXPAT("EMPLOY")
  S ECXMAR=ECXPAT("MARITAL")
  S ECXPST=ECXPAT("POW STAT")
@@ -144,7 +144,7 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get patient demographic data
  ;get combat veteran data
  I $$CVEDT^ECXUTL5(ECXDFN,ECD)
  ;get national patient record flag if exist
- D NPRF^ECXUTL5
+ D NPRF^ECXUTL5 S:ECXLOGIC>2019 ECXNPRFI=""  ; 174 - TJL - Field retired
  ;get emergency response indicator (FEMA)
  S ECXERI=ECXPAT("ERI")
  Q
@@ -154,7 +154,7 @@ PTF ; get admitting DRG, diagnosis, source of admission from PTF
  N EC,EC1,ECX
  S EC=1 I $D(^DGPT(ECPTF,"M",2,0)) S EC=2
  S EC1=+$P(^DGPT(ECPTF,"M",EC,0),U,5)
- S ECDRG=$P($G(^DGPT(ECPTF,"M",EC,"P")),U)
+ S ECDRG=$P($G(^DGPT(ECPTF,"M",EC,"P")),U) S:ECXLOGIC>2019 ECDRG=""  ;174 - TJL - Field retired
  S ECXICD10P=$S('EC1:"",1:$$CODEC^ICDEX(80,EC1)) ;154,161
  S ECX=+$P($G(^DGPT(ECPTF,101)),U),ECXSADM=$P($G(^DIC(45.1,ECX,0)),U,11)
  S ECXADMS=$$GET1^DIQ(45.1,ECX,.01)
@@ -165,27 +165,27 @@ PTF ; get admitting DRG, diagnosis, source of admission from PTF
 FILE ;file the extract record
  ;node0
  ;facility^dfn^ssn^name^in/out^day^Placehold primary care team^sex^dob^
- ;religion^employment status^health ins^state^county^zip^
+ ;PLACEHOLD religion^employment status^health ins^state^county^zip^
  ;eligibility^vet^vietnam^agent orange^radiation^pow^
  ;period of service^means test^marital status^
- ;ward^treating specialty^attending physician^mov #^DRG^Placeholder^
+ ;ward^treating specialty^attending physician^mov #^PLACEHOLD DRG^Placeholder^
  ;time^Placehold primary care provider^Placehold Race^primary ward provider
  ;node1
  ;mpi^placeholder^attending npi^pc provider npi^ward provider npi^
- ;admission elig^mst status^shad status^sharing payor^
- ;sharing insurance^enrollment location^
+ ;admission elig^mst status^shad status^PLACEHOLD sharing payor^
+ ;PLACEHOLD sharing insurance^enrollment location^
  ;Placehold pc prov person class^Placehold assoc pc provider^Placehold assoc pc prov person class^
  ;assoc pc prov npi^dom^enrollment cat^enrollment stat^encounter
  ;shad^purple heart ind.^obs pat ind^encounter num^agent orange
  ;loc^production div^pow loc^source of admission^head & neck canc. ind
  ;^Placehold ethnicity^Placehold race1^enrollment priority_sub group^user enrollee^patient
  ;type^combat vet elig^combat vet elig end date^enc cv eligible^
- ;national patient record flag ECXNPRFI^att phy person class ECXATTPC
+ ;PLACEHOLD national patient record flag ECXNPRFI^att phy person class ECXATTPC
  ;^primary ward provider person class ECXPRVPC^environ contamin ECXEST
  ;^emergency response indicator(FEMA) ECXERI^agent orange indic ECXAO
  ;^environ contam ECXECE^encoun head/neck ECXHNC^encoun MST ECXMIL^rad
  ;encoun ECXIR^
- ;node 2 - patch 136 seperated node1 from node 2 for clarity
+ ;node 2 - patch 136 separated node1 from node 2 for clarity
  ;OEF/OIF ECXOEF^ OEF/OIF return date ECXOEFDT
  ;^Placehold associate pc provider npi ECASNPI^attending physician npi ECATNPI^
  ;Placehold primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^

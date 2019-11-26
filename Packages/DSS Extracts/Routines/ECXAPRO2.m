@@ -1,5 +1,5 @@
-ECXAPRO2 ;ALB/JAP - PRO Extract Audit Report (cont) ;3/14/13  14:44
- ;;3.0;DSS EXTRACTS;**9,21,39,144,154**;Dec 22, 1997;Build 13
+ECXAPRO2 ;ALB/JAP - PRO Extract Audit Report (cont) ;2/15/19  11:38
+ ;;3.0;DSS EXTRACTS;**9,21,39,144,154,174**;Dec 22, 1997;Build 33
  ;
 ASK ;further detail needed?
  K X,Y
@@ -97,6 +97,7 @@ DISP ;display all records within nppd code group
  .I $G(ECXPORT) S ^TMP($J,"ECXPORT",CNT)=ECXEXT_U_ECXCODE_U_^TMP($J,"RMPRCODE",ECXCODE)_U_PTNAM_U_SSN_U_HCPCS_U_QTY_U_TYPE_U_COST_U_DATE_U_DESC_U_LOC_U_NPPDED,CNT=CNT+1 Q  ;144
  .W !,PTNAM,?5,SSN,?10,HCPCS,?17,QTY,?26,TYPE,?30,COST,?37,DATE,?43,DESC,?64,LOC,?72,NPPDED ;144 CVW
  I $G(ECXPORT) Q  ;144 Stop processing if exporting
+ D:($Y+4>IOSL) HEADER W !!,"NOTE: For Vista records with Unit of Issue=MO, the extract Unit of Issue",!,"and Quantity have been converted from months to days." ;174
  I $E(IOST)="C",'QFLG D
  .S SS=22-$Y F JJ=1:1:SS W !
  .S DIR(0)="E" D ^DIR K DIR

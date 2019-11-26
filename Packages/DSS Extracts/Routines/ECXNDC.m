@@ -1,5 +1,5 @@
-ECXNDC ;ALB/JAP BIR/CML - Lookup Routine for NDC's ;5/30/18  12:18
- ;;3.0;DSS EXTRACTS;**10,11,24,84,170**;Dec 22, 1997;Build 12
+ECXNDC ;ALB/JAP BIR/CML - Lookup Routine for NDC's ;5/9/19  17:25
+ ;;3.0;DSS EXTRACTS;**10,11,24,84,170,174**;Dec 22, 1997;Build 33
 EN ;entry point from option
  N F5068,QFLG,DUOUT,DIRUT,DTOUT,X,Y,DIC,DIQ,SS,JJ,DRG,D,DRGNM,LN,DIR,ECXDIQ ;170
  S F5068=0 I $T(PSNAPIS+1^PSNAPIS)[";;4.0;" S F5068=1
@@ -22,9 +22,9 @@ EN ;entry point from option
  D ASK
  Q
 ASK ;select ndc for lookup
- W !!!,"Enter 12 digits or 'LCL' and 9 digits at the prompt or <cr> to exit.",! ;170
- S DIR(0)="FO^12:12",DIR("A")="Select NDC",DIR("?")="Enter the 12 digit NDC or 'LCL' and 9 digits." ;170
- D ^DIR Q:$L(Y)'=12  S Y=$$UP^XLFSTR(Y),X=$S(Y'["LCL":Y,1:"`"_+$P(Y,"LCL",2)) ;170
+ W !!!,"Enter 12 digits or LCL and 9 digits or",!,"LCD and 9 digits at the prompt or <cr> to exit.",! ;170,174
+ S DIR(0)="FO^12:12",DIR("A")="Select NDC",DIR("?")="Enter the 12 digit NDC or LCL or LCD and 9 digits." ;170,174
+ D ^DIR Q:$L(Y)'=12  S Y=$$UP^XLFSTR(Y),X=$S(Y["LCL":"`"_+$P(Y,"LCL",2),Y["LCD":"`"_+$P(Y,"LCD",2),1:Y) ;174
  S DIC=50,DIC(0)="QE",D="NDC" ;170
  ;Use pharmacy encapsulation API for MIX^DIC1 dbia 4551
  D MIX^PSSDI(50,"ECX",.DIC,D,X) ;170

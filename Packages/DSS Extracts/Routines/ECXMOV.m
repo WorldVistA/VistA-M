@@ -1,5 +1,5 @@
-ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;12/3/18  09:13
- ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161,166,170,173**;Dec 22, 1997;Build 3
+ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;1/30/19  09:25
+ ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161,166,170,173,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -83,6 +83,7 @@ GET ;170 Moved record creation to be under "GET"
  S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
  ;- If no encounter number, don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECA,,ECXTS,ECXOBS,ECHEAD,,)
+ I ECXTS S ECXTS=$S(ECM=3:$$GET1^DIQ(42.4,ECXTS_",",7),1:"") ;174 If T.S. found and it's a discharge mvmt, set ECXTS to PTF code for T.S.
  D:ECXENC'="" FILE
  Q
  ;
@@ -90,7 +91,7 @@ FILE ;file the extract record
  ;node0
  ;fac ECXFAC^dfn ECXDFN^ssn ECXSSN^name ECXPNM^in/out ECXA^
  ;day (ECD)^^adm date (ECA)^disc date ECDI^mov # ECDA^
- ;type ECM^losing ward ECXWARD^treat spec ^los ECXLOS^^
+ ;placehold type ECM^losing ward ECXWARD^treating spec PTF code (ECXTS)^los ECXLOS^^
  ;movement type ECMT^mov time ECTM^gaining ward ECXWTO^
  ;adm time (ECA)^^^
  ;node1
@@ -104,7 +105,7 @@ FILE ;file the extract record
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_U_EC23_U_ECXFAC_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECD,ECXYM)_U_U
- S ECODE=ECODE_$$ECXDATE^ECXUTL(ECA,ECXYM)_U_ECDI_U_ECDA_U_ECM_U_ECXWRD_U
+ S ECODE=ECODE_$$ECXDATE^ECXUTL(ECA,ECXYM)_U_ECDI_U_ECDA_U_$S(ECXLOGIC>2019:"",1:ECM)_U_ECXWRD_U_$S(ECXLOGIC>2019:ECXTS,1:"") ;174 Add treating specialty PTF value and remove type
  S ECODE=ECODE_U_ECXLOS_U_U_ECMT_U_ECTM_U_ECXWTO_U
  S ECODE=ECODE_$$ECXTIME^ECXUTL(ECA)_U_U_U
  S ECODE1=ECXMPI_U_ECXDSSD_U_ECXDOM_U_ECXOBS_U_ECXENC_U_ECXDPR_U
@@ -170,6 +171,7 @@ DISASIH ;170 Section added to create a discharge ASIH other facility record
  S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECA,,ECXTS,ECXOBS,ECHEAD,,)
  S ECXA="A"
+ S ECXTS="" ;174 Field will be null if discharge is ASIH OTHER FACILITY type
  D:ECXENC'="" FILE
  Q
  ;

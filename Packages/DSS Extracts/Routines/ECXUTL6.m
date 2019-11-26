@@ -1,5 +1,5 @@
-ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;12/11/18  16:49
- ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154,170,173**;Dec 22, 1997;Build 3
+ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;4/8/19  11:11
+ ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154,170,173,174**;Dec 22, 1997;Build 33
  ;
 NUTKEY(P,D) ;Generate n&fs feeder key
  ;Required variables
@@ -167,28 +167,13 @@ GETDIV ;Get divisions and food production facility
  Q
  ;
 SUR(CRST,STCD,CLINIC) ;Surgery stop codes and clinic (outpatients only)
- ;Init variables
- S (CRST,STCD,CLINIC)=""
  ;Quit if not outpatient
- Q:$P(EC0,U,12)'="O" ""
- ;Get stop codes (outpatient only)
- I $P(EC0,U,12)="O" D
- .;Get credit stop code (outpatient only)
- .S CRST=""_$$GET1^DIQ(40.7,""_$$GET1^DIQ(44,$$GET1^DIQ(137.45,$P(EC0,U,4),2,"I")_","_""_","_"",2503,"I")_","_"",1,"E")
- .;Get stop code (outpatient only)
- .S STCD=""_$$GET1^DIQ(40.7,""_$$GET1^DIQ(44,$$GET1^DIQ(137.45,$P(EC0,U,4),2,"I")_","_""_","_"",8,"I")_","_"",1,"E")
- ;Clinic for non-or case use associated clinic else non-or location
- ;If non-or case
- I $P($G(ECNO),U)="Y" S CLINIC=$S($P(EC0,U,21):$P(EC0,U,21),1:$P(ECNO,U,2))
- ;Get stop codes non-or cases
- I $P($G(ECNO),U)="Y" D
- .;Get credit stop code for non-or case
- .S CRST=$$GET1^DIQ(40.7,$$GET1^DIQ(44,CLINIC,2503,"I"),1,"E")
- .;Get stop code for non-or case
- .S STCD=$$GET1^DIQ(40.7,$$GET1^DIQ(44,CLINIC,8,"I"),1,"E")
- ;Clinic, not a non-or case use surgical specialty associated clinic
- I $P($G(ECNO),U)'="Y" S CLINIC=$$GET1^DIQ(137.45,+$P(EC0,U,4),2,"I")
- Q 1
+ I ECXA="I" Q  ;174 Only set stop code, credit stop, and clinic if patient is an outpatient
+ S CLINIC=$S($P(EC0,U,21):$P(EC0,U,21),$P(ECNO,U,2):$P(ECNO,U,2),1:$$GET1^DIQ(137.45,$P(EC0,U,4),2,"I")) ;174 Set clinic to associated clinic or non-OR location or surgical specialty's associated clinic
+ ;Next, get stop code from file 728.44, if not found get it from file 44, if not found default to 435 if it's a non-OR procedure, otherwise 429
+ S STCD=$P($G(^ECX(728.44,+CLINIC,0)),U,4) S:STCD="" STCD=$$GET1^DIQ(40.7,$$GET1^DIQ(44,+CLINIC,8,"I"),1,"E") S:STCD="" STCD=$S($P(ECNO,U)="Y":435,1:429) ;174
+ S CRST=$P($G(^ECX(728.44,+CLINIC,0)),U,5) S:CRST="" CRST=$$GET1^DIQ(40.7,$$GET1^DIQ(44,+CLINIC,2503,"I"),1,"E") ;174 Set credit stop code to value in 728.44 else from file 44
+ Q
  ;
 SURPODX(PRODX,PODX1,PODX2,PODX3,PODX4,PODX5) ;Get postop diagnosis codes
  ;Init variables

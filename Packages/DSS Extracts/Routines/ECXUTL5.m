@@ -1,5 +1,5 @@
-ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ;5/30/18  09:31
- ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136,166,170**;Dec 22, 1997;Build 12
+ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ;5/9/19  16:31
+ ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136,166,170,174**;Dec 22, 1997;Build 33
  ;
 REPEAT(CHAR,TIMES) ;REPEAT A STRING
  ;INPUT  : CHAR - Character to repeat
@@ -173,8 +173,9 @@ PHAAPI(DRUG) ;Call Pharmacy drug file API dbia 4483
  I @ARRAY@(0)'>0 Q "^^^^^^"
  S NAME=@ARRAY@(DRUG,.01),CLASS=@ARRAY@(DRUG,2),NDC=@ARRAY@(DRUG,31)
  S INV=@ARRAY@(DRUG,3),P1=$P(@ARRAY@(DRUG,20),U),P3=$P(@ARRAY@(DRUG,22),U),PPDU=@ARRAY@(DRUG,16),UNIT=@ARRAY@(DRUG,14.5)
- I NDC="",$G(ECXRPT)'="INC FEEDER",$G(INV)["S" D  ;170 Modify NDC if blank and we're not running the incomplete feeder key report and it's a supply item
- .S NDC="LCL"_$$RJ^XLFSTR($E(DRUG,$S($L(DRUG)'>9:1,1:1+($L(DRUG)-9)),$L(DRUG)),9,0) ;Set NDC to LCL concatenated with the last 9 digits of IEN if IEN is longer than 9 digits
+ I NDC="",P3="" D  ;170,174 If NDC and NDF are blank, assign an LCL or LCD NDC
+ .;174, Set NDC to LCL (supply items) or LCD (non-supply items) concatenated with the last 9 digits of IEN if IEN is longer than 9 digits
+ .S NDC=$S(INV["S":"LCL",1:"LCD")_$$RJ^XLFSTR($E(DRUG,$S($L(DRUG)'>9:1,1:1+($L(DRUG)-9)),$L(DRUG)),9,0) ;174
  .S NDC=$E(NDC,1,6)_"-"_$E(NDC,7,10)_"-"_$E(NDC,11,12) ;Put NDC in xxxxxx-xxxx-xx format
  K @ARRAY
  Q NAME_U_CLASS_U_NDC_U_INV_U_P1_U_P3_U_PPDU_U_UNIT

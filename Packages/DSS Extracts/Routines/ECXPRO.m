@@ -1,5 +1,5 @@
-ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;6/29/18  15:15
- ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154,161,166,169,170**;Dec 22, 1997;Build 12
+ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;2/27/19  15:42
+ ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154,161,166,169,170,174**;Dec 22, 1997;Build 33
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D:+ECINST>0 ^ECXTRAC D ^ECXKILL
@@ -21,6 +21,7 @@ START ;start package specific extract
  N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104
  N DIC,DR,DA,DIQ,CPTCODE,ECXNPRFI
  N ECXESC,ECXCLST,ECXECL,ECXUI,ECXASIH ;144,166,170
+ N ECXNCOST,ECXNLLC,ECXNLMC  ;174
  D ECXBUL^ECXPRO2(.ECXLNE,ECSDN,ECEDN,EC)
  S QFLG=0,ECXLNSTR=ECXLNE,ECXED1=ECED+.9999,ECXCT=ECSD1
  F  S ECXCT=$O(^RMPR(660,"CT",ECXCT)) Q:(ECXCT>ECXED1)!('ECXCT)!(QFLG=1)  D
@@ -32,6 +33,7 @@ START ;start package specific extract
  ..S (ECXLMC,ECXGRPR,ECXBILST,ECXQTY,ECXFELOC,ECXFEKEY,ECXA,ECXLH,ECXLC,ECXMC)=""
  ..S (ECPTTM,ECPTPR,ECXAST,ECXRST,ECXEST,ECXELIG,ECXVET,ECXZIP,ECXVNS,ECXCLST)="" ;144
  ..S (ECXDOB,ECXDSSD,ECXICD9,ECXICD10P,ECXAOL,ECXHNCI,ECXSHADI,ECXETH,ECXRC1,ECXMST)=""
+ ..S (ECXNCOST,ECXNLLC,ECXNLMC)=""  ;174
  ..F I=1:1:4 S @("ECXICD9"_I)=""
  ..F I=1:1:4 S @("ECXICD10"_I)=""
  ..Q:'$D(^RMPR(660,ECXDACT,0))
@@ -113,12 +115,12 @@ FILE ;file extract record
  ;feeder key^qty^Placehold pc team^Placehold pc provider^hcpcs^Placeholder (ECXICD9)^
  ;Placeholder (ECXICD91)^Placeholder (ECXICD92)^Placeholder (ECXICD93)^
  ;Placeholder (ECXICD94)^agent orange^radiation^env contam^eligibility^
- ;cost^lab labor cost^lab matl cost^billing status^
+ ;PLACEHOLD cost^PLACEHOLD lab labor cost^PLACEHOLD lab matl cost^billing status^
  ;vet^transaction type^req station^rec station^file#661.1 ien
  ;node1
  ;zip^dob^sex^amis grouper^placeholder^mpi^placeholder ECXDSSD^
  ;Placehold pc prov person class^race^pow status^pow loc^
- ;sharing agree payor^sharing agree ins^mst status^
+ ;PLACEHOLD sharing agree payor^PLACEHOLD sharing agree ins^mst status^
  ;enroll loc^state^county^Placehold assoc pc provider^
  ;Placehold assoc pc prov person class^placeholder
  ;dom (ECXDOM)^purple heart indicator (ECXPHI)^
@@ -127,28 +129,32 @@ FILE ;file extract record
  ;period of serv (ECXPOS)^observ pat ind (ECXOBS)^encounter num (ECXENC)^
  ;ao loc (ECXAOL)^CNH status (ECXCNH)^production division ECXPDIV^
  ;head & neck canc. ind. (ECXHNCI)^Placehold ethnicity (ECXETH)^Placehold race1 (ECXRC1)^
- ;^enrollment priority (ECXPRIOR)_enrollment sub-
+ ;PLACEHOLD DSS IP #^enrollment priority (ECXPRIOR)_enrollment sub-
  ;group (ECXSBGRP)^user enrollee (ECXUESTA)^patient type ECXPTYPE
- ;^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^enc cv
+ ;^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^PLACEHOLD enc cv
  ;eligible ECXCVENC^national patient record flag ECXNPRFI^
- ;emergency response indicator(FEMA) ECXERI^agent orange indicator ECXAO
- ;^environ contam ECXECE^head/neck cancer ECXHNC^encntr mst ECXMIL^
- ;radiation ECXIR
+ ;emergency response indicator(FEMA) ECXERI^PLACEHOLD agent orange indicator ECXAO
+ ;^PLACEHOLD environ contam ECXECE^PLACEHOLD head/neck cancer ECXHNC^PLACEHOLD encntr mst ECXMIL^
+ ;PLACEHOLD radiation ECXIR
  ;NODE2
  ;OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^
  ;nppd code ECXNPPDC^nppd entry date ECXNPPDT
  ;Placehold assoc pc provider npi ECASNPI^Placehold primary care provider npi ECPTNPI^
- ;country ECXCNTRY^shad indicator ECXSHADI^shad encounter ECXSHAD^
+ ;country ECXCNTRY^shad indicator ECXSHADI^PLACEHOLD shad encounter ECXSHAD^
  ;labor hours ECXLH^
  ;PATCAT^EXCPATCAT^
  ;primary ICD-10 code (currently null)ECXICD10P^Secondary ICD-10 Code #1 (currently null)ECXICD101^
  ;Secondary ICD-10 Code #2 (currently null)ECXICD102^Secondary ICD-10 Code #3 (currently null)ECXICD103^
- ;Secondary ICD-10 Code #4 (currently null)ECXICD104^Encounter SC ECXEXC^Vietnam Status ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^
+ ;Secondary ICD-10 Code #4 (currently null)ECXICD104^PLACEHOLD Encounter SC ECXEXC^Vietnam Status ECXVNS^Camp Lejeune Status ECXCLST^PLACEHOLD Encounter Camp Lejeune ECXECL^
  ;Combat Service Indicator (ECXSVCI)^Combat Service Location (ECXSVCL)^
  ;Form Requested On (ECXFORM)^Unit of Issue (ECXUI)
+ ;New Cost of Transaction (ECXNCOST)^New Lab Labor Cost (ECXNLLC)^New Lab Material Cost (ECXNLMC) ;174
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  I ECXLOGIC>2018 S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
+ I ECXLOGIC>2019 D  ;174 Section added for FY20 updates
+ .I $G(ECXTYPE)=5,$G(ECXUI)="MO" S ECXUI="DY",ECXQTY=$$RJ^XLFSTR(+$G(ECXQTY)*30,8,0) ;If item is a monthly rental, convert unit of issue to days and quantity to 30 times the original
+ .S (ECXCTAMT,ECXLLC,ECXLMC,ECXCVENC,ECXAO,ECXECE,ECXHNC,ECXMIL,ECXIR,ECXSHAD,ECXESC,ECXECL)=""
  S ECODE=EC7_U_EC23_U_ECINSTSV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U  ;169 tjl
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_ECXFELOC_U
  S ECODE=ECODE_ECXFEKEY_U_ECXQTY_U_ECPTTM_U_ECPTPR_U_ECXHCPCS_U
@@ -173,6 +179,7 @@ FILE ;file extract record
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
  I ECXLOGIC>2015 S ECODE2=ECODE2_U_$P(ECXFORM,U,2) ;154
  I ECXLOGIC>2017 S ECODE2=ECODE2_U_$G(ECXUI) ;166
+ I ECXLOGIC>2019 S ECODE2=ECODE2_U_ECXNCOST_U_ECXNLLC_U_ECXNLMC  ;174
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

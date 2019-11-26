@@ -1,5 +1,5 @@
-ECXAADM ;ALB/JAP - ADM Extract Audit Report ;12/11/18  12:06
- ;;3.0;DSS EXTRACTS;**8,33,149,170,173**;Dec 22, 1997;Build 3
+ECXAADM ;ALB/JAP - ADM Extract Audit Report ;3/13/19  10:40
+ ;;3.0;DSS EXTRACTS;**8,33,149,170,173,174**;Dec 22, 1997;Build 33
 EN ;entry point for ADM extract audit report
  N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,ECXPORT,RCNT ;149
  S ECXERR=0
@@ -52,7 +52,7 @@ EN ;entry point for ADM extract audit report
  Q
  ;
 PROCESS ;process data in file #727.802
- N X,Y,W,DATE,DIV,IEN,TL,ORDER,SORD,GTOT,STOT,WARD,QQFLG,CNT,TSV,ASIH ;170,173
+ N X,Y,W,DATE,DIV,IEN,TL,ORDER,SORD,GTOT,STOT,WARD,QQFLG,CNT,TSV,ASIH,NOTE ;170,173,174
  K ^TMP($J,"ECXWARD"),^TMP($J,"ECXORDER")
  S (CNT,QQFLG)=0
  S ECXEXT=ECXARRAY("EXTRACT"),ECXDEF=ECXARRAY("DEF")
@@ -131,22 +131,25 @@ PRINT ;print the admission data by division and ward order
  .W !!,"Division "_$P(ECXDIV(DIV),U,2)_" Grand Total:",?45,$$RJ^XLFSTR(GTOT(DIV),5," ")
  ;print patients with missing wards or missing treating specialties
  Q:QFLG  ;149 Stop if user entered "^"
+ S NOTE=0 ;174 Has note printed? (0-no, 1- yes)
  F MISTYPE="MISWRD","MISTRT","ASIH" Q:QFLG  I $D(^TMP($J,MISTYPE)) D  ;170,173
  .S DIV=MISTYPE,ECXDIV(DIV)="^^^^^*** "_$S(MISTYPE="MISWRD":"MISSING WARDS",MISTYPE="ASIH":"ASIH OTHER FACILITY",1:"MISSING TREATING SPECIALTIES")_" ***^" D:'$G(ECXPORT) HEADER Q:QFLG  ;149,170,173
  .S WRDTOT=$G(^TMP($J,MISTYPE)) ;170
  .I '$G(ECXPORT) D  ;149,170,173
  ..W !,?5,$S(MISTYPE="MISWRD":"MISSING WARD",MISTYPE="ASIH":"ASIH OTHER FACILITY",1:"MISSING TREATING SPECIALTY"),?45,$$RJ^XLFSTR(WRDTOT,5," "),!! ;149,170,173
- ..I MISTYPE="ASIH" D  ;173
- ...W "Note: Starting with FY19, records will be generated in the extract for ASIH" ;173
- ...W !,"Other Facility movement types.  If present in your facility, the Extract"
- ...W !,"Audit report will display these records here and they require no action.",!! ;173
+ ..I 'NOTE D  S NOTE=1 ;173,174
+ ...W "NOTE: Records are generated in the extract for ASIH Other Facility" ;173,174
+ ...W !,"movement types.  If present in your facility, this report will display"
+ ...W !,"them.  Missing Wards and Treating Specialties for ASIH Other Facility",! ;173,174
+ ...W "patients REQUIRE NO ACTION because the patient is at another facility.",!! ;174
  .I $G(ECXPORT) D  ;149,170
  ..S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^"_$S(MISTYPE="MISWRD":"MISSING WARD",MISTYPE="ASIH":"ASIH OTHER FACILITY",1:"MISSING TREATING SPECIALTY")_U_WRDTOT ;170,173
- ..I MISTYPE="ASIH" D  ;173
+ ..I 'NOTE D  S NOTE=1 ;173,174
  ...S RCNT=RCNT+1 ;173
- ...S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^Note: Starting with FY19, records will be generated in the extract for ASIH Other",RCNT=RCNT+1 ;173
- ...S ^TMP($J,"ECXPORT",RCNT)="^Facility movement types. If present in your facility, the Extract Audit report will",RCNT=RCNT+1 ;173
- ...S ^TMP($J,"ECXPORT",RCNT)="^display these records here and they require no action." ;173
+ ...S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^NOTE: Records are generated in the extract for ASIH Other Facility Movement types.",RCNT=RCNT+1 ;173,174
+ ...S ^TMP($J,"ECXPORT",RCNT)="^If present in your facility, this report will display them.  Missing wards",RCNT=RCNT+1 ;173,174
+ ...S ^TMP($J,"ECXPORT",RCNT)="^and Treating Specialties for ASIH Other Facility patients REQUIRE NO ACTION because" ;173,174
+ ...S RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^the patient is at another facility." ;174
  ..S RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^NAME^PATIENT DFN^FACILITY^ADMISSION DATE^ASIH OTHER FACILITY",RCNT=RCNT+1 ;170,173
  .I '$G(ECXPORT) D HEAD ;149
  .S IEN="" F  S IEN=$O(^TMP($J,MISTYPE,IEN)) Q:'IEN  D  I QFLG Q  ;170

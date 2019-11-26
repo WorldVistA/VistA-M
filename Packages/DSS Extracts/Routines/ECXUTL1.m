@@ -1,5 +1,5 @@
-ECXUTL1 ;ALB/GTS - Utilities for DSS Extracts ;2/11/14  13:09
- ;;3.0;DSS EXTRACTS;**9,49,136,144,149**;Dec 22, 1997;Build 27
+ECXUTL1 ;ALB/GTS - Utilities for DSS Extracts ;4/4/19  15:09
+ ;;3.0;DSS EXTRACTS;**9,49,136,144,149,174**;Dec 22, 1997;Build 33
  ;
 CYFY(ECXFMDT) ;** Return the calandar and fiscal years for a FM date
  ;
@@ -164,15 +164,21 @@ EXPORT() ;Function indicates if report output is going to a device or to the scr
 EXPDISP ;Displays report in exportable format.  API added in patch 144
  N I,%ZIS,POP,DIR,DTOUT,DIRUT,X,Y,DUOUT
  I '+$O(^TMP($J,"ECXPORT",0)) W !,"No data found for this report." Q
+ ;174 Directions for logging have been updated in the following section
  W !!,"To ensure all data is captured during the export:"
- W !!,"1. Select 'Logging...' from the File Menu. Select your file, and where to save."
- W !,"2. On the Setup menu, select 'Display...',then 'screen' tab and modify 'columns'",!,"   setting to at least 225 characters."
- W !,"3. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be."
+ W !!,"1. In reflections, change the row margin by clicking on one of the change margin",!,"   icons with a value of 225 or higher if you have them."
+ W !,"   You may also set the margin manually by clicking on appearance, expanded",!,"   terminal settings (arrow in lower right corner), set up display settings."
+ W !,"   Scroll to the bottom and change the number of characters per row to 225"
+ W !,"   or higher.  Click 'OK' to save your change."
+ W !,"2. Click on 'capture setup' or 'tools, logging (arrow in lower right corner)'",!,"   depending on your setup.  Ensure the logging settings form only has 'to disk'",!,"   selected and enter"
+ W " the path and filename where the output should be stored."
+ W !,"3. Click 'start capture' or 'start logging', depending on your interface."
+ W !,"4. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be."
  W !,"Example: DEVICE: 0;225;99999 *Where 0 is your screen, 225 is the margin width",!?17,"and 99999 is the screen length."
  W !!,"NOTE:  In order for all number fields, such as SSN and Feeder Key, to be",!,"displayed correctly in the spreadsheet, these fields must be formatted as Text",!,"when importing the data into the spreadsheet.",!
  S %ZIS="",%ZIS("B")="0;225;99999" D ^%ZIS Q:POP
  S I="" F  S I=$O(^TMP($J,"ECXPORT",I)) Q:I=""  W !,^TMP($J,"ECXPORT",I)
- W !!,"Turn off your logging..."
+ W !!,"Click 'stop capture' or 'tools, stop logging' to end logging..." ;174
  W !,"...Then, pull your export text file into your spreadsheet.",!
  S DIR(0)="E",DIR("A")="Press any key to continue" D ^DIR
  D HOME^%ZIS ;set parameters back to normal

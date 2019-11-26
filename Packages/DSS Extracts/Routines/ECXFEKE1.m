@@ -1,5 +1,5 @@
-ECXFEKE1 ;BIR/DMA,CML-Print Feeder Keys (CONTINUED); [ 03/28/96  5:44 PM ] ;5/29/14  10:41
- ;;3.0;DSS EXTRACTS;**11,8,40,149**;Dec 22, 1997;Build 27
+ECXFEKE1 ;BIR/DMA,CML-Print Feeder Keys (CONTINUED); [ 03/28/96  5:44 PM ] ;5/22/19  11:51
+ ;;3.0;DSS EXTRACTS;**11,8,40,149,174**;Dec 22, 1997;Build 33
  ;
 SELLABKE() ;** Function to prompt user selection of type of Lab Feeder Key
  ;
@@ -104,7 +104,8 @@ PRINT ;
  .F  S EC2=$O(^TMP($J,EC,EC1,EC2)) Q:EC2=""!QFLG  D  ;149 Added QFLG so loop stops if user enters "^"
  ..I $G(ECXPORT) D  ;Section added in 149
  ...S ^TMP("ECXPORT",$J,CNT)=$S($G(ECECS)="N"&(EC="ECS"):"Procedure-CPT^",$G(ECECS)="O"&(EC="ECS"):"Category-Procedure^",$G(ECLAB)="O"&(EC="LAB"):"Local Feeder Key^",$G(ECLAB)="N"&(EC="LAB"):"LMIP codes^",1:"")
- ...S ^TMP("ECXPORT",$J,CNT)=^TMP("ECXPORT",$J,CNT)_EC_U_$S(EC="PHA":$E(EC9,2,99),1:EC9)_U_$P(^TMP($J,EC,EC1,EC2),U)_$S(EC="PHA":U_$P(^TMP($J,EC,EC1,EC2),U,2),1:""),CNT=CNT+1
+ ...S ^TMP("ECXPORT",$J,CNT)=^TMP("ECXPORT",$J,CNT)_EC_U_$S(EC="PHA":$E(EC9,2,99),1:EC9)_U_$P(^TMP($J,EC,EC1,EC2),U) ;174
+ ...S ^TMP("ECXPORT",$J,CNT)=^TMP("ECXPORT",$J,CNT)_$S(EC="PHA":U_$P(^TMP($J,EC,EC1,EC2),U,2)_U_$S($P(^TMP($J,EC,EC1,EC2),U,3)="N":"Non-Drug",1:"Drug"),1:""),CNT=CNT+1 ;174
  ..I '$G(ECXPORT) D:($Y+3>IOSL) HEAD Q:QFLG  ;149
  ..I '$G(ECXPORT) I EC="PHA" W !,?2,$E(EC9,2,99),?24,$E($P(^TMP($J,EC,EC1,EC2),U),1,40),?67,$$RJ^XLFSTR($P(^(EC2),U,2),12) Q  ;149
  ..I '$G(ECXPORT) W !,?5,EC9,?27,^TMP($J,EC,EC1,EC2) ;149
@@ -119,7 +120,7 @@ HEAD ;
  I $E(IOST)="C",PG>0 S DIR(0)="E" D ^DIR K DIR I 'Y S QFLG=1 Q
  W:$Y!($E(IOST)="C") @IOF
  S PG=PG+1 W !,?21,"Feeder Key List For Feeder System ",EC,?70,"Page: ",PG
- I EC="PHA" W !,?22,"(NEW Feeder Key from NDF Match)",!!,?2,"Feeder Key",?24,"Description",?66,"Price Per",!,?66,"Dispense Unit",!,LN,! Q
+ I EC="PHA" W !,?22,"(NEW Feeder Key from NDF Match)",!,?24,"Showing ",$S(PHATYPE="N":"Non-Drug",PHATYPE="D":"Drug",1:"All")_" feeder keys",!!,?2,"Feeder Key",?24,"Description",?66,"Price Per",!,?66,"Dispense Unit",!,LN,! Q  ;174
  I $D(ECECS)&(EC="ECS") W !?21,$S(ECECS="O":"(OLD Feeder Key sorted by Category-Procedure)",1:"(NEW Feeder Key sorted by Procedure-CPT Code)")
  I $D(ECLAB)&(EC="LAB") W !?15,$S(ECLAB="O":"(OLD Feeder Key sorted by Local Feeder Key values)",1:"      (NEW Feeder Key sorted by LMIP Codes)")
  W !!,?5,"Feeder Key",?27,"Description",!,LN,!
