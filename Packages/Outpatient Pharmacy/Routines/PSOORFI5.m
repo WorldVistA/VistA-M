@@ -1,5 +1,5 @@
 PSOORFI5 ;BIR/SJA-finish cprs orders ; 8/27/08 4:47pm
- ;;7.0;OUTPATIENT PHARMACY;**225,315,266,391,372,416,504,505**;DEC 1997;Build 39
+ ;;7.0;OUTPATIENT PHARMACY;**225,315,266,391,372,416,504,505,557**;DEC 1997;Build 7
  ;External references UL^PSSLOCK supported by DBIA 2789
  ;External reference to ^DPT supported by DBIA 10035
  ;
@@ -38,7 +38,7 @@ SUP W ! K MEDP,MEDA,POERR("DFLG"),DIR D KQ S PSOSORT="SUPPLY^SUPPLY"
  .D SDFN D POST^PSOORFI1 I $G(PSOQFLG)!($G(PSOQUIT)) S:$G(PSOQUIT) POERR("QFLG")=1 S:$G(PSOQFLG) PAT(PAT)=PAT S X=PAT D ULP K PSOQFLG Q
  .S PAT(PAT)=PAT
  .F ORD=0:0 S ORD=$O(^PS(52.41,"AOR",PAT,PSOPINST,ORD)) Q:'ORD!($G(POERR("QFLG")))!($G(PSOQQ))  D
- ..Q:$P($G(^PS(52.41,ORD,0)),"^",23)
+ ..I $P($G(^PS(52.41,ORD,0)),"^",23),$P(SECSORT,"^",1)'="FL" Q
  ..Q:'$$ISSUPPLY^PSOORFI6(ORD)
  ..I SECSORT'=0,'$$CHKFLTR^PSOORFI6(ORD,SECSORT) Q
  ..D PP,LK1,ORD^PSOORFIN
@@ -53,7 +53,7 @@ PRI ; Called from PSOORFIN due to it's routine size.
  D ^DIR G:$D(DIRUT) EX S PSOSORT=PSOSORT_"^"_Y,PSRT=Y
  N SECSORT S SECSORT=$$DIR^PSOORFI6("PR:PRIORITY",Y) Q:SECSORT=U
  S LG=0,PATA=0 F  S LG=$O(^PS(52.41,"AD",LG)) Q:'LG!($G(POERR("QFLG")))  F PSOD=0:0 S PSOD=$O(^PS(52.41,"AD",LG,PSOPINST,PSOD)) Q:'PSOD!($G(POERR("QFLG")))  D
- .Q:$P($G(^PS(52.41,PSOD,0)),"^",23)
+ .I $P($G(^PS(52.41,PSOD,0)),"^",23),$P(SECSORT,"^",1)'="FL" Q
  .Q:$G(PAT($P(^PS(52.41,PSOD,0),"^",2)))=$P(^PS(52.41,PSOD,0),"^",2)  S PAT=$P(^PS(52.41,PSOD,0),"^",2)
  .;PSO*7*266
  .I PAT'=PATA K PSORX("DOSING OFF") D LBL^PSOORFIN
@@ -135,7 +135,7 @@ CS ; Digitally Signed CS - PSO*7*391
  .Q:'$D(^PS(52.41,PSOD,0))
  .S OR0=^PS(52.41,PSOD,0)
  .;PSO*7*505 - still quit if the order is flagged, but now only look for digital signature if the selection does not ask for non contolled substances
- .Q:$P(OR0,"^",23)
+ .I $P(OR0,"^",23),$P(SECSORT,"^",1)'="FL" Q
  .S PDEA=0 D PDEA Q:'PDEA!(PDEA'=PSRT)
  .;PSO*7*505 moved digitally signed check after the DEA check
  .I PSRT<4,'$P(OR0,"^",24) Q
@@ -153,7 +153,7 @@ CS ; Digitally Signed CS - PSO*7*391
  ..Q:'$D(^PS(52.41,ORD,0))
  ..S OR0=^PS(52.41,ORD,0)
  ..;PSO*505 - Move the check for digitally signed, so non-cs substances will be shown if selected as sort criteria
- ..Q:$P(OR0,U,23)
+ ..I $P(OR0,U,23),$P(SECSORT,"^",1)'="FL" Q
  ..I SECSORT'=0,'$$CHKFLTR^PSOORFI6(ORD,SECSORT) Q
  ..I 'PSOCSRT,PSOCSRT'=$P(OR0,"^",17) Q
  ..Q:$P(OR0,"^",3)="DC"!($P(OR0,"^",3)="DE")
