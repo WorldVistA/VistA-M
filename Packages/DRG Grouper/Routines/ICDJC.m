@@ -1,5 +1,5 @@
 ICDJC ;ALB/ARH - DRG GROUPER CALCULATOR 2015 ;05/26/2016
- ;;18.0;DRG Grouper;**89**;Oct 20, 2000;Build 9
+ ;;18.0;DRG Grouper;**89,97**;Oct 20, 2000;Build 5
  ;
  ; DRG Calcuation for re-designed grouper ICD-10 2015
  ; called from ICDDRG when effective date of care results in a ICD-10 DRG
@@ -24,11 +24,12 @@ DRG N IX,PRATT,DXATT,CDSET,DRG,DRGLST,DRGIFN,DRG0,DRGHRCY,DATE,ORDIFN,HRCY,CCMCC
  ;
  ;
  D PRATT^ICDJC1(.ICDPRC,ICDDATE,.PRATT) ; get procedure attributes - OR/Non-OR and MDC
+ D PRCLS^ICDJC1(.ICDPRC,ICDDATE,.PRATT) ; identify procedure clusters and update OR/Non-OR
  ;
  D DXATT^ICDJC1(.ICDDX,ICDDATE,ICDEXP,.DXATT) ; get diagnosis attributes - MCC/CC and MDC
  D DXHAC^ICDJC1(.ICDDX,.ICDPRC,ICDDATE,.ICDPOA,.DXATT) ; identify HAC diagnosis and update MCC/CC
  ;
- D CDSET^ICDJC2(.ICDDX,.ICDPRC,ICDDATE,.CDSET) ; get all Code Sets that apply based on diagnosis and procedures
+ D CDSET^ICDJC2(.ICDDX,.ICDPRC,ICDDATE,.PRATT,.CDSET) ; get all Code Sets that apply based on diagnosis and procedures
  ;
  D DRGLS^ICDJC3(ICDDATE,.PRATT,.DXATT,.CDSET,.DRGLST) ; get all DRGs that apply based on Code Sets and DRG Case
  ;

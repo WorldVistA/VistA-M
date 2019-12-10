@@ -1,5 +1,5 @@
 IBAECU ;ALB/BGA-LTC UTILITIES DETERMINE LTC ELIG ; 25-SEPT-01
- ;;2.0;INTEGRATED BILLING;**164,171,176,198,188,454**;21-MAR-94;Build 4
+ ;;2.0;INTEGRATED BILLING;**164,171,176,198,188,454,660**;21-MAR-94;Build 4
  ;; Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ; This routine contains the following utilities in support of the
@@ -205,10 +205,11 @@ TOT ; calculates the total charged for a patient (for the month)
  ; requires IBFR, IBLTCST, DFN
  ; returns IBT (total amount already billed), IBTYP (inpt or opt)
  ;
- N IBDT,IBX,IBZ
+ N IBDT,IBX,IBZ,IBAT
  S IBTYP="O",IBT=0
  ;
- S IBDT=-$E(IBFR,1,5)_"00" F  S IBDT=$O(^IB("AFDT",DFN,IBDT),-1) Q:IBDT=""!($E(IBDT,2,6)'=$E(IBFR,1,5))  S IBX=0 F  S IBX=$O(^IB("AFDT",DFN,IBDT,IBX)) Q:IBX<1  S IBZ=$G(^IB(IBX,0)) I $E($G(^IBE(350.1,+$P(IBZ,"^",3),0)),1,7)="DG LTC " D
+ ;IB*2.0*660 - Modify LTC Screen to look at Billing groups instead of Action Type Name in new LTCCHK function.
+ S IBDT=-$E(IBFR,1,5)_"00" F  S IBDT=$O(^IB("AFDT",DFN,IBDT),-1) Q:IBDT=""!($E(IBDT,2,6)'=$E(IBFR,1,5))  S IBX=0 F  S IBX=$O(^IB("AFDT",DFN,IBDT,IBX)) Q:IBX<1  S IBZ=$G(^IB(IBX,0)),IBAT=+$P(IBZ,"^",3) I $$LTCCHK(IBAT) D
  . ;
  . ; don't use bills that are cancelled.
  . I $P($G(^IBE(350.21,+$P(IBZ,"^",5),0)),"^",5) Q
@@ -233,4 +234,15 @@ CDEXMPT(DFN,IBDT) ; determine if the patient is exempt from non-institutional
  S IBDG=$$GET^DGENCDA(DFN,.IBDG)  ; IA# 4969
  I $G(IBDG("VCD"))'="Y" Q 0 ; cd indicator
  Q $S(IBDT<$G(IBDG("DATE")):0,1:1)
+ ;
+ ;IB*2.0*660  - Check to see if Action Type is an LTC Action Type.
+LTCCHK(IBAT) ; Check to see if the action type is an LTC Action Type
+ ;  Input: IBZ - Action type data from IBE(350.1,,0)
+ N IBATDT,IBBG
+ Q:IBAT="" 0      ;Improperly defined Action Type, not an LTC
+ S IBATDT=$G(^IBE(350.1,IBAT,0))
+ S IBBG=$P(IBATDT,U,11)
+ Q:IBBG=9 1  ;LTC INPT Billing Group
+ Q:IBBG=8 1  ;LTC OPT Billing Group
+ Q 0         ;A non LTC Billing Group
  ;

@@ -1,5 +1,5 @@
-IVMUFNC5 ;ALB/AEG - IVM UTILITIES CONTINUED ; 8/10/05 1:39pm
- ;;2.0;INCOME VERIFICATION MATCH;**55,109,149**;5-10-2002;Build 5
+IVMUFNC5 ;ALB/AEG,HM - IVM UTILITIES CONTINUED ;8/10/05 1:39pm
+ ;;2.0;INCOME VERIFICATION MATCH;**55,109,149,183**;5-10-2002;Build 30
  ;
 AGE(DT) ;
  N Y
@@ -21,15 +21,17 @@ CATC(DATA) ;
  ;     2.  Category C based upon declination to provide income info
  ;         but agreed to pay deductible.
  ;
+ ;
  ; Input(s):  $G(^TMP($J,"IVMCM","ZMT1")) global node - Incoming ZMT
  ;            segment.
  ;
  ; Output(s):  Function Value. 1 = Yes patient meets one of the criteria
  ;                             0 = NO test does not meet criteria.
+ ;                            99 = initialize value and default criteria outside of criteria being checked.
  N MTDAT,RETV
- S RETV=0
+ S RETV=99
  Q:'$D(DATA) 0
- S MTDAT("DT")=$P($G(DATA),U,2),MTDAT("MTS")=$P($G(DATA),U,3)
+ S MTDAT("DT")=$$FMDATE^HLFNC($P($G(DATA),U,2)),MTDAT("MTS")=$P($G(DATA),U,3)
  S MTDAT("APD")=$P($G(DATA),U,7),MTDAT("DCLI")=$P($G(DATA),U,16)
  ; Patient Provided income information.
  I '+$G(MTDAT("DCLI")) D
@@ -38,11 +40,51 @@ CATC(DATA) ;
  .;
  .I $G(MTDAT("MTS"))="C",$G(MTDAT("DT"))'<2991006,$G(MTDAT("APD"))=1 S RETV=1 Q
  .I $G(MTDAT("MTS"))="P",$G(MTDAT("DT"))'<2991006,$G(MTDAT("APD"))=1 S RETV=1 Q
- ;
+ .;check CATC status MT for date less than 10/6/1999 and set the RETV  = 0 for error IVM*2.0*183
+ .I $G(MTDAT("MTS"))="C",$G(MTDAT("DT"))<2991006,$G(MTDAT("APD"))=1 S RETV=0 Q  ;IVM*2.0*183 HM
+ .;Pending Adjudication status MT and if date less than 10/6/1999 and set RETV = 0 for error IVM*2.0*183
+ .I $G(MTDAT("MTS"))="P",$G(MTDAT("DT"))<2991006,$G(MTDAT("APD"))=1 S RETV=0 Q  ;IVM*2.0*183 HM
  ; Patient Declined to provide income information.
  I +$G(MTDAT("DCLI")) D
  .; Cat C and Agreed to Pay - No date restriction
  .I $G(MTDAT("MTS"))="C",+$G(MTDAT("APD")) S RETV=1 Q
+ ;
+ Q RETV
+ ;
+ACCMT(DATA) ;
+ ; Added for IVM*2.0*183 HM
+ ; Extrinsic function to determine is incoming ZMT1 segment meets 
+ ; one of the following groups:
+ ;     1.  Based upon patient's income information, these patients are 
+ ;         subject to MT and their status is MT Copay Exempt.  ;IVM*2.0*183 HM
+ ;
+ ;     OR
+ ;
+ ;     2.  Patient is Geographic Means Test (GMT) based upon patients who provide
+ ;         income information and agreement to pay the deductible(s).  The patient 
+ ;         Means Test status is GMT Copay Required.  ;IVM*2.0*183 HM
+ ;
+ ; Input(s):  $G(^TMP($J,"IVMCM","ZMT1")) global node - Incoming ZMT
+ ;            segment.
+ ;
+ ; Output(s):  Function Value. 1 = Yes patient meets one of the criteria
+ ;                             0 = NO test does not meet criteria.
+ ;                            99 = initialize value and default criteria outside of criteria being checked.
+ ;
+ ;Controlled Subscription ICR #7088; Supports use of OLDMTPF^DGMTU4(TESTDATE)
+ ;Checks if the date is more than 1 year old of the VFA Start Date
+ ;
+ N MTDAT,RETV,IVML
+ S RETV=99
+ Q:'$D(DATA) 0
+ S MTDAT("APD")=$P($G(DATA),U,7) ;agree to pay deductible information
+ S MTDAT("DT")=$$FMDATE^HLFNC($P($G(DATA),U,2)),MTDAT("MTS")=$P($G(DATA),U,3)
+ ;check for MT Copay Exempt status and MT less than 1 year old as of "VFA Start Date"
+ I MTDAT("MTS")="A",'$$OLDMTPF^DGMTU4(MTDAT("DT")) S RETV=1 ;Logic for #1 comment above
+ I MTDAT("MTS")="A",+$$OLDMTPF^DGMTU4(MTDAT("DT")) S RETV=0
+ ;check for GMT Copay Required status and agreed to pay and MT less than 1 year old as of "VFA Start Date" and does require patient income
+ I MTDAT("MTS")="G",'$$OLDMTPF^DGMTU4(MTDAT("DT")),$G(MTDAT("APD"))=1 S RETV=1 ;Logic for #2 comment above
+ I MTDAT("MTS")="G",+$$OLDMTPF^DGMTU4(MTDAT("DT")),$G(MTDAT("APD"))=1 S RETV=0
  ;
  Q RETV
  ;
@@ -69,6 +111,8 @@ ELIG(DFN) ; Eligibility Check for Cat C uploads older than previous
  I $P($G(^DPT(DFN,.53)),U)="Y" S IVMELI=0
  ; Catastrophically disabled
  I $P($G(^DPT(DFN,.39)),U,6)="Y" S IVMELI=0 ;IVM*2.0*149
+ ; Medal of Honor, don't upload
+ I $P($G(^DPT(DFN,.54)),U)="Y" S IVMELI=0 ;IVM*2.0*183 HM
  Q IVMELI
  ;
 SC(DFN) ; Check to see if patient is SC 0% non-compensable.

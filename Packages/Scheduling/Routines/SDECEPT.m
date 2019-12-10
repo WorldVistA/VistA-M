@@ -1,5 +1,5 @@
 SDECEPT ;SPFO/RT SCHEDULING ENHANCEMENTS VSE EP API
- ;;5.3;Scheduling;**669,671**;Aug 13 1993;Build 25
+ ;;5.3;Scheduling;**669,671,731**;Aug 13 1993;Build 7
  ;
  ;The API provides Extended Profile Appt info the VS Gui.
  ;INPUT - DFN required
@@ -247,7 +247,7 @@ GETWT(RET,DFN,ADT) ;
  .S X1=ADT S X2=CID D ^%DTC S CWT2=X
  ;
  ; -CONVERT DATES TO EXTERNAL
- I CID'="" S Y=CID D D^DIQ S CID=Y
+ I CID'="" S Y=$S(CID[".":$P(CID,".",1),1:CID) D D^DIQ S CID=Y ; WTC SD*5.3*731 9/19/2019 - Strip off time from CID if improperly filed in patient file
  ;
  S RET=REQT_U_NAT_U_CID_U_FUV_U_CWT1_U_CWT2
  ;

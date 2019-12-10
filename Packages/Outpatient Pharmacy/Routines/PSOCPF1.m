@@ -1,21 +1,26 @@
 PSOCPF1 ;BIR/BAA - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
- ;;7.0;OUTPATIENT PHARMACY;**463**;DEC 1997;Build 36
+ ;;7.0;OUTPATIENT PHARMACY;**463,572**;DEC 1997;Build 1
  ;
 SORT ; get the data
  K ^TMP($J,"PSOCPF"),^TMP($J,"PSOCPFX"),^TMP($J,"PSOCPFC"),^TMP($J,"PSOCPFE")
  ; compile data to display here
- N BDATE,EDATE,RXS,PAT,FILDT,END,RIEN,RSX,RFL,DFN,VADM,VAEL
+ N BDATE,EDATE,RXS,PAT,FILDT,END,RIEN,RSX,RFL,DFN,VADM,VAEL,RFDT
  S BDATE=$P(FILTERS(0),U,1),EDATE=$P(FILTERS(0),U,2)
- S RXS=$P(FILTERS(0),U,3),PAT=$P(FILTERS(0),U,4)
- S FILDT=BDATE-.01,END=EDATE+.9
- F  S FILDT=$O(^PSRX("AD",FILDT)) Q:FILDT>END  Q:FILDT=""  D
- . S RIEN=0 F  S RIEN=$O(^PSRX("AD",FILDT,RIEN)) Q:RIEN=""  D
- .. I RXS,'$D(FILTERS(1,RIEN)) Q
- .. S RFL=$O(^PSRX("AD",FILDT,RIEN,""))
- .. I '$D(^PSRX(RIEN,0)) Q
- .. S DFN=$$GET1^DIQ(52,RIEN_",",2,"I") I DFN="" Q  I '$D(^DPT(DFN,0)) Q
- .. I PAT'=DFN Q
- .. D GETDATA(RIEN)
+ S RXS=$P(FILTERS(0),U,3),DFN=$P(FILTERS(0),U,4)
+ ;read only selected patients RX's
+ F RX=0:0 S RX=$O(^PS(55,DFN,"P",RX)) Q:'RX  D
+ . S RIEN=$P($G(^PS(55,DFN,"P",RX,0)),U)
+ . Q:'RIEN  Q:'$D(^PSRX(RIEN,0))
+ . I RXS,'$D(FILTERS(1,RIEN)) Q
+ . I '$D(^PSRX(RIEN,0)) Q
+ . ; Get this RX's 0 fill and refills for fill date info
+ . I $D(^PSRX(RIEN,2)) S FILDT=$P(^PSRX(RIEN,2),U,2) Q:(FILDT<BDATE)!(FILDT>EDATE)  D SORTRF     ;0 fill
+ . F RFDT=0:0 S RFDT=$O(^PSRX(RIEN,1,RFDT)) Q:'RFDT  D
+ .. S FILDT=$P(^PSRX(RIEN,1,RFDT,0),U) Q:(FILDT<BDATE)!(FILDT>EDATE)  D SORTRF                   ;x refills
+ Q
+ ;
+SORTRF ;Set fill number and call getdata
+ S RFL=$O(^PSRX("AD",FILDT,RIEN,"")) Q:'$D(^DPT(DFN,0))  D GETDATA(RIEN)
  Q
  ;
 GETDATA(RIEN) ;SET UP DATA FOR LIST MANAGER

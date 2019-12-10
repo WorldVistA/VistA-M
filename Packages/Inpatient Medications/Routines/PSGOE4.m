@@ -1,5 +1,5 @@
 PSGOE4 ;BIR/CML3 - REGULAR ORDER ENTRY ;06 Feb 01 / 4:31 PM
- ;;5.0;INPATIENT MEDICATIONS ;**2,50,64,58,111,113,245,253,366**;16 DEC, 1997;Build 7
+ ;;5.0;INPATIENT MEDICATIONS ;**2,50,64,58,111,113,245,253,366,393**;16 DEC, 1997;Build 5
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
@@ -103,6 +103,7 @@ DEL ; delete entry
  Q
  ;
 MRSL ;check for OI med route short list;
+ N PSGS0Y,PSGS0XT ;393 - Preserve PSGS0Y value through PSSJDORF call.
  I $G(PSGPDRG) D START^PSSJORDF(PSGPDRG,"U") N MRCNT S MRCNT=$O(^TMP("PSJMR",$J,"A"),-1) I MRCNT D
  . N MRTP S MRTP="PSJTP" K ^TMP(MRTP,$J) S ^TMP(MRTP,$J,0)=U_U_MRCNT_U_MRCNT
  . N I S I=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I  D
@@ -113,6 +114,7 @@ MRSL ;check for OI med route short list;
  Q
  ;
 CKMRSL ;;check for med route short list leading letters ;*525
+ N PSGS0Y,PSGS0XT ;393 - Preserve PSGS0Y value through PSSJDORF call.
  I $G(PSGPDRG) D START^PSSJORDF(PSGPDRG,"U") N MRCNT S MRCNT=$O(^TMP("PSJMR",$J,"A"),-1) I MRCNT D
  . N MRTP S MRTP="PSJTP" K ^TMP(MRTP,$J) S ^TMP(MRTP,$J,0)=U_U_MRCNT_U_MRCNT
  . N I S I=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I  D

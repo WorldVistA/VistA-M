@@ -1,26 +1,29 @@
 ICDJC1 ;ALB/ARH - DRG GROUPER CALCULATOR 2015 - ATTRIBUTES ;05/26/2016
- ;;18.0;DRG Grouper;**89**;Oct 20, 2000;Build 9
+ ;;18.0;DRG Grouper;**89,97**;Oct 20, 2000;Build 5
  ;
  ; DRG Calcuation for re-designed grouper ICD-10 2015, continuation
  ;
 PRATT(ICDPR,ICDDATE,PRARR) ; get all attributes of Procedures - determine if event is Surgical or Medical and MDCs
+ ; returns array with the Procedure Attributes only, later updated to include Cluster Attributes
  ;
  ; Input:  ICDPR(x) - array of Procedures into API,  ICDDATE - event date
- ; Output: PRARR    - 'O' if any procedure is an Operating Room procedure, 'N' if Non-OR only or blank
+ ; Output: PRARR    - 'O' if any procedure/cluster is an Operating Room procedure, 'N' if Non-OR only or blank
  ;                  - list of all MDC's associated with any of the Operating Room procedures, separated by ';'
- ;         PRARR(x) - pr ifn (#80.1) ^ O/N/blank for specific procedure w/'x' corresponds to entry in ICDPR array
+ ;         PRARR(x) - pr ifn (#80.1) ^ Procedure (OR/NOR) ^ (reserved Clstr) ^ (reserved Clstr Type) ^ ^ ^ OR/NOR applies
+ ;                    w/ OR/NOR = O/N/blank for specific procedure and w/'x' corresponds to entry in ICDPR array
  N PRI,PR,PRIFN,ATTLN K PRARR S PRARR=""
  ;
  S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  S PR=+$G(ICDPR(PRI)) S PRARR(PRI)=PR D
  . S PRIFN=$O(^ICDD(83.6,"B",PR,0)) Q:'PRIFN
  . S ATTLN=$$GETATT("PR",PRIFN,$G(ICDDATE))
- . S PRARR(PRI)=PR_U_$P(ATTLN,U,3) I PRARR'="O",$P(ATTLN,U,3)'="" S PRARR=$P(ATTLN,U,3)
+ . S PRARR(PRI)=PR_U_$P(ATTLN,U,3)_U_U_U_U_U_$P(ATTLN,U,3) I PRARR'="O",$P(ATTLN,U,3)'="" S PRARR=$P(ATTLN,U,3)
  ;
  S PRARR=PRARR_U_$$GETMDC("PR",.ICDPR,$G(ICDDATE)) ; set event procedure attibutes - final OR/NonOR and MDC list
  Q
  ;
  ;
 DXATT(ICDDX,ICDDATE,ICDEXP,DXARR) ; get all attributes of Diagnosis - determine if MCC or CC apply to event and MDCs
+ ; returns array with the Diagnosis Attributes only, later updated to include updates due to HAC
  ; the diagnosis event MDCs are determined by the primary Dx, based on the MDCs of its assigned code sets
  ; event MCC/CC is determined by secondary Dxs and the primary Dx if it is an MCC/CC of its Own
  ; the MCC/CC of a secondary Dx may be applied to the event DRG unless overridden by one of two cases:
@@ -58,12 +61,12 @@ DXATT(ICDDX,ICDDATE,ICDEXP,DXARR) ; get all attributes of Diagnosis - determine 
  Q
  ;
  ;
-GETATT(TYP,CDIFN,DATE) ; get one codes Attributes for date, either diagnosis (83.5,10) or procedure (83.6,10)
+GETATT(TYP,CDIFN,DATE) ; get one codes Attributes for date, either diagnosis (83.5,10) or procedure (83.6,10) or cluster (83.61,10)
  ; only one set of attributes may be active on a given date, returns entire node
- ; input:  TYP - type of codes 'DX' or 'PR', CDIFN - ptr to code in 83.5 or 83.6
- ; output: node of codes attributes active on date, if any, 83.5,10 or 83.6,10
+ ; input:  TYP - type of codes 'DX' or 'PR' or 'CL', CDIFN - ptr to code in 83.5 or 83.6 or 83.61
+ ; output: node of codes attributes active on date, if any, 83.5,10 or 83.6,10 or 86.61,10
  N IX,LINE,CDFILE,BEGIN,END,ATTLN S TYP=$G(TYP),CDIFN=+$G(CDIFN) S ATTLN="" I '$G(DATE) S DATE=DT
- S CDFILE=$S(TYP="DX":83.5,TYP="PR":83.6,1:0)
+ S CDFILE=$S(TYP="DX":83.5,TYP="PR":83.6,TYP="CL":83.61,1:0)
  ;
  S BEGIN=DATE+.00001 S BEGIN=+$O(^ICDD(CDFILE,CDIFN,10,"B",BEGIN),-1)
  S IX=+$O(^ICDD(CDFILE,CDIFN,10,"B",BEGIN,0))
@@ -116,7 +119,7 @@ EXCLD(DX,EXCLGRP,DATE) ; determine if the Diagnosis is in the Exclusion group
  ;
  ;
  ;
-DXHAC(ICDDX,ICDPR,ICDDATE,ICDPOA,DXARR) ; determine HAC for each Dx not POA (N,U), if found then re-set event MCC/CC
+DXHAC(ICDDX,ICDPR,ICDDATE,ICDPOA,DXARR) ; reset DXATT for HAC, determine HAC for each Dx not POA (N,U), if found then re-set event MCC/CC
  ; identify any diagnosis defined as a HAC, if a Dx is HAC then its MCC/CC should be ignored
  ; a HAC applies only to diagnosis Not Present on Admission (N or U)
  ; if a Dx is Not Present on Admission (N,U) and a member of a HAC group then it can not impart MCC/CC to the event
@@ -196,4 +199,39 @@ GETCDH(TYP,CDIFN,DATE,ARRHSX) ; get HAC code sets for a single code on a date, e
  . S LINE=$G(^ICDD(CDFILE,CDIFN,30,IX,0)) Q:'LINE
  . S BEGIN=$P(LINE,U,1),END=$P(LINE,U,2) I 'END S END=9999999
  . I DATE'<BEGIN,DATE'>END S ARRHSX(+$P(LINE,U,3))=CDIFN
+ Q
+ ;
+ ;
+PRCLS(ICDPR,ICDDATE,PRARR) ; reset PRATT for Clusters, determine Cluster OR/NOR attribute for each event Procedure, if found then re-set event OR/NOR
+ ; identify all active clusters satified by the event procedures, set all cluster procedures OR/NOR to the Clusters OR/NOR
+ ; the cluster identified is an indicator and not definitive, each procedure may be assigned to multiple clusters
+ ; assumes that all clusters a procedure is a member of is the same type, either all OR clusters or all NOR clusters
+ ;
+ ; Input:  ICDPR(x) - array of Procedures into API,  ICDDATE - event date
+ ;         PRARR(x) - pr ifn (#80.1) ^ Procedure (OR/NOR) ^ (reserved Cltr) ^ (reserved Clst Type) ^ ^ ^ OR/NOR applies
+ ; Output: PRARR    - 'O' if any procedure/cluster is an Operating Room procedure, 'N' if Non-OR only or blank
+ ;                  - list of all MDC's associated with any of the Operating Room procedures, separated by ';'
+ ;         PRARR(x) - pr ifn (#80.1) ^ Procedure (OR/NOR) ^ Cluster IFN ^ Cluster (OR/NOR) ^ ^ ^ OR/NOR applies
+ ;                    w/ OR/NOR = O/N/blank for specific procedure/cluster and w/'x' corresponds to entry in ICDPR array
+ ;                  - if Procedure is a member of an active cluster then 'Cluster IFN' and 'Cluster (OR/NOR)' are set and 
+ ;                    'OR/NOR applies' is updated to the Clusters OR/NOR attribute
+ N PRI,PR,CLSIFN,ATTLN,ARRCLS
+ ;
+ ; get list of all potential clusters, any cluster one of the event procedures belongs to
+ S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  S PR=+$G(ICDPR(PRI)) D
+ . S CLSIFN=0 F  S CLSIFN=$O(^ICDD(83.61,"ACL",PR,CLSIFN)) Q:'CLSIFN  S ARRCLS(CLSIFN,PRI)=""
+ ; 
+ ; find all active satisfied clusters and update the procedures affected
+ S CLSIFN=0 F  S CLSIFN=$O(ARRCLS(CLSIFN)) Q:'CLSIFN  D
+ . ;
+ . I '$$CLSTR^ICDJC2(CLSIFN,.ICDPR) Q  ; determine if cluster is satified by event procedures
+ . ;
+ . S ATTLN=$$GETATT("CL",CLSIFN,$G(ICDDATE)) I 'ATTLN Q  ; determine if cluster is active, if active get its attribute
+ . ;
+ . S PRI=0 F  S PRI=$O(ARRCLS(CLSIFN,PRI)) Q:'PRI  I $D(PRARR(PRI)) D
+ .. S $P(PRARR(PRI),U,3)=CLSIFN,$P(PRARR(PRI),U,4)=$P(ATTLN,U,3),$P(PRARR(PRI),U,7)=$P(ATTLN,U,3)
+ ;
+ S ATTLN="" S PRI=0 F  S PRI=$O(PRARR(PRI)) Q:'PRI  I ATTLN'="O",$P(PRARR(PRI),U,7)'="" S ATTLN=$P(PRARR(PRI),U,7)
+ ;
+ S PRARR=ATTLN_U_$$GETMDC("PR",.ICDPR,$G(ICDDATE)) ; set event procedure/cluster attibutes - final OR/NonOR and MDC list
  Q

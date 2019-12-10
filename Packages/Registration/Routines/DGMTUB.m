@@ -1,11 +1,15 @@
-DGMTUB ;ALB/RMO/CAW,CPM,LBD - Means Test Billing Utilities ; 7/22/02 9:32am
- ;;5.3;Registration;**33,456,481**;Aug 13, 1993
+DGMTUB ;ALB/RMO/CAW,CPM,LBD,HM - Means Test Billing Utilities ;7/22/02 9:32am
+ ;;5.3;Registration;**33,456,481,972**;Aug 13, 1993;Build 80
  ;
 BIL(DFN,DGDT) ;Determine if patient is pending adjudication
  ;        or category C and has agreed to pay the deductible
  ;         Input  -- DFN   Patient IEN
  ;                   DGDT  Date/Time
  ;         Output -- 1=TRUE and 0=FALSE
+ ;
+ ; Supported ICR #643: Supports use of BIL^DGMTUB(DFN,DGDT) to set the award date
+ ;                      for a veteran who is MOH recipient
+ ;
  N MT0,MTI,TDAT,EDAT,BILL,STOP
  S (BILL,STOP)=0
  I '$G(DFN) G BILQ
@@ -22,6 +26,9 @@ BIL(DFN,DGDT) ;Determine if patient is pending adjudication
  ...;
  ...; - if the patient is not billable on the evaluation date, quit
  ...I EDAT\1=(DGDT\1),'$$CK(MT0) S STOP=1 Q
+ ...;
+ ...; - if MOH indicator is yes, quit
+ ...I $P($G(^DPT(DFN,.54)),U)="Y" S STOP=1 Q  ; DG*5.3*972 HM
  ...;
  ...; - if the test effective date is prior to the evaluation date,
  ...;   obtain the billable status and quit

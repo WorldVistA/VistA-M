@@ -1,5 +1,5 @@
 ZOSFONT ;SFISC/AC - SETS UP ^%ZOSF for Cache for NT/VMS ;09/29/09  15:35
- ;;8.0;KERNEL;**34,104,365,661**;JUL 10, 1995;Build 29
+ ;;8.0;KERNEL;**34,104,365,661,718**;JUL 10, 1995;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;For Cache versions 2011 and above
  S %Y=1
@@ -104,7 +104,7 @@ Z ;;
  ;;SIZE;;Routine size in Bytes
  ;;S Y=0 F I=1:1 S %=$T(+I) Q:%=""  S Y=Y+$L(%)+2
  ;;TEST;;Routine exist
- ;;I X]"",$D(^$ROUTINE(X))
+ ;;I X?1(1"%",1A).15AN,$D(^$ROUTINE(X))
  ;;TMK;;Magtape Mark
  ;;S Y=$ZA\4#2
  ;;TRAP;;Sets Error Trap;S X="^%ET",@^%ZOSF("TRAP"); User $ETRAP

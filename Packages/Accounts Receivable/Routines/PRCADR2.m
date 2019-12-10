@@ -1,5 +1,5 @@
 PRCADR2 ;SF-ISC/YJK-PRINT ADDRESS,TRANS.,BALANCE ;3/19/97  3:19 PM
-V ;;4.5;Accounts Receivable;**45,104,108,149,141,172,241,233,263,301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**45,104,108,149,141,172,241,233,263,301,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;print debtor's /3rd party address,transaction,balances.
  N RCDMC,RCTOP
@@ -9,7 +9,8 @@ WR1 W !!,$P(PRCAGL,U,1),?39,"SOC.SEC.NO.: ",?55,PRCASSN
  I $G(RCKAT) W !,"EMERGENCY RESPONSE INDICATOR: HURRICANE KATRINA"
  I $G(RCDMC) W !,"****Debtor's Account Forwarded To DMC****"
  I $G(RCTOP) W !,"****Debtor's Account Forwarded To TOP****"
- I $G(RCTCSP) W !,"****Debt Referred to Cross-Servicing****"
+ ;PRCA*4.5*350
+ I $G(RCTCSP) W !,"****Debt ",$S($$RRD^RCTCSPU(Z0):"Re-",1:""),"Referred to Cross-Servicing****"
 END1 K %,PRCADOB,PRCASSN,PRCASTE,PRCAGL,Z1,Z2,Z0
  Q
  ;
@@ -27,7 +28,7 @@ WR2 ;called by EN2^PRCADR
  S PRCATD=$E(PRCATD,4,5)_"/"_$E(PRCATD,6,7)_"/"_$E(Y(1),3,4)  ;trans date
  ;  if a decrease adjustment, show as negative (patch 4.5*172)
  I $P(PRCAG,"^",2)=35,$P(PRCAG,"^",5)>0 S $P(PRCAG,"^",5)=-$P(PRCAG,"^",5)
- W ?44,PRCATD,?54,$J($P(PRCAG,U,5),11,2) W:+$P(PRCAGL0,U,4)<2 ?67,"INCOMPLETE"
+ W ?47,PRCATD,?57,$J($P(PRCAG,U,5),11,2) W:+$P(PRCAGL0,U,4)<2 ?67,"INCOMPLETE"
 END2 K PRCAG,PRCATD,PRCATY,PRCATYPE,PRCAGL0
  Q  ;end of WR2
  ;
@@ -47,5 +48,6 @@ WR3 W !,?18,"BALANCES",?31,"PAID"
  I $D(PRCAL),$P($G(^RCD(340,(+$P(^PRCA(430,D0,0),"^",9)),3)),"^",9)'="" W !,"Lesser Withhold Amt to DMC: ",$J($P(^(3),"^",9),0,2)
  K PRCAL I $G(^PRCA(430,D0,14)) S PRCAL=^(14) I $P(PRCAL,U)]"" W !!,"Date forwarded to TOP: " S Y=$P(PRCAL,U) D DD^%DT W Y
  I $D(PRCAL),$P($G(^RCD(340,(+$P(^PRCA(430,D0,0),"^",9)),6)),"^",6)'="" W !,"TOP Hold Date:  " S Y=$P(^(6),"^",6) D DD^%DT W Y
- I $G(^PRCA(430,D0,15)) S PRCAL=^(15) I $P(PRCAL,U)]"" W !!,"CS Referred Date: " S Y=$P(PRCAL,U) D DD^%DT W Y
+ ;PRCA*4.5*350
+ I $G(^PRCA(430,D0,15)) S PRCAL=^(15) I $P(PRCAL,U)]"" W !!,"CS " W:$$RR^RCTCSPU(D0) "Re-" W "Referred Date: " S Y=$P(PRCAL,U) D DD^%DT W Y
 END3 K PRCAL,PRCACODE,PRCALT,PRCAK,PRCAGL6,PRCAGL7 Q

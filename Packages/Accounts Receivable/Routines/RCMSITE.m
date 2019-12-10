@@ -1,5 +1,5 @@
 RCMSITE ;ALB/RRG - EDIT SITE PARAMETERS ;Jul 02, 2014@15:46:14
-V ;;4.5;Accounts Receivable;**173,236,253,298,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**173,236,253,298,315,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BEG ;Start editing site paramters
@@ -26,6 +26,19 @@ GRP ;Edit AR Group Parameters
  NEW DIE,DR,DA,Y
  F  W ! S DIC(0)="QEAML",DIC="^RC(342.1,",DLAYGO=342.1 D ^DIC K DIC G:Y<0 Q3 S DA=+Y,DIE="^RC(342.1,",DR=$P($G(^RC(342.2,+$P(^RC(342.1,+Y,0),"^",2),1)),"^") I DR]"" D ^DIE
 Q3 Q
+TCSP ;Edit TCSP Site enable/disable PRCA*4.5*350
+ N DIE,DR,DA,Y,A,NZ,%
+ I $O(^RC(342,1,40,0))="" W !,"**** SITE IS ACTIVATED ****" S NZ="",A=0
+ E  S A=$O(^RC(342,1,40,99999),-1),NZ=^RC(342,1,40,A,0)
+ I NZ'="" W !,"SITE IS ",$S($P(NZ,U)="S":"STOPPED",1:"REACTIVATED")," as of ",$$FMTE^XLFDT($P(NZ,U,2)\1,"5Z")," by ",$P($G(^VA(200,$P(NZ,U,3),0)),U)
+ W ! S DIR("A")="Are you sure you want to "_$S(NZ="":"stop",$P(NZ,U)="R":"stop",1:"reactivate")_" site",DIR(0)="Y",DIR("B")="NO" D ^DIR K DIR
+ I 'Y W !!,"*** NO ACTION TAKEN ***" Q
+ D NOW^%DTC
+ S ^RC(342,1,40,A+1,0)=$S($P(NZ,U)="S":"R",1:"S")_U_%_U_DUZ
+ S ^RC(342,1,40,"B",$S($P(NZ,U)="S":"R",1:"S"),A+1)=""
+ S $P(^RC(342,1,40,0),U,2)=342.02 S $P(^RC(342,1,40,0),U,3)=A+1,$P(^RC(342,1,40,0),U,4)=$P(^RC(342,1,40,0),U,4)+1
+ W !!,"**** SITE IS NOW ",$S(NZ="":"STOPPED",$P(NZ,U)="R":"STOPPED",1:"REACTIVATED")," ****"
+ Q
 DEA ;Deactive an AR group
  NEW DIE,DIC,DA,DR,Y,GRP
  S DIC="^RC(342.1,",DIC(0)="QEAM",DIC("S")="I $P(^(0),""^"",2)'=7" D ^DIC Q:Y<0  S GRP=+Y

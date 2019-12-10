@@ -1,5 +1,5 @@
-DGMTR1 ;ALB/CJM,SCG,LBD,BDB - Check Means Test Requirements Cont'd;3/25/92  09:51
- ;;5.3;Registration;**182,344,433,456,564,688,840,858**;Aug 13, 1993;Build 30
+DGMTR1 ;ALB/CJM,SCG,LBD,BDB,HM - Check Means Test Requirements Cont'd;3/25/92  09:51
+ ;;5.3;Registration;**182,344,433,456,564,688,840,858,972**;Aug 13, 1993;Build 80
  ;
 COPYRX(DFN,MTIEN) ;
  ;Creates a Pharmacy Copay test based on the means test if the vet is
@@ -105,13 +105,14 @@ CHK(DFN) ;
  S DGELIG=U_$P($G(^DIC(8,+DGI,0)),U,9)_U
  S DGI=0 F  S DGI=$O(^DPT(DFN,"E",DGI)) Q:'DGI  S DGE=$P($G(^DPT(DFN,"E",DGI,0)),U),DGELIG=DGELIG_$P($G(^DIC(8,+DGE,0)),U,9)_U
  I (DGELIG["^1^") S DGMTCOR=0 G CHKQ  ;SC 50-100%
- F DGI=.3,.362,.39,.52 S DGNODE(DGI)=$G(^DPT(DFN,DGI))
+ F DGI=.3,.362,.39,.52,.54 S DGNODE(DGI)=$G(^DPT(DFN,DGI)) ;added MOH indicator field on loop DG*5.3*972 HM
  I $P(DGNODE(.362),U,12)["Y"!(DGELIG["^2^") S DGMTCOR=0 G CHKQ ;A&A
  I $P(DGNODE(.362),U,13)["Y"!(DGELIG["^15^") S DGMTCOR=0 G CHKQ ;HB
  I $P(DGNODE(.362),U,14)["Y"!(DGELIG["^4^") S DGMTCOR=0 G CHKQ ;PENSION
  I $P(DGNODE(.52),U,5)["Y"!(DGELIG["^18^") S DGMTCOR=0 G CHKQ ;POW
  I $P(DGNODE(.39),U,6)["Y"!(DGELIG["^21^") S DGMTCOR=0 G CHKQ ;CD DG*5.3*840
  I $P(DGNODE(.3),U,5)["Y"&($P(DGNODE(.3),U,2)>0)&($P(DGNODE(.362),U,20)>0) S DGMTCOR=0 G CHKQ ;UNEMPLOYABLE
+ I $P(DGNODE(.54),U,1)["Y" S DGMTCOR=0 G CHKQ ;if MOH="Y" Q DG*5.3*972 HM
 CHKQ ;
  Q DGMTCOR
 MAIL ; Send a mailman msg to user/ INCONSISTENCY EDIT GROUP with results

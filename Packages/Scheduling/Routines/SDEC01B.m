@@ -1,5 +1,5 @@
 SDEC01B ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+ ;;5.3;Scheduling;**627,642,722**;Aug 13, 1993;Build 26
  ;
  Q
  ;
@@ -79,6 +79,7 @@ CHKP(USER,SDRES) ;update existing provider resource entry
  Q 1
  ;
 CHKC(SDCL,SDRES) ;update existing clinic resource entry
+ Q  ;  722 disabled to stop changing the resource file wtc 2/22/19
  N CINACT,CREACT,RINACT,RREACT,RSN,RSTS,RSTYP,SDFDA,SCN,SCTS
  S RSTYP=$$GET1^DIQ(409.831,SDRES_",",.012,"I")
  Q:$P(RSTYP,";",1)'=SDCL

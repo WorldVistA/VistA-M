@@ -1,5 +1,5 @@
 GMTSPST1 ;BIR/RMS - MED RECON TOOL #1 (MED REC PROFILE) ;May 14, 2018@20:50
- ;;2.7;Health Summary;**94,127**;Oct 20, 1995;Build 4
+ ;;2.7;Health Summary;**94,127,131**;Oct 20, 1995;Build 1
  ;Reference to COVER^ORWPS supported by IA 4926
  ;References to ^ORRDI1 supported by IA 4659
  ;Reference to ^XTMP("ORRDI","PSOO" supported by IA 4660
@@ -160,9 +160,10 @@ OPTDISP ;Display an Outpatient Prescription Entry
  . S ORDTYP=$P($G(^TMP($J,"GMTSPST1",DFN,+PACKREF,2)),U,1)
  . S QDFLAG=0 I ORIGRX]"",ORDTYP="RNW" D
  .. W !?10,"Renewed from Rx# "_ORIGRX
- .. D CKP Q:$D(QMTSQIT)
+ .. D CKP Q:$D(GMTSQIT)
  .. W ?50,"Qty/Days Supply: "_$G(^TMP($J,"GMTSPST1",DFN,+PACKREF,12))_"/"_$G(^TMP($J,"GMTSPST1",DFN,+PACKREF,101))
- .. S QDFLAG=1 D CKP Q:$D(GMTSQIT)
+ .. S QDFLAG=1
+ . D CKP Q:$D(GMTSQIT)
  . W !?10,"Login Date: "_$$FMTE^XLFDT(+$G(^TMP($J,"GMTSPST1",DFN,+PACKREF,15)),"2D")
  . D CKP Q:$D(GMTSQIT)
  . I 'QDFLAG D

@@ -1,5 +1,5 @@
 SDEC26 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+ ;;5.3;Scheduling;**627,658,722**;Aug 13, 1993;Build 26
  ;
  Q
  ;
@@ -79,7 +79,7 @@ SETNOTE(APID,NOTE)  ;set note to SDEC APPOINTMENT and file 44-APPOINTMENT-OTHER 
  Q:$P(SDRTYP,";",2)'="SC("
  S SDCL=$P(SDRTYP,";",1)
  S SDT=$$GET1^DIQ(409.84,APID_",",.01,"I")
- S SDID=0 F  S SDID=$O(^SC(SDCL,"S",SDT,1,SDID)) Q:SDID=""  Q:+$G(^SC(SDCL,"S",SDT,1,SDID,0))=DFN
+ S SDID=0 F  S SDID=$O(^SC(SDCL,"S",SDT,1,SDID)) Q:SDID=""  Q:(($P($G(^SC(SDCL,"S",SDT,1,SDID,0)),U,9)'="C")&(+$G(^SC(SDCL,"S",SDT,1,SDID,0))=DFN))  ;*zeb 722 2/21/19 skip cancelled appts
  Q:SDID=""
  S IENS=SDID_","_SDT_","_SDCL_","
  S FDA(44.003,IENS,3)=NOTE

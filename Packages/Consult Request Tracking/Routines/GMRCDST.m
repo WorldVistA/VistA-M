@@ -1,5 +1,5 @@
 GMRCDST ;ABV/BL - Retrieve Decision from DST server;03/28/2019
- ;;3.0;CONSULT/REQUEST TRACKING;**124**;MAR 28, 2019;Build 31
+ ;;3.0;CONSULT/REQUEST TRACKING;**124,139**;DEC 27, 1997;Build 10
  ;
  ;IA6173  (In process of submission)
  ;IA6171  (In process of submission)
@@ -25,6 +25,9 @@ PROT(MSG)  ;GMRC SIGNED CONSULT DST-PROTOCOL ENTRY POINT
  . I SIGN>0 S SIGNED=1
  Q:SIGNED=0 "-1^ORDER NOT SIGNED"
  ;
+ ;Need the DUZ of user from Order file for Autoforward
+ K GMRCORNP
+ S GMRCORNP=$$GET1^DIQ(100,ORIFN,3,"I")
  S ID=$$FINDIDO(ORIFN)
  I ID="" Q "-1^NO DST ID FOUND"
  I $P(ID,"^")="-1" Q "-1^NO DST DATA FOUND"
@@ -59,6 +62,10 @@ GETDST(IEN123,ID) ;
  ; If decision data not found: -1^No decision data found
  ; If decision data found: 1
  ;
+ ;Autoforwarding variables added
+ ; AFOR: Indicator of Autoforward value = DAF-DST Forwarding:
+ ; APAY: Name of consult service from file 123.5 to forward to
+ ;
  N A,B,CAPTIONS,COM,COMCT,DATA,I,SERVER,SERVICE,RESOURCE,REQUEST,RESPONSE,RESULT,RET,X,ERRFLG
  K NUMERR
  S ERRFLG=0,NUMERR=0
@@ -70,10 +77,9 @@ GETDST(IEN123,ID) ;
  S REQUEST=$$GETREST^XOBWLIB(SERVICE,SERVER)
  S REQUEST.Timeout=1
  ;
- ; Execute the HTTP Get method.
 TRYAG ; Execute the HTTP Get method.
- K XUERR,RESPJSON
- S ERRFLG=0
+ K XUERR,RESPJSON,AFOR,APAY,GMRCSS
+ S AFOR=0,APAY=""  ;Set variable to check for AutoForward
  S RESULT=$$GET^XOBWLIB(REQUEST,RESOURCE,.XUERR,0)
  I 'RESULT D
  . S COM(1)="DVE-DST Error from VistA:"  ;NEED TO WRITE ERROR TO 123 FILE
@@ -81,9 +87,8 @@ TRYAG ; Execute the HTTP Get method.
  . I XUERR["Http" S COM(3)=XUERR.statusLine
  . I XUERR["ObjectError" S COM(3)=XUERR.domain,COM(4)=XUERR.errorType
  . S ERRFLG=1,NUMERR=NUMERR+1
- ;if we did not connect, try 5 times
- I ERRFLG&(NUMERR<5) H 1 G TRYAG
  ;If the ERRFLG then store the error in the consult
+ I ERRFLG&(NUMERR<5) H 1 G TRYAG
  I ERRFLG D CMT^GMRCGUIB(IEN123,.COM,"",DT,DUZ) Q 0
  ; Process the response.
  S RESPONSE=REQUEST.HttpResponse
@@ -96,6 +101,12 @@ TRYAG ; Execute the HTTP Get method.
  F I=1:1:$L(RESPJSON,"^") D
  . S COM(I)=$P(RESPJSON,"^",I)
  . I COM(I)="" K COM(I)
+ . ;check for autoforwarding GMRC*3.0*139
+ . I COM(I)["DAF-DST Forwarding:" D
+ . . I $P(COM(I),":",2)["YES" S AFOR=1
+ . I COM(I)["AFD-DST Forward to" D
+ . . S APAY=$P(COM(I),":",2)
+ . . I $E(APAY,1)=" " S APAY=$E(APAY,2,$L(APAY))  ;REMOVE LEADING SPACE FOR FORWARDED CONSULT
  ;If we have data in the COM array store in the Note, other wise quit with an error
  I $D(COM) D
  . ;COM ARRAY IS EXPECTED TO BE SERIALLY NUMBERED
@@ -104,10 +115,28 @@ TRYAG ; Execute the HTTP Get method.
  . F  S COMNUM=$O(COM(COMNUM)) Q:COMNUM=""  D
  . . S I=I+1
  . . S TCOM(I)=COM(COMNUM)
+ . ;Add autoforward message to data stream
+ . I AFOR S TCOM(I+1)="Consult forwarded by DST"
+ . ;
  . K COM
  . M COM=TCOM
  . K TCOM
- I $D(COM) D CMT^GMRCGUIB(IEN123,.COM,"",DT,DUZ) Q 1
+ ;Need to make sure the Autoforward Service exists
+ I AFOR D
+ . ;Check for APAY being populated if not change AFOR and log an error
+ . I APAY="" D  Q
+ . . S AFOR=0
+ . . S COM(I+1)="DVE-DST Error from VistA: No Autoforward Target"
+ . ;Get Forwarding Service
+ . S GMRCSS="" S GMRCSS=$O(^GMR(123.5,"B",APAY,GMRCSS))
+ . Q:GMRCSS'=""
+ . ;The forwarding service did not exist. Log error in msg, stop autoforward
+ . S AFOR=0
+ . S I="A" S I=$O(COM(I),-1)
+ . S COM(I+1)="DVE-DST Error from VistA: Autoforward target not found"
+ I $D(COM) D  Q 1
+ . I 'AFOR D CMT^GMRCGUIB(IEN123,.COM,"",DT,DUZ) Q
+ . I AFOR D AFORT(IEN123,APAY,.COM,GMRCSS,GMRCORNP) Q
  I '$D(COM) S COM(1)="DVE-DST ID ISSUE: No Content sent from DST"
  D CMT^GMRCGUIB(IEN123,.COM,"",DT,DUZ) Q 1
  Q
@@ -146,14 +175,17 @@ FINDID45(ORIFN) ;
  S N="" F  S N=$O(OUT(100.045,N)) Q:N=""  S (N1,STR)="" D
  . F  S N1=$O(OUT(100.045,N,N1)) Q:N1=""  S STR=STR_OUT(100.045,N,N1) D
  .. S N2="" F  S N2=$O(OUT(100.045,N,N1,N2)) Q:N2=""  S STR=STR_OUT(100.045,N,N1,N2)
- . I STR["DST ID:" S STR=$P(STR,"DST ID:",2) F I=1:1:$L(STR) S Y=$E(STR,I) Q:Y="#"  S ID=ID_Y
+ . I STR["DST ID:" D
+ . . S STR=$P(STR,"DST ID:",2)
+ . . S STR=$P(STR,"--",1)  ;After refactoring str includes dashes at the end
+ . . F I=1:1:$L(STR) S Y=$E(STR,I) Q:Y="#"  S ID=ID_Y
  Q ID
  ;
 FINDIDC(IEN123) ;
  ;This API searches FILE #123, FIELD #20 (REASON FOR REQUEST)looking for a 
  ;"DST ID:" tag and, if found, will extract the DST ID and call API 
  ;$$GETDST to retrieve the decision data from the DST database and create
- ;a comment in the consult containing the decsion data
+ ;a comment in the consult containing the decision data
  ;
  ;Input: IEN123 IEN of file #123
  ;Output: DST ID or ""
@@ -281,3 +313,18 @@ SVDATA() ; extrinsic variable, save original FileMan data, returns storage node
 FMITMS ; list of FileMan entries: "file # ^ .01 field value"
  ;;101^GMRC EVSEND OR
  ;
+ Q
+AFORT(IEN123,APAY,COM,GMRCSS,GMRCORNP)  ; Entry point for AutoForwarding of a consult
+ ;requires the Name of the consult we are forwarding too
+ ;IEN123 - IEN of consult from File 123
+ ;GMRCSS - Service to which consult is being forwarded
+ ;GMRCATTN - Provider whose attention consult is sent to. Can be "" or pointer to File 200
+ ;GMRCURGI - Urgency of the request from the 123 file pointing to the 101 file
+ ;GMRCORNP - Person who is responsible for forwarding the consult
+ ;COM is the comments array explaining the forwarding action from DST
+ ;     passed in as COM(1)="Xxxx Xxxxx...",COM(2)="Xxxx Xx Xxx...", COM(3)="Xxxxx Xxx Xx...", etc.
+ K GMRCATTN,ORDATE,GMRCURGI
+ S GMRCATTN="",ORDATE=""
+ S GMRCURGI=$P(^GMR(123,IEN123,0),"^",9)
+ S Y=$$FR^GMRCGUIA(IEN123,GMRCSS,GMRCORNP,GMRCATTN,GMRCURGI,.COM,ORDATE)
+ Q

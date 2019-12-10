@@ -1,5 +1,5 @@
 PSJPADSI ;BIR/JCH PADE INBOUND SYSTEM SET UP ;8/25/15
- ;;5.0;INPATIENT MEDICATIONS;**317,337,362**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS;**317,337,362,392**;16 DEC 97;Build 2
  ;
  ; Reference to EDIT^XPAREDIT is supported by DBIA 2336.
  ; Reference to WIN^DGPMDDCF is supported by DBIA 1246.
@@ -366,7 +366,8 @@ CABLOC(PSJCAB,PSJSUBFI,LOCIEN) ; Return true if location LOCIEN is linked to cab
  .; If no match and looking for clinic, check all clinic wildcards linked to cabinet
  .D GETS^DIQ(44,+LOCIEN,".01",,"CLINAM") D
  ..S CLINAM=$G(CLINAM(44,+LOCIEN_",",".01")),PARTIAL=$E(CLINAM,1,2)
- ..F  S PARTIAL=$O(^PS(58.63,"WC",PARTIAL)) Q:$E(PARTIAL,1,3)'=$E(CLINAM,1,3)!$G(CABLOC)  D
+ ..F  S PARTIAL=$O(^PS(58.63,"WC",PARTIAL)) Q:PARTIAL=""!$G(CABLOC)  D
+ ...Q:$E(PARTIAL,1,3)'=$E(CLINAM,1,3)
  ...Q:'($E(CLINAM,1,$L(PARTIAL))=PARTIAL)
  ...I $D(^PS(58.63,"WC",PARTIAL,PSJCAB)) S CABLOC=1
  Q CABLOC

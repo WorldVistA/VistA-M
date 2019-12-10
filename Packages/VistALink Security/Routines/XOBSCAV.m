@@ -1,6 +1,6 @@
-XOBSCAV ;kec/oak/TECHNATOMY/PB - VistaLink Access/Verify Security ;12/09/2002
- ;;1.6;VistALink Security;**3**;May 08, 2009;Build 8
- ;Per VHA Directive 6402, this routine should not be modified
+XOBSCAV ;; kec/oak/TECHNATOMY/PB - VistaLink Access/Verify Security ; 12/09/2002  17:00
+ ;;1.6;VistALink Security;**3,4**;May 08, 2009;Build 3
+ ; ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ; ---------------------------------------------------------------------
@@ -97,7 +97,7 @@ ERROR(XOBR,XOBFCODE,XOBFSTR,XOBCODE,XOBSTR) ; -- send security error back to cli
  .S:$D(XOBDATA("XOB SECAV","OLDVC")) XOBDATA("XOB SECAV","OLDVC")="<masked>"
  .S:$D(XOBDATA("XOB SECAV","NEWVC")) XOBDATA("XOB SECAV","NEWVC")="<masked>"
  .S:$D(XOBDATA("XOB SECAV","NEWVCCHECK")) XOBDATA("XOB SECAV","NEWVCCHECK")="<masked>"
- .D ^%ZTER
+ .D APPERROR^%ZTER("VistALink Error ") ;XOBV*1.6*4
  K XOBDATA("XOB SECAV")
  Q
  ;

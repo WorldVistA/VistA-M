@@ -1,5 +1,5 @@
 RCDPAPLI ;WISC/RFJ-account profile top list manager init ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,141,241,303,301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**114,141,241,303,301,315,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -117,7 +117,8 @@ INIT ;  init for list manager screen
  I $D(^RCD(340,"TCSP",+RCDEBTDA)) D
  .   S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
  .   S RCLINE=RCLINE+1
- .   D SET^RCDPBPLM("Debt Referred to Cross-Servicing",RCLINE,1,80)
+ .   ; PRCA*4.5*350
+ .   D SET^RCDPBPLM("Debt "_$S($$RRD^RCTCSPU(+RCDEBTDA):"Re-",1:"")_"Referred to Cross-Servicing",RCLINE,1,80)
  .   D SET("Total CS Debt: "_$J($$TOTALB^RCTCSPU(+RCDEBTDA),13,2),RCLINE,45,80)
  ;
  ;  show if hurricane katrina vet

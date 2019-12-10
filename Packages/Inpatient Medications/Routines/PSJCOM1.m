@@ -1,5 +1,5 @@
-PSJCOM1 ;BIR/CML3-DISPLAY COMPLEX ORDERS FOR DISCONTINUE ;12 June 2019 09:31:53
- ;;5.0;INPATIENT MEDICATIONS;**110,127,281,315,327**;16 DEC 97;Build 114
+PSJCOM1 ;BIR/CML3 - DISPLAY COMPLEX ORDERS FOR DISCONTINUE ; 10/18/19 2:40pm
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,281,315,327,393**;16 DEC 97;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^VALM1 via DBIA 10116
  ; Reference to ^PS(55 via DBIA 2191
@@ -123,7 +123,7 @@ NEW ;
  I '$D(PSJDOSE("DO")),$D(PSGORD) S $P(@(F_".2)"),U,5,6)=$P(@("^PS("_$S(PSGORD["U":"55,"_PSGP_",5",1:53.1)_","_+PSGORD_",.2)"),U,5,6)
  ; Naked references below refers to full reference in F which is ^TMP("PSJCOM2",$J,DA,
  S @(F_"2)")=$P(ND2,"^",1,6),^(4)=ND4 S:PSGSI]"" ^(6)=PSGSI
- S @(F_"2.1)")=ND2P1 ;*315
+ I $G(PSGRF)]"" S @(F_"2.1)")=ND2P1 ;*315
  ; Naked references below refers to full reference in F which is ^TMP("PSJCOM2",$J,DA,
  S (C,X)=0 F  S X=$O(^PS(53.45,PSJSYSP,2,X)) Q:'X  S D=$G(^(X,0)) I D,$S('$P(D,U,3):1,1:$P(D,U,3)>DT) S C=C+1,@(F_"1,"_C_",0)")=$P(D,U,1,2),@(F_"1,""B"","_+D_","_C_")")=""
  S:C @(F_"1,0)")=U_$S(PSGOEAV:55.07,1:53.11)_"P^"_C_U_C

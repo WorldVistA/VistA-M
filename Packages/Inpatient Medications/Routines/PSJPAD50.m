@@ -1,5 +1,5 @@
 PSJPAD50 ;BIR/JCH PADE DRUG LOOKUP ;8/25/15
- ;;5.0;INPATIENT MEDICATIONS;**317**;16 DEC 97;Build 130
+ ;;5.0;INPATIENT MEDICATIONS;**317,392**;16 DEC 97;Build 2
  ;
  ; Reference to ^VADPT is supported by DBIA 10061.
  ; Reference to EN^DDIOL is supported by DBIA 10142.
@@ -284,7 +284,8 @@ PADECL(CLINIC) ; Return flag indicating if CLINIC is linked to any PADE devices
  ; If no match, check PADEs associated with clinic wildcards
  I '$G(PDLINK) D GETS^DIQ(44,+CLINIC,".01",,"CLINAM") D
  .S CLINAM=$G(CLINAM(44,+CLINIC_",",".01")),PARTIAL=$E(CLINAM,1,2)
- .F  S PARTIAL=$O(^PS(58.63,"WC",PARTIAL)) Q:$E(PARTIAL,1,3)'=$E(CLINAM,1,3)!$G(PDLINK)  D
+ .F  S PARTIAL=$O(^PS(58.63,"WC",PARTIAL)) Q:PARTIAL=""!$G(PDLINK)  D
+ ..Q:$E(PARTIAL,1,3)'=$E(CLINAM,1,3)
  ..N PADE,STATUS S STATUS=""
  ..S PADE="" F  S PADE=$O(^PS(58.63,"WC",PARTIAL,PADE)) Q:'PADE!$G(PDLINK)  D
  ...S STATUS=$P($G(^PS(58.63,PADE,0)),"^",4)

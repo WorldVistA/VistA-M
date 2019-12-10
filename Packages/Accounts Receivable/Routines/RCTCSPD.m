@@ -1,5 +1,5 @@
 RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,327,315,336,338,351**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**301,327,315,336,338,351,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 a. Add check to insure debtor exists to prevent 
@@ -22,16 +22,17 @@ RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
  ;                building address for CS transactions
  ;
 ENTER ;          Entry point from nightly process PRCABJ
- N DEBTOR,P150DT,PRIN,INT,ADMIN,TDEB,TFIL,RCDFN,CNTR,SITE,LN,FN,MN,SITE,F60DT,VADM,PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2,ERROR,ADDR,CAT,BILLDT,CURRTOT,SITECD
- N SEQ,CNTLID,PREPDT,X1,X2,X,DELDT,ACTDT
+ N DEBTOR,P150DT,RC181DT,PRIN,INT,ADMIN,TDEB,TFIL,RCDFN,CNTR,SITE,LN,FN,MN,SITE,F60DT,VADM,PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2,ERROR,ADDR,CAT,BILLDT,CURRTOT,SITECD
+ N SEQ,CNTLID,PREPDT,X1,X2,X,DELDT,ACTDT,SITE40
  D SETUP^RCTCSPD0
  S (DEBTOR,RCNT)=0,SEQ=0
 RSDEBTOR ;
  F  S DEBTOR=$O(^PRCA(430,"C",DEBTOR)) Q:DEBTOR'?1N.N  D
  .D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZBDEBTOR")=%_U_DEBTOR
- .N X,RCDFN,DEMCS,DOB,GNDR,DEBTOR0,DEBTOR1,DEBTOR3,DEBTOR7,BILL
+ .N X,RCDFN,DEMCS,DOB,GNDR,DEBTOR0,DEBTOR1,DEBTOR3,DEBTOR7,DEBTOR8,BILL
  .I '$D(^RCD(340,DEBTOR,0)) S ^XTMP("RCTCSPD",$J,"ZZUNDEF",DEBTOR)="" Q
  .S DEBTOR0=^RCD(340,DEBTOR,0),DEBTOR1=$G(^(1)),DEBTOR3=$G(^(3)),DEBTOR7=$G(^(7))
+ .S DEBTOR8=$O(^RCD(340,DEBTOR,8,"A"),-1) I DEBTOR8?1.N S DEBTOR8=$P($G(^RCD(340,DEBTOR,8,DEBTOR8,0)),U)
  .S RCDFN=+DEBTOR0
  .S DEMCS=$$DEM^RCTCSP1(RCDFN)
  .S DOB=$P(DEMCS,U,2)
@@ -59,17 +60,22 @@ RSDEBTOR ;
  ....D RCRSD^RCTCSPD4 ; set debtor recall non-financial transaction PRCA*4.5*315
  .S (BILL,TOTAL,REPAY)=0
 RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
+ ..I $G(ONEBILL)'="",BILL'=ONEBILL Q  ; Test single bill ; PRCA*4.5*350
  ..D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZCTRACKER")=%_U_DEBTOR_U_BILL
- ..N B0,B4,B6,B7,B9,B12,B121,B14,B15,B16,B19,B20,ACTION
+ ..N B0,B4,B6,B7,B9,B12,B121,B14,B15,B16,B19,B20,ACTION,RR
  ..S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7)),B9=$G(^(9)),B12=$G(^(12)),B121=$G(^(12.1)),B14=$G(^(14)),B15=$G(^(15)),B16=$G(^(16)),B19=$G(^(19)),B20=$G(^(20))
+ ..S RR=$$RR^RCTCSPU(BILL) ;PRCA*4.5*350
  ..Q:($P(B6,U,21)\1)<ACTDT  ;cs activation date cutoff
  ..I $D(^PRCA(430,"TCSP",BILL)),$$RCLLCHK^RCTCSP2(BILL) Q  ;bill previously sent to TCSP
  ..I $$UPDCHK(BILL) Q
  ..Q:B4  ;repayment plan
- ..Q:+$P(B15,U,7)  ;quit if bill is stopped
+ ..; Do we clear stop flag if RR TBD ; PRCA*4.5*350
+ ..I +$P(B15,U,7),RR'=0 Q  ;quit if bill is stopped
  ..Q:+$P(B14,U,1)  ;bill referred to TOP
  ..Q:$P(DEBTOR1,"^",9)=1  ;quit if debtor address marked unknown
  ..Q:$E($P(DEMCS,U,3),1,5)="00000"  ;quit if the ssn is not valid
+ ..Q:DEBTOR8="S"  ;quit if debtor is stopped PRCA*4.5*350
+ ..Q:SITE40="S"  ; quit if site is stopped PRCA*4.5*350
  ..I +$P(B12,U,1) Q  ;check date bill sent to dmc
  ..Q:($P(B121,U,1)="N")!($P(B121,U,1)="P")  ;dmc debt valid
  ..I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
@@ -80,8 +86,7 @@ RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  ..;PRCA*4.5*338 - Use RFCHK^RCTOPD to determine if the Category can be referred
  ..;               using the new date based algorithm.
  ..Q:'$$RFCHK^RCTOPD(CAT,"N",1.03,$P(B6,U,21))
- ..;end PRCA*4.5*338
- ..;dpn checks
+ ..;end PRCA*4.5*338 ..;dpn checks
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,'$P(B20,U,4) D DUEPROC^RCTCSP3 Q  ;check to send dpn file to aitc
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,$P(B20,U,4),'$P(B20,U,5) Q  ;check for print letter date
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,$P(B20,U,4),$P(B20,U,5) D  I X<60 Q  ;check for 60 day wait from print letter date
@@ -90,6 +95,8 @@ RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  ...I X'<60 S $P(B20,U,6)=DT,^PRCA(430,BILL,20)=B20 ;set the bill referral date to the current date
  ..S BILLDT=$P(B6,U,21),PREPDT=$P(B0,U,10)
  ..I BILLDT>P150DT Q  ;150 day old check
+ ..;S BILLDT=$P(B6,U,1),PREPDT=$P(B0,U,10) ; PRCA*4.5*343 - change BILLDT from DATE ACCOUNT ACTIVATED (#60) to LETTER1(#61)
+ ..;I BILLDT>RC181DT Q  ; PRCA*4.5*343 - Must be 181 days or more after LETTER1 date
  ..I ($P(B0,U,8)=16),('$P(B6,U,3)) D  Q
  ...;no 3rd letter being sent
  ...N DNM
@@ -114,12 +121,13 @@ ADDCHKND(BILL) ;add a new bill referral, new debtor
  N TOTAL,ACTION,X
  S ACTION="A"
  I $D(^RCD(340,"TCSP",DEBTOR)) Q 0 ;check debtor previously referred
- I $P(B15,U,2) Q 0 ;check tcsp bill recall flag
  I $P(DEBTOR7,U,2) Q 0 ;check debtor recall
- I $P(B15,U,7) Q 0 ;check stop tcsp referral flag
  I $D(^PRCA(430,"TCSP",BILL)) Q 0 ;bill previously sent to TCSP
  S TOTAL=$P(B7,U)+$P(B7,U,2)+$P(B7,U,3)+$P(B7,U,4)+$P(B7,U,5)
  I TOTAL<25 Q 1 ;no adds for bills less than $25
+ I RR=0 D RRMARK^RCTCSPD0 ; PRCA*4.5*350
+ I $P(B15,U,7) Q 0 ;check stop tcsp referral flag
+ I $P(B15,U,2) Q 0 ;check tcsp bill recall flag
  D REC1,REC2,REC2A
  S $P(^PRCA(430,BILL,16),U,13)=DOB,B16=^(16)
  S $P(^PRCA(430,BILL,15),U,14)=GNDR,B15=^(15)
@@ -135,17 +143,18 @@ ADDCHKND(BILL) ;add a new bill referral, new debtor
  S $P(^PRCA(430,BILL,16),U,3)=DELDT,^PRCA(430,"TCSP",BILL)=""
  I $P($G(^PRCA(430,BILL,21)),U)="" S $P(^PRCA(430,BILL,21),U)=DT    ;PRCA*4.5*336
  I '$D(^RCD(340,"TCSP",DEBTOR)) S $P(^RCD(340,DEBTOR,7),U,5)=DT,^RCD(340,"TCSP",DEBTOR)=""
- D NEWDEBTR^RCTCSPD4 ; set CS new debtor new bill non-financial transaction PRCA*4.5*315
+ D:RR'=0 NEWDEBTR^RCTCSPD4  D:RR=0 RRSEND^RCTCSPD4 ; set CS new debtor new bill non-financial transaction PRCA*4.5*315
  Q 1
  ;
 ADDCHKNB(BILL) ;add a new bill referral, existing debtor
  N TOTAL,ACTION,TAXID,NAME,ADDRCS,X
  I '$D(^RCD(340,"TCSP",DEBTOR)) Q 0 ;check debtor previously referred
- I $P(B15,U,2) Q 0 ;check tcsp bill recall flag
- I $P(B15,U,7) Q 0 ;check stop tcsp referral flag
  I $D(^PRCA(430,"TCSP",BILL)) Q 0 ;bill previously sent to TCSP
  S TOTAL=$P(B7,U)+$P(B7,U,2)+$P(B7,U,3)+$P(B7,U,4)+$P(B7,U,5)
  I TOTAL<25 Q 0 ;no adds for bills less than $25
+ I RR=0 D RRMARK^RCTCSPD0 ; PRCA*4.5*350
+ I $P(B15,U,2) Q 0 ;check tcsp bill recall flag
+ I $P(B15,U,7) Q 0 ;check stop tcsp referral flag
  S ACTION="A" D REC1
  S ACTION="B" D REC2
  S ACTION="A" D REC3^RCTCSP2
@@ -158,7 +167,7 @@ ADDCHKNB(BILL) ;add a new bill referral, existing debtor
  S $P(^PRCA(430,BILL,16),U,13)=DOB,B16=^(16)
  S $P(^PRCA(430,BILL,15),U,14)=GNDR,B15=^(15)
  I '$D(^RCD(340,"TCSP",DEBTOR)) S $P(^RCD(340,DEBTOR,7),U,5)=DT,^RCD(340,"TCSP",DEBTOR)=""
- D DEBTOR^RCTCSPD4 ; set CS debtor new bill non-financial transaction PRCA*4.5*315
+ D:RR'=0 DEBTOR^RCTCSPD4 D:RR=0 RRSEND^RCTCSPD4 ; set CS debtor new bill non-financial transaction PRCA*4.5*315, PRCA*4.5*350
  Q 1
  ;
 UPDCHK(BILL) ;update 5b or existing bill
@@ -216,7 +225,8 @@ REC1 ;record type 1
  N REC,KNUM,DEBTNR,AMTORIG,AMTPBAL,AMTIBAL,AMTABAL,AMTFBAL,AMTCBAL,AMTRFRRD,AMOUNT,DELDT,X,X1,X2,BILLDT,PREPDT
  S REC="C1 "_ACTION_"3636001200"_"DM1D "
  S KNUM=$P($P(B0,U,1),"-",2)
- S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR_" "
+ ;S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR_" "
+ S DEBTNR=$$AGDEBTID,REC=REC_DEBTNR_" " ; PRCA*4.5*350
  S REC=REC_"I   A MSCC"
  S BILLDT=$P(B6,U,21),PREPDT=$P(B0,U,10)
  S REC=REC_$$DATE8(PREPDT)
@@ -254,7 +264,8 @@ REC2 ;
  N REC,KNUM,DEBTNR,DEBTORNB,TAXID,NAME,RCD
  S REC="C2 "_ACTION_"3636001200"_"DM1D "
  S KNUM=$P($P(B0,U,1),"-",2)
- S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR
+ ;S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR
+ S DEBTNR=$$AGDEBTID,REC=REC_DEBTNR ; PRCA*4.5*350
  S DEBTORNB=$E(SITE,1,3)_$TR($J(DEBTOR,12)," ",0)
  S REC=REC_DEBTORNB
  S TAXID=$$TAXID(DEBTOR)
@@ -275,7 +286,7 @@ REC2A ;
  N REC,KNUM,DEBTNR,DEBTORNB
  S REC="C2A"_ACTION_"3636001200"_"DM1D "
  S KNUM=$P($P(B0,U,1),"-",2)
- S DEBTNR=$E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0),REC=REC_DEBTNR
+ S DEBTNR=$$AGDEBTID,REC=REC_DEBTNR ; PRCA*4.5*350
  S DEBTORNB=$E(SITE,1,3)_$TR($J(DEBTOR,12)," ",0)
  S REC=REC_DEBTORNB
  S REC=REC_$$BLANK(3)
@@ -286,6 +297,11 @@ REC2A ;
  S $P(^XTMP("RCTCSPD",$J,"BILL",ACTION,BILL),U,1)=$$TAXID(DEBTOR)
  D CLR19(BILL,3)
  Q
+AGDEBTID() ; Return Agency Debt ID accoring to new logic PRCA*4.5*350
+ ; Input: SITE,KNUM,BILL,B15
+ N TRAIL S TRAIL=$P($G(^PRCA(430,BILL,21)),U,2)
+ I TRAIL="" Q $E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,20)," ",0)
+ Q $E(SITE,1,3)_$$LJZF(KNUM,7)_$TR($J(BILL,18)," ",0)_TRAIL
  ;
 DATE8(X) ;changes fileman date into 8 digit date yyyymmdd
  I +X S X=X+17000000

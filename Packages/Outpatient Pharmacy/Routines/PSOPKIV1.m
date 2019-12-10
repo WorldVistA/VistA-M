@@ -1,13 +1,15 @@
 PSOPKIV1 ;BHAM ISC/MHA - validate PKI cert. ; 05/09/2002  8:15 am
- ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462,572**;DEC 1997;Build 1
  ;Ref. to ^ORDEA is supported by DBIA 5709
  ;Ref. to ^ORB supported by DBIA 1362
  ;Ref. to ^XUSSPKI supported by DBIA 3539
 CER ;
- N PKIRT
+ ;N PKIRT
+ N PKIRT,MSG ;572
  D VERIFY(.PKIRT,ORD)
  S PKI=+PKIRT I PKI=1!(PKI=89802020) D  Q
- . S PKI1=1,VALMSG="Digitally Signed Order",PKIE="Processing "_VALMSG
+ . ;S PKI1=1,VALMSG="Digitally Signed Order",PKIE="Processing "_VALMSG
+ . S PKI1=1,MSG="Digitally Signed Order",PKIE="Processing "_MSG ;572
  . I PKI=89802020 S PKIE=PKIE_": "_$P($T(@($E(PKI,7,8))),";;",2)
  I PKI<2 S VALMSG=$P(PKIRT,"^",2) Q
  S PKI1=$S(PKI>89802014&(PKI<89802020)!((PKI>89802020)&(PKI<89802031)):2,1:1)

@@ -1,5 +1,8 @@
 MDHL7XXX ; HOIFO/DP - Loopback device for CP ;4/10/09  09:20
- ;;1.0;CLINICAL PROCEDURES;**21,34**;Apr 01, 2004;Build 1
+ ;;1.0;CLINICAL PROCEDURES;**21,34,73**;Apr 01, 2004;Build 2
+ ; 06/05/19 KAM/BP S/N Ticket INC5256127/MD*1*73 Modified the Process
+ ;          subroutine to no longer send an alert when it encounters a
+ ;          'RETRACTED' note
  ; 06/19/13 KAM/BP Remedy Ticket 442635/MD*1*34  Modified the Process
  ;          subroutine to look back 365 days instead of 5 days for 
  ;          auto-complete of procedures
@@ -98,6 +101,7 @@ PROCESS ; Process Device Results
  .D EXTRACT^TIULQ($P(MDX,U,6),"^TMP(""MDTIUST"",$J)",MDTIUER,".01;.05","E")
  .I $G(^TMP("MDTIUST",$J,$P(MDX,U,6),.05,"E"))'="COMPLETED"&('+$P(MDCX,";",2)) D  Q
  ..Q:$P(MDX,"^",9)'=3
+ ..Q:$G(^TMP("MDTIUST",$J,$P(MDX,U,6),.05,"E"))="RETRACTED"  ;MD*1*73
  ..I +$P(MDCX,";",1) S MDCONRS=$$CPDOC^GMRCCP(+MDCST,+$P(MDX,"^",6),2) Q
  ..I '+$P(MDCX,";",1) D UPDATE^TIUSRVP(.MDRR,+$P(MDX,"^",6),.MDWA,1) D:+MDRR'<1 ADMNCLOS^TIUSRVPT(.MDARAD,+$P(MDX,"^",6),"M",MDFD) K MDWA D MEDCOMP^GMRCMED(+MDCST,$P(MDX,"^",6)_";TIU(8925,",DT,MDFD,$P(MDX,"^",3))
  ..Q

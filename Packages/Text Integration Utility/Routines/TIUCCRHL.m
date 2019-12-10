@@ -1,5 +1,5 @@
 TIUCCRHL ;LB/PB - Send TIU Notes MDM-T02 HL7 Message to CCRA/HSRM ;02/01/19 09:00
- ;;1.0;TEXT INTEGRATION UTILITIES;**323**;Feb 1, 2019;Build 33
+ ;;1.0;TEXT INTEGRATION UTILITIES;**323,327**;July 24, 2019;Build 37
  ;This patch requires:
  ;four (4) CCRA TIU Historical Documents :
  ;     1   COMMUNITY CARE - PATIENT LETTER       TITLE  
@@ -181,11 +181,13 @@ NTE(HL) ; Find TIU and build NTE segments
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE"_FS_NTECNT_FS_"P"_FS_"Progress Note:"_$G(@GDATA@(.01,"E"))
  ;check if Document Type is ADDENDUM
  S TIUTYP=$G(@GDATA@(.01,"E"))
- I TIUTYP="ADDENDUM" D 
+ I TIUTYP="ADDENDUM" D
  . S GMRCCMP=$$DATE^GMRCCCRA($G(@GDATA@(1301,"I")),"MM/DD/CCYY")_" ADDENDUM"_"                      STATUS: "_$$GET1^DIQ(8925,+GMRCDA_",",.05)
  S I=0
- F  S I=$O(@GDATA@(2,I)) Q:I=""  S X=@GDATA@(2,I) D
+ F  S I=$O(@GDATA@(2,I)) Q:+I=0  S X=@GDATA@(2,I) D
  .S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
+ .S X=$$TIUC(X) ; Check for control characters -emergency patch TIU*1.0*32
+ .I $L(X)=0 Q
  .D HL7TXT^GMRCHL7P(.X,.HL,"\")
  .S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE"_FS_NTECNT_FS_FS_X
  Q
@@ -259,3 +261,17 @@ MESSAGE(MSGID,ERRARY) ; Send a MailMan Message with the errors
  S XMY("G.GMRC HCP HL7 MESSAGES")=""
  D ^XMD
  Q
+TIUC(X) ; Check each segment of the TIU notes for HL7 control characters
+ Q:$G(X)=""
+ I $G(X)[$C(13,10,10) S X=$TR(X,$C(13,10,10),"") ; <cr><lf><lf>
+ I $G(X)[$C(13,10) S X=$TR(X,$C(13,10),"") ; <cr><lf>
+ I $G(X)[$C(13) S X=$TR(X,$C(13),"") ; TERM char
+ I $G(X)[$C(1) S X=$TR(X,$C(1),"") ; SOH
+ I $G(X)[$C(2) S X=$TR(X,$C(2),"") ; STX
+ I $G(X)[$C(3) S X=$TR(X,$C(3),"") ; ETX
+ I $G(X)[$C(4) S X=$TR(X,$C(4),"") ; EOT
+ I $G(X)[$C(5) S X=$TR(X,$C(5),"") ; ENQ
+ I $G(X)[$C(6) S X=$TR(X,$C(6),"") ; ACK
+ I $G(X)[$C(21) S X=$TR(X,$C(21),"") ; NAK
+ I $G(X)[$C(23) S X=$TR(X,$C(23),"") ; ETB
+ Q X

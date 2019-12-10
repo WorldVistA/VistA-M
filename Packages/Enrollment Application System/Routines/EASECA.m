@@ -1,5 +1,5 @@
-EASECA ;ALB/PHH,LBD - Add a New LTC Co-Pay Test ;10 AUG 2001
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40**;Mar 15, 2001
+EASECA ;ALB/PHH,LBD,HM - Add a New LTC Co-Pay Test ;10 AUG 2001
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40,174**;Mar 15, 2001;Build 26
  ;
 EN ;Entry point to add a new LTC Co-Pay test
  N DGMDOD S DGMDOD=""
@@ -37,7 +37,7 @@ EXMPT ; Is veteran exempt from LTC copayments?
  I Y D  D Q G EN
  .; Get reason for exemption
  .S DIR("A")="Reason for Exemption",DIR(0)="P^714.1:EM"
- .S DIR("S")="I $P(^(0),U,2),""^1^2^12^""'[(U_Y_U)"
+ .S DIR("S")="I $P(^(0),U,2),""^1^2^12^14^""'[(U_Y_U)" ;EAS*1.0*174 HM exclude 14 also
  .D ^DIR K DIR I 'Y!($D(DUOUT))!($D(DTOUT)) D  D DEL Q
  ..W !!,"A reason for exemption must be entered.  LTC Copay Test cannot be added.",!
  .D EXMPT^EASECSCC(DFN,DGMTI,+Y)

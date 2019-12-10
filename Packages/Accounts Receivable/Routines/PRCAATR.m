@@ -1,5 +1,5 @@
 PRCAATR ;WASH-ISC@ALTOONA,PA/RGY - VIEW TRANSACTION FOR BILLS ;2/14/96  2:46 PM
-V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303,301,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303,301,315,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; PRCAAPR cleans up DEBT, DTOUT
@@ -25,13 +25,15 @@ HDR ;Header
  S CSDATE2=$$GET1^DIQ(430,BILL,"ORIGINAL DATE REFERRED TO TCSP","I")
  S CSFLG=$S(CSDATE1'="":"x",CSDATE2'="":"y",1:"")
  ; PRCA*4.5*276 - attach EEOB indicator to bill number
- I +$G(^PRCA(430,BILL,15)) S PRCA15=^(15) I $P(PRCA15,U)]"" W !,"CS Referred Date: " S Y=$P(PRCA15,U) D DD^%DT W Y  ;prca*4.5*301
+ ; PRCA*4.5*350 - Re-Referred
+ I +$G(^PRCA(430,BILL,15)) S PRCA15=^(15) I $P(PRCA15,U)]"" W !,"CS " W:$$RR^RCTCSPU(BILL) "Re-" W "Referred Date: " S Y=$P(PRCA15,U) D DD^%DT W Y  ;prca*4.5*301
  S PRCA15=$G(^PRCA(430,BILL,15)) D
  .I $P(PRCA15,U,2)]"" W !,"CS Recall Reason: ",$E($$GET1^DIQ(430,BILL,154),1,31) W ?51,"CS Recall Date: " S Y=$P(PRCA15,U,3) D DD^%DT W Y Q  ;prca*4.5*301
  .I $P(PRCA15,U,4)]"",$P(PRCA15,U,2)="" W !,"CS Recall Reason: ",$E($$GET1^DIQ(430,BILL,154),1,31) W ?51,"CS Recall Date: "
- W ! D PROFRJ^RCTCSJS1(BILL) ; Reject history  ;prca*4.5*301
- W !,"Bill #: ",$G(PRCOUT)_CSFLG_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB ; prca*4.5*315
- I REJFLG W !,"Bill #: ",$G(PRCOUT)_$S(REJFLG:"c",1:"")_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB
+ ; PRCA*4.5*350 - remove this and put some data from it on next line
+ ; W ! D PROFRJ^RCTCSJS1(BILL) ; Reject history  ;prca*4.5*301
+ W !,"Bill #: ",$G(PRCOUT)_CSFLG_$P(^PRCA(430,BILL,0),"^") D @($S($P(^(0),"^",9)'=+DEBT:"DEB",1:"CSREJ")) ; prca*4.5*315, PRCA*4.5*350
+ I REJFLG W !,"Bill #: ",$G(PRCOUT)_$S(REJFLG:"c",1:"")_$P(^PRCA(430,BILL,0),"^") D @($S($P(^(0),"^",9)'=+DEBT:"DEB",1:"CSREJ")) ; PRCA*4.5*350
  W !!,"Bill #",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
  S X="",$P(X,"-",IOM)="" W !,X
  Q
@@ -86,4 +88,17 @@ RD1 I $E(IOST)="C" R !!,"PRESS <RETURN> TO CONTINUE: ",X:DTIME S:'$T DTOUT=1,OUT
 DEB ;View debtor
  NEW PRCA
  S PRCA=$P(^PRCA(430,BILL,0),"^",9) I PRCA S PRCA=$P(^RCD(340,PRCA,0),"^") W "   ",$P($G(@("^"_$P(PRCA,";",2)_+PRCA_",0)")),"^")
+ Q
+CSREJ ; Show last reject ; PRCA*4.5*350
+ N RJIEN,RJDT,RJCODE,RJZ,I
+ S RJIEN=0,RJDT="",RJCODE=""
+ F  S RJDT=$O(^PRCA(430,BILL,18,"B",RJDT)) Q:RJDT=""  Q:$O(^PRCA(430,BILL,18,"B",RJDT))=""
+ Q:'RJDT
+ F  S RJIEN=$O(^PRCA(430,BILL,18,"B",RJDT,RJIEN)) Q:RJIEN=""  Q:$O(^PRCA(430,BILL,18,"B",RJDT,RJIEN))=""
+ Q:'RJIEN
+ S RJZ=$G(^PRCA(430,BILL,18,RJIEN,0))
+ F I=3:1:11 I $P(RJZ,"^",I)'="" S RJCODE=$P(RJZ,"^",I)
+ Q:'RJCODE
+ W "  Last CS REJECT CODE: ",$P($G(^RC(348.5,RJCODE,0)),"^")
+ W "  Last CS REJECT DATE: ",$$FMTE^XLFDT(RJDT,"5Z")
  Q

@@ -1,5 +1,5 @@
-DGENL1 ;ALB/RMO,ISA/KWP,Zoltan,ALB/BRM,LBD,ERC,EG,CKN,BAJ,JLS - Patient Enrollment - Build List Area ;5/12/11 3:53pm
- ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940**;Aug 13,1993;Build 11
+DGENL1 ;ALB/RMO,ISA/KWP,Zoltan,ALB/BRM,LBD,ERC,EG,CKN,BAJ,JLS,HM - Patient Enrollment - Build List Area ;5/12/11 3:53pm
+ ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940,972**;Aug 13,1993;Build 80
  ;
 EN(DGARY,DFN,DGENRIEN,DGCNT) ;Entry point to build list area
  ; for patient enrollment and patient enrollment history
@@ -105,9 +105,9 @@ PF(DGARY,DFN,DGENR,DGLINE,DGCNT) ;Priority factors
  S DGLINE=DGLINE+1
  D SET(DGARY,DGLINE,"POW: "_$S($G(DGENR("ELIG","POW"))'="":$$EXT^DGENU("POW",DGENR("ELIG","POW")),1:""),19,,,,,,.DGCNT)
  ;
- ;Medal of Honor (DG*5.3*841)
- I $G(DGENR("ELIG","MOH"))="Y" D
- .D SET(DGARY,DGLINE,"Medal of Honor: YES",48,,,,,,.DGCNT)
+ ;Medal of Honor (DG*5.3*841) ;REMOVED DG*5.3*972 HM
+ ;I $G(DGENR("ELIG","MOH"))="Y" D
+ ;.D SET(DGARY,DGLINE,"Medal of Honor: YES",48,,,,,,.DGCNT)
  ;
  ;Purple Heart - added for patch 343;brm;10/23/00
  N PHDAT
@@ -189,6 +189,21 @@ PF(DGARY,DFN,DGENR,DGLINE,DGCNT) ;Priority factors
  ;Veteran Catastrophically Disabled
  S DGLINE=DGLINE+1
  D SET(DGARY,DGLINE,"Veteran CD Status: "_$S($G(DGENR("ELIG","VCD"))'="":$$EXT^DGENU("VCD",DGENR("ELIG","VCD")),1:""),5,,,,,,.DGCNT)
+ ;
+ ;Medal of Honor
+ S DGLINE=DGLINE+1
+ ; get and display MOH fields DG*5.3*972 HM
+ N DGMOHADT,DGMOHSDT,DGMOHEDT,DGMOHIND
+ S DGMOHIND=$G(DGENR("ELIG","MOH")),DGMOHADT=$G(DGENR("ELIG","MOHAWRDDATE")),DGMOHSDT=$G(DGENR("ELIG","MOHSTATDATE")),DGMOHEDT=$G(DGENR("ELIG","MOHEXEMPDATE"))
+ I DGMOHIND="Y",DGMOHADT="" S DGMOHADT="UNKNOWN",DGMOHEDT="Needs Determination"
+ S DGMOHIND=$S(DGMOHIND="Y":"YES",DGMOHIND="N":"NO",1:"")
+ D SET(DGARY,DGLINE,"MOH Indicator: "_DGMOHIND,9,,,,,,.DGCNT)
+ D SET(DGARY,DGLINE,"MOH Award Date: "_$$FMTE^XLFDT(DGMOHADT,"5DZ"),48,,,,,,.DGCNT) ;MOH Award Date DG*5.3*972 HM
+ S DGLINE=DGLINE+1
+ D SET(DGARY,DGLINE,"MOH Status Date: "_$$FMTE^XLFDT(DGMOHSDT,"5DZ"),7,,,,,,.DGCNT) ;MOH Status Date DG*5.3*972 HM
+ S DGLINE=DGLINE+1
+ D SET(DGARY,DGLINE,"MOH Copay Exemption Date: "_$$FMTE^XLFDT(DGMOHEDT,"5DZ"),1,,,,,,.DGCNT) ;MOH Copayment Exemption Date DG*5.3*972 HM
+ S DGLINE=DGLINE+1
  ;
  ;Set line to start on next page
  F DGLINE=DGLINE+1:1:DGSTART+VALM("LINES") D SET(DGARY,DGLINE,"",1,,,,,,.DGCNT)

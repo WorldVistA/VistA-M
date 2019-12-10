@@ -1,5 +1,5 @@
 LREPI3 ;DALOI/SED - EMERGING PATHOGENS HL7 SEGMENTS ;19 Jun 2013
- ;;5.2;LAB SERVICE;**132,175,260,281,320,315,421,442**;Sep 27, 1994;Build 15
+ ;;5.2;LAB SERVICE;**132,175,260,281,320,315,421,442,526**;Sep 27, 1994;Build 1
  ; Reference to ^DGPT supported by IA #418
  ; Reference to DGPTFUT supported by IA #6130
  ; Reference to ^SC supported by IA #10040
@@ -8,7 +8,7 @@ LREPI3 ;DALOI/SED - EMERGING PATHOGENS HL7 SEGMENTS ;19 Jun 2013
  ; Reference to VAFHLPID supported by IA # 263
  ; Reference to VAFHLPV1 supported by IA # 3018
  ; Reference to ^DIC(5 supported by IA # 10056
- ; Reference to $$HOMELESS supported by IA #1528
+ ; Reference to $$BADADR^DGUTL3 supported by IA #4080
  ; Reference to VADPT supported by IA #10061
  ; Reference to ^AUPNVPOV supported by IA # 3094
  ; Reference to ^AUPNVSIT supported by IA #3530
@@ -83,7 +83,7 @@ PID ;TO BUILD PID SEGMENT
  S:ICN<0 $P(MSG,HLFS,4)=$P(MSG,HLFS,4)_LRCS_""""""_LRCS_"VAMPI"
  S:ICN>0 $P(MSG,HLFS,4)=$P(MSG,HLFS,4)_LRCS_ICN_LRCS_"VAMPI"
  ;ADDITIONAL DATA ADDED HERE HOMELESSNESS
- S:$$HOMELESS^SOWKHIRM(DFN) $P(MSG,HLFS,12)="HOMELESS"
+ S:$$BADADR^DGUTL3(DFN)=2 $P(MSG,HLFS,12)="HOMELESS"
  ;NOW GET PERIOD OF SERVICE
  K VAEL D ELIG^VADPT
  S:$G(VAEL(2))'="" $P(MSG,HLFS,28)=$P($G(^DIC(21,+VAEL(2),0)),U,3)

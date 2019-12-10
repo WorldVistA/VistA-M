@@ -1,5 +1,5 @@
-IVMCM ;ALB/SEK,KCL,RTK,AEG,BRM,AEG - PROCESS INCOME TEST (Z10) TRANSMISSIONS ; 8/15/08 10:18am
- ;;2.0;INCOME VERIFICATION MATCH;**12,17,28,41,44,53,34,49,59,55,63,77,74,123,115**;21-OCT-94;Build 28
+IVMCM ;ALB/SEK,KCL,RTK,AEG,BRM,AEG,HM - PROCESS INCOME TEST (Z10) TRANSMISSIONS ; 8/15/08 10:18am
+ ;;2.0;INCOME VERIFICATION MATCH;**12,17,28,41,44,53,34,49,59,55,63,77,74,123,115,183**;21-OCT-94;Build 30
  ;
  ;
 ORF ; Handler for ORF type HL7 messages received from HEC
@@ -129,7 +129,7 @@ PROC ; Process each HL7 message from (#772) file
  ;
  ;
 MT ; If transmission is a Means Test
- N NODE0,RET,CODE,DATA,MTSIG,MTSIGDT
+ N NODE0,RET,CODE,DATA,MTSIG,MTSIGDT,CATCA ;IVM*2.0*183 HM
  S HLQ=$G(HL("Q"))
  S:HLQ="" HLQ=""""""
  I IVMTYPE=1 D  I $D(HLERR) G PROCQ
@@ -144,12 +144,14 @@ MT ; If transmission is a Means Test
  .I $P(IVMLAST,U,2),$E($P(IVMLAST,U,2),1,3)'=$E(IVMMTDT,1,3) S IVMLAST=""
  .Q:$$UPDMTSIG^IVMCMF(+IVMLAST,TMSTAMP,MTSIG,MTSIGDT)
  .I $$Z06MT^EASPTRN1(+IVMLAST) D PROB^IVMCMC("IVM Means Test already on file for this year") Q
- .I '$$ELIG^IVMUFNC5(DFN) S ERRMSG="Means Test upload not appropriate for current patient"
- .I $$AGE^IVMUFNC5(DT)>$$INCY^IVMUFNC5(IVMMTDT) D
+ .I '$$ELIG^IVMUFNC5(DFN) D PROB^IVMCMC("Means Test upload not appropriate for current patient") Q
+ .I $$AGE^IVMUFNC5(DT)>$$INCY^IVMUFNC5(IVMMTDT) D  I $D(HLERR) Q  ;IVM*2.0*183 HM
  ..N CATCZMT S CATCZMT=$G(^TMP($J,"IVMCM","ZMT1"))
  ..S CATC=$$CATC^IVMUFNC5(CATCZMT)
- ..I '+$G(CATC) S ERRMSG="Only Means Tests in current/previous income years are valid (not effective)"
- .I $G(ERRMSG)'="" D PROB^IVMCMC(ERRMSG) K ERRMSG,CATC Q
+ ..I '+$G(CATC) D PROB^IVMCMC("Only Means Tests in current/previous income years are valid (not effective)") K CATC Q  ;IVM*2.0*183 HM
+ ..;IVM*2.0*183 HM Check if MT Copay Exempt or GMT Copay Required
+ ..S CATCA=$$ACCMT^IVMUFNC5(CATCZMT) ;IVM*2.0*183 HM
+ ..I '+$G(CATCA) D PROB^IVMCMC("Only Means Tests greater than or equal to one year prior to the VFA Start Date of 1/1/2013 are valid for MT COPAY EXEMPT or GMT COPAY REQUIRED") K CATCA Q  ;IVM*2.0*183 HM
  .;
  .; - perform edit checks and file MT
  .D CHKDT

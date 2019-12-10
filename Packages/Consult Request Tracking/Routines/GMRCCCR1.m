@@ -1,5 +1,5 @@
 GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123**;JUN 1, 2018;Build 51
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134**;JUN 1, 2018;Build 20
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -8,6 +8,7 @@ GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ; MJ - 5/24/2018 patch 106 changes to add - GETADD function
  ; MJ - 2/28/2019 patch 112 subroutines added or split from GMRCCCRA
  ; MJ - 4/02/2019 patch 123 updated to find VistA user from HSRM message and create NAK if invalid
+ ; MJ - 7/30/2019 patch 134 fix control character issue in TIU notes
  ;
  Q
  ;

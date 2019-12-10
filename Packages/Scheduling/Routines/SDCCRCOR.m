@@ -1,5 +1,5 @@
 SDCCRCOR ;CCRA/LB,PB - Core Tags;APR 4, 2019
- ;;5.3;Scheduling;**707**;APR 4, 2019;Build 57
+ ;;5.3;Scheduling;**707,730**;APR 4, 2019;Build 8
  ;;Per VA directive 6402, this routine should not be modified.
  Q
  ;
@@ -235,7 +235,7 @@ APPMSG(MSGID,ABORT) ; Send a MailMan Message with the errors
  S MSGTEXT(1)=" "
  S MSGTEXT(2)="An error in making a community care appointment for consult ID: "_$G(CONSULTID)
  S MSGTEXT(3)="The consult title is: "_$G(CONTITLE)
- S MSGTEXT(4)="A non-count clinic named "_$G(SRVNAME)_" could not be found."
+ S MSGTEXT(4)="A non-count clinic named "_$G(SRVNAMEX)_" could not be found."
  S MSGTEXT(5)="The appointment was for "_$G(PROVIDER)_" on "_$$FMTE^XLFDT(SDECSTART,3)
  S XMTEXT="MSGTEXT("
  S XMDUZ="GMRC-CCRA <-HSRM Transaction Error"

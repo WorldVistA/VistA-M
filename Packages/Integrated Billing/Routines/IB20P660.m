@@ -1,0 +1,59 @@
+IB20P660 ;/Albany - IB*2.0*660 POST INSTALL;07/25/19 2:10pm
+ ;;2.0;Integrated Billing;**660**;Mar 20, 1995;Build 4
+ ;Per VA Directive 6402, this routine should not be modified.
+ Q
+ ;
+POSTINIT ;Post Install for IB*2.0*660
+ D BMES^XPDUTL(" >>  Starting the Post-Initialization routine for IB*2.0*660 ")
+ ; Adding BILLING GROUP(s)
+ D IBUPD
+ D BMES^XPDUTL(" >>  End of the Post-Initialization routine for IB*2.0*660")
+ Q
+ ;
+IBUPD ; CC URGENT CARE Category
+ N LOOP,LIEN,IBDATA
+ N X,Y,DIE,DA,DR,DTOUT
+ ; 
+ ; Grab all of the entries to update
+ D MES^XPDUTL("     -> Adding BILLING GROUP(s) for CC CANCEL Action Types (file 350.1).")
+ S Y=-1
+ F LOOP=1:1 S IBDATA=$T(IBDDAT+LOOP) Q:$P(IBDATA,";",3)="END"  D
+ . Q:IBDATA=""    ;go to next entry if Category is not to be updated.
+ . S LIEN=$O(^IBE(350.1,"B",$P(IBDATA,";",3),"")) Q:LIEN=""
+ . S DR=".11///"_$P(IBDATA,";",4)  ; BILLING GROUP
+ . ;
+ . S DIE="^IBE(350.1,",DA=LIEN
+ . D ^DIE
+ Q
+ ;
+IBDDAT ; Fee Service to inactivate
+ ;;CHOICE (INPT) CANCEL;1
+ ;;CHOICE (PER DIEM) CANCEL;3
+ ;;CHOICE (OPT) CANCEL;4
+ ;;CHOICE (RX) CANCEL;5
+ ;;CC (INPT) CANCEL;1
+ ;;CC (PER DIEM) CANCEL;3
+ ;;CC (OPT) CANCEL;4
+ ;;CC (RX) CANCEL;5
+ ;;CCN (INPT) CANCEL;1
+ ;;CCN (PER DIEM) CANCEL;3
+ ;;CCN (OPT) CANCEL;4
+ ;;CCN (RX) CANCEL;5
+ ;;CC MTF (INPT) CANCEL;1
+ ;;CC MTF (PER DIEM) CANCEL;3
+ ;;CC MTF (OPT) CANCEL;1
+ ;;CC MTF (RX) CANCEL;5
+ ;;LTC CC INPT CNH CANCEL;9
+ ;;LTC CC INPT RESPITE CANCEL;9
+ ;;LTC CC OPT ADHC CANCEL;8
+ ;;LTC CC OPT RESPITE CANCEL;8
+ ;;LTC CCN INPT CNH CANCEL;9
+ ;;LTC CCN INPT RESPITE CANCEL;9
+ ;;LTC CCN OPT ADHC CANCEL;8
+ ;;LTC CCN OPT RESPITE CANCEL;8
+ ;;LTC CHOICE INPT CNH CANCEL;9
+ ;;LTC CHOICE INPT RESPITE CANCEL;9
+ ;;LTC CHOICE OPT ADHC CANCEL;8
+ ;;LTC CHOICE OPT RESPITE CANCEL;8
+ ;;CC URGENT CARE (OPT) CANCEL;4
+ ;;END

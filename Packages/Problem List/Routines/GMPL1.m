@@ -1,5 +1,5 @@
-GMPL1 ; SLC/MKB/AJB/TC -- Problem List actions ;10/04/17  06:46
- ;;2.0;Problem List;**3,20,28,43,42,45,49**;Aug 25, 1994;Build 43
+GMPL1 ; SLC/MKB/AJB/TC,PWC - Problem List actions ;04/03/2019
+ ;;2.0;Problem List;**3,20,28,43,42,45,49,54**;Aug 25, 1994;Build 1
  ; 10 MAR 2000 - MA - Added to the routine another user prompt
  ; to backup and refine Lexicon search if ICD code 799.9 or R69.
 ADD ;add new entry to list - Requires GMPDFN
@@ -81,8 +81,12 @@ STATUS ; -- inactivate problem
  W !!,$$PROBTEXT^GMPLX(GMPIFN) D RESOLVED^GMPLEDT4 Q:$D(GMPQUIT)
  S PROMPT="COMMENT (<60 char): ",DEFAULT="" D EDNOTE^GMPLEDT4 Q:$D(GMPQUIT)
  W ! I Y'="" S GMPFLD(10,"NEW",1)=Y D NEWNOTE^GMPLSAVE W "."
- S DIE="^AUPNPROB(",DR=".12///I;1.07////"_$P($G(GMPFLD(1.07)),U)
- S DA=GMPIFN D ^DIE W "."
+ ; VSR - PWC GMPL*2*54 replace //// with FileMan database calls (replaced both .12 and 1.07)
+ N GMPLFDA,GMPLERR
+ S GMPLFDA(9000011,GMPIFN_",",.12)="I"    ;status
+ S GMPLFDA(9000011,GMPIFN_",",1.07)=$P($G(GMPFLD(1.07)),U)   ;date resolved
+ D FILE^DIE("","GMPLFDA","GMPLERR") W "."
+ ; END OF VSR CHANGES GMPL*2*54
  S CHNGE=GMPIFN_"^.12^"_$$HTFM^XLFDT($H)_U_DUZ_"^A^I^^"_+$G(GMPROV)
  D AUDIT^GMPLX(CHNGE,"") W "." ; audit trail
  D DTMOD^GMPLX(GMPIFN) W "." ; update Dt Last Mod

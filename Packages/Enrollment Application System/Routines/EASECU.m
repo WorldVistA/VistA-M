@@ -1,5 +1,5 @@
-EASECU ;ALB/PHH,LBD,AMA - LTC Co-Pay Test Utilities ; 22 AUG 2001
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40,79**;Mar 15, 2001;Build 3
+EASECU ;ALB/PHH,LBD,AMA,HM - LTC Co-Pay Test Utilities ; 22 AUG 2001
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40,79,174**;Mar 15, 2001;Build 26
  ;
 LST(DFN,DGDT,DGMTYPT) ;Last LTC Co-Pay test for a patient
  ;         Input  -- DFN   Patient IEN
@@ -25,11 +25,13 @@ MTS(DGMTS) ;LTC Co-Pay test status -- default current
 EXMPT(DFN) ;Check if veteran is exempt from LTC co-payments:
  ; If the veteran has a compensable SC disability, OR
  ; If the veteran is a single, NSC pensioner not in receipt of A&A
+ ; If the veteran is a Medal of Honor recipient - EAS*1.0*174 HM
  ; and HB benefits
  ;   Input   -- DFN  Patient IEN
  ;   Output  -- 0 = veteran not exempt
  ;              1 = veteran has compensable SC disability
  ;              2 = veteran is single NSC pensioner (no A&A, HB)
+ ;              14 = veteran is Medal of Honor recipient - EAS*1.0*174 HM
  N X,Y,ELG
  S Y=0
  ; if service connected percentage is greater than 10% OR service
@@ -38,6 +40,8 @@ EXMPT(DFN) ;Check if veteran is exempt from LTC co-payments:
  S X=$G(^DPT(DFN,.36)),ELG=$P($G(^DIC(8,+X,0)),U,9)
  I ELG=1!($P($G(^DPT(DFN,.3)),U,2)'<10) S Y=1 G EXMPTQ
  I ELG=3,$P($G(^DPT(DFN,.3)),U,2)<10,$P($G(^DPT(DFN,.362)),U,20)>0 S Y=1 G EXMPTQ
+ ;if MOH = "Y" quit
+ I $P($G(^DPT(DFN,.54)),U,1)="Y" S Y=14 G EXMPTQ ;IF MEDAL OF HONOR = "Y" SET OUTPUT TO BE 14 EAS*1*174 HM
  ; if Service Connected quit
  I $P($G(^DPT(DFN,.3)),U)="Y" G EXMPTQ
  ; if Marital Status = 'Married' or 'Separated' quit

@@ -1,16 +1,17 @@
 ICDJC3 ;ALB/ARH - DRG GROUPER CALCULATOR 2015 - DRG SELECT ;05/26/2016
- ;;18.0;DRG Grouper;**89**;Oct 20, 2000;Build 9
+ ;;18.0;DRG Grouper;**89,97**;Oct 20, 2000;Build 5
  ;
  ; DRG Calcuation for re-designed grouper ICD-10 2015, continuation
  ;
  ;
-DRGLS(ICDDATE,PRATT,DXATT,CDSET,DRGARR) ; get all possible DRGs and their MCC/CC defined by the event diagnosis, procedures and attributes
+DRGLS(ICDDATE,PRATT,DXATT,CDSET,DRGARR) ; get all possible satisfied DRGs and their MCC/CC defined by the event diagnosis, procedures and attributes
  ; DRGs are selected based on Code Sets, defined by the event diagnosis and procedures
  ; each DRG may have one or more sets of Code Sets (Cases) that lead to the DRG
  ; 
  ; selected DRGs have at least one DRG Case with all required Code Sets defined and following criteria met:
  ; a DRGs MDC must match the MDC of the events Primary diagnosis, except DRG MDCs 00 and 99
  ; a Medical DRG may not have an event OR procedure unless it is specifically assigned to the Case Code Set
+ ; if a DRG that is a member of an Exclusive MDC has a Case initially satisfied then no General MDC DRG is allowed
  ; if a DRG Case includes an 'EXCEPT' Code Set (Set or Case level), that code set must not be defined by the event
  ; if a DRG Case requires Any OR procedure, it may not be satisfied by a code used to satisfy any other code set
  ; if a DRG Case requires a Secondary Dx then that Dxs MCC/CC may not affect the MCC/CC designation of that DRG
@@ -25,29 +26,42 @@ DRGLS(ICDDATE,PRATT,DXATT,CDSET,DRGARR) ; get all possible DRGs and their MCC/CC
  ;          DRGARR(drg ifn, case ifn) [ 2 ^ MCC or CC or null if Case is valid for event and selects the DRG,
  ;                                      with a DRG specific MCC/CC that overrides the event MCC/CC
  ;          DRGARR(drg ifn, case ifn) [ 3 if there are any unassigned Operating Room Procedures for the Case
- N DRG0,SETIFN,CSEIFN,DRGIFN,MDCIFN,MDC0,CASEFND,RESET,ARRCSE,ARRDRG S DXATT=$G(DXATT),PRATT=$G(PRATT) K DRGARR
+ N SETIFN,CSEIFN,DRGIFN,DRG0,MDCIFN,MDC0,MDCTYP,DRGCFND,CASEFND,RESET,ARRCSE,ARRDRG
+ S DXATT=$G(DXATT),PRATT=$G(PRATT) K DRGARR
  ;
- ; get list of all potential DRGs: for each code set, find all cases, then for those cases find all drgs
+ ; get list of all potential DRGs: for each satified code set, find all cases, then for those cases find all drgs
  S SETIFN=0 F  S SETIFN=$O(CDSET(SETIFN)) Q:'SETIFN  D
  . S CSEIFN=0 F  S CSEIFN=$O(^ICDD(83.2,"ACS",SETIFN,CSEIFN)) Q:'CSEIFN  D
  .. S DRGIFN=0 F  S DRGIFN=$O(^ICDD(83.1,"ACE",CSEIFN,DRGIFN)) Q:'DRGIFN  S ARRDRG(DRGIFN)=""
  ;
- ; for each potential DRG check that all criteria is met and if at least one Case had all code sets fully defined
+ ; for each potential DRG check that all criteria is met and determine if any of its individual Cases are satisfied
  S DRGIFN=0 F  S DRGIFN=$O(ARRDRG(DRGIFN)) Q:'DRGIFN  D
- . S DRG0=$G(^ICDD(83.1,DRGIFN,0)) S MDCIFN=+$P(DRG0,U,2),MDC0=$G(^ICDD(83,MDCIFN,0))
+ . S DRG0=$G(^ICDD(83.1,DRGIFN,0)) S MDCIFN=+$P(DRG0,U,2),MDC0=$G(^ICDD(83,MDCIFN,0)),MDCTYP=$P(MDC0,U,4)
  . ;
  . I '$$DRGACT(+DRG0,$G(ICDDATE)) Q  ; is DRG active
  . ;
  . I $P(MDC0,U,2)'="00",$P(MDC0,U,2)'="99",$P(DXATT,U,2)'[$P(MDC0,U,2) Q  ; DRG MDC must match Primary Dx MDC
  . ;
- . D GETCSE(DRGIFN,$G(ICDDATE),.ARRCSE) S RESET=0 ; get active Cases associated with the DRG
+ . D GETCSE(DRGIFN,$G(ICDDATE),.ARRCSE) ; get active Cases associated with the DRG
  . ;
  . ; for each Case associated with a potential DRG, determine if it is defined by the event and meets criteria
  . S CSEIFN=0 F  S CSEIFN=$O(ARRCSE(CSEIFN)) Q:'CSEIFN  D
  .. ;
- .. S CASEFND=$$CSESET(MDCIFN,CSEIFN,.CDSET,.DXATT,.PRATT) Q:'CASEFND
+ .. S CASEFND=$$CSESET(MDCIFN,CSEIFN,.CDSET,.DXATT,.PRATT,.DRGCFND) ; determine if case and criteria satisfied
+ .. ;
+ .. I MDCTYP=1,+DRGCFND S ARRDRG=1 ; DRGs MDC Type is Exclusive and DRGs Case code sets satisfied, MDC Exclusive applies
  .. ;
  .. I +CASEFND[3,$P(DRG0,U,4)="M" Q  ; medical DRGs should not have OR procedures
+ .. ;
+ .. S ARRDRG(DRGIFN)=MDCTYP S ARRDRG(DRGIFN,CSEIFN)=CASEFND ; DRGs MDC Type and Case Results
+ ;
+ ; for each potential DRG that met all selection criteria then create the selected DRG list with Dx Secondary MCC/CC
+ S DRGIFN=0 F  S DRGIFN=$O(ARRDRG(DRGIFN)) Q:'DRGIFN  S RESET=0 D
+ . S CSEIFN=0 F  S CSEIFN=$O(ARRDRG(DRGIFN,CSEIFN)) Q:'CSEIFN  D
+ .. ;
+ .. I +$G(ARRDRG),ARRDRG(DRGIFN)>1 Q  ; MDC Exclusive applies, reject DRGs in General MDCs
+ .. ;
+ .. S CASEFND=ARRDRG(DRGIFN,CSEIFN) Q:'CASEFND  ; all criteria met and at least one DRG Case satisfied or reject
  .. ;
  .. S DRGARR(DRGIFN,CSEIFN)=CASEFND
  .. S DRGARR(DRGIFN)=$S(+CASEFND[2&'RESET:$P(CASEFND,U,2),1:$P(DXATT,U,1)) I +CASEFND'[2 S RESET=1 ; 2nd Dx MCC/CC
@@ -73,19 +87,20 @@ GETCSE(DRGIFN,DATE,ARRCSE) ; get all active Cases associated with the DRG (83.1,
  . I DATE'<BEGIN,DATE'>END S ARRCSE(+$P(LINE,U,3))=DRGIFN
  Q
  ;
-CSESET(MDCIFN,CSEIFN,CDSET,DXATT,PRATT) ; determine if a Case is fully satisfied by the event
+CSESET(MDCIFN,CSEIFN,CDSET,DXATT,PRATT,DRGCFND) ; determine if a Case is fully satisfied by the event
  ; all Code Sets required by a Case have event codes assigned (CDSET) and satisfy the criteria
  ; input:  MDCIFN - ptr to DRGs MDC (83),  CSEIFN - ptr to a Case (83.2)
  ; output: return true if all the code sets for the case have event codes assigned and meet the criteria
  ;         1 if all case codes sets and criteria satisfied, MCC/CC not affected
  ;         3 if any Operating Room Procedures unassigned to a case code set
  ;         2 ^ MCC or CC or null if all case code sets and criteria satisfied and reset the MCC/CC for the DRG
+ ;         DRGCFND returns true if the case is initially satisfied before screening for extra/unassigned OR procedures
  ; a code set identified as EXCEPT, at case or set level, invalidates the case, unless AnyOR overrides it
- ; the codes used to satisfy the ANY OR Procedure Code Set must not be used to satisfy any other case code set
+ ; the codes used to satisfy the ANY OR Procedure Code Set must not be used to satisfy any of the cases other code sets
  ; clusters apply within the MDC of its Set and if no other procedure is necessary to select the case
  ; therefore a cluster with members incompletely assigned to the case may override the selection
  ; if a Secondary Diagnosis is used to select the DRG then its MCC/CC are removed from the DRGs MCC/CC
- N IX,LINE,SETIFN,SET0,LINK,LNKSET,EXCEPT,ANYOR,EXTRAOR,DXSND,ARRSET,FND S CSEIFN=+$G(CSEIFN) S FND=0
+ N IX,LINE,SETIFN,SET0,LINK,LNKSET,EXCEPT,ANYOR,EXTRAOR,DXSND,ARRSET,FND S CSEIFN=+$G(CSEIFN) S (FND,DRGCFND)=0
  ;
  ; get all code sets required by a Case, add linked sets with codes assigned so all criteria can be applied
  S IX=0 F  S IX=$O(^ICDD(83.2,CSEIFN,10,IX)) Q:'IX  D
@@ -111,12 +126,14 @@ CSESET(MDCIFN,CSEIFN,CDSET,DXATT,PRATT) ; determine if a Case is fully satisfied
  ;
  ; if a Case is selected by individual Code Sets, check Case for relationships between Code Sets
  ;
+ S DRGCFND=FND ; codes sets and case initially satisfied
+ ;
  I FND S EXTRAOR=$$PRCOR($G(MDCIFN),.ARRSET,.CDSET,.PRATT) I +EXTRAOR S FND=FND_3 ; OR Procedures unassigned
  ;
  I FND,ANYOR,'EXTRAOR S FND=0 ; No OR Procedure unassigned, fails ANY OR set
  ;
- I FND,'$$PRCLS($G(MDCIFN),.ARRSET,.CDSET) S FND=0 ; Procedure Cluster incompletely used by a set
- ; 
+ I FND,'$$PRCLR($G(MDCIFN),.ARRSET,.CDSET) S FND=0 ; Procedure Cluster incompletely used by a set
+ ;
  I FND,DXSND S DXSND=$$DXSND(.ARRSET,.CDSET,.DXATT) I +DXSND=2 S FND=FND_DXSND ; Secondary selects case, reset MCC/CC
  ;
  Q FND
@@ -125,7 +142,7 @@ PRCOR(DRGMDCFN,ARRSET,CDSET,PRATT) ; determine if any event OR Procedures are un
  ; input:  ARRSET(SETIFN) - all code sets that define the case, codes assigned to these sets are considered used
  ; output: returns true if any event OR Procedure codes are unused - not assigned to any of the cases code sets
  ; checks if any OR procedure is unassigned to the Case Sets, excludes generic code sets like Any OR
- ; also excludes members of clusters defined outside the DRGs MDC that are cluster members only, not singles
+ ; also excludes as unused members of clusters defined outside the DRGs MDC that are cluster members only, not singles
  N LINE,IX,M0,DRGCAT,DRGMDC,SETIFN,SETCAT,SETMDC,FND,ARRCDX S FND=0
  S M0=$G(^ICDD(83,+$G(DRGMDCFN),0)) S DRGCAT=$P(M0,U,1),DRGMDC=$P(M0,U,2)
  ;
@@ -135,12 +152,12 @@ PRCOR(DRGMDCFN,ARRSET,CDSET,PRATT) ; determine if any event OR Procedures are un
  .. S M0=$G(^ICDD(83,+$P(LINE,U,2),0)) S SETCAT=$P(M0,U,1),SETMDC=$P(M0,U,2)
  .. S IX=0 F  S IX=$O(CDSET(SETIFN,IX)) Q:'IX  I (DRGMDC=SETMDC)!($P(CDSET(SETIFN,IX),U,3)) S ARRCDX(IX)=""
  ;
- ; find if any event OR procedure is not assigned to the case code sets
- S IX=0 F  S IX=$O(PRATT(IX)) Q:'IX  I $P(PRATT(IX),U,2)="O",'$D(ARRCDX(IX)) S FND=1 Q
+ ; find if any event OR procedure/cluster is not assigned to the case code sets
+ S IX=0 F  S IX=$O(PRATT(IX)) Q:'IX  I $P(PRATT(IX),U,7)="O",'$D(ARRCDX(IX)) S FND=1 Q
  ;
  Q FND
  ;
-PRCLS(DRGMDCFN,ARRSET,CDSET) ; deterime if a cluster is defined by the event and affects the case
+PRCLR(DRGMDCFN,ARRSET,CDSET) ; Cluster/MDC Rule - deterime if a cluster is defined by the event and affects the case
  ; procedures within a cluster must all exist for the cluster to satisfy a set
  ; the cluster applies only within the MDC of its Set and if no other procedure is necessary to select the case
  ; input:  ARRSET(SETIFN) - all code sets that define the case, codes assigned to these sets are considered used
@@ -149,8 +166,11 @@ PRCLS(DRGMDCFN,ARRSET,CDSET) ; deterime if a cluster is defined by the event and
  ; if a cluster is defined by the event, it may or may not need to be fully assigned to the case sets
  ; when applied to cases, the clusters individual procedures may be used outside the clusters MDC or if there
  ; are non-cluster procedures necessary to select the case
+ ; Cluster/MDC Rule does not apply to MDC 00, single procedures of clusters within MDC 00 may satisfy an MDC 00 set
  N IX,M0,DRGCAT,DRGMDC,SETIFN,SET0,SETCAT,SETMDC,CLSTR,ARRCDX,ARRCLS,FND S FND=1
  S M0=$G(^ICDD(83,+$G(DRGMDCFN),0)) S DRGCAT=$P(M0,U,1),DRGMDC=$P(M0,U,2)
+ ;
+ I DRGMDC="00" Q 1  ; Cluster/MDC Rule does not apply to clusters in MDC 00
  ;
  ; find event procedures that satisfy the Case procedure Sets, Case MDC and Category
  S SETIFN=0 F  S SETIFN=$O(ARRSET(SETIFN)) Q:'SETIFN  D
@@ -167,7 +187,7 @@ PRCLS(DRGMDCFN,ARRSET,CDSET) ; deterime if a cluster is defined by the event and
  I 'FND S IX=0 F  S IX=$O(ARRCDX(IX)) Q:'IX  I '$D(ARRCLS(IX)) S FND=1 ; non-cluster proc defined, overrides cluster
  Q FND
  ;
-DXSND(ARRSET,CDSET,DXATT) ; get updated DRG MCC/CC if a Secondary Dx was used to select the DRG Case
+DXSND(ARRSET,CDSET,DXATT) ; Case Secondary Dx Rule - get updated DRG MCC/CC if a Secondary Dx was used to select the DRG Case
  ; if an event diagnosis is assigned to a cases secondary dx code set then remove its MCC/CC from the DRGs MCC/CC
  ; input:  ARRSET(SETIFN) - all code sets that define the case, codes assigned to these sets are considered used
  ; output: 2 ^ MCC or CC or null - updated DRG MCC/CC

@@ -1,6 +1,7 @@
 PSODRGN ;BIR/SJA-ORDER ENTRY DRUG SELECTION ;02/15/07
- ;;7.0;OUTPATIENT PHARMACY;**268,422**;DEC 1997;Build 132
+ ;;7.0;OUTPATIENT PHARMACY;**268,422,573**;DEC 1997;Build 2
  ;Reference ^PSDRUG supported by DBIA 221
+ ; PSO*7.0*573 Add Duplicate Drug Check during Drug Edit
  ;
 SELECT ;
  K:'$G(PSORXED) CLOZPAT
@@ -54,5 +55,6 @@ KV K DIR,DIRUT,DUOUT,DTOUT
 6 ;Called from PSOBKDED due to it's routine size.
  I $G(PSOEDIT),$G(PSODRUG("NAME"))'=$G(PSOBDR("NAME")) D
  .S PSOXXX(1)="You have changed the dispense drug from",PSOXXX(2)=$P($G(PSOBDR("NAME")),"^")_" to "_$P($G(PSODRUG("NAME")),"^")_"." D EN^DDIOL(.PSOXXX,"","!") S PSOAC=1
- .K PSOBDR D 10^PSOBKDED ;Dose
+ .D POST^PSODRG  ;*573 Added this line
+ .I '$G(PSORX("DFLG")) K PSOBDR D 10^PSOBKDED ;Dose *573 Added check for "DFLG"
  Q

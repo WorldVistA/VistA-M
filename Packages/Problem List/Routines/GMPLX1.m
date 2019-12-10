@@ -1,5 +1,5 @@
-GMPLX1 ; SLC/MKB/KER/TC - Problem List Person Utilities ;11/27/12  08:28
- ;;2.0;Problem List;**3,26,35,36,42**;Aug 25, 1994;Build 46
+GMPLX1 ;SLC/MKB/KER/TC,PWC - Problem List Person Utilities ;04/11/2019
+ ;;2.0;Problem List;**3,26,35,36,42,54**;Aug 25, 1994;Build 1
  ;
  ; External References
  ;   DBIA   348  ^DPT(
@@ -166,9 +166,11 @@ PARAMS ; Edit pkg parameters in file #125.99
  S DA(1)=$O(^ORD(101,"B","GMPL PROBLEM LIST",0)) Q:'DA(1)
  S VERFY=$O(^ORD(101,"B","GMPL VERIFY",0)) W "."
  S DA=$O(^ORD(101,DA(1),10,"B",VERFY,0)) Q:'DA
- S DR=$S(OLDVERFY:"2///@;6///^S X=BLANK",1:"2////$;6///@") W "."
- S DIE="^ORD(101,"_DA(1)_",10,"
- D ^DIE W "."
+ ;VSR - PWC GMPL*2*54 replace //// with database FileMan calls
+ N GMPLFDA,GMPLERR
+ S GMPLFDA(101.01,DA_","_DA(1)_",",2)=$S(OLDVERFY:"@",1:"$")
+ S GMPLFDA(101.01,DA_","_DA(1)_",",6)=$S(OLDVERFY:BLANK,1:"@")
+ W "." D FILE^DIE("","GMPLFDA","GMPLERR") W "."
  Q
 RS(X) ; Remove Slashes
  S X=$G(X) F  Q:$E(X,1)'="/"  S X=$E(X,2,$L(X))

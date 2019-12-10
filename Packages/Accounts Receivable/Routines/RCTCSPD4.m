@@ -1,5 +1,5 @@
 RCTCSPD4 ;ALB/LMH-CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315,339**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**315,339,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q 
@@ -234,6 +234,67 @@ RCRSC ; Cross-Servicing case recall non-financial tx
  S DR=DR_";4///2" ;Transaction status (complete)
  S DR=DR_";5.02///CS CASE RECALL" D ^DIE
  Q
+RRREQ ; CS RE-REFER BILL REQUEST non-financial tx
+ ; Request a referral ;PRCA*4.5*350
+ ; INPUT: BILL,REASON,COMMENT
+ N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,X
+ Q:$G(REASON)=""
+ S PRCABN=BILL ;,DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
+ D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
+ S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
+ Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
+ S DIE="^PRCA(433,",DA=PRCAEN
+ S DR=".03///"_PRCABN ; BILL NUMBER
+ S DR=DR_";3///0" ;Calm Code Done
+ S DR=DR_";12///"_$O(^PRCA(430.3,"AC",63,0)) ;Transaction Type
+ S DR=DR_";15///0" ;Transaction Amount
+ S DR=DR_";42///"_DUZ ;Processed by user
+ S DR=DR_";11///"_DT ;Transaction date
+ S DR=DR_";4///2" ;Transaction status (complete)
+ S DR=DR_";5.02///CS RE-REFER BILL REQUEST"
+ S DR=DR_";41///"_$S(REASON="R":"Recall in error",REASON="T":"Treasury reversal",REASON="D":"Defaulted RPP",REASON="O":"Other: "_$G(COMMENT),1:" ")
+ D ^DIE
+ Q
+RRCAN ; CS RE-REFER BILL CANCEL non-financial tx
+ ; Cancel a referral request;PRCA*4.5*350
+ ; INPUT: BILL
+ N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,X
+ S PRCABN=BILL ;,DUZ=.5,DUZ(0)="@",DUZ(2)=1 ; Server has no DUZ, use Postmaster
+ D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
+ S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
+ Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
+ S DIE="^PRCA(433,",DA=PRCAEN
+ S DR=".03///"_PRCABN ; BILL NUMBER
+ S DR=DR_";3///0" ;Calm Code Done
+ S DR=DR_";12///"_$O(^PRCA(430.3,"AC",65,0)) ;Transaction Type
+ S DR=DR_";15///0" ;Transaction Amount
+ S DR=DR_";42///"_DUZ ;Processed by user
+ S DR=DR_";11///"_DT ;Transaction date
+ S DR=DR_";4///2" ;Transaction status (complete)
+ S DR=DR_";5.02///CS RE-REFER BILL CANCEL"
+ D ^DIE
+ Q
+RRSEND ; CS New Bill Existing Debtor non-financial tx ; PRCA*4.5*350
+ ;
+ N PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,PRCA,PRCATY,RCUSER,PRCABN,DUZ,I
+ S PRCABN=BILL
+ S I=$O(^PRCA(430,BILL,15.5,99999),-1)
+ I I'="" S DUZ=$P($G(^PRCA(430,BILL,15.5,I,0)),U,3)
+ S:'$G(DUZ) DUZ=.5 ; Server has no DUZ, use Postmaster if can't find it
+ S DUZ(0)="@",DUZ(2)=1
+ D SETTR^PRCAUTL,PATTR^PRCAUTL Q:'$D(PRCAEN)
+ S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
+ Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
+ S DIE="^PRCA(433,",DA=PRCAEN
+ S DR=".03///"_PRCABN ;Bill Number
+ S DR=DR_";3///0" ;Calm Code Done
+ S DR=DR_";12///"_$O(^PRCA(430.3,"AC",64,0)) ;Transaction Type
+ S DR=DR_";15///0" ;Transaction Amount
+ S DR=DR_";42///"_DUZ ;Processed by user
+ S DR=DR_";11///"_DT ;Transaction date
+ S DR=DR_";4///2" ;Transaction status (complete)
+ S DR=DR_";5.02///CS DEBTOR RE-REFER BILL" D ^DIE ; Revised as requested
+ Q 
  ;
 CHKS ;Leave validation checks in place
  I $P($G(^PRCA(433,PRCAEN,5)),"^",2)=""!'$P(^PRCA(433,PRCAEN,1),"^") S PRCACOMM="TRANSACTION INCOMPLETE" D DELETE^PRCAWO1 K PRCACOMM Q

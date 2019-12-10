@@ -1,5 +1,5 @@
 PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
- ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HDR ;Head for Account profile
@@ -40,8 +40,10 @@ HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,ACCTNUM,RCCV
  .I +TOP6 W !,"** Account forwarded to TOP: ",$$SLH^RCFN01($P(TOP6,"^")),?45,"Total TOP Amount: ",?65,$J($P(TOP4,"^",3),13,2)
  .I $P(TOP6,"^",6) W !,?45,"TOP HOLD DATE: ",$$SLH^RCFN01($P(TOP6,"^",6))
  .Q
+ ; "Put Re-" if rerefer
  I $D(^RCD(340,"TCSP",+DEBT)) D
- .W !,"x Debt Referred to Cross-Servicing",?45,"Total CS Debt: ",?65,$J($$TOTALB^RCTCSPU(+DEBT),13,2)
+ .;PRCA*4.5*350
+ .W !,"x Debt "_$S($$RRD^RCTCSPU(+DEBT):"Re-",1:"")_"Referred to Cross-Servicing",?45,"Total CS Debt: ",?65,$J($$TOTALB^RCTCSPU(+DEBT),13,2)
  .Q
  I $O(^RCD(340,+DEBT,2,0)) D
  .S Y=0 F X=0:0 S X=$O(^RCD(340,+DEBT,2,X)) Q:'X  W:'Y ! W !,$G(^(X,0)) S Y=Y+1 W:Y=3&$O(^RCD(340,+DEBT,2,X)) "..." Q:Y=3

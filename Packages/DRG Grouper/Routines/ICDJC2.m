@@ -1,15 +1,15 @@
 ICDJC2 ;ALB/ARH - DRG GROUPER CALCULATOR 2015 - CODE SETS ;05/26/2016
- ;;18.0;DRG Grouper;**89**;Oct 20, 2000;Build 9
+ ;;18.0;DRG Grouper;**89,97**;Oct 20, 2000;Build 5
  ;
  ; DRG Calcuation for re-designed grouper ICD-10 2015, continuation
  ;
-CDSET(ICDDX,ICDPR,ICDDATE,CDSARR) ; get all Code Sets defined by event Diagnosis and Procedure codes
+CDSET(ICDDX,ICDPR,ICDDATE,PRATT,CDSARR) ; get all Code Sets defined by event Diagnosis and Procedure codes
  ; most Code Sets are specific to an event code, either Diagnosis (83.5,20) or Procedure (83.6,20)
  ; Dx Code Sets may be specific to primary or secondary event dx, all members of procedure Clusters must be defined
  ; an 'ONLY' Code Set is selected only if all the codes defined for the event are in the Code Set
  ; computed generic and linked group Code Sets are selected if all criteria are met
  ; 
- ; Input:   ICDDX(x) and ICDPR(x)  - array of Dx/procedures input to API, ICDDATE - date of event
+ ; Input:   ICDDX(x) and ICDPR(x)  - array of Dx/procedures input to API, ICDDATE - date of event, PRATT pr attributes
  ; Output:  CDSARR - array of all Code Sets (83.3) satisfied by the event diagnosis and procedures
  ;          CDSARR(code set ifn, icdxx number) = code ien (80/80.1) ^ DX/PR ^ single(1)/cluster only(0) ^ cluster ien
  ;          CDSARR(code set ifn, 99_cmpt #) = ^ type of codes in set 'DX' or 'PR' - for computed codes sets
@@ -57,14 +57,14 @@ CDSET(ICDDX,ICDPR,ICDDATE,CDSARR) ; get all Code Sets defined by event Diagnosis
  .. ;
  .. S CDSARR(SETIFN,PRI)=PR_U_"PR"_U_$P(ARRCDS(SETIFN),U,3,4)
  ;
- I $O(ONLY(0)) D ONLY(.ONLY,.ICDPR,.CDSARR) ; add ONLY code sets that may apply
+ I $O(ONLY(0)) D ONLY(.ONLY,.ICDPR,.CDSARR,.PRATT) ; add ONLY code sets that may apply
  ;
  ;
  I $O(LINK(""))'="" D LINK(.LINK,.CDSARR) ; add any computed LNK code sets that may apply
  ;
  ; check for generic or calculated code sets that may apply
- S SETIFN=$$CALC1(.ICDPR,ICDDATE) I +SETIFN S CDSARR(+SETIFN,991)=U_"PR"  ; ANY OPERATING ROOM PROCEDURE
- S SETIFN=$$CALC2(.ICDPR,ICDDATE) I +SETIFN S CDSARR(+SETIFN,992)=U_"PR"  ; NO OPERATING ROOM PROCEDURE
+ S SETIFN=$$CALC1(.ICDPR,.PRATT) I +SETIFN S CDSARR(+SETIFN,991)=U_"PR"  ; ANY OPERATING ROOM PROCEDURE
+ S SETIFN=$$CALC2(.ICDPR,.PRATT) I +SETIFN S CDSARR(+SETIFN,992)=U_"PR"  ; NO OPERATING ROOM PROCEDURE
  S SETIFN=$$CALC3(.ICDDX) I +SETIFN S CDSARR(+SETIFN,993)=U_"DX"  ; NO SECONDARY DIAGNOSIS
  Q
  ;
@@ -85,7 +85,7 @@ GETCDS(TYP,CDIFN,DATE,ARRCDS,ICDPR) ; get Code Sets for a single code on a date,
  . I TYP="DX" S ARRCDS(SETIFN)=TYP_U_SETIFN_U_1 Q
  . ;
  . S CLUSTER=$P(LINE,U,4) I +CLUSTER,'$$CLSTR(CLUSTER,.ICDPR) Q
- . S SINGLE=1 I '$D(ARRCDS(SETIFN)),+CLUSTER S SINGLE=0
+ . S LINE=$G(ARRCDS(SETIFN)) S SINGLE=+$P(LINE,U,3) I 'CLUSTER S SINGLE=1 S CLUSTER=$P(LINE,U,4)
  . ;
  . S ARRCDS(SETIFN)=TYP_U_SETIFN_U_SINGLE_U_CLUSTER Q
  Q
@@ -99,34 +99,30 @@ CLSTR(CLUSTER,ICDPR) ; determine if the event procedures satisfy the cluster
  S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  S PR=+$G(ICDPR(PRI)) S ARRPR(PR)=PRI
  ;
  ; determine if all procedures assigned to the cluster are assigned to the event
- S PR=0 F  S PR=$O(^ICDD(83.61,CLUSTER,10,"B",PR)) Q:'PR  S FND=0 S:+$G(ARRPR(PR)) FND=1  I 'FND Q
+ S PR=0 F  S PR=$O(^ICDD(83.61,CLUSTER,20,"B",PR)) Q:'PR  S FND=0 S:+$G(ARRPR(PR)) FND=1  I 'FND Q
  ;
  Q FND
  ;
  ;
-CALC1(ICDPR,ICDDATE) ; Computed generic Code Set:  ANY OPERATING ROOM PROCEDURE
+CALC1(ICDPR,PRATT) ; Computed generic Code Set:  ANY OPERATING ROOM PROCEDURE
  ; returns the generic Code Set IFN if there is one or more O.R. or Surgical event procedures
- N CMPTSET1,PRI,PR,PRIFN,PRATT,FND S FND=0
+ N CMPTSET1,PRI,FND S FND=0
  ;
  S CMPTSET1=$O(^ICDD(83.3,"ACSC",1,0))
  ;
- S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  D  Q:FND
- . S PR=+$G(ICDPR(PRI)) S PRIFN=$O(^ICDD(83.6,"B",PR,0)) Q:'PRIFN
- . S PRATT=$$GETATT^ICDJC1("PR",PRIFN,$G(ICDDATE)) I $P(PRATT,U,3)="O" S FND=1
+ S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  I $P($G(PRATT(PRI)),U,7)="O" S FND=1 Q
  ;
  I +FND S FND=+CMPTSET1
  ;
  Q FND
  ;
-CALC2(ICDPR,ICDDATE) ; Computed generic Code Set:  NO OPERATING ROOM PROCEDURE
+CALC2(ICDPR,PRATT) ; Computed generic Code Set:  NO OPERATING ROOM PROCEDURE
  ; returns the generic Code Set IFN if there are no O.R or Surgical event procedures
- N CMPTSET2,PRI,PR,PRIFN,PRATT,FND S FND=1
+ N CMPTSET2,PRI,FND S FND=1
  ;
  S CMPTSET2=$O(^ICDD(83.3,"ACSC",2,0))
  ;
- S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  D  Q:'FND
- . S PR=+$G(ICDPR(PRI)) S PRIFN=$O(^ICDD(83.6,"B",PR,0)) Q:'PRIFN
- . S PRATT=$$GETATT^ICDJC1("PR",PRIFN,$G(ICDDATE)) I $P(PRATT,U,3)="O" S FND=0
+ S PRI=0 F  S PRI=$O(ICDPR(PRI)) Q:'PRI  I $P($G(PRATT(PRI)),U,7)="O" S FND=0 Q
  ;
  I +FND S FND=+CMPTSET2
  ;
@@ -144,22 +140,21 @@ CALC3(ICDDX) ; Computed generic Code Set:  NO SECONDARY DIAGNOSIS
  ;
  Q FND
  ;
-ONLY(ONLYARR,ICDARR,CDSARR) ; add 'ONLY' Code Set if all codes assigned to the event are in the Set
+ONLY(ONLYARR,ICDARR,CDSARR,PRATT) ; add 'ONLY' Code Set if all codes assigned to the event are in the Set
  ; if all the event codes are in the set then add the Only Code Set to the list of all selected Code Sets
  ; for diagnosis this is only applied to the secondary codes
  ; for procedures this is only applied to operating room procedures, non-or procedures outside the set are allowed
  ; input:  ONLYARR(icdxx number) = ONLY code set ifn ^ code ifn (ptr #80, #80.1) ^ code type
- ;         ICDARR - may be either ICDDX or ICDPRC
+ ;         ICDARR - may be either ICDDX or ICDPRC, PRATT compiled procedure attributes
  ; output: CDSARR modified - if meets criteria the ONLY Code Set is added to CDSARR array of selected code sets
  ;         CDSARR(ONLY code set ifn, idcxx number) = code ien (80/80.1) ^ code type ^ 1 (single)
- N IX,LINE,CODTYP,PR,PRIFN,CNT,FND S CNT=0,FND=0
+ N IX,LINE,CODTYP,CNT,FND S CNT=0,FND=0
  ;
  S IX=$O(ONLYARR(0)) Q:'IX  S CODTYP=$P(ONLYARR(IX),U,3)
  ;
  I CODTYP="DX" S IX=$O(ICDARR(0)) F  S IX=$O(ICDARR(IX)) Q:'IX  S CNT=CNT+1 I $D(ONLYARR(IX)) S FND=FND+1
  ;
- I CODTYP="PR" S IX=0 F  S IX=$O(ICDARR(IX)) Q:'IX  D  I CODTYP="O" S CNT=CNT+1 I $D(ONLYARR(IX)) S FND=FND+1
- . S PR=+$G(ICDARR(IX)) S PRIFN=$O(^ICDD(83.6,"B",PR,0)) S CODTYP=$P($$GETATT^ICDJC1("PR",PRIFN,$G(ICDDATE)),U,3)
+ I CODTYP="PR" S IX=0 F  S IX=$O(ICDARR(IX)) Q:'IX  I $P($G(PRATT(IX)),U,7)="O" S CNT=CNT+1 I $D(ONLYARR(IX)) S FND=FND+1
  ;
  I +FND,FND=CNT S IX=0 F  S IX=$O(ONLYARR(IX)) Q:'IX  S LINE=ONLYARR(IX) S CDSARR(+LINE,IX)=$P(LINE,U,2,3)_U_1
  Q

@@ -1,5 +1,5 @@
-DGENA ;ALB/CJM,ISA/KWP,Zoltan,LBD,CKN,EG,ERC,TDM,JLS - Enrollment API - Retrieve Data ;03 Mar 2015  10:25 AM
- ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841,909,940**;Aug 13, 1993;Build 11
+DGENA ;ALB/CJM,ISA/KWP,Zoltan,LBD,CKN,EG,ERC,TDM,JLS,HM - Enrollment API - Retrieve Data ;03 Mar 2015  10:25 AM
+ ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841,909,940,972**;Aug 13, 1993;Build 80
  ;
 FINDCUR(DFN) ;
  ;Description: Used to find a patients current enrollment.
@@ -134,6 +134,9 @@ GET(DGENRIEN,DGENR) ;
  ;     "ELIG","CVELEDT"         Combat Veteran End Date
  ;     "ELIG","SHAD"            SHAD Indicated
  ;     "ELIG","MOH"             Medal of Honor Indicated
+ ;     "ELIG","MOHAWRDDATE"     Medal of Honor Award Date  DG*5.3*972
+ ;     "ELIG","MOHSTATDATE"     Medal of Honor Status Date DG*5.3*972
+ ;     "ELIG","MOHEXEMPDATE"    Medal of Honor Copayment Exemption Date DG*5.3*972
  ;     "ELIG","CLE"             Camp Lejeune Indicated?    DG*5.3*909
  ;     "ELIG","CLEDT"           Camp Lejeune Date          DG*5.3*909
  ;     "ELIG","CLEST"           Camp Lejeune Change Site   DG*5.3*909
@@ -191,6 +194,9 @@ GET(DGENRIEN,DGENR) ;
  S DGENR("ELIG","CLEDT")=$P(NODE,"^",25)    ;added with DG*5.3*909
  S DGENR("ELIG","CLEST")=$P(NODE,"^",26)    ;added with DG*5.3*909
  S DGENR("ELIG","CLESOR")=$P(NODE,"^",27)   ;added with DG*5.3*909
+ S DGENR("ELIG","MOHAWRDDATE")=$P(NODE,"^",28)   ;added with DG*5.3*972 HM
+ S DGENR("ELIG","MOHSTATDATE")=$P(NODE,"^",29)   ;added with DG*5.3*972 HM
+ S DGENR("ELIG","MOHEXEMPDATE")=$P(NODE,"^",30)   ;added with DG*5.3*972 HM
  ;S DGENCDZZ=1 ; for CD Testing (disabled).
  S NODE=$G(^DGEN(27.11,DGENRIEN,"U"))
  S DGENR("DATETIME")=$P(NODE,"^")

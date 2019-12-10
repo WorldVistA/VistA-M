@@ -1,5 +1,5 @@
-DGMTCOU1 ;ALB/REW,LD,JAN,AEG,LBD,BDB - COPAY UTILITIES;8/13/04 8:31am
- ;;5.3;Registration;**33,45,54,335,358,401,436,445,564,840,858**;Aug 13, 1993;Build 30
+DGMTCOU1 ;ALB/REW,LD,JAN,AEG,LBD,BDB,HM - COPAY UTILITIES;8/13/04 8:31am
+ ;;5.3;Registration;**33,45,54,335,358,401,436,445,564,840,858,972**;Aug 13, 1993;Build 80
 AUTO(DFN,AUTOEX) ;
  ; Returns 1 if Exempt from CP w/o needing MT/CP information
  ;  INPUT: DFN     [Required]
@@ -15,16 +15,19 @@ AUTOINFO(DFN) ;
  ; looked at to determine Copay Exemption Status
  ;
  ;  INPUT: DFN - IEN of Patient File (Required)
- ;  OUTPUT:(SC>50%^REC.A&A^REC.HB^REC.PEN^DOM PT^NON.VET^INPT^POW^UNEMP^CD)
- ;  Piece: (   1  ^   2   ^   3  ^   4   ^   5  ^   6   ^  7 ^ 8 ^  9  ^10)
+ ;  OUTPUT:(SC>50%^REC.A&A^REC.HB^REC.PEN^DOM PT^NON.VET^INPT^POW^UNEMP^CD^MOH)
+ ;  Piece: (   1  ^   2   ^   3  ^   4   ^   5  ^   6   ^  7 ^ 8 ^  9  ^10 ^ 11)
  ;  PIECES =1 IF TRUE
+ ;
+ ; Supported ICR #423: Supports use of AUTOINFO^DGMTCOU1(DFN) to check if a veteran
+ ;                      is MOH recipient
  ;
  N DGALLEL,DGDOM,DGEL,DGNODE,DGX,DGYR,VADMVT,DGI
  S DGX=""
  I $P($G(^DPT(DFN,"VET")),U,1)'="Y" S $P(DGX,U,6)=1 G QTAUTO ;NON-VET
  S DGEL=0,DGALLEL=U
  F  S DGEL=$O(^DPT("AEL",DFN,DGEL)) Q:'DGEL  S DGALLEL=DGALLEL_$P($G(^DIC(8,DGEL,0)),U,9)_U
- F DGI=.3,.362,.39,.52 S DGNODE(DGI)=$G(^DPT(DFN,DGI)) ;DG*5.3*840
+ F DGI=.3,.362,.39,.52,.54 S DGNODE(DGI)=$G(^DPT(DFN,DGI)) ;DG*5.3*840 ;added MOH indicator field on loop DG*5.3*972 HM
  I (DGALLEL["^1^") S $P(DGX,U,1)=1 G QTAUTO ;SC>50
  I $P(DGNODE(.362),U,12)["Y"!(DGALLEL["^2^") S $P(DGX,U,2)=1 G QTAUTO ;A&A
  I $P(DGNODE(.362),U,13)["Y"!(DGALLEL["^15^") S $P(DGX,U,3)=1 G QTAUTO ;HB
@@ -32,6 +35,7 @@ AUTOINFO(DFN) ;
  I $P(DGNODE(.52),U,5)["Y"!(DGALLEL["^18^") S $P(DGX,U,8)=1 G QTAUTO ;POW
  I $P(DGNODE(.39),U,6)["Y"!(DGALLEL["^21^") S $P(DGX,U,10)=1 G QTAUTO ;CD DG*5.3*840
  I $P(DGNODE(.3),U,5)["Y"&($P(DGNODE(.3),U,2)>0)&($P(DGNODE(.362),U,20)>0) S $P(DGX,U,9)=1 G QTAUTO ;UNEMPLOYABLE
+ I $P(DGNODE(.54),U,1)["Y" S $P(DGX,U,11)=1 G QTAUTO ; MOH DG*5.3*972 HM
  N DGDOM,DGDOM1,VAHOW,VAROOT,VAINDT,VAIP,VAERR
  D DOM^DGMTR I $G(DGDOM) S $P(DGX,U,5)=1 G QTAUTO ;DOM
  D IN5^VADPT I $G(VAIP(1))'="" S $P(DGX,U,7)=1 G QTAUTO ;INPAT

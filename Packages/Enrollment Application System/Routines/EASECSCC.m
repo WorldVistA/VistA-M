@@ -1,5 +1,5 @@
-EASECSCC ;ALB/LBD - LTC Co-Pay Test Screen Completion;13 AUG 2001 ; 3/20/03 2:24pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40**;Mar 15, 2001
+EASECSCC ;ALB/LBD,HM - LTC Co-Pay Test Screen Completion ;13 AUG 2001 ; 3/20/03 2:24pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,7,34,40,174**;Mar 15, 2001;Build 26
  ;
  ;NOTE: This routine was modified from DGMTSCC for LTC Co-pay
  ; Input  -- DFN      Patient IEN
@@ -77,13 +77,15 @@ CHK ;Check if LTC copay test can be completed
  Q
  ;
 STA ;Ask test status
- N DIR,Y,SCRN
+ N DIR,Y,SCRN,DGMOH
  S DGMTS=$P($G(^DGMT(408.31,DGMTI,0)),U,3)
  S DGRE=$P($G(^DGMT(408.31,DGMTI,2)),U,7)
  I DGMTS S DGSTA=$P($G(^DG(408.32,DGMTS,0)),U)
  I '$D(DGSTA) S DGSTA="NON-EXEMPT"
  I DGSTA="EXEMPT",("12"[DGRE),$G(DGINT)>+$$THRES^IBARXEU1(DGMTDT,1,0) S DGSTA="NON-EXEMPT"
  I DGSTA="EXEMPT",$G(DGNSTA)="NON-EXEMPT" S DGSTA="NON-EXEMPT"
+ I DGSTA="NON-EXEMPT" D  I DGMOH="Y" Q  ;EAS*1.0*174 I NON-EXEMPT CHECK CHECK FOR MOH DATA AND DISPLAY MESSAGE
+ .S DGMOH=$P($G(^DPT(DFN,.54)),U,1) I DGMOH="Y" W !!,"Veteran is Awarded Medal of Honor - Add a New LTC Copayment Test to update status" ;EAS*1.0*174 HM
  S DIR("A")="LTC Copay Test Status" S DIR("B")=DGSTA
  S DIR(0)="P^408.32:EM",DIR("S")="I $P(^(0),U,19)=3"
  D ^DIR K DIR Q:'Y!($D(DTOUT))!($D(DUOUT))
@@ -93,9 +95,9 @@ STA ;Ask test status
  I DGRE S DIR("B")=$P($G(^EAS(714.1,DGRE,0)),U)
  ; Screen the look-up on file #714.1.  Exemption reasons 1, 2 and 12
  ; will be screened out unless this is the call from the Edit option
- ; (DGEFLG=1) and only reason 1 is screened out.
- S SCRN="2^12^" S:$G(DGEFLG) SCRN=""
- S DIR("S")="I $P(^(0),U,2),""^1^"_SCRN_"""'[(U_Y_U)"
+ ; (DGEFLG=1) and only reason 1 is screened out. Reason 14 added for screening out EAS*1.0*174 HM
+ S SCRN="2^12^14^" S:$G(DGEFLG) SCRN="" ;do not display 14 EAS*1.0*174 HM
+ S DIR("S")="I $P(^(0),U,2),""^1^14"_SCRN_"""'[(U_Y_U)" ;do not display 14 EAS*1.0*174 HM
  S DIR(0)="P^714.1:EM" D ^DIR K DIR I 'Y!($D(DTOUT))!($D(DUOUT)) D  G STA
  .W !!,"A reason for exemption must be entered for an Exempt status.",!
  S DGRE=+Y
@@ -130,7 +132,8 @@ EXMPT(DFN,DGMTI,EX) ; Veteran is exempt from LTC co-payments
  ;                  2 = NSC, single, receiving VA pension (no A&A, HB)
  ;                         or
  ;                      Income (last year) is below single pension threshold
- ;                 12 = Income (current year) is below single pension threshold 
+ ;                 12 = Income (current year) is below single pension threshold
+ ;                 14 = Veteran Awarded Medal of Honor - EAS*1.0*174 HM
  Q:'DGMTI  Q:'EX
  N DATA,I
  W !! F I=1:1:80 W "="

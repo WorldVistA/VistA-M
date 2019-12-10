@@ -1,5 +1,5 @@
 VPRHS ;SLC/MKB -- HealthShare utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,16**;Sep 01, 2011;Build 3
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,16,17**;Sep 01, 2011;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -9,11 +9,13 @@ VPRHS ;SLC/MKB -- HealthShare utilities ;10/25/18  15:29
  ; ^DPT                         10035
  ; %ZTLOAD                      10063
  ; DDE                           7008
+ ; DIC                           2051
+ ; DIQ                           2056
  ; MPIF001                       2701
  ; SDAMA301                      4433
+ ; TIULQ                         2693
  ; VADPT                         3744
  ; XLFDT                        10103
- ; XLFSTR                       10104
  ; XUPROD                        4440
  ;
  Q
@@ -24,17 +26,11 @@ ON() ; -- return 1 or 0, if monitoring is on
 EN(DFN) ; -- subscribe a patient for data event monitoring
  Q:'$G(DFN)  Q:$D(^VPR(1,2,+DFN,0))
  S ^VPR(1,2,+DFN,0)=+DFN,^VPR(1,2,"B",+DFN,+DFN)=""
- ;N X,Y,DA,DIC,DINUM
- ;S DIC="^VPR(1,2,",DIC(0)="UL",DA(1)=1,(DINUM,X)=+DFN
- ;D FILE^DICN
  Q
  ;
 UN(DFN) ; -- unsubscribe
  Q:'$G(DFN)  Q:'$D(^VPR(1,2,+DFN,0))
  K ^VPR(1,2,+DFN,0),^VPR(1,2,"B",+DFN,+DFN)
- ;N DA,DIK
- ;S DA(1)=1,DA=+DFN,DIK="^VPR(1,2,"
- ;D ^DIK
  Q
  ;
 SUBS(DFN) ; -- return 1 or 0, if patient is subscribed or not
@@ -52,10 +48,88 @@ QUE(DFN) ; -- create task to POST a Patient update
  S:$G(ZTSK)>0 $P(^VPR(1,2,DFN,0),U,2)=ZTSK
  Q
  ;
-PAT ; -- post Patient update
- D POST^VPRHS(DFN,"Patient",DFN_";2")
- S $P(^VPR(1,2,DFN,0),U,2)="",ZTREQ="@"
+PAT ; -- post Patient update [TASK]
+ Q:'$P($G(^VPR(1,0)),U,2)                ;monitoring disabled
+ S DFN=+$G(DFN) Q:DFN<1  Q:'$$SUBS(DFN)  ;not subscribed
+ D POST(DFN,"Patient",DFN_";2")
+ S $P(^VPR(1,2,DFN,0),U,2)="",ZTREQ="@"  ;clear task
  Q
+ ;
+PX ; -- post an encounter update [TASK]
+ N VST,VPRPX,VPRDT,X0,X,VFL,VDA S ZTREQ="@"
+ Q:'$P($G(^VPR(1,0)),U,2)  ;monitoring disabled
+ S DFN=+$G(DFN) Q:DFN<1
+ S VPRPX=$NA(^XTMP("VPRPX"_DFN)),VPRDT=$$FMADD^XLFDT($$NOW^XLFDT,,,-10)
+ L +@VPRPX@(0):5 ;I'$T ??
+ ; post visits that have been stable for at least 10 minutes
+ S VST=0 F  S VST=$O(@VPRPX@(VST)) Q:VST<1  D
+ . S X0=$G(@VPRPX@(VST)) Q:+X0>VPRDT   ;still waiting
+ . D POST(DFN,"Encounter",$P(X0,U,2),$P(X0,U,3))
+ . ; post related v-file records next
+ . S VFL="" F  S VFL=$O(@VPRPX@(VST,VFL)) Q:VFL=""  D
+ .. S VDA=0 F  S VDA=$O(@VPRPX@(VST,VFL,VDA)) Q:VDA<1  D
+ ... S X=$$NAME(VFL,VDA) I X="" K @VPRPX@(VST,VFL) Q
+ ... S ACT=$G(@VPRPX@(VST,VFL,VDA))
+ ... D POST(DFN,$P(X,U),(VDA_";"_$P(X,U,2)),ACT,VST)
+ ... I VFL="HF",X["History" D POST(DFN,"HealthConcern",(VDA_";9000010.23"),ACT,VST)
+ . K @VPRPX@(VST)
+PXD ; look for waiting documents
+ S VDA=0 F  S VDA=$O(@VPRPX@("DOC",VDA)) Q:VDA<1  D
+ . N VPRTIU,PROC,I
+ . S ACT=$G(@VPRPX@("DOC",VDA))        ;ACT=#tries[^@]
+ . D EXTRACT^TIULQ(VDA,"VPRTIU",,".03;1405",,1,"I")
+ . S VST=$G(VPRTIU(VDA,.03,"I"))
+ . ; Quit if no visit yet, or still in ^XTMP
+ . I (VST&$G(@VPRPX@(+VST)))!((VST<1)&(+ACT<5)) D  Q
+ .. N X S X=+ACT,$P(ACT,U)=(X+1)
+ .. S @VPRPX@("DOC",VDA)=ACT
+ . D POST(DFN,"Document",VDA_";8925",$P(ACT,U,2),VST)
+ . K @VPRPX@("DOC",VDA)
+ . S PROC=$G(VPRTIU(VDA,1405,"I")) Q:'PROC  Q:'VST
+ . I PROC["SRF" D POST(DFN,"Procedure",+PROC_";130",,VST) Q
+ . I PROC["GMR",$$GET1^DIQ(123,+PROC,1.01,"I") D  ;CP
+ .. N VPRC,ID D FIND^DIC(702,,"@","Q",+PROC,,"ACON",,,"VPRC")
+ .. S I=0 F  S I=$O(VPRC("DILIST",2,I)) Q:I<1  D
+ ... S ID=+$G(VPRC("DILIST",2,I))
+ ... D POST(DFN,"Procedure",ID_";702",,VST)
+ L -@VPRPX@(0)
+PXQ ; re-task if not done
+ I $O(@VPRPX@(0))="" K @VPRPX Q
+ D QUE^VPREVNT(DFN,5)
+ Q
+ ;
+NAME(X,DA) ; -- return container name for V-files
+ N Y S Y=""
+ I X="HF" D
+ . N NM S NM=$$GET1^DIQ(9000010.23,+$G(DA),.01)
+ . I $$FHX(NM) S Y="FamilyHistory^9000010.23" Q
+ . I $$SHX(NM) S Y="SocialHistory^9000010.23" Q
+ . S Y="HealthConcern^9000010.23"
+ I X="IMM" S Y="Vaccination^9000010.11"
+ I X="XAM" S Y="PhysicalExam^9000010.13"
+ I X="POV" S Y="Diagnosis^9000010.07"
+ ; X="CPT" S Y="Procedure^9000010.18"
+ ; X="PED" S Y="education^9000010.16"
+ ; X="SK"  S Y="Procedure^9000010.12"
+ Q Y
+ ;
+FHX(X) ; -- return 1 or 0, if HF name is for FamilyHistory
+ I X["FAMILY HISTORY" Q 1
+ I X["FAMILY HX" Q 1
+ Q 0
+ ;
+SHX(X) ; -- return 1 or 0, if HF name is for SocialHistory
+ I (X["TOBACCO")!(X["SMOK") Q 1
+ ; (X["LIVES")!(X["LIVING") Q 1
+ ; (X["RELIGIO")!(X["SPIRIT") Q 1
+ Q 0
+ ;
+VALID(PAT) ; -- return 1 or 0, if valid patient for HealthShare
+ I $G(^DPT(PAT,.35)) Q 0                   ;death date
+ I $$TESTPAT^VADPT(PAT),$$PROD^XUPROD Q 0  ;no test pats in prod
+ I $$MERGED(PAT) Q 0                       ;no merged-from pats
+ I '$G(^DPT(DFN,"MPI")) Q 0                ;no ICN
+ Q 1
  ;
 POST(DFN,TYPE,ID,ACT,VST) ; -- post an update to
  ;  ^VPR(1,2,DFN,"AVPR",TYPE,ID) = seq# ^ U/D ^ VISIT#
@@ -124,6 +198,7 @@ GET(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
  S VPRNM=$G(NAME) I VPRNM="" D ERROR("Undefined container") G GTQ
  S ID=$G(ID),MTYPE=$G(MTYPE,1) ;XML
  I VPRNM="Patient",'ID&DFN S ID=DFN_";2"
+ I VPRNM'="Patient",$G(VPRQ("patch"))'="" S VPRNM=VPRNM_VPRQ("patch")
  I $G(VPRQ("max")) S VPRMAX=VPRQ("max")
  ;
 GT1 ; update one record for ECR
@@ -148,54 +223,11 @@ GTQ ; return data and exit
  S @VPRY@(0)=VPRI,@VPRR@(0)=VPRJ
  Q
  ;
-UPD(DFN,NAME,ID,VPRQ,MTYPE,VPRY,VPRR) ; -- return VistA data in @VPRY@(#)
- ; Used with patch update Entities to fix data cache
- N ICN,VPRNM,VPRPCH,VPRCNTR,VPRE,VPRI,VPRJ,VPRN,VPRX,VPRZ,VPRMAX
- ;
- ; define default return arrays
- S VPRY=$G(VPRY,$NA(^TMP("VPR GET",$J))),VPRI=0 K @VPRY
- S VPRR=$G(VPRR,$NA(^TMP("VPR ERR",$J))),VPRJ=0 K @VPRR
- ;
- ; validate/set up input parameters
- S DFN=$G(DFN),ICN=$P(DFN,";",2),DFN=+DFN
- I DFN<1!'$D(^DPT(DFN)) D ERROR("Invalid patient DFN") G UPQ
- I $P($G(^DPT(DFN,0)),U)["MERGING INTO" D ERROR($P($G(^DPT(DFN,0)),U)) G UPQ
- I $G(^DPT(DFN,-9)) D ERROR("MERGED INTO `"_$G(^DPT(DFN,-9))) G UPQ
- S VPRQ("patient")=DFN
- ;
- S VPRNM=$G(NAME) I VPRNM="" D ERROR("Undefined container") G UPQ
- S ID=$G(ID),MTYPE=$G(MTYPE,1) ;XML
- I $G(VPRQ("max")) S VPRMAX=VPRQ("max")
- ;
-UP1 ; always return full Patient container
- I VPRNM="Patient" D  G UPQ
- . S VPRE=$O(^DDE("B","VPR PATIENT",0))
- . I 'VPRE D ERROR("Missing Entity VPR PATIENT file #2") Q
- . D GET^DDE(VPRE,DFN,.VPRQ,MTYPE,.VPRMAX,.VPRY,.VPRR)
- . S VPRI=+$O(@VPRY@("A"),-1) ;#results
- . S VPRJ=+$O(@VPRR@("A"),-1) ;#errors
- ;
- ; re-load container for patient
- S VPRX=$NA(^TMP("VPRHS",$J)),VPRZ=$NA(^TMP("VPRHS ERR",$J))
- S VPRPCH=$G(VPRQ("patch")) I VPRPCH="" D ERROR("Missing patch identifier") G UPQ
- S VPRCNTR="VPR "_VPRPCH_" "_$$UP^XLFSTR(VPRNM)
- S VPRNM=$E(VPRCNTR,1,$L(VPRCNTR)-1)
- F  S VPRNM=$O(^DDE("B",VPRNM)) Q:VPRNM=""  Q:VPRNM'[VPRCNTR  D
- . S VPRE=$O(^DDE("B",VPRNM,0)) K @VPRX,@VPRZ
- . I 'VPRE D ERROR("Missing Entity for "_VPRNM_" file #"_VPRFN) Q
- . D GET^DDE(VPRE,,.VPRQ,MTYPE,.VPRMAX,.VPRX,.VPRZ)
- . S VPRN=0 F  S VPRN=$O(@VPRX@(VPRN)) Q:VPRN<1  S VPRI=VPRI+1,@VPRY@(VPRI)=@VPRX@(VPRN)
- . S VPRN=0 F  S VPRN=$O(@VPRZ@(VPRN)) Q:VPRN<1  S VPRJ=VPRJ+1,@VPRR@(VPRJ)=@VPRZ@(VPRN)
- K @VPRX,@VPRZ
- ;
-UPQ ;return data and exit
- S @VPRY@(0)=VPRI,@VPRR@(0)=VPRJ
- Q
- ;
 ERROR(MSG) ; -- return error MSG
  S VPRJ=+$G(VPRJ)+1
  S @VPRR@(VPRJ)=$G(MSG)
  Q
+ ;
  ;
 ACTIVE ; -- find currently non-deceased, active patients
  N DFN S DFN=0

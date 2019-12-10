@@ -1,5 +1,5 @@
 VPRSR ;SLC/MKB -- Surgery interface ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15**;Sep 01, 2011;Build 9
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17**;Sep 01, 2011;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Supported by DBIA #4750
@@ -11,6 +11,8 @@ VPRSR ;SLC/MKB -- Surgery interface ;10/25/18  15:29
  ;
  ; ---------------- Update Triggers ----------------
  ;
+ ; NOT IN USE: Surgery updates now triggered via TIU
+ ;
 NEW(IEN,DFN,STS) ; -- new surgery request [from SROERR]
  Q  ;don't want until completed
  S IEN=+$G(IEN),DFN=+$G(DFN) Q:DFN<1
@@ -18,6 +20,7 @@ NEW(IEN,DFN,STS) ; -- new surgery request [from SROERR]
  Q
  ;
 UPD(IEN,DFN,STS) ; -- updated surgery request [from SROERR0]
+ Q  ;trigger off the document event
  S IEN=+$G(IEN),DFN=+$G(DFN) Q:DFN<1  Q:$G(STS)'["COMPLETED"
  N VPRSR,I,SRDOC,VST
  D ONE^SROESTV("VPRSR",IEN)
@@ -27,6 +30,7 @@ UPD(IEN,DFN,STS) ; -- updated surgery request [from SROERR0]
  Q
  ;
 DEL(IEN,DFN) ; -- delete surgery request [from SROERR]
+ Q  ;not used
  S IEN=+$G(IEN),DFN=+$G(DFN) Q:DFN<1
  D POST^VPRHS(DFN,"Procedure",IEN_";130","@")
  Q

@@ -1,8 +1,13 @@
 SDVSIT2 ;ALB/RMO/MJK - Encounter Utilities;28 DEC 1992 10:00 am
- ;;5.3;Scheduling;**27,44,132**;08/13/93
+ ;;5.3;Scheduling;**27,44,132,723**;08/13/93;Build 21
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;; ;
  ;
 GETAPT(DFN,SDT,SDCL,SDVIEN) ;Look-up Outpatient Encounter IEN for Appt
+ ; This utility will return the existing IEN for an Outpatient
+ ; Encounter. If it fails to find an existing encounter,
+ ; it will create a new Encounter and return the new IEN.
+ ;
  ; Input  -- DFN      Patient file IEN
  ;           SDT      Appointment Date/Time
  ;           SDCL     Hospital Location file IEN for Appt

@@ -1,5 +1,5 @@
-DGMTA ;ALB/RMO/CAW/LD/SCG/AEG/PHH - Add a New Means Test;2/24/10 2:58pm
- ;;5.3;Registration;**33,45,137,166,177,182,290,344,332,433,458,535,612,564,688,661,840**;Aug 13, 1993;Build 20
+DGMTA ;ALB/RMO/CAW/LD/SCG/AEG/PHH/HM - Add a New Means Test;2/24/10 2:58pm
+ ;;5.3;Registration;**33,45,137,166,177,182,290,344,332,433,458,535,612,564,688,661,840,972**;Aug 13, 1993;Build 80
  ;
 EN ;Entry point to add a new means test
  N DGMDOD S DGMDOD=""
@@ -137,6 +137,7 @@ FTST ; Build message for future tests that are added to the system, but
  .W $S($D(^DIC(4,+SCT,0)):$P(^DIC(4,+SCT,0),U),SRC=2:"IVM",SRC=3:"the HEC",1:"the site")
  .W ",",!?3,"if it is necessary to edit the test."
  Q
+ ; HM DG*5.3*972 - added Medal of Honor to list of reasons
 WHY ;Why Copay Test cannot be added
  ;;Patient is not a veteran.
  ;;Patient does not have a Primary Eligibility Code.
@@ -150,3 +151,4 @@ WHY ;Why Copay Test cannot be added
  ;;Patient was a POW, automatically exempted.
  ;;Patient is Unemployable, automatically exempted.
  ;;Patient is Catastrophically Disabled, automatically exempted.
+ ;;Patient is awarded Medal of Honor, automatically exempted.

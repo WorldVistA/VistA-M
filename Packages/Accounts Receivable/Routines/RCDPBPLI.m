@@ -1,5 +1,5 @@
 RCDPBPLI ;WISC/RFJ-bill profile (build array cont employee/vendor) ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153,301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**114,153,301,315,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -145,8 +145,10 @@ TOP ;  top data
  ;
 TCSP ;  cross-servicing data referral
  S RCLINE=RCLINE+1 D SET^RCDPBPLM(" ",RCLINE,1,80)
- S RCLINE=RCLINE+1 D SET^RCDPBPLM("Debt Referred to Cross-Servicing",RCLINE,1,80)
- D SET^RCDPBPLM("  CS Referred Date",RCLINE,48,80,151)
+ ; PRCA*4.5*350
+ N DEBTOR S DEBTOR=+$G(RCDPDATA(430,RCBILLDA,9,"I"))
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM("Debt "_$S($$RRD^RCTCSPU($G(DEBTOR)):"Re-",1:"")_"Referred to Cross-Servicing",RCLINE,1,80)
+ D SET^RCDPBPLM("  CS "_$S($$RR^RCTCSPU($G(RCBILLDA)):"Re-",1:"")_"Referred Date",RCLINE,45,80,151)
  Q
  ;
  ;

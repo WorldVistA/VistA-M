@@ -1,5 +1,5 @@
-IBARXEU1 ;AAS/ALB - RX EXEMPTION UTILITY ROUTINE (CONT.) ; 3/27/07 3:10pm
- ;;2.0;INTEGRATED BILLING;**26,112,74,275,367,449,385**;21-MAR-94;Build 35
+IBARXEU1 ;ALB/AAS - RX EXEMPTION UTILITY ROUTINE (CONT.);3/27/07 3:10pm ; 31 Jan 2019  3:51 PM
+ ;;2.0;INTEGRATED BILLING;**26,112,74,275,367,449,385,627**;21-MAR-94;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 STATUS(DFN,IBDT) ; -- Determine medication copayment exemption status
@@ -28,16 +28,18 @@ AUTOST(DFN,IBDT) ; -- Determine automatically exempt patients.
  ; -- ask mas if in receipt of pension/a&a/hb, etc.
  ;    the automatic determinations
  ;    returns:
- ; sc>50%^rec a&a^rec hb^rec pen^n/a^non-vet^^POW^Unempl.^cd
- ;   1       1      1       1           1      1    1     1
+ ; sc>50%^rec a&a^rec hb^rec pen^n/a^non-vet^^POW^Unempl.^cd^moh
+ ;   1       1      1       1           1      1    1     1   1
  ;    pieces =1 if true
  S IBEXMT=$$AUTOINFO^DGMTCOU1(DFN) I IBEXMT="" G AUTOSTQ
- I IBEXMT[1 F I=1,2,3,4,6,8,9,10 I $P(IBEXMT,"^",I)=1 S IBEXREA=I*10 Q  ;lookup code is piece position time 10
+ I IBEXMT[1 F I=1,2,3,4,6,8,9,10,11 I $P(IBEXMT,"^",I)=1 S IBEXREA=I*10 Q  ;lookup code is piece position time 10
  ;
  ; -- need to move CD patinet's to 70 which is ignored by IB, used to
  ;    keep other stuff working, auto-exempt stuff relies on a 2 digit
  ;    code to work properly
+ ; -- added moh code to move to 50 to keep at 2 digit
  I IBEXREA=100 S IBEXREA=70 ;not used above
+ I IBEXREA=110 S IBEXREA=50 ;not used above
  ;
 AUTOSTQ I IBEXREA="" Q IBEXREA
  Q $O(^IBE(354.2,"ACODE",+IBEXREA,0))_"^"_IBDT

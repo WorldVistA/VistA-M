@@ -1,5 +1,5 @@
-DGRPDB ;ALB/AAS,JAN,ERC,PHH - VIEW ONLY SCREEN TO DETERMINE BILLING ELIGIBILITY ; 3/23/06 8:16am
- ;;5.3;Registration;**26,50,358,570,631,709,713,749**;Aug 13, 1993;Build 10
+DGRPDB ;ALB/AAS,JAN,ERC,PHH,HM - VIEW ONLY SCREEN TO DETERMINE BILLING ELIGIBILITY ;24 Dec 2018  1:45 PM
+ ;;5.3;Registration;**26,50,358,570,631,709,713,749,972**;Aug 13, 1993;Build 80
  ;
 % S:'$D(DGQUIT) DGQUIT=0
  G:DGQUIT END S DIC="^DPT(",DIC(0)="AEQMN" D ^DIC G:+Y<1 END S DFN=+Y D EN
@@ -7,7 +7,7 @@ DGRPDB ;ALB/AAS,JAN,ERC,PHH - VIEW ONLY SCREEN TO DETERMINE BILLING ELIGIBILITY 
  ;
 EN ;entry with DFN defined.
  Q:'$D(DFN)  D HOME^%ZIS,2^VADPT,HDR
- D MT,AOIR,ELIG,DIS
+ D MT,AOIR,ELIG,DIS,MOH ;added MOH DG*5.3*972
  N DGINS
  I $$INSUR^IBBAPI(DFN,"","AR",.DGINS,1)
  S C="",C=$O(DGINS("IBBAPI","INSUR",C),-1),C=+C+6
@@ -21,6 +21,29 @@ ELIG ;eligibility code(s)
  E  W "NO ADDITIONAL ELIGIBILITIES IDENTIFIED"
  Q
  ;
+ ;display medal of honor information DG*5.3*972 HM
+MOH ;medal of honor
+ N DGMOHADT,DGMOHSDT,DGMOHCED
+ I $P($G(^DPT(DFN,.54)),"^")="Y" D
+ .W !,"     Medal of Honor: YES"
+ .N DGMOHADT,DGMOHEDT,DGMOHSDT
+ .S DGMOHADT=$P($G(^DPT(DFN,.54)),"^",2),DGMOHSDT=$P($G(^DPT(DFN,.54)),"^",3),DGMOHEDT=$P($G(^DPT(DFN,.54)),"^",4) ;get MOH AWARD DATE,MOH STATUS DATE, & MOH COPAYMENT EXEMPTION DATE
+ .I DGMOHADT="" S DGMOHADT="UNKNOWN",DGMOHEDT="Needs Determination" ;Display text when MOH AWARD DATE empty
+ .W ?35,"MOH Status Date: "_$$FMTE^XLFDT(DGMOHSDT,"5DZ") ;format MOH STATUS DATE
+ .W !,"     MOH Award Date: "_$$FMTE^XLFDT(DGMOHADT,"5DZ") ;format MOH AWARD DATE
+ .W ?35,"MOH Copay Exemption Date: "_$$FMTE^XLFDT(DGMOHEDT,"5DZ") ;format MOH COPAYMENT EXEMPTION DATE
+ I $P($G(^DPT(DFN,.54)),"^")="N" D  ;if MOH indicator is N
+ .N DGMOHSDT S DGMOHSDT=$P($G(^DPT(DFN,.54)),"^",3) ;set status date
+ .W !,"     Medal of Honor: NO"
+ .W ?35,"MOH Status Date: "_$$FMTE^XLFDT(DGMOHSDT,"5DZ") ;format MOH STATUS DATE
+ .W !,"     MOH Award Date: "
+ .W ?35,"MOH Copay Exemption Date: "
+ I $P($G(^DPT(DFN,.54)),"^")="" D  ;if MOH indicator is null
+ .W !,"     Medal of Honor: "
+ .W ?35,"MOH Status Date: "
+ .W !,"     MOH Award Date: "
+ .W ?35,"MOH Copay Exemption Date: "
+ Q
 DIS ;rated disabilities - Integration Agreement #700
  ;
  ;  This is called from the FEE and MCCR package!!!
@@ -60,8 +83,8 @@ INSQ K I,I1,DGX,Z
 IN ; Old code
  Q
  ;
-AOIR ;Agent Orange/ionizing radiation
- N DGEC,NTA
+AOIR ;Agent Orange/ionizing radiation/Camp Lejeune
+ N DGEC,NTA,DGCL
  S DGX=$S($D(^DPT(DFN,.321)):^(.321),1:"")
  F I=2,3 S X=$P(DGX,"^",I) W:I=2 !,"           A/O Exp.: " W:I=3 "ION Rad.: " W $S(X="Y":"YES",X="N":"NO",X="U":"UNKNOWN",1:"NOT ANSWERED"),"   "
  S X=$G(^DPT(DFN,.38)),X1=$P(X,"^",1) W "Medicaid Elig: ",$S(X1="":"NOT ANSWERED",'X1:"NO",1:"YES") I ($X+15)'>IOM W " - " S Y=$P(X,"^",2) D D^DIQ W $P(Y,"@")
@@ -70,6 +93,8 @@ AOIR ;Agent Orange/ionizing radiation
  S NTA=$S($$GETCUR^DGNTAPI(DFN,"DGNTARR")>0:DGNTARR("INTRP"),1:"")
  K DGNTARR
  W "N/T Radium: " W $S(NTA'="":NTA,1:"NOT ANSWERED")
+ ;DG*5.3*972 HM - Camp Lejeune will always be on next line
+ S DGCL=$S($D(^DPT(DFN,.3217)):^DPT(DFN,.3217),1:""),X=$P(DGCL,"^",1) W !,"       Camp Lejeune: " W $S(X="Y":"YES",X="N":"NO",1:"NOT ANSWERED")
  Q
  ;
 PAUSE F J=1:1 Q:($Y>(IOSL-3))  W !

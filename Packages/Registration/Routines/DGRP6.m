@@ -1,5 +1,5 @@
-DGRP6 ;ALB/MRL,LBD,TMK,JAM - REGISTRATION SCREEN 6/SERVICE INFORMATION ;5/12/11 10:49am
- ;;5.3;Registration;**161,247,343,397,342,451,672,689,797,841,842,947**;Aug 13, 1993;Build 13
+DGRP6 ;ALB/MRL,LBD,TMK,JAM,HM - REGISTRATION SCREEN 6/SERVICE INFORMATION ;5/12/11 10:49am
+ ;;5.3;Registration;**161,247,343,397,342,451,672,689,797,841,842,947,972**;Aug 13, 1993;Build 80
  N DIPA,LIN,XX,Z1,GLBL
  S DGRPS=6 D H^DGRPU F I=.32,.321,.322,.36,.385,.52,.53,.54 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S (DGRPW,Z)=1 D WW2^DGRPV S Z=" Service Branch/Component",Z1=27 D WW1^DGRPV S Z="Service #",Z1=16 D WW1^DGRPV S Z=" Entered",Z1=12 D WW1^DGRPV S Z="Separated",Z1=12 D WW1^DGRPV W "Discharge"
@@ -32,7 +32,27 @@ DGRP6 ;ALB/MRL,LBD,TMK,JAM - REGISTRATION SCREEN 6/SERVICE INFORMATION ;5/12/11 
  . S DGX=$S($G(DGX)=1:"UNACCEPTABLE DOCUMENTATION",$G(DGX)=2:"NO DOCUMENTATION REC'D",$G(DGX)=3:"ENTERED IN ERROR",$G(DGX)=4:"UNSUPPORTED PURPLE HEART",$G(DGX)=5:"VAMC",$G(DGX)=6:"UNDELIVERABLE MAIL",1:"")
  . I $G(DGX)]"" W ?26,"PH Remarks: "_$S($G(DGX)]"":$G(DGX),1:"")
  ;DG*5.3*841
- I $P(DGRP(.54),"^")="Y" W !,"<9> Medal of Honor: YES"
+ I $P(DGRP(.54),"^")="Y" D
+ .W !,"<9> Medal of Honor: YES"
+ .;MOH updates start here DG*5.3*972 HM
+ .N DGMOHADT,DGMOHEDT,DGMOHSDT
+ .S DGMOHADT=$P(DGRP(.54),"^",2),DGMOHSDT=$P(DGRP(.54),"^",3),DGMOHEDT=$P(DGRP(.54),"^",4) ;get MOH AWARD DATE,MOH STATUS DATE, & MOH COPAYMENT EXEMPTION DATE
+ .I DGMOHADT="" S DGMOHADT="UNKNOWN",DGMOHEDT="Needs Determination" ;Display text when MOH AWARD DATE empty
+ .W ?26,"Award Date: "_$$FMTE^XLFDT(DGMOHADT,"5DZ") ;format MOH AWARD DATE
+ .W ?51,"Status Date: "_$$FMTE^XLFDT(DGMOHSDT,"5DZ") ;format MOH STATUS DATE
+ .W !?4,"MOH Copayment Exemption Date: "_$$FMTE^XLFDT(DGMOHEDT,"5DZ") ;format MOH COPAYMENT EXEMPTION DATE
+ I $P(DGRP(.54),"^")="N" D  ;if MOH indicator is N
+ .N DGMOHSDT S DGMOHSDT=$P(DGRP(.54),"^",3) ;set status date
+ .W !,"<9> Medal of Honor: NO"
+ .W ?26,"Award Date: "
+ .W ?51,"Status Date: "_$$FMTE^XLFDT(DGMOHSDT,"5DZ") ;format MOH STATUS DATE
+ .W !?4,"MOH Copayment Exemption Date: "
+ I $P(DGRP(.54),"^")="" D  ;if MOH indicator is null
+ .W !,"<9> Medal of Honor: "
+ .W ?26,"Award Date: "
+ .W ?51,"Status Date: "
+ .W !?4,"MOH Copayment Exemption Date: "
+ .;MOH end updates DG*5.3*972
  ;DG*5.3*842
  I ($P(DGRP(.385),U,8)["Y")!($P(DGRP(.385),U,8)["N") D EN^DDIOL("<10> Class II Dental Indicator: ","","!?0") S DGRPX=DGRP(.385),X=8,Z1=6 D YN I $P(DGRP(.385),U,8)["Y" D EN^DDIOL("Dental Appl Due Before Date: ","","?0") S X=9 D DAT
 Q K DGRPD,DGRPSV

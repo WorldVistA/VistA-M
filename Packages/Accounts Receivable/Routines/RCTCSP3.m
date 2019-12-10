@@ -1,5 +1,5 @@
 RCTCSP3 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**301,315,350**;Mar 20, 1995;Build 66
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -110,11 +110,13 @@ COMPILED ;
  Q
  ;
 AITCMSGD ;
- N XMY,XMDUZ,XMSUB,XMTEXT
+ N XMY,XMDUZ,XMSUB,XMTEXT,SYSTYP
+ S SYSTYP=$$PROD^XUPROD(1) ; PRCA*4.5*350
  Q:'$D(^XTMP("RCTCSPDN",$J))
  S CNTLID=$$JD()_$$RJZF(SEQ,4)
  S XMDUZ="AR PACKAGE"
- S XMY("XXX@Q-TPL.DOMAIN.EXT")=""
+ I SYSTYP S XMY("XXX@Q-TPL.DOMAIN.EXT")=""
+ I 'SYSTYP S XMY("XXX@Q-TXL.DOMAIN.EXT")=""
  S XMY("G.TCSP")=""
  S XMSUB=SITE_"/DPN TRANSMISSION/BATCH#: "_CNTLID
  S XMTEXT="^XTMP(""RCTCSPDN"","_$J_","""_SEQ_""",""BUILD"","
@@ -139,6 +141,7 @@ USRMSGD ;sends mailman message of documents sent to user
  .Q
  S ^XTMP("RCTCSPDN",$J,"BILL","MSG",RCNT+1)="Total Bills: "_(RCNT-2)
  S XMTEXT="^XTMP(""RCTCSPDN"","_$J_",""BILL"",""MSG"","
+ Q:$G(ONEBILL)
  D ^XMD
  K ^XTMP("RCTCSPDN",$J,"BILL","MSG")
  Q

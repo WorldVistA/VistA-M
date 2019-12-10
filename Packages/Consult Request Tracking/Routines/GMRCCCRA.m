@@ -1,5 +1,5 @@
 GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123**;JUN 1, 2018;Build 51
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134**;JUN 1, 2018;Build 20
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -26,6 +26,7 @@ GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ;;Patch 106 cleaned up per several ICRs.
  ;;Patch 112 critical fix to remove control characters before sending consult, as bad data was causing infinite loop of HL7 process.
  ;;Patch 123 consult status updates inbound to VistA, OHI additions outbound from VistA in IN1 segment
+ ;;Patch 134 fix control character issue in TIU notes
  ;
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to GMRC EVSEND OR
@@ -178,7 +179,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .S I=0 F  S I=$O(@GDATA@(20,I)) Q:'I  S X=@GDATA@(20,I) Q:X["^TMP"  D
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..I X=$C(9,9) Q
- ..; S X=$$TIUC^GMRCCCR1(X)
+ ..S X=$$TIUC^GMRCCCR1(X)
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
@@ -202,7 +203,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ...S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ...D HL7TXT^GMRCHL7P(.X,.HL,"\")
- ...; S X=$$TIUC^GMRCCCR1(X)
+ ...S X=$$TIUC^GMRCCCR1(X)
  ...S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
  ;
@@ -215,7 +216,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .F  S I=$O(@GMRCTXT@(I)) Q:I=""  S X=@GMRCTXT@(I) D
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
- ..; S X=$$TIUC^GMRCCCR1(X)
+ ..S X=$$TIUC^GMRCCCR1(X)
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
@@ -228,7 +229,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .S CMT=$$GET1^DIQ(100,ORIEN_",",64),CMT=$$TRIM^XLFSTR($G(CMT))
  .S CMT=$TR($G(CMT),$C(13,10,10),$C(10,10))
  .D HL7TXT^GMRCHL7P(.CMT,.HL,"\")
- .;S CMT=$$TIUC^GMRCCCR1(CMT)
+ .S CMT=$$TIUC^GMRCCCR1(CMT)
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|2||"_CMT
  .Q
  N ACT,ACTD,ACTIEN,Q
@@ -240,7 +241,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..I 'Q S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"|L|Activity Comment",Q=1
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
- ..; S X=$$TIUC^GMRCCCR1(X)
+ ..S X=$$TIUC^GMRCCCR1(X)
  ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  ..Q
  .Q
