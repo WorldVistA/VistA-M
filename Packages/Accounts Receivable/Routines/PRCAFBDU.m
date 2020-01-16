@@ -1,6 +1,10 @@
 PRCAFBDU ;WASH-ISC@ALTOONA,PA/CLH-FMS Billing Document Utilities ;6/27/96  11:48 AM
-V ;;4.5;Accounts Receivable;**2,16,29,42,168,169,204,198**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**2,16,29,42,168,169,204,198,358**;Mar 20, 1995;Build 19
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*358 Modify FCP Cost Center verification to use
+ ;             all defined cost centers attached to FCP.
+ ;
 BDGEN ;regenerate billing document
  N Y,ID,REFMS
 EN N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
@@ -37,14 +41,15 @@ EN2 N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
  G EN2
  ;
  ;
-CC ;cost center
+CC ;cost center    PRCA*4.5*358
  N DIC,Y
- S CCC=$$COST^PRCSREC2($S($D(PRCA("SITE")):PRCA("SITE"),1:$$SITE^RCMSITE),CP)
+ D COST^PRCSREC2($S($D(PRCA("SITE")):PRCA("SITE"),1:$$SITE^RCMSITE),CP)
  S DIC="^PRCD(420.1,",DIC(0)="EMNQ",DIC("A")="COST CENTER: "
  D ^DIC Q:+Y<0
  I $D(DUOUT)!($D(DTOUT)) S PRCA("EXIT")=1 Q
- I CCC'[$P(Y,U) W !!,*7,"Invalid Cost Center for the Control Point" D CCDISP Q
+ I '$D(^TMP($J,"PRCCC",$P(Y,U))) W !!,*7,"Invalid Cost Center for the Control Point" D CCDISP Q  ;PRCA*4.5*358
  S CCC=+Y,CC=$E(+Y,1,4)_"00",SCC=$E(+Y,5,6)
+ K ^TMP("PRCCC",$J)   ;PRCA*4.5*358
  Q
  ;
 BOC ;budget object code
@@ -57,16 +62,13 @@ BOC ;budget object code
  S BOC=+Y
  Q
  ;
-CCDISP ;display valid cost centers
+CCDISP ;display valid cost centers for FCP
  N DIC,X,Y
- S:'$D(CCC) CCC=$$COST^PRCSREC2($S($D(PRCA("SITE")):PRCA("SITE"),1:$$SITE^RCMSITE),CP)
  S X="?"
  S DIC="^PRC(420,"_$S($D(PRCA("SITE")):PRCA("SITE"),1:$$SITE^RCMSITE)_",1,"_+CP_",2,"
+ S DIC("S")="I '$P($G(^PRCD(420.1,+Y,0)),U,2)"
  S DIC(0)="EMNQ"
  D ^DIC
- Q
- W !!,"Valid Cost Centers for this Control Point are:",!
- F I=1:1:$L(CCC,U) W ?10,$E($P($G(^PRCD(420.1,$P(CCC,U,I),0)),U),1,40),!
  Q
  ;
 BOCDISP ;display valid BOCs

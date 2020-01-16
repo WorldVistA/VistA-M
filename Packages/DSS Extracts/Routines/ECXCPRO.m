@@ -1,5 +1,5 @@
-ECXCPRO ;ALB/JAP - PRO Extract YTD Report ;3/4/13  15:45
- ;;3.0;DSS EXTRACTS;**21,24,33,84,137,144**;Dec 22, 1997;Build 9
+ECXCPRO ;ALB/JAP - PRO Extract YTD Report ;11/19/19  13:50
+ ;;3.0;DSS EXTRACTS;**21,24,33,84,137,144,177**;Dec 22, 1997;Build 2
  ;accumulates extract data by hcpcs code for all extracts in fiscal year date range
  ;if an extract has been purged, then totals will be falsely low
  ;if more than 1 extract exists for a particular month, then totals will be falsely high
@@ -60,7 +60,7 @@ EN ;setup & queue
  Q
  ;
 PROCESS ;begin processing
- N DIVISION,E,EXTRACT,REC,NODE0,NODE1,LASTDAY
+ N DIVISION,E,EXTRACT,REC,NODE0,NODE1,LASTDAY,NODE2 ;177 Added NODE2 to hold new cost values
  K ^TMP($J,"ECXP") S LASTDAY=""
  ;determine which extracts contain data for report
  S (EXTRACT,E)=0
@@ -75,17 +75,17 @@ PROCESS ;begin processing
  F DIV=0:0 S DIV=$O(ECXDIV(DIV)) Q:'DIV  S ECXSTAT=$P(ECXDIV(DIV),U,2),DIVISION(ECXSTAT)=ECXDIV(DIV)
  ;get the extract data
  S E=0 F  S E=$O(EXTRACT(E)) Q:'E  S REC=0 I $D(^ECX(727.826,"AC",E)) F  S REC=$O(^ECX(727.826,"AC",E,REC)) Q:'REC  D
- .S NODE0=$G(^ECX(727.826,REC,0)),NODE1=$G(^ECX(727.826,REC,1)) Q:NODE0=""
+ .S NODE0=$G(^ECX(727.826,REC,0)),NODE1=$G(^ECX(727.826,REC,1)),NODE2=$G(^ECX(727.826,REC,2)) Q:NODE0=""  ;177 Grab 2 node for new cost info
  .S (ECXCTAMT,ECXLLC,ECXLMC)=0
  .S ECXFELOC=$P(NODE0,U,10),ECXFEKEY=$P(NODE0,U,11)
  .S ECXHCPC=$P(NODE0,U,33),ECXTYPE=$E(ECXFEKEY,6),ECXSRCE=$E(ECXFEKEY,7)
- .S ECXQTY=$P(NODE0,U,12),ECXCTAMT=$P(NODE0,U,25),ECXGRPR=$P(NODE1,U,4)
+ .S ECXQTY=$P(NODE0,U,12),ECXCTAMT=$P(NODE0,U,25)+$P(NODE2,U,25),ECXGRPR=$P(NODE1,U,4) ;177 Cost for pre FY20 is stored in NODE0, FY20 and later is in NODE2
  .I ECXFELOC["NONL" S ECXSTAT=$P(ECXFELOC,"NONL",1),ECXFORM="NONL"
  .I ECXFELOC["HO2" S ECXSTAT=$P(ECXFELOC,"HO2",1),ECXFORM="NONL" ;137
  .;if this station is lab requesting station, then count lab transaction
  .I ECXFELOC["ORD" D
  ..S ECXSTAT=$P(ECXFELOC,"ORD",1),ECXFORM="ORD"
- ..S ECXLLC=$P(NODE0,U,26),ECXLMC=$P(NODE0,U,27)
+ ..S ECXLLC=$P(NODE0,U,26)+$P(NODE2,U,26),ECXLMC=$P(NODE0,U,27)+$P(NODE2,U,27) ;177 Pre FY20 costs are stored in NODE0, FY20 and beyond are stored in NODE2
  .;ignore record for receiving station feeder location
  .Q:ECXFELOC["LAB"
  .;ignore record if division not included in this report

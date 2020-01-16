@@ -1,5 +1,5 @@
-PSOHLDS2 ;BHAM ISC/PWC,SAB-Build HL7 Segments for automated interface ;11/22/06 3:24pm
- ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336,434,282**;DEC 1997;Build 18
+PSOHLDS2 ;BHAM ISC/PWC,SAB - Build HL7 Segments for automated interface ;11/22/06 3:24pm
+ ;;7.0;OUTPATIENT PHARMACY;**156,198,255,200,268,305,336,434,282,531**;DEC 1997;Build 4
  ;DIWP supported by DBIA 10011
  ;^PS(50.606 supported by DBIA 2174
  ;^PS(50.7 supported by DBIA #2223
@@ -35,7 +35,7 @@ RXE(PSI) ;pharmacy encoded order segment
 RXD(PSI) ;pharmacy dispense segment
  Q:'$D(DFN)  N RXD,I
  S WNS="" I $G(WARN) F I=1:1 S WW=$P(WARN,",",I) Q:WW=""  S WNS=WNS_WW_CS_$S(WW'["N":^PS(54,WW,0),1:"")_RS
- S RXD="RXD"_FS_$S($G(NFLD):NFLD,1:0)_FS_$S($P($G(^PSDRUG(IDGN,"ND")),"^",10)'="":$P(^("ND"),"^",10),($G(PSND1)&$G(PSND3)):$P($G(PSOXN2),"^",2),1:"""""")_CS_PSND2_CS_"99PSNDF"
+ S RXD="RXD"_FS_$S($G(FPN):FPN,1:0)_FS_$S($P($G(^PSDRUG(IDGN,"ND")),"^",10)'="":$P(^("ND"),"^",10),($G(PSND1)&$G(PSND3)):$P($G(PSOXN2),"^",2),1:"""""")_CS_PSND2_CS_"99PSNDF"  ;*531
  S RXD=RXD_CS_PSND1_"."_PSND3_"."_$G(IDGN)_CS_$P($G(^PSDRUG(IDGN,0)),"^")_CS_"99PSD"
  S RXD=RXD_FS_DISPDT_FS_FS_FS_FS_$P(^PSRX(IRXN,0),"^")_FS_NRFL
  S RXD=RXD_FS_DEA_RS_PSONDC_FS_$S(FIN'="":FIN_CS_FIN1,1:"")_FS

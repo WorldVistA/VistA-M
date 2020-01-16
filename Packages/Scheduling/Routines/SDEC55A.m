@@ -1,5 +1,6 @@
 SDEC55A ;ALB/SAT - VISTA SCHEDULING RPCS ; 18 Jun 2018  4:04 PM
- ;;5.3;Scheduling;**627,671,701,722**;Aug 13, 1993;Build 26
+ ;;5.3;Scheduling;**627,671,701,722,734**;Aug 13, 1993;Build 3
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -225,7 +226,7 @@ GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDECI,SDECY) ;get 1 appointment re
  S $P(SDRET,U,32)=@SDA@(.18,"E")  ;length of appt
  S $P(SDRET,U,33)=@SDA@(.19,"I")  ;prev appt status ID
  S $P(SDRET,U,34)=@SDA@(.19,"E")  ;prev appt status NAME
- S $P(SDRET,U,35)=@SDA@(.2,"E")   ;desired date of appointment
+ S $P(SDRET,U,35)=$P(@SDA@(.2,"E"),"@",1) ;desired date of appointment ; wtc 734 10/7/2019 - strip off time that VAOS puts on CID
  S $P(SDRET,U,36)=@SDA@(.21,"E")  ;external id
  Q:(SDID'="")&($P(SDRET,U,36)'=SDID)
  S SDX=@SDA@(.22,"I") S SDY=$P(SDX,";",2)

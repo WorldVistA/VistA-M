@@ -1,15 +1,21 @@
-RCBEUTR2 ;WISC/RFJ-create an exempt transaction                      ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCBEUTR2 ;WISC/RFJ - create an exempt transaction                      ;1 Jun 00
+ ;;4.5;Accounts Receivable;**153,169,353**;Mar 20, 1995;Build 15
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
+ ;PRCA*4.5*353 Added RCVALL flag parameter to ensure
+ ;             Marshall Cost and Court Cost are used
+ ;             as correct total increase when clearing
+ ;             all associated cost when Principal value
+ ;             goes to zero via a decrease transaction
  ;
-EXEMPT(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE) ;  exempt an intererst/admin charge
+EXEMPT(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCVALL) ;  exempt an intererst/admin charge
  ;  for a bill.  rcvalue = interest ^ admin ^ penalty ^ mf ^ cc
  ;  for the transaction.  rcdate = process date (optional)
+ ;  rcval indicates to also account for marshall cost & court cost in value calc
  ;  returns transaction number if successful
  ;
- N RCDRSTRG,RCTRANDA,Y
+ N RCDRSTRG,RCTRANDA,Y,RCDTOTL,RCDATA7,RCTOTB
  ;  add the transaction (if added to 433, transaction is locked)
  S RCTRANDA=$$ADD433^RCBEUTRA(RCBILLDA,14) I 'RCTRANDA Q 0
  ;
@@ -17,7 +23,11 @@ EXEMPT(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE) ;  exempt an intererst/admin charge
  ;  transaction date (strip off time)
  S RCDRSTRG="11////"_$S($G(RCDATE):$P(RCDATE,"."),1:DT)_";"
  ;  transaction values
- S RCDRSTRG=RCDRSTRG_"15////"_($P(RCVALUE,"^")+$P(RCVALUE,"^",2)+$P(RCVALUE,"^",3))_";"
+ S RCDTOTL=0 S RCDTOTL=$P(RCVALUE,"^")+$P(RCVALUE,"^",2)+$P(RCVALUE,"^",3)   ;PRCA*4.5*353
+ I $G(RCVALL) D   ;PRCA*4.5*353
+ . S RCDTOTL=RCDTOTL+$P(RCVALUE,"^",4)+$P(RCVALUE,"^",5)
+ . S RCCOMMNT(1)=RCCOMMNT
+ S RCDRSTRG=RCDRSTRG_"15////"_RCDTOTL_";"   ;PRCA*4.5*353
  I $P(RCVALUE,"^",1) S RCDRSTRG=RCDRSTRG_"27////"_$P(RCVALUE,"^",1)_";"  ;interest
  I $P(RCVALUE,"^",2) S RCDRSTRG=RCDRSTRG_"28////"_$P(RCVALUE,"^",2)_";"  ;admin
  I $P(RCVALUE,"^",3) S RCDRSTRG=RCDRSTRG_"29////"_$P(RCVALUE,"^",3)_";"  ;penalty

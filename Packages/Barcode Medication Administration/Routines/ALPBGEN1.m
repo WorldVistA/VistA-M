@@ -1,5 +1,5 @@
 ALPBGEN1 ;SFVAMC/JC - Parse and File HL7 PMU messages ;05/10/07
- ;;3.0;BAR CODE MED ADMIN;**8,37,102**;Mar 2004;Build 14
+ ;;3.0;BAR CODE MED ADMIN;**8,37,102,122**;Mar 2004;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -43,7 +43,7 @@ FILE ;Store File 200 data on backup system
  K Y S DIC="^VA(200,",DIC(0)="X",X=ALPBSSN,D="SSN" D IX^DIC
  ;
  ;If SSN lookup fails, try name lookup and add User only if it does not have a Termination Date or DIUSER
- I +Y<1,'$G(ALPBTRM),'$G(ALPBDIS) S DLAYGO=200,DIC="^VA(200,",DIC(0)="LM",X=ALPBNAM D ^DIC K DIC,DA,DR
+ I +Y<1,'$G(ALPBTRM),'$G(ALPBDIS) S DLAYGO=200,DIC="^VA(200,",DIC(0)="LMX",X=ALPBNAM D ^DIC K DIC,DA,DR
  I +Y>0 S (ALPBDA,DA)=+Y S ALPBMENU=$O(^DIC(19,"B","PSB BCBU WRKSTN MAIN",0)) D
  . ;Update name too
  . S DIE="^VA(200,",DR=".01////"_ALPBNAM
@@ -52,12 +52,12 @@ FILE ;Store File 200 data on backup system
  . I +ALPBMENU S DR=DR_";201////"_ALPBMENU
  . S DR=DR_";9.2////"_$S('$G(ALPBTRM):"@",1:ALPBTRM)
  . I $G(DR)]"" D ^DIE K DIC,DA,DR S DIK=DIE,DA=ALPBDA
- . D IX1^DIK
  . ; Direct set used for the ACCESS and VERIFY CODE fields because they may contain semi-colon (;), which affects the DIE call
  . I $D(^VA(200,ALPBDA,0)) D
  . . S $P(^VA(200,ALPBDA,0),"^",3)=ALPBAC
  . . S $P(^VA(200,ALPBDA,.1),"^",2)=$S($G(ALPBDIS)!$G(ALPBTRM):"",1:ALPBVC)
  . . S $P(^VA(200,ALPBDA,.1),"^",1)=$H
+ . D IX1^DIK
  K ALPBDA,HL,ALPBDIS,ALPBI,ALBPJ,ALPBX,ALPBAC,ACLPVC,ALPBSSN,ALERR,ALPBNAM,ALPBTRM
  Q
 UNESC(ST,PR) ;Unescape string from message

@@ -1,5 +1,5 @@
-ECXLPRO ;ALB/JAP - PRO Extract YTD Lab Report ;3/4/13  15:29
- ;;3.0;DSS EXTRACTS;**21,24,36,84,144**;Dec 22, 1997;Build 9
+ECXLPRO ;ALB/JAP - PRO Extract YTD Lab Report ;11/19/19  14:00
+ ;;3.0;DSS EXTRACTS;**21,24,36,84,144,177**;Dec 22, 1997;Build 2
  ;for data associated with prosthetic items produced by facility laboratory
  ;accumulates extract data by hcpcs code for all extracts in fiscal year date range
  ;if an extract has been purged, then totals will be falsely low
@@ -61,7 +61,7 @@ EN ;setup & queue
  Q
  ;
 PROCESS ;begin processing
- N DIVISION,E,EXTRACT,REC,NODE0,NODE1,LASTDAY
+ N DIVISION,E,EXTRACT,REC,NODE0,NODE1,LASTDAY,NODE2 ;177 Node2 will hold new cost data
  K ^TMP($J,"ECXP") S LASTDAY=""
  ;determine which extracts contain data for report
  S (EXTRACT,E)=0
@@ -76,15 +76,15 @@ PROCESS ;begin processing
  F DIV=0:0 S DIV=$O(ECXDIV(DIV)) Q:'DIV  S ECXSTAT=$P(ECXDIV(DIV),U,2),DIVISION(ECXSTAT)=ECXDIV(DIV)
  ;get the extract data
  S E=0 F  S E=$O(EXTRACT(E)) Q:'E  S REC=0 I $D(^ECX(727.826,"AC",E)) F  S REC=$O(^ECX(727.826,"AC",E,REC)) Q:'REC  D
- .S NODE0=$G(^ECX(727.826,REC,0)),NODE1=$G(^ECX(727.826,REC,1)) Q:NODE0=""
+ .S NODE0=$G(^ECX(727.826,REC,0)),NODE1=$G(^ECX(727.826,REC,1)),NODE2=$G(^ECX(727.826,REC,2)) Q:NODE0=""  ;177 Grab node 2 to get new cost data
  .S (ECXCTAMT,ECXLLC,ECXLMC)=0
  .S ECXFELOC=$P(NODE0,U,10),ECXFEKEY=$P(NODE0,U,11)
  .;ignore any record which isn't for lab receiving station
  .Q:ECXFELOC'["LAB"
  .S ECXHCPC=$P(NODE0,U,33),ECXTYPE=$E(ECXFEKEY,6),ECXREQ=$P($E(ECXFEKEY,8,99),"REQ",1)
- .S ECXQTY=$P(NODE0,U,12),ECXCTAMT=$P(NODE0,U,25),ECXGRPR=$P(NODE1,U,4)
+ .S ECXQTY=$P(NODE0,U,12),ECXCTAMT=$P(NODE0,U,25)+$P(NODE2,U,25),ECXGRPR=$P(NODE1,U,4) ;177 Pre-FY20 cost data is in NODE0, FY20 and beyond cost data is in NODE2
  .S ECXSTAT=$P(ECXFELOC,"LAB",1),ECXFORM="LAB"
- .S ECXLLC=$P(NODE0,U,26),ECXLMC=$P(NODE0,U,27)
+ .S ECXLLC=$P(NODE0,U,26)+$P(NODE2,U,26),ECXLMC=$P(NODE0,U,27)+$P(NODE2,U,27) ;177 Pre FY20 cost data is in NODE0, FY20 and beyond cost data is in NODE2
  .;ignore record if division not included in this report
  .Q:ECXSTAT=""  Q:'$D(DIVISION(ECXSTAT))
  .;set in ^tmp using primary station#; determine if requesting station is same as or part of this station

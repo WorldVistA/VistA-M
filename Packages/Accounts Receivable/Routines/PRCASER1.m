@@ -1,9 +1,15 @@
-PRCASER1 ;WASH-ISC@ALTOONA,PA/RGY-Accept transaction from billing engine ;9/8/93  2:21 PM
-V ;;4.5;Accounts Receivable;**48,104,165,233,301,307,337**;Mar 20, 1995;Build 14
+PRCASER1 ;WASH-ISC@ALTOONA,PA/RGY - Accept transaction from billing engine ;9/8/93  2:21 PM
+V ;;4.5;Accounts Receivable;**48,104,165,233,301,307,337,353**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*337 Added a bill lock to insure that decreases are stacked
  ;             instead of slamming bill simultaneously.
+ ;
+ ;PRCA*4.5*353 Add check to clear (exempt) any interest and admin
+ ;             fees when a decrease makes principle balance zero
+ ;             In addition, added modification that will allow 
+ ;             decreases to post to 'Suspended' bills to avoid
+ ;             further billing issues if the bill is re-opened.
  ;
  NEW AMT,AMT1,PRCAERR,PRCABN,PRCADJ,X1,XMDUZ,XMSUB,XMTEXT,XMY,DEBT
  I '$D(X) S Y="-1^PRCA020" G Q
@@ -37,10 +43,10 @@ V ;;4.5;Accounts Receivable;**48,104,165,233,301,307,337**;Mar 20, 1995;Build 14
 Q S Y=$S($G(Y)<0:Y,1:1) Q
  ;
 DEC(PRCABN,AMT,APR,REA,BDT,PRCAEN) ;Auto decrease from service Bill#,Tran amt,person,reason,Tran date
- NEW BAL,DA,DIC,DIE,DR,ERR,PRCA,PRCAA2,PRCAMT,PRCASV,X S Y=1
+ NEW BAL,DA,DIC,DIE,DR,ERR,PRCA,PRCAA2,PRCAMT,PRCASV,X,PRCAAMT,PRCATRAN S Y=1
  L +^PRCA(430,PRCABN,"PRCASER1"):$S(DILOCKTM>30:DILOCKTM,1:30) I '$T S Y="-1^PRCA004^AR Package 'busy' while trying to add transaction." Q
  S PRCAEN="",BAL=+$G(^PRCA(430,PRCABN,7)) I 'BAL S Y="-1^Bill balance less than decrease" G Q1
- I $P(^PRCA(430,PRCABN,0),U,8)'=$O(^PRCA(430.3,"AC",102,"")),$P(^PRCA(430,PRCABN,0),U,8)'=$O(^PRCA(430.3,"AC",112,"")) S Y="-1^Invalid status for posting" G Q1
+ I $P(^PRCA(430,PRCABN,0),U,8)'=$O(^PRCA(430.3,"AC",102,"")),$P(^PRCA(430,PRCABN,0),U,8)'=$O(^PRCA(430.3,"AC",112,"")),$P(^PRCA(430,PRCABN,0),U,8)'=$O(^PRCA(430.3,"AC",240,"")) S Y="-1^Invalid status for posting" G Q1   ;PRCA*4.5*353
  I $P(^PRCA(430,PRCABN,0),U,2)=$O(^PRCA(430.2,"AC",33,0)) S Y="-1^Cannot post against pre-pay bill" G Q1
  S BAL=$S(AMT>BAL:BAL,1:AMT)
  S PRCA("ADJ")=$O(^PRCA(430.3,"AC",21,0)),PRCASV("FY")=$$FY^RCFN01(DT)_U_BAL,PRCASV("APR")=APR,PRCASV("BDT")=$S($G(BDT)>0:BDT,1:DT)
@@ -52,5 +58,8 @@ DEC(PRCABN,AMT,APR,REA,BDT,PRCAEN) ;Auto decrease from service Bill#,Tran amt,pe
  S DA=PRCAEN,DIE="^PRCA(433,",DR="41///"_REA D ^DIE
  S AMT=AMT-+$P($G(^PRCA(433,PRCAEN,1)),U,5)
  I PRCAEN,$D(^PRCA(430,"TCSP",PRCABN)) D DECADJ^RCTCSPU(PRCABN,PRCAEN) ;prca*4.5*301 add cs decrease adjustment 5B
+ S PRCAAMT=$G(^PRCA(430,PRCABN,7)) I $P(PRCAAMT,U)=0,($P(PRCAAMT,U,2)+$P(PRCAAMT,"^",3)+$P(PRCAAMT,"^",4)+$P(PRCAAMT,"^",5)'=0) D   ;PRCA*4.5*353
+ . S PRCATRAN=$$EXEMPT^RCBEUTR2(PRCABN,$P(PRCAAMT,"^",2)_"^"_$P(PRCAAMT,"^",3)_"^^"_$P(PRCAAMT,"^",4)_"^"_$P(PRCAAMT,"^",5),"PRINCIPAL BAL EQUALS ZERO",DT,1)
+ . I PRCATRAN,$D(^PRCA(430,"TCSP",PRCABN)) D DECADJ^RCTCSPU(PRCABN,PRCATRAN)
 Q1 L -^PRCA(430,PRCABN,"PRCASER1") S Y=$S($G(Y)<0:Y,1:1)
  Q

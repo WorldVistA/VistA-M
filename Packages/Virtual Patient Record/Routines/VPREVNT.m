@@ -1,5 +1,5 @@
 VPREVNT ;SLC/MKB -- VistA event listeners ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19**;Sep 01, 2011;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -94,17 +94,16 @@ NEWINPT() ; -- is DFN newly admitted?
  Q Y
  ;
 SDAM ; -- SDAM APPOINTMENT EVENTS protocol listener
- I $G(SDATA) D  Q  ;appointments
- . N DFN,DATE,HLOC,ACT
- . S DFN=+$P(SDATA,U,2) Q:DFN<1
- . Q:$G(SDAMEVT)>5  ;only track make, cancel, no show, check in/out
- . S DATE=+$P(SDATA,U,3),HLOC=+$P(SDATA,U,4)
- . S ACT=$S($G(SDATA("AFTER","STATUS"))["CANCEL":"@",1:"")
- . ;Q:$P($G(^DPT(DFN,"S",DATE,0)),U)'=HLOC
- . D POST^VPRHS(DFN,"Appointment",(DATE_","_DFN_";2.98"),ACT)
+ N DFN,DATE,ACT Q:'$G(SDATA)
+ Q:$G(SDAMEVT)>5  ;only track make, cancel, no show, check in/out
+ ; quit if status has not changed
+ Q:$G(SDATA("BEFORE","STATUS"))=$G(SDATA("AFTER","STATUS"))
+ S DFN=+$P(SDATA,U,2) Q:DFN<1
+ S DATE=+$P(SDATA,U,3),ACT=$S($G(SDAMEVT)=2:"@",1:"")
+ D POST^VPRHS(DFN,"Appointment",(DATE_","_DFN_";2.98"),ACT)
  Q
  ;
-PCE ; -- PXK VISIT DATA EVENT protocol listener
+PCE ; -- PXK VISIT DATA EVENT protocol listener [moved to PX^VPRENC]
  Q:'$P($G(^VPR(1,0)),U,2)  ;monitoring disabled
  N VST,PX0A,PX0B,DFN,SUB,DA,ACT,X,VADMVT
  S VST=+$O(^TMP("PXKCO",$J,0)) Q:VST<1
@@ -290,7 +289,7 @@ CP(DFN,ID,ACT) ; -- CP Transaction file #702 AVPR index
  Q
  ;
 TIU(DFN,IEN) ; -- TIU Document file #8925 AEVT index
- N ACT,STS,DAD,VPRPX
+ N ACT,STS,DAD
  S DFN=+$G(DFN),IEN=+$G(IEN),ACT="" Q:IEN<1
  Q:DFN<1  Q:'$$VALID^VPRHS(DFN)  ;not subscribed
  S STS=$G(X(2)),DAD=$G(X(3))     ;X = FM data array for index
@@ -299,12 +298,10 @@ TIU(DFN,IEN) ; -- TIU Document file #8925 AEVT index
  S:DAD IEN=DAD I 'DAD D          ;if addendum, repull entire note
  . I STS>13 S ACT="@"            ;deleted or retracted
  . I $G(X2(1))="" S ACT="@"      ;deleted (new title = null)
- ; add to ^XTMP("VPRPX") list w/encounters
- S VPRPX=$NA(^XTMP("VPRPX"_DFN))
- L +@VPRPX@(0):5 ;I'$T
- S @VPRPX@("DOC",IEN)="0^"_ACT
- I '$G(@VPRPX@(0)) D QUE(DFN,10)
- L -@VPRPX@(0)
+ ;
+ ; add to ^XTMP("VPRPX") temporary list w/encounters
+ D TIU^VPRENC(IEN,ACT)
+ ;
  ; update alert containers if CWD
  I $$ISA^TIULX(IEN,27) D POST^VPRHS(DFN,"AdvanceDirective") Q  ;rebuild
  I $$ISA^TIULX(IEN,30) D POST^VPRHS(DFN,"Alert",IEN_"^C;8925",ACT) Q

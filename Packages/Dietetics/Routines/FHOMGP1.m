@@ -1,5 +1,5 @@
-FHOMGP1 ;Hines OIFO/RTK PRINT GUEST MEALS LIST  ;6/30/03  15:45
- ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
+FHOMGP1 ;Hines OIFO/RTK PRINT GUEST MEALS LIST  ; 8/27/19 3:09pm
+ ;;5.5;DIETETICS;**5,52**;Jan 28, 2005;Build 4
  ;
  W @IOF,!!?20,"G U E S T   M E A L S   L I S T"
 EN ;
@@ -8,10 +8,12 @@ EN ;
  Q:$D(DIRUT)  S FHLBY=Y
  I FHLBY="L" W ! D OUTLOC^FHOMUTL Q:FHLOC=""  S FHSELOC=FHLOC,FHLOC=""
  I FHLBY="C" D  Q:FHSLCOM=""
+ . S FHSLCOM=""
  .W ! K DIC S DIC=119.73,DIC("A")="Select Communication Office: "
  .S DIC(0)="AEQZ" D ^DIC Q:$D(DUOUT)  I Y=-1 S FHSLCOM="" Q
  .S FHSLCOM=+Y
  I FHLBY="P" D  Q:FHSLPRO=""
+ . S FHSLPRO=""
  .W ! K DIC S DIC=119.71,DIC("A")="Select Production Facility: "
  .S DIC(0)="AEQZ" D ^DIC Q:$D(DUOUT)  I Y=-1 S FHSLPRO="" Q
  .S FHSLPRO=+Y

@@ -1,5 +1,5 @@
-XULMLD ;IRMFO-ALB/CJM/SWO/RGG - KERNEL LOCK MANAGER ;08/28/2012
- ;;8.0;KERNEL;**608**;JUL 10, 1995;Build 84
+XULMLD ;IRMFO-ALB/CJM/SWO/RGG - KERNEL LOCK MANAGER ; 11/20/19 9:45am
+ ;;8.0;KERNEL;**608,722**;JUL 10, 1995;Build 90
  ;;Per VA Directive 6402, this routine should not be modified
  ;
  ;  ******************************************************************
@@ -29,7 +29,7 @@ FIND(LOCK,FILES,XULMVAR) ;
  ;                                template.  Subscripts are:
  ;           (<variable name>)=<value>
  ;
- N TEMPLATE,VAR,MATCH,VARS
+ N TEMPLATE,VAR,MATCH
  S (MATCH,TEMPLATE)=0
  S VAR=$P(LOCK,"(")
  S VAR=$O(^XLM(8993,"AC",VAR),-1)

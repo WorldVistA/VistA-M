@@ -1,5 +1,5 @@
-ECXAPRO ;ALB/JAP - PRO Extract Audit Report ;3/12/13  16:30
- ;;3.0;DSS EXTRACTS;**9,21,33,36,132,137,144**;Dec 22, 1997;Build 9
+ECXAPRO ;ALB/JAP - PRO Extract Audit Report ;11/19/19  13:55
+ ;;3.0;DSS EXTRACTS;**9,21,33,36,132,137,144,177**;Dec 22, 1997;Build 2
  ;
 EN ;entry point for PRO extract audit report
  N %X,%Y,DIV,X,Y,DIC,DA,DR,DIQ,DIR,DIRUT,DTOUT,DUOUT,CNT,ECXPORT ;144
@@ -80,6 +80,7 @@ TASK ;entry point from taskmanager
  ;
 PROCESS ;process the data in file #727.826
  N J,CODE,COST,CPTNM,DATE,DESC,FLG,GN,IEN,KEY,LOC,LABLC,LABMC,NODE,PTNAM,PSASNM,QTY,QFLG,QQFLG,RD,SSN,STN,SRCE,TYPE,NPPDED ;144 NPPD ENT DATE CVW DAN removed CNT
+ N NODE2 ;177 Node2 will hold new cost data
  I '$G(ECXPORT) K ^TMP($J) ;144 Killed already if exporting
  S QQFLG=0 ;144 CNT removed as no longer needed
  S ECXEXT=ECXARRAY("EXTRACT"),ECXDEF=ECXARRAY("DEF")
@@ -92,7 +93,7 @@ PROCESS ;process the data in file #727.826
  D CODE^ECXAPRO1
  ;gather extract data and sort by grouper number, calc flag, and nppd code
  S IEN="" F  S IEN=$O(^ECX(727.826,"AC",ECXEXT,IEN)) Q:IEN=""  D  Q:QQFLG
- .S ECXPRO=^ECX(727.826,IEN,0)
+ .S ECXPRO=^ECX(727.826,IEN,0),NODE2=$G(^ECX(727.826,IEN,2)) ;177 Get node that contains new cost data
  .;
  .;- Remove trailing "^" from ECXPRO if there
  .I $E(ECXPRO,$L(ECXPRO))="^" S ECXPRO=$E(ECXPRO,1,$L(ECXPRO)-1)
@@ -103,7 +104,7 @@ PROCESS ;process the data in file #727.826
  .S DATE=$E(DATE,4,5)_"/"_$E(DATE,6,7)
  .S PTNAM=$P(ECXPRO,U,7),SSN=$E($P(ECXPRO,U,6),6,9)
  .S LOC=$P(ECXPRO,U,10),KEY=$P(ECXPRO,U,11),QTY=$P(ECXPRO,U,12)
- .S COST=$P(ECXPRO,U,25),LABLC=$P(ECXPRO,U,26),LABMC=$P(ECXPRO,U,27)
+ .S COST=$P(ECXPRO,U,25)+$P(NODE2,U,25),LABLC=$P(ECXPRO,U,26)+$P(NODE2,U,26),LABMC=$P(ECXPRO,U,27)+$P(NODE2,U,27) ;177 Costs are stored in ECXPRO if prior to FY20 and are in NODE2 for FY20 and beyond
  .S GN=$P(ECXPRO,U,34),GN=$S(GN="":" ",1:GN),NPPDED=$P(ECXPRO,U,35) ;NPPD ENTRY DATE 144 CVW
  .;don't double count lab items
  .Q:LOC["LAB"

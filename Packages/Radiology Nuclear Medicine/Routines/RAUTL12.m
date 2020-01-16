@@ -1,5 +1,5 @@
-RAUTL12 ;HISC/CAH,FPT,GJC-Utility Routine ;12/23/97  09:25
- ;;5.0;Radiology/Nuclear Medicine;**75**;Mar 16, 1998;Build 4
+RAUTL12 ;HISC/CAH,FPT,GJC-Utility Routine ; Oct 18, 2019@10:38:15
+ ;;5.0;Radiology/Nuclear Medicine;**75,163**;Mar 16, 1998;Build 1
  ;
 IMGTY(X,Y,Z) ; Determines the Imaging Type
  ; 'X' ->  either 'e', 'l', or 'p'
@@ -32,21 +32,25 @@ IMGTY(X,Y,Z) ; Determines the Imaging Type
 LOCK(X,Y) ; Lock the data global
  ; 'X' is the global root
  ; 'Y' is the record number
+ ; KLM/163 - remove setting of RADUZ and ^TMP("RAD LOCS"
  N RALCKFLG,XY
- S RADUZ=+$G(DUZ),RALCKFLG=0,XY=X_Y
+ ;S RADUZ=+$G(DUZ),
+ S RALCKFLG=0,XY=X_Y
  L +@(XY_")"):5
  I '$T S RALCKFLG=1 D
  . W !?5,"This record is being edited by another user."
  . W !?5,"Try again later!",$C(7)
  . Q
- E  D
- . S ^TMP("RAD LOCKS",$J,RADUZ,X,Y)=""
- . Q
+ ;E  D
+ ;. S ^TMP("RAD LOCKS",$J,RADUZ,X,Y)=""
+ ;. Q
  Q RALCKFLG
  ;
 UNLOCK(X,Y) ; Unlock the data global
- N XY S RADUZ=+$G(DUZ),XY=X_Y L -@(XY_")")
- K ^TMP("RAD LOCKS",$J,RADUZ,X,Y)
+ ;KLM/163 - remove setting of RADUZ and ^TMP("RAD LOCS"
+ N XY ;S RADUZ=+$G(DUZ),
+ S XY=X_Y L -@(XY_")")
+ ;K ^TMP("RAD LOCKS",$J,RADUZ,X,Y)
  Q
 EXTRA(RAQI) ;Input is RAQI (Modifier)
  ;Output is AMIS Credit Indicator: RABILAT = BILATERAL,

@@ -1,18 +1,23 @@
 PRCSREC2 ;WISC/KMB/DL-UPDATE 420 BALANCES FOR ISSUE BOOK,CONVERSION ;1/28/98  1400
- ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**55,155,213**;4/21/95;Build 19
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*213 Modify FCP Cost Center verification to
+ ;            use ^TMP workfile to handle FCP's with
+ ;            large number of attached cost centers
+ ;
 ISSUES(STATION,FY,CP,QUARTER,AMOUNT) ;
  N A
  S A=+STATION_"^"_(+CP)_"^"_FY_"^"_QUARTER_"^"_AMOUNT
  D EBAL^PRCSEZ(A,"O")
  QUIT
 COST(STATION,CP) ;
- ;return CP cost centers 
- N STRING,Y,CC S STRING="",Y=0
- I '$D(^PRC(420,STATION,1,+CP,2)) Q STRING
- S CC=0 F  S CC=$O(^PRC(420,STATION,1,+CP,2,CC)) Q:+CC=0  Q:Y>70  S Y=Y+1,$P(STRING,"^",Y)=CC
- ;
- QUIT STRING
+ ;return FCP cost centers       ;PRC*5.1*213
+ K ^TMP($J,"PRCCC")
+ N CC
+ I '$D(^PRC(420,STATION,1,+CP,2)) Q
+ S CC=0 F  S CC=$O(^PRC(420,STATION,1,+CP,2,CC)) Q:'CC  I $D(^PRCD(420.1,CC,0)),'$P(^PRCD(420.1,CC,0),U,2) S ^TMP($J,"PRCCC",CC)=""
+ QUIT
  ;
 CONV(STRING,AMOUNT,COMMENT) ;
  ;after V5 installation, reconcile CP with adjustment trans.

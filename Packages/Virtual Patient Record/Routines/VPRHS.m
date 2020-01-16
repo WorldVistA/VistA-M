@@ -1,5 +1,5 @@
 VPRHS ;SLC/MKB -- HealthShare utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,16,17**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,16,17,19**;Sep 01, 2011;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -55,12 +55,12 @@ PAT ; -- post Patient update [TASK]
  S $P(^VPR(1,2,DFN,0),U,2)="",ZTREQ="@"  ;clear task
  Q
  ;
-PX ; -- post an encounter update [TASK]
+PX ; -- post an encounter update [TASK - moving to HS^VPRENC]
  N VST,VPRPX,VPRDT,X0,X,VFL,VDA S ZTREQ="@"
  Q:'$P($G(^VPR(1,0)),U,2)  ;monitoring disabled
  S DFN=+$G(DFN) Q:DFN<1
  S VPRPX=$NA(^XTMP("VPRPX"_DFN)),VPRDT=$$FMADD^XLFDT($$NOW^XLFDT,,,-10)
- L +@VPRPX@(0):5 ;I'$T ??
+ L +@VPRPX@(0):5 I '$T G PXQ
  ; post visits that have been stable for at least 10 minutes
  S VST=0 F  S VST=$O(@VPRPX@(VST)) Q:VST<1  D
  . S X0=$G(@VPRPX@(VST)) Q:+X0>VPRDT   ;still waiting
@@ -71,7 +71,7 @@ PX ; -- post an encounter update [TASK]
  ... S X=$$NAME(VFL,VDA) I X="" K @VPRPX@(VST,VFL) Q
  ... S ACT=$G(@VPRPX@(VST,VFL,VDA))
  ... D POST(DFN,$P(X,U),(VDA_";"_$P(X,U,2)),ACT,VST)
- ... I VFL="HF",X["History" D POST(DFN,"HealthConcern",(VDA_";9000010.23"),ACT,VST)
+ ... ;I VFL="HF",X["History" D POST(DFN,"HealthConcern",(VDA_";9000010.23"),ACT,VST)
  . K @VPRPX@(VST)
 PXD ; look for waiting documents
  S VDA=0 F  S VDA=$O(@VPRPX@("DOC",VDA)) Q:VDA<1  D
@@ -104,7 +104,7 @@ NAME(X,DA) ; -- return container name for V-files
  . N NM S NM=$$GET1^DIQ(9000010.23,+$G(DA),.01)
  . I $$FHX(NM) S Y="FamilyHistory^9000010.23" Q
  . I $$SHX(NM) S Y="SocialHistory^9000010.23" Q
- . S Y="HealthConcern^9000010.23"
+ . ;S Y="HealthConcern^9000010.23"
  I X="IMM" S Y="Vaccination^9000010.11"
  I X="XAM" S Y="PhysicalExam^9000010.13"
  I X="POV" S Y="Diagnosis^9000010.07"
@@ -151,6 +151,7 @@ P1 ;may enter here from VPRHSX manual update option
  Q
  ;
 NUM() ; -- return existing SEQ of record, or increment
+ ; SAC EXEMPTION 2019-04-29 : Use of $I
  N X,Y S X=$S(ID="":"*",1:ID)
  S Y=+$G(^VPR(1,2,DFN,"AVPR",TYPE,X)) I '$D(^VPR("AVPR",Y,DFN)) S Y=0
  I Y'>0 S Y=$I(^VPR(1,1))

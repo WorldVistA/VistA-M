@@ -1,5 +1,5 @@
-RARTE6 ;HISC/SM Restore deleted report ;03/01/10 13:44
- ;;5.0;Radiology/Nuclear Medicine;**56,95,99,47**;Mar 16, 1998;Build 21
+RARTE6 ;HISC/SM Restore deleted report ; Oct 10, 2019@09:41:22
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,99,47,163**;Mar 16, 1998;Build 1
  ;Supported IA #10060 ^VA(200
  ;Supported IA #2053 FILE^DIE, UPDATE^DIE
  ;Supported IA #2052 GET1^DID
@@ -310,16 +310,18 @@ LOCK(X,Y) ; Lock the data global
  ; uses var DILOCKTM, code taken from rtn RAUTL12
  ; 'X' is the global root
  ; 'Y' is the record number
+ ; KLM/163 - remove setting of RADUZ and ^TMP("RAD LOCKS"
  N RALCKFLG,XY
- S RADUZ=+$G(DUZ),RALCKFLG=0,XY=X_Y
+ ;S RADUZ=+$G(DUZ),RALCKFLG=0,
+ S RALCKFLG=0,XY=X_Y
  L +@(XY_")"):DILOCKTM
  I '$T S RALCKFLG=1 D
  . W !?5,"This record is being edited by another user."
  . W !?5,"Try again later!",$C(7)
  . Q
- E  D
- . S ^TMP("RAD LOCKS",$J,RADUZ,X,Y)=""
- . Q
+ ;E  D
+ ;. S ^TMP("RAD LOCKS",$J,RADUZ,X,Y)=""
+ ;. Q
  Q RALCKFLG
 INTRO ;
  ;; +--------------------------------------------------------+
