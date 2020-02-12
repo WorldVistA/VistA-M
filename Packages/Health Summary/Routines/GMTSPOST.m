@@ -1,10 +1,11 @@
-GMTSPOST ;SLC/JER - Post-init for Health Summary ;11/18/92  11:23
- ;;2.7;Health Summary;;Oct 20, 1995
+GMTSPOST ;SLC/JER - Post-init for Health Summary ;10/4/19 9:39am
+ ;;2.7;Health Summary;**129**;Oct 20, 1995;Build 8
 MAIN ; Controls branching and execution
  N GMI,INCLUDE,GMTSEG,GMTSI,GMTSIFN,GMTJ,GMTSNM
  W !!,"Starting post-init action now...."
  D SPOOL,PARAM
- D INPHAR,DIET,OERR,VITALS,LAB,RAD,MHPE,PRGNOTE,SURG,DCS,CP,PL^GMTSPOS1,PCE,MED^GMTSPOS1,PSO^GMTSPOS1,OUTPHAR,SOWK^GMTSPOS1
+ ;GMTS*2.7*129 remove call to SOWK^GMTSPOS1
+ D INPHAR,DIET,OERR,VITALS,LAB,RAD,MHPE,PRGNOTE,SURG,DCS,CP,PL^GMTSPOS1,PCE,MED^GMTSPOS1,PSO^GMTSPOS1,OUTPHAR
  D EN^GMTSPOS2
  K ^GMT(142,12,1,"C") ;Get rid of "C" xref in case there are duplicate entries
  W !!,"'C' cross-reference on the GMTS AD HOC OPTION type in file 142 deleted."

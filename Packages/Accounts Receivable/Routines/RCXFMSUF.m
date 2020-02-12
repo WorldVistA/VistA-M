@@ -1,5 +1,5 @@
 RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ; 10/20/10 10:37am
- ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310,315,338,351**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310,315,338,351,360**;Mar 20, 1995;Build 10
  ;;Per VA Directive 6402, this routine should not be modifieD
  Q
  ;
@@ -28,7 +28,9 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  ;  calculate a bills fund
  I $G(RCEFT)=1 S FUND="5287"_$S(DT<3030926:"",DT'<3030926&(DT<$$ADDPTEDT^PRCAACC()):".4",1:"04") Q FUND
  S CATEGDA=+$P($G(^PRCA(430,BILLDA,0)),"^",2)
- I CATEGDA>84 Q ""
+ ;
+ ;PRCA*4.5*360 - increased CATEGDA check for CC URGENT CARE
+ I CATEGDA>85 Q ""
  ;
  ;  piece 5 is new fund, remove spaces
  S FUND=$P($TR($T(@CATEGDA)," "),";",5)
@@ -193,3 +195,4 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
 82 ;;CC OPT                        ;       ;528714
 83 ;;CCN OPT                       ;       ;528714
 84 ;;CC MTF OPT                    ;       ;528714
+85 ;;CC URGENT CARE                ;       ;528714  ;PRCA*4.5*360

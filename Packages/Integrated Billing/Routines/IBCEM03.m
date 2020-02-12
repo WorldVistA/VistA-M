@@ -1,5 +1,5 @@
 IBCEM03 ;ALB/TMP - 837 EDI RESUBMIT INDIVIDUAL BILL PROCESSING ;17-SEP-96
- ;;2.0;INTEGRATED BILLING;**137,199,296,348,349,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**137,199,296,348,349,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -143,6 +143,9 @@ SUB1 ; Select bills in ready for extract status to transmit individually
  W !
  S ^TMP("IBSELX",$J)=0
  D ONE^IBCE837
+ ;JWS;IB*2.0*623;if 837 FHIR enabled, display appropriate message
+ I $$GET1^DIQ(350.9,"1,",8.21,"I") D  G SUB1Q
+ . W !,"BILL(s) placed onto 837 FHIR Transaction list. They will be submitted shortly..."
  W !,"BILL(s) TRANSMITTED ... BATCH #(s): "
  S Z=0 F  S Z=$O(^TMP("IBCE-BATCH",$J,Z)) Q:'Z  W Z,$S($O(^(Z)):", ",1:"")
  I '$O(^TMP("IBCE-BATCH",$J,0)) W !,"NO BILL(S) TRANSMITTED - CHECK ALERTS/MAIL FOR DETAILS"

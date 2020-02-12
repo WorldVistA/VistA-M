@@ -1,6 +1,6 @@
 IBCESRV ;ALB/TMP - Server interface to IB from Austin ;8/6/03 10:04am
- ;;2.0;INTEGRATED BILLING;**137,181,196,232,296,320,407**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,181,196,232,296,320,407,623**;21-MAR-94;Build 70
+ ;;Per VA Directive 6402, this routine should not be modified.
 SERVER ; Entry point for server option to process EDI msgs received from Austin
  ;
  N IBEFLG,IBERR,IBTDA,XMER,IBXMZ,IBHOLDCT
@@ -14,6 +14,8 @@ SERVER ; Entry point for server option to process EDI msgs received from Austin
  Q
  ;
 MSG(XMER,IBTDA,IBXMZ) ; Read/Store message lines
+ ;
+ I '$D(XMER) S XMER=""  ;JWS IB*2.0*623
  ;     Return message formats:
  ;        Ref:  Your <queue name> message #<msg#> with Austin ID #<id #>,
  ;              is assigned confirmation number <confirmation #>.
@@ -55,17 +57,17 @@ MSG(XMER,IBTDA,IBXMZ) ; Read/Store message lines
  .. S ^TMP("IBERR",$J,"MSG",1)=IBHD
  .. S ^TMP("IBERR",$J,"MSG",2)=$G(XMRG)
  . S IBTXN=XMRG
- . ;
  . S IBBTCH=+$O(^IBA(364.1,"MSG",+$P(IBTXN,"#",2)\1,""),-1)
+ . ;;JWS IB*2.0*623 - looking for original message #, but there won't be one, so check if FHIR
+ . I 'IBBTCH S IBBTCH=$P($P(IBTXN,"#",2),")")
  . I 'IBBTCH S IBERR=6 D REST(.IBTXN,IBGBL) Q  ;No msgs match conf recpt
  . S IBTXN("BATCH",IBBTCH,0)="837REC0^"_IBD("MSG#")_U_+$E($P(IBD("SUBJ")," "),4,14)_"^^"_IBBTCH_U_IBDATE
- . ;
  . X XMREC ;Get second line of the message
  . I XMER<0 S IBERR=2 Q
  . S IBTXN("BATCH",IBBTCH,1)=IBTXN_" "_XMRG_"$",IBTXN=IBTXN("BATCH",IBBTCH,0)
  . S IBHOLDCT=IBHOLDCT+1,^TMP("IB-HOLD",$J,IBHOLDCT)=XMRG
  . S IBLAST=1
- ;
+ . Q
  ; Read header line of non-confirmation message (line 1)
  F  X XMREC Q:$S(XMER<0:1,1:$E(XMRG,1,13)'="RACUBOTH RUCH")
  S:XMER'<0 IBHOLDCT=IBHOLDCT+1,^TMP("IB-HOLD",$J,IBHOLDCT)=XMRG

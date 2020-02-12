@@ -1,5 +1,5 @@
 RCCPCPS1 ;WISC/RFJ-build description for patient statement ;08 Aug 2001
- ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265,362**;Mar 20, 1995;Build 1
+ ;;4.5;Accounts Receivable;**34,48,104,170,176,192,265,362,360**;Mar 20, 1995;Build 10
  ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -134,7 +134,7 @@ BILLDESC(RCBILLDA,RCWIDTH) ;
  ;
  ;
 IBDATA ;  get data from IB for description
- N IBDATA,IBJ
+ N IBDATA,IBJ,IBIEN
  ;
  ;  show IB data
  S IBJ=0 F  S IBJ=$O(^TMP("IBRFN1",$J,IBJ)) Q:'IBJ  S IBDATA=^TMP("IBRFN1",$J,IBJ) D
@@ -152,6 +152,15 @@ IBDATA ;  get data from IB for description
  .   I RCDESC(1)["COMMUNITY CARE RX" D  Q       ;Use Bill from date as Fill Date
  .   . D:$P(IBDATA,"^",3) SETDESC("FD:"_$$DATE($P(IBDATA,"^",3)))
  .   ;END PRCA*4.5*362
+ .   ;
+ .   ;Start PRCA*4.5*360 - Split CC PER DIEM and CC INPT into different displays
+ .   ;
+ .   I RCDESC(1)["COMMUNITY CARE INPT" D
+ .   . S IBIEN=$O(^IB("B",$P(IBDATA,U),0))
+ .   . ;S IBATIEN=$$GET1^DIQ(350,IBIEN_",",.01)
+ .   . S IBACNM=$$GET1^DIQ(350,IBIEN_",",.03)
+ .   . I IBACNM["PER DIEM" D SETDESC("PER DIEM")
+ .   ;END PRCA*4.5*360
  .   ;
  .   I $P(IBDATA,"^",3)="" D:$P(IBDATA,"^",2) SETDESC("VISIT DATE: "_$$DATE($P(IBDATA,"^",2))) Q
  .   ;

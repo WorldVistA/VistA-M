@@ -1,5 +1,5 @@
 RCXFMSUR ;WISC/RFJ-revenue source codes ;10/19/10 1:47pm
- ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310,315,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310,315,338,360**;Mar 20, 1995;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Read ^DGCR(399) via IA 3820
  Q
@@ -21,7 +21,7 @@ CALCRSC(BILLDA,RCEFT) ;  calculate the revenue source code for a bill
  I CATEGDA>47,(CATEGDA<75) D  Q RSC
  . S RSC=$$GETCCRSC(CATEGDA,BILLDA)
  . D STORE(BILLDA,RSC)
- I CATEGDA>80,(CATEGDA<85) D  Q RSC
+ I CATEGDA>80,(CATEGDA<86) D  Q RSC  ; prca*4.5*360 added CC UC
  . S RSC=$$GETCCRSC(CATEGDA,BILLDA)
  . D STORE(BILLDA,RSC)
  ;
@@ -272,6 +272,7 @@ GETCCRSC(CATEGDA,BILLDA) ;Retrieve the RSC for Community Care Categories
  Q:CATEGDA=82 "8CC2"    ;CC OPT
  Q:CATEGDA=83 "8CN2"    ;CCN OPT
  Q:CATEGDA=84 "8CD2"    ;CC MTF OPT
+ Q:CATEGDA=85 "8CCU"    ;CC URGENT CARE  prca*4.5*360
  I (CATEGDA>47),(CATEGDA<52) D  Q RCRSC
  . S RCIOPFLG=""
  . S RX3P=0

@@ -1,10 +1,11 @@
 IBAUTL3 ;ALB/CPM-MEANS TEST BILLING UTILITIES (CON'T.) ; 05-SEP-91
- ;;2.0;INTEGRATED BILLING;**176**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**176,656**;21-MAR-94;Build 17
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 DED ; Find Medicare deductible rate on the billing clock date.
  ;  Input:   IBSERV, IBCLDT    Output:  IBMED - Medicare deductible
  N X S IBMED=0
+ I $G(IBSERV)="" S IBY="-1^IB031" G DEDQ   ;IB*2.0*656  Ensure that the service is defined before performing the lookup
  S X=$O(^IBE(350.1,"ANEW",IBSERV,81,0)) I 'X S IBY="-1^IB031" G DEDQ
  S X=$O(^IBE(350.2,"AIVDT",+X,-(IBCLDT+.1))),X=$O(^(+X,0))
  S IBMED=$P($G(^IBE(350.2,+X,0)),"^",4) I 'IBMED S IBY="-1^IB032"

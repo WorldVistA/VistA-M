@@ -1,5 +1,5 @@
 IBCERP7 ;AITC/KDM - HID   HCCH Payer ID Report ;5/4/2017
- ;;2.0;INTEGRATED BILLING;**577,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**577,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ; This report is a PAYER ID report based on the 277stat msg responses from the clearing house
  ; This report will give a snap shot view of what is on file at the time of running.
@@ -9,8 +9,8 @@ IBCERP7 ;AITC/KDM - HID   HCCH Payer ID Report ;5/4/2017
  ;
 ENT ; Menu Option Entry Point
  N BEGDT,BEGIN,DT,END,ENDDT,HDR1,HDR2,HDR3,IBABEG,IBAEND,IBEOB,IBIFN,IBQUIT,LNTOT,MAX,PAGES,PGC,RNAME,U,Y
- N CNT,DASH,EORMSG,NONEMSG,POP
- S IBQUIT=0,RNAME="IBCERP7"
+ N ASTERISK,CNT,DASH,EORMSG,LEGEND,NONEMSG,POP
+ S (ASTERISK,IBQUIT)=0,RNAME="IBCERP7",LEGEND="'*' = No available fields to allow for an update in the insurance file"
  D DATES Q:IBQUIT  Q:'Y
  D DEVICE Q:POP  Q:IBQUIT
 QUE ; Queued Entry Point
@@ -78,6 +78,7 @@ GATHER ;GO GET THE INFO BASED ON THE DATES ENTERED
  .. S EDINO="" F  S EDINO=$O(^DIC(36,"AEDIX",DATE,IBPIEN,EDINO)) Q:EDINO=""  D
  ... S TYPE="" F  S TYPE=$O(^DIC(36,"AEDIX",DATE,IBPIEN,EDINO,TYPE)) Q:TYPE=""  D
  .... S EDIONFILE=$G(^DIC(36,"AEDIX",DATE,IBPIEN,EDINO,TYPE))
+ .... I EDIONFILE["*" S ASTERISK=1
  .... S IBNAME=$$GET1^DIQ(36,IBPIEN,.01)
  .... S IBADDRESS=$$GET1^DIQ(36,IBPIEN,.111)
  .... S IBCITY=$$GET1^DIQ(36,IBPIEN,.114)
@@ -90,7 +91,7 @@ PRINT ;  Print data
  ;  PGC=page ct,LNTOT=no of lines to be printed,LNCNT=when to page break
  ;  MAX=IOSL (device length)
  ;
- N ADDRESS,CITY,DATE,EDINO,EDIONFILE,IEN,NAME,PID,STATE,TYPE,UPDATE
+ N ADDRESS,COMPADDR,CITY,DATE,EDINO,EDIONFILE,IEN,NAME,PID,PIDPOS,STATE,TYPE,UPDATE
  S EORMSG="*** END OF REPORT ***"
  S NONEMSG="* * * N O   D A T A   T O   P R I N T * * *"
  ;
@@ -100,7 +101,10 @@ PRINT ;  Print data
  .. S EDINO="" F  S EDINO=$O(^TMP(RNAME,$J,NAME,DATE,EDINO)) Q:EDINO=""  D
  ... S TYPE="" F  S TYPE=$O(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE)) Q:TYPE=""  Q:IBQUIT  D
  .... ;JWS;IB*2.0*592;added 'Dent' for Dental
- .... S PID=$S(TYPE="I":"Inst",TYPE="D":"Dent",1:"Prof")
+ .... ;S PID=$S(TYPE="I":"Inst",TYPE="D":"Dent",1:"Prof")
+ .... ;/vd - US3995 - IB*2*623 - Modified the above line.
+ .... S PID=$S($E(TYPE,1)="I":"Inst",$E(TYPE,1)="D":"Dent",1:"Prof")
+ .... S PIDPOS=$S($E(TYPE,2)=2:94,1:82)
  .... ;S NAME=$P(^TMP(RNAME,$J,DATE,IEN,EDINO,TYPE),U,1)
  .... S ADDRESS=$P(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE),U,2)
  .... S CITY=$P(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE),U,3)
@@ -108,7 +112,10 @@ PRINT ;  Print data
  .... S EDIONFILE=$P(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE),U,5)
  .... S UPDATE=$S(EDIONFILE="":"Yes",1:"No")
  .... I LNCNT>MAX D HEADER Q:IBQUIT
- .... W !,$E(NAME,1,30),?33,$E(ADDRESS,1,35)," ",CITY,", ",STATE,?73,$$FMTE^XLFDT(DATE,2),?84,PID,?97,EDIONFILE,?109,EDINO,?121,UPDATE
+ .... ;/vd - US3995 - IB*2*623 Modified the following line.
+ .... S COMPADDR=$E(ADDRESS,1,39-$L(CITY)-$L(STATE)-3)_" "_CITY_", "_STATE  ; modified IB*2.0*623 v25
+ .... ;W !,$E(NAME,1,30),?33,$E(ADDRESS,1,35)," ",CITY,", ",STATE,?73,$$FMTE^XLFDT(DATE,2),?84,PID,?97,EDIONFILE,?109,EDINO,?121,UPDATE
+ .... W !,$E(NAME,1,30),?32,COMPADDR,?72,$$FMTE^XLFDT(DATE,2),?PIDPOS,PID,?105,EDIONFILE,?115,EDINO,?125,UPDATE
  .... S LNCNT=LNCNT+1
  I LNCNT>MAX D HEADER
  Q:IBQUIT
@@ -140,8 +147,10 @@ HEADER ; Print Header info
  W !,HDR1,?43,HDR2,?98,"  Page: "_PGC_" of "_PAGES
  W !,"Timeframe: "_BEGDT_" thru "_ENDDT
  W !!
- W !,"Insurance Co",?33,"Address",?73,"Date",?84,"EDI-PayerID",?97,"OldValue",?109,"NewValue",?121,"Updated"
- W !,DASH
+ ;/vd - US3995 IB*2*623 - The following was changed modified.
+ ;W !,"Insurance Co",?33,"Address",?73,"Date",?84,"EDI-PayerID",?97,"OldValue",?109,"NewValue",?121,"Updated"
+ W !,"Insurance Co",?32,"Address",?72,"Date",?82,"EDI-PayerID",?94,"CLM-OFC-ID",?105,"OldValue",?115,"NewValue",?125,"Updated"
+ W:+ASTERISK !,LEGEND W !,DASH    ;vd - IB*2.0*623 - added legend for US3994.
  S LNCNT=LNCNT+10,PGC=PGC+1
  Q
 EXIT() ;clean up and quit

@@ -1,6 +1,6 @@
 IBCSC6 ;ALB/MJB - MCCR SCREEN 6 (INPT. BILLING INFO) ;27 MAY 88 10:19
- ;;2.0;INTEGRATED BILLING;**52,80,109,106,51,137,343,400,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,109,106,51,137,343,400,432,623**;21-MAR-94;Build 70
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSC6
  ;
@@ -27,7 +27,11 @@ EN I $P(^DGCR(399,IBIFN,0),"^",5)>2 G EN^IBCSC7
 ROI S Z=2,IBW=1 X IBWW
  W " Sensitive?  : ",$S(IB("U")="":IBU,$P(IB("U"),U,5)="":IBU,$P(IB("U"),U,5)=1:"YES",1:"NO")
  W ?46,"Assignment: ",$S(IB("U")="":IBU,$P(IB("U"),U,6)="":IBU,$P(IB("U"),U,6)["n":"NO",$P(IB("U"),U,6)["N":"NO",$P(IB("U"),U,6)=0:"NO",1:"YES")
- I $P(IB("U"),U,5)=1 W !?4,"R.O.I. Form : ",$S($P(IB("U"),U,7)=1:"COMPLETED",$P(IB("U"),U,7)=0:"NOT COMPLETED",1:"STATUS UNKNOWN")
+ ;/vd - IB*2.0*623 (US4995) - Modified the following line of code with the following conditional to validate that a
+ ;                            claim is ROI Eligible based upon the Date of Service.
+ ;I $P(IB("U"),U,5)=1 W !?4,"R.O.I. Form : ",$S($P(IB("U"),U,7)=1:"COMPLETED",$P(IB("U"),U,7)=0:"NOT COMPLETED",1:"STATUS UNKNOWN")
+ I $$ROIDTCK^IBCEU7(IBIFN) D
+ . I $P(IB("U"),U,5)=1 W !?4,"R.O.I. Form : ",$S($P(IB("U"),U,7)=1:"COMPLETED",$P(IB("U"),U,7)=0:"NOT COMPLETED",1:"STATUS UNKNOWN")
  S IBOA="01^02^03^04^05^06^" F I=1:1:5 Q:'$D(IBOCN(I))  I IBOA[IBOCN(I)_"^" S IBOX=1
  W:$D(IBOX) !,?4,"Pow of Atty : ",$S($P(IB("U"),U,3)=1:"COMPLETED",$P(IB("U"),U,3)=0:"NOT COMPLETED",1:"STATUS UNKNOWN")
  ;

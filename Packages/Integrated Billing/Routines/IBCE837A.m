@@ -1,5 +1,5 @@
 IBCE837A ;ALB/TMP - OUTPUT FOR 837 TRANSMISSION - CONTINUED ;8/6/03 10:50am
- ;;2.0;INTEGRATED BILLING;**137,191,211,232,296,377,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**137,191,211,232,296,377,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new status
@@ -27,9 +27,11 @@ UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new 
  ;
  I IBTXTEST=2 D ADDTXM^IBCEPTM(.BILLS,IBBATCH,$$NOW^XLFDT()) Q
  I IBTXTEST'=2 S IBIEN=0 F  S IBIEN=$O(BILLS(IBIEN)) Q:'IBIEN  D  ;Update each bill
- .S DA=IBIEN,DIE="^IBA(364,",DR=".02////"_IBBATCH_";.03///P;.04///NOW" D ^DIE
- .S IBIFN=+$G(^IBA(364,IBIEN,0))
- . ;
+ . ;JWS;IB*2.0*623;update field .09 837 FHIR ReQUEST if using 837 FHIR trans method
+ . S DA=IBIEN,DIE="^IBA(364,",DR=".02////"_IBBATCH_";.03///P;.04///NOW"
+ . I $D(^IBA(364,"AC",1,DA)) S DR=DR_";.09////2"
+ . D ^DIE
+ . S IBIFN=+$G(^IBA(364,IBIEN,0))
  . ; If this claim has just been retransmitted, set the .06 field for the previous transmission entry
  . N PRVTXI,PRVTXD
  . S PRVTXI=$O(^IBA(364,"B",IBIFN,IBIEN),-1)      ; previous transmission for this claim
@@ -83,6 +85,8 @@ MAILIT(IBQUEUE,IBBILL,IBCTM,IBDUZ,IBDESC,IBBTYP,IBINS) ; Send mail msg, update b
  I '$P($G(^IBE(350.9,1,8)),U,7) S IBINS=""
  ;
  I IBCTM D
+ . ;JWS;IB*2.0*623
+ . I $$GET1^DIQ(350.9,"1,",8.21,"I") Q  ;G MAILQ
  . I +$G(^TMP("IBEDI_TEST_BATCH",$J)) S IBQUEUE="MCT"
  . I IBQUEUE'="",IBQUEUE'["@" S XMTO("XXX@Q-"_IBQUEUE_".DOMAIN.EXT")=""
  . ;
@@ -96,8 +100,10 @@ MAILIT(IBQUEUE,IBBILL,IBCTM,IBDUZ,IBDESC,IBBTYP,IBINS) ; Send mail msg, update b
  . I $G(XMZ) D
  .. D UPD(XMZ,$P($G(^TMP("IBHDR",$J)),U),IBCTM,.IBBILL,IBDESC,IBBTYP,IBINS) ;Update batch/bills
  .. S ^TMP("IBCE-BATCH",$J,IBBNO)=IBBDA_U_IBCTM_U_$P($G(^TMP("IBRESUBMIT",$J)),U)
-MAILQ S IBCTM=0
- D CHKBTCH(+$G(^TMP("IBHDR",$J)))
+MAILQ ;
+ S IBCTM=0
+ ;JWS;IB*2.0*623;do not do for FHIR transmissions
+ I '$$GET1^DIQ(350.9,"1,",8.21,"I") D CHKBTCH(+$G(^TMP("IBHDR",$J)))
  K ^TMP("IBHDR",$J),^TMP("IBHDR1",$J),^TMP("IBXMSG",$J),IBBILL
  Q
  ;
@@ -172,10 +178,12 @@ TESTLIM(IBINS) ; Check for test bill limit per day has been reached
  N IB3,DA,DIK
  S IB3=$G(^DIC(36,IBINS,3))
  I $P(IB3,U,5)'=DT S $P(IB3,U,7)=0
+ ;JWS;IB*2.0*623v24;for test env don't skip
+ I '$$PROD^XUPROD(1) G 1
  I ($P(IB3,U,7)+$G(^TMP("IBICT",$J,IBINS))+1)>$P(IB3,U,6) D  Q
  . S IBINS="" ;max # hit
  . S DA=IBX,DIK="^IBA(364," D ^DIK
- S ^TMP("IBICT",$J,IBINS)=$G(^TMP("IBICT",$J,IBINS))+1
+1 S ^TMP("IBICT",$J,IBINS)=$G(^TMP("IBICT",$J,IBINS))+1
  Q
  ;
 SETVAR(IBXIEN,IBINS,IB0,IBSEC,IBNID,IB837R,IBDIV) ;

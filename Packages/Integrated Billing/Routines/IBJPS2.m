@@ -1,5 +1,5 @@
 IBJPS2 ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592,608,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD2 ; - continue build screen array for IB parameters
@@ -104,6 +104,11 @@ BLD2 ; - continue build screen array for IB parameters
  ;JWS;IB*2.0*592;add on/off for Dental
  I $P(IBPD8,U,20)="" S $P(IBPD8,U,20)=1  ;default to yes
  S IBLN=$$SET(" Allow Dental Claim Processing?",$$YN(+$P(IBPD8,U,20)),IBLN,IBLR,IBSEL)
+ ;JWS;IB*2.0*623; add on/off for 837 FHIR transaction
+ I $P(IBPD8,U,21)="" S $P(IBPD8,U,21)=0 D  ;default to no
+ . N DIE,DA,DR
+ . S DIE="^IBE(350.9,",DA=1,DR="8.21////0" D ^DIE
+ S IBLN=$$SET(" Allow 837 FHIR Trans processing?",$$YN(+$P(IBPD8,U,21)),IBLN,IBLR,IBSEL)
  ;
  ; WCJ;IB*2.0*547;administrative contractors medicare
  D RIGHT(3,1,1)

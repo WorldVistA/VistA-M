@@ -1,5 +1,5 @@
-SDEC ;ALB/SAT - VISTA SCHEDULING RPCS ; 22 May 2018  1:05 PM
- ;;5.3;Scheduling;**627,643,642,651,658,665,672,679**;Aug 13, 1993;Build 17
+SDEC ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,643,642,651,658,665,672,679,686**;Aug 13, 1993;Build 53
  ;;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;

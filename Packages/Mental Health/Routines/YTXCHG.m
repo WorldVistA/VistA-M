@@ -1,5 +1,13 @@
 YTXCHG ;SLC/KCM - Instrument Exchange Calls ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121,123**;Dec 30, 1994;Build 73
+ ;;5.01;MENTAL HEALTH;**121,123,130**;Dec 30, 1994;Build 62
+ ;
+ ; External Reference    ICR#
+ ; ------------------   -----
+ ; %ZISH                 2320
+ ; DIC                   2051
+ ; DIK                  10013
+ ; XPDUTL               10141
+ ; XTHC10                5515
  ;
 VERSION ;; current Instrument Exchange version
  ;;1.02
@@ -73,7 +81,10 @@ INSTALL(XCHGIEN,DRYRUN) ; install instrument exchange entry locally
  I OK D
  . I $$BADVER($G(^TMP("YTXCHGI",$J,"TREE","xchg","version"))) QUIT
  . D TR2MHA^YTXCHGT($NA(^TMP("YTXCHGI",$J,"TREE")),$G(DRYRUN))
- . I '$G(DRYRUN) D LOGINST^YTXCHGU(XCHGIEN),CHKSCORE^YTXCHGT(XCHGIEN)
+ . I '$G(DRYRUN) D
+ . . D LOGINST^YTXCHGU(XCHGIEN)
+ . . D CHKSCORE^YTXCHGT(XCHGIEN)
+ . . D LIST96^YTWJSONF ; rebuild active instrument list
  K ^TMP("YTXCHGI",$J,"TREE")
  Q
 INSTALLQ(TAG,RTN) ; install exchange entries listed by TAG^RTN in post-init

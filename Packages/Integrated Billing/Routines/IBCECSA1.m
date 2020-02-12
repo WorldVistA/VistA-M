@@ -1,12 +1,15 @@
 IBCECSA1 ;ALB/CXW - IB STATUS AWAITING RESOLUTION SCREEN ;28-JUL-99
- ;;2.0;INTEGRATED BILLING;**137,283,288,320,368**;21-MAR-94;Build 21
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,283,288,320,368,623**;21-MAR-94;Build 70
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; DBIA for $$BN1^PRCAFN()
  ;
 BLD ; Build list entrypoint
- N IBDA,IBREV,IBIFN,IBPAY,IBSSN,IBSER,IB399,IBLOC,IBDIV,IBUER,IBMSG,IBERR,IBPEN,SEVERITY,A,IBOAM,IBPAT,IBSTSMSG,SV1,SV2,SV3
+ ;N IBDA,IBREV,IBIFN,IBPAY,IBSSN,IBSER,IB399,IBLOC,IBDIV,IBUER,IBMSG,IBERR,IBPEN,SEVERITY,A,IBOAM,IBPAT,IBSTSMSG,SV1,SV2,SV3
+ N A,IB399,IBDA,IBDIV,IBERR,IBIFN,IBLOC,IBMCCF,IBMSG,IBNON,IBOAM,IBPAT,IBPAY,IBPEN   ;/vd-IB*2.0*623 (US141) - Reordered variables
+ N IBREV,IBRTYP,IBSER,IBSSN,IBSTSMSG,IBUER,SEVERITY,SV1,SV2,SV3
  K ^TMP("IBCECSA",$J),^TMP("IBCECSB",$J),^TMP("IBCECSD",$J)
  W !!,"Compiling CSA status messages ... "
+ S IBMCCF=^TMP("IBRTYP",$J,0)   ; "M"CCF, "N"on-MCCF or "B"oth - IB*2.0*623
  S IBSEV=$G(IBSEV,"R")
  S VALMCNT=0,IB364=""
  S SEVERITY=""
@@ -24,6 +27,13 @@ BLD ; Build list entrypoint
  . ; automatically review this message if the claim was last printed on
  . ; or after the MCS - 'Resubmit by Print' date
  . I $P(IB,U,16),($P($G(^DGCR(399,IBIFN,"S")),U,14)\1)'<$P(IB,U,16) D UPDEDI^IBCEM(+$P(IB,U,11),"P") Q
+ . ;
+ . ;/vd - IB*2.0*623 (US141) - Beginning of Code added to support the new sort prompt for MCCF, NON-MCCF or BOTH
+ . S IBRTYP=$P(IB399,U,7),IBNON=0   ;Rate type for claim and variable for identifying the sort criteria.
+ . I $D(^IBE(350.9,1,28,"B",IBRTYP)) S IBNON=1   ; The claim's Rate Type is a Non-MCCF Rate Type.
+ . I IBMCCF="M",+IBNON Q   ; User selected only MCCF Rate Types.
+ . I IBMCCF="N",'IBNON Q   ; User selected only Non-MCCF Rate Types.
+ . ;/vd - IB*2.0*623 (US141) - End
  . ;
  . S IBDIV=+$P(IB399,U,22)
  . S IBUER=+$P($G(^DGCR(399,IBIFN,"S")),U,11)

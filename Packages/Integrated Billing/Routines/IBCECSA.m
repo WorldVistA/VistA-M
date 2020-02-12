@@ -1,6 +1,6 @@
 IBCECSA ;ALB/CXW - IB CLAIMS STATUS AWAITING RESOLUTION SCREEN ;28-JUL-1999
- ;;2.0;INTEGRATED BILLING;**137,320**;21-MAR-1994
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,320,623**;21-MAR-1994;Build 70
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for claims status awaiting resolution
  N IBSORT,IBSORT1,IBSORT2,IBSORT3,IBSORTOR,IBDAYS
@@ -8,6 +8,10 @@ EN ; -- main entry point for claims status awaiting resolution
  Q
  ;
 HDR ; -- header code
+ ;/vd - IB*2.0*623 (US141) - Instituted the IBHDSORT variable to determine what the Header should be based on the user's selection.
+ N IBHDSORT
+ S IBHDSORT=$G(^TMP("IBRTYP",$J,0))
+ S VALMHDR(1)=$S(IBHDSORT="N":"Non-",IBHDSORT="B":"MCCF and Non-",1:"")_"MCCF Claims"
  S VALMSG="* Indicates CSA review in progress"
  Q
  ;
@@ -30,6 +34,20 @@ INIT ; -- init variables and list array
  S IBFIRST=1
  F  S DIC="^DG(40.8,",DIC(0)="AEQMN",DIC("A")=$S(IBFIRST:"",1:" Another ")_"DIVISION: "_$S(IBFIRST:"ALL//",1:"") D ^DIC K DIC Q:Y<0  S ^TMP("IBDIV",$J,+Y)="",IBFIRST=0
  I $D(DTOUT)!$D(DUOUT) S VALMQUIT=1 G INITQ
+ ;
+ ;/vd - IB*2.0*623 (US141) Beginning - Ask to Search by MCCF, Non-MCCf or Both
+ K ^TMP("IBRTYP",$J)
+ W !
+ S DIR(0)="SA^M:MCCF;N:Non-MCCF;B:Both"
+ S DIR("A")="Search by (M)CCF, (N)on-MCCF, or (B)oth? "
+ S DIR("B")="M"
+ S DIR("?",1)="Select one of the following:"
+ S DIR("?",2)="  M   MCCF Claims Only"
+ S DIR("?",3)="  N   Non-MCCF Claims Only"
+ S DIR("?",4)="  B   MCCF and Non-MCCF Claims"
+ D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S VALMQUIT=1 G INITQ
+ S ^TMP("IBRTYP",$J,0)=Y
+ ;/vd - IB*2.0*623 (US141) End.
  ;
  ; IB*320 - new sorting
  W !
@@ -54,6 +72,7 @@ EXIT ; -- exit code
  K IBDAYS,IBSORT1,IBSORT2,IBSORT3,IBSORTOR
  K ^TMP("IBCECSA",$J),^TMP("IBDIV",$J),^TMP("IBBIL",$J)
  K ^TMP("IBCECSB",$J),^TMP("IBCECSC",$J),^TMP("IBCECSD",$J)
+ K ^TMP("IBRTYP",$J)   ;/vd - IB*2.0*623 (US141)
  D CLEAN^VALM10
  Q
  ;

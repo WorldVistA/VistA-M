@@ -1,5 +1,5 @@
-DGRPH ;ALB/MRL,TMK,JAM - REGISTRATION HELP ROUTINE ;30 Oct 2017  3:03 PM
- ;;5.3;Registration;**114,343,397,415,489,545,638,624,689,842,941**;Aug 13, 1993;Build 73
+DGRPH ;ALB/MRL,TMK,JAM,ARF - REGISTRATION HELP ROUTINE ;30 Oct 2017  3:03 PM
+ ;;5.3;Registration;**114,343,397,415,489,545,638,624,689,842,941,985**;Aug 13, 1993;Build 15
  ;
  S DGRPH="" D H^DGRPU K DGRPH W !,"Enter '^' to stop the display ",$S(DGRPV:"",1:"and edit "),"of data, '^N' to jump to screen #N (see",!,"listing below), <RET> to continue on to the next available screen" I DGRPV W "." G M
  W " or enter",!,"the field group number(s) you wish to edit using commas and dashes as",!,"delimiters.  Those groups enclosed in brackets ""[]"" are editable while those",!,"enclosed in arrows ""<>"" are not."
@@ -10,7 +10,8 @@ M I DGRPS=9,DGRPSEL="V" W !!,"You may precede your selection with 'V' to denote 
  ;S Z="Press RETURN key",DGRPCM=1 D WW^DGRPV S DGRPCM=0 W " to EXIT Screen ",DGRPS," HELP " R X:DTIME S X="" Q
  S DGRPW=0 W "Press " S Z="<RETURN>",DGRPCM=1 D WW^DGRPV W " KEY " S Z="TO EXIT" D WW^DGRPV W " SCREEN ",DGRPS," " S Z="HELP" D WW^DGRPV W " " R X:DTIME S (DGRPCM,DGRPW)=0 Q
  ;JAM; DG*5.3*941; Groups on screen 1 and 1.1 have changed so update help text to reflect new locations
-1 S X="Name, SSN, DOB, Sex^Alias Name & SSN (if applicable)^Remarks concerning this patient^Cell Phone, Pager, E-Mail^Date & Time, Preferred Language" Q
+ ;ARF; DG*5.3*985; Add 'Birth' to 'Sex' and 'Preferred Name of Patient' to the Help screen for PATIENT DEMOGRAPHIC SCREEN 1
+1 S X="Name, SSN, DOB, Birth Sex^Alias Name & SSN (if applicable)^Remarks concerning this patient^Cell Phone, Pager, E-Mail^Date & Time, Preferred Language^Preferred Name of Patient" Q
 A1 S X="Residential Address^Permanent Mailing Address^Temporary Mailing Address^Confidential Mailing Address" Q
 2 S X="POB, Parents, etc.^Dates/Locations of Previous Care^Race and Ethnicity^Date of Death Information" Q
 3 S X="Primary Next-of-Kin^Secondary Next-of-Kin^Primary Emergency Contact^Secondary Emergency Contact^Designee to receive personal effects" Q

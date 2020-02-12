@@ -1,5 +1,5 @@
 IBCEU7 ;ALB/DEM - EDI UTILITIES ;26-SEP-2010
- ;;2.0;INTEGRATED BILLING;**432,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**432,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -188,3 +188,20 @@ REMOVE(IBIFN,IBFT) ; This will be used to remove all line level providers and al
  .. S FDA(399.0404,LNPRVIEN_","_CPIEN_","_IBIFN_",",.01)="@"
  . I $D(FDA) D FILE^DIE("E","FDA")
  Q
+ ;
+ ; vd - IB*2.0*623 (US4995) - Added the following module of code for ROI validation.
+ROIDTCK(IBIFN) ; Date validator for ROI checking
+ ; INPUT:
+ ;   IBIFN is the internal Claim Number.
+ ; OUTPUT:
+ ;   0 means the Claim is NOT ROI eligible based upon the Date of Service
+ ;   1 means the Claim IS ROI eligible based upon the Date of Service.
+ N IBDOS,IBTBD,ROIELG,X,Y
+ S ROIELG=0
+ S IBDOS=$$BDATE^IBACSV(IBIFN)
+ S X=20190128 D ^%DT S IBTBD=Y
+ ; DOS prior to 1/28/19 with sensitive diagnosis requires ROI to bill
+ ; DOS on or after 1/28/19 with sensitive diagnosis does not require ROI to bill
+ I IBDOS<IBTBD S ROIELG=1
+ Q ROIELG
+ ;

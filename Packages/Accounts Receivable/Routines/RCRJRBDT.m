@@ -1,5 +1,5 @@
 RCRJRBDT ;WISC/RFJ-bad debt retransmit ;9/2/10 8:47am
- ;;4.5;Accounts Receivable;**101,170,191,138,239,273,310,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**101,170,191,138,239,273,310,338,360**;Mar 20, 1995;Build 10
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -197,7 +197,7 @@ BDR ; Compile new Bad Debt Report.
  D SETLINE("SGL Definitions")
  D SETLINE(" ")
  D SETLINE("1319   Allowance for Bad Debt")
- D SETLINE("1319.7 Allowance Community Care Inpatient/Outpatient copayments")
+ D SETLINE("1319.7 Allowance Community Care Inpatient/Outpatient/Urgent Care copayments")
  D SETLINE("1319.8 Allowance Community Care RX copayments")
  D SETLINE("1319.9 Allowance Community Care LTC copayments")
  D SETLINE("1338   Allowance for Tort Feasors")

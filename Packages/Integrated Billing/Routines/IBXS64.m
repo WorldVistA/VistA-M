@@ -1,4 +1,4 @@
-IBXS64 ; ;11/02/18
+IBXS64 ; ;01/15/20
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
  I $D(^("U1")) S %Z=^("U1") S %=$P(%Z,U,2) S:%]"" DE(1)=% S %=$P(%Z,U,3) S:%]"" DE(3)=% S %=$P(%Z,U,10) S:%]"" DE(6)=%

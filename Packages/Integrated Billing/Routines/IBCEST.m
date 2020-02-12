@@ -1,5 +1,5 @@
 IBCEST ;ALB/TMP - 837 EDI STATUS MESSAGE PROCESSING ;17-APR-96
- ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407,577,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407,577,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4043 for call to AUDITX^PRCAUDT
  Q
@@ -173,15 +173,19 @@ UPDINS(IBPID,IBINS,IBIFN,IBTDA)     ;KDM US129 IB*2*577
  ; IBIFN = the ien of the claim (file 399)
  ; IBTDA = ien of entry in file 364.2     ;KDM US129 IB*2*577
  ;
- N IBID,IBIDFLD,IBPRT,IBLOOK,DA,DR,DIE,X,Y,Z,UPD     ;KDM US129 IB*2*577
+ ;N IBID,IBIDFLD,IBPRT,IBLOOK,DA,DR,DIE,X,Y,Z,UPD     ;KDM US129 IB*2*577
+ N DA,DIE,DONE,DR,HAVONE,IBHOLD,IBID,IBIDFLD,IBIDQ,IBPRT,IBLOOK,IBPID69,IBQUAL,IBSID,II,UPDATE,X,Y,Z   ; vd US3994 - IB*2*623
  ;
  Q:'$G(IBINS)!($G(IBPID)="")
  ;
  ; Strip spaces off the end of data
  S IBLOOK=""
- I $L(IBPID) F Z=$L(IBPID):-1:1 I $E(IBPID,Z)'=" " S IBLOOK=$E(IBPID,1,Z) Q
+ ;I $L(IBPID) F Z=$L(IBPID):-1:1 I $E(IBPID,Z)'=" " S IBLOOK=$E(IBPID,1,Z) Q
  ;
- S IBPRT=($E(IBLOOK,2,5)="PRNT")
+ ;S IBPRT=($E(IBLOOK,2,5)="PRNT")
+ I $L(IBPID) F Z=$L(IBPID):-1:1 I $E(IBPID,Z)'=" " S IBHOLD=$E(IBPID,1,Z) Q   ; vd US3994 - IB*2*623
+ ;
+ S IBPRT=($E(IBHOLD,2,5)="PRNT")  ; vd US3994 - IB*2*623
  I IBPRT D  ; Set printed via EDI field on bill
  . S DA=IBIFN,DIE="^DGCR(399,",DR="26////1" D ^DIE
  ;
@@ -189,16 +193,38 @@ UPDINS(IBPID,IBINS,IBIFN,IBTDA)     ;KDM US129 IB*2*577
  ;S IBLOOK=$E($S('IBPRT:$P(IBLOOK,"PAYID=",2),1:""),1,5)
  ;Q:IBLOOK=""!($E(IBLOOK,2,5)="PRNT")
  I IBPRT Q
- I IBLOOK'["PAYID=",IBLOOK'["COBID=" Q     ;KDM US129 IB*2*577
- S IBLOOK=$E($P(IBLOOK,"ID=",2),1,5)
+ I IBHOLD'["PAYID=",IBHOLD'["COBID=" Q     ; vd US3994 IB*2*623
+ S IBLOOK=$E($P(IBHOLD,"ID=",2),1,5)     ; vd US3994 IB*2*623
  Q:IBLOOK=""
+ ;
+ ;/vd IB*2*623 (US3994) - Beginning
+ S IBDATE=DT,IBTYP=$G(IBPID("TYPE")),IBPID69=$E(IBPID,6,9),UPDATE=1
+ S (IBID,IBIDQ)=""
+ I "^I^P^"[(U_IBTYP_U),IBHOLD["COBID=",IBPID69'="0000" D   ; Update the CLM-OFC-IDs for I & P only with valid Secondary Payer IDs.
+ . S IBQUAL(1)=$S(IBTYP="I":6.01,1:6.05),IBQUAL(2)=$S(IBTYP="I":6.03,1:6.07)  ; Get appropriate Qualifier field numbers.
+ . S IBSID(1)=$S(IBTYP="I":6.02,1:6.06),IBSID(2)=$S(IBTYP="I":6.04,1:6.08)   ; Get appropriate Current Secondary Payer IDs.
+ . S (DONE,HAVONE)=0
+ . F II=1,2 D  Q:((+DONE)!(+HAVONE))   ; PROCESS THRU BOTH SECONDARY PAYER IDS OR UNTIL WE PERFORMED AN UPDATE.
+ . . S IBIDQ=$$GET1^DIQ(36,+IBINS,IBQUAL(II),"I")  ; Get the current qualifier value
+ . . S IBID=$$GET1^DIQ(36,+IBINS,IBSID(II),"I")    ; Get the current id value
+ . . I IBIDQ="FY" S HAVONE=1 Q   ; Already have a Claim Office ID.
+ . . I IBIDQ="" D  Q      ; Current value doesn't exists.okay to update.
+ . . . S DIE="^DIC(36,",DR=IBSID(II)_"////"_IBPID69_";"_IBQUAL(II)_"////FY",DA=IBINS D ^DIE  ; Update the CLM-OFC-ID and Qualifier fields.
+ . . . D UPDLOG(1,IBDATE,IBINS,IBPID69,IBTYP_"2",IBID) ; Log the CLM-OFC-ID "UPDATE".
+ . . . S DONE=1      ; Success. Updated one so we can quit out.
+ . . . Q
+ . ; Should only get to the following line if no update was accomplished because there was no available room to add an "FY".
+ . I '+DONE D UPDLOG(0,IBDATE,IBINS,IBPID69,IBTYP_"2",$S(+HAVONE:IBID,1:"*N/A FULL")) ; Log the CLM-OFC-ID "ATTEMPT"
+ . Q
+ ;/vd IB*2*623 (US3994) - End
  ;
  S IBIDFLD="3.0"_$S($G(IBPID("TYPE"))="I":4,1:2)
  ;JWS;IB*2.0*592;Dental
  I $G(IBPID("TYPE"))="D" S IBIDFLD=3.15
  S IBID=$P($G(^DIC(36,+IBINS,3)),U,IBIDFLD*100#100)
  Q:IBID=IBLOOK
- S IBDATE=DT,IBTYP=$G(IBPID("TYPE"))     ;KDM  US129 IB*2*577
+ ;/vd IB*2*623 (US3994) Moved the following line up prior to some new lines of code.
+ ; S IBDATE=DT,IBTYP=$G(IBPID("TYPE"))     ;KDM  US129 IB*2*577
  I IBID="" D  G UPDINSQ ; Update insurance co electronic id # if blank
  . S DIE="^DIC(36,",DR=IBIDFLD_"////"_IBLOOK,DA=IBINS D ^DIE
  . D UPDLOG(1,IBDATE,IBINS,IBLOOK,IBTYP,IBID)     ;KDM US129 IB*2*577
@@ -232,7 +258,7 @@ UPDLOG(UPD,IBDATE,IBINS,IBLOOK,IBTYP,IBID)    ;KDM US129, US976 IB*2*577 New sec
  S LEV="+2,"_IBINS_","
  S IBFDA(36.017,LEV,.01)=IBLOOK     ;New Value from 277STAT
  S IBFDA(36.017,LEV,.02)=IBDATE     ;Date transaction is processed
- S IBFDA(36.017,LEV,.03)=IBTYP      ;"P" or "I"
+ S IBFDA(36.017,LEV,.03)=IBTYP      ;"P" or "I" for "EDI-PayerID, or "P2" or "I2" for CLM-OFC-ID
  S IBFDA(36.017,LEV,.04)=$G(IBID)   ;Value already on file- if blank it was an update, otherwise attempted update
  D UPDATE^DIE("","IBFDA","","ERROR")
  Q

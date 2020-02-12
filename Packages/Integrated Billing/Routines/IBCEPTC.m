@@ -1,5 +1,5 @@
 IBCEPTC ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS ; 4/12/05 11:15am
- ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entrypoint
@@ -43,7 +43,8 @@ Q1 ;
  K ^TMP($J,IBHOW)
  F  D  Q:IBQUIT
  .;I IBHOW="C" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
- . I IBHOW="C",IBLOC="" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
+ . ;JWS;IB*2.0*623;allow previously trans claims in test to be resubmitted if non-production environment "!'$$PROD^XUPROD(1)"
+ . I IBHOW="C",IBLOC="" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I ('$P(^(0),U,7)!'$$PROD^XUPROD(1)),'$O(^IBA(364,""B"",+^(0),Y))"
  . I IBHOW="C",IBLOC=1 S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Locally Printed Claim: ",DIR(0)="PA^399:AEMQZ",DIR("S")="I '$D(^IBA(364,""B"",Y)),$$INSOK^IBCEF4(+$$CURR^IBCEF2(Y))"
  . I IBHOW="B" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Batch: ",DIR(0)="PA^IBA(364.1,:AEMQ^W ""  "",$P(^(0),U,3),"" Claims""",DIR("S")="I '$P(^(0),U,14)"
  . S DIR("?")="^D SELDSP^IBCEPTC(IBHOW)"

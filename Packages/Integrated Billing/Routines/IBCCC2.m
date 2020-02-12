@@ -1,5 +1,5 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577,592,608,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
@@ -16,7 +16,8 @@ STEP5 S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,
  ;move top level data node. ;Do not move 'TX' node EXCEPT piece 8 (added with IB*2.0*432)
  ;F I="U","U1","U2","U3","UF2","UF3","UF31","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
  ; add new data nodes introduced with IB*2.0*432
- F I="TX","U","U1","U2","U3","U4","U5","U6","U7","U8","UF2","UF3","UF31","UF32","C","M" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
+ ; vd - IB*2.0*623 - Added "M2".
+ F I="TX","U","U1","U2","U3","U4","U5","U6","U7","U8","UF2","UF3","UF31","UF32","C","M","M2" I $D(^DGCR(399,IBIFN1,I)) S IBND(I)=^(I) D @I
  ;
  ;move multiple level data
  ;F I="CC","OC","OP","OT","RC","CP","CV","PRV" I $D(^DGCR(399,IBIFN1,I,0)) D @I
@@ -41,6 +42,11 @@ STEP5 S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,
  I +$G(IBCTCOPY) N IBAUTO S IBAUTO=1 D PROC^IBCU7A(IBIFN),BILL^IBCRBC(IBIFN),CPTMOD26^IBCU73(IBIFN) D RECALL^DILFD(399,IBIFN_",",DUZ) G END
  ;
 STEP6 N IBGOEND
+ ;JWS;IB*2.0*623v24;need to identify valid duplicate
+ I $G(IBCNCRD)=1 D
+ . N DA,DR,DIE,X,Y
+ . S DA=IBIFN,DIE="^DGCR(399,",DR="23////1" D ^DIE
+ . Q
  ; need to kill CRD flag prior to entering billing screens in case a copy for corresponding claim is needed
  K IBCNCRD
  ; don't call IB bill edit screens if this is non-MRA background processing
@@ -103,6 +109,9 @@ C F J=10 I $P(IBND("C"),"^",J)]"" S $P(^DGCR(399,IBIFN,"C"),"^",J)=$P(IBND("C"),
  Q
 M F J=1:1:9,11:1:14 I $P(IBND("M"),"^",J)]"" S $P(^DGCR(399,IBIFN,"M"),"^",J)=$P(IBND("M"),"^",J)
  Q
+ ; vd - IB*2.0*623 - Added the following module of code.
+M2 F J=1:1:6 I $P(IBND("M2"),"^",J)]"" S $P(^DGCR(399,IBIFN,"M2"),"^",J)=$P(IBND("M2"),"^",J)
+ Q
 CC S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  S IBDD=399.04 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S ^DGCR(399,IBIFN,I,J,0)=^DGCR(399,IBIFN1,I,J,0),X=$P(^(0),"^")
 OP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
@@ -155,7 +164,8 @@ CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  . I $D(^DGCR(399,IBIFN1,I,J,"CMN")) S ^DGCR(399,IBIFN,I,J,"CMN")=^DGCR(399,IBIFN1,I,J,"CMN")
  . I $D(^DGCR(399,IBIFN1,I,J,"CMN-10126")) S ^DGCR(399,IBIFN,I,J,"CMN-10126")=^DGCR(399,IBIFN1,I,J,"CMN-10126")
  . I $D(^DGCR(399,IBIFN1,I,J,"CMN-484")) S ^DGCR(399,IBIFN,I,J,"CMN-484")=^DGCR(399,IBIFN1,I,J,"CMN-484")
-CP1 S IBCOD=$P($G(^DGCR(399,IBIFN,0)),"^",9) Q:IBCOD=""!('$D(^DGCR(399,IBIFN1,"C")))
+CP1 N DGI,IBCOD
+ S IBCOD=$P($G(^DGCR(399,IBIFN,0)),"^",9) Q:IBCOD=""!('$D(^DGCR(399,IBIFN1,"C")))
  I IBCOD=9 F DGI=4,5,6 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICD0(",DGPROCDT=$P(^("C"),"^",DGI+7) D FILE
  I IBCOD=4 F DGI=1,2,3 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICPT(",DGPROCDT=$P(^("C"),"^",DGI+10) D FILE
  I IBCOD=5 F DGI=7,8,9 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICPT(",DGPROCDT=$P(^("C"),"^",DGI+4) D FILE
@@ -233,6 +243,9 @@ COBCHG(IBIFN,IBINS,IBCOB) ; Make changes for a new COB payer for bill
  ; Save off Taxonomies for providers.
  S I=0 F  S I=$O(^DGCR(399,IBIFN,"PRV",I)) Q:'I  S IBTAXLST(I)=$P($G(^DGCR(399,IBIFN,"PRV",I,0)),U,15)
  ;
+ ;vd - IB*2.0*623 (US4100) - Added the following to correctly process MRAs for Alternate Payer ID.
+ I $D(^DGCR(399,IBIFN,"M2")) S IBND("M2")=^DGCR(399,IBIFN,"M2")
+ ;
  ; fire xrefs set logic
  D INDEX
  ;
@@ -244,6 +257,13 @@ COBCHG(IBIFN,IBINS,IBCOB) ; Make changes for a new COB payer for bill
  ;   will overwrite the correct value when processing the MRA/EOB.
  ; If we're processing the MRA/EOB, then a valid MRA has been received.
  I $G(IBPRCOB) N DA,DIE,DR S DA=IBIFN,DIE="^DGCR(399,",DR="24////C" D ^DIE
+ ;
+ ;vd - Added the following "M2" code for IB*2.0*623 (US4100)
+ ; Restore Claim Alternate Payer ID data fields since triggers in fields 140-145
+ ;   will overwrite the correct value when CLONing or processing the MRA/EOB. / vd - Added for IB*2.0*623 (US4100)
+ I $TR($G(IBND("M2")),U)]"" D  K IBND("M2")
+ . N DA,DIE,DR,II,JJ
+ . F II=1:1:6 S JJ=$P($G(IBND("M2")),U,II),DA=IBIFN,DIE="^DGCR(399,",DR=(139+II)_"////"_JJ D ^DIE
  ;
  ; Only if cloning, then restore Taxonomies in fields 243 and 244 and 252.
  I '$G(IBINS),'$G(IBPRCOB) D

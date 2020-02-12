@@ -1,6 +1,7 @@
 YTXCHGT ;SLC/KCM - JSON / Tree Conversions ; 9/15/2015
- ;;5.01;MENTAL HEALTH;**121,123**;Dec 30, 1994;Build 73
- ;Reference to VPRJSON supported by IA #6411
+ ;;5.01;MENTAL HEALTH;**121,123,130**;Dec 30, 1994;Build 62
+ ;
+ ; Reference to VPRJSON supported by IA #6411
  ;
  ; SRC,DEST are global or local array references
  ;
@@ -28,6 +29,7 @@ TR2MHA(TREE,YTXDRY) ; Save SRC tree into MHA file entries
  . Q:$G(YTXDRY)
  . S NEWDT=@TREE@("test",SEQ,"info","lastEditDate")
  . I ($G(YTXLOG("added"))+$G(YTXLOG("updated")))>0 D NEWDATE^YTXCHGU(TESTNM,NEWDT)
+ . D FILE96^YTWJSONF(@TREE@("test",SEQ,"info","name")) ; move new instrument to 601.96
  Q
 TR2JSON(SRC,DEST) ; Convert tree representation to JSON
  N JSONERR,INTERIM,OK

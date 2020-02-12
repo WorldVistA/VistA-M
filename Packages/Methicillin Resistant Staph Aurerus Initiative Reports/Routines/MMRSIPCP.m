@@ -1,5 +1,5 @@
-MMRSIPCP ;MIA/LMT/TCK - SETUP MDRO TOOLS SOFTWARE PARAMETERS ; 10/27/16 1:45pm
- ;;1.0;MRSA PROGRAM TOOLS;**1,3,4**;Mar 22, 2009;Build 130
+MMRSIPCP ;MIA/LMT/TCK,LAB - SETUP MDRO TOOLS SOFTWARE PARAMETERS ;May 22, 2019@09:15:23
+ ;;1.0;MRSA PROGRAM TOOLS;**1,3,4,8**;Mar 22, 2009;Build 2
  ;
 DIV ;Add a division and setup business rules
  N DIC,X,DINUM,DLAYGO,MMRSDIV,DIR,DIE,DA,DR,DIDEL,Y
@@ -21,7 +21,7 @@ DIV ;Add a division and setup business rules
  S DIE="^MMRS(104,"
  S DA=MMRSDIV
  S Y=+$P(Y,U,1)
- S DR="1////"_Y
+ S DR="1///"_Y ;MMRS*1.0*8
  I Y=1!(Y=0) D ^DIE
  ;DISCHARGING UNIT SCREEN
  S DA=MMRSDIV
@@ -32,7 +32,7 @@ DIV ;Add a division and setup business rules
  S DIE="^MMRS(104,"
  S DA=MMRSDIV
  S Y=+$P(Y,U,1)
- S DR="2////"_Y
+ S DR="2///"_Y ;MMRS*1.0*8
  I Y=1!(Y=0) D ^DIE
  ;SCREEN POS ON TRANSFER IN
  S DA=MMRSDIV
@@ -43,7 +43,7 @@ DIV ;Add a division and setup business rules
  S DIE="^MMRS(104,"
  S DA=MMRSDIV
  S Y=+$P(Y,U,1)
- S DR="3////"_Y
+ S DR="3///"_Y ;MMRS*1.0*8
  I Y=1!(Y=0) D ^DIE
  ;SCREEN POS ON DISCHARGE
  S DA=MMRSDIV
@@ -54,7 +54,7 @@ DIV ;Add a division and setup business rules
  S DIE="^MMRS(104,"
  S DA=MMRSDIV
  S Y=+$P(Y,U,1)
- S DR="4////"_Y
+ S DR="4///"_Y ;MMRS*1.0*8
  I Y=1!(Y=0) D ^DIE
  Q
  ;
@@ -144,7 +144,7 @@ LAB ;Entry to setup the Lab Search/Extract Parameters
  .S DIC="^MMRS(104.1,"
  .S DIC(0)="F"
  .S X=MDRO
- .S DIC("DR")="1////"_MMRSDIV
+ .S DIC("DR")="1///"_MMRSDIV ;MMRS*1.0*8
  .D FILE^DICN
  .I Y=-1 S EXTFLG=1 Q
  .S DA=+Y
@@ -172,7 +172,7 @@ WARDMAP ;Entry to setup the Ward Mappings
  .S DIC="^MMRS(104.3,"
  .S DIC(0)="AELMQ"
  .S DIC("A")="Select Geographical Unit: "
- .S DIC("DR")="1////"_MMRSDIV_";3;4"
+ .S DIC("DR")="1///"_MMRSDIV_";3;4" ;MMRS*1.0*8
  .S DLAYGO=104.3
  .W !! D ^DIC
  .K DLAYGO
@@ -218,10 +218,11 @@ HISTDAY ;Historical Days Edit
  .I $D(DTOUT)!($D(DUOUT)) S EXTFLG=1 Q
  .I Y D
  ..S DIE="^MMRS(104.2,"_MDRO_",1,"
- ..I $G(MMRSX)'=9876 S DR="1////"_+Y
+ ..I $G(MMRSX)'=9876 S DR="1///"_+Y ;MMRS*1.0*8
  ..I Y=9876,($G(MMRSX)=9876) S DR="1////@"
  ..K MMRSX
  ..D ^DIE
+ ..I $D(Y) S EXTFLG=1 Q  ;MMRS*1.0*8
  W !
  Q
 ISLTORD ;Entry to setup the Isolation Orders Parameters

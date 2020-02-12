@@ -1,5 +1,5 @@
 IBCEF11 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592,608,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX24D(A,IB) ; Returns the lines for boxes 19-24 of the CMS-1500 display
@@ -216,14 +216,23 @@ BATCH() ; Sets up record for and stores/returns the next batch number
  I $D(IBVNUM) S NUM=IBVNUM G BATCHQ
  ;Check for batch resubmit - if yes, use same number as original batch
  I $P($G(^TMP("IBRESUBMIT",$J)),U,3)=1 S NUM=$P(^($J),U) G BATCHQ
- L +^IBA(364.1,0):5 I '$T Q 0
+ ;JWS;IB*2.0*623v24;7/17/19 increased lock timeout to 10 sec from 5
+ L +^IBA(364.1,0):10 I '$T Q 0
  S FAC=+$P($$SITE^VASITE(),U,3),NUM=$O(^IBA(364.1,"B",""),-1)
- I $D(^IBA(364.1,+NUM,0)),$P(^(0),U,2)="" F  D  Q:'NUM!($P($G(^IBA(364.1,+NUM,0)),U,2)'="")
- . I $D(^IBA(364.1,NUM,0)) S DA=NUM,DIK="^IBA(364.1," D ^DIK
- . S NUM=$O(^IBA(364.1,"B",""),-1)
- F  S NUM=$S($P(NUM,FAC,2)'="":NUM+1,1:FAC_"0000001") Q:'$D(^IBA(364.1,"B",NUM))
+ S NUM=NUM+1
+ ;I $D(^IBA(364.1,+NUM,0)),$P(^(0),U,2)="" F  D  Q:'NUM!($P($G(^IBA(364.1,+NUM,0)),U,2)'="")
+ ;. I $D(^IBA(364.1,NUM,0)) S DA=NUM,DIK="^IBA(364.1," D ^DIK
+ ;. S NUM=$O(^IBA(364.1,"B",""),-1)
+ ;JWS;IB*2.0*623v24;commented out code below, thus needed to set NUM=NUM+1 above
+ ;JWS;IB*2.0*623;bug when number = 4424420000
+ ;F  S NUM=$S($P(NUM,FAC,2)'="":NUM+1,1:FAC_"0000001") Q:'$D(^IBA(364.1,"B",NUM))
+ ;JWS;IB*2.0*623v24;commented out code below, looking for unused batch#s
+ ;I $E(NUM,1,3)'=FAC S NUM=FAC_"0000001"
+ ;F  Q:'$D(^IBA(364.1,"B",NUM))  S NUM=NUM+1
+ ;
  K DO,DD S DIC="^IBA(364.1,",DLAYGO=364.1,DIC(0)="L",X=NUM D FILE^DICN K DD,DO I Y'>0 S NUM=0
  L -^IBA(364.1,0)
+ ;
 BATCHQ Q NUM
  ;
 GETLDAT(IBXIEN) ; Extract data for 837 transmission LDAT record

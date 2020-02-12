@@ -1,5 +1,6 @@
 SDCNSLT ;ALB/HAG - LINK APPOINTMENTS TO CONSULTS ;JAN 15, 2016
- ;;5.3;Scheduling;**478,496,630,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**478,496,630,627,686**;Aug 13, 1993;Build 53
+ ;;Per VHA Directive 2004-038, this routine should not be modified
 A ;===GET ACTIVE AND PENDING CONSULT
  N A,ND,CNT,CONS,CPRSTAT,DTENTR,DTIN,DTLMT,DTR,NOS,NOSHOW,SENDER,SERVICE,SRV,P8,PROC,PT,PTNM,STATUS
  K TMP S NOSHOW="no-show",CNT=0,$P(DSH,"-",IOM-1)="",PT=DFN,X1=DT,X2=-365 D C^%DTC S DTLMT=X
@@ -49,9 +50,14 @@ EDITCS(SD,TMPD,TMPYCLNC,CNSLTLNK) ;===MARK CONSULT AS SCHEDULED
  S COMMENT(2)=TMPD
  D SCH^SDQQCN2(.ER,CNSLTLNK,SNDPRV,CSCHDT,0,,.COMMENT) K COMMENT
  Q
+SDECCAN(SCLNK,SCSNOD,SDTTM,SDSC,SDWH,SDPL,SDECNOTE) ; patch 686 wtc/zeb 3.21.18 cancel consult appointment.  called from SDEC07A.
+ S SNDPRV=$P($G(^GMR(123,SCLNK,0)),U,14) ;
+ ;
 CANCEL ;===appt was cancelled then mark consult as edit/resubmit, add comment.
  N APPT,CONSULT,CPRSSTAT,ER,GM40,GMRND,SDPATNT,USER,SNDPRV,J
  ;Variables CNDIE, CNDA and CNINDX used in calling routine for Cancel letter printed comment in consult.
+ ;TMPD is assumed by the existing code
+ S:$D(SDECNOTE) TMPD=SDECNOTE_$S($D(TMPD):"; ",1:"")_$G(TMPD) ;*zeb 686 10/30/18 keep cancel comment from GUI
  S:$D(SCLNK) CONSULT=SCLNK
  S:'$D(SCLNK) CONSULT=$P($G(^SC(SDSC,"S",SDTTM,1,SDPL,"CONS")),U)
  Q:'+CONSULT
@@ -61,7 +67,7 @@ CANCEL ;===appt was cancelled then mark consult as edit/resubmit, add comment.
  S SNDPRV=$P($G(^GMR(123,CONSULT,0)),U,14)
  S USER=$P(^VA(200,DUZ,0),U),Y=SDTTM D DD^%DT S APPT=$E(SDTTM,4,5)_"/"_$E(SDTTM,6,7)_"/"_$E(SDTTM,2,3)_" @ "_$P(Y,"@",2)
  S COMMENT(1)=$P(^SC(SDSC,0),U)_" Appt. on "_APPT_" was cancelled"_$S($D(SDWH):$S(SDWH["P":" by the Patient.",SDWH["C":" by the Clinic.",1:"."),$D(SDADM):" for administrative purposes.",1:", whole clinic.")
- S CNINDX=2 S:$D(TMPD) COMMENT(2)="Remarks: "_TMPD,CNINDX=CNINDX+1 K TMPD
+ S CNINDX=2 S:$D(TMPD) COMMENT(2)="Remarks: "_TMPD,CNINDX=CNINDX+1 K TMPD,SDECNOTE ;*zeb 686 10/30/18 clean up SDECNOTE in case SDECCAN not used
  N SDERR S SDERR=$$STATUS^GMRCGUIS(CONSULT,6,3,SNDPRV,"","",.COMMENT)
  S CNDIE="^GMR(123,"_CONSULT_",40,",CNDA=+$G(COMMENT(0))
  K COMMENT,DA

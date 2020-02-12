@@ -1,5 +1,5 @@
 IBCEFP ;ALB/TAZ - Provider ID functions ;28-OCT-10
- ;;2.0;INTEGRATED BILLING;**432,447,473,516,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**432,447,473,516,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -60,8 +60,9 @@ ALLIDS(IBIFN,IBXSAVE,IBSTRIP,SEG) ; Return all of the Provider IDS
  . ;IB*2.0*473/TAZ - Moved ID lookup into seperate function.
  . D PSID(IBIFN,.IBXSAVE,.IDS)
  . ;IB*2.0*473/TAZ - END
- . S $P(OUT,U,6)=IDS(0)
- . S $P(OUT,U,7,8)=IDS(1) ; secondary id (1) ^ secondary id qualifier(1)
+ . ;JWS;IB*2.0*623;$G in the event IDS is not defined.
+ . S $P(OUT,U,6)=$G(IDS(0))
+ . S $P(OUT,U,7,8)=$G(IDS(1)) ; secondary id (1) ^ secondary id qualifier(1)
  . F IBCNT=1:1:IBXSAVE("SLC") S IBXSAVE("SLPRV",IBCNT)=OUT,IBXSAVE("SLPRV",IBCNT,"SLC")=IBCNT
  ;
  I SEG="LOPE" D SLPRV(IBIFN,.IBXSAVE,2) G ALLIDSQ

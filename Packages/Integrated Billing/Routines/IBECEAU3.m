@@ -1,5 +1,5 @@
 IBECEAU3 ;ALB/CPM-Cancel/Edit/Add... Add New IB Action;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a new Integrated Billing Action entry.
@@ -33,6 +33,7 @@ ADD ; Add a new Integrated Billing Action entry.
  N DA,DIK,IBASTR,IBND,Y
  D ADD^IBAUTL I Y<1 S IBY=Y G ADDQ
  S:$G(IBEVDA)="*" IBEVDA=IBN
+ S:$G(IBEVDA)="" IBEVDA=IBN     ;check for the NULL scenario IB*2.0*656
  S IBND=DFN_"^"_IBATYP_"^"_$S($G(IBSL):IBSL,1:"350:"_IBN)_"^1^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^"_$S($D(IBPARNT):IBPARNT,1:IBN)_"^"_$G(IBCRES)_"^"_$G(IBIL)_"^^"_IBFAC
  I IBDESC["RX COPAY",$D(IBAM) S $P(IBND,"^",18)=IBAM,$P(^IBAM(354.71,IBAM,0),"^",6)="350:"_IBN ; mark 354.71 entry back and forth
  I IBDESC["RX COPAY",$G(IBEFDT) S $P(IBND,"^",13,14)=IBEFDT_"^"_IBEFDT
@@ -41,10 +42,11 @@ ADD ; Add a new Integrated Billing Action entry.
  I $G(IBTIER) S $P(IBND,"^",21)=IBTIER
  S $P(^IB(IBN,0),"^",2,20)=IBND
  ; IB*2.0*618 Allow Event date to File for Community Care RX
+ ; IB*2.0*656 Correct a potential Undefined error 
  I IBDESC["RX COPAY",$G(IBEVDT) D
  . N DIE,DR,DTOUT
  . S DA=IBN,DIE="^IB("
- . S DR=".16///"_IBEVDA_";.17///"_IBEVDT
+ . S DR=".16///"_$G(IBEVDA)_";.17///"_IBEVDT   ;IB*2.0*656
  . D ^DIE
  ; end IB*2.0*618
  ;

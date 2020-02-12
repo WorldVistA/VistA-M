@@ -1,5 +1,5 @@
-LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/19/16  16:27
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,72,66,74,88**;Sep 27, 1994;Build 10
+LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;APRIL 4, 2016@16:27
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,72,66,74,88,99**;Sep 27, 1994;Build 3
  ;
  ; This routine is a continuation of LA7VIN5.
  ; It performs processing of fields in OBX segments.
@@ -158,6 +158,12 @@ REFRNG(LA7X) ; Process/Store References Range.
  ;
  S X=$P($G(^LAH(LA7LWL,1,LA7ISQN,LA76304)),"^",5)
  ;
+ ; Replace "TO" with "-" (Labcorp special)
+ I LA7X["TO" S LA7X=$P(LA7X,"TO",1)_"-"_$P(LA7X,"TO",2)
+ ;
+ ; A single value with minus sign = upper limit
+ I $E(LA7X)="-",$L(LA7X,"-")=2 S LA7X="<"_$E(LA7X,2,$L(LA7X))
+ ;
  ; >lower limit (no upper limit e.g. >10) - store as low value
  I LA7X?1">".N.1".".N S $P(X,"!",2)=$TR(LA7X,">",""),LA7X=""
  ;
@@ -167,17 +173,20 @@ REFRNG(LA7X) ; Process/Store References Range.
  ; Alphabetic reference with hyphen
  I LA7X?1.A1"-"1.A S $P(X,"!",2)=$C(34)_LA7X_$C(34),LA7X=""
  ;
+ S LADASH=0 S:LA7X["-" LADASH=$L(LA7X,"-")
  ; Lower limit value
- S Y=$P(LA7X,"-")
+ S Y=$S(LADASH:$P(LA7X,"-",1,LADASH-1),1:$P(LA7X,"-"))
  I Y'="" D
  . I Y?.N.1".".N S $P(X,"!",2)=Y
  . E  S $P(X,"!",2)=$C(34)_$$UNESC^LA7VHLU3(Y,LA7FS_LA7ECH)_$C(34)
  ;
  ; Upper limit value
- S Y=$P(LA7X,"-",2)
+ I LADASH<4 S Y=$S(LADASH:$P(LA7X,"-",LADASH),1:$P(LA7X,"-",2))
+ I LADASH=4 S Y=$P(LA7X,"-",LADASH-1,LADASH)
  I Y'="" D
  . I Y?.N.1".".N S $P(X,"!",3)=Y
  . E  S $P(X,"!",3)=$C(34)_$$UNESC^LA7VHLU3(Y,LA7FS_LA7ECH)_$C(34)
+ K LADASH
  ;
  ; Store reference range in LAH global with results.
  S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",5)=X

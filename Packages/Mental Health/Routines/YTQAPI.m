@@ -1,5 +1,11 @@
-YTQAPI ;ASF/ALB MHQ REMOTE PROCEEDURES ; 4/3/07 10:36am
- ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 48
+YTQAPI ;ASF/ALB - MHQ REMOTE PROCEEDURES ; 4/3/07 10:36am
+ ;;5.01;MENTAL HEALTH;**85,130**;Dec 30, 1994;Build 62
+ ;
+ ; External Reference    ICR#
+ ; ------------------   -----
+ ; DID                   2052
+ ; DIQ                   2056
+ ;
  Q
 TSLIST(YSDATA) ;list tests and surveys
  ;Input: none
@@ -30,7 +36,7 @@ TSLIST1(YSDATA,YS) ;list questions for a single test
  S YSTESTN=$O(^YTT(601.71,"B",YSTEST,0))
  I YSTESTN'>0 S YSDATA(1)="[ERROR]",YSDATA(2)="bad code" Q  ;-->out
  S N=2,YSDATA(1)="[DATA]",YSDATA(2)="IEN="_YSTESTN
- S I=0 F  S I=$O(^DD(601.71,I)) Q:I'>0  D
+ F I=.01,2,3,4,5,7,7.5,8,9,10,10.5,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,100.01,100.02,100.03,100.04 D
  . S N=N+1
  . S YSEI=$S(I=18:"I",1:"E")
  . D FIELD^DID(601.71,I,"","LABEL","YSF")

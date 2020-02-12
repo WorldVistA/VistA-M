@@ -1,5 +1,5 @@
 VPREVNT ;SLC/MKB -- VistA event listeners ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19**;Sep 01, 2011;Build 5
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,10,15,17,19,21**;Sep 01, 2011;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -84,8 +84,9 @@ DGPM ; -- DGPM MOVEMENT EVENTS protocol listener
  . I DGPMT=1,'DGPMA D POST^VPRHS(DFN,"Encounter",VPRI_";9000010") Q
  . D POST^VPRHS(DFN,"Encounter",ADM_"~"_VPRI_";405")
  . S PTF=$P(ADM0,U,16) Q:PTF<1
- . S DXLS=$$GET1^DIQ(45,PTF,79,"I") Q:'DXLS
- . D POST^VPRHS(DFN,"Diagnosis",PTF_U_DXLS_";45",,VPRI)
+ . ;S DXLS=$$GET1^DIQ(45,PTF,79,"I") Q:'DXLS
+ . ;D POST^VPRHS(DFN,"Diagnosis",PTF_U_DXLS_";45",,VPRI)
+ . D POST^VPRHS(DFN,"Diagnosis",PTF_";45",,VPRI)
  Q
  ;
 NEWINPT() ; -- is DFN newly admitted?
@@ -304,8 +305,8 @@ TIU(DFN,IEN) ; -- TIU Document file #8925 AEVT index
  ;
  ; update alert containers if CWD
  I $$ISA^TIULX(IEN,27) D POST^VPRHS(DFN,"AdvanceDirective") Q  ;rebuild
- I $$ISA^TIULX(IEN,30) D POST^VPRHS(DFN,"Alert",IEN_"^C;8925",ACT) Q
- I $$ISA^TIULX(IEN,31) D POST^VPRHS(DFN,"Alert",IEN_"^W;8925",ACT)
+ I $$ISA^TIULX(IEN,30) D POST^VPRHS(DFN,"Alert",IEN_";8925",ACT) Q
+ I $$ISA^TIULX(IEN,31) D POST^VPRHS(DFN,"Alert",IEN_";8925",ACT)
  Q
  ;
 LR() ; -- Return ien of Lab class

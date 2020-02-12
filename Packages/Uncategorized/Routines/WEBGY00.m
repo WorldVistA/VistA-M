@@ -1,5 +1,5 @@
-WEBGY00 ;SLC/SRM - Post-init for patch WEBG*1.0*0 ;6/24/19  14:45
- ;;1.0;WEB VISTA REMOTE ACCESS MANAGEMENT;;Jun 24, 2019;Build 7
+WEBGY00 ;SLC/SRM - Post-init for patch WEBG*1.0*0 ;11/18/19  09:39
+ ;;1.0;WEB VISTA REMOTE ACCESS MANAGEMENT;**0**;Jun 24, 2019;Build 15
  ;
 POST    ; initiate post-init processes
  ;

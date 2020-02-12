@@ -1,5 +1,5 @@
 PSJPDV0 ;BIR/KKA-LIST PATIENTS ON SPECIFIC DRUGS (CONT.) ; 7/6/09 2:20pm
- ;;5.0;INPATIENT MEDICATIONS;**12,22,33,214,380**;16 DEC 97;Build 10
+ ;;5.0;INPATIENT MEDICATIONS;**12,22,33,214,380,396**;16 DEC 97;Build 1
  ;
  ;Reference to ^PS(52.6 is supported by DBIA 1231
  ;Reference to ^PS(52.7 is supported by DBIA 2173
@@ -38,8 +38,7 @@ UDORD ;find all Unit Dose orders with specified dispense drugs
  ;
 UDSET ;get patient and order information and set in global
  N CLN,SC0
- I '$G(VAUTD),'$G(PSJPWD) D  Q:'$$CLN(SC0)
- . S CLN=$P($G(^PS(55,PSGP,5,PSJJORD,8)),U),SC0=$P($G(^SC(CLN,0)),U,15)
+ I '$G(VAUTD),'$G(PSJPWD) S CLN=+$P($G(^PS(55,PSGP,5,PSJJORD,8)),U) Q:'CLN  S SC0=+$P($G(^SC(CLN,0)),U,15) Q:'$$CLN(SC0)
  S ND=$G(^PS(55,PSGP,5,PSJJORD,0)),MR=$P(ND,"^",3),MR=$$ENMRN^PSGMI(MR)
  S ND=$G(^PS(55,PSGP,5,PSJJORD,2)),DRG=$G(^(.2)),SCH=$P(ND,"^"),SPD=^TMP("PSJPDV",$J,PSGP,PSJJORD),STD=$S($P(ND,"^",2):$P(ND,"^",2),1:"NOT FOUND"),DO=$P(DRG,"^",2),DRG=$$ENPDN^PSGMI($P(DRG,"^")) I DO]"",$E(DO,$L(DO))'=" " S DO=DO_" "
  N X,PSJ
@@ -70,8 +69,7 @@ IVSET ;S IVND=$G(^PS(55,PSGP,"IV",+PSJJORD,0)),IVSCH=$P(IVND,"^",9),IVSTD=$P(IVN
  N X,ON55,CLN,SC0 S DFN=PSGP,ON=PSJJORD D GT55^PSIVORFB
  S DRG=$S($D(DRG("AD",1)):$P(DRG("AD",1),U,2),1:$P(DRG("SOL",1),U,2)),IVSCH=P(9),IVSTD=P(2),IVSPD=^TMP("PSJPDV",$J,PSGP,PSJJORD),IVMR=$P(P("MR"),U,2),IVIR=P(8),IVDRG=DRG
  S PSJPWDN=$S($G(^PS(55,PSGP,"IV",+ON,"DSS")):$P($G(^SC(+$G(^PS(55,PSGP,"IV",+ON,"DSS")),0)),"^"),($G(PSJPDD)]""&(IVSTD>+PSJPDD)):"",1:TMPWD),PSJPRB=$S($G(^PS(55,PSGP,"IV",+ON,"DSS")):"",($G(PSJPDD)]""&(IVSTD>+PSJPDD)):"",1:TMPRB)
- I '$G(VAUTD),'$G(PSJPWD) D  Q:'$$CLN(SC0)
- . S CLN=$P($G(^PS(55,PSGP,"IV",+ON,"DSS")),"^"),SC0=$P($G(^SC(CLN,0)),U,15)
+ I '$G(VAUTD),'$G(PSJPWD) S CLN=+$P($G(^PS(55,PSGP,"IV",+ON,"DSS")),"^") Q:'CLN  S SC0=+$P($G(^SC(CLN,0)),U,15)  Q:'$$CLN(SC0)
  S ^TMP("PSJ",$J,$S(PSJSRT="P":NM_";"_DFN,1:+$G(IVSTD)),$S(PSJSRT="P":+$G(IVSTD),1:NM_";"_DFN),PSJJORD)=VA("PID")_"^"_PSJPWDN_"^"_PSJPRB_"^"_IVDRG_"^"_IVMR_" "_IVSCH_" "_IVIR_"^"_IVSPD
  ;
 GETMAT ;see if the patient has the number of drugs necessary to be printed on

@@ -1,5 +1,5 @@
 IBCBB ;ALB/AAS - EDIT CHECK ROUTINE TO BE INVOKED BEFORE ALL BILL APPROVAL ACTIONS ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**80,51,137,288,327,361,371,377,400,432,461,547,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**80,51,137,288,327,361,371,377,400,432,461,547,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRBB
@@ -22,7 +22,7 @@ GVAR ;set up variables for mccr
  Q
  ;
 EN ;Entry to check for errors
- N IBQ,IBXERR,IBXDATA,IBXSAVE,IBZPRC92,IBQUIT,IBISEQ,IDDATA,IBFOR,IBC
+ N IBQ,IBXERR,IBXDATA,IBXSAVE,IBZPRC92,IBQUIT,IBISEQ,IDDATA,IBFOR,IBC,IBDX,IBDX1
  I $D(IBFL) N IBFL
  K ^TMP($J)
  W !
@@ -31,10 +31,34 @@ EN ;Entry to check for errors
  ;patient in patient file
  I DFN="" S IBER=IBER_"IB057;"
  I DFN]"",'$D(^DPT(DFN)) S IBER=IBER_"IB057;"
+ ;IB*2.0*623;check date fields for validity;begin
+ I $$DTCK($$GET1^DIQ(2,DFN_",",.03,"I")) S IBER=IBER_"IB368;"
+ I $$DTCK($$GET1^DIQ(2,DFN_",",.351,"I")) S IBER=IBER_"IB369;"
+ S IBDX=0 F  S IBDX=$O(^DPT(DFN,.312,IBDX)) Q:'IBDX  D
+ . S IBDX1=$$GET1^DIQ(2.312,IBDX_","_DFN_",",3.01,"I")
+ . I $$DTCK(IBDX1) S IBER=IBER_"IB366;"
+ . Q
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",151,"I")) S IBER=IBER_"IB370;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",152,"I")) S IBER=IBER_"IB371;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",166,"I")) S IBER=IBER_"IB372;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",167,"I")) S IBER=IBER_"IB373;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",246,"I")) S IBER=IBER_"IB374;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",245,"I")) S IBER=IBER_"IB375;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",247,"I")) S IBER=IBER_"IB376;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",263,"I")) S IBER=IBER_"IB377;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",264,"I")) S IBER=IBER_"IB378;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",282,"I")) S IBER=IBER_"IB379;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",283,"I")) S IBER=IBER_"IB380;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",262,"I")) S IBER=IBER_"IB381;"
+ I $$DTCK($$GET1^DIQ(399,IBIFN_",",237,"I")) S IBER=IBER_"IB382;"
+ ;
+ ;end;IB*2.0*623
  ;
  ;Event date in correct format
  I IBEVDT="" S IBER=IBER_"IB049;"
  I IBEVDT]"",IBEVDT'?7N&(IBEVDT'?7N1".".N) S IBER=IBER_"IB049;"
+ ;JWS;IB*2.0*623;add check for event date
+ I IBER'["IB049",$$DTCK(IBEVDT) S IBER=IBER_"IB049;"
  ;
  ;Rate Type
  I IBAT="" S IBER=IBER_"IB059;"
@@ -96,6 +120,8 @@ EN ;Entry to check for errors
  . K ^UTILITY("VADM",$J),^UTILITY("VAPA",$J)
  . ;
  . I '$P(IDDATA,U,1) D ERR(221)   ; birth date missing
+ . ;IB*2.0*623;JWS;date validation
+ . I $$DTCK($P(IDDATA,U)) S IBER=IBER_"IB367;"
  . ;
  . I "^M^F^"'[(U_$P(IDDATA,U,2)_U) D ERR(261)  ; sex missing
  . ;
@@ -236,4 +262,10 @@ ERR(Z) ; update IBER variable from the above insurance checks
  I IBER[IBERRNO Q
  S IBER=IBER_IBERRNO_";"
  Q
+ ;
+DTCK(DATE) ; IB*2.0*623 - check for valid date
+ I DATE="" Q 0
+ S X=DATE D H^%DTC
+ I %Y=-1 Q 1
+ Q 0
  ;

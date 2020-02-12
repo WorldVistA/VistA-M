@@ -1,6 +1,9 @@
 RCAM ;WASH-ISC@ALTOONA,PA/RGY-Manager Debtor Information ;12/19/96  12:48 PM
-V ;;4.5;Accounts Receivable;**34,190,198,223**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**34,190,198,223,359**;Mar 20, 1995;Build 13
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*359 Ensure displayed phone is correct format: 111-222-3333
+ ;
  NEW DIC,DIE,DIR,DIRUT,DUOUT,DTOUT,DR,DA,Y
  F  W ! S DIC="^RCD(340,",DIC(0)="QEAM" D ^DIC Q:Y<0  S DA=+Y,DR=$S($P(Y,U,2)["DPT(":".02;",$P(Y,U,2)[";DIC(36,":".05;",$P(Y,U,2)[";DIC(4,":".05;",1:"")_2,DIE="^RCD(340," D ^DIE
  Q
@@ -91,6 +94,7 @@ DIS(RCDB) ;Display address information
  . W ?3,"Large print needed on statements: YES",!
 Q3 Q
 DIS1 ;
+ I $L($P(X,U,6))>5 S $P(X,U,6)=$E($P(X,U,6),1,5)_"-"_$E($P(X,U,6),6,9)   ;PRCA*4.5*359
  W !?5,$P(X,U) W:$P(X,U,2)]"" !?5,$P(X,U,2) W:$P(X,U,3)]"" !?5,$P(X,U,3) W:$P(X,U,4)]"" !?5,$P(X,U,4),", ",$P(X,U,5)," ",$P(X,U,6) W:$P(X,U,7)'="" !?5,"Phone: ",$P(X,U,7) W !
  Q
  ; Display two addresses in two columns.
@@ -100,8 +104,13 @@ DIS2(ADR1,ADR2) N TAB1,TAB2
  I ($P(ADR1,U,2)'="")!($P(ADR2,U,2)'="") W !?TAB1,$P(ADR1,U,2) I $P(ADR2,U,2)'="" W " ",?TAB2,$P(ADR2,U,2)
  I ($P(ADR1,U,3)'="")!($P(ADR2,U,3)'="") W !?TAB1,$P(ADR1,U,3) I $P(ADR2,U,3)'="" W " ",?TAB2,$P(ADR2,U,3)
  I ($P(ADR1,U,4)'="")!($P(ADR2,U,4)'="") W ! D
+ . I $L($P(ADR1,U,6))>5,$P(ADR1,U,6)'["-" S $P(ADR1,U,6)=$E($P(ADR1,U,6),1,5)_"-"_$E($P(ADR1,U,6),6,9)   ;PRCA*4.5*359
  . W:$P(ADR1,U,4)'="" ?TAB1,$P(ADR1,U,4),", ",$P(ADR1,U,5)," ",$P(ADR1,U,6)
  . W:$P(ADR2,U,4)'="" " ",?TAB2,$P(ADR2,U,4),", ",$P(ADR2,U,5)," ",$P(ADR2,U,6)
+ I $P(ADR1,U,7)?10N D    ;PRCA*4.5*359
+ . N RCPHN
+ . S RCPHN=$P(ADR1,U,7),RCPHN=$E(RCPHN,1,3)_"-"_$E(RCPHN,4,6)_"-"_$E(RCPHN,7,10)
+ . S $P(ADR1,U,7)=RCPHN
  W:$P(ADR1,U,7)'="" !?TAB1,"Phone: ",$P(ADR1,U,7) ; conf address doesn't have phone no.
  W !
  Q

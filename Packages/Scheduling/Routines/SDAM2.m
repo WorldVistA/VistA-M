@@ -1,5 +1,5 @@
 SDAM2 ;ALB/MJK - Appt Mgt (cont) ;JAN 15, 2016
- ;;5.3;Scheduling;**250,296,327,478,446,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**250,296,327,478,446,627,686**;Aug 13, 1993;Build 53
  ;
 CI ; -- protocol SDAM APPT CHECK IN entry pt
  ; input:  VALMY := array entries
@@ -71,7 +71,8 @@ FIND(DFN,SDT,SDCL) ; -- return appt ifn for pat
  ;  output: [returned] := ifn if pat has appt on date/time
  ;
  N Y
- S Y=0 F  S Y=$O(^SC(SDCL,"S",SDT,1,Y)) Q:'Y  I $D(^(Y,0)),DFN=+^(0),$D(^DPT(+DFN,"S",SDT,0)),$$VALID(DFN,SDCL,SDT,Y) S CNSTLNK=$P($G(^SC(SDCL,"S",SDT,1,Y,"CONS")),U) K:CNSTLNK="" CNSTLNK Q  ;SD/478
+ ;*zeb+1 686 3/14/19 reverse $O to fix handling of more than one cancelled appointment for a particular patient/time/clinic combo
+ S Y=99999 F  S Y=$O(^SC(SDCL,"S",SDT,1,Y),-1) Q:'Y  I $D(^(Y,0)),DFN=+^(0),$D(^DPT(+DFN,"S",SDT,0)),$$VALID(DFN,SDCL,SDT,Y) S CNSTLNK=$P($G(^SC(SDCL,"S",SDT,1,Y,"CONS")),U) K:CNSTLNK="" CNSTLNK Q  ;SD/478
  Q Y
  ;
 UPD(TEXT,FLD,LINE,SAVE) ; -- update data for screen

@@ -1,5 +1,5 @@
 RCRJRBD ;WISC/RFJ,TJK-bad debt extractor and report ;10/18/10 9:00am
- ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340,346,338,351**;Mar 20, 1995;Build 15
+ ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340,346,338,351,360**;Mar 20, 1995;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for calls to $$MRATYPE^IBCEMU2 and $$MRADTACT^IBCEMU2
  Q
@@ -250,16 +250,15 @@ BDRSGL(CAT,FUND,MRATYPE) ; Calculate SGLs for the BDR process
  ; RHI (9), pre-MRA                         528704    1339
  ; RHI (9), post-MRA, MRA rec.              528704    133H
  ; RHI (9), post-MRA, non-MRA rec.          528704    133N
- ; Non-VA RHI Tort Feasor                   528713    1338.3
+ ; Non-VA Tort Feasor                       528713    1338.3
  ; Non-VA RHI (45), pre-MRA                 528713    1339.1
  ; Non-VA RHI (45), post-MRA, MRA rec.      528713    133H.2
  ; Non-VA RHI (45), post-MRA, non-MRA rec.  528713    133N.3
- ; Crimes of Personal Violence (8),         528713    1319.6
- ;  Medicare (21), No-Fault Auto
- ; Inpat./Outpat. Community Care copayments 528714    1319.7
+ ; Non-VA No-Fault Auto, Workman's Comp (6) 528713    1319.6
+ ; Inpat./Outpat./Urgent Care Community     528714    1319.7
+ ;  Care copayments
  ; RX Community Care copayments             528714    1319.8
- ; LTC Community Care copayments            528714    1319.9
- ;  (7), Workman's Comp (6)
+ ; LTC Community Care copayments            528714    1319.9 
  ; Pharmacy No Fault Auto(7),               528711    1319.5
  ; Pharmacy Workman's Comp(6)
  ; Pharmacy RHI, non MRA (9)                528711    133N.2
@@ -282,7 +281,7 @@ BDRSGL(CAT,FUND,MRATYPE) ; Calculate SGLs for the BDR process
  I $G(FUND)=528713&(CAT=8!(CAT=21)!(CAT=6)!(CAT=7)!(CAT=52)!(CAT=54)!(CAT=55)!(CAT=57)!(CAT=59)!(CAT=60)) Q 1319.6  ;patch 338 Added Comm Care No Fault and Workers Comp
  I ((CAT>47)&(CAT<52)) Q $S(MRATYPE=2:"133H.2",MRATYPE=3:"133N.3",1:1339.1)  ;patch 338 Comm Care Reimb ins types.
  ; FIRST PARTY = 528714  - Community Care Copays
- I $G(FUND)=528714&(CAT=61!(CAT=81)!(CAT=63)!(CAT=82)!(CAT=65)!(CAT=83)!(CAT=67)!(CAT=84)) Q 1319.7    ;INP/OPT copays
+ I $G(FUND)=528714&(CAT=61!(CAT=81)!(CAT=63)!(CAT=82)!(CAT=65)!(CAT=83)!(CAT=67)!(CAT=84)!(CAT=85)) Q 1319.7    ;INP/OPT copays
  I $G(FUND)=528714&(CAT=62!(CAT=64)!(CAT=66)!(CAT=68)) Q 1319.8    ;rx copays
  I $G(FUND)=528714&(CAT>68)&(CAT<75) Q 1319.9    ;LTC copays
  ;end PRCA*4.5*338

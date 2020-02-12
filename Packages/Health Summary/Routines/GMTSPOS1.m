@@ -1,5 +1,6 @@
 GMTSPOS1 ;SLC/SBW - Smart routine installer and Comp. Disabler ;22/MAR/95
- ;;2.7;Health Summary;;Oct 20, 1995
+ ;;2.7;Health Summary;**129**;Oct 20, 1995;Build 8
+ ;Per VHA Directive 2004-038, this routine should not be modified
 PSO ; Controls Outpatient Pharmacy install
  N GMPSOVER
  ;If Health Summary is absent, then quit
@@ -18,23 +19,7 @@ PSOINST(VERSION) ; Install routine corresponding to HS version in
  S X="GMTSPSO",XCN=2,DIE="^UTILITY(""GMTSPSZO""," X ^%ZOSF("SAVE") K ^UTILITY("GMTSPSZO") W "  Done.",!
  Q
  ;******************************************************
-SOWK ; Controls Social Work install
- N X,GMMSG
- ; Checks conditions for auto-disable of Social Work component
- I $$VERSION^XPDUTL("SOWK")<3 D
- . S GMMSG="Social Work Service version 3.0 not yet installed"
- . S X="SOCIAL WORK" D DISABLE^GMTSPOST
- I $$VERSION^XPDUTL("SOWK")>2.99 D
- . ;If Social Work extract routine for Health Summary is present, quit
- . I $L($T(^SOWKHSUM)) Q
- . W !,"** Installing SOWKHSUM routine for Social Work Component. **"
- . D SOWKINST
- Q
-SOWKINST ; Install SOWKHSUM routine
- N DIE,DIF,GMMSG,X,XCN,XCNP
- S X="GMTSSOWZ",XCNP=0,DIF="^UTILITY(""GMTSSOWZ""," X ^%ZOSF("LOAD") W !,"Renaming GMTSSOWZ as SOWKHSUM."
- S X="SOWKHSUM",XCN=2,DIE="^UTILITY(""GMTSSOWZ""," X ^%ZOSF("SAVE") K ^UTILITY("GMTSSOWZ") W "  Done.",!
- Q
+ ; Entry points for SOWK & SOWKINST removed with patch GMTS*2.7*129
  ;******************************************************
 MED ; Controls Medicine 2.0 install and disable 2.2 components
  N X,GMMSG

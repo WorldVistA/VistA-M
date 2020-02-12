@@ -1,5 +1,5 @@
 IBCEXTRP ;ALB/JEH - VIEW/PRINT EDI EXTRACT DATA ;4/22/03 9:59am
- ;;2.0;INTEGRATED BILLING;**137,197,211,348,349,377,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**137,197,211,348,349,377,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
@@ -13,9 +13,11 @@ INIT ;
  S IBIEN=+Y,IBREC1=$G(^DGCR(399,IBIEN,0))
  S IB364IEN=$$LAST364^IBCEF4(IBIEN) I +$G(IB364IEN)=0 D  G EXITQ
  . W !,"There is no entry in the EDI Transmit Bill file for this bill number."
- S IBVNUM=$P($G(^IBA(364,IB364IEN,0)),U,2) I +$G(IBVNUM)=0 D  G EXITQ
+ S IBVNUM=$P($G(^IBA(364,IB364IEN,0)),U,2)
+ ;JWS;IB*2.0*623;add check for 837 FHIR not on
+ I +$G(IBVNUM)=0,'$$GET1^DIQ(350.9,"1,",8.21,"I") D  G EXITQ
  . W !!,"There is no batch # for this bill.  It has not been transmitted."
- S IBVNUM=$P($G(^IBA(364.1,IBVNUM,0)),U)
+ I +$G(IBVNUM) S IBVNUM=$P($G(^IBA(364.1,IBVNUM,0)),U)
  S DIR("A")="Include Fields With No Data?: ",DIR("B")="NO",DIR(0)="YA"
  W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G EXITQ
@@ -166,6 +168,8 @@ EXTRACT(IBIFN,IBBATCH,IBFORM,IBLOCAL) ; Extracts transmitted form data into glob
  ; Get local form associated with parent, if any
  I IBL="" S IBL=$S($P($G(^IBE(353,+IBFORM,2)),U,8):$P(^(2),U,8),1:IBFORM)
  D SETUP^IBCE837(1)
+ ;;JWS;IB*2.0*623;allow display without Batch #
+ I $$GET1^DIQ(350.9,"1,",8.21,"I"),IB364IEN,$P(^IBA(364,IB364IEN,0),"^",2)="" S ^TMP("IBHDR",$J)="NOT YET ASSIGNED"
  D ROUT^IBCFP1(IBFORM,1,IBIFN,0,IBL)
  Q
  ;

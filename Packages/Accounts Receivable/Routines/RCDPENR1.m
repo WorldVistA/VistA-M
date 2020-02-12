@@ -1,6 +1,9 @@
 RCDPENR1 ;ALB/SAB - EPay National Reports ;12/10/14
- ;;4.5;Accounts Receivable;**304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**304,359**;Mar 20, 1995;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*359 Do not process Bill/Claim that is Cancelled
+ ;             or does not have Provider pointer.
  ; 
  ;Read ^DGCR(399) via Private IA 3820
  ;Read ^IBA(364) via Private IA 6209
@@ -450,7 +453,7 @@ GETNCPDP(RCSDATE,RCEDATE,RCSUMFLG) ;
  . F  S RCIEN=$O(^DGCR(399,"APD",RCLDATE,RCIEN)) Q:'RCIEN  D
  . . S RCFLAG=$$GETECME(RCIEN)
  . . Q:RCFLAG=""    ; No ECME number so not a Pharmacy bill
- . . S RCPAYER=$$GET1^DIQ(399,RCIEN_",",101,"E")
+ . . S RCPAYER=$$GET1^DIQ(399,RCIEN_",",101,"E") I $P(^DGCR(399,RCIEN,0),U,13)=7!'RCPAYER Q   ;PRCA*4.5*359
  . . S RCINS=$$GET1^DIQ(399,RCIEN_",",101,"I")
  . . Q:'$$INSCHK^RCDPENRU(RCINS)       ;Dont add if not on approved insurance list
  . . D UPDTMPB(RCLDATE,1,"P",RCIEN,RCSUMFLG,RCPAYER)

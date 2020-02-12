@@ -1,5 +1,5 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656**;21-MAR-94;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
@@ -85,10 +85,13 @@ ADD ; Add a Charge protocol
 FR ; - ask 'bill from' date
  D FR^IBECEAU2(0) G:IBY<0 ADDQ
  ;
- ;IB*2.0*646
+ ;IB*2.0*646/656
  ; If Urgent Care copay, skip clock checks, go to prompt for copay amount.
+ I $G(IBUC),(IBFR<3190606) D  G ADDQ
+ . W !!,"The Urgent Care Copayment/Mission Act legislation went into effect on 6/6/19. "
+ . W !,"Dates of service prior to this date will need to be billed using other ",!,"outpatient copayment charges."
  G:$G(IBUC) UCPAY
- ; end IB*2.0*646
+ ; end IB*2.0*646/656
  S IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR),IBGMTR=0 ;GMT Copayment Status
  I IBGMT>0,IBXA>0,IBXA<4 W !,"The patient has GMT Copayment Status."
  ; - check the MT billing clock
@@ -127,7 +130,6 @@ UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent 
  ;
  ;IB*2.0*646 If urgent care, process using UC criteria and go to process
  I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
- ;end IB*2.0*646
  ;
  I IBXA=4,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
  I IBXA=4 D  G ADDQ:IBY<0,PROC

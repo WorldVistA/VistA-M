@@ -1,5 +1,5 @@
 IBCB1 ;ALB/AAS - Process bill after enter/edited ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRB1
@@ -46,7 +46,15 @@ AUTH S IBMRA=$$REQMRA^IBEFUNC(IBIFN)
  .W:+IBTXSTAT=1&IBMRA "  Bill is no longer editable unless returned in error from Medicare."
  .S Y=$$ADDTBILL(IBIFN,+IBTXSTAT)
  .W ! W:'$P(Y,U,3) *7 W $S($P(Y,U,3):"  Bill will be submitted electronically",1:"  Error loading into transmit file - bill can not be transmitted.")
- .;
+ .;JWS;IB*2.0*623v24;begin
+ .N IB364
+ .S IB364=$P(Y,U)
+ .I $$GET1^DIQ(399,IBIFN_",",23,"I") D
+ .. D SETSUB^IBCE837I(IB364,1)
+ .. N DA,DR,DIE,X,Y
+ .. S DA=IBIFN,DIE="^DGCR(399,",DR="23////0" D ^DIE
+ .. Q
+ .;JWS;IB*2.0*623v24;end
  ;
  W !,"Passing completed Bill to Accounts Receivable.  Bill is no longer editable."
  D ARPASS(IBIFN,1)
@@ -168,11 +176,14 @@ ARPASS(IBIFN,UPDOK) ;Pass bill to A/R as NEW BILL
  . D ^XMD
  Q
  ;
-ADDTBILL(IBIFN,TXST) ; Add new transmit bill rec to file 364 for bill IBIFN
+ADDTBILL(IBIFN,TXST) ;Add new transmit bill rec to file 364 for bill IBIFN
+ ;JWS;IB*2.0*623;add field .09 setting.
  ; TXST = test flag 1=live, 2=test
  N COB,DD,DO,DIC,DLAYGO,X
  S TXST=($G(TXST)/2\1),COB=$$COB^IBCEF(IBIFN)
- S DIC(0)="L",DIC="^IBA(364,",DLAYGO=364,X=IBIFN,DIC("DR")=".03///X;.04///NOW;.07////"_TXST_";.08////"_COB D FILE^DICN
+ ;JWS;IB*2.0*623v24;force test claim status if not Production system
+ I '$$PROD^XUPROD(1) S TXST=1
+ S DIC(0)="L",DIC="^IBA(364,",DLAYGO=364,X=IBIFN,DIC("DR")=".03///X;.04///NOW;.07////"_TXST_";.08////"_COB_$S($$GET1^DIQ(350.9,"1,",8.21,"I")=1:";.09////1",1:"") D FILE^DICN
  Q Y
  ;
 TXPRTS ; Save off last print date to see if bill was reprinted without queueing

@@ -1,5 +1,5 @@
 YTSBAMR ;SLC/PIJ - Score BAM-Revision ; 01/08/2016
- ;;5.01;MENTAL HEALTH;**123**;DEC 30,1994;Build 73
+ ;;5.01;MENTAL HEALTH;**123,130**;DEC 30,1994;Build 62
  ;
  ;Public, Supported ICRs
  ; #2056 - Fileman API - $$GET1^DIQ
@@ -126,4 +126,33 @@ DLLSTR(YSDATA,YS,YSTRNG) ;
  ;
  D DATA1
  D SCORESV
+ Q
+ ;
+VERIFY(ARGS,RESULTS) ; Add inconsistency messages based on set of answers in ARGS
+ N MSGCNT S MSGCNT=0
+ I $$LT("q6501","q6502") D MSG("more","4","5")
+ I $$LT("q6503","q6504") D MSG("less","7A","6")
+ I $$LT("q6503","q6505") D MSG("less","7B","6")
+ I $$LT("q6503","q6506") D MSG("less","7C","6")
+ I $$LT("q6503","q6507") D MSG("less","7D","6")
+ I $$LT("q6503","q6508") D MSG("less","7E","6")
+ I $$LT("q6503","q6509") D MSG("less","7F","6")
+ I $$LT("q6503","q6510") D MSG("less","7G","6")
+ S RESULTS("count")=MSGCNT
+ Q
+LT(ID1,ID2) ; returns 1 if ID1 is less than ID2
+ ; expects ARGS from VERIFY
+ N VAL1,VAL2
+ S VAL1=$G(ARGS(ID1)) S:VAL1="c1156" VAL1=0  ; 1156 = skipped by rule
+ S VAL2=$G(ARGS(ID2)) S:VAL2="c1156" VAL2=0
+ I +VAL1<+VAL2 Q 1
+ Q 0
+ ;
+MSG(REL,Q1,Q2) ; Add text of message to RESULTS
+ ; expects MSGCNT, RESULTS from VERIFY
+ N X
+ S X="There is an inconsistency:  The number of days entered in Question "_Q1
+ S X=X_" should be equal to, or "_REL_" than,"
+ S X=X_" the number of days in Question "_Q2_"."
+ S MSGCNT=MSGCNT+1,RESULTS("messages",MSGCNT)=X
  Q

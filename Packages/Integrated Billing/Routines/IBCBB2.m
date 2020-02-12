@@ -1,6 +1,6 @@
 IBCBB2 ;ALB/ARH - CONTINUATION OF EDIT CHECKS ROUTINE (CMS-1500) ;04/14/92
- ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473,488,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473,488,461,623**;21-MAR-94;Build 70
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRBB2
  ;
@@ -41,7 +41,9 @@ EN ;
  I +IBN S IBER=IBER_"IB073;"
  ; ejk *296* Change # of diagnoses codes from 4 to 8 on CMS-1500 Claims. 
  ; baa *488* Change # of diagnoses codes from 8 to 12.
- I IBTX S IBI=12 F  S IBI=$O(IBDXO(IBI)) Q:'IBI  S Z=+$G(IBDX(+$G(IBDXO(IBI)))) I Z,$D(IBCPTL(Z)) D WARN^IBCBB11("Too many diagnoses for claim & will be rejected - consider printing locally")
+ ; vd *623-US4055* Modified the logic for dental claims to check for # of diagnosis codes greater than 4.
+ I IBTX,$$FT^IBCEF(IBIFN)'=7 S IBI=12 F  S IBI=$O(IBDXO(IBI)) Q:'IBI  S Z=+$G(IBDX(+$G(IBDXO(IBI)))) I Z,$D(IBCPTL(Z)) D WARN^IBCBB11("Too many diagnoses for claim & will be rejected - consider printing locally")
+ I $$FT^IBCEF(IBIFN)=7,$P($G(IBDXO),U,2)>4 D WARN^IBCBB11("Only 4 diagnosis codes are allowed on a dental transaction")
  ;
  I $$WNRBILL^IBEFUNC(IBIFN),$$MRATYPE^IBEFUNC(IBIFN)'="B" S IBER=IBER_"IB087;"
  ;

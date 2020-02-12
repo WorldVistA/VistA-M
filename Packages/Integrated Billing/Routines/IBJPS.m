@@ -1,5 +1,5 @@
 IBJPS ;ALB/MAF,ARH - IBSP IB SITE PARAMETER SCREEN ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,70,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**39,52,70,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592,608,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJP IB SITE PARAMETERS, display IB site parameters
@@ -52,12 +52,22 @@ EDIT(IBSET) ; edit IB Site Parameters
  I IBSET=9,$$ICD9SYS^IBACSV(DT)=30 S $P(DR,";",1)=7.05
  ;
  I $G(DR)'="" S DIE="^IBE(350.9,",DA=1 D ^DIE K DA,DR,DIE,DIC,X,Y
+ ;JWS;IB*2.0*623;If 837 FHIR transaction is turned off, then reset 364 field .09 AC index
+ I '$$GET1^DIQ(350.9,"1,",8.21,"I") D
+ . S DA=""
+ . F  S DA=$O(^IBA(364,"AC",1,DA)) Q:DA=""  D
+ .. S DR=".09////0",DIE="^IBA(364," D ^DIE
+ .. Q
+ . K DA,DR,DIE,DIC,X
+ . Q
+ ;JWS;IB*2.0*623;end
  D INIT^IBJPS S VALMBCK="R"
  Q
  ;
  ;WCJ;IB*2.0*547 - cleared the spot for the new #8, added 17 & 18, move 16 to 19.
  ;gef;IB*2.0*547 - added 20
  ;JWS;IB*2.0*592 - added field 8.2 to 16
+ ;JWS;IB*2.0*623 - added field 8.21 to 16
 1 ;;.09;.13;.14
 2 ;;1.2;.15;.11;.12;7.04
 3 ;;1.09;1.07;2.07
@@ -70,7 +80,7 @@ EDIT(IBSET) ; edit IB Site Parameters
 13 ;;2.08;2.09
 14 ;;11.01
 15 ;;10.02;10.03;10.04;10.05;D INIT^IBATFILE
-16 ;;2.11;8.01;8.09;8.03;8.06;8.04;8.07;8.02;8.12T;8.11T;8.17T;8.2T
+16 ;;2.11;8.01;8.09;8.03;8.06;8.04;8.07;8.02;8.12T;8.11T;8.17T;8.2T;8.21T
 19 ;;50.01;50.02;50.05;50.06;50.03;50.04;50.07
 20 ;;52.01;52.02
  ;

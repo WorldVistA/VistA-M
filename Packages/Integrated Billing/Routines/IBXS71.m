@@ -1,4 +1,4 @@
-IBXS71 ; ;11/02/18
+IBXS71 ; ;01/15/20
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""OP"",",DIC=DIE,DP=399.043,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"OP",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=%

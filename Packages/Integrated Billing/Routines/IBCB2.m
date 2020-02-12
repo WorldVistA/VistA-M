@@ -1,5 +1,5 @@
 IBCB2 ;ALB/AAS - Process bill after enter/edited ;13-DEC-89
- ;;2.0;INTEGRATED BILLING;**52,51,161,182,155,447,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,51,161,182,155,447,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRB2
@@ -54,9 +54,12 @@ ALLED(IBQUIT) ; Billing edit/correction
  ; IBDONE = 1 ==> exit, no errors 
  ; IBQUIT = 1 ==> exit, errors not corrected
  ;JWS;IB*2.0*592:Dental form #7 don't display Box 24 info for dental
- I $$FT^IBCEF(IBIFN)=2,'$G(IBNOFIX) D DISP24(IBIFN,.IBCORR,.IBQUIT)
+ ;I $$FT^IBCEF(IBIFN)=2,'$G(IBNOFIX) D DISP24(IBIFN,.IBCORR,.IBQUIT)  ;/vd - IB*2.0*623 - Modified this line for US4055
+ I ($$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7)),'$G(IBNOFIX) D DISP24(IBIFN,.IBCORR,.IBQUIT)  ;/vd - IB*2.0*623
  ;JWS;IB*2.0*592:Dental form #7 do same as CMS-1500
- F  D  Q:IBQUIT!IBDONE  D VIEW1 I $$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7),'$G(IBNOFIX),'IBQUIT S IBCORR=0 D:$$FT^IBCEF(IBIFN)'=7 DISP24(IBIFN,.IBCORR,.IBQUIT)
+ ;vd/IB*2.0*623 - Modified the following line as part of US4055
+ ;F  D  Q:IBQUIT!IBDONE  D VIEW1 I $$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7),'$G(IBNOFIX),'IBQUIT S IBCORR=0 D:$$FT^IBCEF(IBIFN)'=7 DISP24(IBIFN,.IBCORR,.IBQUIT)
+ F  D  Q:IBQUIT!IBDONE  D VIEW1 I ($$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7)),'$G(IBNOFIX),'IBQUIT S IBCORR=0 D DISP24(IBIFN,.IBCORR,.IBQUIT)  ;/vd - IB*2.0*623
  . I $G(IBPOPOUT) S IBQUIT=1
  . Q:IBQUIT!IBCORR
  . I $G(IBNOFIX) D
@@ -64,7 +67,6 @@ ALLED(IBQUIT) ; Billing edit/correction
  . E  D
  .. W !!,"... Executing national IB edits"
  . D EN^IBCBB,LOCERR
- . ;
  . I $G(IBER)'=""!$D(IBXERR) D  Q:'IBDONE
  .. D DSPLERR ; Displays warnings/errors
  .. K IBXERR
@@ -190,7 +192,12 @@ SCREENS ;
  Q
  ;
 DISP24(IBIFN,IBCORR,IBQUIT) ;
- W @IOF D BL24^IBCSCH(IBIFN,0)
+ ;/vd - IB*2.0*623/Beginning - modified the following US4055.
+ ;W @IOF D BL24^IBCSCH(IBIFN,0)
+ W @IOF
+ I $$FT^IBCEF(IBIFN)=7 D DENTAL^IBCSCH2(IBIFN) I 1
+ E  D BL24^IBCSCH(IBIFN,0)
+ ;/vd - IB*2.0*623/End
  S DIR("A",1)=" ",DIR("A")="Are the above charges correct for this bill? ",DIR("B")="YES",DIR(0)="YA" D ^DIR K DIR
  I Y'=1 D
  . I Y=0,$$ASKEDIT($G(IBAC)) S IBCORR=1 Q

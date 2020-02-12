@@ -1,12 +1,13 @@
 IBCSCH ;ALB/MJB - MCCR HELP ROUTINE ;03 JUN 88 15:25
- ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400,432,447,458,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,106,124,138,51,148,137,161,245,232,287,348,349,374,371,395,400,432,447,458,488,623**;21-MAR-94;Build 70
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSCH
  ;
  N I,C,IBSCNNZ,IBQ,IBPRNT,Z S IBSCNNZ=$$UP^XLFSTR($G(IBSCNN)),IBQ=0
  I '$D(IBPAR) D  Q:IBQ
  . I $F(".?1500.?HCFA.","."_$G(IBSCNNZ)_"."),$$FT^IBCEF(IBIFN)=2 S IBQ=1,IBPRNT=2 D BL24(IBIFN,0) Q
+ . I $G(IBSCNNZ)="?J430D",$$FT^IBCEF(IBIFN)=7 S IBQ=1 D DENTAL^IBCSCH2(IBIFN) Q   ;/vd - IB*2.0*623 - US4055. Added to display DENTAL Mock-up screen when ?J430D is entered on any screen.
  . I $G(IBSCNNZ)="?SC" S IBQ=1 D DISPSC(IBIFN) Q
  . I $G(IBSCNNZ)="?INS" S IBQ=1 D INSDSPL(IBIFN) Q
  . I $G(IBSCNNZ)="?INX" S IBQ=1 D INSDSPLX(IBIFN) Q
@@ -36,6 +37,7 @@ M W "  Special help screens:"
  W !,?5,"Enter '?CHG' to view all items on the bill with potential charges."
  W !,?5,"Enter '?CPT' to view all charges for selected CPT codes and bill type."
  I $$FT^IBCEF(IBIFN)=2 W !,?5,"Enter '?1500' to view how block 24 will print on a CMS-1500."
+ I $$FT^IBCEF(IBIFN)=7 W !,?5,"Enter '?J430D' to view data entered on the Dental claim."  ;/vd - Added for IB*2.0*623 - US4055.
  W !,?5,"Enter '?INC' to execute the edits & view the bill inconsistencies."
  I $$CK0^IBCIUT1() W !?5,"Enter '?CLA' to view the ClaimsManager options."
  I $$MCRONBIL^IBEFUNC(IBIFN) W !?5,"Enter '?MRA' to view Medicare Remittance Advice EOB's on file."

@@ -1,5 +1,5 @@
 SDEC51 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,651,658**;Aug 13, 1993;Build 23
+ ;;5.3;Scheduling;**627,642,651,658,686**;Aug 13, 1993;Build 53
  ;
  ;Reference is made to ICR's #4837, #4557, #6185, and #6186
  Q
@@ -126,7 +126,10 @@ GETONE(SDECY,SDGMR) ;Get one specific consult
  Q
 REQGET1 ;
  N SDCL,SDGMR0,SDDATA,SDSER,SDSTOP,SIEN,STOP,IN,PRHBLOC
- N PRIO
+ ;
+ ;  Added DFN to new list so data error in file #123 does not cause GUI to crash.  wtc  SD*5.3*686
+ ;
+ N PRIO,DFN ;
  S SDRECL="",SDSTOP=""
  S (SDCANF,SDSCHEDF,SDSTATF)=0
  S SDCL=$P($G(^GMR(123,+SDGMR,0)),U,6)   ;ICR 4837

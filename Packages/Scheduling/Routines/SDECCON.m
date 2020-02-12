@@ -1,7 +1,8 @@
 SDECCON ;SPFO/DMR SCHEDULING ENHANCEMENTS VSE CONTACT API
- ;;5.3;Scheduling;**669**;Aug 13 1993;Build 16
+ ;;5.3;Scheduling;**669,686**;Aug 13 1993;Build 53
  ;
  ;This API provides SDEC CONTACT(#409.86)file information to the VSE VS GUI.
+ ; 3/6/18 - wtc/zeb Added new cross-reference for audit statistics compiler.  Patch 686
  ;
  Q
 DISPLAY(RTU,DFN,CLN,PDT,REQT,SER) ;
@@ -60,6 +61,7 @@ NEW(RET,DFN,CLI,DTP,REQT,SRV,DTCON,CONT,COM,DTENT) ;
  .S ^SDEC(409.86,CC2,1,1,1)=CONT_"^"_COM_"^"_0_"^"_1_"^"_DUZ_"^"_DTENT
  .S ^SDEC(409.86,"B",DFN,CC2)=""
  .S ^SDEC(409.86,CC2,1,"B",DTCON,1)=""
+ .S ^SDEC(409.86,"AD",DTENT,DUZ,CC2,1)="" ;  3/6/18 WTC/ZEB create date/user cross-reference.
  .Q
  D EXIT
  Q
@@ -105,6 +107,7 @@ UPDATE(RTT,IEN,CONDT,CTYPE,COMM,DTEN) ;
  .S ^SDEC(409.86,IEN,1,COUNT,0)=CONDT
  .S ^SDEC(409.86,IEN,1,COUNT,1)=CTYPE_"^"_COMM_"^"_0_"^"_COUNT_"^"_DUZ_"^"_DTEN
  .S ^SDEC(409.86,IEN,1,"B",CONDT,COUNT)=""
+ .S ^SDEC(409.86,"AD",DTEN,DUZ,IEN,COUNT)="" ;  3/6/18 WTC/ZEB create date/user cross-reference.
  .Q
  D EXIT
  Q 

@@ -1,8 +1,8 @@
 IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
- ;;2.0;INTEGRATED BILLING;**15,153,176,183,651**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**15,153,176,183,651,656**;21-MAR-94;Build 17
  ;; Per VHA Directive 10-93-142, this routine should not be modified
  ;
- N IBLEG,IBCHK,IBBLG,IBATYP
+ N IBLEG,IBCHK
  ;***
  ;S XRTL=$ZU(0),XRTN="IBOMTP1-2" D T0^%ZOSV ;start rt clock
  ; Begin compilation.  Start with billing clocks.
@@ -14,13 +14,12 @@ IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
  . S IBDA=0 F  S IBDA=$O(^DGCR(399,"AOPV",IBDFN,Y,IBDA)) Q:'IBDA  D
  ..  I $D(^DGCR(399,+IBDA,0)),'$P($G(^("S")),U,16),$P($G(^DGCR(399.3,+$P(^(0),U,7),0)),U)["MEANS" S ^TMP($J,"IBOMTP",Y,"M"_IBDA)=""
  ;
- ;IB*2.0*651 - Add Automated Pharmacy RX copays to the report.
  ; Get the rest of the charges from file #350.
- S IBCHK=0
  S Y="" F  S Y=$O(^IB("AFDT",IBDFN,Y)) Q:'Y  I -Y'>IBEDT S Y1=0 F  S Y1=$O(^IB("AFDT",IBDFN,Y,Y1)) Q:'Y1  D
- . S (IBDA,IBCHK)=0 F  S IBDA=$O(^IB("AF",Y1,IBDA)) Q:'IBDA  D  Q:IBCHK
- ..  S IBCHK=0
- ..  Q:'$D(^IB(IBDA,0))  S IBX=^IB(IBDA,0)
+ . S (IBDA,IBCHK)=0 F  S IBDA=$O(^IB("AF",Y1,IBDA)) Q:'IBDA  D
+ ..  ;Q:'$D(^IB(IBDA,0))  S IBX=^(0)
+ ..  Q:'$D(^IB(IBDA,0))
+ ..  S IBX=^IB(IBDA,0)
  ..  Q:$P(IBX,U,8)["ADMISSION"
  ..  I $P(IBX,U,15)<IBBDT!($P(IBX,U,14)>IBEDT) Q
  ..  N Y,Y1
@@ -33,7 +32,6 @@ IBOMTP1 ;ALB/CPM-MEANS TEST BILLING PROFILE (CON'T);10-DEC-91
  . I IBBLG=5 D             ;Is this an RX copay
  ..  I $P(IBX,U,15)<IBBDT!($P(IBX,U,14)>IBEDT) Q      ;Check to ensure the visit is in the correct search range
  ..  S ^TMP($J,"IBOMTP",+$P(IBX,U,14),"I"_Y1)=""      ;Store in reporting array.
- ;End IB*2.0*651
  ;
  ; Print report.
  S IBLEG=0 ; Legend not required

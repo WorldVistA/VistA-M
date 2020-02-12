@@ -1,6 +1,13 @@
 YTQAPI2 ;ASF/ALB - MHAX REMOTE PROCEDURES cont ;10/17/16  13:37
- ;;5.01;MENTAL HEALTH;**85,96,119,121,123**;Dec 30, 1994;Build 73
- ;Reference to ^DPT( supported by DBIA #10035
+ ;;5.01;MENTAL HEALTH;**85,96,119,121,123,130**;Dec 30, 1994;Build 62
+ ;
+ ; External Reference    ICR#
+ ; ------------------   -----
+ ; ^DPT                 10035
+ ; DIC                   2051
+ ; DILFD                 2055
+ ; DIQ                   2056
+ ;
  Q
 LISTER(YSDATA,YS) ;list entries
  ;entry point for YTQ GENERIC LISTER rpc
@@ -46,6 +53,7 @@ ALLANS(YSDATA,YS) ;get all answers
  ..I YSICON?1N.N S YSEQ=$P(^YTT(601.76,YSICON,0),U,3)
  ..S:$P(^YTT(601.85,G,0),U,4)?1N.N N=N+1,YSDATA(N)=YSQN_U_YSEQ_U_$P(^YTT(601.85,G,0),U,4)
  ..F  S G1=$O(^YTT(601.85,G,1,G1)) Q:G1'>0  S N=N+1,YSDATA(N)=YSQN_U_YSEQ_";"_G1_U_$G(^YTT(601.85,G,1,G1,0))
+ I $P(^YTT(601.84,YSAD,0),U,9)'="Y" QUIT  ; chk special proc only if complete
  ;llh patch 123, check for special processing of complex instruments
  S IEN71=$O(^YTT(601.71,"B",$P(YSDATA(2),U,3),0))
  S YSRTN71=$$GET1^DIQ(601.71,IEN71_",",92)

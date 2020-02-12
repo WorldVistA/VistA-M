@@ -1,5 +1,5 @@
 IBCEF72 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;8/6/03 10:56am
- ;;2.0;INTEGRATED BILLING;**232,320,349,432,516,592**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**232,320,349,432,516,592,623**;21-MAR-94;Build 70
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -129,7 +129,10 @@ OTHINS(IB399,IBRES) ;
  F Z1=1:1:3 I Z1'=Z,$D(^DGCR(399,IB399,"I"_Z1)) D
  . S Z0=Z0+1
  . ; MRD;IB*2.0*516 - Added HPID as second piece.
- . S IBRES(Z0)=+$G(^DGCR(399,IB399,"I"_Z1))_U_$P(^DGCR(399,IB399,"M1"),U,12+Z1)
+ . ; vd - IB*2.0*623 - Added M2 as third piece.
+ . ; JWS - IB*2.0*623 - needs $G around ^DGCR references
+ . ;S IBRES(Z0)=+$G(^DGCR(399,IB399,"I"_Z1))_U_$P(^DGCR(399,IB399,"M1"),U,12+Z1)
+ . S IBRES(Z0)=+$G(^DGCR(399,IB399,"I"_Z1))_U_$P($G(^DGCR(399,IB399,"M1")),U,12+Z1)_U_$P($G(^DGCR(399,IB399,"M2")),U,Z1*2)
  . Q
  Q
  ;
@@ -143,6 +146,8 @@ OTHINSID(IB399,IBRES) ;insurance EDI
  S Z1=0
  F Z0=1,2 I $G(IBZ(Z0)) D
  . S IBRES(Z0)=$S($$MCRWNR^IBEFUNC(+IBZ(Z0)):$S(IBFRMTYP=1:"12M61",1:"SMTX1"),1:$P($G(^DIC(36,+IBZ(Z0),3)),U,Z4))
+ . ; vd - IB*2.0*623 - Added the following line for US4100.
+ . I $P(IBZ(Z0),U,3)]"" S IBRES(Z0)=$P(IBZ(Z0),U,3)   ; Return the correct Alternate ID from node "M2"
  . ; MRD;IB*2.0*516 - Added HPID as second piece.
  . S $P(IBRES(Z0),U,2)=$P(IBZ(Z0),U,2)
  . Q

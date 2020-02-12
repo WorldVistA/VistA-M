@@ -1,5 +1,5 @@
-DGRPD1 ;BPFO/JRC,BAJ,DJE - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
- ;;5.3;Registration;**703,730,688,863,935**;Aug 13, 1993;Build 53
+DGRPD1 ;BPFO/JRC,BAJ,DJE,ARF - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**703,730,688,863,935,985**;Aug 13, 1993;Build 15
  ; DG*5.3*688 BAJ
  ; tags HDR & OKLINE moved as is from DGRPD for size considerations
  Q
@@ -55,8 +55,29 @@ CATDIS ;
 HDR I '$D(IOF) S IOP="HOME" D ^%ZIS K IOP
  ;MPI/PD CHANGE
  ;DJE DG*5.3*935 - Add Member ID To Vista Registration Banner - RM#879322 (added SSNNM call)
- W @IOF,!,$$SSNNM^DGRPU(DFN),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",78)="" W !,X,! Q  ;**863 - MVI_2351 (ptd) 
+ ;ARF DG*5.3*985 - Add Preferred Name to Patient Inquiry banner
+ N X,DGLN,DGSSNNM,DGSSNNM1,DGPRFNAM,DGSSN,DGEPI,DGNAME,DGDOB,DGCNT,DGLINE,DIWL,DIWR,DIWF
+ ;W @IOF,!,$$SSNNM^DGRPU(DFN),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",78)="" W !,X,! Q  ;**863 - MVI_2351 (ptd)
  ;END MPI/PD CHANGE
+ ;ARF DG*5.3*985 - replace previous code for the banner with logic to pull out individual fields to place them in proper order
+ S DGPRFNAM=$$GET1^DIQ(2,+DFN_",",.2405,"E")
+ S:DGPRFNAM'="" DGPRFNAM="("_DGPRFNAM_")"
+ S DGSSNNM=$$SSNNM^DGRPU(DFN)
+ S DGNAME=$P(DGSSNNM,";",1)_";"
+ S DGSSNNM1=$P(DGSSNNM,";",2)
+ S DGSSN=$P(DGSSNNM1," ",3)
+ S DGEPI=$S($P(DGSSNNM1," ",2)'="":" "_$P(DGSSNNM1," ",2),1:"")
+ S DGDOB=$P(VADM(3),"^",2)
+ S DGDOB=$TR(DGDOB," ","_")  ;replaced space in DGDOB with "_" for the ^DIWP utility
+ ;ARF DG*5.3*985 - create the string of fields for the banner
+ S X=DGNAME_DGPRFNAM_DGEPI_" "_DGSSN_" "_DGDOB
+ W @IOF,!
+ ;ARF DG*5.3*985 - use ^DIWP to insure proper wrapping if string goes beyond 80 chars
+ K ^UTILITY($J,"W") S DIWL=0,DIWR=79,DIWF="" D ^DIWP
+ S DGCNT=^UTILITY($J,"W",0)
+ F DGLN=1:1:DGCNT S DGLINE=$TR(^UTILITY($J,"W",0,DGLN,0),"_"," ") W !,DGLINE  ;replaced "_" for display
+ S X="",$P(X,"=",78)="" W !,X,!
+ K ^UTILITY($J,"W")
 OKLINE(DGLINE) ;DOES PAUSE/HEADER IF $Y EXCEEDS DGLINE
  ;
  ;IN:   DGLINE --MAX LINE COUNT W/O PAUSE

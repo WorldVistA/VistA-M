@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FILE
-10-DEC-2019 16:43:24 ZWR
-^DIC(0)="FILE^1^9999999.64^2806"
+ZWR
+^DIC(0)="FILE^1^9999999.64^2702"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
 ^DIC(".11",0,"DEL")="^"
@@ -129,6 +129,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(".81","%D",0)="^^2^2^2940908^"
 ^DIC(".81","%D",1,0)="This file stores all of the data types that VA FileMan allows in the"
 ^DIC(".81","%D",2,0)="MODIFY FILE ATTRIBUTES option."
+^DIC(".81","%MSC")=3170403.144231
 ^DIC(".83",0)="COMPILED ROUTINE^.83"
 ^DIC(".83",0,"DD")="^"
 ^DIC(".83",0,"DEL")="^"
@@ -563,7 +564,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")=3191206.155521
+^DIC(2,"%MSC")=3200122.162126
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -4853,6 +4854,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.5","%D",2,0)="report and the supervisor's reports.  The formats may be done with tests"
 ^DIC("64.5","%D",3,0)="top to bottom, or left to right; and dates in forward or reverse chronology."
 ^DIC("64.5","%D",4,0)=" "
+^DIC("64.5","%MSC")=3200122.111528
 ^DIC("64.6",0)="INTERIM REPORTS^64.6IP"
 ^DIC("64.6",0,"GL")="^LAB(64.6,"
 ^DIC("64.6","%D",0)="^^12^12^2890914^^^"
@@ -12511,7 +12513,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.9","%D",10,0)="This file should always be edited by use of the provided options."
 ^DIC("350.9","%D",11,0)=" "
 ^DIC("350.9","%D",12,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("350.9","%MSC")=3190501.150045
+^DIC("350.9","%MSC")=3200115.122031
 ^DIC(351,0)="MEANS TEST BILLING CLOCK^351I"
 ^DIC(351,0,"DD")="@"
 ^DIC(351,0,"GL")="^IBE(351,"
@@ -15082,6 +15084,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(364,"%D",1,0)="This file contains a record for each bill for each time it is included in"
 ^DIC(364,"%D",2,0)="a batch for EDI transmissions.  This file allows a bill to be tracked"
 ^DIC(364,"%D",3,0)="throughout its transmission life and gives the bill's current EDI status."
+^DIC(364,"%MSC")=3200115.122032
 ^DIC("364.1",0)="EDI TRANSMISSION BATCH^364.1"
 ^DIC("364.1",0,"AUDIT")="@"
 ^DIC("364.1",0,"DD")="@"
@@ -16963,7 +16966,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(399,"%D",6,0)="number in the BILL/CLAIMS file."
 ^DIC(399,"%D",7,0)=" "
 ^DIC(399,"%D",8,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(399,"%MSC")=3190501.150045
+^DIC(399,"%MSC")=3200115.122032
 ^DIC("399.1",0)="MCCR UTILITY^399.1I"
 ^DIC("399.1",0,"DD")="@"
 ^DIC("399.1",0,"GL")="^DGCR(399.1,"
@@ -18460,7 +18463,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.85","%D",1,0)="This file contains the SDEC Appt Request entries for the Appointment "
 ^DIC("409.85","%D",2,0)="Scheduling application."
 ^DIC("409.85","%D",3,0)="Each entry represents a unique appointment request."
-^DIC("409.85","%MSC")=3171128.124637
+^DIC("409.85","%MSC")=3200122.161106
 ^DIC("409.86",0)="SDEC CONTACT^409.86"
 ^DIC("409.86",0,"AUDIT")="@"
 ^DIC("409.86",0,"DD")="@"
@@ -18475,7 +18478,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.86","%D",2,0)="information regarding appointment follow up each time a patient is"
 ^DIC("409.86","%D",3,0)="contacted. This file should not be edited using Fileman, the file is"
 ^DIC("409.86","%D",4,0)="updated using the VSE VS GUI."
-^DIC("409.86","%MSC")=3170629.17151
+^DIC("409.86","%MSC")=3200122.161106
 ^DIC("409.91",0)="ACRP REPORT TEMPLATE^409.91"
 ^DIC("409.91",0,"AUDIT")="@"
 ^DIC("409.91",0,"DD")="@"
@@ -18537,6 +18540,19 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.96","%D",5,0)="contained in the Package Interface file can be specified. The user can"
 ^DIC("409.96","%D",6,0)="also specify the conditions under which the report should print. The"
 ^DIC("409.96","%D",7,0)="intent is to print packets of forms that do not require manual collation."
+^DIC("409.97",0)="SD Audit Statistics^409.97"
+^DIC("409.97",0,"AUDIT")="@"
+^DIC("409.97",0,"DD")="@"
+^DIC("409.97",0,"DEL")="@"
+^DIC("409.97",0,"GL")="^SDAUDIT("
+^DIC("409.97",0,"LAYGO")="@"
+^DIC("409.97",0,"WR")="@"
+^DIC("409.97","%D",0)="^1.001^4^4^3180312^^"
+^DIC("409.97","%D",1,0)="The SD Audit Statistics file contains counts of activities performed by a "
+^DIC("409.97","%D",2,0)="scheduler on a date.  The statistics are compiled early each morning by "
+^DIC("409.97","%D",3,0)="the audit statistics compiler routine (SDECAUD) from data in files 403.5, "
+^DIC("409.97","%D",4,0)="409.3, 409.84 and 409.85."""
+^DIC("409.97","%MSC")=3200122.161106
 ^DIC(410,0)="CONTROL POINT ACTIVITY^410I"
 ^DIC(410,0,"GL")="^PRCS(410,"
 ^DIC(410,"%D",0)="^^7^7^3120911"
@@ -20719,7 +20735,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.71","%D",5,0)="and transmission to the Mental Health National Database are also specified. "
 ^DIC("601.71","%D",6,0)=" "
 ^DIC("601.71","%D",7,0)="Direct entry via FileMan is prohibited."
-^DIC("601.71","%MSC")=3190708.165655
+^DIC("601.71","%MSC")=3200122.154354
 ^DIC("601.72",0)="MH QUESTIONS^601.72"
 ^DIC("601.72",0,"AUDIT")="@"
 ^DIC("601.72",0,"DD")="@"
@@ -21085,6 +21101,39 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.95","%D",6,0)="instruments to be transmitted via a KIDS build or a host file.  It "
 ^DIC("601.95","%D",7,0)="also allows instrument specifications to be backed up."
 ^DIC("601.95","%MSC")=3180601.134707
+^DIC("601.96",0)="MH STAGED DOCUMENTS^601.96"
+^DIC("601.96",0,"AUDIT")="@"
+^DIC("601.96",0,"DD")="@"
+^DIC("601.96",0,"DEL")="@"
+^DIC("601.96",0,"GL")="^YTT(601.96,"
+^DIC("601.96",0,"LAYGO")="@"
+^DIC("601.96",0,"RD")="@"
+^DIC("601.96",0,"WR")="@"
+^DIC("601.96","%D",0)="^^10^10^3190612^"
+^DIC("601.96","%D",1,0)="This file contains infrequently changing documents that represent objects "
+^DIC("601.96","%D",2,0)="in the Mental Health package.  These documents are constructed in a "
+^DIC("601.96","%D",3,0)="""web-ready"" format, such as JSON.  Other formats, such as XML, are also "
+^DIC("601.96","%D",4,0)="possible.  Staging pre-compiled documents into this file allows web "
+^DIC("601.96","%D",5,0)="applications to quickly retrieve mental health structures in a consistent "
+^DIC("601.96","%D",6,0)="format."
+^DIC("601.96","%D",7,0)=" "
+^DIC("601.96","%D",8,0)="Examples of the kinds of documents contained in this file include JSON"
+^DIC("601.96","%D",9,0)="specifications for mental health instruments and lists of active mental"
+^DIC("601.96","%D",10,0)="health instruments."
+^DIC("601.96","%MSC")=3200122.154354
+^DIC("601.97",0)="MH INSTRUMENT CATEGORY^601.97"
+^DIC("601.97",0,"AUDIT")="@"
+^DIC("601.97",0,"DD")="@"
+^DIC("601.97",0,"DEL")="@"
+^DIC("601.97",0,"GL")="^YTT(601.97,"
+^DIC("601.97",0,"LAYGO")="@"
+^DIC("601.97",0,"RD")="@"
+^DIC("601.97",0,"WR")="@"
+^DIC("601.97","%",0)="^1.005^^0"
+^DIC("601.97","%D",0)="^^2^2^3190617^"
+^DIC("601.97","%D",1,0)="This file contains the categories used by the MHA Web application to "
+^DIC("601.97","%D",2,0)="organize the instruments into sub-groups for easier selection."
+^DIC("601.97","%MSC")=3200122.154354
 ^DIC("603.01",0)="CLOZAPINE PATIENT LIST^603.01"
 ^DIC("603.01",0,"GL")="^YSCL(603.01,"
 ^DIC("603.01","%",0)="^1.005^^0"
@@ -39774,6 +39823,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","MH CR SCRATCH","601.94")=""
 ^DIC("B","MH DISPLAY","601.88")=""
 ^DIC("B","MH INSTRUMENT",601)=""
+^DIC("B","MH INSTRUMENT CATEGORY","601.97")=""
 ^DIC("B","MH INSTRUMENT CONTENT","601.76")=""
 ^DIC("B","MH INSTRUMENT EXCHANGE","601.95")=""
 ^DIC("B","MH INSTRUMENTRULES","601.83")=""
@@ -39790,6 +39840,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","MH SCORING KEYS","601.91")=""
 ^DIC("B","MH SECTIONS","601.81")=""
 ^DIC("B","MH SKIPPED QUESTIONS","601.79")=""
+^DIC("B","MH STAGED DOCUMENTS","601.96")=""
 ^DIC("B","MH TESTS AND SURVEYS","601.71")=""
 ^DIC("B","MH WAIT LIST",617)=""
 ^DIC("B","MHV ACTION SELECTION","390.04")=""
@@ -40570,6 +40621,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","SCHEDULING REPORT QUERY TEMPLA","404.95")=""
 ^DIC("B","SCHEDULING USER PREFERENCE","403.35")=""
 ^DIC("B","SCHEDULING VISITS","409.5")=""
+^DIC("B","SD Audit Statistics","409.97")=""
 ^DIC("B","SD TELE HEALTH STOP CODE FILE","40.6")=""
 ^DIC("B","SD WAIT LIST","409.3")=""
 ^DIC("B","SD WL CLINIC LOCATION","409.32")=""

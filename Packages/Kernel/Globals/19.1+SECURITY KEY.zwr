@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-10-DEC-2019 16:43:21 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^636^587"
+ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^637^588"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2620,6 +2620,10 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,636,0)="PRCA CS STOP SITE^PRCA Site Stop TCSP referrals"
 ^DIC(19.1,636,1,0)="^19.11^1^1^3190321^^"
 ^DIC(19.1,636,1,1,0)="Key to give users access to stop or reactivate site level "
+^DIC(19.1,637,0)="WEBG AV PUSH^Push a/v codes^l^y"
+^DIC(19.1,637,1,0)="^19.11^2^2^3190723^"
+^DIC(19.1,637,1,1,0)="Providing this key allows a user's access/verify code pair to"
+^DIC(19.1,637,1,2,0)="be copied to the remote VistA system"
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -3162,6 +3166,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","VAQ PURGE",155)=""
 ^DIC(19.1,"B","VAQ RPT",156)=""
 ^DIC(19.1,"B","VAQ RPT USER",157)=""
+^DIC(19.1,"B","WEBG AV PUSH",637)=""
 ^DIC(19.1,"B","XDR",25)=""
 ^DIC(19.1,"B","XDRMGR",24)=""
 ^DIC(19.1,"B","XM AUTO-FORWARD WAIVER",406)=""
@@ -3460,6 +3465,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"E","PTC TECHNICIAN KEY",250)=""
 ^DIC(19.1,"E","PULMONARY ENDO CAPTURE KEY",335)=""
 ^DIC(19.1,"E","PULMONARY FNCT CAPTURE KEY",337)=""
+^DIC(19.1,"E","PUSH A/V CODES",637)=""
 ^DIC(19.1,"E","RADIOLOGY CAPTURE KEY",342)=""
 ^DIC(19.1,"E","READ ONLY KEY FOR BCMA",422)=""
 ^DIC(19.1,"E","RECALL REMINDER MANAGER KEY",499)=""

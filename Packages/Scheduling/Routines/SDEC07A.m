@@ -1,5 +1,5 @@
-SDEC07A ;ALB/SAT - VISTA SCHEDULING RPCS ; 22 May 2018  1:05 PM
- ;;5.3;Scheduling;**627,642,651,679**;Aug 13, 1993;Build 17
+SDEC07A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
+ ;;5.3;Scheduling;**627,642,651,679,686**;Aug 13, 1993;Build 53
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;References made to ICR #6185 and #4837
  Q
@@ -184,34 +184,60 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  ;.I $P($G(^GMR(123,SDRIEN,40,SDI,0)),U,2)=SDSCHED S SDSCHEDF=1 Q
  ;Q:+SDSCHEDF
  S SDDT=$$NOW^XLFDT()  ;*zeb 12/13/17 679 don't use $E to remove seconds
- S SDFDA(123.02,"+1,"_SDRIEN_",",.01)=SDDT                                   ;ICR 6185
- S SDFDA(123.02,"+1,"_SDRIEN_",",1)=$S(SDACT=1:SDSCHED,SDACT=2:SDSTAT,1:"")  ;ICR 6185
- S SDFDA(123.02,"+1,"_SDRIEN_",",2)=SDDT                                     ;ICR 6185
- S SDFDA(123.02,"+1,"_SDRIEN_",",3)=SDPROV                                   ;ICR 6185
- S SDFDA(123.02,"+1,"_SDRIEN_",",4)=SDUSR                                    ;ICR 6185
- D UPDATE^DIE("","SDFDA","SDIEN")
+ ;
+ ; Replaced with call to SDCNSLT below.  wtc/zeb 3.21.18 patch 686 ;
+ ;
+ ;S SDFDA(123.02,"+1,"_SDRIEN_",",.01)=SDDT                                   ;ICR 6185
+ ;S SDFDA(123.02,"+1,"_SDRIEN_",",1)=$S(SDACT=1:SDSCHED,SDACT=2:SDSTAT,1:"")  ;ICR 6185
+ ;S SDFDA(123.02,"+1,"_SDRIEN_",",2)=SDDT                                     ;ICR 6185
+ ;S SDFDA(123.02,"+1,"_SDRIEN_",",3)=SDPROV                                   ;ICR 6185
+ ;S SDFDA(123.02,"+1,"_SDRIEN_",",4)=SDUSR                                    ;ICR 6185
+ ;D UPDATE^DIE("","SDFDA","SDIEN")
  S SDTXT=""
  ;MGH modified to add in note text and appointment data
  I SDACT=1 D
- .S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Consult Appt. on "_SAVESTRT
- .I SDECNOTE'="" S SDTXT(2)=SDECNOTE
+ .;
+ .; Disabled lines below because they exist in SDCNSLT.
+ .; wtc/zeb 3.22.18 patch 686
+ .;
+ .;S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Consult Appt. on "_SAVESTRT
+ .;I SDECNOTE'="" S SDTXT(2)=SDECNOTE
+ . N %DT,X,SD,TMPYCLNC ;
+ . S X=SAVESTRT,%DT="T" D ^%DT S SD=Y ;
+ . S TMPYCLNC=$P($G(^SDEC(409.831,+SDECRES,0)),U,4) I TMPYCLNC'="" S TMPYCLNC=TMPYCLNC_U_$P(^SC(TMPYCLNC,0),U,1) ;
+ . D EDITCS^SDCNSLT(SD,SDECNOTE,TMPYCLNC,SDRIEN) ; Changed "" to SDECNOTE - wtc 686 11/7/2018
  I SDACT=2 D
- .S SDECTYP=$G(SDECTYP)
- .S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Appt. on "_SAVESTRT_" was cancelled"_$S(SDECTYP["P":" by the Patient.",SDECTYP["C":" by the Clinic.",1:".")   ;alb/sat 651 include appt info
- .I SDECNOTE'="" S SDTXT(2)="Remarks: "_SDECNOTE
- I $D(SDTXT) D
- .D WP^DIE(123.02,SDIEN(1)_","_SDRIEN_",",5,"","SDTXT","SDERR")   ;ICR 6185
- K SDFDA   ;alb/sat 651
+ .;
+ .; Disabled lines below because they exist in SDCNSLT.
+ .; wtc/zeb 3.22.18 patch 686
+ .;
+ .;S SDECTYP=$G(SDECTYP)
+ .;S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Appt. on "_SAVESTRT_" was cancelled"_$S(SDECTYP["P":" by the Patient.",SDECTYP["C":" by the Clinic.",1:".")   ;alb/sat 651 include appt info
+ .;I SDECNOTE'="" S SDTXT(2)="Remarks: "_SDECNOTE
+ . N DFN,%DT,X,SDTTM,SDSC,SDPL ;
+ . S DFN=$P($G(^GMR(123,SDRIEN,0)),U,2) ;
+ . S X=SAVESTRT,%DT="T" D ^%DT S SDTTM=Y ;
+ . S SDSC=$P($G(^SDEC(409.831,+SDECRES,0)),U,4) ;
+ . S SDPL=0 F  S SDPL=$O(^SC(SDSC,"S",SDTTM,1,SDPL)) Q:'SDPL  Q:$P(^(SDPL,0),U,1)=DFN  ;
+ . D SDECCAN^SDCNSLT(SDRIEN,DFN,SDTTM,SDSC,SDECTYP,SDPL,SDECNOTE) ;*zeb 686 10/30/18 send comments to consult
+ Q  ;
+ ;
+ ;  Lines below disabled by calls to SDCNSLT.
+ ;  wtc/zeb 3.22.18 patch 686
+ ;
+ ;I $D(SDTXT) D
+ ;.D WP^DIE(123.02,SDIEN(1)_","_SDRIEN_",",5,"","SDTXT","SDERR")   ;ICR 6185
+ ;K SDFDA   ;alb/sat 651
  ;set CPRS status field  ICR 6185
- S SDOS=$O(^ORD(100.01,"B","SCHEDULED",0))
- S SDOA=$O(^ORD(100.01,"B","ACTIVE",0))
- I SDOS'="" D
- .;K SDFDA  ;alb/sat 651 moved up
- .S SDFDA(123,SDRIEN_",",8)=$S(SDACT=1:SDOS,1:SDOA)
- .;D UPDATE^DIE("","SDFDA")                          ;ICR 6185  ;alb/sat 651 moved down out of IF scope
- S:+$G(SDSCHED) SDFDA(123,SDRIEN_",",9)=$S(SDACT=1:SDSCHED,1:SDSTAT)      ;alb/sat 651 - set LAST ACTION TAKEN   ICR 4837
- D:$D(SDFDA) UPDATE^DIE("","SDFDA")   ;alb/sat 651
- Q
+ ;S SDOS=$O(^ORD(100.01,"B","SCHEDULED",0))
+ ;S SDOA=$O(^ORD(100.01,"B","ACTIVE",0))
+ ;I SDOS'="" D
+ ;.;K SDFDA  ;alb/sat 651 moved up
+ ;.S SDFDA(123,SDRIEN_",",8)=$S(SDACT=1:SDOS,1:SDOA)
+ ;.;D UPDATE^DIE("","SDFDA")                          ;ICR 6185  ;alb/sat 651 moved down out of IF scope
+ ;S:+$G(SDSCHED) SDFDA(123,SDRIEN_",",9)=$S(SDACT=1:SDSCHED,1:SDSTAT)      ;alb/sat 651 - set LAST ACTION TAKEN   ICR 4837
+ ;D:$D(SDFDA) UPDATE^DIE("","SDFDA")   ;alb/sat 651
+ ;Q
  ;
 EWL(WLIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP) ;update SD WAIT LIST at appointment add
  ;INPUT:

@@ -1,5 +1,5 @@
-IVMPREC6 ;ALB/KCL,BRM,CKN,TDM,PWC,LBD,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ;11-02-2018 8:06AM
- ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152,165,167,171,164**;21-OCT-94;Build 98
+IVMPREC6 ;ALB/KCL,BRM,CKN,TDM,PWC,LBD,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ;09-02-2019 8:06AM
+ ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152,165,167,171,164,188**;21-OCT-94;Build 12
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine will process batch ORU demographic (event type Z05) HL7
@@ -142,11 +142,15 @@ EN ; - entry point to process HL7 patient demographic message
  .D NEXT
  .I $E(IVMSEG,1,3)'="ZCT" D  Q
  ..S HLERR="Missing ZCT segment" D ACK^IVMPREC
- .S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
+ .;KUM - Donot convert "" to null in ZCT segment 
+ .;IVM*2.0*188 - Comment below line.  Allow double quotes to stay in ZCT segment, otherwise double quotes will be replaced with null
+ .;S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
  .I 'DODSEG,'GUARSEG D COMPARE(IVMSEG)   ;Process 1st ZCT
  .S MULTDONE=0 F XREP=1:1 D  Q:MULTDONE  ;Handle possible mult ZCTs
  ..D NEXT I $E(IVMSEG,1,3)'="ZCT" S MULTDONE=1 Q
- ..S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
+ ..;KUM - Donot convert "" to null in ZCT segment 
+ ..;IVM*2.0*188 - Comment below line.  Allow double quotes to stay in ZCT segment, otherwise double quotes will be replaced with null
+ ..;S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
  ..I 'DODSEG,'GUARSEG D COMPARE(IVMSEG)
  .;
  .S IVMDA=IVMDA-1 D NEXT

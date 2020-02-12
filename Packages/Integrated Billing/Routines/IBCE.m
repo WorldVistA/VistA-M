@@ -1,5 +1,5 @@
 IBCE ;ALB/TMP - 837 EDI TRANSMISSION UTILITIES/NIGHTLY JOB ;22-JAN-96
- ;;2.0;INTEGRATED BILLING;**137,283,296,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**137,283,296,371,623**;21-MAR-94;Build 70
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN ; Run all jobs needed for EDI processing nightly
  ; including transmit bills waiting for extract, batches not sent,
@@ -59,7 +59,6 @@ RESUB(IB364) ; Manually resubmit bill for transmission (ien file 364 = IB364)
  . I '$P(NEW364,U,3) D  Q
  .. S DIR("A",1)="FAILED TO ADD A NEW EDI TRANSMISSION",DIR(0)="EA",DIR("A")="PRESS ENTER TO CONTINUE " W ! D ^DIR K DIR
  .. Q
- . ;
  . K ^TMP("IBONE",$J),^TMP("IBSELX",$J),^TMP("IBCE-BATCH",$J)
  . S ^TMP("IBONE",$J,+NEW364)="",^TMP("IBONE",$J)=0,^TMP("IBSELX",$J)=""
  . D ONE^IBCE837
@@ -70,6 +69,8 @@ RESUB(IB364) ; Manually resubmit bill for transmission (ien file 364 = IB364)
  . I 'IBBTCH D
  .. S DIR("A",1)="BILL NOT RESUBMITTED - CHECK ALERTS/MAIL FOR DETAILS"
  . E  D
+ .. ;JWS;IB*2.0*623v24;add setting resubmission flag
+ .. D SETSUB^IBCE837I(NEW364,1)
  .. N DIE,DR,DA
  .. D UPDEDI^IBCEM(IB364,"R")   ; update EDI files for old transmission
  .. S DIE="^IBA(364,",DR=".06////"_+IBBTCH,DA=IB364 D ^DIE
@@ -80,6 +81,8 @@ RESUB(IB364) ; Manually resubmit bill for transmission (ien file 364 = IB364)
  ; Later retransmission of claim
  D UPDEDI^IBCEM(IB364,"R")      ; update EDI files for old transmission record
  S Y=$$ADDTBILL^IBCB1(IBIFN)    ; Add a new transmission record
+ ;JWS;IB*2.0*623v24;add setting resubmission flag
+ D SETSUB^IBCE837I(+Y,1)
  S DIR("A",1)="BILL'S TRANSMISSION STATUS RESET TO 'READY TO EXTRACT'"
  S DIR(0)="EA",DIR("A")="PRESS ENTER TO CONTINUE " W ! D ^DIR K DIR
  ;

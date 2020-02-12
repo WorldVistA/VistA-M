@@ -1,5 +1,5 @@
 IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488,554,577,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488,554,577,592,608,623**;21-MAR-94;Build 70
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; *** Begin IB*2.0*488 VD  (Issue 46 RBN)
@@ -228,8 +228,13 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  ;
  ;Check ROI
  N ROIERR
- S ROIERR=0 I $P($G(^DGCR(399,IBIFN,"U")),U,5)=1,+$P($G(^DGCR(399,IBIFN,"U")),U,7)=0 S ROIERR=1 ; screen 7 sensitive record and no ROI
- I $$ROICHK^IBCBB11(IBIFN,DFN,+IBNDMP) S ROIERR=1 ; check file for sensitive Rx and missing ROI
+ ;/vd - IB*2.0*623 (US4995) - Modified the following 2 lines of code with the following conditional.
+ ;S ROIERR=0 I $P($G(^DGCR(399,IBIFN,"U")),U,5)=1,+$P($G(^DGCR(399,IBIFN,"U")),U,7)=0 S ROIERR=1 ; screen 7 sensitive record and no ROI
+ ;I $$ROICHK^IBCBB11(IBIFN,DFN,+IBNDMP) S ROIERR=1 ; check file for sensitive Rx and missing ROI
+ S ROIERR=0
+ I $$ROIDTCK^IBCEU7(IBIFN) D    ; ROI Eligible based upon Service Date of Claim
+ . I $P($G(^DGCR(399,IBIFN,"U")),U,5)=1,+$P($G(^DGCR(399,IBIFN,"U")),U,7)=0 S ROIERR=1 ; screen 7 sensitive record and no ROI
+ . I $$ROICHK^IBCBB11(IBIFN,DFN,+IBNDMP) S ROIERR=1 ; check file for sensitive Rx and missing ROI
  I ROIERR S IBER=IBER_"IB328;"
  ;
  ;Verify Line Charges Match Claim Total Charge. IB*2.0*447 BI

@@ -1,5 +1,5 @@
 DGR111 ;ALB/TGH,LMD,JAM - Health Benefit Plan Main Menu - List Manager Screen ;4/11/13 10:56am 
- ;;5.3;Registration;**871,987**;Aug 13, 1993;Build 22
+ ;;5.3;Registration;**871,987,985**;Aug 13, 1993;Build 15
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -21,7 +21,9 @@ HDR ;Header code
  I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^(0),U,1)
  S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)
  ; DG*5.3*987; JAM; check for at least 1 plan and modify the message text
- I '$D(^DPT(DFN,"HBP",1)) S VALMHDR(2)="No Currently Stored VMBP Data"
+ ;I '$D(^DPT(DFN,"HBP",1)) S VALMHDR(2)="No Currently Stored VMBP Data"
+ ; DG*5.3*985; JAM; correct check for at least 1 plan
+ I $O(^DPT(DFN,"HBP",0))<1 S VALMHDR(2)="No Currently Stored VMBP Data"
  Q
  ; 
 INIT ;Build patient HBP current screen

@@ -1,5 +1,5 @@
-LRWU ;SLC/RWF/MILW/J - UTILITY FUNTIONS ; 12/28/88  11:04 ;
- ;;5.2;LAB SERVICE;**42,138,153,432**;Sep 27, 1994;Build 2
+LRWU ;SLC/RWF/MILW/J - UTILITY FUNTIONS ; 12/28/88  11:04 ; 9/27/19 3:32pm
+ ;;5.2;LAB SERVICE;**42,138,153,432,531**;Sep 27, 1994;Build 7
 Z ;;set up 0th nodes for globals
  I '$D(@(LRZO_"0)")) S ^(0)="^"_LRZ1_"^^"
  S LRZI1=$S($P(@(LRZO_"0)"),"^",3)>LRZ3:$P(^(0),"^",3),1:LRZ3),LRZI2=$P(^(0),"^",4)+1,$P(^(0),"^",3,4)=LRZI1_"^"_LRZI2
@@ -67,4 +67,15 @@ COLTY ;N DIR("A"),DIR(0)
  S DIR("B")=$S($D(LRLWC)=1:LRLWC,1:"SP") S LREND=0,DIR("A")="Specimen collected how ? ",DIR(0)="S^LC:LAB COLLECT(INPATIENTS-MORN. DRAW);SP:SEND PATIENT;WC:WARD COLLECT"
  S:$P($G(^LAB(69.9,1,7,DUZ(2),0)),U,6) DIR(0)=DIR(0)_";I:Immed COLLECT"
  D ^DIR S:X="^"!($D(DIRUT))!($D(DTOUT)) LREND=1 Q:LREND  S LRLWC=Y
+ Q
+ ;LR*5.2*531 DD code for DD 64.52 TYPE OF DISPLAY
+TODIT ; Input transform for DD 64.52 TYPE OF DISPLAY
+ N LRIEN
+ I X="V" D  Q
+ . S LRIEN=0 F  S LRIEN=$O(^LAB(64.5,1,1,DA(1),1,LRIEN)) Q:'LRIEN  D  Q:$G(X)=""
+ . . I DA'=LRIEN W !,"Only one minor header allowed if vertical." K X Q
+ I X="H" D
+ . S LRIEN=0 F  S LRIEN=$O(^LAB(64.5,1,1,DA(1),1,LRIEN)) Q:'LRIEN  D  Q:$G(X)=""
+ . . I $P(^LAB(64.5,1,1,DA(1),1,LRIEN,0),U,3)="V"&(DA'=LRIEN) D
+ . . . W !,"No other minor headers may be defined after a vertical format minor header",!,"is defined." K X Q
  Q

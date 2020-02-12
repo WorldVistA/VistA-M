@@ -1,5 +1,5 @@
-DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941**;Aug 13, 1993;Build 73
+DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985**;Aug 13, 1993;Build 15
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -64,6 +64,8 @@ SETFLDS(DGDR) ; Set up fields to edit
 103 ;;.091;
 104 ;;.134;.135;@21;S X=$$YN1316^DGRPE(DFN);S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;
 105 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;
+ ;DG*5.3*985; JAM - Group 6 added to screen 1 - Preferred Name
+106 ;;.2405;
  ;JAM; DG*5.3*941 - Tag 108 added for QUES^DGRPU1 (ICR 413) to edit the perm address with the home/office phone numbers since patch 941 removed these fields from the Perm Address edit logic
 108 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);
 109 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);.02;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;D DR109^DGRPE;6;2;K DR(2,2.02),DR(2,2.06);.05;.08;K DIE("NO^");
@@ -81,9 +83,10 @@ SETFLDS(DGDR) ; Set up fields to edit
 202 ;;1010.15//NO;S:X'="Y" Y="@22";S DIE("NO^")="";1010.152;I X']"" W !?4,*7,"But I need to know where you were treated most recently." S Y=1010.15;1010.151;1010.154;S:X']"" Y="@22";1010.153;@22;K DIE("NO^");
 203 ;;D DR203^DGRPE;6ETHNICITY;2RACE;K DR(2,2.02),DR(2,2.06);
 205 ;;.181;
-301 ;;.211;S:X']"" Y="@31";.212;D DR301^DGRPE S:DG4=1 Y=.213;.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y=.21011;.213;K DG4;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215:.217;.2207;.219;.21011;@31;
-302 ;;.2191;S:X']"" Y="@32";.2192;D DR301^DGRPE S:DG4=1 Y=.2193;.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y=.211011;
-302000 ;;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195:.2197;.2203;.2199;.211011;@32;
+ ; patch DG*5.3*985 - NOK - Tags 301 and 302 for Primary and Secondary NOK: phone number no longer copied when copying patient address - phone number entered on its own
+301 ;;.211;S:X']"" Y="@31";.212;D DR301^DGRPE S:DG4=1 Y=.213;.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y="@30";.213;K DG4;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215:.217;.2207;@30;.219;.21011;@31;
+302 ;;.2191;S:X']"" Y="@32";.2192;D DR301^DGRPE S:DG4=1 Y=.2193;.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y="@30";
+302000 ;;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195:.2197;.2203;@30;.2199;.211011;@32;
 303 ;;N DGX1,DGX2;I '$L($P($G(^DPT(DFN,.21)),U)) S Y="@33";.3305//NO;I X="Y" S Y="@34",DGX1=1 S:$D(^DPT(DFN,.22)) $P(^(.22),U,1)=$P(^(.22),U,7);@33;.331;S:X']"" DGX1=2,Y="@34";.332;@34;
 303000 ;;S:$G(DGX1) Y="@341";.333;S:X']"" Y=.336;.334;S:X']"" Y=.336;.335:.337;.2201;.339;.33011;S DGX1=2;@341;
 303001 ;;S:$G(DGX1)=2 Y="@35";S DGX2=$G(^DPT(DA,.21));.331///^S X=$P(DGX2,U);.332///^S X=$P(DGX2,U,2);.333////^S X=$P(DGX2,U,3);.334///^S X=$P(DGX2,U,4);@35;
@@ -107,9 +110,12 @@ SETFLDS(DGDR) ; Set up fields to edit
 607 ;;.368//NO;.369//NO;I $S('$D(^DPT(DA,.36)):1,$P(^(.36),U,8)="Y"!($P(^(.36),U,9)="Y"):0,1:1) S Y="@614";.37;@614;
 608 ;;S DGPHFLG=0;.531;S:X'="Y" DGX=X,Y="@616";.532///^S X="PENDING";S Y="@6161";@616;S:DGX'="N" Y="@6162";.533///^S X="VAMC";@6161;S DGPHFLG=1;.535///^S X=$$DIV^DGRPLE();@6162;
 AD N DGZ4,DGPC
- S X=$S($D(^DPT(DA,.11)):^(.11),1:""),DGZ4=$P(X,U,12),DGPHONE=$S($D(^(.13)):$P(^(.13),U,1),1:""),Y=$S($D(^(DGADD)):^(DGADD),1:""),^(DGADD)=$P(Y,U,1)_U_$P(Y,U,2)_U_$P(X,U,1,6)_U_DGPHONE_U_$P(Y,U,10)
+ ; patch DG*5.3*985; jam - NOK - do not copy phone number when copying patient address.
+ ;S X=$S($D(^DPT(DA,.11)):^(.11),1:""),DGZ4=$P(X,U,12),DGPHONE=$S($D(^(.13)):$P(^(.13),U,1),1:""),Y=$S($D(^(DGADD)):^(DGADD),1:""),^(DGADD)=$P(Y,U,1)_U_$P(Y,U,2)_U_$P(X,U,1,6)_U_DGPHONE_U_$P(Y,U,10)
+ S X=$S($D(^DPT(DA,.11)):^(.11),1:""),DGZ4=$P(X,U,12),Y=$S($D(^(DGADD)):^(DGADD),1:""),^(DGADD)=$P(Y,U,1)_U_$P(Y,U,2)_U_$P(X,U,1,6)_U_$P(Y,U,9,11)
  I DGZ4 S DGPC=$S((DGADD=.33):1,(DGADD=.34):2,(DGADD=.211):3,(DGADD=.331):4,(DGADD=.311):5,(DGADD=.25):6,(DGADD=.21):7,1:0) S:DGPC $P(^DPT(DFN,.22),U,DGPC)=DGZ4
- K DGADD,DGPHONE Q
+ ;K DGADD,DGPHONE Q
+ K DGADD Q
 DR109 ;Drop through (use same logic as DR203)
 DR203 S DR(2,2.02)=".01RACE;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.02,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2031"";.02;@2031;"
  S DR(2,2.06)=".01ETHNICITY;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.06,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2032"";.02;@2032;"

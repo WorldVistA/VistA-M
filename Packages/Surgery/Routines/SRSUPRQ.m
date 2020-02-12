@@ -1,5 +1,5 @@
-SRSUPRQ ;B'HAM ISC/MAM - UPDATE REQUESTED OPERATIONS; [ 08/29/01  9:04 AM ]
- ;;3.0;Surgery;**7,47,58,67,107,114,100,154,177,184**;24 Jun 93;Build 35
+SRSUPRQ ;B'HAM ISC/MAM - UPDATE REQUESTED OPERATIONS; AUGUST 29, 2001@9:04 AM
+ ;;3.0;Surgery;**7,47,58,67,107,114,100,154,177,184,196**;24 Jun 93;Build 1
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -47,8 +47,15 @@ CON S SRCON=^SRF(SRTN,"CON"),SRC="the request for" D CC Q:SRBOTH="^"  I SRBOTH=1
  Q
 CC ; check to see if concurrent case should be deleted
  W !!,"A concurrent case has been requested for this operation.  Do you want to",!,"delete "_SRC_" it also ?  YES// " R SRBOTH:DTIME S:'$T SRBOTH="^" I SRBOTH["?" W !!,"Enter 'Y' if you want to delete "_SRC_" concurrent case." G CC
- S:SRBOTH="" SRBOTH="Y" S SRBOTH=$E(SRBOTH) I "YyNn"'[SRBOTH W !!,"Enter RETURN if you want these case to remain concurrent." G CC
+ S:SRBOTH="" SRBOTH="Y" S SRBOTH=$E(SRBOTH) I "YyNn"'[SRBOTH W !!,"Enter RETURN if you want these cases to remain concurrent." G CC
  I SRBOTH["Y" S SRBOTH=1
+ I SRBOTH="^" Q
+ I $P($G(^SRF(SRCON,.2)),U,12)'="" D  Q
+ .W !!,"The concurrent procedure associated with this case: ",SRCON S SRBOTH=0
+ .W !,"has been completed and must remain in the file for your records."
+ .S DA=SRCON,DR="35///@",DIE=130 D ^DIE S SROERR=SRCON D ^SROERR0 S DA=SRTN,DR="35///@",DIE=130 D ^DIE
+ .K SRCON
+ .W !!,"Press RETURN to continue  " R X:DTIME
  S DA=SRCON,DR="35///@",DIE=130 D ^DIE S SROERR=SRCON D ^SROERR0 S DA=SRTN,DR="35///@",DIE=130 D ^DIE
  I SRBOTH'=1 K SRCON
  Q

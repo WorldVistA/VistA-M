@@ -1,5 +1,5 @@
-RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ; 12/10/18 3:01pm
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68,71**;30 Apr 99;Build 2
+RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ; 12/5/19 12:38pm
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68,71,73**;30 Apr 99;Build 2
  ;
  ;MOVED CHKPVT AND DIFF FROM RGADTP2 DUE TO ROUTINE SIZE ISSUE
  Q
@@ -109,6 +109,7 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  .. S DR=DR_".351;.352;.353;.355;.357;.358;",(ARAY(2,.351),ARAY(2,.352),ARAY(2,.353),ARAY(2,.355),ARAY(2,.357),ARAY(2,.358))="@"
  . I ANSWER="^" S DODIMPF=1_"^"_$G(ARRAY("MPIDOD")) Q  ;Date of Death Imprecise Flag - No update on VistA
  . I $G(ARRAY("MPIDOD"))>0 D  Q
+ .. N TUPD S TUPD=0
  .. D GETS^DIQ(2,+RGRSDFN_",",".351;.353;.354;.357","I","ODODARY")
  .. S ODOD=ODODARY(2,+RGRSDFN_",",.351,"I")
  ..; S ODODD=ODODARY(2,+RGRSDFN_",",.357,"I")
@@ -118,14 +119,16 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  ..;**71 - Story 841797 (ckn)
  ..;DOD metadata update allowed if update is from PSIM TK OVERRIDE even
  ..;if no change in Date of Death
- .. I ODOD=ARRAY("MPIDOD"),'$G(ARRAY("TKOVRDOD")) Q
- .. I ODOD'=ARRAY("MPIDOD") S DR=DR_".351;",ARAY(2,.351)=$G(ARRAY(.351))
+ ..;**131 - Story 1125116 (ckn) DOD metadata update is allowed now regardless
+ ..; I ODOD=ARRAY("MPIDOD"),'$G(ARRAY("TKOVRDOD")) Q
+ .. I ODOD'=ARRAY("MPIDOD") S DR=DR_".351;",ARAY(2,.351)=$G(ARRAY(.351)),TUPD=1
  ..; I ODODD'=$G(ARRAY("DODDocType")) S DR=DR_".357;",ARAY(2,.357)=$G(ARRAY(.357))
- .. I ODODLUP'=$G(ARRAY("DODLastUpdated")) S DR=DR_".354;",ARAY(2,.354)=$G(ARRAY(.354))
- ..; I ODODSRC'=$G(ARRAY("DODSource")) S DR=DR_".353;",ARAY(2,.353)=$G(ARRAY(.353))
- .. S DR=DR_".353;",ARAY(2,.353)=$G(ARRAY(.353))
+ .. I ODODLUP'=$G(ARRAY("DODLastUpdated")),(ODOD'=ARRAY("MPIDOD")) S DR=DR_".354;",ARAY(2,.354)=$G(ARRAY(.354))
+ .. I ODODSRC'=$G(ARRAY("DODSource")) S DR=DR_".353;",ARAY(2,.353)=$G(ARRAY(.353)),TUPD=1
+ .. ;S DR=DR_".353;",ARAY(2,.353)=$G(ARRAY(.353))
  .. ;Remove rest of the DOD fields if Date Of Death is getting updated
- .. S DR=DR_".352;.355;.357;.358",ARAY(2,.352)="@",ARAY(2,.355)="@",ARAY(2,.358)="@",ARAY(2,.357)="@"
+ .. S DR=DR_".352;.357;.358",ARAY(2,.352)="@",ARAY(2,.358)="@",ARAY(2,.357)="@"
+ .. I TUPD S DR=DR_";.355",ARAY(2,.355)="@"
  Q
  ;
 FMTNAME(ARRAY,LEN) ;Return a formatted name from cleaned Name Components that doesn't exceed LEN characters in length.
