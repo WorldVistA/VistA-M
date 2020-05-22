@@ -1,134 +1,128 @@
-IBDEI39U ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39U ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54976,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,54977,0)
- ;;=D05.00^^256^2775^98
- ;;^UTILITY(U,$J,358.3,54977,1,0)
+ ;;^UTILITY(U,$J,358.3,52213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54977,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,54977,1,4,0)
- ;;=4^D05.00
- ;;^UTILITY(U,$J,358.3,54977,2)
- ;;=^5001926
- ;;^UTILITY(U,$J,358.3,54978,0)
- ;;=R59.0^^256^2775^59
- ;;^UTILITY(U,$J,358.3,54978,1,0)
+ ;;^UTILITY(U,$J,358.3,52213,1,3,0)
+ ;;=3^Exercised Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,52213,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,52213,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,52214,0)
+ ;;=J45.998^^193^2523^11
+ ;;^UTILITY(U,$J,358.3,52214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54978,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,54978,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,54978,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,54979,0)
- ;;=C83.59^^256^2775^99
- ;;^UTILITY(U,$J,358.3,54979,1,0)
+ ;;^UTILITY(U,$J,358.3,52214,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,52214,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,52214,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,52215,0)
+ ;;=J45.991^^193^2523^25
+ ;;^UTILITY(U,$J,358.3,52215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54979,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,54979,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,54979,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,54980,0)
- ;;=C83.50^^256^2775^100
- ;;^UTILITY(U,$J,358.3,54980,1,0)
+ ;;^UTILITY(U,$J,358.3,52215,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,52215,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,52215,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,52216,0)
+ ;;=I50.1^^193^2524^14
+ ;;^UTILITY(U,$J,358.3,52216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54980,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,54980,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,54980,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,54981,0)
- ;;=C43.9^^256^2775^102
- ;;^UTILITY(U,$J,358.3,54981,1,0)
+ ;;^UTILITY(U,$J,358.3,52216,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,52216,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,52216,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,52217,0)
+ ;;=I50.20^^193^2524^12
+ ;;^UTILITY(U,$J,358.3,52217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54981,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec Site
- ;;^UTILITY(U,$J,358.3,54981,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,54981,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,54982,0)
- ;;=C31.9^^256^2775^103
- ;;^UTILITY(U,$J,358.3,54982,1,0)
+ ;;^UTILITY(U,$J,358.3,52217,1,3,0)
+ ;;=3^Heart Failure,Systolic,Unspec
+ ;;^UTILITY(U,$J,358.3,52217,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,52217,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,52218,0)
+ ;;=I50.21^^193^2524^9
+ ;;^UTILITY(U,$J,358.3,52218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54982,1,3,0)
- ;;=3^Malig Neop Accessory Sinus,Unspec
- ;;^UTILITY(U,$J,358.3,54982,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,54982,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,54983,0)
- ;;=C24.1^^256^2775^105
- ;;^UTILITY(U,$J,358.3,54983,1,0)
+ ;;^UTILITY(U,$J,358.3,52218,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute
+ ;;^UTILITY(U,$J,358.3,52218,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,52218,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,52219,0)
+ ;;=I50.22^^193^2524^11
+ ;;^UTILITY(U,$J,358.3,52219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54983,1,3,0)
- ;;=3^Malig Neop Ampulla of Vater
- ;;^UTILITY(U,$J,358.3,54983,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,54983,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,54984,0)
- ;;=C21.0^^256^2775^106
- ;;^UTILITY(U,$J,358.3,54984,1,0)
+ ;;^UTILITY(U,$J,358.3,52219,1,3,0)
+ ;;=3^Heart Failure,Systolic,Chronic
+ ;;^UTILITY(U,$J,358.3,52219,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,52219,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,52220,0)
+ ;;=I50.23^^193^2524^10
+ ;;^UTILITY(U,$J,358.3,52220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54984,1,3,0)
- ;;=3^Malig Neop Anus,Unspec
- ;;^UTILITY(U,$J,358.3,54984,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,54984,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,54985,0)
- ;;=C67.9^^256^2775^109
- ;;^UTILITY(U,$J,358.3,54985,1,0)
+ ;;^UTILITY(U,$J,358.3,52220,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,52220,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,52220,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,52221,0)
+ ;;=I50.30^^193^2524^4
+ ;;^UTILITY(U,$J,358.3,52221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54985,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,54985,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,54985,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,54986,0)
- ;;=C71.9^^256^2775^113
- ;;^UTILITY(U,$J,358.3,54986,1,0)
+ ;;^UTILITY(U,$J,358.3,52221,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,52221,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,52221,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,52222,0)
+ ;;=I50.31^^193^2524^1
+ ;;^UTILITY(U,$J,358.3,52222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54986,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,54986,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,54986,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,54987,0)
- ;;=C18.9^^256^2775^115
- ;;^UTILITY(U,$J,358.3,54987,1,0)
+ ;;^UTILITY(U,$J,358.3,52222,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute
+ ;;^UTILITY(U,$J,358.3,52222,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,52222,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,52223,0)
+ ;;=I50.32^^193^2524^3
+ ;;^UTILITY(U,$J,358.3,52223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54987,1,3,0)
- ;;=3^Malig Neop Colon,Unspec
- ;;^UTILITY(U,$J,358.3,54987,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,54987,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,54988,0)
- ;;=C49.9^^256^2775^116
- ;;^UTILITY(U,$J,358.3,54988,1,0)
+ ;;^UTILITY(U,$J,358.3,52223,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,52223,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,52223,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,52224,0)
+ ;;=I50.33^^193^2524^2
+ ;;^UTILITY(U,$J,358.3,52224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54988,1,3,0)
- ;;=3^Malig Neop Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,54988,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,54988,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,54989,0)
- ;;=C62.12^^256^2775^117
- ;;^UTILITY(U,$J,358.3,54989,1,0)
+ ;;^UTILITY(U,$J,358.3,52224,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,52224,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,52224,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,52225,0)
+ ;;=I50.40^^193^2524^8
+ ;;^UTILITY(U,$J,358.3,52225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54989,1,3,0)
- ;;=3^Malig Neop Descended Left Testis
- ;;^UTILITY(U,$J,358.3,54989,1,4,0)
- ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,52225,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Unspec

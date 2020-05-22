@@ -1,136 +1,126 @@
-IBDEI2L7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2L7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43914,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,43914,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,43915,0)
- ;;=I35.9^^170^2108^12
- ;;^UTILITY(U,$J,358.3,43915,1,0)
+ ;;^UTILITY(U,$J,358.3,41288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43915,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders,Unspec
- ;;^UTILITY(U,$J,358.3,43915,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,43915,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,43916,0)
- ;;=I48.91^^170^2108^5
- ;;^UTILITY(U,$J,358.3,43916,1,0)
+ ;;^UTILITY(U,$J,358.3,41288,1,3,0)
+ ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;^UTILITY(U,$J,358.3,41288,1,4,0)
+ ;;=4^J15.0
+ ;;^UTILITY(U,$J,358.3,41288,2)
+ ;;=^269931
+ ;;^UTILITY(U,$J,358.3,41289,0)
+ ;;=J15.1^^152^2033^16
+ ;;^UTILITY(U,$J,358.3,41289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43916,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,43916,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,43916,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,43917,0)
- ;;=I49.9^^170^2108^6
- ;;^UTILITY(U,$J,358.3,43917,1,0)
+ ;;^UTILITY(U,$J,358.3,41289,1,3,0)
+ ;;=3^Pneumonia d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,41289,1,4,0)
+ ;;=4^J15.1
+ ;;^UTILITY(U,$J,358.3,41289,2)
+ ;;=^269932
+ ;;^UTILITY(U,$J,358.3,41290,0)
+ ;;=J15.20^^152^2033^18
+ ;;^UTILITY(U,$J,358.3,41290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43917,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,43917,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,43917,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,43918,0)
- ;;=I50.9^^170^2108^8
- ;;^UTILITY(U,$J,358.3,43918,1,0)
+ ;;^UTILITY(U,$J,358.3,41290,1,3,0)
+ ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,41290,1,4,0)
+ ;;=4^J15.20
+ ;;^UTILITY(U,$J,358.3,41290,2)
+ ;;=^321179
+ ;;^UTILITY(U,$J,358.3,41291,0)
+ ;;=J15.211^^152^2033^9
+ ;;^UTILITY(U,$J,358.3,41291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43918,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,43918,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,43918,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,43919,0)
- ;;=I73.9^^170^2108^16
- ;;^UTILITY(U,$J,358.3,43919,1,0)
+ ;;^UTILITY(U,$J,358.3,41291,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Suscep Staph
+ ;;^UTILITY(U,$J,358.3,41291,1,4,0)
+ ;;=4^J15.211
+ ;;^UTILITY(U,$J,358.3,41291,2)
+ ;;=^336833
+ ;;^UTILITY(U,$J,358.3,41292,0)
+ ;;=J15.212^^152^2033^8
+ ;;^UTILITY(U,$J,358.3,41292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43919,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43919,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,43919,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,43920,0)
- ;;=I87.2^^170^2108^18
- ;;^UTILITY(U,$J,358.3,43920,1,0)
+ ;;^UTILITY(U,$J,358.3,41292,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Resistant Staph Aureus
+ ;;^UTILITY(U,$J,358.3,41292,1,4,0)
+ ;;=4^J15.212
+ ;;^UTILITY(U,$J,358.3,41292,2)
+ ;;=^336602
+ ;;^UTILITY(U,$J,358.3,41293,0)
+ ;;=J15.29^^152^2033^11
+ ;;^UTILITY(U,$J,358.3,41293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43920,1,3,0)
- ;;=3^Venous Insufficiency,Chronic,Peripheral
- ;;^UTILITY(U,$J,358.3,43920,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,43920,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,43921,0)
- ;;=R07.9^^170^2108^7
- ;;^UTILITY(U,$J,358.3,43921,1,0)
+ ;;^UTILITY(U,$J,358.3,41293,1,3,0)
+ ;;=3^Pneumonia d/t Oth Staph
+ ;;^UTILITY(U,$J,358.3,41293,1,4,0)
+ ;;=4^J15.29
+ ;;^UTILITY(U,$J,358.3,41293,2)
+ ;;=^5008172
+ ;;^UTILITY(U,$J,358.3,41294,0)
+ ;;=J15.3^^152^2033^20
+ ;;^UTILITY(U,$J,358.3,41294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43921,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,43921,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,43921,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,43922,0)
- ;;=E03.9^^170^2109^18
- ;;^UTILITY(U,$J,358.3,43922,1,0)
+ ;;^UTILITY(U,$J,358.3,41294,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus,Group B
+ ;;^UTILITY(U,$J,358.3,41294,1,4,0)
+ ;;=4^J15.3
+ ;;^UTILITY(U,$J,358.3,41294,2)
+ ;;=^5008173
+ ;;^UTILITY(U,$J,358.3,41295,0)
+ ;;=J15.4^^152^2033^15
+ ;;^UTILITY(U,$J,358.3,41295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43922,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,43922,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,43922,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,43923,0)
- ;;=E11.9^^170^2109^10
- ;;^UTILITY(U,$J,358.3,43923,1,0)
+ ;;^UTILITY(U,$J,358.3,41295,1,3,0)
+ ;;=3^Pneumonia d/t Other Streptococci
+ ;;^UTILITY(U,$J,358.3,41295,1,4,0)
+ ;;=4^J15.4
+ ;;^UTILITY(U,$J,358.3,41295,2)
+ ;;=^5008174
+ ;;^UTILITY(U,$J,358.3,41296,0)
+ ;;=J15.5^^152^2033^5
+ ;;^UTILITY(U,$J,358.3,41296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43923,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,43923,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,43923,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,43924,0)
- ;;=E10.9^^170^2109^6
- ;;^UTILITY(U,$J,358.3,43924,1,0)
+ ;;^UTILITY(U,$J,358.3,41296,1,3,0)
+ ;;=3^Pneumonia d/t Escherichia Coli
+ ;;^UTILITY(U,$J,358.3,41296,1,4,0)
+ ;;=4^J15.5
+ ;;^UTILITY(U,$J,358.3,41296,2)
+ ;;=^5008175
+ ;;^UTILITY(U,$J,358.3,41297,0)
+ ;;=J15.6^^152^2033^12
+ ;;^UTILITY(U,$J,358.3,41297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43924,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,43924,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,43924,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,43925,0)
- ;;=E11.65^^170^2109^8
- ;;^UTILITY(U,$J,358.3,43925,1,0)
+ ;;^UTILITY(U,$J,358.3,41297,1,3,0)
+ ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
+ ;;^UTILITY(U,$J,358.3,41297,1,4,0)
+ ;;=4^J15.6
+ ;;^UTILITY(U,$J,358.3,41297,2)
+ ;;=^5008176
+ ;;^UTILITY(U,$J,358.3,41298,0)
+ ;;=J15.7^^152^2033^10
+ ;;^UTILITY(U,$J,358.3,41298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43925,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,43925,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,43925,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,43926,0)
- ;;=E10.65^^170^2109^4
- ;;^UTILITY(U,$J,358.3,43926,1,0)
+ ;;^UTILITY(U,$J,358.3,41298,1,3,0)
+ ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,41298,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,41298,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,41299,0)
+ ;;=J15.8^^152^2033^13
+ ;;^UTILITY(U,$J,358.3,41299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43926,1,3,0)
- ;;=3^Diabetes Type 1 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,43926,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,43926,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,43927,0)
- ;;=E11.8^^170^2109^7
- ;;^UTILITY(U,$J,358.3,43927,1,0)
+ ;;^UTILITY(U,$J,358.3,41299,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Bacteria
+ ;;^UTILITY(U,$J,358.3,41299,1,4,0)
+ ;;=4^J15.8
+ ;;^UTILITY(U,$J,358.3,41299,2)
+ ;;=^95571
+ ;;^UTILITY(U,$J,358.3,41300,0)
+ ;;=J15.9^^152^2033^22
+ ;;^UTILITY(U,$J,358.3,41300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43927,1,3,0)
- ;;=3^Diabetes Type 2 w/ Complications,Unspec
- ;;^UTILITY(U,$J,358.3,43927,1,4,0)
- ;;=4^E11.8

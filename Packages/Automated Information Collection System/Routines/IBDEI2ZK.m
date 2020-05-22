@@ -1,128 +1,128 @@
-IBDEI2ZK ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50058,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,50058,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,50059,0)
- ;;=I50.33^^219^2439^5
- ;;^UTILITY(U,$J,358.3,50059,1,0)
+ ;;^UTILITY(U,$J,358.3,47681,0)
+ ;;=K81.9^^185^2410^11
+ ;;^UTILITY(U,$J,358.3,47681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50059,1,3,0)
- ;;=3^AC on Chr Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,50059,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,50059,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,50060,0)
- ;;=I50.23^^219^2439^6
- ;;^UTILITY(U,$J,358.3,50060,1,0)
+ ;;^UTILITY(U,$J,358.3,47681,1,3,0)
+ ;;=3^Cholecystitis,Unspec
+ ;;^UTILITY(U,$J,358.3,47681,1,4,0)
+ ;;=4^K81.9
+ ;;^UTILITY(U,$J,358.3,47681,2)
+ ;;=^87388
+ ;;^UTILITY(U,$J,358.3,47682,0)
+ ;;=K80.70^^185^2410^28
+ ;;^UTILITY(U,$J,358.3,47682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50060,1,3,0)
- ;;=3^AC on Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,50060,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,50060,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,50061,0)
- ;;=I50.21^^219^2439^3
- ;;^UTILITY(U,$J,358.3,50061,1,0)
+ ;;^UTILITY(U,$J,358.3,47682,1,3,0)
+ ;;=3^GB & Bile Duct Calculus w/o Cholecyst or Obstruction
+ ;;^UTILITY(U,$J,358.3,47682,1,4,0)
+ ;;=4^K80.70
+ ;;^UTILITY(U,$J,358.3,47682,2)
+ ;;=^5008870
+ ;;^UTILITY(U,$J,358.3,47683,0)
+ ;;=K80.71^^185^2410^29
+ ;;^UTILITY(U,$J,358.3,47683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50061,1,3,0)
- ;;=3^AC Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,50061,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,50061,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,50062,0)
- ;;=I20.9^^219^2439^8
- ;;^UTILITY(U,$J,358.3,50062,1,0)
+ ;;^UTILITY(U,$J,358.3,47683,1,3,0)
+ ;;=3^GB & Bile Duct Calculus w/o Cholecyst w/ Obstruction
+ ;;^UTILITY(U,$J,358.3,47683,1,4,0)
+ ;;=4^K80.71
+ ;;^UTILITY(U,$J,358.3,47683,2)
+ ;;=^5133640
+ ;;^UTILITY(U,$J,358.3,47684,0)
+ ;;=K82.9^^185^2410^32
+ ;;^UTILITY(U,$J,358.3,47684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50062,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,50062,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,50062,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,50063,0)
- ;;=I25.721^^219^2439^9
- ;;^UTILITY(U,$J,358.3,50063,1,0)
+ ;;^UTILITY(U,$J,358.3,47684,1,3,0)
+ ;;=3^Gallbladder Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,47684,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,47684,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,47685,0)
+ ;;=R14.1^^185^2410^33
+ ;;^UTILITY(U,$J,358.3,47685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50063,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,50063,1,4,0)
- ;;=4^I25.721
- ;;^UTILITY(U,$J,358.3,50063,2)
- ;;=^5007126
- ;;^UTILITY(U,$J,358.3,50064,0)
- ;;=I25.728^^219^2439^10
- ;;^UTILITY(U,$J,358.3,50064,1,0)
+ ;;^UTILITY(U,$J,358.3,47685,1,3,0)
+ ;;=3^Gas Pain
+ ;;^UTILITY(U,$J,358.3,47685,1,4,0)
+ ;;=4^R14.1
+ ;;^UTILITY(U,$J,358.3,47685,2)
+ ;;=^5019241
+ ;;^UTILITY(U,$J,358.3,47686,0)
+ ;;=A09.^^185^2410^34
+ ;;^UTILITY(U,$J,358.3,47686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50064,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,50064,1,4,0)
- ;;=4^I25.728
- ;;^UTILITY(U,$J,358.3,50064,2)
- ;;=^5133560
- ;;^UTILITY(U,$J,358.3,50065,0)
- ;;=I25.729^^219^2439^11
- ;;^UTILITY(U,$J,358.3,50065,1,0)
+ ;;^UTILITY(U,$J,358.3,47686,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Infectious,Unspec
+ ;;^UTILITY(U,$J,358.3,47686,1,4,0)
+ ;;=4^A09.
+ ;;^UTILITY(U,$J,358.3,47686,2)
+ ;;=^5000061
+ ;;^UTILITY(U,$J,358.3,47687,0)
+ ;;=K52.9^^185^2410^35
+ ;;^UTILITY(U,$J,358.3,47687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50065,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,50065,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,50065,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,50066,0)
- ;;=I25.720^^219^2439^12
- ;;^UTILITY(U,$J,358.3,50066,1,0)
+ ;;^UTILITY(U,$J,358.3,47687,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfectious,Unspec
+ ;;^UTILITY(U,$J,358.3,47687,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,47687,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,47688,0)
+ ;;=K21.0^^185^2410^30
+ ;;^UTILITY(U,$J,358.3,47688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50066,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,50066,1,4,0)
- ;;=4^I25.720
- ;;^UTILITY(U,$J,358.3,50066,2)
- ;;=^5007125
- ;;^UTILITY(U,$J,358.3,50067,0)
- ;;=I25.711^^219^2439^13
- ;;^UTILITY(U,$J,358.3,50067,1,0)
+ ;;^UTILITY(U,$J,358.3,47688,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,47688,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,47688,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,47689,0)
+ ;;=K21.9^^185^2410^31
+ ;;^UTILITY(U,$J,358.3,47689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50067,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,50067,1,4,0)
- ;;=4^I25.711
- ;;^UTILITY(U,$J,358.3,50067,2)
- ;;=^5007122
- ;;^UTILITY(U,$J,358.3,50068,0)
- ;;=I25.718^^219^2439^14
- ;;^UTILITY(U,$J,358.3,50068,1,0)
+ ;;^UTILITY(U,$J,358.3,47689,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,47689,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,47689,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,47690,0)
+ ;;=K64.4^^185^2410^36
+ ;;^UTILITY(U,$J,358.3,47690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50068,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,50068,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,50068,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,50069,0)
- ;;=I25.719^^219^2439^15
- ;;^UTILITY(U,$J,358.3,50069,1,0)
+ ;;^UTILITY(U,$J,358.3,47690,1,3,0)
+ ;;=3^Hemorrhoidal Skin Tags,Residual
+ ;;^UTILITY(U,$J,358.3,47690,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,47690,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,47691,0)
+ ;;=K64.8^^185^2410^37
+ ;;^UTILITY(U,$J,358.3,47691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50069,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,50069,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,50069,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,50070,0)
- ;;=I25.710^^219^2439^16
- ;;^UTILITY(U,$J,358.3,50070,1,0)
+ ;;^UTILITY(U,$J,358.3,47691,1,3,0)
+ ;;=3^Hemorrhoids,Other
+ ;;^UTILITY(U,$J,358.3,47691,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,47691,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,47692,0)
+ ;;=K64.5^^185^2410^38
+ ;;^UTILITY(U,$J,358.3,47692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50070,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,50070,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,50070,2)
- ;;=^5007121
+ ;;^UTILITY(U,$J,358.3,47692,1,3,0)
+ ;;=3^Hemorrhoids,Perianal Venous Thrombosis
+ ;;^UTILITY(U,$J,358.3,47692,1,4,0)
+ ;;=4^K64.5
+ ;;^UTILITY(U,$J,358.3,47692,2)
+ ;;=^5008773
+ ;;^UTILITY(U,$J,358.3,47693,0)
+ ;;=K70.9^^185^2410^46
+ ;;^UTILITY(U,$J,358.3,47693,1,0)
+ ;;=^358.31IA^4^2

@@ -1,134 +1,116 @@
-IBDEI2NY ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44697,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,44697,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,44698,0)
- ;;=J01.90^^200^2230^77
- ;;^UTILITY(U,$J,358.3,44698,1,0)
+ ;;^UTILITY(U,$J,358.3,42480,0)
+ ;;=S42.441S^^155^2071^35
+ ;;^UTILITY(U,$J,358.3,42480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44698,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,44698,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,44698,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,44699,0)
- ;;=J20.1^^200^2230^10
- ;;^UTILITY(U,$J,358.3,44699,1,0)
+ ;;^UTILITY(U,$J,358.3,42480,1,3,0)
+ ;;=3^Disp fx of medial epicondyle of r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42480,1,4,0)
+ ;;=4^S42.441S
+ ;;^UTILITY(U,$J,358.3,42480,2)
+ ;;=^5027433
+ ;;^UTILITY(U,$J,358.3,42481,0)
+ ;;=S42.252S^^155^2071^22
+ ;;^UTILITY(U,$J,358.3,42481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44699,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,44699,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,44699,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,44700,0)
- ;;=J20.0^^200^2230^11
- ;;^UTILITY(U,$J,358.3,44700,1,0)
+ ;;^UTILITY(U,$J,358.3,42481,1,3,0)
+ ;;=3^Disp fx of greater tuberosity of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42481,1,4,0)
+ ;;=4^S42.252S
+ ;;^UTILITY(U,$J,358.3,42481,2)
+ ;;=^5026900
+ ;;^UTILITY(U,$J,358.3,42482,0)
+ ;;=S42.251S^^155^2071^23
+ ;;^UTILITY(U,$J,358.3,42482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44700,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,44700,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,44700,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,44701,0)
- ;;=J20.2^^200^2230^6
- ;;^UTILITY(U,$J,358.3,44701,1,0)
+ ;;^UTILITY(U,$J,358.3,42482,1,3,0)
+ ;;=3^Disp fx of greater tuberosity of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42482,1,4,0)
+ ;;=4^S42.251S
+ ;;^UTILITY(U,$J,358.3,42482,2)
+ ;;=^5026893
+ ;;^UTILITY(U,$J,358.3,42483,0)
+ ;;=S42.452S^^155^2071^24
+ ;;^UTILITY(U,$J,358.3,42483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44701,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,44701,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,44701,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,44702,0)
- ;;=J20.4^^200^2230^13
- ;;^UTILITY(U,$J,358.3,44702,1,0)
+ ;;^UTILITY(U,$J,358.3,42483,1,3,0)
+ ;;=3^Disp fx of lateral condyle of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42483,1,4,0)
+ ;;=4^S42.452S
+ ;;^UTILITY(U,$J,358.3,42483,2)
+ ;;=^5027503
+ ;;^UTILITY(U,$J,358.3,42484,0)
+ ;;=S42.451S^^155^2071^25
+ ;;^UTILITY(U,$J,358.3,42484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44702,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,44702,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,44702,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,44703,0)
- ;;=J20.3^^200^2230^8
- ;;^UTILITY(U,$J,358.3,44703,1,0)
+ ;;^UTILITY(U,$J,358.3,42484,1,3,0)
+ ;;=3^Disp fx of lateral condyle of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42484,1,4,0)
+ ;;=4^S42.451S
+ ;;^UTILITY(U,$J,358.3,42484,2)
+ ;;=^5027496
+ ;;^UTILITY(U,$J,358.3,42485,0)
+ ;;=S42.262S^^155^2071^30
+ ;;^UTILITY(U,$J,358.3,42485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44703,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,44703,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,44703,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,44704,0)
- ;;=J20.9^^200^2230^7
- ;;^UTILITY(U,$J,358.3,44704,1,0)
+ ;;^UTILITY(U,$J,358.3,42485,1,3,0)
+ ;;=3^Disp fx of lesser tuberosity of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42485,1,4,0)
+ ;;=4^S42.262S
+ ;;^UTILITY(U,$J,358.3,42485,2)
+ ;;=^5026942
+ ;;^UTILITY(U,$J,358.3,42486,0)
+ ;;=S42.261S^^155^2071^31
+ ;;^UTILITY(U,$J,358.3,42486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44704,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,44704,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,44704,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,44705,0)
- ;;=J20.8^^200^2230^12
- ;;^UTILITY(U,$J,358.3,44705,1,0)
+ ;;^UTILITY(U,$J,358.3,42486,1,3,0)
+ ;;=3^Disp fx of lesser tuberosity of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42486,1,4,0)
+ ;;=4^S42.261S
+ ;;^UTILITY(U,$J,358.3,42486,2)
+ ;;=^5026935
+ ;;^UTILITY(U,$J,358.3,42487,0)
+ ;;=S42.462S^^155^2071^32
+ ;;^UTILITY(U,$J,358.3,42487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44705,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,44705,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,44705,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,44706,0)
- ;;=J20.5^^200^2230^14
- ;;^UTILITY(U,$J,358.3,44706,1,0)
+ ;;^UTILITY(U,$J,358.3,42487,1,3,0)
+ ;;=3^Disp fx of medial condyle of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42487,1,4,0)
+ ;;=4^S42.462S
+ ;;^UTILITY(U,$J,358.3,42487,2)
+ ;;=^5027545
+ ;;^UTILITY(U,$J,358.3,42488,0)
+ ;;=S42.461S^^155^2071^33
+ ;;^UTILITY(U,$J,358.3,42488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44706,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,44706,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,44706,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,44707,0)
- ;;=J20.7^^200^2230^9
- ;;^UTILITY(U,$J,358.3,44707,1,0)
+ ;;^UTILITY(U,$J,358.3,42488,1,3,0)
+ ;;=3^Disp fx of medial condyle of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42488,1,4,0)
+ ;;=4^S42.461S
+ ;;^UTILITY(U,$J,358.3,42488,2)
+ ;;=^5027538
+ ;;^UTILITY(U,$J,358.3,42489,0)
+ ;;=S42.332S^^155^2071^38
+ ;;^UTILITY(U,$J,358.3,42489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44707,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,44707,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,44707,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,44708,0)
- ;;=J20.6^^200^2230^15
- ;;^UTILITY(U,$J,358.3,44708,1,0)
+ ;;^UTILITY(U,$J,358.3,42489,1,3,0)
+ ;;=3^Disp fx of oblique shaft of humerus, left arm, sequela  
+ ;;^UTILITY(U,$J,358.3,42489,1,4,0)
+ ;;=4^S42.332S
+ ;;^UTILITY(U,$J,358.3,42489,2)
+ ;;=^5027118
+ ;;^UTILITY(U,$J,358.3,42490,0)
+ ;;=S42.331S^^155^2071^40
+ ;;^UTILITY(U,$J,358.3,42490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44708,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,44708,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,44708,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,44709,0)
- ;;=J18.9^^200^2230^67
- ;;^UTILITY(U,$J,358.3,44709,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44709,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,44709,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,44709,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,44710,0)
- ;;=J18.8^^200^2230^68
- ;;^UTILITY(U,$J,358.3,44710,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44710,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,42490,1,3,0)
+ ;;=3^Disp fx of oblique shaft of humerus, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42490,1,4,0)
+ ;;=4^S42.331S
+ ;;^UTILITY(U,$J,358.3,42490,2)
+ ;;=^5027111
+ ;;^UTILITY(U,$J,358.3,42491,0)
+ ;;=S42.362S^^155^2071^41

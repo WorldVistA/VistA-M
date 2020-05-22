@@ -1,124 +1,128 @@
-IBDEI2U1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2U1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47538,0)
- ;;=C84.Z4^^209^2346^312
- ;;^UTILITY(U,$J,358.3,47538,1,0)
+ ;;^UTILITY(U,$J,358.3,45179,2)
+ ;;=^263705
+ ;;^UTILITY(U,$J,358.3,45180,0)
+ ;;=D23.0^^170^2251^27
+ ;;^UTILITY(U,$J,358.3,45180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47538,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47538,1,4,0)
- ;;=4^C84.Z4
- ;;^UTILITY(U,$J,358.3,47538,2)
- ;;=^5001695
- ;;^UTILITY(U,$J,358.3,47539,0)
- ;;=C84.Z5^^209^2346^315
- ;;^UTILITY(U,$J,358.3,47539,1,0)
+ ;;^UTILITY(U,$J,358.3,45180,1,3,0)
+ ;;=3^Benign Neop Skin Lip
+ ;;^UTILITY(U,$J,358.3,45180,1,4,0)
+ ;;=4^D23.0
+ ;;^UTILITY(U,$J,358.3,45180,2)
+ ;;=^5002059
+ ;;^UTILITY(U,$J,358.3,45181,0)
+ ;;=D23.21^^170^2251^28
+ ;;^UTILITY(U,$J,358.3,45181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47539,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47539,1,4,0)
- ;;=4^C84.Z5
- ;;^UTILITY(U,$J,358.3,47539,2)
- ;;=^5001696
- ;;^UTILITY(U,$J,358.3,47540,0)
- ;;=C84.Z6^^209^2346^317
- ;;^UTILITY(U,$J,358.3,47540,1,0)
+ ;;^UTILITY(U,$J,358.3,45181,1,3,0)
+ ;;=3^Benign Neop Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,45181,1,4,0)
+ ;;=4^D23.21
+ ;;^UTILITY(U,$J,358.3,45181,2)
+ ;;=^5002064
+ ;;^UTILITY(U,$J,358.3,45182,0)
+ ;;=D23.22^^170^2251^22
+ ;;^UTILITY(U,$J,358.3,45182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47540,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47540,1,4,0)
- ;;=4^C84.Z6
- ;;^UTILITY(U,$J,358.3,47540,2)
- ;;=^5001697
- ;;^UTILITY(U,$J,358.3,47541,0)
- ;;=C84.Z8^^209^2346^319
- ;;^UTILITY(U,$J,358.3,47541,1,0)
+ ;;^UTILITY(U,$J,358.3,45182,1,3,0)
+ ;;=3^Benign Neop Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,45182,1,4,0)
+ ;;=4^D23.22
+ ;;^UTILITY(U,$J,358.3,45182,2)
+ ;;=^5002065
+ ;;^UTILITY(U,$J,358.3,45183,0)
+ ;;=D23.30^^170^2251^21
+ ;;^UTILITY(U,$J,358.3,45183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47541,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47541,1,4,0)
- ;;=4^C84.Z8
- ;;^UTILITY(U,$J,358.3,47541,2)
- ;;=^5001699
- ;;^UTILITY(U,$J,358.3,47542,0)
- ;;=C84.Z9^^209^2346^313
- ;;^UTILITY(U,$J,358.3,47542,1,0)
+ ;;^UTILITY(U,$J,358.3,45183,1,3,0)
+ ;;=3^Benign Neop Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,45183,1,4,0)
+ ;;=4^D23.30
+ ;;^UTILITY(U,$J,358.3,45183,2)
+ ;;=^5002066
+ ;;^UTILITY(U,$J,358.3,45184,0)
+ ;;=D23.39^^170^2251^20
+ ;;^UTILITY(U,$J,358.3,45184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47542,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47542,1,4,0)
- ;;=4^C84.Z9
- ;;^UTILITY(U,$J,358.3,47542,2)
- ;;=^5001700
- ;;^UTILITY(U,$J,358.3,47543,0)
- ;;=C84.90^^209^2346^311
- ;;^UTILITY(U,$J,358.3,47543,1,0)
+ ;;^UTILITY(U,$J,358.3,45184,1,3,0)
+ ;;=3^Benign Neop Skin Face NEC
+ ;;^UTILITY(U,$J,358.3,45184,1,4,0)
+ ;;=4^D23.39
+ ;;^UTILITY(U,$J,358.3,45184,2)
+ ;;=^5002067
+ ;;^UTILITY(U,$J,358.3,45185,0)
+ ;;=D23.5^^170^2251^34
+ ;;^UTILITY(U,$J,358.3,45185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47543,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,47543,1,4,0)
- ;;=4^C84.90
- ;;^UTILITY(U,$J,358.3,47543,2)
- ;;=^5001671
- ;;^UTILITY(U,$J,358.3,47544,0)
- ;;=C84.91^^209^2346^304
- ;;^UTILITY(U,$J,358.3,47544,1,0)
+ ;;^UTILITY(U,$J,358.3,45185,1,3,0)
+ ;;=3^Benign Neop Skin Trunk
+ ;;^UTILITY(U,$J,358.3,45185,1,4,0)
+ ;;=4^D23.5
+ ;;^UTILITY(U,$J,358.3,45185,2)
+ ;;=^5002069
+ ;;^UTILITY(U,$J,358.3,45186,0)
+ ;;=D23.62^^170^2251^26
+ ;;^UTILITY(U,$J,358.3,45186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47544,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47544,1,4,0)
- ;;=4^C84.91
- ;;^UTILITY(U,$J,358.3,47544,2)
- ;;=^5001672
- ;;^UTILITY(U,$J,358.3,47545,0)
- ;;=C84.92^^209^2346^306
- ;;^UTILITY(U,$J,358.3,47545,1,0)
+ ;;^UTILITY(U,$J,358.3,45186,1,3,0)
+ ;;=3^Benign Neop Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,45186,1,4,0)
+ ;;=4^D23.62
+ ;;^UTILITY(U,$J,358.3,45186,2)
+ ;;=^5002072
+ ;;^UTILITY(U,$J,358.3,45187,0)
+ ;;=D23.61^^170^2251^32
+ ;;^UTILITY(U,$J,358.3,45187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47545,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47545,1,4,0)
- ;;=4^C84.92
- ;;^UTILITY(U,$J,358.3,47545,2)
- ;;=^5001673
- ;;^UTILITY(U,$J,358.3,47546,0)
- ;;=C84.93^^209^2346^307
- ;;^UTILITY(U,$J,358.3,47546,1,0)
+ ;;^UTILITY(U,$J,358.3,45187,1,3,0)
+ ;;=3^Benign Neop Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,45187,1,4,0)
+ ;;=4^D23.61
+ ;;^UTILITY(U,$J,358.3,45187,2)
+ ;;=^5002071
+ ;;^UTILITY(U,$J,358.3,45188,0)
+ ;;=D23.71^^170^2251^30
+ ;;^UTILITY(U,$J,358.3,45188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47546,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47546,1,4,0)
- ;;=4^C84.93
- ;;^UTILITY(U,$J,358.3,47546,2)
- ;;=^5001674
- ;;^UTILITY(U,$J,358.3,47547,0)
- ;;=C84.94^^209^2346^302
- ;;^UTILITY(U,$J,358.3,47547,1,0)
+ ;;^UTILITY(U,$J,358.3,45188,1,3,0)
+ ;;=3^Benign Neop Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,45188,1,4,0)
+ ;;=4^D23.71
+ ;;^UTILITY(U,$J,358.3,45188,2)
+ ;;=^5002074
+ ;;^UTILITY(U,$J,358.3,45189,0)
+ ;;=D23.72^^170^2251^24
+ ;;^UTILITY(U,$J,358.3,45189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47547,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47547,1,4,0)
- ;;=4^C84.94
- ;;^UTILITY(U,$J,358.3,47547,2)
- ;;=^5001675
- ;;^UTILITY(U,$J,358.3,47548,0)
- ;;=C84.95^^209^2346^305
- ;;^UTILITY(U,$J,358.3,47548,1,0)
+ ;;^UTILITY(U,$J,358.3,45189,1,3,0)
+ ;;=3^Benign Neop Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,45189,1,4,0)
+ ;;=4^D23.72
+ ;;^UTILITY(U,$J,358.3,45189,2)
+ ;;=^5002075
+ ;;^UTILITY(U,$J,358.3,45190,0)
+ ;;=L60.4^^170^2251^17
+ ;;^UTILITY(U,$J,358.3,45190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47548,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Ing Region/Lower Limb Node
- ;;^UTILITY(U,$J,358.3,47548,1,4,0)
- ;;=4^C84.95
- ;;^UTILITY(U,$J,358.3,47548,2)
- ;;=^5001676
- ;;^UTILITY(U,$J,358.3,47549,0)
- ;;=C84.96^^209^2346^308
- ;;^UTILITY(U,$J,358.3,47549,1,0)
+ ;;^UTILITY(U,$J,358.3,45190,1,3,0)
+ ;;=3^Beau's Lines
+ ;;^UTILITY(U,$J,358.3,45190,1,4,0)
+ ;;=4^L60.4
+ ;;^UTILITY(U,$J,358.3,45190,2)
+ ;;=^5009237
+ ;;^UTILITY(U,$J,358.3,45191,0)
+ ;;=D23.4^^170^2251^33
+ ;;^UTILITY(U,$J,358.3,45191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47549,1,3,0)
- ;;=3^Mature T/NK-Cell Lymphomas Unspec,Intrapelvic Node
- ;;^UTILITY(U,$J,358.3,47549,1,4,0)
- ;;=4^C84.96
- ;;^UTILITY(U,$J,358.3,47549,2)
- ;;=^5001677
+ ;;^UTILITY(U,$J,358.3,45191,1,3,0)
+ ;;=3^Benign Neop Skin Scalp and Neck
+ ;;^UTILITY(U,$J,358.3,45191,1,4,0)
+ ;;=4^D23.4
+ ;;^UTILITY(U,$J,358.3,45191,2)
+ ;;=^5002068
+ ;;^UTILITY(U,$J,358.3,45192,0)
+ ;;=C44.612^^170^2251^13

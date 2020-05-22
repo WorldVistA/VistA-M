@@ -1,122 +1,128 @@
-IBDEI1US ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1US ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31482,0)
- ;;=29904^^125^1594^6^^^^1
- ;;^UTILITY(U,$J,358.3,31482,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31482,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/rem of foreign body
- ;;^UTILITY(U,$J,358.3,31482,1,3,0)
- ;;=3^29904
- ;;^UTILITY(U,$J,358.3,31483,0)
- ;;=29905^^125^1594^5^^^^1
- ;;^UTILITY(U,$J,358.3,31483,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31483,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/ Synovectomy
- ;;^UTILITY(U,$J,358.3,31483,1,3,0)
- ;;=3^29905
- ;;^UTILITY(U,$J,358.3,31484,0)
- ;;=29906^^125^1594^4^^^^1
- ;;^UTILITY(U,$J,358.3,31484,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31484,1,2,0)
- ;;=2^Arthroscopy, subtalar jt,w/ debridement
- ;;^UTILITY(U,$J,358.3,31484,1,3,0)
- ;;=3^29906
- ;;^UTILITY(U,$J,358.3,31485,0)
- ;;=29907^^125^1594^7^^^^1
- ;;^UTILITY(U,$J,358.3,31485,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31485,1,2,0)
- ;;=2^Arthroscopy,subtalar w/ fusion
- ;;^UTILITY(U,$J,358.3,31485,1,3,0)
- ;;=3^29907
- ;;^UTILITY(U,$J,358.3,31486,0)
- ;;=97605^^125^1594^16^^^^1
- ;;^UTILITY(U,$J,358.3,31486,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31486,1,2,0)
- ;;=2^Neg Press Wound Tx <= 50 cm
- ;;^UTILITY(U,$J,358.3,31486,1,3,0)
- ;;=3^97605
- ;;^UTILITY(U,$J,358.3,31487,0)
- ;;=97606^^125^1594^17^^^^1
- ;;^UTILITY(U,$J,358.3,31487,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31487,1,2,0)
- ;;=2^Neg Press Wound Tx > 50 cm
- ;;^UTILITY(U,$J,358.3,31487,1,3,0)
- ;;=3^97606
- ;;^UTILITY(U,$J,358.3,31488,0)
- ;;=2028F^^125^1594^12^^^^1
- ;;^UTILITY(U,$J,358.3,31488,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31488,1,2,0)
- ;;=2^Foot Exam Performed
- ;;^UTILITY(U,$J,358.3,31488,1,3,0)
- ;;=3^2028F
- ;;^UTILITY(U,$J,358.3,31489,0)
- ;;=G8883^^125^1594^9^^^^1
- ;;^UTILITY(U,$J,358.3,31489,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31489,1,2,0)
- ;;=2^Bx Result RVW,Comm,Tracked
- ;;^UTILITY(U,$J,358.3,31489,1,3,0)
- ;;=3^G8883
- ;;^UTILITY(U,$J,358.3,31490,0)
- ;;=S0395^^125^1594^13^^^^1
- ;;^UTILITY(U,$J,358.3,31490,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31490,1,2,0)
- ;;=2^Impression Cast
- ;;^UTILITY(U,$J,358.3,31490,1,3,0)
- ;;=3^S0395
- ;;^UTILITY(U,$J,358.3,31491,0)
- ;;=E2402^^125^1594^15^^^^1
- ;;^UTILITY(U,$J,358.3,31491,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31491,1,2,0)
- ;;=2^Neg Press Wound Therapy Pump
- ;;^UTILITY(U,$J,358.3,31491,1,3,0)
- ;;=3^E2402
- ;;^UTILITY(U,$J,358.3,31492,0)
- ;;=28400^^125^1595^4^^^^1
- ;;^UTILITY(U,$J,358.3,31492,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31492,1,2,0)
- ;;=2^Closed TX of calcaneal fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,31492,1,3,0)
- ;;=3^28400
- ;;^UTILITY(U,$J,358.3,31493,0)
- ;;=28405^^125^1595^3^^^^1
- ;;^UTILITY(U,$J,358.3,31493,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31493,1,2,0)
- ;;=2^Closed TX of calcaneal fracture; with manipulation
- ;;^UTILITY(U,$J,358.3,31493,1,3,0)
- ;;=3^28405
- ;;^UTILITY(U,$J,358.3,31494,0)
- ;;=28406^^125^1595^66^^^^1
- ;;^UTILITY(U,$J,358.3,31494,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31494,1,2,0)
- ;;=2^Perc Fixation of Calcaneous Fx
- ;;^UTILITY(U,$J,358.3,31494,1,3,0)
- ;;=3^28406
- ;;^UTILITY(U,$J,358.3,31495,0)
- ;;=28415^^125^1595^34^^^^1
- ;;^UTILITY(U,$J,358.3,31495,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31495,1,2,0)
- ;;=2^Open TX of calcaneal fracture, with or without internal or external fixation;
- ;;^UTILITY(U,$J,358.3,31495,1,3,0)
- ;;=3^28415
- ;;^UTILITY(U,$J,358.3,31496,0)
- ;;=28420^^125^1595^35^^^^1
- ;;^UTILITY(U,$J,358.3,31496,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31496,1,2,0)
- ;;=2^Open TX of calcaneal fracture, with or without internal or external fixation; with primary iliac or other autogenous bone graft
+ ;;^UTILITY(U,$J,358.3,29600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29600,1,3,0)
+ ;;=3^Mental D/O,Unspec,d/t Anth Med Cond
+ ;;^UTILITY(U,$J,358.3,29600,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,29600,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,29601,0)
+ ;;=F99.^^118^1497^1
+ ;;^UTILITY(U,$J,358.3,29601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29601,1,3,0)
+ ;;=3^Mental D/O NOS
+ ;;^UTILITY(U,$J,358.3,29601,1,4,0)
+ ;;=4^F99.
+ ;;^UTILITY(U,$J,358.3,29601,2)
+ ;;=^5003720
+ ;;^UTILITY(U,$J,358.3,29602,0)
+ ;;=Z03.89^^118^1497^4
+ ;;^UTILITY(U,$J,358.3,29602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29602,1,3,0)
+ ;;=3^Obs for Oth Suspect Dis/Cond R/O
+ ;;^UTILITY(U,$J,358.3,29602,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,29602,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,29603,0)
+ ;;=F84.0^^118^1498^7
+ ;;^UTILITY(U,$J,358.3,29603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29603,1,3,0)
+ ;;=3^Autistic D/O
+ ;;^UTILITY(U,$J,358.3,29603,1,4,0)
+ ;;=4^F84.0
+ ;;^UTILITY(U,$J,358.3,29603,2)
+ ;;=^5003684
+ ;;^UTILITY(U,$J,358.3,29604,0)
+ ;;=F80.9^^118^1498^10
+ ;;^UTILITY(U,$J,358.3,29604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29604,1,3,0)
+ ;;=3^Communication D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29604,1,4,0)
+ ;;=4^F80.9
+ ;;^UTILITY(U,$J,358.3,29604,2)
+ ;;=^5003678
+ ;;^UTILITY(U,$J,358.3,29605,0)
+ ;;=F82.^^118^1498^11
+ ;;^UTILITY(U,$J,358.3,29605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29605,1,3,0)
+ ;;=3^Developmental Coordination D/O
+ ;;^UTILITY(U,$J,358.3,29605,1,4,0)
+ ;;=4^F82.
+ ;;^UTILITY(U,$J,358.3,29605,2)
+ ;;=^5003683
+ ;;^UTILITY(U,$J,358.3,29606,0)
+ ;;=F88.^^118^1498^24
+ ;;^UTILITY(U,$J,358.3,29606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29606,1,3,0)
+ ;;=3^Psych Development D/O,Other
+ ;;^UTILITY(U,$J,358.3,29606,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,29606,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,29607,0)
+ ;;=F80.2^^118^1498^17
+ ;;^UTILITY(U,$J,358.3,29607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29607,1,3,0)
+ ;;=3^Language D/O
+ ;;^UTILITY(U,$J,358.3,29607,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,29607,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,29608,0)
+ ;;=F81.2^^118^1498^18
+ ;;^UTILITY(U,$J,358.3,29608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29608,1,3,0)
+ ;;=3^Learning D/O w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,29608,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,29608,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,29609,0)
+ ;;=F81.0^^118^1498^19
+ ;;^UTILITY(U,$J,358.3,29609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29609,1,3,0)
+ ;;=3^Learning D/O w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,29609,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,29609,2)
+ ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,29610,0)
+ ;;=F81.81^^118^1498^20
+ ;;^UTILITY(U,$J,358.3,29610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29610,1,3,0)
+ ;;=3^Learning D/O w/ Impairment in Written Expression
+ ;;^UTILITY(U,$J,358.3,29610,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,29610,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,29611,0)
+ ;;=F89.^^118^1498^21
+ ;;^UTILITY(U,$J,358.3,29611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29611,1,3,0)
+ ;;=3^Neurodevelopmental D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29611,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,29611,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,29612,0)
+ ;;=F95.1^^118^1498^9
+ ;;^UTILITY(U,$J,358.3,29612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29612,1,3,0)
+ ;;=3^Chronic Motor or Vocal Tic D/O

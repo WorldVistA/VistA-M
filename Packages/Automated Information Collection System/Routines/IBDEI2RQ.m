@@ -1,134 +1,124 @@
-IBDEI2RQ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46474,1,0)
+ ;;^UTILITY(U,$J,358.3,44154,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,44155,0)
+ ;;=F52.8^^164^2187^8
+ ;;^UTILITY(U,$J,358.3,44155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46474,1,3,0)
- ;;=3^Hemorrhagic Left Otitis Externa
- ;;^UTILITY(U,$J,358.3,46474,1,4,0)
- ;;=4^H60.322
- ;;^UTILITY(U,$J,358.3,46474,2)
- ;;=^5006452
- ;;^UTILITY(U,$J,358.3,46475,0)
- ;;=H60.321^^206^2299^10
- ;;^UTILITY(U,$J,358.3,46475,1,0)
+ ;;^UTILITY(U,$J,358.3,44155,1,3,0)
+ ;;=3^Sexual Dysfunction,Oth Spec
+ ;;^UTILITY(U,$J,358.3,44155,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,44155,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,44156,0)
+ ;;=F52.9^^164^2187^9
+ ;;^UTILITY(U,$J,358.3,44156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46475,1,3,0)
- ;;=3^Hemorrhagic Right Otitis Externa
- ;;^UTILITY(U,$J,358.3,46475,1,4,0)
- ;;=4^H60.321
- ;;^UTILITY(U,$J,358.3,46475,2)
- ;;=^5006451
- ;;^UTILITY(U,$J,358.3,46476,0)
- ;;=H60.393^^206^2299^11
- ;;^UTILITY(U,$J,358.3,46476,1,0)
+ ;;^UTILITY(U,$J,358.3,44156,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,44156,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,44156,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,44157,0)
+ ;;=G47.09^^164^2188^14
+ ;;^UTILITY(U,$J,358.3,44157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46476,1,3,0)
- ;;=3^Infective Bilateral Otitis Externa NEC
- ;;^UTILITY(U,$J,358.3,46476,1,4,0)
- ;;=4^H60.393
- ;;^UTILITY(U,$J,358.3,46476,2)
- ;;=^5006461
- ;;^UTILITY(U,$J,358.3,46477,0)
- ;;=H60.392^^206^2299^12
- ;;^UTILITY(U,$J,358.3,46477,1,0)
+ ;;^UTILITY(U,$J,358.3,44157,1,3,0)
+ ;;=3^Insomnia D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,44157,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,44157,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,44158,0)
+ ;;=G47.00^^164^2188^15
+ ;;^UTILITY(U,$J,358.3,44158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46477,1,3,0)
- ;;=3^Infective Left Otitis Externa
- ;;^UTILITY(U,$J,358.3,46477,1,4,0)
- ;;=4^H60.392
- ;;^UTILITY(U,$J,358.3,46477,2)
- ;;=^5006460
- ;;^UTILITY(U,$J,358.3,46478,0)
- ;;=H60.391^^206^2299^13
- ;;^UTILITY(U,$J,358.3,46478,1,0)
+ ;;^UTILITY(U,$J,358.3,44158,1,3,0)
+ ;;=3^Insomnia D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44158,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,44158,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,44159,0)
+ ;;=G47.10^^164^2188^12
+ ;;^UTILITY(U,$J,358.3,44159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46478,1,3,0)
- ;;=3^Infective Right Otitis Externa
- ;;^UTILITY(U,$J,358.3,46478,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,46478,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,46479,0)
- ;;=H66.93^^206^2299^17
- ;;^UTILITY(U,$J,358.3,46479,1,0)
+ ;;^UTILITY(U,$J,358.3,44159,1,3,0)
+ ;;=3^Hypersomnolence D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44159,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,44159,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,44160,0)
+ ;;=G47.33^^164^2188^22
+ ;;^UTILITY(U,$J,358.3,44160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46479,1,3,0)
- ;;=3^Otitis Media Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,46479,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,46479,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,46480,0)
- ;;=H66.92^^206^2299^18
- ;;^UTILITY(U,$J,358.3,46480,1,0)
+ ;;^UTILITY(U,$J,358.3,44160,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,44160,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,44160,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,44161,0)
+ ;;=G47.31^^164^2188^2
+ ;;^UTILITY(U,$J,358.3,44161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46480,1,3,0)
- ;;=3^Otitis Media Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,46480,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,46480,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,46481,0)
- ;;=H66.91^^206^2299^19
- ;;^UTILITY(U,$J,358.3,46481,1,0)
+ ;;^UTILITY(U,$J,358.3,44161,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic
+ ;;^UTILITY(U,$J,358.3,44161,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,44161,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,44162,0)
+ ;;=G47.21^^164^2188^5
+ ;;^UTILITY(U,$J,358.3,44162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46481,1,3,0)
- ;;=3^Otitis Media Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,46481,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,46481,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,46482,0)
- ;;=H60.93^^206^2299^14
- ;;^UTILITY(U,$J,358.3,46482,1,0)
+ ;;^UTILITY(U,$J,358.3,44162,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,44162,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,44162,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,44163,0)
+ ;;=G47.22^^164^2188^4
+ ;;^UTILITY(U,$J,358.3,44163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46482,1,3,0)
- ;;=3^Otitis Externa Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,46482,1,4,0)
- ;;=4^H60.93
- ;;^UTILITY(U,$J,358.3,46482,2)
- ;;=^5006498
- ;;^UTILITY(U,$J,358.3,46483,0)
- ;;=H60.92^^206^2299^15
- ;;^UTILITY(U,$J,358.3,46483,1,0)
+ ;;^UTILITY(U,$J,358.3,44163,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,44163,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,44163,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,44164,0)
+ ;;=G47.23^^164^2188^6
+ ;;^UTILITY(U,$J,358.3,44164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46483,1,3,0)
- ;;=3^Otitis Externa Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,46483,1,4,0)
- ;;=4^H60.92
- ;;^UTILITY(U,$J,358.3,46483,2)
- ;;=^5133525
- ;;^UTILITY(U,$J,358.3,46484,0)
- ;;=H60.91^^206^2299^16
- ;;^UTILITY(U,$J,358.3,46484,1,0)
+ ;;^UTILITY(U,$J,358.3,44164,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,44164,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,44164,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,44165,0)
+ ;;=G47.24^^164^2188^7
+ ;;^UTILITY(U,$J,358.3,44165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46484,1,3,0)
- ;;=3^Otitis Externa Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,46484,1,4,0)
- ;;=4^H60.91
- ;;^UTILITY(U,$J,358.3,46484,2)
- ;;=^5133524
- ;;^UTILITY(U,$J,358.3,46485,0)
- ;;=J30.9^^206^2299^4
- ;;^UTILITY(U,$J,358.3,46485,1,0)
+ ;;^UTILITY(U,$J,358.3,44165,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,44165,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,44165,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,44166,0)
+ ;;=G47.26^^164^2188^8
+ ;;^UTILITY(U,$J,358.3,44166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46485,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,46485,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,46485,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,46486,0)
- ;;=J38.00^^206^2299^20
- ;;^UTILITY(U,$J,358.3,46486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46486,1,3,0)
- ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,46486,1,4,0)
- ;;=4^J38.00
- ;;^UTILITY(U,$J,358.3,46486,2)
- ;;=^5008219
- ;;^UTILITY(U,$J,358.3,46487,0)
- ;;=K92.2^^206^2300^2
+ ;;^UTILITY(U,$J,358.3,44166,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,44166,1,4,0)
+ ;;=4^G47.26

@@ -1,134 +1,126 @@
-IBDEI3AK ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3AK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55312,1,0)
+ ;;^UTILITY(U,$J,358.3,52531,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,52531,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,52532,0)
+ ;;=I12.9^^194^2541^4
+ ;;^UTILITY(U,$J,358.3,52532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55312,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,55312,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,55312,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,55313,0)
- ;;=M86.50^^256^2777^59
- ;;^UTILITY(U,$J,358.3,55313,1,0)
+ ;;^UTILITY(U,$J,358.3,52532,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,52532,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,52532,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,52533,0)
+ ;;=I13.0^^194^2541^8
+ ;;^UTILITY(U,$J,358.3,52533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55313,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,55313,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,55313,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,55314,0)
- ;;=M86.30^^256^2777^60
- ;;^UTILITY(U,$J,358.3,55314,1,0)
+ ;;^UTILITY(U,$J,358.3,52533,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,52533,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,52533,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,52534,0)
+ ;;=I13.10^^194^2541^10
+ ;;^UTILITY(U,$J,358.3,52534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55314,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,55314,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,55314,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,55315,0)
- ;;=M86.8X9^^256^2777^63
- ;;^UTILITY(U,$J,358.3,55315,1,0)
+ ;;^UTILITY(U,$J,358.3,52534,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,52534,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,52534,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,52535,0)
+ ;;=I13.11^^194^2541^11
+ ;;^UTILITY(U,$J,358.3,52535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55315,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,55315,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,55315,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,55316,0)
- ;;=M86.60^^256^2777^61
- ;;^UTILITY(U,$J,358.3,55316,1,0)
+ ;;^UTILITY(U,$J,358.3,52535,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,52535,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,52535,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,52536,0)
+ ;;=I13.2^^194^2541^9
+ ;;^UTILITY(U,$J,358.3,52536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55316,1,3,0)
- ;;=3^Osteomyelitis,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,55316,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,55316,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,55317,0)
- ;;=M86.40^^256^2777^56
- ;;^UTILITY(U,$J,358.3,55317,1,0)
+ ;;^UTILITY(U,$J,358.3,52536,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,52536,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,52536,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,52537,0)
+ ;;=I15.0^^194^2541^15
+ ;;^UTILITY(U,$J,358.3,52537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55317,1,3,0)
- ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,55317,1,4,0)
- ;;=4^M86.40
- ;;^UTILITY(U,$J,358.3,55317,2)
- ;;=^5014583
- ;;^UTILITY(U,$J,358.3,55318,0)
- ;;=R50.2^^256^2777^23
- ;;^UTILITY(U,$J,358.3,55318,1,0)
+ ;;^UTILITY(U,$J,358.3,52537,1,3,0)
+ ;;=3^Renovascular Hypertension
+ ;;^UTILITY(U,$J,358.3,52537,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,52537,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,52538,0)
+ ;;=I15.1^^194^2541^3
+ ;;^UTILITY(U,$J,358.3,52538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55318,1,3,0)
- ;;=3^Fever,Drug-Induced
- ;;^UTILITY(U,$J,358.3,55318,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,55318,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,55319,0)
- ;;=R50.9^^256^2777^27
- ;;^UTILITY(U,$J,358.3,55319,1,0)
+ ;;^UTILITY(U,$J,358.3,52538,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,52538,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,52538,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,52539,0)
+ ;;=I15.2^^194^2541^2
+ ;;^UTILITY(U,$J,358.3,52539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55319,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,55319,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,55319,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,55320,0)
- ;;=R76.11^^256^2777^1
- ;;^UTILITY(U,$J,358.3,55320,1,0)
+ ;;^UTILITY(U,$J,358.3,52539,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,52539,1,4,0)
+ ;;=4^I15.2
+ ;;^UTILITY(U,$J,358.3,52539,2)
+ ;;=^5007073
+ ;;^UTILITY(U,$J,358.3,52540,0)
+ ;;=I15.8^^194^2541^16
+ ;;^UTILITY(U,$J,358.3,52540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55320,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,55320,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,55320,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,55321,0)
- ;;=Z21.^^256^2777^30
- ;;^UTILITY(U,$J,358.3,55321,1,0)
+ ;;^UTILITY(U,$J,358.3,52540,1,3,0)
+ ;;=3^Secondary Hypertension,Oth
+ ;;^UTILITY(U,$J,358.3,52540,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,52540,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,52541,0)
+ ;;=I15.9^^194^2541^17
+ ;;^UTILITY(U,$J,358.3,52541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55321,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,55321,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,55321,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,55322,0)
- ;;=B37.0^^256^2777^16
- ;;^UTILITY(U,$J,358.3,55322,1,0)
+ ;;^UTILITY(U,$J,358.3,52541,1,3,0)
+ ;;=3^Secondary Hypertension,Unspec
+ ;;^UTILITY(U,$J,358.3,52541,1,4,0)
+ ;;=4^I15.9
+ ;;^UTILITY(U,$J,358.3,52541,2)
+ ;;=^5007075
+ ;;^UTILITY(U,$J,358.3,52542,0)
+ ;;=I16.0^^194^2541^14
+ ;;^UTILITY(U,$J,358.3,52542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55322,1,3,0)
- ;;=3^Candidal Stomatitis (Oral Thrush)
- ;;^UTILITY(U,$J,358.3,55322,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,55322,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,55323,0)
- ;;=B97.10^^256^2777^22
- ;;^UTILITY(U,$J,358.3,55323,1,0)
+ ;;^UTILITY(U,$J,358.3,52542,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,52542,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,52542,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,52543,0)
+ ;;=I16.1^^194^2541^7
+ ;;^UTILITY(U,$J,358.3,52543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55323,1,3,0)
- ;;=3^Enterovirus,Unspec,as Cause of Disease
- ;;^UTILITY(U,$J,358.3,55323,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,55323,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,55324,0)
- ;;=R50.82^^256^2777^24
- ;;^UTILITY(U,$J,358.3,55324,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55324,1,3,0)
- ;;=3^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,55324,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,55324,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,55325,0)
- ;;=R50.83^^256^2777^26
+ ;;^UTILITY(U,$J,358.3,52543,1,3,0)
+ ;;=3^Hypertensive Emergency
+ ;;^UTILITY(U,$J,358.3,52543,1,4,0)
+ ;;=4^I16.1

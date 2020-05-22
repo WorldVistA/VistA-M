@@ -1,136 +1,122 @@
-IBDEI1BJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22416,0)
- ;;=C64.2^^87^981^132
- ;;^UTILITY(U,$J,358.3,22416,1,0)
+ ;;^UTILITY(U,$J,358.3,21075,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,21075,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,21076,0)
+ ;;=F16.180^^95^1045^2
+ ;;^UTILITY(U,$J,358.3,21076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22416,1,3,0)
- ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,22416,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,22416,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,22417,0)
- ;;=C65.2^^87^981^135
- ;;^UTILITY(U,$J,358.3,22417,1,0)
+ ;;^UTILITY(U,$J,358.3,21076,1,3,0)
+ ;;=3^Hallucinogen Abuse w/ Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,21076,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,21076,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,21077,0)
+ ;;=F16.280^^95^1045^9
+ ;;^UTILITY(U,$J,358.3,21077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22417,1,3,0)
- ;;=3^Malig Neop Left Renal Pelvis
- ;;^UTILITY(U,$J,358.3,22417,1,4,0)
- ;;=4^C65.2
- ;;^UTILITY(U,$J,358.3,22417,2)
- ;;=^5001252
- ;;^UTILITY(U,$J,358.3,22418,0)
- ;;=C62.92^^87^981^136
- ;;^UTILITY(U,$J,358.3,22418,1,0)
+ ;;^UTILITY(U,$J,358.3,21077,1,3,0)
+ ;;=3^Hallucinogen Dependence w/ Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,21077,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,21077,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,21078,0)
+ ;;=F16.980^^95^1045^16
+ ;;^UTILITY(U,$J,358.3,21078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22418,1,3,0)
- ;;=3^Malig Neop Left Testis,Unspec
- ;;^UTILITY(U,$J,358.3,22418,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,22418,2)
- ;;=^5001238
- ;;^UTILITY(U,$J,358.3,22419,0)
- ;;=C22.8^^87^981^137
- ;;^UTILITY(U,$J,358.3,22419,1,0)
+ ;;^UTILITY(U,$J,358.3,21078,1,3,0)
+ ;;=3^Hallucinogen Use w/ Induced Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21078,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,21078,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,21079,0)
+ ;;=F16.24^^95^1045^10
+ ;;^UTILITY(U,$J,358.3,21079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22419,1,3,0)
- ;;=3^Malig Neop Liver,Primary
- ;;^UTILITY(U,$J,358.3,22419,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,22419,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,22420,0)
- ;;=C06.9^^87^981^140
- ;;^UTILITY(U,$J,358.3,22420,1,0)
+ ;;^UTILITY(U,$J,358.3,21079,1,3,0)
+ ;;=3^Hallucinogen Dependence w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21079,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,21079,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,21080,0)
+ ;;=F16.94^^95^1045^17
+ ;;^UTILITY(U,$J,358.3,21080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22420,1,3,0)
- ;;=3^Malig Neop Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,22420,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,22420,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,22421,0)
- ;;=C11.9^^87^981^141
- ;;^UTILITY(U,$J,358.3,22421,1,0)
+ ;;^UTILITY(U,$J,358.3,21080,1,3,0)
+ ;;=3^Hallucinogen Use w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21080,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,21080,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,21081,0)
+ ;;=F16.159^^95^1045^4
+ ;;^UTILITY(U,$J,358.3,21081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22421,1,3,0)
- ;;=3^Malig Neop Nasopharynx,Unspec
- ;;^UTILITY(U,$J,358.3,22421,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,22421,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,22422,0)
- ;;=C10.9^^87^981^144
- ;;^UTILITY(U,$J,358.3,22422,1,0)
+ ;;^UTILITY(U,$J,358.3,21081,1,3,0)
+ ;;=3^Hallucinogen Abuse w/ Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21081,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,21081,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,21082,0)
+ ;;=F16.259^^95^1045^11
+ ;;^UTILITY(U,$J,358.3,21082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22422,1,3,0)
- ;;=3^Malig Neop Oropharynx,Unspec
- ;;^UTILITY(U,$J,358.3,22422,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,22422,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,22423,0)
- ;;=C25.9^^87^981^145
- ;;^UTILITY(U,$J,358.3,22423,1,0)
+ ;;^UTILITY(U,$J,358.3,21082,1,3,0)
+ ;;=3^Hallucinogen Dependence w/ Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21082,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,21082,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,21083,0)
+ ;;=F16.959^^95^1045^18
+ ;;^UTILITY(U,$J,358.3,21083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22423,1,3,0)
- ;;=3^Malig Neop Pancreas,Unspec
- ;;^UTILITY(U,$J,358.3,22423,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,22423,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,22424,0)
- ;;=C47.9^^87^981^146
- ;;^UTILITY(U,$J,358.3,22424,1,0)
+ ;;^UTILITY(U,$J,358.3,21083,1,3,0)
+ ;;=3^Hallucinogen Use w/ Induced Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,21083,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,21083,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,21084,0)
+ ;;=F16.99^^95^1045^15
+ ;;^UTILITY(U,$J,358.3,21084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22424,1,3,0)
- ;;=3^Malig Neop Peripheral Nerves/Autonomic Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,22424,1,4,0)
- ;;=4^C47.9
- ;;^UTILITY(U,$J,358.3,22424,2)
- ;;=^5001121
- ;;^UTILITY(U,$J,358.3,22425,0)
- ;;=C38.4^^87^981^147
- ;;^UTILITY(U,$J,358.3,22425,1,0)
+ ;;^UTILITY(U,$J,358.3,21084,1,3,0)
+ ;;=3^Hallucinogen Use w/ Hallucinogen Induced Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21084,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,21084,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,21085,0)
+ ;;=F16.983^^95^1045^14
+ ;;^UTILITY(U,$J,358.3,21085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22425,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,22425,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,22425,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,22426,0)
- ;;=C61.^^87^981^148
- ;;^UTILITY(U,$J,358.3,22426,1,0)
+ ;;^UTILITY(U,$J,358.3,21085,1,3,0)
+ ;;=3^Hallucinogen Use w/ Flashbacks
+ ;;^UTILITY(U,$J,358.3,21085,1,4,0)
+ ;;=4^F16.983
+ ;;^UTILITY(U,$J,358.3,21085,2)
+ ;;=^5003358
+ ;;^UTILITY(U,$J,358.3,21086,0)
+ ;;=F16.14^^95^1045^3
+ ;;^UTILITY(U,$J,358.3,21086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22426,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,22426,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,22426,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,22427,0)
- ;;=C20.^^87^981^149
- ;;^UTILITY(U,$J,358.3,22427,1,0)
+ ;;^UTILITY(U,$J,358.3,21086,1,3,0)
+ ;;=3^Hallucinogen Abuse w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21086,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,21086,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,21087,0)
+ ;;=F16.11^^95^1045^7
+ ;;^UTILITY(U,$J,358.3,21087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22427,1,3,0)
- ;;=3^Malig Neop Rectum
- ;;^UTILITY(U,$J,358.3,22427,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,22427,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,22428,0)
- ;;=C64.1^^87^981^154
- ;;^UTILITY(U,$J,358.3,22428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22428,1,3,0)
- ;;=3^Malig Neop Right Kidney,Except Renal pelvis
- ;;^UTILITY(U,$J,358.3,22428,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,22428,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,22429,0)
- ;;=C65.1^^87^981^157

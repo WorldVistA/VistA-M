@@ -1,136 +1,120 @@
-IBDEI1FQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24382,0)
- ;;=F43.0^^90^1070^1
- ;;^UTILITY(U,$J,358.3,24382,1,0)
+ ;;^UTILITY(U,$J,358.3,22957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24382,1,3,0)
- ;;=3^Acute Stress Disorder
- ;;^UTILITY(U,$J,358.3,24382,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,24382,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,24383,0)
- ;;=F43.21^^90^1070^3
- ;;^UTILITY(U,$J,358.3,24383,1,0)
+ ;;^UTILITY(U,$J,358.3,22957,1,3,0)
+ ;;=3^Postproc Cardiac Arrest After Cardiac Surg
+ ;;^UTILITY(U,$J,358.3,22957,1,4,0)
+ ;;=4^I97.120
+ ;;^UTILITY(U,$J,358.3,22957,2)
+ ;;=^5008085
+ ;;^UTILITY(U,$J,358.3,22958,0)
+ ;;=I97.121^^105^1166^176
+ ;;^UTILITY(U,$J,358.3,22958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24383,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,24383,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,24383,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,24384,0)
- ;;=F43.22^^90^1070^2
- ;;^UTILITY(U,$J,358.3,24384,1,0)
+ ;;^UTILITY(U,$J,358.3,22958,1,3,0)
+ ;;=3^Postproc Cardiac Arrest After Oth Surg
+ ;;^UTILITY(U,$J,358.3,22958,1,4,0)
+ ;;=4^I97.121
+ ;;^UTILITY(U,$J,358.3,22958,2)
+ ;;=^5008086
+ ;;^UTILITY(U,$J,358.3,22959,0)
+ ;;=I97.130^^105^1166^213
+ ;;^UTILITY(U,$J,358.3,22959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24384,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,24384,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,24384,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,24385,0)
- ;;=F43.23^^90^1070^5
- ;;^UTILITY(U,$J,358.3,24385,1,0)
+ ;;^UTILITY(U,$J,358.3,22959,1,3,0)
+ ;;=3^Postproc Hrt Failure After Cardiac Surg
+ ;;^UTILITY(U,$J,358.3,22959,1,4,0)
+ ;;=4^I97.130
+ ;;^UTILITY(U,$J,358.3,22959,2)
+ ;;=^5008087
+ ;;^UTILITY(U,$J,358.3,22960,0)
+ ;;=I97.131^^105^1166^214
+ ;;^UTILITY(U,$J,358.3,22960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24385,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,24385,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,24385,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,24386,0)
- ;;=F43.24^^90^1070^4
- ;;^UTILITY(U,$J,358.3,24386,1,0)
+ ;;^UTILITY(U,$J,358.3,22960,1,3,0)
+ ;;=3^Postproc Hrt Failure After Oth Surg
+ ;;^UTILITY(U,$J,358.3,22960,1,4,0)
+ ;;=4^I97.131
+ ;;^UTILITY(U,$J,358.3,22960,2)
+ ;;=^5008088
+ ;;^UTILITY(U,$J,358.3,22961,0)
+ ;;=I97.190^^105^1166^177
+ ;;^UTILITY(U,$J,358.3,22961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24386,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,24386,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,24386,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,24387,0)
- ;;=F43.25^^90^1070^6
- ;;^UTILITY(U,$J,358.3,24387,1,0)
+ ;;^UTILITY(U,$J,358.3,22961,1,3,0)
+ ;;=3^Postproc Cardiac Functn Disturb After Cardiac Surg
+ ;;^UTILITY(U,$J,358.3,22961,1,4,0)
+ ;;=4^I97.190
+ ;;^UTILITY(U,$J,358.3,22961,2)
+ ;;=^5008089
+ ;;^UTILITY(U,$J,358.3,22962,0)
+ ;;=I97.191^^105^1166^178
+ ;;^UTILITY(U,$J,358.3,22962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24387,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
- ;;^UTILITY(U,$J,358.3,24387,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,24387,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,24388,0)
- ;;=F43.8^^90^1070^15
- ;;^UTILITY(U,$J,358.3,24388,1,0)
+ ;;^UTILITY(U,$J,358.3,22962,1,3,0)
+ ;;=3^Postproc Cardiac Functn Disturb After Oth Surg
+ ;;^UTILITY(U,$J,358.3,22962,1,4,0)
+ ;;=4^I97.191
+ ;;^UTILITY(U,$J,358.3,22962,2)
+ ;;=^5008090
+ ;;^UTILITY(U,$J,358.3,22963,0)
+ ;;=I97.710^^105^1166^101
+ ;;^UTILITY(U,$J,358.3,22963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24388,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder NEC
- ;;^UTILITY(U,$J,358.3,24388,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,24388,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,24389,0)
- ;;=F43.20^^90^1070^7
- ;;^UTILITY(U,$J,358.3,24389,1,0)
+ ;;^UTILITY(U,$J,358.3,22963,1,3,0)
+ ;;=3^Intraop Cardiac Arrensst During Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,22963,1,4,0)
+ ;;=4^I97.710
+ ;;^UTILITY(U,$J,358.3,22963,2)
+ ;;=^5008103
+ ;;^UTILITY(U,$J,358.3,22964,0)
+ ;;=I97.711^^105^1166^102
+ ;;^UTILITY(U,$J,358.3,22964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24389,1,3,0)
- ;;=3^Adjustment Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24389,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,24389,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,24390,0)
- ;;=F43.9^^90^1070^16
- ;;^UTILITY(U,$J,358.3,24390,1,0)
+ ;;^UTILITY(U,$J,358.3,22964,1,3,0)
+ ;;=3^Intraop Cardiac Arrest During Oth Surgery
+ ;;^UTILITY(U,$J,358.3,22964,1,4,0)
+ ;;=4^I97.711
+ ;;^UTILITY(U,$J,358.3,22964,2)
+ ;;=^5008104
+ ;;^UTILITY(U,$J,358.3,22965,0)
+ ;;=I97.790^^105^1166^103
+ ;;^UTILITY(U,$J,358.3,22965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24390,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24390,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,24390,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,24391,0)
- ;;=F43.11^^90^1070^9
- ;;^UTILITY(U,$J,358.3,24391,1,0)
+ ;;^UTILITY(U,$J,358.3,22965,1,3,0)
+ ;;=3^Intraop Cardiac Functn Disturb During Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,22965,1,4,0)
+ ;;=4^I97.790
+ ;;^UTILITY(U,$J,358.3,22965,2)
+ ;;=^5008105
+ ;;^UTILITY(U,$J,358.3,22966,0)
+ ;;=I97.791^^105^1166^104
+ ;;^UTILITY(U,$J,358.3,22966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24391,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,24391,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,24391,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,24392,0)
- ;;=F43.12^^90^1070^10
- ;;^UTILITY(U,$J,358.3,24392,1,0)
+ ;;^UTILITY(U,$J,358.3,22966,1,3,0)
+ ;;=3^Intraop Cardiac Functn Disturb During Oth Surgery
+ ;;^UTILITY(U,$J,358.3,22966,1,4,0)
+ ;;=4^I97.791
+ ;;^UTILITY(U,$J,358.3,22966,2)
+ ;;=^5008106
+ ;;^UTILITY(U,$J,358.3,22967,0)
+ ;;=J95.88^^105^1166^107
+ ;;^UTILITY(U,$J,358.3,22967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24392,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,24392,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,24392,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,24393,0)
- ;;=F43.10^^90^1070^11
- ;;^UTILITY(U,$J,358.3,24393,1,0)
+ ;;^UTILITY(U,$J,358.3,22967,1,3,0)
+ ;;=3^Intraop Complications of Respiratory System NEC
+ ;;^UTILITY(U,$J,358.3,22967,1,4,0)
+ ;;=4^J95.88
+ ;;^UTILITY(U,$J,358.3,22967,2)
+ ;;=^5008345
+ ;;^UTILITY(U,$J,358.3,22968,0)
+ ;;=J95.89^^105^1166^181
+ ;;^UTILITY(U,$J,358.3,22968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24393,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,24393,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,24393,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,24394,0)
- ;;=F43.8^^90^1070^12
- ;;^UTILITY(U,$J,358.3,24394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24394,1,3,0)
- ;;=3^Reaction to Severe Stress,Other
- ;;^UTILITY(U,$J,358.3,24394,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,24394,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,24395,0)
- ;;=F43.9^^90^1070^13
+ ;;^UTILITY(U,$J,358.3,22968,1,3,0)
+ ;;=3^Postproc Compl/Disorder,Resp Sys NEC
+ ;;^UTILITY(U,$J,358.3,22968,1,4,0)
+ ;;=4^J95.89

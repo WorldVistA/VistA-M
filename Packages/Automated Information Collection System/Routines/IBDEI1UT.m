@@ -1,118 +1,132 @@
-IBDEI1UT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31496,1,3,0)
- ;;=3^28420
- ;;^UTILITY(U,$J,358.3,31497,0)
- ;;=28430^^125^1595^17^^^^1
- ;;^UTILITY(U,$J,358.3,31497,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31497,1,2,0)
- ;;=2^Closed TX of talus fracture; without manipulation 
- ;;^UTILITY(U,$J,358.3,31497,1,3,0)
- ;;=3^28430
- ;;^UTILITY(U,$J,358.3,31498,0)
- ;;=28435^^125^1595^16^^^^1
- ;;^UTILITY(U,$J,358.3,31498,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31498,1,2,0)
- ;;=2^Closed TX of talus fracture; with manipulation 
- ;;^UTILITY(U,$J,358.3,31498,1,3,0)
- ;;=3^28435
- ;;^UTILITY(U,$J,358.3,31499,0)
- ;;=28436^^125^1595^62^^^^1
- ;;^UTILITY(U,$J,358.3,31499,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31499,1,2,0)
- ;;=2^Perc Fixation Talus Fx
- ;;^UTILITY(U,$J,358.3,31499,1,3,0)
- ;;=3^28436
- ;;^UTILITY(U,$J,358.3,31500,0)
- ;;=28445^^125^1595^54^^^^1
- ;;^UTILITY(U,$J,358.3,31500,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31500,1,2,0)
- ;;=2^Open/Closed TX of Talus FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,31500,1,3,0)
- ;;=3^28445
- ;;^UTILITY(U,$J,358.3,31501,0)
- ;;=28450^^125^1595^68^^^^1
- ;;^UTILITY(U,$J,358.3,31501,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31501,1,2,0)
- ;;=2^TX of tarsal bone fracture; without manipulation, each 
- ;;^UTILITY(U,$J,358.3,31501,1,3,0)
- ;;=3^28450
- ;;^UTILITY(U,$J,358.3,31502,0)
- ;;=28455^^125^1595^67^^^^1
- ;;^UTILITY(U,$J,358.3,31502,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31502,1,2,0)
- ;;=2^TX of tarsal bone fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,31502,1,3,0)
- ;;=3^28455
- ;;^UTILITY(U,$J,358.3,31503,0)
- ;;=28456^^125^1595^64^^^^1
- ;;^UTILITY(U,$J,358.3,31503,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31503,1,2,0)
- ;;=2^Perc Fixation Tarsal Fx
- ;;^UTILITY(U,$J,358.3,31503,1,3,0)
- ;;=3^28456
- ;;^UTILITY(U,$J,358.3,31504,0)
- ;;=28465^^125^1595^56^^^^1
- ;;^UTILITY(U,$J,358.3,31504,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31504,1,2,0)
- ;;=2^Open/Closed TX of tarsal FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,31504,1,3,0)
- ;;=3^28465
- ;;^UTILITY(U,$J,358.3,31505,0)
- ;;=28470^^125^1595^14^^^^1
- ;;^UTILITY(U,$J,358.3,31505,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31505,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; without manipulation, eachnt of me
- ;;^UTILITY(U,$J,358.3,31505,1,3,0)
- ;;=3^28470
- ;;^UTILITY(U,$J,358.3,31506,0)
- ;;=28475^^125^1595^13^^^^1
- ;;^UTILITY(U,$J,358.3,31506,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31506,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,31506,1,3,0)
- ;;=3^28475
- ;;^UTILITY(U,$J,358.3,31507,0)
- ;;=28476^^125^1595^59^^^^1
- ;;^UTILITY(U,$J,358.3,31507,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31507,1,2,0)
- ;;=2^Perc Fixation Metatarsal Fx
- ;;^UTILITY(U,$J,358.3,31507,1,3,0)
- ;;=3^28476
- ;;^UTILITY(U,$J,358.3,31508,0)
- ;;=28485^^125^1595^53^^^^1
- ;;^UTILITY(U,$J,358.3,31508,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31508,1,2,0)
- ;;=2^Open/Closed TX of Metatarsal FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,31508,1,3,0)
- ;;=3^28485
- ;;^UTILITY(U,$J,358.3,31509,0)
- ;;=28490^^125^1595^7^^^^1
- ;;^UTILITY(U,$J,358.3,31509,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31509,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; without manipulation
- ;;^UTILITY(U,$J,358.3,31509,1,3,0)
- ;;=3^28490
- ;;^UTILITY(U,$J,358.3,31510,0)
- ;;=28495^^125^1595^8^^^^1
- ;;^UTILITY(U,$J,358.3,31510,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31510,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; with manipulation
- ;;^UTILITY(U,$J,358.3,31510,1,3,0)
- ;;=3^28495
+ ;;^UTILITY(U,$J,358.3,29612,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,29612,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,29613,0)
+ ;;=F95.0^^118^1498^23
+ ;;^UTILITY(U,$J,358.3,29613,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29613,1,3,0)
+ ;;=3^Provisional Tic D/O
+ ;;^UTILITY(U,$J,358.3,29613,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,29613,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,29614,0)
+ ;;=F80.0^^118^1498^22
+ ;;^UTILITY(U,$J,358.3,29614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29614,1,3,0)
+ ;;=3^Phonological D/O
+ ;;^UTILITY(U,$J,358.3,29614,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,29614,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,29615,0)
+ ;;=F98.4^^118^1498^26
+ ;;^UTILITY(U,$J,358.3,29615,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29615,1,3,0)
+ ;;=3^Stereotypic Movement D/O
+ ;;^UTILITY(U,$J,358.3,29615,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,29615,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,29616,0)
+ ;;=F95.8^^118^1498^27
+ ;;^UTILITY(U,$J,358.3,29616,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29616,1,3,0)
+ ;;=3^Tic D/O,Oth Specified
+ ;;^UTILITY(U,$J,358.3,29616,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,29616,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,29617,0)
+ ;;=F95.9^^118^1498^28
+ ;;^UTILITY(U,$J,358.3,29617,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29617,1,3,0)
+ ;;=3^Tic D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29617,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,29617,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,29618,0)
+ ;;=F95.2^^118^1498^29
+ ;;^UTILITY(U,$J,358.3,29618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29618,1,3,0)
+ ;;=3^Tourette's D/O
+ ;;^UTILITY(U,$J,358.3,29618,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,29618,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,29619,0)
+ ;;=F98.5^^118^1498^6
+ ;;^UTILITY(U,$J,358.3,29619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29619,1,3,0)
+ ;;=3^Adult-Onset Fluency D/O
+ ;;^UTILITY(U,$J,358.3,29619,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,29619,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,29620,0)
+ ;;=F90.2^^118^1498^1
+ ;;^UTILITY(U,$J,358.3,29620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29620,1,3,0)
+ ;;=3^ADHD,Combined Presentation
+ ;;^UTILITY(U,$J,358.3,29620,1,4,0)
+ ;;=4^F90.2
+ ;;^UTILITY(U,$J,358.3,29620,2)
+ ;;=^5003694
+ ;;^UTILITY(U,$J,358.3,29621,0)
+ ;;=F90.1^^118^1498^2
+ ;;^UTILITY(U,$J,358.3,29621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29621,1,3,0)
+ ;;=3^ADHD,Hyperactive/Impulsive Presentation
+ ;;^UTILITY(U,$J,358.3,29621,1,4,0)
+ ;;=4^F90.1
+ ;;^UTILITY(U,$J,358.3,29621,2)
+ ;;=^5003693
+ ;;^UTILITY(U,$J,358.3,29622,0)
+ ;;=F90.0^^118^1498^4
+ ;;^UTILITY(U,$J,358.3,29622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29622,1,3,0)
+ ;;=3^ADHD,Predominantly Inattentive Presentation
+ ;;^UTILITY(U,$J,358.3,29622,1,4,0)
+ ;;=4^F90.0
+ ;;^UTILITY(U,$J,358.3,29622,2)
+ ;;=^5003692
+ ;;^UTILITY(U,$J,358.3,29623,0)
+ ;;=F80.81^^118^1498^8
+ ;;^UTILITY(U,$J,358.3,29623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29623,1,3,0)
+ ;;=3^Child-Onset Fluency D/O (Stuttering)
+ ;;^UTILITY(U,$J,358.3,29623,1,4,0)
+ ;;=4^F80.81
+ ;;^UTILITY(U,$J,358.3,29623,2)
+ ;;=^5003676
+ ;;^UTILITY(U,$J,358.3,29624,0)
+ ;;=F70.^^118^1498^12
+ ;;^UTILITY(U,$J,358.3,29624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29624,1,3,0)
+ ;;=3^Intellectual Disability,Mild
+ ;;^UTILITY(U,$J,358.3,29624,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,29624,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,29625,0)
+ ;;=F71.^^118^1498^13
+ ;;^UTILITY(U,$J,358.3,29625,1,0)
+ ;;=^358.31IA^4^2

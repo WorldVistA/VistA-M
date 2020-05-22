@@ -1,130 +1,120 @@
-IBDEI2PG ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45395,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,45395,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,45395,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,45396,0)
- ;;=I83.219^^200^2243^4
- ;;^UTILITY(U,$J,358.3,45396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45396,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,45396,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,45396,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,45397,0)
- ;;=I83.029^^200^2243^1
- ;;^UTILITY(U,$J,358.3,45397,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45397,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,45397,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,45397,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,45398,0)
- ;;=I83.229^^200^2243^2
- ;;^UTILITY(U,$J,358.3,45398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45398,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,45398,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,45398,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,45399,0)
- ;;=B00.81^^200^2244^25
- ;;^UTILITY(U,$J,358.3,45399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45399,1,3,0)
- ;;=3^Herpesviral Hepatitis
- ;;^UTILITY(U,$J,358.3,45399,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,45399,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,45400,0)
- ;;=D25.9^^200^2244^31
- ;;^UTILITY(U,$J,358.3,45400,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45400,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,45400,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,45400,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,45401,0)
- ;;=F52.9^^200^2244^55
- ;;^UTILITY(U,$J,358.3,45401,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45401,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,45401,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,45401,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,45402,0)
- ;;=R37.^^200^2244^56
- ;;^UTILITY(U,$J,358.3,45402,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45402,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,45402,1,4,0)
- ;;=4^R37.
- ;;^UTILITY(U,$J,358.3,45402,2)
- ;;=^5019339
- ;;^UTILITY(U,$J,358.3,45403,0)
- ;;=N60.01^^200^2244^59
- ;;^UTILITY(U,$J,358.3,45403,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45403,1,3,0)
- ;;=3^Solitary Cyst of Right Breast
- ;;^UTILITY(U,$J,358.3,45403,1,4,0)
- ;;=4^N60.01
- ;;^UTILITY(U,$J,358.3,45403,2)
- ;;=^5015770
- ;;^UTILITY(U,$J,358.3,45404,0)
- ;;=N60.02^^200^2244^58
- ;;^UTILITY(U,$J,358.3,45404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45404,1,3,0)
- ;;=3^Solitary Cyst of Left Breast
- ;;^UTILITY(U,$J,358.3,45404,1,4,0)
- ;;=4^N60.02
- ;;^UTILITY(U,$J,358.3,45404,2)
- ;;=^5015771
- ;;^UTILITY(U,$J,358.3,45405,0)
- ;;=N60.09^^200^2244^60
- ;;^UTILITY(U,$J,358.3,45405,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45405,1,3,0)
- ;;=3^Solitary Cyst of Unspec Breast
- ;;^UTILITY(U,$J,358.3,45405,1,4,0)
- ;;=4^N60.09
- ;;^UTILITY(U,$J,358.3,45405,2)
- ;;=^5015772
- ;;^UTILITY(U,$J,358.3,45406,0)
- ;;=N60.11^^200^2244^12
- ;;^UTILITY(U,$J,358.3,45406,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45406,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Right Breast
- ;;^UTILITY(U,$J,358.3,45406,1,4,0)
- ;;=4^N60.11
- ;;^UTILITY(U,$J,358.3,45406,2)
- ;;=^5015773
- ;;^UTILITY(U,$J,358.3,45407,0)
- ;;=N60.12^^200^2244^11
- ;;^UTILITY(U,$J,358.3,45407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45407,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Left Breast
- ;;^UTILITY(U,$J,358.3,45407,1,4,0)
- ;;=4^N60.12
- ;;^UTILITY(U,$J,358.3,45407,2)
- ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,43109,1,3,0)
+ ;;=3^INJ Epidural, foramen, L/S
+ ;;^UTILITY(U,$J,358.3,43110,0)
+ ;;=64484^^156^2086^5^^^^1
+ ;;^UTILITY(U,$J,358.3,43110,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43110,1,2,0)
+ ;;=2^64484
+ ;;^UTILITY(U,$J,358.3,43110,1,3,0)
+ ;;=3^INJ Epidural, L/S Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,43111,0)
+ ;;=64633^^156^2086^1^^^^1
+ ;;^UTILITY(U,$J,358.3,43111,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43111,1,2,0)
+ ;;=2^64633
+ ;;^UTILITY(U,$J,358.3,43111,1,3,0)
+ ;;=3^DESTR PARAVERT Nerve C/T, single
+ ;;^UTILITY(U,$J,358.3,43112,0)
+ ;;=64634^^156^2086^4^^^^1
+ ;;^UTILITY(U,$J,358.3,43112,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43112,1,2,0)
+ ;;=2^64634
+ ;;^UTILITY(U,$J,358.3,43112,1,3,0)
+ ;;=3^Destr PN C/T,Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,43113,0)
+ ;;=64635^^156^2086^2^^^^1
+ ;;^UTILITY(U,$J,358.3,43113,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43113,1,2,0)
+ ;;=2^64635
+ ;;^UTILITY(U,$J,358.3,43113,1,3,0)
+ ;;=3^DESTR PARAVERT Nerve L/S, single
+ ;;^UTILITY(U,$J,358.3,43114,0)
+ ;;=64636^^156^2086^3^^^^1
+ ;;^UTILITY(U,$J,358.3,43114,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43114,1,2,0)
+ ;;=2^64636
+ ;;^UTILITY(U,$J,358.3,43114,1,3,0)
+ ;;=3^DESTR PN L/S, Ea Addl Level
+ ;;^UTILITY(U,$J,358.3,43115,0)
+ ;;=64490^^156^2086^11^^^^1
+ ;;^UTILITY(U,$J,358.3,43115,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43115,1,2,0)
+ ;;=2^64490
+ ;;^UTILITY(U,$J,358.3,43115,1,3,0)
+ ;;=3^INJ PARAVERT Joint C/T, Single
+ ;;^UTILITY(U,$J,358.3,43116,0)
+ ;;=64491^^156^2086^13^^^^1
+ ;;^UTILITY(U,$J,358.3,43116,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43116,1,2,0)
+ ;;=2^64491
+ ;;^UTILITY(U,$J,358.3,43116,1,3,0)
+ ;;=3^INJ PV Joint C/T, second level
+ ;;^UTILITY(U,$J,358.3,43117,0)
+ ;;=64492^^156^2086^14^^^^1
+ ;;^UTILITY(U,$J,358.3,43117,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43117,1,2,0)
+ ;;=2^64492
+ ;;^UTILITY(U,$J,358.3,43117,1,3,0)
+ ;;=3^INJ PV Joint C/T, third or more
+ ;;^UTILITY(U,$J,358.3,43118,0)
+ ;;=64493^^156^2086^12^^^^1
+ ;;^UTILITY(U,$J,358.3,43118,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43118,1,2,0)
+ ;;=2^64493
+ ;;^UTILITY(U,$J,358.3,43118,1,3,0)
+ ;;=3^INJ PARAVERT Joint L/S, Single
+ ;;^UTILITY(U,$J,358.3,43119,0)
+ ;;=64494^^156^2086^15^^^^1
+ ;;^UTILITY(U,$J,358.3,43119,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43119,1,2,0)
+ ;;=2^64494
+ ;;^UTILITY(U,$J,358.3,43119,1,3,0)
+ ;;=3^INJ PV Joint L/S, second level
+ ;;^UTILITY(U,$J,358.3,43120,0)
+ ;;=64495^^156^2086^16^^^^1
+ ;;^UTILITY(U,$J,358.3,43120,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43120,1,2,0)
+ ;;=2^64495
+ ;;^UTILITY(U,$J,358.3,43120,1,3,0)
+ ;;=3^INJ PV Joint L/S, third or more
+ ;;^UTILITY(U,$J,358.3,43121,0)
+ ;;=62320^^156^2086^9^^^^1
+ ;;^UTILITY(U,$J,358.3,43121,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43121,1,2,0)
+ ;;=2^62320
+ ;;^UTILITY(U,$J,358.3,43121,1,3,0)
+ ;;=3^INJ Epidural/Subarachnoid,C/T
+ ;;^UTILITY(U,$J,358.3,43122,0)
+ ;;=62322^^156^2086^10^^^^1
+ ;;^UTILITY(U,$J,358.3,43122,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43122,1,2,0)
+ ;;=2^62322
+ ;;^UTILITY(U,$J,358.3,43122,1,3,0)
+ ;;=3^INJ Epidural/Subarachnoid,L/S
+ ;;^UTILITY(U,$J,358.3,43123,0)
+ ;;=A6196^^156^2087^1^^^^1
+ ;;^UTILITY(U,$J,358.3,43123,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43123,1,2,0)
+ ;;=2^A6196
+ ;;^UTILITY(U,$J,358.3,43123,1,3,0)
+ ;;=3^Alginate dressing, 16 sq IN or < EA
+ ;;^UTILITY(U,$J,358.3,43124,0)
+ ;;=A6222^^156^2087^2^^^^1

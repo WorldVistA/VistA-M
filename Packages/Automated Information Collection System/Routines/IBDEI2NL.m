@@ -1,132 +1,116 @@
-IBDEI2NL ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44529,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,44529,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,44529,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,44530,0)
- ;;=Z85.46^^200^2229^96
- ;;^UTILITY(U,$J,358.3,44530,1,0)
+ ;;^UTILITY(U,$J,358.3,42333,1,3,0)
+ ;;=3^Nondisp fx of base of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42333,1,4,0)
+ ;;=4^S62.342S
+ ;;^UTILITY(U,$J,358.3,42333,2)
+ ;;=^5034059
+ ;;^UTILITY(U,$J,358.3,42334,0)
+ ;;=S62.367S^^155^2069^95
+ ;;^UTILITY(U,$J,358.3,42334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44530,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,44530,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,44530,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,44531,0)
- ;;=Z85.47^^200^2229^100
- ;;^UTILITY(U,$J,358.3,44531,1,0)
+ ;;^UTILITY(U,$J,358.3,42334,1,3,0)
+ ;;=3^Nondisp fx of neck of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42334,1,4,0)
+ ;;=4^S62.367S
+ ;;^UTILITY(U,$J,358.3,42334,2)
+ ;;=^5034234
+ ;;^UTILITY(U,$J,358.3,42335,0)
+ ;;=S62.366S^^155^2069^96
+ ;;^UTILITY(U,$J,358.3,42335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44531,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,44531,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,44531,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,44532,0)
- ;;=Z85.51^^200^2229^84
- ;;^UTILITY(U,$J,358.3,44532,1,0)
+ ;;^UTILITY(U,$J,358.3,42335,1,3,0)
+ ;;=3^Nondisp fx of neck of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42335,1,4,0)
+ ;;=4^S62.366S
+ ;;^UTILITY(U,$J,358.3,42335,2)
+ ;;=^5034227
+ ;;^UTILITY(U,$J,358.3,42336,0)
+ ;;=S62.255S^^155^2069^87
+ ;;^UTILITY(U,$J,358.3,42336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44532,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,44532,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,44532,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,44533,0)
- ;;=Z85.528^^200^2229^89
- ;;^UTILITY(U,$J,358.3,44533,1,0)
+ ;;^UTILITY(U,$J,358.3,42336,1,3,0)
+ ;;=3^Nondisp fx of neck of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42336,1,4,0)
+ ;;=4^S62.255S
+ ;;^UTILITY(U,$J,358.3,42336,2)
+ ;;=^5033744
+ ;;^UTILITY(U,$J,358.3,42337,0)
+ ;;=S62.254S^^155^2069^88
+ ;;^UTILITY(U,$J,358.3,42337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44533,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,44533,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,44533,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,44534,0)
- ;;=Z85.6^^200^2229^80
- ;;^UTILITY(U,$J,358.3,44534,1,0)
+ ;;^UTILITY(U,$J,358.3,42337,1,3,0)
+ ;;=3^Nondisp fx of neck of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42337,1,4,0)
+ ;;=4^S62.254S
+ ;;^UTILITY(U,$J,358.3,42337,2)
+ ;;=^5033737
+ ;;^UTILITY(U,$J,358.3,42338,0)
+ ;;=S62.365S^^155^2069^93
+ ;;^UTILITY(U,$J,358.3,42338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44534,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,44534,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,44534,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,44535,0)
- ;;=Z85.72^^200^2229^104
- ;;^UTILITY(U,$J,358.3,44535,1,0)
+ ;;^UTILITY(U,$J,358.3,42338,1,3,0)
+ ;;=3^Nondisp fx of neck of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42338,1,4,0)
+ ;;=4^S62.365S
+ ;;^UTILITY(U,$J,358.3,42338,2)
+ ;;=^5034220
+ ;;^UTILITY(U,$J,358.3,42339,0)
+ ;;=S62.364S^^155^2069^94
+ ;;^UTILITY(U,$J,358.3,42339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44535,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,44535,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,44535,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,44536,0)
- ;;=Z85.79^^200^2229^94
- ;;^UTILITY(U,$J,358.3,44536,1,0)
+ ;;^UTILITY(U,$J,358.3,42339,1,3,0)
+ ;;=3^Nondisp fx of neck of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42339,1,4,0)
+ ;;=4^S62.364S
+ ;;^UTILITY(U,$J,358.3,42339,2)
+ ;;=^5034213
+ ;;^UTILITY(U,$J,358.3,42340,0)
+ ;;=S62.361S^^155^2069^89
+ ;;^UTILITY(U,$J,358.3,42340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44536,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,44536,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,44536,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,44537,0)
- ;;=Z85.820^^200^2229^83
- ;;^UTILITY(U,$J,358.3,44537,1,0)
+ ;;^UTILITY(U,$J,358.3,42340,1,3,0)
+ ;;=3^Nondisp fx of neck of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42340,1,4,0)
+ ;;=4^S62.361S
+ ;;^UTILITY(U,$J,358.3,42340,2)
+ ;;=^5034192
+ ;;^UTILITY(U,$J,358.3,42341,0)
+ ;;=S62.360S^^155^2069^90
+ ;;^UTILITY(U,$J,358.3,42341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44537,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,44537,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,44537,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,44538,0)
- ;;=Z85.828^^200^2229^98
- ;;^UTILITY(U,$J,358.3,44538,1,0)
+ ;;^UTILITY(U,$J,358.3,42341,1,3,0)
+ ;;=3^Nondisp fx of neck of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42341,1,4,0)
+ ;;=4^S62.360S
+ ;;^UTILITY(U,$J,358.3,42341,2)
+ ;;=^5034185
+ ;;^UTILITY(U,$J,358.3,42342,0)
+ ;;=S62.363S^^155^2069^91
+ ;;^UTILITY(U,$J,358.3,42342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44538,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,44538,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,44538,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,44539,0)
- ;;=Z85.71^^200^2229^78
- ;;^UTILITY(U,$J,358.3,44539,1,0)
+ ;;^UTILITY(U,$J,358.3,42342,1,3,0)
+ ;;=3^Nondisp fx of neck of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42342,1,4,0)
+ ;;=4^S62.363S
+ ;;^UTILITY(U,$J,358.3,42342,2)
+ ;;=^5034206
+ ;;^UTILITY(U,$J,358.3,42343,0)
+ ;;=S62.362S^^155^2069^92
+ ;;^UTILITY(U,$J,358.3,42343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44539,1,3,0)
- ;;=3^Personal Hx of Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,44539,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,44539,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,44540,0)
- ;;=Z65.8^^200^2229^138
- ;;^UTILITY(U,$J,358.3,44540,1,0)
+ ;;^UTILITY(U,$J,358.3,42343,1,3,0)
+ ;;=3^Nondisp fx of neck of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42343,1,4,0)
+ ;;=4^S62.362S
+ ;;^UTILITY(U,$J,358.3,42343,2)
+ ;;=^5034199
+ ;;^UTILITY(U,$J,358.3,42344,0)
+ ;;=S62.357S^^155^2069^115
+ ;;^UTILITY(U,$J,358.3,42344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44540,1,3,0)
- ;;=3^Psychosocial Circumstance Related Problems
- ;;^UTILITY(U,$J,358.3,44540,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,44540,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,44541,0)
- ;;=Z86.11^^200^2229^115
- ;;^UTILITY(U,$J,358.3,44541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44541,1,3,0)
- ;;=3^Personal Hx of Tuberculosis
- ;;^UTILITY(U,$J,358.3,44541,1,4,0)
- ;;=4^Z86.11
- ;;^UTILITY(U,$J,358.3,44541,2)
- ;;=^5063461
- ;;^UTILITY(U,$J,358.3,44542,0)
- ;;=Z86.13^^200^2229^82
+ ;;^UTILITY(U,$J,358.3,42344,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, left hand, sequela

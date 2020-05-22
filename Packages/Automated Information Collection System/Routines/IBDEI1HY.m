@@ -1,136 +1,128 @@
-IBDEI1HY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25404,1,0)
+ ;;^UTILITY(U,$J,358.3,23942,0)
+ ;;=M54.12^^107^1196^64
+ ;;^UTILITY(U,$J,358.3,23942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25404,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25404,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,25404,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,25405,0)
- ;;=F52.32^^95^1163^1
- ;;^UTILITY(U,$J,358.3,25405,1,0)
+ ;;^UTILITY(U,$J,358.3,23942,1,3,0)
+ ;;=3^Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,23942,1,4,0)
+ ;;=4^M54.12
+ ;;^UTILITY(U,$J,358.3,23942,2)
+ ;;=^5012297
+ ;;^UTILITY(U,$J,358.3,23943,0)
+ ;;=M54.17^^107^1196^65
+ ;;^UTILITY(U,$J,358.3,23943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25405,1,3,0)
- ;;=3^Delayed Ejaculation
- ;;^UTILITY(U,$J,358.3,25405,1,4,0)
- ;;=4^F52.32
- ;;^UTILITY(U,$J,358.3,25405,2)
- ;;=^331927
- ;;^UTILITY(U,$J,358.3,25406,0)
- ;;=F52.21^^95^1163^2
- ;;^UTILITY(U,$J,358.3,25406,1,0)
+ ;;^UTILITY(U,$J,358.3,23943,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,23943,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,23943,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,23944,0)
+ ;;=M54.30^^107^1196^67
+ ;;^UTILITY(U,$J,358.3,23944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25406,1,3,0)
- ;;=3^Erectile Disorder
- ;;^UTILITY(U,$J,358.3,25406,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,25406,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,25407,0)
- ;;=F52.31^^95^1163^3
- ;;^UTILITY(U,$J,358.3,25407,1,0)
+ ;;^UTILITY(U,$J,358.3,23944,1,3,0)
+ ;;=3^Sciatica
+ ;;^UTILITY(U,$J,358.3,23944,1,4,0)
+ ;;=4^M54.30
+ ;;^UTILITY(U,$J,358.3,23944,2)
+ ;;=^5012305
+ ;;^UTILITY(U,$J,358.3,23945,0)
+ ;;=M48.02^^107^1196^76
+ ;;^UTILITY(U,$J,358.3,23945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25407,1,3,0)
- ;;=3^Female Orgasmic Disorder
- ;;^UTILITY(U,$J,358.3,25407,1,4,0)
- ;;=4^F52.31
- ;;^UTILITY(U,$J,358.3,25407,2)
- ;;=^331926
- ;;^UTILITY(U,$J,358.3,25408,0)
- ;;=F52.22^^95^1163^4
- ;;^UTILITY(U,$J,358.3,25408,1,0)
+ ;;^UTILITY(U,$J,358.3,23945,1,3,0)
+ ;;=3^Spinal Stenosis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,23945,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,23945,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,23946,0)
+ ;;=Z51.81^^107^1197^17
+ ;;^UTILITY(U,$J,358.3,23946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25408,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,25408,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,25408,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,25409,0)
- ;;=F52.6^^95^1163^5
- ;;^UTILITY(U,$J,358.3,25409,1,0)
+ ;;^UTILITY(U,$J,358.3,23946,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,23946,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,23946,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,23947,0)
+ ;;=Z02.79^^107^1197^11
+ ;;^UTILITY(U,$J,358.3,23947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25409,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,25409,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,25409,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,25410,0)
- ;;=F52.0^^95^1163^6
- ;;^UTILITY(U,$J,358.3,25410,1,0)
+ ;;^UTILITY(U,$J,358.3,23947,1,3,0)
+ ;;=3^Issue of Medical Certificate NEC
+ ;;^UTILITY(U,$J,358.3,23947,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,23947,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,23948,0)
+ ;;=Z76.0^^107^1197^12
+ ;;^UTILITY(U,$J,358.3,23948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25410,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,25410,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,25410,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,25411,0)
- ;;=F52.4^^95^1163^7
- ;;^UTILITY(U,$J,358.3,25411,1,0)
+ ;;^UTILITY(U,$J,358.3,23948,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,23948,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,23948,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,23949,0)
+ ;;=Z04.9^^107^1197^3
+ ;;^UTILITY(U,$J,358.3,23949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25411,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,25411,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,25411,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,25412,0)
- ;;=F52.8^^95^1163^9
- ;;^UTILITY(U,$J,358.3,25412,1,0)
+ ;;^UTILITY(U,$J,358.3,23949,1,3,0)
+ ;;=3^Exam & Observation for Unsp Reason
+ ;;^UTILITY(U,$J,358.3,23949,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,23949,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,23950,0)
+ ;;=Z02.2^^107^1197^4
+ ;;^UTILITY(U,$J,358.3,23950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25412,1,3,0)
- ;;=3^Sexual Dysfuntion NEC
- ;;^UTILITY(U,$J,358.3,25412,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,25412,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,25413,0)
- ;;=F52.9^^95^1163^8
- ;;^UTILITY(U,$J,358.3,25413,1,0)
+ ;;^UTILITY(U,$J,358.3,23950,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,23950,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,23950,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,23951,0)
+ ;;=Z02.4^^107^1197^5
+ ;;^UTILITY(U,$J,358.3,23951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25413,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,25413,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,25413,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,25414,0)
- ;;=G47.09^^95^1164^14
- ;;^UTILITY(U,$J,358.3,25414,1,0)
+ ;;^UTILITY(U,$J,358.3,23951,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,23951,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,23951,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,23952,0)
+ ;;=Z00.5^^107^1197^7
+ ;;^UTILITY(U,$J,358.3,23952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25414,1,3,0)
- ;;=3^Insomnia,Other
- ;;^UTILITY(U,$J,358.3,25414,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,25414,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,25415,0)
- ;;=G47.00^^95^1164^15
- ;;^UTILITY(U,$J,358.3,25415,1,0)
+ ;;^UTILITY(U,$J,358.3,23952,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,23952,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,23952,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,23953,0)
+ ;;=Z02.3^^107^1197^6
+ ;;^UTILITY(U,$J,358.3,23953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25415,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,25415,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,25415,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,25416,0)
- ;;=G47.10^^95^1164^12
- ;;^UTILITY(U,$J,358.3,25416,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25416,1,3,0)
- ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,25416,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,25416,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,25417,0)
- ;;=G47.419^^95^1164^17
- ;;^UTILITY(U,$J,358.3,25417,1,0)
+ ;;^UTILITY(U,$J,358.3,23953,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,23953,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,23953,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,23954,0)
+ ;;=Z02.89^^107^1197^1
+ ;;^UTILITY(U,$J,358.3,23954,1,0)
  ;;=^358.31IA^4^2

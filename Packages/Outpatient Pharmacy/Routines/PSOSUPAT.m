@@ -1,8 +1,8 @@
 PSOSUPAT ;BIR/RTR - Pull all Rx's from suspense for a patient ;03/01/96
- ;;7.0;OUTPATIENT PHARMACY;**8,130,185,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**8,130,185,427,544**;DEC 1997;Build 19
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSLOCK supported by DBIA 2789
-PAT N PSOALRX,PSOALRXS
+PAT N PSOALRX,PSOALRXS,PSOSKIP
  S POP=0 K RXP,RXRR,RXFL,RXRP,RXPR,ASKED,BC,DELCNT,WARN,PSOAL,PSOPROFL,PSOQFLAG,PSOPULL,PSOWIN,PSOWINEN,PPLHOLD,PPLHOLDX
  W ! S DIR("A")="Are you entering the patient name or barcode",DIR(0)="SBO^P:Patient Name;B:Barcode"
  S DIR("?")="Enter P if you are going to enter the patient name. Enter B if you are going to enter or wand the barcode."
@@ -49,11 +49,18 @@ NAM I BC="P" W ! S DIC(0)="AEMZQ",DIC="^DPT(",DIC("S")="I $D(^PS(52.5,""AC"",+Y)
  S RXREC="" F  S RXREC=$O(PSOALRXS(RXREC)) Q:RXREC=""  D
  . ; Resubmit to ECME if needed and check results
  . N RFL S RFL=$P(PSOALRXS(RXREC),U,1) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
- . D ECMESND^PSOBPSU1(RXREC,RFL,,"PE")
- . I $$PSOET^PSOREJP3(RXREC,RFL) Q  ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code
- . N PSOTRIC S PSOTRIC=$$TRIC^PSOREJP1(RXREC,RFL)
- . I $$FIND^PSOREJUT(RXREC,RFL),$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PE","IOQ","I")="Q" Q
- . I $P($G(^PSRX(RXREC,"STA")),"^")=12 Q  ;No label if discontinued via Reject Notification screen
+ . ;
+ . ; Do not send a claim if the last submission was rejected and
+ . ; all rejects have been closed.
+ . ;
+ . S PSOSKIP=0
+ . I $$SEND^PSOBPSU2(RXREC,RFL) D  I PSOSKIP Q
+ . . D ECMESND^PSOBPSU1(RXREC,RFL,,"PE")
+ . . I $$PSOET^PSOREJP3(RXREC,RFL) S PSOSKIP=1 Q  ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code
+ . . N PSOTRIC S PSOTRIC=$$TRIC^PSOREJP1(RXREC,RFL)
+ . . I $$FIND^PSOREJUT(RXREC,RFL),$$HDLG^PSOREJU1(RXREC,RFL,"79,88","PE","IOQ","I")="Q" S PSOSKIP=1 Q
+ . . I $P($G(^PSRX(RXREC,"STA")),"^")=12 S PSOSKIP=1 Q  ;No label if discontinued via Reject Notification screen
+ . . Q
  . ;
  . ; Put on queue to be printed
  . S SFN=$P(PSOALRXS(RXREC),U,2)

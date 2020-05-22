@@ -1,126 +1,130 @@
-IBDEI1MJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27549,1,4,0)
- ;;=4^N07.2
- ;;^UTILITY(U,$J,358.3,27549,2)
- ;;=^5015561
- ;;^UTILITY(U,$J,358.3,27550,0)
- ;;=N07.3^^106^1363^25
- ;;^UTILITY(U,$J,358.3,27550,1,0)
+ ;;^UTILITY(U,$J,358.3,25948,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,25948,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,25949,0)
+ ;;=N92.1^^107^1227^39
+ ;;^UTILITY(U,$J,358.3,25949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27550,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27550,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,27550,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,27551,0)
- ;;=N07.3^^106^1363^26
- ;;^UTILITY(U,$J,358.3,27551,1,0)
+ ;;^UTILITY(U,$J,358.3,25949,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Irregular Cycle
+ ;;^UTILITY(U,$J,358.3,25949,1,4,0)
+ ;;=4^N92.1
+ ;;^UTILITY(U,$J,358.3,25949,2)
+ ;;=^5015909
+ ;;^UTILITY(U,$J,358.3,25950,0)
+ ;;=Z08.^^107^1227^41
+ ;;^UTILITY(U,$J,358.3,25950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27551,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27551,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,27551,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,27552,0)
- ;;=N07.4^^106^1363^23
- ;;^UTILITY(U,$J,358.3,27552,1,0)
+ ;;^UTILITY(U,$J,358.3,25950,1,3,0)
+ ;;=3^F/U Exam After Malig Neop Treatment
+ ;;^UTILITY(U,$J,358.3,25950,1,4,0)
+ ;;=4^Z08.
+ ;;^UTILITY(U,$J,358.3,25950,2)
+ ;;=^5062667
+ ;;^UTILITY(U,$J,358.3,25951,0)
+ ;;=Z80.3^^107^1227^42
+ ;;^UTILITY(U,$J,358.3,25951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27552,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27552,1,4,0)
- ;;=4^N07.4
- ;;^UTILITY(U,$J,358.3,27552,2)
- ;;=^5015563
- ;;^UTILITY(U,$J,358.3,27553,0)
- ;;=N07.5^^106^1363^27
- ;;^UTILITY(U,$J,358.3,27553,1,0)
+ ;;^UTILITY(U,$J,358.3,25951,1,3,0)
+ ;;=3^Family Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,25951,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,25951,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,25952,0)
+ ;;=Z80.49^^107^1227^43
+ ;;^UTILITY(U,$J,358.3,25952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27553,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,27553,1,4,0)
- ;;=4^N07.5
- ;;^UTILITY(U,$J,358.3,27553,2)
- ;;=^5015564
- ;;^UTILITY(U,$J,358.3,27554,0)
- ;;=N07.6^^106^1363^22
- ;;^UTILITY(U,$J,358.3,27554,1,0)
+ ;;^UTILITY(U,$J,358.3,25952,1,3,0)
+ ;;=3^Family Hx of Genital Organ CA
+ ;;^UTILITY(U,$J,358.3,25952,1,4,0)
+ ;;=4^Z80.49
+ ;;^UTILITY(U,$J,358.3,25952,2)
+ ;;=^5063351
+ ;;^UTILITY(U,$J,358.3,25953,0)
+ ;;=Z80.41^^107^1227^44
+ ;;^UTILITY(U,$J,358.3,25953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27554,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,27554,1,4,0)
- ;;=4^N07.6
- ;;^UTILITY(U,$J,358.3,27554,2)
- ;;=^5015565
- ;;^UTILITY(U,$J,358.3,27555,0)
- ;;=N07.7^^106^1363^28
- ;;^UTILITY(U,$J,358.3,27555,1,0)
+ ;;^UTILITY(U,$J,358.3,25953,1,3,0)
+ ;;=3^Family Hx of Ovarian CA
+ ;;^UTILITY(U,$J,358.3,25953,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,25953,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,25954,0)
+ ;;=N73.9^^107^1227^47
+ ;;^UTILITY(U,$J,358.3,25954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27555,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse crescentic glomrlneph
- ;;^UTILITY(U,$J,358.3,27555,1,4,0)
- ;;=4^N07.7
- ;;^UTILITY(U,$J,358.3,27555,2)
- ;;=^5015566
- ;;^UTILITY(U,$J,358.3,27556,0)
- ;;=N07.8^^106^1363^31
- ;;^UTILITY(U,$J,358.3,27556,1,0)
+ ;;^UTILITY(U,$J,358.3,25954,1,3,0)
+ ;;=3^Female Pelvic Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,25954,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,25954,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,25955,0)
+ ;;=N60.32^^107^1227^48
+ ;;^UTILITY(U,$J,358.3,25955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27556,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ oth morphologic lesions
- ;;^UTILITY(U,$J,358.3,27556,1,4,0)
- ;;=4^N07.8
- ;;^UTILITY(U,$J,358.3,27556,2)
- ;;=^5015567
- ;;^UTILITY(U,$J,358.3,27557,0)
- ;;=N07.9^^106^1363^32
- ;;^UTILITY(U,$J,358.3,27557,1,0)
+ ;;^UTILITY(U,$J,358.3,25955,1,3,0)
+ ;;=3^Fibrosclerosis,Left Breast
+ ;;^UTILITY(U,$J,358.3,25955,1,4,0)
+ ;;=4^N60.32
+ ;;^UTILITY(U,$J,358.3,25955,2)
+ ;;=^5015780
+ ;;^UTILITY(U,$J,358.3,25956,0)
+ ;;=N60.31^^107^1227^49
+ ;;^UTILITY(U,$J,358.3,25956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27557,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ unsp morphologic lesions
- ;;^UTILITY(U,$J,358.3,27557,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,27557,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,27558,0)
- ;;=N08.^^106^1363^21
- ;;^UTILITY(U,$J,358.3,27558,1,0)
+ ;;^UTILITY(U,$J,358.3,25956,1,3,0)
+ ;;=3^Fibrosclerosis,Right Breast
+ ;;^UTILITY(U,$J,358.3,25956,1,4,0)
+ ;;=4^N60.31
+ ;;^UTILITY(U,$J,358.3,25956,2)
+ ;;=^5015779
+ ;;^UTILITY(U,$J,358.3,25957,0)
+ ;;=Z01.411^^107^1227^50
+ ;;^UTILITY(U,$J,358.3,25957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27558,1,3,0)
- ;;=3^Glomerular disorders in diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,27558,1,4,0)
- ;;=4^N08.
- ;;^UTILITY(U,$J,358.3,27558,2)
- ;;=^5015569
- ;;^UTILITY(U,$J,358.3,27559,0)
- ;;=C90.00^^106^1364^9
- ;;^UTILITY(U,$J,358.3,27559,1,0)
+ ;;^UTILITY(U,$J,358.3,25957,1,3,0)
+ ;;=3^GYN Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,25957,1,4,0)
+ ;;=4^Z01.411
+ ;;^UTILITY(U,$J,358.3,25957,2)
+ ;;=^5062622
+ ;;^UTILITY(U,$J,358.3,25958,0)
+ ;;=Z01.419^^107^1227^1
+ ;;^UTILITY(U,$J,358.3,25958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27559,1,3,0)
- ;;=3^Multiple myeloma not having achieved remission
- ;;^UTILITY(U,$J,358.3,27559,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,27559,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,27560,0)
- ;;=C90.01^^106^1364^8
- ;;^UTILITY(U,$J,358.3,27560,1,0)
+ ;;^UTILITY(U,$J,358.3,25958,1,3,0)
+ ;;=3
+ ;;^UTILITY(U,$J,358.3,25958,1,4,0)
+ ;;=4^Z01.419
+ ;;^UTILITY(U,$J,358.3,25958,2)
+ ;;=^5062623
+ ;;^UTILITY(U,$J,358.3,25959,0)
+ ;;=Z01.419^^107^1227^51
+ ;;^UTILITY(U,$J,358.3,25959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27560,1,3,0)
- ;;=3^Multiple myeloma in remission
- ;;^UTILITY(U,$J,358.3,27560,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,27560,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,27561,0)
- ;;=C90.02^^106^1364^7
- ;;^UTILITY(U,$J,358.3,27561,1,0)
+ ;;^UTILITY(U,$J,358.3,25959,1,3,0)
+ ;;=3^GYN Exam w/ Normal Findings
+ ;;^UTILITY(U,$J,358.3,25959,1,4,0)
+ ;;=4^Z01.419
+ ;;^UTILITY(U,$J,358.3,25959,2)
+ ;;=^5062623
+ ;;^UTILITY(U,$J,358.3,25960,0)
+ ;;=R87.613^^107^1227^53
+ ;;^UTILITY(U,$J,358.3,25960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27561,1,3,0)
- ;;=3^Multiple myeloma in relapse
- ;;^UTILITY(U,$J,358.3,27561,1,4,0)
- ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,25960,1,3,0)
+ ;;=3^HGSIL
+ ;;^UTILITY(U,$J,358.3,25960,1,4,0)
+ ;;=4^R87.613
+ ;;^UTILITY(U,$J,358.3,25960,2)
+ ;;=^5019671
+ ;;^UTILITY(U,$J,358.3,25961,0)
+ ;;=R87.612^^107^1227^63

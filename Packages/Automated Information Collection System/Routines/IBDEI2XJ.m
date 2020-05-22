@@ -1,124 +1,130 @@
-IBDEI2XJ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49152,2)
- ;;=^5033912
- ;;^UTILITY(U,$J,358.3,49153,0)
- ;;=S62.320S^^216^2415^52
- ;;^UTILITY(U,$J,358.3,49153,1,0)
+ ;;^UTILITY(U,$J,358.3,46752,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,46753,0)
+ ;;=N20.2^^179^2331^2
+ ;;^UTILITY(U,$J,358.3,46753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49153,1,3,0)
- ;;=3^Disp fx of shaft of 2nd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,49153,1,4,0)
- ;;=4^S62.320S
- ;;^UTILITY(U,$J,358.3,49153,2)
- ;;=^5033905
- ;;^UTILITY(U,$J,358.3,49154,0)
- ;;=S62.323S^^216^2415^53
- ;;^UTILITY(U,$J,358.3,49154,1,0)
+ ;;^UTILITY(U,$J,358.3,46753,1,3,0)
+ ;;=3^Calculus of kidney w/ calculus of ureter
+ ;;^UTILITY(U,$J,358.3,46753,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,46753,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,46754,0)
+ ;;=N20.1^^179^2331^3
+ ;;^UTILITY(U,$J,358.3,46754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49154,1,3,0)
- ;;=3^Disp fx of shaft of 3rd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,49154,1,4,0)
- ;;=4^S62.323S
- ;;^UTILITY(U,$J,358.3,49154,2)
- ;;=^5033926
- ;;^UTILITY(U,$J,358.3,49155,0)
- ;;=S62.322S^^216^2415^54
- ;;^UTILITY(U,$J,358.3,49155,1,0)
+ ;;^UTILITY(U,$J,358.3,46754,1,3,0)
+ ;;=3^Calculus of ureter
+ ;;^UTILITY(U,$J,358.3,46754,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,46754,2)
+ ;;=^5015608
+ ;;^UTILITY(U,$J,358.3,46755,0)
+ ;;=N28.1^^179^2331^5
+ ;;^UTILITY(U,$J,358.3,46755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49155,1,3,0)
- ;;=3^Disp fx of shaft of 3rd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,49155,1,4,0)
- ;;=4^S62.322S
- ;;^UTILITY(U,$J,358.3,49155,2)
- ;;=^5033919
- ;;^UTILITY(U,$J,358.3,49156,0)
- ;;=S62.222S^^216^2415^59
- ;;^UTILITY(U,$J,358.3,49156,1,0)
+ ;;^UTILITY(U,$J,358.3,46755,1,3,0)
+ ;;=3^Cyst of kidney, acquired
+ ;;^UTILITY(U,$J,358.3,46755,1,4,0)
+ ;;=4^N28.1
+ ;;^UTILITY(U,$J,358.3,46755,2)
+ ;;=^270380
+ ;;^UTILITY(U,$J,358.3,46756,0)
+ ;;=R30.0^^179^2331^6
+ ;;^UTILITY(U,$J,358.3,46756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49156,1,3,0)
- ;;=3^Disp rolando's fx, left hand, sequela
- ;;^UTILITY(U,$J,358.3,49156,1,4,0)
- ;;=4^S62.222S
- ;;^UTILITY(U,$J,358.3,49156,2)
- ;;=^5033597
- ;;^UTILITY(U,$J,358.3,49157,0)
- ;;=S62.221S^^216^2415^60
- ;;^UTILITY(U,$J,358.3,49157,1,0)
+ ;;^UTILITY(U,$J,358.3,46756,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,46756,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,46756,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,46757,0)
+ ;;=R30.9^^179^2331^14
+ ;;^UTILITY(U,$J,358.3,46757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49157,1,3,0)
- ;;=3^Disp rolando's fx, right hand, sequela
- ;;^UTILITY(U,$J,358.3,49157,1,4,0)
- ;;=4^S62.221S
- ;;^UTILITY(U,$J,358.3,49157,2)
- ;;=^5033590
- ;;^UTILITY(U,$J,358.3,49158,0)
- ;;=S62.346S^^216^2415^67
- ;;^UTILITY(U,$J,358.3,49158,1,0)
+ ;;^UTILITY(U,$J,358.3,46757,1,3,0)
+ ;;=3^Painful micturition, Unspec
+ ;;^UTILITY(U,$J,358.3,46757,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,46757,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,46758,0)
+ ;;=S37.001A^^179^2331^13
+ ;;^UTILITY(U,$J,358.3,46758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49158,1,3,0)
- ;;=3^Nondisp fx of base of 5th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,49158,1,4,0)
- ;;=4^S62.346S
- ;;^UTILITY(U,$J,358.3,49158,2)
- ;;=^5034087
- ;;^UTILITY(U,$J,358.3,49159,0)
- ;;=S62.347S^^216^2415^68
- ;;^UTILITY(U,$J,358.3,49159,1,0)
+ ;;^UTILITY(U,$J,358.3,46758,1,3,0)
+ ;;=3^Injury Right Kidney,Init Encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,46758,1,4,0)
+ ;;=4^S37.001A
+ ;;^UTILITY(U,$J,358.3,46758,2)
+ ;;=^5025817
+ ;;^UTILITY(U,$J,358.3,46759,0)
+ ;;=S37.002A^^179^2331^12
+ ;;^UTILITY(U,$J,358.3,46759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49159,1,3,0)
- ;;=3^Nondisp fx of base of 5th MC bone. left hand, sequela
- ;;^UTILITY(U,$J,358.3,49159,1,4,0)
- ;;=4^S62.347S
- ;;^UTILITY(U,$J,358.3,49159,2)
- ;;=^5034094
- ;;^UTILITY(U,$J,358.3,49160,0)
- ;;=S62.345S^^216^2415^65
- ;;^UTILITY(U,$J,358.3,49160,1,0)
+ ;;^UTILITY(U,$J,358.3,46759,1,3,0)
+ ;;=3^Injury Left Kidney,Init Encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,46759,1,4,0)
+ ;;=4^S37.002A
+ ;;^UTILITY(U,$J,358.3,46759,2)
+ ;;=^5025820
+ ;;^UTILITY(U,$J,358.3,46760,0)
+ ;;=N13.2^^179^2331^8
+ ;;^UTILITY(U,$J,358.3,46760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49160,1,3,0)
- ;;=3^Nondisp fx of base of 4th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,49160,1,4,0)
- ;;=4^S62.345S
- ;;^UTILITY(U,$J,358.3,49160,2)
- ;;=^5034080
- ;;^UTILITY(U,$J,358.3,49161,0)
- ;;=S62.344S^^216^2415^66
- ;;^UTILITY(U,$J,358.3,49161,1,0)
+ ;;^UTILITY(U,$J,358.3,46760,1,3,0)
+ ;;=3^Hydroneph w/ Ureteropelv Junction Obstr
+ ;;^UTILITY(U,$J,358.3,46760,1,4,0)
+ ;;=4^N13.2
+ ;;^UTILITY(U,$J,358.3,46760,2)
+ ;;=^5015577
+ ;;^UTILITY(U,$J,358.3,46761,0)
+ ;;=C61.^^179^2332^21
+ ;;^UTILITY(U,$J,358.3,46761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49161,1,3,0)
- ;;=3^Nondisp fx of base of 4th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,49161,1,4,0)
- ;;=4^S62.344S
- ;;^UTILITY(U,$J,358.3,49161,2)
- ;;=^5034073
- ;;^UTILITY(U,$J,358.3,49162,0)
- ;;=S62.340S^^216^2415^61
- ;;^UTILITY(U,$J,358.3,49162,1,0)
+ ;;^UTILITY(U,$J,358.3,46761,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,46761,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,46761,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,46762,0)
+ ;;=C62.12^^179^2332^11
+ ;;^UTILITY(U,$J,358.3,46762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49162,1,3,0)
- ;;=3^Nondisp fx of base of 2nd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,49162,1,4,0)
- ;;=4^S62.340S
- ;;^UTILITY(U,$J,358.3,49162,2)
- ;;=^5034045
- ;;^UTILITY(U,$J,358.3,49163,0)
- ;;=S62.341S^^216^2415^62
- ;;^UTILITY(U,$J,358.3,49163,1,0)
+ ;;^UTILITY(U,$J,358.3,46762,1,3,0)
+ ;;=3^Malig Neop Descended Lt Testis
+ ;;^UTILITY(U,$J,358.3,46762,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,46762,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,46763,0)
+ ;;=C62.11^^179^2332^12
+ ;;^UTILITY(U,$J,358.3,46763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49163,1,3,0)
- ;;=3^Nondisp fx of base of 2nd MC bone. left hand, sequela
- ;;^UTILITY(U,$J,358.3,49163,1,4,0)
- ;;=4^S62.341S
- ;;^UTILITY(U,$J,358.3,49163,2)
- ;;=^5034052
- ;;^UTILITY(U,$J,358.3,49164,0)
- ;;=S62.343S^^216^2415^63
- ;;^UTILITY(U,$J,358.3,49164,1,0)
+ ;;^UTILITY(U,$J,358.3,46763,1,3,0)
+ ;;=3^Malig Neop Descended Rt Testis
+ ;;^UTILITY(U,$J,358.3,46763,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,46763,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,46764,0)
+ ;;=C62.91^^179^2332^26
+ ;;^UTILITY(U,$J,358.3,46764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49164,1,3,0)
- ;;=3^Nondisp fx of base of 3rd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,49164,1,4,0)
- ;;=4^S62.343S
+ ;;^UTILITY(U,$J,358.3,46764,1,3,0)
+ ;;=3^Malig Neop Rt Testis
+ ;;^UTILITY(U,$J,358.3,46764,1,4,0)
+ ;;=4^C62.91
+ ;;^UTILITY(U,$J,358.3,46764,2)
+ ;;=^5001237
+ ;;^UTILITY(U,$J,358.3,46765,0)
+ ;;=C62.92^^179^2332^18
+ ;;^UTILITY(U,$J,358.3,46765,1,0)
+ ;;=^358.31IA^4^2

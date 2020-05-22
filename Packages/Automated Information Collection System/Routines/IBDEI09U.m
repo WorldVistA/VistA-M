@@ -1,370 +1,634 @@
-IBDEI09U ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI09U ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12472,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,12472,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,12473,0)
- ;;=F17.200^^43^608^42
- ;;^UTILITY(U,$J,358.3,12473,1,0)
+ ;;^UTILITY(U,$J,358.3,24111,1,4,0)
+ ;;=4^I69.220
+ ;;^UTILITY(U,$J,358.3,24111,2)
+ ;;=^5007459
+ ;;^UTILITY(U,$J,358.3,24112,0)
+ ;;=I69.290^^76^1001^11
+ ;;^UTILITY(U,$J,358.3,24112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12473,1,3,0)
- ;;=3^Nicotine Dependence,Unspec
- ;;^UTILITY(U,$J,358.3,12473,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,12473,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,12474,0)
- ;;=F17.229^^43^608^39
- ;;^UTILITY(U,$J,358.3,12474,1,0)
+ ;;^UTILITY(U,$J,358.3,24112,1,3,0)
+ ;;=3^Apraxia following other nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,24112,1,4,0)
+ ;;=4^I69.290
+ ;;^UTILITY(U,$J,358.3,24112,2)
+ ;;=^5007484
+ ;;^UTILITY(U,$J,358.3,24113,0)
+ ;;=I69.390^^76^1001^7
+ ;;^UTILITY(U,$J,358.3,24113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12474,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco
- ;;^UTILITY(U,$J,358.3,12474,1,4,0)
- ;;=4^F17.229
- ;;^UTILITY(U,$J,358.3,12474,2)
- ;;=^5003374
- ;;^UTILITY(U,$J,358.3,12475,0)
- ;;=F19.10^^43^608^55
- ;;^UTILITY(U,$J,358.3,12475,1,0)
+ ;;^UTILITY(U,$J,358.3,24113,1,3,0)
+ ;;=3^Apraxia following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,24113,1,4,0)
+ ;;=4^I69.390
+ ;;^UTILITY(U,$J,358.3,24113,2)
+ ;;=^5007515
+ ;;^UTILITY(U,$J,358.3,24114,0)
+ ;;=I69.190^^76^1001^8
+ ;;^UTILITY(U,$J,358.3,24114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12475,1,3,0)
- ;;=3^Substance Abuse,Unspec
- ;;^UTILITY(U,$J,358.3,12475,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,12475,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,12476,0)
- ;;=F15.10^^43^608^54
- ;;^UTILITY(U,$J,358.3,12476,1,0)
+ ;;^UTILITY(U,$J,358.3,24114,1,3,0)
+ ;;=3^Apraxia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,24114,1,4,0)
+ ;;=4^I69.190
+ ;;^UTILITY(U,$J,358.3,24114,2)
+ ;;=^5007452
+ ;;^UTILITY(U,$J,358.3,24115,0)
+ ;;=I69.090^^76^1001^9
+ ;;^UTILITY(U,$J,358.3,24115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12476,1,3,0)
- ;;=3^Stimulant Abuse,Unspec
- ;;^UTILITY(U,$J,358.3,12476,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,12476,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,12477,0)
- ;;=F43.21^^43^608^2
- ;;^UTILITY(U,$J,358.3,12477,1,0)
+ ;;^UTILITY(U,$J,358.3,24115,1,3,0)
+ ;;=3^Apraxia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,24115,1,4,0)
+ ;;=4^I69.090
+ ;;^UTILITY(U,$J,358.3,24115,2)
+ ;;=^5007420
+ ;;^UTILITY(U,$J,358.3,24116,0)
+ ;;=I69.890^^76^1001^10
+ ;;^UTILITY(U,$J,358.3,24116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12477,1,3,0)
- ;;=3^Adjustment d/o w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,12477,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,12477,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,12478,0)
- ;;=G43.909^^43^608^38
- ;;^UTILITY(U,$J,358.3,12478,1,0)
+ ;;^UTILITY(U,$J,358.3,24116,1,3,0)
+ ;;=3^Apraxia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,24116,1,4,0)
+ ;;=4^I69.890
+ ;;^UTILITY(U,$J,358.3,24116,2)
+ ;;=^5007546
+ ;;^UTILITY(U,$J,358.3,24117,0)
+ ;;=I69.393^^76^1001^12
+ ;;^UTILITY(U,$J,358.3,24117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12478,1,3,0)
- ;;=3^Migraine,Unspec
- ;;^UTILITY(U,$J,358.3,12478,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,12478,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,12479,0)
- ;;=H91.90^^43^608^26
- ;;^UTILITY(U,$J,358.3,12479,1,0)
+ ;;^UTILITY(U,$J,358.3,24117,1,3,0)
+ ;;=3^Ataxia following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,24117,1,4,0)
+ ;;=4^I69.393
+ ;;^UTILITY(U,$J,358.3,24117,2)
+ ;;=^5007518
+ ;;^UTILITY(U,$J,358.3,24118,0)
+ ;;=I69.193^^76^1001^13
+ ;;^UTILITY(U,$J,358.3,24118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12479,1,3,0)
- ;;=3^Hearing Loss,Unspecified Ear
- ;;^UTILITY(U,$J,358.3,12479,1,4,0)
- ;;=4^H91.90
- ;;^UTILITY(U,$J,358.3,12479,2)
- ;;=^5006943
- ;;^UTILITY(U,$J,358.3,12480,0)
- ;;=H91.91^^43^608^25
- ;;^UTILITY(U,$J,358.3,12480,1,0)
+ ;;^UTILITY(U,$J,358.3,24118,1,3,0)
+ ;;=3^Ataxia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,24118,1,4,0)
+ ;;=4^I69.193
+ ;;^UTILITY(U,$J,358.3,24118,2)
+ ;;=^5007455
+ ;;^UTILITY(U,$J,358.3,24119,0)
+ ;;=I69.293^^76^1001^16
+ ;;^UTILITY(U,$J,358.3,24119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12480,1,3,0)
- ;;=3^Hearing Loss,Right Ear
- ;;^UTILITY(U,$J,358.3,12480,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,12480,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,12481,0)
- ;;=H91.92^^43^608^24
- ;;^UTILITY(U,$J,358.3,12481,1,0)
+ ;;^UTILITY(U,$J,358.3,24119,1,3,0)
+ ;;=3^Ataxia following other nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,24119,1,4,0)
+ ;;=4^I69.293
+ ;;^UTILITY(U,$J,358.3,24119,2)
+ ;;=^5007487
+ ;;^UTILITY(U,$J,358.3,24120,0)
+ ;;=I69.093^^76^1001^14
+ ;;^UTILITY(U,$J,358.3,24120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12481,1,3,0)
- ;;=3^Hearing Loss,Left Ear
- ;;^UTILITY(U,$J,358.3,12481,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,12481,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,12482,0)
- ;;=H91.93^^43^608^23
- ;;^UTILITY(U,$J,358.3,12482,1,0)
+ ;;^UTILITY(U,$J,358.3,24120,1,3,0)
+ ;;=3^Ataxia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,24120,1,4,0)
+ ;;=4^I69.093
+ ;;^UTILITY(U,$J,358.3,24120,2)
+ ;;=^5007423
+ ;;^UTILITY(U,$J,358.3,24121,0)
+ ;;=I69.893^^76^1001^15
+ ;;^UTILITY(U,$J,358.3,24121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12482,1,3,0)
- ;;=3^Hearing Loss,Bilateral
- ;;^UTILITY(U,$J,358.3,12482,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,12482,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,12483,0)
- ;;=I10.^^43^608^30
- ;;^UTILITY(U,$J,358.3,12483,1,0)
+ ;;^UTILITY(U,$J,358.3,24121,1,3,0)
+ ;;=3^Ataxia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,24121,1,4,0)
+ ;;=4^I69.893
+ ;;^UTILITY(U,$J,358.3,24121,2)
+ ;;=^5007549
+ ;;^UTILITY(U,$J,358.3,24122,0)
+ ;;=I69.391^^76^1001^17
+ ;;^UTILITY(U,$J,358.3,24122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12483,1,3,0)
- ;;=3^Hypertension
- ;;^UTILITY(U,$J,358.3,12483,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,12483,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,12484,0)
- ;;=I50.9^^43^608^14
- ;;^UTILITY(U,$J,358.3,12484,1,0)
+ ;;^UTILITY(U,$J,358.3,24122,1,3,0)
+ ;;=3^Dysphagia following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,24122,1,4,0)
+ ;;=4^I69.391
+ ;;^UTILITY(U,$J,358.3,24122,2)
+ ;;=^5007516
+ ;;^UTILITY(U,$J,358.3,24123,0)
+ ;;=I69.191^^76^1001^18
+ ;;^UTILITY(U,$J,358.3,24123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12484,1,3,0)
- ;;=3^Congestive Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,12484,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,12484,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,12485,0)
- ;;=I67.89^^43^608^13
- ;;^UTILITY(U,$J,358.3,12485,1,0)
+ ;;^UTILITY(U,$J,358.3,24123,1,3,0)
+ ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,24123,1,4,0)
+ ;;=4^I69.191
+ ;;^UTILITY(U,$J,358.3,24123,2)
+ ;;=^5007453
+ ;;^UTILITY(U,$J,358.3,24124,0)
+ ;;=I69.291^^76^1001^20
+ ;;^UTILITY(U,$J,358.3,24124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12485,1,3,0)
- ;;=3^Cerebrovascular Disease,Oth
- ;;^UTILITY(U,$J,358.3,12485,1,4,0)
- ;;=4^I67.89
- ;;^UTILITY(U,$J,358.3,12485,2)
- ;;=^5007388
- ;;^UTILITY(U,$J,358.3,12486,0)
- ;;=J32.8^^43^608^51
- ;;^UTILITY(U,$J,358.3,12486,1,0)
+ ;;^UTILITY(U,$J,358.3,24124,1,3,0)
+ ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,24124,1,4,0)
+ ;;=4^I69.291
+ ;;^UTILITY(U,$J,358.3,24124,2)
+ ;;=^5007485
+ ;;^UTILITY(U,$J,358.3,24125,0)
+ ;;=I69.091^^76^1001^19
+ ;;^UTILITY(U,$J,358.3,24125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12486,1,3,0)
- ;;=3^Sinusitis,Chr,Oth
- ;;^UTILITY(U,$J,358.3,12486,1,4,0)
- ;;=4^J32.8
- ;;^UTILITY(U,$J,358.3,12486,2)
- ;;=^269890
- ;;^UTILITY(U,$J,358.3,12487,0)
- ;;=J32.4^^43^608^50
- ;;^UTILITY(U,$J,358.3,12487,1,0)
+ ;;^UTILITY(U,$J,358.3,24125,1,3,0)
+ ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,24125,1,4,0)
+ ;;=4^I69.091
+ ;;^UTILITY(U,$J,358.3,24125,2)
+ ;;=^5007421
+ ;;^UTILITY(U,$J,358.3,24126,0)
+ ;;=I69.891^^76^1001^21
+ ;;^UTILITY(U,$J,358.3,24126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12487,1,3,0)
- ;;=3^Pansinusitis,Chr
- ;;^UTILITY(U,$J,358.3,12487,1,4,0)
- ;;=4^J32.4
- ;;^UTILITY(U,$J,358.3,12487,2)
- ;;=^5008206
- ;;^UTILITY(U,$J,358.3,12488,0)
- ;;=J40.^^43^608^8
- ;;^UTILITY(U,$J,358.3,12488,1,0)
+ ;;^UTILITY(U,$J,358.3,24126,1,3,0)
+ ;;=3^Dysphagia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,24126,1,4,0)
+ ;;=4^I69.891
+ ;;^UTILITY(U,$J,358.3,24126,2)
+ ;;=^5007547
+ ;;^UTILITY(U,$J,358.3,24127,0)
+ ;;=I69.321^^76^1001^22
+ ;;^UTILITY(U,$J,358.3,24127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12488,1,3,0)
- ;;=3^Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,12488,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,12488,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,12489,0)
- ;;=J45.909^^43^608^4
- ;;^UTILITY(U,$J,358.3,12489,1,0)
+ ;;^UTILITY(U,$J,358.3,24127,1,3,0)
+ ;;=3^Dysphasia following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,24127,1,4,0)
+ ;;=4^I69.321
+ ;;^UTILITY(U,$J,358.3,24127,2)
+ ;;=^5007492
+ ;;^UTILITY(U,$J,358.3,24128,0)
+ ;;=I69.121^^76^1001^23
+ ;;^UTILITY(U,$J,358.3,24128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12489,1,3,0)
- ;;=3^Asthma,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,12489,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,12489,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,12490,0)
- ;;=J44.9^^43^608^9
- ;;^UTILITY(U,$J,358.3,12490,1,0)
+ ;;^UTILITY(U,$J,358.3,24128,1,3,0)
+ ;;=3^Dysphasia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,24128,1,4,0)
+ ;;=4^I69.121
+ ;;^UTILITY(U,$J,358.3,24128,2)
+ ;;=^5007428
+ ;;^UTILITY(U,$J,358.3,24129,0)
+ ;;=I69.021^^76^1001^24
+ ;;^UTILITY(U,$J,358.3,24129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12490,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,12490,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,12490,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,12491,0)
- ;;=K21.9^^43^608^22
- ;;^UTILITY(U,$J,358.3,12491,1,0)
+ ;;^UTILITY(U,$J,358.3,24129,1,3,0)
+ ;;=3^Dysphasia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,24129,1,4,0)
+ ;;=4^I69.021
+ ;;^UTILITY(U,$J,358.3,24129,2)
+ ;;=^5007396
+ ;;^UTILITY(U,$J,358.3,24130,0)
+ ;;=I69.821^^76^1001^26
+ ;;^UTILITY(U,$J,358.3,24130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12491,1,3,0)
- ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,12491,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,12491,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,12492,0)
- ;;=N40.0^^43^608^21
- ;;^UTILITY(U,$J,358.3,12492,1,0)
+ ;;^UTILITY(U,$J,358.3,24130,1,3,0)
+ ;;=3^Dysphasia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,24130,1,4,0)
+ ;;=4^I69.821
+ ;;^UTILITY(U,$J,358.3,24130,2)
+ ;;=^5007523
+ ;;^UTILITY(U,$J,358.3,24131,0)
+ ;;=I69.221^^76^1001^25
+ ;;^UTILITY(U,$J,358.3,24131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12492,1,3,0)
- ;;=3^Enlarged Prostate w/o LUTS
- ;;^UTILITY(U,$J,358.3,12492,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,12492,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,12493,0)
- ;;=N40.1^^43^608^20
- ;;^UTILITY(U,$J,358.3,12493,1,0)
+ ;;^UTILITY(U,$J,358.3,24131,1,3,0)
+ ;;=3^Dysphasia following oth nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,24131,1,4,0)
+ ;;=4^I69.221
+ ;;^UTILITY(U,$J,358.3,24131,2)
+ ;;=^5007460
+ ;;^UTILITY(U,$J,358.3,24132,0)
+ ;;=G11.1^^76^1001^27
+ ;;^UTILITY(U,$J,358.3,24132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12493,1,3,0)
- ;;=3^Enlarged Prostate w/ LUTS
- ;;^UTILITY(U,$J,358.3,12493,1,4,0)
- ;;=4^N40.1
- ;;^UTILITY(U,$J,358.3,12493,2)
- ;;=^5015690
- ;;^UTILITY(U,$J,358.3,12494,0)
- ;;=L03.811^^43^608^10
- ;;^UTILITY(U,$J,358.3,12494,1,0)
+ ;;^UTILITY(U,$J,358.3,24132,1,3,0)
+ ;;=3^Early-onset cerebellar ataxia
+ ;;^UTILITY(U,$J,358.3,24132,1,4,0)
+ ;;=4^G11.1
+ ;;^UTILITY(U,$J,358.3,24132,2)
+ ;;=^5003753
+ ;;^UTILITY(U,$J,358.3,24133,0)
+ ;;=I69.392^^76^1001^28
+ ;;^UTILITY(U,$J,358.3,24133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12494,1,3,0)
- ;;=3^Cellulitis,Head (Except Face)
- ;;^UTILITY(U,$J,358.3,12494,1,4,0)
- ;;=4^L03.811
- ;;^UTILITY(U,$J,358.3,12494,2)
- ;;=^5009063
- ;;^UTILITY(U,$J,358.3,12495,0)
- ;;=L03.818^^43^608^11
- ;;^UTILITY(U,$J,358.3,12495,1,0)
+ ;;^UTILITY(U,$J,358.3,24133,1,3,0)
+ ;;=3^Facial weakness following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,24133,1,4,0)
+ ;;=4^I69.392
+ ;;^UTILITY(U,$J,358.3,24133,2)
+ ;;=^5007517
+ ;;^UTILITY(U,$J,358.3,24134,0)
+ ;;=I69.192^^76^1001^29
+ ;;^UTILITY(U,$J,358.3,24134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12495,1,3,0)
- ;;=3^Cellulitis,Oth Sites
- ;;^UTILITY(U,$J,358.3,12495,1,4,0)
- ;;=4^L03.818
- ;;^UTILITY(U,$J,358.3,12495,2)
- ;;=^5009064
- ;;^UTILITY(U,$J,358.3,12496,0)
- ;;=L03.891^^43^608^36
- ;;^UTILITY(U,$J,358.3,12496,1,0)
+ ;;^UTILITY(U,$J,358.3,24134,1,3,0)
+ ;;=3^Facial weakness following nontraumatic intcrbl hemorrhage
+ ;;^UTILITY(U,$J,358.3,24134,1,4,0)
+ ;;=4^I69.192
+ ;;^UTILITY(U,$J,358.3,24134,2)
+ ;;=^5007454
+ ;;^UTILITY(U,$J,358.3,24135,0)
+ ;;=I69.292^^76^1001^31
+ ;;^UTILITY(U,$J,358.3,24135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12496,1,3,0)
- ;;=3^Lymphangitis,Head (Except Face),Acute
- ;;^UTILITY(U,$J,358.3,12496,1,4,0)
- ;;=4^L03.891
- ;;^UTILITY(U,$J,358.3,12496,2)
- ;;=^5009065
- ;;^UTILITY(U,$J,358.3,12497,0)
- ;;=L03.898^^43^608^37
- ;;^UTILITY(U,$J,358.3,12497,1,0)
+ ;;^UTILITY(U,$J,358.3,24135,1,3,0)
+ ;;=3^Facial weakness following oth nontraumatic intcrn hemorrhage
+ ;;^UTILITY(U,$J,358.3,24135,1,4,0)
+ ;;=4^I69.292
+ ;;^UTILITY(U,$J,358.3,24135,2)
+ ;;=^5007486
+ ;;^UTILITY(U,$J,358.3,24136,0)
+ ;;=I69.092^^76^1001^30
+ ;;^UTILITY(U,$J,358.3,24136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12497,1,3,0)
- ;;=3^Lymphangitis,Oth Sites,Acute
- ;;^UTILITY(U,$J,358.3,12497,1,4,0)
- ;;=4^L03.898
- ;;^UTILITY(U,$J,358.3,12497,2)
- ;;=^5009066
- ;;^UTILITY(U,$J,358.3,12498,0)
- ;;=L03.90^^43^608^12
- ;;^UTILITY(U,$J,358.3,12498,1,0)
+ ;;^UTILITY(U,$J,358.3,24136,1,3,0)
+ ;;=3^Facial weakness following ntrm subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,24136,1,4,0)
+ ;;=4^I69.092
+ ;;^UTILITY(U,$J,358.3,24136,2)
+ ;;=^5007422
+ ;;^UTILITY(U,$J,358.3,24137,0)
+ ;;=I69.892^^76^1001^32
+ ;;^UTILITY(U,$J,358.3,24137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12498,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,12498,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,12498,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,12499,0)
- ;;=L03.91^^43^608^35
- ;;^UTILITY(U,$J,358.3,12499,1,0)
+ ;;^UTILITY(U,$J,358.3,24137,1,3,0)
+ ;;=3^Facial weakness following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,24137,1,4,0)
+ ;;=4^I69.892
+ ;;^UTILITY(U,$J,358.3,24137,2)
+ ;;=^5007548
+ ;;^UTILITY(U,$J,358.3,24138,0)
+ ;;=I69.351^^76^1001^34
+ ;;^UTILITY(U,$J,358.3,24138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12499,1,3,0)
- ;;=3^Lymphangitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,12499,1,4,0)
- ;;=4^L03.91
- ;;^UTILITY(U,$J,358.3,12499,2)
- ;;=^5009068
- ;;^UTILITY(U,$J,358.3,12500,0)
- ;;=M51.26^^43^608^33
- ;;^UTILITY(U,$J,358.3,12500,1,0)
+ ;;^UTILITY(U,$J,358.3,24138,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,24138,1,4,0)
+ ;;=4^I69.351
+ ;;^UTILITY(U,$J,358.3,24138,2)
+ ;;=^5007504
+ ;;^UTILITY(U,$J,358.3,24139,0)
+ ;;=I69.352^^76^1001^33
+ ;;^UTILITY(U,$J,358.3,24139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12500,1,3,0)
- ;;=3^Intervertebral Disc Displacement,Lumbar Region
- ;;^UTILITY(U,$J,358.3,12500,1,4,0)
- ;;=4^M51.26
- ;;^UTILITY(U,$J,358.3,12500,2)
- ;;=^5012249
- ;;^UTILITY(U,$J,358.3,12501,0)
- ;;=M51.27^^43^608^34
- ;;^UTILITY(U,$J,358.3,12501,1,0)
+ ;;^UTILITY(U,$J,358.3,24139,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,24139,1,4,0)
+ ;;=4^I69.352
+ ;;^UTILITY(U,$J,358.3,24139,2)
+ ;;=^5007505
+ ;;^UTILITY(U,$J,358.3,24140,0)
+ ;;=I69.353^^76^1001^35
+ ;;^UTILITY(U,$J,358.3,24140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12501,1,3,0)
- ;;=3^Intervertebral Disc Displacement,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,12501,1,4,0)
- ;;=4^M51.27
- ;;^UTILITY(U,$J,358.3,12501,2)
- ;;=^5012250
- ;;^UTILITY(U,$J,358.3,12502,0)
- ;;=G47.33^^43^608^53
- ;;^UTILITY(U,$J,358.3,12502,1,0)
+ ;;^UTILITY(U,$J,358.3,24140,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24140,1,4,0)
+ ;;=4^I69.353
+ ;;^UTILITY(U,$J,358.3,24140,2)
+ ;;=^5007506
+ ;;^UTILITY(U,$J,358.3,24141,0)
+ ;;=I69.354^^76^1001^36
+ ;;^UTILITY(U,$J,358.3,24141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12502,1,3,0)
- ;;=3^Sleep Apnea,Obstructive
- ;;^UTILITY(U,$J,358.3,12502,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,12502,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,12503,0)
- ;;=G44.1^^43^608^57
- ;;^UTILITY(U,$J,358.3,12503,1,0)
+ ;;^UTILITY(U,$J,358.3,24141,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc affecting left nondom side
+ ;;^UTILITY(U,$J,358.3,24141,1,4,0)
+ ;;=4^I69.354
+ ;;^UTILITY(U,$J,358.3,24141,2)
+ ;;=^5007507
+ ;;^UTILITY(U,$J,358.3,24142,0)
+ ;;=I69.151^^76^1001^39
+ ;;^UTILITY(U,$J,358.3,24142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12503,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,12503,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,12503,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,12504,0)
- ;;=R73.01^^43^608^31
- ;;^UTILITY(U,$J,358.3,12504,1,0)
+ ;;^UTILITY(U,$J,358.3,24142,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,24142,1,4,0)
+ ;;=4^I69.151
+ ;;^UTILITY(U,$J,358.3,24142,2)
+ ;;=^5007441
+ ;;^UTILITY(U,$J,358.3,24143,0)
+ ;;=I69.152^^76^1001^37
+ ;;^UTILITY(U,$J,358.3,24143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12504,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,12504,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,12504,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,12505,0)
- ;;=R74.8^^43^608^1
- ;;^UTILITY(U,$J,358.3,12505,1,0)
+ ;;^UTILITY(U,$J,358.3,24143,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,24143,1,4,0)
+ ;;=4^I69.152
+ ;;^UTILITY(U,$J,358.3,24143,2)
+ ;;=^5007442
+ ;;^UTILITY(U,$J,358.3,24144,0)
+ ;;=I69.153^^76^1001^40
+ ;;^UTILITY(U,$J,358.3,24144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12505,1,3,0)
- ;;=3^Abnormal Levels of Serum Enzymes
- ;;^UTILITY(U,$J,358.3,12505,1,4,0)
- ;;=4^R74.8
- ;;^UTILITY(U,$J,358.3,12505,2)
- ;;=^5019566
- ;;^UTILITY(U,$J,358.3,12506,0)
- ;;=R97.2^^43^608^18
- ;;^UTILITY(U,$J,358.3,12506,1,0)
+ ;;^UTILITY(U,$J,358.3,24144,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24144,1,4,0)
+ ;;=4^I69.153
+ ;;^UTILITY(U,$J,358.3,24144,2)
+ ;;=^5007443
+ ;;^UTILITY(U,$J,358.3,24145,0)
+ ;;=I69.154^^76^1001^38
+ ;;^UTILITY(U,$J,358.3,24145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12506,1,3,0)
- ;;=3^Elevated Prostate Specific Antigen
- ;;^UTILITY(U,$J,358.3,12506,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,12506,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,12507,0)
- ;;=R03.0^^43^608^17
- ;;^UTILITY(U,$J,358.3,12507,1,0)
+ ;;^UTILITY(U,$J,358.3,24145,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24145,1,4,0)
+ ;;=4^I69.154
+ ;;^UTILITY(U,$J,358.3,24145,2)
+ ;;=^5007444
+ ;;^UTILITY(U,$J,358.3,24146,0)
+ ;;=I69.851^^76^1001^45
+ ;;^UTILITY(U,$J,358.3,24146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12507,1,3,0)
- ;;=3^Elevated BP Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,12507,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,12507,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,12508,0)
- ;;=Z91.19^^43^608^43
- ;;^UTILITY(U,$J,358.3,12508,1,0)
+ ;;^UTILITY(U,$J,358.3,24146,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,24146,1,4,0)
+ ;;=4^I69.851
+ ;;^UTILITY(U,$J,358.3,24146,2)
+ ;;=^5007535
+ ;;^UTILITY(U,$J,358.3,24147,0)
+ ;;=I69.852^^76^1001^46
+ ;;^UTILITY(U,$J,358.3,24147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12508,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,12508,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,12508,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,12509,0)
- ;;=E66.01^^43^608^44
+ ;;^UTILITY(U,$J,358.3,24147,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
+ ;;^UTILITY(U,$J,358.3,24147,1,4,0)
+ ;;=4^I69.852
+ ;;^UTILITY(U,$J,358.3,24147,2)
+ ;;=^5007536
+ ;;^UTILITY(U,$J,358.3,24148,0)
+ ;;=I69.853^^76^1001^47
+ ;;^UTILITY(U,$J,358.3,24148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24148,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24148,1,4,0)
+ ;;=4^I69.853
+ ;;^UTILITY(U,$J,358.3,24148,2)
+ ;;=^5007537
+ ;;^UTILITY(U,$J,358.3,24149,0)
+ ;;=I69.854^^76^1001^48
+ ;;^UTILITY(U,$J,358.3,24149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24149,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24149,1,4,0)
+ ;;=4^I69.854
+ ;;^UTILITY(U,$J,358.3,24149,2)
+ ;;=^5007538
+ ;;^UTILITY(U,$J,358.3,24150,0)
+ ;;=I69.251^^76^1001^49
+ ;;^UTILITY(U,$J,358.3,24150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24150,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,24150,1,4,0)
+ ;;=4^I69.251
+ ;;^UTILITY(U,$J,358.3,24150,2)
+ ;;=^5007473
+ ;;^UTILITY(U,$J,358.3,24151,0)
+ ;;=I69.252^^76^1001^50
+ ;;^UTILITY(U,$J,358.3,24151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24151,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,24151,1,4,0)
+ ;;=4^I69.252
+ ;;^UTILITY(U,$J,358.3,24151,2)
+ ;;=^5007474
+ ;;^UTILITY(U,$J,358.3,24152,0)
+ ;;=I69.253^^76^1001^51
+ ;;^UTILITY(U,$J,358.3,24152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24152,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24152,1,4,0)
+ ;;=4^I69.253
+ ;;^UTILITY(U,$J,358.3,24152,2)
+ ;;=^5007475
+ ;;^UTILITY(U,$J,358.3,24153,0)
+ ;;=I69.254^^76^1001^52
+ ;;^UTILITY(U,$J,358.3,24153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24153,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24153,1,4,0)
+ ;;=4^I69.254
+ ;;^UTILITY(U,$J,358.3,24153,2)
+ ;;=^5007476
+ ;;^UTILITY(U,$J,358.3,24154,0)
+ ;;=I69.341^^76^1001^53
+ ;;^UTILITY(U,$J,358.3,24154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24154,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,24154,1,4,0)
+ ;;=4^I69.341
+ ;;^UTILITY(U,$J,358.3,24154,2)
+ ;;=^5007501
+ ;;^UTILITY(U,$J,358.3,24155,0)
+ ;;=I69.342^^76^1001^54
+ ;;^UTILITY(U,$J,358.3,24155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24155,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,24155,1,4,0)
+ ;;=4^I69.342
+ ;;^UTILITY(U,$J,358.3,24155,2)
+ ;;=^5133575
+ ;;^UTILITY(U,$J,358.3,24156,0)
+ ;;=I69.343^^76^1001^55
+ ;;^UTILITY(U,$J,358.3,24156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24156,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24156,1,4,0)
+ ;;=4^I69.343
+ ;;^UTILITY(U,$J,358.3,24156,2)
+ ;;=^5007502
+ ;;^UTILITY(U,$J,358.3,24157,0)
+ ;;=I69.344^^76^1001^56
+ ;;^UTILITY(U,$J,358.3,24157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24157,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24157,1,4,0)
+ ;;=4^I69.344
+ ;;^UTILITY(U,$J,358.3,24157,2)
+ ;;=^5133576
+ ;;^UTILITY(U,$J,358.3,24158,0)
+ ;;=I69.141^^76^1001^57
+ ;;^UTILITY(U,$J,358.3,24158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24158,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,24158,1,4,0)
+ ;;=4^I69.141
+ ;;^UTILITY(U,$J,358.3,24158,2)
+ ;;=^5007437
+ ;;^UTILITY(U,$J,358.3,24159,0)
+ ;;=I69.142^^76^1001^58
+ ;;^UTILITY(U,$J,358.3,24159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24159,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,24159,1,4,0)
+ ;;=4^I69.142
+ ;;^UTILITY(U,$J,358.3,24159,2)
+ ;;=^5133573
+ ;;^UTILITY(U,$J,358.3,24160,0)
+ ;;=I69.143^^76^1001^59
+ ;;^UTILITY(U,$J,358.3,24160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24160,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24160,1,4,0)
+ ;;=4^I69.143
+ ;;^UTILITY(U,$J,358.3,24160,2)
+ ;;=^5007438
+ ;;^UTILITY(U,$J,358.3,24161,0)
+ ;;=I69.144^^76^1001^60
+ ;;^UTILITY(U,$J,358.3,24161,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24161,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24161,1,4,0)
+ ;;=4^I69.144
+ ;;^UTILITY(U,$J,358.3,24161,2)
+ ;;=^5007439
+ ;;^UTILITY(U,$J,358.3,24162,0)
+ ;;=I69.041^^76^1001^61
+ ;;^UTILITY(U,$J,358.3,24162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24162,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,24162,1,4,0)
+ ;;=4^I69.041
+ ;;^UTILITY(U,$J,358.3,24162,2)
+ ;;=^5007405
+ ;;^UTILITY(U,$J,358.3,24163,0)
+ ;;=I69.042^^76^1001^62
+ ;;^UTILITY(U,$J,358.3,24163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24163,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,24163,1,4,0)
+ ;;=4^I69.042
+ ;;^UTILITY(U,$J,358.3,24163,2)
+ ;;=^5133572
+ ;;^UTILITY(U,$J,358.3,24164,0)
+ ;;=I69.043^^76^1001^63
+ ;;^UTILITY(U,$J,358.3,24164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24164,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff r nondom side
+ ;;^UTILITY(U,$J,358.3,24164,1,4,0)
+ ;;=4^I69.043
+ ;;^UTILITY(U,$J,358.3,24164,2)
+ ;;=^5007406
+ ;;^UTILITY(U,$J,358.3,24165,0)
+ ;;=I69.044^^76^1001^64
+ ;;^UTILITY(U,$J,358.3,24165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24165,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24165,1,4,0)
+ ;;=4^I69.044
+ ;;^UTILITY(U,$J,358.3,24165,2)
+ ;;=^5007407
+ ;;^UTILITY(U,$J,358.3,24166,0)
+ ;;=I69.841^^76^1001^67
+ ;;^UTILITY(U,$J,358.3,24166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24166,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc disease aff right dom side
+ ;;^UTILITY(U,$J,358.3,24166,1,4,0)
+ ;;=4^I69.841
+ ;;^UTILITY(U,$J,358.3,24166,2)
+ ;;=^5007532
+ ;;^UTILITY(U,$J,358.3,24167,0)
+ ;;=I69.842^^76^1001^68
+ ;;^UTILITY(U,$J,358.3,24167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24167,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc disease aff left dom side
+ ;;^UTILITY(U,$J,358.3,24167,1,4,0)
+ ;;=4^I69.842
+ ;;^UTILITY(U,$J,358.3,24167,2)
+ ;;=^5133577
+ ;;^UTILITY(U,$J,358.3,24168,0)
+ ;;=I69.843^^76^1001^65
+ ;;^UTILITY(U,$J,358.3,24168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24168,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
+ ;;^UTILITY(U,$J,358.3,24168,1,4,0)
+ ;;=4^I69.843
+ ;;^UTILITY(U,$J,358.3,24168,2)
+ ;;=^5007533
+ ;;^UTILITY(U,$J,358.3,24169,0)
+ ;;=I69.844^^76^1001^66
+ ;;^UTILITY(U,$J,358.3,24169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24169,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
+ ;;^UTILITY(U,$J,358.3,24169,1,4,0)
+ ;;=4^I69.844
+ ;;^UTILITY(U,$J,358.3,24169,2)
+ ;;=^5133578
+ ;;^UTILITY(U,$J,358.3,24170,0)
+ ;;=I69.241^^76^1001^69
+ ;;^UTILITY(U,$J,358.3,24170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24170,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,24170,1,4,0)
+ ;;=4^I69.241
+ ;;^UTILITY(U,$J,358.3,24170,2)
+ ;;=^5007469
+ ;;^UTILITY(U,$J,358.3,24171,0)
+ ;;=I69.242^^76^1001^70
+ ;;^UTILITY(U,$J,358.3,24171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24171,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,24171,1,4,0)
+ ;;=4^I69.242
+ ;;^UTILITY(U,$J,358.3,24171,2)
+ ;;=^5133574
+ ;;^UTILITY(U,$J,358.3,24172,0)
+ ;;=I69.243^^76^1001^71
+ ;;^UTILITY(U,$J,358.3,24172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24172,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff r nondom side
+ ;;^UTILITY(U,$J,358.3,24172,1,4,0)
+ ;;=4^I69.243
+ ;;^UTILITY(U,$J,358.3,24172,2)
+ ;;=^5007470
+ ;;^UTILITY(U,$J,358.3,24173,0)
+ ;;=I69.244^^76^1001^72
+ ;;^UTILITY(U,$J,358.3,24173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24173,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff l nondom side
+ ;;^UTILITY(U,$J,358.3,24173,1,4,0)
+ ;;=4^I69.244
+ ;;^UTILITY(U,$J,358.3,24173,2)
+ ;;=^5007471
+ ;;^UTILITY(U,$J,358.3,24174,0)
+ ;;=G35.^^76^1001^73
+ ;;^UTILITY(U,$J,358.3,24174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24174,1,3,0)
+ ;;=3^Multiple sclerosis

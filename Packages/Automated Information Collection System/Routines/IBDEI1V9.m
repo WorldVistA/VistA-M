@@ -1,126 +1,118 @@
-IBDEI1V9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1V9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31712,0)
- ;;=I70.545^^126^1604^73
- ;;^UTILITY(U,$J,358.3,31712,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31712,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31712,1,4,0)
- ;;=4^I70.545
- ;;^UTILITY(U,$J,358.3,31712,2)
- ;;=^5007713
- ;;^UTILITY(U,$J,358.3,31713,0)
- ;;=I70.544^^126^1604^74
- ;;^UTILITY(U,$J,358.3,31713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31713,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31713,1,4,0)
- ;;=4^I70.544
- ;;^UTILITY(U,$J,358.3,31713,2)
- ;;=^5007712
- ;;^UTILITY(U,$J,358.3,31714,0)
- ;;=I70.533^^126^1604^75
- ;;^UTILITY(U,$J,358.3,31714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31714,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31714,1,4,0)
- ;;=4^I70.533
- ;;^UTILITY(U,$J,358.3,31714,2)
- ;;=^5007704
- ;;^UTILITY(U,$J,358.3,31715,0)
- ;;=I70.535^^126^1604^77
- ;;^UTILITY(U,$J,358.3,31715,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31715,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31715,1,4,0)
- ;;=4^I70.535
- ;;^UTILITY(U,$J,358.3,31715,2)
- ;;=^5007706
- ;;^UTILITY(U,$J,358.3,31716,0)
- ;;=I70.534^^126^1604^78
- ;;^UTILITY(U,$J,358.3,31716,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31716,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31716,1,4,0)
- ;;=4^I70.534
- ;;^UTILITY(U,$J,358.3,31716,2)
- ;;=^5007705
- ;;^UTILITY(U,$J,358.3,31717,0)
- ;;=I70.532^^126^1604^76
- ;;^UTILITY(U,$J,358.3,31717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31717,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,31717,1,4,0)
- ;;=4^I70.532
- ;;^UTILITY(U,$J,358.3,31717,2)
- ;;=^5007703
- ;;^UTILITY(U,$J,358.3,31718,0)
- ;;=I70.643^^126^1604^79
- ;;^UTILITY(U,$J,358.3,31718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31718,1,3,0)
- ;;=3^Athscl Nonbiol Bypass,Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31718,1,4,0)
- ;;=4^I70.643
- ;;^UTILITY(U,$J,358.3,31718,2)
- ;;=^5007749
- ;;^UTILITY(U,$J,358.3,31719,0)
- ;;=I70.645^^126^1604^81
- ;;^UTILITY(U,$J,358.3,31719,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31719,1,3,0)
- ;;=3^Athscl Nonbiol Bypass,Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31719,1,4,0)
- ;;=4^I70.645
- ;;^UTILITY(U,$J,358.3,31719,2)
- ;;=^5007751
- ;;^UTILITY(U,$J,358.3,31720,0)
- ;;=I70.642^^126^1604^80
- ;;^UTILITY(U,$J,358.3,31720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31720,1,3,0)
- ;;=3^Athscl Nonbiol Bypass,Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,31720,1,4,0)
- ;;=4^I70.642
- ;;^UTILITY(U,$J,358.3,31720,2)
- ;;=^5007748
- ;;^UTILITY(U,$J,358.3,31721,0)
- ;;=I70.644^^126^1604^82
- ;;^UTILITY(U,$J,358.3,31721,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31721,1,3,0)
- ;;=3^Athscl Nonbiol Bypass,Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31721,1,4,0)
- ;;=4^I70.644
- ;;^UTILITY(U,$J,358.3,31721,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,31722,0)
- ;;=I70.633^^126^1604^83
- ;;^UTILITY(U,$J,358.3,31722,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31722,1,3,0)
- ;;=3^Athscl Nonbiol Bypass,Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31722,1,4,0)
- ;;=4^I70.633
- ;;^UTILITY(U,$J,358.3,31722,2)
- ;;=^5007742
- ;;^UTILITY(U,$J,358.3,31723,0)
- ;;=I70.635^^126^1604^85
- ;;^UTILITY(U,$J,358.3,31723,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31723,1,3,0)
- ;;=3^Athscl Nonbiol Bypass,Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31723,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,31723,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,31724,0)
- ;;=I70.632^^126^1604^84
+ ;;^UTILITY(U,$J,358.3,29811,0)
+ ;;=99366^^119^1508^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29811,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29811,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,29811,1,3,0)
+ ;;=3^Non-Rx Prov Team Conf w/ Pt &/or Family,30+ min
+ ;;^UTILITY(U,$J,358.3,29812,0)
+ ;;=90785^^119^1509^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29812,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29812,1,2,0)
+ ;;=2^90785
+ ;;^UTILITY(U,$J,358.3,29812,1,3,0)
+ ;;=3^Interactive Complexity
+ ;;^UTILITY(U,$J,358.3,29813,0)
+ ;;=H0001^^119^1510^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29813,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29813,1,2,0)
+ ;;=2^H0001
+ ;;^UTILITY(U,$J,358.3,29813,1,3,0)
+ ;;=3^Addictions Assessment,Alcohol and/or Drug
+ ;;^UTILITY(U,$J,358.3,29814,0)
+ ;;=H0002^^119^1510^11^^^^1
+ ;;^UTILITY(U,$J,358.3,29814,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29814,1,2,0)
+ ;;=2^H0002
+ ;;^UTILITY(U,$J,358.3,29814,1,3,0)
+ ;;=3^Screen for Addictions Admission Eligibility
+ ;;^UTILITY(U,$J,358.3,29815,0)
+ ;;=H0003^^119^1510^6^^^^1
+ ;;^UTILITY(U,$J,358.3,29815,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29815,1,2,0)
+ ;;=2^H0003
+ ;;^UTILITY(U,$J,358.3,29815,1,3,0)
+ ;;=3^Alcohol/Drug Screen;lab analysis
+ ;;^UTILITY(U,$J,358.3,29816,0)
+ ;;=H0004^^119^1510^9^^^^1
+ ;;^UTILITY(U,$J,358.3,29816,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29816,1,2,0)
+ ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,29816,1,3,0)
+ ;;=3^Individual Counseling & Therapy,per 15 min
+ ;;^UTILITY(U,$J,358.3,29817,0)
+ ;;=H0005^^119^1510^2^^^^1
+ ;;^UTILITY(U,$J,358.3,29817,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29817,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,29817,1,3,0)
+ ;;=3^Addictions Group Counseling by Clinician
+ ;;^UTILITY(U,$J,358.3,29818,0)
+ ;;=H0006^^119^1510^5^^^^1
+ ;;^UTILITY(U,$J,358.3,29818,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29818,1,2,0)
+ ;;=2^H0006
+ ;;^UTILITY(U,$J,358.3,29818,1,3,0)
+ ;;=3^Alcohol/Drug Case Management
+ ;;^UTILITY(U,$J,358.3,29819,0)
+ ;;=H0020^^119^1510^10^^^^1
+ ;;^UTILITY(U,$J,358.3,29819,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29819,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,29819,1,3,0)
+ ;;=3^Methadone Admin &/or Svc by Licensed Program
+ ;;^UTILITY(U,$J,358.3,29820,0)
+ ;;=H0025^^119^1510^3^^^^1
+ ;;^UTILITY(U,$J,358.3,29820,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29820,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,29820,1,3,0)
+ ;;=3^Addictions Health Prevention Education Service
+ ;;^UTILITY(U,$J,358.3,29821,0)
+ ;;=H0030^^119^1510^4^^^^1
+ ;;^UTILITY(U,$J,358.3,29821,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29821,1,2,0)
+ ;;=2^H0030
+ ;;^UTILITY(U,$J,358.3,29821,1,3,0)
+ ;;=3^Addictions Hotline Services
+ ;;^UTILITY(U,$J,358.3,29822,0)
+ ;;=H0007^^119^1510^8^^^^1
+ ;;^UTILITY(U,$J,358.3,29822,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29822,1,2,0)
+ ;;=2^H0007
+ ;;^UTILITY(U,$J,358.3,29822,1,3,0)
+ ;;=3^Alcohol/Drug Svcs,Crisis Intervention
+ ;;^UTILITY(U,$J,358.3,29823,0)
+ ;;=H0014^^119^1510^7^^^^1
+ ;;^UTILITY(U,$J,358.3,29823,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29823,1,2,0)
+ ;;=2^H0014
+ ;;^UTILITY(U,$J,358.3,29823,1,3,0)
+ ;;=3^Alcohol/Drug Svcs,Ambulatory Detox
+ ;;^UTILITY(U,$J,358.3,29824,0)
+ ;;=90791^^119^1511^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29824,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29824,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,29824,1,3,0)
+ ;;=3^Psychiatric Diagnostic Evaluation
+ ;;^UTILITY(U,$J,358.3,29825,0)
+ ;;=99354^^119^1512^1^^^^1

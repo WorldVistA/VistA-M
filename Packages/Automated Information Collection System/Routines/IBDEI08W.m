@@ -1,362 +1,694 @@
-IBDEI08W ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI08W ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11238,1,3,0)
- ;;=3^Aneurysm of Heart
- ;;^UTILITY(U,$J,358.3,11238,1,4,0)
- ;;=4^I25.3
- ;;^UTILITY(U,$J,358.3,11238,2)
- ;;=^5007112
- ;;^UTILITY(U,$J,358.3,11239,0)
- ;;=I72.9^^40^580^6
- ;;^UTILITY(U,$J,358.3,11239,1,0)
+ ;;^UTILITY(U,$J,358.3,21763,0)
+ ;;=E05.01^^73^933^38
+ ;;^UTILITY(U,$J,358.3,21763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11239,1,3,0)
- ;;=3^Aneurysm,Unspec Site
- ;;^UTILITY(U,$J,358.3,11239,1,4,0)
- ;;=4^I72.9
- ;;^UTILITY(U,$J,358.3,11239,2)
- ;;=^5007795
- ;;^UTILITY(U,$J,358.3,11240,0)
- ;;=I71.4^^40^580^1
- ;;^UTILITY(U,$J,358.3,11240,1,0)
+ ;;^UTILITY(U,$J,358.3,21763,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,21763,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,21763,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,21764,0)
+ ;;=E05.90^^73^933^41
+ ;;^UTILITY(U,$J,358.3,21764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11240,1,3,0)
- ;;=3^AAA w/o Rupture
- ;;^UTILITY(U,$J,358.3,11240,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,11240,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,11241,0)
- ;;=I71.9^^40^580^3
- ;;^UTILITY(U,$J,358.3,11241,1,0)
+ ;;^UTILITY(U,$J,358.3,21764,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,21764,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,21764,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,21765,0)
+ ;;=E05.91^^73^933^40
+ ;;^UTILITY(U,$J,358.3,21765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11241,1,3,0)
- ;;=3^Aneurysm,Aortic w/o Rupture,Unspec Site
- ;;^UTILITY(U,$J,358.3,11241,1,4,0)
- ;;=4^I71.9
- ;;^UTILITY(U,$J,358.3,11241,2)
- ;;=^5007792
- ;;^UTILITY(U,$J,358.3,11242,0)
- ;;=I71.2^^40^580^4
- ;;^UTILITY(U,$J,358.3,11242,1,0)
+ ;;^UTILITY(U,$J,358.3,21765,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,21765,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,21765,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,21766,0)
+ ;;=E89.0^^73^933^32
+ ;;^UTILITY(U,$J,358.3,21766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11242,1,3,0)
- ;;=3^Aneurysm,Thoracic Aortic w/o Rupture
- ;;^UTILITY(U,$J,358.3,11242,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,11242,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,11243,0)
- ;;=I71.6^^40^580^5
- ;;^UTILITY(U,$J,358.3,11243,1,0)
+ ;;^UTILITY(U,$J,358.3,21766,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,21766,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,21766,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,21767,0)
+ ;;=E03.2^^73^933^13
+ ;;^UTILITY(U,$J,358.3,21767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11243,1,3,0)
- ;;=3^Aneurysm,Thoracoabdominal Aortic w/o Rupture
- ;;^UTILITY(U,$J,358.3,11243,1,4,0)
- ;;=4^I71.6
- ;;^UTILITY(U,$J,358.3,11243,2)
- ;;=^5007791
- ;;^UTILITY(U,$J,358.3,11244,0)
- ;;=I20.1^^40^580^7
- ;;^UTILITY(U,$J,358.3,11244,1,0)
+ ;;^UTILITY(U,$J,358.3,21767,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,21767,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,21767,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,21768,0)
+ ;;=E03.9^^73^933^14
+ ;;^UTILITY(U,$J,358.3,21768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11244,1,3,0)
- ;;=3^Angina Pectoris w/ Spasm
- ;;^UTILITY(U,$J,358.3,11244,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,11244,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,11245,0)
- ;;=I20.9^^40^580^8
- ;;^UTILITY(U,$J,358.3,11245,1,0)
+ ;;^UTILITY(U,$J,358.3,21768,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,21768,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,21768,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,21769,0)
+ ;;=E06.0^^73^933^36
+ ;;^UTILITY(U,$J,358.3,21769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11245,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,11245,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,11245,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,11246,0)
- ;;=I35.1^^40^580^11
- ;;^UTILITY(U,$J,358.3,11246,1,0)
+ ;;^UTILITY(U,$J,358.3,21769,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,21769,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,21769,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,21770,0)
+ ;;=E06.1^^73^933^37
+ ;;^UTILITY(U,$J,358.3,21770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11246,1,3,0)
- ;;=3^Aortic Valve Insufficiency,Nonrheumatic
- ;;^UTILITY(U,$J,358.3,11246,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,11246,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,11247,0)
- ;;=I35.2^^40^580^12
- ;;^UTILITY(U,$J,358.3,11247,1,0)
+ ;;^UTILITY(U,$J,358.3,21770,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,21770,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,21770,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,21771,0)
+ ;;=C73.^^73^933^19
+ ;;^UTILITY(U,$J,358.3,21771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11247,1,3,0)
- ;;=3^Aortic Valve Stenosis w/ Insufficiency,Nonrheumatic
- ;;^UTILITY(U,$J,358.3,11247,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,11247,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,11248,0)
- ;;=I35.0^^40^580^13
- ;;^UTILITY(U,$J,358.3,11248,1,0)
+ ;;^UTILITY(U,$J,358.3,21771,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,21771,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,21771,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,21772,0)
+ ;;=E16.2^^73^933^10
+ ;;^UTILITY(U,$J,358.3,21772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11248,1,3,0)
- ;;=3^Aortic Valve Stenosis,Nonrheumatic
- ;;^UTILITY(U,$J,358.3,11248,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,11248,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,11249,0)
- ;;=I35.9^^40^580^10
- ;;^UTILITY(U,$J,358.3,11249,1,0)
+ ;;^UTILITY(U,$J,358.3,21772,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,21772,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,21772,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,21773,0)
+ ;;=E20.0^^73^933^15
+ ;;^UTILITY(U,$J,358.3,21773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11249,1,3,0)
- ;;=3^Aortic Valve Disorder,Nonrheumatic,Unspec
- ;;^UTILITY(U,$J,358.3,11249,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,11249,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,11250,0)
- ;;=I35.8^^40^580^9
- ;;^UTILITY(U,$J,358.3,11250,1,0)
+ ;;^UTILITY(U,$J,358.3,21773,1,3,0)
+ ;;=3^Idiopathic Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,21773,1,4,0)
+ ;;=4^E20.0
+ ;;^UTILITY(U,$J,358.3,21773,2)
+ ;;=^5002712
+ ;;^UTILITY(U,$J,358.3,21774,0)
+ ;;=E20.9^^73^933^11
+ ;;^UTILITY(U,$J,358.3,21774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11250,1,3,0)
- ;;=3^Aortic Valve Disorder,Nonrheumatic,Other
- ;;^UTILITY(U,$J,358.3,11250,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,11250,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,11251,0)
- ;;=I77.6^^40^580^14
- ;;^UTILITY(U,$J,358.3,11251,1,0)
+ ;;^UTILITY(U,$J,358.3,21774,1,3,0)
+ ;;=3^Hypoparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,21774,1,4,0)
+ ;;=4^E20.9
+ ;;^UTILITY(U,$J,358.3,21774,2)
+ ;;=^5002714
+ ;;^UTILITY(U,$J,358.3,21775,0)
+ ;;=E23.0^^73^933^12
+ ;;^UTILITY(U,$J,358.3,21775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11251,1,3,0)
- ;;=3^Arteritis,Unspec
- ;;^UTILITY(U,$J,358.3,11251,1,4,0)
- ;;=4^I77.6
- ;;^UTILITY(U,$J,358.3,11251,2)
- ;;=^5007813
- ;;^UTILITY(U,$J,358.3,11252,0)
- ;;=I25.810^^40^580^15
- ;;^UTILITY(U,$J,358.3,11252,1,0)
+ ;;^UTILITY(U,$J,358.3,21775,1,3,0)
+ ;;=3^Hypopituitarism
+ ;;^UTILITY(U,$J,358.3,21775,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,21775,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,21776,0)
+ ;;=E27.1^^73^933^34
+ ;;^UTILITY(U,$J,358.3,21776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11252,1,3,0)
- ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,11252,1,4,0)
- ;;=4^I25.810
- ;;^UTILITY(U,$J,358.3,11252,2)
- ;;=^5007141
- ;;^UTILITY(U,$J,358.3,11253,0)
- ;;=I70.91^^40^580^16
- ;;^UTILITY(U,$J,358.3,11253,1,0)
+ ;;^UTILITY(U,$J,358.3,21776,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,21776,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,21776,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,21777,0)
+ ;;=E27.2^^73^933^1
+ ;;^UTILITY(U,$J,358.3,21777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11253,1,3,0)
- ;;=3^Atherosclerosis,Generalized
- ;;^UTILITY(U,$J,358.3,11253,1,4,0)
- ;;=4^I70.91
- ;;^UTILITY(U,$J,358.3,11253,2)
- ;;=^5007785
- ;;^UTILITY(U,$J,358.3,11254,0)
- ;;=I70.90^^40^580^17
- ;;^UTILITY(U,$J,358.3,11254,1,0)
+ ;;^UTILITY(U,$J,358.3,21777,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,21777,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,21777,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,21778,0)
+ ;;=E27.3^^73^933^4
+ ;;^UTILITY(U,$J,358.3,21778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11254,1,3,0)
- ;;=3^Atherosclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,11254,1,4,0)
- ;;=4^I70.90
- ;;^UTILITY(U,$J,358.3,11254,2)
- ;;=^5007784
- ;;^UTILITY(U,$J,358.3,11255,0)
- ;;=I25.10^^40^580^18
- ;;^UTILITY(U,$J,358.3,11255,1,0)
+ ;;^UTILITY(U,$J,358.3,21778,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,21778,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,21778,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,21779,0)
+ ;;=E29.1^^73^933^35
+ ;;^UTILITY(U,$J,358.3,21779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11255,1,3,0)
- ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,11255,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,11255,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,11256,0)
- ;;=I48.91^^40^580^19
- ;;^UTILITY(U,$J,358.3,11256,1,0)
+ ;;^UTILITY(U,$J,358.3,21779,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,21779,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,21779,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,21780,0)
+ ;;=E55.9^^73^933^42
+ ;;^UTILITY(U,$J,358.3,21780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11256,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,11256,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,11256,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,11257,0)
- ;;=Z95.1^^40^580^21
- ;;^UTILITY(U,$J,358.3,11257,1,0)
+ ;;^UTILITY(U,$J,358.3,21780,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,21780,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,21780,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,21781,0)
+ ;;=E66.01^^73^933^20
+ ;;^UTILITY(U,$J,358.3,21781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11257,1,3,0)
- ;;=3^Bypass Graft,Aortocoronary
- ;;^UTILITY(U,$J,358.3,11257,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,11257,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,11258,0)
- ;;=I78.9^^40^580^22
- ;;^UTILITY(U,$J,358.3,11258,1,0)
+ ;;^UTILITY(U,$J,358.3,21781,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,21781,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,21781,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,21782,0)
+ ;;=E66.8^^73^933^24
+ ;;^UTILITY(U,$J,358.3,21782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11258,1,3,0)
- ;;=3^Capillary Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11258,1,4,0)
- ;;=4^I78.9
- ;;^UTILITY(U,$J,358.3,11258,2)
- ;;=^5007816
- ;;^UTILITY(U,$J,358.3,11259,0)
- ;;=I51.7^^40^580^23
- ;;^UTILITY(U,$J,358.3,11259,1,0)
+ ;;^UTILITY(U,$J,358.3,21782,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,21782,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,21782,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,21783,0)
+ ;;=E66.9^^73^933^25
+ ;;^UTILITY(U,$J,358.3,21783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11259,1,3,0)
- ;;=3^Cardiomegaly
- ;;^UTILITY(U,$J,358.3,11259,1,4,0)
- ;;=4^I51.7
- ;;^UTILITY(U,$J,358.3,11259,2)
- ;;=^5007257
- ;;^UTILITY(U,$J,358.3,11260,0)
- ;;=I42.1^^40^580^24
- ;;^UTILITY(U,$J,358.3,11260,1,0)
+ ;;^UTILITY(U,$J,358.3,21783,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,21783,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,21783,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,21784,0)
+ ;;=E74.39^^73^933^16
+ ;;^UTILITY(U,$J,358.3,21784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11260,1,3,0)
- ;;=3^Cardiomyopathy,Obstructive Hypertrophic
- ;;^UTILITY(U,$J,358.3,11260,1,4,0)
- ;;=4^I42.1
- ;;^UTILITY(U,$J,358.3,11260,2)
- ;;=^340520
- ;;^UTILITY(U,$J,358.3,11261,0)
- ;;=I42.2^^40^580^25
- ;;^UTILITY(U,$J,358.3,11261,1,0)
+ ;;^UTILITY(U,$J,358.3,21784,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,21784,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,21784,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,21785,0)
+ ;;=E83.30^^73^933^28
+ ;;^UTILITY(U,$J,358.3,21785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11261,1,3,0)
- ;;=3^Cardiomyopathy,Other Hypertrophic
- ;;^UTILITY(U,$J,358.3,11261,1,4,0)
- ;;=4^I42.2
- ;;^UTILITY(U,$J,358.3,11261,2)
- ;;=^340521
- ;;^UTILITY(U,$J,358.3,11262,0)
- ;;=Z13.6^^40^580^26
- ;;^UTILITY(U,$J,358.3,11262,1,0)
+ ;;^UTILITY(U,$J,358.3,21785,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21785,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,21785,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,21786,0)
+ ;;=E83.51^^73^933^9
+ ;;^UTILITY(U,$J,358.3,21786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11262,1,3,0)
- ;;=3^Cardiovascular Disorder Screening
- ;;^UTILITY(U,$J,358.3,11262,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,11262,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,11263,0)
- ;;=G45.1^^40^580^27
- ;;^UTILITY(U,$J,358.3,11263,1,0)
+ ;;^UTILITY(U,$J,358.3,21786,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,21786,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,21786,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,21787,0)
+ ;;=E83.52^^73^933^7
+ ;;^UTILITY(U,$J,358.3,21787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11263,1,3,0)
- ;;=3^Carotid Artery Syndrome
- ;;^UTILITY(U,$J,358.3,11263,1,4,0)
- ;;=4^G45.1
- ;;^UTILITY(U,$J,358.3,11263,2)
- ;;=^5003956
- ;;^UTILITY(U,$J,358.3,11264,0)
- ;;=I65.29^^40^580^28
- ;;^UTILITY(U,$J,358.3,11264,1,0)
+ ;;^UTILITY(U,$J,358.3,21787,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,21787,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,21787,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,21788,0)
+ ;;=E87.5^^73^933^8
+ ;;^UTILITY(U,$J,358.3,21788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11264,1,3,0)
- ;;=3^Carotid Artery,Occlusion & Stenosis,Unspec
- ;;^UTILITY(U,$J,358.3,11264,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,11264,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,11265,0)
- ;;=R09.89^^40^580^29
- ;;^UTILITY(U,$J,358.3,11265,1,0)
+ ;;^UTILITY(U,$J,358.3,21788,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,21788,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,21788,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,21789,0)
+ ;;=E89.2^^73^933^30
+ ;;^UTILITY(U,$J,358.3,21789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11265,1,3,0)
- ;;=3^Carotid Bruit
- ;;^UTILITY(U,$J,358.3,11265,1,4,0)
- ;;=4^R09.89
- ;;^UTILITY(U,$J,358.3,11265,2)
- ;;=^5019204
- ;;^UTILITY(U,$J,358.3,11266,0)
- ;;=I63.239^^40^580^30
- ;;^UTILITY(U,$J,358.3,11266,1,0)
+ ;;^UTILITY(U,$J,358.3,21789,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,21789,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,21789,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,21790,0)
+ ;;=E89.6^^73^933^29
+ ;;^UTILITY(U,$J,358.3,21790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11266,1,3,0)
- ;;=3^Cerebral Infarction d/t Occlusion/Stenosis Carotid Arteries
- ;;^UTILITY(U,$J,358.3,11266,1,4,0)
- ;;=4^I63.239
- ;;^UTILITY(U,$J,358.3,11266,2)
- ;;=^5133567
- ;;^UTILITY(U,$J,358.3,11267,0)
- ;;=I63.20^^40^580^31
- ;;^UTILITY(U,$J,358.3,11267,1,0)
+ ;;^UTILITY(U,$J,358.3,21790,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,21790,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,21790,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,21791,0)
+ ;;=L68.0^^73^933^6
+ ;;^UTILITY(U,$J,358.3,21791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11267,1,3,0)
- ;;=3^Cerebral Infarction d/t Occlusion/Stenosis Percerebral Arteries
- ;;^UTILITY(U,$J,358.3,11267,1,4,0)
- ;;=4^I63.20
- ;;^UTILITY(U,$J,358.3,11267,2)
- ;;=^5007312
- ;;^UTILITY(U,$J,358.3,11268,0)
- ;;=I51.9^^40^580^32
- ;;^UTILITY(U,$J,358.3,11268,1,0)
+ ;;^UTILITY(U,$J,358.3,21791,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,21791,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,21791,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,21792,0)
+ ;;=M80.00XA^^73^933^2
+ ;;^UTILITY(U,$J,358.3,21792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11268,1,3,0)
- ;;=3^Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11268,1,4,0)
- ;;=4^I51.9
- ;;^UTILITY(U,$J,358.3,11268,2)
- ;;=^5007258
- ;;^UTILITY(U,$J,358.3,11269,0)
- ;;=I50.9^^40^580^33
- ;;^UTILITY(U,$J,358.3,11269,1,0)
+ ;;^UTILITY(U,$J,358.3,21792,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21792,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,21792,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,21793,0)
+ ;;=M81.0^^73^933^3
+ ;;^UTILITY(U,$J,358.3,21793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11269,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,11269,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,11269,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,11270,0)
- ;;=I62.1^^40^580^35
- ;;^UTILITY(U,$J,358.3,11270,1,0)
+ ;;^UTILITY(U,$J,358.3,21793,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,21793,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,21793,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,21794,0)
+ ;;=M85.80^^73^933^26
+ ;;^UTILITY(U,$J,358.3,21794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11270,1,3,0)
- ;;=3^Hemorrhage,Nontraumatic Extradural
- ;;^UTILITY(U,$J,358.3,11270,1,4,0)
- ;;=4^I62.1
- ;;^UTILITY(U,$J,358.3,11270,2)
- ;;=^269743
- ;;^UTILITY(U,$J,358.3,11271,0)
- ;;=I61.9^^40^580^36
- ;;^UTILITY(U,$J,358.3,11271,1,0)
+ ;;^UTILITY(U,$J,358.3,21794,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,21794,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,21794,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,21795,0)
+ ;;=N62.^^73^933^5
+ ;;^UTILITY(U,$J,358.3,21795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11271,1,3,0)
- ;;=3^Hemorrhage,Nontraumatic Intracerebral,Unspec
- ;;^UTILITY(U,$J,358.3,11271,1,4,0)
- ;;=4^I61.9
- ;;^UTILITY(U,$J,358.3,11271,2)
- ;;=^5007288
- ;;^UTILITY(U,$J,358.3,11272,0)
- ;;=I62.9^^40^580^37
- ;;^UTILITY(U,$J,358.3,11272,1,0)
+ ;;^UTILITY(U,$J,358.3,21795,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,21795,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,21795,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,21796,0)
+ ;;=E66.3^^73^933^27
+ ;;^UTILITY(U,$J,358.3,21796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11272,1,3,0)
- ;;=3^Hemorrhage,Nontraumatic Intracranial,Unspec
- ;;^UTILITY(U,$J,358.3,11272,1,4,0)
- ;;=4^I62.9
- ;;^UTILITY(U,$J,358.3,11272,2)
- ;;=^5007293
- ;;^UTILITY(U,$J,358.3,11273,0)
- ;;=I60.9^^40^580^38
- ;;^UTILITY(U,$J,358.3,11273,1,0)
+ ;;^UTILITY(U,$J,358.3,21796,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,21796,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,21796,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,21797,0)
+ ;;=E89.1^^73^933^31
+ ;;^UTILITY(U,$J,358.3,21797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11273,1,3,0)
- ;;=3^Hemorrhage,Nontraumatic Subarachnoid,Unspec
- ;;^UTILITY(U,$J,358.3,11273,1,4,0)
- ;;=4^I60.9
- ;;^UTILITY(U,$J,358.3,11273,2)
- ;;=^5007279
- ;;^UTILITY(U,$J,358.3,11274,0)
- ;;=I62.00^^40^580^39
+ ;;^UTILITY(U,$J,358.3,21797,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,21797,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,21797,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,21798,0)
+ ;;=R73.03^^73^933^33
+ ;;^UTILITY(U,$J,358.3,21798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21798,1,3,0)
+ ;;=3^Pre-Diabetes
+ ;;^UTILITY(U,$J,358.3,21798,1,4,0)
+ ;;=4^R73.03
+ ;;^UTILITY(U,$J,358.3,21798,2)
+ ;;=^8295662
+ ;;^UTILITY(U,$J,358.3,21799,0)
+ ;;=E73.9^^73^933^18
+ ;;^UTILITY(U,$J,358.3,21799,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21799,1,3,0)
+ ;;=3^Lactose Intolerance,Unspec
+ ;;^UTILITY(U,$J,358.3,21799,1,4,0)
+ ;;=4^E73.9
+ ;;^UTILITY(U,$J,358.3,21799,2)
+ ;;=^5002914
+ ;;^UTILITY(U,$J,358.3,21800,0)
+ ;;=H40.9^^73^934^11
+ ;;^UTILITY(U,$J,358.3,21800,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21800,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,21800,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,21800,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,21801,0)
+ ;;=H26.9^^73^934^7
+ ;;^UTILITY(U,$J,358.3,21801,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21801,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,21801,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,21801,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,21802,0)
+ ;;=H10.9^^73^934^10
+ ;;^UTILITY(U,$J,358.3,21802,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21802,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21802,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,21802,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,21803,0)
+ ;;=H11.32^^73^934^8
+ ;;^UTILITY(U,$J,358.3,21803,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21803,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,21803,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,21803,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,21804,0)
+ ;;=H11.31^^73^934^9
+ ;;^UTILITY(U,$J,358.3,21804,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21804,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,21804,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,21804,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,21805,0)
+ ;;=H01.002^^73^934^3
+ ;;^UTILITY(U,$J,358.3,21805,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21805,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,21805,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,21805,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,21806,0)
+ ;;=H01.004^^73^934^2
+ ;;^UTILITY(U,$J,358.3,21806,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21806,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,21806,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,21806,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,21807,0)
+ ;;=H01.005^^73^934^1
+ ;;^UTILITY(U,$J,358.3,21807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21807,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,21807,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,21807,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,21808,0)
+ ;;=H01.001^^73^934^4
+ ;;^UTILITY(U,$J,358.3,21808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21808,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,21808,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,21808,2)
+ ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,21809,0)
+ ;;=H57.13^^73^934^12
+ ;;^UTILITY(U,$J,358.3,21809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21809,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,21809,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,21809,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,21810,0)
+ ;;=H57.12^^73^934^13
+ ;;^UTILITY(U,$J,358.3,21810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21810,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,21810,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,21810,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,21811,0)
+ ;;=H57.11^^73^934^14
+ ;;^UTILITY(U,$J,358.3,21811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21811,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,21811,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,21811,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,21812,0)
+ ;;=H01.00B^^73^934^5
+ ;;^UTILITY(U,$J,358.3,21812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21812,1,3,0)
+ ;;=3^Blepharitis,Unspec,Left Upper & Lower Eyelids
+ ;;^UTILITY(U,$J,358.3,21812,1,4,0)
+ ;;=4^H01.00B
+ ;;^UTILITY(U,$J,358.3,21812,2)
+ ;;=^5157319
+ ;;^UTILITY(U,$J,358.3,21813,0)
+ ;;=H01.00A^^73^934^6
+ ;;^UTILITY(U,$J,358.3,21813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21813,1,3,0)
+ ;;=3^Blepharitis,Unspec,Right Upper & Lower Eyelids
+ ;;^UTILITY(U,$J,358.3,21813,1,4,0)
+ ;;=4^H01.00A
+ ;;^UTILITY(U,$J,358.3,21813,2)
+ ;;=^5157318
+ ;;^UTILITY(U,$J,358.3,21814,0)
+ ;;=S05.02XA^^73^935^3
+ ;;^UTILITY(U,$J,358.3,21814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21814,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
+ ;;^UTILITY(U,$J,358.3,21814,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,21814,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,21815,0)
+ ;;=S05.01XA^^73^935^4
+ ;;^UTILITY(U,$J,358.3,21815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21815,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,21815,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,21815,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,21816,0)
+ ;;=T15.02XA^^73^935^1
+ ;;^UTILITY(U,$J,358.3,21816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21816,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21816,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,21816,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,21817,0)
+ ;;=T15.01XA^^73^935^2
+ ;;^UTILITY(U,$J,358.3,21817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21817,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21817,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,21817,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,21818,0)
+ ;;=S00.252A^^73^935^5
+ ;;^UTILITY(U,$J,358.3,21818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21818,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21818,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,21818,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,21819,0)
+ ;;=S00.251A^^73^935^6
+ ;;^UTILITY(U,$J,358.3,21819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21819,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21819,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,21819,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,21820,0)
+ ;;=B96.81^^73^936^63
+ ;;^UTILITY(U,$J,358.3,21820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21820,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,21820,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,21820,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,21821,0)
+ ;;=B15.9^^73^936^65
+ ;;^UTILITY(U,$J,358.3,21821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21821,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,21821,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,21821,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,21822,0)
+ ;;=B16.9^^73^936^66
+ ;;^UTILITY(U,$J,358.3,21822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21822,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,21822,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,21822,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,21823,0)
+ ;;=B19.10^^73^936^68
+ ;;^UTILITY(U,$J,358.3,21823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21823,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,21823,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,21823,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,21824,0)
+ ;;=B18.1^^73^936^67
+ ;;^UTILITY(U,$J,358.3,21824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21824,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,21824,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,21824,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,21825,0)
+ ;;=B17.10^^73^936^69
+ ;;^UTILITY(U,$J,358.3,21825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21825,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,21825,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,21825,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,21826,0)
+ ;;=B18.2^^73^936^70
+ ;;^UTILITY(U,$J,358.3,21826,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21826,1,3,0)
+ ;;=3^Hepatitis C,Chronic Viral
+ ;;^UTILITY(U,$J,358.3,21826,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,21826,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,21827,0)
+ ;;=B18.8^^73^936^72
+ ;;^UTILITY(U,$J,358.3,21827,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21827,1,3,0)
+ ;;=3^Hepatitis,Oth Chronic Viral
+ ;;^UTILITY(U,$J,358.3,21827,1,4,0)
+ ;;=4^B18.8
+ ;;^UTILITY(U,$J,358.3,21827,2)
+ ;;=^5000549
+ ;;^UTILITY(U,$J,358.3,21828,0)
+ ;;=B17.8^^73^936^73
+ ;;^UTILITY(U,$J,358.3,21828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21828,1,3,0)
+ ;;=3^Hepatitis,Oth Spec Acute Viral
+ ;;^UTILITY(U,$J,358.3,21828,1,4,0)
+ ;;=4^B17.8
+ ;;^UTILITY(U,$J,358.3,21828,2)
+ ;;=^5000544
+ ;;^UTILITY(U,$J,358.3,21829,0)
+ ;;=B18.9^^73^936^71
+ ;;^UTILITY(U,$J,358.3,21829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21829,1,3,0)
+ ;;=3^Hepatitis,Chronic Viral Unspec
+ ;;^UTILITY(U,$J,358.3,21829,1,4,0)
+ ;;=4^B18.9
+ ;;^UTILITY(U,$J,358.3,21829,2)
+ ;;=^5000550
+ ;;^UTILITY(U,$J,358.3,21830,0)
+ ;;=B37.81^^73^936^18
+ ;;^UTILITY(U,$J,358.3,21830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21830,1,3,0)
+ ;;=3^Candidal Esophagitis
+ ;;^UTILITY(U,$J,358.3,21830,1,4,0)
+ ;;=4^B37.81
+ ;;^UTILITY(U,$J,358.3,21830,2)
+ ;;=^5000620
+ ;;^UTILITY(U,$J,358.3,21831,0)
+ ;;=D12.0^^73^936^12
+ ;;^UTILITY(U,$J,358.3,21831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21831,1,3,0)
+ ;;=3^Benign Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,21831,1,4,0)
+ ;;=4^D12.0
+ ;;^UTILITY(U,$J,358.3,21831,2)
+ ;;=^5001963

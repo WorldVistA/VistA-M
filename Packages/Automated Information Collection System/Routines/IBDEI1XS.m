@@ -1,134 +1,118 @@
-IBDEI1XS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32847,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,32847,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,32848,0)
- ;;=I10.^^128^1638^6
- ;;^UTILITY(U,$J,358.3,32848,1,0)
+ ;;^UTILITY(U,$J,358.3,30930,0)
+ ;;=N06.5^^123^1597^37
+ ;;^UTILITY(U,$J,358.3,30930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32848,1,3,0)
- ;;=3^Hypertension,Essential Primary
- ;;^UTILITY(U,$J,358.3,32848,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,32848,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,32849,0)
- ;;=I25.2^^128^1638^9
- ;;^UTILITY(U,$J,358.3,32849,1,0)
+ ;;^UTILITY(U,$J,358.3,30930,1,3,0)
+ ;;=3^Isolated proteinuria w/ diffuse mesangiocapillary glomrlneph
+ ;;^UTILITY(U,$J,358.3,30930,1,4,0)
+ ;;=4^N06.5
+ ;;^UTILITY(U,$J,358.3,30930,2)
+ ;;=^5015554
+ ;;^UTILITY(U,$J,358.3,30931,0)
+ ;;=N06.6^^123^1597^32
+ ;;^UTILITY(U,$J,358.3,30931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32849,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,32849,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,32849,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,32850,0)
- ;;=I25.10^^128^1638^2
- ;;^UTILITY(U,$J,358.3,32850,1,0)
+ ;;^UTILITY(U,$J,358.3,30931,1,3,0)
+ ;;=3^Isolated proteinuria w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,30931,1,4,0)
+ ;;=4^N06.6
+ ;;^UTILITY(U,$J,358.3,30931,2)
+ ;;=^5015555
+ ;;^UTILITY(U,$J,358.3,30932,0)
+ ;;=N06.7^^123^1597^33
+ ;;^UTILITY(U,$J,358.3,30932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32850,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery,w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,32850,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,32850,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,32851,0)
- ;;=I51.9^^128^1638^4
- ;;^UTILITY(U,$J,358.3,32851,1,0)
+ ;;^UTILITY(U,$J,358.3,30932,1,3,0)
+ ;;=3^Isolated proteinuria w/ diffuse crescentic glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,30932,1,4,0)
+ ;;=4^N06.7
+ ;;^UTILITY(U,$J,358.3,30932,2)
+ ;;=^5015556
+ ;;^UTILITY(U,$J,358.3,30933,0)
+ ;;=N06.8^^123^1597^40
+ ;;^UTILITY(U,$J,358.3,30933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32851,1,3,0)
- ;;=3^Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32851,1,4,0)
- ;;=4^I51.9
- ;;^UTILITY(U,$J,358.3,32851,2)
- ;;=^5007258
- ;;^UTILITY(U,$J,358.3,32852,0)
- ;;=K70.9^^128^1638^1
- ;;^UTILITY(U,$J,358.3,32852,1,0)
+ ;;^UTILITY(U,$J,358.3,30933,1,3,0)
+ ;;=3^Isolated proteinuria w/ other morphologic lesion
+ ;;^UTILITY(U,$J,358.3,30933,1,4,0)
+ ;;=4^N06.8
+ ;;^UTILITY(U,$J,358.3,30933,2)
+ ;;=^5015557
+ ;;^UTILITY(U,$J,358.3,30934,0)
+ ;;=N06.9^^123^1597^41
+ ;;^UTILITY(U,$J,358.3,30934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32852,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32852,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,32852,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,32853,0)
- ;;=R03.0^^128^1638^3
- ;;^UTILITY(U,$J,358.3,32853,1,0)
+ ;;^UTILITY(U,$J,358.3,30934,1,3,0)
+ ;;=3^Isolated proteinuria w/ unspecified morphologic lesion
+ ;;^UTILITY(U,$J,358.3,30934,1,4,0)
+ ;;=4^N06.9
+ ;;^UTILITY(U,$J,358.3,30934,2)
+ ;;=^5015558
+ ;;^UTILITY(U,$J,358.3,30935,0)
+ ;;=N07.0^^123^1597^29
+ ;;^UTILITY(U,$J,358.3,30935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32853,1,3,0)
- ;;=3^Elevated B/P Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,32853,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,32853,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,32854,0)
- ;;=Z12.31^^128^1639^1
- ;;^UTILITY(U,$J,358.3,32854,1,0)
+ ;;^UTILITY(U,$J,358.3,30935,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,30935,1,4,0)
+ ;;=4^N07.0
+ ;;^UTILITY(U,$J,358.3,30935,2)
+ ;;=^5015559
+ ;;^UTILITY(U,$J,358.3,30936,0)
+ ;;=N07.1^^123^1597^28
+ ;;^UTILITY(U,$J,358.3,30936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32854,1,3,0)
- ;;=3^Screening Mammogram for Malig Neop Breast
- ;;^UTILITY(U,$J,358.3,32854,1,4,0)
- ;;=4^Z12.31
- ;;^UTILITY(U,$J,358.3,32854,2)
- ;;=^5062685
- ;;^UTILITY(U,$J,358.3,32855,0)
- ;;=Z12.39^^128^1639^8
- ;;^UTILITY(U,$J,358.3,32855,1,0)
+ ;;^UTILITY(U,$J,358.3,30936,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,30936,1,4,0)
+ ;;=4^N07.1
+ ;;^UTILITY(U,$J,358.3,30936,2)
+ ;;=^5015560
+ ;;^UTILITY(U,$J,358.3,30937,0)
+ ;;=N07.2^^123^1597^24
+ ;;^UTILITY(U,$J,358.3,30937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32855,1,3,0)
- ;;=3^Screening for Malig Neop Breast
- ;;^UTILITY(U,$J,358.3,32855,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,32855,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,32856,0)
- ;;=Z11.51^^128^1639^5
- ;;^UTILITY(U,$J,358.3,32856,1,0)
+ ;;^UTILITY(U,$J,358.3,30937,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,30937,1,4,0)
+ ;;=4^N07.2
+ ;;^UTILITY(U,$J,358.3,30937,2)
+ ;;=^5015561
+ ;;^UTILITY(U,$J,358.3,30938,0)
+ ;;=N07.3^^123^1597^25
+ ;;^UTILITY(U,$J,358.3,30938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32856,1,3,0)
- ;;=3^Screening for HPV
- ;;^UTILITY(U,$J,358.3,32856,1,4,0)
- ;;=4^Z11.51
- ;;^UTILITY(U,$J,358.3,32856,2)
- ;;=^5062674
- ;;^UTILITY(U,$J,358.3,32857,0)
- ;;=Z11.59^^128^1639^16
- ;;^UTILITY(U,$J,358.3,32857,1,0)
+ ;;^UTILITY(U,$J,358.3,30938,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,30938,1,4,0)
+ ;;=4^N07.3
+ ;;^UTILITY(U,$J,358.3,30938,2)
+ ;;=^5015562
+ ;;^UTILITY(U,$J,358.3,30939,0)
+ ;;=N07.4^^123^1597^23
+ ;;^UTILITY(U,$J,358.3,30939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32857,1,3,0)
- ;;=3^Screening for Viral Diseases
- ;;^UTILITY(U,$J,358.3,32857,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,32857,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,32858,0)
- ;;=Z11.3^^128^1639^6
- ;;^UTILITY(U,$J,358.3,32858,1,0)
+ ;;^UTILITY(U,$J,358.3,30939,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,30939,1,4,0)
+ ;;=4^N07.4
+ ;;^UTILITY(U,$J,358.3,30939,2)
+ ;;=^5015563
+ ;;^UTILITY(U,$J,358.3,30940,0)
+ ;;=N07.5^^123^1597^26
+ ;;^UTILITY(U,$J,358.3,30940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32858,1,3,0)
- ;;=3^Screening for Infections w/ Sexual Mode of Transmission
- ;;^UTILITY(U,$J,358.3,32858,1,4,0)
- ;;=4^Z11.3
- ;;^UTILITY(U,$J,358.3,32858,2)
- ;;=^5062672
- ;;^UTILITY(U,$J,358.3,32859,0)
- ;;=Z11.9^^128^1639^7
- ;;^UTILITY(U,$J,358.3,32859,1,0)
+ ;;^UTILITY(U,$J,358.3,30940,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,30940,1,4,0)
+ ;;=4^N07.5
+ ;;^UTILITY(U,$J,358.3,30940,2)
+ ;;=^5015564
+ ;;^UTILITY(U,$J,358.3,30941,0)
+ ;;=N07.6^^123^1597^22
+ ;;^UTILITY(U,$J,358.3,30941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32859,1,3,0)
- ;;=3^Screening for Infectious/Parasitic Diseases
- ;;^UTILITY(U,$J,358.3,32859,1,4,0)
- ;;=4^Z11.9
- ;;^UTILITY(U,$J,358.3,32859,2)
- ;;=^5062678
- ;;^UTILITY(U,$J,358.3,32860,0)
- ;;=Z12.2^^128^1639^13
- ;;^UTILITY(U,$J,358.3,32860,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32860,1,3,0)
- ;;=3^Screening for Malig Neop Respiratory Organs

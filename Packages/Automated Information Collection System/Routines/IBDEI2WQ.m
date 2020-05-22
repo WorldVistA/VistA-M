@@ -1,124 +1,122 @@
-IBDEI2WQ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48804,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,48804,1,4,0)
- ;;=4^S06.312S
- ;;^UTILITY(U,$J,358.3,48804,2)
- ;;=^5020794
- ;;^UTILITY(U,$J,358.3,48805,0)
- ;;=S06.314S^^216^2412^26
- ;;^UTILITY(U,$J,358.3,48805,1,0)
+ ;;^UTILITY(U,$J,358.3,46370,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Severe,Bilateral
+ ;;^UTILITY(U,$J,358.3,46370,1,4,0)
+ ;;=4^H40.33X3
+ ;;^UTILITY(U,$J,358.3,46370,2)
+ ;;=^5005863
+ ;;^UTILITY(U,$J,358.3,46371,0)
+ ;;=H40.41X1^^176^2307^22
+ ;;^UTILITY(U,$J,358.3,46371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48805,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,48805,1,4,0)
- ;;=4^S06.314S
- ;;^UTILITY(U,$J,358.3,48805,2)
- ;;=^5020800
- ;;^UTILITY(U,$J,358.3,48806,0)
- ;;=S06.319S^^216^2412^27
- ;;^UTILITY(U,$J,358.3,48806,1,0)
+ ;;^UTILITY(U,$J,358.3,46371,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Mild,Right Eye
+ ;;^UTILITY(U,$J,358.3,46371,1,4,0)
+ ;;=4^H40.41X1
+ ;;^UTILITY(U,$J,358.3,46371,2)
+ ;;=^5005871
+ ;;^UTILITY(U,$J,358.3,46372,0)
+ ;;=H40.42X1^^176^2307^23
+ ;;^UTILITY(U,$J,358.3,46372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48806,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,48806,1,4,0)
- ;;=4^S06.319S
- ;;^UTILITY(U,$J,358.3,48806,2)
- ;;=^5020815
- ;;^UTILITY(U,$J,358.3,48807,0)
- ;;=S06.310S^^216^2412^28
- ;;^UTILITY(U,$J,358.3,48807,1,0)
+ ;;^UTILITY(U,$J,358.3,46372,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Mild,Left Eye
+ ;;^UTILITY(U,$J,358.3,46372,1,4,0)
+ ;;=4^H40.42X1
+ ;;^UTILITY(U,$J,358.3,46372,2)
+ ;;=^5005875
+ ;;^UTILITY(U,$J,358.3,46373,0)
+ ;;=H40.43X1^^176^2307^24
+ ;;^UTILITY(U,$J,358.3,46373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48807,1,3,0)
- ;;=3^Contus/lac right cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,48807,1,4,0)
- ;;=4^S06.310S
- ;;^UTILITY(U,$J,358.3,48807,2)
- ;;=^5020788
- ;;^UTILITY(U,$J,358.3,48808,0)
- ;;=S06.385S^^216^2412^29
- ;;^UTILITY(U,$J,358.3,48808,1,0)
+ ;;^UTILITY(U,$J,358.3,46373,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Mild,Bilateral
+ ;;^UTILITY(U,$J,358.3,46373,1,4,0)
+ ;;=4^H40.43X1
+ ;;^UTILITY(U,$J,358.3,46373,2)
+ ;;=^5005879
+ ;;^UTILITY(U,$J,358.3,46374,0)
+ ;;=H40.41X3^^176^2307^25
+ ;;^UTILITY(U,$J,358.3,46374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48808,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,48808,1,4,0)
- ;;=4^S06.385S
- ;;^UTILITY(U,$J,358.3,48808,2)
- ;;=^5021013
- ;;^UTILITY(U,$J,358.3,48809,0)
- ;;=S06.386S^^216^2412^30
- ;;^UTILITY(U,$J,358.3,48809,1,0)
+ ;;^UTILITY(U,$J,358.3,46374,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Severe,Right Eye
+ ;;^UTILITY(U,$J,358.3,46374,1,4,0)
+ ;;=4^H40.41X3
+ ;;^UTILITY(U,$J,358.3,46374,2)
+ ;;=^5133505
+ ;;^UTILITY(U,$J,358.3,46375,0)
+ ;;=H40.42X3^^176^2307^26
+ ;;^UTILITY(U,$J,358.3,46375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48809,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,48809,1,4,0)
- ;;=4^S06.386S
- ;;^UTILITY(U,$J,358.3,48809,2)
- ;;=^5021016
- ;;^UTILITY(U,$J,358.3,48810,0)
- ;;=S06.383S^^216^2412^31
- ;;^UTILITY(U,$J,358.3,48810,1,0)
+ ;;^UTILITY(U,$J,358.3,46375,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Severe,Left Eye
+ ;;^UTILITY(U,$J,358.3,46375,1,4,0)
+ ;;=4^H40.42X3
+ ;;^UTILITY(U,$J,358.3,46375,2)
+ ;;=^5133506
+ ;;^UTILITY(U,$J,358.3,46376,0)
+ ;;=H40.43X3^^176^2307^27
+ ;;^UTILITY(U,$J,358.3,46376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48810,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,48810,1,4,0)
- ;;=4^S06.383S
- ;;^UTILITY(U,$J,358.3,48810,2)
- ;;=^5021007
- ;;^UTILITY(U,$J,358.3,48811,0)
- ;;=S06.381S^^216^2412^32
- ;;^UTILITY(U,$J,358.3,48811,1,0)
+ ;;^UTILITY(U,$J,358.3,46376,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Severe,Bilateral
+ ;;^UTILITY(U,$J,358.3,46376,1,4,0)
+ ;;=4^H40.43X3
+ ;;^UTILITY(U,$J,358.3,46376,2)
+ ;;=^5005881
+ ;;^UTILITY(U,$J,358.3,46377,0)
+ ;;=H40.51X3^^176^2307^28
+ ;;^UTILITY(U,$J,358.3,46377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48811,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,48811,1,4,0)
- ;;=4^S06.381S
- ;;^UTILITY(U,$J,358.3,48811,2)
- ;;=^5021001
- ;;^UTILITY(U,$J,358.3,48812,0)
- ;;=S06.382S^^216^2412^33
- ;;^UTILITY(U,$J,358.3,48812,1,0)
+ ;;^UTILITY(U,$J,358.3,46377,1,3,0)
+ ;;=3^Glaucoma d/t Eye Disorder,Severe,Right Eye
+ ;;^UTILITY(U,$J,358.3,46377,1,4,0)
+ ;;=4^H40.51X3
+ ;;^UTILITY(U,$J,358.3,46377,2)
+ ;;=^5133507
+ ;;^UTILITY(U,$J,358.3,46378,0)
+ ;;=H40.52X3^^176^2307^29
+ ;;^UTILITY(U,$J,358.3,46378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48812,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,48812,1,4,0)
- ;;=4^S06.382S
- ;;^UTILITY(U,$J,358.3,48812,2)
- ;;=^5021004
- ;;^UTILITY(U,$J,358.3,48813,0)
- ;;=S06.384S^^216^2412^34
- ;;^UTILITY(U,$J,358.3,48813,1,0)
+ ;;^UTILITY(U,$J,358.3,46378,1,3,0)
+ ;;=3^Glaucoma d/t Eye Disorder,Severe,Left Eye
+ ;;^UTILITY(U,$J,358.3,46378,1,4,0)
+ ;;=4^H40.52X3
+ ;;^UTILITY(U,$J,358.3,46378,2)
+ ;;=^5133508
+ ;;^UTILITY(U,$J,358.3,46379,0)
+ ;;=H40.31X4^^176^2307^30
+ ;;^UTILITY(U,$J,358.3,46379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48813,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,48813,1,4,0)
- ;;=4^S06.384S
- ;;^UTILITY(U,$J,358.3,48813,2)
- ;;=^5021010
- ;;^UTILITY(U,$J,358.3,48814,0)
- ;;=S06.389S^^216^2412^35
- ;;^UTILITY(U,$J,358.3,48814,1,0)
+ ;;^UTILITY(U,$J,358.3,46379,1,3,0)
+ ;;=3^Glaucoma Secondary to Eye Trauma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,46379,1,4,0)
+ ;;=4^H40.31X4
+ ;;^UTILITY(U,$J,358.3,46379,2)
+ ;;=^5005855
+ ;;^UTILITY(U,$J,358.3,46380,0)
+ ;;=H40.32X4^^176^2307^31
+ ;;^UTILITY(U,$J,358.3,46380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48814,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,48814,1,4,0)
- ;;=4^S06.389S
- ;;^UTILITY(U,$J,358.3,48814,2)
- ;;=^5021025
- ;;^UTILITY(U,$J,358.3,48815,0)
- ;;=S06.380S^^216^2412^36
- ;;^UTILITY(U,$J,358.3,48815,1,0)
+ ;;^UTILITY(U,$J,358.3,46380,1,3,0)
+ ;;=3^Glaucoma Secondary to Eye Trauma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,46380,1,4,0)
+ ;;=4^H40.32X4
+ ;;^UTILITY(U,$J,358.3,46380,2)
+ ;;=^5005859
+ ;;^UTILITY(U,$J,358.3,46381,0)
+ ;;=H31.421^^176^2308^5
+ ;;^UTILITY(U,$J,358.3,46381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48815,1,3,0)
- ;;=3^Contus/lac/hem brnst w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,48815,1,4,0)
- ;;=4^S06.380S
- ;;^UTILITY(U,$J,358.3,48815,2)
- ;;=^5020998
- ;;^UTILITY(U,$J,358.3,48816,0)
- ;;=S06.375S^^216^2412^37
- ;;^UTILITY(U,$J,358.3,48816,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46381,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,46381,1,4,0)
+ ;;=4^H31.421
+ ;;^UTILITY(U,$J,358.3,46381,2)
+ ;;=^5005483
+ ;;^UTILITY(U,$J,358.3,46382,0)
+ ;;=H31.422^^176^2308^6

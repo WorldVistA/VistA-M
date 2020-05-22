@@ -1,138 +1,126 @@
-IBDEI2H6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2H6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41975,0)
- ;;=D86.0^^159^2014^45
- ;;^UTILITY(U,$J,358.3,41975,1,0)
+ ;;^UTILITY(U,$J,358.3,39527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41975,1,3,0)
- ;;=3^Sarcoidosis of Lung
- ;;^UTILITY(U,$J,358.3,41975,1,4,0)
- ;;=4^D86.0
- ;;^UTILITY(U,$J,358.3,41975,2)
- ;;=^5002442
- ;;^UTILITY(U,$J,358.3,41976,0)
- ;;=D86.1^^159^2014^47
- ;;^UTILITY(U,$J,358.3,41976,1,0)
+ ;;^UTILITY(U,$J,358.3,39527,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,39527,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,39527,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,39528,0)
+ ;;=G44.84^^152^1998^7
+ ;;^UTILITY(U,$J,358.3,39528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41976,1,3,0)
- ;;=3^Sarcoidosis of Lymph nodes
- ;;^UTILITY(U,$J,358.3,41976,1,4,0)
- ;;=4^D86.1
- ;;^UTILITY(U,$J,358.3,41976,2)
- ;;=^5002443
- ;;^UTILITY(U,$J,358.3,41977,0)
- ;;=D86.2^^159^2014^46
- ;;^UTILITY(U,$J,358.3,41977,1,0)
+ ;;^UTILITY(U,$J,358.3,39528,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,39528,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,39528,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,39529,0)
+ ;;=G44.301^^152^1998^6
+ ;;^UTILITY(U,$J,358.3,39529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41977,1,3,0)
- ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,41977,1,4,0)
- ;;=4^D86.2
- ;;^UTILITY(U,$J,358.3,41977,2)
- ;;=^5002444
- ;;^UTILITY(U,$J,358.3,41978,0)
- ;;=D86.89^^159^2014^48
- ;;^UTILITY(U,$J,358.3,41978,1,0)
+ ;;^UTILITY(U,$J,358.3,39529,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,39529,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,39529,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,39530,0)
+ ;;=G44.209^^152^1998^8
+ ;;^UTILITY(U,$J,358.3,39530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41978,1,3,0)
- ;;=3^Sarcoidosis of Other Sites
- ;;^UTILITY(U,$J,358.3,41978,1,4,0)
- ;;=4^D86.89
- ;;^UTILITY(U,$J,358.3,41978,2)
- ;;=^5002453
- ;;^UTILITY(U,$J,358.3,41979,0)
- ;;=D86.9^^159^2014^51
- ;;^UTILITY(U,$J,358.3,41979,1,0)
+ ;;^UTILITY(U,$J,358.3,39530,1,3,0)
+ ;;=3^Tension-Type Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,39530,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,39530,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,39531,0)
+ ;;=I30.0^^152^1999^5
+ ;;^UTILITY(U,$J,358.3,39531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41979,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,41979,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,41979,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,41980,0)
- ;;=D86.86^^159^2014^39
- ;;^UTILITY(U,$J,358.3,41980,1,0)
+ ;;^UTILITY(U,$J,358.3,39531,1,3,0)
+ ;;=3^Idiopathic Pericarditis,Acute Nonspec
+ ;;^UTILITY(U,$J,358.3,39531,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,39531,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,39532,0)
+ ;;=I34.8^^152^1999^6
+ ;;^UTILITY(U,$J,358.3,39532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41980,1,3,0)
- ;;=3^Sarcoid Arthropathy
- ;;^UTILITY(U,$J,358.3,41980,1,4,0)
- ;;=4^D86.86
- ;;^UTILITY(U,$J,358.3,41980,2)
- ;;=^5002451
- ;;^UTILITY(U,$J,358.3,41981,0)
- ;;=D86.87^^159^2014^43
- ;;^UTILITY(U,$J,358.3,41981,1,0)
+ ;;^UTILITY(U,$J,358.3,39532,1,3,0)
+ ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,39532,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,39532,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,39533,0)
+ ;;=I34.0^^152^1999^13
+ ;;^UTILITY(U,$J,358.3,39533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41981,1,3,0)
- ;;=3^Sarcoid Myositis
- ;;^UTILITY(U,$J,358.3,41981,1,4,0)
- ;;=4^D86.87
- ;;^UTILITY(U,$J,358.3,41981,2)
- ;;=^5002452
- ;;^UTILITY(U,$J,358.3,41982,0)
- ;;=D86.3^^159^2014^49
- ;;^UTILITY(U,$J,358.3,41982,1,0)
+ ;;^UTILITY(U,$J,358.3,39533,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,39533,1,4,0)
+ ;;=4^I34.0
+ ;;^UTILITY(U,$J,358.3,39533,2)
+ ;;=^5007169
+ ;;^UTILITY(U,$J,358.3,39534,0)
+ ;;=I34.9^^152^1999^12
+ ;;^UTILITY(U,$J,358.3,39534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41982,1,3,0)
- ;;=3^Sarcoidosis of Skin
- ;;^UTILITY(U,$J,358.3,41982,1,4,0)
- ;;=4^D86.3
- ;;^UTILITY(U,$J,358.3,41982,2)
- ;;=^5002445
- ;;^UTILITY(U,$J,358.3,41983,0)
- ;;=D86.81^^159^2014^41
- ;;^UTILITY(U,$J,358.3,41983,1,0)
+ ;;^UTILITY(U,$J,358.3,39534,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,39534,1,4,0)
+ ;;=4^I34.9
+ ;;^UTILITY(U,$J,358.3,39534,2)
+ ;;=^5007173
+ ;;^UTILITY(U,$J,358.3,39535,0)
+ ;;=I34.2^^152^1999^7
+ ;;^UTILITY(U,$J,358.3,39535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41983,1,3,0)
- ;;=3^Sarcoid Meningitis
- ;;^UTILITY(U,$J,358.3,41983,1,4,0)
- ;;=4^D86.81
- ;;^UTILITY(U,$J,358.3,41983,2)
- ;;=^5002446
- ;;^UTILITY(U,$J,358.3,41984,0)
- ;;=D86.82^^159^2014^50
- ;;^UTILITY(U,$J,358.3,41984,1,0)
+ ;;^UTILITY(U,$J,358.3,39535,1,3,0)
+ ;;=3^Nonrhematic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,39535,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,39535,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,39536,0)
+ ;;=I35.0^^152^1999^10
+ ;;^UTILITY(U,$J,358.3,39536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41984,1,3,0)
- ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
- ;;^UTILITY(U,$J,358.3,41984,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,41984,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,41985,0)
- ;;=D86.84^^159^2014^44
- ;;^UTILITY(U,$J,358.3,41985,1,0)
+ ;;^UTILITY(U,$J,358.3,39536,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,39536,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,39536,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,39537,0)
+ ;;=I35.1^^152^1999^9
+ ;;^UTILITY(U,$J,358.3,39537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41985,1,3,0)
- ;;=3^Sarcoid Pyelonephritis
- ;;^UTILITY(U,$J,358.3,41985,1,4,0)
- ;;=4^D86.84
- ;;^UTILITY(U,$J,358.3,41985,2)
- ;;=^5002449
- ;;^UTILITY(U,$J,358.3,41986,0)
- ;;=D86.85^^159^2014^42
- ;;^UTILITY(U,$J,358.3,41986,1,0)
+ ;;^UTILITY(U,$J,358.3,39537,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,39537,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,39537,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,39538,0)
+ ;;=I35.2^^152^1999^11
+ ;;^UTILITY(U,$J,358.3,39538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41986,1,3,0)
- ;;=3^Sarcoid Myocarditis
- ;;^UTILITY(U,$J,358.3,41986,1,4,0)
- ;;=4^D86.85
- ;;^UTILITY(U,$J,358.3,41986,2)
- ;;=^5002450
- ;;^UTILITY(U,$J,358.3,41987,0)
- ;;=D86.83^^159^2014^40
- ;;^UTILITY(U,$J,358.3,41987,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41987,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
- ;;^UTILITY(U,$J,358.3,41987,1,4,0)
- ;;=4^D86.83
- ;;^UTILITY(U,$J,358.3,41987,2)
- ;;=^5002448
- ;;^UTILITY(U,$J,358.3,41988,0)
- ;;=D84.1^^159^2014^16
- ;;^UTILITY(U,$J,358.3,41988,1,0)
+ ;;^UTILITY(U,$J,358.3,39538,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,39538,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,39538,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,39539,0)
+ ;;=I35.9^^152^1999^8
+ ;;^UTILITY(U,$J,358.3,39539,1,0)
  ;;=^358.31IA^4^2

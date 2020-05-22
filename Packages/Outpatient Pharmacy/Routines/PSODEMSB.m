@@ -1,5 +1,5 @@
 PSODEMSB ;EPIP/RTW - PSODEM subroutines ; 7/29/17 3:24pm
- ;;7.0;OUTPATIENT PHARMACY;**452,564**;Dec 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**452,564,570**;Dec 1997;Build 8
  ;------------------------------------------------------------------
  ; External reference  to $$OUTPTTM^SDUTL3  supported by ICR  1252
  ; External reference  to ^DIE              supported by ICR  2022
@@ -22,18 +22,19 @@ DEMOG(PSODFN) ;
  ;   DFN ; Required ; IEN of Patient file (#2) entry
  ;
  Q:$D(XQORNOD(0))
- N PSOTEAM,PSOCLINA,DIR,DIRUT,X,Y
- I $G(XQY0)["PSO P",($I=$P) D  ;
+ N PSOTEAM,PSOCLINA,DIR,DIRUT,PG,X,Y
+ I $G(XQY0)["PSO P",(IO=IO(0)) D  ;
  . W !
  . S DIR("T")=DTIME,DIR(0)="EA",DIR("A")="Press <Enter> to continue: " D ^DIR
  ;
+ S PG=0
  D PCTEAM(PSODFN)
  I 'PSOTEAM W !! D HDR("Extended Patient Demographics:")
  D REMARKS(PSODFN)
  W !?1,"Assigned/Recent Facility: ",$$CURRFAC(PSODFN)
  D CA(PSODFN)
  Q:$D(DIRUT)
- I $G(XQY0)'["OR CPRS GUI CHART",($I=$P) D  ;
+ I $G(XQY0)'["OR CPRS GUI CHART",(IO=IO(0)),$E(IOST)="C" D  ;
  . W !
  . S DIR("T")=DTIME,DIR(0)="EA",DIR("A")="Press <Enter> to continue: " D ^DIR
  Q
@@ -62,7 +63,7 @@ CA(PSODFN) ; Print PHARMACY PATIENT CLINICAL ALERTS multiple field (#2)
 HDR(HDR) ;
  N DIR
  W !
- I $I=$P S DIR("T")=DTIME,DIR(0)="EA",DIR("A")="Type <Enter> to continue or '^' to exit Clinical Alerts:" D ^DIR I $D(DIRUT) Q
+ I PG,IO=IO(0) S DIR("T")=DTIME,DIR(0)="EA",DIR("A")="Type <Enter> to continue or '^' to exit Clinical Alerts:" D ^DIR I $D(DIRUT) Q
  I HDR]"" W @IOF S PAGE=$G(PAGE)+1 W HDR,?70,"Page: ",PAGE,! S $Y=1
  Q
 CURRFAC(PSODFN) ; Return: The Assigned/Recent Facility INSTITUTION for the Patient's DFN

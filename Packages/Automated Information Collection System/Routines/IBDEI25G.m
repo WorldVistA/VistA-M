@@ -1,134 +1,122 @@
-IBDEI25G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36468,1,0)
+ ;;^UTILITY(U,$J,358.3,34332,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,34332,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,34332,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,34333,0)
+ ;;=G47.22^^134^1743^4
+ ;;^UTILITY(U,$J,358.3,34333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36468,1,3,0)
- ;;=3^Otitis Media Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,36468,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,36468,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,36469,0)
- ;;=H66.92^^137^1762^18
- ;;^UTILITY(U,$J,358.3,36469,1,0)
+ ;;^UTILITY(U,$J,358.3,34333,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,34333,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,34333,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,34334,0)
+ ;;=G47.23^^134^1743^6
+ ;;^UTILITY(U,$J,358.3,34334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36469,1,3,0)
- ;;=3^Otitis Media Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,36469,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,36469,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,36470,0)
- ;;=H66.91^^137^1762^19
- ;;^UTILITY(U,$J,358.3,36470,1,0)
+ ;;^UTILITY(U,$J,358.3,34334,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,34334,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,34334,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,34335,0)
+ ;;=G47.24^^134^1743^7
+ ;;^UTILITY(U,$J,358.3,34335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36470,1,3,0)
- ;;=3^Otitis Media Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,36470,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,36470,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,36471,0)
- ;;=H60.93^^137^1762^14
- ;;^UTILITY(U,$J,358.3,36471,1,0)
+ ;;^UTILITY(U,$J,358.3,34335,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,34335,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,34335,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,34336,0)
+ ;;=G47.26^^134^1743^8
+ ;;^UTILITY(U,$J,358.3,34336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36471,1,3,0)
- ;;=3^Otitis Externa Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,36471,1,4,0)
- ;;=4^H60.93
- ;;^UTILITY(U,$J,358.3,36471,2)
- ;;=^5006498
- ;;^UTILITY(U,$J,358.3,36472,0)
- ;;=H60.92^^137^1762^15
- ;;^UTILITY(U,$J,358.3,36472,1,0)
+ ;;^UTILITY(U,$J,358.3,34336,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,34336,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,34336,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,34337,0)
+ ;;=G47.20^^134^1743^9
+ ;;^UTILITY(U,$J,358.3,34337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36472,1,3,0)
- ;;=3^Otitis Externa Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,36472,1,4,0)
- ;;=4^H60.92
- ;;^UTILITY(U,$J,358.3,36472,2)
- ;;=^5133525
- ;;^UTILITY(U,$J,358.3,36473,0)
- ;;=H60.91^^137^1762^16
- ;;^UTILITY(U,$J,358.3,36473,1,0)
+ ;;^UTILITY(U,$J,358.3,34337,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Unspec Type
+ ;;^UTILITY(U,$J,358.3,34337,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,34337,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,34338,0)
+ ;;=F51.3^^134^1743^21
+ ;;^UTILITY(U,$J,358.3,34338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36473,1,3,0)
- ;;=3^Otitis Externa Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,36473,1,4,0)
- ;;=4^H60.91
- ;;^UTILITY(U,$J,358.3,36473,2)
- ;;=^5133524
- ;;^UTILITY(U,$J,358.3,36474,0)
- ;;=J30.9^^137^1762^4
- ;;^UTILITY(U,$J,358.3,36474,1,0)
+ ;;^UTILITY(U,$J,358.3,34338,1,3,0)
+ ;;=3^Non-REM Sleep Arousal D/O;Sleepwalking Type
+ ;;^UTILITY(U,$J,358.3,34338,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,34338,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,34339,0)
+ ;;=F51.4^^134^1743^20
+ ;;^UTILITY(U,$J,358.3,34339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36474,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,36474,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,36474,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,36475,0)
- ;;=J38.00^^137^1762^20
- ;;^UTILITY(U,$J,358.3,36475,1,0)
+ ;;^UTILITY(U,$J,358.3,34339,1,3,0)
+ ;;=3^Non-REM Sleep Arousal D/O;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,34339,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,34339,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,34340,0)
+ ;;=F51.5^^134^1743^19
+ ;;^UTILITY(U,$J,358.3,34340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36475,1,3,0)
- ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,36475,1,4,0)
- ;;=4^J38.00
- ;;^UTILITY(U,$J,358.3,36475,2)
- ;;=^5008219
- ;;^UTILITY(U,$J,358.3,36476,0)
- ;;=K92.2^^137^1763^2
- ;;^UTILITY(U,$J,358.3,36476,1,0)
+ ;;^UTILITY(U,$J,358.3,34340,1,3,0)
+ ;;=3^Nightmare D/O
+ ;;^UTILITY(U,$J,358.3,34340,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,34340,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,34341,0)
+ ;;=G47.52^^134^1743^23
+ ;;^UTILITY(U,$J,358.3,34341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36476,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,36476,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,36476,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,36477,0)
- ;;=K27.9^^137^1763^3
- ;;^UTILITY(U,$J,358.3,36477,1,0)
+ ;;^UTILITY(U,$J,358.3,34341,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior D/O
+ ;;^UTILITY(U,$J,358.3,34341,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,34341,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,34342,0)
+ ;;=G25.81^^134^1743^24
+ ;;^UTILITY(U,$J,358.3,34342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36477,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
- ;;^UTILITY(U,$J,358.3,36477,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,36477,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,36478,0)
- ;;=K46.9^^137^1763^1
- ;;^UTILITY(U,$J,358.3,36478,1,0)
+ ;;^UTILITY(U,$J,358.3,34342,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,34342,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,34342,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,34343,0)
+ ;;=G47.19^^134^1743^11
+ ;;^UTILITY(U,$J,358.3,34343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36478,1,3,0)
- ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,36478,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,36478,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,36479,0)
- ;;=N14.0^^137^1764^1
- ;;^UTILITY(U,$J,358.3,36479,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36479,1,3,0)
- ;;=3^Analgesic Nephropathy
- ;;^UTILITY(U,$J,358.3,36479,1,4,0)
- ;;=4^N14.0
- ;;^UTILITY(U,$J,358.3,36479,2)
- ;;=^5015590
- ;;^UTILITY(U,$J,358.3,36480,0)
- ;;=N15.0^^137^1764^2
- ;;^UTILITY(U,$J,358.3,36480,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36480,1,3,0)
- ;;=3^Balkan Nephropathy
- ;;^UTILITY(U,$J,358.3,36480,1,4,0)
- ;;=4^N15.0
- ;;^UTILITY(U,$J,358.3,36480,2)
- ;;=^12543
- ;;^UTILITY(U,$J,358.3,36481,0)
- ;;=N18.9^^137^1764^3
+ ;;^UTILITY(U,$J,358.3,34343,1,3,0)
+ ;;=3^Hypersomnolence D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,34343,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,34343,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,34344,0)
+ ;;=G47.8^^134^1743^28

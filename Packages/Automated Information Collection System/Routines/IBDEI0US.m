@@ -1,344 +1,116 @@
-IBDEI0US ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0US ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40436,0)
- ;;=T43.206A^^114^1710^6
- ;;^UTILITY(U,$J,358.3,40436,1,0)
+ ;;^UTILITY(U,$J,358.3,13708,1,4,0)
+ ;;=4^E11.3412
+ ;;^UTILITY(U,$J,358.3,13708,2)
+ ;;=^5138348
+ ;;^UTILITY(U,$J,358.3,13709,0)
+ ;;=E11.3413^^83^815^45
+ ;;^UTILITY(U,$J,358.3,13709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40436,1,3,0)
- ;;=3^Underdosing of Antidepressants,Init Encntr
- ;;^UTILITY(U,$J,358.3,40436,1,4,0)
- ;;=4^T43.206A
- ;;^UTILITY(U,$J,358.3,40436,2)
- ;;=^5050543
- ;;^UTILITY(U,$J,358.3,40437,0)
- ;;=T43.206S^^114^1710^7
- ;;^UTILITY(U,$J,358.3,40437,1,0)
+ ;;^UTILITY(U,$J,358.3,13709,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/ Macular Edema,Bilaterral
+ ;;^UTILITY(U,$J,358.3,13709,1,4,0)
+ ;;=4^E11.3413
+ ;;^UTILITY(U,$J,358.3,13709,2)
+ ;;=^5138349
+ ;;^UTILITY(U,$J,358.3,13710,0)
+ ;;=E11.3491^^83^815^46
+ ;;^UTILITY(U,$J,358.3,13710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40437,1,3,0)
- ;;=3^Underdosing of Antidepressants,Sequela
- ;;^UTILITY(U,$J,358.3,40437,1,4,0)
- ;;=4^T43.206S
- ;;^UTILITY(U,$J,358.3,40437,2)
- ;;=^5050545
- ;;^UTILITY(U,$J,358.3,40438,0)
- ;;=T43.206D^^114^1710^8
- ;;^UTILITY(U,$J,358.3,40438,1,0)
+ ;;^UTILITY(U,$J,358.3,13710,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,13710,1,4,0)
+ ;;=4^E11.3491
+ ;;^UTILITY(U,$J,358.3,13710,2)
+ ;;=^5138351
+ ;;^UTILITY(U,$J,358.3,13711,0)
+ ;;=E11.3492^^83^815^47
+ ;;^UTILITY(U,$J,358.3,13711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40438,1,3,0)
- ;;=3^Underdosing of Antidepressants,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40438,1,4,0)
- ;;=4^T43.206D
- ;;^UTILITY(U,$J,358.3,40438,2)
- ;;=^5050544
- ;;^UTILITY(U,$J,358.3,40439,0)
- ;;=T43.506A^^114^1710^12
- ;;^UTILITY(U,$J,358.3,40439,1,0)
+ ;;^UTILITY(U,$J,358.3,13711,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,13711,1,4,0)
+ ;;=4^E11.3492
+ ;;^UTILITY(U,$J,358.3,13711,2)
+ ;;=^5138352
+ ;;^UTILITY(U,$J,358.3,13712,0)
+ ;;=E11.3493^^83^815^48
+ ;;^UTILITY(U,$J,358.3,13712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40439,1,3,0)
- ;;=3^Underdosing of Antipsychotics & Neuroleptics,Init Encntr
- ;;^UTILITY(U,$J,358.3,40439,1,4,0)
- ;;=4^T43.506A
- ;;^UTILITY(U,$J,358.3,40439,2)
- ;;=^5050651
- ;;^UTILITY(U,$J,358.3,40440,0)
- ;;=T43.506S^^114^1710^13
- ;;^UTILITY(U,$J,358.3,40440,1,0)
+ ;;^UTILITY(U,$J,358.3,13712,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Severe Nonp Rtnop w/o Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,13712,1,4,0)
+ ;;=4^E11.3493
+ ;;^UTILITY(U,$J,358.3,13712,2)
+ ;;=^5138353
+ ;;^UTILITY(U,$J,358.3,13713,0)
+ ;;=E11.3511^^83^815^37
+ ;;^UTILITY(U,$J,358.3,13713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40440,1,3,0)
- ;;=3^Underdosing of Antipsychotics & Neuroleptics,Sequela
- ;;^UTILITY(U,$J,358.3,40440,1,4,0)
- ;;=4^T43.506S
- ;;^UTILITY(U,$J,358.3,40440,2)
- ;;=^5050653
- ;;^UTILITY(U,$J,358.3,40441,0)
- ;;=T43.506D^^114^1710^14
- ;;^UTILITY(U,$J,358.3,40441,1,0)
+ ;;^UTILITY(U,$J,358.3,13713,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,13713,1,4,0)
+ ;;=4^E11.3511
+ ;;^UTILITY(U,$J,358.3,13713,2)
+ ;;=^5138355
+ ;;^UTILITY(U,$J,358.3,13714,0)
+ ;;=E11.3512^^83^815^38
+ ;;^UTILITY(U,$J,358.3,13714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40441,1,3,0)
- ;;=3^Underdosing of Antipsychotics & Neuroleptics,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40441,1,4,0)
- ;;=4^T43.506D
- ;;^UTILITY(U,$J,358.3,40441,2)
- ;;=^5050652
- ;;^UTILITY(U,$J,358.3,40442,0)
- ;;=97545^^115^1711^18^^^^1
- ;;^UTILITY(U,$J,358.3,40442,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40442,1,2,0)
- ;;=2^97545
- ;;^UTILITY(U,$J,358.3,40442,1,3,0)
- ;;=3^Work Therapy, Init 2 hrs
- ;;^UTILITY(U,$J,358.3,40443,0)
- ;;=97546^^115^1711^17^^^^1
- ;;^UTILITY(U,$J,358.3,40443,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40443,1,2,0)
- ;;=2^97546
- ;;^UTILITY(U,$J,358.3,40443,1,3,0)
- ;;=3^Work Ther, addl hrs after 2
- ;;^UTILITY(U,$J,358.3,40444,0)
- ;;=97533^^115^1711^14^^^^1
- ;;^UTILITY(U,$J,358.3,40444,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40444,1,2,0)
- ;;=2^97533
- ;;^UTILITY(U,$J,358.3,40444,1,3,0)
- ;;=3^Sensory Intetgrat per 15 min
- ;;^UTILITY(U,$J,358.3,40445,0)
- ;;=96125^^115^1711^15^^^^1
- ;;^UTILITY(U,$J,358.3,40445,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40445,1,2,0)
- ;;=2^96125
- ;;^UTILITY(U,$J,358.3,40445,1,3,0)
- ;;=3^Stan Cog Perf Tst, per hr
- ;;^UTILITY(U,$J,358.3,40446,0)
- ;;=Q3014^^115^1711^16^^^^1
- ;;^UTILITY(U,$J,358.3,40446,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40446,1,2,0)
- ;;=2^Q3014
- ;;^UTILITY(U,$J,358.3,40446,1,3,0)
- ;;=3^Telehealth Facility Fee
- ;;^UTILITY(U,$J,358.3,40447,0)
- ;;=S0255^^115^1711^9^^^^1
- ;;^UTILITY(U,$J,358.3,40447,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40447,1,2,0)
- ;;=2^S0255
- ;;^UTILITY(U,$J,358.3,40447,1,3,0)
- ;;=3^Hospice Referral
- ;;^UTILITY(U,$J,358.3,40448,0)
- ;;=S0250^^115^1711^5^^^^1
- ;;^UTILITY(U,$J,358.3,40448,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40448,1,2,0)
- ;;=2^S0250
- ;;^UTILITY(U,$J,358.3,40448,1,3,0)
- ;;=3^Comp Geri Assmt by Assmt Team
- ;;^UTILITY(U,$J,358.3,40449,0)
- ;;=H0031^^115^1711^13^^^^1
- ;;^UTILITY(U,$J,358.3,40449,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40449,1,2,0)
- ;;=2^H0031
- ;;^UTILITY(U,$J,358.3,40449,1,3,0)
- ;;=3^Psychosocl Assmt by Non LIP SW
- ;;^UTILITY(U,$J,358.3,40450,0)
- ;;=90849^^115^1711^10^^^^1
- ;;^UTILITY(U,$J,358.3,40450,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40450,1,2,0)
- ;;=2^90849
- ;;^UTILITY(U,$J,358.3,40450,1,3,0)
- ;;=3^Multi-Family Group Psytx w/Pt
- ;;^UTILITY(U,$J,358.3,40451,0)
- ;;=G0176^^115^1711^1^^^^1
- ;;^UTILITY(U,$J,358.3,40451,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40451,1,2,0)
- ;;=2^G0176
- ;;^UTILITY(U,$J,358.3,40451,1,3,0)
- ;;=3^Activity Tx,not Rec Tx,up to 45min
- ;;^UTILITY(U,$J,358.3,40452,0)
- ;;=90901^^115^1711^4^^^^1
- ;;^UTILITY(U,$J,358.3,40452,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40452,1,2,0)
- ;;=2^90901
- ;;^UTILITY(U,$J,358.3,40452,1,3,0)
- ;;=3^Biofeedback Train Any Method
- ;;^UTILITY(U,$J,358.3,40453,0)
- ;;=90846^^115^1711^8^^^^1
- ;;^UTILITY(U,$J,358.3,40453,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40453,1,2,0)
- ;;=2^90846
- ;;^UTILITY(U,$J,358.3,40453,1,3,0)
- ;;=3^Family Psytx w/o Patient
- ;;^UTILITY(U,$J,358.3,40454,0)
- ;;=90847^^115^1711^7^^^^1
- ;;^UTILITY(U,$J,358.3,40454,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40454,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,40454,1,3,0)
- ;;=3^Family Psytx w/ Patient
- ;;^UTILITY(U,$J,358.3,40455,0)
- ;;=90875^^115^1711^11^^^^1
- ;;^UTILITY(U,$J,358.3,40455,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40455,1,2,0)
- ;;=2^90875
- ;;^UTILITY(U,$J,358.3,40455,1,3,0)
- ;;=3^Psychophysiological Tx,20-30Min
- ;;^UTILITY(U,$J,358.3,40456,0)
- ;;=90876^^115^1711^12^^^^1
- ;;^UTILITY(U,$J,358.3,40456,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40456,1,2,0)
- ;;=2^90876
- ;;^UTILITY(U,$J,358.3,40456,1,3,0)
- ;;=3^Psychophysiological Tx,45-50Min
- ;;^UTILITY(U,$J,358.3,40457,0)
- ;;=90887^^115^1711^6^^^^1
- ;;^UTILITY(U,$J,358.3,40457,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40457,1,2,0)
- ;;=2^90887
- ;;^UTILITY(U,$J,358.3,40457,1,3,0)
- ;;=3^Consultation w/ Family
- ;;^UTILITY(U,$J,358.3,40458,0)
- ;;=99497^^115^1711^2^^^^1
- ;;^UTILITY(U,$J,358.3,40458,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40458,1,2,0)
- ;;=2^99497
- ;;^UTILITY(U,$J,358.3,40458,1,3,0)
- ;;=3^Advncd Care Plan/Discuss,1st 30Min
- ;;^UTILITY(U,$J,358.3,40459,0)
- ;;=99498^^115^1711^3^^^^1
- ;;^UTILITY(U,$J,358.3,40459,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40459,1,2,0)
- ;;=2^99498
- ;;^UTILITY(U,$J,358.3,40459,1,3,0)
- ;;=3^Advncd Care Plan/Disc,Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,40460,0)
- ;;=97537^^115^1712^2^^^^1
- ;;^UTILITY(U,$J,358.3,40460,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40460,1,2,0)
- ;;=2^97537
- ;;^UTILITY(U,$J,358.3,40460,1,3,0)
- ;;=3^Community/Work Reintegration
- ;;^UTILITY(U,$J,358.3,40461,0)
- ;;=99420^^115^1712^4^^^^1
- ;;^UTILITY(U,$J,358.3,40461,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40461,1,2,0)
- ;;=2^99420
- ;;^UTILITY(U,$J,358.3,40461,1,3,0)
- ;;=3^Self Care Mngment Training
- ;;^UTILITY(U,$J,358.3,40462,0)
- ;;=99366^^115^1712^6^^^^1
- ;;^UTILITY(U,$J,358.3,40462,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40462,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,40462,1,3,0)
- ;;=3^Team Conf w/ Pt HC Pro,30min +
- ;;^UTILITY(U,$J,358.3,40463,0)
- ;;=97532^^115^1712^1^^^^1
- ;;^UTILITY(U,$J,358.3,40463,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40463,1,2,0)
- ;;=2^97532
- ;;^UTILITY(U,$J,358.3,40463,1,3,0)
- ;;=3^Cognitive Skill Devel Ea 15min
- ;;^UTILITY(U,$J,358.3,40464,0)
- ;;=T1016^^115^1712^3^^^^1
- ;;^UTILITY(U,$J,358.3,40464,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40464,1,2,0)
- ;;=2^T1016
- ;;^UTILITY(U,$J,358.3,40464,1,3,0)
- ;;=3^Individual Case Management
- ;;^UTILITY(U,$J,358.3,40465,0)
- ;;=97535^^115^1712^5^^^^1
- ;;^UTILITY(U,$J,358.3,40465,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40465,1,2,0)
- ;;=2^97535
- ;;^UTILITY(U,$J,358.3,40465,1,3,0)
- ;;=3^Self/Home Mngment Training
- ;;^UTILITY(U,$J,358.3,40466,0)
- ;;=99368^^115^1712^7^^^^1
- ;;^UTILITY(U,$J,358.3,40466,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40466,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,40466,1,3,0)
- ;;=3^Non-Phy Team Conf w/o Pt &/or Fam;30 min+
- ;;^UTILITY(U,$J,358.3,40467,0)
- ;;=G0155^^115^1713^1^^^^1
- ;;^UTILITY(U,$J,358.3,40467,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40467,1,2,0)
- ;;=2^G0155
- ;;^UTILITY(U,$J,358.3,40467,1,3,0)
- ;;=3^Home Visit Ea 15 min
- ;;^UTILITY(U,$J,358.3,40468,0)
- ;;=99510^^115^1713^3^^^^1
- ;;^UTILITY(U,$J,358.3,40468,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40468,1,2,0)
- ;;=2^99510
- ;;^UTILITY(U,$J,358.3,40468,1,3,0)
- ;;=3^Home Visit,Sing/M/Fam Couns
- ;;^UTILITY(U,$J,358.3,40469,0)
- ;;=99509^^115^1713^2^^^^1
- ;;^UTILITY(U,$J,358.3,40469,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40469,1,2,0)
- ;;=2^99509
- ;;^UTILITY(U,$J,358.3,40469,1,3,0)
- ;;=3^Home Visit for ADL
- ;;^UTILITY(U,$J,358.3,40470,0)
- ;;=T1016^^115^1714^1^^^^1
- ;;^UTILITY(U,$J,358.3,40470,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40470,1,2,0)
- ;;=2^T1016
- ;;^UTILITY(U,$J,358.3,40470,1,3,0)
- ;;=3^Community Residential Care F/U
- ;;^UTILITY(U,$J,358.3,40471,0)
- ;;=T1016^^115^1714^3^^^^1
- ;;^UTILITY(U,$J,358.3,40471,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40471,1,2,0)
- ;;=2^T1016
- ;;^UTILITY(U,$J,358.3,40471,1,3,0)
- ;;=3^Contract Nursing Home F/U
- ;;^UTILITY(U,$J,358.3,40472,0)
- ;;=S9453^^115^1715^1^^^^1
- ;;^UTILITY(U,$J,358.3,40472,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40472,1,2,0)
- ;;=2^S9453
- ;;^UTILITY(U,$J,358.3,40472,1,3,0)
- ;;=3^Smoking Cessation Class
- ;;^UTILITY(U,$J,358.3,40473,0)
- ;;=96150^^115^1716^2^^^^1
- ;;^UTILITY(U,$J,358.3,40473,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40473,1,2,0)
- ;;=2^96150
- ;;^UTILITY(U,$J,358.3,40473,1,3,0)
- ;;=3^Assess Hlth/Beh,Init Ea 15min
- ;;^UTILITY(U,$J,358.3,40474,0)
- ;;=96151^^115^1716^3^^^^1
- ;;^UTILITY(U,$J,358.3,40474,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40474,1,2,0)
- ;;=2^96151
- ;;^UTILITY(U,$J,358.3,40474,1,3,0)
- ;;=3^Assess Hlth/Beh,Subs Ea 15min
- ;;^UTILITY(U,$J,358.3,40475,0)
- ;;=96152^^115^1716^7^^^^1
- ;;^UTILITY(U,$J,358.3,40475,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40475,1,2,0)
- ;;=2^96152
- ;;^UTILITY(U,$J,358.3,40475,1,3,0)
- ;;=3^Inter Hlth/Beh,Ind Ea 15min
- ;;^UTILITY(U,$J,358.3,40476,0)
- ;;=96153^^115^1716^6^^^^1
- ;;^UTILITY(U,$J,358.3,40476,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40476,1,2,0)
- ;;=2^96153
- ;;^UTILITY(U,$J,358.3,40476,1,3,0)
- ;;=3^Inter Hlth/Beh,Grp Ea 15min
+ ;;^UTILITY(U,$J,358.3,13714,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,13714,1,4,0)
+ ;;=4^E11.3512
+ ;;^UTILITY(U,$J,358.3,13714,2)
+ ;;=^5138356
+ ;;^UTILITY(U,$J,358.3,13715,0)
+ ;;=E11.3513^^83^815^39
+ ;;^UTILITY(U,$J,358.3,13715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13715,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/ Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,13715,1,4,0)
+ ;;=4^E11.3513
+ ;;^UTILITY(U,$J,358.3,13715,2)
+ ;;=^5138357
+ ;;^UTILITY(U,$J,358.3,13716,0)
+ ;;=E11.3551^^83^815^50
+ ;;^UTILITY(U,$J,358.3,13716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13716,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Stable Prolif Rtnop,Right Eye
+ ;;^UTILITY(U,$J,358.3,13716,1,4,0)
+ ;;=4^E11.3551
+ ;;^UTILITY(U,$J,358.3,13716,2)
+ ;;=^5138371
+ ;;^UTILITY(U,$J,358.3,13717,0)
+ ;;=E11.3552^^83^815^51
+ ;;^UTILITY(U,$J,358.3,13717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13717,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Stable Prolif Rtnop,Left Eye
+ ;;^UTILITY(U,$J,358.3,13717,1,4,0)
+ ;;=4^E11.3552
+ ;;^UTILITY(U,$J,358.3,13717,2)
+ ;;=^5138372
+ ;;^UTILITY(U,$J,358.3,13718,0)
+ ;;=E11.3553^^83^815^52
+ ;;^UTILITY(U,$J,358.3,13718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13718,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Stable Prolif Rtnop,Bilateral
+ ;;^UTILITY(U,$J,358.3,13718,1,4,0)
+ ;;=4^E11.3553
+ ;;^UTILITY(U,$J,358.3,13718,2)
+ ;;=^5138373
+ ;;^UTILITY(U,$J,358.3,13719,0)
+ ;;=E11.3591^^83^815^40
+ ;;^UTILITY(U,$J,358.3,13719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13719,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Prolif Rtnop w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,13719,1,4,0)
+ ;;=4^E11.3591

@@ -1,132 +1,126 @@
-IBDEI11F ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.6,0,"GL")
- ;;=^IBE(358.6,
- ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
- ;;=
- ;;^DIC(358.6,"%D",0)
- ;;=^^1^1^2950927^^^^
- ;;^DIC(358.6,"%D",1,0)
- ;;=This file is used as a workspace by the import/export utility.
- ;;^DIC(358.6,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.6,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DIC(358.6,"%D",4,0)
- ;;= 
- ;;^DIC(358.6,"%D",5,0)
- ;;=This file contains a description of all of the interfaces with other packages.
- ;;^DIC(358.6,"%D",6,0)
- ;;=The form will invoke the proper interface routines by doing a lookup on
- ;;^DIC(358.6,"%D",7,0)
- ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
- ;;^DIC(358.6,"%D",8,0)
- ;;=fields are for documentation purposes and to verify that the proper
- ;;^DIC(358.6,"%D",9,0)
- ;;=variables are defined. Data will be exchanged between the encounter form
- ;;^DIC(358.6,"%D",10,0)
- ;;=utilities and other packages by putting the data in a predefined location.
- ;;^DIC(358.6,"%D",11,0)
- ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
- ;;^DIC(358.6,"%D",12,0)
- ;;=For output routines, but not selection routines, the fourth subscript is
- ;;^DIC(358.6,"%D",13,0)
- ;;=be the patient DFN. The next subscript is the name of the Package
- ;;^DIC(358.6,"%D",14,0)
- ;;=Interface. For single valued data and record valued data there is no
- ;;^DIC(358.6,"%D",15,0)
- ;;=additional subscript. For interfaces returning a list there is one
- ;;^DIC(358.6,"%D",16,0)
- ;;=additional subscript level, the number of the item on the list. For
- ;;^DIC(358.6,"%D",17,0)
- ;;=word processing type data the data will be in FM word-processing format,
- ;;^DIC(358.6,"%D",18,0)
- ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
- ;;^DIC(358.6,"%D",19,0)
- ;;=these items of data can have its own entry in the Package Interface file,
- ;;^DIC(358.6,"%D",20,0)
- ;;=but by using the same entry point there is a savings because all of the
- ;;^DIC(358.6,"%D",21,0)
- ;;=data on that node can be obtained at once. The routines that invoke the
- ;;^DIC(358.6,"%D",22,0)
- ;;=entry point keep track of the entry points already invoked so they are
- ;;^DIC(358.6,"%D",23,0)
- ;;=not repeated.
- ;;^DD(358.6,0)
- ;;=FIELD^^21^76
- ;;^DD(358.6,0,"DDA")
- ;;=N
- ;;^DD(358.6,0,"DT")
- ;;=3000124
- ;;^DD(358.6,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.6,0,"ID","WRITE")
- ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
- ;;^DD(358.6,0,"ID","WRITE1")
- ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
- ;;^DD(358.6,0,"IX","B",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"IX","C",358.6,.04)
- ;;=
- ;;^DD(358.6,0,"IX","D",358.6,3)
- ;;=
- ;;^DD(358.6,0,"IX","E",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
- ;;=
- ;;^DD(358.6,0,"PT",358.2,.11)
- ;;=
- ;;^DD(358.6,0,"PT",358.5,.03)
- ;;=
- ;;^DD(358.6,0,"PT",358.6,.13)
- ;;=
- ;;^DD(358.6,0,"PT",358.93,.06)
- ;;=
- ;;^DD(358.6,0,"VRPK")
- ;;=IBD
- ;;^DD(358.6,.01,0)
- ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.6,.01,1,0)
- ;;=^.1
- ;;^DD(358.6,.01,1,1,0)
- ;;=358.6^B
- ;;^DD(358.6,.01,1,1,1)
- ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
- ;;^DD(358.6,.01,1,1,2)
- ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)
- ;;^DD(358.6,.01,1,2,0)
- ;;=358.6^E^MUMPS
- ;;^DD(358.6,.01,1,2,1)
- ;;=S ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)=""
- ;;^DD(358.6,.01,1,2,2)
- ;;=K ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)
- ;;^DD(358.6,.01,1,2,"%D",0)
- ;;=^^4^4^2940224^
- ;;^DD(358.6,.01,1,2,"%D",1,0)
- ;;= 
- ;;^DD(358.6,.01,1,2,"%D",2,0)
- ;;=For package interfaces that are output routines the name has the custodial
- ;;^DD(358.6,.01,1,2,"%D",3,0)
- ;;=package's name space as a prefix. This cross-reference removes that
- ;;^DD(358.6,.01,1,2,"%D",4,0)
- ;;=prefix. It is used to improve the display of output routines for the user.
- ;;^DD(358.6,.01,1,2,"DT")
- ;;=2930409
- ;;^DD(358.6,.01,3)
- ;;=Answer must be 3-40 characters in length. All entries with Action Type other than PRINT REPORT must be be prefixed with the namespace of the package that is responsible for the data.
- ;;^DD(358.6,.01,21,0)
- ;;=^^3^3^2950412^^^^
- ;;^DD(358.6,.01,21,1,0)
- ;;= 
- ;;^DD(358.6,.01,21,2,0)
- ;;=The name of the Package Interface. For interfaces returning data the name
- ;;^DD(358.6,.01,21,3,0)
- ;;=should be preceded with the namespace of the package.
- ;;^DD(358.6,.01,23,0)
- ;;=^^1^1^2950412^
- ;;^DD(358.6,.01,23,1,0)
- ;;= 
- ;;^DD(358.6,.01,"DT")
- ;;=2930409
+ ;;^UTILITY(U,$J,358.3,16680,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,16680,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,16680,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,16681,0)
+ ;;=Z80.8^^88^880^30
+ ;;^UTILITY(U,$J,358.3,16681,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16681,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,16681,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,16681,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,16682,0)
+ ;;=Z81.8^^88^880^35
+ ;;^UTILITY(U,$J,358.3,16682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16682,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,16682,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,16682,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,16683,0)
+ ;;=Z82.3^^88^880^42
+ ;;^UTILITY(U,$J,358.3,16683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16683,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,16683,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,16683,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,16684,0)
+ ;;=Z82.49^^88^880^24
+ ;;^UTILITY(U,$J,358.3,16684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16684,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,16684,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,16684,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,16685,0)
+ ;;=Z82.5^^88^880^14
+ ;;^UTILITY(U,$J,358.3,16685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16685,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,16685,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,16685,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,16686,0)
+ ;;=Z82.61^^88^880^13
+ ;;^UTILITY(U,$J,358.3,16686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16686,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,16686,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,16686,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,16687,0)
+ ;;=Z82.69^^88^880^37
+ ;;^UTILITY(U,$J,358.3,16687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16687,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,16687,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,16687,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,16688,0)
+ ;;=Z83.3^^88^880^20
+ ;;^UTILITY(U,$J,358.3,16688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16688,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,16688,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,16688,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,16689,0)
+ ;;=Z83.2^^88^880^16
+ ;;^UTILITY(U,$J,358.3,16689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16689,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,16689,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,16689,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,16690,0)
+ ;;=Z82.71^^88^880^40
+ ;;^UTILITY(U,$J,358.3,16690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16690,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,16690,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,16690,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,16691,0)
+ ;;=Z82.1^^88^880^15
+ ;;^UTILITY(U,$J,358.3,16691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16691,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,16691,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,16691,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,16692,0)
+ ;;=Z82.2^^88^880^19
+ ;;^UTILITY(U,$J,358.3,16692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16692,1,3,0)
+ ;;=3^Family Hx of Deafness/Hearing Loss

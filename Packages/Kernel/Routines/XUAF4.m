@@ -1,5 +1,6 @@
-XUAF4 ;ISC-SF/RWF/RAM - Institution file access. ;04/01/99  08:07
- ;;8.0;KERNEL;**43,112,206,209,232,217,261,394,549,555**;Jul 10, 1995;Build 3
+XUAF4 ;ISC-SF/RWF/RAM - Institution file access. ;12/03/2019  08:07
+ ;;8.0;KERNEL;**43,112,206,209,232,217,261,394,549,555,723**;Jul 10, 1995;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified
  Q  ;No access from the top.
  ;
 PARENT(ROOT,CHILD,ASSO) ;sr. Return array of IEN's of parents
@@ -278,4 +279,12 @@ BNIEN(IEN) ; -- Billing Facility Name - Internal Entry Number
 BNSTA(STA) ; -- Billing Facility Name - Station Number
  ;
  Q $P($G(^DIC(4,+$$IEN^XUAF4(STA),99)),U,2)
+ ;
+CERNER(STA) ; Check if a facility has been converted to CERNER
+ ; Take in STA = Station number
+ ; Return -1 for invalid station number
+ ; Return 1 for CERNER station
+ N XUSIEN
+ S XUSIEN=+$$IEN^XUAF4(STA) I XUSIEN'>0 Q "-1^"_STA_" is not a valid station number"
+ Q $P($G(^DIC(4,XUSIEN,102)),U)
  ;

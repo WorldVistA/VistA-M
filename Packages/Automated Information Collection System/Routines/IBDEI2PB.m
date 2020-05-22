@@ -1,128 +1,132 @@
-IBDEI2PB ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45333,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,45334,0)
- ;;=S86.811A^^200^2241^48
- ;;^UTILITY(U,$J,358.3,45334,1,0)
+ ;;^UTILITY(U,$J,358.3,43039,1,3,0)
+ ;;=3^Abnormal Head Movements
+ ;;^UTILITY(U,$J,358.3,43039,1,4,0)
+ ;;=4^R25.0
+ ;;^UTILITY(U,$J,358.3,43039,2)
+ ;;=^5019299
+ ;;^UTILITY(U,$J,358.3,43040,0)
+ ;;=R25.9^^155^2078^2
+ ;;^UTILITY(U,$J,358.3,43040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45334,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,45334,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,45334,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,45335,0)
- ;;=S86.812A^^200^2241^28
- ;;^UTILITY(U,$J,358.3,45335,1,0)
+ ;;^UTILITY(U,$J,358.3,43040,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Unspec
+ ;;^UTILITY(U,$J,358.3,43040,1,4,0)
+ ;;=4^R25.9
+ ;;^UTILITY(U,$J,358.3,43040,2)
+ ;;=^5019303
+ ;;^UTILITY(U,$J,358.3,43041,0)
+ ;;=R26.9^^155^2078^3
+ ;;^UTILITY(U,$J,358.3,43041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45335,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,45335,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,45335,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,45336,0)
- ;;=S86.111A^^200^2241^50
- ;;^UTILITY(U,$J,358.3,45336,1,0)
+ ;;^UTILITY(U,$J,358.3,43041,1,3,0)
+ ;;=3^Abnormalities of Gait & Mobility,Unspec
+ ;;^UTILITY(U,$J,358.3,43041,1,4,0)
+ ;;=4^R26.9
+ ;;^UTILITY(U,$J,358.3,43041,2)
+ ;;=^5019309
+ ;;^UTILITY(U,$J,358.3,43042,0)
+ ;;=R41.3^^155^2078^4
+ ;;^UTILITY(U,$J,358.3,43042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45336,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,45336,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,45336,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,45337,0)
- ;;=S86.112A^^200^2241^30
- ;;^UTILITY(U,$J,358.3,45337,1,0)
+ ;;^UTILITY(U,$J,358.3,43042,1,3,0)
+ ;;=3^Amnesia,Other
+ ;;^UTILITY(U,$J,358.3,43042,1,4,0)
+ ;;=4^R41.3
+ ;;^UTILITY(U,$J,358.3,43042,2)
+ ;;=^5019439
+ ;;^UTILITY(U,$J,358.3,43043,0)
+ ;;=R27.0^^155^2078^5
+ ;;^UTILITY(U,$J,358.3,43043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45337,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,45337,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,45337,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,45338,0)
- ;;=S83.401A^^200^2241^15
- ;;^UTILITY(U,$J,358.3,45338,1,0)
+ ;;^UTILITY(U,$J,358.3,43043,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,43043,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,43043,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,43044,0)
+ ;;=R25.2^^155^2078^6
+ ;;^UTILITY(U,$J,358.3,43044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45338,1,3,0)
- ;;=3^Sprain of Right Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,45338,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,45338,2)
- ;;=^5043103
- ;;^UTILITY(U,$J,358.3,45339,0)
- ;;=S83.402A^^200^2241^4
- ;;^UTILITY(U,$J,358.3,45339,1,0)
+ ;;^UTILITY(U,$J,358.3,43044,1,3,0)
+ ;;=3^Cramp and Spasm
+ ;;^UTILITY(U,$J,358.3,43044,1,4,0)
+ ;;=4^R25.2
+ ;;^UTILITY(U,$J,358.3,43044,2)
+ ;;=^5019301
+ ;;^UTILITY(U,$J,358.3,43045,0)
+ ;;=R25.3^^155^2078^7
+ ;;^UTILITY(U,$J,358.3,43045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45339,1,3,0)
- ;;=3^Sprain of Left Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,45339,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,45339,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,45340,0)
- ;;=S93.402A^^200^2241^2
- ;;^UTILITY(U,$J,358.3,45340,1,0)
+ ;;^UTILITY(U,$J,358.3,43045,1,3,0)
+ ;;=3^Fasciculation
+ ;;^UTILITY(U,$J,358.3,43045,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,43045,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,43046,0)
+ ;;=R26.1^^155^2078^8
+ ;;^UTILITY(U,$J,358.3,43046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45340,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,45340,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,45340,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,45341,0)
- ;;=S93.401A^^200^2241^13
- ;;^UTILITY(U,$J,358.3,45341,1,0)
+ ;;^UTILITY(U,$J,358.3,43046,1,3,0)
+ ;;=3^Paralytic Gait
+ ;;^UTILITY(U,$J,358.3,43046,1,4,0)
+ ;;=4^R26.1
+ ;;^UTILITY(U,$J,358.3,43046,2)
+ ;;=^5019305
+ ;;^UTILITY(U,$J,358.3,43047,0)
+ ;;=R55.^^155^2078^9
+ ;;^UTILITY(U,$J,358.3,43047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45341,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,45341,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,45341,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,45342,0)
- ;;=S56.511A^^200^2241^39
- ;;^UTILITY(U,$J,358.3,45342,1,0)
+ ;;^UTILITY(U,$J,358.3,43047,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,43047,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,43047,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,43048,0)
+ ;;=R29.5^^155^2078^10
+ ;;^UTILITY(U,$J,358.3,43048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45342,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,45342,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,45342,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,45343,0)
- ;;=S56.512A^^200^2241^19
- ;;^UTILITY(U,$J,358.3,45343,1,0)
+ ;;^UTILITY(U,$J,358.3,43048,1,3,0)
+ ;;=3^Transient Paralysis
+ ;;^UTILITY(U,$J,358.3,43048,1,4,0)
+ ;;=4^R29.5
+ ;;^UTILITY(U,$J,358.3,43048,2)
+ ;;=^5019316
+ ;;^UTILITY(U,$J,358.3,43049,0)
+ ;;=R25.1^^155^2078^11
+ ;;^UTILITY(U,$J,358.3,43049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45343,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,45343,1,4,0)
- ;;=4^S56.512A
- ;;^UTILITY(U,$J,358.3,45343,2)
- ;;=^5031841
- ;;^UTILITY(U,$J,358.3,45344,0)
- ;;=S13.8XXA^^200^2241^10
- ;;^UTILITY(U,$J,358.3,45344,1,0)
+ ;;^UTILITY(U,$J,358.3,43049,1,3,0)
+ ;;=3^Tremor,Unspec
+ ;;^UTILITY(U,$J,358.3,43049,1,4,0)
+ ;;=4^R25.1
+ ;;^UTILITY(U,$J,358.3,43049,2)
+ ;;=^5019300
+ ;;^UTILITY(U,$J,358.3,43050,0)
+ ;;=R29.6^^155^2079^1
+ ;;^UTILITY(U,$J,358.3,43050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45344,1,3,0)
- ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,45344,1,4,0)
- ;;=4^S13.8XXA
- ;;^UTILITY(U,$J,358.3,45344,2)
- ;;=^5022034
- ;;^UTILITY(U,$J,358.3,45345,0)
- ;;=S16.1XXA^^200^2241^37
- ;;^UTILITY(U,$J,358.3,45345,1,0)
+ ;;^UTILITY(U,$J,358.3,43050,1,3,0)
+ ;;=3^Falls (Frequent)
+ ;;^UTILITY(U,$J,358.3,43050,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,43050,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,43051,0)
+ ;;=G56.01^^155^2080^3
+ ;;^UTILITY(U,$J,358.3,43051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45345,1,3,0)
- ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
- ;;^UTILITY(U,$J,358.3,45345,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,45345,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,45346,0)
- ;;=S33.5XXA^^200^2241^8
+ ;;^UTILITY(U,$J,358.3,43051,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,43051,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,43051,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,43052,0)
+ ;;=G56.02^^155^2080^2

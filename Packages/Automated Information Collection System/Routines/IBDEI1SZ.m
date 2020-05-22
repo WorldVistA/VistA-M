@@ -1,136 +1,118 @@
-IBDEI1SZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30641,1,0)
+ ;;^UTILITY(U,$J,358.3,28792,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,28792,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,28793,0)
+ ;;=F19.988^^115^1423^9
+ ;;^UTILITY(U,$J,358.3,28793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30641,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec
- ;;^UTILITY(U,$J,358.3,30641,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,30641,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,30642,0)
- ;;=C81.99^^121^1524^2
- ;;^UTILITY(U,$J,358.3,30642,1,0)
+ ;;^UTILITY(U,$J,358.3,28793,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28793,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,28793,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,28794,0)
+ ;;=F19.159^^115^1423^10
+ ;;^UTILITY(U,$J,358.3,28794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30642,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal & Solid Organ Sites,Unspec
- ;;^UTILITY(U,$J,358.3,30642,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,30642,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,30643,0)
- ;;=E86.1^^121^1525^13
- ;;^UTILITY(U,$J,358.3,30643,1,0)
+ ;;^UTILITY(U,$J,358.3,28794,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28794,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,28794,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,28795,0)
+ ;;=F19.259^^115^1423^11
+ ;;^UTILITY(U,$J,358.3,28795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30643,1,3,0)
- ;;=3^Hypovolemia
- ;;^UTILITY(U,$J,358.3,30643,1,4,0)
- ;;=4^E86.1
- ;;^UTILITY(U,$J,358.3,30643,2)
- ;;=^332744
- ;;^UTILITY(U,$J,358.3,30644,0)
- ;;=E85.9^^121^1525^2
- ;;^UTILITY(U,$J,358.3,30644,1,0)
+ ;;^UTILITY(U,$J,358.3,28795,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28795,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,28795,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,28796,0)
+ ;;=F19.959^^115^1423^12
+ ;;^UTILITY(U,$J,358.3,28796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30644,1,3,0)
- ;;=3^Amyloidosis,Unspec
- ;;^UTILITY(U,$J,358.3,30644,1,4,0)
- ;;=4^E85.9
- ;;^UTILITY(U,$J,358.3,30644,2)
- ;;=^334185
- ;;^UTILITY(U,$J,358.3,30645,0)
- ;;=J34.9^^121^1525^14
- ;;^UTILITY(U,$J,358.3,30645,1,0)
+ ;;^UTILITY(U,$J,358.3,28796,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28796,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,28796,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,28797,0)
+ ;;=F19.181^^115^1423^13
+ ;;^UTILITY(U,$J,358.3,28797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30645,1,3,0)
- ;;=3^Nose & Nasal Sinuses Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30645,1,4,0)
- ;;=4^J34.9
- ;;^UTILITY(U,$J,358.3,30645,2)
- ;;=^5008212
- ;;^UTILITY(U,$J,358.3,30646,0)
- ;;=Q21.1^^121^1525^6
- ;;^UTILITY(U,$J,358.3,30646,1,0)
+ ;;^UTILITY(U,$J,358.3,28797,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28797,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,28797,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,28798,0)
+ ;;=F19.281^^115^1423^14
+ ;;^UTILITY(U,$J,358.3,28798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30646,1,3,0)
- ;;=3^Atrial Septal Defect
- ;;^UTILITY(U,$J,358.3,30646,1,4,0)
- ;;=4^Q21.1
- ;;^UTILITY(U,$J,358.3,30646,2)
- ;;=^186788
- ;;^UTILITY(U,$J,358.3,30647,0)
- ;;=R56.9^^121^1525^8
- ;;^UTILITY(U,$J,358.3,30647,1,0)
+ ;;^UTILITY(U,$J,358.3,28798,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28798,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,28798,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,28799,0)
+ ;;=F19.981^^115^1423^15
+ ;;^UTILITY(U,$J,358.3,28799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30647,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,30647,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,30647,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,30648,0)
- ;;=R57.0^^121^1525^7
- ;;^UTILITY(U,$J,358.3,30648,1,0)
+ ;;^UTILITY(U,$J,358.3,28799,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,28799,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,28799,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,28800,0)
+ ;;=F19.182^^115^1423^16
+ ;;^UTILITY(U,$J,358.3,28800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30648,1,3,0)
- ;;=3^Cardiogenic Shock
- ;;^UTILITY(U,$J,358.3,30648,1,4,0)
- ;;=4^R57.0
- ;;^UTILITY(U,$J,358.3,30648,2)
- ;;=^5019525
- ;;^UTILITY(U,$J,358.3,30649,0)
- ;;=T79.4XXA^^121^1525^17
- ;;^UTILITY(U,$J,358.3,30649,1,0)
+ ;;^UTILITY(U,$J,358.3,28800,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28800,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,28800,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,28801,0)
+ ;;=F19.282^^115^1423^17
+ ;;^UTILITY(U,$J,358.3,28801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30649,1,3,0)
- ;;=3^Traumatic Shock,Init Encnt
- ;;^UTILITY(U,$J,358.3,30649,1,4,0)
- ;;=4^T79.4XXA
- ;;^UTILITY(U,$J,358.3,30649,2)
- ;;=^5054305
- ;;^UTILITY(U,$J,358.3,30650,0)
- ;;=T78.2XXA^^121^1525^4
- ;;^UTILITY(U,$J,358.3,30650,1,0)
+ ;;^UTILITY(U,$J,358.3,28801,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28801,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,28801,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,28802,0)
+ ;;=F19.982^^115^1423^18
+ ;;^UTILITY(U,$J,358.3,28802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30650,1,3,0)
- ;;=3^Anaphylactic Shock,Unspec,Init Encnt
- ;;^UTILITY(U,$J,358.3,30650,1,4,0)
- ;;=4^T78.2XXA
- ;;^UTILITY(U,$J,358.3,30650,2)
- ;;=^5054278
- ;;^UTILITY(U,$J,358.3,30651,0)
- ;;=T50.905A^^121^1525^1
- ;;^UTILITY(U,$J,358.3,30651,1,0)
+ ;;^UTILITY(U,$J,358.3,28802,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28802,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,28802,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,28803,0)
+ ;;=F19.129^^115^1423^22
+ ;;^UTILITY(U,$J,358.3,28803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30651,1,3,0)
- ;;=3^Adverse Effect Drug/Meds/Biol Substance,Init Encnt
- ;;^UTILITY(U,$J,358.3,30651,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,30651,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,30652,0)
- ;;=T88.4XXA^^121^1525^10
- ;;^UTILITY(U,$J,358.3,30652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30652,1,3,0)
- ;;=3^Failed/Difficult Intubation,Init Encnt
- ;;^UTILITY(U,$J,358.3,30652,1,4,0)
- ;;=4^T88.4XXA
- ;;^UTILITY(U,$J,358.3,30652,2)
- ;;=^5055796
- ;;^UTILITY(U,$J,358.3,30653,0)
- ;;=T88.59XA^^121^1525^5
- ;;^UTILITY(U,$J,358.3,30653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30653,1,3,0)
- ;;=3^Anesthesia Complications,Init Encnt
- ;;^UTILITY(U,$J,358.3,30653,1,4,0)
- ;;=4^T88.59XA
- ;;^UTILITY(U,$J,358.3,30653,2)
- ;;=^5055805
- ;;^UTILITY(U,$J,358.3,30654,0)
- ;;=T88.6XXA^^121^1525^3
- ;;^UTILITY(U,$J,358.3,30654,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28803,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28803,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,28803,2)
+ ;;=^5003420

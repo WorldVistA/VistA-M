@@ -1,128 +1,128 @@
-IBDEI22M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35116,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,35116,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,35117,0)
- ;;=W17.4XXA^^131^1699^39
- ;;^UTILITY(U,$J,358.3,35117,1,0)
+ ;;^UTILITY(U,$J,358.3,33053,1,4,0)
+ ;;=4^H52.523
+ ;;^UTILITY(U,$J,358.3,33053,2)
+ ;;=^5006284
+ ;;^UTILITY(U,$J,358.3,33054,0)
+ ;;=H52.521^^128^1675^45
+ ;;^UTILITY(U,$J,358.3,33054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35117,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,35117,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,35117,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,35118,0)
- ;;=W17.4XXD^^131^1699^40
- ;;^UTILITY(U,$J,358.3,35118,1,0)
+ ;;^UTILITY(U,$J,358.3,33054,1,3,0)
+ ;;=3^Paresis of Accommodation,Right Eye
+ ;;^UTILITY(U,$J,358.3,33054,1,4,0)
+ ;;=4^H52.521
+ ;;^UTILITY(U,$J,358.3,33054,2)
+ ;;=^5006282
+ ;;^UTILITY(U,$J,358.3,33055,0)
+ ;;=H52.522^^128^1675^44
+ ;;^UTILITY(U,$J,358.3,33055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35118,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35118,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,35118,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,35119,0)
- ;;=W17.81XA^^131^1699^27
- ;;^UTILITY(U,$J,358.3,35119,1,0)
+ ;;^UTILITY(U,$J,358.3,33055,1,3,0)
+ ;;=3^Paresis of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,33055,1,4,0)
+ ;;=4^H52.522
+ ;;^UTILITY(U,$J,358.3,33055,2)
+ ;;=^5006283
+ ;;^UTILITY(U,$J,358.3,33056,0)
+ ;;=Z87.820^^128^1675^46
+ ;;^UTILITY(U,$J,358.3,33056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35119,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,35119,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,35119,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,35120,0)
- ;;=W17.81XD^^131^1699^28
- ;;^UTILITY(U,$J,358.3,35120,1,0)
+ ;;^UTILITY(U,$J,358.3,33056,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,33056,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,33056,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,33057,0)
+ ;;=H34.02^^128^1675^47
+ ;;^UTILITY(U,$J,358.3,33057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35120,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35120,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,35120,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,35121,0)
- ;;=W17.89XA^^131^1699^55
- ;;^UTILITY(U,$J,358.3,35121,1,0)
+ ;;^UTILITY(U,$J,358.3,33057,1,3,0)
+ ;;=3^Retinal Artery Occlusion,Transient,Left Eye
+ ;;^UTILITY(U,$J,358.3,33057,1,4,0)
+ ;;=4^H34.02
+ ;;^UTILITY(U,$J,358.3,33057,2)
+ ;;=^5005554
+ ;;^UTILITY(U,$J,358.3,33058,0)
+ ;;=H34.01^^128^1675^48
+ ;;^UTILITY(U,$J,358.3,33058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35121,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,35121,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,35121,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,35122,0)
- ;;=W17.89XD^^131^1699^56
- ;;^UTILITY(U,$J,358.3,35122,1,0)
+ ;;^UTILITY(U,$J,358.3,33058,1,3,0)
+ ;;=3^Retinal Artery Occlusion,Transient,Right Eye
+ ;;^UTILITY(U,$J,358.3,33058,1,4,0)
+ ;;=4^H34.01
+ ;;^UTILITY(U,$J,358.3,33058,2)
+ ;;=^5005553
+ ;;^UTILITY(U,$J,358.3,33059,0)
+ ;;=H55.81^^128^1675^49
+ ;;^UTILITY(U,$J,358.3,33059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35122,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35122,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,35122,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,35123,0)
- ;;=W18.11XA^^131^1699^63
- ;;^UTILITY(U,$J,358.3,35123,1,0)
+ ;;^UTILITY(U,$J,358.3,33059,1,3,0)
+ ;;=3^Saccadic Eye Movement Disorder
+ ;;^UTILITY(U,$J,358.3,33059,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,33059,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,33060,0)
+ ;;=H52.533^^128^1675^50
+ ;;^UTILITY(U,$J,358.3,33060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35123,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,35123,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,35123,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,35124,0)
- ;;=W18.11XD^^131^1699^64
- ;;^UTILITY(U,$J,358.3,35124,1,0)
+ ;;^UTILITY(U,$J,358.3,33060,1,3,0)
+ ;;=3^Spasm of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,33060,1,4,0)
+ ;;=4^H52.533
+ ;;^UTILITY(U,$J,358.3,33060,2)
+ ;;=^5006288
+ ;;^UTILITY(U,$J,358.3,33061,0)
+ ;;=H52.531^^128^1675^52
+ ;;^UTILITY(U,$J,358.3,33061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35124,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35124,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,35124,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,35125,0)
- ;;=W18.12XA^^131^1699^61
- ;;^UTILITY(U,$J,358.3,35125,1,0)
+ ;;^UTILITY(U,$J,358.3,33061,1,3,0)
+ ;;=3^Spasm of Accommodation,Right Eye
+ ;;^UTILITY(U,$J,358.3,33061,1,4,0)
+ ;;=4^H52.531
+ ;;^UTILITY(U,$J,358.3,33061,2)
+ ;;=^5006286
+ ;;^UTILITY(U,$J,358.3,33062,0)
+ ;;=H52.532^^128^1675^51
+ ;;^UTILITY(U,$J,358.3,33062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35125,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,35125,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,35125,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,35126,0)
- ;;=W18.12XD^^131^1699^62
- ;;^UTILITY(U,$J,358.3,35126,1,0)
+ ;;^UTILITY(U,$J,358.3,33062,1,3,0)
+ ;;=3^Spasm of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,33062,1,4,0)
+ ;;=4^H52.532
+ ;;^UTILITY(U,$J,358.3,33062,2)
+ ;;=^5006287
+ ;;^UTILITY(U,$J,358.3,33063,0)
+ ;;=H50.89^^128^1675^53
+ ;;^UTILITY(U,$J,358.3,33063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35126,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35126,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,35126,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,35127,0)
- ;;=W18.2XXA^^131^1699^73
- ;;^UTILITY(U,$J,358.3,35127,1,0)
+ ;;^UTILITY(U,$J,358.3,33063,1,3,0)
+ ;;=3^Strabismus NEC
+ ;;^UTILITY(U,$J,358.3,33063,1,4,0)
+ ;;=4^H50.89
+ ;;^UTILITY(U,$J,358.3,33063,2)
+ ;;=^88142
+ ;;^UTILITY(U,$J,358.3,33064,0)
+ ;;=H50.9^^128^1675^54
+ ;;^UTILITY(U,$J,358.3,33064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35127,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,35127,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,35127,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,35128,0)
- ;;=W18.2XXD^^131^1699^74
- ;;^UTILITY(U,$J,358.3,35128,1,0)
+ ;;^UTILITY(U,$J,358.3,33064,1,3,0)
+ ;;=3^Strabismus,Unspec
+ ;;^UTILITY(U,$J,358.3,33064,1,4,0)
+ ;;=4^H50.9
+ ;;^UTILITY(U,$J,358.3,33064,2)
+ ;;=^5006249
+ ;;^UTILITY(U,$J,358.3,33065,0)
+ ;;=H49.10^^128^1675^55
+ ;;^UTILITY(U,$J,358.3,33065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35128,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35128,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,35128,2)
- ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,33065,1,3,0)
+ ;;=3^Trochlear Palsy
+ ;;^UTILITY(U,$J,358.3,33065,1,4,0)
+ ;;=4^H49.10
+ ;;^UTILITY(U,$J,358.3,33065,2)
+ ;;=^5006183

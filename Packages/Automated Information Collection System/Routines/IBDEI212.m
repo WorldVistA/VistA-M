@@ -1,126 +1,122 @@
-IBDEI212 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI212 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34396,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,34396,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,34397,0)
- ;;=M48.52XD^^131^1686^24
- ;;^UTILITY(U,$J,358.3,34397,1,0)
+ ;;^UTILITY(U,$J,358.3,32364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34397,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,34397,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,34397,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,34398,0)
- ;;=M48.54XA^^131^1686^32
- ;;^UTILITY(U,$J,358.3,34398,1,0)
+ ;;^UTILITY(U,$J,358.3,32364,1,3,0)
+ ;;=3^Incipient Cataract,Other Age-Related,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32364,1,4,0)
+ ;;=4^H25.092
+ ;;^UTILITY(U,$J,358.3,32364,2)
+ ;;=^5005280
+ ;;^UTILITY(U,$J,358.3,32365,0)
+ ;;=H25.093^^128^1658^7
+ ;;^UTILITY(U,$J,358.3,32365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34398,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34398,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,34398,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,34399,0)
- ;;=M48.54XD^^131^1686^33
- ;;^UTILITY(U,$J,358.3,34399,1,0)
+ ;;^UTILITY(U,$J,358.3,32365,1,3,0)
+ ;;=3^Incipient Cataract,Other Age-Related,Bilateral
+ ;;^UTILITY(U,$J,358.3,32365,1,4,0)
+ ;;=4^H25.093
+ ;;^UTILITY(U,$J,358.3,32365,2)
+ ;;=^5005281
+ ;;^UTILITY(U,$J,358.3,32366,0)
+ ;;=H25.041^^128^1658^11
+ ;;^UTILITY(U,$J,358.3,32366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34399,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,34399,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,34399,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,34400,0)
- ;;=M48.57XA^^131^1686^25
- ;;^UTILITY(U,$J,358.3,34400,1,0)
+ ;;^UTILITY(U,$J,358.3,32366,1,3,0)
+ ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32366,1,4,0)
+ ;;=4^H25.041
+ ;;^UTILITY(U,$J,358.3,32366,2)
+ ;;=^5005275
+ ;;^UTILITY(U,$J,358.3,32367,0)
+ ;;=H25.042^^128^1658^12
+ ;;^UTILITY(U,$J,358.3,32367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34400,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,34400,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,34400,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,34401,0)
- ;;=M48.57XD^^131^1686^26
- ;;^UTILITY(U,$J,358.3,34401,1,0)
+ ;;^UTILITY(U,$J,358.3,32367,1,3,0)
+ ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32367,1,4,0)
+ ;;=4^H25.042
+ ;;^UTILITY(U,$J,358.3,32367,2)
+ ;;=^5005276
+ ;;^UTILITY(U,$J,358.3,32368,0)
+ ;;=H25.043^^128^1658^13
+ ;;^UTILITY(U,$J,358.3,32368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34401,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,34401,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,34401,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,34402,0)
- ;;=M50.30^^131^1686^13
- ;;^UTILITY(U,$J,358.3,34402,1,0)
+ ;;^UTILITY(U,$J,358.3,32368,1,3,0)
+ ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,32368,1,4,0)
+ ;;=4^H25.043
+ ;;^UTILITY(U,$J,358.3,32368,2)
+ ;;=^5005277
+ ;;^UTILITY(U,$J,358.3,32369,0)
+ ;;=H25.011^^128^1658^2
+ ;;^UTILITY(U,$J,358.3,32369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34402,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,34402,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,34402,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,34403,0)
- ;;=M51.14^^131^1686^52
- ;;^UTILITY(U,$J,358.3,34403,1,0)
+ ;;^UTILITY(U,$J,358.3,32369,1,3,0)
+ ;;=3^Cortical Age-Related Cataract,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32369,1,4,0)
+ ;;=4^H25.011
+ ;;^UTILITY(U,$J,358.3,32369,2)
+ ;;=^5005267
+ ;;^UTILITY(U,$J,358.3,32370,0)
+ ;;=H25.012^^128^1658^3
+ ;;^UTILITY(U,$J,358.3,32370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34403,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,34403,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,34403,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,34404,0)
- ;;=M51.17^^131^1686^51
- ;;^UTILITY(U,$J,358.3,34404,1,0)
+ ;;^UTILITY(U,$J,358.3,32370,1,3,0)
+ ;;=3^Cortical Age-Related Cataract,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32370,1,4,0)
+ ;;=4^H25.012
+ ;;^UTILITY(U,$J,358.3,32370,2)
+ ;;=^5005268
+ ;;^UTILITY(U,$J,358.3,32371,0)
+ ;;=H25.013^^128^1658^4
+ ;;^UTILITY(U,$J,358.3,32371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34404,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34404,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,34404,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,34405,0)
- ;;=M51.34^^131^1686^50
- ;;^UTILITY(U,$J,358.3,34405,1,0)
+ ;;^UTILITY(U,$J,358.3,32371,1,3,0)
+ ;;=3^Cortical Age-Related Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,32371,1,4,0)
+ ;;=4^H25.013
+ ;;^UTILITY(U,$J,358.3,32371,2)
+ ;;=^5005269
+ ;;^UTILITY(U,$J,358.3,32372,0)
+ ;;=H25.13^^128^1658^10
+ ;;^UTILITY(U,$J,358.3,32372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34405,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Thoracic Region
- ;;^UTILITY(U,$J,358.3,34405,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,34405,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,34406,0)
- ;;=M51.37^^131^1686^49
- ;;^UTILITY(U,$J,358.3,34406,1,0)
+ ;;^UTILITY(U,$J,358.3,32372,1,3,0)
+ ;;=3^Nuclear Age-Related Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,32372,1,4,0)
+ ;;=4^H25.13
+ ;;^UTILITY(U,$J,358.3,32372,2)
+ ;;=^5005286
+ ;;^UTILITY(U,$J,358.3,32373,0)
+ ;;=H25.12^^128^1658^9
+ ;;^UTILITY(U,$J,358.3,32373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34406,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34406,1,4,0)
- ;;=4^M51.37
- ;;^UTILITY(U,$J,358.3,34406,2)
- ;;=^5012254
- ;;^UTILITY(U,$J,358.3,34407,0)
- ;;=M54.14^^131^1686^140
- ;;^UTILITY(U,$J,358.3,34407,1,0)
+ ;;^UTILITY(U,$J,358.3,32373,1,3,0)
+ ;;=3^Nuclear Age-Related Cataract,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32373,1,4,0)
+ ;;=4^H25.12
+ ;;^UTILITY(U,$J,358.3,32373,2)
+ ;;=^5005285
+ ;;^UTILITY(U,$J,358.3,32374,0)
+ ;;=H25.11^^128^1658^8
+ ;;^UTILITY(U,$J,358.3,32374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34407,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,34407,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,34407,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,34408,0)
- ;;=M54.17^^131^1686^139
- ;;^UTILITY(U,$J,358.3,34408,1,0)
+ ;;^UTILITY(U,$J,358.3,32374,1,3,0)
+ ;;=3^Nuclear Age-Related Cataract,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32374,1,4,0)
+ ;;=4^H25.11
+ ;;^UTILITY(U,$J,358.3,32374,2)
+ ;;=^5005284
+ ;;^UTILITY(U,$J,358.3,32375,0)
+ ;;=H26.492^^128^1658^15
+ ;;^UTILITY(U,$J,358.3,32375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34408,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34408,1,4,0)
- ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,32375,1,3,0)
+ ;;=3^PCO/Secondary Cataract,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32375,1,4,0)
+ ;;=4^H26.492
+ ;;^UTILITY(U,$J,358.3,32375,2)
+ ;;=^5005359

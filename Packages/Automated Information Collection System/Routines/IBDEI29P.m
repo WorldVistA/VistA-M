@@ -1,138 +1,124 @@
-IBDEI29P ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI29P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38452,2)
- ;;=^5003580
- ;;^UTILITY(U,$J,358.3,38453,0)
- ;;=F44.7^^145^1867^5
- ;;^UTILITY(U,$J,358.3,38453,1,0)
+ ;;^UTILITY(U,$J,358.3,36202,1,3,0)
+ ;;=3^Aphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,36202,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,36202,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,36203,0)
+ ;;=F80.1^^139^1834^4
+ ;;^UTILITY(U,$J,358.3,36203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38453,1,3,0)
- ;;=3^Conversion Disorder w/ Mixed Symptoms
- ;;^UTILITY(U,$J,358.3,38453,1,4,0)
- ;;=4^F44.7
- ;;^UTILITY(U,$J,358.3,38453,2)
- ;;=^5003582
- ;;^UTILITY(U,$J,358.3,38454,0)
- ;;=F68.10^^145^1867^6
- ;;^UTILITY(U,$J,358.3,38454,1,0)
+ ;;^UTILITY(U,$J,358.3,36203,1,3,0)
+ ;;=3^Expressive language disorder
+ ;;^UTILITY(U,$J,358.3,36203,1,4,0)
+ ;;=4^F80.1
+ ;;^UTILITY(U,$J,358.3,36203,2)
+ ;;=^331958
+ ;;^UTILITY(U,$J,358.3,36204,0)
+ ;;=F80.2^^139^1834^5
+ ;;^UTILITY(U,$J,358.3,36204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38454,1,3,0)
- ;;=3^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,38454,1,4,0)
- ;;=4^F68.10
- ;;^UTILITY(U,$J,358.3,38454,2)
- ;;=^5003663
- ;;^UTILITY(U,$J,358.3,38455,0)
- ;;=F54.^^145^1867^12
- ;;^UTILITY(U,$J,358.3,38455,1,0)
+ ;;^UTILITY(U,$J,358.3,36204,1,3,0)
+ ;;=3^Mixed receptive-expressive language disorder
+ ;;^UTILITY(U,$J,358.3,36204,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,36204,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,36205,0)
+ ;;=R47.89^^139^1834^6
+ ;;^UTILITY(U,$J,358.3,36205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38455,1,3,0)
- ;;=3^Psychological Factors Affecting Oth Med Conditions
- ;;^UTILITY(U,$J,358.3,38455,1,4,0)
- ;;=4^F54.
- ;;^UTILITY(U,$J,358.3,38455,2)
- ;;=^5003627
- ;;^UTILITY(U,$J,358.3,38456,0)
- ;;=F91.2^^145^1868^1
- ;;^UTILITY(U,$J,358.3,38456,1,0)
+ ;;^UTILITY(U,$J,358.3,36205,1,3,0)
+ ;;=3^Speech disturbances NEC
+ ;;^UTILITY(U,$J,358.3,36205,1,4,0)
+ ;;=4^R47.89
+ ;;^UTILITY(U,$J,358.3,36205,2)
+ ;;=^5019493
+ ;;^UTILITY(U,$J,358.3,36206,0)
+ ;;=R49.8^^139^1834^7
+ ;;^UTILITY(U,$J,358.3,36206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38456,1,3,0)
- ;;=3^Conduct Disorder,Adolescent-Onset Type
- ;;^UTILITY(U,$J,358.3,38456,1,4,0)
- ;;=4^F91.2
- ;;^UTILITY(U,$J,358.3,38456,2)
- ;;=^5003699
- ;;^UTILITY(U,$J,358.3,38457,0)
- ;;=F91.1^^145^1868^2
- ;;^UTILITY(U,$J,358.3,38457,1,0)
+ ;;^UTILITY(U,$J,358.3,36206,1,3,0)
+ ;;=3^Voice and resonance disorders NEC
+ ;;^UTILITY(U,$J,358.3,36206,1,4,0)
+ ;;=4^R49.8
+ ;;^UTILITY(U,$J,358.3,36206,2)
+ ;;=^5019505
+ ;;^UTILITY(U,$J,358.3,36207,0)
+ ;;=Z44.011^^139^1835^3
+ ;;^UTILITY(U,$J,358.3,36207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38457,1,3,0)
- ;;=3^Conduct Disorder,Childhood-Onset Type
- ;;^UTILITY(U,$J,358.3,38457,1,4,0)
- ;;=4^F91.1
- ;;^UTILITY(U,$J,358.3,38457,2)
- ;;=^5003698
- ;;^UTILITY(U,$J,358.3,38458,0)
- ;;=F91.9^^145^1868^3
- ;;^UTILITY(U,$J,358.3,38458,1,0)
+ ;;^UTILITY(U,$J,358.3,36207,1,3,0)
+ ;;=3^Fit/adjst of complete right artificial arm
+ ;;^UTILITY(U,$J,358.3,36207,1,4,0)
+ ;;=4^Z44.011
+ ;;^UTILITY(U,$J,358.3,36207,2)
+ ;;=^5062971
+ ;;^UTILITY(U,$J,358.3,36208,0)
+ ;;=Z44.012^^139^1835^1
+ ;;^UTILITY(U,$J,358.3,36208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38458,1,3,0)
- ;;=3^Conduct Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38458,1,4,0)
- ;;=4^F91.9
- ;;^UTILITY(U,$J,358.3,38458,2)
- ;;=^5003701
- ;;^UTILITY(U,$J,358.3,38459,0)
- ;;=F63.81^^145^1868^5
- ;;^UTILITY(U,$J,358.3,38459,1,0)
+ ;;^UTILITY(U,$J,358.3,36208,1,3,0)
+ ;;=3^Fit/adjst of complete left artificial arm
+ ;;^UTILITY(U,$J,358.3,36208,1,4,0)
+ ;;=4^Z44.012
+ ;;^UTILITY(U,$J,358.3,36208,2)
+ ;;=^5062972
+ ;;^UTILITY(U,$J,358.3,36209,0)
+ ;;=Z44.021^^139^1835^8
+ ;;^UTILITY(U,$J,358.3,36209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38459,1,3,0)
- ;;=3^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,38459,1,4,0)
- ;;=4^F63.81
- ;;^UTILITY(U,$J,358.3,38459,2)
- ;;=^5003644
- ;;^UTILITY(U,$J,358.3,38460,0)
- ;;=F63.2^^145^1868^6
- ;;^UTILITY(U,$J,358.3,38460,1,0)
+ ;;^UTILITY(U,$J,358.3,36209,1,3,0)
+ ;;=3^Fit/adjst of partial artificial right arm
+ ;;^UTILITY(U,$J,358.3,36209,1,4,0)
+ ;;=4^Z44.021
+ ;;^UTILITY(U,$J,358.3,36209,2)
+ ;;=^5062974
+ ;;^UTILITY(U,$J,358.3,36210,0)
+ ;;=Z44.022^^139^1835^6
+ ;;^UTILITY(U,$J,358.3,36210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38460,1,3,0)
- ;;=3^Kleptomania
- ;;^UTILITY(U,$J,358.3,38460,1,4,0)
- ;;=4^F63.2
- ;;^UTILITY(U,$J,358.3,38460,2)
- ;;=^5003642
- ;;^UTILITY(U,$J,358.3,38461,0)
- ;;=F91.3^^145^1868^7
- ;;^UTILITY(U,$J,358.3,38461,1,0)
+ ;;^UTILITY(U,$J,358.3,36210,1,3,0)
+ ;;=3^Fit/adjst of partial artificial left arm
+ ;;^UTILITY(U,$J,358.3,36210,1,4,0)
+ ;;=4^Z44.022
+ ;;^UTILITY(U,$J,358.3,36210,2)
+ ;;=^5062975
+ ;;^UTILITY(U,$J,358.3,36211,0)
+ ;;=Z44.111^^139^1835^4
+ ;;^UTILITY(U,$J,358.3,36211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38461,1,3,0)
- ;;=3^Oppositional Defiant Disorder
- ;;^UTILITY(U,$J,358.3,38461,1,4,0)
- ;;=4^F91.3
- ;;^UTILITY(U,$J,358.3,38461,2)
- ;;=^331955
- ;;^UTILITY(U,$J,358.3,38462,0)
- ;;=F91.8^^145^1868^4
- ;;^UTILITY(U,$J,358.3,38462,1,0)
+ ;;^UTILITY(U,$J,358.3,36211,1,3,0)
+ ;;=3^Fit/adjst of complete right artificial leg
+ ;;^UTILITY(U,$J,358.3,36211,1,4,0)
+ ;;=4^Z44.111
+ ;;^UTILITY(U,$J,358.3,36211,2)
+ ;;=^5062980
+ ;;^UTILITY(U,$J,358.3,36212,0)
+ ;;=Z44.112^^139^1835^2
+ ;;^UTILITY(U,$J,358.3,36212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38462,1,3,0)
- ;;=3^Disruptive,Impulse-Control,Conduct Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,38462,1,4,0)
- ;;=4^F91.8
- ;;^UTILITY(U,$J,358.3,38462,2)
- ;;=^5003700
- ;;^UTILITY(U,$J,358.3,38463,0)
- ;;=F63.1^^145^1868^8
- ;;^UTILITY(U,$J,358.3,38463,1,0)
+ ;;^UTILITY(U,$J,358.3,36212,1,3,0)
+ ;;=3^Fit/adjst of complete left artificial leg
+ ;;^UTILITY(U,$J,358.3,36212,1,4,0)
+ ;;=4^Z44.112
+ ;;^UTILITY(U,$J,358.3,36212,2)
+ ;;=^5062981
+ ;;^UTILITY(U,$J,358.3,36213,0)
+ ;;=Z44.121^^139^1835^9
+ ;;^UTILITY(U,$J,358.3,36213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38463,1,3,0)
- ;;=3^Pyromania
- ;;^UTILITY(U,$J,358.3,38463,1,4,0)
- ;;=4^F63.1
- ;;^UTILITY(U,$J,358.3,38463,2)
- ;;=^5003641
- ;;^UTILITY(U,$J,358.3,38464,0)
- ;;=F98.0^^145^1869^5
- ;;^UTILITY(U,$J,358.3,38464,1,0)
+ ;;^UTILITY(U,$J,358.3,36213,1,3,0)
+ ;;=3^Fit/adjst of partial artificial right leg
+ ;;^UTILITY(U,$J,358.3,36213,1,4,0)
+ ;;=4^Z44.121
+ ;;^UTILITY(U,$J,358.3,36213,2)
+ ;;=^5062983
+ ;;^UTILITY(U,$J,358.3,36214,0)
+ ;;=Z44.122^^139^1835^7
+ ;;^UTILITY(U,$J,358.3,36214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38464,1,3,0)
- ;;=3^Enuresis
- ;;^UTILITY(U,$J,358.3,38464,1,4,0)
- ;;=4^F98.0
- ;;^UTILITY(U,$J,358.3,38464,2)
- ;;=^5003711
- ;;^UTILITY(U,$J,358.3,38465,0)
- ;;=F98.1^^145^1869^4
- ;;^UTILITY(U,$J,358.3,38465,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38465,1,3,0)
- ;;=3^Encopresis
- ;;^UTILITY(U,$J,358.3,38465,1,4,0)
- ;;=4^F98.1
- ;;^UTILITY(U,$J,358.3,38465,2)
- ;;=^5003712
- ;;^UTILITY(U,$J,358.3,38466,0)
- ;;=N39.498^^145^1869^2

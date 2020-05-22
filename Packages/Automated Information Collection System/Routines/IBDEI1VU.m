@@ -1,128 +1,132 @@
-IBDEI1VU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31976,0)
- ;;=S82.874A^^126^1609^370
- ;;^UTILITY(U,$J,358.3,31976,1,0)
+ ;;^UTILITY(U,$J,358.3,30071,1,4,0)
+ ;;=4^F65.9
+ ;;^UTILITY(U,$J,358.3,30071,2)
+ ;;=^5003661
+ ;;^UTILITY(U,$J,358.3,30072,0)
+ ;;=F60.0^^120^1531^8
+ ;;^UTILITY(U,$J,358.3,30072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31976,1,3,0)
- ;;=3^Nondisp pilon fx of rt tib, init
- ;;^UTILITY(U,$J,358.3,31976,1,4,0)
- ;;=4^S82.874A
- ;;^UTILITY(U,$J,358.3,31976,2)
- ;;=^5042815
- ;;^UTILITY(U,$J,358.3,31977,0)
- ;;=S82.55XA^^126^1609^328
- ;;^UTILITY(U,$J,358.3,31977,1,0)
+ ;;^UTILITY(U,$J,358.3,30072,1,3,0)
+ ;;=3^Paranoid Personality D/O
+ ;;^UTILITY(U,$J,358.3,30072,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,30072,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,30073,0)
+ ;;=F60.1^^120^1531^12
+ ;;^UTILITY(U,$J,358.3,30073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31977,1,3,0)
- ;;=3^Nondisp fx of med malleolus of lft tib, init
- ;;^UTILITY(U,$J,358.3,31977,1,4,0)
- ;;=4^S82.55XA
- ;;^UTILITY(U,$J,358.3,31977,2)
- ;;=^5042279
- ;;^UTILITY(U,$J,358.3,31978,0)
- ;;=S82.871A^^126^1609^145
- ;;^UTILITY(U,$J,358.3,31978,1,0)
+ ;;^UTILITY(U,$J,358.3,30073,1,3,0)
+ ;;=3^Schizoid Personality D/O
+ ;;^UTILITY(U,$J,358.3,30073,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,30073,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,30074,0)
+ ;;=F21.^^120^1531^13
+ ;;^UTILITY(U,$J,358.3,30074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31978,1,3,0)
- ;;=3^Disp pilon fx of rt tib, init
- ;;^UTILITY(U,$J,358.3,31978,1,4,0)
- ;;=4^S82.871A
- ;;^UTILITY(U,$J,358.3,31978,2)
- ;;=^5042767
- ;;^UTILITY(U,$J,358.3,31979,0)
- ;;=S82.872A^^126^1609^144
- ;;^UTILITY(U,$J,358.3,31979,1,0)
+ ;;^UTILITY(U,$J,358.3,30074,1,3,0)
+ ;;=3^Schizotypal Personality D/O
+ ;;^UTILITY(U,$J,358.3,30074,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,30074,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,30075,0)
+ ;;=F60.5^^120^1531^7
+ ;;^UTILITY(U,$J,358.3,30075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31979,1,3,0)
- ;;=3^Disp pilon fx of lft tib, init
- ;;^UTILITY(U,$J,358.3,31979,1,4,0)
- ;;=4^S82.872A
- ;;^UTILITY(U,$J,358.3,31979,2)
- ;;=^5042783
- ;;^UTILITY(U,$J,358.3,31980,0)
- ;;=S82.64XA^^126^1609^320
- ;;^UTILITY(U,$J,358.3,31980,1,0)
+ ;;^UTILITY(U,$J,358.3,30075,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality D/O
+ ;;^UTILITY(U,$J,358.3,30075,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,30075,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,30076,0)
+ ;;=F60.4^^120^1531^5
+ ;;^UTILITY(U,$J,358.3,30076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31980,1,3,0)
- ;;=3^Nondisp fx of lat malleolus of rt fib, init
- ;;^UTILITY(U,$J,358.3,31980,1,4,0)
- ;;=4^S82.64XA
- ;;^UTILITY(U,$J,358.3,31980,2)
- ;;=^5042359
- ;;^UTILITY(U,$J,358.3,31981,0)
- ;;=S82.62XA^^126^1609^101
- ;;^UTILITY(U,$J,358.3,31981,1,0)
+ ;;^UTILITY(U,$J,358.3,30076,1,3,0)
+ ;;=3^Histrionic Personality D/O
+ ;;^UTILITY(U,$J,358.3,30076,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,30076,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,30077,0)
+ ;;=F60.7^^120^1531^4
+ ;;^UTILITY(U,$J,358.3,30077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31981,1,3,0)
- ;;=3^Disp fx of ltrl malleolus of lft fib, init
- ;;^UTILITY(U,$J,358.3,31981,1,4,0)
- ;;=4^S82.62XA
- ;;^UTILITY(U,$J,358.3,31981,2)
- ;;=^5042327
- ;;^UTILITY(U,$J,358.3,31982,0)
- ;;=S82.61XA^^126^1609^102
- ;;^UTILITY(U,$J,358.3,31982,1,0)
+ ;;^UTILITY(U,$J,358.3,30077,1,3,0)
+ ;;=3^Dependent Personality D/O
+ ;;^UTILITY(U,$J,358.3,30077,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,30077,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,30078,0)
+ ;;=F60.2^^120^1531^1
+ ;;^UTILITY(U,$J,358.3,30078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31982,1,3,0)
- ;;=3^Disp fx of ltrl malleolus of rt fib, init
- ;;^UTILITY(U,$J,358.3,31982,1,4,0)
- ;;=4^S82.61XA
- ;;^UTILITY(U,$J,358.3,31982,2)
- ;;=^5042311
- ;;^UTILITY(U,$J,358.3,31983,0)
- ;;=S82.65XA^^126^1609^327
- ;;^UTILITY(U,$J,358.3,31983,1,0)
+ ;;^UTILITY(U,$J,358.3,30078,1,3,0)
+ ;;=3^Antisocial Personality D/O
+ ;;^UTILITY(U,$J,358.3,30078,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,30078,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,30079,0)
+ ;;=F60.81^^120^1531^6
+ ;;^UTILITY(U,$J,358.3,30079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31983,1,3,0)
- ;;=3^Nondisp fx of ltrl malleolus of lft fib, init
- ;;^UTILITY(U,$J,358.3,31983,1,4,0)
- ;;=4^S82.65XA
- ;;^UTILITY(U,$J,358.3,31983,2)
- ;;=^5042375
- ;;^UTILITY(U,$J,358.3,31984,0)
- ;;=S82.841A^^126^1609^19
- ;;^UTILITY(U,$J,358.3,31984,1,0)
+ ;;^UTILITY(U,$J,358.3,30079,1,3,0)
+ ;;=3^Narcissistic Personality D/O
+ ;;^UTILITY(U,$J,358.3,30079,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,30079,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,30080,0)
+ ;;=F60.6^^120^1531^2
+ ;;^UTILITY(U,$J,358.3,30080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31984,1,3,0)
- ;;=3^Disp bimalleolar fx of rt lwr leg, int
- ;;^UTILITY(U,$J,358.3,31984,1,4,0)
- ;;=4^S82.841A
- ;;^UTILITY(U,$J,358.3,31984,2)
- ;;=^5042479
- ;;^UTILITY(U,$J,358.3,31985,0)
- ;;=S82.842A^^126^1609^18
- ;;^UTILITY(U,$J,358.3,31985,1,0)
+ ;;^UTILITY(U,$J,358.3,30080,1,3,0)
+ ;;=3^Avoidant Personality D/O
+ ;;^UTILITY(U,$J,358.3,30080,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,30080,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,30081,0)
+ ;;=F60.3^^120^1531^3
+ ;;^UTILITY(U,$J,358.3,30081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31985,1,3,0)
- ;;=3^Disp bimalleolar fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,31985,1,4,0)
- ;;=4^S82.842A
- ;;^UTILITY(U,$J,358.3,31985,2)
- ;;=^5042495
- ;;^UTILITY(U,$J,358.3,31986,0)
- ;;=S82.844A^^126^1609^243
- ;;^UTILITY(U,$J,358.3,31986,1,0)
+ ;;^UTILITY(U,$J,358.3,30081,1,3,0)
+ ;;=3^Borderline Personality D/O
+ ;;^UTILITY(U,$J,358.3,30081,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,30081,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,30082,0)
+ ;;=F60.89^^120^1531^10
+ ;;^UTILITY(U,$J,358.3,30082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31986,1,3,0)
- ;;=3^Nondisp bimalleolar fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,31986,1,4,0)
- ;;=4^S82.844A
- ;;^UTILITY(U,$J,358.3,31986,2)
- ;;=^5042527
- ;;^UTILITY(U,$J,358.3,31987,0)
- ;;=S82.845A^^126^1609^242
- ;;^UTILITY(U,$J,358.3,31987,1,0)
+ ;;^UTILITY(U,$J,358.3,30082,1,3,0)
+ ;;=3^Personality D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,30082,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,30082,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,30083,0)
+ ;;=F60.9^^120^1531^11
+ ;;^UTILITY(U,$J,358.3,30083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31987,1,3,0)
- ;;=3^Nondisp bimalleolar fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,31987,1,4,0)
- ;;=4^S82.845A
- ;;^UTILITY(U,$J,358.3,31987,2)
- ;;=^5042543
- ;;^UTILITY(U,$J,358.3,31988,0)
- ;;=S82.854A^^126^1609^378
- ;;^UTILITY(U,$J,358.3,31988,1,0)
+ ;;^UTILITY(U,$J,358.3,30083,1,3,0)
+ ;;=3^Personality D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30083,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,30083,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,30084,0)
+ ;;=F07.0^^120^1531^9
+ ;;^UTILITY(U,$J,358.3,30084,1,0)
  ;;=^358.31IA^4^2

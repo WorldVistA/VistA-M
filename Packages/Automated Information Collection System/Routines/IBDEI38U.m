@@ -1,124 +1,132 @@
-IBDEI38U ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38U ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54511,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,54511,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,54512,0)
- ;;=L97.924^^256^2764^194
- ;;^UTILITY(U,$J,358.3,54512,1,0)
+ ;;^UTILITY(U,$J,358.3,51782,2)
+ ;;=^5015894
+ ;;^UTILITY(U,$J,358.3,51783,0)
+ ;;=N94.2^^193^2513^116
+ ;;^UTILITY(U,$J,358.3,51783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54512,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,54512,1,4,0)
- ;;=4^L97.924
- ;;^UTILITY(U,$J,358.3,54512,2)
- ;;=^5133686
- ;;^UTILITY(U,$J,358.3,54513,0)
- ;;=L97.929^^256^2764^195
- ;;^UTILITY(U,$J,358.3,54513,1,0)
+ ;;^UTILITY(U,$J,358.3,51783,1,3,0)
+ ;;=3^Vaginismus
+ ;;^UTILITY(U,$J,358.3,51783,1,4,0)
+ ;;=4^N94.2
+ ;;^UTILITY(U,$J,358.3,51783,2)
+ ;;=^5015918
+ ;;^UTILITY(U,$J,358.3,51784,0)
+ ;;=N94.0^^193^2513^70
+ ;;^UTILITY(U,$J,358.3,51784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54513,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,54513,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,54513,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,54514,0)
- ;;=L98.2^^256^2764^149
- ;;^UTILITY(U,$J,358.3,54514,1,0)
+ ;;^UTILITY(U,$J,358.3,51784,1,3,0)
+ ;;=3^Mittelschmerz
+ ;;^UTILITY(U,$J,358.3,51784,1,4,0)
+ ;;=4^N94.0
+ ;;^UTILITY(U,$J,358.3,51784,2)
+ ;;=^265259
+ ;;^UTILITY(U,$J,358.3,51785,0)
+ ;;=N94.6^^193^2513^30
+ ;;^UTILITY(U,$J,358.3,51785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54514,1,3,0)
- ;;=3^Febrile Neutrophilic Dermatosis
- ;;^UTILITY(U,$J,358.3,54514,1,4,0)
- ;;=4^L98.2
- ;;^UTILITY(U,$J,358.3,54514,2)
- ;;=^5009575
- ;;^UTILITY(U,$J,358.3,54515,0)
- ;;=L98.9^^256^2764^267
- ;;^UTILITY(U,$J,358.3,54515,1,0)
+ ;;^UTILITY(U,$J,358.3,51785,1,3,0)
+ ;;=3^Dysmenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,51785,1,4,0)
+ ;;=4^N94.6
+ ;;^UTILITY(U,$J,358.3,51785,2)
+ ;;=^5015922
+ ;;^UTILITY(U,$J,358.3,51786,0)
+ ;;=N94.5^^193^2513^29
+ ;;^UTILITY(U,$J,358.3,51786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54515,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,54515,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,54515,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,54516,0)
- ;;=I70.731^^256^2764^80
- ;;^UTILITY(U,$J,358.3,54516,1,0)
+ ;;^UTILITY(U,$J,358.3,51786,1,3,0)
+ ;;=3^Dysmenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,51786,1,4,0)
+ ;;=4^N94.5
+ ;;^UTILITY(U,$J,358.3,51786,2)
+ ;;=^5015921
+ ;;^UTILITY(U,$J,358.3,51787,0)
+ ;;=N94.4^^193^2513^28
+ ;;^UTILITY(U,$J,358.3,51787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54516,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,54516,1,4,0)
- ;;=4^I70.731
- ;;^UTILITY(U,$J,358.3,54516,2)
- ;;=^5007769
- ;;^UTILITY(U,$J,358.3,54517,0)
- ;;=I70.732^^256^2764^81
- ;;^UTILITY(U,$J,358.3,54517,1,0)
+ ;;^UTILITY(U,$J,358.3,51787,1,3,0)
+ ;;=3^Dysmenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,51787,1,4,0)
+ ;;=4^N94.4
+ ;;^UTILITY(U,$J,358.3,51787,2)
+ ;;=^5015920
+ ;;^UTILITY(U,$J,358.3,51788,0)
+ ;;=N94.3^^193^2513^95
+ ;;^UTILITY(U,$J,358.3,51788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54517,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,54517,1,4,0)
- ;;=4^I70.732
- ;;^UTILITY(U,$J,358.3,54517,2)
- ;;=^5007770
- ;;^UTILITY(U,$J,358.3,54518,0)
- ;;=I70.733^^256^2764^82
- ;;^UTILITY(U,$J,358.3,54518,1,0)
+ ;;^UTILITY(U,$J,358.3,51788,1,3,0)
+ ;;=3^Premenstrual Tension Syndrome
+ ;;^UTILITY(U,$J,358.3,51788,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,51788,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,51789,0)
+ ;;=N91.0^^193^2513^9
+ ;;^UTILITY(U,$J,358.3,51789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54518,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,54518,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,54518,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,54519,0)
- ;;=I70.734^^256^2764^83
- ;;^UTILITY(U,$J,358.3,54519,1,0)
+ ;;^UTILITY(U,$J,358.3,51789,1,3,0)
+ ;;=3^Amenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,51789,1,4,0)
+ ;;=4^N91.0
+ ;;^UTILITY(U,$J,358.3,51789,2)
+ ;;=^5015902
+ ;;^UTILITY(U,$J,358.3,51790,0)
+ ;;=N91.1^^193^2513^10
+ ;;^UTILITY(U,$J,358.3,51790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54519,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,54519,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,54519,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,54520,0)
- ;;=I70.735^^256^2764^84
- ;;^UTILITY(U,$J,358.3,54520,1,0)
+ ;;^UTILITY(U,$J,358.3,51790,1,3,0)
+ ;;=3^Amenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,51790,1,4,0)
+ ;;=4^N91.1
+ ;;^UTILITY(U,$J,358.3,51790,2)
+ ;;=^5015903
+ ;;^UTILITY(U,$J,358.3,51791,0)
+ ;;=N91.2^^193^2513^11
+ ;;^UTILITY(U,$J,358.3,51791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54520,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
- ;;^UTILITY(U,$J,358.3,54520,1,4,0)
- ;;=4^I70.735
- ;;^UTILITY(U,$J,358.3,54520,2)
- ;;=^5007773
- ;;^UTILITY(U,$J,358.3,54521,0)
- ;;=I70.741^^256^2764^79
- ;;^UTILITY(U,$J,358.3,54521,1,0)
+ ;;^UTILITY(U,$J,358.3,51791,1,3,0)
+ ;;=3^Amenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,51791,1,4,0)
+ ;;=4^N91.2
+ ;;^UTILITY(U,$J,358.3,51791,2)
+ ;;=^5015904
+ ;;^UTILITY(U,$J,358.3,51792,0)
+ ;;=N91.3^^193^2513^73
+ ;;^UTILITY(U,$J,358.3,51792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54521,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,54521,1,4,0)
- ;;=4^I70.741
- ;;^UTILITY(U,$J,358.3,54521,2)
- ;;=^5133601
- ;;^UTILITY(U,$J,358.3,54522,0)
- ;;=I70.742^^256^2764^76
- ;;^UTILITY(U,$J,358.3,54522,1,0)
+ ;;^UTILITY(U,$J,358.3,51792,1,3,0)
+ ;;=3^Oligomenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,51792,1,4,0)
+ ;;=4^N91.3
+ ;;^UTILITY(U,$J,358.3,51792,2)
+ ;;=^5015905
+ ;;^UTILITY(U,$J,358.3,51793,0)
+ ;;=N91.4^^193^2513^74
+ ;;^UTILITY(U,$J,358.3,51793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54522,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,54522,1,4,0)
- ;;=4^I70.742
- ;;^UTILITY(U,$J,358.3,54522,2)
- ;;=^5133602
- ;;^UTILITY(U,$J,358.3,54523,0)
- ;;=I70.743^^256^2764^75
- ;;^UTILITY(U,$J,358.3,54523,1,0)
+ ;;^UTILITY(U,$J,358.3,51793,1,3,0)
+ ;;=3^Oligomenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,51793,1,4,0)
+ ;;=4^N91.4
+ ;;^UTILITY(U,$J,358.3,51793,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,51794,0)
+ ;;=N91.5^^193^2513^75
+ ;;^UTILITY(U,$J,358.3,51794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54523,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,51794,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,51794,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,51794,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,51795,0)
+ ;;=N92.0^^193^2513^40
+ ;;^UTILITY(U,$J,358.3,51795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51795,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle

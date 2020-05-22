@@ -1,134 +1,128 @@
-IBDEI306 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI306 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50341,1,4,0)
- ;;=4^M35.09
- ;;^UTILITY(U,$J,358.3,50341,2)
- ;;=^5011791
- ;;^UTILITY(U,$J,358.3,50342,0)
- ;;=M35.04^^219^2447^58
- ;;^UTILITY(U,$J,358.3,50342,1,0)
+ ;;^UTILITY(U,$J,358.3,47956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50342,1,3,0)
- ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
- ;;^UTILITY(U,$J,358.3,50342,1,4,0)
- ;;=4^M35.04
- ;;^UTILITY(U,$J,358.3,50342,2)
- ;;=^5011790
- ;;^UTILITY(U,$J,358.3,50343,0)
- ;;=M35.00^^219^2447^59
- ;;^UTILITY(U,$J,358.3,50343,1,0)
+ ;;^UTILITY(U,$J,358.3,47956,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,47956,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,47956,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,47957,0)
+ ;;=I62.1^^185^2414^36
+ ;;^UTILITY(U,$J,358.3,47957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50343,1,3,0)
- ;;=3^Sicca Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,50343,1,4,0)
- ;;=4^M35.00
- ;;^UTILITY(U,$J,358.3,50343,2)
- ;;=^5011786
- ;;^UTILITY(U,$J,358.3,50344,0)
- ;;=M32.10^^219^2447^62
- ;;^UTILITY(U,$J,358.3,50344,1,0)
+ ;;^UTILITY(U,$J,358.3,47957,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Extradural
+ ;;^UTILITY(U,$J,358.3,47957,1,4,0)
+ ;;=4^I62.1
+ ;;^UTILITY(U,$J,358.3,47957,2)
+ ;;=^269743
+ ;;^UTILITY(U,$J,358.3,47958,0)
+ ;;=I61.9^^185^2414^37
+ ;;^UTILITY(U,$J,358.3,47958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50344,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
- ;;^UTILITY(U,$J,358.3,50344,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,50344,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,50345,0)
- ;;=M32.9^^219^2447^61
- ;;^UTILITY(U,$J,358.3,50345,1,0)
+ ;;^UTILITY(U,$J,358.3,47958,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Intracerebral,Unspec
+ ;;^UTILITY(U,$J,358.3,47958,1,4,0)
+ ;;=4^I61.9
+ ;;^UTILITY(U,$J,358.3,47958,2)
+ ;;=^5007288
+ ;;^UTILITY(U,$J,358.3,47959,0)
+ ;;=I62.9^^185^2414^38
+ ;;^UTILITY(U,$J,358.3,47959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50345,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,50345,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,50345,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,50346,0)
- ;;=M34.2^^219^2447^63
- ;;^UTILITY(U,$J,358.3,50346,1,0)
+ ;;^UTILITY(U,$J,358.3,47959,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Intracranial,Unspec
+ ;;^UTILITY(U,$J,358.3,47959,1,4,0)
+ ;;=4^I62.9
+ ;;^UTILITY(U,$J,358.3,47959,2)
+ ;;=^5007293
+ ;;^UTILITY(U,$J,358.3,47960,0)
+ ;;=I60.9^^185^2414^39
+ ;;^UTILITY(U,$J,358.3,47960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50346,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,50346,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,50346,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,50347,0)
- ;;=M34.81^^219^2447^64
- ;;^UTILITY(U,$J,358.3,50347,1,0)
+ ;;^UTILITY(U,$J,358.3,47960,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Subarachnoid,Unspec
+ ;;^UTILITY(U,$J,358.3,47960,1,4,0)
+ ;;=4^I60.9
+ ;;^UTILITY(U,$J,358.3,47960,2)
+ ;;=^5007279
+ ;;^UTILITY(U,$J,358.3,47961,0)
+ ;;=I62.00^^185^2414^40
+ ;;^UTILITY(U,$J,358.3,47961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50347,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,50347,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,50347,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,50348,0)
- ;;=M34.82^^219^2447^65
- ;;^UTILITY(U,$J,358.3,50348,1,0)
+ ;;^UTILITY(U,$J,358.3,47961,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Subdural,Unspec
+ ;;^UTILITY(U,$J,358.3,47961,1,4,0)
+ ;;=4^I62.00
+ ;;^UTILITY(U,$J,358.3,47961,2)
+ ;;=^5007289
+ ;;^UTILITY(U,$J,358.3,47962,0)
+ ;;=R58.^^185^2414^35
+ ;;^UTILITY(U,$J,358.3,47962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50348,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,50348,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,50348,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,50349,0)
- ;;=M34.83^^219^2447^66
- ;;^UTILITY(U,$J,358.3,50349,1,0)
+ ;;^UTILITY(U,$J,358.3,47962,1,3,0)
+ ;;=3^Hemorrhage NEC
+ ;;^UTILITY(U,$J,358.3,47962,1,4,0)
+ ;;=4^R58.
+ ;;^UTILITY(U,$J,358.3,47962,2)
+ ;;=^5019528
+ ;;^UTILITY(U,$J,358.3,47963,0)
+ ;;=E78.1^^185^2414^42
+ ;;^UTILITY(U,$J,358.3,47963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50349,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,50349,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,50349,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,50350,0)
- ;;=M34.9^^219^2447^67
- ;;^UTILITY(U,$J,358.3,50350,1,0)
+ ;;^UTILITY(U,$J,358.3,47963,1,3,0)
+ ;;=3^Hyperglyceridemia,Pure
+ ;;^UTILITY(U,$J,358.3,47963,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,47963,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,47964,0)
+ ;;=E78.2^^185^2414^43
+ ;;^UTILITY(U,$J,358.3,47964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50350,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,50350,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,50350,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,50351,0)
- ;;=M81.0^^219^2448^18
- ;;^UTILITY(U,$J,358.3,50351,1,0)
+ ;;^UTILITY(U,$J,358.3,47964,1,3,0)
+ ;;=3^Hyperlipidemia,Mixed
+ ;;^UTILITY(U,$J,358.3,47964,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,47964,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,47965,0)
+ ;;=E78.5^^185^2414^44
+ ;;^UTILITY(U,$J,358.3,47965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50351,1,3,0)
- ;;=3^Osteoporosis,Age-Related
- ;;^UTILITY(U,$J,358.3,50351,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,50351,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,50352,0)
- ;;=M46.46^^219^2448^2
- ;;^UTILITY(U,$J,358.3,50352,1,0)
+ ;;^UTILITY(U,$J,358.3,47965,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,47965,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,47965,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,47966,0)
+ ;;=I10.^^185^2414^45
+ ;;^UTILITY(U,$J,358.3,47966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50352,1,3,0)
- ;;=3^Discitis,Lumbar Region,Unspec
- ;;^UTILITY(U,$J,358.3,50352,1,4,0)
- ;;=4^M46.46
- ;;^UTILITY(U,$J,358.3,50352,2)
- ;;=^5012006
- ;;^UTILITY(U,$J,358.3,50353,0)
- ;;=M46.47^^219^2448^3
- ;;^UTILITY(U,$J,358.3,50353,1,0)
+ ;;^UTILITY(U,$J,358.3,47966,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,47966,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,47966,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,47967,0)
+ ;;=I15.8^^185^2414^47
+ ;;^UTILITY(U,$J,358.3,47967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50353,1,3,0)
- ;;=3^Discitis,Lumbosacral Region,Unspec
- ;;^UTILITY(U,$J,358.3,50353,1,4,0)
- ;;=4^M46.47
- ;;^UTILITY(U,$J,358.3,50353,2)
- ;;=^5012007
- ;;^UTILITY(U,$J,358.3,50354,0)
- ;;=J98.6^^219^2448^1
- ;;^UTILITY(U,$J,358.3,50354,1,0)
+ ;;^UTILITY(U,$J,358.3,47967,1,3,0)
+ ;;=3^Hypertension,Secondary
+ ;;^UTILITY(U,$J,358.3,47967,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,47967,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,47968,0)
+ ;;=I15.0^^185^2414^46
+ ;;^UTILITY(U,$J,358.3,47968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50354,1,3,0)
- ;;=3^Diaphragm Disorders
+ ;;^UTILITY(U,$J,358.3,47968,1,3,0)
+ ;;=3^Hypertension,Renovascular

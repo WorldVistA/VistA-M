@@ -1,46 +1,122 @@
-IBDEI16P ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.94)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.94,0,"GL")
- ;;=^IBE(358.94,
- ;;^DIC("B","IMP/EXP HAND PRINT FIELD",358.94)
- ;;=
- ;;^DIC(358.94,"%D",0)
- ;;=^^1^1^2950927^^
- ;;^DIC(358.94,"%D",1,0)
- ;;=Used by the Import/Export utility as a workspace.
- ;;^DD(358.94,0)
- ;;=FIELD^^.1^8
- ;;^DD(358.94,0,"DT")
- ;;=2950728
- ;;^DD(358.94,0,"IX","B",358.94,.01)
- ;;=
- ;;^DD(358.94,0,"IX","C",358.94,.08)
- ;;=
- ;;^DD(358.94,0,"NM","IMP/EXP HAND PRINT FIELD")
- ;;=
- ;;^DD(358.94,0,"VRPK")
- ;;=AUTOMATED INFO COLLECTION SYS
- ;;^DD(358.94,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.94,.01,1,0)
- ;;=^.1
- ;;^DD(358.94,.01,1,1,0)
- ;;=358.94^B
- ;;^DD(358.94,.01,1,1,1)
- ;;=S ^IBE(358.94,"B",$E(X,1,30),DA)=""
- ;;^DD(358.94,.01,1,1,2)
- ;;=K ^IBE(358.94,"B",$E(X,1,30),DA)
- ;;^DD(358.94,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.94,.01,21,0)
- ;;=^^3^3^2950725^
- ;;^DD(358.94,.01,21,1,0)
- ;;= 
- ;;^DD(358.94,.01,21,2,0)
- ;;= 
- ;;^DD(358.94,.01,21,3,0)
- ;;=The name of the field. 
- ;;^DD(358.94,.01,"DT")
- ;;=2930518
+ ;;^UTILITY(U,$J,358.3,19027,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,19027,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,19028,0)
+ ;;=F14.94^^91^976^6
+ ;;^UTILITY(U,$J,358.3,19028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19028,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19028,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,19028,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,19029,0)
+ ;;=F14.188^^91^976^7
+ ;;^UTILITY(U,$J,358.3,19029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19029,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19029,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,19029,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,19030,0)
+ ;;=F14.288^^91^976^8
+ ;;^UTILITY(U,$J,358.3,19030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19030,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19030,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,19030,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,19031,0)
+ ;;=F14.988^^91^976^9
+ ;;^UTILITY(U,$J,358.3,19031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19031,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19031,1,4,0)
+ ;;=4^F14.988
+ ;;^UTILITY(U,$J,358.3,19031,2)
+ ;;=^5003281
+ ;;^UTILITY(U,$J,358.3,19032,0)
+ ;;=F14.159^^91^976^10
+ ;;^UTILITY(U,$J,358.3,19032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19032,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19032,1,4,0)
+ ;;=4^F14.159
+ ;;^UTILITY(U,$J,358.3,19032,2)
+ ;;=^5003247
+ ;;^UTILITY(U,$J,358.3,19033,0)
+ ;;=F14.259^^91^976^11
+ ;;^UTILITY(U,$J,358.3,19033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19033,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19033,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,19033,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,19034,0)
+ ;;=F14.959^^91^976^12
+ ;;^UTILITY(U,$J,358.3,19034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19034,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19034,1,4,0)
+ ;;=4^F14.959
+ ;;^UTILITY(U,$J,358.3,19034,2)
+ ;;=^5003277
+ ;;^UTILITY(U,$J,358.3,19035,0)
+ ;;=F14.181^^91^976^13
+ ;;^UTILITY(U,$J,358.3,19035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19035,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19035,1,4,0)
+ ;;=4^F14.181
+ ;;^UTILITY(U,$J,358.3,19035,2)
+ ;;=^5003249
+ ;;^UTILITY(U,$J,358.3,19036,0)
+ ;;=F14.281^^91^976^14
+ ;;^UTILITY(U,$J,358.3,19036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19036,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19036,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,19036,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,19037,0)
+ ;;=F14.981^^91^976^15
+ ;;^UTILITY(U,$J,358.3,19037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19037,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19037,1,4,0)
+ ;;=4^F14.981
+ ;;^UTILITY(U,$J,358.3,19037,2)
+ ;;=^5003279
+ ;;^UTILITY(U,$J,358.3,19038,0)
+ ;;=F14.182^^91^976^16
+ ;;^UTILITY(U,$J,358.3,19038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19038,1,3,0)
+ ;;=3^Cocaine Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19038,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,19038,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,19039,0)
+ ;;=F14.282^^91^976^17
+ ;;^UTILITY(U,$J,358.3,19039,1,0)
+ ;;=^358.31IA^4^2

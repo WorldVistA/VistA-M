@@ -1,5 +1,5 @@
-XUMVINPA ;MVI/DRI Master Veteran Index New Person Add API ;6/4/19  16:01
- ;;8.0;KERNEL;**711**;Jul 10, 1995;Build 9
+XUMVINPA ;MVI/DRI Master Veteran Index New Person Add API ;1/29/20  12:27
+ ;;8.0;KERNEL;**711,724**;Jul 10, 1995;Build 2
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**711 - STORY 978382 (dri) new routine - new person add api
@@ -52,19 +52,25 @@ ADDU(XUNAME) ;Add new name to the New Person File
  Q Y
  ;
 UPDU(XUARR,XUDUZ) ;Update user in the New Person File with Enterprise View
- N DIC,FDA,IEN,X,XUKEY,Y
+ N DIC,FDA,IEN,IENS,X,XUKEY,Y
  K ^TMP("DIERR",$J)
- S IEN=+XUDUZ_","
- S FDA(200,IEN,41.99)=XUARR("NPI") ;NPI
+ S IENS=+XUDUZ_","
  ;
+ ;**724 - STORY 1201071 (dri) populate additional new person fields
+ ;by populating NPI in EFFECTIVE DATE (#42) multiple, the trigger automatically
+ ;files AUTHORIZE RELEASE OF NPI (#41.97), NPI ENTRY STATUS (#41.98), and NPI (#41.99)
+ S FDA(200.042,"+1,"_IENS,.01)=$$NOW^XLFDT ;effective date/time
+ S FDA(200.042,"+1,"_IENS,.02)=1 ;status - active
+ S FDA(200.042,"+1,"_IENS,.03)=XUARR("NPI") ;NPI
+ ;
+ D UPDATE^DIE(,"FDA") ;file data
+ ;
+ ;by populating KEY (#.01) in KEYS (#51) multiple, the trigger
+ ;automatically files GIVEN BY (#1) and DATE GIVEN (#2)
  F XUKEY="XUORES","PROVIDER" K DIC S DIC="^DIC(19.1,",DIC(0)="MZ",X=XUKEY D ^DIC Q:Y<0  D  ;give user XUORES & PROVIDER keys
  .I $D(^VA(200,XUDUZ,51,"B",+Y)) Q  ;user already has key
- .S FDA(200.051,"+"_+Y_","_IEN,.01)=+Y ;key
- .S FDA(200.051,"+"_+Y_","_IEN,1)=DUZ ;given by
- .S FDA(200.051,"+"_+Y_","_IEN,2)=DT ;date given
+ .S (FDA(200.051,"+1,"_IENS,.01),IEN(1))=+Y ;key - pass IEN(1) since key is DINUM'd
+ .D UPDATE^DIE(,"FDA","IEN") ;file data
  ;
- ; Apply all the changes
- I $D(FDA) K IEN D UPDATE^DIE(,"FDA","IEN") ;File all the data
- ;I $D(^TMP("DIERR",$J)) Q "-1^FileMan error"  ;FileMan Error
  Q ""
  ;

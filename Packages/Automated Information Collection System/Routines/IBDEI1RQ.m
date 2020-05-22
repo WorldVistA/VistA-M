@@ -1,138 +1,120 @@
-IBDEI1RQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30057,1,0)
+ ;;^UTILITY(U,$J,358.3,28248,0)
+ ;;=F06.33^^115^1385^1
+ ;;^UTILITY(U,$J,358.3,28248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30057,1,3,0)
- ;;=3^Coagulation Defects,Unspec
- ;;^UTILITY(U,$J,358.3,30057,1,4,0)
- ;;=4^D68.9
- ;;^UTILITY(U,$J,358.3,30057,2)
- ;;=^5002364
- ;;^UTILITY(U,$J,358.3,30058,0)
- ;;=D69.1^^118^1496^22
- ;;^UTILITY(U,$J,358.3,30058,1,0)
+ ;;^UTILITY(U,$J,358.3,28248,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Manic/Hypo-Like Ep
+ ;;^UTILITY(U,$J,358.3,28248,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,28248,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,28249,0)
+ ;;=F06.34^^115^1385^2
+ ;;^UTILITY(U,$J,358.3,28249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30058,1,3,0)
- ;;=3^Qualitative platelet defects
- ;;^UTILITY(U,$J,358.3,30058,1,4,0)
- ;;=4^D69.1
- ;;^UTILITY(U,$J,358.3,30058,2)
- ;;=^101922
- ;;^UTILITY(U,$J,358.3,30059,0)
- ;;=D47.3^^118^1496^8
- ;;^UTILITY(U,$J,358.3,30059,1,0)
+ ;;^UTILITY(U,$J,358.3,28249,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,28249,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,28249,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,28250,0)
+ ;;=F31.11^^115^1385^22
+ ;;^UTILITY(U,$J,358.3,28250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30059,1,3,0)
- ;;=3^Essential (hemorrhagic) thrombocythemia
- ;;^UTILITY(U,$J,358.3,30059,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,30059,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,30060,0)
- ;;=D69.0^^118^1496^3
- ;;^UTILITY(U,$J,358.3,30060,1,0)
+ ;;^UTILITY(U,$J,358.3,28250,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
+ ;;^UTILITY(U,$J,358.3,28250,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,28250,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,28251,0)
+ ;;=F31.12^^115^1385^23
+ ;;^UTILITY(U,$J,358.3,28251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30060,1,3,0)
- ;;=3^Allergic purpura
- ;;^UTILITY(U,$J,358.3,30060,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,30060,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,30061,0)
- ;;=D69.2^^118^1496^19
- ;;^UTILITY(U,$J,358.3,30061,1,0)
+ ;;^UTILITY(U,$J,358.3,28251,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
+ ;;^UTILITY(U,$J,358.3,28251,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,28251,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,28252,0)
+ ;;=F31.13^^115^1385^24
+ ;;^UTILITY(U,$J,358.3,28252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30061,1,3,0)
- ;;=3^Nonthrombocytopenic purpura NEC
- ;;^UTILITY(U,$J,358.3,30061,1,4,0)
- ;;=4^D69.2
- ;;^UTILITY(U,$J,358.3,30061,2)
- ;;=^5002366
- ;;^UTILITY(U,$J,358.3,30062,0)
- ;;=D69.3^^118^1496^18
- ;;^UTILITY(U,$J,358.3,30062,1,0)
+ ;;^UTILITY(U,$J,358.3,28252,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
+ ;;^UTILITY(U,$J,358.3,28252,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,28252,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,28253,0)
+ ;;=F31.2^^115^1385^19
+ ;;^UTILITY(U,$J,358.3,28253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30062,1,3,0)
- ;;=3^Immune thrombocytopenic purpura
- ;;^UTILITY(U,$J,358.3,30062,1,4,0)
- ;;=4^D69.3
- ;;^UTILITY(U,$J,358.3,30062,2)
- ;;=^332746
- ;;^UTILITY(U,$J,358.3,30063,0)
- ;;=D69.41^^118^1496^9
- ;;^UTILITY(U,$J,358.3,30063,1,0)
+ ;;^UTILITY(U,$J,358.3,28253,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,28253,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,28253,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,28254,0)
+ ;;=F31.73^^115^1385^20
+ ;;^UTILITY(U,$J,358.3,28254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30063,1,3,0)
- ;;=3^Evans syndrome
- ;;^UTILITY(U,$J,358.3,30063,1,4,0)
- ;;=4^D69.41
- ;;^UTILITY(U,$J,358.3,30063,2)
- ;;=^332747
- ;;^UTILITY(U,$J,358.3,30064,0)
- ;;=D69.51^^118^1496^21
- ;;^UTILITY(U,$J,358.3,30064,1,0)
+ ;;^UTILITY(U,$J,358.3,28254,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,28254,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,28254,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,28255,0)
+ ;;=F31.74^^115^1385^21
+ ;;^UTILITY(U,$J,358.3,28255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30064,1,3,0)
- ;;=3^Posttransfusion purpura
- ;;^UTILITY(U,$J,358.3,30064,1,4,0)
- ;;=4^D69.51
- ;;^UTILITY(U,$J,358.3,30064,2)
- ;;=^5002368
- ;;^UTILITY(U,$J,358.3,30065,0)
- ;;=D69.59^^118^1496^23
- ;;^UTILITY(U,$J,358.3,30065,1,0)
+ ;;^UTILITY(U,$J,358.3,28255,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,28255,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,28255,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,28256,0)
+ ;;=F31.31^^115^1385^13
+ ;;^UTILITY(U,$J,358.3,28256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30065,1,3,0)
- ;;=3^Secondary thrombocytopenia NEC
- ;;^UTILITY(U,$J,358.3,30065,1,4,0)
- ;;=4^D69.59
- ;;^UTILITY(U,$J,358.3,30065,2)
- ;;=^5002369
- ;;^UTILITY(U,$J,358.3,30066,0)
- ;;=D69.8^^118^1496^10
- ;;^UTILITY(U,$J,358.3,30066,1,0)
+ ;;^UTILITY(U,$J,358.3,28256,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild
+ ;;^UTILITY(U,$J,358.3,28256,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,28256,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,28257,0)
+ ;;=F31.32^^115^1385^14
+ ;;^UTILITY(U,$J,358.3,28257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30066,1,3,0)
- ;;=3^Hemorrhagic Conditions NEC
- ;;^UTILITY(U,$J,358.3,30066,1,4,0)
- ;;=4^D69.8
- ;;^UTILITY(U,$J,358.3,30066,2)
- ;;=^88074
- ;;^UTILITY(U,$J,358.3,30067,0)
- ;;=D69.6^^118^1496^24
- ;;^UTILITY(U,$J,358.3,30067,1,0)
+ ;;^UTILITY(U,$J,358.3,28257,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
+ ;;^UTILITY(U,$J,358.3,28257,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,28257,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,28258,0)
+ ;;=F31.4^^115^1385^15
+ ;;^UTILITY(U,$J,358.3,28258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30067,1,3,0)
- ;;=3^Thrombocytopenia, unspecified
- ;;^UTILITY(U,$J,358.3,30067,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,30067,2)
- ;;=^5002370
- ;;^UTILITY(U,$J,358.3,30068,0)
- ;;=M31.1^^118^1496^25
- ;;^UTILITY(U,$J,358.3,30068,1,0)
+ ;;^UTILITY(U,$J,358.3,28258,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
+ ;;^UTILITY(U,$J,358.3,28258,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,28258,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,28259,0)
+ ;;=F31.5^^115^1385^10
+ ;;^UTILITY(U,$J,358.3,28259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30068,1,3,0)
- ;;=3^Thrombotic microangiopathy
- ;;^UTILITY(U,$J,358.3,30068,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,30068,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,30069,0)
- ;;=D69.9^^118^1496^11
- ;;^UTILITY(U,$J,358.3,30069,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30069,1,3,0)
- ;;=3^Hemorrhagic condition, unspecified
- ;;^UTILITY(U,$J,358.3,30069,1,4,0)
- ;;=4^D69.9
- ;;^UTILITY(U,$J,358.3,30069,2)
- ;;=^5002371
- ;;^UTILITY(U,$J,358.3,30070,0)
- ;;=I80.9^^118^1496^20
- ;;^UTILITY(U,$J,358.3,30070,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30070,1,3,0)
- ;;=3^Phlebitis and thrombophlebitis of unspecified site
+ ;;^UTILITY(U,$J,358.3,28259,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat

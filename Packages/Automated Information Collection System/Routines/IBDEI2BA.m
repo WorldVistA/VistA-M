@@ -1,130 +1,116 @@
-IBDEI2BA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2BA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39216,0)
- ;;=T15.91XA^^153^1920^72
- ;;^UTILITY(U,$J,358.3,39216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39216,1,3,0)
- ;;=3^FB on External Eye,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,39216,1,4,0)
- ;;=4^T15.91XA
- ;;^UTILITY(U,$J,358.3,39216,2)
- ;;=^5046411
- ;;^UTILITY(U,$J,358.3,39217,0)
- ;;=T15.92XA^^153^1920^71
- ;;^UTILITY(U,$J,358.3,39217,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39217,1,3,0)
- ;;=3^FB on External Eye,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,39217,1,4,0)
- ;;=4^T15.92XA
- ;;^UTILITY(U,$J,358.3,39217,2)
- ;;=^5046414
- ;;^UTILITY(U,$J,358.3,39218,0)
- ;;=T85.398A^^153^1920^118
- ;;^UTILITY(U,$J,358.3,39218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39218,1,3,0)
- ;;=3^Mech Compl of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,39218,1,4,0)
- ;;=4^T85.398A
- ;;^UTILITY(U,$J,358.3,39218,2)
- ;;=^5055559
- ;;^UTILITY(U,$J,358.3,39219,0)
- ;;=T86.840^^153^1920^58
- ;;^UTILITY(U,$J,358.3,39219,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39219,1,3,0)
- ;;=3^Corneal Transplant Rejection
- ;;^UTILITY(U,$J,358.3,39219,1,4,0)
- ;;=4^T86.840
- ;;^UTILITY(U,$J,358.3,39219,2)
- ;;=^5055744
- ;;^UTILITY(U,$J,358.3,39220,0)
- ;;=T86.841^^153^1920^57
- ;;^UTILITY(U,$J,358.3,39220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39220,1,3,0)
- ;;=3^Corneal Transplant Failure
- ;;^UTILITY(U,$J,358.3,39220,1,4,0)
- ;;=4^T86.841
- ;;^UTILITY(U,$J,358.3,39220,2)
- ;;=^5055745
- ;;^UTILITY(U,$J,358.3,39221,0)
- ;;=T85.318A^^153^1920^22
- ;;^UTILITY(U,$J,358.3,39221,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39221,1,3,0)
- ;;=3^Breakdown of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,39221,1,4,0)
- ;;=4^T85.318A
- ;;^UTILITY(U,$J,358.3,39221,2)
- ;;=^5055541
- ;;^UTILITY(U,$J,358.3,39222,0)
- ;;=T85.328A^^153^1920^59
- ;;^UTILITY(U,$J,358.3,39222,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39222,1,3,0)
- ;;=3^Displacement of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,39222,1,4,0)
- ;;=4^T85.328A
- ;;^UTILITY(U,$J,358.3,39222,2)
- ;;=^5055550
- ;;^UTILITY(U,$J,358.3,39223,0)
- ;;=H11.013^^153^1920^2
- ;;^UTILITY(U,$J,358.3,39223,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39223,1,3,0)
- ;;=3^Amyloid Pterygium,Bilateral
- ;;^UTILITY(U,$J,358.3,39223,1,4,0)
- ;;=4^H11.013
- ;;^UTILITY(U,$J,358.3,39223,2)
- ;;=^5004722
- ;;^UTILITY(U,$J,358.3,39224,0)
- ;;=H21.513^^153^1920^6
- ;;^UTILITY(U,$J,358.3,39224,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39224,1,3,0)
- ;;=3^Anterior Synechiae,Bilateral
- ;;^UTILITY(U,$J,358.3,39224,1,4,0)
- ;;=4^H21.513
- ;;^UTILITY(U,$J,358.3,39224,2)
- ;;=^5005241
- ;;^UTILITY(U,$J,358.3,39225,0)
- ;;=H18.423^^153^1920^12
- ;;^UTILITY(U,$J,358.3,39225,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39225,1,3,0)
- ;;=3^Band Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,39225,1,4,0)
- ;;=4^H18.423
- ;;^UTILITY(U,$J,358.3,39225,2)
- ;;=^5005068
- ;;^UTILITY(U,$J,358.3,39226,0)
- ;;=H10.503^^153^1920^19
- ;;^UTILITY(U,$J,358.3,39226,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39226,1,3,0)
- ;;=3^Blepharoconjunctivitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,39226,1,4,0)
- ;;=4^H10.503
- ;;^UTILITY(U,$J,358.3,39226,2)
- ;;=^5004699
- ;;^UTILITY(U,$J,358.3,39227,0)
- ;;=H18.13^^153^1920^23
- ;;^UTILITY(U,$J,358.3,39227,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39227,1,3,0)
- ;;=3^Bullous Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,39227,1,4,0)
- ;;=4^H18.13
- ;;^UTILITY(U,$J,358.3,39227,2)
- ;;=^5005034
- ;;^UTILITY(U,$J,358.3,39228,0)
- ;;=H17.13^^153^1920^26
- ;;^UTILITY(U,$J,358.3,39228,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39228,1,3,0)
- ;;=3^Central Corneal Opacity,Bilateral
+ ;;^UTILITY(U,$J,358.3,36913,1,2,0)
+ ;;=2^11422
+ ;;^UTILITY(U,$J,358.3,36913,1,3,0)
+ ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,36914,0)
+ ;;=11423^^143^1879^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36914,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36914,1,2,0)
+ ;;=2^11423
+ ;;^UTILITY(U,$J,358.3,36914,1,3,0)
+ ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,2.1-3.0cm
+ ;;^UTILITY(U,$J,358.3,36915,0)
+ ;;=11424^^143^1879^5^^^^1
+ ;;^UTILITY(U,$J,358.3,36915,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36915,1,2,0)
+ ;;=2^11424
+ ;;^UTILITY(U,$J,358.3,36915,1,3,0)
+ ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,3.1-4.0cm
+ ;;^UTILITY(U,$J,358.3,36916,0)
+ ;;=11426^^143^1879^6^^^^1
+ ;;^UTILITY(U,$J,358.3,36916,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36916,1,2,0)
+ ;;=2^11426
+ ;;^UTILITY(U,$J,358.3,36916,1,3,0)
+ ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen > 4.0cm
+ ;;^UTILITY(U,$J,358.3,36917,0)
+ ;;=11440^^143^1880^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36917,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36917,1,2,0)
+ ;;=2^11440
+ ;;^UTILITY(U,$J,358.3,36917,1,3,0)
+ ;;=3^Exc Ben Lesion Face/Mucous,0.5cm or <
+ ;;^UTILITY(U,$J,358.3,36918,0)
+ ;;=11441^^143^1880^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36918,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36918,1,2,0)
+ ;;=2^11441
+ ;;^UTILITY(U,$J,358.3,36918,1,3,0)
+ ;;=3^Exc Ben Lesion Face/Mucous,0.6-1.0cm
+ ;;^UTILITY(U,$J,358.3,36919,0)
+ ;;=11442^^143^1880^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36919,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36919,1,2,0)
+ ;;=2^11442
+ ;;^UTILITY(U,$J,358.3,36919,1,3,0)
+ ;;=3^Exc Ben Lesion Face/Mucous,1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,36920,0)
+ ;;=11443^^143^1880^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36920,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36920,1,2,0)
+ ;;=2^11443
+ ;;^UTILITY(U,$J,358.3,36920,1,3,0)
+ ;;=3^Exc Ben Lesion Face/Mucous,2.1-3.0cm
+ ;;^UTILITY(U,$J,358.3,36921,0)
+ ;;=11444^^143^1880^5^^^^1
+ ;;^UTILITY(U,$J,358.3,36921,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36921,1,2,0)
+ ;;=2^11444
+ ;;^UTILITY(U,$J,358.3,36921,1,3,0)
+ ;;=3^Exc Ben Lesion Face/Mucous,3.1-4.0cm
+ ;;^UTILITY(U,$J,358.3,36922,0)
+ ;;=11446^^143^1880^6^^^^1
+ ;;^UTILITY(U,$J,358.3,36922,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36922,1,2,0)
+ ;;=2^11446
+ ;;^UTILITY(U,$J,358.3,36922,1,3,0)
+ ;;=3^Exc Ben Lesion Face/Mucous > 4.0cm
+ ;;^UTILITY(U,$J,358.3,36923,0)
+ ;;=11620^^143^1881^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36923,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36923,1,2,0)
+ ;;=2^11620
+ ;;^UTILITY(U,$J,358.3,36923,1,3,0)
+ ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,0.5cm or <
+ ;;^UTILITY(U,$J,358.3,36924,0)
+ ;;=11621^^143^1881^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36924,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36924,1,2,0)
+ ;;=2^11621
+ ;;^UTILITY(U,$J,358.3,36924,1,3,0)
+ ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,0.6-1.0cm
+ ;;^UTILITY(U,$J,358.3,36925,0)
+ ;;=11622^^143^1881^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36925,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36925,1,2,0)
+ ;;=2^11622
+ ;;^UTILITY(U,$J,358.3,36925,1,3,0)
+ ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,36926,0)
+ ;;=11623^^143^1881^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36926,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36926,1,2,0)
+ ;;=2^11623
+ ;;^UTILITY(U,$J,358.3,36926,1,3,0)
+ ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,2.1-3.0cm
+ ;;^UTILITY(U,$J,358.3,36927,0)
+ ;;=11624^^143^1881^5^^^^1
+ ;;^UTILITY(U,$J,358.3,36927,1,0)
+ ;;=^358.31IA^3^2

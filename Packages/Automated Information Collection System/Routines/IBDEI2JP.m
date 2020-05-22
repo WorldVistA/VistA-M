@@ -1,134 +1,118 @@
-IBDEI2JP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43177,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,43178,0)
- ;;=I70.212^^164^2063^8
- ;;^UTILITY(U,$J,358.3,43178,1,0)
+ ;;^UTILITY(U,$J,358.3,40639,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40639,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,40639,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,40640,0)
+ ;;=S33.5XXA^^152^2013^8
+ ;;^UTILITY(U,$J,358.3,40640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43178,1,3,0)
- ;;=3^Athscl Ntv Art,Lt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,43178,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,43178,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,43179,0)
- ;;=I70.213^^164^2063^7
- ;;^UTILITY(U,$J,358.3,43179,1,0)
+ ;;^UTILITY(U,$J,358.3,40640,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40640,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,40640,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,40641,0)
+ ;;=F10.20^^152^2014^5
+ ;;^UTILITY(U,$J,358.3,40641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43179,1,3,0)
- ;;=3^Athscl Ntv Art,Bil Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,43179,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,43179,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,43180,0)
- ;;=I71.2^^164^2063^21
- ;;^UTILITY(U,$J,358.3,43180,1,0)
+ ;;^UTILITY(U,$J,358.3,40641,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40641,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,40641,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,40642,0)
+ ;;=F11.29^^152^2014^50
+ ;;^UTILITY(U,$J,358.3,40642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43180,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,43180,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,43180,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,43181,0)
- ;;=I71.4^^164^2063^1
- ;;^UTILITY(U,$J,358.3,43181,1,0)
+ ;;^UTILITY(U,$J,358.3,40642,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,40642,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,40642,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,40643,0)
+ ;;=F11.288^^152^2014^49
+ ;;^UTILITY(U,$J,358.3,40643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43181,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,43181,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,43181,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,43182,0)
- ;;=I73.9^^164^2063^19
- ;;^UTILITY(U,$J,358.3,43182,1,0)
+ ;;^UTILITY(U,$J,358.3,40643,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,40643,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,40643,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,40644,0)
+ ;;=F11.282^^152^2014^48
+ ;;^UTILITY(U,$J,358.3,40644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43182,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43182,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,43182,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,43183,0)
- ;;=I74.2^^164^2063^11
- ;;^UTILITY(U,$J,358.3,43183,1,0)
+ ;;^UTILITY(U,$J,358.3,40644,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,40644,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,40644,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,40645,0)
+ ;;=F11.281^^152^2014^47
+ ;;^UTILITY(U,$J,358.3,40645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43183,1,3,0)
- ;;=3^Embol & Thromb UE Arteries
- ;;^UTILITY(U,$J,358.3,43183,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,43183,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,43184,0)
- ;;=I74.3^^164^2063^10
- ;;^UTILITY(U,$J,358.3,43184,1,0)
+ ;;^UTILITY(U,$J,358.3,40645,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,40645,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,40645,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,40646,0)
+ ;;=F11.259^^152^2014^46
+ ;;^UTILITY(U,$J,358.3,40646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43184,1,3,0)
- ;;=3^Embol & Thromb LE Arteries
- ;;^UTILITY(U,$J,358.3,43184,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,43184,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,43185,0)
- ;;=M79.604^^164^2063^18
- ;;^UTILITY(U,$J,358.3,43185,1,0)
+ ;;^UTILITY(U,$J,358.3,40646,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40646,1,4,0)
+ ;;=4^F11.259
+ ;;^UTILITY(U,$J,358.3,40646,2)
+ ;;=^5003137
+ ;;^UTILITY(U,$J,358.3,40647,0)
+ ;;=F11.251^^152^2014^39
+ ;;^UTILITY(U,$J,358.3,40647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43185,1,3,0)
- ;;=3^Pain,Right Leg
- ;;^UTILITY(U,$J,358.3,43185,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,43185,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,43186,0)
- ;;=M79.605^^164^2063^17
- ;;^UTILITY(U,$J,358.3,43186,1,0)
+ ;;^UTILITY(U,$J,358.3,40647,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,40647,1,4,0)
+ ;;=4^F11.251
+ ;;^UTILITY(U,$J,358.3,40647,2)
+ ;;=^5003136
+ ;;^UTILITY(U,$J,358.3,40648,0)
+ ;;=F11.250^^152^2014^40
+ ;;^UTILITY(U,$J,358.3,40648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43186,1,3,0)
- ;;=3^Pain,Left Leg
- ;;^UTILITY(U,$J,358.3,43186,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,43186,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,43187,0)
- ;;=Z13.6^^164^2063^20
- ;;^UTILITY(U,$J,358.3,43187,1,0)
+ ;;^UTILITY(U,$J,358.3,40648,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,40648,1,4,0)
+ ;;=4^F11.250
+ ;;^UTILITY(U,$J,358.3,40648,2)
+ ;;=^5003135
+ ;;^UTILITY(U,$J,358.3,40649,0)
+ ;;=F11.24^^152^2014^45
+ ;;^UTILITY(U,$J,358.3,40649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43187,1,3,0)
- ;;=3^Screening for Cardiovascular Disorders
- ;;^UTILITY(U,$J,358.3,43187,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,43187,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,43188,0)
- ;;=C77.0^^164^2064^12
- ;;^UTILITY(U,$J,358.3,43188,1,0)
+ ;;^UTILITY(U,$J,358.3,40649,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,40649,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,40649,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,40650,0)
+ ;;=F11.23^^152^2014^51
+ ;;^UTILITY(U,$J,358.3,40650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43188,1,3,0)
- ;;=3^Met Malig Neop LNs Head,Face,Neck
- ;;^UTILITY(U,$J,358.3,43188,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,43188,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,43189,0)
- ;;=C77.1^^164^2064^11
- ;;^UTILITY(U,$J,358.3,43189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43189,1,3,0)
- ;;=3^Met Malig Neop Intrathoracic LNs
- ;;^UTILITY(U,$J,358.3,43189,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,43189,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,43190,0)
- ;;=C77.2^^164^2064^9
- ;;^UTILITY(U,$J,358.3,43190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43190,1,3,0)
- ;;=3^Met Malig Neop Intra-Abdominal LNs
- ;;^UTILITY(U,$J,358.3,43190,1,4,0)
- ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,40650,1,3,0)
+ ;;=3^Opioid Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,40650,1,4,0)
+ ;;=4^F11.23

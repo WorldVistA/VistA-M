@@ -1,126 +1,126 @@
-IBDEI2TU ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47452,1,3,0)
- ;;=3^Burkitt Lymphoma,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47452,1,4,0)
- ;;=4^C83.78
- ;;^UTILITY(U,$J,358.3,47452,2)
- ;;=^5001599
- ;;^UTILITY(U,$J,358.3,47453,0)
- ;;=C83.79^^209^2346^70
- ;;^UTILITY(U,$J,358.3,47453,1,0)
+ ;;^UTILITY(U,$J,358.3,45092,1,3,0)
+ ;;=3^Toxic Epidermal Necrolysis
+ ;;^UTILITY(U,$J,358.3,45092,1,4,0)
+ ;;=4^L51.2
+ ;;^UTILITY(U,$J,358.3,45092,2)
+ ;;=^5009206
+ ;;^UTILITY(U,$J,358.3,45093,0)
+ ;;=B35.0^^170^2246^2
+ ;;^UTILITY(U,$J,358.3,45093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47453,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47453,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,47453,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,47454,0)
- ;;=C83.80^^209^2346^401
- ;;^UTILITY(U,$J,358.3,47454,1,0)
+ ;;^UTILITY(U,$J,358.3,45093,1,3,0)
+ ;;=3^Tinea Barae/Capitis
+ ;;^UTILITY(U,$J,358.3,45093,1,4,0)
+ ;;=4^B35.0
+ ;;^UTILITY(U,$J,358.3,45093,2)
+ ;;=^5000604
+ ;;^UTILITY(U,$J,358.3,45094,0)
+ ;;=B36.3^^170^2246^3
+ ;;^UTILITY(U,$J,358.3,45094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47454,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Unspec Site
- ;;^UTILITY(U,$J,358.3,47454,1,4,0)
- ;;=4^C83.80
- ;;^UTILITY(U,$J,358.3,47454,2)
- ;;=^5001601
- ;;^UTILITY(U,$J,358.3,47455,0)
- ;;=C83.81^^209^2346^394
- ;;^UTILITY(U,$J,358.3,47455,1,0)
+ ;;^UTILITY(U,$J,358.3,45094,1,3,0)
+ ;;=3^Tinea Blanca
+ ;;^UTILITY(U,$J,358.3,45094,1,4,0)
+ ;;=4^B36.3
+ ;;^UTILITY(U,$J,358.3,45094,2)
+ ;;=^266864
+ ;;^UTILITY(U,$J,358.3,45095,0)
+ ;;=B36.1^^170^2246^7
+ ;;^UTILITY(U,$J,358.3,45095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47455,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47455,1,4,0)
- ;;=4^C83.81
- ;;^UTILITY(U,$J,358.3,47455,2)
- ;;=^5001602
- ;;^UTILITY(U,$J,358.3,47456,0)
- ;;=C83.82^^209^2346^398
- ;;^UTILITY(U,$J,358.3,47456,1,0)
+ ;;^UTILITY(U,$J,358.3,45095,1,3,0)
+ ;;=3^Tinea Nigra
+ ;;^UTILITY(U,$J,358.3,45095,1,4,0)
+ ;;=4^B36.1
+ ;;^UTILITY(U,$J,358.3,45095,2)
+ ;;=^264999
+ ;;^UTILITY(U,$J,358.3,45096,0)
+ ;;=B36.0^^170^2246^10
+ ;;^UTILITY(U,$J,358.3,45096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47456,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47456,1,4,0)
- ;;=4^C83.82
- ;;^UTILITY(U,$J,358.3,47456,2)
- ;;=^5001603
- ;;^UTILITY(U,$J,358.3,47457,0)
- ;;=C83.83^^209^2346^396
- ;;^UTILITY(U,$J,358.3,47457,1,0)
+ ;;^UTILITY(U,$J,358.3,45096,1,3,0)
+ ;;=3^Tinea Veriscolor
+ ;;^UTILITY(U,$J,358.3,45096,1,4,0)
+ ;;=4^B36.0
+ ;;^UTILITY(U,$J,358.3,45096,2)
+ ;;=^5000608
+ ;;^UTILITY(U,$J,358.3,45097,0)
+ ;;=L81.8^^170^2246^1
+ ;;^UTILITY(U,$J,358.3,45097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47457,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47457,1,4,0)
- ;;=4^C83.83
- ;;^UTILITY(U,$J,358.3,47457,2)
- ;;=^5001604
- ;;^UTILITY(U,$J,358.3,47458,0)
- ;;=C83.84^^209^2346^392
- ;;^UTILITY(U,$J,358.3,47458,1,0)
+ ;;^UTILITY(U,$J,358.3,45097,1,3,0)
+ ;;=3^Tattoo Pigmentation
+ ;;^UTILITY(U,$J,358.3,45097,1,4,0)
+ ;;=4^L81.8
+ ;;^UTILITY(U,$J,358.3,45097,2)
+ ;;=^5009318
+ ;;^UTILITY(U,$J,358.3,45098,0)
+ ;;=L80.^^170^2247^12
+ ;;^UTILITY(U,$J,358.3,45098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47458,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47458,1,4,0)
- ;;=4^C83.84
- ;;^UTILITY(U,$J,358.3,47458,2)
- ;;=^5001605
- ;;^UTILITY(U,$J,358.3,47459,0)
- ;;=C83.85^^209^2346^395
- ;;^UTILITY(U,$J,358.3,47459,1,0)
+ ;;^UTILITY(U,$J,358.3,45098,1,3,0)
+ ;;=3^Vitiligo
+ ;;^UTILITY(U,$J,358.3,45098,1,4,0)
+ ;;=4^L80.
+ ;;^UTILITY(U,$J,358.3,45098,2)
+ ;;=^127071
+ ;;^UTILITY(U,$J,358.3,45099,0)
+ ;;=I83.019^^170^2247^7
+ ;;^UTILITY(U,$J,358.3,45099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47459,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47459,1,4,0)
- ;;=4^C83.85
- ;;^UTILITY(U,$J,358.3,47459,2)
- ;;=^5001606
- ;;^UTILITY(U,$J,358.3,47460,0)
- ;;=C83.86^^209^2346^397
- ;;^UTILITY(U,$J,358.3,47460,1,0)
+ ;;^UTILITY(U,$J,358.3,45099,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Site Unspec
+ ;;^UTILITY(U,$J,358.3,45099,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,45099,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,45100,0)
+ ;;=I83.029^^170^2247^2
+ ;;^UTILITY(U,$J,358.3,45100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47460,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47460,1,4,0)
- ;;=4^C83.86
- ;;^UTILITY(U,$J,358.3,47460,2)
- ;;=^5001607
- ;;^UTILITY(U,$J,358.3,47461,0)
- ;;=C83.87^^209^2346^400
- ;;^UTILITY(U,$J,358.3,47461,1,0)
+ ;;^UTILITY(U,$J,358.3,45100,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Site Unspec
+ ;;^UTILITY(U,$J,358.3,45100,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,45100,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,45101,0)
+ ;;=I83.012^^170^2247^8
+ ;;^UTILITY(U,$J,358.3,45101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47461,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Spleen
- ;;^UTILITY(U,$J,358.3,47461,1,4,0)
- ;;=4^C83.87
- ;;^UTILITY(U,$J,358.3,47461,2)
- ;;=^5001608
- ;;^UTILITY(U,$J,358.3,47462,0)
- ;;=C83.88^^209^2346^399
- ;;^UTILITY(U,$J,358.3,47462,1,0)
+ ;;^UTILITY(U,$J,358.3,45101,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,45101,1,4,0)
+ ;;=4^I83.012
+ ;;^UTILITY(U,$J,358.3,45101,2)
+ ;;=^5007974
+ ;;^UTILITY(U,$J,358.3,45102,0)
+ ;;=I83.013^^170^2247^9
+ ;;^UTILITY(U,$J,358.3,45102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47462,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47462,1,4,0)
- ;;=4^C83.88
- ;;^UTILITY(U,$J,358.3,47462,2)
- ;;=^5001609
- ;;^UTILITY(U,$J,358.3,47463,0)
- ;;=C83.89^^209^2346^393
- ;;^UTILITY(U,$J,358.3,47463,1,0)
+ ;;^UTILITY(U,$J,358.3,45102,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,45102,1,4,0)
+ ;;=4^I83.013
+ ;;^UTILITY(U,$J,358.3,45102,2)
+ ;;=^5007975
+ ;;^UTILITY(U,$J,358.3,45103,0)
+ ;;=I83.014^^170^2247^10
+ ;;^UTILITY(U,$J,358.3,45103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47463,1,3,0)
- ;;=3^Non-Follicular Lymphoma NEC,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47463,1,4,0)
- ;;=4^C83.89
- ;;^UTILITY(U,$J,358.3,47463,2)
- ;;=^5001610
- ;;^UTILITY(U,$J,358.3,47464,0)
- ;;=C83.90^^209^2346^411
- ;;^UTILITY(U,$J,358.3,47464,1,0)
+ ;;^UTILITY(U,$J,358.3,45103,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,45103,1,4,0)
+ ;;=4^I83.014
+ ;;^UTILITY(U,$J,358.3,45103,2)
+ ;;=^5007976
+ ;;^UTILITY(U,$J,358.3,45104,0)
+ ;;=I83.11^^170^2247^6
+ ;;^UTILITY(U,$J,358.3,45104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47464,1,3,0)
- ;;=3^Non-Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,45104,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Inflammation

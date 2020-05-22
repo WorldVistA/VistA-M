@@ -1,132 +1,124 @@
-IBDEI2KH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43554,1,4,0)
- ;;=4^R10.13
- ;;^UTILITY(U,$J,358.3,43554,2)
- ;;=^5019208
- ;;^UTILITY(U,$J,358.3,43555,0)
- ;;=R10.84^^167^2079^1
- ;;^UTILITY(U,$J,358.3,43555,1,0)
+ ;;^UTILITY(U,$J,358.3,40974,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40974,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,40974,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,40975,0)
+ ;;=W55.03XD^^152^2019^111
+ ;;^UTILITY(U,$J,358.3,40975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43555,1,3,0)
- ;;=3^Abdominal Pain,Generalized
- ;;^UTILITY(U,$J,358.3,43555,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,43555,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,43556,0)
- ;;=Z48.01^^167^2080^4
- ;;^UTILITY(U,$J,358.3,43556,1,0)
+ ;;^UTILITY(U,$J,358.3,40975,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40975,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,40975,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,40976,0)
+ ;;=X00.8XXA^^152^2019^22
+ ;;^UTILITY(U,$J,358.3,40976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43556,1,3,0)
- ;;=3^Wound Dressing Change/Removal
- ;;^UTILITY(U,$J,358.3,43556,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,43556,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,43557,0)
- ;;=Z48.02^^167^2080^3
- ;;^UTILITY(U,$J,358.3,43557,1,0)
+ ;;^UTILITY(U,$J,358.3,40976,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40976,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,40976,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,40977,0)
+ ;;=X00.8XXD^^152^2019^23
+ ;;^UTILITY(U,$J,358.3,40977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43557,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,43557,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,43557,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,43558,0)
- ;;=Z48.812^^167^2080^1
- ;;^UTILITY(U,$J,358.3,43558,1,0)
+ ;;^UTILITY(U,$J,358.3,40977,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40977,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,40977,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,40978,0)
+ ;;=X32.XXXA^^152^2019^20
+ ;;^UTILITY(U,$J,358.3,40978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43558,1,3,0)
- ;;=3^Circulatory System Surgery Aftercare
- ;;^UTILITY(U,$J,358.3,43558,1,4,0)
- ;;=4^Z48.812
- ;;^UTILITY(U,$J,358.3,43558,2)
- ;;=^5063049
- ;;^UTILITY(U,$J,358.3,43559,0)
- ;;=Z09.^^167^2080^2
- ;;^UTILITY(U,$J,358.3,43559,1,0)
+ ;;^UTILITY(U,$J,358.3,40978,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40978,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,40978,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,40979,0)
+ ;;=X32.XXXD^^152^2019^21
+ ;;^UTILITY(U,$J,358.3,40979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43559,1,3,0)
- ;;=3^F/U Exam Aftr Tx for Cond Oth Than Malig Neop
- ;;^UTILITY(U,$J,358.3,43559,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,43559,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,43560,0)
- ;;=I25.10^^167^2081^2
- ;;^UTILITY(U,$J,358.3,43560,1,0)
+ ;;^UTILITY(U,$J,358.3,40979,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40979,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,40979,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,40980,0)
+ ;;=Y04.0XXA^^152^2019^7
+ ;;^UTILITY(U,$J,358.3,40980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43560,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43560,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,43560,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,43561,0)
- ;;=I25.110^^167^2081^3
- ;;^UTILITY(U,$J,358.3,43561,1,0)
+ ;;^UTILITY(U,$J,358.3,40980,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40980,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,40980,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,40981,0)
+ ;;=Y04.0XXD^^152^2019^8
+ ;;^UTILITY(U,$J,358.3,40981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43561,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43561,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,43561,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,43562,0)
- ;;=I25.111^^167^2081^4
- ;;^UTILITY(U,$J,358.3,43562,1,0)
+ ;;^UTILITY(U,$J,358.3,40981,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40981,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,40981,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,40982,0)
+ ;;=Y04.1XXA^^152^2019^1
+ ;;^UTILITY(U,$J,358.3,40982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43562,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Ang Pctrs w/ Spasm
- ;;^UTILITY(U,$J,358.3,43562,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,43562,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,43563,0)
- ;;=I25.118^^167^2081^5
- ;;^UTILITY(U,$J,358.3,43563,1,0)
+ ;;^UTILITY(U,$J,358.3,40982,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40982,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,40982,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,40983,0)
+ ;;=Y04.1XXD^^152^2019^2
+ ;;^UTILITY(U,$J,358.3,40983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43563,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43563,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,43563,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,43564,0)
- ;;=I25.119^^167^2081^6
- ;;^UTILITY(U,$J,358.3,43564,1,0)
+ ;;^UTILITY(U,$J,358.3,40983,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40983,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,40983,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,40984,0)
+ ;;=Y04.2XXA^^152^2019^5
+ ;;^UTILITY(U,$J,358.3,40984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43564,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43564,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,43564,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,43565,0)
- ;;=I50.9^^167^2081^12
- ;;^UTILITY(U,$J,358.3,43565,1,0)
+ ;;^UTILITY(U,$J,358.3,40984,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40984,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,40984,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,40985,0)
+ ;;=Y04.8XXA^^152^2019^3
+ ;;^UTILITY(U,$J,358.3,40985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43565,1,3,0)
- ;;=3^Heart Failure,Comp/Uncomp
- ;;^UTILITY(U,$J,358.3,43565,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,43565,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,43566,0)
- ;;=I65.21^^167^2081^16
- ;;^UTILITY(U,$J,358.3,43566,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43566,1,3,0)
- ;;=3^Occl & Sten,Rt Carotid Artery
- ;;^UTILITY(U,$J,358.3,43566,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,43566,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,43567,0)
- ;;=I65.22^^167^2081^14
- ;;^UTILITY(U,$J,358.3,43567,1,0)
+ ;;^UTILITY(U,$J,358.3,40985,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40985,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,40985,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,40986,0)
+ ;;=Y04.2XXD^^152^2019^6
+ ;;^UTILITY(U,$J,358.3,40986,1,0)
  ;;=^358.31IA^4^2

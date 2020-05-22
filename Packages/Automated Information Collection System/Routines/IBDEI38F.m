@@ -1,134 +1,120 @@
-IBDEI38F ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54320,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,54321,0)
- ;;=L03.031^^256^2764^111
- ;;^UTILITY(U,$J,358.3,54321,1,0)
+ ;;^UTILITY(U,$J,358.3,51606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54321,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,54321,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,54321,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,54322,0)
- ;;=L03.032^^256^2764^104
- ;;^UTILITY(U,$J,358.3,54322,1,0)
+ ;;^UTILITY(U,$J,358.3,51606,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,51606,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,51606,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,51607,0)
+ ;;=R82.91^^193^2509^53
+ ;;^UTILITY(U,$J,358.3,51607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54322,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,54322,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,54322,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,54323,0)
- ;;=L03.041^^256^2764^26
- ;;^UTILITY(U,$J,358.3,54323,1,0)
+ ;;^UTILITY(U,$J,358.3,51607,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,51607,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,51607,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,51608,0)
+ ;;=R89.9^^193^2509^22
+ ;;^UTILITY(U,$J,358.3,51608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54323,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,54323,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,54323,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,54324,0)
- ;;=L03.042^^256^2764^20
- ;;^UTILITY(U,$J,358.3,54324,1,0)
+ ;;^UTILITY(U,$J,358.3,51608,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,51608,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,51608,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,51609,0)
+ ;;=R90.0^^193^2509^103
+ ;;^UTILITY(U,$J,358.3,51609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54324,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,54324,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,54324,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,54325,0)
- ;;=M34.0^^256^2764^249
- ;;^UTILITY(U,$J,358.3,54325,1,0)
+ ;;^UTILITY(U,$J,358.3,51609,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,51609,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,51609,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,51610,0)
+ ;;=R90.89^^193^2509^16
+ ;;^UTILITY(U,$J,358.3,51610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54325,1,3,0)
- ;;=3^Progressive Systemic Sclerosis
- ;;^UTILITY(U,$J,358.3,54325,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,54325,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,54326,0)
- ;;=M34.1^^256^2764^91
- ;;^UTILITY(U,$J,358.3,54326,1,0)
+ ;;^UTILITY(U,$J,358.3,51610,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,51610,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,51610,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,51611,0)
+ ;;=R91.8^^193^2509^21
+ ;;^UTILITY(U,$J,358.3,51611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54326,1,3,0)
- ;;=3^CR(E)ST Syndrome
- ;;^UTILITY(U,$J,358.3,54326,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,54326,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,54327,0)
- ;;=M34.2^^256^2764^273
- ;;^UTILITY(U,$J,358.3,54327,1,0)
+ ;;^UTILITY(U,$J,358.3,51611,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,51611,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,51611,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,51612,0)
+ ;;=R92.0^^193^2509^122
+ ;;^UTILITY(U,$J,358.3,51612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54327,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,54327,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,54327,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,54328,0)
- ;;=M34.81^^256^2764^275
- ;;^UTILITY(U,$J,358.3,54328,1,0)
+ ;;^UTILITY(U,$J,358.3,51612,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,51612,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,51612,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,51613,0)
+ ;;=R92.1^^193^2509^121
+ ;;^UTILITY(U,$J,358.3,51613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54328,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,54328,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,54328,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,54329,0)
- ;;=M34.82^^256^2764^276
- ;;^UTILITY(U,$J,358.3,54329,1,0)
+ ;;^UTILITY(U,$J,358.3,51613,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,51613,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,51613,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,51614,0)
+ ;;=R92.2^^193^2509^96
+ ;;^UTILITY(U,$J,358.3,51614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54329,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,54329,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,54329,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,54330,0)
- ;;=M34.83^^256^2764^277
- ;;^UTILITY(U,$J,358.3,54330,1,0)
+ ;;^UTILITY(U,$J,358.3,51614,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,51614,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,51614,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,51615,0)
+ ;;=R93.0^^193^2509^10
+ ;;^UTILITY(U,$J,358.3,51615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54330,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,54330,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,54330,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,54331,0)
- ;;=M34.89^^256^2764^274
- ;;^UTILITY(U,$J,358.3,54331,1,0)
+ ;;^UTILITY(U,$J,358.3,51615,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,51615,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,51615,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,51616,0)
+ ;;=R93.2^^193^2509^9
+ ;;^UTILITY(U,$J,358.3,51616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54331,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,54331,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,54331,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,54332,0)
- ;;=M34.9^^256^2764^278
- ;;^UTILITY(U,$J,358.3,54332,1,0)
+ ;;^UTILITY(U,$J,358.3,51616,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,51616,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,51616,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,51617,0)
+ ;;=R93.3^^193^2509^7
+ ;;^UTILITY(U,$J,358.3,51617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54332,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,54332,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,54332,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,54333,0)
- ;;=R21.^^256^2764^257
- ;;^UTILITY(U,$J,358.3,54333,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54333,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,54333,1,4,0)
- ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,51617,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,51617,1,4,0)
+ ;;=4^R93.3

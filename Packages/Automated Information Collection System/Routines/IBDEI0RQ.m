@@ -1,352 +1,116 @@
-IBDEI0RQ ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36631,1,4,0)
- ;;=4^H60.502
- ;;^UTILITY(U,$J,358.3,36631,2)
- ;;=^5006468
- ;;^UTILITY(U,$J,358.3,36632,0)
- ;;=H60.501^^103^1556^28
- ;;^UTILITY(U,$J,358.3,36632,1,0)
+ ;;^UTILITY(U,$J,358.3,12371,2)
+ ;;=^5032750
+ ;;^UTILITY(U,$J,358.3,12372,0)
+ ;;=S61.204A^^80^778^56
+ ;;^UTILITY(U,$J,358.3,12372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36632,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,36632,1,4,0)
- ;;=4^H60.501
- ;;^UTILITY(U,$J,358.3,36632,2)
- ;;=^5006467
- ;;^UTILITY(U,$J,358.3,36633,0)
- ;;=J15.9^^103^1556^46
- ;;^UTILITY(U,$J,358.3,36633,1,0)
+ ;;^UTILITY(U,$J,358.3,12372,1,3,0)
+ ;;=3^Open Wound of Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12372,1,4,0)
+ ;;=4^S61.204A
+ ;;^UTILITY(U,$J,358.3,12372,2)
+ ;;=^5032753
+ ;;^UTILITY(U,$J,358.3,12373,0)
+ ;;=S61.205A^^80^778^25
+ ;;^UTILITY(U,$J,358.3,12373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36633,1,3,0)
- ;;=3^Bacterial Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,36633,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,36633,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,36634,0)
- ;;=B97.10^^103^1556^58
- ;;^UTILITY(U,$J,358.3,36634,1,0)
+ ;;^UTILITY(U,$J,358.3,12373,1,3,0)
+ ;;=3^Open Wound of Left Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12373,1,4,0)
+ ;;=4^S61.205A
+ ;;^UTILITY(U,$J,358.3,12373,2)
+ ;;=^5032756
+ ;;^UTILITY(U,$J,358.3,12374,0)
+ ;;=S61.206A^^80^778^51
+ ;;^UTILITY(U,$J,358.3,12374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36634,1,3,0)
- ;;=3^Enterovirus as Cause of Diseases Classified Elsewhere,Unspec
- ;;^UTILITY(U,$J,358.3,36634,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,36634,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,36635,0)
- ;;=J30.0^^103^1556^88
- ;;^UTILITY(U,$J,358.3,36635,1,0)
+ ;;^UTILITY(U,$J,358.3,12374,1,3,0)
+ ;;=3^Open Wound of Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12374,1,4,0)
+ ;;=4^S61.206A
+ ;;^UTILITY(U,$J,358.3,12374,2)
+ ;;=^5032759
+ ;;^UTILITY(U,$J,358.3,12375,0)
+ ;;=S61.207A^^80^778^20
+ ;;^UTILITY(U,$J,358.3,12375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36635,1,3,0)
- ;;=3^Vasomotor Rhinitis
- ;;^UTILITY(U,$J,358.3,36635,1,4,0)
- ;;=4^J30.0
- ;;^UTILITY(U,$J,358.3,36635,2)
- ;;=^5008201
- ;;^UTILITY(U,$J,358.3,36636,0)
- ;;=B34.9^^103^1556^89
- ;;^UTILITY(U,$J,358.3,36636,1,0)
+ ;;^UTILITY(U,$J,358.3,12375,1,3,0)
+ ;;=3^Open Wound of Left Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12375,1,4,0)
+ ;;=4^S61.207A
+ ;;^UTILITY(U,$J,358.3,12375,2)
+ ;;=^5032762
+ ;;^UTILITY(U,$J,358.3,12376,0)
+ ;;=S61.300A^^80^778^45
+ ;;^UTILITY(U,$J,358.3,12376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36636,1,3,0)
- ;;=3^Viral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,36636,1,4,0)
- ;;=4^B34.9
- ;;^UTILITY(U,$J,358.3,36636,2)
- ;;=^5000603
- ;;^UTILITY(U,$J,358.3,36637,0)
- ;;=J12.9^^103^1556^90
- ;;^UTILITY(U,$J,358.3,36637,1,0)
+ ;;^UTILITY(U,$J,358.3,12376,1,3,0)
+ ;;=3^Open Wound of Right Index Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12376,1,4,0)
+ ;;=4^S61.300A
+ ;;^UTILITY(U,$J,358.3,12376,2)
+ ;;=^5032891
+ ;;^UTILITY(U,$J,358.3,12377,0)
+ ;;=S61.301A^^80^778^14
+ ;;^UTILITY(U,$J,358.3,12377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36637,1,3,0)
- ;;=3^Viral Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,36637,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,36637,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,36638,0)
- ;;=J84.114^^103^1557^1
- ;;^UTILITY(U,$J,358.3,36638,1,0)
+ ;;^UTILITY(U,$J,358.3,12377,1,3,0)
+ ;;=3^Open Wound of Left Index Finger w/ Damage to Nail,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12377,1,4,0)
+ ;;=4^S61.301A
+ ;;^UTILITY(U,$J,358.3,12377,2)
+ ;;=^5135735
+ ;;^UTILITY(U,$J,358.3,12378,0)
+ ;;=S61.302A^^80^778^53
+ ;;^UTILITY(U,$J,358.3,12378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36638,1,3,0)
- ;;=3^AC Interstitial Pneumonitis
- ;;^UTILITY(U,$J,358.3,36638,1,4,0)
- ;;=4^J84.114
- ;;^UTILITY(U,$J,358.3,36638,2)
- ;;=^340536
- ;;^UTILITY(U,$J,358.3,36639,0)
- ;;=J84.09^^103^1557^2
- ;;^UTILITY(U,$J,358.3,36639,1,0)
+ ;;^UTILITY(U,$J,358.3,12378,1,3,0)
+ ;;=3^Open Wound of Right Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12378,1,4,0)
+ ;;=4^S61.302A
+ ;;^UTILITY(U,$J,358.3,12378,2)
+ ;;=^5032894
+ ;;^UTILITY(U,$J,358.3,12379,0)
+ ;;=S61.303A^^80^778^22
+ ;;^UTILITY(U,$J,358.3,12379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36639,1,3,0)
- ;;=3^Alveolar/Parieto-Alveolar Conditions NEC
- ;;^UTILITY(U,$J,358.3,36639,1,4,0)
- ;;=4^J84.09
- ;;^UTILITY(U,$J,358.3,36639,2)
- ;;=^5008299
- ;;^UTILITY(U,$J,358.3,36640,0)
- ;;=J67.2^^103^1557^3
- ;;^UTILITY(U,$J,358.3,36640,1,0)
+ ;;^UTILITY(U,$J,358.3,12379,1,3,0)
+ ;;=3^Open Wound of Left Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12379,1,4,0)
+ ;;=4^S61.303A
+ ;;^UTILITY(U,$J,358.3,12379,2)
+ ;;=^5135738
+ ;;^UTILITY(U,$J,358.3,12380,0)
+ ;;=S61.304A^^80^778^55
+ ;;^UTILITY(U,$J,358.3,12380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36640,1,3,0)
- ;;=3^Bird Fancier's Lung
- ;;^UTILITY(U,$J,358.3,36640,1,4,0)
- ;;=4^J67.2
- ;;^UTILITY(U,$J,358.3,36640,2)
- ;;=^14840
- ;;^UTILITY(U,$J,358.3,36641,0)
- ;;=J68.4^^103^1557^5
- ;;^UTILITY(U,$J,358.3,36641,1,0)
+ ;;^UTILITY(U,$J,358.3,12380,1,3,0)
+ ;;=3^Open Wound of Right Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12380,1,4,0)
+ ;;=4^S61.304A
+ ;;^UTILITY(U,$J,358.3,12380,2)
+ ;;=^5032897
+ ;;^UTILITY(U,$J,358.3,12381,0)
+ ;;=S61.305A^^80^778^24
+ ;;^UTILITY(U,$J,358.3,12381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36641,1,3,0)
- ;;=3^Chr Resp Cond d/t Chemicals/Gases/Fumes/Vapors
- ;;^UTILITY(U,$J,358.3,36641,1,4,0)
- ;;=4^J68.4
- ;;^UTILITY(U,$J,358.3,36641,2)
- ;;=^5008285
- ;;^UTILITY(U,$J,358.3,36642,0)
- ;;=M34.1^^103^1557^4
- ;;^UTILITY(U,$J,358.3,36642,1,0)
+ ;;^UTILITY(U,$J,358.3,12381,1,3,0)
+ ;;=3^Open Wound of Left Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12381,1,4,0)
+ ;;=4^S61.305A
+ ;;^UTILITY(U,$J,358.3,12381,2)
+ ;;=^5135741
+ ;;^UTILITY(U,$J,358.3,12382,0)
+ ;;=S61.306A^^80^778^50
+ ;;^UTILITY(U,$J,358.3,12382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36642,1,3,0)
- ;;=3^CR(E)ST Syndrome
- ;;^UTILITY(U,$J,358.3,36642,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,36642,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,36643,0)
- ;;=J84.116^^103^1557^6
- ;;^UTILITY(U,$J,358.3,36643,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36643,1,3,0)
- ;;=3^Cryptogenic Organizing Pneumonia
- ;;^UTILITY(U,$J,358.3,36643,1,4,0)
- ;;=4^J84.116
- ;;^UTILITY(U,$J,358.3,36643,2)
- ;;=^340539
- ;;^UTILITY(U,$J,358.3,36644,0)
- ;;=J84.117^^103^1557^7
- ;;^UTILITY(U,$J,358.3,36644,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36644,1,3,0)
- ;;=3^Desquamative Interstitial Pneumonia
- ;;^UTILITY(U,$J,358.3,36644,1,4,0)
- ;;=4^J84.117
- ;;^UTILITY(U,$J,358.3,36644,2)
- ;;=^340540
- ;;^UTILITY(U,$J,358.3,36645,0)
- ;;=M32.0^^103^1557^8
- ;;^UTILITY(U,$J,358.3,36645,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36645,1,3,0)
- ;;=3^Drug-Induced Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,36645,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,36645,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,36646,0)
- ;;=M32.11^^103^1557^9
- ;;^UTILITY(U,$J,358.3,36646,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36646,1,3,0)
- ;;=3^Endocarditis in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,36646,1,4,0)
- ;;=4^M32.11
- ;;^UTILITY(U,$J,358.3,36646,2)
- ;;=^5011754
- ;;^UTILITY(U,$J,358.3,36647,0)
- ;;=J67.0^^103^1557^10
- ;;^UTILITY(U,$J,358.3,36647,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36647,1,3,0)
- ;;=3^Farmer's Lung
- ;;^UTILITY(U,$J,358.3,36647,1,4,0)
- ;;=4^J67.0
- ;;^UTILITY(U,$J,358.3,36647,2)
- ;;=^44962
- ;;^UTILITY(U,$J,358.3,36648,0)
- ;;=M32.14^^103^1557^11
- ;;^UTILITY(U,$J,358.3,36648,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36648,1,3,0)
- ;;=3^Glomerular Disease in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,36648,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,36648,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,36649,0)
- ;;=J67.9^^103^1557^12
- ;;^UTILITY(U,$J,358.3,36649,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36649,1,3,0)
- ;;=3^Hypersensitivity Pneumonitis d/t Unspec Organic Dust
- ;;^UTILITY(U,$J,358.3,36649,1,4,0)
- ;;=4^J67.9
- ;;^UTILITY(U,$J,358.3,36649,2)
- ;;=^5008280
- ;;^UTILITY(U,$J,358.3,36650,0)
- ;;=J84.17^^103^1557^14
- ;;^UTILITY(U,$J,358.3,36650,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36650,1,3,0)
- ;;=3^Idiopathic Interstitial Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,36650,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,36650,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,36651,0)
- ;;=J84.113^^103^1557^15
- ;;^UTILITY(U,$J,358.3,36651,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36651,1,3,0)
- ;;=3^Idiopathic Non-Specific Interstitial Pneumonitis
- ;;^UTILITY(U,$J,358.3,36651,1,4,0)
- ;;=4^J84.113
- ;;^UTILITY(U,$J,358.3,36651,2)
- ;;=^340535
- ;;^UTILITY(U,$J,358.3,36652,0)
- ;;=J84.112^^103^1557^16
- ;;^UTILITY(U,$J,358.3,36652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36652,1,3,0)
- ;;=3^Idiopathic Pulmonary Fibrosis
- ;;^UTILITY(U,$J,358.3,36652,1,4,0)
- ;;=4^J84.112
- ;;^UTILITY(U,$J,358.3,36652,2)
- ;;=^340534
- ;;^UTILITY(U,$J,358.3,36653,0)
- ;;=J84.111^^103^1557^13
- ;;^UTILITY(U,$J,358.3,36653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36653,1,3,0)
- ;;=3^Idiopathic Interstitial Pneumonia NOS
- ;;^UTILITY(U,$J,358.3,36653,1,4,0)
- ;;=4^J84.111
- ;;^UTILITY(U,$J,358.3,36653,2)
- ;;=^340610
- ;;^UTILITY(U,$J,358.3,36654,0)
- ;;=J84.9^^103^1557^17
- ;;^UTILITY(U,$J,358.3,36654,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36654,1,3,0)
- ;;=3^Interstitial Pulmonary Disease,Unspec
- ;;^UTILITY(U,$J,358.3,36654,1,4,0)
- ;;=4^J84.9
- ;;^UTILITY(U,$J,358.3,36654,2)
- ;;=^5008304
- ;;^UTILITY(U,$J,358.3,36655,0)
- ;;=M32.13^^103^1557^19
- ;;^UTILITY(U,$J,358.3,36655,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36655,1,3,0)
- ;;=3^Lung Involvement in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,36655,1,4,0)
- ;;=4^M32.13
- ;;^UTILITY(U,$J,358.3,36655,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,36656,0)
- ;;=J84.2^^103^1557^20
- ;;^UTILITY(U,$J,358.3,36656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36656,1,3,0)
- ;;=3^Lymphoid Interstitial Pneumonia
- ;;^UTILITY(U,$J,358.3,36656,1,4,0)
- ;;=4^J84.2
- ;;^UTILITY(U,$J,358.3,36656,2)
- ;;=^5008302
- ;;^UTILITY(U,$J,358.3,36657,0)
- ;;=D86.82^^103^1557^21
- ;;^UTILITY(U,$J,358.3,36657,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36657,1,3,0)
- ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
- ;;^UTILITY(U,$J,358.3,36657,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,36657,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,36658,0)
- ;;=M32.8^^103^1557^60
- ;;^UTILITY(U,$J,358.3,36658,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36658,1,3,0)
- ;;=3^Systemic Lupus Erythematosus NEC
- ;;^UTILITY(U,$J,358.3,36658,1,4,0)
- ;;=4^M32.8
- ;;^UTILITY(U,$J,358.3,36658,2)
- ;;=^5011760
- ;;^UTILITY(U,$J,358.3,36659,0)
- ;;=J84.17^^103^1557^18
- ;;^UTILITY(U,$J,358.3,36659,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36659,1,3,0)
- ;;=3^Interstitial Pulmonary Diseases w/ Fibrosis
- ;;^UTILITY(U,$J,358.3,36659,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,36659,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,36660,0)
- ;;=J68.8^^103^1557^25
- ;;^UTILITY(U,$J,358.3,36660,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36660,1,3,0)
- ;;=3^Respiratory Condition d/t Chemicals/Gases/Fumes/Vapors
- ;;^UTILITY(U,$J,358.3,36660,1,4,0)
- ;;=4^J68.8
- ;;^UTILITY(U,$J,358.3,36660,2)
- ;;=^5008286
- ;;^UTILITY(U,$J,358.3,36661,0)
- ;;=J69.0^^103^1557^22
- ;;^UTILITY(U,$J,358.3,36661,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36661,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
- ;;^UTILITY(U,$J,358.3,36661,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,36661,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,36662,0)
- ;;=J69.1^^103^1557^23
- ;;^UTILITY(U,$J,358.3,36662,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36662,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
- ;;^UTILITY(U,$J,358.3,36662,1,4,0)
- ;;=4^J69.1
- ;;^UTILITY(U,$J,358.3,36662,2)
- ;;=^95664
- ;;^UTILITY(U,$J,358.3,36663,0)
- ;;=J84.115^^103^1557^24
- ;;^UTILITY(U,$J,358.3,36663,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36663,1,3,0)
- ;;=3^Respiratory Bronchiolitis Interstitial Lung Disease
- ;;^UTILITY(U,$J,358.3,36663,1,4,0)
- ;;=4^J84.115
- ;;^UTILITY(U,$J,358.3,36663,2)
- ;;=^340537
- ;;^UTILITY(U,$J,358.3,36664,0)
- ;;=M05.172^^103^1557^26
- ;;^UTILITY(U,$J,358.3,36664,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36664,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,36664,1,4,0)
- ;;=4^M05.172
- ;;^UTILITY(U,$J,358.3,36664,2)
- ;;=^5009882
- ;;^UTILITY(U,$J,358.3,36665,0)
- ;;=M05.122^^103^1557^27
- ;;^UTILITY(U,$J,358.3,36665,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36665,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Elbow
- ;;^UTILITY(U,$J,358.3,36665,1,4,0)
- ;;=4^M05.122
- ;;^UTILITY(U,$J,358.3,36665,2)
- ;;=^5009867
- ;;^UTILITY(U,$J,358.3,36666,0)
- ;;=M05.142^^103^1557^28
- ;;^UTILITY(U,$J,358.3,36666,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12382,1,3,0)
+ ;;=3^Open Wound of Right Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12382,1,4,0)
+ ;;=4^S61.306A
+ ;;^UTILITY(U,$J,358.3,12382,2)
+ ;;=^5032900

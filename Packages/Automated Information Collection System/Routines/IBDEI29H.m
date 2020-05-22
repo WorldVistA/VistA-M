@@ -1,122 +1,122 @@
-IBDEI29H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI29H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38354,1,0)
+ ;;^UTILITY(U,$J,358.3,36106,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,36106,1,4,0)
+ ;;=4^M06.022
+ ;;^UTILITY(U,$J,358.3,36106,2)
+ ;;=^5010052
+ ;;^UTILITY(U,$J,358.3,36107,0)
+ ;;=M06.042^^139^1832^19
+ ;;^UTILITY(U,$J,358.3,36107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38354,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38354,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,38354,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,38355,0)
- ;;=F11.929^^145^1858^21
- ;;^UTILITY(U,$J,358.3,38355,1,0)
+ ;;^UTILITY(U,$J,358.3,36107,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Lt Hand
+ ;;^UTILITY(U,$J,358.3,36107,1,4,0)
+ ;;=4^M06.042
+ ;;^UTILITY(U,$J,358.3,36107,2)
+ ;;=^5010058
+ ;;^UTILITY(U,$J,358.3,36108,0)
+ ;;=M06.052^^139^1832^20
+ ;;^UTILITY(U,$J,358.3,36108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38355,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38355,1,4,0)
- ;;=4^F11.929
- ;;^UTILITY(U,$J,358.3,38355,2)
- ;;=^5003146
- ;;^UTILITY(U,$J,358.3,38356,0)
- ;;=F11.122^^145^1858^16
- ;;^UTILITY(U,$J,358.3,38356,1,0)
+ ;;^UTILITY(U,$J,358.3,36108,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Lt Hip
+ ;;^UTILITY(U,$J,358.3,36108,1,4,0)
+ ;;=4^M06.052
+ ;;^UTILITY(U,$J,358.3,36108,2)
+ ;;=^5010061
+ ;;^UTILITY(U,$J,358.3,36109,0)
+ ;;=M06.062^^139^1832^21
+ ;;^UTILITY(U,$J,358.3,36109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38356,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38356,1,4,0)
- ;;=4^F11.122
- ;;^UTILITY(U,$J,358.3,38356,2)
- ;;=^5003117
- ;;^UTILITY(U,$J,358.3,38357,0)
- ;;=F11.222^^145^1858^17
- ;;^UTILITY(U,$J,358.3,38357,1,0)
+ ;;^UTILITY(U,$J,358.3,36109,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Lt Knee
+ ;;^UTILITY(U,$J,358.3,36109,1,4,0)
+ ;;=4^M06.062
+ ;;^UTILITY(U,$J,358.3,36109,2)
+ ;;=^5010064
+ ;;^UTILITY(U,$J,358.3,36110,0)
+ ;;=M06.012^^139^1832^22
+ ;;^UTILITY(U,$J,358.3,36110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38357,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38357,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,38357,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,38358,0)
- ;;=F11.922^^145^1858^18
- ;;^UTILITY(U,$J,358.3,38358,1,0)
+ ;;^UTILITY(U,$J,358.3,36110,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,36110,1,4,0)
+ ;;=4^M06.012
+ ;;^UTILITY(U,$J,358.3,36110,2)
+ ;;=^5010049
+ ;;^UTILITY(U,$J,358.3,36111,0)
+ ;;=M06.032^^139^1832^23
+ ;;^UTILITY(U,$J,358.3,36111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38358,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38358,1,4,0)
- ;;=4^F11.922
- ;;^UTILITY(U,$J,358.3,38358,2)
- ;;=^5003145
- ;;^UTILITY(U,$J,358.3,38359,0)
- ;;=F11.99^^145^1858^22
- ;;^UTILITY(U,$J,358.3,38359,1,0)
+ ;;^UTILITY(U,$J,358.3,36111,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,36111,1,4,0)
+ ;;=4^M06.032
+ ;;^UTILITY(U,$J,358.3,36111,2)
+ ;;=^5010055
+ ;;^UTILITY(U,$J,358.3,36112,0)
+ ;;=M06.09^^139^1832^24
+ ;;^UTILITY(U,$J,358.3,36112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38359,1,3,0)
- ;;=3^Opioid Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38359,1,4,0)
- ;;=4^F11.99
- ;;^UTILITY(U,$J,358.3,38359,2)
- ;;=^5133352
- ;;^UTILITY(U,$J,358.3,38360,0)
- ;;=F19.10^^145^1859^3
- ;;^UTILITY(U,$J,358.3,38360,1,0)
+ ;;^UTILITY(U,$J,358.3,36112,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Mult Sites
+ ;;^UTILITY(U,$J,358.3,36112,1,4,0)
+ ;;=4^M06.09
+ ;;^UTILITY(U,$J,358.3,36112,2)
+ ;;=^5010070
+ ;;^UTILITY(U,$J,358.3,36113,0)
+ ;;=M06.071^^139^1832^25
+ ;;^UTILITY(U,$J,358.3,36113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38360,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38360,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,38360,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,38361,0)
- ;;=F19.14^^145^1859^1
- ;;^UTILITY(U,$J,358.3,38361,1,0)
+ ;;^UTILITY(U,$J,358.3,36113,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36113,1,4,0)
+ ;;=4^M06.071
+ ;;^UTILITY(U,$J,358.3,36113,2)
+ ;;=^5010066
+ ;;^UTILITY(U,$J,358.3,36114,0)
+ ;;=M06.021^^139^1832^26
+ ;;^UTILITY(U,$J,358.3,36114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38361,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,38361,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,38361,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,38362,0)
- ;;=F19.182^^145^1859^2
- ;;^UTILITY(U,$J,358.3,38362,1,0)
+ ;;^UTILITY(U,$J,358.3,36114,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,36114,1,4,0)
+ ;;=4^M06.021
+ ;;^UTILITY(U,$J,358.3,36114,2)
+ ;;=^5010051
+ ;;^UTILITY(U,$J,358.3,36115,0)
+ ;;=M06.041^^139^1832^27
+ ;;^UTILITY(U,$J,358.3,36115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38362,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,38362,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,38362,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,38363,0)
- ;;=F19.20^^145^1859^6
- ;;^UTILITY(U,$J,358.3,38363,1,0)
+ ;;^UTILITY(U,$J,358.3,36115,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Rt Hand
+ ;;^UTILITY(U,$J,358.3,36115,1,4,0)
+ ;;=4^M06.041
+ ;;^UTILITY(U,$J,358.3,36115,2)
+ ;;=^5010057
+ ;;^UTILITY(U,$J,358.3,36116,0)
+ ;;=M06.051^^139^1832^28
+ ;;^UTILITY(U,$J,358.3,36116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38363,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38363,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,38363,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,38364,0)
- ;;=F19.21^^145^1859^5
- ;;^UTILITY(U,$J,358.3,38364,1,0)
+ ;;^UTILITY(U,$J,358.3,36116,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Rt Hip
+ ;;^UTILITY(U,$J,358.3,36116,1,4,0)
+ ;;=4^M06.051
+ ;;^UTILITY(U,$J,358.3,36116,2)
+ ;;=^5010060
+ ;;^UTILITY(U,$J,358.3,36117,0)
+ ;;=M06.061^^139^1832^29
+ ;;^UTILITY(U,$J,358.3,36117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38364,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,38364,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,38364,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,38365,0)
- ;;=F19.24^^145^1859^4
- ;;^UTILITY(U,$J,358.3,38365,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38365,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,38365,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,38365,2)
- ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,36117,1,3,0)
+ ;;=3^Rheum Arthritis w/o Rheum Factor,Rt Knee
+ ;;^UTILITY(U,$J,358.3,36117,1,4,0)
+ ;;=4^M06.061
+ ;;^UTILITY(U,$J,358.3,36117,2)
+ ;;=^5010063
+ ;;^UTILITY(U,$J,358.3,36118,0)
+ ;;=M06.011^^139^1832^30

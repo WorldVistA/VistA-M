@@ -1,136 +1,118 @@
-IBDEI1FX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24472,0)
- ;;=F81.81^^90^1079^9
- ;;^UTILITY(U,$J,358.3,24472,1,0)
+ ;;^UTILITY(U,$J,358.3,23036,1,4,0)
+ ;;=4^T83.61XA
+ ;;^UTILITY(U,$J,358.3,23036,2)
+ ;;=^5140162
+ ;;^UTILITY(U,$J,358.3,23037,0)
+ ;;=T83.62XA^^105^1166^78
+ ;;^UTILITY(U,$J,358.3,23037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24472,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Writing
- ;;^UTILITY(U,$J,358.3,24472,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,24472,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,24473,0)
- ;;=F88.^^90^1079^10
- ;;^UTILITY(U,$J,358.3,24473,1,0)
+ ;;^UTILITY(U,$J,358.3,23037,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Implanted Testicular Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23037,1,4,0)
+ ;;=4^T83.62XA
+ ;;^UTILITY(U,$J,358.3,23037,2)
+ ;;=^5140165
+ ;;^UTILITY(U,$J,358.3,23038,0)
+ ;;=T83.69XA^^105^1166^100
+ ;;^UTILITY(U,$J,358.3,23038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24473,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,24473,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,24473,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,24474,0)
- ;;=F89.^^90^1079^11
- ;;^UTILITY(U,$J,358.3,24474,1,0)
+ ;;^UTILITY(U,$J,358.3,23038,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Oth Prosthetic Device/Implant/Graft in Genital Tract,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23038,1,4,0)
+ ;;=4^T83.69XA
+ ;;^UTILITY(U,$J,358.3,23038,2)
+ ;;=^5140168
+ ;;^UTILITY(U,$J,358.3,23039,0)
+ ;;=T83.510A^^105^1166^67
+ ;;^UTILITY(U,$J,358.3,23039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24474,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24474,1,4,0)
- ;;=4^F89.
- ;;^UTILITY(U,$J,358.3,24474,2)
- ;;=^5003691
- ;;^UTILITY(U,$J,358.3,24475,0)
- ;;=F95.1^^90^1079^12
- ;;^UTILITY(U,$J,358.3,24475,1,0)
+ ;;^UTILITY(U,$J,358.3,23039,1,3,0)
+ ;;=3^Infect d/t Cystostomy Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23039,1,4,0)
+ ;;=4^T83.510A
+ ;;^UTILITY(U,$J,358.3,23039,2)
+ ;;=^5140135
+ ;;^UTILITY(U,$J,358.3,23040,0)
+ ;;=T83.510S^^105^1166^68
+ ;;^UTILITY(U,$J,358.3,23040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24475,1,3,0)
- ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
- ;;^UTILITY(U,$J,358.3,24475,1,4,0)
- ;;=4^F95.1
- ;;^UTILITY(U,$J,358.3,24475,2)
- ;;=^331941
- ;;^UTILITY(U,$J,358.3,24476,0)
- ;;=F95.0^^90^1079^13
- ;;^UTILITY(U,$J,358.3,24476,1,0)
+ ;;^UTILITY(U,$J,358.3,23040,1,3,0)
+ ;;=3^Infect d/t Cystostomy Catheter,Sequela
+ ;;^UTILITY(U,$J,358.3,23040,1,4,0)
+ ;;=4^T83.510S
+ ;;^UTILITY(U,$J,358.3,23040,2)
+ ;;=^5140137
+ ;;^UTILITY(U,$J,358.3,23041,0)
+ ;;=T83.510D^^105^1166^66
+ ;;^UTILITY(U,$J,358.3,23041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24476,1,3,0)
- ;;=3^Provisional Tic Disorder
- ;;^UTILITY(U,$J,358.3,24476,1,4,0)
- ;;=4^F95.0
- ;;^UTILITY(U,$J,358.3,24476,2)
- ;;=^331940
- ;;^UTILITY(U,$J,358.3,24477,0)
- ;;=F80.89^^90^1079^14
- ;;^UTILITY(U,$J,358.3,24477,1,0)
+ ;;^UTILITY(U,$J,358.3,23041,1,3,0)
+ ;;=3^Infect d/t Cystostomy Catheter,Healing/Subs
+ ;;^UTILITY(U,$J,358.3,23041,1,4,0)
+ ;;=4^T83.510D
+ ;;^UTILITY(U,$J,358.3,23041,2)
+ ;;=^5140136
+ ;;^UTILITY(U,$J,358.3,23042,0)
+ ;;=T83.511A^^105^1166^69
+ ;;^UTILITY(U,$J,358.3,23042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24477,1,3,0)
- ;;=3^Social Pragmatic Communication Disorder
- ;;^UTILITY(U,$J,358.3,24477,1,4,0)
- ;;=4^F80.89
- ;;^UTILITY(U,$J,358.3,24477,2)
- ;;=^5003677
- ;;^UTILITY(U,$J,358.3,24478,0)
- ;;=F80.0^^90^1079^15
- ;;^UTILITY(U,$J,358.3,24478,1,0)
+ ;;^UTILITY(U,$J,358.3,23042,1,3,0)
+ ;;=3^Infect d/t Indwelling Urethral Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23042,1,4,0)
+ ;;=4^T83.511A
+ ;;^UTILITY(U,$J,358.3,23042,2)
+ ;;=^5140138
+ ;;^UTILITY(U,$J,358.3,23043,0)
+ ;;=T83.511D^^105^1166^70
+ ;;^UTILITY(U,$J,358.3,23043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24478,1,3,0)
- ;;=3^Speech Sound Disorder
- ;;^UTILITY(U,$J,358.3,24478,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,24478,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,24479,0)
- ;;=F98.4^^90^1079^16
- ;;^UTILITY(U,$J,358.3,24479,1,0)
+ ;;^UTILITY(U,$J,358.3,23043,1,3,0)
+ ;;=3^Infect d/t Indwelling Urethral Catheter,Healing/Subs
+ ;;^UTILITY(U,$J,358.3,23043,1,4,0)
+ ;;=4^T83.511D
+ ;;^UTILITY(U,$J,358.3,23043,2)
+ ;;=^5140139
+ ;;^UTILITY(U,$J,358.3,23044,0)
+ ;;=T83.511S^^105^1166^71
+ ;;^UTILITY(U,$J,358.3,23044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24479,1,3,0)
- ;;=3^Stereotypic Movement Disorder
- ;;^UTILITY(U,$J,358.3,24479,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,24479,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,24480,0)
- ;;=F95.8^^90^1079^17
- ;;^UTILITY(U,$J,358.3,24480,1,0)
+ ;;^UTILITY(U,$J,358.3,23044,1,3,0)
+ ;;=3^Infect d/t Indwelling Urethral Catheter,Sequela
+ ;;^UTILITY(U,$J,358.3,23044,1,4,0)
+ ;;=4^T83.511S
+ ;;^UTILITY(U,$J,358.3,23044,2)
+ ;;=^5140140
+ ;;^UTILITY(U,$J,358.3,23045,0)
+ ;;=T83.512A^^105^1166^73
+ ;;^UTILITY(U,$J,358.3,23045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24480,1,3,0)
- ;;=3^Tic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,24480,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,24480,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,24481,0)
- ;;=F95.9^^90^1079^18
- ;;^UTILITY(U,$J,358.3,24481,1,0)
+ ;;^UTILITY(U,$J,358.3,23045,1,3,0)
+ ;;=3^Infect d/t Nephrostomy Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23045,1,4,0)
+ ;;=4^T83.512A
+ ;;^UTILITY(U,$J,358.3,23045,2)
+ ;;=^5140141
+ ;;^UTILITY(U,$J,358.3,23046,0)
+ ;;=T83.512D^^105^1166^72
+ ;;^UTILITY(U,$J,358.3,23046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24481,1,3,0)
- ;;=3^Tic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24481,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,24481,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,24482,0)
- ;;=F95.2^^90^1079^19
- ;;^UTILITY(U,$J,358.3,24482,1,0)
+ ;;^UTILITY(U,$J,358.3,23046,1,3,0)
+ ;;=3^Infect d/t Nephrostomy Catheter,Healing/Subs
+ ;;^UTILITY(U,$J,358.3,23046,1,4,0)
+ ;;=4^T83.512D
+ ;;^UTILITY(U,$J,358.3,23046,2)
+ ;;=^5140142
+ ;;^UTILITY(U,$J,358.3,23047,0)
+ ;;=T83.512S^^105^1166^74
+ ;;^UTILITY(U,$J,358.3,23047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24482,1,3,0)
- ;;=3^Tourette's Disorder
- ;;^UTILITY(U,$J,358.3,24482,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,24482,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,24483,0)
- ;;=F15.929^^90^1080^7
- ;;^UTILITY(U,$J,358.3,24483,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24483,1,3,0)
- ;;=3^Caffeine Intoxication
- ;;^UTILITY(U,$J,358.3,24483,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,24483,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,24484,0)
- ;;=F15.93^^90^1080^8
- ;;^UTILITY(U,$J,358.3,24484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24484,1,3,0)
- ;;=3^Caffeine Withdrawal
- ;;^UTILITY(U,$J,358.3,24484,1,4,0)
- ;;=4^F15.93
- ;;^UTILITY(U,$J,358.3,24484,2)
- ;;=^5003315
- ;;^UTILITY(U,$J,358.3,24485,0)
- ;;=F15.180^^90^1080^1
+ ;;^UTILITY(U,$J,358.3,23047,1,3,0)
+ ;;=3^Infect d/t Nephrostomy Catheter,Sequela
+ ;;^UTILITY(U,$J,358.3,23047,1,4,0)
+ ;;=4^T83.512S
+ ;;^UTILITY(U,$J,358.3,23047,2)
+ ;;=^5140143

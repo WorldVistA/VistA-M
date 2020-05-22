@@ -1,124 +1,126 @@
-IBDEI2PO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45499,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,45499,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,45499,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,45500,0)
- ;;=R40.2124^^200^2246^31
- ;;^UTILITY(U,$J,358.3,45500,1,0)
+ ;;^UTILITY(U,$J,358.3,43223,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,43224,0)
+ ;;=W06.XXXA^^158^2099^2
+ ;;^UTILITY(U,$J,358.3,43224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45500,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,45500,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,45500,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,45501,0)
- ;;=R40.2211^^200^2246^17
- ;;^UTILITY(U,$J,358.3,45501,1,0)
+ ;;^UTILITY(U,$J,358.3,43224,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43224,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,43224,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,43225,0)
+ ;;=W19.XXXA^^158^2099^4
+ ;;^UTILITY(U,$J,358.3,43225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45501,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,45501,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,45501,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,45502,0)
- ;;=R40.2210^^200^2246^16
- ;;^UTILITY(U,$J,358.3,45502,1,0)
+ ;;^UTILITY(U,$J,358.3,43225,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43225,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,43225,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,43226,0)
+ ;;=F32.9^^158^2100^2
+ ;;^UTILITY(U,$J,358.3,43226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45502,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,45502,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,45502,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,45503,0)
- ;;=R40.2224^^200^2246^18
- ;;^UTILITY(U,$J,358.3,45503,1,0)
+ ;;^UTILITY(U,$J,358.3,43226,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,43226,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,43226,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,43227,0)
+ ;;=Z71.89^^158^2100^1
+ ;;^UTILITY(U,$J,358.3,43227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45503,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,45503,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,45503,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,45504,0)
- ;;=R40.2223^^200^2246^19
- ;;^UTILITY(U,$J,358.3,45504,1,0)
+ ;;^UTILITY(U,$J,358.3,43227,1,3,0)
+ ;;=3^Counseling NEC
+ ;;^UTILITY(U,$J,358.3,43227,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,43227,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,43228,0)
+ ;;=G56.01^^158^2101^6
+ ;;^UTILITY(U,$J,358.3,43228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45504,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,45504,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,45504,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,45505,0)
- ;;=R40.2222^^200^2246^20
- ;;^UTILITY(U,$J,358.3,45505,1,0)
+ ;;^UTILITY(U,$J,358.3,43228,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,43228,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,43228,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,43229,0)
+ ;;=G56.02^^158^2101^5
+ ;;^UTILITY(U,$J,358.3,43229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45505,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,45505,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,45505,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,45506,0)
- ;;=R40.2221^^200^2246^21
- ;;^UTILITY(U,$J,358.3,45506,1,0)
+ ;;^UTILITY(U,$J,358.3,43229,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,43229,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,43229,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,43230,0)
+ ;;=M19.90^^158^2101^15
+ ;;^UTILITY(U,$J,358.3,43230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45506,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,45506,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,45506,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,45507,0)
- ;;=R40.2220^^200^2246^22
- ;;^UTILITY(U,$J,358.3,45507,1,0)
+ ;;^UTILITY(U,$J,358.3,43230,1,3,0)
+ ;;=3^Osteoarthritis,Site Unspec
+ ;;^UTILITY(U,$J,358.3,43230,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,43230,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,43231,0)
+ ;;=M47.812^^158^2101^20
+ ;;^UTILITY(U,$J,358.3,43231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45507,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,45507,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,45507,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,45508,0)
- ;;=R40.2214^^200^2246^23
- ;;^UTILITY(U,$J,358.3,45508,1,0)
+ ;;^UTILITY(U,$J,358.3,43231,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,43231,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,43231,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,43232,0)
+ ;;=M47.12^^158^2101^19
+ ;;^UTILITY(U,$J,358.3,43232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45508,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,45508,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,45508,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,45509,0)
- ;;=R40.2213^^200^2246^25
- ;;^UTILITY(U,$J,358.3,45509,1,0)
+ ;;^UTILITY(U,$J,358.3,43232,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Cervical Region NEC
+ ;;^UTILITY(U,$J,358.3,43232,1,4,0)
+ ;;=4^M47.12
+ ;;^UTILITY(U,$J,358.3,43232,2)
+ ;;=^5012052
+ ;;^UTILITY(U,$J,358.3,43233,0)
+ ;;=M50.30^^158^2101^7
+ ;;^UTILITY(U,$J,358.3,43233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45509,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,45509,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,45509,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,45510,0)
- ;;=R40.2212^^200^2246^24
- ;;^UTILITY(U,$J,358.3,45510,1,0)
+ ;;^UTILITY(U,$J,358.3,43233,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Cervical Region NEC
+ ;;^UTILITY(U,$J,358.3,43233,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,43233,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,43234,0)
+ ;;=M48.02^^158^2101^18
+ ;;^UTILITY(U,$J,358.3,43234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45510,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,45510,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,45510,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,45511,0)
- ;;=R40.2344^^200^2246^6
- ;;^UTILITY(U,$J,358.3,45511,1,0)
+ ;;^UTILITY(U,$J,358.3,43234,1,3,0)
+ ;;=3^Spinal Stenosis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,43234,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,43234,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,43235,0)
+ ;;=M54.2^^158^2101^8
+ ;;^UTILITY(U,$J,358.3,43235,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43235,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,43235,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,43235,2)
+ ;;=^5012304

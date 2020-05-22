@@ -1,5 +1,5 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512,528**;DEC 1997;Build 10
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512,528,544**;DEC 1997;Build 19
  ;Reference to GETDAT^BPSBUTL supported by IA 4719
  ;Reference to COM^BPSSCRU3 supported by IA 6214
  ;Reference to IEN59^BPSOSRX supported by IA 4412
@@ -443,6 +443,7 @@ SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  ;         PA - Prior Auth Type ^ Prior Auth Number 
  ;         PSOET - 1 if eT/eC pseudo-reject on claim
  N ALTXT,COM,DIR,PSO59,PSOCOB,PSOETEC,PSOPLAN,PSORTYPE,RESP,SMA
+ N DIWF,DIWL,DIWR,X
  S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
  S DIR("A",1)="     When you confirm, a new claim will be submitted for"
  S DIR("A",2)="     the prescription and this REJECT will be marked"
@@ -469,7 +470,15 @@ SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  ;If PSOETEC=1 RESP will exist because its a Non-Billable Rx, do not Quit continue processing
  I PSOETEC'=1 I $G(RESP) D  Q
  . W !!?10,"Claim could not be submitted. Please try again later!"
- . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2
+ . I $P(RESP,"^",2)="" S X="Reason: UNKNOWN"
+ . E  S X="Reason: "_$P(RESP,"^",2)
+ . S DIWF="W"
+ . S DIWL=11
+ . S DIWR=75
+ . D ^DIWP
+ . D ^DIWW
+ . W $C(7)
+ . H 2
  ;
  ; Get the ePharmacy Response Pause and hang for that amount of time (default is 2 if not set)
  N PAUSE,IEN5286

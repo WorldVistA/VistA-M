@@ -1,134 +1,128 @@
-IBDEI1OK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28551,0)
- ;;=Z43.1^^112^1429^8
- ;;^UTILITY(U,$J,358.3,28551,1,0)
+ ;;^UTILITY(U,$J,358.3,26859,1,3,0)
+ ;;=3^Residential Institution Living Problems
+ ;;^UTILITY(U,$J,358.3,26859,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,26859,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,26860,0)
+ ;;=Z59.4^^110^1292^8
+ ;;^UTILITY(U,$J,358.3,26860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28551,1,3,0)
- ;;=3^Attention to Gastrostomy
- ;;^UTILITY(U,$J,358.3,28551,1,4,0)
- ;;=4^Z43.1
- ;;^UTILITY(U,$J,358.3,28551,2)
- ;;=^5062959
- ;;^UTILITY(U,$J,358.3,28552,0)
- ;;=Z43.2^^112^1429^9
- ;;^UTILITY(U,$J,358.3,28552,1,0)
+ ;;^UTILITY(U,$J,358.3,26860,1,3,0)
+ ;;=3^Lack of Adequate Food or Safe Drinking Water
+ ;;^UTILITY(U,$J,358.3,26860,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,26860,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,26861,0)
+ ;;=Z59.5^^110^1292^2
+ ;;^UTILITY(U,$J,358.3,26861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28552,1,3,0)
- ;;=3^Attention to Ileostomy
- ;;^UTILITY(U,$J,358.3,28552,1,4,0)
- ;;=4^Z43.2
- ;;^UTILITY(U,$J,358.3,28552,2)
- ;;=^5062960
- ;;^UTILITY(U,$J,358.3,28553,0)
- ;;=Z43.3^^112^1429^6
- ;;^UTILITY(U,$J,358.3,28553,1,0)
+ ;;^UTILITY(U,$J,358.3,26861,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,26861,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,26861,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,26862,0)
+ ;;=Z59.6^^110^1292^9
+ ;;^UTILITY(U,$J,358.3,26862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28553,1,3,0)
- ;;=3^Attention to Colostomy
- ;;^UTILITY(U,$J,358.3,28553,1,4,0)
- ;;=4^Z43.3
- ;;^UTILITY(U,$J,358.3,28553,2)
- ;;=^5062961
- ;;^UTILITY(U,$J,358.3,28554,0)
- ;;=Z43.4^^112^1429^4
- ;;^UTILITY(U,$J,358.3,28554,1,0)
+ ;;^UTILITY(U,$J,358.3,26862,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,26862,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,26862,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,26863,0)
+ ;;=Z59.7^^110^1292^7
+ ;;^UTILITY(U,$J,358.3,26863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28554,1,3,0)
- ;;=3^Attention to Artif Opening of Digestive Tract NEC
- ;;^UTILITY(U,$J,358.3,28554,1,4,0)
- ;;=4^Z43.4
- ;;^UTILITY(U,$J,358.3,28554,2)
- ;;=^5062962
- ;;^UTILITY(U,$J,358.3,28555,0)
- ;;=Z43.5^^112^1429^7
- ;;^UTILITY(U,$J,358.3,28555,1,0)
+ ;;^UTILITY(U,$J,358.3,26863,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,26863,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,26863,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,26864,0)
+ ;;=Z59.9^^110^1292^5
+ ;;^UTILITY(U,$J,358.3,26864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28555,1,3,0)
- ;;=3^Attention to Cystostomy
- ;;^UTILITY(U,$J,358.3,28555,1,4,0)
- ;;=4^Z43.5
- ;;^UTILITY(U,$J,358.3,28555,2)
- ;;=^5062963
- ;;^UTILITY(U,$J,358.3,28556,0)
- ;;=Z43.6^^112^1429^5
- ;;^UTILITY(U,$J,358.3,28556,1,0)
+ ;;^UTILITY(U,$J,358.3,26864,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,26864,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,26864,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,26865,0)
+ ;;=Z59.8^^110^1292^4
+ ;;^UTILITY(U,$J,358.3,26865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28556,1,3,0)
- ;;=3^Attention to Artif Opening of Urinary Tract NEC
- ;;^UTILITY(U,$J,358.3,28556,1,4,0)
- ;;=4^Z43.6
- ;;^UTILITY(U,$J,358.3,28556,2)
- ;;=^5062964
- ;;^UTILITY(U,$J,358.3,28557,0)
- ;;=Z48.00^^112^1429^12
- ;;^UTILITY(U,$J,358.3,28557,1,0)
+ ;;^UTILITY(U,$J,358.3,26865,1,3,0)
+ ;;=3^Housing/Economic Problems,Other
+ ;;^UTILITY(U,$J,358.3,26865,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,26865,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,26866,0)
+ ;;=G21.19^^110^1293^10
+ ;;^UTILITY(U,$J,358.3,26866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28557,1,3,0)
- ;;=3^Change or Removal of Nonsurg Wound Dressing
- ;;^UTILITY(U,$J,358.3,28557,1,4,0)
- ;;=4^Z48.00
- ;;^UTILITY(U,$J,358.3,28557,2)
- ;;=^5063033
- ;;^UTILITY(U,$J,358.3,28558,0)
- ;;=Z48.01^^112^1429^13
- ;;^UTILITY(U,$J,358.3,28558,1,0)
+ ;;^UTILITY(U,$J,358.3,26866,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism,Other
+ ;;^UTILITY(U,$J,358.3,26866,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,26866,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,26867,0)
+ ;;=G21.11^^110^1293^13
+ ;;^UTILITY(U,$J,358.3,26867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28558,1,3,0)
- ;;=3^Change or Removal of Surg Wound Dressing
- ;;^UTILITY(U,$J,358.3,28558,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,28558,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,28559,0)
- ;;=Z48.02^^112^1429^23
- ;;^UTILITY(U,$J,358.3,28559,1,0)
+ ;;^UTILITY(U,$J,358.3,26867,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,26867,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,26867,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,26868,0)
+ ;;=G24.01^^110^1293^15
+ ;;^UTILITY(U,$J,358.3,26868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28559,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,28559,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,28559,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,28560,0)
- ;;=Z48.03^^112^1429^11
- ;;^UTILITY(U,$J,358.3,28560,1,0)
+ ;;^UTILITY(U,$J,358.3,26868,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,26868,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,26868,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,26869,0)
+ ;;=G24.09^^110^1293^16
+ ;;^UTILITY(U,$J,358.3,26869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28560,1,3,0)
- ;;=3^Change or Removal of Drains
- ;;^UTILITY(U,$J,358.3,28560,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,28560,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,28561,0)
- ;;=Z48.89^^112^1429^22
- ;;^UTILITY(U,$J,358.3,28561,1,0)
+ ;;^UTILITY(U,$J,358.3,26869,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,26869,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,26869,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,26870,0)
+ ;;=G25.1^^110^1293^11
+ ;;^UTILITY(U,$J,358.3,26870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28561,1,3,0)
- ;;=3^Surgical Aftercare NEC
- ;;^UTILITY(U,$J,358.3,28561,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,28561,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,28562,0)
- ;;=Z45.2^^112^1429^1
- ;;^UTILITY(U,$J,358.3,28562,1,0)
+ ;;^UTILITY(U,$J,358.3,26870,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,26870,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,26870,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,26871,0)
+ ;;=G25.71^^110^1293^14
+ ;;^UTILITY(U,$J,358.3,26871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28562,1,3,0)
- ;;=3^Adjustment/Management of VAD
- ;;^UTILITY(U,$J,358.3,28562,1,4,0)
- ;;=4^Z45.2
- ;;^UTILITY(U,$J,358.3,28562,2)
- ;;=^5062999
- ;;^UTILITY(U,$J,358.3,28563,0)
- ;;=Z46.82^^112^1429^17
- ;;^UTILITY(U,$J,358.3,28563,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28563,1,3,0)
- ;;=3^Fitting/Adjustment of Non-Vascular Catheter
- ;;^UTILITY(U,$J,358.3,28563,1,4,0)
- ;;=4^Z46.82
- ;;^UTILITY(U,$J,358.3,28563,2)
- ;;=^5063022
+ ;;^UTILITY(U,$J,358.3,26871,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,26871,1,4,0)
+ ;;=4^G25.71

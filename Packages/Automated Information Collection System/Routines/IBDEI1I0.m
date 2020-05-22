@@ -1,132 +1,120 @@
-IBDEI1I0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1I0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25429,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,25429,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,25430,0)
- ;;=G25.81^^95^1164^23
- ;;^UTILITY(U,$J,358.3,25430,1,0)
+ ;;^UTILITY(U,$J,358.3,23967,0)
+ ;;=I20.9^^107^1198^3
+ ;;^UTILITY(U,$J,358.3,23967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25430,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,25430,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,25430,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,25431,0)
- ;;=G47.19^^95^1164^11
- ;;^UTILITY(U,$J,358.3,25431,1,0)
+ ;;^UTILITY(U,$J,358.3,23967,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,23967,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,23967,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,23968,0)
+ ;;=I65.29^^107^1199^31
+ ;;^UTILITY(U,$J,358.3,23968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25431,1,3,0)
- ;;=3^Hypersomnolence Disorder NEC
- ;;^UTILITY(U,$J,358.3,25431,1,4,0)
- ;;=4^G47.19
- ;;^UTILITY(U,$J,358.3,25431,2)
- ;;=^5003973
- ;;^UTILITY(U,$J,358.3,25432,0)
- ;;=G47.8^^95^1164^27
- ;;^UTILITY(U,$J,358.3,25432,1,0)
+ ;;^UTILITY(U,$J,358.3,23968,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,23968,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,23968,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,23969,0)
+ ;;=I65.22^^107^1199^29
+ ;;^UTILITY(U,$J,358.3,23969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25432,1,3,0)
- ;;=3^Sleep-Wake Disorder NEC
- ;;^UTILITY(U,$J,358.3,25432,1,4,0)
- ;;=4^G47.8
- ;;^UTILITY(U,$J,358.3,25432,2)
- ;;=^5003989
- ;;^UTILITY(U,$J,358.3,25433,0)
- ;;=G47.411^^95^1164^16
- ;;^UTILITY(U,$J,358.3,25433,1,0)
+ ;;^UTILITY(U,$J,358.3,23969,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,23969,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,23969,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,23970,0)
+ ;;=I65.23^^107^1199^28
+ ;;^UTILITY(U,$J,358.3,23970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25433,1,3,0)
- ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,25433,1,4,0)
- ;;=4^G47.411
- ;;^UTILITY(U,$J,358.3,25433,2)
- ;;=^5003981
- ;;^UTILITY(U,$J,358.3,25434,0)
- ;;=G47.37^^95^1164^2
- ;;^UTILITY(U,$J,358.3,25434,1,0)
+ ;;^UTILITY(U,$J,358.3,23970,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,23970,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,23970,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,23971,0)
+ ;;=I65.21^^107^1199^30
+ ;;^UTILITY(U,$J,358.3,23971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25434,1,3,0)
- ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
- ;;^UTILITY(U,$J,358.3,25434,1,4,0)
- ;;=4^G47.37
- ;;^UTILITY(U,$J,358.3,25434,2)
- ;;=^332767
- ;;^UTILITY(U,$J,358.3,25435,0)
- ;;=G47.31^^95^1164^3
- ;;^UTILITY(U,$J,358.3,25435,1,0)
+ ;;^UTILITY(U,$J,358.3,23971,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,23971,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,23971,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,23972,0)
+ ;;=I70.219^^107^1199^7
+ ;;^UTILITY(U,$J,358.3,23972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25435,1,3,0)
- ;;=3^Central Sleep Apnea,Idiopathic Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,25435,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,25435,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,25436,0)
- ;;=F51.11^^95^1164^10
- ;;^UTILITY(U,$J,358.3,25436,1,0)
+ ;;^UTILITY(U,$J,358.3,23972,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,23972,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,23972,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,23973,0)
+ ;;=I70.213^^107^1199^8
+ ;;^UTILITY(U,$J,358.3,23973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25436,1,3,0)
- ;;=3^Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,25436,1,4,0)
- ;;=4^F51.11
- ;;^UTILITY(U,$J,358.3,25436,2)
- ;;=^5003609
- ;;^UTILITY(U,$J,358.3,25437,0)
- ;;=F51.01^^95^1164^13
- ;;^UTILITY(U,$J,358.3,25437,1,0)
+ ;;^UTILITY(U,$J,358.3,23973,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,23973,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,23973,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,23974,0)
+ ;;=I70.212^^107^1199^9
+ ;;^UTILITY(U,$J,358.3,23974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25437,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,25437,1,4,0)
- ;;=4^F51.01
- ;;^UTILITY(U,$J,358.3,25437,2)
- ;;=^5003603
- ;;^UTILITY(U,$J,358.3,25438,0)
- ;;=G47.36^^95^1164^24
- ;;^UTILITY(U,$J,358.3,25438,1,0)
+ ;;^UTILITY(U,$J,358.3,23974,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,23974,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,23974,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,23975,0)
+ ;;=I70.211^^107^1199^10
+ ;;^UTILITY(U,$J,358.3,23975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25438,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
- ;;^UTILITY(U,$J,358.3,25438,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,25438,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,25439,0)
- ;;=G47.35^^95^1164^25
- ;;^UTILITY(U,$J,358.3,25439,1,0)
+ ;;^UTILITY(U,$J,358.3,23975,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,23975,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,23975,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,23976,0)
+ ;;=I70.25^^107^1199^6
+ ;;^UTILITY(U,$J,358.3,23976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25439,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,25439,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,25439,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,25440,0)
- ;;=G47.34^^95^1164^26
- ;;^UTILITY(U,$J,358.3,25440,1,0)
+ ;;^UTILITY(U,$J,358.3,23976,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,23976,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,23976,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,23977,0)
+ ;;=I70.249^^107^1199^11
+ ;;^UTILITY(U,$J,358.3,23977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25440,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
- ;;^UTILITY(U,$J,358.3,25440,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,25440,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,25441,0)
- ;;=G47.9^^95^1164^28
- ;;^UTILITY(U,$J,358.3,25441,1,0)
+ ;;^UTILITY(U,$J,358.3,23977,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,23977,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,23977,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,23978,0)
+ ;;=I70.239^^107^1199^12
+ ;;^UTILITY(U,$J,358.3,23978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25441,1,3,0)
- ;;=3^Sleep-Wake Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25441,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,25441,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,25442,0)
- ;;=F10.10^^95^1165^27
- ;;^UTILITY(U,$J,358.3,25442,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23978,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site

@@ -1,5 +1,5 @@
-DGR114 ;ALB/TGH,JAM - Health Benefit Plan View Detail - List Manager Screen ;7/8/19 10:56am 
- ;;5.3;Registration;**871,987**;Aug 13, 1993;Build 22
+DGR114 ;ALB/TGH,JAM,BDB - Health Benefit Plan View Detail - List Manager Screen ;7/8/19 10:56am 
+ ;;5.3;Registration;**871,987,1006**;Aug 13, 1993;Build 6
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP DETAIL list
  ; Input  -- DFN      Patient IEN
@@ -74,10 +74,11 @@ PEXIT ; MENU protocol exit code
 EXPND ; -- expand code
  N CNT,LST,ACT,DGNAME,DGACT
  D ACTION
- S VALMBCK="R"
+ S VALMBCK="R"   ; CCR 13613 - fix
  I $G(DGACT)="" Q
  S LST=$P(HBP("DETAIL",0),"^",4)
- I LST="" W !,"No detail description is available for this Veteran Medical Benefit Plan" ;DG*5.3*987 HM
+ ;I LST="" W !,"No detail description is available for this Veteran Medical Benefit Plan" ;DG*5.3*987 HM
+ I LST="" W !,"No detail description is available for this VHA Profile" ;DG*5.3*1006 BDB;DG*5.3*987 HM 
  F CNT=1:1:LST W !,HBP("DETAIL",DGACT,CNT)
  S VALMBCK="R"
  D PAUSE^VALM1

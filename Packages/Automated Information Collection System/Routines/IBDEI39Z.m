@@ -1,130 +1,126 @@
-IBDEI39Z ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55041,1,4,0)
- ;;=4^D05.82
- ;;^UTILITY(U,$J,358.3,55041,2)
- ;;=^5001934
- ;;^UTILITY(U,$J,358.3,55042,0)
- ;;=D05.81^^256^2775^34
- ;;^UTILITY(U,$J,358.3,55042,1,0)
+ ;;^UTILITY(U,$J,358.3,52274,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,52274,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,52275,0)
+ ;;=E11.41^^193^2527^6
+ ;;^UTILITY(U,$J,358.3,52275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55042,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,55042,1,4,0)
- ;;=4^D05.81
- ;;^UTILITY(U,$J,358.3,55042,2)
- ;;=^5001933
- ;;^UTILITY(U,$J,358.3,55043,0)
- ;;=D05.80^^256^2775^36
- ;;^UTILITY(U,$J,358.3,55043,1,0)
+ ;;^UTILITY(U,$J,358.3,52275,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,52275,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,52275,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,52276,0)
+ ;;=E11.42^^193^2527^13
+ ;;^UTILITY(U,$J,358.3,52276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55043,1,3,0)
- ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,55043,1,4,0)
- ;;=4^D05.80
- ;;^UTILITY(U,$J,358.3,55043,2)
- ;;=^5001932
- ;;^UTILITY(U,$J,358.3,55044,0)
- ;;=D56.8^^256^2775^182
- ;;^UTILITY(U,$J,358.3,55044,1,0)
+ ;;^UTILITY(U,$J,358.3,52276,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,52276,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,52276,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,52277,0)
+ ;;=E11.43^^193^2527^2
+ ;;^UTILITY(U,$J,358.3,52277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55044,1,3,0)
- ;;=3^Thalassemias,Other
- ;;^UTILITY(U,$J,358.3,55044,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,55044,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,55045,0)
- ;;=C82.89^^256^2775^74
- ;;^UTILITY(U,$J,358.3,55045,1,0)
+ ;;^UTILITY(U,$J,358.3,52277,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,52277,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,52277,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,52278,0)
+ ;;=E11.44^^193^2527^1
+ ;;^UTILITY(U,$J,358.3,52278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55045,1,3,0)
- ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
- ;;^UTILITY(U,$J,358.3,55045,1,4,0)
- ;;=4^C82.89
- ;;^UTILITY(U,$J,358.3,55045,2)
- ;;=^5001540
- ;;^UTILITY(U,$J,358.3,55046,0)
- ;;=D51.8^^256^2775^189
- ;;^UTILITY(U,$J,358.3,55046,1,0)
+ ;;^UTILITY(U,$J,358.3,52278,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Amyotrophy
+ ;;^UTILITY(U,$J,358.3,52278,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,52278,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,52279,0)
+ ;;=E11.49^^193^2527^8
+ ;;^UTILITY(U,$J,358.3,52279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55046,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemias,Other
- ;;^UTILITY(U,$J,358.3,55046,1,4,0)
- ;;=4^D51.8
- ;;^UTILITY(U,$J,358.3,55046,2)
- ;;=^5002288
- ;;^UTILITY(U,$J,358.3,55047,0)
- ;;=I80.9^^256^2775^174
- ;;^UTILITY(U,$J,358.3,55047,1,0)
+ ;;^UTILITY(U,$J,358.3,52279,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neurological Compl
+ ;;^UTILITY(U,$J,358.3,52279,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,52279,2)
+ ;;=^5002649
+ ;;^UTILITY(U,$J,358.3,52280,0)
+ ;;=E11.59^^193^2527^25
+ ;;^UTILITY(U,$J,358.3,52280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55047,1,3,0)
- ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,55047,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,55047,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,55048,0)
- ;;=D45.^^256^2775^175
- ;;^UTILITY(U,$J,358.3,55048,1,0)
+ ;;^UTILITY(U,$J,358.3,52280,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Circulatory Compl
+ ;;^UTILITY(U,$J,358.3,52280,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,52280,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,52281,0)
+ ;;=E11.610^^193^2527^9
+ ;;^UTILITY(U,$J,358.3,52281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55048,1,3,0)
- ;;=3^Polycythemia Vera
- ;;^UTILITY(U,$J,358.3,55048,1,4,0)
- ;;=4^D45.
- ;;^UTILITY(U,$J,358.3,55048,2)
- ;;=^96105
- ;;^UTILITY(U,$J,358.3,55049,0)
- ;;=C77.3^^256^2775^107
- ;;^UTILITY(U,$J,358.3,55049,1,0)
+ ;;^UTILITY(U,$J,358.3,52281,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,52281,1,4,0)
+ ;;=4^E11.610
+ ;;^UTILITY(U,$J,358.3,52281,2)
+ ;;=^5002653
+ ;;^UTILITY(U,$J,358.3,52282,0)
+ ;;=E11.618^^193^2527^26
+ ;;^UTILITY(U,$J,358.3,52282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55049,1,3,0)
- ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,55049,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,55049,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,55050,0)
- ;;=C77.2^^256^2775^123
- ;;^UTILITY(U,$J,358.3,55050,1,0)
+ ;;^UTILITY(U,$J,358.3,52282,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Arthropathy
+ ;;^UTILITY(U,$J,358.3,52282,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,52282,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,52283,0)
+ ;;=E11.621^^193^2527^16
+ ;;^UTILITY(U,$J,358.3,52283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55050,1,3,0)
- ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,55050,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,55050,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,55051,0)
- ;;=C77.1^^256^2775^124
- ;;^UTILITY(U,$J,358.3,55051,1,0)
+ ;;^UTILITY(U,$J,358.3,52283,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,52283,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,52283,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,52284,0)
+ ;;=E11.622^^193^2527^31
+ ;;^UTILITY(U,$J,358.3,52284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55051,1,3,0)
- ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,55051,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,55051,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,55052,0)
- ;;=C77.0^^256^2775^140
- ;;^UTILITY(U,$J,358.3,55052,1,0)
+ ;;^UTILITY(U,$J,358.3,52284,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,52284,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,52284,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,52285,0)
+ ;;=E11.628^^193^2527^30
+ ;;^UTILITY(U,$J,358.3,52285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55052,1,3,0)
- ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,55052,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,55052,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,55053,0)
- ;;=C77.8^^256^2775^141
- ;;^UTILITY(U,$J,358.3,55053,1,0)
+ ;;^UTILITY(U,$J,358.3,52285,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Skin Compl
+ ;;^UTILITY(U,$J,358.3,52285,1,4,0)
+ ;;=4^E11.628
+ ;;^UTILITY(U,$J,358.3,52285,2)
+ ;;=^5002658
+ ;;^UTILITY(U,$J,358.3,52286,0)
+ ;;=E11.630^^193^2527^33
+ ;;^UTILITY(U,$J,358.3,52286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55053,1,3,0)
- ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,55053,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,55053,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,55054,0)
- ;;=C79.51^^256^2775^111
+ ;;^UTILITY(U,$J,358.3,52286,1,3,0)
+ ;;=3^DM Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,52286,1,4,0)
+ ;;=4^E11.630

@@ -1,58 +1,128 @@
-IBDEI11H ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,16705,0)
+ ;;=Z87.310^^88^880^99
+ ;;^UTILITY(U,$J,358.3,16705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16705,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,16705,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,16705,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,16706,0)
+ ;;=Z87.442^^88^880^110
+ ;;^UTILITY(U,$J,358.3,16706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16706,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,16706,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,16706,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,16707,0)
+ ;;=Z87.81^^88^880^108
+ ;;^UTILITY(U,$J,358.3,16707,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16707,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,16707,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,16707,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,16708,0)
+ ;;=Z87.890^^88^880^103
+ ;;^UTILITY(U,$J,358.3,16708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16708,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,16708,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,16708,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,16709,0)
+ ;;=Z87.892^^88^880^68
+ ;;^UTILITY(U,$J,358.3,16709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16709,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,16709,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,16709,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,16710,0)
+ ;;=Z87.39^^88^880^96
+ ;;^UTILITY(U,$J,358.3,16710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16710,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease
+ ;;^UTILITY(U,$J,358.3,16710,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,16710,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,16711,0)
+ ;;=Z87.820^^88^880^105
+ ;;^UTILITY(U,$J,358.3,16711,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16711,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,16711,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,16711,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,16712,0)
+ ;;=Z91.82^^88^880^95
+ ;;^UTILITY(U,$J,358.3,16712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16712,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,16712,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,16712,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,16713,0)
+ ;;=Z91.5^^88^880^102
+ ;;^UTILITY(U,$J,358.3,16713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16713,1,3,0)
+ ;;=3^Personal Hx of Self-Harm/Suicide Attempt
+ ;;^UTILITY(U,$J,358.3,16713,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,16713,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,16714,0)
+ ;;=Z91.030^^88^880^5
+ ;;^UTILITY(U,$J,358.3,16714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16714,1,3,0)
+ ;;=3^Bee Allergy
+ ;;^UTILITY(U,$J,358.3,16714,1,4,0)
+ ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,16714,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,16715,0)
+ ;;=Z91.038^^88^880^52
+ ;;^UTILITY(U,$J,358.3,16715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16715,1,3,0)
+ ;;=3^Insect Allergy NEC
+ ;;^UTILITY(U,$J,358.3,16715,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,16715,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,16716,0)
+ ;;=Z91.041^^88^880^145
+ ;;^UTILITY(U,$J,358.3,16716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16716,1,3,0)
+ ;;=3^Radiographic Dye Allergy
+ ;;^UTILITY(U,$J,358.3,16716,1,4,0)
+ ;;=4^Z91.041
+ ;;^UTILITY(U,$J,358.3,16716,2)
+ ;;=^5063608
+ ;;^UTILITY(U,$J,358.3,16717,0)
+ ;;=Z91.130^^88^880^152
+ ;;^UTILITY(U,$J,358.3,16717,1,0)
+ ;;=^358.31IA^4^2

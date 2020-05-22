@@ -1,126 +1,120 @@
-IBDEI2BK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2BK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39340,2)
- ;;=^5005908
- ;;^UTILITY(U,$J,358.3,39341,0)
- ;;=H40.61X3^^153^1921^42
- ;;^UTILITY(U,$J,358.3,39341,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39341,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,39341,1,4,0)
- ;;=4^H40.61X3
- ;;^UTILITY(U,$J,358.3,39341,2)
- ;;=^5133509
- ;;^UTILITY(U,$J,358.3,39342,0)
- ;;=H40.61X4^^153^1921^39
- ;;^UTILITY(U,$J,358.3,39342,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39342,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,39342,1,4,0)
- ;;=4^H40.61X4
- ;;^UTILITY(U,$J,358.3,39342,2)
- ;;=^5005909
- ;;^UTILITY(U,$J,358.3,39343,0)
- ;;=H40.62X1^^153^1921^35
- ;;^UTILITY(U,$J,358.3,39343,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39343,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,39343,1,4,0)
- ;;=4^H40.62X1
- ;;^UTILITY(U,$J,358.3,39343,2)
- ;;=^5005911
- ;;^UTILITY(U,$J,358.3,39344,0)
- ;;=H40.62X0^^153^1921^38
- ;;^UTILITY(U,$J,358.3,39344,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39344,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,39344,1,4,0)
- ;;=4^H40.62X0
- ;;^UTILITY(U,$J,358.3,39344,2)
- ;;=^5005910
- ;;^UTILITY(U,$J,358.3,39345,0)
- ;;=H40.62X2^^153^1921^36
- ;;^UTILITY(U,$J,358.3,39345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39345,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,39345,1,4,0)
- ;;=4^H40.62X2
- ;;^UTILITY(U,$J,358.3,39345,2)
- ;;=^5005912
- ;;^UTILITY(U,$J,358.3,39346,0)
- ;;=H40.62X3^^153^1921^37
- ;;^UTILITY(U,$J,358.3,39346,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39346,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,39346,1,4,0)
- ;;=4^H40.62X3
- ;;^UTILITY(U,$J,358.3,39346,2)
- ;;=^5133510
- ;;^UTILITY(U,$J,358.3,39347,0)
- ;;=H40.62X4^^153^1921^34
- ;;^UTILITY(U,$J,358.3,39347,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39347,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,39347,1,4,0)
- ;;=4^H40.62X4
- ;;^UTILITY(U,$J,358.3,39347,2)
- ;;=^5005913
- ;;^UTILITY(U,$J,358.3,39348,0)
- ;;=H40.63X0^^153^1921^33
- ;;^UTILITY(U,$J,358.3,39348,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39348,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,39348,1,4,0)
- ;;=4^H40.63X0
- ;;^UTILITY(U,$J,358.3,39348,2)
- ;;=^5005914
- ;;^UTILITY(U,$J,358.3,39349,0)
- ;;=H40.63X1^^153^1921^30
- ;;^UTILITY(U,$J,358.3,39349,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39349,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,39349,1,4,0)
- ;;=4^H40.63X1
- ;;^UTILITY(U,$J,358.3,39349,2)
- ;;=^5005915
- ;;^UTILITY(U,$J,358.3,39350,0)
- ;;=H40.63X2^^153^1921^31
- ;;^UTILITY(U,$J,358.3,39350,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39350,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,39350,1,4,0)
- ;;=4^H40.63X2
- ;;^UTILITY(U,$J,358.3,39350,2)
- ;;=^5005916
- ;;^UTILITY(U,$J,358.3,39351,0)
- ;;=H40.63X3^^153^1921^32
- ;;^UTILITY(U,$J,358.3,39351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39351,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,39351,1,4,0)
- ;;=4^H40.63X3
- ;;^UTILITY(U,$J,358.3,39351,2)
- ;;=^5005917
- ;;^UTILITY(U,$J,358.3,39352,0)
- ;;=H40.63X4^^153^1921^29
- ;;^UTILITY(U,$J,358.3,39352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39352,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,39352,1,4,0)
- ;;=4^H40.63X4
- ;;^UTILITY(U,$J,358.3,39352,2)
- ;;=^5005918
+ ;;^UTILITY(U,$J,358.3,37056,1,2,0)
+ ;;=2^15760
+ ;;^UTILITY(U,$J,358.3,37056,1,3,0)
+ ;;=3^Graft;Composite,Incl Prim Clsr,Donor Area
+ ;;^UTILITY(U,$J,358.3,37057,0)
+ ;;=15770^^143^1905^9^^^^1
+ ;;^UTILITY(U,$J,358.3,37057,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37057,1,2,0)
+ ;;=2^15770
+ ;;^UTILITY(U,$J,358.3,37057,1,3,0)
+ ;;=3^Garft;Derma-Fat-Fascia
+ ;;^UTILITY(U,$J,358.3,37058,0)
+ ;;=17106^^143^1906^1^^^^1
+ ;;^UTILITY(U,$J,358.3,37058,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37058,1,2,0)
+ ;;=2^17106
+ ;;^UTILITY(U,$J,358.3,37058,1,3,0)
+ ;;=3^Dest Cutan Vasc Prolif Lesion < 10 sq cm
+ ;;^UTILITY(U,$J,358.3,37059,0)
+ ;;=17107^^143^1906^2^^^^1
+ ;;^UTILITY(U,$J,358.3,37059,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37059,1,2,0)
+ ;;=2^17107
+ ;;^UTILITY(U,$J,358.3,37059,1,3,0)
+ ;;=3^Dest Cutan Vasc Prolif Lesion 10-50 sq cm
+ ;;^UTILITY(U,$J,358.3,37060,0)
+ ;;=17108^^143^1906^3^^^^1
+ ;;^UTILITY(U,$J,358.3,37060,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37060,1,2,0)
+ ;;=2^17108
+ ;;^UTILITY(U,$J,358.3,37060,1,3,0)
+ ;;=3^Dest Cutan Vasc Prolif Lesion > 50 sq cm
+ ;;^UTILITY(U,$J,358.3,37061,0)
+ ;;=10021^^143^1907^9^^^^1
+ ;;^UTILITY(U,$J,358.3,37061,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37061,1,2,0)
+ ;;=2^10021
+ ;;^UTILITY(U,$J,358.3,37061,1,3,0)
+ ;;=3^FNA w/o Image Guidance,1st Lesion
+ ;;^UTILITY(U,$J,358.3,37062,0)
+ ;;=10004^^143^1907^10^^^^1
+ ;;^UTILITY(U,$J,358.3,37062,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37062,1,2,0)
+ ;;=2^10004
+ ;;^UTILITY(U,$J,358.3,37062,1,3,0)
+ ;;=3^FNA w/o Image Guidance,Ea Addl Lesion
+ ;;^UTILITY(U,$J,358.3,37063,0)
+ ;;=10005^^143^1907^7^^^^1
+ ;;^UTILITY(U,$J,358.3,37063,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37063,1,2,0)
+ ;;=2^10005
+ ;;^UTILITY(U,$J,358.3,37063,1,3,0)
+ ;;=3^FNA w/ US Guidance,1st Lesion
+ ;;^UTILITY(U,$J,358.3,37064,0)
+ ;;=10006^^143^1907^8^^^^1
+ ;;^UTILITY(U,$J,358.3,37064,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37064,1,2,0)
+ ;;=2^10006
+ ;;^UTILITY(U,$J,358.3,37064,1,3,0)
+ ;;=3^FNA w/ US Guidance,Ea Addl Lesion
+ ;;^UTILITY(U,$J,358.3,37065,0)
+ ;;=10007^^143^1907^3^^^^1
+ ;;^UTILITY(U,$J,358.3,37065,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37065,1,2,0)
+ ;;=2^10007
+ ;;^UTILITY(U,$J,358.3,37065,1,3,0)
+ ;;=3^FNA w/ Fluro Guidance,1st Lesion
+ ;;^UTILITY(U,$J,358.3,37066,0)
+ ;;=10008^^143^1907^4^^^^1
+ ;;^UTILITY(U,$J,358.3,37066,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37066,1,2,0)
+ ;;=2^10008
+ ;;^UTILITY(U,$J,358.3,37066,1,3,0)
+ ;;=3^FNA w/ Fluro Guidance,Ea Addl Lesion
+ ;;^UTILITY(U,$J,358.3,37067,0)
+ ;;=10009^^143^1907^1^^^^1
+ ;;^UTILITY(U,$J,358.3,37067,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37067,1,2,0)
+ ;;=2^10009
+ ;;^UTILITY(U,$J,358.3,37067,1,3,0)
+ ;;=3^FNA w/ CT Guidance,1st Lesion
+ ;;^UTILITY(U,$J,358.3,37068,0)
+ ;;=10010^^143^1907^2^^^^1
+ ;;^UTILITY(U,$J,358.3,37068,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37068,1,2,0)
+ ;;=2^10010
+ ;;^UTILITY(U,$J,358.3,37068,1,3,0)
+ ;;=3^FNA w/ CT Guidance,Ea Addl Lesion
+ ;;^UTILITY(U,$J,358.3,37069,0)
+ ;;=10011^^143^1907^5^^^^1
+ ;;^UTILITY(U,$J,358.3,37069,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37069,1,2,0)
+ ;;=2^10011
+ ;;^UTILITY(U,$J,358.3,37069,1,3,0)
+ ;;=3^FNA w/ MR Guidance,1st Lesion
+ ;;^UTILITY(U,$J,358.3,37070,0)
+ ;;=10012^^143^1907^6^^^^1
+ ;;^UTILITY(U,$J,358.3,37070,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37070,1,2,0)
+ ;;=2^10012
+ ;;^UTILITY(U,$J,358.3,37070,1,3,0)
+ ;;=3^FNA w/ MR Guidance,Ea Addl Lesion

@@ -1,132 +1,112 @@
-IBDEI2JL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43126,1,0)
+ ;;^UTILITY(U,$J,358.3,40594,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40594,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,40594,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,40595,0)
+ ;;=S56.012A^^152^2013^36
+ ;;^UTILITY(U,$J,358.3,40595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43126,1,3,0)
- ;;=3^Cellulitis Lt Lower Limb
- ;;^UTILITY(U,$J,358.3,43126,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,43126,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,43127,0)
- ;;=L97.119^^164^2060^127
- ;;^UTILITY(U,$J,358.3,43127,1,0)
+ ;;^UTILITY(U,$J,358.3,40595,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40595,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,40595,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,40596,0)
+ ;;=S56.111A^^152^2013^43
+ ;;^UTILITY(U,$J,358.3,40596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43127,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Thigh
- ;;^UTILITY(U,$J,358.3,43127,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,43127,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,43128,0)
- ;;=L97.129^^164^2060^123
- ;;^UTILITY(U,$J,358.3,43128,1,0)
+ ;;^UTILITY(U,$J,358.3,40596,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40596,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,40596,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,40597,0)
+ ;;=S56.112A^^152^2013^23
+ ;;^UTILITY(U,$J,358.3,40597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43128,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Thigh
- ;;^UTILITY(U,$J,358.3,43128,1,4,0)
- ;;=4^L97.129
- ;;^UTILITY(U,$J,358.3,43128,2)
- ;;=^5009494
- ;;^UTILITY(U,$J,358.3,43129,0)
- ;;=L97.219^^164^2060^124
- ;;^UTILITY(U,$J,358.3,43129,1,0)
+ ;;^UTILITY(U,$J,358.3,40597,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40597,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,40597,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,40598,0)
+ ;;=S56.113A^^152^2013^51
+ ;;^UTILITY(U,$J,358.3,40598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43129,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Calf
- ;;^UTILITY(U,$J,358.3,43129,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,43129,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,43130,0)
- ;;=L97.229^^164^2060^120
- ;;^UTILITY(U,$J,358.3,43130,1,0)
+ ;;^UTILITY(U,$J,358.3,40598,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40598,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,40598,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,40599,0)
+ ;;=S56.114A^^152^2013^31
+ ;;^UTILITY(U,$J,358.3,40599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43130,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Calf
- ;;^UTILITY(U,$J,358.3,43130,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,43130,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,43131,0)
- ;;=L97.419^^164^2060^125
- ;;^UTILITY(U,$J,358.3,43131,1,0)
+ ;;^UTILITY(U,$J,358.3,40599,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40599,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,40599,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,40600,0)
+ ;;=S56.115A^^152^2013^53
+ ;;^UTILITY(U,$J,358.3,40600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43131,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,43131,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,43131,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,43132,0)
- ;;=L97.429^^164^2060^121
- ;;^UTILITY(U,$J,358.3,43132,1,0)
+ ;;^UTILITY(U,$J,358.3,40600,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40600,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,40600,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,40601,0)
+ ;;=S56.417A^^152^2013^45
+ ;;^UTILITY(U,$J,358.3,40601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43132,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,43132,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,43132,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,43133,0)
- ;;=L97.519^^164^2060^126
- ;;^UTILITY(U,$J,358.3,43133,1,0)
+ ;;^UTILITY(U,$J,358.3,40601,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40601,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,40601,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,40602,0)
+ ;;=S56.418A^^152^2013^25
+ ;;^UTILITY(U,$J,358.3,40602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43133,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Rt Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,43133,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,43133,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,43134,0)
- ;;=L97.529^^164^2060^122
- ;;^UTILITY(U,$J,358.3,43134,1,0)
+ ;;^UTILITY(U,$J,358.3,40602,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40602,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,40602,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,40603,0)
+ ;;=S56.811A^^152^2013^41
+ ;;^UTILITY(U,$J,358.3,40603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43134,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Lt Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,43134,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,43134,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,43135,0)
- ;;=L98.419^^164^2060^119
- ;;^UTILITY(U,$J,358.3,43135,1,0)
+ ;;^UTILITY(U,$J,358.3,40603,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40603,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,40603,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,40604,0)
+ ;;=S56.812A^^152^2013^21
+ ;;^UTILITY(U,$J,358.3,40604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43135,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Buttock
- ;;^UTILITY(U,$J,358.3,43135,1,4,0)
- ;;=4^L98.419
- ;;^UTILITY(U,$J,358.3,43135,2)
- ;;=^5009581
- ;;^UTILITY(U,$J,358.3,43136,0)
- ;;=L98.429^^164^2060^118
- ;;^UTILITY(U,$J,358.3,43136,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43136,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Back
- ;;^UTILITY(U,$J,358.3,43136,1,4,0)
- ;;=4^L98.429
- ;;^UTILITY(U,$J,358.3,43136,2)
- ;;=^5009586
- ;;^UTILITY(U,$J,358.3,43137,0)
- ;;=M79.89^^164^2060^142
- ;;^UTILITY(U,$J,358.3,43137,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43137,1,3,0)
- ;;=3^Soft Tissue Disorders
- ;;^UTILITY(U,$J,358.3,43137,1,4,0)
- ;;=4^M79.89
- ;;^UTILITY(U,$J,358.3,43137,2)
- ;;=^5013357
- ;;^UTILITY(U,$J,358.3,43138,0)
- ;;=M86.671^^164^2060^77
- ;;^UTILITY(U,$J,358.3,43138,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43138,1,3,0)
- ;;=3^Chr Osteomyelitis Rt Ankle & Foot
- ;;^UTILITY(U,$J,358.3,43138,1,4,0)
- ;;=4^M86.671
- ;;^UTILITY(U,$J,358.3,43138,2)
- ;;=^5014641
+ ;;^UTILITY(U,$J,358.3,40604,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40604,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,40604,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,40605,0)
+ ;;=S56.116A^^152^2013^33

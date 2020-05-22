@@ -1,136 +1,116 @@
-IBDEI1BO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22480,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,22480,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,22481,0)
- ;;=C79.71^^87^981^151
- ;;^UTILITY(U,$J,358.3,22481,1,0)
+ ;;^UTILITY(U,$J,358.3,21132,1,4,0)
+ ;;=4^F13.282
+ ;;^UTILITY(U,$J,358.3,21132,2)
+ ;;=^5003218
+ ;;^UTILITY(U,$J,358.3,21133,0)
+ ;;=F13.982^^95^1047^20
+ ;;^UTILITY(U,$J,358.3,21133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22481,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,22481,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,22481,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,22482,0)
- ;;=C78.01^^87^981^155
- ;;^UTILITY(U,$J,358.3,22482,1,0)
+ ;;^UTILITY(U,$J,358.3,21133,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21133,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,21133,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,21134,0)
+ ;;=F13.129^^95^1047^21
+ ;;^UTILITY(U,$J,358.3,21134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22482,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,22482,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,22482,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,22483,0)
- ;;=C79.70^^87^981^106
- ;;^UTILITY(U,$J,358.3,22483,1,0)
+ ;;^UTILITY(U,$J,358.3,21134,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21134,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,21134,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,21135,0)
+ ;;=F13.229^^95^1047^22
+ ;;^UTILITY(U,$J,358.3,21135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22483,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,22483,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,22483,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,22484,0)
- ;;=C78.00^^87^981^139
- ;;^UTILITY(U,$J,358.3,22484,1,0)
+ ;;^UTILITY(U,$J,358.3,21135,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21135,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,21135,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,21136,0)
+ ;;=F13.929^^95^1047^23
+ ;;^UTILITY(U,$J,358.3,21136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22484,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,22484,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,22484,2)
- ;;=^5001334
- ;;^UTILITY(U,$J,358.3,22485,0)
- ;;=D57.1^^87^981^182
- ;;^UTILITY(U,$J,358.3,22485,1,0)
+ ;;^UTILITY(U,$J,358.3,21136,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21136,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,21136,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,21137,0)
+ ;;=F13.121^^95^1047^24
+ ;;^UTILITY(U,$J,358.3,21137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22485,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,22485,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,22485,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,22486,0)
- ;;=D75.1^^87^981^180
- ;;^UTILITY(U,$J,358.3,22486,1,0)
+ ;;^UTILITY(U,$J,358.3,21137,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21137,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,21137,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,21138,0)
+ ;;=F13.221^^95^1047^25
+ ;;^UTILITY(U,$J,358.3,21138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22486,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,22486,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,22486,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,22487,0)
- ;;=C90.30^^87^981^183
- ;;^UTILITY(U,$J,358.3,22487,1,0)
+ ;;^UTILITY(U,$J,358.3,21138,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21138,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,21138,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,21139,0)
+ ;;=F13.10^^95^1047^27
+ ;;^UTILITY(U,$J,358.3,21139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22487,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,22487,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,22487,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,22488,0)
- ;;=D56.3^^87^981^184
- ;;^UTILITY(U,$J,358.3,22488,1,0)
+ ;;^UTILITY(U,$J,358.3,21139,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21139,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,21139,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,21140,0)
+ ;;=F13.20^^95^1047^4
+ ;;^UTILITY(U,$J,358.3,21140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22488,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,22488,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,22488,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,22489,0)
- ;;=D56.9^^87^981^185
- ;;^UTILITY(U,$J,358.3,22489,1,0)
+ ;;^UTILITY(U,$J,358.3,21140,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Dependence
+ ;;^UTILITY(U,$J,358.3,21140,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,21140,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,21141,0)
+ ;;=F13.232^^95^1047^30
+ ;;^UTILITY(U,$J,358.3,21141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22489,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,22489,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,22489,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,22490,0)
- ;;=M31.1^^87^981^187
- ;;^UTILITY(U,$J,358.3,22490,1,0)
+ ;;^UTILITY(U,$J,358.3,21141,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,21141,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,21141,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,21142,0)
+ ;;=F13.239^^95^1047^31
+ ;;^UTILITY(U,$J,358.3,21142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22490,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,22490,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,22490,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,22491,0)
- ;;=D51.2^^87^981^188
- ;;^UTILITY(U,$J,358.3,22491,1,0)
+ ;;^UTILITY(U,$J,358.3,21142,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,21142,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,21142,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,21143,0)
+ ;;=F13.231^^95^1047^32
+ ;;^UTILITY(U,$J,358.3,21143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22491,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,22491,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,22491,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,22492,0)
- ;;=D05.92^^87^981^35
- ;;^UTILITY(U,$J,358.3,22492,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22492,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,22492,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,22492,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,22493,0)
- ;;=D05.91^^87^981^37
- ;;^UTILITY(U,$J,358.3,22493,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22493,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,22493,1,4,0)
- ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,21143,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,21143,1,4,0)
+ ;;=4^F13.231

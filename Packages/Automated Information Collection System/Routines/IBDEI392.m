@@ -1,138 +1,124 @@
-IBDEI392 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI392 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54615,1,0)
+ ;;^UTILITY(U,$J,358.3,51882,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,51883,0)
+ ;;=L08.89^^193^2514^2
+ ;;^UTILITY(U,$J,358.3,51883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54615,1,3,0)
- ;;=3^Hypoglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,54615,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,54615,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,54616,0)
- ;;=E20.0^^256^2767^34
- ;;^UTILITY(U,$J,358.3,54616,1,0)
+ ;;^UTILITY(U,$J,358.3,51883,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,51883,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,51883,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,51884,0)
+ ;;=S91.002A^^193^2514^4
+ ;;^UTILITY(U,$J,358.3,51884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54616,1,3,0)
- ;;=3^Idiopathic Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,54616,1,4,0)
- ;;=4^E20.0
- ;;^UTILITY(U,$J,358.3,54616,2)
- ;;=^5002712
- ;;^UTILITY(U,$J,358.3,54617,0)
- ;;=E20.9^^256^2767^30
- ;;^UTILITY(U,$J,358.3,54617,1,0)
+ ;;^UTILITY(U,$J,358.3,51884,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,51884,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,51884,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,51885,0)
+ ;;=S91.302A^^193^2514^5
+ ;;^UTILITY(U,$J,358.3,51885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54617,1,3,0)
- ;;=3^Hypoparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,54617,1,4,0)
- ;;=4^E20.9
- ;;^UTILITY(U,$J,358.3,54617,2)
- ;;=^5002714
- ;;^UTILITY(U,$J,358.3,54618,0)
- ;;=E23.0^^256^2767^31
- ;;^UTILITY(U,$J,358.3,54618,1,0)
+ ;;^UTILITY(U,$J,358.3,51885,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,51885,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,51885,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,51886,0)
+ ;;=S51.802A^^193^2514^6
+ ;;^UTILITY(U,$J,358.3,51886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54618,1,3,0)
- ;;=3^Hypopituitarism
- ;;^UTILITY(U,$J,358.3,54618,1,4,0)
- ;;=4^E23.0
- ;;^UTILITY(U,$J,358.3,54618,2)
- ;;=^60685
- ;;^UTILITY(U,$J,358.3,54619,0)
- ;;=E27.1^^256^2767^51
- ;;^UTILITY(U,$J,358.3,54619,1,0)
+ ;;^UTILITY(U,$J,358.3,51886,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,51886,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,51886,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,51887,0)
+ ;;=S91.102A^^193^2514^7
+ ;;^UTILITY(U,$J,358.3,51887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54619,1,3,0)
- ;;=3^Primary Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,54619,1,4,0)
- ;;=4^E27.1
- ;;^UTILITY(U,$J,358.3,54619,2)
- ;;=^5002740
- ;;^UTILITY(U,$J,358.3,54620,0)
- ;;=E27.2^^256^2767^1
- ;;^UTILITY(U,$J,358.3,54620,1,0)
+ ;;^UTILITY(U,$J,358.3,51887,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,51887,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,51887,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,51888,0)
+ ;;=S61.402A^^193^2514^8
+ ;;^UTILITY(U,$J,358.3,51888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54620,1,3,0)
- ;;=3^Addisonian Crisis
- ;;^UTILITY(U,$J,358.3,54620,1,4,0)
- ;;=4^E27.2
- ;;^UTILITY(U,$J,358.3,54620,2)
- ;;=^263725
- ;;^UTILITY(U,$J,358.3,54621,0)
- ;;=E27.3^^256^2767^23
- ;;^UTILITY(U,$J,358.3,54621,1,0)
+ ;;^UTILITY(U,$J,358.3,51888,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,51888,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,51888,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,51889,0)
+ ;;=S71.002A^^193^2514^9
+ ;;^UTILITY(U,$J,358.3,51889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54621,1,3,0)
- ;;=3^Drug-induced Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,54621,1,4,0)
- ;;=4^E27.3
- ;;^UTILITY(U,$J,358.3,54621,2)
- ;;=^5002741
- ;;^UTILITY(U,$J,358.3,54622,0)
- ;;=E29.1^^256^2767^52
- ;;^UTILITY(U,$J,358.3,54622,1,0)
+ ;;^UTILITY(U,$J,358.3,51889,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,51889,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,51889,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,51890,0)
+ ;;=S91.104A^^193^2514^20
+ ;;^UTILITY(U,$J,358.3,51890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54622,1,3,0)
- ;;=3^Testicular Hypofunction
- ;;^UTILITY(U,$J,358.3,54622,1,4,0)
- ;;=4^E29.1
- ;;^UTILITY(U,$J,358.3,54622,2)
- ;;=^5002754
- ;;^UTILITY(U,$J,358.3,54623,0)
- ;;=E55.9^^256^2767^59
- ;;^UTILITY(U,$J,358.3,54623,1,0)
+ ;;^UTILITY(U,$J,358.3,51890,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,51890,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,51890,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,51891,0)
+ ;;=S81.802A^^193^2514^11
+ ;;^UTILITY(U,$J,358.3,51891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54623,1,3,0)
- ;;=3^Vitamin D Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,54623,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,54623,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,54624,0)
- ;;=E66.01^^256^2767^38
- ;;^UTILITY(U,$J,358.3,54624,1,0)
+ ;;^UTILITY(U,$J,358.3,51891,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,51891,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,51891,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,51892,0)
+ ;;=S41.102A^^193^2514^13
+ ;;^UTILITY(U,$J,358.3,51892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54624,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,54624,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,54624,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,54625,0)
- ;;=E66.8^^256^2767^42
- ;;^UTILITY(U,$J,358.3,54625,1,0)
+ ;;^UTILITY(U,$J,358.3,51892,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,51892,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,51892,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,51893,0)
+ ;;=S91.001A^^193^2514^14
+ ;;^UTILITY(U,$J,358.3,51893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54625,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,54625,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,54625,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,54626,0)
- ;;=E66.9^^256^2767^43
- ;;^UTILITY(U,$J,358.3,54626,1,0)
+ ;;^UTILITY(U,$J,358.3,51893,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,51893,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,51893,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,51894,0)
+ ;;=S91.301A^^193^2514^15
+ ;;^UTILITY(U,$J,358.3,51894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54626,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,54626,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,54626,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,54627,0)
- ;;=E74.39^^256^2767^35
- ;;^UTILITY(U,$J,358.3,54627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54627,1,3,0)
- ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
- ;;^UTILITY(U,$J,358.3,54627,1,4,0)
- ;;=4^E74.39
- ;;^UTILITY(U,$J,358.3,54627,2)
- ;;=^5002928
- ;;^UTILITY(U,$J,358.3,54628,0)
- ;;=E83.30^^256^2767^46
- ;;^UTILITY(U,$J,358.3,54628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54628,1,3,0)
- ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,51894,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,51894,1,4,0)
+ ;;=4^S91.301A

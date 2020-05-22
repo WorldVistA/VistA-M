@@ -1,5 +1,5 @@
-RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ;16 Apr 2019 2:18 PM
- ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47,157**;Mar 16, 1998;Build 2
+RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ; Jan 06, 2020@15:12:27
+ ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47,157,162**;Mar 16, 1998;Build 2
  ; 12/15/2009 BAY/KAM RA*5*104 Rem Call 359702 On-line Verification issue
  ; 11/15/2007 BAY/KAM RA*5*87 Rem Call 216332 Correct UNDEF on null dx code
  ; 09/07/2005 108405 - KAM/BAY Allow Radiology to accept dx codes from Talk Technology
@@ -11,11 +11,10 @@ RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ;16 Apr 2019 2:18 PM
  ;EN^XUSHSHP(10045)
  ;
 FILE ;Create entry in file 74 & file data (remember: U = "^")
- ;Lock an existing report record; quit if unsuccessful. If there is not existing record find
- ;the next available record number and then lock the record specific global by calling
- ;$$NEWIEN^RAHLTCPU @ line tag NEW1 (lock is implicit; lock set within $$NEWIEN^RAHLTCPU)
+ ;An existing report record was locked in RAHLO. If no report, find the next available
+ ;report record number, create the report record and lock it. the software
+ ;locks the new report record by calling $$NEWIEN^RAHLTCPU @ tag NEW1
  ;
- I RARPT>0 D LOCKR^RAHLTCPU(.RAERR) Q:$D(RAERR)#2
  N RAFDA,RAIENS
  ;
  I '$D(ZTQUEUED) N ZTQUEUED S ZTQUEUED="1^dummy to suppress screen displays in UP2^RAUTL1 and elsewhere"
@@ -32,25 +31,29 @@ FILE ;Create entry in file 74 & file data (remember: U = "^")
  . ; if report isn't a stub report, then consider it being edited
  . S:'$$STUB^RAEDCN1(RARPT) RAEDIT=1 ;log report receipt event as an edit event
  . I $D(RADENDUM)#2,($P(^RARPT(RARPT,0),U,5)="V") D  Q  ;back the report down from verified
- .. L -^RARPT(RARPT) ;unlock the report; remember we locked it right after FILE^RAHLO1
- .. D UNVER^RARTE1(RARPT) ;Why the unlock above? Because UNVER^RARTE1 will lock the report
+ .. L -^RARPT(RARPT) ;*** -LR1 unlock the report b/c UNVER^RARTE1 also locks the report ***
+ .. D UNVER^RARTE1(RARPT)
  .. S RARPT=RASAV  ;RTK 7/28 for RARPT killed in UNVER^RARTE1
- .. D LOCKR^RAHLTCPU(.RAERR) ;re-lock the report after UNVER^RARTE1 releases its lock
+ .. S RADUZ=$G(^TMP("RARPT-REC",$J,RASUB,"RAVERF")) ;reset RADUZ for P162
+ .. D LOCKR^RAHLTCPU(.RAERR) ;*** +LR1 re-lock the report post UNVER^RARTE1 ***
  .. Q
  . K:'($D(RAERR)#2) ^RARPT(RARPT,"I"),^("R"),^("H")
  . Q
  ;
- ; Create a new report record
-NEW1 N RARPT S RARPT=$$NEWIEN^RAHLTCPU()
+NEW1 ; The variable RARPT is set to zero in RAHLO. NEWIEN^RAHLTCPU() will
+ ; return a record number in RARPT to used for filing a new report. Use
+ ; UPDATE^DIE to create a report with the record number returned in RARPT.
+ S RARPT=$$NEWIEN^RAHLTCPU()
  ;
- ;we have a new IEN and the record in locked. Now update that record using UPDATE^DIE
+ ;*** + LR2 $$NEWIEN^RAHLTCPU() locked the new report record *** P162
  S RAIENS(1)=RARPT,RAFDA(74,"+1,",.01)=RALONGCN,RAFDA(74,"+1,",2)=RADFN
  ;S RAFDA(74,"+1,",3)=(9999999.9999-RADTI),RAFDA(74,"+1,",4)=$P(RALONGCN,"-",2)
  S RAFDA(74,"+1,",3)=(9999999.9999-RADTI),RAFDA(74,"+1,",4)=$P(RALONGCN,"-",$L(RALONGCN,"-"))  ;format of RALONGCN after P47 could be SSS-DDDDDD-CASE# so get LAST "-" piece instead of 2nd piece
  D UPDATE^DIE("","RAFDA","RAIENS","RAERR") K RAFDA,RAIENS
- I $D(RAERR("DIERR"))#2 S RAERR="Error filing a new record in the RAD/NUC MED REPORTS file."  L -^RARPT(RARPT) Q
+ I $D(RAERR("DIERR"))#2 S RAERR="Error filing a new record in the RAD/NUC MED REPORTS file." Q  ;report is unlocked upon return to RAHLO p162
  ;
-LOCK1 I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
+LOCK1 ;jump here if we intend to amend an existing report
+ I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
  K RAFDA,RAIENS S RAIENS=RARPT_","
  S RAFDA(74,RAIENS,5)=RARPTSTS ; rpt status
  ;Verifier & Verified date will be set if RAVERF exists for new
@@ -67,7 +70,7 @@ LOCK1 I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
  ;next: status changed to 'verified' by
  I $G(RAVERF),(RARPTSTS="V") S RAFDA(74,RAIENS,17)=$G(^TMP("RARPT-REC",$J,RASUB,"RAWHOCHANGE"))
  D FILE^DIE("","RAFDA","RAERR")
- I $D(RAERR("DIERR"))#2 D  L -^RARPT(RARPT) Q  ;if error, unlock f74 and quit.
+ I $D(RAERR("DIERR"))#2 D  Q  ;report is unlocked upon return to RAHLO p162
  .S RAERR="Error filing report record data in the RAD/NUC MED REPORTS file."
  .;KILL THE WHOLE RECORD???
  .Q
@@ -105,16 +108,16 @@ LOCK1 I $D(RAESIG) S X=RAESIG,X1=$G(RAVERF),X2=RARPT D EN^XUSHSHP S RAESIG=X
  .S:$D(^VA(200,"ARC","S",RAZSTF)) RAFDA(70.03,RAIENS,15)=RAZSTF
  .Q
  ;
- S RAZ7003=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) ;the following business rule needs review
+ S RAZ7003=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) ;the following business rule WAS reviewed
  S RAZPCE=$S($D(^VA(200,"ARC","S",+$G(RAVERF))):15,$D(^VA(200,"ARC","R",+$G(RAVERF))):12,1:"")
- I '($D(RADENDUM)#2),(RAZPCE),($P(RAZ7003,U,RAZPCE)="") S RAFDA(70.03,RAIENS,RAZPCE)=$G(RAVERF)
+ I '($D(RADENDUM)#2),(RAZPCE) S RAFDA(70.03,RAIENS,RAZPCE)=$G(RAVERF) ;P162
  ;
  ;file the report pointer w/the exam record
  S RAFDA(70.03,RAIENS,17)=RARPT
  D FILE^DIE(,"RAFDA","RAERR")
- I $D(RAERR("DIERR"))#2 D  L -^RARPT(RARPT) Q  ;if error, unlock f74 and quit.
+ I $D(RAERR("DIERR"))#2 D  Q  ;report is unlocked upon return to RAHLO p162
  .N RAFIELD S RAFIELD=$G(RAERR("DIERR",1,"PARAM","FIELD"))
- .S RAERR="Error: IENs = "_RAIENS_"; file:70.03; field: "_RAFIELD_" value: "_$S(RAFIELD=13:RADX,RAFIELD=12:RAZRES,RAFIELD=15:RAZSTF,1:RARPT)
+ .S RAERR="Error filing report pointer value: "_$G(RARPT,"unknown")
  K RAFDA,RAIENS,RAZ7003,RAZPCE,RAZRES,RAZSTF
  ;---- end FILE^DIE block for 70.03 ----
  ;
@@ -176,12 +179,20 @@ UPACT ;Update the Activity Log (74.01) w/DBS call
  ;S RAQUEUED=1 ;to be checked in routines "jumped to" from RAHLO1
  S DA=RARPT,DIK="^RARPT(",RAQUEUED=1 D IX^DIK K DA,DIK
  ;
- L -^RARPT(RARPT) ;unlock the report locked at FILE (existing rpt) or NEW1 (new rpt)
- ;
  ;If verified, update report & exam statuses; else, just update exam status
- ;Note: be careful; exam locks are executed within UP1^RAUTL1!
- I $D(RAMDV),RAMDV'="" D:RARPTSTS="V" UPSTAT^RAUTL0 D:RARPTSTS'="V" UP1^RAUTL1
- D:'$D(RAERR)&($G(^TMP("RARPT-REC",$J,RASUB,"VENDOR"))'="KURZWEIL") GENACK^RAHLTCPB ; generate 'ACK' message
+ ;Be careful; exam locks are executed within both:
+ ;- UPSTAT^RAUTL0
+ ;- UP1^RAUTL1
+ ;
+ I $D(RAMDV),RAMDV'="" D
+ .;*** unlock the study & report based on called tag^routines below p162 ***
+ .L -^RARPT(RARPT) L -^RADPT(RADFN,"DT",RADTI)
+ .D:RARPTSTS="V" UPSTAT^RAUTL0
+ .D:RARPTSTS'="V" UP1^RAUTL1
+ .Q
+ ;
+ ;p162 dropped the check for 'Kurzweil'
+ D:'$D(RAERR) GENACK^RAHLTCPB
  ;
 PACS ;If there are subscribers to RA RPT xxx events broadcast ORU mesages to those subscribers
  ;via TASK^RAHLO4. If VOICE DICTATION AUTO-PRINT (#26) field is set to 'Y' print the report to

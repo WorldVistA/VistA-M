@@ -1,140 +1,122 @@
-IBDEI1BY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22609,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,22609,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,22610,0)
- ;;=Z91.14^^87^982^71
- ;;^UTILITY(U,$J,358.3,22610,1,0)
+ ;;^UTILITY(U,$J,358.3,21251,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,21252,0)
+ ;;=F72.^^95^1057^16
+ ;;^UTILITY(U,$J,358.3,21252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22610,1,3,0)
- ;;=3^Noncompliance w/ Medication Regimen
- ;;^UTILITY(U,$J,358.3,22610,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,22610,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,22611,0)
- ;;=Z91.19^^87^982^70
- ;;^UTILITY(U,$J,358.3,22611,1,0)
+ ;;^UTILITY(U,$J,358.3,21252,1,3,0)
+ ;;=3^Intellectual Disability,Severe
+ ;;^UTILITY(U,$J,358.3,21252,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,21252,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,21253,0)
+ ;;=F90.8^^95^1057^5
+ ;;^UTILITY(U,$J,358.3,21253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22611,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment & Regimen
- ;;^UTILITY(U,$J,358.3,22611,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,22611,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,22612,0)
- ;;=Z93.1^^87^982^52
- ;;^UTILITY(U,$J,358.3,22612,1,0)
+ ;;^UTILITY(U,$J,358.3,21253,1,3,0)
+ ;;=3^Attention Deficit/Hyperactivity Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,21253,1,4,0)
+ ;;=4^F90.8
+ ;;^UTILITY(U,$J,358.3,21253,2)
+ ;;=^5003695
+ ;;^UTILITY(U,$J,358.3,21254,0)
+ ;;=F95.1^^95^1057^25
+ ;;^UTILITY(U,$J,358.3,21254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22612,1,3,0)
- ;;=3^Gastrostomy Status
- ;;^UTILITY(U,$J,358.3,22612,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,22612,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,22613,0)
- ;;=Z93.2^^87^982^58
- ;;^UTILITY(U,$J,358.3,22613,1,0)
+ ;;^UTILITY(U,$J,358.3,21254,1,3,0)
+ ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Vocal Tics Only
+ ;;^UTILITY(U,$J,358.3,21254,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,21254,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,21255,0)
+ ;;=F98.4^^95^1057^30
+ ;;^UTILITY(U,$J,358.3,21255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22613,1,3,0)
- ;;=3^Ileostomy Status
- ;;^UTILITY(U,$J,358.3,22613,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,22613,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,22614,0)
- ;;=Z93.3^^87^982^15
- ;;^UTILITY(U,$J,358.3,22614,1,0)
+ ;;^UTILITY(U,$J,358.3,21255,1,3,0)
+ ;;=3^Stereotypic Movement D/O w/ Self-Injurious Behavior
+ ;;^UTILITY(U,$J,358.3,21255,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,21255,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,21256,0)
+ ;;=F98.4^^95^1057^31
+ ;;^UTILITY(U,$J,358.3,21256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22614,1,3,0)
- ;;=3^Colostomy Status
- ;;^UTILITY(U,$J,358.3,22614,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,22614,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,22615,0)
- ;;=Z94.0^^87^982^63
- ;;^UTILITY(U,$J,358.3,22615,1,0)
+ ;;^UTILITY(U,$J,358.3,21256,1,3,0)
+ ;;=3^Stereotypic Movement D/O w/o Self-Injurious Behavior
+ ;;^UTILITY(U,$J,358.3,21256,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,21256,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,21257,0)
+ ;;=F90.9^^95^1057^6
+ ;;^UTILITY(U,$J,358.3,21257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22615,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,22615,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,22615,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,22616,0)
- ;;=Z94.1^^87^982^56
- ;;^UTILITY(U,$J,358.3,22616,1,0)
+ ;;^UTILITY(U,$J,358.3,21257,1,3,0)
+ ;;=3^Attention Deficit/Hyperativity Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21257,1,4,0)
+ ;;=4^F90.9
+ ;;^UTILITY(U,$J,358.3,21257,2)
+ ;;=^5003696
+ ;;^UTILITY(U,$J,358.3,21258,0)
+ ;;=F79.^^95^1057^17
+ ;;^UTILITY(U,$J,358.3,21258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22616,1,3,0)
- ;;=3^Heart Transplant Status
- ;;^UTILITY(U,$J,358.3,22616,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,22616,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,22617,0)
- ;;=Z94.2^^87^982^66
- ;;^UTILITY(U,$J,358.3,22617,1,0)
+ ;;^UTILITY(U,$J,358.3,21258,1,3,0)
+ ;;=3^Intellectual Disability,Unspec
+ ;;^UTILITY(U,$J,358.3,21258,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,21258,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,21259,0)
+ ;;=F15.929^^95^1058^7
+ ;;^UTILITY(U,$J,358.3,21259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22617,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,22617,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,22617,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,22618,0)
- ;;=Z94.3^^87^982^55
- ;;^UTILITY(U,$J,358.3,22618,1,0)
+ ;;^UTILITY(U,$J,358.3,21259,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,21259,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,21259,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,21260,0)
+ ;;=F15.93^^95^1058^8
+ ;;^UTILITY(U,$J,358.3,21260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22618,1,3,0)
- ;;=3^Heart & Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,22618,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,22618,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,22619,0)
- ;;=Z94.4^^87^982^65
- ;;^UTILITY(U,$J,358.3,22619,1,0)
+ ;;^UTILITY(U,$J,358.3,21260,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,21260,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,21260,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,21261,0)
+ ;;=F15.180^^95^1058^1
+ ;;^UTILITY(U,$J,358.3,21261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22619,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,22619,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,22619,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,22620,0)
- ;;=Z94.84^^87^982^143
- ;;^UTILITY(U,$J,358.3,22620,1,0)
+ ;;^UTILITY(U,$J,358.3,21261,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21261,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,21261,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,21262,0)
+ ;;=F15.280^^95^1058^2
+ ;;^UTILITY(U,$J,358.3,21262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22620,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,22620,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,22620,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,22621,0)
- ;;=Z96.21^^87^982^14
- ;;^UTILITY(U,$J,358.3,22621,1,0)
+ ;;^UTILITY(U,$J,358.3,21262,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21262,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,21262,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,21263,0)
+ ;;=F15.980^^95^1058^3
+ ;;^UTILITY(U,$J,358.3,21263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22621,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,22621,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,22621,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,22622,0)
- ;;=Z96.41^^87^982^126
- ;;^UTILITY(U,$J,358.3,22622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22622,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,22622,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,22622,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,22623,0)
- ;;=Z96.641^^87^982^134
+ ;;^UTILITY(U,$J,358.3,21263,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder

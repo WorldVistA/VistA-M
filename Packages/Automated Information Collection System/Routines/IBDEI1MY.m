@@ -1,134 +1,116 @@
-IBDEI1MY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27761,2)
- ;;=^5006881
- ;;^UTILITY(U,$J,358.3,27762,0)
- ;;=H81.43^^109^1383^5
- ;;^UTILITY(U,$J,358.3,27762,1,0)
+ ;;^UTILITY(U,$J,358.3,26127,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26127,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,26127,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,26128,0)
+ ;;=W18.11XD^^107^1230^69
+ ;;^UTILITY(U,$J,358.3,26128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27762,1,3,0)
- ;;=3^Vertigo of Central Origin,Bilateral
- ;;^UTILITY(U,$J,358.3,27762,1,4,0)
- ;;=4^H81.43
- ;;^UTILITY(U,$J,358.3,27762,2)
- ;;=^5006882
- ;;^UTILITY(U,$J,358.3,27763,0)
- ;;=G92.^^109^1384^6
- ;;^UTILITY(U,$J,358.3,27763,1,0)
+ ;;^UTILITY(U,$J,358.3,26128,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26128,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,26128,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,26129,0)
+ ;;=W18.12XA^^107^1230^66
+ ;;^UTILITY(U,$J,358.3,26129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27763,1,3,0)
- ;;=3^Toxic Encephalopathy
- ;;^UTILITY(U,$J,358.3,27763,1,4,0)
- ;;=4^G92.
- ;;^UTILITY(U,$J,358.3,27763,2)
- ;;=^259061
- ;;^UTILITY(U,$J,358.3,27764,0)
- ;;=G93.1^^109^1384^1
- ;;^UTILITY(U,$J,358.3,27764,1,0)
+ ;;^UTILITY(U,$J,358.3,26129,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26129,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,26129,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,26130,0)
+ ;;=W18.12XD^^107^1230^67
+ ;;^UTILITY(U,$J,358.3,26130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27764,1,3,0)
- ;;=3^Anoxic Brain Damage NEC
- ;;^UTILITY(U,$J,358.3,27764,1,4,0)
- ;;=4^G93.1
- ;;^UTILITY(U,$J,358.3,27764,2)
- ;;=^5004179
- ;;^UTILITY(U,$J,358.3,27765,0)
- ;;=F05.^^109^1384^2
- ;;^UTILITY(U,$J,358.3,27765,1,0)
+ ;;^UTILITY(U,$J,358.3,26130,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26130,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,26130,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,26131,0)
+ ;;=W18.2XXA^^107^1230^78
+ ;;^UTILITY(U,$J,358.3,26131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27765,1,3,0)
- ;;=3^Delirium d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,27765,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,27765,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,27766,0)
- ;;=G93.49^^109^1384^3
- ;;^UTILITY(U,$J,358.3,27766,1,0)
+ ;;^UTILITY(U,$J,358.3,26131,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26131,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,26131,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,26132,0)
+ ;;=W18.2XXD^^107^1230^79
+ ;;^UTILITY(U,$J,358.3,26132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27766,1,3,0)
- ;;=3^Encephalopathy,Other
- ;;^UTILITY(U,$J,358.3,27766,1,4,0)
- ;;=4^G93.49
- ;;^UTILITY(U,$J,358.3,27766,2)
- ;;=^329919
- ;;^UTILITY(U,$J,358.3,27767,0)
- ;;=G93.40^^109^1384^4
- ;;^UTILITY(U,$J,358.3,27767,1,0)
+ ;;^UTILITY(U,$J,358.3,26132,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26132,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,26132,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,26133,0)
+ ;;=W18.40XA^^107^1230^114
+ ;;^UTILITY(U,$J,358.3,26133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27767,1,3,0)
- ;;=3^Encephalopathy,Unspec
- ;;^UTILITY(U,$J,358.3,27767,1,4,0)
- ;;=4^G93.40
- ;;^UTILITY(U,$J,358.3,27767,2)
- ;;=^329917
- ;;^UTILITY(U,$J,358.3,27768,0)
- ;;=G93.41^^109^1384^5
- ;;^UTILITY(U,$J,358.3,27768,1,0)
+ ;;^UTILITY(U,$J,358.3,26133,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26133,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,26133,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,26134,0)
+ ;;=W18.40XD^^107^1230^115
+ ;;^UTILITY(U,$J,358.3,26134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27768,1,3,0)
- ;;=3^Metabolic Encephalopathy
- ;;^UTILITY(U,$J,358.3,27768,1,4,0)
- ;;=4^G93.41
- ;;^UTILITY(U,$J,358.3,27768,2)
- ;;=^329918
- ;;^UTILITY(U,$J,358.3,27769,0)
- ;;=E51.2^^109^1384^7
- ;;^UTILITY(U,$J,358.3,27769,1,0)
+ ;;^UTILITY(U,$J,358.3,26134,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26134,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,26134,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,26135,0)
+ ;;=W18.41XA^^107^1230^116
+ ;;^UTILITY(U,$J,358.3,26135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27769,1,3,0)
- ;;=3^Wernicke's Encephalopathy
- ;;^UTILITY(U,$J,358.3,27769,1,4,0)
- ;;=4^E51.2
- ;;^UTILITY(U,$J,358.3,27769,2)
- ;;=^127769
- ;;^UTILITY(U,$J,358.3,27770,0)
- ;;=G43.009^^109^1385^17
- ;;^UTILITY(U,$J,358.3,27770,1,0)
+ ;;^UTILITY(U,$J,358.3,26135,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26135,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,26135,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,26136,0)
+ ;;=W18.41XD^^107^1230^117
+ ;;^UTILITY(U,$J,358.3,26136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27770,1,3,0)
- ;;=3^Migraine w/o Aura Not Intractable w/o Status Migrainosus 
- ;;^UTILITY(U,$J,358.3,27770,1,4,0)
- ;;=4^G43.009
- ;;^UTILITY(U,$J,358.3,27770,2)
- ;;=^5003877
- ;;^UTILITY(U,$J,358.3,27771,0)
- ;;=G43.019^^109^1385^15
- ;;^UTILITY(U,$J,358.3,27771,1,0)
+ ;;^UTILITY(U,$J,358.3,26136,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26136,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,26136,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,26137,0)
+ ;;=W18.42XA^^107^1230^118
+ ;;^UTILITY(U,$J,358.3,26137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27771,1,3,0)
- ;;=3^Migraine w/o Aura Intractable
- ;;^UTILITY(U,$J,358.3,27771,1,4,0)
- ;;=4^G43.019
- ;;^UTILITY(U,$J,358.3,27771,2)
- ;;=^5003879
- ;;^UTILITY(U,$J,358.3,27772,0)
- ;;=G43.109^^109^1385^13
- ;;^UTILITY(U,$J,358.3,27772,1,0)
+ ;;^UTILITY(U,$J,358.3,26137,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26137,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,26137,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,26138,0)
+ ;;=W18.42XD^^107^1230^119
+ ;;^UTILITY(U,$J,358.3,26138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27772,1,3,0)
- ;;=3^Migraine w/ Aura Not Intractable
- ;;^UTILITY(U,$J,358.3,27772,1,4,0)
- ;;=4^G43.109
- ;;^UTILITY(U,$J,358.3,27772,2)
- ;;=^5003881
- ;;^UTILITY(U,$J,358.3,27773,0)
- ;;=G43.119^^109^1385^11
- ;;^UTILITY(U,$J,358.3,27773,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27773,1,3,0)
- ;;=3^Migraine w/ Aura Intractable
- ;;^UTILITY(U,$J,358.3,27773,1,4,0)
- ;;=4^G43.119
- ;;^UTILITY(U,$J,358.3,27773,2)
- ;;=^5003883
- ;;^UTILITY(U,$J,358.3,27774,0)
- ;;=G43.909^^109^1385^10
- ;;^UTILITY(U,$J,358.3,27774,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27774,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,27774,1,4,0)
- ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,26138,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr

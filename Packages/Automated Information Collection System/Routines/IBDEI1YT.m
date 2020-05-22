@@ -1,136 +1,118 @@
-IBDEI1YT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33355,1,0)
+ ;;^UTILITY(U,$J,358.3,31389,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,unsp fts
+ ;;^UTILITY(U,$J,358.3,31389,1,4,0)
+ ;;=4^O31.11X0
+ ;;^UTILITY(U,$J,358.3,31389,2)
+ ;;=^5016537
+ ;;^UTILITY(U,$J,358.3,31390,0)
+ ;;=O31.11X1^^126^1625^23
+ ;;^UTILITY(U,$J,358.3,31390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33355,1,3,0)
- ;;=3^Acne Keloid
- ;;^UTILITY(U,$J,358.3,33355,1,4,0)
- ;;=4^L73.0
- ;;^UTILITY(U,$J,358.3,33355,2)
- ;;=^2149
- ;;^UTILITY(U,$J,358.3,33356,0)
- ;;=L73.2^^131^1669^159
- ;;^UTILITY(U,$J,358.3,33356,1,0)
+ ;;^UTILITY(U,$J,358.3,31390,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31390,1,4,0)
+ ;;=4^O31.11X1
+ ;;^UTILITY(U,$J,358.3,31390,2)
+ ;;=^5016538
+ ;;^UTILITY(U,$J,358.3,31391,0)
+ ;;=O31.11X2^^126^1625^24
+ ;;^UTILITY(U,$J,358.3,31391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33356,1,3,0)
- ;;=3^Hidradenitis Suppurativa
- ;;^UTILITY(U,$J,358.3,33356,1,4,0)
- ;;=4^L73.2
- ;;^UTILITY(U,$J,358.3,33356,2)
- ;;=^278979
- ;;^UTILITY(U,$J,358.3,33357,0)
- ;;=L73.9^^131^1669^153
- ;;^UTILITY(U,$J,358.3,33357,1,0)
+ ;;^UTILITY(U,$J,358.3,31391,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31391,1,4,0)
+ ;;=4^O31.11X2
+ ;;^UTILITY(U,$J,358.3,31391,2)
+ ;;=^5016539
+ ;;^UTILITY(U,$J,358.3,31392,0)
+ ;;=O31.12X1^^126^1625^28
+ ;;^UTILITY(U,$J,358.3,31392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33357,1,3,0)
- ;;=3^Follicular Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33357,1,4,0)
- ;;=4^L73.9
- ;;^UTILITY(U,$J,358.3,33357,2)
- ;;=^5009286
- ;;^UTILITY(U,$J,358.3,33358,0)
- ;;=L82.0^^131^1669^160
- ;;^UTILITY(U,$J,358.3,33358,1,0)
+ ;;^UTILITY(U,$J,358.3,31392,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31392,1,4,0)
+ ;;=4^O31.12X1
+ ;;^UTILITY(U,$J,358.3,31392,2)
+ ;;=^5016545
+ ;;^UTILITY(U,$J,358.3,31393,0)
+ ;;=O31.12X2^^126^1625^29
+ ;;^UTILITY(U,$J,358.3,31393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33358,1,3,0)
- ;;=3^Inflamed Seborrheic Keratosis
- ;;^UTILITY(U,$J,358.3,33358,1,4,0)
- ;;=4^L82.0
- ;;^UTILITY(U,$J,358.3,33358,2)
- ;;=^303311
- ;;^UTILITY(U,$J,358.3,33359,0)
- ;;=L82.1^^131^1669^264
- ;;^UTILITY(U,$J,358.3,33359,1,0)
+ ;;^UTILITY(U,$J,358.3,31393,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31393,1,4,0)
+ ;;=4^O31.12X2
+ ;;^UTILITY(U,$J,358.3,31393,2)
+ ;;=^5016546
+ ;;^UTILITY(U,$J,358.3,31394,0)
+ ;;=O31.13X1^^126^1625^33
+ ;;^UTILITY(U,$J,358.3,31394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33359,1,3,0)
- ;;=3^Seborrheic Keratosis NEC
- ;;^UTILITY(U,$J,358.3,33359,1,4,0)
- ;;=4^L82.1
- ;;^UTILITY(U,$J,358.3,33359,2)
- ;;=^303312
- ;;^UTILITY(U,$J,358.3,33360,0)
- ;;=L84.^^131^1669^116
- ;;^UTILITY(U,$J,358.3,33360,1,0)
+ ;;^UTILITY(U,$J,358.3,31394,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31394,1,4,0)
+ ;;=4^O31.13X1
+ ;;^UTILITY(U,$J,358.3,31394,2)
+ ;;=^5016552
+ ;;^UTILITY(U,$J,358.3,31395,0)
+ ;;=O31.13X2^^126^1625^34
+ ;;^UTILITY(U,$J,358.3,31395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33360,1,3,0)
- ;;=3^Corns and Callosities
- ;;^UTILITY(U,$J,358.3,33360,1,4,0)
- ;;=4^L84.
- ;;^UTILITY(U,$J,358.3,33360,2)
- ;;=^271920
- ;;^UTILITY(U,$J,358.3,33361,0)
- ;;=L85.0^^131^1669^8
- ;;^UTILITY(U,$J,358.3,33361,1,0)
+ ;;^UTILITY(U,$J,358.3,31395,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31395,1,4,0)
+ ;;=4^O31.13X2
+ ;;^UTILITY(U,$J,358.3,31395,2)
+ ;;=^5016553
+ ;;^UTILITY(U,$J,358.3,31396,0)
+ ;;=O31.11X3^^126^1625^25
+ ;;^UTILITY(U,$J,358.3,31396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33361,1,3,0)
- ;;=3^Acquired Ichthyosis
- ;;^UTILITY(U,$J,358.3,33361,1,4,0)
- ;;=4^L85.0
- ;;^UTILITY(U,$J,358.3,33361,2)
- ;;=^5009320
- ;;^UTILITY(U,$J,358.3,33362,0)
- ;;=L85.1^^131^1669^10
- ;;^UTILITY(U,$J,358.3,33362,1,0)
+ ;;^UTILITY(U,$J,358.3,31396,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31396,1,4,0)
+ ;;=4^O31.11X3
+ ;;^UTILITY(U,$J,358.3,31396,2)
+ ;;=^5016540
+ ;;^UTILITY(U,$J,358.3,31397,0)
+ ;;=O31.12X3^^126^1625^30
+ ;;^UTILITY(U,$J,358.3,31397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33362,1,3,0)
- ;;=3^Acquired Keratosis Palmaris et Plantaris
- ;;^UTILITY(U,$J,358.3,33362,1,4,0)
- ;;=4^L85.1
- ;;^UTILITY(U,$J,358.3,33362,2)
- ;;=^5009321
- ;;^UTILITY(U,$J,358.3,33363,0)
- ;;=L85.2^^131^1669^166
- ;;^UTILITY(U,$J,358.3,33363,1,0)
+ ;;^UTILITY(U,$J,358.3,31397,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31397,1,4,0)
+ ;;=4^O31.12X3
+ ;;^UTILITY(U,$J,358.3,31397,2)
+ ;;=^5016547
+ ;;^UTILITY(U,$J,358.3,31398,0)
+ ;;=O31.13X3^^126^1625^35
+ ;;^UTILITY(U,$J,358.3,31398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33363,1,3,0)
- ;;=3^Keratosis Punctata
- ;;^UTILITY(U,$J,358.3,33363,1,4,0)
- ;;=4^L85.2
- ;;^UTILITY(U,$J,358.3,33363,2)
- ;;=^5009322
- ;;^UTILITY(U,$J,358.3,33364,0)
- ;;=L85.3^^131^1669^289
- ;;^UTILITY(U,$J,358.3,33364,1,0)
+ ;;^UTILITY(U,$J,358.3,31398,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,3rd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31398,1,4,0)
+ ;;=4^O31.13X3
+ ;;^UTILITY(U,$J,358.3,31398,2)
+ ;;=^5016554
+ ;;^UTILITY(U,$J,358.3,31399,0)
+ ;;=O31.11X4^^126^1625^26
+ ;;^UTILITY(U,$J,358.3,31399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33364,1,3,0)
- ;;=3^Xerosis Cutis
- ;;^UTILITY(U,$J,358.3,33364,1,4,0)
- ;;=4^L85.3
- ;;^UTILITY(U,$J,358.3,33364,2)
- ;;=^5009323
- ;;^UTILITY(U,$J,358.3,33365,0)
- ;;=L86.^^131^1669^164
- ;;^UTILITY(U,$J,358.3,33365,1,0)
+ ;;^UTILITY(U,$J,358.3,31399,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,1st tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31399,1,4,0)
+ ;;=4^O31.11X4
+ ;;^UTILITY(U,$J,358.3,31399,2)
+ ;;=^5016541
+ ;;^UTILITY(U,$J,358.3,31400,0)
+ ;;=O31.12X4^^126^1625^31
+ ;;^UTILITY(U,$J,358.3,31400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33365,1,3,0)
- ;;=3^Keratoderma in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,33365,1,4,0)
- ;;=4^L86.
- ;;^UTILITY(U,$J,358.3,33365,2)
- ;;=^5009326
- ;;^UTILITY(U,$J,358.3,33366,0)
- ;;=L87.0^^131^1669^165
- ;;^UTILITY(U,$J,358.3,33366,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33366,1,3,0)
- ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
- ;;^UTILITY(U,$J,358.3,33366,1,4,0)
- ;;=4^L87.0
- ;;^UTILITY(U,$J,358.3,33366,2)
- ;;=^5009327
- ;;^UTILITY(U,$J,358.3,33367,0)
- ;;=L87.2^^131^1669^141
- ;;^UTILITY(U,$J,358.3,33367,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33367,1,3,0)
- ;;=3^Elastosis Perforans Serpiginosa
- ;;^UTILITY(U,$J,358.3,33367,1,4,0)
- ;;=4^L87.2
- ;;^UTILITY(U,$J,358.3,33367,2)
- ;;=^5009329
- ;;^UTILITY(U,$J,358.3,33368,0)
- ;;=L89.300^^131^1669^242
- ;;^UTILITY(U,$J,358.3,33368,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31400,1,3,0)
+ ;;=3^Cont post spont abort,1 fts or more,2nd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31400,1,4,0)
+ ;;=4^O31.12X4

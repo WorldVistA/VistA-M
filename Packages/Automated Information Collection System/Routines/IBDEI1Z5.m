@@ -1,138 +1,118 @@
-IBDEI1Z5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Z5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33504,1,0)
+ ;;^UTILITY(U,$J,358.3,31526,1,4,0)
+ ;;=4^O36.1110
+ ;;^UTILITY(U,$J,358.3,31526,2)
+ ;;=^5016893
+ ;;^UTILITY(U,$J,358.3,31527,0)
+ ;;=O36.1111^^126^1626^38
+ ;;^UTILITY(U,$J,358.3,31527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33504,1,3,0)
- ;;=3^Acute Upper Respiratory Infection,Unspec
- ;;^UTILITY(U,$J,358.3,33504,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,33504,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,33505,0)
- ;;=J33.9^^131^1671^19
- ;;^UTILITY(U,$J,358.3,33505,1,0)
+ ;;^UTILITY(U,$J,358.3,31527,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,1st tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31527,1,4,0)
+ ;;=4^O36.1111
+ ;;^UTILITY(U,$J,358.3,31527,2)
+ ;;=^5016894
+ ;;^UTILITY(U,$J,358.3,31528,0)
+ ;;=O36.1112^^126^1626^39
+ ;;^UTILITY(U,$J,358.3,31528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33505,1,3,0)
- ;;=3^Nasal Polyp,Unspec
- ;;^UTILITY(U,$J,358.3,33505,1,4,0)
- ;;=4^J33.9
- ;;^UTILITY(U,$J,358.3,33505,2)
- ;;=^5008208
- ;;^UTILITY(U,$J,358.3,33506,0)
- ;;=J32.0^^131^1671^15
- ;;^UTILITY(U,$J,358.3,33506,1,0)
+ ;;^UTILITY(U,$J,358.3,31528,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,1st tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31528,1,4,0)
+ ;;=4^O36.1112
+ ;;^UTILITY(U,$J,358.3,31528,2)
+ ;;=^5016895
+ ;;^UTILITY(U,$J,358.3,31529,0)
+ ;;=O36.1113^^126^1626^54
+ ;;^UTILITY(U,$J,358.3,31529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33506,1,3,0)
- ;;=3^Chronic Maxillary Sinusitis
- ;;^UTILITY(U,$J,358.3,33506,1,4,0)
- ;;=4^J32.0
- ;;^UTILITY(U,$J,358.3,33506,2)
- ;;=^24407
- ;;^UTILITY(U,$J,358.3,33507,0)
- ;;=J32.1^^131^1671^14
- ;;^UTILITY(U,$J,358.3,33507,1,0)
+ ;;^UTILITY(U,$J,358.3,31529,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization1st tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31529,1,4,0)
+ ;;=4^O36.1113
+ ;;^UTILITY(U,$J,358.3,31529,2)
+ ;;=^5016896
+ ;;^UTILITY(U,$J,358.3,31530,0)
+ ;;=O36.1114^^126^1626^40
+ ;;^UTILITY(U,$J,358.3,31530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33507,1,3,0)
- ;;=3^Chronic Frontal Sinusitis
- ;;^UTILITY(U,$J,358.3,33507,1,4,0)
- ;;=4^J32.1
- ;;^UTILITY(U,$J,358.3,33507,2)
- ;;=^24380
- ;;^UTILITY(U,$J,358.3,33508,0)
- ;;=J32.9^^131^1671^16
- ;;^UTILITY(U,$J,358.3,33508,1,0)
+ ;;^UTILITY(U,$J,358.3,31530,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,1st tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31530,1,4,0)
+ ;;=4^O36.1114
+ ;;^UTILITY(U,$J,358.3,31530,2)
+ ;;=^5016897
+ ;;^UTILITY(U,$J,358.3,31531,0)
+ ;;=O36.1115^^126^1626^41
+ ;;^UTILITY(U,$J,358.3,31531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33508,1,3,0)
- ;;=3^Chronic Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,33508,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,33508,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,33509,0)
- ;;=J30.9^^131^1671^11
- ;;^UTILITY(U,$J,358.3,33509,1,0)
+ ;;^UTILITY(U,$J,358.3,31531,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,1st tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31531,1,4,0)
+ ;;=4^O36.1115
+ ;;^UTILITY(U,$J,358.3,31531,2)
+ ;;=^5016898
+ ;;^UTILITY(U,$J,358.3,31532,0)
+ ;;=O36.1120^^126^1626^42
+ ;;^UTILITY(U,$J,358.3,31532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33509,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,33509,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,33509,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,33510,0)
- ;;=J30.0^^131^1671^24
- ;;^UTILITY(U,$J,358.3,33510,1,0)
+ ;;^UTILITY(U,$J,358.3,31532,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,2nd tri,unsp fts
+ ;;^UTILITY(U,$J,358.3,31532,1,4,0)
+ ;;=4^O36.1120
+ ;;^UTILITY(U,$J,358.3,31532,2)
+ ;;=^5016900
+ ;;^UTILITY(U,$J,358.3,31533,0)
+ ;;=O36.1121^^126^1626^43
+ ;;^UTILITY(U,$J,358.3,31533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33510,1,3,0)
- ;;=3^Vasomotor Rhinitis
- ;;^UTILITY(U,$J,358.3,33510,1,4,0)
- ;;=4^J30.0
- ;;^UTILITY(U,$J,358.3,33510,2)
- ;;=^5008201
- ;;^UTILITY(U,$J,358.3,33511,0)
- ;;=K05.00^^131^1671^2
- ;;^UTILITY(U,$J,358.3,33511,1,0)
+ ;;^UTILITY(U,$J,358.3,31533,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,2nd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31533,1,4,0)
+ ;;=4^O36.1121
+ ;;^UTILITY(U,$J,358.3,31533,2)
+ ;;=^5016901
+ ;;^UTILITY(U,$J,358.3,31534,0)
+ ;;=O36.1122^^126^1626^44
+ ;;^UTILITY(U,$J,358.3,31534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33511,1,3,0)
- ;;=3^Acute Gingivitis,Plaque Induced
- ;;^UTILITY(U,$J,358.3,33511,1,4,0)
- ;;=4^K05.00
- ;;^UTILITY(U,$J,358.3,33511,2)
- ;;=^334192
- ;;^UTILITY(U,$J,358.3,33512,0)
- ;;=R04.0^^131^1671^17
- ;;^UTILITY(U,$J,358.3,33512,1,0)
+ ;;^UTILITY(U,$J,358.3,31534,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,2nd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31534,1,4,0)
+ ;;=4^O36.1122
+ ;;^UTILITY(U,$J,358.3,31534,2)
+ ;;=^5016902
+ ;;^UTILITY(U,$J,358.3,31535,0)
+ ;;=O36.1123^^126^1626^45
+ ;;^UTILITY(U,$J,358.3,31535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33512,1,3,0)
- ;;=3^Epistaxis
- ;;^UTILITY(U,$J,358.3,33512,1,4,0)
- ;;=4^R04.0
- ;;^UTILITY(U,$J,358.3,33512,2)
- ;;=^5019173
- ;;^UTILITY(U,$J,358.3,33513,0)
- ;;=R09.82^^131^1671^21
- ;;^UTILITY(U,$J,358.3,33513,1,0)
+ ;;^UTILITY(U,$J,358.3,31535,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,2nd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31535,1,4,0)
+ ;;=4^O36.1123
+ ;;^UTILITY(U,$J,358.3,31535,2)
+ ;;=^5016903
+ ;;^UTILITY(U,$J,358.3,31536,0)
+ ;;=O36.1124^^126^1626^46
+ ;;^UTILITY(U,$J,358.3,31536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33513,1,3,0)
- ;;=3^Postnasal Drip
- ;;^UTILITY(U,$J,358.3,33513,1,4,0)
- ;;=4^R09.82
- ;;^UTILITY(U,$J,358.3,33513,2)
- ;;=^97058
- ;;^UTILITY(U,$J,358.3,33514,0)
- ;;=K12.30^^131^1671^20
- ;;^UTILITY(U,$J,358.3,33514,1,0)
+ ;;^UTILITY(U,$J,358.3,31536,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,2nd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31536,1,4,0)
+ ;;=4^O36.1124
+ ;;^UTILITY(U,$J,358.3,31536,2)
+ ;;=^5016904
+ ;;^UTILITY(U,$J,358.3,31537,0)
+ ;;=O36.1125^^126^1626^47
+ ;;^UTILITY(U,$J,358.3,31537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33514,1,3,0)
- ;;=3^Oral Mucositis,Unspec
- ;;^UTILITY(U,$J,358.3,33514,1,4,0)
- ;;=4^K12.30
- ;;^UTILITY(U,$J,358.3,33514,2)
- ;;=^5008486
- ;;^UTILITY(U,$J,358.3,33515,0)
- ;;=J30.1^^131^1671^10
- ;;^UTILITY(U,$J,358.3,33515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33515,1,3,0)
- ;;=3^Allergic Rhinitis d/t Pollen
- ;;^UTILITY(U,$J,358.3,33515,1,4,0)
- ;;=4^J30.1
- ;;^UTILITY(U,$J,358.3,33515,2)
- ;;=^269906
- ;;^UTILITY(U,$J,358.3,33516,0)
- ;;=R09.81^^131^1671^18
- ;;^UTILITY(U,$J,358.3,33516,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33516,1,3,0)
- ;;=3^Nasal Congestion
- ;;^UTILITY(U,$J,358.3,33516,1,4,0)
- ;;=4^R09.81
- ;;^UTILITY(U,$J,358.3,33516,2)
- ;;=^5019203
- ;;^UTILITY(U,$J,358.3,33517,0)
- ;;=I69.928^^131^1671^22
- ;;^UTILITY(U,$J,358.3,33517,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33517,1,3,0)
- ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,31537,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization,2nd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31537,1,4,0)
+ ;;=4^O36.1125
+ ;;^UTILITY(U,$J,358.3,31537,2)
+ ;;=^5016905

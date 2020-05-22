@@ -1,130 +1,116 @@
-IBDEI1Z1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Z1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33451,1,4,0)
- ;;=4^I70.743
- ;;^UTILITY(U,$J,358.3,33451,2)
- ;;=^5133603
- ;;^UTILITY(U,$J,358.3,33452,0)
- ;;=I70.744^^131^1669^77
- ;;^UTILITY(U,$J,358.3,33452,1,0)
+ ;;^UTILITY(U,$J,358.3,31481,0)
+ ;;=O36.8123^^126^1626^22
+ ;;^UTILITY(U,$J,358.3,31481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33452,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,33452,1,4,0)
- ;;=4^I70.744
- ;;^UTILITY(U,$J,358.3,33452,2)
- ;;=^5133604
- ;;^UTILITY(U,$J,358.3,33453,0)
- ;;=I70.745^^131^1669^78
- ;;^UTILITY(U,$J,358.3,33453,1,0)
+ ;;^UTILITY(U,$J,358.3,31481,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31481,1,4,0)
+ ;;=4^O36.8123
+ ;;^UTILITY(U,$J,358.3,31481,2)
+ ;;=^5017092
+ ;;^UTILITY(U,$J,358.3,31482,0)
+ ;;=O36.8133^^126^1626^28
+ ;;^UTILITY(U,$J,358.3,31482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33453,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
- ;;^UTILITY(U,$J,358.3,33453,1,4,0)
- ;;=4^I70.745
- ;;^UTILITY(U,$J,358.3,33453,2)
- ;;=^5133605
- ;;^UTILITY(U,$J,358.3,33454,0)
- ;;=I83.009^^131^1669^287
- ;;^UTILITY(U,$J,358.3,33454,1,0)
+ ;;^UTILITY(U,$J,358.3,31482,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31482,1,4,0)
+ ;;=4^O36.8133
+ ;;^UTILITY(U,$J,358.3,31482,2)
+ ;;=^5017099
+ ;;^UTILITY(U,$J,358.3,31483,0)
+ ;;=O36.8124^^126^1626^23
+ ;;^UTILITY(U,$J,358.3,31483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33454,1,3,0)
- ;;=3^Varicose Veins of Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,33454,1,4,0)
- ;;=4^I83.009
- ;;^UTILITY(U,$J,358.3,33454,2)
- ;;=^5007972
- ;;^UTILITY(U,$J,358.3,33455,0)
- ;;=H65.03^^131^1670^3
- ;;^UTILITY(U,$J,358.3,33455,1,0)
+ ;;^UTILITY(U,$J,358.3,31483,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31483,1,4,0)
+ ;;=4^O36.8124
+ ;;^UTILITY(U,$J,358.3,31483,2)
+ ;;=^5017093
+ ;;^UTILITY(U,$J,358.3,31484,0)
+ ;;=O36.8134^^126^1626^29
+ ;;^UTILITY(U,$J,358.3,31484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33455,1,3,0)
- ;;=3^Acute Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,33455,1,4,0)
- ;;=4^H65.03
- ;;^UTILITY(U,$J,358.3,33455,2)
- ;;=^5006572
- ;;^UTILITY(U,$J,358.3,33456,0)
- ;;=H65.01^^131^1670^5
- ;;^UTILITY(U,$J,358.3,33456,1,0)
+ ;;^UTILITY(U,$J,358.3,31484,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31484,1,4,0)
+ ;;=4^O36.8134
+ ;;^UTILITY(U,$J,358.3,31484,2)
+ ;;=^5017100
+ ;;^UTILITY(U,$J,358.3,31485,0)
+ ;;=O36.8125^^126^1626^24
+ ;;^UTILITY(U,$J,358.3,31485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33456,1,3,0)
- ;;=3^Acute Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,33456,1,4,0)
- ;;=4^H65.01
- ;;^UTILITY(U,$J,358.3,33456,2)
- ;;=^5006570
- ;;^UTILITY(U,$J,358.3,33457,0)
- ;;=H65.23^^131^1670^15
- ;;^UTILITY(U,$J,358.3,33457,1,0)
+ ;;^UTILITY(U,$J,358.3,31485,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31485,1,4,0)
+ ;;=4^O36.8125
+ ;;^UTILITY(U,$J,358.3,31485,2)
+ ;;=^5017094
+ ;;^UTILITY(U,$J,358.3,31486,0)
+ ;;=O36.8135^^126^1626^30
+ ;;^UTILITY(U,$J,358.3,31486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33457,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,33457,1,4,0)
- ;;=4^H65.23
- ;;^UTILITY(U,$J,358.3,33457,2)
- ;;=^5006596
- ;;^UTILITY(U,$J,358.3,33458,0)
- ;;=H65.22^^131^1670^16
- ;;^UTILITY(U,$J,358.3,33458,1,0)
+ ;;^UTILITY(U,$J,358.3,31486,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31486,1,4,0)
+ ;;=4^O36.8135
+ ;;^UTILITY(U,$J,358.3,31486,2)
+ ;;=^5017101
+ ;;^UTILITY(U,$J,358.3,31487,0)
+ ;;=O43.011^^126^1626^32
+ ;;^UTILITY(U,$J,358.3,31487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33458,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,33458,1,4,0)
- ;;=4^H65.22
- ;;^UTILITY(U,$J,358.3,33458,2)
- ;;=^5006595
- ;;^UTILITY(U,$J,358.3,33459,0)
- ;;=H65.21^^131^1670^17
- ;;^UTILITY(U,$J,358.3,33459,1,0)
+ ;;^UTILITY(U,$J,358.3,31487,1,3,0)
+ ;;=3^Fetomaternal placental transfusion syndrome, first trimester
+ ;;^UTILITY(U,$J,358.3,31487,1,4,0)
+ ;;=4^O43.011
+ ;;^UTILITY(U,$J,358.3,31487,2)
+ ;;=^5017389
+ ;;^UTILITY(U,$J,358.3,31488,0)
+ ;;=O43.012^^126^1626^31
+ ;;^UTILITY(U,$J,358.3,31488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33459,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,33459,1,4,0)
- ;;=4^H65.21
- ;;^UTILITY(U,$J,358.3,33459,2)
- ;;=^5006594
- ;;^UTILITY(U,$J,358.3,33460,0)
- ;;=H66.012^^131^1670^6
- ;;^UTILITY(U,$J,358.3,33460,1,0)
+ ;;^UTILITY(U,$J,358.3,31488,1,3,0)
+ ;;=3^Fetomaternal placental transfuse syndrome, second trimester
+ ;;^UTILITY(U,$J,358.3,31488,1,4,0)
+ ;;=4^O43.012
+ ;;^UTILITY(U,$J,358.3,31488,2)
+ ;;=^5017390
+ ;;^UTILITY(U,$J,358.3,31489,0)
+ ;;=O43.013^^126^1626^33
+ ;;^UTILITY(U,$J,358.3,31489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33460,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
- ;;^UTILITY(U,$J,358.3,33460,1,4,0)
- ;;=4^H66.012
- ;;^UTILITY(U,$J,358.3,33460,2)
- ;;=^5133534
- ;;^UTILITY(U,$J,358.3,33461,0)
- ;;=H66.011^^131^1670^7
- ;;^UTILITY(U,$J,358.3,33461,1,0)
+ ;;^UTILITY(U,$J,358.3,31489,1,3,0)
+ ;;=3^Fetomaternal placental transfusion syndrome, third trimester
+ ;;^UTILITY(U,$J,358.3,31489,1,4,0)
+ ;;=4^O43.013
+ ;;^UTILITY(U,$J,358.3,31489,2)
+ ;;=^5017391
+ ;;^UTILITY(U,$J,358.3,31490,0)
+ ;;=O36.0110^^126^1626^55
+ ;;^UTILITY(U,$J,358.3,31490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33461,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
- ;;^UTILITY(U,$J,358.3,33461,1,4,0)
- ;;=4^H66.011
- ;;^UTILITY(U,$J,358.3,33461,2)
- ;;=^5006621
- ;;^UTILITY(U,$J,358.3,33462,0)
- ;;=H66.91^^131^1670^36
- ;;^UTILITY(U,$J,358.3,33462,1,0)
+ ;;^UTILITY(U,$J,358.3,31490,1,3,0)
+ ;;=3^Maternal care for Anti-D antibodies,1st tri,unsp fts
+ ;;^UTILITY(U,$J,358.3,31490,1,4,0)
+ ;;=4^O36.0110
+ ;;^UTILITY(U,$J,358.3,31490,2)
+ ;;=^5016842
+ ;;^UTILITY(U,$J,358.3,31491,0)
+ ;;=O36.0111^^126^1626^56
+ ;;^UTILITY(U,$J,358.3,31491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33462,1,3,0)
- ;;=3^Otitis Media,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,33462,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,33462,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,33463,0)
- ;;=H66.92^^131^1670^35
- ;;^UTILITY(U,$J,358.3,33463,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33463,1,3,0)
- ;;=3^Otitis Media,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,33463,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,33463,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,33464,0)
- ;;=H66.93^^131^1670^34
+ ;;^UTILITY(U,$J,358.3,31491,1,3,0)
+ ;;=3^Maternal care for Anti-D antibodies,1st tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31491,1,4,0)
+ ;;=4^O36.0111
+ ;;^UTILITY(U,$J,358.3,31491,2)
+ ;;=^5016843
+ ;;^UTILITY(U,$J,358.3,31492,0)
+ ;;=O36.0112^^126^1626^57

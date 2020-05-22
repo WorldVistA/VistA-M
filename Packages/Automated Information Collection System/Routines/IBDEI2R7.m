@@ -1,136 +1,120 @@
-IBDEI2R7 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2R7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46227,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,46227,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,46227,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,46228,0)
- ;;=99245^^205^2291^5
- ;;^UTILITY(U,$J,358.3,46228,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,46228,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,46228,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,46229,0)
- ;;=R91.8^^206^2292^2
- ;;^UTILITY(U,$J,358.3,46229,1,0)
+ ;;^UTILITY(U,$J,358.3,43921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46229,1,3,0)
- ;;=3^Abnormal Finding of Lung Field
- ;;^UTILITY(U,$J,358.3,46229,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,46229,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,46230,0)
- ;;=R91.1^^206^2292^92
- ;;^UTILITY(U,$J,358.3,46230,1,0)
+ ;;^UTILITY(U,$J,358.3,43921,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
+ ;;^UTILITY(U,$J,358.3,43921,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,43921,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,43922,0)
+ ;;=F31.12^^164^2168^23
+ ;;^UTILITY(U,$J,358.3,43922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46230,1,3,0)
- ;;=3^Pulmonary Nodule,Solitary
- ;;^UTILITY(U,$J,358.3,46230,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,46230,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,46231,0)
- ;;=J85.2^^206^2292^3
- ;;^UTILITY(U,$J,358.3,46231,1,0)
+ ;;^UTILITY(U,$J,358.3,43922,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
+ ;;^UTILITY(U,$J,358.3,43922,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,43922,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,43923,0)
+ ;;=F31.13^^164^2168^24
+ ;;^UTILITY(U,$J,358.3,43923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46231,1,3,0)
- ;;=3^Abscess of Lung w/o Pneumonia
- ;;^UTILITY(U,$J,358.3,46231,1,4,0)
- ;;=4^J85.2
- ;;^UTILITY(U,$J,358.3,46231,2)
- ;;=^5008307
- ;;^UTILITY(U,$J,358.3,46232,0)
- ;;=J02.9^^206^2292^70
- ;;^UTILITY(U,$J,358.3,46232,1,0)
+ ;;^UTILITY(U,$J,358.3,43923,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
+ ;;^UTILITY(U,$J,358.3,43923,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,43923,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,43924,0)
+ ;;=F31.2^^164^2168^19
+ ;;^UTILITY(U,$J,358.3,43924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46232,1,3,0)
- ;;=3^Pharyngitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,46232,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,46232,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,46233,0)
- ;;=B20.^^206^2292^36
- ;;^UTILITY(U,$J,358.3,46233,1,0)
+ ;;^UTILITY(U,$J,358.3,43924,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,43924,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,43924,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,43925,0)
+ ;;=F31.73^^164^2168^20
+ ;;^UTILITY(U,$J,358.3,43925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46233,1,3,0)
- ;;=3^HIV Disease
- ;;^UTILITY(U,$J,358.3,46233,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,46233,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,46234,0)
- ;;=J61.^^206^2292^74
- ;;^UTILITY(U,$J,358.3,46234,1,0)
+ ;;^UTILITY(U,$J,358.3,43925,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,43925,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,43925,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,43926,0)
+ ;;=F31.74^^164^2168^21
+ ;;^UTILITY(U,$J,358.3,43926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46234,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Other Mineral Fibers
- ;;^UTILITY(U,$J,358.3,46234,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,46234,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,46235,0)
- ;;=B44.9^^206^2292^11
- ;;^UTILITY(U,$J,358.3,46235,1,0)
+ ;;^UTILITY(U,$J,358.3,43926,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,43926,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,43926,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,43927,0)
+ ;;=F31.31^^164^2168^13
+ ;;^UTILITY(U,$J,358.3,43927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46235,1,3,0)
- ;;=3^Aspergillosis,Unspec
- ;;^UTILITY(U,$J,358.3,46235,1,4,0)
- ;;=4^B44.9
- ;;^UTILITY(U,$J,358.3,46235,2)
- ;;=^5000668
- ;;^UTILITY(U,$J,358.3,46236,0)
- ;;=B44.0^^206^2292^10
- ;;^UTILITY(U,$J,358.3,46236,1,0)
+ ;;^UTILITY(U,$J,358.3,43927,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild
+ ;;^UTILITY(U,$J,358.3,43927,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,43927,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,43928,0)
+ ;;=F31.32^^164^2168^14
+ ;;^UTILITY(U,$J,358.3,43928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46236,1,3,0)
- ;;=3^Aspergillosis,Invasive Pulmonary
- ;;^UTILITY(U,$J,358.3,46236,1,4,0)
- ;;=4^B44.0
- ;;^UTILITY(U,$J,358.3,46236,2)
- ;;=^5000663
- ;;^UTILITY(U,$J,358.3,46237,0)
- ;;=J44.9^^206^2292^24
- ;;^UTILITY(U,$J,358.3,46237,1,0)
+ ;;^UTILITY(U,$J,358.3,43928,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
+ ;;^UTILITY(U,$J,358.3,43928,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,43928,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,43929,0)
+ ;;=F31.4^^164^2168^15
+ ;;^UTILITY(U,$J,358.3,43929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46237,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,46237,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,46237,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,46238,0)
- ;;=J45.20^^206^2292^13
- ;;^UTILITY(U,$J,358.3,46238,1,0)
+ ;;^UTILITY(U,$J,358.3,43929,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
+ ;;^UTILITY(U,$J,358.3,43929,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,43929,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,43930,0)
+ ;;=F31.5^^164^2168^10
+ ;;^UTILITY(U,$J,358.3,43930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46238,1,3,0)
- ;;=3^Asthma,Mild Intermittent Uncomplicated
- ;;^UTILITY(U,$J,358.3,46238,1,4,0)
- ;;=4^J45.20
- ;;^UTILITY(U,$J,358.3,46238,2)
- ;;=^5008242
- ;;^UTILITY(U,$J,358.3,46239,0)
- ;;=J45.21^^206^2292^14
- ;;^UTILITY(U,$J,358.3,46239,1,0)
+ ;;^UTILITY(U,$J,358.3,43930,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,43930,1,4,0)
+ ;;=4^F31.5
+ ;;^UTILITY(U,$J,358.3,43930,2)
+ ;;=^5003504
+ ;;^UTILITY(U,$J,358.3,43931,0)
+ ;;=F31.75^^164^2168^11
+ ;;^UTILITY(U,$J,358.3,43931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46239,1,3,0)
- ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,46239,1,4,0)
- ;;=4^J45.21
- ;;^UTILITY(U,$J,358.3,46239,2)
- ;;=^5008243
- ;;^UTILITY(U,$J,358.3,46240,0)
- ;;=J45.909^^206^2292^15
- ;;^UTILITY(U,$J,358.3,46240,1,0)
+ ;;^UTILITY(U,$J,358.3,43931,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,43931,1,4,0)
+ ;;=4^F31.75
+ ;;^UTILITY(U,$J,358.3,43931,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,43932,0)
+ ;;=F31.76^^164^2168^12
+ ;;^UTILITY(U,$J,358.3,43932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46240,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,46240,1,4,0)
- ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,43932,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,43932,1,4,0)
+ ;;=4^F31.76

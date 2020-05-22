@@ -1,122 +1,128 @@
-IBDEI1KE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26545,1,0)
+ ;;^UTILITY(U,$J,358.3,25006,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,25007,0)
+ ;;=Z87.310^^107^1212^99
+ ;;^UTILITY(U,$J,358.3,25007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26545,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,26545,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,26545,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,26546,0)
- ;;=F31.73^^100^1267^10
- ;;^UTILITY(U,$J,358.3,26546,1,0)
+ ;;^UTILITY(U,$J,358.3,25007,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,25007,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,25007,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,25008,0)
+ ;;=Z87.442^^107^1212^110
+ ;;^UTILITY(U,$J,358.3,25008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26546,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,26546,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,26546,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,26547,0)
- ;;=F31.74^^100^1267^11
- ;;^UTILITY(U,$J,358.3,26547,1,0)
+ ;;^UTILITY(U,$J,358.3,25008,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,25008,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,25008,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,25009,0)
+ ;;=Z87.81^^107^1212^108
+ ;;^UTILITY(U,$J,358.3,25009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26547,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,26547,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,26547,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,26548,0)
- ;;=F31.30^^100^1267^12
- ;;^UTILITY(U,$J,358.3,26548,1,0)
+ ;;^UTILITY(U,$J,358.3,25009,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,25009,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,25009,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,25010,0)
+ ;;=Z87.890^^107^1212^103
+ ;;^UTILITY(U,$J,358.3,25010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26548,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
- ;;^UTILITY(U,$J,358.3,26548,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,26548,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,26549,0)
- ;;=F31.31^^100^1267^13
- ;;^UTILITY(U,$J,358.3,26549,1,0)
+ ;;^UTILITY(U,$J,358.3,25010,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,25010,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,25010,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,25011,0)
+ ;;=Z87.892^^107^1212^68
+ ;;^UTILITY(U,$J,358.3,25011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26549,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,26549,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,26549,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,26550,0)
- ;;=F31.32^^100^1267^14
- ;;^UTILITY(U,$J,358.3,26550,1,0)
+ ;;^UTILITY(U,$J,358.3,25011,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,25011,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,25011,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,25012,0)
+ ;;=Z87.39^^107^1212^96
+ ;;^UTILITY(U,$J,358.3,25012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26550,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,26550,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,26550,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,26551,0)
- ;;=F31.4^^100^1267^15
- ;;^UTILITY(U,$J,358.3,26551,1,0)
+ ;;^UTILITY(U,$J,358.3,25012,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease
+ ;;^UTILITY(U,$J,358.3,25012,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,25012,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,25013,0)
+ ;;=Z87.820^^107^1212^105
+ ;;^UTILITY(U,$J,358.3,25013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26551,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,26551,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,26551,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,26552,0)
- ;;=F31.5^^100^1267^16
- ;;^UTILITY(U,$J,358.3,26552,1,0)
+ ;;^UTILITY(U,$J,358.3,25013,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,25013,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,25013,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,25014,0)
+ ;;=Z91.82^^107^1212^95
+ ;;^UTILITY(U,$J,358.3,25014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26552,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,26552,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,26552,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,26553,0)
- ;;=F31.75^^100^1267^17
- ;;^UTILITY(U,$J,358.3,26553,1,0)
+ ;;^UTILITY(U,$J,358.3,25014,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,25014,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,25014,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,25015,0)
+ ;;=Z91.5^^107^1212^102
+ ;;^UTILITY(U,$J,358.3,25015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26553,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,26553,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,26553,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,26554,0)
- ;;=F31.76^^100^1267^18
- ;;^UTILITY(U,$J,358.3,26554,1,0)
+ ;;^UTILITY(U,$J,358.3,25015,1,3,0)
+ ;;=3^Personal Hx of Self-Harm/Suicide Attempt
+ ;;^UTILITY(U,$J,358.3,25015,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,25015,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,25016,0)
+ ;;=Z91.030^^107^1212^5
+ ;;^UTILITY(U,$J,358.3,25016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26554,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,26554,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,26554,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,26555,0)
- ;;=F31.9^^100^1267^19
- ;;^UTILITY(U,$J,358.3,26555,1,0)
+ ;;^UTILITY(U,$J,358.3,25016,1,3,0)
+ ;;=3^Bee Allergy
+ ;;^UTILITY(U,$J,358.3,25016,1,4,0)
+ ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,25016,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,25017,0)
+ ;;=Z91.038^^107^1212^52
+ ;;^UTILITY(U,$J,358.3,25017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26555,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,26555,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,26555,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,26556,0)
- ;;=F31.81^^100^1267^20
- ;;^UTILITY(U,$J,358.3,26556,1,0)
+ ;;^UTILITY(U,$J,358.3,25017,1,3,0)
+ ;;=3^Insect Allergy NEC
+ ;;^UTILITY(U,$J,358.3,25017,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,25017,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,25018,0)
+ ;;=Z91.041^^107^1212^145
+ ;;^UTILITY(U,$J,358.3,25018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26556,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,26556,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,26556,2)
- ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,25018,1,3,0)
+ ;;=3^Radiographic Dye Allergy
+ ;;^UTILITY(U,$J,358.3,25018,1,4,0)
+ ;;=4^Z91.041
+ ;;^UTILITY(U,$J,358.3,25018,2)
+ ;;=^5063608
+ ;;^UTILITY(U,$J,358.3,25019,0)
+ ;;=Z91.130^^107^1212^152

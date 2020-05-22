@@ -1,128 +1,124 @@
-IBDEI2ST ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ST ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46977,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,46977,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,46977,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,46978,0)
- ;;=R09.01^^206^2317^7
- ;;^UTILITY(U,$J,358.3,46978,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46978,1,3,0)
- ;;=3^Asphyxia
- ;;^UTILITY(U,$J,358.3,46978,1,4,0)
- ;;=4^R09.01
- ;;^UTILITY(U,$J,358.3,46978,2)
- ;;=^11005
- ;;^UTILITY(U,$J,358.3,46979,0)
- ;;=R07.9^^206^2317^12
- ;;^UTILITY(U,$J,358.3,46979,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46979,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,46979,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,46979,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,46980,0)
- ;;=M48.52XA^^206^2317^13
- ;;^UTILITY(U,$J,358.3,46980,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46980,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46980,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,46980,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,46981,0)
- ;;=M48.53XA^^206^2317^14
- ;;^UTILITY(U,$J,358.3,46981,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46981,1,3,0)
- ;;=3^Collapsed Vertebra,Cervicothoracic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46981,1,4,0)
- ;;=4^M48.53XA
- ;;^UTILITY(U,$J,358.3,46981,2)
- ;;=^5012171
- ;;^UTILITY(U,$J,358.3,46982,0)
- ;;=M48.56XA^^206^2317^15
- ;;^UTILITY(U,$J,358.3,46982,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46982,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbar Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46982,1,4,0)
- ;;=4^M48.56XA
- ;;^UTILITY(U,$J,358.3,46982,2)
- ;;=^5012183
- ;;^UTILITY(U,$J,358.3,46983,0)
- ;;=M48.57XA^^206^2317^16
- ;;^UTILITY(U,$J,358.3,46983,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46983,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46983,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,46983,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,46984,0)
- ;;=M48.51XA^^206^2317^17
- ;;^UTILITY(U,$J,358.3,46984,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46984,1,3,0)
- ;;=3^Collapsed Vertebra,Occipito/Atlanto/Axial Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46984,1,4,0)
- ;;=4^M48.51XA
- ;;^UTILITY(U,$J,358.3,46984,2)
- ;;=^5012163
- ;;^UTILITY(U,$J,358.3,46985,0)
- ;;=M48.58XA^^206^2317^18
- ;;^UTILITY(U,$J,358.3,46985,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46985,1,3,0)
- ;;=3^Collapsed Vertebra,Sacral/Sacrococcygeal Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46985,1,4,0)
- ;;=4^M48.58XA
- ;;^UTILITY(U,$J,358.3,46985,2)
- ;;=^5012191
- ;;^UTILITY(U,$J,358.3,46986,0)
- ;;=M48.50XA^^206^2317^21
- ;;^UTILITY(U,$J,358.3,46986,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46986,1,3,0)
- ;;=3^Collapsed Vertebra,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,46986,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,46986,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,46987,0)
- ;;=M48.54XA^^206^2317^19
- ;;^UTILITY(U,$J,358.3,46987,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46987,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46987,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,46987,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,46988,0)
- ;;=M48.55XA^^206^2317^20
- ;;^UTILITY(U,$J,358.3,46988,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46988,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracolumbar Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,46988,1,4,0)
- ;;=4^M48.55XA
- ;;^UTILITY(U,$J,358.3,46988,2)
- ;;=^5012179
- ;;^UTILITY(U,$J,358.3,46989,0)
- ;;=K59.00^^206^2317^22
- ;;^UTILITY(U,$J,358.3,46989,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46989,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,46989,1,4,0)
- ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,44631,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44631,1,2,0)
+ ;;=2^97171
+ ;;^UTILITY(U,$J,358.3,44631,1,3,0)
+ ;;=3^Athletic Trn Eval,High Cmplx,45 min
+ ;;^UTILITY(U,$J,358.3,44632,0)
+ ;;=97170^^166^2215^5^^^^1
+ ;;^UTILITY(U,$J,358.3,44632,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44632,1,2,0)
+ ;;=2^97170
+ ;;^UTILITY(U,$J,358.3,44632,1,3,0)
+ ;;=3^Athletic Trn Eval,Mod Cmplx,30 min
+ ;;^UTILITY(U,$J,358.3,44633,0)
+ ;;=97169^^166^2215^4^^^^1
+ ;;^UTILITY(U,$J,358.3,44633,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44633,1,2,0)
+ ;;=2^97169
+ ;;^UTILITY(U,$J,358.3,44633,1,3,0)
+ ;;=3^Athletic Trn Eval,Low Cmplx,15 min
+ ;;^UTILITY(U,$J,358.3,44634,0)
+ ;;=90471^^166^2216^1^^^^1
+ ;;^UTILITY(U,$J,358.3,44634,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44634,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,44634,1,3,0)
+ ;;=3^Immunization Admin,Single
+ ;;^UTILITY(U,$J,358.3,44635,0)
+ ;;=90472^^166^2216^2^^^^1
+ ;;^UTILITY(U,$J,358.3,44635,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44635,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,44635,1,3,0)
+ ;;=3^Immunization Admin,Ea Addl
+ ;;^UTILITY(U,$J,358.3,44636,0)
+ ;;=97034^^166^2217^1^^^^1
+ ;;^UTILITY(U,$J,358.3,44636,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44636,1,2,0)
+ ;;=2^97034
+ ;;^UTILITY(U,$J,358.3,44636,1,3,0)
+ ;;=3^Contrast Baths Ea 15Min
+ ;;^UTILITY(U,$J,358.3,44637,0)
+ ;;=97014^^166^2217^2^^^^1
+ ;;^UTILITY(U,$J,358.3,44637,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44637,1,2,0)
+ ;;=2^97014
+ ;;^UTILITY(U,$J,358.3,44637,1,3,0)
+ ;;=3^Electrical Stimulation
+ ;;^UTILITY(U,$J,358.3,44638,0)
+ ;;=97116^^166^2217^3^^^^1
+ ;;^UTILITY(U,$J,358.3,44638,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44638,1,2,0)
+ ;;=2^97116
+ ;;^UTILITY(U,$J,358.3,44638,1,3,0)
+ ;;=3^Gait Training
+ ;;^UTILITY(U,$J,358.3,44639,0)
+ ;;=97010^^166^2217^4^^^^1
+ ;;^UTILITY(U,$J,358.3,44639,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44639,1,2,0)
+ ;;=2^97010
+ ;;^UTILITY(U,$J,358.3,44639,1,3,0)
+ ;;=3^Hot/Cold Therapies
+ ;;^UTILITY(U,$J,358.3,44640,0)
+ ;;=97033^^166^2217^5^^^^1
+ ;;^UTILITY(U,$J,358.3,44640,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44640,1,2,0)
+ ;;=2^97033
+ ;;^UTILITY(U,$J,358.3,44640,1,3,0)
+ ;;=3^Iontophoresis Ea 15Min
+ ;;^UTILITY(U,$J,358.3,44641,0)
+ ;;=97530^^166^2217^6^^^^1
+ ;;^UTILITY(U,$J,358.3,44641,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44641,1,2,0)
+ ;;=2^97530
+ ;;^UTILITY(U,$J,358.3,44641,1,3,0)
+ ;;=3^Kinetic Therapy Ea 15Min
+ ;;^UTILITY(U,$J,358.3,44642,0)
+ ;;=97140^^166^2217^7^^^^1
+ ;;^UTILITY(U,$J,358.3,44642,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44642,1,2,0)
+ ;;=2^97140
+ ;;^UTILITY(U,$J,358.3,44642,1,3,0)
+ ;;=3^Manipulation/Mobilization Ea 15Min
+ ;;^UTILITY(U,$J,358.3,44643,0)
+ ;;=97112^^166^2217^8^^^^1
+ ;;^UTILITY(U,$J,358.3,44643,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44643,1,2,0)
+ ;;=2^97112
+ ;;^UTILITY(U,$J,358.3,44643,1,3,0)
+ ;;=3^Neuromuscular Re-Ed
+ ;;^UTILITY(U,$J,358.3,44644,0)
+ ;;=97039^^166^2217^12^^^^1
+ ;;^UTILITY(U,$J,358.3,44644,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44644,1,2,0)
+ ;;=2^97039
+ ;;^UTILITY(U,$J,358.3,44644,1,3,0)
+ ;;=3^Unlisted PT Modality
+ ;;^UTILITY(U,$J,358.3,44645,0)
+ ;;=97124^^166^2217^10^^^^1
+ ;;^UTILITY(U,$J,358.3,44645,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44645,1,2,0)
+ ;;=2^97124
+ ;;^UTILITY(U,$J,358.3,44645,1,3,0)
+ ;;=3^Therapeutic Massage
+ ;;^UTILITY(U,$J,358.3,44646,0)
+ ;;=97110^^166^2217^9^^^^1

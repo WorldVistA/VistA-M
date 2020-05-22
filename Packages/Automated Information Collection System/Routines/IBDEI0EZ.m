@@ -1,358 +1,124 @@
-IBDEI0EZ ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0EZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18931,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,18931,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,18932,0)
- ;;=S05.01XA^^55^782^4
- ;;^UTILITY(U,$J,358.3,18932,1,0)
+ ;;^UTILITY(U,$J,358.3,6448,1,4,0)
+ ;;=4^I37.1
+ ;;^UTILITY(U,$J,358.3,6448,2)
+ ;;=^5007185
+ ;;^UTILITY(U,$J,358.3,6449,0)
+ ;;=I51.1^^53^415^1
+ ;;^UTILITY(U,$J,358.3,6449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18932,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,18932,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,18932,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,18933,0)
- ;;=T15.02XA^^55^782^1
- ;;^UTILITY(U,$J,358.3,18933,1,0)
+ ;;^UTILITY(U,$J,358.3,6449,1,3,0)
+ ;;=3^Rupture of Chordae Tendineae NEC
+ ;;^UTILITY(U,$J,358.3,6449,1,4,0)
+ ;;=4^I51.1
+ ;;^UTILITY(U,$J,358.3,6449,2)
+ ;;=^5007253
+ ;;^UTILITY(U,$J,358.3,6450,0)
+ ;;=I51.2^^53^415^2
+ ;;^UTILITY(U,$J,358.3,6450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18933,1,3,0)
- ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,18933,1,4,0)
- ;;=4^T15.02XA
- ;;^UTILITY(U,$J,358.3,18933,2)
- ;;=^5046387
- ;;^UTILITY(U,$J,358.3,18934,0)
- ;;=T15.01XA^^55^782^2
- ;;^UTILITY(U,$J,358.3,18934,1,0)
+ ;;^UTILITY(U,$J,358.3,6450,1,3,0)
+ ;;=3^Rupture of Papillary Muscle NEC
+ ;;^UTILITY(U,$J,358.3,6450,1,4,0)
+ ;;=4^I51.2
+ ;;^UTILITY(U,$J,358.3,6450,2)
+ ;;=^5007254
+ ;;^UTILITY(U,$J,358.3,6451,0)
+ ;;=I38.^^53^416^4
+ ;;^UTILITY(U,$J,358.3,6451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18934,1,3,0)
- ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,18934,1,4,0)
- ;;=4^T15.01XA
- ;;^UTILITY(U,$J,358.3,18934,2)
- ;;=^5046384
- ;;^UTILITY(U,$J,358.3,18935,0)
- ;;=S00.252A^^55^782^5
- ;;^UTILITY(U,$J,358.3,18935,1,0)
+ ;;^UTILITY(U,$J,358.3,6451,1,3,0)
+ ;;=3^Endocarditis Valve,Unspec
+ ;;^UTILITY(U,$J,358.3,6451,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,6451,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,6452,0)
+ ;;=T82.01XA^^53^416^1
+ ;;^UTILITY(U,$J,358.3,6452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18935,1,3,0)
- ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,18935,1,4,0)
- ;;=4^S00.252A
- ;;^UTILITY(U,$J,358.3,18935,2)
- ;;=^5019820
- ;;^UTILITY(U,$J,358.3,18936,0)
- ;;=S00.251A^^55^782^6
- ;;^UTILITY(U,$J,358.3,18936,1,0)
+ ;;^UTILITY(U,$J,358.3,6452,1,3,0)
+ ;;=3^Breakdown of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6452,1,4,0)
+ ;;=4^T82.01XA
+ ;;^UTILITY(U,$J,358.3,6452,2)
+ ;;=^5054668
+ ;;^UTILITY(U,$J,358.3,6453,0)
+ ;;=T82.02XA^^53^416^2
+ ;;^UTILITY(U,$J,358.3,6453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18936,1,3,0)
- ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,18936,1,4,0)
- ;;=4^S00.251A
- ;;^UTILITY(U,$J,358.3,18936,2)
- ;;=^5019817
- ;;^UTILITY(U,$J,358.3,18937,0)
- ;;=B96.81^^55^783^56
- ;;^UTILITY(U,$J,358.3,18937,1,0)
+ ;;^UTILITY(U,$J,358.3,6453,1,3,0)
+ ;;=3^Displacement of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6453,1,4,0)
+ ;;=4^T82.02XA
+ ;;^UTILITY(U,$J,358.3,6453,2)
+ ;;=^5054671
+ ;;^UTILITY(U,$J,358.3,6454,0)
+ ;;=T82.03XA^^53^416^5
+ ;;^UTILITY(U,$J,358.3,6454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18937,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,18937,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,18937,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,18938,0)
- ;;=B15.9^^55^783^58
- ;;^UTILITY(U,$J,358.3,18938,1,0)
+ ;;^UTILITY(U,$J,358.3,6454,1,3,0)
+ ;;=3^Leakage of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6454,1,4,0)
+ ;;=4^T82.03XA
+ ;;^UTILITY(U,$J,358.3,6454,2)
+ ;;=^5054674
+ ;;^UTILITY(U,$J,358.3,6455,0)
+ ;;=T82.09XA^^53^416^7
+ ;;^UTILITY(U,$J,358.3,6455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18938,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,18938,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,18938,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,18939,0)
- ;;=B16.9^^55^783^59
- ;;^UTILITY(U,$J,358.3,18939,1,0)
+ ;;^UTILITY(U,$J,358.3,6455,1,3,0)
+ ;;=3^Mech Compl of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6455,1,4,0)
+ ;;=4^T82.09XA
+ ;;^UTILITY(U,$J,358.3,6455,2)
+ ;;=^5054677
+ ;;^UTILITY(U,$J,358.3,6456,0)
+ ;;=T82.817A^^53^416^3
+ ;;^UTILITY(U,$J,358.3,6456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18939,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,18939,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,18939,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,18940,0)
- ;;=B19.10^^55^783^61
- ;;^UTILITY(U,$J,358.3,18940,1,0)
+ ;;^UTILITY(U,$J,358.3,6456,1,3,0)
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6456,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,6456,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,6457,0)
+ ;;=T82.867A^^53^416^9
+ ;;^UTILITY(U,$J,358.3,6457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18940,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,18940,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,18940,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,18941,0)
- ;;=B18.1^^55^783^60
- ;;^UTILITY(U,$J,358.3,18941,1,0)
+ ;;^UTILITY(U,$J,358.3,6457,1,3,0)
+ ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6457,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,6457,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,6458,0)
+ ;;=Z95.2^^53^416^8
+ ;;^UTILITY(U,$J,358.3,6458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18941,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,18941,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,18941,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,18942,0)
- ;;=B17.10^^55^783^62
- ;;^UTILITY(U,$J,358.3,18942,1,0)
+ ;;^UTILITY(U,$J,358.3,6458,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,6458,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,6458,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,6459,0)
+ ;;=Z79.01^^53^416^6
+ ;;^UTILITY(U,$J,358.3,6459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18942,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,18942,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,18942,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,18943,0)
- ;;=B18.2^^55^783^63
- ;;^UTILITY(U,$J,358.3,18943,1,0)
+ ;;^UTILITY(U,$J,358.3,6459,1,3,0)
+ ;;=3^Long Term Current Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,6459,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,6459,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,6460,0)
+ ;;=I65.1^^53^417^85
+ ;;^UTILITY(U,$J,358.3,6460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18943,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,18943,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,18943,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,18944,0)
- ;;=B18.8^^55^783^65
- ;;^UTILITY(U,$J,358.3,18944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18944,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,18944,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,18944,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,18945,0)
- ;;=B17.8^^55^783^66
- ;;^UTILITY(U,$J,358.3,18945,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18945,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
- ;;^UTILITY(U,$J,358.3,18945,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,18945,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,18946,0)
- ;;=B18.9^^55^783^64
- ;;^UTILITY(U,$J,358.3,18946,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18946,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,18946,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,18946,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,18947,0)
- ;;=B37.81^^55^783^18
- ;;^UTILITY(U,$J,358.3,18947,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18947,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,18947,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,18947,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,18948,0)
- ;;=D12.0^^55^783^12
- ;;^UTILITY(U,$J,358.3,18948,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18948,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,18948,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,18948,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,18949,0)
- ;;=D12.6^^55^783^13
- ;;^UTILITY(U,$J,358.3,18949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18949,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,18949,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,18949,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,18950,0)
- ;;=D12.1^^55^783^10
- ;;^UTILITY(U,$J,358.3,18950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18950,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,18950,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,18950,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,18951,0)
- ;;=K63.5^^55^783^73
- ;;^UTILITY(U,$J,358.3,18951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18951,1,3,0)
- ;;=3^Polyp of Colon
- ;;^UTILITY(U,$J,358.3,18951,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,18951,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,18952,0)
- ;;=D12.3^^55^783^17
- ;;^UTILITY(U,$J,358.3,18952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18952,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,18952,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,18952,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,18953,0)
- ;;=D12.2^^55^783^11
- ;;^UTILITY(U,$J,358.3,18953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18953,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,18953,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,18953,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,18954,0)
- ;;=D12.5^^55^783^16
- ;;^UTILITY(U,$J,358.3,18954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18954,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,18954,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,18954,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,18955,0)
- ;;=D12.4^^55^783^14
- ;;^UTILITY(U,$J,358.3,18955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18955,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,18955,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,18955,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,18956,0)
- ;;=D73.2^^55^783^19
- ;;^UTILITY(U,$J,358.3,18956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18956,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,18956,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,18956,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,18957,0)
- ;;=I85.00^^55^783^46
- ;;^UTILITY(U,$J,358.3,18957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18957,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,18957,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,18957,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,18958,0)
- ;;=K20.9^^55^783^47
- ;;^UTILITY(U,$J,358.3,18958,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18958,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,18958,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,18958,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,18959,0)
- ;;=K21.9^^55^783^55
- ;;^UTILITY(U,$J,358.3,18959,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18959,1,3,0)
- ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,18959,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,18959,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,18960,0)
- ;;=K25.7^^55^783^50
- ;;^UTILITY(U,$J,358.3,18960,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18960,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,18960,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,18960,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,18961,0)
- ;;=K26.9^^55^783^44
- ;;^UTILITY(U,$J,358.3,18961,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18961,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,18961,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,18961,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,18962,0)
- ;;=K27.9^^55^783^72
- ;;^UTILITY(U,$J,358.3,18962,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18962,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,18962,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,18962,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,18963,0)
- ;;=K29.70^^55^783^51
- ;;^UTILITY(U,$J,358.3,18963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18963,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,18963,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,18963,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,18964,0)
- ;;=K29.90^^55^783^52
- ;;^UTILITY(U,$J,358.3,18964,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18964,1,3,0)
- ;;=3^Gastroduodenitis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,18964,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,18964,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,18965,0)
- ;;=K30.^^55^783^45
- ;;^UTILITY(U,$J,358.3,18965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18965,1,3,0)
- ;;=3^Dyspepsia,Functional
- ;;^UTILITY(U,$J,358.3,18965,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,18965,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,18966,0)
- ;;=K31.89^^55^783^34
- ;;^UTILITY(U,$J,358.3,18966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18966,1,3,0)
- ;;=3^Diseases of Stomach & Duodenum,Other
- ;;^UTILITY(U,$J,358.3,18966,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,18966,2)
- ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,6460,1,3,0)
+ ;;=3^Occlusion/Stenosis of Basilar Artery

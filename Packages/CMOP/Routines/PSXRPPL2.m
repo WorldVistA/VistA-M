@@ -1,5 +1,5 @@
 PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
- ;;2.0;CMOP;**65,69,73,74,79,81,83**;11 Apr 97;Build 2
+ ;;2.0;CMOP;**65,69,73,74,79,81,83,87**;11 Apr 97;Build 8
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSSLOCK  supported by DBIA #2789
@@ -14,7 +14,17 @@ PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
  ;Reference to LOG^BPSOSL supported by ICR# 6764
  ;Reference to IEN59^BPSOSRX supported by ICR# 4412
  ;
-CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET dfn to gather Patients' future RXs
+ ; CHKDFN makes a second pass through the suspense queue, looking for
+ ; any additional prescriptions for patients who already have an Rx
+ ; included in the current batch.  To accomplish this, it loops through
+ ; all the patients in the batch - ^PSX(550.2,Batch,15,"C",Name,DFN) -
+ ; and then loops through the suspense queue, starting with the day
+ ; after the through date used by SBTECME^PSXRPPL1 and going through
+ ; that date plus the 'look ahead' date in the site parameters (see
+ ; DRIV^PSXRSUS).  The logic inside the loops is largely identical to
+ ; that in SBTECME^PSXRPPL1.
+ ;
+CHKDFN(THRDT) ;
  ;Input: THRDT - THROUGH DATE to run CMOP transmission
  ;
  ; This procedure assumes the following variables to exist:
@@ -24,9 +34,12 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  ;   PSXTDIV = Division
  ;   PSXTYP = "C" if running for Controlled Substance, "N" otherwise
  ;
- N NDFN,PSOLRX,PSXPTNM,REC,RESP,RFL,RX,SBTECME,SDT,XDFN
+ N PSOLRX,PSXPTNM,REC,RESP,RFL,RX,SBTECME,SDT,XDFN
+ ;
+ ; If there are no prescriptions in the current batch, then Quit.
  ;
  I '$D(^PSX(550.2,PSXBAT,15,"C")) Q
+ ;
  S SBTECME=0
  K ^TMP("PSXEPHDFN",$J)
  S PSXPTNM=""
@@ -35,29 +48,37 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  . F  S XDFN=$O(^PSX(550.2,PSXBAT,"15","C",PSXPTNM,XDFN)) Q:(XDFN'>0)  D
  . . S SDT=PRTDT
  . . F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)) Q:(SDT>PSXDTRG)!(SDT="")  D
- . . . S NDFN=0
- . . . F  S NDFN=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN)) Q:NDFN'>0  I NDFN=XDFN D
- . . . . S REC=0
- . . . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN,REC)) Q:REC'>0  D
- . . . . . S (PSOLRX,RX)=+$$GET1^DIQ(52.5,REC,.01,"I") I 'RX Q
- . . . . . S RFL=$$GET1^DIQ(52.5,REC,9,"I") I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RX)
- . . . . . I $$XMIT^PSXBPSUT(REC) D
- . . . . . . I SDT>THRDT,'$D(^TMP("PSXEPHDFN",$J,XDFN)) Q
- . . . . . . I $$PATCH^XPDUTL("PSO*7.0*148") D
- . . . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
- . . . . . . . I $$DOUBLE^PSXRPPL1(RX,RFL) Q
- . . . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q
- . . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$ECMESTAT(RX,RFL) Q
- . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
- . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
- . . . . . . . ;
- . . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-CHKDFN, RESP="_$G(RESP))  ; ICR #4412,6764
- . . . . . . . ;
- . . . . . . . I $G(RESP)'["IN PROGRESS",$$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
- . . . . . . . ;
- . . . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
- . . . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""
- . . . . . D PSOUL^PSSLOCK(PSOLRX)
+ . . . S REC=0
+ . . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,XDFN,REC)) Q:REC'>0  D
+ . . . . S (PSOLRX,RX)=+$$GET1^DIQ(52.5,REC,.01,"I") I 'RX Q
+ . . . . S RFL=$$GET1^DIQ(52.5,REC,9,"I") I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RX)
+ . . . . I $$XMIT^PSXBPSUT(REC) D
+ . . . . . I SDT>THRDT,'$D(^TMP("PSXEPHDFN",$J,XDFN)) Q
+ . . . . . I $$PATCH^XPDUTL("PSO*7.0*148") D
+ . . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
+ . . . . . . I $$DOUBLE^PSXRPPL1(RX,RFL) Q
+ . . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q
+ . . . . . . ;
+ . . . . . . ; If TRI/CVA and the Rx already has a closed eT/eC
+ . . . . . . ; pseudo-reject, then do not send another claim.
+ . . . . . . ;
+ . . . . . . I $$TRICVANB^PSXRPPL1(RX,RFL) D  Q
+ . . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-CHKDFN, $$TRICVANB returned 1")  ; ICR #4412,6764
+ . . . . . . ;
+ . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$ECMESTAT(RX,RFL) Q
+ . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
+ . . . . . . ;
+ . . . . . . ; ECMESND^PSOBPSU1 initiates the claim submission process.
+ . . . . . . ;
+ . . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
+ . . . . . . ;
+ . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-CHKDFN, RESP="_$G(RESP))  ; ICR #4412,6764
+ . . . . . . ;
+ . . . . . . I $G(RESP)'["IN PROGRESS",$$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
+ . . . . . . ;
+ . . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
+ . . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""
+ . . . . D PSOUL^PSSLOCK(PSOLRX)
  K ^TMP("PSXEPHDFN",$J)
  I SBTECME>0 H 60+$S((SBTECME*15)>7200:7200,1:(SBTECME*15))
  Q
@@ -115,10 +136,10 @@ EPH ; - Store Rx not xmitted to CMOP in XTMP file for MailMan message.
  S ^TMP("PSXEPHIN",$J,$$RXSITE^PSOBPSUT(RXN),RXN)=RFL,EPHQT=1
  Q
  ;
- ;Description:
- ;This function checks the Rx's ECME Status to determine if it's acceptable to resubmit
- ;based on reject codes associated with a previous submission. If Rx was rejected with
- ;host reject errors, and no other rejects exist, then it's OK to resubmit to ECME.
+ ; ECMESTAT checks the Rx's ECME Status to determine if it's acceptable
+ ; to resubmit based on reject codes associated with a previous
+ ; submission.  If Rx was rejected with host reject errors, and no other
+ ; rejects exist, then it's OK to resubmit to ECME.
  ;Input: RX = Prescription file #52 IEN
  ; RFL = Refill number
  ;Returns: 1 = OK to resubmit
@@ -145,17 +166,15 @@ ECMESTAT(RX,RFL) ;
  I HERR&(CHDAT) Q 1  ;Host reject & suspense hold date has expired; resubmit
  Q 0  ;NOTE - IF YOU CHANGE THIS Q 0, IGNORED REJECTS WILL RESUBMIT AND REJECT AGAIN WHICH IS VERY BAD.
  ;
- ;Description: 
- ;This function determines whether the RX SUSPENSE has a DAYS SUPPLY HOLD
- ;condition.
+ ;DSH determines whether the RX SUSPENSE has a DAYS SUPPLY HOLD condition.
  ;Input: REC = Pointer to Suspense file (#52.5)
  ;Returns: 1 or 0
  ;1 (one) if 3/4 of days supply has elapsed.
  ;0 (zero) is returned if 3/4 of days supply has not elapsed. 
  ;
 DSH(REC) ;ePharmacy API to check for 3/4 days supply hold
- N PSINSUR,PSARR,SHDT,DSHOLD,DSHDT,PS0,COMM,DIE,DA,DR,RXIEN,RFL,DAYSSUP,LSTFIL,PTDFN,IBINS,DRG
- N SFN,SDT,ELIG,PREVRX
+ N PSINSUR,PSARR,SHDT,DSHOLD,DSHDT,PS0,COMM,DIE,DA,DR,RXIEN,RFL
+ N DAYSSUP,LSTFIL,PTDFN,IBINS,DRG,SFN,SDT,ELIG,PREVRX
  S DSHOLD=1,PS0=^PS(52.5,REC,0),RXIEN=$P(PS0,U,1),RFL=$P(PS0,U,13)
  S LSTFIL=$$LSTRFL^PSOBPSU1(RXIEN),PTDFN=$$GET1^DIQ(52,RXIEN,"2","I")
  I RFL="" S RFL=LSTFIL
@@ -189,6 +208,7 @@ DSH(REC) ;ePharmacy API to check for 3/4 days supply hold
  . . S SFN=REC,DEAD=0,INDT=DSHDT D CHANGE^PSOSUCH1(RXIEN,RFL)
  . . Q
  . Q
+ ;
  Q DSHOLD
  ;
 DSHDT(RXIEN,RFL) ; ePharmacy function to determine the 3/4 of the days supply date
@@ -211,8 +231,7 @@ DSHDT(RXIEN,RFL) ; ePharmacy function to determine the 3/4 of the days supply da
  ; and the previous Rx used in the calculation, if any.
  Q $$FMADD^XLFDT(FILLDT,DSH34)_U_PREVRX
  ;
- ; Description: This function returns the DAYS SUPPLY for the Latest Fill
- ; for a Prescription
+ ; LFDS returns the DAYS SUPPLY for the latest fill for a prescription.
  ; Input: RXIEN = Prescription file #52 IEN
  ; Returns: DAYS SUPPLY for the latest fill
  ;          -1 if RXIEN is not valid
@@ -222,54 +241,62 @@ LFDS(RXIEN) ;
  S RXFIL=$$LSTRFL^PSOBPSU1(RXIEN)
  Q $S(RXFIL=0:$P(^PSRX(RXIEN,0),U,8),1:$P(^PSRX(RXIEN,1,RXFIL,0),U,10))
  ;
- ;
- ;Description: ePharmacy API to check for host errors.
- ;Input: RX = Prescription file #52 IEN
- ; RFL = Refill number
- ;Returns: A value of 0 (zero) will be returned when reject codes M6, M8,
- ;NN, and 99 are present OR if on susp hold which means the prescription should not 
- ;be sent to CMOP. Otherwise, a value of 1(one) will be returned.
+ ; DUR checks for host errors and the suspense hold date.
+ ; Input:
+ ;   RX = Prescription file #52 IEN
+ ;  RFL = Refill number
+ ; Returns: A value of 0 (zero) will be returned when reject code M6,
+ ; M8, NN, or 99 are present OR if on susp hold which means the
+ ; prescription should not be sent to CMOP.
+ ; Otherwise, a value of 1(one) will be returned.
 DUR(RX,RFL) ;
  N REJ,IDX,TXT,CODE,SHCODE,SHDT,CHDAT1
  S IDX=""
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
+ ;
  ; check for a previous host reject:
- ;  1 - if host reject date expired allow to print; 0 - if not expired don't print
- ;    2 - if not defined allow to continue with evaluation for new host reject
- S CHDAT1=$$CHHEDT(RX,RFL) Q:CHDAT1=1 1 Q:CHDAT1=0 0  ;Otherwise continue on to check for a new host reject
+ ;  0 - host reject date not expired; don't print
+ ;  1 - host reject date expired; allow to print
+ ;  2 - host reject not define; allow to continue with evaluation
+ ;      for new host reject
+ S CHDAT1=$$CHHEDT(RX,RFL)
+ I CHDAT1=1 Q 1
+ I CHDAT1=0 Q 0
+ ;
  ; If a host reject exists and no previous Susp Hold Date or log entry,
  ;    create the log entry and hold rx/fill.
  S HERR=$$HOSTREJ(RX,RFL,1)
- I HERR,SHDT="" D SHDTLOG(RX,RFL) Q 0
- Q:HERR 0
+ I HERR,SHDT="" D SHDTLOG(RX,RFL)
+ I HERR Q 0
  Q 1
  ;
 CHHEDT(RX,RFL) ;
  ; RX = Prescription File IEN
  ; RFL = Refill
  ;Returns: 
- ; 0 = host reject date not expired, 1 - host reject has expired, 2 - host reject not defined 
+ ; 0 = host reject date not expired
+ ; 1 = host reject has expired
+ ; 2 = host reject not defined 
  ;
  S SHDT=$$SHDT(RX,RFL) ; Get suspense hold date for rx/refill
  I SHDT'="" Q:DT'<SHDT 1 Q 0
  Q 2
  ;
- ;Description: ePharmacy
- ;This subroutine checks an RX/FILL for Host Reject Errors returned
- ;from previous ECME submissions. The host reject errors checked are M6, M8, NN, and 99.
- ;Note that host reject errors do not pass to the pharmacy reject worklist so it's necessary
- ;to check ECME for these type errors.
- ;Input: 
- ; RX = Prescription File IEN
- ; RFL = Refill
- ; ONE = Either 1 or 0 - Defaults to 1
- ; If 1, At least ONE reject code associated with the RX/FILL must 
- ;   match either M6, M8, NN, or 99.
- ; If 0, ALL reject codes must match either M6, M8, NN, or 99
- ;Return: 
- ; RETV = 1 OR 0
- ; 1 = host reject exists based on ONE parameter
- ; 0 = no host rejects exists based on ONE parameter
+ ; HOSTREJ checks an RX/FILL for Host Reject Errors returned from
+ ; previous ECME submissions.  The host reject errors checked are M6,
+ ; M8, NN, and 99.  Host reject errors do not pass to the pharmacy
+ ; worklist so it's necessary to check ECME for these type errors.
+ ; Input: 
+ ;    RX = Prescription File IEN
+ ;   RFL = Refill
+ ;   ONE = Either 1 or 0 - Defaults to 1
+ ;     If 1, At least ONE reject code associated with the RX/FILL must 
+ ;     match either M6, M8, NN, or 99.
+ ;     If 0, ALL reject codes must match either M6, M8, NN, or 99
+ ; Return:
+ ;  RETV = 1 OR 0
+ ;     1 = host reject exists based on ONE parameter
+ ;     0 = no host rejects exists based on ONE parameter
 HOSTREJ(RX,RFL,ONE) ;
  N REJ,IDX,TXT,CODE,HRCODE,HRQUIT,RETV
  S IDX="",(RETV,HRQUIT)=0
@@ -283,10 +310,10 @@ HOSTREJ(RX,RFL,ONE) ;
  . . . I CODE'=HRCODE,RETV=1 S RETV=0,HRQUIT=1 Q
  Q RETV
  ;
- ;Description: This subroutine sets the EPHARMACY SUSPENSE HOLD DATE field
- ;for the rx or refill to tomorrow and adds an entry to the SUSPENSE Activity Log.
- ;Input: RX = Prescription File IEN
- ; RFL = Refill
+ ; SHDTLOG sets the EPHARMACY SUSPENSE HOLD DATE field for the rx or
+ ; refill to tomorrow and adds an entry to the SUSPENSE Activity Log.
+ ; Input:  RX = Prescription File IEN
+ ;        RFL = Refill
 SHDTLOG(RX,RFL) ;
  N DA,DIE,DR,COMM,SHDT
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
@@ -297,10 +324,10 @@ SHDTLOG(RX,RFL) ;
  D RXACT^PSOBPSU2(RX,RFL,COMM,"S",+$G(DUZ)) ; Create Activity Log entry
  Q
  ;
- ;Description: This function returns the EPHARMACY SUSPENSE HOLD DATE field
- ;for the rx or refill
- ;Input: RX = Prescription File IEN
- ; RFL = Refill
+ ; SHDT returns the EPHARMACY SUSPENSE HOLD DATE field for the rx or
+ ; the refill
+ ; Input:  RX = Prescription File IEN
+ ;        RFL = Refill
 SHDT(RX,RFL) ;
  N FILE,IENS
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)

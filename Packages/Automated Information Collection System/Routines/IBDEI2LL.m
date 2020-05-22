@@ -1,64 +1,118 @@
-IBDEI2LL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2LL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.4,0,"GL")
- ;;=^IBE(358.4,
- ;;^DIC("B","IMP/EXP SELECTION GROUP",358.4)
- ;;=
- ;;^DIC(358.4,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.4,"%D",1,0)
- ;;= 
- ;;^DIC(358.4,"%D",2,0)
- ;;=This file is nearly identical to file #357.4. It is used by the
- ;;^DIC(358.4,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.4,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.4,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.4,0,"DDA")
- ;;=N
- ;;^DD(358.4,0,"DT")
- ;;=2950717
- ;;^DD(358.4,0,"ID",.02)
- ;;=W "   ",$P(^(0),U,2)
- ;;^DD(358.4,0,"ID",.03)
- ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
- ;;^DD(358.4,0,"IX","APO",358.4,.02)
- ;;=
- ;;^DD(358.4,0,"IX","APO1",358.4,.03)
- ;;=
- ;;^DD(358.4,0,"IX","B",358.4,.01)
- ;;=
- ;;^DD(358.4,0,"IX","D",358.4,.03)
- ;;=
- ;;^DD(358.4,0,"NM","IMP/EXP SELECTION GROUP")
- ;;=
- ;;^DD(358.4,0,"PT",358.3,.04)
- ;;=
- ;;^DD(358.4,0,"VRPK")
- ;;=IBD
- ;;^DD(358.4,.01,0)
- ;;=HEADER^RF^^0;1^K:$L(X)>40!($L(X)<1) X
- ;;^DD(358.4,.01,1,0)
- ;;=^.1
- ;;^DD(358.4,.01,1,1,0)
- ;;=358.4^B
- ;;^DD(358.4,.01,1,1,1)
- ;;=S ^IBE(358.4,"B",$E(X,1,30),DA)=""
- ;;^DD(358.4,.01,1,1,2)
- ;;=K ^IBE(358.4,"B",$E(X,1,30),DA)
- ;;^DD(358.4,.01,3)
- ;;=What text do you want to appear at the top of this group?
- ;;^DD(358.4,.01,21,0)
- ;;=^^2^2^2930604^^^^
- ;;^DD(358.4,.01,21,1,0)
- ;;= 
- ;;^DD(358.4,.01,21,2,0)
- ;;=The name given to a group of selections appearing on a selection list.
- ;;^DD(358.4,.01,"DEL",1,0)
- ;;=I '$G(IBLISTPR) W "...Selection Groups can only be deleted through the Encounter Form Utilities!"
- ;;^DD(358.4,.01,"DT")
- ;;=2930604
+ ;;^UTILITY(U,$J,358.3,41484,1,2,0)
+ ;;=2^Muscle Test (EMG),4 Limbs
+ ;;^UTILITY(U,$J,358.3,41484,1,3,0)
+ ;;=3^95864
+ ;;^UTILITY(U,$J,358.3,41485,0)
+ ;;=95867^^154^2049^7^^^^1
+ ;;^UTILITY(U,$J,358.3,41485,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41485,1,2,0)
+ ;;=2^Muscle Test (EMG),Cran Ner Mus-Unilat
+ ;;^UTILITY(U,$J,358.3,41485,1,3,0)
+ ;;=3^95867
+ ;;^UTILITY(U,$J,358.3,41486,0)
+ ;;=95868^^154^2049^8^^^^1
+ ;;^UTILITY(U,$J,358.3,41486,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41486,1,2,0)
+ ;;=2^Muscle Test (EMG),Head or Neck
+ ;;^UTILITY(U,$J,358.3,41486,1,3,0)
+ ;;=3^95868
+ ;;^UTILITY(U,$J,358.3,41487,0)
+ ;;=95870^^154^2049^9^^^^1
+ ;;^UTILITY(U,$J,358.3,41487,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41487,1,2,0)
+ ;;=2^Needle EMG < 5 Muscles/Ext
+ ;;^UTILITY(U,$J,358.3,41487,1,3,0)
+ ;;=3^95870
+ ;;^UTILITY(U,$J,358.3,41488,0)
+ ;;=95861^^154^2049^4^^^^1
+ ;;^UTILITY(U,$J,358.3,41488,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41488,1,2,0)
+ ;;=2^Muscle Test (EMG),2 Limbs
+ ;;^UTILITY(U,$J,358.3,41488,1,3,0)
+ ;;=3^95861
+ ;;^UTILITY(U,$J,358.3,41489,0)
+ ;;=95885^^154^2049^10^^^^1
+ ;;^UTILITY(U,$J,358.3,41489,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41489,1,2,0)
+ ;;=2^Needle EMG < 5 Muscles/Ext,+NCS
+ ;;^UTILITY(U,$J,358.3,41489,1,3,0)
+ ;;=3^95885
+ ;;^UTILITY(U,$J,358.3,41490,0)
+ ;;=95886^^154^2049^11^^^^1
+ ;;^UTILITY(U,$J,358.3,41490,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41490,1,2,0)
+ ;;=2^Needle EMG >/= 5 Muscles/Ext,+NCS
+ ;;^UTILITY(U,$J,358.3,41490,1,3,0)
+ ;;=3^95886
+ ;;^UTILITY(U,$J,358.3,41491,0)
+ ;;=95887^^154^2049^12^^^^1
+ ;;^UTILITY(U,$J,358.3,41491,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41491,1,2,0)
+ ;;=2^Needle EMG CNs or Axial,+NCS
+ ;;^UTILITY(U,$J,358.3,41491,1,3,0)
+ ;;=3^95887
+ ;;^UTILITY(U,$J,358.3,41492,0)
+ ;;=95905^^154^2049^2^^^^1
+ ;;^UTILITY(U,$J,358.3,41492,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41492,1,2,0)
+ ;;=2^Motor/Sens Nerv Conduct-ea limb s/F-wv
+ ;;^UTILITY(U,$J,358.3,41492,1,3,0)
+ ;;=3^95905
+ ;;^UTILITY(U,$J,358.3,41493,0)
+ ;;=95907^^154^2049^14^^^^1
+ ;;^UTILITY(U,$J,358.3,41493,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41493,1,2,0)
+ ;;=2^Nerve conduction studies; 1-2 studies
+ ;;^UTILITY(U,$J,358.3,41493,1,3,0)
+ ;;=3^95907
+ ;;^UTILITY(U,$J,358.3,41494,0)
+ ;;=95908^^154^2049^16^^^^1
+ ;;^UTILITY(U,$J,358.3,41494,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41494,1,2,0)
+ ;;=2^Nerve conduction studies; 3-4 studies
+ ;;^UTILITY(U,$J,358.3,41494,1,3,0)
+ ;;=3^95908
+ ;;^UTILITY(U,$J,358.3,41495,0)
+ ;;=95909^^154^2049^17^^^^1
+ ;;^UTILITY(U,$J,358.3,41495,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41495,1,2,0)
+ ;;=2^Nerve conduction studies; 5-6 studies
+ ;;^UTILITY(U,$J,358.3,41495,1,3,0)
+ ;;=3^95909
+ ;;^UTILITY(U,$J,358.3,41496,0)
+ ;;=95910^^154^2049^18^^^^1
+ ;;^UTILITY(U,$J,358.3,41496,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41496,1,2,0)
+ ;;=2^Nerve conduction studies; 7-8 studies
+ ;;^UTILITY(U,$J,358.3,41496,1,3,0)
+ ;;=3^95910
+ ;;^UTILITY(U,$J,358.3,41497,0)
+ ;;=95911^^154^2049^19^^^^1
+ ;;^UTILITY(U,$J,358.3,41497,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41497,1,2,0)
+ ;;=2^Nerve conduction studies; 9-10 studies
+ ;;^UTILITY(U,$J,358.3,41497,1,3,0)
+ ;;=3^95911
+ ;;^UTILITY(U,$J,358.3,41498,0)
+ ;;=95912^^154^2049^15^^^^1
+ ;;^UTILITY(U,$J,358.3,41498,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41498,1,2,0)
+ ;;=2^Nerve conduction studies; 11-12 studies

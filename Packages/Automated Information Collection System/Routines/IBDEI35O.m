@@ -1,136 +1,126 @@
-IBDEI35O ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI35O ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52979,0)
- ;;=L60.0^^243^2656^3
- ;;^UTILITY(U,$J,358.3,52979,1,0)
+ ;;^UTILITY(U,$J,358.3,50391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52979,1,3,0)
- ;;=3^Nail,Ingrowing
- ;;^UTILITY(U,$J,358.3,52979,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,52979,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,52980,0)
- ;;=L60.9^^243^2656^1
- ;;^UTILITY(U,$J,358.3,52980,1,0)
+ ;;^UTILITY(U,$J,358.3,50391,1,3,0)
+ ;;=3^Congestive Splenomegaly,Chronic
+ ;;^UTILITY(U,$J,358.3,50391,1,4,0)
+ ;;=4^D73.2
+ ;;^UTILITY(U,$J,358.3,50391,2)
+ ;;=^268000
+ ;;^UTILITY(U,$J,358.3,50392,0)
+ ;;=I85.00^^193^2493^53
+ ;;^UTILITY(U,$J,358.3,50392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52980,1,3,0)
- ;;=3^Nail Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52980,1,4,0)
- ;;=4^L60.9
- ;;^UTILITY(U,$J,358.3,52980,2)
- ;;=^5009240
- ;;^UTILITY(U,$J,358.3,52981,0)
- ;;=Z91.19^^243^2656^9
- ;;^UTILITY(U,$J,358.3,52981,1,0)
+ ;;^UTILITY(U,$J,358.3,50392,1,3,0)
+ ;;=3^Esophageal Varices w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,50392,1,4,0)
+ ;;=4^I85.00
+ ;;^UTILITY(U,$J,358.3,50392,2)
+ ;;=^5008023
+ ;;^UTILITY(U,$J,358.3,50393,0)
+ ;;=K20.9^^193^2493^54
+ ;;^UTILITY(U,$J,358.3,50393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52981,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,52981,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,52981,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,52982,0)
- ;;=E80.1^^243^2657^19
- ;;^UTILITY(U,$J,358.3,52982,1,0)
+ ;;^UTILITY(U,$J,358.3,50393,1,3,0)
+ ;;=3^Esophagitis,Unspec
+ ;;^UTILITY(U,$J,358.3,50393,1,4,0)
+ ;;=4^K20.9
+ ;;^UTILITY(U,$J,358.3,50393,2)
+ ;;=^295809
+ ;;^UTILITY(U,$J,358.3,50394,0)
+ ;;=K21.9^^193^2493^62
+ ;;^UTILITY(U,$J,358.3,50394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52982,1,3,0)
- ;;=3^Porphyria Cutanea Tarda
- ;;^UTILITY(U,$J,358.3,52982,1,4,0)
- ;;=4^E80.1
- ;;^UTILITY(U,$J,358.3,52982,2)
- ;;=^5002982
- ;;^UTILITY(U,$J,358.3,52983,0)
- ;;=L56.4^^243^2657^18
- ;;^UTILITY(U,$J,358.3,52983,1,0)
+ ;;^UTILITY(U,$J,358.3,50394,1,3,0)
+ ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,50394,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,50394,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,50395,0)
+ ;;=K25.7^^193^2493^57
+ ;;^UTILITY(U,$J,358.3,50395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52983,1,3,0)
- ;;=3^Polymorphous Light Eruption
- ;;^UTILITY(U,$J,358.3,52983,1,4,0)
- ;;=4^L56.4
- ;;^UTILITY(U,$J,358.3,52983,2)
- ;;=^5009218
- ;;^UTILITY(U,$J,358.3,52984,0)
- ;;=L10.0^^243^2657^4
- ;;^UTILITY(U,$J,358.3,52984,1,0)
+ ;;^UTILITY(U,$J,358.3,50395,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
+ ;;^UTILITY(U,$J,358.3,50395,1,4,0)
+ ;;=4^K25.7
+ ;;^UTILITY(U,$J,358.3,50395,2)
+ ;;=^5008521
+ ;;^UTILITY(U,$J,358.3,50396,0)
+ ;;=K26.9^^193^2493^49
+ ;;^UTILITY(U,$J,358.3,50396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52984,1,3,0)
- ;;=3^Pemphigus Vulgaris
- ;;^UTILITY(U,$J,358.3,52984,1,4,0)
- ;;=4^L10.0
- ;;^UTILITY(U,$J,358.3,52984,2)
- ;;=^91129
- ;;^UTILITY(U,$J,358.3,52985,0)
- ;;=L41.3^^243^2657^2
- ;;^UTILITY(U,$J,358.3,52985,1,0)
+ ;;^UTILITY(U,$J,358.3,50396,1,3,0)
+ ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,50396,1,4,0)
+ ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,50396,2)
+ ;;=^5008527
+ ;;^UTILITY(U,$J,358.3,50397,0)
+ ;;=K27.9^^193^2493^82
+ ;;^UTILITY(U,$J,358.3,50397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52985,1,3,0)
- ;;=3^Parapsoriasis,Small Plague
- ;;^UTILITY(U,$J,358.3,52985,1,4,0)
- ;;=4^L41.3
- ;;^UTILITY(U,$J,358.3,52985,2)
- ;;=^5009173
- ;;^UTILITY(U,$J,358.3,52986,0)
- ;;=L41.4^^243^2657^1
- ;;^UTILITY(U,$J,358.3,52986,1,0)
+ ;;^UTILITY(U,$J,358.3,50397,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,50397,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,50397,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,50398,0)
+ ;;=K29.70^^193^2493^58
+ ;;^UTILITY(U,$J,358.3,50398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52986,1,3,0)
- ;;=3^Parapsoriasis,Large Plague
- ;;^UTILITY(U,$J,358.3,52986,1,4,0)
- ;;=4^L41.4
- ;;^UTILITY(U,$J,358.3,52986,2)
- ;;=^5009174
- ;;^UTILITY(U,$J,358.3,52987,0)
- ;;=L28.1^^243^2657^29
- ;;^UTILITY(U,$J,358.3,52987,1,0)
+ ;;^UTILITY(U,$J,358.3,50398,1,3,0)
+ ;;=3^Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,50398,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,50398,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,50399,0)
+ ;;=K29.90^^193^2493^59
+ ;;^UTILITY(U,$J,358.3,50399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52987,1,3,0)
- ;;=3^Prurigo Nodularis
- ;;^UTILITY(U,$J,358.3,52987,1,4,0)
- ;;=4^L28.1
- ;;^UTILITY(U,$J,358.3,52987,2)
- ;;=^5009148
- ;;^UTILITY(U,$J,358.3,52988,0)
- ;;=H61.001^^243^2657^6
- ;;^UTILITY(U,$J,358.3,52988,1,0)
+ ;;^UTILITY(U,$J,358.3,50399,1,3,0)
+ ;;=3^Gastroduodenitis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,50399,1,4,0)
+ ;;=4^K29.90
+ ;;^UTILITY(U,$J,358.3,50399,2)
+ ;;=^5008556
+ ;;^UTILITY(U,$J,358.3,50400,0)
+ ;;=K30.^^193^2493^50
+ ;;^UTILITY(U,$J,358.3,50400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52988,1,3,0)
- ;;=3^Perichondritis Right External Ear,Unspec
- ;;^UTILITY(U,$J,358.3,52988,1,4,0)
- ;;=4^H61.001
- ;;^UTILITY(U,$J,358.3,52988,2)
- ;;=^5006499
- ;;^UTILITY(U,$J,358.3,52989,0)
- ;;=H61.002^^243^2657^5
- ;;^UTILITY(U,$J,358.3,52989,1,0)
+ ;;^UTILITY(U,$J,358.3,50400,1,3,0)
+ ;;=3^Dyspepsia,Functional
+ ;;^UTILITY(U,$J,358.3,50400,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,50400,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,50401,0)
+ ;;=K31.89^^193^2493^39
+ ;;^UTILITY(U,$J,358.3,50401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52989,1,3,0)
- ;;=3^Perichondritis Left External Ear,Unspec
- ;;^UTILITY(U,$J,358.3,52989,1,4,0)
- ;;=4^H61.002
- ;;^UTILITY(U,$J,358.3,52989,2)
- ;;=^5006500
- ;;^UTILITY(U,$J,358.3,52990,0)
- ;;=L81.0^^243^2657^20
- ;;^UTILITY(U,$J,358.3,52990,1,0)
+ ;;^UTILITY(U,$J,358.3,50401,1,3,0)
+ ;;=3^Diseases of Stomach & Duodenum,Other
+ ;;^UTILITY(U,$J,358.3,50401,1,4,0)
+ ;;=4^K31.89
+ ;;^UTILITY(U,$J,358.3,50401,2)
+ ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,50402,0)
+ ;;=K31.9^^193^2493^38
+ ;;^UTILITY(U,$J,358.3,50402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52990,1,3,0)
- ;;=3^Postinflammatory Hyperpigmentation
- ;;^UTILITY(U,$J,358.3,52990,1,4,0)
- ;;=4^L81.0
- ;;^UTILITY(U,$J,358.3,52990,2)
- ;;=^5009310
- ;;^UTILITY(U,$J,358.3,52991,0)
- ;;=L81.7^^243^2657^14
- ;;^UTILITY(U,$J,358.3,52991,1,0)
+ ;;^UTILITY(U,$J,358.3,50402,1,3,0)
+ ;;=3^Disease of Stomach & Duodenum,Unspec
+ ;;^UTILITY(U,$J,358.3,50402,1,4,0)
+ ;;=4^K31.9
+ ;;^UTILITY(U,$J,358.3,50402,2)
+ ;;=^5008570
+ ;;^UTILITY(U,$J,358.3,50403,0)
+ ;;=K40.90^^193^2493^75
+ ;;^UTILITY(U,$J,358.3,50403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52991,1,3,0)
- ;;=3^Pigmented Purpuric Dermatosis
- ;;^UTILITY(U,$J,358.3,52991,1,4,0)
- ;;=4^L81.7
- ;;^UTILITY(U,$J,358.3,52991,2)
- ;;=^5009317
- ;;^UTILITY(U,$J,358.3,52992,0)
- ;;=L29.8^^243^2657^31

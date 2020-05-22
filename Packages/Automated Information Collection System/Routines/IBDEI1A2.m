@@ -1,136 +1,116 @@
-IBDEI1A2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1A2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21728,0)
- ;;=L02.416^^87^970^124
- ;;^UTILITY(U,$J,358.3,21728,1,0)
+ ;;^UTILITY(U,$J,358.3,20435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21728,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,21728,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,21728,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,21729,0)
- ;;=L02.511^^87^970^128
- ;;^UTILITY(U,$J,358.3,21729,1,0)
+ ;;^UTILITY(U,$J,358.3,20435,1,3,0)
+ ;;=3^Nondisp fx of body of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20435,1,4,0)
+ ;;=4^S62.145S
+ ;;^UTILITY(U,$J,358.3,20435,2)
+ ;;=^5033373
+ ;;^UTILITY(U,$J,358.3,20436,0)
+ ;;=S62.144S^^93^1002^74
+ ;;^UTILITY(U,$J,358.3,20436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21729,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,21729,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,21729,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,21730,0)
- ;;=L02.512^^87^970^123
- ;;^UTILITY(U,$J,358.3,21730,1,0)
+ ;;^UTILITY(U,$J,358.3,20436,1,3,0)
+ ;;=3^Nondisp fx of body of hamate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20436,1,4,0)
+ ;;=4^S62.144S
+ ;;^UTILITY(U,$J,358.3,20436,2)
+ ;;=^5033366
+ ;;^UTILITY(U,$J,358.3,20437,0)
+ ;;=S62.135S^^93^1002^75
+ ;;^UTILITY(U,$J,358.3,20437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21730,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,21730,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,21730,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,21731,0)
- ;;=L02.611^^87^970^127
- ;;^UTILITY(U,$J,358.3,21731,1,0)
+ ;;^UTILITY(U,$J,358.3,20437,1,3,0)
+ ;;=3^Nondisp fx of capitate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20437,1,4,0)
+ ;;=4^S62.135S
+ ;;^UTILITY(U,$J,358.3,20437,2)
+ ;;=^5033331
+ ;;^UTILITY(U,$J,358.3,20438,0)
+ ;;=S62.134S^^93^1002^76
+ ;;^UTILITY(U,$J,358.3,20438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21731,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,21731,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,21731,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,21732,0)
- ;;=L02.612^^87^970^122
- ;;^UTILITY(U,$J,358.3,21732,1,0)
+ ;;^UTILITY(U,$J,358.3,20438,1,3,0)
+ ;;=3^Nondisp fx of capitate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20438,1,4,0)
+ ;;=4^S62.134S
+ ;;^UTILITY(U,$J,358.3,20438,2)
+ ;;=^5033324
+ ;;^UTILITY(U,$J,358.3,20439,0)
+ ;;=S62.015S^^93^1002^83
+ ;;^UTILITY(U,$J,358.3,20439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21732,1,3,0)
- ;;=3^Cutaneous Abscess of Left Foot
- ;;^UTILITY(U,$J,358.3,21732,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,21732,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,21733,0)
- ;;=L02.92^^87^970^155
- ;;^UTILITY(U,$J,358.3,21733,1,0)
+ ;;^UTILITY(U,$J,358.3,20439,1,3,0)
+ ;;=3^Nondisp fx of distal pole of navic bone of left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20439,1,4,0)
+ ;;=4^S62.015S
+ ;;^UTILITY(U,$J,358.3,20439,2)
+ ;;=^5033107
+ ;;^UTILITY(U,$J,358.3,20440,0)
+ ;;=S62.014S^^93^1002^84
+ ;;^UTILITY(U,$J,358.3,20440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21733,1,3,0)
- ;;=3^Furuncle,Unspec
- ;;^UTILITY(U,$J,358.3,21733,1,4,0)
- ;;=4^L02.92
- ;;^UTILITY(U,$J,358.3,21733,2)
- ;;=^5009017
- ;;^UTILITY(U,$J,358.3,21734,0)
- ;;=L02.93^^87^970^93
- ;;^UTILITY(U,$J,358.3,21734,1,0)
+ ;;^UTILITY(U,$J,358.3,20440,1,3,0)
+ ;;=3^Nondisp fx of distal pole of navic bone of right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20440,1,4,0)
+ ;;=4^S62.014S
+ ;;^UTILITY(U,$J,358.3,20440,2)
+ ;;=^5033100
+ ;;^UTILITY(U,$J,358.3,20441,0)
+ ;;=S62.155S^^93^1002^87
+ ;;^UTILITY(U,$J,358.3,20441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21734,1,3,0)
- ;;=3^Carbuncle,Unspec
- ;;^UTILITY(U,$J,358.3,21734,1,4,0)
- ;;=4^L02.93
- ;;^UTILITY(U,$J,358.3,21734,2)
- ;;=^5009018
- ;;^UTILITY(U,$J,358.3,21735,0)
- ;;=L03.011^^87^970^108
- ;;^UTILITY(U,$J,358.3,21735,1,0)
+ ;;^UTILITY(U,$J,358.3,20441,1,3,0)
+ ;;=3^Nondisp fx of hook process of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20441,1,4,0)
+ ;;=4^S62.155S
+ ;;^UTILITY(U,$J,358.3,20441,2)
+ ;;=^5033415
+ ;;^UTILITY(U,$J,358.3,20442,0)
+ ;;=S62.154S^^93^1002^88
+ ;;^UTILITY(U,$J,358.3,20442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21735,1,3,0)
- ;;=3^Cellulitis of Right Finger
- ;;^UTILITY(U,$J,358.3,21735,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,21735,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,21736,0)
- ;;=L03.012^^87^970^101
- ;;^UTILITY(U,$J,358.3,21736,1,0)
+ ;;^UTILITY(U,$J,358.3,20442,1,3,0)
+ ;;=3^Nondisp fx of hook process of hamate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20442,1,4,0)
+ ;;=4^S62.154S
+ ;;^UTILITY(U,$J,358.3,20442,2)
+ ;;=^5033408
+ ;;^UTILITY(U,$J,358.3,20443,0)
+ ;;=S62.125S^^93^1002^91
+ ;;^UTILITY(U,$J,358.3,20443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21736,1,3,0)
- ;;=3^Cellulitis of Left Finger
- ;;^UTILITY(U,$J,358.3,21736,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,21736,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,21737,0)
- ;;=L03.021^^87^970^24
- ;;^UTILITY(U,$J,358.3,21737,1,0)
+ ;;^UTILITY(U,$J,358.3,20443,1,3,0)
+ ;;=3^Nondisp fx of lunate, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20443,1,4,0)
+ ;;=4^S62.125S
+ ;;^UTILITY(U,$J,358.3,20443,2)
+ ;;=^5033289
+ ;;^UTILITY(U,$J,358.3,20444,0)
+ ;;=S62.124S^^93^1002^92
+ ;;^UTILITY(U,$J,358.3,20444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21737,1,3,0)
- ;;=3^Acute Lymphangitis of Right Finger
- ;;^UTILITY(U,$J,358.3,21737,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,21737,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,21738,0)
- ;;=L03.022^^87^970^18
- ;;^UTILITY(U,$J,358.3,21738,1,0)
+ ;;^UTILITY(U,$J,358.3,20444,1,3,0)
+ ;;=3^Nondisp fx of lunate, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20444,1,4,0)
+ ;;=4^S62.124S
+ ;;^UTILITY(U,$J,358.3,20444,2)
+ ;;=^5033282
+ ;;^UTILITY(U,$J,358.3,20445,0)
+ ;;=S62.025S^^93^1002^93
+ ;;^UTILITY(U,$J,358.3,20445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21738,1,3,0)
- ;;=3^Acute Lymphangitis of Left Finger
- ;;^UTILITY(U,$J,358.3,21738,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,21738,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,21739,0)
- ;;=L03.031^^87^970^111
- ;;^UTILITY(U,$J,358.3,21739,1,0)
+ ;;^UTILITY(U,$J,358.3,20445,1,3,0)
+ ;;=3^Nondisp fx of middle third of navic bone of left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20445,1,4,0)
+ ;;=4^S62.025S
+ ;;^UTILITY(U,$J,358.3,20445,2)
+ ;;=^5033149
+ ;;^UTILITY(U,$J,358.3,20446,0)
+ ;;=S62.024S^^93^1002^94
+ ;;^UTILITY(U,$J,358.3,20446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21739,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,21739,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,21739,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,21740,0)
- ;;=L03.032^^87^970^104
- ;;^UTILITY(U,$J,358.3,21740,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21740,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,21740,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,21740,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,21741,0)
- ;;=L03.041^^87^970^26

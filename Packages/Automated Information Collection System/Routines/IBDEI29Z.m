@@ -1,128 +1,124 @@
-IBDEI29Z ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI29Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38597,1,3,0)
- ;;=3^Dizziness and giddiness
- ;;^UTILITY(U,$J,358.3,38597,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,38597,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,38598,0)
- ;;=G43.C0^^148^1888^21
- ;;^UTILITY(U,$J,358.3,38598,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38598,1,3,0)
- ;;=3^Periodic headache syndromes in chld/adlt, not intractable
- ;;^UTILITY(U,$J,358.3,38598,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,38598,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,38599,0)
- ;;=G43.C1^^148^1888^20
- ;;^UTILITY(U,$J,358.3,38599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38599,1,3,0)
- ;;=3^Periodic headache syndromes in child or adult, intractable
- ;;^UTILITY(U,$J,358.3,38599,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,38599,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,38600,0)
- ;;=R51.^^148^1888^11
- ;;^UTILITY(U,$J,358.3,38600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38600,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,38600,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,38600,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,38601,0)
- ;;=G43.909^^148^1888^18
- ;;^UTILITY(U,$J,358.3,38601,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38601,1,3,0)
- ;;=3^Migraine, unsp, not intractable, without status migrainosus
- ;;^UTILITY(U,$J,358.3,38601,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,38601,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,38602,0)
- ;;=G43.919^^148^1888^16
- ;;^UTILITY(U,$J,358.3,38602,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38602,1,3,0)
- ;;=3^Migraine, unsp, intractable, without status migrainosus
- ;;^UTILITY(U,$J,358.3,38602,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,38602,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,38603,0)
- ;;=G44.209^^148^1888^29
- ;;^UTILITY(U,$J,358.3,38603,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38603,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,38603,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,38603,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,38604,0)
- ;;=G43.901^^148^1888^17
- ;;^UTILITY(U,$J,358.3,38604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38604,1,3,0)
- ;;=3^Migraine, unsp, not intractable, with status migrainosus
- ;;^UTILITY(U,$J,358.3,38604,1,4,0)
- ;;=4^G43.901
- ;;^UTILITY(U,$J,358.3,38604,2)
- ;;=^5003908
- ;;^UTILITY(U,$J,358.3,38605,0)
- ;;=G43.911^^148^1888^15
- ;;^UTILITY(U,$J,358.3,38605,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38605,1,3,0)
- ;;=3^Migraine, unsp, intractable, with status migrainosus
- ;;^UTILITY(U,$J,358.3,38605,1,4,0)
- ;;=4^G43.911
- ;;^UTILITY(U,$J,358.3,38605,2)
- ;;=^5003910
- ;;^UTILITY(U,$J,358.3,38606,0)
- ;;=G44.201^^148^1888^28
- ;;^UTILITY(U,$J,358.3,38606,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38606,1,3,0)
- ;;=3^Tension-type headache, unspecified, intractable
- ;;^UTILITY(U,$J,358.3,38606,1,4,0)
- ;;=4^G44.201
- ;;^UTILITY(U,$J,358.3,38606,2)
- ;;=^5003935
- ;;^UTILITY(U,$J,358.3,38607,0)
- ;;=G44.211^^148^1888^9
- ;;^UTILITY(U,$J,358.3,38607,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38607,1,3,0)
- ;;=3^Episodic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,38607,1,4,0)
- ;;=4^G44.211
- ;;^UTILITY(U,$J,358.3,38607,2)
- ;;=^5003937
- ;;^UTILITY(U,$J,358.3,38608,0)
- ;;=G44.219^^148^1888^10
- ;;^UTILITY(U,$J,358.3,38608,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38608,1,3,0)
- ;;=3^Episodic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,38608,1,4,0)
- ;;=4^G44.219
- ;;^UTILITY(U,$J,358.3,38608,2)
- ;;=^5003938
- ;;^UTILITY(U,$J,358.3,38609,0)
- ;;=G44.229^^148^1888^5
- ;;^UTILITY(U,$J,358.3,38609,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38609,1,3,0)
- ;;=3^Chronic tension-type headache, not intractable
+ ;;^UTILITY(U,$J,358.3,36337,1,2,0)
+ ;;=2^Neurobehavioral Status Exam,per hour
+ ;;^UTILITY(U,$J,358.3,36337,1,3,0)
+ ;;=3^96116
+ ;;^UTILITY(U,$J,358.3,36338,0)
+ ;;=97763^^140^1851^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36338,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36338,1,2,0)
+ ;;=2^Orthotic/Prosth F/U Mgmt/Trng,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,36338,1,3,0)
+ ;;=3^97763
+ ;;^UTILITY(U,$J,358.3,36339,0)
+ ;;=62367^^140^1852^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36339,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36339,1,2,0)
+ ;;=2^Pump Analysis Only
+ ;;^UTILITY(U,$J,358.3,36339,1,3,0)
+ ;;=3^62367
+ ;;^UTILITY(U,$J,358.3,36340,0)
+ ;;=62368^^140^1852^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36340,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36340,1,2,0)
+ ;;=2^Pump Reprogram
+ ;;^UTILITY(U,$J,358.3,36340,1,3,0)
+ ;;=3^62368
+ ;;^UTILITY(U,$J,358.3,36341,0)
+ ;;=62370^^140^1852^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36341,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36341,1,2,0)
+ ;;=2^Pump Analysis Reprogram Refill
+ ;;^UTILITY(U,$J,358.3,36341,1,3,0)
+ ;;=3^62370
+ ;;^UTILITY(U,$J,358.3,36342,0)
+ ;;=61070^^140^1852^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36342,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36342,1,2,0)
+ ;;=2^Catheter Dye Study
+ ;;^UTILITY(U,$J,358.3,36342,1,3,0)
+ ;;=3^61070
+ ;;^UTILITY(U,$J,358.3,36343,0)
+ ;;=95873^^140^1853^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36343,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36343,1,2,0)
+ ;;=2^Stim Guidance
+ ;;^UTILITY(U,$J,358.3,36343,1,3,0)
+ ;;=3^95873
+ ;;^UTILITY(U,$J,358.3,36344,0)
+ ;;=95874^^140^1853^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36344,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36344,1,2,0)
+ ;;=2^Needle Guidance
+ ;;^UTILITY(U,$J,358.3,36344,1,3,0)
+ ;;=3^95874
+ ;;^UTILITY(U,$J,358.3,36345,0)
+ ;;=20526^^140^1854^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36345,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36345,1,2,0)
+ ;;=2^Therapeutic Injection
+ ;;^UTILITY(U,$J,358.3,36345,1,3,0)
+ ;;=3^20526
+ ;;^UTILITY(U,$J,358.3,36346,0)
+ ;;=20604^^140^1855^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36346,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36346,1,2,0)
+ ;;=2^Joint Injection w/ US-Small
+ ;;^UTILITY(U,$J,358.3,36346,1,3,0)
+ ;;=3^20604
+ ;;^UTILITY(U,$J,358.3,36347,0)
+ ;;=20606^^140^1855^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36347,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36347,1,2,0)
+ ;;=2^Joint Injection w/ US-Intermediate
+ ;;^UTILITY(U,$J,358.3,36347,1,3,0)
+ ;;=3^20606
+ ;;^UTILITY(U,$J,358.3,36348,0)
+ ;;=20611^^140^1855^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36348,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36348,1,2,0)
+ ;;=2^Joint Injection w/ US-Major
+ ;;^UTILITY(U,$J,358.3,36348,1,3,0)
+ ;;=3^20611
+ ;;^UTILITY(U,$J,358.3,36349,0)
+ ;;=20552^^140^1856^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36349,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36349,1,2,0)
+ ;;=2^Inject 1-2 Muscles
+ ;;^UTILITY(U,$J,358.3,36349,1,3,0)
+ ;;=3^20552
+ ;;^UTILITY(U,$J,358.3,36350,0)
+ ;;=20553^^140^1856^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36350,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36350,1,2,0)
+ ;;=2^Inject 3 or More Muscles
+ ;;^UTILITY(U,$J,358.3,36350,1,3,0)
+ ;;=3^20553
+ ;;^UTILITY(U,$J,358.3,36351,0)
+ ;;=76881^^140^1857^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36351,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36351,1,2,0)
+ ;;=2^US Guided w/ Image
+ ;;^UTILITY(U,$J,358.3,36351,1,3,0)
+ ;;=3^76881
+ ;;^UTILITY(U,$J,358.3,36352,0)
+ ;;=76882^^140^1857^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36352,1,0)
+ ;;=^358.31IA^3^2

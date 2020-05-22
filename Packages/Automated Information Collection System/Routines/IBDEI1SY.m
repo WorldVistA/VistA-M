@@ -1,134 +1,120 @@
-IBDEI1SY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30628,1,0)
+ ;;^UTILITY(U,$J,358.3,28781,0)
+ ;;=Z91.5^^115^1422^1
+ ;;^UTILITY(U,$J,358.3,28781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30628,1,3,0)
- ;;=3^Malig Neop Right Female Breast
- ;;^UTILITY(U,$J,358.3,30628,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,30628,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,30629,0)
- ;;=C50.912^^121^1524^11
- ;;^UTILITY(U,$J,358.3,30629,1,0)
+ ;;^UTILITY(U,$J,358.3,28781,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,28781,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,28781,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,28782,0)
+ ;;=T14.91XA^^115^1422^3
+ ;;^UTILITY(U,$J,358.3,28782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30629,1,3,0)
- ;;=3^Malig Neop Left Female Breast
- ;;^UTILITY(U,$J,358.3,30629,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,30629,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,30630,0)
- ;;=C61.^^121^1524^14
- ;;^UTILITY(U,$J,358.3,30630,1,0)
+ ;;^UTILITY(U,$J,358.3,28782,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,28782,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,28782,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,28783,0)
+ ;;=T14.91XD^^115^1422^4
+ ;;^UTILITY(U,$J,358.3,28783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30630,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,30630,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,30630,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,30631,0)
- ;;=C67.9^^121^1524^6
- ;;^UTILITY(U,$J,358.3,30631,1,0)
+ ;;^UTILITY(U,$J,358.3,28783,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,28783,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,28783,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,28784,0)
+ ;;=T14.91XS^^115^1422^5
+ ;;^UTILITY(U,$J,358.3,28784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30631,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,30631,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,30631,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,30632,0)
- ;;=C64.1^^121^1524^17
- ;;^UTILITY(U,$J,358.3,30632,1,0)
+ ;;^UTILITY(U,$J,358.3,28784,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,28784,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,28784,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,28785,0)
+ ;;=F19.14^^115^1423^1
+ ;;^UTILITY(U,$J,358.3,28785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30632,1,3,0)
- ;;=3^Malig Neop Right Kidney,Except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,30632,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,30632,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,30633,0)
- ;;=C64.2^^121^1524^12
- ;;^UTILITY(U,$J,358.3,30633,1,0)
+ ;;^UTILITY(U,$J,358.3,28785,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28785,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,28785,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,28786,0)
+ ;;=F19.24^^115^1423^2
+ ;;^UTILITY(U,$J,358.3,28786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30633,1,3,0)
- ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,30633,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,30633,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,30634,0)
- ;;=C71.9^^121^1524^7
- ;;^UTILITY(U,$J,358.3,30634,1,0)
+ ;;^UTILITY(U,$J,358.3,28786,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28786,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,28786,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,28787,0)
+ ;;=F19.94^^115^1423^3
+ ;;^UTILITY(U,$J,358.3,28787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30634,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,30634,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,30634,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,30635,0)
- ;;=C78.01^^121^1524^23
- ;;^UTILITY(U,$J,358.3,30635,1,0)
+ ;;^UTILITY(U,$J,358.3,28787,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28787,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,28787,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,28788,0)
+ ;;=F19.17^^115^1423^4
+ ;;^UTILITY(U,$J,358.3,28788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30635,1,3,0)
- ;;=3^Secondary Malig Neop Right Lung
- ;;^UTILITY(U,$J,358.3,30635,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,30635,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,30636,0)
- ;;=C78.02^^121^1524^21
- ;;^UTILITY(U,$J,358.3,30636,1,0)
+ ;;^UTILITY(U,$J,358.3,28788,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28788,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,28788,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,28789,0)
+ ;;=F19.27^^115^1423^5
+ ;;^UTILITY(U,$J,358.3,28789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30636,1,3,0)
- ;;=3^Secondary Malig Neop Left Lung
- ;;^UTILITY(U,$J,358.3,30636,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,30636,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,30637,0)
- ;;=C78.7^^121^1524^22
- ;;^UTILITY(U,$J,358.3,30637,1,0)
+ ;;^UTILITY(U,$J,358.3,28789,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28789,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,28789,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,28790,0)
+ ;;=F19.97^^115^1423^6
+ ;;^UTILITY(U,$J,358.3,28790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30637,1,3,0)
- ;;=3^Secondary Malig Neop Liver & Intrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,30637,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,30637,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,30638,0)
- ;;=C79.32^^121^1524^20
- ;;^UTILITY(U,$J,358.3,30638,1,0)
+ ;;^UTILITY(U,$J,358.3,28790,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28790,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,28790,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,28791,0)
+ ;;=F19.188^^115^1423^7
+ ;;^UTILITY(U,$J,358.3,28791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30638,1,3,0)
- ;;=3^Secondary Malig Neop Cerebral Meninges
- ;;^UTILITY(U,$J,358.3,30638,1,4,0)
- ;;=4^C79.32
- ;;^UTILITY(U,$J,358.3,30638,2)
- ;;=^5001348
- ;;^UTILITY(U,$J,358.3,30639,0)
- ;;=C79.31^^121^1524^19
- ;;^UTILITY(U,$J,358.3,30639,1,0)
+ ;;^UTILITY(U,$J,358.3,28791,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28791,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,28791,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,28792,0)
+ ;;=F19.288^^115^1423^8
+ ;;^UTILITY(U,$J,358.3,28792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30639,1,3,0)
- ;;=3^Secondary Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,30639,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,30639,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,30640,0)
- ;;=C7B.03^^121^1524^18
- ;;^UTILITY(U,$J,358.3,30640,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30640,1,3,0)
- ;;=3^Secondary Malig Neop Bone
- ;;^UTILITY(U,$J,358.3,30640,1,4,0)
- ;;=4^C7B.03
- ;;^UTILITY(U,$J,358.3,30640,2)
- ;;=^5001384
- ;;^UTILITY(U,$J,358.3,30641,0)
- ;;=C81.90^^121^1524^3
+ ;;^UTILITY(U,$J,358.3,28792,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mod/Sev Use D/O

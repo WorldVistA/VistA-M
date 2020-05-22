@@ -1,136 +1,124 @@
-IBDEI2H8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2H8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42001,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,42001,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,42001,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,42002,0)
- ;;=J43.8^^159^2014^20
- ;;^UTILITY(U,$J,358.3,42002,1,0)
+ ;;^UTILITY(U,$J,358.3,39551,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,39552,0)
+ ;;=I49.9^^152^1999^2
+ ;;^UTILITY(U,$J,358.3,39552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42002,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,42002,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,42002,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,42003,0)
- ;;=J45.902^^159^2014^4
- ;;^UTILITY(U,$J,358.3,42003,1,0)
+ ;;^UTILITY(U,$J,358.3,39552,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,39552,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,39552,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,39553,0)
+ ;;=R00.1^^152^1999^1
+ ;;^UTILITY(U,$J,358.3,39553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42003,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,42003,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,42003,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,42004,0)
- ;;=J45.901^^159^2014^3
- ;;^UTILITY(U,$J,358.3,42004,1,0)
+ ;;^UTILITY(U,$J,358.3,39553,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,39553,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,39553,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,39554,0)
+ ;;=I34.1^^152^1999^14
+ ;;^UTILITY(U,$J,358.3,39554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42004,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,42004,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,42004,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,42005,0)
- ;;=J47.9^^159^2014^9
- ;;^UTILITY(U,$J,358.3,42005,1,0)
+ ;;^UTILITY(U,$J,358.3,39554,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,39554,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,39554,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,39555,0)
+ ;;=D68.4^^152^2000^1
+ ;;^UTILITY(U,$J,358.3,39555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42005,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42005,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,42005,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,42006,0)
- ;;=J47.1^^159^2014^7
- ;;^UTILITY(U,$J,358.3,42006,1,0)
+ ;;^UTILITY(U,$J,358.3,39555,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,39555,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,39555,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,39556,0)
+ ;;=D59.9^^152^2000^2
+ ;;^UTILITY(U,$J,358.3,39556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42006,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,42006,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,42006,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,42007,0)
- ;;=J47.0^^159^2014^8
- ;;^UTILITY(U,$J,358.3,42007,1,0)
+ ;;^UTILITY(U,$J,358.3,39556,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,39556,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,39556,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,39557,0)
+ ;;=C91.00^^152^2000^5
+ ;;^UTILITY(U,$J,358.3,39557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42007,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,42007,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,42007,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,42008,0)
- ;;=R09.1^^159^2014^37
- ;;^UTILITY(U,$J,358.3,42008,1,0)
+ ;;^UTILITY(U,$J,358.3,39557,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,39557,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,39557,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,39558,0)
+ ;;=C91.01^^152^2000^4
+ ;;^UTILITY(U,$J,358.3,39558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42008,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,42008,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,42008,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,42009,0)
- ;;=J94.9^^159^2014^33
- ;;^UTILITY(U,$J,358.3,42009,1,0)
+ ;;^UTILITY(U,$J,358.3,39558,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,39558,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,39558,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,39559,0)
+ ;;=C92.01^^152^2000^7
+ ;;^UTILITY(U,$J,358.3,39559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42009,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,42009,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,42009,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,42010,0)
- ;;=J92.9^^159^2014^36
- ;;^UTILITY(U,$J,358.3,42010,1,0)
+ ;;^UTILITY(U,$J,358.3,39559,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,39559,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,39559,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,39560,0)
+ ;;=C92.00^^152^2000^8
+ ;;^UTILITY(U,$J,358.3,39560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42010,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,42010,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,42010,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,42011,0)
- ;;=J94.8^^159^2014^34
- ;;^UTILITY(U,$J,358.3,42011,1,0)
+ ;;^UTILITY(U,$J,358.3,39560,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,39560,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,39560,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,39561,0)
+ ;;=C92.61^^152^2000^9
+ ;;^UTILITY(U,$J,358.3,39561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42011,1,3,0)
- ;;=3^Pleural Conditions,Other Spec
- ;;^UTILITY(U,$J,358.3,42011,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,42011,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,42012,0)
- ;;=J86.9^^159^2014^38
- ;;^UTILITY(U,$J,358.3,42012,1,0)
+ ;;^UTILITY(U,$J,358.3,39561,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,39561,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,39561,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,39562,0)
+ ;;=C92.60^^152^2000^10
+ ;;^UTILITY(U,$J,358.3,39562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42012,1,3,0)
- ;;=3^Pyothorax w/o Fistula
- ;;^UTILITY(U,$J,358.3,42012,1,4,0)
- ;;=4^J86.9
- ;;^UTILITY(U,$J,358.3,42012,2)
- ;;=^5008309
- ;;^UTILITY(U,$J,358.3,42013,0)
- ;;=J91.8^^159^2014^35
- ;;^UTILITY(U,$J,358.3,42013,1,0)
+ ;;^UTILITY(U,$J,358.3,39562,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,39562,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,39562,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,39563,0)
+ ;;=C92.A1^^152^2000^11
+ ;;^UTILITY(U,$J,358.3,39563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42013,1,3,0)
- ;;=3^Pleural Effusion in Other Conditions
- ;;^UTILITY(U,$J,358.3,42013,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,42013,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,42014,0)
- ;;=J84.9^^159^2014^29
- ;;^UTILITY(U,$J,358.3,42014,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42014,1,3,0)
- ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,39563,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,39563,1,4,0)
+ ;;=4^C92.A1

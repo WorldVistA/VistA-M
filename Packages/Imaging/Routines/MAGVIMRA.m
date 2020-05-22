@@ -1,5 +1,5 @@
-MAGVIMRA ;WOIFO/MAT,DWM - VISA Importer RA Utilities ; 18 Oct 2016 7:33 PM
- ;;3.0;IMAGING;**138,164**;Mar 19, 2002;Build 35;Nov 09, 2016
+MAGVIMRA ;WOIFO/MAT,DWM,DAC - VISA Importer RA Utilities ; Dec 31, 2019@07:47:15
+ ;;3.0;IMAGING;**138,164,252**;Mar 19, 2002;Build 5
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -71,7 +71,7 @@ GETRADSR(OUT) ;
  ;
  ;  Array of XML tagged DIAGNOSTIC CODES file (#78.3) data.
  ;
-GETRADDX(OUT) ;
+GETRADDX(OUT) ; P252 DAC - Modified to exclude inactive RAD DX codes
  N FILE S FILE=78.3
  N C S C=0
  ;--- IA #3561 (Supported)
@@ -82,7 +82,10 @@ GETRADDX(OUT) ;
  . ;--- Read of ^RA(78.1,IEN, is IA #6005 (Private).
  . N TAG1 S TAG1="DiagnosticCode"
  . N IEN
- . S IEN=0 F  S IEN=$O(^RA(FILE,IEN)) Q:IEN]"A"  D RADDX(TAG1,IEN)
+ . S IEN=0 F  S IEN=$O(^RA(FILE,IEN)) Q:IEN]"A"  D
+ .. Q:$$GET1^DIQ(FILE,IEN,5,"I")="Y"  ; exclude inactive codes <<
+ .. D RADDX(TAG1,IEN)
+ .. Q
  . Q
  S OUT($$C())=$$XMTAG(TAG0,1)
  Q

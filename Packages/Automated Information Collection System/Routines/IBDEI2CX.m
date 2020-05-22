@@ -1,134 +1,118 @@
-IBDEI2CX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39960,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,39960,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,39960,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,39961,0)
- ;;=H57.12^^153^1932^15
- ;;^UTILITY(U,$J,358.3,39961,1,0)
+ ;;^UTILITY(U,$J,358.3,37640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39961,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,39961,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,39961,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,39962,0)
- ;;=I10.^^153^1932^8
- ;;^UTILITY(U,$J,358.3,39962,1,0)
+ ;;^UTILITY(U,$J,358.3,37640,1,3,0)
+ ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37640,1,4,0)
+ ;;=4^S92.524K
+ ;;^UTILITY(U,$J,358.3,37640,2)
+ ;;=^5045498
+ ;;^UTILITY(U,$J,358.3,37641,0)
+ ;;=S92.522K^^146^1917^107
+ ;;^UTILITY(U,$J,358.3,37641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39962,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,39962,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,39962,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,39963,0)
- ;;=L71.9^^153^1932^19
- ;;^UTILITY(U,$J,358.3,39963,1,0)
+ ;;^UTILITY(U,$J,358.3,37641,1,3,0)
+ ;;=3^Disp fx of med phalanx of lft lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37641,1,4,0)
+ ;;=4^S92.522K
+ ;;^UTILITY(U,$J,358.3,37641,2)
+ ;;=^5045484
+ ;;^UTILITY(U,$J,358.3,37642,0)
+ ;;=S92.521K^^146^1917^109
+ ;;^UTILITY(U,$J,358.3,37642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39963,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,39963,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,39963,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,39964,0)
- ;;=L71.8^^153^1932^18
- ;;^UTILITY(U,$J,358.3,39964,1,0)
+ ;;^UTILITY(U,$J,358.3,37642,1,3,0)
+ ;;=3^Disp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37642,1,4,0)
+ ;;=4^S92.521K
+ ;;^UTILITY(U,$J,358.3,37642,2)
+ ;;=^5045477
+ ;;^UTILITY(U,$J,358.3,37643,0)
+ ;;=S92.515K^^146^1917^346
+ ;;^UTILITY(U,$J,358.3,37643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39964,1,3,0)
- ;;=3^Rosacea NEC
- ;;^UTILITY(U,$J,358.3,39964,1,4,0)
- ;;=4^L71.8
- ;;^UTILITY(U,$J,358.3,39964,2)
- ;;=^5009275
- ;;^UTILITY(U,$J,358.3,39965,0)
- ;;=L71.1^^153^1932^17
- ;;^UTILITY(U,$J,358.3,39965,1,0)
+ ;;^UTILITY(U,$J,358.3,37643,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of lft lsr toe, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37643,1,4,0)
+ ;;=4^S92.515K
+ ;;^UTILITY(U,$J,358.3,37643,2)
+ ;;=^5045463
+ ;;^UTILITY(U,$J,358.3,37644,0)
+ ;;=S92.514K^^146^1917^350
+ ;;^UTILITY(U,$J,358.3,37644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39965,1,3,0)
- ;;=3^Rhinophyma
- ;;^UTILITY(U,$J,358.3,39965,1,4,0)
- ;;=4^L71.1
- ;;^UTILITY(U,$J,358.3,39965,2)
- ;;=^106083
- ;;^UTILITY(U,$J,358.3,39966,0)
- ;;=S05.31XA^^153^1932^13
- ;;^UTILITY(U,$J,358.3,39966,1,0)
+ ;;^UTILITY(U,$J,358.3,37644,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37644,1,4,0)
+ ;;=4^S92.514K
+ ;;^UTILITY(U,$J,358.3,37644,2)
+ ;;=^5045456
+ ;;^UTILITY(U,$J,358.3,37645,0)
+ ;;=S92.512K^^146^1917^2
+ ;;^UTILITY(U,$J,358.3,37645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39966,1,3,0)
- ;;=3^Ocular Laceration Right Eye w/o Prolapse/Loss of Intraoc Tissue,Init Encntr
- ;;^UTILITY(U,$J,358.3,39966,1,4,0)
- ;;=4^S05.31XA
- ;;^UTILITY(U,$J,358.3,39966,2)
- ;;=^5020606
- ;;^UTILITY(U,$J,358.3,39967,0)
- ;;=S05.32XA^^153^1932^12
- ;;^UTILITY(U,$J,358.3,39967,1,0)
+ ;;^UTILITY(U,$J,358.3,37645,1,3,0)
+ ;;=3
+ ;;^UTILITY(U,$J,358.3,37645,1,4,0)
+ ;;=4^S92.512K
+ ;;^UTILITY(U,$J,358.3,37645,2)
+ ;;=^5045442
+ ;;^UTILITY(U,$J,358.3,37646,0)
+ ;;=S92.512K^^146^1917^121
+ ;;^UTILITY(U,$J,358.3,37646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39967,1,3,0)
- ;;=3^Ocular Laceration Left Eye w/o Prolapse/Loss of Intraoc Tissue,Init Encntr
- ;;^UTILITY(U,$J,358.3,39967,1,4,0)
- ;;=4^S05.32XA
- ;;^UTILITY(U,$J,358.3,39967,2)
- ;;=^5020609
- ;;^UTILITY(U,$J,358.3,39968,0)
- ;;=Z21.^^153^1932^2
- ;;^UTILITY(U,$J,358.3,39968,1,0)
+ ;;^UTILITY(U,$J,358.3,37646,1,3,0)
+ ;;=3^Disp fx of prox phalanx of lft lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37646,1,4,0)
+ ;;=4^S92.512K
+ ;;^UTILITY(U,$J,358.3,37646,2)
+ ;;=^5045442
+ ;;^UTILITY(U,$J,358.3,37647,0)
+ ;;=S92.511K^^146^1917^124
+ ;;^UTILITY(U,$J,358.3,37647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39968,1,3,0)
- ;;=3^Asymptomatic HIV Infection Status
- ;;^UTILITY(U,$J,358.3,39968,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,39968,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,39969,0)
- ;;=Z83.511^^153^1932^6
- ;;^UTILITY(U,$J,358.3,39969,1,0)
+ ;;^UTILITY(U,$J,358.3,37647,1,3,0)
+ ;;=3^Disp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37647,1,4,0)
+ ;;=4^S92.511K
+ ;;^UTILITY(U,$J,358.3,37647,2)
+ ;;=^5045435
+ ;;^UTILITY(U,$J,358.3,37648,0)
+ ;;=S92.505K^^146^1917^266
+ ;;^UTILITY(U,$J,358.3,37648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39969,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,39969,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,39969,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,39970,0)
- ;;=Z83.518^^153^1932^5
- ;;^UTILITY(U,$J,358.3,39970,1,0)
+ ;;^UTILITY(U,$J,358.3,37648,1,3,0)
+ ;;=3^Nondisp fx lft lsr toe(s), subs for nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37648,1,4,0)
+ ;;=4^S92.505K
+ ;;^UTILITY(U,$J,358.3,37648,2)
+ ;;=^5045428
+ ;;^UTILITY(U,$J,358.3,37649,0)
+ ;;=S92.504K^^146^1917^359
+ ;;^UTILITY(U,$J,358.3,37649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39970,1,3,0)
- ;;=3^Family Hx of Eye Disorder NEC
- ;;^UTILITY(U,$J,358.3,39970,1,4,0)
- ;;=4^Z83.518
- ;;^UTILITY(U,$J,358.3,39970,2)
- ;;=^5063383
- ;;^UTILITY(U,$J,358.3,39971,0)
- ;;=Z79.899^^153^1932^10
- ;;^UTILITY(U,$J,358.3,39971,1,0)
+ ;;^UTILITY(U,$J,358.3,37649,1,3,0)
+ ;;=3^Nondisp fx rt lsr toe(s), subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37649,1,4,0)
+ ;;=4^S92.504K
+ ;;^UTILITY(U,$J,358.3,37649,2)
+ ;;=^5045421
+ ;;^UTILITY(U,$J,358.3,37650,0)
+ ;;=S92.502K^^146^1917^39
+ ;;^UTILITY(U,$J,358.3,37650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39971,1,3,0)
- ;;=3^Long Term Current Drug Therapy NEC
- ;;^UTILITY(U,$J,358.3,39971,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,39971,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,39972,0)
- ;;=Z01.00^^153^1932^4
- ;;^UTILITY(U,$J,358.3,39972,1,0)
+ ;;^UTILITY(U,$J,358.3,37650,1,3,0)
+ ;;=3^Disp fx lft lsr toe(s), subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37650,1,4,0)
+ ;;=4^S92.502K
+ ;;^UTILITY(U,$J,358.3,37650,2)
+ ;;=^5045414
+ ;;^UTILITY(U,$J,358.3,37651,0)
+ ;;=S92.501K^^146^1917^133
+ ;;^UTILITY(U,$J,358.3,37651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39972,1,3,0)
- ;;=3^Eye/Vision Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,39972,1,4,0)
- ;;=4^Z01.00
- ;;^UTILITY(U,$J,358.3,39972,2)
- ;;=^5062612
- ;;^UTILITY(U,$J,358.3,39973,0)
- ;;=Z01.01^^153^1932^3
- ;;^UTILITY(U,$J,358.3,39973,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37651,1,3,0)
+ ;;=3^Disp fx rt lsr toe(s), subs w/ nonunion, unspec

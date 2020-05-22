@@ -1,122 +1,128 @@
-IBDEI1QF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29389,1,3,0)
- ;;=3^Suprvsn of preg w history of infertility, third trimester
- ;;^UTILITY(U,$J,358.3,29389,1,4,0)
- ;;=4^O09.03
- ;;^UTILITY(U,$J,358.3,29389,2)
- ;;=^5016051
- ;;^UTILITY(U,$J,358.3,29390,0)
- ;;=O09.11^^115^1462^29
- ;;^UTILITY(U,$J,358.3,29390,1,0)
+ ;;^UTILITY(U,$J,358.3,27683,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,27684,0)
+ ;;=Z91.82^^113^1349^15
+ ;;^UTILITY(U,$J,358.3,27684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29390,1,3,0)
- ;;=3^Suprvsn of preg w history of ect or molar preg, first tri
- ;;^UTILITY(U,$J,358.3,29390,1,4,0)
- ;;=4^O09.11
- ;;^UTILITY(U,$J,358.3,29390,2)
- ;;=^5016053
- ;;^UTILITY(U,$J,358.3,29391,0)
- ;;=O09.12^^115^1462^30
- ;;^UTILITY(U,$J,358.3,29391,1,0)
+ ;;^UTILITY(U,$J,358.3,27684,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,27684,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,27684,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,27685,0)
+ ;;=Z91.89^^113^1349^18
+ ;;^UTILITY(U,$J,358.3,27685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29391,1,3,0)
- ;;=3^Suprvsn of preg w history of ect or molar preg, second tri
- ;;^UTILITY(U,$J,358.3,29391,1,4,0)
- ;;=4^O09.12
- ;;^UTILITY(U,$J,358.3,29391,2)
- ;;=^5016054
- ;;^UTILITY(U,$J,358.3,29392,0)
- ;;=O09.13^^115^1462^31
- ;;^UTILITY(U,$J,358.3,29392,1,0)
+ ;;^UTILITY(U,$J,358.3,27685,1,3,0)
+ ;;=3^Personal Risk Factors,Other
+ ;;^UTILITY(U,$J,358.3,27685,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,27685,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,27686,0)
+ ;;=Z72.9^^113^1349^19
+ ;;^UTILITY(U,$J,358.3,27686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29392,1,3,0)
- ;;=3^Suprvsn of preg w history of ect or molar preg, third tri
- ;;^UTILITY(U,$J,358.3,29392,1,4,0)
- ;;=4^O09.13
- ;;^UTILITY(U,$J,358.3,29392,2)
- ;;=^5016055
- ;;^UTILITY(U,$J,358.3,29393,0)
- ;;=O09.291^^115^1462^41
- ;;^UTILITY(U,$J,358.3,29393,1,0)
+ ;;^UTILITY(U,$J,358.3,27686,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,27686,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,27686,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,27687,0)
+ ;;=Z91.19^^113^1349^5
+ ;;^UTILITY(U,$J,358.3,27687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29393,1,3,0)
- ;;=3^Suprvsn of preg w poor reprodctv or obstet hx, first tri
- ;;^UTILITY(U,$J,358.3,29393,1,4,0)
- ;;=4^O09.291
- ;;^UTILITY(U,$J,358.3,29393,2)
- ;;=^5016060
- ;;^UTILITY(U,$J,358.3,29394,0)
- ;;=O09.292^^115^1462^42
- ;;^UTILITY(U,$J,358.3,29394,1,0)
+ ;;^UTILITY(U,$J,358.3,27687,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,27687,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,27687,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,27688,0)
+ ;;=E66.9^^113^1349^6
+ ;;^UTILITY(U,$J,358.3,27688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29394,1,3,0)
- ;;=3^Suprvsn of preg w poor reprodctv or obstet hx, second tri
- ;;^UTILITY(U,$J,358.3,29394,1,4,0)
- ;;=4^O09.292
- ;;^UTILITY(U,$J,358.3,29394,2)
- ;;=^5016061
- ;;^UTILITY(U,$J,358.3,29395,0)
- ;;=O09.293^^115^1462^43
- ;;^UTILITY(U,$J,358.3,29395,1,0)
+ ;;^UTILITY(U,$J,358.3,27688,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,27688,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,27688,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,27689,0)
+ ;;=Z76.5^^113^1349^3
+ ;;^UTILITY(U,$J,358.3,27689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29395,1,3,0)
- ;;=3^Suprvsn of preg w poor reprodctv or obstet hx, third tri
- ;;^UTILITY(U,$J,358.3,29395,1,4,0)
- ;;=4^O09.293
- ;;^UTILITY(U,$J,358.3,29395,2)
- ;;=^5016062
- ;;^UTILITY(U,$J,358.3,29396,0)
- ;;=O09.41^^115^1462^26
- ;;^UTILITY(U,$J,358.3,29396,1,0)
+ ;;^UTILITY(U,$J,358.3,27689,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,27689,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,27689,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,27690,0)
+ ;;=R41.83^^113^1349^2
+ ;;^UTILITY(U,$J,358.3,27690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29396,1,3,0)
- ;;=3^Suprvsn of preg w grand multiparity, first trimester
- ;;^UTILITY(U,$J,358.3,29396,1,4,0)
- ;;=4^O09.41
- ;;^UTILITY(U,$J,358.3,29396,2)
- ;;=^5016069
- ;;^UTILITY(U,$J,358.3,29397,0)
- ;;=O09.42^^115^1462^27
- ;;^UTILITY(U,$J,358.3,29397,1,0)
+ ;;^UTILITY(U,$J,358.3,27690,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,27690,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,27690,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,27691,0)
+ ;;=Z56.82^^113^1349^4
+ ;;^UTILITY(U,$J,358.3,27691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29397,1,3,0)
- ;;=3^Suprvsn of preg w grand multiparity, second trimester
- ;;^UTILITY(U,$J,358.3,29397,1,4,0)
- ;;=4^O09.42
- ;;^UTILITY(U,$J,358.3,29397,2)
- ;;=^5016070
- ;;^UTILITY(U,$J,358.3,29398,0)
- ;;=O09.43^^115^1462^28
- ;;^UTILITY(U,$J,358.3,29398,1,0)
+ ;;^UTILITY(U,$J,358.3,27691,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,27691,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,27691,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,27692,0)
+ ;;=Z62.811^^113^1349^12
+ ;;^UTILITY(U,$J,358.3,27692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29398,1,3,0)
- ;;=3^Suprvsn of preg w grand multiparity, third trimester
- ;;^UTILITY(U,$J,358.3,29398,1,4,0)
- ;;=4^O09.43
- ;;^UTILITY(U,$J,358.3,29398,2)
- ;;=^5016071
- ;;^UTILITY(U,$J,358.3,29399,0)
- ;;=O09.31^^115^1462^38
- ;;^UTILITY(U,$J,358.3,29399,1,0)
+ ;;^UTILITY(U,$J,358.3,27692,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,27692,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,27692,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,27693,0)
+ ;;=Z62.812^^113^1349^10
+ ;;^UTILITY(U,$J,358.3,27693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29399,1,3,0)
- ;;=3^Suprvsn of preg w insufficient antenat care, first trimester
- ;;^UTILITY(U,$J,358.3,29399,1,4,0)
- ;;=4^O09.31
- ;;^UTILITY(U,$J,358.3,29399,2)
- ;;=^5016065
- ;;^UTILITY(U,$J,358.3,29400,0)
- ;;=O09.32^^115^1462^39
- ;;^UTILITY(U,$J,358.3,29400,1,0)
+ ;;^UTILITY(U,$J,358.3,27693,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,27693,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,27693,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,27694,0)
+ ;;=Z62.810^^113^1349^11
+ ;;^UTILITY(U,$J,358.3,27694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29400,1,3,0)
- ;;=3^Suprvsn of preg w insufficient antenat care, second tri
- ;;^UTILITY(U,$J,358.3,29400,1,4,0)
- ;;=4^O09.32
- ;;^UTILITY(U,$J,358.3,29400,2)
- ;;=^5016066
- ;;^UTILITY(U,$J,358.3,29401,0)
- ;;=O09.33^^115^1462^40
+ ;;^UTILITY(U,$J,358.3,27694,1,3,0)
+ ;;=3^Personal Hx of Childhood Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,27694,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,27694,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,27695,0)
+ ;;=Z91.83^^113^1349^22
+ ;;^UTILITY(U,$J,358.3,27695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27695,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,27695,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,27695,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,27696,0)
+ ;;=Z91.412^^113^1349^7

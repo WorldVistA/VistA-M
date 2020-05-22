@@ -1,134 +1,126 @@
-IBDEI2GJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2GJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41677,1,4,0)
- ;;=4^K71.7
- ;;^UTILITY(U,$J,358.3,41677,2)
- ;;=^5008802
- ;;^UTILITY(U,$J,358.3,41678,0)
- ;;=K71.8^^159^2007^33
- ;;^UTILITY(U,$J,358.3,41678,1,0)
+ ;;^UTILITY(U,$J,358.3,39244,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,39244,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,39244,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,39245,0)
+ ;;=J30.1^^152^1992^10
+ ;;^UTILITY(U,$J,358.3,39245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41678,1,3,0)
- ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
- ;;^UTILITY(U,$J,358.3,41678,1,4,0)
- ;;=4^K71.8
- ;;^UTILITY(U,$J,358.3,41678,2)
- ;;=^5008803
- ;;^UTILITY(U,$J,358.3,41679,0)
- ;;=K71.9^^159^2007^34
- ;;^UTILITY(U,$J,358.3,41679,1,0)
+ ;;^UTILITY(U,$J,358.3,39245,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,39245,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,39245,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,39246,0)
+ ;;=R09.81^^152^1992^18
+ ;;^UTILITY(U,$J,358.3,39246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41679,1,3,0)
- ;;=3^Toxic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,41679,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,41679,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,41680,0)
- ;;=K75.2^^159^2007^20
- ;;^UTILITY(U,$J,358.3,41680,1,0)
+ ;;^UTILITY(U,$J,358.3,39246,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,39246,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,39246,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,39247,0)
+ ;;=I69.928^^152^1992^22
+ ;;^UTILITY(U,$J,358.3,39247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41680,1,3,0)
- ;;=3^Nonspecific Reactive Hepatitis
- ;;^UTILITY(U,$J,358.3,41680,1,4,0)
- ;;=4^K75.2
- ;;^UTILITY(U,$J,358.3,41680,2)
- ;;=^5008826
- ;;^UTILITY(U,$J,358.3,41681,0)
- ;;=K75.3^^159^2007^13
- ;;^UTILITY(U,$J,358.3,41681,1,0)
+ ;;^UTILITY(U,$J,358.3,39247,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,39247,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,39247,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,39248,0)
+ ;;=I69.328^^152^1992^23
+ ;;^UTILITY(U,$J,358.3,39248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41681,1,3,0)
- ;;=3^Granulomatous Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,41681,1,4,0)
- ;;=4^K75.3
- ;;^UTILITY(U,$J,358.3,41681,2)
- ;;=^5008827
- ;;^UTILITY(U,$J,358.3,41682,0)
- ;;=K76.6^^159^2007^22
- ;;^UTILITY(U,$J,358.3,41682,1,0)
+ ;;^UTILITY(U,$J,358.3,39248,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,39248,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,39248,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,39249,0)
+ ;;=H81.4^^152^1992^25
+ ;;^UTILITY(U,$J,358.3,39249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41682,1,3,0)
- ;;=3^Portal Hypertension
- ;;^UTILITY(U,$J,358.3,41682,1,4,0)
- ;;=4^K76.6
- ;;^UTILITY(U,$J,358.3,41682,2)
- ;;=^5008834
- ;;^UTILITY(U,$J,358.3,41683,0)
- ;;=F20.3^^159^2008^25
- ;;^UTILITY(U,$J,358.3,41683,1,0)
+ ;;^UTILITY(U,$J,358.3,39249,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,39249,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,39249,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,39250,0)
+ ;;=E04.0^^152^1993^21
+ ;;^UTILITY(U,$J,358.3,39250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41683,1,3,0)
- ;;=3^Undifferentiated/Atypical Schizophrenia
- ;;^UTILITY(U,$J,358.3,41683,1,4,0)
- ;;=4^F20.3
- ;;^UTILITY(U,$J,358.3,41683,2)
- ;;=^5003472
- ;;^UTILITY(U,$J,358.3,41684,0)
- ;;=F20.9^^159^2008^21
- ;;^UTILITY(U,$J,358.3,41684,1,0)
+ ;;^UTILITY(U,$J,358.3,39250,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,39250,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,39250,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,39251,0)
+ ;;=E04.1^^152^1993^23
+ ;;^UTILITY(U,$J,358.3,39251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41684,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,41684,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,41684,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,41685,0)
- ;;=F31.9^^159^2008^6
- ;;^UTILITY(U,$J,358.3,41685,1,0)
+ ;;^UTILITY(U,$J,358.3,39251,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,39251,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,39251,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,39252,0)
+ ;;=E04.2^^152^1993^22
+ ;;^UTILITY(U,$J,358.3,39252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41685,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,41685,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,41685,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,41686,0)
- ;;=F31.72^^159^2008^7
- ;;^UTILITY(U,$J,358.3,41686,1,0)
+ ;;^UTILITY(U,$J,358.3,39252,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,39252,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,39252,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,39253,0)
+ ;;=E01.1^^152^1993^17
+ ;;^UTILITY(U,$J,358.3,39253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41686,1,3,0)
- ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,41686,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,41686,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,41687,0)
- ;;=F31.71^^159^2008^5
- ;;^UTILITY(U,$J,358.3,41687,1,0)
+ ;;^UTILITY(U,$J,358.3,39253,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,39253,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,39253,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,39254,0)
+ ;;=E05.00^^152^1993^39
+ ;;^UTILITY(U,$J,358.3,39254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41687,1,3,0)
- ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,41687,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,41687,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,41688,0)
- ;;=F31.70^^159^2008^4
- ;;^UTILITY(U,$J,358.3,41688,1,0)
+ ;;^UTILITY(U,$J,358.3,39254,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,39254,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,39254,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,39255,0)
+ ;;=E05.01^^152^1993^38
+ ;;^UTILITY(U,$J,358.3,39255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41688,1,3,0)
- ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,41688,1,4,0)
- ;;=4^F31.70
- ;;^UTILITY(U,$J,358.3,41688,2)
- ;;=^5003510
- ;;^UTILITY(U,$J,358.3,41689,0)
- ;;=F29.^^159^2008^19
- ;;^UTILITY(U,$J,358.3,41689,1,0)
+ ;;^UTILITY(U,$J,358.3,39255,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,39255,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,39255,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,39256,0)
+ ;;=E05.90^^152^1993^41
+ ;;^UTILITY(U,$J,358.3,39256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41689,1,3,0)
- ;;=3^Psychosis not d/t Substance/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,41689,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,41689,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,41690,0)
- ;;=F28.^^159^2008^20
- ;;^UTILITY(U,$J,358.3,41690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41690,1,3,0)
- ;;=3^Psychosis not d/t Substance/Known Physiol Cond NEC
+ ;;^UTILITY(U,$J,358.3,39256,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm

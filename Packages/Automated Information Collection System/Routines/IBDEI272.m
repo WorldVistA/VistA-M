@@ -1,130 +1,124 @@
-IBDEI272 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI272 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37222,2)
- ;;=^5012861
- ;;^UTILITY(U,$J,358.3,37223,0)
- ;;=M66.261^^140^1787^262
- ;;^UTILITY(U,$J,358.3,37223,1,0)
+ ;;^UTILITY(U,$J,358.3,35042,1,4,0)
+ ;;=4^S06.9X6S
+ ;;^UTILITY(U,$J,358.3,35042,2)
+ ;;=^5021226
+ ;;^UTILITY(U,$J,358.3,35043,0)
+ ;;=S06.9X3S^^137^1792^16
+ ;;^UTILITY(U,$J,358.3,35043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37223,1,3,0)
- ;;=3^Spont rptr of extensor tendons, rt lwr leg
- ;;^UTILITY(U,$J,358.3,37223,1,4,0)
- ;;=4^M66.261
- ;;^UTILITY(U,$J,358.3,37223,2)
- ;;=^5012863
- ;;^UTILITY(U,$J,358.3,37224,0)
- ;;=M66.262^^140^1787^258
- ;;^UTILITY(U,$J,358.3,37224,1,0)
+ ;;^UTILITY(U,$J,358.3,35043,1,3,0)
+ ;;=3^Intcrn injury w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,35043,1,4,0)
+ ;;=4^S06.9X3S
+ ;;^UTILITY(U,$J,358.3,35043,2)
+ ;;=^5021217
+ ;;^UTILITY(U,$J,358.3,35044,0)
+ ;;=S06.9X1S^^137^1792^17
+ ;;^UTILITY(U,$J,358.3,35044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37224,1,3,0)
- ;;=3^Spont rptr of extensor tendons, lft lwr leg
- ;;^UTILITY(U,$J,358.3,37224,1,4,0)
- ;;=4^M66.262
- ;;^UTILITY(U,$J,358.3,37224,2)
- ;;=^5012864
- ;;^UTILITY(U,$J,358.3,37225,0)
- ;;=M66.361^^140^1787^269
- ;;^UTILITY(U,$J,358.3,37225,1,0)
+ ;;^UTILITY(U,$J,358.3,35044,1,3,0)
+ ;;=3^Intcrn injury w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,35044,1,4,0)
+ ;;=4^S06.9X1S
+ ;;^UTILITY(U,$J,358.3,35044,2)
+ ;;=^5021211
+ ;;^UTILITY(U,$J,358.3,35045,0)
+ ;;=S06.9X2S^^137^1792^18
+ ;;^UTILITY(U,$J,358.3,35045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37225,1,3,0)
- ;;=3^Spont rptr of flexor tendons, rt lwr leg
- ;;^UTILITY(U,$J,358.3,37225,1,4,0)
- ;;=4^M66.361
- ;;^UTILITY(U,$J,358.3,37225,2)
- ;;=^5012887
- ;;^UTILITY(U,$J,358.3,37226,0)
- ;;=M66.362^^140^1787^266
- ;;^UTILITY(U,$J,358.3,37226,1,0)
+ ;;^UTILITY(U,$J,358.3,35045,1,3,0)
+ ;;=3^Intcrn injury w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,35045,1,4,0)
+ ;;=4^S06.9X2S
+ ;;^UTILITY(U,$J,358.3,35045,2)
+ ;;=^5021214
+ ;;^UTILITY(U,$J,358.3,35046,0)
+ ;;=S06.9X4S^^137^1792^19
+ ;;^UTILITY(U,$J,358.3,35046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37226,1,3,0)
- ;;=3^Spont rptr of flexor tendons, lft lwr leg
- ;;^UTILITY(U,$J,358.3,37226,1,4,0)
- ;;=4^M66.362
- ;;^UTILITY(U,$J,358.3,37226,2)
- ;;=^5012888
- ;;^UTILITY(U,$J,358.3,37227,0)
- ;;=M66.871^^140^1787^272
- ;;^UTILITY(U,$J,358.3,37227,1,0)
+ ;;^UTILITY(U,$J,358.3,35046,1,3,0)
+ ;;=3^Intcrn injury w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,35046,1,4,0)
+ ;;=4^S06.9X4S
+ ;;^UTILITY(U,$J,358.3,35046,2)
+ ;;=^5021220
+ ;;^UTILITY(U,$J,358.3,35047,0)
+ ;;=S06.9X9S^^137^1792^20
+ ;;^UTILITY(U,$J,358.3,35047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37227,1,3,0)
- ;;=3^Spont rptr of oth tendons, rt ankle & foot
- ;;^UTILITY(U,$J,358.3,37227,1,4,0)
- ;;=4^M66.871
- ;;^UTILITY(U,$J,358.3,37227,2)
- ;;=^5012901
- ;;^UTILITY(U,$J,358.3,37228,0)
- ;;=M66.872^^140^1787^270
- ;;^UTILITY(U,$J,358.3,37228,1,0)
+ ;;^UTILITY(U,$J,358.3,35047,1,3,0)
+ ;;=3^Intcrn injury w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,35047,1,4,0)
+ ;;=4^S06.9X9S
+ ;;^UTILITY(U,$J,358.3,35047,2)
+ ;;=^5021235
+ ;;^UTILITY(U,$J,358.3,35048,0)
+ ;;=S06.9X0S^^137^1792^21
+ ;;^UTILITY(U,$J,358.3,35048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37228,1,3,0)
- ;;=3^Spont rptr of oth tendons, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,37228,1,4,0)
- ;;=4^M66.872
- ;;^UTILITY(U,$J,358.3,37228,2)
- ;;=^5133843
- ;;^UTILITY(U,$J,358.3,37229,0)
- ;;=M67.01^^140^1787^223
- ;;^UTILITY(U,$J,358.3,37229,1,0)
+ ;;^UTILITY(U,$J,358.3,35048,1,3,0)
+ ;;=3^Intcrn injury w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,35048,1,4,0)
+ ;;=4^S06.9X0S
+ ;;^UTILITY(U,$J,358.3,35048,2)
+ ;;=^5021208
+ ;;^UTILITY(U,$J,358.3,35049,0)
+ ;;=I25.10^^137^1793^1
+ ;;^UTILITY(U,$J,358.3,35049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37229,1,3,0)
- ;;=3^Short Achilles tendon (acquired), rt ankle
- ;;^UTILITY(U,$J,358.3,37229,1,4,0)
- ;;=4^M67.01
- ;;^UTILITY(U,$J,358.3,37229,2)
- ;;=^5012906
- ;;^UTILITY(U,$J,358.3,37230,0)
- ;;=M67.02^^140^1787^222
- ;;^UTILITY(U,$J,358.3,37230,1,0)
+ ;;^UTILITY(U,$J,358.3,35049,1,3,0)
+ ;;=3^Athscl Hrt Dis of Nat Cor Artery w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,35049,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,35049,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,35050,0)
+ ;;=J44.1^^137^1793^3
+ ;;^UTILITY(U,$J,358.3,35050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37230,1,3,0)
- ;;=3^Short Achilles tendon (acquired), lft ankle
- ;;^UTILITY(U,$J,358.3,37230,1,4,0)
- ;;=4^M67.02
- ;;^UTILITY(U,$J,358.3,37230,2)
- ;;=^5012907
- ;;^UTILITY(U,$J,358.3,37231,0)
- ;;=M65.20^^140^1787^92
- ;;^UTILITY(U,$J,358.3,37231,1,0)
+ ;;^UTILITY(U,$J,358.3,35050,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,35050,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,35050,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,35051,0)
+ ;;=J44.9^^137^1793^4
+ ;;^UTILITY(U,$J,358.3,35051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37231,1,3,0)
- ;;=3^Calcific tendinitis, unspec site
- ;;^UTILITY(U,$J,358.3,37231,1,4,0)
- ;;=4^M65.20
- ;;^UTILITY(U,$J,358.3,37231,2)
- ;;=^5012755
- ;;^UTILITY(U,$J,358.3,37232,0)
- ;;=M71.40^^140^1787^93
- ;;^UTILITY(U,$J,358.3,37232,1,0)
+ ;;^UTILITY(U,$J,358.3,35051,1,3,0)
+ ;;=3^COPD, unspecified
+ ;;^UTILITY(U,$J,358.3,35051,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,35051,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,35052,0)
+ ;;=Z98.61^^137^1793^6
+ ;;^UTILITY(U,$J,358.3,35052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37232,1,3,0)
- ;;=3^Calcium deposit in bursa, unspec site
- ;;^UTILITY(U,$J,358.3,37232,1,4,0)
- ;;=4^M71.40
- ;;^UTILITY(U,$J,358.3,37232,2)
- ;;=^5013169
- ;;^UTILITY(U,$J,358.3,37233,0)
- ;;=M67.51^^140^1787^201
- ;;^UTILITY(U,$J,358.3,37233,1,0)
+ ;;^UTILITY(U,$J,358.3,35052,1,3,0)
+ ;;=3^Coronary angioplasty status
+ ;;^UTILITY(U,$J,358.3,35052,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,35052,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,35053,0)
+ ;;=J43.9^^137^1793^7
+ ;;^UTILITY(U,$J,358.3,35053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37233,1,3,0)
- ;;=3^Plica syndrome, rt knee
- ;;^UTILITY(U,$J,358.3,37233,1,4,0)
- ;;=4^M67.51
- ;;^UTILITY(U,$J,358.3,37233,2)
- ;;=^5012981
- ;;^UTILITY(U,$J,358.3,37234,0)
- ;;=M67.52^^140^1787^200
- ;;^UTILITY(U,$J,358.3,37234,1,0)
+ ;;^UTILITY(U,$J,358.3,35053,1,3,0)
+ ;;=3^Emphysema, unspecified
+ ;;^UTILITY(U,$J,358.3,35053,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,35053,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,35054,0)
+ ;;=Z82.49^^137^1793^8
+ ;;^UTILITY(U,$J,358.3,35054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37234,1,3,0)
- ;;=3^Plica syndrome, lft knee
- ;;^UTILITY(U,$J,358.3,37234,1,4,0)
- ;;=4^M67.52
- ;;^UTILITY(U,$J,358.3,37234,2)
- ;;=^5012982
- ;;^UTILITY(U,$J,358.3,37235,0)
- ;;=M65.011^^140^1787^32
- ;;^UTILITY(U,$J,358.3,37235,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35054,1,3,0)
+ ;;=3^Family Hx of Ischemic Hrt Dis/Oth Circ System Dis

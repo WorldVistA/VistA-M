@@ -1,132 +1,124 @@
-IBDEI1BZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22623,1,0)
+ ;;^UTILITY(U,$J,358.3,21263,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,21263,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,21264,0)
+ ;;=F15.182^^95^1058^4
+ ;;^UTILITY(U,$J,358.3,21264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22623,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,22623,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,22623,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,22624,0)
- ;;=Z96.642^^87^982^129
- ;;^UTILITY(U,$J,358.3,22624,1,0)
+ ;;^UTILITY(U,$J,358.3,21264,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21264,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,21264,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,21265,0)
+ ;;=F15.282^^95^1058^5
+ ;;^UTILITY(U,$J,358.3,21265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22624,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,22624,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,22624,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,22625,0)
- ;;=Z96.643^^87^982^121
- ;;^UTILITY(U,$J,358.3,22625,1,0)
+ ;;^UTILITY(U,$J,358.3,21265,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21265,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,21265,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,21266,0)
+ ;;=F15.982^^95^1058^6
+ ;;^UTILITY(U,$J,358.3,21266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22625,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,22625,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,22625,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,22626,0)
- ;;=Z96.651^^87^982^135
- ;;^UTILITY(U,$J,358.3,22626,1,0)
+ ;;^UTILITY(U,$J,358.3,21266,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21266,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,21266,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,21267,0)
+ ;;=F15.99^^95^1058^9
+ ;;^UTILITY(U,$J,358.3,21267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22626,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,22626,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,22626,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,22627,0)
- ;;=Z96.652^^87^982^130
- ;;^UTILITY(U,$J,358.3,22627,1,0)
+ ;;^UTILITY(U,$J,358.3,21267,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21267,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,21267,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,21268,0)
+ ;;=R45.851^^95^1059^2
+ ;;^UTILITY(U,$J,358.3,21268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22627,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,22627,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,22627,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,22628,0)
- ;;=Z96.653^^87^982^122
- ;;^UTILITY(U,$J,358.3,22628,1,0)
+ ;;^UTILITY(U,$J,358.3,21268,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,21268,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,21268,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,21269,0)
+ ;;=Z91.5^^95^1059^1
+ ;;^UTILITY(U,$J,358.3,21269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22628,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,22628,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,22628,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,22629,0)
- ;;=Z96.7^^87^982^125
- ;;^UTILITY(U,$J,358.3,22629,1,0)
+ ;;^UTILITY(U,$J,358.3,21269,1,3,0)
+ ;;=3^Personal Hx of One or More Suicide Attempts
+ ;;^UTILITY(U,$J,358.3,21269,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,21269,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,21270,0)
+ ;;=T14.91XA^^95^1059^3
+ ;;^UTILITY(U,$J,358.3,21270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22629,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,22629,1,4,0)
- ;;=4^Z96.7
- ;;^UTILITY(U,$J,358.3,22629,2)
- ;;=^5063716
- ;;^UTILITY(U,$J,358.3,22630,0)
- ;;=Z97.11^^87^982^133
- ;;^UTILITY(U,$J,358.3,22630,1,0)
+ ;;^UTILITY(U,$J,358.3,21270,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,21270,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,21270,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,21271,0)
+ ;;=T14.91XD^^95^1059^4
+ ;;^UTILITY(U,$J,358.3,21271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22630,1,3,0)
- ;;=3^Presence of Right Artificial Arm
- ;;^UTILITY(U,$J,358.3,22630,1,4,0)
- ;;=4^Z97.11
- ;;^UTILITY(U,$J,358.3,22630,2)
- ;;=^5063722
- ;;^UTILITY(U,$J,358.3,22631,0)
- ;;=Z97.12^^87^982^128
- ;;^UTILITY(U,$J,358.3,22631,1,0)
+ ;;^UTILITY(U,$J,358.3,21271,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,21271,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,21271,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,21272,0)
+ ;;=T14.91XS^^95^1059^5
+ ;;^UTILITY(U,$J,358.3,21272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22631,1,3,0)
- ;;=3^Presence of Left Artificial Arm
- ;;^UTILITY(U,$J,358.3,22631,1,4,0)
- ;;=4^Z97.12
- ;;^UTILITY(U,$J,358.3,22631,2)
- ;;=^5063723
- ;;^UTILITY(U,$J,358.3,22632,0)
- ;;=Z97.13^^87^982^136
- ;;^UTILITY(U,$J,358.3,22632,1,0)
+ ;;^UTILITY(U,$J,358.3,21272,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,21272,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,21272,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,21273,0)
+ ;;=F19.14^^95^1060^1
+ ;;^UTILITY(U,$J,358.3,21273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22632,1,3,0)
- ;;=3^Presence of Right Artificial Leg
- ;;^UTILITY(U,$J,358.3,22632,1,4,0)
- ;;=4^Z97.13
- ;;^UTILITY(U,$J,358.3,22632,2)
- ;;=^5063724
- ;;^UTILITY(U,$J,358.3,22633,0)
- ;;=Z97.14^^87^982^131
- ;;^UTILITY(U,$J,358.3,22633,1,0)
+ ;;^UTILITY(U,$J,358.3,21273,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21273,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,21273,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,21274,0)
+ ;;=F19.24^^95^1060^2
+ ;;^UTILITY(U,$J,358.3,21274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22633,1,3,0)
- ;;=3^Presence of Left Artificial Leg
- ;;^UTILITY(U,$J,358.3,22633,1,4,0)
- ;;=4^Z97.14
- ;;^UTILITY(U,$J,358.3,22633,2)
- ;;=^5063725
- ;;^UTILITY(U,$J,358.3,22634,0)
- ;;=Z97.15^^87^982^123
- ;;^UTILITY(U,$J,358.3,22634,1,0)
+ ;;^UTILITY(U,$J,358.3,21274,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21274,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,21274,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,21275,0)
+ ;;=F19.94^^95^1060^3
+ ;;^UTILITY(U,$J,358.3,21275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22634,1,3,0)
- ;;=3^Presence of Bilateral Artificial Arms
- ;;^UTILITY(U,$J,358.3,22634,1,4,0)
- ;;=4^Z97.15
- ;;^UTILITY(U,$J,358.3,22634,2)
- ;;=^5063726
- ;;^UTILITY(U,$J,358.3,22635,0)
- ;;=Z97.16^^87^982^124
- ;;^UTILITY(U,$J,358.3,22635,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22635,1,3,0)
- ;;=3^Presence of Bilateral Artificial Legs
- ;;^UTILITY(U,$J,358.3,22635,1,4,0)
- ;;=4^Z97.16
- ;;^UTILITY(U,$J,358.3,22635,2)
- ;;=^5063727
+ ;;^UTILITY(U,$J,358.3,21275,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/o Use D/O

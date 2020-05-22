@@ -1,6 +1,8 @@
 RCTCSPD5 ;ALB/LMH-CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315,339**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**315,339,366**;Mar 20, 1995;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*366 Modify .03 pointer stuff to '////' in DR string
  ;
  Q
  ;
@@ -10,7 +12,7 @@ CSATRY ; Cross-Servicing Admin Adj Treasury Rev? Yes non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",53,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -26,7 +28,7 @@ CSATRN ; Cross-Servicing Admin Adj Treasury Rev? No non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",54,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -42,7 +44,7 @@ CSITRY ; Cross-Servicing Incr Adj Treasury Rev? Yes non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",57,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -58,7 +60,7 @@ CSITRN ; Cross-Servicing Incr Adj Treasury Rev? No non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",58,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -77,7 +79,7 @@ CSPRTR ; Cross-Servicing PENDING RECONCILIATION non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",61,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -94,7 +96,7 @@ CSRCLPL ; CS RECALL placed non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",62,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount

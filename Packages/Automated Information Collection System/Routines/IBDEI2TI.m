@@ -1,128 +1,122 @@
-IBDEI2TI ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47304,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,47305,0)
- ;;=C81.91^^209^2346^220
- ;;^UTILITY(U,$J,358.3,47305,1,0)
+ ;;^UTILITY(U,$J,358.3,44943,1,4,0)
+ ;;=4^C84.02
+ ;;^UTILITY(U,$J,358.3,44943,2)
+ ;;=^5001623
+ ;;^UTILITY(U,$J,358.3,44944,0)
+ ;;=C84.04^^170^2241^92
+ ;;^UTILITY(U,$J,358.3,44944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47305,1,3,0)
- ;;=3^Hodgkin Lymphoma,Head/Face/Neck Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47305,1,4,0)
- ;;=4^C81.91
- ;;^UTILITY(U,$J,358.3,47305,2)
- ;;=^5001452
- ;;^UTILITY(U,$J,358.3,47306,0)
- ;;=C81.92^^209^2346^228
- ;;^UTILITY(U,$J,358.3,47306,1,0)
+ ;;^UTILITY(U,$J,358.3,44944,1,3,0)
+ ;;=3^Mycosis Fungoides,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,44944,1,4,0)
+ ;;=4^C84.04
+ ;;^UTILITY(U,$J,358.3,44944,2)
+ ;;=^5001625
+ ;;^UTILITY(U,$J,358.3,44945,0)
+ ;;=C84.01^^170^2241^94
+ ;;^UTILITY(U,$J,358.3,44945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47306,1,3,0)
- ;;=3^Hodgkin Lymphoma,Intrathoracic Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47306,1,4,0)
- ;;=4^C81.92
- ;;^UTILITY(U,$J,358.3,47306,2)
- ;;=^5001453
- ;;^UTILITY(U,$J,358.3,47307,0)
- ;;=C81.93^^209^2346^224
- ;;^UTILITY(U,$J,358.3,47307,1,0)
+ ;;^UTILITY(U,$J,358.3,44945,1,3,0)
+ ;;=3^Mycosis Fungoides,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,44945,1,4,0)
+ ;;=4^C84.01
+ ;;^UTILITY(U,$J,358.3,44945,2)
+ ;;=^5001622
+ ;;^UTILITY(U,$J,358.3,44946,0)
+ ;;=C84.05^^170^2241^95
+ ;;^UTILITY(U,$J,358.3,44946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47307,1,3,0)
- ;;=3^Hodgkin Lymphoma,Intra-Abdominal Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47307,1,4,0)
- ;;=4^C81.93
- ;;^UTILITY(U,$J,358.3,47307,2)
- ;;=^5001454
- ;;^UTILITY(U,$J,358.3,47308,0)
- ;;=C81.94^^209^2346^216
- ;;^UTILITY(U,$J,358.3,47308,1,0)
+ ;;^UTILITY(U,$J,358.3,44946,1,3,0)
+ ;;=3^Mycosis Fungoides,Inguinal Region/LE Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,44946,1,4,0)
+ ;;=4^C84.05
+ ;;^UTILITY(U,$J,358.3,44946,2)
+ ;;=^5001626
+ ;;^UTILITY(U,$J,358.3,44947,0)
+ ;;=C84.08^^170^2241^99
+ ;;^UTILITY(U,$J,358.3,44947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47308,1,3,0)
- ;;=3^Hodgkin Lymphoma,Axilla/Upper Limb Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47308,1,4,0)
- ;;=4^C81.94
- ;;^UTILITY(U,$J,358.3,47308,2)
- ;;=^5001455
- ;;^UTILITY(U,$J,358.3,47309,0)
- ;;=C81.95^^209^2346^222
- ;;^UTILITY(U,$J,358.3,47309,1,0)
+ ;;^UTILITY(U,$J,358.3,44947,1,3,0)
+ ;;=3^Mycosis Fungoides,Multiple Site Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,44947,1,4,0)
+ ;;=4^C84.08
+ ;;^UTILITY(U,$J,358.3,44947,2)
+ ;;=^5001629
+ ;;^UTILITY(U,$J,358.3,44948,0)
+ ;;=C84.07^^170^2241^100
+ ;;^UTILITY(U,$J,358.3,44948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47309,1,3,0)
- ;;=3^Hodgkin Lymphoma,Ing Region/Lower Limb Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47309,1,4,0)
- ;;=4^C81.95
- ;;^UTILITY(U,$J,358.3,47309,2)
- ;;=^5001456
- ;;^UTILITY(U,$J,358.3,47310,0)
- ;;=C81.96^^209^2346^226
- ;;^UTILITY(U,$J,358.3,47310,1,0)
+ ;;^UTILITY(U,$J,358.3,44948,1,3,0)
+ ;;=3^Mycosis Fungoides,Spleen
+ ;;^UTILITY(U,$J,358.3,44948,1,4,0)
+ ;;=4^C84.07
+ ;;^UTILITY(U,$J,358.3,44948,2)
+ ;;=^5001628
+ ;;^UTILITY(U,$J,358.3,44949,0)
+ ;;=C84.00^^170^2241^101
+ ;;^UTILITY(U,$J,358.3,44949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47310,1,3,0)
- ;;=3^Hodgkin Lymphoma,Intrapelvic Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47310,1,4,0)
- ;;=4^C81.96
- ;;^UTILITY(U,$J,358.3,47310,2)
- ;;=^5001457
- ;;^UTILITY(U,$J,358.3,47311,0)
- ;;=C81.97^^209^2346^232
- ;;^UTILITY(U,$J,358.3,47311,1,0)
+ ;;^UTILITY(U,$J,358.3,44949,1,3,0)
+ ;;=3^Mycosis Fungoides,Unspec Site
+ ;;^UTILITY(U,$J,358.3,44949,1,4,0)
+ ;;=4^C84.00
+ ;;^UTILITY(U,$J,358.3,44949,2)
+ ;;=^5001621
+ ;;^UTILITY(U,$J,358.3,44950,0)
+ ;;=C43.122^^170^2241^4
+ ;;^UTILITY(U,$J,358.3,44950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47311,1,3,0)
- ;;=3^Hodgkin Lymphoma,Spleen,Unspec
- ;;^UTILITY(U,$J,358.3,47311,1,4,0)
- ;;=4^C81.97
- ;;^UTILITY(U,$J,358.3,47311,2)
- ;;=^5001458
- ;;^UTILITY(U,$J,358.3,47312,0)
- ;;=C81.98^^209^2346^230
- ;;^UTILITY(U,$J,358.3,47312,1,0)
+ ;;^UTILITY(U,$J,358.3,44950,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,44950,1,4,0)
+ ;;=4^C43.122
+ ;;^UTILITY(U,$J,358.3,44950,2)
+ ;;=^5157252
+ ;;^UTILITY(U,$J,358.3,44951,0)
+ ;;=C43.121^^170^2241^6
+ ;;^UTILITY(U,$J,358.3,44951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47312,1,3,0)
- ;;=3^Hodgkin Lymphoma,Mult Site Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,47312,1,4,0)
- ;;=4^C81.98
- ;;^UTILITY(U,$J,358.3,47312,2)
- ;;=^5001459
- ;;^UTILITY(U,$J,358.3,47313,0)
- ;;=C81.99^^209^2346^218
- ;;^UTILITY(U,$J,358.3,47313,1,0)
+ ;;^UTILITY(U,$J,358.3,44951,1,3,0)
+ ;;=3^Malig Melanoma of Left Upper Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,44951,1,4,0)
+ ;;=4^C43.121
+ ;;^UTILITY(U,$J,358.3,44951,2)
+ ;;=^5157251
+ ;;^UTILITY(U,$J,358.3,44952,0)
+ ;;=C43.112^^170^2241^12
+ ;;^UTILITY(U,$J,358.3,44952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47313,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites,Unspec
- ;;^UTILITY(U,$J,358.3,47313,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,47313,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,47314,0)
- ;;=C82.00^^209^2346^149
- ;;^UTILITY(U,$J,358.3,47314,1,0)
+ ;;^UTILITY(U,$J,358.3,44952,1,3,0)
+ ;;=3^Malig Melanoma of Right Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,44952,1,4,0)
+ ;;=4^C43.112
+ ;;^UTILITY(U,$J,358.3,44952,2)
+ ;;=^5157250
+ ;;^UTILITY(U,$J,358.3,44953,0)
+ ;;=C43.111^^170^2241^14
+ ;;^UTILITY(U,$J,358.3,44953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47314,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Unspec Site
- ;;^UTILITY(U,$J,358.3,47314,1,4,0)
- ;;=4^C82.00
- ;;^UTILITY(U,$J,358.3,47314,2)
- ;;=^5001461
- ;;^UTILITY(U,$J,358.3,47315,0)
- ;;=C82.01^^209^2346^142
- ;;^UTILITY(U,$J,358.3,47315,1,0)
+ ;;^UTILITY(U,$J,358.3,44953,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,44953,1,4,0)
+ ;;=4^C43.111
+ ;;^UTILITY(U,$J,358.3,44953,2)
+ ;;=^5157249
+ ;;^UTILITY(U,$J,358.3,44954,0)
+ ;;=C44.1922^^170^2241^30
+ ;;^UTILITY(U,$J,358.3,44954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47315,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47315,1,4,0)
- ;;=4^C82.01
- ;;^UTILITY(U,$J,358.3,47315,2)
- ;;=^5001462
- ;;^UTILITY(U,$J,358.3,47316,0)
- ;;=C82.02^^209^2346^146
- ;;^UTILITY(U,$J,358.3,47316,1,0)
+ ;;^UTILITY(U,$J,358.3,44954,1,3,0)
+ ;;=3^Malig Neop Skin of Right Lower Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,44954,1,4,0)
+ ;;=4^C44.1922
+ ;;^UTILITY(U,$J,358.3,44954,2)
+ ;;=^5157271
+ ;;^UTILITY(U,$J,358.3,44955,0)
+ ;;=C44.1921^^170^2241^32
+ ;;^UTILITY(U,$J,358.3,44955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47316,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47316,1,4,0)
- ;;=4^C82.02
- ;;^UTILITY(U,$J,358.3,47316,2)
- ;;=^5001463
- ;;^UTILITY(U,$J,358.3,47317,0)
- ;;=C82.03^^209^2346^144

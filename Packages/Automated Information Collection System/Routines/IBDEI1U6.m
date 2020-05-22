@@ -1,122 +1,130 @@
-IBDEI1U6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1U6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31179,2)
- ;;=^5003389
- ;;^UTILITY(U,$J,358.3,31180,0)
- ;;=F18.280^^123^1565^2
- ;;^UTILITY(U,$J,358.3,31180,1,0)
+ ;;^UTILITY(U,$J,358.3,29338,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,29339,0)
+ ;;=F52.21^^118^1482^2
+ ;;^UTILITY(U,$J,358.3,29339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31180,1,3,0)
- ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31180,1,4,0)
- ;;=4^F18.280
- ;;^UTILITY(U,$J,358.3,31180,2)
- ;;=^5003402
- ;;^UTILITY(U,$J,358.3,31181,0)
- ;;=F18.980^^123^1565^3
- ;;^UTILITY(U,$J,358.3,31181,1,0)
+ ;;^UTILITY(U,$J,358.3,29339,1,3,0)
+ ;;=3^Erectile D/O
+ ;;^UTILITY(U,$J,358.3,29339,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,29339,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,29340,0)
+ ;;=F52.31^^118^1482^3
+ ;;^UTILITY(U,$J,358.3,29340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31181,1,3,0)
- ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31181,1,4,0)
- ;;=4^F18.980
- ;;^UTILITY(U,$J,358.3,31181,2)
- ;;=^5003414
- ;;^UTILITY(U,$J,358.3,31182,0)
- ;;=F18.94^^123^1565^4
- ;;^UTILITY(U,$J,358.3,31182,1,0)
+ ;;^UTILITY(U,$J,358.3,29340,1,3,0)
+ ;;=3^Female Orgasmic D/O
+ ;;^UTILITY(U,$J,358.3,29340,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,29340,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,29341,0)
+ ;;=F52.22^^118^1482^4
+ ;;^UTILITY(U,$J,358.3,29341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31182,1,3,0)
- ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31182,1,4,0)
- ;;=4^F18.94
- ;;^UTILITY(U,$J,358.3,31182,2)
- ;;=^5003409
- ;;^UTILITY(U,$J,358.3,31183,0)
- ;;=F18.17^^123^1565^5
- ;;^UTILITY(U,$J,358.3,31183,1,0)
+ ;;^UTILITY(U,$J,358.3,29341,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal D/O
+ ;;^UTILITY(U,$J,358.3,29341,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,29341,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,29342,0)
+ ;;=F52.6^^118^1482^5
+ ;;^UTILITY(U,$J,358.3,29342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31183,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31183,1,4,0)
- ;;=4^F18.17
- ;;^UTILITY(U,$J,358.3,31183,2)
- ;;=^5003388
- ;;^UTILITY(U,$J,358.3,31184,0)
- ;;=F18.27^^123^1565^6
- ;;^UTILITY(U,$J,358.3,31184,1,0)
+ ;;^UTILITY(U,$J,358.3,29342,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration D/O
+ ;;^UTILITY(U,$J,358.3,29342,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,29342,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,29343,0)
+ ;;=F52.0^^118^1482^6
+ ;;^UTILITY(U,$J,358.3,29343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31184,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31184,1,4,0)
- ;;=4^F18.27
- ;;^UTILITY(U,$J,358.3,31184,2)
- ;;=^5003401
- ;;^UTILITY(U,$J,358.3,31185,0)
- ;;=F18.97^^123^1565^7
- ;;^UTILITY(U,$J,358.3,31185,1,0)
+ ;;^UTILITY(U,$J,358.3,29343,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire D/O
+ ;;^UTILITY(U,$J,358.3,29343,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,29343,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,29344,0)
+ ;;=F52.4^^118^1482^7
+ ;;^UTILITY(U,$J,358.3,29344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31185,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31185,1,4,0)
- ;;=4^F18.97
- ;;^UTILITY(U,$J,358.3,31185,2)
- ;;=^5003413
- ;;^UTILITY(U,$J,358.3,31186,0)
- ;;=F18.188^^123^1565^8
- ;;^UTILITY(U,$J,358.3,31186,1,0)
+ ;;^UTILITY(U,$J,358.3,29344,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,29344,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,29344,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,29345,0)
+ ;;=F52.8^^118^1482^8
+ ;;^UTILITY(U,$J,358.3,29345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31186,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31186,1,4,0)
- ;;=4^F18.188
- ;;^UTILITY(U,$J,358.3,31186,2)
- ;;=^5003390
- ;;^UTILITY(U,$J,358.3,31187,0)
- ;;=F18.288^^123^1565^9
- ;;^UTILITY(U,$J,358.3,31187,1,0)
+ ;;^UTILITY(U,$J,358.3,29345,1,3,0)
+ ;;=3^Sexual Dysfunction,Oth Spec
+ ;;^UTILITY(U,$J,358.3,29345,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,29345,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,29346,0)
+ ;;=F52.9^^118^1482^9
+ ;;^UTILITY(U,$J,358.3,29346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31187,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31187,1,4,0)
- ;;=4^F18.288
- ;;^UTILITY(U,$J,358.3,31187,2)
- ;;=^5003403
- ;;^UTILITY(U,$J,358.3,31188,0)
- ;;=F18.988^^123^1565^10
- ;;^UTILITY(U,$J,358.3,31188,1,0)
+ ;;^UTILITY(U,$J,358.3,29346,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,29346,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,29346,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,29347,0)
+ ;;=G47.09^^118^1483^14
+ ;;^UTILITY(U,$J,358.3,29347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31188,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31188,1,4,0)
- ;;=4^F18.988
- ;;^UTILITY(U,$J,358.3,31188,2)
- ;;=^5003415
- ;;^UTILITY(U,$J,358.3,31189,0)
- ;;=F18.159^^123^1565^11
- ;;^UTILITY(U,$J,358.3,31189,1,0)
+ ;;^UTILITY(U,$J,358.3,29347,1,3,0)
+ ;;=3^Insomnia D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,29347,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,29347,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,29348,0)
+ ;;=G47.00^^118^1483^15
+ ;;^UTILITY(U,$J,358.3,29348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31189,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31189,1,4,0)
- ;;=4^F18.159
- ;;^UTILITY(U,$J,358.3,31189,2)
- ;;=^5003387
- ;;^UTILITY(U,$J,358.3,31190,0)
- ;;=F18.259^^123^1565^12
- ;;^UTILITY(U,$J,358.3,31190,1,0)
+ ;;^UTILITY(U,$J,358.3,29348,1,3,0)
+ ;;=3^Insomnia D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29348,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,29348,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,29349,0)
+ ;;=G47.10^^118^1483^12
+ ;;^UTILITY(U,$J,358.3,29349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31190,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31190,1,4,0)
- ;;=4^F18.259
- ;;^UTILITY(U,$J,358.3,31190,2)
- ;;=^5003400
- ;;^UTILITY(U,$J,358.3,31191,0)
- ;;=F18.959^^123^1565^13
- ;;^UTILITY(U,$J,358.3,31191,1,0)
+ ;;^UTILITY(U,$J,358.3,29349,1,3,0)
+ ;;=3^Hypersomnolence D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29349,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,29349,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,29350,0)
+ ;;=G47.33^^118^1483^22
+ ;;^UTILITY(U,$J,358.3,29350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31191,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,29350,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,29350,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,29350,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,29351,0)
+ ;;=G47.31^^118^1483^2
+ ;;^UTILITY(U,$J,358.3,29351,1,0)
+ ;;=^358.31IA^4^2

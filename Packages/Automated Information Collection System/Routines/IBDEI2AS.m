@@ -1,138 +1,116 @@
-IBDEI2AS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38978,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,38978,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,38979,0)
- ;;=L03.114^^151^1910^27
- ;;^UTILITY(U,$J,358.3,38979,1,0)
+ ;;^UTILITY(U,$J,358.3,36684,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Left Ankle/Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36684,1,4,0)
+ ;;=4^S95.902A
+ ;;^UTILITY(U,$J,358.3,36684,2)
+ ;;=^5137720
+ ;;^UTILITY(U,$J,358.3,36685,0)
+ ;;=S55.902A^^142^1863^225
+ ;;^UTILITY(U,$J,358.3,36685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38979,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,38979,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,38979,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,38980,0)
- ;;=L03.317^^151^1910^19
- ;;^UTILITY(U,$J,358.3,38980,1,0)
+ ;;^UTILITY(U,$J,358.3,36685,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Left Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36685,1,4,0)
+ ;;=4^S55.902A
+ ;;^UTILITY(U,$J,358.3,36685,2)
+ ;;=^5135411
+ ;;^UTILITY(U,$J,358.3,36686,0)
+ ;;=S75.902A^^142^1863^226
+ ;;^UTILITY(U,$J,358.3,36686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38980,1,3,0)
- ;;=3^Cellulitis of Buttock
- ;;^UTILITY(U,$J,358.3,38980,1,4,0)
- ;;=4^L03.317
- ;;^UTILITY(U,$J,358.3,38980,2)
- ;;=^5009053
- ;;^UTILITY(U,$J,358.3,38981,0)
- ;;=L03.211^^151^1910^20
- ;;^UTILITY(U,$J,358.3,38981,1,0)
+ ;;^UTILITY(U,$J,358.3,36686,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Left Hip/Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36686,1,4,0)
+ ;;=4^S75.902A
+ ;;^UTILITY(U,$J,358.3,36686,2)
+ ;;=^5136535
+ ;;^UTILITY(U,$J,358.3,36687,0)
+ ;;=S85.902A^^142^1863^227
+ ;;^UTILITY(U,$J,358.3,36687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38981,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,38981,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,38981,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,38982,0)
- ;;=L03.011^^151^1910^29
- ;;^UTILITY(U,$J,358.3,38982,1,0)
+ ;;^UTILITY(U,$J,358.3,36687,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36687,1,4,0)
+ ;;=4^S85.902A
+ ;;^UTILITY(U,$J,358.3,36687,2)
+ ;;=^5137130
+ ;;^UTILITY(U,$J,358.3,36688,0)
+ ;;=S45.902A^^142^1863^228
+ ;;^UTILITY(U,$J,358.3,36688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38982,1,3,0)
- ;;=3^Cellulitis of Right Finger
- ;;^UTILITY(U,$J,358.3,38982,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,38982,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,38983,0)
- ;;=L03.012^^151^1910^24
- ;;^UTILITY(U,$J,358.3,38983,1,0)
+ ;;^UTILITY(U,$J,358.3,36688,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Left Shoulder/Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36688,1,4,0)
+ ;;=4^S45.902A
+ ;;^UTILITY(U,$J,358.3,36688,2)
+ ;;=^5028125
+ ;;^UTILITY(U,$J,358.3,36689,0)
+ ;;=S65.902A^^142^1863^229
+ ;;^UTILITY(U,$J,358.3,36689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38983,1,3,0)
- ;;=3^Cellulitis of Left Finger
- ;;^UTILITY(U,$J,358.3,38983,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,38983,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,38984,0)
- ;;=L03.119^^151^1910^21
- ;;^UTILITY(U,$J,358.3,38984,1,0)
+ ;;^UTILITY(U,$J,358.3,36689,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Left Wrist/Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36689,1,4,0)
+ ;;=4^S65.902A
+ ;;^UTILITY(U,$J,358.3,36689,2)
+ ;;=^5136085
+ ;;^UTILITY(U,$J,358.3,36690,0)
+ ;;=S95.901A^^142^1863^230
+ ;;^UTILITY(U,$J,358.3,36690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38984,1,3,0)
- ;;=3^Cellulitis of Foot
- ;;^UTILITY(U,$J,358.3,38984,1,4,0)
- ;;=4^L03.119
- ;;^UTILITY(U,$J,358.3,38984,2)
- ;;=^5009036
- ;;^UTILITY(U,$J,358.3,38985,0)
- ;;=L03.119^^151^1910^23
- ;;^UTILITY(U,$J,358.3,38985,1,0)
+ ;;^UTILITY(U,$J,358.3,36690,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Right Ankle/Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36690,1,4,0)
+ ;;=4^S95.901A
+ ;;^UTILITY(U,$J,358.3,36690,2)
+ ;;=^5046038
+ ;;^UTILITY(U,$J,358.3,36691,0)
+ ;;=S55.901A^^142^1863^231
+ ;;^UTILITY(U,$J,358.3,36691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38985,1,3,0)
- ;;=3^Cellulitis of Hand
- ;;^UTILITY(U,$J,358.3,38985,1,4,0)
- ;;=4^L03.119
- ;;^UTILITY(U,$J,358.3,38985,2)
- ;;=^5009036
- ;;^UTILITY(U,$J,358.3,38986,0)
- ;;=L03.115^^151^1910^30
- ;;^UTILITY(U,$J,358.3,38986,1,0)
+ ;;^UTILITY(U,$J,358.3,36691,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Right Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36691,1,4,0)
+ ;;=4^S55.901A
+ ;;^UTILITY(U,$J,358.3,36691,2)
+ ;;=^5031547
+ ;;^UTILITY(U,$J,358.3,36692,0)
+ ;;=S75.901A^^142^1863^232
+ ;;^UTILITY(U,$J,358.3,36692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38986,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,38986,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,38986,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,38987,0)
- ;;=L03.116^^151^1910^25
- ;;^UTILITY(U,$J,358.3,38987,1,0)
+ ;;^UTILITY(U,$J,358.3,36692,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Right Hip/Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36692,1,4,0)
+ ;;=4^S75.901A
+ ;;^UTILITY(U,$J,358.3,36692,2)
+ ;;=^5039492
+ ;;^UTILITY(U,$J,358.3,36693,0)
+ ;;=S85.901A^^142^1863^233
+ ;;^UTILITY(U,$J,358.3,36693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38987,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,38987,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,38987,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,38988,0)
- ;;=L03.221^^151^1910^28
- ;;^UTILITY(U,$J,358.3,38988,1,0)
+ ;;^UTILITY(U,$J,358.3,36693,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36693,1,4,0)
+ ;;=4^S85.901A
+ ;;^UTILITY(U,$J,358.3,36693,2)
+ ;;=^5043415
+ ;;^UTILITY(U,$J,358.3,36694,0)
+ ;;=S45.901A^^142^1863^235
+ ;;^UTILITY(U,$J,358.3,36694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38988,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,38988,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,38988,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,38989,0)
- ;;=L03.031^^151^1910^31
- ;;^UTILITY(U,$J,358.3,38989,1,0)
+ ;;^UTILITY(U,$J,358.3,36694,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Right Shoulder/Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36694,1,4,0)
+ ;;=4^S45.901A
+ ;;^UTILITY(U,$J,358.3,36694,2)
+ ;;=^5028122
+ ;;^UTILITY(U,$J,358.3,36695,0)
+ ;;=S85.901A^^142^1863^234
+ ;;^UTILITY(U,$J,358.3,36695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38989,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,38989,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,38989,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,38990,0)
- ;;=L03.032^^151^1910^26
- ;;^UTILITY(U,$J,358.3,38990,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38990,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,38990,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,38990,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,38991,0)
- ;;=L03.319^^151^1910^33
- ;;^UTILITY(U,$J,358.3,38991,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38991,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,38991,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,38991,2)
- ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,36695,1,3,0)
+ ;;=3^Injury Blood Vessel Unspec Right Lower Leg,Init Encntr

@@ -1,132 +1,128 @@
-IBDEI326 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI326 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51275,1,3,0)
- ;;=3^Arthritis d/t bacteria, lft shldr, oth
- ;;^UTILITY(U,$J,358.3,51275,1,4,0)
- ;;=4^M00.812
- ;;^UTILITY(U,$J,358.3,51275,2)
- ;;=^5009671
- ;;^UTILITY(U,$J,358.3,51276,0)
- ;;=M00.021^^222^2474^43
- ;;^UTILITY(U,$J,358.3,51276,1,0)
+ ;;^UTILITY(U,$J,358.3,48835,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,48836,0)
+ ;;=J45.991^^185^2426^2
+ ;;^UTILITY(U,$J,358.3,48836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51276,1,3,0)
- ;;=3^Staphylococcal arthritis, rt elbow
- ;;^UTILITY(U,$J,358.3,51276,1,4,0)
- ;;=4^M00.021
- ;;^UTILITY(U,$J,358.3,51276,2)
- ;;=^5009601
- ;;^UTILITY(U,$J,358.3,51277,0)
- ;;=M00.022^^222^2474^36
- ;;^UTILITY(U,$J,358.3,51277,1,0)
+ ;;^UTILITY(U,$J,358.3,48836,1,3,0)
+ ;;=3^Asthma,Cough Variant
+ ;;^UTILITY(U,$J,358.3,48836,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,48836,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,48837,0)
+ ;;=J45.990^^185^2426^3
+ ;;^UTILITY(U,$J,358.3,48837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51277,1,3,0)
- ;;=3^Staphylococcal arthritis, lft elbow
- ;;^UTILITY(U,$J,358.3,51277,1,4,0)
- ;;=4^M00.022
- ;;^UTILITY(U,$J,358.3,51277,2)
- ;;=^5009602
- ;;^UTILITY(U,$J,358.3,51278,0)
- ;;=M00.121^^222^2474^25
- ;;^UTILITY(U,$J,358.3,51278,1,0)
+ ;;^UTILITY(U,$J,358.3,48837,1,3,0)
+ ;;=3^Asthma,Exercise Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,48837,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,48837,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,48838,0)
+ ;;=J45.909^^185^2426^6
+ ;;^UTILITY(U,$J,358.3,48838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51278,1,3,0)
- ;;=3^Pneumococcal arthritis, rt elbow
- ;;^UTILITY(U,$J,358.3,51278,1,4,0)
- ;;=4^M00.121
- ;;^UTILITY(U,$J,358.3,51278,2)
- ;;=^5009625
- ;;^UTILITY(U,$J,358.3,51279,0)
- ;;=M00.122^^222^2474^18
- ;;^UTILITY(U,$J,358.3,51279,1,0)
+ ;;^UTILITY(U,$J,358.3,48838,1,3,0)
+ ;;=3^Asthma,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,48838,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,48838,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,48839,0)
+ ;;=J45.901^^185^2426^4
+ ;;^UTILITY(U,$J,358.3,48839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51279,1,3,0)
- ;;=3^Pneumococcal arthritis, lft elbow
- ;;^UTILITY(U,$J,358.3,51279,1,4,0)
- ;;=4^M00.122
- ;;^UTILITY(U,$J,358.3,51279,2)
- ;;=^5009626
- ;;^UTILITY(U,$J,358.3,51280,0)
- ;;=M00.221^^222^2474^58
- ;;^UTILITY(U,$J,358.3,51280,1,0)
+ ;;^UTILITY(U,$J,358.3,48839,1,3,0)
+ ;;=3^Asthma,Unspec w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,48839,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,48839,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,48840,0)
+ ;;=J45.902^^185^2426^5
+ ;;^UTILITY(U,$J,358.3,48840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51280,1,3,0)
- ;;=3^Streptococcal arthritis, rt elbow, oth
- ;;^UTILITY(U,$J,358.3,51280,1,4,0)
- ;;=4^M00.221
- ;;^UTILITY(U,$J,358.3,51280,2)
- ;;=^5009649
- ;;^UTILITY(U,$J,358.3,51281,0)
- ;;=M00.222^^222^2474^52
- ;;^UTILITY(U,$J,358.3,51281,1,0)
+ ;;^UTILITY(U,$J,358.3,48840,1,3,0)
+ ;;=3^Asthma,Unspec w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,48840,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,48840,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,48841,0)
+ ;;=J15.9^^185^2426^7
+ ;;^UTILITY(U,$J,358.3,48841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51281,1,3,0)
- ;;=3^Streptococcal arthritis, lft elbow, oth
- ;;^UTILITY(U,$J,358.3,51281,1,4,0)
- ;;=4^M00.222
- ;;^UTILITY(U,$J,358.3,51281,2)
- ;;=^5009650
- ;;^UTILITY(U,$J,358.3,51282,0)
- ;;=M00.821^^222^2474^10
- ;;^UTILITY(U,$J,358.3,51282,1,0)
+ ;;^UTILITY(U,$J,358.3,48841,1,3,0)
+ ;;=3^Bacterial Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,48841,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,48841,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,48842,0)
+ ;;=R06.9^^185^2426^11
+ ;;^UTILITY(U,$J,358.3,48842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51282,1,3,0)
- ;;=3^Arthritis d/t other bacteria, rt elbow
- ;;^UTILITY(U,$J,358.3,51282,1,4,0)
- ;;=4^M00.821
- ;;^UTILITY(U,$J,358.3,51282,2)
- ;;=^5009673
- ;;^UTILITY(U,$J,358.3,51283,0)
- ;;=M00.822^^222^2474^4
- ;;^UTILITY(U,$J,358.3,51283,1,0)
+ ;;^UTILITY(U,$J,358.3,48842,1,3,0)
+ ;;=3^Breathing Abnormalities,Unspec
+ ;;^UTILITY(U,$J,358.3,48842,1,4,0)
+ ;;=4^R06.9
+ ;;^UTILITY(U,$J,358.3,48842,2)
+ ;;=^5019194
+ ;;^UTILITY(U,$J,358.3,48843,0)
+ ;;=J47.1^^185^2426^9
+ ;;^UTILITY(U,$J,358.3,48843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51283,1,3,0)
- ;;=3^Arthritis d/t other bacteria, lft elbow
- ;;^UTILITY(U,$J,358.3,51283,1,4,0)
- ;;=4^M00.822
- ;;^UTILITY(U,$J,358.3,51283,2)
- ;;=^5009674
- ;;^UTILITY(U,$J,358.3,51284,0)
- ;;=M00.031^^222^2474^48
- ;;^UTILITY(U,$J,358.3,51284,1,0)
+ ;;^UTILITY(U,$J,358.3,48843,1,3,0)
+ ;;=3^Branchietasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,48843,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,48843,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,48844,0)
+ ;;=J47.0^^185^2426^10
+ ;;^UTILITY(U,$J,358.3,48844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51284,1,3,0)
- ;;=3^Staphylococcal arthritis, rt wrist
- ;;^UTILITY(U,$J,358.3,51284,1,4,0)
- ;;=4^M00.031
- ;;^UTILITY(U,$J,358.3,51284,2)
- ;;=^5009604
- ;;^UTILITY(U,$J,358.3,51285,0)
- ;;=M00.032^^222^2474^41
- ;;^UTILITY(U,$J,358.3,51285,1,0)
+ ;;^UTILITY(U,$J,358.3,48844,1,3,0)
+ ;;=3^Branchietasis w/ Acute Lower Repiratory Infection
+ ;;^UTILITY(U,$J,358.3,48844,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,48844,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,48845,0)
+ ;;=J47.9^^185^2426^8
+ ;;^UTILITY(U,$J,358.3,48845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51285,1,3,0)
- ;;=3^Staphylococcal arthritis, lft wrist
- ;;^UTILITY(U,$J,358.3,51285,1,4,0)
- ;;=4^M00.032
- ;;^UTILITY(U,$J,358.3,51285,2)
- ;;=^5009605
- ;;^UTILITY(U,$J,358.3,51286,0)
- ;;=M00.131^^222^2474^30
- ;;^UTILITY(U,$J,358.3,51286,1,0)
+ ;;^UTILITY(U,$J,358.3,48845,1,3,0)
+ ;;=3^Branchietasis Uncomplicated
+ ;;^UTILITY(U,$J,358.3,48845,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,48845,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,48846,0)
+ ;;=J21.9^^185^2426^12
+ ;;^UTILITY(U,$J,358.3,48846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51286,1,3,0)
- ;;=3^Pneumococcal arthritis, rt wrist
- ;;^UTILITY(U,$J,358.3,51286,1,4,0)
- ;;=4^M00.131
- ;;^UTILITY(U,$J,358.3,51286,2)
- ;;=^5009628
- ;;^UTILITY(U,$J,358.3,51287,0)
- ;;=M00.132^^222^2474^23
- ;;^UTILITY(U,$J,358.3,51287,1,0)
+ ;;^UTILITY(U,$J,358.3,48846,1,3,0)
+ ;;=3^Bronchiolitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,48846,1,4,0)
+ ;;=4^J21.9
+ ;;^UTILITY(U,$J,358.3,48846,2)
+ ;;=^5008199
+ ;;^UTILITY(U,$J,358.3,48847,0)
+ ;;=J20.9^^185^2426^13
+ ;;^UTILITY(U,$J,358.3,48847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51287,1,3,0)
- ;;=3^Pneumococcal arthritis, lft wrist
- ;;^UTILITY(U,$J,358.3,51287,1,4,0)
- ;;=4^M00.132
- ;;^UTILITY(U,$J,358.3,51287,2)
- ;;=^5009629
- ;;^UTILITY(U,$J,358.3,51288,0)
- ;;=M00.231^^222^2474^63
+ ;;^UTILITY(U,$J,358.3,48847,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,48847,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,48847,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,48848,0)
+ ;;=J41.1^^185^2426^14

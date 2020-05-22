@@ -1,136 +1,122 @@
-IBDEI1F0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1F0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24054,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,24054,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,24055,0)
- ;;=F44.1^^90^1041^3
- ;;^UTILITY(U,$J,358.3,24055,1,0)
+ ;;^UTILITY(U,$J,358.3,22635,2)
+ ;;=^5055394
+ ;;^UTILITY(U,$J,358.3,22636,0)
+ ;;=T84.51XA^^102^1143^14
+ ;;^UTILITY(U,$J,358.3,22636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24055,1,3,0)
- ;;=3^Dissociative Amnesia w/ Dissociative Fugue
- ;;^UTILITY(U,$J,358.3,24055,1,4,0)
- ;;=4^F44.1
- ;;^UTILITY(U,$J,358.3,24055,2)
- ;;=^331908
- ;;^UTILITY(U,$J,358.3,24056,0)
- ;;=F50.02^^90^1042^1
- ;;^UTILITY(U,$J,358.3,24056,1,0)
+ ;;^UTILITY(U,$J,358.3,22636,1,3,0)
+ ;;=3^Infection d/t Right Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22636,1,4,0)
+ ;;=4^T84.51XA
+ ;;^UTILITY(U,$J,358.3,22636,2)
+ ;;=^5055385
+ ;;^UTILITY(U,$J,358.3,22637,0)
+ ;;=T84.53XA^^102^1143^15
+ ;;^UTILITY(U,$J,358.3,22637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24056,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,24056,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,24056,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,24057,0)
- ;;=F50.01^^90^1042^2
- ;;^UTILITY(U,$J,358.3,24057,1,0)
+ ;;^UTILITY(U,$J,358.3,22637,1,3,0)
+ ;;=3^Infection d/t Right Knee Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22637,1,4,0)
+ ;;=4^T84.53XA
+ ;;^UTILITY(U,$J,358.3,22637,2)
+ ;;=^5055391
+ ;;^UTILITY(U,$J,358.3,22638,0)
+ ;;=T84.59XA^^102^1143^16
+ ;;^UTILITY(U,$J,358.3,22638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24057,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,24057,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,24057,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,24058,0)
- ;;=F50.9^^90^1042^7
- ;;^UTILITY(U,$J,358.3,24058,1,0)
+ ;;^UTILITY(U,$J,358.3,22638,1,3,0)
+ ;;=3^Infection d/t Shoulder Joint Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22638,1,4,0)
+ ;;=4^T84.59XA
+ ;;^UTILITY(U,$J,358.3,22638,2)
+ ;;=^5055397
+ ;;^UTILITY(U,$J,358.3,22639,0)
+ ;;=T83.510A^^102^1143^9
+ ;;^UTILITY(U,$J,358.3,22639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24058,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24058,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,24058,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,24059,0)
- ;;=F50.8^^90^1042^6
- ;;^UTILITY(U,$J,358.3,24059,1,0)
+ ;;^UTILITY(U,$J,358.3,22639,1,3,0)
+ ;;=3^Infection d/t Indwelling Cystostomy Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22639,1,4,0)
+ ;;=4^T83.510A
+ ;;^UTILITY(U,$J,358.3,22639,2)
+ ;;=^5140135
+ ;;^UTILITY(U,$J,358.3,22640,0)
+ ;;=T83.511A^^102^1143^11
+ ;;^UTILITY(U,$J,358.3,22640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24059,1,3,0)
- ;;=3^Feeding/Eating Disorder NEC
- ;;^UTILITY(U,$J,358.3,24059,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24059,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24060,0)
- ;;=F50.8^^90^1042^3
- ;;^UTILITY(U,$J,358.3,24060,1,0)
+ ;;^UTILITY(U,$J,358.3,22640,1,3,0)
+ ;;=3^Infection d/t Indwelling Urethral Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22640,1,4,0)
+ ;;=4^T83.511A
+ ;;^UTILITY(U,$J,358.3,22640,2)
+ ;;=^5140138
+ ;;^UTILITY(U,$J,358.3,22641,0)
+ ;;=T83.512A^^102^1143^10
+ ;;^UTILITY(U,$J,358.3,22641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24060,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,24060,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24060,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24061,0)
- ;;=F50.8^^90^1042^4
- ;;^UTILITY(U,$J,358.3,24061,1,0)
+ ;;^UTILITY(U,$J,358.3,22641,1,3,0)
+ ;;=3^Infection d/t Indwelling Nephrostomy Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22641,1,4,0)
+ ;;=4^T83.512A
+ ;;^UTILITY(U,$J,358.3,22641,2)
+ ;;=^5140141
+ ;;^UTILITY(U,$J,358.3,22642,0)
+ ;;=T83.518A^^102^1143^8
+ ;;^UTILITY(U,$J,358.3,22642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24061,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,24061,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24061,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24062,0)
- ;;=F50.2^^90^1042^5
- ;;^UTILITY(U,$J,358.3,24062,1,0)
+ ;;^UTILITY(U,$J,358.3,22642,1,3,0)
+ ;;=3^Infection d/t Indwelling Catheter,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22642,1,4,0)
+ ;;=4^T83.518A
+ ;;^UTILITY(U,$J,358.3,22642,2)
+ ;;=^5140144
+ ;;^UTILITY(U,$J,358.3,22643,0)
+ ;;=T81.40XA^^102^1143^4
+ ;;^UTILITY(U,$J,358.3,22643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24062,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,24062,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,24062,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,24063,0)
- ;;=F50.8^^90^1042^8
- ;;^UTILITY(U,$J,358.3,24063,1,0)
+ ;;^UTILITY(U,$J,358.3,22643,1,3,0)
+ ;;=3^Infection Following a Procedure,Unspec,Init Enc
+ ;;^UTILITY(U,$J,358.3,22643,1,4,0)
+ ;;=4^T81.40XA
+ ;;^UTILITY(U,$J,358.3,22643,2)
+ ;;=^5157584
+ ;;^UTILITY(U,$J,358.3,22644,0)
+ ;;=Z91.5^^102^1144^1
+ ;;^UTILITY(U,$J,358.3,22644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24063,1,3,0)
- ;;=3^Pica,In Adults
- ;;^UTILITY(U,$J,358.3,24063,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24063,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24064,0)
- ;;=Z55.9^^90^1043^1
- ;;^UTILITY(U,$J,358.3,24064,1,0)
+ ;;^UTILITY(U,$J,358.3,22644,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,22644,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,22644,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,22645,0)
+ ;;=R45.851^^102^1144^2
+ ;;^UTILITY(U,$J,358.3,22645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24064,1,3,0)
- ;;=3^Acedemic/Educational Problem
- ;;^UTILITY(U,$J,358.3,24064,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,24064,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,24065,0)
- ;;=Z56.81^^90^1043^9
- ;;^UTILITY(U,$J,358.3,24065,1,0)
+ ;;^UTILITY(U,$J,358.3,22645,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,22645,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,22645,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,22646,0)
+ ;;=T14.91XA^^102^1144^3
+ ;;^UTILITY(U,$J,358.3,22646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24065,1,3,0)
- ;;=3^Sexual Harassment on the Job
- ;;^UTILITY(U,$J,358.3,24065,1,4,0)
- ;;=4^Z56.81
- ;;^UTILITY(U,$J,358.3,24065,2)
- ;;=^5063114
- ;;^UTILITY(U,$J,358.3,24066,0)
- ;;=Z56.9^^90^1043^8
- ;;^UTILITY(U,$J,358.3,24066,1,0)
+ ;;^UTILITY(U,$J,358.3,22646,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,22646,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,22646,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,22647,0)
+ ;;=T14.91XD^^102^1144^4
+ ;;^UTILITY(U,$J,358.3,22647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24066,1,3,0)
- ;;=3^Problems Related to Employment NEC
- ;;^UTILITY(U,$J,358.3,24066,1,4,0)
- ;;=4^Z56.9
- ;;^UTILITY(U,$J,358.3,24066,2)
- ;;=^5063117
- ;;^UTILITY(U,$J,358.3,24067,0)
- ;;=Z56.82^^90^1043^6
- ;;^UTILITY(U,$J,358.3,24067,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24067,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,24067,1,4,0)
- ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,22647,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr

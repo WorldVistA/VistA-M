@@ -1,132 +1,128 @@
-IBDEI2HA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42028,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,42028,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,42028,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,42029,0)
- ;;=J94.1^^159^2014^23
- ;;^UTILITY(U,$J,358.3,42029,1,0)
+ ;;^UTILITY(U,$J,358.3,39575,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,39576,0)
+ ;;=D63.8^^152^2000^22
+ ;;^UTILITY(U,$J,358.3,39576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42029,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,42029,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,42029,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,42030,0)
- ;;=G47.33^^159^2014^31
- ;;^UTILITY(U,$J,358.3,42030,1,0)
+ ;;^UTILITY(U,$J,358.3,39576,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,39576,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,39576,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,39577,0)
+ ;;=C22.3^^152^2000^27
+ ;;^UTILITY(U,$J,358.3,39577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42030,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,42030,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,42030,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,42031,0)
- ;;=R91.1^^159^2014^55
- ;;^UTILITY(U,$J,358.3,42031,1,0)
+ ;;^UTILITY(U,$J,358.3,39577,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,39577,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,39577,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,39578,0)
+ ;;=D61.9^^152^2000^28
+ ;;^UTILITY(U,$J,358.3,39578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42031,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,42031,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,42031,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,42032,0)
- ;;=T74.21XA^^159^2015^1
- ;;^UTILITY(U,$J,358.3,42032,1,0)
+ ;;^UTILITY(U,$J,358.3,39578,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,39578,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,39578,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,39579,0)
+ ;;=D56.1^^152^2000^30
+ ;;^UTILITY(U,$J,358.3,39579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42032,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
- ;;^UTILITY(U,$J,358.3,42032,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,42032,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,42033,0)
- ;;=T76.21XA^^159^2015^4
- ;;^UTILITY(U,$J,358.3,42033,1,0)
+ ;;^UTILITY(U,$J,358.3,39579,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,39579,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,39579,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,39580,0)
+ ;;=C83.79^^152^2000^32
+ ;;^UTILITY(U,$J,358.3,39580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42033,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
- ;;^UTILITY(U,$J,358.3,42033,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,42033,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,42034,0)
- ;;=Y07.9^^159^2015^9
- ;;^UTILITY(U,$J,358.3,42034,1,0)
+ ;;^UTILITY(U,$J,358.3,39580,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39580,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,39580,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,39581,0)
+ ;;=C83.70^^152^2000^33
+ ;;^UTILITY(U,$J,358.3,39581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42034,1,3,0)
- ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
- ;;^UTILITY(U,$J,358.3,42034,1,4,0)
- ;;=4^Y07.9
- ;;^UTILITY(U,$J,358.3,42034,2)
- ;;=^5061209
- ;;^UTILITY(U,$J,358.3,42035,0)
- ;;=T74.21XD^^159^2015^3
- ;;^UTILITY(U,$J,358.3,42035,1,0)
+ ;;^UTILITY(U,$J,358.3,39581,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39581,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,39581,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,39582,0)
+ ;;=D09.0^^152^2000^40
+ ;;^UTILITY(U,$J,358.3,39582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42035,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
- ;;^UTILITY(U,$J,358.3,42035,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,42035,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,42036,0)
- ;;=T74.21XS^^159^2015^2
- ;;^UTILITY(U,$J,358.3,42036,1,0)
+ ;;^UTILITY(U,$J,358.3,39582,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,39582,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,39582,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,39583,0)
+ ;;=D06.9^^152^2000^41
+ ;;^UTILITY(U,$J,358.3,39583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42036,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sequela
- ;;^UTILITY(U,$J,358.3,42036,1,4,0)
- ;;=4^T74.21XS
- ;;^UTILITY(U,$J,358.3,42036,2)
- ;;=^5054154
- ;;^UTILITY(U,$J,358.3,42037,0)
- ;;=T76.21XD^^159^2015^6
- ;;^UTILITY(U,$J,358.3,42037,1,0)
+ ;;^UTILITY(U,$J,358.3,39583,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,39583,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,39583,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,39584,0)
+ ;;=D06.0^^152^2000^43
+ ;;^UTILITY(U,$J,358.3,39584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42037,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
- ;;^UTILITY(U,$J,358.3,42037,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,42037,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,42038,0)
- ;;=T76.21XS^^159^2015^5
- ;;^UTILITY(U,$J,358.3,42038,1,0)
+ ;;^UTILITY(U,$J,358.3,39584,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,39584,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,39584,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,39585,0)
+ ;;=D06.1^^152^2000^44
+ ;;^UTILITY(U,$J,358.3,39585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42038,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sequela
- ;;^UTILITY(U,$J,358.3,42038,1,4,0)
- ;;=4^T76.21XS
- ;;^UTILITY(U,$J,358.3,42038,2)
- ;;=^5054229
- ;;^UTILITY(U,$J,358.3,42039,0)
- ;;=Y07.53^^159^2015^7
- ;;^UTILITY(U,$J,358.3,42039,1,0)
+ ;;^UTILITY(U,$J,358.3,39585,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,39585,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,39585,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,39586,0)
+ ;;=D06.7^^152^2000^42
+ ;;^UTILITY(U,$J,358.3,39586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42039,1,3,0)
- ;;=3^Instructor,Perpetrator of MST
- ;;^UTILITY(U,$J,358.3,42039,1,4,0)
- ;;=4^Y07.53
- ;;^UTILITY(U,$J,358.3,42039,2)
- ;;=^5061207
- ;;^UTILITY(U,$J,358.3,42040,0)
- ;;=Y07.59^^159^2015^8
- ;;^UTILITY(U,$J,358.3,42040,1,0)
+ ;;^UTILITY(U,$J,358.3,39586,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,39586,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,39586,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,39587,0)
+ ;;=D04.9^^152^2000^45
+ ;;^UTILITY(U,$J,358.3,39587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42040,1,3,0)
- ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
- ;;^UTILITY(U,$J,358.3,42040,1,4,0)
- ;;=4^Y07.59
- ;;^UTILITY(U,$J,358.3,42040,2)
- ;;=^5061208
- ;;^UTILITY(U,$J,358.3,42041,0)
- ;;=E66.01^^159^2016^120
+ ;;^UTILITY(U,$J,358.3,39587,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,39587,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,39587,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,39588,0)
+ ;;=C91.11^^152^2000^48

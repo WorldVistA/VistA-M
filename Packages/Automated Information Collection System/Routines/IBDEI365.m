@@ -1,132 +1,128 @@
-IBDEI365 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI365 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53205,1,3,0)
- ;;=3^Hepatitis C,Chr
- ;;^UTILITY(U,$J,358.3,53205,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,53205,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,53206,0)
- ;;=B35.6^^245^2673^4
- ;;^UTILITY(U,$J,358.3,53206,1,0)
+ ;;^UTILITY(U,$J,358.3,50599,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,50599,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,50599,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,50600,0)
+ ;;=I38.^^193^2496^4
+ ;;^UTILITY(U,$J,358.3,50600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53206,1,3,0)
- ;;=3^Tinea Cruris
- ;;^UTILITY(U,$J,358.3,53206,1,4,0)
- ;;=4^B35.6
- ;;^UTILITY(U,$J,358.3,53206,2)
- ;;=^119711
- ;;^UTILITY(U,$J,358.3,53207,0)
- ;;=B35.3^^245^2673^5
- ;;^UTILITY(U,$J,358.3,53207,1,0)
+ ;;^UTILITY(U,$J,358.3,50600,1,3,0)
+ ;;=3^Endocarditis,Valve Unspec
+ ;;^UTILITY(U,$J,358.3,50600,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,50600,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,50601,0)
+ ;;=I05.0^^193^2496^18
+ ;;^UTILITY(U,$J,358.3,50601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53207,1,3,0)
- ;;=3^Tinea Pedis
- ;;^UTILITY(U,$J,358.3,53207,1,4,0)
- ;;=4^B35.3
- ;;^UTILITY(U,$J,358.3,53207,2)
- ;;=^119732
- ;;^UTILITY(U,$J,358.3,53208,0)
- ;;=B97.89^^245^2673^6
- ;;^UTILITY(U,$J,358.3,53208,1,0)
+ ;;^UTILITY(U,$J,358.3,50601,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,50601,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,50601,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,50602,0)
+ ;;=I05.8^^193^2496^19
+ ;;^UTILITY(U,$J,358.3,50602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53208,1,3,0)
- ;;=3^Viral Agents as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,53208,1,4,0)
- ;;=4^B97.89
- ;;^UTILITY(U,$J,358.3,53208,2)
- ;;=^5000879
- ;;^UTILITY(U,$J,358.3,53209,0)
- ;;=B02.9^^245^2673^7
- ;;^UTILITY(U,$J,358.3,53209,1,0)
+ ;;^UTILITY(U,$J,358.3,50602,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,50602,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,50602,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,50603,0)
+ ;;=I05.9^^193^2496^20
+ ;;^UTILITY(U,$J,358.3,50603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53209,1,3,0)
- ;;=3^Zoster w/o Complications
- ;;^UTILITY(U,$J,358.3,53209,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,53209,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,53210,0)
- ;;=C44.91^^245^2674^1
- ;;^UTILITY(U,$J,358.3,53210,1,0)
+ ;;^UTILITY(U,$J,358.3,50603,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,50603,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,50603,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,50604,0)
+ ;;=I07.1^^193^2496^21
+ ;;^UTILITY(U,$J,358.3,50604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53210,1,3,0)
- ;;=3^Basal cell carcinoma of skin, unspecified
- ;;^UTILITY(U,$J,358.3,53210,1,4,0)
- ;;=4^C44.91
- ;;^UTILITY(U,$J,358.3,53210,2)
- ;;=^5001092
- ;;^UTILITY(U,$J,358.3,53211,0)
- ;;=D17.9^^245^2674^2
- ;;^UTILITY(U,$J,358.3,53211,1,0)
+ ;;^UTILITY(U,$J,358.3,50604,1,3,0)
+ ;;=3^Rheumatic Tricuspid Insufficiency
+ ;;^UTILITY(U,$J,358.3,50604,1,4,0)
+ ;;=4^I07.1
+ ;;^UTILITY(U,$J,358.3,50604,2)
+ ;;=^5007048
+ ;;^UTILITY(U,$J,358.3,50605,0)
+ ;;=I07.9^^193^2496^22
+ ;;^UTILITY(U,$J,358.3,50605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53211,1,3,0)
- ;;=3^Benign lipomatous neoplasm, unspecified
- ;;^UTILITY(U,$J,358.3,53211,1,4,0)
- ;;=4^D17.9
- ;;^UTILITY(U,$J,358.3,53211,2)
- ;;=^5002020
- ;;^UTILITY(U,$J,358.3,53212,0)
- ;;=C67.9^^245^2674^3
- ;;^UTILITY(U,$J,358.3,53212,1,0)
+ ;;^UTILITY(U,$J,358.3,50605,1,3,0)
+ ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,50605,1,4,0)
+ ;;=4^I07.9
+ ;;^UTILITY(U,$J,358.3,50605,2)
+ ;;=^5007051
+ ;;^UTILITY(U,$J,358.3,50606,0)
+ ;;=I08.0^^193^2496^16
+ ;;^UTILITY(U,$J,358.3,50606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53212,1,3,0)
- ;;=3^Malignant neoplasm of bladder, unspecified
- ;;^UTILITY(U,$J,358.3,53212,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,53212,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,53213,0)
- ;;=C18.9^^245^2674^4
- ;;^UTILITY(U,$J,358.3,53213,1,0)
+ ;;^UTILITY(U,$J,358.3,50606,1,3,0)
+ ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
+ ;;^UTILITY(U,$J,358.3,50606,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,50606,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,50607,0)
+ ;;=I09.89^^193^2496^17
+ ;;^UTILITY(U,$J,358.3,50607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53213,1,3,0)
- ;;=3^Malignant neoplasm of colon, unspecified
- ;;^UTILITY(U,$J,358.3,53213,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,53213,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,53214,0)
- ;;=C15.9^^245^2674^5
- ;;^UTILITY(U,$J,358.3,53214,1,0)
+ ;;^UTILITY(U,$J,358.3,50607,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,50607,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,50607,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,50608,0)
+ ;;=I47.1^^193^2496^24
+ ;;^UTILITY(U,$J,358.3,50608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53214,1,3,0)
- ;;=3^Malignant neoplasm of esophagus, unspecified
- ;;^UTILITY(U,$J,358.3,53214,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,53214,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,53215,0)
- ;;=C32.9^^245^2674^6
- ;;^UTILITY(U,$J,358.3,53215,1,0)
+ ;;^UTILITY(U,$J,358.3,50608,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,50608,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,50608,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,50609,0)
+ ;;=I48.0^^193^2496^15
+ ;;^UTILITY(U,$J,358.3,50609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53215,1,3,0)
- ;;=3^Malignant neoplasm of larynx, unspecified
- ;;^UTILITY(U,$J,358.3,53215,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,53215,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,53216,0)
- ;;=C34.92^^245^2674^7
- ;;^UTILITY(U,$J,358.3,53216,1,0)
+ ;;^UTILITY(U,$J,358.3,50609,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,50609,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,50609,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,50610,0)
+ ;;=I49.5^^193^2496^23
+ ;;^UTILITY(U,$J,358.3,50610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53216,1,3,0)
- ;;=3^Malignant neoplasm of left bronchus/lung,unspec part
- ;;^UTILITY(U,$J,358.3,53216,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,53216,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,53217,0)
- ;;=C50.912^^245^2674^8
- ;;^UTILITY(U,$J,358.3,53217,1,0)
+ ;;^UTILITY(U,$J,358.3,50610,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,50610,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,50610,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,50611,0)
+ ;;=I49.8^^193^2496^3
+ ;;^UTILITY(U,$J,358.3,50611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53217,1,3,0)
- ;;=3^Malignant neoplasm of left female breast,unspec site
- ;;^UTILITY(U,$J,358.3,53217,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,53217,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,53218,0)
- ;;=C64.2^^245^2674^9
+ ;;^UTILITY(U,$J,358.3,50611,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,50611,1,4,0)
+ ;;=4^I49.8

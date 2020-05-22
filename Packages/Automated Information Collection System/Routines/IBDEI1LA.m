@@ -1,128 +1,122 @@
-IBDEI1LA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26945,1,0)
+ ;;^UTILITY(U,$J,358.3,25398,1,3,0)
+ ;;=3^Pain in Right Hand
+ ;;^UTILITY(U,$J,358.3,25398,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,25398,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,25399,0)
+ ;;=M79.642^^107^1217^105
+ ;;^UTILITY(U,$J,358.3,25399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26945,1,3,0)
- ;;=3^Nicotine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,26945,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,26945,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,26946,0)
- ;;=F17.201^^100^1298^10
- ;;^UTILITY(U,$J,358.3,26946,1,0)
+ ;;^UTILITY(U,$J,358.3,25399,1,3,0)
+ ;;=3^Pain in Left Hand
+ ;;^UTILITY(U,$J,358.3,25399,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,25399,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,25400,0)
+ ;;=M79.671^^107^1217^114
+ ;;^UTILITY(U,$J,358.3,25400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26946,1,3,0)
- ;;=3^Nicotine Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,26946,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,26946,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,26947,0)
- ;;=F17.203^^100^1298^11
- ;;^UTILITY(U,$J,358.3,26947,1,0)
+ ;;^UTILITY(U,$J,358.3,25400,1,3,0)
+ ;;=3^Pain in Right Foot
+ ;;^UTILITY(U,$J,358.3,25400,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,25400,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,25401,0)
+ ;;=M79.672^^107^1217^104
+ ;;^UTILITY(U,$J,358.3,25401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26947,1,3,0)
- ;;=3^Nicotine Withdrawal
- ;;^UTILITY(U,$J,358.3,26947,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,26947,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,26948,0)
- ;;=F17.210^^100^1298^4
- ;;^UTILITY(U,$J,358.3,26948,1,0)
+ ;;^UTILITY(U,$J,358.3,25401,1,3,0)
+ ;;=3^Pain in Left Foot
+ ;;^UTILITY(U,$J,358.3,25401,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,25401,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,25402,0)
+ ;;=M54.9^^107^1217^8
+ ;;^UTILITY(U,$J,358.3,25402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26948,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26948,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,26948,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,26949,0)
- ;;=F17.211^^100^1298^3
- ;;^UTILITY(U,$J,358.3,26949,1,0)
+ ;;^UTILITY(U,$J,358.3,25402,1,3,0)
+ ;;=3^Backache/Dorsalgia
+ ;;^UTILITY(U,$J,358.3,25402,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,25402,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,25403,0)
+ ;;=M48.52XG^^107^1217^20
+ ;;^UTILITY(U,$J,358.3,25403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26949,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,26949,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,26949,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,26950,0)
- ;;=F17.220^^100^1298^2
- ;;^UTILITY(U,$J,358.3,26950,1,0)
+ ;;^UTILITY(U,$J,358.3,25403,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,25403,1,4,0)
+ ;;=4^M48.52XG
+ ;;^UTILITY(U,$J,358.3,25403,2)
+ ;;=^5012169
+ ;;^UTILITY(U,$J,358.3,25404,0)
+ ;;=M48.52XS^^107^1217^21
+ ;;^UTILITY(U,$J,358.3,25404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26950,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26950,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,26950,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,26951,0)
- ;;=F17.221^^100^1298^1
- ;;^UTILITY(U,$J,358.3,26951,1,0)
+ ;;^UTILITY(U,$J,358.3,25404,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,25404,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,25404,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,25405,0)
+ ;;=M48.57XG^^107^1217^28
+ ;;^UTILITY(U,$J,358.3,25405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26951,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,26951,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,26951,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,26952,0)
- ;;=F17.290^^100^1298^5
- ;;^UTILITY(U,$J,358.3,26952,1,0)
+ ;;^UTILITY(U,$J,358.3,25405,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,25405,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,25405,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,25406,0)
+ ;;=M48.57XS^^107^1217^29
+ ;;^UTILITY(U,$J,358.3,25406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26952,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26952,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,26952,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,26953,0)
- ;;=F17.291^^100^1298^6
- ;;^UTILITY(U,$J,358.3,26953,1,0)
+ ;;^UTILITY(U,$J,358.3,25406,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,25406,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,25406,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,25407,0)
+ ;;=M48.54XD^^107^1217^30
+ ;;^UTILITY(U,$J,358.3,25407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26953,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,26953,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,26953,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,26954,0)
- ;;=F17.208^^100^1298^7
- ;;^UTILITY(U,$J,358.3,26954,1,0)
+ ;;^UTILITY(U,$J,358.3,25407,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,25407,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,25407,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,25408,0)
+ ;;=M48.57XG^^107^1217^31
+ ;;^UTILITY(U,$J,358.3,25408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26954,1,3,0)
- ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26954,1,4,0)
- ;;=4^F17.208
- ;;^UTILITY(U,$J,358.3,26954,2)
- ;;=^5003363
- ;;^UTILITY(U,$J,358.3,26955,0)
- ;;=F17.209^^100^1298^8
- ;;^UTILITY(U,$J,358.3,26955,1,0)
+ ;;^UTILITY(U,$J,358.3,25408,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,25408,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,25408,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,25409,0)
+ ;;=M48.54XS^^107^1217^32
+ ;;^UTILITY(U,$J,358.3,25409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26955,1,3,0)
- ;;=3^Nicotine Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26955,1,4,0)
- ;;=4^F17.209
- ;;^UTILITY(U,$J,358.3,26955,2)
- ;;=^5003364
- ;;^UTILITY(U,$J,358.3,26956,0)
- ;;=F14.10^^100^1299^1
- ;;^UTILITY(U,$J,358.3,26956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26956,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,26956,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,26956,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,26957,0)
- ;;=F14.14^^100^1299^5
- ;;^UTILITY(U,$J,358.3,26957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26957,1,3,0)
- ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25409,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,25409,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,25409,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,25410,0)
+ ;;=M62.830^^107^1217^63

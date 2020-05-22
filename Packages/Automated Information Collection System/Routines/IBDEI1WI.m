@@ -1,126 +1,128 @@
-IBDEI1WI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32266,0)
- ;;=S92.135K^^126^1609^356
- ;;^UTILITY(U,$J,358.3,32266,1,0)
+ ;;^UTILITY(U,$J,358.3,30357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32266,1,3,0)
- ;;=3^Nondisp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32266,1,4,0)
- ;;=4^S92.135K
- ;;^UTILITY(U,$J,358.3,32266,2)
- ;;=^5044721
- ;;^UTILITY(U,$J,358.3,32267,0)
- ;;=S92.134K^^126^1609^357
- ;;^UTILITY(U,$J,358.3,32267,1,0)
+ ;;^UTILITY(U,$J,358.3,30357,1,3,0)
+ ;;=3^Conversion D/O w/ Mixed Symptoms
+ ;;^UTILITY(U,$J,358.3,30357,1,4,0)
+ ;;=4^F44.7
+ ;;^UTILITY(U,$J,358.3,30357,2)
+ ;;=^5003582
+ ;;^UTILITY(U,$J,358.3,30358,0)
+ ;;=F68.10^^120^1547^7
+ ;;^UTILITY(U,$J,358.3,30358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32267,1,3,0)
- ;;=3^Nondisp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32267,1,4,0)
- ;;=4^S92.134K
- ;;^UTILITY(U,$J,358.3,32267,2)
- ;;=^5044714
- ;;^UTILITY(U,$J,358.3,32268,0)
- ;;=S92.132K^^126^1609^130
- ;;^UTILITY(U,$J,358.3,32268,1,0)
+ ;;^UTILITY(U,$J,358.3,30358,1,3,0)
+ ;;=3^Factitious D/O Imposed on Self,Unspec
+ ;;^UTILITY(U,$J,358.3,30358,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,30358,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,30359,0)
+ ;;=F54.^^120^1547^10
+ ;;^UTILITY(U,$J,358.3,30359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32268,1,3,0)
- ;;=3^Disp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32268,1,4,0)
- ;;=4^S92.132K
- ;;^UTILITY(U,$J,358.3,32268,2)
- ;;=^5044700
- ;;^UTILITY(U,$J,358.3,32269,0)
- ;;=S92.131K^^126^1609^131
- ;;^UTILITY(U,$J,358.3,32269,1,0)
+ ;;^UTILITY(U,$J,358.3,30359,1,3,0)
+ ;;=3^Psychological Factors Affecting Other Med Conditions
+ ;;^UTILITY(U,$J,358.3,30359,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,30359,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,30360,0)
+ ;;=F45.21^^120^1547^8
+ ;;^UTILITY(U,$J,358.3,30360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32269,1,3,0)
- ;;=3^Disp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32269,1,4,0)
- ;;=4^S92.131K
- ;;^UTILITY(U,$J,358.3,32269,2)
- ;;=^5044693
- ;;^UTILITY(U,$J,358.3,32270,0)
- ;;=S92.125K^^126^1609^256
- ;;^UTILITY(U,$J,358.3,32270,1,0)
+ ;;^UTILITY(U,$J,358.3,30360,1,3,0)
+ ;;=3^Illness Anxiety D/O
+ ;;^UTILITY(U,$J,358.3,30360,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,30360,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,30361,0)
+ ;;=F68.A^^120^1547^6
+ ;;^UTILITY(U,$J,358.3,30361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32270,1,3,0)
- ;;=3^Nondisp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32270,1,4,0)
- ;;=4^S92.125K
- ;;^UTILITY(U,$J,358.3,32270,2)
- ;;=^5044679
- ;;^UTILITY(U,$J,358.3,32271,0)
- ;;=S92.124K^^126^1609^258
- ;;^UTILITY(U,$J,358.3,32271,1,0)
+ ;;^UTILITY(U,$J,358.3,30361,1,3,0)
+ ;;=3^Factitious D/O Imposed on Another
+ ;;^UTILITY(U,$J,358.3,30361,1,4,0)
+ ;;=4^F68.A
+ ;;^UTILITY(U,$J,358.3,30361,2)
+ ;;=^5157309
+ ;;^UTILITY(U,$J,358.3,30362,0)
+ ;;=L98.1^^120^1547^5
+ ;;^UTILITY(U,$J,358.3,30362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32271,1,3,0)
- ;;=3^Nondisp fx body rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32271,1,4,0)
- ;;=4^S92.124K
- ;;^UTILITY(U,$J,358.3,32271,2)
- ;;=^5044672
- ;;^UTILITY(U,$J,358.3,32272,0)
- ;;=S92.122K^^126^1609^31
- ;;^UTILITY(U,$J,358.3,32272,1,0)
+ ;;^UTILITY(U,$J,358.3,30362,1,3,0)
+ ;;=3^Factitial Dermatitis
+ ;;^UTILITY(U,$J,358.3,30362,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,30362,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,30363,0)
+ ;;=N94.3^^120^1547^9
+ ;;^UTILITY(U,$J,358.3,30363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32272,1,3,0)
- ;;=3^Disp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32272,1,4,0)
- ;;=4^S92.122K
- ;;^UTILITY(U,$J,358.3,32272,2)
- ;;=^5044658
- ;;^UTILITY(U,$J,358.3,32273,0)
- ;;=S92.121K^^126^1609^33
- ;;^UTILITY(U,$J,358.3,32273,1,0)
+ ;;^UTILITY(U,$J,358.3,30363,1,3,0)
+ ;;=3^Premenstrual Tension Syndrome
+ ;;^UTILITY(U,$J,358.3,30363,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,30363,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,30364,0)
+ ;;=F91.2^^120^1548^1
+ ;;^UTILITY(U,$J,358.3,30364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32273,1,3,0)
- ;;=3^Disp fx body rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32273,1,4,0)
- ;;=4^S92.121K
- ;;^UTILITY(U,$J,358.3,32273,2)
- ;;=^5044651
- ;;^UTILITY(U,$J,358.3,32274,0)
- ;;=S92.002K^^126^1609^191
- ;;^UTILITY(U,$J,358.3,32274,1,0)
+ ;;^UTILITY(U,$J,358.3,30364,1,3,0)
+ ;;=3^Conduct D/O,Adolescent-Onset Type
+ ;;^UTILITY(U,$J,358.3,30364,1,4,0)
+ ;;=4^F91.2
+ ;;^UTILITY(U,$J,358.3,30364,2)
+ ;;=^5003699
+ ;;^UTILITY(U,$J,358.3,30365,0)
+ ;;=F91.1^^120^1548^2
+ ;;^UTILITY(U,$J,358.3,30365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32274,1,3,0)
- ;;=3^Fx of lft calcaneus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,32274,1,4,0)
- ;;=4^S92.002K
- ;;^UTILITY(U,$J,358.3,32274,2)
- ;;=^5044364
- ;;^UTILITY(U,$J,358.3,32275,0)
- ;;=S92.001K^^126^1609^208
- ;;^UTILITY(U,$J,358.3,32275,1,0)
+ ;;^UTILITY(U,$J,358.3,30365,1,3,0)
+ ;;=3^Conduct D/O,Childhood-Onset Type
+ ;;^UTILITY(U,$J,358.3,30365,1,4,0)
+ ;;=4^F91.1
+ ;;^UTILITY(U,$J,358.3,30365,2)
+ ;;=^5003698
+ ;;^UTILITY(U,$J,358.3,30366,0)
+ ;;=F91.9^^120^1548^3
+ ;;^UTILITY(U,$J,358.3,30366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32275,1,3,0)
- ;;=3^Fx of rt calcaneus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,32275,1,4,0)
- ;;=4^S92.001K
- ;;^UTILITY(U,$J,358.3,32275,2)
- ;;=^5044357
- ;;^UTILITY(U,$J,358.3,32276,0)
- ;;=S92.102K^^126^1609^201
- ;;^UTILITY(U,$J,358.3,32276,1,0)
+ ;;^UTILITY(U,$J,358.3,30366,1,3,0)
+ ;;=3^Conduct D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30366,1,4,0)
+ ;;=4^F91.9
+ ;;^UTILITY(U,$J,358.3,30366,2)
+ ;;=^5003701
+ ;;^UTILITY(U,$J,358.3,30367,0)
+ ;;=F63.81^^120^1548^6
+ ;;^UTILITY(U,$J,358.3,30367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32276,1,3,0)
- ;;=3^Fx of lft talus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,32276,1,4,0)
- ;;=4^S92.102K
- ;;^UTILITY(U,$J,358.3,32276,2)
- ;;=^5044602
- ;;^UTILITY(U,$J,358.3,32277,0)
- ;;=S92.101K^^126^1609^218
- ;;^UTILITY(U,$J,358.3,32277,1,0)
+ ;;^UTILITY(U,$J,358.3,30367,1,3,0)
+ ;;=3^Intermittent Explosive D/O
+ ;;^UTILITY(U,$J,358.3,30367,1,4,0)
+ ;;=4^F63.81
+ ;;^UTILITY(U,$J,358.3,30367,2)
+ ;;=^5003644
+ ;;^UTILITY(U,$J,358.3,30368,0)
+ ;;=F63.2^^120^1548^7
+ ;;^UTILITY(U,$J,358.3,30368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32277,1,3,0)
- ;;=3^Fx of rt talus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,32277,1,4,0)
- ;;=4^S92.101K
- ;;^UTILITY(U,$J,358.3,32277,2)
- ;;=^5044595
- ;;^UTILITY(U,$J,358.3,32278,0)
- ;;=S92.065K^^126^1609^362
+ ;;^UTILITY(U,$J,358.3,30368,1,3,0)
+ ;;=3^Kleptomania
+ ;;^UTILITY(U,$J,358.3,30368,1,4,0)
+ ;;=4^F63.2
+ ;;^UTILITY(U,$J,358.3,30368,2)
+ ;;=^5003642
+ ;;^UTILITY(U,$J,358.3,30369,0)
+ ;;=F91.3^^120^1548^8
+ ;;^UTILITY(U,$J,358.3,30369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30369,1,3,0)
+ ;;=3^Oppositional Defiant D/O

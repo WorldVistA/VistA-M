@@ -1,124 +1,126 @@
-IBDEI1FZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24499,0)
- ;;=Q3014^^91^1082^7^^^^1
- ;;^UTILITY(U,$J,358.3,24499,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24499,1,2,0)
- ;;=2^Q3014
- ;;^UTILITY(U,$J,358.3,24499,1,3,0)
- ;;=3^Telehealth Facility Fee
- ;;^UTILITY(U,$J,358.3,24500,0)
- ;;=90889^^91^1082^4^^^^1
- ;;^UTILITY(U,$J,358.3,24500,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24500,1,2,0)
- ;;=2^90889
- ;;^UTILITY(U,$J,358.3,24500,1,3,0)
- ;;=3^Preparation of Report
- ;;^UTILITY(U,$J,358.3,24501,0)
- ;;=G0177^^91^1082^8^^^^1
- ;;^UTILITY(U,$J,358.3,24501,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24501,1,2,0)
- ;;=2^G0177
- ;;^UTILITY(U,$J,358.3,24501,1,3,0)
- ;;=3^Train/Ed Svcs for Care/Tx of Disabiling MH Problem,45+ min
- ;;^UTILITY(U,$J,358.3,24502,0)
- ;;=99368^^91^1083^3^^^^1
- ;;^UTILITY(U,$J,358.3,24502,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24502,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,24502,1,3,0)
- ;;=3^Non-Phys Team Conf w/o Pt &/or Family,30+ min
- ;;^UTILITY(U,$J,358.3,24503,0)
- ;;=99366^^91^1083^1^^^^1
- ;;^UTILITY(U,$J,358.3,24503,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24503,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,24503,1,3,0)
- ;;=3^Non-Phys Team Conf w/ Pt &/or Family,30+ min
- ;;^UTILITY(U,$J,358.3,24504,0)
- ;;=H0001^^91^1084^1^^^^1
- ;;^UTILITY(U,$J,358.3,24504,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24504,1,2,0)
- ;;=2^H0001
- ;;^UTILITY(U,$J,358.3,24504,1,3,0)
- ;;=3^Addictions Assessment
- ;;^UTILITY(U,$J,358.3,24505,0)
- ;;=H0002^^91^1084^9^^^^1
- ;;^UTILITY(U,$J,358.3,24505,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24505,1,2,0)
- ;;=2^H0002
- ;;^UTILITY(U,$J,358.3,24505,1,3,0)
- ;;=3^Screen for Addictions Admission Eligibility
- ;;^UTILITY(U,$J,358.3,24506,0)
- ;;=H0003^^91^1084^6^^^^1
- ;;^UTILITY(U,$J,358.3,24506,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24506,1,2,0)
- ;;=2^H0003
- ;;^UTILITY(U,$J,358.3,24506,1,3,0)
- ;;=3^Alcohol/Drug Screen;lab analysis
- ;;^UTILITY(U,$J,358.3,24507,0)
- ;;=H0004^^91^1084^7^^^^1
- ;;^UTILITY(U,$J,358.3,24507,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24507,1,2,0)
- ;;=2^H0004
- ;;^UTILITY(U,$J,358.3,24507,1,3,0)
- ;;=3^Individual Counseling & Therapy,per 15 min
- ;;^UTILITY(U,$J,358.3,24508,0)
- ;;=H0005^^91^1084^3^^^^1
- ;;^UTILITY(U,$J,358.3,24508,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24508,1,2,0)
- ;;=2^H0005
- ;;^UTILITY(U,$J,358.3,24508,1,3,0)
- ;;=3^Addictions Group Counseling by Clinician
- ;;^UTILITY(U,$J,358.3,24509,0)
- ;;=H0006^^91^1084^5^^^^1
- ;;^UTILITY(U,$J,358.3,24509,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24509,1,2,0)
- ;;=2^H0006
- ;;^UTILITY(U,$J,358.3,24509,1,3,0)
- ;;=3^Alcohol/Drug Case Management
- ;;^UTILITY(U,$J,358.3,24510,0)
- ;;=H0020^^91^1084^8^^^^1
- ;;^UTILITY(U,$J,358.3,24510,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24510,1,2,0)
- ;;=2^H0020
- ;;^UTILITY(U,$J,358.3,24510,1,3,0)
- ;;=3^Methadone Administration &/or Svc by Lincensed Program
- ;;^UTILITY(U,$J,358.3,24511,0)
- ;;=H0025^^91^1084^2^^^^1
- ;;^UTILITY(U,$J,358.3,24511,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24511,1,2,0)
- ;;=2^H0025
- ;;^UTILITY(U,$J,358.3,24511,1,3,0)
- ;;=3^Addictions Health Prevention/Education
- ;;^UTILITY(U,$J,358.3,24512,0)
- ;;=H0030^^91^1084^4^^^^1
- ;;^UTILITY(U,$J,358.3,24512,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24512,1,2,0)
- ;;=2^H0030
- ;;^UTILITY(U,$J,358.3,24512,1,3,0)
- ;;=3^Addictions Hotline Services
- ;;^UTILITY(U,$J,358.3,24513,0)
- ;;=99600^^91^1085^1^^^^1
- ;;^UTILITY(U,$J,358.3,24513,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,24513,1,2,0)
- ;;=2^99600
- ;;^UTILITY(U,$J,358.3,24513,1,3,0)
- ;;=3^Case Management in Pts Home
+ ;;^UTILITY(U,$J,358.3,23059,1,4,0)
+ ;;=4^K91.32
+ ;;^UTILITY(U,$J,358.3,23059,2)
+ ;;=^5151429
+ ;;^UTILITY(U,$J,358.3,23060,0)
+ ;;=H59.323^^105^1166^185
+ ;;^UTILITY(U,$J,358.3,23060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23060,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Bil Eye/Adnexa After Oth Proc
+ ;;^UTILITY(U,$J,358.3,23060,1,4,0)
+ ;;=4^H59.323
+ ;;^UTILITY(U,$J,358.3,23060,2)
+ ;;=^5006423
+ ;;^UTILITY(U,$J,358.3,23061,0)
+ ;;=N99.85^^105^1166^174
+ ;;^UTILITY(U,$J,358.3,23061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23061,1,3,0)
+ ;;=3^Post Endometrial Ablation Syndrome
+ ;;^UTILITY(U,$J,358.3,23061,1,4,0)
+ ;;=4^N99.85
+ ;;^UTILITY(U,$J,358.3,23061,2)
+ ;;=^5158110
+ ;;^UTILITY(U,$J,358.3,23062,0)
+ ;;=I05.0^^105^1167^48
+ ;;^UTILITY(U,$J,358.3,23062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23062,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,23062,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,23062,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,23063,0)
+ ;;=I08.0^^105^1167^49
+ ;;^UTILITY(U,$J,358.3,23063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23063,1,3,0)
+ ;;=3^Rheumatic Mitral/Aortic Valve Disorders
+ ;;^UTILITY(U,$J,358.3,23063,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,23063,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,23064,0)
+ ;;=I25.10^^105^1167^7
+ ;;^UTILITY(U,$J,358.3,23064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23064,1,3,0)
+ ;;=3^Athscl Hrt Dis,Nat Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,23064,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,23064,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,23065,0)
+ ;;=I31.9^^105^1167^42
+ ;;^UTILITY(U,$J,358.3,23065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23065,1,3,0)
+ ;;=3^Pericardium Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,23065,1,4,0)
+ ;;=4^I31.9
+ ;;^UTILITY(U,$J,358.3,23065,2)
+ ;;=^5007165
+ ;;^UTILITY(U,$J,358.3,23066,0)
+ ;;=I34.1^^105^1167^36
+ ;;^UTILITY(U,$J,358.3,23066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23066,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,23066,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,23066,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,23067,0)
+ ;;=I35.0^^105^1167^35
+ ;;^UTILITY(U,$J,358.3,23067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23067,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,23067,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,23067,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,23068,0)
+ ;;=I35.1^^105^1167^34
+ ;;^UTILITY(U,$J,358.3,23068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23068,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,23068,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,23068,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,23069,0)
+ ;;=I42.1^^105^1167^37
+ ;;^UTILITY(U,$J,358.3,23069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23069,1,3,0)
+ ;;=3^Obstructive Hypertrophic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,23069,1,4,0)
+ ;;=4^I42.1
+ ;;^UTILITY(U,$J,358.3,23069,2)
+ ;;=^340520
+ ;;^UTILITY(U,$J,358.3,23070,0)
+ ;;=I42.5^^105^1167^47
+ ;;^UTILITY(U,$J,358.3,23070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23070,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,23070,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,23070,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,23071,0)
+ ;;=I42.8^^105^1167^14
+ ;;^UTILITY(U,$J,358.3,23071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23071,1,3,0)
+ ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,23071,1,4,0)
+ ;;=4^I42.8

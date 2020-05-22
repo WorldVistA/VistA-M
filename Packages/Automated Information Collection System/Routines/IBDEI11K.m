@@ -1,48 +1,128 @@
-IBDEI11K ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.91,0,"GL")
- ;;=^IBE(358.91,
- ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
- ;;=
- ;;^DIC(358.91,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.91,"%D",1,0)
- ;;= 
- ;;^DIC(358.91,"%D",2,0)
- ;;=This file is nearly identical to file #357.91. It is used by the
- ;;^DIC(358.91,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.91,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.91,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.91,0,"DDA")
- ;;=N
- ;;^DD(358.91,0,"DT")
- ;;=2960123
- ;;^DD(358.91,0,"IX","B",358.91,.01)
- ;;=
- ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
- ;;=
- ;;^DD(358.91,0,"PT",358.22,.06)
- ;;=
- ;;^DD(358.91,0,"VRPK")
- ;;=IBD
- ;;^DD(358.91,.01,0)
- ;;=NAME^RFX^^0;1^K:$L(X)>30 X
- ;;^DD(358.91,.01,1,0)
- ;;=^.1
- ;;^DD(358.91,.01,1,1,0)
- ;;=358.91^B
- ;;^DD(358.91,.01,1,1,1)
- ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
- ;;^DD(358.91,.01,1,1,2)
- ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
- ;;^DD(358.91,.01,3)
- ;;=NAME MUST BE UNDER 31 CHARACTERS
- ;;^DD(358.91,.01,21,0)
- ;;=^^1^1^2930608^
- ;;^DD(358.91,.01,21,1,0)
- ;;=The name should describe the appearance of the marking area on the form.
+ ;;^UTILITY(U,$J,358.3,16742,0)
+ ;;=Z97.14^^88^880^137
+ ;;^UTILITY(U,$J,358.3,16742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16742,1,3,0)
+ ;;=3^Presence of Left Artificial Leg
+ ;;^UTILITY(U,$J,358.3,16742,1,4,0)
+ ;;=4^Z97.14
+ ;;^UTILITY(U,$J,358.3,16742,2)
+ ;;=^5063725
+ ;;^UTILITY(U,$J,358.3,16743,0)
+ ;;=Z97.15^^88^880^116
+ ;;^UTILITY(U,$J,358.3,16743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16743,1,3,0)
+ ;;=3^Presence of Artificial Arms,Bilateral
+ ;;^UTILITY(U,$J,358.3,16743,1,4,0)
+ ;;=4^Z97.15
+ ;;^UTILITY(U,$J,358.3,16743,2)
+ ;;=^5063726
+ ;;^UTILITY(U,$J,358.3,16744,0)
+ ;;=Z97.16^^88^880^121
+ ;;^UTILITY(U,$J,358.3,16744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16744,1,3,0)
+ ;;=3^Presence of Artificial Legs,Bilateral
+ ;;^UTILITY(U,$J,358.3,16744,1,4,0)
+ ;;=4^Z97.16
+ ;;^UTILITY(U,$J,358.3,16744,2)
+ ;;=^5063727
+ ;;^UTILITY(U,$J,358.3,16745,0)
+ ;;=Z98.61^^88^880^9
+ ;;^UTILITY(U,$J,358.3,16745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16745,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,16745,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,16745,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,16746,0)
+ ;;=Z98.62^^88^880^66
+ ;;^UTILITY(U,$J,358.3,16746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16746,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status w/o Graft
+ ;;^UTILITY(U,$J,358.3,16746,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,16746,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,16747,0)
+ ;;=Z98.84^^88^880^4
+ ;;^UTILITY(U,$J,358.3,16747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16747,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,16747,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,16747,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,16748,0)
+ ;;=Z99.2^^88^880^147
+ ;;^UTILITY(U,$J,358.3,16748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16748,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,16748,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,16748,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,16749,0)
+ ;;=Z99.81^^88^880^150
+ ;;^UTILITY(U,$J,358.3,16749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16749,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,16749,1,4,0)
+ ;;=4^Z99.81
+ ;;^UTILITY(U,$J,358.3,16749,2)
+ ;;=^5063760
+ ;;^UTILITY(U,$J,358.3,16750,0)
+ ;;=Z98.1^^88^880^2
+ ;;^UTILITY(U,$J,358.3,16750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16750,1,3,0)
+ ;;=3^Arthrodesis Status
+ ;;^UTILITY(U,$J,358.3,16750,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,16750,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,16751,0)
+ ;;=Z94.7^^88^880^8
+ ;;^UTILITY(U,$J,358.3,16751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16751,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,16751,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,16751,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,16752,0)
+ ;;=Z83.511^^88^880^23
+ ;;^UTILITY(U,$J,358.3,16752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16752,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,16752,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,16752,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,16753,0)
+ ;;=Z80.52^^88^880^26
+ ;;^UTILITY(U,$J,358.3,16753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16753,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,16753,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,16753,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,16754,0)
+ ;;=Z80.51^^88^880^29
+ ;;^UTILITY(U,$J,358.3,16754,1,0)
+ ;;=^358.31IA^4^2

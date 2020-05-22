@@ -1,132 +1,122 @@
-IBDEI2PN ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45486,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,45486,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,45487,0)
- ;;=S71.101A^^200^2245^24
- ;;^UTILITY(U,$J,358.3,45487,1,0)
+ ;;^UTILITY(U,$J,358.3,43212,0)
+ ;;=I50.1^^158^2098^16
+ ;;^UTILITY(U,$J,358.3,43212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45487,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,45487,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,45487,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,45488,0)
- ;;=S41.101A^^200^2245^25
- ;;^UTILITY(U,$J,358.3,45488,1,0)
+ ;;^UTILITY(U,$J,358.3,43212,1,3,0)
+ ;;=3^Left Heart Failure
+ ;;^UTILITY(U,$J,358.3,43212,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,43212,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,43213,0)
+ ;;=I50.21^^158^2098^1
+ ;;^UTILITY(U,$J,358.3,43213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45488,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,45488,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,45488,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,45489,0)
- ;;=E03.5^^200^2246^37
- ;;^UTILITY(U,$J,358.3,45489,1,0)
+ ;;^UTILITY(U,$J,358.3,43213,1,3,0)
+ ;;=3^Acute Systolic Cong Heart Failure
+ ;;^UTILITY(U,$J,358.3,43213,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,43213,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,43214,0)
+ ;;=I50.22^^158^2098^14
+ ;;^UTILITY(U,$J,358.3,43214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45489,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,45489,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,45489,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,45490,0)
- ;;=R40.2121^^200^2246^33
- ;;^UTILITY(U,$J,358.3,45490,1,0)
+ ;;^UTILITY(U,$J,358.3,43214,1,3,0)
+ ;;=3^Chronic Systolic Cong Heart Failure
+ ;;^UTILITY(U,$J,358.3,43214,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,43214,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,43215,0)
+ ;;=I48.20^^158^2098^6
+ ;;^UTILITY(U,$J,358.3,43215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45490,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,45490,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,45490,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,45491,0)
- ;;=R40.2120^^200^2246^34
- ;;^UTILITY(U,$J,358.3,45491,1,0)
+ ;;^UTILITY(U,$J,358.3,43215,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,43215,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,43215,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,43216,0)
+ ;;=I48.21^^158^2098^10
+ ;;^UTILITY(U,$J,358.3,43216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45491,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,45491,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,45491,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,45492,0)
- ;;=R40.2114^^200^2246^26
- ;;^UTILITY(U,$J,358.3,45492,1,0)
+ ;;^UTILITY(U,$J,358.3,43216,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,43216,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,43216,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,43217,0)
+ ;;=I48.11^^158^2098^7
+ ;;^UTILITY(U,$J,358.3,43217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45492,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,45492,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,45492,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,45493,0)
- ;;=R40.2113^^200^2246^30
- ;;^UTILITY(U,$J,358.3,45493,1,0)
+ ;;^UTILITY(U,$J,358.3,43217,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,43217,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,43217,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,43218,0)
+ ;;=I48.19^^158^2098^8
+ ;;^UTILITY(U,$J,358.3,43218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45493,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,45493,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,45493,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,45494,0)
- ;;=R40.2112^^200^2246^27
- ;;^UTILITY(U,$J,358.3,45494,1,0)
+ ;;^UTILITY(U,$J,358.3,43218,1,3,0)
+ ;;=3^Atrial Fibrillation,Oth Persistent
+ ;;^UTILITY(U,$J,358.3,43218,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,43218,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,43219,0)
+ ;;=V49.9XXA^^158^2099^1
+ ;;^UTILITY(U,$J,358.3,43219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45494,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,45494,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,45494,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,45495,0)
- ;;=R40.2111^^200^2246^28
- ;;^UTILITY(U,$J,358.3,45495,1,0)
+ ;;^UTILITY(U,$J,358.3,43219,1,3,0)
+ ;;=3^Car Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43219,1,4,0)
+ ;;=4^V49.9XXA
+ ;;^UTILITY(U,$J,358.3,43219,2)
+ ;;=^5057368
+ ;;^UTILITY(U,$J,358.3,43220,0)
+ ;;=V59.9XXA^^158^2099^7
+ ;;^UTILITY(U,$J,358.3,43220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45495,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,45495,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,45495,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,45496,0)
- ;;=R40.2110^^200^2246^29
- ;;^UTILITY(U,$J,358.3,45496,1,0)
+ ;;^UTILITY(U,$J,358.3,43220,1,3,0)
+ ;;=3^Truck/Van Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43220,1,4,0)
+ ;;=4^V59.9XXA
+ ;;^UTILITY(U,$J,358.3,43220,2)
+ ;;=^5057659
+ ;;^UTILITY(U,$J,358.3,43221,0)
+ ;;=V69.9XXA^^158^2099^5
+ ;;^UTILITY(U,$J,358.3,43221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45496,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,45496,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,45496,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,45497,0)
- ;;=R40.20^^200^2246^36
- ;;^UTILITY(U,$J,358.3,45497,1,0)
+ ;;^UTILITY(U,$J,358.3,43221,1,3,0)
+ ;;=3^Heavy Transport Vehicle Occupant Traffic Accident Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43221,1,4,0)
+ ;;=4^V69.9XXA
+ ;;^UTILITY(U,$J,358.3,43221,2)
+ ;;=^5057950
+ ;;^UTILITY(U,$J,358.3,43222,0)
+ ;;=V89.2XXA^^158^2099^6
+ ;;^UTILITY(U,$J,358.3,43222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45497,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,45497,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,45497,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,45498,0)
- ;;=R40.2123^^200^2246^35
- ;;^UTILITY(U,$J,358.3,45498,1,0)
+ ;;^UTILITY(U,$J,358.3,43222,1,3,0)
+ ;;=3^Person injured in Motor-Vehicle Traffic Accident,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43222,1,4,0)
+ ;;=4^V89.2XXA
+ ;;^UTILITY(U,$J,358.3,43222,2)
+ ;;=^5058688
+ ;;^UTILITY(U,$J,358.3,43223,0)
+ ;;=W07.XXXA^^158^2099^3
+ ;;^UTILITY(U,$J,358.3,43223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45498,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,45498,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,45498,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,45499,0)
- ;;=R40.2122^^200^2246^32
- ;;^UTILITY(U,$J,358.3,45499,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43223,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43223,1,4,0)
+ ;;=4^W07.XXXA

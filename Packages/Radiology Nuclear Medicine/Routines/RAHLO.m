@@ -1,5 +1,5 @@
-RAHLO ;HIRMFO/GJC-Process data set from the bridge program ;05 Dec 2017 11:42 AM
- ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94,106,144**;Mar 16, 1998;Build 1
+RAHLO ;HIRMFO/GJC-Process data set from the bridge program ; Dec 13, 2019@11:14:22
+ ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94,106,144,162**;Mar 16, 1998;Build 2
  ; 09/07/2005 Remedy call 108405 - KAM Allow Radiology to accept dx codes from Talk Technology
  ;
  ;Integration Agreements
@@ -135,11 +135,20 @@ CHECK ; Check if our data is valid.
  ;
  I $G(RATELE),$L($G(RATELEPI)),RATELEPI'?10N S RAERR="Incorrect Teleradiologist's NPI: "_RATELEPI Q
  D RPTSTAT^RAHLO3 ; determine the status of the report
+ Q:$D(RAERR)#2  ;P162 added error chk
  ;
  ;new w/P106
- I RARPT,($T(EN^RARPTUT)'=""),(RASTAT="VAQ"),('($D(RAERR)#2)) D EN^RARPTUT QUIT
+ I RARPT,($T(EN^RARPTUT)'=""),(RASTAT="VAQ") D EN^RARPTUT QUIT  ;p162 removed $D(RAERR)#2
  ;
- ;new w/P94
- D FILE^RAHLO1:'($D(RAERR)#2)
+ ;new w/P162
+ I $G(RARPT)>0 D  Q:$D(RAERR)#2
+ .L +^RARPT(RARPT):60
+ .I '$T S RAERR="Lock of report record: "_RARPT_" failed."
+ .Q
+ L +^RADPT(RADFN,"DT",RADTI):60
+ I '$T S RAERR="Lock of study accession: "_$S(RALONGCN'="":RALONGCN,1:"N/A")_" failed." Q
+ D FILE^RAHLO1
+ ;unlock the report & study unconditionally
+ L -^RARPT(RARPT) L -^RADPT(RADFN,"DT",RADTI)
  Q
  ;

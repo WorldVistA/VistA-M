@@ -1,128 +1,126 @@
-IBDEI1JF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26096,1,0)
+ ;;^UTILITY(U,$J,358.3,24580,0)
+ ;;=A54.02^^107^1208^52
+ ;;^UTILITY(U,$J,358.3,24580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26096,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26096,1,4,0)
- ;;=4^F60.9
- ;;^UTILITY(U,$J,358.3,26096,2)
- ;;=^5003639
- ;;^UTILITY(U,$J,358.3,26097,0)
- ;;=Z65.4^^98^1229^4
- ;;^UTILITY(U,$J,358.3,26097,1,0)
+ ;;^UTILITY(U,$J,358.3,24580,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24580,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,24580,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,24581,0)
+ ;;=A54.1^^107^1208^49
+ ;;^UTILITY(U,$J,358.3,24581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26097,1,3,0)
- ;;=3^Victim of Crime,Terrorism or Torture
- ;;^UTILITY(U,$J,358.3,26097,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,26097,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,26098,0)
- ;;=Z65.0^^98^1229^1
- ;;^UTILITY(U,$J,358.3,26098,1,0)
+ ;;^UTILITY(U,$J,358.3,24581,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,24581,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,24581,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,24582,0)
+ ;;=A54.01^^107^1208^48
+ ;;^UTILITY(U,$J,358.3,24582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26098,1,3,0)
- ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
- ;;^UTILITY(U,$J,358.3,26098,1,4,0)
- ;;=4^Z65.0
- ;;^UTILITY(U,$J,358.3,26098,2)
- ;;=^5063179
- ;;^UTILITY(U,$J,358.3,26099,0)
- ;;=Z65.2^^98^1229^3
- ;;^UTILITY(U,$J,358.3,26099,1,0)
+ ;;^UTILITY(U,$J,358.3,24582,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,24582,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,24582,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,24583,0)
+ ;;=B37.49^^107^1208^14
+ ;;^UTILITY(U,$J,358.3,24583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26099,1,3,0)
- ;;=3^Problems Related to Release from Prison
- ;;^UTILITY(U,$J,358.3,26099,1,4,0)
- ;;=4^Z65.2
- ;;^UTILITY(U,$J,358.3,26099,2)
- ;;=^5063181
- ;;^UTILITY(U,$J,358.3,26100,0)
- ;;=Z65.3^^98^1229^2
- ;;^UTILITY(U,$J,358.3,26100,1,0)
+ ;;^UTILITY(U,$J,358.3,24583,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,24583,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,24583,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,24584,0)
+ ;;=B37.41^^107^1208^13
+ ;;^UTILITY(U,$J,358.3,24584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26100,1,3,0)
- ;;=3^Problems Related to Oth Legal Circumstances
- ;;^UTILITY(U,$J,358.3,26100,1,4,0)
- ;;=4^Z65.3
- ;;^UTILITY(U,$J,358.3,26100,2)
- ;;=^5063182
- ;;^UTILITY(U,$J,358.3,26101,0)
- ;;=Z65.8^^98^1230^5
- ;;^UTILITY(U,$J,358.3,26101,1,0)
+ ;;^UTILITY(U,$J,358.3,24584,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,24584,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,24584,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,24585,0)
+ ;;=B37.42^^107^1208^12
+ ;;^UTILITY(U,$J,358.3,24585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26101,1,3,0)
- ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,26101,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,26101,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,26102,0)
- ;;=Z64.0^^98^1230^4
- ;;^UTILITY(U,$J,358.3,26102,1,0)
+ ;;^UTILITY(U,$J,358.3,24585,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,24585,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,24585,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,24586,0)
+ ;;=A59.03^^107^1208^108
+ ;;^UTILITY(U,$J,358.3,24586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26102,1,3,0)
- ;;=3^Problems Related to Unwanted Pregnancy
- ;;^UTILITY(U,$J,358.3,26102,1,4,0)
- ;;=4^Z64.0
- ;;^UTILITY(U,$J,358.3,26102,2)
- ;;=^5063176
- ;;^UTILITY(U,$J,358.3,26103,0)
- ;;=Z64.1^^98^1230^3
- ;;^UTILITY(U,$J,358.3,26103,1,0)
+ ;;^UTILITY(U,$J,358.3,24586,1,3,0)
+ ;;=3^Trichomonal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,24586,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,24586,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,24587,0)
+ ;;=E87.6^^107^1208^61
+ ;;^UTILITY(U,$J,358.3,24587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26103,1,3,0)
- ;;=3^Problems Related to Multiparity
- ;;^UTILITY(U,$J,358.3,26103,1,4,0)
- ;;=4^Z64.1
- ;;^UTILITY(U,$J,358.3,26103,2)
- ;;=^5063177
- ;;^UTILITY(U,$J,358.3,26104,0)
- ;;=Z64.4^^98^1230^1
- ;;^UTILITY(U,$J,358.3,26104,1,0)
+ ;;^UTILITY(U,$J,358.3,24587,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,24587,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,24587,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,24588,0)
+ ;;=F52.0^^107^1208^60
+ ;;^UTILITY(U,$J,358.3,24588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26104,1,3,0)
- ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
- ;;^UTILITY(U,$J,358.3,26104,1,4,0)
- ;;=4^Z64.4
- ;;^UTILITY(U,$J,358.3,26104,2)
- ;;=^5063178
- ;;^UTILITY(U,$J,358.3,26105,0)
- ;;=Z65.5^^98^1230^2
- ;;^UTILITY(U,$J,358.3,26105,1,0)
+ ;;^UTILITY(U,$J,358.3,24588,1,3,0)
+ ;;=3^Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,24588,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,24588,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,24589,0)
+ ;;=F52.22^^107^1208^103
+ ;;^UTILITY(U,$J,358.3,24589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26105,1,3,0)
- ;;=3^Exposure to Disaster,War or Other Hostilities
- ;;^UTILITY(U,$J,358.3,26105,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,26105,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,26106,0)
- ;;=Z62.820^^98^1231^4
- ;;^UTILITY(U,$J,358.3,26106,1,0)
+ ;;^UTILITY(U,$J,358.3,24589,1,3,0)
+ ;;=3^Sexual Arousal Disorder,Female
+ ;;^UTILITY(U,$J,358.3,24589,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,24589,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,24590,0)
+ ;;=F52.8^^107^1208^104
+ ;;^UTILITY(U,$J,358.3,24590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26106,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,26106,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,26106,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,26107,0)
- ;;=Z62.891^^98^1231^6
- ;;^UTILITY(U,$J,358.3,26107,1,0)
+ ;;^UTILITY(U,$J,358.3,24590,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
+ ;;^UTILITY(U,$J,358.3,24590,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,24590,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,24591,0)
+ ;;=F52.21^^107^1208^33
+ ;;^UTILITY(U,$J,358.3,24591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26107,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,26107,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,26107,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,26108,0)
- ;;=Z62.898^^98^1231^1
- ;;^UTILITY(U,$J,358.3,26108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26108,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,24591,1,3,0)
+ ;;=3^Erectile Disorder,Male (Psychogenic)
+ ;;^UTILITY(U,$J,358.3,24591,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,24591,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,24592,0)
+ ;;=I12.9^^107^1208^59

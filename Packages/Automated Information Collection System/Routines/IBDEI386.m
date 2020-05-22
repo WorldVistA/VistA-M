@@ -1,124 +1,128 @@
-IBDEI386 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI386 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54207,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,54207,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,54208,0)
- ;;=I70.213^^256^2762^4
- ;;^UTILITY(U,$J,358.3,54208,1,0)
+ ;;^UTILITY(U,$J,358.3,51492,0)
+ ;;=N39.3^^193^2509^159
+ ;;^UTILITY(U,$J,358.3,51492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54208,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,54208,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,54208,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,54209,0)
- ;;=I70.212^^256^2762^5
- ;;^UTILITY(U,$J,358.3,54209,1,0)
+ ;;^UTILITY(U,$J,358.3,51492,1,3,0)
+ ;;=3^Stress Incontinence (Female/Male)
+ ;;^UTILITY(U,$J,358.3,51492,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,51492,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,51493,0)
+ ;;=R26.2^^193^2509^62
+ ;;^UTILITY(U,$J,358.3,51493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54209,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,54209,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,54209,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,54210,0)
- ;;=I70.211^^256^2762^6
- ;;^UTILITY(U,$J,358.3,54210,1,0)
+ ;;^UTILITY(U,$J,358.3,51493,1,3,0)
+ ;;=3^Difficulty in Walking NEC
+ ;;^UTILITY(U,$J,358.3,51493,1,4,0)
+ ;;=4^R26.2
+ ;;^UTILITY(U,$J,358.3,51493,2)
+ ;;=^5019306
+ ;;^UTILITY(U,$J,358.3,51494,0)
+ ;;=M54.6^^193^2509^161
+ ;;^UTILITY(U,$J,358.3,51494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54210,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
- ;;^UTILITY(U,$J,358.3,54210,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,54210,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,54211,0)
- ;;=I70.25^^256^2762^2
- ;;^UTILITY(U,$J,358.3,54211,1,0)
+ ;;^UTILITY(U,$J,358.3,51494,1,3,0)
+ ;;=3^Thoracic Spine Pain
+ ;;^UTILITY(U,$J,358.3,51494,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,51494,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,51495,0)
+ ;;=E66.8^^193^2509^130
+ ;;^UTILITY(U,$J,358.3,51495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54211,1,3,0)
- ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
- ;;^UTILITY(U,$J,358.3,54211,1,4,0)
- ;;=4^I70.25
- ;;^UTILITY(U,$J,358.3,54211,2)
- ;;=^5007602
- ;;^UTILITY(U,$J,358.3,54212,0)
- ;;=I70.249^^256^2762^7
- ;;^UTILITY(U,$J,358.3,54212,1,0)
+ ;;^UTILITY(U,$J,358.3,51495,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,51495,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,51495,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,51496,0)
+ ;;=E66.9^^193^2509^131
+ ;;^UTILITY(U,$J,358.3,51496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54212,1,3,0)
- ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
- ;;^UTILITY(U,$J,358.3,54212,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,54212,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,54213,0)
- ;;=I70.239^^256^2762^8
- ;;^UTILITY(U,$J,358.3,54213,1,0)
+ ;;^UTILITY(U,$J,358.3,51496,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,51496,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,51496,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,51497,0)
+ ;;=F18.120^^193^2509^99
+ ;;^UTILITY(U,$J,358.3,51497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54213,1,3,0)
- ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,54213,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,54213,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,54214,0)
- ;;=I70.269^^256^2762^9
- ;;^UTILITY(U,$J,358.3,54214,1,0)
+ ;;^UTILITY(U,$J,358.3,51497,1,3,0)
+ ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,51497,1,4,0)
+ ;;=4^F18.120
+ ;;^UTILITY(U,$J,358.3,51497,2)
+ ;;=^5003381
+ ;;^UTILITY(U,$J,358.3,51498,0)
+ ;;=G44.1^^193^2509^164
+ ;;^UTILITY(U,$J,358.3,51498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54214,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
- ;;^UTILITY(U,$J,358.3,54214,1,4,0)
- ;;=4^I70.269
- ;;^UTILITY(U,$J,358.3,54214,2)
- ;;=^5007607
- ;;^UTILITY(U,$J,358.3,54215,0)
- ;;=I70.263^^256^2762^10
- ;;^UTILITY(U,$J,358.3,54215,1,0)
+ ;;^UTILITY(U,$J,358.3,51498,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,51498,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,51498,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,51499,0)
+ ;;=G93.3^^193^2509^149
+ ;;^UTILITY(U,$J,358.3,51499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54215,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
- ;;^UTILITY(U,$J,358.3,54215,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,54215,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,54216,0)
- ;;=I70.262^^256^2762^11
- ;;^UTILITY(U,$J,358.3,54216,1,0)
+ ;;^UTILITY(U,$J,358.3,51499,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,51499,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,51499,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,51500,0)
+ ;;=K08.101^^193^2509^56
+ ;;^UTILITY(U,$J,358.3,51500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54216,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
- ;;^UTILITY(U,$J,358.3,54216,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,54216,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,54217,0)
- ;;=I70.261^^256^2762^12
- ;;^UTILITY(U,$J,358.3,54217,1,0)
+ ;;^UTILITY(U,$J,358.3,51500,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,51500,1,4,0)
+ ;;=4^K08.101
+ ;;^UTILITY(U,$J,358.3,51500,2)
+ ;;=^5008406
+ ;;^UTILITY(U,$J,358.3,51501,0)
+ ;;=K08.102^^193^2509^57
+ ;;^UTILITY(U,$J,358.3,51501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54217,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
- ;;^UTILITY(U,$J,358.3,54217,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,54217,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,54218,0)
- ;;=I71.2^^256^2762^20
- ;;^UTILITY(U,$J,358.3,54218,1,0)
+ ;;^UTILITY(U,$J,358.3,51501,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,51501,1,4,0)
+ ;;=4^K08.102
+ ;;^UTILITY(U,$J,358.3,51501,2)
+ ;;=^5008407
+ ;;^UTILITY(U,$J,358.3,51502,0)
+ ;;=K08.103^^193^2509^58
+ ;;^UTILITY(U,$J,358.3,51502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54218,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,54218,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,54218,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,54219,0)
- ;;=I71.4^^256^2762^1
- ;;^UTILITY(U,$J,358.3,54219,1,0)
+ ;;^UTILITY(U,$J,358.3,51502,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,51502,1,4,0)
+ ;;=4^K08.103
+ ;;^UTILITY(U,$J,358.3,51502,2)
+ ;;=^5008408
+ ;;^UTILITY(U,$J,358.3,51503,0)
+ ;;=K08.104^^193^2509^59
+ ;;^UTILITY(U,$J,358.3,51503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54219,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,51503,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,51503,1,4,0)
+ ;;=4^K08.104
+ ;;^UTILITY(U,$J,358.3,51503,2)
+ ;;=^5008409
+ ;;^UTILITY(U,$J,358.3,51504,0)
+ ;;=K08.109^^193^2509^60
+ ;;^UTILITY(U,$J,358.3,51504,1,0)
+ ;;=^358.31IA^4^2

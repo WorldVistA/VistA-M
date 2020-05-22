@@ -1,356 +1,128 @@
-IBDEI0X5 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0X5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43492,1,3,0)
- ;;=3^Osteopenia,Left Upper Arm
- ;;^UTILITY(U,$J,358.3,43492,1,4,0)
- ;;=4^M85.822
- ;;^UTILITY(U,$J,358.3,43492,2)
- ;;=^5014478
- ;;^UTILITY(U,$J,358.3,43493,0)
- ;;=M85.89^^127^1861^87
- ;;^UTILITY(U,$J,358.3,43493,1,0)
+ ;;^UTILITY(U,$J,358.3,14759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43493,1,3,0)
- ;;=3^Osteopenia,Multiple Sites
- ;;^UTILITY(U,$J,358.3,43493,1,4,0)
- ;;=4^M85.89
- ;;^UTILITY(U,$J,358.3,43493,2)
- ;;=^5014495
- ;;^UTILITY(U,$J,358.3,43494,0)
- ;;=M85.88^^127^1861^88
- ;;^UTILITY(U,$J,358.3,43494,1,0)
+ ;;^UTILITY(U,$J,358.3,14759,1,3,0)
+ ;;=3^Esophagitis,Other
+ ;;^UTILITY(U,$J,358.3,14759,1,4,0)
+ ;;=4^K20.8
+ ;;^UTILITY(U,$J,358.3,14759,2)
+ ;;=^295748
+ ;;^UTILITY(U,$J,358.3,14760,0)
+ ;;=R93.3^^85^834^1
+ ;;^UTILITY(U,$J,358.3,14760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43494,1,3,0)
- ;;=3^Osteopenia,Other Site
- ;;^UTILITY(U,$J,358.3,43494,1,4,0)
- ;;=4^M85.88
- ;;^UTILITY(U,$J,358.3,43494,2)
- ;;=^5134059
- ;;^UTILITY(U,$J,358.3,43495,0)
- ;;=M85.871^^127^1861^89
- ;;^UTILITY(U,$J,358.3,43495,1,0)
+ ;;^UTILITY(U,$J,358.3,14760,1,3,0)
+ ;;=3^Abnormal imaging Digestive tract
+ ;;^UTILITY(U,$J,358.3,14760,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,14760,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,14761,0)
+ ;;=K22.4^^85^834^11
+ ;;^UTILITY(U,$J,358.3,14761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43495,1,3,0)
- ;;=3^Osteopenia,Right Foot & Ankle
- ;;^UTILITY(U,$J,358.3,43495,1,4,0)
- ;;=4^M85.871
- ;;^UTILITY(U,$J,358.3,43495,2)
- ;;=^5014492
- ;;^UTILITY(U,$J,358.3,43496,0)
- ;;=M85.831^^127^1861^90
- ;;^UTILITY(U,$J,358.3,43496,1,0)
+ ;;^UTILITY(U,$J,358.3,14761,1,3,0)
+ ;;=3^Dyskinesia of Esophagus
+ ;;^UTILITY(U,$J,358.3,14761,1,4,0)
+ ;;=4^K22.4
+ ;;^UTILITY(U,$J,358.3,14761,2)
+ ;;=^37546
+ ;;^UTILITY(U,$J,358.3,14762,0)
+ ;;=T18.128D^^85^834^19
+ ;;^UTILITY(U,$J,358.3,14762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43496,1,3,0)
- ;;=3^Osteopenia,Right Forearm
- ;;^UTILITY(U,$J,358.3,43496,1,4,0)
- ;;=4^M85.831
- ;;^UTILITY(U,$J,358.3,43496,2)
- ;;=^5014480
- ;;^UTILITY(U,$J,358.3,43497,0)
- ;;=M85.841^^127^1861^91
- ;;^UTILITY(U,$J,358.3,43497,1,0)
+ ;;^UTILITY(U,$J,358.3,14762,1,3,0)
+ ;;=3^Food in Esophagus,Subsequent
+ ;;^UTILITY(U,$J,358.3,14762,1,4,0)
+ ;;=4^T18.128D
+ ;;^UTILITY(U,$J,358.3,14762,2)
+ ;;=^5046595
+ ;;^UTILITY(U,$J,358.3,14763,0)
+ ;;=T18.128S^^85^834^18
+ ;;^UTILITY(U,$J,358.3,14763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43497,1,3,0)
- ;;=3^Osteopenia,Right Hand
- ;;^UTILITY(U,$J,358.3,43497,1,4,0)
- ;;=4^M85.841
- ;;^UTILITY(U,$J,358.3,43497,2)
- ;;=^5014483
- ;;^UTILITY(U,$J,358.3,43498,0)
- ;;=M85.861^^127^1861^92
- ;;^UTILITY(U,$J,358.3,43498,1,0)
+ ;;^UTILITY(U,$J,358.3,14763,1,3,0)
+ ;;=3^Food in Esophagus,Sequela
+ ;;^UTILITY(U,$J,358.3,14763,1,4,0)
+ ;;=4^T18.128S
+ ;;^UTILITY(U,$J,358.3,14763,2)
+ ;;=^5046596
+ ;;^UTILITY(U,$J,358.3,14764,0)
+ ;;=T18.198D^^85^834^22
+ ;;^UTILITY(U,$J,358.3,14764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43498,1,3,0)
- ;;=3^Osteopenia,Right Lower Leg
- ;;^UTILITY(U,$J,358.3,43498,1,4,0)
- ;;=4^M85.861
- ;;^UTILITY(U,$J,358.3,43498,2)
- ;;=^5014489
- ;;^UTILITY(U,$J,358.3,43499,0)
- ;;=M85.811^^127^1861^93
- ;;^UTILITY(U,$J,358.3,43499,1,0)
+ ;;^UTILITY(U,$J,358.3,14764,1,3,0)
+ ;;=3^Foreign body in Esophagus,Subsequent
+ ;;^UTILITY(U,$J,358.3,14764,1,4,0)
+ ;;=4^T18.198D
+ ;;^UTILITY(U,$J,358.3,14764,2)
+ ;;=^5046601
+ ;;^UTILITY(U,$J,358.3,14765,0)
+ ;;=T18.198S^^85^834^21
+ ;;^UTILITY(U,$J,358.3,14765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43499,1,3,0)
- ;;=3^Osteopenia,Right Shoulder
- ;;^UTILITY(U,$J,358.3,43499,1,4,0)
- ;;=4^M85.811
- ;;^UTILITY(U,$J,358.3,43499,2)
- ;;=^5014474
- ;;^UTILITY(U,$J,358.3,43500,0)
- ;;=M85.851^^127^1861^94
- ;;^UTILITY(U,$J,358.3,43500,1,0)
+ ;;^UTILITY(U,$J,358.3,14765,1,3,0)
+ ;;=3^Foreign body in Esophagus,Sequela
+ ;;^UTILITY(U,$J,358.3,14765,1,4,0)
+ ;;=4^T18.198S
+ ;;^UTILITY(U,$J,358.3,14765,2)
+ ;;=^5046602
+ ;;^UTILITY(U,$J,358.3,14766,0)
+ ;;=K22.8^^85^834^26
+ ;;^UTILITY(U,$J,358.3,14766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43500,1,3,0)
- ;;=3^Osteopenia,Right Thigh
- ;;^UTILITY(U,$J,358.3,43500,1,4,0)
- ;;=4^M85.851
- ;;^UTILITY(U,$J,358.3,43500,2)
- ;;=^5014486
- ;;^UTILITY(U,$J,358.3,43501,0)
- ;;=M85.821^^127^1861^95
- ;;^UTILITY(U,$J,358.3,43501,1,0)
+ ;;^UTILITY(U,$J,358.3,14766,1,3,0)
+ ;;=3^Hemorrhage of Esophagus
+ ;;^UTILITY(U,$J,358.3,14766,1,4,0)
+ ;;=4^K22.8
+ ;;^UTILITY(U,$J,358.3,14766,2)
+ ;;=^5008515
+ ;;^UTILITY(U,$J,358.3,14767,0)
+ ;;=C15.3^^85^834^31
+ ;;^UTILITY(U,$J,358.3,14767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43501,1,3,0)
- ;;=3^Osteopenia,Right Upper Arm
- ;;^UTILITY(U,$J,358.3,43501,1,4,0)
- ;;=4^M85.821
- ;;^UTILITY(U,$J,358.3,43501,2)
- ;;=^5014477
- ;;^UTILITY(U,$J,358.3,43502,0)
- ;;=M85.80^^127^1861^96
- ;;^UTILITY(U,$J,358.3,43502,1,0)
+ ;;^UTILITY(U,$J,358.3,14767,1,3,0)
+ ;;=3^Malignant Neop,Esophagus,Upper Third
+ ;;^UTILITY(U,$J,358.3,14767,1,4,0)
+ ;;=4^C15.3
+ ;;^UTILITY(U,$J,358.3,14767,2)
+ ;;=^267059
+ ;;^UTILITY(U,$J,358.3,14768,0)
+ ;;=C15.4^^85^834^28
+ ;;^UTILITY(U,$J,358.3,14768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43502,1,3,0)
- ;;=3^Osteopenia,Unspec Site
- ;;^UTILITY(U,$J,358.3,43502,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,43502,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,43503,0)
- ;;=B02.0^^127^1862^46
- ;;^UTILITY(U,$J,358.3,43503,1,0)
+ ;;^UTILITY(U,$J,358.3,14768,1,3,0)
+ ;;=3^Malignant Neop,Esophagus,Middle Third
+ ;;^UTILITY(U,$J,358.3,14768,1,4,0)
+ ;;=4^C15.4
+ ;;^UTILITY(U,$J,358.3,14768,2)
+ ;;=^267060
+ ;;^UTILITY(U,$J,358.3,14769,0)
+ ;;=C15.5^^85^834^27
+ ;;^UTILITY(U,$J,358.3,14769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43503,1,3,0)
- ;;=3^Zoster Encephalitis
- ;;^UTILITY(U,$J,358.3,43503,1,4,0)
- ;;=4^B02.0
- ;;^UTILITY(U,$J,358.3,43503,2)
- ;;=^5000488
- ;;^UTILITY(U,$J,358.3,43504,0)
- ;;=B02.29^^127^1862^36
- ;;^UTILITY(U,$J,358.3,43504,1,0)
+ ;;^UTILITY(U,$J,358.3,14769,1,3,0)
+ ;;=3^Malignant Neop,Esophagus,Lower Third
+ ;;^UTILITY(U,$J,358.3,14769,1,4,0)
+ ;;=4^C15.5
+ ;;^UTILITY(U,$J,358.3,14769,2)
+ ;;=^267061
+ ;;^UTILITY(U,$J,358.3,14770,0)
+ ;;=C15.8^^85^834^29
+ ;;^UTILITY(U,$J,358.3,14770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43504,1,3,0)
- ;;=3^Postherpetic Nervous System Involvement,Other
- ;;^UTILITY(U,$J,358.3,43504,1,4,0)
- ;;=4^B02.29
- ;;^UTILITY(U,$J,358.3,43504,2)
- ;;=^5000492
- ;;^UTILITY(U,$J,358.3,43505,0)
- ;;=F03.90^^127^1862^10
- ;;^UTILITY(U,$J,358.3,43505,1,0)
+ ;;^UTILITY(U,$J,358.3,14770,1,3,0)
+ ;;=3^Malignant Neop,Esophagus,Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,14770,1,4,0)
+ ;;=4^C15.8
+ ;;^UTILITY(U,$J,358.3,14770,2)
+ ;;=^5000918
+ ;;^UTILITY(U,$J,358.3,14771,0)
+ ;;=C15.9^^85^834^30
+ ;;^UTILITY(U,$J,358.3,14771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43505,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,43505,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,43505,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,43506,0)
- ;;=F03.91^^127^1862^9
- ;;^UTILITY(U,$J,358.3,43506,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43506,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,43506,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,43506,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,43507,0)
- ;;=F01.50^^127^1862^12
- ;;^UTILITY(U,$J,358.3,43507,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43507,1,3,0)
- ;;=3^Dementia,Vascular w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,43507,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,43507,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,43508,0)
- ;;=F10.27^^127^1862^11
- ;;^UTILITY(U,$J,358.3,43508,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43508,1,3,0)
- ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
- ;;^UTILITY(U,$J,358.3,43508,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,43508,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,43509,0)
- ;;=F06.1^^127^1862^6
- ;;^UTILITY(U,$J,358.3,43509,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43509,1,3,0)
- ;;=3^Catatonic Disorder d/t Known Physiological Condition
- ;;^UTILITY(U,$J,358.3,43509,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,43509,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,43510,0)
- ;;=F06.8^^127^1862^21
- ;;^UTILITY(U,$J,358.3,43510,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43510,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition,Other
- ;;^UTILITY(U,$J,358.3,43510,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,43510,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,43511,0)
- ;;=F06.0^^127^1862^37
- ;;^UTILITY(U,$J,358.3,43511,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43511,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
- ;;^UTILITY(U,$J,358.3,43511,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,43511,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,43512,0)
- ;;=G44.209^^127^1862^42
- ;;^UTILITY(U,$J,358.3,43512,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43512,1,3,0)
- ;;=3^Tension-Type Headache,Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,43512,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,43512,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,43513,0)
- ;;=F09.^^127^1862^20
- ;;^UTILITY(U,$J,358.3,43513,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43513,1,3,0)
- ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
- ;;^UTILITY(U,$J,358.3,43513,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,43513,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,43514,0)
- ;;=F07.9^^127^1862^35
- ;;^UTILITY(U,$J,358.3,43514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43514,1,3,0)
- ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,43514,1,4,0)
- ;;=4^F07.9
- ;;^UTILITY(U,$J,358.3,43514,2)
- ;;=^5003066
- ;;^UTILITY(U,$J,358.3,43515,0)
- ;;=G30.0^^127^1862^1
- ;;^UTILITY(U,$J,358.3,43515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43515,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,43515,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,43515,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,43516,0)
- ;;=G30.8^^127^1862^3
- ;;^UTILITY(U,$J,358.3,43516,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43516,1,3,0)
- ;;=3^Alzheimer's Disease,Other
- ;;^UTILITY(U,$J,358.3,43516,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,43516,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,43517,0)
- ;;=G30.1^^127^1862^2
- ;;^UTILITY(U,$J,358.3,43517,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43517,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,43517,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,43517,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,43518,0)
- ;;=G30.9^^127^1862^4
- ;;^UTILITY(U,$J,358.3,43518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43518,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43518,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,43518,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,43519,0)
- ;;=G21.4^^127^1862^45
- ;;^UTILITY(U,$J,358.3,43519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43519,1,3,0)
- ;;=3^Vascular Parkinsonism
- ;;^UTILITY(U,$J,358.3,43519,1,4,0)
- ;;=4^G21.4
- ;;^UTILITY(U,$J,358.3,43519,2)
- ;;=^5003776
- ;;^UTILITY(U,$J,358.3,43520,0)
- ;;=G20.^^127^1862^34
- ;;^UTILITY(U,$J,358.3,43520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43520,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,43520,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,43520,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,43521,0)
- ;;=G25.0^^127^1862^15
- ;;^UTILITY(U,$J,358.3,43521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43521,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,43521,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,43521,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,43522,0)
- ;;=G25.2^^127^1862^44
- ;;^UTILITY(U,$J,358.3,43522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43522,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,43522,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,43522,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,43523,0)
- ;;=G25.1^^127^1862^43
- ;;^UTILITY(U,$J,358.3,43523,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43523,1,3,0)
- ;;=3^Tremor,Drug-Induced
- ;;^UTILITY(U,$J,358.3,43523,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,43523,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,43524,0)
- ;;=G25.81^^127^1862^38
- ;;^UTILITY(U,$J,358.3,43524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43524,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,43524,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,43524,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,43525,0)
- ;;=G35.^^127^1862^31
- ;;^UTILITY(U,$J,358.3,43525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43525,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,43525,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,43525,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,43526,0)
- ;;=G40.901^^127^1862^13
- ;;^UTILITY(U,$J,358.3,43526,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43526,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,43526,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,43526,2)
- ;;=^5003864
- ;;^UTILITY(U,$J,358.3,43527,0)
- ;;=G40.909^^127^1862^14
- ;;^UTILITY(U,$J,358.3,43527,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43527,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,14771,1,3,0)
+ ;;=3^Malignant Neop,Esophagus,Unspec

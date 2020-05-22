@@ -1,128 +1,130 @@
-IBDEI1I4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1I4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25478,1,0)
+ ;;^UTILITY(U,$J,358.3,24013,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,24014,0)
+ ;;=I16.1^^107^1200^17
+ ;;^UTILITY(U,$J,358.3,24014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25478,1,3,0)
- ;;=3^Alcohol Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25478,1,4,0)
- ;;=4^F10.99
- ;;^UTILITY(U,$J,358.3,25478,2)
- ;;=^5133351
- ;;^UTILITY(U,$J,358.3,25479,0)
- ;;=F15.10^^95^1166^4
- ;;^UTILITY(U,$J,358.3,25479,1,0)
+ ;;^UTILITY(U,$J,358.3,24014,1,3,0)
+ ;;=3^Hypertensive Emergency
+ ;;^UTILITY(U,$J,358.3,24014,1,4,0)
+ ;;=4^I16.1
+ ;;^UTILITY(U,$J,358.3,24014,2)
+ ;;=^8204721
+ ;;^UTILITY(U,$J,358.3,24015,0)
+ ;;=I16.0^^107^1200^20
+ ;;^UTILITY(U,$J,358.3,24015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25479,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Mild
- ;;^UTILITY(U,$J,358.3,25479,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,25479,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,25480,0)
- ;;=F15.14^^95^1166^2
- ;;^UTILITY(U,$J,358.3,25480,1,0)
+ ;;^UTILITY(U,$J,358.3,24015,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,24015,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,24015,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,24016,0)
+ ;;=I16.9^^107^1200^16
+ ;;^UTILITY(U,$J,358.3,24016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25480,1,3,0)
- ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25480,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,25480,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,25481,0)
- ;;=F15.182^^95^1166^3
- ;;^UTILITY(U,$J,358.3,25481,1,0)
+ ;;^UTILITY(U,$J,358.3,24016,1,3,0)
+ ;;=3^Hypertensive Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,24016,1,4,0)
+ ;;=4^I16.9
+ ;;^UTILITY(U,$J,358.3,24016,2)
+ ;;=^5138600
+ ;;^UTILITY(U,$J,358.3,24017,0)
+ ;;=E78.01^^107^1200^10
+ ;;^UTILITY(U,$J,358.3,24017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25481,1,3,0)
- ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25481,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,25481,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,25482,0)
- ;;=F15.20^^95^1166^5
- ;;^UTILITY(U,$J,358.3,25482,1,0)
+ ;;^UTILITY(U,$J,358.3,24017,1,3,0)
+ ;;=3^Familial Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,24017,1,4,0)
+ ;;=4^E78.01
+ ;;^UTILITY(U,$J,358.3,24017,2)
+ ;;=^7570555
+ ;;^UTILITY(U,$J,358.3,24018,0)
+ ;;=E78.00^^107^1200^22
+ ;;^UTILITY(U,$J,358.3,24018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25482,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,25482,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,25482,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,25483,0)
- ;;=F15.21^^95^1166^6
- ;;^UTILITY(U,$J,358.3,25483,1,0)
+ ;;^UTILITY(U,$J,358.3,24018,1,3,0)
+ ;;=3^Pure Hypercholesterolemia,Unspec
+ ;;^UTILITY(U,$J,358.3,24018,1,4,0)
+ ;;=4^E78.00
+ ;;^UTILITY(U,$J,358.3,24018,2)
+ ;;=^5138435
+ ;;^UTILITY(U,$J,358.3,24019,0)
+ ;;=I47.2^^107^1200^24
+ ;;^UTILITY(U,$J,358.3,24019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25483,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,25483,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,25483,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,25484,0)
- ;;=F15.23^^95^1166^1
- ;;^UTILITY(U,$J,358.3,25484,1,0)
+ ;;^UTILITY(U,$J,358.3,24019,1,3,0)
+ ;;=3^Ventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,24019,1,4,0)
+ ;;=4^I47.2
+ ;;^UTILITY(U,$J,358.3,24019,2)
+ ;;=^125976
+ ;;^UTILITY(U,$J,358.3,24020,0)
+ ;;=I42.6^^107^1200^1
+ ;;^UTILITY(U,$J,358.3,24020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25484,1,3,0)
- ;;=3^Amphetamine or Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,25484,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,25484,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,25485,0)
- ;;=F12.10^^95^1167^16
- ;;^UTILITY(U,$J,358.3,25485,1,0)
+ ;;^UTILITY(U,$J,358.3,24020,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,24020,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,24020,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,24021,0)
+ ;;=I51.7^^107^1200^8
+ ;;^UTILITY(U,$J,358.3,24021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25485,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,25485,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,25485,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,25486,0)
- ;;=F12.180^^95^1167^20
- ;;^UTILITY(U,$J,358.3,25486,1,0)
+ ;;^UTILITY(U,$J,358.3,24021,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,24021,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,24021,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,24022,0)
+ ;;=I48.20^^107^1200^2
+ ;;^UTILITY(U,$J,358.3,24022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25486,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
- ;;^UTILITY(U,$J,358.3,25486,1,4,0)
- ;;=4^F12.180
- ;;^UTILITY(U,$J,358.3,25486,2)
- ;;=^5003163
- ;;^UTILITY(U,$J,358.3,25487,0)
- ;;=F12.188^^95^1167^22
- ;;^UTILITY(U,$J,358.3,25487,1,0)
+ ;;^UTILITY(U,$J,358.3,24022,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,24022,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,24022,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,24023,0)
+ ;;=I48.11^^107^1200^3
+ ;;^UTILITY(U,$J,358.3,24023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25487,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25487,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,25487,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,25488,0)
- ;;=F12.20^^95^1167^17
- ;;^UTILITY(U,$J,358.3,25488,1,0)
+ ;;^UTILITY(U,$J,358.3,24023,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,24023,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,24023,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,24024,0)
+ ;;=I48.19^^107^1200^4
+ ;;^UTILITY(U,$J,358.3,24024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25488,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,25488,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,25488,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,25489,0)
- ;;=F12.21^^95^1167^18
- ;;^UTILITY(U,$J,358.3,25489,1,0)
+ ;;^UTILITY(U,$J,358.3,24024,1,3,0)
+ ;;=3^Atrial Fibrillation,Other Persistent
+ ;;^UTILITY(U,$J,358.3,24024,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,24024,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,24025,0)
+ ;;=I48.21^^107^1200^5
+ ;;^UTILITY(U,$J,358.3,24025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25489,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,25489,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,25489,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,25490,0)
- ;;=F12.288^^95^1167^19
- ;;^UTILITY(U,$J,358.3,25490,1,0)
+ ;;^UTILITY(U,$J,358.3,24025,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,24025,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,24025,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,24026,0)
+ ;;=B07.9^^107^1201^328
+ ;;^UTILITY(U,$J,358.3,24026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25490,1,3,0)
- ;;=3^Cannabis Withdrawal

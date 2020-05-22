@@ -1,128 +1,126 @@
-IBDEI2HR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42249,0)
- ;;=S83.402A^^159^2017^4
- ;;^UTILITY(U,$J,358.3,42249,1,0)
+ ;;^UTILITY(U,$J,358.3,39782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42249,1,3,0)
- ;;=3^Sprain of Left Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,42249,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,42249,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,42250,0)
- ;;=S93.402A^^159^2017^2
- ;;^UTILITY(U,$J,358.3,42250,1,0)
+ ;;^UTILITY(U,$J,358.3,39782,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,39782,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,39782,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,39783,0)
+ ;;=Z91.120^^152^2001^53
+ ;;^UTILITY(U,$J,358.3,39783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42250,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,42250,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,42250,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,42251,0)
- ;;=S93.401A^^159^2017^13
- ;;^UTILITY(U,$J,358.3,42251,1,0)
+ ;;^UTILITY(U,$J,358.3,39783,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,39783,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,39783,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,39784,0)
+ ;;=Z91.11^^152^2001^62
+ ;;^UTILITY(U,$J,358.3,39784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42251,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,42251,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,42251,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,42252,0)
- ;;=S56.511A^^159^2017^39
- ;;^UTILITY(U,$J,358.3,42252,1,0)
+ ;;^UTILITY(U,$J,358.3,39784,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,39784,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,39784,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,39785,0)
+ ;;=Z87.891^^152^2001^97
+ ;;^UTILITY(U,$J,358.3,39785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42252,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,42252,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,42252,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,42253,0)
- ;;=S56.512A^^159^2017^19
- ;;^UTILITY(U,$J,358.3,42253,1,0)
+ ;;^UTILITY(U,$J,358.3,39785,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,39785,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,39785,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,39786,0)
+ ;;=Z77.090^^152^2001^3
+ ;;^UTILITY(U,$J,358.3,39786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42253,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,42253,1,4,0)
- ;;=4^S56.512A
- ;;^UTILITY(U,$J,358.3,42253,2)
- ;;=^5031841
- ;;^UTILITY(U,$J,358.3,42254,0)
- ;;=S13.8XXA^^159^2017^10
- ;;^UTILITY(U,$J,358.3,42254,1,0)
+ ;;^UTILITY(U,$J,358.3,39786,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39786,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,39786,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,39787,0)
+ ;;=Z57.8^^152^2001^65
+ ;;^UTILITY(U,$J,358.3,39787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42254,1,3,0)
- ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,42254,1,4,0)
- ;;=4^S13.8XXA
- ;;^UTILITY(U,$J,358.3,42254,2)
- ;;=^5022034
- ;;^UTILITY(U,$J,358.3,42255,0)
- ;;=S16.1XXA^^159^2017^37
- ;;^UTILITY(U,$J,358.3,42255,1,0)
+ ;;^UTILITY(U,$J,358.3,39787,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,39787,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,39787,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,39788,0)
+ ;;=Z77.21^^152^2001^46
+ ;;^UTILITY(U,$J,358.3,39788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42255,1,3,0)
- ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
- ;;^UTILITY(U,$J,358.3,42255,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,42255,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,42256,0)
- ;;=S33.5XXA^^159^2017^8
- ;;^UTILITY(U,$J,358.3,42256,1,0)
+ ;;^UTILITY(U,$J,358.3,39788,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39788,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,39788,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,39789,0)
+ ;;=Z91.81^^152^2001^50
+ ;;^UTILITY(U,$J,358.3,39789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42256,1,3,0)
- ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,42256,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,42256,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,42257,0)
- ;;=F10.20^^159^2018^4
- ;;^UTILITY(U,$J,358.3,42257,1,0)
+ ;;^UTILITY(U,$J,358.3,39789,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,39789,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,39789,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,39790,0)
+ ;;=Z91.89^^152^2001^112
+ ;;^UTILITY(U,$J,358.3,39790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42257,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42257,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,42257,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,42258,0)
- ;;=F11.29^^159^2018^46
- ;;^UTILITY(U,$J,358.3,42258,1,0)
+ ;;^UTILITY(U,$J,358.3,39790,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,39790,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,39790,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,39791,0)
+ ;;=Z92.89^^152^2001^100
+ ;;^UTILITY(U,$J,358.3,39791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42258,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,42258,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,42258,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,42259,0)
- ;;=F11.288^^159^2018^45
- ;;^UTILITY(U,$J,358.3,42259,1,0)
+ ;;^UTILITY(U,$J,358.3,39791,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,39791,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,39791,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,39792,0)
+ ;;=Z77.110^^152^2001^1
+ ;;^UTILITY(U,$J,358.3,39792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42259,1,3,0)
- ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,42259,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,42259,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,42260,0)
- ;;=F11.282^^159^2018^44
- ;;^UTILITY(U,$J,358.3,42260,1,0)
+ ;;^UTILITY(U,$J,358.3,39792,1,3,0)
+ ;;=3^Air Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39792,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,39792,2)
+ ;;=^5063314
+ ;;^UTILITY(U,$J,358.3,39793,0)
+ ;;=Z77.112^^152^2001^148
+ ;;^UTILITY(U,$J,358.3,39793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42260,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,42260,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,42260,2)
- ;;=^5003139
- ;;^UTILITY(U,$J,358.3,42261,0)
- ;;=F11.281^^159^2018^43
- ;;^UTILITY(U,$J,358.3,42261,1,0)
+ ;;^UTILITY(U,$J,358.3,39793,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39793,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,39793,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,39794,0)
+ ;;=Z77.111^^152^2001^155
+ ;;^UTILITY(U,$J,358.3,39794,1,0)
  ;;=^358.31IA^4^2

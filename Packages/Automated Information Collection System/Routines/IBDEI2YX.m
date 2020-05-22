@@ -1,124 +1,126 @@
-IBDEI2YX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49748,1,4,0)
- ;;=4^S52.242S
- ;;^UTILITY(U,$J,358.3,49748,2)
- ;;=^5029538
- ;;^UTILITY(U,$J,358.3,49749,0)
- ;;=S52.241S^^216^2420^54
- ;;^UTILITY(U,$J,358.3,49749,1,0)
+ ;;^UTILITY(U,$J,358.3,47372,0)
+ ;;=Z48.89^^181^2365^7
+ ;;^UTILITY(U,$J,358.3,47372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49749,1,3,0)
- ;;=3^Disp fx of spiral shaft of ulna, right arm, sequela   
- ;;^UTILITY(U,$J,358.3,49749,1,4,0)
- ;;=4^S52.241S
- ;;^UTILITY(U,$J,358.3,49749,2)
- ;;=^5029522
- ;;^UTILITY(U,$J,358.3,49750,0)
- ;;=S52.222S^^216^2420^56
- ;;^UTILITY(U,$J,358.3,49750,1,0)
+ ;;^UTILITY(U,$J,358.3,47372,1,3,0)
+ ;;=3^Surgical Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,47372,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,47372,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,47373,0)
+ ;;=Z51.89^^181^2365^1
+ ;;^UTILITY(U,$J,358.3,47373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49750,1,3,0)
- ;;=3^Disp fx of transverse shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,49750,1,4,0)
- ;;=4^S52.222S
- ;;^UTILITY(U,$J,358.3,49750,2)
- ;;=^5029346
- ;;^UTILITY(U,$J,358.3,49751,0)
- ;;=S52.221S^^216^2420^58
- ;;^UTILITY(U,$J,358.3,49751,1,0)
+ ;;^UTILITY(U,$J,358.3,47373,1,3,0)
+ ;;=3^Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,47373,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,47373,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,47374,0)
+ ;;=Z71.9^^181^2365^2
+ ;;^UTILITY(U,$J,358.3,47374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49751,1,3,0)
- ;;=3^Disp fx of transverse shaft of right ulna, sequela    
- ;;^UTILITY(U,$J,358.3,49751,1,4,0)
- ;;=4^S52.221S
- ;;^UTILITY(U,$J,358.3,49751,2)
- ;;=^5029330
- ;;^UTILITY(U,$J,358.3,49752,0)
- ;;=S52.212S^^216^2420^68
- ;;^UTILITY(U,$J,358.3,49752,1,0)
+ ;;^UTILITY(U,$J,358.3,47374,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,47374,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,47374,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,47375,0)
+ ;;=Z01.89^^181^2365^6
+ ;;^UTILITY(U,$J,358.3,47375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49752,1,3,0)
- ;;=3^Greenstick fracture of shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,49752,1,4,0)
- ;;=4^S52.212S
- ;;^UTILITY(U,$J,358.3,49752,2)
- ;;=^5029308
- ;;^UTILITY(U,$J,358.3,49753,0)
- ;;=S52.211S^^216^2420^70
- ;;^UTILITY(U,$J,358.3,49753,1,0)
+ ;;^UTILITY(U,$J,358.3,47375,1,3,0)
+ ;;=3^Special Exam,Oth Specified
+ ;;^UTILITY(U,$J,358.3,47375,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,47375,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,47376,0)
+ ;;=Z01.811^^181^2365^5
+ ;;^UTILITY(U,$J,358.3,47376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49753,1,3,0)
- ;;=3^Greenstick fracture of shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49753,1,4,0)
- ;;=4^S52.211S
- ;;^UTILITY(U,$J,358.3,49753,2)
- ;;=^5029302
- ;;^UTILITY(U,$J,358.3,49754,0)
- ;;=S52.272S^^216^2420^71
- ;;^UTILITY(U,$J,358.3,49754,1,0)
+ ;;^UTILITY(U,$J,358.3,47376,1,3,0)
+ ;;=3^Preprocedural Respiratory Exam
+ ;;^UTILITY(U,$J,358.3,47376,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,47376,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,47377,0)
+ ;;=Z91.5^^181^2366^1
+ ;;^UTILITY(U,$J,358.3,47377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49754,1,3,0)
- ;;=3^Monteggia's fracture of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,49754,1,4,0)
- ;;=4^S52.272S
- ;;^UTILITY(U,$J,358.3,49754,2)
- ;;=^5029826
- ;;^UTILITY(U,$J,358.3,49755,0)
- ;;=S52.271S^^216^2420^72
- ;;^UTILITY(U,$J,358.3,49755,1,0)
+ ;;^UTILITY(U,$J,358.3,47377,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,47377,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,47377,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,47378,0)
+ ;;=R45.851^^181^2366^2
+ ;;^UTILITY(U,$J,358.3,47378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49755,1,3,0)
- ;;=3^Monteggia's fracture of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49755,1,4,0)
- ;;=4^S52.271S
- ;;^UTILITY(U,$J,358.3,49755,2)
- ;;=^5029810
- ;;^UTILITY(U,$J,358.3,49756,0)
- ;;=S52.255S^^216^2420^79
- ;;^UTILITY(U,$J,358.3,49756,1,0)
+ ;;^UTILITY(U,$J,358.3,47378,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,47378,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,47378,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,47379,0)
+ ;;=T14.91XA^^181^2366^3
+ ;;^UTILITY(U,$J,358.3,47379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49756,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,49756,1,4,0)
- ;;=4^S52.255S
- ;;^UTILITY(U,$J,358.3,49756,2)
- ;;=^5029682
- ;;^UTILITY(U,$J,358.3,49757,0)
- ;;=S52.254S^^216^2420^80
- ;;^UTILITY(U,$J,358.3,49757,1,0)
+ ;;^UTILITY(U,$J,358.3,47379,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,47379,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,47379,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,47380,0)
+ ;;=T14.91XD^^181^2366^4
+ ;;^UTILITY(U,$J,358.3,47380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49757,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,49757,1,4,0)
- ;;=4^S52.254S
- ;;^UTILITY(U,$J,358.3,49757,2)
- ;;=^5029666
- ;;^UTILITY(U,$J,358.3,49758,0)
- ;;=S52.045S^^216^2420^81
- ;;^UTILITY(U,$J,358.3,49758,1,0)
+ ;;^UTILITY(U,$J,358.3,47380,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,47380,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,47380,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,47381,0)
+ ;;=T14.91XS^^181^2366^5
+ ;;^UTILITY(U,$J,358.3,47381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49758,1,3,0)
- ;;=3^Nondisp fx of coronoid process of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,49758,1,4,0)
- ;;=4^S52.045S
- ;;^UTILITY(U,$J,358.3,49758,2)
- ;;=^5028954
- ;;^UTILITY(U,$J,358.3,49759,0)
- ;;=S52.044S^^216^2420^82
- ;;^UTILITY(U,$J,358.3,49759,1,0)
+ ;;^UTILITY(U,$J,358.3,47381,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,47381,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,47381,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,47382,0)
+ ;;=64415^^182^2367^4^^^^1
+ ;;^UTILITY(U,$J,358.3,47382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49759,1,3,0)
- ;;=3^Nondisp fx of coronoid process of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49759,1,4,0)
- ;;=4^S52.044S
- ;;^UTILITY(U,$J,358.3,49759,2)
- ;;=^5028938
- ;;^UTILITY(U,$J,358.3,49760,0)
- ;;=S52.615S^^216^2420^90
- ;;^UTILITY(U,$J,358.3,49760,1,0)
+ ;;^UTILITY(U,$J,358.3,47382,1,2,0)
+ ;;=2^NERVE BLK BRACHIAL PLEXUS,SNGL INJ
+ ;;^UTILITY(U,$J,358.3,47382,1,4,0)
+ ;;=4^64415
+ ;;^UTILITY(U,$J,358.3,47383,0)
+ ;;=64416^^182^2367^3^^^^1
+ ;;^UTILITY(U,$J,358.3,47383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49760,1,3,0)
- ;;=3^Nondisp fx of left ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,47383,1,2,0)
+ ;;=2^NERVE BLK BRACHIAL PLEXUS,CONT INFUSION
+ ;;^UTILITY(U,$J,358.3,47383,1,4,0)
+ ;;=4^64416
+ ;;^UTILITY(U,$J,358.3,47384,0)
+ ;;=64447^^182^2367^7^^^^1
+ ;;^UTILITY(U,$J,358.3,47384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47384,1,2,0)
+ ;;=2^NERVE BLK FEMORAL NERVE,SNGL INJ

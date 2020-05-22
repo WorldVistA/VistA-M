@@ -1,132 +1,48 @@
-IBDEI3DJ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3DJ ; ; 05-NOV-2019
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;NOV 05, 2019
+ Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56721,1,4,0)
- ;;=4^I82.423
- ;;^UTILITY(U,$J,358.3,56721,2)
- ;;=^5007863
- ;;^UTILITY(U,$J,358.3,56722,0)
- ;;=I82.431^^261^2831^25
- ;;^UTILITY(U,$J,358.3,56722,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56722,1,3,0)
- ;;=3^AC Embol & Thromb Rt Pop Vein
- ;;^UTILITY(U,$J,358.3,56722,1,4,0)
- ;;=4^I82.431
- ;;^UTILITY(U,$J,358.3,56722,2)
- ;;=^5007865
- ;;^UTILITY(U,$J,358.3,56723,0)
- ;;=I82.432^^261^2831^15
- ;;^UTILITY(U,$J,358.3,56723,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56723,1,3,0)
- ;;=3^AC Embol & Thromb Lt Pop Vein
- ;;^UTILITY(U,$J,358.3,56723,1,4,0)
- ;;=4^I82.432
- ;;^UTILITY(U,$J,358.3,56723,2)
- ;;=^5007866
- ;;^UTILITY(U,$J,358.3,56724,0)
- ;;=I82.433^^261^2831^5
- ;;^UTILITY(U,$J,358.3,56724,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56724,1,3,0)
- ;;=3^AC Embol & Thromb Bil Pop Vein
- ;;^UTILITY(U,$J,358.3,56724,1,4,0)
- ;;=4^I82.433
- ;;^UTILITY(U,$J,358.3,56724,2)
- ;;=^5007867
- ;;^UTILITY(U,$J,358.3,56725,0)
- ;;=I82.4Y1^^261^2831^26
- ;;^UTILITY(U,$J,358.3,56725,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56725,1,3,0)
- ;;=3^AC Embol & Thromb Rt Prox LE Deep Veins
- ;;^UTILITY(U,$J,358.3,56725,1,4,0)
- ;;=4^I82.4Y1
- ;;^UTILITY(U,$J,358.3,56725,2)
- ;;=^5007877
- ;;^UTILITY(U,$J,358.3,56726,0)
- ;;=I82.4Y2^^261^2831^16
- ;;^UTILITY(U,$J,358.3,56726,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56726,1,3,0)
- ;;=3^AC Embol & Thromb Lt Prox LE Deep Veins
- ;;^UTILITY(U,$J,358.3,56726,1,4,0)
- ;;=4^I82.4Y2
- ;;^UTILITY(U,$J,358.3,56726,2)
- ;;=^5007878
- ;;^UTILITY(U,$J,358.3,56727,0)
- ;;=I82.4Y3^^261^2831^6
- ;;^UTILITY(U,$J,358.3,56727,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56727,1,3,0)
- ;;=3^AC Embol & Thromb Bil Prox LE Deep Veins
- ;;^UTILITY(U,$J,358.3,56727,1,4,0)
- ;;=4^I82.4Y3
- ;;^UTILITY(U,$J,358.3,56727,2)
- ;;=^5007879
- ;;^UTILITY(U,$J,358.3,56728,0)
- ;;=I82.611^^261^2831^29
- ;;^UTILITY(U,$J,358.3,56728,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56728,1,3,0)
- ;;=3^AC Embol & Thromb Rt UE Superfic Veins
- ;;^UTILITY(U,$J,358.3,56728,1,4,0)
- ;;=4^I82.611
- ;;^UTILITY(U,$J,358.3,56728,2)
- ;;=^5007915
- ;;^UTILITY(U,$J,358.3,56729,0)
- ;;=I82.612^^261^2831^19
- ;;^UTILITY(U,$J,358.3,56729,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56729,1,3,0)
- ;;=3^AC Embol & Thromb Lt UE Superfic Veins
- ;;^UTILITY(U,$J,358.3,56729,1,4,0)
- ;;=4^I82.612
- ;;^UTILITY(U,$J,358.3,56729,2)
- ;;=^5007916
- ;;^UTILITY(U,$J,358.3,56730,0)
- ;;=I82.613^^261^2831^9
- ;;^UTILITY(U,$J,358.3,56730,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56730,1,3,0)
- ;;=3^AC Embol & Thromb Bil UE Superfic Vein
- ;;^UTILITY(U,$J,358.3,56730,1,4,0)
- ;;=4^I82.613
- ;;^UTILITY(U,$J,358.3,56730,2)
- ;;=^5007917
- ;;^UTILITY(U,$J,358.3,56731,0)
- ;;=I82.621^^261^2831^28
- ;;^UTILITY(U,$J,358.3,56731,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56731,1,3,0)
- ;;=3^AC Embol & Thromb Rt UE Deep Veins
- ;;^UTILITY(U,$J,358.3,56731,1,4,0)
- ;;=4^I82.621
- ;;^UTILITY(U,$J,358.3,56731,2)
- ;;=^5007919
- ;;^UTILITY(U,$J,358.3,56732,0)
- ;;=I82.622^^261^2831^18
- ;;^UTILITY(U,$J,358.3,56732,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56732,1,3,0)
- ;;=3^AC Embol & Thromb Lt UE Deep Veins
- ;;^UTILITY(U,$J,358.3,56732,1,4,0)
- ;;=4^I82.622
- ;;^UTILITY(U,$J,358.3,56732,2)
- ;;=^5007920
- ;;^UTILITY(U,$J,358.3,56733,0)
- ;;=I82.623^^261^2831^8
- ;;^UTILITY(U,$J,358.3,56733,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56733,1,3,0)
- ;;=3^AC Embol & Thromb Bil UE Deep Veins
- ;;^UTILITY(U,$J,358.3,56733,1,4,0)
- ;;=4^I82.623
- ;;^UTILITY(U,$J,358.3,56733,2)
- ;;=^5007921
- ;;^UTILITY(U,$J,358.3,56734,0)
- ;;=I82.601^^261^2831^30
- ;;^UTILITY(U,$J,358.3,56734,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.8,0,"GL")
+ ;;=^IBE(358.8,
+ ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
+ ;;=
+ ;;^DIC(358.8,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.8,"%D",1,0)
+ ;;=This file is nearly identical to file #357.8. It is used by the
+ ;;^DIC(358.8,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.8,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.8,0)
+ ;;=FIELD^^1^7
+ ;;^DD(358.8,0,"DDA")
+ ;;=N
+ ;;^DD(358.8,0,"DT")
+ ;;=2930802
+ ;;^DD(358.8,0,"IX","B",358.8,.01)
+ ;;=
+ ;;^DD(358.8,0,"IX","C",358.8,.02)
+ ;;=
+ ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
+ ;;=
+ ;;^DD(358.8,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.8,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.8,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.8,.01,1,1,0)
+ ;;=358.8^B
+ ;;^DD(358.8,.01,1,1,1)
+ ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.8,.01,1,1,2)
+ ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
+ ;;^DD(358.8,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.8,.01,21,0)
+ ;;=^^2^2^2930528^
+ ;;^DD(358.8,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.8,.01,21,2,0)
+ ;;=The name of the text area.

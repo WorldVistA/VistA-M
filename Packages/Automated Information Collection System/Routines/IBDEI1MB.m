@@ -1,136 +1,124 @@
-IBDEI1MB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27451,0)
- ;;=N10.^^106^1361^5
- ;;^UTILITY(U,$J,358.3,27451,1,0)
+ ;;^UTILITY(U,$J,358.3,25849,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,25849,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,25850,0)
+ ;;=F17.291^^107^1225^32
+ ;;^UTILITY(U,$J,358.3,25850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27451,1,3,0)
- ;;=3^Acute Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,27451,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,27451,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,27452,0)
- ;;=N17.1^^106^1361^1
- ;;^UTILITY(U,$J,358.3,27452,1,0)
+ ;;^UTILITY(U,$J,358.3,25850,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,25850,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,25850,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,25851,0)
+ ;;=F17.290^^107^1225^33
+ ;;^UTILITY(U,$J,358.3,25851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27452,1,3,0)
- ;;=3^AKI w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,27452,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,27452,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,27453,0)
- ;;=N17.0^^106^1361^3
- ;;^UTILITY(U,$J,358.3,27453,1,0)
+ ;;^UTILITY(U,$J,358.3,25851,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25851,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,25851,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,25852,0)
+ ;;=F17.221^^107^1225^27
+ ;;^UTILITY(U,$J,358.3,25852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27453,1,3,0)
- ;;=3^AKI w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,27453,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,27453,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,27454,0)
- ;;=N17.2^^106^1361^2
- ;;^UTILITY(U,$J,358.3,27454,1,0)
+ ;;^UTILITY(U,$J,358.3,25852,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,25852,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,25852,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,25853,0)
+ ;;=F17.220^^107^1225^28
+ ;;^UTILITY(U,$J,358.3,25853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27454,1,3,0)
- ;;=3^AKI w/ Medullary Necrosis
- ;;^UTILITY(U,$J,358.3,27454,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,27454,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,27455,0)
- ;;=N17.9^^106^1361^4
- ;;^UTILITY(U,$J,358.3,27455,1,0)
+ ;;^UTILITY(U,$J,358.3,25853,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25853,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,25853,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,25854,0)
+ ;;=F17.211^^107^1225^29
+ ;;^UTILITY(U,$J,358.3,25854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27455,1,3,0)
- ;;=3^AKI,Unspec
- ;;^UTILITY(U,$J,358.3,27455,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,27455,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,27456,0)
- ;;=K76.7^^106^1361^10
- ;;^UTILITY(U,$J,358.3,27456,1,0)
+ ;;^UTILITY(U,$J,358.3,25854,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,25854,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,25854,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,25855,0)
+ ;;=F17.200^^107^1225^34
+ ;;^UTILITY(U,$J,358.3,25855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27456,1,3,0)
- ;;=3^Hepatorenal Syndrome
- ;;^UTILITY(U,$J,358.3,27456,1,4,0)
- ;;=4^K76.7
- ;;^UTILITY(U,$J,358.3,27456,2)
- ;;=^56497
- ;;^UTILITY(U,$J,358.3,27457,0)
- ;;=Z99.2^^106^1361^7
- ;;^UTILITY(U,$J,358.3,27457,1,0)
+ ;;^UTILITY(U,$J,358.3,25855,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25855,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,25855,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,25856,0)
+ ;;=F11.120^^107^1225^35
+ ;;^UTILITY(U,$J,358.3,25856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27457,1,3,0)
- ;;=3^Dependence on Renal Dialysis
- ;;^UTILITY(U,$J,358.3,27457,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,27457,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,27458,0)
- ;;=Z49.31^^106^1361^8
- ;;^UTILITY(U,$J,358.3,27458,1,0)
+ ;;^UTILITY(U,$J,358.3,25856,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25856,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,25856,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,25857,0)
+ ;;=F11.10^^107^1225^38
+ ;;^UTILITY(U,$J,358.3,25857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27458,1,3,0)
- ;;=3^Encounter for Adequacy Testing for Hemodialysis
- ;;^UTILITY(U,$J,358.3,27458,1,4,0)
- ;;=4^Z49.31
- ;;^UTILITY(U,$J,358.3,27458,2)
- ;;=^5063058
- ;;^UTILITY(U,$J,358.3,27459,0)
- ;;=Z49.01^^106^1361^9
- ;;^UTILITY(U,$J,358.3,27459,1,0)
+ ;;^UTILITY(U,$J,358.3,25857,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25857,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,25857,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,25858,0)
+ ;;=F11.129^^107^1225^36
+ ;;^UTILITY(U,$J,358.3,25858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27459,1,3,0)
- ;;=3^Fitting/Adjustment of Extracorporeal Dialysis Catheter
- ;;^UTILITY(U,$J,358.3,27459,1,4,0)
- ;;=4^Z49.01
- ;;^UTILITY(U,$J,358.3,27459,2)
- ;;=^5063056
- ;;^UTILITY(U,$J,358.3,27460,0)
- ;;=Z48.00^^106^1361^6
- ;;^UTILITY(U,$J,358.3,27460,1,0)
+ ;;^UTILITY(U,$J,358.3,25858,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,25858,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,25858,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,25859,0)
+ ;;=F10.21^^107^1225^4
+ ;;^UTILITY(U,$J,358.3,25859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27460,1,3,0)
- ;;=3^Change/Removal of Nonsurgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,27460,1,4,0)
- ;;=4^Z48.00
- ;;^UTILITY(U,$J,358.3,27460,2)
- ;;=^5063033
- ;;^UTILITY(U,$J,358.3,27461,0)
- ;;=N17.0^^106^1362^3
- ;;^UTILITY(U,$J,358.3,27461,1,0)
+ ;;^UTILITY(U,$J,358.3,25859,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,25859,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,25859,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,25860,0)
+ ;;=F12.10^^107^1225^7
+ ;;^UTILITY(U,$J,358.3,25860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27461,1,3,0)
- ;;=3^AKI w/ Tubular Necrosis
- ;;^UTILITY(U,$J,358.3,27461,1,4,0)
- ;;=4^N17.0
- ;;^UTILITY(U,$J,358.3,27461,2)
- ;;=^5015598
- ;;^UTILITY(U,$J,358.3,27462,0)
- ;;=N17.1^^106^1362^1
- ;;^UTILITY(U,$J,358.3,27462,1,0)
+ ;;^UTILITY(U,$J,358.3,25860,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25860,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,25860,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,25861,0)
+ ;;=F12.20^^107^1225^9
+ ;;^UTILITY(U,$J,358.3,25861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27462,1,3,0)
- ;;=3^AKI w/ Acute Cortical Necrosis
- ;;^UTILITY(U,$J,358.3,27462,1,4,0)
- ;;=4^N17.1
- ;;^UTILITY(U,$J,358.3,27462,2)
- ;;=^5015599
- ;;^UTILITY(U,$J,358.3,27463,0)
- ;;=N17.2^^106^1362^2
- ;;^UTILITY(U,$J,358.3,27463,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27463,1,3,0)
- ;;=3^AKI w/ Medullary Necrosis
- ;;^UTILITY(U,$J,358.3,27463,1,4,0)
- ;;=4^N17.2
- ;;^UTILITY(U,$J,358.3,27463,2)
- ;;=^5015600
- ;;^UTILITY(U,$J,358.3,27464,0)
- ;;=N10.^^106^1362^6
+ ;;^UTILITY(U,$J,358.3,25861,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated

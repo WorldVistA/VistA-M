@@ -1,126 +1,126 @@
-IBDEI1QG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29401,1,0)
+ ;;^UTILITY(U,$J,358.3,27696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29401,1,3,0)
- ;;=3^Suprvsn of preg w insufficient antenat care, third trimester
- ;;^UTILITY(U,$J,358.3,29401,1,4,0)
- ;;=4^O09.33
- ;;^UTILITY(U,$J,358.3,29401,2)
- ;;=^5016067
- ;;^UTILITY(U,$J,358.3,29402,0)
- ;;=O09.511^^115^1462^14
- ;;^UTILITY(U,$J,358.3,29402,1,0)
+ ;;^UTILITY(U,$J,358.3,27696,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,27696,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,27696,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,27697,0)
+ ;;=Z91.411^^113^1349^9
+ ;;^UTILITY(U,$J,358.3,27697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29402,1,3,0)
- ;;=3^Suprvsn of elderly primigravida, first trimester
- ;;^UTILITY(U,$J,358.3,29402,1,4,0)
- ;;=4^O09.511
- ;;^UTILITY(U,$J,358.3,29402,2)
- ;;=^5016072
- ;;^UTILITY(U,$J,358.3,29403,0)
- ;;=O09.512^^115^1462^15
- ;;^UTILITY(U,$J,358.3,29403,1,0)
+ ;;^UTILITY(U,$J,358.3,27697,1,3,0)
+ ;;=3^Personal Hx of Adult Psych Abuse
+ ;;^UTILITY(U,$J,358.3,27697,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,27697,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,27698,0)
+ ;;=Z91.410^^113^1349^8
+ ;;^UTILITY(U,$J,358.3,27698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29403,1,3,0)
- ;;=3^Suprvsn of elderly primigravida, second trimester
- ;;^UTILITY(U,$J,358.3,29403,1,4,0)
- ;;=4^O09.512
- ;;^UTILITY(U,$J,358.3,29403,2)
- ;;=^5016073
- ;;^UTILITY(U,$J,358.3,29404,0)
- ;;=O09.513^^115^1462^16
- ;;^UTILITY(U,$J,358.3,29404,1,0)
+ ;;^UTILITY(U,$J,358.3,27698,1,3,0)
+ ;;=3^Personal Hx of Adult Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,27698,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,27698,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,27699,0)
+ ;;=Z75.3^^113^1349^20
+ ;;^UTILITY(U,$J,358.3,27699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29404,1,3,0)
- ;;=3^Suprvsn of elderly primigravida, third trimester
- ;;^UTILITY(U,$J,358.3,29404,1,4,0)
- ;;=4^O09.513
- ;;^UTILITY(U,$J,358.3,29404,2)
- ;;=^5016074
- ;;^UTILITY(U,$J,358.3,29405,0)
- ;;=O09.521^^115^1462^11
- ;;^UTILITY(U,$J,358.3,29405,1,0)
+ ;;^UTILITY(U,$J,358.3,27699,1,3,0)
+ ;;=3^Unavailable/Inaccessible to Health Care Facilities
+ ;;^UTILITY(U,$J,358.3,27699,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,27699,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,27700,0)
+ ;;=Z75.4^^113^1349^21
+ ;;^UTILITY(U,$J,358.3,27700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29405,1,3,0)
- ;;=3^Suprvsn of elderly multigravida, first trimester
- ;;^UTILITY(U,$J,358.3,29405,1,4,0)
- ;;=4^O09.521
- ;;^UTILITY(U,$J,358.3,29405,2)
- ;;=^5016076
- ;;^UTILITY(U,$J,358.3,29406,0)
- ;;=O09.522^^115^1462^12
- ;;^UTILITY(U,$J,358.3,29406,1,0)
+ ;;^UTILITY(U,$J,358.3,27700,1,3,0)
+ ;;=3^Unavailable/Inaccessible to Other Helping Agencies
+ ;;^UTILITY(U,$J,358.3,27700,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,27700,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,27701,0)
+ ;;=Z62.813^^113^1349^13
+ ;;^UTILITY(U,$J,358.3,27701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29406,1,3,0)
- ;;=3^Suprvsn of elderly multigravida, second trimester
- ;;^UTILITY(U,$J,358.3,29406,1,4,0)
- ;;=4^O09.522
- ;;^UTILITY(U,$J,358.3,29406,2)
- ;;=^5016077
- ;;^UTILITY(U,$J,358.3,29407,0)
- ;;=O09.523^^115^1462^13
- ;;^UTILITY(U,$J,358.3,29407,1,0)
+ ;;^UTILITY(U,$J,358.3,27701,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,27701,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,27701,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,27702,0)
+ ;;=Z91.42^^113^1349^14
+ ;;^UTILITY(U,$J,358.3,27702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29407,1,3,0)
- ;;=3^Suprvsn of elderly multigravida, third trimester
- ;;^UTILITY(U,$J,358.3,29407,1,4,0)
- ;;=4^O09.523
- ;;^UTILITY(U,$J,358.3,29407,2)
- ;;=^5016078
- ;;^UTILITY(U,$J,358.3,29408,0)
- ;;=O09.611^^115^1462^47
- ;;^UTILITY(U,$J,358.3,29408,1,0)
+ ;;^UTILITY(U,$J,358.3,27702,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,27702,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,27702,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,27703,0)
+ ;;=Z02.89^^113^1349^1
+ ;;^UTILITY(U,$J,358.3,27703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29408,1,3,0)
- ;;=3^Suprvsn of young primigravida, first trimester
- ;;^UTILITY(U,$J,358.3,29408,1,4,0)
- ;;=4^O09.611
- ;;^UTILITY(U,$J,358.3,29408,2)
- ;;=^5016080
- ;;^UTILITY(U,$J,358.3,29409,0)
- ;;=O09.612^^115^1462^48
- ;;^UTILITY(U,$J,358.3,29409,1,0)
+ ;;^UTILITY(U,$J,358.3,27703,1,3,0)
+ ;;=3^Administrative Exams,Other
+ ;;^UTILITY(U,$J,358.3,27703,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,27703,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,27704,0)
+ ;;=Z70.9^^113^1350^2
+ ;;^UTILITY(U,$J,358.3,27704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29409,1,3,0)
- ;;=3^Suprvsn of young primigravida, second trimester
- ;;^UTILITY(U,$J,358.3,29409,1,4,0)
- ;;=4^O09.612
- ;;^UTILITY(U,$J,358.3,29409,2)
- ;;=^5016081
- ;;^UTILITY(U,$J,358.3,29410,0)
- ;;=O09.613^^115^1462^49
- ;;^UTILITY(U,$J,358.3,29410,1,0)
+ ;;^UTILITY(U,$J,358.3,27704,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,27704,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,27704,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,27705,0)
+ ;;=Z71.9^^113^1350^1
+ ;;^UTILITY(U,$J,358.3,27705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29410,1,3,0)
- ;;=3^Suprvsn of young primigravida, third trimester
- ;;^UTILITY(U,$J,358.3,29410,1,4,0)
- ;;=4^O09.613
- ;;^UTILITY(U,$J,358.3,29410,2)
- ;;=^5016082
- ;;^UTILITY(U,$J,358.3,29411,0)
- ;;=O09.621^^115^1462^44
- ;;^UTILITY(U,$J,358.3,29411,1,0)
+ ;;^UTILITY(U,$J,358.3,27705,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,27705,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,27705,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,27706,0)
+ ;;=Z60.0^^113^1351^2
+ ;;^UTILITY(U,$J,358.3,27706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29411,1,3,0)
- ;;=3^Suprvsn of young multigravida, first trimester
- ;;^UTILITY(U,$J,358.3,29411,1,4,0)
- ;;=4^O09.621
- ;;^UTILITY(U,$J,358.3,29411,2)
- ;;=^5016084
- ;;^UTILITY(U,$J,358.3,29412,0)
- ;;=O09.622^^115^1462^45
- ;;^UTILITY(U,$J,358.3,29412,1,0)
+ ;;^UTILITY(U,$J,358.3,27706,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,27706,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,27706,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,27707,0)
+ ;;=Z60.2^^113^1351^3
+ ;;^UTILITY(U,$J,358.3,27707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29412,1,3,0)
- ;;=3^Suprvsn of young multigravida, second trimester
- ;;^UTILITY(U,$J,358.3,29412,1,4,0)
- ;;=4^O09.622
- ;;^UTILITY(U,$J,358.3,29412,2)
- ;;=^5016085
- ;;^UTILITY(U,$J,358.3,29413,0)
- ;;=O09.623^^115^1462^46
- ;;^UTILITY(U,$J,358.3,29413,1,0)
+ ;;^UTILITY(U,$J,358.3,27707,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,27707,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,27707,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,27708,0)
+ ;;=Z60.3^^113^1351^1
+ ;;^UTILITY(U,$J,358.3,27708,1,0)
  ;;=^358.31IA^4^2

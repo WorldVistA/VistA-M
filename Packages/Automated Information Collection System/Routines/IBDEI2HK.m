@@ -1,134 +1,122 @@
-IBDEI2HK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42162,1,0)
+ ;;^UTILITY(U,$J,358.3,39697,2)
+ ;;=^5002392
+ ;;^UTILITY(U,$J,358.3,39698,0)
+ ;;=D47.Z9^^152^2000^178
+ ;;^UTILITY(U,$J,358.3,39698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42162,1,3,0)
- ;;=3^Impaired Glucose Tolerance (oral)
- ;;^UTILITY(U,$J,358.3,42162,1,4,0)
- ;;=4^R73.02
- ;;^UTILITY(U,$J,358.3,42162,2)
- ;;=^5019562
- ;;^UTILITY(U,$J,358.3,42163,0)
- ;;=R73.09^^159^2016^15
- ;;^UTILITY(U,$J,358.3,42163,1,0)
+ ;;^UTILITY(U,$J,358.3,39698,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
+ ;;^UTILITY(U,$J,358.3,39698,1,4,0)
+ ;;=4^D47.Z9
+ ;;^UTILITY(U,$J,358.3,39698,2)
+ ;;=^5002262
+ ;;^UTILITY(U,$J,358.3,39699,0)
+ ;;=D05.82^^152^2000^35
+ ;;^UTILITY(U,$J,358.3,39699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42163,1,3,0)
- ;;=3^Abnormal Glucose NEC
- ;;^UTILITY(U,$J,358.3,42163,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,42163,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,42164,0)
- ;;=R73.9^^159^2016^84
- ;;^UTILITY(U,$J,358.3,42164,1,0)
+ ;;^UTILITY(U,$J,358.3,39699,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
+ ;;^UTILITY(U,$J,358.3,39699,1,4,0)
+ ;;=4^D05.82
+ ;;^UTILITY(U,$J,358.3,39699,2)
+ ;;=^5001934
+ ;;^UTILITY(U,$J,358.3,39700,0)
+ ;;=D05.81^^152^2000^37
+ ;;^UTILITY(U,$J,358.3,39700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42164,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,42164,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,42164,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,42165,0)
- ;;=R76.11^^159^2016^142
- ;;^UTILITY(U,$J,358.3,42165,1,0)
+ ;;^UTILITY(U,$J,358.3,39700,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,39700,1,4,0)
+ ;;=4^D05.81
+ ;;^UTILITY(U,$J,358.3,39700,2)
+ ;;=^5001933
+ ;;^UTILITY(U,$J,358.3,39701,0)
+ ;;=D05.80^^152^2000^39
+ ;;^UTILITY(U,$J,358.3,39701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42165,1,3,0)
- ;;=3^Positive PPD
- ;;^UTILITY(U,$J,358.3,42165,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,42165,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,42166,0)
- ;;=R79.1^^159^2016^3
- ;;^UTILITY(U,$J,358.3,42166,1,0)
+ ;;^UTILITY(U,$J,358.3,39701,1,3,0)
+ ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,39701,1,4,0)
+ ;;=4^D05.80
+ ;;^UTILITY(U,$J,358.3,39701,2)
+ ;;=^5001932
+ ;;^UTILITY(U,$J,358.3,39702,0)
+ ;;=D56.8^^152^2000^191
+ ;;^UTILITY(U,$J,358.3,39702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42166,1,3,0)
- ;;=3^Abnormal Coagulation Profile
- ;;^UTILITY(U,$J,358.3,42166,1,4,0)
- ;;=4^R79.1
- ;;^UTILITY(U,$J,358.3,42166,2)
- ;;=^5019591
- ;;^UTILITY(U,$J,358.3,42167,0)
- ;;=R82.5^^159^2016^69
- ;;^UTILITY(U,$J,358.3,42167,1,0)
+ ;;^UTILITY(U,$J,358.3,39702,1,3,0)
+ ;;=3^Thalassemias,Other
+ ;;^UTILITY(U,$J,358.3,39702,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,39702,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,39703,0)
+ ;;=C82.89^^152^2000^77
+ ;;^UTILITY(U,$J,358.3,39703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42167,1,3,0)
- ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
- ;;^UTILITY(U,$J,358.3,42167,1,4,0)
- ;;=4^R82.5
- ;;^UTILITY(U,$J,358.3,42167,2)
- ;;=^5019605
- ;;^UTILITY(U,$J,358.3,42168,0)
- ;;=R82.6^^159^2016^26
- ;;^UTILITY(U,$J,358.3,42168,1,0)
+ ;;^UTILITY(U,$J,358.3,39703,1,3,0)
+ ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
+ ;;^UTILITY(U,$J,358.3,39703,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,39703,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,39704,0)
+ ;;=D51.8^^152^2000^198
+ ;;^UTILITY(U,$J,358.3,39704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42168,1,3,0)
- ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
- ;;^UTILITY(U,$J,358.3,42168,1,4,0)
- ;;=4^R82.6
- ;;^UTILITY(U,$J,358.3,42168,2)
- ;;=^5019606
- ;;^UTILITY(U,$J,358.3,42169,0)
- ;;=R82.7^^159^2016^27
- ;;^UTILITY(U,$J,358.3,42169,1,0)
+ ;;^UTILITY(U,$J,358.3,39704,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemias,Other
+ ;;^UTILITY(U,$J,358.3,39704,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,39704,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,39705,0)
+ ;;=I80.9^^152^2000^183
+ ;;^UTILITY(U,$J,358.3,39705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42169,1,3,0)
- ;;=3^Abnormal Urine Microbiological Findings
- ;;^UTILITY(U,$J,358.3,42169,1,4,0)
- ;;=4^R82.7
- ;;^UTILITY(U,$J,358.3,42169,2)
- ;;=^5019607
- ;;^UTILITY(U,$J,358.3,42170,0)
- ;;=R82.8^^159^2016^23
- ;;^UTILITY(U,$J,358.3,42170,1,0)
+ ;;^UTILITY(U,$J,358.3,39705,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39705,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,39705,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,39706,0)
+ ;;=D45.^^152^2000^184
+ ;;^UTILITY(U,$J,358.3,39706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42170,1,3,0)
- ;;=3^Abnormal Urine Cytology/Histology Findings
- ;;^UTILITY(U,$J,358.3,42170,1,4,0)
- ;;=4^R82.8
- ;;^UTILITY(U,$J,358.3,42170,2)
- ;;=^5019608
- ;;^UTILITY(U,$J,358.3,42171,0)
- ;;=R82.90^^159^2016^25
- ;;^UTILITY(U,$J,358.3,42171,1,0)
+ ;;^UTILITY(U,$J,358.3,39706,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,39706,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,39706,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,39707,0)
+ ;;=C77.3^^152^2000^113
+ ;;^UTILITY(U,$J,358.3,39707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42171,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
- ;;^UTILITY(U,$J,358.3,42171,1,4,0)
- ;;=4^R82.90
- ;;^UTILITY(U,$J,358.3,42171,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,42172,0)
- ;;=R82.91^^159^2016^49
- ;;^UTILITY(U,$J,358.3,42172,1,0)
+ ;;^UTILITY(U,$J,358.3,39707,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,39707,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,39707,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,39708,0)
+ ;;=C77.2^^152^2000^129
+ ;;^UTILITY(U,$J,358.3,39708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42172,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,42172,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,42172,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,42173,0)
- ;;=R82.99^^159^2016^24
- ;;^UTILITY(U,$J,358.3,42173,1,0)
+ ;;^UTILITY(U,$J,358.3,39708,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,39708,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,39708,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,39709,0)
+ ;;=C77.1^^152^2000^130
+ ;;^UTILITY(U,$J,358.3,39709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42173,1,3,0)
- ;;=3^Abnormal Urine Findings NEC
- ;;^UTILITY(U,$J,358.3,42173,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,42173,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,42174,0)
- ;;=R89.9^^159^2016^19
- ;;^UTILITY(U,$J,358.3,42174,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42174,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,42174,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,42174,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,42175,0)
- ;;=R90.0^^159^2016^98
+ ;;^UTILITY(U,$J,358.3,39709,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec

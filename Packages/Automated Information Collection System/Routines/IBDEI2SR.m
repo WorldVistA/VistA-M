@@ -1,126 +1,120 @@
-IBDEI2SR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46952,1,4,0)
- ;;=4^I80.13
- ;;^UTILITY(U,$J,358.3,46952,2)
- ;;=^5007827
- ;;^UTILITY(U,$J,358.3,46953,0)
- ;;=I80.213^^206^2316^4
- ;;^UTILITY(U,$J,358.3,46953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46953,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Iliac Vein
- ;;^UTILITY(U,$J,358.3,46953,1,4,0)
- ;;=4^I80.213
- ;;^UTILITY(U,$J,358.3,46953,2)
- ;;=^5007833
- ;;^UTILITY(U,$J,358.3,46954,0)
- ;;=I80.223^^206^2316^7
- ;;^UTILITY(U,$J,358.3,46954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46954,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Popliteal Vein
- ;;^UTILITY(U,$J,358.3,46954,1,4,0)
- ;;=4^I80.223
- ;;^UTILITY(U,$J,358.3,46954,2)
- ;;=^5007837
- ;;^UTILITY(U,$J,358.3,46955,0)
- ;;=I80.233^^206^2316^8
- ;;^UTILITY(U,$J,358.3,46955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46955,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Tibial Vein
- ;;^UTILITY(U,$J,358.3,46955,1,4,0)
- ;;=4^I80.233
- ;;^UTILITY(U,$J,358.3,46955,2)
- ;;=^5007841
- ;;^UTILITY(U,$J,358.3,46956,0)
- ;;=I80.12^^206^2316^9
- ;;^UTILITY(U,$J,358.3,46956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46956,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,46956,1,4,0)
- ;;=4^I80.12
- ;;^UTILITY(U,$J,358.3,46956,2)
- ;;=^5007826
- ;;^UTILITY(U,$J,358.3,46957,0)
- ;;=I80.212^^206^2316^10
- ;;^UTILITY(U,$J,358.3,46957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46957,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Iliac Vein
- ;;^UTILITY(U,$J,358.3,46957,1,4,0)
- ;;=4^I80.212
- ;;^UTILITY(U,$J,358.3,46957,2)
- ;;=^5007832
- ;;^UTILITY(U,$J,358.3,46958,0)
- ;;=I80.222^^206^2316^13
- ;;^UTILITY(U,$J,358.3,46958,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46958,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Popliteal Vein
- ;;^UTILITY(U,$J,358.3,46958,1,4,0)
- ;;=4^I80.222
- ;;^UTILITY(U,$J,358.3,46958,2)
- ;;=^5007836
- ;;^UTILITY(U,$J,358.3,46959,0)
- ;;=I80.232^^206^2316^14
- ;;^UTILITY(U,$J,358.3,46959,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46959,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Tibial Vein
- ;;^UTILITY(U,$J,358.3,46959,1,4,0)
- ;;=4^I80.232
- ;;^UTILITY(U,$J,358.3,46959,2)
- ;;=^5007840
- ;;^UTILITY(U,$J,358.3,46960,0)
- ;;=I80.293^^206^2316^5
- ;;^UTILITY(U,$J,358.3,46960,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46960,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,46960,1,4,0)
- ;;=4^I80.293
- ;;^UTILITY(U,$J,358.3,46960,2)
- ;;=^5007844
- ;;^UTILITY(U,$J,358.3,46961,0)
- ;;=I80.292^^206^2316^11
- ;;^UTILITY(U,$J,358.3,46961,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46961,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,46961,1,4,0)
- ;;=4^I80.292
- ;;^UTILITY(U,$J,358.3,46961,2)
- ;;=^5133623
- ;;^UTILITY(U,$J,358.3,46962,0)
- ;;=I80.291^^206^2316^17
- ;;^UTILITY(U,$J,358.3,46962,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46962,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,46962,1,4,0)
- ;;=4^I80.291
- ;;^UTILITY(U,$J,358.3,46962,2)
- ;;=^5007843
- ;;^UTILITY(U,$J,358.3,46963,0)
- ;;=I80.8^^206^2316^22
- ;;^UTILITY(U,$J,358.3,46963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46963,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis of Other Sites
- ;;^UTILITY(U,$J,358.3,46963,1,4,0)
- ;;=4^I80.8
- ;;^UTILITY(U,$J,358.3,46963,2)
- ;;=^176957
- ;;^UTILITY(U,$J,358.3,46964,0)
- ;;=I80.11^^206^2316^15
- ;;^UTILITY(U,$J,358.3,46964,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46964,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,46964,1,4,0)
- ;;=4^I80.11
+ ;;^UTILITY(U,$J,358.3,44602,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44602,1,2,0)
+ ;;=2^99401
+ ;;^UTILITY(U,$J,358.3,44602,1,3,0)
+ ;;=3^Preventive Counseling, IND 15Min
+ ;;^UTILITY(U,$J,358.3,44603,0)
+ ;;=99402^^166^2213^7^^^^1
+ ;;^UTILITY(U,$J,358.3,44603,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44603,1,2,0)
+ ;;=2^99402
+ ;;^UTILITY(U,$J,358.3,44603,1,3,0)
+ ;;=3^Preventive Counseling, IND 30Min
+ ;;^UTILITY(U,$J,358.3,44604,0)
+ ;;=99403^^166^2213^8^^^^1
+ ;;^UTILITY(U,$J,358.3,44604,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44604,1,2,0)
+ ;;=2^99403
+ ;;^UTILITY(U,$J,358.3,44604,1,3,0)
+ ;;=3^Preventive Counseling, IND 45Min
+ ;;^UTILITY(U,$J,358.3,44605,0)
+ ;;=99404^^166^2213^9^^^^1
+ ;;^UTILITY(U,$J,358.3,44605,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44605,1,2,0)
+ ;;=2^99404
+ ;;^UTILITY(U,$J,358.3,44605,1,3,0)
+ ;;=3^Preventive Counseling, IND 60Min
+ ;;^UTILITY(U,$J,358.3,44606,0)
+ ;;=99411^^166^2213^4^^^^1
+ ;;^UTILITY(U,$J,358.3,44606,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44606,1,2,0)
+ ;;=2^99411
+ ;;^UTILITY(U,$J,358.3,44606,1,3,0)
+ ;;=3^Preventive Counseling, Group 30Min
+ ;;^UTILITY(U,$J,358.3,44607,0)
+ ;;=99412^^166^2213^5^^^^1
+ ;;^UTILITY(U,$J,358.3,44607,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44607,1,2,0)
+ ;;=2^99412
+ ;;^UTILITY(U,$J,358.3,44607,1,3,0)
+ ;;=3^Preventive Counseling, Group 60Min
+ ;;^UTILITY(U,$J,358.3,44608,0)
+ ;;=99366^^166^2213^11^^^^1
+ ;;^UTILITY(U,$J,358.3,44608,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44608,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,44608,1,3,0)
+ ;;=3^Team Conf w/ Pat by HC Pro 30Min
+ ;;^UTILITY(U,$J,358.3,44609,0)
+ ;;=99367^^166^2213^13^^^^1
+ ;;^UTILITY(U,$J,358.3,44609,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44609,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,44609,1,3,0)
+ ;;=3^Team Conf w/o Pat by Phys 30Min
+ ;;^UTILITY(U,$J,358.3,44610,0)
+ ;;=99368^^166^2213^12^^^^1
+ ;;^UTILITY(U,$J,358.3,44610,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44610,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,44610,1,3,0)
+ ;;=3^Team Conf w/o Pat by HC Pro 30Min
+ ;;^UTILITY(U,$J,358.3,44611,0)
+ ;;=90847^^166^2213^2^^^^1
+ ;;^UTILITY(U,$J,358.3,44611,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44611,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,44611,1,3,0)
+ ;;=3^Family Psytx w/ Patient,50 min
+ ;;^UTILITY(U,$J,358.3,44612,0)
+ ;;=99078^^166^2214^1^^^^1
+ ;;^UTILITY(U,$J,358.3,44612,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44612,1,2,0)
+ ;;=2^99078
+ ;;^UTILITY(U,$J,358.3,44612,1,3,0)
+ ;;=3^Group Health Education
+ ;;^UTILITY(U,$J,358.3,44613,0)
+ ;;=98960^^166^2214^2^^^^1
+ ;;^UTILITY(U,$J,358.3,44613,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44613,1,2,0)
+ ;;=2^98960
+ ;;^UTILITY(U,$J,358.3,44613,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,1 Pt,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,44614,0)
+ ;;=98961^^166^2214^3^^^^1
+ ;;^UTILITY(U,$J,358.3,44614,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44614,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,44614,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,2-4 Pt,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,44615,0)
+ ;;=98962^^166^2214^4^^^^1
+ ;;^UTILITY(U,$J,358.3,44615,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44615,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,44615,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,5-8 Pt,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,44616,0)
+ ;;=97535^^166^2215^1^^^^1
+ ;;^UTILITY(U,$J,358.3,44616,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44616,1,2,0)
+ ;;=2^97535

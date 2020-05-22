@@ -1,122 +1,120 @@
-IBDEI1PM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29042,1,4,0)
- ;;=4^O35.4XX3
- ;;^UTILITY(U,$J,358.3,29042,2)
- ;;=^5016806
- ;;^UTILITY(U,$J,358.3,29043,0)
- ;;=O35.4XX4^^115^1455^90
- ;;^UTILITY(U,$J,358.3,29043,1,0)
+ ;;^UTILITY(U,$J,358.3,27318,1,3,0)
+ ;;=3^Cocaine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27318,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,27318,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,27319,0)
+ ;;=F15.180^^110^1324^35
+ ;;^UTILITY(U,$J,358.3,27319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29043,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 4
- ;;^UTILITY(U,$J,358.3,29043,1,4,0)
- ;;=4^O35.4XX4
- ;;^UTILITY(U,$J,358.3,29043,2)
- ;;=^5016807
- ;;^UTILITY(U,$J,358.3,29044,0)
- ;;=O35.4XX5^^115^1455^91
- ;;^UTILITY(U,$J,358.3,29044,1,0)
+ ;;^UTILITY(U,$J,358.3,27319,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27319,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,27319,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,27320,0)
+ ;;=F15.280^^110^1324^36
+ ;;^UTILITY(U,$J,358.3,27320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29044,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 5
- ;;^UTILITY(U,$J,358.3,29044,1,4,0)
- ;;=4^O35.4XX5
- ;;^UTILITY(U,$J,358.3,29044,2)
- ;;=^5016808
- ;;^UTILITY(U,$J,358.3,29045,0)
- ;;=O35.8XX0^^115^1455^140
- ;;^UTILITY(U,$J,358.3,29045,1,0)
+ ;;^UTILITY(U,$J,358.3,27320,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27320,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,27320,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,27321,0)
+ ;;=F15.980^^110^1324^37
+ ;;^UTILITY(U,$J,358.3,27321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29045,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, unsp
- ;;^UTILITY(U,$J,358.3,29045,1,4,0)
- ;;=4^O35.8XX0
- ;;^UTILITY(U,$J,358.3,29045,2)
- ;;=^5016830
- ;;^UTILITY(U,$J,358.3,29046,0)
- ;;=O35.8XX1^^115^1455^141
- ;;^UTILITY(U,$J,358.3,29046,1,0)
+ ;;^UTILITY(U,$J,358.3,27321,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27321,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,27321,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,27322,0)
+ ;;=F15.14^^110^1324^39
+ ;;^UTILITY(U,$J,358.3,27322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29046,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 1
- ;;^UTILITY(U,$J,358.3,29046,1,4,0)
- ;;=4^O35.8XX1
- ;;^UTILITY(U,$J,358.3,29046,2)
- ;;=^5016831
- ;;^UTILITY(U,$J,358.3,29047,0)
- ;;=O35.8XX2^^115^1455^142
- ;;^UTILITY(U,$J,358.3,29047,1,0)
+ ;;^UTILITY(U,$J,358.3,27322,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27322,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,27322,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,27323,0)
+ ;;=F15.24^^110^1324^40
+ ;;^UTILITY(U,$J,358.3,27323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29047,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 2
- ;;^UTILITY(U,$J,358.3,29047,1,4,0)
- ;;=4^O35.8XX2
- ;;^UTILITY(U,$J,358.3,29047,2)
- ;;=^5016832
- ;;^UTILITY(U,$J,358.3,29048,0)
- ;;=O35.8XX3^^115^1455^143
- ;;^UTILITY(U,$J,358.3,29048,1,0)
+ ;;^UTILITY(U,$J,358.3,27323,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27323,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,27323,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,27324,0)
+ ;;=F15.94^^110^1324^41
+ ;;^UTILITY(U,$J,358.3,27324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29048,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 3
- ;;^UTILITY(U,$J,358.3,29048,1,4,0)
- ;;=4^O35.8XX3
- ;;^UTILITY(U,$J,358.3,29048,2)
- ;;=^5016833
- ;;^UTILITY(U,$J,358.3,29049,0)
- ;;=O35.8XX4^^115^1455^144
- ;;^UTILITY(U,$J,358.3,29049,1,0)
+ ;;^UTILITY(U,$J,358.3,27324,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27324,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,27324,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,27325,0)
+ ;;=F15.921^^110^1324^38
+ ;;^UTILITY(U,$J,358.3,27325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29049,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 4
- ;;^UTILITY(U,$J,358.3,29049,1,4,0)
- ;;=4^O35.8XX4
- ;;^UTILITY(U,$J,358.3,29049,2)
- ;;=^5016834
- ;;^UTILITY(U,$J,358.3,29050,0)
- ;;=O35.8XX5^^115^1455^145
- ;;^UTILITY(U,$J,358.3,29050,1,0)
+ ;;^UTILITY(U,$J,358.3,27325,1,3,0)
+ ;;=3^Oth Stimulant Induced Delirium
+ ;;^UTILITY(U,$J,358.3,27325,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,27325,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,27326,0)
+ ;;=F15.188^^110^1324^42
+ ;;^UTILITY(U,$J,358.3,27326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29050,1,3,0)
- ;;=3^Maternal care for oth fetal abnormality and damage, fetus 5
- ;;^UTILITY(U,$J,358.3,29050,1,4,0)
- ;;=4^O35.8XX5
- ;;^UTILITY(U,$J,358.3,29050,2)
- ;;=^5016835
- ;;^UTILITY(U,$J,358.3,29051,0)
- ;;=O35.5XX0^^115^1455^73
- ;;^UTILITY(U,$J,358.3,29051,1,0)
+ ;;^UTILITY(U,$J,358.3,27326,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27326,1,4,0)
+ ;;=4^F15.188
+ ;;^UTILITY(U,$J,358.3,27326,2)
+ ;;=^5133355
+ ;;^UTILITY(U,$J,358.3,27327,0)
+ ;;=F15.288^^110^1324^44
+ ;;^UTILITY(U,$J,358.3,27327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29051,1,3,0)
- ;;=3^Maternal care for damage to fetus by drugs, unsp
- ;;^UTILITY(U,$J,358.3,29051,1,4,0)
- ;;=4^O35.5XX0
- ;;^UTILITY(U,$J,358.3,29051,2)
- ;;=^5016810
- ;;^UTILITY(U,$J,358.3,29052,0)
- ;;=O35.5XX1^^115^1455^74
- ;;^UTILITY(U,$J,358.3,29052,1,0)
+ ;;^UTILITY(U,$J,358.3,27327,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess/Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27327,1,4,0)
+ ;;=4^F15.288
+ ;;^UTILITY(U,$J,358.3,27327,2)
+ ;;=^5133356
+ ;;^UTILITY(U,$J,358.3,27328,0)
+ ;;=F15.988^^110^1324^43
+ ;;^UTILITY(U,$J,358.3,27328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29052,1,3,0)
- ;;=3^Maternal care for damage to fetus by drugs, fetus 1
- ;;^UTILITY(U,$J,358.3,29052,1,4,0)
- ;;=4^O35.5XX1
- ;;^UTILITY(U,$J,358.3,29052,2)
- ;;=^5016811
- ;;^UTILITY(U,$J,358.3,29053,0)
- ;;=O35.5XX2^^115^1455^75
- ;;^UTILITY(U,$J,358.3,29053,1,0)
+ ;;^UTILITY(U,$J,358.3,27328,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27328,1,4,0)
+ ;;=4^F15.988
+ ;;^UTILITY(U,$J,358.3,27328,2)
+ ;;=^5133357
+ ;;^UTILITY(U,$J,358.3,27329,0)
+ ;;=F15.159^^110^1324^45
+ ;;^UTILITY(U,$J,358.3,27329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29053,1,3,0)
- ;;=3^Maternal care for damage to fetus by drugs, fetus 2
- ;;^UTILITY(U,$J,358.3,29053,1,4,0)
- ;;=4^O35.5XX2
- ;;^UTILITY(U,$J,358.3,29053,2)
- ;;=^5016812
- ;;^UTILITY(U,$J,358.3,29054,0)
- ;;=O35.5XX3^^115^1455^76
- ;;^UTILITY(U,$J,358.3,29054,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27329,1,3,0)
+ ;;=3^Oth Stimulant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27329,1,4,0)
+ ;;=4^F15.159
+ ;;^UTILITY(U,$J,358.3,27329,2)
+ ;;=^5003290

@@ -1,126 +1,124 @@
-IBDEI1P4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1P4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28828,1,0)
+ ;;^UTILITY(U,$J,358.3,27102,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,27102,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,27103,0)
+ ;;=F11.188^^110^1309^2
+ ;;^UTILITY(U,$J,358.3,27103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28828,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,28828,1,4,0)
- ;;=4^O31.03X4
- ;;^UTILITY(U,$J,358.3,28828,2)
- ;;=^5016527
- ;;^UTILITY(U,$J,358.3,28829,0)
- ;;=O31.03X5^^115^1452^55
- ;;^UTILITY(U,$J,358.3,28829,1,0)
+ ;;^UTILITY(U,$J,358.3,27103,1,3,0)
+ ;;=3^Opioid Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27103,1,4,0)
+ ;;=4^F11.188
+ ;;^UTILITY(U,$J,358.3,27103,2)
+ ;;=^5003125
+ ;;^UTILITY(U,$J,358.3,27104,0)
+ ;;=F11.288^^110^1309^3
+ ;;^UTILITY(U,$J,358.3,27104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28829,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,28829,1,4,0)
- ;;=4^O31.03X5
- ;;^UTILITY(U,$J,358.3,28829,2)
- ;;=^5016528
- ;;^UTILITY(U,$J,358.3,28830,0)
- ;;=O31.02X0^^115^1452^50
- ;;^UTILITY(U,$J,358.3,28830,1,0)
+ ;;^UTILITY(U,$J,358.3,27104,1,3,0)
+ ;;=3^Opioid Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27104,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,27104,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,27105,0)
+ ;;=F11.988^^110^1309^4
+ ;;^UTILITY(U,$J,358.3,27105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28830,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,28830,1,4,0)
- ;;=4^O31.02X0
- ;;^UTILITY(U,$J,358.3,28830,2)
- ;;=^5016516
- ;;^UTILITY(U,$J,358.3,28831,0)
- ;;=O31.02X1^^115^1452^45
- ;;^UTILITY(U,$J,358.3,28831,1,0)
+ ;;^UTILITY(U,$J,358.3,27105,1,3,0)
+ ;;=3^Opioid Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27105,1,4,0)
+ ;;=4^F11.988
+ ;;^UTILITY(U,$J,358.3,27105,2)
+ ;;=^5003154
+ ;;^UTILITY(U,$J,358.3,27106,0)
+ ;;=F11.921^^110^1309^16
+ ;;^UTILITY(U,$J,358.3,27106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28831,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,28831,1,4,0)
- ;;=4^O31.02X1
- ;;^UTILITY(U,$J,358.3,28831,2)
- ;;=^5016517
- ;;^UTILITY(U,$J,358.3,28832,0)
- ;;=O31.02X2^^115^1452^46
- ;;^UTILITY(U,$J,358.3,28832,1,0)
+ ;;^UTILITY(U,$J,358.3,27106,1,3,0)
+ ;;=3^Opioid Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27106,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,27106,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,27107,0)
+ ;;=F11.94^^110^1309^7
+ ;;^UTILITY(U,$J,358.3,27107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28832,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,28832,1,4,0)
- ;;=4^O31.02X2
- ;;^UTILITY(U,$J,358.3,28832,2)
- ;;=^5016518
- ;;^UTILITY(U,$J,358.3,28833,0)
- ;;=O31.02X3^^115^1452^47
- ;;^UTILITY(U,$J,358.3,28833,1,0)
+ ;;^UTILITY(U,$J,358.3,27107,1,3,0)
+ ;;=3^Opioid Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27107,1,4,0)
+ ;;=4^F11.94
+ ;;^UTILITY(U,$J,358.3,27107,2)
+ ;;=^5003148
+ ;;^UTILITY(U,$J,358.3,27108,0)
+ ;;=F11.181^^110^1309^8
+ ;;^UTILITY(U,$J,358.3,27108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28833,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,28833,1,4,0)
- ;;=4^O31.02X3
- ;;^UTILITY(U,$J,358.3,28833,2)
- ;;=^5016519
- ;;^UTILITY(U,$J,358.3,28834,0)
- ;;=O31.02X4^^115^1452^48
- ;;^UTILITY(U,$J,358.3,28834,1,0)
+ ;;^UTILITY(U,$J,358.3,27108,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysf w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27108,1,4,0)
+ ;;=4^F11.181
+ ;;^UTILITY(U,$J,358.3,27108,2)
+ ;;=^5003123
+ ;;^UTILITY(U,$J,358.3,27109,0)
+ ;;=F11.281^^110^1309^9
+ ;;^UTILITY(U,$J,358.3,27109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28834,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,28834,1,4,0)
- ;;=4^O31.02X4
- ;;^UTILITY(U,$J,358.3,28834,2)
- ;;=^5016520
- ;;^UTILITY(U,$J,358.3,28835,0)
- ;;=O31.02X5^^115^1452^49
- ;;^UTILITY(U,$J,358.3,28835,1,0)
+ ;;^UTILITY(U,$J,358.3,27109,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27109,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,27109,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,27110,0)
+ ;;=F11.981^^110^1309^10
+ ;;^UTILITY(U,$J,358.3,27110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28835,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,28835,1,4,0)
- ;;=4^O31.02X5
- ;;^UTILITY(U,$J,358.3,28835,2)
- ;;=^5016521
- ;;^UTILITY(U,$J,358.3,28836,0)
- ;;=O31.01X0^^115^1452^44
- ;;^UTILITY(U,$J,358.3,28836,1,0)
+ ;;^UTILITY(U,$J,358.3,27110,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27110,1,4,0)
+ ;;=4^F11.981
+ ;;^UTILITY(U,$J,358.3,27110,2)
+ ;;=^5003152
+ ;;^UTILITY(U,$J,358.3,27111,0)
+ ;;=F11.282^^110^1309^12
+ ;;^UTILITY(U,$J,358.3,27111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28836,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,28836,1,4,0)
- ;;=4^O31.01X0
- ;;^UTILITY(U,$J,358.3,28836,2)
- ;;=^5016509
- ;;^UTILITY(U,$J,358.3,28837,0)
- ;;=O31.01X1^^115^1452^39
- ;;^UTILITY(U,$J,358.3,28837,1,0)
+ ;;^UTILITY(U,$J,358.3,27111,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27111,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,27111,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,27112,0)
+ ;;=F11.982^^110^1309^13
+ ;;^UTILITY(U,$J,358.3,27112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28837,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,28837,1,4,0)
- ;;=4^O31.01X1
- ;;^UTILITY(U,$J,358.3,28837,2)
- ;;=^5016510
- ;;^UTILITY(U,$J,358.3,28838,0)
- ;;=O31.01X2^^115^1452^40
- ;;^UTILITY(U,$J,358.3,28838,1,0)
+ ;;^UTILITY(U,$J,358.3,27112,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27112,1,4,0)
+ ;;=4^F11.982
+ ;;^UTILITY(U,$J,358.3,27112,2)
+ ;;=^5003153
+ ;;^UTILITY(U,$J,358.3,27113,0)
+ ;;=F11.121^^110^1309^14
+ ;;^UTILITY(U,$J,358.3,27113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28838,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,28838,1,4,0)
- ;;=4^O31.01X2
- ;;^UTILITY(U,$J,358.3,28838,2)
- ;;=^5016511
- ;;^UTILITY(U,$J,358.3,28839,0)
- ;;=O31.01X3^^115^1452^41
- ;;^UTILITY(U,$J,358.3,28839,1,0)
+ ;;^UTILITY(U,$J,358.3,27113,1,3,0)
+ ;;=3^Opioid Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27113,1,4,0)
+ ;;=4^F11.121
+ ;;^UTILITY(U,$J,358.3,27113,2)
+ ;;=^5003116
+ ;;^UTILITY(U,$J,358.3,27114,0)
+ ;;=F11.221^^110^1309^15
+ ;;^UTILITY(U,$J,358.3,27114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28839,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,28839,1,4,0)
- ;;=4^O31.01X3
- ;;^UTILITY(U,$J,358.3,28839,2)
- ;;=^5016512
- ;;^UTILITY(U,$J,358.3,28840,0)
- ;;=O31.01X4^^115^1452^42
- ;;^UTILITY(U,$J,358.3,28840,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27114,1,3,0)
+ ;;=3^Opioid Intox Delirium w/ Mod/Sev Use D/O

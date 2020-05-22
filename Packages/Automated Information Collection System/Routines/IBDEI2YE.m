@@ -1,122 +1,130 @@
-IBDEI2YE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49521,1,4,0)
- ;;=4^S82.425S
- ;;^UTILITY(U,$J,358.3,49521,2)
- ;;=^5041793
- ;;^UTILITY(U,$J,358.3,49522,0)
- ;;=S82.424S^^216^2418^74
- ;;^UTILITY(U,$J,358.3,49522,1,0)
+ ;;^UTILITY(U,$J,358.3,47136,2)
+ ;;=^5008522
+ ;;^UTILITY(U,$J,358.3,47137,0)
+ ;;=I69.959^^181^2355^19
+ ;;^UTILITY(U,$J,358.3,47137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49522,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,49522,1,4,0)
- ;;=4^S82.424S
- ;;^UTILITY(U,$J,358.3,49522,2)
- ;;=^5041777
- ;;^UTILITY(U,$J,358.3,49523,0)
- ;;=M84.464S^^216^2418^75
- ;;^UTILITY(U,$J,358.3,49523,1,0)
+ ;;^UTILITY(U,$J,358.3,47137,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Unspec Cerebrovascular Disease
+ ;;^UTILITY(U,$J,358.3,47137,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,47137,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,47138,0)
+ ;;=D89.2^^181^2355^30
+ ;;^UTILITY(U,$J,358.3,47138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49523,1,3,0)
- ;;=3^Pathological fracture, left fibula, sequela
- ;;^UTILITY(U,$J,358.3,49523,1,4,0)
- ;;=4^M84.464S
- ;;^UTILITY(U,$J,358.3,49523,2)
- ;;=^5013955
- ;;^UTILITY(U,$J,358.3,49524,0)
- ;;=M84.463S^^216^2418^77
- ;;^UTILITY(U,$J,358.3,49524,1,0)
+ ;;^UTILITY(U,$J,358.3,47138,1,3,0)
+ ;;=3^Hypergammaglobulinemia,Unspec
+ ;;^UTILITY(U,$J,358.3,47138,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,47138,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,47139,0)
+ ;;=B19.10^^181^2355^23
+ ;;^UTILITY(U,$J,358.3,47139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49524,1,3,0)
- ;;=3^Pathological fracture, right fibula, sequela
- ;;^UTILITY(U,$J,358.3,49524,1,4,0)
- ;;=4^M84.463S
- ;;^UTILITY(U,$J,358.3,49524,2)
- ;;=^5013949
- ;;^UTILITY(U,$J,358.3,49525,0)
- ;;=S89.312S^^216^2418^81
- ;;^UTILITY(U,$J,358.3,49525,1,0)
+ ;;^UTILITY(U,$J,358.3,47139,1,3,0)
+ ;;=3^Hepatitis B w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,47139,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,47139,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,47140,0)
+ ;;=B17.10^^181^2355^24
+ ;;^UTILITY(U,$J,358.3,47140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49525,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,49525,1,4,0)
- ;;=4^S89.312S
- ;;^UTILITY(U,$J,358.3,49525,2)
- ;;=^5137372
- ;;^UTILITY(U,$J,358.3,49526,0)
- ;;=S89.311S^^216^2418^82
- ;;^UTILITY(U,$J,358.3,49526,1,0)
+ ;;^UTILITY(U,$J,358.3,47140,1,3,0)
+ ;;=3^Hepatitis C w/o Hepatic Coma,Acute
+ ;;^UTILITY(U,$J,358.3,47140,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,47140,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,47141,0)
+ ;;=B18.2^^181^2355^25
+ ;;^UTILITY(U,$J,358.3,47141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49526,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,49526,1,4,0)
- ;;=4^S89.311S
- ;;^UTILITY(U,$J,358.3,49526,2)
- ;;=^5043822
- ;;^UTILITY(U,$J,358.3,49527,0)
- ;;=S89.212S^^216^2418^85
- ;;^UTILITY(U,$J,358.3,49527,1,0)
+ ;;^UTILITY(U,$J,358.3,47141,1,3,0)
+ ;;=3^Hepatitis C,Chr/Carrier
+ ;;^UTILITY(U,$J,358.3,47141,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,47141,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,47142,0)
+ ;;=E03.9^^181^2355^39
+ ;;^UTILITY(U,$J,358.3,47142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49527,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,49527,1,4,0)
- ;;=4^S89.212S
- ;;^UTILITY(U,$J,358.3,49527,2)
- ;;=^5043780
- ;;^UTILITY(U,$J,358.3,49528,0)
- ;;=S89.211S^^216^2418^86
- ;;^UTILITY(U,$J,358.3,49528,1,0)
+ ;;^UTILITY(U,$J,358.3,47142,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,47142,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,47142,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,47143,0)
+ ;;=E16.2^^181^2355^36
+ ;;^UTILITY(U,$J,358.3,47143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49528,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,49528,1,4,0)
- ;;=4^S89.211S
- ;;^UTILITY(U,$J,358.3,49528,2)
- ;;=^5043774
- ;;^UTILITY(U,$J,358.3,49529,0)
- ;;=S89.322S^^216^2418^89
- ;;^UTILITY(U,$J,358.3,49529,1,0)
+ ;;^UTILITY(U,$J,358.3,47143,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,47143,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,47143,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,47144,0)
+ ;;=E78.1^^181^2355^31
+ ;;^UTILITY(U,$J,358.3,47144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49529,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,49529,1,4,0)
- ;;=4^S89.322S
- ;;^UTILITY(U,$J,358.3,49529,2)
- ;;=^5137378
- ;;^UTILITY(U,$J,358.3,49530,0)
- ;;=S89.221S^^216^2418^93
- ;;^UTILITY(U,$J,358.3,49530,1,0)
+ ;;^UTILITY(U,$J,358.3,47144,1,3,0)
+ ;;=3^Hyperglyceridemia,Pure
+ ;;^UTILITY(U,$J,358.3,47144,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,47144,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,47145,0)
+ ;;=E78.5^^181^2355^34
+ ;;^UTILITY(U,$J,358.3,47145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49530,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,49530,1,4,0)
- ;;=4^S89.221S
- ;;^UTILITY(U,$J,358.3,49530,2)
- ;;=^5043792
- ;;^UTILITY(U,$J,358.3,49531,0)
- ;;=S89.321S^^216^2418^90
- ;;^UTILITY(U,$J,358.3,49531,1,0)
+ ;;^UTILITY(U,$J,358.3,47145,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,47145,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,47145,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,47146,0)
+ ;;=E87.1^^181^2355^35
+ ;;^UTILITY(U,$J,358.3,47146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49531,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,49531,1,4,0)
- ;;=4^S89.321S
- ;;^UTILITY(U,$J,358.3,49531,2)
- ;;=^5043834
- ;;^UTILITY(U,$J,358.3,49532,0)
- ;;=S89.222S^^216^2418^94
- ;;^UTILITY(U,$J,358.3,49532,1,0)
+ ;;^UTILITY(U,$J,358.3,47146,1,3,0)
+ ;;=3^Hypo-osmolatlity & Hyponatremia
+ ;;^UTILITY(U,$J,358.3,47146,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,47146,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,47147,0)
+ ;;=E87.5^^181^2355^32
+ ;;^UTILITY(U,$J,358.3,47147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49532,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,49532,1,4,0)
- ;;=4^S89.222S
- ;;^UTILITY(U,$J,358.3,49532,2)
- ;;=^5043798
- ;;^UTILITY(U,$J,358.3,49533,0)
- ;;=M84.364S^^216^2418^103
- ;;^UTILITY(U,$J,358.3,49533,1,0)
+ ;;^UTILITY(U,$J,358.3,47147,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,47147,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,47147,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,47148,0)
+ ;;=E87.6^^181^2355^37
+ ;;^UTILITY(U,$J,358.3,47148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47148,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,47148,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,47148,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,47149,0)
+ ;;=G81.90^^181^2355^18
+ ;;^UTILITY(U,$J,358.3,47149,1,0)
  ;;=^358.31IA^4^2

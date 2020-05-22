@@ -1,130 +1,118 @@
-IBDEI1ZW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33854,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,33854,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,33855,0)
- ;;=D09.0^^131^1680^39
- ;;^UTILITY(U,$J,358.3,33855,1,0)
+ ;;^UTILITY(U,$J,358.3,31839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33855,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,33855,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,33855,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,33856,0)
- ;;=D06.9^^131^1680^40
- ;;^UTILITY(U,$J,358.3,33856,1,0)
+ ;;^UTILITY(U,$J,358.3,31839,1,3,0)
+ ;;=3^Suprvsn of young primigravida, third trimester
+ ;;^UTILITY(U,$J,358.3,31839,1,4,0)
+ ;;=4^O09.613
+ ;;^UTILITY(U,$J,358.3,31839,2)
+ ;;=^5016082
+ ;;^UTILITY(U,$J,358.3,31840,0)
+ ;;=O09.621^^126^1633^64
+ ;;^UTILITY(U,$J,358.3,31840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33856,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix
- ;;^UTILITY(U,$J,358.3,33856,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,33856,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,33857,0)
- ;;=D06.0^^131^1680^42
- ;;^UTILITY(U,$J,358.3,33857,1,0)
+ ;;^UTILITY(U,$J,358.3,31840,1,3,0)
+ ;;=3^Suprvsn of young multigravida, first trimester
+ ;;^UTILITY(U,$J,358.3,31840,1,4,0)
+ ;;=4^O09.621
+ ;;^UTILITY(U,$J,358.3,31840,2)
+ ;;=^5016084
+ ;;^UTILITY(U,$J,358.3,31841,0)
+ ;;=O09.622^^126^1633^65
+ ;;^UTILITY(U,$J,358.3,31841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33857,1,3,0)
- ;;=3^Carcinoma in Situ of Endocervix
- ;;^UTILITY(U,$J,358.3,33857,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,33857,2)
- ;;=^5001938
- ;;^UTILITY(U,$J,358.3,33858,0)
- ;;=D06.1^^131^1680^43
- ;;^UTILITY(U,$J,358.3,33858,1,0)
+ ;;^UTILITY(U,$J,358.3,31841,1,3,0)
+ ;;=3^Suprvsn of young multigravida, second trimester
+ ;;^UTILITY(U,$J,358.3,31841,1,4,0)
+ ;;=4^O09.622
+ ;;^UTILITY(U,$J,358.3,31841,2)
+ ;;=^5016085
+ ;;^UTILITY(U,$J,358.3,31842,0)
+ ;;=O09.623^^126^1633^66
+ ;;^UTILITY(U,$J,358.3,31842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33858,1,3,0)
- ;;=3^Carcinoma in Situ of Exocervix
- ;;^UTILITY(U,$J,358.3,33858,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,33858,2)
- ;;=^5001939
- ;;^UTILITY(U,$J,358.3,33859,0)
- ;;=D06.7^^131^1680^41
- ;;^UTILITY(U,$J,358.3,33859,1,0)
+ ;;^UTILITY(U,$J,358.3,31842,1,3,0)
+ ;;=3^Suprvsn of young multigravida, third trimester
+ ;;^UTILITY(U,$J,358.3,31842,1,4,0)
+ ;;=4^O09.623
+ ;;^UTILITY(U,$J,358.3,31842,2)
+ ;;=^5016086
+ ;;^UTILITY(U,$J,358.3,31843,0)
+ ;;=O09.811^^126^1633^41
+ ;;^UTILITY(U,$J,358.3,31843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33859,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix,Other Parts
- ;;^UTILITY(U,$J,358.3,33859,1,4,0)
- ;;=4^D06.7
- ;;^UTILITY(U,$J,358.3,33859,2)
- ;;=^5001940
- ;;^UTILITY(U,$J,358.3,33860,0)
- ;;=D04.9^^131^1680^44
- ;;^UTILITY(U,$J,358.3,33860,1,0)
+ ;;^UTILITY(U,$J,358.3,31843,1,3,0)
+ ;;=3^Suprvsn of preg rslt from assisted reprodctv tech, first tri
+ ;;^UTILITY(U,$J,358.3,31843,1,4,0)
+ ;;=4^O09.811
+ ;;^UTILITY(U,$J,358.3,31843,2)
+ ;;=^5016092
+ ;;^UTILITY(U,$J,358.3,31844,0)
+ ;;=O09.812^^126^1633^40
+ ;;^UTILITY(U,$J,358.3,31844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33860,1,3,0)
- ;;=3^Carcinoma in Situ of Skin
- ;;^UTILITY(U,$J,358.3,33860,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,33860,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,33861,0)
- ;;=C91.11^^131^1680^47
- ;;^UTILITY(U,$J,358.3,33861,1,0)
+ ;;^UTILITY(U,$J,358.3,31844,1,3,0)
+ ;;=3^Suprvsn of preg rslt from assist reprodctv tech, second tri
+ ;;^UTILITY(U,$J,358.3,31844,1,4,0)
+ ;;=4^O09.812
+ ;;^UTILITY(U,$J,358.3,31844,2)
+ ;;=^5016093
+ ;;^UTILITY(U,$J,358.3,31845,0)
+ ;;=O09.813^^126^1633^42
+ ;;^UTILITY(U,$J,358.3,31845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33861,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,33861,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,33861,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,33862,0)
- ;;=C91.10^^131^1680^48
- ;;^UTILITY(U,$J,358.3,33862,1,0)
+ ;;^UTILITY(U,$J,358.3,31845,1,3,0)
+ ;;=3^Suprvsn of preg rslt from assisted reprodctv tech, third tri
+ ;;^UTILITY(U,$J,358.3,31845,1,4,0)
+ ;;=4^O09.813
+ ;;^UTILITY(U,$J,358.3,31845,2)
+ ;;=^5016094
+ ;;^UTILITY(U,$J,358.3,31846,0)
+ ;;=O09.821^^126^1633^55
+ ;;^UTILITY(U,$J,358.3,31846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33862,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
- ;;^UTILITY(U,$J,358.3,33862,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,33862,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,33863,0)
- ;;=C92.11^^131^1680^49
- ;;^UTILITY(U,$J,358.3,33863,1,0)
+ ;;^UTILITY(U,$J,358.3,31846,1,3,0)
+ ;;=3^Suprvsn of preg w hx of in utero proc dur prev preg, 1st tri
+ ;;^UTILITY(U,$J,358.3,31846,1,4,0)
+ ;;=4^O09.821
+ ;;^UTILITY(U,$J,358.3,31846,2)
+ ;;=^5016096
+ ;;^UTILITY(U,$J,358.3,31847,0)
+ ;;=O09.822^^126^1633^56
+ ;;^UTILITY(U,$J,358.3,31847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33863,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
- ;;^UTILITY(U,$J,358.3,33863,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,33863,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,33864,0)
- ;;=C92.10^^131^1680^50
- ;;^UTILITY(U,$J,358.3,33864,1,0)
+ ;;^UTILITY(U,$J,358.3,31847,1,3,0)
+ ;;=3^Suprvsn of preg w hx of in utero proc dur prev preg, 2nd tri
+ ;;^UTILITY(U,$J,358.3,31847,1,4,0)
+ ;;=4^O09.822
+ ;;^UTILITY(U,$J,358.3,31847,2)
+ ;;=^5016097
+ ;;^UTILITY(U,$J,358.3,31848,0)
+ ;;=O09.823^^126^1633^57
+ ;;^UTILITY(U,$J,358.3,31848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33864,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
- ;;^UTILITY(U,$J,358.3,33864,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,33864,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,33865,0)
- ;;=D47.1^^131^1680^51
- ;;^UTILITY(U,$J,358.3,33865,1,0)
+ ;;^UTILITY(U,$J,358.3,31848,1,3,0)
+ ;;=3^Suprvsn of preg w hx of in utero proc dur prev preg, 3rd tri
+ ;;^UTILITY(U,$J,358.3,31848,1,4,0)
+ ;;=4^O09.823
+ ;;^UTILITY(U,$J,358.3,31848,2)
+ ;;=^5016098
+ ;;^UTILITY(U,$J,358.3,31849,0)
+ ;;=O36.80X0^^126^1633^20
+ ;;^UTILITY(U,$J,358.3,31849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33865,1,3,0)
- ;;=3^Chronic Myeloproliferative Disease
- ;;^UTILITY(U,$J,358.3,33865,1,4,0)
- ;;=4^D47.1
- ;;^UTILITY(U,$J,358.3,33865,2)
- ;;=^5002256
- ;;^UTILITY(U,$J,358.3,33866,0)
- ;;=C82.69^^131^1680^52
- ;;^UTILITY(U,$J,358.3,33866,1,0)
+ ;;^UTILITY(U,$J,358.3,31849,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, unsp
+ ;;^UTILITY(U,$J,358.3,31849,1,4,0)
+ ;;=4^O36.80X0
+ ;;^UTILITY(U,$J,358.3,31849,2)
+ ;;=^5017082
+ ;;^UTILITY(U,$J,358.3,31850,0)
+ ;;=O36.80X1^^126^1633^21
+ ;;^UTILITY(U,$J,358.3,31850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33866,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,33866,1,4,0)
- ;;=4^C82.69
- ;;^UTILITY(U,$J,358.3,33866,2)
- ;;=^5001530
- ;;^UTILITY(U,$J,358.3,33867,0)
- ;;=C82.60^^131^1680^53
+ ;;^UTILITY(U,$J,358.3,31850,1,3,0)
+ ;;=3^Pregnancy with inconclusive fetal viability, fetus 1

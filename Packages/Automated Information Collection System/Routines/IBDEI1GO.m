@@ -1,130 +1,124 @@
-IBDEI1GO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24823,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,24824,0)
- ;;=F52.9^^93^1114^8
- ;;^UTILITY(U,$J,358.3,24824,1,0)
+ ;;^UTILITY(U,$J,358.3,23369,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,23369,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,23370,0)
+ ;;=C81.99^^105^1173^21
+ ;;^UTILITY(U,$J,358.3,23370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24824,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,24824,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,24824,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,24825,0)
- ;;=G47.09^^93^1115^14
- ;;^UTILITY(U,$J,358.3,24825,1,0)
+ ;;^UTILITY(U,$J,358.3,23370,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites,Unspec
+ ;;^UTILITY(U,$J,358.3,23370,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,23370,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,23371,0)
+ ;;=C85.80^^105^1173^71
+ ;;^UTILITY(U,$J,358.3,23371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24825,1,3,0)
- ;;=3^Insomnia,Other
- ;;^UTILITY(U,$J,358.3,24825,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,24825,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,24826,0)
- ;;=G47.00^^93^1115^15
- ;;^UTILITY(U,$J,358.3,24826,1,0)
+ ;;^UTILITY(U,$J,358.3,23371,1,3,0)
+ ;;=3^Non-Hodgkin Lymphoma,Unspec Site NEC
+ ;;^UTILITY(U,$J,358.3,23371,1,4,0)
+ ;;=4^C85.80
+ ;;^UTILITY(U,$J,358.3,23371,2)
+ ;;=^5001721
+ ;;^UTILITY(U,$J,358.3,23372,0)
+ ;;=C85.89^^105^1173^70
+ ;;^UTILITY(U,$J,358.3,23372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24826,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,24826,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,24826,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,24827,0)
- ;;=G47.10^^93^1115^12
- ;;^UTILITY(U,$J,358.3,24827,1,0)
+ ;;^UTILITY(U,$J,358.3,23372,1,3,0)
+ ;;=3^Non-Hodgkin Lymphoma,Extranodal/Solid Organ Sites NEC
+ ;;^UTILITY(U,$J,358.3,23372,1,4,0)
+ ;;=4^C85.89
+ ;;^UTILITY(U,$J,358.3,23372,2)
+ ;;=^5001730
+ ;;^UTILITY(U,$J,358.3,23373,0)
+ ;;=C90.01^^105^1173^65
+ ;;^UTILITY(U,$J,358.3,23373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24827,1,3,0)
- ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,24827,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,24827,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,24828,0)
- ;;=G47.419^^93^1115^17
- ;;^UTILITY(U,$J,358.3,24828,1,0)
+ ;;^UTILITY(U,$J,358.3,23373,1,3,0)
+ ;;=3^Multiple Myeloma in Remission
+ ;;^UTILITY(U,$J,358.3,23373,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,23373,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,23374,0)
+ ;;=C91.90^^105^1173^32
+ ;;^UTILITY(U,$J,358.3,23374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24828,1,3,0)
- ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,24828,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,24828,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,24829,0)
- ;;=G47.33^^93^1115^21
- ;;^UTILITY(U,$J,358.3,24829,1,0)
+ ;;^UTILITY(U,$J,358.3,23374,1,3,0)
+ ;;=3^Lymphoid Leukemia,Unspec
+ ;;^UTILITY(U,$J,358.3,23374,1,4,0)
+ ;;=4^C91.90
+ ;;^UTILITY(U,$J,358.3,23374,2)
+ ;;=^5001780
+ ;;^UTILITY(U,$J,358.3,23375,0)
+ ;;=C92.90^^105^1173^66
+ ;;^UTILITY(U,$J,358.3,23375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24829,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,24829,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,24829,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,24830,0)
- ;;=G47.31^^93^1115^1
- ;;^UTILITY(U,$J,358.3,24830,1,0)
+ ;;^UTILITY(U,$J,358.3,23375,1,3,0)
+ ;;=3^Myeloid Leukemia,Unspec
+ ;;^UTILITY(U,$J,358.3,23375,1,4,0)
+ ;;=4^C92.90
+ ;;^UTILITY(U,$J,358.3,23375,2)
+ ;;=^5001810
+ ;;^UTILITY(U,$J,358.3,23376,0)
+ ;;=D04.9^^105^1173^9
+ ;;^UTILITY(U,$J,358.3,23376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24830,1,3,0)
- ;;=3^Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,24830,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,24830,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,24831,0)
- ;;=G47.21^^93^1115^5
- ;;^UTILITY(U,$J,358.3,24831,1,0)
+ ;;^UTILITY(U,$J,358.3,23376,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,23376,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,23376,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,23377,0)
+ ;;=D05.91^^105^1173^5
+ ;;^UTILITY(U,$J,358.3,23377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24831,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,24831,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,24831,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,24832,0)
- ;;=G47.22^^93^1115^4
- ;;^UTILITY(U,$J,358.3,24832,1,0)
+ ;;^UTILITY(U,$J,358.3,23377,1,3,0)
+ ;;=3^Carcinoma in Situ of Breast,Right,Unspec
+ ;;^UTILITY(U,$J,358.3,23377,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,23377,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,23378,0)
+ ;;=D05.92^^105^1173^3
+ ;;^UTILITY(U,$J,358.3,23378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24832,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,24832,1,4,0)
- ;;=4^G47.22
- ;;^UTILITY(U,$J,358.3,24832,2)
- ;;=^332770
- ;;^UTILITY(U,$J,358.3,24833,0)
- ;;=G47.23^^93^1115^6
- ;;^UTILITY(U,$J,358.3,24833,1,0)
+ ;;^UTILITY(U,$J,358.3,23378,1,3,0)
+ ;;=3^Carcinoma in Situ of Breast,Left,Unspec
+ ;;^UTILITY(U,$J,358.3,23378,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,23378,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,23379,0)
+ ;;=D05.01^^105^1173^29
+ ;;^UTILITY(U,$J,358.3,23379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24833,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,24833,1,4,0)
- ;;=4^G47.23
- ;;^UTILITY(U,$J,358.3,24833,2)
- ;;=^5003975
- ;;^UTILITY(U,$J,358.3,24834,0)
- ;;=G47.24^^93^1115^7
- ;;^UTILITY(U,$J,358.3,24834,1,0)
+ ;;^UTILITY(U,$J,358.3,23379,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ of Breast,Right
+ ;;^UTILITY(U,$J,358.3,23379,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,23379,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,23380,0)
+ ;;=D05.02^^105^1173^28
+ ;;^UTILITY(U,$J,358.3,23380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24834,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,24834,1,4,0)
- ;;=4^G47.24
- ;;^UTILITY(U,$J,358.3,24834,2)
- ;;=^5003976
- ;;^UTILITY(U,$J,358.3,24835,0)
- ;;=G47.26^^93^1115^8
- ;;^UTILITY(U,$J,358.3,24835,1,0)
+ ;;^UTILITY(U,$J,358.3,23380,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ of Breast,Left
+ ;;^UTILITY(U,$J,358.3,23380,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,23380,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,23381,0)
+ ;;=D05.11^^105^1173^23
+ ;;^UTILITY(U,$J,358.3,23381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24835,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
- ;;^UTILITY(U,$J,358.3,24835,1,4,0)
- ;;=4^G47.26
- ;;^UTILITY(U,$J,358.3,24835,2)
- ;;=^332774
- ;;^UTILITY(U,$J,358.3,24836,0)
- ;;=G47.20^^93^1115^9
- ;;^UTILITY(U,$J,358.3,24836,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23381,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ of Breast,Right

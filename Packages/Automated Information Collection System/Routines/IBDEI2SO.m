@@ -1,134 +1,120 @@
-IBDEI2SO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46913,1,4,0)
- ;;=4^I63.531
- ;;^UTILITY(U,$J,358.3,46913,2)
- ;;=^5007348
- ;;^UTILITY(U,$J,358.3,46914,0)
- ;;=I63.541^^206^2314^10
- ;;^UTILITY(U,$J,358.3,46914,1,0)
+ ;;^UTILITY(U,$J,358.3,44559,1,4,0)
+ ;;=4^T38.3X6A
+ ;;^UTILITY(U,$J,358.3,44559,2)
+ ;;=^5049649
+ ;;^UTILITY(U,$J,358.3,44560,0)
+ ;;=T38.3X6S^^164^2208^4
+ ;;^UTILITY(U,$J,358.3,44560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46914,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Cerebellar Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46914,1,4,0)
- ;;=4^I63.541
- ;;^UTILITY(U,$J,358.3,46914,2)
- ;;=^5007350
- ;;^UTILITY(U,$J,358.3,46915,0)
- ;;=G45.9^^206^2314^23
- ;;^UTILITY(U,$J,358.3,46915,1,0)
+ ;;^UTILITY(U,$J,358.3,44560,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,44560,1,4,0)
+ ;;=4^T38.3X6S
+ ;;^UTILITY(U,$J,358.3,44560,2)
+ ;;=^5049651
+ ;;^UTILITY(U,$J,358.3,44561,0)
+ ;;=T38.3X6D^^164^2208^5
+ ;;^UTILITY(U,$J,358.3,44561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46915,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,46915,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,46915,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,46916,0)
- ;;=Z86.73^^206^2314^16
- ;;^UTILITY(U,$J,358.3,46916,1,0)
+ ;;^UTILITY(U,$J,358.3,44561,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,44561,1,4,0)
+ ;;=4^T38.3X6D
+ ;;^UTILITY(U,$J,358.3,44561,2)
+ ;;=^5049650
+ ;;^UTILITY(U,$J,358.3,44562,0)
+ ;;=T46.5X6A^^164^2208^9
+ ;;^UTILITY(U,$J,358.3,44562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46916,1,3,0)
- ;;=3^Hx of TIA and Cerebral Infarction w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,46916,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,46916,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,46917,0)
- ;;=G82.50^^206^2314^21
- ;;^UTILITY(U,$J,358.3,46917,1,0)
+ ;;^UTILITY(U,$J,358.3,44562,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44562,1,4,0)
+ ;;=4^T46.5X6A
+ ;;^UTILITY(U,$J,358.3,44562,2)
+ ;;=^5051353
+ ;;^UTILITY(U,$J,358.3,44563,0)
+ ;;=T46.5X6D^^164^2208^10
+ ;;^UTILITY(U,$J,358.3,44563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46917,1,3,0)
- ;;=3^Quadriplegia,Unspec
- ;;^UTILITY(U,$J,358.3,46917,1,4,0)
- ;;=4^G82.50
- ;;^UTILITY(U,$J,358.3,46917,2)
- ;;=^5004128
- ;;^UTILITY(U,$J,358.3,46918,0)
- ;;=R76.11^^206^2315^1
- ;;^UTILITY(U,$J,358.3,46918,1,0)
+ ;;^UTILITY(U,$J,358.3,44563,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44563,1,4,0)
+ ;;=4^T46.5X6D
+ ;;^UTILITY(U,$J,358.3,44563,2)
+ ;;=^5051354
+ ;;^UTILITY(U,$J,358.3,44564,0)
+ ;;=T46.5X6S^^164^2208^11
+ ;;^UTILITY(U,$J,358.3,44564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46918,1,3,0)
- ;;=3^Abnormal Reaction to Tuberculin Test
- ;;^UTILITY(U,$J,358.3,46918,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,46918,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,46919,0)
- ;;=J47.1^^206^2315^7
- ;;^UTILITY(U,$J,358.3,46919,1,0)
+ ;;^UTILITY(U,$J,358.3,44564,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,44564,1,4,0)
+ ;;=4^T46.5X6S
+ ;;^UTILITY(U,$J,358.3,44564,2)
+ ;;=^5051355
+ ;;^UTILITY(U,$J,358.3,44565,0)
+ ;;=T43.206A^^164^2208^6
+ ;;^UTILITY(U,$J,358.3,44565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46919,1,3,0)
- ;;=3^Bronchiectasis w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,46919,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,46919,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,46920,0)
- ;;=J47.0^^206^2315^6
- ;;^UTILITY(U,$J,358.3,46920,1,0)
+ ;;^UTILITY(U,$J,358.3,44565,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44565,1,4,0)
+ ;;=4^T43.206A
+ ;;^UTILITY(U,$J,358.3,44565,2)
+ ;;=^5050543
+ ;;^UTILITY(U,$J,358.3,44566,0)
+ ;;=T43.206S^^164^2208^7
+ ;;^UTILITY(U,$J,358.3,44566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46920,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,46920,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,46920,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,46921,0)
- ;;=J47.9^^206^2315^8
- ;;^UTILITY(U,$J,358.3,46921,1,0)
+ ;;^UTILITY(U,$J,358.3,44566,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Sequela
+ ;;^UTILITY(U,$J,358.3,44566,1,4,0)
+ ;;=4^T43.206S
+ ;;^UTILITY(U,$J,358.3,44566,2)
+ ;;=^5050545
+ ;;^UTILITY(U,$J,358.3,44567,0)
+ ;;=T43.206D^^164^2208^8
+ ;;^UTILITY(U,$J,358.3,44567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46921,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,46921,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,46921,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,46922,0)
- ;;=J43.2^^206^2315^12
- ;;^UTILITY(U,$J,358.3,46922,1,0)
+ ;;^UTILITY(U,$J,358.3,44567,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44567,1,4,0)
+ ;;=4^T43.206D
+ ;;^UTILITY(U,$J,358.3,44567,2)
+ ;;=^5050544
+ ;;^UTILITY(U,$J,358.3,44568,0)
+ ;;=T43.506A^^164^2208^12
+ ;;^UTILITY(U,$J,358.3,44568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46922,1,3,0)
- ;;=3^Centrilobular Emphysema
- ;;^UTILITY(U,$J,358.3,46922,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,46922,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,46923,0)
- ;;=J44.1^^206^2315^10
- ;;^UTILITY(U,$J,358.3,46923,1,0)
+ ;;^UTILITY(U,$J,358.3,44568,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44568,1,4,0)
+ ;;=4^T43.506A
+ ;;^UTILITY(U,$J,358.3,44568,2)
+ ;;=^5050651
+ ;;^UTILITY(U,$J,358.3,44569,0)
+ ;;=T43.506S^^164^2208^13
+ ;;^UTILITY(U,$J,358.3,44569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46923,1,3,0)
- ;;=3^COPD w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,46923,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,46923,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,46924,0)
- ;;=J44.0^^206^2315^9
- ;;^UTILITY(U,$J,358.3,46924,1,0)
+ ;;^UTILITY(U,$J,358.3,44569,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Sequela
+ ;;^UTILITY(U,$J,358.3,44569,1,4,0)
+ ;;=4^T43.506S
+ ;;^UTILITY(U,$J,358.3,44569,2)
+ ;;=^5050653
+ ;;^UTILITY(U,$J,358.3,44570,0)
+ ;;=T43.506D^^164^2208^14
+ ;;^UTILITY(U,$J,358.3,44570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46924,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,46924,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,46924,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,46925,0)
- ;;=J44.9^^206^2315^11
- ;;^UTILITY(U,$J,358.3,46925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46925,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,46925,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,46925,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,46926,0)
- ;;=J45.991^^206^2315^14
- ;;^UTILITY(U,$J,358.3,46926,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46926,1,3,0)
- ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,44570,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44570,1,4,0)
+ ;;=4^T43.506D
+ ;;^UTILITY(U,$J,358.3,44570,2)
+ ;;=^5050652
+ ;;^UTILITY(U,$J,358.3,44571,0)
+ ;;=99201^^165^2209^1

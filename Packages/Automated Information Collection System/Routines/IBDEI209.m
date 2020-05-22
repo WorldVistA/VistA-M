@@ -1,130 +1,128 @@
-IBDEI209 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI209 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34021,1,4,0)
- ;;=4^C80.1
- ;;^UTILITY(U,$J,358.3,34021,2)
- ;;=^5001389
- ;;^UTILITY(U,$J,358.3,34022,0)
- ;;=C80.0^^131^1680^164
- ;;^UTILITY(U,$J,358.3,34022,1,0)
+ ;;^UTILITY(U,$J,358.3,32001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34022,1,3,0)
- ;;=3^Malig Neop,Unspec Primary or Secondary
- ;;^UTILITY(U,$J,358.3,34022,1,4,0)
- ;;=4^C80.0
- ;;^UTILITY(U,$J,358.3,34022,2)
- ;;=^5001388
- ;;^UTILITY(U,$J,358.3,34023,0)
- ;;=Z85.818^^131^1681^92
- ;;^UTILITY(U,$J,358.3,34023,1,0)
+ ;;^UTILITY(U,$J,358.3,32001,1,3,0)
+ ;;=3^Ovarian Pregnancy,Left w/o Intrauterine Pregnancy
+ ;;^UTILITY(U,$J,358.3,32001,1,4,0)
+ ;;=4^O00.202
+ ;;^UTILITY(U,$J,358.3,32001,2)
+ ;;=^5151543
+ ;;^UTILITY(U,$J,358.3,32002,0)
+ ;;=O00.111^^126^1639^18
+ ;;^UTILITY(U,$J,358.3,32002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34023,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,34023,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,34023,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,34024,0)
- ;;=Z85.819^^131^1681^93
- ;;^UTILITY(U,$J,358.3,34024,1,0)
+ ;;^UTILITY(U,$J,358.3,32002,1,3,0)
+ ;;=3^Tubal Pregnancy,Right w/ Intrauterine Pregnancy
+ ;;^UTILITY(U,$J,358.3,32002,1,4,0)
+ ;;=4^O00.111
+ ;;^UTILITY(U,$J,358.3,32002,2)
+ ;;=^5151539
+ ;;^UTILITY(U,$J,358.3,32003,0)
+ ;;=O00.112^^126^1639^16
+ ;;^UTILITY(U,$J,358.3,32003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34024,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,34024,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,34024,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,34025,0)
- ;;=Z85.01^^131^1681^88
- ;;^UTILITY(U,$J,358.3,34025,1,0)
+ ;;^UTILITY(U,$J,358.3,32003,1,3,0)
+ ;;=3^Tubal Pregnancy,Left w/ Intrauterine Pregnancy
+ ;;^UTILITY(U,$J,358.3,32003,1,4,0)
+ ;;=4^O00.112
+ ;;^UTILITY(U,$J,358.3,32003,2)
+ ;;=^5151540
+ ;;^UTILITY(U,$J,358.3,32004,0)
+ ;;=O00.101^^126^1639^19
+ ;;^UTILITY(U,$J,358.3,32004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34025,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,34025,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,34025,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,34026,0)
- ;;=Z85.028^^131^1681^99
- ;;^UTILITY(U,$J,358.3,34026,1,0)
+ ;;^UTILITY(U,$J,358.3,32004,1,3,0)
+ ;;=3^Tubal Pregnancy,Right w/o Intrauterine Pregnancy
+ ;;^UTILITY(U,$J,358.3,32004,1,4,0)
+ ;;=4^O00.101
+ ;;^UTILITY(U,$J,358.3,32004,2)
+ ;;=^5151536
+ ;;^UTILITY(U,$J,358.3,32005,0)
+ ;;=O00.102^^126^1639^17
+ ;;^UTILITY(U,$J,358.3,32005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34026,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
- ;;^UTILITY(U,$J,358.3,34026,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,34026,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,34027,0)
- ;;=Z85.038^^131^1681^90
- ;;^UTILITY(U,$J,358.3,34027,1,0)
+ ;;^UTILITY(U,$J,358.3,32005,1,3,0)
+ ;;=3^Tubal Pregnancy,Left w/o Intrauterine Pregnancy
+ ;;^UTILITY(U,$J,358.3,32005,1,4,0)
+ ;;=4^O00.102
+ ;;^UTILITY(U,$J,358.3,32005,2)
+ ;;=^5151537
+ ;;^UTILITY(U,$J,358.3,32006,0)
+ ;;=R10.30^^126^1640^1
+ ;;^UTILITY(U,$J,358.3,32006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34027,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,34027,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,34027,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,34028,0)
- ;;=Z85.048^^131^1681^97
- ;;^UTILITY(U,$J,358.3,34028,1,0)
+ ;;^UTILITY(U,$J,358.3,32006,1,3,0)
+ ;;=3^Abdominal Pain,Lower,Unspec
+ ;;^UTILITY(U,$J,358.3,32006,1,4,0)
+ ;;=4^R10.30
+ ;;^UTILITY(U,$J,358.3,32006,2)
+ ;;=^5019210
+ ;;^UTILITY(U,$J,358.3,32007,0)
+ ;;=R10.9^^126^1640^2
+ ;;^UTILITY(U,$J,358.3,32007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34028,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,34028,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,34028,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,34029,0)
- ;;=Z85.118^^131^1681^86
- ;;^UTILITY(U,$J,358.3,34029,1,0)
+ ;;^UTILITY(U,$J,358.3,32007,1,3,0)
+ ;;=3^Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,32007,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,32007,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,32008,0)
+ ;;=R10.2^^126^1640^10
+ ;;^UTILITY(U,$J,358.3,32008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34029,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,34029,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,34029,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,34030,0)
- ;;=Z85.21^^131^1681^91
- ;;^UTILITY(U,$J,358.3,34030,1,0)
+ ;;^UTILITY(U,$J,358.3,32008,1,3,0)
+ ;;=3^Pelvic Pain,Chronic
+ ;;^UTILITY(U,$J,358.3,32008,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,32008,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,32009,0)
+ ;;=N94.6^^126^1640^3
+ ;;^UTILITY(U,$J,358.3,32009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34030,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,34030,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,34030,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,34031,0)
- ;;=Z85.3^^131^1681^85
- ;;^UTILITY(U,$J,358.3,34031,1,0)
+ ;;^UTILITY(U,$J,358.3,32009,1,3,0)
+ ;;=3^Dysmenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,32009,1,4,0)
+ ;;=4^N94.6
+ ;;^UTILITY(U,$J,358.3,32009,2)
+ ;;=^5015922
+ ;;^UTILITY(U,$J,358.3,32010,0)
+ ;;=N80.9^^126^1640^5
+ ;;^UTILITY(U,$J,358.3,32010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34031,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,34031,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,34031,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,34032,0)
- ;;=Z85.41^^131^1681^87
- ;;^UTILITY(U,$J,358.3,34032,1,0)
+ ;;^UTILITY(U,$J,358.3,32010,1,3,0)
+ ;;=3^Endometriosis,Unspec
+ ;;^UTILITY(U,$J,358.3,32010,1,4,0)
+ ;;=4^N80.9
+ ;;^UTILITY(U,$J,358.3,32010,2)
+ ;;=^5015837
+ ;;^UTILITY(U,$J,358.3,32011,0)
+ ;;=N94.0^^126^1640^6
+ ;;^UTILITY(U,$J,358.3,32011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34032,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,34032,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,34032,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,34033,0)
- ;;=Z85.43^^131^1681^95
- ;;^UTILITY(U,$J,358.3,34033,1,0)
+ ;;^UTILITY(U,$J,358.3,32011,1,3,0)
+ ;;=3^Mittelschmerz
+ ;;^UTILITY(U,$J,358.3,32011,1,4,0)
+ ;;=4^N94.0
+ ;;^UTILITY(U,$J,358.3,32011,2)
+ ;;=^265259
+ ;;^UTILITY(U,$J,358.3,32012,0)
+ ;;=N73.6^^126^1640^8
+ ;;^UTILITY(U,$J,358.3,32012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34033,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,34033,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,34033,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,34034,0)
- ;;=Z85.46^^131^1681^96
+ ;;^UTILITY(U,$J,358.3,32012,1,3,0)
+ ;;=3^Pelvic Adhesions
+ ;;^UTILITY(U,$J,358.3,32012,1,4,0)
+ ;;=4^N73.6
+ ;;^UTILITY(U,$J,358.3,32012,2)
+ ;;=^5015818
+ ;;^UTILITY(U,$J,358.3,32013,0)
+ ;;=N94.89^^126^1640^9
+ ;;^UTILITY(U,$J,358.3,32013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32013,1,3,0)
+ ;;=3^Pelvic Congestion

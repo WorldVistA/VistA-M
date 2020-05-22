@@ -1,136 +1,120 @@
-IBDEI2CH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39754,1,3,0)
- ;;=3^Entropion Left Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,39754,1,4,0)
- ;;=4^H02.005
- ;;^UTILITY(U,$J,358.3,39754,2)
- ;;=^5133396
- ;;^UTILITY(U,$J,358.3,39755,0)
- ;;=H02.004^^153^1928^38
- ;;^UTILITY(U,$J,358.3,39755,1,0)
+ ;;^UTILITY(U,$J,358.3,37454,1,4,0)
+ ;;=4^S82.855A
+ ;;^UTILITY(U,$J,358.3,37454,2)
+ ;;=^5042639
+ ;;^UTILITY(U,$J,358.3,37455,0)
+ ;;=S92.065A^^146^1917^364
+ ;;^UTILITY(U,$J,358.3,37455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39755,1,3,0)
- ;;=3^Entropion Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,39755,1,4,0)
- ;;=4^H02.004
- ;;^UTILITY(U,$J,358.3,39755,2)
- ;;=^5004276
- ;;^UTILITY(U,$J,358.3,39756,0)
- ;;=H02.002^^153^1928^39
- ;;^UTILITY(U,$J,358.3,39756,1,0)
+ ;;^UTILITY(U,$J,358.3,37455,1,3,0)
+ ;;=3^Nondisp intraarticular fx of lft calcaneus, init
+ ;;^UTILITY(U,$J,358.3,37455,1,4,0)
+ ;;=4^S92.065A
+ ;;^UTILITY(U,$J,358.3,37455,2)
+ ;;=^5044577
+ ;;^UTILITY(U,$J,358.3,37456,0)
+ ;;=S92.064A^^146^1917^365
+ ;;^UTILITY(U,$J,358.3,37456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39756,1,3,0)
- ;;=3^Entropion Right Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,39756,1,4,0)
- ;;=4^H02.002
- ;;^UTILITY(U,$J,358.3,39756,2)
- ;;=^5133394
- ;;^UTILITY(U,$J,358.3,39757,0)
- ;;=H02.001^^153^1928^40
- ;;^UTILITY(U,$J,358.3,39757,1,0)
+ ;;^UTILITY(U,$J,358.3,37456,1,3,0)
+ ;;=3^Nondisp intraarticular fx of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,37456,1,4,0)
+ ;;=4^S92.064A
+ ;;^UTILITY(U,$J,358.3,37456,2)
+ ;;=^5044570
+ ;;^UTILITY(U,$J,358.3,37457,0)
+ ;;=S92.061A^^146^1917^138
+ ;;^UTILITY(U,$J,358.3,37457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39757,1,3,0)
- ;;=3^Entropion Right Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,39757,1,4,0)
- ;;=4^H02.001
- ;;^UTILITY(U,$J,358.3,39757,2)
- ;;=^5004274
- ;;^UTILITY(U,$J,358.3,39758,0)
- ;;=H04.202^^153^1928^41
- ;;^UTILITY(U,$J,358.3,39758,1,0)
+ ;;^UTILITY(U,$J,358.3,37457,1,3,0)
+ ;;=3^Disp intraarticular fx of right calcaneus, init
+ ;;^UTILITY(U,$J,358.3,37457,1,4,0)
+ ;;=4^S92.061A
+ ;;^UTILITY(U,$J,358.3,37457,2)
+ ;;=^5044549
+ ;;^UTILITY(U,$J,358.3,37458,0)
+ ;;=S92.062A^^146^1917^137
+ ;;^UTILITY(U,$J,358.3,37458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39758,1,3,0)
- ;;=3^Epiphora Left Lacrimal Gland,Unspec
- ;;^UTILITY(U,$J,358.3,39758,1,4,0)
- ;;=4^H04.202
- ;;^UTILITY(U,$J,358.3,39758,2)
- ;;=^5004485
- ;;^UTILITY(U,$J,358.3,39759,0)
- ;;=H04.201^^153^1928^42
- ;;^UTILITY(U,$J,358.3,39759,1,0)
+ ;;^UTILITY(U,$J,358.3,37458,1,3,0)
+ ;;=3^Disp intraarticular fx of lft calcaneus, init
+ ;;^UTILITY(U,$J,358.3,37458,1,4,0)
+ ;;=4^S92.062A
+ ;;^UTILITY(U,$J,358.3,37458,2)
+ ;;=^5044556
+ ;;^UTILITY(U,$J,358.3,37459,0)
+ ;;=S92.055A^^146^1917^250
+ ;;^UTILITY(U,$J,358.3,37459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39759,1,3,0)
- ;;=3^Epiphora Right Lacrimal Gland,Unspec
- ;;^UTILITY(U,$J,358.3,39759,1,4,0)
- ;;=4^H04.201
- ;;^UTILITY(U,$J,358.3,39759,2)
- ;;=^5004484
- ;;^UTILITY(U,$J,358.3,39760,0)
- ;;=H52.01^^153^1929^13
- ;;^UTILITY(U,$J,358.3,39760,1,0)
+ ;;^UTILITY(U,$J,358.3,37459,1,3,0)
+ ;;=3^Nondisp extrartic fx of lft calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37459,1,4,0)
+ ;;=4^S92.055A
+ ;;^UTILITY(U,$J,358.3,37459,2)
+ ;;=^5044535
+ ;;^UTILITY(U,$J,358.3,37460,0)
+ ;;=S92.054A^^146^1917^251
+ ;;^UTILITY(U,$J,358.3,37460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39760,1,3,0)
- ;;=3^Hypermetropia,Right Eye
- ;;^UTILITY(U,$J,358.3,39760,1,4,0)
- ;;=4^H52.01
- ;;^UTILITY(U,$J,358.3,39760,2)
- ;;=^5006260
- ;;^UTILITY(U,$J,358.3,39761,0)
- ;;=H52.02^^153^1929^12
- ;;^UTILITY(U,$J,358.3,39761,1,0)
+ ;;^UTILITY(U,$J,358.3,37460,1,3,0)
+ ;;=3^Nondisp extrartic fx of rt calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37460,1,4,0)
+ ;;=4^S92.054A
+ ;;^UTILITY(U,$J,358.3,37460,2)
+ ;;=^5044528
+ ;;^UTILITY(U,$J,358.3,37461,0)
+ ;;=S92.051A^^146^1917^26
+ ;;^UTILITY(U,$J,358.3,37461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39761,1,3,0)
- ;;=3^Hypermetropia,Left Eye
- ;;^UTILITY(U,$J,358.3,39761,1,4,0)
- ;;=4^H52.02
- ;;^UTILITY(U,$J,358.3,39761,2)
- ;;=^5006261
- ;;^UTILITY(U,$J,358.3,39762,0)
- ;;=H52.13^^153^1929^15
- ;;^UTILITY(U,$J,358.3,39762,1,0)
+ ;;^UTILITY(U,$J,358.3,37461,1,3,0)
+ ;;=3^Disp extrartic fx rt calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37461,1,4,0)
+ ;;=4^S92.051A
+ ;;^UTILITY(U,$J,358.3,37461,2)
+ ;;=^5044507
+ ;;^UTILITY(U,$J,358.3,37462,0)
+ ;;=S92.052A^^146^1917^25
+ ;;^UTILITY(U,$J,358.3,37462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39762,1,3,0)
- ;;=3^Myopia,Bilateral
- ;;^UTILITY(U,$J,358.3,39762,1,4,0)
- ;;=4^H52.13
- ;;^UTILITY(U,$J,358.3,39762,2)
- ;;=^5006266
- ;;^UTILITY(U,$J,358.3,39763,0)
- ;;=H52.11^^153^1929^17
- ;;^UTILITY(U,$J,358.3,39763,1,0)
+ ;;^UTILITY(U,$J,358.3,37462,1,3,0)
+ ;;=3^Disp extrartic fx of lft calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37462,1,4,0)
+ ;;=4^S92.052A
+ ;;^UTILITY(U,$J,358.3,37462,2)
+ ;;=^5044514
+ ;;^UTILITY(U,$J,358.3,37463,0)
+ ;;=S92.045A^^146^1917^354
+ ;;^UTILITY(U,$J,358.3,37463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39763,1,3,0)
- ;;=3^Myopia,Right Eye
- ;;^UTILITY(U,$J,358.3,39763,1,4,0)
- ;;=4^H52.11
- ;;^UTILITY(U,$J,358.3,39763,2)
- ;;=^5006264
- ;;^UTILITY(U,$J,358.3,39764,0)
- ;;=H52.12^^153^1929^16
- ;;^UTILITY(U,$J,358.3,39764,1,0)
+ ;;^UTILITY(U,$J,358.3,37463,1,3,0)
+ ;;=3^Nondisp fx of tuberosity of lft calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37463,1,4,0)
+ ;;=4^S92.045A
+ ;;^UTILITY(U,$J,358.3,37463,2)
+ ;;=^5137560
+ ;;^UTILITY(U,$J,358.3,37464,0)
+ ;;=S92.044A^^146^1917^355
+ ;;^UTILITY(U,$J,358.3,37464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39764,1,3,0)
- ;;=3^Myopia,Left Eye
- ;;^UTILITY(U,$J,358.3,39764,1,4,0)
- ;;=4^H52.12
- ;;^UTILITY(U,$J,358.3,39764,2)
- ;;=^5006265
- ;;^UTILITY(U,$J,358.3,39765,0)
- ;;=H52.201^^153^1929^4
- ;;^UTILITY(U,$J,358.3,39765,1,0)
+ ;;^UTILITY(U,$J,358.3,37464,1,3,0)
+ ;;=3^Nondisp fx of tuberosity of rt calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37464,1,4,0)
+ ;;=4^S92.044A
+ ;;^UTILITY(U,$J,358.3,37464,2)
+ ;;=^5044500
+ ;;^UTILITY(U,$J,358.3,37465,0)
+ ;;=S92.041A^^146^1917^129
+ ;;^UTILITY(U,$J,358.3,37465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39765,1,3,0)
- ;;=3^Astigmatism,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39765,1,4,0)
- ;;=4^H52.201
- ;;^UTILITY(U,$J,358.3,39765,2)
- ;;=^5006267
- ;;^UTILITY(U,$J,358.3,39766,0)
- ;;=H52.202^^153^1929^3
- ;;^UTILITY(U,$J,358.3,39766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39766,1,3,0)
- ;;=3^Astigmatism,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39766,1,4,0)
- ;;=4^H52.202
- ;;^UTILITY(U,$J,358.3,39766,2)
- ;;=^5006268
- ;;^UTILITY(U,$J,358.3,39767,0)
- ;;=H52.31^^153^1929^2
- ;;^UTILITY(U,$J,358.3,39767,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39767,1,3,0)
- ;;=3^Anisometropia
+ ;;^UTILITY(U,$J,358.3,37465,1,3,0)
+ ;;=3^Disp fx of tuberosity of rt calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,37465,1,4,0)
+ ;;=4^S92.041A
+ ;;^UTILITY(U,$J,358.3,37465,2)
+ ;;=^5044493
+ ;;^UTILITY(U,$J,358.3,37466,0)
+ ;;=S92.042A^^146^1917^128

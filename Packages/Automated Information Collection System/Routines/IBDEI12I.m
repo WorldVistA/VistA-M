@@ -1,290 +1,122 @@
-IBDEI12I ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI12I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38769,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,38770,0)
- ;;=E03.9^^148^1939^33
- ;;^UTILITY(U,$J,358.3,38770,1,0)
+ ;;^UTILITY(U,$J,358.3,17160,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,17160,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,17160,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,17161,0)
+ ;;=G40.909^^88^886^15
+ ;;^UTILITY(U,$J,358.3,17161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38770,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,38770,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,38770,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,38771,0)
- ;;=E06.0^^148^1939^53
- ;;^UTILITY(U,$J,358.3,38771,1,0)
+ ;;^UTILITY(U,$J,358.3,17161,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,17161,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,17161,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,17162,0)
+ ;;=G43.809^^88^886^29
+ ;;^UTILITY(U,$J,358.3,17162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38771,1,3,0)
- ;;=3^Thyroiditis,Acute
- ;;^UTILITY(U,$J,358.3,38771,1,4,0)
- ;;=4^E06.0
- ;;^UTILITY(U,$J,358.3,38771,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,38772,0)
- ;;=E06.1^^148^1939^54
- ;;^UTILITY(U,$J,358.3,38772,1,0)
+ ;;^UTILITY(U,$J,358.3,17162,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,17162,1,4,0)
+ ;;=4^G43.809
+ ;;^UTILITY(U,$J,358.3,17162,2)
+ ;;=^5003901
+ ;;^UTILITY(U,$J,358.3,17163,0)
+ ;;=G43.B0^^88^886^31
+ ;;^UTILITY(U,$J,358.3,17163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38772,1,3,0)
- ;;=3^Thyroiditis,Subacute
- ;;^UTILITY(U,$J,358.3,38772,1,4,0)
- ;;=4^E06.1
- ;;^UTILITY(U,$J,358.3,38772,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,38773,0)
- ;;=C73.^^148^1939^37
- ;;^UTILITY(U,$J,358.3,38773,1,0)
+ ;;^UTILITY(U,$J,358.3,17163,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Not Intractable
+ ;;^UTILITY(U,$J,358.3,17163,1,4,0)
+ ;;=4^G43.B0
+ ;;^UTILITY(U,$J,358.3,17163,2)
+ ;;=^5003914
+ ;;^UTILITY(U,$J,358.3,17164,0)
+ ;;=G43.C0^^88^886^18
+ ;;^UTILITY(U,$J,358.3,17164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38773,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,38773,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,38773,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,38774,0)
- ;;=E10.21^^148^1939^8
- ;;^UTILITY(U,$J,358.3,38774,1,0)
+ ;;^UTILITY(U,$J,358.3,17164,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Not Intractable
+ ;;^UTILITY(U,$J,358.3,17164,1,4,0)
+ ;;=4^G43.C0
+ ;;^UTILITY(U,$J,358.3,17164,2)
+ ;;=^5003916
+ ;;^UTILITY(U,$J,358.3,17165,0)
+ ;;=G43.A0^^88^886^9
+ ;;^UTILITY(U,$J,358.3,17165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38774,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,38774,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,38774,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,38775,0)
- ;;=E10.9^^148^1939^12
- ;;^UTILITY(U,$J,358.3,38775,1,0)
+ ;;^UTILITY(U,$J,358.3,17165,1,3,0)
+ ;;=3^Cyclical Vomiting Not Intractable
+ ;;^UTILITY(U,$J,358.3,17165,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,17165,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,17166,0)
+ ;;=G43.C1^^88^886^17
+ ;;^UTILITY(U,$J,358.3,17166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38775,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,38775,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,38775,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,38776,0)
- ;;=E11.21^^148^1939^17
- ;;^UTILITY(U,$J,358.3,38776,1,0)
+ ;;^UTILITY(U,$J,358.3,17166,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Intractable
+ ;;^UTILITY(U,$J,358.3,17166,1,4,0)
+ ;;=4^G43.C1
+ ;;^UTILITY(U,$J,358.3,17166,2)
+ ;;=^5003917
+ ;;^UTILITY(U,$J,358.3,17167,0)
+ ;;=G43.B1^^88^886^30
+ ;;^UTILITY(U,$J,358.3,17167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38776,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,38776,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,38776,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,38777,0)
- ;;=E11.39^^148^1939^18
- ;;^UTILITY(U,$J,358.3,38777,1,0)
+ ;;^UTILITY(U,$J,358.3,17167,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Intractable
+ ;;^UTILITY(U,$J,358.3,17167,1,4,0)
+ ;;=4^G43.B1
+ ;;^UTILITY(U,$J,358.3,17167,2)
+ ;;=^5003915
+ ;;^UTILITY(U,$J,358.3,17168,0)
+ ;;=G43.A1^^88^886^8
+ ;;^UTILITY(U,$J,358.3,17168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38777,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
- ;;^UTILITY(U,$J,358.3,38777,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,38777,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,38778,0)
- ;;=E11.43^^148^1939^15
- ;;^UTILITY(U,$J,358.3,38778,1,0)
+ ;;^UTILITY(U,$J,358.3,17168,1,3,0)
+ ;;=3^Cyclical Vomiting Intractable
+ ;;^UTILITY(U,$J,358.3,17168,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,17168,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,17169,0)
+ ;;=G43.819^^88^886^26
+ ;;^UTILITY(U,$J,358.3,17169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38778,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
- ;;^UTILITY(U,$J,358.3,38778,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,38778,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,38779,0)
- ;;=E11.59^^148^1939^13
- ;;^UTILITY(U,$J,358.3,38779,1,0)
+ ;;^UTILITY(U,$J,358.3,17169,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,17169,1,4,0)
+ ;;=4^G43.819
+ ;;^UTILITY(U,$J,358.3,17169,2)
+ ;;=^5003903
+ ;;^UTILITY(U,$J,358.3,17170,0)
+ ;;=G43.909^^88^886^28
+ ;;^UTILITY(U,$J,358.3,17170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38779,1,3,0)
- ;;=3^DM Type 2 w/ Circulatory Complications NEC
- ;;^UTILITY(U,$J,358.3,38779,1,4,0)
- ;;=4^E11.59
- ;;^UTILITY(U,$J,358.3,38779,2)
- ;;=^5002652
- ;;^UTILITY(U,$J,358.3,38780,0)
- ;;=E11.618^^148^1939^14
- ;;^UTILITY(U,$J,358.3,38780,1,0)
+ ;;^UTILITY(U,$J,358.3,17170,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,17170,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,17170,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,17171,0)
+ ;;=G43.919^^88^886^27
+ ;;^UTILITY(U,$J,358.3,17171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38780,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
- ;;^UTILITY(U,$J,358.3,38780,1,4,0)
- ;;=4^E11.618
- ;;^UTILITY(U,$J,358.3,38780,2)
- ;;=^5002654
- ;;^UTILITY(U,$J,358.3,38781,0)
- ;;=E11.621^^148^1939^16
- ;;^UTILITY(U,$J,358.3,38781,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38781,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,38781,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,38781,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,38782,0)
- ;;=E11.622^^148^1939^20
- ;;^UTILITY(U,$J,358.3,38782,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38782,1,3,0)
- ;;=3^DM Type 2 w/ Skin Ulcer NEC
- ;;^UTILITY(U,$J,358.3,38782,1,4,0)
- ;;=4^E11.622
- ;;^UTILITY(U,$J,358.3,38782,2)
- ;;=^5002657
- ;;^UTILITY(U,$J,358.3,38783,0)
- ;;=E11.65^^148^1939^19
- ;;^UTILITY(U,$J,358.3,38783,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38783,1,3,0)
- ;;=3^DM Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,38783,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,38783,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,38784,0)
- ;;=E11.9^^148^1939^21
- ;;^UTILITY(U,$J,358.3,38784,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38784,1,3,0)
- ;;=3^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,38784,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,38784,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,38785,0)
- ;;=E13.9^^148^1939^22
- ;;^UTILITY(U,$J,358.3,38785,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38785,1,3,0)
- ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
- ;;^UTILITY(U,$J,358.3,38785,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,38785,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,38786,0)
- ;;=E16.2^^148^1939^29
- ;;^UTILITY(U,$J,358.3,38786,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38786,1,3,0)
- ;;=3^Hypoglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,38786,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,38786,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,38787,0)
- ;;=E20.0^^148^1939^34
- ;;^UTILITY(U,$J,358.3,38787,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38787,1,3,0)
- ;;=3^Idiopathic Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,38787,1,4,0)
- ;;=4^E20.0
- ;;^UTILITY(U,$J,358.3,38787,2)
- ;;=^5002712
- ;;^UTILITY(U,$J,358.3,38788,0)
- ;;=E20.9^^148^1939^30
- ;;^UTILITY(U,$J,358.3,38788,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38788,1,3,0)
- ;;=3^Hypoparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,38788,1,4,0)
- ;;=4^E20.9
- ;;^UTILITY(U,$J,358.3,38788,2)
- ;;=^5002714
- ;;^UTILITY(U,$J,358.3,38789,0)
- ;;=E23.0^^148^1939^31
- ;;^UTILITY(U,$J,358.3,38789,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38789,1,3,0)
- ;;=3^Hypopituitarism
- ;;^UTILITY(U,$J,358.3,38789,1,4,0)
- ;;=4^E23.0
- ;;^UTILITY(U,$J,358.3,38789,2)
- ;;=^60685
- ;;^UTILITY(U,$J,358.3,38790,0)
- ;;=E27.1^^148^1939^51
- ;;^UTILITY(U,$J,358.3,38790,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38790,1,3,0)
- ;;=3^Primary Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,38790,1,4,0)
- ;;=4^E27.1
- ;;^UTILITY(U,$J,358.3,38790,2)
- ;;=^5002740
- ;;^UTILITY(U,$J,358.3,38791,0)
- ;;=E27.2^^148^1939^1
- ;;^UTILITY(U,$J,358.3,38791,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38791,1,3,0)
- ;;=3^Addisonian Crisis
- ;;^UTILITY(U,$J,358.3,38791,1,4,0)
- ;;=4^E27.2
- ;;^UTILITY(U,$J,358.3,38791,2)
- ;;=^263725
- ;;^UTILITY(U,$J,358.3,38792,0)
- ;;=E27.3^^148^1939^23
- ;;^UTILITY(U,$J,358.3,38792,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38792,1,3,0)
- ;;=3^Drug-induced Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,38792,1,4,0)
- ;;=4^E27.3
- ;;^UTILITY(U,$J,358.3,38792,2)
- ;;=^5002741
- ;;^UTILITY(U,$J,358.3,38793,0)
- ;;=E29.1^^148^1939^52
- ;;^UTILITY(U,$J,358.3,38793,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38793,1,3,0)
- ;;=3^Testicular Hypofunction
- ;;^UTILITY(U,$J,358.3,38793,1,4,0)
- ;;=4^E29.1
- ;;^UTILITY(U,$J,358.3,38793,2)
- ;;=^5002754
- ;;^UTILITY(U,$J,358.3,38794,0)
- ;;=E55.9^^148^1939^59
- ;;^UTILITY(U,$J,358.3,38794,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38794,1,3,0)
- ;;=3^Vitamin D Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,38794,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,38794,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,38795,0)
- ;;=E66.01^^148^1939^38
- ;;^UTILITY(U,$J,358.3,38795,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38795,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,38795,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,38795,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,38796,0)
- ;;=E66.8^^148^1939^42
- ;;^UTILITY(U,$J,358.3,38796,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38796,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,38796,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,38796,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,38797,0)
- ;;=E66.9^^148^1939^43
- ;;^UTILITY(U,$J,358.3,38797,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38797,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,38797,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,38797,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,38798,0)
- ;;=E74.39^^148^1939^35
- ;;^UTILITY(U,$J,358.3,38798,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17171,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,17171,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,17171,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,17172,0)
+ ;;=G51.0^^88^886^6

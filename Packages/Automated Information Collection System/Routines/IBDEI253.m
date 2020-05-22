@@ -1,132 +1,128 @@
-IBDEI253 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI253 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36301,1,0)
+ ;;^UTILITY(U,$J,358.3,34171,0)
+ ;;=F44.0^^134^1726^2
+ ;;^UTILITY(U,$J,358.3,34171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36301,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes in Remission
- ;;^UTILITY(U,$J,358.3,36301,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,36301,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,36302,0)
- ;;=F17.213^^137^1755^63
- ;;^UTILITY(U,$J,358.3,36302,1,0)
+ ;;^UTILITY(U,$J,358.3,34171,1,3,0)
+ ;;=3^Dissociative Amnesia
+ ;;^UTILITY(U,$J,358.3,34171,1,4,0)
+ ;;=4^F44.0
+ ;;^UTILITY(U,$J,358.3,34171,2)
+ ;;=^5003577
+ ;;^UTILITY(U,$J,358.3,34172,0)
+ ;;=F48.1^^134^1726^1
+ ;;^UTILITY(U,$J,358.3,34172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36302,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,36302,1,4,0)
- ;;=4^F17.213
- ;;^UTILITY(U,$J,358.3,36302,2)
- ;;=^5003367
- ;;^UTILITY(U,$J,358.3,36303,0)
- ;;=F17.218^^137^1755^62
- ;;^UTILITY(U,$J,358.3,36303,1,0)
+ ;;^UTILITY(U,$J,358.3,34172,1,3,0)
+ ;;=3^Depersonalization/Derealization D/O
+ ;;^UTILITY(U,$J,358.3,34172,1,4,0)
+ ;;=4^F48.1
+ ;;^UTILITY(U,$J,358.3,34172,2)
+ ;;=^5003593
+ ;;^UTILITY(U,$J,358.3,34173,0)
+ ;;=F44.89^^134^1726^4
+ ;;^UTILITY(U,$J,358.3,34173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36303,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes w/ Other Disorders
- ;;^UTILITY(U,$J,358.3,36303,1,4,0)
- ;;=4^F17.218
- ;;^UTILITY(U,$J,358.3,36303,2)
- ;;=^5003368
- ;;^UTILITY(U,$J,358.3,36304,0)
- ;;=F17.219^^137^1755^61
- ;;^UTILITY(U,$J,358.3,36304,1,0)
+ ;;^UTILITY(U,$J,358.3,34173,1,3,0)
+ ;;=3^Dissociative D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,34173,1,4,0)
+ ;;=4^F44.89
+ ;;^UTILITY(U,$J,358.3,34173,2)
+ ;;=^5003583
+ ;;^UTILITY(U,$J,358.3,34174,0)
+ ;;=F44.1^^134^1726^3
+ ;;^UTILITY(U,$J,358.3,34174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36304,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes w/ Nicotine-Induced Disorders
- ;;^UTILITY(U,$J,358.3,36304,1,4,0)
- ;;=4^F17.219
- ;;^UTILITY(U,$J,358.3,36304,2)
- ;;=^5003369
- ;;^UTILITY(U,$J,358.3,36305,0)
- ;;=J98.09^^137^1755^22
- ;;^UTILITY(U,$J,358.3,36305,1,0)
+ ;;^UTILITY(U,$J,358.3,34174,1,3,0)
+ ;;=3^Dissociative Amnesia w/ Dissociative Fugue
+ ;;^UTILITY(U,$J,358.3,34174,1,4,0)
+ ;;=4^F44.1
+ ;;^UTILITY(U,$J,358.3,34174,2)
+ ;;=^331908
+ ;;^UTILITY(U,$J,358.3,34175,0)
+ ;;=F50.02^^134^1727^1
+ ;;^UTILITY(U,$J,358.3,34175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36305,1,3,0)
- ;;=3^Bronchus Diseases NEC
- ;;^UTILITY(U,$J,358.3,36305,1,4,0)
- ;;=4^J98.09
- ;;^UTILITY(U,$J,358.3,36305,2)
- ;;=^5008359
- ;;^UTILITY(U,$J,358.3,36306,0)
- ;;=A15.0^^137^1755^99
- ;;^UTILITY(U,$J,358.3,36306,1,0)
+ ;;^UTILITY(U,$J,358.3,34175,1,3,0)
+ ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
+ ;;^UTILITY(U,$J,358.3,34175,1,4,0)
+ ;;=4^F50.02
+ ;;^UTILITY(U,$J,358.3,34175,2)
+ ;;=^5003599
+ ;;^UTILITY(U,$J,358.3,34176,0)
+ ;;=F50.01^^134^1727^2
+ ;;^UTILITY(U,$J,358.3,34176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36306,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,36306,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,36306,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,36307,0)
- ;;=J05.0^^137^1755^40
- ;;^UTILITY(U,$J,358.3,36307,1,0)
+ ;;^UTILITY(U,$J,358.3,34176,1,3,0)
+ ;;=3^Anorexia Nervosa,Restricting Type
+ ;;^UTILITY(U,$J,358.3,34176,1,4,0)
+ ;;=4^F50.01
+ ;;^UTILITY(U,$J,358.3,34176,2)
+ ;;=^5003598
+ ;;^UTILITY(U,$J,358.3,34177,0)
+ ;;=F50.9^^134^1727^7
+ ;;^UTILITY(U,$J,358.3,34177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36307,1,3,0)
- ;;=3^Laryngitis,Obstructive,Acute
- ;;^UTILITY(U,$J,358.3,36307,1,4,0)
- ;;=4^J05.0
- ;;^UTILITY(U,$J,358.3,36307,2)
- ;;=^5008141
- ;;^UTILITY(U,$J,358.3,36308,0)
- ;;=J06.9^^137^1755^89
- ;;^UTILITY(U,$J,358.3,36308,1,0)
+ ;;^UTILITY(U,$J,358.3,34177,1,3,0)
+ ;;=3^Eating Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,34177,1,4,0)
+ ;;=4^F50.9
+ ;;^UTILITY(U,$J,358.3,34177,2)
+ ;;=^5003602
+ ;;^UTILITY(U,$J,358.3,34178,0)
+ ;;=F50.2^^134^1727^5
+ ;;^UTILITY(U,$J,358.3,34178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36308,1,3,0)
- ;;=3^Respiratory Infection,Upper,Acute
- ;;^UTILITY(U,$J,358.3,36308,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,36308,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,36309,0)
- ;;=R63.4^^137^1755^100
- ;;^UTILITY(U,$J,358.3,36309,1,0)
+ ;;^UTILITY(U,$J,358.3,34178,1,3,0)
+ ;;=3^Bulimia Nervosa
+ ;;^UTILITY(U,$J,358.3,34178,1,4,0)
+ ;;=4^F50.2
+ ;;^UTILITY(U,$J,358.3,34178,2)
+ ;;=^5003600
+ ;;^UTILITY(U,$J,358.3,34179,0)
+ ;;=F98.21^^134^1727^8
+ ;;^UTILITY(U,$J,358.3,34179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36309,1,3,0)
- ;;=3^Weight Loss,Abnormal
- ;;^UTILITY(U,$J,358.3,36309,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,36309,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,36310,0)
- ;;=I26.09^^137^1755^78
- ;;^UTILITY(U,$J,358.3,36310,1,0)
+ ;;^UTILITY(U,$J,358.3,34179,1,3,0)
+ ;;=3^Rumination Disorder
+ ;;^UTILITY(U,$J,358.3,34179,1,4,0)
+ ;;=4^F98.21
+ ;;^UTILITY(U,$J,358.3,34179,2)
+ ;;=^5003713
+ ;;^UTILITY(U,$J,358.3,34180,0)
+ ;;=F50.81^^134^1727^4
+ ;;^UTILITY(U,$J,358.3,34180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36310,1,3,0)
- ;;=3^Pulmonary Embolism w/ Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,36310,1,4,0)
- ;;=4^I26.09
- ;;^UTILITY(U,$J,358.3,36310,2)
- ;;=^5007147
- ;;^UTILITY(U,$J,358.3,36311,0)
- ;;=I26.99^^137^1755^80
- ;;^UTILITY(U,$J,358.3,36311,1,0)
+ ;;^UTILITY(U,$J,358.3,34180,1,3,0)
+ ;;=3^Binge-Eating Disorder
+ ;;^UTILITY(U,$J,358.3,34180,1,4,0)
+ ;;=4^F50.81
+ ;;^UTILITY(U,$J,358.3,34180,2)
+ ;;=^8123226
+ ;;^UTILITY(U,$J,358.3,34181,0)
+ ;;=F50.89^^134^1727^6
+ ;;^UTILITY(U,$J,358.3,34181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36311,1,3,0)
- ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,36311,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,36311,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,36312,0)
- ;;=I27.0^^137^1755^84
- ;;^UTILITY(U,$J,358.3,36312,1,0)
+ ;;^UTILITY(U,$J,358.3,34181,1,3,0)
+ ;;=3^Eating Disorder,Oth Spec
+ ;;^UTILITY(U,$J,358.3,34181,1,4,0)
+ ;;=4^F50.89
+ ;;^UTILITY(U,$J,358.3,34181,2)
+ ;;=^5138449
+ ;;^UTILITY(U,$J,358.3,34182,0)
+ ;;=F50.82^^134^1727^3
+ ;;^UTILITY(U,$J,358.3,34182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36312,1,3,0)
- ;;=3^Pulmonary Hypertension,Primary
- ;;^UTILITY(U,$J,358.3,36312,1,4,0)
- ;;=4^I27.0
- ;;^UTILITY(U,$J,358.3,36312,2)
- ;;=^265310
- ;;^UTILITY(U,$J,358.3,36313,0)
- ;;=I27.2^^137^1755^85
- ;;^UTILITY(U,$J,358.3,36313,1,0)
+ ;;^UTILITY(U,$J,358.3,34182,1,3,0)
+ ;;=3^Avoidant/Restrictive Food Intake Disorder
+ ;;^UTILITY(U,$J,358.3,34182,1,4,0)
+ ;;=4^F50.82
+ ;;^UTILITY(U,$J,358.3,34182,2)
+ ;;=^5151308
+ ;;^UTILITY(U,$J,358.3,34183,0)
+ ;;=Z55.9^^134^1728^1
+ ;;^UTILITY(U,$J,358.3,34183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36313,1,3,0)
- ;;=3^Pulmonary Hypertension,Secondary
- ;;^UTILITY(U,$J,358.3,36313,1,4,0)
- ;;=4^I27.2
- ;;^UTILITY(U,$J,358.3,36313,2)
- ;;=^5007151

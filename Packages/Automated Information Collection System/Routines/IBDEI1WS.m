@@ -1,134 +1,118 @@
-IBDEI1WS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32387,1,4,0)
- ;;=4^R26.0
- ;;^UTILITY(U,$J,358.3,32387,2)
- ;;=^5019304
- ;;^UTILITY(U,$J,358.3,32388,0)
- ;;=I96.^^126^1610^8
- ;;^UTILITY(U,$J,358.3,32388,1,0)
+ ;;^UTILITY(U,$J,358.3,30478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32388,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,32388,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,32388,2)
- ;;=^5008081
- ;;^UTILITY(U,$J,358.3,32389,0)
- ;;=R20.1^^126^1611^10
- ;;^UTILITY(U,$J,358.3,32389,1,0)
+ ;;^UTILITY(U,$J,358.3,30478,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30478,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,30478,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,30479,0)
+ ;;=F15.982^^120^1556^53
+ ;;^UTILITY(U,$J,358.3,30479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32389,1,3,0)
- ;;=3^Hypoesthesia of skin
- ;;^UTILITY(U,$J,358.3,32389,1,4,0)
- ;;=4^R20.1
- ;;^UTILITY(U,$J,358.3,32389,2)
- ;;=^5019279
- ;;^UTILITY(U,$J,358.3,32390,0)
- ;;=R20.3^^126^1611^9
- ;;^UTILITY(U,$J,358.3,32390,1,0)
+ ;;^UTILITY(U,$J,358.3,30479,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30479,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,30479,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,30480,0)
+ ;;=F15.122^^120^1556^57
+ ;;^UTILITY(U,$J,358.3,30480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32390,1,3,0)
- ;;=3^Hyperesthesia
- ;;^UTILITY(U,$J,358.3,32390,1,4,0)
- ;;=4^R20.3
- ;;^UTILITY(U,$J,358.3,32390,2)
- ;;=^60011
- ;;^UTILITY(U,$J,358.3,32391,0)
- ;;=M20.12^^126^1611^3
- ;;^UTILITY(U,$J,358.3,32391,1,0)
+ ;;^UTILITY(U,$J,358.3,30480,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30480,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,30480,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,30481,0)
+ ;;=F15.222^^120^1556^58
+ ;;^UTILITY(U,$J,358.3,30481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32391,1,3,0)
- ;;=3^Hallux valgus (acquired), left foot
- ;;^UTILITY(U,$J,358.3,32391,1,4,0)
- ;;=4^M20.12
- ;;^UTILITY(U,$J,358.3,32391,2)
- ;;=^5011043
- ;;^UTILITY(U,$J,358.3,32392,0)
- ;;=M20.11^^126^1611^4
- ;;^UTILITY(U,$J,358.3,32392,1,0)
+ ;;^UTILITY(U,$J,358.3,30481,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30481,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,30481,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,30482,0)
+ ;;=F15.922^^120^1556^59
+ ;;^UTILITY(U,$J,358.3,30482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32392,1,3,0)
- ;;=3^Hallux valgus (acquired), right foot
- ;;^UTILITY(U,$J,358.3,32392,1,4,0)
- ;;=4^M20.11
- ;;^UTILITY(U,$J,358.3,32392,2)
- ;;=^5011042
- ;;^UTILITY(U,$J,358.3,32393,0)
- ;;=M20.31^^126^1611^6
- ;;^UTILITY(U,$J,358.3,32393,1,0)
+ ;;^UTILITY(U,$J,358.3,30482,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30482,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,30482,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,30483,0)
+ ;;=F15.129^^120^1556^60
+ ;;^UTILITY(U,$J,358.3,30483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32393,1,3,0)
- ;;=3^Hallux varus (acquired), right foot
- ;;^UTILITY(U,$J,358.3,32393,1,4,0)
- ;;=4^M20.31
- ;;^UTILITY(U,$J,358.3,32393,2)
- ;;=^5011048
- ;;^UTILITY(U,$J,358.3,32394,0)
- ;;=M20.32^^126^1611^5
- ;;^UTILITY(U,$J,358.3,32394,1,0)
+ ;;^UTILITY(U,$J,358.3,30483,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30483,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,30483,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,30484,0)
+ ;;=F15.229^^120^1556^61
+ ;;^UTILITY(U,$J,358.3,30484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32394,1,3,0)
- ;;=3^Hallux varus (acquired), left foot
- ;;^UTILITY(U,$J,358.3,32394,1,4,0)
- ;;=4^M20.32
- ;;^UTILITY(U,$J,358.3,32394,2)
- ;;=^5011049
- ;;^UTILITY(U,$J,358.3,32395,0)
- ;;=M20.22^^126^1611^1
- ;;^UTILITY(U,$J,358.3,32395,1,0)
+ ;;^UTILITY(U,$J,358.3,30484,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30484,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,30484,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,30485,0)
+ ;;=F15.929^^120^1556^62
+ ;;^UTILITY(U,$J,358.3,30485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32395,1,3,0)
- ;;=3^Hallux rigidus, left foot
- ;;^UTILITY(U,$J,358.3,32395,1,4,0)
- ;;=4^M20.22
- ;;^UTILITY(U,$J,358.3,32395,2)
- ;;=^5011046
- ;;^UTILITY(U,$J,358.3,32396,0)
- ;;=M20.21^^126^1611^2
- ;;^UTILITY(U,$J,358.3,32396,1,0)
+ ;;^UTILITY(U,$J,358.3,30485,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30485,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,30485,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,30486,0)
+ ;;=F15.121^^120^1556^54
+ ;;^UTILITY(U,$J,358.3,30486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32396,1,3,0)
- ;;=3^Hallux rigidus, right foot
- ;;^UTILITY(U,$J,358.3,32396,1,4,0)
- ;;=4^M20.21
- ;;^UTILITY(U,$J,358.3,32396,2)
- ;;=^5011045
- ;;^UTILITY(U,$J,358.3,32397,0)
- ;;=M20.42^^126^1611^7
- ;;^UTILITY(U,$J,358.3,32397,1,0)
+ ;;^UTILITY(U,$J,358.3,30486,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30486,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,30486,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,30487,0)
+ ;;=F15.221^^120^1556^55
+ ;;^UTILITY(U,$J,358.3,30487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32397,1,3,0)
- ;;=3^Hammer toe(s) (acquired), left foot, oth
- ;;^UTILITY(U,$J,358.3,32397,1,4,0)
- ;;=4^M20.42
- ;;^UTILITY(U,$J,358.3,32397,2)
- ;;=^5011052
- ;;^UTILITY(U,$J,358.3,32398,0)
- ;;=M20.41^^126^1611^8
- ;;^UTILITY(U,$J,358.3,32398,1,0)
+ ;;^UTILITY(U,$J,358.3,30487,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30487,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,30487,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,30488,0)
+ ;;=F15.921^^120^1556^56
+ ;;^UTILITY(U,$J,358.3,30488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32398,1,3,0)
- ;;=3^Hammer toe(s) (acquired), right foot, oth
- ;;^UTILITY(U,$J,358.3,32398,1,4,0)
- ;;=4^M20.41
- ;;^UTILITY(U,$J,358.3,32398,2)
- ;;=^5011051
- ;;^UTILITY(U,$J,358.3,32399,0)
- ;;=T84.7XXA^^126^1612^13
- ;;^UTILITY(U,$J,358.3,32399,1,0)
+ ;;^UTILITY(U,$J,358.3,30488,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30488,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,30488,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,30489,0)
+ ;;=F15.23^^120^1556^67
+ ;;^UTILITY(U,$J,358.3,30489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32399,1,3,0)
- ;;=3^Infect/inflm react d/t int orth pros dev/graft, init
- ;;^UTILITY(U,$J,358.3,32399,1,4,0)
- ;;=4^T84.7XXA
- ;;^UTILITY(U,$J,358.3,32399,2)
- ;;=^5055451
- ;;^UTILITY(U,$J,358.3,32400,0)
- ;;=T84.69XA^^126^1612^8
- ;;^UTILITY(U,$J,358.3,32400,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32400,1,3,0)
- ;;=3^Infect/inflm react d/t int fix of oth site, init
+ ;;^UTILITY(U,$J,358.3,30489,1,3,0)
+ ;;=3^Oth Stimulant Withdrawal

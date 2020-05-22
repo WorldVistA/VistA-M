@@ -1,132 +1,126 @@
-IBDEI1AY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1AY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22141,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,22142,0)
- ;;=K57.80^^87^976^35
- ;;^UTILITY(U,$J,358.3,22142,1,0)
+ ;;^UTILITY(U,$J,358.3,20821,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,20821,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,20822,0)
+ ;;=F33.2^^95^1024^12
+ ;;^UTILITY(U,$J,358.3,20822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22142,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,22142,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,22142,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,22143,0)
- ;;=K57.52^^87^976^40
- ;;^UTILITY(U,$J,358.3,22143,1,0)
+ ;;^UTILITY(U,$J,358.3,20822,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,20822,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,20822,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,20823,0)
+ ;;=F33.3^^95^1024^7
+ ;;^UTILITY(U,$J,358.3,20823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22143,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,22143,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,22143,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,22144,0)
- ;;=K57.40^^87^976^39
- ;;^UTILITY(U,$J,358.3,22144,1,0)
+ ;;^UTILITY(U,$J,358.3,20823,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,20823,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,20823,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,20824,0)
+ ;;=F33.41^^95^1024^9
+ ;;^UTILITY(U,$J,358.3,20824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22144,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,22144,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,22144,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,22145,0)
- ;;=K57.32^^87^976^38
- ;;^UTILITY(U,$J,358.3,22145,1,0)
+ ;;^UTILITY(U,$J,358.3,20824,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,20824,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,20824,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,20825,0)
+ ;;=F33.42^^95^1024^8
+ ;;^UTILITY(U,$J,358.3,20825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22145,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,22145,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,22145,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,22146,0)
- ;;=K59.00^^87^976^20
- ;;^UTILITY(U,$J,358.3,22146,1,0)
+ ;;^UTILITY(U,$J,358.3,20825,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,20825,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,20825,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,20826,0)
+ ;;=F34.1^^95^1024^21
+ ;;^UTILITY(U,$J,358.3,20826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22146,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,22146,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,22146,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,22147,0)
- ;;=K58.9^^87^976^70
- ;;^UTILITY(U,$J,358.3,22147,1,0)
+ ;;^UTILITY(U,$J,358.3,20826,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)
+ ;;^UTILITY(U,$J,358.3,20826,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,20826,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,20827,0)
+ ;;=N94.3^^95^1024^22
+ ;;^UTILITY(U,$J,358.3,20827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22147,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,22147,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,22147,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,22148,0)
- ;;=K58.0^^87^976^69
- ;;^UTILITY(U,$J,358.3,22148,1,0)
+ ;;^UTILITY(U,$J,358.3,20827,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,20827,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,20827,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,20828,0)
+ ;;=F06.34^^95^1024^3
+ ;;^UTILITY(U,$J,358.3,20828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22148,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,22148,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,22148,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,22149,0)
- ;;=K59.1^^87^976^32
- ;;^UTILITY(U,$J,358.3,22149,1,0)
+ ;;^UTILITY(U,$J,358.3,20828,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Med Cond w/ Mixed Features,Unsp
+ ;;^UTILITY(U,$J,358.3,20828,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,20828,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,20829,0)
+ ;;=F32.9^^95^1024^5
+ ;;^UTILITY(U,$J,358.3,20829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22149,1,3,0)
- ;;=3^Diarrhea,Functional
- ;;^UTILITY(U,$J,358.3,22149,1,4,0)
- ;;=4^K59.1
- ;;^UTILITY(U,$J,358.3,22149,2)
- ;;=^270281
- ;;^UTILITY(U,$J,358.3,22150,0)
- ;;=K61.4^^87^976^4
- ;;^UTILITY(U,$J,358.3,22150,1,0)
+ ;;^UTILITY(U,$J,358.3,20829,1,3,0)
+ ;;=3^Depressive Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,20829,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,20829,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,20830,0)
+ ;;=F32.89^^95^1024^4
+ ;;^UTILITY(U,$J,358.3,20830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22150,1,3,0)
- ;;=3^Abscess,Intrasphincteric
- ;;^UTILITY(U,$J,358.3,22150,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,22150,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,22151,0)
- ;;=K61.0^^87^976^2
- ;;^UTILITY(U,$J,358.3,22151,1,0)
+ ;;^UTILITY(U,$J,358.3,20830,1,3,0)
+ ;;=3^Depressive Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,20830,1,4,0)
+ ;;=4^F32.89
+ ;;^UTILITY(U,$J,358.3,20830,2)
+ ;;=^5138442
+ ;;^UTILITY(U,$J,358.3,20831,0)
+ ;;=F34.81^^95^1024^6
+ ;;^UTILITY(U,$J,358.3,20831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22151,1,3,0)
- ;;=3^Abscess,Anal
- ;;^UTILITY(U,$J,358.3,22151,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,22151,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,22152,0)
- ;;=K61.1^^87^976^6
- ;;^UTILITY(U,$J,358.3,22152,1,0)
+ ;;^UTILITY(U,$J,358.3,20831,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,20831,1,4,0)
+ ;;=4^F34.81
+ ;;^UTILITY(U,$J,358.3,20831,2)
+ ;;=^8313905
+ ;;^UTILITY(U,$J,358.3,20832,0)
+ ;;=F44.81^^95^1025^6
+ ;;^UTILITY(U,$J,358.3,20832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22152,1,3,0)
- ;;=3^Abscess,Rectal
- ;;^UTILITY(U,$J,358.3,22152,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,22152,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,22153,0)
- ;;=K61.2^^87^976^3
- ;;^UTILITY(U,$J,358.3,22153,1,0)
+ ;;^UTILITY(U,$J,358.3,20832,1,3,0)
+ ;;=3^Dissociative Identity Disorder
+ ;;^UTILITY(U,$J,358.3,20832,1,4,0)
+ ;;=4^F44.81
+ ;;^UTILITY(U,$J,358.3,20832,2)
+ ;;=^331909
+ ;;^UTILITY(U,$J,358.3,20833,0)
+ ;;=F44.9^^95^1025^5
+ ;;^UTILITY(U,$J,358.3,20833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22153,1,3,0)
- ;;=3^Abscess,Anorectal
- ;;^UTILITY(U,$J,358.3,22153,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,22153,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,22154,0)
- ;;=K61.3^^87^976^5
- ;;^UTILITY(U,$J,358.3,22154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22154,1,3,0)
- ;;=3^Abscess,Ischiorectal
+ ;;^UTILITY(U,$J,358.3,20833,1,3,0)
+ ;;=3^Dissociative Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,20833,1,4,0)
+ ;;=4^F44.9

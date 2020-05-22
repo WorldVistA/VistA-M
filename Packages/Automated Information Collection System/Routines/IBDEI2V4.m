@@ -1,132 +1,128 @@
-IBDEI2V4 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2V4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48034,2)
- ;;=^5001101
- ;;^UTILITY(U,$J,358.3,48035,0)
- ;;=C46.2^^209^2373^5
- ;;^UTILITY(U,$J,358.3,48035,1,0)
+ ;;^UTILITY(U,$J,358.3,45664,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,45664,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,45664,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,45665,0)
+ ;;=D68.59^^172^2275^20
+ ;;^UTILITY(U,$J,358.3,45665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48035,1,3,0)
- ;;=3^Kaposi's Sarcoma of Palate
- ;;^UTILITY(U,$J,358.3,48035,1,4,0)
- ;;=4^C46.2
- ;;^UTILITY(U,$J,358.3,48035,2)
- ;;=^5001102
- ;;^UTILITY(U,$J,358.3,48036,0)
- ;;=C46.3^^209^2373^3
- ;;^UTILITY(U,$J,358.3,48036,1,0)
+ ;;^UTILITY(U,$J,358.3,45665,1,3,0)
+ ;;=3^Primary Thrombophilia
+ ;;^UTILITY(U,$J,358.3,45665,1,4,0)
+ ;;=4^D68.59
+ ;;^UTILITY(U,$J,358.3,45665,2)
+ ;;=^5002360
+ ;;^UTILITY(U,$J,358.3,45666,0)
+ ;;=I26.99^^172^2275^21
+ ;;^UTILITY(U,$J,358.3,45666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48036,1,3,0)
- ;;=3^Kaposi's Sarcoma of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,48036,1,4,0)
- ;;=4^C46.3
- ;;^UTILITY(U,$J,358.3,48036,2)
- ;;=^5001103
- ;;^UTILITY(U,$J,358.3,48037,0)
- ;;=C46.4^^209^2373^1
- ;;^UTILITY(U,$J,358.3,48037,1,0)
+ ;;^UTILITY(U,$J,358.3,45666,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,45666,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,45666,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,45667,0)
+ ;;=I42.5^^172^2275^22
+ ;;^UTILITY(U,$J,358.3,45667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48037,1,3,0)
- ;;=3^Kaposi's Sarcoma of Gastrointestinal Sites
- ;;^UTILITY(U,$J,358.3,48037,1,4,0)
- ;;=4^C46.4
- ;;^UTILITY(U,$J,358.3,48037,2)
- ;;=^5001104
- ;;^UTILITY(U,$J,358.3,48038,0)
- ;;=C46.51^^209^2373^6
- ;;^UTILITY(U,$J,358.3,48038,1,0)
+ ;;^UTILITY(U,$J,358.3,45667,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,45667,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,45667,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,45668,0)
+ ;;=G45.9^^172^2275^24
+ ;;^UTILITY(U,$J,358.3,45668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48038,1,3,0)
- ;;=3^Kaposi's Sarcoma of Right Lung
- ;;^UTILITY(U,$J,358.3,48038,1,4,0)
- ;;=4^C46.51
- ;;^UTILITY(U,$J,358.3,48038,2)
- ;;=^5001106
- ;;^UTILITY(U,$J,358.3,48039,0)
- ;;=C46.52^^209^2373^2
- ;;^UTILITY(U,$J,358.3,48039,1,0)
+ ;;^UTILITY(U,$J,358.3,45668,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,45668,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,45668,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,45669,0)
+ ;;=Z91.5^^172^2276^1
+ ;;^UTILITY(U,$J,358.3,45669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48039,1,3,0)
- ;;=3^Kaposi's Sarcoma of Left Lung
- ;;^UTILITY(U,$J,358.3,48039,1,4,0)
- ;;=4^C46.52
- ;;^UTILITY(U,$J,358.3,48039,2)
- ;;=^5001107
- ;;^UTILITY(U,$J,358.3,48040,0)
- ;;=C46.7^^209^2373^4
- ;;^UTILITY(U,$J,358.3,48040,1,0)
+ ;;^UTILITY(U,$J,358.3,45669,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,45669,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,45669,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,45670,0)
+ ;;=R45.851^^172^2276^2
+ ;;^UTILITY(U,$J,358.3,45670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48040,1,3,0)
- ;;=3^Kaposi's Sarcoma of Other Sites
- ;;^UTILITY(U,$J,358.3,48040,1,4,0)
- ;;=4^C46.7
- ;;^UTILITY(U,$J,358.3,48040,2)
- ;;=^5133326
- ;;^UTILITY(U,$J,358.3,48041,0)
- ;;=C46.9^^209^2373^9
- ;;^UTILITY(U,$J,358.3,48041,1,0)
+ ;;^UTILITY(U,$J,358.3,45670,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,45670,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,45670,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,45671,0)
+ ;;=T14.91XA^^172^2276^3
+ ;;^UTILITY(U,$J,358.3,45671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48041,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,48041,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,48041,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,48042,0)
- ;;=C47.0^^209^2373^11
- ;;^UTILITY(U,$J,358.3,48042,1,0)
+ ;;^UTILITY(U,$J,358.3,45671,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,45671,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,45671,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,45672,0)
+ ;;=T14.91XD^^172^2276^4
+ ;;^UTILITY(U,$J,358.3,45672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48042,1,3,0)
- ;;=3^Malig Neop of Peripheral Nerves of Head/Face/Neck
- ;;^UTILITY(U,$J,358.3,48042,1,4,0)
- ;;=4^C47.0
- ;;^UTILITY(U,$J,358.3,48042,2)
- ;;=^5001109
- ;;^UTILITY(U,$J,358.3,48043,0)
- ;;=C47.11^^209^2373^15
- ;;^UTILITY(U,$J,358.3,48043,1,0)
+ ;;^UTILITY(U,$J,358.3,45672,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,45672,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,45672,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,45673,0)
+ ;;=T14.91XS^^172^2276^5
+ ;;^UTILITY(U,$J,358.3,45673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48043,1,3,0)
- ;;=3^Malig Neop of Peripheral Nerves of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,48043,1,4,0)
- ;;=4^C47.11
- ;;^UTILITY(U,$J,358.3,48043,2)
- ;;=^5001111
- ;;^UTILITY(U,$J,358.3,48044,0)
- ;;=C47.12^^209^2373^12
- ;;^UTILITY(U,$J,358.3,48044,1,0)
+ ;;^UTILITY(U,$J,358.3,45673,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,45673,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,45673,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,45674,0)
+ ;;=J30.1^^172^2277^5
+ ;;^UTILITY(U,$J,358.3,45674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48044,1,3,0)
- ;;=3^Malig Neop of Peripheral Nerves of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,48044,1,4,0)
- ;;=4^C47.12
- ;;^UTILITY(U,$J,358.3,48044,2)
- ;;=^5001112
- ;;^UTILITY(U,$J,358.3,48045,0)
- ;;=C47.21^^209^2373^16
- ;;^UTILITY(U,$J,358.3,48045,1,0)
+ ;;^UTILITY(U,$J,358.3,45674,1,3,0)
+ ;;=3^Allergic Rhinitis,Pollen
+ ;;^UTILITY(U,$J,358.3,45674,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,45674,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,45675,0)
+ ;;=J30.2^^172^2277^3
+ ;;^UTILITY(U,$J,358.3,45675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48045,1,3,0)
- ;;=3^Malig Neop of Peripheral Nerves of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,48045,1,4,0)
- ;;=4^C47.21
- ;;^UTILITY(U,$J,358.3,48045,2)
- ;;=^5001114
- ;;^UTILITY(U,$J,358.3,48046,0)
- ;;=C47.22^^209^2373^13
- ;;^UTILITY(U,$J,358.3,48046,1,0)
+ ;;^UTILITY(U,$J,358.3,45675,1,3,0)
+ ;;=3^Allergic Rhinitis,Oth Seasonal
+ ;;^UTILITY(U,$J,358.3,45675,1,4,0)
+ ;;=4^J30.2
+ ;;^UTILITY(U,$J,358.3,45675,2)
+ ;;=^5008202
+ ;;^UTILITY(U,$J,358.3,45676,0)
+ ;;=J30.81^^172^2277^1
+ ;;^UTILITY(U,$J,358.3,45676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48046,1,3,0)
- ;;=3^Malig Neop of Peripheral Nerves of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,48046,1,4,0)
- ;;=4^C47.22
- ;;^UTILITY(U,$J,358.3,48046,2)
- ;;=^5001115
- ;;^UTILITY(U,$J,358.3,48047,0)
- ;;=C47.3^^209^2373^17
- ;;^UTILITY(U,$J,358.3,48047,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48047,1,3,0)
- ;;=3^Malig Neop of Peripheral Nerves of Thorax
+ ;;^UTILITY(U,$J,358.3,45676,1,3,0)
+ ;;=3^Allergic Rhinitis,Danders
+ ;;^UTILITY(U,$J,358.3,45676,1,4,0)
+ ;;=4^J30.81

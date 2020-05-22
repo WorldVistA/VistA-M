@@ -1,124 +1,120 @@
-IBDEI1PO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29066,1,0)
+ ;;^UTILITY(U,$J,358.3,27341,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27341,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,27341,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,27342,0)
+ ;;=F15.229^^110^1324^61
+ ;;^UTILITY(U,$J,358.3,27342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29066,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29066,1,4,0)
- ;;=4^O36.8121
- ;;^UTILITY(U,$J,358.3,29066,2)
- ;;=^5017090
- ;;^UTILITY(U,$J,358.3,29067,0)
- ;;=O36.8131^^115^1455^8
- ;;^UTILITY(U,$J,358.3,29067,1,0)
+ ;;^UTILITY(U,$J,358.3,27342,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27342,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,27342,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,27343,0)
+ ;;=F15.929^^110^1324^62
+ ;;^UTILITY(U,$J,358.3,27343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29067,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29067,1,4,0)
- ;;=4^O36.8131
- ;;^UTILITY(U,$J,358.3,29067,2)
- ;;=^5017097
- ;;^UTILITY(U,$J,358.3,29068,0)
- ;;=O36.8122^^115^1455^3
- ;;^UTILITY(U,$J,358.3,29068,1,0)
+ ;;^UTILITY(U,$J,358.3,27343,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27343,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,27343,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,27344,0)
+ ;;=F15.121^^110^1324^54
+ ;;^UTILITY(U,$J,358.3,27344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29068,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29068,1,4,0)
- ;;=4^O36.8122
- ;;^UTILITY(U,$J,358.3,29068,2)
- ;;=^5017091
- ;;^UTILITY(U,$J,358.3,29069,0)
- ;;=O36.8132^^115^1455^9
- ;;^UTILITY(U,$J,358.3,29069,1,0)
+ ;;^UTILITY(U,$J,358.3,27344,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27344,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,27344,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,27345,0)
+ ;;=F15.221^^110^1324^55
+ ;;^UTILITY(U,$J,358.3,27345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29069,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29069,1,4,0)
- ;;=4^O36.8132
- ;;^UTILITY(U,$J,358.3,29069,2)
- ;;=^5017098
- ;;^UTILITY(U,$J,358.3,29070,0)
- ;;=O36.8123^^115^1455^4
- ;;^UTILITY(U,$J,358.3,29070,1,0)
+ ;;^UTILITY(U,$J,358.3,27345,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27345,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,27345,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,27346,0)
+ ;;=F15.921^^110^1324^56
+ ;;^UTILITY(U,$J,358.3,27346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29070,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29070,1,4,0)
- ;;=4^O36.8123
- ;;^UTILITY(U,$J,358.3,29070,2)
- ;;=^5017092
- ;;^UTILITY(U,$J,358.3,29071,0)
- ;;=O36.8133^^115^1455^10
- ;;^UTILITY(U,$J,358.3,29071,1,0)
+ ;;^UTILITY(U,$J,358.3,27346,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27346,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,27346,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,27347,0)
+ ;;=F15.23^^110^1324^67
+ ;;^UTILITY(U,$J,358.3,27347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29071,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29071,1,4,0)
- ;;=4^O36.8133
- ;;^UTILITY(U,$J,358.3,29071,2)
- ;;=^5017099
- ;;^UTILITY(U,$J,358.3,29072,0)
- ;;=O36.8124^^115^1455^5
- ;;^UTILITY(U,$J,358.3,29072,1,0)
+ ;;^UTILITY(U,$J,358.3,27347,1,3,0)
+ ;;=3^Oth Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,27347,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,27347,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,27348,0)
+ ;;=F15.10^^110^1324^64
+ ;;^UTILITY(U,$J,358.3,27348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29072,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29072,1,4,0)
- ;;=4^O36.8124
- ;;^UTILITY(U,$J,358.3,29072,2)
- ;;=^5017093
- ;;^UTILITY(U,$J,358.3,29073,0)
- ;;=O36.8134^^115^1455^11
- ;;^UTILITY(U,$J,358.3,29073,1,0)
+ ;;^UTILITY(U,$J,358.3,27348,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,27348,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,27348,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,27349,0)
+ ;;=F15.20^^110^1324^65
+ ;;^UTILITY(U,$J,358.3,27349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29073,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29073,1,4,0)
- ;;=4^O36.8134
- ;;^UTILITY(U,$J,358.3,29073,2)
- ;;=^5017100
- ;;^UTILITY(U,$J,358.3,29074,0)
- ;;=O36.8125^^115^1455^6
- ;;^UTILITY(U,$J,358.3,29074,1,0)
+ ;;^UTILITY(U,$J,358.3,27349,1,3,0)
+ ;;=3^Oth Stimulant Mod/Sev Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,27349,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,27349,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,27350,0)
+ ;;=F14.180^^110^1324^1
+ ;;^UTILITY(U,$J,358.3,27350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29074,1,3,0)
- ;;=3^Decreased fetal movements, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29074,1,4,0)
- ;;=4^O36.8125
- ;;^UTILITY(U,$J,358.3,29074,2)
- ;;=^5017094
- ;;^UTILITY(U,$J,358.3,29075,0)
- ;;=O36.8135^^115^1455^12
- ;;^UTILITY(U,$J,358.3,29075,1,0)
+ ;;^UTILITY(U,$J,358.3,27350,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27350,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,27350,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,27351,0)
+ ;;=F14.280^^110^1324^2
+ ;;^UTILITY(U,$J,358.3,27351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29075,1,3,0)
- ;;=3^Decreased fetal movements, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29075,1,4,0)
- ;;=4^O36.8135
- ;;^UTILITY(U,$J,358.3,29075,2)
- ;;=^5017101
- ;;^UTILITY(U,$J,358.3,29076,0)
- ;;=O43.011^^115^1455^14
- ;;^UTILITY(U,$J,358.3,29076,1,0)
+ ;;^UTILITY(U,$J,358.3,27351,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27351,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,27351,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,27352,0)
+ ;;=F14.980^^110^1324^3
+ ;;^UTILITY(U,$J,358.3,27352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29076,1,3,0)
- ;;=3^Fetomaternal placental transfusion syndrome, first trimester
- ;;^UTILITY(U,$J,358.3,29076,1,4,0)
- ;;=4^O43.011
- ;;^UTILITY(U,$J,358.3,29076,2)
- ;;=^5017389
- ;;^UTILITY(U,$J,358.3,29077,0)
- ;;=O43.012^^115^1455^13
- ;;^UTILITY(U,$J,358.3,29077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29077,1,3,0)
- ;;=3^Fetomaternal placental transfuse syndrome, second trimester
- ;;^UTILITY(U,$J,358.3,29077,1,4,0)
- ;;=4^O43.012
- ;;^UTILITY(U,$J,358.3,29077,2)
- ;;=^5017390
- ;;^UTILITY(U,$J,358.3,29078,0)
- ;;=O43.013^^115^1455^15
+ ;;^UTILITY(U,$J,358.3,27352,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27352,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,27352,2)
+ ;;=^5003278

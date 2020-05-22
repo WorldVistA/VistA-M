@@ -1,136 +1,122 @@
-IBDEI1YN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33274,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,33275,0)
- ;;=L03.311^^131^1669^95
- ;;^UTILITY(U,$J,358.3,33275,1,0)
+ ;;^UTILITY(U,$J,358.3,31320,2)
+ ;;=^5016279
+ ;;^UTILITY(U,$J,358.3,31321,0)
+ ;;=O24.435^^126^1623^26
+ ;;^UTILITY(U,$J,358.3,31321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33275,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,33275,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,33275,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,33276,0)
- ;;=L03.312^^131^1669^96
- ;;^UTILITY(U,$J,358.3,33276,1,0)
+ ;;^UTILITY(U,$J,358.3,31321,1,3,0)
+ ;;=3^Gestational DM in Puerperium,Ctrl by Oral Hypoglycemic Drugs
+ ;;^UTILITY(U,$J,358.3,31321,1,4,0)
+ ;;=4^O24.435
+ ;;^UTILITY(U,$J,358.3,31321,2)
+ ;;=^5139043
+ ;;^UTILITY(U,$J,358.3,31322,0)
+ ;;=F53.0^^126^1623^63
+ ;;^UTILITY(U,$J,358.3,31322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33276,1,3,0)
- ;;=3^Cellulitis of Back
- ;;^UTILITY(U,$J,358.3,33276,1,4,0)
- ;;=4^L03.312
- ;;^UTILITY(U,$J,358.3,33276,2)
- ;;=^5009048
- ;;^UTILITY(U,$J,358.3,33277,0)
- ;;=L03.313^^131^1669^98
- ;;^UTILITY(U,$J,358.3,33277,1,0)
+ ;;^UTILITY(U,$J,358.3,31322,1,3,0)
+ ;;=3^Postpartum Depression
+ ;;^UTILITY(U,$J,358.3,31322,1,4,0)
+ ;;=4^F53.0
+ ;;^UTILITY(U,$J,358.3,31322,2)
+ ;;=^5157303
+ ;;^UTILITY(U,$J,358.3,31323,0)
+ ;;=F53.1^^126^1623^86
+ ;;^UTILITY(U,$J,358.3,31323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33277,1,3,0)
- ;;=3^Cellulitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,33277,1,4,0)
- ;;=4^L03.313
- ;;^UTILITY(U,$J,358.3,33277,2)
- ;;=^5009049
- ;;^UTILITY(U,$J,358.3,33278,0)
- ;;=L03.314^^131^1669^100
- ;;^UTILITY(U,$J,358.3,33278,1,0)
+ ;;^UTILITY(U,$J,358.3,31323,1,3,0)
+ ;;=3^Puerperal Psychosis
+ ;;^UTILITY(U,$J,358.3,31323,1,4,0)
+ ;;=4^F53.1
+ ;;^UTILITY(U,$J,358.3,31323,2)
+ ;;=^5157304
+ ;;^UTILITY(U,$J,358.3,31324,0)
+ ;;=O99.331^^126^1624^20
+ ;;^UTILITY(U,$J,358.3,31324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33278,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,33278,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,33278,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,33279,0)
- ;;=L03.315^^131^1669^107
- ;;^UTILITY(U,$J,358.3,33279,1,0)
+ ;;^UTILITY(U,$J,358.3,31324,1,3,0)
+ ;;=3^Tobacco complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31324,1,4,0)
+ ;;=4^O99.331
+ ;;^UTILITY(U,$J,358.3,31324,2)
+ ;;=^5017953
+ ;;^UTILITY(U,$J,358.3,31325,0)
+ ;;=O99.332^^126^1624^21
+ ;;^UTILITY(U,$J,358.3,31325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33279,1,3,0)
- ;;=3^Cellulitis of Perineum
- ;;^UTILITY(U,$J,358.3,33279,1,4,0)
- ;;=4^L03.315
- ;;^UTILITY(U,$J,358.3,33279,2)
- ;;=^5009051
- ;;^UTILITY(U,$J,358.3,33280,0)
- ;;=L03.316^^131^1669^114
- ;;^UTILITY(U,$J,358.3,33280,1,0)
+ ;;^UTILITY(U,$J,358.3,31325,1,3,0)
+ ;;=3^Tobacco complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31325,1,4,0)
+ ;;=4^O99.332
+ ;;^UTILITY(U,$J,358.3,31325,2)
+ ;;=^5017954
+ ;;^UTILITY(U,$J,358.3,31326,0)
+ ;;=O99.333^^126^1624^22
+ ;;^UTILITY(U,$J,358.3,31326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33280,1,3,0)
- ;;=3^Cellulitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,33280,1,4,0)
- ;;=4^L03.316
- ;;^UTILITY(U,$J,358.3,33280,2)
- ;;=^5009052
- ;;^UTILITY(U,$J,358.3,33281,0)
- ;;=L03.319^^131^1669^113
- ;;^UTILITY(U,$J,358.3,33281,1,0)
+ ;;^UTILITY(U,$J,358.3,31326,1,3,0)
+ ;;=3^Tobacco complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,31326,1,4,0)
+ ;;=4^O99.333
+ ;;^UTILITY(U,$J,358.3,31326,2)
+ ;;=^5017955
+ ;;^UTILITY(U,$J,358.3,31327,0)
+ ;;=O99.335^^126^1624^23
+ ;;^UTILITY(U,$J,358.3,31327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33281,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,33281,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,33281,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,33282,0)
- ;;=L03.321^^131^1669^13
- ;;^UTILITY(U,$J,358.3,33282,1,0)
+ ;;^UTILITY(U,$J,358.3,31327,1,3,0)
+ ;;=3^Tobacco complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31327,1,4,0)
+ ;;=4^O99.335
+ ;;^UTILITY(U,$J,358.3,31327,2)
+ ;;=^5017957
+ ;;^UTILITY(U,$J,358.3,31328,0)
+ ;;=O99.211^^126^1624^14
+ ;;^UTILITY(U,$J,358.3,31328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33282,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,33282,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,33282,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,33283,0)
- ;;=L03.322^^131^1669^14
- ;;^UTILITY(U,$J,358.3,33283,1,0)
+ ;;^UTILITY(U,$J,358.3,31328,1,3,0)
+ ;;=3^Obesity complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31328,1,4,0)
+ ;;=4^O99.211
+ ;;^UTILITY(U,$J,358.3,31328,2)
+ ;;=^5017929
+ ;;^UTILITY(U,$J,358.3,31329,0)
+ ;;=O99.212^^126^1624^15
+ ;;^UTILITY(U,$J,358.3,31329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33283,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,33283,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,33283,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,33284,0)
- ;;=L03.323^^131^1669^15
- ;;^UTILITY(U,$J,358.3,33284,1,0)
+ ;;^UTILITY(U,$J,358.3,31329,1,3,0)
+ ;;=3^Obesity complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31329,1,4,0)
+ ;;=4^O99.212
+ ;;^UTILITY(U,$J,358.3,31329,2)
+ ;;=^5017930
+ ;;^UTILITY(U,$J,358.3,31330,0)
+ ;;=O99.213^^126^1624^16
+ ;;^UTILITY(U,$J,358.3,31330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33284,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,33284,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,33284,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,33285,0)
- ;;=L03.324^^131^1669^17
- ;;^UTILITY(U,$J,358.3,33285,1,0)
+ ;;^UTILITY(U,$J,358.3,31330,1,3,0)
+ ;;=3^Obesity complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,31330,1,4,0)
+ ;;=4^O99.213
+ ;;^UTILITY(U,$J,358.3,31330,2)
+ ;;=^5017931
+ ;;^UTILITY(U,$J,358.3,31331,0)
+ ;;=O99.215^^126^1624^18
+ ;;^UTILITY(U,$J,358.3,31331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33285,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,33285,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,33285,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,33286,0)
- ;;=L03.325^^131^1669^23
- ;;^UTILITY(U,$J,358.3,33286,1,0)
+ ;;^UTILITY(U,$J,358.3,31331,1,3,0)
+ ;;=3^Obesity complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31331,1,4,0)
+ ;;=4^O99.215
+ ;;^UTILITY(U,$J,358.3,31331,2)
+ ;;=^5017933
+ ;;^UTILITY(U,$J,358.3,31332,0)
+ ;;=O99.841^^126^1624^2
+ ;;^UTILITY(U,$J,358.3,31332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33286,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,33286,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,33286,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,33287,0)
- ;;=L03.326^^131^1669^29
- ;;^UTILITY(U,$J,358.3,33287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33287,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,33287,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,33287,2)
- ;;=^5009060
+ ;;^UTILITY(U,$J,358.3,31332,1,3,0)
+ ;;=3^Bariatric surgery status comp pregnancy, first trimester

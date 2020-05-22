@@ -1,130 +1,128 @@
-IBDEI30D ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI30D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50432,0)
- ;;=M06.271^^219^2448^115
- ;;^UTILITY(U,$J,358.3,50432,1,0)
+ ;;^UTILITY(U,$J,358.3,48041,1,4,0)
+ ;;=4^H81.313
+ ;;^UTILITY(U,$J,358.3,48041,2)
+ ;;=^5006874
+ ;;^UTILITY(U,$J,358.3,48042,0)
+ ;;=H81.11^^185^2416^13
+ ;;^UTILITY(U,$J,358.3,48042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50432,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50432,1,4,0)
- ;;=4^M06.271
- ;;^UTILITY(U,$J,358.3,50432,2)
- ;;=^5010091
- ;;^UTILITY(U,$J,358.3,50433,0)
- ;;=M06.221^^219^2448^116
- ;;^UTILITY(U,$J,358.3,50433,1,0)
+ ;;^UTILITY(U,$J,358.3,48042,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Right Ear
+ ;;^UTILITY(U,$J,358.3,48042,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,48042,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,48043,0)
+ ;;=H81.12^^185^2416^12
+ ;;^UTILITY(U,$J,358.3,48043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50433,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Elbow
- ;;^UTILITY(U,$J,358.3,50433,1,4,0)
- ;;=4^M06.221
- ;;^UTILITY(U,$J,358.3,50433,2)
- ;;=^5010076
- ;;^UTILITY(U,$J,358.3,50434,0)
- ;;=M06.241^^219^2448^117
- ;;^UTILITY(U,$J,358.3,50434,1,0)
+ ;;^UTILITY(U,$J,358.3,48043,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Left Ear
+ ;;^UTILITY(U,$J,358.3,48043,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,48043,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,48044,0)
+ ;;=H81.13^^185^2416^11
+ ;;^UTILITY(U,$J,358.3,48044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50434,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Hand
- ;;^UTILITY(U,$J,358.3,50434,1,4,0)
- ;;=4^M06.241
- ;;^UTILITY(U,$J,358.3,50434,2)
- ;;=^5010082
- ;;^UTILITY(U,$J,358.3,50435,0)
- ;;=M06.251^^219^2448^118
- ;;^UTILITY(U,$J,358.3,50435,1,0)
+ ;;^UTILITY(U,$J,358.3,48044,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Bilateral
+ ;;^UTILITY(U,$J,358.3,48044,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,48044,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,48045,0)
+ ;;=H81.391^^185^2416^16
+ ;;^UTILITY(U,$J,358.3,48045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50435,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Hip
- ;;^UTILITY(U,$J,358.3,50435,1,4,0)
- ;;=4^M06.251
- ;;^UTILITY(U,$J,358.3,50435,2)
- ;;=^5010085
- ;;^UTILITY(U,$J,358.3,50436,0)
- ;;=M06.261^^219^2448^119
- ;;^UTILITY(U,$J,358.3,50436,1,0)
+ ;;^UTILITY(U,$J,358.3,48045,1,3,0)
+ ;;=3^Vertigo,Peripheral,Right Ear
+ ;;^UTILITY(U,$J,358.3,48045,1,4,0)
+ ;;=4^H81.391
+ ;;^UTILITY(U,$J,358.3,48045,2)
+ ;;=^5006876
+ ;;^UTILITY(U,$J,358.3,48046,0)
+ ;;=H81.392^^185^2416^15
+ ;;^UTILITY(U,$J,358.3,48046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50436,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Knee
- ;;^UTILITY(U,$J,358.3,50436,1,4,0)
- ;;=4^M06.261
- ;;^UTILITY(U,$J,358.3,50436,2)
- ;;=^5010088
- ;;^UTILITY(U,$J,358.3,50437,0)
- ;;=M06.211^^219^2448^120
- ;;^UTILITY(U,$J,358.3,50437,1,0)
+ ;;^UTILITY(U,$J,358.3,48046,1,3,0)
+ ;;=3^Vertigo,Peripheral,Left Ear
+ ;;^UTILITY(U,$J,358.3,48046,1,4,0)
+ ;;=4^H81.392
+ ;;^UTILITY(U,$J,358.3,48046,2)
+ ;;=^5006877
+ ;;^UTILITY(U,$J,358.3,48047,0)
+ ;;=H81.393^^185^2416^14
+ ;;^UTILITY(U,$J,358.3,48047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50437,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Shoulder
- ;;^UTILITY(U,$J,358.3,50437,1,4,0)
- ;;=4^M06.211
- ;;^UTILITY(U,$J,358.3,50437,2)
- ;;=^5010073
- ;;^UTILITY(U,$J,358.3,50438,0)
- ;;=M06.231^^219^2448^121
- ;;^UTILITY(U,$J,358.3,50438,1,0)
+ ;;^UTILITY(U,$J,358.3,48047,1,3,0)
+ ;;=3^Vertigo,Peripheral,Bilateral
+ ;;^UTILITY(U,$J,358.3,48047,1,4,0)
+ ;;=4^H81.393
+ ;;^UTILITY(U,$J,358.3,48047,2)
+ ;;=^5006878
+ ;;^UTILITY(U,$J,358.3,48048,0)
+ ;;=H81.91^^185^2416^19
+ ;;^UTILITY(U,$J,358.3,48048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50438,1,3,0)
- ;;=3^Rheumatoid Bursitis Right Wrist
- ;;^UTILITY(U,$J,358.3,50438,1,4,0)
- ;;=4^M06.231
- ;;^UTILITY(U,$J,358.3,50438,2)
- ;;=^5010079
- ;;^UTILITY(U,$J,358.3,50439,0)
- ;;=M06.28^^219^2448^122
- ;;^UTILITY(U,$J,358.3,50439,1,0)
+ ;;^UTILITY(U,$J,358.3,48048,1,3,0)
+ ;;=3^Vestibular Function Disorder,Right Ear
+ ;;^UTILITY(U,$J,358.3,48048,1,4,0)
+ ;;=4^H81.91
+ ;;^UTILITY(U,$J,358.3,48048,2)
+ ;;=^5133551
+ ;;^UTILITY(U,$J,358.3,48049,0)
+ ;;=H81.92^^185^2416^18
+ ;;^UTILITY(U,$J,358.3,48049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50439,1,3,0)
- ;;=3^Rheumatoid Bursitis Vertebrae
- ;;^UTILITY(U,$J,358.3,50439,1,4,0)
- ;;=4^M06.28
- ;;^UTILITY(U,$J,358.3,50439,2)
- ;;=^5010094
- ;;^UTILITY(U,$J,358.3,50440,0)
- ;;=M05.472^^219^2448^58
- ;;^UTILITY(U,$J,358.3,50440,1,0)
+ ;;^UTILITY(U,$J,358.3,48049,1,3,0)
+ ;;=3^Vestibular Function Disorder,Left Ear
+ ;;^UTILITY(U,$J,358.3,48049,1,4,0)
+ ;;=4^H81.92
+ ;;^UTILITY(U,$J,358.3,48049,2)
+ ;;=^5133552
+ ;;^UTILITY(U,$J,358.3,48050,0)
+ ;;=H81.93^^185^2416^17
+ ;;^UTILITY(U,$J,358.3,48050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50440,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50440,1,4,0)
- ;;=4^M05.472
- ;;^UTILITY(U,$J,358.3,50440,2)
- ;;=^5009951
- ;;^UTILITY(U,$J,358.3,50441,0)
- ;;=M05.422^^219^2448^59
- ;;^UTILITY(U,$J,358.3,50441,1,0)
+ ;;^UTILITY(U,$J,358.3,48050,1,3,0)
+ ;;=3^Vestibular Function Disorder,Bilateral
+ ;;^UTILITY(U,$J,358.3,48050,1,4,0)
+ ;;=4^H81.93
+ ;;^UTILITY(U,$J,358.3,48050,2)
+ ;;=^5006889
+ ;;^UTILITY(U,$J,358.3,48051,0)
+ ;;=H81.4^^185^2416^7
+ ;;^UTILITY(U,$J,358.3,48051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50441,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Left Elbow
- ;;^UTILITY(U,$J,358.3,50441,1,4,0)
- ;;=4^M05.422
- ;;^UTILITY(U,$J,358.3,50441,2)
- ;;=^5009936
- ;;^UTILITY(U,$J,358.3,50442,0)
- ;;=M05.442^^219^2448^60
- ;;^UTILITY(U,$J,358.3,50442,1,0)
+ ;;^UTILITY(U,$J,358.3,48051,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,48051,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,48051,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,48052,0)
+ ;;=R63.0^^185^2417^1
+ ;;^UTILITY(U,$J,358.3,48052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50442,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Left Hand
- ;;^UTILITY(U,$J,358.3,50442,1,4,0)
- ;;=4^M05.442
- ;;^UTILITY(U,$J,358.3,50442,2)
- ;;=^5009942
- ;;^UTILITY(U,$J,358.3,50443,0)
- ;;=M05.452^^219^2448^61
- ;;^UTILITY(U,$J,358.3,50443,1,0)
+ ;;^UTILITY(U,$J,358.3,48052,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,48052,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,48052,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,48053,0)
+ ;;=R64.^^185^2417^2
+ ;;^UTILITY(U,$J,358.3,48053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50443,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Left Hip
- ;;^UTILITY(U,$J,358.3,50443,1,4,0)
- ;;=4^M05.452
- ;;^UTILITY(U,$J,358.3,50443,2)
- ;;=^5009945
- ;;^UTILITY(U,$J,358.3,50444,0)
- ;;=M05.462^^219^2448^62
- ;;^UTILITY(U,$J,358.3,50444,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50444,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Left Knee
+ ;;^UTILITY(U,$J,358.3,48053,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,48053,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,48053,2)
+ ;;=^17920

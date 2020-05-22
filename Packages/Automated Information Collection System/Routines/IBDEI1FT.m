@@ -1,134 +1,114 @@
-IBDEI1FT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24419,1,4,0)
- ;;=4^F18.159
- ;;^UTILITY(U,$J,358.3,24419,2)
- ;;=^5003387
- ;;^UTILITY(U,$J,358.3,24420,0)
- ;;=F18.259^^90^1071^12
- ;;^UTILITY(U,$J,358.3,24420,1,0)
+ ;;^UTILITY(U,$J,358.3,22991,1,4,0)
+ ;;=4^I97.411
+ ;;^UTILITY(U,$J,358.3,22991,2)
+ ;;=^5008094
+ ;;^UTILITY(U,$J,358.3,22992,0)
+ ;;=I97.418^^105^1166^112
+ ;;^UTILITY(U,$J,358.3,22992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24420,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24420,1,4,0)
- ;;=4^F18.259
- ;;^UTILITY(U,$J,358.3,24420,2)
- ;;=^5003400
- ;;^UTILITY(U,$J,358.3,24421,0)
- ;;=F18.959^^90^1071^13
- ;;^UTILITY(U,$J,358.3,24421,1,0)
+ ;;^UTILITY(U,$J,358.3,22992,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Circ Sys Complicating Oth Circ Sys Procedure
+ ;;^UTILITY(U,$J,358.3,22992,1,4,0)
+ ;;=4^I97.418
+ ;;^UTILITY(U,$J,358.3,22992,2)
+ ;;=^5008095
+ ;;^UTILITY(U,$J,358.3,22993,0)
+ ;;=I97.42^^105^1166^113
+ ;;^UTILITY(U,$J,358.3,22993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24421,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24421,1,4,0)
- ;;=4^F18.959
- ;;^UTILITY(U,$J,358.3,24421,2)
- ;;=^5003412
- ;;^UTILITY(U,$J,358.3,24422,0)
- ;;=F18.99^^90^1071^20
- ;;^UTILITY(U,$J,358.3,24422,1,0)
+ ;;^UTILITY(U,$J,358.3,22993,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Circ Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,22993,1,4,0)
+ ;;=4^I97.42
+ ;;^UTILITY(U,$J,358.3,22993,2)
+ ;;=^5008096
+ ;;^UTILITY(U,$J,358.3,22994,0)
+ ;;=J95.61^^105^1166^128
+ ;;^UTILITY(U,$J,358.3,22994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24422,1,3,0)
- ;;=3^Inhalant Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24422,1,4,0)
- ;;=4^F18.99
- ;;^UTILITY(U,$J,358.3,24422,2)
- ;;=^5133360
- ;;^UTILITY(U,$J,358.3,24423,0)
- ;;=F70.^^90^1072^1
- ;;^UTILITY(U,$J,358.3,24423,1,0)
+ ;;^UTILITY(U,$J,358.3,22994,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Resp Sys Complicating Resp Sys Procedure
+ ;;^UTILITY(U,$J,358.3,22994,1,4,0)
+ ;;=4^J95.61
+ ;;^UTILITY(U,$J,358.3,22994,2)
+ ;;=^5008332
+ ;;^UTILITY(U,$J,358.3,22995,0)
+ ;;=J95.62^^105^1166^129
+ ;;^UTILITY(U,$J,358.3,22995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24423,1,3,0)
- ;;=3^Intellectual Disabilities,Mild
- ;;^UTILITY(U,$J,358.3,24423,1,4,0)
- ;;=4^F70.
- ;;^UTILITY(U,$J,358.3,24423,2)
- ;;=^5003668
- ;;^UTILITY(U,$J,358.3,24424,0)
- ;;=F71.^^90^1072^2
- ;;^UTILITY(U,$J,358.3,24424,1,0)
+ ;;^UTILITY(U,$J,358.3,22995,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Resp Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,22995,1,4,0)
+ ;;=4^J95.62
+ ;;^UTILITY(U,$J,358.3,22995,2)
+ ;;=^5008333
+ ;;^UTILITY(U,$J,358.3,22996,0)
+ ;;=K91.61^^105^1166^114
+ ;;^UTILITY(U,$J,358.3,22996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24424,1,3,0)
- ;;=3^Intellectual Disabilities,Moderate
- ;;^UTILITY(U,$J,358.3,24424,1,4,0)
- ;;=4^F71.
- ;;^UTILITY(U,$J,358.3,24424,2)
- ;;=^5003669
- ;;^UTILITY(U,$J,358.3,24425,0)
- ;;=F72.^^90^1072^3
- ;;^UTILITY(U,$J,358.3,24425,1,0)
+ ;;^UTILITY(U,$J,358.3,22996,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Digestive Sys Complicating Digestive Sys Procedure
+ ;;^UTILITY(U,$J,358.3,22996,1,4,0)
+ ;;=4^K91.61
+ ;;^UTILITY(U,$J,358.3,22996,2)
+ ;;=^5008903
+ ;;^UTILITY(U,$J,358.3,22997,0)
+ ;;=K91.62^^105^1166^115
+ ;;^UTILITY(U,$J,358.3,22997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24425,1,3,0)
- ;;=3^Intellectual Disabilities,Severe
- ;;^UTILITY(U,$J,358.3,24425,1,4,0)
- ;;=4^F72.
- ;;^UTILITY(U,$J,358.3,24425,2)
- ;;=^5003670
- ;;^UTILITY(U,$J,358.3,24426,0)
- ;;=F73.^^90^1072^4
- ;;^UTILITY(U,$J,358.3,24426,1,0)
+ ;;^UTILITY(U,$J,358.3,22997,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Digestive Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,22997,1,4,0)
+ ;;=4^K91.62
+ ;;^UTILITY(U,$J,358.3,22997,2)
+ ;;=^5008904
+ ;;^UTILITY(U,$J,358.3,22998,0)
+ ;;=L76.01^^105^1166^132
+ ;;^UTILITY(U,$J,358.3,22998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24426,1,3,0)
- ;;=3^Intellectual Disabilities,Profound
- ;;^UTILITY(U,$J,358.3,24426,1,4,0)
- ;;=4^F73.
- ;;^UTILITY(U,$J,358.3,24426,2)
- ;;=^5003671
- ;;^UTILITY(U,$J,358.3,24427,0)
- ;;=F78.^^90^1072^5
- ;;^UTILITY(U,$J,358.3,24427,1,0)
+ ;;^UTILITY(U,$J,358.3,22998,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Skin Complicating Derm Procedure
+ ;;^UTILITY(U,$J,358.3,22998,1,4,0)
+ ;;=4^L76.01
+ ;;^UTILITY(U,$J,358.3,22998,2)
+ ;;=^5009302
+ ;;^UTILITY(U,$J,358.3,22999,0)
+ ;;=L76.02^^105^1166^133
+ ;;^UTILITY(U,$J,358.3,22999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24427,1,3,0)
- ;;=3^Intellectual Disabilities,Oth Specified
- ;;^UTILITY(U,$J,358.3,24427,1,4,0)
- ;;=4^F78.
- ;;^UTILITY(U,$J,358.3,24427,2)
- ;;=^5003672
- ;;^UTILITY(U,$J,358.3,24428,0)
- ;;=F79.^^90^1072^6
- ;;^UTILITY(U,$J,358.3,24428,1,0)
+ ;;^UTILITY(U,$J,358.3,22999,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Skin Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,22999,1,4,0)
+ ;;=4^L76.02
+ ;;^UTILITY(U,$J,358.3,22999,2)
+ ;;=^5009303
+ ;;^UTILITY(U,$J,358.3,23000,0)
+ ;;=M96.810^^105^1166^124
+ ;;^UTILITY(U,$J,358.3,23000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24428,1,3,0)
- ;;=3^Intellectual Disabilities,Unspec
- ;;^UTILITY(U,$J,358.3,24428,1,4,0)
- ;;=4^F79.
- ;;^UTILITY(U,$J,358.3,24428,2)
- ;;=^5003673
- ;;^UTILITY(U,$J,358.3,24429,0)
- ;;=Z00.6^^90^1073^1
- ;;^UTILITY(U,$J,358.3,24429,1,0)
+ ;;^UTILITY(U,$J,358.3,23000,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of MS Structure Complication MS Sys Procedure
+ ;;^UTILITY(U,$J,358.3,23000,1,4,0)
+ ;;=4^M96.810
+ ;;^UTILITY(U,$J,358.3,23000,2)
+ ;;=^5015393
+ ;;^UTILITY(U,$J,358.3,23001,0)
+ ;;=M96.811^^105^1166^125
+ ;;^UTILITY(U,$J,358.3,23001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24429,1,3,0)
- ;;=3^Exam of Participant of Control in Clinical Research Program
- ;;^UTILITY(U,$J,358.3,24429,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,24429,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,24430,0)
- ;;=F45.22^^90^1074^1
- ;;^UTILITY(U,$J,358.3,24430,1,0)
+ ;;^UTILITY(U,$J,358.3,23001,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of MS Structure Complication Oth Procedure
+ ;;^UTILITY(U,$J,358.3,23001,1,4,0)
+ ;;=4^M96.811
+ ;;^UTILITY(U,$J,358.3,23001,2)
+ ;;=^5015394
+ ;;^UTILITY(U,$J,358.3,23002,0)
+ ;;=N99.61^^105^1166^120
+ ;;^UTILITY(U,$J,358.3,23002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24430,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,24430,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,24430,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,24431,0)
- ;;=F45.20^^90^1074^7
- ;;^UTILITY(U,$J,358.3,24431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24431,1,3,0)
- ;;=3^Hypochondiacal Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24431,1,4,0)
- ;;=4^F45.20
- ;;^UTILITY(U,$J,358.3,24431,2)
- ;;=^5003586
- ;;^UTILITY(U,$J,358.3,24432,0)
- ;;=F45.21^^90^1074^9
- ;;^UTILITY(U,$J,358.3,24432,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24432,1,3,0)
- ;;=3^Hypochondriasis
+ ;;^UTILITY(U,$J,358.3,23002,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of GU Sys Complicating a GU Sys Procedure

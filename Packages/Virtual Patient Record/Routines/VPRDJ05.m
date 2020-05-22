@@ -1,5 +1,5 @@
 VPRDJ05 ;SLC/MKB -- Medications by order ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,18**;Sep 01, 2011;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References: see VPRDJ05V for DBIA list
@@ -13,7 +13,7 @@ PS1(ID) ; -- med order
  N ORUPCHUK,ORVP,ORPCL,ORDUZ,ORODT,ORSTRT,ORSTOP,ORL,ORTO,ORSTS,ORNP,ORPV,ORTX
  N MED,CLS,OI,X,LOC,FAC,DRUG,DA,CNT,VPRESP
  S X=$S(ORPK:$E(ORPK,$L(ORPK)),1:"Z") S:X=+X X="R" ;last char = PS file
- S CLS=$S("RSN"[X:"O","UV"[X:"I",1:$$GET1^DIQ(100,ID_",",10,"I"))
+ S CLS=$S("RSN"[X:"O","UV"[X:"I",1:$$GETCLS) ; p18 added package check in new function
  S MED("uid")=$$SETUID^VPRUTILS("med",DFN,ID)
  S MED("orders",1,"orderUid")=$$SETUID^VPRUTILS("order",DFN,ID)
  S X=$$GET1^DIQ(100,ID_",",9,"I") S:X MED("orders",1,"predecessor")=$$SETUID^VPRUTILS("med",DFN,+X)
@@ -203,3 +203,8 @@ TOMIN(DUR) ;
  S TIME=$P(DUR," ")
  S RESULT=$S(UNIT="M":TIME,UNIT="H":TIME*60,UNIT="D":TIME*1440,UNIT="W":TIME*10080,UNIT="L":TIME*43200,1:0)
  Q RESULT
+GETCLS() ; p18 added package check
+ N PKGIEN S PKGIEN=$$GET1^DIQ(100,ID_",",12,"I")
+ I $P($G(^DIC(9.4,PKGIEN,0)),U)="INPATIENT MEDICATIONS" Q "I"
+ I $P($G(^DIC(9.4,PKGIEN,0)),U)="OUTPATIENT PHARMACY" Q "O"
+ Q $$GET1^DIQ(100,ID_",",10,"I")

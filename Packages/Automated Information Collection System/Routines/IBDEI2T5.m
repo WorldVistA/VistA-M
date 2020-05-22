@@ -1,126 +1,128 @@
-IBDEI2T5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2T5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47144,0)
- ;;=C50.112^^209^2339^3
- ;;^UTILITY(U,$J,358.3,47144,1,0)
+ ;;^UTILITY(U,$J,358.3,44784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47144,1,3,0)
- ;;=3^Malig Neop of Left Central Portion of Breast
- ;;^UTILITY(U,$J,358.3,47144,1,4,0)
- ;;=4^C50.112
- ;;^UTILITY(U,$J,358.3,47144,2)
- ;;=^5001166
- ;;^UTILITY(U,$J,358.3,47145,0)
- ;;=C50.211^^209^2339^17
- ;;^UTILITY(U,$J,358.3,47145,1,0)
+ ;;^UTILITY(U,$J,358.3,44784,1,3,0)
+ ;;=3^Drug Phototoxic Response
+ ;;^UTILITY(U,$J,358.3,44784,1,4,0)
+ ;;=4^L56.0
+ ;;^UTILITY(U,$J,358.3,44784,2)
+ ;;=^5009214
+ ;;^UTILITY(U,$J,358.3,44785,0)
+ ;;=L23.9^^170^2236^6
+ ;;^UTILITY(U,$J,358.3,44785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47145,1,3,0)
- ;;=3^Malig Neop of Right Upper-Inner Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47145,1,4,0)
- ;;=4^C50.211
- ;;^UTILITY(U,$J,358.3,47145,2)
- ;;=^5001171
- ;;^UTILITY(U,$J,358.3,47146,0)
- ;;=C50.212^^209^2339^7
- ;;^UTILITY(U,$J,358.3,47146,1,0)
+ ;;^UTILITY(U,$J,358.3,44785,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,44785,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,44785,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,44786,0)
+ ;;=L30.9^^170^2236^21
+ ;;^UTILITY(U,$J,358.3,44786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47146,1,3,0)
- ;;=3^Malig Neop of Left Upper-Inner Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47146,1,4,0)
- ;;=4^C50.212
- ;;^UTILITY(U,$J,358.3,47146,2)
- ;;=^5001172
- ;;^UTILITY(U,$J,358.3,47147,0)
- ;;=C50.311^^209^2339^14
- ;;^UTILITY(U,$J,358.3,47147,1,0)
+ ;;^UTILITY(U,$J,358.3,44786,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,44786,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,44786,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,44787,0)
+ ;;=L24.9^^170^2236^16
+ ;;^UTILITY(U,$J,358.3,44787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47147,1,3,0)
- ;;=3^Malig Neop of Right Lower-Inner Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47147,1,4,0)
- ;;=4^C50.311
- ;;^UTILITY(U,$J,358.3,47147,2)
- ;;=^5001177
- ;;^UTILITY(U,$J,358.3,47148,0)
- ;;=C50.312^^209^2339^5
- ;;^UTILITY(U,$J,358.3,47148,1,0)
+ ;;^UTILITY(U,$J,358.3,44787,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,44787,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,44787,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,44788,0)
+ ;;=L30.0^^170^2236^17
+ ;;^UTILITY(U,$J,358.3,44788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47148,1,3,0)
- ;;=3^Malig Neop of Left Lower-nner Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47148,1,4,0)
- ;;=4^C50.312
- ;;^UTILITY(U,$J,358.3,47148,2)
- ;;=^5133333
- ;;^UTILITY(U,$J,358.3,47149,0)
- ;;=C50.411^^209^2339^18
- ;;^UTILITY(U,$J,358.3,47149,1,0)
+ ;;^UTILITY(U,$J,358.3,44788,1,3,0)
+ ;;=3^Dermatitis,Nummular
+ ;;^UTILITY(U,$J,358.3,44788,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,44788,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,44789,0)
+ ;;=L23.2^^170^2236^4
+ ;;^UTILITY(U,$J,358.3,44789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47149,1,3,0)
- ;;=3^Malig Neop of Right Upper-Outer Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47149,1,4,0)
- ;;=4^C50.411
- ;;^UTILITY(U,$J,358.3,47149,2)
- ;;=^5001179
- ;;^UTILITY(U,$J,358.3,47150,0)
- ;;=C50.412^^209^2339^8
- ;;^UTILITY(U,$J,358.3,47150,1,0)
+ ;;^UTILITY(U,$J,358.3,44789,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Cosmetics
+ ;;^UTILITY(U,$J,358.3,44789,1,4,0)
+ ;;=4^L23.2
+ ;;^UTILITY(U,$J,358.3,44789,2)
+ ;;=^5009117
+ ;;^UTILITY(U,$J,358.3,44790,0)
+ ;;=L24.3^^170^2236^12
+ ;;^UTILITY(U,$J,358.3,44790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47150,1,3,0)
- ;;=3^Malig Neop of Left Upper-Outer Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47150,1,4,0)
- ;;=4^C50.412
- ;;^UTILITY(U,$J,358.3,47150,2)
- ;;=^5133335
- ;;^UTILITY(U,$J,358.3,47151,0)
- ;;=C50.511^^209^2339^15
- ;;^UTILITY(U,$J,358.3,47151,1,0)
+ ;;^UTILITY(U,$J,358.3,44790,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Cosmetics
+ ;;^UTILITY(U,$J,358.3,44790,1,4,0)
+ ;;=4^L24.3
+ ;;^UTILITY(U,$J,358.3,44790,2)
+ ;;=^5009129
+ ;;^UTILITY(U,$J,358.3,44791,0)
+ ;;=L27.2^^170^2236^1
+ ;;^UTILITY(U,$J,358.3,44791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47151,1,3,0)
- ;;=3^Malig Neop of Right Lower-Outer Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47151,1,4,0)
- ;;=4^C50.511
- ;;^UTILITY(U,$J,358.3,47151,2)
- ;;=^5001181
- ;;^UTILITY(U,$J,358.3,47152,0)
- ;;=C50.512^^209^2339^4
- ;;^UTILITY(U,$J,358.3,47152,1,0)
+ ;;^UTILITY(U,$J,358.3,44791,1,3,0)
+ ;;=3^Dermatitis d/t Ingested Food
+ ;;^UTILITY(U,$J,358.3,44791,1,4,0)
+ ;;=4^L27.2
+ ;;^UTILITY(U,$J,358.3,44791,2)
+ ;;=^5009146
+ ;;^UTILITY(U,$J,358.3,44792,0)
+ ;;=L21.8^^170^2236^20
+ ;;^UTILITY(U,$J,358.3,44792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47152,1,3,0)
- ;;=3^Malig Neop of Left Lower-Outer Quadrant of Breast
- ;;^UTILITY(U,$J,358.3,47152,1,4,0)
- ;;=4^C50.512
- ;;^UTILITY(U,$J,358.3,47152,2)
- ;;=^5133337
- ;;^UTILITY(U,$J,358.3,47153,0)
- ;;=C50.611^^209^2339^11
- ;;^UTILITY(U,$J,358.3,47153,1,0)
+ ;;^UTILITY(U,$J,358.3,44792,1,3,0)
+ ;;=3^Dermatitis,Seborrheic
+ ;;^UTILITY(U,$J,358.3,44792,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,44792,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,44793,0)
+ ;;=L20.89^^170^2236^7
+ ;;^UTILITY(U,$J,358.3,44793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47153,1,3,0)
- ;;=3^Malig Neop of Right Axillary Tail of Breast
- ;;^UTILITY(U,$J,358.3,47153,1,4,0)
- ;;=4^C50.611
- ;;^UTILITY(U,$J,358.3,47153,2)
- ;;=^5001183
- ;;^UTILITY(U,$J,358.3,47154,0)
- ;;=C50.612^^209^2339^1
- ;;^UTILITY(U,$J,358.3,47154,1,0)
+ ;;^UTILITY(U,$J,358.3,44793,1,3,0)
+ ;;=3^Dermatitis,Atopic
+ ;;^UTILITY(U,$J,358.3,44793,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,44793,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,44794,0)
+ ;;=E08.622^^170^2236^23
+ ;;^UTILITY(U,$J,358.3,44794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47154,1,3,0)
- ;;=3^Malig Neop of Left Axillary Tail of Breast
- ;;^UTILITY(U,$J,358.3,47154,1,4,0)
- ;;=4^C50.612
- ;;^UTILITY(U,$J,358.3,47154,2)
- ;;=^5001184
- ;;^UTILITY(U,$J,358.3,47155,0)
- ;;=C50.811^^209^2339^10
- ;;^UTILITY(U,$J,358.3,47155,1,0)
+ ;;^UTILITY(U,$J,358.3,44794,1,3,0)
+ ;;=3^Diabetes d/t Underlying Condition w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,44794,1,4,0)
+ ;;=4^E08.622
+ ;;^UTILITY(U,$J,358.3,44794,2)
+ ;;=^5002535
+ ;;^UTILITY(U,$J,358.3,44795,0)
+ ;;=T81.31XA^^170^2236^26
+ ;;^UTILITY(U,$J,358.3,44795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47155,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Right Breast
- ;;^UTILITY(U,$J,358.3,47155,1,4,0)
- ;;=4^C50.811
- ;;^UTILITY(U,$J,358.3,47155,2)
- ;;=^5001189
- ;;^UTILITY(U,$J,358.3,47156,0)
- ;;=C50.812^^209^2339^9
+ ;;^UTILITY(U,$J,358.3,44795,1,3,0)
+ ;;=3^Disruption External Surgical Wound NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44795,1,4,0)
+ ;;=4^T81.31XA
+ ;;^UTILITY(U,$J,358.3,44795,2)
+ ;;=^5054470
+ ;;^UTILITY(U,$J,358.3,44796,0)
+ ;;=L26.^^170^2236^8
+ ;;^UTILITY(U,$J,358.3,44796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44796,1,3,0)
+ ;;=3^Dermatitis,Exfoliative

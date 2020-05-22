@@ -1,5 +1,5 @@
 ONCCS2 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
- ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,5,10**;Jul 31, 2013;Build 20
  ;
  S SCHEMA="Unable to compute schema"
  N ONCDISC S ONCDISC="" ;variable for discontinued items, set=1 if D/C
@@ -12,6 +12,7 @@ ONCCS2 ;Hines OIFO/GWB - Collaborative Staging v2 Stuffing ;06/23/10
  S SCHEMA=+$$SCHEMA^ONCSAPIS(.ONCSAPI,SITE,HIST,DISCRIM)
  Q:SCHEMA<0
  S SCHEMA=SCHNAME
+ I DATEDX>3171231 Q  ;don't stuff for 2018+ cases
  ;
  I $G(SCHEMA)="AdnexaUterineOther" D  Q
  .D 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25

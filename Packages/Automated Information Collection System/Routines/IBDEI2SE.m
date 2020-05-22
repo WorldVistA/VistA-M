@@ -1,132 +1,126 @@
-IBDEI2SE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46783,2)
- ;;=^5009950
- ;;^UTILITY(U,$J,358.3,46784,0)
- ;;=M05.421^^206^2306^67
- ;;^UTILITY(U,$J,358.3,46784,1,0)
+ ;;^UTILITY(U,$J,358.3,44442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46784,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Elbow
- ;;^UTILITY(U,$J,358.3,46784,1,4,0)
- ;;=4^M05.421
- ;;^UTILITY(U,$J,358.3,46784,2)
- ;;=^5009935
- ;;^UTILITY(U,$J,358.3,46785,0)
- ;;=M05.441^^206^2306^68
- ;;^UTILITY(U,$J,358.3,46785,1,0)
+ ;;^UTILITY(U,$J,358.3,44442,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,44442,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,44442,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,44443,0)
+ ;;=F15.93^^164^2204^9
+ ;;^UTILITY(U,$J,358.3,44443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46785,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Hand
- ;;^UTILITY(U,$J,358.3,46785,1,4,0)
- ;;=4^M05.441
- ;;^UTILITY(U,$J,358.3,46785,2)
- ;;=^5009941
- ;;^UTILITY(U,$J,358.3,46786,0)
- ;;=M05.451^^206^2306^69
- ;;^UTILITY(U,$J,358.3,46786,1,0)
+ ;;^UTILITY(U,$J,358.3,44443,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,44443,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,44443,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,44444,0)
+ ;;=F15.180^^164^2204^1
+ ;;^UTILITY(U,$J,358.3,44444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46786,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Hip
- ;;^UTILITY(U,$J,358.3,46786,1,4,0)
- ;;=4^M05.451
- ;;^UTILITY(U,$J,358.3,46786,2)
- ;;=^5009944
- ;;^UTILITY(U,$J,358.3,46787,0)
- ;;=M05.461^^206^2306^70
- ;;^UTILITY(U,$J,358.3,46787,1,0)
+ ;;^UTILITY(U,$J,358.3,44444,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44444,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,44444,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,44445,0)
+ ;;=F15.280^^164^2204^2
+ ;;^UTILITY(U,$J,358.3,44445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46787,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Knee
- ;;^UTILITY(U,$J,358.3,46787,1,4,0)
- ;;=4^M05.461
- ;;^UTILITY(U,$J,358.3,46787,2)
- ;;=^5009947
- ;;^UTILITY(U,$J,358.3,46788,0)
- ;;=M05.411^^206^2306^71
- ;;^UTILITY(U,$J,358.3,46788,1,0)
+ ;;^UTILITY(U,$J,358.3,44445,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44445,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,44445,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,44446,0)
+ ;;=F15.980^^164^2204^3
+ ;;^UTILITY(U,$J,358.3,44446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46788,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Shoulder
- ;;^UTILITY(U,$J,358.3,46788,1,4,0)
- ;;=4^M05.411
- ;;^UTILITY(U,$J,358.3,46788,2)
- ;;=^5009932
- ;;^UTILITY(U,$J,358.3,46789,0)
- ;;=M05.431^^206^2306^72
- ;;^UTILITY(U,$J,358.3,46789,1,0)
+ ;;^UTILITY(U,$J,358.3,44446,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44446,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,44446,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,44447,0)
+ ;;=F15.182^^164^2204^4
+ ;;^UTILITY(U,$J,358.3,44447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46789,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Wrist
- ;;^UTILITY(U,$J,358.3,46789,1,4,0)
- ;;=4^M05.431
- ;;^UTILITY(U,$J,358.3,46789,2)
- ;;=^5009938
- ;;^UTILITY(U,$J,358.3,46790,0)
- ;;=M05.40^^206^2306^73
- ;;^UTILITY(U,$J,358.3,46790,1,0)
+ ;;^UTILITY(U,$J,358.3,44447,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44447,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,44447,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,44448,0)
+ ;;=F15.282^^164^2204^5
+ ;;^UTILITY(U,$J,358.3,44448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46790,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Unspec Site
- ;;^UTILITY(U,$J,358.3,46790,1,4,0)
- ;;=4^M05.40
- ;;^UTILITY(U,$J,358.3,46790,2)
- ;;=^5009931
- ;;^UTILITY(U,$J,358.3,46791,0)
- ;;=M06.372^^206^2306^123
- ;;^UTILITY(U,$J,358.3,46791,1,0)
+ ;;^UTILITY(U,$J,358.3,44448,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44448,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,44448,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,44449,0)
+ ;;=F15.982^^164^2204^6
+ ;;^UTILITY(U,$J,358.3,44449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46791,1,3,0)
- ;;=3^Rheumatoid Nodule Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,46791,1,4,0)
- ;;=4^M06.372
- ;;^UTILITY(U,$J,358.3,46791,2)
- ;;=^5010116
- ;;^UTILITY(U,$J,358.3,46792,0)
- ;;=M06.322^^206^2306^124
- ;;^UTILITY(U,$J,358.3,46792,1,0)
+ ;;^UTILITY(U,$J,358.3,44449,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44449,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,44449,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,44450,0)
+ ;;=F15.99^^164^2204^8
+ ;;^UTILITY(U,$J,358.3,44450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46792,1,3,0)
- ;;=3^Rheumatoid Nodule Left Elbow
- ;;^UTILITY(U,$J,358.3,46792,1,4,0)
- ;;=4^M06.322
- ;;^UTILITY(U,$J,358.3,46792,2)
- ;;=^5010101
- ;;^UTILITY(U,$J,358.3,46793,0)
- ;;=M06.342^^206^2306^125
- ;;^UTILITY(U,$J,358.3,46793,1,0)
+ ;;^UTILITY(U,$J,358.3,44450,1,3,0)
+ ;;=3^Caffeine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44450,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,44450,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,44451,0)
+ ;;=R45.851^^164^2205^2
+ ;;^UTILITY(U,$J,358.3,44451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46793,1,3,0)
- ;;=3^Rheumatoid Nodule Left Hand
- ;;^UTILITY(U,$J,358.3,46793,1,4,0)
- ;;=4^M06.342
- ;;^UTILITY(U,$J,358.3,46793,2)
- ;;=^5010107
- ;;^UTILITY(U,$J,358.3,46794,0)
- ;;=M06.352^^206^2306^126
- ;;^UTILITY(U,$J,358.3,46794,1,0)
+ ;;^UTILITY(U,$J,358.3,44451,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,44451,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,44451,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,44452,0)
+ ;;=Z91.5^^164^2205^1
+ ;;^UTILITY(U,$J,358.3,44452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46794,1,3,0)
- ;;=3^Rheumatoid Nodule Left Hip
- ;;^UTILITY(U,$J,358.3,46794,1,4,0)
- ;;=4^M06.352
- ;;^UTILITY(U,$J,358.3,46794,2)
- ;;=^5010110
- ;;^UTILITY(U,$J,358.3,46795,0)
- ;;=M06.362^^206^2306^127
- ;;^UTILITY(U,$J,358.3,46795,1,0)
+ ;;^UTILITY(U,$J,358.3,44452,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,44452,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,44452,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,44453,0)
+ ;;=T14.91XA^^164^2205^3
+ ;;^UTILITY(U,$J,358.3,44453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46795,1,3,0)
- ;;=3^Rheumatoid Nodule Left Knee
- ;;^UTILITY(U,$J,358.3,46795,1,4,0)
- ;;=4^M06.362
- ;;^UTILITY(U,$J,358.3,46795,2)
- ;;=^5010113
- ;;^UTILITY(U,$J,358.3,46796,0)
- ;;=M06.312^^206^2306^128
- ;;^UTILITY(U,$J,358.3,46796,1,0)
+ ;;^UTILITY(U,$J,358.3,44453,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,44453,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,44453,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,44454,0)
+ ;;=T14.91XD^^164^2205^4
+ ;;^UTILITY(U,$J,358.3,44454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46796,1,3,0)
- ;;=3^Rheumatoid Nodule Left Shoulder

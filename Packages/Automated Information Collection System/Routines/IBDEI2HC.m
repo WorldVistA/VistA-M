@@ -1,134 +1,122 @@
-IBDEI2HC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42054,1,4,0)
- ;;=4^K08.8
- ;;^UTILITY(U,$J,358.3,42054,2)
- ;;=^5008467
- ;;^UTILITY(U,$J,358.3,42055,0)
- ;;=N39.3^^159^2016^152
- ;;^UTILITY(U,$J,358.3,42055,1,0)
+ ;;^UTILITY(U,$J,358.3,39599,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,39600,0)
+ ;;=D47.3^^152^2000^64
+ ;;^UTILITY(U,$J,358.3,39600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42055,1,3,0)
- ;;=3^Stress Incontinence (Female/Male)
- ;;^UTILITY(U,$J,358.3,42055,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,42055,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,42056,0)
- ;;=R26.2^^159^2016^58
- ;;^UTILITY(U,$J,358.3,42056,1,0)
+ ;;^UTILITY(U,$J,358.3,39600,1,3,0)
+ ;;=3^Essential Thrombocythemia
+ ;;^UTILITY(U,$J,358.3,39600,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,39600,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,39601,0)
+ ;;=C82.09^^152^2000^65
+ ;;^UTILITY(U,$J,358.3,39601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42056,1,3,0)
- ;;=3^Difficulty in Walking NEC
- ;;^UTILITY(U,$J,358.3,42056,1,4,0)
- ;;=4^R26.2
- ;;^UTILITY(U,$J,358.3,42056,2)
- ;;=^5019306
- ;;^UTILITY(U,$J,358.3,42057,0)
- ;;=M54.6^^159^2016^154
- ;;^UTILITY(U,$J,358.3,42057,1,0)
+ ;;^UTILITY(U,$J,358.3,39601,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39601,1,4,0)
+ ;;=4^C82.09
+ ;;^UTILITY(U,$J,358.3,39601,2)
+ ;;=^5001470
+ ;;^UTILITY(U,$J,358.3,39602,0)
+ ;;=C82.00^^152^2000^66
+ ;;^UTILITY(U,$J,358.3,39602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42057,1,3,0)
- ;;=3^Thoracic Spine Pain
- ;;^UTILITY(U,$J,358.3,42057,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,42057,2)
- ;;=^272507
- ;;^UTILITY(U,$J,358.3,42058,0)
- ;;=E66.8^^159^2016^125
- ;;^UTILITY(U,$J,358.3,42058,1,0)
+ ;;^UTILITY(U,$J,358.3,39602,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39602,1,4,0)
+ ;;=4^C82.00
+ ;;^UTILITY(U,$J,358.3,39602,2)
+ ;;=^5001461
+ ;;^UTILITY(U,$J,358.3,39603,0)
+ ;;=C82.19^^152^2000^67
+ ;;^UTILITY(U,$J,358.3,39603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42058,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,42058,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,42058,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,42059,0)
- ;;=E66.9^^159^2016^126
- ;;^UTILITY(U,$J,358.3,42059,1,0)
+ ;;^UTILITY(U,$J,358.3,39603,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39603,1,4,0)
+ ;;=4^C82.19
+ ;;^UTILITY(U,$J,358.3,39603,2)
+ ;;=^5001480
+ ;;^UTILITY(U,$J,358.3,39604,0)
+ ;;=C82.10^^152^2000^68
+ ;;^UTILITY(U,$J,358.3,39604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42059,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,42059,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,42059,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,42060,0)
- ;;=F18.120^^159^2016^94
- ;;^UTILITY(U,$J,358.3,42060,1,0)
+ ;;^UTILITY(U,$J,358.3,39604,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39604,1,4,0)
+ ;;=4^C82.10
+ ;;^UTILITY(U,$J,358.3,39604,2)
+ ;;=^5001471
+ ;;^UTILITY(U,$J,358.3,39605,0)
+ ;;=C82.29^^152^2000^69
+ ;;^UTILITY(U,$J,358.3,39605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42060,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42060,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,42060,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,42061,0)
- ;;=G44.1^^159^2016^157
- ;;^UTILITY(U,$J,358.3,42061,1,0)
+ ;;^UTILITY(U,$J,358.3,39605,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39605,1,4,0)
+ ;;=4^C82.29
+ ;;^UTILITY(U,$J,358.3,39605,2)
+ ;;=^5001490
+ ;;^UTILITY(U,$J,358.3,39606,0)
+ ;;=C82.20^^152^2000^70
+ ;;^UTILITY(U,$J,358.3,39606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42061,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,42061,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,42061,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,42062,0)
- ;;=G93.3^^159^2016^144
- ;;^UTILITY(U,$J,358.3,42062,1,0)
+ ;;^UTILITY(U,$J,358.3,39606,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39606,1,4,0)
+ ;;=4^C82.20
+ ;;^UTILITY(U,$J,358.3,39606,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,39607,0)
+ ;;=C82.39^^152^2000^71
+ ;;^UTILITY(U,$J,358.3,39607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42062,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,42062,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,42062,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,42063,0)
- ;;=K08.101^^159^2016^52
- ;;^UTILITY(U,$J,358.3,42063,1,0)
+ ;;^UTILITY(U,$J,358.3,39607,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39607,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,39607,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,39608,0)
+ ;;=C82.30^^152^2000^72
+ ;;^UTILITY(U,$J,358.3,39608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42063,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,42063,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,42063,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,42064,0)
- ;;=K08.102^^159^2016^53
- ;;^UTILITY(U,$J,358.3,42064,1,0)
+ ;;^UTILITY(U,$J,358.3,39608,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39608,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,39608,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,39609,0)
+ ;;=C82.49^^152^2000^73
+ ;;^UTILITY(U,$J,358.3,39609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42064,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,42064,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,42064,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,42065,0)
- ;;=K08.103^^159^2016^54
- ;;^UTILITY(U,$J,358.3,42065,1,0)
+ ;;^UTILITY(U,$J,358.3,39609,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39609,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,39609,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,39610,0)
+ ;;=C82.40^^152^2000^74
+ ;;^UTILITY(U,$J,358.3,39610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42065,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,42065,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,42065,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,42066,0)
- ;;=K08.104^^159^2016^55
- ;;^UTILITY(U,$J,358.3,42066,1,0)
+ ;;^UTILITY(U,$J,358.3,39610,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39610,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,39610,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,39611,0)
+ ;;=C82.99^^152^2000^75
+ ;;^UTILITY(U,$J,358.3,39611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42066,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,42066,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,42066,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,42067,0)
- ;;=K08.109^^159^2016^56
- ;;^UTILITY(U,$J,358.3,42067,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42067,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,39611,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites

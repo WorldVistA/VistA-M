@@ -1,132 +1,130 @@
-IBDEI27O ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27O ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37506,2)
- ;;=^5010850
- ;;^UTILITY(U,$J,358.3,37507,0)
- ;;=M19.272^^140^1792^22
- ;;^UTILITY(U,$J,358.3,37507,1,0)
+ ;;^UTILITY(U,$J,358.3,35312,0)
+ ;;=R20.9^^137^1800^67
+ ;;^UTILITY(U,$J,358.3,35312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37507,1,3,0)
- ;;=3^Second osteoarthritis, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,37507,1,4,0)
- ;;=4^M19.272
- ;;^UTILITY(U,$J,358.3,37507,2)
- ;;=^5010851
- ;;^UTILITY(U,$J,358.3,37508,0)
- ;;=M19.90^^140^1792^1
- ;;^UTILITY(U,$J,358.3,37508,1,0)
+ ;;^UTILITY(U,$J,358.3,35312,1,3,0)
+ ;;=3^Skin sensation disturbances,unspec
+ ;;^UTILITY(U,$J,358.3,35312,1,4,0)
+ ;;=4^R20.9
+ ;;^UTILITY(U,$J,358.3,35312,2)
+ ;;=^5019282
+ ;;^UTILITY(U,$J,358.3,35313,0)
+ ;;=G82.50^^137^1800^63
+ ;;^UTILITY(U,$J,358.3,35313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37508,1,3,0)
- ;;=3^Osteoarthritis, unspec site, unspec
- ;;^UTILITY(U,$J,358.3,37508,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,37508,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,37509,0)
- ;;=M16.11^^140^1792^13
- ;;^UTILITY(U,$J,358.3,37509,1,0)
+ ;;^UTILITY(U,$J,358.3,35313,1,3,0)
+ ;;=3^Quadriplegia, unspecified
+ ;;^UTILITY(U,$J,358.3,35313,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,35313,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,35314,0)
+ ;;=G47.9^^137^1800^68
+ ;;^UTILITY(U,$J,358.3,35314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37509,1,3,0)
- ;;=3^Prim osteoarthritis, rt hip
- ;;^UTILITY(U,$J,358.3,37509,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,37509,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,37510,0)
- ;;=M16.12^^140^1792^6
- ;;^UTILITY(U,$J,358.3,37510,1,0)
+ ;;^UTILITY(U,$J,358.3,35314,1,3,0)
+ ;;=3^Sleep disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,35314,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,35314,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,35315,0)
+ ;;=G44.209^^137^1800^70
+ ;;^UTILITY(U,$J,358.3,35315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37510,1,3,0)
- ;;=3^Prim osteoarthritis, lft hip
- ;;^UTILITY(U,$J,358.3,37510,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,37510,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,37511,0)
- ;;=M17.11^^140^1792^14
- ;;^UTILITY(U,$J,358.3,37511,1,0)
+ ;;^UTILITY(U,$J,358.3,35315,1,3,0)
+ ;;=3^Tension-type headache, unspecified, not intractable
+ ;;^UTILITY(U,$J,358.3,35315,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,35315,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,35316,0)
+ ;;=R32.^^137^1800^76
+ ;;^UTILITY(U,$J,358.3,35316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37511,1,3,0)
- ;;=3^Prim osteoarthritis, rt knee
- ;;^UTILITY(U,$J,358.3,37511,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,37511,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,37512,0)
- ;;=M17.12^^140^1792^7
- ;;^UTILITY(U,$J,358.3,37512,1,0)
+ ;;^UTILITY(U,$J,358.3,35316,1,3,0)
+ ;;=3^Urinary incontinence,unspec
+ ;;^UTILITY(U,$J,358.3,35316,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,35316,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,35317,0)
+ ;;=R53.1^^137^1800^77
+ ;;^UTILITY(U,$J,358.3,35317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37512,1,3,0)
- ;;=3^Prim osteoarthritis, lft knee
- ;;^UTILITY(U,$J,358.3,37512,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,37512,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,37513,0)
- ;;=M16.7^^140^1792^19
- ;;^UTILITY(U,$J,358.3,37513,1,0)
+ ;;^UTILITY(U,$J,358.3,35317,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,35317,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,35317,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,35318,0)
+ ;;=G47.63^^137^1800^3
+ ;;^UTILITY(U,$J,358.3,35318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37513,1,3,0)
- ;;=3^Second osteoarthritis, hip, unlit, oth
- ;;^UTILITY(U,$J,358.3,37513,1,4,0)
- ;;=4^M16.7
- ;;^UTILITY(U,$J,358.3,37513,2)
- ;;=^5010782
- ;;^UTILITY(U,$J,358.3,37514,0)
- ;;=M16.6^^140^1792^18
- ;;^UTILITY(U,$J,358.3,37514,1,0)
+ ;;^UTILITY(U,$J,358.3,35318,1,3,0)
+ ;;=3^Bruxism
+ ;;^UTILITY(U,$J,358.3,35318,1,4,0)
+ ;;=4^G47.63
+ ;;^UTILITY(U,$J,358.3,35318,2)
+ ;;=^332783
+ ;;^UTILITY(U,$J,358.3,35319,0)
+ ;;=G56.01^^137^1800^6
+ ;;^UTILITY(U,$J,358.3,35319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37514,1,3,0)
- ;;=3^Second osteoarthritis, hip, bilat, oth
- ;;^UTILITY(U,$J,358.3,37514,1,4,0)
- ;;=4^M16.6
- ;;^UTILITY(U,$J,358.3,37514,2)
- ;;=^5010781
- ;;^UTILITY(U,$J,358.3,37515,0)
- ;;=M17.5^^140^1792^21
- ;;^UTILITY(U,$J,358.3,37515,1,0)
+ ;;^UTILITY(U,$J,358.3,35319,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,35319,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,35319,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,35320,0)
+ ;;=G56.02^^137^1800^5
+ ;;^UTILITY(U,$J,358.3,35320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37515,1,3,0)
- ;;=3^Second osteoarthritis, knee, unilat, oth
- ;;^UTILITY(U,$J,358.3,37515,1,4,0)
- ;;=4^M17.5
- ;;^UTILITY(U,$J,358.3,37515,2)
- ;;=^5010793
- ;;^UTILITY(U,$J,358.3,37516,0)
- ;;=M17.4^^140^1792^20
- ;;^UTILITY(U,$J,358.3,37516,1,0)
+ ;;^UTILITY(U,$J,358.3,35320,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,35320,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,35320,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,35321,0)
+ ;;=S06.0X0A^^137^1800^8
+ ;;^UTILITY(U,$J,358.3,35321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37516,1,3,0)
- ;;=3^Second osteoarthritis, knee, bilat, oth
- ;;^UTILITY(U,$J,358.3,37516,1,4,0)
- ;;=4^M17.4
- ;;^UTILITY(U,$J,358.3,37516,2)
- ;;=^5010792
- ;;^UTILITY(U,$J,358.3,37517,0)
- ;;=M86.10^^140^1793^18
- ;;^UTILITY(U,$J,358.3,37517,1,0)
+ ;;^UTILITY(U,$J,358.3,35321,1,3,0)
+ ;;=3^Concussion,Acute
+ ;;^UTILITY(U,$J,358.3,35321,1,4,0)
+ ;;=4^S06.0X0A
+ ;;^UTILITY(U,$J,358.3,35321,2)
+ ;;=^5020666
+ ;;^UTILITY(U,$J,358.3,35322,0)
+ ;;=S06.0X0S^^137^1800^9
+ ;;^UTILITY(U,$J,358.3,35322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37517,1,3,0)
- ;;=3^Osteomyelitis, acute, unspec site, oth
- ;;^UTILITY(U,$J,358.3,37517,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,37517,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,37518,0)
- ;;=M86.20^^140^1793^48
- ;;^UTILITY(U,$J,358.3,37518,1,0)
+ ;;^UTILITY(U,$J,358.3,35322,1,3,0)
+ ;;=3^Concussion,Sequela
+ ;;^UTILITY(U,$J,358.3,35322,1,4,0)
+ ;;=4^S06.0X0S
+ ;;^UTILITY(U,$J,358.3,35322,2)
+ ;;=^5020668
+ ;;^UTILITY(U,$J,358.3,35323,0)
+ ;;=R42.^^137^1800^11
+ ;;^UTILITY(U,$J,358.3,35323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37518,1,3,0)
- ;;=3^Osteomyelitis, subacute, unspec site
- ;;^UTILITY(U,$J,358.3,37518,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,37518,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,37519,0)
- ;;=M86.111^^140^1793^16
- ;;^UTILITY(U,$J,358.3,37519,1,0)
+ ;;^UTILITY(U,$J,358.3,35323,1,3,0)
+ ;;=3^Dizziness
+ ;;^UTILITY(U,$J,358.3,35323,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,35323,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,35324,0)
+ ;;=G57.11^^137^1800^23
+ ;;^UTILITY(U,$J,358.3,35324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37519,1,3,0)
- ;;=3^Osteomyelitis, acute, rt shldr, oth
+ ;;^UTILITY(U,$J,358.3,35324,1,3,0)
+ ;;=3^Meralgia Paresthetica,Right Lower Limb

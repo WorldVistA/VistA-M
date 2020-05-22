@@ -1,5 +1,5 @@
-PSOCLOU ; HEC/hrub - clozapine support utilities ;28 May 2019 14:59:09
- ;;7.0;OUTPATIENT PHARMACY;**457**;DEC 1997;Build 116
+PSOCLOU ; HEC/hrub - clozapine support utilities ;26 DEC 2019 6:26:10
+ ;;7.0;OUTPATIENT PHARMACY;**457,574**;DEC 1997;Build 53
  ;
  ; 29 April 2019 - code moved from PSOCLO1 for PSO*7*457
  ;
@@ -76,7 +76,9 @@ FINDNEXT() ; Find the next pseudo Clozapine registration number, return -1 if no
  S:'(PRFIX?1U) PRFIX="Z"  ; start at Z if no prefix found
  S N=0 F  L +^XTMP("PSJ CLOZ",0):DILOCKTM S Y=$T Q:Y!(N>2)  S N=N+Y  ; try until LOCK or 3 attempts
  I 'Y Q -1  ; couldn't get a LOCK 
- S NUM=+$E(RGZRO,5,7)  ; numeric value after station #
+ ;ajf ; Defect 1181858 - Setting temp number 
+ ;S NUM=+$E(RGZRO,5,7)  ; numeric value after station #
+ S NUM=+$E($P(RGZRO,"^",4),5,7)  ; numeric value after station #
  I (NUM<0)!(NUM>998) S NUM=0  ; adjust if needed
  S RGRSLT=""  ; registration number to return
  F  D  Q:$L(RGRSLT)
@@ -102,25 +104,25 @@ LABRSLT(DFN,PSOYS,CLOZPAT) ; get lab tests
  S X=$P(PSOYS,U,7),CLOZPAT=$S(X="M":2,X="B":1,1:0)
  Q
  ;
-OVRDRSN(DFN,PSOYS,PSREG,CLOZPAT) ; function, return override reason
- ;PSOYS, PSREG, CLOZPAT passed by ref.
+OVRDRSN(DFN,PSOYS,PSCLZREG,CLOZPAT) ; function, return override reason
+ ;PSOYS, PSCLZREG, CLOZPAT passed by ref.
  N OVRDRSN S OVRDRSN=""
  ;
  D LABRSLT(DFN,.PSOYS,.CLOZPAT)  ; update lab results
- S PSREG=$$GET1^DIQ(55,DFN,53),PSREG("status55")=$$GET1^DIQ(55,DFN,54,"I")
+ S PSCLZREG=$$GET1^DIQ(55,DFN,53),PSCLZREG("status55")=$$GET1^DIQ(55,DFN,54,"I")
  ;
  I $$OVERRIDE^YSCLTST2(DFN,0) S OVRDRSN=7  ; NCCC AUTHORIZED
  ; no reg # or (temp. reg # and active)
- I 'OVRDRSN,PSREG=""!((PSREG?1U6N)&(PSREG("status55")="A")) D
+ I 'OVRDRSN,PSCLZREG=""!((PSCLZREG?1U6N)&(PSCLZREG("status55")="A")) D
  . Q:PSOYS("rANC")<1500  ; must be at least 1500
  . Q:'$L(PSOYS("rWBC"))  ; must have WBC result (any value)
  . S OVRDRSN=8  ; REGISTER NON-DUTY HR/WEEKEND (MAX4DAY)
  ;
- I 'OVRDRSN,PSREG("status55")="A",PSREG?2U5N D  ; active, normal reg #
+ I 'OVRDRSN,PSCLZREG("status55")="A",PSCLZREG?2U5N D  ; active, normal reg #
  . ; if no ANC reult, return 9
  . I '($L(PSOYS("rANC")))  S OVRDRSN=9 Q  ;PRESCRIBER APPROVED 4 DAY SUPPLY
  ;
- I 'OVRDRSN,PSREG("status55")="A",PSREG?2U5N D  ; active, normal reg #
+ I 'OVRDRSN,PSCLZREG("status55")="A",PSCLZREG?2U5N D  ; active, normal reg #
  . I PSOYS("rANC")<1500&'(PSOYS("rANC")<1000) S OVRDRSN=10  ; MILD NEUTROPENIA PRESCRIBER APPROVED
  ;
  Q OVRDRSN

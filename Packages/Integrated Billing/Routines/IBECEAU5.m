@@ -1,6 +1,6 @@
 IBECEAU5 ;ALB/BGA - Cancel/Edit/Add CALC Observation COPAY ; 17-MAY-2000
- ;;2.0;INTEGRATED BILLING;**132,153,156,167,247**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**132,153,156,167,247,663**;21-MAR-94;Build 27
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; Find the IB action type and outpatient copay rate for an inpatient Observation
  ;
@@ -72,7 +72,7 @@ FEE ; This Subroutine permits a Clerk to add a DG FEE SERVICE (OPT)
  ;  before adding entry from ADD^IBECEAU3 to ^IB
  S IBATYP=IBAFEE I $D(^IBE(350.1,+IBATYP,20)) X ^(20)
  N DIR,X,Y,DIRUT
- S DIR(0)="350,.07",DIR("A")="Fee Amount"
+ S DIR(0)="350,.07",DIR("A")="Charge Amount"
  S DIR("B")=$S(IBCHG?1N.N1"."1N:IBCHG_0,1:IBCHG)
  S DIR("T")=180,DIR("?")=" "
  S DIR("?",1)="     *** The Fee for Service can not be LESS than $1.00 or"

@@ -1,138 +1,122 @@
-IBDEI2OP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45046,0)
- ;;=R10.2^^200^2236^13
- ;;^UTILITY(U,$J,358.3,45046,1,0)
+ ;;^UTILITY(U,$J,358.3,42784,0)
+ ;;=S32.14XS^^155^2073^47
+ ;;^UTILITY(U,$J,358.3,42784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45046,1,3,0)
- ;;=3^Pelvic/Perineal Pain
- ;;^UTILITY(U,$J,358.3,45046,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,45046,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,45047,0)
- ;;=N94.89^^200^2236^7
- ;;^UTILITY(U,$J,358.3,45047,1,0)
+ ;;^UTILITY(U,$J,358.3,42784,1,3,0)
+ ;;=3^Type 1 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42784,1,4,0)
+ ;;=4^S32.14XS
+ ;;^UTILITY(U,$J,358.3,42784,2)
+ ;;=^5024604
+ ;;^UTILITY(U,$J,358.3,42785,0)
+ ;;=S32.15XS^^155^2073^48
+ ;;^UTILITY(U,$J,358.3,42785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45047,1,3,0)
- ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
- ;;^UTILITY(U,$J,358.3,45047,1,4,0)
- ;;=4^N94.89
- ;;^UTILITY(U,$J,358.3,45047,2)
- ;;=^5015925
- ;;^UTILITY(U,$J,358.3,45048,0)
- ;;=N23.^^200^2236^18
- ;;^UTILITY(U,$J,358.3,45048,1,0)
+ ;;^UTILITY(U,$J,358.3,42785,1,3,0)
+ ;;=3^Type 2 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42785,1,4,0)
+ ;;=4^S32.15XS
+ ;;^UTILITY(U,$J,358.3,42785,2)
+ ;;=^5024610
+ ;;^UTILITY(U,$J,358.3,42786,0)
+ ;;=S32.16XS^^155^2073^49
+ ;;^UTILITY(U,$J,358.3,42786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45048,1,3,0)
- ;;=3^Renal Colic,Unspec
- ;;^UTILITY(U,$J,358.3,45048,1,4,0)
- ;;=4^N23.
- ;;^UTILITY(U,$J,358.3,45048,2)
- ;;=^5015615
- ;;^UTILITY(U,$J,358.3,45049,0)
- ;;=Z71.89^^200^2237^1
- ;;^UTILITY(U,$J,358.3,45049,1,0)
+ ;;^UTILITY(U,$J,358.3,42786,1,3,0)
+ ;;=3^Type 3 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42786,1,4,0)
+ ;;=4^S32.16XS
+ ;;^UTILITY(U,$J,358.3,42786,2)
+ ;;=^5024616
+ ;;^UTILITY(U,$J,358.3,42787,0)
+ ;;=S32.17XS^^155^2073^56
+ ;;^UTILITY(U,$J,358.3,42787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45049,1,3,0)
- ;;=3^Activity/Exercise Counseling
- ;;^UTILITY(U,$J,358.3,45049,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,45049,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,45050,0)
- ;;=Z13.89^^200^2237^2
- ;;^UTILITY(U,$J,358.3,45050,1,0)
+ ;;^UTILITY(U,$J,358.3,42787,1,3,0)
+ ;;=3^Type 4 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42787,1,4,0)
+ ;;=4^S32.17XS
+ ;;^UTILITY(U,$J,358.3,42787,2)
+ ;;=^5024622
+ ;;^UTILITY(U,$J,358.3,42788,0)
+ ;;=S32.2XXS^^155^2073^19
+ ;;^UTILITY(U,$J,358.3,42788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45050,1,3,0)
- ;;=3^Alcohol Use Screen
- ;;^UTILITY(U,$J,358.3,45050,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,45050,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,45051,0)
- ;;=Z12.39^^200^2237^3
- ;;^UTILITY(U,$J,358.3,45051,1,0)
+ ;;^UTILITY(U,$J,358.3,42788,1,3,0)
+ ;;=3^Fracture of coccyx, sequela
+ ;;^UTILITY(U,$J,358.3,42788,1,4,0)
+ ;;=4^S32.2XXS
+ ;;^UTILITY(U,$J,358.3,42788,2)
+ ;;=^5024634
+ ;;^UTILITY(U,$J,358.3,42789,0)
+ ;;=S12.110S^^155^2073^1
+ ;;^UTILITY(U,$J,358.3,42789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45051,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,45051,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,45051,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,45052,0)
- ;;=Z12.4^^200^2237^5
- ;;^UTILITY(U,$J,358.3,45052,1,0)
+ ;;^UTILITY(U,$J,358.3,42789,1,3,0)
+ ;;=3^Anterior displaced Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,42789,1,4,0)
+ ;;=4^S12.110S
+ ;;^UTILITY(U,$J,358.3,42789,2)
+ ;;=^5021622
+ ;;^UTILITY(U,$J,358.3,42790,0)
+ ;;=S12.112S^^155^2073^23
+ ;;^UTILITY(U,$J,358.3,42790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45052,1,3,0)
- ;;=3^Cervix Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,45052,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,45052,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,45053,0)
- ;;=Z13.5^^200^2237^8
- ;;^UTILITY(U,$J,358.3,45053,1,0)
+ ;;^UTILITY(U,$J,358.3,42790,1,3,0)
+ ;;=3^Nondisp Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,42790,1,4,0)
+ ;;=4^S12.112S
+ ;;^UTILITY(U,$J,358.3,42790,2)
+ ;;=^5021634
+ ;;^UTILITY(U,$J,358.3,42791,0)
+ ;;=S12.111S^^155^2073^29
+ ;;^UTILITY(U,$J,358.3,42791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45053,1,3,0)
- ;;=3^Eye and Ear Disorder Screen
- ;;^UTILITY(U,$J,358.3,45053,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,45053,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,45054,0)
- ;;=Z01.89^^200^2237^6
- ;;^UTILITY(U,$J,358.3,45054,1,0)
+ ;;^UTILITY(U,$J,358.3,42791,1,3,0)
+ ;;=3^Posterior displaced Type II dens fracture, sequela
+ ;;^UTILITY(U,$J,358.3,42791,1,4,0)
+ ;;=4^S12.111S
+ ;;^UTILITY(U,$J,358.3,42791,2)
+ ;;=^5021628
+ ;;^UTILITY(U,$J,358.3,42792,0)
+ ;;=S52.562S^^155^2074^1
+ ;;^UTILITY(U,$J,358.3,42792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45054,1,3,0)
- ;;=3^Diabetic Foot Exam
- ;;^UTILITY(U,$J,358.3,45054,1,4,0)
- ;;=4^Z01.89
- ;;^UTILITY(U,$J,358.3,45054,2)
- ;;=^5062632
- ;;^UTILITY(U,$J,358.3,45055,0)
- ;;=Z11.59^^200^2237^16
- ;;^UTILITY(U,$J,358.3,45055,1,0)
+ ;;^UTILITY(U,$J,358.3,42792,1,3,0)
+ ;;=3^Barton's fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42792,1,4,0)
+ ;;=4^S52.562S
+ ;;^UTILITY(U,$J,358.3,42792,2)
+ ;;=^5030896
+ ;;^UTILITY(U,$J,358.3,42793,0)
+ ;;=S52.561S^^155^2074^2
+ ;;^UTILITY(U,$J,358.3,42793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45055,1,3,0)
- ;;=3^Viral Diseases Screen
- ;;^UTILITY(U,$J,358.3,45055,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,45055,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,45056,0)
- ;;=Z13.6^^200^2237^4
- ;;^UTILITY(U,$J,358.3,45056,1,0)
+ ;;^UTILITY(U,$J,358.3,42793,1,3,0)
+ ;;=3^Barton's fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42793,1,4,0)
+ ;;=4^S52.561S
+ ;;^UTILITY(U,$J,358.3,42793,2)
+ ;;=^5030880
+ ;;^UTILITY(U,$J,358.3,42794,0)
+ ;;=S52.382S^^155^2074^3
+ ;;^UTILITY(U,$J,358.3,42794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45056,1,3,0)
- ;;=3^Cardiovascular Disorder Screen
- ;;^UTILITY(U,$J,358.3,45056,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,45056,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,45057,0)
- ;;=Z12.12^^200^2237^14
- ;;^UTILITY(U,$J,358.3,45057,1,0)
+ ;;^UTILITY(U,$J,358.3,42794,1,3,0)
+ ;;=3^Bent bone of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42794,1,4,0)
+ ;;=4^S52.382S
+ ;;^UTILITY(U,$J,358.3,42794,2)
+ ;;=^5030526
+ ;;^UTILITY(U,$J,358.3,42795,0)
+ ;;=S52.381S^^155^2074^5
+ ;;^UTILITY(U,$J,358.3,42795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45057,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,45057,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,45057,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,45058,0)
- ;;=Z71.89^^200^2237^12
- ;;^UTILITY(U,$J,358.3,45058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45058,1,3,0)
- ;;=3^Other Specified Counseling
- ;;^UTILITY(U,$J,358.3,45058,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,45058,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,45059,0)
- ;;=Z12.5^^200^2237^13
- ;;^UTILITY(U,$J,358.3,45059,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42795,1,3,0)
+ ;;=3^Bent bone of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42795,1,4,0)
+ ;;=4^S52.381S

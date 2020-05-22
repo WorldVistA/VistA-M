@@ -1,132 +1,128 @@
-IBDEI1ZZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33892,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,33892,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,33892,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,33893,0)
- ;;=D68.32^^131^1680^84
- ;;^UTILITY(U,$J,358.3,33893,1,0)
+ ;;^UTILITY(U,$J,358.3,31874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33893,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,33893,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,33893,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,33894,0)
- ;;=C22.2^^131^1680^85
- ;;^UTILITY(U,$J,358.3,33894,1,0)
+ ;;^UTILITY(U,$J,358.3,31874,1,3,0)
+ ;;=3^Antenatal Screening,Unspec
+ ;;^UTILITY(U,$J,358.3,31874,1,4,0)
+ ;;=4^Z36.9
+ ;;^UTILITY(U,$J,358.3,31874,2)
+ ;;=^5151856
+ ;;^UTILITY(U,$J,358.3,31875,0)
+ ;;=Z36.83^^126^1633^19
+ ;;^UTILITY(U,$J,358.3,31875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33894,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,33894,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,33894,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,33895,0)
- ;;=D58.9^^131^1680^87
- ;;^UTILITY(U,$J,358.3,33895,1,0)
+ ;;^UTILITY(U,$J,358.3,31875,1,3,0)
+ ;;=3^Fetal Screening for Cogenital Cardia Abnormality
+ ;;^UTILITY(U,$J,358.3,31875,1,4,0)
+ ;;=4^Z36.83
+ ;;^UTILITY(U,$J,358.3,31875,2)
+ ;;=^5151848
+ ;;^UTILITY(U,$J,358.3,31876,0)
+ ;;=Z36.2^^126^1633^6
+ ;;^UTILITY(U,$J,358.3,31876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33895,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,33895,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,33895,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,33896,0)
- ;;=C81.99^^131^1680^88
- ;;^UTILITY(U,$J,358.3,33896,1,0)
+ ;;^UTILITY(U,$J,358.3,31876,1,3,0)
+ ;;=3^Antenatal Screening for Follow-up,Other
+ ;;^UTILITY(U,$J,358.3,31876,1,4,0)
+ ;;=4^Z36.2
+ ;;^UTILITY(U,$J,358.3,31876,2)
+ ;;=^5151842
+ ;;^UTILITY(U,$J,358.3,31877,0)
+ ;;=Z36.89^^126^1633^15
+ ;;^UTILITY(U,$J,358.3,31877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33896,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,33896,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,33896,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,33897,0)
- ;;=C81.90^^131^1680^89
- ;;^UTILITY(U,$J,358.3,33897,1,0)
+ ;;^UTILITY(U,$J,358.3,31877,1,3,0)
+ ;;=3^Antenatal Screening,Other Specified
+ ;;^UTILITY(U,$J,358.3,31877,1,4,0)
+ ;;=4^Z36.89
+ ;;^UTILITY(U,$J,358.3,31877,2)
+ ;;=^5151854
+ ;;^UTILITY(U,$J,358.3,31878,0)
+ ;;=N39.0^^126^1634^57
+ ;;^UTILITY(U,$J,358.3,31878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33897,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,33897,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,33897,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,33898,0)
- ;;=D89.2^^131^1680^90
- ;;^UTILITY(U,$J,358.3,33898,1,0)
+ ;;^UTILITY(U,$J,358.3,31878,1,3,0)
+ ;;=3^Urinary tract infection, site not specified
+ ;;^UTILITY(U,$J,358.3,31878,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,31878,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,31879,0)
+ ;;=R31.9^^126^1634^23
+ ;;^UTILITY(U,$J,358.3,31879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33898,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,33898,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,33898,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,33899,0)
- ;;=D05.12^^131^1680^91
- ;;^UTILITY(U,$J,358.3,33899,1,0)
+ ;;^UTILITY(U,$J,358.3,31879,1,3,0)
+ ;;=3^Hematuria, unspecified
+ ;;^UTILITY(U,$J,358.3,31879,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,31879,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,31880,0)
+ ;;=R31.0^^126^1634^22
+ ;;^UTILITY(U,$J,358.3,31880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33899,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,33899,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,33899,2)
- ;;=^5001931
- ;;^UTILITY(U,$J,358.3,33900,0)
- ;;=D05.11^^131^1680^92
- ;;^UTILITY(U,$J,358.3,33900,1,0)
+ ;;^UTILITY(U,$J,358.3,31880,1,3,0)
+ ;;=3^Gross hematuria
+ ;;^UTILITY(U,$J,358.3,31880,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,31880,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,31881,0)
+ ;;=N39.3^^126^1634^45
+ ;;^UTILITY(U,$J,358.3,31881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33900,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,33900,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,33900,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,33901,0)
- ;;=D05.10^^131^1680^93
- ;;^UTILITY(U,$J,358.3,33901,1,0)
+ ;;^UTILITY(U,$J,358.3,31881,1,3,0)
+ ;;=3^Stress incontinence (female) (male)
+ ;;^UTILITY(U,$J,358.3,31881,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,31881,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,31882,0)
+ ;;=N39.41^^126^1634^54
+ ;;^UTILITY(U,$J,358.3,31882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33901,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,33901,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,33901,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,33902,0)
- ;;=D50.0^^131^1680^94
- ;;^UTILITY(U,$J,358.3,33902,1,0)
+ ;;^UTILITY(U,$J,358.3,31882,1,3,0)
+ ;;=3^Urge incontinence
+ ;;^UTILITY(U,$J,358.3,31882,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,31882,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,31883,0)
+ ;;=N39.46^^126^1634^28
+ ;;^UTILITY(U,$J,358.3,31883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33902,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,33902,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,33902,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,33903,0)
- ;;=D50.9^^131^1680^95
- ;;^UTILITY(U,$J,358.3,33903,1,0)
+ ;;^UTILITY(U,$J,358.3,31883,1,3,0)
+ ;;=3^Mixed incontinence
+ ;;^UTILITY(U,$J,358.3,31883,1,4,0)
+ ;;=4^N39.46
+ ;;^UTILITY(U,$J,358.3,31883,2)
+ ;;=^5015685
+ ;;^UTILITY(U,$J,358.3,31884,0)
+ ;;=Z90.79^^126^1634^5
+ ;;^UTILITY(U,$J,358.3,31884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33903,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,33903,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,33903,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,33904,0)
- ;;=C46.9^^131^1680^96
- ;;^UTILITY(U,$J,358.3,33904,1,0)
+ ;;^UTILITY(U,$J,358.3,31884,1,3,0)
+ ;;=3^Acquired Absence of Oth Genital Organ(s)
+ ;;^UTILITY(U,$J,358.3,31884,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,31884,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,31885,0)
+ ;;=N91.2^^126^1634^6
+ ;;^UTILITY(U,$J,358.3,31885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33904,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,33904,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,33904,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,33905,0)
- ;;=C22.0^^131^1680^97
+ ;;^UTILITY(U,$J,358.3,31885,1,3,0)
+ ;;=3^Amenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,31885,1,4,0)
+ ;;=4^N91.2
+ ;;^UTILITY(U,$J,358.3,31885,2)
+ ;;=^5015904
+ ;;^UTILITY(U,$J,358.3,31886,0)
+ ;;=N30.10^^126^1634^14
+ ;;^UTILITY(U,$J,358.3,31886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31886,1,3,0)
+ ;;=3^Cystitis,Interstitial w/o Hematuria

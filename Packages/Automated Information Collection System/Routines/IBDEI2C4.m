@@ -1,134 +1,118 @@
-IBDEI2C4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2C4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39588,1,3,0)
- ;;=3^Screening for Eye & Ear Disorders
- ;;^UTILITY(U,$J,358.3,39588,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,39588,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,39589,0)
- ;;=H34.832^^153^1926^64
- ;;^UTILITY(U,$J,358.3,39589,1,0)
+ ;;^UTILITY(U,$J,358.3,37298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39589,1,3,0)
- ;;=3^Tributary Retinal Vein Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,39589,1,4,0)
- ;;=4^H34.832
- ;;^UTILITY(U,$J,358.3,39589,2)
- ;;=^5005577
- ;;^UTILITY(U,$J,358.3,39590,0)
- ;;=H34.831^^153^1926^65
- ;;^UTILITY(U,$J,358.3,39590,1,0)
+ ;;^UTILITY(U,$J,358.3,37298,1,3,0)
+ ;;=3^Contusion of rt ankl, init enc
+ ;;^UTILITY(U,$J,358.3,37298,1,4,0)
+ ;;=4^S90.01XA
+ ;;^UTILITY(U,$J,358.3,37298,2)
+ ;;=^5043850
+ ;;^UTILITY(U,$J,358.3,37299,0)
+ ;;=S90.111A^^146^1914^35
+ ;;^UTILITY(U,$J,358.3,37299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39590,1,3,0)
- ;;=3^Tributary Retinal Vein Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,39590,1,4,0)
- ;;=4^H34.831
- ;;^UTILITY(U,$J,358.3,39590,2)
- ;;=^5005576
- ;;^UTILITY(U,$J,358.3,39591,0)
- ;;=H53.143^^153^1926^75
- ;;^UTILITY(U,$J,358.3,39591,1,0)
+ ;;^UTILITY(U,$J,358.3,37299,1,3,0)
+ ;;=3^Contusion of rt grt toe w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,37299,1,4,0)
+ ;;=4^S90.111A
+ ;;^UTILITY(U,$J,358.3,37299,2)
+ ;;=^5043856
+ ;;^UTILITY(U,$J,358.3,37300,0)
+ ;;=S90.112A^^146^1914^28
+ ;;^UTILITY(U,$J,358.3,37300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39591,1,3,0)
- ;;=3^Visual Discomfort,Bilateral
- ;;^UTILITY(U,$J,358.3,39591,1,4,0)
- ;;=4^H53.143
- ;;^UTILITY(U,$J,358.3,39591,2)
- ;;=^5006319
- ;;^UTILITY(U,$J,358.3,39592,0)
- ;;=H53.142^^153^1926^76
- ;;^UTILITY(U,$J,358.3,39592,1,0)
+ ;;^UTILITY(U,$J,358.3,37300,1,3,0)
+ ;;=3^Contusion of lft grt toe w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,37300,1,4,0)
+ ;;=4^S90.112A
+ ;;^UTILITY(U,$J,358.3,37300,2)
+ ;;=^5043859
+ ;;^UTILITY(U,$J,358.3,37301,0)
+ ;;=S90.121A^^146^1914^37
+ ;;^UTILITY(U,$J,358.3,37301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39592,1,3,0)
- ;;=3^Visual Discomfort,Left Eye
- ;;^UTILITY(U,$J,358.3,39592,1,4,0)
- ;;=4^H53.142
- ;;^UTILITY(U,$J,358.3,39592,2)
- ;;=^5006318
- ;;^UTILITY(U,$J,358.3,39593,0)
- ;;=H53.141^^153^1926^77
- ;;^UTILITY(U,$J,358.3,39593,1,0)
+ ;;^UTILITY(U,$J,358.3,37301,1,3,0)
+ ;;=3^Contusion of rt lsr toe(s) w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,37301,1,4,0)
+ ;;=4^S90.121A
+ ;;^UTILITY(U,$J,358.3,37301,2)
+ ;;=^5043865
+ ;;^UTILITY(U,$J,358.3,37302,0)
+ ;;=S90.122A^^146^1914^31
+ ;;^UTILITY(U,$J,358.3,37302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39593,1,3,0)
- ;;=3^Visual Discomfort,Right Eye
- ;;^UTILITY(U,$J,358.3,39593,1,4,0)
- ;;=4^H53.141
- ;;^UTILITY(U,$J,358.3,39593,2)
- ;;=^5006317
- ;;^UTILITY(U,$J,358.3,39594,0)
- ;;=C72.31^^153^1927^31
- ;;^UTILITY(U,$J,358.3,39594,1,0)
+ ;;^UTILITY(U,$J,358.3,37302,1,3,0)
+ ;;=3^Contusion of lft lwr toe(s) w/o damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,37302,1,4,0)
+ ;;=4^S90.122A
+ ;;^UTILITY(U,$J,358.3,37302,2)
+ ;;=^5043868
+ ;;^UTILITY(U,$J,358.3,37303,0)
+ ;;=S90.211A^^146^1914^34
+ ;;^UTILITY(U,$J,358.3,37303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39594,1,3,0)
- ;;=3^Malig Neop of Right Optic Nerve
- ;;^UTILITY(U,$J,358.3,39594,1,4,0)
- ;;=4^C72.31
- ;;^UTILITY(U,$J,358.3,39594,2)
- ;;=^5001303
- ;;^UTILITY(U,$J,358.3,39595,0)
- ;;=C72.32^^153^1927^30
- ;;^UTILITY(U,$J,358.3,39595,1,0)
+ ;;^UTILITY(U,$J,358.3,37303,1,3,0)
+ ;;=3^Contusion of rt grt toe w/ damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,37303,1,4,0)
+ ;;=4^S90.211A
+ ;;^UTILITY(U,$J,358.3,37303,2)
+ ;;=^5043874
+ ;;^UTILITY(U,$J,358.3,37304,0)
+ ;;=S90.212A^^146^1914^27
+ ;;^UTILITY(U,$J,358.3,37304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39595,1,3,0)
- ;;=3^Malig Neop of Left Optic Nerve
- ;;^UTILITY(U,$J,358.3,39595,1,4,0)
- ;;=4^C72.32
- ;;^UTILITY(U,$J,358.3,39595,2)
- ;;=^5001304
- ;;^UTILITY(U,$J,358.3,39596,0)
- ;;=D33.3^^153^1927^5
- ;;^UTILITY(U,$J,358.3,39596,1,0)
+ ;;^UTILITY(U,$J,358.3,37304,1,3,0)
+ ;;=3^Contusion of lft grt toe w/ damage to nail, enit enc
+ ;;^UTILITY(U,$J,358.3,37304,1,4,0)
+ ;;=4^S90.212A
+ ;;^UTILITY(U,$J,358.3,37304,2)
+ ;;=^5137379
+ ;;^UTILITY(U,$J,358.3,37305,0)
+ ;;=S90.221A^^146^1914^36
+ ;;^UTILITY(U,$J,358.3,37305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39596,1,3,0)
- ;;=3^Benigh Neop of Cranial Nerves
- ;;^UTILITY(U,$J,358.3,39596,1,4,0)
- ;;=4^D33.3
- ;;^UTILITY(U,$J,358.3,39596,2)
- ;;=^13298
- ;;^UTILITY(U,$J,358.3,39597,0)
- ;;=G24.5^^153^1927^8
- ;;^UTILITY(U,$J,358.3,39597,1,0)
+ ;;^UTILITY(U,$J,358.3,37305,1,3,0)
+ ;;=3^Contusion of rt lsr toe(s) w/ damage to nail, init enc
+ ;;^UTILITY(U,$J,358.3,37305,1,4,0)
+ ;;=4^S90.221A
+ ;;^UTILITY(U,$J,358.3,37305,2)
+ ;;=^5043877
+ ;;^UTILITY(U,$J,358.3,37306,0)
+ ;;=S90.222A^^146^1914^29
+ ;;^UTILITY(U,$J,358.3,37306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39597,1,3,0)
- ;;=3^Blepharospasm
- ;;^UTILITY(U,$J,358.3,39597,1,4,0)
- ;;=4^G24.5
- ;;^UTILITY(U,$J,358.3,39597,2)
- ;;=^15293
- ;;^UTILITY(U,$J,358.3,39598,0)
- ;;=G43.909^^153^1927^32
- ;;^UTILITY(U,$J,358.3,39598,1,0)
+ ;;^UTILITY(U,$J,358.3,37306,1,3,0)
+ ;;=3^Contusion of lft lsr toe(s) w/ damage to nail, init
+ ;;^UTILITY(U,$J,358.3,37306,1,4,0)
+ ;;=4^S90.222A
+ ;;^UTILITY(U,$J,358.3,37306,2)
+ ;;=^5137385
+ ;;^UTILITY(U,$J,358.3,37307,0)
+ ;;=T79.A21A^^146^1914^15
+ ;;^UTILITY(U,$J,358.3,37307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39598,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus
- ;;^UTILITY(U,$J,358.3,39598,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,39598,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,39599,0)
- ;;=G93.2^^153^1927^6
- ;;^UTILITY(U,$J,358.3,39599,1,0)
+ ;;^UTILITY(U,$J,358.3,37307,1,3,0)
+ ;;=3^Compartment Syndrome,Right Lower Extremity,Traumatic
+ ;;^UTILITY(U,$J,358.3,37307,1,4,0)
+ ;;=4^T79.A21A
+ ;;^UTILITY(U,$J,358.3,37307,2)
+ ;;=^5054335
+ ;;^UTILITY(U,$J,358.3,37308,0)
+ ;;=T79.A22A^^146^1914^13
+ ;;^UTILITY(U,$J,358.3,37308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39599,1,3,0)
- ;;=3^Benign Intracranial Hypertension
- ;;^UTILITY(U,$J,358.3,39599,1,4,0)
- ;;=4^G93.2
- ;;^UTILITY(U,$J,358.3,39599,2)
- ;;=^5004180
- ;;^UTILITY(U,$J,358.3,39600,0)
- ;;=G50.9^^153^1927^55
- ;;^UTILITY(U,$J,358.3,39600,1,0)
+ ;;^UTILITY(U,$J,358.3,37308,1,3,0)
+ ;;=3^Compartment Syndrome,Left Lower Extremity,Traumatic
+ ;;^UTILITY(U,$J,358.3,37308,1,4,0)
+ ;;=4^T79.A22A
+ ;;^UTILITY(U,$J,358.3,37308,2)
+ ;;=^5137969
+ ;;^UTILITY(U,$J,358.3,37309,0)
+ ;;=G57.71^^146^1914^4
+ ;;^UTILITY(U,$J,358.3,37309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39600,1,3,0)
- ;;=3^Trigeminal Nerve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,39600,1,4,0)
- ;;=4^G50.9
- ;;^UTILITY(U,$J,358.3,39600,2)
- ;;=^5003993
- ;;^UTILITY(U,$J,358.3,39601,0)
- ;;=G51.0^^153^1927^4
- ;;^UTILITY(U,$J,358.3,39601,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37309,1,3,0)
+ ;;=3^Causalgia of rt lwr limb

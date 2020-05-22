@@ -1,126 +1,122 @@
-IBDEI2PA ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45321,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,45321,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,45322,0)
- ;;=S56.415A^^200^2241^54
- ;;^UTILITY(U,$J,358.3,45322,1,0)
+ ;;^UTILITY(U,$J,358.3,43027,1,4,0)
+ ;;=4^M47.15
+ ;;^UTILITY(U,$J,358.3,43027,2)
+ ;;=^5012055
+ ;;^UTILITY(U,$J,358.3,43028,0)
+ ;;=M47.22^^155^2077^27
+ ;;^UTILITY(U,$J,358.3,43028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45322,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45322,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,45322,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,45323,0)
- ;;=S56.416A^^200^2241^34
- ;;^UTILITY(U,$J,358.3,45323,1,0)
+ ;;^UTILITY(U,$J,358.3,43028,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,43028,1,4,0)
+ ;;=4^M47.22
+ ;;^UTILITY(U,$J,358.3,43028,2)
+ ;;=^5012061
+ ;;^UTILITY(U,$J,358.3,43029,0)
+ ;;=M47.23^^155^2077^28
+ ;;^UTILITY(U,$J,358.3,43029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45323,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45323,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,45323,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,45324,0)
- ;;=S66.912A^^200^2241^22
- ;;^UTILITY(U,$J,358.3,45324,1,0)
+ ;;^UTILITY(U,$J,358.3,43029,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,43029,1,4,0)
+ ;;=4^M47.23
+ ;;^UTILITY(U,$J,358.3,43029,2)
+ ;;=^5012062
+ ;;^UTILITY(U,$J,358.3,43030,0)
+ ;;=M47.26^^155^2077^29
+ ;;^UTILITY(U,$J,358.3,43030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45324,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,45324,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,45324,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,45325,0)
- ;;=S66.911A^^200^2241^42
- ;;^UTILITY(U,$J,358.3,45325,1,0)
+ ;;^UTILITY(U,$J,358.3,43030,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,43030,1,4,0)
+ ;;=4^M47.26
+ ;;^UTILITY(U,$J,358.3,43030,2)
+ ;;=^5012065
+ ;;^UTILITY(U,$J,358.3,43031,0)
+ ;;=M47.27^^155^2077^30
+ ;;^UTILITY(U,$J,358.3,43031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45325,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,45325,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,45325,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,45326,0)
- ;;=S63.501A^^200^2241^18
- ;;^UTILITY(U,$J,358.3,45326,1,0)
+ ;;^UTILITY(U,$J,358.3,43031,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,43031,1,4,0)
+ ;;=4^M47.27
+ ;;^UTILITY(U,$J,358.3,43031,2)
+ ;;=^5012066
+ ;;^UTILITY(U,$J,358.3,43032,0)
+ ;;=M47.20^^155^2077^32
+ ;;^UTILITY(U,$J,358.3,43032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45326,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,45326,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,45326,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,45327,0)
- ;;=S63.502A^^200^2241^7
- ;;^UTILITY(U,$J,358.3,45327,1,0)
+ ;;^UTILITY(U,$J,358.3,43032,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Site Unspec
+ ;;^UTILITY(U,$J,358.3,43032,1,4,0)
+ ;;=4^M47.20
+ ;;^UTILITY(U,$J,358.3,43032,2)
+ ;;=^5012059
+ ;;^UTILITY(U,$J,358.3,43033,0)
+ ;;=M47.24^^155^2077^33
+ ;;^UTILITY(U,$J,358.3,43033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45327,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,45327,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,45327,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,45328,0)
- ;;=S83.8X1A^^200^2241^16
- ;;^UTILITY(U,$J,358.3,45328,1,0)
+ ;;^UTILITY(U,$J,358.3,43033,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,43033,1,4,0)
+ ;;=4^M47.24
+ ;;^UTILITY(U,$J,358.3,43033,2)
+ ;;=^5012063
+ ;;^UTILITY(U,$J,358.3,43034,0)
+ ;;=M47.25^^155^2077^34
+ ;;^UTILITY(U,$J,358.3,43034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45328,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,45328,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,45328,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,45329,0)
- ;;=S83.8X2A^^200^2241^5
- ;;^UTILITY(U,$J,358.3,45329,1,0)
+ ;;^UTILITY(U,$J,358.3,43034,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,43034,1,4,0)
+ ;;=4^M47.25
+ ;;^UTILITY(U,$J,358.3,43034,2)
+ ;;=^5012064
+ ;;^UTILITY(U,$J,358.3,43035,0)
+ ;;=M47.10^^155^2077^24
+ ;;^UTILITY(U,$J,358.3,43035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45329,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,45329,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,45329,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,45330,0)
- ;;=S86.211A^^200^2241^47
- ;;^UTILITY(U,$J,358.3,45330,1,0)
+ ;;^UTILITY(U,$J,358.3,43035,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Site Unspec
+ ;;^UTILITY(U,$J,358.3,43035,1,4,0)
+ ;;=4^M47.10
+ ;;^UTILITY(U,$J,358.3,43035,2)
+ ;;=^5012050
+ ;;^UTILITY(U,$J,358.3,43036,0)
+ ;;=G95.0^^155^2077^35
+ ;;^UTILITY(U,$J,358.3,43036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45330,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,45330,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,45330,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,45331,0)
- ;;=S86.212A^^200^2241^27
- ;;^UTILITY(U,$J,358.3,45331,1,0)
+ ;;^UTILITY(U,$J,358.3,43036,1,3,0)
+ ;;=3^Syringomyelia & Syringobulbia
+ ;;^UTILITY(U,$J,358.3,43036,1,4,0)
+ ;;=4^G95.0
+ ;;^UTILITY(U,$J,358.3,43036,2)
+ ;;=^116874
+ ;;^UTILITY(U,$J,358.3,43037,0)
+ ;;=M48.061^^155^2077^17
+ ;;^UTILITY(U,$J,358.3,43037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45331,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,45331,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,45331,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,45332,0)
- ;;=S86.311A^^200^2241^49
- ;;^UTILITY(U,$J,358.3,45332,1,0)
+ ;;^UTILITY(U,$J,358.3,43037,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,43037,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,43037,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,43038,0)
+ ;;=M48.062^^155^2077^16
+ ;;^UTILITY(U,$J,358.3,43038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45332,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,45332,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,45332,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,45333,0)
- ;;=S86.312A^^200^2241^29
- ;;^UTILITY(U,$J,358.3,45333,1,0)
+ ;;^UTILITY(U,$J,358.3,43038,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,43038,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,43038,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,43039,0)
+ ;;=R25.0^^155^2078^1
+ ;;^UTILITY(U,$J,358.3,43039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45333,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,45333,1,4,0)
- ;;=4^S86.312A

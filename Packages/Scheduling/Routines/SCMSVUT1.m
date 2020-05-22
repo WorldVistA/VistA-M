@@ -1,5 +1,5 @@
 SCMSVUT1 ;ALB/JLU - validation utility routine;06/19/99 ; 4/30/03 11:58am
- ;;5.3;Scheduling;**66,143,180,239,247,258,296,295,321,341,387,459,394,442,593**;AUG 13,1993;Build 13
+ ;;5.3;Scheduling;**66,143,180,239,247,258,296,295,321,341,387,459,394,442,593,747**;AUG 13,1993;Build 5
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
  ; Reference to $$SYS^ICDEX supported by ICR #5747
  ;06/19/99 ACS - Added CPT Modifier API calls to PROCCOD(DATA)
@@ -434,6 +434,7 @@ ERI(DATA) ;
  ;
  I '$D(DATA) Q 0
  I DATA="" Q 1
- I DATA'="K" Q 0
+ ;Patch SD*5.3*747 changes ERI check from Katrina (K) to Pandemic (P)
+ I DATA'="P" Q 0
  Q 1
  ;

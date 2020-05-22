@@ -1,284 +1,124 @@
-IBDEI157 ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI157 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41516,1,3,0)
- ;;=3^Met Malig Neop Rt Kidney & Renal Pelvis
- ;;^UTILITY(U,$J,358.3,41516,1,4,0)
- ;;=4^C79.01
- ;;^UTILITY(U,$J,358.3,41516,2)
- ;;=^5001343
- ;;^UTILITY(U,$J,358.3,41517,0)
- ;;=C79.02^^156^2025^16
- ;;^UTILITY(U,$J,358.3,41517,1,0)
+ ;;^UTILITY(U,$J,358.3,18372,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,18372,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,18373,0)
+ ;;=T74.11XD^^91^935^8
+ ;;^UTILITY(U,$J,358.3,18373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41517,1,3,0)
- ;;=3^Met Malig Neop Lt Kidney & Renal Pelvis
- ;;^UTILITY(U,$J,358.3,41517,1,4,0)
- ;;=4^C79.02
- ;;^UTILITY(U,$J,358.3,41517,2)
- ;;=^5001344
- ;;^UTILITY(U,$J,358.3,41518,0)
- ;;=C79.11^^156^2025^2
- ;;^UTILITY(U,$J,358.3,41518,1,0)
+ ;;^UTILITY(U,$J,358.3,18373,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,18373,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,18373,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,18374,0)
+ ;;=T76.11XA^^91^935^9
+ ;;^UTILITY(U,$J,358.3,18374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41518,1,3,0)
- ;;=3^Met Malig Neop Bladder
- ;;^UTILITY(U,$J,358.3,41518,1,4,0)
- ;;=4^C79.11
- ;;^UTILITY(U,$J,358.3,41518,2)
- ;;=^5001346
- ;;^UTILITY(U,$J,358.3,41519,0)
- ;;=C79.19^^156^2025^28
- ;;^UTILITY(U,$J,358.3,41519,1,0)
+ ;;^UTILITY(U,$J,358.3,18374,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,18374,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,18374,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,18375,0)
+ ;;=T76.11XD^^91^935^10
+ ;;^UTILITY(U,$J,358.3,18375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41519,1,3,0)
- ;;=3^Met Malig Neop Urinary Organs
- ;;^UTILITY(U,$J,358.3,41519,1,4,0)
- ;;=4^C79.19
- ;;^UTILITY(U,$J,358.3,41519,2)
- ;;=^267332
- ;;^UTILITY(U,$J,358.3,41520,0)
- ;;=C79.2^^156^2025^26
- ;;^UTILITY(U,$J,358.3,41520,1,0)
+ ;;^UTILITY(U,$J,358.3,18375,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,18375,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,18375,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,18376,0)
+ ;;=Z69.11^^91^935^24
+ ;;^UTILITY(U,$J,358.3,18376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41520,1,3,0)
- ;;=3^Met Malig Neop Skin
- ;;^UTILITY(U,$J,358.3,41520,1,4,0)
- ;;=4^C79.2
- ;;^UTILITY(U,$J,358.3,41520,2)
- ;;=^267333
- ;;^UTILITY(U,$J,358.3,41521,0)
- ;;=C79.31^^156^2025^5
- ;;^UTILITY(U,$J,358.3,41521,1,0)
+ ;;^UTILITY(U,$J,358.3,18376,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
+ ;;^UTILITY(U,$J,358.3,18376,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,18376,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,18377,0)
+ ;;=Z91.410^^91^935^26
+ ;;^UTILITY(U,$J,358.3,18377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41521,1,3,0)
- ;;=3^Met Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,41521,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,41521,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,41522,0)
- ;;=C79.51^^156^2025^3
- ;;^UTILITY(U,$J,358.3,41522,1,0)
+ ;;^UTILITY(U,$J,358.3,18377,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,18377,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,18377,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,18378,0)
+ ;;=T74.21XA^^91^935^15
+ ;;^UTILITY(U,$J,358.3,18378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41522,1,3,0)
- ;;=3^Met Malig Neop Bone
- ;;^UTILITY(U,$J,358.3,41522,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,41522,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,41523,0)
- ;;=C79.52^^156^2025^4
- ;;^UTILITY(U,$J,358.3,41523,1,0)
+ ;;^UTILITY(U,$J,358.3,18378,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,18378,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,18378,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,18379,0)
+ ;;=T74.21XD^^91^935^16
+ ;;^UTILITY(U,$J,358.3,18379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41523,1,3,0)
- ;;=3^Met Malig Neop Bone Marrow
- ;;^UTILITY(U,$J,358.3,41523,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,41523,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,41524,0)
- ;;=C79.61^^156^2025^25
- ;;^UTILITY(U,$J,358.3,41524,1,0)
+ ;;^UTILITY(U,$J,358.3,18379,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,18379,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,18379,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,18380,0)
+ ;;=T76.21XA^^91^935^17
+ ;;^UTILITY(U,$J,358.3,18380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41524,1,3,0)
- ;;=3^Met Malig Neop Rt Ovary
- ;;^UTILITY(U,$J,358.3,41524,1,4,0)
- ;;=4^C79.61
- ;;^UTILITY(U,$J,358.3,41524,2)
- ;;=^5001353
- ;;^UTILITY(U,$J,358.3,41525,0)
- ;;=C79.62^^156^2025^18
- ;;^UTILITY(U,$J,358.3,41525,1,0)
+ ;;^UTILITY(U,$J,358.3,18380,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,18380,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,18380,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,18381,0)
+ ;;=T76.21XD^^91^935^18
+ ;;^UTILITY(U,$J,358.3,18381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41525,1,3,0)
- ;;=3^Met Malig Neop Lt Ovary
- ;;^UTILITY(U,$J,358.3,41525,1,4,0)
- ;;=4^C79.62
- ;;^UTILITY(U,$J,358.3,41525,2)
- ;;=^5001354
- ;;^UTILITY(U,$J,358.3,41526,0)
- ;;=C79.71^^156^2025^22
- ;;^UTILITY(U,$J,358.3,41526,1,0)
+ ;;^UTILITY(U,$J,358.3,18381,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,18381,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,18381,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,18382,0)
+ ;;=Z69.81^^91^935^23
+ ;;^UTILITY(U,$J,358.3,18382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41526,1,3,0)
- ;;=3^Met Malig Neop Rt Adrenal Gland
- ;;^UTILITY(U,$J,358.3,41526,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,41526,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,41527,0)
- ;;=C79.72^^156^2025^15
- ;;^UTILITY(U,$J,358.3,41527,1,0)
+ ;;^UTILITY(U,$J,358.3,18382,1,3,0)
+ ;;=3^MH Svc for Victim of Other Abuse
+ ;;^UTILITY(U,$J,358.3,18382,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,18382,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,18383,0)
+ ;;=Z69.82^^91^935^21
+ ;;^UTILITY(U,$J,358.3,18383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41527,1,3,0)
- ;;=3^Met Malig Neop Lt Adrenal Gland
- ;;^UTILITY(U,$J,358.3,41527,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,41527,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,41528,0)
- ;;=K91.3^^156^2026^6
- ;;^UTILITY(U,$J,358.3,41528,1,0)
+ ;;^UTILITY(U,$J,358.3,18383,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Other Abuse
+ ;;^UTILITY(U,$J,358.3,18383,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,18383,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,18384,0)
+ ;;=T74.01XA^^91^935^3
+ ;;^UTILITY(U,$J,358.3,18384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41528,1,3,0)
- ;;=3^Postprocedural Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,41528,1,4,0)
- ;;=4^K91.3
- ;;^UTILITY(U,$J,358.3,41528,2)
- ;;=^5008902
- ;;^UTILITY(U,$J,358.3,41529,0)
- ;;=T88.8XXA^^156^2026^2
- ;;^UTILITY(U,$J,358.3,41529,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41529,1,3,0)
- ;;=3^Compl of Surg/Med Care,Init Encntr
- ;;^UTILITY(U,$J,358.3,41529,1,4,0)
- ;;=4^T88.8XXA
- ;;^UTILITY(U,$J,358.3,41529,2)
- ;;=^5055814
- ;;^UTILITY(U,$J,358.3,41530,0)
- ;;=T81.31XA^^156^2026^3
- ;;^UTILITY(U,$J,358.3,41530,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41530,1,3,0)
- ;;=3^Disruption External Surg Wound,Init Enc
- ;;^UTILITY(U,$J,358.3,41530,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,41530,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,41531,0)
- ;;=T81.4XXA^^156^2026^4
- ;;^UTILITY(U,$J,358.3,41531,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41531,1,3,0)
- ;;=3^Infection Following Procedure,Init Encntr
- ;;^UTILITY(U,$J,358.3,41531,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,41531,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,41532,0)
- ;;=T81.83XA^^156^2026^5
- ;;^UTILITY(U,$J,358.3,41532,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41532,1,3,0)
- ;;=3^Persistent Postproced Fistual,Init Encntr
- ;;^UTILITY(U,$J,358.3,41532,1,4,0)
- ;;=4^T81.83XA
- ;;^UTILITY(U,$J,358.3,41532,2)
- ;;=^5054659
- ;;^UTILITY(U,$J,358.3,41533,0)
- ;;=T81.89XA^^156^2026^1
- ;;^UTILITY(U,$J,358.3,41533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41533,1,3,0)
- ;;=3^Compl of Procedure NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,41533,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,41533,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,41534,0)
- ;;=C34.11^^156^2027^13
- ;;^UTILITY(U,$J,358.3,41534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41534,1,3,0)
- ;;=3^Malig Neop,Upper Lobe,Rt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41534,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,41534,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,41535,0)
- ;;=C34.12^^156^2027^12
- ;;^UTILITY(U,$J,358.3,41535,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41535,1,3,0)
- ;;=3^Malig Neop,Upper Lobe,Lt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41535,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,41535,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,41536,0)
- ;;=C34.2^^156^2027^7
- ;;^UTILITY(U,$J,358.3,41536,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41536,1,3,0)
- ;;=3^Malig Neop,Middle Lobe,Lung
- ;;^UTILITY(U,$J,358.3,41536,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,41536,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,41537,0)
- ;;=C34.31^^156^2027^6
- ;;^UTILITY(U,$J,358.3,41537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41537,1,3,0)
- ;;=3^Malig Neop,Lower Lobe,Rt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41537,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,41537,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,41538,0)
- ;;=C34.32^^156^2027^5
- ;;^UTILITY(U,$J,358.3,41538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41538,1,3,0)
- ;;=3^Malig Neop,Lower Lobe,Lt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41538,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,41538,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,41539,0)
- ;;=C34.81^^156^2027^9
- ;;^UTILITY(U,$J,358.3,41539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41539,1,3,0)
- ;;=3^Malig Neop,Overlap,Rt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41539,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,41539,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,41540,0)
- ;;=C34.82^^156^2027^8
- ;;^UTILITY(U,$J,358.3,41540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41540,1,3,0)
- ;;=3^Malig Neop,Overlap,Lt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41540,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,41540,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,41541,0)
- ;;=C34.91^^156^2027^11
- ;;^UTILITY(U,$J,358.3,41541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41541,1,3,0)
- ;;=3^Malig Neop,Unspec Part,Rt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41541,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,41541,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,41542,0)
- ;;=C34.92^^156^2027^10
- ;;^UTILITY(U,$J,358.3,41542,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41542,1,3,0)
- ;;=3^Malig Neop,Unspec Part,Lt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,41542,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,41542,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,41543,0)
- ;;=J20.9^^156^2027^3
- ;;^UTILITY(U,$J,358.3,41543,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41543,1,3,0)
- ;;=3^Bronchitis,Acute
- ;;^UTILITY(U,$J,358.3,41543,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,41543,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,41544,0)
- ;;=J42.^^156^2027^4
- ;;^UTILITY(U,$J,358.3,41544,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18384,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Init Enctr

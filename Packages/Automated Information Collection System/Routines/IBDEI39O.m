@@ -1,128 +1,124 @@
-IBDEI39O ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39O ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54900,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,54901,0)
- ;;=C92.01^^256^2775^7
- ;;^UTILITY(U,$J,358.3,54901,1,0)
+ ;;^UTILITY(U,$J,358.3,52140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54901,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,54901,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,54901,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,54902,0)
- ;;=C92.00^^256^2775^8
- ;;^UTILITY(U,$J,358.3,54902,1,0)
+ ;;^UTILITY(U,$J,358.3,52140,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Left
+ ;;^UTILITY(U,$J,358.3,52140,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,52140,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,52141,0)
+ ;;=Z89.512^^193^2519^22
+ ;;^UTILITY(U,$J,358.3,52141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54902,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,54902,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,54902,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,54903,0)
- ;;=C92.61^^256^2775^9
- ;;^UTILITY(U,$J,358.3,54903,1,0)
+ ;;^UTILITY(U,$J,358.3,52141,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Left
+ ;;^UTILITY(U,$J,358.3,52141,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,52141,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,52142,0)
+ ;;=Z89.232^^193^2519^32
+ ;;^UTILITY(U,$J,358.3,52142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54903,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,54903,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,54903,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,54904,0)
- ;;=C92.60^^256^2775^10
- ;;^UTILITY(U,$J,358.3,54904,1,0)
+ ;;^UTILITY(U,$J,358.3,52142,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Left
+ ;;^UTILITY(U,$J,358.3,52142,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,52142,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,52143,0)
+ ;;=Z89.012^^193^2519^36
+ ;;^UTILITY(U,$J,358.3,52143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54904,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,54904,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,54904,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,54905,0)
- ;;=C92.A1^^256^2775^11
- ;;^UTILITY(U,$J,358.3,54905,1,0)
+ ;;^UTILITY(U,$J,358.3,52143,1,3,0)
+ ;;=3^Acquired Absence of Thumb,Left
+ ;;^UTILITY(U,$J,358.3,52143,1,4,0)
+ ;;=4^Z89.012
+ ;;^UTILITY(U,$J,358.3,52143,2)
+ ;;=^5063532
+ ;;^UTILITY(U,$J,358.3,52144,0)
+ ;;=Z89.422^^193^2519^25
+ ;;^UTILITY(U,$J,358.3,52144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54905,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,54905,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,54905,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,54906,0)
- ;;=C92.A0^^256^2775^12
- ;;^UTILITY(U,$J,358.3,54906,1,0)
+ ;;^UTILITY(U,$J,358.3,52144,1,3,0)
+ ;;=3^Acquired Absence of Oth Toe(s),Left
+ ;;^UTILITY(U,$J,358.3,52144,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,52144,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,52145,0)
+ ;;=Z89.222^^193^2519^38
+ ;;^UTILITY(U,$J,358.3,52145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54906,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
- ;;^UTILITY(U,$J,358.3,54906,1,4,0)
- ;;=4^C92.A0
- ;;^UTILITY(U,$J,358.3,54906,2)
- ;;=^5001813
- ;;^UTILITY(U,$J,358.3,54907,0)
- ;;=C92.51^^256^2775^13
- ;;^UTILITY(U,$J,358.3,54907,1,0)
+ ;;^UTILITY(U,$J,358.3,52145,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Above Elbow,Left
+ ;;^UTILITY(U,$J,358.3,52145,1,4,0)
+ ;;=4^Z89.222
+ ;;^UTILITY(U,$J,358.3,52145,2)
+ ;;=^5063549
+ ;;^UTILITY(U,$J,358.3,52146,0)
+ ;;=Z89.212^^193^2519^40
+ ;;^UTILITY(U,$J,358.3,52146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54907,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,54907,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,54907,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,54908,0)
- ;;=C92.50^^256^2775^14
- ;;^UTILITY(U,$J,358.3,54908,1,0)
+ ;;^UTILITY(U,$J,358.3,52146,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow,Left
+ ;;^UTILITY(U,$J,358.3,52146,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,52146,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,52147,0)
+ ;;=Z89.122^^193^2519^43
+ ;;^UTILITY(U,$J,358.3,52147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54908,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,54908,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,54908,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,54909,0)
- ;;=C94.40^^256^2775^17
- ;;^UTILITY(U,$J,358.3,54909,1,0)
+ ;;^UTILITY(U,$J,358.3,52147,1,3,0)
+ ;;=3^Acquired Absence of Wrist,Left
+ ;;^UTILITY(U,$J,358.3,52147,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,52147,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,52148,0)
+ ;;=Z90.2^^193^2519^24
+ ;;^UTILITY(U,$J,358.3,52148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54909,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
- ;;^UTILITY(U,$J,358.3,54909,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,54909,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,54910,0)
- ;;=C94.42^^256^2775^15
- ;;^UTILITY(U,$J,358.3,54910,1,0)
+ ;;^UTILITY(U,$J,358.3,52148,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,52148,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,52148,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,52149,0)
+ ;;=Z90.79^^193^2519^31
+ ;;^UTILITY(U,$J,358.3,52149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54910,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
- ;;^UTILITY(U,$J,358.3,54910,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,54910,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,54911,0)
- ;;=C94.41^^256^2775^16
- ;;^UTILITY(U,$J,358.3,54911,1,0)
+ ;;^UTILITY(U,$J,358.3,52149,1,3,0)
+ ;;=3^Acquired Absence of Prostate
+ ;;^UTILITY(U,$J,358.3,52149,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,52149,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,52150,0)
+ ;;=Z90.722^^193^2519^27
+ ;;^UTILITY(U,$J,358.3,52150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54911,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
- ;;^UTILITY(U,$J,358.3,54911,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,54911,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,54912,0)
- ;;=D62.^^256^2775^18
- ;;^UTILITY(U,$J,358.3,54912,1,0)
+ ;;^UTILITY(U,$J,358.3,52150,1,3,0)
+ ;;=3^Acquired Absence of Ovaries,Bilateral
+ ;;^UTILITY(U,$J,358.3,52150,1,4,0)
+ ;;=4^Z90.722
+ ;;^UTILITY(U,$J,358.3,52150,2)
+ ;;=^5063595
+ ;;^UTILITY(U,$J,358.3,52151,0)
+ ;;=Z90.721^^193^2519^28
+ ;;^UTILITY(U,$J,358.3,52151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54912,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,54912,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,54912,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,54913,0)
- ;;=C92.41^^256^2775^19
+ ;;^UTILITY(U,$J,358.3,52151,1,3,0)
+ ;;=3^Acquired Absence of Ovaries,Unilateral
+ ;;^UTILITY(U,$J,358.3,52151,1,4,0)
+ ;;=4^Z90.721
+ ;;^UTILITY(U,$J,358.3,52151,2)
+ ;;=^5063594
+ ;;^UTILITY(U,$J,358.3,52152,0)
+ ;;=Z90.411^^193^2519^29

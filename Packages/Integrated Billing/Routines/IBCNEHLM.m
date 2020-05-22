@@ -1,5 +1,5 @@
 IBCNEHLM ;DAOU/ALA - HL7 Registration MFN Message ;02-JUN-2015
- ;;2.0;INTEGRATED BILLING;**184,251,300,416,438,497,506,549,601,621,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**184,251,300,416,438,497,506,549,601,621,631,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -42,6 +42,10 @@ EN1 ; TaskMan entry point
  Q
  ;
 REG ;  Registration message for when a site installs
+ ;
+ ;/vd-IB*2.0*659 - Quit if VAMC Site is MANILA (#358) & EIV is disabled for MANILA.
+ I $P($$SITE^VASITE,U,3)=358,$$GET1^DIQ(350.9,"1,",51.33,"I")="N" Q
+ ;
  N APP,CNTCEM,CNTCNM,CNTCPH,CODE,EDT,EVENT,FRSH,HL,HLCDOM,HLCINS,HLCS
  N HLCSTCP,HLECH,HLEID,HLFS,HLHDR,HLINST,HLIP,HLN,HLNHLQ,HLPROD,HLQ,HLREP
  N HLRESLT,HLSAN,HLTYPE,HLX,IBCNE,IBCNEDAT,IHLP,IHLS,IHLT,ID,INACT,IPA,IPP
@@ -62,7 +66,8 @@ REG ;  Registration message for when a site installs
  ; IB*2.0*601 Updated version to 8
  ; IB*2.0*621 Updated version to 9, EICD
  ; IB*2.0*631 Updated version to 10
- S IVER="10"
+ ; IB*2.0*659 Updated version to 11
+ S IVER="11"
  I IHLP="I" S (IHLT,IHLS)=""
  ;
  I IHLP="B",IHLT=""!(IHLS="") D  S QFL=1

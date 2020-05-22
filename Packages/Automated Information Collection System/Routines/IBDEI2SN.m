@@ -1,124 +1,126 @@
-IBDEI2SN ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46901,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,46901,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,46902,0)
- ;;=G62.9^^206^2314^19
- ;;^UTILITY(U,$J,358.3,46902,1,0)
+ ;;^UTILITY(U,$J,358.3,44547,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44547,1,4,0)
+ ;;=4^F14.921
+ ;;^UTILITY(U,$J,358.3,44547,2)
+ ;;=^5003271
+ ;;^UTILITY(U,$J,358.3,44548,0)
+ ;;=F14.10^^164^2207^30
+ ;;^UTILITY(U,$J,358.3,44548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46902,1,3,0)
- ;;=3^Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,46902,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,46902,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,46903,0)
- ;;=I63.9^^206^2314^13
- ;;^UTILITY(U,$J,358.3,46903,1,0)
+ ;;^UTILITY(U,$J,358.3,44548,1,3,0)
+ ;;=3^Cocaine Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,44548,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,44548,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,44549,0)
+ ;;=F14.20^^164^2207^32
+ ;;^UTILITY(U,$J,358.3,44549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46903,1,3,0)
- ;;=3^Cerebral Infarction,Unspec
- ;;^UTILITY(U,$J,358.3,46903,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,46903,2)
- ;;=^5007355
- ;;^UTILITY(U,$J,358.3,46904,0)
- ;;=I63.50^^206^2314^7
- ;;^UTILITY(U,$J,358.3,46904,1,0)
+ ;;^UTILITY(U,$J,358.3,44549,1,3,0)
+ ;;=3^Cocaine Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,44549,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,44549,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,44550,0)
+ ;;=F14.23^^164^2207^33
+ ;;^UTILITY(U,$J,358.3,44550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46904,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebral Artery
- ;;^UTILITY(U,$J,358.3,46904,1,4,0)
- ;;=4^I63.50
- ;;^UTILITY(U,$J,358.3,46904,2)
- ;;=^5007343
- ;;^UTILITY(U,$J,358.3,46905,0)
- ;;=I63.549^^206^2314^8
- ;;^UTILITY(U,$J,358.3,46905,1,0)
+ ;;^UTILITY(U,$J,358.3,44550,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,44550,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,44550,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,44551,0)
+ ;;=F14.21^^164^2207^31
+ ;;^UTILITY(U,$J,358.3,44551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46905,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebellar Artery
- ;;^UTILITY(U,$J,358.3,46905,1,4,0)
- ;;=4^I63.549
- ;;^UTILITY(U,$J,358.3,46905,2)
- ;;=^5133571
- ;;^UTILITY(U,$J,358.3,46906,0)
- ;;=I63.8^^206^2314^2
- ;;^UTILITY(U,$J,358.3,46906,1,0)
+ ;;^UTILITY(U,$J,358.3,44551,1,3,0)
+ ;;=3^Cocaine Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,44551,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,44551,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,44552,0)
+ ;;=F15.11^^164^2207^63
+ ;;^UTILITY(U,$J,358.3,44552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46906,1,3,0)
- ;;=3^Cerebral Infarction NEC
- ;;^UTILITY(U,$J,358.3,46906,1,4,0)
- ;;=4^I63.8
- ;;^UTILITY(U,$J,358.3,46906,2)
- ;;=^5007354
- ;;^UTILITY(U,$J,358.3,46907,0)
- ;;=I63.512^^206^2314^5
- ;;^UTILITY(U,$J,358.3,46907,1,0)
+ ;;^UTILITY(U,$J,358.3,44552,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,In Remission
+ ;;^UTILITY(U,$J,358.3,44552,1,4,0)
+ ;;=4^F15.11
+ ;;^UTILITY(U,$J,358.3,44552,2)
+ ;;=^5151304
+ ;;^UTILITY(U,$J,358.3,44553,0)
+ ;;=F14.11^^164^2207^29
+ ;;^UTILITY(U,$J,358.3,44553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46907,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46907,1,4,0)
- ;;=4^I63.512
- ;;^UTILITY(U,$J,358.3,46907,2)
- ;;=^5007345
- ;;^UTILITY(U,$J,358.3,46908,0)
- ;;=I63.522^^206^2314^3
- ;;^UTILITY(U,$J,358.3,46908,1,0)
+ ;;^UTILITY(U,$J,358.3,44553,1,3,0)
+ ;;=3^Cocaine Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,44553,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,44553,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,44554,0)
+ ;;=F15.21^^164^2207^34
+ ;;^UTILITY(U,$J,358.3,44554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46908,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46908,1,4,0)
- ;;=4^I63.522
- ;;^UTILITY(U,$J,358.3,46908,2)
- ;;=^5007347
- ;;^UTILITY(U,$J,358.3,46909,0)
- ;;=I63.532^^206^2314^6
- ;;^UTILITY(U,$J,358.3,46909,1,0)
+ ;;^UTILITY(U,$J,358.3,44554,1,3,0)
+ ;;=3^Oth Stimulant Dependence,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,44554,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,44554,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,44555,0)
+ ;;=Z91.120^^164^2208^1
+ ;;^UTILITY(U,$J,358.3,44555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46909,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46909,1,4,0)
- ;;=4^I63.532
- ;;^UTILITY(U,$J,358.3,46909,2)
- ;;=^5007349
- ;;^UTILITY(U,$J,358.3,46910,0)
- ;;=I63.542^^206^2314^4
- ;;^UTILITY(U,$J,358.3,46910,1,0)
+ ;;^UTILITY(U,$J,358.3,44555,1,3,0)
+ ;;=3^Intentional Underdosing d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,44555,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,44555,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,44556,0)
+ ;;=Z91.128^^164^2208^2
+ ;;^UTILITY(U,$J,358.3,44556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46910,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46910,1,4,0)
- ;;=4^I63.542
- ;;^UTILITY(U,$J,358.3,46910,2)
- ;;=^5007351
- ;;^UTILITY(U,$J,358.3,46911,0)
- ;;=I63.511^^206^2314^11
- ;;^UTILITY(U,$J,358.3,46911,1,0)
+ ;;^UTILITY(U,$J,358.3,44556,1,3,0)
+ ;;=3^Intentional Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,44556,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,44556,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,44557,0)
+ ;;=Z91.130^^164^2208^15
+ ;;^UTILITY(U,$J,358.3,44557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46911,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46911,1,4,0)
- ;;=4^I63.511
- ;;^UTILITY(U,$J,358.3,46911,2)
- ;;=^5007344
- ;;^UTILITY(U,$J,358.3,46912,0)
- ;;=I63.521^^206^2314^9
- ;;^UTILITY(U,$J,358.3,46912,1,0)
+ ;;^UTILITY(U,$J,358.3,44557,1,3,0)
+ ;;=3^Unintented Underdosing d/t Age-Related Disability
+ ;;^UTILITY(U,$J,358.3,44557,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,44557,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,44558,0)
+ ;;=Z91.138^^164^2208^16
+ ;;^UTILITY(U,$J,358.3,44558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46912,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,46912,1,4,0)
- ;;=4^I63.521
- ;;^UTILITY(U,$J,358.3,46912,2)
- ;;=^5007346
- ;;^UTILITY(U,$J,358.3,46913,0)
- ;;=I63.531^^206^2314^12
- ;;^UTILITY(U,$J,358.3,46913,1,0)
+ ;;^UTILITY(U,$J,358.3,44558,1,3,0)
+ ;;=3^Unintented Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,44558,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,44558,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,44559,0)
+ ;;=T38.3X6A^^164^2208^3
+ ;;^UTILITY(U,$J,358.3,44559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46913,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,44559,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Init Encntr

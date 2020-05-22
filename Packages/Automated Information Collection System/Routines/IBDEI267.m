@@ -1,138 +1,122 @@
-IBDEI267 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI267 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36815,1,4,0)
- ;;=4^J70.1
- ;;^UTILITY(U,$J,358.3,36815,2)
- ;;=^269983
- ;;^UTILITY(U,$J,358.3,36816,0)
- ;;=J70.0^^137^1772^1
- ;;^UTILITY(U,$J,358.3,36816,1,0)
+ ;;^UTILITY(U,$J,358.3,34654,0)
+ ;;=F19.99^^134^1761^25
+ ;;^UTILITY(U,$J,358.3,34654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36816,1,3,0)
- ;;=3^Acute Pulmonary Manifestations d/t Radiation
- ;;^UTILITY(U,$J,358.3,36816,1,4,0)
- ;;=4^J70.0
- ;;^UTILITY(U,$J,358.3,36816,2)
- ;;=^269982
- ;;^UTILITY(U,$J,358.3,36817,0)
- ;;=J63.0^^137^1772^2
- ;;^UTILITY(U,$J,358.3,36817,1,0)
+ ;;^UTILITY(U,$J,358.3,34654,1,3,0)
+ ;;=3^Oth/Unk Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34654,1,4,0)
+ ;;=4^F19.99
+ ;;^UTILITY(U,$J,358.3,34654,2)
+ ;;=^5133364
+ ;;^UTILITY(U,$J,358.3,34655,0)
+ ;;=F19.21^^134^1761^28
+ ;;^UTILITY(U,$J,358.3,34655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36817,1,3,0)
- ;;=3^Aluminosis of Lung
- ;;^UTILITY(U,$J,358.3,36817,1,4,0)
- ;;=4^J63.0
- ;;^UTILITY(U,$J,358.3,36817,2)
- ;;=^5008265
- ;;^UTILITY(U,$J,358.3,36818,0)
- ;;=J63.1^^137^1772^3
- ;;^UTILITY(U,$J,358.3,36818,1,0)
+ ;;^UTILITY(U,$J,358.3,34655,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,34655,1,4,0)
+ ;;=4^F19.21
+ ;;^UTILITY(U,$J,358.3,34655,2)
+ ;;=^5003432
+ ;;^UTILITY(U,$J,358.3,34656,0)
+ ;;=F19.939^^134^1761^30
+ ;;^UTILITY(U,$J,358.3,34656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36818,1,3,0)
- ;;=3^Bauxite Fibrosis of Lung
- ;;^UTILITY(U,$J,358.3,36818,1,4,0)
- ;;=4^J63.1
- ;;^UTILITY(U,$J,358.3,36818,2)
- ;;=^5008266
- ;;^UTILITY(U,$J,358.3,36819,0)
- ;;=J63.2^^137^1772^4
- ;;^UTILITY(U,$J,358.3,36819,1,0)
+ ;;^UTILITY(U,$J,358.3,34656,1,3,0)
+ ;;=3^Oth/Unk Substance WD,Unspec
+ ;;^UTILITY(U,$J,358.3,34656,1,4,0)
+ ;;=4^F19.939
+ ;;^UTILITY(U,$J,358.3,34656,2)
+ ;;=^5003459
+ ;;^UTILITY(U,$J,358.3,34657,0)
+ ;;=F19.11^^134^1761^26
+ ;;^UTILITY(U,$J,358.3,34657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36819,1,3,0)
- ;;=3^Berylliosis
- ;;^UTILITY(U,$J,358.3,36819,1,4,0)
- ;;=4^J63.2
- ;;^UTILITY(U,$J,358.3,36819,2)
- ;;=^13594
- ;;^UTILITY(U,$J,358.3,36820,0)
- ;;=J60.^^137^1772^5
- ;;^UTILITY(U,$J,358.3,36820,1,0)
+ ;;^UTILITY(U,$J,358.3,34657,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,34657,1,4,0)
+ ;;=4^F19.11
+ ;;^UTILITY(U,$J,358.3,34657,2)
+ ;;=^5151306
+ ;;^UTILITY(U,$J,358.3,34658,0)
+ ;;=F15.99^^134^1762^66
+ ;;^UTILITY(U,$J,358.3,34658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36820,1,3,0)
- ;;=3^Coalworker's Pneumoconiosis
- ;;^UTILITY(U,$J,358.3,36820,1,4,0)
- ;;=4^J60.
- ;;^UTILITY(U,$J,358.3,36820,2)
- ;;=^5008261
- ;;^UTILITY(U,$J,358.3,36821,0)
- ;;=J63.3^^137^1772^6
- ;;^UTILITY(U,$J,358.3,36821,1,0)
+ ;;^UTILITY(U,$J,358.3,34658,1,3,0)
+ ;;=3^Oth Stimulant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34658,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,34658,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,34659,0)
+ ;;=F14.99^^134^1762^28
+ ;;^UTILITY(U,$J,358.3,34659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36821,1,3,0)
- ;;=3^Graphite Fibrosis of Lung
- ;;^UTILITY(U,$J,358.3,36821,1,4,0)
- ;;=4^J63.3
- ;;^UTILITY(U,$J,358.3,36821,2)
- ;;=^5008267
- ;;^UTILITY(U,$J,358.3,36822,0)
- ;;=J65.^^137^1772^7
- ;;^UTILITY(U,$J,358.3,36822,1,0)
+ ;;^UTILITY(U,$J,358.3,34659,1,3,0)
+ ;;=3^Cocaine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34659,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,34659,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,34660,0)
+ ;;=F15.180^^134^1762^35
+ ;;^UTILITY(U,$J,358.3,34660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36822,1,3,0)
- ;;=3^Pneumoconiosis Associated w/ Tuberculosis
- ;;^UTILITY(U,$J,358.3,36822,1,4,0)
- ;;=4^J65.
- ;;^UTILITY(U,$J,358.3,36822,2)
- ;;=^5008272
- ;;^UTILITY(U,$J,358.3,36823,0)
- ;;=J61.^^137^1772^8
- ;;^UTILITY(U,$J,358.3,36823,1,0)
+ ;;^UTILITY(U,$J,358.3,34660,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34660,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,34660,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,34661,0)
+ ;;=F15.280^^134^1762^36
+ ;;^UTILITY(U,$J,358.3,34661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36823,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,36823,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,36823,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,36824,0)
- ;;=J62.8^^137^1772^9
- ;;^UTILITY(U,$J,358.3,36824,1,0)
+ ;;^UTILITY(U,$J,358.3,34661,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34661,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,34661,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,34662,0)
+ ;;=F15.980^^134^1762^37
+ ;;^UTILITY(U,$J,358.3,34662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36824,1,3,0)
- ;;=3^Pneumoconiosis d/t Dust Containing Silica
- ;;^UTILITY(U,$J,358.3,36824,1,4,0)
- ;;=4^J62.8
- ;;^UTILITY(U,$J,358.3,36824,2)
- ;;=^5008264
- ;;^UTILITY(U,$J,358.3,36825,0)
- ;;=J62.0^^137^1772^10
- ;;^UTILITY(U,$J,358.3,36825,1,0)
+ ;;^UTILITY(U,$J,358.3,34662,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34662,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,34662,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,34663,0)
+ ;;=F15.14^^134^1762^39
+ ;;^UTILITY(U,$J,358.3,34663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36825,1,3,0)
- ;;=3^Pneumoconiosis d/t Talc Dust
- ;;^UTILITY(U,$J,358.3,36825,1,4,0)
- ;;=4^J62.0
- ;;^UTILITY(U,$J,358.3,36825,2)
- ;;=^5008263
- ;;^UTILITY(U,$J,358.3,36826,0)
- ;;=J82.^^137^1772^12
- ;;^UTILITY(U,$J,358.3,36826,1,0)
+ ;;^UTILITY(U,$J,358.3,34663,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34663,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,34663,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,34664,0)
+ ;;=F15.24^^134^1762^40
+ ;;^UTILITY(U,$J,358.3,34664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36826,1,3,0)
- ;;=3^Pulmonary Eosinophilia NEC
- ;;^UTILITY(U,$J,358.3,36826,1,4,0)
- ;;=4^J82.
- ;;^UTILITY(U,$J,358.3,36826,2)
- ;;=^5008297
- ;;^UTILITY(U,$J,358.3,36827,0)
- ;;=J63.4^^137^1772^13
- ;;^UTILITY(U,$J,358.3,36827,1,0)
+ ;;^UTILITY(U,$J,358.3,34664,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34664,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,34664,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,34665,0)
+ ;;=F15.94^^134^1762^41
+ ;;^UTILITY(U,$J,358.3,34665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36827,1,3,0)
- ;;=3^Siderosis
- ;;^UTILITY(U,$J,358.3,36827,1,4,0)
- ;;=4^J63.4
- ;;^UTILITY(U,$J,358.3,36827,2)
- ;;=^5008268
- ;;^UTILITY(U,$J,358.3,36828,0)
- ;;=J63.5^^137^1772^14
- ;;^UTILITY(U,$J,358.3,36828,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36828,1,3,0)
- ;;=3^Stannosis
- ;;^UTILITY(U,$J,358.3,36828,1,4,0)
- ;;=4^J63.5
- ;;^UTILITY(U,$J,358.3,36828,2)
- ;;=^5008269
+ ;;^UTILITY(U,$J,358.3,34665,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34665,1,4,0)
+ ;;=4^F15.94

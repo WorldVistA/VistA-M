@@ -1,124 +1,134 @@
-IBDEI1XA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32614,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl w/ necr of bone
- ;;^UTILITY(U,$J,358.3,32614,1,4,0)
- ;;=4^L97.314
- ;;^UTILITY(U,$J,358.3,32614,2)
- ;;=^5009518
- ;;^UTILITY(U,$J,358.3,32615,0)
- ;;=L97.321^^126^1621^1
- ;;^UTILITY(U,$J,358.3,32615,1,0)
+ ;;^UTILITY(U,$J,358.3,30710,0)
+ ;;=E87.3^^123^1583^3
+ ;;^UTILITY(U,$J,358.3,30710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32615,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,32615,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,32615,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,32616,0)
- ;;=L97.319^^126^1621^25
- ;;^UTILITY(U,$J,358.3,32616,1,0)
+ ;;^UTILITY(U,$J,358.3,30710,1,3,0)
+ ;;=3^Alkalosis
+ ;;^UTILITY(U,$J,358.3,30710,1,4,0)
+ ;;=4^E87.3
+ ;;^UTILITY(U,$J,358.3,30710,2)
+ ;;=^5003021
+ ;;^UTILITY(U,$J,358.3,30711,0)
+ ;;=E87.4^^123^1583^24
+ ;;^UTILITY(U,$J,358.3,30711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32616,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl w/ unsp severity
- ;;^UTILITY(U,$J,358.3,32616,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,32616,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,32617,0)
- ;;=L97.322^^126^1621^2
- ;;^UTILITY(U,$J,358.3,32617,1,0)
+ ;;^UTILITY(U,$J,358.3,30711,1,3,0)
+ ;;=3^Mixed Acid-Base Balance Disorder
+ ;;^UTILITY(U,$J,358.3,30711,1,4,0)
+ ;;=4^E87.4
+ ;;^UTILITY(U,$J,358.3,30711,2)
+ ;;=^5003022
+ ;;^UTILITY(U,$J,358.3,30712,0)
+ ;;=E86.9^^123^1583^31
+ ;;^UTILITY(U,$J,358.3,30712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32617,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,32617,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,32617,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,32618,0)
- ;;=L97.323^^126^1621^3
- ;;^UTILITY(U,$J,358.3,32618,1,0)
+ ;;^UTILITY(U,$J,358.3,30712,1,3,0)
+ ;;=3^Volume Depletion,Unspec
+ ;;^UTILITY(U,$J,358.3,30712,1,4,0)
+ ;;=4^E86.9
+ ;;^UTILITY(U,$J,358.3,30712,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,30713,0)
+ ;;=E86.0^^123^1583^6
+ ;;^UTILITY(U,$J,358.3,30713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32618,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ necr of muscle
- ;;^UTILITY(U,$J,358.3,32618,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,32618,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,32619,0)
- ;;=L97.329^^126^1621^5
- ;;^UTILITY(U,$J,358.3,32619,1,0)
+ ;;^UTILITY(U,$J,358.3,30713,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,30713,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,30713,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,30714,0)
+ ;;=E86.1^^123^1583^22
+ ;;^UTILITY(U,$J,358.3,30714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32619,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ unsp severity
- ;;^UTILITY(U,$J,358.3,32619,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,32619,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,32620,0)
- ;;=L97.324^^126^1621^4
- ;;^UTILITY(U,$J,358.3,32620,1,0)
+ ;;^UTILITY(U,$J,358.3,30714,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,30714,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,30714,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,30715,0)
+ ;;=E87.70^^123^1583^11
+ ;;^UTILITY(U,$J,358.3,30715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32620,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ necr of bone
- ;;^UTILITY(U,$J,358.3,32620,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,32620,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,32621,0)
- ;;=L97.412^^126^1621^36
- ;;^UTILITY(U,$J,358.3,32621,1,0)
+ ;;^UTILITY(U,$J,358.3,30715,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,30715,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,30715,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,30716,0)
+ ;;=E87.5^^123^1583^14
+ ;;^UTILITY(U,$J,358.3,30716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32621,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,32621,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,32621,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,32622,0)
- ;;=L97.414^^126^1621^37
- ;;^UTILITY(U,$J,358.3,32622,1,0)
+ ;;^UTILITY(U,$J,358.3,30716,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,30716,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,30716,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,30717,0)
+ ;;=E87.6^^123^1583^20
+ ;;^UTILITY(U,$J,358.3,30717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32622,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ necr of bone
- ;;^UTILITY(U,$J,358.3,32622,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,32622,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,32623,0)
- ;;=L97.413^^126^1621^38
- ;;^UTILITY(U,$J,358.3,32623,1,0)
+ ;;^UTILITY(U,$J,358.3,30717,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,30717,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,30717,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,30718,0)
+ ;;=E87.8^^123^1583^8
+ ;;^UTILITY(U,$J,358.3,30718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32623,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ necr muscle
- ;;^UTILITY(U,$J,358.3,32623,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,32623,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,32624,0)
- ;;=L97.411^^126^1621^39
- ;;^UTILITY(U,$J,358.3,32624,1,0)
+ ;;^UTILITY(U,$J,358.3,30718,1,3,0)
+ ;;=3^Electrolyte & Fluid Balance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,30718,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,30718,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,30719,0)
+ ;;=E26.81^^123^1583^5
+ ;;^UTILITY(U,$J,358.3,30719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32624,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft lmt to brkdwn skin
- ;;^UTILITY(U,$J,358.3,32624,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,32624,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,32625,0)
- ;;=L97.411^^126^1621^40
- ;;^UTILITY(U,$J,358.3,32625,1,0)
+ ;;^UTILITY(U,$J,358.3,30719,1,3,0)
+ ;;=3^Bartter's Syndrome
+ ;;^UTILITY(U,$J,358.3,30719,1,4,0)
+ ;;=4^E26.81
+ ;;^UTILITY(U,$J,358.3,30719,2)
+ ;;=^329906
+ ;;^UTILITY(U,$J,358.3,30720,0)
+ ;;=E23.2^^123^1583^7
+ ;;^UTILITY(U,$J,358.3,30720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32625,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft lmt to brkdwn skin
- ;;^UTILITY(U,$J,358.3,32625,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,32625,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,32626,0)
- ;;=L97.429^^126^1621^16
- ;;^UTILITY(U,$J,358.3,32626,1,0)
+ ;;^UTILITY(U,$J,358.3,30720,1,3,0)
+ ;;=3^Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,30720,1,4,0)
+ ;;=4^E23.2
+ ;;^UTILITY(U,$J,358.3,30720,2)
+ ;;=^33572
+ ;;^UTILITY(U,$J,358.3,30721,0)
+ ;;=E83.41^^123^1583^15
+ ;;^UTILITY(U,$J,358.3,30721,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30721,1,3,0)
+ ;;=3^Hypermagnesemia
+ ;;^UTILITY(U,$J,358.3,30721,1,4,0)
+ ;;=4^E83.41
+ ;;^UTILITY(U,$J,358.3,30721,2)
+ ;;=^5003002
+ ;;^UTILITY(U,$J,358.3,30722,0)
+ ;;=E21.3^^123^1583^17
+ ;;^UTILITY(U,$J,358.3,30722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30722,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,30722,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,30722,2)
+ ;;=^331438

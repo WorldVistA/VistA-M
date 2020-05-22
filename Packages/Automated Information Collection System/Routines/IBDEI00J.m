@@ -1,350 +1,722 @@
-IBDEI00J ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI00J ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,132,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,132,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,133,0)
- ;;=T74.21XA^^3^23^13
- ;;^UTILITY(U,$J,358.3,133,1,0)
+ ;;^UTILITY(U,$J,358.3,684,0)
+ ;;=D57.1^^12^78^39
+ ;;^UTILITY(U,$J,358.3,684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,133,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,133,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,133,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,134,0)
- ;;=T74.21XD^^3^23^14
- ;;^UTILITY(U,$J,358.3,134,1,0)
+ ;;^UTILITY(U,$J,358.3,684,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,684,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,684,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,685,0)
+ ;;=D64.0^^12^78^28
+ ;;^UTILITY(U,$J,358.3,685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,134,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,134,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,134,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,135,0)
- ;;=T76.21XA^^3^23^15
- ;;^UTILITY(U,$J,358.3,135,1,0)
+ ;;^UTILITY(U,$J,358.3,685,1,3,0)
+ ;;=3^Anemia,Sideroblastic,Hereditary
+ ;;^UTILITY(U,$J,358.3,685,1,4,0)
+ ;;=4^D64.0
+ ;;^UTILITY(U,$J,358.3,685,2)
+ ;;=^5002344
+ ;;^UTILITY(U,$J,358.3,686,0)
+ ;;=D64.1^^12^78^29
+ ;;^UTILITY(U,$J,358.3,686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,135,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,135,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,135,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,136,0)
- ;;=T76.21XD^^3^23^16
- ;;^UTILITY(U,$J,358.3,136,1,0)
+ ;;^UTILITY(U,$J,358.3,686,1,3,0)
+ ;;=3^Anemia,Sideroblastic,Secondary d/t Disease
+ ;;^UTILITY(U,$J,358.3,686,1,4,0)
+ ;;=4^D64.1
+ ;;^UTILITY(U,$J,358.3,686,2)
+ ;;=^5002345
+ ;;^UTILITY(U,$J,358.3,687,0)
+ ;;=D64.2^^12^78^30
+ ;;^UTILITY(U,$J,358.3,687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,136,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,136,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,136,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,137,0)
- ;;=Z69.81^^3^23^30
- ;;^UTILITY(U,$J,358.3,137,1,0)
+ ;;^UTILITY(U,$J,358.3,687,1,3,0)
+ ;;=3^Anemia,Sideroblastic,Secondary d/t Drugs/Toxins
+ ;;^UTILITY(U,$J,358.3,687,1,4,0)
+ ;;=4^D64.2
+ ;;^UTILITY(U,$J,358.3,687,2)
+ ;;=^5002346
+ ;;^UTILITY(U,$J,358.3,688,0)
+ ;;=D46.0^^12^78^25
+ ;;^UTILITY(U,$J,358.3,688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,137,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,137,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,137,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,138,0)
- ;;=Z69.82^^3^23^22
- ;;^UTILITY(U,$J,358.3,138,1,0)
+ ;;^UTILITY(U,$J,358.3,688,1,3,0)
+ ;;=3^Anemia,Refractory w/o Ring Sideroblasts
+ ;;^UTILITY(U,$J,358.3,688,1,4,0)
+ ;;=4^D46.0
+ ;;^UTILITY(U,$J,358.3,688,2)
+ ;;=^5002245
+ ;;^UTILITY(U,$J,358.3,689,0)
+ ;;=D46.1^^12^78^24
+ ;;^UTILITY(U,$J,358.3,689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,138,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,138,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,138,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,139,0)
- ;;=T74.01XA^^3^23^1
- ;;^UTILITY(U,$J,358.3,139,1,0)
+ ;;^UTILITY(U,$J,358.3,689,1,3,0)
+ ;;=3^Anemia,Refractory w/ Ring Sideroblasts
+ ;;^UTILITY(U,$J,358.3,689,1,4,0)
+ ;;=4^D46.1
+ ;;^UTILITY(U,$J,358.3,689,2)
+ ;;=^5002246
+ ;;^UTILITY(U,$J,358.3,690,0)
+ ;;=D46.20^^12^78^23
+ ;;^UTILITY(U,$J,358.3,690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,139,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,139,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,139,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,140,0)
- ;;=T74.01XD^^3^23^2
- ;;^UTILITY(U,$J,358.3,140,1,0)
+ ;;^UTILITY(U,$J,358.3,690,1,3,0)
+ ;;=3^Anemia,Refractory w/ Excess of Blasts,Unspec
+ ;;^UTILITY(U,$J,358.3,690,1,4,0)
+ ;;=4^D46.20
+ ;;^UTILITY(U,$J,358.3,690,2)
+ ;;=^5002247
+ ;;^UTILITY(U,$J,358.3,691,0)
+ ;;=D46.21^^12^78^21
+ ;;^UTILITY(U,$J,358.3,691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,140,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,140,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,140,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,141,0)
- ;;=T76.01XA^^3^23^3
- ;;^UTILITY(U,$J,358.3,141,1,0)
+ ;;^UTILITY(U,$J,358.3,691,1,3,0)
+ ;;=3^Anemia,Refractory w/ Excess of Blasts 1
+ ;;^UTILITY(U,$J,358.3,691,1,4,0)
+ ;;=4^D46.21
+ ;;^UTILITY(U,$J,358.3,691,2)
+ ;;=^5002248
+ ;;^UTILITY(U,$J,358.3,692,0)
+ ;;=D46.22^^12^78^22
+ ;;^UTILITY(U,$J,358.3,692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,141,1,3,0)
- ;;=3^Adult Neglect,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,141,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,141,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,142,0)
- ;;=T76.01XD^^3^23^4
- ;;^UTILITY(U,$J,358.3,142,1,0)
+ ;;^UTILITY(U,$J,358.3,692,1,3,0)
+ ;;=3^Anemia,Refractory w/ Excess of Blasts 2
+ ;;^UTILITY(U,$J,358.3,692,1,4,0)
+ ;;=4^D46.22
+ ;;^UTILITY(U,$J,358.3,692,2)
+ ;;=^5002249
+ ;;^UTILITY(U,$J,358.3,693,0)
+ ;;=D46.A^^12^78^33
+ ;;^UTILITY(U,$J,358.3,693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,142,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,142,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,142,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,143,0)
- ;;=Z91.412^^3^23^40
- ;;^UTILITY(U,$J,358.3,143,1,0)
+ ;;^UTILITY(U,$J,358.3,693,1,3,0)
+ ;;=3^Cytopenia,Refractory w/ Multilineage Dysplasia
+ ;;^UTILITY(U,$J,358.3,693,1,4,0)
+ ;;=4^D46.A
+ ;;^UTILITY(U,$J,358.3,693,2)
+ ;;=^5002251
+ ;;^UTILITY(U,$J,358.3,694,0)
+ ;;=D46.B^^12^78^34
+ ;;^UTILITY(U,$J,358.3,694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,143,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,143,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,143,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,144,0)
- ;;=T74.31XA^^3^23^9
- ;;^UTILITY(U,$J,358.3,144,1,0)
+ ;;^UTILITY(U,$J,358.3,694,1,3,0)
+ ;;=3^Cytopenia,Refractory w/ Multilineage Dysplasia & Ring Sideroblasts
+ ;;^UTILITY(U,$J,358.3,694,1,4,0)
+ ;;=4^D46.B
+ ;;^UTILITY(U,$J,358.3,694,2)
+ ;;=^5002252
+ ;;^UTILITY(U,$J,358.3,695,0)
+ ;;=D46.C^^12^78^35
+ ;;^UTILITY(U,$J,358.3,695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,144,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,144,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,144,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,145,0)
- ;;=T74.31XD^^3^23^10
- ;;^UTILITY(U,$J,358.3,145,1,0)
+ ;;^UTILITY(U,$J,358.3,695,1,3,0)
+ ;;=3^Myelodysplastic Syndrome w/ Isolated Del(5q) Chromosomal Abnormality
+ ;;^UTILITY(U,$J,358.3,695,1,4,0)
+ ;;=4^D46.C
+ ;;^UTILITY(U,$J,358.3,695,2)
+ ;;=^5002253
+ ;;^UTILITY(U,$J,358.3,696,0)
+ ;;=D46.4^^12^78^26
+ ;;^UTILITY(U,$J,358.3,696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,145,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,145,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,145,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,146,0)
- ;;=T76.31XA^^3^23^11
- ;;^UTILITY(U,$J,358.3,146,1,0)
+ ;;^UTILITY(U,$J,358.3,696,1,3,0)
+ ;;=3^Anemia,Refractory,Unspec
+ ;;^UTILITY(U,$J,358.3,696,1,4,0)
+ ;;=4^D46.4
+ ;;^UTILITY(U,$J,358.3,696,2)
+ ;;=^5002250
+ ;;^UTILITY(U,$J,358.3,697,0)
+ ;;=D46.Z^^12^78^36
+ ;;^UTILITY(U,$J,358.3,697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,146,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,146,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,146,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,147,0)
- ;;=T76.31XD^^3^23^12
- ;;^UTILITY(U,$J,358.3,147,1,0)
+ ;;^UTILITY(U,$J,358.3,697,1,3,0)
+ ;;=3^Myelodysplastic Syndrome,Other
+ ;;^UTILITY(U,$J,358.3,697,1,4,0)
+ ;;=4^D46.Z
+ ;;^UTILITY(U,$J,358.3,697,2)
+ ;;=^5002254
+ ;;^UTILITY(U,$J,358.3,698,0)
+ ;;=D46.9^^12^78^37
+ ;;^UTILITY(U,$J,358.3,698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,147,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,147,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,147,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,148,0)
- ;;=Z91.411^^3^23^41
- ;;^UTILITY(U,$J,358.3,148,1,0)
+ ;;^UTILITY(U,$J,358.3,698,1,3,0)
+ ;;=3^Myelodysplastic Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,698,1,4,0)
+ ;;=4^D46.9
+ ;;^UTILITY(U,$J,358.3,698,2)
+ ;;=^334031
+ ;;^UTILITY(U,$J,358.3,699,0)
+ ;;=C50.912^^12^79^11
+ ;;^UTILITY(U,$J,358.3,699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,148,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,148,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,148,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,149,0)
- ;;=Z69.021^^3^23^18
- ;;^UTILITY(U,$J,358.3,149,1,0)
+ ;;^UTILITY(U,$J,358.3,699,1,3,0)
+ ;;=3^Malig Neop Breast,Left,Unspec Site
+ ;;^UTILITY(U,$J,358.3,699,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,699,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,700,0)
+ ;;=C50.911^^12^79^12
+ ;;^UTILITY(U,$J,358.3,700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,149,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
- ;;^UTILITY(U,$J,358.3,149,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,149,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,150,0)
- ;;=Z69.021^^3^23^19
- ;;^UTILITY(U,$J,358.3,150,1,0)
+ ;;^UTILITY(U,$J,358.3,700,1,3,0)
+ ;;=3^Malig Neop Breast,Right,Unspec Site
+ ;;^UTILITY(U,$J,358.3,700,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,700,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,701,0)
+ ;;=D05.01^^12^79^10
+ ;;^UTILITY(U,$J,358.3,701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,150,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
- ;;^UTILITY(U,$J,358.3,150,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,150,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,151,0)
- ;;=Z69.021^^3^23^20
- ;;^UTILITY(U,$J,358.3,151,1,0)
+ ;;^UTILITY(U,$J,358.3,701,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,701,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,701,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,702,0)
+ ;;=D05.02^^12^79^9
+ ;;^UTILITY(U,$J,358.3,702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,151,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,151,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,151,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,152,0)
- ;;=Z69.021^^3^23^21
- ;;^UTILITY(U,$J,358.3,152,1,0)
+ ;;^UTILITY(U,$J,358.3,702,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,702,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,702,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,703,0)
+ ;;=D05.92^^12^79^5
+ ;;^UTILITY(U,$J,358.3,703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,152,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,152,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,152,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,153,0)
- ;;=Z69.011^^3^23^23
- ;;^UTILITY(U,$J,358.3,153,1,0)
+ ;;^UTILITY(U,$J,358.3,703,1,3,0)
+ ;;=3^Carcinoma in Situ,Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,703,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,703,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,704,0)
+ ;;=D05.91^^12^79^6
+ ;;^UTILITY(U,$J,358.3,704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,153,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,153,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,153,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,154,0)
- ;;=Z69.011^^3^23^24
- ;;^UTILITY(U,$J,358.3,154,1,0)
+ ;;^UTILITY(U,$J,358.3,704,1,3,0)
+ ;;=3^Carcinoma in Situ,Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,704,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,704,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,705,0)
+ ;;=D05.11^^12^79^8
+ ;;^UTILITY(U,$J,358.3,705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,154,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Neglect
- ;;^UTILITY(U,$J,358.3,154,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,154,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,155,0)
- ;;=Z69.011^^3^23^25
- ;;^UTILITY(U,$J,358.3,155,1,0)
+ ;;^UTILITY(U,$J,358.3,705,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,705,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,705,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,706,0)
+ ;;=D05.12^^12^79^7
+ ;;^UTILITY(U,$J,358.3,706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,155,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,155,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,155,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,156,0)
- ;;=Z69.011^^3^23^26
- ;;^UTILITY(U,$J,358.3,156,1,0)
+ ;;^UTILITY(U,$J,358.3,706,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,706,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,706,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,707,0)
+ ;;=D06.9^^12^79^2
+ ;;^UTILITY(U,$J,358.3,707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,156,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,156,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,156,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,157,0)
- ;;=Z69.12^^3^23^17
- ;;^UTILITY(U,$J,358.3,157,1,0)
+ ;;^UTILITY(U,$J,358.3,707,1,3,0)
+ ;;=3^Carcinoma in Situ,Cervix,Unspec
+ ;;^UTILITY(U,$J,358.3,707,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,707,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,708,0)
+ ;;=D06.0^^12^79^3
+ ;;^UTILITY(U,$J,358.3,708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,157,1,3,0)
- ;;=3^MH SVC for Perpetrator of Spousal/Partner Neglect
- ;;^UTILITY(U,$J,358.3,157,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,157,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,158,0)
- ;;=Z69.12^^3^23^28
- ;;^UTILITY(U,$J,358.3,158,1,0)
+ ;;^UTILITY(U,$J,358.3,708,1,3,0)
+ ;;=3^Carcinoma in Situ,Endocervix
+ ;;^UTILITY(U,$J,358.3,708,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,708,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,709,0)
+ ;;=D06.1^^12^79^4
+ ;;^UTILITY(U,$J,358.3,709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,158,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,158,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,158,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,159,0)
- ;;=Z69.12^^3^23^29
- ;;^UTILITY(U,$J,358.3,159,1,0)
+ ;;^UTILITY(U,$J,358.3,709,1,3,0)
+ ;;=3^Carcinoma in Situ,Exocervix
+ ;;^UTILITY(U,$J,358.3,709,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,709,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,710,0)
+ ;;=D06.7^^12^79^1
+ ;;^UTILITY(U,$J,358.3,710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,159,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,159,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,159,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,160,0)
- ;;=Z69.11^^3^23^32
- ;;^UTILITY(U,$J,358.3,160,1,0)
+ ;;^UTILITY(U,$J,358.3,710,1,3,0)
+ ;;=3^Carcinoma in Situ,Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,710,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,710,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,711,0)
+ ;;=C53.9^^12^79^13
+ ;;^UTILITY(U,$J,358.3,711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,160,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,160,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,160,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,161,0)
- ;;=Z69.11^^3^23^33
- ;;^UTILITY(U,$J,358.3,161,1,0)
+ ;;^UTILITY(U,$J,358.3,711,1,3,0)
+ ;;=3^Malig Neop Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,711,1,4,0)
+ ;;=4^C53.9
+ ;;^UTILITY(U,$J,358.3,711,2)
+ ;;=^5001204
+ ;;^UTILITY(U,$J,358.3,712,0)
+ ;;=C57.01^^12^79^15
+ ;;^UTILITY(U,$J,358.3,712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,161,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,161,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,161,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,162,0)
- ;;=Z69.11^^3^23^34
- ;;^UTILITY(U,$J,358.3,162,1,0)
+ ;;^UTILITY(U,$J,358.3,712,1,3,0)
+ ;;=3^Malig Neop Fallopian Tube,Right
+ ;;^UTILITY(U,$J,358.3,712,1,4,0)
+ ;;=4^C57.01
+ ;;^UTILITY(U,$J,358.3,712,2)
+ ;;=^5001216
+ ;;^UTILITY(U,$J,358.3,713,0)
+ ;;=C57.02^^12^79^14
+ ;;^UTILITY(U,$J,358.3,713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,162,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,162,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,162,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,163,0)
- ;;=Z62.812^^3^23^36
- ;;^UTILITY(U,$J,358.3,163,1,0)
+ ;;^UTILITY(U,$J,358.3,713,1,3,0)
+ ;;=3^Malig Neop Fallopian Tube,Left
+ ;;^UTILITY(U,$J,358.3,713,1,4,0)
+ ;;=4^C57.02
+ ;;^UTILITY(U,$J,358.3,713,2)
+ ;;=^5001217
+ ;;^UTILITY(U,$J,358.3,714,0)
+ ;;=C56.1^^12^79^17
+ ;;^UTILITY(U,$J,358.3,714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,163,1,3,0)
- ;;=3^Personal Past Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,163,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,163,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,164,0)
- ;;=Z62.810^^3^23^37
- ;;^UTILITY(U,$J,358.3,164,1,0)
+ ;;^UTILITY(U,$J,358.3,714,1,3,0)
+ ;;=3^Malig Neop Ovary,Right
+ ;;^UTILITY(U,$J,358.3,714,1,4,0)
+ ;;=4^C56.1
+ ;;^UTILITY(U,$J,358.3,714,2)
+ ;;=^5001212
+ ;;^UTILITY(U,$J,358.3,715,0)
+ ;;=C56.2^^12^79^16
+ ;;^UTILITY(U,$J,358.3,715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,164,1,3,0)
- ;;=3^Personal Past Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,164,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,164,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,165,0)
- ;;=Z62.810^^3^23^39
- ;;^UTILITY(U,$J,358.3,165,1,0)
+ ;;^UTILITY(U,$J,358.3,715,1,3,0)
+ ;;=3^Malig Neop Ovary,Left
+ ;;^UTILITY(U,$J,358.3,715,1,4,0)
+ ;;=4^C56.2
+ ;;^UTILITY(U,$J,358.3,715,2)
+ ;;=^5001213
+ ;;^UTILITY(U,$J,358.3,716,0)
+ ;;=C55.^^12^79^18
+ ;;^UTILITY(U,$J,358.3,716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,165,1,3,0)
- ;;=3^Personal Past Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,165,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,165,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,166,0)
- ;;=Z62.811^^3^23^38
- ;;^UTILITY(U,$J,358.3,166,1,0)
+ ;;^UTILITY(U,$J,358.3,716,1,3,0)
+ ;;=3^Malig Neop Uterus,Unspec Part
+ ;;^UTILITY(U,$J,358.3,716,1,4,0)
+ ;;=4^C55.
+ ;;^UTILITY(U,$J,358.3,716,2)
+ ;;=^5001211
+ ;;^UTILITY(U,$J,358.3,717,0)
+ ;;=C52.^^12^79^19
+ ;;^UTILITY(U,$J,358.3,717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,166,1,3,0)
- ;;=3^Personal Past Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,166,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,166,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,167,0)
- ;;=Z91.410^^3^23^42
+ ;;^UTILITY(U,$J,358.3,717,1,3,0)
+ ;;=3^Malig Neop Vagina
+ ;;^UTILITY(U,$J,358.3,717,1,4,0)
+ ;;=4^C52.
+ ;;^UTILITY(U,$J,358.3,717,2)
+ ;;=^267232
+ ;;^UTILITY(U,$J,358.3,718,0)
+ ;;=C51.9^^12^79^20
+ ;;^UTILITY(U,$J,358.3,718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,718,1,3,0)
+ ;;=3^Malig Neop Vulva,Unspec
+ ;;^UTILITY(U,$J,358.3,718,1,4,0)
+ ;;=4^C51.9
+ ;;^UTILITY(U,$J,358.3,718,2)
+ ;;=^5001202
+ ;;^UTILITY(U,$J,358.3,719,0)
+ ;;=D66.^^12^80^7
+ ;;^UTILITY(U,$J,358.3,719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,719,1,3,0)
+ ;;=3^Hereditary Factor VIII Deficiency
+ ;;^UTILITY(U,$J,358.3,719,1,4,0)
+ ;;=4^D66.
+ ;;^UTILITY(U,$J,358.3,719,2)
+ ;;=^5002353
+ ;;^UTILITY(U,$J,358.3,720,0)
+ ;;=D68.9^^12^80^2
+ ;;^UTILITY(U,$J,358.3,720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,720,1,3,0)
+ ;;=3^Coagulation Defect,Unspec
+ ;;^UTILITY(U,$J,358.3,720,1,4,0)
+ ;;=4^D68.9
+ ;;^UTILITY(U,$J,358.3,720,2)
+ ;;=^5002364
+ ;;^UTILITY(U,$J,358.3,721,0)
+ ;;=E83.110^^12^80^3
+ ;;^UTILITY(U,$J,358.3,721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,721,1,3,0)
+ ;;=3^Hemochromatosis,Hereditary
+ ;;^UTILITY(U,$J,358.3,721,1,4,0)
+ ;;=4^E83.110
+ ;;^UTILITY(U,$J,358.3,721,2)
+ ;;=^339602
+ ;;^UTILITY(U,$J,358.3,722,0)
+ ;;=D47.3^^12^80^6
+ ;;^UTILITY(U,$J,358.3,722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,722,1,3,0)
+ ;;=3^Hemorrhagic Thrombocythemia,Essential
+ ;;^UTILITY(U,$J,358.3,722,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,722,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,723,0)
+ ;;=D69.1^^12^80^9
+ ;;^UTILITY(U,$J,358.3,723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,723,1,3,0)
+ ;;=3^Qualitative Platelet Defects
+ ;;^UTILITY(U,$J,358.3,723,1,4,0)
+ ;;=4^D69.1
+ ;;^UTILITY(U,$J,358.3,723,2)
+ ;;=^101922
+ ;;^UTILITY(U,$J,358.3,724,0)
+ ;;=D69.6^^12^80^10
+ ;;^UTILITY(U,$J,358.3,724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,724,1,3,0)
+ ;;=3^Thrombocytopenia,Unspec
+ ;;^UTILITY(U,$J,358.3,724,1,4,0)
+ ;;=4^D69.6
+ ;;^UTILITY(U,$J,358.3,724,2)
+ ;;=^5002370
+ ;;^UTILITY(U,$J,358.3,725,0)
+ ;;=I80.9^^12^80^8
+ ;;^UTILITY(U,$J,358.3,725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,725,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,725,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,725,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,726,0)
+ ;;=M31.1^^12^80^11
+ ;;^UTILITY(U,$J,358.3,726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,726,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,726,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,726,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,727,0)
+ ;;=D68.312^^12^80^1
+ ;;^UTILITY(U,$J,358.3,727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,727,1,3,0)
+ ;;=3^Antiphospholipid Antibody w/ Hemorrhagic Disorder
+ ;;^UTILITY(U,$J,358.3,727,1,4,0)
+ ;;=4^D68.312
+ ;;^UTILITY(U,$J,358.3,727,2)
+ ;;=^340503
+ ;;^UTILITY(U,$J,358.3,728,0)
+ ;;=D68.318^^12^80^5
+ ;;^UTILITY(U,$J,358.3,728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,728,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Circ Anticoag NEC
+ ;;^UTILITY(U,$J,358.3,728,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,728,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,729,0)
+ ;;=D68.311^^12^80^4
+ ;;^UTILITY(U,$J,358.3,729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,729,1,3,0)
+ ;;=3^Hemophilia,Acquired
+ ;;^UTILITY(U,$J,358.3,729,1,4,0)
+ ;;=4^D68.311
+ ;;^UTILITY(U,$J,358.3,729,2)
+ ;;=^340502
+ ;;^UTILITY(U,$J,358.3,730,0)
+ ;;=Z51.89^^12^81^8
+ ;;^UTILITY(U,$J,358.3,730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,730,1,3,0)
+ ;;=3^Specified Aftercare Encounter
+ ;;^UTILITY(U,$J,358.3,730,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,730,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,731,0)
+ ;;=Z51.11^^12^81^1
+ ;;^UTILITY(U,$J,358.3,731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,731,1,3,0)
+ ;;=3^Antineoplastic Chemotherapy Encounter
+ ;;^UTILITY(U,$J,358.3,731,1,4,0)
+ ;;=4^Z51.11
+ ;;^UTILITY(U,$J,358.3,731,2)
+ ;;=^5063061
+ ;;^UTILITY(U,$J,358.3,732,0)
+ ;;=Z71.3^^12^81^5
+ ;;^UTILITY(U,$J,358.3,732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,732,1,3,0)
+ ;;=3^Dietary Counseling & Surveillance
+ ;;^UTILITY(U,$J,358.3,732,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,732,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,733,0)
+ ;;=Z31.5^^12^81^6
+ ;;^UTILITY(U,$J,358.3,733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,733,1,3,0)
+ ;;=3^Genetic Counseling
+ ;;^UTILITY(U,$J,358.3,733,1,4,0)
+ ;;=4^Z31.5
+ ;;^UTILITY(U,$J,358.3,733,2)
+ ;;=^5062838
+ ;;^UTILITY(U,$J,358.3,734,0)
+ ;;=Z71.89^^12^81^4
+ ;;^UTILITY(U,$J,358.3,734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,734,1,3,0)
+ ;;=3^Counseling,Other Spec
+ ;;^UTILITY(U,$J,358.3,734,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,734,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,735,0)
+ ;;=Z12.4^^12^81^3
+ ;;^UTILITY(U,$J,358.3,735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,735,1,3,0)
+ ;;=3^Cervical Cancer Screening
+ ;;^UTILITY(U,$J,358.3,735,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,735,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,736,0)
+ ;;=Z12.39^^12^81^2
+ ;;^UTILITY(U,$J,358.3,736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,736,1,3,0)
+ ;;=3^Breast Cancer Screening
+ ;;^UTILITY(U,$J,358.3,736,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,736,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,737,0)
+ ;;=Z12.12^^12^81^7
+ ;;^UTILITY(U,$J,358.3,737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,737,1,3,0)
+ ;;=3^Rectal Cancer Screening
+ ;;^UTILITY(U,$J,358.3,737,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,737,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,738,0)
+ ;;=C67.9^^12^82^2
+ ;;^UTILITY(U,$J,358.3,738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,738,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,738,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,738,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,739,0)
+ ;;=D09.0^^12^82^1
+ ;;^UTILITY(U,$J,358.3,739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,739,1,3,0)
+ ;;=3^Carcinoma in Situ Bladder
+ ;;^UTILITY(U,$J,358.3,739,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,739,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,740,0)
+ ;;=C64.2^^12^82^5
+ ;;^UTILITY(U,$J,358.3,740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,740,1,3,0)
+ ;;=3^Malig Neop Kidney,Left,except Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,740,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,740,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,741,0)
+ ;;=C64.1^^12^82^6
+ ;;^UTILITY(U,$J,358.3,741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,741,1,3,0)
+ ;;=3^Malig Neop Kidney,Right,except Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,741,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,741,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,742,0)
+ ;;=C60.9^^12^82^7
+ ;;^UTILITY(U,$J,358.3,742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,742,1,3,0)
+ ;;=3^Malig Neop Penis,Unspec
+ ;;^UTILITY(U,$J,358.3,742,1,4,0)
+ ;;=4^C60.9
+ ;;^UTILITY(U,$J,358.3,742,2)
+ ;;=^5001229
+ ;;^UTILITY(U,$J,358.3,743,0)
+ ;;=C61.^^12^82^8
+ ;;^UTILITY(U,$J,358.3,743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,743,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,743,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,743,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,744,0)
+ ;;=C65.1^^12^82^10
+ ;;^UTILITY(U,$J,358.3,744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,744,1,3,0)
+ ;;=3^Malig Neop Renal Pelvis,Right
+ ;;^UTILITY(U,$J,358.3,744,1,4,0)
+ ;;=4^C65.1
+ ;;^UTILITY(U,$J,358.3,744,2)
+ ;;=^5001251
+ ;;^UTILITY(U,$J,358.3,745,0)
+ ;;=C65.2^^12^82^9
+ ;;^UTILITY(U,$J,358.3,745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,745,1,3,0)
+ ;;=3^Malig Neop Renal Pelvis,Left
+ ;;^UTILITY(U,$J,358.3,745,1,4,0)
+ ;;=4^C65.2
+ ;;^UTILITY(U,$J,358.3,745,2)
+ ;;=^5001252
+ ;;^UTILITY(U,$J,358.3,746,0)
+ ;;=C62.11^^12^82^4
+ ;;^UTILITY(U,$J,358.3,746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,746,1,3,0)
+ ;;=3^Malig Neop Descended Testis,Right
+ ;;^UTILITY(U,$J,358.3,746,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,746,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,747,0)
+ ;;=C62.12^^12^82^3
+ ;;^UTILITY(U,$J,358.3,747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,747,1,3,0)
+ ;;=3^Malig Neop Descended Testis,Left
+ ;;^UTILITY(U,$J,358.3,747,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,747,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,748,0)
+ ;;=C62.91^^12^82^12
+ ;;^UTILITY(U,$J,358.3,748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,748,1,3,0)
+ ;;=3^Malig Neop Testis,Right
+ ;;^UTILITY(U,$J,358.3,748,1,4,0)
+ ;;=4^C62.91
+ ;;^UTILITY(U,$J,358.3,748,2)
+ ;;=^5001237
+ ;;^UTILITY(U,$J,358.3,749,0)
+ ;;=C62.92^^12^82^11
+ ;;^UTILITY(U,$J,358.3,749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,749,1,3,0)
+ ;;=3^Malig Neop Testis,Left
+ ;;^UTILITY(U,$J,358.3,749,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,749,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,750,0)
+ ;;=C66.1^^12^82^14
+ ;;^UTILITY(U,$J,358.3,750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,750,1,3,0)
+ ;;=3^Malig Neop Ureter,Right
+ ;;^UTILITY(U,$J,358.3,750,1,4,0)
+ ;;=4^C66.1
+ ;;^UTILITY(U,$J,358.3,750,2)
+ ;;=^5001254
+ ;;^UTILITY(U,$J,358.3,751,0)
+ ;;=C66.2^^12^82^13
+ ;;^UTILITY(U,$J,358.3,751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,751,1,3,0)
+ ;;=3^Malig Neop Ureter,Left
+ ;;^UTILITY(U,$J,358.3,751,1,4,0)
+ ;;=4^C66.2
+ ;;^UTILITY(U,$J,358.3,751,2)
+ ;;=^5001255
+ ;;^UTILITY(U,$J,358.3,752,0)
+ ;;=C68.0^^12^82^15
+ ;;^UTILITY(U,$J,358.3,752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,752,1,3,0)
+ ;;=3^Malig Neop Urethra
+ ;;^UTILITY(U,$J,358.3,752,1,4,0)
+ ;;=4^C68.0
+ ;;^UTILITY(U,$J,358.3,752,2)
+ ;;=^267266
+ ;;^UTILITY(U,$J,358.3,753,0)
+ ;;=C24.1^^12^83^16
+ ;;^UTILITY(U,$J,358.3,753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,753,1,3,0)
+ ;;=3^Malig Neop Vater Ampulla
+ ;;^UTILITY(U,$J,358.3,753,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,753,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,754,0)
+ ;;=C21.0^^12^83^6
+ ;;^UTILITY(U,$J,358.3,754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,754,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,754,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,754,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,755,0)
+ ;;=C24.0^^12^83^9
+ ;;^UTILITY(U,$J,358.3,755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,755,1,3,0)
+ ;;=3^Malig Neop Extrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,755,1,4,0)
+ ;;=4^C24.0

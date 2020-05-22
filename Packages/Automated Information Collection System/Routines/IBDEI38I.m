@@ -1,136 +1,124 @@
-IBDEI38I ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54360,0)
- ;;=L03.329^^256^2764^28
- ;;^UTILITY(U,$J,358.3,54360,1,0)
+ ;;^UTILITY(U,$J,358.3,51642,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,51642,1,4,0)
+ ;;=4^R82.79
+ ;;^UTILITY(U,$J,358.3,51642,2)
+ ;;=^5139222
+ ;;^UTILITY(U,$J,358.3,51643,0)
+ ;;=K08.9^^193^2509^65
+ ;;^UTILITY(U,$J,358.3,51643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54360,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,54360,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,54360,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,54361,0)
- ;;=L08.9^^256^2764^167
- ;;^UTILITY(U,$J,358.3,54361,1,0)
+ ;;^UTILITY(U,$J,358.3,51643,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Unspec
+ ;;^UTILITY(U,$J,358.3,51643,1,4,0)
+ ;;=4^K08.9
+ ;;^UTILITY(U,$J,358.3,51643,2)
+ ;;=^5008468
+ ;;^UTILITY(U,$J,358.3,51644,0)
+ ;;=R93.89^^193^2509^15
+ ;;^UTILITY(U,$J,358.3,51644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54361,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,54361,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,54361,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,54362,0)
- ;;=L11.0^^256^2764^9
- ;;^UTILITY(U,$J,358.3,54362,1,0)
+ ;;^UTILITY(U,$J,358.3,51644,1,3,0)
+ ;;=3^Abnormal Finding on Dx Imaging of Oth Body Structures
+ ;;^UTILITY(U,$J,358.3,51644,1,4,0)
+ ;;=4^R93.89
+ ;;^UTILITY(U,$J,358.3,51644,2)
+ ;;=^5157477
+ ;;^UTILITY(U,$J,358.3,51645,0)
+ ;;=R82.998^^193^2509^28
+ ;;^UTILITY(U,$J,358.3,51645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54362,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,54362,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,54362,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,54363,0)
- ;;=L20.0^^256^2764^90
- ;;^UTILITY(U,$J,358.3,54363,1,0)
+ ;;^UTILITY(U,$J,358.3,51645,1,3,0)
+ ;;=3^Abnormal Urine Findings,Other
+ ;;^UTILITY(U,$J,358.3,51645,1,4,0)
+ ;;=4^R82.998
+ ;;^UTILITY(U,$J,358.3,51645,2)
+ ;;=^5157472
+ ;;^UTILITY(U,$J,358.3,51646,0)
+ ;;=R82.89^^193^2509^27
+ ;;^UTILITY(U,$J,358.3,51646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54363,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,54363,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,54363,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,54364,0)
- ;;=L20.81^^256^2764^87
- ;;^UTILITY(U,$J,358.3,54364,1,0)
+ ;;^UTILITY(U,$J,358.3,51646,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings,Other
+ ;;^UTILITY(U,$J,358.3,51646,1,4,0)
+ ;;=4^R82.89
+ ;;^UTILITY(U,$J,358.3,51646,2)
+ ;;=^5158142
+ ;;^UTILITY(U,$J,358.3,51647,0)
+ ;;=R82.81^^193^2509^150
+ ;;^UTILITY(U,$J,358.3,51647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54364,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,54364,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,54364,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,54365,0)
- ;;=L20.82^^256^2764^150
- ;;^UTILITY(U,$J,358.3,54365,1,0)
+ ;;^UTILITY(U,$J,358.3,51647,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,51647,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,51647,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,51648,0)
+ ;;=S43.51XA^^193^2510^12
+ ;;^UTILITY(U,$J,358.3,51648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54365,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,54365,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,54365,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,54366,0)
- ;;=L20.84^^256^2764^162
- ;;^UTILITY(U,$J,358.3,54366,1,0)
+ ;;^UTILITY(U,$J,358.3,51648,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,51648,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,51648,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,51649,0)
+ ;;=S43.52XA^^193^2510^1
+ ;;^UTILITY(U,$J,358.3,51649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54366,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,54366,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,54366,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,54367,0)
- ;;=L20.89^^256^2764^85
- ;;^UTILITY(U,$J,358.3,54367,1,0)
+ ;;^UTILITY(U,$J,358.3,51649,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,51649,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,51649,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,51650,0)
+ ;;=S43.421A^^193^2510^17
+ ;;^UTILITY(U,$J,358.3,51650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54367,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,54367,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,54367,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,54368,0)
- ;;=L20.9^^256^2764^86
- ;;^UTILITY(U,$J,358.3,54368,1,0)
+ ;;^UTILITY(U,$J,358.3,51650,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,51650,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,51650,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,51651,0)
+ ;;=S43.422A^^193^2510^6
+ ;;^UTILITY(U,$J,358.3,51651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54368,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,54368,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,54368,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,54369,0)
- ;;=L21.8^^256^2764^262
- ;;^UTILITY(U,$J,358.3,54369,1,0)
+ ;;^UTILITY(U,$J,358.3,51651,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,51651,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,51651,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,51652,0)
+ ;;=S53.401A^^193^2510^14
+ ;;^UTILITY(U,$J,358.3,51652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54369,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,54369,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,54369,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,54370,0)
- ;;=L21.9^^256^2764^263
- ;;^UTILITY(U,$J,358.3,54370,1,0)
+ ;;^UTILITY(U,$J,358.3,51652,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,51652,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,51652,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,51653,0)
+ ;;=S53.402A^^193^2510^3
+ ;;^UTILITY(U,$J,358.3,51653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54370,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,54370,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,54370,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,54371,0)
- ;;=L23.7^^256^2764^30
- ;;^UTILITY(U,$J,358.3,54371,1,0)
+ ;;^UTILITY(U,$J,358.3,51653,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,51653,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,51653,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,51654,0)
+ ;;=S56.011A^^193^2510^55
+ ;;^UTILITY(U,$J,358.3,51654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54371,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,54371,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,54371,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,54372,0)
- ;;=L23.9^^256^2764^31
- ;;^UTILITY(U,$J,358.3,54372,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54372,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,54372,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,54372,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,54373,0)
- ;;=L24.9^^256^2764^163

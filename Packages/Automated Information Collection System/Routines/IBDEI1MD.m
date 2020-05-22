@@ -1,124 +1,128 @@
-IBDEI1MD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27477,1,4,0)
- ;;=4^N00.0
- ;;^UTILITY(U,$J,358.3,27477,2)
- ;;=^5015491
- ;;^UTILITY(U,$J,358.3,27478,0)
- ;;=N00.1^^106^1363^7
- ;;^UTILITY(U,$J,358.3,27478,1,0)
+ ;;^UTILITY(U,$J,358.3,25873,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,25873,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,25874,0)
+ ;;=D25.9^^107^1227^64
+ ;;^UTILITY(U,$J,358.3,25874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27478,1,3,0)
- ;;=3^Acute nephritic syndrome w/ focal and segmental glomerular lesions
- ;;^UTILITY(U,$J,358.3,27478,1,4,0)
- ;;=4^N00.1
- ;;^UTILITY(U,$J,358.3,27478,2)
- ;;=^5015492
- ;;^UTILITY(U,$J,358.3,27479,0)
- ;;=N00.2^^106^1363^4
- ;;^UTILITY(U,$J,358.3,27479,1,0)
+ ;;^UTILITY(U,$J,358.3,25874,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,25874,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,25874,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,25875,0)
+ ;;=F52.9^^107^1227^103
+ ;;^UTILITY(U,$J,358.3,25875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27479,1,3,0)
- ;;=3^Acute nephritic syndrome w/ diffuse membranous glomrlneph
- ;;^UTILITY(U,$J,358.3,27479,1,4,0)
- ;;=4^N00.2
- ;;^UTILITY(U,$J,358.3,27479,2)
- ;;=^5015493
- ;;^UTILITY(U,$J,358.3,27480,0)
- ;;=N00.3^^106^1363^5
- ;;^UTILITY(U,$J,358.3,27480,1,0)
+ ;;^UTILITY(U,$J,358.3,25875,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,25875,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,25875,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,25876,0)
+ ;;=R37.^^107^1227^104
+ ;;^UTILITY(U,$J,358.3,25876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27480,1,3,0)
- ;;=3^Acute nephritic syndrome w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27480,1,4,0)
- ;;=4^N00.3
- ;;^UTILITY(U,$J,358.3,27480,2)
- ;;=^5015494
- ;;^UTILITY(U,$J,358.3,27481,0)
- ;;=N00.4^^106^1363^3
- ;;^UTILITY(U,$J,358.3,27481,1,0)
+ ;;^UTILITY(U,$J,358.3,25876,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,25876,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,25876,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,25877,0)
+ ;;=N60.01^^107^1227^107
+ ;;^UTILITY(U,$J,358.3,25877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27481,1,3,0)
- ;;=3^Acute nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27481,1,4,0)
- ;;=4^N00.4
- ;;^UTILITY(U,$J,358.3,27481,2)
- ;;=^5015495
- ;;^UTILITY(U,$J,358.3,27482,0)
- ;;=N00.5^^106^1363^6
- ;;^UTILITY(U,$J,358.3,27482,1,0)
+ ;;^UTILITY(U,$J,358.3,25877,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,25877,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,25877,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,25878,0)
+ ;;=N60.02^^107^1227^106
+ ;;^UTILITY(U,$J,358.3,25878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27482,1,3,0)
- ;;=3^Acute nephritic syndrome w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,27482,1,4,0)
- ;;=4^N00.5
- ;;^UTILITY(U,$J,358.3,27482,2)
- ;;=^5015496
- ;;^UTILITY(U,$J,358.3,27483,0)
- ;;=N00.6^^106^1363^1
- ;;^UTILITY(U,$J,358.3,27483,1,0)
+ ;;^UTILITY(U,$J,358.3,25878,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,25878,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,25878,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,25879,0)
+ ;;=N60.09^^107^1227^108
+ ;;^UTILITY(U,$J,358.3,25879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27483,1,3,0)
- ;;=3^Acute nephritic syndrome w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,27483,1,4,0)
- ;;=4^N00.6
- ;;^UTILITY(U,$J,358.3,27483,2)
- ;;=^5015497
- ;;^UTILITY(U,$J,358.3,27484,0)
- ;;=N00.7^^106^1363^2
- ;;^UTILITY(U,$J,358.3,27484,1,0)
+ ;;^UTILITY(U,$J,358.3,25879,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,25879,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,25879,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,25880,0)
+ ;;=N60.11^^107^1227^27
+ ;;^UTILITY(U,$J,358.3,25880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27484,1,3,0)
- ;;=3^Acute nephritic syndrome w/ diffuse crescentic glomrlneph
- ;;^UTILITY(U,$J,358.3,27484,1,4,0)
- ;;=4^N00.7
- ;;^UTILITY(U,$J,358.3,27484,2)
- ;;=^5015498
- ;;^UTILITY(U,$J,358.3,27485,0)
- ;;=N00.8^^106^1363^9
- ;;^UTILITY(U,$J,358.3,27485,1,0)
+ ;;^UTILITY(U,$J,358.3,25880,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,25880,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,25880,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,25881,0)
+ ;;=N60.12^^107^1227^26
+ ;;^UTILITY(U,$J,358.3,25881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27485,1,3,0)
- ;;=3^Acute nephritic syndrome w/ other morphologic changes
- ;;^UTILITY(U,$J,358.3,27485,1,4,0)
- ;;=4^N00.8
- ;;^UTILITY(U,$J,358.3,27485,2)
- ;;=^5015499
- ;;^UTILITY(U,$J,358.3,27486,0)
- ;;=N00.9^^106^1363^10
- ;;^UTILITY(U,$J,358.3,27486,1,0)
+ ;;^UTILITY(U,$J,358.3,25881,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,25881,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,25881,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,25882,0)
+ ;;=N64.4^^107^1227^68
+ ;;^UTILITY(U,$J,358.3,25882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27486,1,3,0)
- ;;=3^Acute nephritic syndrome w/ unsp morphologic changes
- ;;^UTILITY(U,$J,358.3,27486,1,4,0)
- ;;=4^N00.9
- ;;^UTILITY(U,$J,358.3,27486,2)
- ;;=^5015500
- ;;^UTILITY(U,$J,358.3,27487,0)
- ;;=N01.0^^106^1363^70
- ;;^UTILITY(U,$J,358.3,27487,1,0)
+ ;;^UTILITY(U,$J,358.3,25882,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,25882,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,25882,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,25883,0)
+ ;;=N64.51^^107^1227^60
+ ;;^UTILITY(U,$J,358.3,25883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27487,1,3,0)
- ;;=3^Rapidly progr neph synd w/ minor glomerular abnlt
- ;;^UTILITY(U,$J,358.3,27487,1,4,0)
- ;;=4^N01.0
- ;;^UTILITY(U,$J,358.3,27487,2)
- ;;=^5015501
- ;;^UTILITY(U,$J,358.3,27488,0)
- ;;=N01.1^^106^1363^69
- ;;^UTILITY(U,$J,358.3,27488,1,0)
+ ;;^UTILITY(U,$J,358.3,25883,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,25883,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,25883,2)
+ ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,25884,0)
+ ;;=N64.59^^107^1227^105
+ ;;^UTILITY(U,$J,358.3,25884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27488,1,3,0)
- ;;=3^Rapidly progr neph synd w/ focal & seg glomerular lesions
- ;;^UTILITY(U,$J,358.3,27488,1,4,0)
- ;;=4^N01.1
- ;;^UTILITY(U,$J,358.3,27488,2)
- ;;=^5015502
- ;;^UTILITY(U,$J,358.3,27489,0)
- ;;=N01.2^^106^1363^67
- ;;^UTILITY(U,$J,358.3,27489,1,0)
+ ;;^UTILITY(U,$J,358.3,25884,1,3,0)
+ ;;=3^Signs and Symptoms in Breast,Other
+ ;;^UTILITY(U,$J,358.3,25884,1,4,0)
+ ;;=4^N64.59
+ ;;^UTILITY(U,$J,358.3,25884,2)
+ ;;=^5015797
+ ;;^UTILITY(U,$J,358.3,25885,0)
+ ;;=N64.52^^107^1227^71
+ ;;^UTILITY(U,$J,358.3,25885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27489,1,3,0)
- ;;=3^Rapidly progr neph synd w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,25885,1,3,0)
+ ;;=3^Nipple Discharge
+ ;;^UTILITY(U,$J,358.3,25885,1,4,0)
+ ;;=4^N64.52
+ ;;^UTILITY(U,$J,358.3,25885,2)
+ ;;=^259531

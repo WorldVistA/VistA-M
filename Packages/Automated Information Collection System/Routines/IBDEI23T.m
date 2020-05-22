@@ -1,136 +1,122 @@
-IBDEI23T ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35686,1,4,0)
- ;;=4^A42.0
- ;;^UTILITY(U,$J,358.3,35686,2)
- ;;=^5000215
- ;;^UTILITY(U,$J,358.3,35687,0)
- ;;=B40.2^^134^1729^77
- ;;^UTILITY(U,$J,358.3,35687,1,0)
+ ;;^UTILITY(U,$J,358.3,33627,1,3,0)
+ ;;=3^Loose body in knee, left knee
+ ;;^UTILITY(U,$J,358.3,33627,1,4,0)
+ ;;=4^M23.42
+ ;;^UTILITY(U,$J,358.3,33627,2)
+ ;;=^5011252
+ ;;^UTILITY(U,$J,358.3,33628,0)
+ ;;=M23.41^^132^1708^64
+ ;;^UTILITY(U,$J,358.3,33628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35687,1,3,0)
- ;;=3^Pulmonary Blastomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,35687,1,4,0)
- ;;=4^B40.2
- ;;^UTILITY(U,$J,358.3,35687,2)
- ;;=^5000641
- ;;^UTILITY(U,$J,358.3,35688,0)
- ;;=B38.2^^134^1729^78
- ;;^UTILITY(U,$J,358.3,35688,1,0)
+ ;;^UTILITY(U,$J,358.3,33628,1,3,0)
+ ;;=3^Loose body in knee, right knee
+ ;;^UTILITY(U,$J,358.3,33628,1,4,0)
+ ;;=4^M23.41
+ ;;^UTILITY(U,$J,358.3,33628,2)
+ ;;=^5011251
+ ;;^UTILITY(U,$J,358.3,33629,0)
+ ;;=M93.262^^132^1708^65
+ ;;^UTILITY(U,$J,358.3,33629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35688,1,3,0)
- ;;=3^Pulmonary Coccidiodomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,35688,1,4,0)
- ;;=4^B38.2
- ;;^UTILITY(U,$J,358.3,35688,2)
- ;;=^295703
- ;;^UTILITY(U,$J,358.3,35689,0)
- ;;=B45.0^^134^1729^79
- ;;^UTILITY(U,$J,358.3,35689,1,0)
+ ;;^UTILITY(U,$J,358.3,33629,1,3,0)
+ ;;=3^Osteochondritis dissecans, left knee
+ ;;^UTILITY(U,$J,358.3,33629,1,4,0)
+ ;;=4^M93.262
+ ;;^UTILITY(U,$J,358.3,33629,2)
+ ;;=^5015272
+ ;;^UTILITY(U,$J,358.3,33630,0)
+ ;;=M93.261^^132^1708^66
+ ;;^UTILITY(U,$J,358.3,33630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35689,1,3,0)
- ;;=3^Pulmonary Cryptococcosis
- ;;^UTILITY(U,$J,358.3,35689,1,4,0)
- ;;=4^B45.0
- ;;^UTILITY(U,$J,358.3,35689,2)
- ;;=^5000669
- ;;^UTILITY(U,$J,358.3,35690,0)
- ;;=A31.0^^134^1729^80
- ;;^UTILITY(U,$J,358.3,35690,1,0)
+ ;;^UTILITY(U,$J,358.3,33630,1,3,0)
+ ;;=3^Osteochondritis dissecans, right knee
+ ;;^UTILITY(U,$J,358.3,33630,1,4,0)
+ ;;=4^M93.261
+ ;;^UTILITY(U,$J,358.3,33630,2)
+ ;;=^5015271
+ ;;^UTILITY(U,$J,358.3,33631,0)
+ ;;=M70.52^^132^1708^8
+ ;;^UTILITY(U,$J,358.3,33631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35690,1,3,0)
- ;;=3^Pulmonary Mycobacterial Infection
- ;;^UTILITY(U,$J,358.3,35690,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,35690,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,35691,0)
- ;;=A43.0^^134^1729^81
- ;;^UTILITY(U,$J,358.3,35691,1,0)
+ ;;^UTILITY(U,$J,358.3,33631,1,3,0)
+ ;;=3^Bursitis of Left Knee NEC
+ ;;^UTILITY(U,$J,358.3,33631,1,4,0)
+ ;;=4^M70.52
+ ;;^UTILITY(U,$J,358.3,33631,2)
+ ;;=^5013057
+ ;;^UTILITY(U,$J,358.3,33632,0)
+ ;;=M70.51^^132^1708^9
+ ;;^UTILITY(U,$J,358.3,33632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35691,1,3,0)
- ;;=3^Pulmonary Nocardiosis
- ;;^UTILITY(U,$J,358.3,35691,1,4,0)
- ;;=4^A43.0
- ;;^UTILITY(U,$J,358.3,35691,2)
- ;;=^5000223
- ;;^UTILITY(U,$J,358.3,35692,0)
- ;;=B90.9^^134^1729^83
- ;;^UTILITY(U,$J,358.3,35692,1,0)
+ ;;^UTILITY(U,$J,358.3,33632,1,3,0)
+ ;;=3^Bursitis of Right Knee NEC
+ ;;^UTILITY(U,$J,358.3,33632,1,4,0)
+ ;;=4^M70.51
+ ;;^UTILITY(U,$J,358.3,33632,2)
+ ;;=^5013056
+ ;;^UTILITY(U,$J,358.3,33633,0)
+ ;;=S83.095A^^132^1708^45
+ ;;^UTILITY(U,$J,358.3,33633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35692,1,3,0)
- ;;=3^Sequelae of Respiratory/Unspec TB
- ;;^UTILITY(U,$J,358.3,35692,1,4,0)
- ;;=4^B90.9
- ;;^UTILITY(U,$J,358.3,35692,2)
- ;;=^5000827
- ;;^UTILITY(U,$J,358.3,35693,0)
- ;;=J41.0^^134^1729^84
- ;;^UTILITY(U,$J,358.3,35693,1,0)
+ ;;^UTILITY(U,$J,358.3,33633,1,3,0)
+ ;;=3^Dislocation Left Patella, init encntr NEC
+ ;;^UTILITY(U,$J,358.3,33633,1,4,0)
+ ;;=4^S83.095A
+ ;;^UTILITY(U,$J,358.3,33633,2)
+ ;;=^5137019
+ ;;^UTILITY(U,$J,358.3,33634,0)
+ ;;=S83.094A^^132^1708^55
+ ;;^UTILITY(U,$J,358.3,33634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35693,1,3,0)
- ;;=3^Simple Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,35693,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,35693,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,35694,0)
- ;;=B44.2^^134^1729^85
- ;;^UTILITY(U,$J,358.3,35694,1,0)
+ ;;^UTILITY(U,$J,358.3,33634,1,3,0)
+ ;;=3^Dislocation Right Patella, init encntr NEC
+ ;;^UTILITY(U,$J,358.3,33634,1,4,0)
+ ;;=4^S83.094A
+ ;;^UTILITY(U,$J,358.3,33634,2)
+ ;;=^5042932
+ ;;^UTILITY(U,$J,358.3,33635,0)
+ ;;=M25.362^^132^1708^61
+ ;;^UTILITY(U,$J,358.3,33635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35694,1,3,0)
- ;;=3^Tonsillar Aspergillosis
- ;;^UTILITY(U,$J,358.3,35694,1,4,0)
- ;;=4^B44.2
- ;;^UTILITY(U,$J,358.3,35694,2)
- ;;=^5000665
- ;;^UTILITY(U,$J,358.3,35695,0)
- ;;=A15.0^^134^1729^86
- ;;^UTILITY(U,$J,358.3,35695,1,0)
+ ;;^UTILITY(U,$J,358.3,33635,1,3,0)
+ ;;=3^Instability, left knee NEC
+ ;;^UTILITY(U,$J,358.3,33635,1,4,0)
+ ;;=4^M25.362
+ ;;^UTILITY(U,$J,358.3,33635,2)
+ ;;=^5011567
+ ;;^UTILITY(U,$J,358.3,33636,0)
+ ;;=S83.282A^^132^1708^75
+ ;;^UTILITY(U,$J,358.3,33636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35695,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,35695,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,35695,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,35696,0)
- ;;=A15.6^^134^1729^87
- ;;^UTILITY(U,$J,358.3,35696,1,0)
+ ;;^UTILITY(U,$J,358.3,33636,1,3,0)
+ ;;=3^Tear of Left Knee Lat Mensc,Current Injury,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,33636,1,4,0)
+ ;;=4^S83.282A
+ ;;^UTILITY(U,$J,358.3,33636,2)
+ ;;=^5137064
+ ;;^UTILITY(U,$J,358.3,33637,0)
+ ;;=S83.281A^^132^1708^77
+ ;;^UTILITY(U,$J,358.3,33637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35696,1,3,0)
- ;;=3^Tuberculous Pleurisy
- ;;^UTILITY(U,$J,358.3,35696,1,4,0)
- ;;=4^A15.6
- ;;^UTILITY(U,$J,358.3,35696,2)
- ;;=^5000064
- ;;^UTILITY(U,$J,358.3,35697,0)
- ;;=H60.503^^134^1729^26
- ;;^UTILITY(U,$J,358.3,35697,1,0)
+ ;;^UTILITY(U,$J,358.3,33637,1,3,0)
+ ;;=3^Tear of Right Knee Lat Mensc,Current Injury,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,33637,1,4,0)
+ ;;=4^S83.281A
+ ;;^UTILITY(U,$J,358.3,33637,2)
+ ;;=^5043091
+ ;;^UTILITY(U,$J,358.3,33638,0)
+ ;;=S83.242A^^132^1708^76
+ ;;^UTILITY(U,$J,358.3,33638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35697,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,35697,1,4,0)
- ;;=4^H60.503
- ;;^UTILITY(U,$J,358.3,35697,2)
- ;;=^5006469
- ;;^UTILITY(U,$J,358.3,35698,0)
- ;;=H60.502^^134^1729^27
- ;;^UTILITY(U,$J,358.3,35698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35698,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35698,1,4,0)
- ;;=4^H60.502
- ;;^UTILITY(U,$J,358.3,35698,2)
- ;;=^5006468
- ;;^UTILITY(U,$J,358.3,35699,0)
- ;;=H60.501^^134^1729^28
- ;;^UTILITY(U,$J,358.3,35699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35699,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35699,1,4,0)
- ;;=4^H60.501
+ ;;^UTILITY(U,$J,358.3,33638,1,3,0)
+ ;;=3^Tear of Left Knee Medial Meniscus,Current Injury,Init Encntr NEC
+ ;;^UTILITY(U,$J,358.3,33638,1,4,0)
+ ;;=4^S83.242A
+ ;;^UTILITY(U,$J,358.3,33638,2)
+ ;;=^5137058
+ ;;^UTILITY(U,$J,358.3,33639,0)
+ ;;=S83.241A^^132^1708^78

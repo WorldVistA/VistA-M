@@ -1,5 +1,5 @@
 BPSSCRRS ;BHAM ISC/SS - ECME SCREEN RESUBMIT ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,20,26**;JUN 2004;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;IA 4702
@@ -65,6 +65,8 @@ RESUBMIT(RXI,BPRSNRV) ;*/
  N REVCOUNT S REVCOUNT=0
  N BPIFANY S BPIFANY=0
  N BPINPROG S BPINPROG=0
+ N DIWF,DIWL,DIWR,X
+ ;
  S BPCLTOT=0 ;total for resubmitted
  S BPCLTOTR=0 ;total for reversed, not resubmitted
  S UPDATFLG=0
@@ -150,7 +152,16 @@ RESUBMIT(RXI,BPRSNRV) ;*/
  . W:+BILLNUM>0 $S(+BILLNUM=10:"Reversal but no Resubmit:",1:"Not Processed:"),!,"  "
  . ;Change Return Message for SC/EI
  . S:$P(BILLNUM,U,2)="NEEDS SC DETERMINATION" $P(BILLNUM,U,2)="NEEDS SC/EI DETERMINATION"
- . W $P(BILLNUM,U,2)
+ . ;
+ . K ^UTILITY($J,"W")
+ . S X=$P(BILLNUM,U,2)
+ . S DIWF="W"
+ . S DIWL=1
+ . S DIWR=75
+ . D ^DIWP
+ . D ^DIWW
+ . K ^UTILITY($J,"W")
+ . ;
  . ;0 Prescription/Fill successfully submitted to ECME for claims processing
  . ;1 ECME did not submit prescription/fill
  . ;2 IB says prescription/fill is not ECME billable or the data returned from IB is not valid

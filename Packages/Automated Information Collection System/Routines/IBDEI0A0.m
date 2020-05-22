@@ -1,366 +1,630 @@
-IBDEI0A0 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0A0 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12684,0)
- ;;=R23.3^^43^613^269
- ;;^UTILITY(U,$J,358.3,12684,1,0)
+ ;;^UTILITY(U,$J,358.3,24502,1,4,0)
+ ;;=4^S06.2X6S
+ ;;^UTILITY(U,$J,358.3,24502,2)
+ ;;=^5020746
+ ;;^UTILITY(U,$J,358.3,24503,0)
+ ;;=S06.2X3S^^76^1006^42
+ ;;^UTILITY(U,$J,358.3,24503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12684,1,3,0)
- ;;=3^Spontaneous Ecchymoses
- ;;^UTILITY(U,$J,358.3,12684,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,12684,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,12685,0)
- ;;=L03.113^^43^613^112
- ;;^UTILITY(U,$J,358.3,12685,1,0)
+ ;;^UTILITY(U,$J,358.3,24503,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24503,1,4,0)
+ ;;=4^S06.2X3S
+ ;;^UTILITY(U,$J,358.3,24503,2)
+ ;;=^5020737
+ ;;^UTILITY(U,$J,358.3,24504,0)
+ ;;=S06.2X1S^^76^1006^43
+ ;;^UTILITY(U,$J,358.3,24504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12685,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12685,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,12685,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,12686,0)
- ;;=L03.114^^43^613^105
- ;;^UTILITY(U,$J,358.3,12686,1,0)
+ ;;^UTILITY(U,$J,358.3,24504,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24504,1,4,0)
+ ;;=4^S06.2X1S
+ ;;^UTILITY(U,$J,358.3,24504,2)
+ ;;=^5020731
+ ;;^UTILITY(U,$J,358.3,24505,0)
+ ;;=S06.2X2S^^76^1006^44
+ ;;^UTILITY(U,$J,358.3,24505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12686,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12686,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,12686,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,12687,0)
- ;;=L03.115^^43^613^109
- ;;^UTILITY(U,$J,358.3,12687,1,0)
+ ;;^UTILITY(U,$J,358.3,24505,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24505,1,4,0)
+ ;;=4^S06.2X2S
+ ;;^UTILITY(U,$J,358.3,24505,2)
+ ;;=^5020734
+ ;;^UTILITY(U,$J,358.3,24506,0)
+ ;;=S06.2X4S^^76^1006^45
+ ;;^UTILITY(U,$J,358.3,24506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12687,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12687,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,12687,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,12688,0)
- ;;=L03.116^^43^613^102
- ;;^UTILITY(U,$J,358.3,12688,1,0)
+ ;;^UTILITY(U,$J,358.3,24506,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,24506,1,4,0)
+ ;;=4^S06.2X4S
+ ;;^UTILITY(U,$J,358.3,24506,2)
+ ;;=^5020740
+ ;;^UTILITY(U,$J,358.3,24507,0)
+ ;;=S06.2X9S^^76^1006^46
+ ;;^UTILITY(U,$J,358.3,24507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12688,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,12688,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,12688,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,12689,0)
- ;;=L03.123^^43^613^27
- ;;^UTILITY(U,$J,358.3,12689,1,0)
+ ;;^UTILITY(U,$J,358.3,24507,1,3,0)
+ ;;=3^Diffuse TBI w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24507,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,24507,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,24508,0)
+ ;;=S06.2X0S^^76^1006^47
+ ;;^UTILITY(U,$J,358.3,24508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12689,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12689,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,12689,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,12690,0)
- ;;=L03.124^^43^613^21
- ;;^UTILITY(U,$J,358.3,12690,1,0)
+ ;;^UTILITY(U,$J,358.3,24508,1,3,0)
+ ;;=3^Diffuse TBI w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24508,1,4,0)
+ ;;=4^S06.2X0S
+ ;;^UTILITY(U,$J,358.3,24508,2)
+ ;;=^5020728
+ ;;^UTILITY(U,$J,358.3,24509,0)
+ ;;=S06.4X5S^^76^1006^48
+ ;;^UTILITY(U,$J,358.3,24509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12690,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12690,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,12690,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,12691,0)
- ;;=L03.125^^43^613^25
- ;;^UTILITY(U,$J,358.3,12691,1,0)
+ ;;^UTILITY(U,$J,358.3,24509,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24509,1,4,0)
+ ;;=4^S06.4X5S
+ ;;^UTILITY(U,$J,358.3,24509,2)
+ ;;=^5021043
+ ;;^UTILITY(U,$J,358.3,24510,0)
+ ;;=S06.4X6S^^76^1006^49
+ ;;^UTILITY(U,$J,358.3,24510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12691,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12691,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,12691,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,12692,0)
- ;;=L03.126^^43^613^19
- ;;^UTILITY(U,$J,358.3,12692,1,0)
+ ;;^UTILITY(U,$J,358.3,24510,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,24510,1,4,0)
+ ;;=4^S06.4X6S
+ ;;^UTILITY(U,$J,358.3,24510,2)
+ ;;=^5021046
+ ;;^UTILITY(U,$J,358.3,24511,0)
+ ;;=S06.4X3S^^76^1006^50
+ ;;^UTILITY(U,$J,358.3,24511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12692,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,12692,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,12692,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,12693,0)
- ;;=L03.211^^43^613^99
- ;;^UTILITY(U,$J,358.3,12693,1,0)
+ ;;^UTILITY(U,$J,358.3,24511,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24511,1,4,0)
+ ;;=4^S06.4X3S
+ ;;^UTILITY(U,$J,358.3,24511,2)
+ ;;=^5021037
+ ;;^UTILITY(U,$J,358.3,24512,0)
+ ;;=S06.4X1S^^76^1006^51
+ ;;^UTILITY(U,$J,358.3,24512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12693,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,12693,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,12693,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,12694,0)
- ;;=L03.212^^43^613^16
- ;;^UTILITY(U,$J,358.3,12694,1,0)
+ ;;^UTILITY(U,$J,358.3,24512,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24512,1,4,0)
+ ;;=4^S06.4X1S
+ ;;^UTILITY(U,$J,358.3,24512,2)
+ ;;=^5021031
+ ;;^UTILITY(U,$J,358.3,24513,0)
+ ;;=S06.4X2S^^76^1006^52
+ ;;^UTILITY(U,$J,358.3,24513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12694,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,12694,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,12694,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,12695,0)
- ;;=L03.221^^43^613^106
- ;;^UTILITY(U,$J,358.3,12695,1,0)
+ ;;^UTILITY(U,$J,358.3,24513,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24513,1,4,0)
+ ;;=4^S06.4X2S
+ ;;^UTILITY(U,$J,358.3,24513,2)
+ ;;=^5021034
+ ;;^UTILITY(U,$J,358.3,24514,0)
+ ;;=S06.4X4S^^76^1006^53
+ ;;^UTILITY(U,$J,358.3,24514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12695,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,12695,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,12695,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,12696,0)
- ;;=L03.222^^43^613^22
- ;;^UTILITY(U,$J,358.3,12696,1,0)
+ ;;^UTILITY(U,$J,358.3,24514,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,24514,1,4,0)
+ ;;=4^S06.4X4S
+ ;;^UTILITY(U,$J,358.3,24514,2)
+ ;;=^5021040
+ ;;^UTILITY(U,$J,358.3,24515,0)
+ ;;=S06.4X9S^^76^1006^54
+ ;;^UTILITY(U,$J,358.3,24515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12696,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,12696,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,12696,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,12697,0)
- ;;=L03.311^^43^613^95
- ;;^UTILITY(U,$J,358.3,12697,1,0)
+ ;;^UTILITY(U,$J,358.3,24515,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24515,1,4,0)
+ ;;=4^S06.4X9S
+ ;;^UTILITY(U,$J,358.3,24515,2)
+ ;;=^5021055
+ ;;^UTILITY(U,$J,358.3,24516,0)
+ ;;=S06.4X0S^^76^1006^55
+ ;;^UTILITY(U,$J,358.3,24516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12697,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,12697,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,12697,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,12698,0)
- ;;=L03.312^^43^613^96
- ;;^UTILITY(U,$J,358.3,12698,1,0)
+ ;;^UTILITY(U,$J,358.3,24516,1,3,0)
+ ;;=3^Epidural hemorrhage without LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24516,1,4,0)
+ ;;=4^S06.4X0S
+ ;;^UTILITY(U,$J,358.3,24516,2)
+ ;;=^5021028
+ ;;^UTILITY(U,$J,358.3,24517,0)
+ ;;=S06.825S^^76^1006^56
+ ;;^UTILITY(U,$J,358.3,24517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12698,1,3,0)
- ;;=3^Cellulitis of Back
- ;;^UTILITY(U,$J,358.3,12698,1,4,0)
- ;;=4^L03.312
- ;;^UTILITY(U,$J,358.3,12698,2)
- ;;=^5009048
- ;;^UTILITY(U,$J,358.3,12699,0)
- ;;=L03.313^^43^613^98
- ;;^UTILITY(U,$J,358.3,12699,1,0)
+ ;;^UTILITY(U,$J,358.3,24517,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24517,1,4,0)
+ ;;=4^S06.825S
+ ;;^UTILITY(U,$J,358.3,24517,2)
+ ;;=^5021163
+ ;;^UTILITY(U,$J,358.3,24518,0)
+ ;;=S06.826S^^76^1006^57
+ ;;^UTILITY(U,$J,358.3,24518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12699,1,3,0)
- ;;=3^Cellulitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,12699,1,4,0)
- ;;=4^L03.313
- ;;^UTILITY(U,$J,358.3,12699,2)
- ;;=^5009049
- ;;^UTILITY(U,$J,358.3,12700,0)
- ;;=L03.314^^43^613^100
- ;;^UTILITY(U,$J,358.3,12700,1,0)
+ ;;^UTILITY(U,$J,358.3,24518,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,24518,1,4,0)
+ ;;=4^S06.826S
+ ;;^UTILITY(U,$J,358.3,24518,2)
+ ;;=^5021166
+ ;;^UTILITY(U,$J,358.3,24519,0)
+ ;;=S06.823S^^76^1006^58
+ ;;^UTILITY(U,$J,358.3,24519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12700,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,12700,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,12700,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,12701,0)
- ;;=L03.315^^43^613^107
- ;;^UTILITY(U,$J,358.3,12701,1,0)
+ ;;^UTILITY(U,$J,358.3,24519,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24519,1,4,0)
+ ;;=4^S06.823S
+ ;;^UTILITY(U,$J,358.3,24519,2)
+ ;;=^5021157
+ ;;^UTILITY(U,$J,358.3,24520,0)
+ ;;=S06.821S^^76^1006^59
+ ;;^UTILITY(U,$J,358.3,24520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12701,1,3,0)
- ;;=3^Cellulitis of Perineum
- ;;^UTILITY(U,$J,358.3,12701,1,4,0)
- ;;=4^L03.315
- ;;^UTILITY(U,$J,358.3,12701,2)
- ;;=^5009051
- ;;^UTILITY(U,$J,358.3,12702,0)
- ;;=L03.316^^43^613^114
- ;;^UTILITY(U,$J,358.3,12702,1,0)
+ ;;^UTILITY(U,$J,358.3,24520,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24520,1,4,0)
+ ;;=4^S06.821S
+ ;;^UTILITY(U,$J,358.3,24520,2)
+ ;;=^5021151
+ ;;^UTILITY(U,$J,358.3,24521,0)
+ ;;=S06.822S^^76^1006^60
+ ;;^UTILITY(U,$J,358.3,24521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12702,1,3,0)
- ;;=3^Cellulitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,12702,1,4,0)
- ;;=4^L03.316
- ;;^UTILITY(U,$J,358.3,12702,2)
- ;;=^5009052
- ;;^UTILITY(U,$J,358.3,12703,0)
- ;;=L03.319^^43^613^113
- ;;^UTILITY(U,$J,358.3,12703,1,0)
+ ;;^UTILITY(U,$J,358.3,24521,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24521,1,4,0)
+ ;;=4^S06.822S
+ ;;^UTILITY(U,$J,358.3,24521,2)
+ ;;=^5021154
+ ;;^UTILITY(U,$J,358.3,24522,0)
+ ;;=S06.824S^^76^1006^61
+ ;;^UTILITY(U,$J,358.3,24522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12703,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,12703,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,12703,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,12704,0)
- ;;=L03.321^^43^613^13
- ;;^UTILITY(U,$J,358.3,12704,1,0)
+ ;;^UTILITY(U,$J,358.3,24522,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,24522,1,4,0)
+ ;;=4^S06.824S
+ ;;^UTILITY(U,$J,358.3,24522,2)
+ ;;=^5021160
+ ;;^UTILITY(U,$J,358.3,24523,0)
+ ;;=S06.829S^^76^1006^62
+ ;;^UTILITY(U,$J,358.3,24523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12704,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,12704,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,12704,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,12705,0)
- ;;=L03.322^^43^613^14
- ;;^UTILITY(U,$J,358.3,12705,1,0)
+ ;;^UTILITY(U,$J,358.3,24523,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24523,1,4,0)
+ ;;=4^S06.829S
+ ;;^UTILITY(U,$J,358.3,24523,2)
+ ;;=^5021175
+ ;;^UTILITY(U,$J,358.3,24524,0)
+ ;;=S06.820S^^76^1006^63
+ ;;^UTILITY(U,$J,358.3,24524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12705,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,12705,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,12705,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,12706,0)
- ;;=L03.323^^43^613^15
- ;;^UTILITY(U,$J,358.3,12706,1,0)
+ ;;^UTILITY(U,$J,358.3,24524,1,3,0)
+ ;;=3^Inj left int carotid, intcr w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24524,1,4,0)
+ ;;=4^S06.820S
+ ;;^UTILITY(U,$J,358.3,24524,2)
+ ;;=^5021148
+ ;;^UTILITY(U,$J,358.3,24525,0)
+ ;;=S06.815S^^76^1006^64
+ ;;^UTILITY(U,$J,358.3,24525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12706,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,12706,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,12706,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,12707,0)
- ;;=L03.324^^43^613^17
- ;;^UTILITY(U,$J,358.3,12707,1,0)
+ ;;^UTILITY(U,$J,358.3,24525,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24525,1,4,0)
+ ;;=4^S06.815S
+ ;;^UTILITY(U,$J,358.3,24525,2)
+ ;;=^5021133
+ ;;^UTILITY(U,$J,358.3,24526,0)
+ ;;=S06.816S^^76^1006^65
+ ;;^UTILITY(U,$J,358.3,24526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12707,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,12707,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,12707,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,12708,0)
- ;;=L03.325^^43^613^23
- ;;^UTILITY(U,$J,358.3,12708,1,0)
+ ;;^UTILITY(U,$J,358.3,24526,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,24526,1,4,0)
+ ;;=4^S06.816S
+ ;;^UTILITY(U,$J,358.3,24526,2)
+ ;;=^5021136
+ ;;^UTILITY(U,$J,358.3,24527,0)
+ ;;=S06.813S^^76^1006^66
+ ;;^UTILITY(U,$J,358.3,24527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12708,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,12708,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,12708,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,12709,0)
- ;;=L03.326^^43^613^29
- ;;^UTILITY(U,$J,358.3,12709,1,0)
+ ;;^UTILITY(U,$J,358.3,24527,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24527,1,4,0)
+ ;;=4^S06.813S
+ ;;^UTILITY(U,$J,358.3,24527,2)
+ ;;=^5021127
+ ;;^UTILITY(U,$J,358.3,24528,0)
+ ;;=S06.811S^^76^1006^67
+ ;;^UTILITY(U,$J,358.3,24528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12709,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,12709,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,12709,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,12710,0)
- ;;=L03.329^^43^613^28
- ;;^UTILITY(U,$J,358.3,12710,1,0)
+ ;;^UTILITY(U,$J,358.3,24528,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24528,1,4,0)
+ ;;=4^S06.811S
+ ;;^UTILITY(U,$J,358.3,24528,2)
+ ;;=^5021121
+ ;;^UTILITY(U,$J,358.3,24529,0)
+ ;;=S06.812S^^76^1006^68
+ ;;^UTILITY(U,$J,358.3,24529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12710,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,12710,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,12710,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,12711,0)
- ;;=L08.9^^43^613^167
- ;;^UTILITY(U,$J,358.3,12711,1,0)
+ ;;^UTILITY(U,$J,358.3,24529,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24529,1,4,0)
+ ;;=4^S06.812S
+ ;;^UTILITY(U,$J,358.3,24529,2)
+ ;;=^5021124
+ ;;^UTILITY(U,$J,358.3,24530,0)
+ ;;=S06.814S^^76^1006^69
+ ;;^UTILITY(U,$J,358.3,24530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12711,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,12711,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,12711,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,12712,0)
- ;;=L11.0^^43^613^9
- ;;^UTILITY(U,$J,358.3,12712,1,0)
+ ;;^UTILITY(U,$J,358.3,24530,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,24530,1,4,0)
+ ;;=4^S06.814S
+ ;;^UTILITY(U,$J,358.3,24530,2)
+ ;;=^5021130
+ ;;^UTILITY(U,$J,358.3,24531,0)
+ ;;=S06.819S^^76^1006^70
+ ;;^UTILITY(U,$J,358.3,24531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12712,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,12712,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,12712,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,12713,0)
- ;;=L20.0^^43^613^90
- ;;^UTILITY(U,$J,358.3,12713,1,0)
+ ;;^UTILITY(U,$J,358.3,24531,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24531,1,4,0)
+ ;;=4^S06.819S
+ ;;^UTILITY(U,$J,358.3,24531,2)
+ ;;=^5021145
+ ;;^UTILITY(U,$J,358.3,24532,0)
+ ;;=S06.810S^^76^1006^71
+ ;;^UTILITY(U,$J,358.3,24532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12713,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,12713,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,12713,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,12714,0)
- ;;=L20.81^^43^613^87
- ;;^UTILITY(U,$J,358.3,12714,1,0)
+ ;;^UTILITY(U,$J,358.3,24532,1,3,0)
+ ;;=3^Inj right int carotid, intcr w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24532,1,4,0)
+ ;;=4^S06.810S
+ ;;^UTILITY(U,$J,358.3,24532,2)
+ ;;=^5021118
+ ;;^UTILITY(U,$J,358.3,24533,0)
+ ;;=S06.1X5S^^76^1006^72
+ ;;^UTILITY(U,$J,358.3,24533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12714,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,12714,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,12714,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,12715,0)
- ;;=L20.82^^43^613^150
- ;;^UTILITY(U,$J,358.3,12715,1,0)
+ ;;^UTILITY(U,$J,358.3,24533,1,3,0)
+ ;;=3^Traum cerebral edema w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24533,1,4,0)
+ ;;=4^S06.1X5S
+ ;;^UTILITY(U,$J,358.3,24533,2)
+ ;;=^5020713
+ ;;^UTILITY(U,$J,358.3,24534,0)
+ ;;=S06.1X6S^^76^1006^73
+ ;;^UTILITY(U,$J,358.3,24534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12715,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,12715,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,12715,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,12716,0)
- ;;=L20.84^^43^613^162
- ;;^UTILITY(U,$J,358.3,12716,1,0)
+ ;;^UTILITY(U,$J,358.3,24534,1,3,0)
+ ;;=3^Traum cerebral edema w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,24534,1,4,0)
+ ;;=4^S06.1X6S
+ ;;^UTILITY(U,$J,358.3,24534,2)
+ ;;=^5020716
+ ;;^UTILITY(U,$J,358.3,24535,0)
+ ;;=S06.1X3S^^76^1006^107
+ ;;^UTILITY(U,$J,358.3,24535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12716,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,12716,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,12716,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,12717,0)
- ;;=L20.89^^43^613^85
- ;;^UTILITY(U,$J,358.3,12717,1,0)
+ ;;^UTILITY(U,$J,358.3,24535,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24535,1,4,0)
+ ;;=4^S06.1X3S
+ ;;^UTILITY(U,$J,358.3,24535,2)
+ ;;=^5020707
+ ;;^UTILITY(U,$J,358.3,24536,0)
+ ;;=S06.1X1S^^76^1006^74
+ ;;^UTILITY(U,$J,358.3,24536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12717,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,12717,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,12717,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,12718,0)
- ;;=L20.9^^43^613^86
- ;;^UTILITY(U,$J,358.3,12718,1,0)
+ ;;^UTILITY(U,$J,358.3,24536,1,3,0)
+ ;;=3^Traum cerebral edema w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24536,1,4,0)
+ ;;=4^S06.1X1S
+ ;;^UTILITY(U,$J,358.3,24536,2)
+ ;;=^5020701
+ ;;^UTILITY(U,$J,358.3,24537,0)
+ ;;=S06.1X2S^^76^1006^108
+ ;;^UTILITY(U,$J,358.3,24537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12718,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,12718,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,12718,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,12719,0)
- ;;=L21.8^^43^613^262
- ;;^UTILITY(U,$J,358.3,12719,1,0)
+ ;;^UTILITY(U,$J,358.3,24537,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24537,1,4,0)
+ ;;=4^S06.1X2S
+ ;;^UTILITY(U,$J,358.3,24537,2)
+ ;;=^5020704
+ ;;^UTILITY(U,$J,358.3,24538,0)
+ ;;=S06.1X4S^^76^1006^109
+ ;;^UTILITY(U,$J,358.3,24538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12719,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,12719,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,12719,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,12720,0)
- ;;=L21.9^^43^613^263
+ ;;^UTILITY(U,$J,358.3,24538,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,24538,1,4,0)
+ ;;=4^S06.1X4S
+ ;;^UTILITY(U,$J,358.3,24538,2)
+ ;;=^5020710
+ ;;^UTILITY(U,$J,358.3,24539,0)
+ ;;=S06.1X9S^^76^1006^110
+ ;;^UTILITY(U,$J,358.3,24539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24539,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24539,1,4,0)
+ ;;=4^S06.1X9S
+ ;;^UTILITY(U,$J,358.3,24539,2)
+ ;;=^5020725
+ ;;^UTILITY(U,$J,358.3,24540,0)
+ ;;=S06.1X0S^^76^1006^111
+ ;;^UTILITY(U,$J,358.3,24540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24540,1,3,0)
+ ;;=3^Traumatic cerebral edema w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24540,1,4,0)
+ ;;=4^S06.1X0S
+ ;;^UTILITY(U,$J,358.3,24540,2)
+ ;;=^5020698
+ ;;^UTILITY(U,$J,358.3,24541,0)
+ ;;=S06.355S^^76^1006^75
+ ;;^UTILITY(U,$J,358.3,24541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24541,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24541,1,4,0)
+ ;;=4^S06.355S
+ ;;^UTILITY(U,$J,358.3,24541,2)
+ ;;=^5020923
+ ;;^UTILITY(U,$J,358.3,24542,0)
+ ;;=S06.356S^^76^1006^76
+ ;;^UTILITY(U,$J,358.3,24542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24542,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,24542,1,4,0)
+ ;;=4^S06.356S
+ ;;^UTILITY(U,$J,358.3,24542,2)
+ ;;=^5020926
+ ;;^UTILITY(U,$J,358.3,24543,0)
+ ;;=S06.353S^^76^1006^77
+ ;;^UTILITY(U,$J,358.3,24543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24543,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 1-5 hrs 59 minutes, sequela
+ ;;^UTILITY(U,$J,358.3,24543,1,4,0)
+ ;;=4^S06.353S
+ ;;^UTILITY(U,$J,358.3,24543,2)
+ ;;=^5020917
+ ;;^UTILITY(U,$J,358.3,24544,0)
+ ;;=S06.351S^^76^1006^78
+ ;;^UTILITY(U,$J,358.3,24544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24544,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24544,1,4,0)
+ ;;=4^S06.351S
+ ;;^UTILITY(U,$J,358.3,24544,2)
+ ;;=^5020911
+ ;;^UTILITY(U,$J,358.3,24545,0)
+ ;;=S06.352S^^76^1006^79
+ ;;^UTILITY(U,$J,358.3,24545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24545,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24545,1,4,0)
+ ;;=4^S06.352S
+ ;;^UTILITY(U,$J,358.3,24545,2)
+ ;;=^5020914
+ ;;^UTILITY(U,$J,358.3,24546,0)
+ ;;=S06.354S^^76^1006^80
+ ;;^UTILITY(U,$J,358.3,24546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24546,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,24546,1,4,0)
+ ;;=4^S06.354S
+ ;;^UTILITY(U,$J,358.3,24546,2)
+ ;;=^5020920
+ ;;^UTILITY(U,$J,358.3,24547,0)
+ ;;=S06.359S^^76^1006^81
+ ;;^UTILITY(U,$J,358.3,24547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24547,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24547,1,4,0)
+ ;;=4^S06.359S
+ ;;^UTILITY(U,$J,358.3,24547,2)
+ ;;=^5020935
+ ;;^UTILITY(U,$J,358.3,24548,0)
+ ;;=S06.350S^^76^1006^82
+ ;;^UTILITY(U,$J,358.3,24548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24548,1,3,0)
+ ;;=3^Traum hemor left cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24548,1,4,0)
+ ;;=4^S06.350S
+ ;;^UTILITY(U,$J,358.3,24548,2)
+ ;;=^5020908
+ ;;^UTILITY(U,$J,358.3,24549,0)
+ ;;=S06.345S^^76^1006^83
+ ;;^UTILITY(U,$J,358.3,24549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24549,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24549,1,4,0)
+ ;;=4^S06.345S
+ ;;^UTILITY(U,$J,358.3,24549,2)
+ ;;=^5020893
+ ;;^UTILITY(U,$J,358.3,24550,0)
+ ;;=S06.346S^^76^1006^84
+ ;;^UTILITY(U,$J,358.3,24550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24550,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,24550,1,4,0)
+ ;;=4^S06.346S
+ ;;^UTILITY(U,$J,358.3,24550,2)
+ ;;=^5020896
+ ;;^UTILITY(U,$J,358.3,24551,0)
+ ;;=S06.343S^^76^1006^90
+ ;;^UTILITY(U,$J,358.3,24551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24551,1,3,0)
+ ;;=3^Traum hemor right cerebrumb w LOC of 1-5 hrs 59 minutes, sequela
+ ;;^UTILITY(U,$J,358.3,24551,1,4,0)
+ ;;=4^S06.343S
+ ;;^UTILITY(U,$J,358.3,24551,2)
+ ;;=^5020887
+ ;;^UTILITY(U,$J,358.3,24552,0)
+ ;;=S06.341S^^76^1006^85
+ ;;^UTILITY(U,$J,358.3,24552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24552,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24552,1,4,0)
+ ;;=4^S06.341S
+ ;;^UTILITY(U,$J,358.3,24552,2)
+ ;;=^5020881
+ ;;^UTILITY(U,$J,358.3,24553,0)
+ ;;=S06.342S^^76^1006^86
+ ;;^UTILITY(U,$J,358.3,24553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24553,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24553,1,4,0)
+ ;;=4^S06.342S
+ ;;^UTILITY(U,$J,358.3,24553,2)
+ ;;=^5020884
+ ;;^UTILITY(U,$J,358.3,24554,0)
+ ;;=S06.344S^^76^1006^87
+ ;;^UTILITY(U,$J,358.3,24554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24554,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,24554,1,4,0)
+ ;;=4^S06.344S
+ ;;^UTILITY(U,$J,358.3,24554,2)
+ ;;=^5020890
+ ;;^UTILITY(U,$J,358.3,24555,0)
+ ;;=S06.349S^^76^1006^88
+ ;;^UTILITY(U,$J,358.3,24555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24555,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24555,1,4,0)
+ ;;=4^S06.349S
+ ;;^UTILITY(U,$J,358.3,24555,2)
+ ;;=^5020905
+ ;;^UTILITY(U,$J,358.3,24556,0)
+ ;;=S06.340S^^76^1006^89
+ ;;^UTILITY(U,$J,358.3,24556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24556,1,3,0)
+ ;;=3^Traum hemor right cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24556,1,4,0)
+ ;;=4^S06.340S
+ ;;^UTILITY(U,$J,358.3,24556,2)
+ ;;=^5020878
+ ;;^UTILITY(U,$J,358.3,24557,0)
+ ;;=S06.6X5S^^76^1006^99
+ ;;^UTILITY(U,$J,358.3,24557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24557,1,3,0)
+ ;;=3^Traum subrac hem w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,24557,1,4,0)
+ ;;=4^S06.6X5S
+ ;;^UTILITY(U,$J,358.3,24557,2)
+ ;;=^5021103
+ ;;^UTILITY(U,$J,358.3,24558,0)
+ ;;=S06.6X6S^^76^1006^100
+ ;;^UTILITY(U,$J,358.3,24558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24558,1,3,0)
+ ;;=3^Traum subrac hem w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,24558,1,4,0)
+ ;;=4^S06.6X6S
+ ;;^UTILITY(U,$J,358.3,24558,2)
+ ;;=^5021106
+ ;;^UTILITY(U,$J,358.3,24559,0)
+ ;;=S06.6X3S^^76^1006^101
+ ;;^UTILITY(U,$J,358.3,24559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24559,1,3,0)
+ ;;=3^Traum subrac hem w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24559,1,4,0)
+ ;;=4^S06.6X3S
+ ;;^UTILITY(U,$J,358.3,24559,2)
+ ;;=^5021097
+ ;;^UTILITY(U,$J,358.3,24560,0)
+ ;;=S06.6X1S^^76^1006^102
+ ;;^UTILITY(U,$J,358.3,24560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24560,1,3,0)
+ ;;=3^Traum subrac hem w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,24560,1,4,0)
+ ;;=4^S06.6X1S
+ ;;^UTILITY(U,$J,358.3,24560,2)
+ ;;=^5021091
+ ;;^UTILITY(U,$J,358.3,24561,0)
+ ;;=S06.6X2S^^76^1006^103
+ ;;^UTILITY(U,$J,358.3,24561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24561,1,3,0)
+ ;;=3^Traum subrac hem w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,24561,1,4,0)
+ ;;=4^S06.6X2S
+ ;;^UTILITY(U,$J,358.3,24561,2)
+ ;;=^5021094
+ ;;^UTILITY(U,$J,358.3,24562,0)
+ ;;=S06.6X4S^^76^1006^104
+ ;;^UTILITY(U,$J,358.3,24562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24562,1,3,0)
+ ;;=3^Traum subrac hem w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,24562,1,4,0)
+ ;;=4^S06.6X4S
+ ;;^UTILITY(U,$J,358.3,24562,2)
+ ;;=^5021100
+ ;;^UTILITY(U,$J,358.3,24563,0)
+ ;;=S06.6X9S^^76^1006^105
+ ;;^UTILITY(U,$J,358.3,24563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24563,1,3,0)
+ ;;=3^Traum subrac hem w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,24563,1,4,0)
+ ;;=4^S06.6X9S
+ ;;^UTILITY(U,$J,358.3,24563,2)
+ ;;=^5021115
+ ;;^UTILITY(U,$J,358.3,24564,0)
+ ;;=S06.6X0S^^76^1006^106
+ ;;^UTILITY(U,$J,358.3,24564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24564,1,3,0)
+ ;;=3^Traum subrac hem w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,24564,1,4,0)
+ ;;=4^S06.6X0S
+ ;;^UTILITY(U,$J,358.3,24564,2)
+ ;;=^5021088
+ ;;^UTILITY(U,$J,358.3,24565,0)
+ ;;=S06.5X5S^^76^1006^91

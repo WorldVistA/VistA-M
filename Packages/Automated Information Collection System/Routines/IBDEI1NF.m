@@ -1,128 +1,126 @@
-IBDEI1NF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1NF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27984,1,0)
+ ;;^UTILITY(U,$J,358.3,26329,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,26329,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,26329,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,26330,0)
+ ;;=J45.991^^107^1237^25
+ ;;^UTILITY(U,$J,358.3,26330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27984,1,3,0)
- ;;=3^Unqualified Visual Loss,Left Eye
- ;;^UTILITY(U,$J,358.3,27984,1,4,0)
- ;;=4^H54.62
- ;;^UTILITY(U,$J,358.3,27984,2)
- ;;=^5133520
- ;;^UTILITY(U,$J,358.3,27985,0)
- ;;=S64.11XA^^109^1397^7
- ;;^UTILITY(U,$J,358.3,27985,1,0)
+ ;;^UTILITY(U,$J,358.3,26330,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,26330,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,26330,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,26331,0)
+ ;;=I50.1^^107^1238^14
+ ;;^UTILITY(U,$J,358.3,26331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27985,1,3,0)
- ;;=3^Inj of Median Nerve,Rt Arm at Wrs/Hand Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,27985,1,4,0)
- ;;=4^S64.11XA
- ;;^UTILITY(U,$J,358.3,27985,2)
- ;;=^5035772
- ;;^UTILITY(U,$J,358.3,27986,0)
- ;;=S64.11XD^^109^1397^8
- ;;^UTILITY(U,$J,358.3,27986,1,0)
+ ;;^UTILITY(U,$J,358.3,26331,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,26331,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,26331,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,26332,0)
+ ;;=I50.20^^107^1238^12
+ ;;^UTILITY(U,$J,358.3,26332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27986,1,3,0)
- ;;=3^Inj of Median Nerve,Rt Arm at Wrs/Hand Level,Subs
- ;;^UTILITY(U,$J,358.3,27986,1,4,0)
- ;;=4^S64.11XD
- ;;^UTILITY(U,$J,358.3,27986,2)
- ;;=^5035773
- ;;^UTILITY(U,$J,358.3,27987,0)
- ;;=S64.12XA^^109^1397^5
- ;;^UTILITY(U,$J,358.3,27987,1,0)
+ ;;^UTILITY(U,$J,358.3,26332,1,3,0)
+ ;;=3^Heart Failure,Systolic,Unspec
+ ;;^UTILITY(U,$J,358.3,26332,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,26332,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,26333,0)
+ ;;=I50.21^^107^1238^9
+ ;;^UTILITY(U,$J,358.3,26333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27987,1,3,0)
- ;;=3^Inj of Median Nerve,Lt Arm at Wrs/Hand Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,27987,1,4,0)
- ;;=4^S64.12XA
- ;;^UTILITY(U,$J,358.3,27987,2)
- ;;=^5035775
- ;;^UTILITY(U,$J,358.3,27988,0)
- ;;=S64.12XD^^109^1397^6
- ;;^UTILITY(U,$J,358.3,27988,1,0)
+ ;;^UTILITY(U,$J,358.3,26333,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute
+ ;;^UTILITY(U,$J,358.3,26333,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,26333,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,26334,0)
+ ;;=I50.22^^107^1238^11
+ ;;^UTILITY(U,$J,358.3,26334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27988,1,3,0)
- ;;=3^Inj of Median Nerve,Lt Arm at Wrs/Hand Level,Subs
- ;;^UTILITY(U,$J,358.3,27988,1,4,0)
- ;;=4^S64.12XD
- ;;^UTILITY(U,$J,358.3,27988,2)
- ;;=^5035776
- ;;^UTILITY(U,$J,358.3,27989,0)
- ;;=G56.22^^109^1397^11
- ;;^UTILITY(U,$J,358.3,27989,1,0)
+ ;;^UTILITY(U,$J,358.3,26334,1,3,0)
+ ;;=3^Heart Failure,Systolic,Chronic
+ ;;^UTILITY(U,$J,358.3,26334,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,26334,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,26335,0)
+ ;;=I50.23^^107^1238^10
+ ;;^UTILITY(U,$J,358.3,26335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27989,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,27989,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,27989,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,27990,0)
- ;;=G56.21^^109^1397^12
- ;;^UTILITY(U,$J,358.3,27990,1,0)
+ ;;^UTILITY(U,$J,358.3,26335,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,26335,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,26335,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,26336,0)
+ ;;=I50.30^^107^1238^4
+ ;;^UTILITY(U,$J,358.3,26336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27990,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,27990,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,27990,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,27991,0)
- ;;=G56.11^^109^1397^10
- ;;^UTILITY(U,$J,358.3,27991,1,0)
+ ;;^UTILITY(U,$J,358.3,26336,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,26336,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,26336,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,26337,0)
+ ;;=I50.31^^107^1238^1
+ ;;^UTILITY(U,$J,358.3,26337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27991,1,3,0)
- ;;=3^Lesion of Median Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,27991,1,4,0)
- ;;=4^G56.11
- ;;^UTILITY(U,$J,358.3,27991,2)
- ;;=^5004021
- ;;^UTILITY(U,$J,358.3,27992,0)
- ;;=G56.12^^109^1397^9
- ;;^UTILITY(U,$J,358.3,27992,1,0)
+ ;;^UTILITY(U,$J,358.3,26337,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute
+ ;;^UTILITY(U,$J,358.3,26337,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,26337,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,26338,0)
+ ;;=I50.32^^107^1238^3
+ ;;^UTILITY(U,$J,358.3,26338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27992,1,3,0)
- ;;=3^Lesion of Median Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,27992,1,4,0)
- ;;=4^G56.12
- ;;^UTILITY(U,$J,358.3,27992,2)
- ;;=^5004022
- ;;^UTILITY(U,$J,358.3,27993,0)
- ;;=G56.01^^109^1397^3
- ;;^UTILITY(U,$J,358.3,27993,1,0)
+ ;;^UTILITY(U,$J,358.3,26338,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,26338,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,26338,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,26339,0)
+ ;;=I50.33^^107^1238^2
+ ;;^UTILITY(U,$J,358.3,26339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27993,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,27993,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,27993,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,27994,0)
- ;;=G56.02^^109^1397^2
- ;;^UTILITY(U,$J,358.3,27994,1,0)
+ ;;^UTILITY(U,$J,358.3,26339,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,26339,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,26339,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,26340,0)
+ ;;=I50.40^^107^1238^8
+ ;;^UTILITY(U,$J,358.3,26340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27994,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,27994,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,27994,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,27995,0)
- ;;=R26.89^^109^1397^1
- ;;^UTILITY(U,$J,358.3,27995,1,0)
+ ;;^UTILITY(U,$J,358.3,26340,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,26340,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,26340,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,26341,0)
+ ;;=I50.41^^107^1238^5
+ ;;^UTILITY(U,$J,358.3,26341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27995,1,3,0)
- ;;=3^Abnormalities of Gait & Mobility NEC
- ;;^UTILITY(U,$J,358.3,27995,1,4,0)
- ;;=4^R26.89
- ;;^UTILITY(U,$J,358.3,27995,2)
- ;;=^5019308
- ;;^UTILITY(U,$J,358.3,27996,0)
- ;;=M79.602^^109^1397^13
- ;;^UTILITY(U,$J,358.3,27996,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27996,1,3,0)
- ;;=3^Pain in Left Arm
+ ;;^UTILITY(U,$J,358.3,26341,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute

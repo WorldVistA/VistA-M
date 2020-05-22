@@ -1,124 +1,130 @@
-IBDEI1SV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30590,1,0)
+ ;;^UTILITY(U,$J,358.3,28743,1,4,0)
+ ;;=4^F80.9
+ ;;^UTILITY(U,$J,358.3,28743,2)
+ ;;=^5003678
+ ;;^UTILITY(U,$J,358.3,28744,0)
+ ;;=F82.^^115^1420^11
+ ;;^UTILITY(U,$J,358.3,28744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30590,1,3,0)
- ;;=3^Digital Nerve Injury,Left Index Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30590,1,4,0)
- ;;=4^S64.491A
- ;;^UTILITY(U,$J,358.3,30590,2)
- ;;=^5035802
- ;;^UTILITY(U,$J,358.3,30591,0)
- ;;=S64.492A^^121^1521^14
- ;;^UTILITY(U,$J,358.3,30591,1,0)
+ ;;^UTILITY(U,$J,358.3,28744,1,3,0)
+ ;;=3^Developmental Coordination D/O
+ ;;^UTILITY(U,$J,358.3,28744,1,4,0)
+ ;;=4^F82.
+ ;;^UTILITY(U,$J,358.3,28744,2)
+ ;;=^5003683
+ ;;^UTILITY(U,$J,358.3,28745,0)
+ ;;=F88.^^115^1420^24
+ ;;^UTILITY(U,$J,358.3,28745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30591,1,3,0)
- ;;=3^Digital Nerve Injury,Right Middle Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30591,1,4,0)
- ;;=4^S64.492A
- ;;^UTILITY(U,$J,358.3,30591,2)
- ;;=^5035805
- ;;^UTILITY(U,$J,358.3,30592,0)
- ;;=S64.493A^^121^1521^9
- ;;^UTILITY(U,$J,358.3,30592,1,0)
+ ;;^UTILITY(U,$J,358.3,28745,1,3,0)
+ ;;=3^Psych Development D/O,Other
+ ;;^UTILITY(U,$J,358.3,28745,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,28745,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,28746,0)
+ ;;=F80.2^^115^1420^17
+ ;;^UTILITY(U,$J,358.3,28746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30592,1,3,0)
- ;;=3^Digital Nerve Injury,Left Middle Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30592,1,4,0)
- ;;=4^S64.493A
- ;;^UTILITY(U,$J,358.3,30592,2)
- ;;=^5035808
- ;;^UTILITY(U,$J,358.3,30593,0)
- ;;=S64.494A^^121^1521^15
- ;;^UTILITY(U,$J,358.3,30593,1,0)
+ ;;^UTILITY(U,$J,358.3,28746,1,3,0)
+ ;;=3^Language D/O
+ ;;^UTILITY(U,$J,358.3,28746,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,28746,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,28747,0)
+ ;;=F81.2^^115^1420^18
+ ;;^UTILITY(U,$J,358.3,28747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30593,1,3,0)
- ;;=3^Digital Nerve Injury,Right Ring Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30593,1,4,0)
- ;;=4^S64.494A
- ;;^UTILITY(U,$J,358.3,30593,2)
- ;;=^5035811
- ;;^UTILITY(U,$J,358.3,30594,0)
- ;;=S64.495A^^121^1521^10
- ;;^UTILITY(U,$J,358.3,30594,1,0)
+ ;;^UTILITY(U,$J,358.3,28747,1,3,0)
+ ;;=3^Learning D/O w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,28747,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,28747,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,28748,0)
+ ;;=F81.0^^115^1420^19
+ ;;^UTILITY(U,$J,358.3,28748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30594,1,3,0)
- ;;=3^Digital Nerve Injury,Left Ring Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30594,1,4,0)
- ;;=4^S64.495A
- ;;^UTILITY(U,$J,358.3,30594,2)
- ;;=^5035814
- ;;^UTILITY(U,$J,358.3,30595,0)
- ;;=S64.496A^^121^1521^13
- ;;^UTILITY(U,$J,358.3,30595,1,0)
+ ;;^UTILITY(U,$J,358.3,28748,1,3,0)
+ ;;=3^Learning D/O w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,28748,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,28748,2)
+ ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,28749,0)
+ ;;=F81.81^^115^1420^20
+ ;;^UTILITY(U,$J,358.3,28749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30595,1,3,0)
- ;;=3^Digital Nerve Injury,Right Little Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30595,1,4,0)
- ;;=4^S64.496A
- ;;^UTILITY(U,$J,358.3,30595,2)
- ;;=^5035817
- ;;^UTILITY(U,$J,358.3,30596,0)
- ;;=S64.497A^^121^1521^8
- ;;^UTILITY(U,$J,358.3,30596,1,0)
+ ;;^UTILITY(U,$J,358.3,28749,1,3,0)
+ ;;=3^Learning D/O w/ Impairment in Written Expression
+ ;;^UTILITY(U,$J,358.3,28749,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,28749,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,28750,0)
+ ;;=F89.^^115^1420^21
+ ;;^UTILITY(U,$J,358.3,28750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30596,1,3,0)
- ;;=3^Digital Nerve Injury,Left Little Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,30596,1,4,0)
- ;;=4^S64.497A
- ;;^UTILITY(U,$J,358.3,30596,2)
- ;;=^5035820
- ;;^UTILITY(U,$J,358.3,30597,0)
- ;;=S44.91XA^^121^1521^34
- ;;^UTILITY(U,$J,358.3,30597,1,0)
+ ;;^UTILITY(U,$J,358.3,28750,1,3,0)
+ ;;=3^Neurodevelopmental D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28750,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,28750,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,28751,0)
+ ;;=F95.1^^115^1420^9
+ ;;^UTILITY(U,$J,358.3,28751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30597,1,3,0)
- ;;=3^Nerve Injury Unspec,Right Shldr/Upper Arm,Init Encnt
- ;;^UTILITY(U,$J,358.3,30597,1,4,0)
- ;;=4^S44.91XA
- ;;^UTILITY(U,$J,358.3,30597,2)
- ;;=^5134801
- ;;^UTILITY(U,$J,358.3,30598,0)
- ;;=S44.92XA^^121^1521^33
- ;;^UTILITY(U,$J,358.3,30598,1,0)
+ ;;^UTILITY(U,$J,358.3,28751,1,3,0)
+ ;;=3^Chronic Motor or Vocal Tic D/O
+ ;;^UTILITY(U,$J,358.3,28751,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,28751,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,28752,0)
+ ;;=F95.0^^115^1420^23
+ ;;^UTILITY(U,$J,358.3,28752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30598,1,3,0)
- ;;=3^Nerve Injury Unspec,Left Shldr/Upper Arm, Init Encnt
- ;;^UTILITY(U,$J,358.3,30598,1,4,0)
- ;;=4^S44.92XA
- ;;^UTILITY(U,$J,358.3,30598,2)
- ;;=^5134802
- ;;^UTILITY(U,$J,358.3,30599,0)
- ;;=S94.8X1A^^121^1521^38
- ;;^UTILITY(U,$J,358.3,30599,1,0)
+ ;;^UTILITY(U,$J,358.3,28752,1,3,0)
+ ;;=3^Provisional Tic D/O
+ ;;^UTILITY(U,$J,358.3,28752,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,28752,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,28753,0)
+ ;;=F80.0^^115^1420^22
+ ;;^UTILITY(U,$J,358.3,28753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30599,1,3,0)
- ;;=3^Nerve Injury,Right Ankle & Foot,Init Encnt
- ;;^UTILITY(U,$J,358.3,30599,1,4,0)
- ;;=4^S94.8X1A
- ;;^UTILITY(U,$J,358.3,30599,2)
- ;;=^5045930
- ;;^UTILITY(U,$J,358.3,30600,0)
- ;;=S94.8X2A^^121^1521^35
- ;;^UTILITY(U,$J,358.3,30600,1,0)
+ ;;^UTILITY(U,$J,358.3,28753,1,3,0)
+ ;;=3^Phonological D/O
+ ;;^UTILITY(U,$J,358.3,28753,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,28753,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,28754,0)
+ ;;=F98.4^^115^1420^26
+ ;;^UTILITY(U,$J,358.3,28754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30600,1,3,0)
- ;;=3^Nerve Injury,Left Ankle & Foot,Init Encnt
- ;;^UTILITY(U,$J,358.3,30600,1,4,0)
- ;;=4^S94.8X2A
- ;;^UTILITY(U,$J,358.3,30600,2)
- ;;=^5045933
- ;;^UTILITY(U,$J,358.3,30601,0)
- ;;=S74.91XA^^121^1521^39
- ;;^UTILITY(U,$J,358.3,30601,1,0)
+ ;;^UTILITY(U,$J,358.3,28754,1,3,0)
+ ;;=3^Stereotypic Movement D/O
+ ;;^UTILITY(U,$J,358.3,28754,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,28754,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,28755,0)
+ ;;=F95.8^^115^1420^27
+ ;;^UTILITY(U,$J,358.3,28755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30601,1,3,0)
- ;;=3^Nerve Injury,Right Hip & Thigh,Init Encnt
- ;;^UTILITY(U,$J,358.3,30601,1,4,0)
- ;;=4^S74.91XA
- ;;^UTILITY(U,$J,358.3,30601,2)
- ;;=^5136509
- ;;^UTILITY(U,$J,358.3,30602,0)
- ;;=S74.92XA^^121^1521^36
+ ;;^UTILITY(U,$J,358.3,28755,1,3,0)
+ ;;=3^Tic D/O,Oth Specified
+ ;;^UTILITY(U,$J,358.3,28755,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,28755,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,28756,0)
+ ;;=F95.9^^115^1420^28

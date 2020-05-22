@@ -1,138 +1,122 @@
-IBDEI32R ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51570,0)
- ;;=I48.91^^225^2498^6
- ;;^UTILITY(U,$J,358.3,51570,1,0)
+ ;;^UTILITY(U,$J,358.3,49094,1,3,0)
+ ;;=3^Problems Related to Reduced Mobility
+ ;;^UTILITY(U,$J,358.3,49094,1,4,0)
+ ;;=4^Z74.09
+ ;;^UTILITY(U,$J,358.3,49094,2)
+ ;;=^5063283
+ ;;^UTILITY(U,$J,358.3,49095,0)
+ ;;=Z60.9^^185^2428^156
+ ;;^UTILITY(U,$J,358.3,49095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51570,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,51570,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,51570,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,51571,0)
- ;;=I48.0^^225^2498^14
- ;;^UTILITY(U,$J,358.3,51571,1,0)
+ ;;^UTILITY(U,$J,358.3,49095,1,3,0)
+ ;;=3^Problems Related to Social Environment
+ ;;^UTILITY(U,$J,358.3,49095,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,49095,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,49096,0)
+ ;;=Z60.4^^185^2428^157
+ ;;^UTILITY(U,$J,358.3,49096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51571,1,3,0)
- ;;=3^Paroxysmal Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,51571,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,51571,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,51572,0)
- ;;=I48.1^^225^2498^15
- ;;^UTILITY(U,$J,358.3,51572,1,0)
+ ;;^UTILITY(U,$J,358.3,49096,1,3,0)
+ ;;=3^Problems Related to Social Exclusion/Rejection
+ ;;^UTILITY(U,$J,358.3,49096,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,49096,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,49097,0)
+ ;;=Z60.5^^185^2428^125
+ ;;^UTILITY(U,$J,358.3,49097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51572,1,3,0)
- ;;=3^Persistent Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,51572,1,4,0)
- ;;=4^I48.1
- ;;^UTILITY(U,$J,358.3,51572,2)
- ;;=^5007225
- ;;^UTILITY(U,$J,358.3,51573,0)
- ;;=I48.2^^225^2498^9
- ;;^UTILITY(U,$J,358.3,51573,1,0)
+ ;;^UTILITY(U,$J,358.3,49097,1,3,0)
+ ;;=3^Problems Related to Adverse Discrimination/Persecution
+ ;;^UTILITY(U,$J,358.3,49097,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,49097,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,49098,0)
+ ;;=Z75.3^^185^2428^158
+ ;;^UTILITY(U,$J,358.3,49098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51573,1,3,0)
- ;;=3^Chronic Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,51573,1,4,0)
- ;;=4^I48.2
- ;;^UTILITY(U,$J,358.3,51573,2)
- ;;=^5007226
- ;;^UTILITY(U,$J,358.3,51574,0)
- ;;=Z95.0^^225^2498^16
- ;;^UTILITY(U,$J,358.3,51574,1,0)
+ ;;^UTILITY(U,$J,358.3,49098,1,3,0)
+ ;;=3^Problems Related to Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,49098,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,49098,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,49099,0)
+ ;;=Z75.4^^185^2428^159
+ ;;^UTILITY(U,$J,358.3,49099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51574,1,3,0)
- ;;=3^Presence of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,51574,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,51574,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,51575,0)
- ;;=I50.9^^225^2498^11
- ;;^UTILITY(U,$J,358.3,51575,1,0)
+ ;;^UTILITY(U,$J,358.3,49099,1,3,0)
+ ;;=3^Problems Related to Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,49099,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,49099,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,49100,0)
+ ;;=Z65.9^^185^2428^153
+ ;;^UTILITY(U,$J,358.3,49100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51575,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,51575,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,51575,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,51576,0)
- ;;=I20.0^^225^2498^17
- ;;^UTILITY(U,$J,358.3,51576,1,0)
+ ;;^UTILITY(U,$J,358.3,49100,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,49100,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,49100,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,49101,0)
+ ;;=Z75.2^^185^2428^160
+ ;;^UTILITY(U,$J,358.3,49101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51576,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,51576,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,51576,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,51577,0)
- ;;=I25.110^^225^2498^5
- ;;^UTILITY(U,$J,358.3,51577,1,0)
+ ;;^UTILITY(U,$J,358.3,49101,1,3,0)
+ ;;=3^Problems Related to Waiting Period for Investigation/Treatment
+ ;;^UTILITY(U,$J,358.3,49101,1,4,0)
+ ;;=4^Z75.2
+ ;;^UTILITY(U,$J,358.3,49101,2)
+ ;;=^5063291
+ ;;^UTILITY(U,$J,358.3,49102,0)
+ ;;=Z75.5^^185^2428^161
+ ;;^UTILITY(U,$J,358.3,49102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51577,1,3,0)
- ;;=3^Athscl Hrt Disease Native Coronary Artery w/ Ang Pctrs
- ;;^UTILITY(U,$J,358.3,51577,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,51577,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,51578,0)
- ;;=I25.2^^225^2498^13
- ;;^UTILITY(U,$J,358.3,51578,1,0)
+ ;;^UTILITY(U,$J,358.3,49102,1,3,0)
+ ;;=3^Respite/Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,49102,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,49102,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,49103,0)
+ ;;=R68.89^^185^2428^165
+ ;;^UTILITY(U,$J,358.3,49103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51578,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,51578,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,51578,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,51579,0)
- ;;=I25.3^^225^2498^2
- ;;^UTILITY(U,$J,358.3,51579,1,0)
+ ;;^UTILITY(U,$J,358.3,49103,1,3,0)
+ ;;=3^Symptoms/Signs,General,Other
+ ;;^UTILITY(U,$J,358.3,49103,1,4,0)
+ ;;=4^R68.89
+ ;;^UTILITY(U,$J,358.3,49103,2)
+ ;;=^5019557
+ ;;^UTILITY(U,$J,358.3,49104,0)
+ ;;=Z72.0^^185^2428^168
+ ;;^UTILITY(U,$J,358.3,49104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51579,1,3,0)
- ;;=3^Aneurysm of Heart
- ;;^UTILITY(U,$J,358.3,51579,1,4,0)
- ;;=4^I25.3
- ;;^UTILITY(U,$J,358.3,51579,2)
- ;;=^5007112
- ;;^UTILITY(U,$J,358.3,51580,0)
- ;;=I48.3^^225^2498^7
- ;;^UTILITY(U,$J,358.3,51580,1,0)
+ ;;^UTILITY(U,$J,358.3,49104,1,3,0)
+ ;;=3^Tobacco Use
+ ;;^UTILITY(U,$J,358.3,49104,1,4,0)
+ ;;=4^Z72.0
+ ;;^UTILITY(U,$J,358.3,49104,2)
+ ;;=^5063255
+ ;;^UTILITY(U,$J,358.3,49105,0)
+ ;;=Z94.9^^185^2428^169
+ ;;^UTILITY(U,$J,358.3,49105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51580,1,3,0)
- ;;=3^Atypical Atrial Flutter,Type I
- ;;^UTILITY(U,$J,358.3,51580,1,4,0)
- ;;=4^I48.3
- ;;^UTILITY(U,$J,358.3,51580,2)
- ;;=^5007227
- ;;^UTILITY(U,$J,358.3,51581,0)
- ;;=I48.4^^225^2498^8
- ;;^UTILITY(U,$J,358.3,51581,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51581,1,3,0)
- ;;=3^Atypical Atrial Flutter,Type II
- ;;^UTILITY(U,$J,358.3,51581,1,4,0)
- ;;=4^I48.4
- ;;^UTILITY(U,$J,358.3,51581,2)
- ;;=^5007228
- ;;^UTILITY(U,$J,358.3,51582,0)
- ;;=I50.1^^225^2498^12
- ;;^UTILITY(U,$J,358.3,51582,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51582,1,3,0)
- ;;=3^Left Heart Failure
- ;;^UTILITY(U,$J,358.3,51582,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,51582,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,51583,0)
- ;;=I50.21^^225^2498^1
- ;;^UTILITY(U,$J,358.3,51583,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49105,1,3,0)
+ ;;=3^Transplanted Organ/Tissue Status,Unspec
+ ;;^UTILITY(U,$J,358.3,49105,1,4,0)
+ ;;=4^Z94.9
+ ;;^UTILITY(U,$J,358.3,49105,2)
+ ;;=^5063667
+ ;;^UTILITY(U,$J,358.3,49106,0)
+ ;;=R76.11^^185^2428^166

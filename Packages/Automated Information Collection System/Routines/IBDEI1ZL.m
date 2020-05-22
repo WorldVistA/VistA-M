@@ -1,136 +1,120 @@
-IBDEI1ZL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33710,1,4,0)
- ;;=4^N32.0
- ;;^UTILITY(U,$J,358.3,33710,2)
- ;;=^5015649
- ;;^UTILITY(U,$J,358.3,33711,0)
- ;;=N31.9^^131^1676^70
- ;;^UTILITY(U,$J,358.3,33711,1,0)
+ ;;^UTILITY(U,$J,358.3,31711,1,4,0)
+ ;;=4^O41.1213
+ ;;^UTILITY(U,$J,358.3,31711,2)
+ ;;=^5017270
+ ;;^UTILITY(U,$J,358.3,31712,0)
+ ;;=O41.1214^^126^1627^5
+ ;;^UTILITY(U,$J,358.3,31712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33711,1,3,0)
- ;;=3^Neurogenic Bladder Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,33711,1,4,0)
- ;;=4^N31.9
- ;;^UTILITY(U,$J,358.3,33711,2)
- ;;=^5015648
- ;;^UTILITY(U,$J,358.3,33712,0)
- ;;=N31.1^^131^1676^71
- ;;^UTILITY(U,$J,358.3,33712,1,0)
+ ;;^UTILITY(U,$J,358.3,31712,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31712,1,4,0)
+ ;;=4^O41.1214
+ ;;^UTILITY(U,$J,358.3,31712,2)
+ ;;=^5017271
+ ;;^UTILITY(U,$J,358.3,31713,0)
+ ;;=O41.1215^^126^1627^6
+ ;;^UTILITY(U,$J,358.3,31713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33712,1,3,0)
- ;;=3^Neuropathic Bladder,Reflex NEC
- ;;^UTILITY(U,$J,358.3,33712,1,4,0)
- ;;=4^N31.1
- ;;^UTILITY(U,$J,358.3,33712,2)
- ;;=^5015645
- ;;^UTILITY(U,$J,358.3,33713,0)
- ;;=N32.89^^131^1676^5
- ;;^UTILITY(U,$J,358.3,33713,1,0)
+ ;;^UTILITY(U,$J,358.3,31713,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31713,1,4,0)
+ ;;=4^O41.1215
+ ;;^UTILITY(U,$J,358.3,31713,2)
+ ;;=^5017272
+ ;;^UTILITY(U,$J,358.3,31714,0)
+ ;;=O41.1220^^126^1627^13
+ ;;^UTILITY(U,$J,358.3,31714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33713,1,3,0)
- ;;=3^Bladder Disorders,Other Spec
- ;;^UTILITY(U,$J,358.3,33713,1,4,0)
- ;;=4^N32.89
- ;;^UTILITY(U,$J,358.3,33713,2)
- ;;=^87989
- ;;^UTILITY(U,$J,358.3,33714,0)
- ;;=N33.^^131^1676^4
- ;;^UTILITY(U,$J,358.3,33714,1,0)
+ ;;^UTILITY(U,$J,358.3,31714,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,31714,1,4,0)
+ ;;=4^O41.1220
+ ;;^UTILITY(U,$J,358.3,31714,2)
+ ;;=^5017274
+ ;;^UTILITY(U,$J,358.3,31715,0)
+ ;;=O41.1221^^126^1627^8
+ ;;^UTILITY(U,$J,358.3,31715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33714,1,3,0)
- ;;=3^Bladder Disorders,Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,33714,1,4,0)
- ;;=4^N33.
- ;;^UTILITY(U,$J,358.3,33714,2)
- ;;=^5015654
- ;;^UTILITY(U,$J,358.3,33715,0)
- ;;=N34.2^^131^1676^99
- ;;^UTILITY(U,$J,358.3,33715,1,0)
+ ;;^UTILITY(U,$J,358.3,31715,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31715,1,4,0)
+ ;;=4^O41.1221
+ ;;^UTILITY(U,$J,358.3,31715,2)
+ ;;=^5017275
+ ;;^UTILITY(U,$J,358.3,31716,0)
+ ;;=O41.1222^^126^1627^9
+ ;;^UTILITY(U,$J,358.3,31716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33715,1,3,0)
- ;;=3^Urethritis
- ;;^UTILITY(U,$J,358.3,33715,1,4,0)
- ;;=4^N34.2
- ;;^UTILITY(U,$J,358.3,33715,2)
- ;;=^88231
- ;;^UTILITY(U,$J,358.3,33716,0)
- ;;=N34.1^^131^1676^100
- ;;^UTILITY(U,$J,358.3,33716,1,0)
+ ;;^UTILITY(U,$J,358.3,31716,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31716,1,4,0)
+ ;;=4^O41.1222
+ ;;^UTILITY(U,$J,358.3,31716,2)
+ ;;=^5017276
+ ;;^UTILITY(U,$J,358.3,31717,0)
+ ;;=O41.1223^^126^1627^10
+ ;;^UTILITY(U,$J,358.3,31717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33716,1,3,0)
- ;;=3^Urethritis,Nonspec
- ;;^UTILITY(U,$J,358.3,33716,1,4,0)
- ;;=4^N34.1
- ;;^UTILITY(U,$J,358.3,33716,2)
- ;;=^5015655
- ;;^UTILITY(U,$J,358.3,33717,0)
- ;;=N39.0^^131^1676^104
- ;;^UTILITY(U,$J,358.3,33717,1,0)
+ ;;^UTILITY(U,$J,358.3,31717,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31717,1,4,0)
+ ;;=4^O41.1223
+ ;;^UTILITY(U,$J,358.3,31717,2)
+ ;;=^5017277
+ ;;^UTILITY(U,$J,358.3,31718,0)
+ ;;=O41.1224^^126^1627^11
+ ;;^UTILITY(U,$J,358.3,31718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33717,1,3,0)
- ;;=3^Urinary Tract Infection,Site Not Spec
- ;;^UTILITY(U,$J,358.3,33717,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,33717,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,33718,0)
- ;;=N31.0^^131^1676^72
- ;;^UTILITY(U,$J,358.3,33718,1,0)
+ ;;^UTILITY(U,$J,358.3,31718,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31718,1,4,0)
+ ;;=4^O41.1224
+ ;;^UTILITY(U,$J,358.3,31718,2)
+ ;;=^5017278
+ ;;^UTILITY(U,$J,358.3,31719,0)
+ ;;=O41.1225^^126^1627^12
+ ;;^UTILITY(U,$J,358.3,31719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33718,1,3,0)
- ;;=3^Neuropathic Bladder,Uninhibited NEC
- ;;^UTILITY(U,$J,358.3,33718,1,4,0)
- ;;=4^N31.0
- ;;^UTILITY(U,$J,358.3,33718,2)
- ;;=^5015644
- ;;^UTILITY(U,$J,358.3,33719,0)
- ;;=R31.9^^131^1676^54
- ;;^UTILITY(U,$J,358.3,33719,1,0)
+ ;;^UTILITY(U,$J,358.3,31719,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31719,1,4,0)
+ ;;=4^O41.1225
+ ;;^UTILITY(U,$J,358.3,31719,2)
+ ;;=^5017279
+ ;;^UTILITY(U,$J,358.3,31720,0)
+ ;;=O41.1230^^126^1627^19
+ ;;^UTILITY(U,$J,358.3,31720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33719,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,33719,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,33719,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,33720,0)
- ;;=R31.0^^131^1676^52
- ;;^UTILITY(U,$J,358.3,33720,1,0)
+ ;;^UTILITY(U,$J,358.3,31720,1,3,0)
+ ;;=3^Chorioamnionitis, third trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,31720,1,4,0)
+ ;;=4^O41.1230
+ ;;^UTILITY(U,$J,358.3,31720,2)
+ ;;=^5017281
+ ;;^UTILITY(U,$J,358.3,31721,0)
+ ;;=O41.1231^^126^1627^14
+ ;;^UTILITY(U,$J,358.3,31721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33720,1,3,0)
- ;;=3^Hematuria,Gross
- ;;^UTILITY(U,$J,358.3,33720,1,4,0)
- ;;=4^R31.0
- ;;^UTILITY(U,$J,358.3,33720,2)
- ;;=^5019325
- ;;^UTILITY(U,$J,358.3,33721,0)
- ;;=R31.2^^131^1676^53
- ;;^UTILITY(U,$J,358.3,33721,1,0)
+ ;;^UTILITY(U,$J,358.3,31721,1,3,0)
+ ;;=3^Chorioamnionitis, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31721,1,4,0)
+ ;;=4^O41.1231
+ ;;^UTILITY(U,$J,358.3,31721,2)
+ ;;=^5017282
+ ;;^UTILITY(U,$J,358.3,31722,0)
+ ;;=O41.1232^^126^1627^15
+ ;;^UTILITY(U,$J,358.3,31722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33721,1,3,0)
- ;;=3^Hematuria,Microscopic
- ;;^UTILITY(U,$J,358.3,33721,1,4,0)
- ;;=4^R31.2
- ;;^UTILITY(U,$J,358.3,33721,2)
- ;;=^5019327
- ;;^UTILITY(U,$J,358.3,33722,0)
- ;;=R31.1^^131^1676^51
- ;;^UTILITY(U,$J,358.3,33722,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33722,1,3,0)
- ;;=3^Hematuria,Benign Essential Microscopic
- ;;^UTILITY(U,$J,358.3,33722,1,4,0)
- ;;=4^R31.1
- ;;^UTILITY(U,$J,358.3,33722,2)
- ;;=^5019326
- ;;^UTILITY(U,$J,358.3,33723,0)
- ;;=N40.0^^131^1676^30
- ;;^UTILITY(U,$J,358.3,33723,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33723,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,33723,1,4,0)
- ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,31722,1,3,0)
+ ;;=3^Chorioamnionitis, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31722,1,4,0)
+ ;;=4^O41.1232
+ ;;^UTILITY(U,$J,358.3,31722,2)
+ ;;=^5017283
+ ;;^UTILITY(U,$J,358.3,31723,0)
+ ;;=O41.1233^^126^1627^16

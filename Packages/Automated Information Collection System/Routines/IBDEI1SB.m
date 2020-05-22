@@ -1,130 +1,126 @@
-IBDEI1SB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30319,1,4,0)
- ;;=4^C93.91
- ;;^UTILITY(U,$J,358.3,30319,2)
- ;;=^5001829
- ;;^UTILITY(U,$J,358.3,30320,0)
- ;;=C93.92^^118^1505^49
- ;;^UTILITY(U,$J,358.3,30320,1,0)
+ ;;^UTILITY(U,$J,358.3,28506,0)
+ ;;=F51.11^^115^1405^10
+ ;;^UTILITY(U,$J,358.3,28506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30320,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in relapse
- ;;^UTILITY(U,$J,358.3,30320,1,4,0)
- ;;=4^C93.92
- ;;^UTILITY(U,$J,358.3,30320,2)
- ;;=^5001830
- ;;^UTILITY(U,$J,358.3,30321,0)
- ;;=C94.00^^118^1505^3
- ;;^UTILITY(U,$J,358.3,30321,1,0)
+ ;;^UTILITY(U,$J,358.3,28506,1,3,0)
+ ;;=3^Hypersomnolence D/O
+ ;;^UTILITY(U,$J,358.3,28506,1,4,0)
+ ;;=4^F51.11
+ ;;^UTILITY(U,$J,358.3,28506,2)
+ ;;=^5003609
+ ;;^UTILITY(U,$J,358.3,28507,0)
+ ;;=F51.01^^115^1405^13
+ ;;^UTILITY(U,$J,358.3,28507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30321,1,3,0)
- ;;=3^Acute erythroid leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,30321,1,4,0)
- ;;=4^C94.00
- ;;^UTILITY(U,$J,358.3,30321,2)
- ;;=^5001834
- ;;^UTILITY(U,$J,358.3,30322,0)
- ;;=C94.01^^118^1505^2
- ;;^UTILITY(U,$J,358.3,30322,1,0)
+ ;;^UTILITY(U,$J,358.3,28507,1,3,0)
+ ;;=3^Insomnia D/O
+ ;;^UTILITY(U,$J,358.3,28507,1,4,0)
+ ;;=4^F51.01
+ ;;^UTILITY(U,$J,358.3,28507,2)
+ ;;=^5003603
+ ;;^UTILITY(U,$J,358.3,28508,0)
+ ;;=G47.36^^115^1405^25
+ ;;^UTILITY(U,$J,358.3,28508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30322,1,3,0)
- ;;=3^Acute erythroid leukemia, in remission
- ;;^UTILITY(U,$J,358.3,30322,1,4,0)
- ;;=4^C94.01
- ;;^UTILITY(U,$J,358.3,30322,2)
- ;;=^5001835
- ;;^UTILITY(U,$J,358.3,30323,0)
- ;;=C94.02^^118^1505^1
- ;;^UTILITY(U,$J,358.3,30323,1,0)
+ ;;^UTILITY(U,$J,358.3,28508,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation Cond Class Elsewhere
+ ;;^UTILITY(U,$J,358.3,28508,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,28508,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,28509,0)
+ ;;=G47.35^^115^1405^26
+ ;;^UTILITY(U,$J,358.3,28509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30323,1,3,0)
- ;;=3^Acute erythroid leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,30323,1,4,0)
- ;;=4^C94.02
- ;;^UTILITY(U,$J,358.3,30323,2)
- ;;=^5001836
- ;;^UTILITY(U,$J,358.3,30324,0)
- ;;=C94.20^^118^1505^7
- ;;^UTILITY(U,$J,358.3,30324,1,0)
+ ;;^UTILITY(U,$J,358.3,28509,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congen Central Alveolar
+ ;;^UTILITY(U,$J,358.3,28509,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,28509,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,28510,0)
+ ;;=G47.34^^115^1405^27
+ ;;^UTILITY(U,$J,358.3,28510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30324,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia not achieve remission
- ;;^UTILITY(U,$J,358.3,30324,1,4,0)
- ;;=4^C94.20
- ;;^UTILITY(U,$J,358.3,30324,2)
- ;;=^5001837
- ;;^UTILITY(U,$J,358.3,30325,0)
- ;;=C94.21^^118^1505^9
- ;;^UTILITY(U,$J,358.3,30325,1,0)
+ ;;^UTILITY(U,$J,358.3,28510,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic
+ ;;^UTILITY(U,$J,358.3,28510,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,28510,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,28511,0)
+ ;;=G47.9^^115^1405^29
+ ;;^UTILITY(U,$J,358.3,28511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30325,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,30325,1,4,0)
- ;;=4^C94.21
- ;;^UTILITY(U,$J,358.3,30325,2)
- ;;=^5001838
- ;;^UTILITY(U,$J,358.3,30326,0)
- ;;=C94.22^^118^1505^8
- ;;^UTILITY(U,$J,358.3,30326,1,0)
+ ;;^UTILITY(U,$J,358.3,28511,1,3,0)
+ ;;=3^Sleep-Wake D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28511,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,28511,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,28512,0)
+ ;;=G47.419^^115^1405^18
+ ;;^UTILITY(U,$J,358.3,28512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30326,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,30326,1,4,0)
- ;;=4^C94.22
- ;;^UTILITY(U,$J,358.3,30326,2)
- ;;=^5001839
- ;;^UTILITY(U,$J,358.3,30327,0)
- ;;=C94.30^^118^1505^45
- ;;^UTILITY(U,$J,358.3,30327,1,0)
+ ;;^UTILITY(U,$J,358.3,28512,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy
+ ;;^UTILITY(U,$J,358.3,28512,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,28512,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,28513,0)
+ ;;=R06.3^^115^1405^3
+ ;;^UTILITY(U,$J,358.3,28513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30327,1,3,0)
- ;;=3^Mast cell leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,30327,1,4,0)
- ;;=4^C94.30
- ;;^UTILITY(U,$J,358.3,30327,2)
- ;;=^5001840
- ;;^UTILITY(U,$J,358.3,30328,0)
- ;;=C94.31^^118^1505^47
- ;;^UTILITY(U,$J,358.3,30328,1,0)
+ ;;^UTILITY(U,$J,358.3,28513,1,3,0)
+ ;;=3^Cheyne-Stokes Breathing
+ ;;^UTILITY(U,$J,358.3,28513,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,28513,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,28514,0)
+ ;;=G47.429^^115^1405^16
+ ;;^UTILITY(U,$J,358.3,28514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30328,1,3,0)
- ;;=3^Mast cell leukemia, in remission
- ;;^UTILITY(U,$J,358.3,30328,1,4,0)
- ;;=4^C94.31
- ;;^UTILITY(U,$J,358.3,30328,2)
- ;;=^5001841
- ;;^UTILITY(U,$J,358.3,30329,0)
- ;;=C94.32^^118^1505^46
- ;;^UTILITY(U,$J,358.3,30329,1,0)
+ ;;^UTILITY(U,$J,358.3,28514,1,3,0)
+ ;;=3^Narcolepsy Secondary to Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,28514,1,4,0)
+ ;;=4^G47.429
+ ;;^UTILITY(U,$J,358.3,28514,2)
+ ;;=^5003984
+ ;;^UTILITY(U,$J,358.3,28515,0)
+ ;;=F10.10^^115^1406^29
+ ;;^UTILITY(U,$J,358.3,28515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30329,1,3,0)
- ;;=3^Mast cell leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,30329,1,4,0)
- ;;=4^C94.32
- ;;^UTILITY(U,$J,358.3,30329,2)
- ;;=^5001842
- ;;^UTILITY(U,$J,358.3,30330,0)
- ;;=C95.00^^118^1505^4
- ;;^UTILITY(U,$J,358.3,30330,1,0)
+ ;;^UTILITY(U,$J,358.3,28515,1,3,0)
+ ;;=3^Alcohol Use DO (Mild),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28515,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,28515,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,28516,0)
+ ;;=F10.20^^115^1406^34
+ ;;^UTILITY(U,$J,358.3,28516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30330,1,3,0)
- ;;=3^Acute leukemia of unsp cell type not achieve remission
- ;;^UTILITY(U,$J,358.3,30330,1,4,0)
- ;;=4^C95.00
- ;;^UTILITY(U,$J,358.3,30330,2)
- ;;=^5001850
- ;;^UTILITY(U,$J,358.3,30331,0)
- ;;=C95.01^^118^1505^5
- ;;^UTILITY(U,$J,358.3,30331,1,0)
+ ;;^UTILITY(U,$J,358.3,28516,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,28516,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,28516,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,28517,0)
+ ;;=F10.239^^115^1406^31
+ ;;^UTILITY(U,$J,358.3,28517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30331,1,3,0)
- ;;=3^Acute leukemia of unspecified cell type, in remission
- ;;^UTILITY(U,$J,358.3,30331,1,4,0)
- ;;=4^C95.01
- ;;^UTILITY(U,$J,358.3,30331,2)
- ;;=^5001851
- ;;^UTILITY(U,$J,358.3,30332,0)
- ;;=C95.02^^118^1505^6
+ ;;^UTILITY(U,$J,358.3,28517,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD,Unspec
+ ;;^UTILITY(U,$J,358.3,28517,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,28517,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,28518,0)
+ ;;=F10.180^^115^1406^1

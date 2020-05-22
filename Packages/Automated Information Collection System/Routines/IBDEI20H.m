@@ -1,136 +1,122 @@
-IBDEI20H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI20H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34124,1,3,0)
- ;;=3^Colostomy Status
- ;;^UTILITY(U,$J,358.3,34124,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,34124,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,34125,0)
- ;;=Z94.0^^131^1681^63
- ;;^UTILITY(U,$J,358.3,34125,1,0)
+ ;;^UTILITY(U,$J,358.3,32103,0)
+ ;;=Z30.46^^126^1646^19
+ ;;^UTILITY(U,$J,358.3,32103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34125,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,34125,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,34125,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,34126,0)
- ;;=Z94.1^^131^1681^56
- ;;^UTILITY(U,$J,358.3,34126,1,0)
+ ;;^UTILITY(U,$J,358.3,32103,1,3,0)
+ ;;=3^Surveillance Implantable Subdermal (Nexplanon),F/U
+ ;;^UTILITY(U,$J,358.3,32103,1,4,0)
+ ;;=4^Z30.46
+ ;;^UTILITY(U,$J,358.3,32103,2)
+ ;;=^5140424
+ ;;^UTILITY(U,$J,358.3,32104,0)
+ ;;=Z30.45^^126^1646^20
+ ;;^UTILITY(U,$J,358.3,32104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34126,1,3,0)
- ;;=3^Heart Transplant Status
- ;;^UTILITY(U,$J,358.3,34126,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,34126,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,34127,0)
- ;;=Z94.2^^131^1681^66
- ;;^UTILITY(U,$J,358.3,34127,1,0)
+ ;;^UTILITY(U,$J,358.3,32104,1,3,0)
+ ;;=3^Surveillance Transdermal Patch Hormonal (Ortho Evra),F/U
+ ;;^UTILITY(U,$J,358.3,32104,1,4,0)
+ ;;=4^Z30.45
+ ;;^UTILITY(U,$J,358.3,32104,2)
+ ;;=^5140423
+ ;;^UTILITY(U,$J,358.3,32105,0)
+ ;;=Z30.44^^126^1646^21
+ ;;^UTILITY(U,$J,358.3,32105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34127,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,34127,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,34127,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,34128,0)
- ;;=Z94.3^^131^1681^55
- ;;^UTILITY(U,$J,358.3,34128,1,0)
+ ;;^UTILITY(U,$J,358.3,32105,1,3,0)
+ ;;=3^Surveillance Vaginal Ring Hormonal (NuvaRing),F/U
+ ;;^UTILITY(U,$J,358.3,32105,1,4,0)
+ ;;=4^Z30.44
+ ;;^UTILITY(U,$J,358.3,32105,2)
+ ;;=^5140422
+ ;;^UTILITY(U,$J,358.3,32106,0)
+ ;;=Z30.016^^126^1646^22
+ ;;^UTILITY(U,$J,358.3,32106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34128,1,3,0)
- ;;=3^Heart & Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,34128,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,34128,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,34129,0)
- ;;=Z94.4^^131^1681^65
- ;;^UTILITY(U,$J,358.3,34129,1,0)
+ ;;^UTILITY(U,$J,358.3,32106,1,3,0)
+ ;;=3^Transdermal Patch Hormonal Device (Ortho Evra),Initial
+ ;;^UTILITY(U,$J,358.3,32106,1,4,0)
+ ;;=4^Z30.016
+ ;;^UTILITY(U,$J,358.3,32106,2)
+ ;;=^5140420
+ ;;^UTILITY(U,$J,358.3,32107,0)
+ ;;=Z30.015^^126^1646^24
+ ;;^UTILITY(U,$J,358.3,32107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34129,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,34129,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,34129,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,34130,0)
- ;;=Z94.84^^131^1681^143
- ;;^UTILITY(U,$J,358.3,34130,1,0)
+ ;;^UTILITY(U,$J,358.3,32107,1,3,0)
+ ;;=3^Vaginal Ring Hormonal (NuvaRing),Initial
+ ;;^UTILITY(U,$J,358.3,32107,1,4,0)
+ ;;=4^Z30.015
+ ;;^UTILITY(U,$J,358.3,32107,2)
+ ;;=^5140419
+ ;;^UTILITY(U,$J,358.3,32108,0)
+ ;;=Z90.710^^126^1647^1
+ ;;^UTILITY(U,$J,358.3,32108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34130,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,34130,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,34130,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,34131,0)
- ;;=Z96.21^^131^1681^14
- ;;^UTILITY(U,$J,358.3,34131,1,0)
+ ;;^UTILITY(U,$J,358.3,32108,1,3,0)
+ ;;=3^Acquired Absence of Cervix & Uterus
+ ;;^UTILITY(U,$J,358.3,32108,1,4,0)
+ ;;=4^Z90.710
+ ;;^UTILITY(U,$J,358.3,32108,2)
+ ;;=^5063591
+ ;;^UTILITY(U,$J,358.3,32109,0)
+ ;;=Z90.712^^126^1647^2
+ ;;^UTILITY(U,$J,358.3,32109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34131,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,34131,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,34131,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,34132,0)
- ;;=Z96.41^^131^1681^126
- ;;^UTILITY(U,$J,358.3,34132,1,0)
+ ;;^UTILITY(U,$J,358.3,32109,1,3,0)
+ ;;=3^Acquired Absence of Cervix w/ Remaining Uterus
+ ;;^UTILITY(U,$J,358.3,32109,1,4,0)
+ ;;=4^Z90.712
+ ;;^UTILITY(U,$J,358.3,32109,2)
+ ;;=^5063593
+ ;;^UTILITY(U,$J,358.3,32110,0)
+ ;;=R87.619^^126^1647^3
+ ;;^UTILITY(U,$J,358.3,32110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34132,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,34132,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,34132,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,34133,0)
- ;;=Z96.641^^131^1681^134
- ;;^UTILITY(U,$J,358.3,34133,1,0)
+ ;;^UTILITY(U,$J,358.3,32110,1,3,0)
+ ;;=3^Atypical Gland Cells,Undet Signif (AGCUS) Pap
+ ;;^UTILITY(U,$J,358.3,32110,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,32110,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,32111,0)
+ ;;=R87.611^^126^1647^4
+ ;;^UTILITY(U,$J,358.3,32111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34133,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,34133,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,34133,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,34134,0)
- ;;=Z96.642^^131^1681^129
- ;;^UTILITY(U,$J,358.3,34134,1,0)
+ ;;^UTILITY(U,$J,358.3,32111,1,3,0)
+ ;;=3^Atypical Squam Cell,Not Excl Hi Grd Intrepith Lesn Cyto Smr Crvx
+ ;;^UTILITY(U,$J,358.3,32111,1,4,0)
+ ;;=4^R87.611
+ ;;^UTILITY(U,$J,358.3,32111,2)
+ ;;=^5019669
+ ;;^UTILITY(U,$J,358.3,32112,0)
+ ;;=D06.9^^126^1647^5
+ ;;^UTILITY(U,$J,358.3,32112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34134,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,34134,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,34134,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,34135,0)
- ;;=Z96.643^^131^1681^121
- ;;^UTILITY(U,$J,358.3,34135,1,0)
+ ;;^UTILITY(U,$J,358.3,32112,1,3,0)
+ ;;=3^CA in Situ,Cervix
+ ;;^UTILITY(U,$J,358.3,32112,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,32112,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,32113,0)
+ ;;=D06.1^^126^1647^7
+ ;;^UTILITY(U,$J,358.3,32113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34135,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,34135,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,34135,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,34136,0)
- ;;=Z96.651^^131^1681^135
- ;;^UTILITY(U,$J,358.3,34136,1,0)
+ ;;^UTILITY(U,$J,358.3,32113,1,3,0)
+ ;;=3^CA in Situ,Exocervix
+ ;;^UTILITY(U,$J,358.3,32113,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,32113,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,32114,0)
+ ;;=D06.0^^126^1647^6
+ ;;^UTILITY(U,$J,358.3,32114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34136,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,34136,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,34136,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,34137,0)
- ;;=Z96.652^^131^1681^130
- ;;^UTILITY(U,$J,358.3,34137,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34137,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,32114,1,3,0)
+ ;;=3^CA in Situ,Endocervix
+ ;;^UTILITY(U,$J,358.3,32114,1,4,0)
+ ;;=4^D06.0

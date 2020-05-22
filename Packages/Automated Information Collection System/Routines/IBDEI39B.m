@@ -1,138 +1,124 @@
-IBDEI39B ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54730,1,3,0)
- ;;=3^Abscess,Intrasphincteric
- ;;^UTILITY(U,$J,358.3,54730,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,54730,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,54731,0)
- ;;=K61.0^^256^2770^2
- ;;^UTILITY(U,$J,358.3,54731,1,0)
+ ;;^UTILITY(U,$J,358.3,51987,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,51987,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,51988,0)
+ ;;=W13.1XXA^^193^2516^36
+ ;;^UTILITY(U,$J,358.3,51988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54731,1,3,0)
- ;;=3^Abscess,Anal
- ;;^UTILITY(U,$J,358.3,54731,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,54731,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,54732,0)
- ;;=K61.1^^256^2770^6
- ;;^UTILITY(U,$J,358.3,54732,1,0)
+ ;;^UTILITY(U,$J,358.3,51988,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51988,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,51988,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,51989,0)
+ ;;=W13.1XXD^^193^2516^37
+ ;;^UTILITY(U,$J,358.3,51989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54732,1,3,0)
- ;;=3^Abscess,Rectal
- ;;^UTILITY(U,$J,358.3,54732,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,54732,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,54733,0)
- ;;=K61.2^^256^2770^3
- ;;^UTILITY(U,$J,358.3,54733,1,0)
+ ;;^UTILITY(U,$J,358.3,51989,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51989,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,51989,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,51990,0)
+ ;;=W13.2XXA^^193^2516^74
+ ;;^UTILITY(U,$J,358.3,51990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54733,1,3,0)
- ;;=3^Abscess,Anorectal
- ;;^UTILITY(U,$J,358.3,54733,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,54733,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,54734,0)
- ;;=K61.3^^256^2770^5
- ;;^UTILITY(U,$J,358.3,54734,1,0)
+ ;;^UTILITY(U,$J,358.3,51990,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51990,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,51990,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,51991,0)
+ ;;=W13.2XXD^^193^2516^75
+ ;;^UTILITY(U,$J,358.3,51991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54734,1,3,0)
- ;;=3^Abscess,Ischiorectal
- ;;^UTILITY(U,$J,358.3,54734,1,4,0)
- ;;=4^K61.3
- ;;^UTILITY(U,$J,358.3,54734,2)
- ;;=^5008751
- ;;^UTILITY(U,$J,358.3,54735,0)
- ;;=K50.014^^256^2770^22
- ;;^UTILITY(U,$J,358.3,54735,1,0)
+ ;;^UTILITY(U,$J,358.3,51991,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51991,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,51991,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,51992,0)
+ ;;=W13.3XXA^^193^2516^88
+ ;;^UTILITY(U,$J,358.3,51992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54735,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,54735,1,4,0)
- ;;=4^K50.014
- ;;^UTILITY(U,$J,358.3,54735,2)
- ;;=^5008628
- ;;^UTILITY(U,$J,358.3,54736,0)
- ;;=K50.114^^256^2770^21
- ;;^UTILITY(U,$J,358.3,54736,1,0)
+ ;;^UTILITY(U,$J,358.3,51992,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51992,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,51992,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,51993,0)
+ ;;=W13.3XXD^^193^2516^89
+ ;;^UTILITY(U,$J,358.3,51993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54736,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,54736,1,4,0)
- ;;=4^K50.114
- ;;^UTILITY(U,$J,358.3,54736,2)
- ;;=^5008635
- ;;^UTILITY(U,$J,358.3,54737,0)
- ;;=D12.6^^256^2770^7
- ;;^UTILITY(U,$J,358.3,54737,1,0)
+ ;;^UTILITY(U,$J,358.3,51993,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51993,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,51993,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,51994,0)
+ ;;=W13.4XXA^^193^2516^76
+ ;;^UTILITY(U,$J,358.3,51994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54737,1,3,0)
- ;;=3^Adenomatous Polyp of Colon
- ;;^UTILITY(U,$J,358.3,54737,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,54737,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,54738,0)
- ;;=K64.9^^256^2770^57
- ;;^UTILITY(U,$J,358.3,54738,1,0)
+ ;;^UTILITY(U,$J,358.3,51994,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51994,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,51994,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,51995,0)
+ ;;=W13.4XXD^^193^2516^77
+ ;;^UTILITY(U,$J,358.3,51995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54738,1,3,0)
- ;;=3^Hemorrhoids w/o Complication
- ;;^UTILITY(U,$J,358.3,54738,1,4,0)
- ;;=4^K64.9
- ;;^UTILITY(U,$J,358.3,54738,2)
- ;;=^5008775
- ;;^UTILITY(U,$J,358.3,54739,0)
- ;;=K50.814^^256^2770^30
- ;;^UTILITY(U,$J,358.3,54739,1,0)
+ ;;^UTILITY(U,$J,358.3,51995,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51995,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,51995,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,51996,0)
+ ;;=W13.8XXA^^193^2516^40
+ ;;^UTILITY(U,$J,358.3,51996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54739,1,3,0)
- ;;=3^Crohn's Disease,Small/Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,54739,1,4,0)
- ;;=4^K50.814
- ;;^UTILITY(U,$J,358.3,54739,2)
- ;;=^5008642
- ;;^UTILITY(U,$J,358.3,54740,0)
- ;;=D12.9^^256^2770^9
- ;;^UTILITY(U,$J,358.3,54740,1,0)
+ ;;^UTILITY(U,$J,358.3,51996,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51996,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,51996,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,51997,0)
+ ;;=W13.8XXD^^193^2516^41
+ ;;^UTILITY(U,$J,358.3,51997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54740,1,3,0)
- ;;=3^Benign Neop of Anus
- ;;^UTILITY(U,$J,358.3,54740,1,4,0)
- ;;=4^D12.9
- ;;^UTILITY(U,$J,358.3,54740,2)
- ;;=^5001972
- ;;^UTILITY(U,$J,358.3,54741,0)
- ;;=D12.8^^256^2770^15
- ;;^UTILITY(U,$J,358.3,54741,1,0)
+ ;;^UTILITY(U,$J,358.3,51997,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51997,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,51997,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,51998,0)
+ ;;=W13.9XXA^^193^2516^38
+ ;;^UTILITY(U,$J,358.3,51998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54741,1,3,0)
- ;;=3^Benign Neop of Rectum
- ;;^UTILITY(U,$J,358.3,54741,1,4,0)
- ;;=4^D12.8
- ;;^UTILITY(U,$J,358.3,54741,2)
- ;;=^5001971
- ;;^UTILITY(U,$J,358.3,54742,0)
- ;;=K92.2^^256^2770^49
- ;;^UTILITY(U,$J,358.3,54742,1,0)
+ ;;^UTILITY(U,$J,358.3,51998,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51998,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,51998,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,51999,0)
+ ;;=W13.9XXD^^193^2516^39
+ ;;^UTILITY(U,$J,358.3,51999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54742,1,3,0)
- ;;=3^GI Bleed,Unspec
- ;;^UTILITY(U,$J,358.3,54742,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,54742,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,54743,0)
- ;;=K62.5^^256^2770^8
- ;;^UTILITY(U,$J,358.3,54743,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54743,1,3,0)
- ;;=3^BRBPR
- ;;^UTILITY(U,$J,358.3,54743,1,4,0)
- ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,51999,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr

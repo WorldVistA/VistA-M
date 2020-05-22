@@ -1,132 +1,120 @@
-IBDEI1YF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33174,1,0)
+ ;;^UTILITY(U,$J,358.3,31228,1,4,0)
+ ;;=4^O31.03X0
+ ;;^UTILITY(U,$J,358.3,31228,2)
+ ;;=^5016523
+ ;;^UTILITY(U,$J,358.3,31229,0)
+ ;;=O31.03X1^^126^1623^57
+ ;;^UTILITY(U,$J,358.3,31229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33174,1,3,0)
- ;;=3^Allergic Purpura
- ;;^UTILITY(U,$J,358.3,33174,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,33174,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,33175,0)
- ;;=B00.9^^131^1669^158
- ;;^UTILITY(U,$J,358.3,33175,1,0)
+ ;;^UTILITY(U,$J,358.3,31229,1,3,0)
+ ;;=3^Papyraceous fetus, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31229,1,4,0)
+ ;;=4^O31.03X1
+ ;;^UTILITY(U,$J,358.3,31229,2)
+ ;;=^5016524
+ ;;^UTILITY(U,$J,358.3,31230,0)
+ ;;=O31.03X2^^126^1623^58
+ ;;^UTILITY(U,$J,358.3,31230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33175,1,3,0)
- ;;=3^Herpesviral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,33175,1,4,0)
- ;;=4^B00.9
- ;;^UTILITY(U,$J,358.3,33175,2)
- ;;=^5000480
- ;;^UTILITY(U,$J,358.3,33176,0)
- ;;=B02.9^^131^1669^291
- ;;^UTILITY(U,$J,358.3,33176,1,0)
+ ;;^UTILITY(U,$J,358.3,31230,1,3,0)
+ ;;=3^Papyraceous fetus, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31230,1,4,0)
+ ;;=4^O31.03X2
+ ;;^UTILITY(U,$J,358.3,31230,2)
+ ;;=^5016525
+ ;;^UTILITY(U,$J,358.3,31231,0)
+ ;;=O31.03X3^^126^1623^59
+ ;;^UTILITY(U,$J,358.3,31231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33176,1,3,0)
- ;;=3^Zoster w/o Complications
- ;;^UTILITY(U,$J,358.3,33176,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,33176,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,33177,0)
- ;;=D17.9^^131^1669^89
- ;;^UTILITY(U,$J,358.3,33177,1,0)
+ ;;^UTILITY(U,$J,358.3,31231,1,3,0)
+ ;;=3^Papyraceous fetus, third trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31231,1,4,0)
+ ;;=4^O31.03X3
+ ;;^UTILITY(U,$J,358.3,31231,2)
+ ;;=^5016526
+ ;;^UTILITY(U,$J,358.3,31232,0)
+ ;;=O31.03X4^^126^1623^60
+ ;;^UTILITY(U,$J,358.3,31232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33177,1,3,0)
- ;;=3^Benign Lipomatous Neop,Unspec
- ;;^UTILITY(U,$J,358.3,33177,1,4,0)
- ;;=4^D17.9
- ;;^UTILITY(U,$J,358.3,33177,2)
- ;;=^5002020
- ;;^UTILITY(U,$J,358.3,33178,0)
- ;;=E08.621^^131^1669^134
- ;;^UTILITY(U,$J,358.3,33178,1,0)
+ ;;^UTILITY(U,$J,358.3,31232,1,3,0)
+ ;;=3^Papyraceous fetus, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31232,1,4,0)
+ ;;=4^O31.03X4
+ ;;^UTILITY(U,$J,358.3,31232,2)
+ ;;=^5016527
+ ;;^UTILITY(U,$J,358.3,31233,0)
+ ;;=O31.03X5^^126^1623^61
+ ;;^UTILITY(U,$J,358.3,31233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33178,1,3,0)
- ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,33178,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,33178,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,33179,0)
- ;;=E09.621^^131^1669^133
- ;;^UTILITY(U,$J,358.3,33179,1,0)
+ ;;^UTILITY(U,$J,358.3,31233,1,3,0)
+ ;;=3^Papyraceous fetus, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31233,1,4,0)
+ ;;=4^O31.03X5
+ ;;^UTILITY(U,$J,358.3,31233,2)
+ ;;=^5016528
+ ;;^UTILITY(U,$J,358.3,31234,0)
+ ;;=O31.02X0^^126^1623^56
+ ;;^UTILITY(U,$J,358.3,31234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33179,1,3,0)
- ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,33179,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,33179,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,33180,0)
- ;;=H05.011^^131^1669^110
- ;;^UTILITY(U,$J,358.3,33180,1,0)
+ ;;^UTILITY(U,$J,358.3,31234,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,31234,1,4,0)
+ ;;=4^O31.02X0
+ ;;^UTILITY(U,$J,358.3,31234,2)
+ ;;=^5016516
+ ;;^UTILITY(U,$J,358.3,31235,0)
+ ;;=O31.02X1^^126^1623^51
+ ;;^UTILITY(U,$J,358.3,31235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33180,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,33180,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,33180,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,33181,0)
- ;;=H05.012^^131^1669^103
- ;;^UTILITY(U,$J,358.3,33181,1,0)
+ ;;^UTILITY(U,$J,358.3,31235,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31235,1,4,0)
+ ;;=4^O31.02X1
+ ;;^UTILITY(U,$J,358.3,31235,2)
+ ;;=^5016517
+ ;;^UTILITY(U,$J,358.3,31236,0)
+ ;;=O31.02X2^^126^1623^52
+ ;;^UTILITY(U,$J,358.3,31236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33181,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,33181,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,33181,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,33182,0)
- ;;=H05.013^^131^1669^97
- ;;^UTILITY(U,$J,358.3,33182,1,0)
+ ;;^UTILITY(U,$J,358.3,31236,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31236,1,4,0)
+ ;;=4^O31.02X2
+ ;;^UTILITY(U,$J,358.3,31236,2)
+ ;;=^5016518
+ ;;^UTILITY(U,$J,358.3,31237,0)
+ ;;=O31.02X3^^126^1623^53
+ ;;^UTILITY(U,$J,358.3,31237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33182,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,33182,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,33182,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,33183,0)
- ;;=I70.331^^131^1669^50
- ;;^UTILITY(U,$J,358.3,33183,1,0)
+ ;;^UTILITY(U,$J,358.3,31237,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31237,1,4,0)
+ ;;=4^O31.02X3
+ ;;^UTILITY(U,$J,358.3,31237,2)
+ ;;=^5016519
+ ;;^UTILITY(U,$J,358.3,31238,0)
+ ;;=O31.02X4^^126^1623^54
+ ;;^UTILITY(U,$J,358.3,31238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33183,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,33183,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,33183,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,33184,0)
- ;;=I70.332^^131^1669^51
- ;;^UTILITY(U,$J,358.3,33184,1,0)
+ ;;^UTILITY(U,$J,358.3,31238,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31238,1,4,0)
+ ;;=4^O31.02X4
+ ;;^UTILITY(U,$J,358.3,31238,2)
+ ;;=^5016520
+ ;;^UTILITY(U,$J,358.3,31239,0)
+ ;;=O31.02X5^^126^1623^55
+ ;;^UTILITY(U,$J,358.3,31239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33184,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,33184,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,33184,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,33185,0)
- ;;=I70.333^^131^1669^52
- ;;^UTILITY(U,$J,358.3,33185,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33185,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,33185,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,33185,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,33186,0)
- ;;=I70.334^^131^1669^53
- ;;^UTILITY(U,$J,358.3,33186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33186,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,33186,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,33186,2)
- ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,31239,1,3,0)
+ ;;=3^Papyraceous fetus, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31239,1,4,0)
+ ;;=4^O31.02X5
+ ;;^UTILITY(U,$J,358.3,31239,2)
+ ;;=^5016521
+ ;;^UTILITY(U,$J,358.3,31240,0)
+ ;;=O31.01X0^^126^1623^50

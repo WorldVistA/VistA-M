@@ -1,128 +1,118 @@
-IBDEI1SN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30479,1,2,0)
- ;;=2^Remove Spinal Canal Cath
- ;;^UTILITY(U,$J,358.3,30479,1,4,0)
- ;;=4^62355
- ;;^UTILITY(U,$J,358.3,30480,0)
- ;;=62360^^120^1515^16^^^^1
- ;;^UTILITY(U,$J,358.3,30480,1,0)
+ ;;^UTILITY(U,$J,358.3,28646,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,28646,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,28647,0)
+ ;;=F13.121^^115^1410^21
+ ;;^UTILITY(U,$J,358.3,28647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30480,1,2,0)
- ;;=2^Insert Spine Infusion Device
- ;;^UTILITY(U,$J,358.3,30480,1,4,0)
- ;;=4^62360
- ;;^UTILITY(U,$J,358.3,30481,0)
- ;;=62362^^120^1515^10^^^^1
- ;;^UTILITY(U,$J,358.3,30481,1,0)
+ ;;^UTILITY(U,$J,358.3,28647,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28647,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,28647,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,28648,0)
+ ;;=F13.221^^115^1410^22
+ ;;^UTILITY(U,$J,358.3,28648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30481,1,2,0)
- ;;=2^Implant Spinal Infusion Pump
- ;;^UTILITY(U,$J,358.3,30481,1,4,0)
- ;;=4^62362
- ;;^UTILITY(U,$J,358.3,30482,0)
- ;;=62365^^120^1515^34^^^^1
- ;;^UTILITY(U,$J,358.3,30482,1,0)
+ ;;^UTILITY(U,$J,358.3,28648,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28648,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,28648,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,28649,0)
+ ;;=F13.10^^115^1410^27
+ ;;^UTILITY(U,$J,358.3,28649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30482,1,2,0)
- ;;=2^Remove Spinal Infusion Device
- ;;^UTILITY(U,$J,358.3,30482,1,4,0)
- ;;=4^62365
- ;;^UTILITY(U,$J,358.3,30483,0)
- ;;=64400^^120^1515^43^^^^1
- ;;^UTILITY(U,$J,358.3,30483,1,0)
+ ;;^UTILITY(U,$J,358.3,28649,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,28649,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,28649,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,28650,0)
+ ;;=F13.20^^115^1410^29
+ ;;^UTILITY(U,$J,358.3,28650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30483,1,2,0)
- ;;=2^Trigeminal Nerve Block
- ;;^UTILITY(U,$J,358.3,30483,1,4,0)
- ;;=4^64400
- ;;^UTILITY(U,$J,358.3,30484,0)
- ;;=64405^^120^1515^9^^^^1
- ;;^UTILITY(U,$J,358.3,30484,1,0)
+ ;;^UTILITY(U,$J,358.3,28650,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,28650,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,28650,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,28651,0)
+ ;;=F13.232^^115^1410^33
+ ;;^UTILITY(U,$J,358.3,28651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30484,1,2,0)
- ;;=2^Greater Occipital Nerve Block
- ;;^UTILITY(U,$J,358.3,30484,1,4,0)
- ;;=4^64405
- ;;^UTILITY(U,$J,358.3,30485,0)
- ;;=64410^^120^1515^32^^^^1
- ;;^UTILITY(U,$J,358.3,30485,1,0)
+ ;;^UTILITY(U,$J,358.3,28651,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/ Percep Disturb Use DO (Mod/Sev)
+ ;;^UTILITY(U,$J,358.3,28651,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,28651,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,28652,0)
+ ;;=F13.239^^115^1410^35
+ ;;^UTILITY(U,$J,358.3,28652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30485,1,2,0)
- ;;=2^Phrenic Nerve Block
- ;;^UTILITY(U,$J,358.3,30485,1,4,0)
- ;;=4^64410
- ;;^UTILITY(U,$J,358.3,30486,0)
- ;;=64417^^120^1515^3^^^^1
- ;;^UTILITY(U,$J,358.3,30486,1,0)
+ ;;^UTILITY(U,$J,358.3,28652,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/o Percep Disturb Use DO (Mod/Sev)
+ ;;^UTILITY(U,$J,358.3,28652,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,28652,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,28653,0)
+ ;;=F13.231^^115^1410^31
+ ;;^UTILITY(U,$J,358.3,28653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30486,1,2,0)
- ;;=2^Axillary Nerve Block
- ;;^UTILITY(U,$J,358.3,30486,1,4,0)
- ;;=4^64417
- ;;^UTILITY(U,$J,358.3,30487,0)
- ;;=64413^^120^1515^5^^^^1
- ;;^UTILITY(U,$J,358.3,30487,1,0)
+ ;;^UTILITY(U,$J,358.3,28653,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD Delirium w/Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28653,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,28653,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,28654,0)
+ ;;=F13.99^^115^1410^26
+ ;;^UTILITY(U,$J,358.3,28654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30487,1,2,0)
- ;;=2^Cervical Nerve Block
- ;;^UTILITY(U,$J,358.3,30487,1,4,0)
- ;;=4^64413
- ;;^UTILITY(U,$J,358.3,30488,0)
- ;;=64415^^120^1515^4^^^^1
- ;;^UTILITY(U,$J,358.3,30488,1,0)
+ ;;^UTILITY(U,$J,358.3,28654,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28654,1,4,0)
+ ;;=4^F13.99
+ ;;^UTILITY(U,$J,358.3,28654,2)
+ ;;=^5133353
+ ;;^UTILITY(U,$J,358.3,28655,0)
+ ;;=F13.21^^115^1410^30
+ ;;^UTILITY(U,$J,358.3,28655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30488,1,2,0)
- ;;=2^Brachial Plexus Nerve Block
- ;;^UTILITY(U,$J,358.3,30488,1,4,0)
- ;;=4^64415
- ;;^UTILITY(U,$J,358.3,30489,0)
- ;;=64435^^120^1515^24^^^^1
- ;;^UTILITY(U,$J,358.3,30489,1,0)
+ ;;^UTILITY(U,$J,358.3,28655,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,28655,1,4,0)
+ ;;=4^F13.21
+ ;;^UTILITY(U,$J,358.3,28655,2)
+ ;;=^331934
+ ;;^UTILITY(U,$J,358.3,28656,0)
+ ;;=F13.11^^115^1410^28
+ ;;^UTILITY(U,$J,358.3,28656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30489,1,2,0)
- ;;=2^Paracervical Nerve Block
- ;;^UTILITY(U,$J,358.3,30489,1,4,0)
- ;;=4^64435
- ;;^UTILITY(U,$J,358.3,30490,0)
- ;;=64450^^120^1515^31^^^^1
- ;;^UTILITY(U,$J,358.3,30490,1,0)
+ ;;^UTILITY(U,$J,358.3,28656,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,28656,1,4,0)
+ ;;=4^F13.11
+ ;;^UTILITY(U,$J,358.3,28656,2)
+ ;;=^331938
+ ;;^UTILITY(U,$J,358.3,28657,0)
+ ;;=F13.930^^115^1410^37
+ ;;^UTILITY(U,$J,358.3,28657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30490,1,2,0)
- ;;=2^Peripheral Nerve Block
- ;;^UTILITY(U,$J,358.3,30490,1,4,0)
- ;;=4^64450
- ;;^UTILITY(U,$J,358.3,30491,0)
- ;;=64479^^120^1515^36^^^^1
- ;;^UTILITY(U,$J,358.3,30491,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30491,1,2,0)
- ;;=2^Selective Nerve Block,Cervical/Thoracic
- ;;^UTILITY(U,$J,358.3,30491,1,4,0)
- ;;=4^64479
- ;;^UTILITY(U,$J,358.3,30492,0)
- ;;=64480^^120^1515^35^^^^1
- ;;^UTILITY(U,$J,358.3,30492,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30492,1,2,0)
- ;;=2^Select Nerve Block,Cerv/Thor,Addl Levels
- ;;^UTILITY(U,$J,358.3,30492,1,4,0)
- ;;=4^64480
- ;;^UTILITY(U,$J,358.3,30493,0)
- ;;=64483^^120^1515^38^^^^1
- ;;^UTILITY(U,$J,358.3,30493,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30493,1,2,0)
- ;;=2^Selective Nerve Block,Lumbar/Sacral
- ;;^UTILITY(U,$J,358.3,30493,1,4,0)
- ;;=4^64483
- ;;^UTILITY(U,$J,358.3,30494,0)
- ;;=64484^^120^1515^37^^^^1
- ;;^UTILITY(U,$J,358.3,30494,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30494,1,2,0)
- ;;=2^Selective Nerve Block,Lumbar,Addl Levels
- ;;^UTILITY(U,$J,358.3,30494,1,4,0)
- ;;=4^64484
+ ;;^UTILITY(U,$J,358.3,28657,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28657,1,4,0)
+ ;;=4^F13.930
+ ;;^UTILITY(U,$J,358.3,28657,2)
+ ;;=^5003225

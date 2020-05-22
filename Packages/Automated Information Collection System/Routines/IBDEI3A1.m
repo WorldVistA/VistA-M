@@ -1,132 +1,124 @@
-IBDEI3A1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3A1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55067,0)
- ;;=D56.3^^256^2775^180
- ;;^UTILITY(U,$J,358.3,55067,1,0)
+ ;;^UTILITY(U,$J,358.3,52298,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,52299,0)
+ ;;=E11.3213^^193^2527^24
+ ;;^UTILITY(U,$J,358.3,52299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55067,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,55067,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,55067,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,55068,0)
- ;;=D56.9^^256^2775^181
- ;;^UTILITY(U,$J,358.3,55068,1,0)
+ ;;^UTILITY(U,$J,358.3,52299,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,52299,1,4,0)
+ ;;=4^E11.3213
+ ;;^UTILITY(U,$J,358.3,52299,2)
+ ;;=^5138333
+ ;;^UTILITY(U,$J,358.3,52300,0)
+ ;;=E11.40^^193^2527^10
+ ;;^UTILITY(U,$J,358.3,52300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55068,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,55068,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,55068,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,55069,0)
- ;;=M31.1^^256^2775^183
- ;;^UTILITY(U,$J,358.3,55069,1,0)
+ ;;^UTILITY(U,$J,358.3,52300,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,52300,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,52300,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,52301,0)
+ ;;=E11.51^^193^2527^12
+ ;;^UTILITY(U,$J,358.3,52301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55069,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,55069,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,55069,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,55070,0)
- ;;=D51.2^^256^2775^184
- ;;^UTILITY(U,$J,358.3,55070,1,0)
+ ;;^UTILITY(U,$J,358.3,52301,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,52301,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,52301,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,52302,0)
+ ;;=E11.52^^193^2527^11
+ ;;^UTILITY(U,$J,358.3,52302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55070,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,55070,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,55070,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,55071,0)
- ;;=D05.92^^256^2775^33
- ;;^UTILITY(U,$J,358.3,55071,1,0)
+ ;;^UTILITY(U,$J,358.3,52302,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,52302,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,52302,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,52303,0)
+ ;;=E11.620^^193^2527^5
+ ;;^UTILITY(U,$J,358.3,52303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55071,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,55071,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,55071,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,55072,0)
- ;;=D05.91^^256^2775^35
- ;;^UTILITY(U,$J,358.3,55072,1,0)
+ ;;^UTILITY(U,$J,358.3,52303,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,52303,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,52303,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,52304,0)
+ ;;=E11.36^^193^2527^4
+ ;;^UTILITY(U,$J,358.3,52304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55072,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,55072,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,55072,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,55073,0)
- ;;=D05.90^^256^2775^31
- ;;^UTILITY(U,$J,358.3,55073,1,0)
+ ;;^UTILITY(U,$J,358.3,52304,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Cataract
+ ;;^UTILITY(U,$J,358.3,52304,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,52304,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,52305,0)
+ ;;=I10.^^193^2528^1
+ ;;^UTILITY(U,$J,358.3,52305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55073,1,3,0)
- ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
- ;;^UTILITY(U,$J,358.3,55073,1,4,0)
- ;;=4^D05.90
- ;;^UTILITY(U,$J,358.3,55073,2)
- ;;=^5001935
- ;;^UTILITY(U,$J,358.3,55074,0)
- ;;=D51.0^^256^2775^185
- ;;^UTILITY(U,$J,358.3,55074,1,0)
+ ;;^UTILITY(U,$J,358.3,52305,1,3,0)
+ ;;=3^Essential/Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,52305,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,52305,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,52306,0)
+ ;;=I11.0^^193^2528^12
+ ;;^UTILITY(U,$J,358.3,52306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55074,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
- ;;^UTILITY(U,$J,358.3,55074,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,55074,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,55075,0)
- ;;=D51.1^^256^2775^186
- ;;^UTILITY(U,$J,358.3,55075,1,0)
+ ;;^UTILITY(U,$J,358.3,52306,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,52306,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,52306,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,52307,0)
+ ;;=I11.9^^193^2528^13
+ ;;^UTILITY(U,$J,358.3,52307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55075,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
- ;;^UTILITY(U,$J,358.3,55075,1,4,0)
- ;;=4^D51.1
- ;;^UTILITY(U,$J,358.3,55075,2)
- ;;=^5002285
- ;;^UTILITY(U,$J,358.3,55076,0)
- ;;=D51.9^^256^2775^188
- ;;^UTILITY(U,$J,358.3,55076,1,0)
+ ;;^UTILITY(U,$J,358.3,52307,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,52307,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,52307,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,52308,0)
+ ;;=I12.0^^193^2528^5
+ ;;^UTILITY(U,$J,358.3,52308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55076,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,55076,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,55076,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,55077,0)
- ;;=D68.0^^256^2775^190
- ;;^UTILITY(U,$J,358.3,55077,1,0)
+ ;;^UTILITY(U,$J,358.3,52308,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,52308,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,52308,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,52309,0)
+ ;;=I12.9^^193^2528^4
+ ;;^UTILITY(U,$J,358.3,52309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55077,1,3,0)
- ;;=3^Von Willebrand's Disease
- ;;^UTILITY(U,$J,358.3,55077,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,55077,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,55078,0)
- ;;=C88.0^^256^2775^191
- ;;^UTILITY(U,$J,358.3,55078,1,0)
+ ;;^UTILITY(U,$J,358.3,52309,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,52309,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,52309,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,52310,0)
+ ;;=I13.0^^193^2528^8
+ ;;^UTILITY(U,$J,358.3,52310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55078,1,3,0)
- ;;=3^Waldenstrom Macroglobulinemia
- ;;^UTILITY(U,$J,358.3,55078,1,4,0)
- ;;=4^C88.0
- ;;^UTILITY(U,$J,358.3,55078,2)
- ;;=^5001748
- ;;^UTILITY(U,$J,358.3,55079,0)
- ;;=C91.02^^256^2775^3
- ;;^UTILITY(U,$J,358.3,55079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55079,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,55079,1,4,0)
- ;;=4^C91.02
+ ;;^UTILITY(U,$J,358.3,52310,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,52310,1,4,0)
+ ;;=4^I13.0

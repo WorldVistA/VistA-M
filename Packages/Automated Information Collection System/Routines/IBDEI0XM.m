@@ -1,336 +1,126 @@
-IBDEI0XM ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0XM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44094,1,0)
+ ;;^UTILITY(U,$J,358.3,14972,1,3,0)
+ ;;=3^Benign neoplasm,Duodenum
+ ;;^UTILITY(U,$J,358.3,14972,1,4,0)
+ ;;=4^D13.2
+ ;;^UTILITY(U,$J,358.3,14972,2)
+ ;;=^5001973
+ ;;^UTILITY(U,$J,358.3,14973,0)
+ ;;=D13.39^^85^838^6
+ ;;^UTILITY(U,$J,358.3,14973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44094,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,44094,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,44094,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,44095,0)
- ;;=R40.2323^^127^1873^4
- ;;^UTILITY(U,$J,358.3,44095,1,0)
+ ;;^UTILITY(U,$J,358.3,14973,1,3,0)
+ ;;=3^Benign neoplasm,Other Sm Int
+ ;;^UTILITY(U,$J,358.3,14973,1,4,0)
+ ;;=4^D13.39
+ ;;^UTILITY(U,$J,358.3,14973,2)
+ ;;=^5001975
+ ;;^UTILITY(U,$J,358.3,14974,0)
+ ;;=D13.30^^85^838^7
+ ;;^UTILITY(U,$J,358.3,14974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44095,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,44095,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,44095,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,44096,0)
- ;;=R40.2322^^127^1873^2
- ;;^UTILITY(U,$J,358.3,44096,1,0)
+ ;;^UTILITY(U,$J,358.3,14974,1,3,0)
+ ;;=3^Benign neoplasm,Unsp Sm Int
+ ;;^UTILITY(U,$J,358.3,14974,1,4,0)
+ ;;=4^D13.30
+ ;;^UTILITY(U,$J,358.3,14974,2)
+ ;;=^5001974
+ ;;^UTILITY(U,$J,358.3,14975,0)
+ ;;=K90.89^^85^838^8
+ ;;^UTILITY(U,$J,358.3,14975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44096,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,44096,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,44096,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,44097,0)
- ;;=R40.2321^^127^1873^5
- ;;^UTILITY(U,$J,358.3,44097,1,0)
+ ;;^UTILITY(U,$J,358.3,14975,1,3,0)
+ ;;=3^Bile acid malabsorption
+ ;;^UTILITY(U,$J,358.3,14975,1,4,0)
+ ;;=4^K90.89
+ ;;^UTILITY(U,$J,358.3,14975,2)
+ ;;=^5008898
+ ;;^UTILITY(U,$J,358.3,14976,0)
+ ;;=D01.49^^85^838^9
+ ;;^UTILITY(U,$J,358.3,14976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44097,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,44097,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,44097,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,44098,0)
- ;;=R40.2320^^127^1873^3
- ;;^UTILITY(U,$J,358.3,44098,1,0)
+ ;;^UTILITY(U,$J,358.3,14976,1,3,0)
+ ;;=3^Carcinoma in situ of Small Intestine
+ ;;^UTILITY(U,$J,358.3,14976,1,4,0)
+ ;;=4^D01.49
+ ;;^UTILITY(U,$J,358.3,14976,2)
+ ;;=^5001879
+ ;;^UTILITY(U,$J,358.3,14977,0)
+ ;;=K63.81^^85^838^11
+ ;;^UTILITY(U,$J,358.3,14977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44098,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,44098,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,44098,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,44099,0)
- ;;=R40.2314^^127^1873^11
- ;;^UTILITY(U,$J,358.3,44099,1,0)
+ ;;^UTILITY(U,$J,358.3,14977,1,3,0)
+ ;;=3^Dieulafoy lesion of Duodenum
+ ;;^UTILITY(U,$J,358.3,14977,1,4,0)
+ ;;=4^K63.81
+ ;;^UTILITY(U,$J,358.3,14977,2)
+ ;;=^5008766
+ ;;^UTILITY(U,$J,358.3,14978,0)
+ ;;=K63.89^^85^838^12
+ ;;^UTILITY(U,$J,358.3,14978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44099,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,44099,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,44099,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,44100,0)
- ;;=R40.2313^^127^1873^14
- ;;^UTILITY(U,$J,358.3,44100,1,0)
+ ;;^UTILITY(U,$J,358.3,14978,1,3,0)
+ ;;=3^Dieulafoy lesion of Intestine
+ ;;^UTILITY(U,$J,358.3,14978,1,4,0)
+ ;;=4^K63.89
+ ;;^UTILITY(U,$J,358.3,14978,2)
+ ;;=^5008767
+ ;;^UTILITY(U,$J,358.3,14979,0)
+ ;;=K57.11^^85^838^19
+ ;;^UTILITY(U,$J,358.3,14979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44100,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,44100,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,44100,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,44101,0)
- ;;=R40.2312^^127^1873^12
- ;;^UTILITY(U,$J,358.3,44101,1,0)
+ ;;^UTILITY(U,$J,358.3,14979,1,3,0)
+ ;;=3^Diverticulosis Sm Int w/ Bleeding
+ ;;^UTILITY(U,$J,358.3,14979,1,4,0)
+ ;;=4^K57.11
+ ;;^UTILITY(U,$J,358.3,14979,2)
+ ;;=^5008718
+ ;;^UTILITY(U,$J,358.3,14980,0)
+ ;;=K57.10^^85^838^20
+ ;;^UTILITY(U,$J,358.3,14980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44101,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,44101,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,44101,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,44102,0)
- ;;=R40.2311^^127^1873^15
- ;;^UTILITY(U,$J,358.3,44102,1,0)
+ ;;^UTILITY(U,$J,358.3,14980,1,3,0)
+ ;;=3^Diverticulosis Sm Int w/o perf,abscess,or bleed
+ ;;^UTILITY(U,$J,358.3,14980,1,4,0)
+ ;;=4^K57.10
+ ;;^UTILITY(U,$J,358.3,14980,2)
+ ;;=^5008717
+ ;;^UTILITY(U,$J,358.3,14981,0)
+ ;;=K57.13^^85^838^15
+ ;;^UTILITY(U,$J,358.3,14981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44102,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,44102,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,44102,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,44103,0)
- ;;=R40.2310^^127^1873^13
- ;;^UTILITY(U,$J,358.3,44103,1,0)
+ ;;^UTILITY(U,$J,358.3,14981,1,3,0)
+ ;;=3^Diverticulitis Sm Int w/ Bleeding
+ ;;^UTILITY(U,$J,358.3,14981,1,4,0)
+ ;;=4^K57.13
+ ;;^UTILITY(U,$J,358.3,14981,2)
+ ;;=^5008720
+ ;;^UTILITY(U,$J,358.3,14982,0)
+ ;;=K57.00^^85^838^16
+ ;;^UTILITY(U,$J,358.3,14982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44103,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,44103,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,44103,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,44104,0)
- ;;=R40.4^^127^1873^38
- ;;^UTILITY(U,$J,358.3,44104,1,0)
+ ;;^UTILITY(U,$J,358.3,14982,1,3,0)
+ ;;=3^Diverticulitis Sm Int w/ Perf & Abscess
+ ;;^UTILITY(U,$J,358.3,14982,1,4,0)
+ ;;=4^K57.00
+ ;;^UTILITY(U,$J,358.3,14982,2)
+ ;;=^5008715
+ ;;^UTILITY(U,$J,358.3,14983,0)
+ ;;=K57.01^^85^838^17
+ ;;^UTILITY(U,$J,358.3,14983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44104,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,44104,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,44104,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,44105,0)
- ;;=V00.811A^^127^1874^45
- ;;^UTILITY(U,$J,358.3,44105,1,0)
+ ;;^UTILITY(U,$J,358.3,14983,1,3,0)
+ ;;=3^Diverticulitis Sm Int w/ Perf,Abscess & Bleed
+ ;;^UTILITY(U,$J,358.3,14983,1,4,0)
+ ;;=4^K57.01
+ ;;^UTILITY(U,$J,358.3,14983,2)
+ ;;=^5008716
+ ;;^UTILITY(U,$J,358.3,14984,0)
+ ;;=K57.12^^85^838^18
+ ;;^UTILITY(U,$J,358.3,14984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44105,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,44105,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,44105,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,44106,0)
- ;;=V00.811D^^127^1874^46
- ;;^UTILITY(U,$J,358.3,44106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44106,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,44106,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,44106,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,44107,0)
- ;;=V00.812A^^127^1874^133
- ;;^UTILITY(U,$J,358.3,44107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44107,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,44107,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,44107,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,44108,0)
- ;;=V00.812D^^127^1874^134
- ;;^UTILITY(U,$J,358.3,44108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44108,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44108,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,44108,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,44109,0)
- ;;=V00.818A^^127^1874^131
- ;;^UTILITY(U,$J,358.3,44109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44109,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,44109,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,44109,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,44110,0)
- ;;=V00.818D^^127^1874^132
- ;;^UTILITY(U,$J,358.3,44110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44110,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44110,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,44110,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,44111,0)
- ;;=V00.831A^^127^1874^43
- ;;^UTILITY(U,$J,358.3,44111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44111,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,44111,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,44111,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,44112,0)
- ;;=V00.831D^^127^1874^44
- ;;^UTILITY(U,$J,358.3,44112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44112,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44112,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,44112,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,44113,0)
- ;;=V00.832A^^127^1874^95
- ;;^UTILITY(U,$J,358.3,44113,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44113,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,44113,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,44113,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,44114,0)
- ;;=V00.832D^^127^1874^96
- ;;^UTILITY(U,$J,358.3,44114,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44114,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44114,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,44114,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,44115,0)
- ;;=V00.838A^^127^1874^93
- ;;^UTILITY(U,$J,358.3,44115,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44115,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,44115,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,44115,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,44116,0)
- ;;=V00.838D^^127^1874^94
- ;;^UTILITY(U,$J,358.3,44116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44116,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44116,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,44116,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,44117,0)
- ;;=V00.891A^^127^1874^57
- ;;^UTILITY(U,$J,358.3,44117,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44117,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,44117,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,44117,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,44118,0)
- ;;=V00.891D^^127^1874^58
- ;;^UTILITY(U,$J,358.3,44118,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44118,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44118,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,44118,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,44119,0)
- ;;=V00.892A^^127^1874^99
- ;;^UTILITY(U,$J,358.3,44119,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44119,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,44119,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,44119,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,44120,0)
- ;;=V00.892D^^127^1874^100
- ;;^UTILITY(U,$J,358.3,44120,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44120,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44120,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,44120,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,44121,0)
- ;;=V00.898A^^127^1874^97
- ;;^UTILITY(U,$J,358.3,44121,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44121,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,44121,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,44121,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,44122,0)
- ;;=V00.898D^^127^1874^98
- ;;^UTILITY(U,$J,358.3,44122,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44122,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44122,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,44122,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,44123,0)
- ;;=W00.0XXA^^127^1874^79
- ;;^UTILITY(U,$J,358.3,44123,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44123,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,44123,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,44123,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,44124,0)
- ;;=W00.0XXD^^127^1874^80
- ;;^UTILITY(U,$J,358.3,44124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44124,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44124,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,44124,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,44125,0)
- ;;=W00.1XXA^^127^1874^59
- ;;^UTILITY(U,$J,358.3,44125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44125,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,44125,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,44125,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,44126,0)
- ;;=W00.1XXD^^127^1874^60
- ;;^UTILITY(U,$J,358.3,44126,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44126,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44126,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,44126,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,44127,0)
- ;;=W00.2XXA^^127^1874^53
- ;;^UTILITY(U,$J,358.3,44127,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14984,1,3,0)
+ ;;=3^Diverticulitis Sm Int w/o Perf,Abscess, or Bleed

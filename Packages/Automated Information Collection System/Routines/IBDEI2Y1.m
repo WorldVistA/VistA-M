@@ -1,120 +1,126 @@
-IBDEI2Y1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2Y1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49366,0)
- ;;=M84.421S^^216^2417^103
- ;;^UTILITY(U,$J,358.3,49366,1,0)
+ ;;^UTILITY(U,$J,358.3,46974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49366,1,3,0)
- ;;=3^Pathological fracture, right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49366,1,4,0)
- ;;=4^M84.421S
- ;;^UTILITY(U,$J,358.3,49366,2)
- ;;=^5013823
- ;;^UTILITY(U,$J,358.3,49367,0)
- ;;=S49.132S^^216^2417^116
- ;;^UTILITY(U,$J,358.3,49367,1,0)
+ ;;^UTILITY(U,$J,358.3,46974,1,3,0)
+ ;;=3^Urinary Incont,Nocturnal Enuresis
+ ;;^UTILITY(U,$J,358.3,46974,1,4,0)
+ ;;=4^N39.44
+ ;;^UTILITY(U,$J,358.3,46974,2)
+ ;;=^5015683
+ ;;^UTILITY(U,$J,358.3,46975,0)
+ ;;=N39.43^^179^2342^13
+ ;;^UTILITY(U,$J,358.3,46975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49367,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49367,1,4,0)
- ;;=4^S49.132S
- ;;^UTILITY(U,$J,358.3,49367,2)
- ;;=^5134992
- ;;^UTILITY(U,$J,358.3,49368,0)
- ;;=S49.131S^^216^2417^115
- ;;^UTILITY(U,$J,358.3,49368,1,0)
+ ;;^UTILITY(U,$J,358.3,46975,1,3,0)
+ ;;=3^Urinary Incont,Post-Void Dribbling
+ ;;^UTILITY(U,$J,358.3,46975,1,4,0)
+ ;;=4^N39.43
+ ;;^UTILITY(U,$J,358.3,46975,2)
+ ;;=^5015682
+ ;;^UTILITY(U,$J,358.3,46976,0)
+ ;;=R32.^^179^2342^14
+ ;;^UTILITY(U,$J,358.3,46976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49368,1,3,0)
- ;;=3^Sltr-haris Type III physl fx low end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49368,1,4,0)
- ;;=4^S49.131S
- ;;^UTILITY(U,$J,358.3,49368,2)
- ;;=^5028460
- ;;^UTILITY(U,$J,358.3,49369,0)
- ;;=S49.032S^^216^2417^117
- ;;^UTILITY(U,$J,358.3,49369,1,0)
+ ;;^UTILITY(U,$J,358.3,46976,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,46976,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,46976,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,46977,0)
+ ;;=R82.81^^179^2342^5
+ ;;^UTILITY(U,$J,358.3,46977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49369,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49369,1,4,0)
- ;;=4^S49.032S
- ;;^UTILITY(U,$J,358.3,49369,2)
- ;;=^5028400
- ;;^UTILITY(U,$J,358.3,49370,0)
- ;;=S49.031S^^216^2417^118
- ;;^UTILITY(U,$J,358.3,49370,1,0)
+ ;;^UTILITY(U,$J,358.3,46977,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,46977,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,46977,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,46978,0)
+ ;;=Z48.812^^179^2343^2
+ ;;^UTILITY(U,$J,358.3,46978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49370,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end humer, r arm, sqla
- ;;^UTILITY(U,$J,358.3,49370,1,4,0)
- ;;=4^S49.031S
- ;;^UTILITY(U,$J,358.3,49370,2)
- ;;=^5028394
- ;;^UTILITY(U,$J,358.3,49371,0)
- ;;=S49.112S^^216^2417^107
- ;;^UTILITY(U,$J,358.3,49371,1,0)
+ ;;^UTILITY(U,$J,358.3,46978,1,3,0)
+ ;;=3^Aftercare Following Surgery,Circulatory System
+ ;;^UTILITY(U,$J,358.3,46978,1,4,0)
+ ;;=4^Z48.812
+ ;;^UTILITY(U,$J,358.3,46978,2)
+ ;;=^5063049
+ ;;^UTILITY(U,$J,358.3,46979,0)
+ ;;=Z48.815^^179^2343^3
+ ;;^UTILITY(U,$J,358.3,46979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49371,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49371,1,4,0)
- ;;=4^S49.112S
- ;;^UTILITY(U,$J,358.3,49371,2)
- ;;=^5134980
- ;;^UTILITY(U,$J,358.3,49372,0)
- ;;=S49.111S^^216^2417^108
- ;;^UTILITY(U,$J,358.3,49372,1,0)
+ ;;^UTILITY(U,$J,358.3,46979,1,3,0)
+ ;;=3^Aftercare Following Surgery,Digestive System
+ ;;^UTILITY(U,$J,358.3,46979,1,4,0)
+ ;;=4^Z48.815
+ ;;^UTILITY(U,$J,358.3,46979,2)
+ ;;=^5063052
+ ;;^UTILITY(U,$J,358.3,46980,0)
+ ;;=Z48.816^^179^2343^4
+ ;;^UTILITY(U,$J,358.3,46980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49372,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49372,1,4,0)
- ;;=4^S49.111S
- ;;^UTILITY(U,$J,358.3,49372,2)
- ;;=^5028442
- ;;^UTILITY(U,$J,358.3,49373,0)
- ;;=S49.012S^^216^2417^109
- ;;^UTILITY(U,$J,358.3,49373,1,0)
+ ;;^UTILITY(U,$J,358.3,46980,1,3,0)
+ ;;=3^Aftercare Following Surgery,GU System
+ ;;^UTILITY(U,$J,358.3,46980,1,4,0)
+ ;;=4^Z48.816
+ ;;^UTILITY(U,$J,358.3,46980,2)
+ ;;=^5063053
+ ;;^UTILITY(U,$J,358.3,46981,0)
+ ;;=Z48.3^^179^2343^5
+ ;;^UTILITY(U,$J,358.3,46981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49373,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49373,1,4,0)
- ;;=4^S49.012S
- ;;^UTILITY(U,$J,358.3,49373,2)
- ;;=^5028364
- ;;^UTILITY(U,$J,358.3,49374,0)
- ;;=S49.011S^^216^2417^110
- ;;^UTILITY(U,$J,358.3,49374,1,0)
+ ;;^UTILITY(U,$J,358.3,46981,1,3,0)
+ ;;=3^Aftercare Following Surgery,Neoplasm
+ ;;^UTILITY(U,$J,358.3,46981,1,4,0)
+ ;;=4^Z48.3
+ ;;^UTILITY(U,$J,358.3,46981,2)
+ ;;=^5063046
+ ;;^UTILITY(U,$J,358.3,46982,0)
+ ;;=Z48.811^^179^2343^6
+ ;;^UTILITY(U,$J,358.3,46982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49374,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49374,1,4,0)
- ;;=4^S49.011S
- ;;^UTILITY(U,$J,358.3,49374,2)
- ;;=^5028358
- ;;^UTILITY(U,$J,358.3,49375,0)
- ;;=S49.122S^^216^2417^111
- ;;^UTILITY(U,$J,358.3,49375,1,0)
+ ;;^UTILITY(U,$J,358.3,46982,1,3,0)
+ ;;=3^Aftercare Following Surgery,Nervous System
+ ;;^UTILITY(U,$J,358.3,46982,1,4,0)
+ ;;=4^Z48.811
+ ;;^UTILITY(U,$J,358.3,46982,2)
+ ;;=^5063048
+ ;;^UTILITY(U,$J,358.3,46983,0)
+ ;;=Z48.813^^179^2343^7
+ ;;^UTILITY(U,$J,358.3,46983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49375,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end humer, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49375,1,4,0)
- ;;=4^S49.122S
- ;;^UTILITY(U,$J,358.3,49375,2)
- ;;=^5134986
- ;;^UTILITY(U,$J,358.3,49376,0)
- ;;=S49.121S^^216^2417^112
- ;;^UTILITY(U,$J,358.3,49376,1,0)
+ ;;^UTILITY(U,$J,358.3,46983,1,3,0)
+ ;;=3^Aftercare Following Surgery,Respiratory System
+ ;;^UTILITY(U,$J,358.3,46983,1,4,0)
+ ;;=4^Z48.813
+ ;;^UTILITY(U,$J,358.3,46983,2)
+ ;;=^5063050
+ ;;^UTILITY(U,$J,358.3,46984,0)
+ ;;=Z48.810^^179^2343^8
+ ;;^UTILITY(U,$J,358.3,46984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49376,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end humer, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49376,1,4,0)
- ;;=4^S49.121S
- ;;^UTILITY(U,$J,358.3,49376,2)
- ;;=^5028454
- ;;^UTILITY(U,$J,358.3,49377,0)
- ;;=S49.022S^^216^2417^113
- ;;^UTILITY(U,$J,358.3,49377,1,0)
+ ;;^UTILITY(U,$J,358.3,46984,1,3,0)
+ ;;=3^Aftercare Following Surgery,Sense Organs
+ ;;^UTILITY(U,$J,358.3,46984,1,4,0)
+ ;;=4^Z48.810
+ ;;^UTILITY(U,$J,358.3,46984,2)
+ ;;=^5063047
+ ;;^UTILITY(U,$J,358.3,46985,0)
+ ;;=Z48.817^^179^2343^9
+ ;;^UTILITY(U,$J,358.3,46985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49377,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,46985,1,3,0)
+ ;;=3^Aftercare Following Surgery,Skin
+ ;;^UTILITY(U,$J,358.3,46985,1,4,0)
+ ;;=4^Z48.817
+ ;;^UTILITY(U,$J,358.3,46985,2)
+ ;;=^5063054
+ ;;^UTILITY(U,$J,358.3,46986,0)
+ ;;=Z48.89^^179^2343^1
+ ;;^UTILITY(U,$J,358.3,46986,1,0)
+ ;;=^358.31IA^4^2

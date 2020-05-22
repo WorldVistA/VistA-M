@@ -1,124 +1,134 @@
-IBDEI3C7 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3C7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56073,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,56073,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,56074,0)
- ;;=R40.2222^^256^2793^20
- ;;^UTILITY(U,$J,358.3,56074,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56074,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,56074,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,56074,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,56075,0)
- ;;=R40.2221^^256^2793^21
- ;;^UTILITY(U,$J,358.3,56075,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56075,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,56075,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,56075,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,56076,0)
- ;;=R40.2220^^256^2793^22
- ;;^UTILITY(U,$J,358.3,56076,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56076,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,56076,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,56076,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,56077,0)
- ;;=R40.2214^^256^2793^23
- ;;^UTILITY(U,$J,358.3,56077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56077,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,56077,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,56077,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,56078,0)
- ;;=R40.2213^^256^2793^25
- ;;^UTILITY(U,$J,358.3,56078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56078,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,56078,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,56078,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,56079,0)
- ;;=R40.2212^^256^2793^24
- ;;^UTILITY(U,$J,358.3,56079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56079,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,56079,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,56079,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,56080,0)
- ;;=R40.2344^^256^2793^6
- ;;^UTILITY(U,$J,358.3,56080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56080,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,56080,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,56080,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,56081,0)
- ;;=R40.2343^^256^2793^7
- ;;^UTILITY(U,$J,358.3,56081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56081,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,56081,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,56081,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,56082,0)
- ;;=R40.2342^^256^2793^8
- ;;^UTILITY(U,$J,358.3,56082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56082,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,56082,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,56082,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,56083,0)
- ;;=R40.2341^^256^2793^9
- ;;^UTILITY(U,$J,358.3,56083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56083,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,56083,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,56083,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,56084,0)
- ;;=R40.2340^^256^2793^10
- ;;^UTILITY(U,$J,358.3,56084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56084,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,56084,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,56084,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,56085,0)
- ;;=R40.2324^^256^2793^1
- ;;^UTILITY(U,$J,358.3,56085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56085,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.5,81,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,81,2,1,0)
+ ;;=NATIONAL COMMUNITY INTEGRATED HEALTHCARE (CIH)^^^0^0
+ ;;^UTILITY(U,$J,358.5,82,0)
+ ;;=Patient name^98^1
+ ;;^UTILITY(U,$J,358.5,82,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,82,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,83,0)
+ ;;=SSN^98^2
+ ;;^UTILITY(U,$J,358.5,83,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,83,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,84,0)
+ ;;=Age^98^3
+ ;;^UTILITY(U,$J,358.5,84,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,84,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,84,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,85,0)
+ ;;=HEADER^104
+ ;;^UTILITY(U,$J,358.5,85,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,85,2,1,0)
+ ;;=NATIONAL CRITICAL CARE^^^0^0
+ ;;^UTILITY(U,$J,358.5,86,0)
+ ;;=Patient name^105^1
+ ;;^UTILITY(U,$J,358.5,86,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,86,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,87,0)
+ ;;=SSN^105^2
+ ;;^UTILITY(U,$J,358.5,87,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,87,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,88,0)
+ ;;=Age^105^3
+ ;;^UTILITY(U,$J,358.5,88,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,88,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,88,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,89,0)
+ ;;=HEADER^109
+ ;;^UTILITY(U,$J,358.5,89,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,89,2,1,0)
+ ;;=NATIONAL DERMATOLOGY EF ^^^0^0
+ ;;^UTILITY(U,$J,358.5,90,0)
+ ;;=Patient name^110^1
+ ;;^UTILITY(U,$J,358.5,90,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,90,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,91,0)
+ ;;=SSN^110^2
+ ;;^UTILITY(U,$J,358.5,91,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,91,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,92,0)
+ ;;=Age^110^3
+ ;;^UTILITY(U,$J,358.5,92,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,92,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,92,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,93,0)
+ ;;=Patient name^114^1
+ ;;^UTILITY(U,$J,358.5,93,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,93,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,94,0)
+ ;;=SSN^114^2
+ ;;^UTILITY(U,$J,358.5,94,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,94,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,95,0)
+ ;;=Age^114^3
+ ;;^UTILITY(U,$J,358.5,95,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,95,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,95,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,96,0)
+ ;;=HEADER^115
+ ;;^UTILITY(U,$J,358.5,96,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,96,2,1,0)
+ ;;=NATIONAL DIALYSIS^^B^0^0
+ ;;^UTILITY(U,$J,358.5,97,0)
+ ;;=HEADER^120
+ ;;^UTILITY(U,$J,358.5,97,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,97,2,1,0)
+ ;;=NATIONAL EMERGENCY DEPARTMENT^^^0^0
+ ;;^UTILITY(U,$J,358.5,98,0)
+ ;;=Patient name^121^1
+ ;;^UTILITY(U,$J,358.5,98,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,98,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,99,0)
+ ;;=SSN^121^2
+ ;;^UTILITY(U,$J,358.5,99,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,99,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,100,0)
+ ;;=Age^121^3
+ ;;^UTILITY(U,$J,358.5,100,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,100,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,100,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,101,0)
+ ;;=HEADER^123

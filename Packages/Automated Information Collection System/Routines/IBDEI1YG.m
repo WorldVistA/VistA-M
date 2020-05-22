@@ -1,124 +1,120 @@
-IBDEI1YG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33187,0)
- ;;=I70.335^^131^1669^54
- ;;^UTILITY(U,$J,358.3,33187,1,0)
+ ;;^UTILITY(U,$J,358.3,31240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33187,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,33187,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,33187,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,33188,0)
- ;;=I70.341^^131^1669^49
- ;;^UTILITY(U,$J,358.3,33188,1,0)
+ ;;^UTILITY(U,$J,358.3,31240,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,31240,1,4,0)
+ ;;=4^O31.01X0
+ ;;^UTILITY(U,$J,358.3,31240,2)
+ ;;=^5016509
+ ;;^UTILITY(U,$J,358.3,31241,0)
+ ;;=O31.01X1^^126^1623^45
+ ;;^UTILITY(U,$J,358.3,31241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33188,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,33188,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,33188,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,33189,0)
- ;;=I70.342^^131^1669^46
- ;;^UTILITY(U,$J,358.3,33189,1,0)
+ ;;^UTILITY(U,$J,358.3,31241,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31241,1,4,0)
+ ;;=4^O31.01X1
+ ;;^UTILITY(U,$J,358.3,31241,2)
+ ;;=^5016510
+ ;;^UTILITY(U,$J,358.3,31242,0)
+ ;;=O31.01X2^^126^1623^46
+ ;;^UTILITY(U,$J,358.3,31242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33189,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,33189,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,33189,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,33190,0)
- ;;=I70.343^^131^1669^45
- ;;^UTILITY(U,$J,358.3,33190,1,0)
+ ;;^UTILITY(U,$J,358.3,31242,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31242,1,4,0)
+ ;;=4^O31.01X2
+ ;;^UTILITY(U,$J,358.3,31242,2)
+ ;;=^5016511
+ ;;^UTILITY(U,$J,358.3,31243,0)
+ ;;=O31.01X3^^126^1623^47
+ ;;^UTILITY(U,$J,358.3,31243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33190,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,33190,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,33190,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,33191,0)
- ;;=I70.344^^131^1669^47
- ;;^UTILITY(U,$J,358.3,33191,1,0)
+ ;;^UTILITY(U,$J,358.3,31243,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31243,1,4,0)
+ ;;=4^O31.01X3
+ ;;^UTILITY(U,$J,358.3,31243,2)
+ ;;=^5016512
+ ;;^UTILITY(U,$J,358.3,31244,0)
+ ;;=O31.01X4^^126^1623^48
+ ;;^UTILITY(U,$J,358.3,31244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33191,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,33191,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,33191,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,33192,0)
- ;;=I70.345^^131^1669^48
- ;;^UTILITY(U,$J,358.3,33192,1,0)
+ ;;^UTILITY(U,$J,358.3,31244,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31244,1,4,0)
+ ;;=4^O31.01X4
+ ;;^UTILITY(U,$J,358.3,31244,2)
+ ;;=^5016513
+ ;;^UTILITY(U,$J,358.3,31245,0)
+ ;;=O31.01X5^^126^1623^49
+ ;;^UTILITY(U,$J,358.3,31245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33192,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,33192,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,33192,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,33193,0)
- ;;=I70.431^^131^1669^40
- ;;^UTILITY(U,$J,358.3,33193,1,0)
+ ;;^UTILITY(U,$J,358.3,31245,1,3,0)
+ ;;=3^Papyraceous fetus, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31245,1,4,0)
+ ;;=4^O31.01X5
+ ;;^UTILITY(U,$J,358.3,31245,2)
+ ;;=^5016514
+ ;;^UTILITY(U,$J,358.3,31246,0)
+ ;;=O12.01^^126^1623^32
+ ;;^UTILITY(U,$J,358.3,31246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33193,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,33193,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,33193,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,33194,0)
- ;;=I70.432^^131^1669^41
- ;;^UTILITY(U,$J,358.3,33194,1,0)
+ ;;^UTILITY(U,$J,358.3,31246,1,3,0)
+ ;;=3^Gestational edema, first trimester
+ ;;^UTILITY(U,$J,358.3,31246,1,4,0)
+ ;;=4^O12.01
+ ;;^UTILITY(U,$J,358.3,31246,2)
+ ;;=^5016147
+ ;;^UTILITY(U,$J,358.3,31247,0)
+ ;;=O12.02^^126^1623^33
+ ;;^UTILITY(U,$J,358.3,31247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33194,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,33194,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,33194,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,33195,0)
- ;;=I70.433^^131^1669^42
- ;;^UTILITY(U,$J,358.3,33195,1,0)
+ ;;^UTILITY(U,$J,358.3,31247,1,3,0)
+ ;;=3^Gestational edema, second trimester
+ ;;^UTILITY(U,$J,358.3,31247,1,4,0)
+ ;;=4^O12.02
+ ;;^UTILITY(U,$J,358.3,31247,2)
+ ;;=^5016148
+ ;;^UTILITY(U,$J,358.3,31248,0)
+ ;;=O12.03^^126^1623^34
+ ;;^UTILITY(U,$J,358.3,31248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33195,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,33195,1,4,0)
- ;;=4^I70.433
- ;;^UTILITY(U,$J,358.3,33195,2)
- ;;=^5007666
- ;;^UTILITY(U,$J,358.3,33196,0)
- ;;=I70.434^^131^1669^43
- ;;^UTILITY(U,$J,358.3,33196,1,0)
+ ;;^UTILITY(U,$J,358.3,31248,1,3,0)
+ ;;=3^Gestational edema, third trimester
+ ;;^UTILITY(U,$J,358.3,31248,1,4,0)
+ ;;=4^O12.03
+ ;;^UTILITY(U,$J,358.3,31248,2)
+ ;;=^5016149
+ ;;^UTILITY(U,$J,358.3,31249,0)
+ ;;=O12.21^^126^1623^29
+ ;;^UTILITY(U,$J,358.3,31249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33196,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,33196,1,4,0)
- ;;=4^I70.434
- ;;^UTILITY(U,$J,358.3,33196,2)
- ;;=^5007667
- ;;^UTILITY(U,$J,358.3,33197,0)
- ;;=I70.435^^131^1669^44
- ;;^UTILITY(U,$J,358.3,33197,1,0)
+ ;;^UTILITY(U,$J,358.3,31249,1,3,0)
+ ;;=3^Gestational edema with proteinuria, first trimester
+ ;;^UTILITY(U,$J,358.3,31249,1,4,0)
+ ;;=4^O12.21
+ ;;^UTILITY(U,$J,358.3,31249,2)
+ ;;=^5016155
+ ;;^UTILITY(U,$J,358.3,31250,0)
+ ;;=O12.22^^126^1623^30
+ ;;^UTILITY(U,$J,358.3,31250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33197,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,33197,1,4,0)
- ;;=4^I70.435
- ;;^UTILITY(U,$J,358.3,33197,2)
- ;;=^5007668
- ;;^UTILITY(U,$J,358.3,33198,0)
- ;;=I70.441^^131^1669^35
- ;;^UTILITY(U,$J,358.3,33198,1,0)
+ ;;^UTILITY(U,$J,358.3,31250,1,3,0)
+ ;;=3^Gestational edema with proteinuria, second trimester
+ ;;^UTILITY(U,$J,358.3,31250,1,4,0)
+ ;;=4^O12.22
+ ;;^UTILITY(U,$J,358.3,31250,2)
+ ;;=^5016156
+ ;;^UTILITY(U,$J,358.3,31251,0)
+ ;;=O12.23^^126^1623^31
+ ;;^UTILITY(U,$J,358.3,31251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33198,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,33198,1,4,0)
- ;;=4^I70.441
- ;;^UTILITY(U,$J,358.3,33198,2)
- ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,31251,1,3,0)
+ ;;=3^Gestational edema with proteinuria, third trimester
+ ;;^UTILITY(U,$J,358.3,31251,1,4,0)
+ ;;=4^O12.23

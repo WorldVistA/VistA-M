@@ -1,136 +1,128 @@
-IBDEI1KK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26618,1,4,0)
- ;;=4^F33.0
- ;;^UTILITY(U,$J,358.3,26618,2)
- ;;=^5003529
- ;;^UTILITY(U,$J,358.3,26619,0)
- ;;=F33.1^^100^1270^11
- ;;^UTILITY(U,$J,358.3,26619,1,0)
+ ;;^UTILITY(U,$J,358.3,25080,0)
+ ;;=Z96.621^^107^1212^118
+ ;;^UTILITY(U,$J,358.3,25080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26619,1,3,0)
- ;;=3^MDD,Recurrent,Moderate
- ;;^UTILITY(U,$J,358.3,26619,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,26619,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,26620,0)
- ;;=F33.2^^100^1270^12
- ;;^UTILITY(U,$J,358.3,26620,1,0)
+ ;;^UTILITY(U,$J,358.3,25080,1,3,0)
+ ;;=3^Presence of Artificial Elbow Joint,Right
+ ;;^UTILITY(U,$J,358.3,25080,1,4,0)
+ ;;=4^Z96.621
+ ;;^UTILITY(U,$J,358.3,25080,2)
+ ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,25081,0)
+ ;;=Z96.631^^107^1212^123
+ ;;^UTILITY(U,$J,358.3,25081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26620,1,3,0)
- ;;=3^MDD,Recurrent,Severe
- ;;^UTILITY(U,$J,358.3,26620,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,26620,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,26621,0)
- ;;=F33.3^^100^1270^7
- ;;^UTILITY(U,$J,358.3,26621,1,0)
+ ;;^UTILITY(U,$J,358.3,25081,1,3,0)
+ ;;=3^Presence of Artificial Wrist Joint,Right
+ ;;^UTILITY(U,$J,358.3,25081,1,4,0)
+ ;;=4^Z96.631
+ ;;^UTILITY(U,$J,358.3,25081,2)
+ ;;=^5063698
+ ;;^UTILITY(U,$J,358.3,25082,0)
+ ;;=Z93.6^^107^1212^154
+ ;;^UTILITY(U,$J,358.3,25082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26621,1,3,0)
- ;;=3^MDD,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,26621,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,26621,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,26622,0)
- ;;=F33.41^^100^1270^9
- ;;^UTILITY(U,$J,358.3,26622,1,0)
+ ;;^UTILITY(U,$J,358.3,25082,1,3,0)
+ ;;=3^Urostomy Status
+ ;;^UTILITY(U,$J,358.3,25082,1,4,0)
+ ;;=4^Z93.6
+ ;;^UTILITY(U,$J,358.3,25082,2)
+ ;;=^5063651
+ ;;^UTILITY(U,$J,358.3,25083,0)
+ ;;=Z95.820^^107^1212^67
+ ;;^UTILITY(U,$J,358.3,25083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26622,1,3,0)
- ;;=3^MDD,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,26622,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,26622,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,26623,0)
- ;;=F33.42^^100^1270^8
- ;;^UTILITY(U,$J,358.3,26623,1,0)
+ ;;^UTILITY(U,$J,358.3,25083,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status w/ Graft
+ ;;^UTILITY(U,$J,358.3,25083,1,4,0)
+ ;;=4^Z95.820
+ ;;^UTILITY(U,$J,358.3,25083,2)
+ ;;=^5063678
+ ;;^UTILITY(U,$J,358.3,25084,0)
+ ;;=Z95.0^^107^1212^126
+ ;;^UTILITY(U,$J,358.3,25084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26623,1,3,0)
- ;;=3^MDD,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,26623,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,26623,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,26624,0)
- ;;=F34.8^^100^1270^6
- ;;^UTILITY(U,$J,358.3,26624,1,0)
+ ;;^UTILITY(U,$J,358.3,25084,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,25084,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,25084,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,25085,0)
+ ;;=Z95.810^^107^1212^124
+ ;;^UTILITY(U,$J,358.3,25085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26624,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,26624,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,26624,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,26625,0)
- ;;=F32.8^^100^1270^1
- ;;^UTILITY(U,$J,358.3,26625,1,0)
+ ;;^UTILITY(U,$J,358.3,25085,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Debribrillator
+ ;;^UTILITY(U,$J,358.3,25085,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,25085,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,25086,0)
+ ;;=A15.0^^107^1213^84
+ ;;^UTILITY(U,$J,358.3,25086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26625,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,26625,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,26625,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,26626,0)
- ;;=F34.1^^100^1270^22
- ;;^UTILITY(U,$J,358.3,26626,1,0)
+ ;;^UTILITY(U,$J,358.3,25086,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,25086,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,25086,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,25087,0)
+ ;;=B20.^^107^1213^31
+ ;;^UTILITY(U,$J,358.3,25087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26626,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,26626,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,26626,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,26627,0)
- ;;=F32.9^^100^1270^5
- ;;^UTILITY(U,$J,358.3,26627,1,0)
+ ;;^UTILITY(U,$J,358.3,25087,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,25087,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,25087,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,25088,0)
+ ;;=B02.9^^107^1213^93
+ ;;^UTILITY(U,$J,358.3,25088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26627,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26627,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,26627,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,26628,0)
- ;;=N94.3^^100^1270^23
- ;;^UTILITY(U,$J,358.3,26628,1,0)
+ ;;^UTILITY(U,$J,358.3,25088,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,25088,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,25088,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,25089,0)
+ ;;=A60.9^^107^1213^2
+ ;;^UTILITY(U,$J,358.3,25089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26628,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,26628,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,26628,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,26629,0)
- ;;=G31.84^^100^1270^21
- ;;^UTILITY(U,$J,358.3,26629,1,0)
+ ;;^UTILITY(U,$J,358.3,25089,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,25089,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,25089,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,25090,0)
+ ;;=A60.04^^107^1213^34
+ ;;^UTILITY(U,$J,358.3,25090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26629,1,3,0)
- ;;=3^Mild Cognitive Impairment,So Stated
- ;;^UTILITY(U,$J,358.3,26629,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,26629,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,26630,0)
- ;;=F44.81^^100^1271^6
- ;;^UTILITY(U,$J,358.3,26630,1,0)
+ ;;^UTILITY(U,$J,358.3,25090,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,25090,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,25090,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,25091,0)
+ ;;=A60.01^^107^1213^32
+ ;;^UTILITY(U,$J,358.3,25091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26630,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,26630,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,26630,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,26631,0)
- ;;=F44.9^^100^1271^5
- ;;^UTILITY(U,$J,358.3,26631,1,0)
+ ;;^UTILITY(U,$J,358.3,25091,1,3,0)
+ ;;=3^Herpesviral Infection of Penis
+ ;;^UTILITY(U,$J,358.3,25091,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,25091,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,25092,0)
+ ;;=B00.1^^107^1213^33
+ ;;^UTILITY(U,$J,358.3,25092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26631,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26631,1,4,0)
- ;;=4^F44.9

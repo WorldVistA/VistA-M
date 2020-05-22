@@ -1,132 +1,128 @@
-IBDEI2VW ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48433,2)
- ;;=^5063552
- ;;^UTILITY(U,$J,358.3,48434,0)
- ;;=Z89.231^^216^2406^24
- ;;^UTILITY(U,$J,358.3,48434,1,0)
+ ;;^UTILITY(U,$J,358.3,46007,1,3,0)
+ ;;=3^Visual Discomfort,Bilateral
+ ;;^UTILITY(U,$J,358.3,46007,1,4,0)
+ ;;=4^H53.143
+ ;;^UTILITY(U,$J,358.3,46007,2)
+ ;;=^5006319
+ ;;^UTILITY(U,$J,358.3,46008,0)
+ ;;=H50.21^^176^2295^62
+ ;;^UTILITY(U,$J,358.3,46008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48434,1,3,0)
- ;;=3^Acquired absence of right shoulder
- ;;^UTILITY(U,$J,358.3,48434,1,4,0)
- ;;=4^Z89.231
- ;;^UTILITY(U,$J,358.3,48434,2)
- ;;=^5063551
- ;;^UTILITY(U,$J,358.3,48435,0)
- ;;=Z89.611^^216^2406^21
- ;;^UTILITY(U,$J,358.3,48435,1,0)
+ ;;^UTILITY(U,$J,358.3,46008,1,3,0)
+ ;;=3^Hypertropia,Right Eye
+ ;;^UTILITY(U,$J,358.3,46008,1,4,0)
+ ;;=4^H50.21
+ ;;^UTILITY(U,$J,358.3,46008,2)
+ ;;=^5006228
+ ;;^UTILITY(U,$J,358.3,46009,0)
+ ;;=H50.22^^176^2295^63
+ ;;^UTILITY(U,$J,358.3,46009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48435,1,3,0)
- ;;=3^Acquired absence of right leg above knee
- ;;^UTILITY(U,$J,358.3,48435,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,48435,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,48436,0)
- ;;=Z89.411^^216^2406^18
- ;;^UTILITY(U,$J,358.3,48436,1,0)
+ ;;^UTILITY(U,$J,358.3,46009,1,3,0)
+ ;;=3^Hypertropia,Left Eye
+ ;;^UTILITY(U,$J,358.3,46009,1,4,0)
+ ;;=4^H50.22
+ ;;^UTILITY(U,$J,358.3,46009,2)
+ ;;=^5006229
+ ;;^UTILITY(U,$J,358.3,46010,0)
+ ;;=H50.53^^176^2295^64
+ ;;^UTILITY(U,$J,358.3,46010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48436,1,3,0)
- ;;=3^Acquired absence of right great toe
- ;;^UTILITY(U,$J,358.3,48436,1,4,0)
- ;;=4^Z89.411
- ;;^UTILITY(U,$J,358.3,48436,2)
- ;;=^5063554
- ;;^UTILITY(U,$J,358.3,48437,0)
- ;;=Z89.412^^216^2406^4
- ;;^UTILITY(U,$J,358.3,48437,1,0)
+ ;;^UTILITY(U,$J,358.3,46010,1,3,0)
+ ;;=3^Hyperphoria
+ ;;^UTILITY(U,$J,358.3,46010,1,4,0)
+ ;;=4^H50.53
+ ;;^UTILITY(U,$J,358.3,46010,2)
+ ;;=^5006241
+ ;;^UTILITY(U,$J,358.3,46011,0)
+ ;;=H55.81^^176^2295^65
+ ;;^UTILITY(U,$J,358.3,46011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48437,1,3,0)
- ;;=3^Acquired absence of left great toe
- ;;^UTILITY(U,$J,358.3,48437,1,4,0)
- ;;=4^Z89.412
- ;;^UTILITY(U,$J,358.3,48437,2)
- ;;=^5063555
- ;;^UTILITY(U,$J,358.3,48438,0)
- ;;=Z89.422^^216^2406^11
- ;;^UTILITY(U,$J,358.3,48438,1,0)
+ ;;^UTILITY(U,$J,358.3,46011,1,3,0)
+ ;;=3^Saccadic Eye Movements
+ ;;^UTILITY(U,$J,358.3,46011,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,46011,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,46012,0)
+ ;;=H52.521^^176^2295^67
+ ;;^UTILITY(U,$J,358.3,46012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48438,1,3,0)
- ;;=3^Acquired absence of left toe(s)
- ;;^UTILITY(U,$J,358.3,48438,1,4,0)
- ;;=4^Z89.422
- ;;^UTILITY(U,$J,358.3,48438,2)
- ;;=^5063558
- ;;^UTILITY(U,$J,358.3,48439,0)
- ;;=Z89.421^^216^2406^26
- ;;^UTILITY(U,$J,358.3,48439,1,0)
+ ;;^UTILITY(U,$J,358.3,46012,1,3,0)
+ ;;=3^Paresis of Accommodation,Right Eye
+ ;;^UTILITY(U,$J,358.3,46012,1,4,0)
+ ;;=4^H52.521
+ ;;^UTILITY(U,$J,358.3,46012,2)
+ ;;=^5006282
+ ;;^UTILITY(U,$J,358.3,46013,0)
+ ;;=H52.522^^176^2295^68
+ ;;^UTILITY(U,$J,358.3,46013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48439,1,3,0)
- ;;=3^Acquired absence of right toe(s)
- ;;^UTILITY(U,$J,358.3,48439,1,4,0)
- ;;=4^Z89.421
- ;;^UTILITY(U,$J,358.3,48439,2)
- ;;=^5063557
- ;;^UTILITY(U,$J,358.3,48440,0)
- ;;=Z89.431^^216^2406^17
- ;;^UTILITY(U,$J,358.3,48440,1,0)
+ ;;^UTILITY(U,$J,358.3,46013,1,3,0)
+ ;;=3^Paresis of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,46013,1,4,0)
+ ;;=4^H52.522
+ ;;^UTILITY(U,$J,358.3,46013,2)
+ ;;=^5006283
+ ;;^UTILITY(U,$J,358.3,46014,0)
+ ;;=H52.523^^176^2295^69
+ ;;^UTILITY(U,$J,358.3,46014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48440,1,3,0)
- ;;=3^Acquired absence of right foot
- ;;^UTILITY(U,$J,358.3,48440,1,4,0)
- ;;=4^Z89.431
- ;;^UTILITY(U,$J,358.3,48440,2)
- ;;=^5063560
- ;;^UTILITY(U,$J,358.3,48441,0)
- ;;=Z89.432^^216^2406^3
- ;;^UTILITY(U,$J,358.3,48441,1,0)
+ ;;^UTILITY(U,$J,358.3,46014,1,3,0)
+ ;;=3^Paresis of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,46014,1,4,0)
+ ;;=4^H52.523
+ ;;^UTILITY(U,$J,358.3,46014,2)
+ ;;=^5006284
+ ;;^UTILITY(U,$J,358.3,46015,0)
+ ;;=H52.531^^176^2295^70
+ ;;^UTILITY(U,$J,358.3,46015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48441,1,3,0)
- ;;=3^Acquired absence of left foot
- ;;^UTILITY(U,$J,358.3,48441,1,4,0)
- ;;=4^Z89.432
- ;;^UTILITY(U,$J,358.3,48441,2)
- ;;=^5063561
- ;;^UTILITY(U,$J,358.3,48442,0)
- ;;=Z89.442^^216^2406^1
- ;;^UTILITY(U,$J,358.3,48442,1,0)
+ ;;^UTILITY(U,$J,358.3,46015,1,3,0)
+ ;;=3^Spasm of Accommodation,Right Eye
+ ;;^UTILITY(U,$J,358.3,46015,1,4,0)
+ ;;=4^H52.531
+ ;;^UTILITY(U,$J,358.3,46015,2)
+ ;;=^5006286
+ ;;^UTILITY(U,$J,358.3,46016,0)
+ ;;=H52.532^^176^2295^71
+ ;;^UTILITY(U,$J,358.3,46016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48442,1,3,0)
- ;;=3^Acquired absence of left ankle
- ;;^UTILITY(U,$J,358.3,48442,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,48442,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,48443,0)
- ;;=Z89.441^^216^2406^15
- ;;^UTILITY(U,$J,358.3,48443,1,0)
+ ;;^UTILITY(U,$J,358.3,46016,1,3,0)
+ ;;=3^Spasm of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,46016,1,4,0)
+ ;;=4^H52.532
+ ;;^UTILITY(U,$J,358.3,46016,2)
+ ;;=^5006287
+ ;;^UTILITY(U,$J,358.3,46017,0)
+ ;;=H52.533^^176^2295^72
+ ;;^UTILITY(U,$J,358.3,46017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48443,1,3,0)
- ;;=3^Acquired absence of right ankle
- ;;^UTILITY(U,$J,358.3,48443,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,48443,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,48444,0)
- ;;=Z89.511^^216^2406^23
- ;;^UTILITY(U,$J,358.3,48444,1,0)
+ ;;^UTILITY(U,$J,358.3,46017,1,3,0)
+ ;;=3^Spasm of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,46017,1,4,0)
+ ;;=4^H52.533
+ ;;^UTILITY(U,$J,358.3,46017,2)
+ ;;=^5006288
+ ;;^UTILITY(U,$J,358.3,46018,0)
+ ;;=H55.89^^176^2295^66
+ ;;^UTILITY(U,$J,358.3,46018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48444,1,3,0)
- ;;=3^Acquired absence of right leg below knee
- ;;^UTILITY(U,$J,358.3,48444,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,48444,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,48445,0)
- ;;=Z89.512^^216^2406^8
- ;;^UTILITY(U,$J,358.3,48445,1,0)
+ ;;^UTILITY(U,$J,358.3,46018,1,3,0)
+ ;;=3^Irregular Eye Movements,Other
+ ;;^UTILITY(U,$J,358.3,46018,1,4,0)
+ ;;=4^H55.89
+ ;;^UTILITY(U,$J,358.3,46018,2)
+ ;;=^5006374
+ ;;^UTILITY(U,$J,358.3,46019,0)
+ ;;=H53.32^^176^2295^42
+ ;;^UTILITY(U,$J,358.3,46019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48445,1,3,0)
- ;;=3^Acquired absence of left leg below knee
- ;;^UTILITY(U,$J,358.3,48445,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,48445,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,48446,0)
- ;;=Z89.611^^216^2406^22
- ;;^UTILITY(U,$J,358.3,48446,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48446,1,3,0)
- ;;=3^Acquired absence of right leg above knee
+ ;;^UTILITY(U,$J,358.3,46019,1,3,0)
+ ;;=3^Fusion w/ Defective Stereopsis
+ ;;^UTILITY(U,$J,358.3,46019,1,4,0)
+ ;;=4^H53.32

@@ -1,140 +1,116 @@
-IBDEI19N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21534,1,2,0)
- ;;=2^90472
- ;;^UTILITY(U,$J,358.3,21534,1,3,0)
- ;;=3^Immunization Admin,Ea Addl Vacc
- ;;^UTILITY(U,$J,358.3,21535,0)
- ;;=B18.2^^87^965^26
- ;;^UTILITY(U,$J,358.3,21535,1,0)
+ ;;^UTILITY(U,$J,358.3,20264,1,3,0)
+ ;;=3^Nondisp Maisonneuve's fx of left leg, sequela   
+ ;;^UTILITY(U,$J,358.3,20264,1,4,0)
+ ;;=4^S82.865S
+ ;;^UTILITY(U,$J,358.3,20264,2)
+ ;;=^5042750
+ ;;^UTILITY(U,$J,358.3,20265,0)
+ ;;=S82.864S^^93^1000^38
+ ;;^UTILITY(U,$J,358.3,20265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21535,1,3,0)
- ;;=3^Hepatitis C,Chr
- ;;^UTILITY(U,$J,358.3,21535,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,21535,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,21536,0)
- ;;=C44.99^^87^965^50
- ;;^UTILITY(U,$J,358.3,21536,1,0)
+ ;;^UTILITY(U,$J,358.3,20265,1,3,0)
+ ;;=3^Nondisp Maisonneuve's fx of right leg, sequela   
+ ;;^UTILITY(U,$J,358.3,20265,1,4,0)
+ ;;=4^S82.864S
+ ;;^UTILITY(U,$J,358.3,20265,2)
+ ;;=^5042734
+ ;;^UTILITY(U,$J,358.3,20266,0)
+ ;;=S12.44XS^^93^1001^50
+ ;;^UTILITY(U,$J,358.3,20266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21536,1,3,0)
- ;;=3^Skin Cancer,Unspec
- ;;^UTILITY(U,$J,358.3,21536,1,4,0)
- ;;=4^C44.99
- ;;^UTILITY(U,$J,358.3,21536,2)
- ;;=^5001094
- ;;^UTILITY(U,$J,358.3,21537,0)
- ;;=E11.9^^87^965^15
- ;;^UTILITY(U,$J,358.3,21537,1,0)
+ ;;^UTILITY(U,$J,358.3,20266,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of fifth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,20266,1,4,0)
+ ;;=4^S12.44XS
+ ;;^UTILITY(U,$J,358.3,20266,2)
+ ;;=^5021826
+ ;;^UTILITY(U,$J,358.3,20267,0)
+ ;;=S12.34XS^^93^1001^51
+ ;;^UTILITY(U,$J,358.3,20267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21537,1,3,0)
- ;;=3^Diabetes Type 2
- ;;^UTILITY(U,$J,358.3,21537,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,21537,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,21538,0)
- ;;=E11.40^^87^965^16
- ;;^UTILITY(U,$J,358.3,21538,1,0)
+ ;;^UTILITY(U,$J,358.3,20267,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of fourth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,20267,1,4,0)
+ ;;=4^S12.34XS
+ ;;^UTILITY(U,$J,358.3,20267,2)
+ ;;=^5021772
+ ;;^UTILITY(U,$J,358.3,20268,0)
+ ;;=S12.14XS^^93^1001^52
+ ;;^UTILITY(U,$J,358.3,20268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21538,1,3,0)
- ;;=3^Diabetes Type 2 w/ Neuropathy
- ;;^UTILITY(U,$J,358.3,21538,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,21538,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,21539,0)
- ;;=E78.2^^87^965^27
- ;;^UTILITY(U,$J,358.3,21539,1,0)
+ ;;^UTILITY(U,$J,358.3,20268,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of second cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,20268,1,4,0)
+ ;;=4^S12.14XS
+ ;;^UTILITY(U,$J,358.3,20268,2)
+ ;;=^5021664
+ ;;^UTILITY(U,$J,358.3,20269,0)
+ ;;=S12.64XS^^93^1001^53
+ ;;^UTILITY(U,$J,358.3,20269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21539,1,3,0)
- ;;=3^Hyperlipidemia,Mixed
- ;;^UTILITY(U,$J,358.3,21539,1,4,0)
- ;;=4^E78.2
- ;;^UTILITY(U,$J,358.3,21539,2)
- ;;=^78424
- ;;^UTILITY(U,$J,358.3,21540,0)
- ;;=E78.5^^87^965^28
- ;;^UTILITY(U,$J,358.3,21540,1,0)
+ ;;^UTILITY(U,$J,358.3,20269,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of seventh cervcal vert, sqla
+ ;;^UTILITY(U,$J,358.3,20269,1,4,0)
+ ;;=4^S12.64XS
+ ;;^UTILITY(U,$J,358.3,20269,2)
+ ;;=^5021934
+ ;;^UTILITY(U,$J,358.3,20270,0)
+ ;;=S12.54XS^^93^1001^54
+ ;;^UTILITY(U,$J,358.3,20270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21540,1,3,0)
- ;;=3^Hyperlipidemia,Unspec
- ;;^UTILITY(U,$J,358.3,21540,1,4,0)
- ;;=4^E78.5
- ;;^UTILITY(U,$J,358.3,21540,2)
- ;;=^5002969
- ;;^UTILITY(U,$J,358.3,21541,0)
- ;;=E66.3^^87^965^44
- ;;^UTILITY(U,$J,358.3,21541,1,0)
+ ;;^UTILITY(U,$J,358.3,20270,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of sixth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,20270,1,4,0)
+ ;;=4^S12.54XS
+ ;;^UTILITY(U,$J,358.3,20270,2)
+ ;;=^5021880
+ ;;^UTILITY(U,$J,358.3,20271,0)
+ ;;=S12.24XS^^93^1001^55
+ ;;^UTILITY(U,$J,358.3,20271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21541,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,21541,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,21541,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,21542,0)
- ;;=D64.9^^87^965^3
- ;;^UTILITY(U,$J,358.3,21542,1,0)
+ ;;^UTILITY(U,$J,358.3,20271,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of third cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,20271,1,4,0)
+ ;;=4^S12.24XS
+ ;;^UTILITY(U,$J,358.3,20271,2)
+ ;;=^5021718
+ ;;^UTILITY(U,$J,358.3,20272,0)
+ ;;=S32.052S^^93^1001^61
+ ;;^UTILITY(U,$J,358.3,20272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21542,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,21542,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,21542,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,21543,0)
- ;;=F17.200^^87^965^41
- ;;^UTILITY(U,$J,358.3,21543,1,0)
+ ;;^UTILITY(U,$J,358.3,20272,1,3,0)
+ ;;=3^Unstable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20272,1,4,0)
+ ;;=4^S32.052S
+ ;;^UTILITY(U,$J,358.3,20272,2)
+ ;;=^5024508
+ ;;^UTILITY(U,$J,358.3,20273,0)
+ ;;=S12.02XS^^93^1001^62
+ ;;^UTILITY(U,$J,358.3,20273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21543,1,3,0)
- ;;=3^Nicotine Dependence,Unspec
- ;;^UTILITY(U,$J,358.3,21543,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,21543,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,21544,0)
- ;;=F17.229^^87^965^38
- ;;^UTILITY(U,$J,358.3,21544,1,0)
+ ;;^UTILITY(U,$J,358.3,20273,1,3,0)
+ ;;=3^Unstable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20273,1,4,0)
+ ;;=4^S12.02XS
+ ;;^UTILITY(U,$J,358.3,20273,2)
+ ;;=^5021568
+ ;;^UTILITY(U,$J,358.3,20274,0)
+ ;;=S32.012S^^93^1001^63
+ ;;^UTILITY(U,$J,358.3,20274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21544,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco
- ;;^UTILITY(U,$J,358.3,21544,1,4,0)
- ;;=4^F17.229
- ;;^UTILITY(U,$J,358.3,21544,2)
- ;;=^5003374
- ;;^UTILITY(U,$J,358.3,21545,0)
- ;;=F19.10^^87^965^53
- ;;^UTILITY(U,$J,358.3,21545,1,0)
+ ;;^UTILITY(U,$J,358.3,20274,1,3,0)
+ ;;=3^Unstable burst fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20274,1,4,0)
+ ;;=4^S32.012S
+ ;;^UTILITY(U,$J,358.3,20274,2)
+ ;;=^5024388
+ ;;^UTILITY(U,$J,358.3,20275,0)
+ ;;=S22.012S^^93^1001^64
+ ;;^UTILITY(U,$J,358.3,20275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21545,1,3,0)
- ;;=3^Substance Abuse,Unspec
- ;;^UTILITY(U,$J,358.3,21545,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,21545,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,21546,0)
- ;;=F15.10^^87^965^52
- ;;^UTILITY(U,$J,358.3,21546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21546,1,3,0)
- ;;=3^Stimulant Abuse,Unspec
- ;;^UTILITY(U,$J,358.3,21546,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,21546,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,21547,0)
- ;;=F43.21^^87^965^2
- ;;^UTILITY(U,$J,358.3,21547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21547,1,3,0)
- ;;=3^Adjustment d/o w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,21547,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,21547,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,21548,0)
- ;;=G43.909^^87^965^37
+ ;;^UTILITY(U,$J,358.3,20275,1,3,0)
+ ;;=3^Unstable burst fracture of first thoracic vertebra, sequela

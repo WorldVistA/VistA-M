@@ -1,130 +1,128 @@
-IBDEI2U9 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2U9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47637,0)
- ;;=C91.A2^^209^2346^300
- ;;^UTILITY(U,$J,358.3,47637,1,0)
+ ;;^UTILITY(U,$J,358.3,45278,2)
+ ;;=^5002524
+ ;;^UTILITY(U,$J,358.3,45279,0)
+ ;;=E09.42^^172^2262^11
+ ;;^UTILITY(U,$J,358.3,45279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47637,1,3,0)
- ;;=3^Mature B-Cell Leukemia Burkitt Type,In Relapse
- ;;^UTILITY(U,$J,358.3,47637,1,4,0)
- ;;=4^C91.A2
- ;;^UTILITY(U,$J,358.3,47637,2)
- ;;=^5001785
- ;;^UTILITY(U,$J,358.3,47638,0)
- ;;=C91.Z0^^209^2346^277
- ;;^UTILITY(U,$J,358.3,47638,1,0)
+ ;;^UTILITY(U,$J,358.3,45279,1,3,0)
+ ;;=3^DM drug-induced w/ neurological compl w/ diabetic polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45279,1,4,0)
+ ;;=4^E09.42
+ ;;^UTILITY(U,$J,358.3,45279,2)
+ ;;=^5002566
+ ;;^UTILITY(U,$J,358.3,45280,0)
+ ;;=E10.42^^172^2262^4
+ ;;^UTILITY(U,$J,358.3,45280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47638,1,3,0)
- ;;=3^Lymphoid Leukemia NEC,Not in Remission
- ;;^UTILITY(U,$J,358.3,47638,1,4,0)
- ;;=4^C91.Z0
- ;;^UTILITY(U,$J,358.3,47638,2)
- ;;=^5001786
- ;;^UTILITY(U,$J,358.3,47639,0)
- ;;=C91.Z1^^209^2346^276
- ;;^UTILITY(U,$J,358.3,47639,1,0)
+ ;;^UTILITY(U,$J,358.3,45280,1,3,0)
+ ;;=3^DM Type 1 w/ diabetic polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45280,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,45280,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,45281,0)
+ ;;=E10.65^^172^2262^5
+ ;;^UTILITY(U,$J,358.3,45281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47639,1,3,0)
- ;;=3^Lymphoid Leukemia NEC,In Remission
- ;;^UTILITY(U,$J,358.3,47639,1,4,0)
- ;;=4^C91.Z1
- ;;^UTILITY(U,$J,358.3,47639,2)
- ;;=^5001787
- ;;^UTILITY(U,$J,358.3,47640,0)
- ;;=C91.Z2^^209^2346^275
- ;;^UTILITY(U,$J,358.3,47640,1,0)
+ ;;^UTILITY(U,$J,358.3,45281,1,3,0)
+ ;;=3^DM Type 1 w/ hyperglycemia
+ ;;^UTILITY(U,$J,358.3,45281,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,45281,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,45282,0)
+ ;;=E10.9^^172^2262^6
+ ;;^UTILITY(U,$J,358.3,45282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47640,1,3,0)
- ;;=3^Lymphoid Leukemia NEC,In Relapse
- ;;^UTILITY(U,$J,358.3,47640,1,4,0)
- ;;=4^C91.Z2
- ;;^UTILITY(U,$J,358.3,47640,2)
- ;;=^5001788
- ;;^UTILITY(U,$J,358.3,47641,0)
- ;;=C91.90^^209^2346^280
- ;;^UTILITY(U,$J,358.3,47641,1,0)
+ ;;^UTILITY(U,$J,358.3,45282,1,3,0)
+ ;;=3^DM Type 1 w/o complications
+ ;;^UTILITY(U,$J,358.3,45282,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,45282,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,45283,0)
+ ;;=E11.42^^172^2262^7
+ ;;^UTILITY(U,$J,358.3,45283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47641,1,3,0)
- ;;=3^Lymphoid Leukemia,Unspec,Not in Remission
- ;;^UTILITY(U,$J,358.3,47641,1,4,0)
- ;;=4^C91.90
- ;;^UTILITY(U,$J,358.3,47641,2)
- ;;=^5001780
- ;;^UTILITY(U,$J,358.3,47642,0)
- ;;=C91.91^^209^2346^279
- ;;^UTILITY(U,$J,358.3,47642,1,0)
+ ;;^UTILITY(U,$J,358.3,45283,1,3,0)
+ ;;=3^DM Type 2 w/ diabetic polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45283,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,45283,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,45284,0)
+ ;;=E11.65^^172^2262^8
+ ;;^UTILITY(U,$J,358.3,45284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47642,1,3,0)
- ;;=3^Lymphoid Leukemia,Unspec,In Remission
- ;;^UTILITY(U,$J,358.3,47642,1,4,0)
- ;;=4^C91.91
- ;;^UTILITY(U,$J,358.3,47642,2)
- ;;=^5001781
- ;;^UTILITY(U,$J,358.3,47643,0)
- ;;=C91.92^^209^2346^278
- ;;^UTILITY(U,$J,358.3,47643,1,0)
+ ;;^UTILITY(U,$J,358.3,45284,1,3,0)
+ ;;=3^DM Type 2 w/ hyperglycemia
+ ;;^UTILITY(U,$J,358.3,45284,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,45284,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,45285,0)
+ ;;=E11.9^^172^2262^9
+ ;;^UTILITY(U,$J,358.3,45285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47643,1,3,0)
- ;;=3^Lymphoid Leukemia,Unspec,In Relapse
- ;;^UTILITY(U,$J,358.3,47643,1,4,0)
- ;;=4^C91.92
- ;;^UTILITY(U,$J,358.3,47643,2)
- ;;=^5001782
- ;;^UTILITY(U,$J,358.3,47644,0)
- ;;=C92.00^^209^2346^18
- ;;^UTILITY(U,$J,358.3,47644,1,0)
+ ;;^UTILITY(U,$J,358.3,45285,1,3,0)
+ ;;=3^DM Type 2 w/o complications
+ ;;^UTILITY(U,$J,358.3,45285,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,45285,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,45286,0)
+ ;;=E13.42^^172^2262^12
+ ;;^UTILITY(U,$J,358.3,45286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47644,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,47644,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,47644,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,47645,0)
- ;;=C92.01^^209^2346^17
- ;;^UTILITY(U,$J,358.3,47645,1,0)
+ ;;^UTILITY(U,$J,358.3,45286,1,3,0)
+ ;;=3^DM oth w/ diabetic polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45286,1,4,0)
+ ;;=4^E13.42
+ ;;^UTILITY(U,$J,358.3,45286,2)
+ ;;=^5002686
+ ;;^UTILITY(U,$J,358.3,45287,0)
+ ;;=E16.2^^172^2262^22
+ ;;^UTILITY(U,$J,358.3,45287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47645,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,47645,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,47645,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,47646,0)
- ;;=C92.02^^209^2346^16
- ;;^UTILITY(U,$J,358.3,47646,1,0)
+ ;;^UTILITY(U,$J,358.3,45287,1,3,0)
+ ;;=3^Hypoglycemia, unspecified
+ ;;^UTILITY(U,$J,358.3,45287,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,45287,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,45288,0)
+ ;;=E46.^^172^2262^26
+ ;;^UTILITY(U,$J,358.3,45288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47646,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,47646,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,47646,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,47647,0)
- ;;=C92.10^^209^2346^88
- ;;^UTILITY(U,$J,358.3,47647,1,0)
+ ;;^UTILITY(U,$J,358.3,45288,1,3,0)
+ ;;=3^Malnutrition, protein-calorie, unspec
+ ;;^UTILITY(U,$J,358.3,45288,1,4,0)
+ ;;=4^E46.
+ ;;^UTILITY(U,$J,358.3,45288,2)
+ ;;=^5002790
+ ;;^UTILITY(U,$J,358.3,45289,0)
+ ;;=E53.8^^172^2262^31
+ ;;^UTILITY(U,$J,358.3,45289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47647,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
- ;;^UTILITY(U,$J,358.3,47647,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,47647,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,47648,0)
- ;;=C92.11^^209^2346^89
- ;;^UTILITY(U,$J,358.3,47648,1,0)
+ ;;^UTILITY(U,$J,358.3,45289,1,3,0)
+ ;;=3^Vitamin B group deficiency
+ ;;^UTILITY(U,$J,358.3,45289,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,45289,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,45290,0)
+ ;;=E66.01^^172^2262^27
+ ;;^UTILITY(U,$J,358.3,45290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47648,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
- ;;^UTILITY(U,$J,358.3,47648,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,47648,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,47649,0)
- ;;=C92.12^^209^2346^90
- ;;^UTILITY(U,$J,358.3,47649,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47649,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Relapse
+ ;;^UTILITY(U,$J,358.3,45290,1,3,0)
+ ;;=3^Obesity, morbid
+ ;;^UTILITY(U,$J,358.3,45290,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,45290,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,45291,0)
+ ;;=E66.9^^172^2262^28

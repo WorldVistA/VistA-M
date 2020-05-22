@@ -1,130 +1,126 @@
-IBDEI31E ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50915,1,3,0)
- ;;=3^Abscess of tendon sheath, rt shoulder
- ;;^UTILITY(U,$J,358.3,50915,1,4,0)
- ;;=4^M65.011
- ;;^UTILITY(U,$J,358.3,50915,2)
- ;;=^5012710
- ;;^UTILITY(U,$J,358.3,50916,0)
- ;;=M65.012^^222^2466^24
- ;;^UTILITY(U,$J,358.3,50916,1,0)
+ ;;^UTILITY(U,$J,358.3,48492,1,4,0)
+ ;;=4^M84.40XG
+ ;;^UTILITY(U,$J,358.3,48492,2)
+ ;;=^5013796
+ ;;^UTILITY(U,$J,358.3,48493,0)
+ ;;=M84.40XK^^185^2423^58
+ ;;^UTILITY(U,$J,358.3,48493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50916,1,3,0)
- ;;=3^Abscess of tendon sheath, lft shoulder
- ;;^UTILITY(U,$J,358.3,50916,1,4,0)
- ;;=4^M65.012
- ;;^UTILITY(U,$J,358.3,50916,2)
- ;;=^5012711
- ;;^UTILITY(U,$J,358.3,50917,0)
- ;;=M65.022^^222^2466^26
- ;;^UTILITY(U,$J,358.3,50917,1,0)
+ ;;^UTILITY(U,$J,358.3,48493,1,3,0)
+ ;;=3^Fx,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,48493,1,4,0)
+ ;;=4^M84.40XK
+ ;;^UTILITY(U,$J,358.3,48493,2)
+ ;;=^5013797
+ ;;^UTILITY(U,$J,358.3,48494,0)
+ ;;=M84.40XP^^185^2423^57
+ ;;^UTILITY(U,$J,358.3,48494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50917,1,3,0)
- ;;=3^Abscess of tendon sheath, lft upper arm
- ;;^UTILITY(U,$J,358.3,50917,1,4,0)
- ;;=4^M65.022
- ;;^UTILITY(U,$J,358.3,50917,2)
- ;;=^5012714
- ;;^UTILITY(U,$J,358.3,50918,0)
- ;;=M65.031^^222^2466^29
- ;;^UTILITY(U,$J,358.3,50918,1,0)
+ ;;^UTILITY(U,$J,358.3,48494,1,3,0)
+ ;;=3^Fx,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,48494,1,4,0)
+ ;;=4^M84.40XP
+ ;;^UTILITY(U,$J,358.3,48494,2)
+ ;;=^5013798
+ ;;^UTILITY(U,$J,358.3,48495,0)
+ ;;=M84.30XA^^185^2423^50
+ ;;^UTILITY(U,$J,358.3,48495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50918,1,3,0)
- ;;=3^Abscess of tendon sheath, rt forearm
- ;;^UTILITY(U,$J,358.3,50918,1,4,0)
- ;;=4^M65.031
- ;;^UTILITY(U,$J,358.3,50918,2)
- ;;=^5012716
- ;;^UTILITY(U,$J,358.3,50919,0)
- ;;=M65.032^^222^2466^21
- ;;^UTILITY(U,$J,358.3,50919,1,0)
+ ;;^UTILITY(U,$J,358.3,48495,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48495,1,4,0)
+ ;;=4^M84.30XA
+ ;;^UTILITY(U,$J,358.3,48495,2)
+ ;;=^5013566
+ ;;^UTILITY(U,$J,358.3,48496,0)
+ ;;=M84.30XD^^185^2423^53
+ ;;^UTILITY(U,$J,358.3,48496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50919,1,3,0)
- ;;=3^Abscess of tendon sheath, lft forearm
- ;;^UTILITY(U,$J,358.3,50919,1,4,0)
- ;;=4^M65.032
- ;;^UTILITY(U,$J,358.3,50919,2)
- ;;=^5012717
- ;;^UTILITY(U,$J,358.3,50920,0)
- ;;=M65.041^^222^2466^30
- ;;^UTILITY(U,$J,358.3,50920,1,0)
+ ;;^UTILITY(U,$J,358.3,48496,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Routine Healing
+ ;;^UTILITY(U,$J,358.3,48496,1,4,0)
+ ;;=4^M84.30XD
+ ;;^UTILITY(U,$J,358.3,48496,2)
+ ;;=^5013567
+ ;;^UTILITY(U,$J,358.3,48497,0)
+ ;;=M84.30XS^^185^2423^54
+ ;;^UTILITY(U,$J,358.3,48497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50920,1,3,0)
- ;;=3^Abscess of tendon sheath, rt hand
- ;;^UTILITY(U,$J,358.3,50920,1,4,0)
- ;;=4^M65.041
- ;;^UTILITY(U,$J,358.3,50920,2)
- ;;=^5012719
- ;;^UTILITY(U,$J,358.3,50921,0)
- ;;=M65.042^^222^2466^22
- ;;^UTILITY(U,$J,358.3,50921,1,0)
+ ;;^UTILITY(U,$J,358.3,48497,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,48497,1,4,0)
+ ;;=4^M84.30XS
+ ;;^UTILITY(U,$J,358.3,48497,2)
+ ;;=^5013571
+ ;;^UTILITY(U,$J,358.3,48498,0)
+ ;;=M84.30XG^^185^2423^49
+ ;;^UTILITY(U,$J,358.3,48498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50921,1,3,0)
- ;;=3^Abscess of tendon sheath, lft hand
- ;;^UTILITY(U,$J,358.3,50921,1,4,0)
- ;;=4^M65.042
- ;;^UTILITY(U,$J,358.3,50921,2)
- ;;=^5012720
- ;;^UTILITY(U,$J,358.3,50922,0)
- ;;=M65.051^^222^2466^33
- ;;^UTILITY(U,$J,358.3,50922,1,0)
+ ;;^UTILITY(U,$J,358.3,48498,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,48498,1,4,0)
+ ;;=4^M84.30XG
+ ;;^UTILITY(U,$J,358.3,48498,2)
+ ;;=^5013568
+ ;;^UTILITY(U,$J,358.3,48499,0)
+ ;;=M84.30XK^^185^2423^52
+ ;;^UTILITY(U,$J,358.3,48499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50922,1,3,0)
- ;;=3^Abscess of tendon sheath, rt thigh
- ;;^UTILITY(U,$J,358.3,50922,1,4,0)
- ;;=4^M65.051
- ;;^UTILITY(U,$J,358.3,50922,2)
- ;;=^5012722
- ;;^UTILITY(U,$J,358.3,50923,0)
- ;;=M65.052^^222^2466^25
- ;;^UTILITY(U,$J,358.3,50923,1,0)
+ ;;^UTILITY(U,$J,358.3,48499,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,48499,1,4,0)
+ ;;=4^M84.30XK
+ ;;^UTILITY(U,$J,358.3,48499,2)
+ ;;=^5013569
+ ;;^UTILITY(U,$J,358.3,48500,0)
+ ;;=M84.30XP^^185^2423^51
+ ;;^UTILITY(U,$J,358.3,48500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50923,1,3,0)
- ;;=3^Abscess of tendon sheath, lft thigh
- ;;^UTILITY(U,$J,358.3,50923,1,4,0)
- ;;=4^M65.052
- ;;^UTILITY(U,$J,358.3,50923,2)
- ;;=^5012723
- ;;^UTILITY(U,$J,358.3,50924,0)
- ;;=M65.061^^222^2466^31
- ;;^UTILITY(U,$J,358.3,50924,1,0)
+ ;;^UTILITY(U,$J,358.3,48500,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,48500,1,4,0)
+ ;;=4^M84.30XP
+ ;;^UTILITY(U,$J,358.3,48500,2)
+ ;;=^5013570
+ ;;^UTILITY(U,$J,358.3,48501,0)
+ ;;=M84.9^^185^2423^47
+ ;;^UTILITY(U,$J,358.3,48501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50924,1,3,0)
- ;;=3^Abscess of tendon sheath, rt lwr leg
- ;;^UTILITY(U,$J,358.3,50924,1,4,0)
- ;;=4^M65.061
- ;;^UTILITY(U,$J,358.3,50924,2)
- ;;=^5012725
- ;;^UTILITY(U,$J,358.3,50925,0)
- ;;=M65.062^^222^2466^23
- ;;^UTILITY(U,$J,358.3,50925,1,0)
+ ;;^UTILITY(U,$J,358.3,48501,1,3,0)
+ ;;=3^Fx,Disorder of Continuity of Bone,Unspec
+ ;;^UTILITY(U,$J,358.3,48501,1,4,0)
+ ;;=4^M84.9
+ ;;^UTILITY(U,$J,358.3,48501,2)
+ ;;=^5014330
+ ;;^UTILITY(U,$J,358.3,48502,0)
+ ;;=M84.80^^185^2423^48
+ ;;^UTILITY(U,$J,358.3,48502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50925,1,3,0)
- ;;=3^Abscess of tendon sheath, lft lwr leg
- ;;^UTILITY(U,$J,358.3,50925,1,4,0)
- ;;=4^M65.062
- ;;^UTILITY(U,$J,358.3,50925,2)
- ;;=^5012726
- ;;^UTILITY(U,$J,358.3,50926,0)
- ;;=M65.071^^222^2466^28
- ;;^UTILITY(U,$J,358.3,50926,1,0)
+ ;;^UTILITY(U,$J,358.3,48502,1,3,0)
+ ;;=3^Fx,Disorder of Continuity of Bone,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48502,1,4,0)
+ ;;=4^M84.80
+ ;;^UTILITY(U,$J,358.3,48502,2)
+ ;;=^5014304
+ ;;^UTILITY(U,$J,358.3,48503,0)
+ ;;=M10.00^^185^2423^67
+ ;;^UTILITY(U,$J,358.3,48503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50926,1,3,0)
- ;;=3^Abscess of tendon sheath, rt ankle & foot
- ;;^UTILITY(U,$J,358.3,50926,1,4,0)
- ;;=4^M65.071
- ;;^UTILITY(U,$J,358.3,50926,2)
- ;;=^5012728
- ;;^UTILITY(U,$J,358.3,50927,0)
- ;;=M65.072^^222^2466^20
- ;;^UTILITY(U,$J,358.3,50927,1,0)
+ ;;^UTILITY(U,$J,358.3,48503,1,3,0)
+ ;;=3^Gout,Idiopathic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48503,1,4,0)
+ ;;=4^M10.00
+ ;;^UTILITY(U,$J,358.3,48503,2)
+ ;;=^5010284
+ ;;^UTILITY(U,$J,358.3,48504,0)
+ ;;=M10.9^^185^2423^68
+ ;;^UTILITY(U,$J,358.3,48504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50927,1,3,0)
- ;;=3^Abscess of tendon sheath, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,50927,1,4,0)
- ;;=4^M65.072
- ;;^UTILITY(U,$J,358.3,50927,2)
- ;;=^5012729
+ ;;^UTILITY(U,$J,358.3,48504,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,48504,1,4,0)
+ ;;=4^M10.9

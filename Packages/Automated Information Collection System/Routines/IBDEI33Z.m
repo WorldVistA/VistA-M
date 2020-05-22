@@ -1,130 +1,128 @@
-IBDEI33Z ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52175,1,0)
+ ;;^UTILITY(U,$J,358.3,49649,0)
+ ;;=J95.859^^191^2474^47
+ ;;^UTILITY(U,$J,358.3,49649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52175,1,3,0)
- ;;=3^Acquired Absence of Left Upper Limb,Unspec Level
- ;;^UTILITY(U,$J,358.3,52175,1,4,0)
- ;;=4^Z89.202
- ;;^UTILITY(U,$J,358.3,52175,2)
- ;;=^5063544
- ;;^UTILITY(U,$J,358.3,52176,0)
- ;;=Z89.111^^235^2575^6
- ;;^UTILITY(U,$J,358.3,52176,1,0)
+ ;;^UTILITY(U,$J,358.3,49649,1,3,0)
+ ;;=3^Respirator/Ventilator Complication,Other
+ ;;^UTILITY(U,$J,358.3,49649,1,4,0)
+ ;;=4^J95.859
+ ;;^UTILITY(U,$J,358.3,49649,2)
+ ;;=^5008344
+ ;;^UTILITY(U,$J,358.3,49650,0)
+ ;;=Z51.5^^191^2475^1
+ ;;^UTILITY(U,$J,358.3,49650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52176,1,3,0)
- ;;=3^Acquired Absence of Right Hand
- ;;^UTILITY(U,$J,358.3,52176,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,52176,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,52177,0)
- ;;=Z89.112^^235^2575^1
- ;;^UTILITY(U,$J,358.3,52177,1,0)
+ ;;^UTILITY(U,$J,358.3,49650,1,3,0)
+ ;;=3^Hospice/Palliative Care
+ ;;^UTILITY(U,$J,358.3,49650,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,49650,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,49651,0)
+ ;;=B20.^^191^2476^2
+ ;;^UTILITY(U,$J,358.3,49651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52177,1,3,0)
- ;;=3^Acquired Absence of Left Hand
- ;;^UTILITY(U,$J,358.3,52177,1,4,0)
- ;;=4^Z89.112
- ;;^UTILITY(U,$J,358.3,52177,2)
- ;;=^5063538
- ;;^UTILITY(U,$J,358.3,52178,0)
- ;;=Z89.121^^235^2575^11
- ;;^UTILITY(U,$J,358.3,52178,1,0)
+ ;;^UTILITY(U,$J,358.3,49651,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,49651,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,49651,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,49652,0)
+ ;;=R65.10^^191^2476^6
+ ;;^UTILITY(U,$J,358.3,49652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52178,1,3,0)
- ;;=3^Acquired Absence of Right Wrist
- ;;^UTILITY(U,$J,358.3,52178,1,4,0)
- ;;=4^Z89.121
- ;;^UTILITY(U,$J,358.3,52178,2)
- ;;=^5063540
- ;;^UTILITY(U,$J,358.3,52179,0)
- ;;=Z89.122^^235^2575^5
- ;;^UTILITY(U,$J,358.3,52179,1,0)
+ ;;^UTILITY(U,$J,358.3,49652,1,3,0)
+ ;;=3^SIRS,Non-Infect w/o Acute Organ Dysfx
+ ;;^UTILITY(U,$J,358.3,49652,1,4,0)
+ ;;=4^R65.10
+ ;;^UTILITY(U,$J,358.3,49652,2)
+ ;;=^5019545
+ ;;^UTILITY(U,$J,358.3,49653,0)
+ ;;=R64.^^191^2476^1
+ ;;^UTILITY(U,$J,358.3,49653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52179,1,3,0)
- ;;=3^Acquired Absence of Left Wrist
- ;;^UTILITY(U,$J,358.3,52179,1,4,0)
- ;;=4^Z89.122
- ;;^UTILITY(U,$J,358.3,52179,2)
- ;;=^5063541
- ;;^UTILITY(U,$J,358.3,52180,0)
- ;;=Z89.211^^235^2575^9
- ;;^UTILITY(U,$J,358.3,52180,1,0)
+ ;;^UTILITY(U,$J,358.3,49653,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,49653,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,49653,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,49654,0)
+ ;;=A41.9^^191^2476^5
+ ;;^UTILITY(U,$J,358.3,49654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52180,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb Below Elbow
- ;;^UTILITY(U,$J,358.3,52180,1,4,0)
- ;;=4^Z89.211
- ;;^UTILITY(U,$J,358.3,52180,2)
- ;;=^5063545
- ;;^UTILITY(U,$J,358.3,52181,0)
- ;;=Z89.212^^235^2575^12
- ;;^UTILITY(U,$J,358.3,52181,1,0)
+ ;;^UTILITY(U,$J,358.3,49654,1,3,0)
+ ;;=3^Sepsis,Unspec Organism (Septicemia)
+ ;;^UTILITY(U,$J,358.3,49654,1,4,0)
+ ;;=4^A41.9
+ ;;^UTILITY(U,$J,358.3,49654,2)
+ ;;=^5000214
+ ;;^UTILITY(U,$J,358.3,49655,0)
+ ;;=M62.84^^191^2476^4
+ ;;^UTILITY(U,$J,358.3,49655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52181,1,3,0)
- ;;=3^Acquired Absence of Upper Limb Below Elbow
- ;;^UTILITY(U,$J,358.3,52181,1,4,0)
- ;;=4^Z89.212
- ;;^UTILITY(U,$J,358.3,52181,2)
- ;;=^5063546
- ;;^UTILITY(U,$J,358.3,52182,0)
- ;;=Z89.221^^235^2575^8
- ;;^UTILITY(U,$J,358.3,52182,1,0)
+ ;;^UTILITY(U,$J,358.3,49655,1,3,0)
+ ;;=3^Sarcopenia
+ ;;^UTILITY(U,$J,358.3,49655,1,4,0)
+ ;;=4^M62.84
+ ;;^UTILITY(U,$J,358.3,49655,2)
+ ;;=^5138832
+ ;;^UTILITY(U,$J,358.3,49656,0)
+ ;;=Z79.891^^191^2476^3
+ ;;^UTILITY(U,$J,358.3,49656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52182,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb Above Elbow
- ;;^UTILITY(U,$J,358.3,52182,1,4,0)
- ;;=4^Z89.221
- ;;^UTILITY(U,$J,358.3,52182,2)
- ;;=^5063548
- ;;^UTILITY(U,$J,358.3,52183,0)
- ;;=Z89.222^^235^2575^3
- ;;^UTILITY(U,$J,358.3,52183,1,0)
+ ;;^UTILITY(U,$J,358.3,49656,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,49656,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,49656,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,49657,0)
+ ;;=F02.81^^191^2477^11
+ ;;^UTILITY(U,$J,358.3,49657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52183,1,3,0)
- ;;=3^Acquired Absence of Left Upper Limb Above Elbow
- ;;^UTILITY(U,$J,358.3,52183,1,4,0)
- ;;=4^Z89.222
- ;;^UTILITY(U,$J,358.3,52183,2)
- ;;=^5063549
- ;;^UTILITY(U,$J,358.3,52184,0)
- ;;=Z89.231^^235^2575^7
- ;;^UTILITY(U,$J,358.3,52184,1,0)
+ ;;^UTILITY(U,$J,358.3,49657,1,3,0)
+ ;;=3^Dementia,Oth Dis Clssd Elswhr w/ Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49657,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,49657,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,49658,0)
+ ;;=F02.80^^191^2477^12
+ ;;^UTILITY(U,$J,358.3,49658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52184,1,3,0)
- ;;=3^Acquired Absence of Right Shoulder
- ;;^UTILITY(U,$J,358.3,52184,1,4,0)
- ;;=4^Z89.231
- ;;^UTILITY(U,$J,358.3,52184,2)
- ;;=^5063551
- ;;^UTILITY(U,$J,358.3,52185,0)
- ;;=Z89.232^^235^2575^2
- ;;^UTILITY(U,$J,358.3,52185,1,0)
+ ;;^UTILITY(U,$J,358.3,49658,1,3,0)
+ ;;=3^Dementia,Oth Dis Clssd Elswhr w/o Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49658,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,49658,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,49659,0)
+ ;;=F03.91^^191^2477^13
+ ;;^UTILITY(U,$J,358.3,49659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52185,1,3,0)
- ;;=3^Acquired Absence of Left Shoulder
- ;;^UTILITY(U,$J,358.3,52185,1,4,0)
- ;;=4^Z89.232
- ;;^UTILITY(U,$J,358.3,52185,2)
- ;;=^5063552
- ;;^UTILITY(U,$J,358.3,52186,0)
- ;;=Z89.411^^235^2576^10
- ;;^UTILITY(U,$J,358.3,52186,1,0)
+ ;;^UTILITY(U,$J,358.3,49659,1,3,0)
+ ;;=3^Dementia w/ Bhv Dstrb,Unsp
+ ;;^UTILITY(U,$J,358.3,49659,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,49659,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,49660,0)
+ ;;=G31.83^^191^2477^14
+ ;;^UTILITY(U,$J,358.3,49660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52186,1,3,0)
- ;;=3^Acquired Absence of Right Great Toe
- ;;^UTILITY(U,$J,358.3,52186,1,4,0)
- ;;=4^Z89.411
- ;;^UTILITY(U,$J,358.3,52186,2)
- ;;=^5063554
- ;;^UTILITY(U,$J,358.3,52187,0)
- ;;=Z89.412^^235^2576^3
- ;;^UTILITY(U,$J,358.3,52187,1,0)
+ ;;^UTILITY(U,$J,358.3,49660,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,49660,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,49660,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,49661,0)
+ ;;=F03.90^^191^2477^15
+ ;;^UTILITY(U,$J,358.3,49661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52187,1,3,0)
- ;;=3^Acquired Absence of Left Great Toe
- ;;^UTILITY(U,$J,358.3,52187,1,4,0)
- ;;=4^Z89.412

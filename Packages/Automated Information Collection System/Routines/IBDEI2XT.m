@@ -1,124 +1,122 @@
-IBDEI2XT ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49271,1,4,0)
- ;;=4^S32.451S
- ;;^UTILITY(U,$J,358.3,49271,2)
- ;;=^5024850
- ;;^UTILITY(U,$J,358.3,49272,0)
- ;;=S32.512S^^216^2416^21
- ;;^UTILITY(U,$J,358.3,49272,1,0)
+ ;;^UTILITY(U,$J,358.3,46876,1,3,0)
+ ;;=3^Brkdwn (mech) penile (impl) pros,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46876,1,4,0)
+ ;;=4^T83.410A
+ ;;^UTILITY(U,$J,358.3,46876,2)
+ ;;=^5055040
+ ;;^UTILITY(U,$J,358.3,46877,0)
+ ;;=T83.418A^^179^2338^10
+ ;;^UTILITY(U,$J,358.3,46877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49272,1,3,0)
- ;;=3^Fx of superior rim of left pubis, sequela
- ;;^UTILITY(U,$J,358.3,49272,1,4,0)
- ;;=4^S32.512S
- ;;^UTILITY(U,$J,358.3,49272,2)
- ;;=^5025018
- ;;^UTILITY(U,$J,358.3,49273,0)
- ;;=S32.511S^^216^2416^22
- ;;^UTILITY(U,$J,358.3,49273,1,0)
+ ;;^UTILITY(U,$J,358.3,46877,1,3,0)
+ ;;=3^Brkdwn pros dvc/implnt/grft,genitl trct,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46877,1,4,0)
+ ;;=4^T83.418A
+ ;;^UTILITY(U,$J,358.3,46877,2)
+ ;;=^5055043
+ ;;^UTILITY(U,$J,358.3,46878,0)
+ ;;=T83.420A^^179^2338^19
+ ;;^UTILITY(U,$J,358.3,46878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49273,1,3,0)
- ;;=3^Fx of superior rim of right pubis, sequela
- ;;^UTILITY(U,$J,358.3,49273,1,4,0)
- ;;=4^S32.511S
- ;;^UTILITY(U,$J,358.3,49273,2)
- ;;=^5025012
- ;;^UTILITY(U,$J,358.3,49274,0)
- ;;=S32.810S^^216^2416^23
- ;;^UTILITY(U,$J,358.3,49274,1,0)
+ ;;^UTILITY(U,$J,358.3,46878,1,3,0)
+ ;;=3^Dsplcmnt penile (implanted) prosth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46878,1,4,0)
+ ;;=4^T83.420A
+ ;;^UTILITY(U,$J,358.3,46878,2)
+ ;;=^5055046
+ ;;^UTILITY(U,$J,358.3,46879,0)
+ ;;=T83.428A^^179^2338^15
+ ;;^UTILITY(U,$J,358.3,46879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49274,1,3,0)
- ;;=3^Mult fx of pelvis w stable disrupt of pelvic ring, sequela
- ;;^UTILITY(U,$J,358.3,49274,1,4,0)
- ;;=4^S32.810S
- ;;^UTILITY(U,$J,358.3,49274,2)
- ;;=^5025102
- ;;^UTILITY(U,$J,358.3,49275,0)
- ;;=S32.811S^^216^2416^24
- ;;^UTILITY(U,$J,358.3,49275,1,0)
+ ;;^UTILITY(U,$J,358.3,46879,1,3,0)
+ ;;=3^Dsplcmnt genitl trct (impl) prosth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46879,1,4,0)
+ ;;=4^T83.428A
+ ;;^UTILITY(U,$J,358.3,46879,2)
+ ;;=^5055049
+ ;;^UTILITY(U,$J,358.3,46880,0)
+ ;;=T83.490A^^179^2338^40
+ ;;^UTILITY(U,$J,358.3,46880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49275,1,3,0)
- ;;=3^Mult fx of pelvis w unstable disrupt of pelvic ring, sequela
- ;;^UTILITY(U,$J,358.3,49275,1,4,0)
- ;;=4^S32.811S
- ;;^UTILITY(U,$J,358.3,49275,2)
- ;;=^5025108
- ;;^UTILITY(U,$J,358.3,49276,0)
- ;;=S32.465S^^216^2416^25
- ;;^UTILITY(U,$J,358.3,49276,1,0)
+ ;;^UTILITY(U,$J,358.3,46880,1,3,0)
+ ;;=3^Mech compl penile (implanted) prosth,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46880,1,4,0)
+ ;;=4^T83.490A
+ ;;^UTILITY(U,$J,358.3,46880,2)
+ ;;=^5055052
+ ;;^UTILITY(U,$J,358.3,46881,0)
+ ;;=T83.498A^^179^2338^41
+ ;;^UTILITY(U,$J,358.3,46881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49276,1,3,0)
- ;;=3^Nondisp associated transv/post fx left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49276,1,4,0)
- ;;=4^S32.465S
- ;;^UTILITY(U,$J,358.3,49276,2)
- ;;=^5024910
- ;;^UTILITY(U,$J,358.3,49277,0)
- ;;=S32.464S^^216^2416^26
- ;;^UTILITY(U,$J,358.3,49277,1,0)
+ ;;^UTILITY(U,$J,358.3,46881,1,3,0)
+ ;;=3^Mech compl prosth dvc/implnt/grft of genitl trct,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46881,1,4,0)
+ ;;=4^T83.498A
+ ;;^UTILITY(U,$J,358.3,46881,2)
+ ;;=^5055055
+ ;;^UTILITY(U,$J,358.3,46882,0)
+ ;;=N99.820^^179^2338^45
+ ;;^UTILITY(U,$J,358.3,46882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49277,1,3,0)
- ;;=3^Nondisp associated transv/post fx right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49277,1,4,0)
- ;;=4^S32.464S
- ;;^UTILITY(U,$J,358.3,49277,2)
- ;;=^5024904
- ;;^UTILITY(U,$J,358.3,49278,0)
- ;;=S32.315S^^216^2416^32
- ;;^UTILITY(U,$J,358.3,49278,1,0)
+ ;;^UTILITY(U,$J,358.3,46882,1,3,0)
+ ;;=3^Postproc hemor,GU syst org/struct fol GU sys proc
+ ;;^UTILITY(U,$J,358.3,46882,1,4,0)
+ ;;=4^N99.820
+ ;;^UTILITY(U,$J,358.3,46882,2)
+ ;;=^5015968
+ ;;^UTILITY(U,$J,358.3,46883,0)
+ ;;=K68.11^^179^2338^47
+ ;;^UTILITY(U,$J,358.3,46883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49278,1,3,0)
- ;;=3^Nondisp fx of avulsion of left ilium, sequela
- ;;^UTILITY(U,$J,358.3,49278,1,4,0)
- ;;=4^S32.315S
- ;;^UTILITY(U,$J,358.3,49278,2)
- ;;=^5024676
- ;;^UTILITY(U,$J,358.3,49279,0)
- ;;=S32.615S^^216^2416^33
- ;;^UTILITY(U,$J,358.3,49279,1,0)
+ ;;^UTILITY(U,$J,358.3,46883,1,3,0)
+ ;;=3^Postproc retroperitoneal abscess
+ ;;^UTILITY(U,$J,358.3,46883,1,4,0)
+ ;;=4^K68.11
+ ;;^UTILITY(U,$J,358.3,46883,2)
+ ;;=^5008782
+ ;;^UTILITY(U,$J,358.3,46884,0)
+ ;;=Z48.00^^179^2338^12
+ ;;^UTILITY(U,$J,358.3,46884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49279,1,3,0)
- ;;=3^Nondisp fx of avulsion of left ischium, sequela
- ;;^UTILITY(U,$J,358.3,49279,1,4,0)
- ;;=4^S32.615S
- ;;^UTILITY(U,$J,358.3,49279,2)
- ;;=^5025084
- ;;^UTILITY(U,$J,358.3,49280,0)
- ;;=S32.314S^^216^2416^34
- ;;^UTILITY(U,$J,358.3,49280,1,0)
+ ;;^UTILITY(U,$J,358.3,46884,1,3,0)
+ ;;=3^Change/Rem of Nonsurg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,46884,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,46884,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,46885,0)
+ ;;=Z48.01^^179^2338^13
+ ;;^UTILITY(U,$J,358.3,46885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49280,1,3,0)
- ;;=3^Nondisp fx of avulsion of right ilium, sequela
- ;;^UTILITY(U,$J,358.3,49280,1,4,0)
- ;;=4^S32.314S
- ;;^UTILITY(U,$J,358.3,49280,2)
- ;;=^5024670
- ;;^UTILITY(U,$J,358.3,49281,0)
- ;;=S32.614S^^216^2416^35
- ;;^UTILITY(U,$J,358.3,49281,1,0)
+ ;;^UTILITY(U,$J,358.3,46885,1,3,0)
+ ;;=3^Change/Rem of Surg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,46885,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,46885,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,46886,0)
+ ;;=Z48.02^^179^2338^48
+ ;;^UTILITY(U,$J,358.3,46886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49281,1,3,0)
- ;;=3^Nondisp fx of avulsion of right ischium, sequela
- ;;^UTILITY(U,$J,358.3,49281,1,4,0)
- ;;=4^S32.614S
- ;;^UTILITY(U,$J,358.3,49281,2)
- ;;=^5025078
- ;;^UTILITY(U,$J,358.3,49282,0)
- ;;=S32.485S^^216^2416^36
- ;;^UTILITY(U,$J,358.3,49282,1,0)
+ ;;^UTILITY(U,$J,358.3,46886,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,46886,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,46886,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,46887,0)
+ ;;=Z48.89^^179^2338^49
+ ;;^UTILITY(U,$J,358.3,46887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49282,1,3,0)
- ;;=3^Nondisp fx of dome of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49282,1,4,0)
- ;;=4^S32.485S
- ;;^UTILITY(U,$J,358.3,49282,2)
- ;;=^5024982
- ;;^UTILITY(U,$J,358.3,49283,0)
- ;;=S32.484S^^216^2416^27
- ;;^UTILITY(U,$J,358.3,49283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49283,1,3,0)
- ;;=3^Nondisp fx dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,46887,1,3,0)
+ ;;=3^Surg Aftercare,Oth Specified
+ ;;^UTILITY(U,$J,358.3,46887,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,46887,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,46888,0)
+ ;;=Z48.03^^179^2338^11

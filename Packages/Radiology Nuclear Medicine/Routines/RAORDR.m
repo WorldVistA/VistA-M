@@ -1,10 +1,18 @@
-RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ;4/1/2018 11:28 AM
- ;;5.0;Radiology/Nuclear Medicine;**148**;Mar 16, 1998;Build 59
+RAORDR ;ABV/SCR/MKN - Refer Pending/Hold Requests ; Dec 04, 2019@12:37:22
+ ;;5.0;Radiology/Nuclear Medicine;**148,161**;Mar 16, 1998;Build 1
  ;
  Q
  ;
- ;ICR#     Supports
- ;10061    DEM^VADPT
+ ; Routine              IA          Type
+ ; -------------------------------------
+ ; DEM^VADPT           10061        (S)
+ ; ^DIWP               10011        (S)
+ ; ^SC(                10040        (S)
+ ; ^VA(200             10060        (S)
+ ; ^DPT(               10035        (S)
+ ; CMT^ORQQCN2         TBR
+ ; ^OR(100             5771,6475    (C)
+ ; ^GMR(123            6116,2586    (C)
  ;
 ENT ;
  ;
@@ -46,13 +54,17 @@ GETPAT ;
  . . . S RACOMCT=RACOMCT+1,RACOM(RACOMCT)=$P(RACDW(RAANS,RAANS2,RAI),U)
  . . . I $P(RACDW(RAANS,RAANS2,RAI),U,2)]"",$G(RAEXPL(RAANS2))]"" D ADDEXPL
  . . S RADT=$$NOW^XLFDT()
+ . . L +^GMR(123,RA123IEN):5 I '$T D ERROR^RAORDR1("Consult record locked, cannot update comments.") Q  ;p161 -Lock consult
  . . D CMT^ORQQCN2(.RAERR,RA123IEN,.RACOM,"N","",RADT)
+ . . L -^GMR(123,RA123IEN)
  . D:RA123IEN&(RAANS2=0)
  . . S RAI="",RACOMCT=0 F  S RAI=$O(RACDW(RAANS,RAI)) Q:RAI=""  D
  . . . S RACOMCT=RACOMCT+1 S:$P(RACDW(RAANS,RAI),U)]"" RACOM(RACOMCT)=$P(RACDW(RAANS,RAI),U)
  . . . I $P(RACDW(RAANS,RAI),U,2)]"",$G(RAEXPL)]"" D ADDEXPLS
  . . S RADT=$$NOW^XLFDT()
+ . . L +^GMR(123,RA123IEN):5 I '$T D ERROR^RAORDR1("Consult record locked, cannot update comments.") Q  ;p161 -Lock consult
  . . D CMT^ORQQCN2(.RAERR,RA123IEN,.RACOM,"N","",RADT)
+ . . L -^GMR(123,RA123IEN)
  . W !!,"Consult with UCID: "_$S(RAUCID]"":RAUCID,1:"(Not known)")," has been created",!
  . I 'RA123IEN W !!,"**NO Consult created**",!
  D KILL

@@ -1,122 +1,122 @@
-IBDEI2W1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48495,1,0)
+ ;;^UTILITY(U,$J,358.3,46068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48495,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
- ;;^UTILITY(U,$J,358.3,48495,1,4,0)
- ;;=4^I69.851
- ;;^UTILITY(U,$J,358.3,48495,2)
- ;;=^5007535
- ;;^UTILITY(U,$J,358.3,48496,0)
- ;;=I69.852^^216^2407^51
- ;;^UTILITY(U,$J,358.3,48496,1,0)
+ ;;^UTILITY(U,$J,358.3,46068,1,3,0)
+ ;;=3^Vitreous Degeneration (PVD),Bilateral
+ ;;^UTILITY(U,$J,358.3,46068,1,4,0)
+ ;;=4^H43.813
+ ;;^UTILITY(U,$J,358.3,46068,2)
+ ;;=^5005955
+ ;;^UTILITY(U,$J,358.3,46069,0)
+ ;;=H43.812^^176^2297^2
+ ;;^UTILITY(U,$J,358.3,46069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48496,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
- ;;^UTILITY(U,$J,358.3,48496,1,4,0)
- ;;=4^I69.852
- ;;^UTILITY(U,$J,358.3,48496,2)
- ;;=^5007536
- ;;^UTILITY(U,$J,358.3,48497,0)
- ;;=I69.853^^216^2407^52
- ;;^UTILITY(U,$J,358.3,48497,1,0)
+ ;;^UTILITY(U,$J,358.3,46069,1,3,0)
+ ;;=3^Vitreous Degeneration (PVD),Left Eye
+ ;;^UTILITY(U,$J,358.3,46069,1,4,0)
+ ;;=4^H43.812
+ ;;^UTILITY(U,$J,358.3,46069,2)
+ ;;=^5005954
+ ;;^UTILITY(U,$J,358.3,46070,0)
+ ;;=H43.811^^176^2297^1
+ ;;^UTILITY(U,$J,358.3,46070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48497,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
- ;;^UTILITY(U,$J,358.3,48497,1,4,0)
- ;;=4^I69.853
- ;;^UTILITY(U,$J,358.3,48497,2)
- ;;=^5007537
- ;;^UTILITY(U,$J,358.3,48498,0)
- ;;=I69.854^^216^2407^53
- ;;^UTILITY(U,$J,358.3,48498,1,0)
+ ;;^UTILITY(U,$J,358.3,46070,1,3,0)
+ ;;=3^Vitreous Degeneration (PVD),Right Eye
+ ;;^UTILITY(U,$J,358.3,46070,1,4,0)
+ ;;=4^H43.811
+ ;;^UTILITY(U,$J,358.3,46070,2)
+ ;;=^5005953
+ ;;^UTILITY(U,$J,358.3,46071,0)
+ ;;=H43.13^^176^2297^9
+ ;;^UTILITY(U,$J,358.3,46071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48498,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
- ;;^UTILITY(U,$J,358.3,48498,1,4,0)
- ;;=4^I69.854
- ;;^UTILITY(U,$J,358.3,48498,2)
- ;;=^5007538
- ;;^UTILITY(U,$J,358.3,48499,0)
- ;;=I69.251^^216^2407^54
- ;;^UTILITY(U,$J,358.3,48499,1,0)
+ ;;^UTILITY(U,$J,358.3,46071,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,46071,1,4,0)
+ ;;=4^H43.13
+ ;;^UTILITY(U,$J,358.3,46071,2)
+ ;;=^5005940
+ ;;^UTILITY(U,$J,358.3,46072,0)
+ ;;=H43.821^^176^2297^10
+ ;;^UTILITY(U,$J,358.3,46072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48499,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,48499,1,4,0)
- ;;=4^I69.251
- ;;^UTILITY(U,$J,358.3,48499,2)
- ;;=^5007473
- ;;^UTILITY(U,$J,358.3,48500,0)
- ;;=I69.252^^216^2407^55
- ;;^UTILITY(U,$J,358.3,48500,1,0)
+ ;;^UTILITY(U,$J,358.3,46072,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Right Eye
+ ;;^UTILITY(U,$J,358.3,46072,1,4,0)
+ ;;=4^H43.821
+ ;;^UTILITY(U,$J,358.3,46072,2)
+ ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,46073,0)
+ ;;=H43.822^^176^2297^11
+ ;;^UTILITY(U,$J,358.3,46073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48500,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,48500,1,4,0)
- ;;=4^I69.252
- ;;^UTILITY(U,$J,358.3,48500,2)
- ;;=^5007474
- ;;^UTILITY(U,$J,358.3,48501,0)
- ;;=I69.253^^216^2407^56
- ;;^UTILITY(U,$J,358.3,48501,1,0)
+ ;;^UTILITY(U,$J,358.3,46073,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Left Eye
+ ;;^UTILITY(U,$J,358.3,46073,1,4,0)
+ ;;=4^H43.822
+ ;;^UTILITY(U,$J,358.3,46073,2)
+ ;;=^5005958
+ ;;^UTILITY(U,$J,358.3,46074,0)
+ ;;=H43.823^^176^2297^12
+ ;;^UTILITY(U,$J,358.3,46074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48501,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,48501,1,4,0)
- ;;=4^I69.253
- ;;^UTILITY(U,$J,358.3,48501,2)
- ;;=^5007475
- ;;^UTILITY(U,$J,358.3,48502,0)
- ;;=I69.254^^216^2407^57
- ;;^UTILITY(U,$J,358.3,48502,1,0)
+ ;;^UTILITY(U,$J,358.3,46074,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Bilateral
+ ;;^UTILITY(U,$J,358.3,46074,1,4,0)
+ ;;=4^H43.823
+ ;;^UTILITY(U,$J,358.3,46074,2)
+ ;;=^5005959
+ ;;^UTILITY(U,$J,358.3,46075,0)
+ ;;=H43.391^^176^2297^15
+ ;;^UTILITY(U,$J,358.3,46075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48502,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,48502,1,4,0)
- ;;=4^I69.254
- ;;^UTILITY(U,$J,358.3,48502,2)
- ;;=^5007476
- ;;^UTILITY(U,$J,358.3,48503,0)
- ;;=I69.341^^216^2407^58
- ;;^UTILITY(U,$J,358.3,48503,1,0)
+ ;;^UTILITY(U,$J,358.3,46075,1,3,0)
+ ;;=3^Vitreous Opacities,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,46075,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,46075,2)
+ ;;=^5005949
+ ;;^UTILITY(U,$J,358.3,46076,0)
+ ;;=H43.392^^176^2297^16
+ ;;^UTILITY(U,$J,358.3,46076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48503,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff right dominant side
- ;;^UTILITY(U,$J,358.3,48503,1,4,0)
- ;;=4^I69.341
- ;;^UTILITY(U,$J,358.3,48503,2)
- ;;=^5007501
- ;;^UTILITY(U,$J,358.3,48504,0)
- ;;=I69.342^^216^2407^59
- ;;^UTILITY(U,$J,358.3,48504,1,0)
+ ;;^UTILITY(U,$J,358.3,46076,1,3,0)
+ ;;=3^Vitreous Opacities,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,46076,1,4,0)
+ ;;=4^H43.392
+ ;;^UTILITY(U,$J,358.3,46076,2)
+ ;;=^5005950
+ ;;^UTILITY(U,$J,358.3,46077,0)
+ ;;=S05.31XA^^176^2298^1
+ ;;^UTILITY(U,$J,358.3,46077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48504,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff left dominant side
- ;;^UTILITY(U,$J,358.3,48504,1,4,0)
- ;;=4^I69.342
- ;;^UTILITY(U,$J,358.3,48504,2)
- ;;=^5133575
- ;;^UTILITY(U,$J,358.3,48505,0)
- ;;=I69.343^^216^2407^60
- ;;^UTILITY(U,$J,358.3,48505,1,0)
+ ;;^UTILITY(U,$J,358.3,46077,1,3,0)
+ ;;=3^Ocular Laceration w/o Loss of Intraoc Tissue,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46077,1,4,0)
+ ;;=4^S05.31XA
+ ;;^UTILITY(U,$J,358.3,46077,2)
+ ;;=^5020606
+ ;;^UTILITY(U,$J,358.3,46078,0)
+ ;;=S05.32XA^^176^2298^2
+ ;;^UTILITY(U,$J,358.3,46078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48505,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff right nondom side
- ;;^UTILITY(U,$J,358.3,48505,1,4,0)
- ;;=4^I69.343
- ;;^UTILITY(U,$J,358.3,48505,2)
- ;;=^5007502
- ;;^UTILITY(U,$J,358.3,48506,0)
- ;;=I69.344^^216^2407^61
- ;;^UTILITY(U,$J,358.3,48506,1,0)
+ ;;^UTILITY(U,$J,358.3,46078,1,3,0)
+ ;;=3^Ocular Laceration w/o Loss of Intraoc Tissue,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46078,1,4,0)
+ ;;=4^S05.32XA
+ ;;^UTILITY(U,$J,358.3,46078,2)
+ ;;=^5020609
+ ;;^UTILITY(U,$J,358.3,46079,0)
+ ;;=S01.121A^^176^2298^3
+ ;;^UTILITY(U,$J,358.3,46079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48506,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff left nondom side
- ;;^UTILITY(U,$J,358.3,48506,1,4,0)
- ;;=4^I69.344
- ;;^UTILITY(U,$J,358.3,48506,2)
- ;;=^5133576
+ ;;^UTILITY(U,$J,358.3,46079,1,3,0)
+ ;;=3^Laceration w/ FB,Right Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46079,1,4,0)
+ ;;=4^S01.121A
+ ;;^UTILITY(U,$J,358.3,46079,2)
+ ;;=^5020066

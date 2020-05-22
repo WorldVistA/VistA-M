@@ -1,128 +1,132 @@
-IBDEI2TP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47390,1,0)
+ ;;^UTILITY(U,$J,358.3,45029,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,45029,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,45030,0)
+ ;;=L71.1^^170^2244^6
+ ;;^UTILITY(U,$J,358.3,45030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47390,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47390,1,4,0)
- ;;=4^C82.86
- ;;^UTILITY(U,$J,358.3,47390,2)
- ;;=^5001537
- ;;^UTILITY(U,$J,358.3,47391,0)
- ;;=C82.87^^209^2346^198
- ;;^UTILITY(U,$J,358.3,47391,1,0)
+ ;;^UTILITY(U,$J,358.3,45030,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,45030,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,45030,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,45031,0)
+ ;;=I73.00^^170^2244^2
+ ;;^UTILITY(U,$J,358.3,45031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47391,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Spleen
- ;;^UTILITY(U,$J,358.3,47391,1,4,0)
- ;;=4^C82.87
- ;;^UTILITY(U,$J,358.3,47391,2)
- ;;=^5001538
- ;;^UTILITY(U,$J,358.3,47392,0)
- ;;=C82.88^^209^2346^197
- ;;^UTILITY(U,$J,358.3,47392,1,0)
+ ;;^UTILITY(U,$J,358.3,45031,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,45031,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,45031,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,45032,0)
+ ;;=I73.01^^170^2244^1
+ ;;^UTILITY(U,$J,358.3,45032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47392,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47392,1,4,0)
- ;;=4^C82.88
- ;;^UTILITY(U,$J,358.3,47392,2)
- ;;=^5001539
- ;;^UTILITY(U,$J,358.3,47393,0)
- ;;=C82.89^^209^2346^191
- ;;^UTILITY(U,$J,358.3,47393,1,0)
+ ;;^UTILITY(U,$J,358.3,45032,1,3,0)
+ ;;=3^Raynaud's Syndrome w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,45032,1,4,0)
+ ;;=4^I73.01
+ ;;^UTILITY(U,$J,358.3,45032,2)
+ ;;=^5007797
+ ;;^UTILITY(U,$J,358.3,45033,0)
+ ;;=Z48.01^^170^2244^4
+ ;;^UTILITY(U,$J,358.3,45033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47393,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47393,1,4,0)
- ;;=4^C82.89
- ;;^UTILITY(U,$J,358.3,47393,2)
- ;;=^5001540
- ;;^UTILITY(U,$J,358.3,47394,0)
- ;;=C82.90^^209^2346^209
- ;;^UTILITY(U,$J,358.3,47394,1,0)
+ ;;^UTILITY(U,$J,358.3,45033,1,3,0)
+ ;;=3^Removal/Change Surgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,45033,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,45033,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,45034,0)
+ ;;=Z48.02^^170^2244^3
+ ;;^UTILITY(U,$J,358.3,45034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47394,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,47394,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,47394,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,47395,0)
- ;;=C82.91^^209^2346^202
- ;;^UTILITY(U,$J,358.3,47395,1,0)
+ ;;^UTILITY(U,$J,358.3,45034,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,45034,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,45034,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,45035,0)
+ ;;=Z48.03^^170^2244^5
+ ;;^UTILITY(U,$J,358.3,45035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47395,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47395,1,4,0)
- ;;=4^C82.91
- ;;^UTILITY(U,$J,358.3,47395,2)
- ;;=^5001542
- ;;^UTILITY(U,$J,358.3,47396,0)
- ;;=C82.92^^209^2346^206
- ;;^UTILITY(U,$J,358.3,47396,1,0)
+ ;;^UTILITY(U,$J,358.3,45035,1,3,0)
+ ;;=3^Removal/Change of Drains
+ ;;^UTILITY(U,$J,358.3,45035,1,4,0)
+ ;;=4^Z48.03
+ ;;^UTILITY(U,$J,358.3,45035,2)
+ ;;=^5063036
+ ;;^UTILITY(U,$J,358.3,45036,0)
+ ;;=B86.^^170^2245^17
+ ;;^UTILITY(U,$J,358.3,45036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47396,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47396,1,4,0)
- ;;=4^C82.92
- ;;^UTILITY(U,$J,358.3,47396,2)
- ;;=^5001543
- ;;^UTILITY(U,$J,358.3,47397,0)
- ;;=C82.93^^209^2346^204
- ;;^UTILITY(U,$J,358.3,47397,1,0)
+ ;;^UTILITY(U,$J,358.3,45036,1,3,0)
+ ;;=3^Scabies
+ ;;^UTILITY(U,$J,358.3,45036,1,4,0)
+ ;;=4^B86.
+ ;;^UTILITY(U,$J,358.3,45036,2)
+ ;;=^108096
+ ;;^UTILITY(U,$J,358.3,45037,0)
+ ;;=L98.8^^170^2245^40
+ ;;^UTILITY(U,$J,358.3,45037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47397,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47397,1,4,0)
- ;;=4^C82.93
- ;;^UTILITY(U,$J,358.3,47397,2)
- ;;=^5001544
- ;;^UTILITY(U,$J,358.3,47398,0)
- ;;=C82.94^^209^2346^200
- ;;^UTILITY(U,$J,358.3,47398,1,0)
+ ;;^UTILITY(U,$J,358.3,45037,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorders
+ ;;^UTILITY(U,$J,358.3,45037,1,4,0)
+ ;;=4^L98.8
+ ;;^UTILITY(U,$J,358.3,45037,2)
+ ;;=^5009594
+ ;;^UTILITY(U,$J,358.3,45038,0)
+ ;;=L55.0^^170^2245^46
+ ;;^UTILITY(U,$J,358.3,45038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47398,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47398,1,4,0)
- ;;=4^C82.94
- ;;^UTILITY(U,$J,358.3,47398,2)
- ;;=^5001545
- ;;^UTILITY(U,$J,358.3,47399,0)
- ;;=C82.95^^209^2346^203
- ;;^UTILITY(U,$J,358.3,47399,1,0)
+ ;;^UTILITY(U,$J,358.3,45038,1,3,0)
+ ;;=3^Sunburn,First Degree
+ ;;^UTILITY(U,$J,358.3,45038,1,4,0)
+ ;;=4^L55.0
+ ;;^UTILITY(U,$J,358.3,45038,2)
+ ;;=^5009212
+ ;;^UTILITY(U,$J,358.3,45039,0)
+ ;;=L55.1^^170^2245^47
+ ;;^UTILITY(U,$J,358.3,45039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47399,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47399,1,4,0)
- ;;=4^C82.95
- ;;^UTILITY(U,$J,358.3,47399,2)
- ;;=^5001546
- ;;^UTILITY(U,$J,358.3,47400,0)
- ;;=C82.96^^209^2346^205
- ;;^UTILITY(U,$J,358.3,47400,1,0)
+ ;;^UTILITY(U,$J,358.3,45039,1,3,0)
+ ;;=3^Sunburn,Second Degree
+ ;;^UTILITY(U,$J,358.3,45039,1,4,0)
+ ;;=4^L55.1
+ ;;^UTILITY(U,$J,358.3,45039,2)
+ ;;=^323553
+ ;;^UTILITY(U,$J,358.3,45040,0)
+ ;;=C44.02^^170^2245^7
+ ;;^UTILITY(U,$J,358.3,45040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47400,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47400,1,4,0)
- ;;=4^C82.96
- ;;^UTILITY(U,$J,358.3,47400,2)
- ;;=^5001547
- ;;^UTILITY(U,$J,358.3,47401,0)
- ;;=C82.97^^209^2346^208
- ;;^UTILITY(U,$J,358.3,47401,1,0)
+ ;;^UTILITY(U,$J,358.3,45040,1,3,0)
+ ;;=3^SCC Skin Lip
+ ;;^UTILITY(U,$J,358.3,45040,1,4,0)
+ ;;=4^C44.02
+ ;;^UTILITY(U,$J,358.3,45040,2)
+ ;;=^340465
+ ;;^UTILITY(U,$J,358.3,45041,0)
+ ;;=C44.222^^170^2245^12
+ ;;^UTILITY(U,$J,358.3,45041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47401,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Spleen
- ;;^UTILITY(U,$J,358.3,47401,1,4,0)
- ;;=4^C82.97
- ;;^UTILITY(U,$J,358.3,47401,2)
- ;;=^5001548
- ;;^UTILITY(U,$J,358.3,47402,0)
- ;;=C82.98^^209^2346^207
- ;;^UTILITY(U,$J,358.3,47402,1,0)
+ ;;^UTILITY(U,$J,358.3,45041,1,3,0)
+ ;;=3^SCC Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,45041,1,4,0)
+ ;;=4^C44.222
+ ;;^UTILITY(U,$J,358.3,45041,2)
+ ;;=^5001035
+ ;;^UTILITY(U,$J,358.3,45042,0)
+ ;;=C44.229^^170^2245^3
+ ;;^UTILITY(U,$J,358.3,45042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47402,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Mult Site Nodes

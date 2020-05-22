@@ -1,124 +1,128 @@
-IBDEI2Y5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2Y5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49413,1,4,0)
- ;;=4^S42.012S
- ;;^UTILITY(U,$J,358.3,49413,2)
- ;;=^5026396
- ;;^UTILITY(U,$J,358.3,49414,0)
- ;;=S42.011S^^216^2417^11
- ;;^UTILITY(U,$J,358.3,49414,1,0)
+ ;;^UTILITY(U,$J,358.3,47025,1,3,0)
+ ;;=3^Acquired Absence Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,47025,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,47025,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,47026,0)
+ ;;=Z89.512^^181^2348^3
+ ;;^UTILITY(U,$J,358.3,47026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49414,1,3,0)
- ;;=3^Disp fx of anterior sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49414,1,4,0)
- ;;=4^S42.011S
- ;;^UTILITY(U,$J,358.3,49414,2)
- ;;=^5026389
- ;;^UTILITY(U,$J,358.3,49415,0)
- ;;=S42.032S^^216^2417^26
- ;;^UTILITY(U,$J,358.3,49415,1,0)
+ ;;^UTILITY(U,$J,358.3,47026,1,3,0)
+ ;;=3^Acquired Absence Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,47026,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,47026,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,47027,0)
+ ;;=Z79.2^^181^2348^15
+ ;;^UTILITY(U,$J,358.3,47027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49415,1,3,0)
- ;;=3^Disp fx of lateral end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49415,1,4,0)
- ;;=4^S42.032S
- ;;^UTILITY(U,$J,358.3,49415,2)
- ;;=^5026501
- ;;^UTILITY(U,$J,358.3,49416,0)
- ;;=S42.031S^^216^2417^27
- ;;^UTILITY(U,$J,358.3,49416,1,0)
+ ;;^UTILITY(U,$J,358.3,47027,1,3,0)
+ ;;=3^Antibiotics Long Term (Current) Use
+ ;;^UTILITY(U,$J,358.3,47027,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,47027,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,47028,0)
+ ;;=E53.8^^181^2349^1
+ ;;^UTILITY(U,$J,358.3,47028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49416,1,3,0)
- ;;=3^Disp fx of lateral end of right clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,49416,1,4,0)
- ;;=4^S42.031S
- ;;^UTILITY(U,$J,358.3,49416,2)
- ;;=^5026494
- ;;^UTILITY(U,$J,358.3,49417,0)
- ;;=S42.022S^^216^2417^43
- ;;^UTILITY(U,$J,358.3,49417,1,0)
+ ;;^UTILITY(U,$J,358.3,47028,1,3,0)
+ ;;=3^B Vitamin Group Deficiency
+ ;;^UTILITY(U,$J,358.3,47028,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,47028,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,47029,0)
+ ;;=F31.9^^181^2349^2
+ ;;^UTILITY(U,$J,358.3,47029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49417,1,3,0)
- ;;=3^Disp fx of shaft of left clavicle, sequela    
- ;;^UTILITY(U,$J,358.3,49417,1,4,0)
- ;;=4^S42.022S
- ;;^UTILITY(U,$J,358.3,49417,2)
- ;;=^5026459
- ;;^UTILITY(U,$J,358.3,49418,0)
- ;;=S42.021S^^216^2417^44
- ;;^UTILITY(U,$J,358.3,49418,1,0)
+ ;;^UTILITY(U,$J,358.3,47029,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,47029,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,47029,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,47030,0)
+ ;;=R00.1^^181^2349^5
+ ;;^UTILITY(U,$J,358.3,47030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49418,1,3,0)
- ;;=3^Disp fx of shaft of right clavicle, sequela   
- ;;^UTILITY(U,$J,358.3,49418,1,4,0)
- ;;=4^S42.021S
- ;;^UTILITY(U,$J,358.3,49418,2)
- ;;=^5026452
- ;;^UTILITY(U,$J,358.3,49419,0)
- ;;=S42.035S^^216^2417^72
- ;;^UTILITY(U,$J,358.3,49419,1,0)
+ ;;^UTILITY(U,$J,358.3,47030,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,47030,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,47030,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,47031,0)
+ ;;=J20.9^^181^2349^6
+ ;;^UTILITY(U,$J,358.3,47031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49419,1,3,0)
- ;;=3^Nondisp fx of lateral end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49419,1,4,0)
- ;;=4^S42.035S
- ;;^UTILITY(U,$J,358.3,49419,2)
- ;;=^5026522
- ;;^UTILITY(U,$J,358.3,49420,0)
- ;;=S42.034S^^216^2417^73
- ;;^UTILITY(U,$J,358.3,49420,1,0)
+ ;;^UTILITY(U,$J,358.3,47031,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,47031,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,47031,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,47032,0)
+ ;;=N32.0^^181^2349^3
+ ;;^UTILITY(U,$J,358.3,47032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49420,1,3,0)
- ;;=3^Nondisp fx of lateral end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49420,1,4,0)
- ;;=4^S42.034S
- ;;^UTILITY(U,$J,358.3,49420,2)
- ;;=^5026515
- ;;^UTILITY(U,$J,358.3,49421,0)
- ;;=S42.025S^^216^2417^89
- ;;^UTILITY(U,$J,358.3,49421,1,0)
+ ;;^UTILITY(U,$J,358.3,47032,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,47032,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,47032,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,47033,0)
+ ;;=M71.50^^181^2349^7
+ ;;^UTILITY(U,$J,358.3,47033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49421,1,3,0)
- ;;=3^Nondisp fx of shaft of left clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,49421,1,4,0)
- ;;=4^S42.025S
- ;;^UTILITY(U,$J,358.3,49421,2)
- ;;=^5026480
- ;;^UTILITY(U,$J,358.3,49422,0)
- ;;=S42.024S^^216^2417^90
- ;;^UTILITY(U,$J,358.3,49422,1,0)
+ ;;^UTILITY(U,$J,358.3,47033,1,3,0)
+ ;;=3^Bursitis NEC,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47033,1,4,0)
+ ;;=4^M71.50
+ ;;^UTILITY(U,$J,358.3,47033,2)
+ ;;=^5013190
+ ;;^UTILITY(U,$J,358.3,47034,0)
+ ;;=D75.89^^181^2349^4
+ ;;^UTILITY(U,$J,358.3,47034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49422,1,3,0)
- ;;=3^Nondisp fx of shaft of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49422,1,4,0)
- ;;=4^S42.024S
- ;;^UTILITY(U,$J,358.3,49422,2)
- ;;=^5026473
- ;;^UTILITY(U,$J,358.3,49423,0)
- ;;=S42.018S^^216^2417^95
- ;;^UTILITY(U,$J,358.3,49423,1,0)
+ ;;^UTILITY(U,$J,358.3,47034,1,3,0)
+ ;;=3^Blood & Blood-Forming Organ Diseases,Oth Spec
+ ;;^UTILITY(U,$J,358.3,47034,1,4,0)
+ ;;=4^D75.89
+ ;;^UTILITY(U,$J,358.3,47034,2)
+ ;;=^5002392
+ ;;^UTILITY(U,$J,358.3,47035,0)
+ ;;=K63.5^^181^2350^35
+ ;;^UTILITY(U,$J,358.3,47035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49423,1,3,0)
- ;;=3^Nondisp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49423,1,4,0)
- ;;=4^S42.018S
- ;;^UTILITY(U,$J,358.3,49423,2)
- ;;=^5026438
- ;;^UTILITY(U,$J,358.3,49424,0)
- ;;=S42.017S^^216^2417^96
- ;;^UTILITY(U,$J,358.3,49424,1,0)
+ ;;^UTILITY(U,$J,358.3,47035,1,3,0)
+ ;;=3^Colon Polyp
+ ;;^UTILITY(U,$J,358.3,47035,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,47035,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,47036,0)
+ ;;=G56.01^^181^2350^19
+ ;;^UTILITY(U,$J,358.3,47036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49424,1,3,0)
- ;;=3^Nondisp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49424,1,4,0)
- ;;=4^S42.017S
- ;;^UTILITY(U,$J,358.3,49424,2)
- ;;=^5026431
- ;;^UTILITY(U,$J,358.3,49425,0)
- ;;=S42.015S^^216^2417^105
- ;;^UTILITY(U,$J,358.3,49425,1,0)
+ ;;^UTILITY(U,$J,358.3,47036,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,47036,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,47036,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,47037,0)
+ ;;=G56.02^^181^2350^18
+ ;;^UTILITY(U,$J,358.3,47037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49425,1,3,0)
- ;;=3^Posterior disp fx of sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,47037,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,47037,1,4,0)
+ ;;=4^G56.02

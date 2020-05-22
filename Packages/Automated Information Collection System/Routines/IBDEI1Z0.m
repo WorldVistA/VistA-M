@@ -1,124 +1,118 @@
-IBDEI1Z0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Z0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33439,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,33439,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,33440,0)
- ;;=L97.924^^131^1669^194
- ;;^UTILITY(U,$J,358.3,33440,1,0)
+ ;;^UTILITY(U,$J,358.3,31469,1,4,0)
+ ;;=4^O35.6XX0
+ ;;^UTILITY(U,$J,358.3,31469,2)
+ ;;=^5016817
+ ;;^UTILITY(U,$J,358.3,31470,0)
+ ;;=O35.6XX1^^126^1626^87
+ ;;^UTILITY(U,$J,358.3,31470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33440,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,33440,1,4,0)
- ;;=4^L97.924
- ;;^UTILITY(U,$J,358.3,33440,2)
- ;;=^5133686
- ;;^UTILITY(U,$J,358.3,33441,0)
- ;;=L97.929^^131^1669^195
- ;;^UTILITY(U,$J,358.3,33441,1,0)
+ ;;^UTILITY(U,$J,358.3,31470,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 1
+ ;;^UTILITY(U,$J,358.3,31470,1,4,0)
+ ;;=4^O35.6XX1
+ ;;^UTILITY(U,$J,358.3,31470,2)
+ ;;=^5016818
+ ;;^UTILITY(U,$J,358.3,31471,0)
+ ;;=O35.6XX2^^126^1626^88
+ ;;^UTILITY(U,$J,358.3,31471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33441,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,33441,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,33441,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,33442,0)
- ;;=L98.2^^131^1669^149
- ;;^UTILITY(U,$J,358.3,33442,1,0)
+ ;;^UTILITY(U,$J,358.3,31471,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 2
+ ;;^UTILITY(U,$J,358.3,31471,1,4,0)
+ ;;=4^O35.6XX2
+ ;;^UTILITY(U,$J,358.3,31471,2)
+ ;;=^5016819
+ ;;^UTILITY(U,$J,358.3,31472,0)
+ ;;=O35.6XX3^^126^1626^89
+ ;;^UTILITY(U,$J,358.3,31472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33442,1,3,0)
- ;;=3^Febrile Neutrophilic Dermatosis
- ;;^UTILITY(U,$J,358.3,33442,1,4,0)
- ;;=4^L98.2
- ;;^UTILITY(U,$J,358.3,33442,2)
- ;;=^5009575
- ;;^UTILITY(U,$J,358.3,33443,0)
- ;;=L98.9^^131^1669^267
- ;;^UTILITY(U,$J,358.3,33443,1,0)
+ ;;^UTILITY(U,$J,358.3,31472,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 3
+ ;;^UTILITY(U,$J,358.3,31472,1,4,0)
+ ;;=4^O35.6XX3
+ ;;^UTILITY(U,$J,358.3,31472,2)
+ ;;=^5016820
+ ;;^UTILITY(U,$J,358.3,31473,0)
+ ;;=O35.6XX4^^126^1626^90
+ ;;^UTILITY(U,$J,358.3,31473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33443,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33443,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,33443,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,33444,0)
- ;;=I70.731^^131^1669^80
- ;;^UTILITY(U,$J,358.3,33444,1,0)
+ ;;^UTILITY(U,$J,358.3,31473,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 4
+ ;;^UTILITY(U,$J,358.3,31473,1,4,0)
+ ;;=4^O35.6XX4
+ ;;^UTILITY(U,$J,358.3,31473,2)
+ ;;=^5016821
+ ;;^UTILITY(U,$J,358.3,31474,0)
+ ;;=O35.6XX5^^126^1626^91
+ ;;^UTILITY(U,$J,358.3,31474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33444,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,33444,1,4,0)
- ;;=4^I70.731
- ;;^UTILITY(U,$J,358.3,33444,2)
- ;;=^5007769
- ;;^UTILITY(U,$J,358.3,33445,0)
- ;;=I70.732^^131^1669^81
- ;;^UTILITY(U,$J,358.3,33445,1,0)
+ ;;^UTILITY(U,$J,358.3,31474,1,3,0)
+ ;;=3^Maternal care for damage to fetus by radiation, fetus 5
+ ;;^UTILITY(U,$J,358.3,31474,1,4,0)
+ ;;=4^O35.6XX5
+ ;;^UTILITY(U,$J,358.3,31474,2)
+ ;;=^5016822
+ ;;^UTILITY(U,$J,358.3,31475,0)
+ ;;=O36.8120^^126^1626^19
+ ;;^UTILITY(U,$J,358.3,31475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33445,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,33445,1,4,0)
- ;;=4^I70.732
- ;;^UTILITY(U,$J,358.3,33445,2)
- ;;=^5007770
- ;;^UTILITY(U,$J,358.3,33446,0)
- ;;=I70.733^^131^1669^82
- ;;^UTILITY(U,$J,358.3,33446,1,0)
+ ;;^UTILITY(U,$J,358.3,31475,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, unsp
+ ;;^UTILITY(U,$J,358.3,31475,1,4,0)
+ ;;=4^O36.8120
+ ;;^UTILITY(U,$J,358.3,31475,2)
+ ;;=^5017089
+ ;;^UTILITY(U,$J,358.3,31476,0)
+ ;;=O36.8130^^126^1626^25
+ ;;^UTILITY(U,$J,358.3,31476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33446,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,33446,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,33446,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,33447,0)
- ;;=I70.734^^131^1669^83
- ;;^UTILITY(U,$J,358.3,33447,1,0)
+ ;;^UTILITY(U,$J,358.3,31476,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, unsp
+ ;;^UTILITY(U,$J,358.3,31476,1,4,0)
+ ;;=4^O36.8130
+ ;;^UTILITY(U,$J,358.3,31476,2)
+ ;;=^5017096
+ ;;^UTILITY(U,$J,358.3,31477,0)
+ ;;=O36.8121^^126^1626^20
+ ;;^UTILITY(U,$J,358.3,31477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33447,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,33447,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,33447,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,33448,0)
- ;;=I70.735^^131^1669^84
- ;;^UTILITY(U,$J,358.3,33448,1,0)
+ ;;^UTILITY(U,$J,358.3,31477,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31477,1,4,0)
+ ;;=4^O36.8121
+ ;;^UTILITY(U,$J,358.3,31477,2)
+ ;;=^5017090
+ ;;^UTILITY(U,$J,358.3,31478,0)
+ ;;=O36.8131^^126^1626^26
+ ;;^UTILITY(U,$J,358.3,31478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33448,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
- ;;^UTILITY(U,$J,358.3,33448,1,4,0)
- ;;=4^I70.735
- ;;^UTILITY(U,$J,358.3,33448,2)
- ;;=^5007773
- ;;^UTILITY(U,$J,358.3,33449,0)
- ;;=I70.741^^131^1669^79
- ;;^UTILITY(U,$J,358.3,33449,1,0)
+ ;;^UTILITY(U,$J,358.3,31478,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31478,1,4,0)
+ ;;=4^O36.8131
+ ;;^UTILITY(U,$J,358.3,31478,2)
+ ;;=^5017097
+ ;;^UTILITY(U,$J,358.3,31479,0)
+ ;;=O36.8122^^126^1626^21
+ ;;^UTILITY(U,$J,358.3,31479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33449,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,33449,1,4,0)
- ;;=4^I70.741
- ;;^UTILITY(U,$J,358.3,33449,2)
- ;;=^5133601
- ;;^UTILITY(U,$J,358.3,33450,0)
- ;;=I70.742^^131^1669^76
- ;;^UTILITY(U,$J,358.3,33450,1,0)
+ ;;^UTILITY(U,$J,358.3,31479,1,3,0)
+ ;;=3^Decreased fetal movements, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31479,1,4,0)
+ ;;=4^O36.8122
+ ;;^UTILITY(U,$J,358.3,31479,2)
+ ;;=^5017091
+ ;;^UTILITY(U,$J,358.3,31480,0)
+ ;;=O36.8132^^126^1626^27
+ ;;^UTILITY(U,$J,358.3,31480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33450,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,33450,1,4,0)
- ;;=4^I70.742
- ;;^UTILITY(U,$J,358.3,33450,2)
- ;;=^5133602
- ;;^UTILITY(U,$J,358.3,33451,0)
- ;;=I70.743^^131^1669^75
- ;;^UTILITY(U,$J,358.3,33451,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33451,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,31480,1,3,0)
+ ;;=3^Decreased fetal movements, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31480,1,4,0)
+ ;;=4^O36.8132
+ ;;^UTILITY(U,$J,358.3,31480,2)
+ ;;=^5017098

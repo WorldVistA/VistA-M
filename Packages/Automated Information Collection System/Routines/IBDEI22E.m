@@ -1,126 +1,130 @@
-IBDEI22E ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35018,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,35018,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,35018,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,35019,0)
- ;;=R40.2113^^131^1698^30
- ;;^UTILITY(U,$J,358.3,35019,1,0)
+ ;;^UTILITY(U,$J,358.3,32954,1,4,0)
+ ;;=4^H33.41
+ ;;^UTILITY(U,$J,358.3,32954,2)
+ ;;=^5005548
+ ;;^UTILITY(U,$J,358.3,32955,0)
+ ;;=H33.42^^128^1672^50
+ ;;^UTILITY(U,$J,358.3,32955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35019,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,35019,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,35019,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,35020,0)
- ;;=R40.2112^^131^1698^27
- ;;^UTILITY(U,$J,358.3,35020,1,0)
+ ;;^UTILITY(U,$J,358.3,32955,1,3,0)
+ ;;=3^TRD,OS
+ ;;^UTILITY(U,$J,358.3,32955,1,4,0)
+ ;;=4^H33.42
+ ;;^UTILITY(U,$J,358.3,32955,2)
+ ;;=^5005549
+ ;;^UTILITY(U,$J,358.3,32956,0)
+ ;;=H33.303^^128^1672^67
+ ;;^UTILITY(U,$J,358.3,32956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35020,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,35020,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,35020,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,35021,0)
- ;;=R40.2111^^131^1698^28
- ;;^UTILITY(U,$J,358.3,35021,1,0)
+ ;;^UTILITY(U,$J,358.3,32956,1,3,0)
+ ;;=3^Retinal Break,Unspec,OU
+ ;;^UTILITY(U,$J,358.3,32956,1,4,0)
+ ;;=4^H33.303
+ ;;^UTILITY(U,$J,358.3,32956,2)
+ ;;=^5005534
+ ;;^UTILITY(U,$J,358.3,32957,0)
+ ;;=H33.301^^128^1672^65
+ ;;^UTILITY(U,$J,358.3,32957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35021,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,35021,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,35021,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,35022,0)
- ;;=R40.2110^^131^1698^29
- ;;^UTILITY(U,$J,358.3,35022,1,0)
+ ;;^UTILITY(U,$J,358.3,32957,1,3,0)
+ ;;=3^Retinal Break,Unspec,OD
+ ;;^UTILITY(U,$J,358.3,32957,1,4,0)
+ ;;=4^H33.301
+ ;;^UTILITY(U,$J,358.3,32957,2)
+ ;;=^5005532
+ ;;^UTILITY(U,$J,358.3,32958,0)
+ ;;=H33.302^^128^1672^66
+ ;;^UTILITY(U,$J,358.3,32958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35022,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,35022,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,35022,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,35023,0)
- ;;=R40.20^^131^1698^36
- ;;^UTILITY(U,$J,358.3,35023,1,0)
+ ;;^UTILITY(U,$J,358.3,32958,1,3,0)
+ ;;=3^Retinal Break,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,32958,1,4,0)
+ ;;=4^H33.302
+ ;;^UTILITY(U,$J,358.3,32958,2)
+ ;;=^5005533
+ ;;^UTILITY(U,$J,358.3,32959,0)
+ ;;=H35.50^^128^1672^82
+ ;;^UTILITY(U,$J,358.3,32959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35023,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,35023,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,35023,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,35024,0)
- ;;=R40.2123^^131^1698^35
- ;;^UTILITY(U,$J,358.3,35024,1,0)
+ ;;^UTILITY(U,$J,358.3,32959,1,3,0)
+ ;;=3^Hereditary Retinal Dystrophy,Unspec
+ ;;^UTILITY(U,$J,358.3,32959,1,4,0)
+ ;;=4^H35.50
+ ;;^UTILITY(U,$J,358.3,32959,2)
+ ;;=^5005695
+ ;;^UTILITY(U,$J,358.3,32960,0)
+ ;;=H35.40^^128^1672^80
+ ;;^UTILITY(U,$J,358.3,32960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35024,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,35024,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,35024,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,35025,0)
- ;;=R40.2122^^131^1698^32
- ;;^UTILITY(U,$J,358.3,35025,1,0)
+ ;;^UTILITY(U,$J,358.3,32960,1,3,0)
+ ;;=3^Peripheral Retinal Degeneration,Unspec
+ ;;^UTILITY(U,$J,358.3,32960,1,4,0)
+ ;;=4^H35.40
+ ;;^UTILITY(U,$J,358.3,32960,2)
+ ;;=^5005670
+ ;;^UTILITY(U,$J,358.3,32961,0)
+ ;;=H35.9^^128^1672^78
+ ;;^UTILITY(U,$J,358.3,32961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35025,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,35025,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,35025,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,35026,0)
- ;;=R40.2124^^131^1698^31
- ;;^UTILITY(U,$J,358.3,35026,1,0)
+ ;;^UTILITY(U,$J,358.3,32961,1,3,0)
+ ;;=3^Retinal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32961,1,4,0)
+ ;;=4^H35.9
+ ;;^UTILITY(U,$J,358.3,32961,2)
+ ;;=^5005718
+ ;;^UTILITY(U,$J,358.3,32962,0)
+ ;;=H35.70^^128^1672^79
+ ;;^UTILITY(U,$J,358.3,32962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35026,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,35026,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,35026,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,35027,0)
- ;;=R40.2211^^131^1698^17
- ;;^UTILITY(U,$J,358.3,35027,1,0)
+ ;;^UTILITY(U,$J,358.3,32962,1,3,0)
+ ;;=3^Retinal Layer Separation,Unspec
+ ;;^UTILITY(U,$J,358.3,32962,1,4,0)
+ ;;=4^H35.70
+ ;;^UTILITY(U,$J,358.3,32962,2)
+ ;;=^5005702
+ ;;^UTILITY(U,$J,358.3,32963,0)
+ ;;=H35.51^^128^1672^81
+ ;;^UTILITY(U,$J,358.3,32963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35027,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,35027,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,35027,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,35028,0)
- ;;=R40.2210^^131^1698^16
- ;;^UTILITY(U,$J,358.3,35028,1,0)
+ ;;^UTILITY(U,$J,358.3,32963,1,3,0)
+ ;;=3^Vitreoretinal Dystrophy
+ ;;^UTILITY(U,$J,358.3,32963,1,4,0)
+ ;;=4^H35.51
+ ;;^UTILITY(U,$J,358.3,32963,2)
+ ;;=^5005696
+ ;;^UTILITY(U,$J,358.3,32964,0)
+ ;;=H43.23^^128^1673^9
+ ;;^UTILITY(U,$J,358.3,32964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35028,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,35028,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,35028,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,35029,0)
- ;;=R40.2224^^131^1698^18
- ;;^UTILITY(U,$J,358.3,35029,1,0)
+ ;;^UTILITY(U,$J,358.3,32964,1,3,0)
+ ;;=3^Asteroid Hyalosis,OU
+ ;;^UTILITY(U,$J,358.3,32964,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,32964,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,32965,0)
+ ;;=H43.21^^128^1673^7
+ ;;^UTILITY(U,$J,358.3,32965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35029,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,35029,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,35029,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,35030,0)
- ;;=R40.2223^^131^1698^19
- ;;^UTILITY(U,$J,358.3,35030,1,0)
+ ;;^UTILITY(U,$J,358.3,32965,1,3,0)
+ ;;=3^Asteroid Hyalosis,OD
+ ;;^UTILITY(U,$J,358.3,32965,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,32965,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,32966,0)
+ ;;=H43.22^^128^1673^8
+ ;;^UTILITY(U,$J,358.3,32966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35030,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,32966,1,3,0)
+ ;;=3^Asteroid Hyalosis,OS
+ ;;^UTILITY(U,$J,358.3,32966,1,4,0)
+ ;;=4^H43.22
+ ;;^UTILITY(U,$J,358.3,32966,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,32967,0)
+ ;;=H43.89^^128^1673^22

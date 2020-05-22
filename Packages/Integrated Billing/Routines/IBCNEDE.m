@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595,621,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -21,6 +21,9 @@ IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
 EN ; Entry Point
  ; Prevent simultaneous runs
  ; Set error trap to ensure that lock is released
+ ;
+ ;/vd-IB*2.0*659 - Quit if VAMC Site is MANILA (#358) & EIV is disabled for MANILA.
+ I $P($$SITE^VASITE,U,3)=358,$$GET1^DIQ(350.9,"1,",51.33,"I")="N" Q
  ;
  ; IB*2.0*549 - Quit if Nightly Extract Master switch is off
  Q:$$GET1^DIQ(350.9,"1,",51.28,"I")="N"
@@ -58,7 +61,9 @@ EN ; Entry Point
  ; Check to see if background process has been stopped, if so quit.
 EN1 I $G(ZTSTOP) G ENX
  ; Send enrollment message
- D ^IBCNEHLM
+ ;/vd-IB*2*659 - Replaced the following line with the call to verify that the IIV EC Logical Link was running.
+ ;D ^IBCNEHLM
+ D CKIIVEC    ;Send registration message, check logical link and send email if down.
  I $G(ZTSTOP) G ENX
  I '$G(QFL) D
  . ; Wait for 'AA' acknowledgement
@@ -79,6 +84,29 @@ ENX ; Purge task record - if queued
  I $D(ZTQUEUED) S ZTREQ="@"
  L -^TMP("IBCNEDE")
  Q
+ ;
+ ;/vd-IB*2*659 - Beginning of new code to check if the IIV EC Logical Link is running.
+CKIIVEC ; Verifying that the IIV EC Logical Link is up and running.
+ N IEN,LLIEN,XMSUB,XMTEXT,XMY,XX,YY
+ S LLIEN=$O(^HLCS(870,"B","IIV EC",""))   ;Get ien for the IIV EC Logical Link.
+ D ^IBCNEHLM          ;Send a registration message
+ I $$DOW^XLFDT(DT)="Sunday" Q  ;Don't report stuck queues on Sunday.
+ S IEN=$O(^HLMA("AC","O",LLIEN,""))
+ H 20                 ;Pause for 20 seconds to give the msg a chance to process.
+ I (IEN'=""),($O(^HLMA("AC","O",LLIEN,""))=IEN) D  ; If the counters are equal, the new msg hasn't processed.
+ . ; Send a Mailman msg to notify e-Biz that the IIV EC Logical Link seems to be down.
+ . S XX=$$SITE^VASITE()
+ . S YY=$P(XX,"^",2)_" (#"_$P(XX,"^",3)_")"
+ . ; Send a MailMan message if link is not processing records
+ . I $$PROD^XUPROD(1) S XMY("VHAeInsuranceRapidResponse@domain.ext")=""  ; Only send to eInsurance Rapid Response if in Production
+ . ;
+ . D MSG004^IBCNEMS1(.MSG,YY)
+ . ;
+ . D MSG^IBCNEUT5(,MSG(1),"MSG(",1,.XMY)  ; sends to postmaster if XMY is empty
+ . ;
+ . Q
+ Q
+ ;/vd-IB*2*659 - End of code added.
  ;
 TBLCHK() ;
  ; Confirm that at least one eIV payer and that all X12 tables
@@ -197,7 +225,7 @@ DSTQX ;
  ;
 CHKPER ; IB*2.0*595/DM
  ; check for the existence of New Person: "INTERFACE,IB EIV" and/or "AUTOUPDATE,IBEIV"
- ; send a mailman message to "vhaeinsurancerr@domain.ext" if either/both are missing.
+ ; send a mailman message to "VHAeInsuranceRapidResponse@domain.ext" if either/both are missing.
  ;
  N IBA,IBI,WKDT,IBMCT,MSG,MGRP,IBXMY
  ;
@@ -212,6 +240,7 @@ CHKPER ; IB*2.0*595/DM
  I 'IBI S MSG(IBMCT)="Entry for 'INTERFACE,IB EIV' is missing",IBMCT=IBMCT+1
  S MSG(IBMCT)="-------------------------------------------------------------------------------"
  S MGRP=$$MGRP^IBCNEUT5()
- S IBXMY("vhaeinsurancerr@domain.ext")=""
- D MSG^IBCNEUT5(MGRP,"Missing EIV New Person entries ("_$P(WKDT,U,3)_")","MSG(",,.IBXMY)
+ ; IB*659/DW Added check for production account and changed eInsurance mailgroup to be more self documenting
+ I $$PROD^XUPROD(1) S IBXMY("VHAeInsuranceRapidResponse@domain.ext")=""
+ D MSG^IBCNEUT5(MGRP,"Missing EIV New Person entries ("_$P(WKDT,U,3)_")","MSG(",,.IBXMY)  ;sends to postmaster if IBXMY is empty
  Q

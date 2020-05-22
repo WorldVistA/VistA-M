@@ -1,140 +1,124 @@
-IBDEI1QJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29438,1,3,0)
- ;;=3^Cystitis,Interstitial w/o Hematuria
- ;;^UTILITY(U,$J,358.3,29438,1,4,0)
- ;;=4^N30.10
- ;;^UTILITY(U,$J,358.3,29438,2)
- ;;=^5015634
- ;;^UTILITY(U,$J,358.3,29439,0)
- ;;=N30.90^^115^1463^4
- ;;^UTILITY(U,$J,358.3,29439,1,0)
+ ;;^UTILITY(U,$J,358.3,27733,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,27734,0)
+ ;;=F07.0^^113^1353^9
+ ;;^UTILITY(U,$J,358.3,27734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29439,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,29439,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,29439,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,29440,0)
- ;;=N30.91^^115^1463^3
- ;;^UTILITY(U,$J,358.3,29440,1,0)
+ ;;^UTILITY(U,$J,358.3,27734,1,3,0)
+ ;;=3^Personality Change d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,27734,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,27734,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,27735,0)
+ ;;=Z65.4^^113^1354^5
+ ;;^UTILITY(U,$J,358.3,27735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29440,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,29440,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,29440,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,29441,0)
- ;;=N81.11^^115^1463^6
- ;;^UTILITY(U,$J,358.3,29441,1,0)
+ ;;^UTILITY(U,$J,358.3,27735,1,3,0)
+ ;;=3^Victim of Crime
+ ;;^UTILITY(U,$J,358.3,27735,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,27735,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,27736,0)
+ ;;=Z65.0^^113^1354^1
+ ;;^UTILITY(U,$J,358.3,27736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29441,1,3,0)
- ;;=3^Cystocele,Midline
- ;;^UTILITY(U,$J,358.3,29441,1,4,0)
- ;;=4^N81.11
- ;;^UTILITY(U,$J,358.3,29441,2)
- ;;=^331534
- ;;^UTILITY(U,$J,358.3,29442,0)
- ;;=R30.0^^115^1463^7
- ;;^UTILITY(U,$J,358.3,29442,1,0)
+ ;;^UTILITY(U,$J,358.3,27736,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,27736,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,27736,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,27737,0)
+ ;;=Z65.2^^113^1354^4
+ ;;^UTILITY(U,$J,358.3,27737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29442,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,29442,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,29442,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,29443,0)
- ;;=N80.1^^115^1463^8
- ;;^UTILITY(U,$J,358.3,29443,1,0)
+ ;;^UTILITY(U,$J,358.3,27737,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,27737,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,27737,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,27738,0)
+ ;;=Z65.3^^113^1354^3
+ ;;^UTILITY(U,$J,358.3,27738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29443,1,3,0)
- ;;=3^Endometriosis of Ovary
- ;;^UTILITY(U,$J,358.3,29443,1,4,0)
- ;;=4^N80.1
- ;;^UTILITY(U,$J,358.3,29443,2)
- ;;=^270484
- ;;^UTILITY(U,$J,358.3,29444,0)
- ;;=N73.9^^115^1463^9
- ;;^UTILITY(U,$J,358.3,29444,1,0)
+ ;;^UTILITY(U,$J,358.3,27738,1,3,0)
+ ;;=3^Problems Related to Other Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,27738,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,27738,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,27739,0)
+ ;;=Z65.1^^113^1354^2
+ ;;^UTILITY(U,$J,358.3,27739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29444,1,3,0)
- ;;=3^Female Pelvic Inflammatory Disease,Unspec
- ;;^UTILITY(U,$J,358.3,29444,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,29444,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,29445,0)
- ;;=N83.0^^115^1463^10
- ;;^UTILITY(U,$J,358.3,29445,1,0)
+ ;;^UTILITY(U,$J,358.3,27739,1,3,0)
+ ;;=3^Imprisonment or Other Incarceration
+ ;;^UTILITY(U,$J,358.3,27739,1,4,0)
+ ;;=4^Z65.1
+ ;;^UTILITY(U,$J,358.3,27739,2)
+ ;;=^5063180
+ ;;^UTILITY(U,$J,358.3,27740,0)
+ ;;=Z64.0^^113^1355^6
+ ;;^UTILITY(U,$J,358.3,27740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29445,1,3,0)
- ;;=3^Follicular Cyst of Ovary
- ;;^UTILITY(U,$J,358.3,29445,1,4,0)
- ;;=4^N83.0
- ;;^UTILITY(U,$J,358.3,29445,2)
- ;;=^5015854
- ;;^UTILITY(U,$J,358.3,29446,0)
- ;;=R35.0^^115^1463^11
- ;;^UTILITY(U,$J,358.3,29446,1,0)
+ ;;^UTILITY(U,$J,358.3,27740,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,27740,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,27740,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,27741,0)
+ ;;=Z64.1^^113^1355^3
+ ;;^UTILITY(U,$J,358.3,27741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29446,1,3,0)
- ;;=3^Frequency of Micturition
- ;;^UTILITY(U,$J,358.3,29446,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,29446,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,29447,0)
- ;;=R31.9^^115^1463^14
- ;;^UTILITY(U,$J,358.3,29447,1,0)
+ ;;^UTILITY(U,$J,358.3,27741,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,27741,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,27741,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,27742,0)
+ ;;=Z64.4^^113^1355^1
+ ;;^UTILITY(U,$J,358.3,27742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29447,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,29447,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,29447,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,29448,0)
- ;;=R39.14^^115^1463^15
- ;;^UTILITY(U,$J,358.3,29448,1,0)
+ ;;^UTILITY(U,$J,358.3,27742,1,3,0)
+ ;;=3^Discord w/ Counselors
+ ;;^UTILITY(U,$J,358.3,27742,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,27742,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,27743,0)
+ ;;=Z65.5^^113^1355^2
+ ;;^UTILITY(U,$J,358.3,27743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29448,1,3,0)
- ;;=3^Incomplete Voiding
- ;;^UTILITY(U,$J,358.3,29448,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,29448,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,29449,0)
- ;;=R31.1^^115^1463^16
- ;;^UTILITY(U,$J,358.3,29449,1,0)
+ ;;^UTILITY(U,$J,358.3,27743,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,27743,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,27743,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,27744,0)
+ ;;=Z65.8^^113^1355^4
+ ;;^UTILITY(U,$J,358.3,27744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29449,1,3,0)
- ;;=3^Microscopic Hematuria
- ;;^UTILITY(U,$J,358.3,29449,1,4,0)
- ;;=4^R31.1
- ;;^UTILITY(U,$J,358.3,29449,2)
- ;;=^5019326
- ;;^UTILITY(U,$J,358.3,29450,0)
- ;;=N20.0^^115^1463^19
- ;;^UTILITY(U,$J,358.3,29450,1,0)
+ ;;^UTILITY(U,$J,358.3,27744,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Other
+ ;;^UTILITY(U,$J,358.3,27744,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,27744,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,27745,0)
+ ;;=Z65.9^^113^1355^5
+ ;;^UTILITY(U,$J,358.3,27745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29450,1,3,0)
- ;;=3^Neprolithiasis
- ;;^UTILITY(U,$J,358.3,29450,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,29450,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,29451,0)
- ;;=R35.1^^115^1463^20
- ;;^UTILITY(U,$J,358.3,29451,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29451,1,3,0)
- ;;=3^Nocturia
- ;;^UTILITY(U,$J,358.3,29451,1,4,0)
- ;;=4^R35.1
- ;;^UTILITY(U,$J,358.3,29451,2)
- ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,27745,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Unspec
+ ;;^UTILITY(U,$J,358.3,27745,1,4,0)
+ ;;=4^Z65.9

@@ -1,5 +1,5 @@
 ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
+ ;;2.2;ONCOLOGY;**1,4,5,6,10**;Jul 31, 2013;Build 20
  ;
 ED ;[EE Abstract Edit Primary]
  N ONCDC8
@@ -145,10 +145,12 @@ EXT S SECTION="Stage of Disease at Diagnosis" D SECTION
  .S N=$S($E(H,1,4)=9731:"999^10^9",1:"999^80^9") ;Plasmacytoma, NOS
  .S N=$S(S=65:"999^99^9^99^99^9^9^9^9",1:N_"^99^99^9^9^9^7") ;Unk primary
  .I (T=67422)&(L'=1)&(H'=91403) S $P(N,U,2)=99,$P(N,U,9)=9   ;Spleen
- .S $P(^ONCO(165.5,D0,2),U,9,17)=N
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2),U,9,17)=N
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)>3171231 S $P(^ONCO(165.5,D0,2),U,9,13)=$P(N,"^",1,5)
  .D NOSTAGE
  .;S SY="@313"  ;skip to Other Staging System (165.5,39)
- .S SY=227,ONCSKP39=1  ;ONC*2.2*5 goto field (165.5,227) then skip to 39
+ .S SY=227,ONCSKP39=1  ;Patch 5 goto #227 then skip to 39
+ .;I $P($G(^ONCO(165.5,D0,0)),U,16)>3171231 S Y="@355" D METS8^ONCSCHMU,NONXX^ONCSCHMU,EODPR88^ONCSCHMU,EODRN88^ONCSCHMU,EODMT88^ONCSCHMU  ;Patch 10 make calls to 2018 AJCC & EOD fields for 2018+ cases
  .I S=65 W !?18,"====> UNKNOWN PRIMARY - No EOD/TNM coding <====" Q
  .W !?18,"====> SYSTEMIC DISEASE - No EOD/TNM coding <===="
  ;
@@ -160,16 +162,16 @@ NOSTAGE ;No staging
  S $P(^ONCO(165.5,D0,2.1),U,20)=999   ;29.3 Tumor Size Summary
  S $P(^ONCO(165.5,D0,2.1),U,21)=999   ;29.4 Tumor Size Clinical
  S $P(^ONCO(165.5,D0,2.1),U,22)=999   ;29.5 Tumor Size Pathologic
- S $P(^ONCO(165.5,D0,2),U,25)=88   ;37.1 CT
- S $P(^ONCO(165.5,D0,2),U,26)=88   ;37.2 CN
- S $P(^ONCO(165.5,D0,2),U,27)=88   ;37.3 CM
- S $P(^ONCO(165.5,D0,2),U,20)=88   ;38   C Stage Group
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2),U,25)=88   ;37.1 CT
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2),U,26)=88   ;37.2 CN
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2),U,27)=88   ;37.3 CM
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2),U,20)=88   ;38   C Stage Group
  S $P(^ONCO(165.5,D0,3),U,32)=13   ;19  Staged By(C)=ONC*2.2*6 ptr 165.7
  S $P(^ONCO(165.5,D0,7),U,17)="N"  ;69.4 Multimodality Therapy (P)
- S $P(^ONCO(165.5,D0,2.1),U,1)=88  ;85   PT
- S $P(^ONCO(165.5,D0,2.1),U,2)=88  ;86   PN
- S $P(^ONCO(165.5,D0,2.1),U,3)=88  ;87   PM
- S $P(^ONCO(165.5,D0,2.1),U,4)=88  ;88   P Stage Group
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2.1),U,1)=88  ;85   PT
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2.1),U,2)=88  ;86   PN
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2.1),U,3)=88  ;87   PM
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S $P(^ONCO(165.5,D0,2.1),U,4)=88  ;88   P Stage Group
  S $P(^ONCO(165.5,D0,2.1),U,5)=13  ;89  Staged By(P)=ONC*2.2*6 ptr 165.7
  S $P(^ONCO(165.5,D0,2),U,28)="NA" ;38.5 Stage Grouping-AJCC
  S:$P($G(^ONCO(165.5,D0,7)),U,7)="" $P(^ONCO(165.5,D0,7),U,7)="0000000"

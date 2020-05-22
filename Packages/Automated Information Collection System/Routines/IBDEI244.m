@@ -1,130 +1,120 @@
-IBDEI244 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI244 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35828,1,4,0)
- ;;=4^M06.022
- ;;^UTILITY(U,$J,358.3,35828,2)
- ;;=^5010052
- ;;^UTILITY(U,$J,358.3,35829,0)
- ;;=M06.042^^134^1731^42
- ;;^UTILITY(U,$J,358.3,35829,1,0)
+ ;;^UTILITY(U,$J,358.3,33755,1,3,0)
+ ;;=3^Chronic postprocedural pain NEC
+ ;;^UTILITY(U,$J,358.3,33755,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,33755,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,33756,0)
+ ;;=G89.29^^132^1710^4
+ ;;^UTILITY(U,$J,358.3,33756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35829,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Left Hand
- ;;^UTILITY(U,$J,358.3,35829,1,4,0)
- ;;=4^M06.042
- ;;^UTILITY(U,$J,358.3,35829,2)
- ;;=^5010058
- ;;^UTILITY(U,$J,358.3,35830,0)
- ;;=M06.052^^134^1731^43
- ;;^UTILITY(U,$J,358.3,35830,1,0)
+ ;;^UTILITY(U,$J,358.3,33756,1,3,0)
+ ;;=3^Chronic Pain,Other
+ ;;^UTILITY(U,$J,358.3,33756,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,33756,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,33757,0)
+ ;;=M00.851^^132^1711^2
+ ;;^UTILITY(U,$J,358.3,33757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35830,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Left Hip
- ;;^UTILITY(U,$J,358.3,35830,1,4,0)
- ;;=4^M06.052
- ;;^UTILITY(U,$J,358.3,35830,2)
- ;;=^5010061
- ;;^UTILITY(U,$J,358.3,35831,0)
- ;;=M06.062^^134^1731^44
- ;;^UTILITY(U,$J,358.3,35831,1,0)
+ ;;^UTILITY(U,$J,358.3,33757,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, right hip
+ ;;^UTILITY(U,$J,358.3,33757,1,4,0)
+ ;;=4^M00.851
+ ;;^UTILITY(U,$J,358.3,33757,2)
+ ;;=^5009682
+ ;;^UTILITY(U,$J,358.3,33758,0)
+ ;;=M00.852^^132^1711^1
+ ;;^UTILITY(U,$J,358.3,33758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35831,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Left Knee
- ;;^UTILITY(U,$J,358.3,35831,1,4,0)
- ;;=4^M06.062
- ;;^UTILITY(U,$J,358.3,35831,2)
- ;;=^5010064
- ;;^UTILITY(U,$J,358.3,35832,0)
- ;;=M06.012^^134^1731^45
- ;;^UTILITY(U,$J,358.3,35832,1,0)
+ ;;^UTILITY(U,$J,358.3,33758,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, left hip
+ ;;^UTILITY(U,$J,358.3,33758,1,4,0)
+ ;;=4^M00.852
+ ;;^UTILITY(U,$J,358.3,33758,2)
+ ;;=^5009683
+ ;;^UTILITY(U,$J,358.3,33759,0)
+ ;;=S70.02XA^^132^1711^5
+ ;;^UTILITY(U,$J,358.3,33759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35832,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Left Shldr
- ;;^UTILITY(U,$J,358.3,35832,1,4,0)
- ;;=4^M06.012
- ;;^UTILITY(U,$J,358.3,35832,2)
- ;;=^5010049
- ;;^UTILITY(U,$J,358.3,35833,0)
- ;;=M06.032^^134^1731^46
- ;;^UTILITY(U,$J,358.3,35833,1,0)
+ ;;^UTILITY(U,$J,358.3,33759,1,3,0)
+ ;;=3^Contusion of left hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,33759,1,4,0)
+ ;;=4^S70.02XA
+ ;;^UTILITY(U,$J,358.3,33759,2)
+ ;;=^5036837
+ ;;^UTILITY(U,$J,358.3,33760,0)
+ ;;=S70.01XA^^132^1711^7
+ ;;^UTILITY(U,$J,358.3,33760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35833,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Left Wrist
- ;;^UTILITY(U,$J,358.3,35833,1,4,0)
- ;;=4^M06.032
- ;;^UTILITY(U,$J,358.3,35833,2)
- ;;=^5010055
- ;;^UTILITY(U,$J,358.3,35834,0)
- ;;=M06.09^^134^1731^47
- ;;^UTILITY(U,$J,358.3,35834,1,0)
+ ;;^UTILITY(U,$J,358.3,33760,1,3,0)
+ ;;=3^Contusion of right hip, initial encounter
+ ;;^UTILITY(U,$J,358.3,33760,1,4,0)
+ ;;=4^S70.01XA
+ ;;^UTILITY(U,$J,358.3,33760,2)
+ ;;=^5036834
+ ;;^UTILITY(U,$J,358.3,33761,0)
+ ;;=S72.142A^^132^1711^15
+ ;;^UTILITY(U,$J,358.3,33761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35834,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Mult Sites
- ;;^UTILITY(U,$J,358.3,35834,1,4,0)
- ;;=4^M06.09
- ;;^UTILITY(U,$J,358.3,35834,2)
- ;;=^5010070
- ;;^UTILITY(U,$J,358.3,35835,0)
- ;;=M06.071^^134^1731^48
- ;;^UTILITY(U,$J,358.3,35835,1,0)
+ ;;^UTILITY(U,$J,358.3,33761,1,3,0)
+ ;;=3^Displaced intertrochanteric fracture of left femur, init
+ ;;^UTILITY(U,$J,358.3,33761,1,4,0)
+ ;;=4^S72.142A
+ ;;^UTILITY(U,$J,358.3,33761,2)
+ ;;=^5037931
+ ;;^UTILITY(U,$J,358.3,33762,0)
+ ;;=S72.141A^^132^1711^16
+ ;;^UTILITY(U,$J,358.3,33762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35835,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35835,1,4,0)
- ;;=4^M06.071
- ;;^UTILITY(U,$J,358.3,35835,2)
- ;;=^5010066
- ;;^UTILITY(U,$J,358.3,35836,0)
- ;;=M06.021^^134^1731^49
- ;;^UTILITY(U,$J,358.3,35836,1,0)
+ ;;^UTILITY(U,$J,358.3,33762,1,3,0)
+ ;;=3^Displaced intertrochanteric fracture of right femur, init
+ ;;^UTILITY(U,$J,358.3,33762,1,4,0)
+ ;;=4^S72.141A
+ ;;^UTILITY(U,$J,358.3,33762,2)
+ ;;=^5037915
+ ;;^UTILITY(U,$J,358.3,33763,0)
+ ;;=S72.22XA^^132^1711^17
+ ;;^UTILITY(U,$J,358.3,33763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35836,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Elbow
- ;;^UTILITY(U,$J,358.3,35836,1,4,0)
- ;;=4^M06.021
- ;;^UTILITY(U,$J,358.3,35836,2)
- ;;=^5010051
- ;;^UTILITY(U,$J,358.3,35837,0)
- ;;=M06.041^^134^1731^50
- ;;^UTILITY(U,$J,358.3,35837,1,0)
+ ;;^UTILITY(U,$J,358.3,33763,1,3,0)
+ ;;=3^Displaced subtrochanteric fracture of left femur, init
+ ;;^UTILITY(U,$J,358.3,33763,1,4,0)
+ ;;=4^S72.22XA
+ ;;^UTILITY(U,$J,358.3,33763,2)
+ ;;=^5038027
+ ;;^UTILITY(U,$J,358.3,33764,0)
+ ;;=S72.21XA^^132^1711^18
+ ;;^UTILITY(U,$J,358.3,33764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35837,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Hand
- ;;^UTILITY(U,$J,358.3,35837,1,4,0)
- ;;=4^M06.041
- ;;^UTILITY(U,$J,358.3,35837,2)
- ;;=^5010057
- ;;^UTILITY(U,$J,358.3,35838,0)
- ;;=M06.051^^134^1731^51
- ;;^UTILITY(U,$J,358.3,35838,1,0)
+ ;;^UTILITY(U,$J,358.3,33764,1,3,0)
+ ;;=3^Displaced subtrochanteric fracture of right femur, init
+ ;;^UTILITY(U,$J,358.3,33764,1,4,0)
+ ;;=4^S72.21XA
+ ;;^UTILITY(U,$J,358.3,33764,2)
+ ;;=^5038011
+ ;;^UTILITY(U,$J,358.3,33765,0)
+ ;;=S72.002A^^132^1711^21
+ ;;^UTILITY(U,$J,358.3,33765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35838,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Hip
- ;;^UTILITY(U,$J,358.3,35838,1,4,0)
- ;;=4^M06.051
- ;;^UTILITY(U,$J,358.3,35838,2)
- ;;=^5010060
- ;;^UTILITY(U,$J,358.3,35839,0)
- ;;=M06.061^^134^1731^52
- ;;^UTILITY(U,$J,358.3,35839,1,0)
+ ;;^UTILITY(U,$J,358.3,33765,1,3,0)
+ ;;=3^Fracture of unsp part of neck of left femur, init
+ ;;^UTILITY(U,$J,358.3,33765,1,4,0)
+ ;;=4^S72.002A
+ ;;^UTILITY(U,$J,358.3,33765,2)
+ ;;=^5037063
+ ;;^UTILITY(U,$J,358.3,33766,0)
+ ;;=S72.001A^^132^1711^22
+ ;;^UTILITY(U,$J,358.3,33766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35839,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Knee
- ;;^UTILITY(U,$J,358.3,35839,1,4,0)
- ;;=4^M06.061
- ;;^UTILITY(U,$J,358.3,35839,2)
- ;;=^5010063
- ;;^UTILITY(U,$J,358.3,35840,0)
- ;;=M06.011^^134^1731^53
- ;;^UTILITY(U,$J,358.3,35840,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35840,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Shldr
- ;;^UTILITY(U,$J,358.3,35840,1,4,0)
- ;;=4^M06.011
- ;;^UTILITY(U,$J,358.3,35840,2)
- ;;=^5010048
- ;;^UTILITY(U,$J,358.3,35841,0)
- ;;=M06.031^^134^1731^54
+ ;;^UTILITY(U,$J,358.3,33766,1,3,0)
+ ;;=3^Fracture of unsp part of neck of right femur, init
+ ;;^UTILITY(U,$J,358.3,33766,1,4,0)
+ ;;=4^S72.001A
+ ;;^UTILITY(U,$J,358.3,33766,2)
+ ;;=^5037047

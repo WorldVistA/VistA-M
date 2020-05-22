@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: IB FORM FIELD CONTENT
-17-OCT-2019 20:41:41 ZWR
-^IBA(364.7,0)="IB FORM FIELD CONTENT^364.7IP^2042^1686"
+ZWR
+^IBA(364.7,0)="IB FORM FIELD CONTENT^364.7IP^816^1686"
 ^IBA(364.7,1,0)="1^N^54^^^^N"
 ^IBA(364.7,1,3,0)="^364.73^2^2^3071129^^"
 ^IBA(364.7,1,3,1,0)="This is CI2-2."
@@ -289,8 +289,8 @@ OSEHRA ZGO Export: IB FORM FIELD CONTENT
 ^IBA(364.7,67,3,0)="^^1^1^2960815^^^^"
 ^IBA(364.7,67,3,1,0)="If data element's value is null, do not output."
 ^IBA(364.7,68,0)="48^N^23^^^^N"
-^IBA(364.7,68,1)="S IBXDATA=""Y"""
-^IBA(364.7,68,3,0)="^364.73^1^1^3101215^^^^"
+^IBA(364.7,68,1)="S IBXDATA=$S($$ROIDTCK^IBCEU7(IBXIEN):""Y"",1:""I"")"
+^IBA(364.7,68,3,0)="^364.73^1^1^3190107^^^^"
 ^IBA(364.7,68,3,1,0)="Converts release of information indicator from DHCP to X12 format."
 ^IBA(364.7,69,0)="66^N^5^^^^N"
 ^IBA(364.7,69,1)="K IBXDATA"
@@ -3276,8 +3276,8 @@ OSEHRA ZGO Export: IB FORM FIELD CONTENT
 ^IBA(364.7,815,3,3,0)="existence of the IBXSAVE(""MIA45"") array that was previously extracted."
 ^IBA(364.7,815,3,4,0)="For other than the first occurrence, the RECORD ID 'MIA1' must be output."
 ^IBA(364.7,816,0)="840^N^5^^^^N"
-^IBA(364.7,816,1)="K:'$$INPAT^IBCEF(IBXIEN,1) IBXDATA I $D(IBXDATA) N Z,IBZ K IBXDATA S (Z,IBZ)=0 F  S IBZ=$O(IBXSAVE(""MIA45"",IBZ)) Q:'IBZ  S Z=Z+1,IBXDATA(Z)=$E(""PST"",IBZ) I Z>1 D ID^IBCEF2(Z,""MOA1"")"
-^IBA(364.7,816,3,0)="^364.73^4^4^3050207^^^^"
+^IBA(364.7,816,1)="K:'$$INPAT^IBCEF(IBXIEN,1) IBXDATA I $D(IBXDATA) N Z,IBZ K IBXDATA S (Z,IBZ)=0 F  S IBZ=$O(IBXSAVE(""MIA45"",IBZ)) Q:'IBZ  S Z=Z+1,IBXDATA(Z)=$E(""PST"",IBZ) I Z>1 D ID^IBCEF2(Z,""MIA2"")"
+^IBA(364.7,816,3,0)="^364.73^4^4^3190327^^^^"
 ^IBA(364.7,816,3,1,0)="This is a group data element so more than 1 occurrence of a value is"
 ^IBA(364.7,816,3,2,0)="possible for the data element in the IBXDATA array.  It relies on the"
 ^IBA(364.7,816,3,3,0)="existence of the IBXSAVE(""MIA45"") array that was previously extracted."

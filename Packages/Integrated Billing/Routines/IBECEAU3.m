@@ -1,5 +1,5 @@
 IBECEAU3 ;ALB/CPM-Cancel/Edit/Add... Add New IB Action;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563,618,656,663**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a new Integrated Billing Action entry.

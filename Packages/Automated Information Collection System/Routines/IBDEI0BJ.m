@@ -1,332 +1,680 @@
-IBDEI0BJ ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0BJ ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14633,1,0)
+ ;;^UTILITY(U,$J,358.3,28183,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,28183,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,28183,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,28184,0)
+ ;;=G30.9^^81^1093^4
+ ;;^UTILITY(U,$J,358.3,28184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14633,1,3,0)
- ;;=3^Assault by Unarmed Fight,Init Encntr
- ;;^UTILITY(U,$J,358.3,14633,1,4,0)
- ;;=4^Y04.0XXA
- ;;^UTILITY(U,$J,358.3,14633,2)
- ;;=^5061165
- ;;^UTILITY(U,$J,358.3,14634,0)
- ;;=Y04.0XXD^^43^643^8
- ;;^UTILITY(U,$J,358.3,14634,1,0)
+ ;;^UTILITY(U,$J,358.3,28184,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,28184,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,28184,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,28185,0)
+ ;;=G10.^^81^1093^19
+ ;;^UTILITY(U,$J,358.3,28185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14634,1,3,0)
- ;;=3^Assault by Unarmed Fight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14634,1,4,0)
- ;;=4^Y04.0XXD
- ;;^UTILITY(U,$J,358.3,14634,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,14635,0)
- ;;=Y04.1XXA^^43^643^1
- ;;^UTILITY(U,$J,358.3,14635,1,0)
+ ;;^UTILITY(U,$J,358.3,28185,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,28185,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,28185,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,28186,0)
+ ;;=G10.^^81^1093^20
+ ;;^UTILITY(U,$J,358.3,28186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14635,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,14635,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,14635,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,14636,0)
- ;;=Y04.1XXD^^43^643^2
- ;;^UTILITY(U,$J,358.3,14636,1,0)
+ ;;^UTILITY(U,$J,358.3,28186,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,28186,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,28186,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,28187,0)
+ ;;=G90.3^^81^1093^21
+ ;;^UTILITY(U,$J,358.3,28187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14636,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14636,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,14636,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,14637,0)
- ;;=Y04.2XXA^^43^643^5
- ;;^UTILITY(U,$J,358.3,14637,1,0)
+ ;;^UTILITY(U,$J,358.3,28187,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,28187,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,28187,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,28188,0)
+ ;;=G91.2^^81^1093^22
+ ;;^UTILITY(U,$J,358.3,28188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14637,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,14637,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,14637,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,14638,0)
- ;;=Y04.8XXA^^43^643^3
- ;;^UTILITY(U,$J,358.3,14638,1,0)
+ ;;^UTILITY(U,$J,358.3,28188,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,28188,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,28188,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,28189,0)
+ ;;=G91.2^^81^1093^23
+ ;;^UTILITY(U,$J,358.3,28189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14638,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,14638,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,14638,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,14639,0)
- ;;=Y04.2XXD^^43^643^6
- ;;^UTILITY(U,$J,358.3,14639,1,0)
+ ;;^UTILITY(U,$J,358.3,28189,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,28189,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,28189,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,28190,0)
+ ;;=G30.8^^81^1093^5
+ ;;^UTILITY(U,$J,358.3,28190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14639,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14639,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,14639,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,14640,0)
- ;;=Y04.8XXD^^43^643^4
- ;;^UTILITY(U,$J,358.3,14640,1,0)
+ ;;^UTILITY(U,$J,358.3,28190,1,3,0)
+ ;;=3^Alzheimer's Diseases NEC
+ ;;^UTILITY(U,$J,358.3,28190,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,28190,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,28191,0)
+ ;;=G31.09^^81^1093^16
+ ;;^UTILITY(U,$J,358.3,28191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14640,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14640,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,14640,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,14641,0)
- ;;=Y36.200A^^43^643^124
- ;;^UTILITY(U,$J,358.3,14641,1,0)
+ ;;^UTILITY(U,$J,358.3,28191,1,3,0)
+ ;;=3^Frontotemporal Dementia NEC
+ ;;^UTILITY(U,$J,358.3,28191,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,28191,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,28192,0)
+ ;;=G20.^^81^1093^24
+ ;;^UTILITY(U,$J,358.3,28192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14641,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14641,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,14641,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,14642,0)
- ;;=Y36.200D^^43^643^125
- ;;^UTILITY(U,$J,358.3,14642,1,0)
+ ;;^UTILITY(U,$J,358.3,28192,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,28192,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,28192,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,28193,0)
+ ;;=G20.^^81^1093^25
+ ;;^UTILITY(U,$J,358.3,28193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14642,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14642,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,14642,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,14643,0)
- ;;=Y36.300A^^43^643^126
- ;;^UTILITY(U,$J,358.3,14643,1,0)
+ ;;^UTILITY(U,$J,358.3,28193,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,28193,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,28193,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,28194,0)
+ ;;=G31.01^^81^1093^26
+ ;;^UTILITY(U,$J,358.3,28194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14643,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14643,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,14643,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,14644,0)
- ;;=Y36.300D^^43^643^127
- ;;^UTILITY(U,$J,358.3,14644,1,0)
+ ;;^UTILITY(U,$J,358.3,28194,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,28194,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,28194,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,28195,0)
+ ;;=G23.1^^81^1093^28
+ ;;^UTILITY(U,$J,358.3,28195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14644,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14644,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,14644,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,14645,0)
- ;;=Y36.410A^^43^643^121
- ;;^UTILITY(U,$J,358.3,14645,1,0)
+ ;;^UTILITY(U,$J,358.3,28195,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia
+ ;;^UTILITY(U,$J,358.3,28195,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,28195,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,28196,0)
+ ;;=Z79.2^^81^1094^1
+ ;;^UTILITY(U,$J,358.3,28196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14645,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14645,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,14645,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,14646,0)
- ;;=Y36.410D^^43^643^123
- ;;^UTILITY(U,$J,358.3,14646,1,0)
+ ;;^UTILITY(U,$J,358.3,28196,1,3,0)
+ ;;=3^Antibiotics
+ ;;^UTILITY(U,$J,358.3,28196,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,28196,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,28197,0)
+ ;;=Z79.01^^81^1094^2
+ ;;^UTILITY(U,$J,358.3,28197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14646,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14646,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,14646,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,14647,0)
- ;;=Y36.6X0A^^43^643^113
- ;;^UTILITY(U,$J,358.3,14647,1,0)
+ ;;^UTILITY(U,$J,358.3,28197,1,3,0)
+ ;;=3^Anticoagulants
+ ;;^UTILITY(U,$J,358.3,28197,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,28197,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,28198,0)
+ ;;=Z79.02^^81^1094^3
+ ;;^UTILITY(U,$J,358.3,28198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14647,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14647,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,14647,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,14648,0)
- ;;=Y36.6X0D^^43^643^115
- ;;^UTILITY(U,$J,358.3,14648,1,0)
+ ;;^UTILITY(U,$J,358.3,28198,1,3,0)
+ ;;=3^Antiplatelets/Antithrombotics
+ ;;^UTILITY(U,$J,358.3,28198,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,28198,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,28199,0)
+ ;;=Z79.82^^81^1094^4
+ ;;^UTILITY(U,$J,358.3,28199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14648,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14648,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,14648,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,14649,0)
- ;;=Y36.7X0A^^43^643^128
- ;;^UTILITY(U,$J,358.3,14649,1,0)
+ ;;^UTILITY(U,$J,358.3,28199,1,3,0)
+ ;;=3^Aspirin
+ ;;^UTILITY(U,$J,358.3,28199,1,4,0)
+ ;;=4^Z79.82
+ ;;^UTILITY(U,$J,358.3,28199,2)
+ ;;=^5063340
+ ;;^UTILITY(U,$J,358.3,28200,0)
+ ;;=Z79.4^^81^1094^6
+ ;;^UTILITY(U,$J,358.3,28200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14649,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14649,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,14649,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,14650,0)
- ;;=Y36.7X0D^^43^643^129
- ;;^UTILITY(U,$J,358.3,14650,1,0)
+ ;;^UTILITY(U,$J,358.3,28200,1,3,0)
+ ;;=3^Insulin
+ ;;^UTILITY(U,$J,358.3,28200,1,4,0)
+ ;;=4^Z79.4
+ ;;^UTILITY(U,$J,358.3,28200,2)
+ ;;=^5063334
+ ;;^UTILITY(U,$J,358.3,28201,0)
+ ;;=Z79.1^^81^1094^9
+ ;;^UTILITY(U,$J,358.3,28201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14650,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14650,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,14650,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,14651,0)
- ;;=Y36.810A^^43^643^22
- ;;^UTILITY(U,$J,358.3,14651,1,0)
+ ;;^UTILITY(U,$J,358.3,28201,1,3,0)
+ ;;=3^NSAID
+ ;;^UTILITY(U,$J,358.3,28201,1,4,0)
+ ;;=4^Z79.1
+ ;;^UTILITY(U,$J,358.3,28201,2)
+ ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,28202,0)
+ ;;=Z79.891^^81^1094^8
+ ;;^UTILITY(U,$J,358.3,28202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14651,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14651,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,14651,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,14652,0)
- ;;=Y36.810D^^43^643^23
- ;;^UTILITY(U,$J,358.3,14652,1,0)
+ ;;^UTILITY(U,$J,358.3,28202,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,28202,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,28202,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,28203,0)
+ ;;=Z79.51^^81^1094^5
+ ;;^UTILITY(U,$J,358.3,28203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14652,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14652,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,14652,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,14653,0)
- ;;=Y36.820A^^43^643^19
- ;;^UTILITY(U,$J,358.3,14653,1,0)
+ ;;^UTILITY(U,$J,358.3,28203,1,3,0)
+ ;;=3^Inhaled Steroids
+ ;;^UTILITY(U,$J,358.3,28203,1,4,0)
+ ;;=4^Z79.51
+ ;;^UTILITY(U,$J,358.3,28203,2)
+ ;;=^5063335
+ ;;^UTILITY(U,$J,358.3,28204,0)
+ ;;=Z79.52^^81^1094^11
+ ;;^UTILITY(U,$J,358.3,28204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14653,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14653,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,14653,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,14654,0)
- ;;=Y36.820D^^43^643^20
- ;;^UTILITY(U,$J,358.3,14654,1,0)
+ ;;^UTILITY(U,$J,358.3,28204,1,3,0)
+ ;;=3^Steroids-Systemic
+ ;;^UTILITY(U,$J,358.3,28204,1,4,0)
+ ;;=4^Z79.52
+ ;;^UTILITY(U,$J,358.3,28204,2)
+ ;;=^5063336
+ ;;^UTILITY(U,$J,358.3,28205,0)
+ ;;=Z79.899^^81^1094^7
+ ;;^UTILITY(U,$J,358.3,28205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14654,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14654,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,14654,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,14655,0)
- ;;=Y37.200A^^43^643^91
- ;;^UTILITY(U,$J,358.3,14655,1,0)
+ ;;^UTILITY(U,$J,358.3,28205,1,3,0)
+ ;;=3^Long Term Current Drug Therapy NEC
+ ;;^UTILITY(U,$J,358.3,28205,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,28205,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,28206,0)
+ ;;=Z79.84^^81^1094^10
+ ;;^UTILITY(U,$J,358.3,28206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14655,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14655,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,14655,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,14656,0)
- ;;=Y37.200D^^43^643^92
- ;;^UTILITY(U,$J,358.3,14656,1,0)
+ ;;^UTILITY(U,$J,358.3,28206,1,3,0)
+ ;;=3^Oral Hypoglycemic Drugs
+ ;;^UTILITY(U,$J,358.3,28206,1,4,0)
+ ;;=4^Z79.84
+ ;;^UTILITY(U,$J,358.3,28206,2)
+ ;;=^5140432
+ ;;^UTILITY(U,$J,358.3,28207,0)
+ ;;=Z90.13^^81^1095^5
+ ;;^UTILITY(U,$J,358.3,28207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14656,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14656,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,14656,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,14657,0)
- ;;=X00.1XXA^^43^643^13
- ;;^UTILITY(U,$J,358.3,14657,1,0)
+ ;;^UTILITY(U,$J,358.3,28207,1,3,0)
+ ;;=3^Acquired Absence of Breasts & Nipples,Bilateral
+ ;;^UTILITY(U,$J,358.3,28207,1,4,0)
+ ;;=4^Z90.13
+ ;;^UTILITY(U,$J,358.3,28207,2)
+ ;;=^5063584
+ ;;^UTILITY(U,$J,358.3,28208,0)
+ ;;=Z90.710^^81^1095^6
+ ;;^UTILITY(U,$J,358.3,28208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14657,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,14657,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,14657,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,14658,0)
- ;;=X00.1XXD^^43^643^14
- ;;^UTILITY(U,$J,358.3,14658,1,0)
+ ;;^UTILITY(U,$J,358.3,28208,1,3,0)
+ ;;=3^Acquired Absence of Cervix & Uterus
+ ;;^UTILITY(U,$J,358.3,28208,1,4,0)
+ ;;=4^Z90.710
+ ;;^UTILITY(U,$J,358.3,28208,2)
+ ;;=^5063591
+ ;;^UTILITY(U,$J,358.3,28209,0)
+ ;;=Z90.712^^81^1095^7
+ ;;^UTILITY(U,$J,358.3,28209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14658,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14658,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,14658,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,14659,0)
- ;;=Y36.820S^^43^643^21
- ;;^UTILITY(U,$J,358.3,14659,1,0)
+ ;;^UTILITY(U,$J,358.3,28209,1,3,0)
+ ;;=3^Acquired Absence of Cervix x/ Remaining Uterus
+ ;;^UTILITY(U,$J,358.3,28209,1,4,0)
+ ;;=4^Z90.712
+ ;;^UTILITY(U,$J,358.3,28209,2)
+ ;;=^5063593
+ ;;^UTILITY(U,$J,358.3,28210,0)
+ ;;=Z90.711^^81^1095^42
+ ;;^UTILITY(U,$J,358.3,28210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14659,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,14659,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,14659,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,14660,0)
- ;;=Y36.810S^^43^643^24
- ;;^UTILITY(U,$J,358.3,14660,1,0)
+ ;;^UTILITY(U,$J,358.3,28210,1,3,0)
+ ;;=3^Acquired Absence of Uterus w/ Remaining Cervical Stump
+ ;;^UTILITY(U,$J,358.3,28210,1,4,0)
+ ;;=4^Z90.711
+ ;;^UTILITY(U,$J,358.3,28210,2)
+ ;;=^5063592
+ ;;^UTILITY(U,$J,358.3,28211,0)
+ ;;=Z90.5^^81^1095^18
+ ;;^UTILITY(U,$J,358.3,28211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14660,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,14660,1,4,0)
- ;;=4^Y36.810S
- ;;^UTILITY(U,$J,358.3,14660,2)
- ;;=^5061789
- ;;^UTILITY(U,$J,358.3,14661,0)
- ;;=Y36.6X0S^^43^643^114
- ;;^UTILITY(U,$J,358.3,14661,1,0)
+ ;;^UTILITY(U,$J,358.3,28211,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,28211,1,4,0)
+ ;;=4^Z90.5
+ ;;^UTILITY(U,$J,358.3,28211,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,28212,0)
+ ;;=Z90.02^^81^1095^19
+ ;;^UTILITY(U,$J,358.3,28212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14661,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,14661,1,4,0)
- ;;=4^Y36.6X0S
- ;;^UTILITY(U,$J,358.3,14661,2)
- ;;=^5061777
- ;;^UTILITY(U,$J,358.3,14662,0)
- ;;=Y36.410S^^43^643^122
- ;;^UTILITY(U,$J,358.3,14662,1,0)
+ ;;^UTILITY(U,$J,358.3,28212,1,3,0)
+ ;;=3^Acquired Absence of Larynx
+ ;;^UTILITY(U,$J,358.3,28212,1,4,0)
+ ;;=4^Z90.02
+ ;;^UTILITY(U,$J,358.3,28212,2)
+ ;;=^5063579
+ ;;^UTILITY(U,$J,358.3,28213,0)
+ ;;=Z89.442^^81^1095^1
+ ;;^UTILITY(U,$J,358.3,28213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14662,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,14662,1,4,0)
- ;;=4^Y36.410S
- ;;^UTILITY(U,$J,358.3,14662,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,14663,0)
- ;;=Y36.200S^^43^643^119
- ;;^UTILITY(U,$J,358.3,14663,1,0)
+ ;;^UTILITY(U,$J,358.3,28213,1,3,0)
+ ;;=3^Acquired Absence of Ankle,Left
+ ;;^UTILITY(U,$J,358.3,28213,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,28213,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,28214,0)
+ ;;=Z90.12^^81^1095^3
+ ;;^UTILITY(U,$J,358.3,28214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14663,1,3,0)
- ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,14663,1,4,0)
- ;;=4^Y36.200S
- ;;^UTILITY(U,$J,358.3,14663,2)
- ;;=^5061609
- ;;^UTILITY(U,$J,358.3,14664,0)
- ;;=Y36.300S^^43^643^120
- ;;^UTILITY(U,$J,358.3,14664,1,0)
+ ;;^UTILITY(U,$J,358.3,28214,1,3,0)
+ ;;=3^Acquired Absence of Breast & Nipple,Left
+ ;;^UTILITY(U,$J,358.3,28214,1,4,0)
+ ;;=4^Z90.12
+ ;;^UTILITY(U,$J,358.3,28214,2)
+ ;;=^5063583
+ ;;^UTILITY(U,$J,358.3,28215,0)
+ ;;=Z89.022^^81^1095^8
+ ;;^UTILITY(U,$J,358.3,28215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14664,1,3,0)
- ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,14664,1,4,0)
- ;;=4^Y36.300S
- ;;^UTILITY(U,$J,358.3,14664,2)
- ;;=^5061663
- ;;^UTILITY(U,$J,358.3,14665,0)
- ;;=Y36.230A^^43^643^116
- ;;^UTILITY(U,$J,358.3,14665,1,0)
+ ;;^UTILITY(U,$J,358.3,28215,1,3,0)
+ ;;=3^Acquired Absence of Finger(s),Left
+ ;;^UTILITY(U,$J,358.3,28215,1,4,0)
+ ;;=4^Z89.022
+ ;;^UTILITY(U,$J,358.3,28215,2)
+ ;;=^5063535
+ ;;^UTILITY(U,$J,358.3,28216,0)
+ ;;=Z89.432^^81^1095^10
+ ;;^UTILITY(U,$J,358.3,28216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14665,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
- ;;^UTILITY(U,$J,358.3,14665,1,4,0)
- ;;=4^Y36.230A
- ;;^UTILITY(U,$J,358.3,14665,2)
- ;;=^5061625
+ ;;^UTILITY(U,$J,358.3,28216,1,3,0)
+ ;;=3^Acquired Absence of Foot,Left
+ ;;^UTILITY(U,$J,358.3,28216,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,28216,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,28217,0)
+ ;;=Z89.412^^81^1095^12
+ ;;^UTILITY(U,$J,358.3,28217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28217,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Left
+ ;;^UTILITY(U,$J,358.3,28217,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,28217,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,28218,0)
+ ;;=Z89.112^^81^1095^14
+ ;;^UTILITY(U,$J,358.3,28218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28218,1,3,0)
+ ;;=3^Acquired Absence of Hand,Left
+ ;;^UTILITY(U,$J,358.3,28218,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,28218,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,28219,0)
+ ;;=Z89.622^^81^1095^16
+ ;;^UTILITY(U,$J,358.3,28219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28219,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Left
+ ;;^UTILITY(U,$J,358.3,28219,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,28219,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,28220,0)
+ ;;=Z89.612^^81^1095^20
+ ;;^UTILITY(U,$J,358.3,28220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28220,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Left
+ ;;^UTILITY(U,$J,358.3,28220,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,28220,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,28221,0)
+ ;;=Z89.512^^81^1095^22
+ ;;^UTILITY(U,$J,358.3,28221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28221,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Left
+ ;;^UTILITY(U,$J,358.3,28221,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,28221,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,28222,0)
+ ;;=Z89.232^^81^1095^32
+ ;;^UTILITY(U,$J,358.3,28222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28222,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Left
+ ;;^UTILITY(U,$J,358.3,28222,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,28222,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,28223,0)
+ ;;=Z89.012^^81^1095^36
+ ;;^UTILITY(U,$J,358.3,28223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28223,1,3,0)
+ ;;=3^Acquired Absence of Thumb,Left
+ ;;^UTILITY(U,$J,358.3,28223,1,4,0)
+ ;;=4^Z89.012
+ ;;^UTILITY(U,$J,358.3,28223,2)
+ ;;=^5063532
+ ;;^UTILITY(U,$J,358.3,28224,0)
+ ;;=Z89.422^^81^1095^25
+ ;;^UTILITY(U,$J,358.3,28224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28224,1,3,0)
+ ;;=3^Acquired Absence of Oth Toe(s),Left
+ ;;^UTILITY(U,$J,358.3,28224,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,28224,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,28225,0)
+ ;;=Z89.222^^81^1095^38
+ ;;^UTILITY(U,$J,358.3,28225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28225,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Above Elbow,Left
+ ;;^UTILITY(U,$J,358.3,28225,1,4,0)
+ ;;=4^Z89.222
+ ;;^UTILITY(U,$J,358.3,28225,2)
+ ;;=^5063549
+ ;;^UTILITY(U,$J,358.3,28226,0)
+ ;;=Z89.212^^81^1095^40
+ ;;^UTILITY(U,$J,358.3,28226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28226,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow,Left
+ ;;^UTILITY(U,$J,358.3,28226,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,28226,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,28227,0)
+ ;;=Z89.122^^81^1095^43
+ ;;^UTILITY(U,$J,358.3,28227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28227,1,3,0)
+ ;;=3^Acquired Absence of Wrist,Left
+ ;;^UTILITY(U,$J,358.3,28227,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,28227,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,28228,0)
+ ;;=Z90.2^^81^1095^24
+ ;;^UTILITY(U,$J,358.3,28228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28228,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,28228,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,28228,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,28229,0)
+ ;;=Z90.79^^81^1095^31
+ ;;^UTILITY(U,$J,358.3,28229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28229,1,3,0)
+ ;;=3^Acquired Absence of Prostate
+ ;;^UTILITY(U,$J,358.3,28229,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,28229,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,28230,0)
+ ;;=Z90.722^^81^1095^27
+ ;;^UTILITY(U,$J,358.3,28230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28230,1,3,0)
+ ;;=3^Acquired Absence of Ovaries,Bilateral
+ ;;^UTILITY(U,$J,358.3,28230,1,4,0)
+ ;;=4^Z90.722
+ ;;^UTILITY(U,$J,358.3,28230,2)
+ ;;=^5063595
+ ;;^UTILITY(U,$J,358.3,28231,0)
+ ;;=Z90.721^^81^1095^28
+ ;;^UTILITY(U,$J,358.3,28231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28231,1,3,0)
+ ;;=3^Acquired Absence of Ovaries,Unilateral
+ ;;^UTILITY(U,$J,358.3,28231,1,4,0)
+ ;;=4^Z90.721
+ ;;^UTILITY(U,$J,358.3,28231,2)
+ ;;=^5063594
+ ;;^UTILITY(U,$J,358.3,28232,0)
+ ;;=Z90.411^^81^1095^29
+ ;;^UTILITY(U,$J,358.3,28232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28232,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Partial
+ ;;^UTILITY(U,$J,358.3,28232,1,4,0)
+ ;;=4^Z90.411
+ ;;^UTILITY(U,$J,358.3,28232,2)
+ ;;=^5063588
+ ;;^UTILITY(U,$J,358.3,28233,0)
+ ;;=Z90.410^^81^1095^30
+ ;;^UTILITY(U,$J,358.3,28233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28233,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Total
+ ;;^UTILITY(U,$J,358.3,28233,1,4,0)
+ ;;=4^Z90.410
+ ;;^UTILITY(U,$J,358.3,28233,2)
+ ;;=^5063587
+ ;;^UTILITY(U,$J,358.3,28234,0)
+ ;;=Z89.441^^81^1095^2
+ ;;^UTILITY(U,$J,358.3,28234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28234,1,3,0)
+ ;;=3^Acquired Absence of Ankle,Right
+ ;;^UTILITY(U,$J,358.3,28234,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,28234,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,28235,0)
+ ;;=Z90.11^^81^1095^4
+ ;;^UTILITY(U,$J,358.3,28235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28235,1,3,0)
+ ;;=3^Acquired Absence of Breast & Nipple,Right
+ ;;^UTILITY(U,$J,358.3,28235,1,4,0)
+ ;;=4^Z90.11
+ ;;^UTILITY(U,$J,358.3,28235,2)
+ ;;=^5063582
+ ;;^UTILITY(U,$J,358.3,28236,0)
+ ;;=Z89.021^^81^1095^9
+ ;;^UTILITY(U,$J,358.3,28236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28236,1,3,0)
+ ;;=3^Acquired Absence of Finger(s),Right
+ ;;^UTILITY(U,$J,358.3,28236,1,4,0)
+ ;;=4^Z89.021
+ ;;^UTILITY(U,$J,358.3,28236,2)
+ ;;=^5063534
+ ;;^UTILITY(U,$J,358.3,28237,0)
+ ;;=Z89.431^^81^1095^11
+ ;;^UTILITY(U,$J,358.3,28237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28237,1,3,0)
+ ;;=3^Acquired Absence of Foot,Right
+ ;;^UTILITY(U,$J,358.3,28237,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,28237,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,28238,0)
+ ;;=Z89.411^^81^1095^13
+ ;;^UTILITY(U,$J,358.3,28238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28238,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Right
+ ;;^UTILITY(U,$J,358.3,28238,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,28238,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,28239,0)
+ ;;=Z89.111^^81^1095^15
+ ;;^UTILITY(U,$J,358.3,28239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28239,1,3,0)
+ ;;=3^Acquired Absence of Hand,Right
+ ;;^UTILITY(U,$J,358.3,28239,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,28239,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,28240,0)
+ ;;=Z89.621^^81^1095^17
+ ;;^UTILITY(U,$J,358.3,28240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28240,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Right
+ ;;^UTILITY(U,$J,358.3,28240,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,28240,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,28241,0)
+ ;;=Z89.611^^81^1095^21
+ ;;^UTILITY(U,$J,358.3,28241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28241,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Right
+ ;;^UTILITY(U,$J,358.3,28241,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,28241,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,28242,0)
+ ;;=Z89.511^^81^1095^23
+ ;;^UTILITY(U,$J,358.3,28242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28242,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Right
+ ;;^UTILITY(U,$J,358.3,28242,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,28242,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,28243,0)
+ ;;=Z89.231^^81^1095^33
+ ;;^UTILITY(U,$J,358.3,28243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28243,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,28243,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,28243,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,28244,0)
+ ;;=Z89.011^^81^1095^37
+ ;;^UTILITY(U,$J,358.3,28244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28244,1,3,0)
+ ;;=3^Acquired Absence of Thumb,Right
+ ;;^UTILITY(U,$J,358.3,28244,1,4,0)
+ ;;=4^Z89.011
+ ;;^UTILITY(U,$J,358.3,28244,2)
+ ;;=^5063531
+ ;;^UTILITY(U,$J,358.3,28245,0)
+ ;;=Z89.421^^81^1095^26
+ ;;^UTILITY(U,$J,358.3,28245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28245,1,3,0)
+ ;;=3^Acquired Absence of Oth Toe(s),Right
+ ;;^UTILITY(U,$J,358.3,28245,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,28245,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,28246,0)
+ ;;=Z89.221^^81^1095^39
+ ;;^UTILITY(U,$J,358.3,28246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28246,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Above Elbow,Right
+ ;;^UTILITY(U,$J,358.3,28246,1,4,0)
+ ;;=4^Z89.221
+ ;;^UTILITY(U,$J,358.3,28246,2)
+ ;;=^5063548
+ ;;^UTILITY(U,$J,358.3,28247,0)
+ ;;=Z89.211^^81^1095^41
+ ;;^UTILITY(U,$J,358.3,28247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28247,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow,Right
+ ;;^UTILITY(U,$J,358.3,28247,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,28247,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,28248,0)
+ ;;=Z89.121^^81^1095^44
+ ;;^UTILITY(U,$J,358.3,28248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28248,1,3,0)
+ ;;=3^Acquired Absence of Wrist,Right
+ ;;^UTILITY(U,$J,358.3,28248,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,28248,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,28249,0)
+ ;;=Z90.81^^81^1095^34
+ ;;^UTILITY(U,$J,358.3,28249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28249,1,3,0)
+ ;;=3^Acquired Absence of Spleen
+ ;;^UTILITY(U,$J,358.3,28249,1,4,0)
+ ;;=4^Z90.81
+ ;;^UTILITY(U,$J,358.3,28249,2)
+ ;;=^5063597
+ ;;^UTILITY(U,$J,358.3,28250,0)
+ ;;=Z90.3^^81^1095^35
+ ;;^UTILITY(U,$J,358.3,28250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28250,1,3,0)
+ ;;=3^Acquired Absence of Stomach (part of)
+ ;;^UTILITY(U,$J,358.3,28250,1,4,0)
+ ;;=4^Z90.3
+ ;;^UTILITY(U,$J,358.3,28250,2)
+ ;;=^5063586

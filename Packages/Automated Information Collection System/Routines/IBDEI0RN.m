@@ -1,356 +1,124 @@
-IBDEI0RN ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36524,1,4,0)
- ;;=4^N06.0
- ;;^UTILITY(U,$J,358.3,36524,2)
- ;;=^5015549
- ;;^UTILITY(U,$J,358.3,36525,0)
- ;;=N06.8^^103^1553^15
- ;;^UTILITY(U,$J,358.3,36525,1,0)
+ ;;^UTILITY(U,$J,358.3,12336,2)
+ ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,12337,0)
+ ;;=C4A.9^^80^777^20
+ ;;^UTILITY(U,$J,358.3,12337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36525,1,3,0)
- ;;=3^Isolated Proteinuria w/ Morphologic Lesion
- ;;^UTILITY(U,$J,358.3,36525,1,4,0)
- ;;=4^N06.8
- ;;^UTILITY(U,$J,358.3,36525,2)
- ;;=^5015557
- ;;^UTILITY(U,$J,358.3,36526,0)
- ;;=N14.3^^103^1553^24
- ;;^UTILITY(U,$J,358.3,36526,1,0)
+ ;;^UTILITY(U,$J,358.3,12337,1,3,0)
+ ;;=3^Merkel Cell Carcinoma,Unspec
+ ;;^UTILITY(U,$J,358.3,12337,1,4,0)
+ ;;=4^C4A.9
+ ;;^UTILITY(U,$J,358.3,12337,2)
+ ;;=^5001158
+ ;;^UTILITY(U,$J,358.3,12338,0)
+ ;;=C4A.121^^80^777^7
+ ;;^UTILITY(U,$J,358.3,12338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36526,1,3,0)
- ;;=3^Nephropathy Induced by Heavy Metals
- ;;^UTILITY(U,$J,358.3,36526,1,4,0)
- ;;=4^N14.3
- ;;^UTILITY(U,$J,358.3,36526,2)
- ;;=^5015593
- ;;^UTILITY(U,$J,358.3,36527,0)
- ;;=N14.1^^103^1553^23
- ;;^UTILITY(U,$J,358.3,36527,1,0)
+ ;;^UTILITY(U,$J,358.3,12338,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,12338,1,4,0)
+ ;;=4^C4A.121
+ ;;^UTILITY(U,$J,358.3,12338,2)
+ ;;=^5157276
+ ;;^UTILITY(U,$J,358.3,12339,0)
+ ;;=C4A.122^^80^777^5
+ ;;^UTILITY(U,$J,358.3,12339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36527,1,3,0)
- ;;=3^Nephropathy Induced by Drug/Meds/Biol Subst
- ;;^UTILITY(U,$J,358.3,36527,1,4,0)
- ;;=4^N14.1
- ;;^UTILITY(U,$J,358.3,36527,2)
- ;;=^5015591
- ;;^UTILITY(U,$J,358.3,36528,0)
- ;;=N29.^^103^1553^16
- ;;^UTILITY(U,$J,358.3,36528,1,0)
+ ;;^UTILITY(U,$J,358.3,12339,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,12339,1,4,0)
+ ;;=4^C4A.122
+ ;;^UTILITY(U,$J,358.3,12339,2)
+ ;;=^5157277
+ ;;^UTILITY(U,$J,358.3,12340,0)
+ ;;=C4A.111^^80^777^15
+ ;;^UTILITY(U,$J,358.3,12340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36528,1,3,0)
- ;;=3^Kidney and Ureter Disorders in Diseases Classd Elsewhr
- ;;^UTILITY(U,$J,358.3,36528,1,4,0)
- ;;=4^N29.
- ;;^UTILITY(U,$J,358.3,36528,2)
- ;;=^5015631
- ;;^UTILITY(U,$J,358.3,36529,0)
- ;;=N15.8^^103^1553^25
- ;;^UTILITY(U,$J,358.3,36529,1,0)
+ ;;^UTILITY(U,$J,358.3,12340,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,12340,1,4,0)
+ ;;=4^C4A.111
+ ;;^UTILITY(U,$J,358.3,12340,2)
+ ;;=^5157274
+ ;;^UTILITY(U,$J,358.3,12341,0)
+ ;;=C4A.112^^80^777^13
+ ;;^UTILITY(U,$J,358.3,12341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36529,1,3,0)
- ;;=3^Renal Tubulo-Interstitial Diseases
- ;;^UTILITY(U,$J,358.3,36529,1,4,0)
- ;;=4^N15.8
- ;;^UTILITY(U,$J,358.3,36529,2)
- ;;=^5015595
- ;;^UTILITY(U,$J,358.3,36530,0)
- ;;=N14.4^^103^1553^26
- ;;^UTILITY(U,$J,358.3,36530,1,0)
+ ;;^UTILITY(U,$J,358.3,12341,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,12341,1,4,0)
+ ;;=4^C4A.112
+ ;;^UTILITY(U,$J,358.3,12341,2)
+ ;;=^5157275
+ ;;^UTILITY(U,$J,358.3,12342,0)
+ ;;=S01.20XA^^80^778^33
+ ;;^UTILITY(U,$J,358.3,12342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36530,1,3,0)
- ;;=3^Toxic Nephropathy NEC
- ;;^UTILITY(U,$J,358.3,36530,1,4,0)
- ;;=4^N14.4
- ;;^UTILITY(U,$J,358.3,36530,2)
- ;;=^5015594
- ;;^UTILITY(U,$J,358.3,36531,0)
- ;;=N05.6^^103^1553^18
- ;;^UTILITY(U,$J,358.3,36531,1,0)
+ ;;^UTILITY(U,$J,358.3,12342,1,3,0)
+ ;;=3^Open Wound of Nose,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12342,1,4,0)
+ ;;=4^S01.20XA
+ ;;^UTILITY(U,$J,358.3,12342,2)
+ ;;=^5020090
+ ;;^UTILITY(U,$J,358.3,12343,0)
+ ;;=S01.00XA^^80^778^62
+ ;;^UTILITY(U,$J,358.3,12343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36531,1,3,0)
- ;;=3^Nephritic Syndrome w/ Dense Deposit Disease,Unspec
- ;;^UTILITY(U,$J,358.3,36531,1,4,0)
- ;;=4^N05.6
- ;;^UTILITY(U,$J,358.3,36531,2)
- ;;=^5015547
- ;;^UTILITY(U,$J,358.3,36532,0)
- ;;=N05.7^^103^1553^19
- ;;^UTILITY(U,$J,358.3,36532,1,0)
+ ;;^UTILITY(U,$J,358.3,12343,1,3,0)
+ ;;=3^Open Wound of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12343,1,4,0)
+ ;;=4^S01.00XA
+ ;;^UTILITY(U,$J,358.3,12343,2)
+ ;;=^5020033
+ ;;^UTILITY(U,$J,358.3,12344,0)
+ ;;=S01.402A^^80^778^7
+ ;;^UTILITY(U,$J,358.3,12344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36532,1,3,0)
- ;;=3^Nephritic Syndrome w/ Diffuse Crescentic Glomerulonephritis,Unspec
- ;;^UTILITY(U,$J,358.3,36532,1,4,0)
- ;;=4^N05.7
- ;;^UTILITY(U,$J,358.3,36532,2)
- ;;=^5015548
- ;;^UTILITY(U,$J,358.3,36533,0)
- ;;=N05.1^^103^1553^20
- ;;^UTILITY(U,$J,358.3,36533,1,0)
+ ;;^UTILITY(U,$J,358.3,12344,1,3,0)
+ ;;=3^Open Wound of Left Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12344,1,4,0)
+ ;;=4^S01.402A
+ ;;^UTILITY(U,$J,358.3,12344,2)
+ ;;=^5020150
+ ;;^UTILITY(U,$J,358.3,12345,0)
+ ;;=S01.401A^^80^778^38
+ ;;^UTILITY(U,$J,358.3,12345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36533,1,3,0)
- ;;=3^Nephritic Syndrome w/ Focal/Segmental Glomerular Lesions,Unspec
- ;;^UTILITY(U,$J,358.3,36533,1,4,0)
- ;;=4^N05.1
- ;;^UTILITY(U,$J,358.3,36533,2)
- ;;=^5015542
- ;;^UTILITY(U,$J,358.3,36534,0)
- ;;=N05.0^^103^1553^21
- ;;^UTILITY(U,$J,358.3,36534,1,0)
+ ;;^UTILITY(U,$J,358.3,12345,1,3,0)
+ ;;=3^Open Wound of Right Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12345,1,4,0)
+ ;;=4^S01.401A
+ ;;^UTILITY(U,$J,358.3,12345,2)
+ ;;=^5020147
+ ;;^UTILITY(U,$J,358.3,12346,0)
+ ;;=S01.80XA^^80^778^1
+ ;;^UTILITY(U,$J,358.3,12346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36534,1,3,0)
- ;;=3^Nephritic Syndrome w/ Minor Glomerular Abnormality,Unspec
- ;;^UTILITY(U,$J,358.3,36534,1,4,0)
- ;;=4^N05.0
- ;;^UTILITY(U,$J,358.3,36534,2)
- ;;=^5015541
- ;;^UTILITY(U,$J,358.3,36535,0)
- ;;=N05.8^^103^1553^22
- ;;^UTILITY(U,$J,358.3,36535,1,0)
+ ;;^UTILITY(U,$J,358.3,12346,1,3,0)
+ ;;=3^Open Wound of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12346,1,4,0)
+ ;;=4^S01.80XA
+ ;;^UTILITY(U,$J,358.3,12346,2)
+ ;;=^5020222
+ ;;^UTILITY(U,$J,358.3,12347,0)
+ ;;=S01.90XA^^80^778^2
+ ;;^UTILITY(U,$J,358.3,12347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36535,1,3,0)
- ;;=3^Nephritic Syndrome w/ Morphologic Changes,Unspec
- ;;^UTILITY(U,$J,358.3,36535,1,4,0)
- ;;=4^N05.8
- ;;^UTILITY(U,$J,358.3,36535,2)
- ;;=^5134085
- ;;^UTILITY(U,$J,358.3,36536,0)
- ;;=R59.9^^103^1554^4
- ;;^UTILITY(U,$J,358.3,36536,1,0)
+ ;;^UTILITY(U,$J,358.3,12347,1,3,0)
+ ;;=3^Open Wound of Head,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12347,1,4,0)
+ ;;=4^S01.90XA
+ ;;^UTILITY(U,$J,358.3,12347,2)
+ ;;=^5020240
+ ;;^UTILITY(U,$J,358.3,12348,0)
+ ;;=S11.80XA^^80^778^31
+ ;;^UTILITY(U,$J,358.3,12348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36536,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,36536,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,36536,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,36537,0)
- ;;=R59.1^^103^1554^2
- ;;^UTILITY(U,$J,358.3,36537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36537,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,36537,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,36537,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,36538,0)
- ;;=R59.0^^103^1554^3
- ;;^UTILITY(U,$J,358.3,36538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36538,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,36538,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,36538,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,36539,0)
- ;;=D64.9^^103^1554^1
- ;;^UTILITY(U,$J,358.3,36539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36539,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,36539,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,36539,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,36540,0)
- ;;=R79.9^^103^1555^1
- ;;^UTILITY(U,$J,358.3,36540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36540,1,3,0)
- ;;=3^Abnormal Finding of Blood Chemistry,Unspec
- ;;^UTILITY(U,$J,358.3,36540,1,4,0)
- ;;=4^R79.9
- ;;^UTILITY(U,$J,358.3,36540,2)
- ;;=^5019594
- ;;^UTILITY(U,$J,358.3,36541,0)
- ;;=R78.71^^103^1555^2
- ;;^UTILITY(U,$J,358.3,36541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36541,1,3,0)
- ;;=3^Abnormal Lead Level in Blood
- ;;^UTILITY(U,$J,358.3,36541,1,4,0)
- ;;=4^R78.71
- ;;^UTILITY(U,$J,358.3,36541,2)
- ;;=^5019586
- ;;^UTILITY(U,$J,358.3,36542,0)
- ;;=R79.0^^103^1555^3
- ;;^UTILITY(U,$J,358.3,36542,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36542,1,3,0)
- ;;=3^Abnormal Level of Blood Mineral
- ;;^UTILITY(U,$J,358.3,36542,1,4,0)
- ;;=4^R79.0
- ;;^UTILITY(U,$J,358.3,36542,2)
- ;;=^5019590
- ;;^UTILITY(U,$J,358.3,36543,0)
- ;;=R78.79^^103^1555^4
- ;;^UTILITY(U,$J,358.3,36543,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36543,1,3,0)
- ;;=3^Abnormal Level of Heavy Metals in Blood
- ;;^UTILITY(U,$J,358.3,36543,1,4,0)
- ;;=4^R78.79
- ;;^UTILITY(U,$J,358.3,36543,2)
- ;;=^5019587
- ;;^UTILITY(U,$J,358.3,36544,0)
- ;;=K74.0^^103^1555^7
- ;;^UTILITY(U,$J,358.3,36544,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36544,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,36544,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,36544,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,36545,0)
- ;;=E79.0^^103^1555^8
- ;;^UTILITY(U,$J,358.3,36545,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36545,1,3,0)
- ;;=3^Hyperuricemia w/o Signs of Inflam Arthrit/Tophaceous Disease
- ;;^UTILITY(U,$J,358.3,36545,1,4,0)
- ;;=4^E79.0
- ;;^UTILITY(U,$J,358.3,36545,2)
- ;;=^5002978
- ;;^UTILITY(U,$J,358.3,36546,0)
- ;;=K74.69^^103^1555^5
- ;;^UTILITY(U,$J,358.3,36546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36546,1,3,0)
- ;;=3^Cirrhosis of Liver NEC
- ;;^UTILITY(U,$J,358.3,36546,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,36546,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,36547,0)
- ;;=K74.60^^103^1555^6
- ;;^UTILITY(U,$J,358.3,36547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36547,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,36547,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,36547,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,36548,0)
- ;;=J85.1^^103^1556^41
- ;;^UTILITY(U,$J,358.3,36548,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36548,1,3,0)
- ;;=3^Abscess of Lung w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,36548,1,4,0)
- ;;=4^J85.1
- ;;^UTILITY(U,$J,358.3,36548,2)
- ;;=^5008306
- ;;^UTILITY(U,$J,358.3,36549,0)
- ;;=J85.2^^103^1556^42
- ;;^UTILITY(U,$J,358.3,36549,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36549,1,3,0)
- ;;=3^Abscess of Lung w/o Pneumonia
- ;;^UTILITY(U,$J,358.3,36549,1,4,0)
- ;;=4^J85.2
- ;;^UTILITY(U,$J,358.3,36549,2)
- ;;=^5008307
- ;;^UTILITY(U,$J,358.3,36550,0)
- ;;=H60.513^^103^1556^1
- ;;^UTILITY(U,$J,358.3,36550,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36550,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,36550,1,4,0)
- ;;=4^H60.513
- ;;^UTILITY(U,$J,358.3,36550,2)
- ;;=^5006472
- ;;^UTILITY(U,$J,358.3,36551,0)
- ;;=H60.512^^103^1556^2
- ;;^UTILITY(U,$J,358.3,36551,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36551,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,36551,1,4,0)
- ;;=4^H60.512
- ;;^UTILITY(U,$J,358.3,36551,2)
- ;;=^5006471
- ;;^UTILITY(U,$J,358.3,36552,0)
- ;;=H60.511^^103^1556^3
- ;;^UTILITY(U,$J,358.3,36552,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36552,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,36552,1,4,0)
- ;;=4^H60.511
- ;;^UTILITY(U,$J,358.3,36552,2)
- ;;=^5006470
- ;;^UTILITY(U,$J,358.3,36553,0)
- ;;=J21.1^^103^1556^5
- ;;^UTILITY(U,$J,358.3,36553,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36553,1,3,0)
- ;;=3^AC Bronchiolitis d/t Human Metapneumovirus
- ;;^UTILITY(U,$J,358.3,36553,1,4,0)
- ;;=4^J21.1
- ;;^UTILITY(U,$J,358.3,36553,2)
- ;;=^5008197
- ;;^UTILITY(U,$J,358.3,36554,0)
- ;;=J21.8^^103^1556^6
- ;;^UTILITY(U,$J,358.3,36554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36554,1,3,0)
- ;;=3^AC Bronchiolitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,36554,1,4,0)
- ;;=4^J21.8
- ;;^UTILITY(U,$J,358.3,36554,2)
- ;;=^5008198
- ;;^UTILITY(U,$J,358.3,36555,0)
- ;;=J21.9^^103^1556^4
- ;;^UTILITY(U,$J,358.3,36555,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36555,1,3,0)
- ;;=3^AC Bronchilitis,Unspec
- ;;^UTILITY(U,$J,358.3,36555,1,4,0)
- ;;=4^J21.9
- ;;^UTILITY(U,$J,358.3,36555,2)
- ;;=^5008199
- ;;^UTILITY(U,$J,358.3,36556,0)
- ;;=J20.3^^103^1556^7
- ;;^UTILITY(U,$J,358.3,36556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36556,1,3,0)
- ;;=3^AC Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,36556,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,36556,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,36557,0)
- ;;=J20.7^^103^1556^8
- ;;^UTILITY(U,$J,358.3,36557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36557,1,3,0)
- ;;=3^AC Bronchitis d/t Echovirus
- ;;^UTILITY(U,$J,358.3,36557,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,36557,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,36558,0)
- ;;=J20.1^^103^1556^9
- ;;^UTILITY(U,$J,358.3,36558,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36558,1,3,0)
- ;;=3^AC Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,36558,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,36558,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,36559,0)
- ;;=J20.0^^103^1556^10
- ;;^UTILITY(U,$J,358.3,36559,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36559,1,3,0)
- ;;=3^AC Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,36559,1,4,0)
- ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,12348,1,3,0)
+ ;;=3^Open Wound of Neck NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12348,1,4,0)
+ ;;=4^S11.80XA

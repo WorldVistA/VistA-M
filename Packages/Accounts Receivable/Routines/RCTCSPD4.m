@@ -1,6 +1,8 @@
 RCTCSPD4 ;ALB/LMH-CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315,339,350**;Mar 20, 1995;Build 66
+ ;;4.5;Accounts Receivable;**315,339,350,366**;Mar 20, 1995;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*366 Modify .03 pointer stuff to '////' in DR string
  ;
  Q 
  ;
@@ -11,7 +13,7 @@ STOP ; CS stop placed non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",33,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -28,7 +30,7 @@ DELSTOP ; CS delete stop non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",36,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -46,7 +48,7 @@ RCLL ; Recall from Cross-Servicing non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",34,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -64,7 +66,7 @@ DELRCLL ; Cross-Servicing Delete Bill Recall non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",37,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -82,7 +84,7 @@ NEWDEBTR ; CS add new debtor non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",48,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -101,7 +103,7 @@ RCRSD ; CS Debtor Recall non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ; BILL NUMBER
+ S DR=".03////"_PRCABN ; BILL NUMBER
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",35,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -118,7 +120,7 @@ DELSETD(BILL) ; CS Delete Debtor Recall non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",38,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -136,7 +138,7 @@ DEBTOR ; CS New Bill Existing Debtor non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",39,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -153,7 +155,7 @@ CSCASE ;  Add Case Info non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",47,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -170,7 +172,7 @@ DELSETC ; Cross-Servicing delete case recall non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",46,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -187,7 +189,7 @@ DECADJ ; non-financial decrease adjustment transaction for 5b cross-servicing re
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",49,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -206,7 +208,7 @@ DECADJ0 ; decrease adjustment transaction deletes cs date
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",40,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -225,7 +227,7 @@ RCRSC ; Cross-Servicing case recall non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",45,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -244,7 +246,7 @@ RRREQ ; CS RE-REFER BILL REQUEST non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ; BILL NUMBER
+ S DR=".03////"_PRCABN ; BILL NUMBER
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",63,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -264,7 +266,7 @@ RRCAN ; CS RE-REFER BILL CANCEL non-financial tx
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ; BILL NUMBER
+ S DR=".03////"_PRCABN ; BILL NUMBER
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",65,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount
@@ -286,7 +288,7 @@ RRSEND ; CS New Bill Existing Debtor non-financial tx ; PRCA*4.5*350
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0)
  Q:PRCAA1'>0  S PRCAA2=$P(^(0),U,3)
  S DIE="^PRCA(433,",DA=PRCAEN
- S DR=".03///"_PRCABN ;Bill Number
+ S DR=".03////"_PRCABN ;Bill Number
  S DR=DR_";3///0" ;Calm Code Done
  S DR=DR_";12///"_$O(^PRCA(430.3,"AC",64,0)) ;Transaction Type
  S DR=DR_";15///0" ;Transaction Amount

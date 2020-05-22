@@ -1,128 +1,124 @@
-IBDEI2HL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42175,1,0)
+ ;;^UTILITY(U,$J,358.3,39709,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,39709,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,39710,0)
+ ;;=C77.0^^152^2000^146
+ ;;^UTILITY(U,$J,358.3,39710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42175,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,42175,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,42175,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,42176,0)
- ;;=R90.89^^159^2016^13
- ;;^UTILITY(U,$J,358.3,42176,1,0)
+ ;;^UTILITY(U,$J,358.3,39710,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,39710,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,39710,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,39711,0)
+ ;;=C77.8^^152^2000^147
+ ;;^UTILITY(U,$J,358.3,39711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42176,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,42176,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,42176,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,42177,0)
- ;;=R91.8^^159^2016^18
- ;;^UTILITY(U,$J,358.3,42177,1,0)
+ ;;^UTILITY(U,$J,358.3,39711,1,3,0)
+ ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,39711,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,39711,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,39712,0)
+ ;;=C79.51^^152^2000^117
+ ;;^UTILITY(U,$J,358.3,39712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42177,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,42177,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,42177,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,42178,0)
- ;;=R92.0^^159^2016^117
- ;;^UTILITY(U,$J,358.3,42178,1,0)
+ ;;^UTILITY(U,$J,358.3,39712,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,39712,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,39712,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,39713,0)
+ ;;=C79.52^^152^2000^116
+ ;;^UTILITY(U,$J,358.3,39713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42178,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,42178,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,42178,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,42179,0)
- ;;=R92.1^^159^2016^116
- ;;^UTILITY(U,$J,358.3,42179,1,0)
+ ;;^UTILITY(U,$J,358.3,39713,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary
+ ;;^UTILITY(U,$J,358.3,39713,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,39713,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,39714,0)
+ ;;=C79.31^^152^2000^118
+ ;;^UTILITY(U,$J,358.3,39714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42179,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,42179,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,42179,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,42180,0)
- ;;=R92.2^^159^2016^91
- ;;^UTILITY(U,$J,358.3,42180,1,0)
+ ;;^UTILITY(U,$J,358.3,39714,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,39714,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,39714,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,39715,0)
+ ;;=C79.72^^152^2000^133
+ ;;^UTILITY(U,$J,358.3,39715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42180,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,42180,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,42180,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,42181,0)
- ;;=R93.0^^159^2016^10
- ;;^UTILITY(U,$J,358.3,42181,1,0)
+ ;;^UTILITY(U,$J,358.3,39715,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,39715,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,39715,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,39716,0)
+ ;;=C78.02^^152^2000^137
+ ;;^UTILITY(U,$J,358.3,39716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42181,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,42181,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,42181,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,42182,0)
- ;;=R93.2^^159^2016^9
- ;;^UTILITY(U,$J,358.3,42182,1,0)
+ ;;^UTILITY(U,$J,358.3,39716,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,39716,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,39716,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,39717,0)
+ ;;=C78.7^^152^2000^142
+ ;;^UTILITY(U,$J,358.3,39717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42182,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,42182,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,42182,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,42183,0)
- ;;=R93.3^^159^2016^7
- ;;^UTILITY(U,$J,358.3,42183,1,0)
+ ;;^UTILITY(U,$J,358.3,39717,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,39717,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,39717,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,39718,0)
+ ;;=C79.71^^152^2000^155
+ ;;^UTILITY(U,$J,358.3,39718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42183,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,42183,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,42183,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,42184,0)
- ;;=R93.4^^159^2016^11
- ;;^UTILITY(U,$J,358.3,42184,1,0)
+ ;;^UTILITY(U,$J,358.3,39718,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,39718,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,39718,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,39719,0)
+ ;;=C78.01^^152^2000^159
+ ;;^UTILITY(U,$J,358.3,39719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42184,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,42184,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,42184,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,42185,0)
- ;;=R93.5^^159^2016^6
- ;;^UTILITY(U,$J,358.3,42185,1,0)
+ ;;^UTILITY(U,$J,358.3,39719,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,39719,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,39719,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,39720,0)
+ ;;=C79.70^^152^2000^110
+ ;;^UTILITY(U,$J,358.3,39720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42185,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,42185,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,42185,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,42186,0)
- ;;=R93.6^^159^2016^8
- ;;^UTILITY(U,$J,358.3,42186,1,0)
+ ;;^UTILITY(U,$J,358.3,39720,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,39720,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,39720,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,39721,0)
+ ;;=C78.00^^152^2000^143
+ ;;^UTILITY(U,$J,358.3,39721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42186,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,42186,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,42186,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,42187,0)
- ;;=R94.4^^159^2016^16
- ;;^UTILITY(U,$J,358.3,42187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42187,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,39721,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary

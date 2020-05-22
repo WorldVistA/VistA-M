@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478,528**;DEC 1997;Build 10
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478,528,544**;DEC 1997;Build 19
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -33,7 +33,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  ;                   "RRR THRESHOLD AMT" - Reject Resolution Required Dollar Threshold
  ;                   "RRR GROSS AMT DUE" - Reject Resolution Required Gross Amount Due
  ;Output: REJ("REJECT IEN")
- N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO,ERR
+ N %,DIC,DR,DA,X,DINUM,DD,DO,DLAYGO,ERR,PSOAUTO
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I '$G(PSODIV) S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  S REJ("BIN")=$E($G(REJ("BIN")),1,6)
@@ -52,12 +52,20 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  S REJ("INSURANCE NAME")=$E($G(REJ("INSURANCE NAME")),1,30),REJ("PLAN CONTACT")=$E($G(REJ("PLAN CONTACT")),1,30)
  S REJ("GROUP NUMBER")=$E($G(REJ("GROUP NUMBER")),1,30),REJ("OTHER REJECTS")=$E($G(REJ("OTHER REJECTS")),1,15)
  S REJ("CARDHOLDER ID")=$E($G(REJ("CARDHOLDER ID")),1,20),REJ("COB")=$G(REJ("COB"))
- I $G(REJ("DATE/TIME"))="" D NOW^%DTC S REJ("DATE/TIME")=%
+ D NOW^%DTC
+ I $G(REJ("DATE/TIME"))="" S REJ("DATE/TIME")=%
  S DIC="^PSRX("_RX_",""REJ"",",DA(1)=RX,DIC(0)=""
  S X=$G(REJ("CODE")),DINUM=$O(^PSRX(RX,"REJ",9999),-1)+1
+ S PSOAUTO=$$AUTORES(RX,RFL,REJ("CODE"),$G(REJ("REASON SVC CODE")))
  S DIC("DR")="1///"_$G(REJ("DATE/TIME"))_";2///"_REJ("PAYER MESSAGE")_";3///"_REJ("REASON")_";4////"_$G(REJ("PHARMACIST"))_";5///"_RFL
  S DIC("DR")=DIC("DR")_";6///"_REJ("GROUP NAME")_";7///"_REJ("PLAN CONTACT")_";8///"_$G(REJ("PREVIOUS FILL"))
- S DIC("DR")=DIC("DR")_";9///0;14///"_$G(REJ("REASON SVC CODE"))_";16///"_$G(REJ("RESPONSE IEN"))
+ I PSOAUTO=1 D
+ . S DIC("DR")=DIC("DR")_";9///1"
+ . S DIC("DR")=DIC("DR")_";10///"_%
+ . S DIC("DR")=DIC("DR")_";11///.5"
+ . S DIC("DR")=DIC("DR")_";12///9"
+ E  S DIC("DR")=DIC("DR")_";9///0"
+ S DIC("DR")=DIC("DR")_";14///"_$G(REJ("REASON SVC CODE"))_";16///"_$G(REJ("RESPONSE IEN"))
  S DIC("DR")=DIC("DR")_";17///"_$G(REJ("OTHER REJECTS"))_";18///"_REJ("DUR TEXT")_";20///"_REJ("INSURANCE NAME")
  S DIC("DR")=DIC("DR")_";21///"_REJ("GROUP NUMBER")_";22///"_REJ("CARDHOLDER ID")_";23///"_$G(REJ("RE-OPENED"))
  S DIC("DR")=DIC("DR")_";27///"_REJ("COB")
@@ -82,9 +90,15 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  .I REJ("OVERRIDE MSG")["Automatically transferred" D
  ..N X,TXT
  ..S TXT="Auto Send to Pharmacy Worklist due to Transfer Reject Code"
- ..I $G(REJ("RRR FLAG")) S TXT="Auto Send to Pharmacy Worklist due to Reject Resolution Required Code"
+ ..I $G(REJ("RRR FLAG")) S TXT="Auto Send to Pharmacy Worklist due to RRR Code"
  ..I $G(PSOTRIC) S TXT="Auto Send to Pharmacy Worklist & OPECC - CVA/TRI"
  ..S X=$$ADDCOMM^BPSBUTL(RX,RFL,TXT,1) ; IA 4719
+ ;
+ I PSOAUTO=1 D
+ . N X,TXT
+ . S TXT="Not transferred to Pharmacy-Unable to Resolve Backbill/Resubmit"
+ . S X=$$ADDCOMM^BPSBUTL(RX,RFL,TXT,1)
+ ;
  L -^PSRX(RX)
  Q
  ; 
@@ -261,3 +275,30 @@ SYNC2 ;
  . . D SAVE(RX,RFL,.DATA)
  L -^PSRX("REJ",RX)
  Q
+ ;
+AUTORES(RX,RFL,REJ,RSC) ; Auto-resolve reject check
+ ; Input: (r) RX - Rx IEN (#52) 
+ ; (r) RFL - Refill #
+ ; (r) REJ - Reject Code
+ ; (r) RSC - Reason for Service Code
+ ;
+ ; Identify rejects to automatically resolve:
+ ; * Rx must be released
+ ; * Refills or renewals only, do not consider original fills
+ ; * Back-billed or resubmission prescriptions only
+ ; * If reject 79, auto-resolve without checking Reason for Service Code
+ ; * If reject 88 or 943, limit to Reason for Service Codes of 'ID' or 'ER'
+ ;
+ N BPS59,RENEW
+ I '$$RXRLDT^PSOBPSUT(RX,RFL) Q 0
+ I RFL=0 D  I RENEW=0 Q 0
+ . S RENEW=0
+ . I $$GET1^DIQ(52,RX,.01)?1.N1.A S RENEW=1
+ . I $$GET1^DIQ(52,RX,39.4)'="" S RENEW=1
+ S BPS59=$$IEN59^BPSOSRX(RX,RFL)
+ I ("^BB^ED^ERES^ERWV^ERNB^P2S^RSNB^")'[("^"_$$GET1^DIQ(9002313.59,BPS59,1201)_"^") Q 0
+ I REJ=79 Q 1
+ I (REJ'=88)&(REJ'=943) Q 0
+ I (RSC'="ID")&(RSC'="ER") Q 0
+ Q 1
+ ;

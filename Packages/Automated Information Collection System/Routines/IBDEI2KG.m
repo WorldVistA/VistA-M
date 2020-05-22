@@ -1,136 +1,120 @@
-IBDEI2KG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43541,1,3,0)
- ;;=3^Aneurysm of Unspec Aortic Site w/ Rupture
- ;;^UTILITY(U,$J,358.3,43541,1,4,0)
- ;;=4^I71.8
- ;;^UTILITY(U,$J,358.3,43541,2)
- ;;=^9279
- ;;^UTILITY(U,$J,358.3,43542,0)
- ;;=I71.9^^167^2078^41
- ;;^UTILITY(U,$J,358.3,43542,1,0)
+ ;;^UTILITY(U,$J,358.3,40962,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,40963,0)
+ ;;=W18.42XD^^152^2019^119
+ ;;^UTILITY(U,$J,358.3,40963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43542,1,3,0)
- ;;=3^Aneurysm of Unspec Aortic Site w/o Rupture
- ;;^UTILITY(U,$J,358.3,43542,1,4,0)
- ;;=4^I71.9
- ;;^UTILITY(U,$J,358.3,43542,2)
- ;;=^5007792
- ;;^UTILITY(U,$J,358.3,43543,0)
- ;;=I72.1^^167^2078^42
- ;;^UTILITY(U,$J,358.3,43543,1,0)
+ ;;^UTILITY(U,$J,358.3,40963,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40963,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,40963,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,40964,0)
+ ;;=W18.43XA^^152^2019^112
+ ;;^UTILITY(U,$J,358.3,40964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43543,1,3,0)
- ;;=3^Aneurysm of Upper Extremity Artery
- ;;^UTILITY(U,$J,358.3,43543,1,4,0)
- ;;=4^I72.1
- ;;^UTILITY(U,$J,358.3,43543,2)
- ;;=^269771
- ;;^UTILITY(U,$J,358.3,43544,0)
- ;;=I72.8^^167^2078^38
- ;;^UTILITY(U,$J,358.3,43544,1,0)
+ ;;^UTILITY(U,$J,358.3,40964,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40964,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,40964,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,40965,0)
+ ;;=W18.43XD^^152^2019^113
+ ;;^UTILITY(U,$J,358.3,40965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43544,1,3,0)
- ;;=3^Aneurysm of Oth Specified Arteries
- ;;^UTILITY(U,$J,358.3,43544,1,4,0)
- ;;=4^I72.8
- ;;^UTILITY(U,$J,358.3,43544,2)
- ;;=^5007794
- ;;^UTILITY(U,$J,358.3,43545,0)
- ;;=I72.9^^167^2078^43
- ;;^UTILITY(U,$J,358.3,43545,1,0)
+ ;;^UTILITY(U,$J,358.3,40965,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40965,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,40965,2)
+ ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,40966,0)
+ ;;=W18.49XA^^152^2019^120
+ ;;^UTILITY(U,$J,358.3,40966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43545,1,3,0)
- ;;=3^Aneurysm,Unspec Site
- ;;^UTILITY(U,$J,358.3,43545,1,4,0)
- ;;=4^I72.9
- ;;^UTILITY(U,$J,358.3,43545,2)
- ;;=^5007795
- ;;^UTILITY(U,$J,358.3,43546,0)
- ;;=I74.5^^167^2078^107
- ;;^UTILITY(U,$J,358.3,43546,1,0)
+ ;;^UTILITY(U,$J,358.3,40966,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40966,1,4,0)
+ ;;=4^W18.49XA
+ ;;^UTILITY(U,$J,358.3,40966,2)
+ ;;=^5059830
+ ;;^UTILITY(U,$J,358.3,40967,0)
+ ;;=W18.49XD^^152^2019^121
+ ;;^UTILITY(U,$J,358.3,40967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43546,1,3,0)
- ;;=3^Embolism & Thrombosis of Iliac Artery
- ;;^UTILITY(U,$J,358.3,43546,1,4,0)
- ;;=4^I74.5
- ;;^UTILITY(U,$J,358.3,43546,2)
- ;;=^269792
- ;;^UTILITY(U,$J,358.3,43547,0)
- ;;=I71.1^^167^2078^143
- ;;^UTILITY(U,$J,358.3,43547,1,0)
+ ;;^UTILITY(U,$J,358.3,40967,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40967,1,4,0)
+ ;;=4^W18.49XD
+ ;;^UTILITY(U,$J,358.3,40967,2)
+ ;;=^5059831
+ ;;^UTILITY(U,$J,358.3,40968,0)
+ ;;=W19.XXXA^^152^2019^94
+ ;;^UTILITY(U,$J,358.3,40968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43547,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,43547,1,4,0)
- ;;=4^I71.1
- ;;^UTILITY(U,$J,358.3,43547,2)
- ;;=^5007786
- ;;^UTILITY(U,$J,358.3,43548,0)
- ;;=R10.9^^167^2079^6
- ;;^UTILITY(U,$J,358.3,43548,1,0)
+ ;;^UTILITY(U,$J,358.3,40968,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40968,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,40968,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,40969,0)
+ ;;=W19.XXXD^^152^2019^95
+ ;;^UTILITY(U,$J,358.3,40969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43548,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,43548,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,43548,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,43549,0)
- ;;=R10.11^^167^2079^5
- ;;^UTILITY(U,$J,358.3,43549,1,0)
+ ;;^UTILITY(U,$J,358.3,40969,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40969,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,40969,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,40970,0)
+ ;;=W54.0XXA^^152^2019^11
+ ;;^UTILITY(U,$J,358.3,40970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43549,1,3,0)
- ;;=3^Abdominal Pain,RUQ
- ;;^UTILITY(U,$J,358.3,43549,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,43549,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,43550,0)
- ;;=R10.12^^167^2079^3
- ;;^UTILITY(U,$J,358.3,43550,1,0)
+ ;;^UTILITY(U,$J,358.3,40970,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40970,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,40970,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,40971,0)
+ ;;=W54.0XXD^^152^2019^12
+ ;;^UTILITY(U,$J,358.3,40971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43550,1,3,0)
- ;;=3^Abdominal Pain,LUQ
- ;;^UTILITY(U,$J,358.3,43550,1,4,0)
- ;;=4^R10.12
- ;;^UTILITY(U,$J,358.3,43550,2)
- ;;=^5019207
- ;;^UTILITY(U,$J,358.3,43551,0)
- ;;=R10.31^^167^2079^4
- ;;^UTILITY(U,$J,358.3,43551,1,0)
+ ;;^UTILITY(U,$J,358.3,40971,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40971,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,40971,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,40972,0)
+ ;;=W55.01XA^^152^2019^9
+ ;;^UTILITY(U,$J,358.3,40972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43551,1,3,0)
- ;;=3^Abdominal Pain,RLQ
- ;;^UTILITY(U,$J,358.3,43551,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,43551,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,43552,0)
- ;;=R10.32^^167^2079^2
- ;;^UTILITY(U,$J,358.3,43552,1,0)
+ ;;^UTILITY(U,$J,358.3,40972,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40972,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,40972,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,40973,0)
+ ;;=W55.01XD^^152^2019^10
+ ;;^UTILITY(U,$J,358.3,40973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43552,1,3,0)
- ;;=3^Abdominal Pain,LLQ
- ;;^UTILITY(U,$J,358.3,43552,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,43552,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,43553,0)
- ;;=R10.33^^167^2079^8
- ;;^UTILITY(U,$J,358.3,43553,1,0)
+ ;;^UTILITY(U,$J,358.3,40973,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40973,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,40973,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,40974,0)
+ ;;=W55.03XA^^152^2019^110
+ ;;^UTILITY(U,$J,358.3,40974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43553,1,3,0)
- ;;=3^Periumbilical Pain
- ;;^UTILITY(U,$J,358.3,43553,1,4,0)
- ;;=4^R10.33
- ;;^UTILITY(U,$J,358.3,43553,2)
- ;;=^5019213
- ;;^UTILITY(U,$J,358.3,43554,0)
- ;;=R10.13^^167^2079^7
- ;;^UTILITY(U,$J,358.3,43554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43554,1,3,0)
- ;;=3^Epigastric Pain

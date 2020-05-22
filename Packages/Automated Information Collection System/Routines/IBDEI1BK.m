@@ -1,134 +1,122 @@
-IBDEI1BK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22429,1,0)
+ ;;^UTILITY(U,$J,358.3,21087,1,3,0)
+ ;;=3^Hallucinogen Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21087,1,4,0)
+ ;;=4^F16.11
+ ;;^UTILITY(U,$J,358.3,21087,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,21088,0)
+ ;;=F11.10^^95^1046^25
+ ;;^UTILITY(U,$J,358.3,21088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22429,1,3,0)
- ;;=3^Malig Neop Right Renal Pelvis
- ;;^UTILITY(U,$J,358.3,22429,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,22429,2)
- ;;=^5001251
- ;;^UTILITY(U,$J,358.3,22430,0)
- ;;=C62.91^^87^981^158
- ;;^UTILITY(U,$J,358.3,22430,1,0)
+ ;;^UTILITY(U,$J,358.3,21088,1,3,0)
+ ;;=3^Opioid Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,21088,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,21088,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,21089,0)
+ ;;=F11.129^^95^1046^21
+ ;;^UTILITY(U,$J,358.3,21089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22430,1,3,0)
- ;;=3^Malig Neop Right Testis
- ;;^UTILITY(U,$J,358.3,22430,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,22430,2)
- ;;=^5001237
- ;;^UTILITY(U,$J,358.3,22431,0)
- ;;=C17.9^^87^981^159
- ;;^UTILITY(U,$J,358.3,22431,1,0)
+ ;;^UTILITY(U,$J,358.3,21089,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21089,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,21089,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,21090,0)
+ ;;=F11.14^^95^1046^7
+ ;;^UTILITY(U,$J,358.3,21090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22431,1,3,0)
- ;;=3^Malig Neop Small Intestine,Unspec
- ;;^UTILITY(U,$J,358.3,22431,1,4,0)
- ;;=4^C17.9
- ;;^UTILITY(U,$J,358.3,22431,2)
- ;;=^5000926
- ;;^UTILITY(U,$J,358.3,22432,0)
- ;;=C16.9^^87^981^160
- ;;^UTILITY(U,$J,358.3,22432,1,0)
+ ;;^UTILITY(U,$J,358.3,21090,1,3,0)
+ ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21090,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,21090,2)
+ ;;=^5003119
+ ;;^UTILITY(U,$J,358.3,21091,0)
+ ;;=F11.182^^95^1046^13
+ ;;^UTILITY(U,$J,358.3,21091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22432,1,3,0)
- ;;=3^Malig Neop Stomach,Unspec
- ;;^UTILITY(U,$J,358.3,22432,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,22432,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,22433,0)
- ;;=C02.9^^87^981^162
- ;;^UTILITY(U,$J,358.3,22433,1,0)
+ ;;^UTILITY(U,$J,358.3,21091,1,3,0)
+ ;;=3^Opioid Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21091,1,4,0)
+ ;;=4^F11.182
+ ;;^UTILITY(U,$J,358.3,21091,2)
+ ;;=^5003124
+ ;;^UTILITY(U,$J,358.3,21092,0)
+ ;;=F11.20^^95^1046^2
+ ;;^UTILITY(U,$J,358.3,21092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22433,1,3,0)
- ;;=3^Malig Neop Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,22433,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,22433,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,22434,0)
- ;;=C64.9^^87^981^127
- ;;^UTILITY(U,$J,358.3,22434,1,0)
+ ;;^UTILITY(U,$J,358.3,21092,1,3,0)
+ ;;=3^Opioid Dependence
+ ;;^UTILITY(U,$J,358.3,21092,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,21092,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,21093,0)
+ ;;=F11.23^^95^1046^3
+ ;;^UTILITY(U,$J,358.3,21093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22434,1,3,0)
- ;;=3^Malig Neop Kidney,Except Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,22434,1,4,0)
- ;;=4^C64.9
- ;;^UTILITY(U,$J,358.3,22434,2)
- ;;=^5001250
- ;;^UTILITY(U,$J,358.3,22435,0)
- ;;=C34.92^^87^981^130
- ;;^UTILITY(U,$J,358.3,22435,1,0)
+ ;;^UTILITY(U,$J,358.3,21093,1,3,0)
+ ;;=3^Opioid Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,21093,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,21093,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,21094,0)
+ ;;=F11.24^^95^1046^8
+ ;;^UTILITY(U,$J,358.3,21094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22435,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,22435,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,22435,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,22436,0)
- ;;=C34.90^^87^981^116
- ;;^UTILITY(U,$J,358.3,22436,1,0)
+ ;;^UTILITY(U,$J,358.3,21094,1,3,0)
+ ;;=3^Opioid Induced Depressive Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21094,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,21094,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,21095,0)
+ ;;=F11.188^^95^1046^4
+ ;;^UTILITY(U,$J,358.3,21095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22436,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,22436,1,4,0)
- ;;=4^C34.90
- ;;^UTILITY(U,$J,358.3,22436,2)
- ;;=^5000966
- ;;^UTILITY(U,$J,358.3,22437,0)
- ;;=C65.9^^87^981^150
- ;;^UTILITY(U,$J,358.3,22437,1,0)
+ ;;^UTILITY(U,$J,358.3,21095,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21095,1,4,0)
+ ;;=4^F11.188
+ ;;^UTILITY(U,$J,358.3,21095,2)
+ ;;=^5003125
+ ;;^UTILITY(U,$J,358.3,21096,0)
+ ;;=F11.288^^95^1046^5
+ ;;^UTILITY(U,$J,358.3,21096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22437,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,22437,1,4,0)
- ;;=4^C65.9
- ;;^UTILITY(U,$J,358.3,22437,2)
- ;;=^5001253
- ;;^UTILITY(U,$J,358.3,22438,0)
- ;;=C50.912^^87^981^131
- ;;^UTILITY(U,$J,358.3,22438,1,0)
+ ;;^UTILITY(U,$J,358.3,21096,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21096,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,21096,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,21097,0)
+ ;;=F11.988^^95^1046^6
+ ;;^UTILITY(U,$J,358.3,21097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22438,1,3,0)
- ;;=3^Malig Neop Left Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,22438,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,22438,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,22439,0)
- ;;=C50.911^^87^981^153
- ;;^UTILITY(U,$J,358.3,22439,1,0)
+ ;;^UTILITY(U,$J,358.3,21097,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21097,1,4,0)
+ ;;=4^F11.988
+ ;;^UTILITY(U,$J,358.3,21097,2)
+ ;;=^5003154
+ ;;^UTILITY(U,$J,358.3,21098,0)
+ ;;=F11.921^^95^1046^26
+ ;;^UTILITY(U,$J,358.3,21098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22439,1,3,0)
- ;;=3^Malig Neop Right Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,22439,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,22439,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,22440,0)
- ;;=C50.919^^87^981^123
- ;;^UTILITY(U,$J,358.3,22440,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22440,1,3,0)
- ;;=3^Malig Neop Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,22440,1,4,0)
- ;;=4^C50.919
- ;;^UTILITY(U,$J,358.3,22440,2)
- ;;=^5001197
- ;;^UTILITY(U,$J,358.3,22441,0)
- ;;=C62.90^^87^981^161
- ;;^UTILITY(U,$J,358.3,22441,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22441,1,3,0)
- ;;=3^Malig Neop Testis,Unspec
- ;;^UTILITY(U,$J,358.3,22441,1,4,0)
- ;;=4^C62.90
- ;;^UTILITY(U,$J,358.3,22441,2)
- ;;=^5001236
- ;;^UTILITY(U,$J,358.3,22442,0)
- ;;=D03.9^^87^981^165
+ ;;^UTILITY(U,$J,358.3,21098,1,3,0)
+ ;;=3^Opioid Use w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,21098,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,21098,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,21099,0)
+ ;;=F11.94^^95^1046^9

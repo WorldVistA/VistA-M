@@ -1,132 +1,122 @@
-IBDEI2S8 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2S8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46706,2)
- ;;=^5010037
- ;;^UTILITY(U,$J,358.3,46707,0)
- ;;=M05.862^^206^2306^28
- ;;^UTILITY(U,$J,358.3,46707,1,0)
+ ;;^UTILITY(U,$J,358.3,44367,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44367,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,44367,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,44368,0)
+ ;;=F18.97^^164^2196^9
+ ;;^UTILITY(U,$J,358.3,44368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46707,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Knee
- ;;^UTILITY(U,$J,358.3,46707,1,4,0)
- ;;=4^M05.862
- ;;^UTILITY(U,$J,358.3,46707,2)
- ;;=^5010040
- ;;^UTILITY(U,$J,358.3,46708,0)
- ;;=M05.812^^206^2306^29
- ;;^UTILITY(U,$J,358.3,46708,1,0)
+ ;;^UTILITY(U,$J,358.3,44368,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44368,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,44368,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,44369,0)
+ ;;=F18.188^^164^2196^10
+ ;;^UTILITY(U,$J,358.3,44369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46708,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Shldr
- ;;^UTILITY(U,$J,358.3,46708,1,4,0)
- ;;=4^M05.812
- ;;^UTILITY(U,$J,358.3,46708,2)
- ;;=^5010025
- ;;^UTILITY(U,$J,358.3,46709,0)
- ;;=M05.832^^206^2306^30
- ;;^UTILITY(U,$J,358.3,46709,1,0)
+ ;;^UTILITY(U,$J,358.3,44369,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44369,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,44369,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,44370,0)
+ ;;=F18.288^^164^2196^11
+ ;;^UTILITY(U,$J,358.3,44370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46709,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Wrist
- ;;^UTILITY(U,$J,358.3,46709,1,4,0)
- ;;=4^M05.832
- ;;^UTILITY(U,$J,358.3,46709,2)
- ;;=^5010031
- ;;^UTILITY(U,$J,358.3,46710,0)
- ;;=M05.89^^206^2306^31
- ;;^UTILITY(U,$J,358.3,46710,1,0)
+ ;;^UTILITY(U,$J,358.3,44370,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44370,1,4,0)
+ ;;=4^F18.288
+ ;;^UTILITY(U,$J,358.3,44370,2)
+ ;;=^5003403
+ ;;^UTILITY(U,$J,358.3,44371,0)
+ ;;=F18.988^^164^2196^12
+ ;;^UTILITY(U,$J,358.3,44371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46710,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Mult Sites
- ;;^UTILITY(U,$J,358.3,46710,1,4,0)
- ;;=4^M05.89
- ;;^UTILITY(U,$J,358.3,46710,2)
- ;;=^5010045
- ;;^UTILITY(U,$J,358.3,46711,0)
- ;;=M05.871^^206^2306^32
- ;;^UTILITY(U,$J,358.3,46711,1,0)
+ ;;^UTILITY(U,$J,358.3,44371,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44371,1,4,0)
+ ;;=4^F18.988
+ ;;^UTILITY(U,$J,358.3,44371,2)
+ ;;=^5003415
+ ;;^UTILITY(U,$J,358.3,44372,0)
+ ;;=F18.159^^164^2196^13
+ ;;^UTILITY(U,$J,358.3,44372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46711,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,46711,1,4,0)
- ;;=4^M05.871
- ;;^UTILITY(U,$J,358.3,46711,2)
- ;;=^5010042
- ;;^UTILITY(U,$J,358.3,46712,0)
- ;;=M05.821^^206^2306^33
- ;;^UTILITY(U,$J,358.3,46712,1,0)
+ ;;^UTILITY(U,$J,358.3,44372,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44372,1,4,0)
+ ;;=4^F18.159
+ ;;^UTILITY(U,$J,358.3,44372,2)
+ ;;=^5003387
+ ;;^UTILITY(U,$J,358.3,44373,0)
+ ;;=F18.259^^164^2196^14
+ ;;^UTILITY(U,$J,358.3,44373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46712,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Elbow
- ;;^UTILITY(U,$J,358.3,46712,1,4,0)
- ;;=4^M05.821
- ;;^UTILITY(U,$J,358.3,46712,2)
- ;;=^5010027
- ;;^UTILITY(U,$J,358.3,46713,0)
- ;;=M05.841^^206^2306^34
- ;;^UTILITY(U,$J,358.3,46713,1,0)
+ ;;^UTILITY(U,$J,358.3,44373,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44373,1,4,0)
+ ;;=4^F18.259
+ ;;^UTILITY(U,$J,358.3,44373,2)
+ ;;=^5003400
+ ;;^UTILITY(U,$J,358.3,44374,0)
+ ;;=F18.959^^164^2196^15
+ ;;^UTILITY(U,$J,358.3,44374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46713,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Hand
- ;;^UTILITY(U,$J,358.3,46713,1,4,0)
- ;;=4^M05.841
- ;;^UTILITY(U,$J,358.3,46713,2)
- ;;=^5010033
- ;;^UTILITY(U,$J,358.3,46714,0)
- ;;=M05.851^^206^2306^35
- ;;^UTILITY(U,$J,358.3,46714,1,0)
+ ;;^UTILITY(U,$J,358.3,44374,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44374,1,4,0)
+ ;;=4^F18.959
+ ;;^UTILITY(U,$J,358.3,44374,2)
+ ;;=^5003412
+ ;;^UTILITY(U,$J,358.3,44375,0)
+ ;;=F18.99^^164^2196^22
+ ;;^UTILITY(U,$J,358.3,44375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46714,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Hip
- ;;^UTILITY(U,$J,358.3,46714,1,4,0)
- ;;=4^M05.851
- ;;^UTILITY(U,$J,358.3,46714,2)
- ;;=^5010036
- ;;^UTILITY(U,$J,358.3,46715,0)
- ;;=M05.861^^206^2306^36
- ;;^UTILITY(U,$J,358.3,46715,1,0)
+ ;;^UTILITY(U,$J,358.3,44375,1,3,0)
+ ;;=3^Inhalant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44375,1,4,0)
+ ;;=4^F18.99
+ ;;^UTILITY(U,$J,358.3,44375,2)
+ ;;=^5133360
+ ;;^UTILITY(U,$J,358.3,44376,0)
+ ;;=F18.21^^164^2196^25
+ ;;^UTILITY(U,$J,358.3,44376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46715,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Knee
- ;;^UTILITY(U,$J,358.3,46715,1,4,0)
- ;;=4^M05.861
- ;;^UTILITY(U,$J,358.3,46715,2)
- ;;=^5010039
- ;;^UTILITY(U,$J,358.3,46716,0)
- ;;=M05.811^^206^2306^37
- ;;^UTILITY(U,$J,358.3,46716,1,0)
+ ;;^UTILITY(U,$J,358.3,44376,1,3,0)
+ ;;=3^Inhalant Use D/O,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,44376,1,4,0)
+ ;;=4^F18.21
+ ;;^UTILITY(U,$J,358.3,44376,2)
+ ;;=^5003393
+ ;;^UTILITY(U,$J,358.3,44377,0)
+ ;;=F18.11^^164^2196^24
+ ;;^UTILITY(U,$J,358.3,44377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46716,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Shldr
- ;;^UTILITY(U,$J,358.3,46716,1,4,0)
- ;;=4^M05.811
- ;;^UTILITY(U,$J,358.3,46716,2)
- ;;=^5010024
- ;;^UTILITY(U,$J,358.3,46717,0)
- ;;=M05.831^^206^2306^38
- ;;^UTILITY(U,$J,358.3,46717,1,0)
+ ;;^UTILITY(U,$J,358.3,44377,1,3,0)
+ ;;=3^Inhalant Use D/O,Mild,In Remission
+ ;;^UTILITY(U,$J,358.3,44377,1,4,0)
+ ;;=4^F18.11
+ ;;^UTILITY(U,$J,358.3,44377,2)
+ ;;=^5151305
+ ;;^UTILITY(U,$J,358.3,44378,0)
+ ;;=Z00.6^^164^2197^1
+ ;;^UTILITY(U,$J,358.3,44378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46717,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Wrist
- ;;^UTILITY(U,$J,358.3,46717,1,4,0)
- ;;=4^M05.831
- ;;^UTILITY(U,$J,358.3,46717,2)
- ;;=^5010030
- ;;^UTILITY(U,$J,358.3,46718,0)
- ;;=M05.80^^206^2306^39
- ;;^UTILITY(U,$J,358.3,46718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46718,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Unspec Site
- ;;^UTILITY(U,$J,358.3,46718,1,4,0)
- ;;=4^M05.80
- ;;^UTILITY(U,$J,358.3,46718,2)
- ;;=^5010023
- ;;^UTILITY(U,$J,358.3,46719,0)
- ;;=M06.872^^206^2306^90
- ;;^UTILITY(U,$J,358.3,46719,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46719,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,44378,1,3,0)
+ ;;=3^Exam Control in Clinical Research
+ ;;^UTILITY(U,$J,358.3,44378,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,44378,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,44379,0)
+ ;;=F45.8^^164^2198^13

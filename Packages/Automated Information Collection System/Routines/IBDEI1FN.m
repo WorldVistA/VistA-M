@@ -1,124 +1,114 @@
-IBDEI1FN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24345,1,4,0)
- ;;=4^F11.929
- ;;^UTILITY(U,$J,358.3,24345,2)
- ;;=^5003146
- ;;^UTILITY(U,$J,358.3,24346,0)
- ;;=F11.122^^90^1065^16
- ;;^UTILITY(U,$J,358.3,24346,1,0)
+ ;;^UTILITY(U,$J,358.3,22924,0)
+ ;;=T84.625A^^105^1166^91
+ ;;^UTILITY(U,$J,358.3,22924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24346,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24346,1,4,0)
- ;;=4^F11.122
- ;;^UTILITY(U,$J,358.3,24346,2)
- ;;=^5003117
- ;;^UTILITY(U,$J,358.3,24347,0)
- ;;=F11.222^^90^1065^17
- ;;^UTILITY(U,$J,358.3,24347,1,0)
+ ;;^UTILITY(U,$J,358.3,22924,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Fibula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22924,1,4,0)
+ ;;=4^T84.625A
+ ;;^UTILITY(U,$J,358.3,22924,2)
+ ;;=^5055439
+ ;;^UTILITY(U,$J,358.3,22925,0)
+ ;;=T84.63XA^^105^1166^92
+ ;;^UTILITY(U,$J,358.3,22925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24347,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24347,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,24347,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,24348,0)
- ;;=F11.922^^90^1065^18
- ;;^UTILITY(U,$J,358.3,24348,1,0)
+ ;;^UTILITY(U,$J,358.3,22925,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Spine,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22925,1,4,0)
+ ;;=4^T84.63XA
+ ;;^UTILITY(U,$J,358.3,22925,2)
+ ;;=^5055445
+ ;;^UTILITY(U,$J,358.3,22926,0)
+ ;;=T84.7XXA^^105^1166^95
+ ;;^UTILITY(U,$J,358.3,22926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24348,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24348,1,4,0)
- ;;=4^F11.922
- ;;^UTILITY(U,$J,358.3,24348,2)
- ;;=^5003145
- ;;^UTILITY(U,$J,358.3,24349,0)
- ;;=F11.99^^90^1065^22
- ;;^UTILITY(U,$J,358.3,24349,1,0)
+ ;;^UTILITY(U,$J,358.3,22926,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22926,1,4,0)
+ ;;=4^T84.7XXA
+ ;;^UTILITY(U,$J,358.3,22926,2)
+ ;;=^5055451
+ ;;^UTILITY(U,$J,358.3,22927,0)
+ ;;=T82.817A^^105^1166^51
+ ;;^UTILITY(U,$J,358.3,22927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24349,1,3,0)
- ;;=3^Opioid Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24349,1,4,0)
- ;;=4^F11.99
- ;;^UTILITY(U,$J,358.3,24349,2)
- ;;=^5133352
- ;;^UTILITY(U,$J,358.3,24350,0)
- ;;=F19.10^^90^1066^3
- ;;^UTILITY(U,$J,358.3,24350,1,0)
+ ;;^UTILITY(U,$J,358.3,22927,1,3,0)
+ ;;=3^Embol of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22927,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,22927,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,22928,0)
+ ;;=T82.827A^^105^1166^57
+ ;;^UTILITY(U,$J,358.3,22928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24350,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,24350,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,24350,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,24351,0)
- ;;=F19.14^^90^1066^1
- ;;^UTILITY(U,$J,358.3,24351,1,0)
+ ;;^UTILITY(U,$J,358.3,22928,1,3,0)
+ ;;=3^Fibrosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22928,1,4,0)
+ ;;=4^T82.827A
+ ;;^UTILITY(U,$J,358.3,22928,2)
+ ;;=^5054920
+ ;;^UTILITY(U,$J,358.3,22929,0)
+ ;;=T82.837A^^105^1166^63
+ ;;^UTILITY(U,$J,358.3,22929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24351,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,24351,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,24351,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,24352,0)
- ;;=F19.182^^90^1066^2
- ;;^UTILITY(U,$J,358.3,24352,1,0)
+ ;;^UTILITY(U,$J,358.3,22929,1,3,0)
+ ;;=3^Hemorrh of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22929,1,4,0)
+ ;;=4^T82.837A
+ ;;^UTILITY(U,$J,358.3,22929,2)
+ ;;=^5054926
+ ;;^UTILITY(U,$J,358.3,22930,0)
+ ;;=T82.847A^^105^1166^170
+ ;;^UTILITY(U,$J,358.3,22930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24352,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,24352,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,24352,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,24353,0)
- ;;=F19.20^^90^1066^6
- ;;^UTILITY(U,$J,358.3,24353,1,0)
+ ;;^UTILITY(U,$J,358.3,22930,1,3,0)
+ ;;=3^Pain from Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22930,1,4,0)
+ ;;=4^T82.847A
+ ;;^UTILITY(U,$J,358.3,22930,2)
+ ;;=^5054932
+ ;;^UTILITY(U,$J,358.3,22931,0)
+ ;;=T82.857A^^105^1166^223
+ ;;^UTILITY(U,$J,358.3,22931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24353,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,24353,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,24353,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,24354,0)
- ;;=F19.21^^90^1066^5
- ;;^UTILITY(U,$J,358.3,24354,1,0)
+ ;;^UTILITY(U,$J,358.3,22931,1,3,0)
+ ;;=3^Sten,Cardiac Prosth Dvc/Implnt/Grft,Init Enc
+ ;;^UTILITY(U,$J,358.3,22931,1,4,0)
+ ;;=4^T82.857A
+ ;;^UTILITY(U,$J,358.3,22931,2)
+ ;;=^5054938
+ ;;^UTILITY(U,$J,358.3,22932,0)
+ ;;=T82.867A^^105^1166^229
+ ;;^UTILITY(U,$J,358.3,22932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24354,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,24354,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,24354,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,24355,0)
- ;;=F19.24^^90^1066^4
- ;;^UTILITY(U,$J,358.3,24355,1,0)
+ ;;^UTILITY(U,$J,358.3,22932,1,3,0)
+ ;;=3^Thromb,Cardiac Prosth Dvc/Implnt/Grft,Init Enc
+ ;;^UTILITY(U,$J,358.3,22932,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,22932,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,22933,0)
+ ;;=T82.9XXA^^105^1166^22
+ ;;^UTILITY(U,$J,358.3,22933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24355,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,24355,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,24355,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,24356,0)
- ;;=F13.10^^90^1067^1
- ;;^UTILITY(U,$J,358.3,24356,1,0)
+ ;;^UTILITY(U,$J,358.3,22933,1,3,0)
+ ;;=3^Complic,Card/Vasc Prosth Dvc/Implnt/Grft Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22933,1,4,0)
+ ;;=4^T82.9XXA
+ ;;^UTILITY(U,$J,358.3,22933,2)
+ ;;=^5054956
+ ;;^UTILITY(U,$J,358.3,22934,0)
+ ;;=T82.818A^^105^1166^53
+ ;;^UTILITY(U,$J,358.3,22934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24356,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24356,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,24356,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,24357,0)
- ;;=F13.14^^90^1067^7
- ;;^UTILITY(U,$J,358.3,24357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24357,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
+ ;;^UTILITY(U,$J,358.3,22934,1,3,0)
+ ;;=3^Embol of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22934,1,4,0)
+ ;;=4^T82.818A
+ ;;^UTILITY(U,$J,358.3,22934,2)
+ ;;=^5054917

@@ -1,122 +1,122 @@
-IBDEI22R ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35177,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35177,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,35177,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,35178,0)
- ;;=Y36.810S^^131^1699^24
- ;;^UTILITY(U,$J,358.3,35178,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35178,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35178,1,4,0)
- ;;=4^Y36.810S
- ;;^UTILITY(U,$J,358.3,35178,2)
- ;;=^5061789
- ;;^UTILITY(U,$J,358.3,35179,0)
- ;;=Y36.6X0S^^131^1699^114
- ;;^UTILITY(U,$J,358.3,35179,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35179,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35179,1,4,0)
- ;;=4^Y36.6X0S
- ;;^UTILITY(U,$J,358.3,35179,2)
- ;;=^5061777
- ;;^UTILITY(U,$J,358.3,35180,0)
- ;;=Y36.410S^^131^1699^122
- ;;^UTILITY(U,$J,358.3,35180,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35180,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35180,1,4,0)
- ;;=4^Y36.410S
- ;;^UTILITY(U,$J,358.3,35180,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,35181,0)
- ;;=Y36.200S^^131^1699^119
- ;;^UTILITY(U,$J,358.3,35181,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35181,1,3,0)
- ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35181,1,4,0)
- ;;=4^Y36.200S
- ;;^UTILITY(U,$J,358.3,35181,2)
- ;;=^5061609
- ;;^UTILITY(U,$J,358.3,35182,0)
- ;;=Y36.300S^^131^1699^120
- ;;^UTILITY(U,$J,358.3,35182,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35182,1,3,0)
- ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35182,1,4,0)
- ;;=4^Y36.300S
- ;;^UTILITY(U,$J,358.3,35182,2)
- ;;=^5061663
- ;;^UTILITY(U,$J,358.3,35183,0)
- ;;=Y36.230A^^131^1699^116
- ;;^UTILITY(U,$J,358.3,35183,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35183,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
- ;;^UTILITY(U,$J,358.3,35183,1,4,0)
- ;;=4^Y36.230A
- ;;^UTILITY(U,$J,358.3,35183,2)
- ;;=^5061625
- ;;^UTILITY(U,$J,358.3,35184,0)
- ;;=Y36.230D^^131^1699^117
- ;;^UTILITY(U,$J,358.3,35184,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35184,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35184,1,4,0)
- ;;=4^Y36.230D
- ;;^UTILITY(U,$J,358.3,35184,2)
- ;;=^5061626
- ;;^UTILITY(U,$J,358.3,35185,0)
- ;;=Y36.230S^^131^1699^118
- ;;^UTILITY(U,$J,358.3,35185,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35185,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
- ;;^UTILITY(U,$J,358.3,35185,1,4,0)
- ;;=4^Y36.230S
- ;;^UTILITY(U,$J,358.3,35185,2)
- ;;=^5061627
- ;;^UTILITY(U,$J,358.3,35186,0)
- ;;=Y36.7X0S^^131^1699^130
- ;;^UTILITY(U,$J,358.3,35186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35186,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,35186,1,4,0)
- ;;=4^Y36.7X0S
- ;;^UTILITY(U,$J,358.3,35186,2)
- ;;=^5061783
- ;;^UTILITY(U,$J,358.3,35187,0)
- ;;=F02.81^^131^1700^11
- ;;^UTILITY(U,$J,358.3,35187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35187,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,35187,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,35187,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,35188,0)
- ;;=F02.80^^131^1700^12
- ;;^UTILITY(U,$J,358.3,35188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35188,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,35188,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,35188,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,35189,0)
- ;;=F03.91^^131^1700^13
+ ;;^UTILITY(U,$J,358.3,33120,1,2,0)
+ ;;=2^92353
+ ;;^UTILITY(U,$J,358.3,33120,1,3,0)
+ ;;=3^Fit Spectacles,Aphakia,Multifocal
+ ;;^UTILITY(U,$J,358.3,33121,0)
+ ;;=99174^^129^1679^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33121,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33121,1,2,0)
+ ;;=2^99174
+ ;;^UTILITY(U,$J,358.3,33121,1,3,0)
+ ;;=3^Auto-Refraction,Bilat
+ ;;^UTILITY(U,$J,358.3,33122,0)
+ ;;=92015^^129^1679^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33122,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33122,1,2,0)
+ ;;=2^92015
+ ;;^UTILITY(U,$J,358.3,33122,1,3,0)
+ ;;=3^REFRACTION
+ ;;^UTILITY(U,$J,358.3,33123,0)
+ ;;=92083^^129^1680^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33123,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33123,1,2,0)
+ ;;=2^92083
+ ;;^UTILITY(U,$J,358.3,33123,1,3,0)
+ ;;=3^Visual Field, Threshold (Humphrey)
+ ;;^UTILITY(U,$J,358.3,33124,0)
+ ;;=92082^^129^1680^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33124,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33124,1,2,0)
+ ;;=2^92082
+ ;;^UTILITY(U,$J,358.3,33124,1,3,0)
+ ;;=3^Visual Field, Intermediate (Goldmann)
+ ;;^UTILITY(U,$J,358.3,33125,0)
+ ;;=92081^^129^1680^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33125,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33125,1,2,0)
+ ;;=2^92081
+ ;;^UTILITY(U,$J,358.3,33125,1,3,0)
+ ;;=3^Visual Field, Screening (DMV Field)
+ ;;^UTILITY(U,$J,358.3,33126,0)
+ ;;=92250^^129^1681^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33126,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33126,1,2,0)
+ ;;=2^92250
+ ;;^UTILITY(U,$J,358.3,33126,1,3,0)
+ ;;=3^Fundus Photography
+ ;;^UTILITY(U,$J,358.3,33127,0)
+ ;;=92285^^129^1681^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33127,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33127,1,2,0)
+ ;;=2^92285
+ ;;^UTILITY(U,$J,358.3,33127,1,3,0)
+ ;;=3^External Eye Photography
+ ;;^UTILITY(U,$J,358.3,33128,0)
+ ;;=V2624^^129^1682^14^^^^1
+ ;;^UTILITY(U,$J,358.3,33128,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33128,1,2,0)
+ ;;=2^V2624
+ ;;^UTILITY(U,$J,358.3,33128,1,3,0)
+ ;;=3^Polishing Artifical Eye
+ ;;^UTILITY(U,$J,358.3,33129,0)
+ ;;=97535^^129^1682^10^^^^1
+ ;;^UTILITY(U,$J,358.3,33129,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33129,1,2,0)
+ ;;=2^97535
+ ;;^UTILITY(U,$J,358.3,33129,1,3,0)
+ ;;=3^LV Spot/Continuous Text Reading,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33130,0)
+ ;;=97533^^129^1682^8^^^^1
+ ;;^UTILITY(U,$J,358.3,33130,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33130,1,2,0)
+ ;;=2^97533
+ ;;^UTILITY(U,$J,358.3,33130,1,3,0)
+ ;;=3^LV Distance Viewing,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33131,0)
+ ;;=92060^^129^1682^15^^^^1
+ ;;^UTILITY(U,$J,358.3,33131,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33131,1,2,0)
+ ;;=2^92060
+ ;;^UTILITY(U,$J,358.3,33131,1,3,0)
+ ;;=3^Sensorimotor Exam
+ ;;^UTILITY(U,$J,358.3,33132,0)
+ ;;=92065^^129^1682^13^^^^1
+ ;;^UTILITY(U,$J,358.3,33132,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33132,1,2,0)
+ ;;=2^92065
+ ;;^UTILITY(U,$J,358.3,33132,1,3,0)
+ ;;=3^Orthotic/Pleoptic Training
+ ;;^UTILITY(U,$J,358.3,33133,0)
+ ;;=97116^^129^1682^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33133,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33133,1,2,0)
+ ;;=2^97116
+ ;;^UTILITY(U,$J,358.3,33133,1,3,0)
+ ;;=3^Gait Therapy Training,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33134,0)
+ ;;=92015^^129^1682^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33134,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33134,1,2,0)
+ ;;=2^92015
+ ;;^UTILITY(U,$J,358.3,33134,1,3,0)
+ ;;=3^Determine Refractive State
+ ;;^UTILITY(U,$J,358.3,33135,0)
+ ;;=97755^^129^1682^1^^^^1

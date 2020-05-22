@@ -1,132 +1,122 @@
-IBDEI2CF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39728,2)
- ;;=^5004317
- ;;^UTILITY(U,$J,358.3,39729,0)
- ;;=H02.035^^153^1928^91
- ;;^UTILITY(U,$J,358.3,39729,1,0)
+ ;;^UTILITY(U,$J,358.3,37431,0)
+ ;;=M84.574A^^146^1917^392
+ ;;^UTILITY(U,$J,358.3,37431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39729,1,3,0)
- ;;=3^Senile Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39729,1,4,0)
- ;;=4^H02.035
- ;;^UTILITY(U,$J,358.3,39729,2)
- ;;=^5133401
- ;;^UTILITY(U,$J,358.3,39730,0)
- ;;=H02.034^^153^1928^92
- ;;^UTILITY(U,$J,358.3,39730,1,0)
+ ;;^UTILITY(U,$J,358.3,37431,1,3,0)
+ ;;=3^Path fx in neoplst disease, rt foot, init
+ ;;^UTILITY(U,$J,358.3,37431,1,4,0)
+ ;;=4^M84.574A
+ ;;^UTILITY(U,$J,358.3,37431,2)
+ ;;=^5014190
+ ;;^UTILITY(U,$J,358.3,37432,0)
+ ;;=M84.575A^^146^1917^390
+ ;;^UTILITY(U,$J,358.3,37432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39730,1,3,0)
- ;;=3^Senile Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39730,1,4,0)
- ;;=4^H02.034
- ;;^UTILITY(U,$J,358.3,39730,2)
- ;;=^5004291
- ;;^UTILITY(U,$J,358.3,39731,0)
- ;;=H02.032^^153^1928^93
- ;;^UTILITY(U,$J,358.3,39731,1,0)
+ ;;^UTILITY(U,$J,358.3,37432,1,3,0)
+ ;;=3^Path fx in neoplst disease, lft ft, init
+ ;;^UTILITY(U,$J,358.3,37432,1,4,0)
+ ;;=4^M84.575A
+ ;;^UTILITY(U,$J,358.3,37432,2)
+ ;;=^5014196
+ ;;^UTILITY(U,$J,358.3,37433,0)
+ ;;=M84.477A^^146^1917^418
+ ;;^UTILITY(U,$J,358.3,37433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39731,1,3,0)
- ;;=3^Senile Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39731,1,4,0)
- ;;=4^H02.032
- ;;^UTILITY(U,$J,358.3,39731,2)
- ;;=^5004289
- ;;^UTILITY(U,$J,358.3,39732,0)
- ;;=H02.031^^153^1928^94
- ;;^UTILITY(U,$J,358.3,39732,1,0)
+ ;;^UTILITY(U,$J,358.3,37433,1,3,0)
+ ;;=3^Path fx rt toe(s), init
+ ;;^UTILITY(U,$J,358.3,37433,1,4,0)
+ ;;=4^M84.477A
+ ;;^UTILITY(U,$J,358.3,37433,2)
+ ;;=^5013998
+ ;;^UTILITY(U,$J,358.3,37434,0)
+ ;;=M84.478A^^146^1917^405
+ ;;^UTILITY(U,$J,358.3,37434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39732,1,3,0)
- ;;=3^Senile Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39732,1,4,0)
- ;;=4^H02.031
- ;;^UTILITY(U,$J,358.3,39732,2)
- ;;=^5004288
- ;;^UTILITY(U,$J,358.3,39733,0)
- ;;=H02.145^^153^1928^95
- ;;^UTILITY(U,$J,358.3,39733,1,0)
+ ;;^UTILITY(U,$J,358.3,37434,1,3,0)
+ ;;=3^Path fx lft toe(s), init
+ ;;^UTILITY(U,$J,358.3,37434,1,4,0)
+ ;;=4^M84.478A
+ ;;^UTILITY(U,$J,358.3,37434,2)
+ ;;=^5014004
+ ;;^UTILITY(U,$J,358.3,37435,0)
+ ;;=S82.54XA^^146^1917^329
+ ;;^UTILITY(U,$J,358.3,37435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39733,1,3,0)
- ;;=3^Spastic Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39733,1,4,0)
- ;;=4^H02.145
- ;;^UTILITY(U,$J,358.3,39733,2)
- ;;=^5133416
- ;;^UTILITY(U,$J,358.3,39734,0)
- ;;=H02.144^^153^1928^96
- ;;^UTILITY(U,$J,358.3,39734,1,0)
+ ;;^UTILITY(U,$J,358.3,37435,1,3,0)
+ ;;=3^Nondisp fx of med malleolus of rt tib, init
+ ;;^UTILITY(U,$J,358.3,37435,1,4,0)
+ ;;=4^S82.54XA
+ ;;^UTILITY(U,$J,358.3,37435,2)
+ ;;=^5042263
+ ;;^UTILITY(U,$J,358.3,37436,0)
+ ;;=S82.52XA^^146^1917^104
+ ;;^UTILITY(U,$J,358.3,37436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39734,1,3,0)
- ;;=3^Spastic Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39734,1,4,0)
- ;;=4^H02.144
- ;;^UTILITY(U,$J,358.3,39734,2)
- ;;=^5004325
- ;;^UTILITY(U,$J,358.3,39735,0)
- ;;=H02.142^^153^1928^97
- ;;^UTILITY(U,$J,358.3,39735,1,0)
+ ;;^UTILITY(U,$J,358.3,37436,1,3,0)
+ ;;=3^Disp fx of med malleolus of lft tib, init
+ ;;^UTILITY(U,$J,358.3,37436,1,4,0)
+ ;;=4^S82.52XA
+ ;;^UTILITY(U,$J,358.3,37436,2)
+ ;;=^5042231
+ ;;^UTILITY(U,$J,358.3,37437,0)
+ ;;=S82.51XA^^146^1917^105
+ ;;^UTILITY(U,$J,358.3,37437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39735,1,3,0)
- ;;=3^Spastic Ectropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39735,1,4,0)
- ;;=4^H02.142
- ;;^UTILITY(U,$J,358.3,39735,2)
- ;;=^5004323
- ;;^UTILITY(U,$J,358.3,39736,0)
- ;;=H02.141^^153^1928^98
- ;;^UTILITY(U,$J,358.3,39736,1,0)
+ ;;^UTILITY(U,$J,358.3,37437,1,3,0)
+ ;;=3^Disp fx of med malleolus of rt tib, init
+ ;;^UTILITY(U,$J,358.3,37437,1,4,0)
+ ;;=4^S82.51XA
+ ;;^UTILITY(U,$J,358.3,37437,2)
+ ;;=^5042215
+ ;;^UTILITY(U,$J,358.3,37438,0)
+ ;;=S82.875A^^146^1917^369
+ ;;^UTILITY(U,$J,358.3,37438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39736,1,3,0)
- ;;=3^Spastic Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39736,1,4,0)
- ;;=4^H02.141
- ;;^UTILITY(U,$J,358.3,39736,2)
- ;;=^5004322
- ;;^UTILITY(U,$J,358.3,39737,0)
- ;;=H02.045^^153^1928^99
- ;;^UTILITY(U,$J,358.3,39737,1,0)
+ ;;^UTILITY(U,$J,358.3,37438,1,3,0)
+ ;;=3^Nondisp pilon fx of lft tib, init
+ ;;^UTILITY(U,$J,358.3,37438,1,4,0)
+ ;;=4^S82.875A
+ ;;^UTILITY(U,$J,358.3,37438,2)
+ ;;=^5042831
+ ;;^UTILITY(U,$J,358.3,37439,0)
+ ;;=S82.874A^^146^1917^370
+ ;;^UTILITY(U,$J,358.3,37439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39737,1,3,0)
- ;;=3^Spastic Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39737,1,4,0)
- ;;=4^H02.045
- ;;^UTILITY(U,$J,358.3,39737,2)
- ;;=^5133403
- ;;^UTILITY(U,$J,358.3,39738,0)
- ;;=H02.044^^153^1928^100
- ;;^UTILITY(U,$J,358.3,39738,1,0)
+ ;;^UTILITY(U,$J,358.3,37439,1,3,0)
+ ;;=3^Nondisp pilon fx of rt tib, init
+ ;;^UTILITY(U,$J,358.3,37439,1,4,0)
+ ;;=4^S82.874A
+ ;;^UTILITY(U,$J,358.3,37439,2)
+ ;;=^5042815
+ ;;^UTILITY(U,$J,358.3,37440,0)
+ ;;=S82.55XA^^146^1917^328
+ ;;^UTILITY(U,$J,358.3,37440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39738,1,3,0)
- ;;=3^Spastic Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39738,1,4,0)
- ;;=4^H02.044
- ;;^UTILITY(U,$J,358.3,39738,2)
- ;;=^5004296
- ;;^UTILITY(U,$J,358.3,39739,0)
- ;;=H02.042^^153^1928^101
- ;;^UTILITY(U,$J,358.3,39739,1,0)
+ ;;^UTILITY(U,$J,358.3,37440,1,3,0)
+ ;;=3^Nondisp fx of med malleolus of lft tib, init
+ ;;^UTILITY(U,$J,358.3,37440,1,4,0)
+ ;;=4^S82.55XA
+ ;;^UTILITY(U,$J,358.3,37440,2)
+ ;;=^5042279
+ ;;^UTILITY(U,$J,358.3,37441,0)
+ ;;=S82.871A^^146^1917^145
+ ;;^UTILITY(U,$J,358.3,37441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39739,1,3,0)
- ;;=3^Spastic Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39739,1,4,0)
- ;;=4^H02.042
- ;;^UTILITY(U,$J,358.3,39739,2)
- ;;=^5004294
- ;;^UTILITY(U,$J,358.3,39740,0)
- ;;=H02.041^^153^1928^102
- ;;^UTILITY(U,$J,358.3,39740,1,0)
+ ;;^UTILITY(U,$J,358.3,37441,1,3,0)
+ ;;=3^Disp pilon fx of rt tib, init
+ ;;^UTILITY(U,$J,358.3,37441,1,4,0)
+ ;;=4^S82.871A
+ ;;^UTILITY(U,$J,358.3,37441,2)
+ ;;=^5042767
+ ;;^UTILITY(U,$J,358.3,37442,0)
+ ;;=S82.872A^^146^1917^144
+ ;;^UTILITY(U,$J,358.3,37442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39740,1,3,0)
- ;;=3^Spastic Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39740,1,4,0)
- ;;=4^H02.041
- ;;^UTILITY(U,$J,358.3,39740,2)
- ;;=^5004293
- ;;^UTILITY(U,$J,358.3,39741,0)
- ;;=C44.129^^153^1928^85
- ;;^UTILITY(U,$J,358.3,39741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39741,1,3,0)
- ;;=3^SCC Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,37442,1,3,0)
+ ;;=3^Disp pilon fx of lft tib, init
+ ;;^UTILITY(U,$J,358.3,37442,1,4,0)
+ ;;=4^S82.872A

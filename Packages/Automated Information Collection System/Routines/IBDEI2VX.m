@@ -1,128 +1,122 @@
-IBDEI2VX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48446,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,48446,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,48447,0)
- ;;=Z89.612^^216^2406^7
- ;;^UTILITY(U,$J,358.3,48447,1,0)
+ ;;^UTILITY(U,$J,358.3,46019,2)
+ ;;=^268842
+ ;;^UTILITY(U,$J,358.3,46020,0)
+ ;;=H53.34^^176^2295^43
+ ;;^UTILITY(U,$J,358.3,46020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48447,1,3,0)
- ;;=3^Acquired absence of left leg above knee
- ;;^UTILITY(U,$J,358.3,48447,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,48447,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,48448,0)
- ;;=Z89.622^^216^2406^6
- ;;^UTILITY(U,$J,358.3,48448,1,0)
+ ;;^UTILITY(U,$J,358.3,46020,1,3,0)
+ ;;=3^Suppression of Binocular Vision
+ ;;^UTILITY(U,$J,358.3,46020,1,4,0)
+ ;;=4^H53.34
+ ;;^UTILITY(U,$J,358.3,46020,2)
+ ;;=^5006323
+ ;;^UTILITY(U,$J,358.3,46021,0)
+ ;;=H53.30^^176^2295^44
+ ;;^UTILITY(U,$J,358.3,46021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48448,1,3,0)
- ;;=3^Acquired absence of left hip joint
- ;;^UTILITY(U,$J,358.3,48448,1,4,0)
- ;;=4^Z89.622
- ;;^UTILITY(U,$J,358.3,48448,2)
- ;;=^5063576
- ;;^UTILITY(U,$J,358.3,48449,0)
- ;;=Z89.621^^216^2406^20
- ;;^UTILITY(U,$J,358.3,48449,1,0)
+ ;;^UTILITY(U,$J,358.3,46021,1,3,0)
+ ;;=3^Disorder of Binocular Vision,Unspec
+ ;;^UTILITY(U,$J,358.3,46021,1,4,0)
+ ;;=4^H53.30
+ ;;^UTILITY(U,$J,358.3,46021,2)
+ ;;=^5006322
+ ;;^UTILITY(U,$J,358.3,46022,0)
+ ;;=H53.481^^176^2295^45
+ ;;^UTILITY(U,$J,358.3,46022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48449,1,3,0)
- ;;=3^Acquired absence of right hip joint
- ;;^UTILITY(U,$J,358.3,48449,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,48449,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,48450,0)
- ;;=R47.01^^216^2407^1
- ;;^UTILITY(U,$J,358.3,48450,1,0)
+ ;;^UTILITY(U,$J,358.3,46022,1,3,0)
+ ;;=3^Generalized Contraction of VF,Right Eye
+ ;;^UTILITY(U,$J,358.3,46022,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,46022,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,46023,0)
+ ;;=H53.482^^176^2295^46
+ ;;^UTILITY(U,$J,358.3,46023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48450,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,48450,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,48450,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,48451,0)
- ;;=I69.320^^216^2407^2
- ;;^UTILITY(U,$J,358.3,48451,1,0)
+ ;;^UTILITY(U,$J,358.3,46023,1,3,0)
+ ;;=3^Generalized Contraction of VF,Left Eye
+ ;;^UTILITY(U,$J,358.3,46023,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,46023,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,46024,0)
+ ;;=H53.483^^176^2295^47
+ ;;^UTILITY(U,$J,358.3,46024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48451,1,3,0)
- ;;=3^Aphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,48451,1,4,0)
- ;;=4^I69.320
- ;;^UTILITY(U,$J,358.3,48451,2)
- ;;=^5007491
- ;;^UTILITY(U,$J,358.3,48452,0)
- ;;=I69.120^^216^2407^3
- ;;^UTILITY(U,$J,358.3,48452,1,0)
+ ;;^UTILITY(U,$J,358.3,46024,1,3,0)
+ ;;=3^Generalized Contraction of VF,Bilateral
+ ;;^UTILITY(U,$J,358.3,46024,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,46024,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,46025,0)
+ ;;=H53.451^^176^2295^48
+ ;;^UTILITY(U,$J,358.3,46025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48452,1,3,0)
- ;;=3^Aphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,48452,1,4,0)
- ;;=4^I69.120
- ;;^UTILITY(U,$J,358.3,48452,2)
- ;;=^5007427
- ;;^UTILITY(U,$J,358.3,48453,0)
- ;;=I69.020^^216^2407^4
- ;;^UTILITY(U,$J,358.3,48453,1,0)
+ ;;^UTILITY(U,$J,358.3,46025,1,3,0)
+ ;;=3^Localized VF Defect,Right Eye
+ ;;^UTILITY(U,$J,358.3,46025,1,4,0)
+ ;;=4^H53.451
+ ;;^UTILITY(U,$J,358.3,46025,2)
+ ;;=^5006337
+ ;;^UTILITY(U,$J,358.3,46026,0)
+ ;;=H53.452^^176^2295^49
+ ;;^UTILITY(U,$J,358.3,46026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48453,1,3,0)
- ;;=3^Aphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,48453,1,4,0)
- ;;=4^I69.020
- ;;^UTILITY(U,$J,358.3,48453,2)
- ;;=^5007395
- ;;^UTILITY(U,$J,358.3,48454,0)
- ;;=I69.820^^216^2407^5
- ;;^UTILITY(U,$J,358.3,48454,1,0)
+ ;;^UTILITY(U,$J,358.3,46026,1,3,0)
+ ;;=3^Localized VF Defect,Left Eye
+ ;;^UTILITY(U,$J,358.3,46026,1,4,0)
+ ;;=4^H53.452
+ ;;^UTILITY(U,$J,358.3,46026,2)
+ ;;=^5006338
+ ;;^UTILITY(U,$J,358.3,46027,0)
+ ;;=H53.453^^176^2295^50
+ ;;^UTILITY(U,$J,358.3,46027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48454,1,3,0)
- ;;=3^Aphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,48454,1,4,0)
- ;;=4^I69.820
- ;;^UTILITY(U,$J,358.3,48454,2)
- ;;=^5007522
- ;;^UTILITY(U,$J,358.3,48455,0)
- ;;=I69.220^^216^2407^6
- ;;^UTILITY(U,$J,358.3,48455,1,0)
+ ;;^UTILITY(U,$J,358.3,46027,1,3,0)
+ ;;=3^Localized VF Defect,Bilateral
+ ;;^UTILITY(U,$J,358.3,46027,1,4,0)
+ ;;=4^H53.453
+ ;;^UTILITY(U,$J,358.3,46027,2)
+ ;;=^5006339
+ ;;^UTILITY(U,$J,358.3,46028,0)
+ ;;=S04.031A^^176^2295^51
+ ;;^UTILITY(U,$J,358.3,46028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48455,1,3,0)
- ;;=3^Aphasia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,48455,1,4,0)
- ;;=4^I69.220
- ;;^UTILITY(U,$J,358.3,48455,2)
- ;;=^5007459
- ;;^UTILITY(U,$J,358.3,48456,0)
- ;;=I69.290^^216^2407^11
- ;;^UTILITY(U,$J,358.3,48456,1,0)
+ ;;^UTILITY(U,$J,358.3,46028,1,3,0)
+ ;;=3^Injury of Optic Tract & Pathways,Right Side,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46028,1,4,0)
+ ;;=4^S04.031A
+ ;;^UTILITY(U,$J,358.3,46028,2)
+ ;;=^5020474
+ ;;^UTILITY(U,$J,358.3,46029,0)
+ ;;=S04.031S^^176^2295^52
+ ;;^UTILITY(U,$J,358.3,46029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48456,1,3,0)
- ;;=3^Apraxia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,48456,1,4,0)
- ;;=4^I69.290
- ;;^UTILITY(U,$J,358.3,48456,2)
- ;;=^5007484
- ;;^UTILITY(U,$J,358.3,48457,0)
- ;;=I69.390^^216^2407^7
- ;;^UTILITY(U,$J,358.3,48457,1,0)
+ ;;^UTILITY(U,$J,358.3,46029,1,3,0)
+ ;;=3^Injury of Optic Tract & Pathways,Right Side,Sequela
+ ;;^UTILITY(U,$J,358.3,46029,1,4,0)
+ ;;=4^S04.031S
+ ;;^UTILITY(U,$J,358.3,46029,2)
+ ;;=^5020476
+ ;;^UTILITY(U,$J,358.3,46030,0)
+ ;;=S04.032A^^176^2295^53
+ ;;^UTILITY(U,$J,358.3,46030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48457,1,3,0)
- ;;=3^Apraxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,48457,1,4,0)
- ;;=4^I69.390
- ;;^UTILITY(U,$J,358.3,48457,2)
- ;;=^5007515
- ;;^UTILITY(U,$J,358.3,48458,0)
- ;;=I69.190^^216^2407^8
- ;;^UTILITY(U,$J,358.3,48458,1,0)
+ ;;^UTILITY(U,$J,358.3,46030,1,3,0)
+ ;;=3^Injury of Optic Tract & Pathways,Left Side,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46030,1,4,0)
+ ;;=4^S04.032A
+ ;;^UTILITY(U,$J,358.3,46030,2)
+ ;;=^5020477
+ ;;^UTILITY(U,$J,358.3,46031,0)
+ ;;=S04.032S^^176^2295^54
+ ;;^UTILITY(U,$J,358.3,46031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48458,1,3,0)
- ;;=3^Apraxia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,48458,1,4,0)
- ;;=4^I69.190
- ;;^UTILITY(U,$J,358.3,48458,2)
- ;;=^5007452
+ ;;^UTILITY(U,$J,358.3,46031,1,3,0)
+ ;;=3^Injury of Optic Tract & Pathways,Left Side,Sequela

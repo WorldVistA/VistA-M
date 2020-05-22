@@ -1,132 +1,124 @@
-IBDEI2RV ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46538,1,0)
+ ;;^UTILITY(U,$J,358.3,44214,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,44214,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,44215,0)
+ ;;=F10.24^^164^2189^11
+ ;;^UTILITY(U,$J,358.3,44215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46538,1,3,0)
- ;;=3^AC Bronchitis d/t Echovirus
- ;;^UTILITY(U,$J,358.3,46538,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,46538,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,46539,0)
- ;;=J20.1^^206^2304^9
- ;;^UTILITY(U,$J,358.3,46539,1,0)
+ ;;^UTILITY(U,$J,358.3,44215,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44215,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,44215,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,44216,0)
+ ;;=F10.94^^164^2189^12
+ ;;^UTILITY(U,$J,358.3,44216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46539,1,3,0)
- ;;=3^AC Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,46539,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,46539,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,46540,0)
- ;;=J20.0^^206^2304^10
- ;;^UTILITY(U,$J,358.3,46540,1,0)
+ ;;^UTILITY(U,$J,358.3,44216,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44216,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,44216,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,44217,0)
+ ;;=F10.231^^164^2189^32
+ ;;^UTILITY(U,$J,358.3,44217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46540,1,3,0)
- ;;=3^AC Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,46540,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,46540,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,46541,0)
- ;;=J20.8^^206^2304^14
- ;;^UTILITY(U,$J,358.3,46541,1,0)
+ ;;^UTILITY(U,$J,358.3,44217,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) w/ WD Delirium
+ ;;^UTILITY(U,$J,358.3,44217,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,44217,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,44218,0)
+ ;;=F10.232^^164^2189^30
+ ;;^UTILITY(U,$J,358.3,44218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46541,1,3,0)
- ;;=3^AC Bronchitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,46541,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,46541,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,46542,0)
- ;;=J20.4^^206^2304^11
- ;;^UTILITY(U,$J,358.3,46542,1,0)
+ ;;^UTILITY(U,$J,358.3,44218,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,44218,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,44218,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,44219,0)
+ ;;=F10.21^^164^2189^33
+ ;;^UTILITY(U,$J,358.3,44219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46542,1,3,0)
- ;;=3^AC Bronchitis d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,46542,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,46542,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,46543,0)
- ;;=J20.5^^206^2304^12
- ;;^UTILITY(U,$J,358.3,46543,1,0)
+ ;;^UTILITY(U,$J,358.3,44219,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),In Remission
+ ;;^UTILITY(U,$J,358.3,44219,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,44219,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,44220,0)
+ ;;=F12.10^^164^2190^20
+ ;;^UTILITY(U,$J,358.3,44220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46543,1,3,0)
- ;;=3^AC Bronchitis d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,46543,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,46543,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,46544,0)
- ;;=J20.6^^206^2304^13
- ;;^UTILITY(U,$J,358.3,46544,1,0)
+ ;;^UTILITY(U,$J,358.3,44220,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild
+ ;;^UTILITY(U,$J,358.3,44220,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,44220,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,44221,0)
+ ;;=F12.20^^164^2190^22
+ ;;^UTILITY(U,$J,358.3,44221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46544,1,3,0)
- ;;=3^AC Bronchitis d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,46544,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,46544,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,46545,0)
- ;;=J20.2^^206^2304^15
- ;;^UTILITY(U,$J,358.3,46545,1,0)
+ ;;^UTILITY(U,$J,358.3,44221,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev
+ ;;^UTILITY(U,$J,358.3,44221,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,44221,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,44222,0)
+ ;;=F12.288^^164^2190^25
+ ;;^UTILITY(U,$J,358.3,44222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46545,1,3,0)
- ;;=3^AC Bronchitis d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,46545,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,46545,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,46546,0)
- ;;=J20.9^^206^2304^16
- ;;^UTILITY(U,$J,358.3,46546,1,0)
+ ;;^UTILITY(U,$J,358.3,44222,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,44222,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,44222,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,44223,0)
+ ;;=F12.121^^164^2190^10
+ ;;^UTILITY(U,$J,358.3,44223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46546,1,3,0)
- ;;=3^AC Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,46546,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,46546,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,46547,0)
- ;;=H60.523^^206^2304^17
- ;;^UTILITY(U,$J,358.3,46547,1,0)
+ ;;^UTILITY(U,$J,358.3,44223,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44223,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,44223,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,44224,0)
+ ;;=F12.221^^164^2190^11
+ ;;^UTILITY(U,$J,358.3,44224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46547,1,3,0)
- ;;=3^AC Chemical Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,46547,1,4,0)
- ;;=4^H60.523
- ;;^UTILITY(U,$J,358.3,46547,2)
- ;;=^5006476
- ;;^UTILITY(U,$J,358.3,46548,0)
- ;;=H60.522^^206^2304^18
- ;;^UTILITY(U,$J,358.3,46548,1,0)
+ ;;^UTILITY(U,$J,358.3,44224,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44224,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,44224,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,44225,0)
+ ;;=F12.921^^164^2190^12
+ ;;^UTILITY(U,$J,358.3,44225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46548,1,3,0)
- ;;=3^AC Chemical Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,46548,1,4,0)
- ;;=4^H60.522
- ;;^UTILITY(U,$J,358.3,46548,2)
- ;;=^5006475
- ;;^UTILITY(U,$J,358.3,46549,0)
- ;;=H60.521^^206^2304^19
- ;;^UTILITY(U,$J,358.3,46549,1,0)
+ ;;^UTILITY(U,$J,358.3,44225,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44225,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,44225,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,44226,0)
+ ;;=F12.229^^164^2190^16
+ ;;^UTILITY(U,$J,358.3,44226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46549,1,3,0)
- ;;=3^AC Chemical Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,46549,1,4,0)
- ;;=4^H60.521
- ;;^UTILITY(U,$J,358.3,46549,2)
- ;;=^5006474
- ;;^UTILITY(U,$J,358.3,46550,0)
- ;;=H60.543^^206^2304^20
- ;;^UTILITY(U,$J,358.3,46550,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46550,1,3,0)
- ;;=3^AC Eczematoid Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,46550,1,4,0)
- ;;=4^H60.543
- ;;^UTILITY(U,$J,358.3,46550,2)
- ;;=^5006484
+ ;;^UTILITY(U,$J,358.3,44226,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/ Mod/Sev Use D/O

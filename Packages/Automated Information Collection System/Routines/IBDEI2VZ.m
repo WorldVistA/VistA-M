@@ -1,126 +1,132 @@
-IBDEI2VZ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48471,0)
- ;;=I69.391^^216^2407^22
- ;;^UTILITY(U,$J,358.3,48471,1,0)
+ ;;^UTILITY(U,$J,358.3,46043,1,4,0)
+ ;;=4^H05.401
+ ;;^UTILITY(U,$J,358.3,46043,2)
+ ;;=^5004631
+ ;;^UTILITY(U,$J,358.3,46044,0)
+ ;;=E05.90^^176^2296^1
+ ;;^UTILITY(U,$J,358.3,46044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48471,1,3,0)
- ;;=3^Dysphagia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,48471,1,4,0)
- ;;=4^I69.391
- ;;^UTILITY(U,$J,358.3,48471,2)
- ;;=^5007516
- ;;^UTILITY(U,$J,358.3,48472,0)
- ;;=I69.191^^216^2407^23
- ;;^UTILITY(U,$J,358.3,48472,1,0)
+ ;;^UTILITY(U,$J,358.3,46044,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec
+ ;;^UTILITY(U,$J,358.3,46044,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,46044,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,46045,0)
+ ;;=L71.1^^176^2296^2
+ ;;^UTILITY(U,$J,358.3,46045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48472,1,3,0)
- ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,48472,1,4,0)
- ;;=4^I69.191
- ;;^UTILITY(U,$J,358.3,48472,2)
- ;;=^5007453
- ;;^UTILITY(U,$J,358.3,48473,0)
- ;;=I69.291^^216^2407^25
- ;;^UTILITY(U,$J,358.3,48473,1,0)
+ ;;^UTILITY(U,$J,358.3,46045,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,46045,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,46045,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,46046,0)
+ ;;=L71.8^^176^2296^3
+ ;;^UTILITY(U,$J,358.3,46046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48473,1,3,0)
- ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,48473,1,4,0)
- ;;=4^I69.291
- ;;^UTILITY(U,$J,358.3,48473,2)
- ;;=^5007485
- ;;^UTILITY(U,$J,358.3,48474,0)
- ;;=I69.091^^216^2407^24
- ;;^UTILITY(U,$J,358.3,48474,1,0)
+ ;;^UTILITY(U,$J,358.3,46046,1,3,0)
+ ;;=3^Rosacea NEC
+ ;;^UTILITY(U,$J,358.3,46046,1,4,0)
+ ;;=4^L71.8
+ ;;^UTILITY(U,$J,358.3,46046,2)
+ ;;=^5009275
+ ;;^UTILITY(U,$J,358.3,46047,0)
+ ;;=J32.9^^176^2296^4
+ ;;^UTILITY(U,$J,358.3,46047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48474,1,3,0)
- ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,48474,1,4,0)
- ;;=4^I69.091
- ;;^UTILITY(U,$J,358.3,48474,2)
- ;;=^5007421
- ;;^UTILITY(U,$J,358.3,48475,0)
- ;;=I69.891^^216^2407^26
- ;;^UTILITY(U,$J,358.3,48475,1,0)
+ ;;^UTILITY(U,$J,358.3,46047,1,3,0)
+ ;;=3^Sinusitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,46047,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,46047,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,46048,0)
+ ;;=L03.211^^176^2296^5
+ ;;^UTILITY(U,$J,358.3,46048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48475,1,3,0)
- ;;=3^Dysphagia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,48475,1,4,0)
- ;;=4^I69.891
- ;;^UTILITY(U,$J,358.3,48475,2)
- ;;=^5007547
- ;;^UTILITY(U,$J,358.3,48476,0)
- ;;=I69.321^^216^2407^27
- ;;^UTILITY(U,$J,358.3,48476,1,0)
+ ;;^UTILITY(U,$J,358.3,46048,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,46048,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,46048,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,46049,0)
+ ;;=H05.011^^176^2296^6
+ ;;^UTILITY(U,$J,358.3,46049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48476,1,3,0)
- ;;=3^Dysphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,48476,1,4,0)
- ;;=4^I69.321
- ;;^UTILITY(U,$J,358.3,48476,2)
- ;;=^5007492
- ;;^UTILITY(U,$J,358.3,48477,0)
- ;;=I69.121^^216^2407^28
- ;;^UTILITY(U,$J,358.3,48477,1,0)
+ ;;^UTILITY(U,$J,358.3,46049,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,46049,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,46049,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,46050,0)
+ ;;=H05.012^^176^2296^7
+ ;;^UTILITY(U,$J,358.3,46050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48477,1,3,0)
- ;;=3^Dysphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,48477,1,4,0)
- ;;=4^I69.121
- ;;^UTILITY(U,$J,358.3,48477,2)
- ;;=^5007428
- ;;^UTILITY(U,$J,358.3,48478,0)
- ;;=I69.021^^216^2407^29
- ;;^UTILITY(U,$J,358.3,48478,1,0)
+ ;;^UTILITY(U,$J,358.3,46050,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,46050,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,46050,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,46051,0)
+ ;;=L03.212^^176^2296^9
+ ;;^UTILITY(U,$J,358.3,46051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48478,1,3,0)
- ;;=3^Dysphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,48478,1,4,0)
- ;;=4^I69.021
- ;;^UTILITY(U,$J,358.3,48478,2)
- ;;=^5007396
- ;;^UTILITY(U,$J,358.3,48479,0)
- ;;=I69.821^^216^2407^31
- ;;^UTILITY(U,$J,358.3,48479,1,0)
+ ;;^UTILITY(U,$J,358.3,46051,1,3,0)
+ ;;=3^Lymphangitis of Face,Acute
+ ;;^UTILITY(U,$J,358.3,46051,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,46051,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,46052,0)
+ ;;=Z90.01^^176^2296^10
+ ;;^UTILITY(U,$J,358.3,46052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48479,1,3,0)
- ;;=3^Dysphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,48479,1,4,0)
- ;;=4^I69.821
- ;;^UTILITY(U,$J,358.3,48479,2)
- ;;=^5007523
- ;;^UTILITY(U,$J,358.3,48480,0)
- ;;=I69.221^^216^2407^30
- ;;^UTILITY(U,$J,358.3,48480,1,0)
+ ;;^UTILITY(U,$J,358.3,46052,1,3,0)
+ ;;=3^Acquired Absence of Eye
+ ;;^UTILITY(U,$J,358.3,46052,1,4,0)
+ ;;=4^Z90.01
+ ;;^UTILITY(U,$J,358.3,46052,2)
+ ;;=^322068
+ ;;^UTILITY(U,$J,358.3,46053,0)
+ ;;=H05.241^^176^2296^13
+ ;;^UTILITY(U,$J,358.3,46053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48480,1,3,0)
- ;;=3^Dysphasia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,48480,1,4,0)
- ;;=4^I69.221
- ;;^UTILITY(U,$J,358.3,48480,2)
- ;;=^5007460
- ;;^UTILITY(U,$J,358.3,48481,0)
- ;;=G11.1^^216^2407^32
- ;;^UTILITY(U,$J,358.3,48481,1,0)
+ ;;^UTILITY(U,$J,358.3,46053,1,3,0)
+ ;;=3^Exophthalmos,Right Eye
+ ;;^UTILITY(U,$J,358.3,46053,1,4,0)
+ ;;=4^H05.241
+ ;;^UTILITY(U,$J,358.3,46053,2)
+ ;;=^5004598
+ ;;^UTILITY(U,$J,358.3,46054,0)
+ ;;=H05.242^^176^2296^14
+ ;;^UTILITY(U,$J,358.3,46054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48481,1,3,0)
- ;;=3^Early-onset cerebellar ataxia
- ;;^UTILITY(U,$J,358.3,48481,1,4,0)
- ;;=4^G11.1
- ;;^UTILITY(U,$J,358.3,48481,2)
- ;;=^5003753
- ;;^UTILITY(U,$J,358.3,48482,0)
- ;;=I69.392^^216^2407^33
- ;;^UTILITY(U,$J,358.3,48482,1,0)
+ ;;^UTILITY(U,$J,358.3,46054,1,3,0)
+ ;;=3^Exophthalmos,Left Eye
+ ;;^UTILITY(U,$J,358.3,46054,1,4,0)
+ ;;=4^H05.242
+ ;;^UTILITY(U,$J,358.3,46054,2)
+ ;;=^5004599
+ ;;^UTILITY(U,$J,358.3,46055,0)
+ ;;=H44.521^^176^2296^15
+ ;;^UTILITY(U,$J,358.3,46055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48482,1,3,0)
- ;;=3^Facial weakness following cerebral infarction
- ;;^UTILITY(U,$J,358.3,48482,1,4,0)
- ;;=4^I69.392
- ;;^UTILITY(U,$J,358.3,48482,2)
- ;;=^5007517
- ;;^UTILITY(U,$J,358.3,48483,0)
- ;;=I69.192^^216^2407^34
+ ;;^UTILITY(U,$J,358.3,46055,1,3,0)
+ ;;=3^Atrophy of Globe,Right Eye
+ ;;^UTILITY(U,$J,358.3,46055,1,4,0)
+ ;;=4^H44.521
+ ;;^UTILITY(U,$J,358.3,46055,2)
+ ;;=^5006025
+ ;;^UTILITY(U,$J,358.3,46056,0)
+ ;;=H44.522^^176^2296^16
+ ;;^UTILITY(U,$J,358.3,46056,1,0)
+ ;;=^358.31IA^4^2

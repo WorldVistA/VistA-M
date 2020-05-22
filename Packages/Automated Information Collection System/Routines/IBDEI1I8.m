@@ -1,128 +1,116 @@
-IBDEI1I8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1I8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25526,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,25527,0)
- ;;=F11.10^^95^1169^23
- ;;^UTILITY(U,$J,358.3,25527,1,0)
+ ;;^UTILITY(U,$J,358.3,24062,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,24062,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,24062,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,24063,0)
+ ;;=I70.444^^107^1201^39
+ ;;^UTILITY(U,$J,358.3,24063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25527,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,25527,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,25527,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,25528,0)
- ;;=F11.129^^95^1169^19
- ;;^UTILITY(U,$J,358.3,25528,1,0)
+ ;;^UTILITY(U,$J,358.3,24063,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,24063,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,24063,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,24064,0)
+ ;;=I70.445^^107^1201^40
+ ;;^UTILITY(U,$J,358.3,24064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25528,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25528,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,25528,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,25529,0)
- ;;=F11.14^^95^1169^27
- ;;^UTILITY(U,$J,358.3,25529,1,0)
+ ;;^UTILITY(U,$J,358.3,24064,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,24064,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,24064,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,24065,0)
+ ;;=I70.531^^107^1201^61
+ ;;^UTILITY(U,$J,358.3,24065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25529,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25529,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,25529,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,25530,0)
- ;;=F11.182^^95^1169^29
- ;;^UTILITY(U,$J,358.3,25530,1,0)
+ ;;^UTILITY(U,$J,358.3,24065,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,24065,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,24065,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,24066,0)
+ ;;=I70.532^^107^1201^62
+ ;;^UTILITY(U,$J,358.3,24066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25530,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25530,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,25530,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,25531,0)
- ;;=F11.20^^95^1169^24
- ;;^UTILITY(U,$J,358.3,25531,1,0)
+ ;;^UTILITY(U,$J,358.3,24066,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,24066,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,24066,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,24067,0)
+ ;;=I70.533^^107^1201^63
+ ;;^UTILITY(U,$J,358.3,24067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25531,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,25531,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,25531,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,25532,0)
- ;;=F11.21^^95^1169^25
- ;;^UTILITY(U,$J,358.3,25532,1,0)
+ ;;^UTILITY(U,$J,358.3,24067,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,24067,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,24067,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,24068,0)
+ ;;=I70.534^^107^1201^64
+ ;;^UTILITY(U,$J,358.3,24068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25532,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,25532,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,25532,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,25533,0)
- ;;=F11.23^^95^1169^26
- ;;^UTILITY(U,$J,358.3,25533,1,0)
+ ;;^UTILITY(U,$J,358.3,24068,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,24068,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,24068,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,24069,0)
+ ;;=I70.535^^107^1201^65
+ ;;^UTILITY(U,$J,358.3,24069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25533,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,25533,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,25533,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,25534,0)
- ;;=F11.24^^95^1169^28
- ;;^UTILITY(U,$J,358.3,25534,1,0)
+ ;;^UTILITY(U,$J,358.3,24069,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,24069,1,4,0)
+ ;;=4^I70.535
+ ;;^UTILITY(U,$J,358.3,24069,2)
+ ;;=^5007706
+ ;;^UTILITY(U,$J,358.3,24070,0)
+ ;;=I70.541^^107^1201^56
+ ;;^UTILITY(U,$J,358.3,24070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25534,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25534,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,25534,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,25535,0)
- ;;=F11.29^^95^1169^2
- ;;^UTILITY(U,$J,358.3,25535,1,0)
+ ;;^UTILITY(U,$J,358.3,24070,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,24070,1,4,0)
+ ;;=4^I70.541
+ ;;^UTILITY(U,$J,358.3,24070,2)
+ ;;=^5007709
+ ;;^UTILITY(U,$J,358.3,24071,0)
+ ;;=I70.542^^107^1201^57
+ ;;^UTILITY(U,$J,358.3,24071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25535,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,25535,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,25535,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,25536,0)
- ;;=F11.220^^95^1169^1
- ;;^UTILITY(U,$J,358.3,25536,1,0)
+ ;;^UTILITY(U,$J,358.3,24071,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,24071,1,4,0)
+ ;;=4^I70.542
+ ;;^UTILITY(U,$J,358.3,24071,2)
+ ;;=^5007710
+ ;;^UTILITY(U,$J,358.3,24072,0)
+ ;;=I70.543^^107^1201^58
+ ;;^UTILITY(U,$J,358.3,24072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25536,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,25536,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,25536,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,25537,0)
- ;;=F11.188^^95^1169^3
- ;;^UTILITY(U,$J,358.3,25537,1,0)
+ ;;^UTILITY(U,$J,358.3,24072,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,24072,1,4,0)
+ ;;=4^I70.543
+ ;;^UTILITY(U,$J,358.3,24072,2)
+ ;;=^5007711
+ ;;^UTILITY(U,$J,358.3,24073,0)
+ ;;=I70.544^^107^1201^59
+ ;;^UTILITY(U,$J,358.3,24073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25537,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25537,1,4,0)
- ;;=4^F11.188
- ;;^UTILITY(U,$J,358.3,25537,2)
- ;;=^5003125
- ;;^UTILITY(U,$J,358.3,25538,0)
- ;;=F11.288^^95^1169^4
- ;;^UTILITY(U,$J,358.3,25538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25538,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25538,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,25538,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,25539,0)
- ;;=F11.988^^95^1169^5
+ ;;^UTILITY(U,$J,358.3,24073,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Heel/Midfoot

@@ -1,5 +1,5 @@
 SDCCRCOR ;CCRA/LB,PB - Core Tags;APR 4, 2019
- ;;5.3;Scheduling;**707,730**;APR 4, 2019;Build 8
+ ;;5.3;Scheduling;**707,730,735**;APR 4, 2019;Build 21
  ;;Per VA directive 6402, this routine should not be modified.
  Q
  ;
@@ -87,7 +87,7 @@ SETMSGET()    ;SEND AN ERROR MESSAGE OUT AND LOG THE CACHE ERROR+STACK TO ^ERROR
  Q
 FMTPHONE(PHONE,EXT) ; Formats a VistA telephone number into an HL7-compliant format
  ; Formats include: (nnn)nnn-nnnn and nnn-nnnn, depending on whether or not there is an area code.
- ; If the number is not in an a valid format, does not attempt to do any formatting.
+ ; If the number is not in a valid format, does not attempt to do any formatting.
  ; Returns 1 if the number was formatted, 0 otherwise.
  ;
  ; PHONE - Phone number to be formatted
@@ -179,6 +179,32 @@ CHKMSG(Y) ; Check Message for all required segments
  ..D ACK("CE",MID,REQSEG,"","",100,REQSEG_" SEGMENT MISSING OR OUT OF ORDER")
  .. S ABORT="1^"_$G(REQSEG)_" SEGMENT MISSING OR OUT OF ORDER"
  Q QUIT
+DATALKUP(SEG,FILE,FILEPATH,FIELD,ERRCODE,ERRTEXT) ; Translates a data element for a given FileMan file in an HL7 field
+ ;Tries using the Title to lookup the data. If that fails uses the ID to lookup
+ ;the reason against the title. If that fails tries using the ID against the ID.
+ ;SEG (I,REQ) - Message segment to parse
+ ;FILE (I,REQ) - FileMan File to lookup
+ ;FILEPATH (I,REQ) - global path to the file's storage location for DIC lookup. Make sure to end with a comma ^<glo>(<File>,
+ ;FIELD (I,REQ) - message field to look in
+ ;ERRCODE (I,OPT) - error to log if failure
+ ;ERRTEXT (I,OPT) - error text to log if failure
+ ;Check Requirements
+ I ($G(FILE)="")!($G(FIELD)="") Q
+ N ID,TITLE,DATA,X,Y,DIC
+ S DATA=""
+ S ID=$$GET^SDCCRSCU(.SEG,FIELD,1)       ;component 1  HL7 ID field
+ S TITLE=$$GET^SDCCRSCU(.SEG,FIELD,2)    ;component 2 HL7 Title field
+ I (ID=""),(TITLE="") Q ""   ;No data to translate
+ ; Try robust mutli tier lookup
+ I TITLE'="" S DIC=FILEPATH,DIC(0)="B",X=TITLE D ^DIC S DATA=$P(Y,"^",1)   ;lookup "B" node with the second component
+ I DATA'="",DATA'=-1 Q DATA
+ I ID'="" d
+ . S DIC=FILEPATH,DIC(0)="B",X=ID D ^DIC S DATA=$P(Y,"^",1)   ;lookup "B" node with the first component
+ . I DATA'="",DATA'=-1 Q
+ . I $$GET1^DIQ(FILE,ID,".01")'="" S DATA=ID    ;check if the ID matches a record in the File. if so use it.
+ I DATA'="" Q DATA
+ I $G(ERRCODE)'="" D ACK^SDCCRCOR("CE",MID,"","","",ERRCODE,ERRTEXT,1) ;All lookups have failed and data exists so send an error
+ Q ""
 ACK(STAT,MID,SID,SEG,FLD,CD,TXT,ACKTYP) ; Creates ACKs for HL7 Message
  ;STAT = Status (Acknowledgment Code) (REQUIRED)
  ;MID = Message ID (REQUIRED)
@@ -189,14 +215,19 @@ ACK(STAT,MID,SID,SEG,FLD,CD,TXT,ACKTYP) ; Creates ACKs for HL7 Message
  ;TXT = Text describing error (OPTIONAL)
  ;ACKTYP = Acknowledgment Type (OPTIONAL)
  ;
- N HLA,EID,EIDS,RES,ERRI
+ N HLA,EID,EIDS,RES,ERRI,CS,FS,RS,ES,SS  ;Jan 21,2020 - PB - patch 735 new and then set FS,CS,RS,ES,SS
+ S FS=$G(HL("FS"),"|")
+ S CS=$E($G(HL("ECH")),1) S:CS="" CS="^"
+ S RS=$E($G(HL("ECH")),2) S:RS="" RS="~"
+ S ES=$E($G(HL("ECH")),3) S:ES="" ES="\"
+ S SS=$E($G(HL("ECH")),4) S:SS="" SS="&"
  ;
  ;Make sure the parameters are defined
  S STAT=$G(STAT),MID=$G(MID),SID=$G(SID),SEG=$G(SEG)
  S FLD=$G(FLD),CD=$G(CD),TXT=$G(TXT)
  ;
  ;Create MSA Segment
- S HLA("HLA",1)="MSA"_FS_STAT_FS_MID
+ S HLA("HLA",1)="MSA"_FS_STAT_FS_MID_FS_$G(TXT)
  S EID=$G(HL("EID"))
  S EIDS=$G(HL("EIDS"))
  Q:((EID="")!($G(HLMTIENS)="")!(EIDS=""))
@@ -244,14 +275,17 @@ APPMSG(MSGID,ABORT) ; Send a MailMan Message with the errors
  D ^XMD
  Q
 MESSAGE(MSGID,ABORT) ; Send a MailMan Message with the errors
- N MSGTEXT,DUZ,XMDUZ,XMSUB,XMTEXT,XMY,XMMG,XMSTRIP,XMROU,DIFROM,XMYBLOB,XMZ,XMMG,DATE,J
+ N MSGTEXT,DUZ,XMDUZ,XMSUB,XMTEXT,XMY,XMMG,XMSTRIP,XMROU,DIFROM,XMYBLOB,XMZ,XMMG,DATE,J,FLG1
  S DATE=$$FMTE^XLFDT($$FMDATE^HLFNC($P(HL("DTM"),"-",1)))
  S XMSUB="Consult: "_$G(CONID)_" GMRC CCRA Scheduling Issue from HSRM"
+ S:$E($P($G(ABORT),"^",2),1,9)="SCHEDULER" FLG1=1
  S MSGTEXT(1)=" "
  S MSGTEXT(2)="Error in receiving HL7 message from HSRM"
  S MSGTEXT(3)="Date:       "_DATE
  S MSGTEXT(4)="Message ID: "_MSGID
- S MSGTEXT(5)="Error(s): "_$P(ABORT,"^",2)
+ S MSGTEXT(5)="Error(s): "_$P(ABORT,"^",2)_"  "_$G(USERMAIL)
+ ;Jan 21,2020 - PB - patch 735 add email from message and the email searched for
+ S:$G(FLG1)=1 MSGTEXT(6)="Scheduler email from HSRM "_$G(USERMAIL)_" looking for "_$$LOW^XLFSTR(USERMAIL)
  S XMTEXT="MSGTEXT("
  S XMDUZ="GMRC-CCRA <-HSRM Transaction Error"
  S XMDUZ=.5
@@ -259,16 +293,35 @@ MESSAGE(MSGID,ABORT) ; Send a MailMan Message with the errors
  D ^XMD
  Q
 ANAK(NAKMSG,USERMAIL,ICN,DFN,APTTM,CONID) ; Application Error
- N PATNAME,EID,EIDS,MSGN,SITE,CONPAT
+ N PATNAME,EID,EIDS,MSGN,SITE,CONPAT,CS,FS,RS,ES,SS  ;Jan 21,2020 - PB - patch 735 new and then set FS,CS,RS,ES,SS
+ S FS=$G(HL("FS"),"|")
+ S CS=$E($G(HL("ECH")),1) S:CS="" CS="^"
+ S RS=$E($G(HL("ECH")),2) S:RS="" RS="~"
+ S ES=$E($G(HL("ECH")),3) S:ES="" ES="\"
+ S SS=$E($G(HL("ECH")),4) S:SS="" SS="&"
  Q:$G(NAKMSG)=""
  Q:$G(APTTM)=""
  Q:$G(CONID)=""
- S CONPAT=$$GET1^DIQ(123,CONID_",",.02,"I"),PATNAME=$$GET1^DIQ(123,CONID_",",.02,"E")
+ S CONPAT=$$GET1^DIQ(123,CONID_",",.02,"I")
+ S:$G(CONPAT)>0 PATNAME=$$GET1^DIQ(123,CONID_",",.02,"E")
+ S:$G(CONPAT)'>0 PATNAME=$$GET1^DIQ(123,$G(DFN)_","_.02,"E")
  S SITE=$$KSP^XUPARAM("INST")
- S:$G(ICN)="" ICN=$P(^DPT(CONPAT,"MPI"),"^",10)
+ I $G(ICN)="" S:$G(CONPAT)>0 ICN=$P(^DPT(CONPAT,"MPI"),"^",10)
+ I $G(ICN)="" S ICN="NOT IN MSG"
  S EID=$G(HL("EID"))
  S EIDS=$G(HL("EIDS"))
  S MSGN=$G(HL("MID"))
  S HLA("HLA",1)="MSA|AE|"_$G(MSGN)_"|"_$G(USERMAIL)_" "_$G(NAKMSG)_"|||"_$G(ICN)_"^"_$G(PATNAME)_"^"_SITE_"^"_CONID_"^"_APTTM
  D GENACK^HLMA1(EID,$G(HLMTIENS),EIDS,"LM",1,.RES)
+ Q
+INT ;
+ S RESULTS=0
+ S DUZ=""
+ S FS=$G(HL("FS"),"|")
+ S CS=$E($G(HL("ECH")),1) S:CS="" CS="^"
+ S RS=$E($G(HL("ECH")),2) S:RS="" RS="~"
+ S ES=$E($G(HL("ECH")),3) S:ES="" ES="\"
+ S SS=$E($G(HL("ECH")),4) S:SS="" SS="&"
+ S MID=$G(HL("MID"))
+ S (HLQUIT,HLNODE)=0
  Q

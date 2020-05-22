@@ -1,5 +1,5 @@
-IBCRHU1 ;ALB/ARH - RATES: UPLOAD UTILITIES ; 22-MAY-1996
- ;;2.0;INTEGRATED BILLING;**52,106,138,245,427,634**;21-MAR-94;Build 57
+IBCRHU1 ;ALB/ARH - RATES: UPLOAD UTILITIES ;22-MAY-1996
+ ;;2.0;INTEGRATED BILLING;**52,106,138,245,427,634,667**;21-MAR-94;Build 65
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -92,6 +92,6 @@ RVCD(CS,IBITEM) ; *634 - assign Revenue Code #124 to 5 ms-drg charges
  I $F("^881^882^883^885^886^",(U_IBITEM_U)) S IBMHDG=1
 RVCDQ Q IBMHDG
  ;
-VDATE(X) ; check for valid date
- N Y S Y=0 I +$G(X)?7N,X>2801010,X<3191232 S Y=1
+VDATE(X) ; check for valid date, *667 check for valid year
+ N Y S Y=0 I +$G(X)?7N,X>2801010,X<3491232 S Y=1
  Q Y

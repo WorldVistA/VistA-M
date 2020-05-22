@@ -1,130 +1,130 @@
-IBDEI34E ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52369,0)
- ;;=F33.1^^237^2593^11
- ;;^UTILITY(U,$J,358.3,52369,1,0)
+ ;;^UTILITY(U,$J,358.3,49837,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,49837,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,49838,0)
+ ;;=Z02.3^^193^2483^6
+ ;;^UTILITY(U,$J,358.3,49838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52369,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Moderate
- ;;^UTILITY(U,$J,358.3,52369,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,52369,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,52370,0)
- ;;=F33.2^^237^2593^12
- ;;^UTILITY(U,$J,358.3,52370,1,0)
+ ;;^UTILITY(U,$J,358.3,49838,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,49838,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,49838,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,49839,0)
+ ;;=Z02.89^^193^2483^1
+ ;;^UTILITY(U,$J,358.3,49839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52370,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Severe
- ;;^UTILITY(U,$J,358.3,52370,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,52370,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,52371,0)
- ;;=F33.3^^237^2593^7
- ;;^UTILITY(U,$J,358.3,52371,1,0)
+ ;;^UTILITY(U,$J,358.3,49839,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,49839,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,49839,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,49840,0)
+ ;;=Z00.8^^193^2483^8
+ ;;^UTILITY(U,$J,358.3,49840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52371,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,52371,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,52371,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,52372,0)
- ;;=F33.41^^237^2593^8
- ;;^UTILITY(U,$J,358.3,52372,1,0)
+ ;;^UTILITY(U,$J,358.3,49840,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,49840,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,49840,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,49841,0)
+ ;;=Z02.1^^193^2483^14
+ ;;^UTILITY(U,$J,358.3,49841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52372,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,52372,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,52372,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,52373,0)
- ;;=F33.42^^237^2593^9
- ;;^UTILITY(U,$J,358.3,52373,1,0)
+ ;;^UTILITY(U,$J,358.3,49841,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,49841,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,49841,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,49842,0)
+ ;;=Z01.810^^193^2483^2
+ ;;^UTILITY(U,$J,358.3,49842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52373,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,52373,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,52373,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,52374,0)
- ;;=F34.8^^237^2593^6
- ;;^UTILITY(U,$J,358.3,52374,1,0)
+ ;;^UTILITY(U,$J,358.3,49842,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,49842,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,49842,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,49843,0)
+ ;;=Z01.811^^193^2483^16
+ ;;^UTILITY(U,$J,358.3,49843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52374,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,52374,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,52374,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,52375,0)
- ;;=F32.8^^237^2593^1
- ;;^UTILITY(U,$J,358.3,52375,1,0)
+ ;;^UTILITY(U,$J,358.3,49843,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,49843,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,49843,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,49844,0)
+ ;;=Z01.812^^193^2483^13
+ ;;^UTILITY(U,$J,358.3,49844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52375,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,52375,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,52375,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,52376,0)
- ;;=F34.1^^237^2593^22
- ;;^UTILITY(U,$J,358.3,52376,1,0)
+ ;;^UTILITY(U,$J,358.3,49844,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,49844,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,49844,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,49845,0)
+ ;;=Z01.818^^193^2483^15
+ ;;^UTILITY(U,$J,358.3,49845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52376,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,52376,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,52376,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,52377,0)
- ;;=F32.9^^237^2593^5
- ;;^UTILITY(U,$J,358.3,52377,1,0)
+ ;;^UTILITY(U,$J,358.3,49845,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,49845,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,49845,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,49846,0)
+ ;;=Z71.0^^193^2483^9
+ ;;^UTILITY(U,$J,358.3,49846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52377,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52377,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,52377,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,52378,0)
- ;;=N94.3^^237^2593^23
- ;;^UTILITY(U,$J,358.3,52378,1,0)
+ ;;^UTILITY(U,$J,358.3,49846,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,49846,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,49846,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,49847,0)
+ ;;=Z59.8^^193^2483^10
+ ;;^UTILITY(U,$J,358.3,49847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52378,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,52378,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,52378,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,52379,0)
- ;;=G31.84^^237^2593^21
- ;;^UTILITY(U,$J,358.3,52379,1,0)
+ ;;^UTILITY(U,$J,358.3,49847,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,49847,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,49847,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,49848,0)
+ ;;=I20.0^^193^2484^5
+ ;;^UTILITY(U,$J,358.3,49848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52379,1,3,0)
- ;;=3^Mild Cognitive Impairment,So Stated
- ;;^UTILITY(U,$J,358.3,52379,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,52379,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,52380,0)
- ;;=F44.81^^237^2594^5
- ;;^UTILITY(U,$J,358.3,52380,1,0)
+ ;;^UTILITY(U,$J,358.3,49848,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,49848,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,49848,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,49849,0)
+ ;;=I25.2^^193^2484^4
+ ;;^UTILITY(U,$J,358.3,49849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52380,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,52380,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,52380,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,52381,0)
- ;;=F44.9^^237^2594^4
- ;;^UTILITY(U,$J,358.3,52381,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52381,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,49849,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,49849,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,49849,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,49850,0)
+ ;;=I20.8^^193^2484^2

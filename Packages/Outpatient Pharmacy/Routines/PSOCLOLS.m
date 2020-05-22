@@ -1,5 +1,5 @@
 PSOCLOLS ; HEC/hrub ;4 May 2019 18:48:29
- ;;7.0;OUTPATIENT PHARMACY;**457**;DEC 1997;Build 116
+ ;;7.0;OUTPATIENT PHARMACY;**457,593**;DEC 1997;Build 2
  ;
  W !,"Print clozapine prescriptions with lockout override.",!
  D DT^DICRW N %ZIS,DIR,PSOCLDT
@@ -49,7 +49,7 @@ RPTEND ;
  W !," ** End of Clozapine Override Report **",! Q
 QUE ;queue job
  N ZTDESC,ZTRTN,ZTSAVE,ZTSK
- S ZTRTN="DQ^"_$T(+0),ZTDESC="Clozapine Override Report",ZTSAVE("PSOCLDT")="" D ^%ZTLOAD
+ S ZTRTN="DQ^"_$T(+0),ZTDESC="Clozapine Override Report",ZTSAVE("PSOCLDT(")="" D ^%ZTLOAD  ;593 Added ( to ZTSAVE
  W !,$S($G(ZTSK):"Override Report queued as task #"_ZTSK,1:"* Report NOT queued.")
  Q
  ;

@@ -1,5 +1,5 @@
 ONCOAIP2 ;Hines OIFO/GWB,RTK - ONCO ABSTRACT-I SUB-ROUTINES ;04/12/01
- ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
+ ;;2.2;ONCOLOGY;**1,4,5,6,10**;Jul 31, 2013;Build 20
  ;
 LEUKEMIA(REC) ;Systemic diseases
  N H,HISTNAM,HSTFLD,ICDFILE,ICDNUM
@@ -21,9 +21,12 @@ MO ;ASSOCIATED WITH HIV (165.5,41)
  Q
  ;
 BLOOD ;PERIPHERAL BLOOD INVOLVEMENT (165.5,30.5)
- ;Mycosis fungoides and Sezary's Disease (9700-9701)
+ ; called from input transform -- only for Pre 2018 cases 
+ ; Mycosis fungoides and Sezary's Disease (9700-9701)
  N CHK,TMP
  S TMP=$$HIST^ONCFUNC(DA),Y="@301"
+ I '$D(DATEDX) Q
+ I DATEDX>3171231 Q
  F CHK="97002","97003","97012","97013" I CHK=TMP S Y=30.5 Q
  Q
  ;
@@ -39,13 +42,15 @@ LN ;BRAIN AND CEREBRAL MENINGES (SEER EOD)
  ;OTHER PARTS OF CENTRAL NERVOUS SYSTEM (SEER EOD)
  N T
  S T=$P($G(^ONCO(165.5,D0,2)),U,1)
- I (T=67700)!($E(T,3,4)=71)!($E(T,3,4)=72) D  S Y="@26" Q
+ I (T=67700)!($E(T,3,4)=71)!($E(T,3,4)=72) D
  .I $P($G(^ONCO(165.5,D0,0)),U,16)<3160101 S $P(^ONCO(165.5,D0,2),U,11)=9
  .S $P(^ONCO(165.5,D0,2),U,12)=99 ;Regional Nodes Positive
  .S $P(^ONCO(165.5,D0,2),U,13)=99 ;Regional Nodes Examined
  .I $P($G(^ONCO(165.5,D0,0)),U,16)<3160101 W !,"LYMPH NODES............: Not Applicable"
  .W !,"REGIONAL NODES EXAMINED: Unk; not stated; death cert only"
  .W !,"REGIONAL NODES POSITIVE: Unk if nodes + or -, NA"
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)<3180000 S Y="@26" Q
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)>3171231 S Y=1772 Q
  .Q
  ;else just exit back to code where called [in ABS edit template]
  Q
@@ -54,7 +59,7 @@ EDTMOD ;EXTRACT EDITS THAT NEED TO BE MANUALLY FIXED TO PASS
  S SECTION="EDITS Modifications" D SECTION^ONCOAIP
  N DI,DIC,DR,DA,DIQ,ONC
  S DIC="^ONCO(165.5,"
- S DR="999.1:999.99"
+ S DR="999.1:999.99;7014;7018"
  S DA=D0,DIQ="ONC" D EN^DIQ1
  ;S X=ONC(165.5,D0,91) D UCASE^ONCPCI S ONC(165.5,D0,91)=X
  W !," Address at DX--State........: ",ONC(165.5,D0,999.26),?40,"Address at DX--Country......: ",ONC(165.5,D0,999.27)
@@ -71,8 +76,9 @@ EDTMOD ;EXTRACT EDITS THAT NEED TO BE MANUALLY FIXED TO PASS
  W !," RX Date-Surg Disch Flag.....: ",ONC(165.5,D0,999.11),?40,"Subsq RX 3rd Crs Date Flag..: ",ONC(165.5,D0,999.24)
  W !," RX Date-Radiation Flag......: ",ONC(165.5,D0,999.12),?40,"Subsq RX 4th Crs Date Flag..: ",ONC(165.5,D0,999.25)
  W !," RX Date-Rad Ended Flag......: ",ONC(165.5,D0,999.13)
+ W !!," Date Regional LN Disx Flag..: ",ONC(165.5,D0,7014),?40,"Date Sentinel LN Biopsy Flag: ",ONC(165.5,D0,7018)
  W !,DASHES
- W !,"* * * These fields should ONLY be used to correct an EDIT that can't * * *",!,"* * * be cleared.  Otherwise these fields should NOT be modified.    * * *"
+ W !,"* * * These fields should ONLY be used to correct an EDIT that cannot * * *",!,"* * * be cleared.  Otherwise these fields should NOT be modified.     * * *"
  Q
  ;
 UDFMOD ;ALLOW USERS TO ENTER/EDIT USER-DEFINED FIELDS
@@ -89,3 +95,172 @@ UDFMOD ;ALLOW USERS TO ENTER/EDIT USER-DEFINED FIELDS
  W !,DASHES
  Q
  ;
+EXTLN ;Display retired EOD Extension & LN fields for 2018-19 cases
+ N DI,DIC,DR,DA,DIQ,ONC
+ S DIC="^ONCO(165.5,"
+ S DR="30;31"
+ S DA=D0,DIQ="ONC" D EN^DIQ1
+ W !!,"*** Display of two retired EOD values for reference ***"
+ W !," Extension.............: ",ONC(165.5,D0,30)
+ W !," Lymph Nodes...........: ",ONC(165.5,D0,31)
+ W !
+ Q
+CLINTNM ;Display retired Clinical TNM fields for 2018-19 cases
+ N DI,DIC,DR,DA,DIQ,ONC
+ S DIC="^ONCO(165.5,"
+ S DR="37.1:38"
+ S DA=D0,DIQ="ONC" D EN^DIQ1
+ W !,"*** Display of four retired Clinical TNM values for reference ***"
+ W !," Clinical T............: ",ONC(165.5,D0,37.1)
+ W !," Clinical N............: ",ONC(165.5,D0,37.2)
+ W !," Clinical M............: ",ONC(165.5,D0,37.3)
+ W !," Clinical Stage Group..: ",ONC(165.5,D0,38)
+ W !
+ Q
+PATHTNM ;Display retired Pathological TNM fields for 2018-19 cases
+ N DI,DIC,DR,DA,DIQ,ONC
+ S DIC="^ONCO(165.5,"
+ S DR="85:88"
+ S DA=D0,DIQ="ONC" D EN^DIQ1
+ W !,"*** Display of four retired Pathologic TNM values for reference ***"
+ W !," Pathologic T............: ",ONC(165.5,D0,85)
+ W !," Pathologic N............: ",ONC(165.5,D0,86)
+ W !," Pathologic M............: ",ONC(165.5,D0,87)
+ W !," Pathologic Stage Group..: ",ONC(165.5,D0,88)
+ W !
+ Q
+RADRET ;Display retired Radiology fields for 2018,19 cases
+ N DI,DIC,DR,DA,DIQ,ONC
+ S DIC="^ONCO(165.5,"
+ S DR="56;125;363:363.1;442:443"
+ S DA=D0,DIQ="ONC" D EN^DIQ1
+ W !!,"*** Display of six retired Radiology fields for reference ***"
+ W !," Radiation Treatment Volume....: ",ONC(165.5,D0,125)
+ W !," Regional Treatment Modality...: ",ONC(165.5,D0,363)
+ W !," Regional Dose: cGy............: ",ONC(165.5,D0,442)
+ W !," Boost Treatment Modality......: ",ONC(165.5,D0,363.1)
+ W !," Boost dose: cGy...............: ",ONC(165.5,D0,443)
+ W !," Number of TXS to this volume..: ",ONC(165.5,D0,56)
+ Q
+RADSKP ;
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",1)'="" Q
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",2)'="" Q
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",3)'="" Q
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",4)'="" Q
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",5)'="" Q
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",6)'="" Q
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",7)'="" Q
+ W ! S Y="@49"  ;if all 7 above = "" then skip PHASE II & III fields
+ Q
+RADSTF ;
+ ;PART 1 IF = 00
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",4)=1 D  ;IF PHASE 1 RAD = 00
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",5)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",6)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",2)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",1)="00000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",3)="000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",7)="000000"
+ .W !,"PHASE 1 RADIATION TREATMENT VOLUME...: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 1 RAD TO DRAINING LYMPH NODE...: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 1 RADIATION TREATMENT MODALITY.: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 1 RAD EXTERNAL BEAM PLAN TECH..: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 1 DOSE PER FRACTION............: 00000"
+ .W !,"PHASE 1 NUMBER OF FRACTIONS..........: 000"
+ .W !,"PHASE 1 TOTAL DOSE...................: 000000"
+ .S $P(^ONCO(165.5,DA,"NCR18B"),U,1)="00"
+ .S $P(^ONCO(165.5,DA,"NCR18B"),U,2)="00"
+ .S $P(^ONCO(165.5,DA,"NCR18B"),U,3)="000000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",11)=1
+ .D RADSTF2  ;If no PHASE I Rad then stuff/skip PHASE II & III fields
+ ;
+ ;PART 2 IF = 99
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",4)=70 D  ;IF PHASE 1 RAD = 99
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",5)=11
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",6)=18
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",2)=14
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",1)="99999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",3)="999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",7)="999999"
+ .W !,"PHASE 1 RADIATION TREATMENT VOLUME...: 99  UNKNOWN"
+ .W !,"PHASE 1 RAD TO DRAINING LYMPH NODE...: 99  UNKNOWN"
+ .W !,"PHASE 1 RADIATION TREATMENT MODALITY.: 99  UNKNOWN"
+ .W !,"PHASE 1 RAD EXTERNAL BEAM PLAN TECH..: 99  UNKNOWN"
+ .W !,"PHASE 1 DOSE PER FRACTION............: 99999"
+ .W !,"PHASE 1 NUMBER OF FRACTIONS..........: 999"
+ .W !,"PHASE 1 TOTAL DOSE...................: 999999"
+ .S $P(^ONCO(165.5,DA,"NCR18B"),U,1)="99"
+ .S $P(^ONCO(165.5,DA,"NCR18B"),U,2)="99"
+ .S $P(^ONCO(165.5,DA,"NCR18B"),U,3)="999999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",11)=70
+ .D RADSTF2  ;If no PHASE I Rad then stuff/skip PHASE II & III fields
+ Q
+RADSTF2 ;
+ ;PART 1 IF = 00
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",11)=1 D
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",12)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",13)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",9)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",8)="00000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",10)="000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",14)="000000"
+ .W !,"PHASE 2 RADIATION TREATMENT VOLUME...: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 2 RAD TO DRAINING LYMPH NODE...: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 2 RADIATION TREATMENT MODALITY.: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 2 RAD EXTERNAL BEAM PLAN TECH..: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 2 DOSE PER FRACTION............: 00000"
+ .W !,"PHASE 2 NUMBER OF FRACTIONS..........: 000"
+ .W !,"PHASE 2 TOTAL DOSE...................: 000000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",18)=1
+ .D RADSTF3  ;If no PHASE II Rad then stuff/skip PHASE III fields
+ ;
+ ;PART 2 IF = 99
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",11)=70 D
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",12)=11
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",13)=18
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",9)=14
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",8)="99999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",10)="999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",14)="999999"
+ .W !,"PHASE 2 RADIATION TREATMENT VOLUME...: 99  UNKNOWN"
+ .W !,"PHASE 2 RAD TO DRAINING LYMPH NODE...: 99  UNKNOWN"
+ .W !,"PHASE 2 RADIATION TREATMENT MODALITY.: 99  UNKNOWN"
+ .W !,"PHASE 2 RAD EXTERNAL BEAM PLAN TECH..: 99  UNKNOWN"
+ .W !,"PHASE 2 DOSE PER FRACTION............: 99999"
+ .W !,"PHASE 2 NUMBER OF FRACTIONS..........: 999"
+ .W !,"PHASE 2 TOTAL DOSE...................: 999999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",18)=70
+ .D RADSTF3  ;If no PHASE II Rad then stuff/skip PHASE III fields
+ Q
+RADSTF3 ;
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",18)=1 D
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",19)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",20)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",16)=1
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",15)="00000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",17)="000"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",21)="000000"
+ .W !,"PHASE 3 RADIATION TREATMENT VOLUME...: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 3 RAD TO DRAINING LYMPH NODE...: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 3 RADIATION TREATMENT MODALITY.: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 3 RAD EXTERNAL BEAM PLAN TECH..: 00  NO RADIATION TREATMENT"
+ .W !,"PHASE 3 DOSE PER FRACTION............: 00000"
+ .W !,"PHASE 3 NUMBER OF FRACTIONS..........: 000"
+ .W !,"PHASE 3 TOTAL DOSE...................: 000000"
+ .S Y=7024  ;If no PHASE III Rad then stuff and jump over
+ I $P($G(^ONCO(165.5,D0,"RAD18")),"^",18)=70 D
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",19)=11
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",20)=18
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",16)=14
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",15)="99999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",17)="999"
+ .S $P(^ONCO(165.5,D0,"RAD18"),"^",21)="999999"
+ .W !,"PHASE 3 RADIATION TREATMENT VOLUME...: 99   UNKNOWN"
+ .W !,"PHASE 3 RAD TO DRAINING LYMPH NODE...: 99   UNKNOWN"
+ .W !,"PHASE 3 RADIATION TREATMENT MODALITY.: 99   UNKNOWN"
+ .W !,"PHASE 3 RAD EXTERNAL BEAM PLAN TECH..: 99   UNKNOWN"
+ .W !,"PHASE 3 DOSE PER FRACTION............: 99999"
+ .W !,"PHASE 3 NUMBER OF FRACTIONS..........: 999"
+ .W !,"PHASE 3 TOTAL DOSE...................: 999999"
+ .S Y=7024  ;If no PHASE III Rad then stuff and jump over
+ Q

@@ -1,128 +1,114 @@
-IBDEI2D2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2D2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40037,1,2,0)
- ;;=2^VALVULOPLASTY TRICUSPID w/o RING INSERT
- ;;^UTILITY(U,$J,358.3,40037,1,4,0)
- ;;=4^33463
- ;;^UTILITY(U,$J,358.3,40038,0)
- ;;=33464^^155^1944^11^^^^1
- ;;^UTILITY(U,$J,358.3,40038,1,0)
+ ;;^UTILITY(U,$J,358.3,37696,1,4,0)
+ ;;=4^S82.845M
+ ;;^UTILITY(U,$J,358.3,37696,2)
+ ;;=^5042553
+ ;;^UTILITY(U,$J,358.3,37697,0)
+ ;;=S82.844K^^146^1917^236
+ ;;^UTILITY(U,$J,358.3,37697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40038,1,2,0)
- ;;=2^VALVULOPLASTY TRICUSPID w/ RING INSERT
- ;;^UTILITY(U,$J,358.3,40038,1,4,0)
- ;;=4^33464
- ;;^UTILITY(U,$J,358.3,40039,0)
- ;;=33510^^155^1944^2^^^^1
- ;;^UTILITY(U,$J,358.3,40039,1,0)
+ ;;^UTILITY(U,$J,358.3,37697,1,3,0)
+ ;;=3^Nondisp bimal fx rt lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37697,1,4,0)
+ ;;=4^S82.844K
+ ;;^UTILITY(U,$J,358.3,37697,2)
+ ;;=^5042536
+ ;;^UTILITY(U,$J,358.3,37698,0)
+ ;;=S82.845K^^146^1917^235
+ ;;^UTILITY(U,$J,358.3,37698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40039,1,2,0)
- ;;=2^CABG VEIN SINGLE
- ;;^UTILITY(U,$J,358.3,40039,1,4,0)
- ;;=4^33510
- ;;^UTILITY(U,$J,358.3,40040,0)
- ;;=33641^^155^1944^6^^^^1
- ;;^UTILITY(U,$J,358.3,40040,1,0)
+ ;;^UTILITY(U,$J,358.3,37698,1,3,0)
+ ;;=3^Nondisp bimal fx lft lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37698,1,4,0)
+ ;;=4^S82.845K
+ ;;^UTILITY(U,$J,358.3,37698,2)
+ ;;=^5042552
+ ;;^UTILITY(U,$J,358.3,37699,0)
+ ;;=S82.62XN^^146^1917^43
+ ;;^UTILITY(U,$J,358.3,37699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40040,1,2,0)
- ;;=2^REPAIR HEART SEPTUM DEFECT
- ;;^UTILITY(U,$J,358.3,40040,1,4,0)
- ;;=4^33641
- ;;^UTILITY(U,$J,358.3,40041,0)
- ;;=35216^^155^1944^4^^^^1
- ;;^UTILITY(U,$J,358.3,40041,1,0)
+ ;;^UTILITY(U,$J,358.3,37699,1,3,0)
+ ;;=3^Disp fx ltrl mall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37699,1,4,0)
+ ;;=4^S82.62XN
+ ;;^UTILITY(U,$J,358.3,37699,2)
+ ;;=^5042338
+ ;;^UTILITY(U,$J,358.3,37700,0)
+ ;;=S82.61XN^^146^1917^46
+ ;;^UTILITY(U,$J,358.3,37700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40041,1,2,0)
- ;;=2^RPR BLD VESSEL,DIRECT,INTRATHOR W/O BYPASS
- ;;^UTILITY(U,$J,358.3,40041,1,4,0)
- ;;=4^35216
- ;;^UTILITY(U,$J,358.3,40042,0)
- ;;=35276^^155^1944^5^^^^1
- ;;^UTILITY(U,$J,358.3,40042,1,0)
+ ;;^UTILITY(U,$J,358.3,37700,1,3,0)
+ ;;=3^Disp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37700,1,4,0)
+ ;;=4^S82.61XN
+ ;;^UTILITY(U,$J,358.3,37700,2)
+ ;;=^5042322
+ ;;^UTILITY(U,$J,358.3,37701,0)
+ ;;=S82.62XM^^146^1917^44
+ ;;^UTILITY(U,$J,358.3,37701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40042,1,2,0)
- ;;=2^RPR BLD VESSEL,W/ GRAFT OTH THAN VEIN
- ;;^UTILITY(U,$J,358.3,40042,1,4,0)
- ;;=4^35276
- ;;^UTILITY(U,$J,358.3,40043,0)
- ;;=35685^^155^1944^1^^^^1
- ;;^UTILITY(U,$J,358.3,40043,1,0)
+ ;;^UTILITY(U,$J,358.3,37701,1,3,0)
+ ;;=3^Disp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37701,1,4,0)
+ ;;=4^S82.62XM
+ ;;^UTILITY(U,$J,358.3,37701,2)
+ ;;=^5042337
+ ;;^UTILITY(U,$J,358.3,37702,0)
+ ;;=S82.61XM^^146^1917^47
+ ;;^UTILITY(U,$J,358.3,37702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40043,1,2,0)
- ;;=2^BYPASS GRAFT PATENCY/PATCH
- ;;^UTILITY(U,$J,358.3,40043,1,4,0)
- ;;=4^35685
- ;;^UTILITY(U,$J,358.3,40044,0)
- ;;=99415^^155^1945^1^^^^1
- ;;^UTILITY(U,$J,358.3,40044,1,0)
+ ;;^UTILITY(U,$J,358.3,37702,1,3,0)
+ ;;=3^Disp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37702,1,4,0)
+ ;;=4^S82.61XM
+ ;;^UTILITY(U,$J,358.3,37702,2)
+ ;;=^5042321
+ ;;^UTILITY(U,$J,358.3,37703,0)
+ ;;=S82.62XK^^146^1917^42
+ ;;^UTILITY(U,$J,358.3,37703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40044,1,2,0)
- ;;=2^PROLONGED SVS W/ PT,1ST HR
- ;;^UTILITY(U,$J,358.3,40044,1,4,0)
- ;;=4^99415
- ;;^UTILITY(U,$J,358.3,40045,0)
- ;;=99416^^155^1945^2^^^^1
- ;;^UTILITY(U,$J,358.3,40045,1,0)
+ ;;^UTILITY(U,$J,358.3,37703,1,3,0)
+ ;;=3^Disp fx ltrl mall lft fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37703,1,4,0)
+ ;;=4^S82.62XK
+ ;;^UTILITY(U,$J,358.3,37703,2)
+ ;;=^5042336
+ ;;^UTILITY(U,$J,358.3,37704,0)
+ ;;=S82.61XK^^146^1917^45
+ ;;^UTILITY(U,$J,358.3,37704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40045,1,2,0)
- ;;=2^PROLONGED SVS,EA ADDL 30 MIN
- ;;^UTILITY(U,$J,358.3,40045,1,4,0)
- ;;=4^99416
- ;;^UTILITY(U,$J,358.3,40046,0)
- ;;=I27.9^^156^1946^1
- ;;^UTILITY(U,$J,358.3,40046,1,0)
+ ;;^UTILITY(U,$J,358.3,37704,1,3,0)
+ ;;=3^Disp fx ltrl mall rt fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37704,1,4,0)
+ ;;=4^S82.61XK
+ ;;^UTILITY(U,$J,358.3,37704,2)
+ ;;=^5042320
+ ;;^UTILITY(U,$J,358.3,37705,0)
+ ;;=S82.855N^^146^1917^374
+ ;;^UTILITY(U,$J,358.3,37705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40046,1,3,0)
- ;;=3^Pulmonary heart disease, unspecified
- ;;^UTILITY(U,$J,358.3,40046,1,4,0)
- ;;=4^I27.9
- ;;^UTILITY(U,$J,358.3,40046,2)
- ;;=^5007154
- ;;^UTILITY(U,$J,358.3,40047,0)
- ;;=D61.09^^156^1947^4
- ;;^UTILITY(U,$J,358.3,40047,1,0)
+ ;;^UTILITY(U,$J,358.3,37705,1,3,0)
+ ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37705,1,4,0)
+ ;;=4^S82.855N
+ ;;^UTILITY(U,$J,358.3,37705,2)
+ ;;=^5042650
+ ;;^UTILITY(U,$J,358.3,37706,0)
+ ;;=S82.854N^^146^1917^379
+ ;;^UTILITY(U,$J,358.3,37706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40047,1,3,0)
- ;;=3^Constitutional aplastic anemia NEC
- ;;^UTILITY(U,$J,358.3,40047,1,4,0)
- ;;=4^D61.09
- ;;^UTILITY(U,$J,358.3,40047,2)
- ;;=^334036
- ;;^UTILITY(U,$J,358.3,40048,0)
- ;;=D61.810^^156^1947^1
- ;;^UTILITY(U,$J,358.3,40048,1,0)
+ ;;^UTILITY(U,$J,358.3,37706,1,3,0)
+ ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37706,1,4,0)
+ ;;=4^S82.854N
+ ;;^UTILITY(U,$J,358.3,37706,2)
+ ;;=^5042634
+ ;;^UTILITY(U,$J,358.3,37707,0)
+ ;;=S82.855M^^146^1917^375
+ ;;^UTILITY(U,$J,358.3,37707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40048,1,3,0)
- ;;=3^Antineoplastic chemotherapy induced pancytopenia
- ;;^UTILITY(U,$J,358.3,40048,1,4,0)
- ;;=4^D61.810
- ;;^UTILITY(U,$J,358.3,40048,2)
- ;;=^5002339
- ;;^UTILITY(U,$J,358.3,40049,0)
- ;;=D61.2^^156^1947^2
- ;;^UTILITY(U,$J,358.3,40049,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40049,1,3,0)
- ;;=3^Aplastic anemia due to other external agents
- ;;^UTILITY(U,$J,358.3,40049,1,4,0)
- ;;=4^D61.2
- ;;^UTILITY(U,$J,358.3,40049,2)
- ;;=^5002337
- ;;^UTILITY(U,$J,358.3,40050,0)
- ;;=D61.1^^156^1947^5
- ;;^UTILITY(U,$J,358.3,40050,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40050,1,3,0)
- ;;=3^Drug-induced aplastic anemia
- ;;^UTILITY(U,$J,358.3,40050,1,4,0)
- ;;=4^D61.1
- ;;^UTILITY(U,$J,358.3,40050,2)
- ;;=^5002336
- ;;^UTILITY(U,$J,358.3,40051,0)
- ;;=D61.89^^156^1947^3
- ;;^UTILITY(U,$J,358.3,40051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40051,1,3,0)
- ;;=3^Aplastic anemias and other bone marrow failure syndromes NEC
+ ;;^UTILITY(U,$J,358.3,37707,1,3,0)
+ ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion

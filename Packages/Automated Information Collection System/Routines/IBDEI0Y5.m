@@ -1,350 +1,126 @@
-IBDEI0Y5 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0Y5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44802,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,44803,0)
- ;;=L89.94^^133^1913^106
- ;;^UTILITY(U,$J,358.3,44803,1,0)
+ ;;^UTILITY(U,$J,358.3,15209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44803,1,3,0)
- ;;=3^Pressure Ulcer Unspec Site,Stage 4
- ;;^UTILITY(U,$J,358.3,44803,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,44803,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,44804,0)
- ;;=L89.95^^133^1913^108
- ;;^UTILITY(U,$J,358.3,44804,1,0)
+ ;;^UTILITY(U,$J,358.3,15209,1,3,0)
+ ;;=3^Hyperbilirubinemia,Familial nonhemolytic
+ ;;^UTILITY(U,$J,358.3,15209,1,4,0)
+ ;;=4^E80.4
+ ;;^UTILITY(U,$J,358.3,15209,2)
+ ;;=^5002987
+ ;;^UTILITY(U,$J,358.3,15210,0)
+ ;;=C24.1^^85^843^25
+ ;;^UTILITY(U,$J,358.3,15210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44804,1,3,0)
- ;;=3^Pressure Ulcer Unspec Site,Unstageable
- ;;^UTILITY(U,$J,358.3,44804,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,44804,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,44805,0)
- ;;=L89.41^^133^1913^1
- ;;^UTILITY(U,$J,358.3,44805,1,0)
+ ;;^UTILITY(U,$J,358.3,15210,1,3,0)
+ ;;=3^Malignant neoplasm,Ampulla
+ ;;^UTILITY(U,$J,358.3,15210,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,15210,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,15211,0)
+ ;;=C22.1^^85^843^23
+ ;;^UTILITY(U,$J,358.3,15211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44805,1,3,0)
- ;;=3^Pressure Ulcer Contig Site Back/Buttock/Hip,Stage 1
- ;;^UTILITY(U,$J,358.3,44805,1,4,0)
- ;;=4^L89.41
- ;;^UTILITY(U,$J,358.3,44805,2)
- ;;=^5009405
- ;;^UTILITY(U,$J,358.3,44806,0)
- ;;=L89.42^^133^1913^2
- ;;^UTILITY(U,$J,358.3,44806,1,0)
+ ;;^UTILITY(U,$J,358.3,15211,1,3,0)
+ ;;=3^Intrahepatic Bile Duct Carcinoma
+ ;;^UTILITY(U,$J,358.3,15211,1,4,0)
+ ;;=4^C22.1
+ ;;^UTILITY(U,$J,358.3,15211,2)
+ ;;=^5000934
+ ;;^UTILITY(U,$J,358.3,15212,0)
+ ;;=C24.8^^85^843^28
+ ;;^UTILITY(U,$J,358.3,15212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44806,1,3,0)
- ;;=3^Pressure Ulcer Contig Site Back/Buttock/Hip,Stage 2
- ;;^UTILITY(U,$J,358.3,44806,1,4,0)
- ;;=4^L89.42
- ;;^UTILITY(U,$J,358.3,44806,2)
- ;;=^5009406
- ;;^UTILITY(U,$J,358.3,44807,0)
- ;;=L89.43^^133^1913^3
- ;;^UTILITY(U,$J,358.3,44807,1,0)
+ ;;^UTILITY(U,$J,358.3,15212,1,3,0)
+ ;;=3^Malignant neoplasm,Overlapping bile duct
+ ;;^UTILITY(U,$J,358.3,15212,1,4,0)
+ ;;=4^C24.8
+ ;;^UTILITY(U,$J,358.3,15212,2)
+ ;;=^5000941
+ ;;^UTILITY(U,$J,358.3,15213,0)
+ ;;=K83.1^^85^843^29
+ ;;^UTILITY(U,$J,358.3,15213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44807,1,3,0)
- ;;=3^Pressure Ulcer Contig Site Back/Buttock/Hip,Stage 3
- ;;^UTILITY(U,$J,358.3,44807,1,4,0)
- ;;=4^L89.43
- ;;^UTILITY(U,$J,358.3,44807,2)
- ;;=^5009407
- ;;^UTILITY(U,$J,358.3,44808,0)
- ;;=L89.44^^133^1913^4
- ;;^UTILITY(U,$J,358.3,44808,1,0)
+ ;;^UTILITY(U,$J,358.3,15213,1,3,0)
+ ;;=3^Obstruction,Ampulla or Bile duct
+ ;;^UTILITY(U,$J,358.3,15213,1,4,0)
+ ;;=4^K83.1
+ ;;^UTILITY(U,$J,358.3,15213,2)
+ ;;=^5008876
+ ;;^UTILITY(U,$J,358.3,15214,0)
+ ;;=K82.9^^85^843^20
+ ;;^UTILITY(U,$J,358.3,15214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44808,1,3,0)
- ;;=3^Pressure Ulcer Contig Site Back/Buttock/Hip,Stage 4
- ;;^UTILITY(U,$J,358.3,44808,1,4,0)
- ;;=4^L89.44
- ;;^UTILITY(U,$J,358.3,44808,2)
- ;;=^5009408
- ;;^UTILITY(U,$J,358.3,44809,0)
- ;;=L89.45^^133^1913^5
- ;;^UTILITY(U,$J,358.3,44809,1,0)
+ ;;^UTILITY(U,$J,358.3,15214,1,3,0)
+ ;;=3^Disease of Gallbladder,unspec
+ ;;^UTILITY(U,$J,358.3,15214,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,15214,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,15215,0)
+ ;;=K80.36^^85^843^6
+ ;;^UTILITY(U,$J,358.3,15215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44809,1,3,0)
- ;;=3^Pressure Ulcer Contig Site Back/Buttock/Hip,Unstageable
- ;;^UTILITY(U,$J,358.3,44809,1,4,0)
- ;;=4^L89.45
- ;;^UTILITY(U,$J,358.3,44809,2)
- ;;=^5009409
- ;;^UTILITY(U,$J,358.3,44810,0)
- ;;=L89.40^^133^1913^6
- ;;^UTILITY(U,$J,358.3,44810,1,0)
+ ;;^UTILITY(U,$J,358.3,15215,1,3,0)
+ ;;=3^Calculus,Bile Duct w/ Chr Cholangitis No Obstruction,Acute/Chr
+ ;;^UTILITY(U,$J,358.3,15215,1,4,0)
+ ;;=4^K80.36
+ ;;^UTILITY(U,$J,358.3,15215,2)
+ ;;=^5008854
+ ;;^UTILITY(U,$J,358.3,15216,0)
+ ;;=K80.37^^85^843^5
+ ;;^UTILITY(U,$J,358.3,15216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44810,1,3,0)
- ;;=3^Pressure Ulcer Contig Site Back/Buttock/Hip,Unspec Stage
- ;;^UTILITY(U,$J,358.3,44810,1,4,0)
- ;;=4^L89.40
- ;;^UTILITY(U,$J,358.3,44810,2)
- ;;=^5009404
- ;;^UTILITY(U,$J,358.3,44811,0)
- ;;=L89.611^^133^1913^73
- ;;^UTILITY(U,$J,358.3,44811,1,0)
+ ;;^UTILITY(U,$J,358.3,15216,1,3,0)
+ ;;=3^Calculus,Bile Duct w/ Chr Cholangitis & Obstruction,Acute/Chr
+ ;;^UTILITY(U,$J,358.3,15216,1,4,0)
+ ;;=4^K80.37
+ ;;^UTILITY(U,$J,358.3,15216,2)
+ ;;=^5008855
+ ;;^UTILITY(U,$J,358.3,15217,0)
+ ;;=K80.51^^85^843^7
+ ;;^UTILITY(U,$J,358.3,15217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44811,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 1
- ;;^UTILITY(U,$J,358.3,44811,1,4,0)
- ;;=4^L89.611
- ;;^UTILITY(U,$J,358.3,44811,2)
- ;;=^5009431
- ;;^UTILITY(U,$J,358.3,44812,0)
- ;;=L89.811^^133^1913^7
- ;;^UTILITY(U,$J,358.3,44812,1,0)
+ ;;^UTILITY(U,$J,358.3,15217,1,3,0)
+ ;;=3^Calculus,Bile Duct w/ Obstruction no cholangitis
+ ;;^UTILITY(U,$J,358.3,15217,1,4,0)
+ ;;=4^K80.51
+ ;;^UTILITY(U,$J,358.3,15217,2)
+ ;;=^5008864
+ ;;^UTILITY(U,$J,358.3,15218,0)
+ ;;=K80.50^^85^843^8
+ ;;^UTILITY(U,$J,358.3,15218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44812,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 1
- ;;^UTILITY(U,$J,358.3,44812,1,4,0)
- ;;=4^L89.811
- ;;^UTILITY(U,$J,358.3,44812,2)
- ;;=^5009441
- ;;^UTILITY(U,$J,358.3,44813,0)
- ;;=L89.812^^133^1913^8
- ;;^UTILITY(U,$J,358.3,44813,1,0)
+ ;;^UTILITY(U,$J,358.3,15218,1,3,0)
+ ;;=3^Calculus,Bile Duct,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15218,1,4,0)
+ ;;=4^K80.50
+ ;;^UTILITY(U,$J,358.3,15218,2)
+ ;;=^5008863
+ ;;^UTILITY(U,$J,358.3,15219,0)
+ ;;=K82.4^^85^843^16
+ ;;^UTILITY(U,$J,358.3,15219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44813,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 2
- ;;^UTILITY(U,$J,358.3,44813,1,4,0)
- ;;=4^L89.812
- ;;^UTILITY(U,$J,358.3,44813,2)
- ;;=^5009442
- ;;^UTILITY(U,$J,358.3,44814,0)
- ;;=L89.813^^133^1913^9
- ;;^UTILITY(U,$J,358.3,44814,1,0)
+ ;;^UTILITY(U,$J,358.3,15219,1,3,0)
+ ;;=3^Cholesterolosis of Gallbladder
+ ;;^UTILITY(U,$J,358.3,15219,1,4,0)
+ ;;=4^K82.4
+ ;;^UTILITY(U,$J,358.3,15219,2)
+ ;;=^265888
+ ;;^UTILITY(U,$J,358.3,15220,0)
+ ;;=K83.8^^85^843^18
+ ;;^UTILITY(U,$J,358.3,15220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44814,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 3
- ;;^UTILITY(U,$J,358.3,44814,1,4,0)
- ;;=4^L89.813
- ;;^UTILITY(U,$J,358.3,44814,2)
- ;;=^5009443
- ;;^UTILITY(U,$J,358.3,44815,0)
- ;;=L89.814^^133^1913^10
- ;;^UTILITY(U,$J,358.3,44815,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44815,1,3,0)
- ;;=3^Pressure Ulcer Head,Stage 4
- ;;^UTILITY(U,$J,358.3,44815,1,4,0)
- ;;=4^L89.814
- ;;^UTILITY(U,$J,358.3,44815,2)
- ;;=^5009444
- ;;^UTILITY(U,$J,358.3,44816,0)
- ;;=L89.819^^133^1913^11
- ;;^UTILITY(U,$J,358.3,44816,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44816,1,3,0)
- ;;=3^Pressure Ulcer Head,Unspec Stage
- ;;^UTILITY(U,$J,358.3,44816,1,4,0)
- ;;=4^L89.819
- ;;^UTILITY(U,$J,358.3,44816,2)
- ;;=^5009445
- ;;^UTILITY(U,$J,358.3,44817,0)
- ;;=L89.810^^133^1913^12
- ;;^UTILITY(U,$J,358.3,44817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44817,1,3,0)
- ;;=3^Pressure Ulcer Head,Unstageable
- ;;^UTILITY(U,$J,358.3,44817,1,4,0)
- ;;=4^L89.810
- ;;^UTILITY(U,$J,358.3,44817,2)
- ;;=^5009440
- ;;^UTILITY(U,$J,358.3,44818,0)
- ;;=L89.521^^133^1913^13
- ;;^UTILITY(U,$J,358.3,44818,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44818,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 1
- ;;^UTILITY(U,$J,358.3,44818,1,4,0)
- ;;=4^L89.521
- ;;^UTILITY(U,$J,358.3,44818,2)
- ;;=^5009421
- ;;^UTILITY(U,$J,358.3,44819,0)
- ;;=L89.522^^133^1913^14
- ;;^UTILITY(U,$J,358.3,44819,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44819,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 2
- ;;^UTILITY(U,$J,358.3,44819,1,4,0)
- ;;=4^L89.522
- ;;^UTILITY(U,$J,358.3,44819,2)
- ;;=^5009422
- ;;^UTILITY(U,$J,358.3,44820,0)
- ;;=L89.523^^133^1913^15
- ;;^UTILITY(U,$J,358.3,44820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44820,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 3
- ;;^UTILITY(U,$J,358.3,44820,1,4,0)
- ;;=4^L89.523
- ;;^UTILITY(U,$J,358.3,44820,2)
- ;;=^5009423
- ;;^UTILITY(U,$J,358.3,44821,0)
- ;;=L89.524^^133^1913^16
- ;;^UTILITY(U,$J,358.3,44821,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44821,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 4
- ;;^UTILITY(U,$J,358.3,44821,1,4,0)
- ;;=4^L89.524
- ;;^UTILITY(U,$J,358.3,44821,2)
- ;;=^5009424
- ;;^UTILITY(U,$J,358.3,44822,0)
- ;;=L89.529^^133^1913^17
- ;;^UTILITY(U,$J,358.3,44822,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44822,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Unspec Stage
- ;;^UTILITY(U,$J,358.3,44822,1,4,0)
- ;;=4^L89.529
- ;;^UTILITY(U,$J,358.3,44822,2)
- ;;=^5133674
- ;;^UTILITY(U,$J,358.3,44823,0)
- ;;=L89.520^^133^1913^18
- ;;^UTILITY(U,$J,358.3,44823,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44823,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Unstageable
- ;;^UTILITY(U,$J,358.3,44823,1,4,0)
- ;;=4^L89.520
- ;;^UTILITY(U,$J,358.3,44823,2)
- ;;=^5009420
- ;;^UTILITY(U,$J,358.3,44824,0)
- ;;=L89.321^^133^1913^19
- ;;^UTILITY(U,$J,358.3,44824,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44824,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 1
- ;;^UTILITY(U,$J,358.3,44824,1,4,0)
- ;;=4^L89.321
- ;;^UTILITY(U,$J,358.3,44824,2)
- ;;=^5009400
- ;;^UTILITY(U,$J,358.3,44825,0)
- ;;=L89.322^^133^1913^20
- ;;^UTILITY(U,$J,358.3,44825,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44825,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 2
- ;;^UTILITY(U,$J,358.3,44825,1,4,0)
- ;;=4^L89.322
- ;;^UTILITY(U,$J,358.3,44825,2)
- ;;=^5009401
- ;;^UTILITY(U,$J,358.3,44826,0)
- ;;=L89.323^^133^1913^21
- ;;^UTILITY(U,$J,358.3,44826,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44826,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 3
- ;;^UTILITY(U,$J,358.3,44826,1,4,0)
- ;;=4^L89.323
- ;;^UTILITY(U,$J,358.3,44826,2)
- ;;=^5009402
- ;;^UTILITY(U,$J,358.3,44827,0)
- ;;=L89.324^^133^1913^22
- ;;^UTILITY(U,$J,358.3,44827,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44827,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,44827,1,4,0)
- ;;=4^L89.324
- ;;^UTILITY(U,$J,358.3,44827,2)
- ;;=^5009403
- ;;^UTILITY(U,$J,358.3,44828,0)
- ;;=L89.329^^133^1913^23
- ;;^UTILITY(U,$J,358.3,44828,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44828,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Unspec Stage
- ;;^UTILITY(U,$J,358.3,44828,1,4,0)
- ;;=4^L89.329
- ;;^UTILITY(U,$J,358.3,44828,2)
- ;;=^5133671
- ;;^UTILITY(U,$J,358.3,44829,0)
- ;;=L89.320^^133^1913^24
- ;;^UTILITY(U,$J,358.3,44829,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44829,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Unstageable
- ;;^UTILITY(U,$J,358.3,44829,1,4,0)
- ;;=4^L89.320
- ;;^UTILITY(U,$J,358.3,44829,2)
- ;;=^5009399
- ;;^UTILITY(U,$J,358.3,44830,0)
- ;;=L89.021^^133^1913^25
- ;;^UTILITY(U,$J,358.3,44830,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44830,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 1
- ;;^UTILITY(U,$J,358.3,44830,1,4,0)
- ;;=4^L89.021
- ;;^UTILITY(U,$J,358.3,44830,2)
- ;;=^5009343
- ;;^UTILITY(U,$J,358.3,44831,0)
- ;;=L89.022^^133^1913^26
- ;;^UTILITY(U,$J,358.3,44831,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44831,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 2
- ;;^UTILITY(U,$J,358.3,44831,1,4,0)
- ;;=4^L89.022
- ;;^UTILITY(U,$J,358.3,44831,2)
- ;;=^5009344
- ;;^UTILITY(U,$J,358.3,44832,0)
- ;;=L89.023^^133^1913^27
- ;;^UTILITY(U,$J,358.3,44832,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44832,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 3
- ;;^UTILITY(U,$J,358.3,44832,1,4,0)
- ;;=4^L89.023
- ;;^UTILITY(U,$J,358.3,44832,2)
- ;;=^5009345
- ;;^UTILITY(U,$J,358.3,44833,0)
- ;;=L89.024^^133^1913^28
- ;;^UTILITY(U,$J,358.3,44833,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44833,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 4
- ;;^UTILITY(U,$J,358.3,44833,1,4,0)
- ;;=4^L89.024
- ;;^UTILITY(U,$J,358.3,44833,2)
- ;;=^5009346
- ;;^UTILITY(U,$J,358.3,44834,0)
- ;;=L89.029^^133^1913^29
- ;;^UTILITY(U,$J,358.3,44834,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44834,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Unspec Stage
- ;;^UTILITY(U,$J,358.3,44834,1,4,0)
- ;;=4^L89.029
- ;;^UTILITY(U,$J,358.3,44834,2)
- ;;=^5133649
- ;;^UTILITY(U,$J,358.3,44835,0)
- ;;=L89.020^^133^1913^30
- ;;^UTILITY(U,$J,358.3,44835,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44835,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Unstageable
- ;;^UTILITY(U,$J,358.3,44835,1,4,0)
- ;;=4^L89.020
- ;;^UTILITY(U,$J,358.3,44835,2)
- ;;=^5009342
- ;;^UTILITY(U,$J,358.3,44836,0)
- ;;=L89.621^^133^1913^31
- ;;^UTILITY(U,$J,358.3,44836,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44836,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 1
- ;;^UTILITY(U,$J,358.3,44836,1,4,0)
- ;;=4^L89.621
- ;;^UTILITY(U,$J,358.3,44836,2)
- ;;=^5009436
- ;;^UTILITY(U,$J,358.3,44837,0)
- ;;=L89.622^^133^1913^32
- ;;^UTILITY(U,$J,358.3,44837,1,0)
+ ;;^UTILITY(U,$J,358.3,15220,1,3,0)
+ ;;=3^Dilated bile duct,Acquired
+ ;;^UTILITY(U,$J,358.3,15220,1,4,0)
+ ;;=4^K83.8
+ ;;^UTILITY(U,$J,358.3,15220,2)
+ ;;=^5008880
+ ;;^UTILITY(U,$J,358.3,15221,0)
+ ;;=K83.09^^85^843^14
+ ;;^UTILITY(U,$J,358.3,15221,1,0)
  ;;=^358.31IA^4^2

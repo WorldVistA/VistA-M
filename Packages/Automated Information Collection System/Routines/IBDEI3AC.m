@@ -1,134 +1,128 @@
-IBDEI3AC ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3AC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55208,0)
- ;;=Z97.14^^256^2776^131
- ;;^UTILITY(U,$J,358.3,55208,1,0)
+ ;;^UTILITY(U,$J,358.3,52434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55208,1,3,0)
- ;;=3^Presence of Left Artificial Leg
- ;;^UTILITY(U,$J,358.3,55208,1,4,0)
- ;;=4^Z97.14
- ;;^UTILITY(U,$J,358.3,55208,2)
- ;;=^5063725
- ;;^UTILITY(U,$J,358.3,55209,0)
- ;;=Z97.15^^256^2776^123
- ;;^UTILITY(U,$J,358.3,55209,1,0)
+ ;;^UTILITY(U,$J,358.3,52434,1,3,0)
+ ;;=3^Exercised Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,52434,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,52434,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,52435,0)
+ ;;=J45.998^^194^2536^12
+ ;;^UTILITY(U,$J,358.3,52435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55209,1,3,0)
- ;;=3^Presence of Bilateral Artificial Arms
- ;;^UTILITY(U,$J,358.3,55209,1,4,0)
- ;;=4^Z97.15
- ;;^UTILITY(U,$J,358.3,55209,2)
- ;;=^5063726
- ;;^UTILITY(U,$J,358.3,55210,0)
- ;;=Z97.16^^256^2776^124
- ;;^UTILITY(U,$J,358.3,55210,1,0)
+ ;;^UTILITY(U,$J,358.3,52435,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,52435,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,52435,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,52436,0)
+ ;;=J45.991^^194^2536^27
+ ;;^UTILITY(U,$J,358.3,52436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55210,1,3,0)
- ;;=3^Presence of Bilateral Artificial Legs
- ;;^UTILITY(U,$J,358.3,55210,1,4,0)
- ;;=4^Z97.16
- ;;^UTILITY(U,$J,358.3,55210,2)
- ;;=^5063727
- ;;^UTILITY(U,$J,358.3,55211,0)
- ;;=Z98.61^^256^2776^17
- ;;^UTILITY(U,$J,358.3,55211,1,0)
+ ;;^UTILITY(U,$J,358.3,52436,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,52436,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,52436,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,52437,0)
+ ;;=J45.30^^194^2536^8
+ ;;^UTILITY(U,$J,358.3,52437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55211,1,3,0)
- ;;=3^Coronary Angioplasty Status
- ;;^UTILITY(U,$J,358.3,55211,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,55211,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,55212,0)
- ;;=Z98.62^^256^2776^73
- ;;^UTILITY(U,$J,358.3,55212,1,0)
+ ;;^UTILITY(U,$J,358.3,52437,1,3,0)
+ ;;=3^Asthma,Mild,Persistent,Uncompl
+ ;;^UTILITY(U,$J,358.3,52437,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,52437,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,52438,0)
+ ;;=J45.50^^194^2536^15
+ ;;^UTILITY(U,$J,358.3,52438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55212,1,3,0)
- ;;=3^Peripheral Vascular Angioplasty Status
- ;;^UTILITY(U,$J,358.3,55212,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,55212,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,55213,0)
- ;;=Z98.84^^256^2776^12
- ;;^UTILITY(U,$J,358.3,55213,1,0)
+ ;;^UTILITY(U,$J,358.3,52438,1,3,0)
+ ;;=3^Asthma,Severe,Persistent,Uncompl
+ ;;^UTILITY(U,$J,358.3,52438,1,4,0)
+ ;;=4^J45.50
+ ;;^UTILITY(U,$J,358.3,52438,2)
+ ;;=^5008251
+ ;;^UTILITY(U,$J,358.3,52439,0)
+ ;;=I50.1^^194^2537^14
+ ;;^UTILITY(U,$J,358.3,52439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55213,1,3,0)
- ;;=3^Bariatric Surgery Status
- ;;^UTILITY(U,$J,358.3,55213,1,4,0)
- ;;=4^Z98.84
- ;;^UTILITY(U,$J,358.3,55213,2)
- ;;=^5063749
- ;;^UTILITY(U,$J,358.3,55214,0)
- ;;=Z99.2^^256^2776^141
- ;;^UTILITY(U,$J,358.3,55214,1,0)
+ ;;^UTILITY(U,$J,358.3,52439,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,52439,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,52439,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,52440,0)
+ ;;=I50.20^^194^2537^12
+ ;;^UTILITY(U,$J,358.3,52440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55214,1,3,0)
- ;;=3^Renal Dialysis Dependence
- ;;^UTILITY(U,$J,358.3,55214,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,55214,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,55215,0)
- ;;=Z99.81^^256^2776^144
- ;;^UTILITY(U,$J,358.3,55215,1,0)
+ ;;^UTILITY(U,$J,358.3,52440,1,3,0)
+ ;;=3^Heart Failure,Systolic,Unspec
+ ;;^UTILITY(U,$J,358.3,52440,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,52440,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,52441,0)
+ ;;=I50.21^^194^2537^9
+ ;;^UTILITY(U,$J,358.3,52441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55215,1,3,0)
- ;;=3^Supplemental Oxygen Dependence
- ;;^UTILITY(U,$J,358.3,55215,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,55215,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,55216,0)
- ;;=Z90.79^^256^2776^2
- ;;^UTILITY(U,$J,358.3,55216,1,0)
+ ;;^UTILITY(U,$J,358.3,52441,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute
+ ;;^UTILITY(U,$J,358.3,52441,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,52441,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,52442,0)
+ ;;=I50.22^^194^2537^11
+ ;;^UTILITY(U,$J,358.3,52442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55216,1,3,0)
- ;;=3^Acquired Absence of Genital Organs NEC
- ;;^UTILITY(U,$J,358.3,55216,1,4,0)
- ;;=4^Z90.79
- ;;^UTILITY(U,$J,358.3,55216,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,55217,0)
- ;;=Z90.5^^256^2776^3
- ;;^UTILITY(U,$J,358.3,55217,1,0)
+ ;;^UTILITY(U,$J,358.3,52442,1,3,0)
+ ;;=3^Heart Failure,Systolic,Chronic
+ ;;^UTILITY(U,$J,358.3,52442,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,52442,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,52443,0)
+ ;;=I50.23^^194^2537^10
+ ;;^UTILITY(U,$J,358.3,52443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55217,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,55217,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,55217,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,55218,0)
- ;;=Z90.2^^256^2776^6
- ;;^UTILITY(U,$J,358.3,55218,1,0)
+ ;;^UTILITY(U,$J,358.3,52443,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,52443,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,52443,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,52444,0)
+ ;;=I50.30^^194^2537^4
+ ;;^UTILITY(U,$J,358.3,52444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55218,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
- ;;^UTILITY(U,$J,358.3,55218,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,55218,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,55219,0)
- ;;=Z98.1^^256^2776^10
- ;;^UTILITY(U,$J,358.3,55219,1,0)
+ ;;^UTILITY(U,$J,358.3,52444,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,52444,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,52444,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,52445,0)
+ ;;=I50.31^^194^2537^1
+ ;;^UTILITY(U,$J,358.3,52445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55219,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,55219,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,55219,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,55220,0)
- ;;=Z94.7^^256^2776^16
- ;;^UTILITY(U,$J,358.3,55220,1,0)
+ ;;^UTILITY(U,$J,358.3,52445,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute
+ ;;^UTILITY(U,$J,358.3,52445,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,52445,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,52446,0)
+ ;;=I50.32^^194^2537^3
+ ;;^UTILITY(U,$J,358.3,52446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55220,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,55220,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,55220,2)
- ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,52446,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Chronic

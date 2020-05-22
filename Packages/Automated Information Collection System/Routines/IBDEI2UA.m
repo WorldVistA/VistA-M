@@ -1,130 +1,130 @@
-IBDEI2UA ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47649,1,4,0)
- ;;=4^C92.12
- ;;^UTILITY(U,$J,358.3,47649,2)
- ;;=^5001794
- ;;^UTILITY(U,$J,358.3,47650,0)
- ;;=C92.20^^209^2346^85
- ;;^UTILITY(U,$J,358.3,47650,1,0)
+ ;;^UTILITY(U,$J,358.3,45291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47650,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Negative,Not in Remission
- ;;^UTILITY(U,$J,358.3,47650,1,4,0)
- ;;=4^C92.20
- ;;^UTILITY(U,$J,358.3,47650,2)
- ;;=^5001795
- ;;^UTILITY(U,$J,358.3,47651,0)
- ;;=C92.21^^209^2346^86
- ;;^UTILITY(U,$J,358.3,47651,1,0)
+ ;;^UTILITY(U,$J,358.3,45291,1,3,0)
+ ;;=3^Obesity, unspecified
+ ;;^UTILITY(U,$J,358.3,45291,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,45291,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,45292,0)
+ ;;=E74.39^^172^2262^25
+ ;;^UTILITY(U,$J,358.3,45292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47651,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Negative,In Remission
- ;;^UTILITY(U,$J,358.3,47651,1,4,0)
- ;;=4^C92.21
- ;;^UTILITY(U,$J,358.3,47651,2)
- ;;=^5001796
- ;;^UTILITY(U,$J,358.3,47652,0)
- ;;=C92.22^^209^2346^87
- ;;^UTILITY(U,$J,358.3,47652,1,0)
+ ;;^UTILITY(U,$J,358.3,45292,1,3,0)
+ ;;=3^Intestinal carbohydrate absorption disorder, other
+ ;;^UTILITY(U,$J,358.3,45292,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,45292,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,45293,0)
+ ;;=E78.1^^172^2262^17
+ ;;^UTILITY(U,$J,358.3,45293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47652,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Negative,In Relapse
- ;;^UTILITY(U,$J,358.3,47652,1,4,0)
- ;;=4^C92.22
- ;;^UTILITY(U,$J,358.3,47652,2)
- ;;=^5001797
- ;;^UTILITY(U,$J,358.3,47653,0)
- ;;=C92.30^^209^2346^371
- ;;^UTILITY(U,$J,358.3,47653,1,0)
+ ;;^UTILITY(U,$J,358.3,45293,1,3,0)
+ ;;=3^Hyperglyceridemia, pure
+ ;;^UTILITY(U,$J,358.3,45293,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,45293,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,45294,0)
+ ;;=E78.5^^172^2262^20
+ ;;^UTILITY(U,$J,358.3,45294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47653,1,3,0)
- ;;=3^Myeloid Sarcoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,47653,1,4,0)
- ;;=4^C92.30
- ;;^UTILITY(U,$J,358.3,47653,2)
- ;;=^5001798
- ;;^UTILITY(U,$J,358.3,47654,0)
- ;;=C92.31^^209^2346^370
- ;;^UTILITY(U,$J,358.3,47654,1,0)
+ ;;^UTILITY(U,$J,358.3,45294,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,45294,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,45294,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,45295,0)
+ ;;=E86.0^^172^2262^13
+ ;;^UTILITY(U,$J,358.3,45295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47654,1,3,0)
- ;;=3^Myeloid Sarcoma,In Remission
- ;;^UTILITY(U,$J,358.3,47654,1,4,0)
- ;;=4^C92.31
- ;;^UTILITY(U,$J,358.3,47654,2)
- ;;=^5001799
- ;;^UTILITY(U,$J,358.3,47655,0)
- ;;=C92.32^^209^2346^369
- ;;^UTILITY(U,$J,358.3,47655,1,0)
+ ;;^UTILITY(U,$J,358.3,45295,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,45295,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,45295,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,45296,0)
+ ;;=E87.1^^172^2262^21
+ ;;^UTILITY(U,$J,358.3,45296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47655,1,3,0)
- ;;=3^Myeloid Sarcoma,In Relapse
- ;;^UTILITY(U,$J,358.3,47655,1,4,0)
- ;;=4^C92.32
- ;;^UTILITY(U,$J,358.3,47655,2)
- ;;=^5001800
- ;;^UTILITY(U,$J,358.3,47656,0)
- ;;=C92.40^^209^2346^33
- ;;^UTILITY(U,$J,358.3,47656,1,0)
+ ;;^UTILITY(U,$J,358.3,45296,1,3,0)
+ ;;=3^Hypo-osmolality & hyponatremia
+ ;;^UTILITY(U,$J,358.3,45296,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,45296,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,45297,0)
+ ;;=E87.5^^172^2262^18
+ ;;^UTILITY(U,$J,358.3,45297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47656,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,47656,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,47656,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,47657,0)
- ;;=C92.41^^209^2346^32
- ;;^UTILITY(U,$J,358.3,47657,1,0)
+ ;;^UTILITY(U,$J,358.3,45297,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,45297,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,45297,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,45298,0)
+ ;;=E87.6^^172^2262^23
+ ;;^UTILITY(U,$J,358.3,45298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47657,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,47657,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,47657,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,47658,0)
- ;;=C92.42^^209^2346^31
- ;;^UTILITY(U,$J,358.3,47658,1,0)
+ ;;^UTILITY(U,$J,358.3,45298,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,45298,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,45298,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,45299,0)
+ ;;=E87.70^^172^2262^14
+ ;;^UTILITY(U,$J,358.3,45299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47658,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,47658,1,4,0)
- ;;=4^C92.42
- ;;^UTILITY(U,$J,358.3,47658,2)
- ;;=^5001803
- ;;^UTILITY(U,$J,358.3,47659,0)
- ;;=C92.50^^209^2346^27
- ;;^UTILITY(U,$J,358.3,47659,1,0)
+ ;;^UTILITY(U,$J,358.3,45299,1,3,0)
+ ;;=3^Fluid overload, unspecified
+ ;;^UTILITY(U,$J,358.3,45299,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,45299,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,45300,0)
+ ;;=E78.00^^172^2262^15
+ ;;^UTILITY(U,$J,358.3,45300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47659,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,47659,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,47659,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,47660,0)
- ;;=C92.51^^209^2346^26
- ;;^UTILITY(U,$J,358.3,47660,1,0)
+ ;;^UTILITY(U,$J,358.3,45300,1,3,0)
+ ;;=3^Hypercholesterolemia,Pure
+ ;;^UTILITY(U,$J,358.3,45300,1,4,0)
+ ;;=4^E78.00
+ ;;^UTILITY(U,$J,358.3,45300,2)
+ ;;=^5138435
+ ;;^UTILITY(U,$J,358.3,45301,0)
+ ;;=E78.49^^172^2262^19
+ ;;^UTILITY(U,$J,358.3,45301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47660,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,47660,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,47660,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,47661,0)
- ;;=C92.52^^209^2346^25
- ;;^UTILITY(U,$J,358.3,47661,1,0)
+ ;;^UTILITY(U,$J,358.3,45301,1,3,0)
+ ;;=3^Hyperlipidemia,Other
+ ;;^UTILITY(U,$J,358.3,45301,1,4,0)
+ ;;=4^E78.49
+ ;;^UTILITY(U,$J,358.3,45301,2)
+ ;;=^5157299
+ ;;^UTILITY(U,$J,358.3,45302,0)
+ ;;=F02.80^^172^2263^8
+ ;;^UTILITY(U,$J,358.3,45302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47661,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,47661,1,4,0)
- ;;=4^C92.52
- ;;^UTILITY(U,$J,358.3,47661,2)
- ;;=^5001806
- ;;^UTILITY(U,$J,358.3,47662,0)
- ;;=C92.60^^209^2346^19
+ ;;^UTILITY(U,$J,358.3,45302,1,3,0)
+ ;;=3^Dementia in oth diseases w/o behavrl disturb
+ ;;^UTILITY(U,$J,358.3,45302,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,45302,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,45303,0)
+ ;;=F02.81^^172^2263^7
+ ;;^UTILITY(U,$J,358.3,45303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45303,1,3,0)
+ ;;=3^Dementia in oth diseases w/ behavioral disturb
+ ;;^UTILITY(U,$J,358.3,45303,1,4,0)
+ ;;=4^F02.81

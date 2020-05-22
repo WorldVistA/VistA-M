@@ -1,138 +1,118 @@
-IBDEI2O7 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2O7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44814,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,44814,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,44815,0)
- ;;=F43.21^^200^2232^1
- ;;^UTILITY(U,$J,358.3,44815,1,0)
+ ;;^UTILITY(U,$J,358.3,42581,0)
+ ;;=S42.012S^^155^2071^10
+ ;;^UTILITY(U,$J,358.3,42581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44815,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,44815,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,44815,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,44816,0)
- ;;=F45.9^^200^2232^24
- ;;^UTILITY(U,$J,358.3,44816,1,0)
+ ;;^UTILITY(U,$J,358.3,42581,1,3,0)
+ ;;=3^Disp fx of anterior sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42581,1,4,0)
+ ;;=4^S42.012S
+ ;;^UTILITY(U,$J,358.3,42581,2)
+ ;;=^5026396
+ ;;^UTILITY(U,$J,358.3,42582,0)
+ ;;=S42.011S^^155^2071^11
+ ;;^UTILITY(U,$J,358.3,42582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44816,1,3,0)
- ;;=3^Somatoform Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,44816,1,4,0)
- ;;=4^F45.9
- ;;^UTILITY(U,$J,358.3,44816,2)
- ;;=^5003592
- ;;^UTILITY(U,$J,358.3,44817,0)
- ;;=F48.2^^200^2232^18
- ;;^UTILITY(U,$J,358.3,44817,1,0)
+ ;;^UTILITY(U,$J,358.3,42582,1,3,0)
+ ;;=3^Disp fx of anterior sternal end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42582,1,4,0)
+ ;;=4^S42.011S
+ ;;^UTILITY(U,$J,358.3,42582,2)
+ ;;=^5026389
+ ;;^UTILITY(U,$J,358.3,42583,0)
+ ;;=S42.032S^^155^2071^26
+ ;;^UTILITY(U,$J,358.3,42583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44817,1,3,0)
- ;;=3^Pseudobulbar Affect
- ;;^UTILITY(U,$J,358.3,44817,1,4,0)
- ;;=4^F48.2
- ;;^UTILITY(U,$J,358.3,44817,2)
- ;;=^5003594
- ;;^UTILITY(U,$J,358.3,44818,0)
- ;;=G47.00^^200^2232^11
- ;;^UTILITY(U,$J,358.3,44818,1,0)
+ ;;^UTILITY(U,$J,358.3,42583,1,3,0)
+ ;;=3^Disp fx of lateral end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42583,1,4,0)
+ ;;=4^S42.032S
+ ;;^UTILITY(U,$J,358.3,42583,2)
+ ;;=^5026501
+ ;;^UTILITY(U,$J,358.3,42584,0)
+ ;;=S42.031S^^155^2071^27
+ ;;^UTILITY(U,$J,358.3,42584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44818,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,44818,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,44818,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,44819,0)
- ;;=F40.11^^200^2232^22
- ;;^UTILITY(U,$J,358.3,44819,1,0)
+ ;;^UTILITY(U,$J,358.3,42584,1,3,0)
+ ;;=3^Disp fx of lateral end of right clavicle, sequela 
+ ;;^UTILITY(U,$J,358.3,42584,1,4,0)
+ ;;=4^S42.031S
+ ;;^UTILITY(U,$J,358.3,42584,2)
+ ;;=^5026494
+ ;;^UTILITY(U,$J,358.3,42585,0)
+ ;;=S42.022S^^155^2071^43
+ ;;^UTILITY(U,$J,358.3,42585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44819,1,3,0)
- ;;=3^Social Phobia,Generalized
- ;;^UTILITY(U,$J,358.3,44819,1,4,0)
- ;;=4^F40.11
- ;;^UTILITY(U,$J,358.3,44819,2)
- ;;=^5003545
- ;;^UTILITY(U,$J,358.3,44820,0)
- ;;=R56.00^^200^2233^6
- ;;^UTILITY(U,$J,358.3,44820,1,0)
+ ;;^UTILITY(U,$J,358.3,42585,1,3,0)
+ ;;=3^Disp fx of shaft of left clavicle, sequela    
+ ;;^UTILITY(U,$J,358.3,42585,1,4,0)
+ ;;=4^S42.022S
+ ;;^UTILITY(U,$J,358.3,42585,2)
+ ;;=^5026459
+ ;;^UTILITY(U,$J,358.3,42586,0)
+ ;;=S42.021S^^155^2071^44
+ ;;^UTILITY(U,$J,358.3,42586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44820,1,3,0)
- ;;=3^Simple Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,44820,1,4,0)
- ;;=4^R56.00
- ;;^UTILITY(U,$J,358.3,44820,2)
- ;;=^5019522
- ;;^UTILITY(U,$J,358.3,44821,0)
- ;;=R56.9^^200^2233^4
- ;;^UTILITY(U,$J,358.3,44821,1,0)
+ ;;^UTILITY(U,$J,358.3,42586,1,3,0)
+ ;;=3^Disp fx of shaft of right clavicle, sequela   
+ ;;^UTILITY(U,$J,358.3,42586,1,4,0)
+ ;;=4^S42.021S
+ ;;^UTILITY(U,$J,358.3,42586,2)
+ ;;=^5026452
+ ;;^UTILITY(U,$J,358.3,42587,0)
+ ;;=S42.035S^^155^2071^72
+ ;;^UTILITY(U,$J,358.3,42587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44821,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,44821,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,44821,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,44822,0)
- ;;=R25.0^^200^2233^1
- ;;^UTILITY(U,$J,358.3,44822,1,0)
+ ;;^UTILITY(U,$J,358.3,42587,1,3,0)
+ ;;=3^Nondisp fx of lateral end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42587,1,4,0)
+ ;;=4^S42.035S
+ ;;^UTILITY(U,$J,358.3,42587,2)
+ ;;=^5026522
+ ;;^UTILITY(U,$J,358.3,42588,0)
+ ;;=S42.034S^^155^2071^73
+ ;;^UTILITY(U,$J,358.3,42588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44822,1,3,0)
- ;;=3^Abnormal Head Movements
- ;;^UTILITY(U,$J,358.3,44822,1,4,0)
- ;;=4^R25.0
- ;;^UTILITY(U,$J,358.3,44822,2)
- ;;=^5019299
- ;;^UTILITY(U,$J,358.3,44823,0)
- ;;=R25.1^^200^2233^7
- ;;^UTILITY(U,$J,358.3,44823,1,0)
+ ;;^UTILITY(U,$J,358.3,42588,1,3,0)
+ ;;=3^Nondisp fx of lateral end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42588,1,4,0)
+ ;;=4^S42.034S
+ ;;^UTILITY(U,$J,358.3,42588,2)
+ ;;=^5026515
+ ;;^UTILITY(U,$J,358.3,42589,0)
+ ;;=S42.025S^^155^2071^89
+ ;;^UTILITY(U,$J,358.3,42589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44823,1,3,0)
- ;;=3^Tremor,Unspec
- ;;^UTILITY(U,$J,358.3,44823,1,4,0)
- ;;=4^R25.1
- ;;^UTILITY(U,$J,358.3,44823,2)
- ;;=^5019300
- ;;^UTILITY(U,$J,358.3,44824,0)
- ;;=R25.9^^200^2233^3
- ;;^UTILITY(U,$J,358.3,44824,1,0)
+ ;;^UTILITY(U,$J,358.3,42589,1,3,0)
+ ;;=3^Nondisp fx of shaft of left clavicle, sequela 
+ ;;^UTILITY(U,$J,358.3,42589,1,4,0)
+ ;;=4^S42.025S
+ ;;^UTILITY(U,$J,358.3,42589,2)
+ ;;=^5026480
+ ;;^UTILITY(U,$J,358.3,42590,0)
+ ;;=S42.024S^^155^2071^90
+ ;;^UTILITY(U,$J,358.3,42590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44824,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Unspec
- ;;^UTILITY(U,$J,358.3,44824,1,4,0)
- ;;=4^R25.9
- ;;^UTILITY(U,$J,358.3,44824,2)
- ;;=^5019303
- ;;^UTILITY(U,$J,358.3,44825,0)
- ;;=R25.3^^200^2233^5
- ;;^UTILITY(U,$J,358.3,44825,1,0)
+ ;;^UTILITY(U,$J,358.3,42590,1,3,0)
+ ;;=3^Nondisp fx of shaft of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42590,1,4,0)
+ ;;=4^S42.024S
+ ;;^UTILITY(U,$J,358.3,42590,2)
+ ;;=^5026473
+ ;;^UTILITY(U,$J,358.3,42591,0)
+ ;;=S42.018S^^155^2071^95
+ ;;^UTILITY(U,$J,358.3,42591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44825,1,3,0)
- ;;=3^Fasciculation/Twitching
- ;;^UTILITY(U,$J,358.3,44825,1,4,0)
- ;;=4^R25.3
- ;;^UTILITY(U,$J,358.3,44825,2)
- ;;=^44985
- ;;^UTILITY(U,$J,358.3,44826,0)
- ;;=R25.8^^200^2233^2
- ;;^UTILITY(U,$J,358.3,44826,1,0)
+ ;;^UTILITY(U,$J,358.3,42591,1,3,0)
+ ;;=3^Nondisp fx of sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,42591,1,4,0)
+ ;;=4^S42.018S
+ ;;^UTILITY(U,$J,358.3,42591,2)
+ ;;=^5026438
+ ;;^UTILITY(U,$J,358.3,42592,0)
+ ;;=S42.017S^^155^2071^96
+ ;;^UTILITY(U,$J,358.3,42592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44826,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Other
- ;;^UTILITY(U,$J,358.3,44826,1,4,0)
- ;;=4^R25.8
- ;;^UTILITY(U,$J,358.3,44826,2)
- ;;=^5019302
- ;;^UTILITY(U,$J,358.3,44827,0)
- ;;=M02.30^^200^2234^124
- ;;^UTILITY(U,$J,358.3,44827,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44827,1,3,0)
- ;;=3^Reiter's Disease,Unspec Site
- ;;^UTILITY(U,$J,358.3,44827,1,4,0)
- ;;=4^M02.30
- ;;^UTILITY(U,$J,358.3,44827,2)
- ;;=^5009790

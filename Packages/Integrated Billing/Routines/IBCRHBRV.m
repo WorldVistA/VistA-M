@@ -1,5 +1,5 @@
 IBCRHBRV ;ALB/ARH - RATES: UPLOAD (RC) VERSION FUNCTIONS ; 14-FEB-01
- ;;2.0;INTEGRATED BILLING;**148,169,245,270,285,298,325,334,355,360,365,382,390,408,412,423,427,439,445,462,468,484,491,508,520,536,542,556,559,573,584,600,612,628,634**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**148,169,245,270,285,298,325,334,355,360,365,382,390,408,412,423,427,439,445,462,468,484,491,508,520,536,542,556,559,573,584,600,612,628,634,658,667**;21-MAR-94;Build 65
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; RC functions related to Version.  Update VLIST with new versions.  Update FTYPE if new types of files.
@@ -162,7 +162,9 @@ VLIST ; version ^ file type/version ^ effective date ^ inactive date ^ file pref
  ;;3.22^2^3171001^3171231^IBRC1710
  ;;3.23^2^3180101^3180930^IBRC1801
  ;;3.24^2^3181001^3181231^IBRC1810
- ;;3.25^2^3190101^^IBRC1901
+ ;;3.25^2^3190101^3190930^IBRC1901
+ ;;3.26^2^3191001^3191231^IBRC1910
+ ;;3.27^2^3200101^^IBRC2001
  ; 
 FTYPE ; file type/versions and relevant data
  ; file identifier is used with XTMP subscript 'IBCR RC ' and routine label to parse file

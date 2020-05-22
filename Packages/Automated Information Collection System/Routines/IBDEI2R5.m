@@ -1,128 +1,124 @@
-IBDEI2R5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2R5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46195,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46195,1,2,0)
- ;;=2^94620
- ;;^UTILITY(U,$J,358.3,46195,1,3,0)
- ;;=3^Pulmonary Stress test, simple
- ;;^UTILITY(U,$J,358.3,46196,0)
- ;;=94621^^204^2283^4^^^^1
- ;;^UTILITY(U,$J,358.3,46196,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46196,1,2,0)
- ;;=2^94621
- ;;^UTILITY(U,$J,358.3,46196,1,3,0)
- ;;=3^Pulmonary Stress Test, Cmplx
- ;;^UTILITY(U,$J,358.3,46197,0)
- ;;=93016^^204^2283^1^^^^1
- ;;^UTILITY(U,$J,358.3,46197,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46197,1,2,0)
- ;;=2^93016
- ;;^UTILITY(U,$J,358.3,46197,1,3,0)
- ;;=3^Cardiovascular Stress Test Only w/o Rpt
- ;;^UTILITY(U,$J,358.3,46198,0)
- ;;=90471^^204^2284^1^^^^1
- ;;^UTILITY(U,$J,358.3,46198,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46198,1,2,0)
- ;;=2^90471
- ;;^UTILITY(U,$J,358.3,46198,1,3,0)
- ;;=3^Immunization Admin,1st Vaccine
- ;;^UTILITY(U,$J,358.3,46199,0)
- ;;=90472^^204^2284^2^^^^1
- ;;^UTILITY(U,$J,358.3,46199,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46199,1,2,0)
- ;;=2^90472
- ;;^UTILITY(U,$J,358.3,46199,1,3,0)
- ;;=3^Immunization Admin,Ea Addl Vaccine
- ;;^UTILITY(U,$J,358.3,46200,0)
- ;;=90658^^204^2285^1^^^^1
- ;;^UTILITY(U,$J,358.3,46200,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46200,1,2,0)
- ;;=2^90658
- ;;^UTILITY(U,$J,358.3,46200,1,3,0)
- ;;=3^Flu Vaccine IM (Flulaval)
- ;;^UTILITY(U,$J,358.3,46201,0)
- ;;=90656^^204^2285^2^^^^1
- ;;^UTILITY(U,$J,358.3,46201,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46201,1,2,0)
- ;;=2^90656
- ;;^UTILITY(U,$J,358.3,46201,1,3,0)
- ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
- ;;^UTILITY(U,$J,358.3,46202,0)
- ;;=90662^^204^2285^3^^^^1
- ;;^UTILITY(U,$J,358.3,46202,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46202,1,2,0)
- ;;=2^90662
- ;;^UTILITY(U,$J,358.3,46202,1,3,0)
- ;;=3^Flu Vaccine High Dose Syringe (Fluzone)
- ;;^UTILITY(U,$J,358.3,46203,0)
- ;;=90732^^204^2285^4^^^^1
- ;;^UTILITY(U,$J,358.3,46203,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46203,1,2,0)
- ;;=2^90732
- ;;^UTILITY(U,$J,358.3,46203,1,3,0)
- ;;=3^Pneumovax
- ;;^UTILITY(U,$J,358.3,46204,0)
- ;;=31610^^204^2286^1^^^^1
- ;;^UTILITY(U,$J,358.3,46204,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46204,1,2,0)
- ;;=2^31610
- ;;^UTILITY(U,$J,358.3,46204,1,3,0)
- ;;=3^Trach Fenestration w/ Skin Flaps
- ;;^UTILITY(U,$J,358.3,46205,0)
- ;;=31605^^204^2286^3^^^^1
- ;;^UTILITY(U,$J,358.3,46205,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46205,1,2,0)
- ;;=2^31605
- ;;^UTILITY(U,$J,358.3,46205,1,3,0)
- ;;=3^Tracheostomy,Emerg,Cricothyroid
- ;;^UTILITY(U,$J,358.3,46206,0)
- ;;=31603^^204^2286^2^^^^1
- ;;^UTILITY(U,$J,358.3,46206,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46206,1,2,0)
- ;;=2^31603
- ;;^UTILITY(U,$J,358.3,46206,1,3,0)
- ;;=3^Tracheostomy Emerg,Transtracheal
- ;;^UTILITY(U,$J,358.3,46207,0)
- ;;=31600^^204^2286^4^^^^1
- ;;^UTILITY(U,$J,358.3,46207,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46207,1,2,0)
- ;;=2^31600
- ;;^UTILITY(U,$J,358.3,46207,1,3,0)
- ;;=3^Tracheostomy,Planned
- ;;^UTILITY(U,$J,358.3,46208,0)
- ;;=99358^^204^2287^1^^^^1
- ;;^UTILITY(U,$J,358.3,46208,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46208,1,2,0)
- ;;=2^99358
- ;;^UTILITY(U,$J,358.3,46208,1,3,0)
- ;;=3^Prolonged Svc,Before/After Visit,1st hr
- ;;^UTILITY(U,$J,358.3,46209,0)
- ;;=99359^^204^2287^2^^^^1
- ;;^UTILITY(U,$J,358.3,46209,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46209,1,2,0)
- ;;=2^99359
- ;;^UTILITY(U,$J,358.3,46209,1,3,0)
- ;;=3^Prolonged Svc,Before/After Visit,Ea Add 30min
- ;;^UTILITY(U,$J,358.3,46210,0)
- ;;=31500^^204^2288^3^^^^1
- ;;^UTILITY(U,$J,358.3,46210,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46210,1,2,0)
- ;;=2^31500
+ ;;^UTILITY(U,$J,358.3,43896,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,43896,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,43897,0)
+ ;;=Z62.811^^164^2166^30
+ ;;^UTILITY(U,$J,358.3,43897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43897,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,43897,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,43897,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,43898,0)
+ ;;=T76.51XA^^164^2166^1
+ ;;^UTILITY(U,$J,358.3,43898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43898,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,43898,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,43898,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,43899,0)
+ ;;=T76.51XD^^164^2166^2
+ ;;^UTILITY(U,$J,358.3,43899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43899,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,43899,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,43899,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,43900,0)
+ ;;=Z91.42^^164^2166^31
+ ;;^UTILITY(U,$J,358.3,43900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43900,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,43900,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,43900,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,43901,0)
+ ;;=Z62.813^^164^2166^32
+ ;;^UTILITY(U,$J,358.3,43901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43901,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,43901,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,43901,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,43902,0)
+ ;;=F06.4^^164^2167^3
+ ;;^UTILITY(U,$J,358.3,43902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43902,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,43902,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,43902,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,43903,0)
+ ;;=F41.0^^164^2167^12
+ ;;^UTILITY(U,$J,358.3,43903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43903,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,43903,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,43903,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,43904,0)
+ ;;=F41.1^^164^2167^10
+ ;;^UTILITY(U,$J,358.3,43904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43904,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,43904,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,43904,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,43905,0)
+ ;;=F40.10^^164^2167^17
+ ;;^UTILITY(U,$J,358.3,43905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43905,1,3,0)
+ ;;=3^Social Anxiety Disorder (Social Phobia)
+ ;;^UTILITY(U,$J,358.3,43905,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,43905,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,43906,0)
+ ;;=F40.218^^164^2167^2
+ ;;^UTILITY(U,$J,358.3,43906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43906,1,3,0)
+ ;;=3^Animal Phobia
+ ;;^UTILITY(U,$J,358.3,43906,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,43906,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,43907,0)
+ ;;=F40.228^^164^2167^11
+ ;;^UTILITY(U,$J,358.3,43907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43907,1,3,0)
+ ;;=3^Natural Environment Phobia
+ ;;^UTILITY(U,$J,358.3,43907,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,43907,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,43908,0)
+ ;;=F40.230^^164^2167^6
+ ;;^UTILITY(U,$J,358.3,43908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43908,1,3,0)
+ ;;=3^Fear of Blood

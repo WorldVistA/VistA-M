@@ -1,124 +1,126 @@
-IBDEI2YL ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49604,1,4,0)
- ;;=4^S22.071S
- ;;^UTILITY(U,$J,358.3,49604,2)
- ;;=^5023026
- ;;^UTILITY(U,$J,358.3,49605,0)
- ;;=S32.031S^^216^2419^45
- ;;^UTILITY(U,$J,358.3,49605,1,0)
+ ;;^UTILITY(U,$J,358.3,47223,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Right Ear
+ ;;^UTILITY(U,$J,358.3,47223,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,47223,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,47224,0)
+ ;;=H60.322^^181^2359^30
+ ;;^UTILITY(U,$J,358.3,47224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49605,1,3,0)
- ;;=3^Stable burst fracture of third lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,49605,1,4,0)
- ;;=4^S32.031S
- ;;^UTILITY(U,$J,358.3,49605,2)
- ;;=^5024442
- ;;^UTILITY(U,$J,358.3,49606,0)
- ;;=S22.031S^^216^2419^46
- ;;^UTILITY(U,$J,358.3,49606,1,0)
+ ;;^UTILITY(U,$J,358.3,47224,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Left Ear
+ ;;^UTILITY(U,$J,358.3,47224,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,47224,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,47225,0)
+ ;;=H60.323^^181^2359^29
+ ;;^UTILITY(U,$J,358.3,47225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49606,1,3,0)
- ;;=3^Stable burst fracture of third thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,49606,1,4,0)
- ;;=4^S22.031S
- ;;^UTILITY(U,$J,358.3,49606,2)
- ;;=^5022906
- ;;^UTILITY(U,$J,358.3,49607,0)
- ;;=S32.111S^^216^2419^20
- ;;^UTILITY(U,$J,358.3,49607,1,0)
+ ;;^UTILITY(U,$J,358.3,47225,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Bilateral
+ ;;^UTILITY(U,$J,358.3,47225,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,47225,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,47226,0)
+ ;;=H60.391^^181^2359^34
+ ;;^UTILITY(U,$J,358.3,47226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49607,1,3,0)
- ;;=3^Minimally displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49607,1,4,0)
- ;;=4^S32.111S
- ;;^UTILITY(U,$J,358.3,49607,2)
- ;;=^5024538
- ;;^UTILITY(U,$J,358.3,49608,0)
- ;;=S32.121S^^216^2419^21
- ;;^UTILITY(U,$J,358.3,49608,1,0)
+ ;;^UTILITY(U,$J,358.3,47226,1,3,0)
+ ;;=3^Otitis Externa Infective,Right Ear
+ ;;^UTILITY(U,$J,358.3,47226,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,47226,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,47227,0)
+ ;;=H60.392^^181^2359^33
+ ;;^UTILITY(U,$J,358.3,47227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49608,1,3,0)
- ;;=3^Minimally displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49608,1,4,0)
- ;;=4^S32.121S
- ;;^UTILITY(U,$J,358.3,49608,2)
- ;;=^5024562
- ;;^UTILITY(U,$J,358.3,49609,0)
- ;;=S32.131S^^216^2419^22
- ;;^UTILITY(U,$J,358.3,49609,1,0)
+ ;;^UTILITY(U,$J,358.3,47227,1,3,0)
+ ;;=3^Otitis Externa Infective,Left Ear
+ ;;^UTILITY(U,$J,358.3,47227,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,47227,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,47228,0)
+ ;;=H60.323^^181^2359^32
+ ;;^UTILITY(U,$J,358.3,47228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49609,1,3,0)
- ;;=3^Minimally displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49609,1,4,0)
- ;;=4^S32.131S
- ;;^UTILITY(U,$J,358.3,49609,2)
- ;;=^5024586
- ;;^UTILITY(U,$J,358.3,49610,0)
- ;;=S32.110S^^216^2419^24
- ;;^UTILITY(U,$J,358.3,49610,1,0)
+ ;;^UTILITY(U,$J,358.3,47228,1,3,0)
+ ;;=3^Otitis Externa Infective,Bilateral
+ ;;^UTILITY(U,$J,358.3,47228,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,47228,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,47229,0)
+ ;;=H66.91^^181^2359^37
+ ;;^UTILITY(U,$J,358.3,47229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49610,1,3,0)
- ;;=3^Nondisp Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49610,1,4,0)
- ;;=4^S32.110S
- ;;^UTILITY(U,$J,358.3,49610,2)
- ;;=^5024532
- ;;^UTILITY(U,$J,358.3,49611,0)
- ;;=S32.120S^^216^2419^25
- ;;^UTILITY(U,$J,358.3,49611,1,0)
+ ;;^UTILITY(U,$J,358.3,47229,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,47229,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,47229,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,47230,0)
+ ;;=H66.92^^181^2359^36
+ ;;^UTILITY(U,$J,358.3,47230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49611,1,3,0)
- ;;=3^Nondisp Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49611,1,4,0)
- ;;=4^S32.120S
- ;;^UTILITY(U,$J,358.3,49611,2)
- ;;=^5024556
- ;;^UTILITY(U,$J,358.3,49612,0)
- ;;=S32.130S^^216^2419^26
- ;;^UTILITY(U,$J,358.3,49612,1,0)
+ ;;^UTILITY(U,$J,358.3,47230,1,3,0)
+ ;;=3^Otitis Media,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,47230,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,47230,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,47231,0)
+ ;;=H66.93^^181^2359^35
+ ;;^UTILITY(U,$J,358.3,47231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49612,1,3,0)
- ;;=3^Nondisp Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49612,1,4,0)
- ;;=4^S32.130S
- ;;^UTILITY(U,$J,358.3,49612,2)
- ;;=^5024580
- ;;^UTILITY(U,$J,358.3,49613,0)
- ;;=S32.112S^^216^2419^30
- ;;^UTILITY(U,$J,358.3,49613,1,0)
+ ;;^UTILITY(U,$J,358.3,47231,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,47231,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,47231,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,47232,0)
+ ;;=M19.90^^181^2359^20
+ ;;^UTILITY(U,$J,358.3,47232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49613,1,3,0)
- ;;=3^Severely displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49613,1,4,0)
- ;;=4^S32.112S
- ;;^UTILITY(U,$J,358.3,49613,2)
- ;;=^5024544
- ;;^UTILITY(U,$J,358.3,49614,0)
- ;;=S32.122S^^216^2419^31
- ;;^UTILITY(U,$J,358.3,49614,1,0)
+ ;;^UTILITY(U,$J,358.3,47232,1,3,0)
+ ;;=3^Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,47232,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,47232,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,47233,0)
+ ;;=M81.0^^181^2359^22
+ ;;^UTILITY(U,$J,358.3,47233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49614,1,3,0)
- ;;=3^Severely displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49614,1,4,0)
- ;;=4^S32.122S
- ;;^UTILITY(U,$J,358.3,49614,2)
- ;;=^5024568
- ;;^UTILITY(U,$J,358.3,49615,0)
- ;;=S32.132S^^216^2419^32
- ;;^UTILITY(U,$J,358.3,49615,1,0)
+ ;;^UTILITY(U,$J,358.3,47233,1,3,0)
+ ;;=3^Osteoporosis,Age-Related,w/o Current Path Fracture
+ ;;^UTILITY(U,$J,358.3,47233,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,47233,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,47234,0)
+ ;;=R11.2^^181^2359^3
+ ;;^UTILITY(U,$J,358.3,47234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49615,1,3,0)
- ;;=3^Severely displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49615,1,4,0)
- ;;=4^S32.132S
- ;;^UTILITY(U,$J,358.3,49615,2)
- ;;=^5024592
- ;;^UTILITY(U,$J,358.3,49616,0)
- ;;=S32.14XS^^216^2419^47
- ;;^UTILITY(U,$J,358.3,49616,1,0)
+ ;;^UTILITY(U,$J,358.3,47234,1,3,0)
+ ;;=3^Nausea w/ Vomiting
+ ;;^UTILITY(U,$J,358.3,47234,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,47234,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,47235,0)
+ ;;=H57.13^^181^2359^14
+ ;;^UTILITY(U,$J,358.3,47235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49616,1,3,0)
- ;;=3^Type 1 fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,47235,1,3,0)
+ ;;=3^Ocular Pain,Bilateral

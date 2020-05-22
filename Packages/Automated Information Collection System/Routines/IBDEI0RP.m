@@ -1,364 +1,118 @@
-IBDEI0RP ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36595,1,4,0)
- ;;=4^B45.9
- ;;^UTILITY(U,$J,358.3,36595,2)
- ;;=^5000675
- ;;^UTILITY(U,$J,358.3,36596,0)
- ;;=B45.2^^103^1556^55
- ;;^UTILITY(U,$J,358.3,36596,1,0)
+ ;;^UTILITY(U,$J,358.3,12360,1,3,0)
+ ;;=3^Open Wound of Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12360,1,4,0)
+ ;;=4^S61.501A
+ ;;^UTILITY(U,$J,358.3,12360,2)
+ ;;=^5033020
+ ;;^UTILITY(U,$J,358.3,12361,0)
+ ;;=S61.502A^^80^778^30
+ ;;^UTILITY(U,$J,358.3,12361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36596,1,3,0)
- ;;=3^Cutaneous Cryptococcosis
- ;;^UTILITY(U,$J,358.3,36596,1,4,0)
- ;;=4^B45.2
- ;;^UTILITY(U,$J,358.3,36596,2)
- ;;=^5000671
- ;;^UTILITY(U,$J,358.3,36597,0)
- ;;=B44.7^^103^1556^56
- ;;^UTILITY(U,$J,358.3,36597,1,0)
+ ;;^UTILITY(U,$J,358.3,12361,1,3,0)
+ ;;=3^Open Wound of Left Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12361,1,4,0)
+ ;;=4^S61.502A
+ ;;^UTILITY(U,$J,358.3,12361,2)
+ ;;=^5033023
+ ;;^UTILITY(U,$J,358.3,12362,0)
+ ;;=S61.401A^^80^778^43
+ ;;^UTILITY(U,$J,358.3,12362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36597,1,3,0)
- ;;=3^Disseminated Aspergillosis
- ;;^UTILITY(U,$J,358.3,36597,1,4,0)
- ;;=4^B44.7
- ;;^UTILITY(U,$J,358.3,36597,2)
- ;;=^5000666
- ;;^UTILITY(U,$J,358.3,36598,0)
- ;;=B45.7^^103^1556^57
- ;;^UTILITY(U,$J,358.3,36598,1,0)
+ ;;^UTILITY(U,$J,358.3,12362,1,3,0)
+ ;;=3^Open Wound of Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12362,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,12362,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,12363,0)
+ ;;=S61.402A^^80^778^12
+ ;;^UTILITY(U,$J,358.3,12363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36598,1,3,0)
- ;;=3^Disseminated Cryptococcosis
- ;;^UTILITY(U,$J,358.3,36598,1,4,0)
- ;;=4^B45.7
- ;;^UTILITY(U,$J,358.3,36598,2)
- ;;=^5000673
- ;;^UTILITY(U,$J,358.3,36599,0)
- ;;=B39.9^^103^1556^59
- ;;^UTILITY(U,$J,358.3,36599,1,0)
+ ;;^UTILITY(U,$J,358.3,12363,1,3,0)
+ ;;=3^Open Wound of Left Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12363,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,12363,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,12364,0)
+ ;;=S61.001A^^80^778^60
+ ;;^UTILITY(U,$J,358.3,12364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36599,1,3,0)
- ;;=3^Histoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,36599,1,4,0)
- ;;=4^B39.9
- ;;^UTILITY(U,$J,358.3,36599,2)
- ;;=^5000638
- ;;^UTILITY(U,$J,358.3,36600,0)
- ;;=J18.2^^103^1556^60
- ;;^UTILITY(U,$J,358.3,36600,1,0)
+ ;;^UTILITY(U,$J,358.3,12364,1,3,0)
+ ;;=3^Open Wound of Right Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12364,1,4,0)
+ ;;=4^S61.001A
+ ;;^UTILITY(U,$J,358.3,12364,2)
+ ;;=^5032684
+ ;;^UTILITY(U,$J,358.3,12365,0)
+ ;;=S61.002A^^80^778^29
+ ;;^UTILITY(U,$J,358.3,12365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36600,1,3,0)
- ;;=3^Hypostatic Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,36600,1,4,0)
- ;;=4^J18.2
- ;;^UTILITY(U,$J,358.3,36600,2)
- ;;=^5008184
- ;;^UTILITY(U,$J,358.3,36601,0)
- ;;=B44.0^^103^1556^61
- ;;^UTILITY(U,$J,358.3,36601,1,0)
+ ;;^UTILITY(U,$J,358.3,12365,1,3,0)
+ ;;=3^Open Wound of Left Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12365,1,4,0)
+ ;;=4^S61.002A
+ ;;^UTILITY(U,$J,358.3,12365,2)
+ ;;=^5032687
+ ;;^UTILITY(U,$J,358.3,12366,0)
+ ;;=S61.101A^^80^778^59
+ ;;^UTILITY(U,$J,358.3,12366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36601,1,3,0)
- ;;=3^Invasive Pulmonary Aspergillosis
- ;;^UTILITY(U,$J,358.3,36601,1,4,0)
- ;;=4^B44.0
- ;;^UTILITY(U,$J,358.3,36601,2)
- ;;=^5000663
- ;;^UTILITY(U,$J,358.3,36602,0)
- ;;=J18.1^^103^1556^62
- ;;^UTILITY(U,$J,358.3,36602,1,0)
+ ;;^UTILITY(U,$J,358.3,12366,1,3,0)
+ ;;=3^Open Wound of Right Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12366,1,4,0)
+ ;;=4^S61.101A
+ ;;^UTILITY(U,$J,358.3,12366,2)
+ ;;=^5032723
+ ;;^UTILITY(U,$J,358.3,12367,0)
+ ;;=S61.102A^^80^778^28
+ ;;^UTILITY(U,$J,358.3,12367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36602,1,3,0)
- ;;=3^Lobar Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,36602,1,4,0)
- ;;=4^J18.1
- ;;^UTILITY(U,$J,358.3,36602,2)
- ;;=^5008183
- ;;^UTILITY(U,$J,358.3,36603,0)
- ;;=A19.9^^103^1556^63
- ;;^UTILITY(U,$J,358.3,36603,1,0)
+ ;;^UTILITY(U,$J,358.3,12367,1,3,0)
+ ;;=3^Open Wound of Left Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12367,1,4,0)
+ ;;=4^S61.102A
+ ;;^UTILITY(U,$J,358.3,12367,2)
+ ;;=^5135687
+ ;;^UTILITY(U,$J,358.3,12368,0)
+ ;;=S61.200A^^80^778^46
+ ;;^UTILITY(U,$J,358.3,12368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36603,1,3,0)
- ;;=3^Miliary Tuberculosis,Unspec
- ;;^UTILITY(U,$J,358.3,36603,1,4,0)
- ;;=4^A19.9
- ;;^UTILITY(U,$J,358.3,36603,2)
- ;;=^5000104
- ;;^UTILITY(U,$J,358.3,36604,0)
- ;;=R76.11^^103^1556^82
- ;;^UTILITY(U,$J,358.3,36604,1,0)
+ ;;^UTILITY(U,$J,358.3,12368,1,3,0)
+ ;;=3^Open Wound of Right Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12368,1,4,0)
+ ;;=4^S61.200A
+ ;;^UTILITY(U,$J,358.3,12368,2)
+ ;;=^5032741
+ ;;^UTILITY(U,$J,358.3,12369,0)
+ ;;=S61.201A^^80^778^15
+ ;;^UTILITY(U,$J,358.3,12369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36604,1,3,0)
- ;;=3^Reaction to Skin Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,36604,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,36604,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,36605,0)
- ;;=B45.3^^103^1556^67
- ;;^UTILITY(U,$J,358.3,36605,1,0)
+ ;;^UTILITY(U,$J,358.3,12369,1,3,0)
+ ;;=3^Open Wound of Left Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12369,1,4,0)
+ ;;=4^S61.201A
+ ;;^UTILITY(U,$J,358.3,12369,2)
+ ;;=^5032744
+ ;;^UTILITY(U,$J,358.3,12370,0)
+ ;;=S61.202A^^80^778^54
+ ;;^UTILITY(U,$J,358.3,12370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36605,1,3,0)
- ;;=3^Osseous Cryptococcosis
- ;;^UTILITY(U,$J,358.3,36605,1,4,0)
- ;;=4^B45.3
- ;;^UTILITY(U,$J,358.3,36605,2)
- ;;=^5000672
- ;;^UTILITY(U,$J,358.3,36606,0)
- ;;=B44.89^^103^1556^44
- ;;^UTILITY(U,$J,358.3,36606,1,0)
+ ;;^UTILITY(U,$J,358.3,12370,1,3,0)
+ ;;=3^Open Wound of Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12370,1,4,0)
+ ;;=4^S61.202A
+ ;;^UTILITY(U,$J,358.3,12370,2)
+ ;;=^5032747
+ ;;^UTILITY(U,$J,358.3,12371,0)
+ ;;=S61.203A^^80^778^23
+ ;;^UTILITY(U,$J,358.3,12371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36606,1,3,0)
- ;;=3^Aspergillosis NEC
- ;;^UTILITY(U,$J,358.3,36606,1,4,0)
- ;;=4^B44.89
- ;;^UTILITY(U,$J,358.3,36606,2)
- ;;=^5000667
- ;;^UTILITY(U,$J,358.3,36607,0)
- ;;=B45.8^^103^1556^53
- ;;^UTILITY(U,$J,358.3,36607,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36607,1,3,0)
- ;;=3^Cryptococcosis NEC
- ;;^UTILITY(U,$J,358.3,36607,1,4,0)
- ;;=4^B45.8
- ;;^UTILITY(U,$J,358.3,36607,2)
- ;;=^5000674
- ;;^UTILITY(U,$J,358.3,36608,0)
- ;;=H60.593^^103^1556^64
- ;;^UTILITY(U,$J,358.3,36608,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36608,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,36608,1,4,0)
- ;;=4^H60.593
- ;;^UTILITY(U,$J,358.3,36608,2)
- ;;=^5006491
- ;;^UTILITY(U,$J,358.3,36609,0)
- ;;=H60.592^^103^1556^65
- ;;^UTILITY(U,$J,358.3,36609,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36609,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
- ;;^UTILITY(U,$J,358.3,36609,1,4,0)
- ;;=4^H60.592
- ;;^UTILITY(U,$J,358.3,36609,2)
- ;;=^5133527
- ;;^UTILITY(U,$J,358.3,36610,0)
- ;;=H60.591^^103^1556^66
- ;;^UTILITY(U,$J,358.3,36610,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36610,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Right Ear NEC
- ;;^UTILITY(U,$J,358.3,36610,1,4,0)
- ;;=4^H60.591
- ;;^UTILITY(U,$J,358.3,36610,2)
- ;;=^5006490
- ;;^UTILITY(U,$J,358.3,36611,0)
- ;;=J18.8^^103^1556^73
- ;;^UTILITY(U,$J,358.3,36611,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36611,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,36611,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,36611,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,36612,0)
- ;;=B44.1^^103^1556^76
- ;;^UTILITY(U,$J,358.3,36612,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36612,1,3,0)
- ;;=3^Pulmonary Aspergillosis NEC
- ;;^UTILITY(U,$J,358.3,36612,1,4,0)
- ;;=4^B44.1
- ;;^UTILITY(U,$J,358.3,36612,2)
- ;;=^5000664
- ;;^UTILITY(U,$J,358.3,36613,0)
- ;;=B48.4^^103^1556^68
- ;;^UTILITY(U,$J,358.3,36613,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36613,1,3,0)
- ;;=3^Penicillosis
- ;;^UTILITY(U,$J,358.3,36613,1,4,0)
- ;;=4^B48.4
- ;;^UTILITY(U,$J,358.3,36613,2)
- ;;=^5000688
- ;;^UTILITY(U,$J,358.3,36614,0)
- ;;=J14.^^103^1556^69
- ;;^UTILITY(U,$J,358.3,36614,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36614,1,3,0)
- ;;=3^Pneumonia d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,36614,1,4,0)
- ;;=4^J14.
- ;;^UTILITY(U,$J,358.3,36614,2)
- ;;=^5008171
- ;;^UTILITY(U,$J,358.3,36615,0)
- ;;=J13.^^103^1556^70
- ;;^UTILITY(U,$J,358.3,36615,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36615,1,3,0)
- ;;=3^Pneumonia d/t Streptococcus Pneumoniae
- ;;^UTILITY(U,$J,358.3,36615,1,4,0)
- ;;=4^J13.
- ;;^UTILITY(U,$J,358.3,36615,2)
- ;;=^5008170
- ;;^UTILITY(U,$J,358.3,36616,0)
- ;;=J17.^^103^1556^71
- ;;^UTILITY(U,$J,358.3,36616,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36616,1,3,0)
- ;;=3^Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,36616,1,4,0)
- ;;=4^J17.
- ;;^UTILITY(U,$J,358.3,36616,2)
- ;;=^5008181
- ;;^UTILITY(U,$J,358.3,36617,0)
- ;;=J18.9^^103^1556^72
- ;;^UTILITY(U,$J,358.3,36617,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36617,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,36617,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,36617,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,36618,0)
- ;;=A15.7^^103^1556^74
- ;;^UTILITY(U,$J,358.3,36618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36618,1,3,0)
- ;;=3^Primary Respiratory TB
- ;;^UTILITY(U,$J,358.3,36618,1,4,0)
- ;;=4^A15.7
- ;;^UTILITY(U,$J,358.3,36618,2)
- ;;=^5000065
- ;;^UTILITY(U,$J,358.3,36619,0)
- ;;=A42.0^^103^1556^75
- ;;^UTILITY(U,$J,358.3,36619,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36619,1,3,0)
- ;;=3^Pulmonary Actinomycosis
- ;;^UTILITY(U,$J,358.3,36619,1,4,0)
- ;;=4^A42.0
- ;;^UTILITY(U,$J,358.3,36619,2)
- ;;=^5000215
- ;;^UTILITY(U,$J,358.3,36620,0)
- ;;=B40.2^^103^1556^77
- ;;^UTILITY(U,$J,358.3,36620,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36620,1,3,0)
- ;;=3^Pulmonary Blastomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,36620,1,4,0)
- ;;=4^B40.2
- ;;^UTILITY(U,$J,358.3,36620,2)
- ;;=^5000641
- ;;^UTILITY(U,$J,358.3,36621,0)
- ;;=B38.2^^103^1556^78
- ;;^UTILITY(U,$J,358.3,36621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36621,1,3,0)
- ;;=3^Pulmonary Coccidiodomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,36621,1,4,0)
- ;;=4^B38.2
- ;;^UTILITY(U,$J,358.3,36621,2)
- ;;=^295703
- ;;^UTILITY(U,$J,358.3,36622,0)
- ;;=B45.0^^103^1556^79
- ;;^UTILITY(U,$J,358.3,36622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36622,1,3,0)
- ;;=3^Pulmonary Cryptococcosis
- ;;^UTILITY(U,$J,358.3,36622,1,4,0)
- ;;=4^B45.0
- ;;^UTILITY(U,$J,358.3,36622,2)
- ;;=^5000669
- ;;^UTILITY(U,$J,358.3,36623,0)
- ;;=A31.0^^103^1556^80
- ;;^UTILITY(U,$J,358.3,36623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36623,1,3,0)
- ;;=3^Pulmonary Mycobacterial Infection
- ;;^UTILITY(U,$J,358.3,36623,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,36623,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,36624,0)
- ;;=A43.0^^103^1556^81
- ;;^UTILITY(U,$J,358.3,36624,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36624,1,3,0)
- ;;=3^Pulmonary Nocardiosis
- ;;^UTILITY(U,$J,358.3,36624,1,4,0)
- ;;=4^A43.0
- ;;^UTILITY(U,$J,358.3,36624,2)
- ;;=^5000223
- ;;^UTILITY(U,$J,358.3,36625,0)
- ;;=B90.9^^103^1556^83
- ;;^UTILITY(U,$J,358.3,36625,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36625,1,3,0)
- ;;=3^Sequelae of Respiratory/Unspec TB
- ;;^UTILITY(U,$J,358.3,36625,1,4,0)
- ;;=4^B90.9
- ;;^UTILITY(U,$J,358.3,36625,2)
- ;;=^5000827
- ;;^UTILITY(U,$J,358.3,36626,0)
- ;;=J41.0^^103^1556^84
- ;;^UTILITY(U,$J,358.3,36626,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36626,1,3,0)
- ;;=3^Simple Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,36626,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,36626,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,36627,0)
- ;;=B44.2^^103^1556^85
- ;;^UTILITY(U,$J,358.3,36627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36627,1,3,0)
- ;;=3^Tonsillar Aspergillosis
- ;;^UTILITY(U,$J,358.3,36627,1,4,0)
- ;;=4^B44.2
- ;;^UTILITY(U,$J,358.3,36627,2)
- ;;=^5000665
- ;;^UTILITY(U,$J,358.3,36628,0)
- ;;=A15.0^^103^1556^86
- ;;^UTILITY(U,$J,358.3,36628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36628,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,36628,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,36628,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,36629,0)
- ;;=A15.6^^103^1556^87
- ;;^UTILITY(U,$J,358.3,36629,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36629,1,3,0)
- ;;=3^Tuberculous Pleurisy
- ;;^UTILITY(U,$J,358.3,36629,1,4,0)
- ;;=4^A15.6
- ;;^UTILITY(U,$J,358.3,36629,2)
- ;;=^5000064
- ;;^UTILITY(U,$J,358.3,36630,0)
- ;;=H60.503^^103^1556^26
- ;;^UTILITY(U,$J,358.3,36630,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36630,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,36630,1,4,0)
- ;;=4^H60.503
- ;;^UTILITY(U,$J,358.3,36630,2)
- ;;=^5006469
- ;;^UTILITY(U,$J,358.3,36631,0)
- ;;=H60.502^^103^1556^27
- ;;^UTILITY(U,$J,358.3,36631,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36631,1,3,0)
- ;;=3^AC Noninfective Otitis Externa,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,12371,1,3,0)
+ ;;=3^Open Wound of Left Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12371,1,4,0)
+ ;;=4^S61.203A

@@ -1,126 +1,124 @@
-IBDEI1V1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1V1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31607,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31607,1,2,0)
- ;;=2^Drsg Collagen <=16 sq in
- ;;^UTILITY(U,$J,358.3,31607,1,3,0)
- ;;=3^A6021
- ;;^UTILITY(U,$J,358.3,31608,0)
- ;;=A6196^^125^1600^8^^^^1
- ;;^UTILITY(U,$J,358.3,31608,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31608,1,2,0)
- ;;=2^Drsg Alginate <=16 sq in
- ;;^UTILITY(U,$J,358.3,31608,1,3,0)
- ;;=3^A6196
- ;;^UTILITY(U,$J,358.3,31609,0)
- ;;=A6197^^125^1600^9^^^^1
- ;;^UTILITY(U,$J,358.3,31609,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31609,1,2,0)
- ;;=2^Drsg Alginate >16 <=48 sq in
- ;;^UTILITY(U,$J,358.3,31609,1,3,0)
- ;;=3^A6197
- ;;^UTILITY(U,$J,358.3,31610,0)
- ;;=A6209^^125^1600^11^^^^1
- ;;^UTILITY(U,$J,358.3,31610,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31610,1,2,0)
- ;;=2^Drsg Foam <=16 sq in w/o Bdr
- ;;^UTILITY(U,$J,358.3,31610,1,3,0)
- ;;=3^A6209
- ;;^UTILITY(U,$J,358.3,31611,0)
- ;;=A6251^^125^1600^7^^^^1
- ;;^UTILITY(U,$J,358.3,31611,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31611,1,2,0)
- ;;=2^Drsg Absorpt <=16 sq in w/o Bdr
- ;;^UTILITY(U,$J,358.3,31611,1,3,0)
- ;;=3^A6251
- ;;^UTILITY(U,$J,358.3,31612,0)
- ;;=A6441^^125^1600^26^^^^1
- ;;^UTILITY(U,$J,358.3,31612,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31612,1,2,0)
- ;;=2^Pad Bandage W >= 3 < 5/Yd
- ;;^UTILITY(U,$J,358.3,31612,1,3,0)
- ;;=3^A6441
- ;;^UTILITY(U,$J,358.3,31613,0)
- ;;=A6456^^125^1600^35^^^^1
- ;;^UTILITY(U,$J,358.3,31613,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31613,1,2,0)
- ;;=2^Zinc Past Bandage W >= 3 < 5/Yd
- ;;^UTILITY(U,$J,358.3,31613,1,3,0)
- ;;=3^A6456
- ;;^UTILITY(U,$J,358.3,31614,0)
- ;;=A6010^^125^1600^32^^^^1
- ;;^UTILITY(U,$J,358.3,31614,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31614,1,2,0)
- ;;=2^Wound Filler Collagen Based
- ;;^UTILITY(U,$J,358.3,31614,1,3,0)
- ;;=3^A6010
- ;;^UTILITY(U,$J,358.3,31615,0)
- ;;=Q4118^^125^1600^19^^^^1
- ;;^UTILITY(U,$J,358.3,31615,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31615,1,2,0)
- ;;=2^Matristem Micromatrix
- ;;^UTILITY(U,$J,358.3,31615,1,3,0)
- ;;=3^Q4118
- ;;^UTILITY(U,$J,358.3,31616,0)
- ;;=L3560^^125^1600^21^^^^1
- ;;^UTILITY(U,$J,358.3,31616,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31616,1,2,0)
- ;;=2^O Shoe Add Horseshoe Toe Tap
- ;;^UTILITY(U,$J,358.3,31616,1,3,0)
- ;;=3^L3560
- ;;^UTILITY(U,$J,358.3,31617,0)
- ;;=28190^^125^1601^8^^^^1
- ;;^UTILITY(U,$J,358.3,31617,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31617,1,2,0)
- ;;=2^Removal of foreign body, foot; subcutaneous
- ;;^UTILITY(U,$J,358.3,31617,1,3,0)
- ;;=3^28190
- ;;^UTILITY(U,$J,358.3,31618,0)
- ;;=28192^^125^1601^7^^^^1
- ;;^UTILITY(U,$J,358.3,31618,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31618,1,2,0)
- ;;=2^Removal of foreign body, foot; deep
- ;;^UTILITY(U,$J,358.3,31618,1,3,0)
- ;;=3^28192
- ;;^UTILITY(U,$J,358.3,31619,0)
- ;;=28193^^125^1601^6^^^^1
- ;;^UTILITY(U,$J,358.3,31619,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31619,1,2,0)
- ;;=2^Removal of foreign body, foot; complicated
- ;;^UTILITY(U,$J,358.3,31619,1,3,0)
- ;;=3^28193
- ;;^UTILITY(U,$J,358.3,31620,0)
- ;;=20520^^125^1601^4^^^^1
- ;;^UTILITY(U,$J,358.3,31620,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31620,1,2,0)
- ;;=2^Removal of foreign body in muscle or tendon sheath; simple
- ;;^UTILITY(U,$J,358.3,31620,1,3,0)
- ;;=3^20520
- ;;^UTILITY(U,$J,358.3,31621,0)
- ;;=20525^^125^1601^5^^^^1
- ;;^UTILITY(U,$J,358.3,31621,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31621,1,2,0)
- ;;=2^Removal of foreign body in muscle or tendon sheath; deep or complicated
- ;;^UTILITY(U,$J,358.3,31621,1,3,0)
- ;;=3^20525
- ;;^UTILITY(U,$J,358.3,31622,0)
- ;;=20670^^125^1601^10^^^^1
- ;;^UTILITY(U,$J,358.3,31622,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29707,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,29707,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,29708,0)
+ ;;=F15.23^^118^1502^67
+ ;;^UTILITY(U,$J,358.3,29708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29708,1,3,0)
+ ;;=3^Oth Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,29708,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,29708,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,29709,0)
+ ;;=F15.10^^118^1502^64
+ ;;^UTILITY(U,$J,358.3,29709,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29709,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,29709,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,29709,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,29710,0)
+ ;;=F15.20^^118^1502^65
+ ;;^UTILITY(U,$J,358.3,29710,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29710,1,3,0)
+ ;;=3^Oth Stimulant Mod/Sev Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,29710,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,29710,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,29711,0)
+ ;;=F14.180^^118^1502^1
+ ;;^UTILITY(U,$J,358.3,29711,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29711,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29711,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,29711,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,29712,0)
+ ;;=F14.280^^118^1502^2
+ ;;^UTILITY(U,$J,358.3,29712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29712,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29712,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,29712,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,29713,0)
+ ;;=F14.980^^118^1502^3
+ ;;^UTILITY(U,$J,358.3,29713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29713,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29713,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,29713,2)
+ ;;=^5003278
+ ;;^UTILITY(U,$J,358.3,29714,0)
+ ;;=F14.14^^118^1502^4
+ ;;^UTILITY(U,$J,358.3,29714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29714,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29714,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,29714,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,29715,0)
+ ;;=F14.24^^118^1502^5
+ ;;^UTILITY(U,$J,358.3,29715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29715,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29715,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,29715,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,29716,0)
+ ;;=F14.94^^118^1502^6
+ ;;^UTILITY(U,$J,358.3,29716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29716,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29716,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,29716,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,29717,0)
+ ;;=F14.188^^118^1502^7
+ ;;^UTILITY(U,$J,358.3,29717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29717,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29717,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,29717,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,29718,0)
+ ;;=F14.288^^118^1502^8
+ ;;^UTILITY(U,$J,358.3,29718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29718,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29718,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,29718,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,29719,0)
+ ;;=F14.988^^118^1502^9
+ ;;^UTILITY(U,$J,358.3,29719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29719,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O

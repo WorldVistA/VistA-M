@@ -1,126 +1,118 @@
-IBDEI1NX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1NX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28249,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28249,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Unstageable
- ;;^UTILITY(U,$J,358.3,28249,1,4,0)
- ;;=4^L89.320
- ;;^UTILITY(U,$J,358.3,28249,2)
- ;;=^5009399
- ;;^UTILITY(U,$J,358.3,28250,0)
- ;;=L89.321^^112^1416^19
- ;;^UTILITY(U,$J,358.3,28250,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28250,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 1
- ;;^UTILITY(U,$J,358.3,28250,1,4,0)
- ;;=4^L89.321
- ;;^UTILITY(U,$J,358.3,28250,2)
- ;;=^5009400
- ;;^UTILITY(U,$J,358.3,28251,0)
- ;;=L89.322^^112^1416^20
- ;;^UTILITY(U,$J,358.3,28251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28251,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 2
- ;;^UTILITY(U,$J,358.3,28251,1,4,0)
- ;;=4^L89.322
- ;;^UTILITY(U,$J,358.3,28251,2)
- ;;=^5009401
- ;;^UTILITY(U,$J,358.3,28252,0)
- ;;=L89.323^^112^1416^21
- ;;^UTILITY(U,$J,358.3,28252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28252,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 3
- ;;^UTILITY(U,$J,358.3,28252,1,4,0)
- ;;=4^L89.323
- ;;^UTILITY(U,$J,358.3,28252,2)
- ;;=^5009402
- ;;^UTILITY(U,$J,358.3,28253,0)
- ;;=L89.324^^112^1416^22
- ;;^UTILITY(U,$J,358.3,28253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28253,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,28253,1,4,0)
- ;;=4^L89.324
- ;;^UTILITY(U,$J,358.3,28253,2)
- ;;=^5009403
- ;;^UTILITY(U,$J,358.3,28254,0)
- ;;=L89.329^^112^1416^23
- ;;^UTILITY(U,$J,358.3,28254,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28254,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28254,1,4,0)
- ;;=4^L89.329
- ;;^UTILITY(U,$J,358.3,28254,2)
- ;;=^5133671
- ;;^UTILITY(U,$J,358.3,28255,0)
- ;;=L89.40^^112^1416^1
- ;;^UTILITY(U,$J,358.3,28255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28255,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28255,1,4,0)
- ;;=4^L89.40
- ;;^UTILITY(U,$J,358.3,28255,2)
- ;;=^5009404
- ;;^UTILITY(U,$J,358.3,28256,0)
- ;;=L89.41^^112^1416^2
- ;;^UTILITY(U,$J,358.3,28256,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28256,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 1
- ;;^UTILITY(U,$J,358.3,28256,1,4,0)
- ;;=4^L89.41
- ;;^UTILITY(U,$J,358.3,28256,2)
- ;;=^5009405
- ;;^UTILITY(U,$J,358.3,28257,0)
- ;;=L89.42^^112^1416^3
- ;;^UTILITY(U,$J,358.3,28257,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28257,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 2
- ;;^UTILITY(U,$J,358.3,28257,1,4,0)
- ;;=4^L89.42
- ;;^UTILITY(U,$J,358.3,28257,2)
- ;;=^5009406
- ;;^UTILITY(U,$J,358.3,28258,0)
- ;;=L89.43^^112^1416^4
- ;;^UTILITY(U,$J,358.3,28258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28258,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 3
- ;;^UTILITY(U,$J,358.3,28258,1,4,0)
- ;;=4^L89.43
- ;;^UTILITY(U,$J,358.3,28258,2)
- ;;=^5009407
- ;;^UTILITY(U,$J,358.3,28259,0)
- ;;=L89.44^^112^1416^5
- ;;^UTILITY(U,$J,358.3,28259,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28259,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 4
- ;;^UTILITY(U,$J,358.3,28259,1,4,0)
- ;;=4^L89.44
- ;;^UTILITY(U,$J,358.3,28259,2)
- ;;=^5009408
- ;;^UTILITY(U,$J,358.3,28260,0)
- ;;=L89.45^^112^1416^6
- ;;^UTILITY(U,$J,358.3,28260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28260,1,3,0)
- ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Unstageable
- ;;^UTILITY(U,$J,358.3,28260,1,4,0)
- ;;=4^L89.45
- ;;^UTILITY(U,$J,358.3,28260,2)
- ;;=^5009409
- ;;^UTILITY(U,$J,358.3,28261,0)
- ;;=L89.510^^112^1416^66
- ;;^UTILITY(U,$J,358.3,28261,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26556,1,2,0)
+ ;;=2^S9449
+ ;;^UTILITY(U,$J,358.3,26556,1,3,0)
+ ;;=3^WEIGHT MGMT CLASS,NON-MD,PER SESSION
+ ;;^UTILITY(U,$J,358.3,26557,0)
+ ;;=96130^^108^1248^44^^^^1
+ ;;^UTILITY(U,$J,358.3,26557,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26557,1,2,0)
+ ;;=2^96130
+ ;;^UTILITY(U,$J,358.3,26557,1,3,0)
+ ;;=3^Psych Tst by MD,1st hr
+ ;;^UTILITY(U,$J,358.3,26558,0)
+ ;;=96131^^108^1248^45^^^^1
+ ;;^UTILITY(U,$J,358.3,26558,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26558,1,2,0)
+ ;;=2^96131
+ ;;^UTILITY(U,$J,358.3,26558,1,3,0)
+ ;;=3^Psych Tst by MD,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,26559,0)
+ ;;=96132^^108^1248^37^^^^1
+ ;;^UTILITY(U,$J,358.3,26559,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26559,1,2,0)
+ ;;=2^96132
+ ;;^UTILITY(U,$J,358.3,26559,1,3,0)
+ ;;=3^Neuropsych Tst by MD,1st 30 min
+ ;;^UTILITY(U,$J,358.3,26560,0)
+ ;;=96133^^108^1248^38^^^^1
+ ;;^UTILITY(U,$J,358.3,26560,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26560,1,2,0)
+ ;;=2^96133
+ ;;^UTILITY(U,$J,358.3,26560,1,3,0)
+ ;;=3^Neuropsych Tst by MD,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,26561,0)
+ ;;=96136^^108^1248^46^^^^1
+ ;;^UTILITY(U,$J,358.3,26561,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26561,1,2,0)
+ ;;=2^96136
+ ;;^UTILITY(U,$J,358.3,26561,1,3,0)
+ ;;=3^Psych/Neuropsych Tst by MD,1st 30 min
+ ;;^UTILITY(U,$J,358.3,26562,0)
+ ;;=96137^^108^1248^47^^^^1
+ ;;^UTILITY(U,$J,358.3,26562,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26562,1,2,0)
+ ;;=2^96137
+ ;;^UTILITY(U,$J,358.3,26562,1,3,0)
+ ;;=3^Psych/Neuropsych Tst by MD,Ea 30 min
+ ;;^UTILITY(U,$J,358.3,26563,0)
+ ;;=96138^^108^1248^48^^^^1
+ ;;^UTILITY(U,$J,358.3,26563,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26563,1,2,0)
+ ;;=2^96138
+ ;;^UTILITY(U,$J,358.3,26563,1,3,0)
+ ;;=3^Psych/Neuropsych Tst by Tech,1st 30 min
+ ;;^UTILITY(U,$J,358.3,26564,0)
+ ;;=96139^^108^1248^49^^^^1
+ ;;^UTILITY(U,$J,358.3,26564,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26564,1,2,0)
+ ;;=2^96139
+ ;;^UTILITY(U,$J,358.3,26564,1,3,0)
+ ;;=3^Psych/Neuropsych Tst by Tech,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,26565,0)
+ ;;=96146^^108^1248^50^^^^1
+ ;;^UTILITY(U,$J,358.3,26565,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26565,1,2,0)
+ ;;=2^96146
+ ;;^UTILITY(U,$J,358.3,26565,1,3,0)
+ ;;=3^Psych/Neuropsych Tst w/ Automated Result
+ ;;^UTILITY(U,$J,358.3,26566,0)
+ ;;=96156^^108^1248^19^^^^1
+ ;;^UTILITY(U,$J,358.3,26566,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26566,1,2,0)
+ ;;=2^96156
+ ;;^UTILITY(U,$J,358.3,26566,1,3,0)
+ ;;=3^HLTH/BEHAV ASSESS/REASSESS,EA 15 MIN
+ ;;^UTILITY(U,$J,358.3,26567,0)
+ ;;=96158^^108^1248^26^^^^1
+ ;;^UTILITY(U,$J,358.3,26567,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26567,1,2,0)
+ ;;=2^96158
+ ;;^UTILITY(U,$J,358.3,26567,1,3,0)
+ ;;=3^HLTH/BEHAV INTERV,INDIV,1ST 30 MIN
+ ;;^UTILITY(U,$J,358.3,26568,0)
+ ;;=96159^^108^1248^27^^^^1
+ ;;^UTILITY(U,$J,358.3,26568,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26568,1,2,0)
+ ;;=2^96159
+ ;;^UTILITY(U,$J,358.3,26568,1,3,0)
+ ;;=3^HLTH/BEHAV INTERV,INDIV,EA ADDL 15 MIN
+ ;;^UTILITY(U,$J,358.3,26569,0)
+ ;;=96164^^108^1248^24^^^^1
+ ;;^UTILITY(U,$J,358.3,26569,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26569,1,2,0)
+ ;;=2^96164
+ ;;^UTILITY(U,$J,358.3,26569,1,3,0)
+ ;;=3^HLTH/BEHAV INTERV,GRP,1ST 30 MIN
+ ;;^UTILITY(U,$J,358.3,26570,0)
+ ;;=96165^^108^1248^25^^^^1
+ ;;^UTILITY(U,$J,358.3,26570,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26570,1,2,0)
+ ;;=2^96165

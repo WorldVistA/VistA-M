@@ -1,126 +1,132 @@
-IBDEI1Q2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29230,2)
- ;;=^5017205
- ;;^UTILITY(U,$J,358.3,29231,0)
- ;;=O40.3XX5^^115^1455^216
- ;;^UTILITY(U,$J,358.3,29231,1,0)
+ ;;^UTILITY(U,$J,358.3,27523,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,27524,0)
+ ;;=F41.0^^113^1338^12
+ ;;^UTILITY(U,$J,358.3,27524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29231,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29231,1,4,0)
- ;;=4^O40.3XX5
- ;;^UTILITY(U,$J,358.3,29231,2)
- ;;=^5017206
- ;;^UTILITY(U,$J,358.3,29232,0)
- ;;=O41.01X0^^115^1456^44
- ;;^UTILITY(U,$J,358.3,29232,1,0)
+ ;;^UTILITY(U,$J,358.3,27524,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,27524,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,27524,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,27525,0)
+ ;;=F41.1^^113^1338^10
+ ;;^UTILITY(U,$J,358.3,27525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29232,1,3,0)
- ;;=3^Oligohydramnios, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29232,1,4,0)
- ;;=4^O41.01X0
- ;;^UTILITY(U,$J,358.3,29232,2)
- ;;=^5017220
- ;;^UTILITY(U,$J,358.3,29233,0)
- ;;=O41.01X1^^115^1456^39
- ;;^UTILITY(U,$J,358.3,29233,1,0)
+ ;;^UTILITY(U,$J,358.3,27525,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,27525,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,27525,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,27526,0)
+ ;;=F40.10^^113^1338^17
+ ;;^UTILITY(U,$J,358.3,27526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29233,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29233,1,4,0)
- ;;=4^O41.01X1
- ;;^UTILITY(U,$J,358.3,29233,2)
- ;;=^5017221
- ;;^UTILITY(U,$J,358.3,29234,0)
- ;;=O41.01X2^^115^1456^40
- ;;^UTILITY(U,$J,358.3,29234,1,0)
+ ;;^UTILITY(U,$J,358.3,27526,1,3,0)
+ ;;=3^Social Anxiety Disorder (Social Phobia)
+ ;;^UTILITY(U,$J,358.3,27526,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,27526,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,27527,0)
+ ;;=F40.218^^113^1338^2
+ ;;^UTILITY(U,$J,358.3,27527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29234,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29234,1,4,0)
- ;;=4^O41.01X2
- ;;^UTILITY(U,$J,358.3,29234,2)
- ;;=^5017222
- ;;^UTILITY(U,$J,358.3,29235,0)
- ;;=O41.01X3^^115^1456^41
- ;;^UTILITY(U,$J,358.3,29235,1,0)
+ ;;^UTILITY(U,$J,358.3,27527,1,3,0)
+ ;;=3^Animal Phobia
+ ;;^UTILITY(U,$J,358.3,27527,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,27527,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,27528,0)
+ ;;=F40.228^^113^1338^11
+ ;;^UTILITY(U,$J,358.3,27528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29235,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29235,1,4,0)
- ;;=4^O41.01X3
- ;;^UTILITY(U,$J,358.3,29235,2)
- ;;=^5017223
- ;;^UTILITY(U,$J,358.3,29236,0)
- ;;=O41.01X4^^115^1456^42
- ;;^UTILITY(U,$J,358.3,29236,1,0)
+ ;;^UTILITY(U,$J,358.3,27528,1,3,0)
+ ;;=3^Natural Environment Phobia
+ ;;^UTILITY(U,$J,358.3,27528,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,27528,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,27529,0)
+ ;;=F40.230^^113^1338^6
+ ;;^UTILITY(U,$J,358.3,27529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29236,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29236,1,4,0)
- ;;=4^O41.01X4
- ;;^UTILITY(U,$J,358.3,29236,2)
- ;;=^5017224
- ;;^UTILITY(U,$J,358.3,29237,0)
- ;;=O41.01X5^^115^1456^43
- ;;^UTILITY(U,$J,358.3,29237,1,0)
+ ;;^UTILITY(U,$J,358.3,27529,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,27529,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,27529,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,27530,0)
+ ;;=F40.231^^113^1338^7
+ ;;^UTILITY(U,$J,358.3,27530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29237,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29237,1,4,0)
- ;;=4^O41.01X5
- ;;^UTILITY(U,$J,358.3,29237,2)
- ;;=^5017225
- ;;^UTILITY(U,$J,358.3,29238,0)
- ;;=O41.02X0^^115^1456^50
- ;;^UTILITY(U,$J,358.3,29238,1,0)
+ ;;^UTILITY(U,$J,358.3,27530,1,3,0)
+ ;;=3^Fear of Injections & Transfusions
+ ;;^UTILITY(U,$J,358.3,27530,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,27530,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,27531,0)
+ ;;=F40.232^^113^1338^9
+ ;;^UTILITY(U,$J,358.3,27531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29238,1,3,0)
- ;;=3^Oligohydramnios, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29238,1,4,0)
- ;;=4^O41.02X0
- ;;^UTILITY(U,$J,358.3,29238,2)
- ;;=^5017227
- ;;^UTILITY(U,$J,358.3,29239,0)
- ;;=O41.02X1^^115^1456^45
- ;;^UTILITY(U,$J,358.3,29239,1,0)
+ ;;^UTILITY(U,$J,358.3,27531,1,3,0)
+ ;;=3^Fear of Other Medical Care
+ ;;^UTILITY(U,$J,358.3,27531,1,4,0)
+ ;;=4^F40.232
+ ;;^UTILITY(U,$J,358.3,27531,2)
+ ;;=^5003552
+ ;;^UTILITY(U,$J,358.3,27532,0)
+ ;;=F40.233^^113^1338^8
+ ;;^UTILITY(U,$J,358.3,27532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29239,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29239,1,4,0)
- ;;=4^O41.02X1
- ;;^UTILITY(U,$J,358.3,29239,2)
- ;;=^5017228
- ;;^UTILITY(U,$J,358.3,29240,0)
- ;;=O41.02X2^^115^1456^46
- ;;^UTILITY(U,$J,358.3,29240,1,0)
+ ;;^UTILITY(U,$J,358.3,27532,1,3,0)
+ ;;=3^Fear of Injury
+ ;;^UTILITY(U,$J,358.3,27532,1,4,0)
+ ;;=4^F40.233
+ ;;^UTILITY(U,$J,358.3,27532,2)
+ ;;=^5003553
+ ;;^UTILITY(U,$J,358.3,27533,0)
+ ;;=F40.248^^113^1338^16
+ ;;^UTILITY(U,$J,358.3,27533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29240,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29240,1,4,0)
- ;;=4^O41.02X2
- ;;^UTILITY(U,$J,358.3,29240,2)
- ;;=^5017229
- ;;^UTILITY(U,$J,358.3,29241,0)
- ;;=O41.02X3^^115^1456^47
- ;;^UTILITY(U,$J,358.3,29241,1,0)
+ ;;^UTILITY(U,$J,358.3,27533,1,3,0)
+ ;;=3^Situational Phobia 
+ ;;^UTILITY(U,$J,358.3,27533,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,27533,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,27534,0)
+ ;;=F93.0^^113^1338^15
+ ;;^UTILITY(U,$J,358.3,27534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29241,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29241,1,4,0)
- ;;=4^O41.02X3
- ;;^UTILITY(U,$J,358.3,29241,2)
- ;;=^5017230
- ;;^UTILITY(U,$J,358.3,29242,0)
- ;;=O41.02X4^^115^1456^48
- ;;^UTILITY(U,$J,358.3,29242,1,0)
+ ;;^UTILITY(U,$J,358.3,27534,1,3,0)
+ ;;=3^Separation Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,27534,1,4,0)
+ ;;=4^F93.0
+ ;;^UTILITY(U,$J,358.3,27534,2)
+ ;;=^5003702
+ ;;^UTILITY(U,$J,358.3,27535,0)
+ ;;=F40.00^^113^1338^1
+ ;;^UTILITY(U,$J,358.3,27535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29242,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29242,1,4,0)
- ;;=4^O41.02X4
- ;;^UTILITY(U,$J,358.3,29242,2)
- ;;=^5017231
+ ;;^UTILITY(U,$J,358.3,27535,1,3,0)
+ ;;=3^Agrophobia
+ ;;^UTILITY(U,$J,358.3,27535,1,4,0)
+ ;;=4^F40.00
+ ;;^UTILITY(U,$J,358.3,27535,2)
+ ;;=^5003542
+ ;;^UTILITY(U,$J,358.3,27536,0)
+ ;;=F41.8^^113^1338^4
+ ;;^UTILITY(U,$J,358.3,27536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27536,1,3,0)
+ ;;=3^Anxiety Disorder,Other Specified

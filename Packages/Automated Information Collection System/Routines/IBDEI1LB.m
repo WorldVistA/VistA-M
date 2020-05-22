@@ -1,132 +1,128 @@
-IBDEI1LB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26957,1,4,0)
- ;;=4^F14.14
- ;;^UTILITY(U,$J,358.3,26957,2)
- ;;=^5003244
- ;;^UTILITY(U,$J,358.3,26958,0)
- ;;=F14.182^^100^1299^6
- ;;^UTILITY(U,$J,358.3,26958,1,0)
+ ;;^UTILITY(U,$J,358.3,25410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26958,1,3,0)
- ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26958,1,4,0)
- ;;=4^F14.182
- ;;^UTILITY(U,$J,358.3,26958,2)
- ;;=^5003250
- ;;^UTILITY(U,$J,358.3,26959,0)
- ;;=F14.20^^100^1299^3
- ;;^UTILITY(U,$J,358.3,26959,1,0)
+ ;;^UTILITY(U,$J,358.3,25410,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,25410,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,25410,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,25411,0)
+ ;;=M19.92^^107^1217^126
+ ;;^UTILITY(U,$J,358.3,25411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26959,1,3,0)
- ;;=3^Cocaine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,26959,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,26959,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,26960,0)
- ;;=F14.21^^100^1299^2
- ;;^UTILITY(U,$J,358.3,26960,1,0)
+ ;;^UTILITY(U,$J,358.3,25411,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,25411,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,25411,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,25412,0)
+ ;;=M85.872^^107^1217^84
+ ;;^UTILITY(U,$J,358.3,25412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26960,1,3,0)
- ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,26960,1,4,0)
- ;;=4^F14.21
- ;;^UTILITY(U,$J,358.3,26960,2)
- ;;=^5003254
- ;;^UTILITY(U,$J,358.3,26961,0)
- ;;=F14.23^^100^1299^4
- ;;^UTILITY(U,$J,358.3,26961,1,0)
+ ;;^UTILITY(U,$J,358.3,25412,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,25412,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,25412,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,25413,0)
+ ;;=M85.832^^107^1217^85
+ ;;^UTILITY(U,$J,358.3,25413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26961,1,3,0)
- ;;=3^Cocaine Withdrawal
- ;;^UTILITY(U,$J,358.3,26961,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,26961,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,26962,0)
- ;;=F43.0^^100^1300^1
- ;;^UTILITY(U,$J,358.3,26962,1,0)
+ ;;^UTILITY(U,$J,358.3,25413,1,3,0)
+ ;;=3^Osteopenia,Left Forearm
+ ;;^UTILITY(U,$J,358.3,25413,1,4,0)
+ ;;=4^M85.832
+ ;;^UTILITY(U,$J,358.3,25413,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,25414,0)
+ ;;=M85.842^^107^1217^86
+ ;;^UTILITY(U,$J,358.3,25414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26962,1,3,0)
- ;;=3^Acute Stress Disorder
- ;;^UTILITY(U,$J,358.3,26962,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,26962,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,26963,0)
- ;;=F43.21^^100^1300^3
- ;;^UTILITY(U,$J,358.3,26963,1,0)
+ ;;^UTILITY(U,$J,358.3,25414,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,25414,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,25414,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,25415,0)
+ ;;=M85.862^^107^1217^87
+ ;;^UTILITY(U,$J,358.3,25415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26963,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,26963,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,26963,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,26964,0)
- ;;=F43.22^^100^1300^2
- ;;^UTILITY(U,$J,358.3,26964,1,0)
+ ;;^UTILITY(U,$J,358.3,25415,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,25415,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,25415,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,25416,0)
+ ;;=M85.812^^107^1217^88
+ ;;^UTILITY(U,$J,358.3,25416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26964,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,26964,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,26964,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,26965,0)
- ;;=F43.23^^100^1300^5
- ;;^UTILITY(U,$J,358.3,26965,1,0)
+ ;;^UTILITY(U,$J,358.3,25416,1,3,0)
+ ;;=3^Osteopenia,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,25416,1,4,0)
+ ;;=4^M85.812
+ ;;^UTILITY(U,$J,358.3,25416,2)
+ ;;=^5014475
+ ;;^UTILITY(U,$J,358.3,25417,0)
+ ;;=M85.852^^107^1217^89
+ ;;^UTILITY(U,$J,358.3,25417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26965,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,26965,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,26965,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,26966,0)
- ;;=F43.24^^100^1300^4
- ;;^UTILITY(U,$J,358.3,26966,1,0)
+ ;;^UTILITY(U,$J,358.3,25417,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,25417,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,25417,2)
+ ;;=^5014487
+ ;;^UTILITY(U,$J,358.3,25418,0)
+ ;;=M85.822^^107^1217^90
+ ;;^UTILITY(U,$J,358.3,25418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26966,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,26966,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,26966,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,26967,0)
- ;;=F43.25^^100^1300^6
- ;;^UTILITY(U,$J,358.3,26967,1,0)
+ ;;^UTILITY(U,$J,358.3,25418,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,25418,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,25418,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,25419,0)
+ ;;=M85.89^^107^1217^91
+ ;;^UTILITY(U,$J,358.3,25419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26967,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
- ;;^UTILITY(U,$J,358.3,26967,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,26967,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,26968,0)
- ;;=F43.8^^100^1300^15
- ;;^UTILITY(U,$J,358.3,26968,1,0)
+ ;;^UTILITY(U,$J,358.3,25419,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,25419,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,25419,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,25420,0)
+ ;;=M85.88^^107^1217^92
+ ;;^UTILITY(U,$J,358.3,25420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26968,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder NEC
- ;;^UTILITY(U,$J,358.3,26968,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,26968,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,26969,0)
- ;;=F43.20^^100^1300^7
- ;;^UTILITY(U,$J,358.3,26969,1,0)
+ ;;^UTILITY(U,$J,358.3,25420,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,25420,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,25420,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,25421,0)
+ ;;=M85.871^^107^1217^93
+ ;;^UTILITY(U,$J,358.3,25421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26969,1,3,0)
- ;;=3^Adjustment Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26969,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,26969,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,26970,0)
- ;;=F43.9^^100^1300^16
- ;;^UTILITY(U,$J,358.3,26970,1,0)
+ ;;^UTILITY(U,$J,358.3,25421,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,25421,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,25421,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,25422,0)
+ ;;=M85.831^^107^1217^94
+ ;;^UTILITY(U,$J,358.3,25422,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25422,1,3,0)
+ ;;=3^Osteopenia,Right Forearm

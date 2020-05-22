@@ -1,134 +1,112 @@
-IBDEI1C4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1C4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22689,0)
- ;;=H83.02^^87^983^46
- ;;^UTILITY(U,$J,358.3,22689,1,0)
+ ;;^UTILITY(U,$J,358.3,21320,2)
+ ;;=^5003307
+ ;;^UTILITY(U,$J,358.3,21321,0)
+ ;;=F15.981^^95^1061^14
+ ;;^UTILITY(U,$J,358.3,21321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22689,1,3,0)
- ;;=3^Labyrinthitis,Left Ear
- ;;^UTILITY(U,$J,358.3,22689,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,22689,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,22690,0)
- ;;=J01.91^^87^983^76
- ;;^UTILITY(U,$J,358.3,22690,1,0)
+ ;;^UTILITY(U,$J,358.3,21321,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21321,1,4,0)
+ ;;=4^F15.981
+ ;;^UTILITY(U,$J,358.3,21321,2)
+ ;;=^5003321
+ ;;^UTILITY(U,$J,358.3,21322,0)
+ ;;=F15.182^^95^1061^15
+ ;;^UTILITY(U,$J,358.3,21322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22690,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,22690,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,22690,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,22691,0)
- ;;=J03.90^^87^983^81
- ;;^UTILITY(U,$J,358.3,22691,1,0)
+ ;;^UTILITY(U,$J,358.3,21322,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21322,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,21322,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,21323,0)
+ ;;=F15.282^^95^1061^16
+ ;;^UTILITY(U,$J,358.3,21323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22691,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,22691,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,22691,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,22692,0)
- ;;=J01.90^^87^983^77
- ;;^UTILITY(U,$J,358.3,22692,1,0)
+ ;;^UTILITY(U,$J,358.3,21323,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21323,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,21323,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,21324,0)
+ ;;=F15.982^^95^1061^17
+ ;;^UTILITY(U,$J,358.3,21324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22692,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,22692,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,22692,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,22693,0)
- ;;=J20.1^^87^983^10
- ;;^UTILITY(U,$J,358.3,22693,1,0)
+ ;;^UTILITY(U,$J,358.3,21324,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21324,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,21324,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,21325,0)
+ ;;=F15.122^^95^1061^20
+ ;;^UTILITY(U,$J,358.3,21325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22693,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,22693,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,22693,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,22694,0)
- ;;=J20.0^^87^983^11
- ;;^UTILITY(U,$J,358.3,22694,1,0)
+ ;;^UTILITY(U,$J,358.3,21325,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21325,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,21325,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,21326,0)
+ ;;=F15.222^^95^1061^21
+ ;;^UTILITY(U,$J,358.3,21326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22694,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,22694,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,22694,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,22695,0)
- ;;=J20.2^^87^983^6
- ;;^UTILITY(U,$J,358.3,22695,1,0)
+ ;;^UTILITY(U,$J,358.3,21326,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21326,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,21326,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,21327,0)
+ ;;=F15.922^^95^1061^22
+ ;;^UTILITY(U,$J,358.3,21327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22695,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,22695,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,22695,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,22696,0)
- ;;=J20.4^^87^983^13
- ;;^UTILITY(U,$J,358.3,22696,1,0)
+ ;;^UTILITY(U,$J,358.3,21327,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21327,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,21327,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,21328,0)
+ ;;=F15.129^^95^1061^23
+ ;;^UTILITY(U,$J,358.3,21328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22696,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,22696,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,22696,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,22697,0)
- ;;=J20.3^^87^983^8
- ;;^UTILITY(U,$J,358.3,22697,1,0)
+ ;;^UTILITY(U,$J,358.3,21328,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21328,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,21328,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,21329,0)
+ ;;=F15.229^^95^1061^24
+ ;;^UTILITY(U,$J,358.3,21329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22697,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,22697,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,22697,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,22698,0)
- ;;=J20.9^^87^983^7
- ;;^UTILITY(U,$J,358.3,22698,1,0)
+ ;;^UTILITY(U,$J,358.3,21329,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21329,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,21329,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,21330,0)
+ ;;=F15.929^^95^1061^25
+ ;;^UTILITY(U,$J,358.3,21330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22698,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,22698,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,22698,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,22699,0)
- ;;=J20.8^^87^983^12
- ;;^UTILITY(U,$J,358.3,22699,1,0)
+ ;;^UTILITY(U,$J,358.3,21330,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21330,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,21330,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,21331,0)
+ ;;=F15.121^^95^1061^18
+ ;;^UTILITY(U,$J,358.3,21331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22699,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,22699,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,22699,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,22700,0)
- ;;=J20.5^^87^983^14
- ;;^UTILITY(U,$J,358.3,22700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22700,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,22700,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,22700,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,22701,0)
- ;;=J20.7^^87^983^9
- ;;^UTILITY(U,$J,358.3,22701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22701,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,22701,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,22701,2)
- ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,21331,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mild Use D/O

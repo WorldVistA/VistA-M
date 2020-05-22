@@ -1,126 +1,124 @@
-IBDEI2HS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42261,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,42261,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,42261,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,42262,0)
- ;;=F11.259^^159^2018^42
- ;;^UTILITY(U,$J,358.3,42262,1,0)
+ ;;^UTILITY(U,$J,358.3,39794,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39794,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,39794,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,39795,0)
+ ;;=Z77.128^^152^2001^113
+ ;;^UTILITY(U,$J,358.3,39795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42262,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,42262,1,4,0)
- ;;=4^F11.259
- ;;^UTILITY(U,$J,358.3,42262,2)
- ;;=^5003137
- ;;^UTILITY(U,$J,358.3,42263,0)
- ;;=F11.251^^159^2018^35
- ;;^UTILITY(U,$J,358.3,42263,1,0)
+ ;;^UTILITY(U,$J,358.3,39795,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39795,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,39795,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,39796,0)
+ ;;=Z77.123^^152^2001^146
+ ;;^UTILITY(U,$J,358.3,39796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42263,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,42263,1,4,0)
- ;;=4^F11.251
- ;;^UTILITY(U,$J,358.3,42263,2)
- ;;=^5003136
- ;;^UTILITY(U,$J,358.3,42264,0)
- ;;=F11.250^^159^2018^36
- ;;^UTILITY(U,$J,358.3,42264,1,0)
+ ;;^UTILITY(U,$J,358.3,39796,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39796,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,39796,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,39797,0)
+ ;;=Z77.122^^152^2001^61
+ ;;^UTILITY(U,$J,358.3,39797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42264,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,42264,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,42264,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,42265,0)
- ;;=F11.24^^159^2018^41
- ;;^UTILITY(U,$J,358.3,42265,1,0)
+ ;;^UTILITY(U,$J,358.3,39797,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39797,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,39797,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,39798,0)
+ ;;=Z77.118^^152^2001^11
+ ;;^UTILITY(U,$J,358.3,39798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42265,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,42265,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,42265,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,42266,0)
- ;;=F11.23^^159^2018^47
- ;;^UTILITY(U,$J,358.3,42266,1,0)
+ ;;^UTILITY(U,$J,358.3,39798,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39798,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,39798,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,39799,0)
+ ;;=Z77.9^^152^2001^47
+ ;;^UTILITY(U,$J,358.3,39799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42266,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,42266,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,42266,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,42267,0)
- ;;=F11.20^^159^2018^48
- ;;^UTILITY(U,$J,358.3,42267,1,0)
+ ;;^UTILITY(U,$J,358.3,39799,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39799,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,39799,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,39800,0)
+ ;;=Z77.22^^152^2001^10
+ ;;^UTILITY(U,$J,358.3,39800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42267,1,3,0)
- ;;=3^Opioid Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42267,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,42267,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,42268,0)
- ;;=F11.229^^159^2018^40
- ;;^UTILITY(U,$J,358.3,42268,1,0)
+ ;;^UTILITY(U,$J,358.3,39800,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,39800,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,39800,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,39801,0)
+ ;;=Z80.0^^152^2001^28
+ ;;^UTILITY(U,$J,358.3,39801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42268,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,42268,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,42268,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,42269,0)
- ;;=F11.222^^159^2018^38
- ;;^UTILITY(U,$J,358.3,42269,1,0)
+ ;;^UTILITY(U,$J,358.3,39801,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,39801,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,39801,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,39802,0)
+ ;;=Z80.1^^152^2001^34
+ ;;^UTILITY(U,$J,358.3,39802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42269,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,42269,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,42269,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,42270,0)
- ;;=F11.221^^159^2018^37
- ;;^UTILITY(U,$J,358.3,42270,1,0)
+ ;;^UTILITY(U,$J,358.3,39802,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,39802,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,39802,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,39803,0)
+ ;;=Z80.3^^152^2001^27
+ ;;^UTILITY(U,$J,358.3,39803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42270,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,42270,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,42270,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,42271,0)
- ;;=F11.220^^159^2018^39
- ;;^UTILITY(U,$J,358.3,42271,1,0)
+ ;;^UTILITY(U,$J,358.3,39803,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,39803,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,39803,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,39804,0)
+ ;;=Z80.41^^152^2001^31
+ ;;^UTILITY(U,$J,358.3,39804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42271,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42271,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,42271,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,42272,0)
- ;;=F14.29^^159^2018^21
- ;;^UTILITY(U,$J,358.3,42272,1,0)
+ ;;^UTILITY(U,$J,358.3,39804,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,39804,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,39804,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,39805,0)
+ ;;=Z80.42^^152^2001^32
+ ;;^UTILITY(U,$J,358.3,39805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42272,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,42272,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,42272,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,42273,0)
- ;;=F14.288^^159^2018^20
- ;;^UTILITY(U,$J,358.3,42273,1,0)
+ ;;^UTILITY(U,$J,358.3,39805,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,39805,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,39805,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,39806,0)
+ ;;=Z80.43^^152^2001^33
+ ;;^UTILITY(U,$J,358.3,39806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42273,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder

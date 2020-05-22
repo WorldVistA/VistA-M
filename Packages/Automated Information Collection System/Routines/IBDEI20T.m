@@ -1,130 +1,122 @@
-IBDEI20T ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI20T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34281,0)
- ;;=K75.9^^131^1683^17
- ;;^UTILITY(U,$J,358.3,34281,1,0)
+ ;;^UTILITY(U,$J,358.3,32255,1,4,0)
+ ;;=4^E11.3592
+ ;;^UTILITY(U,$J,358.3,32255,2)
+ ;;=^5138376
+ ;;^UTILITY(U,$J,358.3,32256,0)
+ ;;=E11.3211^^128^1656^14
+ ;;^UTILITY(U,$J,358.3,32256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34281,1,3,0)
- ;;=3^Inflammatory Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,34281,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,34281,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,34282,0)
- ;;=K71.0^^131^1683^24
- ;;^UTILITY(U,$J,358.3,34282,1,0)
+ ;;^UTILITY(U,$J,358.3,32256,1,3,0)
+ ;;=3^DM 2 w/ MILD NPDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,32256,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,32256,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,32257,0)
+ ;;=E11.3212^^128^1656^15
+ ;;^UTILITY(U,$J,358.3,32257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34282,1,3,0)
- ;;=3^Toxic Liver Disease w/ Cholestasis
- ;;^UTILITY(U,$J,358.3,34282,1,4,0)
- ;;=4^K71.0
- ;;^UTILITY(U,$J,358.3,34282,2)
- ;;=^5008793
- ;;^UTILITY(U,$J,358.3,34283,0)
- ;;=K71.10^^131^1683^30
- ;;^UTILITY(U,$J,358.3,34283,1,0)
+ ;;^UTILITY(U,$J,358.3,32257,1,3,0)
+ ;;=3^DM 2 w/ MILD NPDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,32257,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,32257,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,32258,0)
+ ;;=E11.3311^^128^1656^17
+ ;;^UTILITY(U,$J,358.3,32258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34283,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/o Coma
- ;;^UTILITY(U,$J,358.3,34283,1,4,0)
- ;;=4^K71.10
- ;;^UTILITY(U,$J,358.3,34283,2)
- ;;=^5008794
- ;;^UTILITY(U,$J,358.3,34284,0)
- ;;=K71.11^^131^1683^31
- ;;^UTILITY(U,$J,358.3,34284,1,0)
+ ;;^UTILITY(U,$J,358.3,32258,1,3,0)
+ ;;=3^DM 2 w/ MOD NPDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,32258,1,4,0)
+ ;;=4^E11.3311
+ ;;^UTILITY(U,$J,358.3,32258,2)
+ ;;=^5138339
+ ;;^UTILITY(U,$J,358.3,32259,0)
+ ;;=E11.3312^^128^1656^26
+ ;;^UTILITY(U,$J,358.3,32259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34284,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/ Coma
- ;;^UTILITY(U,$J,358.3,34284,1,4,0)
- ;;=4^K71.11
- ;;^UTILITY(U,$J,358.3,34284,2)
- ;;=^5008795
- ;;^UTILITY(U,$J,358.3,34285,0)
- ;;=K71.2^^131^1683^23
- ;;^UTILITY(U,$J,358.3,34285,1,0)
+ ;;^UTILITY(U,$J,358.3,32259,1,3,0)
+ ;;=3^DM 2 w/ MOD NPDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,32259,1,4,0)
+ ;;=4^E11.3312
+ ;;^UTILITY(U,$J,358.3,32259,2)
+ ;;=^5138340
+ ;;^UTILITY(U,$J,358.3,32260,0)
+ ;;=E11.3411^^128^1656^19
+ ;;^UTILITY(U,$J,358.3,32260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34285,1,3,0)
- ;;=3^Toxic Liver Disease w/ Acute Hepatitis
- ;;^UTILITY(U,$J,358.3,34285,1,4,0)
- ;;=4^K71.2
- ;;^UTILITY(U,$J,358.3,34285,2)
- ;;=^5008796
- ;;^UTILITY(U,$J,358.3,34286,0)
- ;;=K71.3^^131^1683^28
- ;;^UTILITY(U,$J,358.3,34286,1,0)
+ ;;^UTILITY(U,$J,358.3,32260,1,3,0)
+ ;;=3^DM 2 w/ SEVERE NPDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,32260,1,4,0)
+ ;;=4^E11.3411
+ ;;^UTILITY(U,$J,358.3,32260,2)
+ ;;=^5138347
+ ;;^UTILITY(U,$J,358.3,32261,0)
+ ;;=E11.3412^^128^1656^28
+ ;;^UTILITY(U,$J,358.3,32261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34286,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Persistent Hepatitis
- ;;^UTILITY(U,$J,358.3,34286,1,4,0)
- ;;=4^K71.3
- ;;^UTILITY(U,$J,358.3,34286,2)
- ;;=^5008797
- ;;^UTILITY(U,$J,358.3,34287,0)
- ;;=K71.4^^131^1683^27
- ;;^UTILITY(U,$J,358.3,34287,1,0)
+ ;;^UTILITY(U,$J,358.3,32261,1,3,0)
+ ;;=3^DM 2 w/ SEVERE NPDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,32261,1,4,0)
+ ;;=4^E11.3412
+ ;;^UTILITY(U,$J,358.3,32261,2)
+ ;;=^5138348
+ ;;^UTILITY(U,$J,358.3,32262,0)
+ ;;=E11.3511^^128^1656^22
+ ;;^UTILITY(U,$J,358.3,32262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34287,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Lobular Hepatitis
- ;;^UTILITY(U,$J,358.3,34287,1,4,0)
- ;;=4^K71.4
- ;;^UTILITY(U,$J,358.3,34287,2)
- ;;=^5008798
- ;;^UTILITY(U,$J,358.3,34288,0)
- ;;=K75.81^^131^1683^19
- ;;^UTILITY(U,$J,358.3,34288,1,0)
+ ;;^UTILITY(U,$J,358.3,32262,1,3,0)
+ ;;=3^DM 2 w/ PDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,32262,1,4,0)
+ ;;=4^E11.3511
+ ;;^UTILITY(U,$J,358.3,32262,2)
+ ;;=^5138355
+ ;;^UTILITY(U,$J,358.3,32263,0)
+ ;;=E11.3512^^128^1656^31
+ ;;^UTILITY(U,$J,358.3,32263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34288,1,3,0)
- ;;=3^Nonalcoholic Steatohepatitis (NASH)
- ;;^UTILITY(U,$J,358.3,34288,1,4,0)
- ;;=4^K75.81
- ;;^UTILITY(U,$J,358.3,34288,2)
- ;;=^5008828
- ;;^UTILITY(U,$J,358.3,34289,0)
- ;;=K75.89^^131^1683^16
- ;;^UTILITY(U,$J,358.3,34289,1,0)
+ ;;^UTILITY(U,$J,358.3,32263,1,3,0)
+ ;;=3^DM 2 w/ PDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,32263,1,4,0)
+ ;;=4^E11.3512
+ ;;^UTILITY(U,$J,358.3,32263,2)
+ ;;=^5138356
+ ;;^UTILITY(U,$J,358.3,32264,0)
+ ;;=E10.3291^^128^1656^47
+ ;;^UTILITY(U,$J,358.3,32264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34289,1,3,0)
- ;;=3^Inflammatory Liver Disease,Oth Spec
- ;;^UTILITY(U,$J,358.3,34289,1,4,0)
- ;;=4^K75.89
- ;;^UTILITY(U,$J,358.3,34289,2)
- ;;=^5008829
- ;;^UTILITY(U,$J,358.3,34290,0)
- ;;=K76.4^^131^1683^21
- ;;^UTILITY(U,$J,358.3,34290,1,0)
+ ;;^UTILITY(U,$J,358.3,32264,1,3,0)
+ ;;=3^DM 1 w/ MILD NPDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,32264,1,4,0)
+ ;;=4^E10.3291
+ ;;^UTILITY(U,$J,358.3,32264,2)
+ ;;=^5138283
+ ;;^UTILITY(U,$J,358.3,32265,0)
+ ;;=E10.3292^^128^1656^57
+ ;;^UTILITY(U,$J,358.3,32265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34290,1,3,0)
- ;;=3^Peliosis Hepatis
- ;;^UTILITY(U,$J,358.3,34290,1,4,0)
- ;;=4^K76.4
- ;;^UTILITY(U,$J,358.3,34290,2)
- ;;=^91041
- ;;^UTILITY(U,$J,358.3,34291,0)
- ;;=K71.50^^131^1683^25
- ;;^UTILITY(U,$J,358.3,34291,1,0)
+ ;;^UTILITY(U,$J,358.3,32265,1,3,0)
+ ;;=3^DM 1 w/ MILD NPDR w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,32265,1,4,0)
+ ;;=4^E10.3292
+ ;;^UTILITY(U,$J,358.3,32265,2)
+ ;;=^5138284
+ ;;^UTILITY(U,$J,358.3,32266,0)
+ ;;=E10.3391^^128^1656^49
+ ;;^UTILITY(U,$J,358.3,32266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34291,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,34291,1,4,0)
- ;;=4^K71.50
- ;;^UTILITY(U,$J,358.3,34291,2)
- ;;=^5008799
- ;;^UTILITY(U,$J,358.3,34292,0)
- ;;=K71.51^^131^1683^26
- ;;^UTILITY(U,$J,358.3,34292,1,0)
+ ;;^UTILITY(U,$J,358.3,32266,1,3,0)
+ ;;=3^DM 1 w/ MOD NPDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,32266,1,4,0)
+ ;;=4^E10.3391
+ ;;^UTILITY(U,$J,358.3,32266,2)
+ ;;=^5138291
+ ;;^UTILITY(U,$J,358.3,32267,0)
+ ;;=E10.3392^^128^1656^59
+ ;;^UTILITY(U,$J,358.3,32267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34292,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,34292,1,4,0)
- ;;=4^K71.51
- ;;^UTILITY(U,$J,358.3,34292,2)
- ;;=^5008800
- ;;^UTILITY(U,$J,358.3,34293,0)
- ;;=K71.7^^131^1683^29
- ;;^UTILITY(U,$J,358.3,34293,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34293,1,3,0)
- ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver

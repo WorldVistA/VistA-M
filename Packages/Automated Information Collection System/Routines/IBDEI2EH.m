@@ -1,140 +1,116 @@
-IBDEI2EH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2EH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40725,1,4,0)
- ;;=4^L70.1
- ;;^UTILITY(U,$J,358.3,40725,2)
- ;;=^5009269
- ;;^UTILITY(U,$J,358.3,40726,0)
- ;;=L70.3^^159^1993^5
- ;;^UTILITY(U,$J,358.3,40726,1,0)
+ ;;^UTILITY(U,$J,358.3,38312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40726,1,3,0)
- ;;=3^Acne Tropica
- ;;^UTILITY(U,$J,358.3,40726,1,4,0)
- ;;=4^L70.3
- ;;^UTILITY(U,$J,358.3,40726,2)
- ;;=^5009270
- ;;^UTILITY(U,$J,358.3,40727,0)
- ;;=L70.5^^159^1993^2
- ;;^UTILITY(U,$J,358.3,40727,1,0)
+ ;;^UTILITY(U,$J,358.3,38312,1,3,0)
+ ;;=3^Maxillary fracture, unsp, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,38312,1,4,0)
+ ;;=4^S02.401A
+ ;;^UTILITY(U,$J,358.3,38312,2)
+ ;;=^5020324
+ ;;^UTILITY(U,$J,358.3,38313,0)
+ ;;=S02.402A^^149^1947^29
+ ;;^UTILITY(U,$J,358.3,38313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40727,1,3,0)
- ;;=3^Acne Excoriee des Jeunes Filles
- ;;^UTILITY(U,$J,358.3,40727,1,4,0)
- ;;=4^L70.5
- ;;^UTILITY(U,$J,358.3,40727,2)
- ;;=^5009272
- ;;^UTILITY(U,$J,358.3,40728,0)
- ;;=L70.8^^159^1993^4
- ;;^UTILITY(U,$J,358.3,40728,1,0)
+ ;;^UTILITY(U,$J,358.3,38313,1,3,0)
+ ;;=3^Zygomatic fracture, unsp, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,38313,1,4,0)
+ ;;=4^S02.402A
+ ;;^UTILITY(U,$J,358.3,38313,2)
+ ;;=^5020330
+ ;;^UTILITY(U,$J,358.3,38314,0)
+ ;;=S02.609A^^149^1947^10
+ ;;^UTILITY(U,$J,358.3,38314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40728,1,3,0)
- ;;=3^Acne NEC
- ;;^UTILITY(U,$J,358.3,40728,1,4,0)
- ;;=4^L70.8
- ;;^UTILITY(U,$J,358.3,40728,2)
- ;;=^87239
- ;;^UTILITY(U,$J,358.3,40729,0)
- ;;=L70.9^^159^1993^7
- ;;^UTILITY(U,$J,358.3,40729,1,0)
+ ;;^UTILITY(U,$J,358.3,38314,1,3,0)
+ ;;=3^Fracture of mandible, unsp, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,38314,1,4,0)
+ ;;=4^S02.609A
+ ;;^UTILITY(U,$J,358.3,38314,2)
+ ;;=^5020372
+ ;;^UTILITY(U,$J,358.3,38315,0)
+ ;;=S02.69XA^^149^1947^9
+ ;;^UTILITY(U,$J,358.3,38315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40729,1,3,0)
- ;;=3^Acne,Unspec
- ;;^UTILITY(U,$J,358.3,40729,1,4,0)
- ;;=4^L70.9
- ;;^UTILITY(U,$J,358.3,40729,2)
- ;;=^5009273
- ;;^UTILITY(U,$J,358.3,40730,0)
- ;;=L71.0^^159^1993^235
- ;;^UTILITY(U,$J,358.3,40730,1,0)
+ ;;^UTILITY(U,$J,358.3,38315,1,3,0)
+ ;;=3^Fracture of mandible of oth site, init for clos fx
+ ;;^UTILITY(U,$J,358.3,38315,1,4,0)
+ ;;=4^S02.69XA
+ ;;^UTILITY(U,$J,358.3,38315,2)
+ ;;=^5020420
+ ;;^UTILITY(U,$J,358.3,38316,0)
+ ;;=S02.91XA^^149^1947^20
+ ;;^UTILITY(U,$J,358.3,38316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40730,1,3,0)
- ;;=3^Perioral Dermatitis
- ;;^UTILITY(U,$J,358.3,40730,1,4,0)
- ;;=4^L71.0
- ;;^UTILITY(U,$J,358.3,40730,2)
- ;;=^5009274
- ;;^UTILITY(U,$J,358.3,40731,0)
- ;;=L71.1^^159^1993^259
- ;;^UTILITY(U,$J,358.3,40731,1,0)
+ ;;^UTILITY(U,$J,358.3,38316,1,3,0)
+ ;;=3^Fracture of skull unspec, init encntr for closed fracture
+ ;;^UTILITY(U,$J,358.3,38316,1,4,0)
+ ;;=4^S02.91XA
+ ;;^UTILITY(U,$J,358.3,38316,2)
+ ;;=^5020432
+ ;;^UTILITY(U,$J,358.3,38317,0)
+ ;;=S02.92XA^^149^1947^7
+ ;;^UTILITY(U,$J,358.3,38317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40731,1,3,0)
- ;;=3^Rhinophyma
- ;;^UTILITY(U,$J,358.3,40731,1,4,0)
- ;;=4^L71.1
- ;;^UTILITY(U,$J,358.3,40731,2)
- ;;=^106083
- ;;^UTILITY(U,$J,358.3,40732,0)
- ;;=L71.8^^159^1993^260
- ;;^UTILITY(U,$J,358.3,40732,1,0)
+ ;;^UTILITY(U,$J,358.3,38317,1,3,0)
+ ;;=3^Fracture of facial bones unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,38317,1,4,0)
+ ;;=4^S02.92XA
+ ;;^UTILITY(U,$J,358.3,38317,2)
+ ;;=^5020438
+ ;;^UTILITY(U,$J,358.3,38318,0)
+ ;;=S02.0XXB^^149^1947^23
+ ;;^UTILITY(U,$J,358.3,38318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40732,1,3,0)
- ;;=3^Rosacea NEC
- ;;^UTILITY(U,$J,358.3,40732,1,4,0)
- ;;=4^L71.8
- ;;^UTILITY(U,$J,358.3,40732,2)
- ;;=^5009275
- ;;^UTILITY(U,$J,358.3,40733,0)
- ;;=L71.9^^159^1993^261
- ;;^UTILITY(U,$J,358.3,40733,1,0)
+ ;;^UTILITY(U,$J,358.3,38318,1,3,0)
+ ;;=3^Fracture of vault of skull, init encntr for open fracture
+ ;;^UTILITY(U,$J,358.3,38318,1,4,0)
+ ;;=4^S02.0XXB
+ ;;^UTILITY(U,$J,358.3,38318,2)
+ ;;=^5020253
+ ;;^UTILITY(U,$J,358.3,38319,0)
+ ;;=S02.2XXB^^149^1947^12
+ ;;^UTILITY(U,$J,358.3,38319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40733,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,40733,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,40733,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,40734,0)
- ;;=L72.0^^159^1993^142
- ;;^UTILITY(U,$J,358.3,40734,1,0)
+ ;;^UTILITY(U,$J,358.3,38319,1,3,0)
+ ;;=3^Fracture of nasal bones, initial encounter for open fracture
+ ;;^UTILITY(U,$J,358.3,38319,1,4,0)
+ ;;=4^S02.2XXB
+ ;;^UTILITY(U,$J,358.3,38319,2)
+ ;;=^5020307
+ ;;^UTILITY(U,$J,358.3,38320,0)
+ ;;=S02.402B^^149^1947^30
+ ;;^UTILITY(U,$J,358.3,38320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40734,1,3,0)
- ;;=3^Epidermal Cyst
- ;;^UTILITY(U,$J,358.3,40734,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,40734,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,40735,0)
- ;;=L72.12^^159^1993^285
- ;;^UTILITY(U,$J,358.3,40735,1,0)
+ ;;^UTILITY(U,$J,358.3,38320,1,3,0)
+ ;;=3^Zygomatic fracture, unsp, init encntr for open fracture
+ ;;^UTILITY(U,$J,358.3,38320,1,4,0)
+ ;;=4^S02.402B
+ ;;^UTILITY(U,$J,358.3,38320,2)
+ ;;=^5020331
+ ;;^UTILITY(U,$J,358.3,38321,0)
+ ;;=S02.91XB^^149^1947^21
+ ;;^UTILITY(U,$J,358.3,38321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40735,1,3,0)
- ;;=3^Trichodermal Cyst
- ;;^UTILITY(U,$J,358.3,40735,1,4,0)
- ;;=4^L72.12
- ;;^UTILITY(U,$J,358.3,40735,2)
- ;;=^5009279
- ;;^UTILITY(U,$J,358.3,40736,0)
- ;;=L72.2^^159^1993^270
- ;;^UTILITY(U,$J,358.3,40736,1,0)
+ ;;^UTILITY(U,$J,358.3,38321,1,3,0)
+ ;;=3^Fracture of skull unspec, init encntr for open fracture
+ ;;^UTILITY(U,$J,358.3,38321,1,4,0)
+ ;;=4^S02.91XB
+ ;;^UTILITY(U,$J,358.3,38321,2)
+ ;;=^5020433
+ ;;^UTILITY(U,$J,358.3,38322,0)
+ ;;=S02.0XXD^^149^1947^25
+ ;;^UTILITY(U,$J,358.3,38322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40736,1,3,0)
- ;;=3^Steatocystoma Multiplex
- ;;^UTILITY(U,$J,358.3,40736,1,4,0)
- ;;=4^L72.2
- ;;^UTILITY(U,$J,358.3,40736,2)
- ;;=^5009280
- ;;^UTILITY(U,$J,358.3,40737,0)
- ;;=L72.8^^159^1993^151
- ;;^UTILITY(U,$J,358.3,40737,1,0)
+ ;;^UTILITY(U,$J,358.3,38322,1,3,0)
+ ;;=3^Fracture of vault of skull, subs for fx w routn heal
+ ;;^UTILITY(U,$J,358.3,38322,1,4,0)
+ ;;=4^S02.0XXD
+ ;;^UTILITY(U,$J,358.3,38322,2)
+ ;;=^5020254
+ ;;^UTILITY(U,$J,358.3,38323,0)
+ ;;=S02.0XXS^^149^1947^24
+ ;;^UTILITY(U,$J,358.3,38323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40737,1,3,0)
- ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
- ;;^UTILITY(U,$J,358.3,40737,1,4,0)
- ;;=4^L72.8
- ;;^UTILITY(U,$J,358.3,40737,2)
- ;;=^5009282
- ;;^UTILITY(U,$J,358.3,40738,0)
- ;;=L72.9^^159^1993^152
- ;;^UTILITY(U,$J,358.3,40738,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40738,1,3,0)
- ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,40738,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,40738,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,40739,0)
- ;;=L73.0^^159^1993^3

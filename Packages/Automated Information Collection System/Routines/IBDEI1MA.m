@@ -1,138 +1,120 @@
-IBDEI1MA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27437,1,4,0)
- ;;=4^T86.13
- ;;^UTILITY(U,$J,358.3,27437,2)
- ;;=^5055711
- ;;^UTILITY(U,$J,358.3,27438,0)
- ;;=Z94.0^^106^1359^8
- ;;^UTILITY(U,$J,358.3,27438,1,0)
+ ;;^UTILITY(U,$J,358.3,25838,0)
+ ;;=F14.250^^107^1225^12
+ ;;^UTILITY(U,$J,358.3,25838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27438,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,27438,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,27438,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,27439,0)
- ;;=Z48.22^^106^1359^1
- ;;^UTILITY(U,$J,358.3,27439,1,0)
+ ;;^UTILITY(U,$J,358.3,25838,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,25838,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,25838,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,25839,0)
+ ;;=F14.24^^107^1225^16
+ ;;^UTILITY(U,$J,358.3,25839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27439,1,3,0)
- ;;=3^Aftercare Following Kidney Transplant
- ;;^UTILITY(U,$J,358.3,27439,1,4,0)
- ;;=4^Z48.22
- ;;^UTILITY(U,$J,358.3,27439,2)
- ;;=^5063039
- ;;^UTILITY(U,$J,358.3,27440,0)
- ;;=Z52.4^^106^1359^2
- ;;^UTILITY(U,$J,358.3,27440,1,0)
+ ;;^UTILITY(U,$J,358.3,25839,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,25839,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,25839,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,25840,0)
+ ;;=F14.23^^107^1225^25
+ ;;^UTILITY(U,$J,358.3,25840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27440,1,3,0)
- ;;=3^Kidney Donor
- ;;^UTILITY(U,$J,358.3,27440,1,4,0)
- ;;=4^Z52.4
- ;;^UTILITY(U,$J,358.3,27440,2)
- ;;=^5063082
- ;;^UTILITY(U,$J,358.3,27441,0)
- ;;=D47.Z1^^106^1359^9
- ;;^UTILITY(U,$J,358.3,27441,1,0)
+ ;;^UTILITY(U,$J,358.3,25840,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,25840,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,25840,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,25841,0)
+ ;;=F14.229^^107^1225^22
+ ;;^UTILITY(U,$J,358.3,25841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27441,1,3,0)
- ;;=3^Post-Transplant Lymphoproliferative Disorder (PTLD)
- ;;^UTILITY(U,$J,358.3,27441,1,4,0)
- ;;=4^D47.Z1
- ;;^UTILITY(U,$J,358.3,27441,2)
- ;;=^5002261
- ;;^UTILITY(U,$J,358.3,27442,0)
- ;;=T86.10^^106^1359^4
- ;;^UTILITY(U,$J,358.3,27442,1,0)
+ ;;^UTILITY(U,$J,358.3,25841,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,25841,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,25841,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,25842,0)
+ ;;=F14.222^^107^1225^20
+ ;;^UTILITY(U,$J,358.3,25842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27442,1,3,0)
- ;;=3^Kidney Transplant Complication,Unspec
- ;;^UTILITY(U,$J,358.3,27442,1,4,0)
- ;;=4^T86.10
- ;;^UTILITY(U,$J,358.3,27442,2)
- ;;=^5055708
- ;;^UTILITY(U,$J,358.3,27443,0)
- ;;=N18.1^^106^1360^1
- ;;^UTILITY(U,$J,358.3,27443,1,0)
+ ;;^UTILITY(U,$J,358.3,25842,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,25842,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,25842,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,25843,0)
+ ;;=F14.221^^107^1225^19
+ ;;^UTILITY(U,$J,358.3,25843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27443,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 1
- ;;^UTILITY(U,$J,358.3,27443,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,27443,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,27444,0)
- ;;=N18.2^^106^1360^2
- ;;^UTILITY(U,$J,358.3,27444,1,0)
+ ;;^UTILITY(U,$J,358.3,25843,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,25843,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,25843,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,25844,0)
+ ;;=F14.220^^107^1225^21
+ ;;^UTILITY(U,$J,358.3,25844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27444,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 2
- ;;^UTILITY(U,$J,358.3,27444,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,27444,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,27445,0)
- ;;=N18.3^^106^1360^3
- ;;^UTILITY(U,$J,358.3,27445,1,0)
+ ;;^UTILITY(U,$J,358.3,25844,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25844,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,25844,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,25845,0)
+ ;;=F14.20^^107^1225^26
+ ;;^UTILITY(U,$J,358.3,25845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27445,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 3
- ;;^UTILITY(U,$J,358.3,27445,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,27445,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,27446,0)
- ;;=N18.4^^106^1360^4
- ;;^UTILITY(U,$J,358.3,27446,1,0)
+ ;;^UTILITY(U,$J,358.3,25845,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,25845,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,25845,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,25846,0)
+ ;;=F10.120^^107^1225^1
+ ;;^UTILITY(U,$J,358.3,25846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27446,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 4
- ;;^UTILITY(U,$J,358.3,27446,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,27446,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,27447,0)
- ;;=N18.5^^106^1360^5
- ;;^UTILITY(U,$J,358.3,27447,1,0)
+ ;;^UTILITY(U,$J,358.3,25846,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25846,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,25846,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,25847,0)
+ ;;=F10.10^^107^1225^3
+ ;;^UTILITY(U,$J,358.3,25847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27447,1,3,0)
- ;;=3^Chr Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,27447,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,27447,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,27448,0)
- ;;=N18.9^^106^1360^6
- ;;^UTILITY(U,$J,358.3,27448,1,0)
+ ;;^UTILITY(U,$J,358.3,25847,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25847,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,25847,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,25848,0)
+ ;;=F17.201^^107^1225^31
+ ;;^UTILITY(U,$J,358.3,25848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27448,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,27448,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,27448,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,27449,0)
- ;;=N18.6^^106^1360^7
- ;;^UTILITY(U,$J,358.3,27449,1,0)
+ ;;^UTILITY(U,$J,358.3,25848,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,25848,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,25848,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,25849,0)
+ ;;=F17.210^^107^1225^30
+ ;;^UTILITY(U,$J,358.3,25849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27449,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,27449,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,27449,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,27450,0)
- ;;=N19.^^106^1360^8
- ;;^UTILITY(U,$J,358.3,27450,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27450,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,27450,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,27450,2)
- ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,25849,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated

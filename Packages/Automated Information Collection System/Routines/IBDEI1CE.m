@@ -1,134 +1,126 @@
-IBDEI1CE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22819,2)
- ;;=^44985
- ;;^UTILITY(U,$J,358.3,22820,0)
- ;;=R25.8^^87^986^2
- ;;^UTILITY(U,$J,358.3,22820,1,0)
+ ;;^UTILITY(U,$J,358.3,21441,1,4,0)
+ ;;=4^Z94.82
+ ;;^UTILITY(U,$J,358.3,21441,2)
+ ;;=^5063663
+ ;;^UTILITY(U,$J,358.3,21442,0)
+ ;;=Z94.9^^95^1072^13
+ ;;^UTILITY(U,$J,358.3,21442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22820,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Other
- ;;^UTILITY(U,$J,358.3,22820,1,4,0)
- ;;=4^R25.8
- ;;^UTILITY(U,$J,358.3,22820,2)
- ;;=^5019302
- ;;^UTILITY(U,$J,358.3,22821,0)
- ;;=M02.30^^87^987^141
- ;;^UTILITY(U,$J,358.3,22821,1,0)
+ ;;^UTILITY(U,$J,358.3,21442,1,3,0)
+ ;;=3^Transplanted Organ/Tissue Status,Unspec
+ ;;^UTILITY(U,$J,358.3,21442,1,4,0)
+ ;;=4^Z94.9
+ ;;^UTILITY(U,$J,358.3,21442,2)
+ ;;=^5063667
+ ;;^UTILITY(U,$J,358.3,21443,0)
+ ;;=Z92.3^^95^1073^9
+ ;;^UTILITY(U,$J,358.3,21443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22821,1,3,0)
- ;;=3^Reiter's Disease,Unspec Site
- ;;^UTILITY(U,$J,358.3,22821,1,4,0)
- ;;=4^M02.30
- ;;^UTILITY(U,$J,358.3,22821,2)
- ;;=^5009790
- ;;^UTILITY(U,$J,358.3,22822,0)
- ;;=M10.9^^87^987^40
- ;;^UTILITY(U,$J,358.3,22822,1,0)
+ ;;^UTILITY(U,$J,358.3,21443,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,21443,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,21443,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,21444,0)
+ ;;=Z91.410^^95^1073^7
+ ;;^UTILITY(U,$J,358.3,21444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22822,1,3,0)
- ;;=3^Gout,Unspec
- ;;^UTILITY(U,$J,358.3,22822,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,22822,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,22823,0)
- ;;=G90.59^^87^987^34
- ;;^UTILITY(U,$J,358.3,22823,1,0)
+ ;;^UTILITY(U,$J,358.3,21444,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,21444,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,21444,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,21445,0)
+ ;;=Z91.411^^95^1073^8
+ ;;^UTILITY(U,$J,358.3,21445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22823,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
- ;;^UTILITY(U,$J,358.3,22823,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,22823,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,22824,0)
- ;;=G56.01^^87^987^12
- ;;^UTILITY(U,$J,358.3,22824,1,0)
+ ;;^UTILITY(U,$J,358.3,21445,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,21445,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,21445,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,21446,0)
+ ;;=Z91.49^^95^1073^11
+ ;;^UTILITY(U,$J,358.3,21446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22824,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,22824,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,22824,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,22825,0)
- ;;=G56.02^^87^987^11
- ;;^UTILITY(U,$J,358.3,22825,1,0)
+ ;;^UTILITY(U,$J,358.3,21446,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma NEC
+ ;;^UTILITY(U,$J,358.3,21446,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,21446,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,21447,0)
+ ;;=Z91.19^^95^1073^5
+ ;;^UTILITY(U,$J,358.3,21447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22825,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,22825,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,22825,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,22826,0)
- ;;=G56.21^^87^987^56
- ;;^UTILITY(U,$J,358.3,22826,1,0)
+ ;;^UTILITY(U,$J,358.3,21447,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,21447,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,21447,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,21448,0)
+ ;;=Z87.891^^95^1073^10
+ ;;^UTILITY(U,$J,358.3,21448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22826,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,22826,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,22826,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,22827,0)
- ;;=G56.22^^87^987^55
- ;;^UTILITY(U,$J,358.3,22827,1,0)
+ ;;^UTILITY(U,$J,358.3,21448,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,21448,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,21448,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,21449,0)
+ ;;=Z77.090^^95^1073^1
+ ;;^UTILITY(U,$J,358.3,21449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22827,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,22827,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,22827,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,22828,0)
- ;;=M26.60^^87^987^180
- ;;^UTILITY(U,$J,358.3,22828,1,0)
+ ;;^UTILITY(U,$J,358.3,21449,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,21449,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,21449,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,21450,0)
+ ;;=Z91.81^^95^1073^3
+ ;;^UTILITY(U,$J,358.3,21450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22828,1,3,0)
- ;;=3^Temporomandibular Joint Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22828,1,4,0)
- ;;=4^M26.60
- ;;^UTILITY(U,$J,358.3,22828,2)
- ;;=^5011714
- ;;^UTILITY(U,$J,358.3,22829,0)
- ;;=L40.52^^87^987^137
- ;;^UTILITY(U,$J,358.3,22829,1,0)
+ ;;^UTILITY(U,$J,358.3,21450,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,21450,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,21450,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,21451,0)
+ ;;=Z57.8^^95^1073^6
+ ;;^UTILITY(U,$J,358.3,21451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22829,1,3,0)
- ;;=3^Psoriatic Arthritis Mutilans
- ;;^UTILITY(U,$J,358.3,22829,1,4,0)
- ;;=4^L40.52
- ;;^UTILITY(U,$J,358.3,22829,2)
- ;;=^5009167
- ;;^UTILITY(U,$J,358.3,22830,0)
- ;;=L40.53^^87^987^138
- ;;^UTILITY(U,$J,358.3,22830,1,0)
+ ;;^UTILITY(U,$J,358.3,21451,1,3,0)
+ ;;=3^Occupational Risk Factor Exposure
+ ;;^UTILITY(U,$J,358.3,21451,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,21451,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,21452,0)
+ ;;=Z77.011^^95^1073^4
+ ;;^UTILITY(U,$J,358.3,21452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22830,1,3,0)
- ;;=3^Psoriatic Spondylitis
- ;;^UTILITY(U,$J,358.3,22830,1,4,0)
- ;;=4^L40.53
- ;;^UTILITY(U,$J,358.3,22830,2)
- ;;=^5009168
- ;;^UTILITY(U,$J,358.3,22831,0)
- ;;=M32.9^^87^987^179
- ;;^UTILITY(U,$J,358.3,22831,1,0)
+ ;;^UTILITY(U,$J,358.3,21452,1,3,0)
+ ;;=3^Lead Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,21452,1,4,0)
+ ;;=4^Z77.011
+ ;;^UTILITY(U,$J,358.3,21452,2)
+ ;;=^5063306
+ ;;^UTILITY(U,$J,358.3,21453,0)
+ ;;=Z77.9^^95^1073^2
+ ;;^UTILITY(U,$J,358.3,21453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22831,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,22831,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,22831,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,22832,0)
- ;;=M32.0^^87^987^175
- ;;^UTILITY(U,$J,358.3,22832,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22832,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
- ;;^UTILITY(U,$J,358.3,22832,1,4,0)
- ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,21453,1,3,0)
+ ;;=3^Hazardous to Health Contact/Exposures
+ ;;^UTILITY(U,$J,358.3,21453,1,4,0)
+ ;;=4^Z77.9

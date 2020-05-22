@@ -1,5 +1,5 @@
-MAGDRPC1 ;WOIFO/EdM - Imaging RPCs ; 12 Feb 2013 5:53 PM
- ;;3.0;IMAGING;**11,30,51,50,54,49,122,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDRPC1 ;WOIFO/EdM,DAC - Imaging RPCs ;30 May 2019 2:57 PM
+ ;;3.0;IMAGING;**11,30,51,50,54,49,122,138,239**;Mar 19, 2002;Build 18
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,9 @@ MAGDRPC1 ;WOIFO/EdM - Imaging RPCs ; 12 Feb 2013 5:53 PM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;;
+ ; Supported IA #3065 reference $$HLNAME^XLFNAME function call
+ ;
  Q
  ;
 GETPID(OUT) ; RPC = MAG DICOM GET PROCESS ID
@@ -197,6 +200,24 @@ PAT(OUT,DFN) ; RPC = MAG DICOM GET PATIENT
  I $T(GETICN^MPIF001)'="" S X=$$GETICN^MPIF001(DFN) S:X'<0 N=N+1,OUT(N)="ICN^1^"_X
  S N=N+1,OUT(N)="Site-DFN^1^"_$$STATNUMB^MAGDFCNV()_"-"_DFN
  S OUT(1)=N-1
+ Q
+ ;
+DCMNAME(OUT,DFN,DELIM) ; RPC = MAG GET DICOM FMT PATIENT NAME
+ ; P239 DAC - New RPC added
+ ; HL7:   family ^ given ^ middle ^ suffix ^ prefix ^ degree
+ ; DICOM: family ^ given ^ middle ^ prefix ^ suffix (4 & 5 swapped, no degree)
+ N DGNAME,DICOMNAME,HL7NAME
+ K OUT
+ I '$G(DFN) S OUT="-1,No Patient Identified" Q
+ S DGNAME("FILE")=2,DGNAME("IENS")=DFN,DGNAME("FIELD")=.01
+ S HL7NAME=$$HLNAME^XLFNAME(.DGNAME,"","^") ; get HL7 formatted name
+ I HL7NAME="" S OUT="-2,No patient found with DFN="_DFN Q
+ ; convert to DICOM format by swapping 4th and 5th components
+ S DICOMNAME=$P(HL7NAME,"^",1,3) ; family ^ given ^ middle
+ S $P(DICOMNAME,"^",4)=$P(HL7NAME,"^",5) ; prefix (e.g., DR)
+ S $P(DICOMNAME,"^",5)=$P(HL7NAME,"^",4) ; suffix (e.g., JR or III)
+ I $D(DELIM) S DICOMNAME=$TR(DICOMNAME,"^",DELIM)
+ S OUT=DICOMNAME
  Q
  ;
 VA(PRE,ARR,SUB) N A,I,X

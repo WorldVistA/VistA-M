@@ -1,124 +1,118 @@
-IBDEI2DF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40205,0)
- ;;=T81.30XS^^156^1956^26
- ;;^UTILITY(U,$J,358.3,40205,1,0)
+ ;;^UTILITY(U,$J,358.3,37843,1,4,0)
+ ;;=4^S99.142A
+ ;;^UTILITY(U,$J,358.3,37843,2)
+ ;;=^5139842
+ ;;^UTILITY(U,$J,358.3,37844,0)
+ ;;=S99.211A^^146^1917^441
+ ;;^UTILITY(U,$J,358.3,37844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40205,1,3,0)
- ;;=3^Disruption of wound, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,40205,1,4,0)
- ;;=4^T81.30XS
- ;;^UTILITY(U,$J,358.3,40205,2)
- ;;=^5054469
- ;;^UTILITY(U,$J,358.3,40206,0)
- ;;=T81.31XA^^156^1956^16
- ;;^UTILITY(U,$J,358.3,40206,1,0)
+ ;;^UTILITY(U,$J,358.3,37844,1,3,0)
+ ;;=3^Physeal Fx,Right Toe Phalanx,Salter-Harris Type I,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37844,1,4,0)
+ ;;=4^S99.211A
+ ;;^UTILITY(U,$J,358.3,37844,2)
+ ;;=^5139898
+ ;;^UTILITY(U,$J,358.3,37845,0)
+ ;;=S99.212A^^146^1917^429
+ ;;^UTILITY(U,$J,358.3,37845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40206,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, init
- ;;^UTILITY(U,$J,358.3,40206,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,40206,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,40207,0)
- ;;=T81.31XD^^156^1956^17
- ;;^UTILITY(U,$J,358.3,40207,1,0)
+ ;;^UTILITY(U,$J,358.3,37845,1,3,0)
+ ;;=3^Physeal Fx,Left Toe Phalanx,Salter-Harris Type I,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37845,1,4,0)
+ ;;=4^S99.212A
+ ;;^UTILITY(U,$J,358.3,37845,2)
+ ;;=^5139905
+ ;;^UTILITY(U,$J,358.3,37846,0)
+ ;;=S99.221A^^146^1917^442
+ ;;^UTILITY(U,$J,358.3,37846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40207,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, subs
- ;;^UTILITY(U,$J,358.3,40207,1,4,0)
- ;;=4^T81.31XD
- ;;^UTILITY(U,$J,358.3,40207,2)
- ;;=^5054471
- ;;^UTILITY(U,$J,358.3,40208,0)
- ;;=T81.31XS^^156^1956^18
- ;;^UTILITY(U,$J,358.3,40208,1,0)
+ ;;^UTILITY(U,$J,358.3,37846,1,3,0)
+ ;;=3^Physeal Fx,Right Toe Phalanx,Salter-Harris Type II,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37846,1,4,0)
+ ;;=4^S99.221A
+ ;;^UTILITY(U,$J,358.3,37846,2)
+ ;;=^5139919
+ ;;^UTILITY(U,$J,358.3,37847,0)
+ ;;=S99.222A^^146^1917^430
+ ;;^UTILITY(U,$J,358.3,37847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40208,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, sequela
- ;;^UTILITY(U,$J,358.3,40208,1,4,0)
- ;;=4^T81.31XS
- ;;^UTILITY(U,$J,358.3,40208,2)
- ;;=^5054472
- ;;^UTILITY(U,$J,358.3,40209,0)
- ;;=T81.32XA^^156^1956^19
- ;;^UTILITY(U,$J,358.3,40209,1,0)
+ ;;^UTILITY(U,$J,358.3,37847,1,3,0)
+ ;;=3^Physeal Fx,Left Toe Phalanx,Salter-Harris Type II,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37847,1,4,0)
+ ;;=4^S99.222A
+ ;;^UTILITY(U,$J,358.3,37847,2)
+ ;;=^5139926
+ ;;^UTILITY(U,$J,358.3,37848,0)
+ ;;=S99.231A^^146^1917^443
+ ;;^UTILITY(U,$J,358.3,37848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40209,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, init
- ;;^UTILITY(U,$J,358.3,40209,1,4,0)
- ;;=4^T81.32XA
- ;;^UTILITY(U,$J,358.3,40209,2)
- ;;=^5054473
- ;;^UTILITY(U,$J,358.3,40210,0)
- ;;=T81.32XD^^156^1956^20
- ;;^UTILITY(U,$J,358.3,40210,1,0)
+ ;;^UTILITY(U,$J,358.3,37848,1,3,0)
+ ;;=3^Physeal Fx,Right Toe Phalanx,Salter-Harris Type III,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37848,1,4,0)
+ ;;=4^S99.231A
+ ;;^UTILITY(U,$J,358.3,37848,2)
+ ;;=^5139940
+ ;;^UTILITY(U,$J,358.3,37849,0)
+ ;;=S99.232A^^146^1917^431
+ ;;^UTILITY(U,$J,358.3,37849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40210,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, subs
- ;;^UTILITY(U,$J,358.3,40210,1,4,0)
- ;;=4^T81.32XD
- ;;^UTILITY(U,$J,358.3,40210,2)
- ;;=^5054474
- ;;^UTILITY(U,$J,358.3,40211,0)
- ;;=T81.32XS^^156^1956^21
- ;;^UTILITY(U,$J,358.3,40211,1,0)
+ ;;^UTILITY(U,$J,358.3,37849,1,3,0)
+ ;;=3^Physeal Fx,Left Toe Phalanx,Salter-Harris Type III,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37849,1,4,0)
+ ;;=4^S99.232A
+ ;;^UTILITY(U,$J,358.3,37849,2)
+ ;;=^5139947
+ ;;^UTILITY(U,$J,358.3,37850,0)
+ ;;=S99.241A^^146^1917^444
+ ;;^UTILITY(U,$J,358.3,37850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40211,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, sequela
- ;;^UTILITY(U,$J,358.3,40211,1,4,0)
- ;;=4^T81.32XS
- ;;^UTILITY(U,$J,358.3,40211,2)
- ;;=^5054475
- ;;^UTILITY(U,$J,358.3,40212,0)
- ;;=T81.33XA^^156^1956^22
- ;;^UTILITY(U,$J,358.3,40212,1,0)
+ ;;^UTILITY(U,$J,358.3,37850,1,3,0)
+ ;;=3^Physeal Fx,Right Toe Phalanx,Salter-Harris Type IV,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37850,1,4,0)
+ ;;=4^S99.241A
+ ;;^UTILITY(U,$J,358.3,37850,2)
+ ;;=^5139961
+ ;;^UTILITY(U,$J,358.3,37851,0)
+ ;;=S99.242A^^146^1917^432
+ ;;^UTILITY(U,$J,358.3,37851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40212,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, init encntr
- ;;^UTILITY(U,$J,358.3,40212,1,4,0)
- ;;=4^T81.33XA
- ;;^UTILITY(U,$J,358.3,40212,2)
- ;;=^5054476
- ;;^UTILITY(U,$J,358.3,40213,0)
- ;;=T81.33XD^^156^1956^23
- ;;^UTILITY(U,$J,358.3,40213,1,0)
+ ;;^UTILITY(U,$J,358.3,37851,1,3,0)
+ ;;=3^Physeal Fx,Left Toe Phalanx,Salter-Harris Type IV,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37851,1,4,0)
+ ;;=4^S99.242A
+ ;;^UTILITY(U,$J,358.3,37851,2)
+ ;;=^5139968
+ ;;^UTILITY(U,$J,358.3,37852,0)
+ ;;=M10.071^^146^1918^14
+ ;;^UTILITY(U,$J,358.3,37852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40213,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, subs encntr
- ;;^UTILITY(U,$J,358.3,40213,1,4,0)
- ;;=4^T81.33XD
- ;;^UTILITY(U,$J,358.3,40213,2)
- ;;=^5054477
- ;;^UTILITY(U,$J,358.3,40214,0)
- ;;=T81.33XS^^156^1956^24
- ;;^UTILITY(U,$J,358.3,40214,1,0)
+ ;;^UTILITY(U,$J,358.3,37852,1,3,0)
+ ;;=3^Gout,Idiopathic Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,37852,1,4,0)
+ ;;=4^M10.071
+ ;;^UTILITY(U,$J,358.3,37852,2)
+ ;;=^5010303
+ ;;^UTILITY(U,$J,358.3,37853,0)
+ ;;=M10.072^^146^1918^13
+ ;;^UTILITY(U,$J,358.3,37853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40214,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, sequela
- ;;^UTILITY(U,$J,358.3,40214,1,4,0)
- ;;=4^T81.33XS
- ;;^UTILITY(U,$J,358.3,40214,2)
- ;;=^5054478
- ;;^UTILITY(U,$J,358.3,40215,0)
- ;;=T81.4XXA^^156^1956^36
- ;;^UTILITY(U,$J,358.3,40215,1,0)
+ ;;^UTILITY(U,$J,358.3,37853,1,3,0)
+ ;;=3^Gout,Idiopathic Lft Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,37853,1,4,0)
+ ;;=4^M10.072
+ ;;^UTILITY(U,$J,358.3,37853,2)
+ ;;=^5010304
+ ;;^UTILITY(U,$J,358.3,37854,0)
+ ;;=M10.272^^146^1918^10
+ ;;^UTILITY(U,$J,358.3,37854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40215,1,3,0)
- ;;=3^Infection following a procedure, initial encounter
- ;;^UTILITY(U,$J,358.3,40215,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,40215,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,40216,0)
- ;;=K68.11^^156^1956^54
- ;;^UTILITY(U,$J,358.3,40216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40216,1,3,0)
- ;;=3^Postprocedural retroperitoneal abscess
- ;;^UTILITY(U,$J,358.3,40216,1,4,0)
- ;;=4^K68.11
- ;;^UTILITY(U,$J,358.3,40216,2)
- ;;=^5008782
+ ;;^UTILITY(U,$J,358.3,37854,1,3,0)
+ ;;=3^Gout,Drug-Induced Lft Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,37854,1,4,0)
+ ;;=4^M10.272
+ ;;^UTILITY(U,$J,358.3,37854,2)
+ ;;=^5010352

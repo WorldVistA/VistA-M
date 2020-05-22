@@ -1,126 +1,132 @@
-IBDEI25A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36391,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,36391,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,36392,0)
- ;;=I25.719^^137^1760^15
- ;;^UTILITY(U,$J,358.3,36392,1,0)
+ ;;^UTILITY(U,$J,358.3,34257,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,34257,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,34258,0)
+ ;;=Z60.4^^134^1735^5
+ ;;^UTILITY(U,$J,358.3,34258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36392,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36392,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,36392,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,36393,0)
- ;;=I25.710^^137^1760^16
- ;;^UTILITY(U,$J,358.3,36393,1,0)
+ ;;^UTILITY(U,$J,358.3,34258,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,34258,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,34258,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,34259,0)
+ ;;=Z60.5^^134^1735^6
+ ;;^UTILITY(U,$J,358.3,34259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36393,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,36393,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,36393,2)
- ;;=^5007121
- ;;^UTILITY(U,$J,358.3,36394,0)
- ;;=I25.761^^137^1760^17
- ;;^UTILITY(U,$J,358.3,36394,1,0)
+ ;;^UTILITY(U,$J,358.3,34259,1,3,0)
+ ;;=3^Target (Perceived) Adverse Discrimination/Persecution
+ ;;^UTILITY(U,$J,358.3,34259,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,34259,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,34260,0)
+ ;;=Z60.9^^134^1735^4
+ ;;^UTILITY(U,$J,358.3,34260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36394,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36394,1,4,0)
- ;;=4^I25.761
- ;;^UTILITY(U,$J,358.3,36394,2)
- ;;=^5007136
- ;;^UTILITY(U,$J,358.3,36395,0)
- ;;=I25.768^^137^1760^18
- ;;^UTILITY(U,$J,358.3,36395,1,0)
+ ;;^UTILITY(U,$J,358.3,34260,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,34260,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,34260,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,34261,0)
+ ;;=F65.4^^134^1736^6
+ ;;^UTILITY(U,$J,358.3,34261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36395,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36395,1,4,0)
- ;;=4^I25.768
- ;;^UTILITY(U,$J,358.3,36395,2)
- ;;=^5007137
- ;;^UTILITY(U,$J,358.3,36396,0)
- ;;=I25.769^^137^1760^19
- ;;^UTILITY(U,$J,358.3,36396,1,0)
+ ;;^UTILITY(U,$J,358.3,34261,1,3,0)
+ ;;=3^Pedophilic D/O
+ ;;^UTILITY(U,$J,358.3,34261,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,34261,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,34262,0)
+ ;;=F65.2^^134^1736^1
+ ;;^UTILITY(U,$J,358.3,34262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36396,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36396,1,4,0)
- ;;=4^I25.769
- ;;^UTILITY(U,$J,358.3,36396,2)
- ;;=^5007138
- ;;^UTILITY(U,$J,358.3,36397,0)
- ;;=I25.760^^137^1760^20
- ;;^UTILITY(U,$J,358.3,36397,1,0)
+ ;;^UTILITY(U,$J,358.3,34262,1,3,0)
+ ;;=3^Exhibitionistic D/O
+ ;;^UTILITY(U,$J,358.3,34262,1,4,0)
+ ;;=4^F65.2
+ ;;^UTILITY(U,$J,358.3,34262,2)
+ ;;=^5003653
+ ;;^UTILITY(U,$J,358.3,34263,0)
+ ;;=F65.3^^134^1736^10
+ ;;^UTILITY(U,$J,358.3,34263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36397,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36397,1,4,0)
- ;;=4^I25.760
- ;;^UTILITY(U,$J,358.3,36397,2)
- ;;=^5007135
- ;;^UTILITY(U,$J,358.3,36398,0)
- ;;=I25.701^^137^1760^23
- ;;^UTILITY(U,$J,358.3,36398,1,0)
+ ;;^UTILITY(U,$J,358.3,34263,1,3,0)
+ ;;=3^Voyeuristic D/O
+ ;;^UTILITY(U,$J,358.3,34263,1,4,0)
+ ;;=4^F65.3
+ ;;^UTILITY(U,$J,358.3,34263,2)
+ ;;=^5003654
+ ;;^UTILITY(U,$J,358.3,34264,0)
+ ;;=F65.81^^134^1736^3
+ ;;^UTILITY(U,$J,358.3,34264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36398,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36398,1,4,0)
- ;;=4^I25.701
- ;;^UTILITY(U,$J,358.3,36398,2)
- ;;=^5007118
- ;;^UTILITY(U,$J,358.3,36399,0)
- ;;=I25.708^^137^1760^21
- ;;^UTILITY(U,$J,358.3,36399,1,0)
+ ;;^UTILITY(U,$J,358.3,34264,1,3,0)
+ ;;=3^Frotteuristic D/O
+ ;;^UTILITY(U,$J,358.3,34264,1,4,0)
+ ;;=4^F65.81
+ ;;^UTILITY(U,$J,358.3,34264,2)
+ ;;=^5003659
+ ;;^UTILITY(U,$J,358.3,34265,0)
+ ;;=F65.51^^134^1736^7
+ ;;^UTILITY(U,$J,358.3,34265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36399,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36399,1,4,0)
- ;;=4^I25.708
- ;;^UTILITY(U,$J,358.3,36399,2)
- ;;=^5007119
- ;;^UTILITY(U,$J,358.3,36400,0)
- ;;=I25.709^^137^1760^25
- ;;^UTILITY(U,$J,358.3,36400,1,0)
+ ;;^UTILITY(U,$J,358.3,34265,1,3,0)
+ ;;=3^Sexual Masochism D/O
+ ;;^UTILITY(U,$J,358.3,34265,1,4,0)
+ ;;=4^F65.51
+ ;;^UTILITY(U,$J,358.3,34265,2)
+ ;;=^5003657
+ ;;^UTILITY(U,$J,358.3,34266,0)
+ ;;=F65.52^^134^1736^8
+ ;;^UTILITY(U,$J,358.3,34266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36400,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36400,1,4,0)
- ;;=4^I25.709
- ;;^UTILITY(U,$J,358.3,36400,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,36401,0)
- ;;=I25.700^^137^1760^27
- ;;^UTILITY(U,$J,358.3,36401,1,0)
+ ;;^UTILITY(U,$J,358.3,34266,1,3,0)
+ ;;=3^Sexual Sadism D/O
+ ;;^UTILITY(U,$J,358.3,34266,1,4,0)
+ ;;=4^F65.52
+ ;;^UTILITY(U,$J,358.3,34266,2)
+ ;;=^5003658
+ ;;^UTILITY(U,$J,358.3,34267,0)
+ ;;=F65.0^^134^1736^2
+ ;;^UTILITY(U,$J,358.3,34267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36401,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36401,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,36401,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,36402,0)
- ;;=I25.751^^137^1760^34
- ;;^UTILITY(U,$J,358.3,36402,1,0)
+ ;;^UTILITY(U,$J,358.3,34267,1,3,0)
+ ;;=3^Fetishistic D/O
+ ;;^UTILITY(U,$J,358.3,34267,1,4,0)
+ ;;=4^F65.0
+ ;;^UTILITY(U,$J,358.3,34267,2)
+ ;;=^5003651
+ ;;^UTILITY(U,$J,358.3,34268,0)
+ ;;=F65.1^^134^1736^9
+ ;;^UTILITY(U,$J,358.3,34268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36402,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36402,1,4,0)
- ;;=4^I25.751
- ;;^UTILITY(U,$J,358.3,36402,2)
- ;;=^5007132
- ;;^UTILITY(U,$J,358.3,36403,0)
- ;;=I25.758^^137^1760^35
- ;;^UTILITY(U,$J,358.3,36403,1,0)
+ ;;^UTILITY(U,$J,358.3,34268,1,3,0)
+ ;;=3^Transvestic D/O
+ ;;^UTILITY(U,$J,358.3,34268,1,4,0)
+ ;;=4^F65.1
+ ;;^UTILITY(U,$J,358.3,34268,2)
+ ;;=^5003652
+ ;;^UTILITY(U,$J,358.3,34269,0)
+ ;;=F65.89^^134^1736^4
+ ;;^UTILITY(U,$J,358.3,34269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36403,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36403,1,4,0)
- ;;=4^I25.758
+ ;;^UTILITY(U,$J,358.3,34269,1,3,0)
+ ;;=3^Paraphilic D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,34269,1,4,0)
+ ;;=4^F65.89
+ ;;^UTILITY(U,$J,358.3,34269,2)
+ ;;=^5003660
+ ;;^UTILITY(U,$J,358.3,34270,0)
+ ;;=F65.9^^134^1736^5
+ ;;^UTILITY(U,$J,358.3,34270,1,0)
+ ;;=^358.31IA^4^2

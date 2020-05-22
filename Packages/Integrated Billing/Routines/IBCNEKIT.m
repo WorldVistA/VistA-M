@@ -1,5 +1,5 @@
 IBCNEKIT ;DAOU/ESG - PURGE eIV DATA FILES ;11-JUL-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,549,595,621,602**;21-MAR-94;Build 22
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,549,595,621,602,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine handles the purging of the eIV data stored in the
@@ -170,11 +170,9 @@ INIT ; This procedure calculates the default beginning and ending dates
  .S MSG(9)="may be purged."
  .; Set to IB site parameter MAILGROUP - IBCNE EIV MESSAGE
  .S MGRP=$$MGRP^IBCNEUT5()
- .S IBXMY("VHAEINSURANCERR@domain.ext")=""
- .D MSG^IBCNEUT5(MGRP,"eIV Purge No Data Found for Station "_+$$SITE^VASITE(),"MSG(",,.IBXMY)
- .; Duplicate message to Outlook group
- .; S MGRP="G.VHAEINSURANCERR@domain.ext"
- .; D MSG^IBCNEUT5(MGRP,"eIV Data Background Purge","MSG(")
+ .; IB*659/DW  Added production check & changed eInsurance mail group to be more self documenting
+ .I $$PROD^XUPROD(1) S IBXMY("VHAeInsuranceRapidResponse@domain.ext")=""
+ .D MSG^IBCNEUT5(MGRP,"eIV Purge No Data Found for Station "_+$$SITE^VASITE(),"MSG(",,.IBXMY) ; emails postmaster if IBXMY is null
  .Q
  ;
  ; At this point, we know that there are some entries eligible for

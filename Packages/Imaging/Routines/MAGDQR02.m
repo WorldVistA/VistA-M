@@ -1,5 +1,5 @@
-MAGDQR02 ;WOIFO/EdM,MLH,JSL,BT - Imaging RPCs for Query/Retrieve ; 28 Aug 2012 4:11 PM
- ;;3.0;IMAGING;**51,54,66,118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGDQR02 ;WOIFO/EdM,MLH,JSL,BT,DSB - Imaging RPCs for Query/Retrieve ; 09 Sept 2019 4:11 PM
+ ;;3.0;IMAGING;**51,54,66,118,239**Sept 09,2019;Build ;Build 18
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -35,14 +35,15 @@ QUERY ; --- perform actual query --- Called by TaskMan
  S:($L(PRMUID)'=1)!(123'[PRMUID) PRMUID=0
  ;
  S T="0008,0020",I=0 ; R  Study Date
- S P="" F  S P=$O(REQ(T,P)) Q:P=""  D:REQ(T,P)'=""
+ S P="" F  S P=$O(REQ(T,P))   Q:P=""  D:REQ(T,P)'=""
  . N FR,UT
  . S I=I+1 I I>1 D ERR^MAGDQRUE("More than one study date specified.") Q
  . S (X,FR,UT)=REQ(T,P) S:X["-" FR=$P(X,"-",1),UT=$P(X,"-",2)
  . I FR'="",FR'?8N D ERR^MAGDQRUE("Invalid 'from' date: """_FR_""".")
  . I UT'="",UT'?8N D ERR^MAGDQRUE("Invalid 'until' date: """_UT_""".")
  . S FD=+FR S:FD FD=FD-17000000
- . S LD=+UT S:LD LD=LD-17000000
+ . I UT'="" S LD=+UT S:LD LD=LD-17000000  ;P239;DSB-Fix last date when null
+ . I UT="" S LD=$$HTFM^XLFDT($H,1)
  . S TIM=1
  . Q
  ;

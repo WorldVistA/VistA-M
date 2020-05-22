@@ -1,110 +1,118 @@
-IBDEI1UI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31343,1,3,0)
- ;;=3^11604
- ;;^UTILITY(U,$J,358.3,31344,0)
- ;;=11606^^125^1585^6^^^^1
- ;;^UTILITY(U,$J,358.3,31344,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31344,1,2,0)
- ;;=2^Excision Malignant Lesions-trunk, arms or legs; over 4.0cm
- ;;^UTILITY(U,$J,358.3,31344,1,3,0)
- ;;=3^11606
- ;;^UTILITY(U,$J,358.3,31345,0)
- ;;=11620^^125^1585^7^^^^1
- ;;^UTILITY(U,$J,358.3,31345,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31345,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.5cm or less
- ;;^UTILITY(U,$J,358.3,31345,1,3,0)
- ;;=3^11620
- ;;^UTILITY(U,$J,358.3,31346,0)
- ;;=11621^^125^1585^8^^^^1
- ;;^UTILITY(U,$J,358.3,31346,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31346,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 0.6cm to 1.0cm
- ;;^UTILITY(U,$J,358.3,31346,1,3,0)
- ;;=3^11621
- ;;^UTILITY(U,$J,358.3,31347,0)
- ;;=11622^^125^1585^9^^^^1
- ;;^UTILITY(U,$J,358.3,31347,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31347,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 1.1cm to 2.0cm
- ;;^UTILITY(U,$J,358.3,31347,1,3,0)
- ;;=3^11622
- ;;^UTILITY(U,$J,358.3,31348,0)
- ;;=11623^^125^1585^10^^^^1
- ;;^UTILITY(U,$J,358.3,31348,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31348,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 2.1cm to 3.0cm
- ;;^UTILITY(U,$J,358.3,31348,1,3,0)
- ;;=3^11623
- ;;^UTILITY(U,$J,358.3,31349,0)
- ;;=11624^^125^1585^11^^^^1
- ;;^UTILITY(U,$J,358.3,31349,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31349,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, genitalia; 3.1cm to 4.0cm
- ;;^UTILITY(U,$J,358.3,31349,1,3,0)
- ;;=3^11624
- ;;^UTILITY(U,$J,358.3,31350,0)
- ;;=11626^^125^1585^12^^^^1
- ;;^UTILITY(U,$J,358.3,31350,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31350,1,2,0)
- ;;=2^Excision Malignant Lesions-scalp, neck, hands, feet, gentalia; over 4.0cm
- ;;^UTILITY(U,$J,358.3,31350,1,3,0)
- ;;=3^11626
- ;;^UTILITY(U,$J,358.3,31351,0)
- ;;=12001^^125^1586^8^^^^1
- ;;^UTILITY(U,$J,358.3,31351,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31351,1,2,0)
- ;;=2^Simple Repair of Wnd-Scalp,Neck,Axillae,Trunk;2.5cm or less
- ;;^UTILITY(U,$J,358.3,31351,1,3,0)
- ;;=3^12001
- ;;^UTILITY(U,$J,358.3,31352,0)
- ;;=12002^^125^1586^9^^^^1
- ;;^UTILITY(U,$J,358.3,31352,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31352,1,2,0)
- ;;=2^Simple Repair of Wnd-Scalp,Neck,Axillae,Trunk;2.6cm-7.5cm
- ;;^UTILITY(U,$J,358.3,31352,1,3,0)
- ;;=3^12002
- ;;^UTILITY(U,$J,358.3,31353,0)
- ;;=12041^^125^1586^1^^^^1
- ;;^UTILITY(U,$J,358.3,31353,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31353,1,2,0)
- ;;=2^Layer Closure of Wnd-Neck,Hands,Feet,Ext Genitalia;2.5cm or less
- ;;^UTILITY(U,$J,358.3,31353,1,3,0)
- ;;=3^12041
- ;;^UTILITY(U,$J,358.3,31354,0)
- ;;=12042^^125^1586^2^^^^1
- ;;^UTILITY(U,$J,358.3,31354,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31354,1,2,0)
- ;;=2^Layer Closure of Wnd-Neck,Hands,Feet,Ext Genitalia;2.6cm-7.5cm
- ;;^UTILITY(U,$J,358.3,31354,1,3,0)
- ;;=3^12042
- ;;^UTILITY(U,$J,358.3,31355,0)
- ;;=12031^^125^1586^3^^^^1
- ;;^UTILITY(U,$J,358.3,31355,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31355,1,2,0)
- ;;=2^Layer Closure of Wnd-Scalp,Axillae,Trunk,Extrem;2.5cm or less
- ;;^UTILITY(U,$J,358.3,31355,1,3,0)
- ;;=3^12031
- ;;^UTILITY(U,$J,358.3,31356,0)
- ;;=12032^^125^1586^4^^^^1
- ;;^UTILITY(U,$J,358.3,31356,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31356,1,2,0)
- ;;=2^Layer Closure of Wnd-Scalp,Axillae,Trunk,Extrem;2.6cm-7.5cm
- ;;^UTILITY(U,$J,358.3,31356,1,3,0)
- ;;=3^12032
+ ;;^UTILITY(U,$J,358.3,29481,2)
+ ;;=^5133352
+ ;;^UTILITY(U,$J,358.3,29482,0)
+ ;;=F11.21^^118^1487^27
+ ;;^UTILITY(U,$J,358.3,29482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29482,1,3,0)
+ ;;=3^Opioid Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,29482,1,4,0)
+ ;;=4^F11.21
+ ;;^UTILITY(U,$J,358.3,29482,2)
+ ;;=^5003128
+ ;;^UTILITY(U,$J,358.3,29483,0)
+ ;;=Z79.891^^118^1487^1
+ ;;^UTILITY(U,$J,358.3,29483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29483,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,29483,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,29483,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,29484,0)
+ ;;=F11.11^^118^1487^24
+ ;;^UTILITY(U,$J,358.3,29484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29484,1,3,0)
+ ;;=3^Opioid Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,29484,1,4,0)
+ ;;=4^F11.11
+ ;;^UTILITY(U,$J,358.3,29484,2)
+ ;;=^268246
+ ;;^UTILITY(U,$J,358.3,29485,0)
+ ;;=F13.180^^118^1488^1
+ ;;^UTILITY(U,$J,358.3,29485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29485,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29485,1,4,0)
+ ;;=4^F13.180
+ ;;^UTILITY(U,$J,358.3,29485,2)
+ ;;=^5003197
+ ;;^UTILITY(U,$J,358.3,29486,0)
+ ;;=F13.280^^118^1488^2
+ ;;^UTILITY(U,$J,358.3,29486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29486,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29486,1,4,0)
+ ;;=4^F13.280
+ ;;^UTILITY(U,$J,358.3,29486,2)
+ ;;=^5003216
+ ;;^UTILITY(U,$J,358.3,29487,0)
+ ;;=F13.980^^118^1488^3
+ ;;^UTILITY(U,$J,358.3,29487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29487,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29487,1,4,0)
+ ;;=4^F13.980
+ ;;^UTILITY(U,$J,358.3,29487,2)
+ ;;=^5003235
+ ;;^UTILITY(U,$J,358.3,29488,0)
+ ;;=F13.14^^118^1488^4
+ ;;^UTILITY(U,$J,358.3,29488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29488,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29488,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,29488,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,29489,0)
+ ;;=F13.24^^118^1488^5
+ ;;^UTILITY(U,$J,358.3,29489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29489,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O 
+ ;;^UTILITY(U,$J,358.3,29489,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,29489,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,29490,0)
+ ;;=F13.94^^118^1488^6
+ ;;^UTILITY(U,$J,358.3,29490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29490,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29490,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,29490,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,29491,0)
+ ;;=F13.921^^118^1488^7
+ ;;^UTILITY(U,$J,358.3,29491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29491,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
+ ;;^UTILITY(U,$J,358.3,29491,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,29491,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,29492,0)
+ ;;=F13.27^^118^1488^8
+ ;;^UTILITY(U,$J,358.3,29492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29492,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29492,1,4,0)
+ ;;=4^F13.27
+ ;;^UTILITY(U,$J,358.3,29492,2)
+ ;;=^5003215
+ ;;^UTILITY(U,$J,358.3,29493,0)
+ ;;=F13.97^^118^1488^9

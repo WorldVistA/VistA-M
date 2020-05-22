@@ -1,122 +1,120 @@
-IBDEI1PK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29019,1,0)
+ ;;^UTILITY(U,$J,358.3,27294,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,27295,0)
+ ;;=F19.259^^110^1323^11
+ ;;^UTILITY(U,$J,358.3,27295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29019,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 4
- ;;^UTILITY(U,$J,358.3,29019,1,4,0)
- ;;=4^O35.0XX4
- ;;^UTILITY(U,$J,358.3,29019,2)
- ;;=^5016779
- ;;^UTILITY(U,$J,358.3,29020,0)
- ;;=O35.0XX5^^115^1455^42
- ;;^UTILITY(U,$J,358.3,29020,1,0)
+ ;;^UTILITY(U,$J,358.3,27295,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27295,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,27295,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,27296,0)
+ ;;=F19.959^^110^1323^12
+ ;;^UTILITY(U,$J,358.3,27296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29020,1,3,0)
- ;;=3^Maternal care for CNS malform in fetus, fetus 5
- ;;^UTILITY(U,$J,358.3,29020,1,4,0)
- ;;=4^O35.0XX5
- ;;^UTILITY(U,$J,358.3,29020,2)
- ;;=^5016780
- ;;^UTILITY(U,$J,358.3,29021,0)
- ;;=O35.1XX0^^115^1455^61
- ;;^UTILITY(U,$J,358.3,29021,1,0)
+ ;;^UTILITY(U,$J,358.3,27296,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27296,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,27296,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,27297,0)
+ ;;=F19.181^^110^1323^13
+ ;;^UTILITY(U,$J,358.3,27297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29021,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, unsp
- ;;^UTILITY(U,$J,358.3,29021,1,4,0)
- ;;=4^O35.1XX0
- ;;^UTILITY(U,$J,358.3,29021,2)
- ;;=^5016782
- ;;^UTILITY(U,$J,358.3,29022,0)
- ;;=O35.1XX1^^115^1455^62
- ;;^UTILITY(U,$J,358.3,29022,1,0)
+ ;;^UTILITY(U,$J,358.3,27297,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27297,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,27297,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,27298,0)
+ ;;=F19.281^^110^1323^14
+ ;;^UTILITY(U,$J,358.3,27298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29022,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 1
- ;;^UTILITY(U,$J,358.3,29022,1,4,0)
- ;;=4^O35.1XX1
- ;;^UTILITY(U,$J,358.3,29022,2)
- ;;=^5016783
- ;;^UTILITY(U,$J,358.3,29023,0)
- ;;=O35.1XX2^^115^1455^63
- ;;^UTILITY(U,$J,358.3,29023,1,0)
+ ;;^UTILITY(U,$J,358.3,27298,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27298,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,27298,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,27299,0)
+ ;;=F19.981^^110^1323^15
+ ;;^UTILITY(U,$J,358.3,27299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29023,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 2
- ;;^UTILITY(U,$J,358.3,29023,1,4,0)
- ;;=4^O35.1XX2
- ;;^UTILITY(U,$J,358.3,29023,2)
- ;;=^5016784
- ;;^UTILITY(U,$J,358.3,29024,0)
- ;;=O35.1XX3^^115^1455^64
- ;;^UTILITY(U,$J,358.3,29024,1,0)
+ ;;^UTILITY(U,$J,358.3,27299,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,27299,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,27299,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,27300,0)
+ ;;=F19.182^^110^1323^16
+ ;;^UTILITY(U,$J,358.3,27300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29024,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 3
- ;;^UTILITY(U,$J,358.3,29024,1,4,0)
- ;;=4^O35.1XX3
- ;;^UTILITY(U,$J,358.3,29024,2)
- ;;=^5016785
- ;;^UTILITY(U,$J,358.3,29025,0)
- ;;=O35.1XX4^^115^1455^65
- ;;^UTILITY(U,$J,358.3,29025,1,0)
+ ;;^UTILITY(U,$J,358.3,27300,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27300,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,27300,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,27301,0)
+ ;;=F19.282^^110^1323^17
+ ;;^UTILITY(U,$J,358.3,27301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29025,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 4
- ;;^UTILITY(U,$J,358.3,29025,1,4,0)
- ;;=4^O35.1XX4
- ;;^UTILITY(U,$J,358.3,29025,2)
- ;;=^5016786
- ;;^UTILITY(U,$J,358.3,29026,0)
- ;;=O35.1XX5^^115^1455^66
- ;;^UTILITY(U,$J,358.3,29026,1,0)
+ ;;^UTILITY(U,$J,358.3,27301,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27301,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,27301,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,27302,0)
+ ;;=F19.982^^110^1323^18
+ ;;^UTILITY(U,$J,358.3,27302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29026,1,3,0)
- ;;=3^Maternal care for chromosomal abnormality in fetus, fetus 5
- ;;^UTILITY(U,$J,358.3,29026,1,4,0)
- ;;=4^O35.1XX5
- ;;^UTILITY(U,$J,358.3,29026,2)
- ;;=^5016787
- ;;^UTILITY(U,$J,358.3,29027,0)
- ;;=O35.2XX0^^115^1455^110
- ;;^UTILITY(U,$J,358.3,29027,1,0)
+ ;;^UTILITY(U,$J,358.3,27302,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27302,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,27302,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,27303,0)
+ ;;=F19.129^^110^1323^22
+ ;;^UTILITY(U,$J,358.3,27303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29027,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, unsp
- ;;^UTILITY(U,$J,358.3,29027,1,4,0)
- ;;=4^O35.2XX0
- ;;^UTILITY(U,$J,358.3,29027,2)
- ;;=^5016789
- ;;^UTILITY(U,$J,358.3,29028,0)
- ;;=O35.2XX1^^115^1455^111
- ;;^UTILITY(U,$J,358.3,29028,1,0)
+ ;;^UTILITY(U,$J,358.3,27303,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27303,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,27303,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,27304,0)
+ ;;=F19.229^^110^1323^23
+ ;;^UTILITY(U,$J,358.3,27304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29028,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 1
- ;;^UTILITY(U,$J,358.3,29028,1,4,0)
- ;;=4^O35.2XX1
- ;;^UTILITY(U,$J,358.3,29028,2)
- ;;=^5016790
- ;;^UTILITY(U,$J,358.3,29029,0)
- ;;=O35.2XX2^^115^1455^112
- ;;^UTILITY(U,$J,358.3,29029,1,0)
+ ;;^UTILITY(U,$J,358.3,27304,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27304,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,27304,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,27305,0)
+ ;;=F19.929^^110^1323^24
+ ;;^UTILITY(U,$J,358.3,27305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29029,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 2
- ;;^UTILITY(U,$J,358.3,29029,1,4,0)
- ;;=4^O35.2XX2
- ;;^UTILITY(U,$J,358.3,29029,2)
- ;;=^5016791
- ;;^UTILITY(U,$J,358.3,29030,0)
- ;;=O35.2XX3^^115^1455^113
- ;;^UTILITY(U,$J,358.3,29030,1,0)
+ ;;^UTILITY(U,$J,358.3,27305,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27305,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,27305,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,27306,0)
+ ;;=F19.121^^110^1323^19
+ ;;^UTILITY(U,$J,358.3,27306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29030,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 3
- ;;^UTILITY(U,$J,358.3,29030,1,4,0)
- ;;=4^O35.2XX3
- ;;^UTILITY(U,$J,358.3,29030,2)
- ;;=^5016792

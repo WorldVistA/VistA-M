@@ -1,126 +1,126 @@
-IBDEI2TS ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47427,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47427,1,4,0)
- ;;=4^C83.33
- ;;^UTILITY(U,$J,358.3,47427,2)
- ;;=^5001574
- ;;^UTILITY(U,$J,358.3,47428,0)
- ;;=C83.34^^209^2346^124
- ;;^UTILITY(U,$J,358.3,47428,1,0)
+ ;;^UTILITY(U,$J,358.3,45067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47428,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47428,1,4,0)
- ;;=4^C83.34
- ;;^UTILITY(U,$J,358.3,47428,2)
- ;;=^5001575
- ;;^UTILITY(U,$J,358.3,47429,0)
- ;;=C83.35^^209^2346^127
- ;;^UTILITY(U,$J,358.3,47429,1,0)
+ ;;^UTILITY(U,$J,358.3,45067,1,3,0)
+ ;;=3^Sezary Disease,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,45067,1,4,0)
+ ;;=4^C84.19
+ ;;^UTILITY(U,$J,358.3,45067,2)
+ ;;=^5001640
+ ;;^UTILITY(U,$J,358.3,45068,0)
+ ;;=C84.13^^170^2245^29
+ ;;^UTILITY(U,$J,358.3,45068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47429,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Ing Region/Lower Limb
- ;;^UTILITY(U,$J,358.3,47429,1,4,0)
- ;;=4^C83.35
- ;;^UTILITY(U,$J,358.3,47429,2)
- ;;=^5001576
- ;;^UTILITY(U,$J,358.3,47430,0)
- ;;=C83.36^^209^2346^129
- ;;^UTILITY(U,$J,358.3,47430,1,0)
+ ;;^UTILITY(U,$J,358.3,45068,1,3,0)
+ ;;=3^Sezary Disease,Intra-Abdominal Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45068,1,4,0)
+ ;;=4^C84.13
+ ;;^UTILITY(U,$J,358.3,45068,2)
+ ;;=^5001634
+ ;;^UTILITY(U,$J,358.3,45069,0)
+ ;;=C84.16^^170^2245^30
+ ;;^UTILITY(U,$J,358.3,45069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47430,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47430,1,4,0)
- ;;=4^C83.36
- ;;^UTILITY(U,$J,358.3,47430,2)
- ;;=^5001577
- ;;^UTILITY(U,$J,358.3,47431,0)
- ;;=C83.37^^209^2346^132
- ;;^UTILITY(U,$J,358.3,47431,1,0)
+ ;;^UTILITY(U,$J,358.3,45069,1,3,0)
+ ;;=3^Sezary Disease,Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45069,1,4,0)
+ ;;=4^C84.16
+ ;;^UTILITY(U,$J,358.3,45069,2)
+ ;;=^5001637
+ ;;^UTILITY(U,$J,358.3,45070,0)
+ ;;=C84.12^^170^2245^31
+ ;;^UTILITY(U,$J,358.3,45070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47431,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Spleen
- ;;^UTILITY(U,$J,358.3,47431,1,4,0)
- ;;=4^C83.37
- ;;^UTILITY(U,$J,358.3,47431,2)
- ;;=^5001578
- ;;^UTILITY(U,$J,358.3,47432,0)
- ;;=C83.38^^209^2346^131
- ;;^UTILITY(U,$J,358.3,47432,1,0)
+ ;;^UTILITY(U,$J,358.3,45070,1,3,0)
+ ;;=3^Sezary Disease,Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45070,1,4,0)
+ ;;=4^C84.12
+ ;;^UTILITY(U,$J,358.3,45070,2)
+ ;;=^5001633
+ ;;^UTILITY(U,$J,358.3,45071,0)
+ ;;=C84.14^^170^2245^25
+ ;;^UTILITY(U,$J,358.3,45071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47432,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47432,1,4,0)
- ;;=4^C83.38
- ;;^UTILITY(U,$J,358.3,47432,2)
- ;;=^5001579
- ;;^UTILITY(U,$J,358.3,47433,0)
- ;;=C83.39^^209^2346^125
- ;;^UTILITY(U,$J,358.3,47433,1,0)
+ ;;^UTILITY(U,$J,358.3,45071,1,3,0)
+ ;;=3^Sezary Disease,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45071,1,4,0)
+ ;;=4^C84.14
+ ;;^UTILITY(U,$J,358.3,45071,2)
+ ;;=^5001635
+ ;;^UTILITY(U,$J,358.3,45072,0)
+ ;;=C84.11^^170^2245^27
+ ;;^UTILITY(U,$J,358.3,45072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47433,1,3,0)
- ;;=3^Diffuse Large B-Cell Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47433,1,4,0)
- ;;=4^C83.39
- ;;^UTILITY(U,$J,358.3,47433,2)
- ;;=^5001580
- ;;^UTILITY(U,$J,358.3,47434,0)
- ;;=C83.50^^209^2346^254
- ;;^UTILITY(U,$J,358.3,47434,1,0)
+ ;;^UTILITY(U,$J,358.3,45072,1,3,0)
+ ;;=3^Sezary Disease,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45072,1,4,0)
+ ;;=4^C84.11
+ ;;^UTILITY(U,$J,358.3,45072,2)
+ ;;=^5001632
+ ;;^UTILITY(U,$J,358.3,45073,0)
+ ;;=C84.15^^170^2245^28
+ ;;^UTILITY(U,$J,358.3,45073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47434,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,47434,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,47434,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,47435,0)
- ;;=C83.51^^209^2346^247
- ;;^UTILITY(U,$J,358.3,47435,1,0)
+ ;;^UTILITY(U,$J,358.3,45073,1,3,0)
+ ;;=3^Sezary Disease,Inguinal Region/LE Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45073,1,4,0)
+ ;;=4^C84.15
+ ;;^UTILITY(U,$J,358.3,45073,2)
+ ;;=^5001636
+ ;;^UTILITY(U,$J,358.3,45074,0)
+ ;;=C84.18^^170^2245^32
+ ;;^UTILITY(U,$J,358.3,45074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47435,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47435,1,4,0)
- ;;=4^C83.51
- ;;^UTILITY(U,$J,358.3,47435,2)
- ;;=^5001582
- ;;^UTILITY(U,$J,358.3,47436,0)
- ;;=C83.52^^209^2346^251
- ;;^UTILITY(U,$J,358.3,47436,1,0)
+ ;;^UTILITY(U,$J,358.3,45074,1,3,0)
+ ;;=3^Sezary Disease,Multiple Site Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,45074,1,4,0)
+ ;;=4^C84.18
+ ;;^UTILITY(U,$J,358.3,45074,2)
+ ;;=^5001639
+ ;;^UTILITY(U,$J,358.3,45075,0)
+ ;;=C84.17^^170^2245^33
+ ;;^UTILITY(U,$J,358.3,45075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47436,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47436,1,4,0)
- ;;=4^C83.52
- ;;^UTILITY(U,$J,358.3,47436,2)
- ;;=^5001583
- ;;^UTILITY(U,$J,358.3,47437,0)
- ;;=C83.53^^209^2346^249
- ;;^UTILITY(U,$J,358.3,47437,1,0)
+ ;;^UTILITY(U,$J,358.3,45075,1,3,0)
+ ;;=3^Sezary Disease,Spleen
+ ;;^UTILITY(U,$J,358.3,45075,1,4,0)
+ ;;=4^C84.17
+ ;;^UTILITY(U,$J,358.3,45075,2)
+ ;;=^5001638
+ ;;^UTILITY(U,$J,358.3,45076,0)
+ ;;=C84.10^^170^2245^34
+ ;;^UTILITY(U,$J,358.3,45076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47437,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47437,1,4,0)
- ;;=4^C83.53
- ;;^UTILITY(U,$J,358.3,47437,2)
- ;;=^5001584
- ;;^UTILITY(U,$J,358.3,47438,0)
- ;;=C83.54^^209^2346^245
- ;;^UTILITY(U,$J,358.3,47438,1,0)
+ ;;^UTILITY(U,$J,358.3,45076,1,3,0)
+ ;;=3^Sezary Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,45076,1,4,0)
+ ;;=4^C84.10
+ ;;^UTILITY(U,$J,358.3,45076,2)
+ ;;=^5001631
+ ;;^UTILITY(U,$J,358.3,45077,0)
+ ;;=A53.9^^170^2245^50
+ ;;^UTILITY(U,$J,358.3,45077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47438,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47438,1,4,0)
- ;;=4^C83.54
- ;;^UTILITY(U,$J,358.3,47438,2)
- ;;=^5001585
- ;;^UTILITY(U,$J,358.3,47439,0)
- ;;=C83.55^^209^2346^248
- ;;^UTILITY(U,$J,358.3,47439,1,0)
+ ;;^UTILITY(U,$J,358.3,45077,1,3,0)
+ ;;=3^Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,45077,1,4,0)
+ ;;=4^A53.9
+ ;;^UTILITY(U,$J,358.3,45077,2)
+ ;;=^5000310
+ ;;^UTILITY(U,$J,358.3,45078,0)
+ ;;=I87.2^^170^2245^41
+ ;;^UTILITY(U,$J,358.3,45078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47439,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Ing Region/Lower Limb Nodes
+ ;;^UTILITY(U,$J,358.3,45078,1,3,0)
+ ;;=3^Stasis Dermatitis NOS
+ ;;^UTILITY(U,$J,358.3,45078,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,45078,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,45079,0)
+ ;;=L90.5^^170^2245^18
+ ;;^UTILITY(U,$J,358.3,45079,1,0)
+ ;;=^358.31IA^4^2

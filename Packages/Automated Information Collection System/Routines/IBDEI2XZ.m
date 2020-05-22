@@ -1,122 +1,122 @@
-IBDEI2XZ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49342,1,4,0)
- ;;=4^S42.434S
- ;;^UTILITY(U,$J,358.3,49342,2)
- ;;=^5027412
- ;;^UTILITY(U,$J,358.3,49343,0)
- ;;=S42.445S^^216^2417^80
- ;;^UTILITY(U,$J,358.3,49343,1,0)
+ ;;^UTILITY(U,$J,358.3,46949,1,4,0)
+ ;;=4^N35.819
+ ;;^UTILITY(U,$J,358.3,46949,2)
+ ;;=^5157405
+ ;;^UTILITY(U,$J,358.3,46950,0)
+ ;;=N35.82^^179^2341^14
+ ;;^UTILITY(U,$J,358.3,46950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49343,1,3,0)
- ;;=3^Nondisp fx of medial epicondyle of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49343,1,4,0)
- ;;=4^S42.445S
- ;;^UTILITY(U,$J,358.3,49343,2)
- ;;=^5027461
- ;;^UTILITY(U,$J,358.3,49344,0)
- ;;=S42.444S^^216^2417^81
- ;;^UTILITY(U,$J,358.3,49344,1,0)
+ ;;^UTILITY(U,$J,358.3,46950,1,3,0)
+ ;;=3^Urethral Stricture,Oth,Female
+ ;;^UTILITY(U,$J,358.3,46950,1,4,0)
+ ;;=4^N35.82
+ ;;^UTILITY(U,$J,358.3,46950,2)
+ ;;=^5157406
+ ;;^UTILITY(U,$J,358.3,46951,0)
+ ;;=N35.016^^179^2341^4
+ ;;^UTILITY(U,$J,358.3,46951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49344,1,3,0)
- ;;=3^Nondisp fx of medial epicondyle of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49344,1,4,0)
- ;;=4^S42.444S
- ;;^UTILITY(U,$J,358.3,49344,2)
- ;;=^5027454
- ;;^UTILITY(U,$J,358.3,49345,0)
- ;;=S42.255S^^216^2417^68
- ;;^UTILITY(U,$J,358.3,49345,1,0)
+ ;;^UTILITY(U,$J,358.3,46951,1,3,0)
+ ;;=3^Post-Traumatic Urethral Stricture,Overlapping Sites,Male
+ ;;^UTILITY(U,$J,358.3,46951,1,4,0)
+ ;;=4^N35.016
+ ;;^UTILITY(U,$J,358.3,46951,2)
+ ;;=^5157398
+ ;;^UTILITY(U,$J,358.3,46952,0)
+ ;;=N35.116^^179^2341^5
+ ;;^UTILITY(U,$J,358.3,46952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49345,1,3,0)
- ;;=3^Nondisp fx of greater tuberosity of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49345,1,4,0)
- ;;=4^S42.255S
- ;;^UTILITY(U,$J,358.3,49345,2)
- ;;=^5026921
- ;;^UTILITY(U,$J,358.3,49346,0)
- ;;=S42.254S^^216^2417^69
- ;;^UTILITY(U,$J,358.3,49346,1,0)
+ ;;^UTILITY(U,$J,358.3,46952,1,3,0)
+ ;;=3^Postinfect Urethral Stricture,NEC,Overlapping Sites,Male
+ ;;^UTILITY(U,$J,358.3,46952,1,4,0)
+ ;;=4^N35.116
+ ;;^UTILITY(U,$J,358.3,46952,2)
+ ;;=^5157399
+ ;;^UTILITY(U,$J,358.3,46953,0)
+ ;;=N35.911^^179^2341^18
+ ;;^UTILITY(U,$J,358.3,46953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49346,1,3,0)
- ;;=3^Nondisp fx of greater tuberosity of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49346,1,4,0)
- ;;=4^S42.254S
- ;;^UTILITY(U,$J,358.3,49346,2)
- ;;=^5026914
- ;;^UTILITY(U,$J,358.3,49347,0)
- ;;=S42.455S^^216^2417^70
- ;;^UTILITY(U,$J,358.3,49347,1,0)
+ ;;^UTILITY(U,$J,358.3,46953,1,3,0)
+ ;;=3^Urethral Stricture,Unspec,Meatal,Male
+ ;;^UTILITY(U,$J,358.3,46953,1,4,0)
+ ;;=4^N35.911
+ ;;^UTILITY(U,$J,358.3,46953,2)
+ ;;=^5157407
+ ;;^UTILITY(U,$J,358.3,46954,0)
+ ;;=N35.912^^179^2341^10
+ ;;^UTILITY(U,$J,358.3,46954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49347,1,3,0)
- ;;=3^Nondisp fx of lateral condyle of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49347,1,4,0)
- ;;=4^S42.455S
- ;;^UTILITY(U,$J,358.3,49347,2)
- ;;=^5027524
- ;;^UTILITY(U,$J,358.3,49348,0)
- ;;=S42.454S^^216^2417^71
- ;;^UTILITY(U,$J,358.3,49348,1,0)
+ ;;^UTILITY(U,$J,358.3,46954,1,3,0)
+ ;;=3^Urethral Bulbous Stricture,Unspec,Male
+ ;;^UTILITY(U,$J,358.3,46954,1,4,0)
+ ;;=4^N35.912
+ ;;^UTILITY(U,$J,358.3,46954,2)
+ ;;=^5157408
+ ;;^UTILITY(U,$J,358.3,46955,0)
+ ;;=N35.913^^179^2341^13
+ ;;^UTILITY(U,$J,358.3,46955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49348,1,3,0)
- ;;=3^Nondisp fx of lateral condyle of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49348,1,4,0)
- ;;=4^S42.454S
- ;;^UTILITY(U,$J,358.3,49348,2)
- ;;=^5027517
- ;;^UTILITY(U,$J,358.3,49349,0)
- ;;=S42.265S^^216^2417^76
- ;;^UTILITY(U,$J,358.3,49349,1,0)
+ ;;^UTILITY(U,$J,358.3,46955,1,3,0)
+ ;;=3^Urethral Membranous Stricture,Unspec,Male
+ ;;^UTILITY(U,$J,358.3,46955,1,4,0)
+ ;;=4^N35.913
+ ;;^UTILITY(U,$J,358.3,46955,2)
+ ;;=^5157409
+ ;;^UTILITY(U,$J,358.3,46956,0)
+ ;;=N35.914^^179^2341^8
+ ;;^UTILITY(U,$J,358.3,46956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49349,1,3,0)
- ;;=3^Nondisp fx of lesser tuberosity of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49349,1,4,0)
- ;;=4^S42.265S
- ;;^UTILITY(U,$J,358.3,49349,2)
- ;;=^5026963
- ;;^UTILITY(U,$J,358.3,49350,0)
- ;;=S42.264S^^216^2417^77
- ;;^UTILITY(U,$J,358.3,49350,1,0)
+ ;;^UTILITY(U,$J,358.3,46956,1,3,0)
+ ;;=3^Urethral Anterior Stricture,Unspec,Male
+ ;;^UTILITY(U,$J,358.3,46956,1,4,0)
+ ;;=4^N35.914
+ ;;^UTILITY(U,$J,358.3,46956,2)
+ ;;=^5157410
+ ;;^UTILITY(U,$J,358.3,46957,0)
+ ;;=N35.916^^179^2341^19
+ ;;^UTILITY(U,$J,358.3,46957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49350,1,3,0)
- ;;=3^Nondisp fx of lesser tuberosity of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49350,1,4,0)
- ;;=4^S42.264S
- ;;^UTILITY(U,$J,358.3,49350,2)
- ;;=^5026956
- ;;^UTILITY(U,$J,358.3,49351,0)
- ;;=S42.465S^^216^2417^78
- ;;^UTILITY(U,$J,358.3,49351,1,0)
+ ;;^UTILITY(U,$J,358.3,46957,1,3,0)
+ ;;=3^Urethral Stricture,Unspec,Overlapping Sites,Male
+ ;;^UTILITY(U,$J,358.3,46957,1,4,0)
+ ;;=4^N35.916
+ ;;^UTILITY(U,$J,358.3,46957,2)
+ ;;=^5157411
+ ;;^UTILITY(U,$J,358.3,46958,0)
+ ;;=N35.919^^179^2341^20
+ ;;^UTILITY(U,$J,358.3,46958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49351,1,3,0)
- ;;=3^Nondisp fx of medial condyle of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49351,1,4,0)
- ;;=4^S42.465S
- ;;^UTILITY(U,$J,358.3,49351,2)
- ;;=^5027566
- ;;^UTILITY(U,$J,358.3,49352,0)
- ;;=S42.464S^^216^2417^79
- ;;^UTILITY(U,$J,358.3,49352,1,0)
+ ;;^UTILITY(U,$J,358.3,46958,1,3,0)
+ ;;=3^Urethral Stricture,Unspec,Unspec Site,Male
+ ;;^UTILITY(U,$J,358.3,46958,1,4,0)
+ ;;=4^N35.919
+ ;;^UTILITY(U,$J,358.3,46958,2)
+ ;;=^5157412
+ ;;^UTILITY(U,$J,358.3,46959,0)
+ ;;=N35.92^^179^2341^17
+ ;;^UTILITY(U,$J,358.3,46959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49352,1,3,0)
- ;;=3^Nondisp fx of medial condyle of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49352,1,4,0)
- ;;=4^S42.464S
- ;;^UTILITY(U,$J,358.3,49352,2)
- ;;=^5027559
- ;;^UTILITY(U,$J,358.3,49353,0)
- ;;=S42.335S^^216^2417^85
- ;;^UTILITY(U,$J,358.3,49353,1,0)
+ ;;^UTILITY(U,$J,358.3,46959,1,3,0)
+ ;;=3^Urethral Stricture,Unspec,Female
+ ;;^UTILITY(U,$J,358.3,46959,1,4,0)
+ ;;=4^N35.92
+ ;;^UTILITY(U,$J,358.3,46959,2)
+ ;;=^5157413
+ ;;^UTILITY(U,$J,358.3,46960,0)
+ ;;=N99.116^^179^2341^6
+ ;;^UTILITY(U,$J,358.3,46960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49353,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of humerus, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,49353,1,4,0)
- ;;=4^S42.335S
- ;;^UTILITY(U,$J,358.3,49353,2)
- ;;=^5027139
- ;;^UTILITY(U,$J,358.3,49354,0)
- ;;=S42.334S^^216^2417^86
- ;;^UTILITY(U,$J,358.3,49354,1,0)
+ ;;^UTILITY(U,$J,358.3,46960,1,3,0)
+ ;;=3^Postproced Urethral Stricture,Overlapping Sites,Male
+ ;;^UTILITY(U,$J,358.3,46960,1,4,0)
+ ;;=4^N99.116
+ ;;^UTILITY(U,$J,358.3,46960,2)
+ ;;=^5157414
+ ;;^UTILITY(U,$J,358.3,46961,0)
+ ;;=R35.1^^179^2342^3
+ ;;^UTILITY(U,$J,358.3,46961,1,0)
  ;;=^358.31IA^4^2

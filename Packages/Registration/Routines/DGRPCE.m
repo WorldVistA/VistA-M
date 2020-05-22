@@ -1,5 +1,5 @@
-DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM,LBD - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ; 10/20/10 3:52pm
- ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797,855**;Aug 13, 1993;Build 3
+DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM,LBD - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ;10/20/10 3:52pm
+ ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797,855,952**;Aug 13, 1993;Build 160
  ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;KV;11/15/00;DG*5.3*297;Disable addition of CD Elig Code in Reg. Screens
@@ -20,7 +20,10 @@ NKEY D ^DGRPCE1
  .I $G(DGPRFLG) D PREG^IBCNBME(DFN) Q
  .D REG^IBCNBME(DFN)
  .Q
- D Q S DIE="^DPT(",(DA,Y)=DFN D ^DIE:$D(DR)
+ D Q
+ ;*952 Stop it asking for Patient Type twice
+ I DR["391;391;" S DR=$P(DR,"391;",1)_$P(DR,"391;",2,999)
+ S DIE="^DPT(",(DA,Y)=DFN D ^DIE:$D(DR)
  I DGER[54 D GETREL^DGMTU11(DFN,"SD",$$LYR^DGMTSCU1(DT)) D
  . I $D(DGREL("S")),($$SSN^DGMTU1(+DGREL("S"))']"") D ASKSSN(DGREL("S"))
  . F DGDEP=0:0 S DGDEP=$O(DGREL("D",DGDEP)) Q:'DGDEP  I $$SSN^DGMTU1(+DGREL("D",DGDEP))']"" D ASKSSN(DGREL("D",DGDEP))
@@ -65,7 +68,7 @@ MON I $S(I<40:1,I=56:1,1:0) D SAVE Q
  Q
  ;
 15 ;;.152;S:X']"" Y="@15";S DIE("NO^")="";.307;I X']"" W !!,*7,"But I need a reason why this applicant is ineligible!" S Y=.152;@15;K DIE("NO^");
-23 ;;.3611;S:X'="V" Y="@23";.3612;S DIE("NO^")="";I X']"" W !!,*7,"But I need to know the date eligibility was verifed!";@23;K DIE("NO^");
+23 ;;.3611;S:X'="V" Y="@23";.3612;S DIE("NO^")="";I X']"" W !!,*7,"But I need to know the date eligibility was verified!";@23;K DIE("NO^");
 25 ;;.323;.32102;S:X'="Y" Y="@25";.32107;.3211;.32109;.3213;@25;
 26 ;;
 27 ;;
@@ -119,7 +122,7 @@ CATDIB ;
  I $$GET^DGENCDA(DFN,.DGCDIS),DGCDIS("DATE") S INFO=1
  S CODE=$$HASCAT^DGENCDA(DFN)
  I CODE D  Q
- .W !!,">>> Catastrophically Disabled eligibilty requires additional information <<<"
+ .W !!,">>> Catastrophically Disabled eligibility requires additional information <<<"
  .D EDITCD^DGENCD(DFN)
  I INFO D
  . ;KV;11/15/00;DG*5.3*297;Start of modifications
@@ -137,7 +140,7 @@ CATDIB ;
  Q
  ;
 ASKDEL() ;
- ;ask whether to delete catastrphic disability determination
+ ;ask whether to delete catastrophic disability determination
  N DIR
  S DIR(0)="Y"
  ;KV;11/15/00;DG*5.3*297;Cosmetic change for DIR("A")

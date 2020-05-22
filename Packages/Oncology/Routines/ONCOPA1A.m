@@ -1,5 +1,5 @@
 ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
- ;;2.2;ONCOLOGY;**1,6**;Jul 31, 2013;Build 10
+ ;;2.2;ONCOLOGY;**1,6,10**;Jul 31, 2013;Build 20
  ;
  I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
  .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
@@ -31,11 +31,24 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  S NAME="EXTENT OF DISEASE AT DIAGNOSIS" D FORMAT^ONCOPA1
  W !!,TITLE
  W !,"   Clinical Stage Discussion: ",ONCAB(165.5,IEN,280,"E") D P Q:EX=U
- W !!,"   TNM Clinical:  ",ONCAB(165.5,IEN,37),?67,"TNM Pathologic:  ",ONCAB(165.5,IEN,89.1) D P Q:EX=U
- W !,"   Clinical T:  ",$E(ONCAB(165.5,IEN,37.1),1,48),?67,"Pathologic T:  ",$E(ONCAB(165.5,IEN,85),1,48) D P Q:EX=U
- W !,"   Clinical N:  ",$E(ONCAB(165.5,IEN,37.2),1,48),?67,"Pathologic N:  ",$E(ONCAB(165.5,IEN,86),1,48) D P Q:EX=U
- W !,"   Clinical M:  ",$E(ONCAB(165.5,IEN,37.3),1,48),?67,"Pathologic M:  ",$E(ONCAB(165.5,IEN,87),1,48) D P Q:EX=U
- W !,"   Stage Group Clinical:  ",ONCAB(165.5,IEN,38),$P(ONCAB(165.5,IEN,241,"E"),"(",1),?67,"Stage Group Pathologic:  ",ONCAB(165.5,IEN,88),$P(ONCAB(165.5,IEN,242,"E"),"(",1) D P Q:EX=U
+ ;
+ I DATEDX<3180101 D
+ .W !!,"   TNM Clinical:  ",ONCAB(165.5,IEN,37),?67,"TNM Pathologic:  ",ONCAB(165.5,IEN,89.1) D P Q:EX=U
+ .W !,"   Clinical T:  ",$E(ONCAB(165.5,IEN,37.1),1,48),?67,"Pathologic T:  ",$E(ONCAB(165.5,IEN,85),1,48) D P Q:EX=U
+ .W !,"   Clinical N:  ",$E(ONCAB(165.5,IEN,37.2),1,48),?67,"Pathologic N:  ",$E(ONCAB(165.5,IEN,86),1,48) D P Q:EX=U
+ .W !,"   Clinical M:  ",$E(ONCAB(165.5,IEN,37.3),1,48),?67,"Pathologic M:  ",$E(ONCAB(165.5,IEN,87),1,48) D P Q:EX=U
+ .W !,"   Stage Group Clinical:  ",ONCAB(165.5,IEN,38),$P(ONCAB(165.5,IEN,241,"E"),"(",1),?67,"Stage Group Pathologic:  ",ONCAB(165.5,IEN,88),$P(ONCAB(165.5,IEN,242,"E"),"(",1) D P Q:EX=U
+ I DATEDX>3171231 D
+ .W !," Extent of Disease (EOD) Data",!," ----------------------------"
+ .W !?1,"Primary Tumor: ",$P($G(^ONCO(165.5,D0,"EOD")),"^",1),?22,"Regional Nodes: ",$P($G(^ONCO(165.5,D0,"EOD")),"^",2),?44,"METS: ",$P($G(^ONCO(165.5,D0,"EOD")),"^",3),!
+ .W !," Clinical Staging",?22,"TNM edition: ",$$TNMED^ONCOU55(D0),?41,"Pathologic Staging"
+ .W !," ----------------" I $P($G(^ONCO(165.5,D0,0)),"^",16)>3171231 W ?22,"AJCC ID:    ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",1)
+ .W ?41,"------------------"
+ .W !," TNM........: " S STGIND="C" D TNMDSP^ONCSGA8U W ?41,"TNM........: " S STGIND="P" D TNMDSP^ONCSGA8U
+ .W !," Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",5),?41,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",9)
+ .W !?22,"Post-Therapy Staging",!?22,"--------------------"
+ .W !?22,"TNM........: " S STGIND="T" D TNMDSP^ONCSGA8U
+ .W !?22,"Stage Group: ",$P($G(^ONCO(165.5,D0,"AJCC8")),"^",13)
  W !,"   Staged By (Clin):  ",ONCAB(165.5,IEN,19),?67,"Staged By (Path):  ",ONCAB(165.5,IEN,89) D P Q:EX=U
  W !,"   Lymph-Vascular Invasion (L):  ",ONCAB(165.5,IEN,149) D P Q:EX=U
  ;W !,"   Venous Invasion (V):  ",ONCAB(165.5,IEN,151) D P Q:EX=U
@@ -43,17 +56,17 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  W !,"   Physician's Stage:  ",ONCAB(165.5,IEN,65),?67,"Physician Staging:  ",ONCAB(165.5,IEN,66) D P Q:EX=U
  W !,"   TNM Form Assigned:  ",ONCAB(165.5,IEN,25,"E"),?67,"TNM Form Completed:  ",ONCAB(165.5,IEN,44,"E") D P Q:EX=U
  W !!,"   Performance Status at Dx: ",ONCAB(165.5,IEN,227,"E") D P Q:EX=U
- I $P($G(^ONCO(165.5,IEN,0)),U,16)<3160101 W !,"   Tumor Size:  ",ONCAB(165.5,IEN,29) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)<3160000 W !,"   Tumor Size:  ",ONCAB(165.5,IEN,29) D P Q:EX=U
  I $P($G(^ONCO(165.5,IEN,0)),U,16)>3151231 D
  .W !,"   Tumor Size Clin:  ",ONCAB(165.5,IEN,29.4) D P Q:EX=U
  .W !,"   Tumor Size Path:  ",ONCAB(165.5,IEN,29.5) D P Q:EX=U
  .W !,"   Tumor Size Summ:  ",ONCAB(165.5,IEN,29.3) D P Q:EX=U
  .Q
- W !,"   Extension:   ",ONCAB(165.5,IEN,30) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)<3180000 W !,"   Extension:   ",ONCAB(165.5,IEN,30) D P Q:EX=U
  I $P($G(^ONCO(165.5,IEN,0)),U,16)>2971231 D
  .S TPX=$P($G(^ONCO(165.5,IEN,2)),U,1) I TPX'=67619 Q
  .W !,"   Pathologic Extension:  ",ONCAB(165.5,IEN,30.1) D P Q:EX=U
- W !,"   Lymph Nodes: ",ONCAB(165.5,IEN,31),?67,"Metastasis 1:  ",ONCAB(165.5,IEN,34) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)<3180000 W !,"   Lymph Nodes: ",ONCAB(165.5,IEN,31),?67,"Metastasis 1:  ",ONCAB(165.5,IEN,34) D P Q:EX=U
  W !,"   Regional Nodes Examined:  ",$E(ONCAB(165.5,IEN,33),1,34),?67,"Metastasis 2:  ",ONCAB(165.5,IEN,34.1) D P Q:EX=U
  W !,"   Regional Nodes Positive:  ",$E(ONCAB(165.5,IEN,32),1,34),?67,"Metastasis 3:  ",ONCAB(165.5,IEN,34.2) D P Q:EX=U
  W !,"   General Summary Stage:  ",ONCAB(165.5,IEN,35) D P Q:EX=U

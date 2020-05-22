@@ -1,132 +1,124 @@
-IBDEI2QO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45964,1,4,0)
- ;;=4^S43.004S
- ;;^UTILITY(U,$J,358.3,45964,2)
- ;;=^5027665
- ;;^UTILITY(U,$J,358.3,45965,0)
- ;;=S43.005S^^203^2269^6
- ;;^UTILITY(U,$J,358.3,45965,1,0)
+ ;;^UTILITY(U,$J,358.3,43681,0)
+ ;;=Z63.32^^162^2138^1
+ ;;^UTILITY(U,$J,358.3,43681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45965,1,3,0)
- ;;=3^Dislocation,Left Shoulder,Sequela
- ;;^UTILITY(U,$J,358.3,45965,1,4,0)
- ;;=4^S43.005S
- ;;^UTILITY(U,$J,358.3,45965,2)
- ;;=^5027668
- ;;^UTILITY(U,$J,358.3,45966,0)
- ;;=S43.011S^^203^2269^17
- ;;^UTILITY(U,$J,358.3,45966,1,0)
+ ;;^UTILITY(U,$J,358.3,43681,1,3,0)
+ ;;=3^Absence of Family Member
+ ;;^UTILITY(U,$J,358.3,43681,1,4,0)
+ ;;=4^Z63.32
+ ;;^UTILITY(U,$J,358.3,43681,2)
+ ;;=^5063167
+ ;;^UTILITY(U,$J,358.3,43682,0)
+ ;;=Z63.8^^162^2138^10
+ ;;^UTILITY(U,$J,358.3,43682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45966,1,3,0)
- ;;=3^Subluxation,Right Elbow,Sequela
- ;;^UTILITY(U,$J,358.3,45966,1,4,0)
- ;;=4^S43.011S
- ;;^UTILITY(U,$J,358.3,45966,2)
- ;;=^5027671
- ;;^UTILITY(U,$J,358.3,45967,0)
- ;;=S43.012S^^203^2269^13
- ;;^UTILITY(U,$J,358.3,45967,1,0)
+ ;;^UTILITY(U,$J,358.3,43682,1,3,0)
+ ;;=3^Primary Support Group Problems
+ ;;^UTILITY(U,$J,358.3,43682,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,43682,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,43683,0)
+ ;;=Z63.5^^162^2138^4
+ ;;^UTILITY(U,$J,358.3,43683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45967,1,3,0)
- ;;=3^Subluxation,Left Elbow,Sequela
- ;;^UTILITY(U,$J,358.3,45967,1,4,0)
- ;;=4^S43.012S
- ;;^UTILITY(U,$J,358.3,45967,2)
- ;;=^5027674
- ;;^UTILITY(U,$J,358.3,45968,0)
- ;;=S43.014S^^203^2269^7
- ;;^UTILITY(U,$J,358.3,45968,1,0)
+ ;;^UTILITY(U,$J,358.3,43683,1,3,0)
+ ;;=3^Disruption of Family by Separation/Divorce
+ ;;^UTILITY(U,$J,358.3,43683,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,43683,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,43684,0)
+ ;;=Z71.89^^162^2138^5
+ ;;^UTILITY(U,$J,358.3,43684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45968,1,3,0)
- ;;=3^Dislocation,Right Elbow,Anterior,Sequela
- ;;^UTILITY(U,$J,358.3,45968,1,4,0)
- ;;=4^S43.014S
- ;;^UTILITY(U,$J,358.3,45968,2)
- ;;=^5027680
- ;;^UTILITY(U,$J,358.3,45969,0)
- ;;=S43.015S^^203^2269^1
- ;;^UTILITY(U,$J,358.3,45969,1,0)
+ ;;^UTILITY(U,$J,358.3,43684,1,3,0)
+ ;;=3^Family Counseling
+ ;;^UTILITY(U,$J,358.3,43684,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,43684,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,43685,0)
+ ;;=Z69.11^^162^2138^9
+ ;;^UTILITY(U,$J,358.3,43685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45969,1,3,0)
- ;;=3^Dislocation,Left Elbow,Anterior,Sequela
- ;;^UTILITY(U,$J,358.3,45969,1,4,0)
- ;;=4^S43.015S
- ;;^UTILITY(U,$J,358.3,45969,2)
- ;;=^5027683
- ;;^UTILITY(U,$J,358.3,45970,0)
- ;;=S43.024S^^203^2269^9
- ;;^UTILITY(U,$J,358.3,45970,1,0)
+ ;;^UTILITY(U,$J,358.3,43685,1,3,0)
+ ;;=3^Mental Hlth Svc for Victim of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,43685,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,43685,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,43686,0)
+ ;;=Z69.12^^162^2138^7
+ ;;^UTILITY(U,$J,358.3,43686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45970,1,3,0)
- ;;=3^Dislocation,Right Elbow,Posterior,Sequela
- ;;^UTILITY(U,$J,358.3,45970,1,4,0)
- ;;=4^S43.024S
- ;;^UTILITY(U,$J,358.3,45970,2)
- ;;=^5027698
- ;;^UTILITY(U,$J,358.3,45971,0)
- ;;=S43.025S^^203^2269^3
- ;;^UTILITY(U,$J,358.3,45971,1,0)
+ ;;^UTILITY(U,$J,358.3,43686,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,43686,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,43686,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,43687,0)
+ ;;=Z69.010^^162^2138^8
+ ;;^UTILITY(U,$J,358.3,43687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45971,1,3,0)
- ;;=3^Dislocation,Left Elbow,Posterior,Sequela
- ;;^UTILITY(U,$J,358.3,45971,1,4,0)
- ;;=4^S43.025S
- ;;^UTILITY(U,$J,358.3,45971,2)
- ;;=^5027701
- ;;^UTILITY(U,$J,358.3,45972,0)
- ;;=S43.034S^^203^2269^8
- ;;^UTILITY(U,$J,358.3,45972,1,0)
+ ;;^UTILITY(U,$J,358.3,43687,1,3,0)
+ ;;=3^Mental Hlth Svc for Victim of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,43687,1,4,0)
+ ;;=4^Z69.010
+ ;;^UTILITY(U,$J,358.3,43687,2)
+ ;;=^5063228
+ ;;^UTILITY(U,$J,358.3,43688,0)
+ ;;=Z69.011^^162^2138^6
+ ;;^UTILITY(U,$J,358.3,43688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45972,1,3,0)
- ;;=3^Dislocation,Right Elbow,Inferior,Sequela
- ;;^UTILITY(U,$J,358.3,45972,1,4,0)
- ;;=4^S43.034S
- ;;^UTILITY(U,$J,358.3,45972,2)
- ;;=^5027716
- ;;^UTILITY(U,$J,358.3,45973,0)
- ;;=S43.035S^^203^2269^2
- ;;^UTILITY(U,$J,358.3,45973,1,0)
+ ;;^UTILITY(U,$J,358.3,43688,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,43688,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,43688,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,43689,0)
+ ;;=Z62.898^^162^2138^11
+ ;;^UTILITY(U,$J,358.3,43689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45973,1,3,0)
- ;;=3^Dislocation,Left Elbow,Inferior,Sequela
- ;;^UTILITY(U,$J,358.3,45973,1,4,0)
- ;;=4^S43.035S
- ;;^UTILITY(U,$J,358.3,45973,2)
- ;;=^5027719
- ;;^UTILITY(U,$J,358.3,45974,0)
- ;;=S83.095S^^203^2269^5
- ;;^UTILITY(U,$J,358.3,45974,1,0)
+ ;;^UTILITY(U,$J,358.3,43689,1,3,0)
+ ;;=3^Problems Related to Upbringing
+ ;;^UTILITY(U,$J,358.3,43689,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,43689,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,43690,0)
+ ;;=Z63.79^^162^2138^12
+ ;;^UTILITY(U,$J,358.3,43690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45974,1,3,0)
- ;;=3^Dislocation,Left Knee,Sequela
- ;;^UTILITY(U,$J,358.3,45974,1,4,0)
- ;;=4^S83.095S
- ;;^UTILITY(U,$J,358.3,45974,2)
- ;;=^5137021
- ;;^UTILITY(U,$J,358.3,45975,0)
- ;;=S83.094S^^203^2269^11
- ;;^UTILITY(U,$J,358.3,45975,1,0)
+ ;;^UTILITY(U,$J,358.3,43690,1,3,0)
+ ;;=3^Stressful Life Events
+ ;;^UTILITY(U,$J,358.3,43690,1,4,0)
+ ;;=4^Z63.79
+ ;;^UTILITY(U,$J,358.3,43690,2)
+ ;;=^5063173
+ ;;^UTILITY(U,$J,358.3,43691,0)
+ ;;=Z63.72^^162^2138^2
+ ;;^UTILITY(U,$J,358.3,43691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45975,1,3,0)
- ;;=3^Dislocation,Right Knee,Sequela
- ;;^UTILITY(U,$J,358.3,45975,1,4,0)
- ;;=4^S83.094S
- ;;^UTILITY(U,$J,358.3,45975,2)
- ;;=^5042934
- ;;^UTILITY(U,$J,358.3,45976,0)
- ;;=S83.091S^^203^2269^19
- ;;^UTILITY(U,$J,358.3,45976,1,0)
+ ;;^UTILITY(U,$J,358.3,43691,1,3,0)
+ ;;=3^Alcoholism/Drug Addiction in Family
+ ;;^UTILITY(U,$J,358.3,43691,1,4,0)
+ ;;=4^Z63.72
+ ;;^UTILITY(U,$J,358.3,43691,2)
+ ;;=^5063172
+ ;;^UTILITY(U,$J,358.3,43692,0)
+ ;;=Z63.6^^162^2138^3
+ ;;^UTILITY(U,$J,358.3,43692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45976,1,3,0)
- ;;=3^Subluxation,Right Knee,Sequela
- ;;^UTILITY(U,$J,358.3,45976,1,4,0)
- ;;=4^S83.091S
- ;;^UTILITY(U,$J,358.3,45976,2)
- ;;=^5042931
- ;;^UTILITY(U,$J,358.3,45977,0)
- ;;=S83.092S^^203^2269^15
- ;;^UTILITY(U,$J,358.3,45977,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43692,1,3,0)
+ ;;=3^Dependent Relative Needing Care at Home
+ ;;^UTILITY(U,$J,358.3,43692,1,4,0)
+ ;;=4^Z63.6
+ ;;^UTILITY(U,$J,358.3,43692,2)
+ ;;=^5063170

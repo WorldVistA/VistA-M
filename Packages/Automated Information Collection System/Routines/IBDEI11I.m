@@ -1,48 +1,128 @@
-IBDEI11I ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.8,0,"GL")
- ;;=^IBE(358.8,
- ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
- ;;=
- ;;^DIC(358.8,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.8,"%D",1,0)
- ;;=This file is nearly identical to file #357.8. It is used by the
- ;;^DIC(358.8,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.8,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.8,0)
- ;;=FIELD^^1^7
- ;;^DD(358.8,0,"DDA")
- ;;=N
- ;;^DD(358.8,0,"DT")
- ;;=2930802
- ;;^DD(358.8,0,"IX","B",358.8,.01)
- ;;=
- ;;^DD(358.8,0,"IX","C",358.8,.02)
- ;;=
- ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
- ;;=
- ;;^DD(358.8,0,"VRPK")
- ;;=IBD
- ;;^DD(358.8,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.8,.01,1,0)
- ;;=^.1
- ;;^DD(358.8,.01,1,1,0)
- ;;=358.8^B
- ;;^DD(358.8,.01,1,1,1)
- ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
- ;;^DD(358.8,.01,1,1,2)
- ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
- ;;^DD(358.8,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.8,.01,21,0)
- ;;=^^2^2^2930528^
- ;;^DD(358.8,.01,21,1,0)
- ;;= 
- ;;^DD(358.8,.01,21,2,0)
- ;;=The name of the text area.
+ ;;^UTILITY(U,$J,358.3,16717,1,3,0)
+ ;;=3^Underdose of Med Regiment d/t Age-Related Debility
+ ;;^UTILITY(U,$J,358.3,16717,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,16717,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,16718,0)
+ ;;=Z91.138^^88^880^153
+ ;;^UTILITY(U,$J,358.3,16718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16718,1,3,0)
+ ;;=3^Underdose of Med Regiment for Other Reason
+ ;;^UTILITY(U,$J,358.3,16718,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,16718,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,16719,0)
+ ;;=Z91.14^^88^880^64
+ ;;^UTILITY(U,$J,358.3,16719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16719,1,3,0)
+ ;;=3^Noncompliance w/ Medication Regimen
+ ;;^UTILITY(U,$J,358.3,16719,1,4,0)
+ ;;=4^Z91.14
+ ;;^UTILITY(U,$J,358.3,16719,2)
+ ;;=^5063616
+ ;;^UTILITY(U,$J,358.3,16720,0)
+ ;;=Z91.19^^88^880^63
+ ;;^UTILITY(U,$J,358.3,16720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16720,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment & Regimen
+ ;;^UTILITY(U,$J,358.3,16720,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,16720,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,16721,0)
+ ;;=Z93.1^^88^880^45
+ ;;^UTILITY(U,$J,358.3,16721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16721,1,3,0)
+ ;;=3^Gastrostomy Status
+ ;;^UTILITY(U,$J,358.3,16721,1,4,0)
+ ;;=4^Z93.1
+ ;;^UTILITY(U,$J,358.3,16721,2)
+ ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,16722,0)
+ ;;=Z93.2^^88^880^51
+ ;;^UTILITY(U,$J,358.3,16722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16722,1,3,0)
+ ;;=3^Ileostomy Status
+ ;;^UTILITY(U,$J,358.3,16722,1,4,0)
+ ;;=4^Z93.2
+ ;;^UTILITY(U,$J,358.3,16722,2)
+ ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,16723,0)
+ ;;=Z93.3^^88^880^7
+ ;;^UTILITY(U,$J,358.3,16723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16723,1,3,0)
+ ;;=3^Colostomy Status
+ ;;^UTILITY(U,$J,358.3,16723,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,16723,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,16724,0)
+ ;;=Z94.0^^88^880^56
+ ;;^UTILITY(U,$J,358.3,16724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16724,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,16724,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,16724,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,16725,0)
+ ;;=Z94.1^^88^880^49
+ ;;^UTILITY(U,$J,358.3,16725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16725,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,16725,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,16725,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,16726,0)
+ ;;=Z94.2^^88^880^59
+ ;;^UTILITY(U,$J,358.3,16726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16726,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,16726,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,16726,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,16727,0)
+ ;;=Z94.3^^88^880^48
+ ;;^UTILITY(U,$J,358.3,16727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16727,1,3,0)
+ ;;=3^Heart & Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,16727,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,16727,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,16728,0)
+ ;;=Z94.4^^88^880^58
+ ;;^UTILITY(U,$J,358.3,16728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16728,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,16728,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,16728,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,16729,0)
+ ;;=Z94.84^^88^880^149
+ ;;^UTILITY(U,$J,358.3,16729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16729,1,3,0)
+ ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,16729,1,4,0)
+ ;;=4^Z94.84

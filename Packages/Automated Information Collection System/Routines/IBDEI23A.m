@@ -1,138 +1,120 @@
-IBDEI23A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35442,1,0)
+ ;;^UTILITY(U,$J,358.3,33403,0)
+ ;;=M24.072^^132^1701^15
+ ;;^UTILITY(U,$J,358.3,33403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35442,1,3,0)
- ;;=3^Counseling,Other Spec
- ;;^UTILITY(U,$J,358.3,35442,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,35442,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,35443,0)
- ;;=Z02.3^^134^1720^10
- ;;^UTILITY(U,$J,358.3,35443,1,0)
+ ;;^UTILITY(U,$J,358.3,33403,1,3,0)
+ ;;=3^Loose body in left ankle
+ ;;^UTILITY(U,$J,358.3,33403,1,4,0)
+ ;;=4^M24.072
+ ;;^UTILITY(U,$J,358.3,33403,2)
+ ;;=^5011294
+ ;;^UTILITY(U,$J,358.3,33404,0)
+ ;;=M24.071^^132^1701^16
+ ;;^UTILITY(U,$J,358.3,33404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35443,1,3,0)
- ;;=3^Recruitment to Armed Forces Exam
- ;;^UTILITY(U,$J,358.3,35443,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,35443,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,35444,0)
- ;;=Z02.1^^134^1720^9
- ;;^UTILITY(U,$J,358.3,35444,1,0)
+ ;;^UTILITY(U,$J,358.3,33404,1,3,0)
+ ;;=3^Loose body in right ankle
+ ;;^UTILITY(U,$J,358.3,33404,1,4,0)
+ ;;=4^M24.071
+ ;;^UTILITY(U,$J,358.3,33404,2)
+ ;;=^5011293
+ ;;^UTILITY(U,$J,358.3,33405,0)
+ ;;=S82.65XA^^132^1701^19
+ ;;^UTILITY(U,$J,358.3,33405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35444,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,35444,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,35444,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,35445,0)
- ;;=Z02.89^^134^1720^2
- ;;^UTILITY(U,$J,358.3,35445,1,0)
+ ;;^UTILITY(U,$J,358.3,33405,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of left fibula, init
+ ;;^UTILITY(U,$J,358.3,33405,1,4,0)
+ ;;=4^S82.65XA
+ ;;^UTILITY(U,$J,358.3,33405,2)
+ ;;=^5042375
+ ;;^UTILITY(U,$J,358.3,33406,0)
+ ;;=S82.64XA^^132^1701^21
+ ;;^UTILITY(U,$J,358.3,33406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35445,1,3,0)
- ;;=3^Administrative Exam
- ;;^UTILITY(U,$J,358.3,35445,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,35445,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,35446,0)
- ;;=Z13.83^^134^1720^11
- ;;^UTILITY(U,$J,358.3,35446,1,0)
+ ;;^UTILITY(U,$J,358.3,33406,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of right fibula, init
+ ;;^UTILITY(U,$J,358.3,33406,1,4,0)
+ ;;=4^S82.64XA
+ ;;^UTILITY(U,$J,358.3,33406,2)
+ ;;=^5042359
+ ;;^UTILITY(U,$J,358.3,33407,0)
+ ;;=S82.55XA^^132^1701^23
+ ;;^UTILITY(U,$J,358.3,33407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35446,1,3,0)
- ;;=3^Respiratory Disorder Screen
- ;;^UTILITY(U,$J,358.3,35446,1,4,0)
- ;;=4^Z13.83
- ;;^UTILITY(U,$J,358.3,35446,2)
- ;;=^5062715
- ;;^UTILITY(U,$J,358.3,35447,0)
- ;;=J98.01^^134^1720^1
- ;;^UTILITY(U,$J,358.3,35447,1,0)
+ ;;^UTILITY(U,$J,358.3,33407,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of left tibia, init
+ ;;^UTILITY(U,$J,358.3,33407,1,4,0)
+ ;;=4^S82.55XA
+ ;;^UTILITY(U,$J,358.3,33407,2)
+ ;;=^5042279
+ ;;^UTILITY(U,$J,358.3,33408,0)
+ ;;=S82.54XA^^132^1701^25
+ ;;^UTILITY(U,$J,358.3,33408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35447,1,3,0)
- ;;=3^Acute Bronchospasm
- ;;^UTILITY(U,$J,358.3,35447,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,35447,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,35448,0)
- ;;=G89.12^^134^1720^8
- ;;^UTILITY(U,$J,358.3,35448,1,0)
+ ;;^UTILITY(U,$J,358.3,33408,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of right tibia, init
+ ;;^UTILITY(U,$J,358.3,33408,1,4,0)
+ ;;=4^S82.54XA
+ ;;^UTILITY(U,$J,358.3,33408,2)
+ ;;=^5042263
+ ;;^UTILITY(U,$J,358.3,33409,0)
+ ;;=L97.329^^132^1701^17
+ ;;^UTILITY(U,$J,358.3,33409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35448,1,3,0)
- ;;=3^Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,35448,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,35448,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,35449,0)
- ;;=J98.09^^134^1720^4
- ;;^UTILITY(U,$J,358.3,35449,1,0)
+ ;;^UTILITY(U,$J,358.3,33409,1,3,0)
+ ;;=3^Non-pressure chronic ulcer of left ankle with unsp severity
+ ;;^UTILITY(U,$J,358.3,33409,1,4,0)
+ ;;=4^L97.329
+ ;;^UTILITY(U,$J,358.3,33409,2)
+ ;;=^5009524
+ ;;^UTILITY(U,$J,358.3,33410,0)
+ ;;=L97.319^^132^1701^18
+ ;;^UTILITY(U,$J,358.3,33410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35449,1,3,0)
- ;;=3^Bronchus Diseases NEC
- ;;^UTILITY(U,$J,358.3,35449,1,4,0)
- ;;=4^J98.09
- ;;^UTILITY(U,$J,358.3,35449,2)
- ;;=^5008359
- ;;^UTILITY(U,$J,358.3,35450,0)
- ;;=J39.8^^134^1720^12
- ;;^UTILITY(U,$J,358.3,35450,1,0)
+ ;;^UTILITY(U,$J,358.3,33410,1,3,0)
+ ;;=3^Non-pressure chronic ulcer of right ankle with unsp severity
+ ;;^UTILITY(U,$J,358.3,33410,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,33410,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,33411,0)
+ ;;=M93.272^^132^1701^27
+ ;;^UTILITY(U,$J,358.3,33411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35450,1,3,0)
- ;;=3^Upper Respiratory Tract Diseases
- ;;^UTILITY(U,$J,358.3,35450,1,4,0)
- ;;=4^J39.8
- ;;^UTILITY(U,$J,358.3,35450,2)
- ;;=^5008231
- ;;^UTILITY(U,$J,358.3,35451,0)
- ;;=M31.30^^134^1720^13
- ;;^UTILITY(U,$J,358.3,35451,1,0)
+ ;;^UTILITY(U,$J,358.3,33411,1,3,0)
+ ;;=3^Osteochondritis dissecans, l ankle and joints of left foot
+ ;;^UTILITY(U,$J,358.3,33411,1,4,0)
+ ;;=4^M93.272
+ ;;^UTILITY(U,$J,358.3,33411,2)
+ ;;=^5015275
+ ;;^UTILITY(U,$J,358.3,33412,0)
+ ;;=M93.271^^132^1701^28
+ ;;^UTILITY(U,$J,358.3,33412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35451,1,3,0)
- ;;=3^Wegener's Granulomatosis w/o Renal Involvement
- ;;^UTILITY(U,$J,358.3,35451,1,4,0)
- ;;=4^M31.30
- ;;^UTILITY(U,$J,358.3,35451,2)
- ;;=^5011744
- ;;^UTILITY(U,$J,358.3,35452,0)
- ;;=Z99.81^^134^1720^7
- ;;^UTILITY(U,$J,358.3,35452,1,0)
+ ;;^UTILITY(U,$J,358.3,33412,1,3,0)
+ ;;=3^Osteochondritis dissecans, r ankle and joints of right foot
+ ;;^UTILITY(U,$J,358.3,33412,1,4,0)
+ ;;=4^M93.271
+ ;;^UTILITY(U,$J,358.3,33412,2)
+ ;;=^5015274
+ ;;^UTILITY(U,$J,358.3,33413,0)
+ ;;=M25.372^^132^1701^13
+ ;;^UTILITY(U,$J,358.3,33413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35452,1,3,0)
- ;;=3^Dependence on Supplemental Oxygen
- ;;^UTILITY(U,$J,358.3,35452,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,35452,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,35453,0)
- ;;=J98.11^^134^1721^1
- ;;^UTILITY(U,$J,358.3,35453,1,0)
+ ;;^UTILITY(U,$J,358.3,33413,1,3,0)
+ ;;=3^Instability, left ankle NEC
+ ;;^UTILITY(U,$J,358.3,33413,1,4,0)
+ ;;=4^M25.372
+ ;;^UTILITY(U,$J,358.3,33413,2)
+ ;;=^5011570
+ ;;^UTILITY(U,$J,358.3,33414,0)
+ ;;=M25.371^^132^1701^14
+ ;;^UTILITY(U,$J,358.3,33414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35453,1,3,0)
- ;;=3^Atelectasis
- ;;^UTILITY(U,$J,358.3,35453,1,4,0)
- ;;=4^J98.11
- ;;^UTILITY(U,$J,358.3,35453,2)
- ;;=^5008360
- ;;^UTILITY(U,$J,358.3,35454,0)
- ;;=D14.32^^134^1721^2
- ;;^UTILITY(U,$J,358.3,35454,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35454,1,3,0)
- ;;=3^Benign Neop Left Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,35454,1,4,0)
- ;;=4^D14.32
- ;;^UTILITY(U,$J,358.3,35454,2)
- ;;=^5001984
- ;;^UTILITY(U,$J,358.3,35455,0)
- ;;=D19.0^^134^1721^3
- ;;^UTILITY(U,$J,358.3,35455,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35455,1,3,0)
- ;;=3^Benign Neop Pleura Mesothelial Tissue
+ ;;^UTILITY(U,$J,358.3,33414,1,3,0)
+ ;;=3^Instability, right ankle NEC

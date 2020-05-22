@@ -1,136 +1,120 @@
-IBDEI34H ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52408,0)
- ;;=Z59.2^^237^2598^1
- ;;^UTILITY(U,$J,358.3,52408,1,0)
+ ;;^UTILITY(U,$J,358.3,49873,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,49873,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,49874,0)
+ ;;=I25.119^^193^2485^3
+ ;;^UTILITY(U,$J,358.3,49874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52408,1,3,0)
- ;;=3^Discord w/ Neighbors,Lodgers or Landlord
- ;;^UTILITY(U,$J,358.3,52408,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,52408,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,52409,0)
- ;;=Z59.0^^237^2598^3
- ;;^UTILITY(U,$J,358.3,52409,1,0)
+ ;;^UTILITY(U,$J,358.3,49874,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,49874,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,49874,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,49875,0)
+ ;;=I25.10^^193^2485^4
+ ;;^UTILITY(U,$J,358.3,49875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52409,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,52409,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,52409,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,52410,0)
- ;;=Z59.1^^237^2598^5
- ;;^UTILITY(U,$J,358.3,52410,1,0)
+ ;;^UTILITY(U,$J,358.3,49875,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,49875,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,49875,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,49876,0)
+ ;;=I25.110^^193^2485^5
+ ;;^UTILITY(U,$J,358.3,49876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52410,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,52410,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,52410,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,52411,0)
- ;;=Z59.3^^237^2598^9
- ;;^UTILITY(U,$J,358.3,52411,1,0)
+ ;;^UTILITY(U,$J,358.3,49876,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,49876,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,49876,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,49877,0)
+ ;;=I25.810^^193^2485^17
+ ;;^UTILITY(U,$J,358.3,49877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52411,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,52411,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,52411,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,52412,0)
- ;;=Z59.4^^237^2598^7
- ;;^UTILITY(U,$J,358.3,52412,1,0)
+ ;;^UTILITY(U,$J,358.3,49877,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,49877,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,49877,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,49878,0)
+ ;;=I25.701^^193^2485^18
+ ;;^UTILITY(U,$J,358.3,49878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52412,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,52412,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,52412,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,52413,0)
- ;;=Z59.5^^237^2598^2
- ;;^UTILITY(U,$J,358.3,52413,1,0)
+ ;;^UTILITY(U,$J,358.3,49878,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,49878,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,49878,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,49879,0)
+ ;;=I25.708^^193^2485^19
+ ;;^UTILITY(U,$J,358.3,49879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52413,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,52413,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,52413,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,52414,0)
- ;;=Z59.6^^237^2598^8
- ;;^UTILITY(U,$J,358.3,52414,1,0)
+ ;;^UTILITY(U,$J,358.3,49879,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,49879,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,49879,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,49880,0)
+ ;;=I25.709^^193^2485^20
+ ;;^UTILITY(U,$J,358.3,49880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52414,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,52414,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,52414,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,52415,0)
- ;;=Z59.7^^237^2598^6
- ;;^UTILITY(U,$J,358.3,52415,1,0)
+ ;;^UTILITY(U,$J,358.3,49880,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,49880,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,49880,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,49881,0)
+ ;;=I25.700^^193^2485^21
+ ;;^UTILITY(U,$J,358.3,49881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52415,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,52415,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,52415,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,52416,0)
- ;;=Z59.9^^237^2598^4
- ;;^UTILITY(U,$J,358.3,52416,1,0)
+ ;;^UTILITY(U,$J,358.3,49881,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,49881,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,49881,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,49882,0)
+ ;;=I82.469^^193^2485^24
+ ;;^UTILITY(U,$J,358.3,49882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52416,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,52416,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,52416,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,52417,0)
- ;;=G21.19^^237^2599^3
- ;;^UTILITY(U,$J,358.3,52417,1,0)
+ ;;^UTILITY(U,$J,358.3,49882,1,3,0)
+ ;;=3^Embolism/Thrombosis,Unspec Calf Muscle Vein,Acute
+ ;;^UTILITY(U,$J,358.3,49882,1,4,0)
+ ;;=4^I82.469
+ ;;^UTILITY(U,$J,358.3,49882,2)
+ ;;=^5158066
+ ;;^UTILITY(U,$J,358.3,49883,0)
+ ;;=I82.569^^193^2485^25
+ ;;^UTILITY(U,$J,358.3,49883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52417,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,52417,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,52417,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,52418,0)
- ;;=G21.11^^237^2599^5
- ;;^UTILITY(U,$J,358.3,52418,1,0)
+ ;;^UTILITY(U,$J,358.3,49883,1,3,0)
+ ;;=3^Embolism/Thrombosis,Unspec Calf Muscle Vein,Chronic
+ ;;^UTILITY(U,$J,358.3,49883,1,4,0)
+ ;;=4^I82.569
+ ;;^UTILITY(U,$J,358.3,49883,2)
+ ;;=^5158074
+ ;;^UTILITY(U,$J,358.3,49884,0)
+ ;;=I80.259^^193^2485^33
+ ;;^UTILITY(U,$J,358.3,49884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52418,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,52418,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,52418,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,52419,0)
- ;;=G24.02^^237^2599^1
- ;;^UTILITY(U,$J,358.3,52419,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52419,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,52419,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,52419,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,52420,0)
- ;;=G24.01^^237^2599^7
- ;;^UTILITY(U,$J,358.3,52420,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52420,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,52420,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,52420,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,52421,0)
- ;;=G24.09^^237^2599^8
+ ;;^UTILITY(U,$J,358.3,49884,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis,Unspec Calf Muscle Vein
+ ;;^UTILITY(U,$J,358.3,49884,1,4,0)
+ ;;=4^I80.259
+ ;;^UTILITY(U,$J,358.3,49884,2)
+ ;;=^5158058
+ ;;^UTILITY(U,$J,358.3,49885,0)
+ ;;=I82.409^^193^2485^26

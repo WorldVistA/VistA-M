@@ -1,108 +1,116 @@
-IBDEI1UW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31535,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portionof distal tibia, w/ internal or external fixation; of both tibia & fibula
- ;;^UTILITY(U,$J,358.3,31535,1,3,0)
- ;;=3^27828
- ;;^UTILITY(U,$J,358.3,31536,0)
- ;;=27829^^125^1595^43^^^^1
- ;;^UTILITY(U,$J,358.3,31536,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31536,1,2,0)
- ;;=2^Open Tx of distal tibiofibular joint disruption, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,31536,1,3,0)
- ;;=3^27829
- ;;^UTILITY(U,$J,358.3,31537,0)
- ;;=28540^^125^1595^30^^^^1
- ;;^UTILITY(U,$J,358.3,31537,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31537,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,31537,1,3,0)
- ;;=3^28540
- ;;^UTILITY(U,$J,358.3,31538,0)
- ;;=28545^^125^1595^31^^^^1
- ;;^UTILITY(U,$J,358.3,31538,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31538,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,31538,1,3,0)
- ;;=3^28545
- ;;^UTILITY(U,$J,358.3,31539,0)
- ;;=28546^^125^1595^63^^^^1
- ;;^UTILITY(U,$J,358.3,31539,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31539,1,2,0)
- ;;=2^Perc Fixation Tarsal Bone Dislocation
- ;;^UTILITY(U,$J,358.3,31539,1,3,0)
- ;;=3^28546
- ;;^UTILITY(U,$J,358.3,31540,0)
- ;;=28555^^125^1595^40^^^^1
- ;;^UTILITY(U,$J,358.3,31540,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31540,1,2,0)
- ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,31540,1,3,0)
- ;;=3^28555
- ;;^UTILITY(U,$J,358.3,31541,0)
- ;;=28570^^125^1595^28^^^^1
- ;;^UTILITY(U,$J,358.3,31541,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31541,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,31541,1,3,0)
- ;;=3^28570
- ;;^UTILITY(U,$J,358.3,31542,0)
- ;;=28575^^125^1595^29^^^^1
- ;;^UTILITY(U,$J,358.3,31542,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31542,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,31542,1,3,0)
- ;;=3^28575
- ;;^UTILITY(U,$J,358.3,31543,0)
- ;;=28576^^125^1595^61^^^^1
- ;;^UTILITY(U,$J,358.3,31543,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31543,1,2,0)
- ;;=2^Perc Fixation Talotarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,31543,1,3,0)
- ;;=3^28576
- ;;^UTILITY(U,$J,358.3,31544,0)
- ;;=28585^^125^1595^49^^^^1
- ;;^UTILITY(U,$J,358.3,31544,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31544,1,2,0)
- ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,31544,1,3,0)
- ;;=3^28585
- ;;^UTILITY(U,$J,358.3,31545,0)
- ;;=28600^^125^1595^32^^^^1
- ;;^UTILITY(U,$J,358.3,31545,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31545,1,2,0)
- ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,31545,1,3,0)
- ;;=3^28600
- ;;^UTILITY(U,$J,358.3,31546,0)
- ;;=28606^^125^1595^65^^^^1
- ;;^UTILITY(U,$J,358.3,31546,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31546,1,2,0)
- ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,31546,1,3,0)
- ;;=3^28606
- ;;^UTILITY(U,$J,358.3,31547,0)
- ;;=28615^^125^1595^50^^^^1
- ;;^UTILITY(U,$J,358.3,31547,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31547,1,2,0)
- ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,31547,1,3,0)
- ;;=3^28615
- ;;^UTILITY(U,$J,358.3,31548,0)
- ;;=28630^^125^1595^26^^^^1
- ;;^UTILITY(U,$J,358.3,31548,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29649,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,29649,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,29650,0)
+ ;;=F19.27^^118^1501^5
+ ;;^UTILITY(U,$J,358.3,29650,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29650,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29650,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,29650,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,29651,0)
+ ;;=F19.97^^118^1501^6
+ ;;^UTILITY(U,$J,358.3,29651,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29651,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29651,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,29651,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,29652,0)
+ ;;=F19.188^^118^1501^7
+ ;;^UTILITY(U,$J,358.3,29652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29652,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29652,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,29652,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,29653,0)
+ ;;=F19.288^^118^1501^8
+ ;;^UTILITY(U,$J,358.3,29653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29653,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29653,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,29653,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,29654,0)
+ ;;=F19.988^^118^1501^9
+ ;;^UTILITY(U,$J,358.3,29654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29654,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29654,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,29654,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,29655,0)
+ ;;=F19.159^^118^1501^10
+ ;;^UTILITY(U,$J,358.3,29655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29655,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29655,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,29655,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,29656,0)
+ ;;=F19.259^^118^1501^11
+ ;;^UTILITY(U,$J,358.3,29656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29656,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29656,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,29656,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,29657,0)
+ ;;=F19.959^^118^1501^12
+ ;;^UTILITY(U,$J,358.3,29657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29657,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29657,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,29657,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,29658,0)
+ ;;=F19.181^^118^1501^13
+ ;;^UTILITY(U,$J,358.3,29658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29658,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29658,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,29658,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,29659,0)
+ ;;=F19.281^^118^1501^14
+ ;;^UTILITY(U,$J,358.3,29659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29659,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29659,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,29659,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,29660,0)
+ ;;=F19.981^^118^1501^15
+ ;;^UTILITY(U,$J,358.3,29660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29660,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,29660,1,4,0)
+ ;;=4^F19.981

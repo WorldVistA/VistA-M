@@ -1,130 +1,134 @@
-IBDEI1E9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1E9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23680,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,23680,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,23680,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,23681,0)
- ;;=F01.51^^87^1001^30
- ;;^UTILITY(U,$J,358.3,23681,1,0)
+ ;;^UTILITY(U,$J,358.3,22295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23681,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23681,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,23681,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,23682,0)
- ;;=F01.50^^87^1001^31
- ;;^UTILITY(U,$J,358.3,23682,1,0)
+ ;;^UTILITY(U,$J,358.3,22295,1,3,0)
+ ;;=3^Candidiasis,Oral
+ ;;^UTILITY(U,$J,358.3,22295,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,22295,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,22296,0)
+ ;;=B37.89^^102^1141^33
+ ;;^UTILITY(U,$J,358.3,22296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23682,1,3,0)
- ;;=3^Vascular Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23682,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,23682,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,23683,0)
- ;;=A81.9^^87^1001^6
- ;;^UTILITY(U,$J,358.3,23683,1,0)
+ ;;^UTILITY(U,$J,358.3,22296,1,3,0)
+ ;;=3^Candidiasis NEC
+ ;;^UTILITY(U,$J,358.3,22296,1,4,0)
+ ;;=4^B37.89
+ ;;^UTILITY(U,$J,358.3,22296,2)
+ ;;=^5000623
+ ;;^UTILITY(U,$J,358.3,22297,0)
+ ;;=L03.90^^102^1141^39
+ ;;^UTILITY(U,$J,358.3,22297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23683,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,23683,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,23683,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,23684,0)
- ;;=A81.09^^87^1001^8
- ;;^UTILITY(U,$J,358.3,23684,1,0)
+ ;;^UTILITY(U,$J,358.3,22297,1,3,0)
+ ;;=3^Cellulitis, unspecified
+ ;;^UTILITY(U,$J,358.3,22297,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,22297,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,22298,0)
+ ;;=N72.^^102^1141^40
+ ;;^UTILITY(U,$J,358.3,22298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23684,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease NEC
- ;;^UTILITY(U,$J,358.3,23684,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,23684,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,23685,0)
- ;;=A81.00^^87^1001^9
- ;;^UTILITY(U,$J,358.3,23685,1,0)
+ ;;^UTILITY(U,$J,358.3,22298,1,3,0)
+ ;;=3^Cervicitis
+ ;;^UTILITY(U,$J,358.3,22298,1,4,0)
+ ;;=4^N72.
+ ;;^UTILITY(U,$J,358.3,22298,2)
+ ;;=^5015812
+ ;;^UTILITY(U,$J,358.3,22299,0)
+ ;;=N81.9^^102^1141^1
+ ;;^UTILITY(U,$J,358.3,22299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23685,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23685,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,23685,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,23686,0)
- ;;=A81.01^^87^1001^10
- ;;^UTILITY(U,$J,358.3,23686,1,0)
+ ;;^UTILITY(U,$J,358.3,22299,1,3,0)
+ ;;=3
+ ;;^UTILITY(U,$J,358.3,22299,1,4,0)
+ ;;=4^N81.9
+ ;;^UTILITY(U,$J,358.3,22299,2)
+ ;;=^5015845
+ ;;^UTILITY(U,$J,358.3,22300,0)
+ ;;=K81.0^^102^1141^15
+ ;;^UTILITY(U,$J,358.3,22300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23686,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,23686,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,23686,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,23687,0)
- ;;=A81.89^^87^1001^7
- ;;^UTILITY(U,$J,358.3,23687,1,0)
+ ;;^UTILITY(U,$J,358.3,22300,1,3,0)
+ ;;=3^Acute cholecystitis
+ ;;^UTILITY(U,$J,358.3,22300,1,4,0)
+ ;;=4^K81.0
+ ;;^UTILITY(U,$J,358.3,22300,2)
+ ;;=^259097
+ ;;^UTILITY(U,$J,358.3,22301,0)
+ ;;=B38.2^^102^1141^44
+ ;;^UTILITY(U,$J,358.3,22301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23687,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,23687,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,23687,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,23688,0)
- ;;=A81.2^^87^1001^27
- ;;^UTILITY(U,$J,358.3,23688,1,0)
+ ;;^UTILITY(U,$J,358.3,22301,1,3,0)
+ ;;=3^Coccidioides,Pulmonary
+ ;;^UTILITY(U,$J,358.3,22301,1,4,0)
+ ;;=4^B38.2
+ ;;^UTILITY(U,$J,358.3,22301,2)
+ ;;=^295703
+ ;;^UTILITY(U,$J,358.3,22302,0)
+ ;;=B38.4^^102^1141^43
+ ;;^UTILITY(U,$J,358.3,22302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23688,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,23688,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,23688,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,23689,0)
- ;;=B20.^^87^1001^17
- ;;^UTILITY(U,$J,358.3,23689,1,0)
+ ;;^UTILITY(U,$J,358.3,22302,1,3,0)
+ ;;=3^Coccidioides,Meningitis/CNS
+ ;;^UTILITY(U,$J,358.3,22302,1,4,0)
+ ;;=4^B38.4
+ ;;^UTILITY(U,$J,358.3,22302,2)
+ ;;=^5000627
+ ;;^UTILITY(U,$J,358.3,22303,0)
+ ;;=B38.89^^102^1141^42
+ ;;^UTILITY(U,$J,358.3,22303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23689,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23689,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23689,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,23690,0)
- ;;=B20.^^87^1001^18
- ;;^UTILITY(U,$J,358.3,23690,1,0)
+ ;;^UTILITY(U,$J,358.3,22303,1,3,0)
+ ;;=3^Coccidioides NEC
+ ;;^UTILITY(U,$J,358.3,22303,1,4,0)
+ ;;=4^B38.89
+ ;;^UTILITY(U,$J,358.3,22303,2)
+ ;;=^5000630
+ ;;^UTILITY(U,$J,358.3,22304,0)
+ ;;=H10.9^^102^1141^46
+ ;;^UTILITY(U,$J,358.3,22304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23690,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23690,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23690,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,23691,0)
- ;;=F10.27^^87^1001^1
- ;;^UTILITY(U,$J,358.3,23691,1,0)
+ ;;^UTILITY(U,$J,358.3,22304,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,22304,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,22304,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,22305,0)
+ ;;=B45.1^^102^1141^52
+ ;;^UTILITY(U,$J,358.3,22305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23691,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,23691,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,23691,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,23692,0)
- ;;=F19.97^^87^1001^29
- ;;^UTILITY(U,$J,358.3,23692,1,0)
+ ;;^UTILITY(U,$J,358.3,22305,1,3,0)
+ ;;=3^Cryptococcosis,Meningitis/CNS
+ ;;^UTILITY(U,$J,358.3,22305,1,4,0)
+ ;;=4^B45.1
+ ;;^UTILITY(U,$J,358.3,22305,2)
+ ;;=^5000670
+ ;;^UTILITY(U,$J,358.3,22306,0)
+ ;;=B45.8^^102^1141^51
+ ;;^UTILITY(U,$J,358.3,22306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23692,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,23692,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,23692,2)
- ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,22306,1,3,0)
+ ;;=3^Cryptococcosis NEC
+ ;;^UTILITY(U,$J,358.3,22306,1,4,0)
+ ;;=4^B45.8
+ ;;^UTILITY(U,$J,358.3,22306,2)
+ ;;=^5000674
+ ;;^UTILITY(U,$J,358.3,22307,0)
+ ;;=A07.2^^102^1141^55
+ ;;^UTILITY(U,$J,358.3,22307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22307,1,3,0)
+ ;;=3^Cryptosporidium infection
+ ;;^UTILITY(U,$J,358.3,22307,1,4,0)
+ ;;=4^A07.2
+ ;;^UTILITY(U,$J,358.3,22307,2)
+ ;;=^29629
+ ;;^UTILITY(U,$J,358.3,22308,0)
+ ;;=B25.9^^102^1141^58

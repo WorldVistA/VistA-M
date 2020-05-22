@@ -1,138 +1,118 @@
-IBDEI1M9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1M9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27424,1,0)
+ ;;^UTILITY(U,$J,358.3,25826,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,25826,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,25827,0)
+ ;;=F11.229^^107^1225^44
+ ;;^UTILITY(U,$J,358.3,25827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27424,1,3,0)
- ;;=3^Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,27424,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,27424,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,27425,0)
- ;;=R35.1^^106^1358^4
- ;;^UTILITY(U,$J,358.3,27425,1,0)
+ ;;^UTILITY(U,$J,358.3,25827,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,25827,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,25827,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,25828,0)
+ ;;=F11.222^^107^1225^42
+ ;;^UTILITY(U,$J,358.3,25828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27425,1,3,0)
- ;;=3^Nocturia
- ;;^UTILITY(U,$J,358.3,27425,1,4,0)
- ;;=4^R35.1
- ;;^UTILITY(U,$J,358.3,27425,2)
- ;;=^5019335
- ;;^UTILITY(U,$J,358.3,27426,0)
- ;;=R39.16^^106^1358^5
- ;;^UTILITY(U,$J,358.3,27426,1,0)
+ ;;^UTILITY(U,$J,358.3,25828,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,25828,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,25828,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,25829,0)
+ ;;=F11.221^^107^1225^41
+ ;;^UTILITY(U,$J,358.3,25829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27426,1,3,0)
- ;;=3^Straining on Urinartion
- ;;^UTILITY(U,$J,358.3,27426,1,4,0)
- ;;=4^R39.16
- ;;^UTILITY(U,$J,358.3,27426,2)
- ;;=^5019346
- ;;^UTILITY(U,$J,358.3,27427,0)
- ;;=R35.0^^106^1358^6
- ;;^UTILITY(U,$J,358.3,27427,1,0)
+ ;;^UTILITY(U,$J,358.3,25829,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,25829,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,25829,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,25830,0)
+ ;;=F11.220^^107^1225^43
+ ;;^UTILITY(U,$J,358.3,25830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27427,1,3,0)
- ;;=3^Urinary Frequency
- ;;^UTILITY(U,$J,358.3,27427,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,27427,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,27428,0)
- ;;=R39.11^^106^1358^7
- ;;^UTILITY(U,$J,358.3,27428,1,0)
+ ;;^UTILITY(U,$J,358.3,25830,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25830,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,25830,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,25831,0)
+ ;;=F14.29^^107^1225^24
+ ;;^UTILITY(U,$J,358.3,25831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27428,1,3,0)
- ;;=3^Urinary Hesitancy
- ;;^UTILITY(U,$J,358.3,27428,1,4,0)
- ;;=4^R39.11
- ;;^UTILITY(U,$J,358.3,27428,2)
- ;;=^5019341
- ;;^UTILITY(U,$J,358.3,27429,0)
- ;;=N39.41^^106^1358^10
- ;;^UTILITY(U,$J,358.3,27429,1,0)
+ ;;^UTILITY(U,$J,358.3,25831,1,3,0)
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,25831,1,4,0)
+ ;;=4^F14.29
+ ;;^UTILITY(U,$J,358.3,25831,2)
+ ;;=^5003268
+ ;;^UTILITY(U,$J,358.3,25832,0)
+ ;;=F14.288^^107^1225^23
+ ;;^UTILITY(U,$J,358.3,25832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27429,1,3,0)
- ;;=3^Urinary Urge Incontinence
- ;;^UTILITY(U,$J,358.3,27429,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,27429,2)
- ;;=^5015680
- ;;^UTILITY(U,$J,358.3,27430,0)
- ;;=N13.8^^106^1358^8
- ;;^UTILITY(U,$J,358.3,27430,1,0)
+ ;;^UTILITY(U,$J,358.3,25832,1,3,0)
+ ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,25832,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,25832,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,25833,0)
+ ;;=F14.282^^107^1225^17
+ ;;^UTILITY(U,$J,358.3,25833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27430,1,3,0)
- ;;=3^Urinary Obstruction
- ;;^UTILITY(U,$J,358.3,27430,1,4,0)
- ;;=4^N13.8
- ;;^UTILITY(U,$J,358.3,27430,2)
- ;;=^5015588
- ;;^UTILITY(U,$J,358.3,27431,0)
- ;;=R33.8^^106^1358^9
- ;;^UTILITY(U,$J,358.3,27431,1,0)
+ ;;^UTILITY(U,$J,358.3,25833,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,25833,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,25833,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,25834,0)
+ ;;=F14.281^^107^1225^18
+ ;;^UTILITY(U,$J,358.3,25834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27431,1,3,0)
- ;;=3^Urinary Retention,Unspec
- ;;^UTILITY(U,$J,358.3,27431,1,4,0)
- ;;=4^R33.8
- ;;^UTILITY(U,$J,358.3,27431,2)
- ;;=^5019331
- ;;^UTILITY(U,$J,358.3,27432,0)
- ;;=R39.15^^106^1358^11
- ;;^UTILITY(U,$J,358.3,27432,1,0)
+ ;;^UTILITY(U,$J,358.3,25834,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,25834,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,25834,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,25835,0)
+ ;;=F14.280^^107^1225^15
+ ;;^UTILITY(U,$J,358.3,25835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27432,1,3,0)
- ;;=3^Urinary Urgency
- ;;^UTILITY(U,$J,358.3,27432,1,4,0)
- ;;=4^R39.15
- ;;^UTILITY(U,$J,358.3,27432,2)
- ;;=^5019345
- ;;^UTILITY(U,$J,358.3,27433,0)
- ;;=R39.12^^106^1358^13
- ;;^UTILITY(U,$J,358.3,27433,1,0)
+ ;;^UTILITY(U,$J,358.3,25835,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,25835,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,25835,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,25836,0)
+ ;;=F14.259^^107^1225^14
+ ;;^UTILITY(U,$J,358.3,25836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27433,1,3,0)
- ;;=3^Weak Urinary Stream
- ;;^UTILITY(U,$J,358.3,27433,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,27433,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,27434,0)
- ;;=T86.10^^106^1359^3
- ;;^UTILITY(U,$J,358.3,27434,1,0)
+ ;;^UTILITY(U,$J,358.3,25836,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25836,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,25836,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,25837,0)
+ ;;=F14.251^^107^1225^13
+ ;;^UTILITY(U,$J,358.3,25837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27434,1,3,0)
- ;;=3^Kidney Transplant Complication,Unspec
- ;;^UTILITY(U,$J,358.3,27434,1,4,0)
- ;;=4^T86.10
- ;;^UTILITY(U,$J,358.3,27434,2)
- ;;=^5055708
- ;;^UTILITY(U,$J,358.3,27435,0)
- ;;=T86.11^^106^1359^7
- ;;^UTILITY(U,$J,358.3,27435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27435,1,3,0)
- ;;=3^Kidney Transplant Rejection
- ;;^UTILITY(U,$J,358.3,27435,1,4,0)
- ;;=4^T86.11
- ;;^UTILITY(U,$J,358.3,27435,2)
- ;;=^5055709
- ;;^UTILITY(U,$J,358.3,27436,0)
- ;;=T86.12^^106^1359^5
- ;;^UTILITY(U,$J,358.3,27436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27436,1,3,0)
- ;;=3^Kidney Transplant Failure
- ;;^UTILITY(U,$J,358.3,27436,1,4,0)
- ;;=4^T86.12
- ;;^UTILITY(U,$J,358.3,27436,2)
- ;;=^5055710
- ;;^UTILITY(U,$J,358.3,27437,0)
- ;;=T86.13^^106^1359^6
- ;;^UTILITY(U,$J,358.3,27437,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27437,1,3,0)
- ;;=3^Kidney Transplant Infection
+ ;;^UTILITY(U,$J,358.3,25837,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,25837,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,25837,2)
+ ;;=^5003262

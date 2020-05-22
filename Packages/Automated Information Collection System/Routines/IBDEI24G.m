@@ -1,124 +1,118 @@
-IBDEI24G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35984,1,0)
+ ;;^UTILITY(U,$J,358.3,33894,2)
+ ;;=^5013938
+ ;;^UTILITY(U,$J,358.3,33895,0)
+ ;;=M84.462D^^132^1713^34
+ ;;^UTILITY(U,$J,358.3,33895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35984,1,3,0)
- ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,35984,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,35984,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,35985,0)
- ;;=G62.9^^134^1739^19
- ;;^UTILITY(U,$J,358.3,35985,1,0)
+ ;;^UTILITY(U,$J,358.3,33895,1,3,0)
+ ;;=3^Pathological fracture, left tibia, subs for fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33895,1,4,0)
+ ;;=4^M84.462D
+ ;;^UTILITY(U,$J,358.3,33895,2)
+ ;;=^5013939
+ ;;^UTILITY(U,$J,358.3,33896,0)
+ ;;=M84.469A^^132^1713^39
+ ;;^UTILITY(U,$J,358.3,33896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35985,1,3,0)
- ;;=3^Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,35985,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,35985,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,35986,0)
- ;;=I63.9^^134^1739^13
- ;;^UTILITY(U,$J,358.3,35986,1,0)
+ ;;^UTILITY(U,$J,358.3,33896,1,3,0)
+ ;;=3^Pathological fracture, unsp tibia and fibula, init for fx
+ ;;^UTILITY(U,$J,358.3,33896,1,4,0)
+ ;;=4^M84.469A
+ ;;^UTILITY(U,$J,358.3,33896,2)
+ ;;=^5013956
+ ;;^UTILITY(U,$J,358.3,33897,0)
+ ;;=M84.469D^^132^1713^40
+ ;;^UTILITY(U,$J,358.3,33897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35986,1,3,0)
- ;;=3^Cerebral Infarction,Unspec
- ;;^UTILITY(U,$J,358.3,35986,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,35986,2)
- ;;=^5007355
- ;;^UTILITY(U,$J,358.3,35987,0)
- ;;=I63.50^^134^1739^7
- ;;^UTILITY(U,$J,358.3,35987,1,0)
+ ;;^UTILITY(U,$J,358.3,33897,1,3,0)
+ ;;=3^Pathological fracture, unsp tibia and fibula, subs for fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33897,1,4,0)
+ ;;=4^M84.469D
+ ;;^UTILITY(U,$J,358.3,33897,2)
+ ;;=^5013957
+ ;;^UTILITY(U,$J,358.3,33898,0)
+ ;;=M84.463D^^132^1713^36
+ ;;^UTILITY(U,$J,358.3,33898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35987,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebral Artery
- ;;^UTILITY(U,$J,358.3,35987,1,4,0)
- ;;=4^I63.50
- ;;^UTILITY(U,$J,358.3,35987,2)
- ;;=^5007343
- ;;^UTILITY(U,$J,358.3,35988,0)
- ;;=I63.549^^134^1739^8
- ;;^UTILITY(U,$J,358.3,35988,1,0)
+ ;;^UTILITY(U,$J,358.3,33898,1,3,0)
+ ;;=3^Pathological fracture, right fibula, subs for fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33898,1,4,0)
+ ;;=4^M84.463D
+ ;;^UTILITY(U,$J,358.3,33898,2)
+ ;;=^5013945
+ ;;^UTILITY(U,$J,358.3,33899,0)
+ ;;=M00.832^^132^1714^1
+ ;;^UTILITY(U,$J,358.3,33899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35988,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebellar Artery
- ;;^UTILITY(U,$J,358.3,35988,1,4,0)
- ;;=4^I63.549
- ;;^UTILITY(U,$J,358.3,35988,2)
- ;;=^5133571
- ;;^UTILITY(U,$J,358.3,35989,0)
- ;;=I63.8^^134^1739^2
- ;;^UTILITY(U,$J,358.3,35989,1,0)
+ ;;^UTILITY(U,$J,358.3,33899,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, left wrist
+ ;;^UTILITY(U,$J,358.3,33899,1,4,0)
+ ;;=4^M00.832
+ ;;^UTILITY(U,$J,358.3,33899,2)
+ ;;=^5009677
+ ;;^UTILITY(U,$J,358.3,33900,0)
+ ;;=M00.831^^132^1714^2
+ ;;^UTILITY(U,$J,358.3,33900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35989,1,3,0)
- ;;=3^Cerebral Infarction NEC
- ;;^UTILITY(U,$J,358.3,35989,1,4,0)
- ;;=4^I63.8
- ;;^UTILITY(U,$J,358.3,35989,2)
- ;;=^5007354
- ;;^UTILITY(U,$J,358.3,35990,0)
- ;;=I63.512^^134^1739^5
- ;;^UTILITY(U,$J,358.3,35990,1,0)
+ ;;^UTILITY(U,$J,358.3,33900,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, right wrist
+ ;;^UTILITY(U,$J,358.3,33900,1,4,0)
+ ;;=4^M00.831
+ ;;^UTILITY(U,$J,358.3,33900,2)
+ ;;=^5009676
+ ;;^UTILITY(U,$J,358.3,33901,0)
+ ;;=G56.02^^132^1714^3
+ ;;^UTILITY(U,$J,358.3,33901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35990,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,35990,1,4,0)
- ;;=4^I63.512
- ;;^UTILITY(U,$J,358.3,35990,2)
- ;;=^5007345
- ;;^UTILITY(U,$J,358.3,35991,0)
- ;;=I63.522^^134^1739^3
- ;;^UTILITY(U,$J,358.3,35991,1,0)
+ ;;^UTILITY(U,$J,358.3,33901,1,3,0)
+ ;;=3^Carpal tunnel syndrome, left upper limb
+ ;;^UTILITY(U,$J,358.3,33901,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,33901,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,33902,0)
+ ;;=G56.01^^132^1714^4
+ ;;^UTILITY(U,$J,358.3,33902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35991,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,35991,1,4,0)
- ;;=4^I63.522
- ;;^UTILITY(U,$J,358.3,35991,2)
- ;;=^5007347
- ;;^UTILITY(U,$J,358.3,35992,0)
- ;;=I63.532^^134^1739^6
- ;;^UTILITY(U,$J,358.3,35992,1,0)
+ ;;^UTILITY(U,$J,358.3,33902,1,3,0)
+ ;;=3^Carpal tunnel syndrome, right upper limb
+ ;;^UTILITY(U,$J,358.3,33902,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,33902,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,33903,0)
+ ;;=S52.532A^^132^1714^5
+ ;;^UTILITY(U,$J,358.3,33903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35992,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,35992,1,4,0)
- ;;=4^I63.532
- ;;^UTILITY(U,$J,358.3,35992,2)
- ;;=^5007349
- ;;^UTILITY(U,$J,358.3,35993,0)
- ;;=I63.542^^134^1739^4
- ;;^UTILITY(U,$J,358.3,35993,1,0)
+ ;;^UTILITY(U,$J,358.3,33903,1,3,0)
+ ;;=3^Colles' fracture of left radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33903,1,4,0)
+ ;;=4^S52.532A
+ ;;^UTILITY(U,$J,358.3,33903,2)
+ ;;=^5030737
+ ;;^UTILITY(U,$J,358.3,33904,0)
+ ;;=S52.531A^^132^1714^7
+ ;;^UTILITY(U,$J,358.3,33904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35993,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,35993,1,4,0)
- ;;=4^I63.542
- ;;^UTILITY(U,$J,358.3,35993,2)
- ;;=^5007351
- ;;^UTILITY(U,$J,358.3,35994,0)
- ;;=I63.511^^134^1739^11
- ;;^UTILITY(U,$J,358.3,35994,1,0)
+ ;;^UTILITY(U,$J,358.3,33904,1,3,0)
+ ;;=3^Colles' fracture of right radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33904,1,4,0)
+ ;;=4^S52.531A
+ ;;^UTILITY(U,$J,358.3,33904,2)
+ ;;=^5030721
+ ;;^UTILITY(U,$J,358.3,33905,0)
+ ;;=S62.102A^^132^1714^13
+ ;;^UTILITY(U,$J,358.3,33905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35994,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,35994,1,4,0)
- ;;=4^I63.511
- ;;^UTILITY(U,$J,358.3,35994,2)
- ;;=^5007344
- ;;^UTILITY(U,$J,358.3,35995,0)
- ;;=I63.521^^134^1739^9
- ;;^UTILITY(U,$J,358.3,35995,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35995,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
- ;;^UTILITY(U,$J,358.3,35995,1,4,0)
- ;;=4^I63.521
- ;;^UTILITY(U,$J,358.3,35995,2)
- ;;=^5007346
- ;;^UTILITY(U,$J,358.3,35996,0)
- ;;=I63.531^^134^1739^12
+ ;;^UTILITY(U,$J,358.3,33905,1,3,0)
+ ;;=3^Fracture of unsp carpal bone, left wrist, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33905,1,4,0)
+ ;;=4^S62.102A
+ ;;^UTILITY(U,$J,358.3,33905,2)
+ ;;=^5033206
+ ;;^UTILITY(U,$J,358.3,33906,0)
+ ;;=S62.101A^^132^1714^14

@@ -1,5 +1,5 @@
 PSOERXA0 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467**;DEC 1997;Build 153
+ ;;7.0;OUTPATIENT PHARMACY;**467,586**;DEC 1997;Build 3
  ;
  Q
  ; All parameters are optional, however at least one needs to be passed in for processing to be sucessful.
@@ -66,7 +66,7 @@ CS(DIEN) ;
  N X
  S X=$P($G(^PSDRUG(DIEN,0)),U,3)
  I X["S" Q 0
- I X]"",+X<6 Q 1
+ I X]"",(X["1")!(X["2")!(X["3")!(X["4")!(X["5") Q 1   ; PSO*7*586
  Q 0
 CHKSTR() ;
  Q

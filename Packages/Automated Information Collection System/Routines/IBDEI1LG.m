@@ -1,134 +1,122 @@
-IBDEI1LG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27020,1,4,0)
- ;;=4^F44.4
- ;;^UTILITY(U,$J,358.3,27020,2)
- ;;=^5003579
- ;;^UTILITY(U,$J,358.3,27021,0)
- ;;=F44.6^^100^1304^3
- ;;^UTILITY(U,$J,358.3,27021,1,0)
+ ;;^UTILITY(U,$J,358.3,25471,0)
+ ;;=G43.819^^107^1218^26
+ ;;^UTILITY(U,$J,358.3,25471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27021,1,3,0)
- ;;=3^Conversion Disorder w/ Anesthesia or Sensory Loss
- ;;^UTILITY(U,$J,358.3,27021,1,4,0)
- ;;=4^F44.6
- ;;^UTILITY(U,$J,358.3,27021,2)
- ;;=^5003581
- ;;^UTILITY(U,$J,358.3,27022,0)
- ;;=F44.5^^100^1304^4
- ;;^UTILITY(U,$J,358.3,27022,1,0)
+ ;;^UTILITY(U,$J,358.3,25471,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,25471,1,4,0)
+ ;;=4^G43.819
+ ;;^UTILITY(U,$J,358.3,25471,2)
+ ;;=^5003903
+ ;;^UTILITY(U,$J,358.3,25472,0)
+ ;;=G43.909^^107^1218^28
+ ;;^UTILITY(U,$J,358.3,25472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27022,1,3,0)
- ;;=3^Conversion Disorder w/ Attacks or Seizures
- ;;^UTILITY(U,$J,358.3,27022,1,4,0)
- ;;=4^F44.5
- ;;^UTILITY(U,$J,358.3,27022,2)
- ;;=^5003580
- ;;^UTILITY(U,$J,358.3,27023,0)
- ;;=F44.7^^100^1304^5
- ;;^UTILITY(U,$J,358.3,27023,1,0)
+ ;;^UTILITY(U,$J,358.3,25472,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,25472,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,25472,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,25473,0)
+ ;;=G43.919^^107^1218^27
+ ;;^UTILITY(U,$J,358.3,25473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27023,1,3,0)
- ;;=3^Conversion Disorder w/ Mixed Symptoms
- ;;^UTILITY(U,$J,358.3,27023,1,4,0)
- ;;=4^F44.7
- ;;^UTILITY(U,$J,358.3,27023,2)
- ;;=^5003582
- ;;^UTILITY(U,$J,358.3,27024,0)
- ;;=F68.10^^100^1304^6
- ;;^UTILITY(U,$J,358.3,27024,1,0)
+ ;;^UTILITY(U,$J,358.3,25473,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,25473,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,25473,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,25474,0)
+ ;;=G51.0^^107^1218^6
+ ;;^UTILITY(U,$J,358.3,25474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27024,1,3,0)
- ;;=3^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,27024,1,4,0)
- ;;=4^F68.10
- ;;^UTILITY(U,$J,358.3,27024,2)
- ;;=^5003663
- ;;^UTILITY(U,$J,358.3,27025,0)
- ;;=F54.^^100^1304^12
- ;;^UTILITY(U,$J,358.3,27025,1,0)
+ ;;^UTILITY(U,$J,358.3,25474,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,25474,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,25474,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,25475,0)
+ ;;=G57.10^^107^1218^23
+ ;;^UTILITY(U,$J,358.3,25475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27025,1,3,0)
- ;;=3^Psychological Factors Affecting Oth Med Conditions
- ;;^UTILITY(U,$J,358.3,27025,1,4,0)
- ;;=4^F54.
- ;;^UTILITY(U,$J,358.3,27025,2)
- ;;=^5003627
- ;;^UTILITY(U,$J,358.3,27026,0)
- ;;=F91.2^^100^1305^1
- ;;^UTILITY(U,$J,358.3,27026,1,0)
+ ;;^UTILITY(U,$J,358.3,25475,1,3,0)
+ ;;=3^Meralgia Paresthetica Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,25475,1,4,0)
+ ;;=4^G57.10
+ ;;^UTILITY(U,$J,358.3,25475,2)
+ ;;=^5004041
+ ;;^UTILITY(U,$J,358.3,25476,0)
+ ;;=G57.12^^107^1218^24
+ ;;^UTILITY(U,$J,358.3,25476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27026,1,3,0)
- ;;=3^Conduct Disorder,Adolescent-Onset Type
- ;;^UTILITY(U,$J,358.3,27026,1,4,0)
- ;;=4^F91.2
- ;;^UTILITY(U,$J,358.3,27026,2)
- ;;=^5003699
- ;;^UTILITY(U,$J,358.3,27027,0)
- ;;=F91.1^^100^1305^2
- ;;^UTILITY(U,$J,358.3,27027,1,0)
+ ;;^UTILITY(U,$J,358.3,25476,1,3,0)
+ ;;=3^Meralgia Paresthetica,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,25476,1,4,0)
+ ;;=4^G57.12
+ ;;^UTILITY(U,$J,358.3,25476,2)
+ ;;=^5004043
+ ;;^UTILITY(U,$J,358.3,25477,0)
+ ;;=G57.11^^107^1218^25
+ ;;^UTILITY(U,$J,358.3,25477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27027,1,3,0)
- ;;=3^Conduct Disorder,Childhood-Onset Type
- ;;^UTILITY(U,$J,358.3,27027,1,4,0)
- ;;=4^F91.1
- ;;^UTILITY(U,$J,358.3,27027,2)
- ;;=^5003698
- ;;^UTILITY(U,$J,358.3,27028,0)
- ;;=F91.9^^100^1305^3
- ;;^UTILITY(U,$J,358.3,27028,1,0)
+ ;;^UTILITY(U,$J,358.3,25477,1,3,0)
+ ;;=3^Meralgia Paresthetica,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,25477,1,4,0)
+ ;;=4^G57.11
+ ;;^UTILITY(U,$J,358.3,25477,2)
+ ;;=^5004042
+ ;;^UTILITY(U,$J,358.3,25478,0)
+ ;;=G60.8^^107^1218^33
+ ;;^UTILITY(U,$J,358.3,25478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27028,1,3,0)
- ;;=3^Conduct Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27028,1,4,0)
- ;;=4^F91.9
- ;;^UTILITY(U,$J,358.3,27028,2)
- ;;=^5003701
- ;;^UTILITY(U,$J,358.3,27029,0)
- ;;=F63.81^^100^1305^5
- ;;^UTILITY(U,$J,358.3,27029,1,0)
+ ;;^UTILITY(U,$J,358.3,25478,1,3,0)
+ ;;=3^Neuropathies,Oth Hereditary and Idiopathic
+ ;;^UTILITY(U,$J,358.3,25478,1,4,0)
+ ;;=4^G60.8
+ ;;^UTILITY(U,$J,358.3,25478,2)
+ ;;=^5004070
+ ;;^UTILITY(U,$J,358.3,25479,0)
+ ;;=G60.9^^107^1218^34
+ ;;^UTILITY(U,$J,358.3,25479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27029,1,3,0)
- ;;=3^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,27029,1,4,0)
- ;;=4^F63.81
- ;;^UTILITY(U,$J,358.3,27029,2)
- ;;=^5003644
- ;;^UTILITY(U,$J,358.3,27030,0)
- ;;=F63.2^^100^1305^6
- ;;^UTILITY(U,$J,358.3,27030,1,0)
+ ;;^UTILITY(U,$J,358.3,25479,1,3,0)
+ ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
+ ;;^UTILITY(U,$J,358.3,25479,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,25479,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,25480,0)
+ ;;=I69.959^^107^1218^19
+ ;;^UTILITY(U,$J,358.3,25480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27030,1,3,0)
- ;;=3^Kleptomania
- ;;^UTILITY(U,$J,358.3,27030,1,4,0)
- ;;=4^F63.2
- ;;^UTILITY(U,$J,358.3,27030,2)
- ;;=^5003642
- ;;^UTILITY(U,$J,358.3,27031,0)
- ;;=F91.3^^100^1305^7
- ;;^UTILITY(U,$J,358.3,27031,1,0)
+ ;;^UTILITY(U,$J,358.3,25480,1,3,0)
+ ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
+ ;;^UTILITY(U,$J,358.3,25480,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,25480,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,25481,0)
+ ;;=I69.359^^107^1218^20
+ ;;^UTILITY(U,$J,358.3,25481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27031,1,3,0)
- ;;=3^Oppositional Defiant Disorder
- ;;^UTILITY(U,$J,358.3,27031,1,4,0)
- ;;=4^F91.3
- ;;^UTILITY(U,$J,358.3,27031,2)
- ;;=^331955
- ;;^UTILITY(U,$J,358.3,27032,0)
- ;;=F91.8^^100^1305^4
- ;;^UTILITY(U,$J,358.3,27032,1,0)
+ ;;^UTILITY(U,$J,358.3,25481,1,3,0)
+ ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
+ ;;^UTILITY(U,$J,358.3,25481,1,4,0)
+ ;;=4^I69.359
+ ;;^UTILITY(U,$J,358.3,25481,2)
+ ;;=^5007508
+ ;;^UTILITY(U,$J,358.3,25482,0)
+ ;;=S14.109S^^107^1218^40
+ ;;^UTILITY(U,$J,358.3,25482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27032,1,3,0)
- ;;=3^Disruptive,Impulse-Control,Conduct Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,27032,1,4,0)
- ;;=4^F91.8
- ;;^UTILITY(U,$J,358.3,27032,2)
- ;;=^5003700
- ;;^UTILITY(U,$J,358.3,27033,0)
- ;;=F63.1^^100^1305^8
- ;;^UTILITY(U,$J,358.3,27033,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27033,1,3,0)
- ;;=3^Pyromania
+ ;;^UTILITY(U,$J,358.3,25482,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
+ ;;^UTILITY(U,$J,358.3,25482,1,4,0)
+ ;;=4^S14.109S

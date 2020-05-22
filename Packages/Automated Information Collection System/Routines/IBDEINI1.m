@@ -1,5 +1,5 @@
-IBDEINI1 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+IBDEINI1 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
  ; LOADS AND INDEXES DD'S
  ;
  K DIF,DIK,D,DDF,DDT,DTO,D0,DLAYGO,DIC,DIDUZ,DIR,DA,DFR,DTN,DIX,DZ D DT^DICRW S %=1,U="^",DSEC=1
@@ -9,10 +9,22 @@ ASK I %=1,$D(DIFQ(0)) W !,"SHALL I WRITE OVER FILE SECURITY CODES" S %=2 D YN^DI
  D ^IBDE2 D NOW^%DTC S DIFROM("INI")=%
  I $D(DIFKEP) F DIDIU=0:0 S DIDIU=$O(DIFKEP(DIDIU)) Q:DIDIU'>0  S DIU=DIDIU,DIU(0)=DIFKEP(DIDIU) D EN^DIU2
  D DT^DICRW K ^UTILITY(U,$J),^UTILITY("DIK",$J) D WAIT^DICD
- S DN="^IBDEI" F R=1:1:1362 D @(DN_$$B36(R)) W "."
+ S DN="^IBDEI" F R=1:1:501 D @(DN_$$B36(R)) W "."
  F  S D=$O(^UTILITY(U,$J,"SBF","")) Q:D'>0  K:'DIFQ(D) ^(D) S D=$O(^(D,"")) I D>0  K ^(D) D IX
+KEYSNIX ; Keys and new style indexes installer ; new in FM V22.2
+ N DIFRSA S DIFRSA=$NA(^UTILITY("KX",$J)) ; Tran global for Keys and Indexes
+ N DIFRFILE S DIFRFILE=0 ; Loop through files
+ F  S DIFRFILE=$O(@DIFRSA@("IX",DIFRFILE)) Q:'DIFRFILE  D
+ . K ^TMP("DIFROMS2",$J,"TRIG")
+ . N DIFRD S DIFRD=0
+ . F  S DIFRD=$O(@DIFRSA@("IX",DIFRFILE,DIFRD)) Q:'DIFRD  D DDIXIN^DIFROMSX(DIFRFILE,DIFRD,DIFRSA) ; install New Style Indexes
+ . K ^TMP("DIFROMS2",$J,"TRIG")
+ . S DIFRD=0
+ . F  S DIFRD=$O(@DIFRSA@("KEY",DIFRFILE,DIFRD)) Q:'DIFRD  D DDKEYIN^DIFROMSY(DIFRFILE,DIFRD,DIFRSA) ; install keys
+ K @DIFRSA ; kill off tran global
+ ; VEN/SMH v22.2: Below I added a K D1 because it leaks from the call causing the key matching algo to fail.
 DATA W "." S (D,DDF(1),DDT(0))=$O(^UTILITY(U,$J,0)) Q:D'>0
- I DIFQR(D) S DTO=0,DMRG=1,DTO(0)=^(D),Z=^(D)_"0)",D0=^(D,0),@Z=D0,DFR(1)="^UTILITY(U,$J,DDF(1),D0,",DKP=DIFQR(D)'=2 F D0=0:0 S D0=$O(^UTILITY(U,$J,DDF(1),D0)) S:D0="" D0=-1 Q:'$D(^(D0,0))  S Z=^(0) D I^DITR
+ I DIFQR(D) S DTO=0,DMRG=1,DTO(0)=^(D),Z=^(D)_"0)",D0=^(D,0),@Z=D0,DFR(1)="^UTILITY(U,$J,DDF(1),D0,",DKP=DIFQR(D)'=2 F D0=0:0 S D0=$O(^UTILITY(U,$J,DDF(1),D0)) S:D0="" D0=-1 K D1 Q:'$D(^(D0,0))  S Z=^(0) D I^DITR
  K ^UTILITY(U,$J,DDF(1)),DDF,DDT,DTO,DFR,DFN,DTN G DATA
  ;
 W S Y=$P($T(@X),";",2) W !,"NOTE: This package also contains "_Y_"S",! Q:'$D(DIFQ(0))

@@ -1,124 +1,126 @@
-IBDEI2I4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2I4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42414,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,42414,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,42415,0)
- ;;=R40.2222^^159^2022^20
- ;;^UTILITY(U,$J,358.3,42415,1,0)
+ ;;^UTILITY(U,$J,358.3,39942,0)
+ ;;=J20.1^^152^2002^10
+ ;;^UTILITY(U,$J,358.3,39942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42415,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,42415,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,42415,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,42416,0)
- ;;=R40.2221^^159^2022^21
- ;;^UTILITY(U,$J,358.3,42416,1,0)
+ ;;^UTILITY(U,$J,358.3,39942,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,39942,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,39942,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,39943,0)
+ ;;=J20.0^^152^2002^11
+ ;;^UTILITY(U,$J,358.3,39943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42416,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,42416,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,42416,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,42417,0)
- ;;=R40.2220^^159^2022^22
- ;;^UTILITY(U,$J,358.3,42417,1,0)
+ ;;^UTILITY(U,$J,358.3,39943,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,39943,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,39943,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,39944,0)
+ ;;=J20.2^^152^2002^6
+ ;;^UTILITY(U,$J,358.3,39944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42417,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,42417,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,42417,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,42418,0)
- ;;=R40.2214^^159^2022^23
- ;;^UTILITY(U,$J,358.3,42418,1,0)
+ ;;^UTILITY(U,$J,358.3,39944,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,39944,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,39944,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,39945,0)
+ ;;=J20.4^^152^2002^13
+ ;;^UTILITY(U,$J,358.3,39945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42418,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,42418,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,42418,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,42419,0)
- ;;=R40.2213^^159^2022^25
- ;;^UTILITY(U,$J,358.3,42419,1,0)
+ ;;^UTILITY(U,$J,358.3,39945,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,39945,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,39945,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,39946,0)
+ ;;=J20.3^^152^2002^8
+ ;;^UTILITY(U,$J,358.3,39946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42419,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,42419,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,42419,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,42420,0)
- ;;=R40.2212^^159^2022^24
- ;;^UTILITY(U,$J,358.3,42420,1,0)
+ ;;^UTILITY(U,$J,358.3,39946,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,39946,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,39946,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,39947,0)
+ ;;=J20.9^^152^2002^7
+ ;;^UTILITY(U,$J,358.3,39947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42420,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,42420,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,42420,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,42421,0)
- ;;=R40.2344^^159^2022^6
- ;;^UTILITY(U,$J,358.3,42421,1,0)
+ ;;^UTILITY(U,$J,358.3,39947,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,39947,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,39947,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,39948,0)
+ ;;=J20.8^^152^2002^12
+ ;;^UTILITY(U,$J,358.3,39948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42421,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,42421,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,42421,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,42422,0)
- ;;=R40.2343^^159^2022^7
- ;;^UTILITY(U,$J,358.3,42422,1,0)
+ ;;^UTILITY(U,$J,358.3,39948,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,39948,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,39948,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,39949,0)
+ ;;=J20.5^^152^2002^14
+ ;;^UTILITY(U,$J,358.3,39949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42422,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,42422,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,42422,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,42423,0)
- ;;=R40.2342^^159^2022^8
- ;;^UTILITY(U,$J,358.3,42423,1,0)
+ ;;^UTILITY(U,$J,358.3,39949,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,39949,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,39949,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,39950,0)
+ ;;=J20.7^^152^2002^9
+ ;;^UTILITY(U,$J,358.3,39950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42423,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,42423,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,42423,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,42424,0)
- ;;=R40.2341^^159^2022^9
- ;;^UTILITY(U,$J,358.3,42424,1,0)
+ ;;^UTILITY(U,$J,358.3,39950,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,39950,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,39950,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,39951,0)
+ ;;=J20.6^^152^2002^15
+ ;;^UTILITY(U,$J,358.3,39951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42424,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,42424,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,42424,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,42425,0)
- ;;=R40.2340^^159^2022^10
- ;;^UTILITY(U,$J,358.3,42425,1,0)
+ ;;^UTILITY(U,$J,358.3,39951,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,39951,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,39951,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,39952,0)
+ ;;=J18.9^^152^2002^67
+ ;;^UTILITY(U,$J,358.3,39952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42425,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,42425,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,42425,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,42426,0)
- ;;=R40.2324^^159^2022^1
- ;;^UTILITY(U,$J,358.3,42426,1,0)
+ ;;^UTILITY(U,$J,358.3,39952,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,39952,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,39952,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,39953,0)
+ ;;=J18.8^^152^2002^68
+ ;;^UTILITY(U,$J,358.3,39953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42426,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,39953,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,39953,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,39953,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,39954,0)
+ ;;=J11.00^^152^2002^28

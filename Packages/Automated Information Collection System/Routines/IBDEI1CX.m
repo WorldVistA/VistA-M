@@ -1,136 +1,120 @@
-IBDEI1CX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23065,1,0)
+ ;;^UTILITY(U,$J,358.3,21687,0)
+ ;;=F05.^^99^1104^5
+ ;;^UTILITY(U,$J,358.3,21687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23065,1,3,0)
- ;;=3^Activity/Exercise Counseling
- ;;^UTILITY(U,$J,358.3,23065,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,23065,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,23066,0)
- ;;=Z13.89^^87^990^2
- ;;^UTILITY(U,$J,358.3,23066,1,0)
+ ;;^UTILITY(U,$J,358.3,21687,1,3,0)
+ ;;=3^Delirium d/t known physiological condition
+ ;;^UTILITY(U,$J,358.3,21687,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,21687,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,21688,0)
+ ;;=F03.90^^99^1104^9
+ ;;^UTILITY(U,$J,358.3,21688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23066,1,3,0)
- ;;=3^Alcohol Use Screen
- ;;^UTILITY(U,$J,358.3,23066,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,23066,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,23067,0)
- ;;=Z12.39^^87^990^3
- ;;^UTILITY(U,$J,358.3,23067,1,0)
+ ;;^UTILITY(U,$J,358.3,21688,1,3,0)
+ ;;=3^Dementia w/o behavioral disturbance, unspec
+ ;;^UTILITY(U,$J,358.3,21688,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,21688,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,21689,0)
+ ;;=F03.91^^99^1104^8
+ ;;^UTILITY(U,$J,358.3,21689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23067,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,23067,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,23067,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,23068,0)
- ;;=Z12.4^^87^990^5
- ;;^UTILITY(U,$J,358.3,23068,1,0)
+ ;;^UTILITY(U,$J,358.3,21689,1,3,0)
+ ;;=3^Dementia w/ behavioral disturbances, unspec
+ ;;^UTILITY(U,$J,358.3,21689,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,21689,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,21690,0)
+ ;;=G30.9^^99^1104^3
+ ;;^UTILITY(U,$J,358.3,21690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23068,1,3,0)
- ;;=3^Cervix Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,23068,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,23068,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,23069,0)
- ;;=Z13.5^^87^990^8
- ;;^UTILITY(U,$J,358.3,23069,1,0)
+ ;;^UTILITY(U,$J,358.3,21690,1,3,0)
+ ;;=3^Alzheimer's disease w/ behavioral disturance, unspec
+ ;;^UTILITY(U,$J,358.3,21690,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,21690,2)
+ ;;=^5003808^F02.81
+ ;;^UTILITY(U,$J,358.3,21691,0)
+ ;;=G30.9^^99^1104^4
+ ;;^UTILITY(U,$J,358.3,21691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23069,1,3,0)
- ;;=3^Eye and Ear Disorder Screen
- ;;^UTILITY(U,$J,358.3,23069,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,23069,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,23070,0)
- ;;=Z01.89^^87^990^6
- ;;^UTILITY(U,$J,358.3,23070,1,0)
+ ;;^UTILITY(U,$J,358.3,21691,1,3,0)
+ ;;=3^Alzheimer's disease w/o behavioral disturbance, unspec
+ ;;^UTILITY(U,$J,358.3,21691,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,21691,2)
+ ;;=^5003808^F02.80
+ ;;^UTILITY(U,$J,358.3,21692,0)
+ ;;=G30.0^^99^1104^1
+ ;;^UTILITY(U,$J,358.3,21692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23070,1,3,0)
- ;;=3^Diabetic Foot Exam
- ;;^UTILITY(U,$J,358.3,23070,1,4,0)
- ;;=4^Z01.89
- ;;^UTILITY(U,$J,358.3,23070,2)
- ;;=^5062632
- ;;^UTILITY(U,$J,358.3,23071,0)
- ;;=Z11.59^^87^990^16
- ;;^UTILITY(U,$J,358.3,23071,1,0)
+ ;;^UTILITY(U,$J,358.3,21692,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,21692,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,21692,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,21693,0)
+ ;;=G30.1^^99^1104^2
+ ;;^UTILITY(U,$J,358.3,21693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23071,1,3,0)
- ;;=3^Viral Diseases Screen
- ;;^UTILITY(U,$J,358.3,23071,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,23071,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,23072,0)
- ;;=Z13.6^^87^990^4
- ;;^UTILITY(U,$J,358.3,23072,1,0)
+ ;;^UTILITY(U,$J,358.3,21693,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,21693,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,21693,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,21694,0)
+ ;;=F02.81^^99^1104^6
+ ;;^UTILITY(U,$J,358.3,21694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23072,1,3,0)
- ;;=3^Cardiovascular Disorder Screen
- ;;^UTILITY(U,$J,358.3,23072,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,23072,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,23073,0)
- ;;=Z12.12^^87^990^14
- ;;^UTILITY(U,$J,358.3,23073,1,0)
+ ;;^UTILITY(U,$J,358.3,21694,1,3,0)
+ ;;=3^Dementia in Diseases Classd Elswhr w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,21694,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,21694,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,21695,0)
+ ;;=F02.80^^99^1104^7
+ ;;^UTILITY(U,$J,358.3,21695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23073,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,23073,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,23073,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,23074,0)
- ;;=Z71.89^^87^990^12
- ;;^UTILITY(U,$J,358.3,23074,1,0)
+ ;;^UTILITY(U,$J,358.3,21695,1,3,0)
+ ;;=3^Dementia in Diseases Classd Elswhr w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,21695,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,21695,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,21696,0)
+ ;;=F01.51^^99^1104^10
+ ;;^UTILITY(U,$J,358.3,21696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23074,1,3,0)
- ;;=3^Other Specified Counseling
- ;;^UTILITY(U,$J,358.3,23074,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,23074,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,23075,0)
- ;;=Z12.5^^87^990^13
- ;;^UTILITY(U,$J,358.3,23075,1,0)
+ ;;^UTILITY(U,$J,358.3,21696,1,3,0)
+ ;;=3^Vascular Dementia w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,21696,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,21696,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,21697,0)
+ ;;=F01.50^^99^1104^11
+ ;;^UTILITY(U,$J,358.3,21697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23075,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,23075,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,23075,2)
- ;;=^5062688
- ;;^UTILITY(U,$J,358.3,23076,0)
- ;;=Z00.00^^87^990^9
- ;;^UTILITY(U,$J,358.3,23076,1,0)
+ ;;^UTILITY(U,$J,358.3,21697,1,3,0)
+ ;;=3^Vascular Dementia w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,21697,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,21697,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,21698,0)
+ ;;=F32.9^^99^1105^3
+ ;;^UTILITY(U,$J,358.3,21698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23076,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,23076,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,23076,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,23077,0)
- ;;=Z02.79^^87^990^11
- ;;^UTILITY(U,$J,358.3,23077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23077,1,3,0)
- ;;=3^Medical Certificate Encounter
- ;;^UTILITY(U,$J,358.3,23077,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,23077,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,23078,0)
- ;;=Z71.3^^87^990^7
- ;;^UTILITY(U,$J,358.3,23078,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21698,1,3,0)
+ ;;=3^Major depressive disorder, single episode, unspec

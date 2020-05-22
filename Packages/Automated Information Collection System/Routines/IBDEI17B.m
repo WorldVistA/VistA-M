@@ -1,136 +1,124 @@
-IBDEI17B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20423,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,20424,0)
- ;;=B97.10^^84^931^22
- ;;^UTILITY(U,$J,358.3,20424,1,0)
+ ;;^UTILITY(U,$J,358.3,19295,2)
+ ;;=^5012639
+ ;;^UTILITY(U,$J,358.3,19296,0)
+ ;;=M62.442^^93^992^18
+ ;;^UTILITY(U,$J,358.3,19296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20424,1,3,0)
- ;;=3^Enterovirus,Unspec,as Cause of Disease
- ;;^UTILITY(U,$J,358.3,20424,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,20424,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,20425,0)
- ;;=R50.82^^84^931^24
- ;;^UTILITY(U,$J,358.3,20425,1,0)
+ ;;^UTILITY(U,$J,358.3,19296,1,3,0)
+ ;;=3^Contracture of muscle, left hand
+ ;;^UTILITY(U,$J,358.3,19296,1,4,0)
+ ;;=4^M62.442
+ ;;^UTILITY(U,$J,358.3,19296,2)
+ ;;=^5012642
+ ;;^UTILITY(U,$J,358.3,19297,0)
+ ;;=M62.462^^93^992^19
+ ;;^UTILITY(U,$J,358.3,19297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20425,1,3,0)
- ;;=3^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,20425,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,20425,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,20426,0)
- ;;=R50.83^^84^931^26
- ;;^UTILITY(U,$J,358.3,20426,1,0)
+ ;;^UTILITY(U,$J,358.3,19297,1,3,0)
+ ;;=3^Contracture of muscle, left lower leg
+ ;;^UTILITY(U,$J,358.3,19297,1,4,0)
+ ;;=4^M62.462
+ ;;^UTILITY(U,$J,358.3,19297,2)
+ ;;=^5012648
+ ;;^UTILITY(U,$J,358.3,19298,0)
+ ;;=M62.412^^93^992^20
+ ;;^UTILITY(U,$J,358.3,19298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20426,1,3,0)
- ;;=3^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,20426,1,4,0)
- ;;=4^R50.83
- ;;^UTILITY(U,$J,358.3,20426,2)
- ;;=^5019510
- ;;^UTILITY(U,$J,358.3,20427,0)
- ;;=R50.84^^84^931^25
- ;;^UTILITY(U,$J,358.3,20427,1,0)
+ ;;^UTILITY(U,$J,358.3,19298,1,3,0)
+ ;;=3^Contracture of muscle, left shoulder
+ ;;^UTILITY(U,$J,358.3,19298,1,4,0)
+ ;;=4^M62.412
+ ;;^UTILITY(U,$J,358.3,19298,2)
+ ;;=^5012633
+ ;;^UTILITY(U,$J,358.3,19299,0)
+ ;;=M62.452^^93^992^21
+ ;;^UTILITY(U,$J,358.3,19299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20427,1,3,0)
- ;;=3^Fever,Posttransfusion
- ;;^UTILITY(U,$J,358.3,20427,1,4,0)
- ;;=4^R50.84
- ;;^UTILITY(U,$J,358.3,20427,2)
- ;;=^5019511
- ;;^UTILITY(U,$J,358.3,20428,0)
- ;;=B02.23^^84^931^70
- ;;^UTILITY(U,$J,358.3,20428,1,0)
+ ;;^UTILITY(U,$J,358.3,19299,1,3,0)
+ ;;=3^Contracture of muscle, left thigh
+ ;;^UTILITY(U,$J,358.3,19299,1,4,0)
+ ;;=4^M62.452
+ ;;^UTILITY(U,$J,358.3,19299,2)
+ ;;=^5012645
+ ;;^UTILITY(U,$J,358.3,19300,0)
+ ;;=M62.422^^93^992^22
+ ;;^UTILITY(U,$J,358.3,19300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20428,1,3,0)
- ;;=3^Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,20428,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,20428,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,20429,0)
- ;;=B02.22^^84^931^71
- ;;^UTILITY(U,$J,358.3,20429,1,0)
+ ;;^UTILITY(U,$J,358.3,19300,1,3,0)
+ ;;=3^Contracture of muscle, left upper arm
+ ;;^UTILITY(U,$J,358.3,19300,1,4,0)
+ ;;=4^M62.422
+ ;;^UTILITY(U,$J,358.3,19300,2)
+ ;;=^5012636
+ ;;^UTILITY(U,$J,358.3,19301,0)
+ ;;=M62.49^^93^992^23
+ ;;^UTILITY(U,$J,358.3,19301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20429,1,3,0)
- ;;=3^Postherpetic Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,20429,1,4,0)
- ;;=4^B02.22
- ;;^UTILITY(U,$J,358.3,20429,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,20430,0)
- ;;=J03.91^^84^931^80
- ;;^UTILITY(U,$J,358.3,20430,1,0)
+ ;;^UTILITY(U,$J,358.3,19301,1,3,0)
+ ;;=3^Contracture of muscle, multiple sites
+ ;;^UTILITY(U,$J,358.3,19301,1,4,0)
+ ;;=4^M62.49
+ ;;^UTILITY(U,$J,358.3,19301,2)
+ ;;=^5012654
+ ;;^UTILITY(U,$J,358.3,19302,0)
+ ;;=M62.48^^93^992^24
+ ;;^UTILITY(U,$J,358.3,19302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20430,1,3,0)
- ;;=3^Tonsillitis,Acute Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,20430,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,20430,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,20431,0)
- ;;=K70.0^^84^932^3
- ;;^UTILITY(U,$J,358.3,20431,1,0)
+ ;;^UTILITY(U,$J,358.3,19302,1,3,0)
+ ;;=3^Contracture of muscle, other site
+ ;;^UTILITY(U,$J,358.3,19302,1,4,0)
+ ;;=4^M62.48
+ ;;^UTILITY(U,$J,358.3,19302,2)
+ ;;=^5012653
+ ;;^UTILITY(U,$J,358.3,19303,0)
+ ;;=M62.471^^93^992^25
+ ;;^UTILITY(U,$J,358.3,19303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20431,1,3,0)
- ;;=3^Alcoholic Fatty Liver
- ;;^UTILITY(U,$J,358.3,20431,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,20431,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,20432,0)
- ;;=K70.11^^84^932^7
- ;;^UTILITY(U,$J,358.3,20432,1,0)
+ ;;^UTILITY(U,$J,358.3,19303,1,3,0)
+ ;;=3^Contracture of muscle, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,19303,1,4,0)
+ ;;=4^M62.471
+ ;;^UTILITY(U,$J,358.3,19303,2)
+ ;;=^5012650
+ ;;^UTILITY(U,$J,358.3,19304,0)
+ ;;=M62.431^^93^992^26
+ ;;^UTILITY(U,$J,358.3,19304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20432,1,3,0)
- ;;=3^Alcoholic Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,20432,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,20432,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,20433,0)
- ;;=K70.10^^84^932^8
- ;;^UTILITY(U,$J,358.3,20433,1,0)
+ ;;^UTILITY(U,$J,358.3,19304,1,3,0)
+ ;;=3^Contracture of muscle, right forearm
+ ;;^UTILITY(U,$J,358.3,19304,1,4,0)
+ ;;=4^M62.431
+ ;;^UTILITY(U,$J,358.3,19304,2)
+ ;;=^5012638
+ ;;^UTILITY(U,$J,358.3,19305,0)
+ ;;=M62.441^^93^992^27
+ ;;^UTILITY(U,$J,358.3,19305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20433,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,20433,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,20433,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,20434,0)
- ;;=K70.2^^84^932^4
- ;;^UTILITY(U,$J,358.3,20434,1,0)
+ ;;^UTILITY(U,$J,358.3,19305,1,3,0)
+ ;;=3^Contracture of muscle, right hand
+ ;;^UTILITY(U,$J,358.3,19305,1,4,0)
+ ;;=4^M62.441
+ ;;^UTILITY(U,$J,358.3,19305,2)
+ ;;=^5012641
+ ;;^UTILITY(U,$J,358.3,19306,0)
+ ;;=M62.461^^93^992^28
+ ;;^UTILITY(U,$J,358.3,19306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20434,1,3,0)
- ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,20434,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,20434,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,20435,0)
- ;;=K70.30^^84^932^2
- ;;^UTILITY(U,$J,358.3,20435,1,0)
+ ;;^UTILITY(U,$J,358.3,19306,1,3,0)
+ ;;=3^Contracture of muscle, right lower leg
+ ;;^UTILITY(U,$J,358.3,19306,1,4,0)
+ ;;=4^M62.461
+ ;;^UTILITY(U,$J,358.3,19306,2)
+ ;;=^5012647
+ ;;^UTILITY(U,$J,358.3,19307,0)
+ ;;=M62.411^^93^992^29
+ ;;^UTILITY(U,$J,358.3,19307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20435,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,20435,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,20435,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,20436,0)
- ;;=K70.31^^84^932^1
- ;;^UTILITY(U,$J,358.3,20436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20436,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,20436,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,20436,2)
- ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,19307,1,3,0)
+ ;;=3^Contracture of muscle, right shoulder
+ ;;^UTILITY(U,$J,358.3,19307,1,4,0)
+ ;;=4^M62.411

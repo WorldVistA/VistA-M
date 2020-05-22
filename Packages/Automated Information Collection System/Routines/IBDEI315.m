@@ -1,130 +1,128 @@
-IBDEI315 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI315 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50800,1,4,0)
- ;;=4^M48.21
- ;;^UTILITY(U,$J,358.3,50800,2)
- ;;=^5012107
- ;;^UTILITY(U,$J,358.3,50801,0)
- ;;=M48.22^^222^2466^177
- ;;^UTILITY(U,$J,358.3,50801,1,0)
+ ;;^UTILITY(U,$J,358.3,48381,2)
+ ;;=^5157413
+ ;;^UTILITY(U,$J,358.3,48382,0)
+ ;;=A49.9^^185^2421^1
+ ;;^UTILITY(U,$J,358.3,48382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50801,1,3,0)
- ;;=3^Kissing spine, cervical region
- ;;^UTILITY(U,$J,358.3,50801,1,4,0)
- ;;=4^M48.22
- ;;^UTILITY(U,$J,358.3,50801,2)
- ;;=^5012108
- ;;^UTILITY(U,$J,358.3,50802,0)
- ;;=M48.23^^222^2466^178
- ;;^UTILITY(U,$J,358.3,50802,1,0)
+ ;;^UTILITY(U,$J,358.3,48382,1,3,0)
+ ;;=3^Infection,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,48382,1,4,0)
+ ;;=4^A49.9
+ ;;^UTILITY(U,$J,358.3,48382,2)
+ ;;=^5000241
+ ;;^UTILITY(U,$J,358.3,48383,0)
+ ;;=B37.9^^185^2421^2
+ ;;^UTILITY(U,$J,358.3,48383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50802,1,3,0)
- ;;=3^Kissing spine, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,50802,1,4,0)
- ;;=4^M48.23
- ;;^UTILITY(U,$J,358.3,50802,2)
- ;;=^5012109
- ;;^UTILITY(U,$J,358.3,50803,0)
- ;;=M48.24^^222^2466^183
- ;;^UTILITY(U,$J,358.3,50803,1,0)
+ ;;^UTILITY(U,$J,358.3,48383,1,3,0)
+ ;;=3^Infection,Candidiasis,Unspec
+ ;;^UTILITY(U,$J,358.3,48383,1,4,0)
+ ;;=4^B37.9
+ ;;^UTILITY(U,$J,358.3,48383,2)
+ ;;=^5000624
+ ;;^UTILITY(U,$J,358.3,48384,0)
+ ;;=Z20.9^^185^2421^3
+ ;;^UTILITY(U,$J,358.3,48384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50803,1,3,0)
- ;;=3^Kissing spine, thoracic region
- ;;^UTILITY(U,$J,358.3,50803,1,4,0)
- ;;=4^M48.24
- ;;^UTILITY(U,$J,358.3,50803,2)
- ;;=^5012110
- ;;^UTILITY(U,$J,358.3,50804,0)
- ;;=M48.25^^222^2466^184
- ;;^UTILITY(U,$J,358.3,50804,1,0)
+ ;;^UTILITY(U,$J,358.3,48384,1,3,0)
+ ;;=3^Infection,Communicable Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,48384,1,4,0)
+ ;;=4^Z20.9
+ ;;^UTILITY(U,$J,358.3,48384,2)
+ ;;=^5062776
+ ;;^UTILITY(U,$J,358.3,48385,0)
+ ;;=B30.9^^185^2421^4
+ ;;^UTILITY(U,$J,358.3,48385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50804,1,3,0)
- ;;=3^Kissing spine, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,50804,1,4,0)
- ;;=4^M48.25
- ;;^UTILITY(U,$J,358.3,50804,2)
- ;;=^5012111
- ;;^UTILITY(U,$J,358.3,50805,0)
- ;;=M48.26^^222^2466^179
- ;;^UTILITY(U,$J,358.3,50805,1,0)
+ ;;^UTILITY(U,$J,358.3,48385,1,3,0)
+ ;;=3^Infection,Conjunctivitis,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,48385,1,4,0)
+ ;;=4^B30.9
+ ;;^UTILITY(U,$J,358.3,48385,2)
+ ;;=^5000586
+ ;;^UTILITY(U,$J,358.3,48386,0)
+ ;;=B25.9^^185^2421^5
+ ;;^UTILITY(U,$J,358.3,48386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50805,1,3,0)
- ;;=3^Kissing spine, lumbar region
- ;;^UTILITY(U,$J,358.3,50805,1,4,0)
- ;;=4^M48.26
- ;;^UTILITY(U,$J,358.3,50805,2)
- ;;=^5012112
- ;;^UTILITY(U,$J,358.3,50806,0)
- ;;=M48.27^^222^2466^180
- ;;^UTILITY(U,$J,358.3,50806,1,0)
+ ;;^UTILITY(U,$J,358.3,48386,1,3,0)
+ ;;=3^Infection,Cytomegaloviral Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,48386,1,4,0)
+ ;;=4^B25.9
+ ;;^UTILITY(U,$J,358.3,48386,2)
+ ;;=^5000560
+ ;;^UTILITY(U,$J,358.3,48387,0)
+ ;;=B35.9^^185^2421^6
+ ;;^UTILITY(U,$J,358.3,48387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50806,1,3,0)
- ;;=3^Kissing spine, lumbosacral region
- ;;^UTILITY(U,$J,358.3,50806,1,4,0)
- ;;=4^M48.27
- ;;^UTILITY(U,$J,358.3,50806,2)
- ;;=^5012113
- ;;^UTILITY(U,$J,358.3,50807,0)
- ;;=M48.10^^222^2466^55
- ;;^UTILITY(U,$J,358.3,50807,1,0)
+ ;;^UTILITY(U,$J,358.3,48387,1,3,0)
+ ;;=3^Infection,Dermatophytosis,Unspec
+ ;;^UTILITY(U,$J,358.3,48387,1,4,0)
+ ;;=4^B35.9
+ ;;^UTILITY(U,$J,358.3,48387,2)
+ ;;=^5000607
+ ;;^UTILITY(U,$J,358.3,48388,0)
+ ;;=A49.2^^185^2421^8
+ ;;^UTILITY(U,$J,358.3,48388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50807,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], site unspec
- ;;^UTILITY(U,$J,358.3,50807,1,4,0)
- ;;=4^M48.10
- ;;^UTILITY(U,$J,358.3,50807,2)
- ;;=^5012096
- ;;^UTILITY(U,$J,358.3,50808,0)
- ;;=M48.11^^222^2466^53
- ;;^UTILITY(U,$J,358.3,50808,1,0)
+ ;;^UTILITY(U,$J,358.3,48388,1,3,0)
+ ;;=3^Infection,Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,48388,1,4,0)
+ ;;=4^A49.2
+ ;;^UTILITY(U,$J,358.3,48388,2)
+ ;;=^5000238
+ ;;^UTILITY(U,$J,358.3,48389,0)
+ ;;=B00.9^^185^2421^9
+ ;;^UTILITY(U,$J,358.3,48389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50808,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], ocpito-atlanto-ax regn
- ;;^UTILITY(U,$J,358.3,50808,1,4,0)
- ;;=4^M48.11
- ;;^UTILITY(U,$J,358.3,50808,2)
- ;;=^5012097
- ;;^UTILITY(U,$J,358.3,50809,0)
- ;;=M48.12^^222^2466^48
- ;;^UTILITY(U,$J,358.3,50809,1,0)
+ ;;^UTILITY(U,$J,358.3,48389,1,3,0)
+ ;;=3^Infection,Herpesviral,Unspec
+ ;;^UTILITY(U,$J,358.3,48389,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,48389,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,48390,0)
+ ;;=B20.^^185^2421^7
+ ;;^UTILITY(U,$J,358.3,48390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50809,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], crvcl region
- ;;^UTILITY(U,$J,358.3,50809,1,4,0)
- ;;=4^M48.12
- ;;^UTILITY(U,$J,358.3,50809,2)
- ;;=^5012098
- ;;^UTILITY(U,$J,358.3,50810,0)
- ;;=M48.13^^222^2466^49
- ;;^UTILITY(U,$J,358.3,50810,1,0)
+ ;;^UTILITY(U,$J,358.3,48390,1,3,0)
+ ;;=3^Infection,HIV
+ ;;^UTILITY(U,$J,358.3,48390,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,48390,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,48391,0)
+ ;;=B82.9^^185^2421^10
+ ;;^UTILITY(U,$J,358.3,48391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50810,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], crvicothor regn
- ;;^UTILITY(U,$J,358.3,50810,1,4,0)
- ;;=4^M48.13
- ;;^UTILITY(U,$J,358.3,50810,2)
- ;;=^5012099
- ;;^UTILITY(U,$J,358.3,50811,0)
- ;;=M48.14^^222^2466^56
- ;;^UTILITY(U,$J,358.3,50811,1,0)
+ ;;^UTILITY(U,$J,358.3,48391,1,3,0)
+ ;;=3^Infection,Intestinal Parasitism,Unspec
+ ;;^UTILITY(U,$J,358.3,48391,1,4,0)
+ ;;=4^B82.9
+ ;;^UTILITY(U,$J,358.3,48391,2)
+ ;;=^5000798
+ ;;^UTILITY(U,$J,358.3,48392,0)
+ ;;=A49.02^^185^2421^11
+ ;;^UTILITY(U,$J,358.3,48392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50811,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], thor regn
- ;;^UTILITY(U,$J,358.3,50811,1,4,0)
- ;;=4^M48.14
- ;;^UTILITY(U,$J,358.3,50811,2)
- ;;=^5012100
- ;;^UTILITY(U,$J,358.3,50812,0)
- ;;=M48.15^^222^2466^57
- ;;^UTILITY(U,$J,358.3,50812,1,0)
+ ;;^UTILITY(U,$J,358.3,48392,1,3,0)
+ ;;=3^Infection,MRSA,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48392,1,4,0)
+ ;;=4^A49.02
+ ;;^UTILITY(U,$J,358.3,48392,2)
+ ;;=^5000236
+ ;;^UTILITY(U,$J,358.3,48393,0)
+ ;;=A49.3^^185^2421^12
+ ;;^UTILITY(U,$J,358.3,48393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50812,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], thoralmbr regn
- ;;^UTILITY(U,$J,358.3,50812,1,4,0)
- ;;=4^M48.15
- ;;^UTILITY(U,$J,358.3,50812,2)
- ;;=^5012101
- ;;^UTILITY(U,$J,358.3,50813,0)
- ;;=M48.16^^222^2466^50
+ ;;^UTILITY(U,$J,358.3,48393,1,3,0)
+ ;;=3^Infection,Mycoplasma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48393,1,4,0)
+ ;;=4^A49.3
+ ;;^UTILITY(U,$J,358.3,48393,2)
+ ;;=^5000239
+ ;;^UTILITY(U,$J,358.3,48394,0)
+ ;;=B49.^^185^2421^13

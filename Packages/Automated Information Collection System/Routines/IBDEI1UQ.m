@@ -1,114 +1,128 @@
-IBDEI1UQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31454,1,3,0)
- ;;=3^28108
- ;;^UTILITY(U,$J,358.3,31455,0)
- ;;=28110^^125^1593^30^^^^1
- ;;^UTILITY(U,$J,358.3,31455,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31455,1,2,0)
- ;;=2^Ostectomy, partial excision, fifth metararsal head
- ;;^UTILITY(U,$J,358.3,31455,1,3,0)
- ;;=3^28110
- ;;^UTILITY(U,$J,358.3,31456,0)
- ;;=28111^^125^1593^26^^^^1
- ;;^UTILITY(U,$J,358.3,31456,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31456,1,2,0)
- ;;=2^Ostectomy, complete excision; 1st metatarsal head
- ;;^UTILITY(U,$J,358.3,31456,1,3,0)
- ;;=3^28111
- ;;^UTILITY(U,$J,358.3,31457,0)
- ;;=28112^^125^1593^29^^^^1
- ;;^UTILITY(U,$J,358.3,31457,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31457,1,2,0)
- ;;=2^Ostectomy, complete excision; other metatarsal head (2nd, 3rd, 4th)
- ;;^UTILITY(U,$J,358.3,31457,1,3,0)
- ;;=3^28112
- ;;^UTILITY(U,$J,358.3,31458,0)
- ;;=28113^^125^1593^27^^^^1
- ;;^UTILITY(U,$J,358.3,31458,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31458,1,2,0)
- ;;=2^Ostectomy, complete excision; 5th metatarsal head
- ;;^UTILITY(U,$J,358.3,31458,1,3,0)
- ;;=3^28113
- ;;^UTILITY(U,$J,358.3,31459,0)
- ;;=28114^^125^1593^28^^^^1
- ;;^UTILITY(U,$J,358.3,31459,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31459,1,2,0)
- ;;=2^Ostectomy, complete excision; all metatarsal heads, with partial proximal phalangectomy, excluding first metatarsal 
- ;;^UTILITY(U,$J,358.3,31459,1,3,0)
- ;;=3^28114
- ;;^UTILITY(U,$J,358.3,31460,0)
- ;;=28140^^125^1593^24^^^^1
- ;;^UTILITY(U,$J,358.3,31460,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31460,1,2,0)
- ;;=2^Metatarsectomy
- ;;^UTILITY(U,$J,358.3,31460,1,3,0)
- ;;=3^28140
- ;;^UTILITY(U,$J,358.3,31461,0)
- ;;=28119^^125^1593^25^^^^1
- ;;^UTILITY(U,$J,358.3,31461,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31461,1,2,0)
- ;;=2^Ostectomy, calcaneus; for spur, with or without plantar fascial release
- ;;^UTILITY(U,$J,358.3,31461,1,3,0)
- ;;=3^28119
- ;;^UTILITY(U,$J,358.3,31462,0)
- ;;=28120^^125^1593^32^^^^1
- ;;^UTILITY(U,$J,358.3,31462,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31462,1,2,0)
- ;;=2^Partial excision bone; talus or calcaneus
- ;;^UTILITY(U,$J,358.3,31462,1,3,0)
- ;;=3^28120
- ;;^UTILITY(U,$J,358.3,31463,0)
- ;;=28122^^125^1593^33^^^^1
- ;;^UTILITY(U,$J,358.3,31463,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31463,1,2,0)
- ;;=2^Partial excision bone; tarsal or metatarsal bone, except talus or calcaneus
- ;;^UTILITY(U,$J,358.3,31463,1,3,0)
- ;;=3^28122
- ;;^UTILITY(U,$J,358.3,31464,0)
- ;;=28124^^125^1593^31^^^^1
- ;;^UTILITY(U,$J,358.3,31464,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31464,1,2,0)
- ;;=2^Partial excision bone; phalanx of toe
- ;;^UTILITY(U,$J,358.3,31464,1,3,0)
- ;;=3^28124
- ;;^UTILITY(U,$J,358.3,31465,0)
- ;;=28153^^125^1593^34^^^^1
- ;;^UTILITY(U,$J,358.3,31465,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31465,1,2,0)
- ;;=2^Resection, condyle(s), distal end of phalanx, each toe
- ;;^UTILITY(U,$J,358.3,31465,1,3,0)
- ;;=3^28153
- ;;^UTILITY(U,$J,358.3,31466,0)
- ;;=28160^^125^1593^23^^^^1
- ;;^UTILITY(U,$J,358.3,31466,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31466,1,2,0)
- ;;=2^Hemiphalangectomy or interphalangeal joint excision, toe, proximal end of phalanx, each
- ;;^UTILITY(U,$J,358.3,31466,1,3,0)
- ;;=3^28160
- ;;^UTILITY(U,$J,358.3,31467,0)
- ;;=64774^^125^1593^8^^^^1
- ;;^UTILITY(U,$J,358.3,31467,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31467,1,2,0)
- ;;=2^Excision of neuroma; cutaneous nerve, surgically identifiable
- ;;^UTILITY(U,$J,358.3,31467,1,3,0)
- ;;=3^64774
- ;;^UTILITY(U,$J,358.3,31468,0)
- ;;=64776^^125^1593^9^^^^1
- ;;^UTILITY(U,$J,358.3,31468,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29575,0)
+ ;;=F44.5^^118^1493^2
+ ;;^UTILITY(U,$J,358.3,29575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29575,1,3,0)
+ ;;=3^Conversion D/O w/ Attacks or Seizures
+ ;;^UTILITY(U,$J,358.3,29575,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,29575,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,29576,0)
+ ;;=F44.7^^118^1493^3
+ ;;^UTILITY(U,$J,358.3,29576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29576,1,3,0)
+ ;;=3^Conversion D/O w/ Mixed Symptoms
+ ;;^UTILITY(U,$J,358.3,29576,1,4,0)
+ ;;=4^F44.7
+ ;;^UTILITY(U,$J,358.3,29576,2)
+ ;;=^5003582
+ ;;^UTILITY(U,$J,358.3,29577,0)
+ ;;=F68.10^^118^1493^7
+ ;;^UTILITY(U,$J,358.3,29577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29577,1,3,0)
+ ;;=3^Factitious D/O Imposed on Self,Unspec
+ ;;^UTILITY(U,$J,358.3,29577,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,29577,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,29578,0)
+ ;;=F54.^^118^1493^10
+ ;;^UTILITY(U,$J,358.3,29578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29578,1,3,0)
+ ;;=3^Psychological Factors Affecting Other Med Conditions
+ ;;^UTILITY(U,$J,358.3,29578,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,29578,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,29579,0)
+ ;;=F45.21^^118^1493^8
+ ;;^UTILITY(U,$J,358.3,29579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29579,1,3,0)
+ ;;=3^Illness Anxiety D/O
+ ;;^UTILITY(U,$J,358.3,29579,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,29579,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,29580,0)
+ ;;=F68.A^^118^1493^6
+ ;;^UTILITY(U,$J,358.3,29580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29580,1,3,0)
+ ;;=3^Factitious D/O Imposed on Another
+ ;;^UTILITY(U,$J,358.3,29580,1,4,0)
+ ;;=4^F68.A
+ ;;^UTILITY(U,$J,358.3,29580,2)
+ ;;=^5157309
+ ;;^UTILITY(U,$J,358.3,29581,0)
+ ;;=L98.1^^118^1493^5
+ ;;^UTILITY(U,$J,358.3,29581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29581,1,3,0)
+ ;;=3^Factitial Dermatitis
+ ;;^UTILITY(U,$J,358.3,29581,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,29581,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,29582,0)
+ ;;=N94.3^^118^1493^9
+ ;;^UTILITY(U,$J,358.3,29582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29582,1,3,0)
+ ;;=3^Premenstrual Tension Syndrome
+ ;;^UTILITY(U,$J,358.3,29582,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,29582,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,29583,0)
+ ;;=F91.2^^118^1494^1
+ ;;^UTILITY(U,$J,358.3,29583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29583,1,3,0)
+ ;;=3^Conduct D/O,Adolescent-Onset Type
+ ;;^UTILITY(U,$J,358.3,29583,1,4,0)
+ ;;=4^F91.2
+ ;;^UTILITY(U,$J,358.3,29583,2)
+ ;;=^5003699
+ ;;^UTILITY(U,$J,358.3,29584,0)
+ ;;=F91.1^^118^1494^2
+ ;;^UTILITY(U,$J,358.3,29584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29584,1,3,0)
+ ;;=3^Conduct D/O,Childhood-Onset Type
+ ;;^UTILITY(U,$J,358.3,29584,1,4,0)
+ ;;=4^F91.1
+ ;;^UTILITY(U,$J,358.3,29584,2)
+ ;;=^5003698
+ ;;^UTILITY(U,$J,358.3,29585,0)
+ ;;=F91.9^^118^1494^3
+ ;;^UTILITY(U,$J,358.3,29585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29585,1,3,0)
+ ;;=3^Conduct D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29585,1,4,0)
+ ;;=4^F91.9
+ ;;^UTILITY(U,$J,358.3,29585,2)
+ ;;=^5003701
+ ;;^UTILITY(U,$J,358.3,29586,0)
+ ;;=F63.81^^118^1494^6
+ ;;^UTILITY(U,$J,358.3,29586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29586,1,3,0)
+ ;;=3^Intermittent Explosive D/O
+ ;;^UTILITY(U,$J,358.3,29586,1,4,0)
+ ;;=4^F63.81
+ ;;^UTILITY(U,$J,358.3,29586,2)
+ ;;=^5003644
+ ;;^UTILITY(U,$J,358.3,29587,0)
+ ;;=F63.2^^118^1494^7
+ ;;^UTILITY(U,$J,358.3,29587,1,0)
+ ;;=^358.31IA^4^2

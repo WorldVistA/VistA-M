@@ -1,354 +1,126 @@
-IBDEI0VA ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0VA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41091,1,3,0)
- ;;=3^Blindness-Rt Eye/Normal Vision-Lt Eye
- ;;^UTILITY(U,$J,358.3,41091,1,4,0)
- ;;=4^H54.41
- ;;^UTILITY(U,$J,358.3,41091,2)
- ;;=^5006363
- ;;^UTILITY(U,$J,358.3,41092,0)
- ;;=H54.42^^121^1765^6
- ;;^UTILITY(U,$J,358.3,41092,1,0)
+ ;;^UTILITY(U,$J,358.3,13928,1,4,0)
+ ;;=4^T83.511S
+ ;;^UTILITY(U,$J,358.3,13928,2)
+ ;;=^5140140
+ ;;^UTILITY(U,$J,358.3,13929,0)
+ ;;=T83.512A^^83^818^54
+ ;;^UTILITY(U,$J,358.3,13929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41092,1,3,0)
- ;;=3^Blindness-Lt Eye/Normal Vision-Rt Eye
- ;;^UTILITY(U,$J,358.3,41092,1,4,0)
- ;;=4^H54.42
- ;;^UTILITY(U,$J,358.3,41092,2)
- ;;=^5133518
- ;;^UTILITY(U,$J,358.3,41093,0)
- ;;=H54.7^^121^1765^9
- ;;^UTILITY(U,$J,358.3,41093,1,0)
+ ;;^UTILITY(U,$J,358.3,13929,1,3,0)
+ ;;=3^Infection d/t Nephrostomy Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13929,1,4,0)
+ ;;=4^T83.512A
+ ;;^UTILITY(U,$J,358.3,13929,2)
+ ;;=^5140141
+ ;;^UTILITY(U,$J,358.3,13930,0)
+ ;;=T83.512D^^83^818^56
+ ;;^UTILITY(U,$J,358.3,13930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41093,1,3,0)
- ;;=3^Visual Loss
- ;;^UTILITY(U,$J,358.3,41093,1,4,0)
- ;;=4^H54.7
- ;;^UTILITY(U,$J,358.3,41093,2)
- ;;=^5006368
- ;;^UTILITY(U,$J,358.3,41094,0)
- ;;=H54.8^^121^1765^1
- ;;^UTILITY(U,$J,358.3,41094,1,0)
+ ;;^UTILITY(U,$J,358.3,13930,1,3,0)
+ ;;=3^Infection d/t Nephrostomy Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,13930,1,4,0)
+ ;;=4^T83.512D
+ ;;^UTILITY(U,$J,358.3,13930,2)
+ ;;=^5140142
+ ;;^UTILITY(U,$J,358.3,13931,0)
+ ;;=T83.512S^^83^818^55
+ ;;^UTILITY(U,$J,358.3,13931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41094,1,3,0)
- ;;=3^Legal Blindness,as Defined in USA
- ;;^UTILITY(U,$J,358.3,41094,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,41094,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,41095,0)
- ;;=H54.40^^121^1765^7
- ;;^UTILITY(U,$J,358.3,41095,1,0)
+ ;;^UTILITY(U,$J,358.3,13931,1,3,0)
+ ;;=3^Infection d/t Nephrostomy Catheter,Sequela
+ ;;^UTILITY(U,$J,358.3,13931,1,4,0)
+ ;;=4^T83.512S
+ ;;^UTILITY(U,$J,358.3,13931,2)
+ ;;=^5140143
+ ;;^UTILITY(U,$J,358.3,13932,0)
+ ;;=R97.20^^83^818^28
+ ;;^UTILITY(U,$J,358.3,13932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41095,1,3,0)
- ;;=3^Monocular,Blindness in One Eye
- ;;^UTILITY(U,$J,358.3,41095,1,4,0)
- ;;=4^H54.40
- ;;^UTILITY(U,$J,358.3,41095,2)
- ;;=^5006362
- ;;^UTILITY(U,$J,358.3,41096,0)
- ;;=H53.8^^121^1765^11
- ;;^UTILITY(U,$J,358.3,41096,1,0)
+ ;;^UTILITY(U,$J,358.3,13932,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,13932,1,4,0)
+ ;;=4^R97.20
+ ;;^UTILITY(U,$J,358.3,13932,2)
+ ;;=^334262
+ ;;^UTILITY(U,$J,358.3,13933,0)
+ ;;=R97.21^^83^818^29
+ ;;^UTILITY(U,$J,358.3,13933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41096,1,3,0)
- ;;=3^Visual Disturbances
- ;;^UTILITY(U,$J,358.3,41096,1,4,0)
- ;;=4^H53.8
- ;;^UTILITY(U,$J,358.3,41096,2)
- ;;=^5006356
- ;;^UTILITY(U,$J,358.3,41097,0)
- ;;=H53.71^^121^1765^12
- ;;^UTILITY(U,$J,358.3,41097,1,0)
+ ;;^UTILITY(U,$J,358.3,13933,1,3,0)
+ ;;=3^Elevated PSA Following Trtmnt for Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,13933,1,4,0)
+ ;;=4^R97.21
+ ;;^UTILITY(U,$J,358.3,13933,2)
+ ;;=^5139228
+ ;;^UTILITY(U,$J,358.3,13934,0)
+ ;;=N35.911^^83^818^109
+ ;;^UTILITY(U,$J,358.3,13934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41097,1,3,0)
- ;;=3^Glare Sensitivity
- ;;^UTILITY(U,$J,358.3,41097,1,4,0)
- ;;=4^H53.71
- ;;^UTILITY(U,$J,358.3,41097,2)
- ;;=^5006354
- ;;^UTILITY(U,$J,358.3,41098,0)
- ;;=H53.72^^121^1765^13
- ;;^UTILITY(U,$J,358.3,41098,1,0)
+ ;;^UTILITY(U,$J,358.3,13934,1,3,0)
+ ;;=3^Urethral Stricture,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,13934,1,4,0)
+ ;;=4^N35.911
+ ;;^UTILITY(U,$J,358.3,13934,2)
+ ;;=^5157407
+ ;;^UTILITY(U,$J,358.3,13935,0)
+ ;;=N35.92^^83^818^108
+ ;;^UTILITY(U,$J,358.3,13935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41098,1,3,0)
- ;;=3^Impaired Contrast Sensitivity
- ;;^UTILITY(U,$J,358.3,41098,1,4,0)
- ;;=4^H53.72
- ;;^UTILITY(U,$J,358.3,41098,2)
- ;;=^5006355
- ;;^UTILITY(U,$J,358.3,41099,0)
- ;;=H57.11^^121^1765^14
- ;;^UTILITY(U,$J,358.3,41099,1,0)
+ ;;^UTILITY(U,$J,358.3,13935,1,3,0)
+ ;;=3^Urethral Stricture,Female,Unspec
+ ;;^UTILITY(U,$J,358.3,13935,1,4,0)
+ ;;=4^N35.92
+ ;;^UTILITY(U,$J,358.3,13935,2)
+ ;;=^5157413
+ ;;^UTILITY(U,$J,358.3,13936,0)
+ ;;=A49.9^^83^819^1
+ ;;^UTILITY(U,$J,358.3,13936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41099,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,41099,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,41099,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,41100,0)
- ;;=H57.12^^121^1765^15
- ;;^UTILITY(U,$J,358.3,41100,1,0)
+ ;;^UTILITY(U,$J,358.3,13936,1,3,0)
+ ;;=3^Infection,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,13936,1,4,0)
+ ;;=4^A49.9
+ ;;^UTILITY(U,$J,358.3,13936,2)
+ ;;=^5000241
+ ;;^UTILITY(U,$J,358.3,13937,0)
+ ;;=B37.9^^83^819^2
+ ;;^UTILITY(U,$J,358.3,13937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41100,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,41100,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,41100,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,41101,0)
- ;;=H57.13^^121^1765^16
- ;;^UTILITY(U,$J,358.3,41101,1,0)
+ ;;^UTILITY(U,$J,358.3,13937,1,3,0)
+ ;;=3^Infection,Candidiasis,Unspec
+ ;;^UTILITY(U,$J,358.3,13937,1,4,0)
+ ;;=4^B37.9
+ ;;^UTILITY(U,$J,358.3,13937,2)
+ ;;=^5000624
+ ;;^UTILITY(U,$J,358.3,13938,0)
+ ;;=Z20.9^^83^819^3
+ ;;^UTILITY(U,$J,358.3,13938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41101,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,41101,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,41101,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,41102,0)
- ;;=Z01.00^^121^1765^17
- ;;^UTILITY(U,$J,358.3,41102,1,0)
+ ;;^UTILITY(U,$J,358.3,13938,1,3,0)
+ ;;=3^Infection,Communicable Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,13938,1,4,0)
+ ;;=4^Z20.9
+ ;;^UTILITY(U,$J,358.3,13938,2)
+ ;;=^5062776
+ ;;^UTILITY(U,$J,358.3,13939,0)
+ ;;=B30.9^^83^819^4
+ ;;^UTILITY(U,$J,358.3,13939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41102,1,3,0)
- ;;=3^Eye/Vision Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,41102,1,4,0)
- ;;=4^Z01.00
- ;;^UTILITY(U,$J,358.3,41102,2)
- ;;=^5062612
- ;;^UTILITY(U,$J,358.3,41103,0)
- ;;=Z01.01^^121^1765^18
- ;;^UTILITY(U,$J,358.3,41103,1,0)
+ ;;^UTILITY(U,$J,358.3,13939,1,3,0)
+ ;;=3^Infection,Conjunctivitis,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,13939,1,4,0)
+ ;;=4^B30.9
+ ;;^UTILITY(U,$J,358.3,13939,2)
+ ;;=^5000586
+ ;;^UTILITY(U,$J,358.3,13940,0)
+ ;;=B25.9^^83^819^5
+ ;;^UTILITY(U,$J,358.3,13940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41103,1,3,0)
- ;;=3^Eye/Vision Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,41103,1,4,0)
- ;;=4^Z01.01
- ;;^UTILITY(U,$J,358.3,41103,2)
- ;;=^5062613
- ;;^UTILITY(U,$J,358.3,41104,0)
- ;;=H57.9^^121^1765^19
- ;;^UTILITY(U,$J,358.3,41104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41104,1,3,0)
- ;;=3^Eye and Adnexa Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,41104,1,4,0)
- ;;=4^H57.9
- ;;^UTILITY(U,$J,358.3,41104,2)
- ;;=^269333
- ;;^UTILITY(U,$J,358.3,41105,0)
- ;;=I10.^^121^1765^20
- ;;^UTILITY(U,$J,358.3,41105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41105,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,41105,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,41105,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,41106,0)
- ;;=Z21.^^121^1765^21
- ;;^UTILITY(U,$J,358.3,41106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41106,1,3,0)
- ;;=3^Asymptomatic HIV Infection Status
- ;;^UTILITY(U,$J,358.3,41106,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,41106,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,41107,0)
- ;;=E11.9^^121^1766^1
- ;;^UTILITY(U,$J,358.3,41107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41107,1,3,0)
- ;;=3^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,41107,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,41107,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,41108,0)
- ;;=E11.39^^121^1766^2
- ;;^UTILITY(U,$J,358.3,41108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41108,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
- ;;^UTILITY(U,$J,358.3,41108,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,41108,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,41109,0)
- ;;=E11.359^^121^1766^6
- ;;^UTILITY(U,$J,358.3,41109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41109,1,3,0)
- ;;=3^DM Type 2 w/ Proliferative DR, no CME
- ;;^UTILITY(U,$J,358.3,41109,1,4,0)
- ;;=4^E11.359
- ;;^UTILITY(U,$J,358.3,41109,2)
- ;;=^5002641
- ;;^UTILITY(U,$J,358.3,41110,0)
- ;;=E11.351^^121^1766^11
- ;;^UTILITY(U,$J,358.3,41110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41110,1,3,0)
- ;;=3^DM Type 2 w/ Proliferative DR w/ CME
- ;;^UTILITY(U,$J,358.3,41110,1,4,0)
- ;;=4^E11.351
- ;;^UTILITY(U,$J,358.3,41110,2)
- ;;=^5002640
- ;;^UTILITY(U,$J,358.3,41111,0)
- ;;=E11.349^^121^1766^5
- ;;^UTILITY(U,$J,358.3,41111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41111,1,3,0)
- ;;=3^DM Type 2 w/ Non Prolif DR, Severe, no CME
- ;;^UTILITY(U,$J,358.3,41111,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,41111,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,41112,0)
- ;;=E11.341^^121^1766^10
- ;;^UTILITY(U,$J,358.3,41112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41112,1,3,0)
- ;;=3^DM Type 2 w/ Non Prolif DR, Severe, w/ CME
- ;;^UTILITY(U,$J,358.3,41112,1,4,0)
- ;;=4^E11.341
- ;;^UTILITY(U,$J,358.3,41112,2)
- ;;=^5002638
- ;;^UTILITY(U,$J,358.3,41113,0)
- ;;=E11.339^^121^1766^4
- ;;^UTILITY(U,$J,358.3,41113,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41113,1,3,0)
- ;;=3^DM Type 2 w/ Non Prolif DR, Moderate, no CME
- ;;^UTILITY(U,$J,358.3,41113,1,4,0)
- ;;=4^E11.339
- ;;^UTILITY(U,$J,358.3,41113,2)
- ;;=^5002637
- ;;^UTILITY(U,$J,358.3,41114,0)
- ;;=E11.331^^121^1766^9
- ;;^UTILITY(U,$J,358.3,41114,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41114,1,3,0)
- ;;=3^DM Type 2 w/ Non Prolif DR, Moderate, w/ CME
- ;;^UTILITY(U,$J,358.3,41114,1,4,0)
- ;;=4^E11.331
- ;;^UTILITY(U,$J,358.3,41114,2)
- ;;=^5002636
- ;;^UTILITY(U,$J,358.3,41115,0)
- ;;=E11.329^^121^1766^3
- ;;^UTILITY(U,$J,358.3,41115,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41115,1,3,0)
- ;;=3^DM Type 2 w/ NonProlif DR,Mild,No CME
- ;;^UTILITY(U,$J,358.3,41115,1,4,0)
- ;;=4^E11.329
- ;;^UTILITY(U,$J,358.3,41115,2)
- ;;=^5002635
- ;;^UTILITY(U,$J,358.3,41116,0)
- ;;=E11.321^^121^1766^8
- ;;^UTILITY(U,$J,358.3,41116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41116,1,3,0)
- ;;=3^DM Type 2 w/ NonProlif DR,Mild,w/ CME
- ;;^UTILITY(U,$J,358.3,41116,1,4,0)
- ;;=4^E11.321
- ;;^UTILITY(U,$J,358.3,41116,2)
- ;;=^5002634
- ;;^UTILITY(U,$J,358.3,41117,0)
- ;;=E10.9^^121^1766^32
- ;;^UTILITY(U,$J,358.3,41117,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41117,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,41117,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,41117,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,41118,0)
- ;;=E10.39^^121^1766^33
- ;;^UTILITY(U,$J,358.3,41118,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41118,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complication
- ;;^UTILITY(U,$J,358.3,41118,1,4,0)
- ;;=4^E10.39
- ;;^UTILITY(U,$J,358.3,41118,2)
- ;;=^5002603
- ;;^UTILITY(U,$J,358.3,41119,0)
- ;;=E10.329^^121^1766^34
- ;;^UTILITY(U,$J,358.3,41119,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41119,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,41119,1,4,0)
- ;;=4^E10.329
- ;;^UTILITY(U,$J,358.3,41119,2)
- ;;=^5002595
- ;;^UTILITY(U,$J,358.3,41120,0)
- ;;=E10.339^^121^1766^35
- ;;^UTILITY(U,$J,358.3,41120,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41120,1,3,0)
- ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,41120,1,4,0)
- ;;=4^E10.339
- ;;^UTILITY(U,$J,358.3,41120,2)
- ;;=^5002597
- ;;^UTILITY(U,$J,358.3,41121,0)
- ;;=E10.349^^121^1766^36
- ;;^UTILITY(U,$J,358.3,41121,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41121,1,3,0)
- ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,41121,1,4,0)
- ;;=4^E10.349
- ;;^UTILITY(U,$J,358.3,41121,2)
- ;;=^5002599
- ;;^UTILITY(U,$J,358.3,41122,0)
- ;;=E10.359^^121^1766^37
- ;;^UTILITY(U,$J,358.3,41122,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41122,1,3,0)
- ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,41122,1,4,0)
- ;;=4^E10.359
- ;;^UTILITY(U,$J,358.3,41122,2)
- ;;=^5002601
- ;;^UTILITY(U,$J,358.3,41123,0)
- ;;=H35.81^^121^1766^7
- ;;^UTILITY(U,$J,358.3,41123,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41123,1,3,0)
- ;;=3^Retinal Edema/CME Other Etiology
- ;;^UTILITY(U,$J,358.3,41123,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,41123,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,41124,0)
- ;;=H34.11^^121^1766^12
- ;;^UTILITY(U,$J,358.3,41124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41124,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,41124,1,4,0)
- ;;=4^H34.11
- ;;^UTILITY(U,$J,358.3,41124,2)
- ;;=^5005557
- ;;^UTILITY(U,$J,358.3,41125,0)
- ;;=H34.12^^121^1766^13
- ;;^UTILITY(U,$J,358.3,41125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41125,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,41125,1,4,0)
- ;;=4^H34.12
- ;;^UTILITY(U,$J,358.3,41125,2)
- ;;=^5005558
- ;;^UTILITY(U,$J,358.3,41126,0)
- ;;=H34.231^^121^1766^14
- ;;^UTILITY(U,$J,358.3,41126,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13940,1,3,0)
+ ;;=3^Infection,Cytomegaloviral Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,13940,1,4,0)
+ ;;=4^B25.9

@@ -1,122 +1,122 @@
-IBDEI2F5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2F5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41030,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,41031,0)
- ;;=K57.30^^159^1999^42
- ;;^UTILITY(U,$J,358.3,41031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41031,1,3,0)
- ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41031,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,41031,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,41032,0)
- ;;=K57.50^^159^1999^43
- ;;^UTILITY(U,$J,358.3,41032,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41032,1,3,0)
- ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41032,1,4,0)
- ;;=4^K57.50
- ;;^UTILITY(U,$J,358.3,41032,2)
- ;;=^5008729
- ;;^UTILITY(U,$J,358.3,41033,0)
- ;;=K57.90^^159^1999^41
- ;;^UTILITY(U,$J,358.3,41033,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41033,1,3,0)
- ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41033,1,4,0)
- ;;=4^K57.90
- ;;^UTILITY(U,$J,358.3,41033,2)
- ;;=^5008735
- ;;^UTILITY(U,$J,358.3,41034,0)
- ;;=K57.20^^159^1999^37
- ;;^UTILITY(U,$J,358.3,41034,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41034,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41034,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,41034,2)
- ;;=^5008721
- ;;^UTILITY(U,$J,358.3,41035,0)
- ;;=K57.92^^159^1999^36
- ;;^UTILITY(U,$J,358.3,41035,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41035,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41035,1,4,0)
- ;;=4^K57.92
- ;;^UTILITY(U,$J,358.3,41035,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,41036,0)
- ;;=K57.80^^159^1999^35
- ;;^UTILITY(U,$J,358.3,41036,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41036,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41036,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,41036,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,41037,0)
- ;;=K57.52^^159^1999^40
- ;;^UTILITY(U,$J,358.3,41037,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41037,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41037,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,41037,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,41038,0)
- ;;=K57.40^^159^1999^39
- ;;^UTILITY(U,$J,358.3,41038,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41038,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41038,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,41038,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,41039,0)
- ;;=K57.32^^159^1999^38
- ;;^UTILITY(U,$J,358.3,41039,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41039,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,41039,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,41039,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,41040,0)
- ;;=K59.00^^159^1999^20
- ;;^UTILITY(U,$J,358.3,41040,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41040,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,41040,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,41040,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,41041,0)
- ;;=K58.9^^159^1999^70
- ;;^UTILITY(U,$J,358.3,41041,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41041,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,41041,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,41041,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,41042,0)
- ;;=K58.0^^159^1999^69
- ;;^UTILITY(U,$J,358.3,41042,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41042,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,38630,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38630,1,2,0)
+ ;;=2^12005
+ ;;^UTILITY(U,$J,358.3,38630,1,3,0)
+ ;;=3^Simple Repair;12.6-20.0cm
+ ;;^UTILITY(U,$J,358.3,38631,0)
+ ;;=12006^^151^1978^5^^^^1
+ ;;^UTILITY(U,$J,358.3,38631,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38631,1,2,0)
+ ;;=2^12006
+ ;;^UTILITY(U,$J,358.3,38631,1,3,0)
+ ;;=3^Simple Repair;20.1-30.0cm
+ ;;^UTILITY(U,$J,358.3,38632,0)
+ ;;=12007^^151^1978^6^^^^1
+ ;;^UTILITY(U,$J,358.3,38632,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38632,1,2,0)
+ ;;=2^12007
+ ;;^UTILITY(U,$J,358.3,38632,1,3,0)
+ ;;=3^Simple Repair;Over 30.0cm
+ ;;^UTILITY(U,$J,358.3,38633,0)
+ ;;=99395^^151^1979^1^^^^1
+ ;;^UTILITY(U,$J,358.3,38633,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38633,1,2,0)
+ ;;=2^99395
+ ;;^UTILITY(U,$J,358.3,38633,1,3,0)
+ ;;=3^Preventive Med,Est Pt 18-39
+ ;;^UTILITY(U,$J,358.3,38634,0)
+ ;;=99396^^151^1979^2^^^^1
+ ;;^UTILITY(U,$J,358.3,38634,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38634,1,2,0)
+ ;;=2^99396
+ ;;^UTILITY(U,$J,358.3,38634,1,3,0)
+ ;;=3^Preventive Med,Est Pt 40-64
+ ;;^UTILITY(U,$J,358.3,38635,0)
+ ;;=99397^^151^1979^3^^^^1
+ ;;^UTILITY(U,$J,358.3,38635,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38635,1,2,0)
+ ;;=2^99397
+ ;;^UTILITY(U,$J,358.3,38635,1,3,0)
+ ;;=3^Preventive Med,Est Pt > 64
+ ;;^UTILITY(U,$J,358.3,38636,0)
+ ;;=99385^^151^1980^1^^^^1
+ ;;^UTILITY(U,$J,358.3,38636,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38636,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,38636,1,3,0)
+ ;;=3^Preventive Med,New Pt 18-39
+ ;;^UTILITY(U,$J,358.3,38637,0)
+ ;;=99386^^151^1980^2^^^^1
+ ;;^UTILITY(U,$J,358.3,38637,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38637,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,38637,1,3,0)
+ ;;=3^Preventive Med,New Pt 40-64
+ ;;^UTILITY(U,$J,358.3,38638,0)
+ ;;=99387^^151^1980^3^^^^1
+ ;;^UTILITY(U,$J,358.3,38638,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38638,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,38638,1,3,0)
+ ;;=3^Preventive Med,New Pt > 64
+ ;;^UTILITY(U,$J,358.3,38639,0)
+ ;;=99497^^151^1981^1^^^^1
+ ;;^UTILITY(U,$J,358.3,38639,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38639,1,2,0)
+ ;;=2^99497
+ ;;^UTILITY(U,$J,358.3,38639,1,3,0)
+ ;;=3^ADV Care Planning,1st 30 min
+ ;;^UTILITY(U,$J,358.3,38640,0)
+ ;;=99498^^151^1981^2^^^^1
+ ;;^UTILITY(U,$J,358.3,38640,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38640,1,2,0)
+ ;;=2^99498
+ ;;^UTILITY(U,$J,358.3,38640,1,3,0)
+ ;;=3^ADV Care Planning,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,38641,0)
+ ;;=96156^^151^1982^1^^^^1
+ ;;^UTILITY(U,$J,358.3,38641,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38641,1,2,0)
+ ;;=2^96156
+ ;;^UTILITY(U,$J,358.3,38641,1,3,0)
+ ;;=3^Hlth/Behav Assess/Reassess
+ ;;^UTILITY(U,$J,358.3,38642,0)
+ ;;=96164^^151^1982^2^^^^1
+ ;;^UTILITY(U,$J,358.3,38642,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38642,1,2,0)
+ ;;=2^96164
+ ;;^UTILITY(U,$J,358.3,38642,1,3,0)
+ ;;=3^Hlth/Behav Intvn,Grp,1st 30 min
+ ;;^UTILITY(U,$J,358.3,38643,0)
+ ;;=96165^^151^1982^3^^^^1
+ ;;^UTILITY(U,$J,358.3,38643,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38643,1,2,0)
+ ;;=2^96165
+ ;;^UTILITY(U,$J,358.3,38643,1,3,0)
+ ;;=3^Hlth/Behav Intvn,Grp,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,38644,0)
+ ;;=96158^^151^1982^4^^^^1
+ ;;^UTILITY(U,$J,358.3,38644,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,38644,1,2,0)
+ ;;=2^96158
+ ;;^UTILITY(U,$J,358.3,38644,1,3,0)
+ ;;=3^Hlth/Behav Intvn,Ind,1st 30 min

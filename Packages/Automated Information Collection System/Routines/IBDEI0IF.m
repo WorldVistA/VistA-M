@@ -1,364 +1,126 @@
-IBDEI0IF ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0IF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23371,0)
- ;;=F32.5^^61^899^15
- ;;^UTILITY(U,$J,358.3,23371,1,0)
+ ;;^UTILITY(U,$J,358.3,8036,2)
+ ;;=^5001145
+ ;;^UTILITY(U,$J,358.3,8037,0)
+ ;;=C4A.39^^65^517^83
+ ;;^UTILITY(U,$J,358.3,8037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23371,1,3,0)
- ;;=3^MDD,Single Episode,In Full Remission
- ;;^UTILITY(U,$J,358.3,23371,1,4,0)
- ;;=4^F32.5
- ;;^UTILITY(U,$J,358.3,23371,2)
- ;;=^5003526
- ;;^UTILITY(U,$J,358.3,23372,0)
- ;;=F33.9^^61^899^13
- ;;^UTILITY(U,$J,358.3,23372,1,0)
+ ;;^UTILITY(U,$J,358.3,8037,1,3,0)
+ ;;=3^Merkle Cell CA,Parts of Face,Other
+ ;;^UTILITY(U,$J,358.3,8037,1,4,0)
+ ;;=4^C4A.39
+ ;;^UTILITY(U,$J,358.3,8037,2)
+ ;;=^5001146
+ ;;^UTILITY(U,$J,358.3,8038,0)
+ ;;=C4A.59^^65^517^84
+ ;;^UTILITY(U,$J,358.3,8038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23372,1,3,0)
- ;;=3^MDD,Recurrent Episode,Unspec
- ;;^UTILITY(U,$J,358.3,23372,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,23372,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,23373,0)
- ;;=F33.0^^61^899^10
- ;;^UTILITY(U,$J,358.3,23373,1,0)
+ ;;^UTILITY(U,$J,358.3,8038,1,3,0)
+ ;;=3^Merkle Cell CA,Parts of Trunk,Other
+ ;;^UTILITY(U,$J,358.3,8038,1,4,0)
+ ;;=4^C4A.59
+ ;;^UTILITY(U,$J,358.3,8038,2)
+ ;;=^5001150
+ ;;^UTILITY(U,$J,358.3,8039,0)
+ ;;=C4A.8^^65^517^82
+ ;;^UTILITY(U,$J,358.3,8039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23373,1,3,0)
- ;;=3^MDD,Recurrent Episode,Mild
- ;;^UTILITY(U,$J,358.3,23373,1,4,0)
- ;;=4^F33.0
- ;;^UTILITY(U,$J,358.3,23373,2)
- ;;=^5003529
- ;;^UTILITY(U,$J,358.3,23374,0)
- ;;=F33.1^^61^899^11
- ;;^UTILITY(U,$J,358.3,23374,1,0)
+ ;;^UTILITY(U,$J,358.3,8039,1,3,0)
+ ;;=3^Merkle Cell CA,Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,8039,1,4,0)
+ ;;=4^C4A.8
+ ;;^UTILITY(U,$J,358.3,8039,2)
+ ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,8040,0)
+ ;;=C4A.9^^65^517^88
+ ;;^UTILITY(U,$J,358.3,8040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23374,1,3,0)
- ;;=3^MDD,Recurrent Episode,Moderate
- ;;^UTILITY(U,$J,358.3,23374,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,23374,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,23375,0)
- ;;=F33.2^^61^899^12
- ;;^UTILITY(U,$J,358.3,23375,1,0)
+ ;;^UTILITY(U,$J,358.3,8040,1,3,0)
+ ;;=3^Merkle Cell CA,Unspec
+ ;;^UTILITY(U,$J,358.3,8040,1,4,0)
+ ;;=4^C4A.9
+ ;;^UTILITY(U,$J,358.3,8040,2)
+ ;;=^5001158
+ ;;^UTILITY(U,$J,358.3,8041,0)
+ ;;=C84.09^^65^517^93
+ ;;^UTILITY(U,$J,358.3,8041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23375,1,3,0)
- ;;=3^MDD,Recurrent Episode,Severe
- ;;^UTILITY(U,$J,358.3,23375,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,23375,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,23376,0)
- ;;=F33.3^^61^899^7
- ;;^UTILITY(U,$J,358.3,23376,1,0)
+ ;;^UTILITY(U,$J,358.3,8041,1,3,0)
+ ;;=3^Mycosis Fungoides,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,8041,1,4,0)
+ ;;=4^C84.09
+ ;;^UTILITY(U,$J,358.3,8041,2)
+ ;;=^5001630
+ ;;^UTILITY(U,$J,358.3,8042,0)
+ ;;=C84.03^^65^517^96
+ ;;^UTILITY(U,$J,358.3,8042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23376,1,3,0)
- ;;=3^MDD,Recurrent Episode w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,23376,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,23376,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,23377,0)
- ;;=F33.41^^61^899^9
- ;;^UTILITY(U,$J,358.3,23377,1,0)
+ ;;^UTILITY(U,$J,358.3,8042,1,3,0)
+ ;;=3^Mycosis Fungoides,Intra-Abdominal Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8042,1,4,0)
+ ;;=4^C84.03
+ ;;^UTILITY(U,$J,358.3,8042,2)
+ ;;=^5001624
+ ;;^UTILITY(U,$J,358.3,8043,0)
+ ;;=C84.06^^65^517^97
+ ;;^UTILITY(U,$J,358.3,8043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23377,1,3,0)
- ;;=3^MDD,Recurrent Episode,In Partial Remission
- ;;^UTILITY(U,$J,358.3,23377,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,23377,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,23378,0)
- ;;=F33.42^^61^899^8
- ;;^UTILITY(U,$J,358.3,23378,1,0)
+ ;;^UTILITY(U,$J,358.3,8043,1,3,0)
+ ;;=3^Mycosis Fungoides,Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8043,1,4,0)
+ ;;=4^C84.06
+ ;;^UTILITY(U,$J,358.3,8043,2)
+ ;;=^5001627
+ ;;^UTILITY(U,$J,358.3,8044,0)
+ ;;=C84.02^^65^517^98
+ ;;^UTILITY(U,$J,358.3,8044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23378,1,3,0)
- ;;=3^MDD,Recurrent Episode,In Full Remission
- ;;^UTILITY(U,$J,358.3,23378,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,23378,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,23379,0)
- ;;=F34.8^^61^899^6
- ;;^UTILITY(U,$J,358.3,23379,1,0)
+ ;;^UTILITY(U,$J,358.3,8044,1,3,0)
+ ;;=3^Mycosis Fungoides,Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8044,1,4,0)
+ ;;=4^C84.02
+ ;;^UTILITY(U,$J,358.3,8044,2)
+ ;;=^5001623
+ ;;^UTILITY(U,$J,358.3,8045,0)
+ ;;=C84.04^^65^517^92
+ ;;^UTILITY(U,$J,358.3,8045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23379,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,23379,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,23379,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,23380,0)
- ;;=F34.1^^61^899^21
- ;;^UTILITY(U,$J,358.3,23380,1,0)
+ ;;^UTILITY(U,$J,358.3,8045,1,3,0)
+ ;;=3^Mycosis Fungoides,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8045,1,4,0)
+ ;;=4^C84.04
+ ;;^UTILITY(U,$J,358.3,8045,2)
+ ;;=^5001625
+ ;;^UTILITY(U,$J,358.3,8046,0)
+ ;;=C84.01^^65^517^94
+ ;;^UTILITY(U,$J,358.3,8046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23380,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthmia)
- ;;^UTILITY(U,$J,358.3,23380,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,23380,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,23381,0)
- ;;=N94.3^^61^899^22
- ;;^UTILITY(U,$J,358.3,23381,1,0)
+ ;;^UTILITY(U,$J,358.3,8046,1,3,0)
+ ;;=3^Mycosis Fungoides,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8046,1,4,0)
+ ;;=4^C84.01
+ ;;^UTILITY(U,$J,358.3,8046,2)
+ ;;=^5001622
+ ;;^UTILITY(U,$J,358.3,8047,0)
+ ;;=C84.05^^65^517^95
+ ;;^UTILITY(U,$J,358.3,8047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23381,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,23381,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,23381,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,23382,0)
- ;;=F06.34^^61^899^3
- ;;^UTILITY(U,$J,358.3,23382,1,0)
+ ;;^UTILITY(U,$J,358.3,8047,1,3,0)
+ ;;=3^Mycosis Fungoides,Inguinal Region/LE Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8047,1,4,0)
+ ;;=4^C84.05
+ ;;^UTILITY(U,$J,358.3,8047,2)
+ ;;=^5001626
+ ;;^UTILITY(U,$J,358.3,8048,0)
+ ;;=C84.08^^65^517^99
+ ;;^UTILITY(U,$J,358.3,8048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23382,1,3,0)
- ;;=3^Depressive Disorder d/t Another Med Cond w/ Mixed Features,Unsp
- ;;^UTILITY(U,$J,358.3,23382,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,23382,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,23383,0)
- ;;=F32.8^^61^899^4
- ;;^UTILITY(U,$J,358.3,23383,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23383,1,3,0)
- ;;=3^Depressive Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,23383,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,23383,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,23384,0)
- ;;=F32.9^^61^899^5
- ;;^UTILITY(U,$J,358.3,23384,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23384,1,3,0)
- ;;=3^Depressive Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,23384,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,23384,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,23385,0)
- ;;=F44.81^^61^900^6
- ;;^UTILITY(U,$J,358.3,23385,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23385,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,23385,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,23385,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,23386,0)
- ;;=F44.9^^61^900^5
- ;;^UTILITY(U,$J,358.3,23386,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23386,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23386,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,23386,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,23387,0)
- ;;=F44.0^^61^900^2
- ;;^UTILITY(U,$J,358.3,23387,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23387,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,23387,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,23387,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,23388,0)
- ;;=F48.1^^61^900^1
- ;;^UTILITY(U,$J,358.3,23388,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23388,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,23388,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,23388,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,23389,0)
- ;;=F44.89^^61^900^4
- ;;^UTILITY(U,$J,358.3,23389,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23389,1,3,0)
- ;;=3^Dissociative Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,23389,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,23389,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,23390,0)
- ;;=F44.1^^61^900^3
- ;;^UTILITY(U,$J,358.3,23390,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23390,1,3,0)
- ;;=3^Dissociative Amnesia w/ Dissociative Fugue
- ;;^UTILITY(U,$J,358.3,23390,1,4,0)
- ;;=4^F44.1
- ;;^UTILITY(U,$J,358.3,23390,2)
- ;;=^331908
- ;;^UTILITY(U,$J,358.3,23391,0)
- ;;=F50.02^^61^901^1
- ;;^UTILITY(U,$J,358.3,23391,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23391,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,23391,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,23391,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,23392,0)
- ;;=F50.01^^61^901^2
- ;;^UTILITY(U,$J,358.3,23392,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23392,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,23392,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,23392,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,23393,0)
- ;;=F50.9^^61^901^7
- ;;^UTILITY(U,$J,358.3,23393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23393,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23393,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,23393,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,23394,0)
- ;;=F50.8^^61^901^6
- ;;^UTILITY(U,$J,358.3,23394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23394,1,3,0)
- ;;=3^Feeding/Eating Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,23394,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,23394,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,23395,0)
- ;;=F50.8^^61^901^3
- ;;^UTILITY(U,$J,358.3,23395,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23395,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,23395,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,23395,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,23396,0)
- ;;=F50.8^^61^901^4
- ;;^UTILITY(U,$J,358.3,23396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23396,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,23396,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,23396,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,23397,0)
- ;;=F50.2^^61^901^5
- ;;^UTILITY(U,$J,358.3,23397,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23397,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,23397,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,23397,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,23398,0)
- ;;=F50.8^^61^901^8
- ;;^UTILITY(U,$J,358.3,23398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23398,1,3,0)
- ;;=3^Pica in Adults
- ;;^UTILITY(U,$J,358.3,23398,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,23398,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,23399,0)
- ;;=F98.21^^61^901^9
- ;;^UTILITY(U,$J,358.3,23399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23399,1,3,0)
- ;;=3^Rumination Disorder
- ;;^UTILITY(U,$J,358.3,23399,1,4,0)
- ;;=4^F98.21
- ;;^UTILITY(U,$J,358.3,23399,2)
- ;;=^5003713
- ;;^UTILITY(U,$J,358.3,23400,0)
- ;;=Z55.9^^61^902^1
- ;;^UTILITY(U,$J,358.3,23400,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23400,1,3,0)
- ;;=3^Academic/Educational Problem
- ;;^UTILITY(U,$J,358.3,23400,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,23400,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,23401,0)
- ;;=Z56.82^^61^902^5
- ;;^UTILITY(U,$J,358.3,23401,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23401,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,23401,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,23401,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,23402,0)
- ;;=Z56.0^^61^902^10
- ;;^UTILITY(U,$J,358.3,23402,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23402,1,3,0)
- ;;=3^Unemployment,Unspec
- ;;^UTILITY(U,$J,358.3,23402,1,4,0)
- ;;=4^Z56.0
- ;;^UTILITY(U,$J,358.3,23402,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,23403,0)
- ;;=Z56.1^^61^902^2
- ;;^UTILITY(U,$J,358.3,23403,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23403,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,23403,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,23403,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,23404,0)
- ;;=Z56.2^^61^902^8
- ;;^UTILITY(U,$J,358.3,23404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23404,1,3,0)
- ;;=3^Threat of Job Loss
- ;;^UTILITY(U,$J,358.3,23404,1,4,0)
- ;;=4^Z56.2
- ;;^UTILITY(U,$J,358.3,23404,2)
- ;;=^5063109
- ;;^UTILITY(U,$J,358.3,23405,0)
- ;;=Z56.3^^61^902^7
- ;;^UTILITY(U,$J,358.3,23405,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23405,1,3,0)
- ;;=3^Stressful Work Schedule
- ;;^UTILITY(U,$J,358.3,23405,1,4,0)
- ;;=4^Z56.3
- ;;^UTILITY(U,$J,358.3,23405,2)
- ;;=^5063110
- ;;^UTILITY(U,$J,358.3,23406,0)
- ;;=Z56.4^^61^902^3
- ;;^UTILITY(U,$J,358.3,23406,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23406,1,3,0)
- ;;=3^Discord w/ Boss and Workmates
- ;;^UTILITY(U,$J,358.3,23406,1,4,0)
- ;;=4^Z56.4
- ;;^UTILITY(U,$J,358.3,23406,2)
- ;;=^5063111
+ ;;^UTILITY(U,$J,358.3,8048,1,3,0)
+ ;;=3^Mycosis Fungoides,Multiple Site Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8048,1,4,0)
+ ;;=4^C84.08
+ ;;^UTILITY(U,$J,358.3,8048,2)
+ ;;=^5001629

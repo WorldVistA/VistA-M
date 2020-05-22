@@ -1,120 +1,124 @@
-IBDEI2IC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2IC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42513,0)
- ;;=W18.40XA^^159^2023^105
- ;;^UTILITY(U,$J,358.3,42513,1,0)
+ ;;^UTILITY(U,$J,358.3,40039,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,40040,0)
+ ;;=F31.9^^152^2004^6
+ ;;^UTILITY(U,$J,358.3,40040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42513,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,42513,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,42513,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,42514,0)
- ;;=W18.40XD^^159^2023^106
- ;;^UTILITY(U,$J,358.3,42514,1,0)
+ ;;^UTILITY(U,$J,358.3,40040,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40040,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,40040,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,40041,0)
+ ;;=F31.72^^152^2004^7
+ ;;^UTILITY(U,$J,358.3,40041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42514,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42514,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,42514,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,42515,0)
- ;;=W18.41XA^^159^2023^107
- ;;^UTILITY(U,$J,358.3,42515,1,0)
+ ;;^UTILITY(U,$J,358.3,40041,1,3,0)
+ ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,40041,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,40041,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,40042,0)
+ ;;=F31.71^^152^2004^5
+ ;;^UTILITY(U,$J,358.3,40042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42515,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,42515,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,42515,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,42516,0)
- ;;=W18.41XD^^159^2023^108
- ;;^UTILITY(U,$J,358.3,42516,1,0)
+ ;;^UTILITY(U,$J,358.3,40042,1,3,0)
+ ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,40042,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,40042,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,40043,0)
+ ;;=F31.70^^152^2004^4
+ ;;^UTILITY(U,$J,358.3,40043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42516,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42516,1,4,0)
- ;;=4^W18.41XD
- ;;^UTILITY(U,$J,358.3,42516,2)
- ;;=^5059822
- ;;^UTILITY(U,$J,358.3,42517,0)
- ;;=W18.42XA^^159^2023^109
- ;;^UTILITY(U,$J,358.3,42517,1,0)
+ ;;^UTILITY(U,$J,358.3,40043,1,3,0)
+ ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec
+ ;;^UTILITY(U,$J,358.3,40043,1,4,0)
+ ;;=4^F31.70
+ ;;^UTILITY(U,$J,358.3,40043,2)
+ ;;=^5003510
+ ;;^UTILITY(U,$J,358.3,40044,0)
+ ;;=F29.^^152^2004^25
+ ;;^UTILITY(U,$J,358.3,40044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42517,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,42517,1,4,0)
- ;;=4^W18.42XA
- ;;^UTILITY(U,$J,358.3,42517,2)
- ;;=^5059824
- ;;^UTILITY(U,$J,358.3,42518,0)
- ;;=W18.42XD^^159^2023^110
- ;;^UTILITY(U,$J,358.3,42518,1,0)
+ ;;^UTILITY(U,$J,358.3,40044,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,40044,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,40044,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,40045,0)
+ ;;=F28.^^152^2004^26
+ ;;^UTILITY(U,$J,358.3,40045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42518,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42518,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,42518,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,42519,0)
- ;;=W18.43XA^^159^2023^103
- ;;^UTILITY(U,$J,358.3,42519,1,0)
+ ;;^UTILITY(U,$J,358.3,40045,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond NEC
+ ;;^UTILITY(U,$J,358.3,40045,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,40045,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,40046,0)
+ ;;=F41.9^^152^2004^3
+ ;;^UTILITY(U,$J,358.3,40046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42519,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,42519,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,42519,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,42520,0)
- ;;=W18.43XD^^159^2023^104
- ;;^UTILITY(U,$J,358.3,42520,1,0)
+ ;;^UTILITY(U,$J,358.3,40046,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40046,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,40046,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,40047,0)
+ ;;=F45.0^^152^2004^29
+ ;;^UTILITY(U,$J,358.3,40047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42520,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42520,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,42520,2)
- ;;=^5059828
- ;;^UTILITY(U,$J,358.3,42521,0)
- ;;=W18.49XA^^159^2023^111
- ;;^UTILITY(U,$J,358.3,42521,1,0)
+ ;;^UTILITY(U,$J,358.3,40047,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,40047,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,40047,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,40048,0)
+ ;;=F69.^^152^2004^2
+ ;;^UTILITY(U,$J,358.3,40048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42521,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,42521,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,42521,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,42522,0)
- ;;=W18.49XD^^159^2023^112
- ;;^UTILITY(U,$J,358.3,42522,1,0)
+ ;;^UTILITY(U,$J,358.3,40048,1,3,0)
+ ;;=3^Adult Personality and Behavior Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40048,1,4,0)
+ ;;=4^F69.
+ ;;^UTILITY(U,$J,358.3,40048,2)
+ ;;=^5003667
+ ;;^UTILITY(U,$J,358.3,40049,0)
+ ;;=F60.9^^152^2004^23
+ ;;^UTILITY(U,$J,358.3,40049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42522,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42522,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,42522,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,42523,0)
- ;;=W19.XXXA^^159^2023^89
- ;;^UTILITY(U,$J,358.3,42523,1,0)
+ ;;^UTILITY(U,$J,358.3,40049,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40049,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,40049,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,40050,0)
+ ;;=F32.9^^152^2004^16
+ ;;^UTILITY(U,$J,358.3,40050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42523,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,42523,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,42523,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,42524,0)
- ;;=W19.XXXD^^159^2023^90
- ;;^UTILITY(U,$J,358.3,42524,1,0)
+ ;;^UTILITY(U,$J,358.3,40050,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,40050,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,40050,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,40051,0)
+ ;;=F40.231^^152^2004^12
+ ;;^UTILITY(U,$J,358.3,40051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42524,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40051,1,3,0)
+ ;;=3^Fear of Injections/Transfusions
+ ;;^UTILITY(U,$J,358.3,40051,1,4,0)
+ ;;=4^F40.231

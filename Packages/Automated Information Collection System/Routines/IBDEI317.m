@@ -1,134 +1,128 @@
-IBDEI317 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI317 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50825,1,4,0)
- ;;=4^M48.38
- ;;^UTILITY(U,$J,358.3,50825,2)
- ;;=^5012122
- ;;^UTILITY(U,$J,358.3,50826,0)
- ;;=M48.9^^222^2466^254
- ;;^UTILITY(U,$J,358.3,50826,1,0)
+ ;;^UTILITY(U,$J,358.3,48406,1,3,0)
+ ;;=3^Infection,Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,48406,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,48406,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,48407,0)
+ ;;=Z87.01^^185^2421^26
+ ;;^UTILITY(U,$J,358.3,48407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50826,1,3,0)
- ;;=3^Spondylopathy, unspec
- ;;^UTILITY(U,$J,358.3,50826,1,4,0)
- ;;=4^M48.9
- ;;^UTILITY(U,$J,358.3,50826,2)
- ;;=^5012204
- ;;^UTILITY(U,$J,358.3,50827,0)
- ;;=M47.819^^222^2466^243
- ;;^UTILITY(U,$J,358.3,50827,1,0)
+ ;;^UTILITY(U,$J,358.3,48407,1,3,0)
+ ;;=3^Person Hx of Pneumonia
+ ;;^UTILITY(U,$J,358.3,48407,1,4,0)
+ ;;=4^Z87.01
+ ;;^UTILITY(U,$J,358.3,48407,2)
+ ;;=^5063480
+ ;;^UTILITY(U,$J,358.3,48408,0)
+ ;;=Z86.11^^185^2421^29
+ ;;^UTILITY(U,$J,358.3,48408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50827,1,3,0)
- ;;=3^Spndylsis w/o mylopthy or radclpthy, site unsp
- ;;^UTILITY(U,$J,358.3,50827,1,4,0)
- ;;=4^M47.819
- ;;^UTILITY(U,$J,358.3,50827,2)
- ;;=^5012076
- ;;^UTILITY(U,$J,358.3,50828,0)
- ;;=M47.10^^222^2466^240
- ;;^UTILITY(U,$J,358.3,50828,1,0)
+ ;;^UTILITY(U,$J,358.3,48408,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,48408,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,48408,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,48409,0)
+ ;;=Z86.13^^185^2421^28
+ ;;^UTILITY(U,$J,358.3,48409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50828,1,3,0)
- ;;=3^Spndylsis w/ mylopthy, unspec site
- ;;^UTILITY(U,$J,358.3,50828,1,4,0)
- ;;=4^M47.10
- ;;^UTILITY(U,$J,358.3,50828,2)
- ;;=^5012050
- ;;^UTILITY(U,$J,358.3,50829,0)
- ;;=M75.01^^222^2466^36
- ;;^UTILITY(U,$J,358.3,50829,1,0)
+ ;;^UTILITY(U,$J,358.3,48409,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,48409,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,48409,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,48410,0)
+ ;;=Z86.14^^185^2421^27
+ ;;^UTILITY(U,$J,358.3,48410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50829,1,3,0)
- ;;=3^Adhesive capsulitis, rt shoulder
- ;;^UTILITY(U,$J,358.3,50829,1,4,0)
- ;;=4^M75.01
- ;;^UTILITY(U,$J,358.3,50829,2)
- ;;=^5013239
- ;;^UTILITY(U,$J,358.3,50830,0)
- ;;=M75.02^^222^2466^35
- ;;^UTILITY(U,$J,358.3,50830,1,0)
+ ;;^UTILITY(U,$J,358.3,48410,1,3,0)
+ ;;=3^Personal Hx of MRSA
+ ;;^UTILITY(U,$J,358.3,48410,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,48410,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,48411,0)
+ ;;=B94.9^^185^2421^30
+ ;;^UTILITY(U,$J,358.3,48411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50830,1,3,0)
- ;;=3^Adhesive capsulitis, lft shoulder
- ;;^UTILITY(U,$J,358.3,50830,1,4,0)
- ;;=4^M75.02
- ;;^UTILITY(U,$J,358.3,50830,2)
- ;;=^5013240
- ;;^UTILITY(U,$J,358.3,50831,0)
- ;;=M75.101^^222^2466^216
- ;;^UTILITY(U,$J,358.3,50831,1,0)
+ ;;^UTILITY(U,$J,358.3,48411,1,3,0)
+ ;;=3^Sequelae of Infectious/Parasitic Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,48411,1,4,0)
+ ;;=4^B94.9
+ ;;^UTILITY(U,$J,358.3,48411,2)
+ ;;=^5000834
+ ;;^UTILITY(U,$J,358.3,48412,0)
+ ;;=B91.^^185^2421^31
+ ;;^UTILITY(U,$J,358.3,48412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50831,1,3,0)
- ;;=3^Rotatr-cuff tear/rptr of rt shldr, not trauma, unsp
- ;;^UTILITY(U,$J,358.3,50831,1,4,0)
- ;;=4^M75.101
- ;;^UTILITY(U,$J,358.3,50831,2)
- ;;=^5013242
- ;;^UTILITY(U,$J,358.3,50832,0)
- ;;=M75.102^^222^2466^215
- ;;^UTILITY(U,$J,358.3,50832,1,0)
+ ;;^UTILITY(U,$J,358.3,48412,1,3,0)
+ ;;=3^Sequelae of Poliomyelitis
+ ;;^UTILITY(U,$J,358.3,48412,1,4,0)
+ ;;=4^B91.
+ ;;^UTILITY(U,$J,358.3,48412,2)
+ ;;=^5000828
+ ;;^UTILITY(U,$J,358.3,48413,0)
+ ;;=B90.9^^185^2421^32
+ ;;^UTILITY(U,$J,358.3,48413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50832,1,3,0)
- ;;=3^Rotatr-cuff tear/rptr of lft shldr, not trauma, unsp
- ;;^UTILITY(U,$J,358.3,50832,1,4,0)
- ;;=4^M75.102
- ;;^UTILITY(U,$J,358.3,50832,2)
- ;;=^5013243
- ;;^UTILITY(U,$J,358.3,50833,0)
- ;;=M75.51^^222^2466^70
- ;;^UTILITY(U,$J,358.3,50833,1,0)
+ ;;^UTILITY(U,$J,358.3,48413,1,3,0)
+ ;;=3^Sequelae of Tuberculosis,Respiratory & Unspec
+ ;;^UTILITY(U,$J,358.3,48413,1,4,0)
+ ;;=4^B90.9
+ ;;^UTILITY(U,$J,358.3,48413,2)
+ ;;=^5000827
+ ;;^UTILITY(U,$J,358.3,48414,0)
+ ;;=A92.5^^185^2421^33
+ ;;^UTILITY(U,$J,358.3,48414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50833,1,3,0)
- ;;=3^Bursitis, rt shoulder
- ;;^UTILITY(U,$J,358.3,50833,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,50833,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,50834,0)
- ;;=M75.52^^222^2466^68
- ;;^UTILITY(U,$J,358.3,50834,1,0)
+ ;;^UTILITY(U,$J,358.3,48414,1,3,0)
+ ;;=3^Zika Virus Disease (Confirmed)
+ ;;^UTILITY(U,$J,358.3,48414,1,4,0)
+ ;;=4^A92.5
+ ;;^UTILITY(U,$J,358.3,48414,2)
+ ;;=^7006765
+ ;;^UTILITY(U,$J,358.3,48415,0)
+ ;;=Z90.5^^185^2422^1
+ ;;^UTILITY(U,$J,358.3,48415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50834,1,3,0)
- ;;=3^Bursitis, lft shoulder
- ;;^UTILITY(U,$J,358.3,50834,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,50834,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,50835,0)
- ;;=M75.31^^222^2466^91
- ;;^UTILITY(U,$J,358.3,50835,1,0)
+ ;;^UTILITY(U,$J,358.3,48415,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,48415,1,4,0)
+ ;;=4^Z90.5
+ ;;^UTILITY(U,$J,358.3,48415,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,48416,0)
+ ;;=N20.2^^185^2422^2
+ ;;^UTILITY(U,$J,358.3,48416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50835,1,3,0)
- ;;=3^Calcific tendinitis, rt shoulder
- ;;^UTILITY(U,$J,358.3,50835,1,4,0)
- ;;=4^M75.31
- ;;^UTILITY(U,$J,358.3,50835,2)
- ;;=^5013254
- ;;^UTILITY(U,$J,358.3,50836,0)
- ;;=M75.32^^222^2466^90
- ;;^UTILITY(U,$J,358.3,50836,1,0)
+ ;;^UTILITY(U,$J,358.3,48416,1,3,0)
+ ;;=3^Calculus of Kidney w/ Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,48416,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,48416,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,48417,0)
+ ;;=N21.9^^185^2422^3
+ ;;^UTILITY(U,$J,358.3,48417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50836,1,3,0)
- ;;=3^Calcific tendinitis, lft shoulder
- ;;^UTILITY(U,$J,358.3,50836,1,4,0)
- ;;=4^M75.32
- ;;^UTILITY(U,$J,358.3,50836,2)
- ;;=^5013255
- ;;^UTILITY(U,$J,358.3,50837,0)
- ;;=M75.21^^222^2466^64
- ;;^UTILITY(U,$J,358.3,50837,1,0)
+ ;;^UTILITY(U,$J,358.3,48417,1,3,0)
+ ;;=3^Calculus of Lower Urinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,48417,1,4,0)
+ ;;=4^N21.9
+ ;;^UTILITY(U,$J,358.3,48417,2)
+ ;;=^5015613
+ ;;^UTILITY(U,$J,358.3,48418,0)
+ ;;=N20.9^^185^2422^4
+ ;;^UTILITY(U,$J,358.3,48418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50837,1,3,0)
- ;;=3^Bicipital tendinitis, rt shoulder
- ;;^UTILITY(U,$J,358.3,50837,1,4,0)
- ;;=4^M75.21
- ;;^UTILITY(U,$J,358.3,50837,2)
- ;;=^5013251
- ;;^UTILITY(U,$J,358.3,50838,0)
- ;;=M75.22^^222^2466^63
- ;;^UTILITY(U,$J,358.3,50838,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50838,1,3,0)
- ;;=3^Bicipital tendinitis, lft shoulder
+ ;;^UTILITY(U,$J,358.3,48418,1,3,0)
+ ;;=3^Calculus,Urinary,Unspec
+ ;;^UTILITY(U,$J,358.3,48418,1,4,0)
+ ;;=4^N20.9

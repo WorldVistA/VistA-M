@@ -1,124 +1,124 @@
-IBDEI1Q5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29266,2)
- ;;=^5017246
- ;;^UTILITY(U,$J,358.3,29267,0)
- ;;=O41.1020^^115^1456^27
- ;;^UTILITY(U,$J,358.3,29267,1,0)
+ ;;^UTILITY(U,$J,358.3,27560,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,27560,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,27561,0)
+ ;;=F31.60^^113^1339^9
+ ;;^UTILITY(U,$J,358.3,27561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29267,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, unsp
- ;;^UTILITY(U,$J,358.3,29267,1,4,0)
- ;;=4^O41.1020
- ;;^UTILITY(U,$J,358.3,29267,2)
- ;;=^5017248
- ;;^UTILITY(U,$J,358.3,29268,0)
- ;;=O41.1021^^115^1456^28
- ;;^UTILITY(U,$J,358.3,29268,1,0)
+ ;;^UTILITY(U,$J,358.3,27561,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Unspec
+ ;;^UTILITY(U,$J,358.3,27561,1,4,0)
+ ;;=4^F31.60
+ ;;^UTILITY(U,$J,358.3,27561,2)
+ ;;=^5003505
+ ;;^UTILITY(U,$J,358.3,27562,0)
+ ;;=F31.61^^113^1339^5
+ ;;^UTILITY(U,$J,358.3,27562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29268,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,29268,1,4,0)
- ;;=4^O41.1021
- ;;^UTILITY(U,$J,358.3,29268,2)
- ;;=^5017249
- ;;^UTILITY(U,$J,358.3,29269,0)
- ;;=O41.1022^^115^1456^29
- ;;^UTILITY(U,$J,358.3,29269,1,0)
+ ;;^UTILITY(U,$J,358.3,27562,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Mild
+ ;;^UTILITY(U,$J,358.3,27562,1,4,0)
+ ;;=4^F31.61
+ ;;^UTILITY(U,$J,358.3,27562,2)
+ ;;=^5003506
+ ;;^UTILITY(U,$J,358.3,27563,0)
+ ;;=F31.62^^113^1339^6
+ ;;^UTILITY(U,$J,358.3,27563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29269,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,29269,1,4,0)
- ;;=4^O41.1022
- ;;^UTILITY(U,$J,358.3,29269,2)
- ;;=^5017250
- ;;^UTILITY(U,$J,358.3,29270,0)
- ;;=O41.1023^^115^1456^30
- ;;^UTILITY(U,$J,358.3,29270,1,0)
+ ;;^UTILITY(U,$J,358.3,27563,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Moderate
+ ;;^UTILITY(U,$J,358.3,27563,1,4,0)
+ ;;=4^F31.62
+ ;;^UTILITY(U,$J,358.3,27563,2)
+ ;;=^5003507
+ ;;^UTILITY(U,$J,358.3,27564,0)
+ ;;=F31.63^^113^1339^7
+ ;;^UTILITY(U,$J,358.3,27564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29270,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,29270,1,4,0)
- ;;=4^O41.1023
- ;;^UTILITY(U,$J,358.3,29270,2)
- ;;=^5017251
- ;;^UTILITY(U,$J,358.3,29271,0)
- ;;=O41.1024^^115^1456^31
- ;;^UTILITY(U,$J,358.3,29271,1,0)
+ ;;^UTILITY(U,$J,358.3,27564,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/o Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,27564,1,4,0)
+ ;;=4^F31.63
+ ;;^UTILITY(U,$J,358.3,27564,2)
+ ;;=^5003508
+ ;;^UTILITY(U,$J,358.3,27565,0)
+ ;;=F31.64^^113^1339^8
+ ;;^UTILITY(U,$J,358.3,27565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29271,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29271,1,4,0)
- ;;=4^O41.1024
- ;;^UTILITY(U,$J,358.3,29271,2)
- ;;=^5017252
- ;;^UTILITY(U,$J,358.3,29272,0)
- ;;=O41.1025^^115^1456^32
- ;;^UTILITY(U,$J,358.3,29272,1,0)
+ ;;^UTILITY(U,$J,358.3,27565,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,27565,1,4,0)
+ ;;=4^F31.64
+ ;;^UTILITY(U,$J,358.3,27565,2)
+ ;;=^5003509
+ ;;^UTILITY(U,$J,358.3,27566,0)
+ ;;=A81.00^^113^1340^8
+ ;;^UTILITY(U,$J,358.3,27566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29272,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,29272,1,4,0)
- ;;=4^O41.1025
- ;;^UTILITY(U,$J,358.3,29272,2)
- ;;=^5017253
- ;;^UTILITY(U,$J,358.3,29273,0)
- ;;=O41.1030^^115^1456^33
- ;;^UTILITY(U,$J,358.3,29273,1,0)
+ ;;^UTILITY(U,$J,358.3,27566,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,27566,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,27566,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,27567,0)
+ ;;=A81.09^^113^1340^7
+ ;;^UTILITY(U,$J,358.3,27567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29273,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, unsp
- ;;^UTILITY(U,$J,358.3,29273,1,4,0)
- ;;=4^O41.1030
- ;;^UTILITY(U,$J,358.3,29273,2)
- ;;=^5017255
- ;;^UTILITY(U,$J,358.3,29274,0)
- ;;=O41.1031^^115^1456^34
- ;;^UTILITY(U,$J,358.3,29274,1,0)
+ ;;^UTILITY(U,$J,358.3,27567,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,27567,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,27567,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,27568,0)
+ ;;=A81.2^^113^1340^29
+ ;;^UTILITY(U,$J,358.3,27568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29274,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,29274,1,4,0)
- ;;=4^O41.1031
- ;;^UTILITY(U,$J,358.3,29274,2)
- ;;=^5017256
- ;;^UTILITY(U,$J,358.3,29275,0)
- ;;=O41.1032^^115^1456^35
- ;;^UTILITY(U,$J,358.3,29275,1,0)
+ ;;^UTILITY(U,$J,358.3,27568,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,27568,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,27568,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,27569,0)
+ ;;=F01.51^^113^1340^32
+ ;;^UTILITY(U,$J,358.3,27569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29275,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,29275,1,4,0)
- ;;=4^O41.1032
- ;;^UTILITY(U,$J,358.3,29275,2)
- ;;=^5017257
- ;;^UTILITY(U,$J,358.3,29276,0)
- ;;=O41.1033^^115^1456^36
- ;;^UTILITY(U,$J,358.3,29276,1,0)
+ ;;^UTILITY(U,$J,358.3,27569,1,3,0)
+ ;;=3^Vascular Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,27569,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,27569,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,27570,0)
+ ;;=G30.9^^113^1340^4
+ ;;^UTILITY(U,$J,358.3,27570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29276,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,29276,1,4,0)
- ;;=4^O41.1033
- ;;^UTILITY(U,$J,358.3,29276,2)
- ;;=^5017258
- ;;^UTILITY(U,$J,358.3,29277,0)
- ;;=O41.1034^^115^1456^37
- ;;^UTILITY(U,$J,358.3,29277,1,0)
+ ;;^UTILITY(U,$J,358.3,27570,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,27570,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,27570,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,27571,0)
+ ;;=G31.01^^113^1340^27
+ ;;^UTILITY(U,$J,358.3,27571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29277,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29277,1,4,0)
- ;;=4^O41.1034
- ;;^UTILITY(U,$J,358.3,29277,2)
- ;;=^5017259
- ;;^UTILITY(U,$J,358.3,29278,0)
- ;;=O41.1035^^115^1456^38
- ;;^UTILITY(U,$J,358.3,29278,1,0)
+ ;;^UTILITY(U,$J,358.3,27571,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,27571,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,27571,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,27572,0)
+ ;;=G94.^^113^1340^6
+ ;;^UTILITY(U,$J,358.3,27572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29278,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, fetus 5
- ;;^UTILITY(U,$J,358.3,29278,1,4,0)
- ;;=4^O41.1035
+ ;;^UTILITY(U,$J,358.3,27572,1,3,0)
+ ;;=3^Brain D/O in Diseases Classified Elsewhere NEC

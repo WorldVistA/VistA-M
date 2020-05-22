@@ -1,5 +1,5 @@
-SDEC50 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ; 22 Mar 2019  3:20 PM
- ;;5.3;Scheduling;**627,658,665,672,722,723**;Aug 13, 1993;Build 21
+SDEC50 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ; 01 Nov 2019  11:42 AM
+ ;;5.3;Scheduling;**627,658,665,672,722,723,737**;Aug 13, 1993;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
@@ -26,11 +26,6 @@ FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patien
  ; Caught Exception Return:
  ;   A single entry in the Global Array in the format "-1^<error text>"
  ;   "T00020RETURNCODE^T00100TEXT"
- ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
  ;
  N IEN,SDANCT,SDCL,SDCLN,SDCONS,SDATA,SDDT,SDST,SDT,X,Y,%DT
  N SDTMP,SDTYP,SDTYPN,SDNOD,SDRES,SDNOD2,SDLNK ;alb/sat 672 ;*zeb 723 5/2/19 added SDNOD2,SDLNK
@@ -72,7 +67,8 @@ FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patien
  .. S SDDT=$$GET1^DIQ(409.84,IEN_",",.01) ;appointment start date/time ;used GET1 instead of ^DD("DD") because GUI needs leading zeroes
  .. S SDST=$$APPTSTS(IEN,SDNOD,SDCL) ;current status
  .. S SDTYP=$P(SDNOD,U,6) ;appt type id
- .. S SDTYPN=$P($G(^SD(409.1,SDTYP,0)),U,1)    ;appt type name
+ .. I SDTYP S SDTYPN=$P($G(^SD(409.1,SDTYP,0)),U,1) ;appt type name
+ .. E  S SDTYPN="REGULAR",SDTYP=$O(^SD(409.1,"B",SDTYPN,0)) ; Handle missing appt type 737 WTC 11/19/2019
  .. S SDNOD2=$G(^SDEC(409.84,IEN,2)),SDLNK=""
  .. S SDLNK=$S(SDNOD2="":"",1:$P(SDNOD2,U,1))
  .. S CONS=$S(SDLNK="":"",$P(SDLNK,";",2)["GMR":$P(SDLNK,";",1),1:"")
@@ -95,7 +91,6 @@ APPTSTS(APPTIEN,APPTNOD,CLINIEN) ;Get current status for an entry in the SDEC AP
  S STS=$P(APPTNOD,U,17)
  I STS]"" S STS=$P($P($P(^DD(409.84,.17,0),"^",3),STS_":",2),";",1) I 1 ;name for status code
  E  I CLINIEN]"" S:$P($G(^SC(CLINIEN,0)),U,17)="Y" STS="NON-COUNT" ;check for non-count clinic ;*zeb+1 723 5/2/19 don't crash if resource/clinic not available
- ;I ((CLINIEN]"")&(STS="NO ACTION TAKEN")) S OEIEN=$$GETAPT^SDVSIT2(DFN,SDT,CLINIEN) S:OEIEN]"" STS="" ; wtc 723 8/20/2019 - disabled 'cause it creates encounters
  I CLINIEN'="",STS="NO ACTION TAKEN",OEIEN'="" S STS="" ; wtc 723 8/20/2019
  ; -- no show?
  I $P(APPTNOD,U,10)=1 D
@@ -111,13 +106,26 @@ APPTSTS(APPTIEN,APPTNOD,CLINIEN) ;Get current status for an entry in the SDEC AP
  . . S STS="CANCELLED BY CLINIC" ;must specify clinic or patient, default to clinic if information is lost
  . S STS="NO-SHOW"
  ; -- inpatient?
- ; WTC 722 3/22/19 ; I STS="" S:$$INP^SDAM2(DFN,SDT)="I" STS="INPATIENT"
+ ; WTC 722 3/22/19 ;
  I STS=""!($P(APPTNOD,U,17)="I"),$$INP^SDAM2(DFN,SDT)="I" S STS=$S($P(APPTNOD,U,12)="":"INPATIENT",$P($G(^DPT(DFN,"S",SDT,0)),U,2)="PC":"CANCELLED BY PATIENT",1:"CANCELLED BY CLINIC") ; WTC 722 3/27/2019
  S VAINDT=SDT D ADM^VADPT2 ;ADM^VADPT2 assumes VAINDT and returns in VADMVT
  I STS["INPATIENT",$S('VADMVT:1,'$P(^DG(43,1,0),U,21):0,1:$P($G(^DIC(42,+$P($G(^DGPM(VADMVT,0)),U,6),0)),U,3)="D") S STS=""
  ; -- determine ci/co indicator
  S CHKIO=$S($P(APPTNOD,U,14)]"":"CHECKED OUT",$P(APPTNOD,U,3)]"":"CHECKED IN",SDT>(DT+.2400):"FUTURE",1:"NO ACTION TAKEN") ;DT is a FileMan-assumable variable with the current date
+ ;
+ ;  Look for check-in time in the Location file (#44) if check-in/out indicator is NO ACTION TAKEN.  Needed 'cause VPS does not update Appointment file. wtc 10/31/2019 737
+ I CHKIO="NO ACTION TAKEN",CLINIEN'="" D  ;
+ . N SDECD2 S SDECD2=$$FIND^SDAM2(DFN,SDT,CLINIEN) I SDECD2,$P($G(^SC(CLINIEN,"S",SDT,1,SDECD2,"C")),U,1)'="" S CHKIO="CHECKED IN" ;
+ ;
  S:STS="" STS=CHKIO
+ ;
+ ;  If status is NO ACTION TAKEN, check if cancelled in Patient file (by SDCANCEL),  wtc 11/4/2019 737
+ ;  Changed to if status not cancelled, check if cancelled in Patient file.  wtc 1/17/2020 737
+ ;
+ I STS'["CANCELLED" D  ;
+ . I $P($G(^DPT(DFN,"S",SDT,0)),U,1)'=CLINIEN Q  ;  If appointment does not match, leave status alone.
+ . S STS=$S($P($G(^DPT(DFN,"S",SDT,0)),U,2)="PC":"CANCELLED BY PATIENT",$P($G(^DPT(DFN,"S",SDT,0)),U,2)="C":"CANCELLED BY CLINIC",1:STS) ;
+ ;
  I (STS="NO ACTION TAKEN"),($P(SDT,".")=DT),(CHKIO'["CHECKED") S CHKIO="TODAY"
  ; -- determine print status
  I STS["CANCELLED" Q STS
@@ -188,11 +196,7 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  ; Caught Exception Return:
  ;   A single entry in the Global Array in the format "-1^<error text>"
  ;   "T00020RETURNCODE^T00100TEXT"
- ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
+ ;
  N SDASD,SDECI,SDS,STOP,SDYN,SDSCL
  ;N SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL,SDYN  alb/jsm 658 commented out since variables not used here
  N X,Y,%DT,APIEN
@@ -216,13 +220,6 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  I '+STOP D ERR1^SDECERR(-1,"Clinic "_$P($G(^SC(+$G(SDCL),0)),U,1)_" does not have a STOP CODE NUMBER defined.",SDECI,SDECY) Q
  S SDYN="NO"
  D CHKPT
- ;look in HOSPITAL LOCATION
- ; alb/jsm 658 removing this block of code since we already loop through patient appointments for evaluation
- ;I SDYN'="YES" D
- ;.S SDS=SDBEG F  S SDS=$O(^SC(SDCL,"S",SDS)) Q:SDS'>0  Q:SDS>SDEND  D  Q:SDYN="YES"
- ;..S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
- ;..Q:APIEN=""
- ;..S:$P($G(^SC(SDCL,"S",SDS,1,APIEN,"C")),U,1)'="" SDYN="YES"
  S SDECI=SDECI+1 S @SDECY@(SDECI)="0^"_SDYN_$C(30,31)
  Q
  ;
@@ -257,11 +254,7 @@ PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/s
  ; Caught Exception Return:
  ;   A single entry in the Global Array in the format "-1^<error text>"
  ;   "T00020RETURNCODE^T00100TEXT"
- ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
+ ;
  N SDASD,SDF,SDSCN,SDECI,SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL,SDYN
  N H,WLSRVSP,X,Y,%DT
  S WLSRVSP=""
@@ -275,7 +268,6 @@ PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/s
  I '$D(^DPT(DFN,0)) D ERR1^SDECERR(-1,"Invalid Patient ID.",SDECI,SDECY) Q
  ;check for valid Service/Specialty
  S STOP=$G(STOP)
- ;I +SDSVSP,$D(^SDWL(409.31,SDSVSP,0)) S SDSCN=$P($G(^SDWL(409.31,SDSVSP,0)),U,1) S SDF=1
  I +STOP,'$D(^DIC(40.7,STOP,0)) D ERR1^SDECERR(-1,"Invalid stop code.",SDECI,SDECY) Q
  I +STOP S SDSCN=$$GET1^DIQ(40.7,STOP_",",.01) S SDF=1
  I 'SDF,'+STOP D
@@ -289,10 +281,6 @@ PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/s
  I $G(SDEND)'="" S %DT="" S X=$P(SDEND,"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND="" Q
  S:$G(SDEND)="" SDEND=$P($$NOW^XLFDT,".",1)
  S SDYN="NO"
- ;D LOOKWL  alb/jsm 658 removed only concerned with patient appts that have a check-out date/time
- ;I SDYN'="YES" S SDCL=0 F  S SDCL=$O(^SC(SDCL)) Q:SDCL'>0  D  Q:SDYN="YES"
- ;.S SDCLN=$$CLSTOP(SDCL)  ; alb/jsm 658 updated to use CLSTOP $P($G(^SC(SDCL,0)),U,7)
- ;.D:SDCLN=STOP LOOK
  D CHKPT
  S SDECI=SDECI+1 S @SDECY@(SDECI)="0^"_SDYN_$C(30,31)
  Q
@@ -338,11 +326,7 @@ PCSGET(SDECY,SDSVSP,SDCL)  ;GET clinics for a service/specialty (clinic stop)  ;
  ; Caught Exception Return:
  ;   A single entry in the Global Array in the format "-1^<error text>"
  ;   "T00020RETURNCODE^T00100TEXT"
- ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
+ ;
  N SDASD,SDSCN,SDECI,SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL
  N H,WLSRVSP,X,Y
  S WLSRVSP=""
@@ -370,3 +354,4 @@ PCSGET(SDECY,SDSVSP,SDCL)  ;GET clinics for a service/specialty (clinic stop)  ;
  .I SDCLN=SDSCN S SDECI=SDECI+1 S @SDECY@(SDECI)=SDSCN_U_SDCL_U_$P($G(^SC(SDCL,0)),U,1)_$C(30)
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
  Q
+ ;

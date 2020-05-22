@@ -1,132 +1,124 @@
-IBDEI1BQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22506,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,22506,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,22507,0)
- ;;=C50.921^^87^981^156
- ;;^UTILITY(U,$J,358.3,22507,1,0)
+ ;;^UTILITY(U,$J,358.3,21156,0)
+ ;;=F43.25^^95^1049^6
+ ;;^UTILITY(U,$J,358.3,21156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22507,1,3,0)
- ;;=3^Malig Neop Right Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,22507,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,22507,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,22508,0)
- ;;=C90.02^^87^981^167
- ;;^UTILITY(U,$J,358.3,22508,1,0)
+ ;;^UTILITY(U,$J,358.3,21156,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,21156,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,21156,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,21157,0)
+ ;;=F43.20^^95^1049^7
+ ;;^UTILITY(U,$J,358.3,21157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22508,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,22508,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,22508,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,22509,0)
- ;;=D51.9^^87^981^25
- ;;^UTILITY(U,$J,358.3,22509,1,0)
+ ;;^UTILITY(U,$J,358.3,21157,1,3,0)
+ ;;=3^Adjustment Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21157,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,21157,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,21158,0)
+ ;;=F43.9^^95^1049^12
+ ;;^UTILITY(U,$J,358.3,21158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22509,1,3,0)
- ;;=3^Anemia in Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,22509,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,22509,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,22510,0)
- ;;=C79.51^^87^981^30
- ;;^UTILITY(U,$J,358.3,22510,1,0)
+ ;;^UTILITY(U,$J,358.3,21158,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21158,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,21158,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,21159,0)
+ ;;=F94.1^^95^1049^10
+ ;;^UTILITY(U,$J,358.3,21159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22510,1,3,0)
- ;;=3^Bone Mets
- ;;^UTILITY(U,$J,358.3,22510,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,22510,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,22511,0)
- ;;=C80.1^^87^981^163
- ;;^UTILITY(U,$J,358.3,22511,1,0)
+ ;;^UTILITY(U,$J,358.3,21159,1,3,0)
+ ;;=3^Reactive Attachment Disorder
+ ;;^UTILITY(U,$J,358.3,21159,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,21159,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,21160,0)
+ ;;=F94.2^^95^1049^8
+ ;;^UTILITY(U,$J,358.3,21160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22511,1,3,0)
- ;;=3^Malig Neop,Primary,Unspec Site
- ;;^UTILITY(U,$J,358.3,22511,1,4,0)
- ;;=4^C80.1
- ;;^UTILITY(U,$J,358.3,22511,2)
- ;;=^5001389
- ;;^UTILITY(U,$J,358.3,22512,0)
- ;;=C80.0^^87^981^164
- ;;^UTILITY(U,$J,358.3,22512,1,0)
+ ;;^UTILITY(U,$J,358.3,21160,1,3,0)
+ ;;=3^Disinhibited Social Engagement Disorder
+ ;;^UTILITY(U,$J,358.3,21160,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,21160,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,21161,0)
+ ;;=F43.8^^95^1049^11
+ ;;^UTILITY(U,$J,358.3,21161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22512,1,3,0)
- ;;=3^Malig Neop,Unspec Primary or Secondary
- ;;^UTILITY(U,$J,358.3,22512,1,4,0)
- ;;=4^C80.0
- ;;^UTILITY(U,$J,358.3,22512,2)
- ;;=^5001388
- ;;^UTILITY(U,$J,358.3,22513,0)
- ;;=Z85.818^^87^982^92
- ;;^UTILITY(U,$J,358.3,22513,1,0)
+ ;;^UTILITY(U,$J,358.3,21161,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,21161,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,21161,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,21162,0)
+ ;;=F43.10^^95^1049^9
+ ;;^UTILITY(U,$J,358.3,21162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22513,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,22513,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,22513,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,22514,0)
- ;;=Z85.819^^87^982^93
- ;;^UTILITY(U,$J,358.3,22514,1,0)
+ ;;^UTILITY(U,$J,358.3,21162,1,3,0)
+ ;;=3^Post-traumatic Stress Disorder
+ ;;^UTILITY(U,$J,358.3,21162,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,21162,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,21163,0)
+ ;;=F18.10^^95^1050^25
+ ;;^UTILITY(U,$J,358.3,21163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22514,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,22514,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,22514,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,22515,0)
- ;;=Z85.01^^87^982^88
- ;;^UTILITY(U,$J,358.3,22515,1,0)
+ ;;^UTILITY(U,$J,358.3,21163,1,3,0)
+ ;;=3^Inhalant Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,21163,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,21163,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,21164,0)
+ ;;=F18.20^^95^1050^2
+ ;;^UTILITY(U,$J,358.3,21164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22515,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,22515,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,22515,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,22516,0)
- ;;=Z85.028^^87^982^99
- ;;^UTILITY(U,$J,358.3,22516,1,0)
+ ;;^UTILITY(U,$J,358.3,21164,1,3,0)
+ ;;=3^Inhalant Dependence
+ ;;^UTILITY(U,$J,358.3,21164,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,21164,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,21165,0)
+ ;;=F18.14^^95^1050^6
+ ;;^UTILITY(U,$J,358.3,21165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22516,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
- ;;^UTILITY(U,$J,358.3,22516,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,22516,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,22517,0)
- ;;=Z85.038^^87^982^90
- ;;^UTILITY(U,$J,358.3,22517,1,0)
+ ;;^UTILITY(U,$J,358.3,21165,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21165,1,4,0)
+ ;;=4^F18.14
+ ;;^UTILITY(U,$J,358.3,21165,2)
+ ;;=^5003384
+ ;;^UTILITY(U,$J,358.3,21166,0)
+ ;;=F18.24^^95^1050^7
+ ;;^UTILITY(U,$J,358.3,21166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22517,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,22517,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,22517,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,22518,0)
- ;;=Z85.048^^87^982^97
- ;;^UTILITY(U,$J,358.3,22518,1,0)
+ ;;^UTILITY(U,$J,358.3,21166,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/ Moderate to Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21166,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,21166,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,21167,0)
+ ;;=F18.121^^95^1050^18
+ ;;^UTILITY(U,$J,358.3,21167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22518,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,22518,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,22518,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,22519,0)
- ;;=Z85.118^^87^982^86
- ;;^UTILITY(U,$J,358.3,22519,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21167,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21167,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,21167,2)
+ ;;=^5003382

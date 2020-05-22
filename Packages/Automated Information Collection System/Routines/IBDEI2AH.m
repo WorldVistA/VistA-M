@@ -1,134 +1,126 @@
-IBDEI2AH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38833,1,4,0)
- ;;=4^D22.21
- ;;^UTILITY(U,$J,358.3,38833,2)
- ;;=^5002046
- ;;^UTILITY(U,$J,358.3,38834,0)
- ;;=D22.22^^151^1902^34
- ;;^UTILITY(U,$J,358.3,38834,1,0)
+ ;;^UTILITY(U,$J,358.3,36556,0)
+ ;;=C07.^^142^1863^336
+ ;;^UTILITY(U,$J,358.3,36556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38834,1,3,0)
- ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,38834,1,4,0)
- ;;=4^D22.22
- ;;^UTILITY(U,$J,358.3,38834,2)
- ;;=^5002047
- ;;^UTILITY(U,$J,358.3,38835,0)
- ;;=D22.30^^151^1902^45
- ;;^UTILITY(U,$J,358.3,38835,1,0)
+ ;;^UTILITY(U,$J,358.3,36556,1,3,0)
+ ;;=3^Malig Neop Parotid Gland
+ ;;^UTILITY(U,$J,358.3,36556,1,4,0)
+ ;;=4^C07.
+ ;;^UTILITY(U,$J,358.3,36556,2)
+ ;;=^267005
+ ;;^UTILITY(U,$J,358.3,36557,0)
+ ;;=C44.209^^142^1863^349
+ ;;^UTILITY(U,$J,358.3,36557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38835,1,3,0)
- ;;=3^Melanocytic Nevi of Unspec Part of Face
- ;;^UTILITY(U,$J,358.3,38835,1,4,0)
- ;;=4^D22.30
- ;;^UTILITY(U,$J,358.3,38835,2)
- ;;=^5002048
- ;;^UTILITY(U,$J,358.3,38836,0)
- ;;=D22.4^^151^1902^43
- ;;^UTILITY(U,$J,358.3,38836,1,0)
+ ;;^UTILITY(U,$J,358.3,36557,1,3,0)
+ ;;=3^Malig Neop Skin,Unspec,Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,36557,1,4,0)
+ ;;=4^C44.209
+ ;;^UTILITY(U,$J,358.3,36557,2)
+ ;;=^5001030
+ ;;^UTILITY(U,$J,358.3,36558,0)
+ ;;=C44.202^^142^1863^337
+ ;;^UTILITY(U,$J,358.3,36558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38836,1,3,0)
- ;;=3^Melanocytic Nevi of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,38836,1,4,0)
- ;;=4^D22.4
- ;;^UTILITY(U,$J,358.3,38836,2)
- ;;=^5002050
- ;;^UTILITY(U,$J,358.3,38837,0)
- ;;=D22.5^^151^1902^44
- ;;^UTILITY(U,$J,358.3,38837,1,0)
+ ;;^UTILITY(U,$J,358.3,36558,1,3,0)
+ ;;=3^Malig Neop Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,36558,1,4,0)
+ ;;=4^C44.202
+ ;;^UTILITY(U,$J,358.3,36558,2)
+ ;;=^5001029
+ ;;^UTILITY(U,$J,358.3,36559,0)
+ ;;=S02.401A^^142^1863^356
+ ;;^UTILITY(U,$J,358.3,36559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38837,1,3,0)
- ;;=3^Melanocytic Nevi of Trunk
- ;;^UTILITY(U,$J,358.3,38837,1,4,0)
- ;;=4^D22.5
- ;;^UTILITY(U,$J,358.3,38837,2)
- ;;=^5002051
- ;;^UTILITY(U,$J,358.3,38838,0)
- ;;=D22.61^^151^1902^42
- ;;^UTILITY(U,$J,358.3,38838,1,0)
+ ;;^UTILITY(U,$J,358.3,36559,1,3,0)
+ ;;=3^Maxillary Fx,Unspec,Init Encntr,Closed Fx
+ ;;^UTILITY(U,$J,358.3,36559,1,4,0)
+ ;;=4^S02.401A
+ ;;^UTILITY(U,$J,358.3,36559,2)
+ ;;=^5020324
+ ;;^UTILITY(U,$J,358.3,36560,0)
+ ;;=C02.9^^142^1863^353
+ ;;^UTILITY(U,$J,358.3,36560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38838,1,3,0)
- ;;=3^Melanocytic Nevi of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,38838,1,4,0)
- ;;=4^D22.61
- ;;^UTILITY(U,$J,358.3,38838,2)
- ;;=^5002053
- ;;^UTILITY(U,$J,358.3,38839,0)
- ;;=D22.62^^151^1902^37
- ;;^UTILITY(U,$J,358.3,38839,1,0)
+ ;;^UTILITY(U,$J,358.3,36560,1,3,0)
+ ;;=3^Malig Neop Tongue,Unspec
+ ;;^UTILITY(U,$J,358.3,36560,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,36560,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,36561,0)
+ ;;=M20.012^^142^1863^354
+ ;;^UTILITY(U,$J,358.3,36561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38839,1,3,0)
- ;;=3^Melanocytic Nevi of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,38839,1,4,0)
- ;;=4^D22.62
- ;;^UTILITY(U,$J,358.3,38839,2)
- ;;=^5002054
- ;;^UTILITY(U,$J,358.3,38840,0)
- ;;=D22.71^^151^1902^41
- ;;^UTILITY(U,$J,358.3,38840,1,0)
+ ;;^UTILITY(U,$J,358.3,36561,1,3,0)
+ ;;=3^Mallet Finger of Left Finger(s)
+ ;;^UTILITY(U,$J,358.3,36561,1,4,0)
+ ;;=4^M20.012
+ ;;^UTILITY(U,$J,358.3,36561,2)
+ ;;=^5011031
+ ;;^UTILITY(U,$J,358.3,36562,0)
+ ;;=M20.011^^142^1863^355
+ ;;^UTILITY(U,$J,358.3,36562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38840,1,3,0)
- ;;=3^Melanocytic Nevi of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,38840,1,4,0)
- ;;=4^D22.71
- ;;^UTILITY(U,$J,358.3,38840,2)
- ;;=^5002056
- ;;^UTILITY(U,$J,358.3,38841,0)
- ;;=D22.72^^151^1902^36
- ;;^UTILITY(U,$J,358.3,38841,1,0)
+ ;;^UTILITY(U,$J,358.3,36562,1,3,0)
+ ;;=3^Mallet Finger of Right Finger(s)
+ ;;^UTILITY(U,$J,358.3,36562,1,4,0)
+ ;;=4^M20.011
+ ;;^UTILITY(U,$J,358.3,36562,2)
+ ;;=^5011030
+ ;;^UTILITY(U,$J,358.3,36563,0)
+ ;;=M95.2^^142^1863^214
+ ;;^UTILITY(U,$J,358.3,36563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38841,1,3,0)
- ;;=3^Melanocytic Nevi of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,38841,1,4,0)
- ;;=4^D22.72
- ;;^UTILITY(U,$J,358.3,38841,2)
- ;;=^5002057
- ;;^UTILITY(U,$J,358.3,38842,0)
- ;;=C44.390^^151^1902^32
- ;;^UTILITY(U,$J,358.3,38842,1,0)
+ ;;^UTILITY(U,$J,358.3,36563,1,3,0)
+ ;;=3^Head Deformity,Acquired
+ ;;^UTILITY(U,$J,358.3,36563,1,4,0)
+ ;;=4^M95.2
+ ;;^UTILITY(U,$J,358.3,36563,2)
+ ;;=^272769
+ ;;^UTILITY(U,$J,358.3,36564,0)
+ ;;=L90.8^^142^1863^84
+ ;;^UTILITY(U,$J,358.3,36564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38842,1,3,0)
- ;;=3^Malig Neop Skin of Unspec Part of Face
- ;;^UTILITY(U,$J,358.3,38842,1,4,0)
- ;;=4^C44.390
- ;;^UTILITY(U,$J,358.3,38842,2)
- ;;=^5001049
- ;;^UTILITY(U,$J,358.3,38843,0)
- ;;=L81.1^^151^1902^62
- ;;^UTILITY(U,$J,358.3,38843,1,0)
+ ;;^UTILITY(U,$J,358.3,36564,1,3,0)
+ ;;=3^Atrophic Skin Disorders
+ ;;^UTILITY(U,$J,358.3,36564,1,4,0)
+ ;;=4^L90.8
+ ;;^UTILITY(U,$J,358.3,36564,2)
+ ;;=^5009457
+ ;;^UTILITY(U,$J,358.3,36565,0)
+ ;;=D23.22^^142^1863^107
+ ;;^UTILITY(U,$J,358.3,36565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38843,1,3,0)
- ;;=3^Melasma
- ;;^UTILITY(U,$J,358.3,38843,1,4,0)
- ;;=4^L81.1
- ;;^UTILITY(U,$J,358.3,38843,2)
- ;;=^5009311
- ;;^UTILITY(U,$J,358.3,38844,0)
- ;;=L72.0^^151^1902^80
- ;;^UTILITY(U,$J,358.3,38844,1,0)
+ ;;^UTILITY(U,$J,358.3,36565,1,3,0)
+ ;;=3^Benign Neop Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,36565,1,4,0)
+ ;;=4^D23.22
+ ;;^UTILITY(U,$J,358.3,36565,2)
+ ;;=^5002065
+ ;;^UTILITY(U,$J,358.3,36566,0)
+ ;;=D23.21^^142^1863^108
+ ;;^UTILITY(U,$J,358.3,36566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38844,1,3,0)
- ;;=3^Milium
- ;;^UTILITY(U,$J,358.3,38844,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,38844,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,38845,0)
- ;;=C4A.51^^151^1902^63
- ;;^UTILITY(U,$J,358.3,38845,1,0)
+ ;;^UTILITY(U,$J,358.3,36566,1,3,0)
+ ;;=3^Benign Neop Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,36566,1,4,0)
+ ;;=4^D23.21
+ ;;^UTILITY(U,$J,358.3,36566,2)
+ ;;=^5002064
+ ;;^UTILITY(U,$J,358.3,36567,0)
+ ;;=D23.4^^142^1863^109
+ ;;^UTILITY(U,$J,358.3,36567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38845,1,3,0)
- ;;=3^Merkle Cell CA,Anal Skin
- ;;^UTILITY(U,$J,358.3,38845,1,4,0)
- ;;=4^C4A.51
- ;;^UTILITY(U,$J,358.3,38845,2)
- ;;=^5001148
- ;;^UTILITY(U,$J,358.3,38846,0)
- ;;=C4A.52^^151^1902^64
- ;;^UTILITY(U,$J,358.3,38846,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38846,1,3,0)
- ;;=3^Merkle Cell CA,Breast Skin
+ ;;^UTILITY(U,$J,358.3,36567,1,3,0)
+ ;;=3^Benign Neop Skin Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,36567,1,4,0)
+ ;;=4^D23.4
+ ;;^UTILITY(U,$J,358.3,36567,2)
+ ;;=^5002068
+ ;;^UTILITY(U,$J,358.3,36568,0)
+ ;;=D23.9^^142^1863^115

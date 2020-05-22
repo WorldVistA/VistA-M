@@ -1,124 +1,120 @@
-IBDEI18Y ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18Y ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21192,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,21192,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,21192,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,21193,0)
- ;;=R40.2211^^84^947^17
- ;;^UTILITY(U,$J,358.3,21193,1,0)
+ ;;^UTILITY(U,$J,358.3,19980,2)
+ ;;=^5024652
+ ;;^UTILITY(U,$J,358.3,19981,0)
+ ;;=S32.612S^^93^998^8
+ ;;^UTILITY(U,$J,358.3,19981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21193,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,21193,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,21193,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,21194,0)
- ;;=R40.2210^^84^947^16
- ;;^UTILITY(U,$J,358.3,21194,1,0)
+ ;;^UTILITY(U,$J,358.3,19981,1,3,0)
+ ;;=3^Disp fx of avulsion of left ischium, sequela
+ ;;^UTILITY(U,$J,358.3,19981,1,4,0)
+ ;;=4^S32.612S
+ ;;^UTILITY(U,$J,358.3,19981,2)
+ ;;=^5025066
+ ;;^UTILITY(U,$J,358.3,19982,0)
+ ;;=S32.611S^^93^998^10
+ ;;^UTILITY(U,$J,358.3,19982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21194,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,21194,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,21194,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,21195,0)
- ;;=R40.2224^^84^947^18
- ;;^UTILITY(U,$J,358.3,21195,1,0)
+ ;;^UTILITY(U,$J,358.3,19982,1,3,0)
+ ;;=3^Disp fx of avulsion of right ischium, sequela
+ ;;^UTILITY(U,$J,358.3,19982,1,4,0)
+ ;;=4^S32.611S
+ ;;^UTILITY(U,$J,358.3,19982,2)
+ ;;=^5025060
+ ;;^UTILITY(U,$J,358.3,19983,0)
+ ;;=S32.482S^^93^998^11
+ ;;^UTILITY(U,$J,358.3,19983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21195,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,21195,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,21195,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,21196,0)
- ;;=R40.2223^^84^947^19
- ;;^UTILITY(U,$J,358.3,21196,1,0)
+ ;;^UTILITY(U,$J,358.3,19983,1,3,0)
+ ;;=3^Disp fx of dome of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19983,1,4,0)
+ ;;=4^S32.482S
+ ;;^UTILITY(U,$J,358.3,19983,2)
+ ;;=^5024964
+ ;;^UTILITY(U,$J,358.3,19984,0)
+ ;;=S32.481S^^93^998^12
+ ;;^UTILITY(U,$J,358.3,19984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21196,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,21196,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,21196,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,21197,0)
- ;;=R40.2222^^84^947^20
- ;;^UTILITY(U,$J,358.3,21197,1,0)
+ ;;^UTILITY(U,$J,358.3,19984,1,3,0)
+ ;;=3^Disp fx of dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19984,1,4,0)
+ ;;=4^S32.481S
+ ;;^UTILITY(U,$J,358.3,19984,2)
+ ;;=^5024958
+ ;;^UTILITY(U,$J,358.3,19985,0)
+ ;;=S32.432S^^93^998^1
+ ;;^UTILITY(U,$J,358.3,19985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21197,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,21197,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,21197,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,21198,0)
- ;;=R40.2221^^84^947^21
- ;;^UTILITY(U,$J,358.3,21198,1,0)
+ ;;^UTILITY(U,$J,358.3,19985,1,3,0)
+ ;;=3^Disp fx of anterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19985,1,4,0)
+ ;;=4^S32.432S
+ ;;^UTILITY(U,$J,358.3,19985,2)
+ ;;=^5024784
+ ;;^UTILITY(U,$J,358.3,19986,0)
+ ;;=S32.431S^^93^998^2
+ ;;^UTILITY(U,$J,358.3,19986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21198,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,21198,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,21198,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,21199,0)
- ;;=R40.2220^^84^947^22
- ;;^UTILITY(U,$J,358.3,21199,1,0)
+ ;;^UTILITY(U,$J,358.3,19986,1,3,0)
+ ;;=3^Disp fx of anterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19986,1,4,0)
+ ;;=4^S32.431S
+ ;;^UTILITY(U,$J,358.3,19986,2)
+ ;;=^5024778
+ ;;^UTILITY(U,$J,358.3,19987,0)
+ ;;=S32.412S^^93^998^3
+ ;;^UTILITY(U,$J,358.3,19987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21199,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,21199,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,21199,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,21200,0)
- ;;=R40.2214^^84^947^23
- ;;^UTILITY(U,$J,358.3,21200,1,0)
+ ;;^UTILITY(U,$J,358.3,19987,1,3,0)
+ ;;=3^Disp fx of anterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19987,1,4,0)
+ ;;=4^S32.412S
+ ;;^UTILITY(U,$J,358.3,19987,2)
+ ;;=^5024712
+ ;;^UTILITY(U,$J,358.3,19988,0)
+ ;;=S32.411S^^93^998^4
+ ;;^UTILITY(U,$J,358.3,19988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21200,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,21200,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,21200,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,21201,0)
- ;;=R40.2213^^84^947^25
- ;;^UTILITY(U,$J,358.3,21201,1,0)
+ ;;^UTILITY(U,$J,358.3,19988,1,3,0)
+ ;;=3^Disp fx of anterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19988,1,4,0)
+ ;;=4^S32.411S
+ ;;^UTILITY(U,$J,358.3,19988,2)
+ ;;=^5024706
+ ;;^UTILITY(U,$J,358.3,19989,0)
+ ;;=S32.472S^^93^998^13
+ ;;^UTILITY(U,$J,358.3,19989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21201,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,21201,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,21201,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,21202,0)
- ;;=R40.2212^^84^947^24
- ;;^UTILITY(U,$J,358.3,21202,1,0)
+ ;;^UTILITY(U,$J,358.3,19989,1,3,0)
+ ;;=3^Disp fx of medial wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19989,1,4,0)
+ ;;=4^S32.472S
+ ;;^UTILITY(U,$J,358.3,19989,2)
+ ;;=^5024928
+ ;;^UTILITY(U,$J,358.3,19990,0)
+ ;;=S32.471S^^93^998^14
+ ;;^UTILITY(U,$J,358.3,19990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21202,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,21202,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,21202,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,21203,0)
- ;;=R40.2344^^84^947^6
- ;;^UTILITY(U,$J,358.3,21203,1,0)
+ ;;^UTILITY(U,$J,358.3,19990,1,3,0)
+ ;;=3^Disp fx of medial wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19990,1,4,0)
+ ;;=4^S32.471S
+ ;;^UTILITY(U,$J,358.3,19990,2)
+ ;;=^5024922
+ ;;^UTILITY(U,$J,358.3,19991,0)
+ ;;=S32.442S^^93^998^15
+ ;;^UTILITY(U,$J,358.3,19991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21203,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,21203,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,21203,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,21204,0)
- ;;=R40.2343^^84^947^7
- ;;^UTILITY(U,$J,358.3,21204,1,0)
+ ;;^UTILITY(U,$J,358.3,19991,1,3,0)
+ ;;=3^Disp fx of posterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19991,1,4,0)
+ ;;=4^S32.442S
+ ;;^UTILITY(U,$J,358.3,19991,2)
+ ;;=^5024820
+ ;;^UTILITY(U,$J,358.3,19992,0)
+ ;;=S32.441S^^93^998^16
+ ;;^UTILITY(U,$J,358.3,19992,1,0)
  ;;=^358.31IA^4^2

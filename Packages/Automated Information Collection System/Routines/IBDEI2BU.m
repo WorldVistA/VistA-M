@@ -1,122 +1,120 @@
-IBDEI2BU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2BU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39465,0)
- ;;=E11.39^^153^1925^15
- ;;^UTILITY(U,$J,358.3,39465,1,0)
+ ;;^UTILITY(U,$J,358.3,37180,1,4,0)
+ ;;=4^I70.634
+ ;;^UTILITY(U,$J,358.3,37180,2)
+ ;;=^5007743
+ ;;^UTILITY(U,$J,358.3,37181,0)
+ ;;=I70.742^^146^1912^88
+ ;;^UTILITY(U,$J,358.3,37181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39465,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
- ;;^UTILITY(U,$J,358.3,39465,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,39465,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,39466,0)
- ;;=E11.36^^153^1925^14
- ;;^UTILITY(U,$J,358.3,39466,1,0)
+ ;;^UTILITY(U,$J,358.3,37181,1,3,0)
+ ;;=3^Athscl Type of Bypass,Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,37181,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,37181,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,37182,0)
+ ;;=I70.745^^146^1912^89
+ ;;^UTILITY(U,$J,358.3,37182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39466,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,39466,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,39466,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,39467,0)
- ;;=E11.359^^153^1925^20
- ;;^UTILITY(U,$J,358.3,39467,1,0)
+ ;;^UTILITY(U,$J,358.3,37182,1,3,0)
+ ;;=3^Athscl Type of Bypass,Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,37182,1,4,0)
+ ;;=4^I70.745
+ ;;^UTILITY(U,$J,358.3,37182,2)
+ ;;=^5133605
+ ;;^UTILITY(U,$J,358.3,37183,0)
+ ;;=I70.743^^146^1912^87
+ ;;^UTILITY(U,$J,358.3,37183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39467,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39467,1,4,0)
- ;;=4^E11.359
- ;;^UTILITY(U,$J,358.3,39467,2)
- ;;=^5002641
- ;;^UTILITY(U,$J,358.3,39468,0)
- ;;=E11.351^^153^1925^21
- ;;^UTILITY(U,$J,358.3,39468,1,0)
+ ;;^UTILITY(U,$J,358.3,37183,1,3,0)
+ ;;=3^Athscl Type of Bypass,Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,37183,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,37183,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,37184,0)
+ ;;=I70.744^^146^1912^90
+ ;;^UTILITY(U,$J,358.3,37184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39468,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39468,1,4,0)
- ;;=4^E11.351
- ;;^UTILITY(U,$J,358.3,39468,2)
- ;;=^5002640
- ;;^UTILITY(U,$J,358.3,39469,0)
- ;;=E11.349^^153^1925^22
- ;;^UTILITY(U,$J,358.3,39469,1,0)
+ ;;^UTILITY(U,$J,358.3,37184,1,3,0)
+ ;;=3^Athscl Type of Bypass,Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,37184,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,37184,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,37185,0)
+ ;;=I70.735^^146^1912^92
+ ;;^UTILITY(U,$J,358.3,37185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39469,1,3,0)
- ;;=3^DM Type 2 w/ Severe NonProlif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39469,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,39469,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,39470,0)
- ;;=E11.341^^153^1925^23
- ;;^UTILITY(U,$J,358.3,39470,1,0)
+ ;;^UTILITY(U,$J,358.3,37185,1,3,0)
+ ;;=3^Athscl Type of Bypass,Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,37185,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,37185,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,37186,0)
+ ;;=I70.733^^146^1912^91
+ ;;^UTILITY(U,$J,358.3,37186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39470,1,3,0)
- ;;=3^DM Type 2 w/ Severe NonProlif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39470,1,4,0)
- ;;=4^E11.341
- ;;^UTILITY(U,$J,358.3,39470,2)
- ;;=^5002638
- ;;^UTILITY(U,$J,358.3,39471,0)
- ;;=E11.339^^153^1925^18
- ;;^UTILITY(U,$J,358.3,39471,1,0)
+ ;;^UTILITY(U,$J,358.3,37186,1,3,0)
+ ;;=3^Athscl Type of Bypass,Right Leg w/ Ankle Ulceration
+ ;;^UTILITY(U,$J,358.3,37186,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,37186,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,37187,0)
+ ;;=I70.734^^146^1912^93
+ ;;^UTILITY(U,$J,358.3,37187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39471,1,3,0)
- ;;=3^DM Type 2 w/ Moderate NonProlif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39471,1,4,0)
- ;;=4^E11.339
- ;;^UTILITY(U,$J,358.3,39471,2)
- ;;=^5002637
- ;;^UTILITY(U,$J,358.3,39472,0)
- ;;=E11.331^^153^1925^19
- ;;^UTILITY(U,$J,358.3,39472,1,0)
+ ;;^UTILITY(U,$J,358.3,37187,1,3,0)
+ ;;=3^Athscl Type of Bypass,Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,37187,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,37187,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,37188,0)
+ ;;=I70.345^^146^1912^94
+ ;;^UTILITY(U,$J,358.3,37188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39472,1,3,0)
- ;;=3^DM Type 2 w/ Moderate NonProlif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39472,1,4,0)
- ;;=4^E11.331
- ;;^UTILITY(U,$J,358.3,39472,2)
- ;;=^5002636
- ;;^UTILITY(U,$J,358.3,39473,0)
- ;;=E11.329^^153^1925^16
- ;;^UTILITY(U,$J,358.3,39473,1,0)
+ ;;^UTILITY(U,$J,358.3,37188,1,3,0)
+ ;;=3^Athscl Unspec Type Bypasss,Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,37188,1,4,0)
+ ;;=4^I70.345
+ ;;^UTILITY(U,$J,358.3,37188,2)
+ ;;=^5007637
+ ;;^UTILITY(U,$J,358.3,37189,0)
+ ;;=I70.342^^146^1912^95
+ ;;^UTILITY(U,$J,358.3,37189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39473,1,3,0)
- ;;=3^DM Type 2 w/ Mild NonProlif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39473,1,4,0)
- ;;=4^E11.329
- ;;^UTILITY(U,$J,358.3,39473,2)
- ;;=^5002635
- ;;^UTILITY(U,$J,358.3,39474,0)
- ;;=E11.321^^153^1925^17
- ;;^UTILITY(U,$J,358.3,39474,1,0)
+ ;;^UTILITY(U,$J,358.3,37189,1,3,0)
+ ;;=3^Athscl Unspec Type Bypasss,Left Leg w/ Calf Ulceration
+ ;;^UTILITY(U,$J,358.3,37189,1,4,0)
+ ;;=4^I70.342
+ ;;^UTILITY(U,$J,358.3,37189,2)
+ ;;=^5007634
+ ;;^UTILITY(U,$J,358.3,37190,0)
+ ;;=I70.335^^146^1912^96
+ ;;^UTILITY(U,$J,358.3,37190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39474,1,3,0)
- ;;=3^DM Type 2 w/ Mild NonProlif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39474,1,4,0)
- ;;=4^E11.321
- ;;^UTILITY(U,$J,358.3,39474,2)
- ;;=^5002634
- ;;^UTILITY(U,$J,358.3,39475,0)
- ;;=E11.319^^153^1925^24
- ;;^UTILITY(U,$J,358.3,39475,1,0)
+ ;;^UTILITY(U,$J,358.3,37190,1,3,0)
+ ;;=3^Athscl Unspec Type Bypasss,Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,37190,1,4,0)
+ ;;=4^I70.335
+ ;;^UTILITY(U,$J,358.3,37190,2)
+ ;;=^5007630
+ ;;^UTILITY(U,$J,358.3,37191,0)
+ ;;=I70.332^^146^1912^97
+ ;;^UTILITY(U,$J,358.3,37191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39475,1,3,0)
- ;;=3^DM Type 2 w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39475,1,4,0)
- ;;=4^E11.319
- ;;^UTILITY(U,$J,358.3,39475,2)
- ;;=^5002633
- ;;^UTILITY(U,$J,358.3,39476,0)
- ;;=E11.311^^153^1925^25
- ;;^UTILITY(U,$J,358.3,39476,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39476,1,3,0)
- ;;=3^DM Type 2 w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39476,1,4,0)
- ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,37191,1,3,0)
+ ;;=3^Athscl Unspec Type Bypasss,Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,37191,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,37191,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,37192,0)
+ ;;=S91.251A^^146^1913^7

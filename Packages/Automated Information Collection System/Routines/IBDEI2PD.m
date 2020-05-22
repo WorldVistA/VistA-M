@@ -1,124 +1,120 @@
-IBDEI2PD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45358,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,45358,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,45358,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,45359,0)
- ;;=F11.222^^200^2242^38
- ;;^UTILITY(U,$J,358.3,45359,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45359,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,45359,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,45359,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,45360,0)
- ;;=F11.221^^200^2242^37
- ;;^UTILITY(U,$J,358.3,45360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45360,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,45360,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,45360,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,45361,0)
- ;;=F11.220^^200^2242^39
- ;;^UTILITY(U,$J,358.3,45361,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45361,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,45361,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,45361,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,45362,0)
- ;;=F14.29^^200^2242^21
- ;;^UTILITY(U,$J,358.3,45362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45362,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,45362,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,45362,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,45363,0)
- ;;=F14.288^^200^2242^20
- ;;^UTILITY(U,$J,358.3,45363,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45363,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,45363,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,45363,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,45364,0)
- ;;=F14.282^^200^2242^14
- ;;^UTILITY(U,$J,358.3,45364,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45364,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,45364,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,45364,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,45365,0)
- ;;=F14.281^^200^2242^15
- ;;^UTILITY(U,$J,358.3,45365,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45365,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,45365,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,45365,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,45366,0)
- ;;=F14.280^^200^2242^12
- ;;^UTILITY(U,$J,358.3,45366,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45366,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,45366,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,45366,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,45367,0)
- ;;=F14.259^^200^2242^11
- ;;^UTILITY(U,$J,358.3,45367,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45367,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,45367,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,45367,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,45368,0)
- ;;=F14.251^^200^2242^10
- ;;^UTILITY(U,$J,358.3,45368,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45368,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,45368,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,45368,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,45369,0)
- ;;=F14.250^^200^2242^9
- ;;^UTILITY(U,$J,358.3,45369,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45369,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,45369,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,45369,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,45370,0)
- ;;=F14.24^^200^2242^13
- ;;^UTILITY(U,$J,358.3,45370,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43066,0)
+ ;;=90736^^156^2081^14^^^^1
+ ;;^UTILITY(U,$J,358.3,43066,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43066,1,2,0)
+ ;;=2^90736
+ ;;^UTILITY(U,$J,358.3,43066,1,3,0)
+ ;;=3^Zoster (Shingles) Vaccine
+ ;;^UTILITY(U,$J,358.3,43067,0)
+ ;;=90714^^156^2081^12^^^^1
+ ;;^UTILITY(U,$J,358.3,43067,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43067,1,2,0)
+ ;;=2^90714
+ ;;^UTILITY(U,$J,358.3,43067,1,3,0)
+ ;;=3^TD Vaccine
+ ;;^UTILITY(U,$J,358.3,43068,0)
+ ;;=90656^^156^2081^4^^^^1
+ ;;^UTILITY(U,$J,358.3,43068,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43068,1,2,0)
+ ;;=2^90656
+ ;;^UTILITY(U,$J,358.3,43068,1,3,0)
+ ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
+ ;;^UTILITY(U,$J,358.3,43069,0)
+ ;;=90662^^156^2081^5^^^^1
+ ;;^UTILITY(U,$J,358.3,43069,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43069,1,2,0)
+ ;;=2^90662
+ ;;^UTILITY(U,$J,358.3,43069,1,3,0)
+ ;;=3^Flu Vaccine High Dose Syringe (Fluzone)
+ ;;^UTILITY(U,$J,358.3,43070,0)
+ ;;=90670^^156^2081^11^^^^1
+ ;;^UTILITY(U,$J,358.3,43070,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43070,1,2,0)
+ ;;=2^90670
+ ;;^UTILITY(U,$J,358.3,43070,1,3,0)
+ ;;=3^Prevnar 13 (Pneumococcal Vaccine)
+ ;;^UTILITY(U,$J,358.3,43071,0)
+ ;;=96372^^156^2082^1^^^^1
+ ;;^UTILITY(U,$J,358.3,43071,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43071,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,43071,1,3,0)
+ ;;=3^Ther/Proph/Dx Inj SQ/IM
+ ;;^UTILITY(U,$J,358.3,43072,0)
+ ;;=20600^^156^2082^2^^^^1
+ ;;^UTILITY(U,$J,358.3,43072,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43072,1,2,0)
+ ;;=2^20600
+ ;;^UTILITY(U,$J,358.3,43072,1,3,0)
+ ;;=3^Drain/Inject Small Joint/Bursa w/o US
+ ;;^UTILITY(U,$J,358.3,43073,0)
+ ;;=20605^^156^2082^4^^^^1
+ ;;^UTILITY(U,$J,358.3,43073,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43073,1,2,0)
+ ;;=2^20605
+ ;;^UTILITY(U,$J,358.3,43073,1,3,0)
+ ;;=3^Drain/Inject Interm Joint/Bursa w/o US
+ ;;^UTILITY(U,$J,358.3,43074,0)
+ ;;=20610^^156^2082^6^^^^1
+ ;;^UTILITY(U,$J,358.3,43074,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43074,1,2,0)
+ ;;=2^20610
+ ;;^UTILITY(U,$J,358.3,43074,1,3,0)
+ ;;=3^Drain/Inject Major Joint/Bursa w/o US
+ ;;^UTILITY(U,$J,358.3,43075,0)
+ ;;=20604^^156^2082^3^^^^1
+ ;;^UTILITY(U,$J,358.3,43075,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43075,1,2,0)
+ ;;=2^20604
+ ;;^UTILITY(U,$J,358.3,43075,1,3,0)
+ ;;=3^Drain/Inject Small Joint/Bursa w/ US
+ ;;^UTILITY(U,$J,358.3,43076,0)
+ ;;=20606^^156^2082^5^^^^1
+ ;;^UTILITY(U,$J,358.3,43076,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43076,1,2,0)
+ ;;=2^20606
+ ;;^UTILITY(U,$J,358.3,43076,1,3,0)
+ ;;=3^Drain/Inject Interm Joint/Bursa w/ US
+ ;;^UTILITY(U,$J,358.3,43077,0)
+ ;;=20611^^156^2082^7^^^^1
+ ;;^UTILITY(U,$J,358.3,43077,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43077,1,2,0)
+ ;;=2^20611
+ ;;^UTILITY(U,$J,358.3,43077,1,3,0)
+ ;;=3^Drain/Inject Major Joint/Bursa w/ US
+ ;;^UTILITY(U,$J,358.3,43078,0)
+ ;;=99078^^156^2083^2^^^^1
+ ;;^UTILITY(U,$J,358.3,43078,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43078,1,2,0)
+ ;;=2^99078
+ ;;^UTILITY(U,$J,358.3,43078,1,3,0)
+ ;;=3^Group Health Education
+ ;;^UTILITY(U,$J,358.3,43079,0)
+ ;;=98960^^156^2083^3^^^^1
+ ;;^UTILITY(U,$J,358.3,43079,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43079,1,2,0)
+ ;;=2^98960
+ ;;^UTILITY(U,$J,358.3,43079,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train 1 Pt
+ ;;^UTILITY(U,$J,358.3,43080,0)
+ ;;=98961^^156^2083^4^^^^1
+ ;;^UTILITY(U,$J,358.3,43080,1,0)
+ ;;=^358.31IA^3^2

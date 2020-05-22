@@ -1,134 +1,124 @@
-IBDEI2KD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43502,1,4,0)
- ;;=4^I83.222
- ;;^UTILITY(U,$J,358.3,43502,2)
- ;;=^5008005
- ;;^UTILITY(U,$J,358.3,43503,0)
- ;;=I83.223^^167^2078^149
- ;;^UTILITY(U,$J,358.3,43503,1,0)
+ ;;^UTILITY(U,$J,358.3,40927,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,40927,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,40928,0)
+ ;;=W13.1XXA^^152^2019^36
+ ;;^UTILITY(U,$J,358.3,40928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43503,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Ankle & Inflam
- ;;^UTILITY(U,$J,358.3,43503,1,4,0)
- ;;=4^I83.223
- ;;^UTILITY(U,$J,358.3,43503,2)
- ;;=^5008006
- ;;^UTILITY(U,$J,358.3,43504,0)
- ;;=I83.224^^167^2078^153
- ;;^UTILITY(U,$J,358.3,43504,1,0)
+ ;;^UTILITY(U,$J,358.3,40928,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40928,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,40928,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,40929,0)
+ ;;=W13.1XXD^^152^2019^37
+ ;;^UTILITY(U,$J,358.3,40929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43504,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Heel/Midfoot & Inflam
- ;;^UTILITY(U,$J,358.3,43504,1,4,0)
- ;;=4^I83.224
- ;;^UTILITY(U,$J,358.3,43504,2)
- ;;=^5008007
- ;;^UTILITY(U,$J,358.3,43505,0)
- ;;=I83.225^^167^2078^157
- ;;^UTILITY(U,$J,358.3,43505,1,0)
+ ;;^UTILITY(U,$J,358.3,40929,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40929,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,40929,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,40930,0)
+ ;;=W13.2XXA^^152^2019^74
+ ;;^UTILITY(U,$J,358.3,40930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43505,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Oth Part of Ft & Inflam
- ;;^UTILITY(U,$J,358.3,43505,1,4,0)
- ;;=4^I83.225
- ;;^UTILITY(U,$J,358.3,43505,2)
- ;;=^5008008
- ;;^UTILITY(U,$J,358.3,43506,0)
- ;;=I83.228^^167^2078^154
- ;;^UTILITY(U,$J,358.3,43506,1,0)
+ ;;^UTILITY(U,$J,358.3,40930,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40930,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,40930,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,40931,0)
+ ;;=W13.2XXD^^152^2019^75
+ ;;^UTILITY(U,$J,358.3,40931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43506,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Oth Part LE & Inflam
- ;;^UTILITY(U,$J,358.3,43506,1,4,0)
- ;;=4^I83.228
- ;;^UTILITY(U,$J,358.3,43506,2)
- ;;=^5008009
- ;;^UTILITY(U,$J,358.3,43507,0)
- ;;=I83.91^^167^2078^46
- ;;^UTILITY(U,$J,358.3,43507,1,0)
+ ;;^UTILITY(U,$J,358.3,40931,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40931,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,40931,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,40932,0)
+ ;;=W13.3XXA^^152^2019^88
+ ;;^UTILITY(U,$J,358.3,40932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43507,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Rt LE
- ;;^UTILITY(U,$J,358.3,43507,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,43507,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,43508,0)
- ;;=I83.92^^167^2078^45
- ;;^UTILITY(U,$J,358.3,43508,1,0)
+ ;;^UTILITY(U,$J,358.3,40932,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40932,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,40932,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,40933,0)
+ ;;=W13.3XXD^^152^2019^89
+ ;;^UTILITY(U,$J,358.3,40933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43508,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Lt LE
- ;;^UTILITY(U,$J,358.3,43508,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,43508,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,43509,0)
- ;;=I83.93^^167^2078^44
- ;;^UTILITY(U,$J,358.3,43509,1,0)
+ ;;^UTILITY(U,$J,358.3,40933,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40933,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,40933,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,40934,0)
+ ;;=W13.4XXA^^152^2019^76
+ ;;^UTILITY(U,$J,358.3,40934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43509,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Bil LE
- ;;^UTILITY(U,$J,358.3,43509,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,43509,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,43510,0)
- ;;=I89.0^^167^2078^117
- ;;^UTILITY(U,$J,358.3,43510,1,0)
+ ;;^UTILITY(U,$J,358.3,40934,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40934,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,40934,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,40935,0)
+ ;;=W13.4XXD^^152^2019^77
+ ;;^UTILITY(U,$J,358.3,40935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43510,1,3,0)
- ;;=3^Lymphedema NEC
- ;;^UTILITY(U,$J,358.3,43510,1,4,0)
- ;;=4^I89.0
- ;;^UTILITY(U,$J,358.3,43510,2)
- ;;=^5008073
- ;;^UTILITY(U,$J,358.3,43511,0)
- ;;=I87.2^^167^2078^170
- ;;^UTILITY(U,$J,358.3,43511,1,0)
+ ;;^UTILITY(U,$J,358.3,40935,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40935,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,40935,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,40936,0)
+ ;;=W13.8XXA^^152^2019^40
+ ;;^UTILITY(U,$J,358.3,40936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43511,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,43511,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,43511,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,43512,0)
- ;;=K55.0^^167^2078^32
- ;;^UTILITY(U,$J,358.3,43512,1,0)
+ ;;^UTILITY(U,$J,358.3,40936,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40936,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,40936,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,40937,0)
+ ;;=W13.8XXD^^152^2019^41
+ ;;^UTILITY(U,$J,358.3,40937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43512,1,3,0)
- ;;=3^AC Intestine Vascular Disorders
- ;;^UTILITY(U,$J,358.3,43512,1,4,0)
- ;;=4^K55.0
- ;;^UTILITY(U,$J,358.3,43512,2)
- ;;=^5008705
- ;;^UTILITY(U,$J,358.3,43513,0)
- ;;=K55.1^^167^2078^74
- ;;^UTILITY(U,$J,358.3,43513,1,0)
+ ;;^UTILITY(U,$J,358.3,40937,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40937,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,40937,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,40938,0)
+ ;;=W13.9XXA^^152^2019^38
+ ;;^UTILITY(U,$J,358.3,40938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43513,1,3,0)
- ;;=3^Chr Intestine Vascular Disorders
- ;;^UTILITY(U,$J,358.3,43513,1,4,0)
- ;;=4^K55.1
- ;;^UTILITY(U,$J,358.3,43513,2)
- ;;=^5008706
- ;;^UTILITY(U,$J,358.3,43514,0)
- ;;=N18.9^^167^2078^75
- ;;^UTILITY(U,$J,358.3,43514,1,0)
+ ;;^UTILITY(U,$J,358.3,40938,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40938,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,40938,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,40939,0)
+ ;;=W13.9XXD^^152^2019^39
+ ;;^UTILITY(U,$J,358.3,40939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43514,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43514,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,43514,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,43515,0)
- ;;=N28.0^^167^2078^108
- ;;^UTILITY(U,$J,358.3,43515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43515,1,3,0)
- ;;=3^Kidney Ischemia & Infarction
+ ;;^UTILITY(U,$J,358.3,40939,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr

@@ -1,10 +1,10 @@
 IBECPF ;ALB/RLW - IB FLAG/UNFLAG CONTINUOUS PATIENTS ; 1-JAN-92
- ;;2.0; INTEGRATED BILLING ;**199**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**199,662**;21-MAR-94;Build 8
+ ;Per VA Directive 6402, this routine should not be modified.
 EN ;
  ;***
  ;S XRTL=$ZU(0),XRTN="IBECPF-1" D T0^%ZOSV ;start rt clock
- D DT^DICRW S IBDATE=%
+ D DT^DICRW S IBDATE=DT
  N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  S DIC="^IBE(351.1,",DIC(0)="AELMQZ",DLAYGO=351.1,DIC("A")="Select PATIENT: " D ^DIC K DIC
  G:+Y<0 ENQ

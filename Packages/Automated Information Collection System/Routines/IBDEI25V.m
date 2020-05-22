@@ -1,132 +1,128 @@
-IBDEI25V ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25V ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36662,0)
- ;;=M35.02^^137^1768^55
- ;;^UTILITY(U,$J,358.3,36662,1,0)
+ ;;^UTILITY(U,$J,358.3,34507,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,34508,0)
+ ;;=F17.201^^134^1749^5
+ ;;^UTILITY(U,$J,358.3,34508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36662,1,3,0)
- ;;=3^Sicca Syndrome w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,36662,1,4,0)
- ;;=4^M35.02
- ;;^UTILITY(U,$J,358.3,36662,2)
- ;;=^5011788
- ;;^UTILITY(U,$J,358.3,36663,0)
- ;;=M35.03^^137^1768^56
- ;;^UTILITY(U,$J,358.3,36663,1,0)
+ ;;^UTILITY(U,$J,358.3,34508,1,3,0)
+ ;;=3^Nicotine Use D/O,Unspec,In Remiss
+ ;;^UTILITY(U,$J,358.3,34508,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,34508,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,34509,0)
+ ;;=F43.0^^134^1750^1
+ ;;^UTILITY(U,$J,358.3,34509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36663,1,3,0)
- ;;=3^Sicca Syndrome w/ Myopathy
- ;;^UTILITY(U,$J,358.3,36663,1,4,0)
- ;;=4^M35.03
- ;;^UTILITY(U,$J,358.3,36663,2)
- ;;=^5011789
- ;;^UTILITY(U,$J,358.3,36664,0)
- ;;=M35.09^^137^1768^57
- ;;^UTILITY(U,$J,358.3,36664,1,0)
+ ;;^UTILITY(U,$J,358.3,34509,1,3,0)
+ ;;=3^Acute Stress D/O
+ ;;^UTILITY(U,$J,358.3,34509,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,34509,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,34510,0)
+ ;;=F43.21^^134^1750^3
+ ;;^UTILITY(U,$J,358.3,34510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36664,1,3,0)
- ;;=3^Sicca Syndrome w/ Oth Organ Involvement
- ;;^UTILITY(U,$J,358.3,36664,1,4,0)
- ;;=4^M35.09
- ;;^UTILITY(U,$J,358.3,36664,2)
- ;;=^5011791
- ;;^UTILITY(U,$J,358.3,36665,0)
- ;;=M35.04^^137^1768^58
- ;;^UTILITY(U,$J,358.3,36665,1,0)
+ ;;^UTILITY(U,$J,358.3,34510,1,3,0)
+ ;;=3^Adjustment D/O w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,34510,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,34510,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,34511,0)
+ ;;=F43.22^^134^1750^2
+ ;;^UTILITY(U,$J,358.3,34511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36665,1,3,0)
- ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
- ;;^UTILITY(U,$J,358.3,36665,1,4,0)
- ;;=4^M35.04
- ;;^UTILITY(U,$J,358.3,36665,2)
- ;;=^5011790
- ;;^UTILITY(U,$J,358.3,36666,0)
- ;;=M35.00^^137^1768^59
- ;;^UTILITY(U,$J,358.3,36666,1,0)
+ ;;^UTILITY(U,$J,358.3,34511,1,3,0)
+ ;;=3^Adjustment D/O w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,34511,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,34511,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,34512,0)
+ ;;=F43.23^^134^1750^5
+ ;;^UTILITY(U,$J,358.3,34512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36666,1,3,0)
- ;;=3^Sicca Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,36666,1,4,0)
- ;;=4^M35.00
- ;;^UTILITY(U,$J,358.3,36666,2)
- ;;=^5011786
- ;;^UTILITY(U,$J,358.3,36667,0)
- ;;=M32.10^^137^1768^62
- ;;^UTILITY(U,$J,358.3,36667,1,0)
+ ;;^UTILITY(U,$J,358.3,34512,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,34512,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,34512,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,34513,0)
+ ;;=F43.24^^134^1750^4
+ ;;^UTILITY(U,$J,358.3,34513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36667,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
- ;;^UTILITY(U,$J,358.3,36667,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,36667,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,36668,0)
- ;;=M32.9^^137^1768^61
- ;;^UTILITY(U,$J,358.3,36668,1,0)
+ ;;^UTILITY(U,$J,358.3,34513,1,3,0)
+ ;;=3^Adjustment D/O w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,34513,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,34513,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,34514,0)
+ ;;=F43.25^^134^1750^6
+ ;;^UTILITY(U,$J,358.3,34514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36668,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,36668,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,36668,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,36669,0)
- ;;=M34.2^^137^1768^63
- ;;^UTILITY(U,$J,358.3,36669,1,0)
+ ;;^UTILITY(U,$J,358.3,34514,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Disturb Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,34514,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,34514,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,34515,0)
+ ;;=F43.20^^134^1750^7
+ ;;^UTILITY(U,$J,358.3,34515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36669,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,36669,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,36669,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,36670,0)
- ;;=M34.81^^137^1768^64
- ;;^UTILITY(U,$J,358.3,36670,1,0)
+ ;;^UTILITY(U,$J,358.3,34515,1,3,0)
+ ;;=3^Adjustment D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34515,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,34515,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,34516,0)
+ ;;=F43.9^^134^1750^13
+ ;;^UTILITY(U,$J,358.3,34516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36670,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,36670,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,36670,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,36671,0)
- ;;=M34.82^^137^1768^65
- ;;^UTILITY(U,$J,358.3,36671,1,0)
+ ;;^UTILITY(U,$J,358.3,34516,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34516,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,34516,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,34517,0)
+ ;;=F94.1^^134^1750^11
+ ;;^UTILITY(U,$J,358.3,34517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36671,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,36671,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,36671,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,36672,0)
- ;;=M34.83^^137^1768^66
- ;;^UTILITY(U,$J,358.3,36672,1,0)
+ ;;^UTILITY(U,$J,358.3,34517,1,3,0)
+ ;;=3^Reactive Attachment D/O
+ ;;^UTILITY(U,$J,358.3,34517,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,34517,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,34518,0)
+ ;;=F94.2^^134^1750^8
+ ;;^UTILITY(U,$J,358.3,34518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36672,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,36672,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,36672,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,36673,0)
- ;;=M34.9^^137^1768^67
- ;;^UTILITY(U,$J,358.3,36673,1,0)
+ ;;^UTILITY(U,$J,358.3,34518,1,3,0)
+ ;;=3^Disinhibited Social Engagement D/O
+ ;;^UTILITY(U,$J,358.3,34518,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,34518,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,34519,0)
+ ;;=F43.8^^134^1750^12
+ ;;^UTILITY(U,$J,358.3,34519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36673,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,36673,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,36673,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,36674,0)
- ;;=M81.0^^137^1769^18
- ;;^UTILITY(U,$J,358.3,36674,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36674,1,3,0)
- ;;=3^Osteoporosis,Age-Related
- ;;^UTILITY(U,$J,358.3,36674,1,4,0)
- ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,34519,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,34519,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,34519,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,34520,0)
+ ;;=F43.10^^134^1750^10

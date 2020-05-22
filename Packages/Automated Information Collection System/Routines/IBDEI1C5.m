@@ -1,130 +1,124 @@
-IBDEI1C5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1C5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22702,0)
- ;;=J20.6^^87^983^15
- ;;^UTILITY(U,$J,358.3,22702,1,0)
+ ;;^UTILITY(U,$J,358.3,21331,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,21331,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,21332,0)
+ ;;=F15.221^^95^1061^19
+ ;;^UTILITY(U,$J,358.3,21332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22702,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,22702,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,22702,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,22703,0)
- ;;=J18.9^^87^983^67
- ;;^UTILITY(U,$J,358.3,22703,1,0)
+ ;;^UTILITY(U,$J,358.3,21332,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21332,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,21332,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,21333,0)
+ ;;=F15.23^^95^1061^27
+ ;;^UTILITY(U,$J,358.3,21333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22703,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,22703,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,22703,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,22704,0)
- ;;=J18.8^^87^983^68
- ;;^UTILITY(U,$J,358.3,22704,1,0)
+ ;;^UTILITY(U,$J,358.3,21333,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,21333,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,21333,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,21334,0)
+ ;;=F15.10^^95^1061^1
+ ;;^UTILITY(U,$J,358.3,21334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22704,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,22704,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,22704,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,22705,0)
- ;;=J11.00^^87^983^28
- ;;^UTILITY(U,$J,358.3,22705,1,0)
+ ;;^UTILITY(U,$J,358.3,21334,1,3,0)
+ ;;=3^Amphetamine Type Substance Abuse
+ ;;^UTILITY(U,$J,358.3,21334,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,21334,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,21335,0)
+ ;;=F15.20^^95^1061^2
+ ;;^UTILITY(U,$J,358.3,21335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22705,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,22705,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,22705,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,22706,0)
- ;;=J12.9^^87^983^69
- ;;^UTILITY(U,$J,358.3,22706,1,0)
+ ;;^UTILITY(U,$J,358.3,21335,1,3,0)
+ ;;=3^Amphetamine Type Substance Dependence
+ ;;^UTILITY(U,$J,358.3,21335,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,21335,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,21336,0)
+ ;;=F14.180^^95^1061^31
+ ;;^UTILITY(U,$J,358.3,21336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22706,1,3,0)
- ;;=3^Pneumonia,Viral Unspec
- ;;^UTILITY(U,$J,358.3,22706,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,22706,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,22707,0)
- ;;=J10.08^^87^983^41
- ;;^UTILITY(U,$J,358.3,22707,1,0)
+ ;;^UTILITY(U,$J,358.3,21336,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21336,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,21336,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,21337,0)
+ ;;=F14.280^^95^1061^32
+ ;;^UTILITY(U,$J,358.3,21337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22707,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
- ;;^UTILITY(U,$J,358.3,22707,1,4,0)
- ;;=4^J10.08
- ;;^UTILITY(U,$J,358.3,22707,2)
- ;;=^5008150
- ;;^UTILITY(U,$J,358.3,22708,0)
- ;;=J10.00^^87^983^40
- ;;^UTILITY(U,$J,358.3,22708,1,0)
+ ;;^UTILITY(U,$J,358.3,21337,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21337,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,21337,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,21338,0)
+ ;;=F14.980^^95^1061^33
+ ;;^UTILITY(U,$J,358.3,21338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22708,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,22708,1,4,0)
- ;;=4^J10.00
- ;;^UTILITY(U,$J,358.3,22708,2)
- ;;=^5008148
- ;;^UTILITY(U,$J,358.3,22709,0)
- ;;=J11.08^^87^983^43
- ;;^UTILITY(U,$J,358.3,22709,1,0)
+ ;;^UTILITY(U,$J,358.3,21338,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21338,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,21338,2)
+ ;;=^5003278
+ ;;^UTILITY(U,$J,358.3,21339,0)
+ ;;=F14.14^^95^1061^28
+ ;;^UTILITY(U,$J,358.3,21339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22709,1,3,0)
- ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
- ;;^UTILITY(U,$J,358.3,22709,1,4,0)
- ;;=4^J11.08
- ;;^UTILITY(U,$J,358.3,22709,2)
- ;;=^5008157
- ;;^UTILITY(U,$J,358.3,22710,0)
- ;;=J10.1^^87^983^42
- ;;^UTILITY(U,$J,358.3,22710,1,0)
+ ;;^UTILITY(U,$J,358.3,21339,1,3,0)
+ ;;=3^Cocaine Abuse w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21339,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,21339,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,21340,0)
+ ;;=F14.24^^95^1061^30
+ ;;^UTILITY(U,$J,358.3,21340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22710,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,22710,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,22710,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,22711,0)
- ;;=J10.01^^87^983^39
- ;;^UTILITY(U,$J,358.3,22711,1,0)
+ ;;^UTILITY(U,$J,358.3,21340,1,3,0)
+ ;;=3^Cocaine Dependence w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21340,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,21340,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,21341,0)
+ ;;=F14.94^^95^1061^57
+ ;;^UTILITY(U,$J,358.3,21341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22711,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
- ;;^UTILITY(U,$J,358.3,22711,1,4,0)
- ;;=4^J10.01
- ;;^UTILITY(U,$J,358.3,22711,2)
- ;;=^5008149
- ;;^UTILITY(U,$J,358.3,22712,0)
- ;;=J11.1^^87^983^44
- ;;^UTILITY(U,$J,358.3,22712,1,0)
+ ;;^UTILITY(U,$J,358.3,21341,1,3,0)
+ ;;=3^Cocaine Use w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21341,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,21341,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,21342,0)
+ ;;=F14.188^^95^1061^34
+ ;;^UTILITY(U,$J,358.3,21342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22712,1,3,0)
- ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,22712,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,22712,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,22713,0)
- ;;=N12.^^87^983^85
- ;;^UTILITY(U,$J,358.3,22713,1,0)
+ ;;^UTILITY(U,$J,358.3,21342,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21342,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,21342,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,21343,0)
+ ;;=F14.288^^95^1061^35
+ ;;^UTILITY(U,$J,358.3,21343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22713,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,22713,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,22713,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,22714,0)
- ;;=N11.9^^87^983^86
- ;;^UTILITY(U,$J,358.3,22714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22714,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Chronic
+ ;;^UTILITY(U,$J,358.3,21343,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O

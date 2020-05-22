@@ -1,354 +1,122 @@
-IBDEI0RR ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36666,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hand
- ;;^UTILITY(U,$J,358.3,36666,1,4,0)
- ;;=4^M05.142
- ;;^UTILITY(U,$J,358.3,36666,2)
- ;;=^5009873
- ;;^UTILITY(U,$J,358.3,36667,0)
- ;;=M05.152^^103^1557^29
- ;;^UTILITY(U,$J,358.3,36667,1,0)
+ ;;^UTILITY(U,$J,358.3,12383,0)
+ ;;=S61.307A^^80^778^19
+ ;;^UTILITY(U,$J,358.3,12383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36667,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hip
- ;;^UTILITY(U,$J,358.3,36667,1,4,0)
- ;;=4^M05.152
- ;;^UTILITY(U,$J,358.3,36667,2)
- ;;=^5009876
- ;;^UTILITY(U,$J,358.3,36668,0)
- ;;=M05.162^^103^1557^30
- ;;^UTILITY(U,$J,358.3,36668,1,0)
+ ;;^UTILITY(U,$J,358.3,12383,1,3,0)
+ ;;=3^Open Wound of Left Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12383,1,4,0)
+ ;;=4^S61.307A
+ ;;^UTILITY(U,$J,358.3,12383,2)
+ ;;=^5135744
+ ;;^UTILITY(U,$J,358.3,12384,0)
+ ;;=S71.102A^^80^778^27
+ ;;^UTILITY(U,$J,358.3,12384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36668,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Knee
- ;;^UTILITY(U,$J,358.3,36668,1,4,0)
- ;;=4^M05.162
- ;;^UTILITY(U,$J,358.3,36668,2)
- ;;=^5009879
- ;;^UTILITY(U,$J,358.3,36669,0)
- ;;=M05.112^^103^1557^31
- ;;^UTILITY(U,$J,358.3,36669,1,0)
+ ;;^UTILITY(U,$J,358.3,12384,1,3,0)
+ ;;=3^Open Wound of Left Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12384,1,4,0)
+ ;;=4^S71.102A
+ ;;^UTILITY(U,$J,358.3,12384,2)
+ ;;=^5037011
+ ;;^UTILITY(U,$J,358.3,12385,0)
+ ;;=S71.101A^^80^778^58
+ ;;^UTILITY(U,$J,358.3,12385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36669,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Shldr
- ;;^UTILITY(U,$J,358.3,36669,1,4,0)
- ;;=4^M05.112
- ;;^UTILITY(U,$J,358.3,36669,2)
- ;;=^5009864
- ;;^UTILITY(U,$J,358.3,36670,0)
- ;;=M05.132^^103^1557^32
- ;;^UTILITY(U,$J,358.3,36670,1,0)
+ ;;^UTILITY(U,$J,358.3,12385,1,3,0)
+ ;;=3^Open Wound of Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12385,1,4,0)
+ ;;=4^S71.101A
+ ;;^UTILITY(U,$J,358.3,12385,2)
+ ;;=^5037008
+ ;;^UTILITY(U,$J,358.3,12386,0)
+ ;;=S71.002A^^80^778^13
+ ;;^UTILITY(U,$J,358.3,12386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36670,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
- ;;^UTILITY(U,$J,358.3,36670,1,4,0)
- ;;=4^M05.132
- ;;^UTILITY(U,$J,358.3,36670,2)
- ;;=^5009870
- ;;^UTILITY(U,$J,358.3,36671,0)
- ;;=M05.19^^103^1557^33
- ;;^UTILITY(U,$J,358.3,36671,1,0)
+ ;;^UTILITY(U,$J,358.3,12386,1,3,0)
+ ;;=3^Open Wound of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12386,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,12386,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,12387,0)
+ ;;=S71.001A^^80^778^44
+ ;;^UTILITY(U,$J,358.3,12387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36671,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Mult Sites
- ;;^UTILITY(U,$J,358.3,36671,1,4,0)
- ;;=4^M05.19
- ;;^UTILITY(U,$J,358.3,36671,2)
- ;;=^5009884
- ;;^UTILITY(U,$J,358.3,36672,0)
- ;;=M05.171^^103^1557^34
- ;;^UTILITY(U,$J,358.3,36672,1,0)
+ ;;^UTILITY(U,$J,358.3,12387,1,3,0)
+ ;;=3^Open Wound of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12387,1,4,0)
+ ;;=4^S71.001A
+ ;;^UTILITY(U,$J,358.3,12387,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,12388,0)
+ ;;=S91.002A^^80^778^5
+ ;;^UTILITY(U,$J,358.3,12388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36672,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,36672,1,4,0)
- ;;=4^M05.171
- ;;^UTILITY(U,$J,358.3,36672,2)
- ;;=^5009881
- ;;^UTILITY(U,$J,358.3,36673,0)
- ;;=M05.121^^103^1557^35
- ;;^UTILITY(U,$J,358.3,36673,1,0)
+ ;;^UTILITY(U,$J,358.3,12388,1,3,0)
+ ;;=3^Open Wound of Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12388,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,12388,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,12389,0)
+ ;;=S91.001A^^80^778^36
+ ;;^UTILITY(U,$J,358.3,12389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36673,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Elbow
- ;;^UTILITY(U,$J,358.3,36673,1,4,0)
- ;;=4^M05.121
- ;;^UTILITY(U,$J,358.3,36673,2)
- ;;=^5009866
- ;;^UTILITY(U,$J,358.3,36674,0)
- ;;=M05.141^^103^1557^36
- ;;^UTILITY(U,$J,358.3,36674,1,0)
+ ;;^UTILITY(U,$J,358.3,12389,1,3,0)
+ ;;=3^Open Wound of Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12389,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,12389,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,12390,0)
+ ;;=S81.802A^^80^778^21
+ ;;^UTILITY(U,$J,358.3,12390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36674,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hand
- ;;^UTILITY(U,$J,358.3,36674,1,4,0)
- ;;=4^M05.141
- ;;^UTILITY(U,$J,358.3,36674,2)
- ;;=^5009872
- ;;^UTILITY(U,$J,358.3,36675,0)
- ;;=M05.151^^103^1557^37
- ;;^UTILITY(U,$J,358.3,36675,1,0)
+ ;;^UTILITY(U,$J,358.3,12390,1,3,0)
+ ;;=3^Open Wound of Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12390,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,12390,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,12391,0)
+ ;;=S81.801A^^80^778^52
+ ;;^UTILITY(U,$J,358.3,12391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36675,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hip
- ;;^UTILITY(U,$J,358.3,36675,1,4,0)
- ;;=4^M05.151
- ;;^UTILITY(U,$J,358.3,36675,2)
- ;;=^5009875
- ;;^UTILITY(U,$J,358.3,36676,0)
- ;;=M05.161^^103^1557^38
- ;;^UTILITY(U,$J,358.3,36676,1,0)
+ ;;^UTILITY(U,$J,358.3,12391,1,3,0)
+ ;;=3^Open Wound of Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12391,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,12391,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,12392,0)
+ ;;=S81.002A^^80^778^16
+ ;;^UTILITY(U,$J,358.3,12392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36676,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Knee
- ;;^UTILITY(U,$J,358.3,36676,1,4,0)
- ;;=4^M05.161
- ;;^UTILITY(U,$J,358.3,36676,2)
- ;;=^5009878
- ;;^UTILITY(U,$J,358.3,36677,0)
- ;;=M05.111^^103^1557^39
- ;;^UTILITY(U,$J,358.3,36677,1,0)
+ ;;^UTILITY(U,$J,358.3,12392,1,3,0)
+ ;;=3^Open Wound of Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12392,1,4,0)
+ ;;=4^S81.002A
+ ;;^UTILITY(U,$J,358.3,12392,2)
+ ;;=^5040029
+ ;;^UTILITY(U,$J,358.3,12393,0)
+ ;;=S81.001A^^80^778^47
+ ;;^UTILITY(U,$J,358.3,12393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36677,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Shldr
- ;;^UTILITY(U,$J,358.3,36677,1,4,0)
- ;;=4^M05.111
- ;;^UTILITY(U,$J,358.3,36677,2)
- ;;=^5009863
- ;;^UTILITY(U,$J,358.3,36678,0)
- ;;=M05.131^^103^1557^40
- ;;^UTILITY(U,$J,358.3,36678,1,0)
+ ;;^UTILITY(U,$J,358.3,12393,1,3,0)
+ ;;=3^Open Wound of Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12393,1,4,0)
+ ;;=4^S81.001A
+ ;;^UTILITY(U,$J,358.3,12393,2)
+ ;;=^5040026
+ ;;^UTILITY(U,$J,358.3,12394,0)
+ ;;=S91.301A^^80^778^40
+ ;;^UTILITY(U,$J,358.3,12394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36678,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Wrist
- ;;^UTILITY(U,$J,358.3,36678,1,4,0)
- ;;=4^M05.131
- ;;^UTILITY(U,$J,358.3,36678,2)
- ;;=^5009869
- ;;^UTILITY(U,$J,358.3,36679,0)
- ;;=M05.10^^103^1557^41
- ;;^UTILITY(U,$J,358.3,36679,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36679,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Unspec Site
- ;;^UTILITY(U,$J,358.3,36679,1,4,0)
- ;;=4^M05.10
- ;;^UTILITY(U,$J,358.3,36679,2)
- ;;=^5009862
- ;;^UTILITY(U,$J,358.3,36680,0)
- ;;=D86.86^^103^1557^42
- ;;^UTILITY(U,$J,358.3,36680,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36680,1,3,0)
- ;;=3^Sarcoid Arthropathy
- ;;^UTILITY(U,$J,358.3,36680,1,4,0)
- ;;=4^D86.86
- ;;^UTILITY(U,$J,358.3,36680,2)
- ;;=^5002451
- ;;^UTILITY(U,$J,358.3,36681,0)
- ;;=D86.83^^103^1557^43
- ;;^UTILITY(U,$J,358.3,36681,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36681,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
- ;;^UTILITY(U,$J,358.3,36681,1,4,0)
- ;;=4^D86.83
- ;;^UTILITY(U,$J,358.3,36681,2)
- ;;=^5002448
- ;;^UTILITY(U,$J,358.3,36682,0)
- ;;=D86.81^^103^1557^44
- ;;^UTILITY(U,$J,358.3,36682,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36682,1,3,0)
- ;;=3^Sarcoid Meningitis
- ;;^UTILITY(U,$J,358.3,36682,1,4,0)
- ;;=4^D86.81
- ;;^UTILITY(U,$J,358.3,36682,2)
- ;;=^5002446
- ;;^UTILITY(U,$J,358.3,36683,0)
- ;;=D86.85^^103^1557^45
- ;;^UTILITY(U,$J,358.3,36683,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36683,1,3,0)
- ;;=3^Sarcoid Myocarditis
- ;;^UTILITY(U,$J,358.3,36683,1,4,0)
- ;;=4^D86.85
- ;;^UTILITY(U,$J,358.3,36683,2)
- ;;=^5002450
- ;;^UTILITY(U,$J,358.3,36684,0)
- ;;=D86.87^^103^1557^46
- ;;^UTILITY(U,$J,358.3,36684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36684,1,3,0)
- ;;=3^Sarcoid Myositis
- ;;^UTILITY(U,$J,358.3,36684,1,4,0)
- ;;=4^D86.87
- ;;^UTILITY(U,$J,358.3,36684,2)
- ;;=^5002452
- ;;^UTILITY(U,$J,358.3,36685,0)
- ;;=D86.84^^103^1557^47
- ;;^UTILITY(U,$J,358.3,36685,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36685,1,3,0)
- ;;=3^Sarcoid Pyelonephritis
- ;;^UTILITY(U,$J,358.3,36685,1,4,0)
- ;;=4^D86.84
- ;;^UTILITY(U,$J,358.3,36685,2)
- ;;=^5002449
- ;;^UTILITY(U,$J,358.3,36686,0)
- ;;=D86.0^^103^1557^48
- ;;^UTILITY(U,$J,358.3,36686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36686,1,3,0)
- ;;=3^Sarcoidosis of Lung
- ;;^UTILITY(U,$J,358.3,36686,1,4,0)
- ;;=4^D86.0
- ;;^UTILITY(U,$J,358.3,36686,2)
- ;;=^5002442
- ;;^UTILITY(U,$J,358.3,36687,0)
- ;;=D86.2^^103^1557^49
- ;;^UTILITY(U,$J,358.3,36687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36687,1,3,0)
- ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,36687,1,4,0)
- ;;=4^D86.2
- ;;^UTILITY(U,$J,358.3,36687,2)
- ;;=^5002444
- ;;^UTILITY(U,$J,358.3,36688,0)
- ;;=D86.1^^103^1557^50
- ;;^UTILITY(U,$J,358.3,36688,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36688,1,3,0)
- ;;=3^Sarcoidosis of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,36688,1,4,0)
- ;;=4^D86.1
- ;;^UTILITY(U,$J,358.3,36688,2)
- ;;=^5002443
- ;;^UTILITY(U,$J,358.3,36689,0)
- ;;=D86.89^^103^1557^51
- ;;^UTILITY(U,$J,358.3,36689,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36689,1,3,0)
- ;;=3^Sarcoidosis of Oth Sites
- ;;^UTILITY(U,$J,358.3,36689,1,4,0)
- ;;=4^D86.89
- ;;^UTILITY(U,$J,358.3,36689,2)
- ;;=^5002453
- ;;^UTILITY(U,$J,358.3,36690,0)
- ;;=D86.3^^103^1557^52
- ;;^UTILITY(U,$J,358.3,36690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36690,1,3,0)
- ;;=3^Sarcoidosis of Skin
- ;;^UTILITY(U,$J,358.3,36690,1,4,0)
- ;;=4^D86.3
- ;;^UTILITY(U,$J,358.3,36690,2)
- ;;=^5002445
- ;;^UTILITY(U,$J,358.3,36691,0)
- ;;=D86.9^^103^1557^53
- ;;^UTILITY(U,$J,358.3,36691,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36691,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,36691,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,36691,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,36692,0)
- ;;=M35.01^^103^1557^54
- ;;^UTILITY(U,$J,358.3,36692,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36692,1,3,0)
- ;;=3^Sicca Syndrome w/ Keratoconjunctivitis
- ;;^UTILITY(U,$J,358.3,36692,1,4,0)
- ;;=4^M35.01
- ;;^UTILITY(U,$J,358.3,36692,2)
- ;;=^5011787
- ;;^UTILITY(U,$J,358.3,36693,0)
- ;;=M35.02^^103^1557^55
- ;;^UTILITY(U,$J,358.3,36693,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36693,1,3,0)
- ;;=3^Sicca Syndrome w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,36693,1,4,0)
- ;;=4^M35.02
- ;;^UTILITY(U,$J,358.3,36693,2)
- ;;=^5011788
- ;;^UTILITY(U,$J,358.3,36694,0)
- ;;=M35.03^^103^1557^56
- ;;^UTILITY(U,$J,358.3,36694,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36694,1,3,0)
- ;;=3^Sicca Syndrome w/ Myopathy
- ;;^UTILITY(U,$J,358.3,36694,1,4,0)
- ;;=4^M35.03
- ;;^UTILITY(U,$J,358.3,36694,2)
- ;;=^5011789
- ;;^UTILITY(U,$J,358.3,36695,0)
- ;;=M35.09^^103^1557^57
- ;;^UTILITY(U,$J,358.3,36695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36695,1,3,0)
- ;;=3^Sicca Syndrome w/ Oth Organ Involvement
- ;;^UTILITY(U,$J,358.3,36695,1,4,0)
- ;;=4^M35.09
- ;;^UTILITY(U,$J,358.3,36695,2)
- ;;=^5011791
- ;;^UTILITY(U,$J,358.3,36696,0)
- ;;=M35.04^^103^1557^58
- ;;^UTILITY(U,$J,358.3,36696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36696,1,3,0)
- ;;=3^Sicca Syndrome w/ Tubulo-Interstitial Nephropathy
- ;;^UTILITY(U,$J,358.3,36696,1,4,0)
- ;;=4^M35.04
- ;;^UTILITY(U,$J,358.3,36696,2)
- ;;=^5011790
- ;;^UTILITY(U,$J,358.3,36697,0)
- ;;=M35.00^^103^1557^59
- ;;^UTILITY(U,$J,358.3,36697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36697,1,3,0)
- ;;=3^Sicca Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,36697,1,4,0)
- ;;=4^M35.00
- ;;^UTILITY(U,$J,358.3,36697,2)
- ;;=^5011786
- ;;^UTILITY(U,$J,358.3,36698,0)
- ;;=M32.10^^103^1557^62
- ;;^UTILITY(U,$J,358.3,36698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36698,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec Organ/System Involvement
- ;;^UTILITY(U,$J,358.3,36698,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,36698,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,36699,0)
- ;;=M32.9^^103^1557^61
- ;;^UTILITY(U,$J,358.3,36699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36699,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,36699,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,36699,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,36700,0)
- ;;=M34.2^^103^1557^63
- ;;^UTILITY(U,$J,358.3,36700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36700,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,36700,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,36700,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,36701,0)
- ;;=M34.81^^103^1557^64
- ;;^UTILITY(U,$J,358.3,36701,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12394,1,3,0)
+ ;;=3^Open Wound of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12394,1,4,0)
+ ;;=4^S91.301A

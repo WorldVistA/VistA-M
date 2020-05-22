@@ -1,130 +1,130 @@
-IBDEI3A3 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3A3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55092,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,55092,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,55092,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,55093,0)
- ;;=Z85.048^^256^2776^97
- ;;^UTILITY(U,$J,358.3,55093,1,0)
+ ;;^UTILITY(U,$J,358.3,52323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55093,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,55093,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,55093,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,55094,0)
- ;;=Z85.118^^256^2776^86
- ;;^UTILITY(U,$J,358.3,55094,1,0)
+ ;;^UTILITY(U,$J,358.3,52323,1,3,0)
+ ;;=3^Giardiasis [lambliasis]
+ ;;^UTILITY(U,$J,358.3,52323,1,4,0)
+ ;;=4^A07.1
+ ;;^UTILITY(U,$J,358.3,52323,2)
+ ;;=^5000049
+ ;;^UTILITY(U,$J,358.3,52324,0)
+ ;;=A07.2^^193^2529^7
+ ;;^UTILITY(U,$J,358.3,52324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55094,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,55094,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,55094,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,55095,0)
- ;;=Z85.21^^256^2776^91
- ;;^UTILITY(U,$J,358.3,55095,1,0)
+ ;;^UTILITY(U,$J,358.3,52324,1,3,0)
+ ;;=3^Cryptosporidiosis
+ ;;^UTILITY(U,$J,358.3,52324,1,4,0)
+ ;;=4^A07.2
+ ;;^UTILITY(U,$J,358.3,52324,2)
+ ;;=^29629
+ ;;^UTILITY(U,$J,358.3,52325,0)
+ ;;=A07.3^^193^2529^12
+ ;;^UTILITY(U,$J,358.3,52325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55095,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,55095,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,55095,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,55096,0)
- ;;=Z85.3^^256^2776^85
- ;;^UTILITY(U,$J,358.3,55096,1,0)
+ ;;^UTILITY(U,$J,358.3,52325,1,3,0)
+ ;;=3^Isosporiasis
+ ;;^UTILITY(U,$J,358.3,52325,1,4,0)
+ ;;=4^A07.3
+ ;;^UTILITY(U,$J,358.3,52325,2)
+ ;;=^5000050
+ ;;^UTILITY(U,$J,358.3,52326,0)
+ ;;=A07.4^^193^2529^8
+ ;;^UTILITY(U,$J,358.3,52326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55096,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,55096,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,55096,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,55097,0)
- ;;=Z85.41^^256^2776^87
- ;;^UTILITY(U,$J,358.3,55097,1,0)
+ ;;^UTILITY(U,$J,358.3,52326,1,3,0)
+ ;;=3^Cyclosporiasis
+ ;;^UTILITY(U,$J,358.3,52326,1,4,0)
+ ;;=4^A07.4
+ ;;^UTILITY(U,$J,358.3,52326,2)
+ ;;=^321973
+ ;;^UTILITY(U,$J,358.3,52327,0)
+ ;;=A07.8^^193^2529^14
+ ;;^UTILITY(U,$J,358.3,52327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55097,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,55097,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,55097,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,55098,0)
- ;;=Z85.43^^256^2776^95
- ;;^UTILITY(U,$J,358.3,55098,1,0)
+ ;;^UTILITY(U,$J,358.3,52327,1,3,0)
+ ;;=3^Protozoal Intestinal Diseases,Oth Spec
+ ;;^UTILITY(U,$J,358.3,52327,1,4,0)
+ ;;=4^A07.8
+ ;;^UTILITY(U,$J,358.3,52327,2)
+ ;;=^265972
+ ;;^UTILITY(U,$J,358.3,52328,0)
+ ;;=A07.9^^193^2529^13
+ ;;^UTILITY(U,$J,358.3,52328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55098,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,55098,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,55098,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,55099,0)
- ;;=Z85.46^^256^2776^96
- ;;^UTILITY(U,$J,358.3,55099,1,0)
+ ;;^UTILITY(U,$J,358.3,52328,1,3,0)
+ ;;=3^Protozoal Intestinal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,52328,1,4,0)
+ ;;=4^A07.9
+ ;;^UTILITY(U,$J,358.3,52328,2)
+ ;;=^5000051
+ ;;^UTILITY(U,$J,358.3,52329,0)
+ ;;=A08.0^^193^2529^15
+ ;;^UTILITY(U,$J,358.3,52329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55099,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,55099,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,55099,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,55100,0)
- ;;=Z85.47^^256^2776^100
- ;;^UTILITY(U,$J,358.3,55100,1,0)
+ ;;^UTILITY(U,$J,358.3,52329,1,3,0)
+ ;;=3^Rotaviral Enteritis
+ ;;^UTILITY(U,$J,358.3,52329,1,4,0)
+ ;;=4^A08.0
+ ;;^UTILITY(U,$J,358.3,52329,2)
+ ;;=^5000052
+ ;;^UTILITY(U,$J,358.3,52330,0)
+ ;;=A08.11^^193^2529^1
+ ;;^UTILITY(U,$J,358.3,52330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55100,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,55100,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,55100,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,55101,0)
- ;;=Z85.51^^256^2776^84
- ;;^UTILITY(U,$J,358.3,55101,1,0)
+ ;;^UTILITY(U,$J,358.3,52330,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
+ ;;^UTILITY(U,$J,358.3,52330,1,4,0)
+ ;;=4^A08.11
+ ;;^UTILITY(U,$J,358.3,52330,2)
+ ;;=^5000053
+ ;;^UTILITY(U,$J,358.3,52331,0)
+ ;;=A08.19^^193^2529^2
+ ;;^UTILITY(U,$J,358.3,52331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55101,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,55101,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,55101,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,55102,0)
- ;;=Z85.528^^256^2776^89
- ;;^UTILITY(U,$J,358.3,55102,1,0)
+ ;;^UTILITY(U,$J,358.3,52331,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
+ ;;^UTILITY(U,$J,358.3,52331,1,4,0)
+ ;;=4^A08.19
+ ;;^UTILITY(U,$J,358.3,52331,2)
+ ;;=^5000054
+ ;;^UTILITY(U,$J,358.3,52332,0)
+ ;;=A08.2^^193^2529^3
+ ;;^UTILITY(U,$J,358.3,52332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55102,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,55102,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,55102,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,55103,0)
- ;;=Z85.6^^256^2776^80
- ;;^UTILITY(U,$J,358.3,55103,1,0)
+ ;;^UTILITY(U,$J,358.3,52332,1,3,0)
+ ;;=3^Adenoviral Enteritis
+ ;;^UTILITY(U,$J,358.3,52332,1,4,0)
+ ;;=4^A08.2
+ ;;^UTILITY(U,$J,358.3,52332,2)
+ ;;=^5000055
+ ;;^UTILITY(U,$J,358.3,52333,0)
+ ;;=A08.31^^193^2529^6
+ ;;^UTILITY(U,$J,358.3,52333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55103,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,55103,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,55103,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,55104,0)
- ;;=Z85.72^^256^2776^104
- ;;^UTILITY(U,$J,358.3,55104,1,0)
+ ;;^UTILITY(U,$J,358.3,52333,1,3,0)
+ ;;=3^Calicivirus enteritis
+ ;;^UTILITY(U,$J,358.3,52333,1,4,0)
+ ;;=4^A08.31
+ ;;^UTILITY(U,$J,358.3,52333,2)
+ ;;=^5000056
+ ;;^UTILITY(U,$J,358.3,52334,0)
+ ;;=A08.32^^193^2529^4
+ ;;^UTILITY(U,$J,358.3,52334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55104,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,55104,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,55104,2)
- ;;=^5063436
+ ;;^UTILITY(U,$J,358.3,52334,1,3,0)
+ ;;=3^Astrovirus enteritis
+ ;;^UTILITY(U,$J,358.3,52334,1,4,0)
+ ;;=4^A08.32
+ ;;^UTILITY(U,$J,358.3,52334,2)
+ ;;=^5000057
+ ;;^UTILITY(U,$J,358.3,52335,0)
+ ;;=A08.39^^193^2529^16
+ ;;^UTILITY(U,$J,358.3,52335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52335,1,3,0)
+ ;;=3^Viral Enteritis,Oth
+ ;;^UTILITY(U,$J,358.3,52335,1,4,0)
+ ;;=4^A08.39

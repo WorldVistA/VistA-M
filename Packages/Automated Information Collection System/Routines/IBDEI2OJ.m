@@ -1,140 +1,116 @@
-IBDEI2OJ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44968,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,44968,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,44969,0)
- ;;=M25.562^^200^2234^86
- ;;^UTILITY(U,$J,358.3,44969,1,0)
+ ;;^UTILITY(U,$J,358.3,42716,1,3,0)
+ ;;=3^Unstable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42716,1,4,0)
+ ;;=4^S12.02XS
+ ;;^UTILITY(U,$J,358.3,42716,2)
+ ;;=^5021568
+ ;;^UTILITY(U,$J,358.3,42717,0)
+ ;;=S32.012S^^155^2073^63
+ ;;^UTILITY(U,$J,358.3,42717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44969,1,3,0)
- ;;=3^Pain in Left Knee
- ;;^UTILITY(U,$J,358.3,44969,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,44969,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,44970,0)
- ;;=M25.571^^200^2234^90
- ;;^UTILITY(U,$J,358.3,44970,1,0)
+ ;;^UTILITY(U,$J,358.3,42717,1,3,0)
+ ;;=3^Unstable burst fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42717,1,4,0)
+ ;;=4^S32.012S
+ ;;^UTILITY(U,$J,358.3,42717,2)
+ ;;=^5024388
+ ;;^UTILITY(U,$J,358.3,42718,0)
+ ;;=S22.012S^^155^2073^64
+ ;;^UTILITY(U,$J,358.3,42718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44970,1,3,0)
- ;;=3^Pain in Right Ankle
- ;;^UTILITY(U,$J,358.3,44970,1,4,0)
- ;;=4^M25.571
- ;;^UTILITY(U,$J,358.3,44970,2)
- ;;=^5011617
- ;;^UTILITY(U,$J,358.3,44971,0)
- ;;=M25.572^^200^2234^80
- ;;^UTILITY(U,$J,358.3,44971,1,0)
+ ;;^UTILITY(U,$J,358.3,42718,1,3,0)
+ ;;=3^Unstable burst fracture of first thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42718,1,4,0)
+ ;;=4^S22.012S
+ ;;^UTILITY(U,$J,358.3,42718,2)
+ ;;=^5022852
+ ;;^UTILITY(U,$J,358.3,42719,0)
+ ;;=S32.042S^^155^2073^65
+ ;;^UTILITY(U,$J,358.3,42719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44971,1,3,0)
- ;;=3^Pain in Left Ankle
- ;;^UTILITY(U,$J,358.3,44971,1,4,0)
- ;;=4^M25.572
- ;;^UTILITY(U,$J,358.3,44971,2)
- ;;=^5011618
- ;;^UTILITY(U,$J,358.3,44972,0)
- ;;=M79.601^^200^2234^91
- ;;^UTILITY(U,$J,358.3,44972,1,0)
+ ;;^UTILITY(U,$J,358.3,42719,1,3,0)
+ ;;=3^Unstable burst fracture of fourth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42719,1,4,0)
+ ;;=4^S32.042S
+ ;;^UTILITY(U,$J,358.3,42719,2)
+ ;;=^5024478
+ ;;^UTILITY(U,$J,358.3,42720,0)
+ ;;=S22.042S^^155^2073^66
+ ;;^UTILITY(U,$J,358.3,42720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44972,1,3,0)
- ;;=3^Pain in Right Arm
- ;;^UTILITY(U,$J,358.3,44972,1,4,0)
- ;;=4^M79.601
- ;;^UTILITY(U,$J,358.3,44972,2)
- ;;=^5013325
- ;;^UTILITY(U,$J,358.3,44973,0)
- ;;=M79.602^^200^2234^81
- ;;^UTILITY(U,$J,358.3,44973,1,0)
+ ;;^UTILITY(U,$J,358.3,42720,1,3,0)
+ ;;=3^Unstable burst fracture of fourth thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42720,1,4,0)
+ ;;=4^S22.042S
+ ;;^UTILITY(U,$J,358.3,42720,2)
+ ;;=^5022942
+ ;;^UTILITY(U,$J,358.3,42721,0)
+ ;;=S32.022S^^155^2073^67
+ ;;^UTILITY(U,$J,358.3,42721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44973,1,3,0)
- ;;=3^Pain in Left Arm
- ;;^UTILITY(U,$J,358.3,44973,1,4,0)
- ;;=4^M79.602
- ;;^UTILITY(U,$J,358.3,44973,2)
- ;;=^5013326
- ;;^UTILITY(U,$J,358.3,44974,0)
- ;;=M79.604^^200^2234^97
- ;;^UTILITY(U,$J,358.3,44974,1,0)
+ ;;^UTILITY(U,$J,358.3,42721,1,3,0)
+ ;;=3^Unstable burst fracture of second lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42721,1,4,0)
+ ;;=4^S32.022S
+ ;;^UTILITY(U,$J,358.3,42721,2)
+ ;;=^5024418
+ ;;^UTILITY(U,$J,358.3,42722,0)
+ ;;=S22.022S^^155^2073^68
+ ;;^UTILITY(U,$J,358.3,42722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44974,1,3,0)
- ;;=3^Pain in Right Leg
- ;;^UTILITY(U,$J,358.3,44974,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,44974,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,44975,0)
- ;;=M79.605^^200^2234^87
- ;;^UTILITY(U,$J,358.3,44975,1,0)
+ ;;^UTILITY(U,$J,358.3,42722,1,3,0)
+ ;;=3^Unstable burst fracture of second thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42722,1,4,0)
+ ;;=4^S22.022S
+ ;;^UTILITY(U,$J,358.3,42722,2)
+ ;;=^5022882
+ ;;^UTILITY(U,$J,358.3,42723,0)
+ ;;=S22.082S^^155^2073^57
+ ;;^UTILITY(U,$J,358.3,42723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44975,1,3,0)
- ;;=3^Pain in Left Leg
- ;;^UTILITY(U,$J,358.3,44975,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,44975,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,44976,0)
- ;;=M79.641^^200^2234^94
- ;;^UTILITY(U,$J,358.3,44976,1,0)
+ ;;^UTILITY(U,$J,358.3,42723,1,3,0)
+ ;;=3^Unstable burst fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42723,1,4,0)
+ ;;=4^S22.082S
+ ;;^UTILITY(U,$J,358.3,42723,2)
+ ;;=^5023062
+ ;;^UTILITY(U,$J,358.3,42724,0)
+ ;;=S22.052S^^155^2073^58
+ ;;^UTILITY(U,$J,358.3,42724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44976,1,3,0)
- ;;=3^Pain in Right Hand
- ;;^UTILITY(U,$J,358.3,44976,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,44976,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,44977,0)
- ;;=M79.642^^200^2234^84
- ;;^UTILITY(U,$J,358.3,44977,1,0)
+ ;;^UTILITY(U,$J,358.3,42724,1,3,0)
+ ;;=3^Unstable burst fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42724,1,4,0)
+ ;;=4^S22.052S
+ ;;^UTILITY(U,$J,358.3,42724,2)
+ ;;=^5022972
+ ;;^UTILITY(U,$J,358.3,42725,0)
+ ;;=S22.062S^^155^2073^59
+ ;;^UTILITY(U,$J,358.3,42725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44977,1,3,0)
- ;;=3^Pain in Left Hand
- ;;^UTILITY(U,$J,358.3,44977,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,44977,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,44978,0)
- ;;=M79.671^^200^2234^93
- ;;^UTILITY(U,$J,358.3,44978,1,0)
+ ;;^UTILITY(U,$J,358.3,42725,1,3,0)
+ ;;=3^Unstable burst fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42725,1,4,0)
+ ;;=4^S22.062S
+ ;;^UTILITY(U,$J,358.3,42725,2)
+ ;;=^5023002
+ ;;^UTILITY(U,$J,358.3,42726,0)
+ ;;=S22.072S^^155^2073^60
+ ;;^UTILITY(U,$J,358.3,42726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44978,1,3,0)
- ;;=3^Pain in Right Foot
- ;;^UTILITY(U,$J,358.3,44978,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,44978,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,44979,0)
- ;;=M79.672^^200^2234^83
- ;;^UTILITY(U,$J,358.3,44979,1,0)
+ ;;^UTILITY(U,$J,358.3,42726,1,3,0)
+ ;;=3^Unstable burst fracture of T9-T10 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42726,1,4,0)
+ ;;=4^S22.072S
+ ;;^UTILITY(U,$J,358.3,42726,2)
+ ;;=^5023032
+ ;;^UTILITY(U,$J,358.3,42727,0)
+ ;;=S32.032S^^155^2073^69
+ ;;^UTILITY(U,$J,358.3,42727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44979,1,3,0)
- ;;=3^Pain in Left Foot
- ;;^UTILITY(U,$J,358.3,44979,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,44979,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,44980,0)
- ;;=M54.9^^200^2234^8
- ;;^UTILITY(U,$J,358.3,44980,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44980,1,3,0)
- ;;=3^Backache/Dorsalgia
- ;;^UTILITY(U,$J,358.3,44980,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,44980,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,44981,0)
- ;;=M48.52XG^^200^2234^19
- ;;^UTILITY(U,$J,358.3,44981,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44981,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,44981,1,4,0)
- ;;=4^M48.52XG
- ;;^UTILITY(U,$J,358.3,44981,2)
- ;;=^5012169
- ;;^UTILITY(U,$J,358.3,44982,0)
- ;;=M48.52XS^^200^2234^20
+ ;;^UTILITY(U,$J,358.3,42727,1,3,0)
+ ;;=3^Unstable burst fracture of third lumbar vertebra, sequela

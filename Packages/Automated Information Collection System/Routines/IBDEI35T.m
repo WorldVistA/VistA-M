@@ -1,132 +1,126 @@
-IBDEI35T ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI35T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53045,1,4,0)
- ;;=4^C44.529
- ;;^UTILITY(U,$J,358.3,53045,2)
- ;;=^5001059
- ;;^UTILITY(U,$J,358.3,53046,0)
- ;;=C44.622^^243^2659^15
- ;;^UTILITY(U,$J,358.3,53046,1,0)
+ ;;^UTILITY(U,$J,358.3,50451,0)
+ ;;=E53.8^^193^2493^91
+ ;;^UTILITY(U,$J,358.3,50451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53046,1,3,0)
- ;;=3^SCC Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,53046,1,4,0)
- ;;=4^C44.622
- ;;^UTILITY(U,$J,358.3,53046,2)
- ;;=^5001070
- ;;^UTILITY(U,$J,358.3,53047,0)
- ;;=C44.629^^243^2659^6
- ;;^UTILITY(U,$J,358.3,53047,1,0)
+ ;;^UTILITY(U,$J,358.3,50451,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,50451,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,50451,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,50452,0)
+ ;;=K59.04^^193^2493^20
+ ;;^UTILITY(U,$J,358.3,50452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53047,1,3,0)
- ;;=3^SCC Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,53047,1,4,0)
- ;;=4^C44.629
- ;;^UTILITY(U,$J,358.3,53047,2)
- ;;=^5001071
- ;;^UTILITY(U,$J,358.3,53048,0)
- ;;=C44.722^^243^2659^14
- ;;^UTILITY(U,$J,358.3,53048,1,0)
+ ;;^UTILITY(U,$J,358.3,50452,1,3,0)
+ ;;=3^Constipation,Chronic Idiopathic
+ ;;^UTILITY(U,$J,358.3,50452,1,4,0)
+ ;;=4^K59.04
+ ;;^UTILITY(U,$J,358.3,50452,2)
+ ;;=^7148177
+ ;;^UTILITY(U,$J,358.3,50453,0)
+ ;;=K59.03^^193^2493^21
+ ;;^UTILITY(U,$J,358.3,50453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53048,1,3,0)
- ;;=3^SCC Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,53048,1,4,0)
- ;;=4^C44.722
- ;;^UTILITY(U,$J,358.3,53048,2)
- ;;=^5001082
- ;;^UTILITY(U,$J,358.3,53049,0)
- ;;=C44.729^^243^2659^5
- ;;^UTILITY(U,$J,358.3,53049,1,0)
+ ;;^UTILITY(U,$J,358.3,50453,1,3,0)
+ ;;=3^Constipation,Drug Induced
+ ;;^UTILITY(U,$J,358.3,50453,1,4,0)
+ ;;=4^K59.03
+ ;;^UTILITY(U,$J,358.3,50453,2)
+ ;;=^5138744
+ ;;^UTILITY(U,$J,358.3,50454,0)
+ ;;=K52.21^^193^2493^51
+ ;;^UTILITY(U,$J,358.3,50454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53049,1,3,0)
- ;;=3^SCC Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,53049,1,4,0)
- ;;=4^C44.729
- ;;^UTILITY(U,$J,358.3,53049,2)
- ;;=^5001083
- ;;^UTILITY(U,$J,358.3,53050,0)
- ;;=C44.82^^243^2659^10
- ;;^UTILITY(U,$J,358.3,53050,1,0)
+ ;;^UTILITY(U,$J,358.3,50454,1,3,0)
+ ;;=3^Enterocolitis Synd Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,50454,1,4,0)
+ ;;=4^K52.21
+ ;;^UTILITY(U,$J,358.3,50454,2)
+ ;;=^5138713
+ ;;^UTILITY(U,$J,358.3,50455,0)
+ ;;=K52.22^^193^2493^52
+ ;;^UTILITY(U,$J,358.3,50455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53050,1,3,0)
- ;;=3^SCC Skin Overlapping Sites
- ;;^UTILITY(U,$J,358.3,53050,1,4,0)
- ;;=4^C44.82
- ;;^UTILITY(U,$J,358.3,53050,2)
- ;;=^5001089
- ;;^UTILITY(U,$J,358.3,53051,0)
- ;;=L57.8^^243^2659^22
- ;;^UTILITY(U,$J,358.3,53051,1,0)
+ ;;^UTILITY(U,$J,358.3,50455,1,3,0)
+ ;;=3^Enterocolopathy Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,50455,1,4,0)
+ ;;=4^K52.22
+ ;;^UTILITY(U,$J,358.3,50455,2)
+ ;;=^5138714
+ ;;^UTILITY(U,$J,358.3,50456,0)
+ ;;=K58.2^^193^2493^79
+ ;;^UTILITY(U,$J,358.3,50456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53051,1,3,0)
- ;;=3^Skin Changes d/t Chr Exposure to Nonionizing Radiation
- ;;^UTILITY(U,$J,358.3,53051,1,4,0)
- ;;=4^L57.8
- ;;^UTILITY(U,$J,358.3,53051,2)
- ;;=^5009226
- ;;^UTILITY(U,$J,358.3,53052,0)
- ;;=L27.0^^243^2659^23
- ;;^UTILITY(U,$J,358.3,53052,1,0)
+ ;;^UTILITY(U,$J,358.3,50456,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Mixed
+ ;;^UTILITY(U,$J,358.3,50456,1,4,0)
+ ;;=4^K58.2
+ ;;^UTILITY(U,$J,358.3,50456,2)
+ ;;=^5138742
+ ;;^UTILITY(U,$J,358.3,50457,0)
+ ;;=K58.8^^193^2493^80
+ ;;^UTILITY(U,$J,358.3,50457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53052,1,3,0)
- ;;=3^Skin Eruption,Generalized d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,53052,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,53052,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,53053,0)
- ;;=L27.1^^243^2659^24
- ;;^UTILITY(U,$J,358.3,53053,1,0)
+ ;;^UTILITY(U,$J,358.3,50457,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Other
+ ;;^UTILITY(U,$J,358.3,50457,1,4,0)
+ ;;=4^K58.8
+ ;;^UTILITY(U,$J,358.3,50457,2)
+ ;;=^5138743
+ ;;^UTILITY(U,$J,358.3,50458,0)
+ ;;=K58.1^^193^2493^76
+ ;;^UTILITY(U,$J,358.3,50458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53053,1,3,0)
- ;;=3^Skin Eruption,Localized d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,53053,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,53053,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,53054,0)
- ;;=L51.1^^243^2659^29
- ;;^UTILITY(U,$J,358.3,53054,1,0)
+ ;;^UTILITY(U,$J,358.3,50458,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Constipation
+ ;;^UTILITY(U,$J,358.3,50458,1,4,0)
+ ;;=4^K58.1
+ ;;^UTILITY(U,$J,358.3,50458,2)
+ ;;=^5138741
+ ;;^UTILITY(U,$J,358.3,50459,0)
+ ;;=K61.39^^193^2493^5
+ ;;^UTILITY(U,$J,358.3,50459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53054,1,3,0)
- ;;=3^Stevens-Johnson Syndrome
- ;;^UTILITY(U,$J,358.3,53054,1,4,0)
- ;;=4^L51.1
- ;;^UTILITY(U,$J,358.3,53054,2)
- ;;=^336636
- ;;^UTILITY(U,$J,358.3,53055,0)
- ;;=L51.3^^243^2659^30
- ;;^UTILITY(U,$J,358.3,53055,1,0)
+ ;;^UTILITY(U,$J,358.3,50459,1,3,0)
+ ;;=3^Abscess,Ischiorectal NOS
+ ;;^UTILITY(U,$J,358.3,50459,1,4,0)
+ ;;=4^K61.39
+ ;;^UTILITY(U,$J,358.3,50459,2)
+ ;;=^5157385
+ ;;^UTILITY(U,$J,358.3,50460,0)
+ ;;=G43.A1^^193^2493^34
+ ;;^UTILITY(U,$J,358.3,50460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53055,1,3,0)
- ;;=3^Stevens-Johnson Syndrome-Toxic Epdrml Necrolysis Overlap Syndrome
- ;;^UTILITY(U,$J,358.3,53055,1,4,0)
- ;;=4^L51.3
- ;;^UTILITY(U,$J,358.3,53055,2)
- ;;=^336637
- ;;^UTILITY(U,$J,358.3,53056,0)
- ;;=Z12.83^^243^2659^19
- ;;^UTILITY(U,$J,358.3,53056,1,0)
+ ;;^UTILITY(U,$J,358.3,50460,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Intractable
+ ;;^UTILITY(U,$J,358.3,50460,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,50460,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,50461,0)
+ ;;=G43.A0^^193^2493^35
+ ;;^UTILITY(U,$J,358.3,50461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53056,1,3,0)
- ;;=3^Screening for Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,53056,1,4,0)
- ;;=4^Z12.83
- ;;^UTILITY(U,$J,358.3,53056,2)
- ;;=^5062696
- ;;^UTILITY(U,$J,358.3,53057,0)
- ;;=Z48.817^^243^2659^33
- ;;^UTILITY(U,$J,358.3,53057,1,0)
+ ;;^UTILITY(U,$J,358.3,50461,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Not intractable
+ ;;^UTILITY(U,$J,358.3,50461,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,50461,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,50462,0)
+ ;;=R11.15^^193^2493^33
+ ;;^UTILITY(U,$J,358.3,50462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53057,1,3,0)
- ;;=3^Surgical Aftercare Following Skin Surgery
- ;;^UTILITY(U,$J,358.3,53057,1,4,0)
- ;;=4^Z48.817
- ;;^UTILITY(U,$J,358.3,53057,2)
- ;;=^5063054
- ;;^UTILITY(U,$J,358.3,53058,0)
- ;;=L94.0^^243^2659^18
- ;;^UTILITY(U,$J,358.3,53058,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50462,1,3,0)
+ ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
+ ;;^UTILITY(U,$J,358.3,50462,1,4,0)
+ ;;=4^R11.15
+ ;;^UTILITY(U,$J,358.3,50462,2)
+ ;;=^5158141
+ ;;^UTILITY(U,$J,358.3,50463,0)
+ ;;=A54.00^^193^2494^50

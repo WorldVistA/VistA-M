@@ -1,360 +1,118 @@
-IBDEI0ZV ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0ZV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47033,0)
- ;;=G57.72^^139^1981^3
- ;;^UTILITY(U,$J,358.3,47033,1,0)
+ ;;^UTILITY(U,$J,358.3,15997,0)
+ ;;=L97.921^^88^869^207
+ ;;^UTILITY(U,$J,358.3,15997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47033,1,3,0)
- ;;=3^Causalgia of lft lwr limb
- ;;^UTILITY(U,$J,358.3,47033,1,4,0)
- ;;=4^G57.72
- ;;^UTILITY(U,$J,358.3,47033,2)
- ;;=^5133366
- ;;^UTILITY(U,$J,358.3,47034,0)
- ;;=L30.2^^139^1981^69
- ;;^UTILITY(U,$J,358.3,47034,1,0)
+ ;;^UTILITY(U,$J,358.3,15997,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,15997,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,15997,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,15998,0)
+ ;;=L97.922^^88^869^208
+ ;;^UTILITY(U,$J,358.3,15998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47034,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,47034,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,47034,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,47035,0)
- ;;=Q66.7^^139^1981^15
- ;;^UTILITY(U,$J,358.3,47035,1,0)
+ ;;^UTILITY(U,$J,358.3,15998,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,15998,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,15998,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,15999,0)
+ ;;=L97.923^^88^869^209
+ ;;^UTILITY(U,$J,358.3,15999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47035,1,3,0)
- ;;=3^Congenital Pes Cavus
- ;;^UTILITY(U,$J,358.3,47035,1,4,0)
- ;;=4^Q66.7
- ;;^UTILITY(U,$J,358.3,47035,2)
- ;;=^5018870
- ;;^UTILITY(U,$J,358.3,47036,0)
- ;;=Q66.52^^139^1981^16
- ;;^UTILITY(U,$J,358.3,47036,1,0)
+ ;;^UTILITY(U,$J,358.3,15999,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,15999,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,15999,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,16000,0)
+ ;;=L97.924^^88^869^210
+ ;;^UTILITY(U,$J,358.3,16000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47036,1,3,0)
- ;;=3^Congenital Pes Planus,Left Foot
- ;;^UTILITY(U,$J,358.3,47036,1,4,0)
- ;;=4^Q66.52
- ;;^UTILITY(U,$J,358.3,47036,2)
- ;;=^5018868
- ;;^UTILITY(U,$J,358.3,47037,0)
- ;;=Q66.51^^139^1981^17
- ;;^UTILITY(U,$J,358.3,47037,1,0)
+ ;;^UTILITY(U,$J,358.3,16000,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,16000,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,16000,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,16001,0)
+ ;;=L97.929^^88^869^211
+ ;;^UTILITY(U,$J,358.3,16001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47037,1,3,0)
- ;;=3^Congenital Pes Planus,Right Foot
- ;;^UTILITY(U,$J,358.3,47037,1,4,0)
- ;;=4^Q66.51
- ;;^UTILITY(U,$J,358.3,47037,2)
- ;;=^5018867
- ;;^UTILITY(U,$J,358.3,47038,0)
- ;;=M77.32^^139^1981^1
- ;;^UTILITY(U,$J,358.3,47038,1,0)
+ ;;^UTILITY(U,$J,358.3,16001,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,16001,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,16001,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,16002,0)
+ ;;=L98.2^^88^869^152
+ ;;^UTILITY(U,$J,358.3,16002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47038,1,3,0)
- ;;=3^Calcaneal Spur,Left Foot
- ;;^UTILITY(U,$J,358.3,47038,1,4,0)
- ;;=4^M77.32
- ;;^UTILITY(U,$J,358.3,47038,2)
- ;;=^5013311
- ;;^UTILITY(U,$J,358.3,47039,0)
- ;;=M77.31^^139^1981^2
- ;;^UTILITY(U,$J,358.3,47039,1,0)
+ ;;^UTILITY(U,$J,358.3,16002,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,16002,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,16002,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,16003,0)
+ ;;=L98.9^^88^869^307
+ ;;^UTILITY(U,$J,358.3,16003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47039,1,3,0)
- ;;=3^Calcaneal Spur,Right Foot
- ;;^UTILITY(U,$J,358.3,47039,1,4,0)
- ;;=4^M77.31
- ;;^UTILITY(U,$J,358.3,47039,2)
- ;;=^5013310
- ;;^UTILITY(U,$J,358.3,47040,0)
- ;;=Z48.03^^139^1981^7
- ;;^UTILITY(U,$J,358.3,47040,1,0)
+ ;;^UTILITY(U,$J,358.3,16003,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16003,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,16003,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,16004,0)
+ ;;=I70.731^^88^869^81
+ ;;^UTILITY(U,$J,358.3,16004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47040,1,3,0)
- ;;=3^Change/Removal of Drains
- ;;^UTILITY(U,$J,358.3,47040,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,47040,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,47041,0)
- ;;=E11.51^^139^1982^30
- ;;^UTILITY(U,$J,358.3,47041,1,0)
+ ;;^UTILITY(U,$J,358.3,16004,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,16004,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,16004,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,16005,0)
+ ;;=I70.732^^88^869^82
+ ;;^UTILITY(U,$J,358.3,16005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47041,1,3,0)
- ;;=3^DM Type 2 w/ Diab Periph Angiopath w/o Gangrene
- ;;^UTILITY(U,$J,358.3,47041,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,47041,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,47042,0)
- ;;=E11.52^^139^1982^29
- ;;^UTILITY(U,$J,358.3,47042,1,0)
+ ;;^UTILITY(U,$J,358.3,16005,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,16005,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,16005,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,16006,0)
+ ;;=I70.733^^88^869^83
+ ;;^UTILITY(U,$J,358.3,16006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47042,1,3,0)
- ;;=3^DM Type 2 w/ Diab Periph Angiopath w/ Gangrene
- ;;^UTILITY(U,$J,358.3,47042,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,47042,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,47043,0)
- ;;=E11.59^^139^1982^18
- ;;^UTILITY(U,$J,358.3,47043,1,0)
+ ;;^UTILITY(U,$J,358.3,16006,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,16006,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,16006,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,16007,0)
+ ;;=I70.734^^88^869^84
+ ;;^UTILITY(U,$J,358.3,16007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47043,1,3,0)
- ;;=3^DM Type 2 w/ Circulatory Compl NEC
- ;;^UTILITY(U,$J,358.3,47043,1,4,0)
- ;;=4^E11.59
- ;;^UTILITY(U,$J,358.3,47043,2)
- ;;=^5002652
- ;;^UTILITY(U,$J,358.3,47044,0)
- ;;=E11.610^^139^1982^27
- ;;^UTILITY(U,$J,358.3,47044,1,0)
+ ;;^UTILITY(U,$J,358.3,16007,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,16007,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,16007,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,16008,0)
+ ;;=I70.735^^88^869^85
+ ;;^UTILITY(U,$J,358.3,16008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47044,1,3,0)
- ;;=3^DM Type 2 w/ Diab Neuropath Arthropathy
- ;;^UTILITY(U,$J,358.3,47044,1,4,0)
- ;;=4^E11.610
- ;;^UTILITY(U,$J,358.3,47044,2)
- ;;=^5002653
- ;;^UTILITY(U,$J,358.3,47045,0)
- ;;=E11.618^^139^1982^22
- ;;^UTILITY(U,$J,358.3,47045,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47045,1,3,0)
- ;;=3^DM Type 2 w/ Diab Arthropathy NEC
- ;;^UTILITY(U,$J,358.3,47045,1,4,0)
- ;;=4^E11.618
- ;;^UTILITY(U,$J,358.3,47045,2)
- ;;=^5002654
- ;;^UTILITY(U,$J,358.3,47046,0)
- ;;=E11.620^^139^1982^24
- ;;^UTILITY(U,$J,358.3,47046,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47046,1,3,0)
- ;;=3^DM Type 2 w/ Diab Dermatitis
- ;;^UTILITY(U,$J,358.3,47046,1,4,0)
- ;;=4^E11.620
- ;;^UTILITY(U,$J,358.3,47046,2)
- ;;=^5002655
- ;;^UTILITY(U,$J,358.3,47047,0)
- ;;=E11.622^^139^1982^34
- ;;^UTILITY(U,$J,358.3,47047,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47047,1,3,0)
- ;;=3^DM Type 2 w/ Skin Ulcer NEC
- ;;^UTILITY(U,$J,358.3,47047,1,4,0)
- ;;=4^E11.622
- ;;^UTILITY(U,$J,358.3,47047,2)
- ;;=^5002657
- ;;^UTILITY(U,$J,358.3,47048,0)
- ;;=E11.628^^139^1982^33
- ;;^UTILITY(U,$J,358.3,47048,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47048,1,3,0)
- ;;=3^DM Type 2 w/ Skin Compl NEC
- ;;^UTILITY(U,$J,358.3,47048,1,4,0)
- ;;=4^E11.628
- ;;^UTILITY(U,$J,358.3,47048,2)
- ;;=^5002658
- ;;^UTILITY(U,$J,358.3,47049,0)
- ;;=E11.69^^139^1982^19
- ;;^UTILITY(U,$J,358.3,47049,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47049,1,3,0)
- ;;=3^DM Type 2 w/ Complications NEC
- ;;^UTILITY(U,$J,358.3,47049,1,4,0)
- ;;=4^E11.69
- ;;^UTILITY(U,$J,358.3,47049,2)
- ;;=^5002664
- ;;^UTILITY(U,$J,358.3,47050,0)
- ;;=E11.8^^139^1982^20
- ;;^UTILITY(U,$J,358.3,47050,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47050,1,3,0)
- ;;=3^DM Type 2 w/ Complications,Unspec
- ;;^UTILITY(U,$J,358.3,47050,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,47050,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,47051,0)
- ;;=E10.51^^139^1982^13
- ;;^UTILITY(U,$J,358.3,47051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47051,1,3,0)
- ;;=3^DM Type 1 w/ Diab Periph Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,47051,1,4,0)
- ;;=4^E10.51
- ;;^UTILITY(U,$J,358.3,47051,2)
- ;;=^5002610
- ;;^UTILITY(U,$J,358.3,47052,0)
- ;;=E10.52^^139^1982^12
- ;;^UTILITY(U,$J,358.3,47052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47052,1,3,0)
- ;;=3^DM Type 1 w/ Diab Periph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,47052,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,47052,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,47053,0)
- ;;=E10.59^^139^1982^1
- ;;^UTILITY(U,$J,358.3,47053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47053,1,3,0)
- ;;=3^DM Type 1 w/ Circulatory Compl NEC
- ;;^UTILITY(U,$J,358.3,47053,1,4,0)
- ;;=4^E10.59
- ;;^UTILITY(U,$J,358.3,47053,2)
- ;;=^5002612
- ;;^UTILITY(U,$J,358.3,47054,0)
- ;;=E10.610^^139^1982^10
- ;;^UTILITY(U,$J,358.3,47054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47054,1,3,0)
- ;;=3^DM Type 1 w/ Diab Neuropathy Arthropathy
- ;;^UTILITY(U,$J,358.3,47054,1,4,0)
- ;;=4^E10.610
- ;;^UTILITY(U,$J,358.3,47054,2)
- ;;=^5002613
- ;;^UTILITY(U,$J,358.3,47055,0)
- ;;=E10.618^^139^1982^5
- ;;^UTILITY(U,$J,358.3,47055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47055,1,3,0)
- ;;=3^DM Type 1 w/ Diab Arthopathy NEC
- ;;^UTILITY(U,$J,358.3,47055,1,4,0)
- ;;=4^E10.618
- ;;^UTILITY(U,$J,358.3,47055,2)
- ;;=^5002614
- ;;^UTILITY(U,$J,358.3,47056,0)
- ;;=E10.620^^139^1982^7
- ;;^UTILITY(U,$J,358.3,47056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47056,1,3,0)
- ;;=3^DM Type 1 w/ Diab Dermatitis
- ;;^UTILITY(U,$J,358.3,47056,1,4,0)
- ;;=4^E10.620
- ;;^UTILITY(U,$J,358.3,47056,2)
- ;;=^5002615
- ;;^UTILITY(U,$J,358.3,47057,0)
- ;;=E10.621^^139^1982^15
- ;;^UTILITY(U,$J,358.3,47057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47057,1,3,0)
- ;;=3^DM Type 1 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,47057,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,47057,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,47058,0)
- ;;=E10.622^^139^1982^17
- ;;^UTILITY(U,$J,358.3,47058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47058,1,3,0)
- ;;=3^DM Type 1 w/ Skin Ulcer NEC
- ;;^UTILITY(U,$J,358.3,47058,1,4,0)
- ;;=4^E10.622
- ;;^UTILITY(U,$J,358.3,47058,2)
- ;;=^5002617
- ;;^UTILITY(U,$J,358.3,47059,0)
- ;;=E10.628^^139^1982^16
- ;;^UTILITY(U,$J,358.3,47059,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47059,1,3,0)
- ;;=3^DM Type 1 w/ Skin Compl NEC
- ;;^UTILITY(U,$J,358.3,47059,1,4,0)
- ;;=4^E10.628
- ;;^UTILITY(U,$J,358.3,47059,2)
- ;;=^5002618
- ;;^UTILITY(U,$J,358.3,47060,0)
- ;;=E10.69^^139^1982^2
- ;;^UTILITY(U,$J,358.3,47060,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47060,1,3,0)
- ;;=3^DM Type 1 w/ Complications NEC
- ;;^UTILITY(U,$J,358.3,47060,1,4,0)
- ;;=4^E10.69
- ;;^UTILITY(U,$J,358.3,47060,2)
- ;;=^5002624
- ;;^UTILITY(U,$J,358.3,47061,0)
- ;;=E10.8^^139^1982^3
- ;;^UTILITY(U,$J,358.3,47061,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47061,1,3,0)
- ;;=3^DM Type 1 w/ Complications,Unspec
- ;;^UTILITY(U,$J,358.3,47061,1,4,0)
- ;;=4^E10.8
- ;;^UTILITY(U,$J,358.3,47061,2)
- ;;=^5002625
- ;;^UTILITY(U,$J,358.3,47062,0)
- ;;=M21.6X1^^139^1982^41
- ;;^UTILITY(U,$J,358.3,47062,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47062,1,3,0)
- ;;=3^Deformitis,Right Foot,Acquired
- ;;^UTILITY(U,$J,358.3,47062,1,4,0)
- ;;=4^M21.6X1
- ;;^UTILITY(U,$J,358.3,47062,2)
- ;;=^5011128
- ;;^UTILITY(U,$J,358.3,47063,0)
- ;;=M21.6X2^^139^1982^39
- ;;^UTILITY(U,$J,358.3,47063,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47063,1,3,0)
- ;;=3^Deformitis,Left Foot,Acquired
- ;;^UTILITY(U,$J,358.3,47063,1,4,0)
- ;;=4^M21.6X2
- ;;^UTILITY(U,$J,358.3,47063,2)
- ;;=^5011129
- ;;^UTILITY(U,$J,358.3,47064,0)
- ;;=L25.9^^139^1982^53
- ;;^UTILITY(U,$J,358.3,47064,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47064,1,3,0)
- ;;=3^Dermatitis,Contact,Unspec
- ;;^UTILITY(U,$J,358.3,47064,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,47064,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,47065,0)
- ;;=L23.9^^139^1982^52
- ;;^UTILITY(U,$J,358.3,47065,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47065,1,3,0)
- ;;=3^Dermatitis,Allergic Contact,Unspec Cause
- ;;^UTILITY(U,$J,358.3,47065,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,47065,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,47066,0)
- ;;=L24.9^^139^1982^54
- ;;^UTILITY(U,$J,358.3,47066,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47066,1,3,0)
- ;;=3^Dermatitis,Irritant Contact,Unspec Cause
- ;;^UTILITY(U,$J,358.3,47066,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,47066,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,47067,0)
- ;;=L30.0^^139^1982^55
- ;;^UTILITY(U,$J,358.3,47067,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47067,1,3,0)
- ;;=3^Dermatitis,Nummular
- ;;^UTILITY(U,$J,358.3,47067,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,47067,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,47068,0)
- ;;=L30.8^^139^1982^51
- ;;^UTILITY(U,$J,358.3,47068,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47068,1,3,0)
- ;;=3^Dermatitis NEC

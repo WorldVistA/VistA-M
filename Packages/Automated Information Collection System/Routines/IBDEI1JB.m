@@ -1,138 +1,118 @@
-IBDEI1JB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26042,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,26043,0)
- ;;=Z91.49^^98^1223^12
- ;;^UTILITY(U,$J,358.3,26043,1,0)
+ ;;^UTILITY(U,$J,358.3,24532,0)
+ ;;=K51.914^^107^1207^84
+ ;;^UTILITY(U,$J,358.3,24532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26043,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,26043,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,26043,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,26044,0)
- ;;=Z91.5^^98^1223^13
- ;;^UTILITY(U,$J,358.3,26044,1,0)
+ ;;^UTILITY(U,$J,358.3,24532,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,24532,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,24532,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,24533,0)
+ ;;=K51.913^^107^1207^85
+ ;;^UTILITY(U,$J,358.3,24533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26044,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,26044,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,26044,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,26045,0)
- ;;=Z91.82^^98^1223^11
- ;;^UTILITY(U,$J,358.3,26045,1,0)
+ ;;^UTILITY(U,$J,358.3,24533,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,24533,1,4,0)
+ ;;=4^K51.913
+ ;;^UTILITY(U,$J,358.3,24533,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,24534,0)
+ ;;=K51.912^^107^1207^86
+ ;;^UTILITY(U,$J,358.3,24534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26045,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,26045,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,26045,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,26046,0)
- ;;=Z91.89^^98^1223^14
- ;;^UTILITY(U,$J,358.3,26046,1,0)
+ ;;^UTILITY(U,$J,358.3,24534,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,24534,1,4,0)
+ ;;=4^K51.912
+ ;;^UTILITY(U,$J,358.3,24534,2)
+ ;;=^5008696
+ ;;^UTILITY(U,$J,358.3,24535,0)
+ ;;=K51.911^^107^1207^88
+ ;;^UTILITY(U,$J,358.3,24535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26046,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,26046,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,26046,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,26047,0)
- ;;=Z72.9^^98^1223^15
- ;;^UTILITY(U,$J,358.3,26047,1,0)
+ ;;^UTILITY(U,$J,358.3,24535,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,24535,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,24535,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,24536,0)
+ ;;=K52.89^^107^1207^61
+ ;;^UTILITY(U,$J,358.3,24536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26047,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,26047,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,26047,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,26048,0)
- ;;=Z72.811^^98^1223^1
- ;;^UTILITY(U,$J,358.3,26048,1,0)
+ ;;^UTILITY(U,$J,358.3,24536,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,24536,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,24536,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,24537,0)
+ ;;=K52.9^^107^1207^60
+ ;;^UTILITY(U,$J,358.3,24537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26048,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,26048,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,26048,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,26049,0)
- ;;=Z91.19^^98^1223^5
- ;;^UTILITY(U,$J,358.3,26049,1,0)
+ ;;^UTILITY(U,$J,358.3,24537,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,24537,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,24537,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,24538,0)
+ ;;=K57.30^^107^1207^47
+ ;;^UTILITY(U,$J,358.3,24538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26049,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
- ;;^UTILITY(U,$J,358.3,26049,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,26049,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,26050,0)
- ;;=E66.9^^98^1223^6
- ;;^UTILITY(U,$J,358.3,26050,1,0)
+ ;;^UTILITY(U,$J,358.3,24538,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,24538,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,24538,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,24539,0)
+ ;;=K57.50^^107^1207^48
+ ;;^UTILITY(U,$J,358.3,24539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26050,1,3,0)
- ;;=3^Obesity
- ;;^UTILITY(U,$J,358.3,26050,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,26050,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,26051,0)
- ;;=Z76.5^^98^1223^3
- ;;^UTILITY(U,$J,358.3,26051,1,0)
+ ;;^UTILITY(U,$J,358.3,24539,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,24539,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,24539,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,24540,0)
+ ;;=K57.90^^107^1207^46
+ ;;^UTILITY(U,$J,358.3,24540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26051,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,26051,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,26051,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,26052,0)
- ;;=R41.83^^98^1223^2
- ;;^UTILITY(U,$J,358.3,26052,1,0)
+ ;;^UTILITY(U,$J,358.3,24540,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,24540,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,24540,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,24541,0)
+ ;;=K57.20^^107^1207^42
+ ;;^UTILITY(U,$J,358.3,24541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26052,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,26052,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,26052,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,26053,0)
- ;;=Z56.82^^98^1223^4
- ;;^UTILITY(U,$J,358.3,26053,1,0)
+ ;;^UTILITY(U,$J,358.3,24541,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,24541,1,4,0)
+ ;;=4^K57.20
+ ;;^UTILITY(U,$J,358.3,24541,2)
+ ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,24542,0)
+ ;;=K57.92^^107^1207^41
+ ;;^UTILITY(U,$J,358.3,24542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26053,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,26053,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,26053,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,26054,0)
- ;;=E66.3^^98^1223^7
- ;;^UTILITY(U,$J,358.3,26054,1,0)
+ ;;^UTILITY(U,$J,358.3,24542,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,24542,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,24542,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,24543,0)
+ ;;=K57.80^^107^1207^40
+ ;;^UTILITY(U,$J,358.3,24543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26054,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,26054,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,26054,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,26055,0)
- ;;=Z62.811^^98^1223^10
- ;;^UTILITY(U,$J,358.3,26055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26055,1,3,0)
- ;;=3^Personal Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,26055,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,26055,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,26056,0)
- ;;=Z62.812^^98^1223^8

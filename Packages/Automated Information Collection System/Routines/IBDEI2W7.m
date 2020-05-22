@@ -1,122 +1,126 @@
-IBDEI2W7 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48568,1,0)
+ ;;^UTILITY(U,$J,358.3,46139,2)
+ ;;=^5006396
+ ;;^UTILITY(U,$J,358.3,46140,0)
+ ;;=H43.391^^176^2300^55
+ ;;^UTILITY(U,$J,358.3,46140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48568,1,3,0)
- ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,48568,1,4,0)
- ;;=4^T84.82XA
- ;;^UTILITY(U,$J,358.3,48568,2)
- ;;=^5055457
- ;;^UTILITY(U,$J,358.3,48569,0)
- ;;=T84.82XD^^216^2409^8
- ;;^UTILITY(U,$J,358.3,48569,1,0)
+ ;;^UTILITY(U,$J,358.3,46140,1,3,0)
+ ;;=3^Vitreous Opacities,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,46140,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,46140,2)
+ ;;=^5005949
+ ;;^UTILITY(U,$J,358.3,46141,0)
+ ;;=H43.392^^176^2300^54
+ ;;^UTILITY(U,$J,358.3,46141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48569,1,3,0)
- ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,48569,1,4,0)
- ;;=4^T84.82XD
- ;;^UTILITY(U,$J,358.3,48569,2)
- ;;=^5055458
- ;;^UTILITY(U,$J,358.3,48570,0)
- ;;=T84.82XS^^216^2409^9
- ;;^UTILITY(U,$J,358.3,48570,1,0)
+ ;;^UTILITY(U,$J,358.3,46141,1,3,0)
+ ;;=3^Vitreous Opacities,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,46141,1,4,0)
+ ;;=4^H43.392
+ ;;^UTILITY(U,$J,358.3,46141,2)
+ ;;=^5005950
+ ;;^UTILITY(U,$J,358.3,46142,0)
+ ;;=H02.831^^176^2300^22
+ ;;^UTILITY(U,$J,358.3,46142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48570,1,3,0)
- ;;=3^Fibrosis due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,48570,1,4,0)
- ;;=4^T84.82XS
- ;;^UTILITY(U,$J,358.3,48570,2)
- ;;=^5055459
- ;;^UTILITY(U,$J,358.3,48571,0)
- ;;=T84.83XA^^216^2409^10
- ;;^UTILITY(U,$J,358.3,48571,1,0)
+ ;;^UTILITY(U,$J,358.3,46142,1,3,0)
+ ;;=3^Dermatochalasis,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46142,1,4,0)
+ ;;=4^H02.831
+ ;;^UTILITY(U,$J,358.3,46142,2)
+ ;;=^5004418
+ ;;^UTILITY(U,$J,358.3,46143,0)
+ ;;=H02.834^^176^2300^21
+ ;;^UTILITY(U,$J,358.3,46143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48571,1,3,0)
- ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,48571,1,4,0)
- ;;=4^T84.83XA
- ;;^UTILITY(U,$J,358.3,48571,2)
- ;;=^5055460
- ;;^UTILITY(U,$J,358.3,48572,0)
- ;;=T84.83XD^^216^2409^11
- ;;^UTILITY(U,$J,358.3,48572,1,0)
+ ;;^UTILITY(U,$J,358.3,46143,1,3,0)
+ ;;=3^Dermatochalasis,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46143,1,4,0)
+ ;;=4^H02.834
+ ;;^UTILITY(U,$J,358.3,46143,2)
+ ;;=^5004421
+ ;;^UTILITY(U,$J,358.3,46144,0)
+ ;;=H10.31^^176^2300^14
+ ;;^UTILITY(U,$J,358.3,46144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48572,1,3,0)
- ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,48572,1,4,0)
- ;;=4^T84.83XD
- ;;^UTILITY(U,$J,358.3,48572,2)
- ;;=^5055461
- ;;^UTILITY(U,$J,358.3,48573,0)
- ;;=T84.83XS^^216^2409^12
- ;;^UTILITY(U,$J,358.3,48573,1,0)
+ ;;^UTILITY(U,$J,358.3,46144,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Right Eye
+ ;;^UTILITY(U,$J,358.3,46144,1,4,0)
+ ;;=4^H10.31
+ ;;^UTILITY(U,$J,358.3,46144,2)
+ ;;=^5133458
+ ;;^UTILITY(U,$J,358.3,46145,0)
+ ;;=H10.32^^176^2300^13
+ ;;^UTILITY(U,$J,358.3,46145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48573,1,3,0)
- ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,48573,1,4,0)
- ;;=4^T84.83XS
- ;;^UTILITY(U,$J,358.3,48573,2)
- ;;=^5055462
- ;;^UTILITY(U,$J,358.3,48574,0)
- ;;=T84.89XA^^216^2409^1
- ;;^UTILITY(U,$J,358.3,48574,1,0)
+ ;;^UTILITY(U,$J,358.3,46145,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Left Eye
+ ;;^UTILITY(U,$J,358.3,46145,1,4,0)
+ ;;=4^H10.32
+ ;;^UTILITY(U,$J,358.3,46145,2)
+ ;;=^5133459
+ ;;^UTILITY(U,$J,358.3,46146,0)
+ ;;=H00.11^^176^2300^12
+ ;;^UTILITY(U,$J,358.3,46146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48574,1,3,0)
- ;;=3^Comp of internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,48574,1,4,0)
- ;;=4^T84.89XA
- ;;^UTILITY(U,$J,358.3,48574,2)
- ;;=^5055472
- ;;^UTILITY(U,$J,358.3,48575,0)
- ;;=T84.89XD^^216^2409^2
- ;;^UTILITY(U,$J,358.3,48575,1,0)
+ ;;^UTILITY(U,$J,358.3,46146,1,3,0)
+ ;;=3^Chalazion,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46146,1,4,0)
+ ;;=4^H00.11
+ ;;^UTILITY(U,$J,358.3,46146,2)
+ ;;=^5004233
+ ;;^UTILITY(U,$J,358.3,46147,0)
+ ;;=H00.14^^176^2300^11
+ ;;^UTILITY(U,$J,358.3,46147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48575,1,3,0)
- ;;=3^Comp of internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,48575,1,4,0)
- ;;=4^T84.89XD
- ;;^UTILITY(U,$J,358.3,48575,2)
- ;;=^5055473
- ;;^UTILITY(U,$J,358.3,48576,0)
- ;;=T84.89XS^^216^2409^3
- ;;^UTILITY(U,$J,358.3,48576,1,0)
+ ;;^UTILITY(U,$J,358.3,46147,1,3,0)
+ ;;=3^Chalazion,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46147,1,4,0)
+ ;;=4^H00.14
+ ;;^UTILITY(U,$J,358.3,46147,2)
+ ;;=^5004236
+ ;;^UTILITY(U,$J,358.3,46148,0)
+ ;;=H20.00^^176^2300^34
+ ;;^UTILITY(U,$J,358.3,46148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48576,1,3,0)
- ;;=3^Comp of internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,48576,1,4,0)
- ;;=4^T84.89XS
- ;;^UTILITY(U,$J,358.3,48576,2)
- ;;=^5055474
- ;;^UTILITY(U,$J,358.3,48577,0)
- ;;=T84.84XA^^216^2409^13
- ;;^UTILITY(U,$J,358.3,48577,1,0)
+ ;;^UTILITY(U,$J,358.3,46148,1,3,0)
+ ;;=3^Iridocyclitis,Acute/Subacute,Unspec
+ ;;^UTILITY(U,$J,358.3,46148,1,4,0)
+ ;;=4^H20.00
+ ;;^UTILITY(U,$J,358.3,46148,2)
+ ;;=^5005133
+ ;;^UTILITY(U,$J,358.3,46149,0)
+ ;;=B00.59^^176^2300^32
+ ;;^UTILITY(U,$J,358.3,46149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48577,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,48577,1,4,0)
- ;;=4^T84.84XA
- ;;^UTILITY(U,$J,358.3,48577,2)
- ;;=^5055463
- ;;^UTILITY(U,$J,358.3,48578,0)
- ;;=T84.84XD^^216^2409^14
- ;;^UTILITY(U,$J,358.3,48578,1,0)
+ ;;^UTILITY(U,$J,358.3,46149,1,3,0)
+ ;;=3^Herpes Viral Eye Disease NEC
+ ;;^UTILITY(U,$J,358.3,46149,1,4,0)
+ ;;=4^B00.59
+ ;;^UTILITY(U,$J,358.3,46149,2)
+ ;;=^5000476
+ ;;^UTILITY(U,$J,358.3,46150,0)
+ ;;=Z01.00^^176^2300^30
+ ;;^UTILITY(U,$J,358.3,46150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48578,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,48578,1,4,0)
- ;;=4^T84.84XD
- ;;^UTILITY(U,$J,358.3,48578,2)
- ;;=^5055464
- ;;^UTILITY(U,$J,358.3,48579,0)
- ;;=T84.84XS^^216^2409^15
- ;;^UTILITY(U,$J,358.3,48579,1,0)
+ ;;^UTILITY(U,$J,358.3,46150,1,3,0)
+ ;;=3^Eye/Vision Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46150,1,4,0)
+ ;;=4^Z01.00
+ ;;^UTILITY(U,$J,358.3,46150,2)
+ ;;=^5062612
+ ;;^UTILITY(U,$J,358.3,46151,0)
+ ;;=Z01.01^^176^2300^29
+ ;;^UTILITY(U,$J,358.3,46151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48579,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,48579,1,4,0)
- ;;=4^T84.84XS
- ;;^UTILITY(U,$J,358.3,48579,2)
- ;;=^5055465
+ ;;^UTILITY(U,$J,358.3,46151,1,3,0)
+ ;;=3^Eye/Vision Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46151,1,4,0)
+ ;;=4^Z01.01
+ ;;^UTILITY(U,$J,358.3,46151,2)
+ ;;=^5062613

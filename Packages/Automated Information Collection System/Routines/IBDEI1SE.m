@@ -1,128 +1,126 @@
-IBDEI1SE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30357,0)
- ;;=D46.1^^118^1506^17
- ;;^UTILITY(U,$J,358.3,30357,1,0)
+ ;;^UTILITY(U,$J,358.3,28541,1,3,0)
+ ;;=3^Alcohol Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28541,1,4,0)
+ ;;=4^F10.929
+ ;;^UTILITY(U,$J,358.3,28541,2)
+ ;;=^5003103
+ ;;^UTILITY(U,$J,358.3,28542,0)
+ ;;=F10.99^^115^1406^28
+ ;;^UTILITY(U,$J,358.3,28542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30357,1,3,0)
- ;;=3^Refractory anemia with ring sideroblasts
- ;;^UTILITY(U,$J,358.3,30357,1,4,0)
- ;;=4^D46.1
- ;;^UTILITY(U,$J,358.3,30357,2)
- ;;=^5002246
- ;;^UTILITY(U,$J,358.3,30358,0)
- ;;=D46.20^^118^1506^14
- ;;^UTILITY(U,$J,358.3,30358,1,0)
+ ;;^UTILITY(U,$J,358.3,28542,1,3,0)
+ ;;=3^Alcohol Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28542,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,28542,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,28543,0)
+ ;;=F10.14^^115^1406^10
+ ;;^UTILITY(U,$J,358.3,28543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30358,1,3,0)
- ;;=3^Refractory anemia with excess of blasts, unspecified
- ;;^UTILITY(U,$J,358.3,30358,1,4,0)
- ;;=4^D46.20
- ;;^UTILITY(U,$J,358.3,30358,2)
- ;;=^5002247
- ;;^UTILITY(U,$J,358.3,30359,0)
- ;;=D46.21^^118^1506^15
- ;;^UTILITY(U,$J,358.3,30359,1,0)
+ ;;^UTILITY(U,$J,358.3,28543,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28543,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,28543,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,28544,0)
+ ;;=F10.24^^115^1406^11
+ ;;^UTILITY(U,$J,358.3,28544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30359,1,3,0)
- ;;=3^Refractory anemia with excess of blasts 1
- ;;^UTILITY(U,$J,358.3,30359,1,4,0)
- ;;=4^D46.21
- ;;^UTILITY(U,$J,358.3,30359,2)
- ;;=^5002248
- ;;^UTILITY(U,$J,358.3,30360,0)
- ;;=D46.A^^118^1506^19
- ;;^UTILITY(U,$J,358.3,30360,1,0)
+ ;;^UTILITY(U,$J,358.3,28544,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28544,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,28544,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,28545,0)
+ ;;=F10.94^^115^1406^12
+ ;;^UTILITY(U,$J,358.3,28545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30360,1,3,0)
- ;;=3^Refractory cytopenia with multilineage dysplasia
- ;;^UTILITY(U,$J,358.3,30360,1,4,0)
- ;;=4^D46.A
- ;;^UTILITY(U,$J,358.3,30360,2)
- ;;=^5002251
- ;;^UTILITY(U,$J,358.3,30361,0)
- ;;=D46.B^^118^1506^13
- ;;^UTILITY(U,$J,358.3,30361,1,0)
+ ;;^UTILITY(U,$J,358.3,28545,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28545,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,28545,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,28546,0)
+ ;;=F10.231^^115^1406^32
+ ;;^UTILITY(U,$J,358.3,28546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30361,1,3,0)
- ;;=3^Refract cytopenia w multilin dysplasia and ring sideroblasts
- ;;^UTILITY(U,$J,358.3,30361,1,4,0)
- ;;=4^D46.B
- ;;^UTILITY(U,$J,358.3,30361,2)
- ;;=^5002252
- ;;^UTILITY(U,$J,358.3,30362,0)
- ;;=D46.22^^118^1506^16
- ;;^UTILITY(U,$J,358.3,30362,1,0)
+ ;;^UTILITY(U,$J,358.3,28546,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) w/ WD Delirium
+ ;;^UTILITY(U,$J,358.3,28546,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,28546,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,28547,0)
+ ;;=F10.232^^115^1406^30
+ ;;^UTILITY(U,$J,358.3,28547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30362,1,3,0)
- ;;=3^Refractory anemia with excess of blasts 2
- ;;^UTILITY(U,$J,358.3,30362,1,4,0)
- ;;=4^D46.22
- ;;^UTILITY(U,$J,358.3,30362,2)
- ;;=^5002249
- ;;^UTILITY(U,$J,358.3,30363,0)
- ;;=D46.C^^118^1506^3
- ;;^UTILITY(U,$J,358.3,30363,1,0)
+ ;;^UTILITY(U,$J,358.3,28547,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,28547,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,28547,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,28548,0)
+ ;;=F10.21^^115^1406^33
+ ;;^UTILITY(U,$J,358.3,28548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30363,1,3,0)
- ;;=3^Myelodysplastic syndrome w isolated del(5q) chromsoml abnlt
- ;;^UTILITY(U,$J,358.3,30363,1,4,0)
- ;;=4^D46.C
- ;;^UTILITY(U,$J,358.3,30363,2)
- ;;=^5002253
- ;;^UTILITY(U,$J,358.3,30364,0)
- ;;=D46.9^^118^1506^4
- ;;^UTILITY(U,$J,358.3,30364,1,0)
+ ;;^UTILITY(U,$J,358.3,28548,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),In Remission
+ ;;^UTILITY(U,$J,358.3,28548,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,28548,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,28549,0)
+ ;;=F12.10^^115^1407^20
+ ;;^UTILITY(U,$J,358.3,28549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30364,1,3,0)
- ;;=3^Myelodysplastic syndrome, unspecified
- ;;^UTILITY(U,$J,358.3,30364,1,4,0)
- ;;=4^D46.9
- ;;^UTILITY(U,$J,358.3,30364,2)
- ;;=^334031
- ;;^UTILITY(U,$J,358.3,30365,0)
- ;;=D47.1^^118^1506^1
- ;;^UTILITY(U,$J,358.3,30365,1,0)
+ ;;^UTILITY(U,$J,358.3,28549,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild
+ ;;^UTILITY(U,$J,358.3,28549,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,28549,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,28550,0)
+ ;;=F12.20^^115^1407^22
+ ;;^UTILITY(U,$J,358.3,28550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30365,1,3,0)
- ;;=3^Chronic myeloproliferative disease
- ;;^UTILITY(U,$J,358.3,30365,1,4,0)
- ;;=4^D47.1
- ;;^UTILITY(U,$J,358.3,30365,2)
- ;;=^5002256
- ;;^UTILITY(U,$J,358.3,30366,0)
- ;;=D47.Z1^^118^1506^12
- ;;^UTILITY(U,$J,358.3,30366,1,0)
+ ;;^UTILITY(U,$J,358.3,28550,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev
+ ;;^UTILITY(U,$J,358.3,28550,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,28550,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,28551,0)
+ ;;=F12.288^^115^1407^25
+ ;;^UTILITY(U,$J,358.3,28551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30366,1,3,0)
- ;;=3^Post-transplant lymphoproliferative disorder (PTLD)
- ;;^UTILITY(U,$J,358.3,30366,1,4,0)
- ;;=4^D47.Z1
- ;;^UTILITY(U,$J,358.3,30366,2)
- ;;=^5002261
- ;;^UTILITY(U,$J,358.3,30367,0)
- ;;=D48.7^^118^1506^8
- ;;^UTILITY(U,$J,358.3,30367,1,0)
+ ;;^UTILITY(U,$J,358.3,28551,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,28551,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,28551,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,28552,0)
+ ;;=F12.121^^115^1407^10
+ ;;^UTILITY(U,$J,358.3,28552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30367,1,3,0)
- ;;=3^Neoplasm of uncertain behavior of other specified sites
- ;;^UTILITY(U,$J,358.3,30367,1,4,0)
- ;;=4^D48.7
- ;;^UTILITY(U,$J,358.3,30367,2)
- ;;=^267779
- ;;^UTILITY(U,$J,358.3,30368,0)
- ;;=D48.9^^118^1506^11
- ;;^UTILITY(U,$J,358.3,30368,1,0)
+ ;;^UTILITY(U,$J,358.3,28552,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28552,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,28552,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,28553,0)
+ ;;=F12.221^^115^1407^11
+ ;;^UTILITY(U,$J,358.3,28553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30368,1,3,0)
- ;;=3^Neoplasm of uncertain behavior, unspecified
- ;;^UTILITY(U,$J,358.3,30368,1,4,0)
- ;;=4^D48.9
- ;;^UTILITY(U,$J,358.3,30368,2)
- ;;=^5002269
- ;;^UTILITY(U,$J,358.3,30369,0)
- ;;=D49.0^^118^1507^8
- ;;^UTILITY(U,$J,358.3,30369,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28553,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mod/Sev Use D/O

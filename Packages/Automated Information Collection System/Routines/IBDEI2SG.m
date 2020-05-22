@@ -1,126 +1,120 @@
-IBDEI2SG ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46809,1,4,0)
- ;;=4^M05.522
- ;;^UTILITY(U,$J,358.3,46809,2)
- ;;=^5009959
- ;;^UTILITY(U,$J,358.3,46810,0)
- ;;=M05.542^^206^2306^76
- ;;^UTILITY(U,$J,358.3,46810,1,0)
+ ;;^UTILITY(U,$J,358.3,44465,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,44466,0)
+ ;;=F19.259^^164^2206^11
+ ;;^UTILITY(U,$J,358.3,44466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46810,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hand
- ;;^UTILITY(U,$J,358.3,46810,1,4,0)
- ;;=4^M05.542
- ;;^UTILITY(U,$J,358.3,46810,2)
- ;;=^5009965
- ;;^UTILITY(U,$J,358.3,46811,0)
- ;;=M05.552^^206^2306^77
- ;;^UTILITY(U,$J,358.3,46811,1,0)
+ ;;^UTILITY(U,$J,358.3,44466,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44466,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,44466,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,44467,0)
+ ;;=F19.959^^164^2206^12
+ ;;^UTILITY(U,$J,358.3,44467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46811,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hip
- ;;^UTILITY(U,$J,358.3,46811,1,4,0)
- ;;=4^M05.552
- ;;^UTILITY(U,$J,358.3,46811,2)
- ;;=^5009968
- ;;^UTILITY(U,$J,358.3,46812,0)
- ;;=M05.562^^206^2306^78
- ;;^UTILITY(U,$J,358.3,46812,1,0)
+ ;;^UTILITY(U,$J,358.3,44467,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44467,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,44467,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,44468,0)
+ ;;=F19.181^^164^2206^13
+ ;;^UTILITY(U,$J,358.3,44468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46812,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Knee
- ;;^UTILITY(U,$J,358.3,46812,1,4,0)
- ;;=4^M05.562
- ;;^UTILITY(U,$J,358.3,46812,2)
- ;;=^5009971
- ;;^UTILITY(U,$J,358.3,46813,0)
- ;;=M05.512^^206^2306^79
- ;;^UTILITY(U,$J,358.3,46813,1,0)
+ ;;^UTILITY(U,$J,358.3,44468,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44468,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,44468,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,44469,0)
+ ;;=F19.281^^164^2206^14
+ ;;^UTILITY(U,$J,358.3,44469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46813,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Shoulder
- ;;^UTILITY(U,$J,358.3,46813,1,4,0)
- ;;=4^M05.512
- ;;^UTILITY(U,$J,358.3,46813,2)
- ;;=^5009956
- ;;^UTILITY(U,$J,358.3,46814,0)
- ;;=M05.532^^206^2306^80
- ;;^UTILITY(U,$J,358.3,46814,1,0)
+ ;;^UTILITY(U,$J,358.3,44469,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44469,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,44469,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,44470,0)
+ ;;=F19.981^^164^2206^15
+ ;;^UTILITY(U,$J,358.3,44470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46814,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Wrist
- ;;^UTILITY(U,$J,358.3,46814,1,4,0)
- ;;=4^M05.532
- ;;^UTILITY(U,$J,358.3,46814,2)
- ;;=^5009962
- ;;^UTILITY(U,$J,358.3,46815,0)
- ;;=M05.59^^206^2306^81
- ;;^UTILITY(U,$J,358.3,46815,1,0)
+ ;;^UTILITY(U,$J,358.3,44470,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,44470,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,44470,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,44471,0)
+ ;;=F19.182^^164^2206^16
+ ;;^UTILITY(U,$J,358.3,44471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46815,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Mult Sites
- ;;^UTILITY(U,$J,358.3,46815,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,46815,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,46816,0)
- ;;=M05.571^^206^2306^82
- ;;^UTILITY(U,$J,358.3,46816,1,0)
+ ;;^UTILITY(U,$J,358.3,44471,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44471,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,44471,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,44472,0)
+ ;;=F19.282^^164^2206^17
+ ;;^UTILITY(U,$J,358.3,44472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46816,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,46816,1,4,0)
- ;;=4^M05.571
- ;;^UTILITY(U,$J,358.3,46816,2)
- ;;=^5009973
- ;;^UTILITY(U,$J,358.3,46817,0)
- ;;=M05.521^^206^2306^83
- ;;^UTILITY(U,$J,358.3,46817,1,0)
+ ;;^UTILITY(U,$J,358.3,44472,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44472,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,44472,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,44473,0)
+ ;;=F19.982^^164^2206^18
+ ;;^UTILITY(U,$J,358.3,44473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46817,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Elbow
- ;;^UTILITY(U,$J,358.3,46817,1,4,0)
- ;;=4^M05.521
- ;;^UTILITY(U,$J,358.3,46817,2)
- ;;=^5009958
- ;;^UTILITY(U,$J,358.3,46818,0)
- ;;=M05.541^^206^2306^84
- ;;^UTILITY(U,$J,358.3,46818,1,0)
+ ;;^UTILITY(U,$J,358.3,44473,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44473,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,44473,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,44474,0)
+ ;;=F19.129^^164^2206^22
+ ;;^UTILITY(U,$J,358.3,44474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46818,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hand
- ;;^UTILITY(U,$J,358.3,46818,1,4,0)
- ;;=4^M05.541
- ;;^UTILITY(U,$J,358.3,46818,2)
- ;;=^5009964
- ;;^UTILITY(U,$J,358.3,46819,0)
- ;;=M05.551^^206^2306^85
- ;;^UTILITY(U,$J,358.3,46819,1,0)
+ ;;^UTILITY(U,$J,358.3,44474,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44474,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,44474,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,44475,0)
+ ;;=F19.229^^164^2206^23
+ ;;^UTILITY(U,$J,358.3,44475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46819,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hip
- ;;^UTILITY(U,$J,358.3,46819,1,4,0)
- ;;=4^M05.551
- ;;^UTILITY(U,$J,358.3,46819,2)
- ;;=^5009967
- ;;^UTILITY(U,$J,358.3,46820,0)
- ;;=M05.561^^206^2306^86
- ;;^UTILITY(U,$J,358.3,46820,1,0)
+ ;;^UTILITY(U,$J,358.3,44475,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44475,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,44475,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,44476,0)
+ ;;=F19.929^^164^2206^24
+ ;;^UTILITY(U,$J,358.3,44476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46820,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Knee
- ;;^UTILITY(U,$J,358.3,46820,1,4,0)
- ;;=4^M05.561
- ;;^UTILITY(U,$J,358.3,46820,2)
- ;;=^5009970
- ;;^UTILITY(U,$J,358.3,46821,0)
- ;;=M05.511^^206^2306^87
- ;;^UTILITY(U,$J,358.3,46821,1,0)
+ ;;^UTILITY(U,$J,358.3,44476,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44476,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,44476,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,44477,0)
+ ;;=F19.121^^164^2206^19
+ ;;^UTILITY(U,$J,358.3,44477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46821,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Shoulder
- ;;^UTILITY(U,$J,358.3,46821,1,4,0)
- ;;=4^M05.511

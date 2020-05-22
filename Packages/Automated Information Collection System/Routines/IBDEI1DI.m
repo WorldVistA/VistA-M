@@ -1,130 +1,124 @@
-IBDEI1DI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23341,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,23341,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,23342,0)
- ;;=S63.501A^^87^994^18
- ;;^UTILITY(U,$J,358.3,23342,1,0)
+ ;;^UTILITY(U,$J,358.3,21948,0)
+ ;;=M48.04^^99^1117^17
+ ;;^UTILITY(U,$J,358.3,21948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23342,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,23342,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,23342,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,23343,0)
- ;;=S63.502A^^87^994^7
- ;;^UTILITY(U,$J,358.3,23343,1,0)
+ ;;^UTILITY(U,$J,358.3,21948,1,3,0)
+ ;;=3^Spinal stenosis, thoracic region
+ ;;^UTILITY(U,$J,358.3,21948,1,4,0)
+ ;;=4^M48.04
+ ;;^UTILITY(U,$J,358.3,21948,2)
+ ;;=^5012091
+ ;;^UTILITY(U,$J,358.3,21949,0)
+ ;;=M48.00^^99^1117^16
+ ;;^UTILITY(U,$J,358.3,21949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23343,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,23343,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,23343,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,23344,0)
- ;;=S83.8X1A^^87^994^16
- ;;^UTILITY(U,$J,358.3,23344,1,0)
+ ;;^UTILITY(U,$J,358.3,21949,1,3,0)
+ ;;=3^Spinal stenosis, site unspecified
+ ;;^UTILITY(U,$J,358.3,21949,1,4,0)
+ ;;=4^M48.00
+ ;;^UTILITY(U,$J,358.3,21949,2)
+ ;;=^5012087
+ ;;^UTILITY(U,$J,358.3,21950,0)
+ ;;=S14.109S^^99^1117^2
+ ;;^UTILITY(U,$J,358.3,21950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23344,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,23344,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,23344,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,23345,0)
- ;;=S83.8X2A^^87^994^5
- ;;^UTILITY(U,$J,358.3,23345,1,0)
+ ;;^UTILITY(U,$J,358.3,21950,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Cervical Spinal Cord
+ ;;^UTILITY(U,$J,358.3,21950,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,21950,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,21951,0)
+ ;;=S24.109S^^99^1117^4
+ ;;^UTILITY(U,$J,358.3,21951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23345,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,23345,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,23345,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,23346,0)
- ;;=S86.211A^^87^994^47
- ;;^UTILITY(U,$J,358.3,23346,1,0)
+ ;;^UTILITY(U,$J,358.3,21951,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Thoracic Spinal Cord
+ ;;^UTILITY(U,$J,358.3,21951,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,21951,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,21952,0)
+ ;;=S34.109S^^99^1117^3
+ ;;^UTILITY(U,$J,358.3,21952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23346,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23346,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,23346,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,23347,0)
- ;;=S86.212A^^87^994^27
- ;;^UTILITY(U,$J,358.3,23347,1,0)
+ ;;^UTILITY(U,$J,358.3,21952,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Lumbar Spinal Cord
+ ;;^UTILITY(U,$J,358.3,21952,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,21952,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,21953,0)
+ ;;=I69.328^^99^1117^11
+ ;;^UTILITY(U,$J,358.3,21953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23347,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23347,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,23347,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,23348,0)
- ;;=S86.311A^^87^994^49
- ;;^UTILITY(U,$J,358.3,23348,1,0)
+ ;;^UTILITY(U,$J,358.3,21953,1,3,0)
+ ;;=3^Speech/Lang Deficits following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,21953,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,21953,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,21954,0)
+ ;;=G12.25^^99^1117^12
+ ;;^UTILITY(U,$J,358.3,21954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23348,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23348,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,23348,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,23349,0)
- ;;=S86.312A^^87^994^29
- ;;^UTILITY(U,$J,358.3,23349,1,0)
+ ;;^UTILITY(U,$J,358.3,21954,1,3,0)
+ ;;=3^Spinal Muscle Atrophy,Progressive
+ ;;^UTILITY(U,$J,358.3,21954,1,4,0)
+ ;;=4^G12.25
+ ;;^UTILITY(U,$J,358.3,21954,2)
+ ;;=^5151310
+ ;;^UTILITY(U,$J,358.3,21955,0)
+ ;;=M48.062^^99^1117^13
+ ;;^UTILITY(U,$J,358.3,21955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23349,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23349,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,23349,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,23350,0)
- ;;=S86.811A^^87^994^48
- ;;^UTILITY(U,$J,358.3,23350,1,0)
+ ;;^UTILITY(U,$J,358.3,21955,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,21955,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,21955,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,21956,0)
+ ;;=M48.061^^99^1117^14
+ ;;^UTILITY(U,$J,358.3,21956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23350,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,23350,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,23350,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,23351,0)
- ;;=S86.812A^^87^994^28
- ;;^UTILITY(U,$J,358.3,23351,1,0)
+ ;;^UTILITY(U,$J,358.3,21956,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,21956,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,21956,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,21957,0)
+ ;;=F20.2^^99^1118^3
+ ;;^UTILITY(U,$J,358.3,21957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23351,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,23351,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,23351,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,23352,0)
- ;;=S86.111A^^87^994^50
- ;;^UTILITY(U,$J,358.3,23352,1,0)
+ ;;^UTILITY(U,$J,358.3,21957,1,3,0)
+ ;;=3^Schizophrenia, catatonic
+ ;;^UTILITY(U,$J,358.3,21957,1,4,0)
+ ;;=4^F20.2
+ ;;^UTILITY(U,$J,358.3,21957,2)
+ ;;=^5003471
+ ;;^UTILITY(U,$J,358.3,21958,0)
+ ;;=F20.1^^99^1118^4
+ ;;^UTILITY(U,$J,358.3,21958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23352,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23352,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,23352,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,23353,0)
- ;;=S86.112A^^87^994^30
- ;;^UTILITY(U,$J,358.3,23353,1,0)
+ ;;^UTILITY(U,$J,358.3,21958,1,3,0)
+ ;;=3^Schizophrenia, disorganized
+ ;;^UTILITY(U,$J,358.3,21958,1,4,0)
+ ;;=4^F20.1
+ ;;^UTILITY(U,$J,358.3,21958,2)
+ ;;=^5003470
+ ;;^UTILITY(U,$J,358.3,21959,0)
+ ;;=F20.0^^99^1118^5
+ ;;^UTILITY(U,$J,358.3,21959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23353,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23353,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,23353,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,23354,0)
- ;;=S83.401A^^87^994^15
+ ;;^UTILITY(U,$J,358.3,21959,1,3,0)
+ ;;=3^Schizophrenia, paranoid
+ ;;^UTILITY(U,$J,358.3,21959,1,4,0)
+ ;;=4^F20.0
+ ;;^UTILITY(U,$J,358.3,21959,2)
+ ;;=^5003469

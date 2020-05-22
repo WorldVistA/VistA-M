@@ -1,132 +1,116 @@
-IBDEI2KB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43477,1,3,0)
- ;;=3^AC Embol & Thromb Rt Subclav Vein
- ;;^UTILITY(U,$J,358.3,43477,1,4,0)
- ;;=4^I82.B11
- ;;^UTILITY(U,$J,358.3,43477,2)
- ;;=^5007950
- ;;^UTILITY(U,$J,358.3,43478,0)
- ;;=I82.B12^^167^2078^17
- ;;^UTILITY(U,$J,358.3,43478,1,0)
+ ;;^UTILITY(U,$J,358.3,40904,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40904,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,40904,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,40905,0)
+ ;;=W00.2XXD^^152^2019^59
+ ;;^UTILITY(U,$J,358.3,40905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43478,1,3,0)
- ;;=3^AC Embol & Thromb Lt Subclav Vein
- ;;^UTILITY(U,$J,358.3,43478,1,4,0)
- ;;=4^I82.B12
- ;;^UTILITY(U,$J,358.3,43478,2)
- ;;=^5007951
- ;;^UTILITY(U,$J,358.3,43479,0)
- ;;=I82.B13^^167^2078^7
- ;;^UTILITY(U,$J,358.3,43479,1,0)
+ ;;^UTILITY(U,$J,358.3,40905,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40905,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,40905,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,40906,0)
+ ;;=W00.9XXA^^152^2019^30
+ ;;^UTILITY(U,$J,358.3,40906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43479,1,3,0)
- ;;=3^AC Embol & Thromb Bil Subclav Vein
- ;;^UTILITY(U,$J,358.3,43479,1,4,0)
- ;;=4^I82.B13
- ;;^UTILITY(U,$J,358.3,43479,2)
- ;;=^5007952
- ;;^UTILITY(U,$J,358.3,43480,0)
- ;;=I82.C11^^167^2078^24
- ;;^UTILITY(U,$J,358.3,43480,1,0)
+ ;;^UTILITY(U,$J,358.3,40906,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40906,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,40906,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,40907,0)
+ ;;=W00.9XXD^^152^2019^31
+ ;;^UTILITY(U,$J,358.3,40907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43480,1,3,0)
- ;;=3^AC Embol & Thromb Rt Int Jug Vein
- ;;^UTILITY(U,$J,358.3,43480,1,4,0)
- ;;=4^I82.C11
- ;;^UTILITY(U,$J,358.3,43480,2)
- ;;=^5007958
- ;;^UTILITY(U,$J,358.3,43481,0)
- ;;=I82.C12^^167^2078^14
- ;;^UTILITY(U,$J,358.3,43481,1,0)
+ ;;^UTILITY(U,$J,358.3,40907,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40907,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,40907,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,40908,0)
+ ;;=W01.0XXA^^152^2019^92
+ ;;^UTILITY(U,$J,358.3,40908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43481,1,3,0)
- ;;=3^AC Embol & Thromb Lt Int Jug Vein
- ;;^UTILITY(U,$J,358.3,43481,1,4,0)
- ;;=4^I82.C12
- ;;^UTILITY(U,$J,358.3,43481,2)
- ;;=^5007959
- ;;^UTILITY(U,$J,358.3,43482,0)
- ;;=I82.C13^^167^2078^4
- ;;^UTILITY(U,$J,358.3,43482,1,0)
+ ;;^UTILITY(U,$J,358.3,40908,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40908,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,40908,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,40909,0)
+ ;;=W01.0XXD^^152^2019^93
+ ;;^UTILITY(U,$J,358.3,40909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43482,1,3,0)
- ;;=3^AC Embol & Thromb Bil Int Jug Vein
- ;;^UTILITY(U,$J,358.3,43482,1,4,0)
- ;;=4^I82.C13
- ;;^UTILITY(U,$J,358.3,43482,2)
- ;;=^5007960
- ;;^UTILITY(U,$J,358.3,43483,0)
- ;;=I82.890^^167^2078^31
- ;;^UTILITY(U,$J,358.3,43483,1,0)
+ ;;^UTILITY(U,$J,358.3,40909,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40909,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,40909,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,40910,0)
+ ;;=W03.XXXA^^152^2019^90
+ ;;^UTILITY(U,$J,358.3,40910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43483,1,3,0)
- ;;=3^AC Embol & Thromb oth Spec Veins
- ;;^UTILITY(U,$J,358.3,43483,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,43483,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,43484,0)
- ;;=I83.011^^167^2078^169
- ;;^UTILITY(U,$J,358.3,43484,1,0)
+ ;;^UTILITY(U,$J,358.3,40910,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40910,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,40910,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,40911,0)
+ ;;=W03.XXXD^^152^2019^91
+ ;;^UTILITY(U,$J,358.3,40911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43484,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Thigh
- ;;^UTILITY(U,$J,358.3,43484,1,4,0)
- ;;=4^I83.011
- ;;^UTILITY(U,$J,358.3,43484,2)
- ;;=^5007973
- ;;^UTILITY(U,$J,358.3,43485,0)
- ;;=I83.012^^167^2078^165
- ;;^UTILITY(U,$J,358.3,43485,1,0)
+ ;;^UTILITY(U,$J,358.3,40911,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40911,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,40911,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,40912,0)
+ ;;=W05.0XXA^^152^2019^56
+ ;;^UTILITY(U,$J,358.3,40912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43485,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Calf
- ;;^UTILITY(U,$J,358.3,43485,1,4,0)
- ;;=4^I83.012
- ;;^UTILITY(U,$J,358.3,43485,2)
- ;;=^5007974
- ;;^UTILITY(U,$J,358.3,43486,0)
- ;;=I83.013^^167^2078^163
- ;;^UTILITY(U,$J,358.3,43486,1,0)
+ ;;^UTILITY(U,$J,358.3,40912,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40912,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,40912,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,40913,0)
+ ;;=W05.0XXD^^152^2019^57
+ ;;^UTILITY(U,$J,358.3,40913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43486,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Ankle
- ;;^UTILITY(U,$J,358.3,43486,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,43486,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,43487,0)
- ;;=I83.014^^167^2078^166
- ;;^UTILITY(U,$J,358.3,43487,1,0)
+ ;;^UTILITY(U,$J,358.3,40913,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40913,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,40913,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,40914,0)
+ ;;=W05.1XXA^^152^2019^54
+ ;;^UTILITY(U,$J,358.3,40914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43487,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,43487,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,43487,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,43488,0)
- ;;=I83.015^^167^2078^168
- ;;^UTILITY(U,$J,358.3,43488,1,0)
+ ;;^UTILITY(U,$J,358.3,40914,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40914,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,40914,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,40915,0)
+ ;;=W05.1XXD^^152^2019^55
+ ;;^UTILITY(U,$J,358.3,40915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43488,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,43488,1,4,0)
- ;;=4^I83.015
- ;;^UTILITY(U,$J,358.3,43488,2)
- ;;=^5007977
- ;;^UTILITY(U,$J,358.3,43489,0)
- ;;=I83.023^^167^2078^148
- ;;^UTILITY(U,$J,358.3,43489,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43489,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Ankle
- ;;^UTILITY(U,$J,358.3,43489,1,4,0)
- ;;=4^I83.023
- ;;^UTILITY(U,$J,358.3,43489,2)
- ;;=^5007982
- ;;^UTILITY(U,$J,358.3,43490,0)
- ;;=I83.024^^167^2078^152
+ ;;^UTILITY(U,$J,358.3,40915,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr

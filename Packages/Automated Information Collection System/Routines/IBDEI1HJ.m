@@ -1,128 +1,130 @@
-IBDEI1HJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25209,0)
- ;;=G31.1^^95^1143^36
- ;;^UTILITY(U,$J,358.3,25209,1,0)
+ ;;^UTILITY(U,$J,358.3,23745,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,23746,0)
+ ;;=R64.^^105^1186^18
+ ;;^UTILITY(U,$J,358.3,23746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25209,1,3,0)
- ;;=3^Senile Degeneration of the Brain NOS
- ;;^UTILITY(U,$J,358.3,25209,1,4,0)
- ;;=4^G31.1
- ;;^UTILITY(U,$J,358.3,25209,2)
- ;;=^5003809
- ;;^UTILITY(U,$J,358.3,25210,0)
- ;;=G94.^^95^1143^7
- ;;^UTILITY(U,$J,358.3,25210,1,0)
+ ;;^UTILITY(U,$J,358.3,23746,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,23746,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,23746,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,23747,0)
+ ;;=I63.30^^105^1186^21
+ ;;^UTILITY(U,$J,358.3,23747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25210,1,3,0)
- ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
- ;;^UTILITY(U,$J,358.3,25210,1,4,0)
- ;;=4^G94.
- ;;^UTILITY(U,$J,358.3,25210,2)
- ;;=^5004187
- ;;^UTILITY(U,$J,358.3,25211,0)
- ;;=G31.83^^95^1143^16
- ;;^UTILITY(U,$J,358.3,25211,1,0)
+ ;;^UTILITY(U,$J,358.3,23747,1,3,0)
+ ;;=3^Cerebral Infarction d/t Thrombosis of Cerebral Arteries
+ ;;^UTILITY(U,$J,358.3,23747,1,4,0)
+ ;;=4^I63.30
+ ;;^UTILITY(U,$J,358.3,23747,2)
+ ;;=^5133562
+ ;;^UTILITY(U,$J,358.3,23748,0)
+ ;;=I63.40^^105^1186^19
+ ;;^UTILITY(U,$J,358.3,23748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25211,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,25211,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,25211,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,25212,0)
- ;;=G31.89^^95^1143^11
- ;;^UTILITY(U,$J,358.3,25212,1,0)
+ ;;^UTILITY(U,$J,358.3,23748,1,3,0)
+ ;;=3^Cerebral Infarction d/t Embolism of Cerebral Arteries
+ ;;^UTILITY(U,$J,358.3,23748,1,4,0)
+ ;;=4^I63.40
+ ;;^UTILITY(U,$J,358.3,23748,2)
+ ;;=^5133564
+ ;;^UTILITY(U,$J,358.3,23749,0)
+ ;;=J44.9^^105^1186^17
+ ;;^UTILITY(U,$J,358.3,23749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25212,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System NEC
- ;;^UTILITY(U,$J,358.3,25212,1,4,0)
- ;;=4^G31.89
- ;;^UTILITY(U,$J,358.3,25212,2)
- ;;=^5003814
- ;;^UTILITY(U,$J,358.3,25213,0)
- ;;=G31.9^^95^1143^12
- ;;^UTILITY(U,$J,358.3,25213,1,0)
+ ;;^UTILITY(U,$J,358.3,23749,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,23749,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,23749,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,23750,0)
+ ;;=N18.6^^105^1186^29
+ ;;^UTILITY(U,$J,358.3,23750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25213,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,25213,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,25213,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,25214,0)
- ;;=G23.8^^95^1143^10
- ;;^UTILITY(U,$J,358.3,25214,1,0)
+ ;;^UTILITY(U,$J,358.3,23750,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,23750,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,23750,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,23751,0)
+ ;;=K92.2^^105^1186^30
+ ;;^UTILITY(U,$J,358.3,23751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25214,1,3,0)
- ;;=3^Degenerative Diseases of Basal Ganglia NEC
- ;;^UTILITY(U,$J,358.3,25214,1,4,0)
- ;;=4^G23.8
- ;;^UTILITY(U,$J,358.3,25214,2)
- ;;=^5003782
- ;;^UTILITY(U,$J,358.3,25215,0)
- ;;=G31.09^^95^1143^22
- ;;^UTILITY(U,$J,358.3,25215,1,0)
+ ;;^UTILITY(U,$J,358.3,23751,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage
+ ;;^UTILITY(U,$J,358.3,23751,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,23751,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,23752,0)
+ ;;=K92.1^^105^1186^31
+ ;;^UTILITY(U,$J,358.3,23752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25215,1,3,0)
- ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,25215,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,25215,2)
- ;;=^329916^F02.81
- ;;^UTILITY(U,$J,358.3,25216,0)
- ;;=G30.0^^95^1143^3
- ;;^UTILITY(U,$J,358.3,25216,1,0)
+ ;;^UTILITY(U,$J,358.3,23752,1,3,0)
+ ;;=3^Melena
+ ;;^UTILITY(U,$J,358.3,23752,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,23752,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,23753,0)
+ ;;=E66.2^^105^1186^32
+ ;;^UTILITY(U,$J,358.3,23753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25216,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,25216,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,25216,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,25217,0)
- ;;=G30.1^^95^1143^4
- ;;^UTILITY(U,$J,358.3,25217,1,0)
+ ;;^UTILITY(U,$J,358.3,23753,1,3,0)
+ ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,23753,1,4,0)
+ ;;=4^E66.2
+ ;;^UTILITY(U,$J,358.3,23753,2)
+ ;;=^5002829
+ ;;^UTILITY(U,$J,358.3,23754,0)
+ ;;=I21.4^^105^1186^33
+ ;;^UTILITY(U,$J,358.3,23754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25217,1,3,0)
- ;;=3^Alzheimer's Disease with Late Onset
- ;;^UTILITY(U,$J,358.3,25217,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,25217,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,25218,0)
- ;;=B20.^^95^1143^18
- ;;^UTILITY(U,$J,358.3,25218,1,0)
+ ;;^UTILITY(U,$J,358.3,23754,1,3,0)
+ ;;=3^NSTEMI,Initial
+ ;;^UTILITY(U,$J,358.3,23754,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,23754,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,23755,0)
+ ;;=F11.23^^105^1186^34
+ ;;^UTILITY(U,$J,358.3,23755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25218,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,25218,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,25218,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,25219,0)
- ;;=B20.^^95^1143^19
- ;;^UTILITY(U,$J,358.3,25219,1,0)
+ ;;^UTILITY(U,$J,358.3,23755,1,3,0)
+ ;;=3^Opioid Withdrawal
+ ;;^UTILITY(U,$J,358.3,23755,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,23755,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,23756,0)
+ ;;=K74.69^^105^1186^24
+ ;;^UTILITY(U,$J,358.3,23756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25219,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,25219,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,25219,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,25220,0)
- ;;=G10.^^95^1143^20
- ;;^UTILITY(U,$J,358.3,25220,1,0)
+ ;;^UTILITY(U,$J,358.3,23756,1,3,0)
+ ;;=3^Cirrhosis of the Liver,Other
+ ;;^UTILITY(U,$J,358.3,23756,1,4,0)
+ ;;=4^K74.69
+ ;;^UTILITY(U,$J,358.3,23756,2)
+ ;;=^5008823
+ ;;^UTILITY(U,$J,358.3,23757,0)
+ ;;=R65.21^^105^1186^39
+ ;;^UTILITY(U,$J,358.3,23757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25220,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,25220,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,25220,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,25221,0)
- ;;=G10.^^95^1143^21
- ;;^UTILITY(U,$J,358.3,25221,1,0)
+ ;;^UTILITY(U,$J,358.3,23757,1,3,0)
+ ;;=3^Severe Sepsis w/ Septic Shock
+ ;;^UTILITY(U,$J,358.3,23757,1,4,0)
+ ;;=4^R65.21
+ ;;^UTILITY(U,$J,358.3,23757,2)
+ ;;=^5019548
+ ;;^UTILITY(U,$J,358.3,23758,0)
+ ;;=R65.20^^105^1186^40
+ ;;^UTILITY(U,$J,358.3,23758,1,0)
  ;;=^358.31IA^4^2

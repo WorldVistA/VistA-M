@@ -1,346 +1,132 @@
-IBDEI0HZ ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0HZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22791,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,22791,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,22791,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,22792,0)
- ;;=S91.301A^^58^857^17
- ;;^UTILITY(U,$J,358.3,22792,1,0)
+ ;;^UTILITY(U,$J,358.3,7830,1,4,0)
+ ;;=4^A41.9
+ ;;^UTILITY(U,$J,358.3,7830,2)
+ ;;=^5000214
+ ;;^UTILITY(U,$J,358.3,7831,0)
+ ;;=R65.20^^63^504^7
+ ;;^UTILITY(U,$J,358.3,7831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22792,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
- ;;^UTILITY(U,$J,358.3,22792,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,22792,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,22793,0)
- ;;=S51.801A^^58^857^18
- ;;^UTILITY(U,$J,358.3,22793,1,0)
+ ;;^UTILITY(U,$J,358.3,7831,1,3,0)
+ ;;=3^Severe Sepsis w/o Septic Shock
+ ;;^UTILITY(U,$J,358.3,7831,1,4,0)
+ ;;=4^R65.20
+ ;;^UTILITY(U,$J,358.3,7831,2)
+ ;;=^5019547
+ ;;^UTILITY(U,$J,358.3,7832,0)
+ ;;=R65.21^^63^504^6
+ ;;^UTILITY(U,$J,358.3,7832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22793,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,22793,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,22793,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,22794,0)
- ;;=S91.101A^^58^857^19
- ;;^UTILITY(U,$J,358.3,22794,1,0)
+ ;;^UTILITY(U,$J,358.3,7832,1,3,0)
+ ;;=3^Severe Sepsis w/ Septic Shock
+ ;;^UTILITY(U,$J,358.3,7832,1,4,0)
+ ;;=4^R65.21
+ ;;^UTILITY(U,$J,358.3,7832,2)
+ ;;=^5019548
+ ;;^UTILITY(U,$J,358.3,7833,0)
+ ;;=T81.44XA^^63^504^2
+ ;;^UTILITY(U,$J,358.3,7833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22794,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,22794,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,22794,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,22795,0)
- ;;=S61.401A^^58^857^20
- ;;^UTILITY(U,$J,358.3,22795,1,0)
+ ;;^UTILITY(U,$J,358.3,7833,1,3,0)
+ ;;=3^Sepsis Following Proc,Init Enc
+ ;;^UTILITY(U,$J,358.3,7833,1,4,0)
+ ;;=4^T81.44XA
+ ;;^UTILITY(U,$J,358.3,7833,2)
+ ;;=^5157596
+ ;;^UTILITY(U,$J,358.3,7834,0)
+ ;;=N17.9^^63^505^2
+ ;;^UTILITY(U,$J,358.3,7834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22795,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
- ;;^UTILITY(U,$J,358.3,22795,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,22795,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,22796,0)
- ;;=S71.001A^^58^857^21
- ;;^UTILITY(U,$J,358.3,22796,1,0)
+ ;;^UTILITY(U,$J,358.3,7834,1,3,0)
+ ;;=3^Acute Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,7834,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,7834,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,7835,0)
+ ;;=I12.9^^63^505^3
+ ;;^UTILITY(U,$J,358.3,7835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22796,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
- ;;^UTILITY(U,$J,358.3,22796,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,22796,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,22797,0)
- ;;=S91.105A^^58^857^12
- ;;^UTILITY(U,$J,358.3,22797,1,0)
+ ;;^UTILITY(U,$J,358.3,7835,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease
+ ;;^UTILITY(U,$J,358.3,7835,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,7835,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,7836,0)
+ ;;=I12.0^^63^505^4
+ ;;^UTILITY(U,$J,358.3,7836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22797,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,22797,1,4,0)
- ;;=4^S91.105A
- ;;^UTILITY(U,$J,358.3,22797,2)
- ;;=^5044177
- ;;^UTILITY(U,$J,358.3,22798,0)
- ;;=S81.801A^^58^857^23
- ;;^UTILITY(U,$J,358.3,22798,1,0)
+ ;;^UTILITY(U,$J,358.3,7836,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ Stage 5 Kidney Disease/ESRD
+ ;;^UTILITY(U,$J,358.3,7836,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,7836,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,7837,0)
+ ;;=N17.0^^63^505^1
+ ;;^UTILITY(U,$J,358.3,7837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22798,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,22798,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,22798,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,22799,0)
- ;;=S71.102A^^58^857^14
- ;;^UTILITY(U,$J,358.3,22799,1,0)
+ ;;^UTILITY(U,$J,358.3,7837,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Tubular Necrosis
+ ;;^UTILITY(U,$J,358.3,7837,1,4,0)
+ ;;=4^N17.0
+ ;;^UTILITY(U,$J,358.3,7837,2)
+ ;;=^5015598
+ ;;^UTILITY(U,$J,358.3,7838,0)
+ ;;=N39.0^^63^505^14
+ ;;^UTILITY(U,$J,358.3,7838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22799,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,22799,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,22799,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,22800,0)
- ;;=S71.101A^^58^857^24
- ;;^UTILITY(U,$J,358.3,22800,1,0)
+ ;;^UTILITY(U,$J,358.3,7838,1,3,0)
+ ;;=3^UTI,Site Not Spec
+ ;;^UTILITY(U,$J,358.3,7838,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,7838,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,7839,0)
+ ;;=C61.^^63^505^12
+ ;;^UTILITY(U,$J,358.3,7839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22800,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,22800,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,22800,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,22801,0)
- ;;=S41.101A^^58^857^25
- ;;^UTILITY(U,$J,358.3,22801,1,0)
+ ;;^UTILITY(U,$J,358.3,7839,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,7839,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,7839,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,7840,0)
+ ;;=C64.1^^63^505^13
+ ;;^UTILITY(U,$J,358.3,7840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22801,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,22801,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,22801,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,22802,0)
- ;;=E03.5^^58^858^37
- ;;^UTILITY(U,$J,358.3,22802,1,0)
+ ;;^UTILITY(U,$J,358.3,7840,1,3,0)
+ ;;=3^Malig Neop Right Kidney
+ ;;^UTILITY(U,$J,358.3,7840,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,7840,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,7841,0)
+ ;;=C64.2^^63^505^11
+ ;;^UTILITY(U,$J,358.3,7841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22802,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,22802,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,22802,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,22803,0)
- ;;=R40.2121^^58^858^33
- ;;^UTILITY(U,$J,358.3,22803,1,0)
+ ;;^UTILITY(U,$J,358.3,7841,1,3,0)
+ ;;=3^Malig Neop Left Kidney
+ ;;^UTILITY(U,$J,358.3,7841,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,7841,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,7842,0)
+ ;;=C57.9^^63^505^10
+ ;;^UTILITY(U,$J,358.3,7842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22803,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,22803,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,22803,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,22804,0)
- ;;=R40.2120^^58^858^34
- ;;^UTILITY(U,$J,358.3,22804,1,0)
+ ;;^UTILITY(U,$J,358.3,7842,1,3,0)
+ ;;=3^Malig Neop Female Genital Organ,Unspec
+ ;;^UTILITY(U,$J,358.3,7842,1,4,0)
+ ;;=4^C57.9
+ ;;^UTILITY(U,$J,358.3,7842,2)
+ ;;=^5001227
+ ;;^UTILITY(U,$J,358.3,7843,0)
+ ;;=N28.9^^63^505^9
+ ;;^UTILITY(U,$J,358.3,7843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22804,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,22804,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,22804,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,22805,0)
- ;;=R40.2114^^58^858^26
- ;;^UTILITY(U,$J,358.3,22805,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22805,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,22805,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,22805,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,22806,0)
- ;;=R40.2113^^58^858^30
- ;;^UTILITY(U,$J,358.3,22806,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22806,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,22806,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,22806,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,22807,0)
- ;;=R40.2112^^58^858^27
- ;;^UTILITY(U,$J,358.3,22807,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22807,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,22807,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,22807,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,22808,0)
- ;;=R40.2111^^58^858^28
- ;;^UTILITY(U,$J,358.3,22808,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22808,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,22808,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,22808,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,22809,0)
- ;;=R40.2110^^58^858^29
- ;;^UTILITY(U,$J,358.3,22809,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22809,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,22809,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,22809,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,22810,0)
- ;;=R40.20^^58^858^36
- ;;^UTILITY(U,$J,358.3,22810,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22810,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,22810,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,22810,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,22811,0)
- ;;=R40.2123^^58^858^35
- ;;^UTILITY(U,$J,358.3,22811,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22811,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,22811,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,22811,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,22812,0)
- ;;=R40.2122^^58^858^32
- ;;^UTILITY(U,$J,358.3,22812,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22812,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,22812,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,22812,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,22813,0)
- ;;=R40.2124^^58^858^31
- ;;^UTILITY(U,$J,358.3,22813,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22813,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,22813,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,22813,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,22814,0)
- ;;=R40.2211^^58^858^17
- ;;^UTILITY(U,$J,358.3,22814,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22814,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,22814,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,22814,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,22815,0)
- ;;=R40.2210^^58^858^16
- ;;^UTILITY(U,$J,358.3,22815,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22815,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,22815,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,22815,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,22816,0)
- ;;=R40.2224^^58^858^18
- ;;^UTILITY(U,$J,358.3,22816,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22816,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,22816,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,22816,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,22817,0)
- ;;=R40.2223^^58^858^19
- ;;^UTILITY(U,$J,358.3,22817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22817,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,22817,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,22817,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,22818,0)
- ;;=R40.2222^^58^858^20
- ;;^UTILITY(U,$J,358.3,22818,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22818,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,22818,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,22818,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,22819,0)
- ;;=R40.2221^^58^858^21
- ;;^UTILITY(U,$J,358.3,22819,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22819,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,22819,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,22819,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,22820,0)
- ;;=R40.2220^^58^858^22
- ;;^UTILITY(U,$J,358.3,22820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22820,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,22820,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,22820,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,22821,0)
- ;;=R40.2214^^58^858^23
- ;;^UTILITY(U,$J,358.3,22821,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22821,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,22821,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,22821,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,22822,0)
- ;;=R40.2213^^58^858^25
- ;;^UTILITY(U,$J,358.3,22822,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22822,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,22822,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,22822,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,22823,0)
- ;;=R40.2212^^58^858^24
- ;;^UTILITY(U,$J,358.3,22823,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22823,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,22823,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,22823,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,22824,0)
- ;;=R40.2344^^58^858^6
- ;;^UTILITY(U,$J,358.3,22824,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22824,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,22824,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,22824,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,22825,0)
- ;;=R40.2343^^58^858^7
- ;;^UTILITY(U,$J,358.3,22825,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22825,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission

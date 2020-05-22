@@ -1,124 +1,134 @@
-IBDEI1XD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32650,1,4,0)
- ;;=4^I83.212
- ;;^UTILITY(U,$J,358.3,32650,2)
- ;;=^5007998
- ;;^UTILITY(U,$J,358.3,32651,0)
- ;;=I83.211^^126^1622^16
- ;;^UTILITY(U,$J,358.3,32651,1,0)
+ ;;^UTILITY(U,$J,358.3,30748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32651,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc thigh & inflammation
- ;;^UTILITY(U,$J,358.3,32651,1,4,0)
- ;;=4^I83.211
- ;;^UTILITY(U,$J,358.3,32651,2)
- ;;=^5007997
- ;;^UTILITY(U,$J,358.3,32652,0)
- ;;=I83.213^^126^1622^11
- ;;^UTILITY(U,$J,358.3,32652,1,0)
+ ;;^UTILITY(U,$J,358.3,30748,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,30748,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,30748,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,30749,0)
+ ;;=N12.^^123^1585^19
+ ;;^UTILITY(U,$J,358.3,30749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32652,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc ankl & inflammation
- ;;^UTILITY(U,$J,358.3,32652,1,4,0)
- ;;=4^I83.213
- ;;^UTILITY(U,$J,358.3,32652,2)
- ;;=^5007999
- ;;^UTILITY(U,$J,358.3,32653,0)
- ;;=I83.214^^126^1622^13
- ;;^UTILITY(U,$J,358.3,32653,1,0)
+ ;;^UTILITY(U,$J,358.3,30749,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis,Not Acute or Chronic
+ ;;^UTILITY(U,$J,358.3,30749,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,30749,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,30750,0)
+ ;;=N20.0^^123^1585^2
+ ;;^UTILITY(U,$J,358.3,30750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32653,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc heel/midft & inflammation
- ;;^UTILITY(U,$J,358.3,32653,1,4,0)
- ;;=4^I83.214
- ;;^UTILITY(U,$J,358.3,32653,2)
- ;;=^5008000
- ;;^UTILITY(U,$J,358.3,32654,0)
- ;;=I83.219^^126^1622^10
- ;;^UTILITY(U,$J,358.3,32654,1,0)
+ ;;^UTILITY(U,$J,358.3,30750,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,30750,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,30750,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,30751,0)
+ ;;=R30.0^^123^1585^3
+ ;;^UTILITY(U,$J,358.3,30751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32654,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc & inflam, unsp site
- ;;^UTILITY(U,$J,358.3,32654,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,32654,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,32655,0)
- ;;=I83.218^^126^1622^14
- ;;^UTILITY(U,$J,358.3,32655,1,0)
+ ;;^UTILITY(U,$J,358.3,30751,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,30751,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,30751,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,30752,0)
+ ;;=R80.3^^123^1585^1
+ ;;^UTILITY(U,$J,358.3,30752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32655,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc lwr extrm & inflam, oth prt
- ;;^UTILITY(U,$J,358.3,32655,1,4,0)
- ;;=4^I83.218
- ;;^UTILITY(U,$J,358.3,32655,2)
- ;;=^5008002
- ;;^UTILITY(U,$J,358.3,32656,0)
- ;;=I83.215^^126^1622^15
- ;;^UTILITY(U,$J,358.3,32656,1,0)
+ ;;^UTILITY(U,$J,358.3,30752,1,3,0)
+ ;;=3^Bence Jones Proteinuria
+ ;;^UTILITY(U,$J,358.3,30752,1,4,0)
+ ;;=4^R80.3
+ ;;^UTILITY(U,$J,358.3,30752,2)
+ ;;=^13272
+ ;;^UTILITY(U,$J,358.3,30753,0)
+ ;;=N40.1^^123^1585^5
+ ;;^UTILITY(U,$J,358.3,30753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32656,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc oth prt of ft & inflam
- ;;^UTILITY(U,$J,358.3,32656,1,4,0)
- ;;=4^I83.215
- ;;^UTILITY(U,$J,358.3,32656,2)
- ;;=^5008001
- ;;^UTILITY(U,$J,358.3,32657,0)
- ;;=I83.229^^126^1622^2
- ;;^UTILITY(U,$J,358.3,32657,1,0)
+ ;;^UTILITY(U,$J,358.3,30753,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,30753,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,30753,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,30754,0)
+ ;;=R31.0^^123^1585^6
+ ;;^UTILITY(U,$J,358.3,30754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32657,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc & inflam, unsp site
- ;;^UTILITY(U,$J,358.3,32657,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,32657,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,32658,0)
- ;;=I83.228^^126^1622^6
- ;;^UTILITY(U,$J,358.3,32658,1,0)
+ ;;^UTILITY(U,$J,358.3,30754,1,3,0)
+ ;;=3^Gross Hematuria
+ ;;^UTILITY(U,$J,358.3,30754,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,30754,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,30755,0)
+ ;;=R31.9^^123^1585^7
+ ;;^UTILITY(U,$J,358.3,30755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32658,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc lwr extrm & inflam, oth prt
- ;;^UTILITY(U,$J,358.3,32658,1,4,0)
- ;;=4^I83.228
- ;;^UTILITY(U,$J,358.3,32658,2)
- ;;=^5008009
- ;;^UTILITY(U,$J,358.3,32659,0)
- ;;=I83.221^^126^1622^8
- ;;^UTILITY(U,$J,358.3,32659,1,0)
+ ;;^UTILITY(U,$J,358.3,30755,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,30755,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,30755,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,30756,0)
+ ;;=R80.0^^123^1585^9
+ ;;^UTILITY(U,$J,358.3,30756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32659,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc thigh & inflam
- ;;^UTILITY(U,$J,358.3,32659,1,4,0)
- ;;=4^I83.221
- ;;^UTILITY(U,$J,358.3,32659,2)
- ;;=^5008004
- ;;^UTILITY(U,$J,358.3,32660,0)
- ;;=I83.223^^126^1622^3
- ;;^UTILITY(U,$J,358.3,32660,1,0)
+ ;;^UTILITY(U,$J,358.3,30756,1,3,0)
+ ;;=3^Isolated Proteinuria
+ ;;^UTILITY(U,$J,358.3,30756,1,4,0)
+ ;;=4^R80.0
+ ;;^UTILITY(U,$J,358.3,30756,2)
+ ;;=^5019595
+ ;;^UTILITY(U,$J,358.3,30757,0)
+ ;;=R39.14^^123^1585^8
+ ;;^UTILITY(U,$J,358.3,30757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32660,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc ankl & inflam
- ;;^UTILITY(U,$J,358.3,32660,1,4,0)
- ;;=4^I83.223
- ;;^UTILITY(U,$J,358.3,32660,2)
- ;;=^5008006
- ;;^UTILITY(U,$J,358.3,32661,0)
- ;;=I83.222^^126^1622^4
- ;;^UTILITY(U,$J,358.3,32661,1,0)
+ ;;^UTILITY(U,$J,358.3,30757,1,3,0)
+ ;;=3^Incomplete Bladder Emptying
+ ;;^UTILITY(U,$J,358.3,30757,1,4,0)
+ ;;=4^R39.14
+ ;;^UTILITY(U,$J,358.3,30757,2)
+ ;;=^5019344
+ ;;^UTILITY(U,$J,358.3,30758,0)
+ ;;=R35.1^^123^1585^12
+ ;;^UTILITY(U,$J,358.3,30758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32661,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc calf & inflam
- ;;^UTILITY(U,$J,358.3,32661,1,4,0)
- ;;=4^I83.222
- ;;^UTILITY(U,$J,358.3,32661,2)
- ;;=^5008005
- ;;^UTILITY(U,$J,358.3,32662,0)
- ;;=I83.224^^126^1622^5
- ;;^UTILITY(U,$J,358.3,32662,1,0)
+ ;;^UTILITY(U,$J,358.3,30758,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,30758,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,30758,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,30759,0)
+ ;;=R80.1^^123^1585^14
+ ;;^UTILITY(U,$J,358.3,30759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32662,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc heel/midft & inflam
+ ;;^UTILITY(U,$J,358.3,30759,1,3,0)
+ ;;=3^Persistent Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,30759,1,4,0)
+ ;;=4^R80.1
+ ;;^UTILITY(U,$J,358.3,30759,2)
+ ;;=^5019596
+ ;;^UTILITY(U,$J,358.3,30760,0)
+ ;;=R35.8^^123^1585^15
+ ;;^UTILITY(U,$J,358.3,30760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30760,1,3,0)
+ ;;=3^Polyuria,Other
+ ;;^UTILITY(U,$J,358.3,30760,1,4,0)
+ ;;=4^R35.8
+ ;;^UTILITY(U,$J,358.3,30760,2)
+ ;;=^5019336
+ ;;^UTILITY(U,$J,358.3,30761,0)
+ ;;=R80.2^^123^1585^13

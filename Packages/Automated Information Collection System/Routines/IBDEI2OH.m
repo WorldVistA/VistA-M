@@ -1,134 +1,116 @@
-IBDEI2OH ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44942,1,0)
+ ;;^UTILITY(U,$J,358.3,42694,0)
+ ;;=S89.311S^^155^2072^82
+ ;;^UTILITY(U,$J,358.3,42694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44942,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,44942,1,4,0)
- ;;=4^M87.312
- ;;^UTILITY(U,$J,358.3,44942,2)
- ;;=^5014789
- ;;^UTILITY(U,$J,358.3,44943,0)
- ;;=M87.350^^200^2234^149
- ;;^UTILITY(U,$J,358.3,44943,1,0)
+ ;;^UTILITY(U,$J,358.3,42694,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42694,1,4,0)
+ ;;=4^S89.311S
+ ;;^UTILITY(U,$J,358.3,42694,2)
+ ;;=^5043822
+ ;;^UTILITY(U,$J,358.3,42695,0)
+ ;;=S89.212S^^155^2072^85
+ ;;^UTILITY(U,$J,358.3,42695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44943,1,3,0)
- ;;=3^Secondary Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,44943,1,4,0)
- ;;=4^M87.350
- ;;^UTILITY(U,$J,358.3,44943,2)
- ;;=^5014809
- ;;^UTILITY(U,$J,358.3,44944,0)
- ;;=M87.351^^200^2234^150
- ;;^UTILITY(U,$J,358.3,44944,1,0)
+ ;;^UTILITY(U,$J,358.3,42695,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42695,1,4,0)
+ ;;=4^S89.212S
+ ;;^UTILITY(U,$J,358.3,42695,2)
+ ;;=^5043780
+ ;;^UTILITY(U,$J,358.3,42696,0)
+ ;;=S89.211S^^155^2072^86
+ ;;^UTILITY(U,$J,358.3,42696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44944,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,44944,1,4,0)
- ;;=4^M87.351
- ;;^UTILITY(U,$J,358.3,44944,2)
- ;;=^5014810
- ;;^UTILITY(U,$J,358.3,44945,0)
- ;;=M87.352^^200^2234^147
- ;;^UTILITY(U,$J,358.3,44945,1,0)
+ ;;^UTILITY(U,$J,358.3,42696,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42696,1,4,0)
+ ;;=4^S89.211S
+ ;;^UTILITY(U,$J,358.3,42696,2)
+ ;;=^5043774
+ ;;^UTILITY(U,$J,358.3,42697,0)
+ ;;=S89.322S^^155^2072^89
+ ;;^UTILITY(U,$J,358.3,42697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44945,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,44945,1,4,0)
- ;;=4^M87.352
- ;;^UTILITY(U,$J,358.3,44945,2)
- ;;=^5014811
- ;;^UTILITY(U,$J,358.3,44946,0)
- ;;=M87.811^^200^2234^79
- ;;^UTILITY(U,$J,358.3,44946,1,0)
+ ;;^UTILITY(U,$J,358.3,42697,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42697,1,4,0)
+ ;;=4^S89.322S
+ ;;^UTILITY(U,$J,358.3,42697,2)
+ ;;=^5137378
+ ;;^UTILITY(U,$J,358.3,42698,0)
+ ;;=S89.221S^^155^2072^93
+ ;;^UTILITY(U,$J,358.3,42698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44946,1,3,0)
- ;;=3^Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,44946,1,4,0)
- ;;=4^M87.811
- ;;^UTILITY(U,$J,358.3,44946,2)
- ;;=^5014831
- ;;^UTILITY(U,$J,358.3,44947,0)
- ;;=M87.812^^200^2234^76
- ;;^UTILITY(U,$J,358.3,44947,1,0)
+ ;;^UTILITY(U,$J,358.3,42698,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42698,1,4,0)
+ ;;=4^S89.221S
+ ;;^UTILITY(U,$J,358.3,42698,2)
+ ;;=^5043792
+ ;;^UTILITY(U,$J,358.3,42699,0)
+ ;;=S89.321S^^155^2072^90
+ ;;^UTILITY(U,$J,358.3,42699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44947,1,3,0)
- ;;=3^Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,44947,1,4,0)
- ;;=4^M87.812
- ;;^UTILITY(U,$J,358.3,44947,2)
- ;;=^5014832
- ;;^UTILITY(U,$J,358.3,44948,0)
- ;;=M87.850^^200^2234^77
- ;;^UTILITY(U,$J,358.3,44948,1,0)
+ ;;^UTILITY(U,$J,358.3,42699,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42699,1,4,0)
+ ;;=4^S89.321S
+ ;;^UTILITY(U,$J,358.3,42699,2)
+ ;;=^5043834
+ ;;^UTILITY(U,$J,358.3,42700,0)
+ ;;=S89.222S^^155^2072^94
+ ;;^UTILITY(U,$J,358.3,42700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44948,1,3,0)
- ;;=3^Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,44948,1,4,0)
- ;;=4^M87.850
- ;;^UTILITY(U,$J,358.3,44948,2)
- ;;=^5014852
- ;;^UTILITY(U,$J,358.3,44949,0)
- ;;=M87.851^^200^2234^78
- ;;^UTILITY(U,$J,358.3,44949,1,0)
+ ;;^UTILITY(U,$J,358.3,42700,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42700,1,4,0)
+ ;;=4^S89.222S
+ ;;^UTILITY(U,$J,358.3,42700,2)
+ ;;=^5043798
+ ;;^UTILITY(U,$J,358.3,42701,0)
+ ;;=M84.364S^^155^2072^103
+ ;;^UTILITY(U,$J,358.3,42701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44949,1,3,0)
- ;;=3^Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,44949,1,4,0)
- ;;=4^M87.851
- ;;^UTILITY(U,$J,358.3,44949,2)
- ;;=^5014853
- ;;^UTILITY(U,$J,358.3,44950,0)
- ;;=M87.852^^200^2234^75
- ;;^UTILITY(U,$J,358.3,44950,1,0)
+ ;;^UTILITY(U,$J,358.3,42701,1,3,0)
+ ;;=3^Stress fracture, left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42701,1,4,0)
+ ;;=4^M84.364S
+ ;;^UTILITY(U,$J,358.3,42701,2)
+ ;;=^5013727
+ ;;^UTILITY(U,$J,358.3,42702,0)
+ ;;=M84.363S^^155^2072^105
+ ;;^UTILITY(U,$J,358.3,42702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44950,1,3,0)
- ;;=3^Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,44950,1,4,0)
- ;;=4^M87.852
- ;;^UTILITY(U,$J,358.3,44950,2)
- ;;=^5014854
- ;;^UTILITY(U,$J,358.3,44951,0)
- ;;=M88.0^^200^2234^66
- ;;^UTILITY(U,$J,358.3,44951,1,0)
+ ;;^UTILITY(U,$J,358.3,42702,1,3,0)
+ ;;=3^Stress fracture, right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42702,1,4,0)
+ ;;=4^M84.363S
+ ;;^UTILITY(U,$J,358.3,42702,2)
+ ;;=^5013721
+ ;;^UTILITY(U,$J,358.3,42703,0)
+ ;;=S82.822S^^155^2072^107
+ ;;^UTILITY(U,$J,358.3,42703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44951,1,3,0)
- ;;=3^Osteitis Deformans of Skull
- ;;^UTILITY(U,$J,358.3,44951,1,4,0)
- ;;=4^M88.0
- ;;^UTILITY(U,$J,358.3,44951,2)
- ;;=^5014874
- ;;^UTILITY(U,$J,358.3,44952,0)
- ;;=M88.1^^200^2234^67
- ;;^UTILITY(U,$J,358.3,44952,1,0)
+ ;;^UTILITY(U,$J,358.3,42703,1,3,0)
+ ;;=3^Torus fracture of lower end of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42703,1,4,0)
+ ;;=4^S82.822S
+ ;;^UTILITY(U,$J,358.3,42703,2)
+ ;;=^5136943
+ ;;^UTILITY(U,$J,358.3,42704,0)
+ ;;=S82.821S^^155^2072^109
+ ;;^UTILITY(U,$J,358.3,42704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44952,1,3,0)
- ;;=3^Osteitis Deformans of Vertebrae
- ;;^UTILITY(U,$J,358.3,44952,1,4,0)
- ;;=4^M88.1
- ;;^UTILITY(U,$J,358.3,44952,2)
- ;;=^5014875
- ;;^UTILITY(U,$J,358.3,44953,0)
- ;;=M88.89^^200^2234^65
- ;;^UTILITY(U,$J,358.3,44953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44953,1,3,0)
- ;;=3^Osteitis Deformans of Mult Sites
- ;;^UTILITY(U,$J,358.3,44953,1,4,0)
- ;;=4^M88.89
- ;;^UTILITY(U,$J,358.3,44953,2)
- ;;=^5014898
- ;;^UTILITY(U,$J,358.3,44954,0)
- ;;=M94.0^^200^2234^15
- ;;^UTILITY(U,$J,358.3,44954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44954,1,3,0)
- ;;=3^Chondrocostal Junction Syndrome/Costochondritis
- ;;^UTILITY(U,$J,358.3,44954,1,4,0)
- ;;=4^M94.0
- ;;^UTILITY(U,$J,358.3,44954,2)
- ;;=^5015327
- ;;^UTILITY(U,$J,358.3,44955,0)
- ;;=M94.20^^200^2234^18
+ ;;^UTILITY(U,$J,358.3,42704,1,3,0)
+ ;;=3^Torus fracture of lower end of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42704,1,4,0)
+ ;;=4^S82.821S
+ ;;^UTILITY(U,$J,358.3,42704,2)
+ ;;=^5042430
+ ;;^UTILITY(U,$J,358.3,42705,0)
+ ;;=S82.812S^^155^2072^111

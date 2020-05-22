@@ -1,5 +1,5 @@
 VIABMS ;AAC/JMC,AFS/PB - VIA BMS RPCs ;10/31/17  14:34
- ;;1.0;VISTA INTEGRATION ADAPTER;**8,10,11,15**;06-FEB-2014;Build 5
+ ;;1.0;VISTA INTEGRATION ADAPTER;**8,10,11,15,19**;06-FEB-2014;Build 1
  ;
  ;The routine is in support of the Bed Management System (BMS) and is linked to VIAB BMS RPC. The RPC 
  ;determines what data is returned from what is passed in the input parameter VIA("PATH"). All BMS requests
@@ -17,6 +17,8 @@ VIABMS ;AAC/JMC,AFS/PB - VIA BMS RPCs ;10/31/17  14:34
  ; ICR 6610 FACILITY MOVEMENT File #405.1;fields .01,.04] (private)
  ; ICR 6607 SC PERCENTAGE [File #2;field .302] (private)
  ; ICR 10090 INSTITUTION FILE (supported)
+ ; ICR 7140 ED LOG [File 230;"ADST" XREF from field 1.2] 
+ ; ICR 7141 TRACKING CODE [File 233.1;field .05]  
  Q
  ;
 EN(RESULT,VIA) ; entry point for RPC
@@ -73,32 +75,32 @@ GETACT ;returns activity from the ED LOG (#230) file
  ;COMPLAINT  (#1.1)
  ;DIAGNOSIS TIME (#1.4)
  ;
- ;N I,Y,NODE0,NODE1,NODE3,VAL,N,DFN,INST,DISP,LOC,ERDOC,IEN,CNT
- N I,Y,NODE0,NODE1,VAL,DISP,DFN,INST,IEN
+ N I,Y,NODE0,NODE1,VAL,DISP,DFN,INST,IEN,DISPI,TCFLGS,DISPI
  S:VIASDT="" VIASDT=VIAFROM ;alias
  S:VIAEDT="" VIAEDT=VIATO ;alias
- ;D DTCHK(.RESULT,VIASDT,VIAEDT) I $D(RESULT) Q
  S N=0
  D SET("[Data]")
  S I=VIASDT-.0000000001
- ;S I=VIASDT
- S CNT=0
  F  S I=$O(^EDP(230,"ADST",I)) Q:((I="")!('$$BETWEEN(I,VIASDT,VIAEDT)))  D
- .S CNT=CNT+1
- .S IEN=$O(^EDP(230,"ADST",I,""))
- .S DISP=$$GET1^DIQ(230,IEN_",",1.2,"E")
- .Q:DISP'["admitva"
- .S VAL=""
- .S NODE0=$G(^EDP(230,IEN,0))
- .S NODE1=$G(^EDP(230,IEN,1))
- .S VAL=VAL_$P(NODE1,U,3) ;DISPOSITION TIME (#1.3)
- .S DFN=$P(NODE0,U,6) ;PATIENT ID (#.06)
- .S VAL=VAL_U_DFN
- .S INST=$P(NODE0,U,2) ;INSTITUTION (#.02)
- .S VAL=VAL_U_$$GET1^DIQ(4,INST_",",99) ;station number
- .S VAL=VAL_U_$P(NODE1,U) ;COMPLAINT (#1.1)
- .S VAL=VAL_U_$P(NODE1,U,4) ;DIAGNOSIS TIME (#1.4)
- .D SET(VAL)
+ .S IEN=""
+ .F  S IEN=$O(^EDP(230,"ADST",I,IEN)) Q:IEN=""  D  ;*19 added loop and changed conditionals
+ ..S DISP=$$GET1^DIQ(230,IEN_",",1.2,"E")
+ ..S DISPI=$$GET1^DIQ(230,IEN_",",1.2,"I"),TCFLAG=$$UP^XLFSTR($$GET1^DIQ(233.1,DISPI_",",.05,"E"))
+ ..;only look at FLAGS = "VA"
+ ..Q:(TCFLAG'="VA")
+ ..S VAL=""
+ ..S NODE0=$G(^EDP(230,IEN,0))
+ ..S NODE1=$G(^EDP(230,IEN,1))
+ ..S VAL=VAL_$P(NODE1,U,3) ;DISPOSITION TIME (#1.3)
+ ..S DFN=$P(NODE0,U,6) ;PATIENT ID (#.06)
+ ..S VAL=VAL_U_DFN
+ ..S INST=$P(NODE0,U,2) ;INSTITUTION (#.02)
+ ..S VAL=VAL_U_$$GET1^DIQ(4,INST_",",99) ;station number
+ ..S VAL=VAL_U_$P(NODE1,U) ;COMPLAINT (#1.1)
+ ..S VAL=VAL_U_$P(NODE1,U,4) ;DIAGNOSIS TIME (#1.4)
+ ..D SET(VAL)
+ ..Q
+ .Q
  M RESULT=Y
  Q
  ;

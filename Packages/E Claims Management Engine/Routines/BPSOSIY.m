@@ -1,5 +1,5 @@
 BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11,20,26**;JUN 2004;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;

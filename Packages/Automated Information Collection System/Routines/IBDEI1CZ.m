@@ -1,134 +1,126 @@
-IBDEI1CZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23092,0)
- ;;=D86.85^^87^991^42
- ;;^UTILITY(U,$J,358.3,23092,1,0)
+ ;;^UTILITY(U,$J,358.3,21711,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,21711,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,21712,0)
+ ;;=H60.03^^99^1106^24
+ ;;^UTILITY(U,$J,358.3,21712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23092,1,3,0)
- ;;=3^Sarcoid Myocarditis
- ;;^UTILITY(U,$J,358.3,23092,1,4,0)
- ;;=4^D86.85
- ;;^UTILITY(U,$J,358.3,23092,2)
- ;;=^5002450
- ;;^UTILITY(U,$J,358.3,23093,0)
- ;;=D86.83^^87^991^40
- ;;^UTILITY(U,$J,358.3,23093,1,0)
+ ;;^UTILITY(U,$J,358.3,21712,1,3,0)
+ ;;=3^External Ear Abscess,Bilateral
+ ;;^UTILITY(U,$J,358.3,21712,1,4,0)
+ ;;=4^H60.03
+ ;;^UTILITY(U,$J,358.3,21712,2)
+ ;;=^5006438
+ ;;^UTILITY(U,$J,358.3,21713,0)
+ ;;=H60.02^^99^1106^25
+ ;;^UTILITY(U,$J,358.3,21713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23093,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
- ;;^UTILITY(U,$J,358.3,23093,1,4,0)
- ;;=4^D86.83
- ;;^UTILITY(U,$J,358.3,23093,2)
- ;;=^5002448
- ;;^UTILITY(U,$J,358.3,23094,0)
- ;;=D84.1^^87^991^16
- ;;^UTILITY(U,$J,358.3,23094,1,0)
+ ;;^UTILITY(U,$J,358.3,21713,1,3,0)
+ ;;=3^External Ear Abscess,Left
+ ;;^UTILITY(U,$J,358.3,21713,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,21713,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,21714,0)
+ ;;=H60.01^^99^1106^26
+ ;;^UTILITY(U,$J,358.3,21714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23094,1,3,0)
- ;;=3^Defects in Complement System
- ;;^UTILITY(U,$J,358.3,23094,1,4,0)
- ;;=4^D84.1
- ;;^UTILITY(U,$J,358.3,23094,2)
- ;;=^5002439
- ;;^UTILITY(U,$J,358.3,23095,0)
- ;;=D81.810^^87^991^5
- ;;^UTILITY(U,$J,358.3,23095,1,0)
+ ;;^UTILITY(U,$J,358.3,21714,1,3,0)
+ ;;=3^External Ear Abscess,Right
+ ;;^UTILITY(U,$J,358.3,21714,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,21714,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,21715,0)
+ ;;=H60.13^^99^1106^27
+ ;;^UTILITY(U,$J,358.3,21715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23095,1,3,0)
- ;;=3^Biotinidase Deficiency
- ;;^UTILITY(U,$J,358.3,23095,1,4,0)
- ;;=4^D81.810
- ;;^UTILITY(U,$J,358.3,23095,2)
- ;;=^5002422
- ;;^UTILITY(U,$J,358.3,23096,0)
- ;;=E88.01^^87^991^2
- ;;^UTILITY(U,$J,358.3,23096,1,0)
+ ;;^UTILITY(U,$J,358.3,21715,1,3,0)
+ ;;=3^External Ear Cellulitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,21715,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,21715,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,21716,0)
+ ;;=H60.12^^99^1106^28
+ ;;^UTILITY(U,$J,358.3,21716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23096,1,3,0)
- ;;=3^Apha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,23096,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,23096,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,23097,0)
- ;;=J09.X1^^87^991^25
- ;;^UTILITY(U,$J,358.3,23097,1,0)
+ ;;^UTILITY(U,$J,358.3,21716,1,3,0)
+ ;;=3^External Ear Cellulitis,Left
+ ;;^UTILITY(U,$J,358.3,21716,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,21716,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,21717,0)
+ ;;=H60.11^^99^1106^29
+ ;;^UTILITY(U,$J,358.3,21717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23097,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,23097,1,4,0)
- ;;=4^J09.X1
- ;;^UTILITY(U,$J,358.3,23097,2)
- ;;=^5008144
- ;;^UTILITY(U,$J,358.3,23098,0)
- ;;=J09.X2^^87^991^26
- ;;^UTILITY(U,$J,358.3,23098,1,0)
+ ;;^UTILITY(U,$J,358.3,21717,1,3,0)
+ ;;=3^External Ear Cellulitis,Right
+ ;;^UTILITY(U,$J,358.3,21717,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,21717,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,21718,0)
+ ;;=G40.909^^99^1106^9
+ ;;^UTILITY(U,$J,358.3,21718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23098,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
- ;;^UTILITY(U,$J,358.3,23098,1,4,0)
- ;;=4^J09.X2
- ;;^UTILITY(U,$J,358.3,23098,2)
- ;;=^5008145
- ;;^UTILITY(U,$J,358.3,23099,0)
- ;;=J09.X3^^87^991^27
- ;;^UTILITY(U,$J,358.3,23099,1,0)
+ ;;^UTILITY(U,$J,358.3,21718,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,21718,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,21718,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,21719,0)
+ ;;=M77.9^^99^1106^8
+ ;;^UTILITY(U,$J,358.3,21719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23099,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,23099,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,23099,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,23100,0)
- ;;=J09.X9^^87^991^28
- ;;^UTILITY(U,$J,358.3,23100,1,0)
+ ;;^UTILITY(U,$J,358.3,21719,1,3,0)
+ ;;=3^Enthesopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,21719,1,4,0)
+ ;;=4^M77.9
+ ;;^UTILITY(U,$J,358.3,21719,2)
+ ;;=^5013319
+ ;;^UTILITY(U,$J,358.3,21720,0)
+ ;;=K52.21^^99^1106^4
+ ;;^UTILITY(U,$J,358.3,21720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23100,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,23100,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,23100,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,23101,0)
- ;;=J44.9^^87^991^14
- ;;^UTILITY(U,$J,358.3,23101,1,0)
+ ;;^UTILITY(U,$J,358.3,21720,1,3,0)
+ ;;=3^Enterocolitis Synd Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,21720,1,4,0)
+ ;;=4^K52.21
+ ;;^UTILITY(U,$J,358.3,21720,2)
+ ;;=^5138713
+ ;;^UTILITY(U,$J,358.3,21721,0)
+ ;;=K52.22^^99^1106^7
+ ;;^UTILITY(U,$J,358.3,21721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23101,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,23101,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,23101,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,23102,0)
- ;;=J44.1^^87^991^12
- ;;^UTILITY(U,$J,358.3,23102,1,0)
+ ;;^UTILITY(U,$J,358.3,21721,1,3,0)
+ ;;=3^Enterocolopathy Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,21721,1,4,0)
+ ;;=4^K52.22
+ ;;^UTILITY(U,$J,358.3,21721,2)
+ ;;=^5138714
+ ;;^UTILITY(U,$J,358.3,21722,0)
+ ;;=N52.36^^99^1106^11
+ ;;^UTILITY(U,$J,358.3,21722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23102,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,23102,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,23102,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,23103,0)
- ;;=J42.^^87^991^10
- ;;^UTILITY(U,$J,358.3,23103,1,0)
+ ;;^UTILITY(U,$J,358.3,21722,1,3,0)
+ ;;=3^Erectile Dysfunction After Interstitial Seed Therapy
+ ;;^UTILITY(U,$J,358.3,21722,1,4,0)
+ ;;=4^N52.36
+ ;;^UTILITY(U,$J,358.3,21722,2)
+ ;;=^5138933
+ ;;^UTILITY(U,$J,358.3,21723,0)
+ ;;=N52.37^^99^1106^12
+ ;;^UTILITY(U,$J,358.3,21723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23103,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,23103,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,23103,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,23104,0)
- ;;=J43.9^^87^991^22
- ;;^UTILITY(U,$J,358.3,23104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23104,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,23104,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,23104,2)
- ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,21723,1,3,0)
+ ;;=3^Erectile Dysfunction After Prostate Ablative Therapy
+ ;;^UTILITY(U,$J,358.3,21723,1,4,0)
+ ;;=4^N52.37

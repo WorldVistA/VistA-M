@@ -1,5 +1,5 @@
 DGENELA1 ;ALB/CJM,RTK,TDM,PJR,RGL,LBD,EG,TMK,CKN,ERC,HM - Patient Eligibility API ;20 Jan 2015  3:27 PM
- ;;5.3;Registration;**147,327,314,367,497,451,564,631,672,659,583,746,653,688,841,909,972**;Aug 13,1993;Build 80
+ ;;5.3;Registration;**147,327,314,367,497,451,564,631,672,659,583,746,653,688,841,909,972,952**;Aug 13,1993;Build 160
  ;
 CHECK(DGELG,DGPAT,DGCDIS,ERRMSG) ;
  ;Does validation checks on the eligibility contained in the DGELG array.
@@ -114,7 +114,7 @@ STORE(DGELG,DGPAT,DGCDIS,ERROR,SKIPCHK) ;
  ;  Function Value - returns 1 if successful, otherwise 0
  ;  ERROR - in event of failure returns an error message (pass by reference, optional)
  ;
- N SUCCESS,DATA,FIELD,DA,DFN,COUNT
+ N SUCCESS,DATA,FIELD,DA,DFN,COUNT,OTHSTAT,Z
  S DFN=$G(DGELG("DFN"))
  S SUCCESS=0
  S ERROR=""
@@ -134,6 +134,13 @@ STORE(DGELG,DGPAT,DGCDIS,ERROR,SKIPCHK) ;
  .; Only update User Enrollee fields if the incoming UE status is
  .; greater than the USER ENROLLEE VALID THROUGH on file.
  .I $G(DATA(.3617))<$P($G(^DPT(DFN,.361)),"^",7) K DATA(.3617),DATA(.3618)
+ .; update field 2/.5501 and entry in file 33
+ .I +$O(^DGOTH(33,"B",DFN,""))>0 S DATA(.5501)="" ; DG*5.3*952
+ .S OTHSTAT=$G(DGELG("OTH")) ; DG*5.3*952
+ .I "^0^1^"[(U_OTHSTAT_U) D  ; ; DG*5.3*952
+ ..S Z=$$FILSTAT^DGOTHUT1(DFN,OTHSTAT) I '+Z S ERROR="FILEMAN FAILED TO UPDATE FILE 33: "_$P(Z,U,2) Q  ; DG*5.3*952
+ ..I OTHSTAT=1 S DATA(.5501)=DGELG("OTHTYPE") ; DG*5.3*952
+ ..Q  ; DG*5.3*952
  .;
  .;update Patient file record with data from Z11
  .D UPDZ11^DGENELA2

@@ -1,138 +1,118 @@
-IBDEI2DD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40178,2)
- ;;=^5004158
- ;;^UTILITY(U,$J,358.3,40179,0)
- ;;=F41.9^^156^1955^8
- ;;^UTILITY(U,$J,358.3,40179,1,0)
+ ;;^UTILITY(U,$J,358.3,37821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40179,1,3,0)
- ;;=3^Anxiety disorder, unspecified
- ;;^UTILITY(U,$J,358.3,40179,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,40179,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,40180,0)
- ;;=F33.9^^156^1955^30
- ;;^UTILITY(U,$J,358.3,40180,1,0)
+ ;;^UTILITY(U,$J,358.3,37821,1,3,0)
+ ;;=3^Flail Joint,Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,37821,1,4,0)
+ ;;=4^M25.271
+ ;;^UTILITY(U,$J,358.3,37821,2)
+ ;;=^5011546
+ ;;^UTILITY(U,$J,358.3,37822,0)
+ ;;=M21.42^^146^1917^164
+ ;;^UTILITY(U,$J,358.3,37822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40180,1,3,0)
- ;;=3^Major depressive disorder, recurrent, unspecified
- ;;^UTILITY(U,$J,358.3,40180,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,40180,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,40181,0)
- ;;=F05.^^156^1955^15
- ;;^UTILITY(U,$J,358.3,40181,1,0)
+ ;;^UTILITY(U,$J,358.3,37822,1,3,0)
+ ;;=3^Flat Foot,Left Foot
+ ;;^UTILITY(U,$J,358.3,37822,1,4,0)
+ ;;=4^M21.42
+ ;;^UTILITY(U,$J,358.3,37822,2)
+ ;;=^5011115
+ ;;^UTILITY(U,$J,358.3,37823,0)
+ ;;=M21.41^^146^1917^165
+ ;;^UTILITY(U,$J,358.3,37823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40181,1,3,0)
- ;;=3^Delirium due to known physiological condition
- ;;^UTILITY(U,$J,358.3,40181,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,40181,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,40182,0)
- ;;=D70.9^^156^1955^33
- ;;^UTILITY(U,$J,358.3,40182,1,0)
+ ;;^UTILITY(U,$J,358.3,37823,1,3,0)
+ ;;=3^Flat Foot,Right Foot
+ ;;^UTILITY(U,$J,358.3,37823,1,4,0)
+ ;;=4^M21.41
+ ;;^UTILITY(U,$J,358.3,37823,2)
+ ;;=^5011114
+ ;;^UTILITY(U,$J,358.3,37824,0)
+ ;;=S92.001A^^146^1917^209
+ ;;^UTILITY(U,$J,358.3,37824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40182,1,3,0)
- ;;=3^Neutropenia, unspecified
- ;;^UTILITY(U,$J,358.3,40182,1,4,0)
- ;;=4^D70.9
- ;;^UTILITY(U,$J,358.3,40182,2)
- ;;=^334186
- ;;^UTILITY(U,$J,358.3,40183,0)
- ;;=D69.6^^156^1955^43
- ;;^UTILITY(U,$J,358.3,40183,1,0)
+ ;;^UTILITY(U,$J,358.3,37824,1,3,0)
+ ;;=3^Fx of rt calcaneus,init w/ nonunion,unspec
+ ;;^UTILITY(U,$J,358.3,37824,1,4,0)
+ ;;=4^S92.001A
+ ;;^UTILITY(U,$J,358.3,37824,2)
+ ;;=^5044353
+ ;;^UTILITY(U,$J,358.3,37825,0)
+ ;;=S92.314A^^146^1917^287
+ ;;^UTILITY(U,$J,358.3,37825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40183,1,3,0)
- ;;=3^Thrombocytopenia, unspecified
- ;;^UTILITY(U,$J,358.3,40183,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,40183,2)
- ;;=^5002370
- ;;^UTILITY(U,$J,358.3,40184,0)
- ;;=D64.9^^156^1955^7
- ;;^UTILITY(U,$J,358.3,40184,1,0)
+ ;;^UTILITY(U,$J,358.3,37825,1,3,0)
+ ;;=3^Nondisp fx of 1st metrsl bone,rt ft,init w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37825,1,4,0)
+ ;;=4^S92.314A
+ ;;^UTILITY(U,$J,358.3,37825,2)
+ ;;=^5045081
+ ;;^UTILITY(U,$J,358.3,37826,0)
+ ;;=M84.572K^^146^1917^393
+ ;;^UTILITY(U,$J,358.3,37826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40184,1,3,0)
- ;;=3^Anemia, unspecified
- ;;^UTILITY(U,$J,358.3,40184,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,40184,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,40185,0)
- ;;=D84.9^^156^1955^27
- ;;^UTILITY(U,$J,358.3,40185,1,0)
+ ;;^UTILITY(U,$J,358.3,37826,1,3,0)
+ ;;=3^Path fx in neoplst disease,lft ankl,subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37826,1,4,0)
+ ;;=4^M84.572K
+ ;;^UTILITY(U,$J,358.3,37826,2)
+ ;;=^5014181
+ ;;^UTILITY(U,$J,358.3,37827,0)
+ ;;=M84.68XA^^146^1917^394
+ ;;^UTILITY(U,$J,358.3,37827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40185,1,3,0)
- ;;=3^Immunodeficiency, unspecified
- ;;^UTILITY(U,$J,358.3,40185,1,4,0)
- ;;=4^D84.9
- ;;^UTILITY(U,$J,358.3,40185,2)
- ;;=^5002441
- ;;^UTILITY(U,$J,358.3,40186,0)
- ;;=E66.9^^156^1955^34
- ;;^UTILITY(U,$J,358.3,40186,1,0)
+ ;;^UTILITY(U,$J,358.3,37827,1,3,0)
+ ;;=3^Path fx initial w/ nonunion,oth disease,oth site
+ ;;^UTILITY(U,$J,358.3,37827,1,4,0)
+ ;;=4^M84.68XA
+ ;;^UTILITY(U,$J,358.3,37827,2)
+ ;;=^5134051
+ ;;^UTILITY(U,$J,358.3,37828,0)
+ ;;=S99.011A^^146^1917^433
+ ;;^UTILITY(U,$J,358.3,37828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40186,1,3,0)
- ;;=3^Obesity, unspecified
- ;;^UTILITY(U,$J,358.3,40186,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,40186,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,40187,0)
- ;;=E88.01^^156^1955^6
- ;;^UTILITY(U,$J,358.3,40187,1,0)
+ ;;^UTILITY(U,$J,358.3,37828,1,3,0)
+ ;;=3^Physeal Fx,Right Calcaneus,Salter-Harris Type I,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37828,1,4,0)
+ ;;=4^S99.011A
+ ;;^UTILITY(U,$J,358.3,37828,2)
+ ;;=^5139646
+ ;;^UTILITY(U,$J,358.3,37829,0)
+ ;;=S99.012A^^146^1917^421
+ ;;^UTILITY(U,$J,358.3,37829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40187,1,3,0)
- ;;=3^Alpha-1-antitrypsin deficiency
- ;;^UTILITY(U,$J,358.3,40187,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,40187,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,40188,0)
- ;;=E87.5^^156^1955^23
- ;;^UTILITY(U,$J,358.3,40188,1,0)
+ ;;^UTILITY(U,$J,358.3,37829,1,3,0)
+ ;;=3^Physeal Fx,Left Calcaneus,Salter-Harris Type I,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37829,1,4,0)
+ ;;=4^S99.012A
+ ;;^UTILITY(U,$J,358.3,37829,2)
+ ;;=^5139653
+ ;;^UTILITY(U,$J,358.3,37830,0)
+ ;;=S99.021A^^146^1917^434
+ ;;^UTILITY(U,$J,358.3,37830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40188,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,40188,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,40188,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,40189,0)
- ;;=E86.0^^156^1955^14
- ;;^UTILITY(U,$J,358.3,40189,1,0)
+ ;;^UTILITY(U,$J,358.3,37830,1,3,0)
+ ;;=3^Physeal Fx,Right Calcaneus,Salter-Harris Type II,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37830,1,4,0)
+ ;;=4^S99.021A
+ ;;^UTILITY(U,$J,358.3,37830,2)
+ ;;=^5139667
+ ;;^UTILITY(U,$J,358.3,37831,0)
+ ;;=S99.022A^^146^1917^422
+ ;;^UTILITY(U,$J,358.3,37831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40189,1,3,0)
- ;;=3^Dehydration
- ;;^UTILITY(U,$J,358.3,40189,1,4,0)
- ;;=4^E86.0
- ;;^UTILITY(U,$J,358.3,40189,2)
- ;;=^332743
- ;;^UTILITY(U,$J,358.3,40190,0)
- ;;=E83.42^^156^1955^25
- ;;^UTILITY(U,$J,358.3,40190,1,0)
+ ;;^UTILITY(U,$J,358.3,37831,1,3,0)
+ ;;=3^Physeal Fx,Left Calcaneus,Salter-Harris Type II,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37831,1,4,0)
+ ;;=4^S99.022A
+ ;;^UTILITY(U,$J,358.3,37831,2)
+ ;;=^5139674
+ ;;^UTILITY(U,$J,358.3,37832,0)
+ ;;=S99.031A^^146^1917^435
+ ;;^UTILITY(U,$J,358.3,37832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40190,1,3,0)
- ;;=3^Hypomagnesemia
- ;;^UTILITY(U,$J,358.3,40190,1,4,0)
- ;;=4^E83.42
- ;;^UTILITY(U,$J,358.3,40190,2)
- ;;=^5003003
- ;;^UTILITY(U,$J,358.3,40191,0)
- ;;=E83.41^^156^1955^24
- ;;^UTILITY(U,$J,358.3,40191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40191,1,3,0)
- ;;=3^Hypermagnesemia
- ;;^UTILITY(U,$J,358.3,40191,1,4,0)
- ;;=4^E83.41
- ;;^UTILITY(U,$J,358.3,40191,2)
- ;;=^5003002
- ;;^UTILITY(U,$J,358.3,40192,0)
- ;;=E83.40^^156^1955^17
+ ;;^UTILITY(U,$J,358.3,37832,1,3,0)
+ ;;=3^Physeal Fx,Right Calcaneus,Salter-Harris Type III,Init Encntr

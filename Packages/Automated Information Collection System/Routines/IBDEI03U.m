@@ -1,324 +1,720 @@
-IBDEI03U ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI03U ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4567,1,4,0)
- ;;=4^S31.134A
- ;;^UTILITY(U,$J,358.3,4567,2)
- ;;=^5134457
- ;;^UTILITY(U,$J,358.3,4568,0)
- ;;=S31.823A^^20^286^6
- ;;^UTILITY(U,$J,358.3,4568,1,0)
+ ;;^UTILITY(U,$J,358.3,9179,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,9180,0)
+ ;;=H93.A3^^48^479^38
+ ;;^UTILITY(U,$J,358.3,9180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4568,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,4568,1,4,0)
- ;;=4^S31.823A
- ;;^UTILITY(U,$J,358.3,4568,2)
- ;;=^5024314
- ;;^UTILITY(U,$J,358.3,4569,0)
- ;;=S31.130A^^20^286^36
- ;;^UTILITY(U,$J,358.3,4569,1,0)
+ ;;^UTILITY(U,$J,358.3,9180,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,9180,1,4,0)
+ ;;=4^H93.A3
+ ;;^UTILITY(U,$J,358.3,9180,2)
+ ;;=^5138592
+ ;;^UTILITY(U,$J,358.3,9181,0)
+ ;;=H93.A1^^48^479^40
+ ;;^UTILITY(U,$J,358.3,9181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4569,1,3,0)
- ;;=3^Puncture Wound w/o FB of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,4569,1,4,0)
- ;;=4^S31.130A
- ;;^UTILITY(U,$J,358.3,4569,2)
- ;;=^5024071
- ;;^UTILITY(U,$J,358.3,4570,0)
- ;;=S31.131A^^20^286^4
- ;;^UTILITY(U,$J,358.3,4570,1,0)
+ ;;^UTILITY(U,$J,358.3,9181,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,9181,1,4,0)
+ ;;=4^H93.A1
+ ;;^UTILITY(U,$J,358.3,9181,2)
+ ;;=^5138590
+ ;;^UTILITY(U,$J,358.3,9182,0)
+ ;;=H93.A2^^48^479^39
+ ;;^UTILITY(U,$J,358.3,9182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4570,1,3,0)
- ;;=3^Puncture Wound w/o FB of LUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,4570,1,4,0)
- ;;=4^S31.131A
- ;;^UTILITY(U,$J,358.3,4570,2)
- ;;=^5024074
- ;;^UTILITY(U,$J,358.3,4571,0)
- ;;=S41.031A^^20^286^59
- ;;^UTILITY(U,$J,358.3,4571,1,0)
+ ;;^UTILITY(U,$J,358.3,9182,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,9182,1,4,0)
+ ;;=4^H93.A2
+ ;;^UTILITY(U,$J,358.3,9182,2)
+ ;;=^5138591
+ ;;^UTILITY(U,$J,358.3,9183,0)
+ ;;=B37.0^^48^480^13
+ ;;^UTILITY(U,$J,358.3,9183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4571,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,4571,1,4,0)
- ;;=4^S41.031A
- ;;^UTILITY(U,$J,358.3,4571,2)
- ;;=^5026309
- ;;^UTILITY(U,$J,358.3,4572,0)
- ;;=S41.032A^^20^286^27
- ;;^UTILITY(U,$J,358.3,4572,1,0)
+ ;;^UTILITY(U,$J,358.3,9183,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,9183,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,9183,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,9184,0)
+ ;;=B37.83^^48^480^12
+ ;;^UTILITY(U,$J,358.3,9184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4572,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,4572,1,4,0)
- ;;=4^S41.032A
- ;;^UTILITY(U,$J,358.3,4572,2)
- ;;=^5026312
- ;;^UTILITY(U,$J,358.3,4573,0)
- ;;=S51.031A^^20^286^41
- ;;^UTILITY(U,$J,358.3,4573,1,0)
+ ;;^UTILITY(U,$J,358.3,9184,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,9184,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,9184,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,9185,0)
+ ;;=J00.^^48^480^6
+ ;;^UTILITY(U,$J,358.3,9185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4573,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,4573,1,4,0)
- ;;=4^S51.031A
- ;;^UTILITY(U,$J,358.3,4573,2)
- ;;=^5028638
- ;;^UTILITY(U,$J,358.3,4574,0)
- ;;=S51.032A^^20^286^9
- ;;^UTILITY(U,$J,358.3,4574,1,0)
+ ;;^UTILITY(U,$J,358.3,9185,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,9185,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,9185,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,9186,0)
+ ;;=J01.00^^48^480^5
+ ;;^UTILITY(U,$J,358.3,9186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4574,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,4574,1,4,0)
- ;;=4^S51.032A
- ;;^UTILITY(U,$J,358.3,4574,2)
- ;;=^5028641
- ;;^UTILITY(U,$J,358.3,4575,0)
- ;;=S61.531A^^20^286^63
- ;;^UTILITY(U,$J,358.3,4575,1,0)
+ ;;^UTILITY(U,$J,358.3,9186,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,9186,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,9186,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,9187,0)
+ ;;=J01.10^^48^480^1
+ ;;^UTILITY(U,$J,358.3,9187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4575,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,4575,1,4,0)
- ;;=4^S61.531A
- ;;^UTILITY(U,$J,358.3,4575,2)
- ;;=^5033038
- ;;^UTILITY(U,$J,358.3,4576,0)
- ;;=S61.532A^^20^286^31
- ;;^UTILITY(U,$J,358.3,4576,1,0)
+ ;;^UTILITY(U,$J,358.3,9187,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,9187,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,9187,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,9188,0)
+ ;;=J02.9^^48^480^7
+ ;;^UTILITY(U,$J,358.3,9188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4576,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,4576,1,4,0)
- ;;=4^S61.532A
- ;;^UTILITY(U,$J,358.3,4576,2)
- ;;=^5033041
- ;;^UTILITY(U,$J,358.3,4577,0)
- ;;=S61.432A^^20^286^13
- ;;^UTILITY(U,$J,358.3,4577,1,0)
+ ;;^UTILITY(U,$J,358.3,9188,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,9188,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,9188,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,9189,0)
+ ;;=J03.91^^48^480^8
+ ;;^UTILITY(U,$J,358.3,9189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4577,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,4577,1,4,0)
- ;;=4^S61.432A
- ;;^UTILITY(U,$J,358.3,4577,2)
- ;;=^5033002
- ;;^UTILITY(U,$J,358.3,4578,0)
- ;;=S61.431A^^20^286^45
- ;;^UTILITY(U,$J,358.3,4578,1,0)
+ ;;^UTILITY(U,$J,358.3,9189,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,9189,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,9189,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,9190,0)
+ ;;=J04.0^^48^480^3
+ ;;^UTILITY(U,$J,358.3,9190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4578,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,4578,1,4,0)
- ;;=4^S61.431A
- ;;^UTILITY(U,$J,358.3,4578,2)
- ;;=^5032999
- ;;^UTILITY(U,$J,358.3,4579,0)
- ;;=S61.031A^^20^286^61
- ;;^UTILITY(U,$J,358.3,4579,1,0)
+ ;;^UTILITY(U,$J,358.3,9190,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,9190,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,9190,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,9191,0)
+ ;;=J06.0^^48^480^4
+ ;;^UTILITY(U,$J,358.3,9191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4579,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4579,1,4,0)
- ;;=4^S61.031A
- ;;^UTILITY(U,$J,358.3,4579,2)
- ;;=^5032702
- ;;^UTILITY(U,$J,358.3,4580,0)
- ;;=S61.032A^^20^286^30
- ;;^UTILITY(U,$J,358.3,4580,1,0)
+ ;;^UTILITY(U,$J,358.3,9191,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,9191,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,9191,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,9192,0)
+ ;;=J06.9^^48^480^9
+ ;;^UTILITY(U,$J,358.3,9192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4580,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4580,1,4,0)
- ;;=4^S61.032A
- ;;^UTILITY(U,$J,358.3,4580,2)
- ;;=^5032705
- ;;^UTILITY(U,$J,358.3,4581,0)
- ;;=S61.237A^^20^286^20
- ;;^UTILITY(U,$J,358.3,4581,1,0)
+ ;;^UTILITY(U,$J,358.3,9192,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,9192,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,9192,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,9193,0)
+ ;;=J33.9^^48^480^19
+ ;;^UTILITY(U,$J,358.3,9193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4581,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4581,1,4,0)
- ;;=4^S61.237A
- ;;^UTILITY(U,$J,358.3,4581,2)
- ;;=^5032837
- ;;^UTILITY(U,$J,358.3,4582,0)
- ;;=S91.232A^^20^286^11
- ;;^UTILITY(U,$J,358.3,4582,1,0)
+ ;;^UTILITY(U,$J,358.3,9193,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,9193,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,9193,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,9194,0)
+ ;;=J32.0^^48^480^15
+ ;;^UTILITY(U,$J,358.3,9194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4582,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4582,1,4,0)
- ;;=4^S91.232A
- ;;^UTILITY(U,$J,358.3,4582,2)
- ;;=^5044293
- ;;^UTILITY(U,$J,358.3,4583,0)
- ;;=S91.132A^^20^286^12
- ;;^UTILITY(U,$J,358.3,4583,1,0)
+ ;;^UTILITY(U,$J,358.3,9194,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,9194,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,9194,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,9195,0)
+ ;;=J32.1^^48^480^14
+ ;;^UTILITY(U,$J,358.3,9195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4583,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4583,1,4,0)
- ;;=4^S91.132A
- ;;^UTILITY(U,$J,358.3,4583,2)
- ;;=^5044216
- ;;^UTILITY(U,$J,358.3,4584,0)
- ;;=S61.331A^^20^286^15
- ;;^UTILITY(U,$J,358.3,4584,1,0)
+ ;;^UTILITY(U,$J,358.3,9195,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,9195,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,9195,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,9196,0)
+ ;;=J32.9^^48^480^16
+ ;;^UTILITY(U,$J,358.3,9196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4584,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4584,1,4,0)
- ;;=4^S61.331A
- ;;^UTILITY(U,$J,358.3,4584,2)
- ;;=^5032939
- ;;^UTILITY(U,$J,358.3,4585,0)
- ;;=S61.231A^^20^286^16
- ;;^UTILITY(U,$J,358.3,4585,1,0)
+ ;;^UTILITY(U,$J,358.3,9196,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,9196,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,9196,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,9197,0)
+ ;;=J30.9^^48^480^11
+ ;;^UTILITY(U,$J,358.3,9197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4585,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4585,1,4,0)
- ;;=4^S61.231A
- ;;^UTILITY(U,$J,358.3,4585,2)
- ;;=^5032819
- ;;^UTILITY(U,$J,358.3,4586,0)
- ;;=S91.235A^^20^286^18
- ;;^UTILITY(U,$J,358.3,4586,1,0)
+ ;;^UTILITY(U,$J,358.3,9197,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,9197,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,9197,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,9198,0)
+ ;;=J30.0^^48^480^24
+ ;;^UTILITY(U,$J,358.3,9198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4586,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4586,1,4,0)
- ;;=4^S91.235A
- ;;^UTILITY(U,$J,358.3,4586,2)
- ;;=^5044299
- ;;^UTILITY(U,$J,358.3,4587,0)
- ;;=S91.135A^^20^286^19
- ;;^UTILITY(U,$J,358.3,4587,1,0)
+ ;;^UTILITY(U,$J,358.3,9198,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,9198,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,9198,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,9199,0)
+ ;;=K05.00^^48^480^2
+ ;;^UTILITY(U,$J,358.3,9199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4587,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4587,1,4,0)
- ;;=4^S91.135A
- ;;^UTILITY(U,$J,358.3,4587,2)
- ;;=^5044225
- ;;^UTILITY(U,$J,358.3,4588,0)
- ;;=S61.337A^^20^286^21
- ;;^UTILITY(U,$J,358.3,4588,1,0)
+ ;;^UTILITY(U,$J,358.3,9199,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,9199,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,9199,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,9200,0)
+ ;;=R04.0^^48^480^17
+ ;;^UTILITY(U,$J,358.3,9200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4588,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4588,1,4,0)
- ;;=4^S61.337A
- ;;^UTILITY(U,$J,358.3,4588,2)
- ;;=^5032957
- ;;^UTILITY(U,$J,358.3,4589,0)
- ;;=S61.333A^^20^286^23
- ;;^UTILITY(U,$J,358.3,4589,1,0)
+ ;;^UTILITY(U,$J,358.3,9200,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,9200,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,9200,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,9201,0)
+ ;;=R09.82^^48^480^21
+ ;;^UTILITY(U,$J,358.3,9201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4589,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4589,1,4,0)
- ;;=4^S61.333A
- ;;^UTILITY(U,$J,358.3,4589,2)
- ;;=^5032945
- ;;^UTILITY(U,$J,358.3,4590,0)
- ;;=S61.233A^^20^286^24
- ;;^UTILITY(U,$J,358.3,4590,1,0)
+ ;;^UTILITY(U,$J,358.3,9201,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,9201,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,9201,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,9202,0)
+ ;;=K12.30^^48^480^20
+ ;;^UTILITY(U,$J,358.3,9202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4590,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4590,1,4,0)
- ;;=4^S61.233A
- ;;^UTILITY(U,$J,358.3,4590,2)
- ;;=^5032825
- ;;^UTILITY(U,$J,358.3,4591,0)
- ;;=S61.335A^^20^286^25
- ;;^UTILITY(U,$J,358.3,4591,1,0)
+ ;;^UTILITY(U,$J,358.3,9202,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,9202,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,9202,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,9203,0)
+ ;;=J30.1^^48^480^10
+ ;;^UTILITY(U,$J,358.3,9203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4591,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4591,1,4,0)
- ;;=4^S61.335A
- ;;^UTILITY(U,$J,358.3,4591,2)
- ;;=^5032951
- ;;^UTILITY(U,$J,358.3,4592,0)
- ;;=S61.235A^^20^286^26
- ;;^UTILITY(U,$J,358.3,4592,1,0)
+ ;;^UTILITY(U,$J,358.3,9203,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,9203,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,9203,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,9204,0)
+ ;;=R09.81^^48^480^18
+ ;;^UTILITY(U,$J,358.3,9204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4592,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4592,1,4,0)
- ;;=4^S61.235A
- ;;^UTILITY(U,$J,358.3,4592,2)
- ;;=^5032831
- ;;^UTILITY(U,$J,358.3,4593,0)
- ;;=S61.132A^^20^286^29
- ;;^UTILITY(U,$J,358.3,4593,1,0)
+ ;;^UTILITY(U,$J,358.3,9204,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,9204,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,9204,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,9205,0)
+ ;;=I69.928^^48^480^22
+ ;;^UTILITY(U,$J,358.3,9205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4593,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4593,1,4,0)
- ;;=4^S61.132A
- ;;^UTILITY(U,$J,358.3,4593,2)
- ;;=^5032735
- ;;^UTILITY(U,$J,358.3,4594,0)
- ;;=S91.231A^^20^286^43
- ;;^UTILITY(U,$J,358.3,4594,1,0)
+ ;;^UTILITY(U,$J,358.3,9205,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,9205,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,9205,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,9206,0)
+ ;;=I69.328^^48^480^23
+ ;;^UTILITY(U,$J,358.3,9206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4594,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4594,1,4,0)
- ;;=4^S91.231A
- ;;^UTILITY(U,$J,358.3,4594,2)
- ;;=^5044290
- ;;^UTILITY(U,$J,358.3,4595,0)
- ;;=S91.131A^^20^286^44
- ;;^UTILITY(U,$J,358.3,4595,1,0)
+ ;;^UTILITY(U,$J,358.3,9206,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,9206,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,9206,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,9207,0)
+ ;;=H81.4^^48^480^25
+ ;;^UTILITY(U,$J,358.3,9207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4595,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4595,1,4,0)
- ;;=4^S91.131A
- ;;^UTILITY(U,$J,358.3,4595,2)
- ;;=^5044213
- ;;^UTILITY(U,$J,358.3,4596,0)
- ;;=S61.330A^^20^286^47
- ;;^UTILITY(U,$J,358.3,4596,1,0)
+ ;;^UTILITY(U,$J,358.3,9207,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,9207,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,9207,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,9208,0)
+ ;;=E04.0^^48^481^21
+ ;;^UTILITY(U,$J,358.3,9208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4596,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4596,1,4,0)
- ;;=4^S61.330A
- ;;^UTILITY(U,$J,358.3,4596,2)
- ;;=^5032936
- ;;^UTILITY(U,$J,358.3,4597,0)
- ;;=S61.230A^^20^286^48
- ;;^UTILITY(U,$J,358.3,4597,1,0)
+ ;;^UTILITY(U,$J,358.3,9208,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,9208,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,9208,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,9209,0)
+ ;;=E04.1^^48^481^23
+ ;;^UTILITY(U,$J,358.3,9209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4597,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4597,1,4,0)
- ;;=4^S61.230A
- ;;^UTILITY(U,$J,358.3,4597,2)
- ;;=^5032816
- ;;^UTILITY(U,$J,358.3,4598,0)
- ;;=S91.234A^^20^286^50
- ;;^UTILITY(U,$J,358.3,4598,1,0)
+ ;;^UTILITY(U,$J,358.3,9209,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,9209,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,9209,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,9210,0)
+ ;;=E04.2^^48^481^22
+ ;;^UTILITY(U,$J,358.3,9210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4598,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4598,1,4,0)
- ;;=4^S91.234A
- ;;^UTILITY(U,$J,358.3,4598,2)
- ;;=^5044296
- ;;^UTILITY(U,$J,358.3,4599,0)
- ;;=S91.134A^^20^286^51
- ;;^UTILITY(U,$J,358.3,4599,1,0)
+ ;;^UTILITY(U,$J,358.3,9210,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,9210,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,9210,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,9211,0)
+ ;;=E01.1^^48^481^17
+ ;;^UTILITY(U,$J,358.3,9211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4599,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9211,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,9211,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,9211,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,9212,0)
+ ;;=E05.00^^48^481^39
+ ;;^UTILITY(U,$J,358.3,9212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9212,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,9212,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,9212,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,9213,0)
+ ;;=E05.01^^48^481^38
+ ;;^UTILITY(U,$J,358.3,9213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9213,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,9213,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,9213,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,9214,0)
+ ;;=E05.90^^48^481^41
+ ;;^UTILITY(U,$J,358.3,9214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9214,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,9214,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,9214,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,9215,0)
+ ;;=E05.91^^48^481^40
+ ;;^UTILITY(U,$J,358.3,9215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9215,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,9215,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,9215,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,9216,0)
+ ;;=E89.0^^48^481^32
+ ;;^UTILITY(U,$J,358.3,9216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9216,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,9216,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,9216,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,9217,0)
+ ;;=E03.2^^48^481^13
+ ;;^UTILITY(U,$J,358.3,9217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9217,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,9217,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,9217,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,9218,0)
+ ;;=E03.9^^48^481^14
+ ;;^UTILITY(U,$J,358.3,9218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9218,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,9218,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,9218,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,9219,0)
+ ;;=E06.0^^48^481^36
+ ;;^UTILITY(U,$J,358.3,9219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9219,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,9219,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,9219,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,9220,0)
+ ;;=E06.1^^48^481^37
+ ;;^UTILITY(U,$J,358.3,9220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9220,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,9220,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,9220,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,9221,0)
+ ;;=C73.^^48^481^19
+ ;;^UTILITY(U,$J,358.3,9221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9221,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,9221,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,9221,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,9222,0)
+ ;;=E16.2^^48^481^10
+ ;;^UTILITY(U,$J,358.3,9222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9222,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,9222,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,9222,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,9223,0)
+ ;;=E20.0^^48^481^15
+ ;;^UTILITY(U,$J,358.3,9223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9223,1,3,0)
+ ;;=3^Idiopathic Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,9223,1,4,0)
+ ;;=4^E20.0
+ ;;^UTILITY(U,$J,358.3,9223,2)
+ ;;=^5002712
+ ;;^UTILITY(U,$J,358.3,9224,0)
+ ;;=E20.9^^48^481^11
+ ;;^UTILITY(U,$J,358.3,9224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9224,1,3,0)
+ ;;=3^Hypoparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,9224,1,4,0)
+ ;;=4^E20.9
+ ;;^UTILITY(U,$J,358.3,9224,2)
+ ;;=^5002714
+ ;;^UTILITY(U,$J,358.3,9225,0)
+ ;;=E23.0^^48^481^12
+ ;;^UTILITY(U,$J,358.3,9225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9225,1,3,0)
+ ;;=3^Hypopituitarism
+ ;;^UTILITY(U,$J,358.3,9225,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,9225,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,9226,0)
+ ;;=E27.1^^48^481^34
+ ;;^UTILITY(U,$J,358.3,9226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9226,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,9226,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,9226,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,9227,0)
+ ;;=E27.2^^48^481^1
+ ;;^UTILITY(U,$J,358.3,9227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9227,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,9227,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,9227,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,9228,0)
+ ;;=E27.3^^48^481^4
+ ;;^UTILITY(U,$J,358.3,9228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9228,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,9228,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,9228,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,9229,0)
+ ;;=E29.1^^48^481^35
+ ;;^UTILITY(U,$J,358.3,9229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9229,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,9229,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,9229,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,9230,0)
+ ;;=E55.9^^48^481^42
+ ;;^UTILITY(U,$J,358.3,9230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9230,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,9230,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,9230,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,9231,0)
+ ;;=E66.01^^48^481^20
+ ;;^UTILITY(U,$J,358.3,9231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9231,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,9231,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,9231,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,9232,0)
+ ;;=E66.8^^48^481^24
+ ;;^UTILITY(U,$J,358.3,9232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9232,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,9232,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,9232,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,9233,0)
+ ;;=E66.9^^48^481^25
+ ;;^UTILITY(U,$J,358.3,9233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9233,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,9233,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,9233,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,9234,0)
+ ;;=E74.39^^48^481^16
+ ;;^UTILITY(U,$J,358.3,9234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9234,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,9234,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,9234,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,9235,0)
+ ;;=E83.30^^48^481^28
+ ;;^UTILITY(U,$J,358.3,9235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9235,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,9235,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,9235,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,9236,0)
+ ;;=E83.51^^48^481^9
+ ;;^UTILITY(U,$J,358.3,9236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9236,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,9236,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,9236,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,9237,0)
+ ;;=E83.52^^48^481^7
+ ;;^UTILITY(U,$J,358.3,9237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9237,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,9237,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,9237,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,9238,0)
+ ;;=E87.5^^48^481^8
+ ;;^UTILITY(U,$J,358.3,9238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9238,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,9238,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,9238,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,9239,0)
+ ;;=E89.2^^48^481^30
+ ;;^UTILITY(U,$J,358.3,9239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9239,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,9239,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,9239,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,9240,0)
+ ;;=E89.6^^48^481^29
+ ;;^UTILITY(U,$J,358.3,9240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9240,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,9240,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,9240,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,9241,0)
+ ;;=L68.0^^48^481^6
+ ;;^UTILITY(U,$J,358.3,9241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9241,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,9241,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,9241,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,9242,0)
+ ;;=M80.00XA^^48^481^2
+ ;;^UTILITY(U,$J,358.3,9242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9242,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9242,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,9242,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,9243,0)
+ ;;=M81.0^^48^481^3
+ ;;^UTILITY(U,$J,358.3,9243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9243,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,9243,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,9243,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,9244,0)
+ ;;=M85.80^^48^481^26
+ ;;^UTILITY(U,$J,358.3,9244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9244,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,9244,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,9244,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,9245,0)
+ ;;=N62.^^48^481^5
+ ;;^UTILITY(U,$J,358.3,9245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9245,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,9245,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,9245,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,9246,0)
+ ;;=E66.3^^48^481^27
+ ;;^UTILITY(U,$J,358.3,9246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9246,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,9246,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,9246,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,9247,0)
+ ;;=E89.1^^48^481^31
+ ;;^UTILITY(U,$J,358.3,9247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9247,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,9247,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,9247,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,9248,0)
+ ;;=R73.03^^48^481^33
+ ;;^UTILITY(U,$J,358.3,9248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9248,1,3,0)
+ ;;=3^Pre-Diabetes
+ ;;^UTILITY(U,$J,358.3,9248,1,4,0)
+ ;;=4^R73.03
+ ;;^UTILITY(U,$J,358.3,9248,2)
+ ;;=^8295662
+ ;;^UTILITY(U,$J,358.3,9249,0)
+ ;;=E73.9^^48^481^18
+ ;;^UTILITY(U,$J,358.3,9249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9249,1,3,0)
+ ;;=3^Lactose Intolerance,Unspec
+ ;;^UTILITY(U,$J,358.3,9249,1,4,0)
+ ;;=4^E73.9
+ ;;^UTILITY(U,$J,358.3,9249,2)
+ ;;=^5002914
+ ;;^UTILITY(U,$J,358.3,9250,0)
+ ;;=H40.9^^48^482^11
+ ;;^UTILITY(U,$J,358.3,9250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9250,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,9250,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,9250,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,9251,0)
+ ;;=H26.9^^48^482^7
+ ;;^UTILITY(U,$J,358.3,9251,1,0)
+ ;;=^358.31IA^4^2

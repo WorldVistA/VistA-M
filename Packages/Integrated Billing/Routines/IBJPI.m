@@ -1,5 +1,5 @@
 IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;01-APR-2015
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601,621,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
@@ -102,11 +102,14 @@ BLDGENNR(SLINE,ELINE) ; Build the Right portion of the General
  ; Output:  ELINE   - Updated Ending Section Line Number
  ;
  S ELINE=SLINE
- S ELINE=$$SET("   HL7 Maximum Number: ",$$GET1^DIQ(350.9,"1,",51.15),ELINE,41)
+ ;/vd-IB*2*659 - Moved the HL7 Max # to the bottom of the 2nd column and
+ ;               inserted the Medicare Freshness Days to the top of the 2nd column.
+ S ELINE=$$SET("Medicare Freshness Days: ",$$GET1^DIQ(350.9,"1,",51.32),ELINE,39)
  S ELINE=$$SET("           Retry Flag: ",$$GET1^DIQ(350.9,"1,",51.26),ELINE,41)
  S ELINE=$$SET("    Number of Retries: ",$$GET1^DIQ(350.9,"1,",51.06),ELINE,41)
  S ELINE=$$SET("           Mail Group: ",$$MGRP^IBCNEUT5,ELINE,41)
  S ELINE=$$SET("Master Switch Nightly: ",$$GET1^DIQ(350.9,"1,",51.28),ELINE,41)
+ S ELINE=$$SET("            HL7 Max #: ",$$GET1^DIQ(350.9,"1,",51.15),ELINE,41)
  Q
  ;
 BLDGENNB(SLINE,ELINE) ; Build the General Non-Editable Bottom Parameters Section

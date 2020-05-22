@@ -1,138 +1,124 @@
-IBDEI1J7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1J7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25990,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,25991,0)
- ;;=Z56.1^^98^1217^2
- ;;^UTILITY(U,$J,358.3,25991,1,0)
+ ;;^UTILITY(U,$J,358.3,24483,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,24483,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,24484,0)
+ ;;=T15.01XA^^107^1206^2
+ ;;^UTILITY(U,$J,358.3,24484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25991,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,25991,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,25991,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,25992,0)
- ;;=Z56.2^^98^1217^11
- ;;^UTILITY(U,$J,358.3,25992,1,0)
+ ;;^UTILITY(U,$J,358.3,24484,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24484,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,24484,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,24485,0)
+ ;;=S00.252A^^107^1206^5
+ ;;^UTILITY(U,$J,358.3,24485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25992,1,3,0)
- ;;=3^Threat of Job Loss
- ;;^UTILITY(U,$J,358.3,25992,1,4,0)
- ;;=4^Z56.2
- ;;^UTILITY(U,$J,358.3,25992,2)
- ;;=^5063109
- ;;^UTILITY(U,$J,358.3,25993,0)
- ;;=Z56.3^^98^1217^10
- ;;^UTILITY(U,$J,358.3,25993,1,0)
+ ;;^UTILITY(U,$J,358.3,24485,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24485,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,24485,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,24486,0)
+ ;;=S00.251A^^107^1206^6
+ ;;^UTILITY(U,$J,358.3,24486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25993,1,3,0)
- ;;=3^Stressful Work Schedule
- ;;^UTILITY(U,$J,358.3,25993,1,4,0)
- ;;=4^Z56.3
- ;;^UTILITY(U,$J,358.3,25993,2)
- ;;=^5063110
- ;;^UTILITY(U,$J,358.3,25994,0)
- ;;=Z56.4^^98^1217^3
- ;;^UTILITY(U,$J,358.3,25994,1,0)
+ ;;^UTILITY(U,$J,358.3,24486,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,24486,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,24486,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,24487,0)
+ ;;=B96.81^^107^1207^63
+ ;;^UTILITY(U,$J,358.3,24487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25994,1,3,0)
- ;;=3^Discord w/ Boss & Workmates
- ;;^UTILITY(U,$J,358.3,25994,1,4,0)
- ;;=4^Z56.4
- ;;^UTILITY(U,$J,358.3,25994,2)
- ;;=^5063111
- ;;^UTILITY(U,$J,358.3,25995,0)
- ;;=Z56.5^^98^1217^12
- ;;^UTILITY(U,$J,358.3,25995,1,0)
+ ;;^UTILITY(U,$J,358.3,24487,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,24487,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,24487,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,24488,0)
+ ;;=B15.9^^107^1207^65
+ ;;^UTILITY(U,$J,358.3,24488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25995,1,3,0)
- ;;=3^Uncongenial Work Environment
- ;;^UTILITY(U,$J,358.3,25995,1,4,0)
- ;;=4^Z56.5
- ;;^UTILITY(U,$J,358.3,25995,2)
- ;;=^5063112
- ;;^UTILITY(U,$J,358.3,25996,0)
- ;;=Z56.6^^98^1217^5
- ;;^UTILITY(U,$J,358.3,25996,1,0)
+ ;;^UTILITY(U,$J,358.3,24488,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,24488,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,24488,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,24489,0)
+ ;;=B16.9^^107^1207^66
+ ;;^UTILITY(U,$J,358.3,24489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25996,1,3,0)
- ;;=3^Physical & Mental Strain Related to Work NEC
- ;;^UTILITY(U,$J,358.3,25996,1,4,0)
- ;;=4^Z56.6
- ;;^UTILITY(U,$J,358.3,25996,2)
- ;;=^5063113
- ;;^UTILITY(U,$J,358.3,25997,0)
- ;;=Z56.82^^98^1217^4
- ;;^UTILITY(U,$J,358.3,25997,1,0)
+ ;;^UTILITY(U,$J,358.3,24489,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,24489,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,24489,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,24490,0)
+ ;;=B19.10^^107^1207^68
+ ;;^UTILITY(U,$J,358.3,24490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25997,1,3,0)
- ;;=3^Military Deployment Status
- ;;^UTILITY(U,$J,358.3,25997,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,25997,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,25998,0)
- ;;=Z56.89^^98^1217^7
- ;;^UTILITY(U,$J,358.3,25998,1,0)
+ ;;^UTILITY(U,$J,358.3,24490,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,24490,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,24490,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,24491,0)
+ ;;=B18.1^^107^1207^67
+ ;;^UTILITY(U,$J,358.3,24491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25998,1,3,0)
- ;;=3^Problems Related to Employment,Other
- ;;^UTILITY(U,$J,358.3,25998,1,4,0)
- ;;=4^Z56.89
- ;;^UTILITY(U,$J,358.3,25998,2)
- ;;=^5063116
- ;;^UTILITY(U,$J,358.3,25999,0)
- ;;=F64.1^^98^1218^2
- ;;^UTILITY(U,$J,358.3,25999,1,0)
+ ;;^UTILITY(U,$J,358.3,24491,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,24491,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,24491,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,24492,0)
+ ;;=B17.10^^107^1207^69
+ ;;^UTILITY(U,$J,358.3,24492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25999,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,25999,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,25999,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,26000,0)
- ;;=F64.8^^98^1218^1
- ;;^UTILITY(U,$J,358.3,26000,1,0)
+ ;;^UTILITY(U,$J,358.3,24492,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,24492,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,24492,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,24493,0)
+ ;;=B18.2^^107^1207^70
+ ;;^UTILITY(U,$J,358.3,24493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26000,1,3,0)
- ;;=3^Gender Dysphoria NEC
- ;;^UTILITY(U,$J,358.3,26000,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,26000,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,26001,0)
- ;;=F64.9^^98^1218^3
- ;;^UTILITY(U,$J,358.3,26001,1,0)
+ ;;^UTILITY(U,$J,358.3,24493,1,3,0)
+ ;;=3^Hepatitis C,Chronic Viral
+ ;;^UTILITY(U,$J,358.3,24493,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,24493,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,24494,0)
+ ;;=B18.8^^107^1207^72
+ ;;^UTILITY(U,$J,358.3,24494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26001,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,26001,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,26001,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,26002,0)
- ;;=Z59.2^^98^1219^1
- ;;^UTILITY(U,$J,358.3,26002,1,0)
+ ;;^UTILITY(U,$J,358.3,24494,1,3,0)
+ ;;=3^Hepatitis,Oth Chronic Viral
+ ;;^UTILITY(U,$J,358.3,24494,1,4,0)
+ ;;=4^B18.8
+ ;;^UTILITY(U,$J,358.3,24494,2)
+ ;;=^5000549
+ ;;^UTILITY(U,$J,358.3,24495,0)
+ ;;=B17.8^^107^1207^73
+ ;;^UTILITY(U,$J,358.3,24495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26002,1,3,0)
- ;;=3^Discord w/ Neighbors,Lodgers or Landlord
- ;;^UTILITY(U,$J,358.3,26002,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,26002,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,26003,0)
- ;;=Z59.0^^98^1219^3
- ;;^UTILITY(U,$J,358.3,26003,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26003,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,26003,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,26003,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,26004,0)
- ;;=Z59.1^^98^1219^5
+ ;;^UTILITY(U,$J,358.3,24495,1,3,0)
+ ;;=3^Hepatitis,Oth Spec Acute Viral

@@ -1,17 +1,16 @@
 ONCOCFP1 ;Hines OIFO/RVD - [PT Automatic Casefinding-PTF Search 1] ;09/10/15
- ;;2.2;ONCOLOGY;**7**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**7,10**;Jul 31, 2013;Build 20
  ;
  ; rvd - 0403/12 p56. Use ICD API (#3990) instead of direct global call
 L10 ;
  W !
  ;List of ICD10
- W !?3,"*** COMPREHENSIVE ICD-10-CM Casefinding Code List for Reportable Tumors"
- W !?3,"          (Effective 10/1/2015-9/30/2016). ***"
+ W !?3,"*** COMPREHENSIVE ICD-10-CM Casefinding Code List for Reportable Tumors ***"
  W !
  W !?3,"C00._- C43._,C45._-C96._  Malignant neoplasms (excluding category C44),"
- W !?3,"                  stated or presumed to be primary (of specified site)"
- W !?3,"                  and certain specified histologies"
- W !?3,"C44.00_, C44.09    Unspecified/other malignant neoplasm of skin of lip"
+ W !?3,"                   stated or presumed to be primary (of specified site)"
+ W !?3,"                   and certain specified histologies"
+ W !?3,"C44.00_, C44.09   Unspecified/other malignant neoplasm of skin of lip"
  W !?3,"C44.10_, C44.19_  Unspecified/other malignant neoplasm of skin of eyelid"
  W !?3,"C44.20_, C44.29_  Unspecified/other malignant neoplasm skin of ear and"
  W !?3,"                  external auricular canal"
@@ -24,40 +23,88 @@ L10 ;
  W !?3,"                  limb, incl. shoulder"
  W !?3,"C44.70_, C44.79_  Unspecified/other malignant neoplasm of skin of lower "
  W !?3,"                   limb, including hip"
- W !?3,"C44.80_, C44.89   Unspecified/other malignant neoplasm of skin of"
- W !?3,"                   overlapping sites of skin"
- W !?3,"C44.90_, C44.99   Unspecified/other malignant neoplasm of skin of"
+ W !?3,"C44.80_, C44.89 Unspecified/other malignant neoplasm of skin of"
+ W !?3,"                 overlapping sites of skin"
+ W !?3,"C44.90_, C44.99 Unspecified/other malignant neoplasm of skin of"
  W !?3,"                   unspecified sites of skin"
- W !?3,"D00._- D09._      In-situ neoplasms (Note: Carcinoma in situ of the cervix"
- W !?3,"                   (C/N III-8077/2) and Prostatic Intraepithelial Carcinoma"
- W !?3,"                   (PIN III-8148/2) are not reportable)."
- W !?3,"D18.02            Hemangioma of intracranial structures and any site"
- W !?3,"D18.1             Lymphangioma, any site (Note: Includes Lymphangiomas of"
- W !?3,"                   Brain, Other parts of nervous system and endocrine glands,"
- W !?3,"                   which are reportable)"
+ W !?3,"C45._, C45.9   Mesothelioma of pleura, peritoneum, pericardium, other"
+ w !?3,"                 site and unspecified..."
+ W !?3,"C46._, C46.9   Kaposi's sarcoma of skin, soft tissue, palate, lymph nodes"
+ W !?3,"                 gastrointestinal sites, lung, unspecified lung, right"
+ W !?3,"                 lung, left lung, other sites and unspecified..."
+ W !?3,"C47._,C47.9    Malignant neoplasm of perpheral nerves..."
+ W !?3,"C48._,C48.8    Malignant neoplasm of retroperitoneum and peritoneum..."
+ W !?3,"C49._,C49.9    Malignant neoplasm of connective and soft tissue..."
+ W !?3,"C49.A_,C49.A9  Gastrointestinal stromal tumors..."
+ W !?3,"C4A._,C4A.9    Merkel cell carcinomas..."
+ W !?3,"C50,C50._    Malignant neoplasm of breast, nipple, areola and breast unspecified.."
+ W !?3,"C51._          Malignant neoplasm of vulva, labium majus, labium minus"
+ W !?3,"                  clitoris and vulva unspecified..."
+ W !?3,"C52            Malignant neoplasm of vagina"
+ W !?3,"C53._          Malignant neoplasm of cervix uteri, endocervix, exocervix"
+ W !?3,"                  overlapping sites of cervix uteri and unspecified..."
+ W !?3,"C54._          Malignant neoplasm of corpus uteri, isthmus uteri,"
+ W !?3,"                  endometrium, myometrium, fundus uteri and unspecified..."
+ W !?3,"C55            Malignant neoplasm of uterus"
+ W !?3,"C56._          Malignant neoplasm of ovary, right ovary, left ovary,"
+ W !?3,"                  unspecified ovary..."
+ W !?3,"C57._          Malignant neoplasm of other and unspecified female genital organs,"
+ W !?3,"                  fallopian tube, broad and round ligament and parametrium..."
+ W !?3,"C58            Malignant neoplasm of placenta"
+ W !?3,"C60._          Malignant neoplasm of penis, prepuce, glans penis, testis, genital organ,"
+ W !?3,"                epididymis, spermatic cord, scrotum, kidney, renal pelvis, bladder and eye..."
+ W !?3,"C70_           Malignant neoplasm of meninges, brain, cerbrum, thyroid, adrenal,"
+ W !?3,"                  endocrine, pituitary, intestine, appendex and others..."
+ W !?3,"C80            Malignant neoplasm without specification of site"
+ W !?3,"C81_           Hodgkin lymphoma, nodular sclerosis, lymphocyte and other..."
+ W !?3,"C82._          Follicular lymphoma grade, unspecified and others..."
+ W !?3,"C83            Non-follicular lymphoma"
+ W !?3,"C83._          Small cell B-cell lymphoma, Burkitt, Lymphoblastic, non-follicular and other..."
+ W !?3,"C84            Mature T/NK-cell lymphomas"
+ W !?3,"C84._          Mycosis fungoides, sezary diseases, perpheral T-cell, anaplastic large cell..."
+ W !?3,"C85._          Unspecified B-cell, Mediastinal Large B-cell, Non-Hodgkin lymphoma..."
+ W !?3,"C86._          T/NK-cell, Extranodal NK/T-cell, Hepatosplenic T-cell, Blastic NK-cell..."
+ W !?3,"C88._          Malignant immunoproliferative, Waldenstrom macroglobulinema, Heavy chain..."
+ W !?3,"C90._          Multiple myeloma. PLasma cell leukemia, Extramedullary plasmacytoma..."
+ W !?3,"C91._          Acute lymphoblastic leukemia, Chronic lymphocytic leukemia of B-cell type..."
+ W !?3,"C92._          Acute and Chronic myeloid leukemia, BCR/ABL-positive,Myeloid leukemia ..."
+ W !?3,"C93._          Monocytic, myelomonocytic leukemia, ..."
+ W !?3,"C94._          Other Leukemias of specified cell type, erythroid, megakaryoblastic,"
+ W !?3,"                 Mast cell..."
+ W !?3,"C95._          Leukemia of uncpecified cell type, Acute and Chronic..."
+ W !?3,"C96._          Other and unspecified malignant neoplasm, mast cell, Secondary"
+ W !?3,"                 carcinoid tumors..."
+ W !?3,"D00._- D09._   In-situ neoplasms (Note: Carcinoma in situ of the cervix"
+ W !?3,"                 (C/N III-8077/2) and Prostatic Intraepithelial Carcinoma"
+ W !?3,"                 (PIN III-8148/2) are not reportable)."
+ W !?3,"D18.02         Hemangioma of intracranial structures and any site"
  W !?3,"D32._          Benign neoplasm of meninges (cerebral, spinal and unspecified)"
  W !?3,"D33._          Benign neoplasm of brain and other parts of central nervous"
  W !?3,"                   system"
- W !?3,"D35.2 - D35.4  Benign neoplasm of pituitary gland, craniopharyngeal duct and"
+ W !?3,"D35._          Benign neoplasm of pituitary gland, craniopharyngeal duct and"
  W !?3,"                   pineal gland"
  W !?3,"D42._, D43._   Neoplasm of uncertain or unknown behavior of meninges, brain,"
  W !?3,"                   CNS"
- W !?3,"D44.3 - D44.5  Neoplasm of uncertain or unknown behavior of pituitary gland,"
- W !?3,"                   craniopharyngeal duct and pineal gland"
+ W !?3,"D44.3, D44.4, D44.5  Neoplasm of uncertain or unknown behavior of pituitary"
+ W !?3,"                     gland, craniopharyngeal duct and pineal gland"
  W !?3,"D45            Polycythemia vera (9950/3)"
  W !?3,"D46._          Myelodysplastic syndromes (9980, 9982, 9983, 9985, 9986, 9989,"
  W !?3,"                  9991, 9992)"
+ W !?3,"D47.02         Systemic mastocytosis"
  W !?3,"D47.1          Chronic myeloproliferative disease (9963/3)"
  W !?3,"D47.3          Essential (hemorrhagic) thrombocythemia (9962/3)"
  W !?3,"D47.4          Osteomyelofibrosis (9961/3)"
- W !?3,"D47.7          Other specified neoplasms of uncertain/unknown behavior of"
- W !?3,"             lymphoid, hematopoietic (9965/3, 9966/3, 9967/3, 9971/3, 9975/3)"
  W !?3,"D47.Z_         Other neoplasms of uncertain behavior of lymphoid,"
  W !?3,"                  hematopoietic related tissue"
- W !?3,"D47.9          Neoplasm of uncertain behavior of lymphoid, hematopoietic and"
- W !?3,"                    related tissue, unspecified (9970/1, 9931/3)"
+ W !?3,"D47.9          Neoplasm of uncertain behavior of lymphoid, hematopoietic"
+ W !?3,"                 and related tissue, unspecified (9970/1, 9931/3)"
  W !?3,"D49.6, D49.7   Neoplasm of unspecified behavior of brain, endocrine glands"
  W !?3,"                    and other CNS"
+ W !?3,"R85.614       Abnormal findings on cytological and histological examination"
+ W !?3,"               of  digestive organs Note: see 'must collect' list for R85.614"
+ W !?3,"R87.61_, R87.62_  Abnormal findings on cytological/histological examination"
+ W !?3,"                   of female genital organs Note: see 'must collect' list for"
+ W !?3,"                   R87.614 and R87.624"
  ;
  I SBCIND="YES" D
  .W !?3,"C44.01, C44.02   Basal/squamous cell carcinoma of skin of lip"
@@ -77,49 +124,11 @@ L10 ;
  .W !?3,"C44.91, C44.92  Basal/squamous cell carcinoma of skin of unspecified sites"
  .W !?3,"                   of skin"
  ;
- W !?3,"D47.2           Monoclonal gammopathy"
- W !
- W !?3,"*** Note: Screen for incorrectly coded Waldenstrom's macro globulinemia ***"
- W !
- W !?3,"D64.81         Anemia due to antineoplastic chemotherapy"
- W !?3,"D70.1          Agranulocytosis secondary to cancer chemotherapy"
- W !?3,"D72.1          Eosinophilia (Note: Code for eosinophilia (9964/3). Not every"
- W !?3,"                 case of eosinophilia is a malignancy. Reportable Diagnosis"
- W !?3,"                 is Hypereosonophilic syndrome.)"
- W !?3,"D76._          Other specified diseases with participation of lymphoreticular"
- W !?3,"                  and reticulohistiocytic tissue"
- W !?3,"E34.0          Carcinoid syndrome"
- W !?3,"E88.3          Tumor lysis syndrome (following antineoplastic chemotherapy)"
- W !?3,"K22.711        Barrett's esophagus with high grade dysplasia"
- W !?3,"K92.81         Gastrointestinal mucositis (ulcerated) (due to antineoplastic"
- W !?3,"                  therapy)"
- W !?3,"R18.0          Malignant ascites"
- W !?3,"R53.0          Neoplastic (malignant) related fatigue"
- W !?3,"T45.1          Poisoning by, adverse effect of and under dosing of"
- W !?3,"                 antineoplastic and immunosuppressive drugs"
- W !?3,"T66             Unspecified effects of radiation"
- W !?3,"Y63.2           Overdose of radiation given during therapy"
- W !?3,"Y84.2           Radiological procedure and radiotherapy as the cause of"
- W !?3,"                 abnormal reaction of the patient, or of later complication,"
- W !?3,"                 without mention of misadventure at the time of the procedure"
- W !?3,"Z08             Encounter for follow-up examination after completed"
- W !?3,"                 treatment for malignant neoplasm"
- W !?3,"Z12._           Encounter for screening for malignant neoplasms"
- W !?3,"Z17.0, Z17.1    Estrogen receptor positive and negative status"
- W !?3,"Z40.0_          Encounter for prophylactic surgery for risk factors related"
- W !?3,"                  to malignant neoplasms"
- W !?3,"Z42.1           Encounter for breast reconstruction following mastectomy"
- W !?3,"Z48.290         Encounter for aftercare following bone marrow transplant"
- W !?3,"Z51.0           Encounter for antineoplastic radiation therapy"
- W !?3,"Z51.1_          Encounter for antineoplastic chemotherapy and immunotherapy"
- W !?3,"Z51.5, Z51.89   Encounter for palliative care and other specified aftercare"
- W !?3,"Z85._           Personal history of malignant neoplasm"
- W !?3,"Z86.0_, Z86.01_,Z86.03  Personal history of in situ and benign neoplasms and"
- W !?3,"                          neoplasms of uncertain behavior"
- W !?3,"Z92.21, Z92.23, Z92.25,Z92.3  Personal history of antineoplastic"
- W !?3,"                      chemotherapy, estrogen therapy, immunosuppression"
- W !?3,"                      therapy or irradiation (radiation)"
- W !?3,"Z94.81, Z94.84  Bone marrow and stem cell transplant status"
+ W !?3,"Z85._           Personal history of malignant neoplasm ICD-10-CM Coding"
+ W !?3,"                 instruction: Code first any follow-up examination after"
+ W !?3,"                 treatment of malignant neoplasm (Z08)"
+ W !?3,"Z86.0_, Z86.01_,Z86.03  Personal history of in situ and benign neoplasms"
+ W !?3,"                         and neoplasms of uncertain behavior"
  W !
  Q
  ;
@@ -132,24 +141,15 @@ FD10 ;Check for valid ICD10 CM code for Oncology.
  I (SBCIND="NO"),($E(IC10)="C") D  Q
  .I ($E(IC10,2,7)<44.01)!($E(IC10,2,7)>44.92) S CI10=1
  .Q
- I ((IC10="D18.02")!(IC10="D18.1")!(IC10="D35.2")!(IC10="D35.4")!(IC10="D45")!(IC10="D47.2")!(IC10="D64.81")) S CI10=1 Q
- I ((IC10="D47.1")!(IC10="D47.3")!(IC10="D47.4")!(IC10="D47.7")!(IC10="D47.9")!(IC10="D49.6")!(IC10="D49.7")) S CI10=1 Q
- I ((IC10="D70.1")!(IC10="D72.1")!(IC10="E34.0")!(IC10="E88.3")!(IC10="K22.711")!(IC10="K92.81")!(IC10="R18.0")) S CI10=1 Q
- I ((IC10="R53.0")!(IC10="T66")!(IC10="Y63.2")!(IC10="Y84.2")!(IC10="Z08")!(IC10="Z17.0")!(IC10="Z17.1")) S CI10=1 Q
- I ((IC10="Z42.1")!(IC10="Z48.290")!(IC10="Z51.0")!(IC10="Z51.5")!(IC10="Z51.89")!(IC10="Z86.03")!(IC10="Z92.21")) S CI10=1 Q
- I ((IC10="Z92.23")!(IC10="Z92.25")!(IC10="Z92.3")!(IC10="Z94.81")!(IC10="Z94.84")) S CI10=1 Q
+ I ((IC10="D18.02")!(IC10="D35.2")!(IC10="D35.3")!(IC10="D35.4")!(IC10="D45")) S CI10=1 Q
+ I ((IC10="D47.Z")!(IC10="D47.Z1")!(IC10="D47.Z9")!(IC10="D44.3")!(IC10="D44.4")!(IC10="D44.5")) S CI10=1 Q
+ I ((IC10="D47.1")!(IC10="D47.3")!(IC10="D47.4")!(IC10="D47.02")!(IC10="D47.9")!(IC10="D49.6")!(IC10="D49.7")) S CI10=1 Q
+ I ((IC10="R85.614")!(IC10="R87.614")!(IC10="R87.624")) S CI10=1 Q
  I ($E(IC10)="D"),(($E(IC10,2,7)>00)&($E(IC10,2,7)<09.9999)) S CI10=1 Q
- I ($E(IC10)="D"),(($E(IC10,2,7)>32)&($E(IC10,2,7)<33.9999)) S CI10=1 Q
- I ($E(IC10)="D"),(($E(IC10,2,7)>42)&($E(IC10,2,7)<43.9999)) S CI10=1 Q
- I ($E(IC10)="D"),(($E(IC10,2,7)>44.29999)&($E(IC10,2,7)<44.5555)) S CI10=1 Q
- I ($E(IC10)="D"),(($E(IC10,2,7)>46)&($E(IC10,2,7)<46.9999)) S CI10=1 Q
- I ($E(IC10,1,5)="D47.Z"),(($E(IC10,6,7)>0)&($E(IC10,6,7)<9999)) S CI10=1 Q
- I ($E(IC10)="D"),(($E(IC10,2,7)>75.9999)&($E(IC10,2,7)<76.9999)) S CI10=1 Q
- I ($E(IC10)="T"),(($E(IC10,2,7)>45.1)&($E(IC10,2,7)<45.1999)) S CI10=1 Q
- I ($E(IC10)="Z"),(($E(IC10,2,7)>11.9999)&($E(IC10,2,7)<12.9999)) S CI10=1 Q
- I ($E(IC10)="Z"),(($E(IC10,2,7)>40.0)&($E(IC10,2,7)<40.0999)) S CI10=1 Q
- I ($E(IC10)="Z"),(($E(IC10,2,7)>51.1)&($E(IC10,2,7)<51.1999)) S CI10=1 Q
- I ($E(IC10)="Z"),(($E(IC10,2,7)>85)&($E(IC10,2,7)<86.0199)) S CI10=1 Q
+ I ($E(IC10)="D"),(($E(IC10,2,7)>31.9999)&($E(IC10,2,7)<33.9999)) S CI10=1 Q
+ I ($E(IC10)="D"),(($E(IC10,2,7)>41.9999)&($E(IC10,2,7)<43.9999)) S CI10=1 Q
+ I ($E(IC10)="D"),(($E(IC10,2,7)>45.9999)&($E(IC10,2,7)<46.9999)) S CI10=1 Q
+ I ($E(IC10)="Z"),(($E(IC10,2,7)>84.9999)&($E(IC10,2,7)<86.031)) S CI10=1 Q
  Q
  ;
 EX ;KILL variables

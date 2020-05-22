@@ -1,132 +1,132 @@
-IBDEI2UZ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47970,2)
- ;;=^267122
- ;;^UTILITY(U,$J,358.3,47971,0)
- ;;=C31.1^^209^2369^2
- ;;^UTILITY(U,$J,358.3,47971,1,0)
+ ;;^UTILITY(U,$J,358.3,45602,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,45603,0)
+ ;;=R09.1^^172^2273^39
+ ;;^UTILITY(U,$J,358.3,45603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47971,1,3,0)
- ;;=3^Malig Neop of Ethmoidal Sinus
- ;;^UTILITY(U,$J,358.3,47971,1,4,0)
- ;;=4^C31.1
- ;;^UTILITY(U,$J,358.3,47971,2)
- ;;=^267123
- ;;^UTILITY(U,$J,358.3,47972,0)
- ;;=C31.2^^209^2369^3
- ;;^UTILITY(U,$J,358.3,47972,1,0)
+ ;;^UTILITY(U,$J,358.3,45603,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,45603,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,45603,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,45604,0)
+ ;;=Z95.1^^172^2273^43
+ ;;^UTILITY(U,$J,358.3,45604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47972,1,3,0)
- ;;=3^Malig Neop of Frontal Sinus
- ;;^UTILITY(U,$J,358.3,47972,1,4,0)
- ;;=4^C31.2
- ;;^UTILITY(U,$J,358.3,47972,2)
- ;;=^267124
- ;;^UTILITY(U,$J,358.3,47973,0)
- ;;=C31.3^^209^2369^7
- ;;^UTILITY(U,$J,358.3,47973,1,0)
+ ;;^UTILITY(U,$J,358.3,45604,1,3,0)
+ ;;=3^Presence of aortocoronary bypass graft
+ ;;^UTILITY(U,$J,358.3,45604,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,45604,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,45605,0)
+ ;;=Z95.3^^172^2273^44
+ ;;^UTILITY(U,$J,358.3,45605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47973,1,3,0)
- ;;=3^Malig Neop of Sphenoid Sinus
- ;;^UTILITY(U,$J,358.3,47973,1,4,0)
- ;;=4^C31.3
- ;;^UTILITY(U,$J,358.3,47973,2)
- ;;=^5000951
- ;;^UTILITY(U,$J,358.3,47974,0)
- ;;=C31.9^^209^2369^1
- ;;^UTILITY(U,$J,358.3,47974,1,0)
+ ;;^UTILITY(U,$J,358.3,45605,1,3,0)
+ ;;=3^Presence of xenogenic heart valve
+ ;;^UTILITY(U,$J,358.3,45605,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,45605,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,45606,0)
+ ;;=R21.^^172^2273^46
+ ;;^UTILITY(U,$J,358.3,45606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47974,1,3,0)
- ;;=3^Malig Neop of Accessory Sinus,Unspec
- ;;^UTILITY(U,$J,358.3,47974,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,47974,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,47975,0)
- ;;=C38.0^^209^2370^2
- ;;^UTILITY(U,$J,358.3,47975,1,0)
+ ;;^UTILITY(U,$J,358.3,45606,1,3,0)
+ ;;=3^Rash & oth nonspecific skin eruption
+ ;;^UTILITY(U,$J,358.3,45606,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,45606,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,45607,0)
+ ;;=Z12.9^^172^2273^47
+ ;;^UTILITY(U,$J,358.3,45607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47975,1,3,0)
- ;;=3^Malig Neop of Heart
- ;;^UTILITY(U,$J,358.3,47975,1,4,0)
- ;;=4^C38.0
- ;;^UTILITY(U,$J,358.3,47975,2)
- ;;=^267146
- ;;^UTILITY(U,$J,358.3,47976,0)
- ;;=C38.1^^209^2370^1
- ;;^UTILITY(U,$J,358.3,47976,1,0)
+ ;;^UTILITY(U,$J,358.3,45607,1,3,0)
+ ;;=3^Screening malig neop site unspec
+ ;;^UTILITY(U,$J,358.3,45607,1,4,0)
+ ;;=4^Z12.9
+ ;;^UTILITY(U,$J,358.3,45607,2)
+ ;;=^5062698
+ ;;^UTILITY(U,$J,358.3,45608,0)
+ ;;=R06.02^^172^2273^48
+ ;;^UTILITY(U,$J,358.3,45608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47976,1,3,0)
- ;;=3^Malig Neop of Anterior Mediastinum
- ;;^UTILITY(U,$J,358.3,47976,1,4,0)
- ;;=4^C38.1
- ;;^UTILITY(U,$J,358.3,47976,2)
- ;;=^267147
- ;;^UTILITY(U,$J,358.3,47977,0)
- ;;=C38.2^^209^2370^6
- ;;^UTILITY(U,$J,358.3,47977,1,0)
+ ;;^UTILITY(U,$J,358.3,45608,1,3,0)
+ ;;=3^Shortness of breath
+ ;;^UTILITY(U,$J,358.3,45608,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,45608,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,45609,0)
+ ;;=R00.0^^172^2273^54
+ ;;^UTILITY(U,$J,358.3,45609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47977,1,3,0)
- ;;=3^Malig Neop of Posterior Mediastinum
- ;;^UTILITY(U,$J,358.3,47977,1,4,0)
- ;;=4^C38.2
- ;;^UTILITY(U,$J,358.3,47977,2)
- ;;=^267148
- ;;^UTILITY(U,$J,358.3,47978,0)
- ;;=C38.3^^209^2370^3
- ;;^UTILITY(U,$J,358.3,47978,1,0)
+ ;;^UTILITY(U,$J,358.3,45609,1,3,0)
+ ;;=3^Tachycardia, unspecified
+ ;;^UTILITY(U,$J,358.3,45609,1,4,0)
+ ;;=4^R00.0
+ ;;^UTILITY(U,$J,358.3,45609,2)
+ ;;=^5019163
+ ;;^UTILITY(U,$J,358.3,45610,0)
+ ;;=R32.^^172^2273^56
+ ;;^UTILITY(U,$J,358.3,45610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47978,1,3,0)
- ;;=3^Malig Neop of Mediastinum,Unspec Part
- ;;^UTILITY(U,$J,358.3,47978,1,4,0)
- ;;=4^C38.3
- ;;^UTILITY(U,$J,358.3,47978,2)
- ;;=^5000969
- ;;^UTILITY(U,$J,358.3,47979,0)
- ;;=C38.4^^209^2370^5
- ;;^UTILITY(U,$J,358.3,47979,1,0)
+ ;;^UTILITY(U,$J,358.3,45610,1,3,0)
+ ;;=3^Urinary incontinence, unspec
+ ;;^UTILITY(U,$J,358.3,45610,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,45610,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,45611,0)
+ ;;=R33.9^^172^2273^57
+ ;;^UTILITY(U,$J,358.3,45611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47979,1,3,0)
- ;;=3^Malig Neop of Pleura
- ;;^UTILITY(U,$J,358.3,47979,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,47979,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,47980,0)
- ;;=C38.8^^209^2370^4
- ;;^UTILITY(U,$J,358.3,47980,1,0)
+ ;;^UTILITY(U,$J,358.3,45611,1,3,0)
+ ;;=3^Urine retention, unspec
+ ;;^UTILITY(U,$J,358.3,45611,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,45611,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,45612,0)
+ ;;=R53.1^^172^2273^58
+ ;;^UTILITY(U,$J,358.3,45612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47980,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Heart/Mediastinum/Pleura
- ;;^UTILITY(U,$J,358.3,47980,1,4,0)
- ;;=4^C38.8
- ;;^UTILITY(U,$J,358.3,47980,2)
- ;;=^5000970
- ;;^UTILITY(U,$J,358.3,47981,0)
- ;;=C40.01^^209^2371^12
- ;;^UTILITY(U,$J,358.3,47981,1,0)
+ ;;^UTILITY(U,$J,358.3,45612,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,45612,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,45612,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,45613,0)
+ ;;=R63.4^^172^2273^59
+ ;;^UTILITY(U,$J,358.3,45613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47981,1,3,0)
- ;;=3^Malig Neop of Scapula/Long Bones of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,47981,1,4,0)
- ;;=4^C40.01
- ;;^UTILITY(U,$J,358.3,47981,2)
- ;;=^5000974
- ;;^UTILITY(U,$J,358.3,47982,0)
- ;;=C40.02^^209^2371^11
- ;;^UTILITY(U,$J,358.3,47982,1,0)
+ ;;^UTILITY(U,$J,358.3,45613,1,3,0)
+ ;;=3^Weight loss, abnormal
+ ;;^UTILITY(U,$J,358.3,45613,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,45613,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,45614,0)
+ ;;=B18.2^^172^2273^28
+ ;;^UTILITY(U,$J,358.3,45614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47982,1,3,0)
- ;;=3^Malig Neop of Scapula/Long Bones of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,47982,1,4,0)
- ;;=4^C40.02
- ;;^UTILITY(U,$J,358.3,47982,2)
- ;;=^5000975
- ;;^UTILITY(U,$J,358.3,47983,0)
- ;;=C40.11^^209^2371^16
- ;;^UTILITY(U,$J,358.3,47983,1,0)
+ ;;^UTILITY(U,$J,358.3,45614,1,3,0)
+ ;;=3^Hepatitis C Carrier,Viral
+ ;;^UTILITY(U,$J,358.3,45614,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,45614,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,45615,0)
+ ;;=Z98.890^^172^2273^42
+ ;;^UTILITY(U,$J,358.3,45615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47983,1,3,0)
- ;;=3^Malig Neop of Short Bones of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,45615,1,3,0)
+ ;;=3^Postprocedural States,Other Specified

@@ -1,124 +1,122 @@
-IBDEI2W0 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48483,1,0)
+ ;;^UTILITY(U,$J,358.3,46056,1,3,0)
+ ;;=3^Atrophy of Globe,Left Eye
+ ;;^UTILITY(U,$J,358.3,46056,1,4,0)
+ ;;=4^H44.522
+ ;;^UTILITY(U,$J,358.3,46056,2)
+ ;;=^5006026
+ ;;^UTILITY(U,$J,358.3,46057,0)
+ ;;=T85.79XA^^176^2296^19
+ ;;^UTILITY(U,$J,358.3,46057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48483,1,3,0)
- ;;=3^Facial weakness following nontraumatic intcrbl hemorrhage
- ;;^UTILITY(U,$J,358.3,48483,1,4,0)
- ;;=4^I69.192
- ;;^UTILITY(U,$J,358.3,48483,2)
- ;;=^5007454
- ;;^UTILITY(U,$J,358.3,48484,0)
- ;;=I69.292^^216^2407^36
- ;;^UTILITY(U,$J,358.3,48484,1,0)
+ ;;^UTILITY(U,$J,358.3,46057,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46057,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,46057,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,46058,0)
+ ;;=T85.398A^^176^2296^20
+ ;;^UTILITY(U,$J,358.3,46058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48484,1,3,0)
- ;;=3^Facial weakness following oth nontraumatic intcrn hemorrhage
- ;;^UTILITY(U,$J,358.3,48484,1,4,0)
- ;;=4^I69.292
- ;;^UTILITY(U,$J,358.3,48484,2)
- ;;=^5007486
- ;;^UTILITY(U,$J,358.3,48485,0)
- ;;=I69.092^^216^2407^35
- ;;^UTILITY(U,$J,358.3,48485,1,0)
+ ;;^UTILITY(U,$J,358.3,46058,1,3,0)
+ ;;=3^Mech Compl of Ocular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46058,1,4,0)
+ ;;=4^T85.398A
+ ;;^UTILITY(U,$J,358.3,46058,2)
+ ;;=^5055559
+ ;;^UTILITY(U,$J,358.3,46059,0)
+ ;;=T85.328A^^176^2296^21
+ ;;^UTILITY(U,$J,358.3,46059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48485,1,3,0)
- ;;=3^Facial weakness following ntrm subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,48485,1,4,0)
- ;;=4^I69.092
- ;;^UTILITY(U,$J,358.3,48485,2)
- ;;=^5007422
- ;;^UTILITY(U,$J,358.3,48486,0)
- ;;=I69.892^^216^2407^37
- ;;^UTILITY(U,$J,358.3,48486,1,0)
+ ;;^UTILITY(U,$J,358.3,46059,1,3,0)
+ ;;=3^Displacement of Ocular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46059,1,4,0)
+ ;;=4^T85.328A
+ ;;^UTILITY(U,$J,358.3,46059,2)
+ ;;=^5055550
+ ;;^UTILITY(U,$J,358.3,46060,0)
+ ;;=T85.318A^^176^2296^22
+ ;;^UTILITY(U,$J,358.3,46060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48486,1,3,0)
- ;;=3^Facial weakness following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,48486,1,4,0)
- ;;=4^I69.892
- ;;^UTILITY(U,$J,358.3,48486,2)
- ;;=^5007548
- ;;^UTILITY(U,$J,358.3,48487,0)
- ;;=I69.351^^216^2407^39
- ;;^UTILITY(U,$J,358.3,48487,1,0)
+ ;;^UTILITY(U,$J,358.3,46060,1,3,0)
+ ;;=3^Breakdown of Ocular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46060,1,4,0)
+ ;;=4^T85.318A
+ ;;^UTILITY(U,$J,358.3,46060,2)
+ ;;=^5055541
+ ;;^UTILITY(U,$J,358.3,46061,0)
+ ;;=H43.21^^176^2297^4
+ ;;^UTILITY(U,$J,358.3,46061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48487,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff right dominant side
- ;;^UTILITY(U,$J,358.3,48487,1,4,0)
- ;;=4^I69.351
- ;;^UTILITY(U,$J,358.3,48487,2)
- ;;=^5007504
- ;;^UTILITY(U,$J,358.3,48488,0)
- ;;=I69.352^^216^2407^38
- ;;^UTILITY(U,$J,358.3,48488,1,0)
+ ;;^UTILITY(U,$J,358.3,46061,1,3,0)
+ ;;=3^Asteroid Hyalosis,Right Eye
+ ;;^UTILITY(U,$J,358.3,46061,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,46061,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,46062,0)
+ ;;=H43.22^^176^2297^5
+ ;;^UTILITY(U,$J,358.3,46062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48488,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff left dominant side
- ;;^UTILITY(U,$J,358.3,48488,1,4,0)
- ;;=4^I69.352
- ;;^UTILITY(U,$J,358.3,48488,2)
- ;;=^5007505
- ;;^UTILITY(U,$J,358.3,48489,0)
- ;;=I69.353^^216^2407^40
- ;;^UTILITY(U,$J,358.3,48489,1,0)
+ ;;^UTILITY(U,$J,358.3,46062,1,3,0)
+ ;;=3^Asteroid Hyalosis,Left Eye
+ ;;^UTILITY(U,$J,358.3,46062,1,4,0)
+ ;;=4^H43.22
+ ;;^UTILITY(U,$J,358.3,46062,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,46063,0)
+ ;;=H43.23^^176^2297^6
+ ;;^UTILITY(U,$J,358.3,46063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48489,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff right nondom side
- ;;^UTILITY(U,$J,358.3,48489,1,4,0)
- ;;=4^I69.353
- ;;^UTILITY(U,$J,358.3,48489,2)
- ;;=^5007506
- ;;^UTILITY(U,$J,358.3,48490,0)
- ;;=I69.354^^216^2407^41
- ;;^UTILITY(U,$J,358.3,48490,1,0)
+ ;;^UTILITY(U,$J,358.3,46063,1,3,0)
+ ;;=3^Asteroid Hyalosis,Bilateral
+ ;;^UTILITY(U,$J,358.3,46063,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,46063,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,46064,0)
+ ;;=H43.11^^176^2297^7
+ ;;^UTILITY(U,$J,358.3,46064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48490,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc affecting left nondom side
- ;;^UTILITY(U,$J,358.3,48490,1,4,0)
- ;;=4^I69.354
- ;;^UTILITY(U,$J,358.3,48490,2)
- ;;=^5007507
- ;;^UTILITY(U,$J,358.3,48491,0)
- ;;=I69.151^^216^2407^44
- ;;^UTILITY(U,$J,358.3,48491,1,0)
+ ;;^UTILITY(U,$J,358.3,46064,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,46064,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,46064,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,46065,0)
+ ;;=H43.12^^176^2297^8
+ ;;^UTILITY(U,$J,358.3,46065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48491,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,48491,1,4,0)
- ;;=4^I69.151
- ;;^UTILITY(U,$J,358.3,48491,2)
- ;;=^5007441
- ;;^UTILITY(U,$J,358.3,48492,0)
- ;;=I69.152^^216^2407^42
- ;;^UTILITY(U,$J,358.3,48492,1,0)
+ ;;^UTILITY(U,$J,358.3,46065,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,46065,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,46065,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,46066,0)
+ ;;=H43.01^^176^2297^13
+ ;;^UTILITY(U,$J,358.3,46066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48492,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,48492,1,4,0)
- ;;=4^I69.152
- ;;^UTILITY(U,$J,358.3,48492,2)
- ;;=^5007442
- ;;^UTILITY(U,$J,358.3,48493,0)
- ;;=I69.153^^216^2407^45
- ;;^UTILITY(U,$J,358.3,48493,1,0)
+ ;;^UTILITY(U,$J,358.3,46066,1,3,0)
+ ;;=3^Vitreous Prolapse,Right Eye
+ ;;^UTILITY(U,$J,358.3,46066,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,46066,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,46067,0)
+ ;;=H43.02^^176^2297^14
+ ;;^UTILITY(U,$J,358.3,46067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48493,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,48493,1,4,0)
- ;;=4^I69.153
- ;;^UTILITY(U,$J,358.3,48493,2)
- ;;=^5007443
- ;;^UTILITY(U,$J,358.3,48494,0)
- ;;=I69.154^^216^2407^43
- ;;^UTILITY(U,$J,358.3,48494,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48494,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,48494,1,4,0)
- ;;=4^I69.154
- ;;^UTILITY(U,$J,358.3,48494,2)
- ;;=^5007444
- ;;^UTILITY(U,$J,358.3,48495,0)
- ;;=I69.851^^216^2407^50
+ ;;^UTILITY(U,$J,358.3,46067,1,3,0)
+ ;;=3^Vitreous Prolapse,Left Eye
+ ;;^UTILITY(U,$J,358.3,46067,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,46067,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,46068,0)
+ ;;=H43.813^^176^2297^3

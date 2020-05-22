@@ -1,10 +1,11 @@
-DGRPC    ;ALB/MRL/PJR/PHH/EG/BAJ,TDM,LBD - CHECK CONSISTENCY OF PATIENT DATA ; 6/29/11 3:50pm
- ;;5.3;Registration;**108,121,314,301,470,489,505,451,568,585,641,653,688,754,797,867,903**;Aug 13, 1993;Build 82
+DGRPC ;ALB/MRL/PJR/PHH/EG/BAJ,TDM,LBD - CHECK CONSISTENCY OF PATIENT DATA ;6/29/11 3:50pm
+ ;;5.3;Registration;**108,121,314,301,470,489,505,451,568,585,641,653,688,754,797,867,903,952**;Aug 13, 1993;Build 160
+ ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; 315 added to OVER99 local variable by patch DG*5.3*903 which was submitted to OSEHRA
  ; on 04/02/2015 by HP. This update was authored by James Harris 2014-2015 
  ;
- ;linetags in routines correspond to IEN of file 38.6
+ ;line tags in routines correspond to IEN of file 38.6
  ;
  ;variables:  DGVT = 1 if VETERAN? = YES, 0 if NO
  ;    DGSC = 1 if SC? = YES, 0 if NO
@@ -28,7 +29,7 @@ EN       S:'$D(DGEDCN)#2 DGEDCN=0 I DGEDCN W !!,"Checking data for consistency..
  S DGRPCOLD="," I $D(^DGIN(38.5,DFN)) F I=0:0 S I=$O(^DGIN(38.5,DFN,"I",I)) Q:'I  S DGRPCOLD=DGRPCOLD_I_","
  ;find consistencies to check/not check
  ; DG*5.3*653 modified to exclude checks numbered>99  BAJ  10/25/2005
- S DGCHK="," F I=0:0 S I=$O(^DGIN(38.6,I)) Q:'I!(I=99)  I $D(^(I,0)),$S(I=2:0,I=51:0,I=9:1,I=10:1,I=13:1,I=14:1,I=22:1,I=52:1,I=53:1,'$P(^(0),"^",5):1,1:0),I'=99 S DGCHK=DGCHK_I_","
+ S DGCHK="," F I=0:0 S I=$O(^DGIN(38.6,I)) Q:'I!(I=99)  I $D(^(I,0)),$S(I=2:0,I=51:0,I=9:1,I=10:1,I=13:1,I=14:1,I=22:1,I=52:1,I=53:1,I=89:1,'$P(^(0),"^",5):1,1:0),I'=99 S DGCHK=DGCHK_I_","
  ; On following line patch DG*5.3*903 added 315 as a new consistency
  S OVER99=",301,303,304,306,307,308,313,314,315,402,403,406,407,501,502,503,504,505,506,507,516,517,"
  S DGVT=$S(DGP("VET")="Y":1,1:0),DGSC=$S($P(DGP(.3),"^",1)="Y":1,1:0),DGCD=$S($D(^DIC(8,+DGP(.36),0)):^(0),1:""),(DGCT,DGER,DGNCK)="" I 'DGVT,$D(^DG(391,+DGP("TYPE"),0)),$P(^(0),"^",2) S DGVT=2

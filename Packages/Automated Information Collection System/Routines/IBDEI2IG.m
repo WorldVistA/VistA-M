@@ -1,122 +1,124 @@
-IBDEI2IG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2IG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42561,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42561,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,42561,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,42562,0)
- ;;=Y36.810S^^159^2023^24
- ;;^UTILITY(U,$J,358.3,42562,1,0)
+ ;;^UTILITY(U,$J,358.3,40089,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,40089,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,40089,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,40090,0)
+ ;;=M05.59^^152^2006^165
+ ;;^UTILITY(U,$J,358.3,40090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42562,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42562,1,4,0)
- ;;=4^Y36.810S
- ;;^UTILITY(U,$J,358.3,42562,2)
- ;;=^5061789
- ;;^UTILITY(U,$J,358.3,42563,0)
- ;;=Y36.6X0S^^159^2023^114
- ;;^UTILITY(U,$J,358.3,42563,1,0)
+ ;;^UTILITY(U,$J,358.3,40090,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,40090,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,40090,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,40091,0)
+ ;;=M05.711^^152^2006^159
+ ;;^UTILITY(U,$J,358.3,40091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42563,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42563,1,4,0)
- ;;=4^Y36.6X0S
- ;;^UTILITY(U,$J,358.3,42563,2)
- ;;=^5061777
- ;;^UTILITY(U,$J,358.3,42564,0)
- ;;=Y36.410S^^159^2023^122
- ;;^UTILITY(U,$J,358.3,42564,1,0)
+ ;;^UTILITY(U,$J,358.3,40091,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,40091,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,40091,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,40092,0)
+ ;;=M05.712^^152^2006^152
+ ;;^UTILITY(U,$J,358.3,40092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42564,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42564,1,4,0)
- ;;=4^Y36.410S
- ;;^UTILITY(U,$J,358.3,42564,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,42565,0)
- ;;=Y36.200S^^159^2023^119
- ;;^UTILITY(U,$J,358.3,42565,1,0)
+ ;;^UTILITY(U,$J,358.3,40092,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,40092,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,40092,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,40093,0)
+ ;;=M05.731^^152^2006^160
+ ;;^UTILITY(U,$J,358.3,40093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42565,1,3,0)
- ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42565,1,4,0)
- ;;=4^Y36.200S
- ;;^UTILITY(U,$J,358.3,42565,2)
- ;;=^5061609
- ;;^UTILITY(U,$J,358.3,42566,0)
- ;;=Y36.300S^^159^2023^120
- ;;^UTILITY(U,$J,358.3,42566,1,0)
+ ;;^UTILITY(U,$J,358.3,40093,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,40093,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,40093,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,40094,0)
+ ;;=M05.732^^152^2006^153
+ ;;^UTILITY(U,$J,358.3,40094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42566,1,3,0)
- ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42566,1,4,0)
- ;;=4^Y36.300S
- ;;^UTILITY(U,$J,358.3,42566,2)
- ;;=^5061663
- ;;^UTILITY(U,$J,358.3,42567,0)
- ;;=Y36.230A^^159^2023^116
- ;;^UTILITY(U,$J,358.3,42567,1,0)
+ ;;^UTILITY(U,$J,358.3,40094,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,40094,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,40094,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,40095,0)
+ ;;=M05.741^^152^2006^156
+ ;;^UTILITY(U,$J,358.3,40095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42567,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
- ;;^UTILITY(U,$J,358.3,42567,1,4,0)
- ;;=4^Y36.230A
- ;;^UTILITY(U,$J,358.3,42567,2)
- ;;=^5061625
- ;;^UTILITY(U,$J,358.3,42568,0)
- ;;=Y36.230D^^159^2023^117
- ;;^UTILITY(U,$J,358.3,42568,1,0)
+ ;;^UTILITY(U,$J,358.3,40095,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,40095,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,40095,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,40096,0)
+ ;;=M05.742^^152^2006^149
+ ;;^UTILITY(U,$J,358.3,40096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42568,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42568,1,4,0)
- ;;=4^Y36.230D
- ;;^UTILITY(U,$J,358.3,42568,2)
- ;;=^5061626
- ;;^UTILITY(U,$J,358.3,42569,0)
- ;;=Y36.230S^^159^2023^118
- ;;^UTILITY(U,$J,358.3,42569,1,0)
+ ;;^UTILITY(U,$J,358.3,40096,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,40096,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,40096,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,40097,0)
+ ;;=M05.751^^152^2006^157
+ ;;^UTILITY(U,$J,358.3,40097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42569,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
- ;;^UTILITY(U,$J,358.3,42569,1,4,0)
- ;;=4^Y36.230S
- ;;^UTILITY(U,$J,358.3,42569,2)
- ;;=^5061627
- ;;^UTILITY(U,$J,358.3,42570,0)
- ;;=Y36.7X0S^^159^2023^130
- ;;^UTILITY(U,$J,358.3,42570,1,0)
+ ;;^UTILITY(U,$J,358.3,40097,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,40097,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,40097,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,40098,0)
+ ;;=M05.752^^152^2006^150
+ ;;^UTILITY(U,$J,358.3,40098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42570,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,42570,1,4,0)
- ;;=4^Y36.7X0S
- ;;^UTILITY(U,$J,358.3,42570,2)
- ;;=^5061783
- ;;^UTILITY(U,$J,358.3,42571,0)
- ;;=F02.81^^159^2024^11
- ;;^UTILITY(U,$J,358.3,42571,1,0)
+ ;;^UTILITY(U,$J,358.3,40098,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,40098,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,40098,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,40099,0)
+ ;;=M05.761^^152^2006^158
+ ;;^UTILITY(U,$J,358.3,40099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42571,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,42571,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,42571,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,42572,0)
- ;;=F02.80^^159^2024^12
- ;;^UTILITY(U,$J,358.3,42572,1,0)
+ ;;^UTILITY(U,$J,358.3,40099,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,40099,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,40099,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,40100,0)
+ ;;=M05.762^^152^2006^151
+ ;;^UTILITY(U,$J,358.3,40100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42572,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,42572,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,42572,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,42573,0)
- ;;=F03.91^^159^2024^13
+ ;;^UTILITY(U,$J,358.3,40100,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,40100,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,40100,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,40101,0)
+ ;;=M05.771^^152^2006^155
+ ;;^UTILITY(U,$J,358.3,40101,1,0)
+ ;;=^358.31IA^4^2

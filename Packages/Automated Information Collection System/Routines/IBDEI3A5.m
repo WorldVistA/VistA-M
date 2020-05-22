@@ -1,134 +1,126 @@
-IBDEI3A5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3A5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55117,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,55117,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,55118,0)
- ;;=Z91.11^^256^2776^69
- ;;^UTILITY(U,$J,358.3,55118,1,0)
+ ;;^UTILITY(U,$J,358.3,52348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55118,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,55118,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,55118,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,55119,0)
- ;;=Z87.891^^256^2776^103
- ;;^UTILITY(U,$J,358.3,55119,1,0)
+ ;;^UTILITY(U,$J,358.3,52348,1,3,0)
+ ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;^UTILITY(U,$J,358.3,52348,1,4,0)
+ ;;=4^J15.0
+ ;;^UTILITY(U,$J,358.3,52348,2)
+ ;;=^269931
+ ;;^UTILITY(U,$J,358.3,52349,0)
+ ;;=J15.1^^193^2530^16
+ ;;^UTILITY(U,$J,358.3,52349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55119,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,55119,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,55119,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,55120,0)
- ;;=Z77.090^^256^2776^11
- ;;^UTILITY(U,$J,358.3,55120,1,0)
+ ;;^UTILITY(U,$J,358.3,52349,1,3,0)
+ ;;=3^Pneumonia d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,52349,1,4,0)
+ ;;=4^J15.1
+ ;;^UTILITY(U,$J,358.3,52349,2)
+ ;;=^269932
+ ;;^UTILITY(U,$J,358.3,52350,0)
+ ;;=J15.20^^193^2530^18
+ ;;^UTILITY(U,$J,358.3,52350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55120,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55120,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,55120,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,55121,0)
- ;;=Z57.8^^256^2776^72
- ;;^UTILITY(U,$J,358.3,55121,1,0)
+ ;;^UTILITY(U,$J,358.3,52350,1,3,0)
+ ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,52350,1,4,0)
+ ;;=4^J15.20
+ ;;^UTILITY(U,$J,358.3,52350,2)
+ ;;=^321179
+ ;;^UTILITY(U,$J,358.3,52351,0)
+ ;;=J15.211^^193^2530^9
+ ;;^UTILITY(U,$J,358.3,52351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55121,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,55121,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,55121,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,55122,0)
- ;;=Z77.21^^256^2776^53
- ;;^UTILITY(U,$J,358.3,55122,1,0)
+ ;;^UTILITY(U,$J,358.3,52351,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Suscep Staph
+ ;;^UTILITY(U,$J,358.3,52351,1,4,0)
+ ;;=4^J15.211
+ ;;^UTILITY(U,$J,358.3,52351,2)
+ ;;=^336833
+ ;;^UTILITY(U,$J,358.3,52352,0)
+ ;;=J15.212^^193^2530^8
+ ;;^UTILITY(U,$J,358.3,52352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55122,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55122,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,55122,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,55123,0)
- ;;=Z91.81^^256^2776^57
- ;;^UTILITY(U,$J,358.3,55123,1,0)
+ ;;^UTILITY(U,$J,358.3,52352,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Resistant Staph Aureus
+ ;;^UTILITY(U,$J,358.3,52352,1,4,0)
+ ;;=4^J15.212
+ ;;^UTILITY(U,$J,358.3,52352,2)
+ ;;=^336602
+ ;;^UTILITY(U,$J,358.3,52353,0)
+ ;;=J15.29^^193^2530^11
+ ;;^UTILITY(U,$J,358.3,52353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55123,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,55123,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,55123,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,55124,0)
- ;;=Z91.89^^256^2776^118
- ;;^UTILITY(U,$J,358.3,55124,1,0)
+ ;;^UTILITY(U,$J,358.3,52353,1,3,0)
+ ;;=3^Pneumonia d/t Oth Staph
+ ;;^UTILITY(U,$J,358.3,52353,1,4,0)
+ ;;=4^J15.29
+ ;;^UTILITY(U,$J,358.3,52353,2)
+ ;;=^5008172
+ ;;^UTILITY(U,$J,358.3,52354,0)
+ ;;=J15.3^^193^2530^20
+ ;;^UTILITY(U,$J,358.3,52354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55124,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,55124,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,55124,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,55125,0)
- ;;=Z92.89^^256^2776^106
- ;;^UTILITY(U,$J,358.3,55125,1,0)
+ ;;^UTILITY(U,$J,358.3,52354,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus,Group B
+ ;;^UTILITY(U,$J,358.3,52354,1,4,0)
+ ;;=4^J15.3
+ ;;^UTILITY(U,$J,358.3,52354,2)
+ ;;=^5008173
+ ;;^UTILITY(U,$J,358.3,52355,0)
+ ;;=J15.4^^193^2530^15
+ ;;^UTILITY(U,$J,358.3,52355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55125,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,55125,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,55125,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,55126,0)
- ;;=Z77.110^^256^2776^9
- ;;^UTILITY(U,$J,358.3,55126,1,0)
+ ;;^UTILITY(U,$J,358.3,52355,1,3,0)
+ ;;=3^Pneumonia d/t Other Streptococci
+ ;;^UTILITY(U,$J,358.3,52355,1,4,0)
+ ;;=4^J15.4
+ ;;^UTILITY(U,$J,358.3,52355,2)
+ ;;=^5008174
+ ;;^UTILITY(U,$J,358.3,52356,0)
+ ;;=J15.5^^193^2530^5
+ ;;^UTILITY(U,$J,358.3,52356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55126,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55126,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,55126,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,55127,0)
- ;;=Z77.112^^256^2776^142
- ;;^UTILITY(U,$J,358.3,55127,1,0)
+ ;;^UTILITY(U,$J,358.3,52356,1,3,0)
+ ;;=3^Pneumonia d/t Escherichia Coli
+ ;;^UTILITY(U,$J,358.3,52356,1,4,0)
+ ;;=4^J15.5
+ ;;^UTILITY(U,$J,358.3,52356,2)
+ ;;=^5008175
+ ;;^UTILITY(U,$J,358.3,52357,0)
+ ;;=J15.6^^193^2530^12
+ ;;^UTILITY(U,$J,358.3,52357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55127,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55127,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,55127,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,55128,0)
- ;;=Z77.111^^256^2776^148
- ;;^UTILITY(U,$J,358.3,55128,1,0)
+ ;;^UTILITY(U,$J,358.3,52357,1,3,0)
+ ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
+ ;;^UTILITY(U,$J,358.3,52357,1,4,0)
+ ;;=4^J15.6
+ ;;^UTILITY(U,$J,358.3,52357,2)
+ ;;=^5008176
+ ;;^UTILITY(U,$J,358.3,52358,0)
+ ;;=J15.7^^193^2530^10
+ ;;^UTILITY(U,$J,358.3,52358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55128,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55128,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,55128,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,55129,0)
- ;;=Z77.128^^256^2776^119
- ;;^UTILITY(U,$J,358.3,55129,1,0)
+ ;;^UTILITY(U,$J,358.3,52358,1,3,0)
+ ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,52358,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,52358,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,52359,0)
+ ;;=J15.8^^193^2530^13
+ ;;^UTILITY(U,$J,358.3,52359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55129,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55129,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,55129,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,55130,0)
- ;;=Z77.123^^256^2776^140
- ;;^UTILITY(U,$J,358.3,55130,1,0)
+ ;;^UTILITY(U,$J,358.3,52359,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Bacteria
+ ;;^UTILITY(U,$J,358.3,52359,1,4,0)
+ ;;=4^J15.8
+ ;;^UTILITY(U,$J,358.3,52359,2)
+ ;;=^95571
+ ;;^UTILITY(U,$J,358.3,52360,0)
+ ;;=J15.9^^193^2530^22
+ ;;^UTILITY(U,$J,358.3,52360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55130,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure

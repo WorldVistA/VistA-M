@@ -1,132 +1,122 @@
-IBDEI2CG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39741,1,4,0)
- ;;=4^C44.129
- ;;^UTILITY(U,$J,358.3,39741,2)
- ;;=^5001024
- ;;^UTILITY(U,$J,358.3,39742,0)
- ;;=C44.122^^153^1928^86
- ;;^UTILITY(U,$J,358.3,39742,1,0)
+ ;;^UTILITY(U,$J,358.3,37442,2)
+ ;;=^5042783
+ ;;^UTILITY(U,$J,358.3,37443,0)
+ ;;=S82.64XA^^146^1917^320
+ ;;^UTILITY(U,$J,358.3,37443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39742,1,3,0)
- ;;=3^SCC Skin Right Eyelid
- ;;^UTILITY(U,$J,358.3,39742,1,4,0)
- ;;=4^C44.122
- ;;^UTILITY(U,$J,358.3,39742,2)
- ;;=^5001023
- ;;^UTILITY(U,$J,358.3,39743,0)
- ;;=H04.542^^153^1928^103
- ;;^UTILITY(U,$J,358.3,39743,1,0)
+ ;;^UTILITY(U,$J,358.3,37443,1,3,0)
+ ;;=3^Nondisp fx of lat malleolus of rt fib, init
+ ;;^UTILITY(U,$J,358.3,37443,1,4,0)
+ ;;=4^S82.64XA
+ ;;^UTILITY(U,$J,358.3,37443,2)
+ ;;=^5042359
+ ;;^UTILITY(U,$J,358.3,37444,0)
+ ;;=S82.62XA^^146^1917^101
+ ;;^UTILITY(U,$J,358.3,37444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39743,1,3,0)
- ;;=3^Stenosis Left Lacrimal Canaliculi
- ;;^UTILITY(U,$J,358.3,39743,1,4,0)
- ;;=4^H04.542
- ;;^UTILITY(U,$J,358.3,39743,2)
- ;;=^5004535
- ;;^UTILITY(U,$J,358.3,39744,0)
- ;;=H04.572^^153^1928^104
- ;;^UTILITY(U,$J,358.3,39744,1,0)
+ ;;^UTILITY(U,$J,358.3,37444,1,3,0)
+ ;;=3^Disp fx of ltrl malleolus of lft fib, init
+ ;;^UTILITY(U,$J,358.3,37444,1,4,0)
+ ;;=4^S82.62XA
+ ;;^UTILITY(U,$J,358.3,37444,2)
+ ;;=^5042327
+ ;;^UTILITY(U,$J,358.3,37445,0)
+ ;;=S82.61XA^^146^1917^102
+ ;;^UTILITY(U,$J,358.3,37445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39744,1,3,0)
- ;;=3^Stenosis Left Lacrimal Sac
- ;;^UTILITY(U,$J,358.3,39744,1,4,0)
- ;;=4^H04.572
- ;;^UTILITY(U,$J,358.3,39744,2)
- ;;=^5004547
- ;;^UTILITY(U,$J,358.3,39745,0)
- ;;=H04.541^^153^1928^105
- ;;^UTILITY(U,$J,358.3,39745,1,0)
+ ;;^UTILITY(U,$J,358.3,37445,1,3,0)
+ ;;=3^Disp fx of ltrl malleolus of rt fib, init
+ ;;^UTILITY(U,$J,358.3,37445,1,4,0)
+ ;;=4^S82.61XA
+ ;;^UTILITY(U,$J,358.3,37445,2)
+ ;;=^5042311
+ ;;^UTILITY(U,$J,358.3,37446,0)
+ ;;=S82.65XA^^146^1917^327
+ ;;^UTILITY(U,$J,358.3,37446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39745,1,3,0)
- ;;=3^Stenosis Right Lacrimal Canaliculi
- ;;^UTILITY(U,$J,358.3,39745,1,4,0)
- ;;=4^H04.541
- ;;^UTILITY(U,$J,358.3,39745,2)
- ;;=^5004534
- ;;^UTILITY(U,$J,358.3,39746,0)
- ;;=H04.571^^153^1928^106
- ;;^UTILITY(U,$J,358.3,39746,1,0)
+ ;;^UTILITY(U,$J,358.3,37446,1,3,0)
+ ;;=3^Nondisp fx of ltrl malleolus of lft fib, init
+ ;;^UTILITY(U,$J,358.3,37446,1,4,0)
+ ;;=4^S82.65XA
+ ;;^UTILITY(U,$J,358.3,37446,2)
+ ;;=^5042375
+ ;;^UTILITY(U,$J,358.3,37447,0)
+ ;;=S82.841A^^146^1917^19
+ ;;^UTILITY(U,$J,358.3,37447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39746,1,3,0)
- ;;=3^Stenosis Right Lacrimal Sac
- ;;^UTILITY(U,$J,358.3,39746,1,4,0)
- ;;=4^H04.571
- ;;^UTILITY(U,$J,358.3,39746,2)
- ;;=^5004546
- ;;^UTILITY(U,$J,358.3,39747,0)
- ;;=H02.055^^153^1928^107
- ;;^UTILITY(U,$J,358.3,39747,1,0)
+ ;;^UTILITY(U,$J,358.3,37447,1,3,0)
+ ;;=3^Disp bimalleolar fx of rt lwr leg, int
+ ;;^UTILITY(U,$J,358.3,37447,1,4,0)
+ ;;=4^S82.841A
+ ;;^UTILITY(U,$J,358.3,37447,2)
+ ;;=^5042479
+ ;;^UTILITY(U,$J,358.3,37448,0)
+ ;;=S82.842A^^146^1917^18
+ ;;^UTILITY(U,$J,358.3,37448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39747,1,3,0)
- ;;=3^Trichiasis w/o Entropian,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39747,1,4,0)
- ;;=4^H02.055
- ;;^UTILITY(U,$J,358.3,39747,2)
- ;;=^5133405
- ;;^UTILITY(U,$J,358.3,39748,0)
- ;;=H02.054^^153^1928^108
- ;;^UTILITY(U,$J,358.3,39748,1,0)
+ ;;^UTILITY(U,$J,358.3,37448,1,3,0)
+ ;;=3^Disp bimalleolar fx of lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,37448,1,4,0)
+ ;;=4^S82.842A
+ ;;^UTILITY(U,$J,358.3,37448,2)
+ ;;=^5042495
+ ;;^UTILITY(U,$J,358.3,37449,0)
+ ;;=S82.844A^^146^1917^243
+ ;;^UTILITY(U,$J,358.3,37449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39748,1,3,0)
- ;;=3^Trichiasis w/o Entropian,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39748,1,4,0)
- ;;=4^H02.054
- ;;^UTILITY(U,$J,358.3,39748,2)
- ;;=^5004301
- ;;^UTILITY(U,$J,358.3,39749,0)
- ;;=H02.052^^153^1928^109
- ;;^UTILITY(U,$J,358.3,39749,1,0)
+ ;;^UTILITY(U,$J,358.3,37449,1,3,0)
+ ;;=3^Nondisp bimalleolar fx of rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,37449,1,4,0)
+ ;;=4^S82.844A
+ ;;^UTILITY(U,$J,358.3,37449,2)
+ ;;=^5042527
+ ;;^UTILITY(U,$J,358.3,37450,0)
+ ;;=S82.845A^^146^1917^242
+ ;;^UTILITY(U,$J,358.3,37450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39749,1,3,0)
- ;;=3^Trichiasis w/o Entropian,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39749,1,4,0)
- ;;=4^H02.052
- ;;^UTILITY(U,$J,358.3,39749,2)
- ;;=^5004299
- ;;^UTILITY(U,$J,358.3,39750,0)
- ;;=H02.051^^153^1928^110
- ;;^UTILITY(U,$J,358.3,39750,1,0)
+ ;;^UTILITY(U,$J,358.3,37450,1,3,0)
+ ;;=3^Nondisp bimalleolar fx of lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,37450,1,4,0)
+ ;;=4^S82.845A
+ ;;^UTILITY(U,$J,358.3,37450,2)
+ ;;=^5042543
+ ;;^UTILITY(U,$J,358.3,37451,0)
+ ;;=S82.854A^^146^1917^378
+ ;;^UTILITY(U,$J,358.3,37451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39750,1,3,0)
- ;;=3^Trichiasis w/o Entropian,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39750,1,4,0)
- ;;=4^H02.051
- ;;^UTILITY(U,$J,358.3,39750,2)
- ;;=^5004298
- ;;^UTILITY(U,$J,358.3,39751,0)
- ;;=H05.10^^153^1928^16
- ;;^UTILITY(U,$J,358.3,39751,1,0)
+ ;;^UTILITY(U,$J,358.3,37451,1,3,0)
+ ;;=3^Nondisp trimall fx of rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,37451,1,4,0)
+ ;;=4^S82.854A
+ ;;^UTILITY(U,$J,358.3,37451,2)
+ ;;=^5042623
+ ;;^UTILITY(U,$J,358.3,37452,0)
+ ;;=S82.852A^^146^1917^153
+ ;;^UTILITY(U,$J,358.3,37452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39751,1,3,0)
- ;;=3^Chronic Inflammatory Orbit Disorders,Unspec
- ;;^UTILITY(U,$J,358.3,39751,1,4,0)
- ;;=4^H05.10
- ;;^UTILITY(U,$J,358.3,39751,2)
- ;;=^5004576
- ;;^UTILITY(U,$J,358.3,39752,0)
- ;;=H05.402^^153^1928^35
- ;;^UTILITY(U,$J,358.3,39752,1,0)
+ ;;^UTILITY(U,$J,358.3,37452,1,3,0)
+ ;;=3^Disp trimall fx of lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,37452,1,4,0)
+ ;;=4^S82.852A
+ ;;^UTILITY(U,$J,358.3,37452,2)
+ ;;=^5042591
+ ;;^UTILITY(U,$J,358.3,37453,0)
+ ;;=S82.851A^^146^1917^154
+ ;;^UTILITY(U,$J,358.3,37453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39752,1,3,0)
- ;;=3^Enophthalmos Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39752,1,4,0)
- ;;=4^H05.402
- ;;^UTILITY(U,$J,358.3,39752,2)
- ;;=^5004632
- ;;^UTILITY(U,$J,358.3,39753,0)
- ;;=H05.401^^153^1928^36
- ;;^UTILITY(U,$J,358.3,39753,1,0)
+ ;;^UTILITY(U,$J,358.3,37453,1,3,0)
+ ;;=3^Disp trimall fx of rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,37453,1,4,0)
+ ;;=4^S82.851A
+ ;;^UTILITY(U,$J,358.3,37453,2)
+ ;;=^5042575
+ ;;^UTILITY(U,$J,358.3,37454,0)
+ ;;=S82.855A^^146^1917^377
+ ;;^UTILITY(U,$J,358.3,37454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39753,1,3,0)
- ;;=3^Enophthalmos Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39753,1,4,0)
- ;;=4^H05.401
- ;;^UTILITY(U,$J,358.3,39753,2)
- ;;=^5004631
- ;;^UTILITY(U,$J,358.3,39754,0)
- ;;=H02.005^^153^1928^37
- ;;^UTILITY(U,$J,358.3,39754,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37454,1,3,0)
+ ;;=3^Nondisp trimall fx of lft lwr leg, init

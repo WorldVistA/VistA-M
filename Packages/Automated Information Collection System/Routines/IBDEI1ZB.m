@@ -1,130 +1,118 @@
-IBDEI1ZB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33583,0)
- ;;=H01.002^^131^1673^3
- ;;^UTILITY(U,$J,358.3,33583,1,0)
+ ;;^UTILITY(U,$J,358.3,31596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33583,1,3,0)
- ;;=3^Blepharitis Unspec,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,33583,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,33583,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,33584,0)
- ;;=H01.004^^131^1673^2
- ;;^UTILITY(U,$J,358.3,33584,1,0)
+ ;;^UTILITY(U,$J,358.3,31596,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,2nd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31596,1,4,0)
+ ;;=4^O36.5921
+ ;;^UTILITY(U,$J,358.3,31596,2)
+ ;;=^5017010
+ ;;^UTILITY(U,$J,358.3,31597,0)
+ ;;=O36.5922^^126^1626^190
+ ;;^UTILITY(U,$J,358.3,31597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33584,1,3,0)
- ;;=3^Blepharitis Unspec,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,33584,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,33584,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,33585,0)
- ;;=H01.005^^131^1673^1
- ;;^UTILITY(U,$J,358.3,33585,1,0)
+ ;;^UTILITY(U,$J,358.3,31597,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,2nd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31597,1,4,0)
+ ;;=4^O36.5922
+ ;;^UTILITY(U,$J,358.3,31597,2)
+ ;;=^5017011
+ ;;^UTILITY(U,$J,358.3,31598,0)
+ ;;=O36.5923^^126^1626^191
+ ;;^UTILITY(U,$J,358.3,31598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33585,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,33585,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,33585,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,33586,0)
- ;;=H01.001^^131^1673^4
- ;;^UTILITY(U,$J,358.3,33586,1,0)
+ ;;^UTILITY(U,$J,358.3,31598,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,2nd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31598,1,4,0)
+ ;;=4^O36.5923
+ ;;^UTILITY(U,$J,358.3,31598,2)
+ ;;=^5017012
+ ;;^UTILITY(U,$J,358.3,31599,0)
+ ;;=O36.5924^^126^1626^192
+ ;;^UTILITY(U,$J,358.3,31599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33586,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,33586,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,33586,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,33587,0)
- ;;=H57.13^^131^1673^10
- ;;^UTILITY(U,$J,358.3,33587,1,0)
+ ;;^UTILITY(U,$J,358.3,31599,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,2nd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31599,1,4,0)
+ ;;=4^O36.5924
+ ;;^UTILITY(U,$J,358.3,31599,2)
+ ;;=^5017013
+ ;;^UTILITY(U,$J,358.3,31600,0)
+ ;;=O36.5925^^126^1626^193
+ ;;^UTILITY(U,$J,358.3,31600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33587,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,33587,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,33587,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,33588,0)
- ;;=H57.12^^131^1673^11
- ;;^UTILITY(U,$J,358.3,33588,1,0)
+ ;;^UTILITY(U,$J,358.3,31600,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,2nd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31600,1,4,0)
+ ;;=4^O36.5925
+ ;;^UTILITY(U,$J,358.3,31600,2)
+ ;;=^5017014
+ ;;^UTILITY(U,$J,358.3,31601,0)
+ ;;=O36.5930^^126^1626^194
+ ;;^UTILITY(U,$J,358.3,31601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33588,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,33588,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,33588,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,33589,0)
- ;;=H57.11^^131^1673^12
- ;;^UTILITY(U,$J,358.3,33589,1,0)
+ ;;^UTILITY(U,$J,358.3,31601,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,unsp
+ ;;^UTILITY(U,$J,358.3,31601,1,4,0)
+ ;;=4^O36.5930
+ ;;^UTILITY(U,$J,358.3,31601,2)
+ ;;=^5017015
+ ;;^UTILITY(U,$J,358.3,31602,0)
+ ;;=O36.5931^^126^1626^195
+ ;;^UTILITY(U,$J,358.3,31602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33589,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,33589,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,33589,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,33590,0)
- ;;=S05.02XA^^131^1674^3
- ;;^UTILITY(U,$J,358.3,33590,1,0)
+ ;;^UTILITY(U,$J,358.3,31602,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31602,1,4,0)
+ ;;=4^O36.5931
+ ;;^UTILITY(U,$J,358.3,31602,2)
+ ;;=^5017016
+ ;;^UTILITY(U,$J,358.3,31603,0)
+ ;;=O36.5932^^126^1626^196
+ ;;^UTILITY(U,$J,358.3,31603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33590,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,33590,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,33590,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,33591,0)
- ;;=S05.01XA^^131^1674^4
- ;;^UTILITY(U,$J,358.3,33591,1,0)
+ ;;^UTILITY(U,$J,358.3,31603,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31603,1,4,0)
+ ;;=4^O36.5932
+ ;;^UTILITY(U,$J,358.3,31603,2)
+ ;;=^5017017
+ ;;^UTILITY(U,$J,358.3,31604,0)
+ ;;=O36.5933^^126^1626^197
+ ;;^UTILITY(U,$J,358.3,31604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33591,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,33591,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,33591,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,33592,0)
- ;;=T15.02XA^^131^1674^1
- ;;^UTILITY(U,$J,358.3,33592,1,0)
+ ;;^UTILITY(U,$J,358.3,31604,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31604,1,4,0)
+ ;;=4^O36.5933
+ ;;^UTILITY(U,$J,358.3,31604,2)
+ ;;=^5017018
+ ;;^UTILITY(U,$J,358.3,31605,0)
+ ;;=O36.5934^^126^1626^198
+ ;;^UTILITY(U,$J,358.3,31605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33592,1,3,0)
- ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,33592,1,4,0)
- ;;=4^T15.02XA
- ;;^UTILITY(U,$J,358.3,33592,2)
- ;;=^5046387
- ;;^UTILITY(U,$J,358.3,33593,0)
- ;;=T15.01XA^^131^1674^2
- ;;^UTILITY(U,$J,358.3,33593,1,0)
+ ;;^UTILITY(U,$J,358.3,31605,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31605,1,4,0)
+ ;;=4^O36.5934
+ ;;^UTILITY(U,$J,358.3,31605,2)
+ ;;=^5017019
+ ;;^UTILITY(U,$J,358.3,31606,0)
+ ;;=O36.5935^^126^1626^199
+ ;;^UTILITY(U,$J,358.3,31606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33593,1,3,0)
- ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,33593,1,4,0)
- ;;=4^T15.01XA
- ;;^UTILITY(U,$J,358.3,33593,2)
- ;;=^5046384
- ;;^UTILITY(U,$J,358.3,33594,0)
- ;;=S00.252A^^131^1674^5
- ;;^UTILITY(U,$J,358.3,33594,1,0)
+ ;;^UTILITY(U,$J,358.3,31606,1,3,0)
+ ;;=3^Maternal care,oth/susp poor ftl grth,3rd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31606,1,4,0)
+ ;;=4^O36.5935
+ ;;^UTILITY(U,$J,358.3,31606,2)
+ ;;=^5017020
+ ;;^UTILITY(U,$J,358.3,31607,0)
+ ;;=O36.61X0^^126^1626^128
+ ;;^UTILITY(U,$J,358.3,31607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33594,1,3,0)
- ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,33594,1,4,0)
- ;;=4^S00.252A
- ;;^UTILITY(U,$J,358.3,33594,2)
- ;;=^5019820
- ;;^UTILITY(U,$J,358.3,33595,0)
- ;;=S00.251A^^131^1674^6
- ;;^UTILITY(U,$J,358.3,33595,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33595,1,3,0)
- ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31607,1,3,0)
+ ;;=3^Maternal care,excess ftl growth,1st tri,unsp

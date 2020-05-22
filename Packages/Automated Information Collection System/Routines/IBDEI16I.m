@@ -1,58 +1,126 @@
-IBDEI16I ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,18945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18945,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,18945,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,18945,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,18946,0)
+ ;;=F15.180^^91^973^1
+ ;;^UTILITY(U,$J,358.3,18946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18946,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,18946,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,18946,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,18947,0)
+ ;;=F15.280^^91^973^2
+ ;;^UTILITY(U,$J,358.3,18947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18947,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,18947,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,18947,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,18948,0)
+ ;;=F15.980^^91^973^3
+ ;;^UTILITY(U,$J,358.3,18948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18948,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18948,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,18948,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,18949,0)
+ ;;=F15.182^^91^973^4
+ ;;^UTILITY(U,$J,358.3,18949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18949,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,18949,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,18949,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,18950,0)
+ ;;=F15.282^^91^973^5
+ ;;^UTILITY(U,$J,358.3,18950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18950,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,18950,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,18950,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,18951,0)
+ ;;=F15.982^^91^973^6
+ ;;^UTILITY(U,$J,358.3,18951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18951,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18951,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,18951,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,18952,0)
+ ;;=F15.99^^91^973^8
+ ;;^UTILITY(U,$J,358.3,18952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18952,1,3,0)
+ ;;=3^Caffeine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,18952,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,18952,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,18953,0)
+ ;;=R45.851^^91^974^2
+ ;;^UTILITY(U,$J,358.3,18953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18953,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,18953,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,18953,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,18954,0)
+ ;;=Z91.5^^91^974^1
+ ;;^UTILITY(U,$J,358.3,18954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18954,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,18954,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,18954,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,18955,0)
+ ;;=T14.91XA^^91^974^3
+ ;;^UTILITY(U,$J,358.3,18955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18955,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,18955,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,18955,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,18956,0)
+ ;;=T14.91XD^^91^974^4
+ ;;^UTILITY(U,$J,358.3,18956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18956,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,18956,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,18956,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,18957,0)
+ ;;=T14.91XS^^91^974^5
+ ;;^UTILITY(U,$J,358.3,18957,1,0)
+ ;;=^358.31IA^4^2

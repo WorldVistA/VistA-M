@@ -1,5 +1,5 @@
-PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514**;DEC 1997;Build 32
+PSOSIG ;BIR/RTR-Utility to create SIG ; 11 Nov 2019  3:04 PM
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514,574**;DEC 1997;Build 53
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -140,8 +140,10 @@ QTSCH(QTSH) ;
  ;
 QEND ;
  ; PSOMTFLG variable indicates a Maintenance Rx (Titration/Maintenance)
+ ; PSO*7.0*574 ;Defect 1155637
  K PSOFRQ
- I $G(PSOOUTQT),$G(QTYHLD),$G(PSOQX("QTY")),$G(QTYHLD)'=$G(PSOQX("QTY")) W !!,"Quantity has been changed from "_QTYHLD_" to "_PSOQX("QTY") D  I '$G(PSOMTFLG) W ! N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
+ I $G(PSOOUTQT),$G(QTYHLD),$G(PSOQX("QTY")),$G(QTYHLD)'=$G(PSOQX("QTY")) D  I '$G(PSOMTFLG) W ! N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
+ .W:$P($G(^PSDRUG(PSODRUG("IEN"),"CLOZ1")),U)'="PSOCLO1" !!,"Quantity has been changed from "_QTYHLD_" to "_PSOQX("QTY")
  .I $G(PSONEW("FLD"))=8,$P($G(OR0),"^",24),$G(PSODRUG("IEN")),$D(^PSDRUG(+$G(PSODRUG("IEN")),0)) D
  ..I $P(^PSDRUG(PSODRUG("IEN"),0),"^",3)[2!($P(^PSDRUG(PSODRUG("IEN"),0),"^",3)["F") Q
  ..N ZRFA S ZRFA=$S($G(CLOZPAT)=2&(PSOQX("DAYS SUPPLY")=14):1,$G(CLOZPAT)=2&(PSOQX("DAYS SUPPLY")=7):3,$G(CLOZPAT)=1&(PSOQX("DAYS SUPPLY")=7):1,$D(CLOZPAT):0,1:5)
@@ -184,7 +186,7 @@ UPDQTY(NEWQTY) ; If DAYS SUPPLY is being edited and previous QTY was not calcula
  ;Output: 1: YES - Update Rx with re-calculated QTY / 0: NO - Don't update Rx with re-calculated QTY
  N UPDQTY,PSOFREQ,PSOOLDDS,PSONEWDS,PSOOLDQT,PSODOSOR,PSODUR
  S UPDQTY=1 I 'NEWQTY Q UPDQTY
- S PSOOLDDS=$G(PSOQX("OLD DAYS SUPPLY")) I 'PSOOLDDS Q UPDQTY ; DAYS SUPPLY value prior to edit
+ S PSOOLDDS=$G(PSOQX("DAYS SUPPLY OLD")) I 'PSOOLDDS Q UPDQTY ; DAYS SUPPLY value prior to edit
  S PSONEWDS=$G(PSOQX("DAYS SUPPLY")) I 'PSONEWDS Q UPDQTY ; New DAYS SUPPLY value
  S PSOOLDQT=$G(QTYHLD) I 'PSOOLDQT Q UPDQTY ; QTY on file, possibly calculated
  S PSOFREQ=$$SCHFREQ(),PSODOSOR=$G(PSOQX("DOSE ORDERED",1))

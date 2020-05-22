@@ -1,132 +1,128 @@
-IBDEI2RO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46448,1,3,0)
- ;;=3^Hypertrophic Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,46448,1,4,0)
- ;;=4^I42.2
- ;;^UTILITY(U,$J,358.3,46448,2)
- ;;=^340521
- ;;^UTILITY(U,$J,358.3,46449,0)
- ;;=I35.8^^206^2297^59
- ;;^UTILITY(U,$J,358.3,46449,1,0)
+ ;;^UTILITY(U,$J,358.3,44130,0)
+ ;;=Z63.5^^164^2185^1
+ ;;^UTILITY(U,$J,358.3,44130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46449,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders NEC
- ;;^UTILITY(U,$J,358.3,46449,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,46449,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,46450,0)
- ;;=I42.5^^206^2297^65
- ;;^UTILITY(U,$J,358.3,46450,1,0)
+ ;;^UTILITY(U,$J,358.3,44130,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,44130,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,44130,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,44131,0)
+ ;;=Z63.8^^164^2185^2
+ ;;^UTILITY(U,$J,358.3,44131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46450,1,3,0)
- ;;=3^Restrictive Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,46450,1,4,0)
- ;;=4^I42.5
- ;;^UTILITY(U,$J,358.3,46450,2)
- ;;=^5007196
- ;;^UTILITY(U,$J,358.3,46451,0)
- ;;=I05.8^^206^2297^69
- ;;^UTILITY(U,$J,358.3,46451,1,0)
+ ;;^UTILITY(U,$J,358.3,44131,1,3,0)
+ ;;=3^High Expressed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,44131,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,44131,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,44132,0)
+ ;;=Z63.4^^164^2185^7
+ ;;^UTILITY(U,$J,358.3,44132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46451,1,3,0)
- ;;=3^Rheumatic Mitral Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,46451,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,46451,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,46452,0)
- ;;=I08.8^^206^2297^70
- ;;^UTILITY(U,$J,358.3,46452,1,0)
+ ;;^UTILITY(U,$J,358.3,44132,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,44132,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,44132,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,44133,0)
+ ;;=Z62.29^^164^2185^8
+ ;;^UTILITY(U,$J,358.3,44133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46452,1,3,0)
- ;;=3^Rheumatic Multiple Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,46452,1,4,0)
- ;;=4^I08.8
- ;;^UTILITY(U,$J,358.3,46452,2)
- ;;=^5007056
- ;;^UTILITY(U,$J,358.3,46453,0)
- ;;=I47.9^^206^2297^63
- ;;^UTILITY(U,$J,358.3,46453,1,0)
+ ;;^UTILITY(U,$J,358.3,44133,1,3,0)
+ ;;=3^Upbringing Away from Parents
+ ;;^UTILITY(U,$J,358.3,44133,1,4,0)
+ ;;=4^Z62.29
+ ;;^UTILITY(U,$J,358.3,44133,2)
+ ;;=^5063150
+ ;;^UTILITY(U,$J,358.3,44134,0)
+ ;;=F20.9^^164^2186^10
+ ;;^UTILITY(U,$J,358.3,44134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46453,1,3,0)
- ;;=3^Paroxysmal Tachycardia,Unspec
- ;;^UTILITY(U,$J,358.3,46453,1,4,0)
- ;;=4^I47.9
- ;;^UTILITY(U,$J,358.3,46453,2)
- ;;=^5007224
- ;;^UTILITY(U,$J,358.3,46454,0)
- ;;=I05.1^^206^2297^66
- ;;^UTILITY(U,$J,358.3,46454,1,0)
+ ;;^UTILITY(U,$J,358.3,44134,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,44134,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,44134,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,44135,0)
+ ;;=F20.81^^164^2186^13
+ ;;^UTILITY(U,$J,358.3,44135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46454,1,3,0)
- ;;=3^Rheumatic Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,46454,1,4,0)
- ;;=4^I05.1
- ;;^UTILITY(U,$J,358.3,46454,2)
- ;;=^269568
- ;;^UTILITY(U,$J,358.3,46455,0)
- ;;=I05.0^^206^2297^67
- ;;^UTILITY(U,$J,358.3,46455,1,0)
+ ;;^UTILITY(U,$J,358.3,44135,1,3,0)
+ ;;=3^Schizophreniform D/O
+ ;;^UTILITY(U,$J,358.3,44135,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,44135,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,44136,0)
+ ;;=F22.^^164^2186^3
+ ;;^UTILITY(U,$J,358.3,44136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46455,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,46455,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,46455,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,46456,0)
- ;;=I05.9^^206^2297^68
- ;;^UTILITY(U,$J,358.3,46456,1,0)
+ ;;^UTILITY(U,$J,358.3,44136,1,3,0)
+ ;;=3^Delusional D/O
+ ;;^UTILITY(U,$J,358.3,44136,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,44136,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,44137,0)
+ ;;=F23.^^164^2186^1
+ ;;^UTILITY(U,$J,358.3,44137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46456,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,46456,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,46456,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,46457,0)
- ;;=I21.3^^206^2297^71
- ;;^UTILITY(U,$J,358.3,46457,1,0)
+ ;;^UTILITY(U,$J,358.3,44137,1,3,0)
+ ;;=3^Brief Psychotic D/O
+ ;;^UTILITY(U,$J,358.3,44137,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,44137,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,44138,0)
+ ;;=F25.0^^164^2186^7
+ ;;^UTILITY(U,$J,358.3,44138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46457,1,3,0)
- ;;=3^STEMI Myocardial Infarction,Unspec Site
- ;;^UTILITY(U,$J,358.3,46457,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,46457,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,46458,0)
- ;;=I44.30^^206^2297^43
- ;;^UTILITY(U,$J,358.3,46458,1,0)
+ ;;^UTILITY(U,$J,358.3,44138,1,3,0)
+ ;;=3^Schizoaffective D/O,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,44138,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,44138,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,44139,0)
+ ;;=F25.1^^164^2186^8
+ ;;^UTILITY(U,$J,358.3,44139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46458,1,3,0)
- ;;=3^Atrioventricular Block,Unspec
- ;;^UTILITY(U,$J,358.3,46458,1,4,0)
- ;;=4^I44.30
- ;;^UTILITY(U,$J,358.3,46458,2)
- ;;=^5007204
- ;;^UTILITY(U,$J,358.3,46459,0)
- ;;=I50.40^^206^2297^51
- ;;^UTILITY(U,$J,358.3,46459,1,0)
+ ;;^UTILITY(U,$J,358.3,44139,1,3,0)
+ ;;=3^Schizoaffective D/O,Depressive Type
+ ;;^UTILITY(U,$J,358.3,44139,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,44139,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,44140,0)
+ ;;=F28.^^164^2186^11
+ ;;^UTILITY(U,$J,358.3,44140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46459,1,3,0)
- ;;=3^Combined Systolic & Diastolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,46459,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,46459,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,46460,0)
- ;;=I50.30^^206^2297^52
- ;;^UTILITY(U,$J,358.3,46460,1,0)
+ ;;^UTILITY(U,$J,358.3,44140,1,3,0)
+ ;;=3^Schizophrenia Spectrum & Psychotic D/O,Oth Specified
+ ;;^UTILITY(U,$J,358.3,44140,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,44140,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,44141,0)
+ ;;=F29.^^164^2186^12
+ ;;^UTILITY(U,$J,358.3,44141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46460,1,3,0)
- ;;=3^Diastolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,46460,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,46460,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,46461,0)
- ;;=I50.20^^206^2297^72
+ ;;^UTILITY(U,$J,358.3,44141,1,3,0)
+ ;;=3^Schizophrenia Spectrum & Psychotic D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44141,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,44141,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,44142,0)
+ ;;=F06.1^^164^2186^2
+ ;;^UTILITY(U,$J,358.3,44142,1,0)
+ ;;=^358.31IA^4^2

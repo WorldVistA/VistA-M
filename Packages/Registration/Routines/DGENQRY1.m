@@ -1,5 +1,5 @@
 DGENQRY1 ;ALB/CJM - API for ENROLLMENT QUERIES (continued); 4-SEP-97 ; 5/14/02 9:57am
- ;;5.3;REGISTRATION;**147,232,363,472**;Aug 13,1993
+ ;;5.3;REGISTRATION;**147,232,363,472,989**;Aug 13,1993;Build 5
  ;
 BATCH ;
  ;Description:  This procedure will re-send all queries still outstanding
@@ -243,11 +243,12 @@ MSGQ ; - exit and clean-up
  Q SUCCESS
  ;
 QRD ; Build (HL7) QRD segment for patient
- N QUERY
+ N QUERY,DGICN
+ S DGICN=$$GETICN^MPIF001(DFN) ;DBIA- #2070
  S $P(QUERY,HLFS,1)=$$HLDATE^HLFNC(HLDT) ; date/time query generated
  S $P(QUERY,HLFS,2)="R" ; query format code (record oriented format)
  S $P(QUERY,HLFS,3)="I" ; query priority (immediate)
- S $P(QUERY,HLFS,4)=DFN ; query ID (DFN)
+ S $P(QUERY,HLFS,4)=DFN_$E(HL("ECH"),1)_$G(DGICN) ; query ID (DFN), Patient ICN#
  S $P(QUERY,HLFS,7)="1~RD" ; quanity limited request (1 record)
  S $P(QUERY,HLFS,8)=DGPAT("SSN") ; who subject filter (SSN)
  S $P(QUERY,HLFS,9)="OTH" ; what subject filter

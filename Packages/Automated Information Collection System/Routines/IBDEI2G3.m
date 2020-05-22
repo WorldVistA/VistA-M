@@ -1,134 +1,124 @@
-IBDEI2G3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2G3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41469,1,4,0)
- ;;=4^Z83.2
- ;;^UTILITY(U,$J,358.3,41469,2)
- ;;=^5063378
- ;;^UTILITY(U,$J,358.3,41470,0)
- ;;=Z82.71^^159^2005^47
- ;;^UTILITY(U,$J,358.3,41470,1,0)
+ ;;^UTILITY(U,$J,358.3,39058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41470,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,41470,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,41470,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,41471,0)
- ;;=Z82.1^^159^2005^23
- ;;^UTILITY(U,$J,358.3,41471,1,0)
+ ;;^UTILITY(U,$J,358.3,39058,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,39058,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,39058,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,39059,0)
+ ;;=L89.304^^152^1990^280
+ ;;^UTILITY(U,$J,358.3,39059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41471,1,3,0)
- ;;=3^Family Hx of Blindness/Visual Loss
- ;;^UTILITY(U,$J,358.3,41471,1,4,0)
- ;;=4^Z82.1
- ;;^UTILITY(U,$J,358.3,41471,2)
- ;;=^5063365
- ;;^UTILITY(U,$J,358.3,41472,0)
- ;;=Z82.2^^159^2005^27
- ;;^UTILITY(U,$J,358.3,41472,1,0)
+ ;;^UTILITY(U,$J,358.3,39059,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,39059,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,39059,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,39060,0)
+ ;;=L89.309^^152^1990^281
+ ;;^UTILITY(U,$J,358.3,39060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41472,1,3,0)
- ;;=3^Family Hx of Deafness/Hearing Loss
- ;;^UTILITY(U,$J,358.3,41472,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,41472,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,41473,0)
- ;;=Z84.0^^159^2005^48
- ;;^UTILITY(U,$J,358.3,41473,1,0)
+ ;;^UTILITY(U,$J,358.3,39060,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,39060,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,39060,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,39061,0)
+ ;;=L89.90^^152^1990^287
+ ;;^UTILITY(U,$J,358.3,39061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41473,1,3,0)
- ;;=3^Family Hx of Skin Diseases
- ;;^UTILITY(U,$J,358.3,41473,1,4,0)
- ;;=4^Z84.0
- ;;^UTILITY(U,$J,358.3,41473,2)
- ;;=^5063388
- ;;^UTILITY(U,$J,358.3,41474,0)
- ;;=Z82.79^^159^2005^26
- ;;^UTILITY(U,$J,358.3,41474,1,0)
+ ;;^UTILITY(U,$J,358.3,39061,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,39061,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,39061,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,39062,0)
+ ;;=L89.91^^152^1990^283
+ ;;^UTILITY(U,$J,358.3,39062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41474,1,3,0)
- ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
- ;;^UTILITY(U,$J,358.3,41474,1,4,0)
- ;;=4^Z82.79
- ;;^UTILITY(U,$J,358.3,41474,2)
- ;;=^5063374
- ;;^UTILITY(U,$J,358.3,41475,0)
- ;;=Z84.89^^159^2005^46
- ;;^UTILITY(U,$J,358.3,41475,1,0)
+ ;;^UTILITY(U,$J,358.3,39062,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,39062,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,39062,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,39063,0)
+ ;;=L89.92^^152^1990^284
+ ;;^UTILITY(U,$J,358.3,39063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41475,1,3,0)
- ;;=3^Family Hx of Other Spec Conditions
- ;;^UTILITY(U,$J,358.3,41475,1,4,0)
- ;;=4^Z84.89
- ;;^UTILITY(U,$J,358.3,41475,2)
- ;;=^5063393
- ;;^UTILITY(U,$J,358.3,41476,0)
- ;;=Z81.1^^159^2005^20
- ;;^UTILITY(U,$J,358.3,41476,1,0)
+ ;;^UTILITY(U,$J,358.3,39063,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,39063,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,39063,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,39064,0)
+ ;;=L89.93^^152^1990^285
+ ;;^UTILITY(U,$J,358.3,39064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41476,1,3,0)
- ;;=3^Family Hx of Alcohol Abuse/Dependence
- ;;^UTILITY(U,$J,358.3,41476,1,4,0)
- ;;=4^Z81.1
- ;;^UTILITY(U,$J,358.3,41476,2)
- ;;=^5063359
- ;;^UTILITY(U,$J,358.3,41477,0)
- ;;=Z82.62^^159^2005^45
- ;;^UTILITY(U,$J,358.3,41477,1,0)
+ ;;^UTILITY(U,$J,358.3,39064,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,39064,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,39064,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,39065,0)
+ ;;=L89.94^^152^1990^286
+ ;;^UTILITY(U,$J,358.3,39065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41477,1,3,0)
- ;;=3^Family Hx of Osteoporosis
- ;;^UTILITY(U,$J,358.3,41477,1,4,0)
- ;;=4^Z82.62
- ;;^UTILITY(U,$J,358.3,41477,2)
- ;;=^5063372
- ;;^UTILITY(U,$J,358.3,41478,0)
- ;;=Z83.71^^159^2005^25
- ;;^UTILITY(U,$J,358.3,41478,1,0)
+ ;;^UTILITY(U,$J,358.3,39065,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,39065,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,39065,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,39066,0)
+ ;;=L89.95^^152^1990^288
+ ;;^UTILITY(U,$J,358.3,39066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41478,1,3,0)
- ;;=3^Family Hx of Colonic Polyps
- ;;^UTILITY(U,$J,358.3,41478,1,4,0)
- ;;=4^Z83.71
- ;;^UTILITY(U,$J,358.3,41478,2)
- ;;=^5063386
- ;;^UTILITY(U,$J,358.3,41479,0)
- ;;=Z84.81^^159^2005^29
- ;;^UTILITY(U,$J,358.3,41479,1,0)
+ ;;^UTILITY(U,$J,358.3,39066,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,39066,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,39066,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,39067,0)
+ ;;=L92.0^^152^1990^159
+ ;;^UTILITY(U,$J,358.3,39067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41479,1,3,0)
- ;;=3^Family Hx of Genetic Disease
- ;;^UTILITY(U,$J,358.3,41479,1,4,0)
- ;;=4^Z84.81
- ;;^UTILITY(U,$J,358.3,41479,2)
- ;;=^5063392
- ;;^UTILITY(U,$J,358.3,41480,0)
- ;;=Z86.010^^159^2005^76
- ;;^UTILITY(U,$J,358.3,41480,1,0)
+ ;;^UTILITY(U,$J,358.3,39067,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,39067,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,39067,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,39068,0)
+ ;;=L95.1^^152^1990^146
+ ;;^UTILITY(U,$J,358.3,39068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41480,1,3,0)
- ;;=3^Personal Hx of Colonic Polyps
- ;;^UTILITY(U,$J,358.3,41480,1,4,0)
- ;;=4^Z86.010
- ;;^UTILITY(U,$J,358.3,41480,2)
- ;;=^5063456
- ;;^UTILITY(U,$J,358.3,41481,0)
- ;;=Z86.14^^159^2005^81
- ;;^UTILITY(U,$J,358.3,41481,1,0)
+ ;;^UTILITY(U,$J,358.3,39068,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,39068,1,4,0)
+ ;;=4^L95.1
+ ;;^UTILITY(U,$J,358.3,39068,2)
+ ;;=^5009477
+ ;;^UTILITY(U,$J,358.3,39069,0)
+ ;;=L97.111^^152^1990^262
+ ;;^UTILITY(U,$J,358.3,39069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41481,1,3,0)
- ;;=3^Personal Hx of MRSA Infection
- ;;^UTILITY(U,$J,358.3,41481,1,4,0)
- ;;=4^Z86.14
- ;;^UTILITY(U,$J,358.3,41481,2)
- ;;=^5063464
- ;;^UTILITY(U,$J,358.3,41482,0)
- ;;=Z86.31^^159^2005^77
- ;;^UTILITY(U,$J,358.3,41482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41482,1,3,0)
- ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,39069,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,39069,1,4,0)
+ ;;=4^L97.111
+ ;;^UTILITY(U,$J,358.3,39069,2)
+ ;;=^5009485
+ ;;^UTILITY(U,$J,358.3,39070,0)
+ ;;=L97.112^^152^1990^263

@@ -1,130 +1,128 @@
-IBDEI2V1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2V1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47996,1,0)
+ ;;^UTILITY(U,$J,358.3,45628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47996,1,3,0)
- ;;=3^Malig Neop of Ribs/Sternum/Clavicle
- ;;^UTILITY(U,$J,358.3,47996,1,4,0)
- ;;=4^C41.3
- ;;^UTILITY(U,$J,358.3,47996,2)
- ;;=^5000991
- ;;^UTILITY(U,$J,358.3,47997,0)
- ;;=C41.4^^209^2371^9
- ;;^UTILITY(U,$J,358.3,47997,1,0)
+ ;;^UTILITY(U,$J,358.3,45628,1,3,0)
+ ;;=3^Polymyositis
+ ;;^UTILITY(U,$J,358.3,45628,1,4,0)
+ ;;=4^M33.20
+ ;;^UTILITY(U,$J,358.3,45628,2)
+ ;;=^5011770
+ ;;^UTILITY(U,$J,358.3,45629,0)
+ ;;=R80.9^^172^2273^45
+ ;;^UTILITY(U,$J,358.3,45629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47997,1,3,0)
- ;;=3^Malig Neop of Pelvic/Sacrum/Coccyx
- ;;^UTILITY(U,$J,358.3,47997,1,4,0)
- ;;=4^C41.4
- ;;^UTILITY(U,$J,358.3,47997,2)
- ;;=^5000992
- ;;^UTILITY(U,$J,358.3,47998,0)
- ;;=C41.9^^209^2371^1
- ;;^UTILITY(U,$J,358.3,47998,1,0)
+ ;;^UTILITY(U,$J,358.3,45629,1,3,0)
+ ;;=3^Proteinuria
+ ;;^UTILITY(U,$J,358.3,45629,1,4,0)
+ ;;=4^R80.9
+ ;;^UTILITY(U,$J,358.3,45629,2)
+ ;;=^5019599
+ ;;^UTILITY(U,$J,358.3,45630,0)
+ ;;=R76.11^^172^2273^41
+ ;;^UTILITY(U,$J,358.3,45630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47998,1,3,0)
- ;;=3^Malig Neop of Bone/Articular Cartilage,Unspec
- ;;^UTILITY(U,$J,358.3,47998,1,4,0)
- ;;=4^C41.9
- ;;^UTILITY(U,$J,358.3,47998,2)
- ;;=^5000993
- ;;^UTILITY(U,$J,358.3,47999,0)
- ;;=C44.00^^209^2372^15
- ;;^UTILITY(U,$J,358.3,47999,1,0)
+ ;;^UTILITY(U,$J,358.3,45630,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,45630,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,45630,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,45631,0)
+ ;;=M35.00^^172^2273^49
+ ;;^UTILITY(U,$J,358.3,45631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47999,1,3,0)
- ;;=3^Malig Neop of Skin of Lip
- ;;^UTILITY(U,$J,358.3,47999,1,4,0)
- ;;=4^C44.00
- ;;^UTILITY(U,$J,358.3,47999,2)
- ;;=^340596
- ;;^UTILITY(U,$J,358.3,48000,0)
- ;;=C44.102^^209^2372^18
- ;;^UTILITY(U,$J,358.3,48000,1,0)
+ ;;^UTILITY(U,$J,358.3,45631,1,3,0)
+ ;;=3^Sjogren Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,45631,1,4,0)
+ ;;=4^M35.00
+ ;;^UTILITY(U,$J,358.3,45631,2)
+ ;;=^5011786
+ ;;^UTILITY(U,$J,358.3,45632,0)
+ ;;=B37.0^^172^2273^55
+ ;;^UTILITY(U,$J,358.3,45632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48000,1,3,0)
- ;;=3^Malig Neop of Skin of Right Eyelid
- ;;^UTILITY(U,$J,358.3,48000,1,4,0)
- ;;=4^C44.102
- ;;^UTILITY(U,$J,358.3,48000,2)
- ;;=^5001017
- ;;^UTILITY(U,$J,358.3,48001,0)
- ;;=C44.109^^209^2372^11
- ;;^UTILITY(U,$J,358.3,48001,1,0)
+ ;;^UTILITY(U,$J,358.3,45632,1,3,0)
+ ;;=3^Thrush
+ ;;^UTILITY(U,$J,358.3,45632,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,45632,2)
+ ;;=Thrush^5000612
+ ;;^UTILITY(U,$J,358.3,45633,0)
+ ;;=I83.91^^172^2274^12
+ ;;^UTILITY(U,$J,358.3,45633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48001,1,3,0)
- ;;=3^Malig Neop of Skin of Left Eyelid
- ;;^UTILITY(U,$J,358.3,48001,1,4,0)
- ;;=4^C44.109
- ;;^UTILITY(U,$J,358.3,48001,2)
- ;;=^5001018
- ;;^UTILITY(U,$J,358.3,48002,0)
- ;;=C44.192^^209^2372^19
- ;;^UTILITY(U,$J,358.3,48002,1,0)
+ ;;^UTILITY(U,$J,358.3,45633,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,45633,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,45633,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,45634,0)
+ ;;=I83.92^^172^2274^11
+ ;;^UTILITY(U,$J,358.3,45634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48002,1,3,0)
- ;;=3^Malig Neop of Skin of Right Eyelid NEC
- ;;^UTILITY(U,$J,358.3,48002,1,4,0)
- ;;=4^C44.192
- ;;^UTILITY(U,$J,358.3,48002,2)
- ;;=^5001026
- ;;^UTILITY(U,$J,358.3,48003,0)
- ;;=C44.199^^209^2372^12
- ;;^UTILITY(U,$J,358.3,48003,1,0)
+ ;;^UTILITY(U,$J,358.3,45634,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,45634,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,45634,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,45635,0)
+ ;;=I83.93^^172^2274^10
+ ;;^UTILITY(U,$J,358.3,45635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48003,1,3,0)
- ;;=3^Malig Neop of Skin of Left Eyelid NEC
- ;;^UTILITY(U,$J,358.3,48003,1,4,0)
- ;;=4^C44.199
- ;;^UTILITY(U,$J,358.3,48003,2)
- ;;=^5001027
- ;;^UTILITY(U,$J,358.3,48004,0)
- ;;=C44.202^^209^2372^17
- ;;^UTILITY(U,$J,358.3,48004,1,0)
+ ;;^UTILITY(U,$J,358.3,45635,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
+ ;;^UTILITY(U,$J,358.3,45635,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,45635,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,45636,0)
+ ;;=I83.019^^172^2274^9
+ ;;^UTILITY(U,$J,358.3,45636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48004,1,3,0)
- ;;=3^Malig Neop of Skin of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,48004,1,4,0)
- ;;=4^C44.202
- ;;^UTILITY(U,$J,358.3,48004,2)
- ;;=^5001029
- ;;^UTILITY(U,$J,358.3,48005,0)
- ;;=C44.209^^209^2372^10
- ;;^UTILITY(U,$J,358.3,48005,1,0)
+ ;;^UTILITY(U,$J,358.3,45636,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,45636,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,45636,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,45637,0)
+ ;;=I83.029^^172^2274^8
+ ;;^UTILITY(U,$J,358.3,45637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48005,1,3,0)
- ;;=3^Malig Neop of Skin of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,48005,1,4,0)
- ;;=4^C44.209
- ;;^UTILITY(U,$J,358.3,48005,2)
- ;;=^5001030
- ;;^UTILITY(U,$J,358.3,48006,0)
- ;;=C44.300^^209^2372^9
- ;;^UTILITY(U,$J,358.3,48006,1,0)
+ ;;^UTILITY(U,$J,358.3,45637,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,45637,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,45637,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,45638,0)
+ ;;=I71.4^^172^2274^1
+ ;;^UTILITY(U,$J,358.3,45638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48006,1,3,0)
- ;;=3^Malig Neop of Skin of Face,Unspec
- ;;^UTILITY(U,$J,358.3,48006,1,4,0)
- ;;=4^C44.300
- ;;^UTILITY(U,$J,358.3,48006,2)
- ;;=^5001040
- ;;^UTILITY(U,$J,358.3,48007,0)
- ;;=C44.301^^209^2372^16
- ;;^UTILITY(U,$J,358.3,48007,1,0)
+ ;;^UTILITY(U,$J,358.3,45638,1,3,0)
+ ;;=3^AAA w/o rupture
+ ;;^UTILITY(U,$J,358.3,45638,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,45638,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,45639,0)
+ ;;=I73.9^^172^2274^3
+ ;;^UTILITY(U,$J,358.3,45639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48007,1,3,0)
- ;;=3^Malig Neop of Skin of Nose
- ;;^UTILITY(U,$J,358.3,48007,1,4,0)
- ;;=4^C44.301
- ;;^UTILITY(U,$J,358.3,48007,2)
- ;;=^5001041
- ;;^UTILITY(U,$J,358.3,48008,0)
- ;;=C44.309^^209^2372^8
- ;;^UTILITY(U,$J,358.3,48008,1,0)
+ ;;^UTILITY(U,$J,358.3,45639,1,3,0)
+ ;;=3^PVD, unspec
+ ;;^UTILITY(U,$J,358.3,45639,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,45639,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,45640,0)
+ ;;=I80.201^^172^2274^4
+ ;;^UTILITY(U,$J,358.3,45640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48008,1,3,0)
- ;;=3^Malig Neop of Skin of Face NEC
- ;;^UTILITY(U,$J,358.3,48008,1,4,0)
- ;;=4^C44.309
+ ;;^UTILITY(U,$J,358.3,45640,1,3,0)
+ ;;=3^Phlebitis & thrombophlebitis deep vessels, right lower extremity

@@ -1,128 +1,128 @@
-IBDEI34T ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52562,1,0)
+ ;;^UTILITY(U,$J,358.3,50017,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,50017,1,4,0)
+ ;;=4^L03.126
+ ;;^UTILITY(U,$J,358.3,50017,2)
+ ;;=^5133646
+ ;;^UTILITY(U,$J,358.3,50018,0)
+ ;;=L03.211^^193^2487^101
+ ;;^UTILITY(U,$J,358.3,50018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52562,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,52562,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,52562,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,52563,0)
- ;;=F16.21^^237^2617^3
- ;;^UTILITY(U,$J,358.3,52563,1,0)
+ ;;^UTILITY(U,$J,358.3,50018,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,50018,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,50018,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,50019,0)
+ ;;=L03.212^^193^2487^17
+ ;;^UTILITY(U,$J,358.3,50019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52563,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,52563,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,52563,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,52564,0)
- ;;=F11.10^^237^2618^4
- ;;^UTILITY(U,$J,358.3,52564,1,0)
+ ;;^UTILITY(U,$J,358.3,50019,1,3,0)
+ ;;=3^Acute Lymphangitis of Face
+ ;;^UTILITY(U,$J,358.3,50019,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,50019,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,50020,0)
+ ;;=L03.221^^193^2487^108
+ ;;^UTILITY(U,$J,358.3,50020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52564,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,52564,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,52564,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,52565,0)
- ;;=F11.129^^237^2618^3
- ;;^UTILITY(U,$J,358.3,52565,1,0)
+ ;;^UTILITY(U,$J,358.3,50020,1,3,0)
+ ;;=3^Cellulitis of Neck
+ ;;^UTILITY(U,$J,358.3,50020,1,4,0)
+ ;;=4^L03.221
+ ;;^UTILITY(U,$J,358.3,50020,2)
+ ;;=^5009045
+ ;;^UTILITY(U,$J,358.3,50021,0)
+ ;;=L03.222^^193^2487^23
+ ;;^UTILITY(U,$J,358.3,50021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52565,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,52565,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,52565,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,52566,0)
- ;;=F11.14^^237^2618^8
- ;;^UTILITY(U,$J,358.3,52566,1,0)
+ ;;^UTILITY(U,$J,358.3,50021,1,3,0)
+ ;;=3^Acute Lymphangitis of Neck
+ ;;^UTILITY(U,$J,358.3,50021,1,4,0)
+ ;;=4^L03.222
+ ;;^UTILITY(U,$J,358.3,50021,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,50022,0)
+ ;;=L03.311^^193^2487^97
+ ;;^UTILITY(U,$J,358.3,50022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52566,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,52566,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,52566,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,52567,0)
- ;;=F11.182^^237^2618^10
- ;;^UTILITY(U,$J,358.3,52567,1,0)
+ ;;^UTILITY(U,$J,358.3,50022,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,50022,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,50022,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,50023,0)
+ ;;=L03.312^^193^2487^98
+ ;;^UTILITY(U,$J,358.3,50023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52567,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,52567,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,52567,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,52568,0)
- ;;=F11.20^^237^2618^5
- ;;^UTILITY(U,$J,358.3,52568,1,0)
+ ;;^UTILITY(U,$J,358.3,50023,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,50023,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,50023,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,50024,0)
+ ;;=L03.313^^193^2487^100
+ ;;^UTILITY(U,$J,358.3,50024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52568,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,52568,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,52568,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,52569,0)
- ;;=F11.21^^237^2618^6
- ;;^UTILITY(U,$J,358.3,52569,1,0)
+ ;;^UTILITY(U,$J,358.3,50024,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,50024,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,50024,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,50025,0)
+ ;;=L03.314^^193^2487^102
+ ;;^UTILITY(U,$J,358.3,50025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52569,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,52569,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,52569,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,52570,0)
- ;;=F11.23^^237^2618^7
- ;;^UTILITY(U,$J,358.3,52570,1,0)
+ ;;^UTILITY(U,$J,358.3,50025,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,50025,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,50025,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,50026,0)
+ ;;=L03.315^^193^2487^109
+ ;;^UTILITY(U,$J,358.3,50026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52570,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,52570,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,52570,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,52571,0)
- ;;=F11.24^^237^2618^9
- ;;^UTILITY(U,$J,358.3,52571,1,0)
+ ;;^UTILITY(U,$J,358.3,50026,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,50026,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,50026,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,50027,0)
+ ;;=L03.316^^193^2487^116
+ ;;^UTILITY(U,$J,358.3,50027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52571,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,52571,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,52571,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,52572,0)
- ;;=F11.29^^237^2618^2
- ;;^UTILITY(U,$J,358.3,52572,1,0)
+ ;;^UTILITY(U,$J,358.3,50027,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,50027,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,50027,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,50028,0)
+ ;;=L03.319^^193^2487^115
+ ;;^UTILITY(U,$J,358.3,50028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52572,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,52572,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,52572,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,52573,0)
- ;;=F11.220^^237^2618^1
- ;;^UTILITY(U,$J,358.3,52573,1,0)
+ ;;^UTILITY(U,$J,358.3,50028,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,50028,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,50028,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,50029,0)
+ ;;=L03.321^^193^2487^14
+ ;;^UTILITY(U,$J,358.3,50029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52573,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,52573,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,52573,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,52574,0)
- ;;=F19.10^^237^2619^3
- ;;^UTILITY(U,$J,358.3,52574,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52574,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,50029,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,50029,1,4,0)
+ ;;=4^L03.321

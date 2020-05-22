@@ -1,120 +1,126 @@
-IBDEI1WE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32219,1,4,0)
- ;;=4^S92.011K
- ;;^UTILITY(U,$J,358.3,32219,2)
- ;;=^5044371
- ;;^UTILITY(U,$J,358.3,32220,0)
- ;;=S82.872K^^126^1609^140
- ;;^UTILITY(U,$J,358.3,32220,1,0)
+ ;;^UTILITY(U,$J,358.3,30309,0)
+ ;;=F17.201^^120^1543^5
+ ;;^UTILITY(U,$J,358.3,30309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32220,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for closed fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32220,1,4,0)
- ;;=4^S82.872K
- ;;^UTILITY(U,$J,358.3,32220,2)
- ;;=^5042792
- ;;^UTILITY(U,$J,358.3,32221,0)
- ;;=S82.871K^^126^1609^149
- ;;^UTILITY(U,$J,358.3,32221,1,0)
+ ;;^UTILITY(U,$J,358.3,30309,1,3,0)
+ ;;=3^Nicotine Use D/O,Unspec,In Remiss
+ ;;^UTILITY(U,$J,358.3,30309,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,30309,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,30310,0)
+ ;;=F43.0^^120^1544^1
+ ;;^UTILITY(U,$J,358.3,30310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32221,1,3,0)
- ;;=3^Disp pilon fx rt tibia,subs for closed fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32221,1,4,0)
- ;;=4^S82.871K
- ;;^UTILITY(U,$J,358.3,32221,2)
- ;;=^5042776
- ;;^UTILITY(U,$J,358.3,32222,0)
- ;;=S82.871N^^126^1609^146
- ;;^UTILITY(U,$J,358.3,32222,1,0)
+ ;;^UTILITY(U,$J,358.3,30310,1,3,0)
+ ;;=3^Acute Stress D/O
+ ;;^UTILITY(U,$J,358.3,30310,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,30310,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,30311,0)
+ ;;=F43.21^^120^1544^3
+ ;;^UTILITY(U,$J,358.3,30311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32222,1,3,0)
- ;;=3^Disp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,32222,1,4,0)
- ;;=4^S82.871N
- ;;^UTILITY(U,$J,358.3,32222,2)
- ;;=^5042778
- ;;^UTILITY(U,$J,358.3,32223,0)
- ;;=S82.872N^^126^1609^141
- ;;^UTILITY(U,$J,358.3,32223,1,0)
+ ;;^UTILITY(U,$J,358.3,30311,1,3,0)
+ ;;=3^Adjustment D/O w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,30311,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,30311,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,30312,0)
+ ;;=F43.22^^120^1544^2
+ ;;^UTILITY(U,$J,358.3,30312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32223,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,32223,1,4,0)
- ;;=4^S82.872N
- ;;^UTILITY(U,$J,358.3,32223,2)
- ;;=^5042794
- ;;^UTILITY(U,$J,358.3,32224,0)
- ;;=S82.871M^^126^1609^147
- ;;^UTILITY(U,$J,358.3,32224,1,0)
+ ;;^UTILITY(U,$J,358.3,30312,1,3,0)
+ ;;=3^Adjustment D/O w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,30312,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,30312,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,30313,0)
+ ;;=F43.23^^120^1544^5
+ ;;^UTILITY(U,$J,358.3,30313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32224,1,3,0)
- ;;=3^Disp pilon fx rt tib, subs for opn fx type I/2 w/ nonunion
- ;;^UTILITY(U,$J,358.3,32224,1,4,0)
- ;;=4^S82.871M
- ;;^UTILITY(U,$J,358.3,32224,2)
- ;;=^5042777
- ;;^UTILITY(U,$J,358.3,32225,0)
- ;;=S82.872M^^126^1609^142
- ;;^UTILITY(U,$J,358.3,32225,1,0)
+ ;;^UTILITY(U,$J,358.3,30313,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,30313,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,30313,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,30314,0)
+ ;;=F43.24^^120^1544^4
+ ;;^UTILITY(U,$J,358.3,30314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32225,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type I/2 w/nonunion
- ;;^UTILITY(U,$J,358.3,32225,1,4,0)
- ;;=4^S82.872M
- ;;^UTILITY(U,$J,358.3,32225,2)
- ;;=^5042793
- ;;^UTILITY(U,$J,358.3,32226,0)
- ;;=S82.871K^^126^1609^148
- ;;^UTILITY(U,$J,358.3,32226,1,0)
+ ;;^UTILITY(U,$J,358.3,30314,1,3,0)
+ ;;=3^Adjustment D/O w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,30314,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,30314,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,30315,0)
+ ;;=F43.25^^120^1544^6
+ ;;^UTILITY(U,$J,358.3,30315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32226,1,3,0)
- ;;=3^Disp pilon fx rt tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32226,1,4,0)
- ;;=4^S82.871K
- ;;^UTILITY(U,$J,358.3,32226,2)
- ;;=^5042776
- ;;^UTILITY(U,$J,358.3,32227,0)
- ;;=S82.872K^^126^1609^143
- ;;^UTILITY(U,$J,358.3,32227,1,0)
+ ;;^UTILITY(U,$J,358.3,30315,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Disturb Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,30315,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,30315,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,30316,0)
+ ;;=F43.20^^120^1544^7
+ ;;^UTILITY(U,$J,358.3,30316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32227,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32227,1,4,0)
- ;;=4^S82.872K
- ;;^UTILITY(U,$J,358.3,32227,2)
- ;;=^5042792
- ;;^UTILITY(U,$J,358.3,32228,0)
- ;;=S82.874N^^126^1609^372
- ;;^UTILITY(U,$J,358.3,32228,1,0)
+ ;;^UTILITY(U,$J,358.3,30316,1,3,0)
+ ;;=3^Adjustment D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30316,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,30316,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,30317,0)
+ ;;=F43.9^^120^1544^13
+ ;;^UTILITY(U,$J,358.3,30317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32228,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,32228,1,4,0)
- ;;=4^S82.874N
- ;;^UTILITY(U,$J,358.3,32228,2)
- ;;=^5042826
- ;;^UTILITY(U,$J,358.3,32229,0)
- ;;=S82.875N^^126^1609^367
- ;;^UTILITY(U,$J,358.3,32229,1,0)
+ ;;^UTILITY(U,$J,358.3,30317,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30317,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,30317,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,30318,0)
+ ;;=F94.1^^120^1544^11
+ ;;^UTILITY(U,$J,358.3,30318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32229,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,32229,1,4,0)
- ;;=4^S82.875N
- ;;^UTILITY(U,$J,358.3,32229,2)
- ;;=^5042842
- ;;^UTILITY(U,$J,358.3,32230,0)
- ;;=S82.874M^^126^1609^373
- ;;^UTILITY(U,$J,358.3,32230,1,0)
+ ;;^UTILITY(U,$J,358.3,30318,1,3,0)
+ ;;=3^Reactive Attachment D/O
+ ;;^UTILITY(U,$J,358.3,30318,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,30318,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,30319,0)
+ ;;=F94.2^^120^1544^8
+ ;;^UTILITY(U,$J,358.3,30319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32230,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,32230,1,4,0)
- ;;=4^S82.874M
- ;;^UTILITY(U,$J,358.3,32230,2)
- ;;=^5042825
- ;;^UTILITY(U,$J,358.3,32231,0)
- ;;=S82.875M^^126^1609^368
+ ;;^UTILITY(U,$J,358.3,30319,1,3,0)
+ ;;=3^Disinhibited Social Engagement D/O
+ ;;^UTILITY(U,$J,358.3,30319,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,30319,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,30320,0)
+ ;;=F43.8^^120^1544^12
+ ;;^UTILITY(U,$J,358.3,30320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30320,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,30320,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,30320,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,30321,0)
+ ;;=F43.10^^120^1544^10

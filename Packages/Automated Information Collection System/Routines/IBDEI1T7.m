@@ -1,124 +1,120 @@
-IBDEI1T7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1T7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30741,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,30741,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,30742,0)
- ;;=F31.5^^123^1531^16
- ;;^UTILITY(U,$J,358.3,30742,1,0)
+ ;;^UTILITY(U,$J,358.3,28886,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,28886,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,28887,0)
+ ;;=Z91.138^^115^1425^16
+ ;;^UTILITY(U,$J,358.3,28887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30742,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,30742,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,30742,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,30743,0)
- ;;=F31.75^^123^1531^17
- ;;^UTILITY(U,$J,358.3,30743,1,0)
+ ;;^UTILITY(U,$J,358.3,28887,1,3,0)
+ ;;=3^Unintented Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,28887,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,28887,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,28888,0)
+ ;;=T38.3X6A^^115^1425^3
+ ;;^UTILITY(U,$J,358.3,28888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30743,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,30743,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,30743,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,30744,0)
- ;;=F31.76^^123^1531^18
- ;;^UTILITY(U,$J,358.3,30744,1,0)
+ ;;^UTILITY(U,$J,358.3,28888,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28888,1,4,0)
+ ;;=4^T38.3X6A
+ ;;^UTILITY(U,$J,358.3,28888,2)
+ ;;=^5049649
+ ;;^UTILITY(U,$J,358.3,28889,0)
+ ;;=T38.3X6S^^115^1425^4
+ ;;^UTILITY(U,$J,358.3,28889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30744,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,30744,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,30744,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,30745,0)
- ;;=F31.9^^123^1531^19
- ;;^UTILITY(U,$J,358.3,30745,1,0)
+ ;;^UTILITY(U,$J,358.3,28889,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,28889,1,4,0)
+ ;;=4^T38.3X6S
+ ;;^UTILITY(U,$J,358.3,28889,2)
+ ;;=^5049651
+ ;;^UTILITY(U,$J,358.3,28890,0)
+ ;;=T38.3X6D^^115^1425^5
+ ;;^UTILITY(U,$J,358.3,28890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30745,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,30745,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,30745,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,30746,0)
- ;;=F31.81^^123^1531^20
- ;;^UTILITY(U,$J,358.3,30746,1,0)
+ ;;^UTILITY(U,$J,358.3,28890,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,28890,1,4,0)
+ ;;=4^T38.3X6D
+ ;;^UTILITY(U,$J,358.3,28890,2)
+ ;;=^5049650
+ ;;^UTILITY(U,$J,358.3,28891,0)
+ ;;=T46.5X6A^^115^1425^9
+ ;;^UTILITY(U,$J,358.3,28891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30746,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,30746,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,30746,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,30747,0)
- ;;=F34.0^^123^1531^22
- ;;^UTILITY(U,$J,358.3,30747,1,0)
+ ;;^UTILITY(U,$J,358.3,28891,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28891,1,4,0)
+ ;;=4^T46.5X6A
+ ;;^UTILITY(U,$J,358.3,28891,2)
+ ;;=^5051353
+ ;;^UTILITY(U,$J,358.3,28892,0)
+ ;;=T46.5X6D^^115^1425^10
+ ;;^UTILITY(U,$J,358.3,28892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30747,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,30747,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,30747,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,30748,0)
- ;;=F31.0^^123^1531^3
- ;;^UTILITY(U,$J,358.3,30748,1,0)
+ ;;^UTILITY(U,$J,358.3,28892,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28892,1,4,0)
+ ;;=4^T46.5X6D
+ ;;^UTILITY(U,$J,358.3,28892,2)
+ ;;=^5051354
+ ;;^UTILITY(U,$J,358.3,28893,0)
+ ;;=T46.5X6S^^115^1425^11
+ ;;^UTILITY(U,$J,358.3,28893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30748,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,30748,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,30748,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,30749,0)
- ;;=F31.71^^123^1531^4
- ;;^UTILITY(U,$J,358.3,30749,1,0)
+ ;;^UTILITY(U,$J,358.3,28893,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,28893,1,4,0)
+ ;;=4^T46.5X6S
+ ;;^UTILITY(U,$J,358.3,28893,2)
+ ;;=^5051355
+ ;;^UTILITY(U,$J,358.3,28894,0)
+ ;;=T43.206A^^115^1425^6
+ ;;^UTILITY(U,$J,358.3,28894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30749,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,30749,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,30749,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,30750,0)
- ;;=F31.72^^123^1531^5
- ;;^UTILITY(U,$J,358.3,30750,1,0)
+ ;;^UTILITY(U,$J,358.3,28894,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28894,1,4,0)
+ ;;=4^T43.206A
+ ;;^UTILITY(U,$J,358.3,28894,2)
+ ;;=^5050543
+ ;;^UTILITY(U,$J,358.3,28895,0)
+ ;;=T43.206S^^115^1425^7
+ ;;^UTILITY(U,$J,358.3,28895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30750,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,30750,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,30750,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,30751,0)
- ;;=F31.89^^123^1531^21
- ;;^UTILITY(U,$J,358.3,30751,1,0)
+ ;;^UTILITY(U,$J,358.3,28895,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Sequela
+ ;;^UTILITY(U,$J,358.3,28895,1,4,0)
+ ;;=4^T43.206S
+ ;;^UTILITY(U,$J,358.3,28895,2)
+ ;;=^5050545
+ ;;^UTILITY(U,$J,358.3,28896,0)
+ ;;=T43.206D^^115^1425^8
+ ;;^UTILITY(U,$J,358.3,28896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30751,1,3,0)
- ;;=3^Bipolar and Other Related Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,30751,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,30751,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,30752,0)
- ;;=F10.232^^123^1532^2
- ;;^UTILITY(U,$J,358.3,30752,1,0)
+ ;;^UTILITY(U,$J,358.3,28896,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28896,1,4,0)
+ ;;=4^T43.206D
+ ;;^UTILITY(U,$J,358.3,28896,2)
+ ;;=^5050544
+ ;;^UTILITY(U,$J,358.3,28897,0)
+ ;;=T43.506A^^115^1425^12
+ ;;^UTILITY(U,$J,358.3,28897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30752,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,30752,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,30752,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,30753,0)
- ;;=F10.231^^123^1532^3
- ;;^UTILITY(U,$J,358.3,30753,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30753,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,28897,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28897,1,4,0)
+ ;;=4^T43.506A
+ ;;^UTILITY(U,$J,358.3,28897,2)
+ ;;=^5050651
+ ;;^UTILITY(U,$J,358.3,28898,0)
+ ;;=T43.506S^^115^1425^13

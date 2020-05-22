@@ -1,5 +1,5 @@
 ONCCS ;Hines OIFO/GWB - Collaborative Staging ;06/23/10
- ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,5,10**;Jul 31, 2013;Build 20
  ;
  N DIR,IEN,LV,PS,RC,X
  W !
@@ -175,6 +175,7 @@ INIT ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
  S TEXT=HISTNAM
  S $P(^ONCO(165.5,D0,8),U,2)=$E(TEXT,1,40)
  I $P($G(^ONCO(165.5,D0,0)),U,16)<3040000 Q
+ I $P($G(^ONCO(165.5,D0,0)),U,16)>3171231 D CL2018 Q
  W !
  W !?3,"You have changed the HISTOLOGY (ICD-O-3).  This change may"
  W !?3,"affect the validity of the COLLABORATIVE STAGING data."
@@ -189,5 +190,20 @@ CLNCS ;re-initialize if Histology 96703
  K PIECE
  Q
  ;
+CL2018 ;
+ W !
+ W !?3,"You have changed the HISTOLOGY (ICD-O-3).  This change may"
+ W !?3,"affect the validity of the SITE-SPECIFIC DATA ITEMS."
+ W !?3,"Therefore, the SSDi fields have been initialized and need to"
+ W !?3,"be re-entered."
+ W !
+ F PIECE=12:1:14 S $P(^ONCO(165.5,D0,2.3),U,PIECE)=""
+ F PIECE=1:1:35 S $P(^ONCO(165.5,D0,"SSD1"),U,PIECE)=""
+ F PIECE=1:1:36 S $P(^ONCO(165.5,D0,"SSD2"),U,PIECE)=""
+ F PIECE=1:1:34 S $P(^ONCO(165.5,D0,"SSD3"),U,PIECE)=""
+ F PIECE=1:1:33 S $P(^ONCO(165.5,D0,"SSD4"),U,PIECE)=""
+ K PIECE
+ D CLNCS
+ Q
 CLEANUP ;Cleanup
  K D0,ONCOANS,Y

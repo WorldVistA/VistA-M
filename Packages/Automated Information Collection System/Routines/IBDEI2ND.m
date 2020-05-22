@@ -1,44 +1,122 @@
-IBDEI2ND ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.98)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ND ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.98,0,"GL")
- ;;=^IBD(358.98,
- ;;^DIC("B","IMP/EXP AICS DATA QUALIFIERS",358.98)
- ;;=
- ;;^DIC(358.98,"%D",0)
- ;;=^^1^1^2950927^^^
- ;;^DIC(358.98,"%D",1,0)
- ;;=Used by the import/export utility of the encounter forms as a workspace.
- ;;^DD(358.98,0)
- ;;=FIELD^^.03^3
- ;;^DD(358.98,0,"DDA")
- ;;=N
- ;;^DD(358.98,0,"DT")
- ;;=2950717
- ;;^DD(358.98,0,"ID",.02)
- ;;=W "   ",$P(^(0),U,2)
- ;;^DD(358.98,0,"IX","B",358.98,.01)
- ;;=
- ;;^DD(358.98,0,"NM","IMP/EXP AICS DATA QUALIFIERS")
- ;;=
- ;;^DD(358.98,0,"PT",358.22,.09)
- ;;=
- ;;^DD(358.98,0,"PT",358.613,.01)
- ;;=
- ;;^DD(358.98,0,"PT",358.931,.09)
- ;;=
- ;;^DD(358.98,0,"VRPK")
- ;;=IBD
- ;;^DD(358.98,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.98,.01,1,0)
- ;;=^.1
- ;;^DD(358.98,.01,1,1,0)
- ;;=358.98^B
- ;;^DD(358.98,.01,1,1,1)
- ;;=S ^IBD(358.98,"B",$E(X,1,30),DA)=""
- ;;^DD(358.98,.01,1,1,2)
- ;;=K ^IBD(358.98,"B",$E(X,1,30),DA)
- ;;^DD(358.98,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^UTILITY(U,$J,358.3,42241,1,4,0)
+ ;;=4^M84.375S
+ ;;^UTILITY(U,$J,358.3,42241,2)
+ ;;=^5013763
+ ;;^UTILITY(U,$J,358.3,42242,0)
+ ;;=M84.374S^^155^2068^118
+ ;;^UTILITY(U,$J,358.3,42242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42242,1,3,0)
+ ;;=3^Stress fracture, right foot, sequela
+ ;;^UTILITY(U,$J,358.3,42242,1,4,0)
+ ;;=4^M84.374S
+ ;;^UTILITY(U,$J,358.3,42242,2)
+ ;;=^5013757
+ ;;^UTILITY(U,$J,358.3,42243,0)
+ ;;=S92.152S^^155^2068^13
+ ;;^UTILITY(U,$J,358.3,42243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42243,1,3,0)
+ ;;=3^Disp avulsion fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,42243,1,4,0)
+ ;;=4^S92.152S
+ ;;^UTILITY(U,$J,358.3,42243,2)
+ ;;=^5044786
+ ;;^UTILITY(U,$J,358.3,42244,0)
+ ;;=S92.151S^^155^2068^14
+ ;;^UTILITY(U,$J,358.3,42244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42244,1,3,0)
+ ;;=3^Disp avulsion fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,42244,1,4,0)
+ ;;=4^S92.151S
+ ;;^UTILITY(U,$J,358.3,42244,2)
+ ;;=^5044779
+ ;;^UTILITY(U,$J,358.3,42245,0)
+ ;;=S92.032S^^155^2068^15
+ ;;^UTILITY(U,$J,358.3,42245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42245,1,3,0)
+ ;;=3^Disp avulsion tuberosity fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,42245,1,4,0)
+ ;;=4^S92.032S
+ ;;^UTILITY(U,$J,358.3,42245,2)
+ ;;=^5044464
+ ;;^UTILITY(U,$J,358.3,42246,0)
+ ;;=S92.142S^^155^2068^29
+ ;;^UTILITY(U,$J,358.3,42246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42246,1,3,0)
+ ;;=3^Disp dome fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,42246,1,4,0)
+ ;;=4^S92.142S
+ ;;^UTILITY(U,$J,358.3,42246,2)
+ ;;=^5044744
+ ;;^UTILITY(U,$J,358.3,42247,0)
+ ;;=S92.031S^^155^2068^16
+ ;;^UTILITY(U,$J,358.3,42247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42247,1,3,0)
+ ;;=3^Disp avulsion tuberosity fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,42247,1,4,0)
+ ;;=4^S92.031S
+ ;;^UTILITY(U,$J,358.3,42247,2)
+ ;;=^5044457
+ ;;^UTILITY(U,$J,358.3,42248,0)
+ ;;=S92.141S^^155^2068^30
+ ;;^UTILITY(U,$J,358.3,42248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42248,1,3,0)
+ ;;=3^Disp dome fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,42248,1,4,0)
+ ;;=4^S92.141S
+ ;;^UTILITY(U,$J,358.3,42248,2)
+ ;;=^5044737
+ ;;^UTILITY(U,$J,358.3,42249,0)
+ ;;=S92.022S^^155^2068^11
+ ;;^UTILITY(U,$J,358.3,42249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42249,1,3,0)
+ ;;=3^Disp anterior process fx of left calcaneus,sequela
+ ;;^UTILITY(U,$J,358.3,42249,1,4,0)
+ ;;=4^S92.022S
+ ;;^UTILITY(U,$J,358.3,42249,2)
+ ;;=^5044422
+ ;;^UTILITY(U,$J,358.3,42250,0)
+ ;;=S92.021S^^155^2068^12
+ ;;^UTILITY(U,$J,358.3,42250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42250,1,3,0)
+ ;;=3^Disp anterior process fx of right calcaneus,sequela
+ ;;^UTILITY(U,$J,358.3,42250,1,4,0)
+ ;;=4^S92.021S
+ ;;^UTILITY(U,$J,358.3,42250,2)
+ ;;=^5044415
+ ;;^UTILITY(U,$J,358.3,42251,0)
+ ;;=S92.012S^^155^2068^19
+ ;;^UTILITY(U,$J,358.3,42251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42251,1,3,0)
+ ;;=3^Disp body of left calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,42251,1,4,0)
+ ;;=4^S92.012S
+ ;;^UTILITY(U,$J,358.3,42251,2)
+ ;;=^5044380
+ ;;^UTILITY(U,$J,358.3,42252,0)
+ ;;=S92.122S^^155^2068^20
+ ;;^UTILITY(U,$J,358.3,42252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42252,1,3,0)
+ ;;=3^Disp body of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,42252,1,4,0)
+ ;;=4^S92.122S
+ ;;^UTILITY(U,$J,358.3,42252,2)
+ ;;=^5044660
+ ;;^UTILITY(U,$J,358.3,42253,0)
+ ;;=S92.011S^^155^2068^21
+ ;;^UTILITY(U,$J,358.3,42253,1,0)
+ ;;=^358.31IA^4^2

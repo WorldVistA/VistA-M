@@ -1,134 +1,114 @@
-IBDEI2G8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2G8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41534,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,41534,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,41535,0)
- ;;=Z90.79^^159^2005^2
- ;;^UTILITY(U,$J,358.3,41535,1,0)
+ ;;^UTILITY(U,$J,358.3,39114,1,4,0)
+ ;;=4^L97.521
+ ;;^UTILITY(U,$J,358.3,39114,2)
+ ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,39115,0)
+ ;;=L97.522^^152^1990^194
+ ;;^UTILITY(U,$J,358.3,39115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41535,1,3,0)
- ;;=3^Acquired Absence of Genital Organs NEC
- ;;^UTILITY(U,$J,358.3,41535,1,4,0)
- ;;=4^Z90.79
- ;;^UTILITY(U,$J,358.3,41535,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,41536,0)
- ;;=Z90.5^^159^2005^3
- ;;^UTILITY(U,$J,358.3,41536,1,0)
+ ;;^UTILITY(U,$J,358.3,39115,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,39115,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,39115,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,39116,0)
+ ;;=L97.523^^152^1990^195
+ ;;^UTILITY(U,$J,358.3,39116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41536,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,41536,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,41536,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,41537,0)
- ;;=Z90.2^^159^2005^6
- ;;^UTILITY(U,$J,358.3,41537,1,0)
+ ;;^UTILITY(U,$J,358.3,39116,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,39116,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,39116,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,39117,0)
+ ;;=L97.524^^152^1990^196
+ ;;^UTILITY(U,$J,358.3,39117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41537,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
- ;;^UTILITY(U,$J,358.3,41537,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,41537,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,41538,0)
- ;;=Z98.1^^159^2005^10
- ;;^UTILITY(U,$J,358.3,41538,1,0)
+ ;;^UTILITY(U,$J,358.3,39117,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,39117,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,39117,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,39118,0)
+ ;;=L97.529^^152^1990^197
+ ;;^UTILITY(U,$J,358.3,39118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41538,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,41538,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,41538,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,41539,0)
- ;;=Z94.7^^159^2005^16
- ;;^UTILITY(U,$J,358.3,41539,1,0)
+ ;;^UTILITY(U,$J,358.3,39118,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,39118,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,39118,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,39119,0)
+ ;;=L97.911^^152^1990^254
+ ;;^UTILITY(U,$J,358.3,39119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41539,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,41539,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,41539,2)
- ;;=^5063661
- ;;^UTILITY(U,$J,358.3,41540,0)
- ;;=Z83.511^^159^2005^30
- ;;^UTILITY(U,$J,358.3,41540,1,0)
+ ;;^UTILITY(U,$J,358.3,39119,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,39119,1,4,0)
+ ;;=4^L97.911
+ ;;^UTILITY(U,$J,358.3,39119,2)
+ ;;=^5133679
+ ;;^UTILITY(U,$J,358.3,39120,0)
+ ;;=L97.912^^152^1990^255
+ ;;^UTILITY(U,$J,358.3,39120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41540,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,41540,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,41540,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,41541,0)
- ;;=Z80.52^^159^2005^33
- ;;^UTILITY(U,$J,358.3,41541,1,0)
+ ;;^UTILITY(U,$J,358.3,39120,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,39120,1,4,0)
+ ;;=4^L97.912
+ ;;^UTILITY(U,$J,358.3,39120,2)
+ ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,39121,0)
+ ;;=L97.913^^152^1990^256
+ ;;^UTILITY(U,$J,358.3,39121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41541,1,3,0)
- ;;=3^Family Hx of Malig Neop of Baldder
- ;;^UTILITY(U,$J,358.3,41541,1,4,0)
- ;;=4^Z80.52
- ;;^UTILITY(U,$J,358.3,41541,2)
- ;;=^5063352
- ;;^UTILITY(U,$J,358.3,41542,0)
- ;;=Z80.51^^159^2005^36
- ;;^UTILITY(U,$J,358.3,41542,1,0)
+ ;;^UTILITY(U,$J,358.3,39121,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,39121,1,4,0)
+ ;;=4^L97.913
+ ;;^UTILITY(U,$J,358.3,39121,2)
+ ;;=^5133683
+ ;;^UTILITY(U,$J,358.3,39122,0)
+ ;;=L97.914^^152^1990^257
+ ;;^UTILITY(U,$J,358.3,39122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41542,1,3,0)
- ;;=3^Family Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,41542,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,41542,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,41543,0)
- ;;=Z83.41^^159^2005^43
- ;;^UTILITY(U,$J,358.3,41543,1,0)
+ ;;^UTILITY(U,$J,358.3,39122,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,39122,1,4,0)
+ ;;=4^L97.914
+ ;;^UTILITY(U,$J,358.3,39122,2)
+ ;;=^5133685
+ ;;^UTILITY(U,$J,358.3,39123,0)
+ ;;=L97.919^^152^1990^258
+ ;;^UTILITY(U,$J,358.3,39123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41543,1,3,0)
- ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
- ;;^UTILITY(U,$J,358.3,41543,1,4,0)
- ;;=4^Z83.41
- ;;^UTILITY(U,$J,358.3,41543,2)
- ;;=^5063380
- ;;^UTILITY(U,$J,358.3,41544,0)
- ;;=Z81.8^^159^2005^50
- ;;^UTILITY(U,$J,358.3,41544,1,0)
+ ;;^UTILITY(U,$J,358.3,39123,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,39123,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,39123,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,39124,0)
+ ;;=L97.921^^152^1990^207
+ ;;^UTILITY(U,$J,358.3,39124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41544,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
- ;;^UTILITY(U,$J,358.3,41544,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,41544,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,41545,0)
- ;;=Z81.4^^159^2005^51
- ;;^UTILITY(U,$J,358.3,41545,1,0)
+ ;;^UTILITY(U,$J,358.3,39124,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,39124,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,39124,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,39125,0)
+ ;;=L97.922^^152^1990^208
+ ;;^UTILITY(U,$J,358.3,39125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41545,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence NEC
- ;;^UTILITY(U,$J,358.3,41545,1,4,0)
- ;;=4^Z81.4
- ;;^UTILITY(U,$J,358.3,41545,2)
- ;;=^5063362
- ;;^UTILITY(U,$J,358.3,41546,0)
- ;;=Z98.0^^159^2005^62
- ;;^UTILITY(U,$J,358.3,41546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41546,1,3,0)
- ;;=3^Intestinal Bypass/Anastomosis Status
- ;;^UTILITY(U,$J,358.3,41546,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,41546,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,41547,0)
- ;;=Z91.128^^159^2005^61
- ;;^UTILITY(U,$J,358.3,41547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41547,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,39125,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed

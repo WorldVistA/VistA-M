@@ -1,136 +1,120 @@
-IBDEI34G ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52394,2)
- ;;=^5063117
- ;;^UTILITY(U,$J,358.3,52395,0)
- ;;=Z56.82^^237^2596^6
- ;;^UTILITY(U,$J,358.3,52395,1,0)
+ ;;^UTILITY(U,$J,358.3,49862,0)
+ ;;=I70.249^^193^2485^11
+ ;;^UTILITY(U,$J,358.3,49862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52395,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,52395,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,52395,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,52396,0)
- ;;=Z56.0^^237^2596^13
- ;;^UTILITY(U,$J,358.3,52396,1,0)
+ ;;^UTILITY(U,$J,358.3,49862,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,49862,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,49862,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,49863,0)
+ ;;=I70.239^^193^2485^12
+ ;;^UTILITY(U,$J,358.3,49863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52396,1,3,0)
- ;;=3^Unemployeement,Unspec
- ;;^UTILITY(U,$J,358.3,52396,1,4,0)
- ;;=4^Z56.0
- ;;^UTILITY(U,$J,358.3,52396,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,52397,0)
- ;;=Z56.1^^237^2596^2
- ;;^UTILITY(U,$J,358.3,52397,1,0)
+ ;;^UTILITY(U,$J,358.3,49863,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,49863,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,49863,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,49864,0)
+ ;;=I70.269^^193^2485^13
+ ;;^UTILITY(U,$J,358.3,49864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52397,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,52397,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,52397,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,52398,0)
- ;;=Z56.2^^237^2596^11
- ;;^UTILITY(U,$J,358.3,52398,1,0)
+ ;;^UTILITY(U,$J,358.3,49864,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,49864,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,49864,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,49865,0)
+ ;;=I70.263^^193^2485^14
+ ;;^UTILITY(U,$J,358.3,49865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52398,1,3,0)
- ;;=3^Threat of Job Loss
- ;;^UTILITY(U,$J,358.3,52398,1,4,0)
- ;;=4^Z56.2
- ;;^UTILITY(U,$J,358.3,52398,2)
- ;;=^5063109
- ;;^UTILITY(U,$J,358.3,52399,0)
- ;;=Z56.3^^237^2596^10
- ;;^UTILITY(U,$J,358.3,52399,1,0)
+ ;;^UTILITY(U,$J,358.3,49865,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,49865,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,49865,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,49866,0)
+ ;;=I70.262^^193^2485^15
+ ;;^UTILITY(U,$J,358.3,49866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52399,1,3,0)
- ;;=3^Stressful Work Schedule
- ;;^UTILITY(U,$J,358.3,52399,1,4,0)
- ;;=4^Z56.3
- ;;^UTILITY(U,$J,358.3,52399,2)
- ;;=^5063110
- ;;^UTILITY(U,$J,358.3,52400,0)
- ;;=Z56.4^^237^2596^3
- ;;^UTILITY(U,$J,358.3,52400,1,0)
+ ;;^UTILITY(U,$J,358.3,49866,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
+ ;;^UTILITY(U,$J,358.3,49866,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,49866,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,49867,0)
+ ;;=I70.261^^193^2485^16
+ ;;^UTILITY(U,$J,358.3,49867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52400,1,3,0)
- ;;=3^Discord w/ Boss & Workmates
- ;;^UTILITY(U,$J,358.3,52400,1,4,0)
- ;;=4^Z56.4
- ;;^UTILITY(U,$J,358.3,52400,2)
- ;;=^5063111
- ;;^UTILITY(U,$J,358.3,52401,0)
- ;;=Z56.5^^237^2596^12
- ;;^UTILITY(U,$J,358.3,52401,1,0)
+ ;;^UTILITY(U,$J,358.3,49867,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
+ ;;^UTILITY(U,$J,358.3,49867,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,49867,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,49868,0)
+ ;;=I71.2^^193^2485^34
+ ;;^UTILITY(U,$J,358.3,49868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52401,1,3,0)
- ;;=3^Uncongenial Work Environment
- ;;^UTILITY(U,$J,358.3,52401,1,4,0)
- ;;=4^Z56.5
- ;;^UTILITY(U,$J,358.3,52401,2)
- ;;=^5063112
- ;;^UTILITY(U,$J,358.3,52402,0)
- ;;=Z56.6^^237^2596^5
- ;;^UTILITY(U,$J,358.3,52402,1,0)
+ ;;^UTILITY(U,$J,358.3,49868,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,49868,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,49868,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,49869,0)
+ ;;=I71.4^^193^2485^1
+ ;;^UTILITY(U,$J,358.3,49869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52402,1,3,0)
- ;;=3^Physical & Mental Strain Related to Work NEC
- ;;^UTILITY(U,$J,358.3,52402,1,4,0)
- ;;=4^Z56.6
- ;;^UTILITY(U,$J,358.3,52402,2)
- ;;=^5063113
- ;;^UTILITY(U,$J,358.3,52403,0)
- ;;=Z56.82^^237^2596^4
- ;;^UTILITY(U,$J,358.3,52403,1,0)
+ ;;^UTILITY(U,$J,358.3,49869,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,49869,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,49869,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,49870,0)
+ ;;=I73.9^^193^2485^32
+ ;;^UTILITY(U,$J,358.3,49870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52403,1,3,0)
- ;;=3^Military Deployment Status
- ;;^UTILITY(U,$J,358.3,52403,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,52403,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,52404,0)
- ;;=Z56.89^^237^2596^7
- ;;^UTILITY(U,$J,358.3,52404,1,0)
+ ;;^UTILITY(U,$J,358.3,49870,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,49870,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,49870,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,49871,0)
+ ;;=I82.891^^193^2485^23
+ ;;^UTILITY(U,$J,358.3,49871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52404,1,3,0)
- ;;=3^Problems Related to Employment,Other
- ;;^UTILITY(U,$J,358.3,52404,1,4,0)
- ;;=4^Z56.89
- ;;^UTILITY(U,$J,358.3,52404,2)
- ;;=^5063116
- ;;^UTILITY(U,$J,358.3,52405,0)
- ;;=F64.1^^237^2597^2
- ;;^UTILITY(U,$J,358.3,52405,1,0)
+ ;;^UTILITY(U,$J,358.3,49871,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,49871,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,49871,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,49872,0)
+ ;;=I82.890^^193^2485^22
+ ;;^UTILITY(U,$J,358.3,49872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52405,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,52405,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,52405,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,52406,0)
- ;;=F64.8^^237^2597^1
- ;;^UTILITY(U,$J,358.3,52406,1,0)
+ ;;^UTILITY(U,$J,358.3,49872,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,49872,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,49872,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,49873,0)
+ ;;=I25.729^^193^2485^2
+ ;;^UTILITY(U,$J,358.3,49873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52406,1,3,0)
- ;;=3^Gender Dysphoria NEC
- ;;^UTILITY(U,$J,358.3,52406,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,52406,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,52407,0)
- ;;=F64.9^^237^2597^3
- ;;^UTILITY(U,$J,358.3,52407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52407,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,52407,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,52407,2)
- ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,49873,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris

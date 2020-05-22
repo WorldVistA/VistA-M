@@ -1,136 +1,124 @@
-IBDEI295 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI295 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38207,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,38207,1,4,0)
- ;;=4^F28.
- ;;^UTILITY(U,$J,358.3,38207,2)
- ;;=^5003483
- ;;^UTILITY(U,$J,358.3,38208,0)
- ;;=F29.^^145^1851^6
- ;;^UTILITY(U,$J,358.3,38208,1,0)
+ ;;^UTILITY(U,$J,358.3,35957,2)
+ ;;=^5011274
+ ;;^UTILITY(U,$J,358.3,35958,0)
+ ;;=M23.8X1^^139^1829^28
+ ;;^UTILITY(U,$J,358.3,35958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38208,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38208,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,38208,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,38209,0)
- ;;=F52.32^^145^1852^1
- ;;^UTILITY(U,$J,358.3,38209,1,0)
+ ;;^UTILITY(U,$J,358.3,35958,1,3,0)
+ ;;=3^Internal Derangement,Rt Knee NEC
+ ;;^UTILITY(U,$J,358.3,35958,1,4,0)
+ ;;=4^M23.8X1
+ ;;^UTILITY(U,$J,358.3,35958,2)
+ ;;=^5011273
+ ;;^UTILITY(U,$J,358.3,35959,0)
+ ;;=M62.838^^139^1829^43
+ ;;^UTILITY(U,$J,358.3,35959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38209,1,3,0)
- ;;=3^Delayed Ejaculation
- ;;^UTILITY(U,$J,358.3,38209,1,4,0)
- ;;=4^F52.32
- ;;^UTILITY(U,$J,358.3,38209,2)
- ;;=^331927
- ;;^UTILITY(U,$J,358.3,38210,0)
- ;;=F52.21^^145^1852^2
- ;;^UTILITY(U,$J,358.3,38210,1,0)
+ ;;^UTILITY(U,$J,358.3,35959,1,3,0)
+ ;;=3^Muscle spasm NEC
+ ;;^UTILITY(U,$J,358.3,35959,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,35959,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,35960,0)
+ ;;=M76.52^^139^1829^57
+ ;;^UTILITY(U,$J,358.3,35960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38210,1,3,0)
- ;;=3^Erectile Disorder
- ;;^UTILITY(U,$J,358.3,38210,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,38210,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,38211,0)
- ;;=F52.31^^145^1852^3
- ;;^UTILITY(U,$J,358.3,38211,1,0)
+ ;;^UTILITY(U,$J,358.3,35960,1,3,0)
+ ;;=3^Patellar Tendinitis,Lt Knee
+ ;;^UTILITY(U,$J,358.3,35960,1,4,0)
+ ;;=4^M76.52
+ ;;^UTILITY(U,$J,358.3,35960,2)
+ ;;=^5013283
+ ;;^UTILITY(U,$J,358.3,35961,0)
+ ;;=M76.51^^139^1829^58
+ ;;^UTILITY(U,$J,358.3,35961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38211,1,3,0)
- ;;=3^Female Orgasmic Disorder
- ;;^UTILITY(U,$J,358.3,38211,1,4,0)
- ;;=4^F52.31
- ;;^UTILITY(U,$J,358.3,38211,2)
- ;;=^331926
- ;;^UTILITY(U,$J,358.3,38212,0)
- ;;=F52.22^^145^1852^4
- ;;^UTILITY(U,$J,358.3,38212,1,0)
+ ;;^UTILITY(U,$J,358.3,35961,1,3,0)
+ ;;=3^Patellar Tendinitis,Rt Knee
+ ;;^UTILITY(U,$J,358.3,35961,1,4,0)
+ ;;=4^M76.51
+ ;;^UTILITY(U,$J,358.3,35961,2)
+ ;;=^5013282
+ ;;^UTILITY(U,$J,358.3,35962,0)
+ ;;=M65.4^^139^1829^59
+ ;;^UTILITY(U,$J,358.3,35962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38212,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,38212,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,38212,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,38213,0)
- ;;=F52.6^^145^1852^5
- ;;^UTILITY(U,$J,358.3,38213,1,0)
+ ;;^UTILITY(U,$J,358.3,35962,1,3,0)
+ ;;=3^Radial Styloid Tenosynovitis
+ ;;^UTILITY(U,$J,358.3,35962,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,35962,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,35963,0)
+ ;;=M75.102^^139^1829^62
+ ;;^UTILITY(U,$J,358.3,35963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38213,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,38213,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,38213,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,38214,0)
- ;;=F52.0^^145^1852^6
- ;;^UTILITY(U,$J,358.3,38214,1,0)
+ ;;^UTILITY(U,$J,358.3,35963,1,3,0)
+ ;;=3^Rotator-Cuff Tear/Rupture,Lt Shoulder,Unspec
+ ;;^UTILITY(U,$J,358.3,35963,1,4,0)
+ ;;=4^M75.102
+ ;;^UTILITY(U,$J,358.3,35963,2)
+ ;;=^5013243
+ ;;^UTILITY(U,$J,358.3,35964,0)
+ ;;=M75.101^^139^1829^63
+ ;;^UTILITY(U,$J,358.3,35964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38214,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,38214,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,38214,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,38215,0)
- ;;=F52.4^^145^1852^7
- ;;^UTILITY(U,$J,358.3,38215,1,0)
+ ;;^UTILITY(U,$J,358.3,35964,1,3,0)
+ ;;=3^Rotator-Cuff Tear/Rupture,Rt Shoulder,Unspec
+ ;;^UTILITY(U,$J,358.3,35964,1,4,0)
+ ;;=4^M75.101
+ ;;^UTILITY(U,$J,358.3,35964,2)
+ ;;=^5013242
+ ;;^UTILITY(U,$J,358.3,35965,0)
+ ;;=M67.02^^139^1829^65
+ ;;^UTILITY(U,$J,358.3,35965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38215,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,38215,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,38215,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,38216,0)
- ;;=F52.8^^145^1852^9
- ;;^UTILITY(U,$J,358.3,38216,1,0)
+ ;;^UTILITY(U,$J,358.3,35965,1,3,0)
+ ;;=3^Short Achilles Tendon,Lt Ankle
+ ;;^UTILITY(U,$J,358.3,35965,1,4,0)
+ ;;=4^M67.02
+ ;;^UTILITY(U,$J,358.3,35965,2)
+ ;;=^5012907
+ ;;^UTILITY(U,$J,358.3,35966,0)
+ ;;=M66.232^^139^1829^67
+ ;;^UTILITY(U,$J,358.3,35966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38216,1,3,0)
- ;;=3^Sexual Dysfuntion NEC
- ;;^UTILITY(U,$J,358.3,38216,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,38216,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,38217,0)
- ;;=F52.9^^145^1852^8
- ;;^UTILITY(U,$J,358.3,38217,1,0)
+ ;;^UTILITY(U,$J,358.3,35966,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Lt Forearm
+ ;;^UTILITY(U,$J,358.3,35966,1,4,0)
+ ;;=4^M66.232
+ ;;^UTILITY(U,$J,358.3,35966,2)
+ ;;=^5012855
+ ;;^UTILITY(U,$J,358.3,35967,0)
+ ;;=M66.242^^139^1829^68
+ ;;^UTILITY(U,$J,358.3,35967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38217,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,38217,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,38217,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,38218,0)
- ;;=G47.09^^145^1853^14
- ;;^UTILITY(U,$J,358.3,38218,1,0)
+ ;;^UTILITY(U,$J,358.3,35967,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Lt Hand
+ ;;^UTILITY(U,$J,358.3,35967,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,35967,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,35968,0)
+ ;;=M66.231^^139^1829^69
+ ;;^UTILITY(U,$J,358.3,35968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38218,1,3,0)
- ;;=3^Insomnia,Other
- ;;^UTILITY(U,$J,358.3,38218,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,38218,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,38219,0)
- ;;=G47.00^^145^1853^15
- ;;^UTILITY(U,$J,358.3,38219,1,0)
+ ;;^UTILITY(U,$J,358.3,35968,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Rt Forearm
+ ;;^UTILITY(U,$J,358.3,35968,1,4,0)
+ ;;=4^M66.231
+ ;;^UTILITY(U,$J,358.3,35968,2)
+ ;;=^5012854
+ ;;^UTILITY(U,$J,358.3,35969,0)
+ ;;=M66.241^^139^1829^70
+ ;;^UTILITY(U,$J,358.3,35969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38219,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,38219,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,38219,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,38220,0)
- ;;=G47.10^^145^1853^12
- ;;^UTILITY(U,$J,358.3,38220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38220,1,3,0)
- ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,35969,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Rt Hand
+ ;;^UTILITY(U,$J,358.3,35969,1,4,0)
+ ;;=4^M66.241

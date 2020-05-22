@@ -1,132 +1,118 @@
-IBDEI187 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI187 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20842,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,20842,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,20842,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,20843,0)
- ;;=G44.1^^84^941^157
- ;;^UTILITY(U,$J,358.3,20843,1,0)
+ ;;^UTILITY(U,$J,358.3,19671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20843,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,20843,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,20843,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,20844,0)
- ;;=G93.3^^84^941^144
- ;;^UTILITY(U,$J,358.3,20844,1,0)
+ ;;^UTILITY(U,$J,358.3,19671,1,3,0)
+ ;;=3^Displaced segmental fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19671,1,4,0)
+ ;;=4^S72.361S
+ ;;^UTILITY(U,$J,358.3,19671,2)
+ ;;=^5038543
+ ;;^UTILITY(U,$J,358.3,19672,0)
+ ;;=S72.362S^^93^995^38
+ ;;^UTILITY(U,$J,358.3,19672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20844,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,20844,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,20844,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,20845,0)
- ;;=K08.101^^84^941^52
- ;;^UTILITY(U,$J,358.3,20845,1,0)
+ ;;^UTILITY(U,$J,358.3,19672,1,3,0)
+ ;;=3^Displaced segmental fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19672,1,4,0)
+ ;;=4^S72.362S
+ ;;^UTILITY(U,$J,358.3,19672,2)
+ ;;=^5038559
+ ;;^UTILITY(U,$J,358.3,19673,0)
+ ;;=S72.364S^^93^995^87
+ ;;^UTILITY(U,$J,358.3,19673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20845,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,20845,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,20845,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,20846,0)
- ;;=K08.102^^84^941^53
- ;;^UTILITY(U,$J,358.3,20846,1,0)
+ ;;^UTILITY(U,$J,358.3,19673,1,3,0)
+ ;;=3^Nondisp segmental fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19673,1,4,0)
+ ;;=4^S72.364S
+ ;;^UTILITY(U,$J,358.3,19673,2)
+ ;;=^5038591
+ ;;^UTILITY(U,$J,358.3,19674,0)
+ ;;=S72.365S^^93^995^86
+ ;;^UTILITY(U,$J,358.3,19674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20846,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,20846,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,20846,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,20847,0)
- ;;=K08.103^^84^941^54
- ;;^UTILITY(U,$J,358.3,20847,1,0)
+ ;;^UTILITY(U,$J,358.3,19674,1,3,0)
+ ;;=3^Nondisp segmental fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19674,1,4,0)
+ ;;=4^S72.365S
+ ;;^UTILITY(U,$J,358.3,19674,2)
+ ;;=^5038607
+ ;;^UTILITY(U,$J,358.3,19675,0)
+ ;;=S72.421S^^93^995^23
+ ;;^UTILITY(U,$J,358.3,19675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20847,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,20847,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,20847,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,20848,0)
- ;;=K08.104^^84^941^55
- ;;^UTILITY(U,$J,358.3,20848,1,0)
+ ;;^UTILITY(U,$J,358.3,19675,1,3,0)
+ ;;=3^Displaced lateral condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19675,1,4,0)
+ ;;=4^S72.421S
+ ;;^UTILITY(U,$J,358.3,19675,2)
+ ;;=^5038771
+ ;;^UTILITY(U,$J,358.3,19676,0)
+ ;;=S72.422S^^93^995^22
+ ;;^UTILITY(U,$J,358.3,19676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20848,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,20848,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,20848,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,20849,0)
- ;;=K08.109^^84^941^56
- ;;^UTILITY(U,$J,358.3,20849,1,0)
+ ;;^UTILITY(U,$J,358.3,19676,1,3,0)
+ ;;=3^Displaced lateral condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19676,1,4,0)
+ ;;=4^S72.422S
+ ;;^UTILITY(U,$J,358.3,19676,2)
+ ;;=^5038787
+ ;;^UTILITY(U,$J,358.3,19677,0)
+ ;;=S72.424S^^93^995^71
+ ;;^UTILITY(U,$J,358.3,19677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20849,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,20849,1,4,0)
- ;;=4^K08.109
- ;;^UTILITY(U,$J,358.3,20849,2)
- ;;=^5008410
- ;;^UTILITY(U,$J,358.3,20850,0)
- ;;=K08.401^^84^941^133
- ;;^UTILITY(U,$J,358.3,20850,1,0)
+ ;;^UTILITY(U,$J,358.3,19677,1,3,0)
+ ;;=3^Nondisp lateral condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19677,1,4,0)
+ ;;=4^S72.424S
+ ;;^UTILITY(U,$J,358.3,19677,2)
+ ;;=^5038819
+ ;;^UTILITY(U,$J,358.3,19678,0)
+ ;;=S72.425S^^93^995^70
+ ;;^UTILITY(U,$J,358.3,19678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20850,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,20850,1,4,0)
- ;;=4^K08.401
- ;;^UTILITY(U,$J,358.3,20850,2)
- ;;=^5008432
- ;;^UTILITY(U,$J,358.3,20851,0)
- ;;=K08.402^^84^941^134
- ;;^UTILITY(U,$J,358.3,20851,1,0)
+ ;;^UTILITY(U,$J,358.3,19678,1,3,0)
+ ;;=3^Nondisp lateral condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19678,1,4,0)
+ ;;=4^S72.425S
+ ;;^UTILITY(U,$J,358.3,19678,2)
+ ;;=^5038835
+ ;;^UTILITY(U,$J,358.3,19679,0)
+ ;;=S72.431S^^93^995^31
+ ;;^UTILITY(U,$J,358.3,19679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20851,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,20851,1,4,0)
- ;;=4^K08.402
- ;;^UTILITY(U,$J,358.3,20851,2)
- ;;=^5008433
- ;;^UTILITY(U,$J,358.3,20852,0)
- ;;=K08.403^^84^941^135
- ;;^UTILITY(U,$J,358.3,20852,1,0)
+ ;;^UTILITY(U,$J,358.3,19679,1,3,0)
+ ;;=3^Displaced medial condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19679,1,4,0)
+ ;;=4^S72.431S
+ ;;^UTILITY(U,$J,358.3,19679,2)
+ ;;=^5038867
+ ;;^UTILITY(U,$J,358.3,19680,0)
+ ;;=S72.432S^^93^995^30
+ ;;^UTILITY(U,$J,358.3,19680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20852,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,20852,1,4,0)
- ;;=4^K08.403
- ;;^UTILITY(U,$J,358.3,20852,2)
- ;;=^5008434
- ;;^UTILITY(U,$J,358.3,20853,0)
- ;;=K08.404^^84^941^136
- ;;^UTILITY(U,$J,358.3,20853,1,0)
+ ;;^UTILITY(U,$J,358.3,19680,1,3,0)
+ ;;=3^Displaced medial condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19680,1,4,0)
+ ;;=4^S72.432S
+ ;;^UTILITY(U,$J,358.3,19680,2)
+ ;;=^5038883
+ ;;^UTILITY(U,$J,358.3,19681,0)
+ ;;=S72.434S^^93^995^79
+ ;;^UTILITY(U,$J,358.3,19681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20853,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,20853,1,4,0)
- ;;=4^K08.404
- ;;^UTILITY(U,$J,358.3,20853,2)
- ;;=^5008435
- ;;^UTILITY(U,$J,358.3,20854,0)
- ;;=K08.409^^84^941^137
- ;;^UTILITY(U,$J,358.3,20854,1,0)
+ ;;^UTILITY(U,$J,358.3,19681,1,3,0)
+ ;;=3^Nondisp medial condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19681,1,4,0)
+ ;;=4^S72.434S
+ ;;^UTILITY(U,$J,358.3,19681,2)
+ ;;=^5038915
+ ;;^UTILITY(U,$J,358.3,19682,0)
+ ;;=S72.435S^^93^995^78
+ ;;^UTILITY(U,$J,358.3,19682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20854,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,20854,1,4,0)
- ;;=4^K08.409
- ;;^UTILITY(U,$J,358.3,20854,2)
- ;;=^5008436
- ;;^UTILITY(U,$J,358.3,20855,0)
- ;;=N39.42^^84^941^93
+ ;;^UTILITY(U,$J,358.3,19682,1,3,0)
+ ;;=3^Nondisp medial condyle fx of left femur, sequela

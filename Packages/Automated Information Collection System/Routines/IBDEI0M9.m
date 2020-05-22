@@ -1,348 +1,136 @@
-IBDEI0M9 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0M9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28199,1,4,0)
- ;;=4^L89.013
- ;;^UTILITY(U,$J,358.3,28199,2)
- ;;=^5009340
- ;;^UTILITY(U,$J,358.3,28200,0)
- ;;=L89.014^^80^1219^76
- ;;^UTILITY(U,$J,358.3,28200,1,0)
+ ;;^UTILITY(U,$J,358.3,9894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28200,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Stage 4
- ;;^UTILITY(U,$J,358.3,28200,1,4,0)
- ;;=4^L89.014
- ;;^UTILITY(U,$J,358.3,28200,2)
- ;;=^5009341
- ;;^UTILITY(U,$J,358.3,28201,0)
- ;;=L89.019^^80^1219^77
- ;;^UTILITY(U,$J,358.3,28201,1,0)
+ ;;^UTILITY(U,$J,358.3,9894,1,3,0)
+ ;;=3^Anaphylactic Shock
+ ;;^UTILITY(U,$J,358.3,9894,1,4,0)
+ ;;=4^T78.2XXA
+ ;;^UTILITY(U,$J,358.3,9894,2)
+ ;;=^5054278
+ ;;^UTILITY(U,$J,358.3,9895,0)
+ ;;=B35.9^^72^655^16
+ ;;^UTILITY(U,$J,358.3,9895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28201,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Unspec Stage
- ;;^UTILITY(U,$J,358.3,28201,1,4,0)
- ;;=4^L89.019
- ;;^UTILITY(U,$J,358.3,28201,2)
- ;;=^5133648
- ;;^UTILITY(U,$J,358.3,28202,0)
- ;;=L89.029^^80^1219^29
- ;;^UTILITY(U,$J,358.3,28202,1,0)
+ ;;^UTILITY(U,$J,358.3,9895,1,3,0)
+ ;;=3^Dermatophytosis (Tinea)
+ ;;^UTILITY(U,$J,358.3,9895,1,4,0)
+ ;;=4^B35.9
+ ;;^UTILITY(U,$J,358.3,9895,2)
+ ;;=^5000607
+ ;;^UTILITY(U,$J,358.3,9896,0)
+ ;;=L60.0^^72^655^17
+ ;;^UTILITY(U,$J,358.3,9896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28202,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Unspec Stage
- ;;^UTILITY(U,$J,358.3,28202,1,4,0)
- ;;=4^L89.029
- ;;^UTILITY(U,$J,358.3,28202,2)
- ;;=^5133649
- ;;^UTILITY(U,$J,358.3,28203,0)
- ;;=L89.020^^80^1219^30
- ;;^UTILITY(U,$J,358.3,28203,1,0)
+ ;;^UTILITY(U,$J,358.3,9896,1,3,0)
+ ;;=3^Ingrown Nail
+ ;;^UTILITY(U,$J,358.3,9896,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,9896,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,9897,0)
+ ;;=B35.1^^72^655^18
+ ;;^UTILITY(U,$J,358.3,9897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28203,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Unstageable
- ;;^UTILITY(U,$J,358.3,28203,1,4,0)
- ;;=4^L89.020
- ;;^UTILITY(U,$J,358.3,28203,2)
- ;;=^5009342
- ;;^UTILITY(U,$J,358.3,28204,0)
- ;;=L89.021^^80^1219^25
- ;;^UTILITY(U,$J,358.3,28204,1,0)
+ ;;^UTILITY(U,$J,358.3,9897,1,3,0)
+ ;;=3^Tinea Unguium (Onychomycosis)(Finger/Toe)
+ ;;^UTILITY(U,$J,358.3,9897,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,9897,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,9898,0)
+ ;;=L89.309^^72^655^19
+ ;;^UTILITY(U,$J,358.3,9898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28204,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 1
- ;;^UTILITY(U,$J,358.3,28204,1,4,0)
- ;;=4^L89.021
- ;;^UTILITY(U,$J,358.3,28204,2)
- ;;=^5009343
- ;;^UTILITY(U,$J,358.3,28205,0)
- ;;=L89.022^^80^1219^26
- ;;^UTILITY(U,$J,358.3,28205,1,0)
+ ;;^UTILITY(U,$J,358.3,9898,1,3,0)
+ ;;=3^Pressure Ulcer,Buttock
+ ;;^UTILITY(U,$J,358.3,9898,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,9898,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,9899,0)
+ ;;=L89.159^^72^655^20
+ ;;^UTILITY(U,$J,358.3,9899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28205,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 2
- ;;^UTILITY(U,$J,358.3,28205,1,4,0)
- ;;=4^L89.022
- ;;^UTILITY(U,$J,358.3,28205,2)
- ;;=^5009344
- ;;^UTILITY(U,$J,358.3,28206,0)
- ;;=L89.023^^80^1219^27
- ;;^UTILITY(U,$J,358.3,28206,1,0)
+ ;;^UTILITY(U,$J,358.3,9899,1,3,0)
+ ;;=3^Pressure Ulcer,Sacral Region
+ ;;^UTILITY(U,$J,358.3,9899,1,4,0)
+ ;;=4^L89.159
+ ;;^UTILITY(U,$J,358.3,9899,2)
+ ;;=^5009373
+ ;;^UTILITY(U,$J,358.3,9900,0)
+ ;;=L97.909^^72^655^21
+ ;;^UTILITY(U,$J,358.3,9900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28206,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 3
- ;;^UTILITY(U,$J,358.3,28206,1,4,0)
- ;;=4^L89.023
- ;;^UTILITY(U,$J,358.3,28206,2)
- ;;=^5009345
- ;;^UTILITY(U,$J,358.3,28207,0)
- ;;=L89.024^^80^1219^28
- ;;^UTILITY(U,$J,358.3,28207,1,0)
+ ;;^UTILITY(U,$J,358.3,9900,1,3,0)
+ ;;=3^Non-Pressure Ulcer,Lower Leg
+ ;;^UTILITY(U,$J,358.3,9900,1,4,0)
+ ;;=4^L97.909
+ ;;^UTILITY(U,$J,358.3,9900,2)
+ ;;=^5133687
+ ;;^UTILITY(U,$J,358.3,9901,0)
+ ;;=B02.9^^72^655^28
+ ;;^UTILITY(U,$J,358.3,9901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28207,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 4
- ;;^UTILITY(U,$J,358.3,28207,1,4,0)
- ;;=4^L89.024
- ;;^UTILITY(U,$J,358.3,28207,2)
- ;;=^5009346
- ;;^UTILITY(U,$J,358.3,28208,0)
- ;;=L89.110^^80^1219^102
- ;;^UTILITY(U,$J,358.3,28208,1,0)
+ ;;^UTILITY(U,$J,358.3,9901,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,9901,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,9901,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,9902,0)
+ ;;=B00.9^^72^655^29
+ ;;^UTILITY(U,$J,358.3,9902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28208,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,28208,1,4,0)
- ;;=4^L89.110
- ;;^UTILITY(U,$J,358.3,28208,2)
- ;;=^5009352
- ;;^UTILITY(U,$J,358.3,28209,0)
- ;;=L89.111^^80^1219^97
- ;;^UTILITY(U,$J,358.3,28209,1,0)
+ ;;^UTILITY(U,$J,358.3,9902,1,3,0)
+ ;;=3^Herpesviral Infection
+ ;;^UTILITY(U,$J,358.3,9902,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,9902,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,9903,0)
+ ;;=L55.9^^72^655^30
+ ;;^UTILITY(U,$J,358.3,9903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28209,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,28209,1,4,0)
- ;;=4^L89.111
- ;;^UTILITY(U,$J,358.3,28209,2)
- ;;=^5009353
- ;;^UTILITY(U,$J,358.3,28210,0)
- ;;=L89.112^^80^1219^98
- ;;^UTILITY(U,$J,358.3,28210,1,0)
+ ;;^UTILITY(U,$J,358.3,9903,1,3,0)
+ ;;=3^Sunburn
+ ;;^UTILITY(U,$J,358.3,9903,1,4,0)
+ ;;=4^L55.9
+ ;;^UTILITY(U,$J,358.3,9903,2)
+ ;;=^5009213
+ ;;^UTILITY(U,$J,358.3,9904,0)
+ ;;=L51.1^^72^655^32
+ ;;^UTILITY(U,$J,358.3,9904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28210,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,28210,1,4,0)
- ;;=4^L89.112
- ;;^UTILITY(U,$J,358.3,28210,2)
- ;;=^5009354
- ;;^UTILITY(U,$J,358.3,28211,0)
- ;;=L89.113^^80^1219^99
- ;;^UTILITY(U,$J,358.3,28211,1,0)
+ ;;^UTILITY(U,$J,358.3,9904,1,3,0)
+ ;;=3^Stevens-Johnson Syndrome
+ ;;^UTILITY(U,$J,358.3,9904,1,4,0)
+ ;;=4^L51.1
+ ;;^UTILITY(U,$J,358.3,9904,2)
+ ;;=^336636
+ ;;^UTILITY(U,$J,358.3,9905,0)
+ ;;=L10.9^^72^655^33
+ ;;^UTILITY(U,$J,358.3,9905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28211,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,28211,1,4,0)
- ;;=4^L89.113
- ;;^UTILITY(U,$J,358.3,28211,2)
- ;;=^5009355
- ;;^UTILITY(U,$J,358.3,28212,0)
- ;;=L89.114^^80^1219^100
- ;;^UTILITY(U,$J,358.3,28212,1,0)
+ ;;^UTILITY(U,$J,358.3,9905,1,3,0)
+ ;;=3^Pemphigus
+ ;;^UTILITY(U,$J,358.3,9905,1,4,0)
+ ;;=4^L10.9
+ ;;^UTILITY(U,$J,358.3,9905,2)
+ ;;=^5009090
+ ;;^UTILITY(U,$J,358.3,9906,0)
+ ;;=L51.9^^72^655^34
+ ;;^UTILITY(U,$J,358.3,9906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28212,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,28212,1,4,0)
- ;;=4^L89.114
- ;;^UTILITY(U,$J,358.3,28212,2)
- ;;=^5009356
- ;;^UTILITY(U,$J,358.3,28213,0)
- ;;=L89.119^^80^1219^101
- ;;^UTILITY(U,$J,358.3,28213,1,0)
+ ;;^UTILITY(U,$J,358.3,9906,1,3,0)
+ ;;=3^Erythema Multiforme
+ ;;^UTILITY(U,$J,358.3,9906,1,4,0)
+ ;;=4^L51.9
+ ;;^UTILITY(U,$J,358.3,9906,2)
+ ;;=^336759
+ ;;^UTILITY(U,$J,358.3,9907,0)
+ ;;=L88.^^72^655^35
+ ;;^UTILITY(U,$J,358.3,9907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28213,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28213,1,4,0)
- ;;=4^L89.119
- ;;^UTILITY(U,$J,358.3,28213,2)
- ;;=^5009357
- ;;^UTILITY(U,$J,358.3,28214,0)
- ;;=L89.120^^80^1219^54
- ;;^UTILITY(U,$J,358.3,28214,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28214,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,28214,1,4,0)
- ;;=4^L89.120
- ;;^UTILITY(U,$J,358.3,28214,2)
- ;;=^5009358
- ;;^UTILITY(U,$J,358.3,28215,0)
- ;;=L89.121^^80^1219^49
- ;;^UTILITY(U,$J,358.3,28215,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28215,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,28215,1,4,0)
- ;;=4^L89.121
- ;;^UTILITY(U,$J,358.3,28215,2)
- ;;=^5009359
- ;;^UTILITY(U,$J,358.3,28216,0)
- ;;=L89.122^^80^1219^50
- ;;^UTILITY(U,$J,358.3,28216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28216,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,28216,1,4,0)
- ;;=4^L89.122
- ;;^UTILITY(U,$J,358.3,28216,2)
- ;;=^5009360
- ;;^UTILITY(U,$J,358.3,28217,0)
- ;;=L89.123^^80^1219^51
- ;;^UTILITY(U,$J,358.3,28217,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28217,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,28217,1,4,0)
- ;;=4^L89.123
- ;;^UTILITY(U,$J,358.3,28217,2)
- ;;=^5009361
- ;;^UTILITY(U,$J,358.3,28218,0)
- ;;=L89.124^^80^1219^52
- ;;^UTILITY(U,$J,358.3,28218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28218,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,28218,1,4,0)
- ;;=4^L89.124
- ;;^UTILITY(U,$J,358.3,28218,2)
- ;;=^5009362
- ;;^UTILITY(U,$J,358.3,28219,0)
- ;;=L89.129^^80^1219^53
- ;;^UTILITY(U,$J,358.3,28219,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28219,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28219,1,4,0)
- ;;=4^L89.129
- ;;^UTILITY(U,$J,358.3,28219,2)
- ;;=^5133652
- ;;^UTILITY(U,$J,358.3,28220,0)
- ;;=L89.130^^80^1219^96
- ;;^UTILITY(U,$J,358.3,28220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28220,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,28220,1,4,0)
- ;;=4^L89.130
- ;;^UTILITY(U,$J,358.3,28220,2)
- ;;=^5009363
- ;;^UTILITY(U,$J,358.3,28221,0)
- ;;=L89.131^^80^1219^91
- ;;^UTILITY(U,$J,358.3,28221,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28221,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,28221,1,4,0)
- ;;=4^L89.131
- ;;^UTILITY(U,$J,358.3,28221,2)
- ;;=^5009364
- ;;^UTILITY(U,$J,358.3,28222,0)
- ;;=L89.132^^80^1219^92
- ;;^UTILITY(U,$J,358.3,28222,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28222,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 2
- ;;^UTILITY(U,$J,358.3,28222,1,4,0)
- ;;=4^L89.132
- ;;^UTILITY(U,$J,358.3,28222,2)
- ;;=^5009365
- ;;^UTILITY(U,$J,358.3,28223,0)
- ;;=L89.133^^80^1219^93
- ;;^UTILITY(U,$J,358.3,28223,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28223,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 3
- ;;^UTILITY(U,$J,358.3,28223,1,4,0)
- ;;=4^L89.133
- ;;^UTILITY(U,$J,358.3,28223,2)
- ;;=^5009366
- ;;^UTILITY(U,$J,358.3,28224,0)
- ;;=L89.134^^80^1219^94
- ;;^UTILITY(U,$J,358.3,28224,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28224,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 4
- ;;^UTILITY(U,$J,358.3,28224,1,4,0)
- ;;=4^L89.134
- ;;^UTILITY(U,$J,358.3,28224,2)
- ;;=^5009367
- ;;^UTILITY(U,$J,358.3,28225,0)
- ;;=L89.139^^80^1219^95
- ;;^UTILITY(U,$J,358.3,28225,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28225,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28225,1,4,0)
- ;;=4^L89.139
- ;;^UTILITY(U,$J,358.3,28225,2)
- ;;=^5133653
- ;;^UTILITY(U,$J,358.3,28226,0)
- ;;=L89.140^^80^1219^48
- ;;^UTILITY(U,$J,358.3,28226,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28226,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,28226,1,4,0)
- ;;=4^L89.140
- ;;^UTILITY(U,$J,358.3,28226,2)
- ;;=^5133655
- ;;^UTILITY(U,$J,358.3,28227,0)
- ;;=L89.141^^80^1219^43
- ;;^UTILITY(U,$J,358.3,28227,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28227,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,28227,1,4,0)
- ;;=4^L89.141
- ;;^UTILITY(U,$J,358.3,28227,2)
- ;;=^5133656
- ;;^UTILITY(U,$J,358.3,28228,0)
- ;;=L89.142^^80^1219^44
- ;;^UTILITY(U,$J,358.3,28228,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28228,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 2
- ;;^UTILITY(U,$J,358.3,28228,1,4,0)
- ;;=4^L89.142
- ;;^UTILITY(U,$J,358.3,28228,2)
- ;;=^5133657
- ;;^UTILITY(U,$J,358.3,28229,0)
- ;;=L89.143^^80^1219^45
- ;;^UTILITY(U,$J,358.3,28229,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28229,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 3
- ;;^UTILITY(U,$J,358.3,28229,1,4,0)
- ;;=4^L89.143
- ;;^UTILITY(U,$J,358.3,28229,2)
- ;;=^5133658
- ;;^UTILITY(U,$J,358.3,28230,0)
- ;;=L89.144^^80^1219^46
- ;;^UTILITY(U,$J,358.3,28230,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28230,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 4
- ;;^UTILITY(U,$J,358.3,28230,1,4,0)
- ;;=4^L89.144
- ;;^UTILITY(U,$J,358.3,28230,2)
- ;;=^5133659
- ;;^UTILITY(U,$J,358.3,28231,0)
- ;;=L89.149^^80^1219^47
- ;;^UTILITY(U,$J,358.3,28231,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28231,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28231,1,4,0)
- ;;=4^L89.149
- ;;^UTILITY(U,$J,358.3,28231,2)
- ;;=^5133654
- ;;^UTILITY(U,$J,358.3,28232,0)
- ;;=L89.150^^80^1219^108
- ;;^UTILITY(U,$J,358.3,28232,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28232,1,3,0)
- ;;=3^Pressure Ulcer Sacral Region,Unstageable
- ;;^UTILITY(U,$J,358.3,28232,1,4,0)
- ;;=4^L89.150
- ;;^UTILITY(U,$J,358.3,28232,2)
- ;;=^5009368
- ;;^UTILITY(U,$J,358.3,28233,0)
- ;;=L89.151^^80^1219^103
- ;;^UTILITY(U,$J,358.3,28233,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28233,1,3,0)
- ;;=3^Pressure Ulcer Sacral Region,Stage 1
- ;;^UTILITY(U,$J,358.3,28233,1,4,0)
- ;;=4^L89.151
- ;;^UTILITY(U,$J,358.3,28233,2)
- ;;=^5009369

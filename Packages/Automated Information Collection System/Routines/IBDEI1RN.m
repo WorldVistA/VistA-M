@@ -1,130 +1,122 @@
-IBDEI1RN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30019,0)
- ;;=Z93.3^^118^1494^5
- ;;^UTILITY(U,$J,358.3,30019,1,0)
+ ;;^UTILITY(U,$J,358.3,28211,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,28211,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,28212,0)
+ ;;=T74.01XD^^115^1383^4
+ ;;^UTILITY(U,$J,358.3,28212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30019,1,3,0)
- ;;=3^Colostomy status
- ;;^UTILITY(U,$J,358.3,30019,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,30019,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,30020,0)
- ;;=Z93.4^^118^1494^3
- ;;^UTILITY(U,$J,358.3,30020,1,0)
+ ;;^UTILITY(U,$J,358.3,28212,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28212,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,28212,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,28213,0)
+ ;;=T76.01XA^^115^1383^5
+ ;;^UTILITY(U,$J,358.3,28213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30020,1,3,0)
- ;;=3^Artificial openings of gastrointestinal tract status NEC
- ;;^UTILITY(U,$J,358.3,30020,1,4,0)
- ;;=4^Z93.4
- ;;^UTILITY(U,$J,358.3,30020,2)
- ;;=^5063646
- ;;^UTILITY(U,$J,358.3,30021,0)
- ;;=Z93.50^^118^1494^6
- ;;^UTILITY(U,$J,358.3,30021,1,0)
+ ;;^UTILITY(U,$J,358.3,28213,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,28213,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,28213,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,28214,0)
+ ;;=T76.01XD^^115^1383^6
+ ;;^UTILITY(U,$J,358.3,28214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30021,1,3,0)
- ;;=3^Cystostomy Status,Unspec
- ;;^UTILITY(U,$J,358.3,30021,1,4,0)
- ;;=4^Z93.50
- ;;^UTILITY(U,$J,358.3,30021,2)
- ;;=^5063647
- ;;^UTILITY(U,$J,358.3,30022,0)
- ;;=Z93.6^^118^1494^4
- ;;^UTILITY(U,$J,358.3,30022,1,0)
+ ;;^UTILITY(U,$J,358.3,28214,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28214,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,28214,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,28215,0)
+ ;;=Z91.412^^115^1383^25
+ ;;^UTILITY(U,$J,358.3,28215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30022,1,3,0)
- ;;=3^Artificial openings of urinary tract status NEC
- ;;^UTILITY(U,$J,358.3,30022,1,4,0)
- ;;=4^Z93.6
- ;;^UTILITY(U,$J,358.3,30022,2)
- ;;=^5063651
- ;;^UTILITY(U,$J,358.3,30023,0)
- ;;=Z93.8^^118^1494^1
- ;;^UTILITY(U,$J,358.3,30023,1,0)
+ ;;^UTILITY(U,$J,358.3,28215,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,28215,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,28215,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,28216,0)
+ ;;=T74.31XA^^115^1383^11
+ ;;^UTILITY(U,$J,358.3,28216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30023,1,3,0)
- ;;=3^Artificial opening status NEC
- ;;^UTILITY(U,$J,358.3,30023,1,4,0)
- ;;=4^Z93.8
- ;;^UTILITY(U,$J,358.3,30023,2)
- ;;=^5063652
- ;;^UTILITY(U,$J,358.3,30024,0)
- ;;=Z93.9^^118^1494^2
- ;;^UTILITY(U,$J,358.3,30024,1,0)
+ ;;^UTILITY(U,$J,358.3,28216,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,28216,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,28216,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,28217,0)
+ ;;=T74.31XD^^115^1383^12
+ ;;^UTILITY(U,$J,358.3,28217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30024,1,3,0)
- ;;=3^Artificial opening status, unspecified
- ;;^UTILITY(U,$J,358.3,30024,1,4,0)
- ;;=4^Z93.9
- ;;^UTILITY(U,$J,358.3,30024,2)
- ;;=^5063653
- ;;^UTILITY(U,$J,358.3,30025,0)
- ;;=C50.912^^118^1495^13
- ;;^UTILITY(U,$J,358.3,30025,1,0)
+ ;;^UTILITY(U,$J,358.3,28217,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28217,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,28217,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,28218,0)
+ ;;=T76.31XA^^115^1383^13
+ ;;^UTILITY(U,$J,358.3,28218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30025,1,3,0)
- ;;=3^Malignant neoplasm of left female breast,unsp site
- ;;^UTILITY(U,$J,358.3,30025,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,30025,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,30026,0)
- ;;=C50.911^^118^1495^16
- ;;^UTILITY(U,$J,358.3,30026,1,0)
+ ;;^UTILITY(U,$J,358.3,28218,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,28218,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,28218,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,28219,0)
+ ;;=T76.31XD^^115^1383^14
+ ;;^UTILITY(U,$J,358.3,28219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30026,1,3,0)
- ;;=3^Malignant neoplasm of right female breast,unsp site
- ;;^UTILITY(U,$J,358.3,30026,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,30026,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,30027,0)
- ;;=C55.^^118^1495^18
- ;;^UTILITY(U,$J,358.3,30027,1,0)
+ ;;^UTILITY(U,$J,358.3,28219,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28219,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,28219,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,28220,0)
+ ;;=Z91.411^^115^1383^27
+ ;;^UTILITY(U,$J,358.3,28220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30027,1,3,0)
- ;;=3^Malignant neoplasm of uterus, part unspecified
- ;;^UTILITY(U,$J,358.3,30027,1,4,0)
- ;;=4^C55.
- ;;^UTILITY(U,$J,358.3,30027,2)
- ;;=^5001211
- ;;^UTILITY(U,$J,358.3,30028,0)
- ;;=C53.9^^118^1495^11
- ;;^UTILITY(U,$J,358.3,30028,1,0)
+ ;;^UTILITY(U,$J,358.3,28220,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,28220,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,28220,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,28221,0)
+ ;;=Z69.021^^115^1383^20
+ ;;^UTILITY(U,$J,358.3,28221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30028,1,3,0)
- ;;=3^Malignant neoplasm of cervix uteri, unspecified
- ;;^UTILITY(U,$J,358.3,30028,1,4,0)
- ;;=4^C53.9
- ;;^UTILITY(U,$J,358.3,30028,2)
- ;;=^5001204
- ;;^UTILITY(U,$J,358.3,30029,0)
- ;;=C56.1^^118^1495^17
- ;;^UTILITY(U,$J,358.3,30029,1,0)
+ ;;^UTILITY(U,$J,358.3,28221,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,28221,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,28221,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,28222,0)
+ ;;=Z69.011^^115^1383^22
+ ;;^UTILITY(U,$J,358.3,28222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30029,1,3,0)
- ;;=3^Malignant neoplasm of right ovary
- ;;^UTILITY(U,$J,358.3,30029,1,4,0)
- ;;=4^C56.1
- ;;^UTILITY(U,$J,358.3,30029,2)
- ;;=^5001212
- ;;^UTILITY(U,$J,358.3,30030,0)
- ;;=C56.2^^118^1495^14
- ;;^UTILITY(U,$J,358.3,30030,1,0)
+ ;;^UTILITY(U,$J,358.3,28222,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,28222,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,28222,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,28223,0)
+ ;;=Z69.12^^115^1383^19
+ ;;^UTILITY(U,$J,358.3,28223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30030,1,3,0)
- ;;=3^Malignant neoplasm of left ovary
- ;;^UTILITY(U,$J,358.3,30030,1,4,0)
- ;;=4^C56.2
- ;;^UTILITY(U,$J,358.3,30030,2)
- ;;=^5001213
- ;;^UTILITY(U,$J,358.3,30031,0)
- ;;=C57.01^^118^1495^15
- ;;^UTILITY(U,$J,358.3,30031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30031,1,3,0)
- ;;=3^Malignant neoplasm of right fallopian tube

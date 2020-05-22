@@ -1,336 +1,128 @@
-IBDEI0IA ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0IA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23200,0)
- ;;=99350^^60^893^4
- ;;^UTILITY(U,$J,358.3,23200,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23200,1,1,0)
- ;;=1^COMPREH HX OR EXAM;HIGH COMPLEX MDM
- ;;^UTILITY(U,$J,358.3,23200,1,2,0)
- ;;=2^99350
- ;;^UTILITY(U,$J,358.3,23201,0)
- ;;=99341^^60^894^1
- ;;^UTILITY(U,$J,358.3,23201,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23201,1,1,0)
- ;;=1^PROBLEM FOCUSED HX & EXAM;SF MDM
- ;;^UTILITY(U,$J,358.3,23201,1,2,0)
- ;;=2^99341
- ;;^UTILITY(U,$J,358.3,23202,0)
- ;;=99342^^60^894^2
- ;;^UTILITY(U,$J,358.3,23202,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23202,1,1,0)
- ;;=1^EXPAND PROB FOCUS HX & EXAM;LOW COMPLEX MDM
- ;;^UTILITY(U,$J,358.3,23202,1,2,0)
- ;;=2^99342
- ;;^UTILITY(U,$J,358.3,23203,0)
- ;;=99343^^60^894^3
- ;;^UTILITY(U,$J,358.3,23203,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23203,1,1,0)
- ;;=1^DETAILED HX & EXAM;MOD COMPLEX MDM
- ;;^UTILITY(U,$J,358.3,23203,1,2,0)
- ;;=2^99343
- ;;^UTILITY(U,$J,358.3,23204,0)
- ;;=99344^^60^894^4
- ;;^UTILITY(U,$J,358.3,23204,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23204,1,1,0)
- ;;=1^COMPREH HX & EXAM;MOD COMPLEX MDM
- ;;^UTILITY(U,$J,358.3,23204,1,2,0)
- ;;=2^99344
- ;;^UTILITY(U,$J,358.3,23205,0)
- ;;=99345^^60^894^5
- ;;^UTILITY(U,$J,358.3,23205,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23205,1,1,0)
- ;;=1^COMPREH HX & EXAM;HIGH COMPLEX MDM
- ;;^UTILITY(U,$J,358.3,23205,1,2,0)
- ;;=2^99345
- ;;^UTILITY(U,$J,358.3,23206,0)
- ;;=T74.11XA^^61^895^5
- ;;^UTILITY(U,$J,358.3,23206,1,0)
+ ;;^UTILITY(U,$J,358.3,7974,1,3,0)
+ ;;=3^Malig Neop Skin of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,7974,1,4,0)
+ ;;=4^C44.202
+ ;;^UTILITY(U,$J,358.3,7974,2)
+ ;;=^5001029
+ ;;^UTILITY(U,$J,358.3,7975,0)
+ ;;=C44.209^^65^517^21
+ ;;^UTILITY(U,$J,358.3,7975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23206,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,23206,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,23206,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,23207,0)
- ;;=T74.11XD^^61^895^6
- ;;^UTILITY(U,$J,358.3,23207,1,0)
+ ;;^UTILITY(U,$J,358.3,7975,1,3,0)
+ ;;=3^Malig Neop Skin of Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,7975,1,4,0)
+ ;;=4^C44.209
+ ;;^UTILITY(U,$J,358.3,7975,2)
+ ;;=^5001030
+ ;;^UTILITY(U,$J,358.3,7976,0)
+ ;;=C44.301^^65^517^27
+ ;;^UTILITY(U,$J,358.3,7976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23207,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,23207,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,23207,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,23208,0)
- ;;=T76.11XA^^61^895^7
- ;;^UTILITY(U,$J,358.3,23208,1,0)
+ ;;^UTILITY(U,$J,358.3,7976,1,3,0)
+ ;;=3^Malig Neop Skin of Nose
+ ;;^UTILITY(U,$J,358.3,7976,1,4,0)
+ ;;=4^C44.301
+ ;;^UTILITY(U,$J,358.3,7976,2)
+ ;;=^5001041
+ ;;^UTILITY(U,$J,358.3,7977,0)
+ ;;=C44.49^^65^517^34
+ ;;^UTILITY(U,$J,358.3,7977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23208,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,23208,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,23208,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,23209,0)
- ;;=T76.11XD^^61^895^8
- ;;^UTILITY(U,$J,358.3,23209,1,0)
+ ;;^UTILITY(U,$J,358.3,7977,1,3,0)
+ ;;=3^Malig Neop Skin of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,7977,1,4,0)
+ ;;=4^C44.49
+ ;;^UTILITY(U,$J,358.3,7977,2)
+ ;;=^340478
+ ;;^UTILITY(U,$J,358.3,7978,0)
+ ;;=C44.509^^65^517^35
+ ;;^UTILITY(U,$J,358.3,7978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23209,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,23209,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,23209,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,23210,0)
- ;;=Z69.11^^61^895^31
- ;;^UTILITY(U,$J,358.3,23210,1,0)
+ ;;^UTILITY(U,$J,358.3,7978,1,3,0)
+ ;;=3^Malig Neop Skin of Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,7978,1,4,0)
+ ;;=4^C44.509
+ ;;^UTILITY(U,$J,358.3,7978,2)
+ ;;=^5001053
+ ;;^UTILITY(U,$J,358.3,7979,0)
+ ;;=C44.590^^65^517^19
+ ;;^UTILITY(U,$J,358.3,7979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23210,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Neglect
- ;;^UTILITY(U,$J,358.3,23210,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,23210,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,23211,0)
- ;;=Z91.410^^61^895^35
- ;;^UTILITY(U,$J,358.3,23211,1,0)
+ ;;^UTILITY(U,$J,358.3,7979,1,3,0)
+ ;;=3^Malig Neop Skin of Anus
+ ;;^UTILITY(U,$J,358.3,7979,1,4,0)
+ ;;=4^C44.590
+ ;;^UTILITY(U,$J,358.3,7979,2)
+ ;;=^5001060
+ ;;^UTILITY(U,$J,358.3,7980,0)
+ ;;=C44.591^^65^517^20
+ ;;^UTILITY(U,$J,358.3,7980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23211,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical 
- ;;^UTILITY(U,$J,358.3,23211,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,23211,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,23212,0)
- ;;=Z69.12^^61^895^27
- ;;^UTILITY(U,$J,358.3,23212,1,0)
+ ;;^UTILITY(U,$J,358.3,7980,1,3,0)
+ ;;=3^Malig Neop Skin of Breast
+ ;;^UTILITY(U,$J,358.3,7980,1,4,0)
+ ;;=4^C44.591
+ ;;^UTILITY(U,$J,358.3,7980,2)
+ ;;=^5001061
+ ;;^UTILITY(U,$J,358.3,7981,0)
+ ;;=C44.692^^65^517^33
+ ;;^UTILITY(U,$J,358.3,7981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23212,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,23212,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,23212,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,23213,0)
- ;;=T74.21XA^^61^895^13
- ;;^UTILITY(U,$J,358.3,23213,1,0)
+ ;;^UTILITY(U,$J,358.3,7981,1,3,0)
+ ;;=3^Malig Neop Skin of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,7981,1,4,0)
+ ;;=4^C44.692
+ ;;^UTILITY(U,$J,358.3,7981,2)
+ ;;=^5001073
+ ;;^UTILITY(U,$J,358.3,7982,0)
+ ;;=C44.699^^65^517^25
+ ;;^UTILITY(U,$J,358.3,7982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23213,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,23213,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,23213,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,23214,0)
- ;;=T74.21XD^^61^895^14
- ;;^UTILITY(U,$J,358.3,23214,1,0)
+ ;;^UTILITY(U,$J,358.3,7982,1,3,0)
+ ;;=3^Malig Neop Skin of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,7982,1,4,0)
+ ;;=4^C44.699
+ ;;^UTILITY(U,$J,358.3,7982,2)
+ ;;=^5001074
+ ;;^UTILITY(U,$J,358.3,7983,0)
+ ;;=C44.99^^65^517^37
+ ;;^UTILITY(U,$J,358.3,7983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23214,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,23214,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,23214,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,23215,0)
- ;;=T76.21XA^^61^895^15
- ;;^UTILITY(U,$J,358.3,23215,1,0)
+ ;;^UTILITY(U,$J,358.3,7983,1,3,0)
+ ;;=3^Malig Neop Skin,Unspec Site
+ ;;^UTILITY(U,$J,358.3,7983,1,4,0)
+ ;;=4^C44.99
+ ;;^UTILITY(U,$J,358.3,7983,2)
+ ;;=^5001094
+ ;;^UTILITY(U,$J,358.3,7984,0)
+ ;;=C44.792^^65^517^31
+ ;;^UTILITY(U,$J,358.3,7984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23215,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,23215,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,23215,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,23216,0)
- ;;=T76.21XD^^61^895^16
- ;;^UTILITY(U,$J,358.3,23216,1,0)
+ ;;^UTILITY(U,$J,358.3,7984,1,3,0)
+ ;;=3^Malig Neop Skin of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,7984,1,4,0)
+ ;;=4^C44.792
+ ;;^UTILITY(U,$J,358.3,7984,2)
+ ;;=^5001085
+ ;;^UTILITY(U,$J,358.3,7985,0)
+ ;;=C44.799^^65^517^23
+ ;;^UTILITY(U,$J,358.3,7985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23216,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,23216,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,23216,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,23217,0)
- ;;=Z69.81^^61^895^30
- ;;^UTILITY(U,$J,358.3,23217,1,0)
+ ;;^UTILITY(U,$J,358.3,7985,1,3,0)
+ ;;=3^Malig Neop Skin of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,7985,1,4,0)
+ ;;=4^C44.799
+ ;;^UTILITY(U,$J,358.3,7985,2)
+ ;;=^5001086
+ ;;^UTILITY(U,$J,358.3,7986,0)
+ ;;=C44.89^^65^517^28
+ ;;^UTILITY(U,$J,358.3,7986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23217,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,23217,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,23217,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,23218,0)
- ;;=Z69.82^^61^895^22
- ;;^UTILITY(U,$J,358.3,23218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23218,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,23218,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,23218,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,23219,0)
- ;;=T74.01XA^^61^895^1
- ;;^UTILITY(U,$J,358.3,23219,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23219,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,23219,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,23219,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,23220,0)
- ;;=T74.01XD^^61^895^2
- ;;^UTILITY(U,$J,358.3,23220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23220,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,23220,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,23220,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,23221,0)
- ;;=T76.01XA^^61^895^3
- ;;^UTILITY(U,$J,358.3,23221,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23221,1,3,0)
- ;;=3^Adult Neglect,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,23221,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,23221,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,23222,0)
- ;;=T76.01XD^^61^895^4
- ;;^UTILITY(U,$J,358.3,23222,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23222,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,23222,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,23222,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,23223,0)
- ;;=Z91.412^^61^895^40
- ;;^UTILITY(U,$J,358.3,23223,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23223,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,23223,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,23223,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,23224,0)
- ;;=T74.31XA^^61^895^9
- ;;^UTILITY(U,$J,358.3,23224,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23224,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,23224,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,23224,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,23225,0)
- ;;=T74.31XD^^61^895^10
- ;;^UTILITY(U,$J,358.3,23225,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23225,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,23225,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,23225,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,23226,0)
- ;;=T76.31XA^^61^895^11
- ;;^UTILITY(U,$J,358.3,23226,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23226,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,23226,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,23226,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,23227,0)
- ;;=T76.31XD^^61^895^12
- ;;^UTILITY(U,$J,358.3,23227,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23227,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,23227,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,23227,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,23228,0)
- ;;=Z91.411^^61^895^41
- ;;^UTILITY(U,$J,358.3,23228,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23228,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,23228,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,23228,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,23229,0)
- ;;=Z69.021^^61^895^18
- ;;^UTILITY(U,$J,358.3,23229,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23229,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
- ;;^UTILITY(U,$J,358.3,23229,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,23229,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,23230,0)
- ;;=Z69.021^^61^895^19
- ;;^UTILITY(U,$J,358.3,23230,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23230,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
- ;;^UTILITY(U,$J,358.3,23230,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,23230,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,23231,0)
- ;;=Z69.021^^61^895^20
- ;;^UTILITY(U,$J,358.3,23231,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23231,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,23231,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,23231,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,23232,0)
- ;;=Z69.021^^61^895^21
- ;;^UTILITY(U,$J,358.3,23232,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23232,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,23232,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,23232,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,23233,0)
- ;;=Z69.011^^61^895^23
- ;;^UTILITY(U,$J,358.3,23233,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23233,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,23233,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,23233,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,23234,0)
- ;;=Z69.011^^61^895^24
- ;;^UTILITY(U,$J,358.3,23234,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7986,1,3,0)
+ ;;=3^Malig Neop Skin of Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,7986,1,4,0)
+ ;;=4^C44.89

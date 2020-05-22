@@ -1,126 +1,126 @@
-IBDEI22G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35042,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,35042,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,35043,0)
- ;;=R40.2323^^131^1698^4
- ;;^UTILITY(U,$J,358.3,35043,1,0)
+ ;;^UTILITY(U,$J,358.3,32979,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,32979,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,32980,0)
+ ;;=H43.12^^128^1673^14
+ ;;^UTILITY(U,$J,358.3,32980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35043,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,35043,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,35043,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,35044,0)
- ;;=R40.2322^^131^1698^2
- ;;^UTILITY(U,$J,358.3,35044,1,0)
+ ;;^UTILITY(U,$J,358.3,32980,1,3,0)
+ ;;=3^Vitreous Hemorrhage,OS
+ ;;^UTILITY(U,$J,358.3,32980,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,32980,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,32981,0)
+ ;;=H43.313^^128^1673^12
+ ;;^UTILITY(U,$J,358.3,32981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35044,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,35044,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,35044,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,35045,0)
- ;;=R40.2321^^131^1698^5
- ;;^UTILITY(U,$J,358.3,35045,1,0)
+ ;;^UTILITY(U,$J,358.3,32981,1,3,0)
+ ;;=3^Vitreous Membranes & Strands,OU
+ ;;^UTILITY(U,$J,358.3,32981,1,4,0)
+ ;;=4^H43.313
+ ;;^UTILITY(U,$J,358.3,32981,2)
+ ;;=^5005947
+ ;;^UTILITY(U,$J,358.3,32982,0)
+ ;;=H43.311^^128^1673^10
+ ;;^UTILITY(U,$J,358.3,32982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35045,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,35045,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,35045,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,35046,0)
- ;;=R40.2320^^131^1698^3
- ;;^UTILITY(U,$J,358.3,35046,1,0)
+ ;;^UTILITY(U,$J,358.3,32982,1,3,0)
+ ;;=3^Vitreous Membranes & Strands,OD
+ ;;^UTILITY(U,$J,358.3,32982,1,4,0)
+ ;;=4^H43.311
+ ;;^UTILITY(U,$J,358.3,32982,2)
+ ;;=^5005945
+ ;;^UTILITY(U,$J,358.3,32983,0)
+ ;;=H43.312^^128^1673^11
+ ;;^UTILITY(U,$J,358.3,32983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35046,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,35046,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,35046,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,35047,0)
- ;;=R40.2314^^131^1698^11
- ;;^UTILITY(U,$J,358.3,35047,1,0)
+ ;;^UTILITY(U,$J,358.3,32983,1,3,0)
+ ;;=3^Vitreous Membranes & Strands,OS
+ ;;^UTILITY(U,$J,358.3,32983,1,4,0)
+ ;;=4^H43.312
+ ;;^UTILITY(U,$J,358.3,32983,2)
+ ;;=^5005946
+ ;;^UTILITY(U,$J,358.3,32984,0)
+ ;;=H43.03^^128^1673^21
+ ;;^UTILITY(U,$J,358.3,32984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35047,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,35047,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,35047,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,35048,0)
- ;;=R40.2313^^131^1698^14
- ;;^UTILITY(U,$J,358.3,35048,1,0)
+ ;;^UTILITY(U,$J,358.3,32984,1,3,0)
+ ;;=3^Vitreous Prolapse,OU
+ ;;^UTILITY(U,$J,358.3,32984,1,4,0)
+ ;;=4^H43.03
+ ;;^UTILITY(U,$J,358.3,32984,2)
+ ;;=^5005936
+ ;;^UTILITY(U,$J,358.3,32985,0)
+ ;;=H43.01^^128^1673^19
+ ;;^UTILITY(U,$J,358.3,32985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35048,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,35048,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,35048,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,35049,0)
- ;;=R40.2312^^131^1698^12
- ;;^UTILITY(U,$J,358.3,35049,1,0)
+ ;;^UTILITY(U,$J,358.3,32985,1,3,0)
+ ;;=3^Vitreous Prolapse,OD
+ ;;^UTILITY(U,$J,358.3,32985,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,32985,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,32986,0)
+ ;;=H43.02^^128^1673^20
+ ;;^UTILITY(U,$J,358.3,32986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35049,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,35049,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,35049,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,35050,0)
- ;;=R40.2311^^131^1698^15
- ;;^UTILITY(U,$J,358.3,35050,1,0)
+ ;;^UTILITY(U,$J,358.3,32986,1,3,0)
+ ;;=3^Vitreous Prolapse,OS
+ ;;^UTILITY(U,$J,358.3,32986,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,32986,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,32987,0)
+ ;;=G93.2^^128^1674^12
+ ;;^UTILITY(U,$J,358.3,32987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35050,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,35050,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,35050,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,35051,0)
- ;;=R40.2310^^131^1698^13
- ;;^UTILITY(U,$J,358.3,35051,1,0)
+ ;;^UTILITY(U,$J,358.3,32987,1,3,0)
+ ;;=3^Benign Intracranial Hypertension
+ ;;^UTILITY(U,$J,358.3,32987,1,4,0)
+ ;;=4^G93.2
+ ;;^UTILITY(U,$J,358.3,32987,2)
+ ;;=^5004180
+ ;;^UTILITY(U,$J,358.3,32988,0)
+ ;;=H47.612^^128^1674^21
+ ;;^UTILITY(U,$J,358.3,32988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35051,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,35051,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,35051,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,35052,0)
- ;;=R40.4^^131^1698^38
- ;;^UTILITY(U,$J,358.3,35052,1,0)
+ ;;^UTILITY(U,$J,358.3,32988,1,3,0)
+ ;;=3^Cortical Blindness,Left Side of Brain
+ ;;^UTILITY(U,$J,358.3,32988,1,4,0)
+ ;;=4^H47.612
+ ;;^UTILITY(U,$J,358.3,32988,2)
+ ;;=^5006167
+ ;;^UTILITY(U,$J,358.3,32989,0)
+ ;;=H47.611^^128^1674^20
+ ;;^UTILITY(U,$J,358.3,32989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35052,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,35052,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,35052,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,35053,0)
- ;;=V00.811A^^131^1699^45
- ;;^UTILITY(U,$J,358.3,35053,1,0)
+ ;;^UTILITY(U,$J,358.3,32989,1,3,0)
+ ;;=3^Cortical Blindness,Right Side of Brain
+ ;;^UTILITY(U,$J,358.3,32989,1,4,0)
+ ;;=4^H47.611
+ ;;^UTILITY(U,$J,358.3,32989,2)
+ ;;=^5006166
+ ;;^UTILITY(U,$J,358.3,32990,0)
+ ;;=H47.642^^128^1674^23
+ ;;^UTILITY(U,$J,358.3,32990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35053,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,35053,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,35053,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,35054,0)
- ;;=V00.811D^^131^1699^46
- ;;^UTILITY(U,$J,358.3,35054,1,0)
+ ;;^UTILITY(U,$J,358.3,32990,1,3,0)
+ ;;=3^Disord of Visual Cortex in Vasc Disord,Left Side of Brain
+ ;;^UTILITY(U,$J,358.3,32990,1,4,0)
+ ;;=4^H47.642
+ ;;^UTILITY(U,$J,358.3,32990,2)
+ ;;=^5006176
+ ;;^UTILITY(U,$J,358.3,32991,0)
+ ;;=H47.641^^128^1674^22
+ ;;^UTILITY(U,$J,358.3,32991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35054,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,35054,1,4,0)
- ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,32991,1,3,0)
+ ;;=3^Disord of Visual Cortex in Vasc Disord,Right Side of Brain
+ ;;^UTILITY(U,$J,358.3,32991,1,4,0)
+ ;;=4^H47.641

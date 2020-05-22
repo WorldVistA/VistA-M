@@ -1,140 +1,120 @@
-IBDEI2OZ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45178,2)
- ;;=^5019243
- ;;^UTILITY(U,$J,358.3,45179,0)
- ;;=R15.9^^200^2240^76
- ;;^UTILITY(U,$J,358.3,45179,1,0)
+ ;;^UTILITY(U,$J,358.3,42897,1,4,0)
+ ;;=4^S62.184S
+ ;;^UTILITY(U,$J,358.3,42897,2)
+ ;;=^5033534
+ ;;^UTILITY(U,$J,358.3,42898,0)
+ ;;=S62.115S^^155^2074^127
+ ;;^UTILITY(U,$J,358.3,42898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45179,1,3,0)
- ;;=3^Full Incontinence of Feces
- ;;^UTILITY(U,$J,358.3,45179,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,45179,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,45180,0)
- ;;=R17.^^200^2240^99
- ;;^UTILITY(U,$J,358.3,45180,1,0)
+ ;;^UTILITY(U,$J,358.3,42898,1,3,0)
+ ;;=3^Nondisp fx of triquetrum bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42898,1,4,0)
+ ;;=4^S62.115S
+ ;;^UTILITY(U,$J,358.3,42898,2)
+ ;;=^5033247
+ ;;^UTILITY(U,$J,358.3,42899,0)
+ ;;=S62.114S^^155^2074^128
+ ;;^UTILITY(U,$J,358.3,42899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45180,1,3,0)
- ;;=3^Jaundice,Unspec
- ;;^UTILITY(U,$J,358.3,45180,1,4,0)
- ;;=4^R17.
- ;;^UTILITY(U,$J,358.3,45180,2)
- ;;=^5019251
- ;;^UTILITY(U,$J,358.3,45181,0)
- ;;=R19.30^^200^2240^2
- ;;^UTILITY(U,$J,358.3,45181,1,0)
+ ;;^UTILITY(U,$J,358.3,42899,1,3,0)
+ ;;=3^Nondisp fx of triquetrum bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42899,1,4,0)
+ ;;=4^S62.114S
+ ;;^UTILITY(U,$J,358.3,42899,2)
+ ;;=^5033240
+ ;;^UTILITY(U,$J,358.3,42900,0)
+ ;;=S52.282S^^155^2074^4
+ ;;^UTILITY(U,$J,358.3,42900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45181,1,3,0)
- ;;=3^Abdominal Rigidity,Unspec Site
- ;;^UTILITY(U,$J,358.3,45181,1,4,0)
- ;;=4^R19.30
- ;;^UTILITY(U,$J,358.3,45181,2)
- ;;=^5019266
- ;;^UTILITY(U,$J,358.3,45182,0)
- ;;=R19.4^^200^2240^45
- ;;^UTILITY(U,$J,358.3,45182,1,0)
+ ;;^UTILITY(U,$J,358.3,42900,1,3,0)
+ ;;=3^Bent bone of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42900,1,4,0)
+ ;;=4^S52.282S
+ ;;^UTILITY(U,$J,358.3,42900,2)
+ ;;=^5029874
+ ;;^UTILITY(U,$J,358.3,42901,0)
+ ;;=S52.281S^^155^2074^6
+ ;;^UTILITY(U,$J,358.3,42901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45182,1,3,0)
- ;;=3^Bowel Habit Changes
- ;;^UTILITY(U,$J,358.3,45182,1,4,0)
- ;;=4^R19.4
- ;;^UTILITY(U,$J,358.3,45182,2)
- ;;=^5019273
- ;;^UTILITY(U,$J,358.3,45183,0)
- ;;=R19.8^^200^2240^59
- ;;^UTILITY(U,$J,358.3,45183,1,0)
+ ;;^UTILITY(U,$J,358.3,42901,1,3,0)
+ ;;=3^Bent bone of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42901,1,4,0)
+ ;;=4^S52.281S
+ ;;^UTILITY(U,$J,358.3,42901,2)
+ ;;=^5029858
+ ;;^UTILITY(U,$J,358.3,42902,0)
+ ;;=S52.252S^^155^2074^16
+ ;;^UTILITY(U,$J,358.3,42902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45183,1,3,0)
- ;;=3^Digestive System/Abdomen Symptoms NEC
- ;;^UTILITY(U,$J,358.3,45183,1,4,0)
- ;;=4^R19.8
- ;;^UTILITY(U,$J,358.3,45183,2)
- ;;=^5019277
- ;;^UTILITY(U,$J,358.3,45184,0)
- ;;=R20.0^^200^2240^35
- ;;^UTILITY(U,$J,358.3,45184,1,0)
+ ;;^UTILITY(U,$J,358.3,42902,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42902,1,4,0)
+ ;;=4^S52.252S
+ ;;^UTILITY(U,$J,358.3,42902,2)
+ ;;=^5029634
+ ;;^UTILITY(U,$J,358.3,42903,0)
+ ;;=S52.251S^^155^2074^17
+ ;;^UTILITY(U,$J,358.3,42903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45184,1,3,0)
- ;;=3^Anesthesia of Skin
- ;;^UTILITY(U,$J,358.3,45184,1,4,0)
- ;;=4^R20.0
- ;;^UTILITY(U,$J,358.3,45184,2)
- ;;=^5019278
- ;;^UTILITY(U,$J,358.3,45185,0)
- ;;=R20.1^^200^2240^87
- ;;^UTILITY(U,$J,358.3,45185,1,0)
+ ;;^UTILITY(U,$J,358.3,42903,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42903,1,4,0)
+ ;;=4^S52.251S
+ ;;^UTILITY(U,$J,358.3,42903,2)
+ ;;=^5029618
+ ;;^UTILITY(U,$J,358.3,42904,0)
+ ;;=S52.042S^^155^2074^18
+ ;;^UTILITY(U,$J,358.3,42904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45185,1,3,0)
- ;;=3^Hypoesthesia of Skin
- ;;^UTILITY(U,$J,358.3,45185,1,4,0)
- ;;=4^R20.1
- ;;^UTILITY(U,$J,358.3,45185,2)
- ;;=^5019279
- ;;^UTILITY(U,$J,358.3,45186,0)
- ;;=R20.2^^200^2240^131
- ;;^UTILITY(U,$J,358.3,45186,1,0)
+ ;;^UTILITY(U,$J,358.3,42904,1,3,0)
+ ;;=3^Disp fx of coronoid process of left ulna, sequela 
+ ;;^UTILITY(U,$J,358.3,42904,1,4,0)
+ ;;=4^S52.042S
+ ;;^UTILITY(U,$J,358.3,42904,2)
+ ;;=^5028906
+ ;;^UTILITY(U,$J,358.3,42905,0)
+ ;;=S52.041S^^155^2074^19
+ ;;^UTILITY(U,$J,358.3,42905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45186,1,3,0)
- ;;=3^Paresthesia of Skin
- ;;^UTILITY(U,$J,358.3,45186,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,45186,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,45187,0)
- ;;=R20.3^^200^2240^83
- ;;^UTILITY(U,$J,358.3,45187,1,0)
+ ;;^UTILITY(U,$J,358.3,42905,1,3,0)
+ ;;=3^Disp fx of coronoid process of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42905,1,4,0)
+ ;;=4^S52.041S
+ ;;^UTILITY(U,$J,358.3,42905,2)
+ ;;=^5028890
+ ;;^UTILITY(U,$J,358.3,42906,0)
+ ;;=S52.612S^^155^2074^27
+ ;;^UTILITY(U,$J,358.3,42906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45187,1,3,0)
- ;;=3^Hyperesthesia
- ;;^UTILITY(U,$J,358.3,45187,1,4,0)
- ;;=4^R20.3
- ;;^UTILITY(U,$J,358.3,45187,2)
- ;;=^60011
- ;;^UTILITY(U,$J,358.3,45188,0)
- ;;=R21.^^200^2240^145
- ;;^UTILITY(U,$J,358.3,45188,1,0)
+ ;;^UTILITY(U,$J,358.3,42906,1,3,0)
+ ;;=3^Disp fx of left ulna styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,42906,1,4,0)
+ ;;=4^S52.612S
+ ;;^UTILITY(U,$J,358.3,42906,2)
+ ;;=^5031066
+ ;;^UTILITY(U,$J,358.3,42907,0)
+ ;;=S52.032S^^155^2074^14
+ ;;^UTILITY(U,$J,358.3,42907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45188,1,3,0)
- ;;=3^Rash
- ;;^UTILITY(U,$J,358.3,45188,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,45188,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,45189,0)
- ;;=R22.0^^200^2240^105
- ;;^UTILITY(U,$J,358.3,45189,1,0)
+ ;;^UTILITY(U,$J,358.3,42907,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of radius, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42907,1,4,0)
+ ;;=4^S52.032S
+ ;;^UTILITY(U,$J,358.3,42907,2)
+ ;;=^5135105
+ ;;^UTILITY(U,$J,358.3,42908,0)
+ ;;=S52.031S^^155^2074^38
+ ;;^UTILITY(U,$J,358.3,42908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45189,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Head
- ;;^UTILITY(U,$J,358.3,45189,1,4,0)
- ;;=4^R22.0
- ;;^UTILITY(U,$J,358.3,45189,2)
- ;;=^5019284
- ;;^UTILITY(U,$J,358.3,45190,0)
- ;;=R22.1^^200^2240^108
- ;;^UTILITY(U,$J,358.3,45190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45190,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Neck
- ;;^UTILITY(U,$J,358.3,45190,1,4,0)
- ;;=4^R22.1
- ;;^UTILITY(U,$J,358.3,45190,2)
- ;;=^5019285
- ;;^UTILITY(U,$J,358.3,45191,0)
- ;;=R22.2^^200^2240^111
- ;;^UTILITY(U,$J,358.3,45191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45191,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Trunk
- ;;^UTILITY(U,$J,358.3,45191,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,45191,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,45192,0)
- ;;=R22.31^^200^2240^110
- ;;^UTILITY(U,$J,358.3,45192,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42908,1,3,0)
+ ;;=3^Disp fx of olecran pro w intartic extn right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42908,1,4,0)
+ ;;=4^S52.031S
+ ;;^UTILITY(U,$J,358.3,42908,2)
+ ;;=^5028856
+ ;;^UTILITY(U,$J,358.3,42909,0)
+ ;;=S52.022S^^155^2074^39

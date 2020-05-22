@@ -1,136 +1,120 @@
-IBDEI294 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI294 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38194,1,0)
+ ;;^UTILITY(U,$J,358.3,35946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38194,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,38194,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,38194,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,38195,0)
- ;;=Z62.891^^145^1850^6
- ;;^UTILITY(U,$J,358.3,38195,1,0)
+ ;;^UTILITY(U,$J,358.3,35946,1,3,0)
+ ;;=3^Pain,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,35946,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,35946,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,35947,0)
+ ;;=S43.422A^^139^1829^75
+ ;;^UTILITY(U,$J,358.3,35947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38195,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,38195,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,38195,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,38196,0)
- ;;=Z62.898^^145^1850^1
- ;;^UTILITY(U,$J,358.3,38196,1,0)
+ ;;^UTILITY(U,$J,358.3,35947,1,3,0)
+ ;;=3^Sprain,Lt Rotator Cuff Capsule,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35947,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,35947,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,35948,0)
+ ;;=S43.421A^^139^1829^76
+ ;;^UTILITY(U,$J,358.3,35948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38196,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
- ;;^UTILITY(U,$J,358.3,38196,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,38196,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,38197,0)
- ;;=Z63.0^^145^1850^5
- ;;^UTILITY(U,$J,358.3,38197,1,0)
+ ;;^UTILITY(U,$J,358.3,35948,1,3,0)
+ ;;=3^Sprain,Rt Rotator Cuff Capsule,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35948,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,35948,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,35949,0)
+ ;;=S93.402A^^139^1829^77
+ ;;^UTILITY(U,$J,358.3,35949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38197,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
- ;;^UTILITY(U,$J,358.3,38197,1,4,0)
- ;;=4^Z63.0
- ;;^UTILITY(U,$J,358.3,38197,2)
- ;;=^5063164
- ;;^UTILITY(U,$J,358.3,38198,0)
- ;;=Z63.5^^145^1850^2
- ;;^UTILITY(U,$J,358.3,38198,1,0)
+ ;;^UTILITY(U,$J,358.3,35949,1,3,0)
+ ;;=3^Sprain,Unspec Ligament,Lt Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35949,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,35949,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,35950,0)
+ ;;=S93.401A^^139^1829^78
+ ;;^UTILITY(U,$J,358.3,35950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38198,1,3,0)
- ;;=3^Disruption of Family by Separation or Divorce
- ;;^UTILITY(U,$J,358.3,38198,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,38198,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,38199,0)
- ;;=Z63.8^^145^1850^3
- ;;^UTILITY(U,$J,358.3,38199,1,0)
+ ;;^UTILITY(U,$J,358.3,35950,1,3,0)
+ ;;=3^Sprain,Unspec Ligament,Rt Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35950,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,35950,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,35951,0)
+ ;;=S96.912A^^139^1829^81
+ ;;^UTILITY(U,$J,358.3,35951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38199,1,3,0)
- ;;=3^High Exporessed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,38199,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,38199,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,38200,0)
- ;;=Z63.4^^145^1850^7
- ;;^UTILITY(U,$J,358.3,38200,1,0)
+ ;;^UTILITY(U,$J,358.3,35951,1,3,0)
+ ;;=3^Strain,Msl/Tnd,Ankle/Foot Level,Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35951,1,4,0)
+ ;;=4^S96.912A
+ ;;^UTILITY(U,$J,358.3,35951,2)
+ ;;=^5137751
+ ;;^UTILITY(U,$J,358.3,35952,0)
+ ;;=S96.911A^^139^1829^82
+ ;;^UTILITY(U,$J,358.3,35952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38200,1,3,0)
- ;;=3^Uncomplicated Bereavement
- ;;^UTILITY(U,$J,358.3,38200,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,38200,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,38201,0)
- ;;=F20.9^^145^1851^5
- ;;^UTILITY(U,$J,358.3,38201,1,0)
+ ;;^UTILITY(U,$J,358.3,35952,1,3,0)
+ ;;=3^Strain,Msl/Tnd,Ankle/Foot Level,Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35952,1,4,0)
+ ;;=4^S96.911A
+ ;;^UTILITY(U,$J,358.3,35952,2)
+ ;;=^5137750
+ ;;^UTILITY(U,$J,358.3,35953,0)
+ ;;=S56.912A^^139^1829^79
+ ;;^UTILITY(U,$J,358.3,35953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38201,1,3,0)
- ;;=3^Schizophrenia
- ;;^UTILITY(U,$J,358.3,38201,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,38201,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,38202,0)
- ;;=F20.81^^145^1851^8
- ;;^UTILITY(U,$J,358.3,38202,1,0)
+ ;;^UTILITY(U,$J,358.3,35953,1,3,0)
+ ;;=3^Strain,Msl/Fasc/Tnd,Forearm Level,Lt Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35953,1,4,0)
+ ;;=4^S56.912A
+ ;;^UTILITY(U,$J,358.3,35953,2)
+ ;;=^5135514
+ ;;^UTILITY(U,$J,358.3,35954,0)
+ ;;=S56.911A^^139^1829^80
+ ;;^UTILITY(U,$J,358.3,35954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38202,1,3,0)
- ;;=3^Schizophreniform Disorder
- ;;^UTILITY(U,$J,358.3,38202,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,38202,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,38203,0)
- ;;=F22.^^145^1851^2
- ;;^UTILITY(U,$J,358.3,38203,1,0)
+ ;;^UTILITY(U,$J,358.3,35954,1,3,0)
+ ;;=3^Strain,Msl/Fasc/Tnd,Forearm Level,Rt Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35954,1,4,0)
+ ;;=4^S56.911A
+ ;;^UTILITY(U,$J,358.3,35954,2)
+ ;;=^5135513
+ ;;^UTILITY(U,$J,358.3,35955,0)
+ ;;=M75.112^^139^1829^25
+ ;;^UTILITY(U,$J,358.3,35955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38203,1,3,0)
- ;;=3^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,38203,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,38203,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,38204,0)
- ;;=F23.^^145^1851^1
- ;;^UTILITY(U,$J,358.3,38204,1,0)
+ ;;^UTILITY(U,$J,358.3,35955,1,3,0)
+ ;;=3^Incomplete Rotator-Cuff Tear/Ruptr,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,35955,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,35955,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,35956,0)
+ ;;=M75.111^^139^1829^26
+ ;;^UTILITY(U,$J,358.3,35956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38204,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,38204,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,38204,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,38205,0)
- ;;=F25.0^^145^1851^3
- ;;^UTILITY(U,$J,358.3,38205,1,0)
+ ;;^UTILITY(U,$J,358.3,35956,1,3,0)
+ ;;=3^Incomplete Rotator-Cuff Tear/Ruptr,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,35956,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,35956,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,35957,0)
+ ;;=M23.8X2^^139^1829^27
+ ;;^UTILITY(U,$J,358.3,35957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38205,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,38205,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,38205,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,38206,0)
- ;;=F25.1^^145^1851^4
- ;;^UTILITY(U,$J,358.3,38206,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38206,1,3,0)
- ;;=3^Schizoaffective Disorder,Depressive Type
- ;;^UTILITY(U,$J,358.3,38206,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,38206,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,38207,0)
- ;;=F28.^^145^1851^7
- ;;^UTILITY(U,$J,358.3,38207,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35957,1,3,0)
+ ;;=3^Internal Derangement,Lt Knee NEC
+ ;;^UTILITY(U,$J,358.3,35957,1,4,0)
+ ;;=4^M23.8X2

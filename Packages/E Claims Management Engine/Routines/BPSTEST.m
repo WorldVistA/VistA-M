@@ -1,5 +1,5 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22,23,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22,23,24,26**;JUN 2004;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Look at BPSTEST1 for additional documentation of the Testing Tool
@@ -130,6 +130,7 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  .. D PROMPT(BPSTIEN,2.09,"")         ; reconciliation id
  .. ;
  .. D PROMPT(BPSTIEN,2.1,"")          ; Patient Pay Amount
+ .. D PROMPT(BPSTIEN,2.11,"")         ; Reason for Service Code
  .. ;
  .. D PROMPT(BPSTIEN,4.01,"")         ; Maximum Age Qualifier
  .. D PROMPT(BPSTIEN,4.02,"")         ; Maximum Age

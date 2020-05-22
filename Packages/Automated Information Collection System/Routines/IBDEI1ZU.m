@@ -1,126 +1,116 @@
-IBDEI1ZU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33829,1,3,0)
- ;;=3^Acquired Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,33829,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,33829,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,33830,0)
- ;;=C91.00^^131^1680^5
- ;;^UTILITY(U,$J,358.3,33830,1,0)
+ ;;^UTILITY(U,$J,358.3,31816,1,3,0)
+ ;;=3^Suprvsn of preg w history of infertility, first trimester
+ ;;^UTILITY(U,$J,358.3,31816,1,4,0)
+ ;;=4^O09.01
+ ;;^UTILITY(U,$J,358.3,31816,2)
+ ;;=^5016049
+ ;;^UTILITY(U,$J,358.3,31817,0)
+ ;;=O09.02^^126^1633^50
+ ;;^UTILITY(U,$J,358.3,31817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33830,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,33830,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,33830,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,33831,0)
- ;;=C91.01^^131^1680^4
- ;;^UTILITY(U,$J,358.3,33831,1,0)
+ ;;^UTILITY(U,$J,358.3,31817,1,3,0)
+ ;;=3^Suprvsn of preg w history of infertility, second trimester
+ ;;^UTILITY(U,$J,358.3,31817,1,4,0)
+ ;;=4^O09.02
+ ;;^UTILITY(U,$J,358.3,31817,2)
+ ;;=^5016050
+ ;;^UTILITY(U,$J,358.3,31818,0)
+ ;;=O09.03^^126^1633^51
+ ;;^UTILITY(U,$J,358.3,31818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33831,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,33831,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,33831,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,33832,0)
- ;;=C92.01^^131^1680^7
- ;;^UTILITY(U,$J,358.3,33832,1,0)
+ ;;^UTILITY(U,$J,358.3,31818,1,3,0)
+ ;;=3^Suprvsn of preg w history of infertility, third trimester
+ ;;^UTILITY(U,$J,358.3,31818,1,4,0)
+ ;;=4^O09.03
+ ;;^UTILITY(U,$J,358.3,31818,2)
+ ;;=^5016051
+ ;;^UTILITY(U,$J,358.3,31819,0)
+ ;;=O09.11^^126^1633^46
+ ;;^UTILITY(U,$J,358.3,31819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33832,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,33832,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,33832,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,33833,0)
- ;;=C92.00^^131^1680^8
- ;;^UTILITY(U,$J,358.3,33833,1,0)
+ ;;^UTILITY(U,$J,358.3,31819,1,3,0)
+ ;;=3^Suprvsn of preg w history of ect preg, first tri
+ ;;^UTILITY(U,$J,358.3,31819,1,4,0)
+ ;;=4^O09.11
+ ;;^UTILITY(U,$J,358.3,31819,2)
+ ;;=^5016053
+ ;;^UTILITY(U,$J,358.3,31820,0)
+ ;;=O09.12^^126^1633^47
+ ;;^UTILITY(U,$J,358.3,31820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33833,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,33833,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,33833,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,33834,0)
- ;;=C92.61^^131^1680^9
- ;;^UTILITY(U,$J,358.3,33834,1,0)
+ ;;^UTILITY(U,$J,358.3,31820,1,3,0)
+ ;;=3^Suprvsn of preg w history of ect preg, second tri
+ ;;^UTILITY(U,$J,358.3,31820,1,4,0)
+ ;;=4^O09.12
+ ;;^UTILITY(U,$J,358.3,31820,2)
+ ;;=^5016054
+ ;;^UTILITY(U,$J,358.3,31821,0)
+ ;;=O09.13^^126^1633^48
+ ;;^UTILITY(U,$J,358.3,31821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33834,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,33834,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,33834,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,33835,0)
- ;;=C92.60^^131^1680^10
- ;;^UTILITY(U,$J,358.3,33835,1,0)
+ ;;^UTILITY(U,$J,358.3,31821,1,3,0)
+ ;;=3^Suprvsn of preg w history of ect preg, third tri
+ ;;^UTILITY(U,$J,358.3,31821,1,4,0)
+ ;;=4^O09.13
+ ;;^UTILITY(U,$J,358.3,31821,2)
+ ;;=^5016055
+ ;;^UTILITY(U,$J,358.3,31822,0)
+ ;;=O09.291^^126^1633^61
+ ;;^UTILITY(U,$J,358.3,31822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33835,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,33835,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,33835,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,33836,0)
- ;;=C92.A1^^131^1680^11
- ;;^UTILITY(U,$J,358.3,33836,1,0)
+ ;;^UTILITY(U,$J,358.3,31822,1,3,0)
+ ;;=3^Suprvsn of preg w poor reprodctv or obstet hx, first tri
+ ;;^UTILITY(U,$J,358.3,31822,1,4,0)
+ ;;=4^O09.291
+ ;;^UTILITY(U,$J,358.3,31822,2)
+ ;;=^5016060
+ ;;^UTILITY(U,$J,358.3,31823,0)
+ ;;=O09.292^^126^1633^62
+ ;;^UTILITY(U,$J,358.3,31823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33836,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,33836,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,33836,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,33837,0)
- ;;=C92.A0^^131^1680^12
- ;;^UTILITY(U,$J,358.3,33837,1,0)
+ ;;^UTILITY(U,$J,358.3,31823,1,3,0)
+ ;;=3^Suprvsn of preg w poor reprodctv or obstet hx, second tri
+ ;;^UTILITY(U,$J,358.3,31823,1,4,0)
+ ;;=4^O09.292
+ ;;^UTILITY(U,$J,358.3,31823,2)
+ ;;=^5016061
+ ;;^UTILITY(U,$J,358.3,31824,0)
+ ;;=O09.293^^126^1633^63
+ ;;^UTILITY(U,$J,358.3,31824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33837,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
- ;;^UTILITY(U,$J,358.3,33837,1,4,0)
- ;;=4^C92.A0
- ;;^UTILITY(U,$J,358.3,33837,2)
- ;;=^5001813
- ;;^UTILITY(U,$J,358.3,33838,0)
- ;;=C92.51^^131^1680^13
- ;;^UTILITY(U,$J,358.3,33838,1,0)
+ ;;^UTILITY(U,$J,358.3,31824,1,3,0)
+ ;;=3^Suprvsn of preg w poor reprodctv or obstet hx, third tri
+ ;;^UTILITY(U,$J,358.3,31824,1,4,0)
+ ;;=4^O09.293
+ ;;^UTILITY(U,$J,358.3,31824,2)
+ ;;=^5016062
+ ;;^UTILITY(U,$J,358.3,31825,0)
+ ;;=O09.41^^126^1633^43
+ ;;^UTILITY(U,$J,358.3,31825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33838,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,33838,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,33838,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,33839,0)
- ;;=C92.50^^131^1680^14
- ;;^UTILITY(U,$J,358.3,33839,1,0)
+ ;;^UTILITY(U,$J,358.3,31825,1,3,0)
+ ;;=3^Suprvsn of preg w grand multiparity, first trimester
+ ;;^UTILITY(U,$J,358.3,31825,1,4,0)
+ ;;=4^O09.41
+ ;;^UTILITY(U,$J,358.3,31825,2)
+ ;;=^5016069
+ ;;^UTILITY(U,$J,358.3,31826,0)
+ ;;=O09.42^^126^1633^44
+ ;;^UTILITY(U,$J,358.3,31826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33839,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,33839,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,33839,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,33840,0)
- ;;=C94.40^^131^1680^17
- ;;^UTILITY(U,$J,358.3,33840,1,0)
+ ;;^UTILITY(U,$J,358.3,31826,1,3,0)
+ ;;=3^Suprvsn of preg w grand multiparity, second trimester
+ ;;^UTILITY(U,$J,358.3,31826,1,4,0)
+ ;;=4^O09.42
+ ;;^UTILITY(U,$J,358.3,31826,2)
+ ;;=^5016070
+ ;;^UTILITY(U,$J,358.3,31827,0)
+ ;;=O09.43^^126^1633^45
+ ;;^UTILITY(U,$J,358.3,31827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33840,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
- ;;^UTILITY(U,$J,358.3,33840,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,33840,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,33841,0)
- ;;=C94.42^^131^1680^15
- ;;^UTILITY(U,$J,358.3,33841,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33841,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,31827,1,3,0)
+ ;;=3^Suprvsn of preg w grand multiparity, third trimester

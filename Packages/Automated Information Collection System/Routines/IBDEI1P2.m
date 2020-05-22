@@ -1,130 +1,122 @@
-IBDEI1P2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1P2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28802,2)
- ;;=^5016159
- ;;^UTILITY(U,$J,358.3,28803,0)
- ;;=O13.3^^115^1449^6
- ;;^UTILITY(U,$J,358.3,28803,1,0)
+ ;;^UTILITY(U,$J,358.3,27078,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,27079,0)
+ ;;=F16.921^^110^1308^12
+ ;;^UTILITY(U,$J,358.3,27079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28803,1,3,0)
- ;;=3^Gestational htn w/o significant proteinuria, third trimester
- ;;^UTILITY(U,$J,358.3,28803,1,4,0)
- ;;=4^O13.3
- ;;^UTILITY(U,$J,358.3,28803,2)
- ;;=^5016160
- ;;^UTILITY(U,$J,358.3,28804,0)
- ;;=O16.1^^115^1449^9
- ;;^UTILITY(U,$J,358.3,28804,1,0)
+ ;;^UTILITY(U,$J,358.3,27079,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27079,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,27079,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,27080,0)
+ ;;=F16.129^^110^1308^13
+ ;;^UTILITY(U,$J,358.3,27080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28804,1,3,0)
- ;;=3^Maternal hypertension, first trimester NEC
- ;;^UTILITY(U,$J,358.3,28804,1,4,0)
- ;;=4^O16.1
- ;;^UTILITY(U,$J,358.3,28804,2)
- ;;=^5016180
- ;;^UTILITY(U,$J,358.3,28805,0)
- ;;=O16.2^^115^1449^10
- ;;^UTILITY(U,$J,358.3,28805,1,0)
+ ;;^UTILITY(U,$J,358.3,27080,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27080,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,27080,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,27081,0)
+ ;;=F16.229^^110^1308^14
+ ;;^UTILITY(U,$J,358.3,27081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28805,1,3,0)
- ;;=3^Maternal hypertension, second trimester NEC
- ;;^UTILITY(U,$J,358.3,28805,1,4,0)
- ;;=4^O16.2
- ;;^UTILITY(U,$J,358.3,28805,2)
- ;;=^5016181
- ;;^UTILITY(U,$J,358.3,28806,0)
- ;;=O16.3^^115^1449^11
- ;;^UTILITY(U,$J,358.3,28806,1,0)
+ ;;^UTILITY(U,$J,358.3,27081,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27081,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,27081,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,27082,0)
+ ;;=F16.929^^110^1308^15
+ ;;^UTILITY(U,$J,358.3,27082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28806,1,3,0)
- ;;=3^Maternal hypertension, third trimester NEC
- ;;^UTILITY(U,$J,358.3,28806,1,4,0)
- ;;=4^O16.3
- ;;^UTILITY(U,$J,358.3,28806,2)
- ;;=^5016182
- ;;^UTILITY(U,$J,358.3,28807,0)
- ;;=O14.02^^115^1449^12
- ;;^UTILITY(U,$J,358.3,28807,1,0)
+ ;;^UTILITY(U,$J,358.3,27082,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27082,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,27082,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,27083,0)
+ ;;=F16.180^^110^1308^1
+ ;;^UTILITY(U,$J,358.3,27083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28807,1,3,0)
- ;;=3^Mild to moderate pre-eclampsia, second trimester
- ;;^UTILITY(U,$J,358.3,28807,1,4,0)
- ;;=4^O14.02
- ;;^UTILITY(U,$J,358.3,28807,2)
- ;;=^5016163
- ;;^UTILITY(U,$J,358.3,28808,0)
- ;;=O14.03^^115^1449^13
- ;;^UTILITY(U,$J,358.3,28808,1,0)
+ ;;^UTILITY(U,$J,358.3,27083,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27083,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,27083,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,27084,0)
+ ;;=F16.280^^110^1308^2
+ ;;^UTILITY(U,$J,358.3,27084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28808,1,3,0)
- ;;=3^Mild to moderate pre-eclampsia, third trimester
- ;;^UTILITY(U,$J,358.3,28808,1,4,0)
- ;;=4^O14.03
- ;;^UTILITY(U,$J,358.3,28808,2)
- ;;=^5016164
- ;;^UTILITY(U,$J,358.3,28809,0)
- ;;=O14.90^^115^1449^16
- ;;^UTILITY(U,$J,358.3,28809,1,0)
+ ;;^UTILITY(U,$J,358.3,27084,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27084,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,27084,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,27085,0)
+ ;;=F16.980^^110^1308^3
+ ;;^UTILITY(U,$J,358.3,27085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28809,1,3,0)
- ;;=3^Pre-eclampsia, unspecified trimester NEC
- ;;^UTILITY(U,$J,358.3,28809,1,4,0)
- ;;=4^O14.90
- ;;^UTILITY(U,$J,358.3,28809,2)
- ;;=^5016171
- ;;^UTILITY(U,$J,358.3,28810,0)
- ;;=O14.92^^115^1449^14
- ;;^UTILITY(U,$J,358.3,28810,1,0)
+ ;;^UTILITY(U,$J,358.3,27085,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27085,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,27085,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,27086,0)
+ ;;=F16.14^^110^1308^4
+ ;;^UTILITY(U,$J,358.3,27086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28810,1,3,0)
- ;;=3^Pre-eclampsia, second trimester NEC
- ;;^UTILITY(U,$J,358.3,28810,1,4,0)
- ;;=4^O14.92
- ;;^UTILITY(U,$J,358.3,28810,2)
- ;;=^5016172
- ;;^UTILITY(U,$J,358.3,28811,0)
- ;;=O14.93^^115^1449^15
- ;;^UTILITY(U,$J,358.3,28811,1,0)
+ ;;^UTILITY(U,$J,358.3,27086,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27086,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,27086,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,27087,0)
+ ;;=F16.24^^110^1308^5
+ ;;^UTILITY(U,$J,358.3,27087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28811,1,3,0)
- ;;=3^Pre-eclampsia, third trimester NEC
- ;;^UTILITY(U,$J,358.3,28811,1,4,0)
- ;;=4^O14.93
- ;;^UTILITY(U,$J,358.3,28811,2)
- ;;=^5016173
- ;;^UTILITY(U,$J,358.3,28812,0)
- ;;=O15.2^^115^1449^3
- ;;^UTILITY(U,$J,358.3,28812,1,0)
+ ;;^UTILITY(U,$J,358.3,27087,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27087,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,27087,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,27088,0)
+ ;;=F16.94^^110^1308^6
+ ;;^UTILITY(U,$J,358.3,27088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28812,1,3,0)
- ;;=3^Eclampsia in the puerperium
- ;;^UTILITY(U,$J,358.3,28812,1,4,0)
- ;;=4^O15.2
- ;;^UTILITY(U,$J,358.3,28812,2)
- ;;=^5016178
- ;;^UTILITY(U,$J,358.3,28813,0)
- ;;=O14.12^^115^1449^38
- ;;^UTILITY(U,$J,358.3,28813,1,0)
+ ;;^UTILITY(U,$J,358.3,27088,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27088,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,27088,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,27089,0)
+ ;;=F16.159^^110^1308^7
+ ;;^UTILITY(U,$J,358.3,27089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28813,1,3,0)
- ;;=3^Severe pre-eclampsia, second trimester
- ;;^UTILITY(U,$J,358.3,28813,1,4,0)
- ;;=4^O14.12
- ;;^UTILITY(U,$J,358.3,28813,2)
- ;;=^5016166
- ;;^UTILITY(U,$J,358.3,28814,0)
- ;;=O14.13^^115^1449^39
- ;;^UTILITY(U,$J,358.3,28814,1,0)
+ ;;^UTILITY(U,$J,358.3,27089,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27089,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,27089,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,27090,0)
+ ;;=F16.259^^110^1308^8
+ ;;^UTILITY(U,$J,358.3,27090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28814,1,3,0)
- ;;=3^Severe pre-eclampsia, third trimester
- ;;^UTILITY(U,$J,358.3,28814,1,4,0)
- ;;=4^O14.13
- ;;^UTILITY(U,$J,358.3,28814,2)
- ;;=^5016167
- ;;^UTILITY(U,$J,358.3,28815,0)
- ;;=O14.22^^115^1449^7
- ;;^UTILITY(U,$J,358.3,28815,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27090,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mod/Sev Use D/O

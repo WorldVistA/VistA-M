@@ -1,5 +1,5 @@
 VPRDPSOR ;SLC/MKB -- Medication extract by order ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,18**;Sep 01, 2011;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -49,7 +49,7 @@ EN1(IFN,MED) ; -- return an order in MED("attribute")=value [from EN]
  S IFN=+$G(IFN) I IFN<1!'$D(^OR(100,IFN)) Q
  S ORPK=$$PKGID^ORX8(IFN)
  S X=$S(ORPK:$E(ORPK,$L(ORPK)),1:"Z") S:X=+X X="R" ;last char = PS file
- S CLS=$S("RSN"[X:"O","UV"[X:"I",1:$$GET1^DIQ(100,IFN_",",10,"I"))
+ S CLS=$S("RSN"[X:"O","UV"[X:"I",1:$$GETCLS) ; p18 added package check in new function
  I CLS="O",ORPK=+ORPK!(ORPK["R") D RX^VPRDPSO(ORPK,.MED) S MED("id")=IFN Q
  S MED("id")=IFN,MED("orderID")=IFN,MED("vaType")=CLS
  S:ORPK MED("medID")=ORPK_";"_CLS
@@ -158,3 +158,8 @@ RESP(ORIFN,RESP) ; -- return order responses [internal form]
  .. S Y=$G(@X@(1,0)),W=1 F  S W=$O(@X@(W)) Q:W<1  S Y=Y_$S($E(Y,$L(Y))'=" ":" ",1:"")_$G(@X@(W,0))
  .. S:$L(Y) RESP(ID,J)=Y
  Q
+GETCLS() ; p18 added package check
+ N PKGIEN S PKGIEN=$$GET1^DIQ(100,IFN_",",12,"I")
+ I $P($G(^DIC(9.4,PKGIEN,0)),U)="INPATIENT MEDICATIONS" Q "I"
+ I $P($G(^DIC(9.4,PKGIEN,0)),U)="OUTPATIENT PHARMACY" Q "O"
+ Q $$GET1^DIQ(100,IFN_",",10,"I")

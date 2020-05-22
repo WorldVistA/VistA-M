@@ -1,58 +1,114 @@
-IBDEI2N4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2N4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.7,0,"GL")
- ;;=^IBE(358.7,
- ;;^DIC("B","IMP/EXP FORM LINE",358.7)
- ;;=
- ;;^DIC(358.7,"%D",0)
- ;;=^^3^3^2940217^
- ;;^DIC(358.7,"%D",1,0)
- ;;=This file is nearly identical to file #357.7. It is used by the
- ;;^DIC(358.7,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.7,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DD(358.7,0)
- ;;=FIELD^^.08^8
- ;;^DD(358.7,0,"DDA")
- ;;=N
- ;;^DD(358.7,0,"DT")
- ;;=2950717
- ;;^DD(358.7,0,"ID",.02)
- ;;=W " STARTING COL=",$P(^(0),U,2)+1
- ;;^DD(358.7,0,"ID",.03)
- ;;=W " STARTING ROW=",$P(^(0),U,3)+1
- ;;^DD(358.7,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.7,0,"IX","B",358.7,.01)
- ;;=
- ;;^DD(358.7,0,"IX","C",358.7,.06)
- ;;=
- ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
- ;;=
- ;;^DD(358.7,0,"VRPK")
- ;;=IBD
- ;;^DD(358.7,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.7,.01,1,0)
- ;;=^.1
- ;;^DD(358.7,.01,1,1,0)
- ;;=358.7^B
- ;;^DD(358.7,.01,1,1,1)
- ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
- ;;^DD(358.7,.01,1,1,2)
- ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
- ;;^DD(358.7,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.7,.01,21,0)
- ;;=^^4^4^2930527^
- ;;^DD(358.7,.01,21,1,0)
- ;;= 
- ;;^DD(358.7,.01,21,2,0)
- ;;=The name given to the line. Lines should be given names that will allow
- ;;^DD(358.7,.01,21,3,0)
- ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
- ;;^DD(358.7,.01,21,4,0)
- ;;=coordinates (1,1).
+ ;;^UTILITY(U,$J,358.3,42138,2)
+ ;;=^5039117
+ ;;^UTILITY(U,$J,358.3,42139,0)
+ ;;=S72.472S^^155^2067^115
+ ;;^UTILITY(U,$J,358.3,42139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42139,1,3,0)
+ ;;=3^Torus fracture of lower end of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,42139,1,4,0)
+ ;;=4^S72.472S
+ ;;^UTILITY(U,$J,358.3,42139,2)
+ ;;=^5039123
+ ;;^UTILITY(U,$J,358.3,42140,0)
+ ;;=S79.011S^^155^2067^105
+ ;;^UTILITY(U,$J,358.3,42140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42140,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,42140,1,4,0)
+ ;;=4^S79.011S
+ ;;^UTILITY(U,$J,358.3,42140,2)
+ ;;=^5039773
+ ;;^UTILITY(U,$J,358.3,42141,0)
+ ;;=S79.012S^^155^2067^106
+ ;;^UTILITY(U,$J,358.3,42141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42141,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,42141,1,4,0)
+ ;;=4^S79.012S
+ ;;^UTILITY(U,$J,358.3,42141,2)
+ ;;=^5039779
+ ;;^UTILITY(U,$J,358.3,42142,0)
+ ;;=S79.111S^^155^2067^103
+ ;;^UTILITY(U,$J,358.3,42142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42142,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,42142,1,4,0)
+ ;;=4^S79.111S
+ ;;^UTILITY(U,$J,358.3,42142,2)
+ ;;=^5039803
+ ;;^UTILITY(U,$J,358.3,42143,0)
+ ;;=S79.112S^^155^2067^104
+ ;;^UTILITY(U,$J,358.3,42143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42143,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,42143,1,4,0)
+ ;;=4^S79.112S
+ ;;^UTILITY(U,$J,358.3,42143,2)
+ ;;=^5136666
+ ;;^UTILITY(U,$J,358.3,42144,0)
+ ;;=S79.121S^^155^2067^107
+ ;;^UTILITY(U,$J,358.3,42144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42144,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,42144,1,4,0)
+ ;;=4^S79.121S
+ ;;^UTILITY(U,$J,358.3,42144,2)
+ ;;=^5039815
+ ;;^UTILITY(U,$J,358.3,42145,0)
+ ;;=S79.122S^^155^2067^108
+ ;;^UTILITY(U,$J,358.3,42145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42145,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,42145,1,4,0)
+ ;;=4^S79.122S
+ ;;^UTILITY(U,$J,358.3,42145,2)
+ ;;=^5039821
+ ;;^UTILITY(U,$J,358.3,42146,0)
+ ;;=S79.131S^^155^2067^109
+ ;;^UTILITY(U,$J,358.3,42146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42146,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,42146,1,4,0)
+ ;;=4^S79.131S
+ ;;^UTILITY(U,$J,358.3,42146,2)
+ ;;=^5039833
+ ;;^UTILITY(U,$J,358.3,42147,0)
+ ;;=S79.132S^^155^2067^110
+ ;;^UTILITY(U,$J,358.3,42147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42147,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,42147,1,4,0)
+ ;;=4^S79.132S
+ ;;^UTILITY(U,$J,358.3,42147,2)
+ ;;=^5039839
+ ;;^UTILITY(U,$J,358.3,42148,0)
+ ;;=S79.141S^^155^2067^111
+ ;;^UTILITY(U,$J,358.3,42148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42148,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,42148,1,4,0)
+ ;;=4^S79.141S
+ ;;^UTILITY(U,$J,358.3,42148,2)
+ ;;=^5039851
+ ;;^UTILITY(U,$J,358.3,42149,0)
+ ;;=S79.142S^^155^2067^112
+ ;;^UTILITY(U,$J,358.3,42149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42149,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,42149,1,4,0)
+ ;;=4^S79.142S

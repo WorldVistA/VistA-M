@@ -1,124 +1,122 @@
-IBDEI2E5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2E5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40570,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,40570,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,40571,0)
- ;;=I70.335^^159^1993^54
- ;;^UTILITY(U,$J,358.3,40571,1,0)
+ ;;^UTILITY(U,$J,358.3,38150,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,38150,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,38151,0)
+ ;;=I83.228^^146^1930^8
+ ;;^UTILITY(U,$J,358.3,38151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40571,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,40571,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,40571,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,40572,0)
- ;;=I70.341^^159^1993^49
- ;;^UTILITY(U,$J,358.3,40572,1,0)
+ ;;^UTILITY(U,$J,358.3,38151,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ ulc lwr extrm & inflam, oth prt
+ ;;^UTILITY(U,$J,358.3,38151,1,4,0)
+ ;;=4^I83.228
+ ;;^UTILITY(U,$J,358.3,38151,2)
+ ;;=^5008009
+ ;;^UTILITY(U,$J,358.3,38152,0)
+ ;;=I83.221^^146^1930^10
+ ;;^UTILITY(U,$J,358.3,38152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40572,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,40572,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,40572,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,40573,0)
- ;;=I70.342^^159^1993^46
- ;;^UTILITY(U,$J,358.3,40573,1,0)
+ ;;^UTILITY(U,$J,358.3,38152,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ ulc thigh & inflam
+ ;;^UTILITY(U,$J,358.3,38152,1,4,0)
+ ;;=4^I83.221
+ ;;^UTILITY(U,$J,358.3,38152,2)
+ ;;=^5008004
+ ;;^UTILITY(U,$J,358.3,38153,0)
+ ;;=I83.223^^146^1930^5
+ ;;^UTILITY(U,$J,358.3,38153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40573,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,40573,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,40573,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,40574,0)
- ;;=I70.343^^159^1993^45
- ;;^UTILITY(U,$J,358.3,40574,1,0)
+ ;;^UTILITY(U,$J,358.3,38153,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ ulc ankl & inflam
+ ;;^UTILITY(U,$J,358.3,38153,1,4,0)
+ ;;=4^I83.223
+ ;;^UTILITY(U,$J,358.3,38153,2)
+ ;;=^5008006
+ ;;^UTILITY(U,$J,358.3,38154,0)
+ ;;=I83.222^^146^1930^6
+ ;;^UTILITY(U,$J,358.3,38154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40574,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,40574,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,40574,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,40575,0)
- ;;=I70.344^^159^1993^47
- ;;^UTILITY(U,$J,358.3,40575,1,0)
+ ;;^UTILITY(U,$J,358.3,38154,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ ulc calf & inflam
+ ;;^UTILITY(U,$J,358.3,38154,1,4,0)
+ ;;=4^I83.222
+ ;;^UTILITY(U,$J,358.3,38154,2)
+ ;;=^5008005
+ ;;^UTILITY(U,$J,358.3,38155,0)
+ ;;=I83.224^^146^1930^7
+ ;;^UTILITY(U,$J,358.3,38155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40575,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,40575,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,40575,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,40576,0)
- ;;=I70.345^^159^1993^48
- ;;^UTILITY(U,$J,358.3,40576,1,0)
+ ;;^UTILITY(U,$J,358.3,38155,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ ulc heel/midft & inflam
+ ;;^UTILITY(U,$J,358.3,38155,1,4,0)
+ ;;=4^I83.224
+ ;;^UTILITY(U,$J,358.3,38155,2)
+ ;;=^5008007
+ ;;^UTILITY(U,$J,358.3,38156,0)
+ ;;=I83.225^^146^1930^9
+ ;;^UTILITY(U,$J,358.3,38156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40576,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,40576,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,40576,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,40577,0)
- ;;=I70.431^^159^1993^40
- ;;^UTILITY(U,$J,358.3,40577,1,0)
+ ;;^UTILITY(U,$J,358.3,38156,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ ulc oth prt ft & inflam
+ ;;^UTILITY(U,$J,358.3,38156,1,4,0)
+ ;;=4^I83.225
+ ;;^UTILITY(U,$J,358.3,38156,2)
+ ;;=^5008008
+ ;;^UTILITY(U,$J,358.3,38157,0)
+ ;;=B07.9^^146^1930^27
+ ;;^UTILITY(U,$J,358.3,38157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40577,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,40577,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,40577,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,40578,0)
- ;;=I70.432^^159^1993^41
- ;;^UTILITY(U,$J,358.3,40578,1,0)
+ ;;^UTILITY(U,$J,358.3,38157,1,3,0)
+ ;;=3^Viral wart, unspecified
+ ;;^UTILITY(U,$J,358.3,38157,1,4,0)
+ ;;=4^B07.9
+ ;;^UTILITY(U,$J,358.3,38157,2)
+ ;;=^5000519
+ ;;^UTILITY(U,$J,358.3,38158,0)
+ ;;=I87.2^^146^1930^26
+ ;;^UTILITY(U,$J,358.3,38158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40578,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,40578,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,40578,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,40579,0)
- ;;=I70.433^^159^1993^42
- ;;^UTILITY(U,$J,358.3,40579,1,0)
+ ;;^UTILITY(U,$J,358.3,38158,1,3,0)
+ ;;=3^Venous insufficiency (chronic) (peripheral)
+ ;;^UTILITY(U,$J,358.3,38158,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,38158,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,38159,0)
+ ;;=I87.9^^146^1930^25
+ ;;^UTILITY(U,$J,358.3,38159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40579,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,40579,1,4,0)
- ;;=4^I70.433
- ;;^UTILITY(U,$J,358.3,40579,2)
- ;;=^5007666
- ;;^UTILITY(U,$J,358.3,40580,0)
- ;;=I70.434^^159^1993^43
- ;;^UTILITY(U,$J,358.3,40580,1,0)
+ ;;^UTILITY(U,$J,358.3,38159,1,3,0)
+ ;;=3^Vein Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38159,1,4,0)
+ ;;=4^I87.9
+ ;;^UTILITY(U,$J,358.3,38159,2)
+ ;;=^5008069
+ ;;^UTILITY(U,$J,358.3,38160,0)
+ ;;=I83.812^^146^1930^3
+ ;;^UTILITY(U,$J,358.3,38160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40580,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,40580,1,4,0)
- ;;=4^I70.434
- ;;^UTILITY(U,$J,358.3,40580,2)
- ;;=^5007667
- ;;^UTILITY(U,$J,358.3,40581,0)
- ;;=I70.435^^159^1993^44
- ;;^UTILITY(U,$J,358.3,40581,1,0)
+ ;;^UTILITY(U,$J,358.3,38160,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ pain
+ ;;^UTILITY(U,$J,358.3,38160,1,4,0)
+ ;;=4^I83.812
+ ;;^UTILITY(U,$J,358.3,38160,2)
+ ;;=^5008012
+ ;;^UTILITY(U,$J,358.3,38161,0)
+ ;;=I83.892^^146^1930^2
+ ;;^UTILITY(U,$J,358.3,38161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40581,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,40581,1,4,0)
- ;;=4^I70.435
- ;;^UTILITY(U,$J,358.3,40581,2)
- ;;=^5007668
- ;;^UTILITY(U,$J,358.3,40582,0)
- ;;=I70.441^^159^1993^35
- ;;^UTILITY(U,$J,358.3,40582,1,0)
+ ;;^UTILITY(U,$J,358.3,38161,1,3,0)
+ ;;=3^Varicose veins lft lwr extrem w/ oth complications
+ ;;^UTILITY(U,$J,358.3,38161,1,4,0)
+ ;;=4^I83.892
+ ;;^UTILITY(U,$J,358.3,38161,2)
+ ;;=^5008016
+ ;;^UTILITY(U,$J,358.3,38162,0)
+ ;;=I83.811^^146^1930^13
+ ;;^UTILITY(U,$J,358.3,38162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40582,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh

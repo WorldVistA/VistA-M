@@ -1,134 +1,130 @@
-IBDEI2UI ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47750,1,4,0)
- ;;=4^C11.3
- ;;^UTILITY(U,$J,358.3,47750,2)
- ;;=^267042
- ;;^UTILITY(U,$J,358.3,47751,0)
- ;;=C11.8^^209^2349^4
- ;;^UTILITY(U,$J,358.3,47751,1,0)
+ ;;^UTILITY(U,$J,358.3,45389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47751,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Nasopharynx
- ;;^UTILITY(U,$J,358.3,47751,1,4,0)
- ;;=4^C11.8
- ;;^UTILITY(U,$J,358.3,47751,2)
- ;;=^5000910
- ;;^UTILITY(U,$J,358.3,47752,0)
- ;;=C11.9^^209^2349^3
- ;;^UTILITY(U,$J,358.3,47752,1,0)
+ ;;^UTILITY(U,$J,358.3,45389,1,3,0)
+ ;;=3^Incisional hernia w/o obstruction/gangrene
+ ;;^UTILITY(U,$J,358.3,45389,1,4,0)
+ ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,45389,2)
+ ;;=^5008609
+ ;;^UTILITY(U,$J,358.3,45390,0)
+ ;;=K44.9^^172^2267^2
+ ;;^UTILITY(U,$J,358.3,45390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47752,1,3,0)
- ;;=3^Malig Neop of Nasopharynx,Unspec
- ;;^UTILITY(U,$J,358.3,47752,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,47752,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,47753,0)
- ;;=C12.^^209^2349^6
- ;;^UTILITY(U,$J,358.3,47753,1,0)
+ ;;^UTILITY(U,$J,358.3,45390,1,3,0)
+ ;;=3^Diaphragmatic hernia w/o obstruction/gangrene
+ ;;^UTILITY(U,$J,358.3,45390,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,45390,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,45391,0)
+ ;;=K46.9^^172^2267^1
+ ;;^UTILITY(U,$J,358.3,45391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47753,1,3,0)
- ;;=3^Malig Neop of Pyriform Sinus
- ;;^UTILITY(U,$J,358.3,47753,1,4,0)
- ;;=4^C12.
- ;;^UTILITY(U,$J,358.3,47753,2)
- ;;=^267046
- ;;^UTILITY(U,$J,358.3,47754,0)
- ;;=C10.1^^209^2350^1
- ;;^UTILITY(U,$J,358.3,47754,1,0)
+ ;;^UTILITY(U,$J,358.3,45391,1,3,0)
+ ;;=3^Abdominal hernia w/o obstruction/gangrene
+ ;;^UTILITY(U,$J,358.3,45391,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,45391,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,45392,0)
+ ;;=N18.9^^172^2268^7
+ ;;^UTILITY(U,$J,358.3,45392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47754,1,3,0)
- ;;=3^Malig Neop of Anterior Surface of Epiglottis
- ;;^UTILITY(U,$J,358.3,47754,1,4,0)
- ;;=4^C10.1
- ;;^UTILITY(U,$J,358.3,47754,2)
- ;;=^5000906
- ;;^UTILITY(U,$J,358.3,47755,0)
- ;;=C10.0^^209^2350^7
- ;;^UTILITY(U,$J,358.3,47755,1,0)
+ ;;^UTILITY(U,$J,358.3,45392,1,3,0)
+ ;;=3^Kidney Disease,Chr,Unspec
+ ;;^UTILITY(U,$J,358.3,45392,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,45392,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,45393,0)
+ ;;=N17.9^^172^2268^8
+ ;;^UTILITY(U,$J,358.3,45393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47755,1,3,0)
- ;;=3^Malig Neop of Vallecula
- ;;^UTILITY(U,$J,358.3,47755,1,4,0)
- ;;=4^C10.0
- ;;^UTILITY(U,$J,358.3,47755,2)
- ;;=^267032
- ;;^UTILITY(U,$J,358.3,47756,0)
- ;;=C10.2^^209^2350^3
- ;;^UTILITY(U,$J,358.3,47756,1,0)
+ ;;^UTILITY(U,$J,358.3,45393,1,3,0)
+ ;;=3^Kidney Failure,Acute
+ ;;^UTILITY(U,$J,358.3,45393,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,45393,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,45394,0)
+ ;;=N18.9^^172^2268^9
+ ;;^UTILITY(U,$J,358.3,45394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47756,1,3,0)
- ;;=3^Malig Neop of Lateral Wall of Oropharynx
- ;;^UTILITY(U,$J,358.3,47756,1,4,0)
- ;;=4^C10.2
- ;;^UTILITY(U,$J,358.3,47756,2)
- ;;=^267035
- ;;^UTILITY(U,$J,358.3,47757,0)
- ;;=C10.3^^209^2350^6
- ;;^UTILITY(U,$J,358.3,47757,1,0)
+ ;;^UTILITY(U,$J,358.3,45394,1,3,0)
+ ;;=3^Kidney Failure,Chronic
+ ;;^UTILITY(U,$J,358.3,45394,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,45394,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,45395,0)
+ ;;=N28.9^^172^2268^6
+ ;;^UTILITY(U,$J,358.3,45395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47757,1,3,0)
- ;;=3^Malig Neop of Posterior Wall of Oropharynx
- ;;^UTILITY(U,$J,358.3,47757,1,4,0)
- ;;=4^C10.3
- ;;^UTILITY(U,$J,358.3,47757,2)
- ;;=^267036
- ;;^UTILITY(U,$J,358.3,47758,0)
- ;;=C10.4^^209^2350^2
- ;;^UTILITY(U,$J,358.3,47758,1,0)
+ ;;^UTILITY(U,$J,358.3,45395,1,3,0)
+ ;;=3^Kidney & Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45395,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,45395,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,45396,0)
+ ;;=N20.0^^172^2268^2
+ ;;^UTILITY(U,$J,358.3,45396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47758,1,3,0)
- ;;=3^Malig Neop of Branchial Cleft
- ;;^UTILITY(U,$J,358.3,47758,1,4,0)
- ;;=4^C10.4
- ;;^UTILITY(U,$J,358.3,47758,2)
- ;;=^5000907
- ;;^UTILITY(U,$J,358.3,47759,0)
- ;;=C10.8^^209^2350^5
- ;;^UTILITY(U,$J,358.3,47759,1,0)
+ ;;^UTILITY(U,$J,358.3,45396,1,3,0)
+ ;;=3^Calculus of kidney
+ ;;^UTILITY(U,$J,358.3,45396,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,45396,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,45397,0)
+ ;;=N32.0^^172^2268^1
+ ;;^UTILITY(U,$J,358.3,45397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47759,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Oropharynx
- ;;^UTILITY(U,$J,358.3,47759,1,4,0)
- ;;=4^C10.8
- ;;^UTILITY(U,$J,358.3,47759,2)
- ;;=^5000908
- ;;^UTILITY(U,$J,358.3,47760,0)
- ;;=C10.9^^209^2350^4
- ;;^UTILITY(U,$J,358.3,47760,1,0)
+ ;;^UTILITY(U,$J,358.3,45397,1,3,0)
+ ;;=3^Bladder-neck obstruction
+ ;;^UTILITY(U,$J,358.3,45397,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,45397,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,45398,0)
+ ;;=N34.1^^172^2268^11
+ ;;^UTILITY(U,$J,358.3,45398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47760,1,3,0)
- ;;=3^Malig Neop of Oropharynx,Unspec
- ;;^UTILITY(U,$J,358.3,47760,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,47760,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,47761,0)
- ;;=C25.0^^209^2351^3
- ;;^UTILITY(U,$J,358.3,47761,1,0)
+ ;;^UTILITY(U,$J,358.3,45398,1,3,0)
+ ;;=3^Urethritis, nonspecific
+ ;;^UTILITY(U,$J,358.3,45398,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,45398,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,45399,0)
+ ;;=N39.0^^172^2268^12
+ ;;^UTILITY(U,$J,358.3,45399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47761,1,3,0)
- ;;=3^Malig Neop of Head of Pancreas
- ;;^UTILITY(U,$J,358.3,47761,1,4,0)
- ;;=4^C25.0
- ;;^UTILITY(U,$J,358.3,47761,2)
- ;;=^267104
- ;;^UTILITY(U,$J,358.3,47762,0)
- ;;=C25.1^^209^2351^1
- ;;^UTILITY(U,$J,358.3,47762,1,0)
+ ;;^UTILITY(U,$J,358.3,45399,1,3,0)
+ ;;=3^Urinary tract infection
+ ;;^UTILITY(U,$J,358.3,45399,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,45399,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,45400,0)
+ ;;=N40.0^^172^2268^3
+ ;;^UTILITY(U,$J,358.3,45400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47762,1,3,0)
- ;;=3^Malig Neop of Body of Pancreas
- ;;^UTILITY(U,$J,358.3,47762,1,4,0)
- ;;=4^C25.1
- ;;^UTILITY(U,$J,358.3,47762,2)
- ;;=^267105
- ;;^UTILITY(U,$J,358.3,47763,0)
- ;;=C25.2^^209^2351^8
- ;;^UTILITY(U,$J,358.3,47763,1,0)
+ ;;^UTILITY(U,$J,358.3,45400,1,3,0)
+ ;;=3^Enlarged prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,45400,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,45400,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,45401,0)
+ ;;=N40.1^^172^2268^4
+ ;;^UTILITY(U,$J,358.3,45401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47763,1,3,0)
- ;;=3^Malig Neop of Tail of Pancreas
+ ;;^UTILITY(U,$J,358.3,45401,1,3,0)
+ ;;=3^Enlarged prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,45401,1,4,0)
+ ;;=4^N40.1

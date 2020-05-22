@@ -1,136 +1,122 @@
-IBDEI34F ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52381,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,52381,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,52382,0)
- ;;=F44.0^^237^2594^2
- ;;^UTILITY(U,$J,358.3,52382,1,0)
+ ;;^UTILITY(U,$J,358.3,49850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52382,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,52382,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,52382,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,52383,0)
- ;;=F48.1^^237^2594^1
- ;;^UTILITY(U,$J,358.3,52383,1,0)
+ ;;^UTILITY(U,$J,358.3,49850,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,49850,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,49850,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,49851,0)
+ ;;=I20.1^^193^2484^1
+ ;;^UTILITY(U,$J,358.3,49851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52383,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,52383,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,52383,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,52384,0)
- ;;=F44.89^^237^2594^3
- ;;^UTILITY(U,$J,358.3,52384,1,0)
+ ;;^UTILITY(U,$J,358.3,49851,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,49851,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,49851,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,49852,0)
+ ;;=I20.9^^193^2484^3
+ ;;^UTILITY(U,$J,358.3,49852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52384,1,3,0)
- ;;=3^Dissociative Disorder NEC
- ;;^UTILITY(U,$J,358.3,52384,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,52384,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,52385,0)
- ;;=F50.02^^237^2595^1
- ;;^UTILITY(U,$J,358.3,52385,1,0)
+ ;;^UTILITY(U,$J,358.3,49852,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,49852,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,49852,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,49853,0)
+ ;;=I65.29^^193^2485^31
+ ;;^UTILITY(U,$J,358.3,49853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52385,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,52385,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,52385,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,52386,0)
- ;;=F50.01^^237^2595^2
- ;;^UTILITY(U,$J,358.3,52386,1,0)
+ ;;^UTILITY(U,$J,358.3,49853,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,49853,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,49853,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,49854,0)
+ ;;=I65.22^^193^2485^29
+ ;;^UTILITY(U,$J,358.3,49854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52386,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,52386,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,52386,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,52387,0)
- ;;=F50.9^^237^2595^7
- ;;^UTILITY(U,$J,358.3,52387,1,0)
+ ;;^UTILITY(U,$J,358.3,49854,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,49854,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,49854,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,49855,0)
+ ;;=I65.23^^193^2485^28
+ ;;^UTILITY(U,$J,358.3,49855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52387,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52387,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,52387,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,52388,0)
- ;;=F50.8^^237^2595^6
- ;;^UTILITY(U,$J,358.3,52388,1,0)
+ ;;^UTILITY(U,$J,358.3,49855,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,49855,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,49855,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,49856,0)
+ ;;=I65.21^^193^2485^30
+ ;;^UTILITY(U,$J,358.3,49856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52388,1,3,0)
- ;;=3^Feeding/Eating Disorder NEC
- ;;^UTILITY(U,$J,358.3,52388,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,52388,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,52389,0)
- ;;=F50.8^^237^2595^3
- ;;^UTILITY(U,$J,358.3,52389,1,0)
+ ;;^UTILITY(U,$J,358.3,49856,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,49856,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,49856,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,49857,0)
+ ;;=I70.219^^193^2485^7
+ ;;^UTILITY(U,$J,358.3,49857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52389,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,52389,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,52389,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,52390,0)
- ;;=F50.8^^237^2595^4
- ;;^UTILITY(U,$J,358.3,52390,1,0)
+ ;;^UTILITY(U,$J,358.3,49857,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,49857,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,49857,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,49858,0)
+ ;;=I70.213^^193^2485^8
+ ;;^UTILITY(U,$J,358.3,49858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52390,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,52390,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,52390,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,52391,0)
- ;;=F50.2^^237^2595^5
- ;;^UTILITY(U,$J,358.3,52391,1,0)
+ ;;^UTILITY(U,$J,358.3,49858,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,49858,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,49858,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,49859,0)
+ ;;=I70.212^^193^2485^9
+ ;;^UTILITY(U,$J,358.3,49859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52391,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,52391,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,52391,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,52392,0)
- ;;=Z55.9^^237^2596^1
- ;;^UTILITY(U,$J,358.3,52392,1,0)
+ ;;^UTILITY(U,$J,358.3,49859,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,49859,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,49859,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,49860,0)
+ ;;=I70.211^^193^2485^10
+ ;;^UTILITY(U,$J,358.3,49860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52392,1,3,0)
- ;;=3^Acedemic/Educational Problem
- ;;^UTILITY(U,$J,358.3,52392,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,52392,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,52393,0)
- ;;=Z56.81^^237^2596^9
- ;;^UTILITY(U,$J,358.3,52393,1,0)
+ ;;^UTILITY(U,$J,358.3,49860,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,49860,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,49860,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,49861,0)
+ ;;=I70.25^^193^2485^6
+ ;;^UTILITY(U,$J,358.3,49861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52393,1,3,0)
- ;;=3^Sexual Harassment on the Job
- ;;^UTILITY(U,$J,358.3,52393,1,4,0)
- ;;=4^Z56.81
- ;;^UTILITY(U,$J,358.3,52393,2)
- ;;=^5063114
- ;;^UTILITY(U,$J,358.3,52394,0)
- ;;=Z56.9^^237^2596^8
- ;;^UTILITY(U,$J,358.3,52394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52394,1,3,0)
- ;;=3^Problems Related to Employment NEC
- ;;^UTILITY(U,$J,358.3,52394,1,4,0)
- ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,49861,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,49861,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,49861,2)
+ ;;=^5007602

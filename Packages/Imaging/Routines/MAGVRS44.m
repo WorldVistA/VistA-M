@@ -1,5 +1,5 @@
-MAGVRS44 ;WOIFO/DAC,MLH - Utilities for RPC calls for DICOM file processing ; 17 Jul 2012 1:59 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVRS44 ;WOIFO/DAC,MLH - Utilities for RPC calls for DICOM file processing ; 09 Sep 2019 1:59 PM
+ ;;3.0;IMAGING;**118,239**;Mar 19, 2002;Build 18
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -70,7 +70,7 @@ INACT(OUT,FILE,IEN,PIEN,OVERRIDE,REASON) ; Marks the entry indicated by file # a
  Q
 SETFDA(FILE,ATTS,IENS,FDA,FIELDERR,UPDATE,FDB) ; Set the FDA array for updates and new attachments
  N FIELDVAL,VALUE,FIELD,I,IX,J,MIEN,MFILE,MSFILE,MULT,MVALUE,VALID,VALUE,DIC,ISEP,OSEP,TYPEFDA,TYPEIEN,SOPIEN,SOPFDA,X,Y,FNUM
- N SIVAL,SIFLD,ERROR
+ N SIVAL,SIFLD,ERROR,CLASSIEN
  S FIELDVAL="",IX="",MIEN=2,ISEP=$$INPUTSEP^MAGVRS41
  F  D  Q:IX=""  Q:$D(ERROR)
  . S IX=$O(ATTS(IX)) Q:IX=""
@@ -106,6 +106,13 @@ SETFDA(FILE,ATTS,IENS,FDA,FIELDERR,UPDATE,FDB) ; Set the FDA array for updates a
  . . ; If the device is in 2005.83 get IEN of entry
  . . S TYPEIEN=$O(^MAG(2005.83,"B",VALUE,""))
  . . S VALUE=TYPEIEN
+ . . Q
+ . ; P239 DAC - Class Index was storing as free text, changed to pointer value (#2005.82)
+ . I FIELD="CLASS INDEX",$G(VALUE)'="" D
+ . . I '$D(^MAG(2005.82,"B",VALUE)) S VALUE=""
+ . . I VALUE="" S FIELDERR="Warning - Invalid field: "_FIELD Q
+ . . S CLASSIEN=$O(^MAG(2005.82,"B",VALUE,""))
+ . . S VALUE=CLASSIEN
  . . Q
  . I FIELD="PHOTOMETRIC INTERPRETATION",$G(VALUE)'="" D
  . . S VALUE=$$PHOTOIN(VALUE)

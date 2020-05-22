@@ -1,136 +1,118 @@
-IBDEI1A4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1A4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21754,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,21754,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,21754,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,21755,0)
- ;;=L03.115^^87^970^109
- ;;^UTILITY(U,$J,358.3,21755,1,0)
+ ;;^UTILITY(U,$J,358.3,20457,2)
+ ;;=^5029874
+ ;;^UTILITY(U,$J,358.3,20458,0)
+ ;;=S52.281S^^93^1002^6
+ ;;^UTILITY(U,$J,358.3,20458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21755,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,21755,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,21755,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,21756,0)
- ;;=L03.116^^87^970^102
- ;;^UTILITY(U,$J,358.3,21756,1,0)
+ ;;^UTILITY(U,$J,358.3,20458,1,3,0)
+ ;;=3^Bent bone of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20458,1,4,0)
+ ;;=4^S52.281S
+ ;;^UTILITY(U,$J,358.3,20458,2)
+ ;;=^5029858
+ ;;^UTILITY(U,$J,358.3,20459,0)
+ ;;=S52.252S^^93^1002^16
+ ;;^UTILITY(U,$J,358.3,20459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21756,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,21756,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,21756,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,21757,0)
- ;;=L03.123^^87^970^27
- ;;^UTILITY(U,$J,358.3,21757,1,0)
+ ;;^UTILITY(U,$J,358.3,20459,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20459,1,4,0)
+ ;;=4^S52.252S
+ ;;^UTILITY(U,$J,358.3,20459,2)
+ ;;=^5029634
+ ;;^UTILITY(U,$J,358.3,20460,0)
+ ;;=S52.251S^^93^1002^17
+ ;;^UTILITY(U,$J,358.3,20460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21757,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,21757,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,21757,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,21758,0)
- ;;=L03.124^^87^970^21
- ;;^UTILITY(U,$J,358.3,21758,1,0)
+ ;;^UTILITY(U,$J,358.3,20460,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20460,1,4,0)
+ ;;=4^S52.251S
+ ;;^UTILITY(U,$J,358.3,20460,2)
+ ;;=^5029618
+ ;;^UTILITY(U,$J,358.3,20461,0)
+ ;;=S52.042S^^93^1002^18
+ ;;^UTILITY(U,$J,358.3,20461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21758,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,21758,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,21758,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,21759,0)
- ;;=L03.125^^87^970^25
- ;;^UTILITY(U,$J,358.3,21759,1,0)
+ ;;^UTILITY(U,$J,358.3,20461,1,3,0)
+ ;;=3^Disp fx of coronoid process of left ulna, sequela 
+ ;;^UTILITY(U,$J,358.3,20461,1,4,0)
+ ;;=4^S52.042S
+ ;;^UTILITY(U,$J,358.3,20461,2)
+ ;;=^5028906
+ ;;^UTILITY(U,$J,358.3,20462,0)
+ ;;=S52.041S^^93^1002^19
+ ;;^UTILITY(U,$J,358.3,20462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21759,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,21759,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,21759,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,21760,0)
- ;;=L03.126^^87^970^19
- ;;^UTILITY(U,$J,358.3,21760,1,0)
+ ;;^UTILITY(U,$J,358.3,20462,1,3,0)
+ ;;=3^Disp fx of coronoid process of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20462,1,4,0)
+ ;;=4^S52.041S
+ ;;^UTILITY(U,$J,358.3,20462,2)
+ ;;=^5028890
+ ;;^UTILITY(U,$J,358.3,20463,0)
+ ;;=S52.612S^^93^1002^27
+ ;;^UTILITY(U,$J,358.3,20463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21760,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,21760,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,21760,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,21761,0)
- ;;=L03.211^^87^970^99
- ;;^UTILITY(U,$J,358.3,21761,1,0)
+ ;;^UTILITY(U,$J,358.3,20463,1,3,0)
+ ;;=3^Disp fx of left ulna styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,20463,1,4,0)
+ ;;=4^S52.612S
+ ;;^UTILITY(U,$J,358.3,20463,2)
+ ;;=^5031066
+ ;;^UTILITY(U,$J,358.3,20464,0)
+ ;;=S52.032S^^93^1002^14
+ ;;^UTILITY(U,$J,358.3,20464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21761,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,21761,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,21761,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,21762,0)
- ;;=L03.212^^87^970^16
- ;;^UTILITY(U,$J,358.3,21762,1,0)
+ ;;^UTILITY(U,$J,358.3,20464,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of radius, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20464,1,4,0)
+ ;;=4^S52.032S
+ ;;^UTILITY(U,$J,358.3,20464,2)
+ ;;=^5135105
+ ;;^UTILITY(U,$J,358.3,20465,0)
+ ;;=S52.031S^^93^1002^38
+ ;;^UTILITY(U,$J,358.3,20465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21762,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,21762,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,21762,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,21763,0)
- ;;=L03.221^^87^970^106
- ;;^UTILITY(U,$J,358.3,21763,1,0)
+ ;;^UTILITY(U,$J,358.3,20465,1,3,0)
+ ;;=3^Disp fx of olecran pro w intartic extn right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20465,1,4,0)
+ ;;=4^S52.031S
+ ;;^UTILITY(U,$J,358.3,20465,2)
+ ;;=^5028856
+ ;;^UTILITY(U,$J,358.3,20466,0)
+ ;;=S52.022S^^93^1002^39
+ ;;^UTILITY(U,$J,358.3,20466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21763,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,21763,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,21763,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,21764,0)
- ;;=L03.222^^87^970^22
- ;;^UTILITY(U,$J,358.3,21764,1,0)
+ ;;^UTILITY(U,$J,358.3,20466,1,3,0)
+ ;;=3^Disp fx of olecran pro w/o intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20466,1,4,0)
+ ;;=4^S52.022S
+ ;;^UTILITY(U,$J,358.3,20466,2)
+ ;;=^5028784
+ ;;^UTILITY(U,$J,358.3,20467,0)
+ ;;=S52.021S^^93^1002^40
+ ;;^UTILITY(U,$J,358.3,20467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21764,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,21764,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,21764,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,21765,0)
- ;;=L03.311^^87^970^95
- ;;^UTILITY(U,$J,358.3,21765,1,0)
+ ;;^UTILITY(U,$J,358.3,20467,1,3,0)
+ ;;=3^Disp fx of olecran pro w/o intartic extn right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20467,1,4,0)
+ ;;=4^S52.021S
+ ;;^UTILITY(U,$J,358.3,20467,2)
+ ;;=^5028768
+ ;;^UTILITY(U,$J,358.3,20468,0)
+ ;;=S52.611S^^93^1002^46
+ ;;^UTILITY(U,$J,358.3,20468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21765,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,21765,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,21765,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,21766,0)
- ;;=L03.312^^87^970^96
- ;;^UTILITY(U,$J,358.3,21766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21766,1,3,0)
- ;;=3^Cellulitis of Back
- ;;^UTILITY(U,$J,358.3,21766,1,4,0)
- ;;=4^L03.312
- ;;^UTILITY(U,$J,358.3,21766,2)
- ;;=^5009048
- ;;^UTILITY(U,$J,358.3,21767,0)
- ;;=L03.313^^87^970^98
- ;;^UTILITY(U,$J,358.3,21767,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21767,1,3,0)
- ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,20468,1,3,0)
+ ;;=3^Disp fx of right ulna styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,20468,1,4,0)
+ ;;=4^S52.611S
+ ;;^UTILITY(U,$J,358.3,20468,2)
+ ;;=^5031050
+ ;;^UTILITY(U,$J,358.3,20469,0)
+ ;;=S52.232S^^93^1002^35

@@ -1,354 +1,120 @@
-IBDEI10A ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI10A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47534,1,0)
+ ;;^UTILITY(U,$J,358.3,16179,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
+ ;;^UTILITY(U,$J,358.3,16179,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,16179,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,16180,0)
+ ;;=S05.01XA^^88^874^4
+ ;;^UTILITY(U,$J,358.3,16180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47534,1,3,0)
- ;;=3^Stress fx rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47534,1,4,0)
- ;;=4^M84.374K
- ;;^UTILITY(U,$J,358.3,47534,2)
- ;;=^5013755
- ;;^UTILITY(U,$J,358.3,47535,0)
- ;;=M84.475K^^139^1984^403
- ;;^UTILITY(U,$J,358.3,47535,1,0)
+ ;;^UTILITY(U,$J,358.3,16180,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,16180,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,16180,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,16181,0)
+ ;;=T15.02XA^^88^874^1
+ ;;^UTILITY(U,$J,358.3,16181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47535,1,3,0)
- ;;=3^Path fx lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47535,1,4,0)
- ;;=4^M84.475K
- ;;^UTILITY(U,$J,358.3,47535,2)
- ;;=^5013989
- ;;^UTILITY(U,$J,358.3,47536,0)
- ;;=M84.474K^^139^1984^416
- ;;^UTILITY(U,$J,358.3,47536,1,0)
+ ;;^UTILITY(U,$J,358.3,16181,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16181,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,16181,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,16182,0)
+ ;;=T15.01XA^^88^874^2
+ ;;^UTILITY(U,$J,358.3,16182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47536,1,3,0)
- ;;=3^Path fx rt ft, sub w/ nonunion
- ;;^UTILITY(U,$J,358.3,47536,1,4,0)
- ;;=4^M84.474K
- ;;^UTILITY(U,$J,358.3,47536,2)
- ;;=^5013983
- ;;^UTILITY(U,$J,358.3,47537,0)
- ;;=M84.472K^^139^1984^398
- ;;^UTILITY(U,$J,358.3,47537,1,0)
+ ;;^UTILITY(U,$J,358.3,16182,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16182,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,16182,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,16183,0)
+ ;;=S00.252A^^88^874^5
+ ;;^UTILITY(U,$J,358.3,16183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47537,1,3,0)
- ;;=3^Path fx lft ankl, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47537,1,4,0)
- ;;=4^M84.472K
- ;;^UTILITY(U,$J,358.3,47537,2)
- ;;=^5013971
- ;;^UTILITY(U,$J,358.3,47538,0)
- ;;=M84.471K^^139^1984^412
- ;;^UTILITY(U,$J,358.3,47538,1,0)
+ ;;^UTILITY(U,$J,358.3,16183,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16183,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,16183,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,16184,0)
+ ;;=S00.251A^^88^874^6
+ ;;^UTILITY(U,$J,358.3,16184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47538,1,3,0)
- ;;=3^Path fx rt ankl, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47538,1,4,0)
- ;;=4^M84.471K
- ;;^UTILITY(U,$J,358.3,47538,2)
- ;;=^5013965
- ;;^UTILITY(U,$J,358.3,47539,0)
- ;;=M84.571K^^139^1984^387
- ;;^UTILITY(U,$J,358.3,47539,1,0)
+ ;;^UTILITY(U,$J,358.3,16184,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16184,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,16184,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,16185,0)
+ ;;=B96.81^^88^875^63
+ ;;^UTILITY(U,$J,358.3,16185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47539,1,3,0)
- ;;=3^Path fx in neopl dis rt ankl, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47539,1,4,0)
- ;;=4^M84.571K
- ;;^UTILITY(U,$J,358.3,47539,2)
- ;;=^5014175
- ;;^UTILITY(U,$J,358.3,47540,0)
- ;;=M84.575K^^139^1984^386
- ;;^UTILITY(U,$J,358.3,47540,1,0)
+ ;;^UTILITY(U,$J,358.3,16185,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,16185,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,16185,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,16186,0)
+ ;;=B15.9^^88^875^65
+ ;;^UTILITY(U,$J,358.3,16186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47540,1,3,0)
- ;;=3^Path fx in neopl dis lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47540,1,4,0)
- ;;=4^M84.575K
- ;;^UTILITY(U,$J,358.3,47540,2)
- ;;=^5014199
- ;;^UTILITY(U,$J,358.3,47541,0)
- ;;=M84.574K^^139^1984^388
- ;;^UTILITY(U,$J,358.3,47541,1,0)
+ ;;^UTILITY(U,$J,358.3,16186,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,16186,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,16186,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,16187,0)
+ ;;=B16.9^^88^875^66
+ ;;^UTILITY(U,$J,358.3,16187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47541,1,3,0)
- ;;=3^Path fx in neopl dis rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47541,1,4,0)
- ;;=4^M84.574K
- ;;^UTILITY(U,$J,358.3,47541,2)
- ;;=^5014193
- ;;^UTILITY(U,$J,358.3,47542,0)
- ;;=M84.478K^^139^1984^406
- ;;^UTILITY(U,$J,358.3,47542,1,0)
+ ;;^UTILITY(U,$J,358.3,16187,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,16187,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,16187,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,16188,0)
+ ;;=B19.10^^88^875^68
+ ;;^UTILITY(U,$J,358.3,16188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47542,1,3,0)
- ;;=3^Path fx lft toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47542,1,4,0)
- ;;=4^M84.478K
- ;;^UTILITY(U,$J,358.3,47542,2)
- ;;=^5014007
- ;;^UTILITY(U,$J,358.3,47543,0)
- ;;=M84.477K^^139^1984^419
- ;;^UTILITY(U,$J,358.3,47543,1,0)
+ ;;^UTILITY(U,$J,358.3,16188,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,16188,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,16188,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,16189,0)
+ ;;=B18.1^^88^875^67
+ ;;^UTILITY(U,$J,358.3,16189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47543,1,3,0)
- ;;=3^Path fx rt toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47543,1,4,0)
- ;;=4^M84.477K
- ;;^UTILITY(U,$J,358.3,47543,2)
- ;;=^5014001
- ;;^UTILITY(U,$J,358.3,47544,0)
- ;;=M21.372^^139^1984^166
- ;;^UTILITY(U,$J,358.3,47544,1,0)
+ ;;^UTILITY(U,$J,358.3,16189,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,16189,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,16189,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,16190,0)
+ ;;=B17.10^^88^875^69
+ ;;^UTILITY(U,$J,358.3,16190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47544,1,3,0)
- ;;=3^Foot Drop,Left Foot
- ;;^UTILITY(U,$J,358.3,47544,1,4,0)
- ;;=4^M21.372
- ;;^UTILITY(U,$J,358.3,47544,2)
- ;;=^5011111
- ;;^UTILITY(U,$J,358.3,47545,0)
- ;;=M25.272^^139^1984^162
- ;;^UTILITY(U,$J,358.3,47545,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47545,1,3,0)
- ;;=3^Flail Joint,Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47545,1,4,0)
- ;;=4^M25.272
- ;;^UTILITY(U,$J,358.3,47545,2)
- ;;=^5011547
- ;;^UTILITY(U,$J,358.3,47546,0)
- ;;=M25.271^^139^1984^163
- ;;^UTILITY(U,$J,358.3,47546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47546,1,3,0)
- ;;=3^Flail Joint,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47546,1,4,0)
- ;;=4^M25.271
- ;;^UTILITY(U,$J,358.3,47546,2)
- ;;=^5011546
- ;;^UTILITY(U,$J,358.3,47547,0)
- ;;=M21.42^^139^1984^164
- ;;^UTILITY(U,$J,358.3,47547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47547,1,3,0)
- ;;=3^Flat Foot,Left Foot
- ;;^UTILITY(U,$J,358.3,47547,1,4,0)
- ;;=4^M21.42
- ;;^UTILITY(U,$J,358.3,47547,2)
- ;;=^5011115
- ;;^UTILITY(U,$J,358.3,47548,0)
- ;;=M21.41^^139^1984^165
- ;;^UTILITY(U,$J,358.3,47548,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47548,1,3,0)
- ;;=3^Flat Foot,Right Foot
- ;;^UTILITY(U,$J,358.3,47548,1,4,0)
- ;;=4^M21.41
- ;;^UTILITY(U,$J,358.3,47548,2)
- ;;=^5011114
- ;;^UTILITY(U,$J,358.3,47549,0)
- ;;=S92.341K^^139^1984^74
- ;;^UTILITY(U,$J,358.3,47549,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47549,1,3,0)
- ;;=3^Disp fx of 4th metsl bone, r ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47549,1,4,0)
- ;;=4^S92.341K
- ;;^UTILITY(U,$J,358.3,47549,2)
- ;;=^5045190
- ;;^UTILITY(U,$J,358.3,47550,0)
- ;;=S92.001A^^139^1984^209
- ;;^UTILITY(U,$J,358.3,47550,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47550,1,3,0)
- ;;=3^Fx of rt calcaneus,init w/ nonunion,unspec
- ;;^UTILITY(U,$J,358.3,47550,1,4,0)
- ;;=4^S92.001A
- ;;^UTILITY(U,$J,358.3,47550,2)
- ;;=^5044353
- ;;^UTILITY(U,$J,358.3,47551,0)
- ;;=S92.314A^^139^1984^287
- ;;^UTILITY(U,$J,358.3,47551,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47551,1,3,0)
- ;;=3^Nondisp fx of 1st metrsl bone,rt ft,init w/ nonunion
- ;;^UTILITY(U,$J,358.3,47551,1,4,0)
- ;;=4^S92.314A
- ;;^UTILITY(U,$J,358.3,47551,2)
- ;;=^5045081
- ;;^UTILITY(U,$J,358.3,47552,0)
- ;;=M84.572K^^139^1984^393
- ;;^UTILITY(U,$J,358.3,47552,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47552,1,3,0)
- ;;=3^Path fx in neoplst disease,lft ankl,subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,47552,1,4,0)
- ;;=4^M84.572K
- ;;^UTILITY(U,$J,358.3,47552,2)
- ;;=^5014181
- ;;^UTILITY(U,$J,358.3,47553,0)
- ;;=M84.68XA^^139^1984^394
- ;;^UTILITY(U,$J,358.3,47553,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47553,1,3,0)
- ;;=3^Path fx initial w/ nonunion,oth disease,oth site
- ;;^UTILITY(U,$J,358.3,47553,1,4,0)
- ;;=4^M84.68XA
- ;;^UTILITY(U,$J,358.3,47553,2)
- ;;=^5134051
- ;;^UTILITY(U,$J,358.3,47554,0)
- ;;=M10.071^^139^1985^14
- ;;^UTILITY(U,$J,358.3,47554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47554,1,3,0)
- ;;=3^Gout,Idiopathic Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47554,1,4,0)
- ;;=4^M10.071
- ;;^UTILITY(U,$J,358.3,47554,2)
- ;;=^5010303
- ;;^UTILITY(U,$J,358.3,47555,0)
- ;;=M10.072^^139^1985^13
- ;;^UTILITY(U,$J,358.3,47555,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47555,1,3,0)
- ;;=3^Gout,Idiopathic Lft Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47555,1,4,0)
- ;;=4^M10.072
- ;;^UTILITY(U,$J,358.3,47555,2)
- ;;=^5010304
- ;;^UTILITY(U,$J,358.3,47556,0)
- ;;=M10.272^^139^1985^10
- ;;^UTILITY(U,$J,358.3,47556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47556,1,3,0)
- ;;=3^Gout,Drug-Induced Lft Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47556,1,4,0)
- ;;=4^M10.272
- ;;^UTILITY(U,$J,358.3,47556,2)
- ;;=^5010352
- ;;^UTILITY(U,$J,358.3,47557,0)
- ;;=M10.271^^139^1985^12
- ;;^UTILITY(U,$J,358.3,47557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47557,1,3,0)
- ;;=3^Gout,Drug-Induced Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47557,1,4,0)
- ;;=4^M10.271
- ;;^UTILITY(U,$J,358.3,47557,2)
- ;;=^5010351
- ;;^UTILITY(U,$J,358.3,47558,0)
- ;;=M10.29^^139^1985^11
- ;;^UTILITY(U,$J,358.3,47558,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47558,1,3,0)
- ;;=3^Gout,Drug-Induced Multiple Sites
- ;;^UTILITY(U,$J,358.3,47558,1,4,0)
- ;;=4^M10.29
- ;;^UTILITY(U,$J,358.3,47558,2)
- ;;=^5010355
- ;;^UTILITY(U,$J,358.3,47559,0)
- ;;=M10.172^^139^1985^15
- ;;^UTILITY(U,$J,358.3,47559,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47559,1,3,0)
- ;;=3^Gout,Lead-Induced Lt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47559,1,4,0)
- ;;=4^M10.172
- ;;^UTILITY(U,$J,358.3,47559,2)
- ;;=^5010328
- ;;^UTILITY(U,$J,358.3,47560,0)
- ;;=M10.171^^139^1985^16
- ;;^UTILITY(U,$J,358.3,47560,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47560,1,3,0)
- ;;=3^Gout,Lead-Induced Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,47560,1,4,0)
- ;;=4^M10.171
- ;;^UTILITY(U,$J,358.3,47560,2)
- ;;=^5010327
- ;;^UTILITY(U,$J,358.3,47561,0)
- ;;=L92.3^^139^1985^17
- ;;^UTILITY(U,$J,358.3,47561,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47561,1,3,0)
- ;;=3^Granuloma,FB of Skin/Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,47561,1,4,0)
- ;;=4^L92.3
- ;;^UTILITY(U,$J,358.3,47561,2)
- ;;=^5009464
- ;;^UTILITY(U,$J,358.3,47562,0)
- ;;=M10.9^^139^1985^9
- ;;^UTILITY(U,$J,358.3,47562,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47562,1,3,0)
- ;;=3^Gout, unspecified
- ;;^UTILITY(U,$J,358.3,47562,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,47562,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,47563,0)
- ;;=M67.471^^139^1985^6
- ;;^UTILITY(U,$J,358.3,47563,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47563,1,3,0)
- ;;=3^Ganglion, right ankle and foot
- ;;^UTILITY(U,$J,358.3,47563,1,4,0)
- ;;=4^M67.471
- ;;^UTILITY(U,$J,358.3,47563,2)
- ;;=^5012975
- ;;^UTILITY(U,$J,358.3,47564,0)
- ;;=M67.472^^139^1985^4
- ;;^UTILITY(U,$J,358.3,47564,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47564,1,3,0)
- ;;=3^Ganglion, left ankle and foot
- ;;^UTILITY(U,$J,358.3,47564,1,4,0)
- ;;=4^M67.472
- ;;^UTILITY(U,$J,358.3,47564,2)
- ;;=^5012976
- ;;^UTILITY(U,$J,358.3,47565,0)
- ;;=M67.472^^139^1985^5
- ;;^UTILITY(U,$J,358.3,47565,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47565,1,3,0)
- ;;=3^Ganglion, left ankle and foot
- ;;^UTILITY(U,$J,358.3,47565,1,4,0)
- ;;=4^M67.472
- ;;^UTILITY(U,$J,358.3,47565,2)
- ;;=^5012976
- ;;^UTILITY(U,$J,358.3,47566,0)
- ;;=M67.471^^139^1985^7
- ;;^UTILITY(U,$J,358.3,47566,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47566,1,3,0)
- ;;=3^Ganglion, right ankle and foot
- ;;^UTILITY(U,$J,358.3,47566,1,4,0)
- ;;=4^M67.471
- ;;^UTILITY(U,$J,358.3,47566,2)
- ;;=^5012975
- ;;^UTILITY(U,$J,358.3,47567,0)
- ;;=R26.9^^139^1985^3
- ;;^UTILITY(U,$J,358.3,47567,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47567,1,3,0)
- ;;=3^Gait/Mobility Abnormalities,Unspec
- ;;^UTILITY(U,$J,358.3,47567,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,47567,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,47568,0)
- ;;=R26.1^^139^1985^2
- ;;^UTILITY(U,$J,358.3,47568,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47568,1,3,0)
- ;;=3^Gait,Paralytic
- ;;^UTILITY(U,$J,358.3,47568,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,47568,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,47569,0)
- ;;=R26.0^^139^1985^1
+ ;;^UTILITY(U,$J,358.3,16190,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,16190,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,16190,2)
+ ;;=^5000542

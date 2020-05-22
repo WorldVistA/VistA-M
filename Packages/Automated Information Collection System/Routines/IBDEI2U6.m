@@ -1,132 +1,130 @@
-IBDEI2U6 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2U6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47599,1,4,0)
- ;;=4^C88.0
- ;;^UTILITY(U,$J,358.3,47599,2)
- ;;=^5001748
- ;;^UTILITY(U,$J,358.3,47600,0)
- ;;=C88.2^^209^2346^213
- ;;^UTILITY(U,$J,358.3,47600,1,0)
+ ;;^UTILITY(U,$J,358.3,45241,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,45242,0)
+ ;;=Z91.5^^170^2258^1
+ ;;^UTILITY(U,$J,358.3,45242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47600,1,3,0)
- ;;=3^Heavy Chain Disease
- ;;^UTILITY(U,$J,358.3,47600,1,4,0)
- ;;=4^C88.2
- ;;^UTILITY(U,$J,358.3,47600,2)
- ;;=^55078
- ;;^UTILITY(U,$J,358.3,47601,0)
- ;;=C88.3^^209^2346^235
- ;;^UTILITY(U,$J,358.3,47601,1,0)
+ ;;^UTILITY(U,$J,358.3,45242,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,45242,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,45242,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,45243,0)
+ ;;=R45.851^^170^2258^2
+ ;;^UTILITY(U,$J,358.3,45243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47601,1,3,0)
- ;;=3^Immunoproliferative Small Intestinal Disease
- ;;^UTILITY(U,$J,358.3,47601,1,4,0)
- ;;=4^C88.3
- ;;^UTILITY(U,$J,358.3,47601,2)
- ;;=^61964
- ;;^UTILITY(U,$J,358.3,47602,0)
- ;;=C88.4^^209^2346^138
- ;;^UTILITY(U,$J,358.3,47602,1,0)
+ ;;^UTILITY(U,$J,358.3,45243,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,45243,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,45243,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,45244,0)
+ ;;=T14.91XA^^170^2258^3
+ ;;^UTILITY(U,$J,358.3,45244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47602,1,3,0)
- ;;=3^Extranodal Marginal Zone B-Cell Lymphoma of Mucosa-Assoc Lymphoid Tissue
- ;;^UTILITY(U,$J,358.3,47602,1,4,0)
- ;;=4^C88.4
- ;;^UTILITY(U,$J,358.3,47602,2)
- ;;=^5001749
- ;;^UTILITY(U,$J,358.3,47603,0)
- ;;=C88.8^^209^2346^281
- ;;^UTILITY(U,$J,358.3,47603,1,0)
+ ;;^UTILITY(U,$J,358.3,45244,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,45244,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,45244,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,45245,0)
+ ;;=T14.91XD^^170^2258^4
+ ;;^UTILITY(U,$J,358.3,45245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47603,1,3,0)
- ;;=3^Malig Immunoproliferative Diseases NEC
- ;;^UTILITY(U,$J,358.3,47603,1,4,0)
- ;;=4^C88.8
- ;;^UTILITY(U,$J,358.3,47603,2)
- ;;=^5001750
- ;;^UTILITY(U,$J,358.3,47604,0)
- ;;=C88.9^^209^2346^282
- ;;^UTILITY(U,$J,358.3,47604,1,0)
+ ;;^UTILITY(U,$J,358.3,45245,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,45245,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,45245,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,45246,0)
+ ;;=T14.91XS^^170^2258^5
+ ;;^UTILITY(U,$J,358.3,45246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47604,1,3,0)
- ;;=3^Malig Immunoproliferative Diseases,Unspec
- ;;^UTILITY(U,$J,358.3,47604,1,4,0)
- ;;=4^C88.9
- ;;^UTILITY(U,$J,358.3,47604,2)
- ;;=^5001751
- ;;^UTILITY(U,$J,358.3,47605,0)
- ;;=C90.00^^209^2346^351
- ;;^UTILITY(U,$J,358.3,47605,1,0)
+ ;;^UTILITY(U,$J,358.3,45246,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,45246,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,45246,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,45247,0)
+ ;;=Q3014^^171^2259^1^^^^1
+ ;;^UTILITY(U,$J,358.3,45247,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,45247,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,45247,1,3,0)
+ ;;=3^Telehealth Fac Fee-Pt Site
+ ;;^UTILITY(U,$J,358.3,45248,0)
+ ;;=B19.10^^172^2260^1
+ ;;^UTILITY(U,$J,358.3,45248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47605,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,47605,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,47605,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,47606,0)
- ;;=C90.01^^209^2346^350
- ;;^UTILITY(U,$J,358.3,47606,1,0)
+ ;;^UTILITY(U,$J,358.3,45248,1,3,0)
+ ;;=3^Hepatitis B w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,45248,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,45248,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,45249,0)
+ ;;=B17.10^^172^2260^2
+ ;;^UTILITY(U,$J,358.3,45249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47606,1,3,0)
- ;;=3^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,47606,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,47606,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,47607,0)
- ;;=C90.02^^209^2346^349
- ;;^UTILITY(U,$J,358.3,47607,1,0)
+ ;;^UTILITY(U,$J,358.3,45249,1,3,0)
+ ;;=3^Hepatitis C w/o Hepatic Coma,Acute
+ ;;^UTILITY(U,$J,358.3,45249,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,45249,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,45250,0)
+ ;;=B18.2^^172^2260^3
+ ;;^UTILITY(U,$J,358.3,45250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47607,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,47607,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,47607,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,47608,0)
- ;;=C90.10^^209^2346^444
- ;;^UTILITY(U,$J,358.3,47608,1,0)
+ ;;^UTILITY(U,$J,358.3,45250,1,3,0)
+ ;;=3^Hepatitis C,Chr
+ ;;^UTILITY(U,$J,358.3,45250,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,45250,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,45251,0)
+ ;;=B35.6^^172^2260^4
+ ;;^UTILITY(U,$J,358.3,45251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47608,1,3,0)
- ;;=3^Plasma Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,47608,1,4,0)
- ;;=4^C90.10
- ;;^UTILITY(U,$J,358.3,47608,2)
- ;;=^5001754
- ;;^UTILITY(U,$J,358.3,47609,0)
- ;;=C90.11^^209^2346^443
- ;;^UTILITY(U,$J,358.3,47609,1,0)
+ ;;^UTILITY(U,$J,358.3,45251,1,3,0)
+ ;;=3^Tinea Cruris
+ ;;^UTILITY(U,$J,358.3,45251,1,4,0)
+ ;;=4^B35.6
+ ;;^UTILITY(U,$J,358.3,45251,2)
+ ;;=^119711
+ ;;^UTILITY(U,$J,358.3,45252,0)
+ ;;=B35.3^^172^2260^5
+ ;;^UTILITY(U,$J,358.3,45252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47609,1,3,0)
- ;;=3^Plasma Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,47609,1,4,0)
- ;;=4^C90.11
- ;;^UTILITY(U,$J,358.3,47609,2)
- ;;=^267517
- ;;^UTILITY(U,$J,358.3,47610,0)
- ;;=C90.12^^209^2346^442
- ;;^UTILITY(U,$J,358.3,47610,1,0)
+ ;;^UTILITY(U,$J,358.3,45252,1,3,0)
+ ;;=3^Tinea Pedis
+ ;;^UTILITY(U,$J,358.3,45252,1,4,0)
+ ;;=4^B35.3
+ ;;^UTILITY(U,$J,358.3,45252,2)
+ ;;=^119732
+ ;;^UTILITY(U,$J,358.3,45253,0)
+ ;;=B97.89^^172^2260^6
+ ;;^UTILITY(U,$J,358.3,45253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47610,1,3,0)
- ;;=3^Plasma Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,47610,1,4,0)
- ;;=4^C90.12
- ;;^UTILITY(U,$J,358.3,47610,2)
- ;;=^5001755
- ;;^UTILITY(U,$J,358.3,47611,0)
- ;;=C90.20^^209^2346^137
- ;;^UTILITY(U,$J,358.3,47611,1,0)
+ ;;^UTILITY(U,$J,358.3,45253,1,3,0)
+ ;;=3^Viral Agents as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,45253,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,45253,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,45254,0)
+ ;;=B02.9^^172^2260^7
+ ;;^UTILITY(U,$J,358.3,45254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47611,1,3,0)
- ;;=3^Extramedullary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,47611,1,4,0)
- ;;=4^C90.20
- ;;^UTILITY(U,$J,358.3,47611,2)
- ;;=^5001756
- ;;^UTILITY(U,$J,358.3,47612,0)
- ;;=C90.21^^209^2346^136
- ;;^UTILITY(U,$J,358.3,47612,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45254,1,3,0)
+ ;;=3^Zoster w/o Complications

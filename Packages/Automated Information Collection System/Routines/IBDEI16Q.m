@@ -1,8 +1,122 @@
-IBDEI16Q ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.94)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.94)
- ;;=^IBE(358.94,
- ;;^UTILITY(U,$J,358.94,0)
- ;;=IMP/EXP HAND PRINT FIELD^358.94^0^0
+ ;;^UTILITY(U,$J,358.3,19039,1,3,0)
+ ;;=3^Cocaine Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19039,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,19039,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,19040,0)
+ ;;=F14.982^^91^976^18
+ ;;^UTILITY(U,$J,358.3,19040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19040,1,3,0)
+ ;;=3^Cocaine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19040,1,4,0)
+ ;;=4^F14.982
+ ;;^UTILITY(U,$J,358.3,19040,2)
+ ;;=^5003280
+ ;;^UTILITY(U,$J,358.3,19041,0)
+ ;;=F14.122^^91^976^22
+ ;;^UTILITY(U,$J,358.3,19041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19041,1,3,0)
+ ;;=3^Cocaine Intox w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19041,1,4,0)
+ ;;=4^F14.122
+ ;;^UTILITY(U,$J,358.3,19041,2)
+ ;;=^5003242
+ ;;^UTILITY(U,$J,358.3,19042,0)
+ ;;=F14.222^^91^976^23
+ ;;^UTILITY(U,$J,358.3,19042,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19042,1,3,0)
+ ;;=3^Cocaine Intox w/ Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19042,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,19042,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,19043,0)
+ ;;=F14.922^^91^976^24
+ ;;^UTILITY(U,$J,358.3,19043,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19043,1,3,0)
+ ;;=3^Cocaine Intox w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19043,1,4,0)
+ ;;=4^F14.922
+ ;;^UTILITY(U,$J,358.3,19043,2)
+ ;;=^5003272
+ ;;^UTILITY(U,$J,358.3,19044,0)
+ ;;=F14.129^^91^976^25
+ ;;^UTILITY(U,$J,358.3,19044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19044,1,3,0)
+ ;;=3^Cocaine Intox w/o Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19044,1,4,0)
+ ;;=4^F14.129
+ ;;^UTILITY(U,$J,358.3,19044,2)
+ ;;=^5003243
+ ;;^UTILITY(U,$J,358.3,19045,0)
+ ;;=F14.229^^91^976^26
+ ;;^UTILITY(U,$J,358.3,19045,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19045,1,3,0)
+ ;;=3^Cocaine Intox w/o Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19045,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,19045,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,19046,0)
+ ;;=F14.929^^91^976^27
+ ;;^UTILITY(U,$J,358.3,19046,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19046,1,3,0)
+ ;;=3^Cocaine Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19046,1,4,0)
+ ;;=4^F14.929
+ ;;^UTILITY(U,$J,358.3,19046,2)
+ ;;=^5003273
+ ;;^UTILITY(U,$J,358.3,19047,0)
+ ;;=F14.121^^91^976^19
+ ;;^UTILITY(U,$J,358.3,19047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19047,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19047,1,4,0)
+ ;;=4^F14.121
+ ;;^UTILITY(U,$J,358.3,19047,2)
+ ;;=^5003241
+ ;;^UTILITY(U,$J,358.3,19048,0)
+ ;;=F14.221^^91^976^20
+ ;;^UTILITY(U,$J,358.3,19048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19048,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19048,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,19048,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,19049,0)
+ ;;=F14.921^^91^976^21
+ ;;^UTILITY(U,$J,358.3,19049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19049,1,3,0)
+ ;;=3^Cocaine Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19049,1,4,0)
+ ;;=4^F14.921
+ ;;^UTILITY(U,$J,358.3,19049,2)
+ ;;=^5003271
+ ;;^UTILITY(U,$J,358.3,19050,0)
+ ;;=F14.10^^91^976^30
+ ;;^UTILITY(U,$J,358.3,19050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19050,1,3,0)
+ ;;=3^Cocaine Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,19050,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,19050,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,19051,0)
+ ;;=F14.20^^91^976^32

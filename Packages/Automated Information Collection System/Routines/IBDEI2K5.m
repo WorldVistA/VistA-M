@@ -1,132 +1,124 @@
-IBDEI2K5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2K5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43400,1,3,0)
- ;;=3^DM Type 2 w/ Skin Ulcer
- ;;^UTILITY(U,$J,358.3,43400,1,4,0)
- ;;=4^E11.622
- ;;^UTILITY(U,$J,358.3,43400,2)
- ;;=^5002657
- ;;^UTILITY(U,$J,358.3,43401,0)
- ;;=E11.630^^167^2078^103
- ;;^UTILITY(U,$J,358.3,43401,1,0)
+ ;;^UTILITY(U,$J,358.3,40834,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,40835,0)
+ ;;=S51.801A^^152^2017^16
+ ;;^UTILITY(U,$J,358.3,40835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43401,1,3,0)
- ;;=3^DM Type 2 w/ Periodontal Disease
- ;;^UTILITY(U,$J,358.3,43401,1,4,0)
- ;;=4^E11.630
- ;;^UTILITY(U,$J,358.3,43401,2)
- ;;=^5002659
- ;;^UTILITY(U,$J,358.3,43402,0)
- ;;=E11.641^^167^2078^101
- ;;^UTILITY(U,$J,358.3,43402,1,0)
+ ;;^UTILITY(U,$J,358.3,40835,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,40835,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,40835,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,40836,0)
+ ;;=S91.101A^^152^2017^17
+ ;;^UTILITY(U,$J,358.3,40836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43402,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,43402,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,43402,2)
- ;;=^5002661
- ;;^UTILITY(U,$J,358.3,43403,0)
- ;;=E11.649^^167^2078^102
- ;;^UTILITY(U,$J,358.3,43403,1,0)
+ ;;^UTILITY(U,$J,358.3,40836,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,40836,1,4,0)
+ ;;=4^S91.101A
+ ;;^UTILITY(U,$J,358.3,40836,2)
+ ;;=^5044168
+ ;;^UTILITY(U,$J,358.3,40837,0)
+ ;;=S61.401A^^152^2017^18
+ ;;^UTILITY(U,$J,358.3,40837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43403,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,43403,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,43403,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,43404,0)
- ;;=E11.65^^167^2078^100
- ;;^UTILITY(U,$J,358.3,43404,1,0)
+ ;;^UTILITY(U,$J,358.3,40837,1,3,0)
+ ;;=3^Open Wound,Right Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,40837,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,40837,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,40838,0)
+ ;;=S71.001A^^152^2017^19
+ ;;^UTILITY(U,$J,358.3,40838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43404,1,3,0)
- ;;=3^DM Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,43404,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,43404,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,43405,0)
- ;;=G56.41^^167^2078^64
- ;;^UTILITY(U,$J,358.3,43405,1,0)
+ ;;^UTILITY(U,$J,358.3,40838,1,3,0)
+ ;;=3^Open Wound,Right Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,40838,1,4,0)
+ ;;=4^S71.001A
+ ;;^UTILITY(U,$J,358.3,40838,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,40839,0)
+ ;;=S91.105A^^152^2017^10
+ ;;^UTILITY(U,$J,358.3,40839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43405,1,3,0)
- ;;=3^Causalgia Rt Upper Limb
- ;;^UTILITY(U,$J,358.3,43405,1,4,0)
- ;;=4^G56.41
- ;;^UTILITY(U,$J,358.3,43405,2)
- ;;=^5004030
- ;;^UTILITY(U,$J,358.3,43406,0)
- ;;=G56.42^^167^2078^63
- ;;^UTILITY(U,$J,358.3,43406,1,0)
+ ;;^UTILITY(U,$J,358.3,40839,1,3,0)
+ ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,40839,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,40839,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,40840,0)
+ ;;=S81.801A^^152^2017^21
+ ;;^UTILITY(U,$J,358.3,40840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43406,1,3,0)
- ;;=3^Causalgia Lt Upper Limb
- ;;^UTILITY(U,$J,358.3,43406,1,4,0)
- ;;=4^G56.42
- ;;^UTILITY(U,$J,358.3,43406,2)
- ;;=^5004031
- ;;^UTILITY(U,$J,358.3,43407,0)
- ;;=I65.21^^167^2078^130
- ;;^UTILITY(U,$J,358.3,43407,1,0)
+ ;;^UTILITY(U,$J,358.3,40840,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,40840,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,40840,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,40841,0)
+ ;;=S71.102A^^152^2017^12
+ ;;^UTILITY(U,$J,358.3,40841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43407,1,3,0)
- ;;=3^Occlusion & Stenosis Rt Carotid Artery
- ;;^UTILITY(U,$J,358.3,43407,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,43407,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,43408,0)
- ;;=I65.22^^167^2078^129
- ;;^UTILITY(U,$J,358.3,43408,1,0)
+ ;;^UTILITY(U,$J,358.3,40841,1,3,0)
+ ;;=3^Open Wound,Left Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,40841,1,4,0)
+ ;;=4^S71.102A
+ ;;^UTILITY(U,$J,358.3,40841,2)
+ ;;=^5037011
+ ;;^UTILITY(U,$J,358.3,40842,0)
+ ;;=S71.101A^^152^2017^22
+ ;;^UTILITY(U,$J,358.3,40842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43408,1,3,0)
- ;;=3^Occlusion & Stenosis Lt Carotid Artery
- ;;^UTILITY(U,$J,358.3,43408,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,43408,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,43409,0)
- ;;=I65.23^^167^2078^128
- ;;^UTILITY(U,$J,358.3,43409,1,0)
+ ;;^UTILITY(U,$J,358.3,40842,1,3,0)
+ ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,40842,1,4,0)
+ ;;=4^S71.101A
+ ;;^UTILITY(U,$J,358.3,40842,2)
+ ;;=^5037008
+ ;;^UTILITY(U,$J,358.3,40843,0)
+ ;;=S41.101A^^152^2017^23
+ ;;^UTILITY(U,$J,358.3,40843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43409,1,3,0)
- ;;=3^Occlusion & Stenosis Bil Carotid Arteries
- ;;^UTILITY(U,$J,358.3,43409,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,43409,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,43410,0)
- ;;=I63.131^^167^2078^71
- ;;^UTILITY(U,$J,358.3,43410,1,0)
+ ;;^UTILITY(U,$J,358.3,40843,1,3,0)
+ ;;=3^Open Wound,Right Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,40843,1,4,0)
+ ;;=4^S41.101A
+ ;;^UTILITY(U,$J,358.3,40843,2)
+ ;;=^5026330
+ ;;^UTILITY(U,$J,358.3,40844,0)
+ ;;=E03.5^^152^2018^37
+ ;;^UTILITY(U,$J,358.3,40844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43410,1,3,0)
- ;;=3^Cereb Infarc d/t Rt Carotid Artery Embolism
- ;;^UTILITY(U,$J,358.3,43410,1,4,0)
- ;;=4^I63.131
- ;;^UTILITY(U,$J,358.3,43410,2)
- ;;=^5007308
- ;;^UTILITY(U,$J,358.3,43411,0)
- ;;=I63.132^^167^2078^69
- ;;^UTILITY(U,$J,358.3,43411,1,0)
+ ;;^UTILITY(U,$J,358.3,40844,1,3,0)
+ ;;=3^Myxedema Coma
+ ;;^UTILITY(U,$J,358.3,40844,1,4,0)
+ ;;=4^E03.5
+ ;;^UTILITY(U,$J,358.3,40844,2)
+ ;;=^5002474
+ ;;^UTILITY(U,$J,358.3,40845,0)
+ ;;=R40.2121^^152^2018^33
+ ;;^UTILITY(U,$J,358.3,40845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43411,1,3,0)
- ;;=3^Cereb Infarc d/t Lt Carotid Artery Embolism
- ;;^UTILITY(U,$J,358.3,43411,1,4,0)
- ;;=4^I63.132
- ;;^UTILITY(U,$J,358.3,43411,2)
- ;;=^5007309
- ;;^UTILITY(U,$J,358.3,43412,0)
- ;;=I63.231^^167^2078^72
- ;;^UTILITY(U,$J,358.3,43412,1,0)
+ ;;^UTILITY(U,$J,358.3,40845,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
+ ;;^UTILITY(U,$J,358.3,40845,1,4,0)
+ ;;=4^R40.2121
+ ;;^UTILITY(U,$J,358.3,40845,2)
+ ;;=^5019361
+ ;;^UTILITY(U,$J,358.3,40846,0)
+ ;;=R40.2120^^152^2018^34
+ ;;^UTILITY(U,$J,358.3,40846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43412,1,3,0)
- ;;=3^Cereb Infarc d/t Rt Carotid Artery Occl/Sten
- ;;^UTILITY(U,$J,358.3,43412,1,4,0)
- ;;=4^I63.231
- ;;^UTILITY(U,$J,358.3,43412,2)
- ;;=^5007316
- ;;^UTILITY(U,$J,358.3,43413,0)
- ;;=I63.232^^167^2078^70
+ ;;^UTILITY(U,$J,358.3,40846,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
+ ;;^UTILITY(U,$J,358.3,40846,1,4,0)
+ ;;=4^R40.2120

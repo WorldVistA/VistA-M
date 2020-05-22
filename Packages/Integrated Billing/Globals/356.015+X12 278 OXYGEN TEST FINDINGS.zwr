@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: X12 278 OXYGEN TEST FINDINGS
-17-OCT-2019 20:41:54 ZWR
+ZWR
 ^IBT(356.015,0)="X12 278 OXYGEN TEST FINDINGS^356.015^3^3"
 ^IBT(356.015,1,0)="1^Dependent edema suggesting congestive heart failure"
 ^IBT(356.015,2,0)="2^""P"" Pulmonale on electrocardiogram (EKG)"

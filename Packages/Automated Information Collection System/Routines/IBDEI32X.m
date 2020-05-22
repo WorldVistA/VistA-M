@@ -1,128 +1,124 @@
-IBDEI32X ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32X ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51647,1,0)
+ ;;^UTILITY(U,$J,358.3,49166,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,49166,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,49167,0)
+ ;;=Z99.3^^185^2431^14
+ ;;^UTILITY(U,$J,358.3,49167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51647,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,51647,1,4,0)
- ;;=4^L89.130
- ;;^UTILITY(U,$J,358.3,51647,2)
- ;;=^5009363
- ;;^UTILITY(U,$J,358.3,51648,0)
- ;;=L89.139^^225^2505^77
- ;;^UTILITY(U,$J,358.3,51648,1,0)
+ ;;^UTILITY(U,$J,358.3,49167,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,49167,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,49167,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,49168,0)
+ ;;=Z91.5^^185^2432^1
+ ;;^UTILITY(U,$J,358.3,49168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51648,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,51648,1,4,0)
- ;;=4^L89.139
- ;;^UTILITY(U,$J,358.3,51648,2)
- ;;=^5133653
- ;;^UTILITY(U,$J,358.3,51649,0)
- ;;=L89.131^^225^2505^73
- ;;^UTILITY(U,$J,358.3,51649,1,0)
+ ;;^UTILITY(U,$J,358.3,49168,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,49168,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,49168,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,49169,0)
+ ;;=R45.851^^185^2432^2
+ ;;^UTILITY(U,$J,358.3,49169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51649,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,51649,1,4,0)
- ;;=4^L89.131
- ;;^UTILITY(U,$J,358.3,51649,2)
- ;;=^5009364
- ;;^UTILITY(U,$J,358.3,51650,0)
- ;;=L89.132^^225^2505^74
- ;;^UTILITY(U,$J,358.3,51650,1,0)
+ ;;^UTILITY(U,$J,358.3,49169,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,49169,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,49169,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,49170,0)
+ ;;=T14.91XA^^185^2432^3
+ ;;^UTILITY(U,$J,358.3,49170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51650,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 2
- ;;^UTILITY(U,$J,358.3,51650,1,4,0)
- ;;=4^L89.132
- ;;^UTILITY(U,$J,358.3,51650,2)
- ;;=^5009365
- ;;^UTILITY(U,$J,358.3,51651,0)
- ;;=L89.133^^225^2505^75
- ;;^UTILITY(U,$J,358.3,51651,1,0)
+ ;;^UTILITY(U,$J,358.3,49170,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,49170,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,49170,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,49171,0)
+ ;;=T14.91XD^^185^2432^4
+ ;;^UTILITY(U,$J,358.3,49171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51651,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 3
- ;;^UTILITY(U,$J,358.3,51651,1,4,0)
- ;;=4^L89.133
- ;;^UTILITY(U,$J,358.3,51651,2)
- ;;=^5009366
- ;;^UTILITY(U,$J,358.3,51652,0)
- ;;=L89.134^^225^2505^76
- ;;^UTILITY(U,$J,358.3,51652,1,0)
+ ;;^UTILITY(U,$J,358.3,49171,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,49171,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,49171,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,49172,0)
+ ;;=T14.91XS^^185^2432^5
+ ;;^UTILITY(U,$J,358.3,49172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51652,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 4
- ;;^UTILITY(U,$J,358.3,51652,1,4,0)
- ;;=4^L89.134
- ;;^UTILITY(U,$J,358.3,51652,2)
- ;;=^5009367
- ;;^UTILITY(U,$J,358.3,51653,0)
- ;;=L89.140^^225^2505^36
- ;;^UTILITY(U,$J,358.3,51653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51653,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,51653,1,4,0)
- ;;=4^L89.140
- ;;^UTILITY(U,$J,358.3,51653,2)
- ;;=^5133655
- ;;^UTILITY(U,$J,358.3,51654,0)
- ;;=L89.149^^225^2505^35
- ;;^UTILITY(U,$J,358.3,51654,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51654,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,51654,1,4,0)
- ;;=4^L89.149
- ;;^UTILITY(U,$J,358.3,51654,2)
- ;;=^5133654
- ;;^UTILITY(U,$J,358.3,51655,0)
- ;;=L89.141^^225^2505^31
- ;;^UTILITY(U,$J,358.3,51655,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51655,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,51655,1,4,0)
- ;;=4^L89.141
- ;;^UTILITY(U,$J,358.3,51655,2)
- ;;=^5133656
- ;;^UTILITY(U,$J,358.3,51656,0)
- ;;=L89.142^^225^2505^32
- ;;^UTILITY(U,$J,358.3,51656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51656,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 2
- ;;^UTILITY(U,$J,358.3,51656,1,4,0)
- ;;=4^L89.142
- ;;^UTILITY(U,$J,358.3,51656,2)
- ;;=^5133657
- ;;^UTILITY(U,$J,358.3,51657,0)
- ;;=L89.143^^225^2505^33
- ;;^UTILITY(U,$J,358.3,51657,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51657,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 3
- ;;^UTILITY(U,$J,358.3,51657,1,4,0)
- ;;=4^L89.143
- ;;^UTILITY(U,$J,358.3,51657,2)
- ;;=Pressure Ulcer Left Lower Back,Stage 3^5133658
- ;;^UTILITY(U,$J,358.3,51658,0)
- ;;=L89.144^^225^2505^34
- ;;^UTILITY(U,$J,358.3,51658,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51658,1,3,0)
- ;;=3^Pressure Ulcer Left Lower Back,Stage 4
- ;;^UTILITY(U,$J,358.3,51658,1,4,0)
- ;;=4^L89.144
- ;;^UTILITY(U,$J,358.3,51658,2)
- ;;=^5133659
- ;;^UTILITY(U,$J,358.3,51659,0)
- ;;=L89.210^^225^2505^72
- ;;^UTILITY(U,$J,358.3,51659,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51659,1,3,0)
- ;;=3^Pressure Ulcer Right Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,49172,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,49172,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,49172,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,49173,0)
+ ;;=99377^^186^2433^2^^^^1
+ ;;^UTILITY(U,$J,358.3,49173,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49173,1,1,0)
+ ;;=1^99377
+ ;;^UTILITY(U,$J,358.3,49173,1,2,0)
+ ;;=2^Hospice Care Supervision,15-29 min
+ ;;^UTILITY(U,$J,358.3,49174,0)
+ ;;=99378^^186^2433^3^^^^1
+ ;;^UTILITY(U,$J,358.3,49174,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49174,1,1,0)
+ ;;=1^99378
+ ;;^UTILITY(U,$J,358.3,49174,1,2,0)
+ ;;=2^Hospice Care Supervision,30 min or more
+ ;;^UTILITY(U,$J,358.3,49175,0)
+ ;;=G0182^^186^2433^1^^^^1
+ ;;^UTILITY(U,$J,358.3,49175,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49175,1,1,0)
+ ;;=1^G0182
+ ;;^UTILITY(U,$J,358.3,49175,1,2,0)
+ ;;=2^Hospice Care-Use with each encounter
+ ;;^UTILITY(U,$J,358.3,49176,0)
+ ;;=99356^^186^2434^1^^^^1
+ ;;^UTILITY(U,$J,358.3,49176,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49176,1,1,0)
+ ;;=1^99356
+ ;;^UTILITY(U,$J,358.3,49176,1,2,0)
+ ;;=2^Prolonged Services F-T-F,1st Hr
+ ;;^UTILITY(U,$J,358.3,49177,0)
+ ;;=99357^^186^2434^2^^^^1
+ ;;^UTILITY(U,$J,358.3,49177,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49177,1,1,0)
+ ;;=1^99357
+ ;;^UTILITY(U,$J,358.3,49177,1,2,0)
+ ;;=2^Prolonged Services F-T-F,Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,49178,0)
+ ;;=99358^^186^2434^3^^^^1
+ ;;^UTILITY(U,$J,358.3,49178,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49178,1,1,0)
+ ;;=1^99358
+ ;;^UTILITY(U,$J,358.3,49178,1,2,0)
+ ;;=2^Prolonged Services w/o Contact,1st Hr
+ ;;^UTILITY(U,$J,358.3,49179,0)
+ ;;=99359^^186^2434^4^^^^1
+ ;;^UTILITY(U,$J,358.3,49179,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49179,1,1,0)
+ ;;=1^99359
+ ;;^UTILITY(U,$J,358.3,49179,1,2,0)
+ ;;=2^Prolonged Svc w/o Contact,Ea Addl 30min

@@ -1,134 +1,118 @@
-IBDEI1XP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32808,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,32808,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,32809,0)
- ;;=Z82.5^^128^1636^2
- ;;^UTILITY(U,$J,358.3,32809,1,0)
+ ;;^UTILITY(U,$J,358.3,30896,0)
+ ;;=N03.1^^123^1597^17
+ ;;^UTILITY(U,$J,358.3,30896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32809,1,3,0)
- ;;=3^Family Hx of Asthma
- ;;^UTILITY(U,$J,358.3,32809,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,32809,2)
- ;;=^5063370
- ;;^UTILITY(U,$J,358.3,32810,0)
- ;;=Z82.61^^128^1636^1
- ;;^UTILITY(U,$J,358.3,32810,1,0)
+ ;;^UTILITY(U,$J,358.3,30896,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,30896,1,4,0)
+ ;;=4^N03.1
+ ;;^UTILITY(U,$J,358.3,30896,2)
+ ;;=^5015522
+ ;;^UTILITY(U,$J,358.3,30897,0)
+ ;;=N03.2^^123^1597^14
+ ;;^UTILITY(U,$J,358.3,30897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32810,1,3,0)
- ;;=3^Family Hx of Arthritis
- ;;^UTILITY(U,$J,358.3,32810,1,4,0)
- ;;=4^Z82.61
- ;;^UTILITY(U,$J,358.3,32810,2)
- ;;=^5063371
- ;;^UTILITY(U,$J,358.3,32811,0)
- ;;=Z82.69^^128^1636^36
- ;;^UTILITY(U,$J,358.3,32811,1,0)
+ ;;^UTILITY(U,$J,358.3,30897,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,30897,1,4,0)
+ ;;=4^N03.2
+ ;;^UTILITY(U,$J,358.3,30897,2)
+ ;;=^5015523
+ ;;^UTILITY(U,$J,358.3,30898,0)
+ ;;=N03.3^^123^1597^15
+ ;;^UTILITY(U,$J,358.3,30898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32811,1,3,0)
- ;;=3^Family Hx of Musculoskeletal System Diseases
- ;;^UTILITY(U,$J,358.3,32811,1,4,0)
- ;;=4^Z82.69
- ;;^UTILITY(U,$J,358.3,32811,2)
- ;;=^5063373
- ;;^UTILITY(U,$J,358.3,32812,0)
- ;;=Z83.3^^128^1636^7
- ;;^UTILITY(U,$J,358.3,32812,1,0)
+ ;;^UTILITY(U,$J,358.3,30898,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,30898,1,4,0)
+ ;;=4^N03.3
+ ;;^UTILITY(U,$J,358.3,30898,2)
+ ;;=^5015524
+ ;;^UTILITY(U,$J,358.3,30899,0)
+ ;;=N03.4^^123^1597^13
+ ;;^UTILITY(U,$J,358.3,30899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32812,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,32812,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,32812,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,32813,0)
- ;;=Z82.71^^128^1636^38
- ;;^UTILITY(U,$J,358.3,32813,1,0)
+ ;;^UTILITY(U,$J,358.3,30899,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,30899,1,4,0)
+ ;;=4^N03.4
+ ;;^UTILITY(U,$J,358.3,30899,2)
+ ;;=^5015525
+ ;;^UTILITY(U,$J,358.3,30900,0)
+ ;;=N03.5^^123^1597^16
+ ;;^UTILITY(U,$J,358.3,30900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32813,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,32813,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,32813,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,32814,0)
- ;;=Z82.2^^128^1636^6
- ;;^UTILITY(U,$J,358.3,32814,1,0)
+ ;;^UTILITY(U,$J,358.3,30900,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,30900,1,4,0)
+ ;;=4^N03.5
+ ;;^UTILITY(U,$J,358.3,30900,2)
+ ;;=^5015526
+ ;;^UTILITY(U,$J,358.3,30901,0)
+ ;;=N03.6^^123^1597^11
+ ;;^UTILITY(U,$J,358.3,30901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32814,1,3,0)
- ;;=3^Family Hx of Deafness & Hearing Loss
- ;;^UTILITY(U,$J,358.3,32814,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,32814,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,32815,0)
- ;;=Z84.0^^128^1636^40
- ;;^UTILITY(U,$J,358.3,32815,1,0)
+ ;;^UTILITY(U,$J,358.3,30901,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,30901,1,4,0)
+ ;;=4^N03.6
+ ;;^UTILITY(U,$J,358.3,30901,2)
+ ;;=^5015527
+ ;;^UTILITY(U,$J,358.3,30902,0)
+ ;;=N03.7^^123^1597^12
+ ;;^UTILITY(U,$J,358.3,30902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32815,1,3,0)
- ;;=3^Family Hx of Skin & Subcutaneous Tissue Diseases
- ;;^UTILITY(U,$J,358.3,32815,1,4,0)
- ;;=4^Z84.0
- ;;^UTILITY(U,$J,358.3,32815,2)
- ;;=^5063388
- ;;^UTILITY(U,$J,358.3,32816,0)
- ;;=Z82.79^^128^1636^5
- ;;^UTILITY(U,$J,358.3,32816,1,0)
+ ;;^UTILITY(U,$J,358.3,30902,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,30902,1,4,0)
+ ;;=4^N03.7
+ ;;^UTILITY(U,$J,358.3,30902,2)
+ ;;=^5015528
+ ;;^UTILITY(U,$J,358.3,30903,0)
+ ;;=N03.8^^123^1597^19
+ ;;^UTILITY(U,$J,358.3,30903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32816,1,3,0)
- ;;=3^Family Hx of Congenital Malformations
- ;;^UTILITY(U,$J,358.3,32816,1,4,0)
- ;;=4^Z82.79
- ;;^UTILITY(U,$J,358.3,32816,2)
- ;;=^5063374
- ;;^UTILITY(U,$J,358.3,32817,0)
- ;;=Z80.49^^128^1636^24
- ;;^UTILITY(U,$J,358.3,32817,1,0)
+ ;;^UTILITY(U,$J,358.3,30903,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ other morphologic changes
+ ;;^UTILITY(U,$J,358.3,30903,1,4,0)
+ ;;=4^N03.8
+ ;;^UTILITY(U,$J,358.3,30903,2)
+ ;;=^5015529
+ ;;^UTILITY(U,$J,358.3,30904,0)
+ ;;=N03.9^^123^1597^20
+ ;;^UTILITY(U,$J,358.3,30904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32817,1,3,0)
- ;;=3^Family Hx of Malig Neop Genital Organs
- ;;^UTILITY(U,$J,358.3,32817,1,4,0)
- ;;=4^Z80.49
- ;;^UTILITY(U,$J,358.3,32817,2)
- ;;=^5063351
- ;;^UTILITY(U,$J,358.3,32818,0)
- ;;=Z80.51^^128^1636^25
- ;;^UTILITY(U,$J,358.3,32818,1,0)
+ ;;^UTILITY(U,$J,358.3,30904,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,30904,1,4,0)
+ ;;=4^N03.9
+ ;;^UTILITY(U,$J,358.3,30904,2)
+ ;;=^5015530
+ ;;^UTILITY(U,$J,358.3,30905,0)
+ ;;=N04.0^^123^1597^59
+ ;;^UTILITY(U,$J,358.3,30905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32818,1,3,0)
- ;;=3^Family Hx of Malig Neop Kidney
- ;;^UTILITY(U,$J,358.3,32818,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,32818,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,32819,0)
- ;;=Z80.52^^128^1636^21
- ;;^UTILITY(U,$J,358.3,32819,1,0)
+ ;;^UTILITY(U,$J,358.3,30905,1,3,0)
+ ;;=3^Nephrotic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,30905,1,4,0)
+ ;;=4^N04.0
+ ;;^UTILITY(U,$J,358.3,30905,2)
+ ;;=^5015531
+ ;;^UTILITY(U,$J,358.3,30906,0)
+ ;;=N04.1^^123^1597^58
+ ;;^UTILITY(U,$J,358.3,30906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32819,1,3,0)
- ;;=3^Family Hx of Malig Neop Bladder
- ;;^UTILITY(U,$J,358.3,32819,1,4,0)
- ;;=4^Z80.52
- ;;^UTILITY(U,$J,358.3,32819,2)
- ;;=^5063352
- ;;^UTILITY(U,$J,358.3,32820,0)
- ;;=Z80.59^^128^1636^31
- ;;^UTILITY(U,$J,358.3,32820,1,0)
+ ;;^UTILITY(U,$J,358.3,30906,1,3,0)
+ ;;=3^Nephrotic syndrome w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,30906,1,4,0)
+ ;;=4^N04.1
+ ;;^UTILITY(U,$J,358.3,30906,2)
+ ;;=^5015532
+ ;;^UTILITY(U,$J,358.3,30907,0)
+ ;;=N04.2^^123^1597^55
+ ;;^UTILITY(U,$J,358.3,30907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32820,1,3,0)
- ;;=3^Family Hx of Malig Neop Urinary Tract Organ
- ;;^UTILITY(U,$J,358.3,32820,1,4,0)
- ;;=4^Z80.59
- ;;^UTILITY(U,$J,358.3,32820,2)
- ;;=^5063353
- ;;^UTILITY(U,$J,358.3,32821,0)
- ;;=Z80.7^^128^1636^26
- ;;^UTILITY(U,$J,358.3,32821,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32821,1,3,0)
- ;;=3^Family Hx of Malig Neop Lymphoid,Hematopoietic & Related Tissues

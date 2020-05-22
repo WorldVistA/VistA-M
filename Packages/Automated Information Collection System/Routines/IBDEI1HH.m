@@ -1,128 +1,126 @@
-IBDEI1HH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25184,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,25184,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,25185,0)
- ;;=F31.71^^95^1141^4
- ;;^UTILITY(U,$J,358.3,25185,1,0)
+ ;;^UTILITY(U,$J,358.3,23721,1,4,0)
+ ;;=4^E11.3551
+ ;;^UTILITY(U,$J,358.3,23721,2)
+ ;;=^5138371
+ ;;^UTILITY(U,$J,358.3,23722,0)
+ ;;=E11.3552^^105^1185^30
+ ;;^UTILITY(U,$J,358.3,23722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25185,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,25185,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,25185,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,25186,0)
- ;;=F31.72^^95^1141^5
- ;;^UTILITY(U,$J,358.3,25186,1,0)
+ ;;^UTILITY(U,$J,358.3,23722,1,3,0)
+ ;;=3^DM 2 w/ PDR,Left Eye,Stable
+ ;;^UTILITY(U,$J,358.3,23722,1,4,0)
+ ;;=4^E11.3552
+ ;;^UTILITY(U,$J,358.3,23722,2)
+ ;;=^5138372
+ ;;^UTILITY(U,$J,358.3,23723,0)
+ ;;=E11.3553^^105^1185^29
+ ;;^UTILITY(U,$J,358.3,23723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25186,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,25186,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,25186,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,25187,0)
- ;;=F31.89^^95^1141^21
- ;;^UTILITY(U,$J,358.3,25187,1,0)
+ ;;^UTILITY(U,$J,358.3,23723,1,3,0)
+ ;;=3^DM 2 w/ PDR,Bilateral,Stable
+ ;;^UTILITY(U,$J,358.3,23723,1,4,0)
+ ;;=4^E11.3553
+ ;;^UTILITY(U,$J,358.3,23723,2)
+ ;;=^5138373
+ ;;^UTILITY(U,$J,358.3,23724,0)
+ ;;=E11.3591^^105^1185^28
+ ;;^UTILITY(U,$J,358.3,23724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25187,1,3,0)
- ;;=3^Bipolar and Other Related Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25187,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,25187,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,25188,0)
- ;;=F10.232^^95^1142^2
- ;;^UTILITY(U,$J,358.3,25188,1,0)
+ ;;^UTILITY(U,$J,358.3,23724,1,3,0)
+ ;;=3^DM 2 w/ PDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,23724,1,4,0)
+ ;;=4^E11.3591
+ ;;^UTILITY(U,$J,358.3,23724,2)
+ ;;=^5138375
+ ;;^UTILITY(U,$J,358.3,23725,0)
+ ;;=E11.3592^^105^1185^27
+ ;;^UTILITY(U,$J,358.3,23725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25188,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,25188,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,25188,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,25189,0)
- ;;=F10.231^^95^1142^3
- ;;^UTILITY(U,$J,358.3,25189,1,0)
+ ;;^UTILITY(U,$J,358.3,23725,1,3,0)
+ ;;=3^DM 2 w/ PDR w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,23725,1,4,0)
+ ;;=4^E11.3592
+ ;;^UTILITY(U,$J,358.3,23725,2)
+ ;;=^5138376
+ ;;^UTILITY(U,$J,358.3,23726,0)
+ ;;=E11.3593^^105^1185^26
+ ;;^UTILITY(U,$J,358.3,23726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25189,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,25189,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,25189,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,25190,0)
- ;;=F10.121^^95^1142^6
- ;;^UTILITY(U,$J,358.3,25190,1,0)
+ ;;^UTILITY(U,$J,358.3,23726,1,3,0)
+ ;;=3^DM 2 w/ PDR w/o Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,23726,1,4,0)
+ ;;=4^E11.3593
+ ;;^UTILITY(U,$J,358.3,23726,2)
+ ;;=^5138377
+ ;;^UTILITY(U,$J,358.3,23727,0)
+ ;;=E66.01^^105^1185^43
+ ;;^UTILITY(U,$J,358.3,23727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25190,1,3,0)
- ;;=3^Mild Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,25190,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,25190,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,25191,0)
- ;;=F10.221^^95^1142^7
- ;;^UTILITY(U,$J,358.3,25191,1,0)
+ ;;^UTILITY(U,$J,358.3,23727,1,3,0)
+ ;;=3^Morbid Obesity d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,23727,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,23727,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,23728,0)
+ ;;=E66.2^^105^1185^44
+ ;;^UTILITY(U,$J,358.3,23728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25191,1,3,0)
- ;;=3^Moderate/Severe Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,25191,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,25191,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,25192,0)
- ;;=F10.921^^95^1142^1
- ;;^UTILITY(U,$J,358.3,25192,1,0)
+ ;;^UTILITY(U,$J,358.3,23728,1,3,0)
+ ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,23728,1,4,0)
+ ;;=4^E66.2
+ ;;^UTILITY(U,$J,358.3,23728,2)
+ ;;=^5002829
+ ;;^UTILITY(U,$J,358.3,23729,0)
+ ;;=E66.9^^105^1185^45
+ ;;^UTILITY(U,$J,358.3,23729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25192,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25192,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,25192,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,25193,0)
- ;;=F05.^^95^1142^4
- ;;^UTILITY(U,$J,358.3,25193,1,0)
+ ;;^UTILITY(U,$J,358.3,23729,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,23729,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,23729,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,23730,0)
+ ;;=E66.3^^105^1185^46
+ ;;^UTILITY(U,$J,358.3,23730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25193,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,25193,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,25193,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,25194,0)
- ;;=F05.^^95^1142^5
- ;;^UTILITY(U,$J,358.3,25194,1,0)
+ ;;^UTILITY(U,$J,358.3,23730,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,23730,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,23730,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,23731,0)
+ ;;=I50.31^^105^1186^1
+ ;;^UTILITY(U,$J,358.3,23731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25194,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,25194,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,25194,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,25195,0)
- ;;=A81.00^^95^1143^9
- ;;^UTILITY(U,$J,358.3,25195,1,0)
+ ;;^UTILITY(U,$J,358.3,23731,1,3,0)
+ ;;=3^Acute Diastolic Congestive Heart Failure
+ ;;^UTILITY(U,$J,358.3,23731,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,23731,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,23732,0)
+ ;;=N17.0^^105^1186^2
+ ;;^UTILITY(U,$J,358.3,23732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25195,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,25195,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,25195,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,25196,0)
- ;;=A81.01^^95^1143^38
- ;;^UTILITY(U,$J,358.3,25196,1,0)
+ ;;^UTILITY(U,$J,358.3,23732,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Tubular Necrosis
+ ;;^UTILITY(U,$J,358.3,23732,1,4,0)
+ ;;=4^N17.0
+ ;;^UTILITY(U,$J,358.3,23732,2)
+ ;;=^5015598
+ ;;^UTILITY(U,$J,358.3,23733,0)
+ ;;=I50.33^^105^1186^10
+ ;;^UTILITY(U,$J,358.3,23733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25196,1,3,0)
- ;;=3^Variant Creutzfeldt-Jakob Disease
- ;;^UTILITY(U,$J,358.3,25196,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,25196,2)
- ;;=^336701
+ ;;^UTILITY(U,$J,358.3,23733,1,3,0)
+ ;;=3^Acute on Chronic Diastolic Congestive Heart Failure
+ ;;^UTILITY(U,$J,358.3,23733,1,4,0)
+ ;;=4^I50.33

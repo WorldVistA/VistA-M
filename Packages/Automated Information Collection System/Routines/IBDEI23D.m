@@ -1,126 +1,122 @@
-IBDEI23D ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35481,0)
- ;;=I50.23^^134^1722^6
- ;;^UTILITY(U,$J,358.3,35481,1,0)
+ ;;^UTILITY(U,$J,358.3,33437,1,4,0)
+ ;;=4^S82.54XD
+ ;;^UTILITY(U,$J,358.3,33437,2)
+ ;;=^5042266
+ ;;^UTILITY(U,$J,358.3,33438,0)
+ ;;=M19.171^^132^1701^34
+ ;;^UTILITY(U,$J,358.3,33438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35481,1,3,0)
- ;;=3^AC on Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,35481,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,35481,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,35482,0)
- ;;=I50.21^^134^1722^3
- ;;^UTILITY(U,$J,358.3,35482,1,0)
+ ;;^UTILITY(U,$J,358.3,33438,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right ankle & foot
+ ;;^UTILITY(U,$J,358.3,33438,1,4,0)
+ ;;=4^M19.171
+ ;;^UTILITY(U,$J,358.3,33438,2)
+ ;;=^5010835
+ ;;^UTILITY(U,$J,358.3,33439,0)
+ ;;=M19.172^^132^1701^33
+ ;;^UTILITY(U,$J,358.3,33439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35482,1,3,0)
- ;;=3^AC Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,35482,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,35482,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,35483,0)
- ;;=I20.9^^134^1722^8
- ;;^UTILITY(U,$J,358.3,35483,1,0)
+ ;;^UTILITY(U,$J,358.3,33439,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left ankle & foot
+ ;;^UTILITY(U,$J,358.3,33439,1,4,0)
+ ;;=4^M19.172
+ ;;^UTILITY(U,$J,358.3,33439,2)
+ ;;=^5010836
+ ;;^UTILITY(U,$J,358.3,33440,0)
+ ;;=S93.402D^^132^1701^41
+ ;;^UTILITY(U,$J,358.3,33440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35483,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,35483,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,35483,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,35484,0)
- ;;=I25.721^^134^1722^9
- ;;^UTILITY(U,$J,358.3,35484,1,0)
+ ;;^UTILITY(U,$J,358.3,33440,1,3,0)
+ ;;=3^Sprain of unspec ligament of left ankle, subs encntr
+ ;;^UTILITY(U,$J,358.3,33440,1,4,0)
+ ;;=4^S93.402D
+ ;;^UTILITY(U,$J,358.3,33440,2)
+ ;;=^5045778
+ ;;^UTILITY(U,$J,358.3,33441,0)
+ ;;=S93.401D^^132^1701^42
+ ;;^UTILITY(U,$J,358.3,33441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35484,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,35484,1,4,0)
- ;;=4^I25.721
- ;;^UTILITY(U,$J,358.3,35484,2)
- ;;=^5007126
- ;;^UTILITY(U,$J,358.3,35485,0)
- ;;=I25.728^^134^1722^10
- ;;^UTILITY(U,$J,358.3,35485,1,0)
+ ;;^UTILITY(U,$J,358.3,33441,1,3,0)
+ ;;=3^Sprain of unspec ligament of right ankle, subs encntr
+ ;;^UTILITY(U,$J,358.3,33441,1,4,0)
+ ;;=4^S93.401D
+ ;;^UTILITY(U,$J,358.3,33441,2)
+ ;;=^5045775
+ ;;^UTILITY(U,$J,358.3,33442,0)
+ ;;=M25.571^^132^1701^30
+ ;;^UTILITY(U,$J,358.3,33442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35485,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,35485,1,4,0)
- ;;=4^I25.728
- ;;^UTILITY(U,$J,358.3,35485,2)
- ;;=^5133560
- ;;^UTILITY(U,$J,358.3,35486,0)
- ;;=I25.729^^134^1722^11
- ;;^UTILITY(U,$J,358.3,35486,1,0)
+ ;;^UTILITY(U,$J,358.3,33442,1,3,0)
+ ;;=3^Pain in right ankle & joints of right foot
+ ;;^UTILITY(U,$J,358.3,33442,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,33442,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,33443,0)
+ ;;=G56.22^^132^1702^23
+ ;;^UTILITY(U,$J,358.3,33443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35486,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,35486,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,35486,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,35487,0)
- ;;=I25.720^^134^1722^12
- ;;^UTILITY(U,$J,358.3,35487,1,0)
+ ;;^UTILITY(U,$J,358.3,33443,1,3,0)
+ ;;=3^Lesion of ulnar nerve, left upper limb
+ ;;^UTILITY(U,$J,358.3,33443,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,33443,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,33444,0)
+ ;;=G56.21^^132^1702^24
+ ;;^UTILITY(U,$J,358.3,33444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35487,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,35487,1,4,0)
- ;;=4^I25.720
- ;;^UTILITY(U,$J,358.3,35487,2)
- ;;=^5007125
- ;;^UTILITY(U,$J,358.3,35488,0)
- ;;=I25.711^^134^1722^13
- ;;^UTILITY(U,$J,358.3,35488,1,0)
+ ;;^UTILITY(U,$J,358.3,33444,1,3,0)
+ ;;=3^Lesion of ulnar nerve, right upper limb
+ ;;^UTILITY(U,$J,358.3,33444,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,33444,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,33445,0)
+ ;;=M00.822^^132^1702^1
+ ;;^UTILITY(U,$J,358.3,33445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35488,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,35488,1,4,0)
- ;;=4^I25.711
- ;;^UTILITY(U,$J,358.3,35488,2)
- ;;=^5007122
- ;;^UTILITY(U,$J,358.3,35489,0)
- ;;=I25.718^^134^1722^14
- ;;^UTILITY(U,$J,358.3,35489,1,0)
+ ;;^UTILITY(U,$J,358.3,33445,1,3,0)
+ ;;=3^Arthritis due to other bacteria, left elbow
+ ;;^UTILITY(U,$J,358.3,33445,1,4,0)
+ ;;=4^M00.822
+ ;;^UTILITY(U,$J,358.3,33445,2)
+ ;;=^5009674
+ ;;^UTILITY(U,$J,358.3,33446,0)
+ ;;=M00.821^^132^1702^2
+ ;;^UTILITY(U,$J,358.3,33446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35489,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,35489,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,35489,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,35490,0)
- ;;=I25.719^^134^1722^15
- ;;^UTILITY(U,$J,358.3,35490,1,0)
+ ;;^UTILITY(U,$J,358.3,33446,1,3,0)
+ ;;=3^Arthritis due to other bacteria, right elbow
+ ;;^UTILITY(U,$J,358.3,33446,1,4,0)
+ ;;=4^M00.821
+ ;;^UTILITY(U,$J,358.3,33446,2)
+ ;;=^5009673
+ ;;^UTILITY(U,$J,358.3,33447,0)
+ ;;=M24.522^^132^1702^3
+ ;;^UTILITY(U,$J,358.3,33447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35490,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,35490,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,35490,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,35491,0)
- ;;=I25.710^^134^1722^16
- ;;^UTILITY(U,$J,358.3,35491,1,0)
+ ;;^UTILITY(U,$J,358.3,33447,1,3,0)
+ ;;=3^Contracture, left elbow
+ ;;^UTILITY(U,$J,358.3,33447,1,4,0)
+ ;;=4^M24.522
+ ;;^UTILITY(U,$J,358.3,33447,2)
+ ;;=^5011406
+ ;;^UTILITY(U,$J,358.3,33448,0)
+ ;;=M24.521^^132^1702^4
+ ;;^UTILITY(U,$J,358.3,33448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35491,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,35491,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,35491,2)
- ;;=^5007121
- ;;^UTILITY(U,$J,358.3,35492,0)
- ;;=I25.761^^134^1722^17
- ;;^UTILITY(U,$J,358.3,35492,1,0)
+ ;;^UTILITY(U,$J,358.3,33448,1,3,0)
+ ;;=3^Contracture, right elbow
+ ;;^UTILITY(U,$J,358.3,33448,1,4,0)
+ ;;=4^M24.521
+ ;;^UTILITY(U,$J,358.3,33448,2)
+ ;;=^5011405
+ ;;^UTILITY(U,$J,358.3,33449,0)
+ ;;=S50.02XA^^132^1702^5
+ ;;^UTILITY(U,$J,358.3,33449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35492,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,35492,1,4,0)
- ;;=4^I25.761
- ;;^UTILITY(U,$J,358.3,35492,2)
- ;;=^5007136
- ;;^UTILITY(U,$J,358.3,35493,0)
- ;;=I25.768^^134^1722^18

@@ -1,132 +1,120 @@
-IBDEI2V6 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2V6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48060,1,3,0)
- ;;=3^Malig Neop of Right Adrenal Gland,Unspec
- ;;^UTILITY(U,$J,358.3,48060,1,4,0)
- ;;=4^C74.91
- ;;^UTILITY(U,$J,358.3,48060,2)
- ;;=^5001318
- ;;^UTILITY(U,$J,358.3,48061,0)
- ;;=C74.92^^209^2375^7
- ;;^UTILITY(U,$J,358.3,48061,1,0)
+ ;;^UTILITY(U,$J,358.3,45688,2)
+ ;;=^5054250
+ ;;^UTILITY(U,$J,358.3,45689,0)
+ ;;=T78.02XA^^172^2277^34
+ ;;^UTILITY(U,$J,358.3,45689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48061,1,3,0)
- ;;=3^Malig Neop of Left Adrenal Gland,Unspec
- ;;^UTILITY(U,$J,358.3,48061,1,4,0)
- ;;=4^C74.92
- ;;^UTILITY(U,$J,358.3,48061,2)
- ;;=^5001319
- ;;^UTILITY(U,$J,358.3,48062,0)
- ;;=C75.0^^209^2375^10
- ;;^UTILITY(U,$J,358.3,48062,1,0)
+ ;;^UTILITY(U,$J,358.3,45689,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,1st Encntr
+ ;;^UTILITY(U,$J,358.3,45689,1,4,0)
+ ;;=4^T78.02XA
+ ;;^UTILITY(U,$J,358.3,45689,2)
+ ;;=^5054251
+ ;;^UTILITY(U,$J,358.3,45690,0)
+ ;;=T78.02XD^^172^2277^36
+ ;;^UTILITY(U,$J,358.3,45690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48062,1,3,0)
- ;;=3^Malig Neop of Parathyroid Gland
- ;;^UTILITY(U,$J,358.3,48062,1,4,0)
- ;;=4^C75.0
- ;;^UTILITY(U,$J,358.3,48062,2)
- ;;=^267299
- ;;^UTILITY(U,$J,358.3,48063,0)
- ;;=C75.1^^209^2375^12
- ;;^UTILITY(U,$J,358.3,48063,1,0)
+ ;;^UTILITY(U,$J,358.3,45690,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,45690,1,4,0)
+ ;;=4^T78.02XD
+ ;;^UTILITY(U,$J,358.3,45690,2)
+ ;;=^5054252
+ ;;^UTILITY(U,$J,358.3,45691,0)
+ ;;=T78.02XS^^172^2277^35
+ ;;^UTILITY(U,$J,358.3,45691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48063,1,3,0)
- ;;=3^Malig Neop of Pituitary Gland
- ;;^UTILITY(U,$J,358.3,48063,1,4,0)
- ;;=4^C75.1
- ;;^UTILITY(U,$J,358.3,48063,2)
- ;;=^5001320
- ;;^UTILITY(U,$J,358.3,48064,0)
- ;;=C75.2^^209^2375^5
- ;;^UTILITY(U,$J,358.3,48064,1,0)
+ ;;^UTILITY(U,$J,358.3,45691,1,3,0)
+ ;;=3^Anaphylactic Reaction,Shellfish,Sequela
+ ;;^UTILITY(U,$J,358.3,45691,1,4,0)
+ ;;=4^T78.02XS
+ ;;^UTILITY(U,$J,358.3,45691,2)
+ ;;=^5054253
+ ;;^UTILITY(U,$J,358.3,45692,0)
+ ;;=T78.04XA^^172^2277^19
+ ;;^UTILITY(U,$J,358.3,45692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48064,1,3,0)
- ;;=3^Malig Neop of Craniopharyngeal Duct
- ;;^UTILITY(U,$J,358.3,48064,1,4,0)
- ;;=4^C75.2
- ;;^UTILITY(U,$J,358.3,48064,2)
- ;;=^5001321
- ;;^UTILITY(U,$J,358.3,48065,0)
- ;;=C75.3^^209^2375^11
- ;;^UTILITY(U,$J,358.3,48065,1,0)
+ ;;^UTILITY(U,$J,358.3,45692,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fruits/Vegetables,1st Encntr
+ ;;^UTILITY(U,$J,358.3,45692,1,4,0)
+ ;;=4^T78.04XA
+ ;;^UTILITY(U,$J,358.3,45692,2)
+ ;;=^5054257
+ ;;^UTILITY(U,$J,358.3,45693,0)
+ ;;=T78.04XD^^172^2277^20
+ ;;^UTILITY(U,$J,358.3,45693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48065,1,3,0)
- ;;=3^Malig Neop of Pineal Gland
- ;;^UTILITY(U,$J,358.3,48065,1,4,0)
- ;;=4^C75.3
- ;;^UTILITY(U,$J,358.3,48065,2)
- ;;=^267301
- ;;^UTILITY(U,$J,358.3,48066,0)
- ;;=C75.4^^209^2375^2
- ;;^UTILITY(U,$J,358.3,48066,1,0)
+ ;;^UTILITY(U,$J,358.3,45693,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fruits/Vegetables,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,45693,1,4,0)
+ ;;=4^T78.04XD
+ ;;^UTILITY(U,$J,358.3,45693,2)
+ ;;=^5054258
+ ;;^UTILITY(U,$J,358.3,45694,0)
+ ;;=T78.04XS^^172^2277^21
+ ;;^UTILITY(U,$J,358.3,45694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48066,1,3,0)
- ;;=3^Malig Neop of Carotid Body
- ;;^UTILITY(U,$J,358.3,48066,1,4,0)
- ;;=4^C75.4
- ;;^UTILITY(U,$J,358.3,48066,2)
- ;;=^267302
- ;;^UTILITY(U,$J,358.3,48067,0)
- ;;=C75.5^^209^2375^1
- ;;^UTILITY(U,$J,358.3,48067,1,0)
+ ;;^UTILITY(U,$J,358.3,45694,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fruits/Vegetables,Sequela
+ ;;^UTILITY(U,$J,358.3,45694,1,4,0)
+ ;;=4^T78.04XS
+ ;;^UTILITY(U,$J,358.3,45694,2)
+ ;;=^5054259
+ ;;^UTILITY(U,$J,358.3,45695,0)
+ ;;=T78.05XA^^172^2277^25
+ ;;^UTILITY(U,$J,358.3,45695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48067,1,3,0)
- ;;=3^Malig Neop of Aortic Body/Paraganglia
- ;;^UTILITY(U,$J,358.3,48067,1,4,0)
- ;;=4^C75.5
- ;;^UTILITY(U,$J,358.3,48067,2)
- ;;=^267303
- ;;^UTILITY(U,$J,358.3,48068,0)
- ;;=C75.8^^209^2375^15
- ;;^UTILITY(U,$J,358.3,48068,1,0)
+ ;;^UTILITY(U,$J,358.3,45695,1,3,0)
+ ;;=3^Anaphylactic Reaction,Nuts/Seeds,1st Encntr
+ ;;^UTILITY(U,$J,358.3,45695,1,4,0)
+ ;;=4^T78.05XA
+ ;;^UTILITY(U,$J,358.3,45695,2)
+ ;;=^5054260
+ ;;^UTILITY(U,$J,358.3,45696,0)
+ ;;=T78.05XD^^172^2277^27
+ ;;^UTILITY(U,$J,358.3,45696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48068,1,3,0)
- ;;=3^Malig Neop w/ Pluriglandular Involvement,Unspec
- ;;^UTILITY(U,$J,358.3,48068,1,4,0)
- ;;=4^C75.8
- ;;^UTILITY(U,$J,358.3,48068,2)
- ;;=^5001322
- ;;^UTILITY(U,$J,358.3,48069,0)
- ;;=C75.9^^209^2375^6
- ;;^UTILITY(U,$J,358.3,48069,1,0)
+ ;;^UTILITY(U,$J,358.3,45696,1,3,0)
+ ;;=3^Anaphylactic Reaction,Nuts/Seeds,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,45696,1,4,0)
+ ;;=4^T78.05XD
+ ;;^UTILITY(U,$J,358.3,45696,2)
+ ;;=^5054261
+ ;;^UTILITY(U,$J,358.3,45697,0)
+ ;;=T78.05XS^^172^2277^26
+ ;;^UTILITY(U,$J,358.3,45697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48069,1,3,0)
- ;;=3^Malig Neop of Endocrine Gland,Unspec
- ;;^UTILITY(U,$J,358.3,48069,1,4,0)
- ;;=4^C75.9
- ;;^UTILITY(U,$J,358.3,48069,2)
- ;;=^5001323
- ;;^UTILITY(U,$J,358.3,48070,0)
- ;;=C77.0^^209^2376^2
- ;;^UTILITY(U,$J,358.3,48070,1,0)
+ ;;^UTILITY(U,$J,358.3,45697,1,3,0)
+ ;;=3^Anaphylactic Reaction,Nuts/Seeds,Sequela
+ ;;^UTILITY(U,$J,358.3,45697,1,4,0)
+ ;;=4^T78.05XS
+ ;;^UTILITY(U,$J,358.3,45697,2)
+ ;;=^5054262
+ ;;^UTILITY(U,$J,358.3,45698,0)
+ ;;=T78.03XA^^172^2277^13
+ ;;^UTILITY(U,$J,358.3,45698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48070,1,3,0)
- ;;=3^Secondary Malig Neop of Head/Face/Neck Lymph Nodes
- ;;^UTILITY(U,$J,358.3,48070,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,48070,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,48071,0)
- ;;=C77.1^^209^2376^6
- ;;^UTILITY(U,$J,358.3,48071,1,0)
+ ;;^UTILITY(U,$J,358.3,45698,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fish,1st Encntr
+ ;;^UTILITY(U,$J,358.3,45698,1,4,0)
+ ;;=4^T78.03XA
+ ;;^UTILITY(U,$J,358.3,45698,2)
+ ;;=^5054254
+ ;;^UTILITY(U,$J,358.3,45699,0)
+ ;;=T78.03XD^^172^2277^15
+ ;;^UTILITY(U,$J,358.3,45699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48071,1,3,0)
- ;;=3^Secondary Malig Neop of Intrathoracic Lymph Nodes
- ;;^UTILITY(U,$J,358.3,48071,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,48071,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,48072,0)
- ;;=C77.2^^209^2376^4
- ;;^UTILITY(U,$J,358.3,48072,1,0)
+ ;;^UTILITY(U,$J,358.3,45699,1,3,0)
+ ;;=3^Anaphylactic Reaction,Fish,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,45699,1,4,0)
+ ;;=4^T78.03XD
+ ;;^UTILITY(U,$J,358.3,45699,2)
+ ;;=^5054255
+ ;;^UTILITY(U,$J,358.3,45700,0)
+ ;;=T78.03XS^^172^2277^14
+ ;;^UTILITY(U,$J,358.3,45700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48072,1,3,0)
- ;;=3^Secondary Malig Neop of Intra-Abdominal Lymph Nodes
- ;;^UTILITY(U,$J,358.3,48072,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,48072,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,48073,0)
- ;;=C77.3^^209^2376^1

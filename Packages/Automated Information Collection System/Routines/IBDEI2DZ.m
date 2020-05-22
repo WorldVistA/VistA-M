@@ -1,134 +1,120 @@
-IBDEI2DZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40494,0)
- ;;=Z02.1^^159^1989^14
- ;;^UTILITY(U,$J,358.3,40494,1,0)
+ ;;^UTILITY(U,$J,358.3,38082,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,38082,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,38083,0)
+ ;;=L97.214^^146^1929^41
+ ;;^UTILITY(U,$J,358.3,38083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40494,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,40494,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,40494,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,40495,0)
- ;;=Z01.810^^159^1989^2
- ;;^UTILITY(U,$J,358.3,40495,1,0)
+ ;;^UTILITY(U,$J,358.3,38083,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt calf w/ necrosis of bone
+ ;;^UTILITY(U,$J,358.3,38083,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,38083,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,38084,0)
+ ;;=L97.224^^146^1929^12
+ ;;^UTILITY(U,$J,358.3,38084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40495,1,3,0)
- ;;=3^Cardiovascular Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,40495,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,40495,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,40496,0)
- ;;=Z01.811^^159^1989^16
- ;;^UTILITY(U,$J,358.3,40496,1,0)
+ ;;^UTILITY(U,$J,358.3,38084,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft calf w/ necrosis of bone
+ ;;^UTILITY(U,$J,358.3,38084,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,38084,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,38085,0)
+ ;;=L97.221^^146^1929^8
+ ;;^UTILITY(U,$J,358.3,38085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40496,1,3,0)
- ;;=3^Respiratory Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,40496,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,40496,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,40497,0)
- ;;=Z01.812^^159^1989^13
- ;;^UTILITY(U,$J,358.3,40497,1,0)
+ ;;^UTILITY(U,$J,358.3,38085,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft calf limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,38085,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,38085,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,38086,0)
+ ;;=L97.222^^146^1929^10
+ ;;^UTILITY(U,$J,358.3,38086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40497,1,3,0)
- ;;=3^Lab Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,40497,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,40497,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,40498,0)
- ;;=Z01.818^^159^1989^15
- ;;^UTILITY(U,$J,358.3,40498,1,0)
+ ;;^UTILITY(U,$J,358.3,38086,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft calf w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,38086,1,4,0)
+ ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,38086,2)
+ ;;=^5009506
+ ;;^UTILITY(U,$J,358.3,38087,0)
+ ;;=L97.223^^146^1929^13
+ ;;^UTILITY(U,$J,358.3,38087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40498,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,40498,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,40498,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,40499,0)
- ;;=Z71.0^^159^1989^9
- ;;^UTILITY(U,$J,358.3,40499,1,0)
+ ;;^UTILITY(U,$J,358.3,38087,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft calf w/ necrosis of muscle
+ ;;^UTILITY(U,$J,358.3,38087,1,4,0)
+ ;;=4^L97.223
+ ;;^UTILITY(U,$J,358.3,38087,2)
+ ;;=^5009507
+ ;;^UTILITY(U,$J,358.3,38088,0)
+ ;;=L97.312^^146^1929^30
+ ;;^UTILITY(U,$J,358.3,38088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40499,1,3,0)
- ;;=3^Hlth Service to Consult on Behalf of Another
- ;;^UTILITY(U,$J,358.3,40499,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,40499,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,40500,0)
- ;;=Z59.8^^159^1989^10
- ;;^UTILITY(U,$J,358.3,40500,1,0)
+ ;;^UTILITY(U,$J,358.3,38088,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ankl w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,38088,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,38088,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,38089,0)
+ ;;=L97.311^^146^1929^29
+ ;;^UTILITY(U,$J,358.3,38089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40500,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,40500,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,40500,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,40501,0)
- ;;=I20.0^^159^1990^14
- ;;^UTILITY(U,$J,358.3,40501,1,0)
+ ;;^UTILITY(U,$J,358.3,38089,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ankl limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,38089,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,38089,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,38090,0)
+ ;;=L97.313^^146^1929^31
+ ;;^UTILITY(U,$J,358.3,38090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40501,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,40501,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,40501,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,40502,0)
- ;;=I25.110^^159^1990^7
- ;;^UTILITY(U,$J,358.3,40502,1,0)
+ ;;^UTILITY(U,$J,358.3,38090,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ankl w/ necr of muscle
+ ;;^UTILITY(U,$J,358.3,38090,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,38090,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,38091,0)
+ ;;=L97.314^^146^1929^32
+ ;;^UTILITY(U,$J,358.3,38091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40502,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,40502,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,40502,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,40503,0)
- ;;=I25.700^^159^1990^12
- ;;^UTILITY(U,$J,358.3,40503,1,0)
+ ;;^UTILITY(U,$J,358.3,38091,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ankl w/ necr of bone
+ ;;^UTILITY(U,$J,358.3,38091,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,38091,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,38092,0)
+ ;;=L97.321^^146^1929^1
+ ;;^UTILITY(U,$J,358.3,38092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40503,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
- ;;^UTILITY(U,$J,358.3,40503,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,40503,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,40504,0)
- ;;=I25.2^^159^1990^13
- ;;^UTILITY(U,$J,358.3,40504,1,0)
+ ;;^UTILITY(U,$J,358.3,38092,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ankl limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,38092,1,4,0)
+ ;;=4^L97.321
+ ;;^UTILITY(U,$J,358.3,38092,2)
+ ;;=^5009520
+ ;;^UTILITY(U,$J,358.3,38093,0)
+ ;;=L97.322^^146^1929^2
+ ;;^UTILITY(U,$J,358.3,38093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40504,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,40504,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,40504,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,40505,0)
- ;;=I20.8^^159^1990^2
- ;;^UTILITY(U,$J,358.3,40505,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40505,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,40505,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,40505,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,40506,0)
- ;;=I20.1^^159^1990^1
- ;;^UTILITY(U,$J,358.3,40506,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40506,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,40506,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,40506,2)
- ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,38093,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ankl w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,38093,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,38093,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,38094,0)
+ ;;=L97.323^^146^1929^3

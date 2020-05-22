@@ -1,132 +1,128 @@
-IBDEI22L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35103,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,35104,0)
- ;;=W13.3XXD^^131^1699^84
- ;;^UTILITY(U,$J,358.3,35104,1,0)
+ ;;^UTILITY(U,$J,358.3,33041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35104,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35104,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,35104,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,35105,0)
- ;;=W13.4XXA^^131^1699^71
- ;;^UTILITY(U,$J,358.3,35105,1,0)
+ ;;^UTILITY(U,$J,358.3,33041,1,3,0)
+ ;;=3^Facial Myokymia
+ ;;^UTILITY(U,$J,358.3,33041,1,4,0)
+ ;;=4^G51.4
+ ;;^UTILITY(U,$J,358.3,33041,2)
+ ;;=^5003996
+ ;;^UTILITY(U,$J,358.3,33042,0)
+ ;;=M31.6^^128^1675^27
+ ;;^UTILITY(U,$J,358.3,33042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35105,1,3,0)
- ;;=3^Fall from/through Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,35105,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,35105,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,35106,0)
- ;;=W13.4XXD^^131^1699^72
- ;;^UTILITY(U,$J,358.3,35106,1,0)
+ ;;^UTILITY(U,$J,358.3,33042,1,3,0)
+ ;;=3^Giant Cell Arteritis NEC
+ ;;^UTILITY(U,$J,358.3,33042,1,4,0)
+ ;;=4^M31.6
+ ;;^UTILITY(U,$J,358.3,33042,2)
+ ;;=^5011748
+ ;;^UTILITY(U,$J,358.3,33043,0)
+ ;;=R51.^^128^1675^28
+ ;;^UTILITY(U,$J,358.3,33043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35106,1,3,0)
- ;;=3^Fall from/through Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35106,1,4,0)
- ;;=4^W13.4XXD
- ;;^UTILITY(U,$J,358.3,35106,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,35107,0)
- ;;=W13.8XXA^^131^1699^35
- ;;^UTILITY(U,$J,358.3,35107,1,0)
+ ;;^UTILITY(U,$J,358.3,33043,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,33043,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,33043,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,33044,0)
+ ;;=H53.47^^128^1675^29
+ ;;^UTILITY(U,$J,358.3,33044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35107,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,35107,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,35107,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,35108,0)
- ;;=W13.8XXD^^131^1699^36
- ;;^UTILITY(U,$J,358.3,35108,1,0)
+ ;;^UTILITY(U,$J,358.3,33044,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects
+ ;;^UTILITY(U,$J,358.3,33044,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,33044,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,33045,0)
+ ;;=H50.50^^128^1675^30
+ ;;^UTILITY(U,$J,358.3,33045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35108,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35108,1,4,0)
- ;;=4^W13.8XXD
- ;;^UTILITY(U,$J,358.3,35108,2)
- ;;=^5059617
- ;;^UTILITY(U,$J,358.3,35109,0)
- ;;=W13.9XXA^^131^1699^33
- ;;^UTILITY(U,$J,358.3,35109,1,0)
+ ;;^UTILITY(U,$J,358.3,33045,1,3,0)
+ ;;=3^Heterophoria
+ ;;^UTILITY(U,$J,358.3,33045,1,4,0)
+ ;;=4^H50.50
+ ;;^UTILITY(U,$J,358.3,33045,2)
+ ;;=^5006240
+ ;;^UTILITY(U,$J,358.3,33046,0)
+ ;;=H50.40^^128^1675^31
+ ;;^UTILITY(U,$J,358.3,33046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35109,1,3,0)
- ;;=3^Fall from Building NOS,Init Encntr
- ;;^UTILITY(U,$J,358.3,35109,1,4,0)
- ;;=4^W13.9XXA
- ;;^UTILITY(U,$J,358.3,35109,2)
- ;;=^5059619
- ;;^UTILITY(U,$J,358.3,35110,0)
- ;;=W13.9XXD^^131^1699^34
- ;;^UTILITY(U,$J,358.3,35110,1,0)
+ ;;^UTILITY(U,$J,358.3,33046,1,3,0)
+ ;;=3^Heterotropia
+ ;;^UTILITY(U,$J,358.3,33046,1,4,0)
+ ;;=4^H50.40
+ ;;^UTILITY(U,$J,358.3,33046,2)
+ ;;=^5006237
+ ;;^UTILITY(U,$J,358.3,33047,0)
+ ;;=H53.462^^128^1675^32
+ ;;^UTILITY(U,$J,358.3,33047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35110,1,3,0)
- ;;=3^Fall from Building NOS,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35110,1,4,0)
- ;;=4^W13.9XXD
- ;;^UTILITY(U,$J,358.3,35110,2)
- ;;=^5059620
- ;;^UTILITY(U,$J,358.3,35111,0)
- ;;=W14.XXXA^^131^1699^65
- ;;^UTILITY(U,$J,358.3,35111,1,0)
+ ;;^UTILITY(U,$J,358.3,33047,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Left Side
+ ;;^UTILITY(U,$J,358.3,33047,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,33047,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,33048,0)
+ ;;=H53.461^^128^1675^33
+ ;;^UTILITY(U,$J,358.3,33048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35111,1,3,0)
- ;;=3^Fall from Tree,Init Encntr
- ;;^UTILITY(U,$J,358.3,35111,1,4,0)
- ;;=4^W14.XXXA
- ;;^UTILITY(U,$J,358.3,35111,2)
- ;;=^5059622
- ;;^UTILITY(U,$J,358.3,35112,0)
- ;;=W14.XXXD^^131^1699^66
- ;;^UTILITY(U,$J,358.3,35112,1,0)
+ ;;^UTILITY(U,$J,358.3,33048,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Right Side
+ ;;^UTILITY(U,$J,358.3,33048,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,33048,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,33049,0)
+ ;;=H50.53^^128^1675^34
+ ;;^UTILITY(U,$J,358.3,33049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35112,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35112,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,35112,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,35113,0)
- ;;=W17.2XXA^^131^1699^77
- ;;^UTILITY(U,$J,358.3,35113,1,0)
+ ;;^UTILITY(U,$J,358.3,33049,1,3,0)
+ ;;=3^Hyperphoria
+ ;;^UTILITY(U,$J,358.3,33049,1,4,0)
+ ;;=4^H50.53
+ ;;^UTILITY(U,$J,358.3,33049,2)
+ ;;=^5006241
+ ;;^UTILITY(U,$J,358.3,33050,0)
+ ;;=G43.909^^128^1675^35
+ ;;^UTILITY(U,$J,358.3,33050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35113,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,35113,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,35113,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,35114,0)
- ;;=W17.2XXD^^131^1699^78
- ;;^UTILITY(U,$J,358.3,35114,1,0)
+ ;;^UTILITY(U,$J,358.3,33050,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,33050,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,33050,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,33051,0)
+ ;;=D86.82^^128^1675^36
+ ;;^UTILITY(U,$J,358.3,33051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35114,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35114,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,35114,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,35115,0)
- ;;=W17.3XXA^^131^1699^75
- ;;^UTILITY(U,$J,358.3,35115,1,0)
+ ;;^UTILITY(U,$J,358.3,33051,1,3,0)
+ ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
+ ;;^UTILITY(U,$J,358.3,33051,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,33051,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,33052,0)
+ ;;=H55.00^^128^1675^41
+ ;;^UTILITY(U,$J,358.3,33052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35115,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
- ;;^UTILITY(U,$J,358.3,35115,1,4,0)
- ;;=4^W17.3XXA
- ;;^UTILITY(U,$J,358.3,35115,2)
- ;;=^5059775
- ;;^UTILITY(U,$J,358.3,35116,0)
- ;;=W17.3XXD^^131^1699^76
- ;;^UTILITY(U,$J,358.3,35116,1,0)
+ ;;^UTILITY(U,$J,358.3,33052,1,3,0)
+ ;;=3^Mystagmus,Unspec
+ ;;^UTILITY(U,$J,358.3,33052,1,4,0)
+ ;;=4^H55.00
+ ;;^UTILITY(U,$J,358.3,33052,2)
+ ;;=^5006370
+ ;;^UTILITY(U,$J,358.3,33053,0)
+ ;;=H52.523^^128^1675^43
+ ;;^UTILITY(U,$J,358.3,33053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35116,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33053,1,3,0)
+ ;;=3^Paresis of Accommodation,Bilateral

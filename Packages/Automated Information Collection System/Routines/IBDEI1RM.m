@@ -1,138 +1,124 @@
-IBDEI1RM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30005,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,30005,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,30006,0)
- ;;=D62.^^118^1493^3
- ;;^UTILITY(U,$J,358.3,30006,1,0)
+ ;;^UTILITY(U,$J,358.3,28199,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,28199,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,28200,0)
+ ;;=T74.11XD^^115^1383^8
+ ;;^UTILITY(U,$J,358.3,28200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30006,1,3,0)
- ;;=3^Acute posthemorrhagic anemia
- ;;^UTILITY(U,$J,358.3,30006,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,30006,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,30007,0)
- ;;=D63.1^^118^1493^7
- ;;^UTILITY(U,$J,358.3,30007,1,0)
+ ;;^UTILITY(U,$J,358.3,28200,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28200,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,28200,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,28201,0)
+ ;;=T76.11XA^^115^1383^9
+ ;;^UTILITY(U,$J,358.3,28201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30007,1,3,0)
- ;;=3^Anemia in chronic kidney disease
- ;;^UTILITY(U,$J,358.3,30007,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,30007,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,30008,0)
- ;;=D63.0^^118^1493^8
- ;;^UTILITY(U,$J,358.3,30008,1,0)
+ ;;^UTILITY(U,$J,358.3,28201,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,28201,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,28201,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,28202,0)
+ ;;=T76.11XD^^115^1383^10
+ ;;^UTILITY(U,$J,358.3,28202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30008,1,3,0)
- ;;=3^Anemia in neoplastic disease
- ;;^UTILITY(U,$J,358.3,30008,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,30008,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,30009,0)
- ;;=D63.8^^118^1493^9
- ;;^UTILITY(U,$J,358.3,30009,1,0)
+ ;;^UTILITY(U,$J,358.3,28202,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28202,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,28202,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,28203,0)
+ ;;=Z69.11^^115^1383^24
+ ;;^UTILITY(U,$J,358.3,28203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30009,1,3,0)
- ;;=3^Anemia in other chronic diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,30009,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,30009,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,30010,0)
- ;;=D64.81^^118^1493^4
- ;;^UTILITY(U,$J,358.3,30010,1,0)
+ ;;^UTILITY(U,$J,358.3,28203,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
+ ;;^UTILITY(U,$J,358.3,28203,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,28203,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,28204,0)
+ ;;=Z91.410^^115^1383^26
+ ;;^UTILITY(U,$J,358.3,28204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30010,1,3,0)
- ;;=3^Anemia due to antineoplastic chemotherapy
- ;;^UTILITY(U,$J,358.3,30010,1,4,0)
- ;;=4^D64.81
- ;;^UTILITY(U,$J,358.3,30010,2)
- ;;=^5002349
- ;;^UTILITY(U,$J,358.3,30011,0)
- ;;=D64.89^^118^1493^11
- ;;^UTILITY(U,$J,358.3,30011,1,0)
+ ;;^UTILITY(U,$J,358.3,28204,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,28204,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,28204,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,28205,0)
+ ;;=T74.21XA^^115^1383^15
+ ;;^UTILITY(U,$J,358.3,28205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30011,1,3,0)
- ;;=3^Anemias NEC
- ;;^UTILITY(U,$J,358.3,30011,1,4,0)
- ;;=4^D64.89
- ;;^UTILITY(U,$J,358.3,30011,2)
- ;;=^5002350
- ;;^UTILITY(U,$J,358.3,30012,0)
- ;;=D64.9^^118^1493^10
- ;;^UTILITY(U,$J,358.3,30012,1,0)
+ ;;^UTILITY(U,$J,358.3,28205,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,28205,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,28205,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,28206,0)
+ ;;=T74.21XD^^115^1383^16
+ ;;^UTILITY(U,$J,358.3,28206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30012,1,3,0)
- ;;=3^Anemia, unspecified
- ;;^UTILITY(U,$J,358.3,30012,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,30012,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,30013,0)
- ;;=D58.2^^118^1493^23
- ;;^UTILITY(U,$J,358.3,30013,1,0)
+ ;;^UTILITY(U,$J,358.3,28206,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28206,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,28206,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,28207,0)
+ ;;=T76.21XA^^115^1383^17
+ ;;^UTILITY(U,$J,358.3,28207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30013,1,3,0)
- ;;=3^Hemoglobinopathies NEC
- ;;^UTILITY(U,$J,358.3,30013,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,30013,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,30014,0)
- ;;=D58.8^^118^1493^28
- ;;^UTILITY(U,$J,358.3,30014,1,0)
+ ;;^UTILITY(U,$J,358.3,28207,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,28207,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,28207,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,28208,0)
+ ;;=T76.21XD^^115^1383^18
+ ;;^UTILITY(U,$J,358.3,28208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30014,1,3,0)
- ;;=3^Hereditary hemolytic anemias,oth specified
- ;;^UTILITY(U,$J,358.3,30014,1,4,0)
- ;;=4^D58.8
- ;;^UTILITY(U,$J,358.3,30014,2)
- ;;=^267984
- ;;^UTILITY(U,$J,358.3,30015,0)
- ;;=D59.2^^118^1493^19
- ;;^UTILITY(U,$J,358.3,30015,1,0)
+ ;;^UTILITY(U,$J,358.3,28208,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,28208,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,28208,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,28209,0)
+ ;;=Z69.81^^115^1383^23
+ ;;^UTILITY(U,$J,358.3,28209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30015,1,3,0)
- ;;=3^Drug-induced nonautoimmune hemolytic anemia
- ;;^UTILITY(U,$J,358.3,30015,1,4,0)
- ;;=4^D59.2
- ;;^UTILITY(U,$J,358.3,30015,2)
- ;;=^5002325
- ;;^UTILITY(U,$J,358.3,30016,0)
- ;;=Z93.0^^118^1494^9
- ;;^UTILITY(U,$J,358.3,30016,1,0)
+ ;;^UTILITY(U,$J,358.3,28209,1,3,0)
+ ;;=3^MH Svc for Victim of Other Abuse
+ ;;^UTILITY(U,$J,358.3,28209,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,28209,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,28210,0)
+ ;;=Z69.82^^115^1383^21
+ ;;^UTILITY(U,$J,358.3,28210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30016,1,3,0)
- ;;=3^Tracheostomy status
- ;;^UTILITY(U,$J,358.3,30016,1,4,0)
- ;;=4^Z93.0
- ;;^UTILITY(U,$J,358.3,30016,2)
- ;;=^5063642
- ;;^UTILITY(U,$J,358.3,30017,0)
- ;;=Z93.1^^118^1494^7
- ;;^UTILITY(U,$J,358.3,30017,1,0)
+ ;;^UTILITY(U,$J,358.3,28210,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Other Abuse
+ ;;^UTILITY(U,$J,358.3,28210,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,28210,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,28211,0)
+ ;;=T74.01XA^^115^1383^3
+ ;;^UTILITY(U,$J,358.3,28211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30017,1,3,0)
- ;;=3^Gastrostomy status
- ;;^UTILITY(U,$J,358.3,30017,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,30017,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,30018,0)
- ;;=Z93.2^^118^1494^8
- ;;^UTILITY(U,$J,358.3,30018,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30018,1,3,0)
- ;;=3^Ileostomy status
- ;;^UTILITY(U,$J,358.3,30018,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,30018,2)
- ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,28211,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Init Enctr

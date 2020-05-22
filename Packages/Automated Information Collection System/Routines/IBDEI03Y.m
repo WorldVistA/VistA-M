@@ -1,362 +1,698 @@
-IBDEI03Y ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI03Y ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4710,1,0)
+ ;;^UTILITY(U,$J,358.3,9459,1,4,0)
+ ;;=4^N32.81
+ ;;^UTILITY(U,$J,358.3,9459,2)
+ ;;=^5015652
+ ;;^UTILITY(U,$J,358.3,9460,0)
+ ;;=Q61.2^^48^485^86
+ ;;^UTILITY(U,$J,358.3,9460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4710,1,3,0)
- ;;=3^Dermatitis,Exfoliative
- ;;^UTILITY(U,$J,358.3,4710,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,4710,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,4711,0)
- ;;=L98.1^^22^294^9
- ;;^UTILITY(U,$J,358.3,4711,1,0)
+ ;;^UTILITY(U,$J,358.3,9460,1,3,0)
+ ;;=3^Polycystic Kidney,Adult Type
+ ;;^UTILITY(U,$J,358.3,9460,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,9460,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,9461,0)
+ ;;=N41.1^^48^485^90
+ ;;^UTILITY(U,$J,358.3,9461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4711,1,3,0)
- ;;=3^Dermatitis,Factitial
- ;;^UTILITY(U,$J,358.3,4711,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,4711,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,4712,0)
- ;;=L30.3^^22^294^11
- ;;^UTILITY(U,$J,358.3,4712,1,0)
+ ;;^UTILITY(U,$J,358.3,9461,1,3,0)
+ ;;=3^Prostatitis,Chronic
+ ;;^UTILITY(U,$J,358.3,9461,1,4,0)
+ ;;=4^N41.1
+ ;;^UTILITY(U,$J,358.3,9461,2)
+ ;;=^186931
+ ;;^UTILITY(U,$J,358.3,9462,0)
+ ;;=N11.9^^48^485^98
+ ;;^UTILITY(U,$J,358.3,9462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4712,1,3,0)
- ;;=3^Dermatitis,Infective
- ;;^UTILITY(U,$J,358.3,4712,1,4,0)
- ;;=4^L30.3
- ;;^UTILITY(U,$J,358.3,4712,2)
- ;;=^5009156
- ;;^UTILITY(U,$J,358.3,4713,0)
- ;;=L56.2^^22^294^19
- ;;^UTILITY(U,$J,358.3,4713,1,0)
+ ;;^UTILITY(U,$J,358.3,9462,1,3,0)
+ ;;=3^Pyelonephritis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,9462,1,4,0)
+ ;;=4^N11.9
+ ;;^UTILITY(U,$J,358.3,9462,2)
+ ;;=^5015574
+ ;;^UTILITY(U,$J,358.3,9463,0)
+ ;;=N20.9^^48^485^116
+ ;;^UTILITY(U,$J,358.3,9463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4713,1,3,0)
- ;;=3^Dermatitis,Photocontact
- ;;^UTILITY(U,$J,358.3,4713,1,4,0)
- ;;=4^L56.2
- ;;^UTILITY(U,$J,358.3,4713,2)
- ;;=^5009216
- ;;^UTILITY(U,$J,358.3,4714,0)
- ;;=L71.0^^22^294^18
- ;;^UTILITY(U,$J,358.3,4714,1,0)
+ ;;^UTILITY(U,$J,358.3,9463,1,3,0)
+ ;;=3^Urinary Calculus,Unspec
+ ;;^UTILITY(U,$J,358.3,9463,1,4,0)
+ ;;=4^N20.9
+ ;;^UTILITY(U,$J,358.3,9463,2)
+ ;;=^5015610
+ ;;^UTILITY(U,$J,358.3,9464,0)
+ ;;=R97.20^^48^485^29
+ ;;^UTILITY(U,$J,358.3,9464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4714,1,3,0)
- ;;=3^Dermatitis,Perioral
- ;;^UTILITY(U,$J,358.3,4714,1,4,0)
- ;;=4^L71.0
- ;;^UTILITY(U,$J,358.3,4714,2)
- ;;=^5009274
- ;;^UTILITY(U,$J,358.3,4715,0)
- ;;=L23.1^^22^294^2
- ;;^UTILITY(U,$J,358.3,4715,1,0)
+ ;;^UTILITY(U,$J,358.3,9464,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,9464,1,4,0)
+ ;;=4^R97.20
+ ;;^UTILITY(U,$J,358.3,9464,2)
+ ;;=^334262
+ ;;^UTILITY(U,$J,358.3,9465,0)
+ ;;=N52.36^^48^485^34
+ ;;^UTILITY(U,$J,358.3,9465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4715,1,3,0)
- ;;=3^Dermatitis,Allergic Contact d/t Adhesives
- ;;^UTILITY(U,$J,358.3,4715,1,4,0)
- ;;=4^L23.1
- ;;^UTILITY(U,$J,358.3,4715,2)
- ;;=^5009116
- ;;^UTILITY(U,$J,358.3,4716,0)
- ;;=L23.81^^22^294^3
- ;;^UTILITY(U,$J,358.3,4716,1,0)
+ ;;^UTILITY(U,$J,358.3,9465,1,3,0)
+ ;;=3^Erectile Dysfunction After Interstitial Seed Therapy
+ ;;^UTILITY(U,$J,358.3,9465,1,4,0)
+ ;;=4^N52.36
+ ;;^UTILITY(U,$J,358.3,9465,2)
+ ;;=^5138933
+ ;;^UTILITY(U,$J,358.3,9466,0)
+ ;;=N52.37^^48^485^35
+ ;;^UTILITY(U,$J,358.3,9466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4716,1,3,0)
- ;;=3^Dermatitis,Allergic Contact d/t Animal Dander
- ;;^UTILITY(U,$J,358.3,4716,1,4,0)
- ;;=4^L23.81
- ;;^UTILITY(U,$J,358.3,4716,2)
- ;;=^5009123
- ;;^UTILITY(U,$J,358.3,4717,0)
- ;;=L23.0^^22^294^5
- ;;^UTILITY(U,$J,358.3,4717,1,0)
+ ;;^UTILITY(U,$J,358.3,9466,1,3,0)
+ ;;=3^Erectile Dysfunction After Prostate Ablative Therapy
+ ;;^UTILITY(U,$J,358.3,9466,1,4,0)
+ ;;=4^N52.37
+ ;;^UTILITY(U,$J,358.3,9466,2)
+ ;;=^5138934
+ ;;^UTILITY(U,$J,358.3,9467,0)
+ ;;=N52.35^^48^485^36
+ ;;^UTILITY(U,$J,358.3,9467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4717,1,3,0)
- ;;=3^Dermatitis,Allergic Contact d/t Metals
- ;;^UTILITY(U,$J,358.3,4717,1,4,0)
- ;;=4^L23.0
- ;;^UTILITY(U,$J,358.3,4717,2)
- ;;=^5009115
- ;;^UTILITY(U,$J,358.3,4718,0)
- ;;=B00.1^^22^294^10
- ;;^UTILITY(U,$J,358.3,4718,1,0)
+ ;;^UTILITY(U,$J,358.3,9467,1,3,0)
+ ;;=3^Erectile Dysfunction After Radiation Therapy
+ ;;^UTILITY(U,$J,358.3,9467,1,4,0)
+ ;;=4^N52.35
+ ;;^UTILITY(U,$J,358.3,9467,2)
+ ;;=^5138932
+ ;;^UTILITY(U,$J,358.3,9468,0)
+ ;;=R31.21^^48^485^56
+ ;;^UTILITY(U,$J,358.3,9468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4718,1,3,0)
- ;;=3^Dermatitis,Herpes Simplex
- ;;^UTILITY(U,$J,358.3,4718,1,4,0)
- ;;=4^B00.1
- ;;^UTILITY(U,$J,358.3,4718,2)
- ;;=^5000468
- ;;^UTILITY(U,$J,358.3,4719,0)
- ;;=L24.0^^22^294^13
- ;;^UTILITY(U,$J,358.3,4719,1,0)
+ ;;^UTILITY(U,$J,358.3,9468,1,3,0)
+ ;;=3^Hematuria,Microscopic,Asymptomatic
+ ;;^UTILITY(U,$J,358.3,9468,1,4,0)
+ ;;=4^R31.21
+ ;;^UTILITY(U,$J,358.3,9468,2)
+ ;;=^5139198
+ ;;^UTILITY(U,$J,358.3,9469,0)
+ ;;=R31.29^^48^485^57
+ ;;^UTILITY(U,$J,358.3,9469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4719,1,3,0)
- ;;=3^Dermatitis,Irritant Contact d/t Detergents
- ;;^UTILITY(U,$J,358.3,4719,1,4,0)
- ;;=4^L24.0
- ;;^UTILITY(U,$J,358.3,4719,2)
- ;;=^5009126
- ;;^UTILITY(U,$J,358.3,4720,0)
- ;;=L24.81^^22^294^14
- ;;^UTILITY(U,$J,358.3,4720,1,0)
+ ;;^UTILITY(U,$J,358.3,9469,1,3,0)
+ ;;=3^Hematuria,Microscopic,Other
+ ;;^UTILITY(U,$J,358.3,9469,1,4,0)
+ ;;=4^R31.29
+ ;;^UTILITY(U,$J,358.3,9469,2)
+ ;;=^5019327
+ ;;^UTILITY(U,$J,358.3,9470,0)
+ ;;=R39.198^^48^485^70
+ ;;^UTILITY(U,$J,358.3,9470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4720,1,3,0)
- ;;=3^Dermatitis,Irritant Contact d/t Metals
- ;;^UTILITY(U,$J,358.3,4720,1,4,0)
- ;;=4^L24.81
- ;;^UTILITY(U,$J,358.3,4720,2)
- ;;=^5009134
- ;;^UTILITY(U,$J,358.3,4721,0)
- ;;=L24.2^^22^294^15
- ;;^UTILITY(U,$J,358.3,4721,1,0)
+ ;;^UTILITY(U,$J,358.3,9470,1,3,0)
+ ;;=3^Micturition,Oth Difficulties
+ ;;^UTILITY(U,$J,358.3,9470,1,4,0)
+ ;;=4^R39.198
+ ;;^UTILITY(U,$J,358.3,9470,2)
+ ;;=^5019347
+ ;;^UTILITY(U,$J,358.3,9471,0)
+ ;;=R39.191^^48^485^72
+ ;;^UTILITY(U,$J,358.3,9471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4721,1,3,0)
- ;;=3^Dermatitis,Irritant Contact d/t Solvents
- ;;^UTILITY(U,$J,358.3,4721,1,4,0)
- ;;=4^L24.2
- ;;^UTILITY(U,$J,358.3,4721,2)
- ;;=^5009128
- ;;^UTILITY(U,$J,358.3,4722,0)
- ;;=E08.620^^22^294^22
- ;;^UTILITY(U,$J,358.3,4722,1,0)
+ ;;^UTILITY(U,$J,358.3,9471,1,3,0)
+ ;;=3^Need to Immediately Re-Void
+ ;;^UTILITY(U,$J,358.3,9471,1,4,0)
+ ;;=4^R39.191
+ ;;^UTILITY(U,$J,358.3,9471,2)
+ ;;=^5139199
+ ;;^UTILITY(U,$J,358.3,9472,0)
+ ;;=R39.192^^48^485^71
+ ;;^UTILITY(U,$J,358.3,9472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4722,1,3,0)
- ;;=3^Diabetes d/t Underlying Condition w/ DM Dermatitis
- ;;^UTILITY(U,$J,358.3,4722,1,4,0)
- ;;=4^E08.620
- ;;^UTILITY(U,$J,358.3,4722,2)
- ;;=^5002533
- ;;^UTILITY(U,$J,358.3,4723,0)
- ;;=E08.621^^22^294^24
- ;;^UTILITY(U,$J,358.3,4723,1,0)
+ ;;^UTILITY(U,$J,358.3,9472,1,3,0)
+ ;;=3^Micturition,Position Dependent
+ ;;^UTILITY(U,$J,358.3,9472,1,4,0)
+ ;;=4^R39.192
+ ;;^UTILITY(U,$J,358.3,9472,2)
+ ;;=^5139200
+ ;;^UTILITY(U,$J,358.3,9473,0)
+ ;;=R97.21^^48^485^101
+ ;;^UTILITY(U,$J,358.3,9473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4723,1,3,0)
- ;;=3^Diabetes d/t Underlying Conditions w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,4723,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,4723,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,4724,0)
- ;;=T81.33XA^^22^294^27
- ;;^UTILITY(U,$J,358.3,4724,1,0)
+ ;;^UTILITY(U,$J,358.3,9473,1,3,0)
+ ;;=3^Rising PSA After Tx for Prostate CA
+ ;;^UTILITY(U,$J,358.3,9473,1,4,0)
+ ;;=4^R97.21
+ ;;^UTILITY(U,$J,358.3,9473,2)
+ ;;=^5139228
+ ;;^UTILITY(U,$J,358.3,9474,0)
+ ;;=N50.82^^48^485^102
+ ;;^UTILITY(U,$J,358.3,9474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4724,1,3,0)
- ;;=3^Disruption Traumatic Inj/Wound Repair,Init Encntr
- ;;^UTILITY(U,$J,358.3,4724,1,4,0)
- ;;=4^T81.33XA
- ;;^UTILITY(U,$J,358.3,4724,2)
- ;;=^5054476
- ;;^UTILITY(U,$J,358.3,4725,0)
- ;;=L60.3^^22^294^30
- ;;^UTILITY(U,$J,358.3,4725,1,0)
+ ;;^UTILITY(U,$J,358.3,9474,1,3,0)
+ ;;=3^Scrotal Pain
+ ;;^UTILITY(U,$J,358.3,9474,1,4,0)
+ ;;=4^N50.82
+ ;;^UTILITY(U,$J,358.3,9474,2)
+ ;;=^5138930
+ ;;^UTILITY(U,$J,358.3,9475,0)
+ ;;=N50.812^^48^485^106
+ ;;^UTILITY(U,$J,358.3,9475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4725,1,3,0)
- ;;=3^Dystrophic Nails
- ;;^UTILITY(U,$J,358.3,4725,1,4,0)
- ;;=4^L60.3
- ;;^UTILITY(U,$J,358.3,4725,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,4726,0)
- ;;=M71.30^^22^294^25
- ;;^UTILITY(U,$J,358.3,4726,1,0)
+ ;;^UTILITY(U,$J,358.3,9475,1,3,0)
+ ;;=3^Testicular Pain,Left Side
+ ;;^UTILITY(U,$J,358.3,9475,1,4,0)
+ ;;=4^N50.812
+ ;;^UTILITY(U,$J,358.3,9475,2)
+ ;;=^5138928
+ ;;^UTILITY(U,$J,358.3,9476,0)
+ ;;=N50.811^^48^485^107
+ ;;^UTILITY(U,$J,358.3,9476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4726,1,3,0)
- ;;=3^Digital Mucous Cyst
- ;;^UTILITY(U,$J,358.3,4726,1,4,0)
- ;;=4^M71.30
- ;;^UTILITY(U,$J,358.3,4726,2)
- ;;=^5013149
- ;;^UTILITY(U,$J,358.3,4727,0)
- ;;=L30.4^^22^295^9
- ;;^UTILITY(U,$J,358.3,4727,1,0)
+ ;;^UTILITY(U,$J,358.3,9476,1,3,0)
+ ;;=3^Testicular Pain,Right Side
+ ;;^UTILITY(U,$J,358.3,9476,1,4,0)
+ ;;=4^N50.811
+ ;;^UTILITY(U,$J,358.3,9476,2)
+ ;;=^5138927
+ ;;^UTILITY(U,$J,358.3,9477,0)
+ ;;=N35.919^^48^485^112
+ ;;^UTILITY(U,$J,358.3,9477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4727,1,3,0)
- ;;=3^Erythema Intertrigo
- ;;^UTILITY(U,$J,358.3,4727,1,4,0)
- ;;=4^L30.4
- ;;^UTILITY(U,$J,358.3,4727,2)
- ;;=^5009157
- ;;^UTILITY(U,$J,358.3,4728,0)
- ;;=R60.0^^22^295^6
- ;;^UTILITY(U,$J,358.3,4728,1,0)
+ ;;^UTILITY(U,$J,358.3,9477,1,3,0)
+ ;;=3^Urethral Stricture,NOS,Male
+ ;;^UTILITY(U,$J,358.3,9477,1,4,0)
+ ;;=4^N35.919
+ ;;^UTILITY(U,$J,358.3,9477,2)
+ ;;=^5157412
+ ;;^UTILITY(U,$J,358.3,9478,0)
+ ;;=N35.92^^48^485^111
+ ;;^UTILITY(U,$J,358.3,9478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4728,1,3,0)
- ;;=3^Edema,Localized
- ;;^UTILITY(U,$J,358.3,4728,1,4,0)
- ;;=4^R60.0
- ;;^UTILITY(U,$J,358.3,4728,2)
- ;;=^5019532
- ;;^UTILITY(U,$J,358.3,4729,0)
- ;;=L53.0^^22^295^13
- ;;^UTILITY(U,$J,358.3,4729,1,0)
+ ;;^UTILITY(U,$J,358.3,9478,1,3,0)
+ ;;=3^Urethral Stricture,NOS,Female
+ ;;^UTILITY(U,$J,358.3,9478,1,4,0)
+ ;;=4^N35.92
+ ;;^UTILITY(U,$J,358.3,9478,2)
+ ;;=^5157413
+ ;;^UTILITY(U,$J,358.3,9479,0)
+ ;;=R82.81^^48^485^99
+ ;;^UTILITY(U,$J,358.3,9479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4729,1,3,0)
- ;;=3^Erythema Toxic
- ;;^UTILITY(U,$J,358.3,4729,1,4,0)
- ;;=4^L53.0
- ;;^UTILITY(U,$J,358.3,4729,2)
- ;;=^5009207
- ;;^UTILITY(U,$J,358.3,4730,0)
- ;;=L53.1^^22^295^8
- ;;^UTILITY(U,$J,358.3,4730,1,0)
+ ;;^UTILITY(U,$J,358.3,9479,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,9479,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,9479,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,9480,0)
+ ;;=R51.^^48^486^2
+ ;;^UTILITY(U,$J,358.3,9480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4730,1,3,0)
- ;;=3^Erythema Annulare Centrifugum
- ;;^UTILITY(U,$J,358.3,4730,1,4,0)
- ;;=4^L53.1
- ;;^UTILITY(U,$J,358.3,4730,2)
- ;;=^5009208
- ;;^UTILITY(U,$J,358.3,4731,0)
- ;;=L51.9^^22^295^11
- ;;^UTILITY(U,$J,358.3,4731,1,0)
+ ;;^UTILITY(U,$J,358.3,9480,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,9480,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,9480,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,9481,0)
+ ;;=G44.1^^48^486^9
+ ;;^UTILITY(U,$J,358.3,9481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4731,1,3,0)
- ;;=3^Erythema Multiforme,Unspec
- ;;^UTILITY(U,$J,358.3,4731,1,4,0)
- ;;=4^L51.9
- ;;^UTILITY(U,$J,358.3,4731,2)
- ;;=^336759
- ;;^UTILITY(U,$J,358.3,4732,0)
- ;;=L12.35^^22^295^7
- ;;^UTILITY(U,$J,358.3,4732,1,0)
+ ;;^UTILITY(U,$J,358.3,9481,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,9481,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,9481,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,9482,0)
+ ;;=G43.909^^48^486^5
+ ;;^UTILITY(U,$J,358.3,9482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4732,1,3,0)
- ;;=3^Epidermolysis Bullosa,Acquired
- ;;^UTILITY(U,$J,358.3,4732,1,4,0)
- ;;=4^L12.35
- ;;^UTILITY(U,$J,358.3,4732,2)
- ;;=^5009100
- ;;^UTILITY(U,$J,358.3,4733,0)
- ;;=L52.^^22^295^12
- ;;^UTILITY(U,$J,358.3,4733,1,0)
+ ;;^UTILITY(U,$J,358.3,9482,1,3,0)
+ ;;=3^Migraine,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,9482,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,9482,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,9483,0)
+ ;;=G44.009^^48^486^1
+ ;;^UTILITY(U,$J,358.3,9483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4733,1,3,0)
- ;;=3^Erythema Nodosum
- ;;^UTILITY(U,$J,358.3,4733,1,4,0)
- ;;=4^L52.
- ;;^UTILITY(U,$J,358.3,4733,2)
- ;;=^42065
- ;;^UTILITY(U,$J,358.3,4734,0)
- ;;=L49.0^^22^295^24
- ;;^UTILITY(U,$J,358.3,4734,1,0)
+ ;;^UTILITY(U,$J,358.3,9483,1,3,0)
+ ;;=3^Cluster Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,9483,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,9483,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,9484,0)
+ ;;=G44.40^^48^486^4
+ ;;^UTILITY(U,$J,358.3,9484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4734,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ < 10% Body Surface
- ;;^UTILITY(U,$J,358.3,4734,1,4,0)
- ;;=4^L49.0
- ;;^UTILITY(U,$J,358.3,4734,2)
- ;;=^5009190
- ;;^UTILITY(U,$J,358.3,4735,0)
- ;;=L49.1^^22^295^15
- ;;^UTILITY(U,$J,358.3,4735,1,0)
+ ;;^UTILITY(U,$J,358.3,9484,1,3,0)
+ ;;=3^Medication Overuse Headache,Not Intractable
+ ;;^UTILITY(U,$J,358.3,9484,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,9484,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,9485,0)
+ ;;=G44.89^^48^486^3
+ ;;^UTILITY(U,$J,358.3,9485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4735,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 10-19% Body Surface
- ;;^UTILITY(U,$J,358.3,4735,1,4,0)
- ;;=4^L49.1
- ;;^UTILITY(U,$J,358.3,4735,2)
- ;;=^5009191
- ;;^UTILITY(U,$J,358.3,4736,0)
- ;;=L49.2^^22^295^16
- ;;^UTILITY(U,$J,358.3,4736,1,0)
+ ;;^UTILITY(U,$J,358.3,9485,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,9485,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,9485,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,9486,0)
+ ;;=G44.84^^48^486^7
+ ;;^UTILITY(U,$J,358.3,9486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4736,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 20-29% Body Surface
- ;;^UTILITY(U,$J,358.3,4736,1,4,0)
- ;;=4^L49.2
- ;;^UTILITY(U,$J,358.3,4736,2)
- ;;=^5009192
- ;;^UTILITY(U,$J,358.3,4737,0)
- ;;=L49.3^^22^295^17
- ;;^UTILITY(U,$J,358.3,4737,1,0)
+ ;;^UTILITY(U,$J,358.3,9486,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,9486,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,9486,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,9487,0)
+ ;;=G44.301^^48^486^6
+ ;;^UTILITY(U,$J,358.3,9487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4737,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 30-39% Body Surface
- ;;^UTILITY(U,$J,358.3,4737,1,4,0)
- ;;=4^L49.3
- ;;^UTILITY(U,$J,358.3,4737,2)
- ;;=^5009193
- ;;^UTILITY(U,$J,358.3,4738,0)
- ;;=L49.4^^22^295^18
- ;;^UTILITY(U,$J,358.3,4738,1,0)
+ ;;^UTILITY(U,$J,358.3,9487,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,9487,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,9487,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,9488,0)
+ ;;=G44.209^^48^486^8
+ ;;^UTILITY(U,$J,358.3,9488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4738,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 40-49% Body Surface
- ;;^UTILITY(U,$J,358.3,4738,1,4,0)
- ;;=4^L49.4
- ;;^UTILITY(U,$J,358.3,4738,2)
- ;;=^5009194
- ;;^UTILITY(U,$J,358.3,4739,0)
- ;;=L49.5^^22^295^19
- ;;^UTILITY(U,$J,358.3,4739,1,0)
+ ;;^UTILITY(U,$J,358.3,9488,1,3,0)
+ ;;=3^Tension-Type Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,9488,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,9488,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,9489,0)
+ ;;=I30.0^^48^487^5
+ ;;^UTILITY(U,$J,358.3,9489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4739,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 50-59% Body Surface
- ;;^UTILITY(U,$J,358.3,4739,1,4,0)
- ;;=4^L49.5
- ;;^UTILITY(U,$J,358.3,4739,2)
- ;;=^5009195
- ;;^UTILITY(U,$J,358.3,4740,0)
- ;;=L49.6^^22^295^20
- ;;^UTILITY(U,$J,358.3,4740,1,0)
+ ;;^UTILITY(U,$J,358.3,9489,1,3,0)
+ ;;=3^Idiopathic Pericarditis,Acute Nonspec
+ ;;^UTILITY(U,$J,358.3,9489,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,9489,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,9490,0)
+ ;;=I34.8^^48^487^6
+ ;;^UTILITY(U,$J,358.3,9490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4740,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 60-69% Body Surface
- ;;^UTILITY(U,$J,358.3,4740,1,4,0)
- ;;=4^L49.6
- ;;^UTILITY(U,$J,358.3,4740,2)
- ;;=^5009196
- ;;^UTILITY(U,$J,358.3,4741,0)
- ;;=L49.7^^22^295^21
- ;;^UTILITY(U,$J,358.3,4741,1,0)
+ ;;^UTILITY(U,$J,358.3,9490,1,3,0)
+ ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,9490,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,9490,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,9491,0)
+ ;;=I34.0^^48^487^13
+ ;;^UTILITY(U,$J,358.3,9491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4741,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 70-79% Body Surface
- ;;^UTILITY(U,$J,358.3,4741,1,4,0)
- ;;=4^L49.7
- ;;^UTILITY(U,$J,358.3,4741,2)
- ;;=^5009197
- ;;^UTILITY(U,$J,358.3,4742,0)
- ;;=L49.8^^22^295^22
- ;;^UTILITY(U,$J,358.3,4742,1,0)
+ ;;^UTILITY(U,$J,358.3,9491,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,9491,1,4,0)
+ ;;=4^I34.0
+ ;;^UTILITY(U,$J,358.3,9491,2)
+ ;;=^5007169
+ ;;^UTILITY(U,$J,358.3,9492,0)
+ ;;=I34.9^^48^487^12
+ ;;^UTILITY(U,$J,358.3,9492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4742,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 80-89% Body Surface
- ;;^UTILITY(U,$J,358.3,4742,1,4,0)
- ;;=4^L49.8
- ;;^UTILITY(U,$J,358.3,4742,2)
- ;;=^5009198
- ;;^UTILITY(U,$J,358.3,4743,0)
- ;;=L49.9^^22^295^25
- ;;^UTILITY(U,$J,358.3,4743,1,0)
+ ;;^UTILITY(U,$J,358.3,9492,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,9492,1,4,0)
+ ;;=4^I34.9
+ ;;^UTILITY(U,$J,358.3,9492,2)
+ ;;=^5007173
+ ;;^UTILITY(U,$J,358.3,9493,0)
+ ;;=I34.2^^48^487^7
+ ;;^UTILITY(U,$J,358.3,9493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4743,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
- ;;^UTILITY(U,$J,358.3,4743,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,4743,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,4744,0)
- ;;=Z65.5^^22^295^26
- ;;^UTILITY(U,$J,358.3,4744,1,0)
+ ;;^UTILITY(U,$J,358.3,9493,1,3,0)
+ ;;=3^Nonrhematic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,9493,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,9493,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,9494,0)
+ ;;=I35.0^^48^487^10
+ ;;^UTILITY(U,$J,358.3,9494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4744,1,3,0)
- ;;=3^Exposure to Disaster/War/Hostilities
- ;;^UTILITY(U,$J,358.3,4744,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,4744,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,4745,0)
- ;;=Z77.22^^22^295^27
- ;;^UTILITY(U,$J,358.3,4745,1,0)
+ ;;^UTILITY(U,$J,358.3,9494,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,9494,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,9494,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,9495,0)
+ ;;=I35.1^^48^487^9
+ ;;^UTILITY(U,$J,358.3,9495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4745,1,3,0)
- ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
- ;;^UTILITY(U,$J,358.3,4745,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,4745,2)
- ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,9495,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,9495,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,9495,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,9496,0)
+ ;;=I35.2^^48^487^11
+ ;;^UTILITY(U,$J,358.3,9496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9496,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,9496,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,9496,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,9497,0)
+ ;;=I35.9^^48^487^8
+ ;;^UTILITY(U,$J,358.3,9497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9497,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,9497,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,9497,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,9498,0)
+ ;;=I38.^^48^487^4
+ ;;^UTILITY(U,$J,358.3,9498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9498,1,3,0)
+ ;;=3^Endocarditis,Valve Unspec
+ ;;^UTILITY(U,$J,358.3,9498,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,9498,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,9499,0)
+ ;;=I05.0^^48^487^18
+ ;;^UTILITY(U,$J,358.3,9499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9499,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,9499,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,9499,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,9500,0)
+ ;;=I05.8^^48^487^19
+ ;;^UTILITY(U,$J,358.3,9500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9500,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,9500,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,9500,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,9501,0)
+ ;;=I05.9^^48^487^20
+ ;;^UTILITY(U,$J,358.3,9501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9501,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,9501,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,9501,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,9502,0)
+ ;;=I07.1^^48^487^21
+ ;;^UTILITY(U,$J,358.3,9502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9502,1,3,0)
+ ;;=3^Rheumatic Tricuspid Insufficiency
+ ;;^UTILITY(U,$J,358.3,9502,1,4,0)
+ ;;=4^I07.1
+ ;;^UTILITY(U,$J,358.3,9502,2)
+ ;;=^5007048
+ ;;^UTILITY(U,$J,358.3,9503,0)
+ ;;=I07.9^^48^487^22
+ ;;^UTILITY(U,$J,358.3,9503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9503,1,3,0)
+ ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,9503,1,4,0)
+ ;;=4^I07.9
+ ;;^UTILITY(U,$J,358.3,9503,2)
+ ;;=^5007051
+ ;;^UTILITY(U,$J,358.3,9504,0)
+ ;;=I08.0^^48^487^16
+ ;;^UTILITY(U,$J,358.3,9504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9504,1,3,0)
+ ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
+ ;;^UTILITY(U,$J,358.3,9504,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,9504,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,9505,0)
+ ;;=I09.89^^48^487^17
+ ;;^UTILITY(U,$J,358.3,9505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9505,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,9505,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,9505,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,9506,0)
+ ;;=I47.1^^48^487^24
+ ;;^UTILITY(U,$J,358.3,9506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9506,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,9506,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,9506,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,9507,0)
+ ;;=I48.0^^48^487^15
+ ;;^UTILITY(U,$J,358.3,9507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9507,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,9507,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,9507,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,9508,0)
+ ;;=I49.5^^48^487^23
+ ;;^UTILITY(U,$J,358.3,9508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9508,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,9508,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,9508,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,9509,0)
+ ;;=I49.8^^48^487^3
+ ;;^UTILITY(U,$J,358.3,9509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9509,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,9509,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,9509,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,9510,0)
+ ;;=I49.9^^48^487^2
+ ;;^UTILITY(U,$J,358.3,9510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9510,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,9510,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,9510,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,9511,0)
+ ;;=R00.1^^48^487^1
+ ;;^UTILITY(U,$J,358.3,9511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9511,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,9511,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,9511,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,9512,0)
+ ;;=I34.1^^48^487^14
+ ;;^UTILITY(U,$J,358.3,9512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9512,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,9512,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,9512,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,9513,0)
+ ;;=D68.4^^48^488^1
+ ;;^UTILITY(U,$J,358.3,9513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9513,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,9513,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,9513,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,9514,0)
+ ;;=D59.9^^48^488^2
+ ;;^UTILITY(U,$J,358.3,9514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9514,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,9514,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,9514,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,9515,0)
+ ;;=C91.00^^48^488^5
+ ;;^UTILITY(U,$J,358.3,9515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9515,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,9515,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,9515,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,9516,0)
+ ;;=C91.01^^48^488^4
+ ;;^UTILITY(U,$J,358.3,9516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9516,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,9516,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,9516,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,9517,0)
+ ;;=C92.01^^48^488^7
+ ;;^UTILITY(U,$J,358.3,9517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9517,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,9517,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,9517,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,9518,0)
+ ;;=C92.00^^48^488^8
+ ;;^UTILITY(U,$J,358.3,9518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9518,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,9518,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,9518,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,9519,0)
+ ;;=C92.61^^48^488^9
+ ;;^UTILITY(U,$J,358.3,9519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9519,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,9519,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,9519,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,9520,0)
+ ;;=C92.60^^48^488^10
+ ;;^UTILITY(U,$J,358.3,9520,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9520,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,9520,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,9520,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,9521,0)
+ ;;=C92.A1^^48^488^11
+ ;;^UTILITY(U,$J,358.3,9521,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9521,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,9521,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,9521,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,9522,0)
+ ;;=C92.A0^^48^488^12
+ ;;^UTILITY(U,$J,358.3,9522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9522,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,9522,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,9522,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,9523,0)
+ ;;=C92.51^^48^488^13
+ ;;^UTILITY(U,$J,358.3,9523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9523,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,9523,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,9523,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,9524,0)
+ ;;=C92.50^^48^488^14
+ ;;^UTILITY(U,$J,358.3,9524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9524,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,9524,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,9524,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,9525,0)
+ ;;=C94.40^^48^488^17
+ ;;^UTILITY(U,$J,358.3,9525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9525,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,9525,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,9525,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,9526,0)
+ ;;=C94.42^^48^488^15
+ ;;^UTILITY(U,$J,358.3,9526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9526,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,9526,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,9526,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,9527,0)
+ ;;=C94.41^^48^488^16
+ ;;^UTILITY(U,$J,358.3,9527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9527,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,9527,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,9527,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,9528,0)
+ ;;=D62.^^48^488^18
+ ;;^UTILITY(U,$J,358.3,9528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9528,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,9528,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,9528,2)
+ ;;=^267986

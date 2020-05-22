@@ -1,132 +1,122 @@
-IBDEI2CJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39780,1,4,0)
- ;;=4^H53.63
- ;;^UTILITY(U,$J,358.3,39780,2)
- ;;=^265396
- ;;^UTILITY(U,$J,358.3,39781,0)
- ;;=H53.69^^153^1929^18
- ;;^UTILITY(U,$J,358.3,39781,1,0)
+ ;;^UTILITY(U,$J,358.3,37477,1,4,0)
+ ;;=4^S92.015A
+ ;;^UTILITY(U,$J,358.3,37477,2)
+ ;;=^5044395
+ ;;^UTILITY(U,$J,358.3,37478,0)
+ ;;=S92.014A^^146^1917^308
+ ;;^UTILITY(U,$J,358.3,37478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39781,1,3,0)
- ;;=3^Night Blindness NEC
- ;;^UTILITY(U,$J,358.3,39781,1,4,0)
- ;;=4^H53.69
- ;;^UTILITY(U,$J,358.3,39781,2)
- ;;=^87726
- ;;^UTILITY(U,$J,358.3,39782,0)
- ;;=H52.521^^153^1929^23
- ;;^UTILITY(U,$J,358.3,39782,1,0)
+ ;;^UTILITY(U,$J,358.3,37478,1,3,0)
+ ;;=3^Nondisp fx of body of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,37478,1,4,0)
+ ;;=4^S92.014A
+ ;;^UTILITY(U,$J,358.3,37478,2)
+ ;;=^5044388
+ ;;^UTILITY(U,$J,358.3,37479,0)
+ ;;=S92.033A^^146^1917^9
+ ;;^UTILITY(U,$J,358.3,37479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39782,1,3,0)
- ;;=3^Paresis of Accommodation,Right eye
- ;;^UTILITY(U,$J,358.3,39782,1,4,0)
- ;;=4^H52.521
- ;;^UTILITY(U,$J,358.3,39782,2)
- ;;=^5006282
- ;;^UTILITY(U,$J,358.3,39783,0)
- ;;=H52.522^^153^1929^22
- ;;^UTILITY(U,$J,358.3,39783,1,0)
+ ;;^UTILITY(U,$J,358.3,37479,1,3,0)
+ ;;=3^Disp avulsion fx tuberosity of calcaneus, unspec, init
+ ;;^UTILITY(U,$J,358.3,37479,1,4,0)
+ ;;=4^S92.033A
+ ;;^UTILITY(U,$J,358.3,37479,2)
+ ;;=^5044465
+ ;;^UTILITY(U,$J,358.3,37480,0)
+ ;;=S92.034A^^146^1917^233
+ ;;^UTILITY(U,$J,358.3,37480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39783,1,3,0)
- ;;=3^Paresis of Accommodation,Left Eye
- ;;^UTILITY(U,$J,358.3,39783,1,4,0)
- ;;=4^H52.522
- ;;^UTILITY(U,$J,358.3,39783,2)
- ;;=^5006283
- ;;^UTILITY(U,$J,358.3,39784,0)
- ;;=H52.523^^153^1929^21
- ;;^UTILITY(U,$J,358.3,39784,1,0)
+ ;;^UTILITY(U,$J,358.3,37480,1,3,0)
+ ;;=3^Nondisp avulsion fx of tuberosity of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,37480,1,4,0)
+ ;;=4^S92.034A
+ ;;^UTILITY(U,$J,358.3,37480,2)
+ ;;=^5044472
+ ;;^UTILITY(U,$J,358.3,37481,0)
+ ;;=S92.902A^^146^1917^193
+ ;;^UTILITY(U,$J,358.3,37481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39784,1,3,0)
- ;;=3^Paresis of Accommodation,Bilateral
- ;;^UTILITY(U,$J,358.3,39784,1,4,0)
- ;;=4^H52.523
- ;;^UTILITY(U,$J,358.3,39784,2)
- ;;=^5006284
- ;;^UTILITY(U,$J,358.3,39785,0)
- ;;=Z87.820^^153^1929^24
- ;;^UTILITY(U,$J,358.3,39785,1,0)
+ ;;^UTILITY(U,$J,358.3,37481,1,3,0)
+ ;;=3^Fx of lft foot, unspec, init
+ ;;^UTILITY(U,$J,358.3,37481,1,4,0)
+ ;;=4^S92.902A
+ ;;^UTILITY(U,$J,358.3,37481,2)
+ ;;=^5045585
+ ;;^UTILITY(U,$J,358.3,37482,0)
+ ;;=S92.901A^^146^1917^211
+ ;;^UTILITY(U,$J,358.3,37482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39785,1,3,0)
- ;;=3^Personal Hx of Traumatic Brain Injury
- ;;^UTILITY(U,$J,358.3,39785,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,39785,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,39786,0)
- ;;=H55.81^^153^1929^27
- ;;^UTILITY(U,$J,358.3,39786,1,0)
+ ;;^UTILITY(U,$J,358.3,37482,1,3,0)
+ ;;=3^Fx of rt ft, unspec, init
+ ;;^UTILITY(U,$J,358.3,37482,1,4,0)
+ ;;=4^S92.901A
+ ;;^UTILITY(U,$J,358.3,37482,2)
+ ;;=^5045578
+ ;;^UTILITY(U,$J,358.3,37483,0)
+ ;;=S92.192A^^146^1917^199
+ ;;^UTILITY(U,$J,358.3,37483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39786,1,3,0)
- ;;=3^Saccadic Eye Movements
- ;;^UTILITY(U,$J,358.3,39786,1,4,0)
- ;;=4^H55.81
- ;;^UTILITY(U,$J,358.3,39786,2)
- ;;=^5006373
- ;;^UTILITY(U,$J,358.3,39787,0)
- ;;=H53.423^^153^1929^28
- ;;^UTILITY(U,$J,358.3,39787,1,0)
+ ;;^UTILITY(U,$J,358.3,37483,1,3,0)
+ ;;=3^Fx of lft talus, oth, init
+ ;;^UTILITY(U,$J,358.3,37483,1,4,0)
+ ;;=4^S92.192A
+ ;;^UTILITY(U,$J,358.3,37483,2)
+ ;;=^5137581
+ ;;^UTILITY(U,$J,358.3,37484,0)
+ ;;=S92.191A^^146^1917^216
+ ;;^UTILITY(U,$J,358.3,37484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39787,1,3,0)
- ;;=3^Scotoma Involving Blind Spot,Bilateral
- ;;^UTILITY(U,$J,358.3,39787,1,4,0)
- ;;=4^H53.423
- ;;^UTILITY(U,$J,358.3,39787,2)
- ;;=^5006331
- ;;^UTILITY(U,$J,358.3,39788,0)
- ;;=H53.421^^153^1929^30
- ;;^UTILITY(U,$J,358.3,39788,1,0)
+ ;;^UTILITY(U,$J,358.3,37484,1,3,0)
+ ;;=3^Fx of rt talus, oth, init
+ ;;^UTILITY(U,$J,358.3,37484,1,4,0)
+ ;;=4^S92.191A
+ ;;^UTILITY(U,$J,358.3,37484,2)
+ ;;=^5044815
+ ;;^UTILITY(U,$J,358.3,37485,0)
+ ;;=S92.155A^^146^1917^230
+ ;;^UTILITY(U,$J,358.3,37485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39788,1,3,0)
- ;;=3^Scotoma Involving Blind Spot,Right Eye
- ;;^UTILITY(U,$J,358.3,39788,1,4,0)
- ;;=4^H53.421
- ;;^UTILITY(U,$J,358.3,39788,2)
- ;;=^5006329
- ;;^UTILITY(U,$J,358.3,39789,0)
- ;;=H53.422^^153^1929^29
- ;;^UTILITY(U,$J,358.3,39789,1,0)
+ ;;^UTILITY(U,$J,358.3,37485,1,3,0)
+ ;;=3^Nondisp avulsion fx (chip) of lft talus, init
+ ;;^UTILITY(U,$J,358.3,37485,1,4,0)
+ ;;=4^S92.155A
+ ;;^UTILITY(U,$J,358.3,37485,2)
+ ;;=^5044801
+ ;;^UTILITY(U,$J,358.3,37486,0)
+ ;;=S92.154A^^146^1917^231
+ ;;^UTILITY(U,$J,358.3,37486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39789,1,3,0)
- ;;=3^Scotoma Involving Blind Spot,Left Eye
- ;;^UTILITY(U,$J,358.3,39789,1,4,0)
- ;;=4^H53.422
- ;;^UTILITY(U,$J,358.3,39789,2)
- ;;=^5006330
- ;;^UTILITY(U,$J,358.3,39790,0)
- ;;=H53.413^^153^1929^31
- ;;^UTILITY(U,$J,358.3,39790,1,0)
+ ;;^UTILITY(U,$J,358.3,37486,1,3,0)
+ ;;=3^Nondisp avulsion fx (chip) of rt talus, init
+ ;;^UTILITY(U,$J,358.3,37486,1,4,0)
+ ;;=4^S92.154A
+ ;;^UTILITY(U,$J,358.3,37486,2)
+ ;;=^5044794
+ ;;^UTILITY(U,$J,358.3,37487,0)
+ ;;=S92.152A^^146^1917^7
+ ;;^UTILITY(U,$J,358.3,37487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39790,1,3,0)
- ;;=3^Scotoma Involving Central Area,Bilateral
- ;;^UTILITY(U,$J,358.3,39790,1,4,0)
- ;;=4^H53.413
- ;;^UTILITY(U,$J,358.3,39790,2)
- ;;=^5006327
- ;;^UTILITY(U,$J,358.3,39791,0)
- ;;=H53.411^^153^1929^33
- ;;^UTILITY(U,$J,358.3,39791,1,0)
+ ;;^UTILITY(U,$J,358.3,37487,1,3,0)
+ ;;=3^Disp avulsion fx (chip) of lft talus, init
+ ;;^UTILITY(U,$J,358.3,37487,1,4,0)
+ ;;=4^S92.152A
+ ;;^UTILITY(U,$J,358.3,37487,2)
+ ;;=^5044780
+ ;;^UTILITY(U,$J,358.3,37488,0)
+ ;;=S92.135A^^146^1917^341
+ ;;^UTILITY(U,$J,358.3,37488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39791,1,3,0)
- ;;=3^Scotoma Involving Central Area,Right Eye
- ;;^UTILITY(U,$J,358.3,39791,1,4,0)
- ;;=4^H53.411
- ;;^UTILITY(U,$J,358.3,39791,2)
- ;;=^5006325
- ;;^UTILITY(U,$J,358.3,39792,0)
- ;;=H53.412^^153^1929^32
- ;;^UTILITY(U,$J,358.3,39792,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39792,1,3,0)
- ;;=3^Scotoma Involving Central Area,Left Eye
- ;;^UTILITY(U,$J,358.3,39792,1,4,0)
- ;;=4^H53.412
- ;;^UTILITY(U,$J,358.3,39792,2)
- ;;=^5006326
- ;;^UTILITY(U,$J,358.3,39793,0)
- ;;=H53.33^^153^1929^34
- ;;^UTILITY(U,$J,358.3,39793,1,0)
+ ;;^UTILITY(U,$J,358.3,37488,1,3,0)
+ ;;=3^Nondisp fx of posterior process of lft talus, init
+ ;;^UTILITY(U,$J,358.3,37488,1,4,0)
+ ;;=4^S92.135A
+ ;;^UTILITY(U,$J,358.3,37488,2)
+ ;;=^5044717
+ ;;^UTILITY(U,$J,358.3,37489,0)
+ ;;=S92.151A^^146^1917^8
+ ;;^UTILITY(U,$J,358.3,37489,1,0)
  ;;=^358.31IA^4^2

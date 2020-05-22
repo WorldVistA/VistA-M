@@ -1,128 +1,126 @@
-IBDEI21B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI21B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34513,1,0)
+ ;;^UTILITY(U,$J,358.3,32473,1,4,0)
+ ;;=4^H35.041
+ ;;^UTILITY(U,$J,358.3,32473,2)
+ ;;=^5005594
+ ;;^UTILITY(U,$J,358.3,32474,0)
+ ;;=H35.042^^128^1661^29
+ ;;^UTILITY(U,$J,358.3,32474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34513,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,34513,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,34513,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,34514,0)
- ;;=F03.91^^131^1687^9
- ;;^UTILITY(U,$J,358.3,34514,1,0)
+ ;;^UTILITY(U,$J,358.3,32474,1,3,0)
+ ;;=3^Retinal Micro-Aneurysms,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,32474,1,4,0)
+ ;;=4^H35.042
+ ;;^UTILITY(U,$J,358.3,32474,2)
+ ;;=^5005595
+ ;;^UTILITY(U,$J,358.3,32475,0)
+ ;;=H35.053^^128^1661^33
+ ;;^UTILITY(U,$J,358.3,32475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34514,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,34514,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,34514,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,34515,0)
- ;;=F01.50^^131^1687^12
- ;;^UTILITY(U,$J,358.3,34515,1,0)
+ ;;^UTILITY(U,$J,358.3,32475,1,3,0)
+ ;;=3^Retinal Neovascularization,Unspec,OU
+ ;;^UTILITY(U,$J,358.3,32475,1,4,0)
+ ;;=4^H35.053
+ ;;^UTILITY(U,$J,358.3,32475,2)
+ ;;=^5005600
+ ;;^UTILITY(U,$J,358.3,32476,0)
+ ;;=H35.051^^128^1661^31
+ ;;^UTILITY(U,$J,358.3,32476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34515,1,3,0)
- ;;=3^Dementia,Vascular w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,34515,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,34515,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,34516,0)
- ;;=F10.27^^131^1687^11
- ;;^UTILITY(U,$J,358.3,34516,1,0)
+ ;;^UTILITY(U,$J,358.3,32476,1,3,0)
+ ;;=3^Retinal Neovascularization,Unspec,OD
+ ;;^UTILITY(U,$J,358.3,32476,1,4,0)
+ ;;=4^H35.051
+ ;;^UTILITY(U,$J,358.3,32476,2)
+ ;;=^5005598
+ ;;^UTILITY(U,$J,358.3,32477,0)
+ ;;=H35.052^^128^1661^32
+ ;;^UTILITY(U,$J,358.3,32477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34516,1,3,0)
- ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
- ;;^UTILITY(U,$J,358.3,34516,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,34516,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,34517,0)
- ;;=F06.1^^131^1687^6
- ;;^UTILITY(U,$J,358.3,34517,1,0)
+ ;;^UTILITY(U,$J,358.3,32477,1,3,0)
+ ;;=3^Retinal Neovascularization,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,32477,1,4,0)
+ ;;=4^H35.052
+ ;;^UTILITY(U,$J,358.3,32477,2)
+ ;;=^5005599
+ ;;^UTILITY(U,$J,358.3,32478,0)
+ ;;=H35.073^^128^1661^36
+ ;;^UTILITY(U,$J,358.3,32478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34517,1,3,0)
- ;;=3^Catatonic Disorder d/t Known Physiological Condition
- ;;^UTILITY(U,$J,358.3,34517,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,34517,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,34518,0)
- ;;=F06.8^^131^1687^21
- ;;^UTILITY(U,$J,358.3,34518,1,0)
+ ;;^UTILITY(U,$J,358.3,32478,1,3,0)
+ ;;=3^Retinal Telangiectasis,OU
+ ;;^UTILITY(U,$J,358.3,32478,1,4,0)
+ ;;=4^H35.073
+ ;;^UTILITY(U,$J,358.3,32478,2)
+ ;;=^5005608
+ ;;^UTILITY(U,$J,358.3,32479,0)
+ ;;=H35.071^^128^1661^34
+ ;;^UTILITY(U,$J,358.3,32479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34518,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition,Other
- ;;^UTILITY(U,$J,358.3,34518,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,34518,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,34519,0)
- ;;=F06.0^^131^1687^37
- ;;^UTILITY(U,$J,358.3,34519,1,0)
+ ;;^UTILITY(U,$J,358.3,32479,1,3,0)
+ ;;=3^Retinal Telangiectasis,OD
+ ;;^UTILITY(U,$J,358.3,32479,1,4,0)
+ ;;=4^H35.071
+ ;;^UTILITY(U,$J,358.3,32479,2)
+ ;;=^5005606
+ ;;^UTILITY(U,$J,358.3,32480,0)
+ ;;=H35.072^^128^1661^35
+ ;;^UTILITY(U,$J,358.3,32480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34519,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
- ;;^UTILITY(U,$J,358.3,34519,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,34519,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,34520,0)
- ;;=G44.209^^131^1687^42
- ;;^UTILITY(U,$J,358.3,34520,1,0)
+ ;;^UTILITY(U,$J,358.3,32480,1,3,0)
+ ;;=3^Retinal Telangiectasis,OS
+ ;;^UTILITY(U,$J,358.3,32480,1,4,0)
+ ;;=4^H35.072
+ ;;^UTILITY(U,$J,358.3,32480,2)
+ ;;=^5005607
+ ;;^UTILITY(U,$J,358.3,32481,0)
+ ;;=H34.03^^128^1661^23
+ ;;^UTILITY(U,$J,358.3,32481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34520,1,3,0)
- ;;=3^Tension-Type Headache,Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,34520,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,34520,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,34521,0)
- ;;=F09.^^131^1687^20
- ;;^UTILITY(U,$J,358.3,34521,1,0)
+ ;;^UTILITY(U,$J,358.3,32481,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,OU
+ ;;^UTILITY(U,$J,358.3,32481,1,4,0)
+ ;;=4^H34.03
+ ;;^UTILITY(U,$J,358.3,32481,2)
+ ;;=^5005555
+ ;;^UTILITY(U,$J,358.3,32482,0)
+ ;;=H34.01^^128^1661^21
+ ;;^UTILITY(U,$J,358.3,32482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34521,1,3,0)
- ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
- ;;^UTILITY(U,$J,358.3,34521,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,34521,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,34522,0)
- ;;=F07.9^^131^1687^35
- ;;^UTILITY(U,$J,358.3,34522,1,0)
+ ;;^UTILITY(U,$J,358.3,32482,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,OD
+ ;;^UTILITY(U,$J,358.3,32482,1,4,0)
+ ;;=4^H34.01
+ ;;^UTILITY(U,$J,358.3,32482,2)
+ ;;=^5005553
+ ;;^UTILITY(U,$J,358.3,32483,0)
+ ;;=H34.02^^128^1661^22
+ ;;^UTILITY(U,$J,358.3,32483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34522,1,3,0)
- ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,34522,1,4,0)
- ;;=4^F07.9
- ;;^UTILITY(U,$J,358.3,34522,2)
- ;;=^5003066
- ;;^UTILITY(U,$J,358.3,34523,0)
- ;;=G30.0^^131^1687^1
- ;;^UTILITY(U,$J,358.3,34523,1,0)
+ ;;^UTILITY(U,$J,358.3,32483,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,OS
+ ;;^UTILITY(U,$J,358.3,32483,1,4,0)
+ ;;=4^H34.02
+ ;;^UTILITY(U,$J,358.3,32483,2)
+ ;;=^5005554
+ ;;^UTILITY(U,$J,358.3,32484,0)
+ ;;=H35.00^^128^1661^47
+ ;;^UTILITY(U,$J,358.3,32484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34523,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,34523,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,34523,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,34524,0)
- ;;=G30.8^^131^1687^3
- ;;^UTILITY(U,$J,358.3,34524,1,0)
+ ;;^UTILITY(U,$J,358.3,32484,1,3,0)
+ ;;=3^Background Retinopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,32484,1,4,0)
+ ;;=4^H35.00
+ ;;^UTILITY(U,$J,358.3,32484,2)
+ ;;=^5005581
+ ;;^UTILITY(U,$J,358.3,32485,0)
+ ;;=H34.823^^128^1661^50
+ ;;^UTILITY(U,$J,358.3,32485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34524,1,3,0)
- ;;=3^Alzheimer's Disease,Other
- ;;^UTILITY(U,$J,358.3,34524,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,34524,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,34525,0)
- ;;=G30.1^^131^1687^2
- ;;^UTILITY(U,$J,358.3,34525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34525,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,32485,1,3,0)
+ ;;=3^Venous Engorgement,OU
+ ;;^UTILITY(U,$J,358.3,32485,1,4,0)
+ ;;=4^H34.823

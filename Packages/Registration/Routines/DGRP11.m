@@ -1,5 +1,5 @@
-DGRP11 ;ALB/MRL,RTK,PHH,PWC,HM - REGISTRATION SCREEN 11/VERIFICATION INFORMATION ;3/23/06 8:10am
- ;;5.3;Registration;**327,631,709,871,987**;Aug 13, 1993;Build 22
+DGRP11 ;ALB/MRL,RTK,PHH,PWC,HM,BDB - REGISTRATION SCREEN 11/VERIFICATION INFORMATION ;3/23/06 8:10am
+ ;;5.3;Registration;**327,631,709,871,987,1006**;Aug 13, 1993;Build 6
  ;
  S DGRPS=11 D H^DGRPU F I=.3,.32,.36,.361,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S (DGRPW,Z)=1 D WW^DGRPV W " Eligibility Status: " S DGRPX=DGRP(.361),X=$P(DGRPX,"^",1),Z=$S(X']"":"NOT VERIFIED",X="V":"VERIFIED",X="R":"PENDING RE-VERIFICATION",1:"PENDING VERIFICATION"),Z1=28 D WW1^DGRPV S DGRPVR=$S(X]"":1,1:0)
@@ -43,7 +43,8 @@ HBP ; LINE FOR HEALTH BENEFIT PLAN (DG*53*871)
  I DGRPCM!($E(Z)="[") W @DGVI,Z,@DGVO
  I 'DGRPCM&($E(Z)'="[") W Z
  ; D WW^DGRPV     Removed to always have #5 selectable then sub screens of 11 will control edit and view capabilities
- W " Veteran Medical Benefit Plan (VMBP): " N CNT,PLN D  ;DG*5.3*987 HM
+ ;W " Veteran Medical Benefit Plan (VMBP): " N CNT,PLN D  ;DG*5.3*987 HM
+ W " VHA Profiles (VHAP): " N CNT,PLN D  ;DG*5.3*1006 BDB;DG*5.3*987 HM
  . S (CNT,PLN)=0 F  S PLN=$O(^DPT(DFN,"HBP",PLN)) Q:PLN<1  S CNT=CNT+1
- W $S(CNT>0:" ("_CNT_" Plan"_$S(CNT=1:"",1:"s")_" on file)",1:" (None Specified)")
+ W $S(CNT>0:" ("_CNT_" Profile"_$S(CNT=1:"",1:"s")_" on file)",1:" (None Specified)")
 Q G ^DGRPP

@@ -1,5 +1,5 @@
 BPSTEST1 ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22,26**;JUN 2004;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -18,9 +18,9 @@ BPSTEST1 ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
  ; as being a test claim, the clearinghouse does not send the claim to a
  ; payer.  The clearinghouse returns to FSC a boiler-plate response,
  ; indicating the claim was accepted and paid.  FSC returns the response
- ; to the non-production instance of VistA which sent the claim. A non-production
- ; instance of VistA includes any account used by a development team for
- ; development and testing of new enhancements.
+ ; to the non-production instance of VistA which sent the claim.  A non-
+ ; production instance of VistA includes any account used by a
+ ; development team for development and testing of new enhancements.
  ;
  ; The ECME Testing Tool (^BPSTEST) allows users in a non-production
  ; VistA to override some of the fields on the default response returned
@@ -38,9 +38,10 @@ BPSTEST1 ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
  ; Two things must be true in order for the Testing Tool to be invoked:
  ; The system must not be a production system (i.e.  $$PROD^XUPROD must
  ; be false); and the field PAYER RESPONSE TEST MODE on the file BPS
- ; SETUP must be set to 1/On.  The Testing Tool may not be invoked from a
- ; production system, and on non-production accounts, the PAYER RESPONSE
- ; TEST MODE fields must be set to 1/On to make use of the Testing Tool.
+ ; SETUP must be set to 1/On.  The Testing Tool may not be invoked from
+ ; a production system, and on non-production accounts, the PAYER
+ ; RESPONSE TEST MODE fields must be set to 1/On to make use of the
+ ; Testing Tool.
  ;
  ; While test/mirror accounts at production sites are non-production
  ; systems, the Testing Tool will never be used in these systems since
@@ -51,39 +52,39 @@ BPSTEST1 ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
  ; Using the Testing Tool
  ; ======================
  ;
- ; There are several VistA menu options and actions that can initiate the
- ; submission of a claim.  If the process is a foreground process, then
- ; just before the building and sending of the claim, the user is given
- ; the option of entering response overrides (if the system is a non-
- ; production system, and the PAYER RESPONSE TEST MODE field is set to
- ; 1/On).  The user may also enter response overrides for an Eligibility
- ; transaction or a Reversal.
+ ; There are several VistA menu options and actions that can initiate
+ ; the submission of a claim.  If the process is a foreground process,
+ ; then just before the building and sending of the claim, the user is
+ ; given the option of entering response overrides (if the system is a
+ ; non-production system, and the PAYER RESPONSE TEST MODE field is set
+ ; to 1/On).  The user may also enter response overrides for an
+ ; Eligibility transaction or a Reversal.
  ;
  ; The Testing Tool does allow for overrides to be entered for a claim
- ; which will be submitted in the background.  The menu option BPS SELECT
- ; OVERRIDES allows the user to enter overrides which will then be
- ; applied to the incoming claim response when the claim is submitted in
- ; the background (such as CMOP or auto-reversal).  This menu option does
- ; not exist in production systems.
+ ; which will be submitted in the background.  The menu option BPS
+ ; SELECT OVERRIDES allows the user to enter overrides which will then
+ ; be applied to the incoming claim response when the claim is submitted
+ ; in the background (such as CMOP or auto-reversal).  This menu option
+ ; does not exist in production systems.
  ;
  ; The claim submission code will call the subroutine GETOVER^BPSTEST,
  ; which will indicate to the user that payer overrides are enabled at
  ; that site.  The system will prompt the user "Do you want to enter
- ; overrides for this request?".  If the user enters "No", then they will
- ; not receive any further prompts related to the Testing Tool.  No
+ ; overrides for this request?".  If the user enters "No", then they
+ ; will not receive any further prompts related to the Testing Tool.  No
  ; values on the incoming response will be overridden with any user-
  ; entered values.  If the user enters "Yes", then the system will allow
  ; the user to enter override values for a variety of fields, for
- ; example:  Response (rejected, paid, duplicate, stranded), Total Amount
- ; Paid, Copay Amount, Ingredient Cost Paid, Next Available Fill Date,
- ; Payer ID Qualifier, etc.
+ ; example:  Response (rejected, paid, duplicate, stranded), Total
+ ; Amount Paid, Copay Amount, Ingredient Cost Paid, Next Available Fill
+ ; Date, Payer ID Qualifier, etc.
  ;
  ; When the incoming claim response comes in, the system parses the
  ; values and stores them in the file BPS RESPONSES.  (Data fields may
- ; also be stored on the REJECT INFO sub-file of the PRESCRIPTIONS file.)
- ; If the system is a non-production system, and the PAYER RESPONSE TEST
- ; MODE field is set to 1/On, then the subroutine PARSE^BPSECMPS will
- ; call SETOVER^BPSTEST.  If any overrides had been entered for the claim
- ; response, those values will override the values received from the
- ; clearinghouse on the claim response.
+ ; also be stored on the REJECT INFO sub-file of the PRESCRIPTIONS
+ ; file.) If the system is a non-production system, and the PAYER
+ ; RESPONSE TEST MODE field is set to 1/On, then the subroutine PARSE^
+ ; BPSECMPS will call SETOVER^BPSTEST.  If any overrides had been
+ ; entered for the claim esponse, those values will override the values
+ ; received from the clearinghouse on the claim response.
  ;

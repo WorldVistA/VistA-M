@@ -1,128 +1,124 @@
-IBDEI2UP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47841,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,47841,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,47841,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,47842,0)
- ;;=Z85.09^^209^2357^10
- ;;^UTILITY(U,$J,358.3,47842,1,0)
+ ;;^UTILITY(U,$J,358.3,45476,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,45476,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,45477,0)
+ ;;=H60.93^^172^2270^33
+ ;;^UTILITY(U,$J,358.3,45477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47842,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Digestive Organs
- ;;^UTILITY(U,$J,358.3,47842,1,4,0)
- ;;=4^Z85.09
- ;;^UTILITY(U,$J,358.3,47842,2)
- ;;=^5063406
- ;;^UTILITY(U,$J,358.3,47843,0)
- ;;=Z85.01^^209^2357^11
- ;;^UTILITY(U,$J,358.3,47843,1,0)
+ ;;^UTILITY(U,$J,358.3,45477,1,3,0)
+ ;;=3^Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,45477,1,4,0)
+ ;;=4^H60.93
+ ;;^UTILITY(U,$J,358.3,45477,2)
+ ;;=^5006498
+ ;;^UTILITY(U,$J,358.3,45478,0)
+ ;;=H65.31^^172^2270^38
+ ;;^UTILITY(U,$J,358.3,45478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47843,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Esophagus
- ;;^UTILITY(U,$J,358.3,47843,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,47843,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,47844,0)
- ;;=Z85.528^^209^2357^12
- ;;^UTILITY(U,$J,358.3,47844,1,0)
+ ;;^UTILITY(U,$J,358.3,45478,1,3,0)
+ ;;=3^Otitis Media,Mucoid Chronic,Right Ear
+ ;;^UTILITY(U,$J,358.3,45478,1,4,0)
+ ;;=4^H65.31
+ ;;^UTILITY(U,$J,358.3,45478,2)
+ ;;=^5006598
+ ;;^UTILITY(U,$J,358.3,45479,0)
+ ;;=H65.32^^172^2270^37
+ ;;^UTILITY(U,$J,358.3,45479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47844,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Kidney
- ;;^UTILITY(U,$J,358.3,47844,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,47844,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,47845,0)
- ;;=Z85.038^^209^2357^13
- ;;^UTILITY(U,$J,358.3,47845,1,0)
+ ;;^UTILITY(U,$J,358.3,45479,1,3,0)
+ ;;=3^Otitis Media,Mucoid Chronic,Left Ear
+ ;;^UTILITY(U,$J,358.3,45479,1,4,0)
+ ;;=4^H65.32
+ ;;^UTILITY(U,$J,358.3,45479,2)
+ ;;=^5006599
+ ;;^UTILITY(U,$J,358.3,45480,0)
+ ;;=H65.33^^172^2270^36
+ ;;^UTILITY(U,$J,358.3,45480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47845,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Large Intestine
- ;;^UTILITY(U,$J,358.3,47845,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,47845,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,47846,0)
- ;;=Z85.21^^209^2357^14
- ;;^UTILITY(U,$J,358.3,47846,1,0)
+ ;;^UTILITY(U,$J,358.3,45480,1,3,0)
+ ;;=3^Otitis Media,Mucoid Chronic,Bilateral
+ ;;^UTILITY(U,$J,358.3,45480,1,4,0)
+ ;;=4^H65.33
+ ;;^UTILITY(U,$J,358.3,45480,2)
+ ;;=^5006600
+ ;;^UTILITY(U,$J,358.3,45481,0)
+ ;;=H65.01^^172^2270^41
+ ;;^UTILITY(U,$J,358.3,45481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47846,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Larynx
- ;;^UTILITY(U,$J,358.3,47846,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,47846,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,47847,0)
- ;;=Z85.819^^209^2357^15
- ;;^UTILITY(U,$J,358.3,47847,1,0)
+ ;;^UTILITY(U,$J,358.3,45481,1,3,0)
+ ;;=3^Otitis Media,Serous Acute,Right Ear
+ ;;^UTILITY(U,$J,358.3,45481,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,45481,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,45482,0)
+ ;;=H65.02^^172^2270^40
+ ;;^UTILITY(U,$J,358.3,45482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47847,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Lip.Oral Cavity/Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,47847,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,47847,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,47848,0)
- ;;=Z85.05^^209^2357^16
- ;;^UTILITY(U,$J,358.3,47848,1,0)
+ ;;^UTILITY(U,$J,358.3,45482,1,3,0)
+ ;;=3^Otitis Media,Serous Acute,Left Ear
+ ;;^UTILITY(U,$J,358.3,45482,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,45482,2)
+ ;;=^5006571
+ ;;^UTILITY(U,$J,358.3,45483,0)
+ ;;=H65.03^^172^2270^39
+ ;;^UTILITY(U,$J,358.3,45483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47848,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Liver
- ;;^UTILITY(U,$J,358.3,47848,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,47848,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,47849,0)
- ;;=Z85.79^^209^2357^17
- ;;^UTILITY(U,$J,358.3,47849,1,0)
+ ;;^UTILITY(U,$J,358.3,45483,1,3,0)
+ ;;=3^Otitis Media,Serous Acute,Bilateral
+ ;;^UTILITY(U,$J,358.3,45483,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,45483,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,45484,0)
+ ;;=H65.111^^172^2270^44
+ ;;^UTILITY(U,$J,358.3,45484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47849,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Lymphoid/Hematpoetc/Rel Tiss
- ;;^UTILITY(U,$J,358.3,47849,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,47849,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,47850,0)
- ;;=Z85.22^^209^2357^18
- ;;^UTILITY(U,$J,358.3,47850,1,0)
+ ;;^UTILITY(U,$J,358.3,45484,1,3,0)
+ ;;=3^Otitis Media,Serous Allergic,Right Ear
+ ;;^UTILITY(U,$J,358.3,45484,1,4,0)
+ ;;=4^H65.111
+ ;;^UTILITY(U,$J,358.3,45484,2)
+ ;;=^5006577
+ ;;^UTILITY(U,$J,358.3,45485,0)
+ ;;=H65.112^^172^2270^43
+ ;;^UTILITY(U,$J,358.3,45485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47850,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Nasal Cavity/Med Ear/Acces Sinus
- ;;^UTILITY(U,$J,358.3,47850,1,4,0)
- ;;=4^Z85.22
- ;;^UTILITY(U,$J,358.3,47850,2)
- ;;=^5063412
- ;;^UTILITY(U,$J,358.3,47851,0)
- ;;=Z85.07^^209^2357^19
- ;;^UTILITY(U,$J,358.3,47851,1,0)
+ ;;^UTILITY(U,$J,358.3,45485,1,3,0)
+ ;;=3^Otitis Media,Serous Allergic,Left Ear
+ ;;^UTILITY(U,$J,358.3,45485,1,4,0)
+ ;;=4^H65.112
+ ;;^UTILITY(U,$J,358.3,45485,2)
+ ;;=^5006578
+ ;;^UTILITY(U,$J,358.3,45486,0)
+ ;;=H65.113^^172^2270^42
+ ;;^UTILITY(U,$J,358.3,45486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47851,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Pancreas
- ;;^UTILITY(U,$J,358.3,47851,1,4,0)
- ;;=4^Z85.07
- ;;^UTILITY(U,$J,358.3,47851,2)
- ;;=^5063405
- ;;^UTILITY(U,$J,358.3,47852,0)
- ;;=Z85.46^^209^2357^20
- ;;^UTILITY(U,$J,358.3,47852,1,0)
+ ;;^UTILITY(U,$J,358.3,45486,1,3,0)
+ ;;=3^Otitis Media,Serous Allergic,Bilateral
+ ;;^UTILITY(U,$J,358.3,45486,1,4,0)
+ ;;=4^H65.113
+ ;;^UTILITY(U,$J,358.3,45486,2)
+ ;;=^5006579
+ ;;^UTILITY(U,$J,358.3,45487,0)
+ ;;=H65.21^^172^2270^47
+ ;;^UTILITY(U,$J,358.3,45487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47852,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Prostate
- ;;^UTILITY(U,$J,358.3,47852,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,47852,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,47853,0)
- ;;=Z85.048^^209^2357^21
- ;;^UTILITY(U,$J,358.3,47853,1,0)
+ ;;^UTILITY(U,$J,358.3,45487,1,3,0)
+ ;;=3^Otitis Media,Serous Chronic,Right Ear
+ ;;^UTILITY(U,$J,358.3,45487,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,45487,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,45488,0)
+ ;;=H65.22^^172^2270^46
+ ;;^UTILITY(U,$J,358.3,45488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47853,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Rectum/Rectosig Junct/Anus
- ;;^UTILITY(U,$J,358.3,47853,1,4,0)
- ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,45488,1,3,0)
+ ;;=3^Otitis Media,Serous Chronic,Left Ear

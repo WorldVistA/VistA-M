@@ -1,360 +1,124 @@
-IBDEI0WY ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0WY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43245,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,43246,0)
- ;;=R50.9^^127^1857^27
- ;;^UTILITY(U,$J,358.3,43246,1,0)
+ ;;^UTILITY(U,$J,358.3,14669,1,4,0)
+ ;;=4^W05.0XXS
+ ;;^UTILITY(U,$J,358.3,14669,2)
+ ;;=^5059552
+ ;;^UTILITY(U,$J,358.3,14670,0)
+ ;;=W18.12XS^^83^827^19
+ ;;^UTILITY(U,$J,358.3,14670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43246,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,43246,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,43246,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,43247,0)
- ;;=R76.11^^127^1857^1
- ;;^UTILITY(U,$J,358.3,43247,1,0)
+ ;;^UTILITY(U,$J,358.3,14670,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,14670,1,4,0)
+ ;;=4^W18.12XS
+ ;;^UTILITY(U,$J,358.3,14670,2)
+ ;;=^5059805
+ ;;^UTILITY(U,$J,358.3,14671,0)
+ ;;=W18.11XS^^83^827^20
+ ;;^UTILITY(U,$J,358.3,14671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43247,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,43247,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,43247,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,43248,0)
- ;;=Z21.^^127^1857^30
- ;;^UTILITY(U,$J,358.3,43248,1,0)
+ ;;^UTILITY(U,$J,358.3,14671,1,3,0)
+ ;;=3^Fall from Toilet,Sequela
+ ;;^UTILITY(U,$J,358.3,14671,1,4,0)
+ ;;=4^W18.11XS
+ ;;^UTILITY(U,$J,358.3,14671,2)
+ ;;=^5059803
+ ;;^UTILITY(U,$J,358.3,14672,0)
+ ;;=W08.XXXS^^83^827^10
+ ;;^UTILITY(U,$J,358.3,14672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43248,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,43248,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,43248,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,43249,0)
- ;;=B37.0^^127^1857^16
- ;;^UTILITY(U,$J,358.3,43249,1,0)
+ ;;^UTILITY(U,$J,358.3,14672,1,3,0)
+ ;;=3^Fall from Furniture,Sequela
+ ;;^UTILITY(U,$J,358.3,14672,1,4,0)
+ ;;=4^W08.XXXS
+ ;;^UTILITY(U,$J,358.3,14672,2)
+ ;;=^5059567
+ ;;^UTILITY(U,$J,358.3,14673,0)
+ ;;=W18.2XXS^^83^827^21
+ ;;^UTILITY(U,$J,358.3,14673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43249,1,3,0)
- ;;=3^Candidal Stomatitis (Oral Thrush)
- ;;^UTILITY(U,$J,358.3,43249,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,43249,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,43250,0)
- ;;=B97.10^^127^1857^22
- ;;^UTILITY(U,$J,358.3,43250,1,0)
+ ;;^UTILITY(U,$J,358.3,14673,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Sequela
+ ;;^UTILITY(U,$J,358.3,14673,1,4,0)
+ ;;=4^W18.2XXS
+ ;;^UTILITY(U,$J,358.3,14673,2)
+ ;;=^5059808
+ ;;^UTILITY(U,$J,358.3,14674,0)
+ ;;=W11.XXXS^^83^827^12
+ ;;^UTILITY(U,$J,358.3,14674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43250,1,3,0)
- ;;=3^Enterovirus,Unspec,as Cause of Disease
- ;;^UTILITY(U,$J,358.3,43250,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,43250,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,43251,0)
- ;;=R50.82^^127^1857^24
- ;;^UTILITY(U,$J,358.3,43251,1,0)
+ ;;^UTILITY(U,$J,358.3,14674,1,3,0)
+ ;;=3^Fall from Ladder,Sequela
+ ;;^UTILITY(U,$J,358.3,14674,1,4,0)
+ ;;=4^W11.XXXS
+ ;;^UTILITY(U,$J,358.3,14674,2)
+ ;;=^5059597
+ ;;^UTILITY(U,$J,358.3,14675,0)
+ ;;=W01.10XS^^83^827^2
+ ;;^UTILITY(U,$J,358.3,14675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43251,1,3,0)
- ;;=3^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,43251,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,43251,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,43252,0)
- ;;=R50.83^^127^1857^26
- ;;^UTILITY(U,$J,358.3,43252,1,0)
+ ;;^UTILITY(U,$J,358.3,14675,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,14675,1,4,0)
+ ;;=4^W01.10XS
+ ;;^UTILITY(U,$J,358.3,14675,2)
+ ;;=^5059527
+ ;;^UTILITY(U,$J,358.3,14676,0)
+ ;;=W01.0XXS^^83^827^3
+ ;;^UTILITY(U,$J,358.3,14676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43252,1,3,0)
- ;;=3^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,43252,1,4,0)
- ;;=4^R50.83
- ;;^UTILITY(U,$J,358.3,43252,2)
- ;;=^5019510
- ;;^UTILITY(U,$J,358.3,43253,0)
- ;;=R50.84^^127^1857^25
- ;;^UTILITY(U,$J,358.3,43253,1,0)
+ ;;^UTILITY(U,$J,358.3,14676,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,14676,1,4,0)
+ ;;=4^W01.0XXS
+ ;;^UTILITY(U,$J,358.3,14676,2)
+ ;;=^5059524
+ ;;^UTILITY(U,$J,358.3,14677,0)
+ ;;=W18.30XS^^83^827^22
+ ;;^UTILITY(U,$J,358.3,14677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43253,1,3,0)
- ;;=3^Fever,Posttransfusion
- ;;^UTILITY(U,$J,358.3,43253,1,4,0)
- ;;=4^R50.84
- ;;^UTILITY(U,$J,358.3,43253,2)
- ;;=^5019511
- ;;^UTILITY(U,$J,358.3,43254,0)
- ;;=B02.23^^127^1857^70
- ;;^UTILITY(U,$J,358.3,43254,1,0)
+ ;;^UTILITY(U,$J,358.3,14677,1,3,0)
+ ;;=3^Fall on Same Level,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,14677,1,4,0)
+ ;;=4^W18.30XS
+ ;;^UTILITY(U,$J,358.3,14677,2)
+ ;;=^5059811
+ ;;^UTILITY(U,$J,358.3,14678,0)
+ ;;=W04.XXXS^^83^827^4
+ ;;^UTILITY(U,$J,358.3,14678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43254,1,3,0)
- ;;=3^Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,43254,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,43254,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,43255,0)
- ;;=B02.22^^127^1857^71
- ;;^UTILITY(U,$J,358.3,43255,1,0)
+ ;;^UTILITY(U,$J,358.3,14678,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Sequela
+ ;;^UTILITY(U,$J,358.3,14678,1,4,0)
+ ;;=4^W04.XXXS
+ ;;^UTILITY(U,$J,358.3,14678,2)
+ ;;=^5059549
+ ;;^UTILITY(U,$J,358.3,14679,0)
+ ;;=W17.89XS^^83^827^16
+ ;;^UTILITY(U,$J,358.3,14679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43255,1,3,0)
- ;;=3^Postherpetic Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,43255,1,4,0)
- ;;=4^B02.22
- ;;^UTILITY(U,$J,358.3,43255,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,43256,0)
- ;;=J03.91^^127^1857^80
- ;;^UTILITY(U,$J,358.3,43256,1,0)
+ ;;^UTILITY(U,$J,358.3,14679,1,3,0)
+ ;;=3^Fall from One Level to Another,Sequela
+ ;;^UTILITY(U,$J,358.3,14679,1,4,0)
+ ;;=4^W17.89XS
+ ;;^UTILITY(U,$J,358.3,14679,2)
+ ;;=^5059789
+ ;;^UTILITY(U,$J,358.3,14680,0)
+ ;;=W03.XXXS^^83^827^1
+ ;;^UTILITY(U,$J,358.3,14680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43256,1,3,0)
- ;;=3^Tonsillitis,Acute Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,43256,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,43256,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,43257,0)
- ;;=K70.0^^127^1858^3
- ;;^UTILITY(U,$J,358.3,43257,1,0)
+ ;;^UTILITY(U,$J,358.3,14680,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Sequela
+ ;;^UTILITY(U,$J,358.3,14680,1,4,0)
+ ;;=4^W03.XXXS
+ ;;^UTILITY(U,$J,358.3,14680,2)
+ ;;=^5059546
+ ;;^UTILITY(U,$J,358.3,14681,0)
+ ;;=W18.00XS^^83^827^6
+ ;;^UTILITY(U,$J,358.3,14681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43257,1,3,0)
- ;;=3^Alcoholic Fatty Liver
- ;;^UTILITY(U,$J,358.3,43257,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,43257,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,43258,0)
- ;;=K70.11^^127^1858^7
- ;;^UTILITY(U,$J,358.3,43258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43258,1,3,0)
- ;;=3^Alcoholic Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,43258,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,43258,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,43259,0)
- ;;=K70.10^^127^1858^8
- ;;^UTILITY(U,$J,358.3,43259,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43259,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,43259,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,43259,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,43260,0)
- ;;=K70.2^^127^1858^4
- ;;^UTILITY(U,$J,358.3,43260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43260,1,3,0)
- ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,43260,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,43260,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,43261,0)
- ;;=K70.30^^127^1858^2
- ;;^UTILITY(U,$J,358.3,43261,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43261,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,43261,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,43261,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,43262,0)
- ;;=K70.31^^127^1858^1
- ;;^UTILITY(U,$J,358.3,43262,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43262,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,43262,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,43262,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,43263,0)
- ;;=K70.9^^127^1858^9
- ;;^UTILITY(U,$J,358.3,43263,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43263,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43263,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,43263,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,43264,0)
- ;;=K70.40^^127^1858^6
- ;;^UTILITY(U,$J,358.3,43264,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43264,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/o Coma
- ;;^UTILITY(U,$J,358.3,43264,1,4,0)
- ;;=4^K70.40
- ;;^UTILITY(U,$J,358.3,43264,2)
- ;;=^5008790
- ;;^UTILITY(U,$J,358.3,43265,0)
- ;;=K70.41^^127^1858^5
- ;;^UTILITY(U,$J,358.3,43265,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43265,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/ Coma
- ;;^UTILITY(U,$J,358.3,43265,1,4,0)
- ;;=4^K70.41
- ;;^UTILITY(U,$J,358.3,43265,2)
- ;;=^5008791
- ;;^UTILITY(U,$J,358.3,43266,0)
- ;;=K73.0^^127^1858^15
- ;;^UTILITY(U,$J,358.3,43266,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43266,1,3,0)
- ;;=3^Hepatitis, Chronic Persistent NEC
- ;;^UTILITY(U,$J,358.3,43266,1,4,0)
- ;;=4^K73.0
- ;;^UTILITY(U,$J,358.3,43266,2)
- ;;=^5008811
- ;;^UTILITY(U,$J,358.3,43267,0)
- ;;=K74.0^^127^1858^14
- ;;^UTILITY(U,$J,358.3,43267,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43267,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,43267,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,43267,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,43268,0)
- ;;=K74.69^^127^1858^10
- ;;^UTILITY(U,$J,358.3,43268,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43268,1,3,0)
- ;;=3^Cirrhosis of Liver,Oth
- ;;^UTILITY(U,$J,358.3,43268,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,43268,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,43269,0)
- ;;=K74.60^^127^1858^11
- ;;^UTILITY(U,$J,358.3,43269,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43269,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,43269,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,43269,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,43270,0)
- ;;=K76.0^^127^1858^12
- ;;^UTILITY(U,$J,358.3,43270,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43270,1,3,0)
- ;;=3^Fatty Liver NEC
- ;;^UTILITY(U,$J,358.3,43270,1,4,0)
- ;;=4^K76.0
- ;;^UTILITY(U,$J,358.3,43270,2)
- ;;=^5008831
- ;;^UTILITY(U,$J,358.3,43271,0)
- ;;=K76.89^^127^1858^18
- ;;^UTILITY(U,$J,358.3,43271,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43271,1,3,0)
- ;;=3^Liver Disease NEC
- ;;^UTILITY(U,$J,358.3,43271,1,4,0)
- ;;=4^K76.89
- ;;^UTILITY(U,$J,358.3,43271,2)
- ;;=^5008835
- ;;^UTILITY(U,$J,358.3,43272,0)
- ;;=K71.6^^127^1858^32
- ;;^UTILITY(U,$J,358.3,43272,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43272,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,43272,1,4,0)
- ;;=4^K71.6
- ;;^UTILITY(U,$J,358.3,43272,2)
- ;;=^5008801
- ;;^UTILITY(U,$J,358.3,43273,0)
- ;;=K75.9^^127^1858^17
- ;;^UTILITY(U,$J,358.3,43273,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43273,1,3,0)
- ;;=3^Inflammatory Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43273,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,43273,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,43274,0)
- ;;=K71.0^^127^1858^24
- ;;^UTILITY(U,$J,358.3,43274,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43274,1,3,0)
- ;;=3^Toxic Liver Disease w/ Cholestasis
- ;;^UTILITY(U,$J,358.3,43274,1,4,0)
- ;;=4^K71.0
- ;;^UTILITY(U,$J,358.3,43274,2)
- ;;=^5008793
- ;;^UTILITY(U,$J,358.3,43275,0)
- ;;=K71.10^^127^1858^30
- ;;^UTILITY(U,$J,358.3,43275,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43275,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/o Coma
- ;;^UTILITY(U,$J,358.3,43275,1,4,0)
- ;;=4^K71.10
- ;;^UTILITY(U,$J,358.3,43275,2)
- ;;=^5008794
- ;;^UTILITY(U,$J,358.3,43276,0)
- ;;=K71.11^^127^1858^31
- ;;^UTILITY(U,$J,358.3,43276,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43276,1,3,0)
- ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/ Coma
- ;;^UTILITY(U,$J,358.3,43276,1,4,0)
- ;;=4^K71.11
- ;;^UTILITY(U,$J,358.3,43276,2)
- ;;=^5008795
- ;;^UTILITY(U,$J,358.3,43277,0)
- ;;=K71.2^^127^1858^23
- ;;^UTILITY(U,$J,358.3,43277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43277,1,3,0)
- ;;=3^Toxic Liver Disease w/ Acute Hepatitis
- ;;^UTILITY(U,$J,358.3,43277,1,4,0)
- ;;=4^K71.2
- ;;^UTILITY(U,$J,358.3,43277,2)
- ;;=^5008796
- ;;^UTILITY(U,$J,358.3,43278,0)
- ;;=K71.3^^127^1858^28
- ;;^UTILITY(U,$J,358.3,43278,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43278,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Persistent Hepatitis
- ;;^UTILITY(U,$J,358.3,43278,1,4,0)
- ;;=4^K71.3
- ;;^UTILITY(U,$J,358.3,43278,2)
- ;;=^5008797
- ;;^UTILITY(U,$J,358.3,43279,0)
- ;;=K71.4^^127^1858^27
- ;;^UTILITY(U,$J,358.3,43279,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43279,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Lobular Hepatitis
- ;;^UTILITY(U,$J,358.3,43279,1,4,0)
- ;;=4^K71.4
- ;;^UTILITY(U,$J,358.3,43279,2)
- ;;=^5008798
- ;;^UTILITY(U,$J,358.3,43280,0)
- ;;=K75.81^^127^1858^19
- ;;^UTILITY(U,$J,358.3,43280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43280,1,3,0)
- ;;=3^Nonalcoholic Steatohepatitis (NASH)
- ;;^UTILITY(U,$J,358.3,43280,1,4,0)
- ;;=4^K75.81
- ;;^UTILITY(U,$J,358.3,43280,2)
- ;;=^5008828
- ;;^UTILITY(U,$J,358.3,43281,0)
- ;;=K75.89^^127^1858^16
- ;;^UTILITY(U,$J,358.3,43281,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14681,1,3,0)
+ ;;=3^Fall d/t Striking Unspec Object,Sequela

@@ -1,134 +1,124 @@
-IBDEI1VF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31785,1,4,0)
- ;;=4^S90.821A
- ;;^UTILITY(U,$J,358.3,31785,2)
- ;;=^5044060
- ;;^UTILITY(U,$J,358.3,31786,0)
- ;;=S90.822A^^126^1605^11
- ;;^UTILITY(U,$J,358.3,31786,1,0)
+ ;;^UTILITY(U,$J,358.3,29887,1,3,0)
+ ;;=3^Phobia,Other Specified
+ ;;^UTILITY(U,$J,358.3,29887,1,4,0)
+ ;;=4^F40.298
+ ;;^UTILITY(U,$J,358.3,29887,2)
+ ;;=^5003561
+ ;;^UTILITY(U,$J,358.3,29888,0)
+ ;;=F41.9^^120^1516^5
+ ;;^UTILITY(U,$J,358.3,29888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31786,1,3,0)
- ;;=3^Blister (nontherm), lft ft, init enc
- ;;^UTILITY(U,$J,358.3,31786,1,4,0)
- ;;=4^S90.822A
- ;;^UTILITY(U,$J,358.3,31786,2)
- ;;=^5044063
- ;;^UTILITY(U,$J,358.3,31787,0)
- ;;=D81.819^^126^1605^2
- ;;^UTILITY(U,$J,358.3,31787,1,0)
+ ;;^UTILITY(U,$J,358.3,29888,1,3,0)
+ ;;=3^Anxiety Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,29888,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,29888,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,29889,0)
+ ;;=F94.0^^120^1516^14
+ ;;^UTILITY(U,$J,358.3,29889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31787,1,3,0)
- ;;=3^Biotin-Dependent Carboxylase Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,31787,1,4,0)
- ;;=4^D81.819
- ;;^UTILITY(U,$J,358.3,31787,2)
- ;;=^5002424
- ;;^UTILITY(U,$J,358.3,31788,0)
- ;;=L03.032^^126^1606^5
- ;;^UTILITY(U,$J,358.3,31788,1,0)
+ ;;^UTILITY(U,$J,358.3,29889,1,3,0)
+ ;;=3^Selective Mutism
+ ;;^UTILITY(U,$J,358.3,29889,1,4,0)
+ ;;=4^F94.0
+ ;;^UTILITY(U,$J,358.3,29889,2)
+ ;;=^331954
+ ;;^UTILITY(U,$J,358.3,29890,0)
+ ;;=F06.33^^120^1517^1
+ ;;^UTILITY(U,$J,358.3,29890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31788,1,3,0)
- ;;=3^Cellulitis of left toe
- ;;^UTILITY(U,$J,358.3,31788,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,31788,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,31789,0)
- ;;=L03.031^^126^1606^6
- ;;^UTILITY(U,$J,358.3,31789,1,0)
+ ;;^UTILITY(U,$J,358.3,29890,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Manic/Hypo-Like Ep
+ ;;^UTILITY(U,$J,358.3,29890,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,29890,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,29891,0)
+ ;;=F06.34^^120^1517^2
+ ;;^UTILITY(U,$J,358.3,29891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31789,1,3,0)
- ;;=3^Cellulitis of right toe
- ;;^UTILITY(U,$J,358.3,31789,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,31789,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,31790,0)
- ;;=L94.8^^126^1606^18
- ;;^UTILITY(U,$J,358.3,31790,1,0)
+ ;;^UTILITY(U,$J,358.3,29891,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,29891,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,29891,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,29892,0)
+ ;;=F31.11^^120^1517^22
+ ;;^UTILITY(U,$J,358.3,29892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31790,1,3,0)
- ;;=3^Connective tissue disorders, localized, oth,spec
- ;;^UTILITY(U,$J,358.3,31790,1,4,0)
- ;;=4^L94.8
- ;;^UTILITY(U,$J,358.3,31790,2)
- ;;=^5009474
- ;;^UTILITY(U,$J,358.3,31791,0)
- ;;=M24.571^^126^1606^21
- ;;^UTILITY(U,$J,358.3,31791,1,0)
+ ;;^UTILITY(U,$J,358.3,29892,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
+ ;;^UTILITY(U,$J,358.3,29892,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,29892,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,29893,0)
+ ;;=F31.12^^120^1517^23
+ ;;^UTILITY(U,$J,358.3,29893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31791,1,3,0)
- ;;=3^Contracture, right ankle
- ;;^UTILITY(U,$J,358.3,31791,1,4,0)
- ;;=4^M24.571
- ;;^UTILITY(U,$J,358.3,31791,2)
- ;;=^5011420
- ;;^UTILITY(U,$J,358.3,31792,0)
- ;;=M24.572^^126^1606^19
- ;;^UTILITY(U,$J,358.3,31792,1,0)
+ ;;^UTILITY(U,$J,358.3,29893,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
+ ;;^UTILITY(U,$J,358.3,29893,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,29893,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,29894,0)
+ ;;=F31.13^^120^1517^24
+ ;;^UTILITY(U,$J,358.3,29894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31792,1,3,0)
- ;;=3^Contracture, left ankle
- ;;^UTILITY(U,$J,358.3,31792,1,4,0)
- ;;=4^M24.572
- ;;^UTILITY(U,$J,358.3,31792,2)
- ;;=^5011421
- ;;^UTILITY(U,$J,358.3,31793,0)
- ;;=M24.574^^126^1606^22
- ;;^UTILITY(U,$J,358.3,31793,1,0)
+ ;;^UTILITY(U,$J,358.3,29894,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
+ ;;^UTILITY(U,$J,358.3,29894,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,29894,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,29895,0)
+ ;;=F31.2^^120^1517^19
+ ;;^UTILITY(U,$J,358.3,29895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31793,1,3,0)
- ;;=3^Contracture, right foot
- ;;^UTILITY(U,$J,358.3,31793,1,4,0)
- ;;=4^M24.574
- ;;^UTILITY(U,$J,358.3,31793,2)
- ;;=^5011423
- ;;^UTILITY(U,$J,358.3,31794,0)
- ;;=M24.575^^126^1606^20
- ;;^UTILITY(U,$J,358.3,31794,1,0)
+ ;;^UTILITY(U,$J,358.3,29895,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,29895,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,29895,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,29896,0)
+ ;;=F31.73^^120^1517^20
+ ;;^UTILITY(U,$J,358.3,29896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31794,1,3,0)
- ;;=3^Contracture, left foot
- ;;^UTILITY(U,$J,358.3,31794,1,4,0)
- ;;=4^M24.575
- ;;^UTILITY(U,$J,358.3,31794,2)
- ;;=^5011424
- ;;^UTILITY(U,$J,358.3,31795,0)
- ;;=L75.1^^126^1606^8
- ;;^UTILITY(U,$J,358.3,31795,1,0)
+ ;;^UTILITY(U,$J,358.3,29896,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,29896,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,29896,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,29897,0)
+ ;;=F31.74^^120^1517^21
+ ;;^UTILITY(U,$J,358.3,29897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31795,1,3,0)
- ;;=3^Chromhidrosis
- ;;^UTILITY(U,$J,358.3,31795,1,4,0)
- ;;=4^L75.1
- ;;^UTILITY(U,$J,358.3,31795,2)
- ;;=^5009298
- ;;^UTILITY(U,$J,358.3,31796,0)
- ;;=T25.431A^^126^1606^68
- ;;^UTILITY(U,$J,358.3,31796,1,0)
+ ;;^UTILITY(U,$J,358.3,29897,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,29897,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,29897,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,29898,0)
+ ;;=F31.31^^120^1517^13
+ ;;^UTILITY(U,$J,358.3,29898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31796,1,3,0)
- ;;=3^Corrosion of rt toe(s), unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,31796,1,4,0)
- ;;=4^T25.431A
- ;;^UTILITY(U,$J,358.3,31796,2)
- ;;=^5048634
- ;;^UTILITY(U,$J,358.3,31797,0)
- ;;=T25.432A^^126^1606^53
- ;;^UTILITY(U,$J,358.3,31797,1,0)
+ ;;^UTILITY(U,$J,358.3,29898,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild
+ ;;^UTILITY(U,$J,358.3,29898,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,29898,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,29899,0)
+ ;;=F31.32^^120^1517^14
+ ;;^UTILITY(U,$J,358.3,29899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31797,1,3,0)
- ;;=3^Corrosion of lft toe(s), unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,31797,1,4,0)
- ;;=4^T25.432A
- ;;^UTILITY(U,$J,358.3,31797,2)
- ;;=^5048637
- ;;^UTILITY(U,$J,358.3,31798,0)
- ;;=T25.421A^^126^1606^60
- ;;^UTILITY(U,$J,358.3,31798,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31798,1,3,0)
- ;;=3^Corrosion of rt ft, unspec degree, init enc

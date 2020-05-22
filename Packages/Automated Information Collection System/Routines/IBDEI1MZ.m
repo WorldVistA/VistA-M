@@ -1,132 +1,122 @@
-IBDEI1MZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27774,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,27775,0)
- ;;=G44.209^^109^1385^22
- ;;^UTILITY(U,$J,358.3,27775,1,0)
+ ;;^UTILITY(U,$J,358.3,26138,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,26138,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,26139,0)
+ ;;=W18.43XA^^107^1230^112
+ ;;^UTILITY(U,$J,358.3,26139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27775,1,3,0)
- ;;=3^Tension-Type Headache Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,27775,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,27775,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,27776,0)
- ;;=R51.^^109^1385^5
- ;;^UTILITY(U,$J,358.3,27776,1,0)
+ ;;^UTILITY(U,$J,358.3,26139,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26139,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,26139,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,26140,0)
+ ;;=W18.43XD^^107^1230^113
+ ;;^UTILITY(U,$J,358.3,26140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27776,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,27776,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,27776,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,27777,0)
- ;;=G43.011^^109^1385^16
- ;;^UTILITY(U,$J,358.3,27777,1,0)
+ ;;^UTILITY(U,$J,358.3,26140,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26140,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,26140,2)
+ ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,26141,0)
+ ;;=W18.49XA^^107^1230^120
+ ;;^UTILITY(U,$J,358.3,26141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27777,1,3,0)
- ;;=3^Migraine w/o Aura Intractable w/ Status Migrainosus
- ;;^UTILITY(U,$J,358.3,27777,1,4,0)
- ;;=4^G43.011
- ;;^UTILITY(U,$J,358.3,27777,2)
- ;;=^5003878
- ;;^UTILITY(U,$J,358.3,27778,0)
- ;;=G43.111^^109^1385^12
- ;;^UTILITY(U,$J,358.3,27778,1,0)
+ ;;^UTILITY(U,$J,358.3,26141,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26141,1,4,0)
+ ;;=4^W18.49XA
+ ;;^UTILITY(U,$J,358.3,26141,2)
+ ;;=^5059830
+ ;;^UTILITY(U,$J,358.3,26142,0)
+ ;;=W18.49XD^^107^1230^121
+ ;;^UTILITY(U,$J,358.3,26142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27778,1,3,0)
- ;;=3^Migraine w/ Aura Intractable w/ Status Migrainosus
- ;;^UTILITY(U,$J,358.3,27778,1,4,0)
- ;;=4^G43.111
- ;;^UTILITY(U,$J,358.3,27778,2)
- ;;=^5003882
- ;;^UTILITY(U,$J,358.3,27779,0)
- ;;=G43.911^^109^1385^7
- ;;^UTILITY(U,$J,358.3,27779,1,0)
+ ;;^UTILITY(U,$J,358.3,26142,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26142,1,4,0)
+ ;;=4^W18.49XD
+ ;;^UTILITY(U,$J,358.3,26142,2)
+ ;;=^5059831
+ ;;^UTILITY(U,$J,358.3,26143,0)
+ ;;=W19.XXXA^^107^1230^94
+ ;;^UTILITY(U,$J,358.3,26143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27779,1,3,0)
- ;;=3^Migraine Intractable w/ Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,27779,1,4,0)
- ;;=4^G43.911
- ;;^UTILITY(U,$J,358.3,27779,2)
- ;;=^5003910
- ;;^UTILITY(U,$J,358.3,27780,0)
- ;;=G43.919^^109^1385^8
- ;;^UTILITY(U,$J,358.3,27780,1,0)
+ ;;^UTILITY(U,$J,358.3,26143,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26143,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,26143,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,26144,0)
+ ;;=W19.XXXD^^107^1230^95
+ ;;^UTILITY(U,$J,358.3,26144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27780,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,27780,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,27780,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,27781,0)
- ;;=G44.001^^109^1385^1
- ;;^UTILITY(U,$J,358.3,27781,1,0)
+ ;;^UTILITY(U,$J,358.3,26144,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26144,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,26144,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,26145,0)
+ ;;=W54.0XXA^^107^1230^11
+ ;;^UTILITY(U,$J,358.3,26145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27781,1,3,0)
- ;;=3^Cluster Headache Syndrome Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,27781,1,4,0)
- ;;=4^G44.001
- ;;^UTILITY(U,$J,358.3,27781,2)
- ;;=^5003920
- ;;^UTILITY(U,$J,358.3,27782,0)
- ;;=G44.009^^109^1385^2
- ;;^UTILITY(U,$J,358.3,27782,1,0)
+ ;;^UTILITY(U,$J,358.3,26145,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26145,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,26145,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,26146,0)
+ ;;=W54.0XXD^^107^1230^12
+ ;;^UTILITY(U,$J,358.3,26146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27782,1,3,0)
- ;;=3^Cluster Headache Syndrome Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,27782,1,4,0)
- ;;=4^G44.009
- ;;^UTILITY(U,$J,358.3,27782,2)
- ;;=^5003921
- ;;^UTILITY(U,$J,358.3,27783,0)
- ;;=G44.301^^109^1385^19
- ;;^UTILITY(U,$J,358.3,27783,1,0)
+ ;;^UTILITY(U,$J,358.3,26146,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26146,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,26146,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,26147,0)
+ ;;=W55.01XA^^107^1230^9
+ ;;^UTILITY(U,$J,358.3,26147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27783,1,3,0)
- ;;=3^Post-Traumatic Headache Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,27783,1,4,0)
- ;;=4^G44.301
- ;;^UTILITY(U,$J,358.3,27783,2)
- ;;=^5003941
- ;;^UTILITY(U,$J,358.3,27784,0)
- ;;=G44.41^^109^1385^3
- ;;^UTILITY(U,$J,358.3,27784,1,0)
+ ;;^UTILITY(U,$J,358.3,26147,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26147,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,26147,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,26148,0)
+ ;;=W55.01XD^^107^1230^10
+ ;;^UTILITY(U,$J,358.3,26148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27784,1,3,0)
- ;;=3^Drug-Induced Headache Intractable NEC
- ;;^UTILITY(U,$J,358.3,27784,1,4,0)
- ;;=4^G44.41
- ;;^UTILITY(U,$J,358.3,27784,2)
- ;;=^5003948
- ;;^UTILITY(U,$J,358.3,27785,0)
- ;;=G44.51^^109^1385^6
- ;;^UTILITY(U,$J,358.3,27785,1,0)
+ ;;^UTILITY(U,$J,358.3,26148,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26148,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,26148,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,26149,0)
+ ;;=W55.03XA^^107^1230^110
+ ;;^UTILITY(U,$J,358.3,26149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27785,1,3,0)
- ;;=3^Hemicrania Continua
- ;;^UTILITY(U,$J,358.3,27785,1,4,0)
- ;;=4^G44.51
- ;;^UTILITY(U,$J,358.3,27785,2)
- ;;=^5003949
- ;;^UTILITY(U,$J,358.3,27786,0)
- ;;=G50.0^^109^1385^23
- ;;^UTILITY(U,$J,358.3,27786,1,0)
+ ;;^UTILITY(U,$J,358.3,26149,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26149,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,26149,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,26150,0)
+ ;;=W55.03XD^^107^1230^111
+ ;;^UTILITY(U,$J,358.3,26150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27786,1,3,0)
- ;;=3^Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,27786,1,4,0)
- ;;=4^G50.0
- ;;^UTILITY(U,$J,358.3,27786,2)
- ;;=^121978
- ;;^UTILITY(U,$J,358.3,27787,0)
- ;;=G44.40^^109^1385^4
- ;;^UTILITY(U,$J,358.3,27787,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27787,1,3,0)
- ;;=3^Drug-Induced Headache Not Intractable NEC

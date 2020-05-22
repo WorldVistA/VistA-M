@@ -1,138 +1,120 @@
-IBDEI19D ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21376,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,21376,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,21377,0)
- ;;=G91.2^^84^949^23
- ;;^UTILITY(U,$J,358.3,21377,1,0)
+ ;;^UTILITY(U,$J,358.3,20150,1,4,0)
+ ;;=4^S42.015S
+ ;;^UTILITY(U,$J,358.3,20150,2)
+ ;;=^5026417
+ ;;^UTILITY(U,$J,358.3,20151,0)
+ ;;=S42.014S^^93^999^106
+ ;;^UTILITY(U,$J,358.3,20151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21377,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,21377,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,21377,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,21378,0)
- ;;=G30.8^^84^949^5
- ;;^UTILITY(U,$J,358.3,21378,1,0)
+ ;;^UTILITY(U,$J,358.3,20151,1,3,0)
+ ;;=3^Posterior disp fx of sternal end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20151,1,4,0)
+ ;;=4^S42.014S
+ ;;^UTILITY(U,$J,358.3,20151,2)
+ ;;=^5026410
+ ;;^UTILITY(U,$J,358.3,20152,0)
+ ;;=S82.142S^^93^1000^1
+ ;;^UTILITY(U,$J,358.3,20152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21378,1,3,0)
- ;;=3^Alzheimer's Diseases NEC
- ;;^UTILITY(U,$J,358.3,21378,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,21378,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,21379,0)
- ;;=G31.09^^84^949^16
- ;;^UTILITY(U,$J,358.3,21379,1,0)
+ ;;^UTILITY(U,$J,358.3,20152,1,3,0)
+ ;;=3^Disp fx of bicondylar left tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,20152,1,4,0)
+ ;;=4^S82.142S
+ ;;^UTILITY(U,$J,358.3,20152,2)
+ ;;=^5040902
+ ;;^UTILITY(U,$J,358.3,20153,0)
+ ;;=S82.141S^^93^1000^2
+ ;;^UTILITY(U,$J,358.3,20153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21379,1,3,0)
- ;;=3^Frontotemporal Dementia NEC
- ;;^UTILITY(U,$J,358.3,21379,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,21379,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,21380,0)
- ;;=G20.^^84^949^24
- ;;^UTILITY(U,$J,358.3,21380,1,0)
+ ;;^UTILITY(U,$J,358.3,20153,1,3,0)
+ ;;=3^Disp fx of bicondylar right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20153,1,4,0)
+ ;;=4^S82.141S
+ ;;^UTILITY(U,$J,358.3,20153,2)
+ ;;=^5040886
+ ;;^UTILITY(U,$J,358.3,20154,0)
+ ;;=S82.252S^^93^1000^4
+ ;;^UTILITY(U,$J,358.3,20154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21380,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,21380,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,21380,2)
- ;;=^5003770^F02.81
- ;;^UTILITY(U,$J,358.3,21381,0)
- ;;=G20.^^84^949^25
- ;;^UTILITY(U,$J,358.3,21381,1,0)
+ ;;^UTILITY(U,$J,358.3,20154,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
+ ;;^UTILITY(U,$J,358.3,20154,1,4,0)
+ ;;=4^S82.252S
+ ;;^UTILITY(U,$J,358.3,20154,2)
+ ;;=^5041458
+ ;;^UTILITY(U,$J,358.3,20155,0)
+ ;;=S82.251S^^93^1000^6
+ ;;^UTILITY(U,$J,358.3,20155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21381,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,21381,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,21381,2)
- ;;=^5003770^F02.80
- ;;^UTILITY(U,$J,358.3,21382,0)
- ;;=G31.01^^84^949^26
- ;;^UTILITY(U,$J,358.3,21382,1,0)
+ ;;^UTILITY(U,$J,358.3,20155,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,20155,1,4,0)
+ ;;=4^S82.251S
+ ;;^UTILITY(U,$J,358.3,20155,2)
+ ;;=^5041442
+ ;;^UTILITY(U,$J,358.3,20156,0)
+ ;;=S82.122S^^93^1000^7
+ ;;^UTILITY(U,$J,358.3,20156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21382,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,21382,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,21382,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,21383,0)
- ;;=G23.1^^84^949^28
- ;;^UTILITY(U,$J,358.3,21383,1,0)
+ ;;^UTILITY(U,$J,358.3,20156,1,3,0)
+ ;;=3^Disp fx of lateral condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20156,1,4,0)
+ ;;=4^S82.122S
+ ;;^UTILITY(U,$J,358.3,20156,2)
+ ;;=^5040710
+ ;;^UTILITY(U,$J,358.3,20157,0)
+ ;;=S82.112S^^93^1000^11
+ ;;^UTILITY(U,$J,358.3,20157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21383,1,3,0)
- ;;=3^Progressive Supranuclear Ophthalmoplegia
- ;;^UTILITY(U,$J,358.3,21383,1,4,0)
- ;;=4^G23.1
- ;;^UTILITY(U,$J,358.3,21383,2)
- ;;=^5003780
- ;;^UTILITY(U,$J,358.3,21384,0)
- ;;=Z79.2^^84^950^1
- ;;^UTILITY(U,$J,358.3,21384,1,0)
+ ;;^UTILITY(U,$J,358.3,20157,1,3,0)
+ ;;=3^Disp fx of left tibial spine, sequela        
+ ;;^UTILITY(U,$J,358.3,20157,1,4,0)
+ ;;=4^S82.112S
+ ;;^UTILITY(U,$J,358.3,20157,2)
+ ;;=^5040614
+ ;;^UTILITY(U,$J,358.3,20158,0)
+ ;;=S82.121S^^93^1000^8
+ ;;^UTILITY(U,$J,358.3,20158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21384,1,3,0)
- ;;=3^Antibiotics
- ;;^UTILITY(U,$J,358.3,21384,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,21384,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,21385,0)
- ;;=Z79.01^^84^950^2
- ;;^UTILITY(U,$J,358.3,21385,1,0)
+ ;;^UTILITY(U,$J,358.3,20158,1,3,0)
+ ;;=3^Disp fx of lateral condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20158,1,4,0)
+ ;;=4^S82.121S
+ ;;^UTILITY(U,$J,358.3,20158,2)
+ ;;=^5040694
+ ;;^UTILITY(U,$J,358.3,20159,0)
+ ;;=S82.152S^^93^1000^12
+ ;;^UTILITY(U,$J,358.3,20159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21385,1,3,0)
- ;;=3^Anticoagulants
- ;;^UTILITY(U,$J,358.3,21385,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,21385,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,21386,0)
- ;;=Z79.02^^84^950^3
- ;;^UTILITY(U,$J,358.3,21386,1,0)
+ ;;^UTILITY(U,$J,358.3,20159,1,3,0)
+ ;;=3^Disp fx of left tibial tuberosity, sequela   
+ ;;^UTILITY(U,$J,358.3,20159,1,4,0)
+ ;;=4^S82.152S
+ ;;^UTILITY(U,$J,358.3,20159,2)
+ ;;=^5040998
+ ;;^UTILITY(U,$J,358.3,20160,0)
+ ;;=S82.132S^^93^1000^13
+ ;;^UTILITY(U,$J,358.3,20160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21386,1,3,0)
- ;;=3^Antiplatelets/Antithrombotics
- ;;^UTILITY(U,$J,358.3,21386,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,21386,2)
- ;;=^5063331
- ;;^UTILITY(U,$J,358.3,21387,0)
- ;;=Z79.82^^84^950^4
- ;;^UTILITY(U,$J,358.3,21387,1,0)
+ ;;^UTILITY(U,$J,358.3,20160,1,3,0)
+ ;;=3^Disp fx of medial condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,20160,1,4,0)
+ ;;=4^S82.132S
+ ;;^UTILITY(U,$J,358.3,20160,2)
+ ;;=^5040806
+ ;;^UTILITY(U,$J,358.3,20161,0)
+ ;;=S82.131S^^93^1000^14
+ ;;^UTILITY(U,$J,358.3,20161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21387,1,3,0)
- ;;=3^Aspirin
- ;;^UTILITY(U,$J,358.3,21387,1,4,0)
- ;;=4^Z79.82
- ;;^UTILITY(U,$J,358.3,21387,2)
- ;;=^5063340
- ;;^UTILITY(U,$J,358.3,21388,0)
- ;;=Z79.4^^84^950^5
- ;;^UTILITY(U,$J,358.3,21388,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21388,1,3,0)
- ;;=3^Insulin
- ;;^UTILITY(U,$J,358.3,21388,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,21388,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,21389,0)
- ;;=Z79.1^^84^950^7
- ;;^UTILITY(U,$J,358.3,21389,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21389,1,3,0)
- ;;=3^NSAID
- ;;^UTILITY(U,$J,358.3,21389,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,21389,2)
- ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,20161,1,3,0)
+ ;;=3^Disp fx of medial condyle of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,20161,1,4,0)
+ ;;=4^S82.131S
+ ;;^UTILITY(U,$J,358.3,20161,2)
+ ;;=^5040790
+ ;;^UTILITY(U,$J,358.3,20162,0)
+ ;;=S82.52XS^^93^1000^15

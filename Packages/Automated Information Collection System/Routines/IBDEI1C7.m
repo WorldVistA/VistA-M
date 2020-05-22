@@ -1,134 +1,122 @@
-IBDEI1C7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1C7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22727,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,22728,0)
- ;;=N76.2^^87^983^91
- ;;^UTILITY(U,$J,358.3,22728,1,0)
+ ;;^UTILITY(U,$J,358.3,21355,1,3,0)
+ ;;=3^Cocaine Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21355,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,21355,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,21356,0)
+ ;;=F14.922^^95^1061^51
+ ;;^UTILITY(U,$J,358.3,21356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22728,1,3,0)
- ;;=3^Vulvitis,Acute
- ;;^UTILITY(U,$J,358.3,22728,1,4,0)
- ;;=4^N76.2
- ;;^UTILITY(U,$J,358.3,22728,2)
- ;;=^5015828
- ;;^UTILITY(U,$J,358.3,22729,0)
- ;;=N76.0^^87^983^87
- ;;^UTILITY(U,$J,358.3,22729,1,0)
+ ;;^UTILITY(U,$J,358.3,21356,1,3,0)
+ ;;=3^Cocaine Intoxication w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21356,1,4,0)
+ ;;=4^F14.922
+ ;;^UTILITY(U,$J,358.3,21356,2)
+ ;;=^5003272
+ ;;^UTILITY(U,$J,358.3,21357,0)
+ ;;=F14.129^^95^1061^52
+ ;;^UTILITY(U,$J,358.3,21357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22729,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,22729,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,22729,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,22730,0)
- ;;=M00.20^^87^983^3
- ;;^UTILITY(U,$J,358.3,22730,1,0)
+ ;;^UTILITY(U,$J,358.3,21357,1,3,0)
+ ;;=3^Cocaine Intoxication w/o  Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21357,1,4,0)
+ ;;=4^F14.129
+ ;;^UTILITY(U,$J,358.3,21357,2)
+ ;;=^5003243
+ ;;^UTILITY(U,$J,358.3,21358,0)
+ ;;=F14.229^^95^1061^53
+ ;;^UTILITY(U,$J,358.3,21358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22730,1,3,0)
- ;;=3^Arthritis Streptococcal,Unspec Joint
- ;;^UTILITY(U,$J,358.3,22730,1,4,0)
- ;;=4^M00.20
- ;;^UTILITY(U,$J,358.3,22730,2)
- ;;=^5009645
- ;;^UTILITY(U,$J,358.3,22731,0)
- ;;=M00.80^^87^983^4
- ;;^UTILITY(U,$J,358.3,22731,1,0)
+ ;;^UTILITY(U,$J,358.3,21358,1,3,0)
+ ;;=3^Cocaine Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21358,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,21358,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,21359,0)
+ ;;=F14.929^^95^1061^54
+ ;;^UTILITY(U,$J,358.3,21359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22731,1,3,0)
- ;;=3^Arthritis d/t Bacteria,Unspec Joint
- ;;^UTILITY(U,$J,358.3,22731,1,4,0)
- ;;=4^M00.80
- ;;^UTILITY(U,$J,358.3,22731,2)
- ;;=^5009669
- ;;^UTILITY(U,$J,358.3,22732,0)
- ;;=M00.9^^87^983^72
- ;;^UTILITY(U,$J,358.3,22732,1,0)
+ ;;^UTILITY(U,$J,358.3,21359,1,3,0)
+ ;;=3^Cocaine Intoxication w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21359,1,4,0)
+ ;;=4^F14.929
+ ;;^UTILITY(U,$J,358.3,21359,2)
+ ;;=^5003273
+ ;;^UTILITY(U,$J,358.3,21360,0)
+ ;;=F14.121^^95^1061^46
+ ;;^UTILITY(U,$J,358.3,21360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22732,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,22732,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,22732,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,22733,0)
- ;;=M00.00^^87^983^78
- ;;^UTILITY(U,$J,358.3,22733,1,0)
+ ;;^UTILITY(U,$J,358.3,21360,1,3,0)
+ ;;=3^Cocaine Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21360,1,4,0)
+ ;;=4^F14.121
+ ;;^UTILITY(U,$J,358.3,21360,2)
+ ;;=^5003241
+ ;;^UTILITY(U,$J,358.3,21361,0)
+ ;;=F14.221^^95^1061^47
+ ;;^UTILITY(U,$J,358.3,21361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22733,1,3,0)
- ;;=3^Staphylococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,22733,1,4,0)
- ;;=4^M00.00
- ;;^UTILITY(U,$J,358.3,22733,2)
- ;;=^5009597
- ;;^UTILITY(U,$J,358.3,22734,0)
- ;;=M00.10^^87^983^65
- ;;^UTILITY(U,$J,358.3,22734,1,0)
+ ;;^UTILITY(U,$J,358.3,21361,1,3,0)
+ ;;=3^Cocaine Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21361,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,21361,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,21362,0)
+ ;;=F14.921^^95^1061^48
+ ;;^UTILITY(U,$J,358.3,21362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22734,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,22734,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,22734,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,22735,0)
- ;;=M86.20^^87^983^62
- ;;^UTILITY(U,$J,358.3,22735,1,0)
+ ;;^UTILITY(U,$J,358.3,21362,1,3,0)
+ ;;=3^Cocaine Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21362,1,4,0)
+ ;;=4^F14.921
+ ;;^UTILITY(U,$J,358.3,21362,2)
+ ;;=^5003271
+ ;;^UTILITY(U,$J,358.3,21363,0)
+ ;;=F14.10^^95^1061^56
+ ;;^UTILITY(U,$J,358.3,21363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22735,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,22735,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,22735,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,22736,0)
- ;;=M86.10^^87^983^58
- ;;^UTILITY(U,$J,358.3,22736,1,0)
+ ;;^UTILITY(U,$J,358.3,21363,1,3,0)
+ ;;=3^Cocaine Use D/O, Mild
+ ;;^UTILITY(U,$J,358.3,21363,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,21363,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,21364,0)
+ ;;=F14.20^^95^1061^29
+ ;;^UTILITY(U,$J,358.3,21364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22736,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,22736,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,22736,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,22737,0)
- ;;=M86.00^^87^983^57
- ;;^UTILITY(U,$J,358.3,22737,1,0)
+ ;;^UTILITY(U,$J,358.3,21364,1,3,0)
+ ;;=3^Cocaine Dependence
+ ;;^UTILITY(U,$J,358.3,21364,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,21364,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,21365,0)
+ ;;=F14.23^^95^1061^58
+ ;;^UTILITY(U,$J,358.3,21365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22737,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,22737,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,22737,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,22738,0)
- ;;=M86.50^^87^983^59
- ;;^UTILITY(U,$J,358.3,22738,1,0)
+ ;;^UTILITY(U,$J,358.3,21365,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,21365,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,21365,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,21366,0)
+ ;;=F15.11^^95^1061^60
+ ;;^UTILITY(U,$J,358.3,21366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22738,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,22738,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,22738,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,22739,0)
- ;;=M86.30^^87^983^60
- ;;^UTILITY(U,$J,358.3,22739,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22739,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,22739,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,22739,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,22740,0)
- ;;=M86.8X9^^87^983^63
- ;;^UTILITY(U,$J,358.3,22740,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22740,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,22740,1,4,0)
- ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,21366,1,3,0)
+ ;;=3^Stimulant Abuse,Oth,In Remission
+ ;;^UTILITY(U,$J,358.3,21366,1,4,0)
+ ;;=4^F15.11
+ ;;^UTILITY(U,$J,358.3,21366,2)
+ ;;=^5151304
+ ;;^UTILITY(U,$J,358.3,21367,0)
+ ;;=Z02.71^^95^1062^2

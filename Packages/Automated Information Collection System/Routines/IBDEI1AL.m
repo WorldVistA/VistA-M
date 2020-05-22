@@ -1,136 +1,118 @@
-IBDEI1AL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1AL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21972,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,21972,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,21973,0)
- ;;=H61.21^^87^971^26
- ;;^UTILITY(U,$J,358.3,21973,1,0)
+ ;;^UTILITY(U,$J,358.3,20668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21973,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,21973,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,21973,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,21974,0)
- ;;=H61.22^^87^971^25
- ;;^UTILITY(U,$J,358.3,21974,1,0)
+ ;;^UTILITY(U,$J,358.3,20668,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,20668,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,20668,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,20669,0)
+ ;;=T76.01XD^^95^1020^4
+ ;;^UTILITY(U,$J,358.3,20669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21974,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,21974,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,21974,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,21975,0)
- ;;=H61.23^^87^971^24
- ;;^UTILITY(U,$J,358.3,21975,1,0)
+ ;;^UTILITY(U,$J,358.3,20669,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,20669,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,20669,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,20670,0)
+ ;;=Z91.412^^95^1020^40
+ ;;^UTILITY(U,$J,358.3,20670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21975,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral 
- ;;^UTILITY(U,$J,358.3,21975,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,21975,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,21976,0)
- ;;=H81.01^^87^971^29
- ;;^UTILITY(U,$J,358.3,21976,1,0)
+ ;;^UTILITY(U,$J,358.3,20670,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,20670,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,20670,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,20671,0)
+ ;;=T74.31XA^^95^1020^9
+ ;;^UTILITY(U,$J,358.3,20671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21976,1,3,0)
- ;;=3^Meniere's Disease,Right Ear
- ;;^UTILITY(U,$J,358.3,21976,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,21976,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,21977,0)
- ;;=H81.02^^87^971^28
- ;;^UTILITY(U,$J,358.3,21977,1,0)
+ ;;^UTILITY(U,$J,358.3,20671,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,20671,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,20671,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,20672,0)
+ ;;=T74.31XD^^95^1020^10
+ ;;^UTILITY(U,$J,358.3,20672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21977,1,3,0)
- ;;=3^Meniere's Disease,Left Ear
- ;;^UTILITY(U,$J,358.3,21977,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,21977,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,21978,0)
- ;;=H81.03^^87^971^27
- ;;^UTILITY(U,$J,358.3,21978,1,0)
+ ;;^UTILITY(U,$J,358.3,20672,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,20672,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,20672,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,20673,0)
+ ;;=T76.31XA^^95^1020^11
+ ;;^UTILITY(U,$J,358.3,20673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21978,1,3,0)
- ;;=3^Meniere's Disease,Bilateral
- ;;^UTILITY(U,$J,358.3,21978,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,21978,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,21979,0)
- ;;=H81.12^^87^971^9
- ;;^UTILITY(U,$J,358.3,21979,1,0)
+ ;;^UTILITY(U,$J,358.3,20673,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,20673,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,20673,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,20674,0)
+ ;;=T76.31XD^^95^1020^12
+ ;;^UTILITY(U,$J,358.3,20674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21979,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,21979,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,21979,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,21980,0)
- ;;=H81.11^^87^971^10
- ;;^UTILITY(U,$J,358.3,21980,1,0)
+ ;;^UTILITY(U,$J,358.3,20674,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,20674,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,20674,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,20675,0)
+ ;;=Z91.411^^95^1020^41
+ ;;^UTILITY(U,$J,358.3,20675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21980,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,21980,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,21980,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,21981,0)
- ;;=H81.13^^87^971^8
- ;;^UTILITY(U,$J,358.3,21981,1,0)
+ ;;^UTILITY(U,$J,358.3,20675,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,20675,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,20675,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,20676,0)
+ ;;=Z69.021^^95^1020^18
+ ;;^UTILITY(U,$J,358.3,20676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21981,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,21981,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,21981,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,21982,0)
- ;;=H81.10^^87^971^11
- ;;^UTILITY(U,$J,358.3,21982,1,0)
+ ;;^UTILITY(U,$J,358.3,20676,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,20676,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,20676,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,20677,0)
+ ;;=Z69.021^^95^1020^19
+ ;;^UTILITY(U,$J,358.3,20677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21982,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,21982,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,21982,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,21983,0)
- ;;=B37.84^^87^971^12
- ;;^UTILITY(U,$J,358.3,21983,1,0)
+ ;;^UTILITY(U,$J,358.3,20677,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,20677,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,20677,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,20678,0)
+ ;;=Z69.021^^95^1020^20
+ ;;^UTILITY(U,$J,358.3,20678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21983,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,21983,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,21983,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,21984,0)
- ;;=H60.313^^87^971^18
- ;;^UTILITY(U,$J,358.3,21984,1,0)
+ ;;^UTILITY(U,$J,358.3,20678,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,20678,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,20678,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,20679,0)
+ ;;=Z69.021^^95^1020^21
+ ;;^UTILITY(U,$J,358.3,20679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21984,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,21984,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,21984,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,21985,0)
- ;;=B37.0^^87^972^13
- ;;^UTILITY(U,$J,358.3,21985,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21985,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,21985,1,4,0)
- ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,20679,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse

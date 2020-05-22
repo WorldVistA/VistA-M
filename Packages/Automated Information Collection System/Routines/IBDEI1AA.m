@@ -1,140 +1,122 @@
-IBDEI1AA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1AA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21835,1,3,0)
- ;;=3^Acne,Unspec
- ;;^UTILITY(U,$J,358.3,21835,1,4,0)
- ;;=4^L70.9
- ;;^UTILITY(U,$J,358.3,21835,2)
- ;;=^5009273
- ;;^UTILITY(U,$J,358.3,21836,0)
- ;;=L71.0^^87^970^235
- ;;^UTILITY(U,$J,358.3,21836,1,0)
+ ;;^UTILITY(U,$J,358.3,20526,1,3,0)
+ ;;=3^Fracture of symphysis of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,20526,1,4,0)
+ ;;=4^S02.66XS
+ ;;^UTILITY(U,$J,358.3,20526,2)
+ ;;=^5020413
+ ;;^UTILITY(U,$J,358.3,20527,0)
+ ;;=S22.43XS^^93^1003^9
+ ;;^UTILITY(U,$J,358.3,20527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21836,1,3,0)
- ;;=3^Perioral Dermatitis
- ;;^UTILITY(U,$J,358.3,21836,1,4,0)
- ;;=4^L71.0
- ;;^UTILITY(U,$J,358.3,21836,2)
- ;;=^5009274
- ;;^UTILITY(U,$J,358.3,21837,0)
- ;;=L71.1^^87^970^259
- ;;^UTILITY(U,$J,358.3,21837,1,0)
+ ;;^UTILITY(U,$J,358.3,20527,1,3,0)
+ ;;=3^Multiple fractures of ribs, bilateral, sequela
+ ;;^UTILITY(U,$J,358.3,20527,1,4,0)
+ ;;=4^S22.43XS
+ ;;^UTILITY(U,$J,358.3,20527,2)
+ ;;=^5023140
+ ;;^UTILITY(U,$J,358.3,20528,0)
+ ;;=S22.42XS^^93^1003^10
+ ;;^UTILITY(U,$J,358.3,20528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21837,1,3,0)
- ;;=3^Rhinophyma
- ;;^UTILITY(U,$J,358.3,21837,1,4,0)
- ;;=4^L71.1
- ;;^UTILITY(U,$J,358.3,21837,2)
- ;;=^106083
- ;;^UTILITY(U,$J,358.3,21838,0)
- ;;=L71.8^^87^970^260
- ;;^UTILITY(U,$J,358.3,21838,1,0)
+ ;;^UTILITY(U,$J,358.3,20528,1,3,0)
+ ;;=3^Multiple fractures of ribs, left side, sequela
+ ;;^UTILITY(U,$J,358.3,20528,1,4,0)
+ ;;=4^S22.42XS
+ ;;^UTILITY(U,$J,358.3,20528,2)
+ ;;=^5023134
+ ;;^UTILITY(U,$J,358.3,20529,0)
+ ;;=S22.41XS^^93^1003^11
+ ;;^UTILITY(U,$J,358.3,20529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21838,1,3,0)
- ;;=3^Rosacea NEC
- ;;^UTILITY(U,$J,358.3,21838,1,4,0)
- ;;=4^L71.8
- ;;^UTILITY(U,$J,358.3,21838,2)
- ;;=^5009275
- ;;^UTILITY(U,$J,358.3,21839,0)
- ;;=L71.9^^87^970^261
- ;;^UTILITY(U,$J,358.3,21839,1,0)
+ ;;^UTILITY(U,$J,358.3,20529,1,3,0)
+ ;;=3^Multiple fractures of ribs, right side, sequela
+ ;;^UTILITY(U,$J,358.3,20529,1,4,0)
+ ;;=4^S22.41XS
+ ;;^UTILITY(U,$J,358.3,20529,2)
+ ;;=^5023128
+ ;;^UTILITY(U,$J,358.3,20530,0)
+ ;;=S22.23XS^^93^1003^12
+ ;;^UTILITY(U,$J,358.3,20530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21839,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,21839,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,21839,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,21840,0)
- ;;=L72.0^^87^970^142
- ;;^UTILITY(U,$J,358.3,21840,1,0)
+ ;;^UTILITY(U,$J,358.3,20530,1,3,0)
+ ;;=3^Sternal manubrial dissociation, sequela
+ ;;^UTILITY(U,$J,358.3,20530,1,4,0)
+ ;;=4^S22.23XS
+ ;;^UTILITY(U,$J,358.3,20530,2)
+ ;;=^5023098
+ ;;^UTILITY(U,$J,358.3,20531,0)
+ ;;=S02.11AS^^93^1003^14
+ ;;^UTILITY(U,$J,358.3,20531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21840,1,3,0)
- ;;=3^Epidermal Cyst
- ;;^UTILITY(U,$J,358.3,21840,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,21840,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,21841,0)
- ;;=L72.12^^87^970^285
- ;;^UTILITY(U,$J,358.3,21841,1,0)
+ ;;^UTILITY(U,$J,358.3,20531,1,3,0)
+ ;;=3^Type I Occupital Condyle Fx,Seq,Right Side
+ ;;^UTILITY(U,$J,358.3,20531,1,4,0)
+ ;;=4^S02.11AS
+ ;;^UTILITY(U,$J,358.3,20531,2)
+ ;;=^5139276
+ ;;^UTILITY(U,$J,358.3,20532,0)
+ ;;=S02.11CS^^93^1003^16
+ ;;^UTILITY(U,$J,358.3,20532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21841,1,3,0)
- ;;=3^Trichodermal Cyst
- ;;^UTILITY(U,$J,358.3,21841,1,4,0)
- ;;=4^L72.12
- ;;^UTILITY(U,$J,358.3,21841,2)
- ;;=^5009279
- ;;^UTILITY(U,$J,358.3,21842,0)
- ;;=L72.2^^87^970^270
- ;;^UTILITY(U,$J,358.3,21842,1,0)
+ ;;^UTILITY(U,$J,358.3,20532,1,3,0)
+ ;;=3^Type II Occupital Condyle Fx,Seq,Right Side
+ ;;^UTILITY(U,$J,358.3,20532,1,4,0)
+ ;;=4^S02.11CS
+ ;;^UTILITY(U,$J,358.3,20532,2)
+ ;;=^5139288
+ ;;^UTILITY(U,$J,358.3,20533,0)
+ ;;=S02.11ES^^93^1003^18
+ ;;^UTILITY(U,$J,358.3,20533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21842,1,3,0)
- ;;=3^Steatocystoma Multiplex
- ;;^UTILITY(U,$J,358.3,21842,1,4,0)
- ;;=4^L72.2
- ;;^UTILITY(U,$J,358.3,21842,2)
- ;;=^5009280
- ;;^UTILITY(U,$J,358.3,21843,0)
- ;;=L72.8^^87^970^151
- ;;^UTILITY(U,$J,358.3,21843,1,0)
+ ;;^UTILITY(U,$J,358.3,20533,1,3,0)
+ ;;=3^Type III Occupital Condyle Fx,Seq,Right Side
+ ;;^UTILITY(U,$J,358.3,20533,1,4,0)
+ ;;=4^S02.11ES
+ ;;^UTILITY(U,$J,358.3,20533,2)
+ ;;=^5139300
+ ;;^UTILITY(U,$J,358.3,20534,0)
+ ;;=S02.11BS^^93^1003^13
+ ;;^UTILITY(U,$J,358.3,20534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21843,1,3,0)
- ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
- ;;^UTILITY(U,$J,358.3,21843,1,4,0)
- ;;=4^L72.8
- ;;^UTILITY(U,$J,358.3,21843,2)
- ;;=^5009282
- ;;^UTILITY(U,$J,358.3,21844,0)
- ;;=L72.9^^87^970^152
- ;;^UTILITY(U,$J,358.3,21844,1,0)
+ ;;^UTILITY(U,$J,358.3,20534,1,3,0)
+ ;;=3^Type I Occupital Condyle Fx,Seq,Left Side
+ ;;^UTILITY(U,$J,358.3,20534,1,4,0)
+ ;;=4^S02.11BS
+ ;;^UTILITY(U,$J,358.3,20534,2)
+ ;;=^5139282
+ ;;^UTILITY(U,$J,358.3,20535,0)
+ ;;=S02.11DS^^93^1003^15
+ ;;^UTILITY(U,$J,358.3,20535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21844,1,3,0)
- ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,21844,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,21844,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,21845,0)
- ;;=L73.0^^87^970^3
- ;;^UTILITY(U,$J,358.3,21845,1,0)
+ ;;^UTILITY(U,$J,358.3,20535,1,3,0)
+ ;;=3^Type II Occupital Condyle Fx,Seq,Left Side
+ ;;^UTILITY(U,$J,358.3,20535,1,4,0)
+ ;;=4^S02.11DS
+ ;;^UTILITY(U,$J,358.3,20535,2)
+ ;;=^5139294
+ ;;^UTILITY(U,$J,358.3,20536,0)
+ ;;=S02.11FS^^93^1003^17
+ ;;^UTILITY(U,$J,358.3,20536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21845,1,3,0)
- ;;=3^Acne Keloid
- ;;^UTILITY(U,$J,358.3,21845,1,4,0)
- ;;=4^L73.0
- ;;^UTILITY(U,$J,358.3,21845,2)
- ;;=^2149
- ;;^UTILITY(U,$J,358.3,21846,0)
- ;;=L73.2^^87^970^159
- ;;^UTILITY(U,$J,358.3,21846,1,0)
+ ;;^UTILITY(U,$J,358.3,20536,1,3,0)
+ ;;=3^Type III Occupital Condyle Fx,Seq,Left Side
+ ;;^UTILITY(U,$J,358.3,20536,1,4,0)
+ ;;=4^S02.11FS
+ ;;^UTILITY(U,$J,358.3,20536,2)
+ ;;=^5139306
+ ;;^UTILITY(U,$J,358.3,20537,0)
+ ;;=G89.29^^93^1004^5
+ ;;^UTILITY(U,$J,358.3,20537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21846,1,3,0)
- ;;=3^Hidradenitis Suppurativa
- ;;^UTILITY(U,$J,358.3,21846,1,4,0)
- ;;=4^L73.2
- ;;^UTILITY(U,$J,358.3,21846,2)
- ;;=^278979
- ;;^UTILITY(U,$J,358.3,21847,0)
- ;;=L73.9^^87^970^153
- ;;^UTILITY(U,$J,358.3,21847,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21847,1,3,0)
- ;;=3^Follicular Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21847,1,4,0)
- ;;=4^L73.9
- ;;^UTILITY(U,$J,358.3,21847,2)
- ;;=^5009286
- ;;^UTILITY(U,$J,358.3,21848,0)
- ;;=L82.0^^87^970^160
- ;;^UTILITY(U,$J,358.3,21848,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21848,1,3,0)
- ;;=3^Inflamed Seborrheic Keratosis
- ;;^UTILITY(U,$J,358.3,21848,1,4,0)
- ;;=4^L82.0
- ;;^UTILITY(U,$J,358.3,21848,2)
- ;;=^303311
+ ;;^UTILITY(U,$J,358.3,20537,1,3,0)
+ ;;=3^Pain,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,20537,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,20537,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,20538,0)
+ ;;=G89.21^^93^1004^4

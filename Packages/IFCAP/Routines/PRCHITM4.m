@@ -1,0 +1,123 @@
+PRCHITM4 ;OI&T/LKG - READING 832 TXN IN E-MAIL ;10/27/17  12:44
+ ;;5.1;IFCAP;**198**;OCT 20, 2000;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;Integration agreements
+ ; ICR #2171:  $$STA^XUAF4()
+ ; ICR #2541:  $$KSP^XUPARAM()
+ ; ICR #4440:  $$PROD^XUPROD()
+ ; ICR #10070: ^XMD
+ ; ICR #10072: REMSBMSG^XMAIC
+ Q
+IN N XMER,XMRG,PRCTXN,PRCTXNTYPE,PRCHNODE,PRCERRC,PRCLCTR,PRCIUPD,PRCITC S PRCLCTR=0,PRCIUPD=0
+ N PRCSTN S PRCSTN=$$STA^XUAF4($$KSP^XUPARAM("INST"))
+ F  X XMREC Q:XMER<0!($E(XMRG,1,4)="ISA^")
+ I XMER<0 G END
+ S PRCTXN=$P(XMRG,"^",14) D INITLOG^PRCHITM5(PRCTXN)
+ N PRCISITE S PRCISITE=$P($P($P(XMRG,"^",9),"~",2)," ") S:PRCISITE="" PRCISITE="not specified"
+ I PRCISITE'="ALL",PRCISITE'=PRCSTN D  G END
+ . D ERR^PRCHITM5("*** Wrong receiving station; Import aborted ***")
+ . D ERR^PRCHITM5("832 Txn ICN "_PRCTXN_" for station "_PRCISITE_" was sent to "_PRCSTN_".")
+ F  X XMREC Q:XMER<0  D  Q:XMER<0
+ . I $E(XMRG,1,3)="ST^" D PROCTXN
+ I XMER<0 G END
+END ;
+ I $D(PRCHNODE) D
+ . ; send message if errors
+ . I $D(^XTMP(PRCHNODE,"ERR")) D
+ . . N XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ
+ . . S XMSUB="Stn "_PRCSTN_" Errors for NIF/IFCAP 832 Txn ICN "_$P(PRCHNODE,";",2)
+ . . S XMDUZ=.5,XMTEXT="^XTMP(PRCHNODE,""ERR"","
+ . . S XMY("G.ISM")="" S:$$PROD^XUPROD() XMY("VHANIFMO@domain.ext")=""
+ . . D ^XMD
+ . ; If no errors then delete ^XTMP("PRCHNODE") nodes when done
+ . I '$D(^XTMP(PRCHNODE,"ERR")) K ^XTMP(PRCHNODE)
+ I $D(PRCHNODE) D
+ . N XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ,PRCARR
+ . S XMSUB="Stn "_PRCSTN_" Statistics NIF/IFCAP 832 Txn ICN "_$P(PRCHNODE,";",2)
+ . S PRCARR(1)="Transaction Item Lines Processed: "_PRCLCTR,PRCARR(2)="Item Master File Entries Updated: "_PRCIUPD
+ . S XMDUZ=.5,XMTEXT="PRCARR(",XMY("G.ISM")="" S:$$PROD^XUPROD() XMY("VHANIFMO@domain.ext")=""
+ . D ^XMD
+ ; delete MailMan message from server basket
+ I $D(XMZ) S XMSER="S."_XQSOP D REMSBMSG^XMA1C
+ K ^TMP($J,"PRCHITM3")
+ Q
+ ;
+PROCTXN ;
+ S PRCTXNTYPE=$P(XMRG,"^",2) N PRCTRANS S PRCTRANS=$P(XMRG,"^",3)
+ I PRCTXNTYPE'=832 D ERR^PRCHITM5("Trans #"_PRCTRANS_" is not X.12 832 type.") Q
+ K ^TMP($J,"PRCHITM3")
+ F  X XMREC Q:XMER<0!($E(XMRG,1,3)="SE^")  D  Q:XMER<0
+ . D:$E(XMRG,1,4)="REF^" REF
+ . D:$E(XMRG,1,3)="N1^" N1
+ . I $E(XMRG,1,4)="LIN^" D LIN S PRCLCTR=PRCLCTR+1
+ Q
+REF ;Process REF segments
+ I $P(XMRG,"^",4)="IEN",$P(XMRG,"^",3)'="" S ^TMP($J,"PRCHITM3","VEN","IEN")=$P(XMRG,"^",3)
+ E  D ERR^PRCHITM5("Erroneous vendor '"_$P(XMRG,"^",4)_"' REF segment for ST #"_PRCTRANS_".")
+ Q
+N1 ;
+ N PRCL,PRCM S PRCM=0
+ Q:$P(XMRG,"^",3)=""  N PRCTYPE,PRCVALUE
+ S PRCTYPE=$P(XMRG,"^",5),PRCVALUE=$P(XMRG,"^",3)
+ I PRCTYPE="ORDER" S ^TMP($J,"PRCHITM3","VEN","ORDER NAME")=PRCVALUE
+ E  D ERR^PRCHITM5("Erroneous vendor '"_PRCTYPE_"' N1 segment for ST #"_PRCTRANS_".")
+ Q
+LIN ;Process Item Lines
+ N PRCLNCT,PRCLIN,PRCREFCT S PRCLNCT=0,PRCLIN=$P(XMRG,"^",2),PRCREFCT=0
+ K ^TMP($J,"PRCHITM3","ITEM")
+ S:$P(XMRG,"^",4)'="" ^TMP($J,"PRCHITM3","ITEM","NIF#")=$P(XMRG,"^",4)
+ S:$P(XMRG,"^",6)'="" ^TMP($J,"PRCHITM3","ITEM","FSC")=$P(XMRG,"^",6)
+ S:$P(XMRG,"^",8)'="" ^TMP($J,"PRCHITM3","ITEM","NSN")=$P(XMRG,"^",8)
+ S:$P(XMRG,"^",10)'="" ^TMP($J,"PRCHITM3","ITEM","MFG PART")=$P(XMRG,"^",10)
+ S:$P(XMRG,"^",12)'="" ^TMP($J,"PRCHITM3","ITEM","VSTOCK#")=$P(XMRG,"^",12)
+ S:$P(XMRG,"^",14)'="" ^TMP($J,"PRCHITM3","ITEM","NDC")=$P(XMRG,"^",14)
+ S:$P(XMRG,"^",18)'="" ^TMP($J,"PRCHITM3","ITEM","BOC")=$P(XMRG,"^",18)
+ S:$P(XMRG,"^",20)'="" ^TMP($J,"PRCHITM3","ITEM","DRUG TYPE")=$P(XMRG,"^",20)
+ S:$P(XMRG,"^",22)'="" ^TMP($J,"PRCHITM3","ITEM","MANUFACTURER")=$P(XMRG,"^",22)
+ S:$P(XMRG,"^",24)'="" ^TMP($J,"PRCHITM3","ITEM","SOURCE MFG PART#")=$P(XMRG,"^",24)
+ S:$P(XMRG,"^",26)'="" ^TMP($J,"PRCHITM3","ITEM","SOURCE VENDOR STOCK#")=$P(XMRG,"^",26)
+ F  X XMREC Q:XMER<0  D  Q:$E(XMRG,1,4)="G55^"
+ . D:$E(XMRG,1,4)="SLN^" SLN
+ . D:$E(XMRG,1,4)="DTM^" DTM
+ . D:$E(XMRG,1,4)="REF^" IREF
+ . D:$E(XMRG,1,4)="CTB^" CTB
+ . D:$E(XMRG,1,4)="PID^" PID
+ . D:$E(XMRG,1,4)="PKG^" PKG
+ . D:$E(XMRG,1,4)="PO4^" PO4
+ . D:$E(XMRG,1,4)="G55^" G55
+ D FILE^PRCHITM5(PRCTRANS,PRCLIN,.PRCITC) S PRCIUPD=PRCIUPD+PRCITC
+ Q
+SLN ;
+ S:$P(XMRG,"^",6)'="" ^TMP($J,"PRCHITM3","ITEM","UOP")=$P(XMRG,"^",6)
+ S:$P(XMRG,"^",7)'="" ^TMP($J,"PRCHITM3","ITEM","UNIT COST")=$P(XMRG,"^",7)
+ S:$P(XMRG,"^",11)'="" ^TMP($J,"PRCHITM3","ITEM","CONTRACT")=$P(XMRG,"^",11)
+ Q
+IREF ;
+ S:$P(XMRG,"^",4)'="" PRCREFCT=PRCREFCT+1,^TMP($J,"PRCHITM3","ITEM","SYN",PRCREFCT)=$P(XMRG,"^",4)
+ Q
+DTM ;
+ I $P(XMRG,"^",3)'="",$P(XMRG,"^",2)=167 S ^TMP($J,"PRCHITM3","ITEM","NIF UPDATE DATE")=$P(XMRG,"^",3)
+ Q
+CTB ;
+ N PRCCODE,PRCVALUE S PRCCODE=$P(XMRG,"^",4),PRCVALUE=$P(XMRG,"^",5)
+ I PRCCODE=57 S ^TMP($J,"PRCHITM3","ITEM","MIN QTY")=PRCVALUE
+ E  I PRCCODE=70 S ^TMP($J,"PRCHITM3","ITEM","MAX QTY")=PRCVALUE
+ E  I PRCCODE="AP" S ^TMP($J,"PRCHITM3","ITEM","ORDER QTY MULTIPLE")=PRCVALUE
+ Q
+PID ;
+ S PRCLNCT=PRCLNCT+1
+ S:$P(XMRG,"^",6)'="" ^TMP($J,"PRCHITM3","ITEM","LONG DESC",PRCLNCT)=$P(XMRG,"^",6)
+ Q
+PKG ;
+ S:$P(XMRG,"^",5)'="" ^TMP($J,"PRCHITM3","ITEM","UNIT CONVERSION FACTOR")=$P(XMRG,"^",5)
+ S:$P(XMRG,"^",6)'="" ^TMP($J,"PRCHITM3","ITEM","SHORT DESC")=$P(XMRG,"^",6)
+ Q
+PO4 ;
+ S:$P(XMRG,"^",2)'="" ^TMP($J,"PRCHITM3","ITEM","PKG MULT")=$P(XMRG,"^",2)
+ Q
+G55 ;
+ S:$P(XMRG,"^",3)'="" ^TMP($J,"PRCHITM3","ITEM","IMFNBR")=$P(XMRG,"^",3)
+ S:$P(XMRG,"^",5)'="" ^TMP($J,"PRCHITM3","ITEM","STOCK KEEPING UNIT")=$P(XMRG,"^",5)
+ Q
+ ;
+ ;PRCHITM4

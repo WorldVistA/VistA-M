@@ -1,138 +1,120 @@
-IBDEI186 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI186 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20829,0)
- ;;=F55.8^^84^941^124
- ;;^UTILITY(U,$J,358.3,20829,1,0)
+ ;;^UTILITY(U,$J,358.3,19659,1,4,0)
+ ;;=4^S72.331S
+ ;;^UTILITY(U,$J,358.3,19659,2)
+ ;;=^5038255
+ ;;^UTILITY(U,$J,358.3,19660,0)
+ ;;=S72.332S^^93^995^34
+ ;;^UTILITY(U,$J,358.3,19660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20829,1,3,0)
- ;;=3^Non-Psychoactive Substance Abuse
- ;;^UTILITY(U,$J,358.3,20829,1,4,0)
- ;;=4^F55.8
- ;;^UTILITY(U,$J,358.3,20829,2)
- ;;=^5003633
- ;;^UTILITY(U,$J,358.3,20830,0)
- ;;=F55.4^^84^941^161
- ;;^UTILITY(U,$J,358.3,20830,1,0)
+ ;;^UTILITY(U,$J,358.3,19660,1,3,0)
+ ;;=3^Displaced oblique fx of shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19660,1,4,0)
+ ;;=4^S72.332S
+ ;;^UTILITY(U,$J,358.3,19660,2)
+ ;;=^5038271
+ ;;^UTILITY(U,$J,358.3,19661,0)
+ ;;=S72.334S^^93^995^83
+ ;;^UTILITY(U,$J,358.3,19661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20830,1,3,0)
- ;;=3^Vitamin Abuse
- ;;^UTILITY(U,$J,358.3,20830,1,4,0)
- ;;=4^F55.4
- ;;^UTILITY(U,$J,358.3,20830,2)
- ;;=^5003632
- ;;^UTILITY(U,$J,358.3,20831,0)
- ;;=F55.3^^84^941^151
- ;;^UTILITY(U,$J,358.3,20831,1,0)
+ ;;^UTILITY(U,$J,358.3,19661,1,3,0)
+ ;;=3^Nondisp oblique fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19661,1,4,0)
+ ;;=4^S72.334S
+ ;;^UTILITY(U,$J,358.3,19661,2)
+ ;;=^5038303
+ ;;^UTILITY(U,$J,358.3,19662,0)
+ ;;=S72.335S^^93^995^82
+ ;;^UTILITY(U,$J,358.3,19662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20831,1,3,0)
- ;;=3^Steroid/Hormone Abuse
- ;;^UTILITY(U,$J,358.3,20831,1,4,0)
- ;;=4^F55.3
- ;;^UTILITY(U,$J,358.3,20831,2)
- ;;=^5003631
- ;;^UTILITY(U,$J,358.3,20832,0)
- ;;=F51.09^^84^941^97
- ;;^UTILITY(U,$J,358.3,20832,1,0)
+ ;;^UTILITY(U,$J,358.3,19662,1,3,0)
+ ;;=3^Nondisp oblique fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19662,1,4,0)
+ ;;=4^S72.335S
+ ;;^UTILITY(U,$J,358.3,19662,2)
+ ;;=^5038319
+ ;;^UTILITY(U,$J,358.3,19663,0)
+ ;;=S72.341S^^93^995^41
+ ;;^UTILITY(U,$J,358.3,19663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20832,1,3,0)
- ;;=3^Insomnia not d/t Substance/Known Physiol Condition
- ;;^UTILITY(U,$J,358.3,20832,1,4,0)
- ;;=4^F51.09
- ;;^UTILITY(U,$J,358.3,20832,2)
- ;;=^5003608
- ;;^UTILITY(U,$J,358.3,20833,0)
- ;;=H53.9^^84^941^159
- ;;^UTILITY(U,$J,358.3,20833,1,0)
+ ;;^UTILITY(U,$J,358.3,19663,1,3,0)
+ ;;=3^Displaced spiral fx of shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19663,1,4,0)
+ ;;=4^S72.341S
+ ;;^UTILITY(U,$J,358.3,19663,2)
+ ;;=^5038351
+ ;;^UTILITY(U,$J,358.3,19664,0)
+ ;;=S72.342S^^93^995^40
+ ;;^UTILITY(U,$J,358.3,19664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20833,1,3,0)
- ;;=3^Visual Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,20833,1,4,0)
- ;;=4^H53.9
- ;;^UTILITY(U,$J,358.3,20833,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,20834,0)
- ;;=I89.0^^84^941^113
- ;;^UTILITY(U,$J,358.3,20834,1,0)
+ ;;^UTILITY(U,$J,358.3,19664,1,3,0)
+ ;;=3^Displaced spiral fx of shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19664,1,4,0)
+ ;;=4^S72.342S
+ ;;^UTILITY(U,$J,358.3,19664,2)
+ ;;=^5038367
+ ;;^UTILITY(U,$J,358.3,19665,0)
+ ;;=S72.344S^^93^995^90
+ ;;^UTILITY(U,$J,358.3,19665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20834,1,3,0)
- ;;=3^Lymphedema NEC
- ;;^UTILITY(U,$J,358.3,20834,1,4,0)
- ;;=4^I89.0
- ;;^UTILITY(U,$J,358.3,20834,2)
- ;;=^5008073
- ;;^UTILITY(U,$J,358.3,20835,0)
- ;;=I87.1^^84^941^158
- ;;^UTILITY(U,$J,358.3,20835,1,0)
+ ;;^UTILITY(U,$J,358.3,19665,1,3,0)
+ ;;=3^Nondisp spiral fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19665,1,4,0)
+ ;;=4^S72.344S
+ ;;^UTILITY(U,$J,358.3,19665,2)
+ ;;=^5038399
+ ;;^UTILITY(U,$J,358.3,19666,0)
+ ;;=S72.345S^^93^995^88
+ ;;^UTILITY(U,$J,358.3,19666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20835,1,3,0)
- ;;=3^Vein Compression
- ;;^UTILITY(U,$J,358.3,20835,1,4,0)
- ;;=4^I87.1
- ;;^UTILITY(U,$J,358.3,20835,2)
- ;;=^269850
- ;;^UTILITY(U,$J,358.3,20836,0)
- ;;=K08.8^^84^941^60
- ;;^UTILITY(U,$J,358.3,20836,1,0)
+ ;;^UTILITY(U,$J,358.3,19666,1,3,0)
+ ;;=3^Nondisp spiral fx of shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19666,1,4,0)
+ ;;=4^S72.345S
+ ;;^UTILITY(U,$J,358.3,19666,2)
+ ;;=^5038415
+ ;;^UTILITY(U,$J,358.3,19667,0)
+ ;;=S72.351S^^93^995^15
+ ;;^UTILITY(U,$J,358.3,19667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20836,1,3,0)
- ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
- ;;^UTILITY(U,$J,358.3,20836,1,4,0)
- ;;=4^K08.8
- ;;^UTILITY(U,$J,358.3,20836,2)
- ;;=^5008467
- ;;^UTILITY(U,$J,358.3,20837,0)
- ;;=N39.3^^84^941^152
- ;;^UTILITY(U,$J,358.3,20837,1,0)
+ ;;^UTILITY(U,$J,358.3,19667,1,3,0)
+ ;;=3^Displaced comminuted fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19667,1,4,0)
+ ;;=4^S72.351S
+ ;;^UTILITY(U,$J,358.3,19667,2)
+ ;;=^5038447
+ ;;^UTILITY(U,$J,358.3,19668,0)
+ ;;=S72.352S^^93^995^14
+ ;;^UTILITY(U,$J,358.3,19668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20837,1,3,0)
- ;;=3^Stress Incontinence (Female/Male)
- ;;^UTILITY(U,$J,358.3,20837,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,20837,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,20838,0)
- ;;=R26.2^^84^941^58
- ;;^UTILITY(U,$J,358.3,20838,1,0)
+ ;;^UTILITY(U,$J,358.3,19668,1,3,0)
+ ;;=3^Displaced comminuted fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19668,1,4,0)
+ ;;=4^S72.352S
+ ;;^UTILITY(U,$J,358.3,19668,2)
+ ;;=^5038463
+ ;;^UTILITY(U,$J,358.3,19669,0)
+ ;;=S72.354S^^93^995^63
+ ;;^UTILITY(U,$J,358.3,19669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20838,1,3,0)
- ;;=3^Difficulty in Walking NEC
- ;;^UTILITY(U,$J,358.3,20838,1,4,0)
- ;;=4^R26.2
- ;;^UTILITY(U,$J,358.3,20838,2)
- ;;=^5019306
- ;;^UTILITY(U,$J,358.3,20839,0)
- ;;=M54.6^^84^941^154
- ;;^UTILITY(U,$J,358.3,20839,1,0)
+ ;;^UTILITY(U,$J,358.3,19669,1,3,0)
+ ;;=3^Nondisp comminuted fx of shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19669,1,4,0)
+ ;;=4^S72.354S
+ ;;^UTILITY(U,$J,358.3,19669,2)
+ ;;=^5038495
+ ;;^UTILITY(U,$J,358.3,19670,0)
+ ;;=S72.355S^^93^995^62
+ ;;^UTILITY(U,$J,358.3,19670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20839,1,3,0)
- ;;=3^Thoracic Spine Pain
- ;;^UTILITY(U,$J,358.3,20839,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,20839,2)
- ;;=^272507
- ;;^UTILITY(U,$J,358.3,20840,0)
- ;;=E66.8^^84^941^125
- ;;^UTILITY(U,$J,358.3,20840,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20840,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,20840,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,20840,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,20841,0)
- ;;=E66.9^^84^941^126
- ;;^UTILITY(U,$J,358.3,20841,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20841,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,20841,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,20841,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,20842,0)
- ;;=F18.120^^84^941^94
- ;;^UTILITY(U,$J,358.3,20842,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19670,1,3,0)
+ ;;=3^Nondisp comminuted fx of shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19670,1,4,0)
+ ;;=4^S72.355S
+ ;;^UTILITY(U,$J,358.3,19670,2)
+ ;;=^5038511
+ ;;^UTILITY(U,$J,358.3,19671,0)
+ ;;=S72.361S^^93^995^39

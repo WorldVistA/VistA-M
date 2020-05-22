@@ -1,106 +1,126 @@
-IBDEI1UU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31511,0)
- ;;=28496^^125^1595^57^^^^1
- ;;^UTILITY(U,$J,358.3,31511,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31511,1,2,0)
- ;;=2^Perc Fixation Great Toe Fx
- ;;^UTILITY(U,$J,358.3,31511,1,3,0)
- ;;=3^28496
- ;;^UTILITY(U,$J,358.3,31512,0)
- ;;=28505^^125^1595^37^^^^1
- ;;^UTILITY(U,$J,358.3,31512,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31512,1,2,0)
- ;;=2^Open TX of fracture great toe, phalanx or phalanges, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,31512,1,3,0)
- ;;=3^28505
- ;;^UTILITY(U,$J,358.3,31513,0)
- ;;=28510^^125^1595^9^^^^1
- ;;^UTILITY(U,$J,358.3,31513,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31513,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; without manipulation, each
- ;;^UTILITY(U,$J,358.3,31513,1,3,0)
- ;;=3^28510
- ;;^UTILITY(U,$J,358.3,31514,0)
- ;;=28515^^125^1595^10^^^^1
- ;;^UTILITY(U,$J,358.3,31514,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31514,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; with manipulation, each
- ;;^UTILITY(U,$J,358.3,31514,1,3,0)
- ;;=3^28515
- ;;^UTILITY(U,$J,358.3,31515,0)
- ;;=28525^^125^1595^38^^^^1
- ;;^UTILITY(U,$J,358.3,31515,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31515,1,2,0)
- ;;=2^Open TX of fracture, phalanx or phalanges, other than great toe, with or without internal or external fixation, each
- ;;^UTILITY(U,$J,358.3,31515,1,3,0)
- ;;=3^28525
- ;;^UTILITY(U,$J,358.3,31516,0)
- ;;=28530^^125^1595^15^^^^1
- ;;^UTILITY(U,$J,358.3,31516,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31516,1,2,0)
- ;;=2^Closed TX of sesamiod fracture 
- ;;^UTILITY(U,$J,358.3,31516,1,3,0)
- ;;=3^28530
- ;;^UTILITY(U,$J,358.3,31517,0)
- ;;=28531^^125^1595^39^^^^1
- ;;^UTILITY(U,$J,358.3,31517,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31517,1,2,0)
- ;;=2^Open TX of sesamiod fracture, with or without internal fixation
- ;;^UTILITY(U,$J,358.3,31517,1,3,0)
- ;;=3^28531
- ;;^UTILITY(U,$J,358.3,31518,0)
- ;;=27760^^125^1595^11^^^^1
- ;;^UTILITY(U,$J,358.3,31518,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31518,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; without manipulation 
- ;;^UTILITY(U,$J,358.3,31518,1,3,0)
- ;;=3^27760
- ;;^UTILITY(U,$J,358.3,31519,0)
- ;;=27762^^125^1595^12^^^^1
- ;;^UTILITY(U,$J,358.3,31519,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31519,1,2,0)
- ;;=2^Closed TX of medial malleolus fracture; with manipulation, with or without skin or skeletal traction
- ;;^UTILITY(U,$J,358.3,31519,1,3,0)
- ;;=3^27762
- ;;^UTILITY(U,$J,358.3,31520,0)
- ;;=27766^^125^1595^55^^^^1
- ;;^UTILITY(U,$J,358.3,31520,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31520,1,2,0)
- ;;=2^Open/Closed TX of medial matteolus FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,31520,1,3,0)
- ;;=3^27766
- ;;^UTILITY(U,$J,358.3,31521,0)
- ;;=27786^^125^1595^6^^^^1
- ;;^UTILITY(U,$J,358.3,31521,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31521,1,2,0)
- ;;=2^Closed TX of distal fibular fracture (lateral malleolus); without manipulation
- ;;^UTILITY(U,$J,358.3,31521,1,3,0)
- ;;=3^27786
- ;;^UTILITY(U,$J,358.3,31522,0)
- ;;=27788^^125^1595^5^^^^1
- ;;^UTILITY(U,$J,358.3,31522,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31522,1,2,0)
- ;;=2^Closed TX of distal fibular (lateral malleolus); with manipulation
- ;;^UTILITY(U,$J,358.3,31522,1,3,0)
- ;;=3^27788
- ;;^UTILITY(U,$J,358.3,31523,0)
- ;;=27792^^125^1595^36^^^^1
- ;;^UTILITY(U,$J,358.3,31523,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31523,1,2,0)
- ;;=2^Open TX of distal fibular fracture (lateral malleolus), with or without internal or external fixation
+ ;;^UTILITY(U,$J,358.3,29625,1,3,0)
+ ;;=3^Intellectual Disability,Moderate
+ ;;^UTILITY(U,$J,358.3,29625,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,29625,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,29626,0)
+ ;;=F73.^^118^1498^14
+ ;;^UTILITY(U,$J,358.3,29626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29626,1,3,0)
+ ;;=3^Intellectual Disability,Profound
+ ;;^UTILITY(U,$J,358.3,29626,1,4,0)
+ ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,29626,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,29627,0)
+ ;;=F72.^^118^1498^15
+ ;;^UTILITY(U,$J,358.3,29627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29627,1,3,0)
+ ;;=3^Intellectual Disability,Severe
+ ;;^UTILITY(U,$J,358.3,29627,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,29627,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,29628,0)
+ ;;=F90.8^^118^1498^3
+ ;;^UTILITY(U,$J,358.3,29628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29628,1,3,0)
+ ;;=3^ADHD,Other Specified
+ ;;^UTILITY(U,$J,358.3,29628,1,4,0)
+ ;;=4^F90.8
+ ;;^UTILITY(U,$J,358.3,29628,2)
+ ;;=^5003695
+ ;;^UTILITY(U,$J,358.3,29629,0)
+ ;;=F90.9^^118^1498^5
+ ;;^UTILITY(U,$J,358.3,29629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29629,1,3,0)
+ ;;=3^ADHD,Unspec
+ ;;^UTILITY(U,$J,358.3,29629,1,4,0)
+ ;;=4^F90.9
+ ;;^UTILITY(U,$J,358.3,29629,2)
+ ;;=^5003696
+ ;;^UTILITY(U,$J,358.3,29630,0)
+ ;;=F79.^^118^1498^16
+ ;;^UTILITY(U,$J,358.3,29630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29630,1,3,0)
+ ;;=3^Intellectual Disability,Unspec
+ ;;^UTILITY(U,$J,358.3,29630,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,29630,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,29631,0)
+ ;;=F80.82^^118^1498^25
+ ;;^UTILITY(U,$J,358.3,29631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29631,1,3,0)
+ ;;=3^Social Pragmatic Communication D/O
+ ;;^UTILITY(U,$J,358.3,29631,1,4,0)
+ ;;=4^F80.82
+ ;;^UTILITY(U,$J,358.3,29631,2)
+ ;;=^5138451
+ ;;^UTILITY(U,$J,358.3,29632,0)
+ ;;=F15.929^^118^1499^7
+ ;;^UTILITY(U,$J,358.3,29632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29632,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,29632,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,29632,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,29633,0)
+ ;;=F15.93^^118^1499^9
+ ;;^UTILITY(U,$J,358.3,29633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29633,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,29633,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,29633,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,29634,0)
+ ;;=F15.180^^118^1499^1
+ ;;^UTILITY(U,$J,358.3,29634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29634,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29634,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,29634,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,29635,0)
+ ;;=F15.280^^118^1499^2
+ ;;^UTILITY(U,$J,358.3,29635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29635,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29635,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,29635,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,29636,0)
+ ;;=F15.980^^118^1499^3
+ ;;^UTILITY(U,$J,358.3,29636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29636,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29636,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,29636,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,29637,0)
+ ;;=F15.182^^118^1499^4
+ ;;^UTILITY(U,$J,358.3,29637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29637,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mild Use D/O

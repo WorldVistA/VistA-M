@@ -1,5 +1,5 @@
 BPSNCPD4 ;OAK/ELZ - Extension of BPSNCPDP ;4/16/08  17:07
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24**;JUN 2004;Build 43
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24,26**;JUN 2004;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Certification Testing
@@ -113,10 +113,27 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLA
  ;display submission results
  ;BPRETVAL - RESPONSE ^ CLAIMSTAT ^ flag:D-display on the screen ^ Hang time
 DISPL(WFLG,BPRETVAL,BPELIGIB) ;
- N BPHANG
+ N BPHANG,DIWF,DIWL,DIWR,X
  I WFLG=0 Q
  I $P(BPRETVAL,U,3)'="D" Q
- W !!,$P(BPRETVAL,U,2)
+ ;
+ K ^UTILITY($J,"W")
+ S X=$P(BPRETVAL,U,2)
+ S DIWF="W"
+ S DIWL=1
+ S DIWR=75
+ W !
+ D ^DIWP
+ D ^DIWW
+ K ^UTILITY($J,"W")
+ ;
+ I $P(BPRETVAL,U,2)["Non-Billable in CT:" D
+ . W !,"Reason Not Billable (RNB) must be removed from Claims Tracking prior to"
+ . W !,"resubmitting"
+ . ;
+ . ; Add comment to ECME User Screen
+ . D ADDCOMM^BPSBUTL($G(BRXIEN),$G(BFILL),"OPECC to remove the RNB in CT & Resubmit Claim")
+ ;
  W:+BPRETVAL'=0 !
  S BPHANG=+$P(BPRETVAL,U,4)
  I BPHANG>0 H BPHANG

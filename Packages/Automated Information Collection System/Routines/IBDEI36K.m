@@ -1,134 +1,124 @@
-IBDEI36K ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI36K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53402,1,0)
+ ;;^UTILITY(U,$J,358.3,50781,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,50781,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,50782,0)
+ ;;=D57.1^^193^2497^187
+ ;;^UTILITY(U,$J,358.3,50782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53402,1,3,0)
- ;;=3^Pain Right Knee
- ;;^UTILITY(U,$J,358.3,53402,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,53402,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,53403,0)
- ;;=M25.562^^245^2685^15
- ;;^UTILITY(U,$J,358.3,53403,1,0)
+ ;;^UTILITY(U,$J,358.3,50782,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,50782,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,50782,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,50783,0)
+ ;;=D75.1^^193^2497^185
+ ;;^UTILITY(U,$J,358.3,50783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53403,1,3,0)
- ;;=3^Pain Left Knee
- ;;^UTILITY(U,$J,358.3,53403,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,53403,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,53404,0)
- ;;=M25.571^^245^2685^17
- ;;^UTILITY(U,$J,358.3,53404,1,0)
+ ;;^UTILITY(U,$J,358.3,50783,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,50783,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,50783,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,50784,0)
+ ;;=C90.30^^193^2497^188
+ ;;^UTILITY(U,$J,358.3,50784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53404,1,3,0)
- ;;=3^Pain Right Ankle & Joints Right Foot
- ;;^UTILITY(U,$J,358.3,53404,1,4,0)
- ;;=4^M25.571
- ;;^UTILITY(U,$J,358.3,53404,2)
- ;;=^5011617
- ;;^UTILITY(U,$J,358.3,53405,0)
- ;;=M25.572^^245^2685^11
- ;;^UTILITY(U,$J,358.3,53405,1,0)
+ ;;^UTILITY(U,$J,358.3,50784,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,50784,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,50784,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,50785,0)
+ ;;=D56.3^^193^2497^189
+ ;;^UTILITY(U,$J,358.3,50785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53405,1,3,0)
- ;;=3^Pain Left Ankle & Joints Left Foot
- ;;^UTILITY(U,$J,358.3,53405,1,4,0)
- ;;=4^M25.572
- ;;^UTILITY(U,$J,358.3,53405,2)
- ;;=^5011618
- ;;^UTILITY(U,$J,358.3,53406,0)
- ;;=R10.2^^245^2685^23
- ;;^UTILITY(U,$J,358.3,53406,1,0)
+ ;;^UTILITY(U,$J,358.3,50785,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,50785,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,50785,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,50786,0)
+ ;;=D56.9^^193^2497^190
+ ;;^UTILITY(U,$J,358.3,50786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53406,1,3,0)
- ;;=3^Pelvic & Perineal Pain
- ;;^UTILITY(U,$J,358.3,53406,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,53406,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,53407,0)
- ;;=M06.9^^245^2685^26
- ;;^UTILITY(U,$J,358.3,53407,1,0)
+ ;;^UTILITY(U,$J,358.3,50786,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,50786,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,50786,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,50787,0)
+ ;;=M31.1^^193^2497^192
+ ;;^UTILITY(U,$J,358.3,50787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53407,1,3,0)
- ;;=3^Rheumatoid arthritis, unspecified
- ;;^UTILITY(U,$J,358.3,53407,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,53407,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,53408,0)
- ;;=M10.9^^245^2685^7
- ;;^UTILITY(U,$J,358.3,53408,1,0)
+ ;;^UTILITY(U,$J,358.3,50787,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,50787,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,50787,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,50788,0)
+ ;;=D51.2^^193^2497^193
+ ;;^UTILITY(U,$J,358.3,50788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53408,1,3,0)
- ;;=3^Gout, unspecified
- ;;^UTILITY(U,$J,358.3,53408,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,53408,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,53409,0)
- ;;=M12.9^^245^2685^1
- ;;^UTILITY(U,$J,358.3,53409,1,0)
+ ;;^UTILITY(U,$J,358.3,50788,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,50788,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,50788,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,50789,0)
+ ;;=D05.92^^193^2497^36
+ ;;^UTILITY(U,$J,358.3,50789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53409,1,3,0)
- ;;=3^Arthropathy, unspecified
- ;;^UTILITY(U,$J,358.3,53409,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,53409,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,53410,0)
- ;;=M15.3^^245^2685^29
- ;;^UTILITY(U,$J,358.3,53410,1,0)
+ ;;^UTILITY(U,$J,358.3,50789,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,50789,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,50789,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,50790,0)
+ ;;=D05.91^^193^2497^38
+ ;;^UTILITY(U,$J,358.3,50790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53410,1,3,0)
- ;;=3^Secondary multiple arthritis
- ;;^UTILITY(U,$J,358.3,53410,1,4,0)
- ;;=4^M15.3
- ;;^UTILITY(U,$J,358.3,53410,2)
- ;;=^5010765
- ;;^UTILITY(U,$J,358.3,53411,0)
- ;;=M15.8^^245^2685^24
- ;;^UTILITY(U,$J,358.3,53411,1,0)
+ ;;^UTILITY(U,$J,358.3,50790,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,50790,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,50790,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,50791,0)
+ ;;=D05.90^^193^2497^34
+ ;;^UTILITY(U,$J,358.3,50791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53411,1,3,0)
- ;;=3^Polyosteoarthritis, other
- ;;^UTILITY(U,$J,358.3,53411,1,4,0)
- ;;=4^M15.8
- ;;^UTILITY(U,$J,358.3,53411,2)
- ;;=^5010767
- ;;^UTILITY(U,$J,358.3,53412,0)
- ;;=M46.90^^245^2685^30
- ;;^UTILITY(U,$J,358.3,53412,1,0)
+ ;;^UTILITY(U,$J,358.3,50791,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,50791,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,50791,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,50792,0)
+ ;;=D51.0^^193^2497^194
+ ;;^UTILITY(U,$J,358.3,50792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53412,1,3,0)
- ;;=3^Spondylopathy inflammatory, site unspec
- ;;^UTILITY(U,$J,358.3,53412,1,4,0)
- ;;=4^M46.90
- ;;^UTILITY(U,$J,358.3,53412,2)
- ;;=^5012030
- ;;^UTILITY(U,$J,358.3,53413,0)
- ;;=M47.819^^245^2685^31
- ;;^UTILITY(U,$J,358.3,53413,1,0)
+ ;;^UTILITY(U,$J,358.3,50792,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,50792,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,50792,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,50793,0)
+ ;;=D51.1^^193^2497^195
+ ;;^UTILITY(U,$J,358.3,50793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53413,1,3,0)
- ;;=3^Spondylosis w/o myelopathy/radiculopathy, site unspec
- ;;^UTILITY(U,$J,358.3,53413,1,4,0)
- ;;=4^M47.819
- ;;^UTILITY(U,$J,358.3,53413,2)
- ;;=^5012076
- ;;^UTILITY(U,$J,358.3,53414,0)
- ;;=M51.9^^245^2685^8
- ;;^UTILITY(U,$J,358.3,53414,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53414,1,3,0)
- ;;=3^Intervertebral disc disorder, thoracic, thoracolumbar & lumbar
- ;;^UTILITY(U,$J,358.3,53414,1,4,0)
- ;;=4^M51.9
- ;;^UTILITY(U,$J,358.3,53414,2)
- ;;=^5012263
- ;;^UTILITY(U,$J,358.3,53415,0)
- ;;=M54.10^^245^2685^25
+ ;;^UTILITY(U,$J,358.3,50793,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria

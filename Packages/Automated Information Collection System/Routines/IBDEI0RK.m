@@ -1,338 +1,126 @@
-IBDEI0RK ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36420,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,36420,1,4,0)
- ;;=4^I25.720
- ;;^UTILITY(U,$J,358.3,36420,2)
- ;;=^5007125
- ;;^UTILITY(U,$J,358.3,36421,0)
- ;;=I25.711^^103^1549^13
- ;;^UTILITY(U,$J,358.3,36421,1,0)
+ ;;^UTILITY(U,$J,358.3,12300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36421,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36421,1,4,0)
- ;;=4^I25.711
- ;;^UTILITY(U,$J,358.3,36421,2)
- ;;=^5007122
- ;;^UTILITY(U,$J,358.3,36422,0)
- ;;=I25.718^^103^1549^14
- ;;^UTILITY(U,$J,358.3,36422,1,0)
+ ;;^UTILITY(U,$J,358.3,12300,1,3,0)
+ ;;=3^Melanoma in Situ of Lip
+ ;;^UTILITY(U,$J,358.3,12300,1,4,0)
+ ;;=4^D03.0
+ ;;^UTILITY(U,$J,358.3,12300,2)
+ ;;=^5001888
+ ;;^UTILITY(U,$J,358.3,12301,0)
+ ;;=D03.21^^80^776^31
+ ;;^UTILITY(U,$J,358.3,12301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36422,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36422,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,36422,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,36423,0)
- ;;=I25.719^^103^1549^15
- ;;^UTILITY(U,$J,358.3,36423,1,0)
+ ;;^UTILITY(U,$J,358.3,12301,1,3,0)
+ ;;=3^Melanoma in Situ of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,12301,1,4,0)
+ ;;=4^D03.21
+ ;;^UTILITY(U,$J,358.3,12301,2)
+ ;;=^5001893
+ ;;^UTILITY(U,$J,358.3,12302,0)
+ ;;=D03.22^^80^776^24
+ ;;^UTILITY(U,$J,358.3,12302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36423,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36423,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,36423,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,36424,0)
- ;;=I25.710^^103^1549^16
- ;;^UTILITY(U,$J,358.3,36424,1,0)
+ ;;^UTILITY(U,$J,358.3,12302,1,3,0)
+ ;;=3^Melanoma in Situ of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,12302,1,4,0)
+ ;;=4^D03.22
+ ;;^UTILITY(U,$J,358.3,12302,2)
+ ;;=^5001894
+ ;;^UTILITY(U,$J,358.3,12303,0)
+ ;;=D03.30^^80^776^23
+ ;;^UTILITY(U,$J,358.3,12303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36424,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,36424,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,36424,2)
- ;;=^5007121
- ;;^UTILITY(U,$J,358.3,36425,0)
- ;;=I25.761^^103^1549^17
- ;;^UTILITY(U,$J,358.3,36425,1,0)
+ ;;^UTILITY(U,$J,358.3,12303,1,3,0)
+ ;;=3^Melanoma in Situ of Face,Unspec
+ ;;^UTILITY(U,$J,358.3,12303,1,4,0)
+ ;;=4^D03.30
+ ;;^UTILITY(U,$J,358.3,12303,2)
+ ;;=^5001895
+ ;;^UTILITY(U,$J,358.3,12304,0)
+ ;;=D03.39^^80^776^22
+ ;;^UTILITY(U,$J,358.3,12304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36425,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36425,1,4,0)
- ;;=4^I25.761
- ;;^UTILITY(U,$J,358.3,36425,2)
- ;;=^5007136
- ;;^UTILITY(U,$J,358.3,36426,0)
- ;;=I25.768^^103^1549^18
- ;;^UTILITY(U,$J,358.3,36426,1,0)
+ ;;^UTILITY(U,$J,358.3,12304,1,3,0)
+ ;;=3^Melanoma in Situ of Face NEC
+ ;;^UTILITY(U,$J,358.3,12304,1,4,0)
+ ;;=4^D03.39
+ ;;^UTILITY(U,$J,358.3,12304,2)
+ ;;=^5001896
+ ;;^UTILITY(U,$J,358.3,12305,0)
+ ;;=D03.4^^80^776^36
+ ;;^UTILITY(U,$J,358.3,12305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36426,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36426,1,4,0)
- ;;=4^I25.768
- ;;^UTILITY(U,$J,358.3,36426,2)
- ;;=^5007137
- ;;^UTILITY(U,$J,358.3,36427,0)
- ;;=I25.769^^103^1549^19
- ;;^UTILITY(U,$J,358.3,36427,1,0)
+ ;;^UTILITY(U,$J,358.3,12305,1,3,0)
+ ;;=3^Melanoma in Situ of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,12305,1,4,0)
+ ;;=4^D03.4
+ ;;^UTILITY(U,$J,358.3,12305,2)
+ ;;=^5001897
+ ;;^UTILITY(U,$J,358.3,12306,0)
+ ;;=D03.51^^80^776^20
+ ;;^UTILITY(U,$J,358.3,12306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36427,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36427,1,4,0)
- ;;=4^I25.769
- ;;^UTILITY(U,$J,358.3,36427,2)
- ;;=^5007138
- ;;^UTILITY(U,$J,358.3,36428,0)
- ;;=I25.760^^103^1549^20
- ;;^UTILITY(U,$J,358.3,36428,1,0)
+ ;;^UTILITY(U,$J,358.3,12306,1,3,0)
+ ;;=3^Melanoma in Situ of Anal Skin
+ ;;^UTILITY(U,$J,358.3,12306,1,4,0)
+ ;;=4^D03.51
+ ;;^UTILITY(U,$J,358.3,12306,2)
+ ;;=^5001898
+ ;;^UTILITY(U,$J,358.3,12307,0)
+ ;;=D03.52^^80^776^21
+ ;;^UTILITY(U,$J,358.3,12307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36428,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36428,1,4,0)
- ;;=4^I25.760
- ;;^UTILITY(U,$J,358.3,36428,2)
- ;;=^5007135
- ;;^UTILITY(U,$J,358.3,36429,0)
- ;;=I25.701^^103^1549^23
- ;;^UTILITY(U,$J,358.3,36429,1,0)
+ ;;^UTILITY(U,$J,358.3,12307,1,3,0)
+ ;;=3^Melanoma in Situ of Breast
+ ;;^UTILITY(U,$J,358.3,12307,1,4,0)
+ ;;=4^D03.52
+ ;;^UTILITY(U,$J,358.3,12307,2)
+ ;;=^5001899
+ ;;^UTILITY(U,$J,358.3,12308,0)
+ ;;=D03.59^^80^776^37
+ ;;^UTILITY(U,$J,358.3,12308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36429,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36429,1,4,0)
- ;;=4^I25.701
- ;;^UTILITY(U,$J,358.3,36429,2)
- ;;=^5007118
- ;;^UTILITY(U,$J,358.3,36430,0)
- ;;=I25.708^^103^1549^21
- ;;^UTILITY(U,$J,358.3,36430,1,0)
+ ;;^UTILITY(U,$J,358.3,12308,1,3,0)
+ ;;=3^Melanoma in Situ of Trunk NEC
+ ;;^UTILITY(U,$J,358.3,12308,1,4,0)
+ ;;=4^D03.59
+ ;;^UTILITY(U,$J,358.3,12308,2)
+ ;;=^5001900
+ ;;^UTILITY(U,$J,358.3,12309,0)
+ ;;=D03.61^^80^776^35
+ ;;^UTILITY(U,$J,358.3,12309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36430,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36430,1,4,0)
- ;;=4^I25.708
- ;;^UTILITY(U,$J,358.3,36430,2)
- ;;=^5007119
- ;;^UTILITY(U,$J,358.3,36431,0)
- ;;=I25.709^^103^1549^25
- ;;^UTILITY(U,$J,358.3,36431,1,0)
+ ;;^UTILITY(U,$J,358.3,12309,1,3,0)
+ ;;=3^Melanoma in Situ of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,12309,1,4,0)
+ ;;=4^D03.61
+ ;;^UTILITY(U,$J,358.3,12309,2)
+ ;;=^5001902
+ ;;^UTILITY(U,$J,358.3,12310,0)
+ ;;=D03.62^^80^776^28
+ ;;^UTILITY(U,$J,358.3,12310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36431,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36431,1,4,0)
- ;;=4^I25.709
- ;;^UTILITY(U,$J,358.3,36431,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,36432,0)
- ;;=I25.700^^103^1549^27
- ;;^UTILITY(U,$J,358.3,36432,1,0)
+ ;;^UTILITY(U,$J,358.3,12310,1,3,0)
+ ;;=3^Melanoma in Situ of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,12310,1,4,0)
+ ;;=4^D03.62
+ ;;^UTILITY(U,$J,358.3,12310,2)
+ ;;=^5001903
+ ;;^UTILITY(U,$J,358.3,12311,0)
+ ;;=D03.71^^80^776^33
+ ;;^UTILITY(U,$J,358.3,12311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36432,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36432,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,36432,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,36433,0)
- ;;=I25.751^^103^1549^34
- ;;^UTILITY(U,$J,358.3,36433,1,0)
+ ;;^UTILITY(U,$J,358.3,12311,1,3,0)
+ ;;=3^Melanoma in Situ of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,12311,1,4,0)
+ ;;=4^D03.71
+ ;;^UTILITY(U,$J,358.3,12311,2)
+ ;;=^5001905
+ ;;^UTILITY(U,$J,358.3,12312,0)
+ ;;=D03.72^^80^776^26
+ ;;^UTILITY(U,$J,358.3,12312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36433,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36433,1,4,0)
- ;;=4^I25.751
- ;;^UTILITY(U,$J,358.3,36433,2)
- ;;=^5007132
- ;;^UTILITY(U,$J,358.3,36434,0)
- ;;=I25.758^^103^1549^35
- ;;^UTILITY(U,$J,358.3,36434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36434,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36434,1,4,0)
- ;;=4^I25.758
- ;;^UTILITY(U,$J,358.3,36434,2)
- ;;=^5007133
- ;;^UTILITY(U,$J,358.3,36435,0)
- ;;=I25.759^^103^1549^36
- ;;^UTILITY(U,$J,358.3,36435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36435,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36435,1,4,0)
- ;;=4^I25.759
- ;;^UTILITY(U,$J,358.3,36435,2)
- ;;=^5007134
- ;;^UTILITY(U,$J,358.3,36436,0)
- ;;=I25.750^^103^1549^37
- ;;^UTILITY(U,$J,358.3,36436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36436,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36436,1,4,0)
- ;;=4^I25.750
- ;;^UTILITY(U,$J,358.3,36436,2)
- ;;=^5007131
- ;;^UTILITY(U,$J,358.3,36437,0)
- ;;=I25.731^^103^1549^39
- ;;^UTILITY(U,$J,358.3,36437,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36437,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36437,1,4,0)
- ;;=4^I25.731
- ;;^UTILITY(U,$J,358.3,36437,2)
- ;;=^5007128
- ;;^UTILITY(U,$J,358.3,36438,0)
- ;;=I25.738^^103^1549^38
- ;;^UTILITY(U,$J,358.3,36438,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36438,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36438,1,4,0)
- ;;=4^I25.738
- ;;^UTILITY(U,$J,358.3,36438,2)
- ;;=^5007129
- ;;^UTILITY(U,$J,358.3,36439,0)
- ;;=I25.739^^103^1549^40
- ;;^UTILITY(U,$J,358.3,36439,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36439,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36439,1,4,0)
- ;;=4^I25.739
- ;;^UTILITY(U,$J,358.3,36439,2)
- ;;=^5007130
- ;;^UTILITY(U,$J,358.3,36440,0)
- ;;=I25.730^^103^1549^41
- ;;^UTILITY(U,$J,358.3,36440,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36440,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36440,1,4,0)
- ;;=4^I25.730
- ;;^UTILITY(U,$J,358.3,36440,2)
- ;;=^5007127
- ;;^UTILITY(U,$J,358.3,36441,0)
- ;;=I25.791^^103^1549^24
- ;;^UTILITY(U,$J,358.3,36441,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36441,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36441,1,4,0)
- ;;=4^I25.791
- ;;^UTILITY(U,$J,358.3,36441,2)
- ;;=^5007140
- ;;^UTILITY(U,$J,358.3,36442,0)
- ;;=I25.798^^103^1549^22
- ;;^UTILITY(U,$J,358.3,36442,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36442,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36442,1,4,0)
- ;;=4^I25.798
- ;;^UTILITY(U,$J,358.3,36442,2)
- ;;=^5133558
- ;;^UTILITY(U,$J,358.3,36443,0)
- ;;=I25.799^^103^1549^26
- ;;^UTILITY(U,$J,358.3,36443,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36443,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36443,1,4,0)
- ;;=4^I25.799
- ;;^UTILITY(U,$J,358.3,36443,2)
- ;;=^5133559
- ;;^UTILITY(U,$J,358.3,36444,0)
- ;;=I25.790^^103^1549^28
- ;;^UTILITY(U,$J,358.3,36444,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36444,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36444,1,4,0)
- ;;=4^I25.790
- ;;^UTILITY(U,$J,358.3,36444,2)
- ;;=^5007139
- ;;^UTILITY(U,$J,358.3,36445,0)
- ;;=I25.111^^103^1549^29
- ;;^UTILITY(U,$J,358.3,36445,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36445,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36445,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,36445,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,36446,0)
- ;;=I25.118^^103^1549^30
- ;;^UTILITY(U,$J,358.3,36446,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36446,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36446,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,36446,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,36447,0)
- ;;=I25.119^^103^1549^31
- ;;^UTILITY(U,$J,358.3,36447,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36447,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36447,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,36447,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,36448,0)
- ;;=I25.110^^103^1549^32
- ;;^UTILITY(U,$J,358.3,36448,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36448,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36448,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,36448,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,36449,0)
- ;;=I25.10^^103^1549^33
- ;;^UTILITY(U,$J,358.3,36449,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36449,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,36449,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,36449,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,36450,0)
- ;;=I48.0^^103^1549^42
- ;;^UTILITY(U,$J,358.3,36450,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36450,1,3,0)
- ;;=3^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,36450,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,36450,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,36451,0)
- ;;=I49.9^^103^1549^44
- ;;^UTILITY(U,$J,358.3,36451,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36451,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,36451,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,36451,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,36452,0)
- ;;=I42.9^^103^1549^45
- ;;^UTILITY(U,$J,358.3,36452,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36452,1,3,0)
- ;;=3^Cardiomyopathy,Unspec
- ;;^UTILITY(U,$J,358.3,36452,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,36452,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,36453,0)
- ;;=I50.42^^103^1549^47
- ;;^UTILITY(U,$J,358.3,36453,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36453,1,3,0)
- ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,36453,1,4,0)
- ;;=4^I50.42

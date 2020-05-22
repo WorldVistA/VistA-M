@@ -1,124 +1,118 @@
-IBDEI2D6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2D6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40090,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,40090,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,40091,0)
- ;;=C34.92^^156^1951^8
- ;;^UTILITY(U,$J,358.3,40091,1,0)
+ ;;^UTILITY(U,$J,358.3,37741,2)
+ ;;=^5044994
+ ;;^UTILITY(U,$J,358.3,37742,0)
+ ;;=S92.244K^^146^1917^275
+ ;;^UTILITY(U,$J,358.3,37742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40091,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
- ;;^UTILITY(U,$J,358.3,40091,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,40091,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,40092,0)
- ;;=C34.01^^156^1951^7
- ;;^UTILITY(U,$J,358.3,40092,1,0)
+ ;;^UTILITY(U,$J,358.3,37742,1,3,0)
+ ;;=3^Nondisp fx med cuneiform rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37742,1,4,0)
+ ;;=4^S92.244K
+ ;;^UTILITY(U,$J,358.3,37742,2)
+ ;;=^5044987
+ ;;^UTILITY(U,$J,358.3,37743,0)
+ ;;=S92.232K^^146^1917^36
+ ;;^UTILITY(U,$J,358.3,37743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40092,1,3,0)
- ;;=3^Malignant neoplasm of right main bronchus
- ;;^UTILITY(U,$J,358.3,40092,1,4,0)
- ;;=4^C34.01
- ;;^UTILITY(U,$J,358.3,40092,2)
- ;;=^5000958
- ;;^UTILITY(U,$J,358.3,40093,0)
- ;;=C34.02^^156^1951^1
- ;;^UTILITY(U,$J,358.3,40093,1,0)
+ ;;^UTILITY(U,$J,358.3,37743,1,3,0)
+ ;;=3^Disp fx intermed cuneiform of lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37743,1,4,0)
+ ;;=4^S92.232K
+ ;;^UTILITY(U,$J,358.3,37743,2)
+ ;;=^5044931
+ ;;^UTILITY(U,$J,358.3,37744,0)
+ ;;=S92.231K^^146^1917^37
+ ;;^UTILITY(U,$J,358.3,37744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40093,1,3,0)
- ;;=3^Malignant neoplasm of left main bronchus
- ;;^UTILITY(U,$J,358.3,40093,1,4,0)
- ;;=4^C34.02
- ;;^UTILITY(U,$J,358.3,40093,2)
- ;;=^5000959
- ;;^UTILITY(U,$J,358.3,40094,0)
- ;;=C34.11^^156^1951^11
- ;;^UTILITY(U,$J,358.3,40094,1,0)
+ ;;^UTILITY(U,$J,358.3,37744,1,3,0)
+ ;;=3^Disp fx intermed cuneiform rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37744,1,4,0)
+ ;;=4^S92.231K
+ ;;^UTILITY(U,$J,358.3,37744,2)
+ ;;=^5044924
+ ;;^UTILITY(U,$J,358.3,37745,0)
+ ;;=S92.225K^^146^1917^267
+ ;;^UTILITY(U,$J,358.3,37745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40094,1,3,0)
- ;;=3^Malignant neoplasm of upper lobe, right bronchus or lung
- ;;^UTILITY(U,$J,358.3,40094,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,40094,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,40095,0)
- ;;=C34.12^^156^1951^10
- ;;^UTILITY(U,$J,358.3,40095,1,0)
+ ;;^UTILITY(U,$J,358.3,37745,1,3,0)
+ ;;=3^Nondisp fx ltrl cuneiform of lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37745,1,4,0)
+ ;;=4^S92.225K
+ ;;^UTILITY(U,$J,358.3,37745,2)
+ ;;=^5044910
+ ;;^UTILITY(U,$J,358.3,37746,0)
+ ;;=S92.224K^^146^1917^326
+ ;;^UTILITY(U,$J,358.3,37746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40095,1,3,0)
- ;;=3^Malignant neoplasm of upper lobe, left bronchus or lung
- ;;^UTILITY(U,$J,358.3,40095,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,40095,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,40096,0)
- ;;=C34.2^^156^1951^4
- ;;^UTILITY(U,$J,358.3,40096,1,0)
+ ;;^UTILITY(U,$J,358.3,37746,1,3,0)
+ ;;=3^Nondisp fx of ltrl cuneiform of rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37746,1,4,0)
+ ;;=4^S92.224K
+ ;;^UTILITY(U,$J,358.3,37746,2)
+ ;;=^5044903
+ ;;^UTILITY(U,$J,358.3,37747,0)
+ ;;=S92.222K^^146^1917^40
+ ;;^UTILITY(U,$J,358.3,37747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40096,1,3,0)
- ;;=3^Malignant neoplasm of middle lobe, bronchus or lung
- ;;^UTILITY(U,$J,358.3,40096,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,40096,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,40097,0)
- ;;=C34.31^^156^1951^3
- ;;^UTILITY(U,$J,358.3,40097,1,0)
+ ;;^UTILITY(U,$J,358.3,37747,1,3,0)
+ ;;=3^Disp fx ltrl cuneiform lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37747,1,4,0)
+ ;;=4^S92.222K
+ ;;^UTILITY(U,$J,358.3,37747,2)
+ ;;=^5044889
+ ;;^UTILITY(U,$J,358.3,37748,0)
+ ;;=S92.221K^^146^1917^41
+ ;;^UTILITY(U,$J,358.3,37748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40097,1,3,0)
- ;;=3^Malignant neoplasm of lower lobe, right bronchus or lung
- ;;^UTILITY(U,$J,358.3,40097,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,40097,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,40098,0)
- ;;=C34.32^^156^1951^2
- ;;^UTILITY(U,$J,358.3,40098,1,0)
+ ;;^UTILITY(U,$J,358.3,37748,1,3,0)
+ ;;=3^Disp fx ltrl cuneiform rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37748,1,4,0)
+ ;;=4^S92.221K
+ ;;^UTILITY(U,$J,358.3,37748,2)
+ ;;=^5044882
+ ;;^UTILITY(U,$J,358.3,37749,0)
+ ;;=S92.241K^^146^1917^49
+ ;;^UTILITY(U,$J,358.3,37749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40098,1,3,0)
- ;;=3^Malignant neoplasm of lower lobe, left bronchus or lung
- ;;^UTILITY(U,$J,358.3,40098,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,40098,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,40099,0)
- ;;=C34.81^^156^1951^6
- ;;^UTILITY(U,$J,358.3,40099,1,0)
+ ;;^UTILITY(U,$J,358.3,37749,1,3,0)
+ ;;=3^Disp fx med cuneiform rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37749,1,4,0)
+ ;;=4^S92.241K
+ ;;^UTILITY(U,$J,358.3,37749,2)
+ ;;=^5044966
+ ;;^UTILITY(U,$J,358.3,37750,0)
+ ;;=S92.242K^^146^1917^48
+ ;;^UTILITY(U,$J,358.3,37750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40099,1,3,0)
- ;;=3^Malignant neoplasm of ovrlp sites of right bronchus and lung
- ;;^UTILITY(U,$J,358.3,40099,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,40099,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,40100,0)
- ;;=C34.82^^156^1951^5
- ;;^UTILITY(U,$J,358.3,40100,1,0)
+ ;;^UTILITY(U,$J,358.3,37750,1,3,0)
+ ;;=3^Disp fx med cuneiform lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37750,1,4,0)
+ ;;=4^S92.242K
+ ;;^UTILITY(U,$J,358.3,37750,2)
+ ;;=^5044973
+ ;;^UTILITY(U,$J,358.3,37751,0)
+ ;;=S92.235K^^146^1917^263
+ ;;^UTILITY(U,$J,358.3,37751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40100,1,3,0)
- ;;=3^Malignant neoplasm of ovrlp sites of left bronchus and lung
- ;;^UTILITY(U,$J,358.3,40100,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,40100,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,40101,0)
- ;;=C83.38^^156^1952^22
- ;;^UTILITY(U,$J,358.3,40101,1,0)
+ ;;^UTILITY(U,$J,358.3,37751,1,3,0)
+ ;;=3^Nondisp fx intermed cuneiform lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37751,1,4,0)
+ ;;=4^S92.235K
+ ;;^UTILITY(U,$J,358.3,37751,2)
+ ;;=^5044952
+ ;;^UTILITY(U,$J,358.3,37752,0)
+ ;;=S92.234K^^146^1917^264
+ ;;^UTILITY(U,$J,358.3,37752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40101,1,3,0)
- ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,40101,1,4,0)
- ;;=4^C83.38
- ;;^UTILITY(U,$J,358.3,40101,2)
- ;;=^5001579
- ;;^UTILITY(U,$J,358.3,40102,0)
- ;;=C83.58^^156^1952^29
- ;;^UTILITY(U,$J,358.3,40102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40102,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, lymph nodes mult site
+ ;;^UTILITY(U,$J,358.3,37752,1,3,0)
+ ;;=3^Nondisp fx intermed cuneiform rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37752,1,4,0)
+ ;;=4^S92.234K
+ ;;^UTILITY(U,$J,358.3,37752,2)
+ ;;=^5044945
+ ;;^UTILITY(U,$J,358.3,37753,0)
+ ;;=S92.534K^^146^1917^262

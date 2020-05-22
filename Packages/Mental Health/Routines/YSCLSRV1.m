@@ -1,11 +1,11 @@
-YSCLSRV1 ;DALOI/RLM-Clozapine data server ; 11/27/18 4:30pm
- ;;5.01;MENTAL HEALTH;**61,69,74,90,122**;Dec 30, 1994;Build 112
+YSCLSRV1 ;DALOI/RLM,HEC/hrubovcak - Clozapine data server ;3 Oct 2019 00:08:26
+ ;;5.01;MENTAL HEALTH;**61,69,74,90,122,154**;Dec 30, 1994;Build 48
  ; Reference to ^%ZOSF supported by IA #10096
  ; Reference to ^XMD supported by IA #10070
  ; Reference to ^DIQ supported by DBIA #2056
 CSUM ;Calculate checksum for routines and transmit errors to Forum
  S X=$T(+0) X ^%ZOSF("RSUM") S ^TMP("YSCL",$J,2,0)="YSCLSRV1 at "_YSCLST_" = "_Y
- F YSI=1:1 S YSA=$T(ROU+YSI) Q:YSA["***"  S X=$P($P(YSA,","),";",3) D
+ F YSI=1:1 S YSA=$T(ROU+YSI) S X=$P($P(YSA,","),";",3) Q:X=""  D
  . X ^%ZOSF("TEST") I '$T S ^TMP("YSCL",$J,YSI+3,0)=X_" is missing." Q
  . X ^%ZOSF("RSUM") S ^TMP("YSCL",$J,YSI+3,0)=X_" should be "_$P(YSA,",",2)_" is "_Y
  ;/RBN - Begin modifications for YS*5.01*122
@@ -32,5 +32,4 @@ ROU ;
  ;;YSCLTST3,69598047
  ;;YSCLTST5,129720110
  ;;YSCLTST6,26876020
- ;;***
-ZEOR ;YSCLSRV1
+ ;

@@ -1,128 +1,130 @@
-IBDEI1DV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23508,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,23508,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,23508,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,23509,0)
- ;;=R40.2113^^87^999^30
- ;;^UTILITY(U,$J,358.3,23509,1,0)
+ ;;^UTILITY(U,$J,358.3,22107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23509,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,23509,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,23509,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,23510,0)
- ;;=R40.2112^^87^999^27
- ;;^UTILITY(U,$J,358.3,23510,1,0)
+ ;;^UTILITY(U,$J,358.3,22107,1,3,0)
+ ;;=3^Type 2 DM w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,22107,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,22107,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,22108,0)
+ ;;=E10.42^^99^1127^2
+ ;;^UTILITY(U,$J,358.3,22108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23510,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,23510,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,23510,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,23511,0)
- ;;=R40.2111^^87^999^28
- ;;^UTILITY(U,$J,358.3,23511,1,0)
+ ;;^UTILITY(U,$J,358.3,22108,1,3,0)
+ ;;=3^Type 1 DM w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,22108,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,22108,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,22109,0)
+ ;;=E13.42^^99^1127^1
+ ;;^UTILITY(U,$J,358.3,22109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23511,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,23511,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,23511,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,23512,0)
- ;;=R40.2110^^87^999^29
- ;;^UTILITY(U,$J,358.3,23512,1,0)
+ ;;^UTILITY(U,$J,358.3,22109,1,3,0)
+ ;;=3^Secondary Type DM w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,22109,1,4,0)
+ ;;=4^E13.42
+ ;;^UTILITY(U,$J,358.3,22109,2)
+ ;;=^5002686
+ ;;^UTILITY(U,$J,358.3,22110,0)
+ ;;=E10.621^^99^1127^3
+ ;;^UTILITY(U,$J,358.3,22110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23512,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,23512,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,23512,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,23513,0)
- ;;=R40.20^^87^999^36
- ;;^UTILITY(U,$J,358.3,23513,1,0)
+ ;;^UTILITY(U,$J,358.3,22110,1,3,0)
+ ;;=3^Type 1 DM w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,22110,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,22110,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,22111,0)
+ ;;=E10.649^^99^1127^5
+ ;;^UTILITY(U,$J,358.3,22111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23513,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,23513,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,23513,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,23514,0)
- ;;=R40.2123^^87^999^35
- ;;^UTILITY(U,$J,358.3,23514,1,0)
+ ;;^UTILITY(U,$J,358.3,22111,1,3,0)
+ ;;=3^Type 1 DM w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,22111,1,4,0)
+ ;;=4^E10.649
+ ;;^UTILITY(U,$J,358.3,22111,2)
+ ;;=^5002622
+ ;;^UTILITY(U,$J,358.3,22112,0)
+ ;;=E11.621^^99^1127^8
+ ;;^UTILITY(U,$J,358.3,22112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23514,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,23514,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,23514,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,23515,0)
- ;;=R40.2122^^87^999^32
- ;;^UTILITY(U,$J,358.3,23515,1,0)
+ ;;^UTILITY(U,$J,358.3,22112,1,3,0)
+ ;;=3^Type 2 DM w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,22112,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,22112,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,22113,0)
+ ;;=E11.649^^99^1127^10
+ ;;^UTILITY(U,$J,358.3,22113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23515,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,23515,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,23515,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,23516,0)
- ;;=R40.2124^^87^999^31
- ;;^UTILITY(U,$J,358.3,23516,1,0)
+ ;;^UTILITY(U,$J,358.3,22113,1,3,0)
+ ;;=3^Type 2 DM w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,22113,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,22113,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,22114,0)
+ ;;=E11.11^^99^1127^11
+ ;;^UTILITY(U,$J,358.3,22114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23516,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,23516,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,23516,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,23517,0)
- ;;=R40.2211^^87^999^17
- ;;^UTILITY(U,$J,358.3,23517,1,0)
+ ;;^UTILITY(U,$J,358.3,22114,1,3,0)
+ ;;=3^Type 2 DM w/ Ketoacidosis w/ Coma
+ ;;^UTILITY(U,$J,358.3,22114,1,4,0)
+ ;;=4^E11.11
+ ;;^UTILITY(U,$J,358.3,22114,2)
+ ;;=^5151301
+ ;;^UTILITY(U,$J,358.3,22115,0)
+ ;;=E11.10^^99^1127^12
+ ;;^UTILITY(U,$J,358.3,22115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23517,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,23517,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,23517,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,23518,0)
- ;;=R40.2210^^87^999^16
- ;;^UTILITY(U,$J,358.3,23518,1,0)
+ ;;^UTILITY(U,$J,358.3,22115,1,3,0)
+ ;;=3^Type 2 DM w/ Ketoacidosis w/o Coma
+ ;;^UTILITY(U,$J,358.3,22115,1,4,0)
+ ;;=4^E11.10
+ ;;^UTILITY(U,$J,358.3,22115,2)
+ ;;=^5151300
+ ;;^UTILITY(U,$J,358.3,22116,0)
+ ;;=Z85.828^^99^1128^21
+ ;;^UTILITY(U,$J,358.3,22116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23518,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,23518,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,23518,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,23519,0)
- ;;=R40.2224^^87^999^18
- ;;^UTILITY(U,$J,358.3,23519,1,0)
+ ;;^UTILITY(U,$J,358.3,22116,1,3,0)
+ ;;=3^Skin (BCC/SCC)
+ ;;^UTILITY(U,$J,358.3,22116,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,22116,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,22117,0)
+ ;;=Z85.51^^99^1128^1
+ ;;^UTILITY(U,$J,358.3,22117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23519,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,23519,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,23519,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,23520,0)
- ;;=R40.2223^^87^999^19
- ;;^UTILITY(U,$J,358.3,23520,1,0)
+ ;;^UTILITY(U,$J,358.3,22117,1,3,0)
+ ;;=3^Bladder
+ ;;^UTILITY(U,$J,358.3,22117,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,22117,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,22118,0)
+ ;;=Z85.830^^99^1128^2
+ ;;^UTILITY(U,$J,358.3,22118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23520,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,23520,1,4,0)
- ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,22118,1,3,0)
+ ;;=3^Bone
+ ;;^UTILITY(U,$J,358.3,22118,1,4,0)
+ ;;=4^Z85.830
+ ;;^UTILITY(U,$J,358.3,22118,2)
+ ;;=^5063444
+ ;;^UTILITY(U,$J,358.3,22119,0)
+ ;;=Z85.841^^99^1128^3
+ ;;^UTILITY(U,$J,358.3,22119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22119,1,3,0)
+ ;;=3^Brain
+ ;;^UTILITY(U,$J,358.3,22119,1,4,0)
+ ;;=4^Z85.841

@@ -1,140 +1,120 @@
-IBDEI2SI ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46835,0)
- ;;=J61.^^206^2309^8
- ;;^UTILITY(U,$J,358.3,46835,1,0)
+ ;;^UTILITY(U,$J,358.3,44489,1,3,0)
+ ;;=3^Cocaine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44489,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,44489,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,44490,0)
+ ;;=F15.180^^164^2207^35
+ ;;^UTILITY(U,$J,358.3,44490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46835,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,46835,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,46835,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,46836,0)
- ;;=J62.8^^206^2309^9
- ;;^UTILITY(U,$J,358.3,46836,1,0)
+ ;;^UTILITY(U,$J,358.3,44490,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44490,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,44490,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,44491,0)
+ ;;=F15.280^^164^2207^36
+ ;;^UTILITY(U,$J,358.3,44491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46836,1,3,0)
- ;;=3^Pneumoconiosis d/t Dust Containing Silica
- ;;^UTILITY(U,$J,358.3,46836,1,4,0)
- ;;=4^J62.8
- ;;^UTILITY(U,$J,358.3,46836,2)
- ;;=^5008264
- ;;^UTILITY(U,$J,358.3,46837,0)
- ;;=J62.0^^206^2309^10
- ;;^UTILITY(U,$J,358.3,46837,1,0)
+ ;;^UTILITY(U,$J,358.3,44491,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44491,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,44491,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,44492,0)
+ ;;=F15.980^^164^2207^37
+ ;;^UTILITY(U,$J,358.3,44492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46837,1,3,0)
- ;;=3^Pneumoconiosis d/t Talc Dust
- ;;^UTILITY(U,$J,358.3,46837,1,4,0)
- ;;=4^J62.0
- ;;^UTILITY(U,$J,358.3,46837,2)
- ;;=^5008263
- ;;^UTILITY(U,$J,358.3,46838,0)
- ;;=J82.^^206^2309^12
- ;;^UTILITY(U,$J,358.3,46838,1,0)
+ ;;^UTILITY(U,$J,358.3,44492,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44492,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,44492,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,44493,0)
+ ;;=F15.14^^164^2207^39
+ ;;^UTILITY(U,$J,358.3,44493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46838,1,3,0)
- ;;=3^Pulmonary Eosinophilia NEC
- ;;^UTILITY(U,$J,358.3,46838,1,4,0)
- ;;=4^J82.
- ;;^UTILITY(U,$J,358.3,46838,2)
- ;;=^5008297
- ;;^UTILITY(U,$J,358.3,46839,0)
- ;;=J63.4^^206^2309^13
- ;;^UTILITY(U,$J,358.3,46839,1,0)
+ ;;^UTILITY(U,$J,358.3,44493,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44493,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,44493,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,44494,0)
+ ;;=F15.24^^164^2207^40
+ ;;^UTILITY(U,$J,358.3,44494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46839,1,3,0)
- ;;=3^Siderosis
- ;;^UTILITY(U,$J,358.3,46839,1,4,0)
- ;;=4^J63.4
- ;;^UTILITY(U,$J,358.3,46839,2)
- ;;=^5008268
- ;;^UTILITY(U,$J,358.3,46840,0)
- ;;=J63.5^^206^2309^14
- ;;^UTILITY(U,$J,358.3,46840,1,0)
+ ;;^UTILITY(U,$J,358.3,44494,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44494,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,44494,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,44495,0)
+ ;;=F15.94^^164^2207^41
+ ;;^UTILITY(U,$J,358.3,44495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46840,1,3,0)
- ;;=3^Stannosis
- ;;^UTILITY(U,$J,358.3,46840,1,4,0)
- ;;=4^J63.5
- ;;^UTILITY(U,$J,358.3,46840,2)
- ;;=^5008269
- ;;^UTILITY(U,$J,358.3,46841,0)
- ;;=J64.^^206^2309^11
- ;;^UTILITY(U,$J,358.3,46841,1,0)
+ ;;^UTILITY(U,$J,358.3,44495,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44495,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,44495,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,44496,0)
+ ;;=F15.921^^164^2207^38
+ ;;^UTILITY(U,$J,358.3,44496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46841,1,3,0)
- ;;=3^Pneumoconiosis,Unspec
- ;;^UTILITY(U,$J,358.3,46841,1,4,0)
- ;;=4^J64.
- ;;^UTILITY(U,$J,358.3,46841,2)
- ;;=^5008271
- ;;^UTILITY(U,$J,358.3,46842,0)
- ;;=G89.22^^206^2310^2
- ;;^UTILITY(U,$J,358.3,46842,1,0)
+ ;;^UTILITY(U,$J,358.3,44496,1,3,0)
+ ;;=3^Oth Stimulant Induced Delirium
+ ;;^UTILITY(U,$J,358.3,44496,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,44496,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,44497,0)
+ ;;=F15.188^^164^2207^42
+ ;;^UTILITY(U,$J,358.3,44497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46842,1,3,0)
- ;;=3^Chr Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,46842,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,46842,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,46843,0)
- ;;=G89.3^^206^2310^5
- ;;^UTILITY(U,$J,358.3,46843,1,0)
+ ;;^UTILITY(U,$J,358.3,44497,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44497,1,4,0)
+ ;;=4^F15.188
+ ;;^UTILITY(U,$J,358.3,44497,2)
+ ;;=^5133355
+ ;;^UTILITY(U,$J,358.3,44498,0)
+ ;;=F15.288^^164^2207^44
+ ;;^UTILITY(U,$J,358.3,44498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46843,1,3,0)
- ;;=3^Neoplasm Related Pain
- ;;^UTILITY(U,$J,358.3,46843,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,46843,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,46844,0)
- ;;=G89.18^^206^2310^1
- ;;^UTILITY(U,$J,358.3,46844,1,0)
+ ;;^UTILITY(U,$J,358.3,44498,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess/Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44498,1,4,0)
+ ;;=4^F15.288
+ ;;^UTILITY(U,$J,358.3,44498,2)
+ ;;=^5133356
+ ;;^UTILITY(U,$J,358.3,44499,0)
+ ;;=F15.988^^164^2207^43
+ ;;^UTILITY(U,$J,358.3,44499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46844,1,3,0)
- ;;=3^Acute Postprocedural Pain
- ;;^UTILITY(U,$J,358.3,46844,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,46844,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,46845,0)
- ;;=M25.552^^206^2310^3
- ;;^UTILITY(U,$J,358.3,46845,1,0)
+ ;;^UTILITY(U,$J,358.3,44499,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44499,1,4,0)
+ ;;=4^F15.988
+ ;;^UTILITY(U,$J,358.3,44499,2)
+ ;;=^5133357
+ ;;^UTILITY(U,$J,358.3,44500,0)
+ ;;=F15.159^^164^2207^45
+ ;;^UTILITY(U,$J,358.3,44500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46845,1,3,0)
- ;;=3^Left Hip Pain
- ;;^UTILITY(U,$J,358.3,46845,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,46845,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,46846,0)
- ;;=M25.562^^206^2310^4
- ;;^UTILITY(U,$J,358.3,46846,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46846,1,3,0)
- ;;=3^Left Knee Pain
- ;;^UTILITY(U,$J,358.3,46846,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,46846,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,46847,0)
- ;;=M25.551^^206^2310^6
- ;;^UTILITY(U,$J,358.3,46847,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46847,1,3,0)
- ;;=3^Right Hip Pain
- ;;^UTILITY(U,$J,358.3,46847,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,46847,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,46848,0)
- ;;=M25.561^^206^2310^7
- ;;^UTILITY(U,$J,358.3,46848,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46848,1,3,0)
- ;;=3^Right Knee Pain
+ ;;^UTILITY(U,$J,358.3,44500,1,3,0)
+ ;;=3^Oth Stimulant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44500,1,4,0)
+ ;;=4^F15.159
+ ;;^UTILITY(U,$J,358.3,44500,2)
+ ;;=^5003290

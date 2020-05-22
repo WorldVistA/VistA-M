@@ -1,136 +1,120 @@
-IBDEI33Y ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33Y ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52162,0)
- ;;=Z86.51^^235^2572^1
- ;;^UTILITY(U,$J,358.3,52162,1,0)
+ ;;^UTILITY(U,$J,358.3,49637,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Resp Sys Complicating Resp Procedure
+ ;;^UTILITY(U,$J,358.3,49637,1,4,0)
+ ;;=4^J95.61
+ ;;^UTILITY(U,$J,358.3,49637,2)
+ ;;=^5008332
+ ;;^UTILITY(U,$J,358.3,49638,0)
+ ;;=J95.62^^191^2474^39
+ ;;^UTILITY(U,$J,358.3,49638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52162,1,3,0)
- ;;=3^Personal Hx of Combat/Operational Stress Reaction
- ;;^UTILITY(U,$J,358.3,52162,1,4,0)
- ;;=4^Z86.51
- ;;^UTILITY(U,$J,358.3,52162,2)
- ;;=^5063470
- ;;^UTILITY(U,$J,358.3,52163,0)
- ;;=Z86.59^^235^2572^2
- ;;^UTILITY(U,$J,358.3,52163,1,0)
+ ;;^UTILITY(U,$J,358.3,49638,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Resp Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,49638,1,4,0)
+ ;;=4^J95.62
+ ;;^UTILITY(U,$J,358.3,49638,2)
+ ;;=^5008333
+ ;;^UTILITY(U,$J,358.3,49639,0)
+ ;;=J95.71^^191^2474^4
+ ;;^UTILITY(U,$J,358.3,49639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52163,1,3,0)
- ;;=3^Personal Hx of Oth Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,52163,1,4,0)
- ;;=4^Z86.59
- ;;^UTILITY(U,$J,358.3,52163,2)
- ;;=^5063471
- ;;^UTILITY(U,$J,358.3,52164,0)
- ;;=H54.7^^235^2573^7
- ;;^UTILITY(U,$J,358.3,52164,1,0)
+ ;;^UTILITY(U,$J,358.3,49639,1,3,0)
+ ;;=3^Accidental Pnctr/Lac of Resp Sys During Resp Procedure
+ ;;^UTILITY(U,$J,358.3,49639,1,4,0)
+ ;;=4^J95.71
+ ;;^UTILITY(U,$J,358.3,49639,2)
+ ;;=^5008334
+ ;;^UTILITY(U,$J,358.3,49640,0)
+ ;;=J95.72^^191^2474^5
+ ;;^UTILITY(U,$J,358.3,49640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52164,1,3,0)
- ;;=3^Visual Loss,Unspec
- ;;^UTILITY(U,$J,358.3,52164,1,4,0)
- ;;=4^H54.7
- ;;^UTILITY(U,$J,358.3,52164,2)
- ;;=^5006368
- ;;^UTILITY(U,$J,358.3,52165,0)
- ;;=R68.89^^235^2573^2
- ;;^UTILITY(U,$J,358.3,52165,1,0)
+ ;;^UTILITY(U,$J,358.3,49640,1,3,0)
+ ;;=3^Accidental Pnctr/Lac of Resp Sys During Oth Procedure
+ ;;^UTILITY(U,$J,358.3,49640,1,4,0)
+ ;;=4^J95.72
+ ;;^UTILITY(U,$J,358.3,49640,2)
+ ;;=^5008335
+ ;;^UTILITY(U,$J,358.3,49641,0)
+ ;;=J95.811^^191^2474^43
+ ;;^UTILITY(U,$J,358.3,49641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52165,1,3,0)
- ;;=3^General Symptoms/Signs
- ;;^UTILITY(U,$J,358.3,52165,1,4,0)
- ;;=4^R68.89
- ;;^UTILITY(U,$J,358.3,52165,2)
- ;;=^5019557
- ;;^UTILITY(U,$J,358.3,52166,0)
- ;;=R47.89^^235^2573^6
- ;;^UTILITY(U,$J,358.3,52166,1,0)
+ ;;^UTILITY(U,$J,358.3,49641,1,3,0)
+ ;;=3^Pneumothorax,Postprocedural
+ ;;^UTILITY(U,$J,358.3,49641,1,4,0)
+ ;;=4^J95.811
+ ;;^UTILITY(U,$J,358.3,49641,2)
+ ;;=^5008336
+ ;;^UTILITY(U,$J,358.3,49642,0)
+ ;;=J95.812^^191^2474^13
+ ;;^UTILITY(U,$J,358.3,49642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52166,1,3,0)
- ;;=3^Speech Disturbances
- ;;^UTILITY(U,$J,358.3,52166,1,4,0)
- ;;=4^R47.89
- ;;^UTILITY(U,$J,358.3,52166,2)
- ;;=^5019493
- ;;^UTILITY(U,$J,358.3,52167,0)
- ;;=R43.9^^235^2573^5
- ;;^UTILITY(U,$J,358.3,52167,1,0)
+ ;;^UTILITY(U,$J,358.3,49642,1,3,0)
+ ;;=3^Air Leak,Postprocedural
+ ;;^UTILITY(U,$J,358.3,49642,1,4,0)
+ ;;=4^J95.812
+ ;;^UTILITY(U,$J,358.3,49642,2)
+ ;;=^5008337
+ ;;^UTILITY(U,$J,358.3,49643,0)
+ ;;=J95.821^^191^2474^6
+ ;;^UTILITY(U,$J,358.3,49643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52167,1,3,0)
- ;;=3^Smell/Taste Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,52167,1,4,0)
- ;;=4^R43.9
- ;;^UTILITY(U,$J,358.3,52167,2)
- ;;=^5019454
- ;;^UTILITY(U,$J,358.3,52168,0)
- ;;=R13.10^^235^2573^1
- ;;^UTILITY(U,$J,358.3,52168,1,0)
+ ;;^UTILITY(U,$J,358.3,49643,1,3,0)
+ ;;=3^Acute Postprocedural Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,49643,1,4,0)
+ ;;=4^J95.821
+ ;;^UTILITY(U,$J,358.3,49643,2)
+ ;;=^5008338
+ ;;^UTILITY(U,$J,358.3,49644,0)
+ ;;=J95.822^^191^2474^12
+ ;;^UTILITY(U,$J,358.3,49644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52168,1,3,0)
- ;;=3^Dysphagia,Unspec
- ;;^UTILITY(U,$J,358.3,52168,1,4,0)
- ;;=4^R13.10
- ;;^UTILITY(U,$J,358.3,52168,2)
- ;;=^335307
- ;;^UTILITY(U,$J,358.3,52169,0)
- ;;=F52.9^^235^2573^4
- ;;^UTILITY(U,$J,358.3,52169,1,0)
+ ;;^UTILITY(U,$J,358.3,49644,1,3,0)
+ ;;=3^Acute and Chronic Postprocedural Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,49644,1,4,0)
+ ;;=4^J95.822
+ ;;^UTILITY(U,$J,358.3,49644,2)
+ ;;=^5008339
+ ;;^UTILITY(U,$J,358.3,49645,0)
+ ;;=J95.830^^191^2474^45
+ ;;^UTILITY(U,$J,358.3,49645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52169,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,52169,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,52169,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,52170,0)
- ;;=R69.^^235^2573^3
- ;;^UTILITY(U,$J,358.3,52170,1,0)
+ ;;^UTILITY(U,$J,358.3,49645,1,3,0)
+ ;;=3^Postproc Hemor of Resp Sys Following Resp Sys Procedure
+ ;;^UTILITY(U,$J,358.3,49645,1,4,0)
+ ;;=4^J95.830
+ ;;^UTILITY(U,$J,358.3,49645,2)
+ ;;=^5008340
+ ;;^UTILITY(U,$J,358.3,49646,0)
+ ;;=J95.831^^191^2474^44
+ ;;^UTILITY(U,$J,358.3,49646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52170,1,3,0)
- ;;=3^Illness,Unspec
- ;;^UTILITY(U,$J,358.3,52170,1,4,0)
- ;;=4^R69.
- ;;^UTILITY(U,$J,358.3,52170,2)
- ;;=^5019558
- ;;^UTILITY(U,$J,358.3,52171,0)
- ;;=Z99.11^^235^2574^2
- ;;^UTILITY(U,$J,358.3,52171,1,0)
+ ;;^UTILITY(U,$J,358.3,49646,1,3,0)
+ ;;=3^Postproc Hemor of Resp Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,49646,1,4,0)
+ ;;=4^J95.831
+ ;;^UTILITY(U,$J,358.3,49646,2)
+ ;;=^5008341
+ ;;^UTILITY(U,$J,358.3,49647,0)
+ ;;=J95.850^^191^2474^40
+ ;;^UTILITY(U,$J,358.3,49647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52171,1,3,0)
- ;;=3^Dependence on Respirator/Ventilator Status
- ;;^UTILITY(U,$J,358.3,52171,1,4,0)
- ;;=4^Z99.11
- ;;^UTILITY(U,$J,358.3,52171,2)
- ;;=^5063756
- ;;^UTILITY(U,$J,358.3,52172,0)
- ;;=Z99.3^^235^2574^3
- ;;^UTILITY(U,$J,358.3,52172,1,0)
+ ;;^UTILITY(U,$J,358.3,49647,1,3,0)
+ ;;=3^Mechanical Complication of Respirator
+ ;;^UTILITY(U,$J,358.3,49647,1,4,0)
+ ;;=4^J95.850
+ ;;^UTILITY(U,$J,358.3,49647,2)
+ ;;=^5008343
+ ;;^UTILITY(U,$J,358.3,49648,0)
+ ;;=J95.851^^191^2474^60
+ ;;^UTILITY(U,$J,358.3,49648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52172,1,3,0)
- ;;=3^Dependence on Wheelchair
- ;;^UTILITY(U,$J,358.3,52172,1,4,0)
- ;;=4^Z99.3
- ;;^UTILITY(U,$J,358.3,52172,2)
- ;;=^5063759
- ;;^UTILITY(U,$J,358.3,52173,0)
- ;;=Z99.89^^235^2574^1
- ;;^UTILITY(U,$J,358.3,52173,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52173,1,3,0)
- ;;=3^Dependence on Enabling Machines/Devices NOS
- ;;^UTILITY(U,$J,358.3,52173,1,4,0)
- ;;=4^Z99.89
- ;;^UTILITY(U,$J,358.3,52173,2)
- ;;=^5063761
- ;;^UTILITY(U,$J,358.3,52174,0)
- ;;=Z89.201^^235^2575^10
- ;;^UTILITY(U,$J,358.3,52174,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52174,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb,Unspec Level
- ;;^UTILITY(U,$J,358.3,52174,1,4,0)
- ;;=4^Z89.201
- ;;^UTILITY(U,$J,358.3,52174,2)
- ;;=^5063543
- ;;^UTILITY(U,$J,358.3,52175,0)
- ;;=Z89.202^^235^2575^4
+ ;;^UTILITY(U,$J,358.3,49648,1,3,0)
+ ;;=3^Ventilator Associated Pneumonia
+ ;;^UTILITY(U,$J,358.3,49648,1,4,0)
+ ;;=4^J95.851
+ ;;^UTILITY(U,$J,358.3,49648,2)
+ ;;=^336692

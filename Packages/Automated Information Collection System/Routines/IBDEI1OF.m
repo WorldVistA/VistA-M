@@ -1,136 +1,126 @@
-IBDEI1OF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28484,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,28484,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,28485,0)
- ;;=C61.^^112^1424^21
- ;;^UTILITY(U,$J,358.3,28485,1,0)
+ ;;^UTILITY(U,$J,358.3,26797,1,3,0)
+ ;;=3^Dementia in Other Dis Class Elsewhere w/o Behav Dist
+ ;;^UTILITY(U,$J,358.3,26797,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,26797,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,26798,0)
+ ;;=A81.01^^110^1286^9
+ ;;^UTILITY(U,$J,358.3,26798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28485,1,3,0)
- ;;=3^Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,28485,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,28485,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,28486,0)
- ;;=N20.0^^112^1424^2
- ;;^UTILITY(U,$J,358.3,28486,1,0)
+ ;;^UTILITY(U,$J,358.3,26798,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,26798,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,26798,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,26799,0)
+ ;;=F05.^^110^1286^13
+ ;;^UTILITY(U,$J,358.3,26799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28486,1,3,0)
- ;;=3^Calculus of Kidney
- ;;^UTILITY(U,$J,358.3,28486,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,28486,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,28487,0)
- ;;=N39.0^^112^1424^28
- ;;^UTILITY(U,$J,358.3,28487,1,0)
+ ;;^UTILITY(U,$J,358.3,26799,1,3,0)
+ ;;=3^Delirium d/t Physiological Cond
+ ;;^UTILITY(U,$J,358.3,26799,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,26799,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,26800,0)
+ ;;=R41.0^^110^1286^19
+ ;;^UTILITY(U,$J,358.3,26800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28487,1,3,0)
- ;;=3^UTI,Site Unspec
- ;;^UTILITY(U,$J,358.3,28487,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,28487,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,28488,0)
- ;;=N40.0^^112^1424^12
- ;;^UTILITY(U,$J,358.3,28488,1,0)
+ ;;^UTILITY(U,$J,358.3,26800,1,3,0)
+ ;;=3^Disorientation,Unspec
+ ;;^UTILITY(U,$J,358.3,26800,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,26800,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,26801,0)
+ ;;=G31.09^^110^1286^20
+ ;;^UTILITY(U,$J,358.3,26801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28488,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,28488,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,28488,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,28489,0)
- ;;=N40.1^^112^1424^11
- ;;^UTILITY(U,$J,358.3,28489,1,0)
+ ;;^UTILITY(U,$J,358.3,26801,1,3,0)
+ ;;=3^Frontotemporal Disease
+ ;;^UTILITY(U,$J,358.3,26801,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,26801,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,26802,0)
+ ;;=G90.3^^110^1286^24
+ ;;^UTILITY(U,$J,358.3,26802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28489,1,3,0)
- ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,28489,1,4,0)
- ;;=4^N40.1
- ;;^UTILITY(U,$J,358.3,28489,2)
- ;;=^5015690
- ;;^UTILITY(U,$J,358.3,28490,0)
- ;;=N40.2^^112^1424^24
- ;;^UTILITY(U,$J,358.3,28490,1,0)
+ ;;^UTILITY(U,$J,358.3,26802,1,3,0)
+ ;;=3^Multi-System Degeneration of Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,26802,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,26802,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,26803,0)
+ ;;=A81.9^^110^1286^28
+ ;;^UTILITY(U,$J,358.3,26803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28490,1,3,0)
- ;;=3^Nodular Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,28490,1,4,0)
- ;;=4^N40.2
- ;;^UTILITY(U,$J,358.3,28490,2)
- ;;=^5015691
- ;;^UTILITY(U,$J,358.3,28491,0)
- ;;=N40.3^^112^1424^23
- ;;^UTILITY(U,$J,358.3,28491,1,0)
+ ;;^UTILITY(U,$J,358.3,26803,1,3,0)
+ ;;=3^Prion Disease
+ ;;^UTILITY(U,$J,358.3,26803,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,26803,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,26804,0)
+ ;;=S06.2X9S^^110^1286^31
+ ;;^UTILITY(U,$J,358.3,26804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28491,1,3,0)
- ;;=3^Nodular Prostate w/ Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,28491,1,4,0)
- ;;=4^N40.3
- ;;^UTILITY(U,$J,358.3,28491,2)
- ;;=^5015692
- ;;^UTILITY(U,$J,358.3,28492,0)
- ;;=N42.83^^112^1424^26
- ;;^UTILITY(U,$J,358.3,28492,1,0)
+ ;;^UTILITY(U,$J,358.3,26804,1,3,0)
+ ;;=3^TBI,Diffuse w/ Unspec Duration of LOC,Sequela
+ ;;^UTILITY(U,$J,358.3,26804,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,26804,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,26805,0)
+ ;;=R41.9^^110^1286^25
+ ;;^UTILITY(U,$J,358.3,26805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28492,1,3,0)
- ;;=3^Prostate Cyst
- ;;^UTILITY(U,$J,358.3,28492,1,4,0)
- ;;=4^N42.83
- ;;^UTILITY(U,$J,358.3,28492,2)
- ;;=^322241
- ;;^UTILITY(U,$J,358.3,28493,0)
- ;;=N52.9^^112^1424^13
- ;;^UTILITY(U,$J,358.3,28493,1,0)
+ ;;^UTILITY(U,$J,358.3,26805,1,3,0)
+ ;;=3^Neurocognitive D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,26805,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,26805,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,26806,0)
+ ;;=F01.50^^110^1286^33
+ ;;^UTILITY(U,$J,358.3,26806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28493,1,3,0)
- ;;=3^Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,28493,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,28493,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,28494,0)
- ;;=R39.89^^112^1424^15
- ;;^UTILITY(U,$J,358.3,28494,1,0)
+ ;;^UTILITY(U,$J,358.3,26806,1,3,0)
+ ;;=3^Vascular Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,26806,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,26806,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,26807,0)
+ ;;=F06.31^^110^1287^1
+ ;;^UTILITY(U,$J,358.3,26807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28494,1,3,0)
- ;;=3^Genitourinary System Symptoms/Signs NEC
- ;;^UTILITY(U,$J,358.3,28494,1,4,0)
- ;;=4^R39.89
- ;;^UTILITY(U,$J,358.3,28494,2)
- ;;=^5019350
- ;;^UTILITY(U,$J,358.3,28495,0)
- ;;=R39.2^^112^1424^14
- ;;^UTILITY(U,$J,358.3,28495,1,0)
+ ;;^UTILITY(U,$J,358.3,26807,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Dep Feat
+ ;;^UTILITY(U,$J,358.3,26807,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,26807,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,26808,0)
+ ;;=F06.32^^110^1287^2
+ ;;^UTILITY(U,$J,358.3,26808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28495,1,3,0)
- ;;=3^Extrarenal Uremia
- ;;^UTILITY(U,$J,358.3,28495,1,4,0)
- ;;=4^R39.2
- ;;^UTILITY(U,$J,358.3,28495,2)
- ;;=^5019348
- ;;^UTILITY(U,$J,358.3,28496,0)
- ;;=R30.1^^112^1424^29
- ;;^UTILITY(U,$J,358.3,28496,1,0)
+ ;;^UTILITY(U,$J,358.3,26808,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Maj Dep-Like Ep
+ ;;^UTILITY(U,$J,358.3,26808,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,26808,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,26809,0)
+ ;;=F32.0^^110^1287^17
+ ;;^UTILITY(U,$J,358.3,26809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28496,1,3,0)
- ;;=3^Vesical Tenesmus
- ;;^UTILITY(U,$J,358.3,28496,1,4,0)
- ;;=4^R30.1
- ;;^UTILITY(U,$J,358.3,28496,2)
- ;;=^5019323
- ;;^UTILITY(U,$J,358.3,28497,0)
- ;;=Z85.46^^112^1424^16
- ;;^UTILITY(U,$J,358.3,28497,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28497,1,3,0)
- ;;=3^Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,28497,1,4,0)
- ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,26809,1,3,0)
+ ;;=3^MDD,Single Episode,Mild

@@ -1,134 +1,122 @@
-IBDEI1H6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1H6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25044,0)
- ;;=F78.^^93^1127^5
- ;;^UTILITY(U,$J,358.3,25044,1,0)
+ ;;^UTILITY(U,$J,358.3,23591,2)
+ ;;=^5157595
+ ;;^UTILITY(U,$J,358.3,23592,0)
+ ;;=T81.49XA^^105^1174^57
+ ;;^UTILITY(U,$J,358.3,23592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25044,1,3,0)
- ;;=3^Intellectual Disabilities,Oth Specified
- ;;^UTILITY(U,$J,358.3,25044,1,4,0)
- ;;=4^F78.
- ;;^UTILITY(U,$J,358.3,25044,2)
- ;;=^5003672
- ;;^UTILITY(U,$J,358.3,25045,0)
- ;;=F79.^^93^1127^6
- ;;^UTILITY(U,$J,358.3,25045,1,0)
+ ;;^UTILITY(U,$J,358.3,23592,1,3,0)
+ ;;=3^Infect Following Proced,Oth Surg Site,Init
+ ;;^UTILITY(U,$J,358.3,23592,1,4,0)
+ ;;=4^T81.49XA
+ ;;^UTILITY(U,$J,358.3,23592,2)
+ ;;=^5157599
+ ;;^UTILITY(U,$J,358.3,23593,0)
+ ;;=T81.49XD^^105^1174^58
+ ;;^UTILITY(U,$J,358.3,23593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25045,1,3,0)
- ;;=3^Intellectual Disabilities,Unspec
- ;;^UTILITY(U,$J,358.3,25045,1,4,0)
- ;;=4^F79.
- ;;^UTILITY(U,$J,358.3,25045,2)
- ;;=^5003673
- ;;^UTILITY(U,$J,358.3,25046,0)
- ;;=Z00.6^^93^1128^1
- ;;^UTILITY(U,$J,358.3,25046,1,0)
+ ;;^UTILITY(U,$J,358.3,23593,1,3,0)
+ ;;=3^Infect Following Proced,Oth Surg Site,Subs
+ ;;^UTILITY(U,$J,358.3,23593,1,4,0)
+ ;;=4^T81.49XD
+ ;;^UTILITY(U,$J,358.3,23593,2)
+ ;;=^5157600
+ ;;^UTILITY(U,$J,358.3,23594,0)
+ ;;=T81.49XS^^105^1174^59
+ ;;^UTILITY(U,$J,358.3,23594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25046,1,3,0)
- ;;=3^Exam of Participant of Control in Clinical Research Program
- ;;^UTILITY(U,$J,358.3,25046,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,25046,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,25047,0)
- ;;=F45.22^^93^1129^1
- ;;^UTILITY(U,$J,358.3,25047,1,0)
+ ;;^UTILITY(U,$J,358.3,23594,1,3,0)
+ ;;=3^Infect Following Proced,Oth Surg Site,Sequela
+ ;;^UTILITY(U,$J,358.3,23594,1,4,0)
+ ;;=4^T81.49XS
+ ;;^UTILITY(U,$J,358.3,23594,2)
+ ;;=^5157601
+ ;;^UTILITY(U,$J,358.3,23595,0)
+ ;;=T81.44XA^^105^1174^132
+ ;;^UTILITY(U,$J,358.3,23595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25047,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,25047,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,25047,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,25048,0)
- ;;=F45.20^^93^1129^7
- ;;^UTILITY(U,$J,358.3,25048,1,0)
+ ;;^UTILITY(U,$J,358.3,23595,1,3,0)
+ ;;=3^Sepsis Following Proced,Init
+ ;;^UTILITY(U,$J,358.3,23595,1,4,0)
+ ;;=4^T81.44XA
+ ;;^UTILITY(U,$J,358.3,23595,2)
+ ;;=^5157596
+ ;;^UTILITY(U,$J,358.3,23596,0)
+ ;;=T81.44XD^^105^1174^134
+ ;;^UTILITY(U,$J,358.3,23596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25048,1,3,0)
- ;;=3^Hypochondiacal Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25048,1,4,0)
- ;;=4^F45.20
- ;;^UTILITY(U,$J,358.3,25048,2)
- ;;=^5003586
- ;;^UTILITY(U,$J,358.3,25049,0)
- ;;=F45.21^^93^1129^9
- ;;^UTILITY(U,$J,358.3,25049,1,0)
+ ;;^UTILITY(U,$J,358.3,23596,1,3,0)
+ ;;=3^Sepsis Following Proced,Subs
+ ;;^UTILITY(U,$J,358.3,23596,1,4,0)
+ ;;=4^T81.44XD
+ ;;^UTILITY(U,$J,358.3,23596,2)
+ ;;=^5157597
+ ;;^UTILITY(U,$J,358.3,23597,0)
+ ;;=T81.44XS^^105^1174^133
+ ;;^UTILITY(U,$J,358.3,23597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25049,1,3,0)
- ;;=3^Hypochondriasis
- ;;^UTILITY(U,$J,358.3,25049,1,4,0)
- ;;=4^F45.21
- ;;^UTILITY(U,$J,358.3,25049,2)
- ;;=^5003587
- ;;^UTILITY(U,$J,358.3,25050,0)
- ;;=F45.29^^93^1129^8
- ;;^UTILITY(U,$J,358.3,25050,1,0)
+ ;;^UTILITY(U,$J,358.3,23597,1,3,0)
+ ;;=3^Sepsis Following Proced,Sequela
+ ;;^UTILITY(U,$J,358.3,23597,1,4,0)
+ ;;=4^T81.44XS
+ ;;^UTILITY(U,$J,358.3,23597,2)
+ ;;=^5157598
+ ;;^UTILITY(U,$J,358.3,23598,0)
+ ;;=T81.41XS^^105^1174^63
+ ;;^UTILITY(U,$J,358.3,23598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25050,1,3,0)
- ;;=3^Hypochondriacal Disorders NEC
- ;;^UTILITY(U,$J,358.3,25050,1,4,0)
- ;;=4^F45.29
- ;;^UTILITY(U,$J,358.3,25050,2)
- ;;=^5003589
- ;;^UTILITY(U,$J,358.3,25051,0)
- ;;=F45.8^^93^1129^15
- ;;^UTILITY(U,$J,358.3,25051,1,0)
+ ;;^UTILITY(U,$J,358.3,23598,1,3,0)
+ ;;=3^Infect Following Proced,Superfic Incis Surg Site,Sequela
+ ;;^UTILITY(U,$J,358.3,23598,1,4,0)
+ ;;=4^T81.41XS
+ ;;^UTILITY(U,$J,358.3,23598,2)
+ ;;=^5157589
+ ;;^UTILITY(U,$J,358.3,23599,0)
+ ;;=T81.40XA^^105^1174^64
+ ;;^UTILITY(U,$J,358.3,23599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25051,1,3,0)
- ;;=3^Somatoform Disorders NEC
- ;;^UTILITY(U,$J,358.3,25051,1,4,0)
- ;;=4^F45.8
- ;;^UTILITY(U,$J,358.3,25051,2)
- ;;=^331915
- ;;^UTILITY(U,$J,358.3,25052,0)
- ;;=F45.41^^93^1129^10
- ;;^UTILITY(U,$J,358.3,25052,1,0)
+ ;;^UTILITY(U,$J,358.3,23599,1,3,0)
+ ;;=3^Infect Following Proced,Unspec,Init
+ ;;^UTILITY(U,$J,358.3,23599,1,4,0)
+ ;;=4^T81.40XA
+ ;;^UTILITY(U,$J,358.3,23599,2)
+ ;;=^5157584
+ ;;^UTILITY(U,$J,358.3,23600,0)
+ ;;=F10.10^^105^1175^2
+ ;;^UTILITY(U,$J,358.3,23600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25052,1,3,0)
- ;;=3^Pain Disorder Exclusively Related to Psychological Factors
- ;;^UTILITY(U,$J,358.3,25052,1,4,0)
- ;;=4^F45.41
- ;;^UTILITY(U,$J,358.3,25052,2)
- ;;=^5003590
- ;;^UTILITY(U,$J,358.3,25053,0)
- ;;=F45.42^^93^1129^11
- ;;^UTILITY(U,$J,358.3,25053,1,0)
+ ;;^UTILITY(U,$J,358.3,23600,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,23600,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,23600,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,23601,0)
+ ;;=F10.14^^105^1175^9
+ ;;^UTILITY(U,$J,358.3,23601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25053,1,3,0)
- ;;=3^Pain Disorder w/ Related Psychological Factors
- ;;^UTILITY(U,$J,358.3,25053,1,4,0)
- ;;=4^F45.42
- ;;^UTILITY(U,$J,358.3,25053,2)
- ;;=^5003591
- ;;^UTILITY(U,$J,358.3,25054,0)
- ;;=F45.0^^93^1129^13
- ;;^UTILITY(U,$J,358.3,25054,1,0)
+ ;;^UTILITY(U,$J,358.3,23601,1,3,0)
+ ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23601,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,23601,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,23602,0)
+ ;;=F10.182^^105^1175^11
+ ;;^UTILITY(U,$J,358.3,23602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25054,1,3,0)
- ;;=3^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,25054,1,4,0)
- ;;=4^F45.0
- ;;^UTILITY(U,$J,358.3,25054,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,25055,0)
- ;;=F45.9^^93^1129^14
- ;;^UTILITY(U,$J,358.3,25055,1,0)
+ ;;^UTILITY(U,$J,358.3,23602,1,3,0)
+ ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23602,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,23602,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,23603,0)
+ ;;=F10.20^^105^1175^3
+ ;;^UTILITY(U,$J,358.3,23603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25055,1,3,0)
- ;;=3^Somatoform Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25055,1,4,0)
- ;;=4^F45.9
- ;;^UTILITY(U,$J,358.3,25055,2)
- ;;=^5003592
- ;;^UTILITY(U,$J,358.3,25056,0)
- ;;=F45.1^^93^1129^16
- ;;^UTILITY(U,$J,358.3,25056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25056,1,3,0)
- ;;=3^Undifferntiated Somatoform Disorder
- ;;^UTILITY(U,$J,358.3,25056,1,4,0)
- ;;=4^F45.1
- ;;^UTILITY(U,$J,358.3,25056,2)
- ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,23603,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe

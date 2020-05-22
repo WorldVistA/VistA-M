@@ -1,122 +1,128 @@
-IBDEI1E4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1E4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23619,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,23620,0)
- ;;=W18.40XD^^87^1000^106
- ;;^UTILITY(U,$J,358.3,23620,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23620,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23620,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,23620,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,23621,0)
- ;;=W18.41XA^^87^1000^107
- ;;^UTILITY(U,$J,358.3,23621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23621,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,23621,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,23621,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,23622,0)
- ;;=W18.41XD^^87^1000^108
- ;;^UTILITY(U,$J,358.3,23622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23622,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23622,1,4,0)
- ;;=4^W18.41XD
- ;;^UTILITY(U,$J,358.3,23622,2)
- ;;=^5059822
- ;;^UTILITY(U,$J,358.3,23623,0)
- ;;=W18.42XA^^87^1000^109
- ;;^UTILITY(U,$J,358.3,23623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23623,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,23623,1,4,0)
- ;;=4^W18.42XA
- ;;^UTILITY(U,$J,358.3,23623,2)
- ;;=^5059824
- ;;^UTILITY(U,$J,358.3,23624,0)
- ;;=W18.42XD^^87^1000^110
- ;;^UTILITY(U,$J,358.3,23624,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23624,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23624,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,23624,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,23625,0)
- ;;=W18.43XA^^87^1000^103
- ;;^UTILITY(U,$J,358.3,23625,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23625,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,23625,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,23625,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,23626,0)
- ;;=W18.43XD^^87^1000^104
- ;;^UTILITY(U,$J,358.3,23626,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23626,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23626,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,23626,2)
- ;;=^5059828
- ;;^UTILITY(U,$J,358.3,23627,0)
- ;;=W18.49XA^^87^1000^111
- ;;^UTILITY(U,$J,358.3,23627,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23627,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23627,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,23627,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,23628,0)
- ;;=W18.49XD^^87^1000^112
- ;;^UTILITY(U,$J,358.3,23628,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23628,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23628,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,23628,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,23629,0)
- ;;=W19.XXXA^^87^1000^89
- ;;^UTILITY(U,$J,358.3,23629,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23629,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,23629,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,23629,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,23630,0)
- ;;=W19.XXXD^^87^1000^90
- ;;^UTILITY(U,$J,358.3,23630,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23630,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23630,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,23630,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,23631,0)
- ;;=W54.0XXA^^87^1000^11
- ;;^UTILITY(U,$J,358.3,23631,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23631,1,3,0)
- ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22224,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,22224,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,22225,0)
+ ;;=99241^^100^1133^1
+ ;;^UTILITY(U,$J,358.3,22225,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22225,1,1,0)
+ ;;=1^Prob Focused Exam
+ ;;^UTILITY(U,$J,358.3,22225,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,22226,0)
+ ;;=99242^^100^1133^2
+ ;;^UTILITY(U,$J,358.3,22226,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22226,1,1,0)
+ ;;=1^Exp Prob Focused Exam
+ ;;^UTILITY(U,$J,358.3,22226,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,22227,0)
+ ;;=99243^^100^1133^3
+ ;;^UTILITY(U,$J,358.3,22227,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22227,1,1,0)
+ ;;=1^Detailed Exam
+ ;;^UTILITY(U,$J,358.3,22227,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,22228,0)
+ ;;=99244^^100^1133^4
+ ;;^UTILITY(U,$J,358.3,22228,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22228,1,1,0)
+ ;;=1^Comp Exam,Mod MDM
+ ;;^UTILITY(U,$J,358.3,22228,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,22229,0)
+ ;;=99245^^100^1133^5
+ ;;^UTILITY(U,$J,358.3,22229,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22229,1,1,0)
+ ;;=1^Comp Exam,High MDM
+ ;;^UTILITY(U,$J,358.3,22229,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,22230,0)
+ ;;=90632^^101^1134^9^^^^1
+ ;;^UTILITY(U,$J,358.3,22230,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22230,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,22230,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,22231,0)
+ ;;=90746^^101^1134^11^^^^1
+ ;;^UTILITY(U,$J,358.3,22231,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22231,1,2,0)
+ ;;=2^90746
+ ;;^UTILITY(U,$J,358.3,22231,1,3,0)
+ ;;=3^Hepatitis B Vaccine
+ ;;^UTILITY(U,$J,358.3,22232,0)
+ ;;=90636^^101^1134^10^^^^1
+ ;;^UTILITY(U,$J,358.3,22232,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22232,1,2,0)
+ ;;=2^90636
+ ;;^UTILITY(U,$J,358.3,22232,1,3,0)
+ ;;=3^Hepatitis A&B Vaccine
+ ;;^UTILITY(U,$J,358.3,22233,0)
+ ;;=90707^^101^1134^15^^^^1
+ ;;^UTILITY(U,$J,358.3,22233,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22233,1,2,0)
+ ;;=2^90707
+ ;;^UTILITY(U,$J,358.3,22233,1,3,0)
+ ;;=3^MMR Vaccine
+ ;;^UTILITY(U,$J,358.3,22234,0)
+ ;;=90658^^101^1134^2^^^^1
+ ;;^UTILITY(U,$J,358.3,22234,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22234,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,22234,1,3,0)
+ ;;=3^Flu Vaccine,Lo Dose Multi Dose Vials (Afluria)
+ ;;^UTILITY(U,$J,358.3,22235,0)
+ ;;=90732^^101^1134^17^^^^1
+ ;;^UTILITY(U,$J,358.3,22235,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22235,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,22235,1,3,0)
+ ;;=3^Pneumococcal (PPSV23) VAccine
+ ;;^UTILITY(U,$J,358.3,22236,0)
+ ;;=90715^^101^1134^22^^^^1
+ ;;^UTILITY(U,$J,358.3,22236,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22236,1,2,0)
+ ;;=2^90715
+ ;;^UTILITY(U,$J,358.3,22236,1,3,0)
+ ;;=3^Tdap Vaccine
+ ;;^UTILITY(U,$J,358.3,22237,0)
+ ;;=90736^^101^1134^26^^^^1
+ ;;^UTILITY(U,$J,358.3,22237,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22237,1,2,0)
+ ;;=2^90736
+ ;;^UTILITY(U,$J,358.3,22237,1,3,0)
+ ;;=3^Zoster (Shingles) Vaccine
+ ;;^UTILITY(U,$J,358.3,22238,0)
+ ;;=90714^^101^1134^21^^^^1
+ ;;^UTILITY(U,$J,358.3,22238,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22238,1,2,0)
+ ;;=2^90714
+ ;;^UTILITY(U,$J,358.3,22238,1,3,0)
+ ;;=3^TD Vaccine
+ ;;^UTILITY(U,$J,358.3,22239,0)
+ ;;=90656^^101^1134^5^^^^1
+ ;;^UTILITY(U,$J,358.3,22239,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22239,1,2,0)
+ ;;=2^90656
+ ;;^UTILITY(U,$J,358.3,22239,1,3,0)
+ ;;=3^Flu Vaccine,Preservative-Free

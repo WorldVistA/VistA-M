@@ -1,132 +1,116 @@
-IBDEI2ON ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ON ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45019,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,45020,0)
- ;;=G43.B1^^200^2235^27
- ;;^UTILITY(U,$J,358.3,45020,1,0)
+ ;;^UTILITY(U,$J,358.3,42761,1,3,0)
+ ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42761,1,4,0)
+ ;;=4^S32.051S
+ ;;^UTILITY(U,$J,358.3,42761,2)
+ ;;=^5024502
+ ;;^UTILITY(U,$J,358.3,42762,0)
+ ;;=S12.01XS^^155^2073^38
+ ;;^UTILITY(U,$J,358.3,42762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45020,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Intractable
- ;;^UTILITY(U,$J,358.3,45020,1,4,0)
- ;;=4^G43.B1
- ;;^UTILITY(U,$J,358.3,45020,2)
- ;;=^5003915
- ;;^UTILITY(U,$J,358.3,45021,0)
- ;;=G43.A1^^200^2235^7
- ;;^UTILITY(U,$J,358.3,45021,1,0)
+ ;;^UTILITY(U,$J,358.3,42762,1,3,0)
+ ;;=3^Stable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42762,1,4,0)
+ ;;=4^S12.01XS
+ ;;^UTILITY(U,$J,358.3,42762,2)
+ ;;=^5021562
+ ;;^UTILITY(U,$J,358.3,42763,0)
+ ;;=S32.011S^^155^2073^39
+ ;;^UTILITY(U,$J,358.3,42763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45021,1,3,0)
- ;;=3^Cyclical Vomiting Intractable
- ;;^UTILITY(U,$J,358.3,45021,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,45021,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,45022,0)
- ;;=G43.819^^200^2235^23
- ;;^UTILITY(U,$J,358.3,45022,1,0)
+ ;;^UTILITY(U,$J,358.3,42763,1,3,0)
+ ;;=3^Stable burst fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42763,1,4,0)
+ ;;=4^S32.011S
+ ;;^UTILITY(U,$J,358.3,42763,2)
+ ;;=^5024382
+ ;;^UTILITY(U,$J,358.3,42764,0)
+ ;;=S22.011S^^155^2073^40
+ ;;^UTILITY(U,$J,358.3,42764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45022,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,45022,1,4,0)
- ;;=4^G43.819
- ;;^UTILITY(U,$J,358.3,45022,2)
- ;;=^5003903
- ;;^UTILITY(U,$J,358.3,45023,0)
- ;;=G43.909^^200^2235^25
- ;;^UTILITY(U,$J,358.3,45023,1,0)
+ ;;^UTILITY(U,$J,358.3,42764,1,3,0)
+ ;;=3^Stable burst fracture of first thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42764,1,4,0)
+ ;;=4^S22.011S
+ ;;^UTILITY(U,$J,358.3,42764,2)
+ ;;=^5022846
+ ;;^UTILITY(U,$J,358.3,42765,0)
+ ;;=S32.041S^^155^2073^41
+ ;;^UTILITY(U,$J,358.3,42765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45023,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,45023,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,45023,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,45024,0)
- ;;=G43.919^^200^2235^24
- ;;^UTILITY(U,$J,358.3,45024,1,0)
+ ;;^UTILITY(U,$J,358.3,42765,1,3,0)
+ ;;=3^Stable burst fracture of fourth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42765,1,4,0)
+ ;;=4^S32.041S
+ ;;^UTILITY(U,$J,358.3,42765,2)
+ ;;=^5024472
+ ;;^UTILITY(U,$J,358.3,42766,0)
+ ;;=S22.041S^^155^2073^42
+ ;;^UTILITY(U,$J,358.3,42766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45024,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,45024,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,45024,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,45025,0)
- ;;=G51.0^^200^2235^5
- ;;^UTILITY(U,$J,358.3,45025,1,0)
+ ;;^UTILITY(U,$J,358.3,42766,1,3,0)
+ ;;=3^Stable burst fracture of fourth thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42766,1,4,0)
+ ;;=4^S22.041S
+ ;;^UTILITY(U,$J,358.3,42766,2)
+ ;;=^5022936
+ ;;^UTILITY(U,$J,358.3,42767,0)
+ ;;=S32.021S^^155^2073^43
+ ;;^UTILITY(U,$J,358.3,42767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45025,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,45025,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,45025,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,45026,0)
- ;;=G57.10^^200^2235^20
- ;;^UTILITY(U,$J,358.3,45026,1,0)
+ ;;^UTILITY(U,$J,358.3,42767,1,3,0)
+ ;;=3^Stable burst fracture of second lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42767,1,4,0)
+ ;;=4^S32.021S
+ ;;^UTILITY(U,$J,358.3,42767,2)
+ ;;=^5024412
+ ;;^UTILITY(U,$J,358.3,42768,0)
+ ;;=S22.021S^^155^2073^44
+ ;;^UTILITY(U,$J,358.3,42768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45026,1,3,0)
- ;;=3^Meralgia Paresthetica Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,45026,1,4,0)
- ;;=4^G57.10
- ;;^UTILITY(U,$J,358.3,45026,2)
- ;;=^5004041
- ;;^UTILITY(U,$J,358.3,45027,0)
- ;;=G57.12^^200^2235^21
- ;;^UTILITY(U,$J,358.3,45027,1,0)
+ ;;^UTILITY(U,$J,358.3,42768,1,3,0)
+ ;;=3^Stable burst fracture of second thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42768,1,4,0)
+ ;;=4^S22.021S
+ ;;^UTILITY(U,$J,358.3,42768,2)
+ ;;=^5022876
+ ;;^UTILITY(U,$J,358.3,42769,0)
+ ;;=S22.081S^^155^2073^33
+ ;;^UTILITY(U,$J,358.3,42769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45027,1,3,0)
- ;;=3^Meralgia Paresthetica,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,45027,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,45027,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,45028,0)
- ;;=G57.11^^200^2235^22
- ;;^UTILITY(U,$J,358.3,45028,1,0)
+ ;;^UTILITY(U,$J,358.3,42769,1,3,0)
+ ;;=3^Stable burst fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42769,1,4,0)
+ ;;=4^S22.081S
+ ;;^UTILITY(U,$J,358.3,42769,2)
+ ;;=^5023056
+ ;;^UTILITY(U,$J,358.3,42770,0)
+ ;;=S22.051S^^155^2073^34
+ ;;^UTILITY(U,$J,358.3,42770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45028,1,3,0)
- ;;=3^Meralgia Paresthetica,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,45028,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,45028,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,45029,0)
- ;;=G60.8^^200^2235^30
- ;;^UTILITY(U,$J,358.3,45029,1,0)
+ ;;^UTILITY(U,$J,358.3,42770,1,3,0)
+ ;;=3^Stable burst fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42770,1,4,0)
+ ;;=4^S22.051S
+ ;;^UTILITY(U,$J,358.3,42770,2)
+ ;;=^5022966
+ ;;^UTILITY(U,$J,358.3,42771,0)
+ ;;=S22.061S^^155^2073^35
+ ;;^UTILITY(U,$J,358.3,42771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45029,1,3,0)
- ;;=3^Neuropathies,Oth Hereditary and Idiopathic
- ;;^UTILITY(U,$J,358.3,45029,1,4,0)
- ;;=4^G60.8
- ;;^UTILITY(U,$J,358.3,45029,2)
- ;;=^5004070
- ;;^UTILITY(U,$J,358.3,45030,0)
- ;;=G60.9^^200^2235^31
- ;;^UTILITY(U,$J,358.3,45030,1,0)
+ ;;^UTILITY(U,$J,358.3,42771,1,3,0)
+ ;;=3^Stable burst fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42771,1,4,0)
+ ;;=4^S22.061S
+ ;;^UTILITY(U,$J,358.3,42771,2)
+ ;;=^5022996
+ ;;^UTILITY(U,$J,358.3,42772,0)
+ ;;=S22.071S^^155^2073^36
+ ;;^UTILITY(U,$J,358.3,42772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45030,1,3,0)
- ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
- ;;^UTILITY(U,$J,358.3,45030,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,45030,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,45031,0)
- ;;=G89.0^^200^2236^1
- ;;^UTILITY(U,$J,358.3,45031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45031,1,3,0)
- ;;=3^Central Pain Syndrome
- ;;^UTILITY(U,$J,358.3,45031,1,4,0)
- ;;=4^G89.0
- ;;^UTILITY(U,$J,358.3,45031,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,45032,0)
- ;;=G89.11^^200^2236^10
- ;;^UTILITY(U,$J,358.3,45032,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45032,1,3,0)
- ;;=3^Pain d/t Trauma,Acute
+ ;;^UTILITY(U,$J,358.3,42772,1,3,0)
+ ;;=3^Stable burst fracture of T9-T10 vertebra, sequela

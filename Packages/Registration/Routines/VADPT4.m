@@ -1,5 +1,5 @@
-VADPT4 ;ALB/MRL,MJK,ERC,DJS - PATIENT VARIABLES ;16 Sep 2017  11:38AM
- ;;5.3;Registration;**343,342,528,689,688,790,797,935**;Aug 13, 1993;Build 53
+VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43pm
+ ;;5.3;Registration;**343,342,528,689,688,790,797,935,952**;Aug 13, 1993;Build 160
 7 ;Eligibility [ELIG]
  F I=.15,.3,.31,.32,.36,.361,"INE","TYPE","VET" S VAX(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S VAZ=$P(VAX(.36),"^",1) S:$D(^DIC(8,+VAZ,0)) VAZ=VAZ_"^"_$P(^(0),"^",1) S @VAV@($P(VAS,"^",1))=VAZ
@@ -14,6 +14,7 @@ VADPT4 ;ALB/MRL,MJK,ERC,DJS - PATIENT VARIABLES ;16 Sep 2017  11:38AM
 71 S VAZ=VAX("TYPE") S:$D(^DG(391,+VAZ,0)) VAZ=VAZ_"^"_$P(^(0),"^",1) S @VAV@($P(VAS,"^",6))=VAZ
  S @VAV@($P(VAS,"^",7))=$P(VAX(.31),"^",3),VAZ=$P(VAX(.361),"^",1) S:VAZ]"" VAZ=VAZ_"^"_$S(VAZ="V":"VERIFIED",VAZ="P":"PENDING VERIFICATION",VAZ="R":"PENDING RE-VERIFICATION",1:"") S @VAV@($P(VAS,"^",8))=VAZ
  I $D(^DPT(DFN,0)) S VAX=$P(^(0),"^",14),VAX=$G(^DG(408.32,+VAX,0)) I VAX]"" S @VAV@($P(VAS,"^",9))=$P(VAX,"^",2)_"^"_$P(VAX,"^",1)
+ S VAX=$G(^DPT(DFN,.55)) S @VAV@($P(VAS,"^",10))=VAX_$S(VAX]"":"^",1:"")_$$GET1^DIQ(2,DFN_",",.5501,"E")
  Q
  ;
 8 ;Monetary Benefits [MB]

@@ -1,134 +1,124 @@
-IBDEI2CL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39806,1,3,0)
- ;;=3^Strabismus,Vertical,Left Eye
- ;;^UTILITY(U,$J,358.3,39806,1,4,0)
- ;;=4^H50.22
- ;;^UTILITY(U,$J,358.3,39806,2)
- ;;=^5006229
- ;;^UTILITY(U,$J,358.3,39807,0)
- ;;=H53.141^^153^1929^50
- ;;^UTILITY(U,$J,358.3,39807,1,0)
+ ;;^UTILITY(U,$J,358.3,37501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39807,1,3,0)
- ;;=3^Visual Discomfort,Right Eye
- ;;^UTILITY(U,$J,358.3,39807,1,4,0)
- ;;=4^H53.141
- ;;^UTILITY(U,$J,358.3,39807,2)
- ;;=^5006317
- ;;^UTILITY(U,$J,358.3,39808,0)
- ;;=H53.142^^153^1929^49
- ;;^UTILITY(U,$J,358.3,39808,1,0)
+ ;;^UTILITY(U,$J,358.3,37501,1,3,0)
+ ;;=3^Nondisp fx of body of rt talus, init
+ ;;^UTILITY(U,$J,358.3,37501,1,4,0)
+ ;;=4^S92.124A
+ ;;^UTILITY(U,$J,358.3,37501,2)
+ ;;=^5044668
+ ;;^UTILITY(U,$J,358.3,37502,0)
+ ;;=S92.122A^^146^1917^82
+ ;;^UTILITY(U,$J,358.3,37502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39808,1,3,0)
- ;;=3^Visual Discomfort,Left Eye
- ;;^UTILITY(U,$J,358.3,39808,1,4,0)
- ;;=4^H53.142
- ;;^UTILITY(U,$J,358.3,39808,2)
- ;;=^5006318
- ;;^UTILITY(U,$J,358.3,39809,0)
- ;;=H53.143^^153^1929^48
- ;;^UTILITY(U,$J,358.3,39809,1,0)
+ ;;^UTILITY(U,$J,358.3,37502,1,3,0)
+ ;;=3^Disp fx of body of lft talus, init
+ ;;^UTILITY(U,$J,358.3,37502,1,4,0)
+ ;;=4^S92.122A
+ ;;^UTILITY(U,$J,358.3,37502,2)
+ ;;=^5044654
+ ;;^UTILITY(U,$J,358.3,37503,0)
+ ;;=S92.121A^^146^1917^84
+ ;;^UTILITY(U,$J,358.3,37503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39809,1,3,0)
- ;;=3^Visual Discomfort,Bilateral
- ;;^UTILITY(U,$J,358.3,39809,1,4,0)
- ;;=4^H53.143
- ;;^UTILITY(U,$J,358.3,39809,2)
- ;;=^5006319
- ;;^UTILITY(U,$J,358.3,39810,0)
- ;;=H53.8^^153^1929^51
- ;;^UTILITY(U,$J,358.3,39810,1,0)
+ ;;^UTILITY(U,$J,358.3,37503,1,3,0)
+ ;;=3^Disp fx of body of rt talus, init
+ ;;^UTILITY(U,$J,358.3,37503,1,4,0)
+ ;;=4^S92.121A
+ ;;^UTILITY(U,$J,358.3,37503,2)
+ ;;=^5044647
+ ;;^UTILITY(U,$J,358.3,37504,0)
+ ;;=S92.115A^^146^1917^339
+ ;;^UTILITY(U,$J,358.3,37504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39810,1,3,0)
- ;;=3^Visual Disturbance NEC
- ;;^UTILITY(U,$J,358.3,39810,1,4,0)
- ;;=4^H53.8
- ;;^UTILITY(U,$J,358.3,39810,2)
- ;;=^5006356
- ;;^UTILITY(U,$J,358.3,39811,0)
- ;;=H53.16^^153^1929^52
- ;;^UTILITY(U,$J,358.3,39811,1,0)
+ ;;^UTILITY(U,$J,358.3,37504,1,3,0)
+ ;;=3^Nondisp fx of neck of lft talus, init
+ ;;^UTILITY(U,$J,358.3,37504,1,4,0)
+ ;;=4^S92.115A
+ ;;^UTILITY(U,$J,358.3,37504,2)
+ ;;=^5044633
+ ;;^UTILITY(U,$J,358.3,37505,0)
+ ;;=S92.114A^^146^1917^340
+ ;;^UTILITY(U,$J,358.3,37505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39811,1,3,0)
- ;;=3^Visual Disturbance,Psychophysical
- ;;^UTILITY(U,$J,358.3,39811,1,4,0)
- ;;=4^H53.16
- ;;^UTILITY(U,$J,358.3,39811,2)
- ;;=^268838
- ;;^UTILITY(U,$J,358.3,39812,0)
- ;;=H53.10^^153^1929^54
- ;;^UTILITY(U,$J,358.3,39812,1,0)
+ ;;^UTILITY(U,$J,358.3,37505,1,3,0)
+ ;;=3^Nondisp fx of neck of rt talus, init
+ ;;^UTILITY(U,$J,358.3,37505,1,4,0)
+ ;;=4^S92.114A
+ ;;^UTILITY(U,$J,358.3,37505,2)
+ ;;=^5044626
+ ;;^UTILITY(U,$J,358.3,37506,0)
+ ;;=S92.112A^^146^1917^114
+ ;;^UTILITY(U,$J,358.3,37506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39812,1,3,0)
- ;;=3^Visual Disturbance,Subjective,Unspec
- ;;^UTILITY(U,$J,358.3,39812,1,4,0)
- ;;=4^H53.10
- ;;^UTILITY(U,$J,358.3,39812,2)
- ;;=^5006307
- ;;^UTILITY(U,$J,358.3,39813,0)
- ;;=H53.9^^153^1929^55
- ;;^UTILITY(U,$J,358.3,39813,1,0)
+ ;;^UTILITY(U,$J,358.3,37506,1,3,0)
+ ;;=3^Disp fx of neck of lft talus, init
+ ;;^UTILITY(U,$J,358.3,37506,1,4,0)
+ ;;=4^S92.112A
+ ;;^UTILITY(U,$J,358.3,37506,2)
+ ;;=^5044612
+ ;;^UTILITY(U,$J,358.3,37507,0)
+ ;;=S92.251A^^146^1917^113
+ ;;^UTILITY(U,$J,358.3,37507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39813,1,3,0)
- ;;=3^Visual Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,39813,1,4,0)
- ;;=4^H53.9
- ;;^UTILITY(U,$J,358.3,39813,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,39814,0)
- ;;=H53.19^^153^1929^53
- ;;^UTILITY(U,$J,358.3,39814,1,0)
+ ;;^UTILITY(U,$J,358.3,37507,1,3,0)
+ ;;=3^Disp fx of navicular of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37507,1,4,0)
+ ;;=4^S92.251A
+ ;;^UTILITY(U,$J,358.3,37507,2)
+ ;;=^5045004
+ ;;^UTILITY(U,$J,358.3,37508,0)
+ ;;=S92.252A^^146^1917^112
+ ;;^UTILITY(U,$J,358.3,37508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39814,1,3,0)
- ;;=3^Visual Disturbance,Subjective NEC
- ;;^UTILITY(U,$J,358.3,39814,1,4,0)
- ;;=4^H53.19
- ;;^UTILITY(U,$J,358.3,39814,2)
- ;;=^5006321
- ;;^UTILITY(U,$J,358.3,39815,0)
- ;;=H53.451^^153^1929^58
- ;;^UTILITY(U,$J,358.3,39815,1,0)
+ ;;^UTILITY(U,$J,358.3,37508,1,3,0)
+ ;;=3^Disp fx of navicular of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37508,1,4,0)
+ ;;=4^S92.252A
+ ;;^UTILITY(U,$J,358.3,37508,2)
+ ;;=^5045011
+ ;;^UTILITY(U,$J,358.3,37509,0)
+ ;;=S92.254A^^146^1917^338
+ ;;^UTILITY(U,$J,358.3,37509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39815,1,3,0)
- ;;=3^Visual Field Defect,Localized,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,39815,1,4,0)
- ;;=4^H53.451
- ;;^UTILITY(U,$J,358.3,39815,2)
- ;;=^5006337
- ;;^UTILITY(U,$J,358.3,39816,0)
- ;;=H53.452^^153^1929^57
- ;;^UTILITY(U,$J,358.3,39816,1,0)
+ ;;^UTILITY(U,$J,358.3,37509,1,3,0)
+ ;;=3^Nondisp fx of navicular of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37509,1,4,0)
+ ;;=4^S92.254A
+ ;;^UTILITY(U,$J,358.3,37509,2)
+ ;;=^5045025
+ ;;^UTILITY(U,$J,358.3,37510,0)
+ ;;=S92.255A^^146^1917^321
+ ;;^UTILITY(U,$J,358.3,37510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39816,1,3,0)
- ;;=3^Visual Field Defect,Localized,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,39816,1,4,0)
- ;;=4^H53.452
- ;;^UTILITY(U,$J,358.3,39816,2)
- ;;=^5006338
- ;;^UTILITY(U,$J,358.3,39817,0)
- ;;=H53.453^^153^1929^56
- ;;^UTILITY(U,$J,358.3,39817,1,0)
+ ;;^UTILITY(U,$J,358.3,37510,1,3,0)
+ ;;=3^Nondisp fx of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37510,1,4,0)
+ ;;=4^S92.255A
+ ;;^UTILITY(U,$J,358.3,37510,2)
+ ;;=^5045032
+ ;;^UTILITY(U,$J,358.3,37511,0)
+ ;;=S92.211A^^146^1917^86
+ ;;^UTILITY(U,$J,358.3,37511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39817,1,3,0)
- ;;=3^Visual Field Defect,Localized,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,39817,1,4,0)
- ;;=4^H53.453
- ;;^UTILITY(U,$J,358.3,39817,2)
- ;;=^5006339
- ;;^UTILITY(U,$J,358.3,39818,0)
- ;;=C69.31^^153^1930^59
- ;;^UTILITY(U,$J,358.3,39818,1,0)
+ ;;^UTILITY(U,$J,358.3,37511,1,3,0)
+ ;;=3^Disp fx of cuboid bone of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37511,1,4,0)
+ ;;=4^S92.211A
+ ;;^UTILITY(U,$J,358.3,37511,2)
+ ;;=^5044836
+ ;;^UTILITY(U,$J,358.3,37512,0)
+ ;;=S92.212A^^146^1917^85
+ ;;^UTILITY(U,$J,358.3,37512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39818,1,3,0)
- ;;=3^Malig Neop of Right Choroid
- ;;^UTILITY(U,$J,358.3,39818,1,4,0)
- ;;=4^C69.31
- ;;^UTILITY(U,$J,358.3,39818,2)
- ;;=^5001276
- ;;^UTILITY(U,$J,358.3,39819,0)
- ;;=C69.32^^153^1930^58
- ;;^UTILITY(U,$J,358.3,39819,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37512,1,3,0)
+ ;;=3^Disp fx of cuboid bone of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37512,1,4,0)
+ ;;=4^S92.212A
+ ;;^UTILITY(U,$J,358.3,37512,2)
+ ;;=^5044843
+ ;;^UTILITY(U,$J,358.3,37513,0)
+ ;;=S92.214A^^146^1917^311

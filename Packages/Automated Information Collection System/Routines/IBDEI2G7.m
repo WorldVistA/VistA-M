@@ -1,134 +1,114 @@
-IBDEI2G7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2G7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41521,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,41521,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,41522,0)
- ;;=Z96.653^^159^2005^122
- ;;^UTILITY(U,$J,358.3,41522,1,0)
+ ;;^UTILITY(U,$J,358.3,39103,1,4,0)
+ ;;=4^L97.419
+ ;;^UTILITY(U,$J,358.3,39103,2)
+ ;;=^5009534
+ ;;^UTILITY(U,$J,358.3,39104,0)
+ ;;=L97.421^^152^1990^201
+ ;;^UTILITY(U,$J,358.3,39104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41522,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,41522,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,41522,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,41523,0)
- ;;=Z96.7^^159^2005^125
- ;;^UTILITY(U,$J,358.3,41523,1,0)
+ ;;^UTILITY(U,$J,358.3,39104,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,39104,1,4,0)
+ ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,39104,2)
+ ;;=^5009535
+ ;;^UTILITY(U,$J,358.3,39105,0)
+ ;;=L97.422^^152^1990^202
+ ;;^UTILITY(U,$J,358.3,39105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41523,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,41523,1,4,0)
- ;;=4^Z96.7
- ;;^UTILITY(U,$J,358.3,41523,2)
- ;;=^5063716
- ;;^UTILITY(U,$J,358.3,41524,0)
- ;;=Z97.11^^159^2005^133
- ;;^UTILITY(U,$J,358.3,41524,1,0)
+ ;;^UTILITY(U,$J,358.3,39105,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,39105,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,39105,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,39106,0)
+ ;;=L97.423^^152^1990^203
+ ;;^UTILITY(U,$J,358.3,39106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41524,1,3,0)
- ;;=3^Presence of Right Artificial Arm
- ;;^UTILITY(U,$J,358.3,41524,1,4,0)
- ;;=4^Z97.11
- ;;^UTILITY(U,$J,358.3,41524,2)
- ;;=^5063722
- ;;^UTILITY(U,$J,358.3,41525,0)
- ;;=Z97.12^^159^2005^128
- ;;^UTILITY(U,$J,358.3,41525,1,0)
+ ;;^UTILITY(U,$J,358.3,39106,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,39106,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,39106,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,39107,0)
+ ;;=L97.424^^152^1990^204
+ ;;^UTILITY(U,$J,358.3,39107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41525,1,3,0)
- ;;=3^Presence of Left Artificial Arm
- ;;^UTILITY(U,$J,358.3,41525,1,4,0)
- ;;=4^Z97.12
- ;;^UTILITY(U,$J,358.3,41525,2)
- ;;=^5063723
- ;;^UTILITY(U,$J,358.3,41526,0)
- ;;=Z97.13^^159^2005^136
- ;;^UTILITY(U,$J,358.3,41526,1,0)
+ ;;^UTILITY(U,$J,358.3,39107,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,39107,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,39107,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,39108,0)
+ ;;=L97.429^^152^1990^205
+ ;;^UTILITY(U,$J,358.3,39108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41526,1,3,0)
- ;;=3^Presence of Right Artificial Leg
- ;;^UTILITY(U,$J,358.3,41526,1,4,0)
- ;;=4^Z97.13
- ;;^UTILITY(U,$J,358.3,41526,2)
- ;;=^5063724
- ;;^UTILITY(U,$J,358.3,41527,0)
- ;;=Z97.14^^159^2005^131
- ;;^UTILITY(U,$J,358.3,41527,1,0)
+ ;;^UTILITY(U,$J,358.3,39108,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,39108,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,39108,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,39109,0)
+ ;;=L97.511^^152^1990^238
+ ;;^UTILITY(U,$J,358.3,39109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41527,1,3,0)
- ;;=3^Presence of Left Artificial Leg
- ;;^UTILITY(U,$J,358.3,41527,1,4,0)
- ;;=4^Z97.14
- ;;^UTILITY(U,$J,358.3,41527,2)
- ;;=^5063725
- ;;^UTILITY(U,$J,358.3,41528,0)
- ;;=Z97.15^^159^2005^123
- ;;^UTILITY(U,$J,358.3,41528,1,0)
+ ;;^UTILITY(U,$J,358.3,39109,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,39109,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,39109,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,39110,0)
+ ;;=L97.512^^152^1990^239
+ ;;^UTILITY(U,$J,358.3,39110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41528,1,3,0)
- ;;=3^Presence of Bilateral Artificial Arms
- ;;^UTILITY(U,$J,358.3,41528,1,4,0)
- ;;=4^Z97.15
- ;;^UTILITY(U,$J,358.3,41528,2)
- ;;=^5063726
- ;;^UTILITY(U,$J,358.3,41529,0)
- ;;=Z97.16^^159^2005^124
- ;;^UTILITY(U,$J,358.3,41529,1,0)
+ ;;^UTILITY(U,$J,358.3,39110,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,39110,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,39110,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,39111,0)
+ ;;=L97.513^^152^1990^240
+ ;;^UTILITY(U,$J,358.3,39111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41529,1,3,0)
- ;;=3^Presence of Bilateral Artificial Legs
- ;;^UTILITY(U,$J,358.3,41529,1,4,0)
- ;;=4^Z97.16
- ;;^UTILITY(U,$J,358.3,41529,2)
- ;;=^5063727
- ;;^UTILITY(U,$J,358.3,41530,0)
- ;;=Z98.61^^159^2005^17
- ;;^UTILITY(U,$J,358.3,41530,1,0)
+ ;;^UTILITY(U,$J,358.3,39111,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,39111,1,4,0)
+ ;;=4^L97.513
+ ;;^UTILITY(U,$J,358.3,39111,2)
+ ;;=^5009547
+ ;;^UTILITY(U,$J,358.3,39112,0)
+ ;;=L97.514^^152^1990^241
+ ;;^UTILITY(U,$J,358.3,39112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41530,1,3,0)
- ;;=3^Coronary Angioplasty Status
- ;;^UTILITY(U,$J,358.3,41530,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,41530,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,41531,0)
- ;;=Z98.62^^159^2005^73
- ;;^UTILITY(U,$J,358.3,41531,1,0)
+ ;;^UTILITY(U,$J,358.3,39112,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,39112,1,4,0)
+ ;;=4^L97.514
+ ;;^UTILITY(U,$J,358.3,39112,2)
+ ;;=^5009548
+ ;;^UTILITY(U,$J,358.3,39113,0)
+ ;;=L97.519^^152^1990^242
+ ;;^UTILITY(U,$J,358.3,39113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41531,1,3,0)
- ;;=3^Peripheral Vascular Angioplasty Status
- ;;^UTILITY(U,$J,358.3,41531,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,41531,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,41532,0)
- ;;=Z98.84^^159^2005^12
- ;;^UTILITY(U,$J,358.3,41532,1,0)
+ ;;^UTILITY(U,$J,358.3,39113,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,39113,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,39113,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,39114,0)
+ ;;=L97.521^^152^1990^193
+ ;;^UTILITY(U,$J,358.3,39114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41532,1,3,0)
- ;;=3^Bariatric Surgery Status
- ;;^UTILITY(U,$J,358.3,41532,1,4,0)
- ;;=4^Z98.84
- ;;^UTILITY(U,$J,358.3,41532,2)
- ;;=^5063749
- ;;^UTILITY(U,$J,358.3,41533,0)
- ;;=Z99.2^^159^2005^141
- ;;^UTILITY(U,$J,358.3,41533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41533,1,3,0)
- ;;=3^Renal Dialysis Dependence
- ;;^UTILITY(U,$J,358.3,41533,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,41533,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,41534,0)
- ;;=Z99.81^^159^2005^144
- ;;^UTILITY(U,$J,358.3,41534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41534,1,3,0)
- ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,39114,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin

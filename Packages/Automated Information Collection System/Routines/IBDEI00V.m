@@ -1,346 +1,692 @@
-IBDEI00V ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI00V ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,566,1,0)
+ ;;^UTILITY(U,$J,358.3,1544,2)
+ ;;=^5003840
+ ;;^UTILITY(U,$J,358.3,1545,0)
+ ;;=G40.109^^18^131^28
+ ;;^UTILITY(U,$J,358.3,1545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,566,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,566,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,566,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,567,0)
- ;;=F16.259^^3^48^8
- ;;^UTILITY(U,$J,358.3,567,1,0)
+ ;;^UTILITY(U,$J,358.3,1545,1,3,0)
+ ;;=3^Simple Partial Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1545,1,4,0)
+ ;;=4^G40.109
+ ;;^UTILITY(U,$J,358.3,1545,2)
+ ;;=^5003834
+ ;;^UTILITY(U,$J,358.3,1546,0)
+ ;;=G40.111^^18^131^26
+ ;;^UTILITY(U,$J,358.3,1546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,567,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,567,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,567,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,568,0)
- ;;=F16.959^^3^48^9
- ;;^UTILITY(U,$J,358.3,568,1,0)
+ ;;^UTILITY(U,$J,358.3,1546,1,3,0)
+ ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1546,1,4,0)
+ ;;=4^G40.111
+ ;;^UTILITY(U,$J,358.3,1546,2)
+ ;;=^5003835
+ ;;^UTILITY(U,$J,358.3,1547,0)
+ ;;=G40.119^^18^131^27
+ ;;^UTILITY(U,$J,358.3,1547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,568,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,568,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,568,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,569,0)
- ;;=F16.99^^3^48^38
- ;;^UTILITY(U,$J,358.3,569,1,0)
+ ;;^UTILITY(U,$J,358.3,1547,1,3,0)
+ ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1547,1,4,0)
+ ;;=4^G40.119
+ ;;^UTILITY(U,$J,358.3,1547,2)
+ ;;=^5003836
+ ;;^UTILITY(U,$J,358.3,1548,0)
+ ;;=G40.B09^^18^131^23
+ ;;^UTILITY(U,$J,358.3,1548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,569,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,569,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,569,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,570,0)
- ;;=F16.983^^3^48^16
- ;;^UTILITY(U,$J,358.3,570,1,0)
+ ;;^UTILITY(U,$J,358.3,1548,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1548,1,4,0)
+ ;;=4^G40.B09
+ ;;^UTILITY(U,$J,358.3,1548,2)
+ ;;=^5003873
+ ;;^UTILITY(U,$J,358.3,1549,0)
+ ;;=G40.B11^^18^131^21
+ ;;^UTILITY(U,$J,358.3,1549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,570,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,570,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,570,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,571,0)
- ;;=F16.20^^3^48^37
- ;;^UTILITY(U,$J,358.3,571,1,0)
+ ;;^UTILITY(U,$J,358.3,1549,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1549,1,4,0)
+ ;;=4^G40.B11
+ ;;^UTILITY(U,$J,358.3,1549,2)
+ ;;=^5003874
+ ;;^UTILITY(U,$J,358.3,1550,0)
+ ;;=G40.B19^^18^131^22
+ ;;^UTILITY(U,$J,358.3,1550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,571,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,571,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,571,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,572,0)
- ;;=F16.180^^3^48^17
- ;;^UTILITY(U,$J,358.3,572,1,0)
+ ;;^UTILITY(U,$J,358.3,1550,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1550,1,4,0)
+ ;;=4^G40.B19
+ ;;^UTILITY(U,$J,358.3,1550,2)
+ ;;=^5003875
+ ;;^UTILITY(U,$J,358.3,1551,0)
+ ;;=G40.509^^18^131^14
+ ;;^UTILITY(U,$J,358.3,1551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,572,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,572,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,572,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,573,0)
- ;;=F16.280^^3^48^18
- ;;^UTILITY(U,$J,358.3,573,1,0)
+ ;;^UTILITY(U,$J,358.3,1551,1,3,0)
+ ;;=3^Epileptic Seizures d/t External Causes Not Intractalbe w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1551,1,4,0)
+ ;;=4^G40.509
+ ;;^UTILITY(U,$J,358.3,1551,2)
+ ;;=^5003850
+ ;;^UTILITY(U,$J,358.3,1552,0)
+ ;;=G40.909^^18^131^13
+ ;;^UTILITY(U,$J,358.3,1552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,573,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,573,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,573,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,574,0)
- ;;=F16.980^^3^48^19
- ;;^UTILITY(U,$J,358.3,574,1,0)
+ ;;^UTILITY(U,$J,358.3,1552,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,1552,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,1552,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,1553,0)
+ ;;=G40.911^^18^131^10
+ ;;^UTILITY(U,$J,358.3,1553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,574,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,574,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,574,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,575,0)
- ;;=F16.14^^3^48^20
- ;;^UTILITY(U,$J,358.3,575,1,0)
+ ;;^UTILITY(U,$J,358.3,1553,1,3,0)
+ ;;=3^Epilepsy Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,1553,1,4,0)
+ ;;=4^G40.911
+ ;;^UTILITY(U,$J,358.3,1553,2)
+ ;;=^5003866
+ ;;^UTILITY(U,$J,358.3,1554,0)
+ ;;=G40.919^^18^131^11
+ ;;^UTILITY(U,$J,358.3,1554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,575,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,575,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,575,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,576,0)
- ;;=F16.24^^3^48^21
- ;;^UTILITY(U,$J,358.3,576,1,0)
+ ;;^UTILITY(U,$J,358.3,1554,1,3,0)
+ ;;=3^Epilepsy Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,1554,1,4,0)
+ ;;=4^G40.919
+ ;;^UTILITY(U,$J,358.3,1554,2)
+ ;;=^5003867
+ ;;^UTILITY(U,$J,358.3,1555,0)
+ ;;=G93.81^^18^131^24
+ ;;^UTILITY(U,$J,358.3,1555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,576,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,576,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,576,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,577,0)
- ;;=F16.94^^3^48^22
- ;;^UTILITY(U,$J,358.3,577,1,0)
+ ;;^UTILITY(U,$J,358.3,1555,1,3,0)
+ ;;=3^Mesial Temporal Sclerosis
+ ;;^UTILITY(U,$J,358.3,1555,1,4,0)
+ ;;=4^G93.81
+ ;;^UTILITY(U,$J,358.3,1555,2)
+ ;;=^338233
+ ;;^UTILITY(U,$J,358.3,1556,0)
+ ;;=F44.5^^18^131^8
+ ;;^UTILITY(U,$J,358.3,1556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,577,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,577,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,577,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,578,0)
- ;;=F16.14^^3^48^23
- ;;^UTILITY(U,$J,358.3,578,1,0)
+ ;;^UTILITY(U,$J,358.3,1556,1,3,0)
+ ;;=3^Conversion Disorder w/ Seizures/Convulsions
+ ;;^UTILITY(U,$J,358.3,1556,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,1556,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,1557,0)
+ ;;=R40.4^^18^131^31
+ ;;^UTILITY(U,$J,358.3,1557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,578,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,578,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,578,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,579,0)
- ;;=F16.24^^3^48^24
- ;;^UTILITY(U,$J,358.3,579,1,0)
+ ;;^UTILITY(U,$J,358.3,1557,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,1557,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,1557,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,1558,0)
+ ;;=R40.1^^18^131^30
+ ;;^UTILITY(U,$J,358.3,1558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,579,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,579,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,579,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,580,0)
- ;;=F16.94^^3^48^25
- ;;^UTILITY(U,$J,358.3,580,1,0)
+ ;;^UTILITY(U,$J,358.3,1558,1,3,0)
+ ;;=3^Stupor
+ ;;^UTILITY(U,$J,358.3,1558,1,4,0)
+ ;;=4^R40.1
+ ;;^UTILITY(U,$J,358.3,1558,2)
+ ;;=^5019353
+ ;;^UTILITY(U,$J,358.3,1559,0)
+ ;;=R40.0^^18^131^29
+ ;;^UTILITY(U,$J,358.3,1559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,580,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,580,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,580,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,581,0)
- ;;=F16.159^^3^48^26
- ;;^UTILITY(U,$J,358.3,581,1,0)
+ ;;^UTILITY(U,$J,358.3,1559,1,3,0)
+ ;;=3^Somnolence
+ ;;^UTILITY(U,$J,358.3,1559,1,4,0)
+ ;;=4^R40.0
+ ;;^UTILITY(U,$J,358.3,1559,2)
+ ;;=^5019352
+ ;;^UTILITY(U,$J,358.3,1560,0)
+ ;;=R56.9^^18^131^9
+ ;;^UTILITY(U,$J,358.3,1560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,581,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,581,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,581,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,582,0)
- ;;=F16.259^^3^48^27
- ;;^UTILITY(U,$J,358.3,582,1,0)
+ ;;^UTILITY(U,$J,358.3,1560,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,1560,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,1560,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,1561,0)
+ ;;=R56.1^^18^131^25
+ ;;^UTILITY(U,$J,358.3,1561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,582,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,582,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,582,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,583,0)
- ;;=F16.959^^3^48^28
- ;;^UTILITY(U,$J,358.3,583,1,0)
+ ;;^UTILITY(U,$J,358.3,1561,1,3,0)
+ ;;=3^Post Traumatic Seizures
+ ;;^UTILITY(U,$J,358.3,1561,1,4,0)
+ ;;=4^R56.1
+ ;;^UTILITY(U,$J,358.3,1561,2)
+ ;;=^5019523
+ ;;^UTILITY(U,$J,358.3,1562,0)
+ ;;=G40.901^^18^131^12
+ ;;^UTILITY(U,$J,358.3,1562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,583,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,583,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,583,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,584,0)
- ;;=F16.129^^3^48^32
- ;;^UTILITY(U,$J,358.3,584,1,0)
+ ;;^UTILITY(U,$J,358.3,1562,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,1562,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,1562,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,1563,0)
+ ;;=G45.0^^18^132^21
+ ;;^UTILITY(U,$J,358.3,1563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,584,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,584,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,584,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,585,0)
- ;;=F16.229^^3^48^33
- ;;^UTILITY(U,$J,358.3,585,1,0)
+ ;;^UTILITY(U,$J,358.3,1563,1,3,0)
+ ;;=3^Vertebro-Basilar Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,1563,1,4,0)
+ ;;=4^G45.0
+ ;;^UTILITY(U,$J,358.3,1563,2)
+ ;;=^5003955
+ ;;^UTILITY(U,$J,358.3,1564,0)
+ ;;=G45.1^^18^132^4
+ ;;^UTILITY(U,$J,358.3,1564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,585,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,585,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,585,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,586,0)
- ;;=F16.929^^3^48^34
- ;;^UTILITY(U,$J,358.3,586,1,0)
+ ;;^UTILITY(U,$J,358.3,1564,1,3,0)
+ ;;=3^Carotid Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,1564,1,4,0)
+ ;;=4^G45.1
+ ;;^UTILITY(U,$J,358.3,1564,2)
+ ;;=^5003956
+ ;;^UTILITY(U,$J,358.3,1565,0)
+ ;;=G45.3^^18^132^1
+ ;;^UTILITY(U,$J,358.3,1565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,586,1,3,0)
- ;;=3^Phencyclidine Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,586,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,586,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,587,0)
- ;;=F16.121^^3^48^29
- ;;^UTILITY(U,$J,358.3,587,1,0)
+ ;;^UTILITY(U,$J,358.3,1565,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,1565,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,1565,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,1566,0)
+ ;;=G45.4^^18^132^19
+ ;;^UTILITY(U,$J,358.3,1566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,587,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,587,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,587,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,588,0)
- ;;=F16.221^^3^48^30
- ;;^UTILITY(U,$J,358.3,588,1,0)
+ ;;^UTILITY(U,$J,358.3,1566,1,3,0)
+ ;;=3^Transient Global Amnesia
+ ;;^UTILITY(U,$J,358.3,1566,1,4,0)
+ ;;=4^G45.4
+ ;;^UTILITY(U,$J,358.3,1566,2)
+ ;;=^293883
+ ;;^UTILITY(U,$J,358.3,1567,0)
+ ;;=G45.8^^18^132^17
+ ;;^UTILITY(U,$J,358.3,1567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,588,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,588,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,588,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,589,0)
- ;;=F16.921^^3^48^31
- ;;^UTILITY(U,$J,358.3,589,1,0)
+ ;;^UTILITY(U,$J,358.3,1567,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attacks,Other
+ ;;^UTILITY(U,$J,358.3,1567,1,4,0)
+ ;;=4^G45.8
+ ;;^UTILITY(U,$J,358.3,1567,2)
+ ;;=^5003958
+ ;;^UTILITY(U,$J,358.3,1568,0)
+ ;;=G45.9^^18^132^18
+ ;;^UTILITY(U,$J,358.3,1568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,589,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,589,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,589,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,590,0)
- ;;=F11.10^^3^49^24
- ;;^UTILITY(U,$J,358.3,590,1,0)
+ ;;^UTILITY(U,$J,358.3,1568,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attacks,Unspec
+ ;;^UTILITY(U,$J,358.3,1568,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,1568,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,1569,0)
+ ;;=G46.0^^18^132^9
+ ;;^UTILITY(U,$J,358.3,1569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,590,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,590,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,590,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,591,0)
- ;;=F11.129^^3^49^20
- ;;^UTILITY(U,$J,358.3,591,1,0)
+ ;;^UTILITY(U,$J,358.3,1569,1,3,0)
+ ;;=3^Middle Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,1569,1,4,0)
+ ;;=4^G46.0
+ ;;^UTILITY(U,$J,358.3,1569,2)
+ ;;=^5003960
+ ;;^UTILITY(U,$J,358.3,1570,0)
+ ;;=G46.1^^18^132^2
+ ;;^UTILITY(U,$J,358.3,1570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,591,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,591,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,591,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,592,0)
- ;;=F11.14^^3^49^5
- ;;^UTILITY(U,$J,358.3,592,1,0)
+ ;;^UTILITY(U,$J,358.3,1570,1,3,0)
+ ;;=3^Anterior Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,1570,1,4,0)
+ ;;=4^G46.1
+ ;;^UTILITY(U,$J,358.3,1570,2)
+ ;;=^5003961
+ ;;^UTILITY(U,$J,358.3,1571,0)
+ ;;=G46.2^^18^132^14
+ ;;^UTILITY(U,$J,358.3,1571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,592,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,592,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,592,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,593,0)
- ;;=F11.182^^3^49^11
- ;;^UTILITY(U,$J,358.3,593,1,0)
+ ;;^UTILITY(U,$J,358.3,1571,1,3,0)
+ ;;=3^Posterior Cerebral Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,1571,1,4,0)
+ ;;=4^G46.2
+ ;;^UTILITY(U,$J,358.3,1571,2)
+ ;;=^5003962
+ ;;^UTILITY(U,$J,358.3,1572,0)
+ ;;=G46.3^^18^132^3
+ ;;^UTILITY(U,$J,358.3,1572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,593,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,593,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,593,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,594,0)
- ;;=F11.20^^3^49^25
- ;;^UTILITY(U,$J,358.3,594,1,0)
+ ;;^UTILITY(U,$J,358.3,1572,1,3,0)
+ ;;=3^Brain Stem Stroke Syndrome
+ ;;^UTILITY(U,$J,358.3,1572,1,4,0)
+ ;;=4^G46.3
+ ;;^UTILITY(U,$J,358.3,1572,2)
+ ;;=^5003963
+ ;;^UTILITY(U,$J,358.3,1573,0)
+ ;;=G46.7^^18^132^8
+ ;;^UTILITY(U,$J,358.3,1573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,594,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate
- ;;^UTILITY(U,$J,358.3,594,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,594,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,595,0)
- ;;=F11.23^^3^49^27
- ;;^UTILITY(U,$J,358.3,595,1,0)
+ ;;^UTILITY(U,$J,358.3,1573,1,3,0)
+ ;;=3^Lacunar Syndromes,Other
+ ;;^UTILITY(U,$J,358.3,1573,1,4,0)
+ ;;=4^G46.7
+ ;;^UTILITY(U,$J,358.3,1573,2)
+ ;;=^5003967
+ ;;^UTILITY(U,$J,358.3,1574,0)
+ ;;=G46.8^^18^132^20
+ ;;^UTILITY(U,$J,358.3,1574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,595,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,595,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,595,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,596,0)
- ;;=F11.24^^3^49^6
- ;;^UTILITY(U,$J,358.3,596,1,0)
+ ;;^UTILITY(U,$J,358.3,1574,1,3,0)
+ ;;=3^Vascular Syndromes of Brain in CVD,Other
+ ;;^UTILITY(U,$J,358.3,1574,1,4,0)
+ ;;=4^G46.8
+ ;;^UTILITY(U,$J,358.3,1574,2)
+ ;;=^5003968
+ ;;^UTILITY(U,$J,358.3,1575,0)
+ ;;=Z86.73^^18^132^13
+ ;;^UTILITY(U,$J,358.3,1575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,596,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,596,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,596,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,597,0)
- ;;=F11.188^^3^49^1
- ;;^UTILITY(U,$J,358.3,597,1,0)
+ ;;^UTILITY(U,$J,358.3,1575,1,3,0)
+ ;;=3^Personal Hx of TIA/Cerebral Inf w/o Resid Deficits
+ ;;^UTILITY(U,$J,358.3,1575,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,1575,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,1576,0)
+ ;;=G46.4^^18^132^5
+ ;;^UTILITY(U,$J,358.3,1576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,597,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,597,1,4,0)
- ;;=4^F11.188
- ;;^UTILITY(U,$J,358.3,597,2)
- ;;=^5003125
- ;;^UTILITY(U,$J,358.3,598,0)
- ;;=F11.288^^3^49^2
- ;;^UTILITY(U,$J,358.3,598,1,0)
+ ;;^UTILITY(U,$J,358.3,1576,1,3,0)
+ ;;=3^Cerebellar Stroke Syndrome
+ ;;^UTILITY(U,$J,358.3,1576,1,4,0)
+ ;;=4^G46.4
+ ;;^UTILITY(U,$J,358.3,1576,2)
+ ;;=^5003964
+ ;;^UTILITY(U,$J,358.3,1577,0)
+ ;;=I65.23^^18^132^11
+ ;;^UTILITY(U,$J,358.3,1577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,598,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,598,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,598,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,599,0)
- ;;=F11.988^^3^49^3
- ;;^UTILITY(U,$J,358.3,599,1,0)
+ ;;^UTILITY(U,$J,358.3,1577,1,3,0)
+ ;;=3^Occlusion & Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,1577,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,1577,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,1578,0)
+ ;;=I65.29^^18^132^12
+ ;;^UTILITY(U,$J,358.3,1578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,599,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,599,1,4,0)
- ;;=4^F11.988
- ;;^UTILITY(U,$J,358.3,599,2)
- ;;=^5003154
- ;;^UTILITY(U,$J,358.3,600,0)
- ;;=F11.921^^3^49^4
- ;;^UTILITY(U,$J,358.3,600,1,0)
+ ;;^UTILITY(U,$J,358.3,1578,1,3,0)
+ ;;=3^Occlusion & Stenosis of Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1578,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,1578,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,1579,0)
+ ;;=G46.5^^18^132^15
+ ;;^UTILITY(U,$J,358.3,1579,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1579,1,3,0)
+ ;;=3^Pure Motor Lacunar Syndrome
+ ;;^UTILITY(U,$J,358.3,1579,1,4,0)
+ ;;=4^G46.5
+ ;;^UTILITY(U,$J,358.3,1579,2)
+ ;;=^5003965
+ ;;^UTILITY(U,$J,358.3,1580,0)
+ ;;=G46.6^^18^132^16
+ ;;^UTILITY(U,$J,358.3,1580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1580,1,3,0)
+ ;;=3^Pure Sensory Lacunar Syndrome
+ ;;^UTILITY(U,$J,358.3,1580,1,4,0)
+ ;;=4^G46.6
+ ;;^UTILITY(U,$J,358.3,1580,2)
+ ;;=^5003966
+ ;;^UTILITY(U,$J,358.3,1581,0)
+ ;;=I67.7^^18^132^6
+ ;;^UTILITY(U,$J,358.3,1581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1581,1,3,0)
+ ;;=3^Cerebral Arteritis NEC
+ ;;^UTILITY(U,$J,358.3,1581,1,4,0)
+ ;;=4^I67.7
+ ;;^UTILITY(U,$J,358.3,1581,2)
+ ;;=^5007383
+ ;;^UTILITY(U,$J,358.3,1582,0)
+ ;;=G45.2^^18^132^10
+ ;;^UTILITY(U,$J,358.3,1582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1582,1,3,0)
+ ;;=3^Multiple & Bilateral Precerebral Artery Syndromes
+ ;;^UTILITY(U,$J,358.3,1582,1,4,0)
+ ;;=4^G45.2
+ ;;^UTILITY(U,$J,358.3,1582,2)
+ ;;=^5003957
+ ;;^UTILITY(U,$J,358.3,1583,0)
+ ;;=I63.81^^18^132^7
+ ;;^UTILITY(U,$J,358.3,1583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1583,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occ/Stenosis Small Artery,Other
+ ;;^UTILITY(U,$J,358.3,1583,1,4,0)
+ ;;=4^I63.81
+ ;;^UTILITY(U,$J,358.3,1583,2)
+ ;;=^5157372
+ ;;^UTILITY(U,$J,358.3,1584,0)
+ ;;=R42.^^18^133^4
+ ;;^UTILITY(U,$J,358.3,1584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1584,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,1584,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,1584,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,1585,0)
+ ;;=H81.13^^18^133^1
+ ;;^UTILITY(U,$J,358.3,1585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1585,1,3,0)
+ ;;=3^Benign Paroxysmal Veritgo,Bilateral
+ ;;^UTILITY(U,$J,358.3,1585,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,1585,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,1586,0)
+ ;;=H81.11^^18^133^3
+ ;;^UTILITY(U,$J,358.3,1586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1586,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,1586,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,1586,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,1587,0)
+ ;;=H81.12^^18^133^2
+ ;;^UTILITY(U,$J,358.3,1587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1587,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,1587,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,1587,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,1588,0)
+ ;;=H81.4^^18^133^5
+ ;;^UTILITY(U,$J,358.3,1588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1588,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,1588,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,1588,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,1589,0)
+ ;;=G92.^^18^134^7
+ ;;^UTILITY(U,$J,358.3,1589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1589,1,3,0)
+ ;;=3^Toxic Encephalopathy
+ ;;^UTILITY(U,$J,358.3,1589,1,4,0)
+ ;;=4^G92.
+ ;;^UTILITY(U,$J,358.3,1589,2)
+ ;;=^259061
+ ;;^UTILITY(U,$J,358.3,1590,0)
+ ;;=G93.1^^18^134^1
+ ;;^UTILITY(U,$J,358.3,1590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1590,1,3,0)
+ ;;=3^Anoxic Brain Damage NEC
+ ;;^UTILITY(U,$J,358.3,1590,1,4,0)
+ ;;=4^G93.1
+ ;;^UTILITY(U,$J,358.3,1590,2)
+ ;;=^5004179
+ ;;^UTILITY(U,$J,358.3,1591,0)
+ ;;=F05.^^18^134^2
+ ;;^UTILITY(U,$J,358.3,1591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1591,1,3,0)
+ ;;=3^Delirium d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,1591,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,1591,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,1592,0)
+ ;;=G93.49^^18^134^3
+ ;;^UTILITY(U,$J,358.3,1592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1592,1,3,0)
+ ;;=3^Encephalopathy,Other
+ ;;^UTILITY(U,$J,358.3,1592,1,4,0)
+ ;;=4^G93.49
+ ;;^UTILITY(U,$J,358.3,1592,2)
+ ;;=^329919
+ ;;^UTILITY(U,$J,358.3,1593,0)
+ ;;=G93.40^^18^134^4
+ ;;^UTILITY(U,$J,358.3,1593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1593,1,3,0)
+ ;;=3^Encephalopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,1593,1,4,0)
+ ;;=4^G93.40
+ ;;^UTILITY(U,$J,358.3,1593,2)
+ ;;=^329917
+ ;;^UTILITY(U,$J,358.3,1594,0)
+ ;;=G93.41^^18^134^5
+ ;;^UTILITY(U,$J,358.3,1594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1594,1,3,0)
+ ;;=3^Metabolic Encephalopathy
+ ;;^UTILITY(U,$J,358.3,1594,1,4,0)
+ ;;=4^G93.41
+ ;;^UTILITY(U,$J,358.3,1594,2)
+ ;;=^329918
+ ;;^UTILITY(U,$J,358.3,1595,0)
+ ;;=E51.2^^18^134^8
+ ;;^UTILITY(U,$J,358.3,1595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1595,1,3,0)
+ ;;=3^Wernicke's Encephalopathy
+ ;;^UTILITY(U,$J,358.3,1595,1,4,0)
+ ;;=4^E51.2
+ ;;^UTILITY(U,$J,358.3,1595,2)
+ ;;=^127769
+ ;;^UTILITY(U,$J,358.3,1596,0)
+ ;;=F07.81^^18^134^6
+ ;;^UTILITY(U,$J,358.3,1596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1596,1,3,0)
+ ;;=3^Postconcussional Syndrome
+ ;;^UTILITY(U,$J,358.3,1596,1,4,0)
+ ;;=4^F07.81
+ ;;^UTILITY(U,$J,358.3,1596,2)
+ ;;=^5003064
+ ;;^UTILITY(U,$J,358.3,1597,0)
+ ;;=G43.009^^18^135^17
+ ;;^UTILITY(U,$J,358.3,1597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1597,1,3,0)
+ ;;=3^Migraine w/o Aura Not Intractable w/o Status Migrainosus 
+ ;;^UTILITY(U,$J,358.3,1597,1,4,0)
+ ;;=4^G43.009
+ ;;^UTILITY(U,$J,358.3,1597,2)
+ ;;=^5003877
+ ;;^UTILITY(U,$J,358.3,1598,0)
+ ;;=G43.019^^18^135^15
+ ;;^UTILITY(U,$J,358.3,1598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1598,1,3,0)
+ ;;=3^Migraine w/o Aura Intractable
+ ;;^UTILITY(U,$J,358.3,1598,1,4,0)
+ ;;=4^G43.019
+ ;;^UTILITY(U,$J,358.3,1598,2)
+ ;;=^5003879
+ ;;^UTILITY(U,$J,358.3,1599,0)
+ ;;=G43.109^^18^135^13
+ ;;^UTILITY(U,$J,358.3,1599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1599,1,3,0)
+ ;;=3^Migraine w/ Aura Not Intractable
+ ;;^UTILITY(U,$J,358.3,1599,1,4,0)
+ ;;=4^G43.109
+ ;;^UTILITY(U,$J,358.3,1599,2)
+ ;;=^5003881
+ ;;^UTILITY(U,$J,358.3,1600,0)
+ ;;=G43.119^^18^135^11
+ ;;^UTILITY(U,$J,358.3,1600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1600,1,3,0)
+ ;;=3^Migraine w/ Aura Intractable
+ ;;^UTILITY(U,$J,358.3,1600,1,4,0)
+ ;;=4^G43.119
+ ;;^UTILITY(U,$J,358.3,1600,2)
+ ;;=^5003883
+ ;;^UTILITY(U,$J,358.3,1601,0)
+ ;;=G43.909^^18^135^10
+ ;;^UTILITY(U,$J,358.3,1601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1601,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,1601,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,1601,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,1602,0)
+ ;;=G44.209^^18^135^22
+ ;;^UTILITY(U,$J,358.3,1602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1602,1,3,0)
+ ;;=3^Tension-Type Headache Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,1602,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,1602,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,1603,0)
+ ;;=R51.^^18^135^5
+ ;;^UTILITY(U,$J,358.3,1603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1603,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,1603,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,1603,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,1604,0)
+ ;;=G43.011^^18^135^16
+ ;;^UTILITY(U,$J,358.3,1604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1604,1,3,0)
+ ;;=3^Migraine w/o Aura Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,1604,1,4,0)
+ ;;=4^G43.011
+ ;;^UTILITY(U,$J,358.3,1604,2)
+ ;;=^5003878
+ ;;^UTILITY(U,$J,358.3,1605,0)
+ ;;=G43.111^^18^135^12
+ ;;^UTILITY(U,$J,358.3,1605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1605,1,3,0)
+ ;;=3^Migraine w/ Aura Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,1605,1,4,0)
+ ;;=4^G43.111
+ ;;^UTILITY(U,$J,358.3,1605,2)
+ ;;=^5003882
+ ;;^UTILITY(U,$J,358.3,1606,0)
+ ;;=G43.911^^18^135^7
+ ;;^UTILITY(U,$J,358.3,1606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1606,1,3,0)
+ ;;=3^Migraine Intractable w/ Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,1606,1,4,0)
+ ;;=4^G43.911
+ ;;^UTILITY(U,$J,358.3,1606,2)
+ ;;=^5003910
+ ;;^UTILITY(U,$J,358.3,1607,0)
+ ;;=G43.919^^18^135^8
+ ;;^UTILITY(U,$J,358.3,1607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1607,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,1607,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,1607,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,1608,0)
+ ;;=G44.001^^18^135^1
+ ;;^UTILITY(U,$J,358.3,1608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1608,1,3,0)
+ ;;=3^Cluster Headache Syndrome Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,1608,1,4,0)
+ ;;=4^G44.001
+ ;;^UTILITY(U,$J,358.3,1608,2)
+ ;;=^5003920
+ ;;^UTILITY(U,$J,358.3,1609,0)
+ ;;=G44.009^^18^135^2
+ ;;^UTILITY(U,$J,358.3,1609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1609,1,3,0)
+ ;;=3^Cluster Headache Syndrome Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,1609,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,1609,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,1610,0)
+ ;;=G44.301^^18^135^19
+ ;;^UTILITY(U,$J,358.3,1610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1610,1,3,0)
+ ;;=3^Post-Traumatic Headache Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,1610,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,1610,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,1611,0)
+ ;;=G44.41^^18^135^3
+ ;;^UTILITY(U,$J,358.3,1611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1611,1,3,0)
+ ;;=3^Drug-Induced Headache Intractable NEC
+ ;;^UTILITY(U,$J,358.3,1611,1,4,0)
+ ;;=4^G44.41
+ ;;^UTILITY(U,$J,358.3,1611,2)
+ ;;=^5003948
+ ;;^UTILITY(U,$J,358.3,1612,0)
+ ;;=G44.51^^18^135^6
+ ;;^UTILITY(U,$J,358.3,1612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1612,1,3,0)
+ ;;=3^Hemicrania Continua
+ ;;^UTILITY(U,$J,358.3,1612,1,4,0)
+ ;;=4^G44.51
+ ;;^UTILITY(U,$J,358.3,1612,2)
+ ;;=^5003949
+ ;;^UTILITY(U,$J,358.3,1613,0)
+ ;;=G50.0^^18^135^23
+ ;;^UTILITY(U,$J,358.3,1613,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1613,1,3,0)
+ ;;=3^Trigeminal Neuralgia

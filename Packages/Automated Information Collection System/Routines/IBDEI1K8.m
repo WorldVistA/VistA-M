@@ -1,124 +1,124 @@
-IBDEI1K8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1K8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26466,1,3,0)
- ;;=3^Non-phys Team Conf w/o Pt &/or Family,30+ min
- ;;^UTILITY(U,$J,358.3,26467,0)
- ;;=99366^^99^1259^1^^^^1
- ;;^UTILITY(U,$J,358.3,26467,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26467,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,26467,1,3,0)
- ;;=3^Non-phys Team Conf w/ Pt &/or Family,30+ min
- ;;^UTILITY(U,$J,358.3,26468,0)
- ;;=90785^^99^1260^1^^^^1
- ;;^UTILITY(U,$J,358.3,26468,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26468,1,2,0)
- ;;=2^90785
- ;;^UTILITY(U,$J,358.3,26468,1,3,0)
- ;;=3^Interactive Complexity
- ;;^UTILITY(U,$J,358.3,26469,0)
- ;;=H0001^^99^1261^1^^^^1
- ;;^UTILITY(U,$J,358.3,26469,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26469,1,2,0)
- ;;=2^H0001
- ;;^UTILITY(U,$J,358.3,26469,1,3,0)
- ;;=3^Addictions Assessment,Alcohol/Drug
- ;;^UTILITY(U,$J,358.3,26470,0)
- ;;=H0002^^99^1261^11^^^^1
- ;;^UTILITY(U,$J,358.3,26470,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26470,1,2,0)
- ;;=2^H0002
- ;;^UTILITY(U,$J,358.3,26470,1,3,0)
- ;;=3^Screen for Addictions Admission Eligibility
- ;;^UTILITY(U,$J,358.3,26471,0)
- ;;=H0003^^99^1261^6^^^^1
- ;;^UTILITY(U,$J,358.3,26471,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26471,1,2,0)
- ;;=2^H0003
- ;;^UTILITY(U,$J,358.3,26471,1,3,0)
- ;;=3^Alcohol/Drug Screen;lab analysis
- ;;^UTILITY(U,$J,358.3,26472,0)
- ;;=H0004^^99^1261^9^^^^1
- ;;^UTILITY(U,$J,358.3,26472,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26472,1,2,0)
- ;;=2^H0004
- ;;^UTILITY(U,$J,358.3,26472,1,3,0)
- ;;=3^Individual Counseling & Therapy,per 15 min
- ;;^UTILITY(U,$J,358.3,26473,0)
- ;;=H0005^^99^1261^2^^^^1
- ;;^UTILITY(U,$J,358.3,26473,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26473,1,2,0)
- ;;=2^H0005
- ;;^UTILITY(U,$J,358.3,26473,1,3,0)
- ;;=3^Addictions Group Counseling by Clinician
- ;;^UTILITY(U,$J,358.3,26474,0)
- ;;=H0006^^99^1261^5^^^^1
- ;;^UTILITY(U,$J,358.3,26474,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26474,1,2,0)
- ;;=2^H0006
- ;;^UTILITY(U,$J,358.3,26474,1,3,0)
- ;;=3^Alcohol/Drug Case Management
- ;;^UTILITY(U,$J,358.3,26475,0)
- ;;=H0020^^99^1261^10^^^^1
- ;;^UTILITY(U,$J,358.3,26475,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26475,1,2,0)
- ;;=2^H0020
- ;;^UTILITY(U,$J,358.3,26475,1,3,0)
- ;;=3^Methadone Admin &/or Svc by Licensed Program
- ;;^UTILITY(U,$J,358.3,26476,0)
- ;;=H0025^^99^1261^3^^^^1
- ;;^UTILITY(U,$J,358.3,26476,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26476,1,2,0)
- ;;=2^H0025
- ;;^UTILITY(U,$J,358.3,26476,1,3,0)
- ;;=3^Addictions Health Prevention Education Service
- ;;^UTILITY(U,$J,358.3,26477,0)
- ;;=H0030^^99^1261^4^^^^1
- ;;^UTILITY(U,$J,358.3,26477,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26477,1,2,0)
- ;;=2^H0030
- ;;^UTILITY(U,$J,358.3,26477,1,3,0)
- ;;=3^Addictions Hotline Services
- ;;^UTILITY(U,$J,358.3,26478,0)
- ;;=H0007^^99^1261^8^^^^1
- ;;^UTILITY(U,$J,358.3,26478,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26478,1,2,0)
- ;;=2^H0007
- ;;^UTILITY(U,$J,358.3,26478,1,3,0)
- ;;=3^Alcohol/Drug Svcs,Crisis Intervention
- ;;^UTILITY(U,$J,358.3,26479,0)
- ;;=H0014^^99^1261^7^^^^1
- ;;^UTILITY(U,$J,358.3,26479,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26479,1,2,0)
- ;;=2^H0014
- ;;^UTILITY(U,$J,358.3,26479,1,3,0)
- ;;=3^Alcohol/Drug Svcs,Ambulatory Detox
- ;;^UTILITY(U,$J,358.3,26480,0)
- ;;=90791^^99^1262^1^^^^1
- ;;^UTILITY(U,$J,358.3,26480,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26480,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,26480,1,3,0)
- ;;=3^Psychiatric Diagnostic Evaluation
- ;;^UTILITY(U,$J,358.3,26481,0)
- ;;=99354^^99^1263^1^^^^1
- ;;^UTILITY(U,$J,358.3,26481,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,26481,1,2,0)
- ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,24934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24934,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,24934,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,24934,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,24935,0)
+ ;;=Z85.048^^107^1212^91
+ ;;^UTILITY(U,$J,358.3,24935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24935,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
+ ;;^UTILITY(U,$J,358.3,24935,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,24935,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,24936,0)
+ ;;=Z85.118^^107^1212^80
+ ;;^UTILITY(U,$J,358.3,24936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24936,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
+ ;;^UTILITY(U,$J,358.3,24936,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,24936,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,24937,0)
+ ;;=Z85.21^^107^1212^85
+ ;;^UTILITY(U,$J,358.3,24937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24937,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Larynx
+ ;;^UTILITY(U,$J,358.3,24937,1,4,0)
+ ;;=4^Z85.21
+ ;;^UTILITY(U,$J,358.3,24937,2)
+ ;;=^5063411
+ ;;^UTILITY(U,$J,358.3,24938,0)
+ ;;=Z85.3^^107^1212^79
+ ;;^UTILITY(U,$J,358.3,24938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24938,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,24938,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,24938,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,24939,0)
+ ;;=Z85.41^^107^1212^81
+ ;;^UTILITY(U,$J,358.3,24939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24939,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,24939,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,24939,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,24940,0)
+ ;;=Z85.43^^107^1212^89
+ ;;^UTILITY(U,$J,358.3,24940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24940,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,24940,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,24940,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,24941,0)
+ ;;=Z85.46^^107^1212^90
+ ;;^UTILITY(U,$J,358.3,24941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24941,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,24941,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,24941,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,24942,0)
+ ;;=Z85.47^^107^1212^94
+ ;;^UTILITY(U,$J,358.3,24942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24942,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,24942,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,24942,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,24943,0)
+ ;;=Z85.51^^107^1212^78
+ ;;^UTILITY(U,$J,358.3,24943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24943,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,24943,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,24943,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,24944,0)
+ ;;=Z85.528^^107^1212^83
+ ;;^UTILITY(U,$J,358.3,24944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24944,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,24944,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,24944,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,24945,0)
+ ;;=Z85.6^^107^1212^74
+ ;;^UTILITY(U,$J,358.3,24945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24945,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,24945,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,24945,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,24946,0)
+ ;;=Z85.72^^107^1212^98

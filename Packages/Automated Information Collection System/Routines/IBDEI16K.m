@@ -1,8 +1,120 @@
-IBDEI16K ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.8)
- ;;=^IBE(358.8,
- ;;^UTILITY(U,$J,358.8,0)
- ;;=IMP/EXP TEXT AREA^358.8^0^0
+ ;;^UTILITY(U,$J,358.3,18968,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,18969,0)
+ ;;=F19.959^^91^975^12
+ ;;^UTILITY(U,$J,358.3,18969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18969,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18969,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,18969,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,18970,0)
+ ;;=F19.181^^91^975^13
+ ;;^UTILITY(U,$J,358.3,18970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18970,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,18970,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,18970,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,18971,0)
+ ;;=F19.281^^91^975^14
+ ;;^UTILITY(U,$J,358.3,18971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18971,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,18971,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,18971,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,18972,0)
+ ;;=F19.981^^91^975^15
+ ;;^UTILITY(U,$J,358.3,18972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18972,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,18972,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,18972,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,18973,0)
+ ;;=F19.182^^91^975^16
+ ;;^UTILITY(U,$J,358.3,18973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18973,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,18973,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,18973,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,18974,0)
+ ;;=F19.282^^91^975^17
+ ;;^UTILITY(U,$J,358.3,18974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18974,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,18974,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,18974,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,18975,0)
+ ;;=F19.982^^91^975^18
+ ;;^UTILITY(U,$J,358.3,18975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18975,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18975,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,18975,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,18976,0)
+ ;;=F19.129^^91^975^22
+ ;;^UTILITY(U,$J,358.3,18976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18976,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,18976,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,18976,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,18977,0)
+ ;;=F19.229^^91^975^23
+ ;;^UTILITY(U,$J,358.3,18977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18977,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,18977,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,18977,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,18978,0)
+ ;;=F19.929^^91^975^24
+ ;;^UTILITY(U,$J,358.3,18978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18978,1,3,0)
+ ;;=3^Oth/Unk Substance Intox w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18978,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,18978,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,18979,0)
+ ;;=F19.121^^91^975^19
+ ;;^UTILITY(U,$J,358.3,18979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18979,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,18979,1,4,0)
+ ;;=4^F19.121
+ ;;^UTILITY(U,$J,358.3,18979,2)
+ ;;=^5003418
+ ;;^UTILITY(U,$J,358.3,18980,0)
+ ;;=F19.221^^91^975^20
+ ;;^UTILITY(U,$J,358.3,18980,1,0)
+ ;;=^358.31IA^4^2

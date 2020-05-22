@@ -1,120 +1,130 @@
-IBDEI21Z ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI21Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34829,1,4,0)
- ;;=4^S56.112A
- ;;^UTILITY(U,$J,358.3,34829,2)
- ;;=^5031619
- ;;^UTILITY(U,$J,358.3,34830,0)
- ;;=S56.113A^^131^1693^51
- ;;^UTILITY(U,$J,358.3,34830,1,0)
+ ;;^UTILITY(U,$J,358.3,32770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34830,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34830,1,4,0)
- ;;=4^S56.113A
- ;;^UTILITY(U,$J,358.3,34830,2)
- ;;=^5031622
- ;;^UTILITY(U,$J,358.3,34831,0)
- ;;=S56.114A^^131^1693^31
- ;;^UTILITY(U,$J,358.3,34831,1,0)
+ ;;^UTILITY(U,$J,358.3,32770,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,High Risk,OD
+ ;;^UTILITY(U,$J,358.3,32770,1,4,0)
+ ;;=4^H40.021
+ ;;^UTILITY(U,$J,358.3,32770,2)
+ ;;=^5005728
+ ;;^UTILITY(U,$J,358.3,32771,0)
+ ;;=H40.022^^128^1669^11
+ ;;^UTILITY(U,$J,358.3,32771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34831,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34831,1,4,0)
- ;;=4^S56.114A
- ;;^UTILITY(U,$J,358.3,34831,2)
- ;;=^5031625
- ;;^UTILITY(U,$J,358.3,34832,0)
- ;;=S56.115A^^131^1693^53
- ;;^UTILITY(U,$J,358.3,34832,1,0)
+ ;;^UTILITY(U,$J,358.3,32771,1,3,0)
+ ;;=3^OAG w/ Boderline Findings,High Risk,OS
+ ;;^UTILITY(U,$J,358.3,32771,1,4,0)
+ ;;=4^H40.022
+ ;;^UTILITY(U,$J,358.3,32771,2)
+ ;;=^5005729
+ ;;^UTILITY(U,$J,358.3,32772,0)
+ ;;=H40.052^^128^1669^2
+ ;;^UTILITY(U,$J,358.3,32772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34832,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34832,1,4,0)
- ;;=4^S56.115A
- ;;^UTILITY(U,$J,358.3,34832,2)
- ;;=^5031628
- ;;^UTILITY(U,$J,358.3,34833,0)
- ;;=S56.417A^^131^1693^45
- ;;^UTILITY(U,$J,358.3,34833,1,0)
+ ;;^UTILITY(U,$J,358.3,32772,1,3,0)
+ ;;=3^OHTN,OS
+ ;;^UTILITY(U,$J,358.3,32772,1,4,0)
+ ;;=4^H40.052
+ ;;^UTILITY(U,$J,358.3,32772,2)
+ ;;=^5005741
+ ;;^UTILITY(U,$J,358.3,32773,0)
+ ;;=H40.051^^128^1669^1
+ ;;^UTILITY(U,$J,358.3,32773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34833,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34833,1,4,0)
- ;;=4^S56.417A
- ;;^UTILITY(U,$J,358.3,34833,2)
- ;;=^5031781
- ;;^UTILITY(U,$J,358.3,34834,0)
- ;;=S56.418A^^131^1693^25
- ;;^UTILITY(U,$J,358.3,34834,1,0)
+ ;;^UTILITY(U,$J,358.3,32773,1,3,0)
+ ;;=3^OHTN,OD
+ ;;^UTILITY(U,$J,358.3,32773,1,4,0)
+ ;;=4^H40.051
+ ;;^UTILITY(U,$J,358.3,32773,2)
+ ;;=^5005740
+ ;;^UTILITY(U,$J,358.3,32774,0)
+ ;;=H40.053^^128^1669^3
+ ;;^UTILITY(U,$J,358.3,32774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34834,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34834,1,4,0)
- ;;=4^S56.418A
- ;;^UTILITY(U,$J,358.3,34834,2)
- ;;=^5031784
- ;;^UTILITY(U,$J,358.3,34835,0)
- ;;=S56.811A^^131^1693^41
- ;;^UTILITY(U,$J,358.3,34835,1,0)
+ ;;^UTILITY(U,$J,358.3,32774,1,3,0)
+ ;;=3^OHTN,OU
+ ;;^UTILITY(U,$J,358.3,32774,1,4,0)
+ ;;=4^H40.053
+ ;;^UTILITY(U,$J,358.3,32774,2)
+ ;;=^5005742
+ ;;^UTILITY(U,$J,358.3,32775,0)
+ ;;=H40.003^^128^1669^6
+ ;;^UTILITY(U,$J,358.3,32775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34835,1,3,0)
- ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34835,1,4,0)
- ;;=4^S56.811A
- ;;^UTILITY(U,$J,358.3,34835,2)
- ;;=^5031862
- ;;^UTILITY(U,$J,358.3,34836,0)
- ;;=S56.812A^^131^1693^21
- ;;^UTILITY(U,$J,358.3,34836,1,0)
+ ;;^UTILITY(U,$J,358.3,32775,1,3,0)
+ ;;=3^Pre-GLC OU,Unspec
+ ;;^UTILITY(U,$J,358.3,32775,1,4,0)
+ ;;=4^H40.003
+ ;;^UTILITY(U,$J,358.3,32775,2)
+ ;;=^5005722
+ ;;^UTILITY(U,$J,358.3,32776,0)
+ ;;=H40.002^^128^1669^5
+ ;;^UTILITY(U,$J,358.3,32776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34836,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34836,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,34836,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,34837,0)
- ;;=S56.116A^^131^1693^33
- ;;^UTILITY(U,$J,358.3,34837,1,0)
+ ;;^UTILITY(U,$J,358.3,32776,1,3,0)
+ ;;=3^Pre-GLC OS,Unspec
+ ;;^UTILITY(U,$J,358.3,32776,1,4,0)
+ ;;=4^H40.002
+ ;;^UTILITY(U,$J,358.3,32776,2)
+ ;;=^5005721
+ ;;^UTILITY(U,$J,358.3,32777,0)
+ ;;=H40.001^^128^1669^4
+ ;;^UTILITY(U,$J,358.3,32777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34837,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34837,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,34837,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,34838,0)
- ;;=S56.117A^^131^1693^46
- ;;^UTILITY(U,$J,358.3,34838,1,0)
+ ;;^UTILITY(U,$J,358.3,32777,1,3,0)
+ ;;=3^Pre-GLC OD,Unspec
+ ;;^UTILITY(U,$J,358.3,32777,1,4,0)
+ ;;=4^H40.001
+ ;;^UTILITY(U,$J,358.3,32777,2)
+ ;;=^5005720
+ ;;^UTILITY(U,$J,358.3,32778,0)
+ ;;=H40.043^^128^1669^18
+ ;;^UTILITY(U,$J,358.3,32778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34838,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34838,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,34838,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,34839,0)
- ;;=S56.118A^^131^1693^26
- ;;^UTILITY(U,$J,358.3,34839,1,0)
+ ;;^UTILITY(U,$J,358.3,32778,1,3,0)
+ ;;=3^Steroid Responder,OU
+ ;;^UTILITY(U,$J,358.3,32778,1,4,0)
+ ;;=4^H40.043
+ ;;^UTILITY(U,$J,358.3,32778,2)
+ ;;=^5005738
+ ;;^UTILITY(U,$J,358.3,32779,0)
+ ;;=H40.042^^128^1669^17
+ ;;^UTILITY(U,$J,358.3,32779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34839,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34839,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,34839,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,34840,0)
- ;;=S56.211A^^131^1693^40
- ;;^UTILITY(U,$J,358.3,34840,1,0)
+ ;;^UTILITY(U,$J,358.3,32779,1,3,0)
+ ;;=3^Steroid Responder,OS
+ ;;^UTILITY(U,$J,358.3,32779,1,4,0)
+ ;;=4^H40.042
+ ;;^UTILITY(U,$J,358.3,32779,2)
+ ;;=^5005737
+ ;;^UTILITY(U,$J,358.3,32780,0)
+ ;;=H40.041^^128^1669^16
+ ;;^UTILITY(U,$J,358.3,32780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34840,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,34840,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,34840,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,34841,0)
- ;;=S56.212A^^131^1693^20
+ ;;^UTILITY(U,$J,358.3,32780,1,3,0)
+ ;;=3^Steroid Responder,OD
+ ;;^UTILITY(U,$J,358.3,32780,1,4,0)
+ ;;=4^H40.041
+ ;;^UTILITY(U,$J,358.3,32780,2)
+ ;;=^5005736
+ ;;^UTILITY(U,$J,358.3,32781,0)
+ ;;=H40.53X4^^128^1670^46
+ ;;^UTILITY(U,$J,358.3,32781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32781,1,3,0)
+ ;;=3^GLC 2nd to Oth Eye d/o,OU,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,32781,1,4,0)
+ ;;=4^H40.53X4
+ ;;^UTILITY(U,$J,358.3,32781,2)
+ ;;=^5005900
+ ;;^UTILITY(U,$J,358.3,32782,0)
+ ;;=H40.53X1^^128^1670^43
+ ;;^UTILITY(U,$J,358.3,32782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32782,1,3,0)
+ ;;=3^GLC 2nd to Oth Eye d/o,OU,Mild Stage
+ ;;^UTILITY(U,$J,358.3,32782,1,4,0)
+ ;;=4^H40.53X1

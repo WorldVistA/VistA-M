@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: INCONSISTENT DATA ELEMENTS
-17-OCT-2019 20:40:33 ZWR
-^DGIN(38.6,0)="INCONSISTENT DATA ELEMENTS^38.6s^728^146"
+ZWR
+^DGIN(38.6,0)="INCONSISTENT DATA ELEMENTS^38.6s^89^147"
 ^DGIN(38.6,1,0)="NAME FORMAT UNACCEPTABLE^'NAME' CONTAINS LOWERCASE ALPHA CHARACTERS/UNACCEPTABLE PUNCTUATION^0^0^0^0"
 ^DGIN(38.6,1,"D",0)="^^3^3^2870515^"
 ^DGIN(38.6,1,"D",1,0)="Inconsistency results if the name contains lower case characters,"
@@ -420,6 +420,9 @@ OSEHRA ZGO Export: INCONSISTENT DATA ELEMENTS
 ^DGIN(38.6,88,"D",2,0)="address does not contain the first line of the street address, city, state,"
 ^DGIN(38.6,88,"D",3,0)="and zip code for a domestic temporary address, or, for a foreign temporary"
 ^DGIN(38.6,88,"D",4,0)="address, the first line of the street address and the city."
+^DGIN(38.6,89,0)="PAT TYPE/OTH ELIG INCONSISTENT^PATIENT TYPE IS INCOMPATIBLE WITH PRIMARY ELIGIBILITY^0^1^0^0"
+^DGIN(38.6,89,"D",0)="^^1^1^3200220^"
+^DGIN(38.6,89,"D",1,0)="Patient Type is incompatible with Primary Eligibility of Expanded MH Care Non-Enrollee"
 ^DGIN(38.6,99,0)="CAN'T PROCESS FURTHER^DUE TO MISSING DATA CAN'T CONTINUE PROCESSING INCONSISTENCIES^0^0^0^0"
 ^DGIN(38.6,99,"D",0)="^^3^3^2900823^^^"
 ^DGIN(38.6,99,"D",1,0)="Unable to check further discrepancies because one or more of the"
@@ -776,6 +779,7 @@ OSEHRA ZGO Export: INCONSISTENT DATA ELEMENTS
 ^DGIN(38.6,"B","NO CV, CHECK SERVICE SEP DATE",67)=""
 ^DGIN(38.6,"B","NO CV, CHECK SOMALIA TO DATE",70)=""
 ^DGIN(38.6,"B","NO CV, CHECK YUGOSLAV TO DATE",69)=""
+^DGIN(38.6,"B","PAT TYPE/OTH ELIG INCONSISTENT",89)=""
 ^DGIN(38.6,"B","PATIENT RELATIONSHIP INVALID",309)=""
 ^DGIN(38.6,"B","PATIENT TYPE UNDEFINED",36)=""
 ^DGIN(38.6,"B","PERSON LASTNAME REQUIRED",301)=""

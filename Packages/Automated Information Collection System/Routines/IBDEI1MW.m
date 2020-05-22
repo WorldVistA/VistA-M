@@ -1,136 +1,124 @@
-IBDEI1MW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27735,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,27736,0)
- ;;=R56.1^^109^1381^25
- ;;^UTILITY(U,$J,358.3,27736,1,0)
+ ;;^UTILITY(U,$J,358.3,26103,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26103,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,26103,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,26104,0)
+ ;;=W13.1XXD^^107^1230^37
+ ;;^UTILITY(U,$J,358.3,26104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27736,1,3,0)
- ;;=3^Post Traumatic Seizures
- ;;^UTILITY(U,$J,358.3,27736,1,4,0)
- ;;=4^R56.1
- ;;^UTILITY(U,$J,358.3,27736,2)
- ;;=^5019523
- ;;^UTILITY(U,$J,358.3,27737,0)
- ;;=G40.901^^109^1381^12
- ;;^UTILITY(U,$J,358.3,27737,1,0)
+ ;;^UTILITY(U,$J,358.3,26104,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26104,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,26104,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,26105,0)
+ ;;=W13.2XXA^^107^1230^74
+ ;;^UTILITY(U,$J,358.3,26105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27737,1,3,0)
- ;;=3^Epilepsy Not Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27737,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,27737,2)
- ;;=^5003864
- ;;^UTILITY(U,$J,358.3,27738,0)
- ;;=G45.0^^109^1382^18
- ;;^UTILITY(U,$J,358.3,27738,1,0)
+ ;;^UTILITY(U,$J,358.3,26105,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26105,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,26105,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,26106,0)
+ ;;=W13.2XXD^^107^1230^75
+ ;;^UTILITY(U,$J,358.3,26106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27738,1,3,0)
- ;;=3^Vertebro-Basilar Artery Syndrome
- ;;^UTILITY(U,$J,358.3,27738,1,4,0)
- ;;=4^G45.0
- ;;^UTILITY(U,$J,358.3,27738,2)
- ;;=^5003955
- ;;^UTILITY(U,$J,358.3,27739,0)
- ;;=G45.1^^109^1382^4
- ;;^UTILITY(U,$J,358.3,27739,1,0)
+ ;;^UTILITY(U,$J,358.3,26106,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26106,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,26106,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,26107,0)
+ ;;=W13.3XXA^^107^1230^88
+ ;;^UTILITY(U,$J,358.3,26107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27739,1,3,0)
- ;;=3^Carotid Artery Syndrome
- ;;^UTILITY(U,$J,358.3,27739,1,4,0)
- ;;=4^G45.1
- ;;^UTILITY(U,$J,358.3,27739,2)
- ;;=^5003956
- ;;^UTILITY(U,$J,358.3,27740,0)
- ;;=G45.3^^109^1382^1
- ;;^UTILITY(U,$J,358.3,27740,1,0)
+ ;;^UTILITY(U,$J,358.3,26107,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26107,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,26107,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,26108,0)
+ ;;=W13.3XXD^^107^1230^89
+ ;;^UTILITY(U,$J,358.3,26108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27740,1,3,0)
- ;;=3^Amaurosis Fugax
- ;;^UTILITY(U,$J,358.3,27740,1,4,0)
- ;;=4^G45.3
- ;;^UTILITY(U,$J,358.3,27740,2)
- ;;=^304129
- ;;^UTILITY(U,$J,358.3,27741,0)
- ;;=G45.4^^109^1382^16
- ;;^UTILITY(U,$J,358.3,27741,1,0)
+ ;;^UTILITY(U,$J,358.3,26108,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26108,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,26108,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,26109,0)
+ ;;=W13.4XXA^^107^1230^76
+ ;;^UTILITY(U,$J,358.3,26109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27741,1,3,0)
- ;;=3^Transient Global Amnesia
- ;;^UTILITY(U,$J,358.3,27741,1,4,0)
- ;;=4^G45.4
- ;;^UTILITY(U,$J,358.3,27741,2)
- ;;=^293883
- ;;^UTILITY(U,$J,358.3,27742,0)
- ;;=G45.8^^109^1382^14
- ;;^UTILITY(U,$J,358.3,27742,1,0)
+ ;;^UTILITY(U,$J,358.3,26109,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26109,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,26109,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,26110,0)
+ ;;=W13.4XXD^^107^1230^77
+ ;;^UTILITY(U,$J,358.3,26110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27742,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attacks,Other
- ;;^UTILITY(U,$J,358.3,27742,1,4,0)
- ;;=4^G45.8
- ;;^UTILITY(U,$J,358.3,27742,2)
- ;;=^5003958
- ;;^UTILITY(U,$J,358.3,27743,0)
- ;;=G45.9^^109^1382^15
- ;;^UTILITY(U,$J,358.3,27743,1,0)
+ ;;^UTILITY(U,$J,358.3,26110,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26110,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,26110,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,26111,0)
+ ;;=W13.8XXA^^107^1230^40
+ ;;^UTILITY(U,$J,358.3,26111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27743,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attacks,Unspec
- ;;^UTILITY(U,$J,358.3,27743,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,27743,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,27744,0)
- ;;=G46.0^^109^1382^7
- ;;^UTILITY(U,$J,358.3,27744,1,0)
+ ;;^UTILITY(U,$J,358.3,26111,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26111,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,26111,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,26112,0)
+ ;;=W13.8XXD^^107^1230^41
+ ;;^UTILITY(U,$J,358.3,26112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27744,1,3,0)
- ;;=3^Middle Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,27744,1,4,0)
- ;;=4^G46.0
- ;;^UTILITY(U,$J,358.3,27744,2)
- ;;=^5003960
- ;;^UTILITY(U,$J,358.3,27745,0)
- ;;=G46.1^^109^1382^2
- ;;^UTILITY(U,$J,358.3,27745,1,0)
+ ;;^UTILITY(U,$J,358.3,26112,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26112,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,26112,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,26113,0)
+ ;;=W13.9XXA^^107^1230^38
+ ;;^UTILITY(U,$J,358.3,26113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27745,1,3,0)
- ;;=3^Anterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,27745,1,4,0)
- ;;=4^G46.1
- ;;^UTILITY(U,$J,358.3,27745,2)
- ;;=^5003961
- ;;^UTILITY(U,$J,358.3,27746,0)
- ;;=G46.2^^109^1382^11
- ;;^UTILITY(U,$J,358.3,27746,1,0)
+ ;;^UTILITY(U,$J,358.3,26113,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26113,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,26113,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,26114,0)
+ ;;=W13.9XXD^^107^1230^39
+ ;;^UTILITY(U,$J,358.3,26114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27746,1,3,0)
- ;;=3^Posterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,27746,1,4,0)
- ;;=4^G46.2
- ;;^UTILITY(U,$J,358.3,27746,2)
- ;;=^5003962
- ;;^UTILITY(U,$J,358.3,27747,0)
- ;;=G46.3^^109^1382^3
- ;;^UTILITY(U,$J,358.3,27747,1,0)
+ ;;^UTILITY(U,$J,358.3,26114,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26114,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,26114,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,26115,0)
+ ;;=W14.XXXA^^107^1230^70
+ ;;^UTILITY(U,$J,358.3,26115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27747,1,3,0)
- ;;=3^Brain Stem Stroke Syndrome
- ;;^UTILITY(U,$J,358.3,27747,1,4,0)
- ;;=4^G46.3
- ;;^UTILITY(U,$J,358.3,27747,2)
- ;;=^5003963
- ;;^UTILITY(U,$J,358.3,27748,0)
- ;;=G46.7^^109^1382^6
- ;;^UTILITY(U,$J,358.3,27748,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27748,1,3,0)
- ;;=3^Lacunar Syndromes,Other
- ;;^UTILITY(U,$J,358.3,27748,1,4,0)
- ;;=4^G46.7
- ;;^UTILITY(U,$J,358.3,27748,2)
- ;;=^5003967

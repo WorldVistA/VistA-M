@@ -1,358 +1,670 @@
-IBDEI07Z ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07Z ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10087,1,4,0)
- ;;=4^C43.11
- ;;^UTILITY(U,$J,358.3,10087,2)
- ;;=^5000996
- ;;^UTILITY(U,$J,358.3,10088,0)
- ;;=C43.12^^37^545^4
- ;;^UTILITY(U,$J,358.3,10088,1,0)
+ ;;^UTILITY(U,$J,358.3,19453,1,3,0)
+ ;;=3^Psych/Neuropsych,2+ Tests,Prov,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,19454,0)
+ ;;=96138^^66^816^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19454,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19454,1,2,0)
+ ;;=2^96138
+ ;;^UTILITY(U,$J,358.3,19454,1,3,0)
+ ;;=3^Psych/Nrpsych Tst/Scn by Tech,2+ Tst,1st 30min
+ ;;^UTILITY(U,$J,358.3,19455,0)
+ ;;=96139^^66^816^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19455,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19455,1,2,0)
+ ;;=2^96139
+ ;;^UTILITY(U,$J,358.3,19455,1,3,0)
+ ;;=3^Psych/Nrpsych Tst/Scn by Tech,2+ Tst,Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,19456,0)
+ ;;=T74.11XA^^67^817^7
+ ;;^UTILITY(U,$J,358.3,19456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10088,1,3,0)
- ;;=3^Malig Melanoma of Left Eyelid
- ;;^UTILITY(U,$J,358.3,10088,1,4,0)
- ;;=4^C43.12
- ;;^UTILITY(U,$J,358.3,10088,2)
- ;;=^5000997
- ;;^UTILITY(U,$J,358.3,10089,0)
- ;;=C43.21^^37^545^10
- ;;^UTILITY(U,$J,358.3,10089,1,0)
+ ;;^UTILITY(U,$J,358.3,19456,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19456,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,19456,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,19457,0)
+ ;;=T74.11XD^^67^817^8
+ ;;^UTILITY(U,$J,358.3,19457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10089,1,3,0)
- ;;=3^Malig Melanoma of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,10089,1,4,0)
- ;;=4^C43.21
- ;;^UTILITY(U,$J,358.3,10089,2)
- ;;=^5000999
- ;;^UTILITY(U,$J,358.3,10090,0)
- ;;=C43.22^^37^545^3
- ;;^UTILITY(U,$J,358.3,10090,1,0)
+ ;;^UTILITY(U,$J,358.3,19457,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19457,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,19457,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,19458,0)
+ ;;=T76.11XA^^67^817^9
+ ;;^UTILITY(U,$J,358.3,19458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10090,1,3,0)
- ;;=3^Malig Melanoma of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,10090,1,4,0)
- ;;=4^C43.22
- ;;^UTILITY(U,$J,358.3,10090,2)
- ;;=^5001000
- ;;^UTILITY(U,$J,358.3,10091,0)
- ;;=C43.31^^37^545^8
- ;;^UTILITY(U,$J,358.3,10091,1,0)
+ ;;^UTILITY(U,$J,358.3,19458,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19458,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,19458,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,19459,0)
+ ;;=T76.11XD^^67^817^10
+ ;;^UTILITY(U,$J,358.3,19459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10091,1,3,0)
- ;;=3^Malig Melanoma of Nose
- ;;^UTILITY(U,$J,358.3,10091,1,4,0)
- ;;=4^C43.31
- ;;^UTILITY(U,$J,358.3,10091,2)
- ;;=^5001002
- ;;^UTILITY(U,$J,358.3,10092,0)
- ;;=C43.39^^37^545^2
- ;;^UTILITY(U,$J,358.3,10092,1,0)
+ ;;^UTILITY(U,$J,358.3,19459,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19459,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,19459,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,19460,0)
+ ;;=Z69.11^^67^817^24
+ ;;^UTILITY(U,$J,358.3,19460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10092,1,3,0)
- ;;=3^Malig Melanoma of Face NEC
- ;;^UTILITY(U,$J,358.3,10092,1,4,0)
- ;;=4^C43.39
- ;;^UTILITY(U,$J,358.3,10092,2)
- ;;=^5001003
- ;;^UTILITY(U,$J,358.3,10093,0)
- ;;=C43.4^^37^545^14
- ;;^UTILITY(U,$J,358.3,10093,1,0)
+ ;;^UTILITY(U,$J,358.3,19460,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
+ ;;^UTILITY(U,$J,358.3,19460,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,19460,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,19461,0)
+ ;;=Z91.410^^67^817^26
+ ;;^UTILITY(U,$J,358.3,19461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10093,1,3,0)
- ;;=3^Malig Melanoma of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,10093,1,4,0)
- ;;=4^C43.4
- ;;^UTILITY(U,$J,358.3,10093,2)
- ;;=^5001004
- ;;^UTILITY(U,$J,358.3,10094,0)
- ;;=C43.51^^37^545^1
- ;;^UTILITY(U,$J,358.3,10094,1,0)
+ ;;^UTILITY(U,$J,358.3,19461,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,19461,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,19461,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,19462,0)
+ ;;=T74.21XA^^67^817^15
+ ;;^UTILITY(U,$J,358.3,19462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10094,1,3,0)
- ;;=3^Malig Melanoma of Anal Skin
- ;;^UTILITY(U,$J,358.3,10094,1,4,0)
- ;;=4^C43.51
- ;;^UTILITY(U,$J,358.3,10094,2)
- ;;=^5001005
- ;;^UTILITY(U,$J,358.3,10095,0)
- ;;=C43.52^^37^545^15
- ;;^UTILITY(U,$J,358.3,10095,1,0)
+ ;;^UTILITY(U,$J,358.3,19462,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19462,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,19462,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,19463,0)
+ ;;=T74.21XD^^67^817^16
+ ;;^UTILITY(U,$J,358.3,19463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10095,1,3,0)
- ;;=3^Malig Melanoma of Skin of Breast
- ;;^UTILITY(U,$J,358.3,10095,1,4,0)
- ;;=4^C43.52
- ;;^UTILITY(U,$J,358.3,10095,2)
- ;;=^5001006
- ;;^UTILITY(U,$J,358.3,10096,0)
- ;;=C43.59^^37^545^17
- ;;^UTILITY(U,$J,358.3,10096,1,0)
+ ;;^UTILITY(U,$J,358.3,19463,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19463,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,19463,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,19464,0)
+ ;;=T76.21XA^^67^817^17
+ ;;^UTILITY(U,$J,358.3,19464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10096,1,3,0)
- ;;=3^Malig Melanoma of Trunk NEC
- ;;^UTILITY(U,$J,358.3,10096,1,4,0)
- ;;=4^C43.59
- ;;^UTILITY(U,$J,358.3,10096,2)
- ;;=^5001007
- ;;^UTILITY(U,$J,358.3,10097,0)
- ;;=C43.61^^37^545^13
- ;;^UTILITY(U,$J,358.3,10097,1,0)
+ ;;^UTILITY(U,$J,358.3,19464,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19464,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,19464,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,19465,0)
+ ;;=T76.21XD^^67^817^18
+ ;;^UTILITY(U,$J,358.3,19465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10097,1,3,0)
- ;;=3^Malig Melanoma of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,10097,1,4,0)
- ;;=4^C43.61
- ;;^UTILITY(U,$J,358.3,10097,2)
- ;;=^5001009
- ;;^UTILITY(U,$J,358.3,10098,0)
- ;;=C43.62^^37^545^6
- ;;^UTILITY(U,$J,358.3,10098,1,0)
+ ;;^UTILITY(U,$J,358.3,19465,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19465,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,19465,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,19466,0)
+ ;;=Z69.81^^67^817^23
+ ;;^UTILITY(U,$J,358.3,19466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10098,1,3,0)
- ;;=3^Malig Melanoma of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,10098,1,4,0)
- ;;=4^C43.62
- ;;^UTILITY(U,$J,358.3,10098,2)
- ;;=^5001010
- ;;^UTILITY(U,$J,358.3,10099,0)
- ;;=C43.71^^37^545^12
- ;;^UTILITY(U,$J,358.3,10099,1,0)
+ ;;^UTILITY(U,$J,358.3,19466,1,3,0)
+ ;;=3^MH Svc for Victim of Other Abuse
+ ;;^UTILITY(U,$J,358.3,19466,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,19466,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,19467,0)
+ ;;=Z69.82^^67^817^21
+ ;;^UTILITY(U,$J,358.3,19467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10099,1,3,0)
- ;;=3^Malig Melanoma of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,10099,1,4,0)
- ;;=4^C43.71
- ;;^UTILITY(U,$J,358.3,10099,2)
- ;;=^5001012
- ;;^UTILITY(U,$J,358.3,10100,0)
- ;;=C43.72^^37^545^5
- ;;^UTILITY(U,$J,358.3,10100,1,0)
+ ;;^UTILITY(U,$J,358.3,19467,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Other Abuse
+ ;;^UTILITY(U,$J,358.3,19467,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,19467,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,19468,0)
+ ;;=T74.01XA^^67^817^3
+ ;;^UTILITY(U,$J,358.3,19468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10100,1,3,0)
- ;;=3^Malig Melanoma of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,10100,1,4,0)
- ;;=4^C43.72
- ;;^UTILITY(U,$J,358.3,10100,2)
- ;;=^5001013
- ;;^UTILITY(U,$J,358.3,10101,0)
- ;;=C43.8^^37^545^9
- ;;^UTILITY(U,$J,358.3,10101,1,0)
+ ;;^UTILITY(U,$J,358.3,19468,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19468,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,19468,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,19469,0)
+ ;;=T74.01XD^^67^817^4
+ ;;^UTILITY(U,$J,358.3,19469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10101,1,3,0)
- ;;=3^Malig Melanoma of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,10101,1,4,0)
- ;;=4^C43.8
- ;;^UTILITY(U,$J,358.3,10101,2)
- ;;=^5001014
- ;;^UTILITY(U,$J,358.3,10102,0)
- ;;=D03.0^^37^545^26
- ;;^UTILITY(U,$J,358.3,10102,1,0)
+ ;;^UTILITY(U,$J,358.3,19469,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19469,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,19469,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,19470,0)
+ ;;=T76.01XA^^67^817^5
+ ;;^UTILITY(U,$J,358.3,19470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10102,1,3,0)
- ;;=3^Melanoma in Situ of Lip
- ;;^UTILITY(U,$J,358.3,10102,1,4,0)
- ;;=4^D03.0
- ;;^UTILITY(U,$J,358.3,10102,2)
- ;;=^5001888
- ;;^UTILITY(U,$J,358.3,10103,0)
- ;;=D03.11^^37^545^29
- ;;^UTILITY(U,$J,358.3,10103,1,0)
+ ;;^UTILITY(U,$J,358.3,19470,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19470,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,19470,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,19471,0)
+ ;;=T76.01XD^^67^817^6
+ ;;^UTILITY(U,$J,358.3,19471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10103,1,3,0)
- ;;=3^Melanoma in Situ of Right Eyelid
- ;;^UTILITY(U,$J,358.3,10103,1,4,0)
- ;;=4^D03.11
- ;;^UTILITY(U,$J,358.3,10103,2)
- ;;=^5001890
- ;;^UTILITY(U,$J,358.3,10104,0)
- ;;=D03.12^^37^545^23
- ;;^UTILITY(U,$J,358.3,10104,1,0)
+ ;;^UTILITY(U,$J,358.3,19471,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19471,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,19471,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,19472,0)
+ ;;=Z91.412^^67^817^25
+ ;;^UTILITY(U,$J,358.3,19472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10104,1,3,0)
- ;;=3^Melanoma in Situ of Left Eyelid
- ;;^UTILITY(U,$J,358.3,10104,1,4,0)
- ;;=4^D03.12
- ;;^UTILITY(U,$J,358.3,10104,2)
- ;;=^5001891
- ;;^UTILITY(U,$J,358.3,10105,0)
- ;;=D03.21^^37^545^28
- ;;^UTILITY(U,$J,358.3,10105,1,0)
+ ;;^UTILITY(U,$J,358.3,19472,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,19472,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,19472,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,19473,0)
+ ;;=T74.31XA^^67^817^11
+ ;;^UTILITY(U,$J,358.3,19473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10105,1,3,0)
- ;;=3^Melanoma in Situ of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,10105,1,4,0)
- ;;=4^D03.21
- ;;^UTILITY(U,$J,358.3,10105,2)
- ;;=^5001893
- ;;^UTILITY(U,$J,358.3,10106,0)
- ;;=D03.22^^37^545^22
- ;;^UTILITY(U,$J,358.3,10106,1,0)
+ ;;^UTILITY(U,$J,358.3,19473,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19473,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,19473,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,19474,0)
+ ;;=T74.31XD^^67^817^12
+ ;;^UTILITY(U,$J,358.3,19474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10106,1,3,0)
- ;;=3^Melanoma in Situ of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,10106,1,4,0)
- ;;=4^D03.22
- ;;^UTILITY(U,$J,358.3,10106,2)
- ;;=^5001894
- ;;^UTILITY(U,$J,358.3,10107,0)
- ;;=D03.30^^37^545^21
- ;;^UTILITY(U,$J,358.3,10107,1,0)
+ ;;^UTILITY(U,$J,358.3,19474,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19474,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,19474,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,19475,0)
+ ;;=T76.31XA^^67^817^13
+ ;;^UTILITY(U,$J,358.3,19475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10107,1,3,0)
- ;;=3^Melanoma in Situ of Face,Unspec
- ;;^UTILITY(U,$J,358.3,10107,1,4,0)
- ;;=4^D03.30
- ;;^UTILITY(U,$J,358.3,10107,2)
- ;;=^5001895
- ;;^UTILITY(U,$J,358.3,10108,0)
- ;;=D03.39^^37^545^20
- ;;^UTILITY(U,$J,358.3,10108,1,0)
+ ;;^UTILITY(U,$J,358.3,19475,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19475,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,19475,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,19476,0)
+ ;;=T76.31XD^^67^817^14
+ ;;^UTILITY(U,$J,358.3,19476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10108,1,3,0)
- ;;=3^Melanoma in Situ of Face NEC
- ;;^UTILITY(U,$J,358.3,10108,1,4,0)
- ;;=4^D03.39
- ;;^UTILITY(U,$J,358.3,10108,2)
- ;;=^5001896
- ;;^UTILITY(U,$J,358.3,10109,0)
- ;;=D03.4^^37^545^32
- ;;^UTILITY(U,$J,358.3,10109,1,0)
+ ;;^UTILITY(U,$J,358.3,19476,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19476,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,19476,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,19477,0)
+ ;;=Z91.411^^67^817^27
+ ;;^UTILITY(U,$J,358.3,19477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10109,1,3,0)
- ;;=3^Melanoma in Situ of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,10109,1,4,0)
- ;;=4^D03.4
- ;;^UTILITY(U,$J,358.3,10109,2)
- ;;=^5001897
- ;;^UTILITY(U,$J,358.3,10110,0)
- ;;=D03.51^^37^545^18
- ;;^UTILITY(U,$J,358.3,10110,1,0)
+ ;;^UTILITY(U,$J,358.3,19477,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,19477,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,19477,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,19478,0)
+ ;;=Z69.021^^67^817^20
+ ;;^UTILITY(U,$J,358.3,19478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10110,1,3,0)
- ;;=3^Melanoma in Situ of Anal Skin
- ;;^UTILITY(U,$J,358.3,10110,1,4,0)
- ;;=4^D03.51
- ;;^UTILITY(U,$J,358.3,10110,2)
- ;;=^5001898
- ;;^UTILITY(U,$J,358.3,10111,0)
- ;;=D03.52^^37^545^19
- ;;^UTILITY(U,$J,358.3,10111,1,0)
+ ;;^UTILITY(U,$J,358.3,19478,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,19478,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,19478,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,19479,0)
+ ;;=Z69.011^^67^817^22
+ ;;^UTILITY(U,$J,358.3,19479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10111,1,3,0)
- ;;=3^Melanoma in Situ of Breast
- ;;^UTILITY(U,$J,358.3,10111,1,4,0)
- ;;=4^D03.52
- ;;^UTILITY(U,$J,358.3,10111,2)
- ;;=^5001899
- ;;^UTILITY(U,$J,358.3,10112,0)
- ;;=D03.59^^37^545^33
- ;;^UTILITY(U,$J,358.3,10112,1,0)
+ ;;^UTILITY(U,$J,358.3,19479,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,19479,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,19479,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,19480,0)
+ ;;=Z69.12^^67^817^19
+ ;;^UTILITY(U,$J,358.3,19480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10112,1,3,0)
- ;;=3^Melanoma in Situ of Trunk NEC
- ;;^UTILITY(U,$J,358.3,10112,1,4,0)
- ;;=4^D03.59
- ;;^UTILITY(U,$J,358.3,10112,2)
- ;;=^5001900
- ;;^UTILITY(U,$J,358.3,10113,0)
- ;;=D03.61^^37^545^31
- ;;^UTILITY(U,$J,358.3,10113,1,0)
+ ;;^UTILITY(U,$J,358.3,19480,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,19480,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,19480,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,19481,0)
+ ;;=Z62.812^^67^817^28
+ ;;^UTILITY(U,$J,358.3,19481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10113,1,3,0)
- ;;=3^Melanoma in Situ of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,10113,1,4,0)
- ;;=4^D03.61
- ;;^UTILITY(U,$J,358.3,10113,2)
- ;;=^5001902
- ;;^UTILITY(U,$J,358.3,10114,0)
- ;;=D03.62^^37^545^25
- ;;^UTILITY(U,$J,358.3,10114,1,0)
+ ;;^UTILITY(U,$J,358.3,19481,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,19481,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,19481,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,19482,0)
+ ;;=Z62.810^^67^817^29
+ ;;^UTILITY(U,$J,358.3,19482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10114,1,3,0)
- ;;=3^Melanoma in Situ of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,10114,1,4,0)
- ;;=4^D03.62
- ;;^UTILITY(U,$J,358.3,10114,2)
- ;;=^5001903
- ;;^UTILITY(U,$J,358.3,10115,0)
- ;;=D03.71^^37^545^30
- ;;^UTILITY(U,$J,358.3,10115,1,0)
+ ;;^UTILITY(U,$J,358.3,19482,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical & Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,19482,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,19482,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,19483,0)
+ ;;=Z62.811^^67^817^30
+ ;;^UTILITY(U,$J,358.3,19483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10115,1,3,0)
- ;;=3^Melanoma in Situ of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,10115,1,4,0)
- ;;=4^D03.71
- ;;^UTILITY(U,$J,358.3,10115,2)
- ;;=^5001905
- ;;^UTILITY(U,$J,358.3,10116,0)
- ;;=D03.72^^37^545^24
- ;;^UTILITY(U,$J,358.3,10116,1,0)
+ ;;^UTILITY(U,$J,358.3,19483,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,19483,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,19483,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,19484,0)
+ ;;=T76.51XA^^67^817^1
+ ;;^UTILITY(U,$J,358.3,19484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10116,1,3,0)
- ;;=3^Melanoma in Situ of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,10116,1,4,0)
- ;;=4^D03.72
- ;;^UTILITY(U,$J,358.3,10116,2)
- ;;=^5001906
- ;;^UTILITY(U,$J,358.3,10117,0)
- ;;=D03.8^^37^545^27
- ;;^UTILITY(U,$J,358.3,10117,1,0)
+ ;;^UTILITY(U,$J,358.3,19484,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,19484,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,19484,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,19485,0)
+ ;;=T76.51XD^^67^817^2
+ ;;^UTILITY(U,$J,358.3,19485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10117,1,3,0)
- ;;=3^Melanoma in Situ of Other Sites
- ;;^UTILITY(U,$J,358.3,10117,1,4,0)
- ;;=4^D03.8
- ;;^UTILITY(U,$J,358.3,10117,2)
- ;;=^5001907
- ;;^UTILITY(U,$J,358.3,10118,0)
- ;;=C4A.0^^37^546^8
- ;;^UTILITY(U,$J,358.3,10118,1,0)
+ ;;^UTILITY(U,$J,358.3,19485,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,19485,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,19485,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,19486,0)
+ ;;=Z91.42^^67^817^31
+ ;;^UTILITY(U,$J,358.3,19486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10118,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Lip
- ;;^UTILITY(U,$J,358.3,10118,1,4,0)
- ;;=4^C4A.0
- ;;^UTILITY(U,$J,358.3,10118,2)
- ;;=^5001137
- ;;^UTILITY(U,$J,358.3,10119,0)
- ;;=C4A.11^^37^546^12
- ;;^UTILITY(U,$J,358.3,10119,1,0)
+ ;;^UTILITY(U,$J,358.3,19486,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,19486,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,19486,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,19487,0)
+ ;;=Z62.813^^67^817^32
+ ;;^UTILITY(U,$J,358.3,19487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10119,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Eyelid
- ;;^UTILITY(U,$J,358.3,10119,1,4,0)
- ;;=4^C4A.11
- ;;^UTILITY(U,$J,358.3,10119,2)
- ;;=^5001139
- ;;^UTILITY(U,$J,358.3,10120,0)
- ;;=C4A.12^^37^546^5
- ;;^UTILITY(U,$J,358.3,10120,1,0)
+ ;;^UTILITY(U,$J,358.3,19487,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,19487,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,19487,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,19488,0)
+ ;;=F06.4^^67^818^3
+ ;;^UTILITY(U,$J,358.3,19488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10120,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Eyelid
- ;;^UTILITY(U,$J,358.3,10120,1,4,0)
- ;;=4^C4A.12
- ;;^UTILITY(U,$J,358.3,10120,2)
- ;;=^5001140
- ;;^UTILITY(U,$J,358.3,10121,0)
- ;;=C4A.21^^37^546^11
- ;;^UTILITY(U,$J,358.3,10121,1,0)
+ ;;^UTILITY(U,$J,358.3,19488,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,19488,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,19488,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,19489,0)
+ ;;=F41.0^^67^818^12
+ ;;^UTILITY(U,$J,358.3,19489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10121,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,10121,1,4,0)
- ;;=4^C4A.21
- ;;^UTILITY(U,$J,358.3,10121,2)
- ;;=^5001142
- ;;^UTILITY(U,$J,358.3,10122,0)
- ;;=C4A.22^^37^546^4
- ;;^UTILITY(U,$J,358.3,10122,1,0)
+ ;;^UTILITY(U,$J,358.3,19489,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,19489,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,19489,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,19490,0)
+ ;;=F41.1^^67^818^10
+ ;;^UTILITY(U,$J,358.3,19490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10122,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,10122,1,4,0)
- ;;=4^C4A.22
- ;;^UTILITY(U,$J,358.3,10122,2)
- ;;=^5001143
+ ;;^UTILITY(U,$J,358.3,19490,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,19490,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,19490,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,19491,0)
+ ;;=F40.10^^67^818^17
+ ;;^UTILITY(U,$J,358.3,19491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19491,1,3,0)
+ ;;=3^Social Anxiety Disorder (Social Phobia)
+ ;;^UTILITY(U,$J,358.3,19491,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,19491,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,19492,0)
+ ;;=F40.218^^67^818^2
+ ;;^UTILITY(U,$J,358.3,19492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19492,1,3,0)
+ ;;=3^Animal Phobia
+ ;;^UTILITY(U,$J,358.3,19492,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,19492,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,19493,0)
+ ;;=F40.228^^67^818^11
+ ;;^UTILITY(U,$J,358.3,19493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19493,1,3,0)
+ ;;=3^Natural Environment Phobia
+ ;;^UTILITY(U,$J,358.3,19493,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,19493,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,19494,0)
+ ;;=F40.230^^67^818^6
+ ;;^UTILITY(U,$J,358.3,19494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19494,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,19494,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,19494,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,19495,0)
+ ;;=F40.231^^67^818^7
+ ;;^UTILITY(U,$J,358.3,19495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19495,1,3,0)
+ ;;=3^Fear of Injections & Transfusions
+ ;;^UTILITY(U,$J,358.3,19495,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,19495,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,19496,0)
+ ;;=F40.232^^67^818^9
+ ;;^UTILITY(U,$J,358.3,19496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19496,1,3,0)
+ ;;=3^Fear of Other Medical Care
+ ;;^UTILITY(U,$J,358.3,19496,1,4,0)
+ ;;=4^F40.232
+ ;;^UTILITY(U,$J,358.3,19496,2)
+ ;;=^5003552
+ ;;^UTILITY(U,$J,358.3,19497,0)
+ ;;=F40.233^^67^818^8
+ ;;^UTILITY(U,$J,358.3,19497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19497,1,3,0)
+ ;;=3^Fear of Injury
+ ;;^UTILITY(U,$J,358.3,19497,1,4,0)
+ ;;=4^F40.233
+ ;;^UTILITY(U,$J,358.3,19497,2)
+ ;;=^5003553
+ ;;^UTILITY(U,$J,358.3,19498,0)
+ ;;=F40.248^^67^818^16
+ ;;^UTILITY(U,$J,358.3,19498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19498,1,3,0)
+ ;;=3^Situational Phobia 
+ ;;^UTILITY(U,$J,358.3,19498,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,19498,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,19499,0)
+ ;;=F93.0^^67^818^15
+ ;;^UTILITY(U,$J,358.3,19499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19499,1,3,0)
+ ;;=3^Separation Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,19499,1,4,0)
+ ;;=4^F93.0
+ ;;^UTILITY(U,$J,358.3,19499,2)
+ ;;=^5003702
+ ;;^UTILITY(U,$J,358.3,19500,0)
+ ;;=F40.00^^67^818^1
+ ;;^UTILITY(U,$J,358.3,19500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19500,1,3,0)
+ ;;=3^Agrophobia
+ ;;^UTILITY(U,$J,358.3,19500,1,4,0)
+ ;;=4^F40.00
+ ;;^UTILITY(U,$J,358.3,19500,2)
+ ;;=^5003542
+ ;;^UTILITY(U,$J,358.3,19501,0)
+ ;;=F41.8^^67^818^4
+ ;;^UTILITY(U,$J,358.3,19501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19501,1,3,0)
+ ;;=3^Anxiety Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,19501,1,4,0)
+ ;;=4^F41.8
+ ;;^UTILITY(U,$J,358.3,19501,2)
+ ;;=^5003566
+ ;;^UTILITY(U,$J,358.3,19502,0)
+ ;;=F40.298^^67^818^13
+ ;;^UTILITY(U,$J,358.3,19502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19502,1,3,0)
+ ;;=3^Phobia,Other Specified
+ ;;^UTILITY(U,$J,358.3,19502,1,4,0)
+ ;;=4^F40.298
+ ;;^UTILITY(U,$J,358.3,19502,2)
+ ;;=^5003561
+ ;;^UTILITY(U,$J,358.3,19503,0)
+ ;;=F41.9^^67^818^5
+ ;;^UTILITY(U,$J,358.3,19503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19503,1,3,0)
+ ;;=3^Anxiety Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,19503,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,19503,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,19504,0)
+ ;;=F94.0^^67^818^14
+ ;;^UTILITY(U,$J,358.3,19504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19504,1,3,0)
+ ;;=3^Selective Mutism
+ ;;^UTILITY(U,$J,358.3,19504,1,4,0)
+ ;;=4^F94.0
+ ;;^UTILITY(U,$J,358.3,19504,2)
+ ;;=^331954
+ ;;^UTILITY(U,$J,358.3,19505,0)
+ ;;=F06.33^^67^819^1
+ ;;^UTILITY(U,$J,358.3,19505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19505,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Manic/Hypo-Like Ep
+ ;;^UTILITY(U,$J,358.3,19505,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,19505,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,19506,0)
+ ;;=F06.34^^67^819^2
+ ;;^UTILITY(U,$J,358.3,19506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19506,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,19506,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,19506,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,19507,0)
+ ;;=F31.11^^67^819^22
+ ;;^UTILITY(U,$J,358.3,19507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19507,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
+ ;;^UTILITY(U,$J,358.3,19507,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,19507,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,19508,0)
+ ;;=F31.12^^67^819^23
+ ;;^UTILITY(U,$J,358.3,19508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19508,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
+ ;;^UTILITY(U,$J,358.3,19508,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,19508,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,19509,0)
+ ;;=F31.13^^67^819^24
+ ;;^UTILITY(U,$J,358.3,19509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19509,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
+ ;;^UTILITY(U,$J,358.3,19509,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,19509,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,19510,0)
+ ;;=F31.2^^67^819^19
+ ;;^UTILITY(U,$J,358.3,19510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19510,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,19510,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,19510,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,19511,0)
+ ;;=F31.73^^67^819^20
+ ;;^UTILITY(U,$J,358.3,19511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19511,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,19511,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,19511,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,19512,0)
+ ;;=F31.74^^67^819^21
+ ;;^UTILITY(U,$J,358.3,19512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19512,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,19512,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,19512,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,19513,0)
+ ;;=F31.31^^67^819^13
+ ;;^UTILITY(U,$J,358.3,19513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19513,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild
+ ;;^UTILITY(U,$J,358.3,19513,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,19513,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,19514,0)
+ ;;=F31.32^^67^819^14
+ ;;^UTILITY(U,$J,358.3,19514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19514,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
+ ;;^UTILITY(U,$J,358.3,19514,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,19514,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,19515,0)
+ ;;=F31.4^^67^819^15
+ ;;^UTILITY(U,$J,358.3,19515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19515,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
+ ;;^UTILITY(U,$J,358.3,19515,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,19515,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,19516,0)
+ ;;=F31.5^^67^819^10
+ ;;^UTILITY(U,$J,358.3,19516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19516,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,19516,1,4,0)
+ ;;=4^F31.5
+ ;;^UTILITY(U,$J,358.3,19516,2)
+ ;;=^5003504
+ ;;^UTILITY(U,$J,358.3,19517,0)
+ ;;=F31.75^^67^819^11
+ ;;^UTILITY(U,$J,358.3,19517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19517,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,19517,1,4,0)
+ ;;=4^F31.75
+ ;;^UTILITY(U,$J,358.3,19517,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,19518,0)
+ ;;=F31.76^^67^819^12
+ ;;^UTILITY(U,$J,358.3,19518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19518,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,19518,1,4,0)
+ ;;=4^F31.76
+ ;;^UTILITY(U,$J,358.3,19518,2)
+ ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,19519,0)
+ ;;=F31.81^^67^819^25
+ ;;^UTILITY(U,$J,358.3,19519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19519,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,19519,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,19519,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,19520,0)
+ ;;=F34.0^^67^819^26
+ ;;^UTILITY(U,$J,358.3,19520,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19520,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,19520,1,4,0)
+ ;;=4^F34.0

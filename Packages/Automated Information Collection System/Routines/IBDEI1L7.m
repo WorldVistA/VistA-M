@@ -1,126 +1,126 @@
-IBDEI1L7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1L7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26909,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,26909,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,26909,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,26910,0)
- ;;=F11.220^^100^1295^1
- ;;^UTILITY(U,$J,358.3,26910,1,0)
+ ;;^UTILITY(U,$J,358.3,25361,0)
+ ;;=M87.152^^107^1217^74
+ ;;^UTILITY(U,$J,358.3,25361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26910,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26910,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,26910,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,26911,0)
- ;;=F11.188^^100^1295^3
- ;;^UTILITY(U,$J,358.3,26911,1,0)
+ ;;^UTILITY(U,$J,358.3,25361,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;^UTILITY(U,$J,358.3,25361,1,4,0)
+ ;;=4^M87.152
+ ;;^UTILITY(U,$J,358.3,25361,2)
+ ;;=^5014724
+ ;;^UTILITY(U,$J,358.3,25362,0)
+ ;;=M87.180^^107^1217^73
+ ;;^UTILITY(U,$J,358.3,25362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26911,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26911,1,4,0)
- ;;=4^F11.188
- ;;^UTILITY(U,$J,358.3,26911,2)
- ;;=^5003125
- ;;^UTILITY(U,$J,358.3,26912,0)
- ;;=F11.288^^100^1295^4
- ;;^UTILITY(U,$J,358.3,26912,1,0)
+ ;;^UTILITY(U,$J,358.3,25362,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Jaw
+ ;;^UTILITY(U,$J,358.3,25362,1,4,0)
+ ;;=4^M87.180
+ ;;^UTILITY(U,$J,358.3,25362,2)
+ ;;=^5014741
+ ;;^UTILITY(U,$J,358.3,25363,0)
+ ;;=M87.311^^107^1217^174
+ ;;^UTILITY(U,$J,358.3,25363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26912,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26912,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,26912,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,26913,0)
- ;;=F11.988^^100^1295^5
- ;;^UTILITY(U,$J,358.3,26913,1,0)
+ ;;^UTILITY(U,$J,358.3,25363,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,25363,1,4,0)
+ ;;=4^M87.311
+ ;;^UTILITY(U,$J,358.3,25363,2)
+ ;;=^5014788
+ ;;^UTILITY(U,$J,358.3,25364,0)
+ ;;=M87.312^^107^1217^171
+ ;;^UTILITY(U,$J,358.3,25364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26913,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26913,1,4,0)
- ;;=4^F11.988
- ;;^UTILITY(U,$J,358.3,26913,2)
- ;;=^5003154
- ;;^UTILITY(U,$J,358.3,26914,0)
- ;;=F11.921^^100^1295^6
- ;;^UTILITY(U,$J,358.3,26914,1,0)
+ ;;^UTILITY(U,$J,358.3,25364,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,25364,1,4,0)
+ ;;=4^M87.312
+ ;;^UTILITY(U,$J,358.3,25364,2)
+ ;;=^5014789
+ ;;^UTILITY(U,$J,358.3,25365,0)
+ ;;=M87.350^^107^1217^172
+ ;;^UTILITY(U,$J,358.3,25365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26914,1,3,0)
- ;;=3^Opioid Induced Delirium
- ;;^UTILITY(U,$J,358.3,26914,1,4,0)
- ;;=4^F11.921
- ;;^UTILITY(U,$J,358.3,26914,2)
- ;;=^5003144
- ;;^UTILITY(U,$J,358.3,26915,0)
- ;;=F11.94^^100^1295^7
- ;;^UTILITY(U,$J,358.3,26915,1,0)
+ ;;^UTILITY(U,$J,358.3,25365,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Pelvis
+ ;;^UTILITY(U,$J,358.3,25365,1,4,0)
+ ;;=4^M87.350
+ ;;^UTILITY(U,$J,358.3,25365,2)
+ ;;=^5014809
+ ;;^UTILITY(U,$J,358.3,25366,0)
+ ;;=M87.351^^107^1217^173
+ ;;^UTILITY(U,$J,358.3,25366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26915,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26915,1,4,0)
- ;;=4^F11.94
- ;;^UTILITY(U,$J,358.3,26915,2)
- ;;=^5003148
- ;;^UTILITY(U,$J,358.3,26916,0)
- ;;=F11.181^^100^1295^8
- ;;^UTILITY(U,$J,358.3,26916,1,0)
+ ;;^UTILITY(U,$J,358.3,25366,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,25366,1,4,0)
+ ;;=4^M87.351
+ ;;^UTILITY(U,$J,358.3,25366,2)
+ ;;=^5014810
+ ;;^UTILITY(U,$J,358.3,25367,0)
+ ;;=M87.352^^107^1217^170
+ ;;^UTILITY(U,$J,358.3,25367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26916,1,3,0)
- ;;=3^Opioid Induced Sexual Dysfunction w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26916,1,4,0)
- ;;=4^F11.181
- ;;^UTILITY(U,$J,358.3,26916,2)
- ;;=^5003123
- ;;^UTILITY(U,$J,358.3,26917,0)
- ;;=F11.281^^100^1295^9
- ;;^UTILITY(U,$J,358.3,26917,1,0)
+ ;;^UTILITY(U,$J,358.3,25367,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Femur
+ ;;^UTILITY(U,$J,358.3,25367,1,4,0)
+ ;;=4^M87.352
+ ;;^UTILITY(U,$J,358.3,25367,2)
+ ;;=^5014811
+ ;;^UTILITY(U,$J,358.3,25368,0)
+ ;;=M87.811^^107^1217^83
+ ;;^UTILITY(U,$J,358.3,25368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26917,1,3,0)
- ;;=3^Opioid Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26917,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,26917,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,26918,0)
- ;;=F11.981^^100^1295^10
- ;;^UTILITY(U,$J,358.3,26918,1,0)
+ ;;^UTILITY(U,$J,358.3,25368,1,3,0)
+ ;;=3^Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,25368,1,4,0)
+ ;;=4^M87.811
+ ;;^UTILITY(U,$J,358.3,25368,2)
+ ;;=^5014831
+ ;;^UTILITY(U,$J,358.3,25369,0)
+ ;;=M87.812^^107^1217^80
+ ;;^UTILITY(U,$J,358.3,25369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26918,1,3,0)
- ;;=3^Opioid Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26918,1,4,0)
- ;;=4^F11.981
- ;;^UTILITY(U,$J,358.3,26918,2)
- ;;=^5003152
- ;;^UTILITY(U,$J,358.3,26919,0)
- ;;=F11.282^^100^1295^11
- ;;^UTILITY(U,$J,358.3,26919,1,0)
+ ;;^UTILITY(U,$J,358.3,25369,1,3,0)
+ ;;=3^Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,25369,1,4,0)
+ ;;=4^M87.812
+ ;;^UTILITY(U,$J,358.3,25369,2)
+ ;;=^5014832
+ ;;^UTILITY(U,$J,358.3,25370,0)
+ ;;=M87.850^^107^1217^81
+ ;;^UTILITY(U,$J,358.3,25370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26919,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26919,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,26919,2)
- ;;=^5003139
- ;;^UTILITY(U,$J,358.3,26920,0)
- ;;=F11.982^^100^1295^12
- ;;^UTILITY(U,$J,358.3,26920,1,0)
+ ;;^UTILITY(U,$J,358.3,25370,1,3,0)
+ ;;=3^Osteonecrosis,Pelvis
+ ;;^UTILITY(U,$J,358.3,25370,1,4,0)
+ ;;=4^M87.850
+ ;;^UTILITY(U,$J,358.3,25370,2)
+ ;;=^5014852
+ ;;^UTILITY(U,$J,358.3,25371,0)
+ ;;=M87.851^^107^1217^82
+ ;;^UTILITY(U,$J,358.3,25371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26920,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26920,1,4,0)
- ;;=4^F11.982
- ;;^UTILITY(U,$J,358.3,26920,2)
- ;;=^5003153
- ;;^UTILITY(U,$J,358.3,26921,0)
- ;;=F11.121^^100^1295^13
- ;;^UTILITY(U,$J,358.3,26921,1,0)
+ ;;^UTILITY(U,$J,358.3,25371,1,3,0)
+ ;;=3^Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,25371,1,4,0)
+ ;;=4^M87.851
+ ;;^UTILITY(U,$J,358.3,25371,2)
+ ;;=^5014853
+ ;;^UTILITY(U,$J,358.3,25372,0)
+ ;;=M87.852^^107^1217^79
+ ;;^UTILITY(U,$J,358.3,25372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26921,1,3,0)
- ;;=3^Opioid Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25372,1,3,0)
+ ;;=3^Osteonecrosis,Left Femur
+ ;;^UTILITY(U,$J,358.3,25372,1,4,0)
+ ;;=4^M87.852
+ ;;^UTILITY(U,$J,358.3,25372,2)
+ ;;=^5014854
+ ;;^UTILITY(U,$J,358.3,25373,0)
+ ;;=M88.0^^107^1217^70

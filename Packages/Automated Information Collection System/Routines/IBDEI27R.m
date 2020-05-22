@@ -1,130 +1,126 @@
-IBDEI27R ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37545,0)
- ;;=M86.18^^140^1793^10
- ;;^UTILITY(U,$J,358.3,37545,1,0)
+ ;;^UTILITY(U,$J,358.3,35350,1,3,0)
+ ;;=3^Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,35350,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,35350,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,35351,0)
+ ;;=M79.10^^137^1800^27
+ ;;^UTILITY(U,$J,358.3,35351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37545,1,3,0)
- ;;=3^Osteomyelitis, acute, oth site, oth
- ;;^UTILITY(U,$J,358.3,37545,1,4,0)
- ;;=4^M86.18
- ;;^UTILITY(U,$J,358.3,37545,2)
- ;;=^5014533
- ;;^UTILITY(U,$J,358.3,37546,0)
- ;;=M86.28^^140^1793^42
- ;;^UTILITY(U,$J,358.3,37546,1,0)
+ ;;^UTILITY(U,$J,358.3,35351,1,3,0)
+ ;;=3^Myalga,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35351,1,4,0)
+ ;;=4^M79.10
+ ;;^UTILITY(U,$J,358.3,35351,2)
+ ;;=^5157394
+ ;;^UTILITY(U,$J,358.3,35352,0)
+ ;;=M79.11^^137^1800^29
+ ;;^UTILITY(U,$J,358.3,35352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37546,1,3,0)
- ;;=3^Osteomyelitis, subacute, oth site
- ;;^UTILITY(U,$J,358.3,37546,1,4,0)
- ;;=4^M86.28
- ;;^UTILITY(U,$J,358.3,37546,2)
- ;;=^5014557
- ;;^UTILITY(U,$J,358.3,37547,0)
- ;;=M86.19^^140^1793^9
- ;;^UTILITY(U,$J,358.3,37547,1,0)
+ ;;^UTILITY(U,$J,358.3,35352,1,3,0)
+ ;;=3^Myalgia,Mastication Muscle
+ ;;^UTILITY(U,$J,358.3,35352,1,4,0)
+ ;;=4^M79.11
+ ;;^UTILITY(U,$J,358.3,35352,2)
+ ;;=^5157395
+ ;;^UTILITY(U,$J,358.3,35353,0)
+ ;;=M79.12^^137^1800^28
+ ;;^UTILITY(U,$J,358.3,35353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37547,1,3,0)
- ;;=3^Osteomyelitis, acute, mult sites, oth
- ;;^UTILITY(U,$J,358.3,37547,1,4,0)
- ;;=4^M86.19
- ;;^UTILITY(U,$J,358.3,37547,2)
- ;;=^5014534
- ;;^UTILITY(U,$J,358.3,37548,0)
- ;;=M86.29^^140^1793^41
- ;;^UTILITY(U,$J,358.3,37548,1,0)
+ ;;^UTILITY(U,$J,358.3,35353,1,3,0)
+ ;;=3^Myalgia,Auxiliary Muscles,Head/Neck
+ ;;^UTILITY(U,$J,358.3,35353,1,4,0)
+ ;;=4^M79.12
+ ;;^UTILITY(U,$J,358.3,35353,2)
+ ;;=^5157396
+ ;;^UTILITY(U,$J,358.3,35354,0)
+ ;;=M79.18^^137^1800^30
+ ;;^UTILITY(U,$J,358.3,35354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37548,1,3,0)
- ;;=3^Osteomyelitis, subacute, mult sites
- ;;^UTILITY(U,$J,358.3,37548,1,4,0)
- ;;=4^M86.29
- ;;^UTILITY(U,$J,358.3,37548,2)
- ;;=^5014558
- ;;^UTILITY(U,$J,358.3,37549,0)
- ;;=M86.60^^140^1793^35
- ;;^UTILITY(U,$J,358.3,37549,1,0)
+ ;;^UTILITY(U,$J,358.3,35354,1,3,0)
+ ;;=3^Myalgia,Other Site
+ ;;^UTILITY(U,$J,358.3,35354,1,4,0)
+ ;;=4^M79.18
+ ;;^UTILITY(U,$J,358.3,35354,2)
+ ;;=^5157397
+ ;;^UTILITY(U,$J,358.3,35355,0)
+ ;;=Z47.1^^137^1801^1
+ ;;^UTILITY(U,$J,358.3,35355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37549,1,3,0)
- ;;=3^Osteomyelitis, chron, unspec site, oth
- ;;^UTILITY(U,$J,358.3,37549,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,37549,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,37550,0)
- ;;=M86.611^^140^1793^32
- ;;^UTILITY(U,$J,358.3,37550,1,0)
+ ;;^UTILITY(U,$J,358.3,35355,1,3,0)
+ ;;=3^Aftercare following joint replacement surgery
+ ;;^UTILITY(U,$J,358.3,35355,1,4,0)
+ ;;=4^Z47.1
+ ;;^UTILITY(U,$J,358.3,35355,2)
+ ;;=^5063025
+ ;;^UTILITY(U,$J,358.3,35356,0)
+ ;;=Z96.662^^137^1801^2
+ ;;^UTILITY(U,$J,358.3,35356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37550,1,3,0)
- ;;=3^Osteomyelitis, chron, rt shldr, oth
- ;;^UTILITY(U,$J,358.3,37550,1,4,0)
- ;;=4^M86.611
- ;;^UTILITY(U,$J,358.3,37550,2)
- ;;=^5014631
- ;;^UTILITY(U,$J,358.3,37551,0)
- ;;=M86.612^^140^1793^23
- ;;^UTILITY(U,$J,358.3,37551,1,0)
+ ;;^UTILITY(U,$J,358.3,35356,1,3,0)
+ ;;=3^Presence of left artificial ankle joint
+ ;;^UTILITY(U,$J,358.3,35356,1,4,0)
+ ;;=4^Z96.662
+ ;;^UTILITY(U,$J,358.3,35356,2)
+ ;;=^5063710
+ ;;^UTILITY(U,$J,358.3,35357,0)
+ ;;=Z96.622^^137^1801^3
+ ;;^UTILITY(U,$J,358.3,35357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37551,1,3,0)
- ;;=3^Osteomyelitis, chron, lft shldr, oth
- ;;^UTILITY(U,$J,358.3,37551,1,4,0)
- ;;=4^M86.612
- ;;^UTILITY(U,$J,358.3,37551,2)
- ;;=^5014632
- ;;^UTILITY(U,$J,358.3,37552,0)
- ;;=M86.621^^140^1793^30
- ;;^UTILITY(U,$J,358.3,37552,1,0)
+ ;;^UTILITY(U,$J,358.3,35357,1,3,0)
+ ;;=3^Presence of left artificial elbow joint
+ ;;^UTILITY(U,$J,358.3,35357,1,4,0)
+ ;;=4^Z96.622
+ ;;^UTILITY(U,$J,358.3,35357,2)
+ ;;=^5063696
+ ;;^UTILITY(U,$J,358.3,35358,0)
+ ;;=Z96.642^^137^1801^4
+ ;;^UTILITY(U,$J,358.3,35358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37552,1,3,0)
- ;;=3^Osteomyelitis, chron, rt humerus, oth
- ;;^UTILITY(U,$J,358.3,37552,1,4,0)
- ;;=4^M86.621
- ;;^UTILITY(U,$J,358.3,37552,2)
- ;;=^5014634
- ;;^UTILITY(U,$J,358.3,37553,0)
- ;;=M86.622^^140^1793^21
- ;;^UTILITY(U,$J,358.3,37553,1,0)
+ ;;^UTILITY(U,$J,358.3,35358,1,3,0)
+ ;;=3^Presence of left artificial hip joint
+ ;;^UTILITY(U,$J,358.3,35358,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,35358,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,35359,0)
+ ;;=Z96.652^^137^1801^5
+ ;;^UTILITY(U,$J,358.3,35359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37553,1,3,0)
- ;;=3^Osteomyelitis, chron, lft numerus, oth
- ;;^UTILITY(U,$J,358.3,37553,1,4,0)
- ;;=4^M86.622
- ;;^UTILITY(U,$J,358.3,37553,2)
- ;;=^5134070
- ;;^UTILITY(U,$J,358.3,37554,0)
- ;;=M86.631^^140^1793^31
- ;;^UTILITY(U,$J,358.3,37554,1,0)
+ ;;^UTILITY(U,$J,358.3,35359,1,3,0)
+ ;;=3^Presence of left artificial knee joint
+ ;;^UTILITY(U,$J,358.3,35359,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,35359,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,35360,0)
+ ;;=Z96.612^^137^1801^6
+ ;;^UTILITY(U,$J,358.3,35360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37554,1,3,0)
- ;;=3^Osteomyelitis, chron, rt radius & ulna, oth
- ;;^UTILITY(U,$J,358.3,37554,1,4,0)
- ;;=4^M86.631
- ;;^UTILITY(U,$J,358.3,37554,2)
- ;;=^5014635
- ;;^UTILITY(U,$J,358.3,37555,0)
- ;;=M86.632^^140^1793^22
- ;;^UTILITY(U,$J,358.3,37555,1,0)
+ ;;^UTILITY(U,$J,358.3,35360,1,3,0)
+ ;;=3^Presence of left artificial shoulder joint
+ ;;^UTILITY(U,$J,358.3,35360,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,35360,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,35361,0)
+ ;;=Z96.632^^137^1801^7
+ ;;^UTILITY(U,$J,358.3,35361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37555,1,3,0)
- ;;=3^Osteomyelitis, chron, lft radius & ulna, oth
- ;;^UTILITY(U,$J,358.3,37555,1,4,0)
- ;;=4^M86.632
- ;;^UTILITY(U,$J,358.3,37555,2)
- ;;=^5134072
- ;;^UTILITY(U,$J,358.3,37556,0)
- ;;=M86.641^^140^1793^29
- ;;^UTILITY(U,$J,358.3,37556,1,0)
+ ;;^UTILITY(U,$J,358.3,35361,1,3,0)
+ ;;=3^Presence of left artificial wrist joint
+ ;;^UTILITY(U,$J,358.3,35361,1,4,0)
+ ;;=4^Z96.632
+ ;;^UTILITY(U,$J,358.3,35361,2)
+ ;;=^5063699
+ ;;^UTILITY(U,$J,358.3,35362,0)
+ ;;=Z96.60^^137^1801^14
+ ;;^UTILITY(U,$J,358.3,35362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37556,1,3,0)
- ;;=3^Osteomyelitis, chron, rt hand, oth
- ;;^UTILITY(U,$J,358.3,37556,1,4,0)
- ;;=4^M86.641
- ;;^UTILITY(U,$J,358.3,37556,2)
- ;;=^5014636
- ;;^UTILITY(U,$J,358.3,37557,0)
- ;;=M86.642^^140^1793^20
- ;;^UTILITY(U,$J,358.3,37557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37557,1,3,0)
- ;;=3^Osteomyelitis, chron, lft hand, oth
+ ;;^UTILITY(U,$J,358.3,35362,1,3,0)
+ ;;=3^Presence of unspecified orthopedic joint implant

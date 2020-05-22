@@ -1,130 +1,126 @@
-IBDEI2WJ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48718,0)
- ;;=M06.361^^216^2410^149
- ;;^UTILITY(U,$J,358.3,48718,1,0)
+ ;;^UTILITY(U,$J,358.3,46287,0)
+ ;;=H21.232^^176^2304^29
+ ;;^UTILITY(U,$J,358.3,46287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48718,1,3,0)
- ;;=3^Rheumatoid nodule, right knee
- ;;^UTILITY(U,$J,358.3,48718,1,4,0)
- ;;=4^M06.361
- ;;^UTILITY(U,$J,358.3,48718,2)
- ;;=^5010112
- ;;^UTILITY(U,$J,358.3,48719,0)
- ;;=M06.311^^216^2410^150
- ;;^UTILITY(U,$J,358.3,48719,1,0)
+ ;;^UTILITY(U,$J,358.3,46287,1,3,0)
+ ;;=3^Degeneration of Iris,Pigmentary,Left Eye
+ ;;^UTILITY(U,$J,358.3,46287,1,4,0)
+ ;;=4^H21.232
+ ;;^UTILITY(U,$J,358.3,46287,2)
+ ;;=^5005188
+ ;;^UTILITY(U,$J,358.3,46288,0)
+ ;;=H57.00^^176^2304^30
+ ;;^UTILITY(U,$J,358.3,46288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48719,1,3,0)
- ;;=3^Rheumatoid nodule, right shoulder
- ;;^UTILITY(U,$J,358.3,48719,1,4,0)
- ;;=4^M06.311
- ;;^UTILITY(U,$J,358.3,48719,2)
- ;;=^5010097
- ;;^UTILITY(U,$J,358.3,48720,0)
- ;;=M06.331^^216^2410^151
- ;;^UTILITY(U,$J,358.3,48720,1,0)
+ ;;^UTILITY(U,$J,358.3,46288,1,3,0)
+ ;;=3^Anomaly of Pupillary Function,Unspec
+ ;;^UTILITY(U,$J,358.3,46288,1,4,0)
+ ;;=4^H57.00
+ ;;^UTILITY(U,$J,358.3,46288,2)
+ ;;=^5006375
+ ;;^UTILITY(U,$J,358.3,46289,0)
+ ;;=D31.42^^176^2304^31
+ ;;^UTILITY(U,$J,358.3,46289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48720,1,3,0)
- ;;=3^Rheumatoid nodule, right wrist
- ;;^UTILITY(U,$J,358.3,48720,1,4,0)
- ;;=4^M06.331
- ;;^UTILITY(U,$J,358.3,48720,2)
- ;;=^5010103
- ;;^UTILITY(U,$J,358.3,48721,0)
- ;;=M06.38^^216^2410^152
- ;;^UTILITY(U,$J,358.3,48721,1,0)
+ ;;^UTILITY(U,$J,358.3,46289,1,3,0)
+ ;;=3^Benign Neopl of Ciliary Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,46289,1,4,0)
+ ;;=4^D31.42
+ ;;^UTILITY(U,$J,358.3,46289,2)
+ ;;=^5002125
+ ;;^UTILITY(U,$J,358.3,46290,0)
+ ;;=D31.41^^176^2304^32
+ ;;^UTILITY(U,$J,358.3,46290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48721,1,3,0)
- ;;=3^Rheumatoid nodule, vertebrae
- ;;^UTILITY(U,$J,358.3,48721,1,4,0)
- ;;=4^M06.38
- ;;^UTILITY(U,$J,358.3,48721,2)
- ;;=^5010118
- ;;^UTILITY(U,$J,358.3,48722,0)
- ;;=M05.572^^216^2410^109
- ;;^UTILITY(U,$J,358.3,48722,1,0)
+ ;;^UTILITY(U,$J,358.3,46290,1,3,0)
+ ;;=3^Benign Neopl of Ciliary Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,46290,1,4,0)
+ ;;=4^D31.41
+ ;;^UTILITY(U,$J,358.3,46290,2)
+ ;;=^5002124
+ ;;^UTILITY(U,$J,358.3,46291,0)
+ ;;=C69.41^^176^2304^33
+ ;;^UTILITY(U,$J,358.3,46291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48722,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left ank/ft
- ;;^UTILITY(U,$J,358.3,48722,1,4,0)
- ;;=4^M05.572
- ;;^UTILITY(U,$J,358.3,48722,2)
- ;;=^5009974
- ;;^UTILITY(U,$J,358.3,48723,0)
- ;;=M05.522^^216^2410^110
- ;;^UTILITY(U,$J,358.3,48723,1,0)
+ ;;^UTILITY(U,$J,358.3,46291,1,3,0)
+ ;;=3^Malig Neopl of Ciliary Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,46291,1,4,0)
+ ;;=4^C69.41
+ ;;^UTILITY(U,$J,358.3,46291,2)
+ ;;=^5001279
+ ;;^UTILITY(U,$J,358.3,46292,0)
+ ;;=C69.42^^176^2304^34
+ ;;^UTILITY(U,$J,358.3,46292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48723,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left elbow
- ;;^UTILITY(U,$J,358.3,48723,1,4,0)
- ;;=4^M05.522
- ;;^UTILITY(U,$J,358.3,48723,2)
- ;;=^5009959
- ;;^UTILITY(U,$J,358.3,48724,0)
- ;;=M05.542^^216^2410^111
- ;;^UTILITY(U,$J,358.3,48724,1,0)
+ ;;^UTILITY(U,$J,358.3,46292,1,3,0)
+ ;;=3^Malig Neopl of Ciliary Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,46292,1,4,0)
+ ;;=4^C69.42
+ ;;^UTILITY(U,$J,358.3,46292,2)
+ ;;=^5001280
+ ;;^UTILITY(U,$J,358.3,46293,0)
+ ;;=H35.061^^176^2304^35
+ ;;^UTILITY(U,$J,358.3,46293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48724,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left hand 
- ;;^UTILITY(U,$J,358.3,48724,1,4,0)
- ;;=4^M05.542
- ;;^UTILITY(U,$J,358.3,48724,2)
- ;;=^5009965
- ;;^UTILITY(U,$J,358.3,48725,0)
- ;;=M05.552^^216^2410^112
- ;;^UTILITY(U,$J,358.3,48725,1,0)
+ ;;^UTILITY(U,$J,358.3,46293,1,3,0)
+ ;;=3^Retinal Vasculitis,Right Eye
+ ;;^UTILITY(U,$J,358.3,46293,1,4,0)
+ ;;=4^H35.061
+ ;;^UTILITY(U,$J,358.3,46293,2)
+ ;;=^5005602
+ ;;^UTILITY(U,$J,358.3,46294,0)
+ ;;=H35.062^^176^2304^36
+ ;;^UTILITY(U,$J,358.3,46294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48725,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left hip
- ;;^UTILITY(U,$J,358.3,48725,1,4,0)
- ;;=4^M05.552
- ;;^UTILITY(U,$J,358.3,48725,2)
- ;;=^5009968
- ;;^UTILITY(U,$J,358.3,48726,0)
- ;;=M05.562^^216^2410^113
- ;;^UTILITY(U,$J,358.3,48726,1,0)
+ ;;^UTILITY(U,$J,358.3,46294,1,3,0)
+ ;;=3^Retinal Vasculitis,Left Eye
+ ;;^UTILITY(U,$J,358.3,46294,1,4,0)
+ ;;=4^H35.062
+ ;;^UTILITY(U,$J,358.3,46294,2)
+ ;;=^5005603
+ ;;^UTILITY(U,$J,358.3,46295,0)
+ ;;=H20.011^^176^2304^2
+ ;;^UTILITY(U,$J,358.3,46295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48726,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left knee 
- ;;^UTILITY(U,$J,358.3,48726,1,4,0)
- ;;=4^M05.562
- ;;^UTILITY(U,$J,358.3,48726,2)
- ;;=^5009971
- ;;^UTILITY(U,$J,358.3,48727,0)
- ;;=M05.512^^216^2410^114
- ;;^UTILITY(U,$J,358.3,48727,1,0)
+ ;;^UTILITY(U,$J,358.3,46295,1,3,0)
+ ;;=3^Iridocyclitis,Primary,Right Eye
+ ;;^UTILITY(U,$J,358.3,46295,1,4,0)
+ ;;=4^H20.011
+ ;;^UTILITY(U,$J,358.3,46295,2)
+ ;;=^5005134
+ ;;^UTILITY(U,$J,358.3,46296,0)
+ ;;=H20.012^^176^2304^3
+ ;;^UTILITY(U,$J,358.3,46296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48727,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left shoulder 
- ;;^UTILITY(U,$J,358.3,48727,1,4,0)
- ;;=4^M05.512
- ;;^UTILITY(U,$J,358.3,48727,2)
- ;;=^5009956
- ;;^UTILITY(U,$J,358.3,48728,0)
- ;;=M05.532^^216^2410^115
- ;;^UTILITY(U,$J,358.3,48728,1,0)
+ ;;^UTILITY(U,$J,358.3,46296,1,3,0)
+ ;;=3^Iridocyclitis,Primary,Left Eye
+ ;;^UTILITY(U,$J,358.3,46296,1,4,0)
+ ;;=4^H20.012
+ ;;^UTILITY(U,$J,358.3,46296,2)
+ ;;=^5005135
+ ;;^UTILITY(U,$J,358.3,46297,0)
+ ;;=H20.11^^176^2304^4
+ ;;^UTILITY(U,$J,358.3,46297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48728,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left wrist
- ;;^UTILITY(U,$J,358.3,48728,1,4,0)
- ;;=4^M05.532
- ;;^UTILITY(U,$J,358.3,48728,2)
- ;;=^5009962
- ;;^UTILITY(U,$J,358.3,48729,0)
- ;;=M05.59^^216^2410^108
- ;;^UTILITY(U,$J,358.3,48729,1,0)
+ ;;^UTILITY(U,$J,358.3,46297,1,3,0)
+ ;;=3^Iridocyclitis,Chronic,Right Eye
+ ;;^UTILITY(U,$J,358.3,46297,1,4,0)
+ ;;=4^H20.11
+ ;;^UTILITY(U,$J,358.3,46297,2)
+ ;;=^5005155
+ ;;^UTILITY(U,$J,358.3,46298,0)
+ ;;=H20.12^^176^2304^5
+ ;;^UTILITY(U,$J,358.3,46298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48729,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit mult sites 
- ;;^UTILITY(U,$J,358.3,48729,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,48729,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,48730,0)
- ;;=M05.571^^216^2410^116
- ;;^UTILITY(U,$J,358.3,48730,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48730,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right ank/ft
+ ;;^UTILITY(U,$J,358.3,46298,1,3,0)
+ ;;=3^Iridocyclitis,Chronic,Left Eye
+ ;;^UTILITY(U,$J,358.3,46298,1,4,0)
+ ;;=4^H20.12
+ ;;^UTILITY(U,$J,358.3,46298,2)
+ ;;=^5005156
+ ;;^UTILITY(U,$J,358.3,46299,0)
+ ;;=H21.551^^176^2304^16

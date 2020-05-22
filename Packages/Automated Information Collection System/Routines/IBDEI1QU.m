@@ -1,142 +1,120 @@
-IBDEI1QU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29589,1,3,0)
- ;;=3^Benign Neoplasm,Skin
- ;;^UTILITY(U,$J,358.3,29589,1,4,0)
- ;;=4^D23.9
- ;;^UTILITY(U,$J,358.3,29589,2)
- ;;=^5002076
- ;;^UTILITY(U,$J,358.3,29590,0)
- ;;=L73.8^^115^1474^7
- ;;^UTILITY(U,$J,358.3,29590,1,0)
+ ;;^UTILITY(U,$J,358.3,27866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29590,1,3,0)
- ;;=3^Folliculitis,Other Specified
- ;;^UTILITY(U,$J,358.3,29590,1,4,0)
- ;;=4^L73.8
- ;;^UTILITY(U,$J,358.3,29590,2)
- ;;=^5009285
- ;;^UTILITY(U,$J,358.3,29591,0)
- ;;=L28.0^^115^1474^8
- ;;^UTILITY(U,$J,358.3,29591,1,0)
+ ;;^UTILITY(U,$J,358.3,27866,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild,In Early Remission
+ ;;^UTILITY(U,$J,358.3,27866,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,27866,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,27867,0)
+ ;;=F16.10^^113^1362^19
+ ;;^UTILITY(U,$J,358.3,27867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29591,1,3,0)
- ;;=3^Lichen Simplex Chronicus
- ;;^UTILITY(U,$J,358.3,29591,1,4,0)
- ;;=4^L28.0
- ;;^UTILITY(U,$J,358.3,29591,2)
- ;;=^259859
- ;;^UTILITY(U,$J,358.3,29592,0)
- ;;=D17.30^^115^1474^9
- ;;^UTILITY(U,$J,358.3,29592,1,0)
+ ;;^UTILITY(U,$J,358.3,27867,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,27867,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,27867,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,27868,0)
+ ;;=F16.20^^113^1362^21
+ ;;^UTILITY(U,$J,358.3,27868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29592,1,3,0)
- ;;=3^Lipoma
- ;;^UTILITY(U,$J,358.3,29592,1,4,0)
- ;;=4^D17.30
- ;;^UTILITY(U,$J,358.3,29592,2)
- ;;=^5002012
- ;;^UTILITY(U,$J,358.3,29593,0)
- ;;=D22.9^^115^1474^11
- ;;^UTILITY(U,$J,358.3,29593,1,0)
+ ;;^UTILITY(U,$J,358.3,27868,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,27868,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,27868,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,27869,0)
+ ;;=F16.121^^113^1362^10
+ ;;^UTILITY(U,$J,358.3,27869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29593,1,3,0)
- ;;=3^Nevus,Skin
- ;;^UTILITY(U,$J,358.3,29593,1,4,0)
- ;;=4^D22.9
- ;;^UTILITY(U,$J,358.3,29593,2)
- ;;=^5002058
- ;;^UTILITY(U,$J,358.3,29594,0)
- ;;=R21.^^115^1474^12
- ;;^UTILITY(U,$J,358.3,29594,1,0)
+ ;;^UTILITY(U,$J,358.3,27869,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27869,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,27869,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,27870,0)
+ ;;=F16.221^^113^1362^11
+ ;;^UTILITY(U,$J,358.3,27870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29594,1,3,0)
- ;;=3^Rash/Skin Eruption
- ;;^UTILITY(U,$J,358.3,29594,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,29594,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,29595,0)
- ;;=B86.^^115^1474^13
- ;;^UTILITY(U,$J,358.3,29595,1,0)
+ ;;^UTILITY(U,$J,358.3,27870,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27870,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,27870,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,27871,0)
+ ;;=F16.921^^113^1362^12
+ ;;^UTILITY(U,$J,358.3,27871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29595,1,3,0)
- ;;=3^Scabies
- ;;^UTILITY(U,$J,358.3,29595,1,4,0)
- ;;=4^B86.
- ;;^UTILITY(U,$J,358.3,29595,2)
- ;;=^108096
- ;;^UTILITY(U,$J,358.3,29596,0)
- ;;=L72.3^^115^1474^6
- ;;^UTILITY(U,$J,358.3,29596,1,0)
+ ;;^UTILITY(U,$J,358.3,27871,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27871,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,27871,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,27872,0)
+ ;;=F16.129^^113^1362^13
+ ;;^UTILITY(U,$J,358.3,27872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29596,1,3,0)
- ;;=3^Cyst,Sebaceous
- ;;^UTILITY(U,$J,358.3,29596,1,4,0)
- ;;=4^L72.3
- ;;^UTILITY(U,$J,358.3,29596,2)
- ;;=^5009281
- ;;^UTILITY(U,$J,358.3,29597,0)
- ;;=R22.9^^115^1474^10
- ;;^UTILITY(U,$J,358.3,29597,1,0)
+ ;;^UTILITY(U,$J,358.3,27872,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27872,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,27872,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,27873,0)
+ ;;=F16.229^^113^1362^14
+ ;;^UTILITY(U,$J,358.3,27873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29597,1,3,0)
- ;;=3^Mass,Subcutaneous
- ;;^UTILITY(U,$J,358.3,29597,1,4,0)
- ;;=4^R22.9
- ;;^UTILITY(U,$J,358.3,29597,2)
- ;;=^5019292
- ;;^UTILITY(U,$J,358.3,29598,0)
- ;;=B35.4^^115^1474^14
- ;;^UTILITY(U,$J,358.3,29598,1,0)
+ ;;^UTILITY(U,$J,358.3,27873,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27873,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,27873,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,27874,0)
+ ;;=F16.929^^113^1362^15
+ ;;^UTILITY(U,$J,358.3,27874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29598,1,3,0)
- ;;=3^Tinea Corporis
- ;;^UTILITY(U,$J,358.3,29598,1,4,0)
- ;;=4^B35.4
- ;;^UTILITY(U,$J,358.3,29598,2)
- ;;=^119704
- ;;^UTILITY(U,$J,358.3,29599,0)
- ;;=Z30.02^^115^1475^14
- ;;^UTILITY(U,$J,358.3,29599,1,0)
+ ;;^UTILITY(U,$J,358.3,27874,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27874,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,27874,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,27875,0)
+ ;;=F16.180^^113^1362^1
+ ;;^UTILITY(U,$J,358.3,27875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29599,1,3,0)
- ;;=3^Natural Family Planning Counseling and Instruction
- ;;^UTILITY(U,$J,358.3,29599,1,4,0)
- ;;=4^Z30.02
- ;;^UTILITY(U,$J,358.3,29599,2)
- ;;=^5062816
- ;;^UTILITY(U,$J,358.3,29600,0)
- ;;=Z30.49^^115^1475^1
- ;;^UTILITY(U,$J,358.3,29600,1,0)
+ ;;^UTILITY(U,$J,358.3,27875,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27875,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,27875,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,27876,0)
+ ;;=F16.280^^113^1362^2
+ ;;^UTILITY(U,$J,358.3,27876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29600,1,3,0)
- ;;=3^Contraceptive Mgmt NEC
- ;;^UTILITY(U,$J,358.3,29600,1,4,0)
- ;;=4^Z30.49
- ;;^UTILITY(U,$J,358.3,29600,2)
- ;;=^5062826
- ;;^UTILITY(U,$J,358.3,29601,0)
- ;;=Z30.9^^115^1475^2
- ;;^UTILITY(U,$J,358.3,29601,1,0)
+ ;;^UTILITY(U,$J,358.3,27876,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27876,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,27876,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,27877,0)
+ ;;=F16.980^^113^1362^3
+ ;;^UTILITY(U,$J,358.3,27877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29601,1,3,0)
- ;;=3^Contraceptive Mgmt NOS
- ;;^UTILITY(U,$J,358.3,29601,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,29601,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,29602,0)
- ;;=Z30.40^^115^1475^3
- ;;^UTILITY(U,$J,358.3,29602,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29602,1,3,0)
- ;;=3^Contraceptive Surveillance
- ;;^UTILITY(U,$J,358.3,29602,1,4,0)
- ;;=4^Z30.40
- ;;^UTILITY(U,$J,358.3,29602,2)
- ;;=^5062819
- ;;^UTILITY(U,$J,358.3,29603,0)
- ;;=Z30.49^^115^1475^5
+ ;;^UTILITY(U,$J,358.3,27877,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27877,1,4,0)
+ ;;=4^F16.980

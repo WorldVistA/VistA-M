@@ -1,132 +1,116 @@
-IBDEI352 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI352 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52685,0)
- ;;=98962^^239^2633^4^^^^1
- ;;^UTILITY(U,$J,358.3,52685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52685,1,2,0)
- ;;=2^98962
- ;;^UTILITY(U,$J,358.3,52685,1,3,0)
- ;;=3^Self-Mgmt Educ/Train,5-8 Pt,Ea 30Min
- ;;^UTILITY(U,$J,358.3,52686,0)
- ;;=97535^^239^2634^1^^^^1
- ;;^UTILITY(U,$J,358.3,52686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52686,1,2,0)
- ;;=2^97535
- ;;^UTILITY(U,$J,358.3,52686,1,3,0)
- ;;=3^ADLS Training Ea 15Min
- ;;^UTILITY(U,$J,358.3,52687,0)
- ;;=96105^^239^2634^2^^^^1
- ;;^UTILITY(U,$J,358.3,52687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52687,1,2,0)
- ;;=2^96105
- ;;^UTILITY(U,$J,358.3,52687,1,3,0)
- ;;=3^Aphasia Assessment per Hour
- ;;^UTILITY(U,$J,358.3,52688,0)
- ;;=90901^^239^2634^3^^^^1
- ;;^UTILITY(U,$J,358.3,52688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52688,1,2,0)
- ;;=2^90901
- ;;^UTILITY(U,$J,358.3,52688,1,3,0)
- ;;=3^Biofeedback Training Any Method
- ;;^UTILITY(U,$J,358.3,52689,0)
- ;;=96111^^239^2634^4^^^^1
- ;;^UTILITY(U,$J,358.3,52689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52689,1,2,0)
- ;;=2^96111
- ;;^UTILITY(U,$J,358.3,52689,1,3,0)
- ;;=3^Developmental Testing,Extended
- ;;^UTILITY(U,$J,358.3,52690,0)
- ;;=97750^^239^2634^5^^^^1
- ;;^UTILITY(U,$J,358.3,52690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52690,1,2,0)
- ;;=2^97750
- ;;^UTILITY(U,$J,358.3,52690,1,3,0)
- ;;=3^Extremity Performance Testing Ea 15Min
- ;;^UTILITY(U,$J,358.3,52691,0)
- ;;=95832^^239^2634^6^^^^1
- ;;^UTILITY(U,$J,358.3,52691,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52691,1,2,0)
- ;;=2^95832
- ;;^UTILITY(U,$J,358.3,52691,1,3,0)
- ;;=3^Hand Muscle Testing
- ;;^UTILITY(U,$J,358.3,52692,0)
- ;;=95831^^239^2634^7^^^^1
- ;;^UTILITY(U,$J,358.3,52692,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52692,1,2,0)
- ;;=2^95831
- ;;^UTILITY(U,$J,358.3,52692,1,3,0)
- ;;=3^Muscle Testing,Limb
- ;;^UTILITY(U,$J,358.3,52693,0)
- ;;=95834^^239^2634^8^^^^1
- ;;^UTILITY(U,$J,358.3,52693,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52693,1,2,0)
- ;;=2^95834
- ;;^UTILITY(U,$J,358.3,52693,1,3,0)
- ;;=3^Muscle Testing,Total Body
- ;;^UTILITY(U,$J,358.3,52694,0)
- ;;=97003^^239^2634^9^^^^1
- ;;^UTILITY(U,$J,358.3,52694,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52694,1,2,0)
- ;;=2^97003
- ;;^UTILITY(U,$J,358.3,52694,1,3,0)
- ;;=3^OT Evaluation
- ;;^UTILITY(U,$J,358.3,52695,0)
- ;;=97004^^239^2634^10^^^^1
- ;;^UTILITY(U,$J,358.3,52695,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52695,1,2,0)
- ;;=2^97004
- ;;^UTILITY(U,$J,358.3,52695,1,3,0)
- ;;=3^OT Re-Evaluation
- ;;^UTILITY(U,$J,358.3,52696,0)
- ;;=97001^^239^2634^11^^^^1
- ;;^UTILITY(U,$J,358.3,52696,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52696,1,2,0)
- ;;=2^97001
- ;;^UTILITY(U,$J,358.3,52696,1,3,0)
- ;;=3^PT Evaluation
- ;;^UTILITY(U,$J,358.3,52697,0)
- ;;=97002^^239^2634^12^^^^1
- ;;^UTILITY(U,$J,358.3,52697,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52697,1,2,0)
- ;;=2^97002
- ;;^UTILITY(U,$J,358.3,52697,1,3,0)
- ;;=3^PT Re-Evaluation
- ;;^UTILITY(U,$J,358.3,52698,0)
- ;;=95833^^239^2634^13^^^^1
- ;;^UTILITY(U,$J,358.3,52698,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52698,1,2,0)
- ;;=2^95833
- ;;^UTILITY(U,$J,358.3,52698,1,3,0)
- ;;=3^Total Body Evaluation,Excl Hands
- ;;^UTILITY(U,$J,358.3,52699,0)
- ;;=90471^^239^2635^1^^^^1
- ;;^UTILITY(U,$J,358.3,52699,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52699,1,2,0)
- ;;=2^90471
- ;;^UTILITY(U,$J,358.3,52699,1,3,0)
- ;;=3^Immunization Admin,Single
- ;;^UTILITY(U,$J,358.3,52700,0)
- ;;=90472^^239^2635^2^^^^1
- ;;^UTILITY(U,$J,358.3,52700,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52700,1,2,0)
- ;;=2^90472
- ;;^UTILITY(U,$J,358.3,52700,1,3,0)
- ;;=3^Immunization Admin,Ea Addl
+ ;;^UTILITY(U,$J,358.3,50130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50130,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,50130,1,4,0)
+ ;;=4^L97.112
+ ;;^UTILITY(U,$J,358.3,50130,2)
+ ;;=^5009486
+ ;;^UTILITY(U,$J,358.3,50131,0)
+ ;;=L97.113^^193^2487^264
+ ;;^UTILITY(U,$J,358.3,50131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50131,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,50131,1,4,0)
+ ;;=4^L97.113
+ ;;^UTILITY(U,$J,358.3,50131,2)
+ ;;=^5009487
+ ;;^UTILITY(U,$J,358.3,50132,0)
+ ;;=L97.114^^193^2487^265
+ ;;^UTILITY(U,$J,358.3,50132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50132,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,50132,1,4,0)
+ ;;=4^L97.114
+ ;;^UTILITY(U,$J,358.3,50132,2)
+ ;;=^5009488
+ ;;^UTILITY(U,$J,358.3,50133,0)
+ ;;=L97.119^^193^2487^266
+ ;;^UTILITY(U,$J,358.3,50133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50133,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,50133,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,50133,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,50134,0)
+ ;;=L97.121^^193^2487^214
+ ;;^UTILITY(U,$J,358.3,50134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50134,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,50134,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,50134,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,50135,0)
+ ;;=L97.122^^193^2487^215
+ ;;^UTILITY(U,$J,358.3,50135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50135,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,50135,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,50135,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,50136,0)
+ ;;=L97.123^^193^2487^216
+ ;;^UTILITY(U,$J,358.3,50136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50136,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,50136,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,50136,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,50137,0)
+ ;;=L97.124^^193^2487^217
+ ;;^UTILITY(U,$J,358.3,50137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50137,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,50137,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,50137,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,50138,0)
+ ;;=L97.129^^193^2487^218
+ ;;^UTILITY(U,$J,358.3,50138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50138,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,50138,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,50138,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,50139,0)
+ ;;=L97.211^^193^2487^230
+ ;;^UTILITY(U,$J,358.3,50139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50139,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,50139,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,50139,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,50140,0)
+ ;;=L97.212^^193^2487^231
+ ;;^UTILITY(U,$J,358.3,50140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50140,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,50140,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,50140,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,50141,0)
+ ;;=L97.213^^193^2487^232
+ ;;^UTILITY(U,$J,358.3,50141,1,0)
+ ;;=^358.31IA^4^2

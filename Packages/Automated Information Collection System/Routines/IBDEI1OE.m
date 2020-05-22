@@ -1,134 +1,128 @@
-IBDEI1OE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28471,1,4,0)
- ;;=4^K64.9
- ;;^UTILITY(U,$J,358.3,28471,2)
- ;;=^5008775
- ;;^UTILITY(U,$J,358.3,28472,0)
- ;;=K21.9^^112^1423^14
- ;;^UTILITY(U,$J,358.3,28472,1,0)
+ ;;^UTILITY(U,$J,358.3,26785,0)
+ ;;=G30.0^^110^1286^2
+ ;;^UTILITY(U,$J,358.3,26785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28472,1,3,0)
- ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,28472,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,28472,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,28473,0)
- ;;=K27.9^^112^1423^19
- ;;^UTILITY(U,$J,358.3,28473,1,0)
+ ;;^UTILITY(U,$J,358.3,26785,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,26785,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,26785,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,26786,0)
+ ;;=G30.1^^110^1286^3
+ ;;^UTILITY(U,$J,358.3,26786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28473,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
- ;;^UTILITY(U,$J,358.3,28473,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,28473,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,28474,0)
- ;;=K29.00^^112^1423^2
- ;;^UTILITY(U,$J,358.3,28474,1,0)
+ ;;^UTILITY(U,$J,358.3,26786,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,26786,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,26786,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,26787,0)
+ ;;=B20.^^110^1286^21
+ ;;^UTILITY(U,$J,358.3,26787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28474,1,3,0)
- ;;=3^Acute Gastritis w/o Bleeding
- ;;^UTILITY(U,$J,358.3,28474,1,4,0)
- ;;=4^K29.00
- ;;^UTILITY(U,$J,358.3,28474,2)
- ;;=^5008542
- ;;^UTILITY(U,$J,358.3,28475,0)
- ;;=K46.9^^112^1423^1
- ;;^UTILITY(U,$J,358.3,28475,1,0)
+ ;;^UTILITY(U,$J,358.3,26787,1,3,0)
+ ;;=3^HIV Infection
+ ;;^UTILITY(U,$J,358.3,26787,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,26787,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,26788,0)
+ ;;=G10.^^110^1286^22
+ ;;^UTILITY(U,$J,358.3,26788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28475,1,3,0)
- ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,28475,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,28475,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,28476,0)
- ;;=K52.9^^112^1423^18
- ;;^UTILITY(U,$J,358.3,28476,1,0)
+ ;;^UTILITY(U,$J,358.3,26788,1,3,0)
+ ;;=3^Huntington's Disease
+ ;;^UTILITY(U,$J,358.3,26788,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,26788,2)
+ ;;=^5003751
+ ;;^UTILITY(U,$J,358.3,26789,0)
+ ;;=G30.8^^110^1286^1
+ ;;^UTILITY(U,$J,358.3,26789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28476,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,28476,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,28476,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,28477,0)
- ;;=K58.9^^112^1423^17
- ;;^UTILITY(U,$J,358.3,28477,1,0)
+ ;;^UTILITY(U,$J,358.3,26789,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,26789,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,26789,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,26790,0)
+ ;;=A81.89^^110^1286^5
+ ;;^UTILITY(U,$J,358.3,26790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28477,1,3,0)
- ;;=3^IBS w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,28477,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,28477,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,28478,0)
- ;;=K74.60^^112^1423^11
- ;;^UTILITY(U,$J,358.3,28478,1,0)
+ ;;^UTILITY(U,$J,358.3,26790,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,26790,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,26790,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,26791,0)
+ ;;=G20.^^110^1286^26
+ ;;^UTILITY(U,$J,358.3,26791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28478,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,28478,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,28478,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,28479,0)
- ;;=B17.10^^112^1423^4
- ;;^UTILITY(U,$J,358.3,28479,1,0)
+ ;;^UTILITY(U,$J,358.3,26791,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,26791,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,26791,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,26792,0)
+ ;;=G23.1^^110^1286^30
+ ;;^UTILITY(U,$J,358.3,26792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28479,1,3,0)
- ;;=3^Acute Viral Hepatitis C w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,28479,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,28479,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,28480,0)
- ;;=B17.11^^112^1423^3
- ;;^UTILITY(U,$J,358.3,28480,1,0)
+ ;;^UTILITY(U,$J,358.3,26792,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,26792,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,26792,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,26793,0)
+ ;;=F03.91^^110^1286^16
+ ;;^UTILITY(U,$J,358.3,26793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28480,1,3,0)
- ;;=3^Acute Viral Hepatitis C w/ Hepatic Coma
- ;;^UTILITY(U,$J,358.3,28480,1,4,0)
- ;;=4^B17.11
- ;;^UTILITY(U,$J,358.3,28480,2)
- ;;=^331777
- ;;^UTILITY(U,$J,358.3,28481,0)
- ;;=K70.30^^112^1423^6
- ;;^UTILITY(U,$J,358.3,28481,1,0)
+ ;;^UTILITY(U,$J,358.3,26793,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,26793,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,26793,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,26794,0)
+ ;;=F03.90^^110^1286^18
+ ;;^UTILITY(U,$J,358.3,26794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28481,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,28481,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,28481,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,28482,0)
- ;;=K70.31^^112^1423^5
- ;;^UTILITY(U,$J,358.3,28482,1,0)
+ ;;^UTILITY(U,$J,358.3,26794,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,26794,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,26794,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,26795,0)
+ ;;=G31.84^^110^1286^23
+ ;;^UTILITY(U,$J,358.3,26795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28482,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,28482,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,28482,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,28483,0)
- ;;=K21.0^^112^1423^13
- ;;^UTILITY(U,$J,358.3,28483,1,0)
+ ;;^UTILITY(U,$J,358.3,26795,1,3,0)
+ ;;=3^Mild Cognitive Impairment,So Stated
+ ;;^UTILITY(U,$J,358.3,26795,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,26795,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,26796,0)
+ ;;=F02.81^^110^1286^14
+ ;;^UTILITY(U,$J,358.3,26796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28483,1,3,0)
- ;;=3^GERD w/ Esophagitis
- ;;^UTILITY(U,$J,358.3,28483,1,4,0)
- ;;=4^K21.0
- ;;^UTILITY(U,$J,358.3,28483,2)
- ;;=^5008504
- ;;^UTILITY(U,$J,358.3,28484,0)
- ;;=K58.0^^112^1423^16
- ;;^UTILITY(U,$J,358.3,28484,1,0)
+ ;;^UTILITY(U,$J,358.3,26796,1,3,0)
+ ;;=3^Dementia in Other Dis Class Elsewhere w/ Behav Dist
+ ;;^UTILITY(U,$J,358.3,26796,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,26796,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,26797,0)
+ ;;=F02.80^^110^1286^15
+ ;;^UTILITY(U,$J,358.3,26797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28484,1,3,0)
- ;;=3^IBS w/ Diarrhea

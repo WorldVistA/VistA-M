@@ -1,130 +1,118 @@
-IBDEI247 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI247 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35866,1,4,0)
- ;;=4^M05.412
- ;;^UTILITY(U,$J,358.3,35866,2)
- ;;=^5009933
- ;;^UTILITY(U,$J,358.3,35867,0)
- ;;=M05.432^^134^1731^64
- ;;^UTILITY(U,$J,358.3,35867,1,0)
+ ;;^UTILITY(U,$J,358.3,33790,1,4,0)
+ ;;=4^S72.22XD
+ ;;^UTILITY(U,$J,358.3,33790,2)
+ ;;=^5038030
+ ;;^UTILITY(U,$J,358.3,33791,0)
+ ;;=S72.21XD^^132^1711^14
+ ;;^UTILITY(U,$J,358.3,33791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35867,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Left Wrist
- ;;^UTILITY(U,$J,358.3,35867,1,4,0)
- ;;=4^M05.432
- ;;^UTILITY(U,$J,358.3,35867,2)
- ;;=^5009939
- ;;^UTILITY(U,$J,358.3,35868,0)
- ;;=M05.49^^134^1731^65
- ;;^UTILITY(U,$J,358.3,35868,1,0)
+ ;;^UTILITY(U,$J,358.3,33791,1,3,0)
+ ;;=3^Displ subtrochnt fx r femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33791,1,4,0)
+ ;;=4^S72.21XD
+ ;;^UTILITY(U,$J,358.3,33791,2)
+ ;;=^5038014
+ ;;^UTILITY(U,$J,358.3,33792,0)
+ ;;=S72.002D^^132^1711^23
+ ;;^UTILITY(U,$J,358.3,33792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35868,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Mult Sites
- ;;^UTILITY(U,$J,358.3,35868,1,4,0)
- ;;=4^M05.49
- ;;^UTILITY(U,$J,358.3,35868,2)
- ;;=^5009953
- ;;^UTILITY(U,$J,358.3,35869,0)
- ;;=M05.471^^134^1731^66
- ;;^UTILITY(U,$J,358.3,35869,1,0)
+ ;;^UTILITY(U,$J,358.3,33792,1,3,0)
+ ;;=3^Fx unsp part of nk of l femr, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33792,1,4,0)
+ ;;=4^S72.002D
+ ;;^UTILITY(U,$J,358.3,33792,2)
+ ;;=^5037066
+ ;;^UTILITY(U,$J,358.3,33793,0)
+ ;;=S72.001D^^132^1711^24
+ ;;^UTILITY(U,$J,358.3,33793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35869,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35869,1,4,0)
- ;;=4^M05.471
- ;;^UTILITY(U,$J,358.3,35869,2)
- ;;=^5009950
- ;;^UTILITY(U,$J,358.3,35870,0)
- ;;=M05.421^^134^1731^67
- ;;^UTILITY(U,$J,358.3,35870,1,0)
+ ;;^UTILITY(U,$J,358.3,33793,1,3,0)
+ ;;=3^Fx unsp part of nk of r femr, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33793,1,4,0)
+ ;;=4^S72.001D
+ ;;^UTILITY(U,$J,358.3,33793,2)
+ ;;=^5037050
+ ;;^UTILITY(U,$J,358.3,33794,0)
+ ;;=S72.145D^^132^1711^29
+ ;;^UTILITY(U,$J,358.3,33794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35870,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Elbow
- ;;^UTILITY(U,$J,358.3,35870,1,4,0)
- ;;=4^M05.421
- ;;^UTILITY(U,$J,358.3,35870,2)
- ;;=^5009935
- ;;^UTILITY(U,$J,358.3,35871,0)
- ;;=M05.441^^134^1731^68
- ;;^UTILITY(U,$J,358.3,35871,1,0)
+ ;;^UTILITY(U,$J,358.3,33794,1,3,0)
+ ;;=3^Nondisp intertroch fx l femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33794,1,4,0)
+ ;;=4^S72.145D
+ ;;^UTILITY(U,$J,358.3,33794,2)
+ ;;=^5037982
+ ;;^UTILITY(U,$J,358.3,33795,0)
+ ;;=S72.144D^^132^1711^30
+ ;;^UTILITY(U,$J,358.3,33795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35871,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Hand
- ;;^UTILITY(U,$J,358.3,35871,1,4,0)
- ;;=4^M05.441
- ;;^UTILITY(U,$J,358.3,35871,2)
- ;;=^5009941
- ;;^UTILITY(U,$J,358.3,35872,0)
- ;;=M05.451^^134^1731^69
- ;;^UTILITY(U,$J,358.3,35872,1,0)
+ ;;^UTILITY(U,$J,358.3,33795,1,3,0)
+ ;;=3^Nondisp intertroch fx r femur, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33795,1,4,0)
+ ;;=4^S72.144D
+ ;;^UTILITY(U,$J,358.3,33795,2)
+ ;;=^5037966
+ ;;^UTILITY(U,$J,358.3,33796,0)
+ ;;=M16.4^^132^1711^3
+ ;;^UTILITY(U,$J,358.3,33796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35872,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Hip
- ;;^UTILITY(U,$J,358.3,35872,1,4,0)
- ;;=4^M05.451
- ;;^UTILITY(U,$J,358.3,35872,2)
- ;;=^5009944
- ;;^UTILITY(U,$J,358.3,35873,0)
- ;;=M05.461^^134^1731^70
- ;;^UTILITY(U,$J,358.3,35873,1,0)
+ ;;^UTILITY(U,$J,358.3,33796,1,3,0)
+ ;;=3^Bilateral post-traumatic osteoarthritis of hip
+ ;;^UTILITY(U,$J,358.3,33796,1,4,0)
+ ;;=4^M16.4
+ ;;^UTILITY(U,$J,358.3,33796,2)
+ ;;=^5010777
+ ;;^UTILITY(U,$J,358.3,33797,0)
+ ;;=M16.51^^132^1711^48
+ ;;^UTILITY(U,$J,358.3,33797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35873,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Knee
- ;;^UTILITY(U,$J,358.3,35873,1,4,0)
- ;;=4^M05.461
- ;;^UTILITY(U,$J,358.3,35873,2)
- ;;=^5009947
- ;;^UTILITY(U,$J,358.3,35874,0)
- ;;=M05.411^^134^1731^71
- ;;^UTILITY(U,$J,358.3,35874,1,0)
+ ;;^UTILITY(U,$J,358.3,33797,1,3,0)
+ ;;=3^Unilateral post-traumatic osteoarthritis, right hip
+ ;;^UTILITY(U,$J,358.3,33797,1,4,0)
+ ;;=4^M16.51
+ ;;^UTILITY(U,$J,358.3,33797,2)
+ ;;=^5010779
+ ;;^UTILITY(U,$J,358.3,33798,0)
+ ;;=M16.52^^132^1711^49
+ ;;^UTILITY(U,$J,358.3,33798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35874,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Shoulder
- ;;^UTILITY(U,$J,358.3,35874,1,4,0)
- ;;=4^M05.411
- ;;^UTILITY(U,$J,358.3,35874,2)
- ;;=^5009932
- ;;^UTILITY(U,$J,358.3,35875,0)
- ;;=M05.431^^134^1731^72
- ;;^UTILITY(U,$J,358.3,35875,1,0)
+ ;;^UTILITY(U,$J,358.3,33798,1,3,0)
+ ;;=3^Unilateral post-traumatic osteoarthritis, left hip
+ ;;^UTILITY(U,$J,358.3,33798,1,4,0)
+ ;;=4^M16.52
+ ;;^UTILITY(U,$J,358.3,33798,2)
+ ;;=^5010780
+ ;;^UTILITY(U,$J,358.3,33799,0)
+ ;;=M16.6^^132^1711^4
+ ;;^UTILITY(U,$J,358.3,33799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35875,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Right Wrist
- ;;^UTILITY(U,$J,358.3,35875,1,4,0)
- ;;=4^M05.431
- ;;^UTILITY(U,$J,358.3,35875,2)
- ;;=^5009938
- ;;^UTILITY(U,$J,358.3,35876,0)
- ;;=M05.40^^134^1731^73
- ;;^UTILITY(U,$J,358.3,35876,1,0)
+ ;;^UTILITY(U,$J,358.3,33799,1,3,0)
+ ;;=3^Bilateral secondary osteoarthritis of hip
+ ;;^UTILITY(U,$J,358.3,33799,1,4,0)
+ ;;=4^M16.6
+ ;;^UTILITY(U,$J,358.3,33799,2)
+ ;;=^5010781
+ ;;^UTILITY(U,$J,358.3,33800,0)
+ ;;=M16.7^^132^1711^50
+ ;;^UTILITY(U,$J,358.3,33800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35876,1,3,0)
- ;;=3^Rheum Myopathy w/ Rheum Arth Unspec Site
- ;;^UTILITY(U,$J,358.3,35876,1,4,0)
- ;;=4^M05.40
- ;;^UTILITY(U,$J,358.3,35876,2)
- ;;=^5009931
- ;;^UTILITY(U,$J,358.3,35877,0)
- ;;=M06.372^^134^1731^123
- ;;^UTILITY(U,$J,358.3,35877,1,0)
+ ;;^UTILITY(U,$J,358.3,33800,1,3,0)
+ ;;=3^Unilateral secondary osteoarthritis of hip
+ ;;^UTILITY(U,$J,358.3,33800,1,4,0)
+ ;;=4^M16.7
+ ;;^UTILITY(U,$J,358.3,33800,2)
+ ;;=^5010782
+ ;;^UTILITY(U,$J,358.3,33801,0)
+ ;;=S73.015D^^132^1711^39
+ ;;^UTILITY(U,$J,358.3,33801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35877,1,3,0)
- ;;=3^Rheumatoid Nodule Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35877,1,4,0)
- ;;=4^M06.372
- ;;^UTILITY(U,$J,358.3,35877,2)
- ;;=^5010116
- ;;^UTILITY(U,$J,358.3,35878,0)
- ;;=M06.322^^134^1731^124
- ;;^UTILITY(U,$J,358.3,35878,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35878,1,3,0)
- ;;=3^Rheumatoid Nodule Left Elbow
- ;;^UTILITY(U,$J,358.3,35878,1,4,0)
- ;;=4^M06.322
- ;;^UTILITY(U,$J,358.3,35878,2)
- ;;=^5010101
- ;;^UTILITY(U,$J,358.3,35879,0)
- ;;=M06.342^^134^1731^125
+ ;;^UTILITY(U,$J,358.3,33801,1,3,0)
+ ;;=3^Posterior dislocation of left hip, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33801,1,4,0)
+ ;;=4^S73.015D
+ ;;^UTILITY(U,$J,358.3,33801,2)
+ ;;=^5039250

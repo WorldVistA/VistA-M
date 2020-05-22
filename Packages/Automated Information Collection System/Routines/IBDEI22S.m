@@ -1,130 +1,116 @@
-IBDEI22S ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35189,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,35189,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,35189,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,35190,0)
- ;;=G31.83^^131^1700^14
- ;;^UTILITY(U,$J,358.3,35190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35190,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,35190,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,35190,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,35191,0)
- ;;=F01.51^^131^1700^30
- ;;^UTILITY(U,$J,358.3,35191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35191,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,35191,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,35191,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,35192,0)
- ;;=F01.50^^131^1700^31
- ;;^UTILITY(U,$J,358.3,35192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35192,1,3,0)
- ;;=3^Vascular Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,35192,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,35192,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,35193,0)
- ;;=A81.9^^131^1700^6
- ;;^UTILITY(U,$J,358.3,35193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35193,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,35193,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,35193,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,35194,0)
- ;;=A81.09^^131^1700^8
- ;;^UTILITY(U,$J,358.3,35194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35194,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease NEC
- ;;^UTILITY(U,$J,358.3,35194,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,35194,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,35195,0)
- ;;=A81.00^^131^1700^9
- ;;^UTILITY(U,$J,358.3,35195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35195,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,35195,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,35195,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,35196,0)
- ;;=A81.01^^131^1700^10
- ;;^UTILITY(U,$J,358.3,35196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35196,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,35196,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,35196,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,35197,0)
- ;;=A81.89^^131^1700^7
- ;;^UTILITY(U,$J,358.3,35197,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35197,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,35197,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,35197,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,35198,0)
- ;;=A81.2^^131^1700^27
- ;;^UTILITY(U,$J,358.3,35198,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35198,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,35198,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,35198,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,35199,0)
- ;;=B20.^^131^1700^17
- ;;^UTILITY(U,$J,358.3,35199,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35199,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,35199,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,35199,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,35200,0)
- ;;=B20.^^131^1700^18
- ;;^UTILITY(U,$J,358.3,35200,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35200,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,35200,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,35200,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,35201,0)
- ;;=F10.27^^131^1700^1
- ;;^UTILITY(U,$J,358.3,35201,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35201,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,35201,1,4,0)
- ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,33135,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33135,1,2,0)
+ ;;=2^97755
+ ;;^UTILITY(U,$J,358.3,33135,1,3,0)
+ ;;=3^Assistive Technology Assessment,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33136,0)
+ ;;=97110^^129^1682^18^^^^1
+ ;;^UTILITY(U,$J,358.3,33136,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33136,1,2,0)
+ ;;=2^97110
+ ;;^UTILITY(U,$J,358.3,33136,1,3,0)
+ ;;=3^Therapeutic Exercises,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33137,0)
+ ;;=97112^^129^1682^12^^^^1
+ ;;^UTILITY(U,$J,358.3,33137,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33137,1,2,0)
+ ;;=2^97112
+ ;;^UTILITY(U,$J,358.3,33137,1,3,0)
+ ;;=3^Neuromuscular Re-education (EV Trng),Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33138,0)
+ ;;=97140^^129^1682^11^^^^1
+ ;;^UTILITY(U,$J,358.3,33138,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33138,1,2,0)
+ ;;=2^97140
+ ;;^UTILITY(U,$J,358.3,33138,1,3,0)
+ ;;=3^Manual Therapy 1/> Regions,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33139,0)
+ ;;=97150^^129^1682^7^^^^1
+ ;;^UTILITY(U,$J,358.3,33139,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33139,1,2,0)
+ ;;=2^97150
+ ;;^UTILITY(U,$J,358.3,33139,1,3,0)
+ ;;=3^Group Therapeutic Procedures,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33140,0)
+ ;;=97530^^129^1682^17^^^^1
+ ;;^UTILITY(U,$J,358.3,33140,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33140,1,2,0)
+ ;;=2^97530
+ ;;^UTILITY(U,$J,358.3,33140,1,3,0)
+ ;;=3^Therapeutic Activities,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33141,0)
+ ;;=97763^^129^1682^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33141,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33141,1,2,0)
+ ;;=2^97763
+ ;;^UTILITY(U,$J,358.3,33141,1,3,0)
+ ;;=3^Orthotic/Prosthetic Mgmt,Subsq Visit,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33142,0)
+ ;;=99367^^129^1682^16^^^^1
+ ;;^UTILITY(U,$J,358.3,33142,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33142,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,33142,1,3,0)
+ ;;=3^Team Conf w/o Pat by Physician
+ ;;^UTILITY(U,$J,358.3,33143,0)
+ ;;=V2615^^129^1682^19^^^^1
+ ;;^UTILITY(U,$J,358.3,33143,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33143,1,2,0)
+ ;;=2^V2615
+ ;;^UTILITY(U,$J,358.3,33143,1,3,0)
+ ;;=3^Fit Telescope/Compound Lens System
+ ;;^UTILITY(U,$J,358.3,33144,0)
+ ;;=V2600^^129^1682^20^^^^1
+ ;;^UTILITY(U,$J,358.3,33144,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33144,1,2,0)
+ ;;=2^V2600
+ ;;^UTILITY(U,$J,358.3,33144,1,3,0)
+ ;;=3^Fit Hand Held Mag/Non-spectacle Mounted Aid
+ ;;^UTILITY(U,$J,358.3,33145,0)
+ ;;=V2610^^129^1682^21^^^^1
+ ;;^UTILITY(U,$J,358.3,33145,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33145,1,2,0)
+ ;;=2^V2610
+ ;;^UTILITY(U,$J,358.3,33145,1,3,0)
+ ;;=3^Fit Single Lens Spec Mounted Low Vision Device
+ ;;^UTILITY(U,$J,358.3,33146,0)
+ ;;=92354^^129^1682^22^^^^1
+ ;;^UTILITY(U,$J,358.3,33146,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33146,1,2,0)
+ ;;=2^92354
+ ;;^UTILITY(U,$J,358.3,33146,1,3,0)
+ ;;=3^Fit Spec Mounted Low Vision Device Single Element
+ ;;^UTILITY(U,$J,358.3,33147,0)
+ ;;=92355^^129^1682^23^^^^1
+ ;;^UTILITY(U,$J,358.3,33147,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33147,1,2,0)
+ ;;=2^92355
+ ;;^UTILITY(U,$J,358.3,33147,1,3,0)
+ ;;=3^Fit Spec Mount TS or Compound Device
+ ;;^UTILITY(U,$J,358.3,33148,0)
+ ;;=V2118^^129^1682^24^^^^1
+ ;;^UTILITY(U,$J,358.3,33148,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33148,1,2,0)
+ ;;=2^V2118
+ ;;^UTILITY(U,$J,358.3,33148,1,3,0)
+ ;;=3^Fit Aniseikonic Lens Single Vision
+ ;;^UTILITY(U,$J,358.3,33149,0)
+ ;;=V2718^^129^1682^25^^^^1

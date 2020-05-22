@@ -1,134 +1,120 @@
-IBDEI396 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI396 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54667,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,54667,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,54667,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,54668,0)
- ;;=B16.9^^256^2770^59
- ;;^UTILITY(U,$J,358.3,54668,1,0)
+ ;;^UTILITY(U,$J,358.3,51929,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,51930,0)
+ ;;=R40.2340^^193^2515^10
+ ;;^UTILITY(U,$J,358.3,51930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54668,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,54668,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,54668,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,54669,0)
- ;;=B19.10^^256^2770^61
- ;;^UTILITY(U,$J,358.3,54669,1,0)
+ ;;^UTILITY(U,$J,358.3,51930,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,51930,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,51930,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,51931,0)
+ ;;=R40.2324^^193^2515^1
+ ;;^UTILITY(U,$J,358.3,51931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54669,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,54669,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,54669,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,54670,0)
- ;;=B18.1^^256^2770^60
- ;;^UTILITY(U,$J,358.3,54670,1,0)
+ ;;^UTILITY(U,$J,358.3,51931,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,51931,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,51931,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,51932,0)
+ ;;=R40.2323^^193^2515^4
+ ;;^UTILITY(U,$J,358.3,51932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54670,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,54670,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,54670,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,54671,0)
- ;;=B17.10^^256^2770^62
- ;;^UTILITY(U,$J,358.3,54671,1,0)
+ ;;^UTILITY(U,$J,358.3,51932,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,51932,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,51932,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,51933,0)
+ ;;=R40.2322^^193^2515^2
+ ;;^UTILITY(U,$J,358.3,51933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54671,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,54671,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,54671,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,54672,0)
- ;;=B18.2^^256^2770^63
- ;;^UTILITY(U,$J,358.3,54672,1,0)
+ ;;^UTILITY(U,$J,358.3,51933,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,51933,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,51933,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,51934,0)
+ ;;=R40.2321^^193^2515^5
+ ;;^UTILITY(U,$J,358.3,51934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54672,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,54672,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,54672,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,54673,0)
- ;;=B18.8^^256^2770^65
- ;;^UTILITY(U,$J,358.3,54673,1,0)
+ ;;^UTILITY(U,$J,358.3,51934,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,51934,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,51934,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,51935,0)
+ ;;=R40.2320^^193^2515^3
+ ;;^UTILITY(U,$J,358.3,51935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54673,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,54673,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,54673,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,54674,0)
- ;;=B17.8^^256^2770^66
- ;;^UTILITY(U,$J,358.3,54674,1,0)
+ ;;^UTILITY(U,$J,358.3,51935,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,51935,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,51935,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,51936,0)
+ ;;=R40.2314^^193^2515^11
+ ;;^UTILITY(U,$J,358.3,51936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54674,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
- ;;^UTILITY(U,$J,358.3,54674,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,54674,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,54675,0)
- ;;=B18.9^^256^2770^64
- ;;^UTILITY(U,$J,358.3,54675,1,0)
+ ;;^UTILITY(U,$J,358.3,51936,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,51936,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,51936,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,51937,0)
+ ;;=R40.2313^^193^2515^14
+ ;;^UTILITY(U,$J,358.3,51937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54675,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,54675,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,54675,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,54676,0)
- ;;=B37.81^^256^2770^18
- ;;^UTILITY(U,$J,358.3,54676,1,0)
+ ;;^UTILITY(U,$J,358.3,51937,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,51937,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,51937,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,51938,0)
+ ;;=R40.2312^^193^2515^12
+ ;;^UTILITY(U,$J,358.3,51938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54676,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,54676,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,54676,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,54677,0)
- ;;=D12.0^^256^2770^12
- ;;^UTILITY(U,$J,358.3,54677,1,0)
+ ;;^UTILITY(U,$J,358.3,51938,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,51938,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,51938,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,51939,0)
+ ;;=R40.2311^^193^2515^15
+ ;;^UTILITY(U,$J,358.3,51939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54677,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,54677,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,54677,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,54678,0)
- ;;=D12.6^^256^2770^13
- ;;^UTILITY(U,$J,358.3,54678,1,0)
+ ;;^UTILITY(U,$J,358.3,51939,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,51939,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,51939,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,51940,0)
+ ;;=R40.2310^^193^2515^13
+ ;;^UTILITY(U,$J,358.3,51940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54678,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,54678,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,54678,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,54679,0)
- ;;=D12.1^^256^2770^10
- ;;^UTILITY(U,$J,358.3,54679,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54679,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,54679,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,54679,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,54680,0)
- ;;=K63.5^^256^2770^73
- ;;^UTILITY(U,$J,358.3,54680,1,0)
+ ;;^UTILITY(U,$J,358.3,51940,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,51940,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,51940,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,51941,0)
+ ;;=R40.4^^193^2515^38
+ ;;^UTILITY(U,$J,358.3,51941,1,0)
  ;;=^358.31IA^4^2

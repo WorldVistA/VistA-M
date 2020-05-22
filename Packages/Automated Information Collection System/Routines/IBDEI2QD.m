@@ -1,136 +1,122 @@
-IBDEI2QD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45819,0)
- ;;=S11.029S^^203^2258^11
- ;;^UTILITY(U,$J,358.3,45819,1,0)
+ ;;^UTILITY(U,$J,358.3,43540,1,3,0)
+ ;;=3^Psychomtr Dfct s/p Unsp Cebrvsc Dis
+ ;;^UTILITY(U,$J,358.3,43540,1,4,0)
+ ;;=4^I69.913
+ ;;^UTILITY(U,$J,358.3,43540,2)
+ ;;=^5138663
+ ;;^UTILITY(U,$J,358.3,43541,0)
+ ;;=I69.914^^160^2124^31
+ ;;^UTILITY(U,$J,358.3,43541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45819,1,3,0)
- ;;=3^Open Wound of Trachea,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,45819,1,4,0)
- ;;=4^S11.029S
- ;;^UTILITY(U,$J,358.3,45819,2)
- ;;=^5021451
- ;;^UTILITY(U,$J,358.3,45820,0)
- ;;=G89.11^^203^2259^1
- ;;^UTILITY(U,$J,358.3,45820,1,0)
+ ;;^UTILITY(U,$J,358.3,43541,1,3,0)
+ ;;=3^Front Lobe/Exec Fx Dfct s/p Unsp Crbrovs Dis
+ ;;^UTILITY(U,$J,358.3,43541,1,4,0)
+ ;;=4^I69.914
+ ;;^UTILITY(U,$J,358.3,43541,2)
+ ;;=^5138664
+ ;;^UTILITY(U,$J,358.3,43542,0)
+ ;;=I69.915^^160^2124^15
+ ;;^UTILITY(U,$J,358.3,43542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45820,1,3,0)
- ;;=3^Acute pain due to trauma
- ;;^UTILITY(U,$J,358.3,45820,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,45820,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,45821,0)
- ;;=G89.21^^203^2259^6
- ;;^UTILITY(U,$J,358.3,45821,1,0)
+ ;;^UTILITY(U,$J,358.3,43542,1,3,0)
+ ;;=3^Cog Social/Emot Dfct s/p Crbrvsc Dis
+ ;;^UTILITY(U,$J,358.3,43542,1,4,0)
+ ;;=4^I69.915
+ ;;^UTILITY(U,$J,358.3,43542,2)
+ ;;=^5138665
+ ;;^UTILITY(U,$J,358.3,43543,0)
+ ;;=I69.918^^160^2124^48
+ ;;^UTILITY(U,$J,358.3,43543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45821,1,3,0)
- ;;=3^Chronic pain due to trauma
- ;;^UTILITY(U,$J,358.3,45821,1,4,0)
- ;;=4^G89.21
- ;;^UTILITY(U,$J,358.3,45821,2)
- ;;=^5004155
- ;;^UTILITY(U,$J,358.3,45822,0)
- ;;=G89.18^^203^2259^2
- ;;^UTILITY(U,$J,358.3,45822,1,0)
+ ;;^UTILITY(U,$J,358.3,43543,1,3,0)
+ ;;=3^Sym/Sgns Cog Fxn Dfct s/p Unsp Crbrvsc Dis,Oth
+ ;;^UTILITY(U,$J,358.3,43543,1,4,0)
+ ;;=4^I69.918
+ ;;^UTILITY(U,$J,358.3,43543,2)
+ ;;=^5138666
+ ;;^UTILITY(U,$J,358.3,43544,0)
+ ;;=I69.919^^160^2124^49
+ ;;^UTILITY(U,$J,358.3,43544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45822,1,3,0)
- ;;=3^Acute postprocedural pain NEC
- ;;^UTILITY(U,$J,358.3,45822,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,45822,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,45823,0)
- ;;=G89.28^^203^2259^7
- ;;^UTILITY(U,$J,358.3,45823,1,0)
+ ;;^UTILITY(U,$J,358.3,43544,1,3,0)
+ ;;=3^Sym/Sgns Cog Fxn Dfct s/p Unsp Crbrvsc Dis,Unsp
+ ;;^UTILITY(U,$J,358.3,43544,1,4,0)
+ ;;=4^I69.919
+ ;;^UTILITY(U,$J,358.3,43544,2)
+ ;;=^5138667
+ ;;^UTILITY(U,$J,358.3,43545,0)
+ ;;=I69.993^^160^2124^13
+ ;;^UTILITY(U,$J,358.3,43545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45823,1,3,0)
- ;;=3^Chronic postprocedural pain NEC
- ;;^UTILITY(U,$J,358.3,45823,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,45823,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,45824,0)
- ;;=G56.01^^203^2259^4
- ;;^UTILITY(U,$J,358.3,45824,1,0)
+ ;;^UTILITY(U,$J,358.3,43545,1,3,0)
+ ;;=3^Ataxia following unspec Cerebrovasc Disease
+ ;;^UTILITY(U,$J,358.3,43545,1,4,0)
+ ;;=4^I69.993
+ ;;^UTILITY(U,$J,358.3,43545,2)
+ ;;=^5007571
+ ;;^UTILITY(U,$J,358.3,43546,0)
+ ;;=I69.998^^160^2124^16
+ ;;^UTILITY(U,$J,358.3,43546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45824,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,45824,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,45824,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,45825,0)
- ;;=G56.02^^203^2259^3
- ;;^UTILITY(U,$J,358.3,45825,1,0)
+ ;;^UTILITY(U,$J,358.3,43546,1,3,0)
+ ;;=3^Disturbance of Vision
+ ;;^UTILITY(U,$J,358.3,43546,1,4,0)
+ ;;=4^I69.998
+ ;;^UTILITY(U,$J,358.3,43546,2)
+ ;;=^5007572
+ ;;^UTILITY(U,$J,358.3,43547,0)
+ ;;=I69.992^^160^2124^29
+ ;;^UTILITY(U,$J,358.3,43547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45825,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,45825,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,45825,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,45826,0)
- ;;=M54.2^^203^2259^5
- ;;^UTILITY(U,$J,358.3,45826,1,0)
+ ;;^UTILITY(U,$J,358.3,43547,1,3,0)
+ ;;=3^Facial Weakness s/p Unspec Cerebrov Dis
+ ;;^UTILITY(U,$J,358.3,43547,1,4,0)
+ ;;=4^I69.992
+ ;;^UTILITY(U,$J,358.3,43547,2)
+ ;;=^5007570
+ ;;^UTILITY(U,$J,358.3,43548,0)
+ ;;=I69.923^^160^2124^30
+ ;;^UTILITY(U,$J,358.3,43548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45826,1,3,0)
- ;;=3^Cervical Pain
- ;;^UTILITY(U,$J,358.3,45826,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,45826,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,45827,0)
- ;;=M54.5^^203^2259^11
- ;;^UTILITY(U,$J,358.3,45827,1,0)
+ ;;^UTILITY(U,$J,358.3,43548,1,3,0)
+ ;;=3^Fluency Disorder s/p Unspec Cerebrov Dis
+ ;;^UTILITY(U,$J,358.3,43548,1,4,0)
+ ;;=4^I69.923
+ ;;^UTILITY(U,$J,358.3,43548,2)
+ ;;=^5007556
+ ;;^UTILITY(U,$J,358.3,43549,0)
+ ;;=I69.951^^160^2124^34
+ ;;^UTILITY(U,$J,358.3,43549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45827,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,45827,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,45827,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,45828,0)
- ;;=M54.14^^203^2259^14
- ;;^UTILITY(U,$J,358.3,45828,1,0)
+ ;;^UTILITY(U,$J,358.3,43549,1,3,0)
+ ;;=3^Hemiplegia Affecting Rt Dominant Side
+ ;;^UTILITY(U,$J,358.3,43549,1,4,0)
+ ;;=4^I69.951
+ ;;^UTILITY(U,$J,358.3,43549,2)
+ ;;=^5007561
+ ;;^UTILITY(U,$J,358.3,43550,0)
+ ;;=I69.952^^160^2124^32
+ ;;^UTILITY(U,$J,358.3,43550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45828,1,3,0)
- ;;=3^Radiculopathy,Thoracic 
- ;;^UTILITY(U,$J,358.3,45828,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,45828,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,45829,0)
- ;;=M54.15^^203^2259^15
- ;;^UTILITY(U,$J,358.3,45829,1,0)
+ ;;^UTILITY(U,$J,358.3,43550,1,3,0)
+ ;;=3^Hemiplegia Affecting Lt Dominant Side
+ ;;^UTILITY(U,$J,358.3,43550,1,4,0)
+ ;;=4^I69.952
+ ;;^UTILITY(U,$J,358.3,43550,2)
+ ;;=^5133586
+ ;;^UTILITY(U,$J,358.3,43551,0)
+ ;;=I69.953^^160^2124^35
+ ;;^UTILITY(U,$J,358.3,43551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45829,1,3,0)
- ;;=3^Radiculopathy,Thoracolumbar
- ;;^UTILITY(U,$J,358.3,45829,1,4,0)
- ;;=4^M54.15
- ;;^UTILITY(U,$J,358.3,45829,2)
- ;;=^5012300
- ;;^UTILITY(U,$J,358.3,45830,0)
- ;;=M54.16^^203^2259^12
- ;;^UTILITY(U,$J,358.3,45830,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45830,1,3,0)
- ;;=3^Radiculopathy,Lumbar
- ;;^UTILITY(U,$J,358.3,45830,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,45830,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,45831,0)
- ;;=M54.17^^203^2259^13
- ;;^UTILITY(U,$J,358.3,45831,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45831,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral
- ;;^UTILITY(U,$J,358.3,45831,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,45831,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,45832,0)
- ;;=M77.9^^203^2259^19
+ ;;^UTILITY(U,$J,358.3,43551,1,3,0)
+ ;;=3^Hemiplegia Affecting Rt Non-Dominant Side
+ ;;^UTILITY(U,$J,358.3,43551,1,4,0)
+ ;;=4^I69.953
+ ;;^UTILITY(U,$J,358.3,43551,2)
+ ;;=^5007562
+ ;;^UTILITY(U,$J,358.3,43552,0)
+ ;;=I69.954^^160^2124^33

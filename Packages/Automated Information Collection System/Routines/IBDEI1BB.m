@@ -1,134 +1,124 @@
-IBDEI1BB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22313,0)
- ;;=I49.5^^87^980^23
- ;;^UTILITY(U,$J,358.3,22313,1,0)
+ ;;^UTILITY(U,$J,358.3,20981,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,20981,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,20981,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,20982,0)
+ ;;=G47.09^^95^1042^16
+ ;;^UTILITY(U,$J,358.3,20982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22313,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,22313,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,22313,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,22314,0)
- ;;=I49.8^^87^980^3
- ;;^UTILITY(U,$J,358.3,22314,1,0)
+ ;;^UTILITY(U,$J,358.3,20982,1,3,0)
+ ;;=3^Insomnia,Other Specified
+ ;;^UTILITY(U,$J,358.3,20982,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,20982,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,20983,0)
+ ;;=G47.00^^95^1042^17
+ ;;^UTILITY(U,$J,358.3,20983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22314,1,3,0)
- ;;=3^Cardiac Arrhythmias
- ;;^UTILITY(U,$J,358.3,22314,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,22314,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,22315,0)
- ;;=I49.9^^87^980^2
- ;;^UTILITY(U,$J,358.3,22315,1,0)
+ ;;^UTILITY(U,$J,358.3,20983,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,20983,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,20983,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,20984,0)
+ ;;=G47.10^^95^1042^14
+ ;;^UTILITY(U,$J,358.3,20984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22315,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,22315,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,22315,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,22316,0)
- ;;=R00.1^^87^980^1
- ;;^UTILITY(U,$J,358.3,22316,1,0)
+ ;;^UTILITY(U,$J,358.3,20984,1,3,0)
+ ;;=3^Hypersomnolence Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,20984,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,20984,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,20985,0)
+ ;;=G47.419^^95^1042^20
+ ;;^UTILITY(U,$J,358.3,20985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22316,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,22316,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,22316,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,22317,0)
- ;;=I34.1^^87^980^14
- ;;^UTILITY(U,$J,358.3,22317,1,0)
+ ;;^UTILITY(U,$J,358.3,20985,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,20985,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,20985,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,20986,0)
+ ;;=G47.33^^95^1042^24
+ ;;^UTILITY(U,$J,358.3,20986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22317,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Prolapse
- ;;^UTILITY(U,$J,358.3,22317,1,4,0)
- ;;=4^I34.1
- ;;^UTILITY(U,$J,358.3,22317,2)
- ;;=^5007170
- ;;^UTILITY(U,$J,358.3,22318,0)
- ;;=D68.4^^87^981^1
- ;;^UTILITY(U,$J,358.3,22318,1,0)
+ ;;^UTILITY(U,$J,358.3,20986,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,20986,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,20986,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,20987,0)
+ ;;=G47.31^^95^1042^4
+ ;;^UTILITY(U,$J,358.3,20987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22318,1,3,0)
- ;;=3^Acquired Coagulation Factor Deficiency
- ;;^UTILITY(U,$J,358.3,22318,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,22318,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,22319,0)
- ;;=D59.9^^87^981^2
- ;;^UTILITY(U,$J,358.3,22319,1,0)
+ ;;^UTILITY(U,$J,358.3,20987,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic
+ ;;^UTILITY(U,$J,358.3,20987,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,20987,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,20988,0)
+ ;;=G47.21^^95^1042^7
+ ;;^UTILITY(U,$J,358.3,20988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22319,1,3,0)
- ;;=3^Acquired Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,22319,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,22319,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,22320,0)
- ;;=C91.00^^87^981^5
- ;;^UTILITY(U,$J,358.3,22320,1,0)
+ ;;^UTILITY(U,$J,358.3,20988,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,20988,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,20988,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,20989,0)
+ ;;=G47.22^^95^1042^6
+ ;;^UTILITY(U,$J,358.3,20989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22320,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22320,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,22320,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,22321,0)
- ;;=C91.01^^87^981^4
- ;;^UTILITY(U,$J,358.3,22321,1,0)
+ ;;^UTILITY(U,$J,358.3,20989,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,20989,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,20989,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,20990,0)
+ ;;=G47.23^^95^1042^8
+ ;;^UTILITY(U,$J,358.3,20990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22321,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22321,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,22321,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,22322,0)
- ;;=C92.01^^87^981^7
- ;;^UTILITY(U,$J,358.3,22322,1,0)
+ ;;^UTILITY(U,$J,358.3,20990,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,20990,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,20990,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,20991,0)
+ ;;=G47.24^^95^1042^9
+ ;;^UTILITY(U,$J,358.3,20991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22322,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22322,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,22322,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,22323,0)
- ;;=C92.00^^87^981^8
- ;;^UTILITY(U,$J,358.3,22323,1,0)
+ ;;^UTILITY(U,$J,358.3,20991,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,20991,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,20991,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,20992,0)
+ ;;=G47.26^^95^1042^10
+ ;;^UTILITY(U,$J,358.3,20992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22323,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22323,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,22323,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,22324,0)
- ;;=C92.61^^87^981^9
- ;;^UTILITY(U,$J,358.3,22324,1,0)
+ ;;^UTILITY(U,$J,358.3,20992,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,20992,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,20992,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,20993,0)
+ ;;=G47.20^^95^1042^11
+ ;;^UTILITY(U,$J,358.3,20993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22324,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,22324,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,22324,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,22325,0)
- ;;=C92.60^^87^981^10
- ;;^UTILITY(U,$J,358.3,22325,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22325,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,22325,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,22325,2)
- ;;=^5001807

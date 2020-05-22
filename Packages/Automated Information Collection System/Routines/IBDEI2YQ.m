@@ -1,120 +1,126 @@
-IBDEI2YQ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49665,0)
- ;;=S59.211S^^216^2420^135
- ;;^UTILITY(U,$J,358.3,49665,1,0)
+ ;;^UTILITY(U,$J,358.3,47285,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,47286,0)
+ ;;=I80.203^^181^2360^45
+ ;;^UTILITY(U,$J,358.3,47286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49665,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end radius, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49665,1,4,0)
- ;;=4^S59.211S
- ;;^UTILITY(U,$J,358.3,49665,2)
- ;;=^5032152
- ;;^UTILITY(U,$J,358.3,49666,0)
- ;;=S59.112S^^216^2420^137
- ;;^UTILITY(U,$J,358.3,49666,1,0)
+ ;;^UTILITY(U,$J,358.3,47286,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Bilateral Lower Extremity
+ ;;^UTILITY(U,$J,358.3,47286,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,47286,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,47287,0)
+ ;;=K27.9^^181^2360^40
+ ;;^UTILITY(U,$J,358.3,47287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49666,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49666,1,4,0)
- ;;=4^S59.112S
- ;;^UTILITY(U,$J,358.3,49666,2)
- ;;=^5032074
- ;;^UTILITY(U,$J,358.3,49667,0)
- ;;=S59.111S^^216^2420^138
- ;;^UTILITY(U,$J,358.3,49667,1,0)
+ ;;^UTILITY(U,$J,358.3,47287,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,47287,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,47287,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,47288,0)
+ ;;=G89.29^^181^2360^10
+ ;;^UTILITY(U,$J,358.3,47288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49667,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end radius, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49667,1,4,0)
- ;;=4^S59.111S
- ;;^UTILITY(U,$J,358.3,49667,2)
- ;;=^5032068
- ;;^UTILITY(U,$J,358.3,49668,0)
- ;;=S59.222S^^216^2420^139
- ;;^UTILITY(U,$J,358.3,49668,1,0)
+ ;;^UTILITY(U,$J,358.3,47288,1,3,0)
+ ;;=3^Pain,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,47288,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,47288,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,47289,0)
+ ;;=G89.21^^181^2360^9
+ ;;^UTILITY(U,$J,358.3,47289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49668,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49668,1,4,0)
- ;;=4^S59.222S
- ;;^UTILITY(U,$J,358.3,49668,2)
- ;;=^5135632
- ;;^UTILITY(U,$J,358.3,49669,0)
- ;;=S59.221S^^216^2420^140
- ;;^UTILITY(U,$J,358.3,49669,1,0)
+ ;;^UTILITY(U,$J,358.3,47289,1,3,0)
+ ;;=3^Pain,Chronic d/t Trauma
+ ;;^UTILITY(U,$J,358.3,47289,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,47289,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,47290,0)
+ ;;=G89.22^^181^2360^11
+ ;;^UTILITY(U,$J,358.3,47290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49669,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49669,1,4,0)
- ;;=4^S59.221S
- ;;^UTILITY(U,$J,358.3,49669,2)
- ;;=^5032164
- ;;^UTILITY(U,$J,358.3,49670,0)
- ;;=S59.122S^^216^2420^143
- ;;^UTILITY(U,$J,358.3,49670,1,0)
+ ;;^UTILITY(U,$J,358.3,47290,1,3,0)
+ ;;=3^Pain,Chronic,Post-Thoracotomy
+ ;;^UTILITY(U,$J,358.3,47290,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,47290,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,47291,0)
+ ;;=G89.28^^181^2360^8
+ ;;^UTILITY(U,$J,358.3,47291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49670,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49670,1,4,0)
- ;;=4^S59.122S
- ;;^UTILITY(U,$J,358.3,49670,2)
- ;;=^5032092
- ;;^UTILITY(U,$J,358.3,49671,0)
- ;;=S59.121S^^216^2420^144
- ;;^UTILITY(U,$J,358.3,49671,1,0)
+ ;;^UTILITY(U,$J,358.3,47291,1,3,0)
+ ;;=3^Pain,Chronic Postprocedural Pain
+ ;;^UTILITY(U,$J,358.3,47291,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,47291,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,47292,0)
+ ;;=K85.90^^181^2360^38
+ ;;^UTILITY(U,$J,358.3,47292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49671,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49671,1,4,0)
- ;;=4^S59.121S
- ;;^UTILITY(U,$J,358.3,49671,2)
- ;;=^5032086
- ;;^UTILITY(U,$J,358.3,49672,0)
- ;;=S59.232S^^216^2420^145
- ;;^UTILITY(U,$J,358.3,49672,1,0)
+ ;;^UTILITY(U,$J,358.3,47292,1,3,0)
+ ;;=3^Pancreatitis,Acute w/o Necrosis/Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,47292,1,4,0)
+ ;;=4^K85.90
+ ;;^UTILITY(U,$J,358.3,47292,2)
+ ;;=^5138761
+ ;;^UTILITY(U,$J,358.3,47293,0)
+ ;;=K85.91^^181^2360^37
+ ;;^UTILITY(U,$J,358.3,47293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49672,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end rad, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49672,1,4,0)
- ;;=4^S59.232S
- ;;^UTILITY(U,$J,358.3,49672,2)
- ;;=^5135638
- ;;^UTILITY(U,$J,358.3,49673,0)
- ;;=S59.231S^^216^2420^146
- ;;^UTILITY(U,$J,358.3,49673,1,0)
+ ;;^UTILITY(U,$J,358.3,47293,1,3,0)
+ ;;=3^Pancreatitis,Acute w/ Uninfected Necrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,47293,1,4,0)
+ ;;=4^K85.91
+ ;;^UTILITY(U,$J,358.3,47293,2)
+ ;;=^5138762
+ ;;^UTILITY(U,$J,358.3,47294,0)
+ ;;=K85.92^^181^2360^36
+ ;;^UTILITY(U,$J,358.3,47294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49673,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49673,1,4,0)
- ;;=4^S59.231S
- ;;^UTILITY(U,$J,358.3,49673,2)
- ;;=^5032170
- ;;^UTILITY(U,$J,358.3,49674,0)
- ;;=S59.132S^^216^2420^149
- ;;^UTILITY(U,$J,358.3,49674,1,0)
+ ;;^UTILITY(U,$J,358.3,47294,1,3,0)
+ ;;=3^Pancreatitis,Acute w/ Infected Necrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,47294,1,4,0)
+ ;;=4^K85.92
+ ;;^UTILITY(U,$J,358.3,47294,2)
+ ;;=^5138763
+ ;;^UTILITY(U,$J,358.3,47295,0)
+ ;;=Z98.890^^181^2360^52
+ ;;^UTILITY(U,$J,358.3,47295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49674,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end rad, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49674,1,4,0)
- ;;=4^S59.132S
- ;;^UTILITY(U,$J,358.3,49674,2)
- ;;=^5032110
- ;;^UTILITY(U,$J,358.3,49675,0)
- ;;=S59.131S^^216^2420^150
- ;;^UTILITY(U,$J,358.3,49675,1,0)
+ ;;^UTILITY(U,$J,358.3,47295,1,3,0)
+ ;;=3^Postprocedural States,Other Specified
+ ;;^UTILITY(U,$J,358.3,47295,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,47295,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,47296,0)
+ ;;=R10.9^^181^2360^4
+ ;;^UTILITY(U,$J,358.3,47296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49675,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,49675,1,4,0)
- ;;=4^S59.131S
- ;;^UTILITY(U,$J,358.3,49675,2)
- ;;=^5032104
- ;;^UTILITY(U,$J,358.3,49676,0)
- ;;=S59.242S^^216^2420^151
- ;;^UTILITY(U,$J,358.3,49676,1,0)
+ ;;^UTILITY(U,$J,358.3,47296,1,3,0)
+ ;;=3^Pain,Abdominal,Unspec
+ ;;^UTILITY(U,$J,358.3,47296,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,47296,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,47297,0)
+ ;;=M54.5^^181^2360^22
+ ;;^UTILITY(U,$J,358.3,47297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49676,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,47297,1,3,0)
+ ;;=3^Pain,Low Back
+ ;;^UTILITY(U,$J,358.3,47297,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,47297,2)
+ ;;=^5012311

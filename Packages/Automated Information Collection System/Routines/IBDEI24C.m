@@ -1,140 +1,118 @@
-IBDEI24C ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35931,0)
- ;;=J94.1^^134^1736^1
- ;;^UTILITY(U,$J,358.3,35931,1,0)
+ ;;^UTILITY(U,$J,358.3,33848,1,4,0)
+ ;;=4^S42.002D
+ ;;^UTILITY(U,$J,358.3,33848,2)
+ ;;=^5026378
+ ;;^UTILITY(U,$J,358.3,33849,0)
+ ;;=S42.001D^^132^1712^28
+ ;;^UTILITY(U,$J,358.3,33849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35931,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,35931,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,35931,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,35932,0)
- ;;=C45.0^^134^1736^2
- ;;^UTILITY(U,$J,358.3,35932,1,0)
+ ;;^UTILITY(U,$J,358.3,33849,1,3,0)
+ ;;=3^Fx unsp part of r clavicle, subs for fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33849,1,4,0)
+ ;;=4^S42.001D
+ ;;^UTILITY(U,$J,358.3,33849,2)
+ ;;=^5026371
+ ;;^UTILITY(U,$J,358.3,33850,0)
+ ;;=S43.025D^^132^1712^38
+ ;;^UTILITY(U,$J,358.3,33850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35932,1,3,0)
- ;;=3^Pleura Mesothelioma
- ;;^UTILITY(U,$J,358.3,35932,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,35932,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,35933,0)
- ;;=J94.8^^134^1736^4
- ;;^UTILITY(U,$J,358.3,35933,1,0)
+ ;;^UTILITY(U,$J,358.3,33850,1,3,0)
+ ;;=3^Posterior dislocation of left humerus, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33850,1,4,0)
+ ;;=4^S43.025D
+ ;;^UTILITY(U,$J,358.3,33850,2)
+ ;;=^5027700
+ ;;^UTILITY(U,$J,358.3,33851,0)
+ ;;=S43.024D^^132^1712^40
+ ;;^UTILITY(U,$J,358.3,33851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35933,1,3,0)
- ;;=3^Pleural Conditions NEC
- ;;^UTILITY(U,$J,358.3,35933,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,35933,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,35934,0)
- ;;=J94.9^^134^1736^3
- ;;^UTILITY(U,$J,358.3,35934,1,0)
+ ;;^UTILITY(U,$J,358.3,33851,1,3,0)
+ ;;=3^Posterior dislocation of right humerus, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33851,1,4,0)
+ ;;=4^S43.024D
+ ;;^UTILITY(U,$J,358.3,33851,2)
+ ;;=^5027697
+ ;;^UTILITY(U,$J,358.3,33852,0)
+ ;;=M19.111^^132^1712^36
+ ;;^UTILITY(U,$J,358.3,33852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35934,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,35934,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,35934,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,35935,0)
- ;;=J91.8^^134^1736^6
- ;;^UTILITY(U,$J,358.3,35935,1,0)
+ ;;^UTILITY(U,$J,358.3,33852,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,33852,1,4,0)
+ ;;=4^M19.111
+ ;;^UTILITY(U,$J,358.3,33852,2)
+ ;;=^5010823
+ ;;^UTILITY(U,$J,358.3,33853,0)
+ ;;=M19.112^^132^1712^35
+ ;;^UTILITY(U,$J,358.3,33853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35935,1,3,0)
- ;;=3^Pleural Effusion in Conditions Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,35935,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,35935,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,35936,0)
- ;;=J90.^^134^1736^5
- ;;^UTILITY(U,$J,358.3,35936,1,0)
+ ;;^UTILITY(U,$J,358.3,33853,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left shoulder
+ ;;^UTILITY(U,$J,358.3,33853,1,4,0)
+ ;;=4^M19.112
+ ;;^UTILITY(U,$J,358.3,33853,2)
+ ;;=^5010824
+ ;;^UTILITY(U,$J,358.3,33854,0)
+ ;;=M19.211^^132^1712^48
+ ;;^UTILITY(U,$J,358.3,33854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35936,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,35936,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,35936,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,35937,0)
- ;;=J92.0^^134^1736^7
- ;;^UTILITY(U,$J,358.3,35937,1,0)
+ ;;^UTILITY(U,$J,358.3,33854,1,3,0)
+ ;;=3^Secondary osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,33854,1,4,0)
+ ;;=4^M19.211
+ ;;^UTILITY(U,$J,358.3,33854,2)
+ ;;=^5010838
+ ;;^UTILITY(U,$J,358.3,33855,0)
+ ;;=M19.212^^132^1712^47
+ ;;^UTILITY(U,$J,358.3,33855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35937,1,3,0)
- ;;=3^Pleural Plaque w/ Presence of Asbestos
- ;;^UTILITY(U,$J,358.3,35937,1,4,0)
- ;;=4^J92.0
- ;;^UTILITY(U,$J,358.3,35937,2)
- ;;=^5008312
- ;;^UTILITY(U,$J,358.3,35938,0)
- ;;=J92.9^^134^1736^8
- ;;^UTILITY(U,$J,358.3,35938,1,0)
+ ;;^UTILITY(U,$J,358.3,33855,1,3,0)
+ ;;=3^Secondary osteoarthritis, left shoulder
+ ;;^UTILITY(U,$J,358.3,33855,1,4,0)
+ ;;=4^M19.212
+ ;;^UTILITY(U,$J,358.3,33855,2)
+ ;;=^5010839
+ ;;^UTILITY(U,$J,358.3,33856,0)
+ ;;=S43.005D^^132^1712^20
+ ;;^UTILITY(U,$J,358.3,33856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35938,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,35938,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,35938,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,35939,0)
- ;;=R09.1^^134^1736^9
- ;;^UTILITY(U,$J,358.3,35939,1,0)
+ ;;^UTILITY(U,$J,358.3,33856,1,3,0)
+ ;;=3^Dislocation of left shoulder joint, subs encntr
+ ;;^UTILITY(U,$J,358.3,33856,1,4,0)
+ ;;=4^S43.005D
+ ;;^UTILITY(U,$J,358.3,33856,2)
+ ;;=^5027667
+ ;;^UTILITY(U,$J,358.3,33857,0)
+ ;;=M80.072A^^132^1713^3
+ ;;^UTILITY(U,$J,358.3,33857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35939,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,35939,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,35939,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,35940,0)
- ;;=J86.0^^134^1736^10
- ;;^UTILITY(U,$J,358.3,35940,1,0)
+ ;;^UTILITY(U,$J,358.3,33857,1,3,0)
+ ;;=3^Age-rel osteopor w current path fracture, left ank/ft, init
+ ;;^UTILITY(U,$J,358.3,33857,1,4,0)
+ ;;=4^M80.072A
+ ;;^UTILITY(U,$J,358.3,33857,2)
+ ;;=^5013483
+ ;;^UTILITY(U,$J,358.3,33858,0)
+ ;;=M80.071A^^132^1713^4
+ ;;^UTILITY(U,$J,358.3,33858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35940,1,3,0)
- ;;=3^Pyothorax w/ Fistula
- ;;^UTILITY(U,$J,358.3,35940,1,4,0)
- ;;=4^J86.0
- ;;^UTILITY(U,$J,358.3,35940,2)
- ;;=^5008308
- ;;^UTILITY(U,$J,358.3,35941,0)
- ;;=J86.9^^134^1736^11
- ;;^UTILITY(U,$J,358.3,35941,1,0)
+ ;;^UTILITY(U,$J,358.3,33858,1,3,0)
+ ;;=3^Age-rel osteopor w current path fracture, right ank/ft, init
+ ;;^UTILITY(U,$J,358.3,33858,1,4,0)
+ ;;=4^M80.071A
+ ;;^UTILITY(U,$J,358.3,33858,2)
+ ;;=^5013477
+ ;;^UTILITY(U,$J,358.3,33859,0)
+ ;;=S80.12XA^^132^1713^5
+ ;;^UTILITY(U,$J,358.3,33859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35941,1,3,0)
- ;;=3^Pyothorax w/o Fistula
- ;;^UTILITY(U,$J,358.3,35941,1,4,0)
- ;;=4^J86.9
- ;;^UTILITY(U,$J,358.3,35941,2)
- ;;=^5008309
- ;;^UTILITY(U,$J,358.3,35942,0)
- ;;=F41.9^^134^1737^2
- ;;^UTILITY(U,$J,358.3,35942,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35942,1,3,0)
- ;;=3^Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,35942,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,35942,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,35943,0)
- ;;=F10.20^^134^1737^1
- ;;^UTILITY(U,$J,358.3,35943,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35943,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,35943,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,35943,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,35944,0)
- ;;=F32.9^^134^1737^4
- ;;^UTILITY(U,$J,358.3,35944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35944,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episoide,Unspec
+ ;;^UTILITY(U,$J,358.3,33859,1,3,0)
+ ;;=3^Contusion of left lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,33859,1,4,0)
+ ;;=4^S80.12XA
+ ;;^UTILITY(U,$J,358.3,33859,2)
+ ;;=^5039903

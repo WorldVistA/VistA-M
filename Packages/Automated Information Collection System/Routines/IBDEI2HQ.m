@@ -1,128 +1,124 @@
-IBDEI2HQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42236,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,42236,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,42237,0)
- ;;=S63.502A^^159^2017^7
- ;;^UTILITY(U,$J,358.3,42237,1,0)
+ ;;^UTILITY(U,$J,358.3,39770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42237,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,42237,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,42237,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,42238,0)
- ;;=S83.8X1A^^159^2017^16
- ;;^UTILITY(U,$J,358.3,42238,1,0)
+ ;;^UTILITY(U,$J,358.3,39770,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,39770,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,39770,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,39771,0)
+ ;;=Z85.72^^152^2001^98
+ ;;^UTILITY(U,$J,358.3,39771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42238,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,42238,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,42238,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,42239,0)
- ;;=S83.8X2A^^159^2017^5
- ;;^UTILITY(U,$J,358.3,42239,1,0)
+ ;;^UTILITY(U,$J,358.3,39771,1,3,0)
+ ;;=3^Personal Hx of Non-Hodgkin Lymphomas
+ ;;^UTILITY(U,$J,358.3,39771,1,4,0)
+ ;;=4^Z85.72
+ ;;^UTILITY(U,$J,358.3,39771,2)
+ ;;=^5063436
+ ;;^UTILITY(U,$J,358.3,39772,0)
+ ;;=Z85.79^^152^2001^88
+ ;;^UTILITY(U,$J,358.3,39772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42239,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,42239,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,42239,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,42240,0)
- ;;=S86.211A^^159^2017^47
- ;;^UTILITY(U,$J,358.3,42240,1,0)
+ ;;^UTILITY(U,$J,358.3,39772,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
+ ;;^UTILITY(U,$J,358.3,39772,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,39772,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,39773,0)
+ ;;=Z85.820^^152^2001^77
+ ;;^UTILITY(U,$J,358.3,39773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42240,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,42240,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,42240,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,42241,0)
- ;;=S86.212A^^159^2017^27
- ;;^UTILITY(U,$J,358.3,42241,1,0)
+ ;;^UTILITY(U,$J,358.3,39773,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,39773,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,39773,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,39774,0)
+ ;;=Z85.828^^152^2001^92
+ ;;^UTILITY(U,$J,358.3,39774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42241,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,42241,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,42241,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,42242,0)
- ;;=S86.311A^^159^2017^49
- ;;^UTILITY(U,$J,358.3,42242,1,0)
+ ;;^UTILITY(U,$J,358.3,39774,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,39774,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,39774,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,39775,0)
+ ;;=Z85.71^^152^2001^72
+ ;;^UTILITY(U,$J,358.3,39775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42242,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,42242,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,42242,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,42243,0)
- ;;=S86.312A^^159^2017^29
- ;;^UTILITY(U,$J,358.3,42243,1,0)
+ ;;^UTILITY(U,$J,358.3,39775,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,39775,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,39775,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,39776,0)
+ ;;=Z65.8^^152^2001^144
+ ;;^UTILITY(U,$J,358.3,39776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42243,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,42243,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,42243,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,42244,0)
- ;;=S86.811A^^159^2017^48
- ;;^UTILITY(U,$J,358.3,42244,1,0)
+ ;;^UTILITY(U,$J,358.3,39776,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,39776,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,39776,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,39777,0)
+ ;;=Z86.11^^152^2001^109
+ ;;^UTILITY(U,$J,358.3,39777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42244,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,42244,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,42244,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,42245,0)
- ;;=S86.812A^^159^2017^28
- ;;^UTILITY(U,$J,358.3,42245,1,0)
+ ;;^UTILITY(U,$J,358.3,39777,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,39777,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,39777,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,39778,0)
+ ;;=Z86.13^^152^2001^76
+ ;;^UTILITY(U,$J,358.3,39778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42245,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,42245,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,42245,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,42246,0)
- ;;=S86.111A^^159^2017^50
- ;;^UTILITY(U,$J,358.3,42246,1,0)
+ ;;^UTILITY(U,$J,358.3,39778,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,39778,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,39778,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,39779,0)
+ ;;=Z86.73^^152^2001^106
+ ;;^UTILITY(U,$J,358.3,39779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42246,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,42246,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,42246,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,42247,0)
- ;;=S86.112A^^159^2017^30
- ;;^UTILITY(U,$J,358.3,42247,1,0)
+ ;;^UTILITY(U,$J,358.3,39779,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,39779,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,39779,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,39780,0)
+ ;;=Z86.79^^152^2001^69
+ ;;^UTILITY(U,$J,358.3,39780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42247,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,42247,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,42247,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,42248,0)
- ;;=S83.401A^^159^2017^15
- ;;^UTILITY(U,$J,358.3,42248,1,0)
+ ;;^UTILITY(U,$J,358.3,39780,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,39780,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,39780,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,39781,0)
+ ;;=Z91.040^^152^2001^57
+ ;;^UTILITY(U,$J,358.3,39781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42248,1,3,0)
- ;;=3^Sprain of Right Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,42248,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,42248,2)
- ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,39781,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,39781,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,39781,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,39782,0)
+ ;;=Z92.3^^152^2001^73

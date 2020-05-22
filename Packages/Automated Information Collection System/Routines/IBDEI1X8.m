@@ -1,134 +1,128 @@
-IBDEI1X8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1X8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32589,1,3,0)
- ;;=3^Synovitis & Tenosynovitis,Left Ankle/Foot NEC
- ;;^UTILITY(U,$J,358.3,32589,1,4,0)
- ;;=4^M65.872
- ;;^UTILITY(U,$J,358.3,32589,2)
- ;;=^5012813
- ;;^UTILITY(U,$J,358.3,32590,0)
- ;;=M65.871^^126^1619^48
- ;;^UTILITY(U,$J,358.3,32590,1,0)
+ ;;^UTILITY(U,$J,358.3,30685,0)
+ ;;=Q61.9^^123^1581^2
+ ;;^UTILITY(U,$J,358.3,30685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32590,1,3,0)
- ;;=3^Synovitis & Tenosynovitis,Right Ankle/Foot NEC
- ;;^UTILITY(U,$J,358.3,32590,1,4,0)
- ;;=4^M65.871
- ;;^UTILITY(U,$J,358.3,32590,2)
- ;;=^5012812
- ;;^UTILITY(U,$J,358.3,32591,0)
- ;;=S93.402D^^126^1619^22
- ;;^UTILITY(U,$J,358.3,32591,1,0)
+ ;;^UTILITY(U,$J,358.3,30685,1,3,0)
+ ;;=3^Cystic Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,30685,1,4,0)
+ ;;=4^Q61.9
+ ;;^UTILITY(U,$J,358.3,30685,2)
+ ;;=^5018800
+ ;;^UTILITY(U,$J,358.3,30686,0)
+ ;;=Q61.2^^123^1581^6
+ ;;^UTILITY(U,$J,358.3,30686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32591,1,3,0)
- ;;=3^Sprain of unspec ligament of lft ankl,subs
- ;;^UTILITY(U,$J,358.3,32591,1,4,0)
- ;;=4^S93.402D
- ;;^UTILITY(U,$J,358.3,32591,2)
- ;;=^5045778
- ;;^UTILITY(U,$J,358.3,32592,0)
- ;;=S93.401D^^126^1619^21
- ;;^UTILITY(U,$J,358.3,32592,1,0)
+ ;;^UTILITY(U,$J,358.3,30686,1,3,0)
+ ;;=3^Polycystic Kidney,Adult Type
+ ;;^UTILITY(U,$J,358.3,30686,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,30686,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,30687,0)
+ ;;=Q61.5^^123^1581^4
+ ;;^UTILITY(U,$J,358.3,30687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32592,1,3,0)
- ;;=3^Sprain of unsp ligament rt ankl,subs
- ;;^UTILITY(U,$J,358.3,32592,1,4,0)
- ;;=4^S93.401D
- ;;^UTILITY(U,$J,358.3,32592,2)
- ;;=^5045775
- ;;^UTILITY(U,$J,358.3,32593,0)
- ;;=M76.72^^126^1620^6
- ;;^UTILITY(U,$J,358.3,32593,1,0)
+ ;;^UTILITY(U,$J,358.3,30687,1,3,0)
+ ;;=3^Medullary Cystic Kidney
+ ;;^UTILITY(U,$J,358.3,30687,1,4,0)
+ ;;=4^Q61.5
+ ;;^UTILITY(U,$J,358.3,30687,2)
+ ;;=^67073
+ ;;^UTILITY(U,$J,358.3,30688,0)
+ ;;=Z82.71^^123^1581^3
+ ;;^UTILITY(U,$J,358.3,30688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32593,1,3,0)
- ;;=3^Tendinitis,Peroneal,Left Leg
- ;;^UTILITY(U,$J,358.3,32593,1,4,0)
- ;;=4^M76.72
- ;;^UTILITY(U,$J,358.3,32593,2)
- ;;=^5013289
- ;;^UTILITY(U,$J,358.3,32594,0)
- ;;=M76.71^^126^1620^7
- ;;^UTILITY(U,$J,358.3,32594,1,0)
+ ;;^UTILITY(U,$J,358.3,30688,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,30688,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,30688,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,30689,0)
+ ;;=Q61.5^^123^1581^5
+ ;;^UTILITY(U,$J,358.3,30689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32594,1,3,0)
- ;;=3^Tendinitis,Peroneal,Right Leg
- ;;^UTILITY(U,$J,358.3,32594,1,4,0)
- ;;=4^M76.71
- ;;^UTILITY(U,$J,358.3,32594,2)
- ;;=^5013288
- ;;^UTILITY(U,$J,358.3,32595,0)
- ;;=Q66.1^^126^1620^3
- ;;^UTILITY(U,$J,358.3,32595,1,0)
+ ;;^UTILITY(U,$J,358.3,30689,1,3,0)
+ ;;=3^Medullary Sponge Kidney
+ ;;^UTILITY(U,$J,358.3,30689,1,4,0)
+ ;;=4^Q61.5
+ ;;^UTILITY(U,$J,358.3,30689,2)
+ ;;=^67073
+ ;;^UTILITY(U,$J,358.3,30690,0)
+ ;;=Q61.3^^123^1581^7
+ ;;^UTILITY(U,$J,358.3,30690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32595,1,3,0)
- ;;=3^Talipes Calcaneovarus,Congenital
- ;;^UTILITY(U,$J,358.3,32595,1,4,0)
- ;;=4^Q66.1
- ;;^UTILITY(U,$J,358.3,32595,2)
- ;;=^5018862
- ;;^UTILITY(U,$J,358.3,32596,0)
- ;;=Q66.4^^126^1620^2
- ;;^UTILITY(U,$J,358.3,32596,1,0)
+ ;;^UTILITY(U,$J,358.3,30690,1,3,0)
+ ;;=3^Polycystic Kidney,Unspec
+ ;;^UTILITY(U,$J,358.3,30690,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,30690,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,30691,0)
+ ;;=E11.65^^123^1582^11
+ ;;^UTILITY(U,$J,358.3,30691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32596,1,3,0)
- ;;=3^Talipes Calcaneovalgus,Congenital
- ;;^UTILITY(U,$J,358.3,32596,1,4,0)
- ;;=4^Q66.4
- ;;^UTILITY(U,$J,358.3,32596,2)
- ;;=^5018865
- ;;^UTILITY(U,$J,358.3,32597,0)
- ;;=M76.62^^126^1620^4
- ;;^UTILITY(U,$J,358.3,32597,1,0)
+ ;;^UTILITY(U,$J,358.3,30691,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,30691,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,30691,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,30692,0)
+ ;;=E10.65^^123^1582^6
+ ;;^UTILITY(U,$J,358.3,30692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32597,1,3,0)
- ;;=3^Tendinitis,Achilles,Left Leg
- ;;^UTILITY(U,$J,358.3,32597,1,4,0)
- ;;=4^M76.62
- ;;^UTILITY(U,$J,358.3,32597,2)
- ;;=^5013286
- ;;^UTILITY(U,$J,358.3,32598,0)
- ;;=M76.61^^126^1620^5
- ;;^UTILITY(U,$J,358.3,32598,1,0)
+ ;;^UTILITY(U,$J,358.3,30692,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,30692,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,30692,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,30693,0)
+ ;;=E11.21^^123^1582^9
+ ;;^UTILITY(U,$J,358.3,30693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32598,1,3,0)
- ;;=3^Tendinitis,Achilles,Right Leg
- ;;^UTILITY(U,$J,358.3,32598,1,4,0)
- ;;=4^M76.61
- ;;^UTILITY(U,$J,358.3,32598,2)
- ;;=^5013285
- ;;^UTILITY(U,$J,358.3,32599,0)
- ;;=A52.11^^126^1620^1
- ;;^UTILITY(U,$J,358.3,32599,1,0)
+ ;;^UTILITY(U,$J,358.3,30693,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,30693,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,30693,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,30694,0)
+ ;;=E10.29^^123^1582^3
+ ;;^UTILITY(U,$J,358.3,30694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32599,1,3,0)
- ;;=3^Tabes Dorsalis
- ;;^UTILITY(U,$J,358.3,32599,1,4,0)
- ;;=4^A52.11
- ;;^UTILITY(U,$J,358.3,32599,2)
- ;;=^117008
- ;;^UTILITY(U,$J,358.3,32600,0)
- ;;=B35.1^^126^1620^8
- ;;^UTILITY(U,$J,358.3,32600,1,0)
+ ;;^UTILITY(U,$J,358.3,30694,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,30694,1,4,0)
+ ;;=4^E10.29
+ ;;^UTILITY(U,$J,358.3,30694,2)
+ ;;=^5002591
+ ;;^UTILITY(U,$J,358.3,30695,0)
+ ;;=E10.21^^123^1582^4
+ ;;^UTILITY(U,$J,358.3,30695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32600,1,3,0)
- ;;=3^Tinea Unguium
- ;;^UTILITY(U,$J,358.3,32600,1,4,0)
- ;;=4^B35.1
- ;;^UTILITY(U,$J,358.3,32600,2)
- ;;=^119748
- ;;^UTILITY(U,$J,358.3,32601,0)
- ;;=L97.212^^126^1621^27
- ;;^UTILITY(U,$J,358.3,32601,1,0)
+ ;;^UTILITY(U,$J,358.3,30695,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,30695,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,30695,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,30696,0)
+ ;;=E11.40^^123^1582^10
+ ;;^UTILITY(U,$J,358.3,30696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32601,1,3,0)
- ;;=3^Non-pressure chron ulcer rt calf w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,32601,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,32601,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,32602,0)
- ;;=L97.213^^126^1621^28
- ;;^UTILITY(U,$J,358.3,32602,1,0)
+ ;;^UTILITY(U,$J,358.3,30696,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,30696,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,30696,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,30697,0)
+ ;;=E10.40^^123^1582^5
+ ;;^UTILITY(U,$J,358.3,30697,1,0)
  ;;=^358.31IA^4^2

@@ -1,138 +1,116 @@
-IBDEI18T ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21127,1,4,0)
- ;;=4^N91.0
- ;;^UTILITY(U,$J,358.3,21127,2)
- ;;=^5015902
- ;;^UTILITY(U,$J,358.3,21128,0)
- ;;=N91.1^^84^945^7
- ;;^UTILITY(U,$J,358.3,21128,1,0)
+ ;;^UTILITY(U,$J,358.3,19924,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19924,1,4,0)
+ ;;=4^S62.634S
+ ;;^UTILITY(U,$J,358.3,19924,2)
+ ;;=^5034626
+ ;;^UTILITY(U,$J,358.3,19925,0)
+ ;;=S62.621S^^93^997^21
+ ;;^UTILITY(U,$J,358.3,19925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21128,1,3,0)
- ;;=3^Amenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,21128,1,4,0)
- ;;=4^N91.1
- ;;^UTILITY(U,$J,358.3,21128,2)
- ;;=^5015903
- ;;^UTILITY(U,$J,358.3,21129,0)
- ;;=N91.2^^84^945^8
- ;;^UTILITY(U,$J,358.3,21129,1,0)
+ ;;^UTILITY(U,$J,358.3,19925,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19925,1,4,0)
+ ;;=4^S62.621S
+ ;;^UTILITY(U,$J,358.3,19925,2)
+ ;;=^5034535
+ ;;^UTILITY(U,$J,358.3,19926,0)
+ ;;=S62.627S^^93^997^22
+ ;;^UTILITY(U,$J,358.3,19926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21129,1,3,0)
- ;;=3^Amenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,21129,1,4,0)
- ;;=4^N91.2
- ;;^UTILITY(U,$J,358.3,21129,2)
- ;;=^5015904
- ;;^UTILITY(U,$J,358.3,21130,0)
- ;;=N91.3^^84^945^38
- ;;^UTILITY(U,$J,358.3,21130,1,0)
+ ;;^UTILITY(U,$J,358.3,19926,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19926,1,4,0)
+ ;;=4^S62.627S
+ ;;^UTILITY(U,$J,358.3,19926,2)
+ ;;=^5034577
+ ;;^UTILITY(U,$J,358.3,19927,0)
+ ;;=S62.623S^^93^997^23
+ ;;^UTILITY(U,$J,358.3,19927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21130,1,3,0)
- ;;=3^Oligomenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,21130,1,4,0)
- ;;=4^N91.3
- ;;^UTILITY(U,$J,358.3,21130,2)
- ;;=^5015905
- ;;^UTILITY(U,$J,358.3,21131,0)
- ;;=N91.4^^84^945^39
- ;;^UTILITY(U,$J,358.3,21131,1,0)
+ ;;^UTILITY(U,$J,358.3,19927,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19927,1,4,0)
+ ;;=4^S62.623S
+ ;;^UTILITY(U,$J,358.3,19927,2)
+ ;;=^5034549
+ ;;^UTILITY(U,$J,358.3,19928,0)
+ ;;=S62.625S^^93^997^24
+ ;;^UTILITY(U,$J,358.3,19928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21131,1,3,0)
- ;;=3^Oligomenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,21131,1,4,0)
- ;;=4^N91.4
- ;;^UTILITY(U,$J,358.3,21131,2)
- ;;=^5015906
- ;;^UTILITY(U,$J,358.3,21132,0)
- ;;=N91.5^^84^945^40
- ;;^UTILITY(U,$J,358.3,21132,1,0)
+ ;;^UTILITY(U,$J,358.3,19928,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19928,1,4,0)
+ ;;=4^S62.625S
+ ;;^UTILITY(U,$J,358.3,19928,2)
+ ;;=^5034563
+ ;;^UTILITY(U,$J,358.3,19929,0)
+ ;;=S62.620S^^93^997^25
+ ;;^UTILITY(U,$J,358.3,19929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21132,1,3,0)
- ;;=3^Oligomenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,21132,1,4,0)
- ;;=4^N91.5
- ;;^UTILITY(U,$J,358.3,21132,2)
- ;;=^5015907
- ;;^UTILITY(U,$J,358.3,21133,0)
- ;;=N92.0^^84^945^20
- ;;^UTILITY(U,$J,358.3,21133,1,0)
+ ;;^UTILITY(U,$J,358.3,19929,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19929,1,4,0)
+ ;;=4^S62.620S
+ ;;^UTILITY(U,$J,358.3,19929,2)
+ ;;=^5034528
+ ;;^UTILITY(U,$J,358.3,19930,0)
+ ;;=S62.626S^^93^997^26
+ ;;^UTILITY(U,$J,358.3,19930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21133,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,21133,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,21133,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,21134,0)
- ;;=N92.6^^84^945^30
- ;;^UTILITY(U,$J,358.3,21134,1,0)
+ ;;^UTILITY(U,$J,358.3,19930,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19930,1,4,0)
+ ;;=4^S62.626S
+ ;;^UTILITY(U,$J,358.3,19930,2)
+ ;;=^5034570
+ ;;^UTILITY(U,$J,358.3,19931,0)
+ ;;=S62.622S^^93^997^27
+ ;;^UTILITY(U,$J,358.3,19931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21134,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,21134,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,21134,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,21135,0)
- ;;=N92.5^^84^945^29
- ;;^UTILITY(U,$J,358.3,21135,1,0)
+ ;;^UTILITY(U,$J,358.3,19931,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19931,1,4,0)
+ ;;=4^S62.622S
+ ;;^UTILITY(U,$J,358.3,19931,2)
+ ;;=^5034542
+ ;;^UTILITY(U,$J,358.3,19932,0)
+ ;;=S62.624S^^93^997^28
+ ;;^UTILITY(U,$J,358.3,19932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21135,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,21135,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,21135,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,21136,0)
- ;;=N92.3^^84^945^43
- ;;^UTILITY(U,$J,358.3,21136,1,0)
+ ;;^UTILITY(U,$J,358.3,19932,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19932,1,4,0)
+ ;;=4^S62.624S
+ ;;^UTILITY(U,$J,358.3,19932,2)
+ ;;=^5034556
+ ;;^UTILITY(U,$J,358.3,19933,0)
+ ;;=S62.611S^^93^997^39
+ ;;^UTILITY(U,$J,358.3,19933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21136,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,21136,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,21136,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,21137,0)
- ;;=N89.7^^84^945^24
- ;;^UTILITY(U,$J,358.3,21137,1,0)
+ ;;^UTILITY(U,$J,358.3,19933,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19933,1,4,0)
+ ;;=4^S62.611S
+ ;;^UTILITY(U,$J,358.3,19933,2)
+ ;;=^5034465
+ ;;^UTILITY(U,$J,358.3,19934,0)
+ ;;=S62.617S^^93^997^40
+ ;;^UTILITY(U,$J,358.3,19934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21137,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,21137,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,21137,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,21138,0)
- ;;=N93.8^^84^945^2
- ;;^UTILITY(U,$J,358.3,21138,1,0)
+ ;;^UTILITY(U,$J,358.3,19934,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19934,1,4,0)
+ ;;=4^S62.617S
+ ;;^UTILITY(U,$J,358.3,19934,2)
+ ;;=^5034507
+ ;;^UTILITY(U,$J,358.3,19935,0)
+ ;;=S62.613S^^93^997^41
+ ;;^UTILITY(U,$J,358.3,19935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21138,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,21138,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,21138,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,21139,0)
- ;;=N93.9^^84^945^3
- ;;^UTILITY(U,$J,358.3,21139,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21139,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,21139,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,21139,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,21140,0)
- ;;=N92.4^^84^945^19
- ;;^UTILITY(U,$J,358.3,21140,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21140,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,21140,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,21140,2)
- ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,19935,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left middle finger, sequela

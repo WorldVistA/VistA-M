@@ -1,124 +1,122 @@
-IBDEI28I ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37914,0)
- ;;=99420^^144^1825^1^^^^1
- ;;^UTILITY(U,$J,358.3,37914,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37914,1,2,0)
- ;;=2^99420
- ;;^UTILITY(U,$J,358.3,37914,1,3,0)
- ;;=3^Admin/Int Hlth Risk Assess Tst
- ;;^UTILITY(U,$J,358.3,37915,0)
- ;;=S9445^^144^1826^3^^^^1
- ;;^UTILITY(U,$J,358.3,37915,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37915,1,2,0)
- ;;=2^S9445
- ;;^UTILITY(U,$J,358.3,37915,1,3,0)
- ;;=3^Pt Educ,Individual,NOS
- ;;^UTILITY(U,$J,358.3,37916,0)
- ;;=S9446^^144^1826^2^^^^1
- ;;^UTILITY(U,$J,358.3,37916,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37916,1,2,0)
- ;;=2^S9446
- ;;^UTILITY(U,$J,358.3,37916,1,3,0)
- ;;=3^Pt Educ,Group,NOS
- ;;^UTILITY(U,$J,358.3,37917,0)
- ;;=G0177^^144^1826^1^^^^1
- ;;^UTILITY(U,$J,358.3,37917,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37917,1,2,0)
- ;;=2^G0177
- ;;^UTILITY(U,$J,358.3,37917,1,3,0)
- ;;=3^Train & Ed Svcs R/T Care & Tx of Disabling MH Problem 45+ min
- ;;^UTILITY(U,$J,358.3,37918,0)
- ;;=S9454^^144^1826^4^^^^1
- ;;^UTILITY(U,$J,358.3,37918,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37918,1,2,0)
- ;;=2^S9454
- ;;^UTILITY(U,$J,358.3,37918,1,3,0)
- ;;=3^Stress Mgmt Class
- ;;^UTILITY(U,$J,358.3,37919,0)
- ;;=99366^^144^1827^1^^^^1
- ;;^UTILITY(U,$J,358.3,37919,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37919,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,37919,1,3,0)
- ;;=3^Non-Phy Team Conf w/ Pt &/or Fam,30 min+
- ;;^UTILITY(U,$J,358.3,37920,0)
- ;;=T74.11XA^^145^1828^5
- ;;^UTILITY(U,$J,358.3,37920,1,0)
+ ;;^UTILITY(U,$J,358.3,35680,0)
+ ;;=M48.17^^139^1821^4
+ ;;^UTILITY(U,$J,358.3,35680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37920,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,37920,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,37920,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,37921,0)
- ;;=T74.11XD^^145^1828^6
- ;;^UTILITY(U,$J,358.3,37921,1,0)
+ ;;^UTILITY(U,$J,358.3,35680,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,35680,1,4,0)
+ ;;=4^M48.17
+ ;;^UTILITY(U,$J,358.3,35680,2)
+ ;;=^5012103
+ ;;^UTILITY(U,$J,358.3,35681,0)
+ ;;=M48.19^^139^1821^5
+ ;;^UTILITY(U,$J,358.3,35681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37921,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,37921,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,37921,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,37922,0)
- ;;=T76.11XA^^145^1828^7
- ;;^UTILITY(U,$J,358.3,37922,1,0)
+ ;;^UTILITY(U,$J,358.3,35681,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Mult Sites in Spine
+ ;;^UTILITY(U,$J,358.3,35681,1,4,0)
+ ;;=4^M48.19
+ ;;^UTILITY(U,$J,358.3,35681,2)
+ ;;=^5012105
+ ;;^UTILITY(U,$J,358.3,35682,0)
+ ;;=M48.11^^139^1821^6
+ ;;^UTILITY(U,$J,358.3,35682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37922,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,37922,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,37922,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,37923,0)
- ;;=T76.11XD^^145^1828^8
- ;;^UTILITY(U,$J,358.3,37923,1,0)
+ ;;^UTILITY(U,$J,358.3,35682,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,35682,1,4,0)
+ ;;=4^M48.11
+ ;;^UTILITY(U,$J,358.3,35682,2)
+ ;;=^5012097
+ ;;^UTILITY(U,$J,358.3,35683,0)
+ ;;=M48.18^^139^1821^7
+ ;;^UTILITY(U,$J,358.3,35683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37923,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,37923,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,37923,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,37924,0)
- ;;=Z69.11^^145^1828^28
- ;;^UTILITY(U,$J,358.3,37924,1,0)
+ ;;^UTILITY(U,$J,358.3,35683,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,35683,1,4,0)
+ ;;=4^M48.18
+ ;;^UTILITY(U,$J,358.3,35683,2)
+ ;;=^5012104
+ ;;^UTILITY(U,$J,358.3,35684,0)
+ ;;=M48.15^^139^1821^9
+ ;;^UTILITY(U,$J,358.3,35684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37924,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
- ;;^UTILITY(U,$J,358.3,37924,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,37924,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,37925,0)
- ;;=Z91.410^^145^1828^29
- ;;^UTILITY(U,$J,358.3,37925,1,0)
+ ;;^UTILITY(U,$J,358.3,35684,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,35684,1,4,0)
+ ;;=4^M48.15
+ ;;^UTILITY(U,$J,358.3,35684,2)
+ ;;=^5012101
+ ;;^UTILITY(U,$J,358.3,35685,0)
+ ;;=M48.13^^139^1821^2
+ ;;^UTILITY(U,$J,358.3,35685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37925,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,37925,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,37925,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,37926,0)
- ;;=Z69.12^^145^1828^26
- ;;^UTILITY(U,$J,358.3,37926,1,0)
+ ;;^UTILITY(U,$J,358.3,35685,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,35685,1,4,0)
+ ;;=4^M48.13
+ ;;^UTILITY(U,$J,358.3,35685,2)
+ ;;=^5012099
+ ;;^UTILITY(U,$J,358.3,35686,0)
+ ;;=M48.14^^139^1821^8
+ ;;^UTILITY(U,$J,358.3,35686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37926,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,37926,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,37926,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,37927,0)
- ;;=T74.21XA^^145^1828^13
+ ;;^UTILITY(U,$J,358.3,35686,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,35686,1,4,0)
+ ;;=4^M48.14
+ ;;^UTILITY(U,$J,358.3,35686,2)
+ ;;=^5012100
+ ;;^UTILITY(U,$J,358.3,35687,0)
+ ;;=M45.2^^139^1821^10
+ ;;^UTILITY(U,$J,358.3,35687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35687,1,3,0)
+ ;;=3^Ankylosing Spondylitis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,35687,1,4,0)
+ ;;=4^M45.2
+ ;;^UTILITY(U,$J,358.3,35687,2)
+ ;;=^5011962
+ ;;^UTILITY(U,$J,358.3,35688,0)
+ ;;=M45.3^^139^1821^11
+ ;;^UTILITY(U,$J,358.3,35688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35688,1,3,0)
+ ;;=3^Ankylosing Spondylitis,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,35688,1,4,0)
+ ;;=4^M45.3
+ ;;^UTILITY(U,$J,358.3,35688,2)
+ ;;=^5011963
+ ;;^UTILITY(U,$J,358.3,35689,0)
+ ;;=M45.7^^139^1821^13
+ ;;^UTILITY(U,$J,358.3,35689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35689,1,3,0)
+ ;;=3^Ankylosing Spondylitis,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,35689,1,4,0)
+ ;;=4^M45.7
+ ;;^UTILITY(U,$J,358.3,35689,2)
+ ;;=^5011967
+ ;;^UTILITY(U,$J,358.3,35690,0)
+ ;;=M45.0^^139^1821^14
+ ;;^UTILITY(U,$J,358.3,35690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35690,1,3,0)
+ ;;=3^Ankylosing Spondylitis,Mult Sites in Spine
+ ;;^UTILITY(U,$J,358.3,35690,1,4,0)
+ ;;=4^M45.0
+ ;;^UTILITY(U,$J,358.3,35690,2)
+ ;;=^5011960
+ ;;^UTILITY(U,$J,358.3,35691,0)
+ ;;=M45.1^^139^1821^15
+ ;;^UTILITY(U,$J,358.3,35691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35691,1,3,0)
+ ;;=3^Ankylosing Spondylitis,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,35691,1,4,0)
+ ;;=4^M45.1

@@ -1,340 +1,124 @@
-IBDEI0J1 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0J1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24127,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24128,0)
- ;;=F02.81^^64^950^24
- ;;^UTILITY(U,$J,358.3,24128,1,0)
+ ;;^UTILITY(U,$J,358.3,8317,0)
+ ;;=M32.0^^65^530^19
+ ;;^UTILITY(U,$J,358.3,8317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24128,1,3,0)
- ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24128,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24128,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24129,0)
- ;;=F02.80^^64^950^25
- ;;^UTILITY(U,$J,358.3,24129,1,0)
+ ;;^UTILITY(U,$J,358.3,8317,1,3,0)
+ ;;=3^Lupus,Erythematosus,Drug-Induced Systemic
+ ;;^UTILITY(U,$J,358.3,8317,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,8317,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,8318,0)
+ ;;=M32.10^^65^530^22
+ ;;^UTILITY(U,$J,358.3,8318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24129,1,3,0)
- ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24129,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24129,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24130,0)
- ;;=G31.84^^64^950^57
- ;;^UTILITY(U,$J,358.3,24130,1,0)
+ ;;^UTILITY(U,$J,358.3,8318,1,3,0)
+ ;;=3^Lupus,Erythematosus,Systemic
+ ;;^UTILITY(U,$J,358.3,8318,1,4,0)
+ ;;=4^M32.10
+ ;;^UTILITY(U,$J,358.3,8318,2)
+ ;;=^5011753
+ ;;^UTILITY(U,$J,358.3,8319,0)
+ ;;=M32.19^^65^530^24
+ ;;^UTILITY(U,$J,358.3,8319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24130,1,3,0)
- ;;=3^Mild Neurocog D/O d/t ANOTHER MEDICAL CONDITION
- ;;^UTILITY(U,$J,358.3,24130,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,24130,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24131,0)
- ;;=A81.01^^64^950^9
- ;;^UTILITY(U,$J,358.3,24131,1,0)
+ ;;^UTILITY(U,$J,358.3,8319,1,3,0)
+ ;;=3^Lupus,Erythematosus,Systemic,Skin Involvmnt
+ ;;^UTILITY(U,$J,358.3,8319,1,4,0)
+ ;;=4^M32.19
+ ;;^UTILITY(U,$J,358.3,8319,2)
+ ;;=^5011759
+ ;;^UTILITY(U,$J,358.3,8320,0)
+ ;;=M32.9^^65^530^23
+ ;;^UTILITY(U,$J,358.3,8320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24131,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,24131,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,24131,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,24132,0)
- ;;=F05.^^64^950^13
- ;;^UTILITY(U,$J,358.3,24132,1,0)
+ ;;^UTILITY(U,$J,358.3,8320,1,3,0)
+ ;;=3^Lupus,Erythematosus,Systemic w/o Organ Involvmnt
+ ;;^UTILITY(U,$J,358.3,8320,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,8320,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,8321,0)
+ ;;=E88.1^^65^530^17
+ ;;^UTILITY(U,$J,358.3,8321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24132,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,24132,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,24132,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,24133,0)
- ;;=F05.^^64^950^14
- ;;^UTILITY(U,$J,358.3,24133,1,0)
+ ;;^UTILITY(U,$J,358.3,8321,1,3,0)
+ ;;=3^Lipodystrophy NOS
+ ;;^UTILITY(U,$J,358.3,8321,1,4,0)
+ ;;=4^E88.1
+ ;;^UTILITY(U,$J,358.3,8321,2)
+ ;;=^5003028
+ ;;^UTILITY(U,$J,358.3,8322,0)
+ ;;=C85.19^^65^530^2
+ ;;^UTILITY(U,$J,358.3,8322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24133,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,24133,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,24133,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,24134,0)
- ;;=R41.0^^64^950^15
- ;;^UTILITY(U,$J,358.3,24134,1,0)
+ ;;^UTILITY(U,$J,358.3,8322,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,8322,1,4,0)
+ ;;=4^C85.19
+ ;;^UTILITY(U,$J,358.3,8322,2)
+ ;;=^5001710
+ ;;^UTILITY(U,$J,358.3,8323,0)
+ ;;=C85.13^^65^530^5
+ ;;^UTILITY(U,$J,358.3,8323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24134,1,3,0)
- ;;=3^Delirium,Other Specified
- ;;^UTILITY(U,$J,358.3,24134,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,24134,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,24135,0)
- ;;=R41.0^^64^950^16
- ;;^UTILITY(U,$J,358.3,24135,1,0)
+ ;;^UTILITY(U,$J,358.3,8323,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Intra-Abdominal Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8323,1,4,0)
+ ;;=4^C85.13
+ ;;^UTILITY(U,$J,358.3,8323,2)
+ ;;=^5001704
+ ;;^UTILITY(U,$J,358.3,8324,0)
+ ;;=C85.16^^65^530^6
+ ;;^UTILITY(U,$J,358.3,8324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24135,1,3,0)
- ;;=3^Delirium,Unspec
- ;;^UTILITY(U,$J,358.3,24135,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,24135,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,24136,0)
- ;;=G31.09^^64^950^20
- ;;^UTILITY(U,$J,358.3,24136,1,0)
+ ;;^UTILITY(U,$J,358.3,8324,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8324,1,4,0)
+ ;;=4^C85.16
+ ;;^UTILITY(U,$J,358.3,8324,2)
+ ;;=^5001707
+ ;;^UTILITY(U,$J,358.3,8325,0)
+ ;;=C85.12^^65^530^7
+ ;;^UTILITY(U,$J,358.3,8325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24136,1,3,0)
- ;;=3^Frontotemporal Disease
- ;;^UTILITY(U,$J,358.3,24136,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,24136,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,24137,0)
- ;;=F02.81^^64^950^36
- ;;^UTILITY(U,$J,358.3,24137,1,0)
+ ;;^UTILITY(U,$J,358.3,8325,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8325,1,4,0)
+ ;;=4^C85.12
+ ;;^UTILITY(U,$J,358.3,8325,2)
+ ;;=^5001703
+ ;;^UTILITY(U,$J,358.3,8326,0)
+ ;;=C85.14^^65^530^1
+ ;;^UTILITY(U,$J,358.3,8326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24137,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24137,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24137,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24138,0)
- ;;=F02.80^^64^950^37
- ;;^UTILITY(U,$J,358.3,24138,1,0)
+ ;;^UTILITY(U,$J,358.3,8326,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8326,1,4,0)
+ ;;=4^C85.14
+ ;;^UTILITY(U,$J,358.3,8326,2)
+ ;;=^5001705
+ ;;^UTILITY(U,$J,358.3,8327,0)
+ ;;=C85.11^^65^530^3
+ ;;^UTILITY(U,$J,358.3,8327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24138,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24138,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24138,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24139,0)
- ;;=F02.81^^64^950^42
- ;;^UTILITY(U,$J,358.3,24139,1,0)
+ ;;^UTILITY(U,$J,358.3,8327,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8327,1,4,0)
+ ;;=4^C85.11
+ ;;^UTILITY(U,$J,358.3,8327,2)
+ ;;=^5001702
+ ;;^UTILITY(U,$J,358.3,8328,0)
+ ;;=C85.15^^65^530^4
+ ;;^UTILITY(U,$J,358.3,8328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24139,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24139,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24139,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24140,0)
- ;;=F02.80^^64^950^43
- ;;^UTILITY(U,$J,358.3,24140,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24140,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24140,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24140,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24141,0)
- ;;=G31.84^^64^950^58
- ;;^UTILITY(U,$J,358.3,24141,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24141,1,3,0)
- ;;=3^Mild Neurocog D/O d/t FRONTOTEMP LOBAR DEGEN
- ;;^UTILITY(U,$J,358.3,24141,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,24141,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24142,0)
- ;;=F02.81^^64^950^26
- ;;^UTILITY(U,$J,358.3,24142,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24142,1,3,0)
- ;;=3^Major Neurocog D/O d/t HIV INFECTION w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24142,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24142,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24143,0)
- ;;=F02.80^^64^950^27
- ;;^UTILITY(U,$J,358.3,24143,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24143,1,3,0)
- ;;=3^Major Neurocog D/O d/t HIV INFECTION w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24143,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24143,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24144,0)
- ;;=G31.84^^64^950^59
- ;;^UTILITY(U,$J,358.3,24144,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24144,1,3,0)
- ;;=3^Mild Neurocog D/O d/t HIV INFECTION
- ;;^UTILITY(U,$J,358.3,24144,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,24144,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24145,0)
- ;;=F02.81^^64^950^28
- ;;^UTILITY(U,$J,358.3,24145,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24145,1,3,0)
- ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24145,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24145,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24146,0)
- ;;=F02.80^^64^950^29
- ;;^UTILITY(U,$J,358.3,24146,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24146,1,3,0)
- ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24146,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24146,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24147,0)
- ;;=G31.84^^64^950^60
- ;;^UTILITY(U,$J,358.3,24147,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24147,1,3,0)
- ;;=3^Mild Neurocog D/O d/t HUNTINGTON'S DISEASE
- ;;^UTILITY(U,$J,358.3,24147,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,24147,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24148,0)
- ;;=G31.83^^64^950^23
- ;;^UTILITY(U,$J,358.3,24148,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24148,1,3,0)
- ;;=3^Lewy Body Disease
- ;;^UTILITY(U,$J,358.3,24148,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,24148,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,24149,0)
- ;;=F02.81^^64^950^52
- ;;^UTILITY(U,$J,358.3,24149,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24149,1,3,0)
- ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24149,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24149,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24150,0)
- ;;=F02.80^^64^950^53
- ;;^UTILITY(U,$J,358.3,24150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24150,1,3,0)
- ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24150,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24150,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24151,0)
- ;;=F02.81^^64^950^54
- ;;^UTILITY(U,$J,358.3,24151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24151,1,3,0)
- ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24151,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24151,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24152,0)
- ;;=F02.80^^64^950^55
- ;;^UTILITY(U,$J,358.3,24152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24152,1,3,0)
- ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24152,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24152,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24153,0)
- ;;=G31.84^^64^950^66
- ;;^UTILITY(U,$J,358.3,24153,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24153,1,3,0)
- ;;=3^Mild Neurocog D/O w/ LEWY BODIES
- ;;^UTILITY(U,$J,358.3,24153,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,24153,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24154,0)
- ;;=F02.81^^64^950^30
- ;;^UTILITY(U,$J,358.3,24154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24154,1,3,0)
- ;;=3^Major Neurocog D/O d/t MULTIPLE ETIOLOGIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24154,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24154,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24155,0)
- ;;=F02.80^^64^950^31
- ;;^UTILITY(U,$J,358.3,24155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24155,1,3,0)
- ;;=3^Major Neurocog D/O d/t MULTIPLE ETIOLOGIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24155,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24155,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24156,0)
- ;;=G31.84^^64^950^61
- ;;^UTILITY(U,$J,358.3,24156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24156,1,3,0)
- ;;=3^Mild Neurocog D/O d/t MULTIPLE ETIOLOGIES
- ;;^UTILITY(U,$J,358.3,24156,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,24156,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,24157,0)
- ;;=G90.3^^64^950^67
- ;;^UTILITY(U,$J,358.3,24157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24157,1,3,0)
- ;;=3^Multi-System Degeneration of Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,24157,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,24157,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,24158,0)
- ;;=F02.81^^64^950^38
- ;;^UTILITY(U,$J,358.3,24158,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24158,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24158,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24158,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24159,0)
- ;;=F02.80^^64^950^39
- ;;^UTILITY(U,$J,358.3,24159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24159,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,24159,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24159,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24160,0)
- ;;=F02.81^^64^950^44
- ;;^UTILITY(U,$J,358.3,24160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24160,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob PARKINSON'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,24160,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,24160,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,24161,0)
- ;;=F02.80^^64^950^45
- ;;^UTILITY(U,$J,358.3,24161,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8328,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Inguinal Region/LE Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,8328,1,4,0)
+ ;;=4^C85.15
+ ;;^UTILITY(U,$J,358.3,8328,2)
+ ;;=^5001706

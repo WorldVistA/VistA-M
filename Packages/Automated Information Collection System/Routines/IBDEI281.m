@@ -1,132 +1,126 @@
-IBDEI281 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI281 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37672,0)
- ;;=M75.01^^140^1797^4
- ;;^UTILITY(U,$J,358.3,37672,1,0)
+ ;;^UTILITY(U,$J,358.3,35470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37672,1,3,0)
- ;;=3^Adhesive capsulitis of rt shoulder
- ;;^UTILITY(U,$J,358.3,37672,1,4,0)
- ;;=4^M75.01
- ;;^UTILITY(U,$J,358.3,37672,2)
- ;;=^5013239
- ;;^UTILITY(U,$J,358.3,37673,0)
- ;;=M75.02^^140^1797^3
- ;;^UTILITY(U,$J,358.3,37673,1,0)
+ ;;^UTILITY(U,$J,358.3,35470,1,3,0)
+ ;;=3^Adjustment D/O w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,35470,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,35470,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,35471,0)
+ ;;=F43.23^^137^1803^5
+ ;;^UTILITY(U,$J,358.3,35471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37673,1,3,0)
- ;;=3^Adhesive capsulitis of lft shoulder
- ;;^UTILITY(U,$J,358.3,37673,1,4,0)
- ;;=4^M75.02
- ;;^UTILITY(U,$J,358.3,37673,2)
- ;;=^5013240
- ;;^UTILITY(U,$J,358.3,37674,0)
- ;;=M75.51^^140^1797^12
- ;;^UTILITY(U,$J,358.3,37674,1,0)
+ ;;^UTILITY(U,$J,358.3,35471,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,35471,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,35471,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,35472,0)
+ ;;=F43.24^^137^1803^4
+ ;;^UTILITY(U,$J,358.3,35472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37674,1,3,0)
- ;;=3^Bursitis of rt shoulder
- ;;^UTILITY(U,$J,358.3,37674,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,37674,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,37675,0)
- ;;=M75.52^^140^1797^11
- ;;^UTILITY(U,$J,358.3,37675,1,0)
+ ;;^UTILITY(U,$J,358.3,35472,1,3,0)
+ ;;=3^Adjustment D/O w/ Conduct Disturbance
+ ;;^UTILITY(U,$J,358.3,35472,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,35472,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,35473,0)
+ ;;=F43.25^^137^1803^1
+ ;;^UTILITY(U,$J,358.3,35473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37675,1,3,0)
- ;;=3^Bursitis of lft shoulder
- ;;^UTILITY(U,$J,358.3,37675,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,37675,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,37676,0)
- ;;=M75.101^^140^1797^42
- ;;^UTILITY(U,$J,358.3,37676,1,0)
+ ;;^UTILITY(U,$J,358.3,35473,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Disturb Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,35473,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,35473,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,35474,0)
+ ;;=F43.10^^137^1803^15
+ ;;^UTILITY(U,$J,358.3,35474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37676,1,3,0)
- ;;=3^Rotatr-cuff tear/ruptr of rt shldr, not trauma, unspec
- ;;^UTILITY(U,$J,358.3,37676,1,4,0)
- ;;=4^M75.101
- ;;^UTILITY(U,$J,358.3,37676,2)
- ;;=^5013242
- ;;^UTILITY(U,$J,358.3,37677,0)
- ;;=M75.102^^140^1797^41
- ;;^UTILITY(U,$J,358.3,37677,1,0)
+ ;;^UTILITY(U,$J,358.3,35474,1,3,0)
+ ;;=3^Post-traumatic stress disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,35474,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,35474,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,35475,0)
+ ;;=F43.12^^137^1803^14
+ ;;^UTILITY(U,$J,358.3,35475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37677,1,3,0)
- ;;=3^Rotatr-cuff tear/ruptr of lft shldr, not trauma, unspec
- ;;^UTILITY(U,$J,358.3,37677,1,4,0)
- ;;=4^M75.102
- ;;^UTILITY(U,$J,358.3,37677,2)
- ;;=^5013243
- ;;^UTILITY(U,$J,358.3,37678,0)
- ;;=M75.31^^140^1797^15
- ;;^UTILITY(U,$J,358.3,37678,1,0)
+ ;;^UTILITY(U,$J,358.3,35475,1,3,0)
+ ;;=3^Post-traumatic stress disorder, chronic
+ ;;^UTILITY(U,$J,358.3,35475,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,35475,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,35476,0)
+ ;;=F43.8^^137^1803^16
+ ;;^UTILITY(U,$J,358.3,35476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37678,1,3,0)
- ;;=3^Calcific tendinitis of rt shoulder
- ;;^UTILITY(U,$J,358.3,37678,1,4,0)
- ;;=4^M75.31
- ;;^UTILITY(U,$J,358.3,37678,2)
- ;;=^5013254
- ;;^UTILITY(U,$J,358.3,37679,0)
- ;;=M75.32^^140^1797^14
- ;;^UTILITY(U,$J,358.3,37679,1,0)
+ ;;^UTILITY(U,$J,358.3,35476,1,3,0)
+ ;;=3^Reactions to severe stress NEC
+ ;;^UTILITY(U,$J,358.3,35476,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,35476,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,35477,0)
+ ;;=F43.20^^137^1803^6
+ ;;^UTILITY(U,$J,358.3,35477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37679,1,3,0)
- ;;=3^Calcific tendinitis of lft shoulder
- ;;^UTILITY(U,$J,358.3,37679,1,4,0)
- ;;=4^M75.32
- ;;^UTILITY(U,$J,358.3,37679,2)
- ;;=^5013255
- ;;^UTILITY(U,$J,358.3,37680,0)
- ;;=M75.21^^140^1797^6
- ;;^UTILITY(U,$J,358.3,37680,1,0)
+ ;;^UTILITY(U,$J,358.3,35477,1,3,0)
+ ;;=3^Adjustment D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,35477,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,35477,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,35478,0)
+ ;;=F07.0^^137^1803^13
+ ;;^UTILITY(U,$J,358.3,35478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37680,1,3,0)
- ;;=3^Bicipital tendinitis, rt shoulder
- ;;^UTILITY(U,$J,358.3,37680,1,4,0)
- ;;=4^M75.21
- ;;^UTILITY(U,$J,358.3,37680,2)
- ;;=^5013251
- ;;^UTILITY(U,$J,358.3,37681,0)
- ;;=M75.22^^140^1797^5
- ;;^UTILITY(U,$J,358.3,37681,1,0)
+ ;;^UTILITY(U,$J,358.3,35478,1,3,0)
+ ;;=3^Personality change due to known physiological condition
+ ;;^UTILITY(U,$J,358.3,35478,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,35478,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,35479,0)
+ ;;=F32.9^^137^1803^12
+ ;;^UTILITY(U,$J,358.3,35479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37681,1,3,0)
- ;;=3^Bicipital tendinitis, lft shoulder
- ;;^UTILITY(U,$J,358.3,37681,1,4,0)
- ;;=4^M75.22
- ;;^UTILITY(U,$J,358.3,37681,2)
- ;;=^5013252
- ;;^UTILITY(U,$J,358.3,37682,0)
- ;;=M75.81^^140^1797^44
- ;;^UTILITY(U,$J,358.3,37682,1,0)
+ ;;^UTILITY(U,$J,358.3,35479,1,3,0)
+ ;;=3^Major depressive disorder, single episode, unspecified
+ ;;^UTILITY(U,$J,358.3,35479,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,35479,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,35480,0)
+ ;;=F98.5^^137^1804^1
+ ;;^UTILITY(U,$J,358.3,35480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37682,1,3,0)
- ;;=3^Shoulder lesions, rt shoulder
- ;;^UTILITY(U,$J,358.3,37682,1,4,0)
- ;;=4^M75.81
- ;;^UTILITY(U,$J,358.3,37682,2)
- ;;=^5013261
- ;;^UTILITY(U,$J,358.3,37683,0)
- ;;=M75.82^^140^1797^43
- ;;^UTILITY(U,$J,358.3,37683,1,0)
+ ;;^UTILITY(U,$J,358.3,35480,1,3,0)
+ ;;=3^Adult onset fluency disorder
+ ;;^UTILITY(U,$J,358.3,35480,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,35480,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,35481,0)
+ ;;=R47.01^^137^1804^2
+ ;;^UTILITY(U,$J,358.3,35481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37683,1,3,0)
- ;;=3^Shoulder lesions, lft shoulder
- ;;^UTILITY(U,$J,358.3,37683,1,4,0)
- ;;=4^M75.82
- ;;^UTILITY(U,$J,358.3,37683,2)
- ;;=^5013262
- ;;^UTILITY(U,$J,358.3,37684,0)
- ;;=M77.01^^140^1797^27
- ;;^UTILITY(U,$J,358.3,37684,1,0)
+ ;;^UTILITY(U,$J,358.3,35481,1,3,0)
+ ;;=3^Aphasia
+ ;;^UTILITY(U,$J,358.3,35481,1,4,0)
+ ;;=4^R47.01
+ ;;^UTILITY(U,$J,358.3,35481,2)
+ ;;=^5019488
+ ;;^UTILITY(U,$J,358.3,35482,0)
+ ;;=I69.920^^137^1804^3
+ ;;^UTILITY(U,$J,358.3,35482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37684,1,3,0)
- ;;=3^Medial epicondylitis, rt elbow
- ;;^UTILITY(U,$J,358.3,37684,1,4,0)
- ;;=4^M77.01

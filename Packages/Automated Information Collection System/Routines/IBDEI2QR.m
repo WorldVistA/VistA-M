@@ -1,130 +1,128 @@
-IBDEI2QR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46002,1,4,0)
- ;;=4^S52.92XS
- ;;^UTILITY(U,$J,358.3,46002,2)
- ;;=^5031189
- ;;^UTILITY(U,$J,358.3,46003,0)
- ;;=S62.101S^^203^2270^9
- ;;^UTILITY(U,$J,358.3,46003,1,0)
+ ;;^UTILITY(U,$J,358.3,43717,2)
+ ;;=^5063664
+ ;;^UTILITY(U,$J,358.3,43718,0)
+ ;;=Z94.82^^162^2141^5
+ ;;^UTILITY(U,$J,358.3,43718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46003,1,3,0)
- ;;=3^Fx of Carpal Bone,Right Wrist,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46003,1,4,0)
- ;;=4^S62.101S
- ;;^UTILITY(U,$J,358.3,46003,2)
- ;;=^5033205
- ;;^UTILITY(U,$J,358.3,46004,0)
- ;;=S62.102S^^203^2270^8
- ;;^UTILITY(U,$J,358.3,46004,1,0)
+ ;;^UTILITY(U,$J,358.3,43718,1,3,0)
+ ;;=3^Intestine Transplant Status
+ ;;^UTILITY(U,$J,358.3,43718,1,4,0)
+ ;;=4^Z94.82
+ ;;^UTILITY(U,$J,358.3,43718,2)
+ ;;=^5063663
+ ;;^UTILITY(U,$J,358.3,43719,0)
+ ;;=Z94.9^^162^2141^13
+ ;;^UTILITY(U,$J,358.3,43719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46004,1,3,0)
- ;;=3^Fx of Carpal Bone,Left Wrist,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46004,1,4,0)
- ;;=4^S62.102S
- ;;^UTILITY(U,$J,358.3,46004,2)
- ;;=^5033212
- ;;^UTILITY(U,$J,358.3,46005,0)
- ;;=S62.501S^^203^2270^31
- ;;^UTILITY(U,$J,358.3,46005,1,0)
+ ;;^UTILITY(U,$J,358.3,43719,1,3,0)
+ ;;=3^Transplanted Organ/Tissue Status,Unspec
+ ;;^UTILITY(U,$J,358.3,43719,1,4,0)
+ ;;=4^Z94.9
+ ;;^UTILITY(U,$J,358.3,43719,2)
+ ;;=^5063667
+ ;;^UTILITY(U,$J,358.3,43720,0)
+ ;;=Z99.2^^162^2142^1
+ ;;^UTILITY(U,$J,358.3,43720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46005,1,3,0)
- ;;=3^Fx of Phalanx,Right Thumb,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46005,1,4,0)
- ;;=4^S62.501S
- ;;^UTILITY(U,$J,358.3,46005,2)
- ;;=^5034290
- ;;^UTILITY(U,$J,358.3,46006,0)
- ;;=S62.502S^^203^2270^30
- ;;^UTILITY(U,$J,358.3,46006,1,0)
+ ;;^UTILITY(U,$J,358.3,43720,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,43720,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,43720,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,43721,0)
+ ;;=Z91.15^^162^2142^2
+ ;;^UTILITY(U,$J,358.3,43721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46006,1,3,0)
- ;;=3^Fx of Phalanx,Left Thumb,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46006,1,4,0)
- ;;=4^S62.502S
- ;;^UTILITY(U,$J,358.3,46006,2)
- ;;=^5034297
- ;;^UTILITY(U,$J,358.3,46007,0)
- ;;=S62.91XS^^203^2270^45
- ;;^UTILITY(U,$J,358.3,46007,1,0)
+ ;;^UTILITY(U,$J,358.3,43721,1,3,0)
+ ;;=3^Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,43721,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,43721,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,43722,0)
+ ;;=Z98.890^^162^2142^3
+ ;;^UTILITY(U,$J,358.3,43722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46007,1,3,0)
- ;;=3^Fx of Wrist/Hand,Right,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46007,1,4,0)
- ;;=4^S62.91XS
- ;;^UTILITY(U,$J,358.3,46007,2)
- ;;=^5034885
- ;;^UTILITY(U,$J,358.3,46008,0)
- ;;=S62.92XS^^203^2270^44
- ;;^UTILITY(U,$J,358.3,46008,1,0)
+ ;;^UTILITY(U,$J,358.3,43722,1,3,0)
+ ;;=3^Postprocedural States,Oth Spec
+ ;;^UTILITY(U,$J,358.3,43722,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,43722,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,43723,0)
+ ;;=Z56.0^^162^2143^14
+ ;;^UTILITY(U,$J,358.3,43723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46008,1,3,0)
- ;;=3^Fx of Wrist/Hand,Left,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46008,1,4,0)
- ;;=4^S62.92XS
- ;;^UTILITY(U,$J,358.3,46008,2)
- ;;=^5034892
- ;;^UTILITY(U,$J,358.3,46009,0)
- ;;=S72.91XS^^203^2270^13
- ;;^UTILITY(U,$J,358.3,46009,1,0)
+ ;;^UTILITY(U,$J,358.3,43723,1,3,0)
+ ;;=3^Unemployment,Unspec
+ ;;^UTILITY(U,$J,358.3,43723,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,43723,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,43724,0)
+ ;;=Z65.5^^162^2143^4
+ ;;^UTILITY(U,$J,358.3,43724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46009,1,3,0)
- ;;=3^Fx of Femur,Right,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46009,1,4,0)
- ;;=4^S72.91XS
- ;;^UTILITY(U,$J,358.3,46009,2)
- ;;=^5136491
- ;;^UTILITY(U,$J,358.3,46010,0)
- ;;=S72.92XS^^203^2270^12
- ;;^UTILITY(U,$J,358.3,46010,1,0)
+ ;;^UTILITY(U,$J,358.3,43724,1,3,0)
+ ;;=3^Disaster/War/Hostility Exposure
+ ;;^UTILITY(U,$J,358.3,43724,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,43724,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,43725,0)
+ ;;=Z56.1^^162^2143^2
+ ;;^UTILITY(U,$J,358.3,43725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46010,1,3,0)
- ;;=3^Fx of Femur,Left,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46010,1,4,0)
- ;;=4^S72.92XS
- ;;^UTILITY(U,$J,358.3,46010,2)
- ;;=^5136492
- ;;^UTILITY(U,$J,358.3,46011,0)
- ;;=S82.001S^^203^2270^29
- ;;^UTILITY(U,$J,358.3,46011,1,0)
+ ;;^UTILITY(U,$J,358.3,43725,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,43725,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,43725,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,43726,0)
+ ;;=Z55.9^^162^2143^5
+ ;;^UTILITY(U,$J,358.3,43726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46011,1,3,0)
- ;;=3^Fx of Patella,Right,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46011,1,4,0)
- ;;=4^S82.001S
- ;;^UTILITY(U,$J,358.3,46011,2)
- ;;=^5040119
- ;;^UTILITY(U,$J,358.3,46012,0)
- ;;=S82.002S^^203^2270^28
- ;;^UTILITY(U,$J,358.3,46012,1,0)
+ ;;^UTILITY(U,$J,358.3,43726,1,3,0)
+ ;;=3^Education/Literacy Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,43726,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,43726,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,43727,0)
+ ;;=Z60.3^^162^2143^1
+ ;;^UTILITY(U,$J,358.3,43727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46012,1,3,0)
- ;;=3^Fx of Patella,Left,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46012,1,4,0)
- ;;=4^S82.002S
- ;;^UTILITY(U,$J,358.3,46012,2)
- ;;=^5040135
- ;;^UTILITY(U,$J,358.3,46013,0)
- ;;=S82.91XS^^203^2270^23
- ;;^UTILITY(U,$J,358.3,46013,1,0)
+ ;;^UTILITY(U,$J,358.3,43727,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,43727,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,43727,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,43728,0)
+ ;;=Z65.3^^162^2143^8
+ ;;^UTILITY(U,$J,358.3,43728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46013,1,3,0)
- ;;=3^Fx of Knee,Right,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46013,1,4,0)
- ;;=4^S82.91XS
- ;;^UTILITY(U,$J,358.3,46013,2)
- ;;=^5136991
- ;;^UTILITY(U,$J,358.3,46014,0)
- ;;=S82.92XS^^203^2270^22
- ;;^UTILITY(U,$J,358.3,46014,1,0)
+ ;;^UTILITY(U,$J,358.3,43728,1,3,0)
+ ;;=3^Legal Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,43728,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,43728,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,43729,0)
+ ;;=Z53.1^^162^2143^11
+ ;;^UTILITY(U,$J,358.3,43729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46014,1,3,0)
- ;;=3^Fx of Knee,Left,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46014,1,4,0)
- ;;=4^S82.92XS
- ;;^UTILITY(U,$J,358.3,46014,2)
- ;;=^5136992
- ;;^UTILITY(U,$J,358.3,46015,0)
- ;;=S92.001S^^203^2270^7
+ ;;^UTILITY(U,$J,358.3,43729,1,3,0)
+ ;;=3^Procedure/Treatment not Done d/t Pt Belief/Group Pressure
+ ;;^UTILITY(U,$J,358.3,43729,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,43729,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,43730,0)
+ ;;=Z63.4^^162^2143^3

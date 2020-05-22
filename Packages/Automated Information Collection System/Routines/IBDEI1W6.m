@@ -1,126 +1,122 @@
-IBDEI1W6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1W6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32123,2)
- ;;=^5049237
- ;;^UTILITY(U,$J,358.3,32124,0)
- ;;=T34.831S^^126^1609^189
- ;;^UTILITY(U,$J,358.3,32124,1,0)
+ ;;^UTILITY(U,$J,358.3,30216,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,30216,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,30217,0)
+ ;;=F16.10^^120^1540^19
+ ;;^UTILITY(U,$J,358.3,30217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32124,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt toe(s), sequela
- ;;^UTILITY(U,$J,358.3,32124,1,4,0)
- ;;=4^T34.831S
- ;;^UTILITY(U,$J,358.3,32124,2)
- ;;=^5049243
- ;;^UTILITY(U,$J,358.3,32125,0)
- ;;=T34.832S^^126^1609^184
- ;;^UTILITY(U,$J,358.3,32125,1,0)
+ ;;^UTILITY(U,$J,358.3,30217,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,30217,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,30217,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,30218,0)
+ ;;=F16.20^^120^1540^21
+ ;;^UTILITY(U,$J,358.3,30218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32125,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft toe(s), sequela
- ;;^UTILITY(U,$J,358.3,32125,1,4,0)
- ;;=4^T34.832S
- ;;^UTILITY(U,$J,358.3,32125,2)
- ;;=^5049246
- ;;^UTILITY(U,$J,358.3,32126,0)
- ;;=S80.851A^^126^1609^174
- ;;^UTILITY(U,$J,358.3,32126,1,0)
+ ;;^UTILITY(U,$J,358.3,30218,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,30218,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,30218,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,30219,0)
+ ;;=F16.121^^120^1540^10
+ ;;^UTILITY(U,$J,358.3,30219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32126,1,3,0)
- ;;=3^Foreign body, rt lwr leg,Superficial,init
- ;;^UTILITY(U,$J,358.3,32126,1,4,0)
- ;;=4^S80.851A
- ;;^UTILITY(U,$J,358.3,32126,2)
- ;;=^5039987
- ;;^UTILITY(U,$J,358.3,32127,0)
- ;;=S90.451A^^126^1609^172
- ;;^UTILITY(U,$J,358.3,32127,1,0)
+ ;;^UTILITY(U,$J,358.3,30219,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30219,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,30219,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,30220,0)
+ ;;=F16.221^^120^1540^11
+ ;;^UTILITY(U,$J,358.3,30220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32127,1,3,0)
- ;;=3^Foreign body, rt grt toe, Superficial,init
- ;;^UTILITY(U,$J,358.3,32127,1,4,0)
- ;;=4^S90.451A
- ;;^UTILITY(U,$J,358.3,32127,2)
- ;;=^5043943
- ;;^UTILITY(U,$J,358.3,32128,0)
- ;;=S90.454A^^126^1609^173
- ;;^UTILITY(U,$J,358.3,32128,1,0)
+ ;;^UTILITY(U,$J,358.3,30220,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30220,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,30220,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,30221,0)
+ ;;=F16.921^^120^1540^12
+ ;;^UTILITY(U,$J,358.3,30221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32128,1,3,0)
- ;;=3^Foreign body, rt lsr toe(s),Superficial,init
- ;;^UTILITY(U,$J,358.3,32128,1,4,0)
- ;;=4^S90.454A
- ;;^UTILITY(U,$J,358.3,32128,2)
- ;;=^5043952
- ;;^UTILITY(U,$J,358.3,32129,0)
- ;;=S80.852A^^126^1609^170
- ;;^UTILITY(U,$J,358.3,32129,1,0)
+ ;;^UTILITY(U,$J,358.3,30221,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30221,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,30221,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,30222,0)
+ ;;=F16.129^^120^1540^13
+ ;;^UTILITY(U,$J,358.3,30222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32129,1,3,0)
- ;;=3^Foreign body, lft lwr leg, Superficial,init
- ;;^UTILITY(U,$J,358.3,32129,1,4,0)
- ;;=4^S80.852A
- ;;^UTILITY(U,$J,358.3,32129,2)
- ;;=^5039990
- ;;^UTILITY(U,$J,358.3,32130,0)
- ;;=S90.452A^^126^1609^168
- ;;^UTILITY(U,$J,358.3,32130,1,0)
+ ;;^UTILITY(U,$J,358.3,30222,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30222,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,30222,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,30223,0)
+ ;;=F16.229^^120^1540^14
+ ;;^UTILITY(U,$J,358.3,30223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32130,1,3,0)
- ;;=3^Foreign body, lft grt toe, Superficial,init
- ;;^UTILITY(U,$J,358.3,32130,1,4,0)
- ;;=4^S90.452A
- ;;^UTILITY(U,$J,358.3,32130,2)
- ;;=^5043946
- ;;^UTILITY(U,$J,358.3,32131,0)
- ;;=S90.455A^^126^1609^169
- ;;^UTILITY(U,$J,358.3,32131,1,0)
+ ;;^UTILITY(U,$J,358.3,30223,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30223,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,30223,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,30224,0)
+ ;;=F16.929^^120^1540^15
+ ;;^UTILITY(U,$J,358.3,30224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32131,1,3,0)
- ;;=3^Foreign body, lft lsr toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,32131,1,4,0)
- ;;=4^S90.455A
- ;;^UTILITY(U,$J,358.3,32131,2)
- ;;=^5043955
- ;;^UTILITY(U,$J,358.3,32132,0)
- ;;=S90.851A^^126^1609^171
- ;;^UTILITY(U,$J,358.3,32132,1,0)
+ ;;^UTILITY(U,$J,358.3,30224,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30224,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,30224,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,30225,0)
+ ;;=F16.180^^120^1540^1
+ ;;^UTILITY(U,$J,358.3,30225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32132,1,3,0)
- ;;=3^Foreign body, rt ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,32132,1,4,0)
- ;;=4^S90.851A
- ;;^UTILITY(U,$J,358.3,32132,2)
- ;;=^5044078
- ;;^UTILITY(U,$J,358.3,32133,0)
- ;;=S90.852A^^126^1609^167
- ;;^UTILITY(U,$J,358.3,32133,1,0)
+ ;;^UTILITY(U,$J,358.3,30225,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30225,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,30225,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,30226,0)
+ ;;=F16.280^^120^1540^2
+ ;;^UTILITY(U,$J,358.3,30226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32133,1,3,0)
- ;;=3^Foreign body, lft ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,32133,1,4,0)
- ;;=4^S90.852A
- ;;^UTILITY(U,$J,358.3,32133,2)
- ;;=^5044081
- ;;^UTILITY(U,$J,358.3,32134,0)
- ;;=T34.821A^^126^1609^188
- ;;^UTILITY(U,$J,358.3,32134,1,0)
+ ;;^UTILITY(U,$J,358.3,30226,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30226,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,30226,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,30227,0)
+ ;;=F16.980^^120^1540^3
+ ;;^UTILITY(U,$J,358.3,30227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32134,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt ft, init
- ;;^UTILITY(U,$J,358.3,32134,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,32134,2)
- ;;=^5049232
- ;;^UTILITY(U,$J,358.3,32135,0)
- ;;=T34.822A^^126^1609^183
- ;;^UTILITY(U,$J,358.3,32135,1,0)
+ ;;^UTILITY(U,$J,358.3,30227,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30227,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,30227,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,30228,0)
+ ;;=F16.14^^120^1540^4
+ ;;^UTILITY(U,$J,358.3,30228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32135,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft ft, init
- ;;^UTILITY(U,$J,358.3,32135,1,4,0)
- ;;=4^T34.822A
- ;;^UTILITY(U,$J,358.3,32135,2)
- ;;=^5049235

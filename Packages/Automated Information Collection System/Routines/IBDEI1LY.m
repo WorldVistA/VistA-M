@@ -1,124 +1,134 @@
-IBDEI1LY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27279,1,4,0)
- ;;=4^T85.71XD
- ;;^UTILITY(U,$J,358.3,27279,2)
- ;;=^5055671
- ;;^UTILITY(U,$J,358.3,27280,0)
- ;;=T82.7XXA^^106^1346^19
- ;;^UTILITY(U,$J,358.3,27280,1,0)
+ ;;^UTILITY(U,$J,358.3,25696,0)
+ ;;=R53.83^^107^1223^76
+ ;;^UTILITY(U,$J,358.3,25696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27280,1,3,0)
- ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,27280,1,4,0)
- ;;=4^T82.7XXA
- ;;^UTILITY(U,$J,358.3,27280,2)
- ;;=^5054911
- ;;^UTILITY(U,$J,358.3,27281,0)
- ;;=T82.7XXD^^106^1346^20
- ;;^UTILITY(U,$J,358.3,27281,1,0)
+ ;;^UTILITY(U,$J,358.3,25696,1,3,0)
+ ;;=3^Fatigue NEC
+ ;;^UTILITY(U,$J,358.3,25696,1,4,0)
+ ;;=4^R53.83
+ ;;^UTILITY(U,$J,358.3,25696,2)
+ ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,25697,0)
+ ;;=R53.1^^107^1223^170
+ ;;^UTILITY(U,$J,358.3,25697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27281,1,3,0)
- ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Subs Encntr
- ;;^UTILITY(U,$J,358.3,27281,1,4,0)
- ;;=4^T82.7XXD
- ;;^UTILITY(U,$J,358.3,27281,2)
- ;;=^5054912
- ;;^UTILITY(U,$J,358.3,27282,0)
- ;;=T85.631A^^106^1346^23
- ;;^UTILITY(U,$J,358.3,27282,1,0)
+ ;;^UTILITY(U,$J,358.3,25697,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,25697,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,25697,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,25698,0)
+ ;;=R53.81^^107^1223^119
+ ;;^UTILITY(U,$J,358.3,25698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27282,1,3,0)
- ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,27282,1,4,0)
- ;;=4^T85.631A
- ;;^UTILITY(U,$J,358.3,27282,2)
- ;;=^5055643
- ;;^UTILITY(U,$J,358.3,27283,0)
- ;;=T85.631D^^106^1346^24
- ;;^UTILITY(U,$J,358.3,27283,1,0)
+ ;;^UTILITY(U,$J,358.3,25698,1,3,0)
+ ;;=3^Malaise NEC
+ ;;^UTILITY(U,$J,358.3,25698,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,25698,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,25699,0)
+ ;;=R53.82^^107^1223^54
+ ;;^UTILITY(U,$J,358.3,25699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27283,1,3,0)
- ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,27283,1,4,0)
- ;;=4^T85.631D
- ;;^UTILITY(U,$J,358.3,27283,2)
- ;;=^5055644
- ;;^UTILITY(U,$J,358.3,27284,0)
- ;;=H54.8^^106^1346^25
- ;;^UTILITY(U,$J,358.3,27284,1,0)
+ ;;^UTILITY(U,$J,358.3,25699,1,3,0)
+ ;;=3^Chronic Fatigue,Unspec
+ ;;^UTILITY(U,$J,358.3,25699,1,4,0)
+ ;;=4^R53.82
+ ;;^UTILITY(U,$J,358.3,25699,2)
+ ;;=^5019519
+ ;;^UTILITY(U,$J,358.3,25700,0)
+ ;;=R54.^^107^1223^37
+ ;;^UTILITY(U,$J,358.3,25700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27284,1,3,0)
- ;;=3^Legal Blindness,USA Definition
- ;;^UTILITY(U,$J,358.3,27284,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,27284,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,27285,0)
- ;;=N25.89^^106^1346^18
- ;;^UTILITY(U,$J,358.3,27285,1,0)
+ ;;^UTILITY(U,$J,358.3,25700,1,3,0)
+ ;;=3^Age-Related Physical Debility
+ ;;^UTILITY(U,$J,358.3,25700,1,4,0)
+ ;;=4^R54.
+ ;;^UTILITY(U,$J,358.3,25700,2)
+ ;;=^5019521
+ ;;^UTILITY(U,$J,358.3,25701,0)
+ ;;=R60.0^^107^1223^69
+ ;;^UTILITY(U,$J,358.3,25701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27285,1,3,0)
- ;;=3^Impaired Renal Tubular Function Disorders,Other
- ;;^UTILITY(U,$J,358.3,27285,1,4,0)
- ;;=4^N25.89
- ;;^UTILITY(U,$J,358.3,27285,2)
- ;;=^5015618
- ;;^UTILITY(U,$J,358.3,27286,0)
- ;;=T82.590A^^106^1346^28
- ;;^UTILITY(U,$J,358.3,27286,1,0)
+ ;;^UTILITY(U,$J,358.3,25701,1,3,0)
+ ;;=3^Edema,Localized
+ ;;^UTILITY(U,$J,358.3,25701,1,4,0)
+ ;;=4^R60.0
+ ;;^UTILITY(U,$J,358.3,25701,2)
+ ;;=^5019532
+ ;;^UTILITY(U,$J,358.3,25702,0)
+ ;;=R60.1^^107^1223^68
+ ;;^UTILITY(U,$J,358.3,25702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27286,1,3,0)
- ;;=3^Mech Comp,Surgically Created AV Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,27286,1,4,0)
- ;;=4^T82.590A
- ;;^UTILITY(U,$J,358.3,27286,2)
- ;;=^5054884
- ;;^UTILITY(U,$J,358.3,27287,0)
- ;;=T82.590D^^106^1346^29
- ;;^UTILITY(U,$J,358.3,27287,1,0)
+ ;;^UTILITY(U,$J,358.3,25702,1,3,0)
+ ;;=3^Edema,Generalized
+ ;;^UTILITY(U,$J,358.3,25702,1,4,0)
+ ;;=4^R60.1
+ ;;^UTILITY(U,$J,358.3,25702,2)
+ ;;=^5019533
+ ;;^UTILITY(U,$J,358.3,25703,0)
+ ;;=R60.9^^107^1223^70
+ ;;^UTILITY(U,$J,358.3,25703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27287,1,3,0)
- ;;=3^Mech Comp,Surgically Created AV Fistula,Subs Encntr
- ;;^UTILITY(U,$J,358.3,27287,1,4,0)
- ;;=4^T82.590D
- ;;^UTILITY(U,$J,358.3,27287,2)
- ;;=^5054885
- ;;^UTILITY(U,$J,358.3,27288,0)
- ;;=T85.691A^^106^1346^26
- ;;^UTILITY(U,$J,358.3,27288,1,0)
+ ;;^UTILITY(U,$J,358.3,25703,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,25703,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,25703,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,25704,0)
+ ;;=R61.^^107^1223^90
+ ;;^UTILITY(U,$J,358.3,25704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27288,1,3,0)
- ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,27288,1,4,0)
- ;;=4^T85.691A
- ;;^UTILITY(U,$J,358.3,27288,2)
- ;;=^5055655
- ;;^UTILITY(U,$J,358.3,27289,0)
- ;;=T85.691D^^106^1346^27
- ;;^UTILITY(U,$J,358.3,27289,1,0)
+ ;;^UTILITY(U,$J,358.3,25704,1,3,0)
+ ;;=3^Hyperhidrosis,Generalized
+ ;;^UTILITY(U,$J,358.3,25704,1,4,0)
+ ;;=4^R61.
+ ;;^UTILITY(U,$J,358.3,25704,2)
+ ;;=^331970
+ ;;^UTILITY(U,$J,358.3,25705,0)
+ ;;=R63.0^^107^1223^40
+ ;;^UTILITY(U,$J,358.3,25705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27289,1,3,0)
- ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,27289,1,4,0)
- ;;=4^T85.691D
- ;;^UTILITY(U,$J,358.3,27289,2)
- ;;=^5055656
- ;;^UTILITY(U,$J,358.3,27290,0)
- ;;=T82.898A^^106^1346^6
- ;;^UTILITY(U,$J,358.3,27290,1,0)
+ ;;^UTILITY(U,$J,358.3,25705,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,25705,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,25705,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,25706,0)
+ ;;=R63.1^^107^1223^143
+ ;;^UTILITY(U,$J,358.3,25706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27290,1,3,0)
- ;;=3^Complication of Vascular Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,27290,1,4,0)
- ;;=4^T82.898A
- ;;^UTILITY(U,$J,358.3,27290,2)
- ;;=^5054953
- ;;^UTILITY(U,$J,358.3,27291,0)
- ;;=T82.898D^^106^1346^7
- ;;^UTILITY(U,$J,358.3,27291,1,0)
+ ;;^UTILITY(U,$J,358.3,25706,1,3,0)
+ ;;=3^Polydipsia
+ ;;^UTILITY(U,$J,358.3,25706,1,4,0)
+ ;;=4^R63.1
+ ;;^UTILITY(U,$J,358.3,25706,2)
+ ;;=^186699
+ ;;^UTILITY(U,$J,358.3,25707,0)
+ ;;=R63.2^^107^1223^144
+ ;;^UTILITY(U,$J,358.3,25707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27291,1,3,0)
- ;;=3^Complication of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,25707,1,3,0)
+ ;;=3^Polyphagia
+ ;;^UTILITY(U,$J,358.3,25707,1,4,0)
+ ;;=4^R63.2
+ ;;^UTILITY(U,$J,358.3,25707,2)
+ ;;=^5019540
+ ;;^UTILITY(U,$J,358.3,25708,0)
+ ;;=R63.3^^107^1223^77
+ ;;^UTILITY(U,$J,358.3,25708,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25708,1,3,0)
+ ;;=3^Feeding Difficulties
+ ;;^UTILITY(U,$J,358.3,25708,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,25708,2)
+ ;;=^5019541

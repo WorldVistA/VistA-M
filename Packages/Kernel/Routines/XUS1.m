@@ -1,5 +1,5 @@
-XUS1 ;SF-ISC/STAFF - SIGNON ;09/22/15  08:33
- ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659**;Jul 10, 1995;Build 22
+XUS1 ;SF-ISC/STAFF - SIGNON ;01/14/20 13:32
+ ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659,701**;Jul 10, 1995;Build 11
  ;Per VA Directive 6402, this routine should not be modified.
  ;User setup
 USER ;
@@ -24,6 +24,7 @@ VCHG() ;Check if the Verify code needs to be changed
  I $D(DUZ("ASH")) Q 0 ;p403
  D:'$D(XUSER) USER^XUS(DUZ)
  Q:'$L($P(XUSER(1),U,2)) 1 ;Null VC
+ Q:$G(DUZ("AUTHENTICATION"))["SSO" 0 ;VC expiration ignored during SAML/STS/IAM Auth (p702)
  I $$BROKER^XWBLIB Q:$P(XUSER(0),U,8)=1 0 ;VC never expires, only for BROKER
  Q (XUSER(1)+$P(XOPT,U,15))'>$H ;Time to change
  ;
@@ -84,7 +85,7 @@ LOG ;used by R/S and Broker
 SLOG(P5,P6,P7,P8,P10,P14,P15) ;
  ;ZEXCEPT: DILOCKTM ;Global variable for lock timeout
  ;p638 Changes: Save IPv4 address in field 11 (0;11) and IPv6 address in field 100 (1;1)
- N %,I,DA,DIK,N,XL1,XL2,P11,P12,P100,P101
+ N %,I,DA,DIK,N,XL1,XL2,P11,P12,P100,P101,P102,P103
  S XL1=$$NOW^XLFDT
  S P5=$G(P5),P6=$G(P6),P7=$G(P7),P8=$G(P8),P10=$P($G(P10),".")
  S P11=$$FORCEIP4^XLFIPV($G(IO("IP"))),P100=$$FORCEIP6^XLFIPV($G(IO("IP")))
@@ -92,13 +93,16 @@ SLOG(P5,P6,P7,P8,P10,P14,P15) ;
  I P11="0.0.0.0" S P11=""  ;Do not store null IPv4 address
  I P100="0000:0000:0000:0000:0000:0000:0000:0000" S P100=""  ;Do not store null IPv6 address
  S P101=$G(DUZ("LOA"))
+ S P102=$G(DUZ("AUTHENTICATION"))
+ S P102=$S(P102="AVCODES":1,P102="SSOI":2,P102="SSOE":3,P102="BSETOKEN":4,P102="CCOWTOKEN":5,P102="ASHTOKEN":6,P102="NHIN":7,P102="NONE":8,1:9)
+ S P103=$G(DUZ("WARNINGS"))
  S N=DUZ_"^"_$I_"^"_$J_"^^"_P5_"^"_P6_"^"_P7_"^"_P8_"^"_$E($G(IO("ZIO")),1,30)_"^"_P10_"^"_P11_"^"_P12
  S:$D(DUZ("VISITOR")) $P(N,U,14,15)=DUZ("VISITOR") ;p523
  S:$G(DUZ(2))>0 $P(N,U,17)=DUZ(2)
  S:$D(DUZ("REMAPP")) $P(N,U,18)=$P(DUZ("REMAPP"),U) ;p523
  F I=XL1:.00000001 L +^XUSEC(0,I):$G(DILOCKTM,5) Q:'$D(^XUSEC(0,I))  L -^XUSEC(0,I)
  S ^XUSEC(0,I,0)=N
- S ^XUSEC(0,I,1)=P100_"^"_P101 ;Save IPv6 address and Level Of Assurance
+ S ^XUSEC(0,I,1)=P100_"^"_P101_"^"_P102_"^"_P103 ;Save IPv6 address,LOA,type,warnings
  L -^XUSEC(0,I)
  S $P(^XUSEC(0,0),"^",3,4)=I_U_(1+$P(^XUSEC(0,0),"^",4))
  S (XL1,DA)=I,DIK="^XUSEC(0," D IX^DIK ;index new entry

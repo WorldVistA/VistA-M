@@ -1,5 +1,5 @@
-DGPREBJ1 ;ALB/SCK/EG - PreRegistration Background job cont. ; 1/21/05 7:03am
- ;;5.3;Registration;**109,568,585**;Aug 13, 1993
+DGPREBJ1 ;ALB/SCK/EG/PC - PreRegistration Background job cont. ;Jul 25, 2019@14:53
+ ;;5.3;Registration;**109,568,585,980**;Aug 13, 1993;Build 4
  Q
  ;
 EN ; Interactive entry (from option)
@@ -153,8 +153,8 @@ SDAMAPI(DGPREI,DGPDT1) ;
  S:'DGPREI DGARRAY(1)=DT_";"_DGPDT
  S DGARRAY("FLDS")=3,SDCNT=$$SDAPI^SDAMA301(.DGARRAY)
  Q
+ ; VSR patch DG*5.3.980 change four slashes to three slashes for validation.  Changed field 5
+FIELDS ;;.1///^S X=$P($G(^SC(DGPN1,0)),U,15);1///^S X=$E(VADM(1))_VA("BID");2///^S X=DGPPH;3///^S X=$G(DGPPRDT);5///^S X=DGPN1;6///^S X=DGPAPT;7///^S X=$P(^SC(DGPN1,0),U,8)
  ;
-FIELDS ;;.1///^S X=$P($G(^SC(DGPN1,0)),U,15);1///^S X=$E(VADM(1))_VA("BID");2///^S X=DGPPH;3///^S X=$G(DGPPRDT);5////^S X=DGPN1;6///^S X=DGPAPT;7///^S X=$P(^SC(DGPN1,0),U,8)
- ;
-MSG1 ;;The 'DAYS TO PULL' is not filled in, unable to determine appoinment date.
+MSG1 ;;The 'DAYS TO PULL' is not filled in, unable to determine appointment date.
 MSG2 ;;The call list is currently not being generated for weekends.

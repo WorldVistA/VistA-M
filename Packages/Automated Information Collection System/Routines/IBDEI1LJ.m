@@ -1,132 +1,130 @@
-IBDEI1LJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27059,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,27059,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,27060,0)
- ;;=F95.8^^100^1309^17
- ;;^UTILITY(U,$J,358.3,27060,1,0)
+ ;;^UTILITY(U,$J,358.3,25507,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,25508,0)
+ ;;=Z12.4^^107^1220^5
+ ;;^UTILITY(U,$J,358.3,25508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27060,1,3,0)
- ;;=3^Tic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,27060,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,27060,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,27061,0)
- ;;=F95.9^^100^1309^18
- ;;^UTILITY(U,$J,358.3,27061,1,0)
+ ;;^UTILITY(U,$J,358.3,25508,1,3,0)
+ ;;=3^Cervix Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,25508,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,25508,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,25509,0)
+ ;;=Z13.5^^107^1220^8
+ ;;^UTILITY(U,$J,358.3,25509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27061,1,3,0)
- ;;=3^Tic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27061,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,27061,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,27062,0)
- ;;=F95.2^^100^1309^19
- ;;^UTILITY(U,$J,358.3,27062,1,0)
+ ;;^UTILITY(U,$J,358.3,25509,1,3,0)
+ ;;=3^Eye and Ear Disorder Screen
+ ;;^UTILITY(U,$J,358.3,25509,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,25509,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,25510,0)
+ ;;=Z01.89^^107^1220^6
+ ;;^UTILITY(U,$J,358.3,25510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27062,1,3,0)
- ;;=3^Tourette's Disorder
- ;;^UTILITY(U,$J,358.3,27062,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,27062,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,27063,0)
- ;;=F15.929^^100^1310^7
- ;;^UTILITY(U,$J,358.3,27063,1,0)
+ ;;^UTILITY(U,$J,358.3,25510,1,3,0)
+ ;;=3^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,25510,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,25510,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,25511,0)
+ ;;=Z11.59^^107^1220^17
+ ;;^UTILITY(U,$J,358.3,25511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27063,1,3,0)
- ;;=3^Caffeine Intoxication
- ;;^UTILITY(U,$J,358.3,27063,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,27063,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,27064,0)
- ;;=F15.93^^100^1310^8
- ;;^UTILITY(U,$J,358.3,27064,1,0)
+ ;;^UTILITY(U,$J,358.3,25511,1,3,0)
+ ;;=3^Viral Diseases Screen
+ ;;^UTILITY(U,$J,358.3,25511,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,25511,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,25512,0)
+ ;;=Z13.6^^107^1220^4
+ ;;^UTILITY(U,$J,358.3,25512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27064,1,3,0)
- ;;=3^Caffeine Withdrawal
- ;;^UTILITY(U,$J,358.3,27064,1,4,0)
- ;;=4^F15.93
- ;;^UTILITY(U,$J,358.3,27064,2)
- ;;=^5003315
- ;;^UTILITY(U,$J,358.3,27065,0)
- ;;=F15.180^^100^1310^1
- ;;^UTILITY(U,$J,358.3,27065,1,0)
+ ;;^UTILITY(U,$J,358.3,25512,1,3,0)
+ ;;=3^Cardiovascular Disorder Screen
+ ;;^UTILITY(U,$J,358.3,25512,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,25512,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,25513,0)
+ ;;=Z12.12^^107^1220^15
+ ;;^UTILITY(U,$J,358.3,25513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27065,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27065,1,4,0)
- ;;=4^F15.180
- ;;^UTILITY(U,$J,358.3,27065,2)
- ;;=^5003291
- ;;^UTILITY(U,$J,358.3,27066,0)
- ;;=F15.280^^100^1310^2
- ;;^UTILITY(U,$J,358.3,27066,1,0)
+ ;;^UTILITY(U,$J,358.3,25513,1,3,0)
+ ;;=3^Rectum Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,25513,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,25513,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,25514,0)
+ ;;=Z71.89^^107^1220^13
+ ;;^UTILITY(U,$J,358.3,25514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27066,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27066,1,4,0)
- ;;=4^F15.280
- ;;^UTILITY(U,$J,358.3,27066,2)
- ;;=^5003306
- ;;^UTILITY(U,$J,358.3,27067,0)
- ;;=F15.980^^100^1310^3
- ;;^UTILITY(U,$J,358.3,27067,1,0)
+ ;;^UTILITY(U,$J,358.3,25514,1,3,0)
+ ;;=3^Other Specified Counseling
+ ;;^UTILITY(U,$J,358.3,25514,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,25514,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,25515,0)
+ ;;=Z12.5^^107^1220^14
+ ;;^UTILITY(U,$J,358.3,25515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27067,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27067,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,27067,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,27068,0)
- ;;=F15.182^^100^1310^4
- ;;^UTILITY(U,$J,358.3,27068,1,0)
+ ;;^UTILITY(U,$J,358.3,25515,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,25515,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,25515,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,25516,0)
+ ;;=Z00.00^^107^1220^10
+ ;;^UTILITY(U,$J,358.3,25516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27068,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27068,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,27068,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,27069,0)
- ;;=F15.282^^100^1310^5
- ;;^UTILITY(U,$J,358.3,27069,1,0)
+ ;;^UTILITY(U,$J,358.3,25516,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,25516,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,25516,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,25517,0)
+ ;;=Z02.79^^107^1220^12
+ ;;^UTILITY(U,$J,358.3,25517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27069,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27069,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,27069,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,27070,0)
- ;;=F15.982^^100^1310^6
- ;;^UTILITY(U,$J,358.3,27070,1,0)
+ ;;^UTILITY(U,$J,358.3,25517,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,25517,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,25517,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,25518,0)
+ ;;=Z71.3^^107^1220^7
+ ;;^UTILITY(U,$J,358.3,25518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27070,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27070,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,27070,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,27071,0)
- ;;=F15.99^^100^1310^9
- ;;^UTILITY(U,$J,358.3,27071,1,0)
+ ;;^UTILITY(U,$J,358.3,25518,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,25518,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,25518,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,25519,0)
+ ;;=Z71.7^^107^1220^11
+ ;;^UTILITY(U,$J,358.3,25519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27071,1,3,0)
- ;;=3^Caffeinie Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27071,1,4,0)
- ;;=4^F15.99
- ;;^UTILITY(U,$J,358.3,27071,2)
- ;;=^5133358
- ;;^UTILITY(U,$J,358.3,27072,0)
- ;;=98960^^101^1311^13^^^^1
- ;;^UTILITY(U,$J,358.3,27072,1,0)
- ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,25519,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,25519,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,25519,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,25520,0)
+ ;;=Z71.6^^107^1220^16
+ ;;^UTILITY(U,$J,358.3,25520,1,0)
+ ;;=^358.31IA^4^2

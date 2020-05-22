@@ -1,342 +1,692 @@
-IBDEI01N ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI01N ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1603,1,0)
+ ;;^UTILITY(U,$J,358.3,3566,0)
+ ;;=E66.9^^33^260^33
+ ;;^UTILITY(U,$J,358.3,3566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1603,1,3,0)
- ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,1603,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,1603,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,1604,0)
- ;;=I63.031^^8^128^56
- ;;^UTILITY(U,$J,358.3,1604,1,0)
+ ;;^UTILITY(U,$J,358.3,3566,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,3566,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,3566,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,3567,0)
+ ;;=E66.01^^33^260^32
+ ;;^UTILITY(U,$J,358.3,3567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1604,1,3,0)
- ;;=3^Cerebral Infarction d/t Thrombosis of Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,1604,1,4,0)
- ;;=4^I63.031
- ;;^UTILITY(U,$J,358.3,1604,2)
- ;;=^5007299
- ;;^UTILITY(U,$J,358.3,1605,0)
- ;;=I65.01^^8^128^82
- ;;^UTILITY(U,$J,358.3,1605,1,0)
+ ;;^UTILITY(U,$J,358.3,3567,1,3,0)
+ ;;=3^Obesity,Morbid,d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,3567,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,3567,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,3568,0)
+ ;;=D50.9^^33^260^2
+ ;;^UTILITY(U,$J,358.3,3568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1605,1,3,0)
- ;;=3^Occlusion/Stenosis of Right Vertebral Artery
- ;;^UTILITY(U,$J,358.3,1605,1,4,0)
- ;;=4^I65.01
- ;;^UTILITY(U,$J,358.3,1605,2)
- ;;=^5007356
- ;;^UTILITY(U,$J,358.3,1606,0)
- ;;=I65.02^^8^128^79
- ;;^UTILITY(U,$J,358.3,1606,1,0)
+ ;;^UTILITY(U,$J,358.3,3568,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,3568,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,3568,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,3569,0)
+ ;;=D63.1^^33^260^1
+ ;;^UTILITY(U,$J,358.3,3569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1606,1,3,0)
- ;;=3^Occlusion/Stenosis of Left Vertebral Artery
- ;;^UTILITY(U,$J,358.3,1606,1,4,0)
- ;;=4^I65.02
- ;;^UTILITY(U,$J,358.3,1606,2)
- ;;=^5007357
- ;;^UTILITY(U,$J,358.3,1607,0)
- ;;=I65.03^^8^128^77
- ;;^UTILITY(U,$J,358.3,1607,1,0)
+ ;;^UTILITY(U,$J,358.3,3569,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,3569,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,3569,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,3570,0)
+ ;;=G60.9^^33^260^31
+ ;;^UTILITY(U,$J,358.3,3570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1607,1,3,0)
- ;;=3^Occlusion/Stenosis of Bilateral Vertebral Arteries
- ;;^UTILITY(U,$J,358.3,1607,1,4,0)
- ;;=4^I65.03
- ;;^UTILITY(U,$J,358.3,1607,2)
- ;;=^5007358
- ;;^UTILITY(U,$J,358.3,1608,0)
- ;;=I65.8^^8^128^80
- ;;^UTILITY(U,$J,358.3,1608,1,0)
+ ;;^UTILITY(U,$J,358.3,3570,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,3570,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,3570,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,3571,0)
+ ;;=I73.9^^33^260^34
+ ;;^UTILITY(U,$J,358.3,3571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1608,1,3,0)
- ;;=3^Occlusion/Stenosis of Precerebral Arteries NEC
- ;;^UTILITY(U,$J,358.3,1608,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,1608,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,1609,0)
- ;;=I63.032^^8^128^55
- ;;^UTILITY(U,$J,358.3,1609,1,0)
+ ;;^UTILITY(U,$J,358.3,3571,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,3571,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,3571,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,3572,0)
+ ;;=N04.9^^33^260^30
+ ;;^UTILITY(U,$J,358.3,3572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1609,1,3,0)
- ;;=3^Cerebral Infarction d/t Thrombosis of Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,1609,1,4,0)
- ;;=4^I63.032
- ;;^UTILITY(U,$J,358.3,1609,2)
- ;;=^5007300
- ;;^UTILITY(U,$J,358.3,1610,0)
- ;;=I63.131^^8^128^54
- ;;^UTILITY(U,$J,358.3,1610,1,0)
+ ;;^UTILITY(U,$J,358.3,3572,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,3572,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,3572,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,3573,0)
+ ;;=N25.0^^33^260^35
+ ;;^UTILITY(U,$J,358.3,3573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1610,1,3,0)
- ;;=3^Cerebral Infarction d/t Embolism of Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,1610,1,4,0)
- ;;=4^I63.131
- ;;^UTILITY(U,$J,358.3,1610,2)
- ;;=^5007308
- ;;^UTILITY(U,$J,358.3,1611,0)
- ;;=I63.132^^8^128^53
- ;;^UTILITY(U,$J,358.3,1611,1,0)
+ ;;^UTILITY(U,$J,358.3,3573,1,3,0)
+ ;;=3^Renal Osteodystrophy
+ ;;^UTILITY(U,$J,358.3,3573,1,4,0)
+ ;;=4^N25.0
+ ;;^UTILITY(U,$J,358.3,3573,2)
+ ;;=^104747
+ ;;^UTILITY(U,$J,358.3,3574,0)
+ ;;=T80.211A^^33^260^3
+ ;;^UTILITY(U,$J,358.3,3574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1611,1,3,0)
- ;;=3^Cerebral Infarction d/t Embolism of Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,1611,1,4,0)
- ;;=4^I63.132
- ;;^UTILITY(U,$J,358.3,1611,2)
- ;;=^5007309
- ;;^UTILITY(U,$J,358.3,1612,0)
- ;;=I63.231^^8^128^57
- ;;^UTILITY(U,$J,358.3,1612,1,0)
+ ;;^UTILITY(U,$J,358.3,3574,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3574,1,4,0)
+ ;;=4^T80.211A
+ ;;^UTILITY(U,$J,358.3,3574,2)
+ ;;=^5054350
+ ;;^UTILITY(U,$J,358.3,3575,0)
+ ;;=T80.211D^^33^260^4
+ ;;^UTILITY(U,$J,358.3,3575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1612,1,3,0)
- ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,1612,1,4,0)
- ;;=4^I63.231
- ;;^UTILITY(U,$J,358.3,1612,2)
- ;;=^5007316
- ;;^UTILITY(U,$J,358.3,1613,0)
- ;;=I63.232^^8^128^58
- ;;^UTILITY(U,$J,358.3,1613,1,0)
+ ;;^UTILITY(U,$J,358.3,3575,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3575,1,4,0)
+ ;;=4^T80.211D
+ ;;^UTILITY(U,$J,358.3,3575,2)
+ ;;=^5054351
+ ;;^UTILITY(U,$J,358.3,3576,0)
+ ;;=E83.59^^33^260^5
+ ;;^UTILITY(U,$J,358.3,3576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1613,1,3,0)
- ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,1613,1,4,0)
- ;;=4^I63.232
- ;;^UTILITY(U,$J,358.3,1613,2)
- ;;=^5007317
- ;;^UTILITY(U,$J,358.3,1614,0)
- ;;=I63.211^^8^128^59
- ;;^UTILITY(U,$J,358.3,1614,1,0)
+ ;;^UTILITY(U,$J,358.3,3576,1,3,0)
+ ;;=3^Calciphylaxis
+ ;;^UTILITY(U,$J,358.3,3576,1,4,0)
+ ;;=4^E83.59
+ ;;^UTILITY(U,$J,358.3,3576,2)
+ ;;=^5003006
+ ;;^UTILITY(U,$J,358.3,3577,0)
+ ;;=T85.621A^^33^260^8
+ ;;^UTILITY(U,$J,358.3,3577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1614,1,3,0)
- ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Right Vertebral Artery
- ;;^UTILITY(U,$J,358.3,1614,1,4,0)
- ;;=4^I63.211
- ;;^UTILITY(U,$J,358.3,1614,2)
- ;;=^5007313
- ;;^UTILITY(U,$J,358.3,1615,0)
- ;;=I63.212^^8^128^60
- ;;^UTILITY(U,$J,358.3,1615,1,0)
+ ;;^UTILITY(U,$J,358.3,3577,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3577,1,4,0)
+ ;;=4^T85.621A
+ ;;^UTILITY(U,$J,358.3,3577,2)
+ ;;=^5055625
+ ;;^UTILITY(U,$J,358.3,3578,0)
+ ;;=T85.621D^^33^260^9
+ ;;^UTILITY(U,$J,358.3,3578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1615,1,3,0)
- ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Left Vertebral Artery
- ;;^UTILITY(U,$J,358.3,1615,1,4,0)
- ;;=4^I63.212
- ;;^UTILITY(U,$J,358.3,1615,2)
- ;;=^5007314
- ;;^UTILITY(U,$J,358.3,1616,0)
- ;;=G45.9^^8^128^94
- ;;^UTILITY(U,$J,358.3,1616,1,0)
+ ;;^UTILITY(U,$J,358.3,3578,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3578,1,4,0)
+ ;;=4^T85.621D
+ ;;^UTILITY(U,$J,358.3,3578,2)
+ ;;=^5055626
+ ;;^UTILITY(U,$J,358.3,3579,0)
+ ;;=K65.0^^33^260^10
+ ;;^UTILITY(U,$J,358.3,3579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1616,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,1616,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,1616,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,1617,0)
- ;;=I70.0^^8^128^14
- ;;^UTILITY(U,$J,358.3,1617,1,0)
+ ;;^UTILITY(U,$J,358.3,3579,1,3,0)
+ ;;=3^Generalized (acute) Peritonitis
+ ;;^UTILITY(U,$J,358.3,3579,1,4,0)
+ ;;=4^K65.0
+ ;;^UTILITY(U,$J,358.3,3579,2)
+ ;;=^332799
+ ;;^UTILITY(U,$J,358.3,3580,0)
+ ;;=G60.9^^33^260^14
+ ;;^UTILITY(U,$J,358.3,3580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1617,1,3,0)
- ;;=3^Atherosclerosis of Aorta
- ;;^UTILITY(U,$J,358.3,1617,1,4,0)
- ;;=4^I70.0
- ;;^UTILITY(U,$J,358.3,1617,2)
- ;;=^269759
- ;;^UTILITY(U,$J,358.3,1618,0)
- ;;=I70.1^^8^128^16
- ;;^UTILITY(U,$J,358.3,1618,1,0)
+ ;;^UTILITY(U,$J,358.3,3580,1,3,0)
+ ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,3580,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,3580,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,3581,0)
+ ;;=T82.838A^^33^260^12
+ ;;^UTILITY(U,$J,358.3,3581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1618,1,3,0)
- ;;=3^Atherosclerosis of Renal Artery
- ;;^UTILITY(U,$J,358.3,1618,1,4,0)
- ;;=4^I70.1
- ;;^UTILITY(U,$J,358.3,1618,2)
- ;;=^269760
- ;;^UTILITY(U,$J,358.3,1619,0)
- ;;=I70.211^^8^128^36
- ;;^UTILITY(U,$J,358.3,1619,1,0)
+ ;;^UTILITY(U,$J,358.3,3581,1,3,0)
+ ;;=3^Hemorrhage of Vascular Graft/Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3581,1,4,0)
+ ;;=4^T82.838A
+ ;;^UTILITY(U,$J,358.3,3581,2)
+ ;;=^5054929
+ ;;^UTILITY(U,$J,358.3,3582,0)
+ ;;=T82.838D^^33^260^13
+ ;;^UTILITY(U,$J,358.3,3582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1619,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,1619,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,1619,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,1620,0)
- ;;=I70.212^^8^128^32
- ;;^UTILITY(U,$J,358.3,1620,1,0)
+ ;;^UTILITY(U,$J,358.3,3582,1,3,0)
+ ;;=3^Hemorrhage of Vascular Graft/Fistula,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3582,1,4,0)
+ ;;=4^T82.838D
+ ;;^UTILITY(U,$J,358.3,3582,2)
+ ;;=^5054930
+ ;;^UTILITY(U,$J,358.3,3583,0)
+ ;;=E83.81^^33^260^15
+ ;;^UTILITY(U,$J,358.3,3583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1620,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,1620,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,1620,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,1621,0)
- ;;=I70.213^^8^128^28
- ;;^UTILITY(U,$J,358.3,1621,1,0)
+ ;;^UTILITY(U,$J,358.3,3583,1,3,0)
+ ;;=3^Hungry Bone Syndrome
+ ;;^UTILITY(U,$J,358.3,3583,1,4,0)
+ ;;=4^E83.81
+ ;;^UTILITY(U,$J,358.3,3583,2)
+ ;;=^336538
+ ;;^UTILITY(U,$J,358.3,3584,0)
+ ;;=T85.71XA^^33^260^21
+ ;;^UTILITY(U,$J,358.3,3584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1621,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,1621,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,1621,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,1622,0)
- ;;=I70.221^^8^128^37
- ;;^UTILITY(U,$J,358.3,1622,1,0)
+ ;;^UTILITY(U,$J,358.3,3584,1,3,0)
+ ;;=3^Infection d/t Peritoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3584,1,4,0)
+ ;;=4^T85.71XA
+ ;;^UTILITY(U,$J,358.3,3584,2)
+ ;;=^5055670
+ ;;^UTILITY(U,$J,358.3,3585,0)
+ ;;=T85.71XD^^33^260^22
+ ;;^UTILITY(U,$J,358.3,3585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1622,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,1622,1,4,0)
- ;;=4^I70.221
- ;;^UTILITY(U,$J,358.3,1622,2)
- ;;=^5007583
- ;;^UTILITY(U,$J,358.3,1623,0)
- ;;=I70.222^^8^128^33
- ;;^UTILITY(U,$J,358.3,1623,1,0)
+ ;;^UTILITY(U,$J,358.3,3585,1,3,0)
+ ;;=3^Infection d/t Peritoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3585,1,4,0)
+ ;;=4^T85.71XD
+ ;;^UTILITY(U,$J,358.3,3585,2)
+ ;;=^5055671
+ ;;^UTILITY(U,$J,358.3,3586,0)
+ ;;=T82.7XXA^^33^260^19
+ ;;^UTILITY(U,$J,358.3,3586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1623,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,1623,1,4,0)
- ;;=4^I70.222
- ;;^UTILITY(U,$J,358.3,1623,2)
- ;;=^5007584
- ;;^UTILITY(U,$J,358.3,1624,0)
- ;;=I70.223^^8^128^29
- ;;^UTILITY(U,$J,358.3,1624,1,0)
+ ;;^UTILITY(U,$J,358.3,3586,1,3,0)
+ ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3586,1,4,0)
+ ;;=4^T82.7XXA
+ ;;^UTILITY(U,$J,358.3,3586,2)
+ ;;=^5054911
+ ;;^UTILITY(U,$J,358.3,3587,0)
+ ;;=T82.7XXD^^33^260^20
+ ;;^UTILITY(U,$J,358.3,3587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1624,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,1624,1,4,0)
- ;;=4^I70.223
- ;;^UTILITY(U,$J,358.3,1624,2)
- ;;=^5007585
- ;;^UTILITY(U,$J,358.3,1625,0)
- ;;=I70.231^^8^128^38
- ;;^UTILITY(U,$J,358.3,1625,1,0)
+ ;;^UTILITY(U,$J,358.3,3587,1,3,0)
+ ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3587,1,4,0)
+ ;;=4^T82.7XXD
+ ;;^UTILITY(U,$J,358.3,3587,2)
+ ;;=^5054912
+ ;;^UTILITY(U,$J,358.3,3588,0)
+ ;;=T85.631A^^33^260^23
+ ;;^UTILITY(U,$J,358.3,3588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1625,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulceration
- ;;^UTILITY(U,$J,358.3,1625,1,4,0)
- ;;=4^I70.231
- ;;^UTILITY(U,$J,358.3,1625,2)
- ;;=^5007588
- ;;^UTILITY(U,$J,358.3,1626,0)
- ;;=I70.234^^8^128^39
- ;;^UTILITY(U,$J,358.3,1626,1,0)
+ ;;^UTILITY(U,$J,358.3,3588,1,3,0)
+ ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3588,1,4,0)
+ ;;=4^T85.631A
+ ;;^UTILITY(U,$J,358.3,3588,2)
+ ;;=^5055643
+ ;;^UTILITY(U,$J,358.3,3589,0)
+ ;;=T85.631D^^33^260^24
+ ;;^UTILITY(U,$J,358.3,3589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1626,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,1626,1,4,0)
- ;;=4^I70.234
- ;;^UTILITY(U,$J,358.3,1626,2)
- ;;=^5007591
- ;;^UTILITY(U,$J,358.3,1627,0)
- ;;=I70.239^^8^128^40
- ;;^UTILITY(U,$J,358.3,1627,1,0)
+ ;;^UTILITY(U,$J,358.3,3589,1,3,0)
+ ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3589,1,4,0)
+ ;;=4^T85.631D
+ ;;^UTILITY(U,$J,358.3,3589,2)
+ ;;=^5055644
+ ;;^UTILITY(U,$J,358.3,3590,0)
+ ;;=H54.8^^33^260^25
+ ;;^UTILITY(U,$J,358.3,3590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1627,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,1627,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,1627,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,1628,0)
- ;;=I70.241^^8^128^34
- ;;^UTILITY(U,$J,358.3,1628,1,0)
+ ;;^UTILITY(U,$J,358.3,3590,1,3,0)
+ ;;=3^Legal Blindness,USA Definition
+ ;;^UTILITY(U,$J,358.3,3590,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,3590,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,3591,0)
+ ;;=N25.89^^33^260^18
+ ;;^UTILITY(U,$J,358.3,3591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1628,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulceration
- ;;^UTILITY(U,$J,358.3,1628,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,1628,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,1629,0)
- ;;=I70.249^^8^128^35
- ;;^UTILITY(U,$J,358.3,1629,1,0)
+ ;;^UTILITY(U,$J,358.3,3591,1,3,0)
+ ;;=3^Impaired Renal Tubular Function Disorders,Other
+ ;;^UTILITY(U,$J,358.3,3591,1,4,0)
+ ;;=4^N25.89
+ ;;^UTILITY(U,$J,358.3,3591,2)
+ ;;=^5015618
+ ;;^UTILITY(U,$J,358.3,3592,0)
+ ;;=T82.590A^^33^260^28
+ ;;^UTILITY(U,$J,358.3,3592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1629,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,1629,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,1629,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,1630,0)
- ;;=I70.262^^8^128^31
- ;;^UTILITY(U,$J,358.3,1630,1,0)
+ ;;^UTILITY(U,$J,358.3,3592,1,3,0)
+ ;;=3^Mech Comp,Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3592,1,4,0)
+ ;;=4^T82.590A
+ ;;^UTILITY(U,$J,358.3,3592,2)
+ ;;=^5054884
+ ;;^UTILITY(U,$J,358.3,3593,0)
+ ;;=T82.590D^^33^260^29
+ ;;^UTILITY(U,$J,358.3,3593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1630,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,1630,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,1630,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,1631,0)
- ;;=I70.261^^8^128^41
- ;;^UTILITY(U,$J,358.3,1631,1,0)
+ ;;^UTILITY(U,$J,358.3,3593,1,3,0)
+ ;;=3^Mech Comp,Surgically Created AV Fistula,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3593,1,4,0)
+ ;;=4^T82.590D
+ ;;^UTILITY(U,$J,358.3,3593,2)
+ ;;=^5054885
+ ;;^UTILITY(U,$J,358.3,3594,0)
+ ;;=T85.691A^^33^260^26
+ ;;^UTILITY(U,$J,358.3,3594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1631,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,1631,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,1631,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,1632,0)
- ;;=I70.263^^8^128^30
- ;;^UTILITY(U,$J,358.3,1632,1,0)
+ ;;^UTILITY(U,$J,358.3,3594,1,3,0)
+ ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3594,1,4,0)
+ ;;=4^T85.691A
+ ;;^UTILITY(U,$J,358.3,3594,2)
+ ;;=^5055655
+ ;;^UTILITY(U,$J,358.3,3595,0)
+ ;;=T85.691D^^33^260^27
+ ;;^UTILITY(U,$J,358.3,3595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1632,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,1632,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,1632,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,1633,0)
- ;;=I70.301^^8^128^50
- ;;^UTILITY(U,$J,358.3,1633,1,0)
+ ;;^UTILITY(U,$J,358.3,3595,1,3,0)
+ ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3595,1,4,0)
+ ;;=4^T85.691D
+ ;;^UTILITY(U,$J,358.3,3595,2)
+ ;;=^5055656
+ ;;^UTILITY(U,$J,358.3,3596,0)
+ ;;=T82.898A^^33^260^6
+ ;;^UTILITY(U,$J,358.3,3596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1633,1,3,0)
- ;;=3^Athscl Unspec Type Bypass of Right Leg
- ;;^UTILITY(U,$J,358.3,1633,1,4,0)
- ;;=4^I70.301
- ;;^UTILITY(U,$J,358.3,1633,2)
- ;;=^5007611
- ;;^UTILITY(U,$J,358.3,1634,0)
- ;;=I70.302^^8^128^49
- ;;^UTILITY(U,$J,358.3,1634,1,0)
+ ;;^UTILITY(U,$J,358.3,3596,1,3,0)
+ ;;=3^Complication of Vascular Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3596,1,4,0)
+ ;;=4^T82.898A
+ ;;^UTILITY(U,$J,358.3,3596,2)
+ ;;=^5054953
+ ;;^UTILITY(U,$J,358.3,3597,0)
+ ;;=T82.898D^^33^260^7
+ ;;^UTILITY(U,$J,358.3,3597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1634,1,3,0)
- ;;=3^Athscl Unspec Type Bypass of Left Leg
- ;;^UTILITY(U,$J,358.3,1634,1,4,0)
- ;;=4^I70.302
- ;;^UTILITY(U,$J,358.3,1634,2)
- ;;=^5007612
- ;;^UTILITY(U,$J,358.3,1635,0)
- ;;=I70.303^^8^128^48
- ;;^UTILITY(U,$J,358.3,1635,1,0)
+ ;;^UTILITY(U,$J,358.3,3597,1,3,0)
+ ;;=3^Complication of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3597,1,4,0)
+ ;;=4^T82.898D
+ ;;^UTILITY(U,$J,358.3,3597,2)
+ ;;=^5054954
+ ;;^UTILITY(U,$J,358.3,3598,0)
+ ;;=N25.81^^33^260^36
+ ;;^UTILITY(U,$J,358.3,3598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1635,1,3,0)
- ;;=3^Athscl Unspec Type Bypass of Bilateral Legs
- ;;^UTILITY(U,$J,358.3,1635,1,4,0)
- ;;=4^I70.303
- ;;^UTILITY(U,$J,358.3,1635,2)
- ;;=^5007613
- ;;^UTILITY(U,$J,358.3,1636,0)
- ;;=I70.411^^8^128^24
- ;;^UTILITY(U,$J,358.3,1636,1,0)
+ ;;^UTILITY(U,$J,358.3,3598,1,3,0)
+ ;;=3^Secondary Hyperparathyroidism of Renal Origin
+ ;;^UTILITY(U,$J,358.3,3598,1,4,0)
+ ;;=4^N25.81
+ ;;^UTILITY(U,$J,358.3,3598,2)
+ ;;=^5015617
+ ;;^UTILITY(U,$J,358.3,3599,0)
+ ;;=T82.858A^^33^260^37
+ ;;^UTILITY(U,$J,358.3,3599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1636,1,3,0)
- ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,1636,1,4,0)
- ;;=4^I70.411
- ;;^UTILITY(U,$J,358.3,1636,2)
- ;;=^5007654
+ ;;^UTILITY(U,$J,358.3,3599,1,3,0)
+ ;;=3^Stenosis of Vascular Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3599,1,4,0)
+ ;;=4^T82.858A
+ ;;^UTILITY(U,$J,358.3,3599,2)
+ ;;=^5054941
+ ;;^UTILITY(U,$J,358.3,3600,0)
+ ;;=T82.858D^^33^260^38
+ ;;^UTILITY(U,$J,358.3,3600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3600,1,3,0)
+ ;;=3^Stenosis of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3600,1,4,0)
+ ;;=4^T82.858D
+ ;;^UTILITY(U,$J,358.3,3600,2)
+ ;;=^5054942
+ ;;^UTILITY(U,$J,358.3,3601,0)
+ ;;=T82.868A^^33^260^39
+ ;;^UTILITY(U,$J,358.3,3601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3601,1,3,0)
+ ;;=3^Thrombosis of Vascular Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3601,1,4,0)
+ ;;=4^T82.868A
+ ;;^UTILITY(U,$J,358.3,3601,2)
+ ;;=^5054947
+ ;;^UTILITY(U,$J,358.3,3602,0)
+ ;;=T82.868D^^33^260^40
+ ;;^UTILITY(U,$J,358.3,3602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3602,1,3,0)
+ ;;=3^Thrombosis of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,3602,1,4,0)
+ ;;=4^T82.868D
+ ;;^UTILITY(U,$J,358.3,3602,2)
+ ;;=^5054948
+ ;;^UTILITY(U,$J,358.3,3603,0)
+ ;;=N28.1^^33^261^1
+ ;;^UTILITY(U,$J,358.3,3603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3603,1,3,0)
+ ;;=3^Cyst of Kidney,Acquired
+ ;;^UTILITY(U,$J,358.3,3603,1,4,0)
+ ;;=4^N28.1
+ ;;^UTILITY(U,$J,358.3,3603,2)
+ ;;=^270380
+ ;;^UTILITY(U,$J,358.3,3604,0)
+ ;;=Q61.9^^33^261^2
+ ;;^UTILITY(U,$J,358.3,3604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3604,1,3,0)
+ ;;=3^Cystic Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3604,1,4,0)
+ ;;=4^Q61.9
+ ;;^UTILITY(U,$J,358.3,3604,2)
+ ;;=^5018800
+ ;;^UTILITY(U,$J,358.3,3605,0)
+ ;;=Q61.2^^33^261^6
+ ;;^UTILITY(U,$J,358.3,3605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3605,1,3,0)
+ ;;=3^Polycystic Kidney,Adult Type
+ ;;^UTILITY(U,$J,358.3,3605,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,3605,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,3606,0)
+ ;;=Q61.5^^33^261^4
+ ;;^UTILITY(U,$J,358.3,3606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3606,1,3,0)
+ ;;=3^Medullary Cystic Kidney
+ ;;^UTILITY(U,$J,358.3,3606,1,4,0)
+ ;;=4^Q61.5
+ ;;^UTILITY(U,$J,358.3,3606,2)
+ ;;=^67073
+ ;;^UTILITY(U,$J,358.3,3607,0)
+ ;;=Z82.71^^33^261^3
+ ;;^UTILITY(U,$J,358.3,3607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3607,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,3607,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,3607,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,3608,0)
+ ;;=Q61.5^^33^261^5
+ ;;^UTILITY(U,$J,358.3,3608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3608,1,3,0)
+ ;;=3^Medullary Sponge Kidney
+ ;;^UTILITY(U,$J,358.3,3608,1,4,0)
+ ;;=4^Q61.5
+ ;;^UTILITY(U,$J,358.3,3608,2)
+ ;;=^67073
+ ;;^UTILITY(U,$J,358.3,3609,0)
+ ;;=Q61.3^^33^261^7
+ ;;^UTILITY(U,$J,358.3,3609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3609,1,3,0)
+ ;;=3^Polycystic Kidney,Unspec
+ ;;^UTILITY(U,$J,358.3,3609,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,3609,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,3610,0)
+ ;;=E11.65^^33^262^11
+ ;;^UTILITY(U,$J,358.3,3610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3610,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,3610,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,3610,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,3611,0)
+ ;;=E10.65^^33^262^6
+ ;;^UTILITY(U,$J,358.3,3611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3611,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,3611,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,3611,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,3612,0)
+ ;;=E11.21^^33^262^9
+ ;;^UTILITY(U,$J,358.3,3612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3612,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,3612,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,3612,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,3613,0)
+ ;;=E10.29^^33^262^3
+ ;;^UTILITY(U,$J,358.3,3613,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3613,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,3613,1,4,0)
+ ;;=4^E10.29
+ ;;^UTILITY(U,$J,358.3,3613,2)
+ ;;=^5002591
+ ;;^UTILITY(U,$J,358.3,3614,0)
+ ;;=E10.21^^33^262^4
+ ;;^UTILITY(U,$J,358.3,3614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3614,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,3614,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,3614,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,3615,0)
+ ;;=E11.40^^33^262^10
+ ;;^UTILITY(U,$J,358.3,3615,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3615,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,3615,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,3615,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,3616,0)
+ ;;=E10.40^^33^262^5
+ ;;^UTILITY(U,$J,358.3,3616,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3616,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,3616,1,4,0)
+ ;;=4^E10.40
+ ;;^UTILITY(U,$J,358.3,3616,2)
+ ;;=^5002604
+ ;;^UTILITY(U,$J,358.3,3617,0)
+ ;;=E10.22^^33^262^2
+ ;;^UTILITY(U,$J,358.3,3617,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3617,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,3617,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,3617,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,3618,0)
+ ;;=E10.9^^33^262^7
+ ;;^UTILITY(U,$J,358.3,3618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3618,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,3618,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,3618,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,3619,0)
+ ;;=E11.22^^33^262^8
+ ;;^UTILITY(U,$J,358.3,3619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3619,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,3619,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,3619,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,3620,0)
+ ;;=E11.9^^33^262^12
+ ;;^UTILITY(U,$J,358.3,3620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3620,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,3620,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,3620,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,3621,0)
+ ;;=E13.22^^33^262^1
+ ;;^UTILITY(U,$J,358.3,3621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3621,1,3,0)
+ ;;=3^DM w/ Diabetic CKD,Other
+ ;;^UTILITY(U,$J,358.3,3621,1,4,0)
+ ;;=4^E13.22
+ ;;^UTILITY(U,$J,358.3,3621,2)
+ ;;=^5002671
+ ;;^UTILITY(U,$J,358.3,3622,0)
+ ;;=E83.30^^33^263^26
+ ;;^UTILITY(U,$J,358.3,3622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3622,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3622,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,3622,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,3623,0)
+ ;;=E83.31^^33^263^9
+ ;;^UTILITY(U,$J,358.3,3623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3623,1,3,0)
+ ;;=3^Familial Hypophosphatemia
+ ;;^UTILITY(U,$J,358.3,3623,1,4,0)
+ ;;=4^E83.31
+ ;;^UTILITY(U,$J,358.3,3623,2)
+ ;;=^5002998
+ ;;^UTILITY(U,$J,358.3,3624,0)
+ ;;=E83.51^^33^263^19
+ ;;^UTILITY(U,$J,358.3,3624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3624,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,3624,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,3624,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,3625,0)
+ ;;=E83.52^^33^263^13
+ ;;^UTILITY(U,$J,358.3,3625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3625,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,3625,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,3625,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,3626,0)
+ ;;=E87.0^^33^263^16
+ ;;^UTILITY(U,$J,358.3,3626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3626,1,3,0)
+ ;;=3^Hyperosmolality and Hypernatremia
+ ;;^UTILITY(U,$J,358.3,3626,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,3626,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,3627,0)
+ ;;=E87.1^^33^263^18
+ ;;^UTILITY(U,$J,358.3,3627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3627,1,3,0)
+ ;;=3^Hypo-osmolality and Hyponatremia
+ ;;^UTILITY(U,$J,358.3,3627,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,3627,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,3628,0)
+ ;;=E87.2^^33^263^1
+ ;;^UTILITY(U,$J,358.3,3628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3628,1,3,0)
+ ;;=3^Acidosis
+ ;;^UTILITY(U,$J,358.3,3628,1,4,0)
+ ;;=4^E87.2
+ ;;^UTILITY(U,$J,358.3,3628,2)
+ ;;=^5003020
+ ;;^UTILITY(U,$J,358.3,3629,0)
+ ;;=E87.3^^33^263^3
+ ;;^UTILITY(U,$J,358.3,3629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3629,1,3,0)
+ ;;=3^Alkalosis
+ ;;^UTILITY(U,$J,358.3,3629,1,4,0)
+ ;;=4^E87.3
+ ;;^UTILITY(U,$J,358.3,3629,2)
+ ;;=^5003021
+ ;;^UTILITY(U,$J,358.3,3630,0)
+ ;;=E87.4^^33^263^24
+ ;;^UTILITY(U,$J,358.3,3630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3630,1,3,0)
+ ;;=3^Mixed Acid-Base Balance Disorder
+ ;;^UTILITY(U,$J,358.3,3630,1,4,0)
+ ;;=4^E87.4
+ ;;^UTILITY(U,$J,358.3,3630,2)
+ ;;=^5003022
+ ;;^UTILITY(U,$J,358.3,3631,0)
+ ;;=E86.9^^33^263^31
+ ;;^UTILITY(U,$J,358.3,3631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3631,1,3,0)
+ ;;=3^Volume Depletion,Unspec
+ ;;^UTILITY(U,$J,358.3,3631,1,4,0)
+ ;;=4^E86.9
+ ;;^UTILITY(U,$J,358.3,3631,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,3632,0)
+ ;;=E86.0^^33^263^6
+ ;;^UTILITY(U,$J,358.3,3632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3632,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,3632,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,3632,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,3633,0)
+ ;;=E86.1^^33^263^22
+ ;;^UTILITY(U,$J,358.3,3633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3633,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,3633,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,3633,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,3634,0)
+ ;;=E87.70^^33^263^11
+ ;;^UTILITY(U,$J,358.3,3634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3634,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,3634,1,4,0)
+ ;;=4^E87.70

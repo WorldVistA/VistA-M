@@ -1,128 +1,130 @@
-IBDEI1J0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1J0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25902,1,0)
+ ;;^UTILITY(U,$J,358.3,24396,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,24396,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,24396,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,24397,0)
+ ;;=H93.A3^^107^1202^38
+ ;;^UTILITY(U,$J,358.3,24397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25902,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,25902,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,25902,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,25903,0)
- ;;=F31.89^^98^1211^21
- ;;^UTILITY(U,$J,358.3,25903,1,0)
+ ;;^UTILITY(U,$J,358.3,24397,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,24397,1,4,0)
+ ;;=4^H93.A3
+ ;;^UTILITY(U,$J,358.3,24397,2)
+ ;;=^5138592
+ ;;^UTILITY(U,$J,358.3,24398,0)
+ ;;=H93.A1^^107^1202^40
+ ;;^UTILITY(U,$J,358.3,24398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25903,1,3,0)
- ;;=3^Bipolar and Other Related Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25903,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,25903,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,25904,0)
- ;;=F10.232^^98^1212^2
- ;;^UTILITY(U,$J,358.3,25904,1,0)
+ ;;^UTILITY(U,$J,358.3,24398,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,24398,1,4,0)
+ ;;=4^H93.A1
+ ;;^UTILITY(U,$J,358.3,24398,2)
+ ;;=^5138590
+ ;;^UTILITY(U,$J,358.3,24399,0)
+ ;;=H93.A2^^107^1202^39
+ ;;^UTILITY(U,$J,358.3,24399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25904,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,25904,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,25904,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,25905,0)
- ;;=F10.231^^98^1212^3
- ;;^UTILITY(U,$J,358.3,25905,1,0)
+ ;;^UTILITY(U,$J,358.3,24399,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,24399,1,4,0)
+ ;;=4^H93.A2
+ ;;^UTILITY(U,$J,358.3,24399,2)
+ ;;=^5138591
+ ;;^UTILITY(U,$J,358.3,24400,0)
+ ;;=B37.0^^107^1203^13
+ ;;^UTILITY(U,$J,358.3,24400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25905,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,25905,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,25905,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,25906,0)
- ;;=F10.121^^98^1212^6
- ;;^UTILITY(U,$J,358.3,25906,1,0)
+ ;;^UTILITY(U,$J,358.3,24400,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,24400,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,24400,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,24401,0)
+ ;;=B37.83^^107^1203^12
+ ;;^UTILITY(U,$J,358.3,24401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25906,1,3,0)
- ;;=3^Mild Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,25906,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,25906,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,25907,0)
- ;;=F10.221^^98^1212^7
- ;;^UTILITY(U,$J,358.3,25907,1,0)
+ ;;^UTILITY(U,$J,358.3,24401,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,24401,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,24401,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,24402,0)
+ ;;=J00.^^107^1203^6
+ ;;^UTILITY(U,$J,358.3,24402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25907,1,3,0)
- ;;=3^Moderate/Severe Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,25907,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,25907,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,25908,0)
- ;;=F10.921^^98^1212^1
- ;;^UTILITY(U,$J,358.3,25908,1,0)
+ ;;^UTILITY(U,$J,358.3,24402,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,24402,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,24402,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,24403,0)
+ ;;=J01.00^^107^1203^5
+ ;;^UTILITY(U,$J,358.3,24403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25908,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25908,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,25908,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,25909,0)
- ;;=F05.^^98^1212^4
- ;;^UTILITY(U,$J,358.3,25909,1,0)
+ ;;^UTILITY(U,$J,358.3,24403,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24403,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,24403,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,24404,0)
+ ;;=J01.10^^107^1203^1
+ ;;^UTILITY(U,$J,358.3,24404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25909,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,25909,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,25909,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,25910,0)
- ;;=F05.^^98^1212^5
- ;;^UTILITY(U,$J,358.3,25910,1,0)
+ ;;^UTILITY(U,$J,358.3,24404,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24404,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,24404,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,24405,0)
+ ;;=J02.9^^107^1203^7
+ ;;^UTILITY(U,$J,358.3,24405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25910,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,25910,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,25910,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,25911,0)
- ;;=A81.00^^98^1213^9
- ;;^UTILITY(U,$J,358.3,25911,1,0)
+ ;;^UTILITY(U,$J,358.3,24405,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24405,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,24405,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,24406,0)
+ ;;=J03.91^^107^1203^8
+ ;;^UTILITY(U,$J,358.3,24406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25911,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,25911,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,25911,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,25912,0)
- ;;=A81.01^^98^1213^38
- ;;^UTILITY(U,$J,358.3,25912,1,0)
+ ;;^UTILITY(U,$J,358.3,24406,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,24406,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,24406,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,24407,0)
+ ;;=J04.0^^107^1203^3
+ ;;^UTILITY(U,$J,358.3,24407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25912,1,3,0)
- ;;=3^Variant Creutzfeldt-Jakob Disease
- ;;^UTILITY(U,$J,358.3,25912,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,25912,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,25913,0)
- ;;=A81.09^^98^1213^8
- ;;^UTILITY(U,$J,358.3,25913,1,0)
+ ;;^UTILITY(U,$J,358.3,24407,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,24407,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,24407,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,24408,0)
+ ;;=J06.0^^107^1203^4
+ ;;^UTILITY(U,$J,358.3,24408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25913,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,25913,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,25913,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,25914,0)
- ;;=A81.2^^98^1213^33
- ;;^UTILITY(U,$J,358.3,25914,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25914,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,24408,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,24408,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,24408,2)
+ ;;=^269876

@@ -1,134 +1,116 @@
-IBDEI2T1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2T1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47088,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,47088,1,1,0)
- ;;=1^77470
- ;;^UTILITY(U,$J,358.3,47088,1,3,0)
- ;;=3^Special Treatment Procedure 
- ;;^UTILITY(U,$J,358.3,47088,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,47089,0)
- ;;=77469^^208^2328^1^^^^1
- ;;^UTILITY(U,$J,358.3,47089,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47089,1,1,0)
- ;;=1^77469
- ;;^UTILITY(U,$J,358.3,47089,1,3,0)
- ;;=3^Intra-op Radiation Tx Mgmt
- ;;^UTILITY(U,$J,358.3,47090,0)
- ;;=77301^^208^2329^1^^^^1
- ;;^UTILITY(U,$J,358.3,47090,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47090,1,1,0)
- ;;=1^77301
- ;;^UTILITY(U,$J,358.3,47090,1,3,0)
- ;;=3^IMRT Dose Plan
- ;;^UTILITY(U,$J,358.3,47091,0)
- ;;=77417^^208^2330^4^^^^1
- ;;^UTILITY(U,$J,358.3,47091,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47091,1,1,0)
- ;;=1^77417
- ;;^UTILITY(U,$J,358.3,47091,1,3,0)
- ;;=3^Radiology Port Films
- ;;^UTILITY(U,$J,358.3,47092,0)
- ;;=77014^^208^2330^1^^^^1
- ;;^UTILITY(U,$J,358.3,47092,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47092,1,1,0)
- ;;=1^77014
- ;;^UTILITY(U,$J,358.3,47092,1,3,0)
- ;;=3^CT Scan for Therapy Guide
- ;;^UTILITY(U,$J,358.3,47093,0)
- ;;=77407^^208^2330^7^^^^1
- ;;^UTILITY(U,$J,358.3,47093,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,47093,1,1,0)
- ;;=1^77407
- ;;^UTILITY(U,$J,358.3,47093,1,3,0)
- ;;=3^Intermediate Tx;>1 MeV
- ;;^UTILITY(U,$J,358.3,47093,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,47094,0)
- ;;=77402^^208^2330^6^^^^1
- ;;^UTILITY(U,$J,358.3,47094,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47094,1,1,0)
- ;;=1^77402
- ;;^UTILITY(U,$J,358.3,47094,1,3,0)
- ;;=3^Simple Tx;>1 MeV
- ;;^UTILITY(U,$J,358.3,47095,0)
- ;;=77412^^208^2330^8^^^^1
- ;;^UTILITY(U,$J,358.3,47095,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47095,1,1,0)
- ;;=1^77412
- ;;^UTILITY(U,$J,358.3,47095,1,3,0)
- ;;=3^Complex Tx;>1 MeV
- ;;^UTILITY(U,$J,358.3,47096,0)
- ;;=77385^^208^2330^2^^^^1
- ;;^UTILITY(U,$J,358.3,47096,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47096,1,1,0)
- ;;=1^77385
- ;;^UTILITY(U,$J,358.3,47096,1,3,0)
- ;;=3^IMRT;Simple
- ;;^UTILITY(U,$J,358.3,47097,0)
- ;;=77386^^208^2330^3^^^^1
- ;;^UTILITY(U,$J,358.3,47097,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47097,1,1,0)
- ;;=1^77386
- ;;^UTILITY(U,$J,358.3,47097,1,3,0)
- ;;=3^IMRT;Complex
- ;;^UTILITY(U,$J,358.3,47098,0)
- ;;=77401^^208^2330^5^^^^1
- ;;^UTILITY(U,$J,358.3,47098,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47098,1,1,0)
- ;;=1^77401
- ;;^UTILITY(U,$J,358.3,47098,1,3,0)
- ;;=3^Superficial Tx;<1 MeV
- ;;^UTILITY(U,$J,358.3,47099,0)
- ;;=76873^^208^2331^5^^^^1
- ;;^UTILITY(U,$J,358.3,47099,1,0)
- ;;=^358.31IA^4^3
- ;;^UTILITY(U,$J,358.3,47099,1,1,0)
- ;;=1^76873
- ;;^UTILITY(U,$J,358.3,47099,1,3,0)
- ;;=3^Prostate Volume Study
- ;;^UTILITY(U,$J,358.3,47099,1,4,0)
- ;;=4
- ;;^UTILITY(U,$J,358.3,47100,0)
- ;;=77778^^208^2331^4^^^^1
- ;;^UTILITY(U,$J,358.3,47100,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47100,1,1,0)
- ;;=1^77778
- ;;^UTILITY(U,$J,358.3,47100,1,3,0)
- ;;=3^Interstitial Radiation,Complex
- ;;^UTILITY(U,$J,358.3,47101,0)
- ;;=77790^^208^2331^6^^^^1
- ;;^UTILITY(U,$J,358.3,47101,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47101,1,1,0)
- ;;=1^77790
- ;;^UTILITY(U,$J,358.3,47101,1,3,0)
- ;;=3^Suprvsn,Handling,Radiation Load
- ;;^UTILITY(U,$J,358.3,47102,0)
- ;;=77318^^208^2331^3^^^^1
- ;;^UTILITY(U,$J,358.3,47102,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47102,1,1,0)
- ;;=1^77318
- ;;^UTILITY(U,$J,358.3,47102,1,3,0)
- ;;=3^Brachytx Iso Pln-Cplx > 10
- ;;^UTILITY(U,$J,358.3,47103,0)
- ;;=77316^^208^2331^1^^^^1
- ;;^UTILITY(U,$J,358.3,47103,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,47103,1,1,0)
- ;;=1^77316
+ ;;^UTILITY(U,$J,358.3,44733,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,44734,0)
+ ;;=Y36.010S^^167^2230^3
+ ;;^UTILITY(U,$J,358.3,44734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44734,1,3,0)
+ ;;=3^War op involving explosion of depth-chg, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44734,1,4,0)
+ ;;=4^Y36.010S
+ ;;^UTILITY(U,$J,358.3,44734,2)
+ ;;=^5061537
+ ;;^UTILITY(U,$J,358.3,44735,0)
+ ;;=Y36.030S^^167^2230^17
+ ;;^UTILITY(U,$J,358.3,44735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44735,1,3,0)
+ ;;=3^War op w explosn of sea-based artlry shell, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44735,1,4,0)
+ ;;=4^Y36.030S
+ ;;^UTILITY(U,$J,358.3,44735,2)
+ ;;=^5061549
+ ;;^UTILITY(U,$J,358.3,44736,0)
+ ;;=Y36.191S^^167^2230^9
+ ;;^UTILITY(U,$J,358.3,44736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44736,1,3,0)
+ ;;=3^War op involving oth dest arcrft, civilian, sequela
+ ;;^UTILITY(U,$J,358.3,44736,1,4,0)
+ ;;=4^Y36.191S
+ ;;^UTILITY(U,$J,358.3,44736,2)
+ ;;=^5061606
+ ;;^UTILITY(U,$J,358.3,44737,0)
+ ;;=Y36.200S^^167^2230^12
+ ;;^UTILITY(U,$J,358.3,44737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44737,1,3,0)
+ ;;=3^War op involving unsp explosion and fragments, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44737,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,44737,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,44738,0)
+ ;;=Y36.210S^^167^2230^2
+ ;;^UTILITY(U,$J,358.3,44738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44738,1,3,0)
+ ;;=3^War op involving explosion of aerial bomb, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44738,1,4,0)
+ ;;=4^Y36.210S
+ ;;^UTILITY(U,$J,358.3,44738,2)
+ ;;=^5061615
+ ;;^UTILITY(U,$J,358.3,44739,0)
+ ;;=Y36.220S^^167^2230^4
+ ;;^UTILITY(U,$J,358.3,44739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44739,1,3,0)
+ ;;=3^War op involving explosion of guided missile, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44739,1,4,0)
+ ;;=4^Y36.220S
+ ;;^UTILITY(U,$J,358.3,44739,2)
+ ;;=^5061621
+ ;;^UTILITY(U,$J,358.3,44740,0)
+ ;;=Y36.230S^^167^2230^16
+ ;;^UTILITY(U,$J,358.3,44740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44740,1,3,0)
+ ;;=3^War op w explosn of improv explosv device, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44740,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,44740,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,44741,0)
+ ;;=Y36.240S^^167^2230^15
+ ;;^UTILITY(U,$J,358.3,44741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44741,1,3,0)
+ ;;=3^War op w explosn due to acc disch of own munit, milt, sqla
+ ;;^UTILITY(U,$J,358.3,44741,1,4,0)
+ ;;=4^Y36.240S
+ ;;^UTILITY(U,$J,358.3,44741,2)
+ ;;=^5061633
+ ;;^UTILITY(U,$J,358.3,44742,0)
+ ;;=Y36.250S^^167^2230^5
+ ;;^UTILITY(U,$J,358.3,44742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44742,1,3,0)
+ ;;=3^War op involving fragments from munitions, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44742,1,4,0)
+ ;;=4^Y36.250S
+ ;;^UTILITY(U,$J,358.3,44742,2)
+ ;;=^5061639
+ ;;^UTILITY(U,$J,358.3,44743,0)
+ ;;=Y36.260S^^167^2230^18
+ ;;^UTILITY(U,$J,358.3,44743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44743,1,3,0)
+ ;;=3^War op w fragmt of improv explosv device, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44743,1,4,0)
+ ;;=4^Y36.260S
+ ;;^UTILITY(U,$J,358.3,44743,2)
+ ;;=^5061645
+ ;;^UTILITY(U,$J,358.3,44744,0)
+ ;;=Y36.270S^^167^2230^6
+ ;;^UTILITY(U,$J,358.3,44744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44744,1,3,0)
+ ;;=3^War op involving fragments from weapons, milt, sequela
+ ;;^UTILITY(U,$J,358.3,44744,1,4,0)
+ ;;=4^Y36.270S
+ ;;^UTILITY(U,$J,358.3,44744,2)
+ ;;=^5061651

@@ -1,132 +1,128 @@
-IBDEI2ZP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50121,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,50122,0)
- ;;=I21.3^^219^2439^71
- ;;^UTILITY(U,$J,358.3,50122,1,0)
+ ;;^UTILITY(U,$J,358.3,47742,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,47742,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,47743,0)
+ ;;=D51.0^^185^2411^13
+ ;;^UTILITY(U,$J,358.3,47743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50122,1,3,0)
- ;;=3^STEMI Myocardial Infarction,Unspec Site
- ;;^UTILITY(U,$J,358.3,50122,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,50122,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,50123,0)
- ;;=I44.30^^219^2439^43
- ;;^UTILITY(U,$J,358.3,50123,1,0)
+ ;;^UTILITY(U,$J,358.3,47743,1,3,0)
+ ;;=3^Anemia,Pernicious (Vitamin B12 Defic)
+ ;;^UTILITY(U,$J,358.3,47743,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,47743,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,47744,0)
+ ;;=D46.4^^185^2411^14
+ ;;^UTILITY(U,$J,358.3,47744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50123,1,3,0)
- ;;=3^Atrioventricular Block,Unspec
- ;;^UTILITY(U,$J,358.3,50123,1,4,0)
- ;;=4^I44.30
- ;;^UTILITY(U,$J,358.3,50123,2)
- ;;=^5007204
- ;;^UTILITY(U,$J,358.3,50124,0)
- ;;=I50.40^^219^2439^51
- ;;^UTILITY(U,$J,358.3,50124,1,0)
+ ;;^UTILITY(U,$J,358.3,47744,1,3,0)
+ ;;=3^Anemia,Refractory,Unspec
+ ;;^UTILITY(U,$J,358.3,47744,1,4,0)
+ ;;=4^D46.4
+ ;;^UTILITY(U,$J,358.3,47744,2)
+ ;;=^5002250
+ ;;^UTILITY(U,$J,358.3,47745,0)
+ ;;=D57.419^^185^2411^15
+ ;;^UTILITY(U,$J,358.3,47745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50124,1,3,0)
- ;;=3^Combined Systolic & Diastolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,50124,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,50124,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,50125,0)
- ;;=I50.30^^219^2439^52
- ;;^UTILITY(U,$J,358.3,50125,1,0)
+ ;;^UTILITY(U,$J,358.3,47745,1,3,0)
+ ;;=3^Anemia,Sickle-Cell Thalassemia w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,47745,1,4,0)
+ ;;=4^D57.419
+ ;;^UTILITY(U,$J,358.3,47745,2)
+ ;;=^5002316
+ ;;^UTILITY(U,$J,358.3,47746,0)
+ ;;=D57.40^^185^2411^16
+ ;;^UTILITY(U,$J,358.3,47746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50125,1,3,0)
- ;;=3^Diastolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,50125,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,50125,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,50126,0)
- ;;=I50.20^^219^2439^72
- ;;^UTILITY(U,$J,358.3,50126,1,0)
+ ;;^UTILITY(U,$J,358.3,47746,1,3,0)
+ ;;=3^Anemia,Sickle-Cell Thalassemia w/o Crisis
+ ;;^UTILITY(U,$J,358.3,47746,1,4,0)
+ ;;=4^D57.40
+ ;;^UTILITY(U,$J,358.3,47746,2)
+ ;;=^329908
+ ;;^UTILITY(U,$J,358.3,47747,0)
+ ;;=D56.9^^185^2411^17
+ ;;^UTILITY(U,$J,358.3,47747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50126,1,3,0)
- ;;=3^Systolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,50126,1,4,0)
- ;;=4^I50.20
- ;;^UTILITY(U,$J,358.3,50126,2)
- ;;=^5007239
- ;;^UTILITY(U,$J,358.3,50127,0)
- ;;=I20.0^^219^2439^73
- ;;^UTILITY(U,$J,358.3,50127,1,0)
+ ;;^UTILITY(U,$J,358.3,47747,1,3,0)
+ ;;=3^Anemia,Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,47747,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,47747,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,47748,0)
+ ;;=D64.9^^185^2411^18
+ ;;^UTILITY(U,$J,358.3,47748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50127,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,50127,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,50127,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,50128,0)
- ;;=M32.12^^219^2439^64
- ;;^UTILITY(U,$J,358.3,50128,1,0)
+ ;;^UTILITY(U,$J,358.3,47748,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,47748,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,47748,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,47749,0)
+ ;;=D51.9^^185^2411^19
+ ;;^UTILITY(U,$J,358.3,47749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50128,1,3,0)
- ;;=3^Pericarditis in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,50128,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,50128,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,50129,0)
- ;;=E87.8^^219^2440^3
- ;;^UTILITY(U,$J,358.3,50129,1,0)
+ ;;^UTILITY(U,$J,358.3,47749,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,47749,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,47749,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,47750,0)
+ ;;=R78.81^^185^2411^20
+ ;;^UTILITY(U,$J,358.3,47750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50129,1,3,0)
- ;;=3^Electrolyte/Fluid Balance Disorders NEC
- ;;^UTILITY(U,$J,358.3,50129,1,4,0)
- ;;=4^E87.8
- ;;^UTILITY(U,$J,358.3,50129,2)
- ;;=^5003026
- ;;^UTILITY(U,$J,358.3,50130,0)
- ;;=E13.9^^219^2440^2
- ;;^UTILITY(U,$J,358.3,50130,1,0)
+ ;;^UTILITY(U,$J,358.3,47750,1,3,0)
+ ;;=3^Bacteremia
+ ;;^UTILITY(U,$J,358.3,47750,1,4,0)
+ ;;=4^R78.81
+ ;;^UTILITY(U,$J,358.3,47750,2)
+ ;;=^12280
+ ;;^UTILITY(U,$J,358.3,47751,0)
+ ;;=R79.9^^185^2411^21
+ ;;^UTILITY(U,$J,358.3,47751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50130,1,3,0)
- ;;=3^Diabetes Mellitus w/o Complications 
- ;;^UTILITY(U,$J,358.3,50130,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,50130,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,50131,0)
- ;;=E11.9^^219^2440^1
- ;;^UTILITY(U,$J,358.3,50131,1,0)
+ ;;^UTILITY(U,$J,358.3,47751,1,3,0)
+ ;;=3^Blood Chemistry,Abnormal Finding,Unspec
+ ;;^UTILITY(U,$J,358.3,47751,1,4,0)
+ ;;=4^R79.9
+ ;;^UTILITY(U,$J,358.3,47751,2)
+ ;;=^5019594
+ ;;^UTILITY(U,$J,358.3,47752,0)
+ ;;=R79.81^^185^2411^22
+ ;;^UTILITY(U,$J,358.3,47752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50131,1,3,0)
- ;;=3^DM Type 2 w/o Complicataions
- ;;^UTILITY(U,$J,358.3,50131,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,50131,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,50132,0)
- ;;=H60.03^^219^2441^1
- ;;^UTILITY(U,$J,358.3,50132,1,0)
+ ;;^UTILITY(U,$J,358.3,47752,1,3,0)
+ ;;=3^Blood-Gas Level,Abnormal
+ ;;^UTILITY(U,$J,358.3,47752,1,4,0)
+ ;;=4^R79.81
+ ;;^UTILITY(U,$J,358.3,47752,2)
+ ;;=^5019592
+ ;;^UTILITY(U,$J,358.3,47753,0)
+ ;;=R79.1^^185^2411^25
+ ;;^UTILITY(U,$J,358.3,47753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50132,1,3,0)
- ;;=3^Abscess Bilateral External Ear
- ;;^UTILITY(U,$J,358.3,50132,1,4,0)
- ;;=4^H60.03
- ;;^UTILITY(U,$J,358.3,50132,2)
- ;;=^5006438
- ;;^UTILITY(U,$J,358.3,50133,0)
- ;;=H60.02^^219^2441^2
- ;;^UTILITY(U,$J,358.3,50133,1,0)
+ ;;^UTILITY(U,$J,358.3,47753,1,3,0)
+ ;;=3^Coagulation Profile,Abnormal
+ ;;^UTILITY(U,$J,358.3,47753,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,47753,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,47754,0)
+ ;;=R79.82^^185^2411^24
+ ;;^UTILITY(U,$J,358.3,47754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50133,1,3,0)
- ;;=3^Abscess Left External Ear
- ;;^UTILITY(U,$J,358.3,50133,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,50133,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,50134,0)
- ;;=H60.01^^219^2441^3
- ;;^UTILITY(U,$J,358.3,50134,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50134,1,3,0)
- ;;=3^Abscess Right External Ear
+ ;;^UTILITY(U,$J,358.3,47754,1,3,0)
+ ;;=3^C-Reactive Protein,Elevated
+ ;;^UTILITY(U,$J,358.3,47754,1,4,0)
+ ;;=4^R79.82
+ ;;^UTILITY(U,$J,358.3,47754,2)
+ ;;=^331570

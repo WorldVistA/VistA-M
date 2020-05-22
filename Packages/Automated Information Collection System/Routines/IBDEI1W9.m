@@ -1,122 +1,122 @@
-IBDEI1W9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1W9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32160,0)
- ;;=S92.341K^^126^1609^73
- ;;^UTILITY(U,$J,358.3,32160,1,0)
+ ;;^UTILITY(U,$J,358.3,30252,0)
+ ;;=F11.981^^120^1541^10
+ ;;^UTILITY(U,$J,358.3,30252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32160,1,3,0)
- ;;=3^Disp fx of 4th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32160,1,4,0)
- ;;=4^S92.341K
- ;;^UTILITY(U,$J,358.3,32160,2)
- ;;=^5045190
- ;;^UTILITY(U,$J,358.3,32161,0)
- ;;=S92.335K^^126^1609^294
- ;;^UTILITY(U,$J,358.3,32161,1,0)
+ ;;^UTILITY(U,$J,358.3,30252,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30252,1,4,0)
+ ;;=4^F11.981
+ ;;^UTILITY(U,$J,358.3,30252,2)
+ ;;=^5003152
+ ;;^UTILITY(U,$J,358.3,30253,0)
+ ;;=F11.282^^120^1541^12
+ ;;^UTILITY(U,$J,358.3,30253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32161,1,3,0)
- ;;=3^Nondisp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32161,1,4,0)
- ;;=4^S92.335K
- ;;^UTILITY(U,$J,358.3,32161,2)
- ;;=^5045176
- ;;^UTILITY(U,$J,358.3,32162,0)
- ;;=S92.334K^^126^1609^295
- ;;^UTILITY(U,$J,358.3,32162,1,0)
+ ;;^UTILITY(U,$J,358.3,30253,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30253,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,30253,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,30254,0)
+ ;;=F11.982^^120^1541^13
+ ;;^UTILITY(U,$J,358.3,30254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32162,1,3,0)
- ;;=3^Nondisp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32162,1,4,0)
- ;;=4^S92.334K
- ;;^UTILITY(U,$J,358.3,32162,2)
- ;;=^5045169
- ;;^UTILITY(U,$J,358.3,32163,0)
- ;;=S92.332K^^126^1609^69
- ;;^UTILITY(U,$J,358.3,32163,1,0)
+ ;;^UTILITY(U,$J,358.3,30254,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30254,1,4,0)
+ ;;=4^F11.982
+ ;;^UTILITY(U,$J,358.3,30254,2)
+ ;;=^5003153
+ ;;^UTILITY(U,$J,358.3,30255,0)
+ ;;=F11.121^^120^1541^14
+ ;;^UTILITY(U,$J,358.3,30255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32163,1,3,0)
- ;;=3^Disp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32163,1,4,0)
- ;;=4^S92.332K
- ;;^UTILITY(U,$J,358.3,32163,2)
- ;;=^5045155
- ;;^UTILITY(U,$J,358.3,32164,0)
- ;;=S92.331K^^126^1609^70
- ;;^UTILITY(U,$J,358.3,32164,1,0)
+ ;;^UTILITY(U,$J,358.3,30255,1,3,0)
+ ;;=3^Opioid Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30255,1,4,0)
+ ;;=4^F11.121
+ ;;^UTILITY(U,$J,358.3,30255,2)
+ ;;=^5003116
+ ;;^UTILITY(U,$J,358.3,30256,0)
+ ;;=F11.221^^120^1541^15
+ ;;^UTILITY(U,$J,358.3,30256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32164,1,3,0)
- ;;=3^Disp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32164,1,4,0)
- ;;=4^S92.331K
- ;;^UTILITY(U,$J,358.3,32164,2)
- ;;=^5045148
- ;;^UTILITY(U,$J,358.3,32165,0)
- ;;=S92.325K^^126^1609^290
- ;;^UTILITY(U,$J,358.3,32165,1,0)
+ ;;^UTILITY(U,$J,358.3,30256,1,3,0)
+ ;;=3^Opioid Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30256,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,30256,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,30257,0)
+ ;;=F11.229^^120^1541^20
+ ;;^UTILITY(U,$J,358.3,30257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32165,1,3,0)
- ;;=3^Nondisp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32165,1,4,0)
- ;;=4^S92.325K
- ;;^UTILITY(U,$J,358.3,32165,2)
- ;;=^5045134
- ;;^UTILITY(U,$J,358.3,32166,0)
- ;;=S92.324K^^126^1609^291
- ;;^UTILITY(U,$J,358.3,32166,1,0)
+ ;;^UTILITY(U,$J,358.3,30257,1,3,0)
+ ;;=3^Opioid Intox w/o Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30257,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,30257,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,30258,0)
+ ;;=F11.929^^120^1541^21
+ ;;^UTILITY(U,$J,358.3,30258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32166,1,3,0)
- ;;=3^Nondisp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32166,1,4,0)
- ;;=4^S92.324K
- ;;^UTILITY(U,$J,358.3,32166,2)
- ;;=^5045127
- ;;^UTILITY(U,$J,358.3,32167,0)
- ;;=S92.322K^^126^1609^65
- ;;^UTILITY(U,$J,358.3,32167,1,0)
+ ;;^UTILITY(U,$J,358.3,30258,1,3,0)
+ ;;=3^Opioid Intox w/o Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30258,1,4,0)
+ ;;=4^F11.929
+ ;;^UTILITY(U,$J,358.3,30258,2)
+ ;;=^5003146
+ ;;^UTILITY(U,$J,358.3,30259,0)
+ ;;=F11.122^^120^1541^17
+ ;;^UTILITY(U,$J,358.3,30259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32167,1,3,0)
- ;;=3^Disp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32167,1,4,0)
- ;;=4^S92.322K
- ;;^UTILITY(U,$J,358.3,32167,2)
- ;;=^5045113
- ;;^UTILITY(U,$J,358.3,32168,0)
- ;;=S92.321K^^126^1609^66
- ;;^UTILITY(U,$J,358.3,32168,1,0)
+ ;;^UTILITY(U,$J,358.3,30259,1,3,0)
+ ;;=3^Opioid Intox w/ Percep Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30259,1,4,0)
+ ;;=4^F11.122
+ ;;^UTILITY(U,$J,358.3,30259,2)
+ ;;=^5003117
+ ;;^UTILITY(U,$J,358.3,30260,0)
+ ;;=F11.222^^120^1541^18
+ ;;^UTILITY(U,$J,358.3,30260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32168,1,3,0)
- ;;=3^Disp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32168,1,4,0)
- ;;=4^S92.321K
- ;;^UTILITY(U,$J,358.3,32168,2)
- ;;=^5045106
- ;;^UTILITY(U,$J,358.3,32169,0)
- ;;=S92.315K^^126^1609^285
- ;;^UTILITY(U,$J,358.3,32169,1,0)
+ ;;^UTILITY(U,$J,358.3,30260,1,3,0)
+ ;;=3^Opioid Intox w/ Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30260,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,30260,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,30261,0)
+ ;;=F11.922^^120^1541^19
+ ;;^UTILITY(U,$J,358.3,30261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32169,1,3,0)
- ;;=3^Nondisp fx of 1st metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32169,1,4,0)
- ;;=4^S92.315K
- ;;^UTILITY(U,$J,358.3,32169,2)
- ;;=^5045092
- ;;^UTILITY(U,$J,358.3,32170,0)
- ;;=S92.314K^^126^1609^286
- ;;^UTILITY(U,$J,358.3,32170,1,0)
+ ;;^UTILITY(U,$J,358.3,30261,1,3,0)
+ ;;=3^Opioid Intox w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30261,1,4,0)
+ ;;=4^F11.922
+ ;;^UTILITY(U,$J,358.3,30261,2)
+ ;;=^5003145
+ ;;^UTILITY(U,$J,358.3,30262,0)
+ ;;=F11.99^^120^1541^23
+ ;;^UTILITY(U,$J,358.3,30262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32170,1,3,0)
- ;;=3^Nondisp fx of 1st metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32170,1,4,0)
- ;;=4^S92.314K
- ;;^UTILITY(U,$J,358.3,32170,2)
- ;;=^5045085
- ;;^UTILITY(U,$J,358.3,32171,0)
- ;;=S92.312K^^126^1609^61
- ;;^UTILITY(U,$J,358.3,32171,1,0)
+ ;;^UTILITY(U,$J,358.3,30262,1,3,0)
+ ;;=3^Opioid Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30262,1,4,0)
+ ;;=4^F11.99
+ ;;^UTILITY(U,$J,358.3,30262,2)
+ ;;=^5133352
+ ;;^UTILITY(U,$J,358.3,30263,0)
+ ;;=F11.21^^120^1541^27
+ ;;^UTILITY(U,$J,358.3,30263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32171,1,3,0)
- ;;=3^Disp fx of 1st metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32171,1,4,0)
- ;;=4^S92.312K
+ ;;^UTILITY(U,$J,358.3,30263,1,3,0)
+ ;;=3^Opioid Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,30263,1,4,0)
+ ;;=4^F11.21

@@ -1,5 +1,5 @@
-DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 4/3/19 5:12pm
- ;;5.3;Registration;**915,919,926,967,981**;Aug 13, 1993;Build 1
+DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ;13 Feb 2020  1:08 PM
+ ;;5.3;Registration;**915,919,926,967,981,1000**;Aug 13, 1993;Build 2
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -206,6 +206,9 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  ;DGFLDS(.09)=SSN*
  ;DGFLDS(.03)=DOB*
  ;DGFLDS(.02)=GENDER*
+ ;DGFLDS(391)=TYPE (required)
+ ;DGFLDS(1901)=VETERAN (Y/N)? (required)
+ ;DGFLDS(.301)=SERVICE CONNECTED? (required)
  ;DGFLDS(.2403)=MMN
  ;DGFLDS(.092)=POB (city)
  ;DGFLDS(.093)=POB (state)
@@ -234,13 +237,28 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  ;I $D(DUOUT) S DGOUT=1 Q
  ;S DGFLDS("EDIPI")=X
  ;K DIR
- F DGFLD=.03,.02,.2403,.092,.093,994,.131 D  Q:$D(DTOUT)!($D(DUOUT))
+ F DGFLD=.03,.02,"ASKREQID",.2403,.092,.093,994,.131 D  Q:$D(DTOUT)!($D(DUOUT))
+ . ;**1000,Story 1171329 (mko): Use ASKREQID as an indicator to prompt for three additional fields at this point
+ . I DGFLD="ASKREQID" N DPTIDS D ASKREQID(.DGNAME,.DPTIDS) M:'$D(DUOUT) DGFLDS=DPTIDS Q
  . S DIR(0)="2,"_DGFLD_$S(DGFLD=.03:"",DGFLD=.02:"",1:"O")
  . D ^DIR
  . Q:$D(DIRUT)
  . S DGFLDS(DGFLD)=$P(Y,"^")
  S:$D(DTOUT)!($D(DUOUT)) DGOUT=1
  I $L($G(DGNAME)) S DGFLDS(.01)=DGNAME
+ Q
+ ;
+ASKREQID(DGNAME,DPTIDS) ;Use code from CHKID1^DPTLK2 to prompt for additional required identifiers
+ ;**1000,Story 1171329 (mko): New subroutine
+ ;Returns:
+ ;  DPTIDS(field#)=internal form of user response
+ ;  DUOUT=1 if ^, timeout, or other issue
+ N DFN,DGVV,DIC,DO,DPT,DPTCT,DPTDFN,DPTGID,DPTID,DPTID0,DPTSET,DPTX,I,X,Y
+ S DIC="^DPT(",DPTX=$G(DGNAME),DPTDFN=1 ;Variables needed by CHKID1^DPTLK2
+ F DPTID=391,1901,.301 D  Q:DPTDFN<0
+ . I DPTID=.301,DPTIDS(1901)="N" S DPTIDS(.301)="N" Q
+ . D CHKID1^DPTLK2
+ S:DPTDFN<0 DUOUT=1
  Q
  ;
 PSREASON(DGFLDS,DGOUT) ; - prompts (and requires) pseudo reason
@@ -367,12 +385,14 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  . ; if the data has a second piece, then that's internal value to use
  . S DATA=$S($P(DGF(DGF),"^",2):$P(DGF(DGF),"^",2),1:DGF(DGF))
  . I DATA]""!(REQ[("^"_DGF_"^")) S DIC("DR")=DIC("DR")_DGF_$S(DATA]"":"////"_DATA,1:"")_";"
+ ;**1000,Story 1171329 (mko): Don't default TYPE, VETERAN, or SERVICE CONNECTED
+ ;  These values were obtained earlier in the FLDS subroutine above
  ; patient type
- S DIC("DR")=DIC("DR")_"391///"_$O(^DG(391,"B","NSC VETERAN",0))_";"
+ ;S DIC("DR")=DIC("DR")_"391///"_$O(^DG(391,"B","NSC VETERAN",0))_";"
  ; veteran
- S DIC("DR")=DIC("DR")_"1901///Y;"
+ ;S DIC("DR")=DIC("DR")_"1901///Y;"
  ; SC
- S DIC("DR")=DIC("DR")_".301///N;"
+ ;S DIC("DR")=DIC("DR")_".301///N;"
  ; date added
  S DIC("DR")=DIC("DR")_".097////"_DT
  ; who added

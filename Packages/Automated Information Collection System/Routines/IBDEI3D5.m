@@ -1,130 +1,26 @@
-IBDEI3D5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
-Q Q
- ;;^UTILITY(U,$J,358.3,56536,1,3,0)
- ;;=3^Cyst tunica albuginea testis
- ;;^UTILITY(U,$J,358.3,56536,1,4,0)
- ;;=4^N44.1
- ;;^UTILITY(U,$J,358.3,56536,2)
- ;;=^5015704
- ;;^UTILITY(U,$J,358.3,56537,0)
- ;;=N44.2^^259^2819^5
- ;;^UTILITY(U,$J,358.3,56537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56537,1,3,0)
- ;;=3^Benign cyst testis
- ;;^UTILITY(U,$J,358.3,56537,1,4,0)
- ;;=4^N44.2
- ;;^UTILITY(U,$J,358.3,56537,2)
- ;;=^5015705
- ;;^UTILITY(U,$J,358.3,56538,0)
- ;;=N44.8^^259^2819^11
- ;;^UTILITY(U,$J,358.3,56538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56538,1,3,0)
- ;;=3^Noninflammatory disorders testis,Other
- ;;^UTILITY(U,$J,358.3,56538,1,4,0)
- ;;=4^N44.8
- ;;^UTILITY(U,$J,358.3,56538,2)
- ;;=^5015706
- ;;^UTILITY(U,$J,358.3,56539,0)
- ;;=N50.8^^259^2819^22
- ;;^UTILITY(U,$J,358.3,56539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56539,1,3,0)
- ;;=3^Specified disorders male genital organs,Other
- ;;^UTILITY(U,$J,358.3,56539,1,4,0)
- ;;=4^N50.8
- ;;^UTILITY(U,$J,358.3,56539,2)
- ;;=^88009
- ;;^UTILITY(U,$J,358.3,56540,0)
- ;;=N53.19^^259^2819^7
- ;;^UTILITY(U,$J,358.3,56540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56540,1,3,0)
- ;;=3^Ejaculatory dysfunction,Other
- ;;^UTILITY(U,$J,358.3,56540,1,4,0)
- ;;=4^N53.19
- ;;^UTILITY(U,$J,358.3,56540,2)
- ;;=^5015767
- ;;^UTILITY(U,$J,358.3,56541,0)
- ;;=T83.121A^^259^2820^17
- ;;^UTILITY(U,$J,358.3,56541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56541,1,3,0)
- ;;=3^Dsplcmnt urinary sphnctr implnt,Init Encntr
- ;;^UTILITY(U,$J,358.3,56541,1,4,0)
- ;;=4^T83.121A
- ;;^UTILITY(U,$J,358.3,56541,2)
- ;;=^5054998
- ;;^UTILITY(U,$J,358.3,56542,0)
- ;;=T83.122A^^259^2820^12
- ;;^UTILITY(U,$J,358.3,56542,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56542,1,3,0)
- ;;=3^Dsplcment urinary stnt,Init Encntr
- ;;^UTILITY(U,$J,358.3,56542,1,4,0)
- ;;=4^T83.122A
- ;;^UTILITY(U,$J,358.3,56542,2)
- ;;=^5055001
- ;;^UTILITY(U,$J,358.3,56543,0)
- ;;=T83.128A^^259^2820^14
- ;;^UTILITY(U,$J,358.3,56543,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56543,1,3,0)
- ;;=3^Dsplcmnt oth urinary dvc/implnt,Init Encntr
- ;;^UTILITY(U,$J,358.3,56543,1,4,0)
- ;;=4^T83.128A
- ;;^UTILITY(U,$J,358.3,56543,2)
- ;;=^5055004
- ;;^UTILITY(U,$J,358.3,56544,0)
- ;;=T83.190A^^259^2820^24
- ;;^UTILITY(U,$J,358.3,56544,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56544,1,3,0)
- ;;=3^Mech compl urinary elect stim dvc,Oth,Init Encntr
- ;;^UTILITY(U,$J,358.3,56544,1,4,0)
- ;;=4^T83.190A
- ;;^UTILITY(U,$J,358.3,56544,2)
- ;;=^5055007
- ;;^UTILITY(U,$J,358.3,56545,0)
- ;;=T83.010A^^259^2820^2
- ;;^UTILITY(U,$J,358.3,56545,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56545,1,3,0)
- ;;=3^Breakdown (mech) cystost cath, Init Encntr
- ;;^UTILITY(U,$J,358.3,56545,1,4,0)
- ;;=4^T83.010A
- ;;^UTILITY(U,$J,358.3,56545,2)
- ;;=^5054959
- ;;^UTILITY(U,$J,358.3,56546,0)
- ;;=T83.020A^^259^2820^13
- ;;^UTILITY(U,$J,358.3,56546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56546,1,3,0)
- ;;=3^Dsplcmnt cystostom cath,Init Encntr
- ;;^UTILITY(U,$J,358.3,56546,1,4,0)
- ;;=4^T83.020A
- ;;^UTILITY(U,$J,358.3,56546,2)
- ;;=^5054965
- ;;^UTILITY(U,$J,358.3,56547,0)
- ;;=T83.030A^^259^2820^19
- ;;^UTILITY(U,$J,358.3,56547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56547,1,3,0)
- ;;=3^Leakage of cystostomy cath,Init Encntr
- ;;^UTILITY(U,$J,358.3,56547,1,4,0)
- ;;=4^T83.030A
- ;;^UTILITY(U,$J,358.3,56547,2)
- ;;=^5054971
- ;;^UTILITY(U,$J,358.3,56548,0)
- ;;=T83.090A^^259^2820^20
- ;;^UTILITY(U,$J,358.3,56548,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56548,1,3,0)
- ;;=3^Mech compl cystostomy cath,Oth,Init Encntr
- ;;^UTILITY(U,$J,358.3,56548,1,4,0)
- ;;=4^T83.090A
- ;;^UTILITY(U,$J,358.3,56548,2)
- ;;=^5054977
+IBDEI3D5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ ;
+ ;
+ I N="DIST(.403," D
+ .N DIFRVAL S DIFRVAL=$$VAL^DIFROMSS(.403,DA)
+ .I DIFRVAL W !,"Compiling form: ",$P(^DIST(.403,DA,0),U) D EN^DDSZ(DA) Q
+ .W !,"ERROR: Form: ",$P(^DIST(.403,DA,0),U)," cannot be compiled"
+ .Q
+ Q
+BLK F J=0:0 S J=$O(^UTILITY(U,$J,N,R,40,J)) Q:'J  I $D(^(J,0)) S %=$P(^(0),U,2) S:%]"" %=$O(^DIST(.404,"B",%,0)) S:% $P(^UTILITY(U,$J,N,R,40,J,0),U,2)=% D B1
+ K A0,A1,A2,J,L Q
+B1 F L=0:0 S L=$O(^UTILITY(U,$J,N,R,40,J,40,L)) Q:'L  S A0=$G(^(L,0)),%=$P(A0,U) I %]"" S %=$O(^DIST(.404,"B",%,0)) I % S $P(A0,U)=%,^UTILITY(U,$J,N,R,40,J,"BLK",%,0)=A0 D
+ .N X S X=0
+ .F  S X=$O(^UTILITY(U,$J,N,R,40,J,40,L,X)) Q:X=""  S ^UTILITY(U,$J,N,R,40,J,"BLK",%,X)=^(X)
+ .Q
+ S A0=$G(^UTILITY(U,$J,N,R,40,J,40,0)) Q:A0=""  K ^UTILITY(U,$J,N,R,40,J,40) S (A1,A2)=0
+ F L=0:0 S L=$O(^UTILITY(U,$J,N,R,40,J,"BLK",L)) Q:'L  S ^UTILITY(U,$J,N,R,40,J,40,L,0)=^(L,0),A1=L,A2=A2+1 D
+ .N X S X=0
+ .F  S X=$O(^UTILITY(U,$J,N,R,40,J,"BLK",L,X)) Q:X=""  S ^UTILITY(U,$J,N,R,40,J,40,L,X)=^(X)
+ .Q
+ S $P(A0,U,3,4)=A1_U_A2,^UTILITY(U,$J,N,R,40,J,40,0)=A0 K ^UTILITY(U,$J,N,R,40,J,"BLK")
+ Q
+KAD(D0) N D1,X
+ S X=0 F  S X=$O(^DIC(19,D0,10,"B",X)) Q:X'>0  S D1=0 F  S D1=$O(^DIC(19,D0,10,"B",X,D1)) Q:D1'>0  K ^DIC(19,"AD",X,D0,D1)
+ Q

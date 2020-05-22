@@ -1,5 +1,5 @@
-MAGDRPC9 ;WOIFO/EdM/MLH/JSL/SAF/DAC/PMK - Imaging RPCs ; 06 Nov 2017 4:38 PM
- ;;3.0;IMAGING;**50,54,53,49,123,118,138,180,190**;Mar 19, 2002;Build 2
+MAGDRPC9 ;WOIFO/EdM/MLH/JSL/SAF/DAC/PMK - Imaging RPCs ; 22 Aug 2019 8:38 AM
+ ;;3.0;IMAGING;**50,54,53,49,123,118,138,180,190,239**;Mar 19, 2002;Build 18
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -73,7 +73,7 @@ QRNEWUID(IMAGE,DBTYPE) ; Get updated UID for Query/Retrieve
  S DBTYPE=$G(DBTYPE,"OLD")
  S IMAGE=+$G(IMAGE)
  D:DBTYPE="OLD"  ; find new UID, if any, in legacy DB
- . S NEW=$P($G(^MAG(2005,IMAGE,"SOP")),"^",2)
+ . S NEW=$P($G(^MAG(2005,IMAGE,"PACS")),"^",1) ; P239 DAC - Modified to pull from PACS node (not SOP)
  . Q
  D:DBTYPE="NEW"  ; find new UID, if any, in P34 DB
  . S NEW="" S:$P($G(^MAGV(2005.64,IMAGE,0)),"^",2)'="" NEW=$P(^(0),"^",1)

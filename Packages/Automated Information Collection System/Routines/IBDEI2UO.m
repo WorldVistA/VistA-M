@@ -1,132 +1,126 @@
-IBDEI2UO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47828,1,4,0)
- ;;=4^M61.40
- ;;^UTILITY(U,$J,358.3,47828,2)
- ;;=^5012515
- ;;^UTILITY(U,$J,358.3,47829,0)
- ;;=L91.0^^209^2356^6
- ;;^UTILITY(U,$J,358.3,47829,1,0)
+ ;;^UTILITY(U,$J,358.3,45464,1,3,0)
+ ;;=3^Hearing loss, unspec, left ear
+ ;;^UTILITY(U,$J,358.3,45464,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,45464,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,45465,0)
+ ;;=H91.93^^172^2270^8
+ ;;^UTILITY(U,$J,358.3,45465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47829,1,3,0)
- ;;=3^Keloid Scar
- ;;^UTILITY(U,$J,358.3,47829,1,4,0)
- ;;=4^L91.0
- ;;^UTILITY(U,$J,358.3,47829,2)
- ;;=^5009459
- ;;^UTILITY(U,$J,358.3,47830,0)
- ;;=C80.0^^209^2356^4
- ;;^UTILITY(U,$J,358.3,47830,1,0)
+ ;;^UTILITY(U,$J,358.3,45465,1,3,0)
+ ;;=3^Hearing loss, unspec, bilateral
+ ;;^UTILITY(U,$J,358.3,45465,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,45465,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,45466,0)
+ ;;=J02.9^^172^2270^54
+ ;;^UTILITY(U,$J,358.3,45466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47830,1,3,0)
- ;;=3^Disseminated Malig Neop,Unspec
- ;;^UTILITY(U,$J,358.3,47830,1,4,0)
- ;;=4^C80.0
- ;;^UTILITY(U,$J,358.3,47830,2)
- ;;=^5001388
- ;;^UTILITY(U,$J,358.3,47831,0)
- ;;=C80.1^^209^2356^9
- ;;^UTILITY(U,$J,358.3,47831,1,0)
+ ;;^UTILITY(U,$J,358.3,45466,1,3,0)
+ ;;=3^Pharyngitis, acute, unspec
+ ;;^UTILITY(U,$J,358.3,45466,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,45466,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,45467,0)
+ ;;=J04.0^^172^2270^15
+ ;;^UTILITY(U,$J,358.3,45467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47831,1,3,0)
- ;;=3^Malig Neop,Unspec
- ;;^UTILITY(U,$J,358.3,47831,1,4,0)
- ;;=4^C80.1
- ;;^UTILITY(U,$J,358.3,47831,2)
- ;;=^5001389
- ;;^UTILITY(U,$J,358.3,47832,0)
- ;;=C80.2^^209^2356^8
- ;;^UTILITY(U,$J,358.3,47832,1,0)
+ ;;^UTILITY(U,$J,358.3,45467,1,3,0)
+ ;;=3^Laryngitis, acute
+ ;;^UTILITY(U,$J,358.3,45467,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,45467,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,45468,0)
+ ;;=J05.0^^172^2270^16
+ ;;^UTILITY(U,$J,358.3,45468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47832,1,3,0)
- ;;=3^Malig Neop Associated w/ Transplanted Organ
- ;;^UTILITY(U,$J,358.3,47832,1,4,0)
- ;;=4^C80.2
- ;;^UTILITY(U,$J,358.3,47832,2)
- ;;=^5001390
- ;;^UTILITY(U,$J,358.3,47833,0)
- ;;=Z85.030^^209^2357^1
- ;;^UTILITY(U,$J,358.3,47833,1,0)
+ ;;^UTILITY(U,$J,358.3,45468,1,3,0)
+ ;;=3^Laryngitis, acute obstructive (croup)
+ ;;^UTILITY(U,$J,358.3,45468,1,4,0)
+ ;;=4^J05.0
+ ;;^UTILITY(U,$J,358.3,45468,2)
+ ;;=^5008141
+ ;;^UTILITY(U,$J,358.3,45469,0)
+ ;;=H81.11^^172^2270^77
+ ;;^UTILITY(U,$J,358.3,45469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47833,1,3,0)
- ;;=3^Personal Hx of Malig Carcinoid Tumor of Large Intestine
- ;;^UTILITY(U,$J,358.3,47833,1,4,0)
- ;;=4^Z85.030
- ;;^UTILITY(U,$J,358.3,47833,2)
- ;;=^5063398
- ;;^UTILITY(U,$J,358.3,47834,0)
- ;;=Z85.040^^209^2357^2
- ;;^UTILITY(U,$J,358.3,47834,1,0)
+ ;;^UTILITY(U,$J,358.3,45469,1,3,0)
+ ;;=3^Vertigo,Benign Positional,Right Ear
+ ;;^UTILITY(U,$J,358.3,45469,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,45469,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,45470,0)
+ ;;=H81.12^^172^2270^76
+ ;;^UTILITY(U,$J,358.3,45470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47834,1,3,0)
- ;;=3^Personal Hx of Malig Carcinoid Tumor of Rectum
- ;;^UTILITY(U,$J,358.3,47834,1,4,0)
- ;;=4^Z85.040
- ;;^UTILITY(U,$J,358.3,47834,2)
- ;;=^5063400
- ;;^UTILITY(U,$J,358.3,47835,0)
- ;;=Z85.060^^209^2357^3
- ;;^UTILITY(U,$J,358.3,47835,1,0)
+ ;;^UTILITY(U,$J,358.3,45470,1,3,0)
+ ;;=3^Vertigo,Benign Positional,Left Ear
+ ;;^UTILITY(U,$J,358.3,45470,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,45470,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,45471,0)
+ ;;=H81.13^^172^2270^75
+ ;;^UTILITY(U,$J,358.3,45471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47835,1,3,0)
- ;;=3^Personal Hx of Malig Carcinoid Tumor of Small Intestine
- ;;^UTILITY(U,$J,358.3,47835,1,4,0)
- ;;=4^Z85.060
- ;;^UTILITY(U,$J,358.3,47835,2)
- ;;=^5063403
- ;;^UTILITY(U,$J,358.3,47836,0)
- ;;=Z85.110^^209^2357^4
- ;;^UTILITY(U,$J,358.3,47836,1,0)
+ ;;^UTILITY(U,$J,358.3,45471,1,3,0)
+ ;;=3^Vertigo,Benign Positional,Bilateral
+ ;;^UTILITY(U,$J,358.3,45471,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,45471,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,45472,0)
+ ;;=H68.002^^172^2270^6
+ ;;^UTILITY(U,$J,358.3,45472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47836,1,3,0)
- ;;=3^Personal Hx of Malig Carcinoid Tumor of Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,47836,1,4,0)
- ;;=4^Z85.110
- ;;^UTILITY(U,$J,358.3,47836,2)
- ;;=^5063407
- ;;^UTILITY(U,$J,358.3,47837,0)
- ;;=Z85.820^^209^2357^5
- ;;^UTILITY(U,$J,358.3,47837,1,0)
+ ;;^UTILITY(U,$J,358.3,45472,1,3,0)
+ ;;=3^Eustachian Salpingitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,45472,1,4,0)
+ ;;=4^H68.002
+ ;;^UTILITY(U,$J,358.3,45472,2)
+ ;;=^5006648
+ ;;^UTILITY(U,$J,358.3,45473,0)
+ ;;=H68.003^^172^2270^5
+ ;;^UTILITY(U,$J,358.3,45473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47837,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,47837,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,47837,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,47838,0)
- ;;=Z85.51^^209^2357^6
- ;;^UTILITY(U,$J,358.3,47838,1,0)
+ ;;^UTILITY(U,$J,358.3,45473,1,3,0)
+ ;;=3^Eustachian Salpingitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,45473,1,4,0)
+ ;;=4^H68.003
+ ;;^UTILITY(U,$J,358.3,45473,2)
+ ;;=^5006649
+ ;;^UTILITY(U,$J,358.3,45474,0)
+ ;;=H68.001^^172^2270^7
+ ;;^UTILITY(U,$J,358.3,45474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47838,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Bladder
- ;;^UTILITY(U,$J,358.3,47838,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,47838,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,47839,0)
- ;;=Z85.830^^209^2357^7
- ;;^UTILITY(U,$J,358.3,47839,1,0)
+ ;;^UTILITY(U,$J,358.3,45474,1,3,0)
+ ;;=3^Eustachian Salpingitis,Right Ear
+ ;;^UTILITY(U,$J,358.3,45474,1,4,0)
+ ;;=4^H68.001
+ ;;^UTILITY(U,$J,358.3,45474,2)
+ ;;=^5006647
+ ;;^UTILITY(U,$J,358.3,45475,0)
+ ;;=H60.91^^172^2270^35
+ ;;^UTILITY(U,$J,358.3,45475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47839,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Bone
- ;;^UTILITY(U,$J,358.3,47839,1,4,0)
- ;;=4^Z85.830
- ;;^UTILITY(U,$J,358.3,47839,2)
- ;;=^5063444
- ;;^UTILITY(U,$J,358.3,47840,0)
- ;;=Z85.3^^209^2357^8
- ;;^UTILITY(U,$J,358.3,47840,1,0)
+ ;;^UTILITY(U,$J,358.3,45475,1,3,0)
+ ;;=3^Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,45475,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,45475,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,45476,0)
+ ;;=H60.92^^172^2270^34
+ ;;^UTILITY(U,$J,358.3,45476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47840,1,3,0)
- ;;=3^Personal Hx of Malig Neo of Breast
- ;;^UTILITY(U,$J,358.3,47840,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,47840,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,47841,0)
- ;;=Z85.118^^209^2357^9
- ;;^UTILITY(U,$J,358.3,47841,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45476,1,3,0)
+ ;;=3^Otitis Externa,Left Ear

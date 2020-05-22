@@ -1,136 +1,122 @@
-IBDEI1K3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1K3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26394,0)
- ;;=F81.81^^98^1253^9
- ;;^UTILITY(U,$J,358.3,26394,1,0)
+ ;;^UTILITY(U,$J,358.3,24874,0)
+ ;;=D05.82^^107^1211^35
+ ;;^UTILITY(U,$J,358.3,24874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26394,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Writing
- ;;^UTILITY(U,$J,358.3,26394,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,26394,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,26395,0)
- ;;=F88.^^98^1253^10
- ;;^UTILITY(U,$J,358.3,26395,1,0)
+ ;;^UTILITY(U,$J,358.3,24874,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
+ ;;^UTILITY(U,$J,358.3,24874,1,4,0)
+ ;;=4^D05.82
+ ;;^UTILITY(U,$J,358.3,24874,2)
+ ;;=^5001934
+ ;;^UTILITY(U,$J,358.3,24875,0)
+ ;;=D05.81^^107^1211^37
+ ;;^UTILITY(U,$J,358.3,24875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26395,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,26395,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,26395,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,26396,0)
- ;;=F89.^^98^1253^11
- ;;^UTILITY(U,$J,358.3,26396,1,0)
+ ;;^UTILITY(U,$J,358.3,24875,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,24875,1,4,0)
+ ;;=4^D05.81
+ ;;^UTILITY(U,$J,358.3,24875,2)
+ ;;=^5001933
+ ;;^UTILITY(U,$J,358.3,24876,0)
+ ;;=D05.80^^107^1211^39
+ ;;^UTILITY(U,$J,358.3,24876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26396,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26396,1,4,0)
- ;;=4^F89.
- ;;^UTILITY(U,$J,358.3,26396,2)
- ;;=^5003691
- ;;^UTILITY(U,$J,358.3,26397,0)
- ;;=F95.1^^98^1253^12
- ;;^UTILITY(U,$J,358.3,26397,1,0)
+ ;;^UTILITY(U,$J,358.3,24876,1,3,0)
+ ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,24876,1,4,0)
+ ;;=4^D05.80
+ ;;^UTILITY(U,$J,358.3,24876,2)
+ ;;=^5001932
+ ;;^UTILITY(U,$J,358.3,24877,0)
+ ;;=D56.8^^107^1211^191
+ ;;^UTILITY(U,$J,358.3,24877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26397,1,3,0)
- ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
- ;;^UTILITY(U,$J,358.3,26397,1,4,0)
- ;;=4^F95.1
- ;;^UTILITY(U,$J,358.3,26397,2)
- ;;=^331941
- ;;^UTILITY(U,$J,358.3,26398,0)
- ;;=F95.0^^98^1253^13
- ;;^UTILITY(U,$J,358.3,26398,1,0)
+ ;;^UTILITY(U,$J,358.3,24877,1,3,0)
+ ;;=3^Thalassemias,Other
+ ;;^UTILITY(U,$J,358.3,24877,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,24877,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,24878,0)
+ ;;=C82.89^^107^1211^77
+ ;;^UTILITY(U,$J,358.3,24878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26398,1,3,0)
- ;;=3^Provisional Tic Disorder
- ;;^UTILITY(U,$J,358.3,26398,1,4,0)
- ;;=4^F95.0
- ;;^UTILITY(U,$J,358.3,26398,2)
- ;;=^331940
- ;;^UTILITY(U,$J,358.3,26399,0)
- ;;=F80.89^^98^1253^14
- ;;^UTILITY(U,$J,358.3,26399,1,0)
+ ;;^UTILITY(U,$J,358.3,24878,1,3,0)
+ ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
+ ;;^UTILITY(U,$J,358.3,24878,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,24878,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,24879,0)
+ ;;=D51.8^^107^1211^198
+ ;;^UTILITY(U,$J,358.3,24879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26399,1,3,0)
- ;;=3^Social Pragmatic Communication Disorder
- ;;^UTILITY(U,$J,358.3,26399,1,4,0)
- ;;=4^F80.89
- ;;^UTILITY(U,$J,358.3,26399,2)
- ;;=^5003677
- ;;^UTILITY(U,$J,358.3,26400,0)
- ;;=F80.0^^98^1253^15
- ;;^UTILITY(U,$J,358.3,26400,1,0)
+ ;;^UTILITY(U,$J,358.3,24879,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemias,Other
+ ;;^UTILITY(U,$J,358.3,24879,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,24879,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,24880,0)
+ ;;=I80.9^^107^1211^183
+ ;;^UTILITY(U,$J,358.3,24880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26400,1,3,0)
- ;;=3^Speech Sound Disorder
- ;;^UTILITY(U,$J,358.3,26400,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,26400,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,26401,0)
- ;;=F98.4^^98^1253^16
- ;;^UTILITY(U,$J,358.3,26401,1,0)
+ ;;^UTILITY(U,$J,358.3,24880,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,24880,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,24880,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,24881,0)
+ ;;=D45.^^107^1211^184
+ ;;^UTILITY(U,$J,358.3,24881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26401,1,3,0)
- ;;=3^Stereotypic Movement Disorder
- ;;^UTILITY(U,$J,358.3,26401,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,26401,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,26402,0)
- ;;=F95.8^^98^1253^17
- ;;^UTILITY(U,$J,358.3,26402,1,0)
+ ;;^UTILITY(U,$J,358.3,24881,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,24881,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,24881,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,24882,0)
+ ;;=C77.3^^107^1211^113
+ ;;^UTILITY(U,$J,358.3,24882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26402,1,3,0)
- ;;=3^Tic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,26402,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,26402,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,26403,0)
- ;;=F95.9^^98^1253^18
- ;;^UTILITY(U,$J,358.3,26403,1,0)
+ ;;^UTILITY(U,$J,358.3,24882,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,24882,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,24882,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,24883,0)
+ ;;=C77.2^^107^1211^129
+ ;;^UTILITY(U,$J,358.3,24883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26403,1,3,0)
- ;;=3^Tic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26403,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,26403,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,26404,0)
- ;;=F95.2^^98^1253^19
- ;;^UTILITY(U,$J,358.3,26404,1,0)
+ ;;^UTILITY(U,$J,358.3,24883,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,24883,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,24883,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,24884,0)
+ ;;=C77.1^^107^1211^130
+ ;;^UTILITY(U,$J,358.3,24884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26404,1,3,0)
- ;;=3^Tourette's Disorder
- ;;^UTILITY(U,$J,358.3,26404,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,26404,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,26405,0)
- ;;=F15.929^^98^1254^7
- ;;^UTILITY(U,$J,358.3,26405,1,0)
+ ;;^UTILITY(U,$J,358.3,24884,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,24884,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,24884,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,24885,0)
+ ;;=C77.0^^107^1211^146
+ ;;^UTILITY(U,$J,358.3,24885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26405,1,3,0)
- ;;=3^Caffeine Intoxication
- ;;^UTILITY(U,$J,358.3,26405,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,26405,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,26406,0)
- ;;=F15.93^^98^1254^8
- ;;^UTILITY(U,$J,358.3,26406,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26406,1,3,0)
- ;;=3^Caffeine Withdrawal
- ;;^UTILITY(U,$J,358.3,26406,1,4,0)
- ;;=4^F15.93
- ;;^UTILITY(U,$J,358.3,26406,2)
- ;;=^5003315
- ;;^UTILITY(U,$J,358.3,26407,0)
- ;;=F15.180^^98^1254^1
+ ;;^UTILITY(U,$J,358.3,24885,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,24885,1,4,0)
+ ;;=4^C77.0

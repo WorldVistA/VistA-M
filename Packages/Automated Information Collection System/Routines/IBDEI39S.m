@@ -1,130 +1,128 @@
-IBDEI39S ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54951,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,54951,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,54951,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,54952,0)
- ;;=C82.40^^256^2775^71
- ;;^UTILITY(U,$J,358.3,54952,1,0)
+ ;;^UTILITY(U,$J,358.3,52188,2)
+ ;;=^5008233
+ ;;^UTILITY(U,$J,358.3,52189,0)
+ ;;=J42.^^193^2523^21
+ ;;^UTILITY(U,$J,358.3,52189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54952,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
- ;;^UTILITY(U,$J,358.3,54952,1,4,0)
- ;;=4^C82.40
- ;;^UTILITY(U,$J,358.3,54952,2)
- ;;=^5001501
- ;;^UTILITY(U,$J,358.3,54953,0)
- ;;=C82.99^^256^2775^72
- ;;^UTILITY(U,$J,358.3,54953,1,0)
+ ;;^UTILITY(U,$J,358.3,52189,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,52189,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,52189,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,52190,0)
+ ;;=J43.0^^193^2523^29
+ ;;^UTILITY(U,$J,358.3,52190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54953,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,54953,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,54953,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,54954,0)
- ;;=C82.90^^256^2775^73
- ;;^UTILITY(U,$J,358.3,54954,1,0)
+ ;;^UTILITY(U,$J,358.3,52190,1,3,0)
+ ;;=3^Emphysema,Pulmonary,Unilateral
+ ;;^UTILITY(U,$J,358.3,52190,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,52190,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,52191,0)
+ ;;=J43.1^^193^2523^28
+ ;;^UTILITY(U,$J,358.3,52191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54954,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,54954,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,54954,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,54955,0)
- ;;=R59.1^^256^2775^58
- ;;^UTILITY(U,$J,358.3,54955,1,0)
+ ;;^UTILITY(U,$J,358.3,52191,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,52191,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,52191,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,52192,0)
+ ;;=J43.2^^193^2523^26
+ ;;^UTILITY(U,$J,358.3,52192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54955,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,54955,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,54955,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,54956,0)
- ;;=C91.40^^256^2775^77
- ;;^UTILITY(U,$J,358.3,54956,1,0)
+ ;;^UTILITY(U,$J,358.3,52192,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,52192,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,52192,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,52193,0)
+ ;;=J43.8^^193^2523^27
+ ;;^UTILITY(U,$J,358.3,52193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54956,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,54956,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,54956,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,54957,0)
- ;;=C91.42^^256^2775^75
- ;;^UTILITY(U,$J,358.3,54957,1,0)
+ ;;^UTILITY(U,$J,358.3,52193,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,52193,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,52193,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,52194,0)
+ ;;=J43.9^^193^2523^30
+ ;;^UTILITY(U,$J,358.3,52194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54957,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,54957,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,54957,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,54958,0)
- ;;=C91.41^^256^2775^76
- ;;^UTILITY(U,$J,358.3,54958,1,0)
+ ;;^UTILITY(U,$J,358.3,52194,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,52194,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,52194,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,52195,0)
+ ;;=J44.0^^193^2523^23
+ ;;^UTILITY(U,$J,358.3,52195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54958,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,54958,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,54958,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,54959,0)
- ;;=D57.01^^256^2775^78
- ;;^UTILITY(U,$J,358.3,54959,1,0)
+ ;;^UTILITY(U,$J,358.3,52195,1,3,0)
+ ;;=3^COPD w/ (Acute) Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,52195,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,52195,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,52196,0)
+ ;;=J45.20^^193^2523^5
+ ;;^UTILITY(U,$J,358.3,52196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54959,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,54959,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,54959,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,54960,0)
- ;;=D57.00^^256^2775^79
- ;;^UTILITY(U,$J,358.3,54960,1,0)
+ ;;^UTILITY(U,$J,358.3,52196,1,3,0)
+ ;;=3^Asthma,Mild Intermittent,Uncompl
+ ;;^UTILITY(U,$J,358.3,52196,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,52196,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,52197,0)
+ ;;=J45.21^^193^2523^3
+ ;;^UTILITY(U,$J,358.3,52197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54960,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,54960,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,54960,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,54961,0)
- ;;=D57.02^^256^2775^80
- ;;^UTILITY(U,$J,358.3,54961,1,0)
+ ;;^UTILITY(U,$J,358.3,52197,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,52197,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,52197,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,52198,0)
+ ;;=J45.22^^193^2523^4
+ ;;^UTILITY(U,$J,358.3,52198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54961,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,54961,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,54961,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,54962,0)
- ;;=D68.32^^256^2775^82
- ;;^UTILITY(U,$J,358.3,54962,1,0)
+ ;;^UTILITY(U,$J,358.3,52198,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,52198,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,52198,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,52199,0)
+ ;;=J45.31^^193^2523^6
+ ;;^UTILITY(U,$J,358.3,52199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54962,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,54962,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,54962,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,54963,0)
- ;;=C22.2^^256^2775^83
- ;;^UTILITY(U,$J,358.3,54963,1,0)
+ ;;^UTILITY(U,$J,358.3,52199,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,52199,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,52199,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,52200,0)
+ ;;=J45.32^^193^2523^7
+ ;;^UTILITY(U,$J,358.3,52200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54963,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,54963,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,54963,2)
- ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,52200,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,52200,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,52200,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,52201,0)
+ ;;=J45.40^^193^2523^10

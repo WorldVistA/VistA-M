@@ -1,358 +1,128 @@
-IBDEI0ZE ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0ZE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46410,0)
- ;;=W05.2XXD^^136^1948^15
- ;;^UTILITY(U,$J,358.3,46410,1,0)
+ ;;^UTILITY(U,$J,358.3,15789,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,15789,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,15790,0)
+ ;;=L02.213^^88^869^121
+ ;;^UTILITY(U,$J,358.3,15790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46410,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Subsequent
- ;;^UTILITY(U,$J,358.3,46410,1,4,0)
- ;;=4^W05.2XXD
- ;;^UTILITY(U,$J,358.3,46410,2)
- ;;=^5059557
- ;;^UTILITY(U,$J,358.3,46411,0)
- ;;=W05.1XXD^^136^1948^16
- ;;^UTILITY(U,$J,358.3,46411,1,0)
+ ;;^UTILITY(U,$J,358.3,15790,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,15790,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,15790,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,15791,0)
+ ;;=L02.214^^88^869^123
+ ;;^UTILITY(U,$J,358.3,15791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46411,1,3,0)
- ;;=3^Fall from Non-Moving Nonmotorized Scooter,Subsequent
- ;;^UTILITY(U,$J,358.3,46411,1,4,0)
- ;;=4^W05.1XXD
- ;;^UTILITY(U,$J,358.3,46411,2)
- ;;=^5059554
- ;;^UTILITY(U,$J,358.3,46412,0)
- ;;=W05.0XXD^^136^1948^17
- ;;^UTILITY(U,$J,358.3,46412,1,0)
+ ;;^UTILITY(U,$J,358.3,15791,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin
+ ;;^UTILITY(U,$J,358.3,15791,1,4,0)
+ ;;=4^L02.214
+ ;;^UTILITY(U,$J,358.3,15791,2)
+ ;;=^5008953
+ ;;^UTILITY(U,$J,358.3,15792,0)
+ ;;=L02.215^^88^869^129
+ ;;^UTILITY(U,$J,358.3,15792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46412,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Subsequent
- ;;^UTILITY(U,$J,358.3,46412,1,4,0)
- ;;=4^W05.0XXD
- ;;^UTILITY(U,$J,358.3,46412,2)
- ;;=^5059551
- ;;^UTILITY(U,$J,358.3,46413,0)
- ;;=W18.12XD^^136^1948^21
- ;;^UTILITY(U,$J,358.3,46413,1,0)
+ ;;^UTILITY(U,$J,358.3,15792,1,3,0)
+ ;;=3^Cutaneous Abscess of Perineum
+ ;;^UTILITY(U,$J,358.3,15792,1,4,0)
+ ;;=4^L02.215
+ ;;^UTILITY(U,$J,358.3,15792,2)
+ ;;=^5008954
+ ;;^UTILITY(U,$J,358.3,15793,0)
+ ;;=L02.216^^88^869^134
+ ;;^UTILITY(U,$J,358.3,15793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46413,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Object,Subsequent
- ;;^UTILITY(U,$J,358.3,46413,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,46413,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,46414,0)
- ;;=W18.11XD^^136^1948^22
- ;;^UTILITY(U,$J,358.3,46414,1,0)
+ ;;^UTILITY(U,$J,358.3,15793,1,3,0)
+ ;;=3^Cutaneous Abscess of Unbilicus
+ ;;^UTILITY(U,$J,358.3,15793,1,4,0)
+ ;;=4^L02.216
+ ;;^UTILITY(U,$J,358.3,15793,2)
+ ;;=^5008955
+ ;;^UTILITY(U,$J,358.3,15794,0)
+ ;;=L02.219^^88^869^133
+ ;;^UTILITY(U,$J,358.3,15794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46414,1,3,0)
- ;;=3^Fall from Toilet,Subsequent
- ;;^UTILITY(U,$J,358.3,46414,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,46414,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,46415,0)
- ;;=W08.XXXD^^136^1948^12
- ;;^UTILITY(U,$J,358.3,46415,1,0)
+ ;;^UTILITY(U,$J,358.3,15794,1,3,0)
+ ;;=3^Cutaneous Abscess of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,15794,1,4,0)
+ ;;=4^L02.219
+ ;;^UTILITY(U,$J,358.3,15794,2)
+ ;;=^5008956
+ ;;^UTILITY(U,$J,358.3,15795,0)
+ ;;=L02.32^^88^869^157
+ ;;^UTILITY(U,$J,358.3,15795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46415,1,3,0)
- ;;=3^Fall from Furniture,Subsequent
- ;;^UTILITY(U,$J,358.3,46415,1,4,0)
- ;;=4^W08.XXXD
- ;;^UTILITY(U,$J,358.3,46415,2)
- ;;=^5059566
- ;;^UTILITY(U,$J,358.3,46416,0)
- ;;=W18.2XXD^^136^1948^23
- ;;^UTILITY(U,$J,358.3,46416,1,0)
+ ;;^UTILITY(U,$J,358.3,15795,1,3,0)
+ ;;=3^Furuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,15795,1,4,0)
+ ;;=4^L02.32
+ ;;^UTILITY(U,$J,358.3,15795,2)
+ ;;=^5008972
+ ;;^UTILITY(U,$J,358.3,15796,0)
+ ;;=L02.33^^88^869^93
+ ;;^UTILITY(U,$J,358.3,15796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46416,1,3,0)
- ;;=3^Fall in Shower/Bathtub,Subsequent
- ;;^UTILITY(U,$J,358.3,46416,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,46416,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,46417,0)
- ;;=W11.XXXD^^136^1948^14
- ;;^UTILITY(U,$J,358.3,46417,1,0)
+ ;;^UTILITY(U,$J,358.3,15796,1,3,0)
+ ;;=3^Carbuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,15796,1,4,0)
+ ;;=4^L02.33
+ ;;^UTILITY(U,$J,358.3,15796,2)
+ ;;=^5008973
+ ;;^UTILITY(U,$J,358.3,15797,0)
+ ;;=L02.415^^88^869^132
+ ;;^UTILITY(U,$J,358.3,15797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46417,1,3,0)
- ;;=3^Fall from Ladder,Subsequent
- ;;^UTILITY(U,$J,358.3,46417,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,46417,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,46418,0)
- ;;=W01.10XD^^136^1948^2
- ;;^UTILITY(U,$J,358.3,46418,1,0)
+ ;;^UTILITY(U,$J,358.3,15797,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,15797,1,4,0)
+ ;;=4^L02.415
+ ;;^UTILITY(U,$J,358.3,15797,2)
+ ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,15798,0)
+ ;;=L02.416^^88^869^126
+ ;;^UTILITY(U,$J,358.3,15798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46418,1,3,0)
- ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
- ;;^UTILITY(U,$J,358.3,46418,1,4,0)
- ;;=4^W01.10XD
- ;;^UTILITY(U,$J,358.3,46418,2)
- ;;=^5059526
- ;;^UTILITY(U,$J,358.3,46419,0)
- ;;=W01.0XXD^^136^1948^3
- ;;^UTILITY(U,$J,358.3,46419,1,0)
+ ;;^UTILITY(U,$J,358.3,15798,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,15798,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,15798,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,15799,0)
+ ;;=L02.511^^88^869^131
+ ;;^UTILITY(U,$J,358.3,15799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46419,1,3,0)
- ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
- ;;^UTILITY(U,$J,358.3,46419,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,46419,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,46420,0)
- ;;=W18.30XD^^136^1948^4
- ;;^UTILITY(U,$J,358.3,46420,1,0)
+ ;;^UTILITY(U,$J,358.3,15799,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,15799,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,15799,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,15800,0)
+ ;;=L02.512^^88^869^125
+ ;;^UTILITY(U,$J,358.3,15800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46420,1,3,0)
- ;;=3^Fall Same Level,Unspec,Subsequent
- ;;^UTILITY(U,$J,358.3,46420,1,4,0)
- ;;=4^W18.30XD
- ;;^UTILITY(U,$J,358.3,46420,2)
- ;;=^5059810
- ;;^UTILITY(U,$J,358.3,46421,0)
- ;;=W04.XXXD^^136^1948^6
- ;;^UTILITY(U,$J,358.3,46421,1,0)
+ ;;^UTILITY(U,$J,358.3,15800,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,15800,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,15800,2)
+ ;;=^5008993
+ ;;^UTILITY(U,$J,358.3,15801,0)
+ ;;=L02.611^^88^869^130
+ ;;^UTILITY(U,$J,358.3,15801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46421,1,3,0)
- ;;=3^Fall While Being Carried by Oth Persons,Subsequent
- ;;^UTILITY(U,$J,358.3,46421,1,4,0)
- ;;=4^W04.XXXD
- ;;^UTILITY(U,$J,358.3,46421,2)
- ;;=^5059548
- ;;^UTILITY(U,$J,358.3,46422,0)
- ;;=W17.89XD^^136^1948^18
- ;;^UTILITY(U,$J,358.3,46422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46422,1,3,0)
- ;;=3^Fall from One Level to Another,Subsequent
- ;;^UTILITY(U,$J,358.3,46422,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,46422,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,46423,0)
- ;;=W03.XXXD^^136^1948^1
- ;;^UTILITY(U,$J,358.3,46423,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46423,1,3,0)
- ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
- ;;^UTILITY(U,$J,358.3,46423,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,46423,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,46424,0)
- ;;=W18.00XD^^136^1948^8
- ;;^UTILITY(U,$J,358.3,46424,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46424,1,3,0)
- ;;=3^Fall d/t Striking Unspec Object,Subsequent
- ;;^UTILITY(U,$J,358.3,46424,1,4,0)
- ;;=4^W18.00XD
- ;;^UTILITY(U,$J,358.3,46424,2)
- ;;=^5059791
- ;;^UTILITY(U,$J,358.3,46425,0)
- ;;=W00.9XXD^^136^1948^7
- ;;^UTILITY(U,$J,358.3,46425,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46425,1,3,0)
- ;;=3^Fall d/t Snow/Ice,Subsequent
- ;;^UTILITY(U,$J,358.3,46425,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,46425,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,46426,0)
- ;;=W19.XXXD^^136^1948^5
- ;;^UTILITY(U,$J,358.3,46426,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46426,1,3,0)
- ;;=3^Fall Unspec,Subsequent
- ;;^UTILITY(U,$J,358.3,46426,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,46426,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,46427,0)
- ;;=W18.40XD^^136^1948^24
- ;;^UTILITY(U,$J,358.3,46427,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46427,1,3,0)
- ;;=3^Slip/Trip/Stumble w/o Falling,Subsequent
- ;;^UTILITY(U,$J,358.3,46427,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,46427,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,46428,0)
- ;;=R27.0^^136^1949^2
- ;;^UTILITY(U,$J,358.3,46428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46428,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,46428,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,46428,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,46429,0)
- ;;=Z74.1^^136^1949^1
- ;;^UTILITY(U,$J,358.3,46429,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46429,1,3,0)
- ;;=3^Assistance Needed for Personal Care
- ;;^UTILITY(U,$J,358.3,46429,1,4,0)
- ;;=4^Z74.1
- ;;^UTILITY(U,$J,358.3,46429,2)
- ;;=^5063284
- ;;^UTILITY(U,$J,358.3,46430,0)
- ;;=R27.9^^136^1949^3
- ;;^UTILITY(U,$J,358.3,46430,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46430,1,3,0)
- ;;=3^Coordination,Lack of,Unspec
- ;;^UTILITY(U,$J,358.3,46430,1,4,0)
- ;;=4^R27.9
- ;;^UTILITY(U,$J,358.3,46430,2)
- ;;=^5019312
- ;;^UTILITY(U,$J,358.3,46431,0)
- ;;=R26.9^^136^1949^6
- ;;^UTILITY(U,$J,358.3,46431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46431,1,3,0)
- ;;=3^Gait/Mobility,Abnormalities,Unspec
- ;;^UTILITY(U,$J,358.3,46431,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,46431,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,46432,0)
- ;;=R26.0^^136^1949^4
- ;;^UTILITY(U,$J,358.3,46432,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46432,1,3,0)
- ;;=3^Gait,Ataxic
- ;;^UTILITY(U,$J,358.3,46432,1,4,0)
- ;;=4^R26.0
- ;;^UTILITY(U,$J,358.3,46432,2)
- ;;=^5019304
- ;;^UTILITY(U,$J,358.3,46433,0)
- ;;=R26.1^^136^1949^5
- ;;^UTILITY(U,$J,358.3,46433,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46433,1,3,0)
- ;;=3^Gait,Paralytic
- ;;^UTILITY(U,$J,358.3,46433,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,46433,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,46434,0)
- ;;=R29.890^^136^1949^7
- ;;^UTILITY(U,$J,358.3,46434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46434,1,3,0)
- ;;=3^Height Loss
- ;;^UTILITY(U,$J,358.3,46434,1,4,0)
- ;;=4^R29.890
- ;;^UTILITY(U,$J,358.3,46434,2)
- ;;=^322157
- ;;^UTILITY(U,$J,358.3,46435,0)
- ;;=R29.5^^136^1949^8
- ;;^UTILITY(U,$J,358.3,46435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46435,1,3,0)
- ;;=3^Paralysis,Transient
- ;;^UTILITY(U,$J,358.3,46435,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,46435,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,46436,0)
- ;;=R54.^^136^1949^9
- ;;^UTILITY(U,$J,358.3,46436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46436,1,3,0)
- ;;=3^Physical Debility,Age-Related
- ;;^UTILITY(U,$J,358.3,46436,1,4,0)
- ;;=4^R54.
- ;;^UTILITY(U,$J,358.3,46436,2)
- ;;=^5019521
- ;;^UTILITY(U,$J,358.3,46437,0)
- ;;=Z72.3^^136^1949^10
- ;;^UTILITY(U,$J,358.3,46437,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46437,1,3,0)
- ;;=3^Physical Exercise,Lack of
- ;;^UTILITY(U,$J,358.3,46437,1,4,0)
- ;;=4^Z72.3
- ;;^UTILITY(U,$J,358.3,46437,2)
- ;;=^5063256
- ;;^UTILITY(U,$J,358.3,46438,0)
- ;;=R26.81^^136^1949^11
- ;;^UTILITY(U,$J,358.3,46438,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46438,1,3,0)
- ;;=3^Unsteadiness on Feet
- ;;^UTILITY(U,$J,358.3,46438,1,4,0)
- ;;=4^R26.81
- ;;^UTILITY(U,$J,358.3,46438,2)
- ;;=^5019307
- ;;^UTILITY(U,$J,358.3,46439,0)
- ;;=R26.2^^136^1949^12
- ;;^UTILITY(U,$J,358.3,46439,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46439,1,3,0)
- ;;=3^Walking Difficulty NEC
- ;;^UTILITY(U,$J,358.3,46439,1,4,0)
- ;;=4^R26.2
- ;;^UTILITY(U,$J,358.3,46439,2)
- ;;=^5019306
- ;;^UTILITY(U,$J,358.3,46440,0)
- ;;=R53.1^^136^1949^13
- ;;^UTILITY(U,$J,358.3,46440,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46440,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,46440,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,46440,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,46441,0)
- ;;=Z99.3^^136^1949^14
- ;;^UTILITY(U,$J,358.3,46441,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46441,1,3,0)
- ;;=3^Wheelchair Dependence
- ;;^UTILITY(U,$J,358.3,46441,1,4,0)
- ;;=4^Z99.3
- ;;^UTILITY(U,$J,358.3,46441,2)
- ;;=^5063759
- ;;^UTILITY(U,$J,358.3,46442,0)
- ;;=99201^^137^1950^1
- ;;^UTILITY(U,$J,358.3,46442,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,46442,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,46442,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,46443,0)
- ;;=99202^^137^1950^2
- ;;^UTILITY(U,$J,358.3,46443,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,46443,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,46443,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,46444,0)
- ;;=99203^^137^1950^3
- ;;^UTILITY(U,$J,358.3,46444,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,46444,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,46444,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,46445,0)
- ;;=99204^^137^1950^4
- ;;^UTILITY(U,$J,358.3,46445,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,46445,1,1,0)
- ;;=1^Comprehensive, Mod Complex
- ;;^UTILITY(U,$J,358.3,46445,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,46446,0)
- ;;=99205^^137^1950^5
+ ;;^UTILITY(U,$J,358.3,15801,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Foot
+ ;;^UTILITY(U,$J,358.3,15801,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,15801,2)
+ ;;=^5009001

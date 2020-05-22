@@ -1,132 +1,118 @@
-IBDEI2NR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44606,1,0)
+ ;;^UTILITY(U,$J,358.3,42400,1,4,0)
+ ;;=4^S62.641S
+ ;;^UTILITY(U,$J,358.3,42400,2)
+ ;;=^5034675
+ ;;^UTILITY(U,$J,358.3,42401,0)
+ ;;=S62.647S^^155^2069^97
+ ;;^UTILITY(U,$J,358.3,42401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44606,1,3,0)
- ;;=3^Personal Hx of Self-Harm/Suicide Attempt
- ;;^UTILITY(U,$J,358.3,44606,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,44606,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,44607,0)
- ;;=Z89.512^^200^2229^5
- ;;^UTILITY(U,$J,358.3,44607,1,0)
+ ;;^UTILITY(U,$J,358.3,42401,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of l little finger, sequela
+ ;;^UTILITY(U,$J,358.3,42401,1,4,0)
+ ;;=4^S62.647S
+ ;;^UTILITY(U,$J,358.3,42401,2)
+ ;;=^5034717
+ ;;^UTILITY(U,$J,358.3,42402,0)
+ ;;=S62.643S^^155^2069^98
+ ;;^UTILITY(U,$J,358.3,42402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44607,1,3,0)
- ;;=3^Acquired Absence of Left Leg Below Knee
- ;;^UTILITY(U,$J,358.3,44607,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,44607,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,44608,0)
- ;;=Z89.611^^200^2229^7
- ;;^UTILITY(U,$J,358.3,44608,1,0)
+ ;;^UTILITY(U,$J,358.3,42402,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of l mid finger, sequela
+ ;;^UTILITY(U,$J,358.3,42402,1,4,0)
+ ;;=4^S62.643S
+ ;;^UTILITY(U,$J,358.3,42402,2)
+ ;;=^5034689
+ ;;^UTILITY(U,$J,358.3,42403,0)
+ ;;=S62.645S^^155^2069^100
+ ;;^UTILITY(U,$J,358.3,42403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44608,1,3,0)
- ;;=3^Acquired Absence of Right Leg Above Knee
- ;;^UTILITY(U,$J,358.3,44608,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,44608,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,44609,0)
- ;;=Z89.612^^200^2229^4
- ;;^UTILITY(U,$J,358.3,44609,1,0)
+ ;;^UTILITY(U,$J,358.3,42403,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,42403,1,4,0)
+ ;;=4^S62.645S
+ ;;^UTILITY(U,$J,358.3,42403,2)
+ ;;=^5034703
+ ;;^UTILITY(U,$J,358.3,42404,0)
+ ;;=S62.640S^^155^2069^102
+ ;;^UTILITY(U,$J,358.3,42404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44609,1,3,0)
- ;;=3^Acquired Absence of Left Leg Above Knee
- ;;^UTILITY(U,$J,358.3,44609,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,44609,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,44610,0)
- ;;=Z90.710^^200^2229^1
- ;;^UTILITY(U,$J,358.3,44610,1,0)
+ ;;^UTILITY(U,$J,358.3,42404,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
+ ;;^UTILITY(U,$J,358.3,42404,1,4,0)
+ ;;=4^S62.640S
+ ;;^UTILITY(U,$J,358.3,42404,2)
+ ;;=^5034668
+ ;;^UTILITY(U,$J,358.3,42405,0)
+ ;;=S62.646S^^155^2069^103
+ ;;^UTILITY(U,$J,358.3,42405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44610,1,3,0)
- ;;=3^Acquired Absence of Cervix & Uterus
- ;;^UTILITY(U,$J,358.3,44610,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,44610,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,44611,0)
- ;;=Z91.030^^200^2229^13
- ;;^UTILITY(U,$J,358.3,44611,1,0)
+ ;;^UTILITY(U,$J,358.3,42405,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
+ ;;^UTILITY(U,$J,358.3,42405,1,4,0)
+ ;;=4^S62.646S
+ ;;^UTILITY(U,$J,358.3,42405,2)
+ ;;=^5034710
+ ;;^UTILITY(U,$J,358.3,42406,0)
+ ;;=S62.642S^^155^2069^104
+ ;;^UTILITY(U,$J,358.3,42406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44611,1,3,0)
- ;;=3^Bee Allergy
- ;;^UTILITY(U,$J,358.3,44611,1,4,0)
- ;;=4^Z91.030
- ;;^UTILITY(U,$J,358.3,44611,2)
- ;;=^5063605
- ;;^UTILITY(U,$J,358.3,44612,0)
- ;;=Z91.038^^200^2229^59
- ;;^UTILITY(U,$J,358.3,44612,1,0)
+ ;;^UTILITY(U,$J,358.3,42406,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela
+ ;;^UTILITY(U,$J,358.3,42406,1,4,0)
+ ;;=4^S62.642S
+ ;;^UTILITY(U,$J,358.3,42406,2)
+ ;;=^5034682
+ ;;^UTILITY(U,$J,358.3,42407,0)
+ ;;=S62.644S^^155^2069^105
+ ;;^UTILITY(U,$J,358.3,42407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44612,1,3,0)
- ;;=3^Insect Allergy NEC
- ;;^UTILITY(U,$J,358.3,44612,1,4,0)
- ;;=4^Z91.038
- ;;^UTILITY(U,$J,358.3,44612,2)
- ;;=^5063606
- ;;^UTILITY(U,$J,358.3,44613,0)
- ;;=Z91.041^^200^2229^139
- ;;^UTILITY(U,$J,358.3,44613,1,0)
+ ;;^UTILITY(U,$J,358.3,42407,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,42407,1,4,0)
+ ;;=4^S62.644S
+ ;;^UTILITY(U,$J,358.3,42407,2)
+ ;;=^5034696
+ ;;^UTILITY(U,$J,358.3,42408,0)
+ ;;=M84.445S^^155^2069^119
+ ;;^UTILITY(U,$J,358.3,42408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44613,1,3,0)
- ;;=3^Radiographic Dye Allergy
- ;;^UTILITY(U,$J,358.3,44613,1,4,0)
- ;;=4^Z91.041
- ;;^UTILITY(U,$J,358.3,44613,2)
- ;;=^5063608
- ;;^UTILITY(U,$J,358.3,44614,0)
- ;;=Z91.130^^200^2229^146
- ;;^UTILITY(U,$J,358.3,44614,1,0)
+ ;;^UTILITY(U,$J,358.3,42408,1,3,0)
+ ;;=3^Pathological fracture, left finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,42408,1,4,0)
+ ;;=4^M84.445S
+ ;;^UTILITY(U,$J,358.3,42408,2)
+ ;;=^5013895
+ ;;^UTILITY(U,$J,358.3,42409,0)
+ ;;=M84.444S^^155^2069^121
+ ;;^UTILITY(U,$J,358.3,42409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44614,1,3,0)
- ;;=3^Underdose of Med Regiment d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,44614,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,44614,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,44615,0)
- ;;=Z91.138^^200^2229^147
- ;;^UTILITY(U,$J,358.3,44615,1,0)
+ ;;^UTILITY(U,$J,358.3,42409,1,3,0)
+ ;;=3^Pathological fracture, right finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,42409,1,4,0)
+ ;;=4^M84.444S
+ ;;^UTILITY(U,$J,358.3,42409,2)
+ ;;=^5013889
+ ;;^UTILITY(U,$J,358.3,42410,0)
+ ;;=M84.345S^^155^2069^123
+ ;;^UTILITY(U,$J,358.3,42410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44615,1,3,0)
- ;;=3^Underdose of Med Regiment for Other Reason
- ;;^UTILITY(U,$J,358.3,44615,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,44615,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,44616,0)
- ;;=Z91.14^^200^2229^71
- ;;^UTILITY(U,$J,358.3,44616,1,0)
+ ;;^UTILITY(U,$J,358.3,42410,1,3,0)
+ ;;=3^Stress fracture, left finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,42410,1,4,0)
+ ;;=4^M84.345S
+ ;;^UTILITY(U,$J,358.3,42410,2)
+ ;;=^5013667
+ ;;^UTILITY(U,$J,358.3,42411,0)
+ ;;=M84.344S^^155^2069^125
+ ;;^UTILITY(U,$J,358.3,42411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44616,1,3,0)
- ;;=3^Noncompliance w/ Medication Regimen
- ;;^UTILITY(U,$J,358.3,44616,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,44616,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,44617,0)
- ;;=Z91.19^^200^2229^70
- ;;^UTILITY(U,$J,358.3,44617,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44617,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment & Regimen
- ;;^UTILITY(U,$J,358.3,44617,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,44617,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,44618,0)
- ;;=Z93.1^^200^2229^52
- ;;^UTILITY(U,$J,358.3,44618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44618,1,3,0)
- ;;=3^Gastrostomy Status
- ;;^UTILITY(U,$J,358.3,44618,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,44618,2)
- ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,42411,1,3,0)
+ ;;=3^Stress fracture, right finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,42411,1,4,0)
+ ;;=4^M84.344S
+ ;;^UTILITY(U,$J,358.3,42411,2)
+ ;;=^5013661

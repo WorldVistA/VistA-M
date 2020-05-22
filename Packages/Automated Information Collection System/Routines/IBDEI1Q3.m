@@ -1,124 +1,124 @@
-IBDEI1Q3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29243,0)
- ;;=O41.02X5^^115^1456^49
- ;;^UTILITY(U,$J,358.3,29243,1,0)
+ ;;^UTILITY(U,$J,358.3,27536,1,4,0)
+ ;;=4^F41.8
+ ;;^UTILITY(U,$J,358.3,27536,2)
+ ;;=^5003566
+ ;;^UTILITY(U,$J,358.3,27537,0)
+ ;;=F40.298^^113^1338^13
+ ;;^UTILITY(U,$J,358.3,27537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29243,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29243,1,4,0)
- ;;=4^O41.02X5
- ;;^UTILITY(U,$J,358.3,29243,2)
- ;;=^5017232
- ;;^UTILITY(U,$J,358.3,29244,0)
- ;;=O41.03X0^^115^1456^56
- ;;^UTILITY(U,$J,358.3,29244,1,0)
+ ;;^UTILITY(U,$J,358.3,27537,1,3,0)
+ ;;=3^Phobia,Other Specified
+ ;;^UTILITY(U,$J,358.3,27537,1,4,0)
+ ;;=4^F40.298
+ ;;^UTILITY(U,$J,358.3,27537,2)
+ ;;=^5003561
+ ;;^UTILITY(U,$J,358.3,27538,0)
+ ;;=F41.9^^113^1338^5
+ ;;^UTILITY(U,$J,358.3,27538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29244,1,3,0)
- ;;=3^Oligohydramnios, third trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29244,1,4,0)
- ;;=4^O41.03X0
- ;;^UTILITY(U,$J,358.3,29244,2)
- ;;=^5017234
- ;;^UTILITY(U,$J,358.3,29245,0)
- ;;=O41.03X1^^115^1456^51
- ;;^UTILITY(U,$J,358.3,29245,1,0)
+ ;;^UTILITY(U,$J,358.3,27538,1,3,0)
+ ;;=3^Anxiety Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,27538,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,27538,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,27539,0)
+ ;;=F94.0^^113^1338^14
+ ;;^UTILITY(U,$J,358.3,27539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29245,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29245,1,4,0)
- ;;=4^O41.03X1
- ;;^UTILITY(U,$J,358.3,29245,2)
- ;;=^5017235
- ;;^UTILITY(U,$J,358.3,29246,0)
- ;;=O41.03X2^^115^1456^52
- ;;^UTILITY(U,$J,358.3,29246,1,0)
+ ;;^UTILITY(U,$J,358.3,27539,1,3,0)
+ ;;=3^Selective Mutism
+ ;;^UTILITY(U,$J,358.3,27539,1,4,0)
+ ;;=4^F94.0
+ ;;^UTILITY(U,$J,358.3,27539,2)
+ ;;=^331954
+ ;;^UTILITY(U,$J,358.3,27540,0)
+ ;;=F06.33^^113^1339^1
+ ;;^UTILITY(U,$J,358.3,27540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29246,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29246,1,4,0)
- ;;=4^O41.03X2
- ;;^UTILITY(U,$J,358.3,29246,2)
- ;;=^5017236
- ;;^UTILITY(U,$J,358.3,29247,0)
- ;;=O41.03X3^^115^1456^53
- ;;^UTILITY(U,$J,358.3,29247,1,0)
+ ;;^UTILITY(U,$J,358.3,27540,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Manic/Hypo-Like Ep
+ ;;^UTILITY(U,$J,358.3,27540,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,27540,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,27541,0)
+ ;;=F06.34^^113^1339^2
+ ;;^UTILITY(U,$J,358.3,27541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29247,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29247,1,4,0)
- ;;=4^O41.03X3
- ;;^UTILITY(U,$J,358.3,29247,2)
- ;;=^5017237
- ;;^UTILITY(U,$J,358.3,29248,0)
- ;;=O41.03X4^^115^1456^54
- ;;^UTILITY(U,$J,358.3,29248,1,0)
+ ;;^UTILITY(U,$J,358.3,27541,1,3,0)
+ ;;=3^Bipolar & Rel D/O d/t Med Cond w/ Mixed Features
+ ;;^UTILITY(U,$J,358.3,27541,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,27541,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,27542,0)
+ ;;=F31.11^^113^1339^22
+ ;;^UTILITY(U,$J,358.3,27542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29248,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29248,1,4,0)
- ;;=4^O41.03X4
- ;;^UTILITY(U,$J,358.3,29248,2)
- ;;=^5017238
- ;;^UTILITY(U,$J,358.3,29249,0)
- ;;=O41.03X5^^115^1456^55
- ;;^UTILITY(U,$J,358.3,29249,1,0)
+ ;;^UTILITY(U,$J,358.3,27542,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mild
+ ;;^UTILITY(U,$J,358.3,27542,1,4,0)
+ ;;=4^F31.11
+ ;;^UTILITY(U,$J,358.3,27542,2)
+ ;;=^5003496
+ ;;^UTILITY(U,$J,358.3,27543,0)
+ ;;=F31.12^^113^1339^23
+ ;;^UTILITY(U,$J,358.3,27543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29249,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29249,1,4,0)
- ;;=4^O41.03X5
- ;;^UTILITY(U,$J,358.3,29249,2)
- ;;=^5017239
- ;;^UTILITY(U,$J,358.3,29250,0)
- ;;=O41.03X9^^115^1456^57
- ;;^UTILITY(U,$J,358.3,29250,1,0)
+ ;;^UTILITY(U,$J,358.3,27543,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Mod
+ ;;^UTILITY(U,$J,358.3,27543,1,4,0)
+ ;;=4^F31.12
+ ;;^UTILITY(U,$J,358.3,27543,2)
+ ;;=^5003497
+ ;;^UTILITY(U,$J,358.3,27544,0)
+ ;;=F31.13^^113^1339^24
+ ;;^UTILITY(U,$J,358.3,27544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29250,1,3,0)
- ;;=3^Oligohydramnios, third trimester, other fetus
- ;;^UTILITY(U,$J,358.3,29250,1,4,0)
- ;;=4^O41.03X9
- ;;^UTILITY(U,$J,358.3,29250,2)
- ;;=^5017240
- ;;^UTILITY(U,$J,358.3,29251,0)
- ;;=O42.00^^115^1456^77
- ;;^UTILITY(U,$J,358.3,29251,1,0)
+ ;;^UTILITY(U,$J,358.3,27544,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,Sev
+ ;;^UTILITY(U,$J,358.3,27544,1,4,0)
+ ;;=4^F31.13
+ ;;^UTILITY(U,$J,358.3,27544,2)
+ ;;=^5003498
+ ;;^UTILITY(U,$J,358.3,27545,0)
+ ;;=F31.2^^113^1339^19
+ ;;^UTILITY(U,$J,358.3,27545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29251,1,3,0)
- ;;=3^Prem ROM, onset labor w/n 24 hr of rupt, unsp weeks of gest
- ;;^UTILITY(U,$J,358.3,29251,1,4,0)
- ;;=4^O42.00
- ;;^UTILITY(U,$J,358.3,29251,2)
- ;;=^5017372
- ;;^UTILITY(U,$J,358.3,29252,0)
- ;;=O42.011^^115^1456^82
- ;;^UTILITY(U,$J,358.3,29252,1,0)
+ ;;^UTILITY(U,$J,358.3,27545,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,27545,1,4,0)
+ ;;=4^F31.2
+ ;;^UTILITY(U,$J,358.3,27545,2)
+ ;;=^5003499
+ ;;^UTILITY(U,$J,358.3,27546,0)
+ ;;=F31.73^^113^1339^20
+ ;;^UTILITY(U,$J,358.3,27546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29252,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, first tri
- ;;^UTILITY(U,$J,358.3,29252,1,4,0)
- ;;=4^O42.011
- ;;^UTILITY(U,$J,358.3,29252,2)
- ;;=^5017373
- ;;^UTILITY(U,$J,358.3,29253,0)
- ;;=O42.012^^115^1456^83
- ;;^UTILITY(U,$J,358.3,29253,1,0)
+ ;;^UTILITY(U,$J,358.3,27546,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,27546,1,4,0)
+ ;;=4^F31.73
+ ;;^UTILITY(U,$J,358.3,27546,2)
+ ;;=^5003513
+ ;;^UTILITY(U,$J,358.3,27547,0)
+ ;;=F31.74^^113^1339^21
+ ;;^UTILITY(U,$J,358.3,27547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29253,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, 2nd tri
- ;;^UTILITY(U,$J,358.3,29253,1,4,0)
- ;;=4^O42.012
- ;;^UTILITY(U,$J,358.3,29253,2)
- ;;=^5017374
- ;;^UTILITY(U,$J,358.3,29254,0)
- ;;=O42.013^^115^1456^84
- ;;^UTILITY(U,$J,358.3,29254,1,0)
+ ;;^UTILITY(U,$J,358.3,27547,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Manic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,27547,1,4,0)
+ ;;=4^F31.74
+ ;;^UTILITY(U,$J,358.3,27547,2)
+ ;;=^5003514
+ ;;^UTILITY(U,$J,358.3,27548,0)
+ ;;=F31.31^^113^1339^13
+ ;;^UTILITY(U,$J,358.3,27548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29254,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, third tri
- ;;^UTILITY(U,$J,358.3,29254,1,4,0)
- ;;=4^O42.013
- ;;^UTILITY(U,$J,358.3,29254,2)
- ;;=^5017375
+ ;;^UTILITY(U,$J,358.3,27548,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mild

@@ -1,62 +1,128 @@
-IBDEI11A ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.5,0,"GL")
- ;;=^IBE(358.5,
- ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
- ;;=
- ;;^DIC(358.5,"%D",0)
- ;;=^^1^1^2940829^^^^
- ;;^DIC(358.5,"%D",1,0)
- ;;=Used by the import/export utility as a workspace.
- ;;^DIC(358.5,"%D",2,0)
- ;;= 
- ;;^DIC(358.5,"%D",3,0)
- ;;= 
- ;;^DIC(358.5,"%D",4,0)
- ;;=This file is nearly identical to file #357.5. It is used by the
- ;;^DIC(358.5,"%D",5,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.5,"%D",6,0)
- ;;=that is being imported or exported.
- ;;^DD(358.5,0)
- ;;=FIELD^^2^13
- ;;^DD(358.5,0,"DDA")
- ;;=N
- ;;^DD(358.5,0,"DT")
- ;;=2930730
- ;;^DD(358.5,0,"ID",.02)
- ;;=W ""
- ;;^DD(358.5,0,"ID",.03)
- ;;=W ""
- ;;^DD(358.5,0,"IX","B",358.5,.01)
- ;;=
- ;;^DD(358.5,0,"IX","C",358.5,.02)
- ;;=
- ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
- ;;=
- ;;^DD(358.5,0,"VRPK")
- ;;=IBD
- ;;^DD(358.5,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.5,.01,1,0)
- ;;=^.1
- ;;^DD(358.5,.01,1,1,0)
- ;;=358.5^B
- ;;^DD(358.5,.01,1,1,1)
- ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
- ;;^DD(358.5,.01,1,1,2)
- ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
- ;;^DD(358.5,.01,3)
- ;;=Answer must be 3-30 characters in length.
- ;;^DD(358.5,.01,21,0)
- ;;=^^3^3^2930419^^^
- ;;^DD(358.5,.01,21,1,0)
- ;;= 
- ;;^DD(358.5,.01,21,2,0)
- ;;=The name is used to identify the field within a block. It can be anything
- ;;^DD(358.5,.01,21,3,0)
- ;;=the designer of a form wants it to be.
- ;;^DD(358.5,.01,"DT")
- ;;=2930419
+ ;;^UTILITY(U,$J,358.3,16619,1,3,0)
+ ;;=3^Anemia in Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,16619,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,16619,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,16620,0)
+ ;;=C79.51^^88^879^31
+ ;;^UTILITY(U,$J,358.3,16620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16620,1,3,0)
+ ;;=3^Bone Mets
+ ;;^UTILITY(U,$J,358.3,16620,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,16620,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,16621,0)
+ ;;=C80.1^^88^879^167
+ ;;^UTILITY(U,$J,358.3,16621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16621,1,3,0)
+ ;;=3^Malig Neop,Primary,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16621,1,4,0)
+ ;;=4^C80.1
+ ;;^UTILITY(U,$J,358.3,16621,2)
+ ;;=^5001389
+ ;;^UTILITY(U,$J,358.3,16622,0)
+ ;;=C80.0^^88^879^168
+ ;;^UTILITY(U,$J,358.3,16622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16622,1,3,0)
+ ;;=3^Malig Neop,Unspec Primary or Secondary
+ ;;^UTILITY(U,$J,358.3,16622,1,4,0)
+ ;;=4^C80.0
+ ;;^UTILITY(U,$J,358.3,16622,2)
+ ;;=^5001388
+ ;;^UTILITY(U,$J,358.3,16623,0)
+ ;;=E28.39^^88^879^92
+ ;;^UTILITY(U,$J,358.3,16623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16623,1,3,0)
+ ;;=3^Hypogonadism,Ovarian
+ ;;^UTILITY(U,$J,358.3,16623,1,4,0)
+ ;;=4^E28.39
+ ;;^UTILITY(U,$J,358.3,16623,2)
+ ;;=^5002752
+ ;;^UTILITY(U,$J,358.3,16624,0)
+ ;;=E29.1^^88^879^93
+ ;;^UTILITY(U,$J,358.3,16624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16624,1,3,0)
+ ;;=3^Hypogonadism,Testicular
+ ;;^UTILITY(U,$J,358.3,16624,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,16624,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,16625,0)
+ ;;=C96.20^^88^879^107
+ ;;^UTILITY(U,$J,358.3,16625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16625,1,3,0)
+ ;;=3^Malig Mast Cell Neoplasm,Unspec
+ ;;^UTILITY(U,$J,358.3,16625,1,4,0)
+ ;;=4^C96.20
+ ;;^UTILITY(U,$J,358.3,16625,2)
+ ;;=^5151293
+ ;;^UTILITY(U,$J,358.3,16626,0)
+ ;;=C96.22^^88^879^169
+ ;;^UTILITY(U,$J,358.3,16626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16626,1,3,0)
+ ;;=3^Mast Cell Sarcoma
+ ;;^UTILITY(U,$J,358.3,16626,1,4,0)
+ ;;=4^C96.22
+ ;;^UTILITY(U,$J,358.3,16626,2)
+ ;;=^5151295
+ ;;^UTILITY(U,$J,358.3,16627,0)
+ ;;=D64.9^^88^879^26
+ ;;^UTILITY(U,$J,358.3,16627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16627,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16627,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,16627,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,16628,0)
+ ;;=Z85.818^^88^880^86
+ ;;^UTILITY(U,$J,358.3,16628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16628,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
+ ;;^UTILITY(U,$J,358.3,16628,1,4,0)
+ ;;=4^Z85.818
+ ;;^UTILITY(U,$J,358.3,16628,2)
+ ;;=^5063439
+ ;;^UTILITY(U,$J,358.3,16629,0)
+ ;;=Z85.819^^88^880^87
+ ;;^UTILITY(U,$J,358.3,16629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16629,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,16629,1,4,0)
+ ;;=4^Z85.819
+ ;;^UTILITY(U,$J,358.3,16629,2)
+ ;;=^5063440
+ ;;^UTILITY(U,$J,358.3,16630,0)
+ ;;=Z85.01^^88^880^82
+ ;;^UTILITY(U,$J,358.3,16630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16630,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Esophagus
+ ;;^UTILITY(U,$J,358.3,16630,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,16630,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,16631,0)
+ ;;=Z85.028^^88^880^93
+ ;;^UTILITY(U,$J,358.3,16631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16631,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Stomach
+ ;;^UTILITY(U,$J,358.3,16631,1,4,0)
+ ;;=4^Z85.028

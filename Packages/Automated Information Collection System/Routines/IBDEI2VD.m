@@ -1,132 +1,124 @@
-IBDEI2VD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48153,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,48153,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,48154,0)
- ;;=F63.81^^211^2382^29
- ;;^UTILITY(U,$J,358.3,48154,1,0)
+ ;;^UTILITY(U,$J,358.3,45773,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,45773,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,45774,0)
+ ;;=F17.223^^172^2281^3
+ ;;^UTILITY(U,$J,358.3,45774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48154,1,3,0)
- ;;=3^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,48154,1,4,0)
- ;;=4^F63.81
- ;;^UTILITY(U,$J,358.3,48154,2)
- ;;=^5003644
- ;;^UTILITY(U,$J,358.3,48155,0)
- ;;=F90.8^^211^2382^10
- ;;^UTILITY(U,$J,358.3,48155,1,0)
+ ;;^UTILITY(U,$J,358.3,45774,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,45774,1,4,0)
+ ;;=4^F17.223
+ ;;^UTILITY(U,$J,358.3,45774,2)
+ ;;=^5003372
+ ;;^UTILITY(U,$J,358.3,45775,0)
+ ;;=F17.228^^172^2281^4
+ ;;^UTILITY(U,$J,358.3,45775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48155,1,3,0)
- ;;=3^Attention-Deficit Hyperactivity Disorder
- ;;^UTILITY(U,$J,358.3,48155,1,4,0)
- ;;=4^F90.8
- ;;^UTILITY(U,$J,358.3,48155,2)
- ;;=^5003695
- ;;^UTILITY(U,$J,358.3,48156,0)
- ;;=H54.8^^211^2382^30
- ;;^UTILITY(U,$J,358.3,48156,1,0)
+ ;;^UTILITY(U,$J,358.3,45775,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Oth Disorders
+ ;;^UTILITY(U,$J,358.3,45775,1,4,0)
+ ;;=4^F17.228
+ ;;^UTILITY(U,$J,358.3,45775,2)
+ ;;=^5003373
+ ;;^UTILITY(U,$J,358.3,45776,0)
+ ;;=Z51.81^^172^2282^19
+ ;;^UTILITY(U,$J,358.3,45776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48156,1,3,0)
- ;;=3^Legal Blindness,as Defined in USA
- ;;^UTILITY(U,$J,358.3,48156,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,48156,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,48157,0)
- ;;=R53.1^^211^2382^52
- ;;^UTILITY(U,$J,358.3,48157,1,0)
+ ;;^UTILITY(U,$J,358.3,45776,1,3,0)
+ ;;=3^Therapeutic Drug Monitoring
+ ;;^UTILITY(U,$J,358.3,45776,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,45776,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,45777,0)
+ ;;=Z79.01^^172^2282^6
+ ;;^UTILITY(U,$J,358.3,45777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48157,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,48157,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,48157,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,48158,0)
- ;;=R68.89^^211^2382^25
- ;;^UTILITY(U,$J,358.3,48158,1,0)
+ ;;^UTILITY(U,$J,358.3,45777,1,3,0)
+ ;;=3^Long Term Current Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,45777,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,45777,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,45778,0)
+ ;;=Z79.02^^172^2282^7
+ ;;^UTILITY(U,$J,358.3,45778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48158,1,3,0)
- ;;=3^General Symptoms & Signs
- ;;^UTILITY(U,$J,358.3,48158,1,4,0)
- ;;=4^R68.89
- ;;^UTILITY(U,$J,358.3,48158,2)
- ;;=^5019557
- ;;^UTILITY(U,$J,358.3,48159,0)
- ;;=Z03.89^^211^2382^34
- ;;^UTILITY(U,$J,358.3,48159,1,0)
+ ;;^UTILITY(U,$J,358.3,45778,1,3,0)
+ ;;=3^Long Term Current Use of Antithrombotics/Antiplatelets
+ ;;^UTILITY(U,$J,358.3,45778,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,45778,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,45779,0)
+ ;;=Z79.1^^172^2282^10
+ ;;^UTILITY(U,$J,358.3,45779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48159,1,3,0)
- ;;=3^Mental Condition,Suspected Disease
- ;;^UTILITY(U,$J,358.3,48159,1,4,0)
- ;;=4^Z03.89
- ;;^UTILITY(U,$J,358.3,48159,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,48160,0)
- ;;=Z51.89^^211^2382^24
- ;;^UTILITY(U,$J,358.3,48160,1,0)
+ ;;^UTILITY(U,$J,358.3,45779,1,3,0)
+ ;;=3^Long Term Current Use of NSAIDs
+ ;;^UTILITY(U,$J,358.3,45779,1,4,0)
+ ;;=4^Z79.1
+ ;;^UTILITY(U,$J,358.3,45779,2)
+ ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,45780,0)
+ ;;=Z79.2^^172^2282^5
+ ;;^UTILITY(U,$J,358.3,45780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48160,1,3,0)
- ;;=3^Encounter for Other Specified Aftercare
- ;;^UTILITY(U,$J,358.3,48160,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,48160,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,48161,0)
- ;;=97110^^212^2383^13^^^^1
- ;;^UTILITY(U,$J,358.3,48161,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48161,1,2,0)
- ;;=2^Therapeutic Exerc,ea 15min
- ;;^UTILITY(U,$J,358.3,48161,1,3,0)
- ;;=3^97110
- ;;^UTILITY(U,$J,358.3,48162,0)
- ;;=97112^^212^2383^9^^^^1
- ;;^UTILITY(U,$J,358.3,48162,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48162,1,2,0)
- ;;=2^Neuromuscular Re-Educ,ea 15min
- ;;^UTILITY(U,$J,358.3,48162,1,3,0)
- ;;=3^97112
- ;;^UTILITY(U,$J,358.3,48163,0)
- ;;=97113^^212^2383^2^^^^1
- ;;^UTILITY(U,$J,358.3,48163,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48163,1,2,0)
- ;;=2^Aquatic Exercise,ea 15min
- ;;^UTILITY(U,$J,358.3,48163,1,3,0)
- ;;=3^97113
- ;;^UTILITY(U,$J,358.3,48164,0)
- ;;=97116^^212^2383^6^^^^1
- ;;^UTILITY(U,$J,358.3,48164,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48164,1,2,0)
- ;;=2^Gait Training,ea 15 Min
- ;;^UTILITY(U,$J,358.3,48164,1,3,0)
- ;;=3^97116
- ;;^UTILITY(U,$J,358.3,48165,0)
- ;;=97530^^212^2383^12^^^^1
- ;;^UTILITY(U,$J,358.3,48165,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48165,1,2,0)
- ;;=2^Therapeutic Activ,ea 15min
- ;;^UTILITY(U,$J,358.3,48165,1,3,0)
- ;;=3^97530
- ;;^UTILITY(U,$J,358.3,48166,0)
- ;;=97537^^212^2383^5^^^^1
- ;;^UTILITY(U,$J,358.3,48166,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48166,1,2,0)
- ;;=2^Community Reintegration,ea 15 Min
- ;;^UTILITY(U,$J,358.3,48166,1,3,0)
- ;;=3^97537
- ;;^UTILITY(U,$J,358.3,48167,0)
- ;;=97532^^212^2383^4^^^^1
- ;;^UTILITY(U,$J,358.3,48167,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48167,1,2,0)
- ;;=2^Cog Skills Development,ea 15min
+ ;;^UTILITY(U,$J,358.3,45780,1,3,0)
+ ;;=3^Long Term Current Use of Antibiotics
+ ;;^UTILITY(U,$J,358.3,45780,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,45780,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,45781,0)
+ ;;=Z79.82^^172^2282^8
+ ;;^UTILITY(U,$J,358.3,45781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45781,1,3,0)
+ ;;=3^Long Term Current Use of Aspirin
+ ;;^UTILITY(U,$J,358.3,45781,1,4,0)
+ ;;=4^Z79.82
+ ;;^UTILITY(U,$J,358.3,45781,2)
+ ;;=^5063340
+ ;;^UTILITY(U,$J,358.3,45782,0)
+ ;;=Z79.51^^172^2282^9
+ ;;^UTILITY(U,$J,358.3,45782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45782,1,3,0)
+ ;;=3^Long Term Current Use of Inhaled Steroids
+ ;;^UTILITY(U,$J,358.3,45782,1,4,0)
+ ;;=4^Z79.51
+ ;;^UTILITY(U,$J,358.3,45782,2)
+ ;;=^5063335
+ ;;^UTILITY(U,$J,358.3,45783,0)
+ ;;=Z79.52^^172^2282^11
+ ;;^UTILITY(U,$J,358.3,45783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45783,1,3,0)
+ ;;=3^Long Term Current Use of Systemic Steroids
+ ;;^UTILITY(U,$J,358.3,45783,1,4,0)
+ ;;=4^Z79.52
+ ;;^UTILITY(U,$J,358.3,45783,2)
+ ;;=^5063336
+ ;;^UTILITY(U,$J,358.3,45784,0)
+ ;;=Z91.19^^172^2282^12
+ ;;^UTILITY(U,$J,358.3,45784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45784,1,3,0)
+ ;;=3^Non-Compliance w/ Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,45784,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,45784,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,45785,0)
+ ;;=Z87.01^^172^2282^15
+ ;;^UTILITY(U,$J,358.3,45785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45785,1,3,0)
+ ;;=3^Personal Hx of Pneumonia,Recurrent

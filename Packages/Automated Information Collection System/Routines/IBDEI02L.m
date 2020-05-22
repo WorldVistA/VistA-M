@@ -1,354 +1,718 @@
-IBDEI02L ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI02L ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2933,2)
- ;;=^5007346
- ;;^UTILITY(U,$J,358.3,2934,0)
- ;;=I63.522^^17^211^5
- ;;^UTILITY(U,$J,358.3,2934,1,0)
+ ;;^UTILITY(U,$J,358.3,5977,1,4,0)
+ ;;=4^A04.71
+ ;;^UTILITY(U,$J,358.3,5977,2)
+ ;;=^5151291
+ ;;^UTILITY(U,$J,358.3,5978,0)
+ ;;=A04.72^^38^350^29
+ ;;^UTILITY(U,$J,358.3,5978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2934,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Ant Cerebral Artery
- ;;^UTILITY(U,$J,358.3,2934,1,4,0)
- ;;=4^I63.522
- ;;^UTILITY(U,$J,358.3,2934,2)
- ;;=^5007347
- ;;^UTILITY(U,$J,358.3,2935,0)
- ;;=I63.531^^17^211^6
- ;;^UTILITY(U,$J,358.3,2935,1,0)
+ ;;^UTILITY(U,$J,358.3,5978,1,3,0)
+ ;;=3^Clostridium Difficile Enterocolitis,Not Spec as Recurrent
+ ;;^UTILITY(U,$J,358.3,5978,1,4,0)
+ ;;=4^A04.72
+ ;;^UTILITY(U,$J,358.3,5978,2)
+ ;;=^5151292
+ ;;^UTILITY(U,$J,358.3,5979,0)
+ ;;=T81.44XA^^38^350^14
+ ;;^UTILITY(U,$J,358.3,5979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2935,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Post Cerebral Artery
- ;;^UTILITY(U,$J,358.3,2935,1,4,0)
- ;;=4^I63.531
- ;;^UTILITY(U,$J,358.3,2935,2)
- ;;=^5007348
- ;;^UTILITY(U,$J,358.3,2936,0)
- ;;=I63.532^^17^211^7
- ;;^UTILITY(U,$J,358.3,2936,1,0)
+ ;;^UTILITY(U,$J,358.3,5979,1,3,0)
+ ;;=3^Sepsis Following a Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5979,1,4,0)
+ ;;=4^T81.44XA
+ ;;^UTILITY(U,$J,358.3,5979,2)
+ ;;=^5157596
+ ;;^UTILITY(U,$J,358.3,5980,0)
+ ;;=T81.41XA^^38^350^40
+ ;;^UTILITY(U,$J,358.3,5980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2936,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Post Cerebral Artery
- ;;^UTILITY(U,$J,358.3,2936,1,4,0)
- ;;=4^I63.532
- ;;^UTILITY(U,$J,358.3,2936,2)
- ;;=^5007349
- ;;^UTILITY(U,$J,358.3,2937,0)
- ;;=I63.541^^17^211^8
- ;;^UTILITY(U,$J,358.3,2937,1,0)
+ ;;^UTILITY(U,$J,358.3,5980,1,3,0)
+ ;;=3^Stitch Abscess Following a Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5980,1,4,0)
+ ;;=4^T81.41XA
+ ;;^UTILITY(U,$J,358.3,5980,2)
+ ;;=^5157587
+ ;;^UTILITY(U,$J,358.3,5981,0)
+ ;;=T81.42XA^^38^350^41
+ ;;^UTILITY(U,$J,358.3,5981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2937,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Cereblr Artery
- ;;^UTILITY(U,$J,358.3,2937,1,4,0)
- ;;=4^I63.541
- ;;^UTILITY(U,$J,358.3,2937,2)
- ;;=^5007350
- ;;^UTILITY(U,$J,358.3,2938,0)
- ;;=I63.542^^17^211^9
- ;;^UTILITY(U,$J,358.3,2938,1,0)
+ ;;^UTILITY(U,$J,358.3,5981,1,3,0)
+ ;;=3^Intra-Muscular Abscess Following a Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5981,1,4,0)
+ ;;=4^T81.42XA
+ ;;^UTILITY(U,$J,358.3,5981,2)
+ ;;=^5157590
+ ;;^UTILITY(U,$J,358.3,5982,0)
+ ;;=T81.43XA^^38^350^42
+ ;;^UTILITY(U,$J,358.3,5982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2938,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Cereblr Artery
- ;;^UTILITY(U,$J,358.3,2938,1,4,0)
- ;;=4^I63.542
- ;;^UTILITY(U,$J,358.3,2938,2)
- ;;=^5007351
- ;;^UTILITY(U,$J,358.3,2939,0)
- ;;=I63.59^^17^211^10
- ;;^UTILITY(U,$J,358.3,2939,1,0)
+ ;;^UTILITY(U,$J,358.3,5982,1,3,0)
+ ;;=3^Intra-Abdominal Abscess Following a Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5982,1,4,0)
+ ;;=4^T81.43XA
+ ;;^UTILITY(U,$J,358.3,5982,2)
+ ;;=^5157593
+ ;;^UTILITY(U,$J,358.3,5983,0)
+ ;;=M25.50^^38^351^1
+ ;;^UTILITY(U,$J,358.3,5983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2939,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Cerebral Artery
- ;;^UTILITY(U,$J,358.3,2939,1,4,0)
- ;;=4^I63.59
- ;;^UTILITY(U,$J,358.3,2939,2)
- ;;=^5007352
- ;;^UTILITY(U,$J,358.3,2940,0)
- ;;=I63.9^^17^211^11
- ;;^UTILITY(U,$J,358.3,2940,1,0)
+ ;;^UTILITY(U,$J,358.3,5983,1,3,0)
+ ;;=3^Pain in Joint
+ ;;^UTILITY(U,$J,358.3,5983,1,4,0)
+ ;;=4^M25.50
+ ;;^UTILITY(U,$J,358.3,5983,2)
+ ;;=^5011601
+ ;;^UTILITY(U,$J,358.3,5984,0)
+ ;;=M10.9^^38^351^2
+ ;;^UTILITY(U,$J,358.3,5984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2940,1,3,0)
- ;;=3^Cerebral Infarction,Unspec
- ;;^UTILITY(U,$J,358.3,2940,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,2940,2)
- ;;=^5007355
- ;;^UTILITY(U,$J,358.3,2941,0)
- ;;=I65.21^^17^211^29
- ;;^UTILITY(U,$J,358.3,2941,1,0)
+ ;;^UTILITY(U,$J,358.3,5984,1,3,0)
+ ;;=3^Gout
+ ;;^UTILITY(U,$J,358.3,5984,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,5984,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,5985,0)
+ ;;=S09.90XA^^38^351^3
+ ;;^UTILITY(U,$J,358.3,5985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2941,1,3,0)
- ;;=3^Occlusion/Stenosis of Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,2941,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,2941,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,2942,0)
- ;;=I65.22^^17^211^28
- ;;^UTILITY(U,$J,358.3,2942,1,0)
+ ;;^UTILITY(U,$J,358.3,5985,1,3,0)
+ ;;=3^Head Injury
+ ;;^UTILITY(U,$J,358.3,5985,1,4,0)
+ ;;=4^S09.90XA
+ ;;^UTILITY(U,$J,358.3,5985,2)
+ ;;=^5021332
+ ;;^UTILITY(U,$J,358.3,5986,0)
+ ;;=S02.91XA^^38^351^4
+ ;;^UTILITY(U,$J,358.3,5986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2942,1,3,0)
- ;;=3^Occlusion/Stenosis of Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,2942,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,2942,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,2943,0)
- ;;=I65.23^^17^211^27
- ;;^UTILITY(U,$J,358.3,2943,1,0)
+ ;;^UTILITY(U,$J,358.3,5986,1,3,0)
+ ;;=3^Skull Fracture
+ ;;^UTILITY(U,$J,358.3,5986,1,4,0)
+ ;;=4^S02.91XA
+ ;;^UTILITY(U,$J,358.3,5986,2)
+ ;;=^5020432
+ ;;^UTILITY(U,$J,358.3,5987,0)
+ ;;=S06.5X0A^^38^351^5
+ ;;^UTILITY(U,$J,358.3,5987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2943,1,3,0)
- ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,2943,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,2943,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,2944,0)
- ;;=G45.9^^17^211^32
- ;;^UTILITY(U,$J,358.3,2944,1,0)
+ ;;^UTILITY(U,$J,358.3,5987,1,3,0)
+ ;;=3^Traumatic Subdural Hemorrhage w/o LOC
+ ;;^UTILITY(U,$J,358.3,5987,1,4,0)
+ ;;=4^S06.5X0A
+ ;;^UTILITY(U,$J,358.3,5987,2)
+ ;;=^5021056
+ ;;^UTILITY(U,$J,358.3,5988,0)
+ ;;=S06.5X1A^^38^351^6
+ ;;^UTILITY(U,$J,358.3,5988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2944,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,2944,1,4,0)
+ ;;^UTILITY(U,$J,358.3,5988,1,3,0)
+ ;;=3^Traumatic Subdural Hemorrhage w/ LOC
+ ;;^UTILITY(U,$J,358.3,5988,1,4,0)
+ ;;=4^S06.5X1A
+ ;;^UTILITY(U,$J,358.3,5988,2)
+ ;;=^5021059
+ ;;^UTILITY(U,$J,358.3,5989,0)
+ ;;=S06.6X0A^^38^351^7
+ ;;^UTILITY(U,$J,358.3,5989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5989,1,3,0)
+ ;;=3^Traumatic Subarachnoid Hemorrhage w/o LOC
+ ;;^UTILITY(U,$J,358.3,5989,1,4,0)
+ ;;=4^S06.6X0A
+ ;;^UTILITY(U,$J,358.3,5989,2)
+ ;;=^5021086
+ ;;^UTILITY(U,$J,358.3,5990,0)
+ ;;=S06.6X1A^^38^351^8
+ ;;^UTILITY(U,$J,358.3,5990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5990,1,3,0)
+ ;;=3^Traumatic Subarachnoid Hemorrhage w/ LOC
+ ;;^UTILITY(U,$J,358.3,5990,1,4,0)
+ ;;=4^S06.6X1A
+ ;;^UTILITY(U,$J,358.3,5990,2)
+ ;;=^5021089
+ ;;^UTILITY(U,$J,358.3,5991,0)
+ ;;=S06.330A^^38^351^9
+ ;;^UTILITY(U,$J,358.3,5991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5991,1,3,0)
+ ;;=3^Cerebral Contusion w/o LOC
+ ;;^UTILITY(U,$J,358.3,5991,1,4,0)
+ ;;=4^S06.330A
+ ;;^UTILITY(U,$J,358.3,5991,2)
+ ;;=^5020846
+ ;;^UTILITY(U,$J,358.3,5992,0)
+ ;;=S06.331A^^38^351^10
+ ;;^UTILITY(U,$J,358.3,5992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5992,1,3,0)
+ ;;=3^Cerebral Contusion w/ LOC
+ ;;^UTILITY(U,$J,358.3,5992,1,4,0)
+ ;;=4^S06.331A
+ ;;^UTILITY(U,$J,358.3,5992,2)
+ ;;=^5020849
+ ;;^UTILITY(U,$J,358.3,5993,0)
+ ;;=S06.0X0A^^38^351^11
+ ;;^UTILITY(U,$J,358.3,5993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5993,1,3,0)
+ ;;=3^Concussion w/o LOC
+ ;;^UTILITY(U,$J,358.3,5993,1,4,0)
+ ;;=4^S06.0X0A
+ ;;^UTILITY(U,$J,358.3,5993,2)
+ ;;=^5020666
+ ;;^UTILITY(U,$J,358.3,5994,0)
+ ;;=S06.0X1A^^38^351^12
+ ;;^UTILITY(U,$J,358.3,5994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5994,1,3,0)
+ ;;=3^Concussion w/ LOC
+ ;;^UTILITY(U,$J,358.3,5994,1,4,0)
+ ;;=4^S06.0X1A
+ ;;^UTILITY(U,$J,358.3,5994,2)
+ ;;=^5020669
+ ;;^UTILITY(U,$J,358.3,5995,0)
+ ;;=S00.91XA^^38^351^13
+ ;;^UTILITY(U,$J,358.3,5995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5995,1,3,0)
+ ;;=3^Head,Any Site,Abrasion
+ ;;^UTILITY(U,$J,358.3,5995,1,4,0)
+ ;;=4^S00.91XA
+ ;;^UTILITY(U,$J,358.3,5995,2)
+ ;;=^5020012
+ ;;^UTILITY(U,$J,358.3,5996,0)
+ ;;=S00.93XA^^38^351^14
+ ;;^UTILITY(U,$J,358.3,5996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5996,1,3,0)
+ ;;=3^Head,Any Site,Contusion
+ ;;^UTILITY(U,$J,358.3,5996,1,4,0)
+ ;;=4^S00.93XA
+ ;;^UTILITY(U,$J,358.3,5996,2)
+ ;;=^5020018
+ ;;^UTILITY(U,$J,358.3,5997,0)
+ ;;=S02.2XXA^^38^351^15
+ ;;^UTILITY(U,$J,358.3,5997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5997,1,3,0)
+ ;;=3^Nasal Fracture
+ ;;^UTILITY(U,$J,358.3,5997,1,4,0)
+ ;;=4^S02.2XXA
+ ;;^UTILITY(U,$J,358.3,5997,2)
+ ;;=^5020306
+ ;;^UTILITY(U,$J,358.3,5998,0)
+ ;;=S02.92XA^^38^351^16
+ ;;^UTILITY(U,$J,358.3,5998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5998,1,3,0)
+ ;;=3^Facial Bones Fracture
+ ;;^UTILITY(U,$J,358.3,5998,1,4,0)
+ ;;=4^S02.92XA
+ ;;^UTILITY(U,$J,358.3,5998,2)
+ ;;=^5020438
+ ;;^UTILITY(U,$J,358.3,5999,0)
+ ;;=S10.91XA^^38^351^17
+ ;;^UTILITY(U,$J,358.3,5999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5999,1,3,0)
+ ;;=3^Neck Abrasion
+ ;;^UTILITY(U,$J,358.3,5999,1,4,0)
+ ;;=4^S10.91XA
+ ;;^UTILITY(U,$J,358.3,5999,2)
+ ;;=^5021395
+ ;;^UTILITY(U,$J,358.3,6000,0)
+ ;;=S10.93XA^^38^351^18
+ ;;^UTILITY(U,$J,358.3,6000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6000,1,3,0)
+ ;;=3^Neck Contusion
+ ;;^UTILITY(U,$J,358.3,6000,1,4,0)
+ ;;=4^S10.93XA
+ ;;^UTILITY(U,$J,358.3,6000,2)
+ ;;=^5021401
+ ;;^UTILITY(U,$J,358.3,6001,0)
+ ;;=S16.1XXA^^38^351^19
+ ;;^UTILITY(U,$J,358.3,6001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6001,1,3,0)
+ ;;=3^Neck Strain
+ ;;^UTILITY(U,$J,358.3,6001,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,6001,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,6002,0)
+ ;;=M54.12^^38^351^20
+ ;;^UTILITY(U,$J,358.3,6002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6002,1,3,0)
+ ;;=3^Cervical Radiculopathy
+ ;;^UTILITY(U,$J,358.3,6002,1,4,0)
+ ;;=4^M54.12
+ ;;^UTILITY(U,$J,358.3,6002,2)
+ ;;=^5012297
+ ;;^UTILITY(U,$J,358.3,6003,0)
+ ;;=S13.9XXA^^38^351^21
+ ;;^UTILITY(U,$J,358.3,6003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6003,1,3,0)
+ ;;=3^Neck Sprain (Whiplash)
+ ;;^UTILITY(U,$J,358.3,6003,1,4,0)
+ ;;=4^S13.9XXA
+ ;;^UTILITY(U,$J,358.3,6003,2)
+ ;;=^5022037
+ ;;^UTILITY(U,$J,358.3,6004,0)
+ ;;=S23.3XXA^^38^351^22
+ ;;^UTILITY(U,$J,358.3,6004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6004,1,3,0)
+ ;;=3^Thoracic Spine Sprain
+ ;;^UTILITY(U,$J,358.3,6004,1,4,0)
+ ;;=4^S23.3XXA
+ ;;^UTILITY(U,$J,358.3,6004,2)
+ ;;=^5023246
+ ;;^UTILITY(U,$J,358.3,6005,0)
+ ;;=S29.012A^^38^351^23
+ ;;^UTILITY(U,$J,358.3,6005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6005,1,3,0)
+ ;;=3^Thoracic Strain
+ ;;^UTILITY(U,$J,358.3,6005,1,4,0)
+ ;;=4^S29.012A
+ ;;^UTILITY(U,$J,358.3,6005,2)
+ ;;=^5023777
+ ;;^UTILITY(U,$J,358.3,6006,0)
+ ;;=M48.50XA^^38^351^24
+ ;;^UTILITY(U,$J,358.3,6006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6006,1,3,0)
+ ;;=3^Vertebral Compression Fracture
+ ;;^UTILITY(U,$J,358.3,6006,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,6006,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,6007,0)
+ ;;=S20.419A^^38^351^25
+ ;;^UTILITY(U,$J,358.3,6007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6007,1,3,0)
+ ;;=3^Upper Back Abrasion
+ ;;^UTILITY(U,$J,358.3,6007,1,4,0)
+ ;;=4^S20.419A
+ ;;^UTILITY(U,$J,358.3,6007,2)
+ ;;=^5022565
+ ;;^UTILITY(U,$J,358.3,6008,0)
+ ;;=S20.229A^^38^351^26
+ ;;^UTILITY(U,$J,358.3,6008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6008,1,3,0)
+ ;;=3^Upper Back Contusion
+ ;;^UTILITY(U,$J,358.3,6008,1,4,0)
+ ;;=4^S20.229A
+ ;;^UTILITY(U,$J,358.3,6008,2)
+ ;;=^5022490
+ ;;^UTILITY(U,$J,358.3,6009,0)
+ ;;=S30.810A^^38^351^27
+ ;;^UTILITY(U,$J,358.3,6009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6009,1,3,0)
+ ;;=3^Lower Back Abrasion
+ ;;^UTILITY(U,$J,358.3,6009,1,4,0)
+ ;;=4^S30.810A
+ ;;^UTILITY(U,$J,358.3,6009,2)
+ ;;=^5023828
+ ;;^UTILITY(U,$J,358.3,6010,0)
+ ;;=S30.0XXA^^38^351^28
+ ;;^UTILITY(U,$J,358.3,6010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6010,1,3,0)
+ ;;=3^Lower Back Contusion
+ ;;^UTILITY(U,$J,358.3,6010,1,4,0)
+ ;;=4^S30.0XXA
+ ;;^UTILITY(U,$J,358.3,6010,2)
+ ;;=^5023804
+ ;;^UTILITY(U,$J,358.3,6011,0)
+ ;;=M54.5^^38^351^29
+ ;;^UTILITY(U,$J,358.3,6011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6011,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,6011,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,6011,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,6012,0)
+ ;;=S33.5XXA^^38^351^30
+ ;;^UTILITY(U,$J,358.3,6012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6012,1,3,0)
+ ;;=3^Lumbar Spine Sprain
+ ;;^UTILITY(U,$J,358.3,6012,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,6012,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,6013,0)
+ ;;=S32.008A^^38^351^31
+ ;;^UTILITY(U,$J,358.3,6013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6013,1,3,0)
+ ;;=3^Lumbar Spine Vertebral Fracture
+ ;;^UTILITY(U,$J,358.3,6013,1,4,0)
+ ;;=4^S32.008A
+ ;;^UTILITY(U,$J,358.3,6013,2)
+ ;;=^5024359
+ ;;^UTILITY(U,$J,358.3,6014,0)
+ ;;=M54.16^^38^351^32
+ ;;^UTILITY(U,$J,358.3,6014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6014,1,3,0)
+ ;;=3^Lumbar Radiculopathy
+ ;;^UTILITY(U,$J,358.3,6014,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,6014,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,6015,0)
+ ;;=M54.30^^38^351^33
+ ;;^UTILITY(U,$J,358.3,6015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6015,1,3,0)
+ ;;=3^Sciatica
+ ;;^UTILITY(U,$J,358.3,6015,1,4,0)
+ ;;=4^M54.30
+ ;;^UTILITY(U,$J,358.3,6015,2)
+ ;;=^5012305
+ ;;^UTILITY(U,$J,358.3,6016,0)
+ ;;=S22.39XA^^38^351^36
+ ;;^UTILITY(U,$J,358.3,6016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6016,1,3,0)
+ ;;=3^Rib Fracture,One
+ ;;^UTILITY(U,$J,358.3,6016,1,4,0)
+ ;;=4^S22.39XA
+ ;;^UTILITY(U,$J,358.3,6016,2)
+ ;;=^5023117
+ ;;^UTILITY(U,$J,358.3,6017,0)
+ ;;=S22.49XA^^38^351^37
+ ;;^UTILITY(U,$J,358.3,6017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6017,1,3,0)
+ ;;=3^Rib Fracture,Multiple
+ ;;^UTILITY(U,$J,358.3,6017,1,4,0)
+ ;;=4^S22.49XA
+ ;;^UTILITY(U,$J,358.3,6017,2)
+ ;;=^5023141
+ ;;^UTILITY(U,$J,358.3,6018,0)
+ ;;=S27.1XXA^^38^351^38
+ ;;^UTILITY(U,$J,358.3,6018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6018,1,3,0)
+ ;;=3^Hemothorax,Traumatic
+ ;;^UTILITY(U,$J,358.3,6018,1,4,0)
+ ;;=4^S27.1XXA
+ ;;^UTILITY(U,$J,358.3,6018,2)
+ ;;=^5023585
+ ;;^UTILITY(U,$J,358.3,6019,0)
+ ;;=S20.319A^^38^351^39
+ ;;^UTILITY(U,$J,358.3,6019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6019,1,3,0)
+ ;;=3^Chest Abrasion
+ ;;^UTILITY(U,$J,358.3,6019,1,4,0)
+ ;;=4^S20.319A
+ ;;^UTILITY(U,$J,358.3,6019,2)
+ ;;=^5022505
+ ;;^UTILITY(U,$J,358.3,6020,0)
+ ;;=S30.811A^^38^351^42
+ ;;^UTILITY(U,$J,358.3,6020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6020,1,3,0)
+ ;;=3^Abdominal Wall Abrasion
+ ;;^UTILITY(U,$J,358.3,6020,1,4,0)
+ ;;=4^S30.811A
+ ;;^UTILITY(U,$J,358.3,6020,2)
+ ;;=^5023831
+ ;;^UTILITY(U,$J,358.3,6021,0)
+ ;;=S30.1XXA^^38^351^43
+ ;;^UTILITY(U,$J,358.3,6021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6021,1,3,0)
+ ;;=3^Abdominal Wall Contusion
+ ;;^UTILITY(U,$J,358.3,6021,1,4,0)
+ ;;=4^S30.1XXA
+ ;;^UTILITY(U,$J,358.3,6021,2)
+ ;;=^5023807
+ ;;^UTILITY(U,$J,358.3,6022,0)
+ ;;=M48.061^^38^351^34
+ ;;^UTILITY(U,$J,358.3,6022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6022,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,6022,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,6022,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,6023,0)
+ ;;=M48.062^^38^351^35
+ ;;^UTILITY(U,$J,358.3,6023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6023,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,6023,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,6023,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,6024,0)
+ ;;=S20.211A^^38^351^40
+ ;;^UTILITY(U,$J,358.3,6024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6024,1,3,0)
+ ;;=3^Chest Contusion,RT Side
+ ;;^UTILITY(U,$J,358.3,6024,1,4,0)
+ ;;=4^S20.211A
+ ;;^UTILITY(U,$J,358.3,6024,2)
+ ;;=^5022475
+ ;;^UTILITY(U,$J,358.3,6025,0)
+ ;;=S20.212A^^38^351^41
+ ;;^UTILITY(U,$J,358.3,6025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6025,1,3,0)
+ ;;=3^Chest Contusion,LT Side
+ ;;^UTILITY(U,$J,358.3,6025,1,4,0)
+ ;;=4^S20.212A
+ ;;^UTILITY(U,$J,358.3,6025,2)
+ ;;=^5022478
+ ;;^UTILITY(U,$J,358.3,6026,0)
+ ;;=R51.^^38^352^1
+ ;;^UTILITY(U,$J,358.3,6026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6026,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,6026,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,6026,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,6027,0)
+ ;;=G43.901^^38^352^2
+ ;;^UTILITY(U,$J,358.3,6027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6027,1,3,0)
+ ;;=3^Migraine < 72 hrs,Not Intractable
+ ;;^UTILITY(U,$J,358.3,6027,1,4,0)
+ ;;=4^G43.901
+ ;;^UTILITY(U,$J,358.3,6027,2)
+ ;;=^5003908
+ ;;^UTILITY(U,$J,358.3,6028,0)
+ ;;=G43.001^^38^352^3
+ ;;^UTILITY(U,$J,358.3,6028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6028,1,3,0)
+ ;;=3^Migraine > 72 hrs,Not Intractable
+ ;;^UTILITY(U,$J,358.3,6028,1,4,0)
+ ;;=4^G43.001
+ ;;^UTILITY(U,$J,358.3,6028,2)
+ ;;=^5003876
+ ;;^UTILITY(U,$J,358.3,6029,0)
+ ;;=R42.^^38^352^4
+ ;;^UTILITY(U,$J,358.3,6029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6029,1,3,0)
+ ;;=3^Dizziness
+ ;;^UTILITY(U,$J,358.3,6029,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,6029,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,6030,0)
+ ;;=R55.^^38^352^5
+ ;;^UTILITY(U,$J,358.3,6030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6030,1,3,0)
+ ;;=3^Syncope & Collapse
+ ;;^UTILITY(U,$J,358.3,6030,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,6030,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,6031,0)
+ ;;=H81.399^^38^352^6
+ ;;^UTILITY(U,$J,358.3,6031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6031,1,3,0)
+ ;;=3^Peripheral Vertigo
+ ;;^UTILITY(U,$J,358.3,6031,1,4,0)
+ ;;=4^H81.399
+ ;;^UTILITY(U,$J,358.3,6031,2)
+ ;;=^5006879
+ ;;^UTILITY(U,$J,358.3,6032,0)
+ ;;=R41.82^^38^352^7
+ ;;^UTILITY(U,$J,358.3,6032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6032,1,3,0)
+ ;;=3^Altered Mental Status
+ ;;^UTILITY(U,$J,358.3,6032,1,4,0)
+ ;;=4^R41.82
+ ;;^UTILITY(U,$J,358.3,6032,2)
+ ;;=^5019441
+ ;;^UTILITY(U,$J,358.3,6033,0)
+ ;;=R41.0^^38^352^8
+ ;;^UTILITY(U,$J,358.3,6033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6033,1,3,0)
+ ;;=3^Delirium
+ ;;^UTILITY(U,$J,358.3,6033,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,6033,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,6034,0)
+ ;;=G31.84^^38^352^9
+ ;;^UTILITY(U,$J,358.3,6034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6034,1,3,0)
+ ;;=3^Mild Cognitive Impairment
+ ;;^UTILITY(U,$J,358.3,6034,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,6034,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,6035,0)
+ ;;=F03.90^^38^352^10
+ ;;^UTILITY(U,$J,358.3,6035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6035,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,6035,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,6035,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,6036,0)
+ ;;=F02.81^^38^352^11
+ ;;^UTILITY(U,$J,358.3,6036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6036,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,6036,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,6036,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,6037,0)
+ ;;=G40.89^^38^352^12
+ ;;^UTILITY(U,$J,358.3,6037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6037,1,3,0)
+ ;;=3^Seizure
+ ;;^UTILITY(U,$J,358.3,6037,1,4,0)
+ ;;=4^G40.89
+ ;;^UTILITY(U,$J,358.3,6037,2)
+ ;;=^5003863
+ ;;^UTILITY(U,$J,358.3,6038,0)
+ ;;=G40.911^^38^352^13
+ ;;^UTILITY(U,$J,358.3,6038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6038,1,3,0)
+ ;;=3^Seizure,Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,6038,1,4,0)
+ ;;=4^G40.911
+ ;;^UTILITY(U,$J,358.3,6038,2)
+ ;;=^5003866
+ ;;^UTILITY(U,$J,358.3,6039,0)
+ ;;=F44.4^^38^352^14
+ ;;^UTILITY(U,$J,358.3,6039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6039,1,3,0)
+ ;;=3^Conversion Disorder,Motor Symptom
+ ;;^UTILITY(U,$J,358.3,6039,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,6039,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,6040,0)
+ ;;=G45.9^^38^352^15
+ ;;^UTILITY(U,$J,358.3,6040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6040,1,3,0)
+ ;;=3^Transient Ischemic Attack
+ ;;^UTILITY(U,$J,358.3,6040,1,4,0)
  ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,2944,2)
+ ;;^UTILITY(U,$J,358.3,6040,2)
  ;;=^5003959
- ;;^UTILITY(U,$J,358.3,2945,0)
- ;;=I62.00^^17^211^26
- ;;^UTILITY(U,$J,358.3,2945,1,0)
+ ;;^UTILITY(U,$J,358.3,6041,0)
+ ;;=I63.9^^38^352^16
+ ;;^UTILITY(U,$J,358.3,6041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2945,1,3,0)
- ;;=3^Nontraumatic Subdural Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,2945,1,4,0)
- ;;=4^I62.00
- ;;^UTILITY(U,$J,358.3,2945,2)
- ;;=^5007289
- ;;^UTILITY(U,$J,358.3,2946,0)
- ;;=C79.31^^17^211^12
- ;;^UTILITY(U,$J,358.3,2946,1,0)
+ ;;^UTILITY(U,$J,358.3,6041,1,3,0)
+ ;;=3^Cerebral Infarction
+ ;;^UTILITY(U,$J,358.3,6041,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,6041,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,6042,0)
+ ;;=I61.9^^38^352^17
+ ;;^UTILITY(U,$J,358.3,6042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2946,1,3,0)
- ;;=3^Mets Malig Neop of Brain
- ;;^UTILITY(U,$J,358.3,2946,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,2946,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,2947,0)
- ;;=R40.0^^17^211^30
- ;;^UTILITY(U,$J,358.3,2947,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2947,1,3,0)
- ;;=3^Somnolence
- ;;^UTILITY(U,$J,358.3,2947,1,4,0)
- ;;=4^R40.0
- ;;^UTILITY(U,$J,358.3,2947,2)
- ;;=^5019352
- ;;^UTILITY(U,$J,358.3,2948,0)
- ;;=R40.1^^17^211^31
- ;;^UTILITY(U,$J,358.3,2948,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2948,1,3,0)
- ;;=3^Stupor
- ;;^UTILITY(U,$J,358.3,2948,1,4,0)
- ;;=4^R40.1
- ;;^UTILITY(U,$J,358.3,2948,2)
- ;;=^5019353
- ;;^UTILITY(U,$J,358.3,2949,0)
- ;;=I61.0^^17^211^16
- ;;^UTILITY(U,$J,358.3,2949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2949,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Subcortical
- ;;^UTILITY(U,$J,358.3,2949,1,4,0)
- ;;=4^I61.0
- ;;^UTILITY(U,$J,358.3,2949,2)
- ;;=^5007280
- ;;^UTILITY(U,$J,358.3,2950,0)
- ;;=I61.1^^17^211^17
- ;;^UTILITY(U,$J,358.3,2950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2950,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Cortical
- ;;^UTILITY(U,$J,358.3,2950,1,4,0)
- ;;=4^I61.1
- ;;^UTILITY(U,$J,358.3,2950,2)
- ;;=^5007281
- ;;^UTILITY(U,$J,358.3,2951,0)
- ;;=I61.2^^17^211^18
- ;;^UTILITY(U,$J,358.3,2951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2951,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Unspec
- ;;^UTILITY(U,$J,358.3,2951,1,4,0)
- ;;=4^I61.2
- ;;^UTILITY(U,$J,358.3,2951,2)
- ;;=^5007282
- ;;^UTILITY(U,$J,358.3,2952,0)
- ;;=I61.3^^17^211^19
- ;;^UTILITY(U,$J,358.3,2952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2952,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Brain Stem
- ;;^UTILITY(U,$J,358.3,2952,1,4,0)
- ;;=4^I61.3
- ;;^UTILITY(U,$J,358.3,2952,2)
- ;;=^5007283
- ;;^UTILITY(U,$J,358.3,2953,0)
- ;;=I61.4^^17^211^20
- ;;^UTILITY(U,$J,358.3,2953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2953,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage in Cerebellum
- ;;^UTILITY(U,$J,358.3,2953,1,4,0)
- ;;=4^I61.4
- ;;^UTILITY(U,$J,358.3,2953,2)
- ;;=^5007284
- ;;^UTILITY(U,$J,358.3,2954,0)
- ;;=I61.5^^17^211^21
- ;;^UTILITY(U,$J,358.3,2954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2954,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Intraventricular
- ;;^UTILITY(U,$J,358.3,2954,1,4,0)
- ;;=4^I61.5
- ;;^UTILITY(U,$J,358.3,2954,2)
- ;;=^5007285
- ;;^UTILITY(U,$J,358.3,2955,0)
- ;;=I61.6^^17^211^22
- ;;^UTILITY(U,$J,358.3,2955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2955,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Mult Localized
- ;;^UTILITY(U,$J,358.3,2955,1,4,0)
- ;;=4^I61.6
- ;;^UTILITY(U,$J,358.3,2955,2)
- ;;=^5007286
- ;;^UTILITY(U,$J,358.3,2956,0)
- ;;=I61.8^^17^211^23
- ;;^UTILITY(U,$J,358.3,2956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2956,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Other
- ;;^UTILITY(U,$J,358.3,2956,1,4,0)
- ;;=4^I61.8
- ;;^UTILITY(U,$J,358.3,2956,2)
- ;;=^5007287
- ;;^UTILITY(U,$J,358.3,2957,0)
- ;;=I61.9^^17^211^24
- ;;^UTILITY(U,$J,358.3,2957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2957,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,2957,1,4,0)
+ ;;^UTILITY(U,$J,358.3,6042,1,3,0)
+ ;;=3^Intracranial Hemorrhage,Nontraumatic
+ ;;^UTILITY(U,$J,358.3,6042,1,4,0)
  ;;=4^I61.9
- ;;^UTILITY(U,$J,358.3,2957,2)
+ ;;^UTILITY(U,$J,358.3,6042,2)
  ;;=^5007288
- ;;^UTILITY(U,$J,358.3,2958,0)
- ;;=I62.01^^17^211^13
- ;;^UTILITY(U,$J,358.3,2958,1,0)
+ ;;^UTILITY(U,$J,358.3,6043,0)
+ ;;=R53.1^^38^352^19
+ ;;^UTILITY(U,$J,358.3,6043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2958,1,3,0)
- ;;=3^Nontraumatic Acute Subdural Hemorrhage
- ;;^UTILITY(U,$J,358.3,2958,1,4,0)
- ;;=4^I62.01
- ;;^UTILITY(U,$J,358.3,2958,2)
- ;;=^5007290
- ;;^UTILITY(U,$J,358.3,2959,0)
- ;;=I62.02^^17^211^25
- ;;^UTILITY(U,$J,358.3,2959,1,0)
+ ;;^UTILITY(U,$J,358.3,6043,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,6043,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,6043,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,6044,0)
+ ;;=R20.2^^38^352^20
+ ;;^UTILITY(U,$J,358.3,6044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2959,1,3,0)
- ;;=3^Nontraumatic Subacute Subdural Hemorrhage
- ;;^UTILITY(U,$J,358.3,2959,1,4,0)
- ;;=4^I62.02
- ;;^UTILITY(U,$J,358.3,2959,2)
- ;;=^5007291
- ;;^UTILITY(U,$J,358.3,2960,0)
- ;;=I62.03^^17^211^14
- ;;^UTILITY(U,$J,358.3,2960,1,0)
+ ;;^UTILITY(U,$J,358.3,6044,1,3,0)
+ ;;=3^Numbness
+ ;;^UTILITY(U,$J,358.3,6044,1,4,0)
+ ;;=4^R20.2
+ ;;^UTILITY(U,$J,358.3,6044,2)
+ ;;=^5019280
+ ;;^UTILITY(U,$J,358.3,6045,0)
+ ;;=R52.^^38^352^21
+ ;;^UTILITY(U,$J,358.3,6045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2960,1,3,0)
- ;;=3^Nontraumatic Chronic Subdural Hemorrhage
- ;;^UTILITY(U,$J,358.3,2960,1,4,0)
- ;;=4^I62.03
- ;;^UTILITY(U,$J,358.3,2960,2)
- ;;=^5007292
- ;;^UTILITY(U,$J,358.3,2961,0)
- ;;=I62.1^^17^211^15
- ;;^UTILITY(U,$J,358.3,2961,1,0)
+ ;;^UTILITY(U,$J,358.3,6045,1,3,0)
+ ;;=3^Pain
+ ;;^UTILITY(U,$J,358.3,6045,1,4,0)
+ ;;=4^R52.
+ ;;^UTILITY(U,$J,358.3,6045,2)
+ ;;=^5019514
+ ;;^UTILITY(U,$J,358.3,6046,0)
+ ;;=G89.4^^38^352^22
+ ;;^UTILITY(U,$J,358.3,6046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2961,1,3,0)
- ;;=3^Nontraumatic Extradural Hemorrhage
- ;;^UTILITY(U,$J,358.3,2961,1,4,0)
- ;;=4^I62.1
- ;;^UTILITY(U,$J,358.3,2961,2)
- ;;=^269743
- ;;^UTILITY(U,$J,358.3,2962,0)
- ;;=A04.7^^17^212^14
- ;;^UTILITY(U,$J,358.3,2962,1,0)
+ ;;^UTILITY(U,$J,358.3,6046,1,3,0)
+ ;;=3^Chronic Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,6046,1,4,0)
+ ;;=4^G89.4
+ ;;^UTILITY(U,$J,358.3,6046,2)
+ ;;=^334079
+ ;;^UTILITY(U,$J,358.3,6047,0)
+ ;;=M79.2^^38^352^23
+ ;;^UTILITY(U,$J,358.3,6047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2962,1,3,0)
- ;;=3^Enterocolitis d/t Clostridium Difficile
- ;;^UTILITY(U,$J,358.3,2962,1,4,0)
- ;;=4^A04.7
- ;;^UTILITY(U,$J,358.3,2962,2)
- ;;=^5000029
- ;;^UTILITY(U,$J,358.3,2963,0)
- ;;=K92.2^^17^212^18
- ;;^UTILITY(U,$J,358.3,2963,1,0)
+ ;;^UTILITY(U,$J,358.3,6047,1,3,0)
+ ;;=3^Neuralgia & Neuritis
+ ;;^UTILITY(U,$J,358.3,6047,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,6047,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,6048,0)
+ ;;=M51.16^^38^352^24
+ ;;^UTILITY(U,$J,358.3,6048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2963,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,2963,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,2963,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,2964,0)
- ;;=K57.31^^17^212^13
- ;;^UTILITY(U,$J,358.3,2964,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2964,1,3,0)
- ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/ Bleeding
- ;;^UTILITY(U,$J,358.3,2964,1,4,0)
- ;;=4^K57.31
- ;;^UTILITY(U,$J,358.3,2964,2)
- ;;=^5008724
- ;;^UTILITY(U,$J,358.3,2965,0)
- ;;=K92.1^^17^212^34
- ;;^UTILITY(U,$J,358.3,2965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2965,1,3,0)
- ;;=3^Melena
- ;;^UTILITY(U,$J,358.3,2965,1,4,0)
- ;;=4^K92.1
- ;;^UTILITY(U,$J,358.3,2965,2)
- ;;=^5008914
- ;;^UTILITY(U,$J,358.3,2966,0)
- ;;=K92.0^^17^212^19
- ;;^UTILITY(U,$J,358.3,2966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2966,1,3,0)
- ;;=3^Hematemesis
- ;;^UTILITY(U,$J,358.3,2966,1,4,0)
- ;;=4^K92.0
- ;;^UTILITY(U,$J,358.3,2966,2)
- ;;=^5008913
- ;;^UTILITY(U,$J,358.3,2967,0)
- ;;=K25.4^^17^212^16
- ;;^UTILITY(U,$J,358.3,2967,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2967,1,3,0)
- ;;=3^Gastric Ulcer w/ Hemorrhage,Chronic
- ;;^UTILITY(U,$J,358.3,2967,1,4,0)
- ;;=4^K25.4
- ;;^UTILITY(U,$J,358.3,2967,2)
- ;;=^270076
- ;;^UTILITY(U,$J,358.3,2968,0)
- ;;=K43.2^^17^212^20
- ;;^UTILITY(U,$J,358.3,2968,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2968,1,3,0)
- ;;=3^Incisional Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,2968,1,4,0)
- ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,6048,1,3,0)
+ ;;=3^Lumbar Radiculopathy
+ ;;^UTILITY(U,$J,358.3,6048,1,4,0)
+ ;;=4^M51.16
+ ;;^UTILITY(U,$J,358.3,6048,2)
+ ;;=^5012245

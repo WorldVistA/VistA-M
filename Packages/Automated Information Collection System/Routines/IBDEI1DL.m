@@ -1,124 +1,128 @@
-IBDEI1DL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23378,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,23379,0)
- ;;=F14.288^^87^995^20
- ;;^UTILITY(U,$J,358.3,23379,1,0)
+ ;;^UTILITY(U,$J,358.3,21984,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,21984,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,21985,0)
+ ;;=F15.20^^99^1120^30
+ ;;^UTILITY(U,$J,358.3,21985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23379,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,23379,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,23379,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,23380,0)
- ;;=F14.282^^87^995^14
- ;;^UTILITY(U,$J,358.3,23380,1,0)
+ ;;^UTILITY(U,$J,358.3,21985,1,3,0)
+ ;;=3^Stimulant Dependence,Uncomp
+ ;;^UTILITY(U,$J,358.3,21985,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,21985,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,21986,0)
+ ;;=F19.10^^99^1120^23
+ ;;^UTILITY(U,$J,358.3,21986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23380,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,23380,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,23380,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,23381,0)
- ;;=F14.281^^87^995^15
- ;;^UTILITY(U,$J,358.3,23381,1,0)
+ ;;^UTILITY(U,$J,358.3,21986,1,3,0)
+ ;;=3^Psychoactive Substance Abuse,Uncomp
+ ;;^UTILITY(U,$J,358.3,21986,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,21986,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,21987,0)
+ ;;=F17.220^^99^1120^16
+ ;;^UTILITY(U,$J,358.3,21987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23381,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,23381,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,23381,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,23382,0)
- ;;=F14.280^^87^995^12
- ;;^UTILITY(U,$J,358.3,23382,1,0)
+ ;;^UTILITY(U,$J,358.3,21987,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomp
+ ;;^UTILITY(U,$J,358.3,21987,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,21987,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,21988,0)
+ ;;=F17.210^^99^1120^17
+ ;;^UTILITY(U,$J,358.3,21988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23382,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,23382,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,23382,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,23383,0)
- ;;=F14.259^^87^995^11
- ;;^UTILITY(U,$J,358.3,23383,1,0)
+ ;;^UTILITY(U,$J,358.3,21988,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomp
+ ;;^UTILITY(U,$J,358.3,21988,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,21988,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,21989,0)
+ ;;=F10.11^^99^1120^1
+ ;;^UTILITY(U,$J,358.3,21989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23383,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23383,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,23383,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,23384,0)
- ;;=F14.251^^87^995^10
- ;;^UTILITY(U,$J,358.3,23384,1,0)
+ ;;^UTILITY(U,$J,358.3,21989,1,3,0)
+ ;;=3^Alcohol Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21989,1,4,0)
+ ;;=4^F10.11
+ ;;^UTILITY(U,$J,358.3,21989,2)
+ ;;=^268230
+ ;;^UTILITY(U,$J,358.3,21990,0)
+ ;;=F12.11^^99^1120^7
+ ;;^UTILITY(U,$J,358.3,21990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23384,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,23384,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,23384,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,23385,0)
- ;;=F14.250^^87^995^9
- ;;^UTILITY(U,$J,358.3,23385,1,0)
+ ;;^UTILITY(U,$J,358.3,21990,1,3,0)
+ ;;=3^Cannabis,In Remission
+ ;;^UTILITY(U,$J,358.3,21990,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,21990,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,21991,0)
+ ;;=F14.11^^99^1120^8
+ ;;^UTILITY(U,$J,358.3,21991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23385,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,23385,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,23385,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,23386,0)
- ;;=F14.24^^87^995^13
- ;;^UTILITY(U,$J,358.3,23386,1,0)
+ ;;^UTILITY(U,$J,358.3,21991,1,3,0)
+ ;;=3^Cocaine Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21991,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,21991,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,21992,0)
+ ;;=F16.11^^99^1120^11
+ ;;^UTILITY(U,$J,358.3,21992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23386,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,23386,1,4,0)
- ;;=4^F14.24
- ;;^UTILITY(U,$J,358.3,23386,2)
- ;;=^5003260
- ;;^UTILITY(U,$J,358.3,23387,0)
- ;;=F14.23^^87^995^22
- ;;^UTILITY(U,$J,358.3,23387,1,0)
+ ;;^UTILITY(U,$J,358.3,21992,1,3,0)
+ ;;=3^Hallucinogen Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21992,1,4,0)
+ ;;=4^F16.11
+ ;;^UTILITY(U,$J,358.3,21992,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,21993,0)
+ ;;=F18.11^^99^1120^14
+ ;;^UTILITY(U,$J,358.3,21993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23387,1,3,0)
- ;;=3^Cocaine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,23387,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,23387,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,23388,0)
- ;;=F14.229^^87^995^19
- ;;^UTILITY(U,$J,358.3,23388,1,0)
+ ;;^UTILITY(U,$J,358.3,21993,1,3,0)
+ ;;=3^Inhalant Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21993,1,4,0)
+ ;;=4^F18.11
+ ;;^UTILITY(U,$J,358.3,21993,2)
+ ;;=^5151305
+ ;;^UTILITY(U,$J,358.3,21994,0)
+ ;;=F11.11^^99^1120^19
+ ;;^UTILITY(U,$J,358.3,21994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23388,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,23388,1,4,0)
- ;;=4^F14.229
- ;;^UTILITY(U,$J,358.3,23388,2)
- ;;=^5003258
- ;;^UTILITY(U,$J,358.3,23389,0)
- ;;=F14.222^^87^995^17
- ;;^UTILITY(U,$J,358.3,23389,1,0)
+ ;;^UTILITY(U,$J,358.3,21994,1,3,0)
+ ;;=3^Opioid Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21994,1,4,0)
+ ;;=4^F11.11
+ ;;^UTILITY(U,$J,358.3,21994,2)
+ ;;=^268246
+ ;;^UTILITY(U,$J,358.3,21995,0)
+ ;;=F19.11^^99^1120^22
+ ;;^UTILITY(U,$J,358.3,21995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23389,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,23389,1,4,0)
- ;;=4^F14.222
- ;;^UTILITY(U,$J,358.3,23389,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,23390,0)
- ;;=F14.221^^87^995^16
- ;;^UTILITY(U,$J,358.3,23390,1,0)
+ ;;^UTILITY(U,$J,358.3,21995,1,3,0)
+ ;;=3^Psychoactive Substance Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21995,1,4,0)
+ ;;=4^F19.11
+ ;;^UTILITY(U,$J,358.3,21995,2)
+ ;;=^5151306
+ ;;^UTILITY(U,$J,358.3,21996,0)
+ ;;=F13.11^^99^1120^27
+ ;;^UTILITY(U,$J,358.3,21996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23390,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,23390,1,4,0)
- ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,21996,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21996,1,4,0)
+ ;;=4^F13.11
+ ;;^UTILITY(U,$J,358.3,21996,2)
+ ;;=^331938

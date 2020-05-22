@@ -1,136 +1,122 @@
-IBDEI3AJ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3AJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55299,0)
- ;;=N73.5^^256^2777^64
- ;;^UTILITY(U,$J,358.3,55299,1,0)
+ ;;^UTILITY(U,$J,358.3,52519,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,52520,0)
+ ;;=E11.3211^^194^2540^22
+ ;;^UTILITY(U,$J,358.3,52520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55299,1,3,0)
- ;;=3^Peritonitis Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,55299,1,4,0)
- ;;=4^N73.5
- ;;^UTILITY(U,$J,358.3,55299,2)
- ;;=^5015817
- ;;^UTILITY(U,$J,358.3,55300,0)
- ;;=N72.^^256^2777^35
- ;;^UTILITY(U,$J,358.3,55300,1,0)
+ ;;^UTILITY(U,$J,358.3,52520,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,52520,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,52520,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,52521,0)
+ ;;=E11.3212^^194^2540^23
+ ;;^UTILITY(U,$J,358.3,52521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55300,1,3,0)
- ;;=3^Inflammatory Disease Cervix Uteri
- ;;^UTILITY(U,$J,358.3,55300,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,55300,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,55301,0)
- ;;=N76.3^^256^2777^92
- ;;^UTILITY(U,$J,358.3,55301,1,0)
+ ;;^UTILITY(U,$J,358.3,52521,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,52521,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,52521,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,52522,0)
+ ;;=E11.3213^^194^2540^24
+ ;;^UTILITY(U,$J,358.3,52522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55301,1,3,0)
- ;;=3^Vulvitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,55301,1,4,0)
- ;;=4^N76.3
- ;;^UTILITY(U,$J,358.3,55301,2)
- ;;=^5015829
- ;;^UTILITY(U,$J,358.3,55302,0)
- ;;=N76.1^^256^2777^88
- ;;^UTILITY(U,$J,358.3,55302,1,0)
+ ;;^UTILITY(U,$J,358.3,52522,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,52522,1,4,0)
+ ;;=4^E11.3213
+ ;;^UTILITY(U,$J,358.3,52522,2)
+ ;;=^5138333
+ ;;^UTILITY(U,$J,358.3,52523,0)
+ ;;=E11.40^^194^2540^10
+ ;;^UTILITY(U,$J,358.3,52523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55302,1,3,0)
- ;;=3^Vaginitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,55302,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,55302,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,55303,0)
- ;;=N76.2^^256^2777^91
- ;;^UTILITY(U,$J,358.3,55303,1,0)
+ ;;^UTILITY(U,$J,358.3,52523,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,52523,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,52523,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,52524,0)
+ ;;=E11.51^^194^2540^12
+ ;;^UTILITY(U,$J,358.3,52524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55303,1,3,0)
- ;;=3^Vulvitis,Acute
- ;;^UTILITY(U,$J,358.3,55303,1,4,0)
- ;;=4^N76.2
- ;;^UTILITY(U,$J,358.3,55303,2)
- ;;=^5015828
- ;;^UTILITY(U,$J,358.3,55304,0)
- ;;=N76.0^^256^2777^87
- ;;^UTILITY(U,$J,358.3,55304,1,0)
+ ;;^UTILITY(U,$J,358.3,52524,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,52524,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,52524,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,52525,0)
+ ;;=E11.52^^194^2540^11
+ ;;^UTILITY(U,$J,358.3,52525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55304,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,55304,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,55304,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,55305,0)
- ;;=M00.20^^256^2777^3
- ;;^UTILITY(U,$J,358.3,55305,1,0)
+ ;;^UTILITY(U,$J,358.3,52525,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,52525,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,52525,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,52526,0)
+ ;;=E11.620^^194^2540^5
+ ;;^UTILITY(U,$J,358.3,52526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55305,1,3,0)
- ;;=3^Arthritis Streptococcal,Unspec Joint
- ;;^UTILITY(U,$J,358.3,55305,1,4,0)
- ;;=4^M00.20
- ;;^UTILITY(U,$J,358.3,55305,2)
- ;;=^5009645
- ;;^UTILITY(U,$J,358.3,55306,0)
- ;;=M00.80^^256^2777^4
- ;;^UTILITY(U,$J,358.3,55306,1,0)
+ ;;^UTILITY(U,$J,358.3,52526,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,52526,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,52526,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,52527,0)
+ ;;=E11.36^^194^2540^4
+ ;;^UTILITY(U,$J,358.3,52527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55306,1,3,0)
- ;;=3^Arthritis d/t Bacteria,Unspec Joint
- ;;^UTILITY(U,$J,358.3,55306,1,4,0)
- ;;=4^M00.80
- ;;^UTILITY(U,$J,358.3,55306,2)
- ;;=^5009669
- ;;^UTILITY(U,$J,358.3,55307,0)
- ;;=M00.9^^256^2777^72
- ;;^UTILITY(U,$J,358.3,55307,1,0)
+ ;;^UTILITY(U,$J,358.3,52527,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Cataract
+ ;;^UTILITY(U,$J,358.3,52527,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,52527,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,52528,0)
+ ;;=I10.^^194^2541^1
+ ;;^UTILITY(U,$J,358.3,52528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55307,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,55307,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,55307,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,55308,0)
- ;;=M00.00^^256^2777^78
- ;;^UTILITY(U,$J,358.3,55308,1,0)
+ ;;^UTILITY(U,$J,358.3,52528,1,3,0)
+ ;;=3^Essential/Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,52528,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,52528,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,52529,0)
+ ;;=I11.0^^194^2541^12
+ ;;^UTILITY(U,$J,358.3,52529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55308,1,3,0)
- ;;=3^Staphylococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,55308,1,4,0)
- ;;=4^M00.00
- ;;^UTILITY(U,$J,358.3,55308,2)
- ;;=^5009597
- ;;^UTILITY(U,$J,358.3,55309,0)
- ;;=M00.10^^256^2777^65
- ;;^UTILITY(U,$J,358.3,55309,1,0)
+ ;;^UTILITY(U,$J,358.3,52529,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,52529,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,52529,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,52530,0)
+ ;;=I11.9^^194^2541^13
+ ;;^UTILITY(U,$J,358.3,52530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55309,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,55309,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,55309,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,55310,0)
- ;;=M86.20^^256^2777^62
- ;;^UTILITY(U,$J,358.3,55310,1,0)
+ ;;^UTILITY(U,$J,358.3,52530,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,52530,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,52530,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,52531,0)
+ ;;=I12.0^^194^2541^5
+ ;;^UTILITY(U,$J,358.3,52531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55310,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,55310,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,55310,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,55311,0)
- ;;=M86.10^^256^2777^58
- ;;^UTILITY(U,$J,358.3,55311,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55311,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,55311,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,55311,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,55312,0)
- ;;=M86.00^^256^2777^57
+ ;;^UTILITY(U,$J,358.3,52531,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD

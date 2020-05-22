@@ -1,358 +1,684 @@
-IBDEI07M ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI07M ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9620,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,9621,0)
- ;;=N64.53^^37^527^30
- ;;^UTILITY(U,$J,358.3,9621,1,0)
+ ;;^UTILITY(U,$J,358.3,18567,2)
+ ;;=^331970
+ ;;^UTILITY(U,$J,358.3,18568,0)
+ ;;=R63.0^^65^781^40
+ ;;^UTILITY(U,$J,358.3,18568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9621,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,9621,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,9621,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,9622,0)
- ;;=N64.59^^37^527^33
- ;;^UTILITY(U,$J,358.3,9622,1,0)
+ ;;^UTILITY(U,$J,358.3,18568,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,18568,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,18568,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,18569,0)
+ ;;=R63.1^^65^781^143
+ ;;^UTILITY(U,$J,358.3,18569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9622,1,3,0)
- ;;=3^Signs/Symptoms in Breast NEC
- ;;^UTILITY(U,$J,358.3,9622,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,9622,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,9623,0)
- ;;=N64.89^^37^527^3
- ;;^UTILITY(U,$J,358.3,9623,1,0)
+ ;;^UTILITY(U,$J,358.3,18569,1,3,0)
+ ;;=3^Polydipsia
+ ;;^UTILITY(U,$J,358.3,18569,1,4,0)
+ ;;=4^R63.1
+ ;;^UTILITY(U,$J,358.3,18569,2)
+ ;;=^186699
+ ;;^UTILITY(U,$J,358.3,18570,0)
+ ;;=R63.2^^65^781^144
+ ;;^UTILITY(U,$J,358.3,18570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9623,1,3,0)
- ;;=3^Breast Disorders NEC
- ;;^UTILITY(U,$J,358.3,9623,1,4,0)
- ;;=4^N64.89
- ;;^UTILITY(U,$J,358.3,9623,2)
- ;;=^336616
- ;;^UTILITY(U,$J,358.3,9624,0)
- ;;=Z12.39^^37^527^31
- ;;^UTILITY(U,$J,358.3,9624,1,0)
+ ;;^UTILITY(U,$J,358.3,18570,1,3,0)
+ ;;=3^Polyphagia
+ ;;^UTILITY(U,$J,358.3,18570,1,4,0)
+ ;;=4^R63.2
+ ;;^UTILITY(U,$J,358.3,18570,2)
+ ;;=^5019540
+ ;;^UTILITY(U,$J,358.3,18571,0)
+ ;;=R63.3^^65^781^77
+ ;;^UTILITY(U,$J,358.3,18571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9624,1,3,0)
- ;;=3^Screening for Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,9624,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,9624,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,9625,0)
- ;;=C50.021^^37^528^12
- ;;^UTILITY(U,$J,358.3,9625,1,0)
+ ;;^UTILITY(U,$J,358.3,18571,1,3,0)
+ ;;=3^Feeding Difficulties
+ ;;^UTILITY(U,$J,358.3,18571,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,18571,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,18572,0)
+ ;;=R63.4^^65^781^33
+ ;;^UTILITY(U,$J,358.3,18572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9625,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Right Breast
- ;;^UTILITY(U,$J,358.3,9625,1,4,0)
- ;;=4^C50.021
- ;;^UTILITY(U,$J,358.3,9625,2)
- ;;=^5001162
- ;;^UTILITY(U,$J,358.3,9626,0)
- ;;=C50.022^^37^528^11
- ;;^UTILITY(U,$J,358.3,9626,1,0)
+ ;;^UTILITY(U,$J,358.3,18572,1,3,0)
+ ;;=3^Abnormal Weight Loss
+ ;;^UTILITY(U,$J,358.3,18572,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,18572,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,18573,0)
+ ;;=R63.5^^65^781^32
+ ;;^UTILITY(U,$J,358.3,18573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9626,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Left Breast
- ;;^UTILITY(U,$J,358.3,9626,1,4,0)
- ;;=4^C50.022
- ;;^UTILITY(U,$J,358.3,9626,2)
- ;;=^5001163
- ;;^UTILITY(U,$J,358.3,9627,0)
- ;;=C50.121^^37^528^5
- ;;^UTILITY(U,$J,358.3,9627,1,0)
+ ;;^UTILITY(U,$J,358.3,18573,1,3,0)
+ ;;=3^Abnormal Weight Gain
+ ;;^UTILITY(U,$J,358.3,18573,1,4,0)
+ ;;=4^R63.5
+ ;;^UTILITY(U,$J,358.3,18573,2)
+ ;;=^5019543
+ ;;^UTILITY(U,$J,358.3,18574,0)
+ ;;=R64.^^65^781^50
+ ;;^UTILITY(U,$J,358.3,18574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9627,1,3,0)
- ;;=3^Malig Neop of Central Portion of Right Breast
- ;;^UTILITY(U,$J,358.3,9627,1,4,0)
- ;;=4^C50.121
- ;;^UTILITY(U,$J,358.3,9627,2)
- ;;=^5001168
- ;;^UTILITY(U,$J,358.3,9628,0)
- ;;=C50.122^^37^528^4
- ;;^UTILITY(U,$J,358.3,9628,1,0)
+ ;;^UTILITY(U,$J,358.3,18574,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,18574,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,18574,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,18575,0)
+ ;;=R68.3^^65^781^55
+ ;;^UTILITY(U,$J,358.3,18575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9628,1,3,0)
- ;;=3^Malig Neop of Central Portion of Left Breast
- ;;^UTILITY(U,$J,358.3,9628,1,4,0)
- ;;=4^C50.122
- ;;^UTILITY(U,$J,358.3,9628,2)
- ;;=^5001169
- ;;^UTILITY(U,$J,358.3,9629,0)
- ;;=C50.221^^37^528^17
- ;;^UTILITY(U,$J,358.3,9629,1,0)
+ ;;^UTILITY(U,$J,358.3,18575,1,3,0)
+ ;;=3^Clubbing of Fingers
+ ;;^UTILITY(U,$J,358.3,18575,1,4,0)
+ ;;=4^R68.3
+ ;;^UTILITY(U,$J,358.3,18575,2)
+ ;;=^5019553
+ ;;^UTILITY(U,$J,358.3,18576,0)
+ ;;=R73.01^^65^781^94
+ ;;^UTILITY(U,$J,358.3,18576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9629,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,9629,1,4,0)
- ;;=4^C50.221
- ;;^UTILITY(U,$J,358.3,9629,2)
- ;;=^5001174
- ;;^UTILITY(U,$J,358.3,9630,0)
- ;;=C50.222^^37^528^16
- ;;^UTILITY(U,$J,358.3,9630,1,0)
+ ;;^UTILITY(U,$J,358.3,18576,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,18576,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,18576,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,18577,0)
+ ;;=R73.02^^65^781^95
+ ;;^UTILITY(U,$J,358.3,18577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9630,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,9630,1,4,0)
- ;;=4^C50.222
- ;;^UTILITY(U,$J,358.3,9630,2)
- ;;=^5001175
- ;;^UTILITY(U,$J,358.3,9631,0)
- ;;=C50.321^^37^528^8
- ;;^UTILITY(U,$J,358.3,9631,1,0)
+ ;;^UTILITY(U,$J,358.3,18577,1,3,0)
+ ;;=3^Impaired Glucose Tolerance (oral)
+ ;;^UTILITY(U,$J,358.3,18577,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,18577,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,18578,0)
+ ;;=R73.09^^65^781^18
+ ;;^UTILITY(U,$J,358.3,18578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9631,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,9631,1,4,0)
- ;;=4^C50.321
- ;;^UTILITY(U,$J,358.3,9631,2)
- ;;=^5001178
- ;;^UTILITY(U,$J,358.3,9632,0)
- ;;=C50.322^^37^528^7
- ;;^UTILITY(U,$J,358.3,9632,1,0)
+ ;;^UTILITY(U,$J,358.3,18578,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,18578,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,18578,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,18579,0)
+ ;;=R73.9^^65^781^89
+ ;;^UTILITY(U,$J,358.3,18579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9632,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,9632,1,4,0)
- ;;=4^C50.322
- ;;^UTILITY(U,$J,358.3,9632,2)
- ;;=^5133334
- ;;^UTILITY(U,$J,358.3,9633,0)
- ;;=C50.421^^37^528^19
- ;;^UTILITY(U,$J,358.3,9633,1,0)
+ ;;^UTILITY(U,$J,358.3,18579,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,18579,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,18579,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,18580,0)
+ ;;=R76.11^^65^781^147
+ ;;^UTILITY(U,$J,358.3,18580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9633,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,9633,1,4,0)
- ;;=4^C50.421
- ;;^UTILITY(U,$J,358.3,9633,2)
- ;;=^5001180
- ;;^UTILITY(U,$J,358.3,9634,0)
- ;;=C50.422^^37^528^18
- ;;^UTILITY(U,$J,358.3,9634,1,0)
+ ;;^UTILITY(U,$J,358.3,18580,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,18580,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,18580,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,18581,0)
+ ;;=R79.1^^65^781^3
+ ;;^UTILITY(U,$J,358.3,18581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9634,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,9634,1,4,0)
- ;;=4^C50.422
- ;;^UTILITY(U,$J,358.3,9634,2)
- ;;=^5133336
- ;;^UTILITY(U,$J,358.3,9635,0)
- ;;=C50.521^^37^528^10
- ;;^UTILITY(U,$J,358.3,9635,1,0)
+ ;;^UTILITY(U,$J,358.3,18581,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,18581,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,18581,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,18582,0)
+ ;;=R82.5^^65^781^74
+ ;;^UTILITY(U,$J,358.3,18582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9635,1,3,0)
- ;;=3^Malig Neop of Lower-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,9635,1,4,0)
- ;;=4^C50.521
- ;;^UTILITY(U,$J,358.3,9635,2)
- ;;=^5001182
- ;;^UTILITY(U,$J,358.3,9636,0)
- ;;=C50.522^^37^528^9
- ;;^UTILITY(U,$J,358.3,9636,1,0)
+ ;;^UTILITY(U,$J,358.3,18582,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,18582,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,18582,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,18583,0)
+ ;;=R82.6^^65^781^30
+ ;;^UTILITY(U,$J,358.3,18583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9636,1,3,0)
- ;;=3^Malig Neop of Lower-Outer Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,9636,1,4,0)
- ;;=4^C50.522
- ;;^UTILITY(U,$J,358.3,9636,2)
- ;;=^5133338
- ;;^UTILITY(U,$J,358.3,9637,0)
- ;;=C50.621^^37^528^3
- ;;^UTILITY(U,$J,358.3,9637,1,0)
+ ;;^UTILITY(U,$J,358.3,18583,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,18583,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,18583,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,18584,0)
+ ;;=R82.90^^65^781^29
+ ;;^UTILITY(U,$J,358.3,18584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9637,1,3,0)
- ;;=3^Malig Neop of Axillary Tail of Right Breast
- ;;^UTILITY(U,$J,358.3,9637,1,4,0)
- ;;=4^C50.621
- ;;^UTILITY(U,$J,358.3,9637,2)
- ;;=^5001186
- ;;^UTILITY(U,$J,358.3,9638,0)
- ;;=C50.622^^37^528^2
- ;;^UTILITY(U,$J,358.3,9638,1,0)
+ ;;^UTILITY(U,$J,358.3,18584,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,18584,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,18584,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,18585,0)
+ ;;=R82.91^^65^781^53
+ ;;^UTILITY(U,$J,358.3,18585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9638,1,3,0)
- ;;=3^Malig Neop of Axillary Tail of Left Breast
- ;;^UTILITY(U,$J,358.3,9638,1,4,0)
- ;;=4^C50.622
- ;;^UTILITY(U,$J,358.3,9638,2)
- ;;=^5001187
- ;;^UTILITY(U,$J,358.3,9639,0)
- ;;=C50.821^^37^528^14
- ;;^UTILITY(U,$J,358.3,9639,1,0)
+ ;;^UTILITY(U,$J,358.3,18585,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,18585,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,18585,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,18586,0)
+ ;;=R89.9^^65^781^22
+ ;;^UTILITY(U,$J,358.3,18586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9639,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Right Breast
- ;;^UTILITY(U,$J,358.3,9639,1,4,0)
- ;;=4^C50.821
- ;;^UTILITY(U,$J,358.3,9639,2)
- ;;=^5001192
- ;;^UTILITY(U,$J,358.3,9640,0)
- ;;=C50.822^^37^528^13
- ;;^UTILITY(U,$J,358.3,9640,1,0)
+ ;;^UTILITY(U,$J,358.3,18586,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,18586,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,18586,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,18587,0)
+ ;;=R90.0^^65^781^103
+ ;;^UTILITY(U,$J,358.3,18587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9640,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Left Breast
- ;;^UTILITY(U,$J,358.3,9640,1,4,0)
- ;;=4^C50.822
- ;;^UTILITY(U,$J,358.3,9640,2)
- ;;=^5001193
- ;;^UTILITY(U,$J,358.3,9641,0)
- ;;=C50.921^^37^528^15
- ;;^UTILITY(U,$J,358.3,9641,1,0)
+ ;;^UTILITY(U,$J,358.3,18587,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,18587,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,18587,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,18588,0)
+ ;;=R90.89^^65^781^16
+ ;;^UTILITY(U,$J,358.3,18588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9641,1,3,0)
- ;;=3^Malig Neop of Right Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,9641,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,9641,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,9642,0)
- ;;=C50.922^^37^528^6
- ;;^UTILITY(U,$J,358.3,9642,1,0)
+ ;;^UTILITY(U,$J,358.3,18588,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,18588,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,18588,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,18589,0)
+ ;;=R91.8^^65^781^21
+ ;;^UTILITY(U,$J,358.3,18589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9642,1,3,0)
- ;;=3^Malig Neop of Left Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,9642,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,9642,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,9643,0)
- ;;=N62.^^37^528^1
- ;;^UTILITY(U,$J,358.3,9643,1,0)
+ ;;^UTILITY(U,$J,358.3,18589,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,18589,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,18589,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,18590,0)
+ ;;=R92.0^^65^781^122
+ ;;^UTILITY(U,$J,358.3,18590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9643,1,3,0)
- ;;=3^Hypertrophy of Breast
- ;;^UTILITY(U,$J,358.3,9643,1,4,0)
- ;;=4^N62.
- ;;^UTILITY(U,$J,358.3,9643,2)
- ;;=^5015790
- ;;^UTILITY(U,$J,358.3,9644,0)
- ;;=I25.10^^37^529^8
- ;;^UTILITY(U,$J,358.3,9644,1,0)
+ ;;^UTILITY(U,$J,358.3,18590,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,18590,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,18590,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,18591,0)
+ ;;=R92.1^^65^781^121
+ ;;^UTILITY(U,$J,358.3,18591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9644,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,9644,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,9644,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,9645,0)
- ;;=I50.9^^37^529^22
- ;;^UTILITY(U,$J,358.3,9645,1,0)
+ ;;^UTILITY(U,$J,358.3,18591,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,18591,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,18591,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,18592,0)
+ ;;=R92.2^^65^781^96
+ ;;^UTILITY(U,$J,358.3,18592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9645,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,9645,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,9645,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,9646,0)
- ;;=I50.43^^37^529^5
- ;;^UTILITY(U,$J,358.3,9646,1,0)
+ ;;^UTILITY(U,$J,358.3,18592,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,18592,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,18592,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,18593,0)
+ ;;=R93.0^^65^781^10
+ ;;^UTILITY(U,$J,358.3,18593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9646,1,3,0)
- ;;=3^Acute on Chronic Combined Systolic/Diastolic Hrt Failure
- ;;^UTILITY(U,$J,358.3,9646,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,9646,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,9647,0)
- ;;=I50.42^^37^529^12
- ;;^UTILITY(U,$J,358.3,9647,1,0)
+ ;;^UTILITY(U,$J,358.3,18593,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,18593,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,18593,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,18594,0)
+ ;;=R93.2^^65^781^9
+ ;;^UTILITY(U,$J,358.3,18594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9647,1,3,0)
- ;;=3^Chronic Combined Systolic/Diastolic Hrt Failure
- ;;^UTILITY(U,$J,358.3,9647,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,9647,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,9648,0)
- ;;=I50.40^^37^529^15
- ;;^UTILITY(U,$J,358.3,9648,1,0)
+ ;;^UTILITY(U,$J,358.3,18594,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,18594,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,18594,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,18595,0)
+ ;;=R93.3^^65^781^7
+ ;;^UTILITY(U,$J,358.3,18595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9648,1,3,0)
- ;;=3^Combined Systolic/Diastolic Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,9648,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,9648,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,9649,0)
- ;;=I50.41^^37^529^2
- ;;^UTILITY(U,$J,358.3,9649,1,0)
+ ;;^UTILITY(U,$J,358.3,18595,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,18595,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,18595,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,18596,0)
+ ;;=R93.5^^65^781^6
+ ;;^UTILITY(U,$J,358.3,18596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9649,1,3,0)
- ;;=3^Acute Combined Systolic/Diastolic Hrt Failure
- ;;^UTILITY(U,$J,358.3,9649,1,4,0)
- ;;=4^I50.41
- ;;^UTILITY(U,$J,358.3,9649,2)
- ;;=^5007248
- ;;^UTILITY(U,$J,358.3,9650,0)
- ;;=I50.30^^37^529^16
- ;;^UTILITY(U,$J,358.3,9650,1,0)
+ ;;^UTILITY(U,$J,358.3,18596,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,18596,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,18596,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,18597,0)
+ ;;=R93.6^^65^781^8
+ ;;^UTILITY(U,$J,358.3,18597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9650,1,3,0)
- ;;=3^Diastolic Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,9650,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,9650,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,9651,0)
- ;;=I50.31^^37^529^3
- ;;^UTILITY(U,$J,358.3,9651,1,0)
+ ;;^UTILITY(U,$J,358.3,18597,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,18597,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,18597,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,18598,0)
+ ;;=R94.4^^65^781^19
+ ;;^UTILITY(U,$J,358.3,18598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9651,1,3,0)
- ;;=3^Acute Diastolic Heart Failure
- ;;^UTILITY(U,$J,358.3,9651,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,9651,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,9652,0)
- ;;=I50.32^^37^529^13
- ;;^UTILITY(U,$J,358.3,9652,1,0)
+ ;;^UTILITY(U,$J,358.3,18598,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,18598,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,18598,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,18599,0)
+ ;;=R94.5^^65^781^20
+ ;;^UTILITY(U,$J,358.3,18599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9652,1,3,0)
- ;;=3^Chronic Diastolic Heart Failure
- ;;^UTILITY(U,$J,358.3,9652,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,9652,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,9653,0)
- ;;=I50.33^^37^529^6
- ;;^UTILITY(U,$J,358.3,9653,1,0)
+ ;;^UTILITY(U,$J,358.3,18599,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,18599,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,18599,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,18600,0)
+ ;;=R94.6^^65^781^24
+ ;;^UTILITY(U,$J,358.3,18600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9653,1,3,0)
- ;;=3^Acute on Chronic Diastolic Heart Failure
- ;;^UTILITY(U,$J,358.3,9653,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,9653,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,9654,0)
- ;;=I50.21^^37^529^4
- ;;^UTILITY(U,$J,358.3,9654,1,0)
+ ;;^UTILITY(U,$J,358.3,18600,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,18600,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,18600,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,18601,0)
+ ;;=R94.7^^65^781^5
+ ;;^UTILITY(U,$J,358.3,18601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9654,1,3,0)
- ;;=3^Acute Systolic Heart Failure
- ;;^UTILITY(U,$J,358.3,9654,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,9654,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,9655,0)
- ;;=I50.22^^37^529^14
- ;;^UTILITY(U,$J,358.3,9655,1,0)
+ ;;^UTILITY(U,$J,358.3,18601,1,3,0)
+ ;;=3^Abnormal Endocrine Function Studies NEC
+ ;;^UTILITY(U,$J,358.3,18601,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,18601,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,18602,0)
+ ;;=R94.31^^65^781^4
+ ;;^UTILITY(U,$J,358.3,18602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9655,1,3,0)
- ;;=3^Chronic Systolic Heart Failure
- ;;^UTILITY(U,$J,358.3,9655,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,9655,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,9656,0)
- ;;=I50.23^^37^529^7
+ ;;^UTILITY(U,$J,358.3,18602,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,18602,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,18602,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,18603,0)
+ ;;=R97.0^^65^781^72
+ ;;^UTILITY(U,$J,358.3,18603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18603,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,18603,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,18603,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,18604,0)
+ ;;=R97.1^^65^781^71
+ ;;^UTILITY(U,$J,358.3,18604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18604,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,18604,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,18604,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,18605,0)
+ ;;=R97.8^^65^781^25
+ ;;^UTILITY(U,$J,358.3,18605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18605,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,18605,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,18605,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,18606,0)
+ ;;=R93.1^^65^781^17
+ ;;^UTILITY(U,$J,358.3,18606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18606,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,18606,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,18606,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,18607,0)
+ ;;=R68.83^^65^781^52
+ ;;^UTILITY(U,$J,358.3,18607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18607,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,18607,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,18607,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,18608,0)
+ ;;=R68.2^^65^781^67
+ ;;^UTILITY(U,$J,358.3,18608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18608,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,18608,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,18608,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,18609,0)
+ ;;=R09.02^^65^781^93
+ ;;^UTILITY(U,$J,358.3,18609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18609,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,18609,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,18609,2)
+ ;;=^332831
+ ;;^UTILITY(U,$J,358.3,18610,0)
+ ;;=R39.81^^65^781^97
+ ;;^UTILITY(U,$J,358.3,18610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18610,1,3,0)
+ ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
+ ;;^UTILITY(U,$J,358.3,18610,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,18610,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,18611,0)
+ ;;=R29.6^^65^781^152
+ ;;^UTILITY(U,$J,358.3,18611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18611,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,18611,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,18611,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,18612,0)
+ ;;=R44.1^^65^781^167
+ ;;^UTILITY(U,$J,358.3,18612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18612,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,18612,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,18612,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,18613,0)
+ ;;=R93.422^^65^781^11
+ ;;^UTILITY(U,$J,358.3,18613,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18613,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Left Kidney
+ ;;^UTILITY(U,$J,358.3,18613,1,4,0)
+ ;;=4^R93.422
+ ;;^UTILITY(U,$J,358.3,18613,2)
+ ;;=^5139225
+ ;;^UTILITY(U,$J,358.3,18614,0)
+ ;;=R93.421^^65^781^14
+ ;;^UTILITY(U,$J,358.3,18614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18614,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Right Kidney
+ ;;^UTILITY(U,$J,358.3,18614,1,4,0)
+ ;;=4^R93.421
+ ;;^UTILITY(U,$J,358.3,18614,2)
+ ;;=^5139224
+ ;;^UTILITY(U,$J,358.3,18615,0)
+ ;;=R93.49^^65^781^12
+ ;;^UTILITY(U,$J,358.3,18615,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18615,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Oth Urinary Organs
+ ;;^UTILITY(U,$J,358.3,18615,1,4,0)
+ ;;=4^R93.49
+ ;;^UTILITY(U,$J,358.3,18615,2)
+ ;;=^5139227
+ ;;^UTILITY(U,$J,358.3,18616,0)
+ ;;=R93.41^^65^781^13
+ ;;^UTILITY(U,$J,358.3,18616,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18616,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image,Renal Pelvis/Ureter/Bladder
+ ;;^UTILITY(U,$J,358.3,18616,1,4,0)
+ ;;=4^R93.41
+ ;;^UTILITY(U,$J,358.3,18616,2)
+ ;;=^5139223
+ ;;^UTILITY(U,$J,358.3,18617,0)
+ ;;=R97.20^^65^781^73
+ ;;^UTILITY(U,$J,358.3,18617,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18617,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,18617,1,4,0)
+ ;;=4^R97.20
+ ;;^UTILITY(U,$J,358.3,18617,2)
+ ;;=^334262
+ ;;^UTILITY(U,$J,358.3,18618,0)
+ ;;=R97.21^^65^781^153
+ ;;^UTILITY(U,$J,358.3,18618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18618,1,3,0)
+ ;;=3^Rising PSA After Tx of Prostate CA
+ ;;^UTILITY(U,$J,358.3,18618,1,4,0)
+ ;;=4^R97.21
+ ;;^UTILITY(U,$J,358.3,18618,2)
+ ;;=^5139228
+ ;;^UTILITY(U,$J,358.3,18619,0)
+ ;;=K08.89^^65^781^64
+ ;;^UTILITY(U,$J,358.3,18619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18619,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
+ ;;^UTILITY(U,$J,358.3,18619,1,4,0)
+ ;;=4^K08.89
+ ;;^UTILITY(U,$J,358.3,18619,2)
+ ;;=^5008467
+ ;;^UTILITY(U,$J,358.3,18620,0)
+ ;;=R82.79^^65^781^31
+ ;;^UTILITY(U,$J,358.3,18620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18620,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,18620,1,4,0)
+ ;;=4^R82.79
+ ;;^UTILITY(U,$J,358.3,18620,2)
+ ;;=^5139222
+ ;;^UTILITY(U,$J,358.3,18621,0)
+ ;;=K08.9^^65^781^65
+ ;;^UTILITY(U,$J,358.3,18621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18621,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Unspec
+ ;;^UTILITY(U,$J,358.3,18621,1,4,0)
+ ;;=4^K08.9
+ ;;^UTILITY(U,$J,358.3,18621,2)
+ ;;=^5008468
+ ;;^UTILITY(U,$J,358.3,18622,0)
+ ;;=R93.89^^65^781^15
+ ;;^UTILITY(U,$J,358.3,18622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18622,1,3,0)
+ ;;=3^Abnormal Finding on Dx Imaging of Oth Body Structures
+ ;;^UTILITY(U,$J,358.3,18622,1,4,0)
+ ;;=4^R93.89
+ ;;^UTILITY(U,$J,358.3,18622,2)
+ ;;=^5157477
+ ;;^UTILITY(U,$J,358.3,18623,0)
+ ;;=R82.998^^65^781^28
+ ;;^UTILITY(U,$J,358.3,18623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18623,1,3,0)
+ ;;=3^Abnormal Urine Findings,Other
+ ;;^UTILITY(U,$J,358.3,18623,1,4,0)
+ ;;=4^R82.998
+ ;;^UTILITY(U,$J,358.3,18623,2)
+ ;;=^5157472
+ ;;^UTILITY(U,$J,358.3,18624,0)
+ ;;=R82.89^^65^781^27
+ ;;^UTILITY(U,$J,358.3,18624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18624,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings,Other
+ ;;^UTILITY(U,$J,358.3,18624,1,4,0)
+ ;;=4^R82.89
+ ;;^UTILITY(U,$J,358.3,18624,2)
+ ;;=^5158142
+ ;;^UTILITY(U,$J,358.3,18625,0)
+ ;;=R82.81^^65^781^150
+ ;;^UTILITY(U,$J,358.3,18625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18625,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,18625,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,18625,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,18626,0)
+ ;;=S43.51XA^^65^782^12
+ ;;^UTILITY(U,$J,358.3,18626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18626,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,18626,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,18626,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,18627,0)
+ ;;=S43.52XA^^65^782^1
+ ;;^UTILITY(U,$J,358.3,18627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18627,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,18627,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,18627,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,18628,0)
+ ;;=S43.421A^^65^782^17
+ ;;^UTILITY(U,$J,358.3,18628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18628,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,18628,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,18628,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,18629,0)
+ ;;=S43.422A^^65^782^6
+ ;;^UTILITY(U,$J,358.3,18629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18629,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,18629,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,18629,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,18630,0)
+ ;;=S53.401A^^65^782^14
+ ;;^UTILITY(U,$J,358.3,18630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18630,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,18630,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,18630,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,18631,0)
+ ;;=S53.402A^^65^782^3
+ ;;^UTILITY(U,$J,358.3,18631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18631,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,18631,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,18631,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,18632,0)
+ ;;=S56.011A^^65^782^55
+ ;;^UTILITY(U,$J,358.3,18632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18632,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,18632,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,18632,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,18633,0)
+ ;;=S56.012A^^65^782^36
+ ;;^UTILITY(U,$J,358.3,18633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18633,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,18633,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,18633,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,18634,0)
+ ;;=S56.111A^^65^782^43
+ ;;^UTILITY(U,$J,358.3,18634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18634,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,18634,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,18634,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,18635,0)
+ ;;=S56.112A^^65^782^23
+ ;;^UTILITY(U,$J,358.3,18635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18635,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,18635,1,4,0)
+ ;;=4^S56.112A

@@ -1,136 +1,124 @@
-IBDEI1GN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24810,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,24810,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,24811,0)
- ;;=F23.^^93^1113^1
- ;;^UTILITY(U,$J,358.3,24811,1,0)
+ ;;^UTILITY(U,$J,358.3,23357,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,23357,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,23358,0)
+ ;;=C78.7^^105^1173^95
+ ;;^UTILITY(U,$J,358.3,23358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24811,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,24811,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,24811,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,24812,0)
- ;;=F25.0^^93^1113^3
- ;;^UTILITY(U,$J,358.3,24812,1,0)
+ ;;^UTILITY(U,$J,358.3,23358,1,3,0)
+ ;;=3^Secondary Malig Neop of Liver/Intrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,23358,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,23358,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,23359,0)
+ ;;=C79.31^^105^1173^93
+ ;;^UTILITY(U,$J,358.3,23359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24812,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,24812,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,24812,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,24813,0)
- ;;=F25.1^^93^1113^4
- ;;^UTILITY(U,$J,358.3,24813,1,0)
+ ;;^UTILITY(U,$J,358.3,23359,1,3,0)
+ ;;=3^Secondary Malig Neop of Brain
+ ;;^UTILITY(U,$J,358.3,23359,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,23359,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,23360,0)
+ ;;=C79.49^^105^1173^98
+ ;;^UTILITY(U,$J,358.3,23360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24813,1,3,0)
- ;;=3^Schizoaffective Disorder,Depressive Type
- ;;^UTILITY(U,$J,358.3,24813,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,24813,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,24814,0)
- ;;=F28.^^93^1113^7
- ;;^UTILITY(U,$J,358.3,24814,1,0)
+ ;;^UTILITY(U,$J,358.3,23360,1,3,0)
+ ;;=3^Secondary Malig Neop of Nervous System
+ ;;^UTILITY(U,$J,358.3,23360,1,4,0)
+ ;;=4^C79.49
+ ;;^UTILITY(U,$J,358.3,23360,2)
+ ;;=^267335
+ ;;^UTILITY(U,$J,358.3,23361,0)
+ ;;=C79.32^^105^1173^94
+ ;;^UTILITY(U,$J,358.3,23361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24814,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,24814,1,4,0)
- ;;=4^F28.
- ;;^UTILITY(U,$J,358.3,24814,2)
- ;;=^5003483
- ;;^UTILITY(U,$J,358.3,24815,0)
- ;;=F29.^^93^1113^6
- ;;^UTILITY(U,$J,358.3,24815,1,0)
+ ;;^UTILITY(U,$J,358.3,23361,1,3,0)
+ ;;=3^Secondary Malig Neop of Cerebral Meninges
+ ;;^UTILITY(U,$J,358.3,23361,1,4,0)
+ ;;=4^C79.32
+ ;;^UTILITY(U,$J,358.3,23361,2)
+ ;;=^5001348
+ ;;^UTILITY(U,$J,358.3,23362,0)
+ ;;=C79.51^^105^1173^91
+ ;;^UTILITY(U,$J,358.3,23362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24815,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24815,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,24815,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,24816,0)
- ;;=F52.32^^93^1114^1
- ;;^UTILITY(U,$J,358.3,24816,1,0)
+ ;;^UTILITY(U,$J,358.3,23362,1,3,0)
+ ;;=3^Secondary Malig Neop of Bone
+ ;;^UTILITY(U,$J,358.3,23362,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,23362,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,23363,0)
+ ;;=C79.52^^105^1173^92
+ ;;^UTILITY(U,$J,358.3,23363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24816,1,3,0)
- ;;=3^Delayed Ejaculation
- ;;^UTILITY(U,$J,358.3,24816,1,4,0)
- ;;=4^F52.32
- ;;^UTILITY(U,$J,358.3,24816,2)
- ;;=^331927
- ;;^UTILITY(U,$J,358.3,24817,0)
- ;;=F52.21^^93^1114^2
- ;;^UTILITY(U,$J,358.3,24817,1,0)
+ ;;^UTILITY(U,$J,358.3,23363,1,3,0)
+ ;;=3^Secondary Malig Neop of Bone Marrow
+ ;;^UTILITY(U,$J,358.3,23363,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,23363,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,23364,0)
+ ;;=C79.70^^105^1173^90
+ ;;^UTILITY(U,$J,358.3,23364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24817,1,3,0)
- ;;=3^Erectile Disorder
- ;;^UTILITY(U,$J,358.3,24817,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,24817,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,24818,0)
- ;;=F52.31^^93^1114^3
- ;;^UTILITY(U,$J,358.3,24818,1,0)
+ ;;^UTILITY(U,$J,358.3,23364,1,3,0)
+ ;;=3^Secondary Malig Neop of Adrenal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,23364,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,23364,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,23365,0)
+ ;;=C83.30^^105^1173^12
+ ;;^UTILITY(U,$J,358.3,23365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24818,1,3,0)
- ;;=3^Female Orgasmic Disorder
- ;;^UTILITY(U,$J,358.3,24818,1,4,0)
- ;;=4^F52.31
- ;;^UTILITY(U,$J,358.3,24818,2)
- ;;=^331926
- ;;^UTILITY(U,$J,358.3,24819,0)
- ;;=F52.22^^93^1114^4
- ;;^UTILITY(U,$J,358.3,24819,1,0)
+ ;;^UTILITY(U,$J,358.3,23365,1,3,0)
+ ;;=3^Diffuse Large B-Cell Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,23365,1,4,0)
+ ;;=4^C83.30
+ ;;^UTILITY(U,$J,358.3,23365,2)
+ ;;=^5001571
+ ;;^UTILITY(U,$J,358.3,23366,0)
+ ;;=C83.39^^105^1173^11
+ ;;^UTILITY(U,$J,358.3,23366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24819,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,24819,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,24819,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,24820,0)
- ;;=F52.6^^93^1114^5
- ;;^UTILITY(U,$J,358.3,24820,1,0)
+ ;;^UTILITY(U,$J,358.3,23366,1,3,0)
+ ;;=3^Diffuse Large B-Cell Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,23366,1,4,0)
+ ;;=4^C83.39
+ ;;^UTILITY(U,$J,358.3,23366,2)
+ ;;=^5001580
+ ;;^UTILITY(U,$J,358.3,23367,0)
+ ;;=C83.50^^105^1173^31
+ ;;^UTILITY(U,$J,358.3,23367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24820,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,24820,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,24820,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,24821,0)
- ;;=F52.0^^93^1114^6
- ;;^UTILITY(U,$J,358.3,24821,1,0)
+ ;;^UTILITY(U,$J,358.3,23367,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,23367,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,23367,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,23368,0)
+ ;;=C83.59^^105^1173^30
+ ;;^UTILITY(U,$J,358.3,23368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24821,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,24821,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,24821,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,24822,0)
- ;;=F52.4^^93^1114^7
- ;;^UTILITY(U,$J,358.3,24822,1,0)
+ ;;^UTILITY(U,$J,358.3,23368,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,23368,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,23368,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,23369,0)
+ ;;=C81.90^^105^1173^22
+ ;;^UTILITY(U,$J,358.3,23369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24822,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,24822,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,24822,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,24823,0)
- ;;=F52.8^^93^1114^9
- ;;^UTILITY(U,$J,358.3,24823,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24823,1,3,0)
- ;;=3^Sexual Dysfuntion NEC
- ;;^UTILITY(U,$J,358.3,24823,1,4,0)
- ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,23369,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site,Unspec

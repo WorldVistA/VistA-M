@@ -1,132 +1,118 @@
-IBDEI28A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37795,1,3,0)
- ;;=3^ONLINE SERVICE BY HC PRO
- ;;^UTILITY(U,$J,358.3,37796,0)
- ;;=94660^^141^1809^1^^^^1
- ;;^UTILITY(U,$J,358.3,37796,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37796,1,1,0)
- ;;=1^94660
- ;;^UTILITY(U,$J,358.3,37796,1,3,0)
- ;;=3^CPAP SET UP/MANAGEMENT
- ;;^UTILITY(U,$J,358.3,37797,0)
- ;;=99091^^141^1809^3^^^^1
- ;;^UTILITY(U,$J,358.3,37797,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37797,1,1,0)
- ;;=1^99091
- ;;^UTILITY(U,$J,358.3,37797,1,3,0)
- ;;=3^COLLECTION/INTERP CPAP DATA
- ;;^UTILITY(U,$J,358.3,37798,0)
- ;;=99070^^141^1809^2^^^^1
- ;;^UTILITY(U,$J,358.3,37798,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37798,1,1,0)
- ;;=1^99070
- ;;^UTILITY(U,$J,358.3,37798,1,3,0)
- ;;=3^SUPPLIES AND MATERIALS
- ;;^UTILITY(U,$J,358.3,37799,0)
- ;;=98960^^141^1810^1^^^^1
- ;;^UTILITY(U,$J,358.3,37799,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37799,1,1,0)
- ;;=1^98960
- ;;^UTILITY(U,$J,358.3,37799,1,3,0)
- ;;=3^EDUC/TRAIN INDIVD EA 30 MIN
- ;;^UTILITY(U,$J,358.3,37800,0)
- ;;=98961^^141^1810^2^^^^1
- ;;^UTILITY(U,$J,358.3,37800,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37800,1,1,0)
- ;;=1^98961
- ;;^UTILITY(U,$J,358.3,37800,1,3,0)
- ;;=3^EDUC/TRAIN GROUP 2-4 PTS
- ;;^UTILITY(U,$J,358.3,37801,0)
- ;;=98962^^141^1810^3^^^^1
- ;;^UTILITY(U,$J,358.3,37801,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37801,1,1,0)
- ;;=1^98962
- ;;^UTILITY(U,$J,358.3,37801,1,3,0)
- ;;=3^EDUC/TRAIN GROUP 5-8 PTS
- ;;^UTILITY(U,$J,358.3,37802,0)
- ;;=99071^^141^1810^4^^^^1
- ;;^UTILITY(U,$J,358.3,37802,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37802,1,1,0)
- ;;=1^99071
- ;;^UTILITY(U,$J,358.3,37802,1,3,0)
- ;;=3^PATIENT EDUCATION MATERIALS
- ;;^UTILITY(U,$J,358.3,37803,0)
- ;;=94664^^141^1810^5^^^^1
- ;;^UTILITY(U,$J,358.3,37803,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37803,1,1,0)
- ;;=1^94664
- ;;^UTILITY(U,$J,358.3,37803,1,3,0)
- ;;=3^EVALUATE PT USE OF INHALER
- ;;^UTILITY(U,$J,358.3,37804,0)
- ;;=99415^^141^1811^1^^^^1
- ;;^UTILITY(U,$J,358.3,37804,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37804,1,1,0)
- ;;=1^99415
- ;;^UTILITY(U,$J,358.3,37804,1,3,0)
- ;;=3^Prolonged Clin Staff Svcs,1st hr        
- ;;^UTILITY(U,$J,358.3,37805,0)
- ;;=99416^^141^1811^2^^^^1
- ;;^UTILITY(U,$J,358.3,37805,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,37805,1,1,0)
- ;;=1^99416
- ;;^UTILITY(U,$J,358.3,37805,1,3,0)
- ;;=3^Prolonged Clin Staff Svcs,Ea Addl 30 min
- ;;^UTILITY(U,$J,358.3,37806,0)
- ;;=99201^^142^1812^1
- ;;^UTILITY(U,$J,358.3,37806,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,37806,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,37806,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,37807,0)
- ;;=99202^^142^1812^2
- ;;^UTILITY(U,$J,358.3,37807,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,37807,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,37807,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,37808,0)
- ;;=99203^^142^1812^3
- ;;^UTILITY(U,$J,358.3,37808,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,37808,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,37808,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,37809,0)
- ;;=99204^^142^1812^4
- ;;^UTILITY(U,$J,358.3,37809,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,37809,1,1,0)
- ;;=1^Comprehensive,Moderate
- ;;^UTILITY(U,$J,358.3,37809,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,37810,0)
- ;;=99205^^142^1812^5
- ;;^UTILITY(U,$J,358.3,37810,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,37810,1,1,0)
- ;;=1^Comprehensive,High
- ;;^UTILITY(U,$J,358.3,37810,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,37811,0)
- ;;=99211^^142^1813^1
- ;;^UTILITY(U,$J,358.3,37811,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,37811,1,1,0)
- ;;=1^Brief
+ ;;^UTILITY(U,$J,358.3,35583,0)
+ ;;=S06.9X4A^^139^1816^9
+ ;;^UTILITY(U,$J,358.3,35583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35583,1,3,0)
+ ;;=3^Intcrn inj w LOC of 6 hours to 24 hours, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,35583,1,4,0)
+ ;;=4^S06.9X4A
+ ;;^UTILITY(U,$J,358.3,35583,2)
+ ;;=^5021218
+ ;;^UTILITY(U,$J,358.3,35584,0)
+ ;;=S06.9X9A^^139^1816^10
+ ;;^UTILITY(U,$J,358.3,35584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35584,1,3,0)
+ ;;=3^Intcrn inj w LOC of unsp duration, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,35584,1,4,0)
+ ;;=4^S06.9X9A
+ ;;^UTILITY(U,$J,358.3,35584,2)
+ ;;=^5021233
+ ;;^UTILITY(U,$J,358.3,35585,0)
+ ;;=S06.9X0A^^139^1816^12
+ ;;^UTILITY(U,$J,358.3,35585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35585,1,3,0)
+ ;;=3^Intcrn inj w/o LOC, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,35585,1,4,0)
+ ;;=4^S06.9X0A
+ ;;^UTILITY(U,$J,358.3,35585,2)
+ ;;=^5021206
+ ;;^UTILITY(U,$J,358.3,35586,0)
+ ;;=S78.019S^^139^1817^4
+ ;;^UTILITY(U,$J,358.3,35586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35586,1,3,0)
+ ;;=3^Complete traumatic amputation at unsp hip joint, sequela
+ ;;^UTILITY(U,$J,358.3,35586,1,4,0)
+ ;;=4^S78.019S
+ ;;^UTILITY(U,$J,358.3,35586,2)
+ ;;=^5039710
+ ;;^UTILITY(U,$J,358.3,35587,0)
+ ;;=S68.419S^^139^1817^1
+ ;;^UTILITY(U,$J,358.3,35587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35587,1,3,0)
+ ;;=3^Complete traumatic amp of unsp hand at wrist level, sequela
+ ;;^UTILITY(U,$J,358.3,35587,1,4,0)
+ ;;=4^S68.419S
+ ;;^UTILITY(U,$J,358.3,35587,2)
+ ;;=^5036707
+ ;;^UTILITY(U,$J,358.3,35588,0)
+ ;;=S88.919S^^139^1817^2
+ ;;^UTILITY(U,$J,358.3,35588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35588,1,3,0)
+ ;;=3^Complete traumatic amp of unsp low leg, level unsp, sequela
+ ;;^UTILITY(U,$J,358.3,35588,1,4,0)
+ ;;=4^S88.919S
+ ;;^UTILITY(U,$J,358.3,35588,2)
+ ;;=^5137219
+ ;;^UTILITY(U,$J,358.3,35589,0)
+ ;;=S48.919S^^139^1817^3
+ ;;^UTILITY(U,$J,358.3,35589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35589,1,3,0)
+ ;;=3^Complete traumatic amp of unsp shldr/up arm, level unsp, sequela
+ ;;^UTILITY(U,$J,358.3,35589,1,4,0)
+ ;;=4^S48.919S
+ ;;^UTILITY(U,$J,358.3,35589,2)
+ ;;=^5028331
+ ;;^UTILITY(U,$J,358.3,35590,0)
+ ;;=S14.2XXS^^139^1817^6
+ ;;^UTILITY(U,$J,358.3,35590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35590,1,3,0)
+ ;;=3^Injury of nerve root of cervical spine, sequela
+ ;;^UTILITY(U,$J,358.3,35590,1,4,0)
+ ;;=4^S14.2XXS
+ ;;^UTILITY(U,$J,358.3,35590,2)
+ ;;=^5022204
+ ;;^UTILITY(U,$J,358.3,35591,0)
+ ;;=S34.21XS^^139^1817^7
+ ;;^UTILITY(U,$J,358.3,35591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35591,1,3,0)
+ ;;=3^Injury of nerve root of lumbar spine, sequela
+ ;;^UTILITY(U,$J,358.3,35591,1,4,0)
+ ;;=4^S34.21XS
+ ;;^UTILITY(U,$J,358.3,35591,2)
+ ;;=^5025252
+ ;;^UTILITY(U,$J,358.3,35592,0)
+ ;;=S34.22XS^^139^1817^8
+ ;;^UTILITY(U,$J,358.3,35592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35592,1,3,0)
+ ;;=3^Injury of nerve root of sacral spine, sequela
+ ;;^UTILITY(U,$J,358.3,35592,1,4,0)
+ ;;=4^S34.22XS
+ ;;^UTILITY(U,$J,358.3,35592,2)
+ ;;=^5025255
+ ;;^UTILITY(U,$J,358.3,35593,0)
+ ;;=S24.2XXS^^139^1817^9
+ ;;^UTILITY(U,$J,358.3,35593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35593,1,3,0)
+ ;;=3^Injury of nerve root of thoracic spine, sequela
+ ;;^UTILITY(U,$J,358.3,35593,1,4,0)
+ ;;=4^S24.2XXS
+ ;;^UTILITY(U,$J,358.3,35593,2)
+ ;;=^5023347
+ ;;^UTILITY(U,$J,358.3,35594,0)
+ ;;=S04.9XXS^^139^1817^11
+ ;;^UTILITY(U,$J,358.3,35594,1,0)
+ ;;=^358.31IA^4^2

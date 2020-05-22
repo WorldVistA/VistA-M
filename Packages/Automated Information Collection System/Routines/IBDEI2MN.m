@@ -1,146 +1,118 @@
-IBDEI2MN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2MN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.5)
- ;;=^IBE(358.5,
- ;;^UTILITY(U,$J,358.5,0)
- ;;=IMP/EXP DATA FIELD^358.5I^240^240
- ;;^UTILITY(U,$J,358.5,1,0)
- ;;=Patient name^2^3
- ;;^UTILITY(U,$J,358.5,1,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,1,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,2,0)
- ;;=SSN^2^4
- ;;^UTILITY(U,$J,358.5,2,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,2,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,3,0)
- ;;=Age^2^5
- ;;^UTILITY(U,$J,358.5,3,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,3,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,3,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,4,0)
- ;;=HEADER^3
- ;;^UTILITY(U,$J,358.5,4,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,4,2,1,0)
- ;;=NATIONAL ADDICTION^^^0^0
- ;;^UTILITY(U,$J,358.5,5,0)
- ;;=HEADER^8
- ;;^UTILITY(U,$J,358.5,5,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,5,2,1,0)
- ;;=NATIONAL ANESTHESIA^^^0^0
- ;;^UTILITY(U,$J,358.5,6,0)
- ;;=Patient name^9^3
- ;;^UTILITY(U,$J,358.5,6,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,6,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,7,0)
- ;;=SSN^9^4
- ;;^UTILITY(U,$J,358.5,7,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,7,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,8,0)
- ;;=Age^9^5
- ;;^UTILITY(U,$J,358.5,8,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,8,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,8,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,9,0)
- ;;=HEADER^11
- ;;^UTILITY(U,$J,358.5,9,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,9,2,1,0)
- ;;=NATIONAL AUDIOLOGY^^^0^0
- ;;^UTILITY(U,$J,358.5,10,0)
- ;;=Patient name^12^3
- ;;^UTILITY(U,$J,358.5,10,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,10,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,11,0)
- ;;=SSN^12^4
- ;;^UTILITY(U,$J,358.5,11,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,11,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,12,0)
- ;;=Age^12^5
- ;;^UTILITY(U,$J,358.5,12,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,12,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,12,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,13,0)
- ;;=HEADER^16
- ;;^UTILITY(U,$J,358.5,13,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,13,2,1,0)
- ;;=NATIONAL CARDIOLOGY^^^0^0
- ;;^UTILITY(U,$J,358.5,14,0)
- ;;=Patient name^17^3
- ;;^UTILITY(U,$J,358.5,14,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,14,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,15,0)
- ;;=SSN^17^4
- ;;^UTILITY(U,$J,358.5,15,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,15,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,16,0)
- ;;=Age^17^5
- ;;^UTILITY(U,$J,358.5,16,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,16,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,16,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,17,0)
- ;;=HEADER^22
- ;;^UTILITY(U,$J,358.5,17,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,17,2,1,0)
- ;;=NATIONAL CHIROPRACTIC^^^0^0
- ;;^UTILITY(U,$J,358.5,18,0)
- ;;=Patient name^23^3
- ;;^UTILITY(U,$J,358.5,18,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,18,2,1,0)
- ;;=Name:^^^1^1^1^7^30^1
- ;;^UTILITY(U,$J,358.5,19,0)
- ;;=SSN^23^4
- ;;^UTILITY(U,$J,358.5,19,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,19,2,1,0)
- ;;=SSN:^^^39^1^1^44^15^1
- ;;^UTILITY(U,$J,358.5,20,0)
- ;;=Age^23^5
- ;;^UTILITY(U,$J,358.5,20,2,0)
- ;;=^358.52^2^2
- ;;^UTILITY(U,$J,358.5,20,2,1,0)
- ;;=DOB:^^^60^1^1^65^12^1
- ;;^UTILITY(U,$J,358.5,20,2,2,0)
- ;;=Age:^^^78^1^1^83^3^2
- ;;^UTILITY(U,$J,358.5,21,0)
- ;;=HEADER^26
- ;;^UTILITY(U,$J,358.5,21,2,0)
- ;;=^358.52^1^1
- ;;^UTILITY(U,$J,358.5,21,2,1,0)
- ;;=NATIONAL CLC^^^0^0
- ;;^UTILITY(U,$J,358.5,22,0)
- ;;=Patient name^28^3
+ ;;^UTILITY(U,$J,358.3,41946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41946,1,3,0)
+ ;;=3^Administrative Exams
+ ;;^UTILITY(U,$J,358.3,41946,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,41946,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,41947,0)
+ ;;=Z02.5^^155^2065^3
+ ;;^UTILITY(U,$J,358.3,41947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41947,1,3,0)
+ ;;=3^Exam for Sport Participation
+ ;;^UTILITY(U,$J,358.3,41947,1,4,0)
+ ;;=4^Z02.5
+ ;;^UTILITY(U,$J,358.3,41947,2)
+ ;;=^5062638
+ ;;^UTILITY(U,$J,358.3,41948,0)
+ ;;=S06.0X1S^^155^2066^1
+ ;;^UTILITY(U,$J,358.3,41948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41948,1,3,0)
+ ;;=3^Concussion w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,41948,1,4,0)
+ ;;=4^S06.0X1S
+ ;;^UTILITY(U,$J,358.3,41948,2)
+ ;;=^5020671
+ ;;^UTILITY(U,$J,358.3,41949,0)
+ ;;=S06.0X9S^^155^2066^2
+ ;;^UTILITY(U,$J,358.3,41949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41949,1,3,0)
+ ;;=3^Concussion w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,41949,1,4,0)
+ ;;=4^S06.0X9S
+ ;;^UTILITY(U,$J,358.3,41949,2)
+ ;;=^5020695
+ ;;^UTILITY(U,$J,358.3,41950,0)
+ ;;=S06.0X0S^^155^2066^3
+ ;;^UTILITY(U,$J,358.3,41950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41950,1,3,0)
+ ;;=3^Concussion w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,41950,1,4,0)
+ ;;=4^S06.0X0S
+ ;;^UTILITY(U,$J,358.3,41950,2)
+ ;;=^5020668
+ ;;^UTILITY(U,$J,358.3,41951,0)
+ ;;=S06.335S^^155^2066^4
+ ;;^UTILITY(U,$J,358.3,41951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41951,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,41951,1,4,0)
+ ;;=4^S06.335S
+ ;;^UTILITY(U,$J,358.3,41951,2)
+ ;;=^5020863
+ ;;^UTILITY(U,$J,358.3,41952,0)
+ ;;=S06.336S^^155^2066^5
+ ;;^UTILITY(U,$J,358.3,41952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41952,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,41952,1,4,0)
+ ;;=4^S06.336S
+ ;;^UTILITY(U,$J,358.3,41952,2)
+ ;;=^5020866
+ ;;^UTILITY(U,$J,358.3,41953,0)
+ ;;=S06.333S^^155^2066^6
+ ;;^UTILITY(U,$J,358.3,41953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41953,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,41953,1,4,0)
+ ;;=4^S06.333S
+ ;;^UTILITY(U,$J,358.3,41953,2)
+ ;;=^5020857
+ ;;^UTILITY(U,$J,358.3,41954,0)
+ ;;=S06.331S^^155^2066^7
+ ;;^UTILITY(U,$J,358.3,41954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41954,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,41954,1,4,0)
+ ;;=4^S06.331S
+ ;;^UTILITY(U,$J,358.3,41954,2)
+ ;;=^5020851
+ ;;^UTILITY(U,$J,358.3,41955,0)
+ ;;=S06.325S^^155^2066^8
+ ;;^UTILITY(U,$J,358.3,41955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41955,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,41955,1,4,0)
+ ;;=4^S06.325S
+ ;;^UTILITY(U,$J,358.3,41955,2)
+ ;;=^5020833
+ ;;^UTILITY(U,$J,358.3,41956,0)
+ ;;=S06.326S^^155^2066^9
+ ;;^UTILITY(U,$J,358.3,41956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41956,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,41956,1,4,0)
+ ;;=4^S06.326S
+ ;;^UTILITY(U,$J,358.3,41956,2)
+ ;;=^5020836
+ ;;^UTILITY(U,$J,358.3,41957,0)
+ ;;=S06.323S^^155^2066^10
+ ;;^UTILITY(U,$J,358.3,41957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41957,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 1-5 hrs 59 min, sequela

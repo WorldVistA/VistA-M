@@ -1,5 +1,5 @@
-XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;01/25/17  7:52
- ;;8.0;KERNEL;**404,439,523,595,522,638,659,630**;Jul 10, 1995;Build 13
+XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;03/24/2020
+ ;;8.0;KERNEL;**404,439,523,595,522,638,659,630,727**;Jul 10, 1995;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -226,8 +226,8 @@ SETCNTXT(XOPT) ;
  . N XARR S XARR(200.19,"+1,"_DUZ_",",.01)=XUCONTXT
  . D UPDATE^DIE("E","XARR")
  . ; And now she can give himself the context option
- . K XARR S XARR(200.03,"+1,"_DUZ_",",.01)=XUCONTXT
- . D UPDATE^DIE("E","XARR") ; Give context option as a secondary menu item
+ . K XARR S XARR(200.03,"?+2,"_DUZ_",",.01)=XOPT ;p727
+ . D UPDATE^DIE("","XARR") ; Give context option as a secondary menu item ;p727
  . S ^XUTL("XQ",$J,"DUZ(BSE)")=XUCONTXT
  . ; But now we have to remove the delegated option
  . S OPT=$$FIND1^DIC(200.19,","_DUZ_",","X",XUCONTXT)

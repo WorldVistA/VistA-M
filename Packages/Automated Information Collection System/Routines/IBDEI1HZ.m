@@ -1,126 +1,130 @@
-IBDEI1HZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25417,1,3,0)
- ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,25417,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,25417,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,25418,0)
- ;;=G47.33^^95^1164^21
- ;;^UTILITY(U,$J,358.3,25418,1,0)
+ ;;^UTILITY(U,$J,358.3,23954,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,23954,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,23954,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,23955,0)
+ ;;=Z00.8^^107^1197^8
+ ;;^UTILITY(U,$J,358.3,23955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25418,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,25418,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,25418,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,25419,0)
- ;;=G47.31^^95^1164^1
- ;;^UTILITY(U,$J,358.3,25419,1,0)
+ ;;^UTILITY(U,$J,358.3,23955,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,23955,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,23955,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,23956,0)
+ ;;=Z02.1^^107^1197^14
+ ;;^UTILITY(U,$J,358.3,23956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25419,1,3,0)
- ;;=3^Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,25419,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,25419,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,25420,0)
- ;;=G47.21^^95^1164^5
- ;;^UTILITY(U,$J,358.3,25420,1,0)
+ ;;^UTILITY(U,$J,358.3,23956,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,23956,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,23956,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,23957,0)
+ ;;=Z01.810^^107^1197^2
+ ;;^UTILITY(U,$J,358.3,23957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25420,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,25420,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,25420,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,25421,0)
- ;;=G47.22^^95^1164^4
- ;;^UTILITY(U,$J,358.3,25421,1,0)
+ ;;^UTILITY(U,$J,358.3,23957,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,23957,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,23957,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,23958,0)
+ ;;=Z01.811^^107^1197^16
+ ;;^UTILITY(U,$J,358.3,23958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25421,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,25421,1,4,0)
- ;;=4^G47.22
- ;;^UTILITY(U,$J,358.3,25421,2)
- ;;=^332770
- ;;^UTILITY(U,$J,358.3,25422,0)
- ;;=G47.23^^95^1164^6
- ;;^UTILITY(U,$J,358.3,25422,1,0)
+ ;;^UTILITY(U,$J,358.3,23958,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,23958,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,23958,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,23959,0)
+ ;;=Z01.812^^107^1197^13
+ ;;^UTILITY(U,$J,358.3,23959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25422,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,25422,1,4,0)
- ;;=4^G47.23
- ;;^UTILITY(U,$J,358.3,25422,2)
- ;;=^5003975
- ;;^UTILITY(U,$J,358.3,25423,0)
- ;;=G47.24^^95^1164^7
- ;;^UTILITY(U,$J,358.3,25423,1,0)
+ ;;^UTILITY(U,$J,358.3,23959,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,23959,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,23959,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,23960,0)
+ ;;=Z01.818^^107^1197^15
+ ;;^UTILITY(U,$J,358.3,23960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25423,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,25423,1,4,0)
- ;;=4^G47.24
- ;;^UTILITY(U,$J,358.3,25423,2)
- ;;=^5003976
- ;;^UTILITY(U,$J,358.3,25424,0)
- ;;=G47.26^^95^1164^8
- ;;^UTILITY(U,$J,358.3,25424,1,0)
+ ;;^UTILITY(U,$J,358.3,23960,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,23960,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,23960,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,23961,0)
+ ;;=Z71.0^^107^1197^9
+ ;;^UTILITY(U,$J,358.3,23961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25424,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
- ;;^UTILITY(U,$J,358.3,25424,1,4,0)
- ;;=4^G47.26
- ;;^UTILITY(U,$J,358.3,25424,2)
- ;;=^332774
- ;;^UTILITY(U,$J,358.3,25425,0)
- ;;=G47.20^^95^1164^9
- ;;^UTILITY(U,$J,358.3,25425,1,0)
+ ;;^UTILITY(U,$J,358.3,23961,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,23961,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,23961,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,23962,0)
+ ;;=Z59.8^^107^1197^10
+ ;;^UTILITY(U,$J,358.3,23962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25425,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
- ;;^UTILITY(U,$J,358.3,25425,1,4,0)
- ;;=4^G47.20
- ;;^UTILITY(U,$J,358.3,25425,2)
- ;;=^5003974
- ;;^UTILITY(U,$J,358.3,25426,0)
- ;;=F51.3^^95^1164^19
- ;;^UTILITY(U,$J,358.3,25426,1,0)
+ ;;^UTILITY(U,$J,358.3,23962,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,23962,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,23962,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,23963,0)
+ ;;=I20.0^^107^1198^5
+ ;;^UTILITY(U,$J,358.3,23963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25426,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleepwalking Type
- ;;^UTILITY(U,$J,358.3,25426,1,4,0)
- ;;=4^F51.3
- ;;^UTILITY(U,$J,358.3,25426,2)
- ;;=^5003613
- ;;^UTILITY(U,$J,358.3,25427,0)
- ;;=F51.4^^95^1164^20
- ;;^UTILITY(U,$J,358.3,25427,1,0)
+ ;;^UTILITY(U,$J,358.3,23963,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,23963,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,23963,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,23964,0)
+ ;;=I25.2^^107^1198^4
+ ;;^UTILITY(U,$J,358.3,23964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25427,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
- ;;^UTILITY(U,$J,358.3,25427,1,4,0)
- ;;=4^F51.4
- ;;^UTILITY(U,$J,358.3,25427,2)
- ;;=^5003614
- ;;^UTILITY(U,$J,358.3,25428,0)
- ;;=F51.5^^95^1164^18
- ;;^UTILITY(U,$J,358.3,25428,1,0)
+ ;;^UTILITY(U,$J,358.3,23964,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,23964,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,23964,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,23965,0)
+ ;;=I20.8^^107^1198^2
+ ;;^UTILITY(U,$J,358.3,23965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25428,1,3,0)
- ;;=3^Nightmare Disorder
- ;;^UTILITY(U,$J,358.3,25428,1,4,0)
- ;;=4^F51.5
- ;;^UTILITY(U,$J,358.3,25428,2)
- ;;=^5003615
- ;;^UTILITY(U,$J,358.3,25429,0)
- ;;=G47.52^^95^1164^22
- ;;^UTILITY(U,$J,358.3,25429,1,0)
+ ;;^UTILITY(U,$J,358.3,23965,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,23965,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,23965,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,23966,0)
+ ;;=I20.1^^107^1198^1
+ ;;^UTILITY(U,$J,358.3,23966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25429,1,3,0)
- ;;=3^Rapid Eye Movement Sleep Behavior Disorder
+ ;;^UTILITY(U,$J,358.3,23966,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,23966,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,23966,2)
+ ;;=^5007077

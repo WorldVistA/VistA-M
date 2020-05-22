@@ -1,136 +1,120 @@
-IBDEI1YJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33222,1,4,0)
- ;;=4^I70.645
- ;;^UTILITY(U,$J,358.3,33222,2)
- ;;=^5007751
- ;;^UTILITY(U,$J,358.3,33223,0)
- ;;=K12.0^^131^1669^258
- ;;^UTILITY(U,$J,358.3,33223,1,0)
+ ;;^UTILITY(U,$J,358.3,31274,2)
+ ;;=^5017865
+ ;;^UTILITY(U,$J,358.3,31275,0)
+ ;;=O98.13^^126^1623^90
+ ;;^UTILITY(U,$J,358.3,31275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33223,1,3,0)
- ;;=3^Recurrent Oral Aphthae
- ;;^UTILITY(U,$J,358.3,33223,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,33223,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,33224,0)
- ;;=K12.1^^131^1669^271
- ;;^UTILITY(U,$J,358.3,33224,1,0)
+ ;;^UTILITY(U,$J,358.3,31275,1,3,0)
+ ;;=3^Syphilis complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31275,1,4,0)
+ ;;=4^O98.13
+ ;;^UTILITY(U,$J,358.3,31275,2)
+ ;;=^5017868
+ ;;^UTILITY(U,$J,358.3,31276,0)
+ ;;=O98.211^^126^1623^35
+ ;;^UTILITY(U,$J,358.3,31276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33224,1,3,0)
- ;;=3^Stomatitis NEC
- ;;^UTILITY(U,$J,358.3,33224,1,4,0)
- ;;=4^K12.1
- ;;^UTILITY(U,$J,358.3,33224,2)
- ;;=^5008484
- ;;^UTILITY(U,$J,358.3,33225,0)
- ;;=K12.2^^131^1669^94
- ;;^UTILITY(U,$J,358.3,33225,1,0)
+ ;;^UTILITY(U,$J,358.3,31276,1,3,0)
+ ;;=3^Gonorrhea complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31276,1,4,0)
+ ;;=4^O98.211
+ ;;^UTILITY(U,$J,358.3,31276,2)
+ ;;=^5017869
+ ;;^UTILITY(U,$J,358.3,31277,0)
+ ;;=O98.212^^126^1623^36
+ ;;^UTILITY(U,$J,358.3,31277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33225,1,3,0)
- ;;=3^Cellulitis & Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,33225,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,33225,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,33226,0)
- ;;=L02.01^^131^1669^120
- ;;^UTILITY(U,$J,358.3,33226,1,0)
+ ;;^UTILITY(U,$J,358.3,31277,1,3,0)
+ ;;=3^Gonorrhea complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31277,1,4,0)
+ ;;=4^O98.212
+ ;;^UTILITY(U,$J,358.3,31277,2)
+ ;;=^5017870
+ ;;^UTILITY(U,$J,358.3,31278,0)
+ ;;=O98.213^^126^1623^37
+ ;;^UTILITY(U,$J,358.3,31278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33226,1,3,0)
- ;;=3^Cutaneous Abscess of Face
- ;;^UTILITY(U,$J,358.3,33226,1,4,0)
- ;;=4^L02.01
- ;;^UTILITY(U,$J,358.3,33226,2)
- ;;=^5008944
- ;;^UTILITY(U,$J,358.3,33227,0)
- ;;=L02.11^^131^1669^125
- ;;^UTILITY(U,$J,358.3,33227,1,0)
+ ;;^UTILITY(U,$J,358.3,31278,1,3,0)
+ ;;=3^Gonorrhea complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,31278,1,4,0)
+ ;;=4^O98.213
+ ;;^UTILITY(U,$J,358.3,31278,2)
+ ;;=^5017871
+ ;;^UTILITY(U,$J,358.3,31279,0)
+ ;;=O98.23^^126^1623^38
+ ;;^UTILITY(U,$J,358.3,31279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33227,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,33227,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,33227,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,33228,0)
- ;;=L02.211^^131^1669^117
- ;;^UTILITY(U,$J,358.3,33228,1,0)
+ ;;^UTILITY(U,$J,358.3,31279,1,3,0)
+ ;;=3^Gonorrhea complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31279,1,4,0)
+ ;;=4^O98.23
+ ;;^UTILITY(U,$J,358.3,31279,2)
+ ;;=^5017874
+ ;;^UTILITY(U,$J,358.3,31280,0)
+ ;;=O98.011^^126^1623^91
+ ;;^UTILITY(U,$J,358.3,31280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33228,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,33228,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,33228,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,33229,0)
- ;;=L02.212^^131^1669^118
- ;;^UTILITY(U,$J,358.3,33229,1,0)
+ ;;^UTILITY(U,$J,358.3,31280,1,3,0)
+ ;;=3^Tuberculosis complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31280,1,4,0)
+ ;;=4^O98.011
+ ;;^UTILITY(U,$J,358.3,31280,2)
+ ;;=^5017857
+ ;;^UTILITY(U,$J,358.3,31281,0)
+ ;;=O98.012^^126^1623^92
+ ;;^UTILITY(U,$J,358.3,31281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33229,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,33229,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,33229,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,33230,0)
- ;;=L02.213^^131^1669^119
- ;;^UTILITY(U,$J,358.3,33230,1,0)
+ ;;^UTILITY(U,$J,358.3,31281,1,3,0)
+ ;;=3^Tuberculosis complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31281,1,4,0)
+ ;;=4^O98.012
+ ;;^UTILITY(U,$J,358.3,31281,2)
+ ;;=^5017858
+ ;;^UTILITY(U,$J,358.3,31282,0)
+ ;;=O98.013^^126^1623^93
+ ;;^UTILITY(U,$J,358.3,31282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33230,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,33230,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,33230,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,33231,0)
- ;;=L02.214^^131^1669^121
- ;;^UTILITY(U,$J,358.3,33231,1,0)
+ ;;^UTILITY(U,$J,358.3,31282,1,3,0)
+ ;;=3^Tuberculosis complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,31282,1,4,0)
+ ;;=4^O98.013
+ ;;^UTILITY(U,$J,358.3,31282,2)
+ ;;=^5017859
+ ;;^UTILITY(U,$J,358.3,31283,0)
+ ;;=O98.03^^126^1623^94
+ ;;^UTILITY(U,$J,358.3,31283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33231,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,33231,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,33231,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,33232,0)
- ;;=L02.215^^131^1669^126
- ;;^UTILITY(U,$J,358.3,33232,1,0)
+ ;;^UTILITY(U,$J,358.3,31283,1,3,0)
+ ;;=3^Tuberculosis complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31283,1,4,0)
+ ;;=4^O98.03
+ ;;^UTILITY(U,$J,358.3,31283,2)
+ ;;=^5017862
+ ;;^UTILITY(U,$J,358.3,31284,0)
+ ;;=O98.611^^126^1623^82
+ ;;^UTILITY(U,$J,358.3,31284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33232,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,33232,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,33232,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,33233,0)
- ;;=L02.216^^131^1669^131
- ;;^UTILITY(U,$J,358.3,33233,1,0)
+ ;;^UTILITY(U,$J,358.3,31284,1,3,0)
+ ;;=3^Protozoal diseases complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31284,1,4,0)
+ ;;=4^O98.611
+ ;;^UTILITY(U,$J,358.3,31284,2)
+ ;;=^5017893
+ ;;^UTILITY(U,$J,358.3,31285,0)
+ ;;=O98.612^^126^1623^83
+ ;;^UTILITY(U,$J,358.3,31285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33233,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,33233,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,33233,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,33234,0)
- ;;=L02.219^^131^1669^130
- ;;^UTILITY(U,$J,358.3,33234,1,0)
+ ;;^UTILITY(U,$J,358.3,31285,1,3,0)
+ ;;=3^Protozoal diseases complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31285,1,4,0)
+ ;;=4^O98.612
+ ;;^UTILITY(U,$J,358.3,31285,2)
+ ;;=^5017894
+ ;;^UTILITY(U,$J,358.3,31286,0)
+ ;;=O98.613^^126^1623^84
+ ;;^UTILITY(U,$J,358.3,31286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33234,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,33234,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,33234,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,33235,0)
- ;;=L02.32^^131^1669^154
- ;;^UTILITY(U,$J,358.3,33235,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33235,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,33235,1,4,0)
- ;;=4^L02.32

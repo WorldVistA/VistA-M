@@ -1,124 +1,126 @@
-IBDEI2YW ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49736,1,4,0)
- ;;=4^S52.042S
- ;;^UTILITY(U,$J,358.3,49736,2)
- ;;=^5028906
- ;;^UTILITY(U,$J,358.3,49737,0)
- ;;=S52.041S^^216^2420^19
- ;;^UTILITY(U,$J,358.3,49737,1,0)
+ ;;^UTILITY(U,$J,358.3,47359,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,47360,0)
+ ;;=H54.7^^181^2364^8
+ ;;^UTILITY(U,$J,358.3,47360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49737,1,3,0)
- ;;=3^Disp fx of coronoid process of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49737,1,4,0)
- ;;=4^S52.041S
- ;;^UTILITY(U,$J,358.3,49737,2)
- ;;=^5028890
- ;;^UTILITY(U,$J,358.3,49738,0)
- ;;=S52.612S^^216^2420^27
- ;;^UTILITY(U,$J,358.3,49738,1,0)
+ ;;^UTILITY(U,$J,358.3,47360,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,47360,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,47360,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,47361,0)
+ ;;=I83.91^^181^2364^5
+ ;;^UTILITY(U,$J,358.3,47361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49738,1,3,0)
- ;;=3^Disp fx of left ulna styloid process, sequela 
- ;;^UTILITY(U,$J,358.3,49738,1,4,0)
- ;;=4^S52.612S
- ;;^UTILITY(U,$J,358.3,49738,2)
- ;;=^5031066
- ;;^UTILITY(U,$J,358.3,49739,0)
- ;;=S52.032S^^216^2420^14
- ;;^UTILITY(U,$J,358.3,49739,1,0)
+ ;;^UTILITY(U,$J,358.3,47361,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,47361,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,47361,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,47362,0)
+ ;;=I83.92^^181^2364^4
+ ;;^UTILITY(U,$J,358.3,47362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49739,1,3,0)
- ;;=3^Disp fx of comminuted shaft of radius, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,49739,1,4,0)
- ;;=4^S52.032S
- ;;^UTILITY(U,$J,358.3,49739,2)
- ;;=^5135105
- ;;^UTILITY(U,$J,358.3,49740,0)
- ;;=S52.031S^^216^2420^38
- ;;^UTILITY(U,$J,358.3,49740,1,0)
+ ;;^UTILITY(U,$J,358.3,47362,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,47362,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,47362,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,47363,0)
+ ;;=I83.93^^181^2364^3
+ ;;^UTILITY(U,$J,358.3,47363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49740,1,3,0)
- ;;=3^Disp fx of olecran pro w intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49740,1,4,0)
- ;;=4^S52.031S
- ;;^UTILITY(U,$J,358.3,49740,2)
- ;;=^5028856
- ;;^UTILITY(U,$J,358.3,49741,0)
- ;;=S52.022S^^216^2420^39
- ;;^UTILITY(U,$J,358.3,49741,1,0)
+ ;;^UTILITY(U,$J,358.3,47363,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
+ ;;^UTILITY(U,$J,358.3,47363,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,47363,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,47364,0)
+ ;;=R53.1^^181^2364^9
+ ;;^UTILITY(U,$J,358.3,47364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49741,1,3,0)
- ;;=3^Disp fx of olecran pro w/o intartic extn left ulna, sequela
- ;;^UTILITY(U,$J,358.3,49741,1,4,0)
- ;;=4^S52.022S
- ;;^UTILITY(U,$J,358.3,49741,2)
- ;;=^5028784
- ;;^UTILITY(U,$J,358.3,49742,0)
- ;;=S52.021S^^216^2420^40
- ;;^UTILITY(U,$J,358.3,49742,1,0)
+ ;;^UTILITY(U,$J,358.3,47364,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,47364,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,47364,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,47365,0)
+ ;;=R63.4^^181^2364^10
+ ;;^UTILITY(U,$J,358.3,47365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49742,1,3,0)
- ;;=3^Disp fx of olecran pro w/o intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49742,1,4,0)
- ;;=4^S52.021S
- ;;^UTILITY(U,$J,358.3,49742,2)
- ;;=^5028768
- ;;^UTILITY(U,$J,358.3,49743,0)
- ;;=S52.611S^^216^2420^46
- ;;^UTILITY(U,$J,358.3,49743,1,0)
+ ;;^UTILITY(U,$J,358.3,47365,1,3,0)
+ ;;=3^Weight Loss,Abnormal
+ ;;^UTILITY(U,$J,358.3,47365,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,47365,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,47366,0)
+ ;;=B02.9^^181^2364^11
+ ;;^UTILITY(U,$J,358.3,47366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49743,1,3,0)
- ;;=3^Disp fx of right ulna styloid process, sequela 
- ;;^UTILITY(U,$J,358.3,49743,1,4,0)
- ;;=4^S52.611S
- ;;^UTILITY(U,$J,358.3,49743,2)
- ;;=^5031050
- ;;^UTILITY(U,$J,358.3,49744,0)
- ;;=S52.232S^^216^2420^35
- ;;^UTILITY(U,$J,358.3,49744,1,0)
+ ;;^UTILITY(U,$J,358.3,47366,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,47366,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,47366,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,47367,0)
+ ;;=I49.3^^181^2364^6
+ ;;^UTILITY(U,$J,358.3,47367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49744,1,3,0)
- ;;=3^Disp fx of oblique shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,49744,1,4,0)
- ;;=4^S52.232S
- ;;^UTILITY(U,$J,358.3,49744,2)
- ;;=^5029442
- ;;^UTILITY(U,$J,358.3,49745,0)
- ;;=S52.231S^^216^2420^37
- ;;^UTILITY(U,$J,358.3,49745,1,0)
+ ;;^UTILITY(U,$J,358.3,47367,1,3,0)
+ ;;=3^Vetricular Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,47367,1,4,0)
+ ;;=4^I49.3
+ ;;^UTILITY(U,$J,358.3,47367,2)
+ ;;=^5007233
+ ;;^UTILITY(U,$J,358.3,47368,0)
+ ;;=I83.019^^181^2364^2
+ ;;^UTILITY(U,$J,358.3,47368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49745,1,3,0)
- ;;=3^Disp fx of oblique shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,49745,1,4,0)
- ;;=4^S52.231S
- ;;^UTILITY(U,$J,358.3,49745,2)
- ;;=^5029426
- ;;^UTILITY(U,$J,358.3,49746,0)
- ;;=S52.262S^^216^2420^49
- ;;^UTILITY(U,$J,358.3,49746,1,0)
+ ;;^UTILITY(U,$J,358.3,47368,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,47368,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,47368,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,47369,0)
+ ;;=I83.029^^181^2364^1
+ ;;^UTILITY(U,$J,358.3,47369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49746,1,3,0)
- ;;=3^Disp fx of segmental shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,49746,1,4,0)
- ;;=4^S52.262S
- ;;^UTILITY(U,$J,358.3,49746,2)
- ;;=^5029730
- ;;^UTILITY(U,$J,358.3,49747,0)
- ;;=S52.261S^^216^2420^50
- ;;^UTILITY(U,$J,358.3,49747,1,0)
+ ;;^UTILITY(U,$J,358.3,47369,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,47369,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,47369,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,47370,0)
+ ;;=Z01.818^^181^2365^3
+ ;;^UTILITY(U,$J,358.3,47370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49747,1,3,0)
- ;;=3^Disp fx of segmental shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,49747,1,4,0)
- ;;=4^S52.261S
- ;;^UTILITY(U,$J,358.3,49747,2)
- ;;=^5029714
- ;;^UTILITY(U,$J,358.3,49748,0)
- ;;=S52.242S^^216^2420^53
- ;;^UTILITY(U,$J,358.3,49748,1,0)
+ ;;^UTILITY(U,$J,358.3,47370,1,3,0)
+ ;;=3^Preporcedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,47370,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,47370,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,47371,0)
+ ;;=Z01.810^^181^2365^4
+ ;;^UTILITY(U,$J,358.3,47371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49748,1,3,0)
- ;;=3^Disp fx of spiral shaft of ulna, left arm, sequela    
+ ;;^UTILITY(U,$J,358.3,47371,1,3,0)
+ ;;=3^Preprocedural Cardiovascular Exam
+ ;;^UTILITY(U,$J,358.3,47371,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,47371,2)
+ ;;=^5062625

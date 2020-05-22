@@ -1,128 +1,126 @@
-IBDEI1LE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26995,1,0)
+ ;;^UTILITY(U,$J,358.3,25446,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,25447,0)
+ ;;=F06.0^^107^1218^38
+ ;;^UTILITY(U,$J,358.3,25447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26995,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26995,1,4,0)
- ;;=4^F18.97
- ;;^UTILITY(U,$J,358.3,26995,2)
- ;;=^5003413
- ;;^UTILITY(U,$J,358.3,26996,0)
- ;;=F18.188^^100^1301^8
- ;;^UTILITY(U,$J,358.3,26996,1,0)
+ ;;^UTILITY(U,$J,358.3,25447,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,25447,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,25447,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,25448,0)
+ ;;=G44.209^^107^1218^43
+ ;;^UTILITY(U,$J,358.3,25448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26996,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26996,1,4,0)
- ;;=4^F18.188
- ;;^UTILITY(U,$J,358.3,26996,2)
- ;;=^5003390
- ;;^UTILITY(U,$J,358.3,26997,0)
- ;;=F18.288^^100^1301^9
- ;;^UTILITY(U,$J,358.3,26997,1,0)
+ ;;^UTILITY(U,$J,358.3,25448,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,25448,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,25448,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,25449,0)
+ ;;=F09.^^107^1218^21
+ ;;^UTILITY(U,$J,358.3,25449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26997,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26997,1,4,0)
- ;;=4^F18.288
- ;;^UTILITY(U,$J,358.3,26997,2)
- ;;=^5003403
- ;;^UTILITY(U,$J,358.3,26998,0)
- ;;=F18.988^^100^1301^10
- ;;^UTILITY(U,$J,358.3,26998,1,0)
+ ;;^UTILITY(U,$J,358.3,25449,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,25449,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,25449,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,25450,0)
+ ;;=F07.9^^107^1218^36
+ ;;^UTILITY(U,$J,358.3,25450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26998,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26998,1,4,0)
- ;;=4^F18.988
- ;;^UTILITY(U,$J,358.3,26998,2)
- ;;=^5003415
- ;;^UTILITY(U,$J,358.3,26999,0)
- ;;=F18.159^^100^1301^11
- ;;^UTILITY(U,$J,358.3,26999,1,0)
+ ;;^UTILITY(U,$J,358.3,25450,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,25450,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,25450,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,25451,0)
+ ;;=G30.0^^107^1218^1
+ ;;^UTILITY(U,$J,358.3,25451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26999,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26999,1,4,0)
- ;;=4^F18.159
- ;;^UTILITY(U,$J,358.3,26999,2)
- ;;=^5003387
- ;;^UTILITY(U,$J,358.3,27000,0)
- ;;=F18.259^^100^1301^12
- ;;^UTILITY(U,$J,358.3,27000,1,0)
+ ;;^UTILITY(U,$J,358.3,25451,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,25451,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,25451,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,25452,0)
+ ;;=G30.8^^107^1218^3
+ ;;^UTILITY(U,$J,358.3,25452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27000,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27000,1,4,0)
- ;;=4^F18.259
- ;;^UTILITY(U,$J,358.3,27000,2)
- ;;=^5003400
- ;;^UTILITY(U,$J,358.3,27001,0)
- ;;=F18.959^^100^1301^13
- ;;^UTILITY(U,$J,358.3,27001,1,0)
+ ;;^UTILITY(U,$J,358.3,25452,1,3,0)
+ ;;=3^Alzheimer's Disease,Other
+ ;;^UTILITY(U,$J,358.3,25452,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,25452,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,25453,0)
+ ;;=G30.1^^107^1218^2
+ ;;^UTILITY(U,$J,358.3,25453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27001,1,3,0)
- ;;=3^Inhalant Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27001,1,4,0)
- ;;=4^F18.959
- ;;^UTILITY(U,$J,358.3,27001,2)
- ;;=^5003412
- ;;^UTILITY(U,$J,358.3,27002,0)
- ;;=F18.99^^100^1301^20
- ;;^UTILITY(U,$J,358.3,27002,1,0)
+ ;;^UTILITY(U,$J,358.3,25453,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,25453,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,25453,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,25454,0)
+ ;;=G30.9^^107^1218^4
+ ;;^UTILITY(U,$J,358.3,25454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27002,1,3,0)
- ;;=3^Inhalant Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27002,1,4,0)
- ;;=4^F18.99
- ;;^UTILITY(U,$J,358.3,27002,2)
- ;;=^5133360
- ;;^UTILITY(U,$J,358.3,27003,0)
- ;;=F70.^^100^1302^1
- ;;^UTILITY(U,$J,358.3,27003,1,0)
+ ;;^UTILITY(U,$J,358.3,25454,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,25454,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,25454,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,25455,0)
+ ;;=G21.4^^107^1218^46
+ ;;^UTILITY(U,$J,358.3,25455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27003,1,3,0)
- ;;=3^Intellectual Disabilities,Mild
- ;;^UTILITY(U,$J,358.3,27003,1,4,0)
- ;;=4^F70.
- ;;^UTILITY(U,$J,358.3,27003,2)
- ;;=^5003668
- ;;^UTILITY(U,$J,358.3,27004,0)
- ;;=F71.^^100^1302^2
- ;;^UTILITY(U,$J,358.3,27004,1,0)
+ ;;^UTILITY(U,$J,358.3,25455,1,3,0)
+ ;;=3^Vascular Parkinsonism
+ ;;^UTILITY(U,$J,358.3,25455,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,25455,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,25456,0)
+ ;;=G20.^^107^1218^35
+ ;;^UTILITY(U,$J,358.3,25456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27004,1,3,0)
- ;;=3^Intellectual Disabilities,Moderate
- ;;^UTILITY(U,$J,358.3,27004,1,4,0)
- ;;=4^F71.
- ;;^UTILITY(U,$J,358.3,27004,2)
- ;;=^5003669
- ;;^UTILITY(U,$J,358.3,27005,0)
- ;;=F72.^^100^1302^3
- ;;^UTILITY(U,$J,358.3,27005,1,0)
+ ;;^UTILITY(U,$J,358.3,25456,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,25456,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,25456,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,25457,0)
+ ;;=G25.0^^107^1218^16
+ ;;^UTILITY(U,$J,358.3,25457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27005,1,3,0)
- ;;=3^Intellectual Disabilities,Severe
- ;;^UTILITY(U,$J,358.3,27005,1,4,0)
- ;;=4^F72.
- ;;^UTILITY(U,$J,358.3,27005,2)
- ;;=^5003670
- ;;^UTILITY(U,$J,358.3,27006,0)
- ;;=F73.^^100^1302^4
- ;;^UTILITY(U,$J,358.3,27006,1,0)
+ ;;^UTILITY(U,$J,358.3,25457,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,25457,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,25457,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,25458,0)
+ ;;=G25.2^^107^1218^45
+ ;;^UTILITY(U,$J,358.3,25458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27006,1,3,0)
- ;;=3^Intellectual Disabilities,Profound
- ;;^UTILITY(U,$J,358.3,27006,1,4,0)
- ;;=4^F73.
- ;;^UTILITY(U,$J,358.3,27006,2)
- ;;=^5003671
- ;;^UTILITY(U,$J,358.3,27007,0)
- ;;=F78.^^100^1302^5
- ;;^UTILITY(U,$J,358.3,27007,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27007,1,3,0)
- ;;=3^Intellectual Disabilities,Oth Specified
+ ;;^UTILITY(U,$J,358.3,25458,1,3,0)
+ ;;=3^Tremor,Other Spec Forms
+ ;;^UTILITY(U,$J,358.3,25458,1,4,0)
+ ;;=4^G25.2
+ ;;^UTILITY(U,$J,358.3,25458,2)
+ ;;=^5003793

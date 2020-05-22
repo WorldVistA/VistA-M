@@ -1,124 +1,120 @@
-IBDEI1L3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1L3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26861,1,0)
+ ;;^UTILITY(U,$J,358.3,25312,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,25312,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,25313,0)
+ ;;=M48.50XA^^107^1217^22
+ ;;^UTILITY(U,$J,358.3,25313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26861,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26861,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,26861,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,26862,0)
- ;;=F12.20^^100^1293^17
- ;;^UTILITY(U,$J,358.3,26862,1,0)
+ ;;^UTILITY(U,$J,358.3,25313,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25313,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,25313,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,25314,0)
+ ;;=M48.50XD^^107^1217^23
+ ;;^UTILITY(U,$J,358.3,25314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26862,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,26862,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,26862,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,26863,0)
- ;;=F12.21^^100^1293^18
- ;;^UTILITY(U,$J,358.3,26863,1,0)
+ ;;^UTILITY(U,$J,358.3,25314,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,25314,1,4,0)
+ ;;=4^M48.50XD
+ ;;^UTILITY(U,$J,358.3,25314,2)
+ ;;=^5012160
+ ;;^UTILITY(U,$J,358.3,25315,0)
+ ;;=M48.52XA^^107^1217^24
+ ;;^UTILITY(U,$J,358.3,25315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26863,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,26863,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,26863,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,26864,0)
- ;;=F12.288^^100^1293^19
- ;;^UTILITY(U,$J,358.3,26864,1,0)
+ ;;^UTILITY(U,$J,358.3,25315,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25315,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,25315,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,25316,0)
+ ;;=M48.52XD^^107^1217^25
+ ;;^UTILITY(U,$J,358.3,25316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26864,1,3,0)
- ;;=3^Cannabis Withdrawal
- ;;^UTILITY(U,$J,358.3,26864,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,26864,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,26865,0)
- ;;=F12.280^^100^1293^21
- ;;^UTILITY(U,$J,358.3,26865,1,0)
+ ;;^UTILITY(U,$J,358.3,25316,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,25316,1,4,0)
+ ;;=4^M48.52XD
+ ;;^UTILITY(U,$J,358.3,25316,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,25317,0)
+ ;;=M48.54XA^^107^1217^33
+ ;;^UTILITY(U,$J,358.3,25317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26865,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26865,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,26865,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,26866,0)
- ;;=F12.121^^100^1293^6
- ;;^UTILITY(U,$J,358.3,26866,1,0)
+ ;;^UTILITY(U,$J,358.3,25317,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25317,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,25317,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,25318,0)
+ ;;=M48.54XD^^107^1217^34
+ ;;^UTILITY(U,$J,358.3,25318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26866,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26866,1,4,0)
- ;;=4^F12.121
- ;;^UTILITY(U,$J,358.3,26866,2)
- ;;=^5003157
- ;;^UTILITY(U,$J,358.3,26867,0)
- ;;=F12.221^^100^1293^7
- ;;^UTILITY(U,$J,358.3,26867,1,0)
+ ;;^UTILITY(U,$J,358.3,25318,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,25318,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,25318,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,25319,0)
+ ;;=M48.57XA^^107^1217^26
+ ;;^UTILITY(U,$J,358.3,25319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26867,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26867,1,4,0)
- ;;=4^F12.221
- ;;^UTILITY(U,$J,358.3,26867,2)
- ;;=^5003169
- ;;^UTILITY(U,$J,358.3,26868,0)
- ;;=F12.921^^100^1293^8
- ;;^UTILITY(U,$J,358.3,26868,1,0)
+ ;;^UTILITY(U,$J,358.3,25319,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,25319,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,25319,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,25320,0)
+ ;;=M48.57XD^^107^1217^27
+ ;;^UTILITY(U,$J,358.3,25320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26868,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26868,1,4,0)
- ;;=4^F12.921
- ;;^UTILITY(U,$J,358.3,26868,2)
- ;;=^5003180
- ;;^UTILITY(U,$J,358.3,26869,0)
- ;;=F12.229^^100^1293^12
- ;;^UTILITY(U,$J,358.3,26869,1,0)
+ ;;^UTILITY(U,$J,358.3,25320,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,25320,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,25320,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,25321,0)
+ ;;=M50.30^^107^1217^14
+ ;;^UTILITY(U,$J,358.3,25321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26869,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26869,1,4,0)
- ;;=4^F12.229
- ;;^UTILITY(U,$J,358.3,26869,2)
- ;;=^5003171
- ;;^UTILITY(U,$J,358.3,26870,0)
- ;;=F12.122^^100^1293^9
- ;;^UTILITY(U,$J,358.3,26870,1,0)
+ ;;^UTILITY(U,$J,358.3,25321,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Region
+ ;;^UTILITY(U,$J,358.3,25321,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,25321,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,25322,0)
+ ;;=M51.14^^107^1217^55
+ ;;^UTILITY(U,$J,358.3,25322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26870,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26870,1,4,0)
- ;;=4^F12.122
- ;;^UTILITY(U,$J,358.3,26870,2)
- ;;=^5003158
- ;;^UTILITY(U,$J,358.3,26871,0)
- ;;=F12.222^^100^1293^10
- ;;^UTILITY(U,$J,358.3,26871,1,0)
+ ;;^UTILITY(U,$J,358.3,25322,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,25322,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,25322,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,25323,0)
+ ;;=M51.17^^107^1217^54
+ ;;^UTILITY(U,$J,358.3,25323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26871,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26871,1,4,0)
- ;;=4^F12.222
- ;;^UTILITY(U,$J,358.3,26871,2)
- ;;=^5003170
- ;;^UTILITY(U,$J,358.3,26872,0)
- ;;=F12.129^^100^1293^14
- ;;^UTILITY(U,$J,358.3,26872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26872,1,3,0)
- ;;=3^Cannabis Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,26872,1,4,0)
- ;;=4^F12.129
- ;;^UTILITY(U,$J,358.3,26872,2)
- ;;=^5003159
- ;;^UTILITY(U,$J,358.3,26873,0)
- ;;=F12.922^^100^1293^11
+ ;;^UTILITY(U,$J,358.3,25323,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,25323,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,25323,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,25324,0)
+ ;;=M51.34^^107^1217^53

@@ -1,130 +1,124 @@
-IBDEI1HQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25300,0)
- ;;=G25.1^^95^1150^12
- ;;^UTILITY(U,$J,358.3,25300,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25300,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,25300,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,25300,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,25301,0)
- ;;=G25.71^^95^1150^15
- ;;^UTILITY(U,$J,358.3,25301,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25301,1,3,0)
- ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
- ;;^UTILITY(U,$J,358.3,25301,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,25301,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,25302,0)
- ;;=G25.79^^95^1150^10
- ;;^UTILITY(U,$J,358.3,25302,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25302,1,3,0)
- ;;=3^Medication-Induced Movement Disorder NEC
- ;;^UTILITY(U,$J,358.3,25302,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,25302,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,25303,0)
- ;;=T43.205A^^95^1150^4
- ;;^UTILITY(U,$J,358.3,25303,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25303,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,25303,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,25303,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,25304,0)
- ;;=T43.205D^^95^1150^5
- ;;^UTILITY(U,$J,358.3,25304,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25304,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,25304,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,25304,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,25305,0)
- ;;=T43.205S^^95^1150^6
- ;;^UTILITY(U,$J,358.3,25305,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25305,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,25305,1,4,0)
- ;;=4^T43.205S
- ;;^UTILITY(U,$J,358.3,25305,2)
- ;;=^5050542
- ;;^UTILITY(U,$J,358.3,25306,0)
- ;;=G25.71^^95^1150^7
- ;;^UTILITY(U,$J,358.3,25306,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25306,1,3,0)
- ;;=3^Medication-Induced Acute Akathisia
- ;;^UTILITY(U,$J,358.3,25306,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,25306,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,25307,0)
- ;;=G24.02^^95^1150^9
- ;;^UTILITY(U,$J,358.3,25307,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25307,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,25307,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,25307,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,25308,0)
- ;;=G21.0^^95^1150^13
- ;;^UTILITY(U,$J,358.3,25308,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25308,1,3,0)
- ;;=3^Neuroleptic Malignant Syndrome
- ;;^UTILITY(U,$J,358.3,25308,1,4,0)
- ;;=4^G21.0
- ;;^UTILITY(U,$J,358.3,25308,2)
- ;;=^5003771
- ;;^UTILITY(U,$J,358.3,25309,0)
- ;;=T50.905A^^95^1150^1
- ;;^UTILITY(U,$J,358.3,25309,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25309,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Init Encntr
- ;;^UTILITY(U,$J,358.3,25309,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,25309,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,25310,0)
- ;;=T50.905D^^95^1150^3
- ;;^UTILITY(U,$J,358.3,25310,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25310,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,25310,1,4,0)
- ;;=4^T50.905D
- ;;^UTILITY(U,$J,358.3,25310,2)
- ;;=^5052161
- ;;^UTILITY(U,$J,358.3,25311,0)
- ;;=T50.905S^^95^1150^2
- ;;^UTILITY(U,$J,358.3,25311,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25311,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Sequela
- ;;^UTILITY(U,$J,358.3,25311,1,4,0)
- ;;=4^T50.905S
- ;;^UTILITY(U,$J,358.3,25311,2)
- ;;=^5052162
- ;;^UTILITY(U,$J,358.3,25312,0)
- ;;=F42.^^95^1151^7
- ;;^UTILITY(U,$J,358.3,25312,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25312,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,23836,1,3,0)
+ ;;=3^Insert Foley Cath
+ ;;^UTILITY(U,$J,358.3,23837,0)
+ ;;=51798^^106^1191^16^^^^1
+ ;;^UTILITY(U,$J,358.3,23837,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23837,1,2,0)
+ ;;=2^51798
+ ;;^UTILITY(U,$J,358.3,23837,1,3,0)
+ ;;=3^Ultrasound for Resid Urine
+ ;;^UTILITY(U,$J,358.3,23838,0)
+ ;;=96360^^106^1191^4^^^^1
+ ;;^UTILITY(U,$J,358.3,23838,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23838,1,2,0)
+ ;;=2^96360
+ ;;^UTILITY(U,$J,358.3,23838,1,3,0)
+ ;;=3^Hydration,IV,1st hour
+ ;;^UTILITY(U,$J,358.3,23839,0)
+ ;;=96361^^106^1191^5^^^^1
+ ;;^UTILITY(U,$J,358.3,23839,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23839,1,2,0)
+ ;;=2^96361
+ ;;^UTILITY(U,$J,358.3,23839,1,3,0)
+ ;;=3^Hydration,IV,EA addl hour (+96360)
+ ;;^UTILITY(U,$J,358.3,23840,0)
+ ;;=96365^^106^1191^8^^^^1
+ ;;^UTILITY(U,$J,358.3,23840,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23840,1,2,0)
+ ;;=2^96365
+ ;;^UTILITY(U,$J,358.3,23840,1,3,0)
+ ;;=3^Infusion,IV up to 1 hour
+ ;;^UTILITY(U,$J,358.3,23841,0)
+ ;;=96366^^106^1191^9^^^^1
+ ;;^UTILITY(U,$J,358.3,23841,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23841,1,2,0)
+ ;;=2^96366
+ ;;^UTILITY(U,$J,358.3,23841,1,3,0)
+ ;;=3^Infusion,IV ea add hr (+96365)
+ ;;^UTILITY(U,$J,358.3,23842,0)
+ ;;=96374^^106^1191^6^^^^1
+ ;;^UTILITY(U,$J,358.3,23842,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23842,1,2,0)
+ ;;=2^96374
+ ;;^UTILITY(U,$J,358.3,23842,1,3,0)
+ ;;=3^IV Push,Initial
+ ;;^UTILITY(U,$J,358.3,23843,0)
+ ;;=96375^^106^1191^7^^^^1
+ ;;^UTILITY(U,$J,358.3,23843,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23843,1,2,0)
+ ;;=2^96375
+ ;;^UTILITY(U,$J,358.3,23843,1,3,0)
+ ;;=3^IV Push,Subsequent
+ ;;^UTILITY(U,$J,358.3,23844,0)
+ ;;=29105^^106^1192^3^^^^1
+ ;;^UTILITY(U,$J,358.3,23844,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23844,1,2,0)
+ ;;=2^29105
+ ;;^UTILITY(U,$J,358.3,23844,1,3,0)
+ ;;=3^Apply Long Arm Splint,Static
+ ;;^UTILITY(U,$J,358.3,23845,0)
+ ;;=29125^^106^1192^5^^^^1
+ ;;^UTILITY(U,$J,358.3,23845,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23845,1,2,0)
+ ;;=2^29125
+ ;;^UTILITY(U,$J,358.3,23845,1,3,0)
+ ;;=3^Apply Short Arm Splint,Static
+ ;;^UTILITY(U,$J,358.3,23846,0)
+ ;;=29126^^106^1192^4^^^^1
+ ;;^UTILITY(U,$J,358.3,23846,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23846,1,2,0)
+ ;;=2^29126
+ ;;^UTILITY(U,$J,358.3,23846,1,3,0)
+ ;;=3^Apply Short Arm Splint,Dynamic
+ ;;^UTILITY(U,$J,358.3,23847,0)
+ ;;=29130^^106^1192^2^^^^1
+ ;;^UTILITY(U,$J,358.3,23847,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23847,1,2,0)
+ ;;=2^29130
+ ;;^UTILITY(U,$J,358.3,23847,1,3,0)
+ ;;=3^Apply Finger Splint,Static
+ ;;^UTILITY(U,$J,358.3,23848,0)
+ ;;=29131^^106^1192^1^^^^1
+ ;;^UTILITY(U,$J,358.3,23848,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23848,1,2,0)
+ ;;=2^29131
+ ;;^UTILITY(U,$J,358.3,23848,1,3,0)
+ ;;=3^Apply Finger Splint,Dynamic
+ ;;^UTILITY(U,$J,358.3,23849,0)
+ ;;=99347^^106^1193^1^^^^1
+ ;;^UTILITY(U,$J,358.3,23849,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23849,1,2,0)
+ ;;=2^99347
+ ;;^UTILITY(U,$J,358.3,23849,1,3,0)
+ ;;=3^Est Pt-Prob Focus Home Visit
+ ;;^UTILITY(U,$J,358.3,23850,0)
+ ;;=99348^^106^1193^2^^^^1
+ ;;^UTILITY(U,$J,358.3,23850,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23850,1,2,0)
+ ;;=2^99348
+ ;;^UTILITY(U,$J,358.3,23850,1,3,0)
+ ;;=3^Est Pt-Exp Prob Focus Home Visit
+ ;;^UTILITY(U,$J,358.3,23851,0)
+ ;;=99349^^106^1193^3^^^^1
+ ;;^UTILITY(U,$J,358.3,23851,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,23851,1,2,0)
+ ;;=2^99349

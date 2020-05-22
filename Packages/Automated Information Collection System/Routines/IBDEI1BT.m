@@ -1,134 +1,126 @@
-IBDEI1BT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22545,0)
- ;;=Z77.090^^87^982^11
- ;;^UTILITY(U,$J,358.3,22545,1,0)
+ ;;^UTILITY(U,$J,358.3,21191,0)
+ ;;=F45.0^^95^1052^14
+ ;;^UTILITY(U,$J,358.3,21191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22545,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22545,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,22545,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,22546,0)
- ;;=Z57.8^^87^982^72
- ;;^UTILITY(U,$J,358.3,22546,1,0)
+ ;;^UTILITY(U,$J,358.3,21191,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,21191,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,21191,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,21192,0)
+ ;;=F45.9^^95^1052^15
+ ;;^UTILITY(U,$J,358.3,21192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22546,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,22546,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,22546,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,22547,0)
- ;;=Z77.21^^87^982^53
- ;;^UTILITY(U,$J,358.3,22547,1,0)
+ ;;^UTILITY(U,$J,358.3,21192,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21192,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,21192,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,21193,0)
+ ;;=F45.1^^95^1052^13
+ ;;^UTILITY(U,$J,358.3,21193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22547,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22547,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,22547,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,22548,0)
- ;;=Z91.81^^87^982^57
- ;;^UTILITY(U,$J,358.3,22548,1,0)
+ ;;^UTILITY(U,$J,358.3,21193,1,3,0)
+ ;;=3^Somatic Symptom Disorder
+ ;;^UTILITY(U,$J,358.3,21193,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,21193,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,21194,0)
+ ;;=F44.4^^95^1052^2
+ ;;^UTILITY(U,$J,358.3,21194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22548,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,22548,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,22548,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,22549,0)
- ;;=Z91.89^^87^982^118
- ;;^UTILITY(U,$J,358.3,22549,1,0)
+ ;;^UTILITY(U,$J,358.3,21194,1,3,0)
+ ;;=3^Conversion Disorder w/ Abnormal Movement
+ ;;^UTILITY(U,$J,358.3,21194,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,21194,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,21195,0)
+ ;;=F44.6^^95^1052^3
+ ;;^UTILITY(U,$J,358.3,21195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22549,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,22549,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,22549,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,22550,0)
- ;;=Z92.89^^87^982^106
- ;;^UTILITY(U,$J,358.3,22550,1,0)
+ ;;^UTILITY(U,$J,358.3,21195,1,3,0)
+ ;;=3^Conversion Disorder w/ Anesthesia or Sensory Loss
+ ;;^UTILITY(U,$J,358.3,21195,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,21195,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,21196,0)
+ ;;=F44.5^^95^1052^4
+ ;;^UTILITY(U,$J,358.3,21196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22550,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,22550,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,22550,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,22551,0)
- ;;=Z77.110^^87^982^9
- ;;^UTILITY(U,$J,358.3,22551,1,0)
+ ;;^UTILITY(U,$J,358.3,21196,1,3,0)
+ ;;=3^Conversion Disorder w/ Attacks or Seizures
+ ;;^UTILITY(U,$J,358.3,21196,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,21196,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,21197,0)
+ ;;=F44.7^^95^1052^5
+ ;;^UTILITY(U,$J,358.3,21197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22551,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22551,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,22551,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,22552,0)
- ;;=Z77.112^^87^982^142
- ;;^UTILITY(U,$J,358.3,22552,1,0)
+ ;;^UTILITY(U,$J,358.3,21197,1,3,0)
+ ;;=3^Conversion Disorder w/ Mixed Symptoms
+ ;;^UTILITY(U,$J,358.3,21197,1,4,0)
+ ;;=4^F44.7
+ ;;^UTILITY(U,$J,358.3,21197,2)
+ ;;=^5003582
+ ;;^UTILITY(U,$J,358.3,21198,0)
+ ;;=F68.10^^95^1052^10
+ ;;^UTILITY(U,$J,358.3,21198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22552,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22552,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,22552,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,22553,0)
- ;;=Z77.111^^87^982^148
- ;;^UTILITY(U,$J,358.3,22553,1,0)
+ ;;^UTILITY(U,$J,358.3,21198,1,3,0)
+ ;;=3^Factitious Disorder
+ ;;^UTILITY(U,$J,358.3,21198,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,21198,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,21199,0)
+ ;;=F54.^^95^1052^12
+ ;;^UTILITY(U,$J,358.3,21199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22553,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22553,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,22553,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,22554,0)
- ;;=Z77.128^^87^982^119
- ;;^UTILITY(U,$J,358.3,22554,1,0)
+ ;;^UTILITY(U,$J,358.3,21199,1,3,0)
+ ;;=3^Psychological Factors Affecting Other Med Conditions
+ ;;^UTILITY(U,$J,358.3,21199,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,21199,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,21200,0)
+ ;;=F44.6^^95^1052^6
+ ;;^UTILITY(U,$J,358.3,21200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22554,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22554,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,22554,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,22555,0)
- ;;=Z77.123^^87^982^140
- ;;^UTILITY(U,$J,358.3,22555,1,0)
+ ;;^UTILITY(U,$J,358.3,21200,1,3,0)
+ ;;=3^Conversion Disorder w/ Special Sensory Symptom
+ ;;^UTILITY(U,$J,358.3,21200,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,21200,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,21201,0)
+ ;;=F44.4^^95^1052^7
+ ;;^UTILITY(U,$J,358.3,21201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22555,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22555,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,22555,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,22556,0)
- ;;=Z77.122^^87^982^68
- ;;^UTILITY(U,$J,358.3,22556,1,0)
+ ;;^UTILITY(U,$J,358.3,21201,1,3,0)
+ ;;=3^Conversion Disorder w/ Speech Symptom
+ ;;^UTILITY(U,$J,358.3,21201,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,21201,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,21202,0)
+ ;;=F44.4^^95^1052^8
+ ;;^UTILITY(U,$J,358.3,21202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22556,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22556,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,22556,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,22557,0)
- ;;=Z77.118^^87^982^19
- ;;^UTILITY(U,$J,358.3,22557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22557,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22557,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,22557,2)
- ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,21202,1,3,0)
+ ;;=3^Conversion Disorder w/ Swallowing Symptom
+ ;;^UTILITY(U,$J,358.3,21202,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,21202,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,21203,0)
+ ;;=F44.4^^95^1052^9

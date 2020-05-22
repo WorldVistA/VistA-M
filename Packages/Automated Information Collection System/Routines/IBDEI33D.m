@@ -1,126 +1,124 @@
-IBDEI33D ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51873,0)
- ;;=92512^^232^2529^1^^^^1
- ;;^UTILITY(U,$J,358.3,51873,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51873,1,2,0)
- ;;=2^92512
- ;;^UTILITY(U,$J,358.3,51873,1,3,0)
- ;;=3^Nasal Function Studies
- ;;^UTILITY(U,$J,358.3,51874,0)
- ;;=92610^^232^2530^3^^^^1
- ;;^UTILITY(U,$J,358.3,51874,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51874,1,2,0)
- ;;=2^92610
- ;;^UTILITY(U,$J,358.3,51874,1,3,0)
- ;;=3^Evaluate Swallowing Function
- ;;^UTILITY(U,$J,358.3,51875,0)
- ;;=92611^^232^2530^8^^^^1
- ;;^UTILITY(U,$J,358.3,51875,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51875,1,2,0)
- ;;=2^92611
- ;;^UTILITY(U,$J,358.3,51875,1,3,0)
- ;;=3^Motion Fluoroscopy/Swallow
- ;;^UTILITY(U,$J,358.3,51876,0)
- ;;=92612^^232^2530^2^^^^1
- ;;^UTILITY(U,$J,358.3,51876,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51876,1,2,0)
- ;;=2^92612
- ;;^UTILITY(U,$J,358.3,51876,1,3,0)
- ;;=3^Endoscopy Swallow Tst (Fees)
- ;;^UTILITY(U,$J,358.3,51877,0)
- ;;=92616^^232^2530^7^^^^1
- ;;^UTILITY(U,$J,358.3,51877,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51877,1,2,0)
- ;;=2^92616
- ;;^UTILITY(U,$J,358.3,51877,1,3,0)
- ;;=3^Flx Fiberop Endosc Swllw Stdy,Laryng Snsry,Cine Tst
- ;;^UTILITY(U,$J,358.3,51878,0)
- ;;=92613^^232^2530^1^^^^1
- ;;^UTILITY(U,$J,358.3,51878,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51878,1,2,0)
- ;;=2^92613
- ;;^UTILITY(U,$J,358.3,51878,1,3,0)
- ;;=3^Endo Swallow Tst,Interp & Rpt Only
- ;;^UTILITY(U,$J,358.3,51879,0)
- ;;=92614^^232^2530^4^^^^1
- ;;^UTILITY(U,$J,358.3,51879,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51879,1,2,0)
- ;;=2^92614
- ;;^UTILITY(U,$J,358.3,51879,1,3,0)
- ;;=3^Flx Fiberop Endosc Eval,Laryng Snsry Tst,Cine/Vid
- ;;^UTILITY(U,$J,358.3,51880,0)
- ;;=92615^^232^2530^5^^^^1
- ;;^UTILITY(U,$J,358.3,51880,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51880,1,2,0)
- ;;=2^92615
- ;;^UTILITY(U,$J,358.3,51880,1,3,0)
- ;;=3^Flx Fiberop Endosc Eval,Laryng Snsry Tst,I&R Only
- ;;^UTILITY(U,$J,358.3,51881,0)
- ;;=92617^^232^2530^6^^^^1
- ;;^UTILITY(U,$J,358.3,51881,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51881,1,2,0)
- ;;=2^92617
- ;;^UTILITY(U,$J,358.3,51881,1,3,0)
- ;;=3^Flx Fiberop Endosc Swllw Stdy,Laryng,I&R Only
- ;;^UTILITY(U,$J,358.3,51882,0)
- ;;=92507^^232^2531^2^^^^1
- ;;^UTILITY(U,$J,358.3,51882,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51882,1,2,0)
- ;;=2^92507
- ;;^UTILITY(U,$J,358.3,51882,1,3,0)
- ;;=3^CAPD Treatment (SLP Only)
- ;;^UTILITY(U,$J,358.3,51883,0)
- ;;=92508^^232^2531^3^^^^1
- ;;^UTILITY(U,$J,358.3,51883,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51883,1,2,0)
- ;;=2^92508
- ;;^UTILITY(U,$J,358.3,51883,1,3,0)
- ;;=3^CAPD Treatment (SLP Only),Group
- ;;^UTILITY(U,$J,358.3,51884,0)
- ;;=92521^^232^2531^5^^^^1
- ;;^UTILITY(U,$J,358.3,51884,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51884,1,2,0)
- ;;=2^92521
- ;;^UTILITY(U,$J,358.3,51884,1,3,0)
- ;;=3^Eval of Speech Fluency
- ;;^UTILITY(U,$J,358.3,51885,0)
- ;;=92522^^232^2531^6^^^^1
- ;;^UTILITY(U,$J,358.3,51885,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51885,1,2,0)
- ;;=2^92522
- ;;^UTILITY(U,$J,358.3,51885,1,3,0)
- ;;=3^Eval of Speech Sound Production
- ;;^UTILITY(U,$J,358.3,51886,0)
- ;;=92523^^232^2531^4^^^^1
- ;;^UTILITY(U,$J,358.3,51886,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51886,1,2,0)
- ;;=2^92523
- ;;^UTILITY(U,$J,358.3,51886,1,3,0)
- ;;=3^Eval Speech Snd Prod w/Lang Comp Eval/Express
- ;;^UTILITY(U,$J,358.3,51887,0)
- ;;=92524^^232^2531^1^^^^1
- ;;^UTILITY(U,$J,358.3,51887,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51887,1,2,0)
- ;;=2^92524
- ;;^UTILITY(U,$J,358.3,51887,1,3,0)
- ;;=3^Behavioral,Qual Analysis Voice/Resonance
- ;;^UTILITY(U,$J,358.3,51888,0)
- ;;=92526^^232^2531^7^^^^1
+ ;;^UTILITY(U,$J,358.3,49366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49366,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49366,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,49366,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,49367,0)
+ ;;=F10.27^^187^2447^1
+ ;;^UTILITY(U,$J,358.3,49367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49367,1,3,0)
+ ;;=3^Alc Dep w/ Alc-Induced Persist Dementia
+ ;;^UTILITY(U,$J,358.3,49367,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,49367,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,49368,0)
+ ;;=F19.97^^187^2447^29
+ ;;^UTILITY(U,$J,358.3,49368,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49368,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,49368,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,49368,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,49369,0)
+ ;;=G30.0^^187^2447^2
+ ;;^UTILITY(U,$J,358.3,49369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49369,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,49369,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,49369,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,49370,0)
+ ;;=G30.1^^187^2447^3
+ ;;^UTILITY(U,$J,358.3,49370,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49370,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,49370,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,49370,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,49371,0)
+ ;;=G30.9^^187^2447^4
+ ;;^UTILITY(U,$J,358.3,49371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49371,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,49371,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,49371,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,49372,0)
+ ;;=G10.^^187^2447^19
+ ;;^UTILITY(U,$J,358.3,49372,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49372,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49372,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,49372,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,49373,0)
+ ;;=G10.^^187^2447^20
+ ;;^UTILITY(U,$J,358.3,49373,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49373,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49373,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,49373,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,49374,0)
+ ;;=G90.3^^187^2447^21
+ ;;^UTILITY(U,$J,358.3,49374,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49374,1,3,0)
+ ;;=3^Multi-Syst Degen,Autonomic Nrvs Syst
+ ;;^UTILITY(U,$J,358.3,49374,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,49374,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,49375,0)
+ ;;=G91.2^^187^2447^22
+ ;;^UTILITY(U,$J,358.3,49375,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49375,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49375,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,49375,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,49376,0)
+ ;;=G91.2^^187^2447^23
+ ;;^UTILITY(U,$J,358.3,49376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49376,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49376,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,49376,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,49377,0)
+ ;;=G30.8^^187^2447^5
+ ;;^UTILITY(U,$J,358.3,49377,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49377,1,3,0)
+ ;;=3^Alzheimer's Diseases NEC
+ ;;^UTILITY(U,$J,358.3,49377,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,49377,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,49378,0)
+ ;;=G31.09^^187^2447^16

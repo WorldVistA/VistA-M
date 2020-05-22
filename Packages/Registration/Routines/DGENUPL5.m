@@ -1,19 +1,20 @@
 DGENUPL5 ;ALB/KCL/GSN - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 5/6/03 2:45pm
- ;;5.3;Registration;**222,504**;08/13/93
+ ;;5.3;Registration;**222,504,952**;08/13/93;Build 160
  ;
  ;DG*5.3*504 - Now, only updates the DG SECURITY LOG file #38.1 Zero
  ;             node, when SECURITY LEVEL [#2] goes from a Non-sensitive
  ;             value to a Sensitive value, i.e. (null or 0) to 1.
 GETLOCKS(DFN) ;
- ; Description - Locks first the patient enrollment history, then the patient record. Used to sychronize the upload with registration and load/edit.
+ ; Description - Locks first the patient enrollment history, then the patient record. Used to synchronize the upload with registration and load/edit.
  ;
  ;Input: DFN - ien of patient record.
  ;Output: none
  ;
- N COUNT
+ N COUNT,DGIEN33
  F COUNT=1:1:500 Q:$$BEGUPLD^DGENUPL3(DFN)
  F COUNT=1:1:500 Q:$$LOCK^DGENA1(DFN)
  F COUNT=1:1:500 Q:$$LOCK^DGENPTA1(DFN)
+ S DGIEN33=+$O(^DGOTH(33,"B",DFN,"")) I DGIEN33 F COUNT=1:1:500 Q:$$LOCK^DGOTHUT1(DGIEN33)  ; DG*5.3*952
  Q
  ;
  ;
@@ -23,9 +24,11 @@ UNLOCK(DFN) ;
  ;Input: DFN - ien of patient record
  ;Output: none
  ;
+ N DGIEN33
  D ENDUPLD^DGENUPL3(DFN)
  D UNLOCK^DGENA1(DFN)
  D UNLOCK^DGENPTA1(DFN)
+ S DGIEN33=+$O(^DGOTH(33,"B",DFN,"")) I DGIEN33 D UNLOCK^DGOTHUT1(DGIEN33) ; DG*5.3*952
  Q
  ;
  ;

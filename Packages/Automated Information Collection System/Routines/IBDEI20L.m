@@ -1,136 +1,124 @@
-IBDEI20L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI20L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34176,1,4,0)
- ;;=4^A60.04
- ;;^UTILITY(U,$J,358.3,34176,2)
- ;;=^5000356
- ;;^UTILITY(U,$J,358.3,34177,0)
- ;;=A60.01^^131^1682^32
- ;;^UTILITY(U,$J,358.3,34177,1,0)
+ ;;^UTILITY(U,$J,358.3,32152,1,4,0)
+ ;;=4^N63.42
+ ;;^UTILITY(U,$J,358.3,32152,2)
+ ;;=^5151532
+ ;;^UTILITY(U,$J,358.3,32153,0)
+ ;;=N63.41^^126^1648^23
+ ;;^UTILITY(U,$J,358.3,32153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34177,1,3,0)
- ;;=3^Herpesviral Infection of Penis
- ;;^UTILITY(U,$J,358.3,34177,1,4,0)
- ;;=4^A60.01
- ;;^UTILITY(U,$J,358.3,34177,2)
- ;;=^5000353
- ;;^UTILITY(U,$J,358.3,34178,0)
- ;;=B00.1^^131^1682^33
- ;;^UTILITY(U,$J,358.3,34178,1,0)
+ ;;^UTILITY(U,$J,358.3,32153,1,3,0)
+ ;;=3^Lump,Right Breast,Subareolar,Unspec
+ ;;^UTILITY(U,$J,358.3,32153,1,4,0)
+ ;;=4^N63.41
+ ;;^UTILITY(U,$J,358.3,32153,2)
+ ;;=^5151531
+ ;;^UTILITY(U,$J,358.3,32154,0)
+ ;;=N63.24^^126^1648^14
+ ;;^UTILITY(U,$J,358.3,32154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34178,1,3,0)
- ;;=3^Herpesviral Vesicular Dermatitis
- ;;^UTILITY(U,$J,358.3,34178,1,4,0)
- ;;=4^B00.1
- ;;^UTILITY(U,$J,358.3,34178,2)
- ;;=^5000468
- ;;^UTILITY(U,$J,358.3,34179,0)
- ;;=B97.89^^131^1682^89
- ;;^UTILITY(U,$J,358.3,34179,1,0)
+ ;;^UTILITY(U,$J,358.3,32154,1,3,0)
+ ;;=3^Lump,Left Breast,Lower Inner Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32154,1,4,0)
+ ;;=4^N63.24
+ ;;^UTILITY(U,$J,358.3,32154,2)
+ ;;=^5151528
+ ;;^UTILITY(U,$J,358.3,32155,0)
+ ;;=N63.23^^126^1648^15
+ ;;^UTILITY(U,$J,358.3,32155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34179,1,3,0)
- ;;=3^Viral Agent Cause of Disease
- ;;^UTILITY(U,$J,358.3,34179,1,4,0)
- ;;=4^B97.89
- ;;^UTILITY(U,$J,358.3,34179,2)
- ;;=^5000879
- ;;^UTILITY(U,$J,358.3,34180,0)
- ;;=B97.10^^131^1682^21
- ;;^UTILITY(U,$J,358.3,34180,1,0)
+ ;;^UTILITY(U,$J,358.3,32155,1,3,0)
+ ;;=3^Lump,Left Breast,Lower Outer Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32155,1,4,0)
+ ;;=4^N63.23
+ ;;^UTILITY(U,$J,358.3,32155,2)
+ ;;=^5151527
+ ;;^UTILITY(U,$J,358.3,32156,0)
+ ;;=N63.20^^126^1648^17
+ ;;^UTILITY(U,$J,358.3,32156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34180,1,3,0)
- ;;=3^Enterovirus Cause of Disease
- ;;^UTILITY(U,$J,358.3,34180,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,34180,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,34181,0)
- ;;=B34.9^^131^1682^90
- ;;^UTILITY(U,$J,358.3,34181,1,0)
+ ;;^UTILITY(U,$J,358.3,32156,1,3,0)
+ ;;=3^Lump,Left Breast,Unspec Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32156,1,4,0)
+ ;;=4^N63.20
+ ;;^UTILITY(U,$J,358.3,32156,2)
+ ;;=^5151524
+ ;;^UTILITY(U,$J,358.3,32157,0)
+ ;;=N63.22^^126^1648^18
+ ;;^UTILITY(U,$J,358.3,32157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34181,1,3,0)
- ;;=3^Viral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,34181,1,4,0)
- ;;=4^B34.9
- ;;^UTILITY(U,$J,358.3,34181,2)
- ;;=^5000603
- ;;^UTILITY(U,$J,358.3,34182,0)
- ;;=A69.20^^131^1682^50
- ;;^UTILITY(U,$J,358.3,34182,1,0)
+ ;;^UTILITY(U,$J,358.3,32157,1,3,0)
+ ;;=3^Lump,Left Breast,Upper Inner Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32157,1,4,0)
+ ;;=4^N63.22
+ ;;^UTILITY(U,$J,358.3,32157,2)
+ ;;=^5151526
+ ;;^UTILITY(U,$J,358.3,32158,0)
+ ;;=N63.21^^126^1648^19
+ ;;^UTILITY(U,$J,358.3,32158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34182,1,3,0)
- ;;=3^Lyme Disease,Unspec
- ;;^UTILITY(U,$J,358.3,34182,1,4,0)
- ;;=4^A69.20
- ;;^UTILITY(U,$J,358.3,34182,2)
- ;;=^5000375
- ;;^UTILITY(U,$J,358.3,34183,0)
- ;;=A69.22^^131^1682^52
- ;;^UTILITY(U,$J,358.3,34183,1,0)
+ ;;^UTILITY(U,$J,358.3,32158,1,3,0)
+ ;;=3^Lump,Left Breast,Upper Outer Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32158,1,4,0)
+ ;;=4^N63.21
+ ;;^UTILITY(U,$J,358.3,32158,2)
+ ;;=^5151525
+ ;;^UTILITY(U,$J,358.3,32159,0)
+ ;;=N63.14^^126^1648^21
+ ;;^UTILITY(U,$J,358.3,32159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34183,1,3,0)
- ;;=3^Neurologic Disorders d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,34183,1,4,0)
- ;;=4^A69.22
- ;;^UTILITY(U,$J,358.3,34183,2)
- ;;=^5000377
- ;;^UTILITY(U,$J,358.3,34184,0)
- ;;=A69.21^^131^1682^51
- ;;^UTILITY(U,$J,358.3,34184,1,0)
+ ;;^UTILITY(U,$J,358.3,32159,1,3,0)
+ ;;=3^Lump,Right Breast,Lower Inner Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32159,1,4,0)
+ ;;=4^N63.14
+ ;;^UTILITY(U,$J,358.3,32159,2)
+ ;;=^5151523
+ ;;^UTILITY(U,$J,358.3,32160,0)
+ ;;=N63.13^^126^1648^22
+ ;;^UTILITY(U,$J,358.3,32160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34184,1,3,0)
- ;;=3^Meningitis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,34184,1,4,0)
- ;;=4^A69.21
- ;;^UTILITY(U,$J,358.3,34184,2)
- ;;=^5000376
- ;;^UTILITY(U,$J,358.3,34185,0)
- ;;=A69.29^^131^1682^18
- ;;^UTILITY(U,$J,358.3,34185,1,0)
+ ;;^UTILITY(U,$J,358.3,32160,1,3,0)
+ ;;=3^Lump,Right Breast,Lower Outer Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32160,1,4,0)
+ ;;=4^N63.13
+ ;;^UTILITY(U,$J,358.3,32160,2)
+ ;;=^5151522
+ ;;^UTILITY(U,$J,358.3,32161,0)
+ ;;=N63.10^^126^1648^24
+ ;;^UTILITY(U,$J,358.3,32161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34185,1,3,0)
- ;;=3^Conditions d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,34185,1,4,0)
- ;;=4^A69.29
- ;;^UTILITY(U,$J,358.3,34185,2)
- ;;=^5000379
- ;;^UTILITY(U,$J,358.3,34186,0)
- ;;=A69.23^^131^1682^5
- ;;^UTILITY(U,$J,358.3,34186,1,0)
+ ;;^UTILITY(U,$J,358.3,32161,1,3,0)
+ ;;=3^Lump,Right Breast,Unspec Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32161,1,4,0)
+ ;;=4^N63.10
+ ;;^UTILITY(U,$J,358.3,32161,2)
+ ;;=^5151519
+ ;;^UTILITY(U,$J,358.3,32162,0)
+ ;;=N63.12^^126^1648^25
+ ;;^UTILITY(U,$J,358.3,32162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34186,1,3,0)
- ;;=3^Arthritis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,34186,1,4,0)
- ;;=4^A69.23
- ;;^UTILITY(U,$J,358.3,34186,2)
- ;;=^5000378
- ;;^UTILITY(U,$J,358.3,34187,0)
- ;;=A51.0^^131^1682^29
- ;;^UTILITY(U,$J,358.3,34187,1,0)
+ ;;^UTILITY(U,$J,358.3,32162,1,3,0)
+ ;;=3^Lump,Right Breast,Upper Inner Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32162,1,4,0)
+ ;;=4^N63.12
+ ;;^UTILITY(U,$J,358.3,32162,2)
+ ;;=^5151521
+ ;;^UTILITY(U,$J,358.3,32163,0)
+ ;;=N63.11^^126^1648^26
+ ;;^UTILITY(U,$J,358.3,32163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34187,1,3,0)
- ;;=3^Genital Syphilis,Primary
- ;;^UTILITY(U,$J,358.3,34187,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,34187,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,34188,0)
- ;;=A52.3^^131^1682^54
- ;;^UTILITY(U,$J,358.3,34188,1,0)
+ ;;^UTILITY(U,$J,358.3,32163,1,3,0)
+ ;;=3^Lump,Right Breast,Upper Outer Quadrant,Unspec
+ ;;^UTILITY(U,$J,358.3,32163,1,4,0)
+ ;;=4^N63.11
+ ;;^UTILITY(U,$J,358.3,32163,2)
+ ;;=^5151520
+ ;;^UTILITY(U,$J,358.3,32164,0)
+ ;;=N91.2^^126^1649^1
+ ;;^UTILITY(U,$J,358.3,32164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34188,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,34188,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,34188,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,34189,0)
- ;;=A52.10^^131^1682^53
- ;;^UTILITY(U,$J,358.3,34189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34189,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,34189,1,4,0)
- ;;=4^A52.10
+ ;;^UTILITY(U,$J,358.3,32164,1,3,0)
+ ;;=3^Amenorrhea

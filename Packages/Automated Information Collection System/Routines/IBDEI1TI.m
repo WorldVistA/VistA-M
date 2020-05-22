@@ -1,130 +1,118 @@
-IBDEI1TI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1TI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30881,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30881,1,3,0)
- ;;=3^Impulse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30881,1,4,0)
- ;;=4^F63.9
- ;;^UTILITY(U,$J,358.3,30881,2)
- ;;=^5003646
- ;;^UTILITY(U,$J,358.3,30882,0)
- ;;=F42.^^123^1541^4
- ;;^UTILITY(U,$J,358.3,30882,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30882,1,3,0)
- ;;=3^Hoarding Disorder
- ;;^UTILITY(U,$J,358.3,30882,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,30882,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,30883,0)
- ;;=F06.8^^123^1541^6
- ;;^UTILITY(U,$J,358.3,30883,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30883,1,3,0)
- ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,30883,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,30883,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,30884,0)
- ;;=F06.2^^123^1542^5
- ;;^UTILITY(U,$J,358.3,30884,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30884,1,3,0)
- ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30884,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,30884,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,30885,0)
- ;;=F06.0^^123^1542^6
- ;;^UTILITY(U,$J,358.3,30885,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30885,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30885,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,30885,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,30886,0)
- ;;=F06.4^^123^1542^1
- ;;^UTILITY(U,$J,358.3,30886,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30886,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30886,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,30886,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,30887,0)
- ;;=F06.1^^123^1542^2
- ;;^UTILITY(U,$J,358.3,30887,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30887,1,3,0)
- ;;=3^Catatonia Associated w/ Schizophrenia
- ;;^UTILITY(U,$J,358.3,30887,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,30887,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,30888,0)
- ;;=R41.9^^123^1542^3
- ;;^UTILITY(U,$J,358.3,30888,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30888,1,3,0)
- ;;=3^Neurocognitive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30888,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,30888,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,30889,0)
- ;;=F29.^^123^1542^7
- ;;^UTILITY(U,$J,358.3,30889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30889,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30889,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,30889,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,30890,0)
- ;;=F07.0^^123^1542^4
- ;;^UTILITY(U,$J,358.3,30890,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30890,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30890,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,30890,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,30891,0)
- ;;=Z91.49^^123^1543^12
- ;;^UTILITY(U,$J,358.3,30891,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30891,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,30891,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,30891,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,30892,0)
- ;;=Z91.5^^123^1543^13
- ;;^UTILITY(U,$J,358.3,30892,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30892,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,30892,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,30892,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,30893,0)
- ;;=Z91.82^^123^1543^11
- ;;^UTILITY(U,$J,358.3,30893,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30893,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,30893,1,4,0)
- ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,29042,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29042,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,29042,1,3,0)
+ ;;=3^Preventive Visit,New Pt,Age 18-39
+ ;;^UTILITY(U,$J,358.3,29043,0)
+ ;;=99386^^117^1457^2^^^^1
+ ;;^UTILITY(U,$J,358.3,29043,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29043,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,29043,1,3,0)
+ ;;=3^Preventive Visit,New Pt,Age 40-64
+ ;;^UTILITY(U,$J,358.3,29044,0)
+ ;;=99387^^117^1457^3^^^^1
+ ;;^UTILITY(U,$J,358.3,29044,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29044,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,29044,1,3,0)
+ ;;=3^Preventive Visit,New Pt,Age 65+
+ ;;^UTILITY(U,$J,358.3,29045,0)
+ ;;=99358^^117^1458^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29045,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29045,1,2,0)
+ ;;=2^99358
+ ;;^UTILITY(U,$J,358.3,29045,1,3,0)
+ ;;=3^Before/After Direct Pt Care,60 min
+ ;;^UTILITY(U,$J,358.3,29046,0)
+ ;;=99359^^117^1458^2^^^^1
+ ;;^UTILITY(U,$J,358.3,29046,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29046,1,2,0)
+ ;;=2^99359
+ ;;^UTILITY(U,$J,358.3,29046,1,3,0)
+ ;;=3^Before/After Direct Pt Care,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,29047,0)
+ ;;=96116^^117^1459^3^^^^1
+ ;;^UTILITY(U,$J,358.3,29047,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29047,1,2,0)
+ ;;=2^96116
+ ;;^UTILITY(U,$J,358.3,29047,1,3,0)
+ ;;=3^Nrbhv Status Exam,F2F,Intrp&Prep,per Hr
+ ;;^UTILITY(U,$J,358.3,29048,0)
+ ;;=96130^^117^1459^4^^^^1
+ ;;^UTILITY(U,$J,358.3,29048,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29048,1,2,0)
+ ;;=2^96130
+ ;;^UTILITY(U,$J,358.3,29048,1,3,0)
+ ;;=3^Psych Tst w/ Intrp/Trtmnt,1st Hr
+ ;;^UTILITY(U,$J,358.3,29049,0)
+ ;;=96131^^117^1459^5^^^^1
+ ;;^UTILITY(U,$J,358.3,29049,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29049,1,2,0)
+ ;;=2^96131
+ ;;^UTILITY(U,$J,358.3,29049,1,3,0)
+ ;;=3^Psych Tst w/ Intrp/Trtmnt,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,29050,0)
+ ;;=96132^^117^1459^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29050,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29050,1,2,0)
+ ;;=2^96132
+ ;;^UTILITY(U,$J,358.3,29050,1,3,0)
+ ;;=3^Neuropsych Test Eval,1st Hr
+ ;;^UTILITY(U,$J,358.3,29051,0)
+ ;;=96133^^117^1459^2^^^^1
+ ;;^UTILITY(U,$J,358.3,29051,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29051,1,2,0)
+ ;;=2^96133
+ ;;^UTILITY(U,$J,358.3,29051,1,3,0)
+ ;;=3^Neuropsych Test Eval,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,29052,0)
+ ;;=96136^^117^1459^8^^^^1
+ ;;^UTILITY(U,$J,358.3,29052,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29052,1,2,0)
+ ;;=2^96136
+ ;;^UTILITY(U,$J,358.3,29052,1,3,0)
+ ;;=3^Psych/Nrpsych Tst/Scr,2+ Tst,1st 30 min
+ ;;^UTILITY(U,$J,358.3,29053,0)
+ ;;=96137^^117^1459^9^^^^1
+ ;;^UTILITY(U,$J,358.3,29053,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29053,1,2,0)
+ ;;=2^96137
+ ;;^UTILITY(U,$J,358.3,29053,1,3,0)
+ ;;=3^Psych/Nrpsych Tst/Scr,2+ Tst,Ea Addl 30 Min
+ ;;^UTILITY(U,$J,358.3,29054,0)
+ ;;=96138^^117^1459^6^^^^1
+ ;;^UTILITY(U,$J,358.3,29054,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29054,1,2,0)
+ ;;=2^96138
+ ;;^UTILITY(U,$J,358.3,29054,1,3,0)
+ ;;=3^Psych/Nrpsyc Tst/Scr by Tech,2+ Tst,1st 30 Min
+ ;;^UTILITY(U,$J,358.3,29055,0)
+ ;;=96139^^117^1459^7^^^^1
+ ;;^UTILITY(U,$J,358.3,29055,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29055,1,2,0)
+ ;;=2^96139
+ ;;^UTILITY(U,$J,358.3,29055,1,3,0)
+ ;;=3^Psych/Nrpsyc Tst/Scr by Tech,2+ Tst,Ea Addl 30 Min
+ ;;^UTILITY(U,$J,358.3,29056,0)
+ ;;=97810^^117^1460^3^^^^1
+ ;;^UTILITY(U,$J,358.3,29056,1,0)
+ ;;=^358.31IA^3^2

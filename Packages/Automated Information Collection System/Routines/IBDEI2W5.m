@@ -1,132 +1,124 @@
-IBDEI2W5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48543,1,0)
+ ;;^UTILITY(U,$J,358.3,46115,1,3,0)
+ ;;=3^Malig Neop Skin,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46115,1,4,0)
+ ;;=4^C44.1021
+ ;;^UTILITY(U,$J,358.3,46115,2)
+ ;;=^5157253
+ ;;^UTILITY(U,$J,358.3,46116,0)
+ ;;=C44.1022^^176^2299^19
+ ;;^UTILITY(U,$J,358.3,46116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48543,1,3,0)
- ;;=3^Chronic combined systolic and diastolic hrt fail
- ;;^UTILITY(U,$J,358.3,48543,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,48543,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,48544,0)
- ;;=I50.32^^216^2408^15
- ;;^UTILITY(U,$J,358.3,48544,1,0)
+ ;;^UTILITY(U,$J,358.3,46116,1,3,0)
+ ;;=3^Malig Neop Skin,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46116,1,4,0)
+ ;;=4^C44.1022
+ ;;^UTILITY(U,$J,358.3,46116,2)
+ ;;=^5157254
+ ;;^UTILITY(U,$J,358.3,46117,0)
+ ;;=C44.1091^^176^2299^20
+ ;;^UTILITY(U,$J,358.3,46117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48544,1,3,0)
- ;;=3^Chronic diastolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,48544,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,48544,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,48545,0)
- ;;=J44.1^^216^2408^16
- ;;^UTILITY(U,$J,358.3,48545,1,0)
+ ;;^UTILITY(U,$J,358.3,46117,1,3,0)
+ ;;=3^Malig Neop Skin,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46117,1,4,0)
+ ;;=4^C44.1091
+ ;;^UTILITY(U,$J,358.3,46117,2)
+ ;;=^5157255
+ ;;^UTILITY(U,$J,358.3,46118,0)
+ ;;=C44.1092^^176^2299^21
+ ;;^UTILITY(U,$J,358.3,46118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48545,1,3,0)
- ;;=3^Chronic obstructive pulmonary disease w (acute) exacerbation
- ;;^UTILITY(U,$J,358.3,48545,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,48545,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,48546,0)
- ;;=J44.9^^216^2408^17
- ;;^UTILITY(U,$J,358.3,48546,1,0)
+ ;;^UTILITY(U,$J,358.3,46118,1,3,0)
+ ;;=3^Malig Neop Skin,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46118,1,4,0)
+ ;;=4^C44.1092
+ ;;^UTILITY(U,$J,358.3,46118,2)
+ ;;=^5157256
+ ;;^UTILITY(U,$J,358.3,46119,0)
+ ;;=C44.1121^^176^2299^22
+ ;;^UTILITY(U,$J,358.3,46119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48546,1,3,0)
- ;;=3^Chronic obstructive pulmonary disease, unspecified
- ;;^UTILITY(U,$J,358.3,48546,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,48546,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,48547,0)
- ;;=I50.22^^216^2408^18
- ;;^UTILITY(U,$J,358.3,48547,1,0)
+ ;;^UTILITY(U,$J,358.3,46119,1,3,0)
+ ;;=3^BCC Neop Skin,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46119,1,4,0)
+ ;;=4^C44.1121
+ ;;^UTILITY(U,$J,358.3,46119,2)
+ ;;=^5157257
+ ;;^UTILITY(U,$J,358.3,46120,0)
+ ;;=C44.1122^^176^2299^23
+ ;;^UTILITY(U,$J,358.3,46120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48547,1,3,0)
- ;;=3^Chronic systolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,48547,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,48547,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,48548,0)
- ;;=Z98.61^^216^2408^20
- ;;^UTILITY(U,$J,358.3,48548,1,0)
+ ;;^UTILITY(U,$J,358.3,46120,1,3,0)
+ ;;=3^BCC Neop Skin,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46120,1,4,0)
+ ;;=4^C44.1122
+ ;;^UTILITY(U,$J,358.3,46120,2)
+ ;;=^5157258
+ ;;^UTILITY(U,$J,358.3,46121,0)
+ ;;=C44.1191^^176^2299^24
+ ;;^UTILITY(U,$J,358.3,46121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48548,1,3,0)
- ;;=3^Coronary angioplasty status
- ;;^UTILITY(U,$J,358.3,48548,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,48548,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,48549,0)
- ;;=I42.0^^216^2408^22
- ;;^UTILITY(U,$J,358.3,48549,1,0)
+ ;;^UTILITY(U,$J,358.3,46121,1,3,0)
+ ;;=3^BCC Neop Skin,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46121,1,4,0)
+ ;;=4^C44.1191
+ ;;^UTILITY(U,$J,358.3,46121,2)
+ ;;=^5157259
+ ;;^UTILITY(U,$J,358.3,46122,0)
+ ;;=C44.1192^^176^2299^25
+ ;;^UTILITY(U,$J,358.3,46122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48549,1,3,0)
- ;;=3^Dilated cardiomyopathy
- ;;^UTILITY(U,$J,358.3,48549,1,4,0)
- ;;=4^I42.0
- ;;^UTILITY(U,$J,358.3,48549,2)
- ;;=^5007194
- ;;^UTILITY(U,$J,358.3,48550,0)
- ;;=J43.9^^216^2408^23
- ;;^UTILITY(U,$J,358.3,48550,1,0)
+ ;;^UTILITY(U,$J,358.3,46122,1,3,0)
+ ;;=3^BCC Neop Skin,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46122,1,4,0)
+ ;;=4^C44.1192
+ ;;^UTILITY(U,$J,358.3,46122,2)
+ ;;=^5157260
+ ;;^UTILITY(U,$J,358.3,46123,0)
+ ;;=C44.1221^^176^2299^26
+ ;;^UTILITY(U,$J,358.3,46123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48550,1,3,0)
- ;;=3^Emphysema, unspecified
- ;;^UTILITY(U,$J,358.3,48550,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,48550,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,48551,0)
- ;;=Z82.49^^216^2408^24
- ;;^UTILITY(U,$J,358.3,48551,1,0)
+ ;;^UTILITY(U,$J,358.3,46123,1,3,0)
+ ;;=3^SCC Neop Skin,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46123,1,4,0)
+ ;;=4^C44.1221
+ ;;^UTILITY(U,$J,358.3,46123,2)
+ ;;=^5157261
+ ;;^UTILITY(U,$J,358.3,46124,0)
+ ;;=C44.1222^^176^2299^27
+ ;;^UTILITY(U,$J,358.3,46124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48551,1,3,0)
- ;;=3^Family hx of ischem heart dis and oth dis of the circ sys
- ;;^UTILITY(U,$J,358.3,48551,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,48551,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,48552,0)
- ;;=I50.9^^216^2408^25
- ;;^UTILITY(U,$J,358.3,48552,1,0)
+ ;;^UTILITY(U,$J,358.3,46124,1,3,0)
+ ;;=3^SCC Neop Skin,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46124,1,4,0)
+ ;;=4^C44.1222
+ ;;^UTILITY(U,$J,358.3,46124,2)
+ ;;=^5157262
+ ;;^UTILITY(U,$J,358.3,46125,0)
+ ;;=C44.1291^^176^2299^28
+ ;;^UTILITY(U,$J,358.3,46125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48552,1,3,0)
- ;;=3^Heart failure, unspecified
- ;;^UTILITY(U,$J,358.3,48552,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,48552,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,48553,0)
- ;;=I25.2^^216^2408^27
- ;;^UTILITY(U,$J,358.3,48553,1,0)
+ ;;^UTILITY(U,$J,358.3,46125,1,3,0)
+ ;;=3^SCC Neop Skin,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46125,1,4,0)
+ ;;=4^C44.1291
+ ;;^UTILITY(U,$J,358.3,46125,2)
+ ;;=^5157263
+ ;;^UTILITY(U,$J,358.3,46126,0)
+ ;;=C44.1292^^176^2299^29
+ ;;^UTILITY(U,$J,358.3,46126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48553,1,3,0)
- ;;=3^Old myocardial infarction
- ;;^UTILITY(U,$J,358.3,48553,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,48553,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,48554,0)
- ;;=I42.8^^216^2408^12
- ;;^UTILITY(U,$J,358.3,48554,1,0)
+ ;;^UTILITY(U,$J,358.3,46126,1,3,0)
+ ;;=3^SCC Neop Skin,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46126,1,4,0)
+ ;;=4^C44.1292
+ ;;^UTILITY(U,$J,358.3,46126,2)
+ ;;=^5157264
+ ;;^UTILITY(U,$J,358.3,46127,0)
+ ;;=H52.13^^176^2300^36
+ ;;^UTILITY(U,$J,358.3,46127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48554,1,3,0)
- ;;=3^Cardiomyopathies NEC
- ;;^UTILITY(U,$J,358.3,48554,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,48554,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,48555,0)
- ;;=I42.2^^216^2408^26
- ;;^UTILITY(U,$J,358.3,48555,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48555,1,3,0)
- ;;=3^Hypertrophic cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,48555,1,4,0)
- ;;=4^I42.2
- ;;^UTILITY(U,$J,358.3,48555,2)
- ;;=^340521

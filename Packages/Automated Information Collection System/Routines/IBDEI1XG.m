@@ -1,128 +1,126 @@
-IBDEI1XG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32687,1,0)
+ ;;^UTILITY(U,$J,358.3,30786,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,30786,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,30786,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,30787,0)
+ ;;=I13.10^^123^1587^9
+ ;;^UTILITY(U,$J,358.3,30787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32687,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,32687,1,4,0)
- ;;=4^S91.041A
- ;;^UTILITY(U,$J,358.3,32687,2)
- ;;=^5044156
- ;;^UTILITY(U,$J,358.3,32688,0)
- ;;=S91.042A^^126^1623^14
- ;;^UTILITY(U,$J,358.3,32688,1,0)
+ ;;^UTILITY(U,$J,358.3,30787,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,30787,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,30787,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,30788,0)
+ ;;=I15.1^^123^1587^11
+ ;;^UTILITY(U,$J,358.3,30788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32688,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,32688,1,4,0)
- ;;=4^S91.042A
- ;;^UTILITY(U,$J,358.3,32688,2)
- ;;=^5137412
- ;;^UTILITY(U,$J,358.3,32689,0)
- ;;=S81.841A^^126^1623^25
- ;;^UTILITY(U,$J,358.3,32689,1,0)
+ ;;^UTILITY(U,$J,358.3,30788,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,30788,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,30788,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,30789,0)
+ ;;=I15.2^^123^1587^10
+ ;;^UTILITY(U,$J,358.3,30789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32689,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,32689,1,4,0)
- ;;=4^S81.841A
- ;;^UTILITY(U,$J,358.3,32689,2)
- ;;=^5040092
- ;;^UTILITY(U,$J,358.3,32690,0)
- ;;=S91.341A^^126^1623^20
- ;;^UTILITY(U,$J,358.3,32690,1,0)
+ ;;^UTILITY(U,$J,358.3,30789,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,30789,1,4,0)
+ ;;=4^I15.2
+ ;;^UTILITY(U,$J,358.3,30789,2)
+ ;;=^5007073
+ ;;^UTILITY(U,$J,358.3,30790,0)
+ ;;=I50.1^^123^1587^16
+ ;;^UTILITY(U,$J,358.3,30790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32690,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt ft, init enc
- ;;^UTILITY(U,$J,358.3,32690,1,4,0)
- ;;=4^S91.341A
- ;;^UTILITY(U,$J,358.3,32690,2)
- ;;=^5044341
- ;;^UTILITY(U,$J,358.3,32691,0)
- ;;=S81.842A^^126^1623^18
- ;;^UTILITY(U,$J,358.3,32691,1,0)
+ ;;^UTILITY(U,$J,358.3,30790,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,30790,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,30790,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,30791,0)
+ ;;=E26.09^^123^1587^17
+ ;;^UTILITY(U,$J,358.3,30791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32691,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,32691,1,4,0)
- ;;=4^S81.842A
- ;;^UTILITY(U,$J,358.3,32691,2)
- ;;=^5136697
- ;;^UTILITY(U,$J,358.3,32692,0)
- ;;=S91.144A^^126^1623^24
- ;;^UTILITY(U,$J,358.3,32692,1,0)
+ ;;^UTILITY(U,$J,358.3,30791,1,3,0)
+ ;;=3^Primary Hyperaldosteronism,Other
+ ;;^UTILITY(U,$J,358.3,30791,1,4,0)
+ ;;=4^E26.09
+ ;;^UTILITY(U,$J,358.3,30791,2)
+ ;;=^5002735
+ ;;^UTILITY(U,$J,358.3,30792,0)
+ ;;=I15.8^^123^1587^18
+ ;;^UTILITY(U,$J,358.3,30792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32692,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,32692,1,4,0)
- ;;=4^S91.144A
- ;;^UTILITY(U,$J,358.3,32692,2)
- ;;=^5044237
- ;;^UTILITY(U,$J,358.3,32693,0)
- ;;=S91.142A^^126^1623^16
- ;;^UTILITY(U,$J,358.3,32693,1,0)
+ ;;^UTILITY(U,$J,358.3,30792,1,3,0)
+ ;;=3^Secondary Hypertension,Other
+ ;;^UTILITY(U,$J,358.3,30792,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,30792,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,30793,0)
+ ;;=E27.5^^123^1587^1
+ ;;^UTILITY(U,$J,358.3,30793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32693,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,32693,1,4,0)
- ;;=4^S91.142A
- ;;^UTILITY(U,$J,358.3,32693,2)
- ;;=^5137472
- ;;^UTILITY(U,$J,358.3,32694,0)
- ;;=S91.141A^^126^1623^22
- ;;^UTILITY(U,$J,358.3,32694,1,0)
+ ;;^UTILITY(U,$J,358.3,30793,1,3,0)
+ ;;=3^Adrenomedullary Hyperfunction
+ ;;^UTILITY(U,$J,358.3,30793,1,4,0)
+ ;;=4^E27.5
+ ;;^UTILITY(U,$J,358.3,30793,2)
+ ;;=^5002744
+ ;;^UTILITY(U,$J,358.3,30794,0)
+ ;;=E26.01^^123^1587^4
+ ;;^UTILITY(U,$J,358.3,30794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32694,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,32694,1,4,0)
- ;;=4^S91.141A
- ;;^UTILITY(U,$J,358.3,32694,2)
- ;;=^5044234
- ;;^UTILITY(U,$J,358.3,32695,0)
- ;;=S91.242A^^126^1623^15
- ;;^UTILITY(U,$J,358.3,32695,1,0)
+ ;;^UTILITY(U,$J,358.3,30794,1,3,0)
+ ;;=3^Conn's Syndrome
+ ;;^UTILITY(U,$J,358.3,30794,1,4,0)
+ ;;=4^E26.01
+ ;;^UTILITY(U,$J,358.3,30794,2)
+ ;;=^329905
+ ;;^UTILITY(U,$J,358.3,30795,0)
+ ;;=I15.9^^123^1587^19
+ ;;^UTILITY(U,$J,358.3,30795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32695,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft grt toe w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32695,1,4,0)
- ;;=4^S91.242A
- ;;^UTILITY(U,$J,358.3,32695,2)
- ;;=^5137497
- ;;^UTILITY(U,$J,358.3,32696,0)
- ;;=S91.241A^^126^1623^21
- ;;^UTILITY(U,$J,358.3,32696,1,0)
+ ;;^UTILITY(U,$J,358.3,30795,1,3,0)
+ ;;=3^Secondary Hypertension,Unspec
+ ;;^UTILITY(U,$J,358.3,30795,1,4,0)
+ ;;=4^I15.9
+ ;;^UTILITY(U,$J,358.3,30795,2)
+ ;;=^5007075
+ ;;^UTILITY(U,$J,358.3,30796,0)
+ ;;=B20.^^123^1588^3
+ ;;^UTILITY(U,$J,358.3,30796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32696,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt grt toe w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32696,1,4,0)
- ;;=4^S91.241A
- ;;^UTILITY(U,$J,358.3,32696,2)
- ;;=^5137496
- ;;^UTILITY(U,$J,358.3,32697,0)
- ;;=S91.245A^^126^1623^17
- ;;^UTILITY(U,$J,358.3,32697,1,0)
+ ;;^UTILITY(U,$J,358.3,30796,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,30796,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,30796,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,30797,0)
+ ;;=J18.9^^123^1588^6
+ ;;^UTILITY(U,$J,358.3,30797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32697,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32697,1,4,0)
- ;;=4^S91.245A
- ;;^UTILITY(U,$J,358.3,32697,2)
- ;;=^5137503
- ;;^UTILITY(U,$J,358.3,32698,0)
- ;;=S91.244A^^126^1623^23
- ;;^UTILITY(U,$J,358.3,32698,1,0)
+ ;;^UTILITY(U,$J,358.3,30797,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,30797,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,30797,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,30798,0)
+ ;;=J10.1^^123^1588^1
+ ;;^UTILITY(U,$J,358.3,30798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32698,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32698,1,4,0)
- ;;=4^S91.244A
- ;;^UTILITY(U,$J,358.3,32698,2)
- ;;=^5137502
- ;;^UTILITY(U,$J,358.3,32699,0)
- ;;=S91.332A^^126^1623^26
- ;;^UTILITY(U,$J,358.3,32699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32699,1,3,0)
- ;;=3^Punctr Wnd w/o FB, lft ft, init enc
+ ;;^UTILITY(U,$J,358.3,30798,1,3,0)
+ ;;=3^Flu w/ Respiratory Manifestations

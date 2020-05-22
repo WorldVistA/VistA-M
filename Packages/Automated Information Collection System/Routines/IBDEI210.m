@@ -1,130 +1,122 @@
-IBDEI210 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI210 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34371,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,34372,0)
- ;;=M18.0^^131^1686^122
- ;;^UTILITY(U,$J,358.3,34372,1,0)
+ ;;^UTILITY(U,$J,358.3,32340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34372,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
- ;;^UTILITY(U,$J,358.3,34372,1,4,0)
- ;;=4^M18.0
- ;;^UTILITY(U,$J,358.3,34372,2)
- ;;=^5010795
- ;;^UTILITY(U,$J,358.3,34373,0)
- ;;=M18.11^^131^1686^132
- ;;^UTILITY(U,$J,358.3,34373,1,0)
+ ;;^UTILITY(U,$J,358.3,32340,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,32340,1,4,0)
+ ;;=4^H40.1332
+ ;;^UTILITY(U,$J,358.3,32340,2)
+ ;;=^5005786
+ ;;^UTILITY(U,$J,358.3,32341,0)
+ ;;=H40.1333^^128^1657^28
+ ;;^UTILITY(U,$J,358.3,32341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34373,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,34373,1,4,0)
- ;;=4^M18.11
- ;;^UTILITY(U,$J,358.3,34373,2)
- ;;=^5010797
- ;;^UTILITY(U,$J,358.3,34374,0)
- ;;=M18.12^^131^1686^126
- ;;^UTILITY(U,$J,358.3,34374,1,0)
+ ;;^UTILITY(U,$J,358.3,32341,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Severe Stage
+ ;;^UTILITY(U,$J,358.3,32341,1,4,0)
+ ;;=4^H40.1333
+ ;;^UTILITY(U,$J,358.3,32341,2)
+ ;;=^5005787
+ ;;^UTILITY(U,$J,358.3,32342,0)
+ ;;=H40.1334^^128^1657^29
+ ;;^UTILITY(U,$J,358.3,32342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34374,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,34374,1,4,0)
- ;;=4^M18.12
- ;;^UTILITY(U,$J,358.3,34374,2)
- ;;=^5010798
- ;;^UTILITY(U,$J,358.3,34375,0)
- ;;=M19.011^^131^1686^135
- ;;^UTILITY(U,$J,358.3,34375,1,0)
+ ;;^UTILITY(U,$J,358.3,32342,1,3,0)
+ ;;=3^Pigmentary GLC,OU,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,32342,1,4,0)
+ ;;=4^H40.1334
+ ;;^UTILITY(U,$J,358.3,32342,2)
+ ;;=^5005788
+ ;;^UTILITY(U,$J,358.3,32343,0)
+ ;;=H40.1410^^128^1657^35
+ ;;^UTILITY(U,$J,358.3,32343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34375,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,34375,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,34375,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,34376,0)
- ;;=M19.012^^131^1686^129
- ;;^UTILITY(U,$J,358.3,34376,1,0)
+ ;;^UTILITY(U,$J,358.3,32343,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,32343,1,4,0)
+ ;;=4^H40.1410
+ ;;^UTILITY(U,$J,358.3,32343,2)
+ ;;=^5138017
+ ;;^UTILITY(U,$J,358.3,32344,0)
+ ;;=H40.1411^^128^1657^31
+ ;;^UTILITY(U,$J,358.3,32344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34376,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,34376,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,34376,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,34377,0)
- ;;=M19.031^^131^1686^136
- ;;^UTILITY(U,$J,358.3,34377,1,0)
+ ;;^UTILITY(U,$J,358.3,32344,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Mild Stage
+ ;;^UTILITY(U,$J,358.3,32344,1,4,0)
+ ;;=4^H40.1411
+ ;;^UTILITY(U,$J,358.3,32344,2)
+ ;;=^5138018
+ ;;^UTILITY(U,$J,358.3,32345,0)
+ ;;=H40.1412^^128^1657^32
+ ;;^UTILITY(U,$J,358.3,32345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34377,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,34377,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,34377,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,34378,0)
- ;;=M19.032^^131^1686^130
- ;;^UTILITY(U,$J,358.3,34378,1,0)
+ ;;^UTILITY(U,$J,358.3,32345,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,32345,1,4,0)
+ ;;=4^H40.1412
+ ;;^UTILITY(U,$J,358.3,32345,2)
+ ;;=^5138019
+ ;;^UTILITY(U,$J,358.3,32346,0)
+ ;;=H40.1413^^128^1657^33
+ ;;^UTILITY(U,$J,358.3,32346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34378,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,34378,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,34378,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,34379,0)
- ;;=M19.041^^131^1686^131
- ;;^UTILITY(U,$J,358.3,34379,1,0)
+ ;;^UTILITY(U,$J,358.3,32346,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Severe Stage
+ ;;^UTILITY(U,$J,358.3,32346,1,4,0)
+ ;;=4^H40.1413
+ ;;^UTILITY(U,$J,358.3,32346,2)
+ ;;=^5138020
+ ;;^UTILITY(U,$J,358.3,32347,0)
+ ;;=H40.1414^^128^1657^34
+ ;;^UTILITY(U,$J,358.3,32347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34379,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,34379,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,34379,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,34380,0)
- ;;=M19.042^^131^1686^125
- ;;^UTILITY(U,$J,358.3,34380,1,0)
+ ;;^UTILITY(U,$J,358.3,32347,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OD,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,32347,1,4,0)
+ ;;=4^H40.1414
+ ;;^UTILITY(U,$J,358.3,32347,2)
+ ;;=^5138021
+ ;;^UTILITY(U,$J,358.3,32348,0)
+ ;;=H40.1421^^128^1657^36
+ ;;^UTILITY(U,$J,358.3,32348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34380,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,34380,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,34380,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,34381,0)
- ;;=M19.90^^131^1686^68
- ;;^UTILITY(U,$J,358.3,34381,1,0)
+ ;;^UTILITY(U,$J,358.3,32348,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Mild Stage
+ ;;^UTILITY(U,$J,358.3,32348,1,4,0)
+ ;;=4^H40.1421
+ ;;^UTILITY(U,$J,358.3,32348,2)
+ ;;=^5138023
+ ;;^UTILITY(U,$J,358.3,32349,0)
+ ;;=H40.1422^^128^1657^37
+ ;;^UTILITY(U,$J,358.3,32349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34381,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,34381,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,34381,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,34382,0)
- ;;=M25.40^^131^1686^37
- ;;^UTILITY(U,$J,358.3,34382,1,0)
+ ;;^UTILITY(U,$J,358.3,32349,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,32349,1,4,0)
+ ;;=4^H40.1422
+ ;;^UTILITY(U,$J,358.3,32349,2)
+ ;;=^5138024
+ ;;^UTILITY(U,$J,358.3,32350,0)
+ ;;=H40.1423^^128^1657^38
+ ;;^UTILITY(U,$J,358.3,32350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34382,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,34382,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,34382,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,34383,0)
- ;;=M45.0^^131^1686^6
- ;;^UTILITY(U,$J,358.3,34383,1,0)
+ ;;^UTILITY(U,$J,358.3,32350,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Severe Stage
+ ;;^UTILITY(U,$J,358.3,32350,1,4,0)
+ ;;=4^H40.1423
+ ;;^UTILITY(U,$J,358.3,32350,2)
+ ;;=^5138025
+ ;;^UTILITY(U,$J,358.3,32351,0)
+ ;;=H40.1424^^128^1657^39
+ ;;^UTILITY(U,$J,358.3,32351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34383,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,34383,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,34383,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,34384,0)
- ;;=M45.2^^131^1686^3
- ;;^UTILITY(U,$J,358.3,34384,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32351,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,32351,1,4,0)
+ ;;=4^H40.1424
+ ;;^UTILITY(U,$J,358.3,32351,2)
+ ;;=^5138026

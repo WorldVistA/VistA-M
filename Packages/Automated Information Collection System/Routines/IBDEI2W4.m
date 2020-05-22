@@ -1,128 +1,124 @@
-IBDEI2W4 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48530,2)
- ;;=^5007248
- ;;^UTILITY(U,$J,358.3,48531,0)
- ;;=I50.31^^216^2408^2
- ;;^UTILITY(U,$J,358.3,48531,1,0)
+ ;;^UTILITY(U,$J,358.3,46103,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,46103,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,46103,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,46104,0)
+ ;;=H04.221^^176^2299^10
+ ;;^UTILITY(U,$J,358.3,46104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48531,1,3,0)
- ;;=3^Acute diastolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,48531,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,48531,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,48532,0)
- ;;=I50.43^^216^2408^3
- ;;^UTILITY(U,$J,358.3,48532,1,0)
+ ;;^UTILITY(U,$J,358.3,46104,1,3,0)
+ ;;=3^Epiphora d/t Insuff Drainage,Right 
+ ;;^UTILITY(U,$J,358.3,46104,1,4,0)
+ ;;=4^H04.221
+ ;;^UTILITY(U,$J,358.3,46104,2)
+ ;;=^5004491
+ ;;^UTILITY(U,$J,358.3,46105,0)
+ ;;=H04.222^^176^2299^11
+ ;;^UTILITY(U,$J,358.3,46105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48532,1,3,0)
- ;;=3^Acute on chronic combined systolic and diastolic hrt fail
- ;;^UTILITY(U,$J,358.3,48532,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,48532,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,48533,0)
- ;;=I50.33^^216^2408^4
- ;;^UTILITY(U,$J,358.3,48533,1,0)
+ ;;^UTILITY(U,$J,358.3,46105,1,3,0)
+ ;;=3^Epiphora d/t Insuff Drainage,Left 
+ ;;^UTILITY(U,$J,358.3,46105,1,4,0)
+ ;;=4^H04.222
+ ;;^UTILITY(U,$J,358.3,46105,2)
+ ;;=^5004492
+ ;;^UTILITY(U,$J,358.3,46106,0)
+ ;;=H04.551^^176^2299^12
+ ;;^UTILITY(U,$J,358.3,46106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48533,1,3,0)
- ;;=3^Acute on chronic diastolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,48533,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,48533,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,48534,0)
- ;;=I50.23^^216^2408^5
- ;;^UTILITY(U,$J,358.3,48534,1,0)
+ ;;^UTILITY(U,$J,358.3,46106,1,3,0)
+ ;;=3^Acquired Stenosis,Right Nasolacrimal Duct
+ ;;^UTILITY(U,$J,358.3,46106,1,4,0)
+ ;;=4^H04.551
+ ;;^UTILITY(U,$J,358.3,46106,2)
+ ;;=^5004538
+ ;;^UTILITY(U,$J,358.3,46107,0)
+ ;;=H04.552^^176^2299^13
+ ;;^UTILITY(U,$J,358.3,46107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48534,1,3,0)
- ;;=3^Acute on chronic systolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,48534,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,48534,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,48535,0)
- ;;=I50.21^^216^2408^6
- ;;^UTILITY(U,$J,358.3,48535,1,0)
+ ;;^UTILITY(U,$J,358.3,46107,1,3,0)
+ ;;=3^Acquired Stenosis,Left Nasolacrimal Duct
+ ;;^UTILITY(U,$J,358.3,46107,1,4,0)
+ ;;=4^H04.552
+ ;;^UTILITY(U,$J,358.3,46107,2)
+ ;;=^5004539
+ ;;^UTILITY(U,$J,358.3,46108,0)
+ ;;=H04.211^^176^2299^7
+ ;;^UTILITY(U,$J,358.3,46108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48535,1,3,0)
- ;;=3^Acute systolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,48535,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,48535,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,48536,0)
- ;;=I25.111^^216^2408^7
- ;;^UTILITY(U,$J,358.3,48536,1,0)
+ ;;^UTILITY(U,$J,358.3,46108,1,3,0)
+ ;;=3^Epiphora d/t Excessive Lacrimation,Right
+ ;;^UTILITY(U,$J,358.3,46108,1,4,0)
+ ;;=4^H04.211
+ ;;^UTILITY(U,$J,358.3,46108,2)
+ ;;=^5004487
+ ;;^UTILITY(U,$J,358.3,46109,0)
+ ;;=H04.212^^176^2299^8
+ ;;^UTILITY(U,$J,358.3,46109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48536,1,3,0)
- ;;=3^Athscl hrt disease of native cor art w ang pctrs w spasm
- ;;^UTILITY(U,$J,358.3,48536,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,48536,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,48537,0)
- ;;=I25.118^^216^2408^8
- ;;^UTILITY(U,$J,358.3,48537,1,0)
+ ;;^UTILITY(U,$J,358.3,46109,1,3,0)
+ ;;=3^Epiphora d/t Excessive Lacrimation,Left
+ ;;^UTILITY(U,$J,358.3,46109,1,4,0)
+ ;;=4^H04.212
+ ;;^UTILITY(U,$J,358.3,46109,2)
+ ;;=^5004488
+ ;;^UTILITY(U,$J,358.3,46110,0)
+ ;;=H04.213^^176^2299^9
+ ;;^UTILITY(U,$J,358.3,46110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48537,1,3,0)
- ;;=3^Athscl hrt disease of native cor art w oth ang pctrs
- ;;^UTILITY(U,$J,358.3,48537,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,48537,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,48538,0)
- ;;=I25.119^^216^2408^9
- ;;^UTILITY(U,$J,358.3,48538,1,0)
+ ;;^UTILITY(U,$J,358.3,46110,1,3,0)
+ ;;=3^Epiphora d/t Excessive Lacrimation,Bilateral
+ ;;^UTILITY(U,$J,358.3,46110,1,4,0)
+ ;;=4^H04.213
+ ;;^UTILITY(U,$J,358.3,46110,2)
+ ;;=^5004489
+ ;;^UTILITY(U,$J,358.3,46111,0)
+ ;;=D23.111^^176^2299^14
+ ;;^UTILITY(U,$J,358.3,46111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48538,1,3,0)
- ;;=3^Athscl hrt disease of native cor art w unsp ang pctrs
- ;;^UTILITY(U,$J,358.3,48538,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,48538,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,48539,0)
- ;;=I25.110^^216^2408^10
- ;;^UTILITY(U,$J,358.3,48539,1,0)
+ ;;^UTILITY(U,$J,358.3,46111,1,3,0)
+ ;;=3^Benign Neop Skin,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46111,1,4,0)
+ ;;=4^D23.111
+ ;;^UTILITY(U,$J,358.3,46111,2)
+ ;;=^5157290
+ ;;^UTILITY(U,$J,358.3,46112,0)
+ ;;=D23.112^^176^2299^15
+ ;;^UTILITY(U,$J,358.3,46112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48539,1,3,0)
- ;;=3^Athscl hrt disease of native cor art w unstable ang pctrs
- ;;^UTILITY(U,$J,358.3,48539,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,48539,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,48540,0)
- ;;=I25.10^^216^2408^11
- ;;^UTILITY(U,$J,358.3,48540,1,0)
+ ;;^UTILITY(U,$J,358.3,46112,1,3,0)
+ ;;=3^Benign Neop Skin,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46112,1,4,0)
+ ;;=4^D23.112
+ ;;^UTILITY(U,$J,358.3,46112,2)
+ ;;=^5157291
+ ;;^UTILITY(U,$J,358.3,46113,0)
+ ;;=D23.121^^176^2299^16
+ ;;^UTILITY(U,$J,358.3,46113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48540,1,3,0)
- ;;=3^Athscl hrt disease of native cor art w/o ang pctrs
- ;;^UTILITY(U,$J,358.3,48540,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,48540,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,48541,0)
- ;;=I48.0^^216^2408^28
- ;;^UTILITY(U,$J,358.3,48541,1,0)
+ ;;^UTILITY(U,$J,358.3,46113,1,3,0)
+ ;;=3^Benign Neop Skin,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,46113,1,4,0)
+ ;;=4^D23.121
+ ;;^UTILITY(U,$J,358.3,46113,2)
+ ;;=^5157292
+ ;;^UTILITY(U,$J,358.3,46114,0)
+ ;;=D23.122^^176^2299^17
+ ;;^UTILITY(U,$J,358.3,46114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48541,1,3,0)
- ;;=3^Paroxysmal atrial fibrillation
- ;;^UTILITY(U,$J,358.3,48541,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,48541,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,48542,0)
- ;;=I42.9^^216^2408^13
- ;;^UTILITY(U,$J,358.3,48542,1,0)
+ ;;^UTILITY(U,$J,358.3,46114,1,3,0)
+ ;;=3^BEnign Neop Skin,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,46114,1,4,0)
+ ;;=4^D23.122
+ ;;^UTILITY(U,$J,358.3,46114,2)
+ ;;=^5157293
+ ;;^UTILITY(U,$J,358.3,46115,0)
+ ;;=C44.1021^^176^2299^18
+ ;;^UTILITY(U,$J,358.3,46115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48542,1,3,0)
- ;;=3^Cardiomyopathy, unspecified
- ;;^UTILITY(U,$J,358.3,48542,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,48542,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,48543,0)
- ;;=I50.42^^216^2408^14

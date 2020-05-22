@@ -1,136 +1,116 @@
-IBDEI2KI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43567,1,3,0)
- ;;=3^Occl & Sten,Lt Carotid Artery
- ;;^UTILITY(U,$J,358.3,43567,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,43567,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,43568,0)
- ;;=I65.23^^167^2081^13
- ;;^UTILITY(U,$J,358.3,43568,1,0)
+ ;;^UTILITY(U,$J,358.3,40986,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40986,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,40986,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,40987,0)
+ ;;=Y04.8XXD^^152^2019^4
+ ;;^UTILITY(U,$J,358.3,40987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43568,1,3,0)
- ;;=3^Occl & Sten,Bil Carotid Arteries
- ;;^UTILITY(U,$J,358.3,43568,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,43568,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,43569,0)
- ;;=I65.8^^167^2081^15
- ;;^UTILITY(U,$J,358.3,43569,1,0)
+ ;;^UTILITY(U,$J,358.3,40987,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40987,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,40987,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,40988,0)
+ ;;=Y36.200A^^152^2019^133
+ ;;^UTILITY(U,$J,358.3,40988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43569,1,3,0)
- ;;=3^Occl & Sten,Precerb Arteries
- ;;^UTILITY(U,$J,358.3,43569,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,43569,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,43570,0)
- ;;=I70.211^^167^2081^9
- ;;^UTILITY(U,$J,358.3,43570,1,0)
+ ;;^UTILITY(U,$J,358.3,40988,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40988,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,40988,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,40989,0)
+ ;;=Y36.200D^^152^2019^134
+ ;;^UTILITY(U,$J,358.3,40989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43570,1,3,0)
- ;;=3^Athscl Ntv Art,Rt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,43570,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,43570,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,43571,0)
- ;;=I70.212^^167^2081^8
- ;;^UTILITY(U,$J,358.3,43571,1,0)
+ ;;^UTILITY(U,$J,358.3,40989,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40989,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,40989,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,40990,0)
+ ;;=Y36.300A^^152^2019^135
+ ;;^UTILITY(U,$J,358.3,40990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43571,1,3,0)
- ;;=3^Athscl Ntv Art,Lt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,43571,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,43571,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,43572,0)
- ;;=I70.213^^167^2081^7
- ;;^UTILITY(U,$J,358.3,43572,1,0)
+ ;;^UTILITY(U,$J,358.3,40990,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40990,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,40990,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,40991,0)
+ ;;=Y36.300D^^152^2019^136
+ ;;^UTILITY(U,$J,358.3,40991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43572,1,3,0)
- ;;=3^Athscl Ntv Art,Bil Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,43572,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,43572,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,43573,0)
- ;;=I71.2^^167^2081^21
- ;;^UTILITY(U,$J,358.3,43573,1,0)
+ ;;^UTILITY(U,$J,358.3,40991,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40991,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,40991,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,40992,0)
+ ;;=Y36.410A^^152^2019^130
+ ;;^UTILITY(U,$J,358.3,40992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43573,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,43573,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,43573,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,43574,0)
- ;;=I71.4^^167^2081^1
- ;;^UTILITY(U,$J,358.3,43574,1,0)
+ ;;^UTILITY(U,$J,358.3,40992,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40992,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,40992,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,40993,0)
+ ;;=Y36.410D^^152^2019^132
+ ;;^UTILITY(U,$J,358.3,40993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43574,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,43574,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,43574,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,43575,0)
- ;;=I73.9^^167^2081^19
- ;;^UTILITY(U,$J,358.3,43575,1,0)
+ ;;^UTILITY(U,$J,358.3,40993,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40993,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,40993,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,40994,0)
+ ;;=Y36.6X0A^^152^2019^122
+ ;;^UTILITY(U,$J,358.3,40994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43575,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43575,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,43575,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,43576,0)
- ;;=I74.2^^167^2081^11
- ;;^UTILITY(U,$J,358.3,43576,1,0)
+ ;;^UTILITY(U,$J,358.3,40994,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40994,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,40994,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,40995,0)
+ ;;=Y36.6X0D^^152^2019^124
+ ;;^UTILITY(U,$J,358.3,40995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43576,1,3,0)
- ;;=3^Embol & Thromb UE Arteries
- ;;^UTILITY(U,$J,358.3,43576,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,43576,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,43577,0)
- ;;=I74.3^^167^2081^10
- ;;^UTILITY(U,$J,358.3,43577,1,0)
+ ;;^UTILITY(U,$J,358.3,40995,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40995,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,40995,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,40996,0)
+ ;;=Y36.7X0A^^152^2019^137
+ ;;^UTILITY(U,$J,358.3,40996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43577,1,3,0)
- ;;=3^Embol & Thromb LE Arteries
- ;;^UTILITY(U,$J,358.3,43577,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,43577,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,43578,0)
- ;;=M79.604^^167^2081^18
- ;;^UTILITY(U,$J,358.3,43578,1,0)
+ ;;^UTILITY(U,$J,358.3,40996,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40996,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,40996,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,40997,0)
+ ;;=Y36.7X0D^^152^2019^138
+ ;;^UTILITY(U,$J,358.3,40997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43578,1,3,0)
- ;;=3^Pain,Right Leg
- ;;^UTILITY(U,$J,358.3,43578,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,43578,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,43579,0)
- ;;=M79.605^^167^2081^17
- ;;^UTILITY(U,$J,358.3,43579,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43579,1,3,0)
- ;;=3^Pain,Left Leg
- ;;^UTILITY(U,$J,358.3,43579,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,43579,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,43580,0)
- ;;=Z13.6^^167^2081^20
- ;;^UTILITY(U,$J,358.3,43580,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43580,1,3,0)
- ;;=3^Screening for Cardiovascular Disorders
+ ;;^UTILITY(U,$J,358.3,40997,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr

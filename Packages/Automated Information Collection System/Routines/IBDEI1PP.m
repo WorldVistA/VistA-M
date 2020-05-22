@@ -1,120 +1,120 @@
-IBDEI1PP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29078,1,0)
+ ;;^UTILITY(U,$J,358.3,27353,0)
+ ;;=F14.14^^110^1324^4
+ ;;^UTILITY(U,$J,358.3,27353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29078,1,3,0)
- ;;=3^Fetomaternal placental transfusion syndrome, third trimester
- ;;^UTILITY(U,$J,358.3,29078,1,4,0)
- ;;=4^O43.013
- ;;^UTILITY(U,$J,358.3,29078,2)
- ;;=^5017391
- ;;^UTILITY(U,$J,358.3,29079,0)
- ;;=O36.0110^^115^1455^43
- ;;^UTILITY(U,$J,358.3,29079,1,0)
+ ;;^UTILITY(U,$J,358.3,27353,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27353,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,27353,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,27354,0)
+ ;;=F14.24^^110^1324^5
+ ;;^UTILITY(U,$J,358.3,27354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29079,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, first trimester, unsp
- ;;^UTILITY(U,$J,358.3,29079,1,4,0)
- ;;=4^O36.0110
- ;;^UTILITY(U,$J,358.3,29079,2)
- ;;=^5016842
- ;;^UTILITY(U,$J,358.3,29080,0)
- ;;=O36.0111^^115^1455^44
- ;;^UTILITY(U,$J,358.3,29080,1,0)
+ ;;^UTILITY(U,$J,358.3,27354,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27354,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,27354,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,27355,0)
+ ;;=F14.94^^110^1324^6
+ ;;^UTILITY(U,$J,358.3,27355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29080,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, first tri, fetus 1
- ;;^UTILITY(U,$J,358.3,29080,1,4,0)
- ;;=4^O36.0111
- ;;^UTILITY(U,$J,358.3,29080,2)
- ;;=^5016843
- ;;^UTILITY(U,$J,358.3,29081,0)
- ;;=O36.0112^^115^1455^45
- ;;^UTILITY(U,$J,358.3,29081,1,0)
+ ;;^UTILITY(U,$J,358.3,27355,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27355,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,27355,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,27356,0)
+ ;;=F14.188^^110^1324^7
+ ;;^UTILITY(U,$J,358.3,27356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29081,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, first tri, fetus 2
- ;;^UTILITY(U,$J,358.3,29081,1,4,0)
- ;;=4^O36.0112
- ;;^UTILITY(U,$J,358.3,29081,2)
- ;;=^5016844
- ;;^UTILITY(U,$J,358.3,29082,0)
- ;;=O36.0113^^115^1455^46
- ;;^UTILITY(U,$J,358.3,29082,1,0)
+ ;;^UTILITY(U,$J,358.3,27356,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27356,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,27356,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,27357,0)
+ ;;=F14.288^^110^1324^8
+ ;;^UTILITY(U,$J,358.3,27357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29082,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, first tri, fetus 3
- ;;^UTILITY(U,$J,358.3,29082,1,4,0)
- ;;=4^O36.0113
- ;;^UTILITY(U,$J,358.3,29082,2)
- ;;=^5016845
- ;;^UTILITY(U,$J,358.3,29083,0)
- ;;=O36.0114^^115^1455^47
- ;;^UTILITY(U,$J,358.3,29083,1,0)
+ ;;^UTILITY(U,$J,358.3,27357,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27357,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,27357,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,27358,0)
+ ;;=F14.988^^110^1324^9
+ ;;^UTILITY(U,$J,358.3,27358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29083,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, first tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29083,1,4,0)
- ;;=4^O36.0114
- ;;^UTILITY(U,$J,358.3,29083,2)
- ;;=^5016846
- ;;^UTILITY(U,$J,358.3,29084,0)
- ;;=O36.0115^^115^1455^48
- ;;^UTILITY(U,$J,358.3,29084,1,0)
+ ;;^UTILITY(U,$J,358.3,27358,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27358,1,4,0)
+ ;;=4^F14.988
+ ;;^UTILITY(U,$J,358.3,27358,2)
+ ;;=^5003281
+ ;;^UTILITY(U,$J,358.3,27359,0)
+ ;;=F14.159^^110^1324^10
+ ;;^UTILITY(U,$J,358.3,27359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29084,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, first tri, fetus 5
- ;;^UTILITY(U,$J,358.3,29084,1,4,0)
- ;;=4^O36.0115
- ;;^UTILITY(U,$J,358.3,29084,2)
- ;;=^5016847
- ;;^UTILITY(U,$J,358.3,29085,0)
- ;;=O36.0120^^115^1455^49
- ;;^UTILITY(U,$J,358.3,29085,1,0)
+ ;;^UTILITY(U,$J,358.3,27359,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27359,1,4,0)
+ ;;=4^F14.159
+ ;;^UTILITY(U,$J,358.3,27359,2)
+ ;;=^5003247
+ ;;^UTILITY(U,$J,358.3,27360,0)
+ ;;=F14.259^^110^1324^11
+ ;;^UTILITY(U,$J,358.3,27360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29085,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second trimester, unsp
- ;;^UTILITY(U,$J,358.3,29085,1,4,0)
- ;;=4^O36.0120
- ;;^UTILITY(U,$J,358.3,29085,2)
- ;;=^5016849
- ;;^UTILITY(U,$J,358.3,29086,0)
- ;;=O36.0121^^115^1455^50
- ;;^UTILITY(U,$J,358.3,29086,1,0)
+ ;;^UTILITY(U,$J,358.3,27360,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27360,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,27360,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,27361,0)
+ ;;=F14.959^^110^1324^12
+ ;;^UTILITY(U,$J,358.3,27361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29086,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,29086,1,4,0)
- ;;=4^O36.0121
- ;;^UTILITY(U,$J,358.3,29086,2)
- ;;=^5016850
- ;;^UTILITY(U,$J,358.3,29087,0)
- ;;=O36.0122^^115^1455^51
- ;;^UTILITY(U,$J,358.3,29087,1,0)
+ ;;^UTILITY(U,$J,358.3,27361,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27361,1,4,0)
+ ;;=4^F14.959
+ ;;^UTILITY(U,$J,358.3,27361,2)
+ ;;=^5003277
+ ;;^UTILITY(U,$J,358.3,27362,0)
+ ;;=F14.181^^110^1324^13
+ ;;^UTILITY(U,$J,358.3,27362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29087,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,29087,1,4,0)
- ;;=4^O36.0122
- ;;^UTILITY(U,$J,358.3,29087,2)
- ;;=^5016851
- ;;^UTILITY(U,$J,358.3,29088,0)
- ;;=O36.0123^^115^1455^52
- ;;^UTILITY(U,$J,358.3,29088,1,0)
+ ;;^UTILITY(U,$J,358.3,27362,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27362,1,4,0)
+ ;;=4^F14.181
+ ;;^UTILITY(U,$J,358.3,27362,2)
+ ;;=^5003249
+ ;;^UTILITY(U,$J,358.3,27363,0)
+ ;;=F14.281^^110^1324^14
+ ;;^UTILITY(U,$J,358.3,27363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29088,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,29088,1,4,0)
- ;;=4^O36.0123
- ;;^UTILITY(U,$J,358.3,29088,2)
- ;;=^5016852
- ;;^UTILITY(U,$J,358.3,29089,0)
- ;;=O36.0124^^115^1455^53
- ;;^UTILITY(U,$J,358.3,29089,1,0)
+ ;;^UTILITY(U,$J,358.3,27363,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27363,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,27363,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,27364,0)
+ ;;=F14.981^^110^1324^15
+ ;;^UTILITY(U,$J,358.3,27364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29089,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29089,1,4,0)
- ;;=4^O36.0124
+ ;;^UTILITY(U,$J,358.3,27364,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/o Use D/O

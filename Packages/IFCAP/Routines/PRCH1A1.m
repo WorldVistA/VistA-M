@@ -1,17 +1,20 @@
-PRCH1A1 ;WISC/PLT-PRCH1A continued ;6/28/96  09:09
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCH1A1 ;WISC/PLT - PRCH1A continued ;6/28/96 09:09
+V ;;5.1;IFCAP;**215**;Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
  QUIT  ;invalid entry
  ;
 RECON(PRCA,PRCRG) ;PRCA= ri of file 440.6, PRCR = %RANGE for matching amt.
- N PRCRI,PRCB,PRCC,PRCD,PRCDI,PRCPDT,PRCBOC,PRCCNT,PRCAMT,PRCCOA,PRCVAL,PRCCP,PRCR,PRCSTC,PRCPO,PRCAMTL,PRCAMTH,PRCCR,PRCCL
+ N PRCRI,PRCB,PRCC,PRCD,PRCDI,PRCPDT,PRCBOC,PRCCNT,PRCAMT,PRCCOA,PRCVAL,PRCCP,PRCR,PRCSTC,PRCPO,PRCAMTL,PRCAMTH,PRCCR,PRCCL,PRCCTMP
  N A,B,C,D
- S PRCRI(440.6)=PRCA
+ S PRCRI(440.6)=PRCA,PRCCTMP=""
 REC D DD S PRCB=^PRCH(440.6,PRCRI(440.6),0),PRCC=$P(PRCB,U,4),PRCPDT=$P(PRCB,U,9),PRCAMT=$P(PRCB,U,14),PRCPO=$P(PRCB,U,21),PRCCR="",PRCCL=PRCC
  S PRCRG=+PRCRG,PRCAMTL=PRCAMT-(PRCAMT*PRCRG/100),PRCAMTH=PRCAMT*PRCRG/100+PRCAMT
 Q11 ;lookup
  D EN^DDIOL("The system is attempting to locate purchase card order...")
-Q12 S PRCRI(440.5)=$O(^PRC(440.5,"B",PRCCL,0)) S:PRCRI(440.5)<1 PRCRI(440.5)="00" S PRCRI(442)="" G:PRCPO="" MCA
+Q12 ;PRC*5.1*215 Add DIR to continue in list and compile list of cards
+ I PRCCTMP'="" S DIR(0)="E" D ^DIR K DIR
+ S PRCCTMP=PRCCTMP_"^"_PRCCL
+ S PRCRI(440.5)=$O(^PRC(440.5,"B",PRCCL,0)) S:PRCRI(440.5)<1 PRCRI(440.5)="00" S PRCRI(442)="" G:PRCPO="" MCA
  W !,"Matching Card XXXX"_$E(PRCCL,13,16)_", Vendor's Purchase Order #:",!
  S X=PRCRI(440.5),X("S")="I PRC(""SITE"")-^(0)=0,$P($G(^(23)),U,8)="_PRCRI(440.5)_","",1,4,5,6,45,40,41,50,51,""'[("",""_$P($G(^(7)),U,2)_"",""),$P(^(0),U)[PRCPO S:PRCCNT="""" PRCCNT=+Y S:PRCCNT-Y PRCCNT=0"
  ;
@@ -39,9 +42,10 @@ W W !,"Listing All Purchase Card Orders with Matched Card XXXX"_$E(PRCCL,13,16)_
  . QUIT
  W "     Not Found"
  I PRCCR="" S PRCCR=1,PRCCL=PRCC
- I PRCCR=1 S PRCRI(440.599)=$O(^PRC(440.5,"B",PRCCL,0)) I PRCRI(440.599)>0 S PRCCL=$TR($P($G(^PRC(440.5,PRCRI(440.599),50)),U),"*#") G:PRCCL]"" Q12
+ ;PRC*5.1*215 Check for duplicate matching cards
+ I PRCCR=1 S PRCRI(440.599)=$O(^PRC(440.5,"B",PRCCL,0)) I PRCRI(440.599)>0 S PRCCL=$TR($P($G(^PRC(440.5,PRCRI(440.599),50)),U),"*#") I PRCCTMP'[PRCCL G:PRCCL]"" Q12
  I PRCCR=1 S PRCCR=2,PRCCL=PRCC
- I PRCCR=2 S PRCRI(440.599)=$O(^PRC(440.5,"ARPC",PRCCL,0)) I PRCRI(440.599) S PRCCL=$P($G(^PRC(440.5,PRCRI(440.599),0)),U) G:PRCCL]"" Q12
+ I PRCCR=2 S PRCRI(440.599)=$O(^PRC(440.5,"ARPC",PRCCL,0)) I PRCRI(440.599) S PRCCL=$P($G(^PRC(440.5,PRCRI(440.599),0)),U) I PRCCTMP'[PRCCL G:PRCCL]"" Q12
  D EN^DDIOL("No Purchase Card Order Selected!")
 ACT0 S X(1)=$TR($J("",79)," ","_")
  S X(2)="   Action Code: SV: Search P.O. by Vendor   SP: Search P.O. by P.O. #",X(3)="                ND: Next Document   RS: Reselect    RD: Redisplay Data"

@@ -1,136 +1,118 @@
-IBDEI1WR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32374,1,3,0)
- ;;=3^Gout,Drug-Induced Lft Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32374,1,4,0)
- ;;=4^M10.272
- ;;^UTILITY(U,$J,358.3,32374,2)
- ;;=^5010352
- ;;^UTILITY(U,$J,358.3,32375,0)
- ;;=M10.271^^126^1610^12
- ;;^UTILITY(U,$J,358.3,32375,1,0)
+ ;;^UTILITY(U,$J,358.3,30466,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,30467,0)
+ ;;=F15.921^^120^1556^38
+ ;;^UTILITY(U,$J,358.3,30467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32375,1,3,0)
- ;;=3^Gout,Drug-Induced Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32375,1,4,0)
- ;;=4^M10.271
- ;;^UTILITY(U,$J,358.3,32375,2)
- ;;=^5010351
- ;;^UTILITY(U,$J,358.3,32376,0)
- ;;=M10.29^^126^1610^11
- ;;^UTILITY(U,$J,358.3,32376,1,0)
+ ;;^UTILITY(U,$J,358.3,30467,1,3,0)
+ ;;=3^Oth Stimulant Induced Delirium
+ ;;^UTILITY(U,$J,358.3,30467,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,30467,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,30468,0)
+ ;;=F15.188^^120^1556^42
+ ;;^UTILITY(U,$J,358.3,30468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32376,1,3,0)
- ;;=3^Gout,Drug-Induced Multiple Sites
- ;;^UTILITY(U,$J,358.3,32376,1,4,0)
- ;;=4^M10.29
- ;;^UTILITY(U,$J,358.3,32376,2)
- ;;=^5010355
- ;;^UTILITY(U,$J,358.3,32377,0)
- ;;=M10.172^^126^1610^15
- ;;^UTILITY(U,$J,358.3,32377,1,0)
+ ;;^UTILITY(U,$J,358.3,30468,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30468,1,4,0)
+ ;;=4^F15.188
+ ;;^UTILITY(U,$J,358.3,30468,2)
+ ;;=^5133355
+ ;;^UTILITY(U,$J,358.3,30469,0)
+ ;;=F15.288^^120^1556^44
+ ;;^UTILITY(U,$J,358.3,30469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32377,1,3,0)
- ;;=3^Gout,Lead-Induced Lt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32377,1,4,0)
- ;;=4^M10.172
- ;;^UTILITY(U,$J,358.3,32377,2)
- ;;=^5010328
- ;;^UTILITY(U,$J,358.3,32378,0)
- ;;=M10.171^^126^1610^16
- ;;^UTILITY(U,$J,358.3,32378,1,0)
+ ;;^UTILITY(U,$J,358.3,30469,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess/Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30469,1,4,0)
+ ;;=4^F15.288
+ ;;^UTILITY(U,$J,358.3,30469,2)
+ ;;=^5133356
+ ;;^UTILITY(U,$J,358.3,30470,0)
+ ;;=F15.988^^120^1556^43
+ ;;^UTILITY(U,$J,358.3,30470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32378,1,3,0)
- ;;=3^Gout,Lead-Induced Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32378,1,4,0)
- ;;=4^M10.171
- ;;^UTILITY(U,$J,358.3,32378,2)
- ;;=^5010327
- ;;^UTILITY(U,$J,358.3,32379,0)
- ;;=L92.3^^126^1610^17
- ;;^UTILITY(U,$J,358.3,32379,1,0)
+ ;;^UTILITY(U,$J,358.3,30470,1,3,0)
+ ;;=3^Oth Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30470,1,4,0)
+ ;;=4^F15.988
+ ;;^UTILITY(U,$J,358.3,30470,2)
+ ;;=^5133357
+ ;;^UTILITY(U,$J,358.3,30471,0)
+ ;;=F15.159^^120^1556^45
+ ;;^UTILITY(U,$J,358.3,30471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32379,1,3,0)
- ;;=3^Granuloma,FB of Skin/Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,32379,1,4,0)
- ;;=4^L92.3
- ;;^UTILITY(U,$J,358.3,32379,2)
- ;;=^5009464
- ;;^UTILITY(U,$J,358.3,32380,0)
- ;;=M10.9^^126^1610^9
- ;;^UTILITY(U,$J,358.3,32380,1,0)
+ ;;^UTILITY(U,$J,358.3,30471,1,3,0)
+ ;;=3^Oth Stimulant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30471,1,4,0)
+ ;;=4^F15.159
+ ;;^UTILITY(U,$J,358.3,30471,2)
+ ;;=^5003290
+ ;;^UTILITY(U,$J,358.3,30472,0)
+ ;;=F15.259^^120^1556^46
+ ;;^UTILITY(U,$J,358.3,30472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32380,1,3,0)
- ;;=3^Gout, unspecified
- ;;^UTILITY(U,$J,358.3,32380,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,32380,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,32381,0)
- ;;=M67.471^^126^1610^6
- ;;^UTILITY(U,$J,358.3,32381,1,0)
+ ;;^UTILITY(U,$J,358.3,30472,1,3,0)
+ ;;=3^Oth Stimulant Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30472,1,4,0)
+ ;;=4^F15.259
+ ;;^UTILITY(U,$J,358.3,30472,2)
+ ;;=^5003305
+ ;;^UTILITY(U,$J,358.3,30473,0)
+ ;;=F15.959^^120^1556^47
+ ;;^UTILITY(U,$J,358.3,30473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32381,1,3,0)
- ;;=3^Ganglion, right ankle and foot
- ;;^UTILITY(U,$J,358.3,32381,1,4,0)
- ;;=4^M67.471
- ;;^UTILITY(U,$J,358.3,32381,2)
- ;;=^5012975
- ;;^UTILITY(U,$J,358.3,32382,0)
- ;;=M67.472^^126^1610^4
- ;;^UTILITY(U,$J,358.3,32382,1,0)
+ ;;^UTILITY(U,$J,358.3,30473,1,3,0)
+ ;;=3^Oth Stimulant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30473,1,4,0)
+ ;;=4^F15.959
+ ;;^UTILITY(U,$J,358.3,30473,2)
+ ;;=^5003319
+ ;;^UTILITY(U,$J,358.3,30474,0)
+ ;;=F15.181^^120^1556^48
+ ;;^UTILITY(U,$J,358.3,30474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32382,1,3,0)
- ;;=3^Ganglion, left ankle and foot
- ;;^UTILITY(U,$J,358.3,32382,1,4,0)
- ;;=4^M67.472
- ;;^UTILITY(U,$J,358.3,32382,2)
- ;;=^5012976
- ;;^UTILITY(U,$J,358.3,32383,0)
- ;;=M67.472^^126^1610^5
- ;;^UTILITY(U,$J,358.3,32383,1,0)
+ ;;^UTILITY(U,$J,358.3,30474,1,3,0)
+ ;;=3^Oth Stimulant Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30474,1,4,0)
+ ;;=4^F15.181
+ ;;^UTILITY(U,$J,358.3,30474,2)
+ ;;=^5003292
+ ;;^UTILITY(U,$J,358.3,30475,0)
+ ;;=F15.281^^120^1556^49
+ ;;^UTILITY(U,$J,358.3,30475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32383,1,3,0)
- ;;=3^Ganglion, left ankle and foot
- ;;^UTILITY(U,$J,358.3,32383,1,4,0)
- ;;=4^M67.472
- ;;^UTILITY(U,$J,358.3,32383,2)
- ;;=^5012976
- ;;^UTILITY(U,$J,358.3,32384,0)
- ;;=M67.471^^126^1610^7
- ;;^UTILITY(U,$J,358.3,32384,1,0)
+ ;;^UTILITY(U,$J,358.3,30475,1,3,0)
+ ;;=3^Oth Stimulant Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30475,1,4,0)
+ ;;=4^F15.281
+ ;;^UTILITY(U,$J,358.3,30475,2)
+ ;;=^5003307
+ ;;^UTILITY(U,$J,358.3,30476,0)
+ ;;=F15.981^^120^1556^50
+ ;;^UTILITY(U,$J,358.3,30476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32384,1,3,0)
- ;;=3^Ganglion, right ankle and foot
- ;;^UTILITY(U,$J,358.3,32384,1,4,0)
- ;;=4^M67.471
- ;;^UTILITY(U,$J,358.3,32384,2)
- ;;=^5012975
- ;;^UTILITY(U,$J,358.3,32385,0)
- ;;=R26.9^^126^1610^3
- ;;^UTILITY(U,$J,358.3,32385,1,0)
+ ;;^UTILITY(U,$J,358.3,30476,1,3,0)
+ ;;=3^Oth Stimulant Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30476,1,4,0)
+ ;;=4^F15.981
+ ;;^UTILITY(U,$J,358.3,30476,2)
+ ;;=^5003321
+ ;;^UTILITY(U,$J,358.3,30477,0)
+ ;;=F15.182^^120^1556^51
+ ;;^UTILITY(U,$J,358.3,30477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32385,1,3,0)
- ;;=3^Gait/Mobility Abnormalities,Unspec
- ;;^UTILITY(U,$J,358.3,32385,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,32385,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,32386,0)
- ;;=R26.1^^126^1610^2
- ;;^UTILITY(U,$J,358.3,32386,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32386,1,3,0)
- ;;=3^Gait,Paralytic
- ;;^UTILITY(U,$J,358.3,32386,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,32386,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,32387,0)
- ;;=R26.0^^126^1610^1
- ;;^UTILITY(U,$J,358.3,32387,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32387,1,3,0)
- ;;=3^Gait,Ataxic
+ ;;^UTILITY(U,$J,358.3,30477,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30477,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,30477,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,30478,0)
+ ;;=F15.282^^120^1556^52

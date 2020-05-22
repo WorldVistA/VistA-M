@@ -1,0 +1,112 @@
+PXRMP72I ;SLC/AGP - Inits for PXRM*2.0*72. ;04/15/2020
+ ;;2.0;CLINICAL REMINDERS;**72**;Feb 04, 2005;Build 16
+ Q
+ ;
+EXARRAY(MODE,ARRAY) ;List of exchange entries used by delete and install
+ ;MODE values: I for include in build, A for include action.
+ N LN
+ S LN=0
+ ;
+ S LN=LN+1
+ S ARRAY(LN,1)="VA-COVID-19 CPRS STATUS"
+ I MODE["I" S ARRAY(LN,2)="04/15/2020@11:51:56"
+ I MODE["A" S ARRAY(LN,3)="O"
+ Q
+ ;
+FINDOI(RESULT) ;
+ N CNODE,IDX,IEN,NAME,NODE,PIEN,PNODE
+ S NAME="COVID"
+ F  S NAME=$O(^ORD(101.43,"S.LAB",NAME)) Q:NAME=""!(NAME'["COVID")  D
+ .I $P(NAME," ")'="COVID-19" Q
+ .S IEN=+$O(^ORD(101.43,"S.LAB",NAME,"")) Q:IEN=0
+ .S NODE=$G(^ORD(101.43,IEN,0))
+ .I $P(NODE,U,2)'[";99LRT" Q
+ .;process child orderable items for panel
+ .I $D(^ORD(101.43,IEN,10)) D  Q
+ ..S IDX=0 F  S IDX=$O(^ORD(101.43,IEN,10,IDX)) Q:IDX'>0  D
+ ...S CNODE=$G(^ORD(101.43,IEN,10,IDX,0))
+ ...S PIEN=$O(^ORD(101.43,"B",$P(CNODE,U),"")) Q:PIEN'>0
+ ...S PNODE=$G(^ORD(101.43,PIEN,0))
+ ...I $P(PNODE,U,2)'[";99LRT" Q
+ ...S RESULT(PIEN,"NAME")=$P(PNODE,U)
+ ...S RESULT(PIEN,"LAB")=$P(PNODE,U,1,2)
+ ..S RESULT(IEN,"NAME")=$P(NODE,U)
+ .S RESULT(IEN,"NAME")=$P(NODE,U)
+ .S RESULT(IEN,"LAB")=$P(NODE,U,1,2)
+ Q
+ Q
+ ;
+ ;==========================================
+PRE ;Pre-init
+ ;Disable options and protocols
+ ;D OPTION^PXRMUTIL("DISABLE")
+ ;D PROTOCOL^PXRMUTIL("DISABLE")
+ D DELEXE^PXRMEXSI("EXARRAY","PXRMP72I")
+ Q
+ ;
+ ;==========================================
+POST ;Post-init
+ ;Install Exchange File entries.
+ D SMEXINS^PXRMEXSI("EXARRAY","PXRMP72I")
+ D SETTERMS
+ ;D OPTION^PXRMUTIL("ENABLE")
+ ;D PROTOCOL^PXRMUTIL("ENABLE")
+ D SENDIM^PXRMMSG("PXRM*2.0*72")
+ Q
+ ;
+ ;
+SETTERMS ;
+ N ARRAY,CNT,IEN,LAB,NODE,RIEN,ORDER,RESULT,TIEN,TERMS,TEXT
+ N PXRMINST
+ S PXRMINST=1
+ D FINDOI(.ARRAY)
+ S CNT=0,IEN=0
+ F  S IEN=$O(ARRAY(IEN)) Q:IEN'>0  D
+ .S CNT=CNT+1
+ .;set orders and order statuses
+ .S ORDER(CNT,.01)="OI."_ARRAY(IEN,"NAME")
+ .;set lab findings
+ .I $P($G(ARRAY(IEN,"LAB")),U)'="" S LAB(CNT,.01)="LT."_$P(ARRAY(IEN,"LAB"),U)
+ ;update findings per term
+ I $D(ORDER) D
+ .I '$$OKTOUPD("VA-COVID-19 PCR LAB ORDERS") Q
+ .D SETTFIND^PXRMTUTL(.RESULT,"VA-COVID-19 PCR LAB ORDERS",.ORDER)
+ .I +RESULT=-1 D WRITERR("VA-COVID-19 PCR LAB ORDERS",RESULT) Q
+ I $D(LAB) D
+ .I '$$OKTOUPD("VA-COVID-19 PCR LAB RESULTS NEGATIVE") Q
+ .D SETTFIND^PXRMTUTL(.RESULT,"VA-COVID-19 PCR LAB RESULTS NEGATIVE",.LAB)
+ .I +RESULT=-1 D WRITERR("VA-COVID-19 PCR LAB RESULTS NEGATIVE",RESULT)
+ .;
+ .I '$$OKTOUPD("VA-COVID-19 PCR LAB RESULTS POSITIVE") Q
+ .D SETTFIND^PXRMTUTL(.RESULT,"VA-COVID-19 PCR LAB RESULTS POSITIVE",.LAB)
+ .I +RESULT=-1 D WRITERR("VA-COVID-19 PCR LAB RESULTS POSITIVE",RESULT)
+ ;
+ ;Report terms that need to be reviewed.
+ S TEXT(1)="Forward the list of reminder terms to the CACs"
+ S TEXT(2)="to review the following reminder terms setup for any"
+ S TEXT(3)="missing lab tests or orders"
+ S TEXT(4)="  VA-COVID-19 PCR LAB RESULTS NEGATIVE"
+ S TEXT(5)="  VA-COVID-19 PCR LAB RESULTS POSITIVE"
+ S TEXT(6)="  VA-COVID-19 PCR LAB ORDERS"
+ D MES^XPDUTL(.TEXT)
+ Q
+ ;
+OKTOUPD(TNAME) ;
+ N RESULT,TIEN,TEXT
+ S RESULT=1
+ S TIEN=$O(^PXRMD(811.5,"B",TNAME,""))
+ I 'TIEN D  Q
+ .S TEXT(1)="ERROR: could not found reminder term:"
+ .S TEXT(2)=" "_TNAME
+ .D MES^XPDUTL(.TEXT)
+ .S RESULT=0
+ I RESULT,$D(^PXRMD(811.5,TIEN,20,"B")) S RESULT=0
+ Q RESULT
+ ;
+WRITERR(TNAME,RESULT) ;
+ N TEXT
+ S TEXT(1)="ERROR: mapping findings"
+ S TEXT(2)="Reminder Term: "_TNAME
+ S TEXT(3)="  "_$P(RESULT,U,2)
+ D MES^XPDUTL(.TEXT)
+ Q

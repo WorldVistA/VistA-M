@@ -1,140 +1,114 @@
-IBDEI1C3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1C3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22675,1,3,0)
- ;;=3^Conditions d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,22675,1,4,0)
- ;;=4^A69.29
- ;;^UTILITY(U,$J,358.3,22675,2)
- ;;=^5000379
- ;;^UTILITY(U,$J,358.3,22676,0)
- ;;=A69.23^^87^983^5
- ;;^UTILITY(U,$J,358.3,22676,1,0)
+ ;;^UTILITY(U,$J,358.3,21309,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,21310,0)
+ ;;=F15.24^^95^1061^62
+ ;;^UTILITY(U,$J,358.3,21310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22676,1,3,0)
- ;;=3^Arthritis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,22676,1,4,0)
- ;;=4^A69.23
- ;;^UTILITY(U,$J,358.3,22676,2)
- ;;=^5000378
- ;;^UTILITY(U,$J,358.3,22677,0)
- ;;=A51.0^^87^983^29
- ;;^UTILITY(U,$J,358.3,22677,1,0)
+ ;;^UTILITY(U,$J,358.3,21310,1,3,0)
+ ;;=3^Stimulant Dependence,Oth w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21310,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,21310,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,21311,0)
+ ;;=F15.94^^95^1061^63
+ ;;^UTILITY(U,$J,358.3,21311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22677,1,3,0)
- ;;=3^Genital Syphilis,Primary
- ;;^UTILITY(U,$J,358.3,22677,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,22677,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,22678,0)
- ;;=A52.3^^87^983^54
- ;;^UTILITY(U,$J,358.3,22678,1,0)
+ ;;^UTILITY(U,$J,358.3,21311,1,3,0)
+ ;;=3^Stimulant Use,Unspec w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21311,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,21311,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,21312,0)
+ ;;=F15.921^^95^1061^64
+ ;;^UTILITY(U,$J,358.3,21312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22678,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,22678,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,22678,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,22679,0)
- ;;=A52.10^^87^983^53
- ;;^UTILITY(U,$J,358.3,22679,1,0)
+ ;;^UTILITY(U,$J,358.3,21312,1,3,0)
+ ;;=3^Stimulant Use,Unspec w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,21312,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,21312,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,21313,0)
+ ;;=F15.188^^95^1061^6
+ ;;^UTILITY(U,$J,358.3,21313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22679,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,22679,1,4,0)
- ;;=4^A52.10
- ;;^UTILITY(U,$J,358.3,22679,2)
- ;;=^5000291
- ;;^UTILITY(U,$J,358.3,22680,0)
- ;;=A52.9^^87^983^49
- ;;^UTILITY(U,$J,358.3,22680,1,0)
+ ;;^UTILITY(U,$J,358.3,21313,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21313,1,4,0)
+ ;;=4^F15.188
+ ;;^UTILITY(U,$J,358.3,21313,2)
+ ;;=^5133355
+ ;;^UTILITY(U,$J,358.3,21314,0)
+ ;;=F15.288^^95^1061^7
+ ;;^UTILITY(U,$J,358.3,21314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22680,1,3,0)
- ;;=3^Late Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,22680,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,22680,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,22681,0)
- ;;=A53.9^^87^983^79
- ;;^UTILITY(U,$J,358.3,22681,1,0)
+ ;;^UTILITY(U,$J,358.3,21314,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21314,1,4,0)
+ ;;=4^F15.288
+ ;;^UTILITY(U,$J,358.3,21314,2)
+ ;;=^5133356
+ ;;^UTILITY(U,$J,358.3,21315,0)
+ ;;=F15.988^^95^1061^8
+ ;;^UTILITY(U,$J,358.3,21315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22681,1,3,0)
- ;;=3^Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,22681,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,22681,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,22682,0)
- ;;=B37.3^^87^983^17
- ;;^UTILITY(U,$J,358.3,22682,1,0)
+ ;;^UTILITY(U,$J,358.3,21315,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21315,1,4,0)
+ ;;=4^F15.988
+ ;;^UTILITY(U,$J,358.3,21315,2)
+ ;;=^5133357
+ ;;^UTILITY(U,$J,358.3,21316,0)
+ ;;=F15.159^^95^1061^9
+ ;;^UTILITY(U,$J,358.3,21316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22682,1,3,0)
- ;;=3^Candidiasis Vulva/Vagina
- ;;^UTILITY(U,$J,358.3,22682,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,22682,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,22683,0)
- ;;=B58.9^^87^983^82
- ;;^UTILITY(U,$J,358.3,22683,1,0)
+ ;;^UTILITY(U,$J,358.3,21316,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21316,1,4,0)
+ ;;=4^F15.159
+ ;;^UTILITY(U,$J,358.3,21316,2)
+ ;;=^5003290
+ ;;^UTILITY(U,$J,358.3,21317,0)
+ ;;=F15.259^^95^1061^10
+ ;;^UTILITY(U,$J,358.3,21317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22683,1,3,0)
- ;;=3^Toxoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,22683,1,4,0)
- ;;=4^B58.9
- ;;^UTILITY(U,$J,358.3,22683,2)
- ;;=^5000733
- ;;^UTILITY(U,$J,358.3,22684,0)
- ;;=A59.01^^87^983^83
- ;;^UTILITY(U,$J,358.3,22684,1,0)
+ ;;^UTILITY(U,$J,358.3,21317,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21317,1,4,0)
+ ;;=4^F15.259
+ ;;^UTILITY(U,$J,358.3,21317,2)
+ ;;=^5003305
+ ;;^UTILITY(U,$J,358.3,21318,0)
+ ;;=F15.959^^95^1061^11
+ ;;^UTILITY(U,$J,358.3,21318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22684,1,3,0)
- ;;=3^Trichomonal Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,22684,1,4,0)
- ;;=4^A59.01
- ;;^UTILITY(U,$J,358.3,22684,2)
- ;;=^121763
- ;;^UTILITY(U,$J,358.3,22685,0)
- ;;=B59.^^87^983^66
- ;;^UTILITY(U,$J,358.3,22685,1,0)
+ ;;^UTILITY(U,$J,358.3,21318,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21318,1,4,0)
+ ;;=4^F15.959
+ ;;^UTILITY(U,$J,358.3,21318,2)
+ ;;=^5003319
+ ;;^UTILITY(U,$J,358.3,21319,0)
+ ;;=F15.181^^95^1061^12
+ ;;^UTILITY(U,$J,358.3,21319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22685,1,3,0)
- ;;=3^Pneumocystosis
- ;;^UTILITY(U,$J,358.3,22685,1,4,0)
- ;;=4^B59.
- ;;^UTILITY(U,$J,358.3,22685,2)
- ;;=^5000734
- ;;^UTILITY(U,$J,358.3,22686,0)
- ;;=H83.09^^87^983^48
- ;;^UTILITY(U,$J,358.3,22686,1,0)
+ ;;^UTILITY(U,$J,358.3,21319,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21319,1,4,0)
+ ;;=4^F15.181
+ ;;^UTILITY(U,$J,358.3,21319,2)
+ ;;=^5003292
+ ;;^UTILITY(U,$J,358.3,21320,0)
+ ;;=F15.281^^95^1061^13
+ ;;^UTILITY(U,$J,358.3,21320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22686,1,3,0)
- ;;=3^Labyrinthitis,Unspec Ear
- ;;^UTILITY(U,$J,358.3,22686,1,4,0)
- ;;=4^H83.09
- ;;^UTILITY(U,$J,358.3,22686,2)
- ;;=^5006897
- ;;^UTILITY(U,$J,358.3,22687,0)
- ;;=H83.01^^87^983^47
- ;;^UTILITY(U,$J,358.3,22687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22687,1,3,0)
- ;;=3^Labyrinthitis,Right Ear
- ;;^UTILITY(U,$J,358.3,22687,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,22687,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,22688,0)
- ;;=H83.03^^87^983^45
- ;;^UTILITY(U,$J,358.3,22688,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22688,1,3,0)
- ;;=3^Labyrinthitis,Bilateral
- ;;^UTILITY(U,$J,358.3,22688,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,22688,2)
- ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,21320,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21320,1,4,0)
+ ;;=4^F15.281

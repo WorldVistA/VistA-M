@@ -1,44 +1,124 @@
-IBDEI16R ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.98)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.98,0,"GL")
- ;;=^IBD(358.98,
- ;;^DIC("B","IMP/EXP AICS DATA QUALIFIERS",358.98)
- ;;=
- ;;^DIC(358.98,"%D",0)
- ;;=^^1^1^2950927^^^
- ;;^DIC(358.98,"%D",1,0)
- ;;=Used by the import/export utility of the encounter forms as a workspace.
- ;;^DD(358.98,0)
- ;;=FIELD^^.03^3
- ;;^DD(358.98,0,"DDA")
- ;;=N
- ;;^DD(358.98,0,"DT")
- ;;=2950717
- ;;^DD(358.98,0,"ID",.02)
- ;;=W "   ",$P(^(0),U,2)
- ;;^DD(358.98,0,"IX","B",358.98,.01)
- ;;=
- ;;^DD(358.98,0,"NM","IMP/EXP AICS DATA QUALIFIERS")
- ;;=
- ;;^DD(358.98,0,"PT",358.22,.09)
- ;;=
- ;;^DD(358.98,0,"PT",358.613,.01)
- ;;=
- ;;^DD(358.98,0,"PT",358.931,.09)
- ;;=
- ;;^DD(358.98,0,"VRPK")
- ;;=IBD
- ;;^DD(358.98,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.98,.01,1,0)
- ;;=^.1
- ;;^DD(358.98,.01,1,1,0)
- ;;=358.98^B
- ;;^DD(358.98,.01,1,1,1)
- ;;=S ^IBD(358.98,"B",$E(X,1,30),DA)=""
- ;;^DD(358.98,.01,1,1,2)
- ;;=K ^IBD(358.98,"B",$E(X,1,30),DA)
- ;;^DD(358.98,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^UTILITY(U,$J,358.3,19051,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19051,1,3,0)
+ ;;=3^Cocaine Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,19051,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,19051,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,19052,0)
+ ;;=F14.23^^91^976^33
+ ;;^UTILITY(U,$J,358.3,19052,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19052,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,19052,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,19052,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,19053,0)
+ ;;=F14.21^^91^976^31
+ ;;^UTILITY(U,$J,358.3,19053,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19053,1,3,0)
+ ;;=3^Cocaine Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,19053,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,19053,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,19054,0)
+ ;;=F15.11^^91^976^63
+ ;;^UTILITY(U,$J,358.3,19054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19054,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,In Remission
+ ;;^UTILITY(U,$J,358.3,19054,1,4,0)
+ ;;=4^F15.11
+ ;;^UTILITY(U,$J,358.3,19054,2)
+ ;;=^5151304
+ ;;^UTILITY(U,$J,358.3,19055,0)
+ ;;=F14.11^^91^976^29
+ ;;^UTILITY(U,$J,358.3,19055,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19055,1,3,0)
+ ;;=3^Cocaine Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,19055,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,19055,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,19056,0)
+ ;;=F15.21^^91^976^34
+ ;;^UTILITY(U,$J,358.3,19056,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19056,1,3,0)
+ ;;=3^Oth Stimulant Dependence,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,19056,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,19056,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,19057,0)
+ ;;=Z91.120^^91^977^1
+ ;;^UTILITY(U,$J,358.3,19057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19057,1,3,0)
+ ;;=3^Intentional Underdosing d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,19057,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,19057,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,19058,0)
+ ;;=Z91.128^^91^977^2
+ ;;^UTILITY(U,$J,358.3,19058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19058,1,3,0)
+ ;;=3^Intentional Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,19058,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,19058,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,19059,0)
+ ;;=Z91.130^^91^977^15
+ ;;^UTILITY(U,$J,358.3,19059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19059,1,3,0)
+ ;;=3^Unintented Underdosing d/t Age-Related Disability
+ ;;^UTILITY(U,$J,358.3,19059,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,19059,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,19060,0)
+ ;;=Z91.138^^91^977^16
+ ;;^UTILITY(U,$J,358.3,19060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19060,1,3,0)
+ ;;=3^Unintented Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,19060,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,19060,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,19061,0)
+ ;;=T38.3X6A^^91^977^3
+ ;;^UTILITY(U,$J,358.3,19061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19061,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19061,1,4,0)
+ ;;=4^T38.3X6A
+ ;;^UTILITY(U,$J,358.3,19061,2)
+ ;;=^5049649
+ ;;^UTILITY(U,$J,358.3,19062,0)
+ ;;=T38.3X6S^^91^977^4
+ ;;^UTILITY(U,$J,358.3,19062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19062,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,19062,1,4,0)
+ ;;=4^T38.3X6S
+ ;;^UTILITY(U,$J,358.3,19062,2)
+ ;;=^5049651
+ ;;^UTILITY(U,$J,358.3,19063,0)
+ ;;=T38.3X6D^^91^977^5

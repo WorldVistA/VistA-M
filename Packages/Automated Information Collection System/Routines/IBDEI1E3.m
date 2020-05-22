@@ -1,128 +1,130 @@
-IBDEI1E3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1E3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23607,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,23607,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,23607,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,23608,0)
- ;;=W17.4XXD^^87^1000^40
- ;;^UTILITY(U,$J,358.3,23608,1,0)
+ ;;^UTILITY(U,$J,358.3,22210,0)
+ ;;=Z91.5^^99^1130^1
+ ;;^UTILITY(U,$J,358.3,22210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23608,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23608,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,23608,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,23609,0)
- ;;=W17.81XA^^87^1000^27
- ;;^UTILITY(U,$J,358.3,23609,1,0)
+ ;;^UTILITY(U,$J,358.3,22210,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,22210,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,22210,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,22211,0)
+ ;;=R45.851^^99^1130^2
+ ;;^UTILITY(U,$J,358.3,22211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23609,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,23609,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,23609,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,23610,0)
- ;;=W17.81XD^^87^1000^28
- ;;^UTILITY(U,$J,358.3,23610,1,0)
+ ;;^UTILITY(U,$J,358.3,22211,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,22211,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,22211,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,22212,0)
+ ;;=T14.91XA^^99^1130^3
+ ;;^UTILITY(U,$J,358.3,22212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23610,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23610,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,23610,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,23611,0)
- ;;=W17.89XA^^87^1000^55
- ;;^UTILITY(U,$J,358.3,23611,1,0)
+ ;;^UTILITY(U,$J,358.3,22212,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,22212,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,22212,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,22213,0)
+ ;;=T14.91XD^^99^1130^4
+ ;;^UTILITY(U,$J,358.3,22213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23611,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,23611,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,23611,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,23612,0)
- ;;=W17.89XD^^87^1000^56
- ;;^UTILITY(U,$J,358.3,23612,1,0)
+ ;;^UTILITY(U,$J,358.3,22213,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,22213,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,22213,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,22214,0)
+ ;;=T14.91XS^^99^1130^5
+ ;;^UTILITY(U,$J,358.3,22214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23612,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23612,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,23612,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,23613,0)
- ;;=W18.11XA^^87^1000^63
- ;;^UTILITY(U,$J,358.3,23613,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23613,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,23613,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,23613,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,23614,0)
- ;;=W18.11XD^^87^1000^64
- ;;^UTILITY(U,$J,358.3,23614,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23614,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23614,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,23614,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,23615,0)
- ;;=W18.12XA^^87^1000^61
- ;;^UTILITY(U,$J,358.3,23615,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23615,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,23615,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,23615,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,23616,0)
- ;;=W18.12XD^^87^1000^62
- ;;^UTILITY(U,$J,358.3,23616,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23616,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23616,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,23616,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,23617,0)
- ;;=W18.2XXA^^87^1000^73
- ;;^UTILITY(U,$J,358.3,23617,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23617,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,23617,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,23617,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,23618,0)
- ;;=W18.2XXD^^87^1000^74
- ;;^UTILITY(U,$J,358.3,23618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23618,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23618,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,23618,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,23619,0)
- ;;=W18.40XA^^87^1000^105
- ;;^UTILITY(U,$J,358.3,23619,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23619,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,23619,1,4,0)
- ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,22214,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,22214,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,22214,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,22215,0)
+ ;;=99201^^100^1131^1
+ ;;^UTILITY(U,$J,358.3,22215,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22215,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,22215,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,22216,0)
+ ;;=99202^^100^1131^2
+ ;;^UTILITY(U,$J,358.3,22216,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22216,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,22216,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,22217,0)
+ ;;=99203^^100^1131^3
+ ;;^UTILITY(U,$J,358.3,22217,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22217,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,22217,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,22218,0)
+ ;;=99204^^100^1131^4
+ ;;^UTILITY(U,$J,358.3,22218,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22218,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,22218,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,22219,0)
+ ;;=99205^^100^1131^5
+ ;;^UTILITY(U,$J,358.3,22219,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22219,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,22219,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,22220,0)
+ ;;=99211^^100^1132^1
+ ;;^UTILITY(U,$J,358.3,22220,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22220,1,1,0)
+ ;;=1^Nursing Visit (no MD seen)
+ ;;^UTILITY(U,$J,358.3,22220,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,22221,0)
+ ;;=99212^^100^1132^2
+ ;;^UTILITY(U,$J,358.3,22221,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22221,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,22221,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,22222,0)
+ ;;=99213^^100^1132^3
+ ;;^UTILITY(U,$J,358.3,22222,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22222,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,22222,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,22223,0)
+ ;;=99214^^100^1132^4
+ ;;^UTILITY(U,$J,358.3,22223,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,22223,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,22223,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,22224,0)
+ ;;=99215^^100^1132^5
+ ;;^UTILITY(U,$J,358.3,22224,1,0)
+ ;;=^358.31IA^2^2

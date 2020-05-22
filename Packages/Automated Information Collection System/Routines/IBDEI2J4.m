@@ -1,130 +1,130 @@
-IBDEI2J4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2J4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42901,1,3,0)
- ;;=3^Dsplcmnt prosth dvc/implnt/grft of genitl trct,Init Encntr
- ;;^UTILITY(U,$J,358.3,42901,1,4,0)
- ;;=4^T83.428A
- ;;^UTILITY(U,$J,358.3,42901,2)
- ;;=^5055049
- ;;^UTILITY(U,$J,358.3,42902,0)
- ;;=T83.490A^^162^2049^22
- ;;^UTILITY(U,$J,358.3,42902,1,0)
+ ;;^UTILITY(U,$J,358.3,40382,1,3,0)
+ ;;=3^Pleural Plaque w/o Asbestos
+ ;;^UTILITY(U,$J,358.3,40382,1,4,0)
+ ;;=4^J92.9
+ ;;^UTILITY(U,$J,358.3,40382,2)
+ ;;=^5008313
+ ;;^UTILITY(U,$J,358.3,40383,0)
+ ;;=J94.8^^152^2010^34
+ ;;^UTILITY(U,$J,358.3,40383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42902,1,3,0)
- ;;=3^Mech compl penile (implanted) prosth,Oth,Init Encntr
- ;;^UTILITY(U,$J,358.3,42902,1,4,0)
- ;;=4^T83.490A
- ;;^UTILITY(U,$J,358.3,42902,2)
- ;;=^5055052
- ;;^UTILITY(U,$J,358.3,42903,0)
- ;;=T83.498A^^162^2049^23
- ;;^UTILITY(U,$J,358.3,42903,1,0)
+ ;;^UTILITY(U,$J,358.3,40383,1,3,0)
+ ;;=3^Pleural Conditions,Other Spec
+ ;;^UTILITY(U,$J,358.3,40383,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,40383,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,40384,0)
+ ;;=J86.9^^152^2010^38
+ ;;^UTILITY(U,$J,358.3,40384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42903,1,3,0)
- ;;=3^Mech compl prosth dvc/implnt/grft of genitl trct,Oth,Init Encntr
- ;;^UTILITY(U,$J,358.3,42903,1,4,0)
- ;;=4^T83.498A
- ;;^UTILITY(U,$J,358.3,42903,2)
- ;;=^5055055
- ;;^UTILITY(U,$J,358.3,42904,0)
- ;;=N99.820^^162^2049^27
- ;;^UTILITY(U,$J,358.3,42904,1,0)
+ ;;^UTILITY(U,$J,358.3,40384,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,40384,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,40384,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,40385,0)
+ ;;=J91.8^^152^2010^35
+ ;;^UTILITY(U,$J,358.3,40385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42904,1,3,0)
- ;;=3^Postproc hemor/hemtom of GU sys org fol GU sys procedure
- ;;^UTILITY(U,$J,358.3,42904,1,4,0)
- ;;=4^N99.820
- ;;^UTILITY(U,$J,358.3,42904,2)
- ;;=^5015968
- ;;^UTILITY(U,$J,358.3,42905,0)
- ;;=T81.4XXA^^162^2049^18
- ;;^UTILITY(U,$J,358.3,42905,1,0)
+ ;;^UTILITY(U,$J,358.3,40385,1,3,0)
+ ;;=3^Pleural Effusion in Other Conditions
+ ;;^UTILITY(U,$J,358.3,40385,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,40385,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,40386,0)
+ ;;=J84.9^^152^2010^29
+ ;;^UTILITY(U,$J,358.3,40386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42905,1,3,0)
- ;;=3^Infection following a procedure,Init Encntr
- ;;^UTILITY(U,$J,358.3,42905,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,42905,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,42906,0)
- ;;=K68.11^^162^2049^28
- ;;^UTILITY(U,$J,358.3,42906,1,0)
+ ;;^UTILITY(U,$J,358.3,40386,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,40386,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,40386,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,40387,0)
+ ;;=J98.01^^152^2010^11
+ ;;^UTILITY(U,$J,358.3,40387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42906,1,3,0)
- ;;=3^Postproc retroperitoneal abscess
- ;;^UTILITY(U,$J,358.3,42906,1,4,0)
- ;;=4^K68.11
- ;;^UTILITY(U,$J,358.3,42906,2)
- ;;=^5008782
- ;;^UTILITY(U,$J,358.3,42907,0)
- ;;=Z48.00^^162^2049^10
- ;;^UTILITY(U,$J,358.3,42907,1,0)
+ ;;^UTILITY(U,$J,358.3,40387,1,3,0)
+ ;;=3^Bronchospasm,Acute
+ ;;^UTILITY(U,$J,358.3,40387,1,4,0)
+ ;;=4^J98.01
+ ;;^UTILITY(U,$J,358.3,40387,2)
+ ;;=^334092
+ ;;^UTILITY(U,$J,358.3,40388,0)
+ ;;=G47.30^^152^2010^53
+ ;;^UTILITY(U,$J,358.3,40388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42907,1,3,0)
- ;;=3^Change/Removal of Nonsurg Wound Dressing
- ;;^UTILITY(U,$J,358.3,42907,1,4,0)
- ;;=4^Z48.00
- ;;^UTILITY(U,$J,358.3,42907,2)
- ;;=^5063033
- ;;^UTILITY(U,$J,358.3,42908,0)
- ;;=Z48.01^^162^2049^11
- ;;^UTILITY(U,$J,358.3,42908,1,0)
+ ;;^UTILITY(U,$J,358.3,40388,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,40388,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,40388,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,40389,0)
+ ;;=R06.02^^152^2010^52
+ ;;^UTILITY(U,$J,358.3,40389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42908,1,3,0)
- ;;=3^Change/Removal of Surg Wound Dressing
- ;;^UTILITY(U,$J,358.3,42908,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,42908,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,42909,0)
- ;;=Z48.02^^162^2049^29
- ;;^UTILITY(U,$J,358.3,42909,1,0)
+ ;;^UTILITY(U,$J,358.3,40389,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,40389,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,40389,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,40390,0)
+ ;;=R06.09^^152^2010^17
+ ;;^UTILITY(U,$J,358.3,40390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42909,1,3,0)
- ;;=3^Removal of Sutures
- ;;^UTILITY(U,$J,358.3,42909,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,42909,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,42910,0)
- ;;=Z48.89^^162^2049^30
- ;;^UTILITY(U,$J,358.3,42910,1,0)
+ ;;^UTILITY(U,$J,358.3,40390,1,3,0)
+ ;;=3^Dyspnea,Other Forms
+ ;;^UTILITY(U,$J,358.3,40390,1,4,0)
+ ;;=4^R06.09
+ ;;^UTILITY(U,$J,358.3,40390,2)
+ ;;=^5019182
+ ;;^UTILITY(U,$J,358.3,40391,0)
+ ;;=R06.00^^152^2010^18
+ ;;^UTILITY(U,$J,358.3,40391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42910,1,3,0)
- ;;=3^Surg Aftercare,Oth Specified
- ;;^UTILITY(U,$J,358.3,42910,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,42910,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,42911,0)
- ;;=Z48.03^^162^2049^9
- ;;^UTILITY(U,$J,358.3,42911,1,0)
+ ;;^UTILITY(U,$J,358.3,40391,1,3,0)
+ ;;=3^Dyspnea,Unspec
+ ;;^UTILITY(U,$J,358.3,40391,1,4,0)
+ ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,40391,2)
+ ;;=^5019180
+ ;;^UTILITY(U,$J,358.3,40392,0)
+ ;;=R06.89^^152^2010^6
+ ;;^UTILITY(U,$J,358.3,40392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42911,1,3,0)
- ;;=3^Change/Removal of Drains
- ;;^UTILITY(U,$J,358.3,42911,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,42911,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,42912,0)
- ;;=Z48.816^^162^2049^1
- ;;^UTILITY(U,$J,358.3,42912,1,0)
+ ;;^UTILITY(U,$J,358.3,40392,1,3,0)
+ ;;=3^Breathing Abnormalities,Other
+ ;;^UTILITY(U,$J,358.3,40392,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,40392,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,40393,0)
+ ;;=R06.83^^152^2010^54
+ ;;^UTILITY(U,$J,358.3,40393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42912,1,3,0)
- ;;=3^Aftercare Following GU System Surg
- ;;^UTILITY(U,$J,358.3,42912,1,4,0)
- ;;=4^Z48.816
- ;;^UTILITY(U,$J,358.3,42912,2)
- ;;=^5063053
- ;;^UTILITY(U,$J,358.3,42913,0)
- ;;=D29.1^^162^2050^4
- ;;^UTILITY(U,$J,358.3,42913,1,0)
+ ;;^UTILITY(U,$J,358.3,40393,1,3,0)
+ ;;=3^Snoring
+ ;;^UTILITY(U,$J,358.3,40393,1,4,0)
+ ;;=4^R06.83
+ ;;^UTILITY(U,$J,358.3,40393,2)
+ ;;=^5019192
+ ;;^UTILITY(U,$J,358.3,40394,0)
+ ;;=R06.3^^152^2010^32
+ ;;^UTILITY(U,$J,358.3,40394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42913,1,3,0)
- ;;=3^Benign neoplasm of prostate
- ;;^UTILITY(U,$J,358.3,42913,1,4,0)
- ;;=4^D29.1
- ;;^UTILITY(U,$J,358.3,42913,2)
- ;;=^267657
+ ;;^UTILITY(U,$J,358.3,40394,1,3,0)
+ ;;=3^Periodic Breathing
+ ;;^UTILITY(U,$J,358.3,40394,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,40394,2)
+ ;;=^5019185

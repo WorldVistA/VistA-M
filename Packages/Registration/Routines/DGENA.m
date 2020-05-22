@@ -1,8 +1,8 @@
 DGENA ;ALB/CJM,ISA/KWP,Zoltan,LBD,CKN,EG,ERC,TDM,JLS,HM - Enrollment API - Retrieve Data ;03 Mar 2015  10:25 AM
- ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841,909,940,972**;Aug 13, 1993;Build 80
+ ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841,909,940,972,952**;Aug 13, 1993;Build 160
  ;
 FINDCUR(DFN) ;
- ;Description: Used to find a patients current enrollment.
+ ;Description: Used to find a patient's current enrollment.
  ;Input :
  ;  DFN - Patient IEN
  ;Output:
@@ -141,6 +141,7 @@ GET(DGENRIEN,DGENR) ;
  ;     "ELIG","CLEDT"           Camp Lejeune Date          DG*5.3*909
  ;     "ELIG","CLEST"           Camp Lejeune Change Site   DG*5.3*909
  ;     "ELIG","CLESOR"          Camp Lejeune Source        DG*5.3*909
+ ;     "ELIG","OTHTYPE"         Expanded MH care type
  ;     "DATETIME"      Date/Time Entered
  ;     "USER"          Entered By
  ;    
@@ -197,6 +198,7 @@ GET(DGENRIEN,DGENR) ;
  S DGENR("ELIG","MOHAWRDDATE")=$P(NODE,"^",28)   ;added with DG*5.3*972 HM
  S DGENR("ELIG","MOHSTATDATE")=$P(NODE,"^",29)   ;added with DG*5.3*972 HM
  S DGENR("ELIG","MOHEXEMPDATE")=$P(NODE,"^",30)   ;added with DG*5.3*972 HM
+ S DGENR("ELIG","OTHTYPE")=$P(NODE,"^",31) ; DG*5.3*952
  ;S DGENCDZZ=1 ; for CD Testing (disabled).
  S NODE=$G(^DGEN(27.11,DGENRIEN,"U"))
  S DGENR("DATETIME")=$P(NODE,"^")

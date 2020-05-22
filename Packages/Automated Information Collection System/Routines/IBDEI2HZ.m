@@ -1,136 +1,124 @@
-IBDEI2HZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42351,0)
- ;;=N92.0^^159^2020^20
- ;;^UTILITY(U,$J,358.3,42351,1,0)
+ ;;^UTILITY(U,$J,358.3,39880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42351,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,42351,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,42351,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,42352,0)
- ;;=N92.6^^159^2020^30
- ;;^UTILITY(U,$J,358.3,42352,1,0)
+ ;;^UTILITY(U,$J,358.3,39880,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,39880,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,39880,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,39881,0)
+ ;;=Z80.51^^152^2001^29
+ ;;^UTILITY(U,$J,358.3,39881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42352,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,42352,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,42352,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,42353,0)
- ;;=N92.5^^159^2020^29
- ;;^UTILITY(U,$J,358.3,42353,1,0)
+ ;;^UTILITY(U,$J,358.3,39881,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,39881,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,39881,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,39882,0)
+ ;;=Z83.41^^152^2001^36
+ ;;^UTILITY(U,$J,358.3,39882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42353,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,42353,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,42353,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,42354,0)
- ;;=N92.3^^159^2020^43
- ;;^UTILITY(U,$J,358.3,42354,1,0)
+ ;;^UTILITY(U,$J,358.3,39882,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,39882,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,39882,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,39883,0)
+ ;;=Z81.8^^152^2001^43
+ ;;^UTILITY(U,$J,358.3,39883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42354,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,42354,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,42354,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,42355,0)
- ;;=N89.7^^159^2020^24
- ;;^UTILITY(U,$J,358.3,42355,1,0)
+ ;;^UTILITY(U,$J,358.3,39883,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,39883,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,39883,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,39884,0)
+ ;;=Z81.4^^152^2001^44
+ ;;^UTILITY(U,$J,358.3,39884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42355,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,42355,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,42355,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,42356,0)
- ;;=N93.8^^159^2020^2
- ;;^UTILITY(U,$J,358.3,42356,1,0)
+ ;;^UTILITY(U,$J,358.3,39884,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,39884,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,39884,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,39885,0)
+ ;;=Z98.0^^152^2001^55
+ ;;^UTILITY(U,$J,358.3,39885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42356,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,42356,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,42356,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,42357,0)
- ;;=N93.9^^159^2020^3
- ;;^UTILITY(U,$J,358.3,42357,1,0)
+ ;;^UTILITY(U,$J,358.3,39885,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,39885,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,39885,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,39886,0)
+ ;;=Z91.128^^152^2001^54
+ ;;^UTILITY(U,$J,358.3,39886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42357,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,42357,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,42357,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,42358,0)
- ;;=N92.4^^159^2020^19
- ;;^UTILITY(U,$J,358.3,42358,1,0)
+ ;;^UTILITY(U,$J,358.3,39886,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,39886,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,39886,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,39887,0)
+ ;;=Z77.120^^152^2001^60
+ ;;^UTILITY(U,$J,358.3,39887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42358,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,42358,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,42358,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,42359,0)
- ;;=N95.0^^159^2020^48
- ;;^UTILITY(U,$J,358.3,42359,1,0)
+ ;;^UTILITY(U,$J,358.3,39887,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,39887,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,39887,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,39888,0)
+ ;;=Z86.74^^152^2001^104
+ ;;^UTILITY(U,$J,358.3,39888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42359,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,42359,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,42359,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,42360,0)
- ;;=N95.1^^159^2020^35
- ;;^UTILITY(U,$J,358.3,42360,1,0)
+ ;;^UTILITY(U,$J,358.3,39888,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,39888,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,39888,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,39889,0)
+ ;;=Z86.718^^152^2001^111
+ ;;^UTILITY(U,$J,358.3,39889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42360,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,42360,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,42360,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,42361,0)
- ;;=N97.0^^159^2020^21
- ;;^UTILITY(U,$J,358.3,42361,1,0)
+ ;;^UTILITY(U,$J,358.3,39889,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,39889,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,39889,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,39890,0)
+ ;;=Z96.1^^152^2001^133
+ ;;^UTILITY(U,$J,358.3,39890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42361,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,42361,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,42361,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,42362,0)
- ;;=N97.9^^159^2020^22
- ;;^UTILITY(U,$J,358.3,42362,1,0)
+ ;;^UTILITY(U,$J,358.3,39890,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,39890,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,39890,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,39891,0)
+ ;;=Z96.612^^152^2001^138
+ ;;^UTILITY(U,$J,358.3,39891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42362,1,3,0)
- ;;=3^Female Infertility,Unspec
- ;;^UTILITY(U,$J,358.3,42362,1,4,0)
- ;;=4^N97.9
- ;;^UTILITY(U,$J,358.3,42362,2)
- ;;=^5015935
- ;;^UTILITY(U,$J,358.3,42363,0)
- ;;=L29.2^^159^2020^52
- ;;^UTILITY(U,$J,358.3,42363,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42363,1,3,0)
- ;;=3^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,42363,1,4,0)
- ;;=4^L29.2
- ;;^UTILITY(U,$J,358.3,42363,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,42364,0)
- ;;=R92.8^^159^2020^4
+ ;;^UTILITY(U,$J,358.3,39891,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,39891,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,39891,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,39892,0)
+ ;;=Z96.611^^152^2001^143

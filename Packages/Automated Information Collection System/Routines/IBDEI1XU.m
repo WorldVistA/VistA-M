@@ -1,138 +1,128 @@
-IBDEI1XU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32873,2)
- ;;=^5063659
- ;;^UTILITY(U,$J,358.3,32874,0)
- ;;=Z94.6^^128^1640^2
- ;;^UTILITY(U,$J,358.3,32874,1,0)
+ ;;^UTILITY(U,$J,358.3,30953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32874,1,3,0)
- ;;=3^Bone Transplant Status
- ;;^UTILITY(U,$J,358.3,32874,1,4,0)
- ;;=4^Z94.6
- ;;^UTILITY(U,$J,358.3,32874,2)
- ;;=^5063660
- ;;^UTILITY(U,$J,358.3,32875,0)
- ;;=Z94.7^^128^1640^3
- ;;^UTILITY(U,$J,358.3,32875,1,0)
+ ;;^UTILITY(U,$J,358.3,30953,1,3,0)
+ ;;=3^Type 1 DM w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,30953,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,30953,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,30954,0)
+ ;;=E10.22^^123^1598^16
+ ;;^UTILITY(U,$J,358.3,30954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32875,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,32875,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,32875,2)
- ;;=^5063661
- ;;^UTILITY(U,$J,358.3,32876,0)
- ;;=Z94.2^^128^1640^8
- ;;^UTILITY(U,$J,358.3,32876,1,0)
+ ;;^UTILITY(U,$J,358.3,30954,1,3,0)
+ ;;=3^Type 1 DM w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,30954,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,30954,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,30955,0)
+ ;;=D59.3^^123^1598^3
+ ;;^UTILITY(U,$J,358.3,30955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32876,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,32876,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,32876,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,32877,0)
- ;;=Z94.4^^128^1640^7
- ;;^UTILITY(U,$J,358.3,32877,1,0)
+ ;;^UTILITY(U,$J,358.3,30955,1,3,0)
+ ;;=3^Hemolytic-uremic syndrome
+ ;;^UTILITY(U,$J,358.3,30955,1,4,0)
+ ;;=4^D59.3
+ ;;^UTILITY(U,$J,358.3,30955,2)
+ ;;=^55823
+ ;;^UTILITY(U,$J,358.3,30956,0)
+ ;;=D69.0^^123^1598^4
+ ;;^UTILITY(U,$J,358.3,30956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32877,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,32877,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,32877,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,32878,0)
- ;;=Z94.81^^128^1640^1
- ;;^UTILITY(U,$J,358.3,32878,1,0)
+ ;;^UTILITY(U,$J,358.3,30956,1,3,0)
+ ;;=3^Henoch-Schoeniein Purpura
+ ;;^UTILITY(U,$J,358.3,30956,1,4,0)
+ ;;=4^D69.0
+ ;;^UTILITY(U,$J,358.3,30956,2)
+ ;;=^5002365
+ ;;^UTILITY(U,$J,358.3,30957,0)
+ ;;=M30.0^^123^1598^12
+ ;;^UTILITY(U,$J,358.3,30957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32878,1,3,0)
- ;;=3^Bone Marrow Transplant Status
- ;;^UTILITY(U,$J,358.3,32878,1,4,0)
- ;;=4^Z94.81
- ;;^UTILITY(U,$J,358.3,32878,2)
- ;;=^5063662
- ;;^UTILITY(U,$J,358.3,32879,0)
- ;;=Z94.84^^128^1640^11
- ;;^UTILITY(U,$J,358.3,32879,1,0)
+ ;;^UTILITY(U,$J,358.3,30957,1,3,0)
+ ;;=3^Polyarteritis nodosa
+ ;;^UTILITY(U,$J,358.3,30957,1,4,0)
+ ;;=4^M30.0
+ ;;^UTILITY(U,$J,358.3,30957,2)
+ ;;=^5011738
+ ;;^UTILITY(U,$J,358.3,30958,0)
+ ;;=M31.0^^123^1598^5
+ ;;^UTILITY(U,$J,358.3,30958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32879,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,32879,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,32879,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,32880,0)
- ;;=Z94.83^^128^1640^9
- ;;^UTILITY(U,$J,358.3,32880,1,0)
+ ;;^UTILITY(U,$J,358.3,30958,1,3,0)
+ ;;=3^Hypersensitivity angiitis
+ ;;^UTILITY(U,$J,358.3,30958,1,4,0)
+ ;;=4^M31.0
+ ;;^UTILITY(U,$J,358.3,30958,2)
+ ;;=^60279
+ ;;^UTILITY(U,$J,358.3,30959,0)
+ ;;=M31.31^^123^1598^22
+ ;;^UTILITY(U,$J,358.3,30959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32880,1,3,0)
- ;;=3^Pancreas Transplant Status
- ;;^UTILITY(U,$J,358.3,32880,1,4,0)
- ;;=4^Z94.83
- ;;^UTILITY(U,$J,358.3,32880,2)
- ;;=^5063664
- ;;^UTILITY(U,$J,358.3,32881,0)
- ;;=Z94.82^^128^1640^5
- ;;^UTILITY(U,$J,358.3,32881,1,0)
+ ;;^UTILITY(U,$J,358.3,30959,1,3,0)
+ ;;=3^Wegener's granulomatosis w/ renal involvement
+ ;;^UTILITY(U,$J,358.3,30959,1,4,0)
+ ;;=4^M31.31
+ ;;^UTILITY(U,$J,358.3,30959,2)
+ ;;=^5011745
+ ;;^UTILITY(U,$J,358.3,30960,0)
+ ;;=N28.89^^123^1598^6
+ ;;^UTILITY(U,$J,358.3,30960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32881,1,3,0)
- ;;=3^Intestine Transplant Status
- ;;^UTILITY(U,$J,358.3,32881,1,4,0)
- ;;=4^Z94.82
- ;;^UTILITY(U,$J,358.3,32881,2)
- ;;=^5063663
- ;;^UTILITY(U,$J,358.3,32882,0)
- ;;=Z94.9^^128^1640^12
- ;;^UTILITY(U,$J,358.3,32882,1,0)
+ ;;^UTILITY(U,$J,358.3,30960,1,3,0)
+ ;;=3^Kidney & Ureter Disorders,Oth Specified
+ ;;^UTILITY(U,$J,358.3,30960,1,4,0)
+ ;;=4^N28.89
+ ;;^UTILITY(U,$J,358.3,30960,2)
+ ;;=^88007
+ ;;^UTILITY(U,$J,358.3,30961,0)
+ ;;=E85.4^^123^1598^11
+ ;;^UTILITY(U,$J,358.3,30961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32882,1,3,0)
- ;;=3^Transplanted Organ & Tissue Status,Unspec
- ;;^UTILITY(U,$J,358.3,32882,1,4,0)
- ;;=4^Z94.9
- ;;^UTILITY(U,$J,358.3,32882,2)
- ;;=^5063667
- ;;^UTILITY(U,$J,358.3,32883,0)
- ;;=Z23.^^128^1641^1
- ;;^UTILITY(U,$J,358.3,32883,1,0)
+ ;;^UTILITY(U,$J,358.3,30961,1,3,0)
+ ;;=3^Organ-limited amyloidosis
+ ;;^UTILITY(U,$J,358.3,30961,1,4,0)
+ ;;=4^E85.4
+ ;;^UTILITY(U,$J,358.3,30961,2)
+ ;;=^5003017
+ ;;^UTILITY(U,$J,358.3,30962,0)
+ ;;=M32.14^^123^1598^2
+ ;;^UTILITY(U,$J,358.3,30962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32883,1,3,0)
- ;;=3^Immunization Encounter
- ;;^UTILITY(U,$J,358.3,32883,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,32883,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,32884,0)
- ;;=Z28.3^^128^1641^2
- ;;^UTILITY(U,$J,358.3,32884,1,0)
+ ;;^UTILITY(U,$J,358.3,30962,1,3,0)
+ ;;=3^Glomerular disease in systemic lupus erythematosus
+ ;;^UTILITY(U,$J,358.3,30962,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,30962,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,30963,0)
+ ;;=M32.15^^123^1598^15
+ ;;^UTILITY(U,$J,358.3,30963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32884,1,3,0)
- ;;=3^Underimmunization Status
- ;;^UTILITY(U,$J,358.3,32884,1,4,0)
- ;;=4^Z28.3
- ;;^UTILITY(U,$J,358.3,32884,2)
- ;;=^5062805
- ;;^UTILITY(U,$J,358.3,32885,0)
- ;;=E66.9^^128^1642^5
- ;;^UTILITY(U,$J,358.3,32885,1,0)
+ ;;^UTILITY(U,$J,358.3,30963,1,3,0)
+ ;;=3^Tubulo-interstitial neuropathy in SLE
+ ;;^UTILITY(U,$J,358.3,30963,1,4,0)
+ ;;=4^M32.15
+ ;;^UTILITY(U,$J,358.3,30963,2)
+ ;;=^5011758
+ ;;^UTILITY(U,$J,358.3,30964,0)
+ ;;=M34.0^^123^1598^13
+ ;;^UTILITY(U,$J,358.3,30964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32885,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,32885,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,32885,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,32886,0)
- ;;=M81.0^^128^1642^6
- ;;^UTILITY(U,$J,358.3,32886,1,0)
+ ;;^UTILITY(U,$J,358.3,30964,1,3,0)
+ ;;=3^Progressive systemic sclerosis
+ ;;^UTILITY(U,$J,358.3,30964,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,30964,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,30965,0)
+ ;;=M31.1^^123^1598^14
+ ;;^UTILITY(U,$J,358.3,30965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32886,1,3,0)
- ;;=3^Osteoporosis,Age-Related,w/o Current Fracture
- ;;^UTILITY(U,$J,358.3,32886,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,32886,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,32887,0)
- ;;=R87.619^^128^1642^1
+ ;;^UTILITY(U,$J,358.3,30965,1,3,0)
+ ;;=3^Thrombotic Microangiopathy

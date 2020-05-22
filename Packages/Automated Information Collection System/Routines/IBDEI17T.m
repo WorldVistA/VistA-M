@@ -1,136 +1,116 @@
-IBDEI17T ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20657,1,0)
+ ;;^UTILITY(U,$J,358.3,19511,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19511,1,4,0)
+ ;;=4^S06.331S
+ ;;^UTILITY(U,$J,358.3,19511,2)
+ ;;=^5020851
+ ;;^UTILITY(U,$J,358.3,19512,0)
+ ;;=S06.325S^^93^994^8
+ ;;^UTILITY(U,$J,358.3,19512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20657,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,20657,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,20657,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,20658,0)
- ;;=M62.830^^84^935^59
- ;;^UTILITY(U,$J,358.3,20658,1,0)
+ ;;^UTILITY(U,$J,358.3,19512,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19512,1,4,0)
+ ;;=4^S06.325S
+ ;;^UTILITY(U,$J,358.3,19512,2)
+ ;;=^5020833
+ ;;^UTILITY(U,$J,358.3,19513,0)
+ ;;=S06.326S^^93^994^9
+ ;;^UTILITY(U,$J,358.3,19513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20658,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,20658,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,20658,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,20659,0)
- ;;=M19.92^^84^935^120
- ;;^UTILITY(U,$J,358.3,20659,1,0)
+ ;;^UTILITY(U,$J,358.3,19513,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,19513,1,4,0)
+ ;;=4^S06.326S
+ ;;^UTILITY(U,$J,358.3,19513,2)
+ ;;=^5020836
+ ;;^UTILITY(U,$J,358.3,19514,0)
+ ;;=S06.323S^^93^994^10
+ ;;^UTILITY(U,$J,358.3,19514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20659,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,20659,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,20659,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,20660,0)
- ;;=M85.872^^84^935^80
- ;;^UTILITY(U,$J,358.3,20660,1,0)
+ ;;^UTILITY(U,$J,358.3,19514,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19514,1,4,0)
+ ;;=4^S06.323S
+ ;;^UTILITY(U,$J,358.3,19514,2)
+ ;;=^5020827
+ ;;^UTILITY(U,$J,358.3,19515,0)
+ ;;=S06.321S^^93^994^11
+ ;;^UTILITY(U,$J,358.3,19515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20660,1,3,0)
- ;;=3^Osteopenia,Left Ankle & Foot
- ;;^UTILITY(U,$J,358.3,20660,1,4,0)
- ;;=4^M85.872
- ;;^UTILITY(U,$J,358.3,20660,2)
- ;;=^5014493
- ;;^UTILITY(U,$J,358.3,20661,0)
- ;;=M85.832^^84^935^81
- ;;^UTILITY(U,$J,358.3,20661,1,0)
+ ;;^UTILITY(U,$J,358.3,19515,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19515,1,4,0)
+ ;;=4^S06.321S
+ ;;^UTILITY(U,$J,358.3,19515,2)
+ ;;=^5020821
+ ;;^UTILITY(U,$J,358.3,19516,0)
+ ;;=S06.322S^^93^994^12
+ ;;^UTILITY(U,$J,358.3,19516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20661,1,3,0)
- ;;=3^Osteopenia,Left Forearm
- ;;^UTILITY(U,$J,358.3,20661,1,4,0)
- ;;=4^M85.832
- ;;^UTILITY(U,$J,358.3,20661,2)
- ;;=^5014481
- ;;^UTILITY(U,$J,358.3,20662,0)
- ;;=M85.842^^84^935^82
- ;;^UTILITY(U,$J,358.3,20662,1,0)
+ ;;^UTILITY(U,$J,358.3,19516,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19516,1,4,0)
+ ;;=4^S06.322S
+ ;;^UTILITY(U,$J,358.3,19516,2)
+ ;;=^5020824
+ ;;^UTILITY(U,$J,358.3,19517,0)
+ ;;=S06.324S^^93^994^13
+ ;;^UTILITY(U,$J,358.3,19517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20662,1,3,0)
- ;;=3^Osteopenia,Left Hand
- ;;^UTILITY(U,$J,358.3,20662,1,4,0)
- ;;=4^M85.842
- ;;^UTILITY(U,$J,358.3,20662,2)
- ;;=^5014484
- ;;^UTILITY(U,$J,358.3,20663,0)
- ;;=M85.862^^84^935^83
- ;;^UTILITY(U,$J,358.3,20663,1,0)
+ ;;^UTILITY(U,$J,358.3,19517,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,19517,1,4,0)
+ ;;=4^S06.324S
+ ;;^UTILITY(U,$J,358.3,19517,2)
+ ;;=^5020830
+ ;;^UTILITY(U,$J,358.3,19518,0)
+ ;;=S06.329S^^93^994^14
+ ;;^UTILITY(U,$J,358.3,19518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20663,1,3,0)
- ;;=3^Osteopenia,Left Lower Leg
- ;;^UTILITY(U,$J,358.3,20663,1,4,0)
- ;;=4^M85.862
- ;;^UTILITY(U,$J,358.3,20663,2)
- ;;=^5014490
- ;;^UTILITY(U,$J,358.3,20664,0)
- ;;=M85.812^^84^935^84
- ;;^UTILITY(U,$J,358.3,20664,1,0)
+ ;;^UTILITY(U,$J,358.3,19518,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19518,1,4,0)
+ ;;=4^S06.329S
+ ;;^UTILITY(U,$J,358.3,19518,2)
+ ;;=^5020845
+ ;;^UTILITY(U,$J,358.3,19519,0)
+ ;;=S06.320S^^93^994^15
+ ;;^UTILITY(U,$J,358.3,19519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20664,1,3,0)
- ;;=3^Osteopenia,Left Shoulder
- ;;^UTILITY(U,$J,358.3,20664,1,4,0)
- ;;=4^M85.812
- ;;^UTILITY(U,$J,358.3,20664,2)
- ;;=^5014475
- ;;^UTILITY(U,$J,358.3,20665,0)
- ;;=M85.852^^84^935^85
- ;;^UTILITY(U,$J,358.3,20665,1,0)
+ ;;^UTILITY(U,$J,358.3,19519,1,3,0)
+ ;;=3^Contus/lac left cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19519,1,4,0)
+ ;;=4^S06.320S
+ ;;^UTILITY(U,$J,358.3,19519,2)
+ ;;=^5020818
+ ;;^UTILITY(U,$J,358.3,19520,0)
+ ;;=S06.315S^^93^994^16
+ ;;^UTILITY(U,$J,358.3,19520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20665,1,3,0)
- ;;=3^Osteopenia,Left Thigh
- ;;^UTILITY(U,$J,358.3,20665,1,4,0)
- ;;=4^M85.852
- ;;^UTILITY(U,$J,358.3,20665,2)
- ;;=^5014487
- ;;^UTILITY(U,$J,358.3,20666,0)
- ;;=M85.822^^84^935^86
- ;;^UTILITY(U,$J,358.3,20666,1,0)
+ ;;^UTILITY(U,$J,358.3,19520,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19520,1,4,0)
+ ;;=4^S06.315S
+ ;;^UTILITY(U,$J,358.3,19520,2)
+ ;;=^5020803
+ ;;^UTILITY(U,$J,358.3,19521,0)
+ ;;=S06.316S^^93^994^17
+ ;;^UTILITY(U,$J,358.3,19521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20666,1,3,0)
- ;;=3^Osteopenia,Left Upper Arm
- ;;^UTILITY(U,$J,358.3,20666,1,4,0)
- ;;=4^M85.822
- ;;^UTILITY(U,$J,358.3,20666,2)
- ;;=^5014478
- ;;^UTILITY(U,$J,358.3,20667,0)
- ;;=M85.89^^84^935^87
- ;;^UTILITY(U,$J,358.3,20667,1,0)
+ ;;^UTILITY(U,$J,358.3,19521,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,19521,1,4,0)
+ ;;=4^S06.316S
+ ;;^UTILITY(U,$J,358.3,19521,2)
+ ;;=^5020806
+ ;;^UTILITY(U,$J,358.3,19522,0)
+ ;;=S06.313S^^93^994^18
+ ;;^UTILITY(U,$J,358.3,19522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20667,1,3,0)
- ;;=3^Osteopenia,Multiple Sites
- ;;^UTILITY(U,$J,358.3,20667,1,4,0)
- ;;=4^M85.89
- ;;^UTILITY(U,$J,358.3,20667,2)
- ;;=^5014495
- ;;^UTILITY(U,$J,358.3,20668,0)
- ;;=M85.88^^84^935^88
- ;;^UTILITY(U,$J,358.3,20668,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20668,1,3,0)
- ;;=3^Osteopenia,Other Site
- ;;^UTILITY(U,$J,358.3,20668,1,4,0)
- ;;=4^M85.88
- ;;^UTILITY(U,$J,358.3,20668,2)
- ;;=^5134059
- ;;^UTILITY(U,$J,358.3,20669,0)
- ;;=M85.871^^84^935^89
- ;;^UTILITY(U,$J,358.3,20669,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20669,1,3,0)
- ;;=3^Osteopenia,Right Foot & Ankle
- ;;^UTILITY(U,$J,358.3,20669,1,4,0)
- ;;=4^M85.871
- ;;^UTILITY(U,$J,358.3,20669,2)
- ;;=^5014492
- ;;^UTILITY(U,$J,358.3,20670,0)
- ;;=M85.831^^84^935^90
- ;;^UTILITY(U,$J,358.3,20670,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19522,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 1-5 hrs 59 min, sequela

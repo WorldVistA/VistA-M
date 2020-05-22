@@ -1,134 +1,124 @@
-IBDEI32I ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51430,1,4,0)
- ;;=4^M22.41
- ;;^UTILITY(U,$J,358.3,51430,2)
- ;;=^5011186
- ;;^UTILITY(U,$J,358.3,51431,0)
- ;;=M22.42^^222^2480^1
- ;;^UTILITY(U,$J,358.3,51431,1,0)
+ ;;^UTILITY(U,$J,358.3,48986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51431,1,3,0)
- ;;=3^Chondromalacia patellae, lft knee
- ;;^UTILITY(U,$J,358.3,51431,1,4,0)
- ;;=4^M22.42
- ;;^UTILITY(U,$J,358.3,51431,2)
- ;;=^5011187
- ;;^UTILITY(U,$J,358.3,51432,0)
- ;;=M23.91^^222^2480^4
- ;;^UTILITY(U,$J,358.3,51432,1,0)
+ ;;^UTILITY(U,$J,358.3,48986,1,3,0)
+ ;;=3^Drug Therapy,Other Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,48986,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,48986,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,48987,0)
+ ;;=Z76.0^^185^2428^71
+ ;;^UTILITY(U,$J,358.3,48987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51432,1,3,0)
- ;;=3^Intrnl derangement of rt knee, unspec
- ;;^UTILITY(U,$J,358.3,51432,1,4,0)
- ;;=4^M23.91
- ;;^UTILITY(U,$J,358.3,51432,2)
- ;;=^5133806
- ;;^UTILITY(U,$J,358.3,51433,0)
- ;;=M23.92^^222^2480^3
- ;;^UTILITY(U,$J,358.3,51433,1,0)
+ ;;^UTILITY(U,$J,358.3,48987,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,48987,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,48987,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,48988,0)
+ ;;=Z79.810^^185^2428^52
+ ;;^UTILITY(U,$J,358.3,48988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51433,1,3,0)
- ;;=3^Intrnl derangement of lft knee, unspec
- ;;^UTILITY(U,$J,358.3,51433,1,4,0)
- ;;=4^M23.92
- ;;^UTILITY(U,$J,358.3,51433,2)
- ;;=^5133807
- ;;^UTILITY(U,$J,358.3,51434,0)
- ;;=M02.00^^222^2481^1
- ;;^UTILITY(U,$J,358.3,51434,1,0)
+ ;;^UTILITY(U,$J,358.3,48988,1,3,0)
+ ;;=3^Drug Therapy,SERMs,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,48988,1,4,0)
+ ;;=4^Z79.810
+ ;;^UTILITY(U,$J,358.3,48988,2)
+ ;;=^5063337
+ ;;^UTILITY(U,$J,358.3,48989,0)
+ ;;=Z79.51^^185^2428^47
+ ;;^UTILITY(U,$J,358.3,48989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51434,1,3,0)
- ;;=3^Arthropathy following intest bypass, unspec site
- ;;^UTILITY(U,$J,358.3,51434,1,4,0)
- ;;=4^M02.00
- ;;^UTILITY(U,$J,358.3,51434,2)
- ;;=^5009718
- ;;^UTILITY(U,$J,358.3,51435,0)
- ;;=L52.^^222^2481^2
- ;;^UTILITY(U,$J,358.3,51435,1,0)
+ ;;^UTILITY(U,$J,358.3,48989,1,3,0)
+ ;;=3^Drug Therapy,Inhaled Steroids,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,48989,1,4,0)
+ ;;=4^Z79.51
+ ;;^UTILITY(U,$J,358.3,48989,2)
+ ;;=^5063335
+ ;;^UTILITY(U,$J,358.3,48990,0)
+ ;;=Z79.52^^185^2428^53
+ ;;^UTILITY(U,$J,358.3,48990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51435,1,3,0)
- ;;=3^Erythema nodosum
- ;;^UTILITY(U,$J,358.3,51435,1,4,0)
- ;;=4^L52.
- ;;^UTILITY(U,$J,358.3,51435,2)
- ;;=^42065
- ;;^UTILITY(U,$J,358.3,51436,0)
- ;;=L40.59^^222^2481^3
- ;;^UTILITY(U,$J,358.3,51436,1,0)
+ ;;^UTILITY(U,$J,358.3,48990,1,3,0)
+ ;;=3^Drug Therapy,Systemic Steroids,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,48990,1,4,0)
+ ;;=4^Z79.52
+ ;;^UTILITY(U,$J,358.3,48990,2)
+ ;;=^5063336
+ ;;^UTILITY(U,$J,358.3,48991,0)
+ ;;=R68.2^^185^2428^54
+ ;;^UTILITY(U,$J,358.3,48991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51436,1,3,0)
- ;;=3^Psoriatic arthropathy, oth
- ;;^UTILITY(U,$J,358.3,51436,1,4,0)
- ;;=4^L40.59
- ;;^UTILITY(U,$J,358.3,51436,2)
- ;;=^5009170
- ;;^UTILITY(U,$J,358.3,51437,0)
- ;;=M02.30^^222^2481^4
- ;;^UTILITY(U,$J,358.3,51437,1,0)
+ ;;^UTILITY(U,$J,358.3,48991,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,48991,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,48991,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,48992,0)
+ ;;=Z02.89^^185^2428^1
+ ;;^UTILITY(U,$J,358.3,48992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51437,1,3,0)
- ;;=3^Reiter's disease, unspec site
- ;;^UTILITY(U,$J,358.3,51437,1,4,0)
- ;;=4^M02.30
- ;;^UTILITY(U,$J,358.3,51437,2)
- ;;=^5009790
- ;;^UTILITY(U,$J,358.3,51438,0)
- ;;=M94.1^^222^2481^5
- ;;^UTILITY(U,$J,358.3,51438,1,0)
+ ;;^UTILITY(U,$J,358.3,48992,1,3,0)
+ ;;=3^Administrative Exam Encounter
+ ;;^UTILITY(U,$J,358.3,48992,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,48992,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,48993,0)
+ ;;=Z09.^^185^2428^56
+ ;;^UTILITY(U,$J,358.3,48993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51438,1,3,0)
- ;;=3^Relapsing polychondritis
- ;;^UTILITY(U,$J,358.3,51438,1,4,0)
- ;;=4^M94.1
- ;;^UTILITY(U,$J,358.3,51438,2)
- ;;=^5015328
- ;;^UTILITY(U,$J,358.3,51439,0)
- ;;=90471^^223^2482^1^^^^1
- ;;^UTILITY(U,$J,358.3,51439,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51439,1,2,0)
- ;;=2^90471
- ;;^UTILITY(U,$J,358.3,51439,1,3,0)
- ;;=3^Immunization Admin (use w/ Vaccs)
- ;;^UTILITY(U,$J,358.3,51440,0)
- ;;=90472^^223^2482^2^^^^1
- ;;^UTILITY(U,$J,358.3,51440,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51440,1,2,0)
- ;;=2^90472
- ;;^UTILITY(U,$J,358.3,51440,1,3,0)
- ;;=3^Immunization Admin, ea add
- ;;^UTILITY(U,$J,358.3,51441,0)
- ;;=90632^^223^2482^6^^^^1
- ;;^UTILITY(U,$J,358.3,51441,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51441,1,2,0)
- ;;=2^90632
- ;;^UTILITY(U,$J,358.3,51441,1,3,0)
- ;;=3^Hepatitis A Vaccine
- ;;^UTILITY(U,$J,358.3,51442,0)
- ;;=90746^^223^2482^7^^^^1
- ;;^UTILITY(U,$J,358.3,51442,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51442,1,2,0)
- ;;=2^90746
- ;;^UTILITY(U,$J,358.3,51442,1,3,0)
- ;;=3^Hepatitis B Vaccine (3 Doses)
- ;;^UTILITY(U,$J,358.3,51443,0)
- ;;=90636^^223^2482^8^^^^1
- ;;^UTILITY(U,$J,358.3,51443,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51443,1,2,0)
- ;;=2^90636
- ;;^UTILITY(U,$J,358.3,51443,1,3,0)
- ;;=3^Hepatitis A&B Vaccine
- ;;^UTILITY(U,$J,358.3,51444,0)
- ;;=90707^^223^2482^9^^^^1
- ;;^UTILITY(U,$J,358.3,51444,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,51444,1,2,0)
- ;;=2^90707
+ ;;^UTILITY(U,$J,358.3,48993,1,3,0)
+ ;;=3^F/U Exam After Treatment Encounter
+ ;;^UTILITY(U,$J,358.3,48993,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,48993,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,48994,0)
+ ;;=Z00.01^^185^2428^60
+ ;;^UTILITY(U,$J,358.3,48994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48994,1,3,0)
+ ;;=3^General Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,48994,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,48994,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,48995,0)
+ ;;=Z00.00^^185^2428^61
+ ;;^UTILITY(U,$J,358.3,48995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48995,1,3,0)
+ ;;=3^General Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,48995,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,48995,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,48996,0)
+ ;;=Z23.^^185^2428^69
+ ;;^UTILITY(U,$J,358.3,48996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48996,1,3,0)
+ ;;=3^Immunization Encounter
+ ;;^UTILITY(U,$J,358.3,48996,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,48996,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,48997,0)
+ ;;=Z03.89^^185^2428^81
+ ;;^UTILITY(U,$J,358.3,48997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48997,1,3,0)
+ ;;=3^Observation for Suspected Diseases/Ruled Out Conditions
+ ;;^UTILITY(U,$J,358.3,48997,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,48997,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,48998,0)
+ ;;=Z04.9^^185^2428^82

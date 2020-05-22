@@ -1,130 +1,128 @@
-IBDEI2FV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2FV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41367,1,0)
+ ;;^UTILITY(U,$J,358.3,38957,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,38957,1,4,0)
+ ;;=4^L03.126
+ ;;^UTILITY(U,$J,358.3,38957,2)
+ ;;=^5133646
+ ;;^UTILITY(U,$J,358.3,38958,0)
+ ;;=L03.211^^152^1990^101
+ ;;^UTILITY(U,$J,358.3,38958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41367,1,3,0)
- ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,41367,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,41367,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,41368,0)
- ;;=C77.8^^159^2004^143
- ;;^UTILITY(U,$J,358.3,41368,1,0)
+ ;;^UTILITY(U,$J,358.3,38958,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,38958,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,38958,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,38959,0)
+ ;;=L03.212^^152^1990^17
+ ;;^UTILITY(U,$J,358.3,38959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41368,1,3,0)
- ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,41368,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,41368,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,41369,0)
- ;;=C79.51^^159^2004^113
- ;;^UTILITY(U,$J,358.3,41369,1,0)
+ ;;^UTILITY(U,$J,358.3,38959,1,3,0)
+ ;;=3^Acute Lymphangitis of Face
+ ;;^UTILITY(U,$J,358.3,38959,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,38959,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,38960,0)
+ ;;=L03.221^^152^1990^108
+ ;;^UTILITY(U,$J,358.3,38960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41369,1,3,0)
- ;;=3^Malig Neop Bone,Secondary
- ;;^UTILITY(U,$J,358.3,41369,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,41369,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,41370,0)
- ;;=C79.52^^159^2004^112
- ;;^UTILITY(U,$J,358.3,41370,1,0)
+ ;;^UTILITY(U,$J,358.3,38960,1,3,0)
+ ;;=3^Cellulitis of Neck
+ ;;^UTILITY(U,$J,358.3,38960,1,4,0)
+ ;;=4^L03.221
+ ;;^UTILITY(U,$J,358.3,38960,2)
+ ;;=^5009045
+ ;;^UTILITY(U,$J,358.3,38961,0)
+ ;;=L03.222^^152^1990^23
+ ;;^UTILITY(U,$J,358.3,38961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41370,1,3,0)
- ;;=3^Malig Neop Bone Marrow,Secondary
- ;;^UTILITY(U,$J,358.3,41370,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,41370,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,41371,0)
- ;;=C79.31^^159^2004^114
- ;;^UTILITY(U,$J,358.3,41371,1,0)
+ ;;^UTILITY(U,$J,358.3,38961,1,3,0)
+ ;;=3^Acute Lymphangitis of Neck
+ ;;^UTILITY(U,$J,358.3,38961,1,4,0)
+ ;;=4^L03.222
+ ;;^UTILITY(U,$J,358.3,38961,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,38962,0)
+ ;;=L03.311^^152^1990^97
+ ;;^UTILITY(U,$J,358.3,38962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41371,1,3,0)
- ;;=3^Malig Neop Brain,Secondary
- ;;^UTILITY(U,$J,358.3,41371,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,41371,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,41372,0)
- ;;=C79.72^^159^2004^129
- ;;^UTILITY(U,$J,358.3,41372,1,0)
+ ;;^UTILITY(U,$J,358.3,38962,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,38962,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,38962,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,38963,0)
+ ;;=L03.312^^152^1990^98
+ ;;^UTILITY(U,$J,358.3,38963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41372,1,3,0)
- ;;=3^Malig Neop Left Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,41372,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,41372,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,41373,0)
- ;;=C78.02^^159^2004^133
- ;;^UTILITY(U,$J,358.3,41373,1,0)
+ ;;^UTILITY(U,$J,358.3,38963,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,38963,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,38963,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,38964,0)
+ ;;=L03.313^^152^1990^100
+ ;;^UTILITY(U,$J,358.3,38964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41373,1,3,0)
- ;;=3^Malig Neop Left Lung,Secondary
- ;;^UTILITY(U,$J,358.3,41373,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,41373,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,41374,0)
- ;;=C78.7^^159^2004^138
- ;;^UTILITY(U,$J,358.3,41374,1,0)
+ ;;^UTILITY(U,$J,358.3,38964,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,38964,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,38964,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,38965,0)
+ ;;=L03.314^^152^1990^102
+ ;;^UTILITY(U,$J,358.3,38965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41374,1,3,0)
- ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
- ;;^UTILITY(U,$J,358.3,41374,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,41374,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,41375,0)
- ;;=C79.71^^159^2004^151
- ;;^UTILITY(U,$J,358.3,41375,1,0)
+ ;;^UTILITY(U,$J,358.3,38965,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,38965,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,38965,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,38966,0)
+ ;;=L03.315^^152^1990^109
+ ;;^UTILITY(U,$J,358.3,38966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41375,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,41375,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,41375,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,41376,0)
- ;;=C78.01^^159^2004^155
- ;;^UTILITY(U,$J,358.3,41376,1,0)
+ ;;^UTILITY(U,$J,358.3,38966,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,38966,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,38966,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,38967,0)
+ ;;=L03.316^^152^1990^116
+ ;;^UTILITY(U,$J,358.3,38967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41376,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,41376,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,41376,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,41377,0)
- ;;=C79.70^^159^2004^106
- ;;^UTILITY(U,$J,358.3,41377,1,0)
+ ;;^UTILITY(U,$J,358.3,38967,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,38967,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,38967,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,38968,0)
+ ;;=L03.319^^152^1990^115
+ ;;^UTILITY(U,$J,358.3,38968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41377,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,41377,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,41377,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,41378,0)
- ;;=C78.00^^159^2004^139
- ;;^UTILITY(U,$J,358.3,41378,1,0)
+ ;;^UTILITY(U,$J,358.3,38968,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,38968,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,38968,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,38969,0)
+ ;;=L03.321^^152^1990^14
+ ;;^UTILITY(U,$J,358.3,38969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41378,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,41378,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,41378,2)
- ;;=^5001334
- ;;^UTILITY(U,$J,358.3,41379,0)
- ;;=D57.1^^159^2004^182
- ;;^UTILITY(U,$J,358.3,41379,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41379,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,41379,1,4,0)
- ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,38969,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,38969,1,4,0)
+ ;;=4^L03.321

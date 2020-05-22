@@ -1,132 +1,126 @@
-IBDEI1VS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31950,1,4,0)
- ;;=4^M80.062A
- ;;^UTILITY(U,$J,358.3,31950,2)
- ;;=^5013465
- ;;^UTILITY(U,$J,358.3,31951,0)
- ;;=M80.071A^^126^1609^384
- ;;^UTILITY(U,$J,358.3,31951,1,0)
+ ;;^UTILITY(U,$J,358.3,30046,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,30046,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,30047,0)
+ ;;=Z91.411^^120^1527^9
+ ;;^UTILITY(U,$J,358.3,30047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31951,1,3,0)
- ;;=3^Path fx age-rel osteo, rt ank/ft, init
- ;;^UTILITY(U,$J,358.3,31951,1,4,0)
- ;;=4^M80.071A
- ;;^UTILITY(U,$J,358.3,31951,2)
- ;;=^5013477
- ;;^UTILITY(U,$J,358.3,31952,0)
- ;;=M80.072A^^126^1609^382
- ;;^UTILITY(U,$J,358.3,31952,1,0)
+ ;;^UTILITY(U,$J,358.3,30047,1,3,0)
+ ;;=3^Personal Hx of Adult Psych Abuse
+ ;;^UTILITY(U,$J,358.3,30047,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,30047,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,30048,0)
+ ;;=Z91.410^^120^1527^8
+ ;;^UTILITY(U,$J,358.3,30048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31952,1,3,0)
- ;;=3^Path fx age-rel osteo, lft ank/ft init
- ;;^UTILITY(U,$J,358.3,31952,1,4,0)
- ;;=4^M80.072A
- ;;^UTILITY(U,$J,358.3,31952,2)
- ;;=^5013483
- ;;^UTILITY(U,$J,358.3,31953,0)
- ;;=M72.2^^126^1609^159
- ;;^UTILITY(U,$J,358.3,31953,1,0)
+ ;;^UTILITY(U,$J,358.3,30048,1,3,0)
+ ;;=3^Personal Hx of Adult Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,30048,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,30048,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,30049,0)
+ ;;=Z75.3^^120^1527^20
+ ;;^UTILITY(U,$J,358.3,30049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31953,1,3,0)
- ;;=3^Fibromatosis, plantar fascial
- ;;^UTILITY(U,$J,358.3,31953,1,4,0)
- ;;=4^M72.2
- ;;^UTILITY(U,$J,358.3,31953,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,31954,0)
- ;;=M84.471A^^126^1609^410
- ;;^UTILITY(U,$J,358.3,31954,1,0)
+ ;;^UTILITY(U,$J,358.3,30049,1,3,0)
+ ;;=3^Unavailable/Inaccessible to Health Care Facilities
+ ;;^UTILITY(U,$J,358.3,30049,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,30049,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,30050,0)
+ ;;=Z75.4^^120^1527^21
+ ;;^UTILITY(U,$J,358.3,30050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31954,1,3,0)
- ;;=3^Path fx rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,31954,1,4,0)
- ;;=4^M84.471A
- ;;^UTILITY(U,$J,358.3,31954,2)
- ;;=^5013962
- ;;^UTILITY(U,$J,358.3,31955,0)
- ;;=M84.472A^^126^1609^396
- ;;^UTILITY(U,$J,358.3,31955,1,0)
+ ;;^UTILITY(U,$J,358.3,30050,1,3,0)
+ ;;=3^Unavailable/Inaccessible to Other Helping Agencies
+ ;;^UTILITY(U,$J,358.3,30050,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,30050,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,30051,0)
+ ;;=Z62.813^^120^1527^13
+ ;;^UTILITY(U,$J,358.3,30051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31955,1,3,0)
- ;;=3^Path fx lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,31955,1,4,0)
- ;;=4^M84.472A
- ;;^UTILITY(U,$J,358.3,31955,2)
- ;;=^5013968
- ;;^UTILITY(U,$J,358.3,31956,0)
- ;;=M80.861A^^126^1609^408
- ;;^UTILITY(U,$J,358.3,31956,1,0)
+ ;;^UTILITY(U,$J,358.3,30051,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,30051,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,30051,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,30052,0)
+ ;;=Z91.42^^120^1527^14
+ ;;^UTILITY(U,$J,358.3,30052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31956,1,3,0)
- ;;=3^Path fx osteo, rt lwr left, oth, init
- ;;^UTILITY(U,$J,358.3,31956,1,4,0)
- ;;=4^M80.861A
- ;;^UTILITY(U,$J,358.3,31956,2)
- ;;=^5013537
- ;;^UTILITY(U,$J,358.3,31957,0)
- ;;=M80.862A^^126^1609^407
- ;;^UTILITY(U,$J,358.3,31957,1,0)
+ ;;^UTILITY(U,$J,358.3,30052,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,30052,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,30052,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,30053,0)
+ ;;=Z02.89^^120^1527^1
+ ;;^UTILITY(U,$J,358.3,30053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31957,1,3,0)
- ;;=3^Path fx osteo, lft lwr leg, oth, init
- ;;^UTILITY(U,$J,358.3,31957,1,4,0)
- ;;=4^M80.862A
- ;;^UTILITY(U,$J,358.3,31957,2)
- ;;=^5133931
- ;;^UTILITY(U,$J,358.3,31958,0)
- ;;=M84.571A^^126^1609^391
- ;;^UTILITY(U,$J,358.3,31958,1,0)
+ ;;^UTILITY(U,$J,358.3,30053,1,3,0)
+ ;;=3^Administrative Exams,Other
+ ;;^UTILITY(U,$J,358.3,30053,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,30053,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,30054,0)
+ ;;=Z70.9^^120^1528^2
+ ;;^UTILITY(U,$J,358.3,30054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31958,1,3,0)
- ;;=3^Path fx in neoplst disease, rt ankl, init
- ;;^UTILITY(U,$J,358.3,31958,1,4,0)
- ;;=4^M84.571A
- ;;^UTILITY(U,$J,358.3,31958,2)
- ;;=^5014172
- ;;^UTILITY(U,$J,358.3,31959,0)
- ;;=M84.572A^^126^1609^389
- ;;^UTILITY(U,$J,358.3,31959,1,0)
+ ;;^UTILITY(U,$J,358.3,30054,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,30054,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,30054,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,30055,0)
+ ;;=Z71.9^^120^1528^1
+ ;;^UTILITY(U,$J,358.3,30055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31959,1,3,0)
- ;;=3^Path fx in neoplst disease, lft ankl, init
- ;;^UTILITY(U,$J,358.3,31959,1,4,0)
- ;;=4^M84.572A
- ;;^UTILITY(U,$J,358.3,31959,2)
- ;;=^5014178
- ;;^UTILITY(U,$J,358.3,31960,0)
- ;;=M80.871A^^126^1609^409
- ;;^UTILITY(U,$J,358.3,31960,1,0)
+ ;;^UTILITY(U,$J,358.3,30055,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,30055,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,30055,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,30056,0)
+ ;;=Z60.0^^120^1529^2
+ ;;^UTILITY(U,$J,358.3,30056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31960,1,3,0)
- ;;=3^Path fx rt ank/ft, oth, init
- ;;^UTILITY(U,$J,358.3,31960,1,4,0)
- ;;=4^M80.871A
- ;;^UTILITY(U,$J,358.3,31960,2)
- ;;=^5013543
- ;;^UTILITY(U,$J,358.3,31961,0)
- ;;=M80.872A^^126^1609^395
- ;;^UTILITY(U,$J,358.3,31961,1,0)
+ ;;^UTILITY(U,$J,358.3,30056,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,30056,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,30056,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,30057,0)
+ ;;=Z60.2^^120^1529^3
+ ;;^UTILITY(U,$J,358.3,30057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31961,1,3,0)
- ;;=3^Path fx lft ank/ft, oth init
- ;;^UTILITY(U,$J,358.3,31961,1,4,0)
- ;;=4^M80.872A
- ;;^UTILITY(U,$J,358.3,31961,2)
- ;;=^5133943
- ;;^UTILITY(U,$J,358.3,31962,0)
- ;;=M84.671A^^126^1609^411
- ;;^UTILITY(U,$J,358.3,31962,1,0)
+ ;;^UTILITY(U,$J,358.3,30057,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,30057,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,30057,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,30058,0)
+ ;;=Z60.3^^120^1529^1
+ ;;^UTILITY(U,$J,358.3,30058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31962,1,3,0)
- ;;=3^Path fx rt ankl, oth disease, init
- ;;^UTILITY(U,$J,358.3,31962,1,4,0)
- ;;=4^M84.671A
- ;;^UTILITY(U,$J,358.3,31962,2)
- ;;=^5014292
- ;;^UTILITY(U,$J,358.3,31963,0)
- ;;=M84.672A^^126^1609^397
- ;;^UTILITY(U,$J,358.3,31963,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30058,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,30058,1,4,0)
+ ;;=4^Z60.3

@@ -1,134 +1,128 @@
-IBDEI2HF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42094,1,4,0)
- ;;=4^R20.0
- ;;^UTILITY(U,$J,358.3,42094,2)
- ;;=^5019278
- ;;^UTILITY(U,$J,358.3,42095,0)
- ;;=R20.1^^159^2016^87
- ;;^UTILITY(U,$J,358.3,42095,1,0)
+ ;;^UTILITY(U,$J,358.3,39636,0)
+ ;;=R59.0^^152^2000^62
+ ;;^UTILITY(U,$J,358.3,39636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42095,1,3,0)
- ;;=3^Hypoesthesia of Skin
- ;;^UTILITY(U,$J,358.3,42095,1,4,0)
- ;;=4^R20.1
- ;;^UTILITY(U,$J,358.3,42095,2)
- ;;=^5019279
- ;;^UTILITY(U,$J,358.3,42096,0)
- ;;=R20.2^^159^2016^131
- ;;^UTILITY(U,$J,358.3,42096,1,0)
+ ;;^UTILITY(U,$J,358.3,39636,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,39636,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,39636,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,39637,0)
+ ;;=C83.59^^152^2000^104
+ ;;^UTILITY(U,$J,358.3,39637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42096,1,3,0)
- ;;=3^Paresthesia of Skin
- ;;^UTILITY(U,$J,358.3,42096,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,42096,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,42097,0)
- ;;=R20.3^^159^2016^83
- ;;^UTILITY(U,$J,358.3,42097,1,0)
+ ;;^UTILITY(U,$J,358.3,39637,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,39637,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,39637,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,39638,0)
+ ;;=C83.50^^152^2000^105
+ ;;^UTILITY(U,$J,358.3,39638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42097,1,3,0)
- ;;=3^Hyperesthesia
- ;;^UTILITY(U,$J,358.3,42097,1,4,0)
- ;;=4^R20.3
- ;;^UTILITY(U,$J,358.3,42097,2)
- ;;=^60011
- ;;^UTILITY(U,$J,358.3,42098,0)
- ;;=R21.^^159^2016^145
- ;;^UTILITY(U,$J,358.3,42098,1,0)
+ ;;^UTILITY(U,$J,358.3,39638,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39638,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,39638,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,39639,0)
+ ;;=C43.9^^152^2000^108
+ ;;^UTILITY(U,$J,358.3,39639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42098,1,3,0)
- ;;=3^Rash
- ;;^UTILITY(U,$J,358.3,42098,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,42098,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,42099,0)
- ;;=R22.0^^159^2016^105
- ;;^UTILITY(U,$J,358.3,42099,1,0)
+ ;;^UTILITY(U,$J,358.3,39639,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39639,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,39639,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,39640,0)
+ ;;=C31.9^^152^2000^109
+ ;;^UTILITY(U,$J,358.3,39640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42099,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Head
- ;;^UTILITY(U,$J,358.3,42099,1,4,0)
- ;;=4^R22.0
- ;;^UTILITY(U,$J,358.3,42099,2)
- ;;=^5019284
- ;;^UTILITY(U,$J,358.3,42100,0)
- ;;=R22.1^^159^2016^108
- ;;^UTILITY(U,$J,358.3,42100,1,0)
+ ;;^UTILITY(U,$J,358.3,39640,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,39640,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,39640,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,39641,0)
+ ;;=C24.1^^152^2000^111
+ ;;^UTILITY(U,$J,358.3,39641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42100,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Neck
- ;;^UTILITY(U,$J,358.3,42100,1,4,0)
- ;;=4^R22.1
- ;;^UTILITY(U,$J,358.3,42100,2)
- ;;=^5019285
- ;;^UTILITY(U,$J,358.3,42101,0)
- ;;=R22.2^^159^2016^111
- ;;^UTILITY(U,$J,358.3,42101,1,0)
+ ;;^UTILITY(U,$J,358.3,39641,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,39641,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,39641,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,39642,0)
+ ;;=C21.0^^152^2000^112
+ ;;^UTILITY(U,$J,358.3,39642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42101,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Trunk
- ;;^UTILITY(U,$J,358.3,42101,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,42101,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,42102,0)
- ;;=R22.31^^159^2016^110
- ;;^UTILITY(U,$J,358.3,42102,1,0)
+ ;;^UTILITY(U,$J,358.3,39642,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,39642,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,39642,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,39643,0)
+ ;;=C67.9^^152^2000^115
+ ;;^UTILITY(U,$J,358.3,39643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42102,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,42102,1,4,0)
- ;;=4^R22.31
- ;;^UTILITY(U,$J,358.3,42102,2)
- ;;=^5019288
- ;;^UTILITY(U,$J,358.3,42103,0)
- ;;=R22.32^^159^2016^107
- ;;^UTILITY(U,$J,358.3,42103,1,0)
+ ;;^UTILITY(U,$J,358.3,39643,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,39643,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,39643,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,39644,0)
+ ;;=C71.9^^152^2000^119
+ ;;^UTILITY(U,$J,358.3,39644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42103,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,42103,1,4,0)
- ;;=4^R22.32
- ;;^UTILITY(U,$J,358.3,42103,2)
- ;;=^5019289
- ;;^UTILITY(U,$J,358.3,42104,0)
- ;;=R22.33^^159^2016^103
- ;;^UTILITY(U,$J,358.3,42104,1,0)
+ ;;^UTILITY(U,$J,358.3,39644,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,39644,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,39644,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,39645,0)
+ ;;=C18.9^^152^2000^121
+ ;;^UTILITY(U,$J,358.3,39645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42104,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
- ;;^UTILITY(U,$J,358.3,42104,1,4,0)
- ;;=4^R22.33
- ;;^UTILITY(U,$J,358.3,42104,2)
- ;;=^5019290
- ;;^UTILITY(U,$J,358.3,42105,0)
- ;;=R22.42^^159^2016^106
- ;;^UTILITY(U,$J,358.3,42105,1,0)
+ ;;^UTILITY(U,$J,358.3,39645,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,39645,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,39645,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,39646,0)
+ ;;=C49.9^^152^2000^122
+ ;;^UTILITY(U,$J,358.3,39646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42105,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,42105,1,4,0)
- ;;=4^R22.42
- ;;^UTILITY(U,$J,358.3,42105,2)
- ;;=^5134179
- ;;^UTILITY(U,$J,358.3,42106,0)
- ;;=R22.41^^159^2016^109
- ;;^UTILITY(U,$J,358.3,42106,1,0)
+ ;;^UTILITY(U,$J,358.3,39646,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,39646,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,39646,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,39647,0)
+ ;;=C62.12^^152^2000^123
+ ;;^UTILITY(U,$J,358.3,39647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42106,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,42106,1,4,0)
- ;;=4^R22.41
- ;;^UTILITY(U,$J,358.3,42106,2)
- ;;=^5134178
- ;;^UTILITY(U,$J,358.3,42107,0)
- ;;=R22.43^^159^2016^104
- ;;^UTILITY(U,$J,358.3,42107,1,0)
+ ;;^UTILITY(U,$J,358.3,39647,1,3,0)
+ ;;=3^Malig Neop Descended Left Testis
+ ;;^UTILITY(U,$J,358.3,39647,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,39647,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,39648,0)
+ ;;=C62.11^^152^2000^124
+ ;;^UTILITY(U,$J,358.3,39648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42107,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb

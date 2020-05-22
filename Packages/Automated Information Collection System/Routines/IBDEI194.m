@@ -1,132 +1,116 @@
-IBDEI194 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI194 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21265,1,4,0)
- ;;=4^W13.1XXA
- ;;^UTILITY(U,$J,358.3,21265,2)
- ;;=^5059604
- ;;^UTILITY(U,$J,358.3,21266,0)
- ;;=W13.1XXD^^84^948^32
- ;;^UTILITY(U,$J,358.3,21266,1,0)
+ ;;^UTILITY(U,$J,358.3,20049,0)
+ ;;=S42.361S^^93^999^42
+ ;;^UTILITY(U,$J,358.3,20049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21266,1,3,0)
- ;;=3^Fall from Bridge,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21266,1,4,0)
- ;;=4^W13.1XXD
- ;;^UTILITY(U,$J,358.3,21266,2)
- ;;=^5059605
- ;;^UTILITY(U,$J,358.3,21267,0)
- ;;=W13.2XXA^^84^948^69
- ;;^UTILITY(U,$J,358.3,21267,1,0)
+ ;;^UTILITY(U,$J,358.3,20049,1,3,0)
+ ;;=3^Disp fx of segmental shaft of humerus, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20049,1,4,0)
+ ;;=4^S42.361S
+ ;;^UTILITY(U,$J,358.3,20049,2)
+ ;;=^5027237
+ ;;^UTILITY(U,$J,358.3,20050,0)
+ ;;=S42.412S^^93^999^45
+ ;;^UTILITY(U,$J,358.3,20050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21267,1,3,0)
- ;;=3^Fall from/through Roof,Init Encntr
- ;;^UTILITY(U,$J,358.3,21267,1,4,0)
- ;;=4^W13.2XXA
- ;;^UTILITY(U,$J,358.3,21267,2)
- ;;=^5059607
- ;;^UTILITY(U,$J,358.3,21268,0)
- ;;=W13.2XXD^^84^948^70
- ;;^UTILITY(U,$J,358.3,21268,1,0)
+ ;;^UTILITY(U,$J,358.3,20050,1,3,0)
+ ;;=3^Disp fx of simple suprcndl w/o intrcndl fx l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20050,1,4,0)
+ ;;=4^S42.412S
+ ;;^UTILITY(U,$J,358.3,20050,2)
+ ;;=^5027314
+ ;;^UTILITY(U,$J,358.3,20051,0)
+ ;;=S42.411S^^93^999^46
+ ;;^UTILITY(U,$J,358.3,20051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21268,1,3,0)
- ;;=3^Fall from/through Roof,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21268,1,4,0)
- ;;=4^W13.2XXD
- ;;^UTILITY(U,$J,358.3,21268,2)
- ;;=^5059608
- ;;^UTILITY(U,$J,358.3,21269,0)
- ;;=W13.3XXA^^84^948^83
- ;;^UTILITY(U,$J,358.3,21269,1,0)
+ ;;^UTILITY(U,$J,358.3,20051,1,3,0)
+ ;;=3^Disp fx of simple suprcndl w/o intrcndl fx r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20051,1,4,0)
+ ;;=4^S42.411S
+ ;;^UTILITY(U,$J,358.3,20051,2)
+ ;;=^5027307
+ ;;^UTILITY(U,$J,358.3,20052,0)
+ ;;=S42.342S^^93^999^47
+ ;;^UTILITY(U,$J,358.3,20052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21269,1,3,0)
- ;;=3^Fall through Floor,Init Encntr
- ;;^UTILITY(U,$J,358.3,21269,1,4,0)
- ;;=4^W13.3XXA
- ;;^UTILITY(U,$J,358.3,21269,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,21270,0)
- ;;=W13.3XXD^^84^948^84
- ;;^UTILITY(U,$J,358.3,21270,1,0)
+ ;;^UTILITY(U,$J,358.3,20052,1,3,0)
+ ;;=3^Disp fx of spiral shaft of humerus, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,20052,1,4,0)
+ ;;=4^S42.342S
+ ;;^UTILITY(U,$J,358.3,20052,2)
+ ;;=^5027160
+ ;;^UTILITY(U,$J,358.3,20053,0)
+ ;;=S42.341S^^93^999^48
+ ;;^UTILITY(U,$J,358.3,20053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21270,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21270,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,21270,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,21271,0)
- ;;=W13.4XXA^^84^948^71
- ;;^UTILITY(U,$J,358.3,21271,1,0)
+ ;;^UTILITY(U,$J,358.3,20053,1,3,0)
+ ;;=3^Disp fx of spiral shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20053,1,4,0)
+ ;;=4^S42.341S
+ ;;^UTILITY(U,$J,358.3,20053,2)
+ ;;=^5027153
+ ;;^UTILITY(U,$J,358.3,20054,0)
+ ;;=S42.472S^^93^999^49
+ ;;^UTILITY(U,$J,358.3,20054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21271,1,3,0)
- ;;=3^Fall from/through Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,21271,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,21271,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,21272,0)
- ;;=W13.4XXD^^84^948^72
- ;;^UTILITY(U,$J,358.3,21272,1,0)
+ ;;^UTILITY(U,$J,358.3,20054,1,3,0)
+ ;;=3^Disp fx of transcondylar of left humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,20054,1,4,0)
+ ;;=4^S42.472S
+ ;;^UTILITY(U,$J,358.3,20054,2)
+ ;;=^5027587
+ ;;^UTILITY(U,$J,358.3,20055,0)
+ ;;=S42.471S^^93^999^50
+ ;;^UTILITY(U,$J,358.3,20055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21272,1,3,0)
- ;;=3^Fall from/through Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21272,1,4,0)
- ;;=4^W13.4XXD
- ;;^UTILITY(U,$J,358.3,21272,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,21273,0)
- ;;=W13.8XXA^^84^948^35
- ;;^UTILITY(U,$J,358.3,21273,1,0)
+ ;;^UTILITY(U,$J,358.3,20055,1,3,0)
+ ;;=3^Disp fx of transcondylar of right humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,20055,1,4,0)
+ ;;=4^S42.471S
+ ;;^UTILITY(U,$J,358.3,20055,2)
+ ;;=^5027580
+ ;;^UTILITY(U,$J,358.3,20056,0)
+ ;;=S42.322S^^93^999^51
+ ;;^UTILITY(U,$J,358.3,20056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21273,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,21273,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,21273,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,21274,0)
- ;;=W13.8XXD^^84^948^36
- ;;^UTILITY(U,$J,358.3,21274,1,0)
+ ;;^UTILITY(U,$J,358.3,20056,1,3,0)
+ ;;=3^Disp fx of transverse shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20056,1,4,0)
+ ;;=4^S42.322S
+ ;;^UTILITY(U,$J,358.3,20056,2)
+ ;;=^5027076
+ ;;^UTILITY(U,$J,358.3,20057,0)
+ ;;=S42.321S^^93^999^52
+ ;;^UTILITY(U,$J,358.3,20057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21274,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21274,1,4,0)
- ;;=4^W13.8XXD
- ;;^UTILITY(U,$J,358.3,21274,2)
- ;;=^5059617
- ;;^UTILITY(U,$J,358.3,21275,0)
- ;;=W13.9XXA^^84^948^33
- ;;^UTILITY(U,$J,358.3,21275,1,0)
+ ;;^UTILITY(U,$J,358.3,20057,1,3,0)
+ ;;=3^Disp fx of transverse shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20057,1,4,0)
+ ;;=4^S42.321S
+ ;;^UTILITY(U,$J,358.3,20057,2)
+ ;;=^5027069
+ ;;^UTILITY(U,$J,358.3,20058,0)
+ ;;=S42.312S^^93^999^53
+ ;;^UTILITY(U,$J,358.3,20058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21275,1,3,0)
- ;;=3^Fall from Building NOS,Init Encntr
- ;;^UTILITY(U,$J,358.3,21275,1,4,0)
- ;;=4^W13.9XXA
- ;;^UTILITY(U,$J,358.3,21275,2)
- ;;=^5059619
- ;;^UTILITY(U,$J,358.3,21276,0)
- ;;=W13.9XXD^^84^948^34
- ;;^UTILITY(U,$J,358.3,21276,1,0)
+ ;;^UTILITY(U,$J,358.3,20058,1,3,0)
+ ;;=3^Greenstick fracture of shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20058,1,4,0)
+ ;;=4^S42.312S
+ ;;^UTILITY(U,$J,358.3,20058,2)
+ ;;=^5027056
+ ;;^UTILITY(U,$J,358.3,20059,0)
+ ;;=S42.311S^^93^999^54
+ ;;^UTILITY(U,$J,358.3,20059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21276,1,3,0)
- ;;=3^Fall from Building NOS,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21276,1,4,0)
- ;;=4^W13.9XXD
- ;;^UTILITY(U,$J,358.3,21276,2)
- ;;=^5059620
- ;;^UTILITY(U,$J,358.3,21277,0)
- ;;=W14.XXXA^^84^948^65
- ;;^UTILITY(U,$J,358.3,21277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21277,1,3,0)
- ;;=3^Fall from Tree,Init Encntr
- ;;^UTILITY(U,$J,358.3,21277,1,4,0)
- ;;=4^W14.XXXA
- ;;^UTILITY(U,$J,358.3,21277,2)
- ;;=^5059622
- ;;^UTILITY(U,$J,358.3,21278,0)
- ;;=W14.XXXD^^84^948^66
- ;;^UTILITY(U,$J,358.3,21278,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20059,1,3,0)
+ ;;=3^Greenstick fracture of shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20059,1,4,0)
+ ;;=4^S42.311S
+ ;;^UTILITY(U,$J,358.3,20059,2)
+ ;;=^5027050
+ ;;^UTILITY(U,$J,358.3,20060,0)
+ ;;=S42.448S^^93^999^55

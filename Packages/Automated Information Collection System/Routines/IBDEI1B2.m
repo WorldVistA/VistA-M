@@ -1,136 +1,126 @@
-IBDEI1B2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1B2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22193,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,22193,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,22194,0)
- ;;=N29.^^87^977^60
- ;;^UTILITY(U,$J,358.3,22194,1,0)
+ ;;^UTILITY(U,$J,358.3,20870,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,20871,0)
+ ;;=G25.71^^95^1030^7
+ ;;^UTILITY(U,$J,358.3,20871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22194,1,3,0)
- ;;=3^Kidney & Ureter Disorders in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,22194,1,4,0)
- ;;=4^N29.
- ;;^UTILITY(U,$J,358.3,22194,2)
- ;;=^5015631
- ;;^UTILITY(U,$J,358.3,22195,0)
- ;;=N28.9^^87^977^59
- ;;^UTILITY(U,$J,358.3,22195,1,0)
+ ;;^UTILITY(U,$J,358.3,20871,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,20871,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,20871,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,20872,0)
+ ;;=G24.02^^95^1030^8
+ ;;^UTILITY(U,$J,358.3,20872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22195,1,3,0)
- ;;=3^Kidney & Ureter Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22195,1,4,0)
- ;;=4^N28.9
- ;;^UTILITY(U,$J,358.3,22195,2)
- ;;=^5015630
- ;;^UTILITY(U,$J,358.3,22196,0)
- ;;=N30.01^^87^977^20
- ;;^UTILITY(U,$J,358.3,22196,1,0)
+ ;;^UTILITY(U,$J,358.3,20872,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,20872,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,20872,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,20873,0)
+ ;;=G21.0^^95^1030^12
+ ;;^UTILITY(U,$J,358.3,20873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22196,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Acute
- ;;^UTILITY(U,$J,358.3,22196,1,4,0)
- ;;=4^N30.01
- ;;^UTILITY(U,$J,358.3,22196,2)
- ;;=^5015633
- ;;^UTILITY(U,$J,358.3,22197,0)
- ;;=N30.00^^87^977^22
- ;;^UTILITY(U,$J,358.3,22197,1,0)
+ ;;^UTILITY(U,$J,358.3,20873,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,20873,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,20873,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,20874,0)
+ ;;=T50.905A^^95^1030^1
+ ;;^UTILITY(U,$J,358.3,20874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22197,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Acute
- ;;^UTILITY(U,$J,358.3,22197,1,4,0)
- ;;=4^N30.00
- ;;^UTILITY(U,$J,358.3,22197,2)
- ;;=^5015632
- ;;^UTILITY(U,$J,358.3,22198,0)
- ;;=N30.41^^87^977^21
- ;;^UTILITY(U,$J,358.3,22198,1,0)
+ ;;^UTILITY(U,$J,358.3,20874,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20874,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,20874,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,20875,0)
+ ;;=T50.905S^^95^1030^2
+ ;;^UTILITY(U,$J,358.3,20875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22198,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Irradiation
- ;;^UTILITY(U,$J,358.3,22198,1,4,0)
- ;;=4^N30.41
- ;;^UTILITY(U,$J,358.3,22198,2)
- ;;=^5015640
- ;;^UTILITY(U,$J,358.3,22199,0)
- ;;=N30.40^^87^977^23
- ;;^UTILITY(U,$J,358.3,22199,1,0)
+ ;;^UTILITY(U,$J,358.3,20875,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,20875,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,20875,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,20876,0)
+ ;;=T50.905D^^95^1030^3
+ ;;^UTILITY(U,$J,358.3,20876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22199,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Irradiation
- ;;^UTILITY(U,$J,358.3,22199,1,4,0)
- ;;=4^N30.40
- ;;^UTILITY(U,$J,358.3,22199,2)
- ;;=^5015639
- ;;^UTILITY(U,$J,358.3,22200,0)
- ;;=N32.0^^87^977^6
- ;;^UTILITY(U,$J,358.3,22200,1,0)
+ ;;^UTILITY(U,$J,358.3,20876,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,20876,1,4,0)
+ ;;=4^T50.905D
+ ;;^UTILITY(U,$J,358.3,20876,2)
+ ;;=^5052161
+ ;;^UTILITY(U,$J,358.3,20877,0)
+ ;;=F45.22^^95^1031^1
+ ;;^UTILITY(U,$J,358.3,20877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22200,1,3,0)
- ;;=3^Bladder-Neck Obstruction
- ;;^UTILITY(U,$J,358.3,22200,1,4,0)
- ;;=4^N32.0
- ;;^UTILITY(U,$J,358.3,22200,2)
- ;;=^5015649
- ;;^UTILITY(U,$J,358.3,22201,0)
- ;;=N31.9^^87^977^70
- ;;^UTILITY(U,$J,358.3,22201,1,0)
+ ;;^UTILITY(U,$J,358.3,20877,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,20877,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,20877,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,20878,0)
+ ;;=F63.3^^95^1031^7
+ ;;^UTILITY(U,$J,358.3,20878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22201,1,3,0)
- ;;=3^Neurogenic Bladder Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,22201,1,4,0)
- ;;=4^N31.9
- ;;^UTILITY(U,$J,358.3,22201,2)
- ;;=^5015648
- ;;^UTILITY(U,$J,358.3,22202,0)
- ;;=N31.1^^87^977^71
- ;;^UTILITY(U,$J,358.3,22202,1,0)
+ ;;^UTILITY(U,$J,358.3,20878,1,3,0)
+ ;;=3^Trichotillomania (Hair-Pulling Disorder)
+ ;;^UTILITY(U,$J,358.3,20878,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,20878,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,20879,0)
+ ;;=F06.8^^95^1031^5
+ ;;^UTILITY(U,$J,358.3,20879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22202,1,3,0)
- ;;=3^Neuropathic Bladder,Reflex NEC
- ;;^UTILITY(U,$J,358.3,22202,1,4,0)
- ;;=4^N31.1
- ;;^UTILITY(U,$J,358.3,22202,2)
- ;;=^5015645
- ;;^UTILITY(U,$J,358.3,22203,0)
- ;;=N32.89^^87^977^5
- ;;^UTILITY(U,$J,358.3,22203,1,0)
+ ;;^UTILITY(U,$J,358.3,20879,1,3,0)
+ ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,20879,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,20879,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,20880,0)
+ ;;=F42.3^^95^1031^3
+ ;;^UTILITY(U,$J,358.3,20880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22203,1,3,0)
- ;;=3^Bladder Disorders,Other Spec
- ;;^UTILITY(U,$J,358.3,22203,1,4,0)
- ;;=4^N32.89
- ;;^UTILITY(U,$J,358.3,22203,2)
- ;;=^87989
- ;;^UTILITY(U,$J,358.3,22204,0)
- ;;=N33.^^87^977^4
- ;;^UTILITY(U,$J,358.3,22204,1,0)
+ ;;^UTILITY(U,$J,358.3,20880,1,3,0)
+ ;;=3^Hoarding Disorder
+ ;;^UTILITY(U,$J,358.3,20880,1,4,0)
+ ;;=4^F42.3
+ ;;^UTILITY(U,$J,358.3,20880,2)
+ ;;=^5138445
+ ;;^UTILITY(U,$J,358.3,20881,0)
+ ;;=F42.9^^95^1031^6
+ ;;^UTILITY(U,$J,358.3,20881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22204,1,3,0)
- ;;=3^Bladder Disorders,Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,22204,1,4,0)
- ;;=4^N33.
- ;;^UTILITY(U,$J,358.3,22204,2)
- ;;=^5015654
- ;;^UTILITY(U,$J,358.3,22205,0)
- ;;=N34.2^^87^977^99
- ;;^UTILITY(U,$J,358.3,22205,1,0)
+ ;;^UTILITY(U,$J,358.3,20881,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,20881,1,4,0)
+ ;;=4^F42.9
+ ;;^UTILITY(U,$J,358.3,20881,2)
+ ;;=^5138448
+ ;;^UTILITY(U,$J,358.3,20882,0)
+ ;;=F42.2^^95^1031^4
+ ;;^UTILITY(U,$J,358.3,20882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22205,1,3,0)
- ;;=3^Urethritis
- ;;^UTILITY(U,$J,358.3,22205,1,4,0)
- ;;=4^N34.2
- ;;^UTILITY(U,$J,358.3,22205,2)
- ;;=^88231
- ;;^UTILITY(U,$J,358.3,22206,0)
- ;;=N34.1^^87^977^100
- ;;^UTILITY(U,$J,358.3,22206,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22206,1,3,0)
- ;;=3^Urethritis,Nonspec
- ;;^UTILITY(U,$J,358.3,22206,1,4,0)
- ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,20882,1,3,0)
+ ;;=3^Mixed Obsessional Thoughts and Acts
+ ;;^UTILITY(U,$J,358.3,20882,1,4,0)
+ ;;=4^F42.2
+ ;;^UTILITY(U,$J,358.3,20882,2)
+ ;;=^5138444

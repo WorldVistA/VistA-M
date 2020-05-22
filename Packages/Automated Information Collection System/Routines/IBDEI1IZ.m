@@ -1,124 +1,128 @@
-IBDEI1IZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1IZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25890,1,0)
+ ;;^UTILITY(U,$J,358.3,24384,0)
+ ;;=H60.11^^107^1202^14
+ ;;^UTILITY(U,$J,358.3,24384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25890,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
- ;;^UTILITY(U,$J,358.3,25890,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,25890,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,25891,0)
- ;;=F31.31^^98^1211^13
- ;;^UTILITY(U,$J,358.3,25891,1,0)
+ ;;^UTILITY(U,$J,358.3,24384,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,24384,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,24384,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,24385,0)
+ ;;=H61.21^^107^1202^26
+ ;;^UTILITY(U,$J,358.3,24385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25891,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,25891,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,25891,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,25892,0)
- ;;=F31.32^^98^1211^14
- ;;^UTILITY(U,$J,358.3,25892,1,0)
+ ;;^UTILITY(U,$J,358.3,24385,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,24385,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,24385,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,24386,0)
+ ;;=H61.22^^107^1202^25
+ ;;^UTILITY(U,$J,358.3,24386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25892,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,25892,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,25892,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,25893,0)
- ;;=F31.4^^98^1211^15
- ;;^UTILITY(U,$J,358.3,25893,1,0)
+ ;;^UTILITY(U,$J,358.3,24386,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,24386,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,24386,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,24387,0)
+ ;;=H61.23^^107^1202^24
+ ;;^UTILITY(U,$J,358.3,24387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25893,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,25893,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,25893,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,25894,0)
- ;;=F31.5^^98^1211^16
- ;;^UTILITY(U,$J,358.3,25894,1,0)
+ ;;^UTILITY(U,$J,358.3,24387,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,24387,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,24387,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,24388,0)
+ ;;=H81.01^^107^1202^29
+ ;;^UTILITY(U,$J,358.3,24388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25894,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,25894,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,25894,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,25895,0)
- ;;=F31.75^^98^1211^17
- ;;^UTILITY(U,$J,358.3,25895,1,0)
+ ;;^UTILITY(U,$J,358.3,24388,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,24388,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,24388,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,24389,0)
+ ;;=H81.02^^107^1202^28
+ ;;^UTILITY(U,$J,358.3,24389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25895,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,25895,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,25895,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,25896,0)
- ;;=F31.76^^98^1211^18
- ;;^UTILITY(U,$J,358.3,25896,1,0)
+ ;;^UTILITY(U,$J,358.3,24389,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,24389,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,24389,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,24390,0)
+ ;;=H81.03^^107^1202^27
+ ;;^UTILITY(U,$J,358.3,24390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25896,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,25896,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,25896,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,25897,0)
- ;;=F31.9^^98^1211^19
- ;;^UTILITY(U,$J,358.3,25897,1,0)
+ ;;^UTILITY(U,$J,358.3,24390,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,24390,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,24390,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,24391,0)
+ ;;=H81.12^^107^1202^9
+ ;;^UTILITY(U,$J,358.3,24391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25897,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,25897,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,25897,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,25898,0)
- ;;=F31.81^^98^1211^20
- ;;^UTILITY(U,$J,358.3,25898,1,0)
+ ;;^UTILITY(U,$J,358.3,24391,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,24391,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,24391,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,24392,0)
+ ;;=H81.11^^107^1202^10
+ ;;^UTILITY(U,$J,358.3,24392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25898,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,25898,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,25898,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,25899,0)
- ;;=F34.0^^98^1211^22
- ;;^UTILITY(U,$J,358.3,25899,1,0)
+ ;;^UTILITY(U,$J,358.3,24392,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,24392,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,24392,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,24393,0)
+ ;;=H81.13^^107^1202^8
+ ;;^UTILITY(U,$J,358.3,24393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25899,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,25899,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,25899,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,25900,0)
- ;;=F31.0^^98^1211^3
- ;;^UTILITY(U,$J,358.3,25900,1,0)
+ ;;^UTILITY(U,$J,358.3,24393,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,24393,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,24393,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,24394,0)
+ ;;=H81.10^^107^1202^11
+ ;;^UTILITY(U,$J,358.3,24394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25900,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,25900,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,25900,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,25901,0)
- ;;=F31.71^^98^1211^4
- ;;^UTILITY(U,$J,358.3,25901,1,0)
+ ;;^UTILITY(U,$J,358.3,24394,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,24394,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,24394,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,24395,0)
+ ;;=B37.84^^107^1202^12
+ ;;^UTILITY(U,$J,358.3,24395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25901,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,25901,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,25901,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,25902,0)
- ;;=F31.72^^98^1211^5
+ ;;^UTILITY(U,$J,358.3,24395,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,24395,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,24395,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,24396,0)
+ ;;=H60.313^^107^1202^18
+ ;;^UTILITY(U,$J,358.3,24396,1,0)
+ ;;=^358.31IA^4^2

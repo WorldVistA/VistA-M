@@ -1,132 +1,124 @@
-IBDEI1OW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28729,1,1,0)
- ;;=1^Post Op Visit in Global
- ;;^UTILITY(U,$J,358.3,28729,1,2,0)
- ;;=2^99024
- ;;^UTILITY(U,$J,358.3,28730,0)
- ;;=99241^^114^1447^1
- ;;^UTILITY(U,$J,358.3,28730,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28730,1,1,0)
- ;;=1^Prob Focused Exam
- ;;^UTILITY(U,$J,358.3,28730,1,2,0)
- ;;=2^99241
- ;;^UTILITY(U,$J,358.3,28731,0)
- ;;=99242^^114^1447^2
- ;;^UTILITY(U,$J,358.3,28731,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28731,1,1,0)
- ;;=1^Exp Prob Focused Exam
- ;;^UTILITY(U,$J,358.3,28731,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,28732,0)
- ;;=99243^^114^1447^3
- ;;^UTILITY(U,$J,358.3,28732,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28732,1,1,0)
- ;;=1^Detailed Exam
- ;;^UTILITY(U,$J,358.3,28732,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,28733,0)
- ;;=99244^^114^1447^4
- ;;^UTILITY(U,$J,358.3,28733,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28733,1,1,0)
- ;;=1^Comprehensive,Moderate
- ;;^UTILITY(U,$J,358.3,28733,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,28734,0)
- ;;=99245^^114^1447^5
- ;;^UTILITY(U,$J,358.3,28734,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28734,1,1,0)
- ;;=1^Comprehensive,High
- ;;^UTILITY(U,$J,358.3,28734,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,28735,0)
- ;;=O01.9^^115^1448^16
- ;;^UTILITY(U,$J,358.3,28735,1,0)
+ ;;^UTILITY(U,$J,358.3,27008,0)
+ ;;=G47.36^^110^1305^25
+ ;;^UTILITY(U,$J,358.3,27008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28735,1,3,0)
- ;;=3^Hydatidiform mole, unspecified
- ;;^UTILITY(U,$J,358.3,28735,1,4,0)
- ;;=4^O01.9
- ;;^UTILITY(U,$J,358.3,28735,2)
- ;;=^5015977
- ;;^UTILITY(U,$J,358.3,28736,0)
- ;;=O02.81^^115^1448^17
- ;;^UTILITY(U,$J,358.3,28736,1,0)
+ ;;^UTILITY(U,$J,358.3,27008,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation Cond Class Elsewhere
+ ;;^UTILITY(U,$J,358.3,27008,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,27008,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,27009,0)
+ ;;=G47.35^^110^1305^26
+ ;;^UTILITY(U,$J,358.3,27009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28736,1,3,0)
- ;;=3^Inapprop chg quantitav hCG in early pregnancy
- ;;^UTILITY(U,$J,358.3,28736,1,4,0)
- ;;=4^O02.81
- ;;^UTILITY(U,$J,358.3,28736,2)
- ;;=^340611
- ;;^UTILITY(U,$J,358.3,28737,0)
- ;;=O02.1^^115^1448^18
- ;;^UTILITY(U,$J,358.3,28737,1,0)
+ ;;^UTILITY(U,$J,358.3,27009,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congen Central Alveolar
+ ;;^UTILITY(U,$J,358.3,27009,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,27009,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,27010,0)
+ ;;=G47.34^^110^1305^27
+ ;;^UTILITY(U,$J,358.3,27010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28737,1,3,0)
- ;;=3^Missed abortion
- ;;^UTILITY(U,$J,358.3,28737,1,4,0)
- ;;=4^O02.1
- ;;^UTILITY(U,$J,358.3,28737,2)
- ;;=^1259
- ;;^UTILITY(U,$J,358.3,28738,0)
- ;;=O00.8^^115^1448^15
- ;;^UTILITY(U,$J,358.3,28738,1,0)
+ ;;^UTILITY(U,$J,358.3,27010,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic
+ ;;^UTILITY(U,$J,358.3,27010,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,27010,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,27011,0)
+ ;;=G47.9^^110^1305^29
+ ;;^UTILITY(U,$J,358.3,27011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28738,1,3,0)
- ;;=3^Ectopic Pregnancy NEC
- ;;^UTILITY(U,$J,358.3,28738,1,4,0)
- ;;=4^O00.8
- ;;^UTILITY(U,$J,358.3,28738,2)
- ;;=^5015974
- ;;^UTILITY(U,$J,358.3,28739,0)
- ;;=O08.7^^115^1448^45
- ;;^UTILITY(U,$J,358.3,28739,1,0)
+ ;;^UTILITY(U,$J,358.3,27011,1,3,0)
+ ;;=3^Sleep-Wake D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27011,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,27011,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,27012,0)
+ ;;=G47.419^^110^1305^18
+ ;;^UTILITY(U,$J,358.3,27012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28739,1,3,0)
- ;;=3^Venous comp following an ectopic and molar pregnancy NEC
- ;;^UTILITY(U,$J,358.3,28739,1,4,0)
- ;;=4^O08.7
- ;;^UTILITY(U,$J,358.3,28739,2)
- ;;=^5016042
- ;;^UTILITY(U,$J,358.3,28740,0)
- ;;=O08.81^^115^1448^13
- ;;^UTILITY(U,$J,358.3,28740,1,0)
+ ;;^UTILITY(U,$J,358.3,27012,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy
+ ;;^UTILITY(U,$J,358.3,27012,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,27012,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,27013,0)
+ ;;=R06.3^^110^1305^3
+ ;;^UTILITY(U,$J,358.3,27013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28740,1,3,0)
- ;;=3^Cardiac arrest following an ectopic and molar pregnancy
- ;;^UTILITY(U,$J,358.3,28740,1,4,0)
- ;;=4^O08.81
- ;;^UTILITY(U,$J,358.3,28740,2)
- ;;=^5016043
- ;;^UTILITY(U,$J,358.3,28741,0)
- ;;=O08.83^^115^1448^44
- ;;^UTILITY(U,$J,358.3,28741,1,0)
+ ;;^UTILITY(U,$J,358.3,27013,1,3,0)
+ ;;=3^Cheyne-Stokes Breathing
+ ;;^UTILITY(U,$J,358.3,27013,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,27013,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,27014,0)
+ ;;=G47.429^^110^1305^16
+ ;;^UTILITY(U,$J,358.3,27014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28741,1,3,0)
- ;;=3^Urinary tract infection fol an ectopic and molar pregnancy
- ;;^UTILITY(U,$J,358.3,28741,1,4,0)
- ;;=4^O08.83
- ;;^UTILITY(U,$J,358.3,28741,2)
- ;;=^5016045
- ;;^UTILITY(U,$J,358.3,28742,0)
- ;;=O08.89^^115^1448^14
- ;;^UTILITY(U,$J,358.3,28742,1,0)
+ ;;^UTILITY(U,$J,358.3,27014,1,3,0)
+ ;;=3^Narcolepsy Secondary to Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,27014,1,4,0)
+ ;;=4^G47.429
+ ;;^UTILITY(U,$J,358.3,27014,2)
+ ;;=^5003984
+ ;;^UTILITY(U,$J,358.3,27015,0)
+ ;;=F10.10^^110^1306^29
+ ;;^UTILITY(U,$J,358.3,27015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28742,1,3,0)
- ;;=3^Complications following an ectopic and molar pregnancy NEC
- ;;^UTILITY(U,$J,358.3,28742,1,4,0)
- ;;=4^O08.89
- ;;^UTILITY(U,$J,358.3,28742,2)
- ;;=^5016046
- ;;^UTILITY(U,$J,358.3,28743,0)
- ;;=O20.0^^115^1448^43
- ;;^UTILITY(U,$J,358.3,28743,1,0)
+ ;;^UTILITY(U,$J,358.3,27015,1,3,0)
+ ;;=3^Alcohol Use DO (Mild),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,27015,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,27015,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,27016,0)
+ ;;=F10.20^^110^1306^34
+ ;;^UTILITY(U,$J,358.3,27016,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27016,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,27016,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,27016,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,27017,0)
+ ;;=F10.239^^110^1306^31
+ ;;^UTILITY(U,$J,358.3,27017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27017,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD,Unspec
+ ;;^UTILITY(U,$J,358.3,27017,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,27017,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,27018,0)
+ ;;=F10.180^^110^1306^1
+ ;;^UTILITY(U,$J,358.3,27018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27018,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27018,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,27018,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,27019,0)
+ ;;=F10.280^^110^1306^2
+ ;;^UTILITY(U,$J,358.3,27019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27019,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27019,1,4,0)
+ ;;=4^F10.280
+ ;;^UTILITY(U,$J,358.3,27019,2)
+ ;;=^5003096

@@ -1,126 +1,130 @@
-IBDEI1QA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29328,0)
- ;;=O86.81^^115^1457^4
- ;;^UTILITY(U,$J,358.3,29328,1,0)
+ ;;^UTILITY(U,$J,358.3,27621,1,4,0)
+ ;;=4^F44.9
+ ;;^UTILITY(U,$J,358.3,27621,2)
+ ;;=^5003584
+ ;;^UTILITY(U,$J,358.3,27622,0)
+ ;;=F44.0^^113^1342^2
+ ;;^UTILITY(U,$J,358.3,27622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29328,1,3,0)
- ;;=3^Puerperal septic thrombophlebitis
- ;;^UTILITY(U,$J,358.3,29328,1,4,0)
- ;;=4^O86.81
- ;;^UTILITY(U,$J,358.3,29328,2)
- ;;=^5017764
- ;;^UTILITY(U,$J,358.3,29329,0)
- ;;=O22.01^^115^1458^16
- ;;^UTILITY(U,$J,358.3,29329,1,0)
+ ;;^UTILITY(U,$J,358.3,27622,1,3,0)
+ ;;=3^Dissociative Amnesia
+ ;;^UTILITY(U,$J,358.3,27622,1,4,0)
+ ;;=4^F44.0
+ ;;^UTILITY(U,$J,358.3,27622,2)
+ ;;=^5003577
+ ;;^UTILITY(U,$J,358.3,27623,0)
+ ;;=F48.1^^113^1342^1
+ ;;^UTILITY(U,$J,358.3,27623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29329,1,3,0)
- ;;=3^Varicose veins of low extrm in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29329,1,4,0)
- ;;=4^O22.01
- ;;^UTILITY(U,$J,358.3,29329,2)
- ;;=^5016188
- ;;^UTILITY(U,$J,358.3,29330,0)
- ;;=O22.02^^115^1458^17
- ;;^UTILITY(U,$J,358.3,29330,1,0)
+ ;;^UTILITY(U,$J,358.3,27623,1,3,0)
+ ;;=3^Depersonalization/Derealization D/O
+ ;;^UTILITY(U,$J,358.3,27623,1,4,0)
+ ;;=4^F48.1
+ ;;^UTILITY(U,$J,358.3,27623,2)
+ ;;=^5003593
+ ;;^UTILITY(U,$J,358.3,27624,0)
+ ;;=F44.89^^113^1342^4
+ ;;^UTILITY(U,$J,358.3,27624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29330,1,3,0)
- ;;=3^Varicose veins of low extrm in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29330,1,4,0)
- ;;=4^O22.02
- ;;^UTILITY(U,$J,358.3,29330,2)
- ;;=^5016189
- ;;^UTILITY(U,$J,358.3,29331,0)
- ;;=O22.03^^115^1458^18
- ;;^UTILITY(U,$J,358.3,29331,1,0)
+ ;;^UTILITY(U,$J,358.3,27624,1,3,0)
+ ;;=3^Dissociative D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,27624,1,4,0)
+ ;;=4^F44.89
+ ;;^UTILITY(U,$J,358.3,27624,2)
+ ;;=^5003583
+ ;;^UTILITY(U,$J,358.3,27625,0)
+ ;;=F44.1^^113^1342^3
+ ;;^UTILITY(U,$J,358.3,27625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29331,1,3,0)
- ;;=3^Varicose veins of low extrm in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29331,1,4,0)
- ;;=4^O22.03
- ;;^UTILITY(U,$J,358.3,29331,2)
- ;;=^5016190
- ;;^UTILITY(U,$J,358.3,29332,0)
- ;;=O87.4^^115^1458^19
- ;;^UTILITY(U,$J,358.3,29332,1,0)
+ ;;^UTILITY(U,$J,358.3,27625,1,3,0)
+ ;;=3^Dissociative Amnesia w/ Dissociative Fugue
+ ;;^UTILITY(U,$J,358.3,27625,1,4,0)
+ ;;=4^F44.1
+ ;;^UTILITY(U,$J,358.3,27625,2)
+ ;;=^331908
+ ;;^UTILITY(U,$J,358.3,27626,0)
+ ;;=F50.02^^113^1343^1
+ ;;^UTILITY(U,$J,358.3,27626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29332,1,3,0)
- ;;=3^Varicose veins of lower extremity in the puerperium
- ;;^UTILITY(U,$J,358.3,29332,1,4,0)
- ;;=4^O87.4
- ;;^UTILITY(U,$J,358.3,29332,2)
- ;;=^5017770
- ;;^UTILITY(U,$J,358.3,29333,0)
- ;;=O22.11^^115^1458^9
- ;;^UTILITY(U,$J,358.3,29333,1,0)
+ ;;^UTILITY(U,$J,358.3,27626,1,3,0)
+ ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
+ ;;^UTILITY(U,$J,358.3,27626,1,4,0)
+ ;;=4^F50.02
+ ;;^UTILITY(U,$J,358.3,27626,2)
+ ;;=^5003599
+ ;;^UTILITY(U,$J,358.3,27627,0)
+ ;;=F50.01^^113^1343^2
+ ;;^UTILITY(U,$J,358.3,27627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29333,1,3,0)
- ;;=3^Genital varices in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29333,1,4,0)
- ;;=4^O22.11
- ;;^UTILITY(U,$J,358.3,29333,2)
- ;;=^5016192
- ;;^UTILITY(U,$J,358.3,29334,0)
- ;;=O22.12^^115^1458^10
- ;;^UTILITY(U,$J,358.3,29334,1,0)
+ ;;^UTILITY(U,$J,358.3,27627,1,3,0)
+ ;;=3^Anorexia Nervosa,Restricting Type
+ ;;^UTILITY(U,$J,358.3,27627,1,4,0)
+ ;;=4^F50.01
+ ;;^UTILITY(U,$J,358.3,27627,2)
+ ;;=^5003598
+ ;;^UTILITY(U,$J,358.3,27628,0)
+ ;;=F50.9^^113^1343^7
+ ;;^UTILITY(U,$J,358.3,27628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29334,1,3,0)
- ;;=3^Genital varices in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29334,1,4,0)
- ;;=4^O22.12
- ;;^UTILITY(U,$J,358.3,29334,2)
- ;;=^5016193
- ;;^UTILITY(U,$J,358.3,29335,0)
- ;;=O22.13^^115^1458^11
- ;;^UTILITY(U,$J,358.3,29335,1,0)
+ ;;^UTILITY(U,$J,358.3,27628,1,3,0)
+ ;;=3^Eating Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27628,1,4,0)
+ ;;=4^F50.9
+ ;;^UTILITY(U,$J,358.3,27628,2)
+ ;;=^5003602
+ ;;^UTILITY(U,$J,358.3,27629,0)
+ ;;=F50.2^^113^1343^5
+ ;;^UTILITY(U,$J,358.3,27629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29335,1,3,0)
- ;;=3^Genital varices in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29335,1,4,0)
- ;;=4^O22.13
- ;;^UTILITY(U,$J,358.3,29335,2)
- ;;=^5016194
- ;;^UTILITY(U,$J,358.3,29336,0)
- ;;=O22.21^^115^1458^12
- ;;^UTILITY(U,$J,358.3,29336,1,0)
+ ;;^UTILITY(U,$J,358.3,27629,1,3,0)
+ ;;=3^Bulimia Nervosa
+ ;;^UTILITY(U,$J,358.3,27629,1,4,0)
+ ;;=4^F50.2
+ ;;^UTILITY(U,$J,358.3,27629,2)
+ ;;=^5003600
+ ;;^UTILITY(U,$J,358.3,27630,0)
+ ;;=F98.21^^113^1343^8
+ ;;^UTILITY(U,$J,358.3,27630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29336,1,3,0)
- ;;=3^Superficial thrombophlebitis in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29336,1,4,0)
- ;;=4^O22.21
- ;;^UTILITY(U,$J,358.3,29336,2)
- ;;=^5016196
- ;;^UTILITY(U,$J,358.3,29337,0)
- ;;=O22.22^^115^1458^13
- ;;^UTILITY(U,$J,358.3,29337,1,0)
+ ;;^UTILITY(U,$J,358.3,27630,1,3,0)
+ ;;=3^Rumination Disorder
+ ;;^UTILITY(U,$J,358.3,27630,1,4,0)
+ ;;=4^F98.21
+ ;;^UTILITY(U,$J,358.3,27630,2)
+ ;;=^5003713
+ ;;^UTILITY(U,$J,358.3,27631,0)
+ ;;=F50.81^^113^1343^4
+ ;;^UTILITY(U,$J,358.3,27631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29337,1,3,0)
- ;;=3^Superficial thrombophlebitis in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29337,1,4,0)
- ;;=4^O22.22
- ;;^UTILITY(U,$J,358.3,29337,2)
- ;;=^5016197
- ;;^UTILITY(U,$J,358.3,29338,0)
- ;;=O22.23^^115^1458^14
- ;;^UTILITY(U,$J,358.3,29338,1,0)
+ ;;^UTILITY(U,$J,358.3,27631,1,3,0)
+ ;;=3^Binge-Eating Disorder
+ ;;^UTILITY(U,$J,358.3,27631,1,4,0)
+ ;;=4^F50.81
+ ;;^UTILITY(U,$J,358.3,27631,2)
+ ;;=^8123226
+ ;;^UTILITY(U,$J,358.3,27632,0)
+ ;;=F50.89^^113^1343^6
+ ;;^UTILITY(U,$J,358.3,27632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29338,1,3,0)
- ;;=3^Superficial thrombophlebitis in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29338,1,4,0)
- ;;=4^O22.23
- ;;^UTILITY(U,$J,358.3,29338,2)
- ;;=^5016198
- ;;^UTILITY(U,$J,358.3,29339,0)
- ;;=O87.0^^115^1458^15
- ;;^UTILITY(U,$J,358.3,29339,1,0)
+ ;;^UTILITY(U,$J,358.3,27632,1,3,0)
+ ;;=3^Eating Disorder,Oth Spec
+ ;;^UTILITY(U,$J,358.3,27632,1,4,0)
+ ;;=4^F50.89
+ ;;^UTILITY(U,$J,358.3,27632,2)
+ ;;=^5138449
+ ;;^UTILITY(U,$J,358.3,27633,0)
+ ;;=F50.82^^113^1343^3
+ ;;^UTILITY(U,$J,358.3,27633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29339,1,3,0)
- ;;=3^Superficial thrombophlebitis in the puerperium
- ;;^UTILITY(U,$J,358.3,29339,1,4,0)
- ;;=4^O87.0
- ;;^UTILITY(U,$J,358.3,29339,2)
- ;;=^5017766
- ;;^UTILITY(U,$J,358.3,29340,0)
- ;;=O22.31^^115^1458^5
+ ;;^UTILITY(U,$J,358.3,27633,1,3,0)
+ ;;=3^Avoidant/Restrictive Food Intake Disorder
+ ;;^UTILITY(U,$J,358.3,27633,1,4,0)
+ ;;=4^F50.82
+ ;;^UTILITY(U,$J,358.3,27633,2)
+ ;;=^5151308
+ ;;^UTILITY(U,$J,358.3,27634,0)
+ ;;=Z55.9^^113^1344^1

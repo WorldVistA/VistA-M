@@ -1,138 +1,124 @@
-IBDEI1M3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1M3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27344,1,4,0)
- ;;=4^E87.79
- ;;^UTILITY(U,$J,358.3,27344,2)
- ;;=^5003025
- ;;^UTILITY(U,$J,358.3,27345,0)
- ;;=E21.0^^106^1349^27
- ;;^UTILITY(U,$J,358.3,27345,1,0)
+ ;;^UTILITY(U,$J,358.3,25758,0)
+ ;;=K08.9^^107^1223^65
+ ;;^UTILITY(U,$J,358.3,25758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27345,1,3,0)
- ;;=3^Primary Hyperparathyroidism
- ;;^UTILITY(U,$J,358.3,27345,1,4,0)
- ;;=4^E21.0
- ;;^UTILITY(U,$J,358.3,27345,2)
- ;;=^331439
- ;;^UTILITY(U,$J,358.3,27346,0)
- ;;=E87.71^^106^1349^30
- ;;^UTILITY(U,$J,358.3,27346,1,0)
+ ;;^UTILITY(U,$J,358.3,25758,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Unspec
+ ;;^UTILITY(U,$J,358.3,25758,1,4,0)
+ ;;=4^K08.9
+ ;;^UTILITY(U,$J,358.3,25758,2)
+ ;;=^5008468
+ ;;^UTILITY(U,$J,358.3,25759,0)
+ ;;=R93.89^^107^1223^15
+ ;;^UTILITY(U,$J,358.3,25759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27346,1,3,0)
- ;;=3^Transfusion Associated Circulatory Overload
- ;;^UTILITY(U,$J,358.3,27346,1,4,0)
- ;;=4^E87.71
- ;;^UTILITY(U,$J,358.3,27346,2)
- ;;=^5003024
- ;;^UTILITY(U,$J,358.3,27347,0)
- ;;=D63.1^^106^1350^1
- ;;^UTILITY(U,$J,358.3,27347,1,0)
+ ;;^UTILITY(U,$J,358.3,25759,1,3,0)
+ ;;=3^Abnormal Finding on Dx Imaging of Oth Body Structures
+ ;;^UTILITY(U,$J,358.3,25759,1,4,0)
+ ;;=4^R93.89
+ ;;^UTILITY(U,$J,358.3,25759,2)
+ ;;=^5157477
+ ;;^UTILITY(U,$J,358.3,25760,0)
+ ;;=R82.998^^107^1223^28
+ ;;^UTILITY(U,$J,358.3,25760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27347,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,27347,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,27347,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,27348,0)
- ;;=I12.0^^106^1350^9
- ;;^UTILITY(U,$J,358.3,27348,1,0)
+ ;;^UTILITY(U,$J,358.3,25760,1,3,0)
+ ;;=3^Abnormal Urine Findings,Other
+ ;;^UTILITY(U,$J,358.3,25760,1,4,0)
+ ;;=4^R82.998
+ ;;^UTILITY(U,$J,358.3,25760,2)
+ ;;=^5157472
+ ;;^UTILITY(U,$J,358.3,25761,0)
+ ;;=R82.89^^107^1223^27
+ ;;^UTILITY(U,$J,358.3,25761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27348,1,3,0)
- ;;=3^HTN w/ CKD w/ Stage 5 CKD/ESRD
- ;;^UTILITY(U,$J,358.3,27348,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,27348,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,27349,0)
- ;;=I95.1^^106^1350^10
- ;;^UTILITY(U,$J,358.3,27349,1,0)
+ ;;^UTILITY(U,$J,358.3,25761,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings,Other
+ ;;^UTILITY(U,$J,358.3,25761,1,4,0)
+ ;;=4^R82.89
+ ;;^UTILITY(U,$J,358.3,25761,2)
+ ;;=^5158142
+ ;;^UTILITY(U,$J,358.3,25762,0)
+ ;;=R82.81^^107^1223^150
+ ;;^UTILITY(U,$J,358.3,25762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27349,1,3,0)
- ;;=3^Hypotension,Orthostatic
- ;;^UTILITY(U,$J,358.3,27349,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,27349,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,27350,0)
- ;;=I95.89^^106^1350^11
- ;;^UTILITY(U,$J,358.3,27350,1,0)
+ ;;^UTILITY(U,$J,358.3,25762,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,25762,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,25762,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,25763,0)
+ ;;=S43.51XA^^107^1224^12
+ ;;^UTILITY(U,$J,358.3,25763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27350,1,3,0)
- ;;=3^Hypotension,Other
- ;;^UTILITY(U,$J,358.3,27350,1,4,0)
- ;;=4^I95.89
- ;;^UTILITY(U,$J,358.3,27350,2)
- ;;=^5008079
- ;;^UTILITY(U,$J,358.3,27351,0)
- ;;=N17.9^^106^1350^12
- ;;^UTILITY(U,$J,358.3,27351,1,0)
+ ;;^UTILITY(U,$J,358.3,25763,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,25763,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,25763,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,25764,0)
+ ;;=S43.52XA^^107^1224^1
+ ;;^UTILITY(U,$J,358.3,25764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27351,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,27351,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,27351,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,27352,0)
- ;;=N18.5^^106^1350^3
- ;;^UTILITY(U,$J,358.3,27352,1,0)
+ ;;^UTILITY(U,$J,358.3,25764,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,25764,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,25764,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,25765,0)
+ ;;=S43.421A^^107^1224^17
+ ;;^UTILITY(U,$J,358.3,25765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27352,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,27352,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,27352,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,27353,0)
- ;;=N18.9^^106^1350^4
- ;;^UTILITY(U,$J,358.3,27353,1,0)
+ ;;^UTILITY(U,$J,358.3,25765,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,25765,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,25765,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,25766,0)
+ ;;=S43.422A^^107^1224^6
+ ;;^UTILITY(U,$J,358.3,25766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27353,1,3,0)
- ;;=3^Chronic Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,27353,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,27353,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,27354,0)
- ;;=N39.0^^106^1350^14
- ;;^UTILITY(U,$J,358.3,27354,1,0)
+ ;;^UTILITY(U,$J,358.3,25766,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,25766,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,25766,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,25767,0)
+ ;;=S53.401A^^107^1224^14
+ ;;^UTILITY(U,$J,358.3,25767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27354,1,3,0)
- ;;=3^Urinary Tract Infection,Unspec Site
- ;;^UTILITY(U,$J,358.3,27354,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,27354,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,27355,0)
- ;;=R31.9^^106^1350^8
- ;;^UTILITY(U,$J,358.3,27355,1,0)
+ ;;^UTILITY(U,$J,358.3,25767,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,25767,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,25767,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,25768,0)
+ ;;=S53.402A^^107^1224^3
+ ;;^UTILITY(U,$J,358.3,25768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27355,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,27355,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,27355,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,27356,0)
- ;;=R31.0^^106^1350^7
- ;;^UTILITY(U,$J,358.3,27356,1,0)
+ ;;^UTILITY(U,$J,358.3,25768,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,25768,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,25768,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,25769,0)
+ ;;=S56.011A^^107^1224^55
+ ;;^UTILITY(U,$J,358.3,25769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27356,1,3,0)
- ;;=3^Hematuria,Gross
- ;;^UTILITY(U,$J,358.3,27356,1,4,0)
- ;;=4^R31.0
- ;;^UTILITY(U,$J,358.3,27356,2)
- ;;=^5019325
- ;;^UTILITY(U,$J,358.3,27357,0)
- ;;=R60.9^^106^1350^6
- ;;^UTILITY(U,$J,358.3,27357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27357,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,27357,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,27357,2)
- ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,25769,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25769,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,25769,2)
+ ;;=^5031568

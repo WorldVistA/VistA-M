@@ -1,132 +1,128 @@
-IBDEI2FW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2FW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41379,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,41380,0)
- ;;=D75.1^^159^2004^180
- ;;^UTILITY(U,$J,358.3,41380,1,0)
+ ;;^UTILITY(U,$J,358.3,38969,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,38970,0)
+ ;;=L03.322^^152^1990^15
+ ;;^UTILITY(U,$J,358.3,38970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41380,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,41380,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,41380,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,41381,0)
- ;;=C90.30^^159^2004^183
- ;;^UTILITY(U,$J,358.3,41381,1,0)
+ ;;^UTILITY(U,$J,358.3,38970,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,38970,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,38970,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,38971,0)
+ ;;=L03.323^^152^1990^16
+ ;;^UTILITY(U,$J,358.3,38971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41381,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,41381,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,41381,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,41382,0)
- ;;=D56.3^^159^2004^184
- ;;^UTILITY(U,$J,358.3,41382,1,0)
+ ;;^UTILITY(U,$J,358.3,38971,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,38971,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,38971,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,38972,0)
+ ;;=L03.324^^152^1990^18
+ ;;^UTILITY(U,$J,358.3,38972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41382,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,41382,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,41382,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,41383,0)
- ;;=D56.9^^159^2004^185
- ;;^UTILITY(U,$J,358.3,41383,1,0)
+ ;;^UTILITY(U,$J,358.3,38972,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,38972,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,38972,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,38973,0)
+ ;;=L03.325^^152^1990^24
+ ;;^UTILITY(U,$J,358.3,38973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41383,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,41383,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,41383,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,41384,0)
- ;;=M31.1^^159^2004^187
- ;;^UTILITY(U,$J,358.3,41384,1,0)
+ ;;^UTILITY(U,$J,358.3,38973,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,38973,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,38973,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,38974,0)
+ ;;=L03.326^^152^1990^30
+ ;;^UTILITY(U,$J,358.3,38974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41384,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,41384,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,41384,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,41385,0)
- ;;=D51.2^^159^2004^188
- ;;^UTILITY(U,$J,358.3,41385,1,0)
+ ;;^UTILITY(U,$J,358.3,38974,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,38974,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,38974,2)
+ ;;=^5009060
+ ;;^UTILITY(U,$J,358.3,38975,0)
+ ;;=L03.329^^152^1990^29
+ ;;^UTILITY(U,$J,358.3,38975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41385,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,41385,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,41385,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,41386,0)
- ;;=D05.92^^159^2004^35
- ;;^UTILITY(U,$J,358.3,41386,1,0)
+ ;;^UTILITY(U,$J,358.3,38975,1,3,0)
+ ;;=3^Acute Lymphangitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,38975,1,4,0)
+ ;;=4^L03.329
+ ;;^UTILITY(U,$J,358.3,38975,2)
+ ;;=^5009062
+ ;;^UTILITY(U,$J,358.3,38976,0)
+ ;;=L08.9^^152^1990^171
+ ;;^UTILITY(U,$J,358.3,38976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41386,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,41386,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,41386,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,41387,0)
- ;;=D05.91^^159^2004^37
- ;;^UTILITY(U,$J,358.3,41387,1,0)
+ ;;^UTILITY(U,$J,358.3,38976,1,3,0)
+ ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,38976,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,38976,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,38977,0)
+ ;;=L11.0^^152^1990^10
+ ;;^UTILITY(U,$J,358.3,38977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41387,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,41387,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,41387,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,41388,0)
- ;;=D05.90^^159^2004^33
- ;;^UTILITY(U,$J,358.3,41388,1,0)
+ ;;^UTILITY(U,$J,358.3,38977,1,3,0)
+ ;;=3^Acquired Keratosis Follicularis
+ ;;^UTILITY(U,$J,358.3,38977,1,4,0)
+ ;;=4^L11.0
+ ;;^UTILITY(U,$J,358.3,38977,2)
+ ;;=^5009091
+ ;;^UTILITY(U,$J,358.3,38978,0)
+ ;;=L20.0^^152^1990^91
+ ;;^UTILITY(U,$J,358.3,38978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41388,1,3,0)
- ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
- ;;^UTILITY(U,$J,358.3,41388,1,4,0)
- ;;=4^D05.90
- ;;^UTILITY(U,$J,358.3,41388,2)
- ;;=^5001935
- ;;^UTILITY(U,$J,358.3,41389,0)
- ;;=D51.0^^159^2004^189
- ;;^UTILITY(U,$J,358.3,41389,1,0)
+ ;;^UTILITY(U,$J,358.3,38978,1,3,0)
+ ;;=3^Besnier's Prurigo
+ ;;^UTILITY(U,$J,358.3,38978,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,38978,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,38979,0)
+ ;;=L20.81^^152^1990^88
+ ;;^UTILITY(U,$J,358.3,38979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41389,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
- ;;^UTILITY(U,$J,358.3,41389,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,41389,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,41390,0)
- ;;=D51.1^^159^2004^190
- ;;^UTILITY(U,$J,358.3,41390,1,0)
+ ;;^UTILITY(U,$J,358.3,38979,1,3,0)
+ ;;=3^Atopic Neurodermatitis
+ ;;^UTILITY(U,$J,358.3,38979,1,4,0)
+ ;;=4^L20.81
+ ;;^UTILITY(U,$J,358.3,38979,2)
+ ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,38980,0)
+ ;;=L20.82^^152^1990^153
+ ;;^UTILITY(U,$J,358.3,38980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41390,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
- ;;^UTILITY(U,$J,358.3,41390,1,4,0)
- ;;=4^D51.1
- ;;^UTILITY(U,$J,358.3,41390,2)
- ;;=^5002285
- ;;^UTILITY(U,$J,358.3,41391,0)
- ;;=D51.9^^159^2004^192
- ;;^UTILITY(U,$J,358.3,41391,1,0)
+ ;;^UTILITY(U,$J,358.3,38980,1,3,0)
+ ;;=3^Flexural Eczema
+ ;;^UTILITY(U,$J,358.3,38980,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,38980,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,38981,0)
+ ;;=L20.84^^152^1990^165
+ ;;^UTILITY(U,$J,358.3,38981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41391,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,41391,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,41391,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,41392,0)
- ;;=D68.0^^159^2004^194
- ;;^UTILITY(U,$J,358.3,41392,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41392,1,3,0)
- ;;=3^Von Willebrand's Disease
+ ;;^UTILITY(U,$J,358.3,38981,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,38981,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,38981,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,38982,0)
+ ;;=L20.89^^152^1990^86

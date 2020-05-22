@@ -1,126 +1,128 @@
-IBDEI1Q8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29303,1,3,0)
- ;;=3^Placentitis, second trimester, not applicable or unspecified
- ;;^UTILITY(U,$J,358.3,29303,1,4,0)
- ;;=4^O41.1420
- ;;^UTILITY(U,$J,358.3,29303,2)
- ;;=^5017300
- ;;^UTILITY(U,$J,358.3,29304,0)
- ;;=O41.1421^^115^1456^64
- ;;^UTILITY(U,$J,358.3,29304,1,0)
+ ;;^UTILITY(U,$J,358.3,27597,0)
+ ;;=R41.9^^113^1340^25
+ ;;^UTILITY(U,$J,358.3,27597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29304,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29304,1,4,0)
- ;;=4^O41.1421
- ;;^UTILITY(U,$J,358.3,29304,2)
- ;;=^5017301
- ;;^UTILITY(U,$J,358.3,29305,0)
- ;;=O41.1422^^115^1456^65
- ;;^UTILITY(U,$J,358.3,29305,1,0)
+ ;;^UTILITY(U,$J,358.3,27597,1,3,0)
+ ;;=3^Neurocognitive D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27597,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,27597,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,27598,0)
+ ;;=F01.50^^113^1340^33
+ ;;^UTILITY(U,$J,358.3,27598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29305,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29305,1,4,0)
- ;;=4^O41.1422
- ;;^UTILITY(U,$J,358.3,29305,2)
- ;;=^5017302
- ;;^UTILITY(U,$J,358.3,29306,0)
- ;;=O41.1423^^115^1456^66
- ;;^UTILITY(U,$J,358.3,29306,1,0)
+ ;;^UTILITY(U,$J,358.3,27598,1,3,0)
+ ;;=3^Vascular Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,27598,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,27598,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,27599,0)
+ ;;=F06.31^^113^1341^1
+ ;;^UTILITY(U,$J,358.3,27599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29306,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29306,1,4,0)
- ;;=4^O41.1423
- ;;^UTILITY(U,$J,358.3,29306,2)
- ;;=^5017303
- ;;^UTILITY(U,$J,358.3,29307,0)
- ;;=O41.1424^^115^1456^67
- ;;^UTILITY(U,$J,358.3,29307,1,0)
+ ;;^UTILITY(U,$J,358.3,27599,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Dep Feat
+ ;;^UTILITY(U,$J,358.3,27599,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,27599,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,27600,0)
+ ;;=F06.32^^113^1341^2
+ ;;^UTILITY(U,$J,358.3,27600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29307,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29307,1,4,0)
- ;;=4^O41.1424
- ;;^UTILITY(U,$J,358.3,29307,2)
- ;;=^5017304
- ;;^UTILITY(U,$J,358.3,29308,0)
- ;;=O41.1425^^115^1456^68
- ;;^UTILITY(U,$J,358.3,29308,1,0)
+ ;;^UTILITY(U,$J,358.3,27600,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Maj Dep-Like Ep
+ ;;^UTILITY(U,$J,358.3,27600,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,27600,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,27601,0)
+ ;;=F32.0^^113^1341^17
+ ;;^UTILITY(U,$J,358.3,27601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29308,1,3,0)
- ;;=3^Placentitis, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29308,1,4,0)
- ;;=4^O41.1425
- ;;^UTILITY(U,$J,358.3,29308,2)
- ;;=^5017305
- ;;^UTILITY(U,$J,358.3,29309,0)
- ;;=O41.1430^^115^1456^75
- ;;^UTILITY(U,$J,358.3,29309,1,0)
+ ;;^UTILITY(U,$J,358.3,27601,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,27601,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,27601,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,27602,0)
+ ;;=F32.1^^113^1341^18
+ ;;^UTILITY(U,$J,358.3,27602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29309,1,3,0)
- ;;=3^Placentitis, third trimester, not applicable or unspecified
- ;;^UTILITY(U,$J,358.3,29309,1,4,0)
- ;;=4^O41.1430
- ;;^UTILITY(U,$J,358.3,29309,2)
- ;;=^5017307
- ;;^UTILITY(U,$J,358.3,29310,0)
- ;;=O41.1431^^115^1456^70
- ;;^UTILITY(U,$J,358.3,29310,1,0)
+ ;;^UTILITY(U,$J,358.3,27602,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,27602,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,27602,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,27603,0)
+ ;;=F32.2^^113^1341^19
+ ;;^UTILITY(U,$J,358.3,27603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29310,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29310,1,4,0)
- ;;=4^O41.1431
- ;;^UTILITY(U,$J,358.3,29310,2)
- ;;=^5017308
- ;;^UTILITY(U,$J,358.3,29311,0)
- ;;=O41.1432^^115^1456^71
- ;;^UTILITY(U,$J,358.3,29311,1,0)
+ ;;^UTILITY(U,$J,358.3,27603,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,27603,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,27603,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,27604,0)
+ ;;=F32.3^^113^1341^14
+ ;;^UTILITY(U,$J,358.3,27604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29311,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29311,1,4,0)
- ;;=4^O41.1432
- ;;^UTILITY(U,$J,358.3,29311,2)
- ;;=^5017309
- ;;^UTILITY(U,$J,358.3,29312,0)
- ;;=O41.1433^^115^1456^72
- ;;^UTILITY(U,$J,358.3,29312,1,0)
+ ;;^UTILITY(U,$J,358.3,27604,1,3,0)
+ ;;=3^MDD,Single Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,27604,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,27604,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,27605,0)
+ ;;=F32.4^^113^1341^16
+ ;;^UTILITY(U,$J,358.3,27605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29312,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29312,1,4,0)
- ;;=4^O41.1433
- ;;^UTILITY(U,$J,358.3,29312,2)
- ;;=^5017310
- ;;^UTILITY(U,$J,358.3,29313,0)
- ;;=O41.1434^^115^1456^73
- ;;^UTILITY(U,$J,358.3,29313,1,0)
+ ;;^UTILITY(U,$J,358.3,27605,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,27605,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,27605,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,27606,0)
+ ;;=F32.5^^113^1341^15
+ ;;^UTILITY(U,$J,358.3,27606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29313,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29313,1,4,0)
- ;;=4^O41.1434
- ;;^UTILITY(U,$J,358.3,29313,2)
- ;;=^5017311
- ;;^UTILITY(U,$J,358.3,29314,0)
- ;;=O41.1435^^115^1456^74
- ;;^UTILITY(U,$J,358.3,29314,1,0)
+ ;;^UTILITY(U,$J,358.3,27606,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,27606,1,4,0)
+ ;;=4^F32.5
+ ;;^UTILITY(U,$J,358.3,27606,2)
+ ;;=^5003526
+ ;;^UTILITY(U,$J,358.3,27607,0)
+ ;;=F33.9^^113^1341^13
+ ;;^UTILITY(U,$J,358.3,27607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29314,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29314,1,4,0)
- ;;=4^O41.1435
- ;;^UTILITY(U,$J,358.3,29314,2)
- ;;=^5017312
- ;;^UTILITY(U,$J,358.3,29315,0)
- ;;=O09.41^^115^1456^91
- ;;^UTILITY(U,$J,358.3,29315,1,0)
+ ;;^UTILITY(U,$J,358.3,27607,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,27607,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,27607,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,27608,0)
+ ;;=F33.0^^113^1341^10
+ ;;^UTILITY(U,$J,358.3,27608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29315,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, first trimester
+ ;;^UTILITY(U,$J,358.3,27608,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,27608,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,27608,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,27609,0)
+ ;;=F33.1^^113^1341^11
+ ;;^UTILITY(U,$J,358.3,27609,1,0)
+ ;;=^358.31IA^4^2

@@ -1,138 +1,122 @@
-IBDEI1O7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1O7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28380,0)
- ;;=R11.13^^112^1418^36
- ;;^UTILITY(U,$J,358.3,28380,1,0)
+ ;;^UTILITY(U,$J,358.3,26701,0)
+ ;;=T76.11XA^^110^1283^9
+ ;;^UTILITY(U,$J,358.3,26701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28380,1,3,0)
- ;;=3^Vomiting of Fecal Matter
- ;;^UTILITY(U,$J,358.3,28380,1,4,0)
- ;;=4^R11.13
- ;;^UTILITY(U,$J,358.3,28380,2)
- ;;=^5019235
- ;;^UTILITY(U,$J,358.3,28381,0)
- ;;=R11.14^^112^1418^8
- ;;^UTILITY(U,$J,358.3,28381,1,0)
+ ;;^UTILITY(U,$J,358.3,26701,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26701,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,26701,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,26702,0)
+ ;;=T76.11XD^^110^1283^10
+ ;;^UTILITY(U,$J,358.3,26702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28381,1,3,0)
- ;;=3^Bilious Vomiting
- ;;^UTILITY(U,$J,358.3,28381,1,4,0)
- ;;=4^R11.14
- ;;^UTILITY(U,$J,358.3,28381,2)
- ;;=^5019236
- ;;^UTILITY(U,$J,358.3,28382,0)
- ;;=R11.2^^112^1418^25
- ;;^UTILITY(U,$J,358.3,28382,1,0)
+ ;;^UTILITY(U,$J,358.3,26702,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26702,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,26702,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,26703,0)
+ ;;=Z69.11^^110^1283^24
+ ;;^UTILITY(U,$J,358.3,26703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28382,1,3,0)
- ;;=3^Nausea w/ Vomiting,Unspec
- ;;^UTILITY(U,$J,358.3,28382,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,28382,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,28383,0)
- ;;=R54.^^112^1418^7
- ;;^UTILITY(U,$J,358.3,28383,1,0)
+ ;;^UTILITY(U,$J,358.3,26703,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
+ ;;^UTILITY(U,$J,358.3,26703,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,26703,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,26704,0)
+ ;;=Z91.410^^110^1283^26
+ ;;^UTILITY(U,$J,358.3,26704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28383,1,3,0)
- ;;=3^Age-Related Physical Debility
- ;;^UTILITY(U,$J,358.3,28383,1,4,0)
- ;;=4^R54.
- ;;^UTILITY(U,$J,358.3,28383,2)
- ;;=^5019521
- ;;^UTILITY(U,$J,358.3,28384,0)
- ;;=R55.^^112^1418^34
- ;;^UTILITY(U,$J,358.3,28384,1,0)
+ ;;^UTILITY(U,$J,358.3,26704,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,26704,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,26704,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,26705,0)
+ ;;=T74.21XA^^110^1283^15
+ ;;^UTILITY(U,$J,358.3,26705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28384,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,28384,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,28384,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,28385,0)
- ;;=R56.9^^112^1418^32
- ;;^UTILITY(U,$J,358.3,28385,1,0)
+ ;;^UTILITY(U,$J,358.3,26705,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26705,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,26705,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,26706,0)
+ ;;=T74.21XD^^110^1283^16
+ ;;^UTILITY(U,$J,358.3,26706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28385,1,3,0)
- ;;=3^Seizures
- ;;^UTILITY(U,$J,358.3,28385,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,28385,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,28386,0)
- ;;=I05.0^^112^1419^22
- ;;^UTILITY(U,$J,358.3,28386,1,0)
+ ;;^UTILITY(U,$J,358.3,26706,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26706,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,26706,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,26707,0)
+ ;;=T76.21XA^^110^1283^17
+ ;;^UTILITY(U,$J,358.3,26707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28386,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,28386,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,28386,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,28387,0)
- ;;=I05.8^^112^1419^23
- ;;^UTILITY(U,$J,358.3,28387,1,0)
+ ;;^UTILITY(U,$J,358.3,26707,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26707,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,26707,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,26708,0)
+ ;;=T76.21XD^^110^1283^18
+ ;;^UTILITY(U,$J,358.3,26708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28387,1,3,0)
- ;;=3^Rheumatic Mitral Valve Diseases,Other
- ;;^UTILITY(U,$J,358.3,28387,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,28387,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,28388,0)
- ;;=I10.^^112^1419^13
- ;;^UTILITY(U,$J,358.3,28388,1,0)
+ ;;^UTILITY(U,$J,358.3,26708,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26708,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,26708,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,26709,0)
+ ;;=Z69.81^^110^1283^23
+ ;;^UTILITY(U,$J,358.3,26709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28388,1,3,0)
- ;;=3^Hypertension
- ;;^UTILITY(U,$J,358.3,28388,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,28388,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,28389,0)
- ;;=I20.0^^112^1419^25
- ;;^UTILITY(U,$J,358.3,28389,1,0)
+ ;;^UTILITY(U,$J,358.3,26709,1,3,0)
+ ;;=3^MH Svc for Victim of Other Abuse
+ ;;^UTILITY(U,$J,358.3,26709,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,26709,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,26710,0)
+ ;;=Z69.82^^110^1283^21
+ ;;^UTILITY(U,$J,358.3,26710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28389,1,3,0)
- ;;=3^Unstable Angina w/o Athscl Hrt Disease
- ;;^UTILITY(U,$J,358.3,28389,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,28389,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,28390,0)
- ;;=I20.9^^112^1419^1
- ;;^UTILITY(U,$J,358.3,28390,1,0)
+ ;;^UTILITY(U,$J,358.3,26710,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Other Abuse
+ ;;^UTILITY(U,$J,358.3,26710,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,26710,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,26711,0)
+ ;;=T74.01XA^^110^1283^3
+ ;;^UTILITY(U,$J,358.3,26711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28390,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,28390,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,28390,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,28391,0)
- ;;=I25.10^^112^1419^2
- ;;^UTILITY(U,$J,358.3,28391,1,0)
+ ;;^UTILITY(U,$J,358.3,26711,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26711,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,26711,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,26712,0)
+ ;;=T74.01XD^^110^1283^4
+ ;;^UTILITY(U,$J,358.3,26712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28391,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,28391,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,28391,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,28392,0)
- ;;=I25.9^^112^1419^10
- ;;^UTILITY(U,$J,358.3,28392,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28392,1,3,0)
- ;;=3^Chronic Ischemic Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,28392,1,4,0)
- ;;=4^I25.9
- ;;^UTILITY(U,$J,358.3,28392,2)
- ;;=^5007144
- ;;^UTILITY(U,$J,358.3,28393,0)
- ;;=I35.0^^112^1419^17
- ;;^UTILITY(U,$J,358.3,28393,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26712,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26712,1,4,0)
+ ;;=4^T74.01XD

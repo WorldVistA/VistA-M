@@ -1,138 +1,118 @@
-IBDEI2OE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44903,1,0)
+ ;;^UTILITY(U,$J,358.3,42659,2)
+ ;;=^5043702
+ ;;^UTILITY(U,$J,358.3,42660,0)
+ ;;=S89.042S^^155^2072^102
+ ;;^UTILITY(U,$J,358.3,42660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44903,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,44903,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,44903,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,44904,0)
- ;;=M54.17^^200^2234^122
- ;;^UTILITY(U,$J,358.3,44904,1,0)
+ ;;^UTILITY(U,$J,358.3,42660,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx upper end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42660,1,4,0)
+ ;;=4^S89.042S
+ ;;^UTILITY(U,$J,358.3,42660,2)
+ ;;=^5043708
+ ;;^UTILITY(U,$J,358.3,42661,0)
+ ;;=M84.362S^^155^2072^104
+ ;;^UTILITY(U,$J,358.3,42661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44904,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,44904,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,44904,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,44905,0)
- ;;=M54.2^^200^2234^14
- ;;^UTILITY(U,$J,358.3,44905,1,0)
+ ;;^UTILITY(U,$J,358.3,42661,1,3,0)
+ ;;=3^Stress fracture, left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42661,1,4,0)
+ ;;=4^M84.362S
+ ;;^UTILITY(U,$J,358.3,42661,2)
+ ;;=^5013715
+ ;;^UTILITY(U,$J,358.3,42662,0)
+ ;;=M84.361S^^155^2072^106
+ ;;^UTILITY(U,$J,358.3,42662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44905,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,44905,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,44905,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,44906,0)
- ;;=M54.31^^200^2234^146
- ;;^UTILITY(U,$J,358.3,44906,1,0)
+ ;;^UTILITY(U,$J,358.3,42662,1,3,0)
+ ;;=3^Stress fracture, right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42662,1,4,0)
+ ;;=4^M84.361S
+ ;;^UTILITY(U,$J,358.3,42662,2)
+ ;;=^5013709
+ ;;^UTILITY(U,$J,358.3,42663,0)
+ ;;=S82.311S^^155^2072^110
+ ;;^UTILITY(U,$J,358.3,42663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44906,1,3,0)
- ;;=3^Sciatica,Right Side
- ;;^UTILITY(U,$J,358.3,44906,1,4,0)
- ;;=4^M54.31
- ;;^UTILITY(U,$J,358.3,44906,2)
- ;;=^5012306
- ;;^UTILITY(U,$J,358.3,44907,0)
- ;;=M54.32^^200^2234^145
- ;;^UTILITY(U,$J,358.3,44907,1,0)
+ ;;^UTILITY(U,$J,358.3,42663,1,3,0)
+ ;;=3^Torus fracture of lower end of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42663,1,4,0)
+ ;;=4^S82.311S
+ ;;^UTILITY(U,$J,358.3,42663,2)
+ ;;=^5041671
+ ;;^UTILITY(U,$J,358.3,42664,0)
+ ;;=S82.162S^^155^2072^112
+ ;;^UTILITY(U,$J,358.3,42664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44907,1,3,0)
- ;;=3^Sciatica,Left Side
- ;;^UTILITY(U,$J,358.3,44907,1,4,0)
- ;;=4^M54.32
- ;;^UTILITY(U,$J,358.3,44907,2)
- ;;=^5012307
- ;;^UTILITY(U,$J,358.3,44908,0)
- ;;=M54.5^^200^2234^57
- ;;^UTILITY(U,$J,358.3,44908,1,0)
+ ;;^UTILITY(U,$J,358.3,42664,1,3,0)
+ ;;=3^Torus fracture of upper end of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42664,1,4,0)
+ ;;=4^S82.162S
+ ;;^UTILITY(U,$J,358.3,42664,2)
+ ;;=^5041074
+ ;;^UTILITY(U,$J,358.3,42665,0)
+ ;;=S82.312S^^155^2072^108
+ ;;^UTILITY(U,$J,358.3,42665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44908,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,44908,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,44908,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,44909,0)
- ;;=M60.9^^200^2234^62
- ;;^UTILITY(U,$J,358.3,44909,1,0)
+ ;;^UTILITY(U,$J,358.3,42665,1,3,0)
+ ;;=3^Torus fracture of lower end of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42665,1,4,0)
+ ;;=4^S82.312S
+ ;;^UTILITY(U,$J,358.3,42665,2)
+ ;;=^5136891
+ ;;^UTILITY(U,$J,358.3,42666,0)
+ ;;=S82.161S^^155^2072^114
+ ;;^UTILITY(U,$J,358.3,42666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44909,1,3,0)
- ;;=3^Myositis,Unspec
- ;;^UTILITY(U,$J,358.3,44909,1,4,0)
- ;;=4^M60.9
- ;;^UTILITY(U,$J,358.3,44909,2)
- ;;=^5012409
- ;;^UTILITY(U,$J,358.3,44910,0)
- ;;=M62.40^^200^2234^35
- ;;^UTILITY(U,$J,358.3,44910,1,0)
+ ;;^UTILITY(U,$J,358.3,42666,1,3,0)
+ ;;=3^Torus fracture of upper end of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,42666,1,4,0)
+ ;;=4^S82.161S
+ ;;^UTILITY(U,$J,358.3,42666,2)
+ ;;=^5041068
+ ;;^UTILITY(U,$J,358.3,42667,0)
+ ;;=S82.452S^^155^2072^3
+ ;;^UTILITY(U,$J,358.3,42667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44910,1,3,0)
- ;;=3^Contracture of Muscle,Unspec
- ;;^UTILITY(U,$J,358.3,44910,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,44910,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,44911,0)
- ;;=M62.831^^200^2234^60
- ;;^UTILITY(U,$J,358.3,44911,1,0)
+ ;;^UTILITY(U,$J,358.3,42667,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of left fibula, sequela   
+ ;;^UTILITY(U,$J,358.3,42667,1,4,0)
+ ;;=4^S82.452S
+ ;;^UTILITY(U,$J,358.3,42667,2)
+ ;;=^5042033
+ ;;^UTILITY(U,$J,358.3,42668,0)
+ ;;=S82.451S^^155^2072^5
+ ;;^UTILITY(U,$J,358.3,42668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44911,1,3,0)
- ;;=3^Muscle Spasm of Calf
- ;;^UTILITY(U,$J,358.3,44911,1,4,0)
- ;;=4^M62.831
- ;;^UTILITY(U,$J,358.3,44911,2)
- ;;=^5012681
- ;;^UTILITY(U,$J,358.3,44912,0)
- ;;=M62.838^^200^2234^58
- ;;^UTILITY(U,$J,358.3,44912,1,0)
+ ;;^UTILITY(U,$J,358.3,42668,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,42668,1,4,0)
+ ;;=4^S82.451S
+ ;;^UTILITY(U,$J,358.3,42668,2)
+ ;;=^5042017
+ ;;^UTILITY(U,$J,358.3,42669,0)
+ ;;=S82.62XS^^155^2072^9
+ ;;^UTILITY(U,$J,358.3,42669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44912,1,3,0)
- ;;=3^Muscle Spasm NEC
- ;;^UTILITY(U,$J,358.3,44912,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,44912,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,44913,0)
- ;;=M70.21^^200^2234^64
- ;;^UTILITY(U,$J,358.3,44913,1,0)
+ ;;^UTILITY(U,$J,358.3,42669,1,3,0)
+ ;;=3^Disp fx of lateral malleolus of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42669,1,4,0)
+ ;;=4^S82.62XS
+ ;;^UTILITY(U,$J,358.3,42669,2)
+ ;;=^5042342
+ ;;^UTILITY(U,$J,358.3,42670,0)
+ ;;=S82.61XS^^155^2072^10
+ ;;^UTILITY(U,$J,358.3,42670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44913,1,3,0)
- ;;=3^Olecranon Bursitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,44913,1,4,0)
- ;;=4^M70.21
- ;;^UTILITY(U,$J,358.3,44913,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,44914,0)
- ;;=M70.22^^200^2234^63
- ;;^UTILITY(U,$J,358.3,44914,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44914,1,3,0)
- ;;=3^Olecranon Bursitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,44914,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,44914,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,44915,0)
- ;;=M71.161^^200^2234^47
- ;;^UTILITY(U,$J,358.3,44915,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44915,1,3,0)
- ;;=3^Infective Bursitis,Right Knee
- ;;^UTILITY(U,$J,358.3,44915,1,4,0)
- ;;=4^M71.161
- ;;^UTILITY(U,$J,358.3,44915,2)
- ;;=^5013139
- ;;^UTILITY(U,$J,358.3,44916,0)
- ;;=M71.162^^200^2234^46
- ;;^UTILITY(U,$J,358.3,44916,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44916,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,42670,1,3,0)
+ ;;=3^Disp fx of lateral malleolus of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42670,1,4,0)
+ ;;=4^S82.61XS
+ ;;^UTILITY(U,$J,358.3,42670,2)
+ ;;=^5042326
+ ;;^UTILITY(U,$J,358.3,42671,0)
+ ;;=S82.432S^^155^2072^17

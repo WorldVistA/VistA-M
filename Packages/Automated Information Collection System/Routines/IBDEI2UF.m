@@ -1,132 +1,126 @@
-IBDEI2UF ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47712,0)
- ;;=C95.91^^209^2346^240
- ;;^UTILITY(U,$J,358.3,47712,1,0)
+ ;;^UTILITY(U,$J,358.3,45353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47712,1,3,0)
- ;;=3^Leukemia,Unspec,In Remission
- ;;^UTILITY(U,$J,358.3,47712,1,4,0)
- ;;=4^C95.91
- ;;^UTILITY(U,$J,358.3,47712,2)
- ;;=^5001857
- ;;^UTILITY(U,$J,358.3,47713,0)
- ;;=C95.92^^209^2346^239
- ;;^UTILITY(U,$J,358.3,47713,1,0)
+ ;;^UTILITY(U,$J,358.3,45353,1,3,0)
+ ;;=3^Cirrhosis of liver, unspec
+ ;;^UTILITY(U,$J,358.3,45353,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,45353,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,45354,0)
+ ;;=K75.9^^172^2265^26
+ ;;^UTILITY(U,$J,358.3,45354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47713,1,3,0)
- ;;=3^Leukemia,Unspec,In Relapse
- ;;^UTILITY(U,$J,358.3,47713,1,4,0)
- ;;=4^C95.92
- ;;^UTILITY(U,$J,358.3,47713,2)
- ;;=^5001858
- ;;^UTILITY(U,$J,358.3,47714,0)
- ;;=C96.0^^209^2346^347
- ;;^UTILITY(U,$J,358.3,47714,1,0)
+ ;;^UTILITY(U,$J,358.3,45354,1,3,0)
+ ;;=3^Inflammatory liver disease, unspecified
+ ;;^UTILITY(U,$J,358.3,45354,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,45354,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,45355,0)
+ ;;=K85.90^^172^2265^29
+ ;;^UTILITY(U,$J,358.3,45355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47714,1,3,0)
- ;;=3^Multifocal/Multisystemic Langerhans-Cell Histiocytosis
- ;;^UTILITY(U,$J,358.3,47714,1,4,0)
- ;;=4^C96.0
- ;;^UTILITY(U,$J,358.3,47714,2)
- ;;=^5001859
- ;;^UTILITY(U,$J,358.3,47715,0)
- ;;=C96.2^^209^2346^283
- ;;^UTILITY(U,$J,358.3,47715,1,0)
+ ;;^UTILITY(U,$J,358.3,45355,1,3,0)
+ ;;=3^Pancreatitis,Acute w/o Necrosis/Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,45355,1,4,0)
+ ;;=4^K85.90
+ ;;^UTILITY(U,$J,358.3,45355,2)
+ ;;=^5138761
+ ;;^UTILITY(U,$J,358.3,45356,0)
+ ;;=K85.91^^172^2265^28
+ ;;^UTILITY(U,$J,358.3,45356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47715,1,3,0)
- ;;=3^Malig Mast Cell Tumor
- ;;^UTILITY(U,$J,358.3,47715,1,4,0)
- ;;=4^C96.2
- ;;^UTILITY(U,$J,358.3,47715,2)
- ;;=^5001860
- ;;^UTILITY(U,$J,358.3,47716,0)
- ;;=C96.4^^209^2346^452
- ;;^UTILITY(U,$J,358.3,47716,1,0)
+ ;;^UTILITY(U,$J,358.3,45356,1,3,0)
+ ;;=3^Pancreatitis,Acute w/ Uninfected Necrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,45356,1,4,0)
+ ;;=4^K85.91
+ ;;^UTILITY(U,$J,358.3,45356,2)
+ ;;=^5138762
+ ;;^UTILITY(U,$J,358.3,45357,0)
+ ;;=K85.92^^172^2265^27
+ ;;^UTILITY(U,$J,358.3,45357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47716,1,3,0)
- ;;=3^Sarcoma of Dendritic Cells
- ;;^UTILITY(U,$J,358.3,47716,1,4,0)
- ;;=4^C96.4
- ;;^UTILITY(U,$J,358.3,47716,2)
- ;;=^5001861
- ;;^UTILITY(U,$J,358.3,47717,0)
- ;;=C96.5^^209^2346^348
- ;;^UTILITY(U,$J,358.3,47717,1,0)
+ ;;^UTILITY(U,$J,358.3,45357,1,3,0)
+ ;;=3^Pancreatitis,Acute w/ Infected Necrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,45357,1,4,0)
+ ;;=4^K85.92
+ ;;^UTILITY(U,$J,358.3,45357,2)
+ ;;=^5138763
+ ;;^UTILITY(U,$J,358.3,45358,0)
+ ;;=K21.0^^172^2265^13
+ ;;^UTILITY(U,$J,358.3,45358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47717,1,3,0)
- ;;=3^Multifocal/Unisystemic Langerhans-Cell Histiocytosis
- ;;^UTILITY(U,$J,358.3,47717,1,4,0)
- ;;=4^C96.5
- ;;^UTILITY(U,$J,358.3,47717,2)
- ;;=^5001862
- ;;^UTILITY(U,$J,358.3,47718,0)
- ;;=C96.6^^209^2346^477
- ;;^UTILITY(U,$J,358.3,47718,1,0)
+ ;;^UTILITY(U,$J,358.3,45358,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,45358,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,45358,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,45359,0)
+ ;;=K20.0^^172^2265^7
+ ;;^UTILITY(U,$J,358.3,45359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47718,1,3,0)
- ;;=3^Uniforcal Langerhans-Cell Histiocytosis
- ;;^UTILITY(U,$J,358.3,47718,1,4,0)
- ;;=4^C96.6
- ;;^UTILITY(U,$J,358.3,47718,2)
- ;;=^5001863
- ;;^UTILITY(U,$J,358.3,47719,0)
- ;;=C96.A^^209^2346^214
- ;;^UTILITY(U,$J,358.3,47719,1,0)
+ ;;^UTILITY(U,$J,358.3,45359,1,3,0)
+ ;;=3^Eosinophilic Esophagitis
+ ;;^UTILITY(U,$J,358.3,45359,1,4,0)
+ ;;=4^K20.0
+ ;;^UTILITY(U,$J,358.3,45359,2)
+ ;;=^336605
+ ;;^UTILITY(U,$J,358.3,45360,0)
+ ;;=K52.81^^172^2265^8
+ ;;^UTILITY(U,$J,358.3,45360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47719,1,3,0)
- ;;=3^Histiocytic Sarcoma
- ;;^UTILITY(U,$J,358.3,47719,1,4,0)
- ;;=4^C96.A
- ;;^UTILITY(U,$J,358.3,47719,2)
- ;;=^5001865
- ;;^UTILITY(U,$J,358.3,47720,0)
- ;;=C96.Z^^209^2346^284
- ;;^UTILITY(U,$J,358.3,47720,1,0)
+ ;;^UTILITY(U,$J,358.3,45360,1,3,0)
+ ;;=3^Eosinophilic Gastritis
+ ;;^UTILITY(U,$J,358.3,45360,1,4,0)
+ ;;=4^K52.81
+ ;;^UTILITY(U,$J,358.3,45360,2)
+ ;;=^5008702
+ ;;^UTILITY(U,$J,358.3,45361,0)
+ ;;=K52.82^^172^2265^6
+ ;;^UTILITY(U,$J,358.3,45361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47720,1,3,0)
- ;;=3^Malig Neop of Lymphoid/Hematopoietic/Related Tissue NEC
- ;;^UTILITY(U,$J,358.3,47720,1,4,0)
- ;;=4^C96.Z
- ;;^UTILITY(U,$J,358.3,47720,2)
- ;;=^5001866
- ;;^UTILITY(U,$J,358.3,47721,0)
- ;;=C96.9^^209^2346^285
- ;;^UTILITY(U,$J,358.3,47721,1,0)
+ ;;^UTILITY(U,$J,358.3,45361,1,3,0)
+ ;;=3^Eosinophilic Colitis
+ ;;^UTILITY(U,$J,358.3,45361,1,4,0)
+ ;;=4^K52.82
+ ;;^UTILITY(U,$J,358.3,45361,2)
+ ;;=^336608
+ ;;^UTILITY(U,$J,358.3,45362,0)
+ ;;=I69.959^^172^2266^13
+ ;;^UTILITY(U,$J,358.3,45362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47721,1,3,0)
- ;;=3^Malig Neop of Lymphoid/Hematopoietic/Related Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,47721,1,4,0)
- ;;=4^C96.9
- ;;^UTILITY(U,$J,358.3,47721,2)
- ;;=^5001864
- ;;^UTILITY(U,$J,358.3,47722,0)
- ;;=C43.51^^209^2347^1
- ;;^UTILITY(U,$J,358.3,47722,1,0)
+ ;;^UTILITY(U,$J,358.3,45362,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Unspec Cerebrovascular Disease
+ ;;^UTILITY(U,$J,358.3,45362,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,45362,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,45363,0)
+ ;;=I10.^^172^2266^12
+ ;;^UTILITY(U,$J,358.3,45363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47722,1,3,0)
- ;;=3^Malig Melanoma of Anal Skin
- ;;^UTILITY(U,$J,358.3,47722,1,4,0)
- ;;=4^C43.51
- ;;^UTILITY(U,$J,358.3,47722,2)
- ;;=^5001005
- ;;^UTILITY(U,$J,358.3,47723,0)
- ;;=C43.52^^209^2347^2
- ;;^UTILITY(U,$J,358.3,47723,1,0)
+ ;;^UTILITY(U,$J,358.3,45363,1,3,0)
+ ;;=3^HTN,Essential
+ ;;^UTILITY(U,$J,358.3,45363,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,45363,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,45364,0)
+ ;;=I20.9^^172^2266^1
+ ;;^UTILITY(U,$J,358.3,45364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47723,1,3,0)
- ;;=3^Malig Melanoma of Breast Skin
- ;;^UTILITY(U,$J,358.3,47723,1,4,0)
- ;;=4^C43.52
- ;;^UTILITY(U,$J,358.3,47723,2)
- ;;=^5001006
- ;;^UTILITY(U,$J,358.3,47724,0)
- ;;=C43.30^^209^2347^4
- ;;^UTILITY(U,$J,358.3,47724,1,0)
+ ;;^UTILITY(U,$J,358.3,45364,1,3,0)
+ ;;=3^Angina pectoris, unspecified
+ ;;^UTILITY(U,$J,358.3,45364,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,45364,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,45365,0)
+ ;;=I21.3^^172^2266^16
+ ;;^UTILITY(U,$J,358.3,45365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47724,1,3,0)
- ;;=3^Malig Melanoma of Face,Unspec
- ;;^UTILITY(U,$J,358.3,47724,1,4,0)
- ;;=4^C43.30

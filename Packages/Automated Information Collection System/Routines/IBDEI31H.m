@@ -1,132 +1,128 @@
-IBDEI31H ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50952,2)
- ;;=^5013012
- ;;^UTILITY(U,$J,358.3,50953,0)
- ;;=M67.871^^222^2466^113
- ;;^UTILITY(U,$J,358.3,50953,1,0)
+ ;;^UTILITY(U,$J,358.3,48529,1,3,0)
+ ;;=3^Muscle Wasting/Atrophy,Unspec Site NEC
+ ;;^UTILITY(U,$J,358.3,48529,1,4,0)
+ ;;=4^M62.50
+ ;;^UTILITY(U,$J,358.3,48529,2)
+ ;;=^5012655
+ ;;^UTILITY(U,$J,358.3,48530,0)
+ ;;=M62.81^^185^2423^89
+ ;;^UTILITY(U,$J,358.3,48530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50953,1,3,0)
- ;;=3^Disorders of synovium, rt ankle & foot, oth, spec
- ;;^UTILITY(U,$J,358.3,50953,1,4,0)
- ;;=4^M67.871
- ;;^UTILITY(U,$J,358.3,50953,2)
- ;;=^5013014
- ;;^UTILITY(U,$J,358.3,50954,0)
- ;;=M67.872^^222^2466^106
- ;;^UTILITY(U,$J,358.3,50954,1,0)
+ ;;^UTILITY(U,$J,358.3,48530,1,3,0)
+ ;;=3^Muscle Weakness,Generalized
+ ;;^UTILITY(U,$J,358.3,48530,1,4,0)
+ ;;=4^M62.81
+ ;;^UTILITY(U,$J,358.3,48530,2)
+ ;;=^332922
+ ;;^UTILITY(U,$J,358.3,48531,0)
+ ;;=M61.9^^185^2423^90
+ ;;^UTILITY(U,$J,358.3,48531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50954,1,3,0)
- ;;=3^Disorders of synovium, lft ankle & foot, oth, spec
- ;;^UTILITY(U,$J,358.3,50954,1,4,0)
- ;;=4^M67.872
- ;;^UTILITY(U,$J,358.3,50954,2)
- ;;=^5013015
- ;;^UTILITY(U,$J,358.3,50955,0)
- ;;=M67.873^^222^2466^127
- ;;^UTILITY(U,$J,358.3,50955,1,0)
+ ;;^UTILITY(U,$J,358.3,48531,1,3,0)
+ ;;=3^Muscle,Calcification/Ossification,Unspec
+ ;;^UTILITY(U,$J,358.3,48531,1,4,0)
+ ;;=4^M61.9
+ ;;^UTILITY(U,$J,358.3,48531,2)
+ ;;=^5012561
+ ;;^UTILITY(U,$J,358.3,48532,0)
+ ;;=M62.40^^185^2423^91
+ ;;^UTILITY(U,$J,358.3,48532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50955,1,3,0)
- ;;=3^Disorders of tendon, rt ankle & foot, oth, spec
- ;;^UTILITY(U,$J,358.3,50955,1,4,0)
- ;;=4^M67.873
- ;;^UTILITY(U,$J,358.3,50955,2)
- ;;=^5013016
- ;;^UTILITY(U,$J,358.3,50956,0)
- ;;=M67.874^^222^2466^120
- ;;^UTILITY(U,$J,358.3,50956,1,0)
+ ;;^UTILITY(U,$J,358.3,48532,1,3,0)
+ ;;=3^Muscle,Contracture,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48532,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,48532,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,48533,0)
+ ;;=M62.9^^185^2423^84
+ ;;^UTILITY(U,$J,358.3,48533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50956,1,3,0)
- ;;=3^Disorders of tendon, lft ankle & foot, oth, spec
- ;;^UTILITY(U,$J,358.3,50956,1,4,0)
- ;;=4^M67.874
- ;;^UTILITY(U,$J,358.3,50956,2)
- ;;=^5013017
- ;;^UTILITY(U,$J,358.3,50957,0)
- ;;=M67.90^^222^2466^105
- ;;^UTILITY(U,$J,358.3,50957,1,0)
+ ;;^UTILITY(U,$J,358.3,48533,1,3,0)
+ ;;=3^Muscle Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48533,1,4,0)
+ ;;=4^M62.9
+ ;;^UTILITY(U,$J,358.3,48533,2)
+ ;;=^5012684
+ ;;^UTILITY(U,$J,358.3,48534,0)
+ ;;=M62.20^^185^2423^92
+ ;;^UTILITY(U,$J,358.3,48534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50957,1,3,0)
- ;;=3^Disorders of synovium & tendon, unsp, unspec site
- ;;^UTILITY(U,$J,358.3,50957,1,4,0)
- ;;=4^M67.90
- ;;^UTILITY(U,$J,358.3,50957,2)
- ;;=^5013020
- ;;^UTILITY(U,$J,358.3,50958,0)
- ;;=M71.9^^222^2466^88
- ;;^UTILITY(U,$J,358.3,50958,1,0)
+ ;;^UTILITY(U,$J,358.3,48534,1,3,0)
+ ;;=3^Muscle,Nontraumatic Ischemic Infarction,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48534,1,4,0)
+ ;;=4^M62.20
+ ;;^UTILITY(U,$J,358.3,48534,2)
+ ;;=^5012607
+ ;;^UTILITY(U,$J,358.3,48535,0)
+ ;;=G72.1^^185^2423^94
+ ;;^UTILITY(U,$J,358.3,48535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50958,1,3,0)
- ;;=3^Bursopathy, unspec
- ;;^UTILITY(U,$J,358.3,50958,1,4,0)
- ;;=4^M71.9
- ;;^UTILITY(U,$J,358.3,50958,2)
- ;;=^5013232
- ;;^UTILITY(U,$J,358.3,50959,0)
- ;;=M71.00^^222^2466^19
- ;;^UTILITY(U,$J,358.3,50959,1,0)
+ ;;^UTILITY(U,$J,358.3,48535,1,3,0)
+ ;;=3^Myopathy,Alcoholic
+ ;;^UTILITY(U,$J,358.3,48535,1,4,0)
+ ;;=4^G72.1
+ ;;^UTILITY(U,$J,358.3,48535,2)
+ ;;=^5004096
+ ;;^UTILITY(U,$J,358.3,48536,0)
+ ;;=G72.81^^185^2423^95
+ ;;^UTILITY(U,$J,358.3,48536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50959,1,3,0)
- ;;=3^Abscess of bursa, unspec site
- ;;^UTILITY(U,$J,358.3,50959,1,4,0)
- ;;=4^M71.00
- ;;^UTILITY(U,$J,358.3,50959,2)
- ;;=^5013099
- ;;^UTILITY(U,$J,358.3,50960,0)
- ;;=M71.011^^222^2466^17
- ;;^UTILITY(U,$J,358.3,50960,1,0)
+ ;;^UTILITY(U,$J,358.3,48536,1,3,0)
+ ;;=3^Myopathy,Critical Illness
+ ;;^UTILITY(U,$J,358.3,48536,1,4,0)
+ ;;=4^G72.81
+ ;;^UTILITY(U,$J,358.3,48536,2)
+ ;;=^328484
+ ;;^UTILITY(U,$J,358.3,48537,0)
+ ;;=G72.0^^185^2423^96
+ ;;^UTILITY(U,$J,358.3,48537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50960,1,3,0)
- ;;=3^Abscess of bursa, rt shoulder
- ;;^UTILITY(U,$J,358.3,50960,1,4,0)
- ;;=4^M71.011
- ;;^UTILITY(U,$J,358.3,50960,2)
- ;;=^5013100
- ;;^UTILITY(U,$J,358.3,50961,0)
- ;;=M71.012^^222^2466^8
- ;;^UTILITY(U,$J,358.3,50961,1,0)
+ ;;^UTILITY(U,$J,358.3,48537,1,3,0)
+ ;;=3^Myopathy,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,48537,1,4,0)
+ ;;=4^G72.0
+ ;;^UTILITY(U,$J,358.3,48537,2)
+ ;;=^5004095
+ ;;^UTILITY(U,$J,358.3,48538,0)
+ ;;=G72.41^^185^2423^97
+ ;;^UTILITY(U,$J,358.3,48538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50961,1,3,0)
- ;;=3^Abscess of bursa, lft shoulder
- ;;^UTILITY(U,$J,358.3,50961,1,4,0)
- ;;=4^M71.012
- ;;^UTILITY(U,$J,358.3,50961,2)
- ;;=^5013101
- ;;^UTILITY(U,$J,358.3,50962,0)
- ;;=M71.021^^222^2466^13
- ;;^UTILITY(U,$J,358.3,50962,1,0)
+ ;;^UTILITY(U,$J,358.3,48538,1,3,0)
+ ;;=3^Myopathy,Inclusion Body Myositis
+ ;;^UTILITY(U,$J,358.3,48538,1,4,0)
+ ;;=4^G72.41
+ ;;^UTILITY(U,$J,358.3,48538,2)
+ ;;=^5004098
+ ;;^UTILITY(U,$J,358.3,48539,0)
+ ;;=G72.49^^185^2423^98
+ ;;^UTILITY(U,$J,358.3,48539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50962,1,3,0)
- ;;=3^Abscess of bursa, rt elbow
- ;;^UTILITY(U,$J,358.3,50962,1,4,0)
- ;;=4^M71.021
- ;;^UTILITY(U,$J,358.3,50962,2)
- ;;=^5013103
- ;;^UTILITY(U,$J,358.3,50963,0)
- ;;=M71.022^^222^2466^4
- ;;^UTILITY(U,$J,358.3,50963,1,0)
+ ;;^UTILITY(U,$J,358.3,48539,1,3,0)
+ ;;=3^Myopathy,Inflammatory/Immune NEC
+ ;;^UTILITY(U,$J,358.3,48539,1,4,0)
+ ;;=4^G72.49
+ ;;^UTILITY(U,$J,358.3,48539,2)
+ ;;=^5004099
+ ;;^UTILITY(U,$J,358.3,48540,0)
+ ;;=G72.2^^185^2423^99
+ ;;^UTILITY(U,$J,358.3,48540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50963,1,3,0)
- ;;=3^Abscess of bursa, lft elbow
- ;;^UTILITY(U,$J,358.3,50963,1,4,0)
- ;;=4^M71.022
- ;;^UTILITY(U,$J,358.3,50963,2)
- ;;=^5013104
- ;;^UTILITY(U,$J,358.3,50964,0)
- ;;=M71.031^^222^2466^18
- ;;^UTILITY(U,$J,358.3,50964,1,0)
+ ;;^UTILITY(U,$J,358.3,48540,1,3,0)
+ ;;=3^Myopathy,Other Toxic Agents
+ ;;^UTILITY(U,$J,358.3,48540,1,4,0)
+ ;;=4^G72.2
+ ;;^UTILITY(U,$J,358.3,48540,2)
+ ;;=^5004097
+ ;;^UTILITY(U,$J,358.3,48541,0)
+ ;;=G72.3^^185^2423^100
+ ;;^UTILITY(U,$J,358.3,48541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50964,1,3,0)
- ;;=3^Abscess of bursa, rt wrist
- ;;^UTILITY(U,$J,358.3,50964,1,4,0)
- ;;=4^M71.031
- ;;^UTILITY(U,$J,358.3,50964,2)
- ;;=^5013106
- ;;^UTILITY(U,$J,358.3,50965,0)
- ;;=M71.032^^222^2466^9
- ;;^UTILITY(U,$J,358.3,50965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50965,1,3,0)
- ;;=3^Abscess of bursa, lft wrist
+ ;;^UTILITY(U,$J,358.3,48541,1,3,0)
+ ;;=3^Myopathy,Periodic Paralysis
+ ;;^UTILITY(U,$J,358.3,48541,1,4,0)
+ ;;=4^G72.3

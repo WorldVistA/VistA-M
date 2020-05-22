@@ -1,124 +1,118 @@
-IBDEI2E1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2E1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40519,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
- ;;^UTILITY(U,$J,358.3,40519,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,40519,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,40520,0)
- ;;=I70.213^^159^1991^4
- ;;^UTILITY(U,$J,358.3,40520,1,0)
+ ;;^UTILITY(U,$J,358.3,38105,1,4,0)
+ ;;=4^L97.514
+ ;;^UTILITY(U,$J,358.3,38105,2)
+ ;;=^5009548
+ ;;^UTILITY(U,$J,358.3,38106,0)
+ ;;=L97.513^^146^1929^47
+ ;;^UTILITY(U,$J,358.3,38106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40520,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,40520,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,40520,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,40521,0)
- ;;=I70.212^^159^1991^5
- ;;^UTILITY(U,$J,358.3,40521,1,0)
+ ;;^UTILITY(U,$J,358.3,38106,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ft w/ necr muscl, oth prt
+ ;;^UTILITY(U,$J,358.3,38106,1,4,0)
+ ;;=4^L97.513
+ ;;^UTILITY(U,$J,358.3,38106,2)
+ ;;=^5009547
+ ;;^UTILITY(U,$J,358.3,38107,0)
+ ;;=L97.511^^146^1929^43
+ ;;^UTILITY(U,$J,358.3,38107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40521,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,40521,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,40521,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,40522,0)
- ;;=I70.211^^159^1991^6
- ;;^UTILITY(U,$J,358.3,40522,1,0)
+ ;;^UTILITY(U,$J,358.3,38107,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ft lmt to brkdwn skin, oth prt
+ ;;^UTILITY(U,$J,358.3,38107,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,38107,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,38108,0)
+ ;;=L97.512^^146^1929^45
+ ;;^UTILITY(U,$J,358.3,38108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40522,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
- ;;^UTILITY(U,$J,358.3,40522,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,40522,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,40523,0)
- ;;=I70.25^^159^1991^2
- ;;^UTILITY(U,$J,358.3,40523,1,0)
+ ;;^UTILITY(U,$J,358.3,38108,1,3,0)
+ ;;=3^Non-pressure chr ulcer rt ft w/ fat layer expos, oth prt
+ ;;^UTILITY(U,$J,358.3,38108,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,38108,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,38109,0)
+ ;;=L97.524^^146^1929^20
+ ;;^UTILITY(U,$J,358.3,38109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40523,1,3,0)
- ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
- ;;^UTILITY(U,$J,358.3,40523,1,4,0)
- ;;=4^I70.25
- ;;^UTILITY(U,$J,358.3,40523,2)
- ;;=^5007602
- ;;^UTILITY(U,$J,358.3,40524,0)
- ;;=I70.249^^159^1991^7
- ;;^UTILITY(U,$J,358.3,40524,1,0)
+ ;;^UTILITY(U,$J,358.3,38109,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ft w/ necr of bone, oth prt
+ ;;^UTILITY(U,$J,358.3,38109,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,38109,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,38110,0)
+ ;;=L97.523^^146^1929^19
+ ;;^UTILITY(U,$J,358.3,38110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40524,1,3,0)
- ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
- ;;^UTILITY(U,$J,358.3,40524,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,40524,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,40525,0)
- ;;=I70.239^^159^1991^8
- ;;^UTILITY(U,$J,358.3,40525,1,0)
+ ;;^UTILITY(U,$J,358.3,38110,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ft w/ necr muscle, oth prt
+ ;;^UTILITY(U,$J,358.3,38110,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,38110,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,38111,0)
+ ;;=L97.522^^146^1929^17
+ ;;^UTILITY(U,$J,358.3,38111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40525,1,3,0)
- ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,40525,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,40525,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,40526,0)
- ;;=I70.269^^159^1991^9
- ;;^UTILITY(U,$J,358.3,40526,1,0)
+ ;;^UTILITY(U,$J,358.3,38111,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ft w/ fat layer exp, oth prt
+ ;;^UTILITY(U,$J,358.3,38111,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,38111,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,38112,0)
+ ;;=L98.499^^146^1929^57
+ ;;^UTILITY(U,$J,358.3,38112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40526,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
- ;;^UTILITY(U,$J,358.3,40526,1,4,0)
- ;;=4^I70.269
- ;;^UTILITY(U,$J,358.3,40526,2)
- ;;=^5007607
- ;;^UTILITY(U,$J,358.3,40527,0)
- ;;=I70.263^^159^1991^10
- ;;^UTILITY(U,$J,358.3,40527,1,0)
+ ;;^UTILITY(U,$J,358.3,38112,1,3,0)
+ ;;=3^Non-pressure chr ulcer skin, sites w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,38112,1,4,0)
+ ;;=4^L98.499
+ ;;^UTILITY(U,$J,358.3,38112,2)
+ ;;=^5009591
+ ;;^UTILITY(U,$J,358.3,38113,0)
+ ;;=R26.81^^146^1929^58
+ ;;^UTILITY(U,$J,358.3,38113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40527,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
- ;;^UTILITY(U,$J,358.3,40527,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,40527,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,40528,0)
- ;;=I70.262^^159^1991^11
- ;;^UTILITY(U,$J,358.3,40528,1,0)
+ ;;^UTILITY(U,$J,358.3,38113,1,3,0)
+ ;;=3^Unsteadiness on Feet
+ ;;^UTILITY(U,$J,358.3,38113,1,4,0)
+ ;;=4^R26.81
+ ;;^UTILITY(U,$J,358.3,38113,2)
+ ;;=^5019307
+ ;;^UTILITY(U,$J,358.3,38114,0)
+ ;;=L97.325^^146^1929^6
+ ;;^UTILITY(U,$J,358.3,38114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40528,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
- ;;^UTILITY(U,$J,358.3,40528,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,40528,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,40529,0)
- ;;=I70.261^^159^1991^12
- ;;^UTILITY(U,$J,358.3,40529,1,0)
+ ;;^UTILITY(U,$J,358.3,38114,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ankle w/ msl invlv w/o necrosis
+ ;;^UTILITY(U,$J,358.3,38114,1,4,0)
+ ;;=4^L97.325
+ ;;^UTILITY(U,$J,358.3,38114,2)
+ ;;=^5151454
+ ;;^UTILITY(U,$J,358.3,38115,0)
+ ;;=L97.326^^146^1929^5
+ ;;^UTILITY(U,$J,358.3,38115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40529,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
- ;;^UTILITY(U,$J,358.3,40529,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,40529,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,40530,0)
- ;;=I71.2^^159^1991^20
- ;;^UTILITY(U,$J,358.3,40530,1,0)
+ ;;^UTILITY(U,$J,358.3,38115,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ankle w/ bone invlv w/o necrosis
+ ;;^UTILITY(U,$J,358.3,38115,1,4,0)
+ ;;=4^L97.326
+ ;;^UTILITY(U,$J,358.3,38115,2)
+ ;;=^5151455
+ ;;^UTILITY(U,$J,358.3,38116,0)
+ ;;=L97.328^^146^1929^7
+ ;;^UTILITY(U,$J,358.3,38116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40530,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,40530,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,40530,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,40531,0)
- ;;=I71.4^^159^1991^1
- ;;^UTILITY(U,$J,358.3,40531,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38116,1,3,0)
+ ;;=3^Non-pressure chr ulcer lft ankle w/ other specified severity
+ ;;^UTILITY(U,$J,358.3,38116,1,4,0)
+ ;;=4^L97.328
+ ;;^UTILITY(U,$J,358.3,38116,2)
+ ;;=^5151456

@@ -1,136 +1,130 @@
-IBDEI1IK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1IK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25677,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Reading
- ;;^UTILITY(U,$J,358.3,25677,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,25677,2)
- ;;=^5003679
- ;;^UTILITY(U,$J,358.3,25678,0)
- ;;=F81.81^^95^1183^9
- ;;^UTILITY(U,$J,358.3,25678,1,0)
+ ;;^UTILITY(U,$J,358.3,24210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25678,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Writing
- ;;^UTILITY(U,$J,358.3,25678,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,25678,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,25679,0)
- ;;=F88.^^95^1183^10
- ;;^UTILITY(U,$J,358.3,25679,1,0)
+ ;;^UTILITY(U,$J,358.3,24210,1,3,0)
+ ;;=3^Rosacea NEC
+ ;;^UTILITY(U,$J,358.3,24210,1,4,0)
+ ;;=4^L71.8
+ ;;^UTILITY(U,$J,358.3,24210,2)
+ ;;=^5009275
+ ;;^UTILITY(U,$J,358.3,24211,0)
+ ;;=L71.9^^107^1201^301
+ ;;^UTILITY(U,$J,358.3,24211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25679,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25679,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,25679,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,25680,0)
- ;;=F89.^^95^1183^11
- ;;^UTILITY(U,$J,358.3,25680,1,0)
+ ;;^UTILITY(U,$J,358.3,24211,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,24211,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,24211,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,24212,0)
+ ;;=L72.0^^107^1201^145
+ ;;^UTILITY(U,$J,358.3,24212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25680,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25680,1,4,0)
- ;;=4^F89.
- ;;^UTILITY(U,$J,358.3,25680,2)
- ;;=^5003691
- ;;^UTILITY(U,$J,358.3,25681,0)
- ;;=F95.1^^95^1183^12
- ;;^UTILITY(U,$J,358.3,25681,1,0)
+ ;;^UTILITY(U,$J,358.3,24212,1,3,0)
+ ;;=3^Epidermal Cyst
+ ;;^UTILITY(U,$J,358.3,24212,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,24212,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,24213,0)
+ ;;=L72.12^^107^1201^325
+ ;;^UTILITY(U,$J,358.3,24213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25681,1,3,0)
- ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
- ;;^UTILITY(U,$J,358.3,25681,1,4,0)
- ;;=4^F95.1
- ;;^UTILITY(U,$J,358.3,25681,2)
- ;;=^331941
- ;;^UTILITY(U,$J,358.3,25682,0)
- ;;=F95.0^^95^1183^13
- ;;^UTILITY(U,$J,358.3,25682,1,0)
+ ;;^UTILITY(U,$J,358.3,24213,1,3,0)
+ ;;=3^Trichodermal Cyst
+ ;;^UTILITY(U,$J,358.3,24213,1,4,0)
+ ;;=4^L72.12
+ ;;^UTILITY(U,$J,358.3,24213,2)
+ ;;=^5009279
+ ;;^UTILITY(U,$J,358.3,24214,0)
+ ;;=L72.2^^107^1201^310
+ ;;^UTILITY(U,$J,358.3,24214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25682,1,3,0)
- ;;=3^Provisional Tic Disorder
- ;;^UTILITY(U,$J,358.3,25682,1,4,0)
- ;;=4^F95.0
- ;;^UTILITY(U,$J,358.3,25682,2)
- ;;=^331940
- ;;^UTILITY(U,$J,358.3,25683,0)
- ;;=F80.89^^95^1183^14
- ;;^UTILITY(U,$J,358.3,25683,1,0)
+ ;;^UTILITY(U,$J,358.3,24214,1,3,0)
+ ;;=3^Steatocystoma Multiplex
+ ;;^UTILITY(U,$J,358.3,24214,1,4,0)
+ ;;=4^L72.2
+ ;;^UTILITY(U,$J,358.3,24214,2)
+ ;;=^5009280
+ ;;^UTILITY(U,$J,358.3,24215,0)
+ ;;=L72.8^^107^1201^154
+ ;;^UTILITY(U,$J,358.3,24215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25683,1,3,0)
- ;;=3^Social Pragmatic Communication Disorder
- ;;^UTILITY(U,$J,358.3,25683,1,4,0)
- ;;=4^F80.89
- ;;^UTILITY(U,$J,358.3,25683,2)
- ;;=^5003677
- ;;^UTILITY(U,$J,358.3,25684,0)
- ;;=F80.0^^95^1183^15
- ;;^UTILITY(U,$J,358.3,25684,1,0)
+ ;;^UTILITY(U,$J,358.3,24215,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
+ ;;^UTILITY(U,$J,358.3,24215,1,4,0)
+ ;;=4^L72.8
+ ;;^UTILITY(U,$J,358.3,24215,2)
+ ;;=^5009282
+ ;;^UTILITY(U,$J,358.3,24216,0)
+ ;;=L72.9^^107^1201^155
+ ;;^UTILITY(U,$J,358.3,24216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25684,1,3,0)
- ;;=3^Speech Sound Disorder
- ;;^UTILITY(U,$J,358.3,25684,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,25684,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,25685,0)
- ;;=F98.4^^95^1183^16
- ;;^UTILITY(U,$J,358.3,25685,1,0)
+ ;;^UTILITY(U,$J,358.3,24216,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,24216,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,24216,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,24217,0)
+ ;;=L73.0^^107^1201^4
+ ;;^UTILITY(U,$J,358.3,24217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25685,1,3,0)
- ;;=3^Stereotypic Movement Disorder
- ;;^UTILITY(U,$J,358.3,25685,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,25685,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,25686,0)
- ;;=F95.8^^95^1183^17
- ;;^UTILITY(U,$J,358.3,25686,1,0)
+ ;;^UTILITY(U,$J,358.3,24217,1,3,0)
+ ;;=3^Acne Keloid
+ ;;^UTILITY(U,$J,358.3,24217,1,4,0)
+ ;;=4^L73.0
+ ;;^UTILITY(U,$J,358.3,24217,2)
+ ;;=^2149
+ ;;^UTILITY(U,$J,358.3,24218,0)
+ ;;=L73.2^^107^1201^162
+ ;;^UTILITY(U,$J,358.3,24218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25686,1,3,0)
- ;;=3^Tic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25686,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,25686,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,25687,0)
- ;;=F95.9^^95^1183^18
- ;;^UTILITY(U,$J,358.3,25687,1,0)
+ ;;^UTILITY(U,$J,358.3,24218,1,3,0)
+ ;;=3^Hidradenitis Suppurativa
+ ;;^UTILITY(U,$J,358.3,24218,1,4,0)
+ ;;=4^L73.2
+ ;;^UTILITY(U,$J,358.3,24218,2)
+ ;;=^278979
+ ;;^UTILITY(U,$J,358.3,24219,0)
+ ;;=L73.9^^107^1201^156
+ ;;^UTILITY(U,$J,358.3,24219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25687,1,3,0)
- ;;=3^Tic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25687,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,25687,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,25688,0)
- ;;=F95.2^^95^1183^19
- ;;^UTILITY(U,$J,358.3,25688,1,0)
+ ;;^UTILITY(U,$J,358.3,24219,1,3,0)
+ ;;=3^Follicular Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24219,1,4,0)
+ ;;=4^L73.9
+ ;;^UTILITY(U,$J,358.3,24219,2)
+ ;;=^5009286
+ ;;^UTILITY(U,$J,358.3,24220,0)
+ ;;=L82.0^^107^1201^163
+ ;;^UTILITY(U,$J,358.3,24220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25688,1,3,0)
- ;;=3^Tourette's Disorder
- ;;^UTILITY(U,$J,358.3,25688,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,25688,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,25689,0)
- ;;=F15.929^^95^1184^7
- ;;^UTILITY(U,$J,358.3,25689,1,0)
+ ;;^UTILITY(U,$J,358.3,24220,1,3,0)
+ ;;=3^Inflamed Seborrheic Keratosis
+ ;;^UTILITY(U,$J,358.3,24220,1,4,0)
+ ;;=4^L82.0
+ ;;^UTILITY(U,$J,358.3,24220,2)
+ ;;=^303311
+ ;;^UTILITY(U,$J,358.3,24221,0)
+ ;;=L82.1^^107^1201^304
+ ;;^UTILITY(U,$J,358.3,24221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25689,1,3,0)
- ;;=3^Caffeine Intoxication
- ;;^UTILITY(U,$J,358.3,25689,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,25689,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,25690,0)
- ;;=F15.93^^95^1184^8
- ;;^UTILITY(U,$J,358.3,25690,1,0)
+ ;;^UTILITY(U,$J,358.3,24221,1,3,0)
+ ;;=3^Seborrheic Keratosis NEC
+ ;;^UTILITY(U,$J,358.3,24221,1,4,0)
+ ;;=4^L82.1
+ ;;^UTILITY(U,$J,358.3,24221,2)
+ ;;=^303312
+ ;;^UTILITY(U,$J,358.3,24222,0)
+ ;;=L84.^^107^1201^118
+ ;;^UTILITY(U,$J,358.3,24222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25690,1,3,0)
- ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,24222,1,3,0)
+ ;;=3^Corns and Callosities
+ ;;^UTILITY(U,$J,358.3,24222,1,4,0)
+ ;;=4^L84.

@@ -1,134 +1,126 @@
-IBDEI1CB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22780,1,0)
+ ;;^UTILITY(U,$J,358.3,21404,1,4,0)
+ ;;=4^Z72.4
+ ;;^UTILITY(U,$J,358.3,21404,2)
+ ;;=^5063257
+ ;;^UTILITY(U,$J,358.3,21405,0)
+ ;;=Z72.820^^95^1067^6
+ ;;^UTILITY(U,$J,358.3,21405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22780,1,3,0)
- ;;=3^Peliosis Hepatis
- ;;^UTILITY(U,$J,358.3,22780,1,4,0)
- ;;=4^K76.4
- ;;^UTILITY(U,$J,358.3,22780,2)
- ;;=^91041
- ;;^UTILITY(U,$J,358.3,22781,0)
- ;;=K71.50^^87^984^25
- ;;^UTILITY(U,$J,358.3,22781,1,0)
+ ;;^UTILITY(U,$J,358.3,21405,1,3,0)
+ ;;=3^Sleep Deprivation
+ ;;^UTILITY(U,$J,358.3,21405,1,4,0)
+ ;;=4^Z72.820
+ ;;^UTILITY(U,$J,358.3,21405,2)
+ ;;=^5063264
+ ;;^UTILITY(U,$J,358.3,21406,0)
+ ;;=Z72.9^^95^1067^5
+ ;;^UTILITY(U,$J,358.3,21406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22781,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,22781,1,4,0)
- ;;=4^K71.50
- ;;^UTILITY(U,$J,358.3,22781,2)
- ;;=^5008799
- ;;^UTILITY(U,$J,358.3,22782,0)
- ;;=K71.51^^87^984^26
- ;;^UTILITY(U,$J,358.3,22782,1,0)
+ ;;^UTILITY(U,$J,358.3,21406,1,3,0)
+ ;;=3^Lifestyle Related Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,21406,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,21406,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,21407,0)
+ ;;=Z89.411^^95^1068^10
+ ;;^UTILITY(U,$J,358.3,21407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22782,1,3,0)
- ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,22782,1,4,0)
- ;;=4^K71.51
- ;;^UTILITY(U,$J,358.3,22782,2)
- ;;=^5008800
- ;;^UTILITY(U,$J,358.3,22783,0)
- ;;=K71.7^^87^984^29
- ;;^UTILITY(U,$J,358.3,22783,1,0)
+ ;;^UTILITY(U,$J,358.3,21407,1,3,0)
+ ;;=3^Acquired Absence of Right Great Toe
+ ;;^UTILITY(U,$J,358.3,21407,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,21407,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,21408,0)
+ ;;=Z89.412^^95^1068^3
+ ;;^UTILITY(U,$J,358.3,21408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22783,1,3,0)
- ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
- ;;^UTILITY(U,$J,358.3,22783,1,4,0)
- ;;=4^K71.7
- ;;^UTILITY(U,$J,358.3,22783,2)
- ;;=^5008802
- ;;^UTILITY(U,$J,358.3,22784,0)
- ;;=K71.8^^87^984^33
- ;;^UTILITY(U,$J,358.3,22784,1,0)
+ ;;^UTILITY(U,$J,358.3,21408,1,3,0)
+ ;;=3^Acquired Absence of Left Great Toe
+ ;;^UTILITY(U,$J,358.3,21408,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,21408,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,21409,0)
+ ;;=Z89.421^^95^1068^14
+ ;;^UTILITY(U,$J,358.3,21409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22784,1,3,0)
- ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
- ;;^UTILITY(U,$J,358.3,22784,1,4,0)
- ;;=4^K71.8
- ;;^UTILITY(U,$J,358.3,22784,2)
- ;;=^5008803
- ;;^UTILITY(U,$J,358.3,22785,0)
- ;;=K71.9^^87^984^34
- ;;^UTILITY(U,$J,358.3,22785,1,0)
+ ;;^UTILITY(U,$J,358.3,21409,1,3,0)
+ ;;=3^Acquired Absence of Right Toe(s)
+ ;;^UTILITY(U,$J,358.3,21409,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,21409,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,21410,0)
+ ;;=Z89.422^^95^1068^7
+ ;;^UTILITY(U,$J,358.3,21410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22785,1,3,0)
- ;;=3^Toxic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,22785,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,22785,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,22786,0)
- ;;=K75.2^^87^984^20
- ;;^UTILITY(U,$J,358.3,22786,1,0)
+ ;;^UTILITY(U,$J,358.3,21410,1,3,0)
+ ;;=3^Acquired Absence of Left Toe(s)
+ ;;^UTILITY(U,$J,358.3,21410,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,21410,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,21411,0)
+ ;;=Z89.431^^95^1068^9
+ ;;^UTILITY(U,$J,358.3,21411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22786,1,3,0)
- ;;=3^Nonspecific Reactive Hepatitis
- ;;^UTILITY(U,$J,358.3,22786,1,4,0)
- ;;=4^K75.2
- ;;^UTILITY(U,$J,358.3,22786,2)
- ;;=^5008826
- ;;^UTILITY(U,$J,358.3,22787,0)
- ;;=K75.3^^87^984^13
- ;;^UTILITY(U,$J,358.3,22787,1,0)
+ ;;^UTILITY(U,$J,358.3,21411,1,3,0)
+ ;;=3^Acquired Absence of Right Foot
+ ;;^UTILITY(U,$J,358.3,21411,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,21411,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,21412,0)
+ ;;=Z89.432^^95^1068^2
+ ;;^UTILITY(U,$J,358.3,21412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22787,1,3,0)
- ;;=3^Granulomatous Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,22787,1,4,0)
- ;;=4^K75.3
- ;;^UTILITY(U,$J,358.3,22787,2)
- ;;=^5008827
- ;;^UTILITY(U,$J,358.3,22788,0)
- ;;=K76.6^^87^984^22
- ;;^UTILITY(U,$J,358.3,22788,1,0)
+ ;;^UTILITY(U,$J,358.3,21412,1,3,0)
+ ;;=3^Acquired Absence of Left Foot
+ ;;^UTILITY(U,$J,358.3,21412,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,21412,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,21413,0)
+ ;;=Z89.441^^95^1068^8
+ ;;^UTILITY(U,$J,358.3,21413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22788,1,3,0)
- ;;=3^Portal Hypertension
- ;;^UTILITY(U,$J,358.3,22788,1,4,0)
- ;;=4^K76.6
- ;;^UTILITY(U,$J,358.3,22788,2)
- ;;=^5008834
- ;;^UTILITY(U,$J,358.3,22789,0)
- ;;=F20.3^^87^985^25
- ;;^UTILITY(U,$J,358.3,22789,1,0)
+ ;;^UTILITY(U,$J,358.3,21413,1,3,0)
+ ;;=3^Acquired Absence of Right Ankle
+ ;;^UTILITY(U,$J,358.3,21413,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,21413,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,21414,0)
+ ;;=Z89.442^^95^1068^1
+ ;;^UTILITY(U,$J,358.3,21414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22789,1,3,0)
- ;;=3^Undifferentiated/Atypical Schizophrenia
- ;;^UTILITY(U,$J,358.3,22789,1,4,0)
- ;;=4^F20.3
- ;;^UTILITY(U,$J,358.3,22789,2)
- ;;=^5003472
- ;;^UTILITY(U,$J,358.3,22790,0)
- ;;=F20.9^^87^985^21
- ;;^UTILITY(U,$J,358.3,22790,1,0)
+ ;;^UTILITY(U,$J,358.3,21414,1,3,0)
+ ;;=3^Acquired Absence of Left Ankle
+ ;;^UTILITY(U,$J,358.3,21414,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,21414,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,21415,0)
+ ;;=Z89.511^^95^1068^13
+ ;;^UTILITY(U,$J,358.3,21415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22790,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,22790,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,22790,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,22791,0)
- ;;=F31.9^^87^985^6
- ;;^UTILITY(U,$J,358.3,22791,1,0)
+ ;;^UTILITY(U,$J,358.3,21415,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,21415,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,21415,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,21416,0)
+ ;;=Z89.512^^95^1068^6
+ ;;^UTILITY(U,$J,358.3,21416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22791,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22791,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,22791,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,22792,0)
- ;;=F31.72^^87^985^7
- ;;^UTILITY(U,$J,358.3,22792,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22792,1,3,0)
- ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,22792,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,22792,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,22793,0)
- ;;=F31.71^^87^985^5
+ ;;^UTILITY(U,$J,358.3,21416,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,21416,1,4,0)
+ ;;=4^Z89.512

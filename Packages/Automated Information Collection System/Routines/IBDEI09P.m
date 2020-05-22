@@ -1,346 +1,690 @@
-IBDEI09P ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI09P ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12283,0)
- ;;=Z87.442^^40^594^118
- ;;^UTILITY(U,$J,358.3,12283,1,0)
+ ;;^UTILITY(U,$J,358.3,23732,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,23733,0)
+ ;;=E11.622^^73^970^31
+ ;;^UTILITY(U,$J,358.3,23733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12283,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,12283,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,12283,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,12284,0)
- ;;=Z91.83^^40^594^120
- ;;^UTILITY(U,$J,358.3,12284,1,0)
+ ;;^UTILITY(U,$J,358.3,23733,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,23733,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,23733,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,23734,0)
+ ;;=E11.628^^73^970^30
+ ;;^UTILITY(U,$J,358.3,23734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12284,1,3,0)
- ;;=3^Personal Hx of Wandering
- ;;^UTILITY(U,$J,358.3,12284,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,12284,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,12285,0)
- ;;=Z76.89^^40^594^121
- ;;^UTILITY(U,$J,358.3,12285,1,0)
+ ;;^UTILITY(U,$J,358.3,23734,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Skin Compl
+ ;;^UTILITY(U,$J,358.3,23734,1,4,0)
+ ;;=4^E11.628
+ ;;^UTILITY(U,$J,358.3,23734,2)
+ ;;=^5002658
+ ;;^UTILITY(U,$J,358.3,23735,0)
+ ;;=E11.630^^73^970^33
+ ;;^UTILITY(U,$J,358.3,23735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12285,1,3,0)
- ;;=3^Persons Encountering Health Services
- ;;^UTILITY(U,$J,358.3,12285,1,4,0)
- ;;=4^Z76.89
- ;;^UTILITY(U,$J,358.3,12285,2)
- ;;=^5063304
- ;;^UTILITY(U,$J,358.3,12286,0)
- ;;=Z60.0^^40^594^122
- ;;^UTILITY(U,$J,358.3,12286,1,0)
+ ;;^UTILITY(U,$J,358.3,23735,1,3,0)
+ ;;=3^DM Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,23735,1,4,0)
+ ;;=4^E11.630
+ ;;^UTILITY(U,$J,358.3,23735,2)
+ ;;=^5002659
+ ;;^UTILITY(U,$J,358.3,23736,0)
+ ;;=E11.638^^73^970^29
+ ;;^UTILITY(U,$J,358.3,23736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12286,1,3,0)
- ;;=3^Problems Adjusting to Life-Cycle Transitions
- ;;^UTILITY(U,$J,358.3,12286,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,12286,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,12287,0)
- ;;=Z63.31^^40^594^148
- ;;^UTILITY(U,$J,358.3,12287,1,0)
+ ;;^UTILITY(U,$J,358.3,23736,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Oral Compl
+ ;;^UTILITY(U,$J,358.3,23736,1,4,0)
+ ;;=4^E11.638
+ ;;^UTILITY(U,$J,358.3,23736,2)
+ ;;=^5002660
+ ;;^UTILITY(U,$J,358.3,23737,0)
+ ;;=E11.641^^73^970^20
+ ;;^UTILITY(U,$J,358.3,23737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12287,1,3,0)
- ;;=3^Problems Related to Military Deployment Absence
- ;;^UTILITY(U,$J,358.3,12287,1,4,0)
- ;;=4^Z63.31
- ;;^UTILITY(U,$J,358.3,12287,2)
- ;;=^5063166
- ;;^UTILITY(U,$J,358.3,12288,0)
- ;;=Z63.32^^40^594^135
- ;;^UTILITY(U,$J,358.3,12288,1,0)
+ ;;^UTILITY(U,$J,358.3,23737,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,23737,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,23737,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,23738,0)
+ ;;=E11.649^^73^970^21
+ ;;^UTILITY(U,$J,358.3,23738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12288,1,3,0)
- ;;=3^Problems Related to Family Member Absence
- ;;^UTILITY(U,$J,358.3,12288,1,4,0)
- ;;=4^Z63.32
- ;;^UTILITY(U,$J,358.3,12288,2)
- ;;=^5063167
- ;;^UTILITY(U,$J,358.3,12289,0)
- ;;=Z60.3^^40^594^123
- ;;^UTILITY(U,$J,358.3,12289,1,0)
+ ;;^UTILITY(U,$J,358.3,23738,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,23738,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,23738,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,23739,0)
+ ;;=E11.65^^73^970^17
+ ;;^UTILITY(U,$J,358.3,23739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12289,1,3,0)
- ;;=3^Problems Related to Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,12289,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,12289,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,12290,0)
- ;;=Z74.9^^40^594^128
- ;;^UTILITY(U,$J,358.3,12290,1,0)
+ ;;^UTILITY(U,$J,358.3,23739,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,23739,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,23739,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,23740,0)
+ ;;=E11.69^^73^970^32
+ ;;^UTILITY(U,$J,358.3,23740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12290,1,3,0)
- ;;=3^Problems Related to Care Provider Dependency,Unspec
- ;;^UTILITY(U,$J,358.3,12290,1,4,0)
- ;;=4^Z74.9
- ;;^UTILITY(U,$J,358.3,12290,2)
- ;;=^5063288
- ;;^UTILITY(U,$J,358.3,12291,0)
- ;;=Z63.4^^40^594^127
- ;;^UTILITY(U,$J,358.3,12291,1,0)
+ ;;^UTILITY(U,$J,358.3,23740,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Spec Compl
+ ;;^UTILITY(U,$J,358.3,23740,1,4,0)
+ ;;=4^E11.69
+ ;;^UTILITY(U,$J,358.3,23740,2)
+ ;;=^5002664
+ ;;^UTILITY(U,$J,358.3,23741,0)
+ ;;=E11.8^^73^970^34
+ ;;^UTILITY(U,$J,358.3,23741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12291,1,3,0)
- ;;=3^Problems Related to Bereavement
- ;;^UTILITY(U,$J,358.3,12291,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,12291,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,12292,0)
- ;;=Z63.6^^40^594^129
- ;;^UTILITY(U,$J,358.3,12292,1,0)
+ ;;^UTILITY(U,$J,358.3,23741,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Compl
+ ;;^UTILITY(U,$J,358.3,23741,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,23741,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,23742,0)
+ ;;=E11.9^^73^970^35
+ ;;^UTILITY(U,$J,358.3,23742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12292,1,3,0)
- ;;=3^Problems Related to Dependent Relative Needing Care at Home
- ;;^UTILITY(U,$J,358.3,12292,1,4,0)
- ;;=4^Z63.6
- ;;^UTILITY(U,$J,358.3,12292,2)
- ;;=^5063170
- ;;^UTILITY(U,$J,358.3,12293,0)
- ;;=Z59.2^^40^594^131
- ;;^UTILITY(U,$J,358.3,12293,1,0)
+ ;;^UTILITY(U,$J,358.3,23742,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,23742,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,23742,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,23743,0)
+ ;;=E11.29^^73^970^27
+ ;;^UTILITY(U,$J,358.3,23743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12293,1,3,0)
- ;;=3^Problems Related to Discord w/ Neighbors/Lodgers/Landlord
- ;;^UTILITY(U,$J,358.3,12293,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,12293,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,12294,0)
- ;;=Z63.5^^40^594^155
- ;;^UTILITY(U,$J,358.3,12294,1,0)
+ ;;^UTILITY(U,$J,358.3,23743,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Kidney Compl
+ ;;^UTILITY(U,$J,358.3,23743,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,23743,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,23744,0)
+ ;;=E11.311^^73^970^14
+ ;;^UTILITY(U,$J,358.3,23744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12294,1,3,0)
- ;;=3^Problems Related to Separation/Divorce
- ;;^UTILITY(U,$J,358.3,12294,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,12294,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,12295,0)
- ;;=Z55.9^^40^594^132
- ;;^UTILITY(U,$J,358.3,12295,1,0)
+ ;;^UTILITY(U,$J,358.3,23744,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,23744,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,23744,2)
+ ;;=E11.319^5002632
+ ;;^UTILITY(U,$J,358.3,23745,0)
+ ;;=E11.319^^73^970^15
+ ;;^UTILITY(U,$J,358.3,23745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12295,1,3,0)
- ;;=3^Problems Related to Education/Literacy,Unspec
- ;;^UTILITY(U,$J,358.3,12295,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,12295,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,12296,0)
- ;;=Z56.9^^40^594^133
- ;;^UTILITY(U,$J,358.3,12296,1,0)
+ ;;^UTILITY(U,$J,358.3,23745,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Rtnop w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,23745,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,23745,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,23746,0)
+ ;;=E11.3211^^73^970^22
+ ;;^UTILITY(U,$J,358.3,23746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12296,1,3,0)
- ;;=3^Problems Related to Employment,Unspec
- ;;^UTILITY(U,$J,358.3,12296,1,4,0)
- ;;=4^Z56.9
- ;;^UTILITY(U,$J,358.3,12296,2)
- ;;=^5063117
- ;;^UTILITY(U,$J,358.3,12297,0)
- ;;=Z65.5^^40^594^130
- ;;^UTILITY(U,$J,358.3,12297,1,0)
+ ;;^UTILITY(U,$J,358.3,23746,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,23746,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,23746,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,23747,0)
+ ;;=E11.3212^^73^970^23
+ ;;^UTILITY(U,$J,358.3,23747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12297,1,3,0)
- ;;=3^Problems Related to Disaster/War/Other Hostilities
- ;;^UTILITY(U,$J,358.3,12297,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,12297,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,12298,0)
- ;;=Z59.5^^40^594^134
- ;;^UTILITY(U,$J,358.3,12298,1,0)
+ ;;^UTILITY(U,$J,358.3,23747,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,23747,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,23747,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,23748,0)
+ ;;=E11.3213^^73^970^24
+ ;;^UTILITY(U,$J,358.3,23748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12298,1,3,0)
- ;;=3^Problems Related to Extreme Poverty
- ;;^UTILITY(U,$J,358.3,12298,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,12298,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,12299,0)
- ;;=Z59.0^^40^594^136
- ;;^UTILITY(U,$J,358.3,12299,1,0)
+ ;;^UTILITY(U,$J,358.3,23748,1,3,0)
+ ;;=3^DM Type 2 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,23748,1,4,0)
+ ;;=4^E11.3213
+ ;;^UTILITY(U,$J,358.3,23748,2)
+ ;;=^5138333
+ ;;^UTILITY(U,$J,358.3,23749,0)
+ ;;=E11.40^^73^970^10
+ ;;^UTILITY(U,$J,358.3,23749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12299,1,3,0)
- ;;=3^Problems Related to Homelessness
- ;;^UTILITY(U,$J,358.3,12299,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,12299,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,12300,0)
- ;;=Z59.9^^40^594^137
- ;;^UTILITY(U,$J,358.3,12300,1,0)
+ ;;^UTILITY(U,$J,358.3,23749,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,23749,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,23749,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,23750,0)
+ ;;=E11.51^^73^970^12
+ ;;^UTILITY(U,$J,358.3,23750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12300,1,3,0)
- ;;=3^Problems Related to Housing/Economic Circumstances
- ;;^UTILITY(U,$J,358.3,12300,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,12300,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,12301,0)
- ;;=Z59.1^^40^594^138
- ;;^UTILITY(U,$J,358.3,12301,1,0)
+ ;;^UTILITY(U,$J,358.3,23750,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,23750,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,23750,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,23751,0)
+ ;;=E11.52^^73^970^11
+ ;;^UTILITY(U,$J,358.3,23751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12301,1,3,0)
- ;;=3^Problems Related to Inadequate Housing
- ;;^UTILITY(U,$J,358.3,12301,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,12301,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,12302,0)
- ;;=Z59.7^^40^594^139
- ;;^UTILITY(U,$J,358.3,12302,1,0)
+ ;;^UTILITY(U,$J,358.3,23751,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,23751,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,23751,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,23752,0)
+ ;;=E11.620^^73^970^5
+ ;;^UTILITY(U,$J,358.3,23752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12302,1,3,0)
- ;;=3^Problems Related to Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,12302,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,12302,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,12303,0)
- ;;=Z59.4^^40^594^140
- ;;^UTILITY(U,$J,358.3,12303,1,0)
+ ;;^UTILITY(U,$J,358.3,23752,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,23752,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,23752,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,23753,0)
+ ;;=E11.36^^73^970^4
+ ;;^UTILITY(U,$J,358.3,23753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12303,1,3,0)
- ;;=3^Problems Related to Lack of Food/Drinking Water
- ;;^UTILITY(U,$J,358.3,12303,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,12303,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,12304,0)
- ;;=Z73.9^^40^594^141
- ;;^UTILITY(U,$J,358.3,12304,1,0)
+ ;;^UTILITY(U,$J,358.3,23753,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Cataract
+ ;;^UTILITY(U,$J,358.3,23753,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,23753,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,23754,0)
+ ;;=I10.^^73^971^1
+ ;;^UTILITY(U,$J,358.3,23754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12304,1,3,0)
- ;;=3^Problems Related to Life Management Difficulty
- ;;^UTILITY(U,$J,358.3,12304,1,4,0)
- ;;=4^Z73.9
- ;;^UTILITY(U,$J,358.3,12304,2)
- ;;=^5063281
- ;;^UTILITY(U,$J,358.3,12305,0)
- ;;=Z72.9^^40^594^142
- ;;^UTILITY(U,$J,358.3,12305,1,0)
+ ;;^UTILITY(U,$J,358.3,23754,1,3,0)
+ ;;=3^Essential/Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,23754,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,23754,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,23755,0)
+ ;;=I11.0^^73^971^12
+ ;;^UTILITY(U,$J,358.3,23755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12305,1,3,0)
- ;;=3^Problems Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,12305,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,12305,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,12306,0)
- ;;=Z73.6^^40^594^124
- ;;^UTILITY(U,$J,358.3,12306,1,0)
+ ;;^UTILITY(U,$J,358.3,23755,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,23755,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,23755,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,23756,0)
+ ;;=I11.9^^73^971^13
+ ;;^UTILITY(U,$J,358.3,23756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12306,1,3,0)
- ;;=3^Problems Related to Activity Limitations d/t Disability
- ;;^UTILITY(U,$J,358.3,12306,1,4,0)
- ;;=4^Z73.6
- ;;^UTILITY(U,$J,358.3,12306,2)
- ;;=^5063274
- ;;^UTILITY(U,$J,358.3,12307,0)
- ;;=Z60.2^^40^594^143
- ;;^UTILITY(U,$J,358.3,12307,1,0)
+ ;;^UTILITY(U,$J,358.3,23756,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,23756,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,23756,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,23757,0)
+ ;;=I12.0^^73^971^5
+ ;;^UTILITY(U,$J,358.3,23757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12307,1,3,0)
- ;;=3^Problems Related to Living Alone
- ;;^UTILITY(U,$J,358.3,12307,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,12307,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,12308,0)
- ;;=Z59.3^^40^594^144
- ;;^UTILITY(U,$J,358.3,12308,1,0)
+ ;;^UTILITY(U,$J,358.3,23757,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,23757,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,23757,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,23758,0)
+ ;;=I12.9^^73^971^4
+ ;;^UTILITY(U,$J,358.3,23758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12308,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,12308,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,12308,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,12309,0)
- ;;=Z59.6^^40^594^145
- ;;^UTILITY(U,$J,358.3,12309,1,0)
+ ;;^UTILITY(U,$J,358.3,23758,1,3,0)
+ ;;=3^Hypertensive CKD w/ Stage 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,23758,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,23758,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,23759,0)
+ ;;=I13.0^^73^971^8
+ ;;^UTILITY(U,$J,358.3,23759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12309,1,3,0)
- ;;=3^Problems Related to Low Income
- ;;^UTILITY(U,$J,358.3,12309,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,12309,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,12310,0)
- ;;=Z75.9^^40^594^146
- ;;^UTILITY(U,$J,358.3,12310,1,0)
+ ;;^UTILITY(U,$J,358.3,23759,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,23759,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,23759,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,23760,0)
+ ;;=I13.10^^73^971^10
+ ;;^UTILITY(U,$J,358.3,23760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12310,1,3,0)
- ;;=3^Problems Related to Med Facilities/Health Care
- ;;^UTILITY(U,$J,358.3,12310,1,4,0)
- ;;=4^Z75.9
- ;;^UTILITY(U,$J,358.3,12310,2)
- ;;=^5063296
- ;;^UTILITY(U,$J,358.3,12311,0)
- ;;=Z75.0^^40^594^147
- ;;^UTILITY(U,$J,358.3,12311,1,0)
+ ;;^UTILITY(U,$J,358.3,23760,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 1-4 CKD
+ ;;^UTILITY(U,$J,358.3,23760,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,23760,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,23761,0)
+ ;;=I13.11^^73^971^11
+ ;;^UTILITY(U,$J,358.3,23761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12311,1,3,0)
- ;;=3^Problems Related to Med Services not Available in Home
- ;;^UTILITY(U,$J,358.3,12311,1,4,0)
- ;;=4^Z75.0
- ;;^UTILITY(U,$J,358.3,12311,2)
- ;;=^5063289
- ;;^UTILITY(U,$J,358.3,12312,0)
- ;;=Z74.2^^40^594^149
- ;;^UTILITY(U,$J,358.3,12312,1,0)
+ ;;^UTILITY(U,$J,358.3,23761,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/o Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,23761,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,23761,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,23762,0)
+ ;;=I13.2^^73^971^9
+ ;;^UTILITY(U,$J,358.3,23762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12312,1,3,0)
- ;;=3^Problems Related to Need for Assistance at Home
- ;;^UTILITY(U,$J,358.3,12312,1,4,0)
- ;;=4^Z74.2
- ;;^UTILITY(U,$J,358.3,12312,2)
- ;;=^5063285
- ;;^UTILITY(U,$J,358.3,12313,0)
- ;;=Z74.1^^40^594^150
- ;;^UTILITY(U,$J,358.3,12313,1,0)
+ ;;^UTILITY(U,$J,358.3,23762,1,3,0)
+ ;;=3^Hypertensive HRT & CKD w/ Hrt Fail & Stg 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,23762,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,23762,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,23763,0)
+ ;;=I15.0^^73^971^15
+ ;;^UTILITY(U,$J,358.3,23763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12313,1,3,0)
- ;;=3^Problems Related to Need for Assistance w/ Personal Care
- ;;^UTILITY(U,$J,358.3,12313,1,4,0)
- ;;=4^Z74.1
- ;;^UTILITY(U,$J,358.3,12313,2)
- ;;=^5063284
- ;;^UTILITY(U,$J,358.3,12314,0)
- ;;=Z74.3^^40^594^151
- ;;^UTILITY(U,$J,358.3,12314,1,0)
+ ;;^UTILITY(U,$J,358.3,23763,1,3,0)
+ ;;=3^Renovascular Hypertension
+ ;;^UTILITY(U,$J,358.3,23763,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,23763,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,23764,0)
+ ;;=I15.1^^73^971^3
+ ;;^UTILITY(U,$J,358.3,23764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12314,1,3,0)
- ;;=3^Problems Related to Need for Continuous Supervision
- ;;^UTILITY(U,$J,358.3,12314,1,4,0)
- ;;=4^Z74.3
- ;;^UTILITY(U,$J,358.3,12314,2)
- ;;=^5063286
- ;;^UTILITY(U,$J,358.3,12315,0)
- ;;=Z75.1^^40^594^126
- ;;^UTILITY(U,$J,358.3,12315,1,0)
+ ;;^UTILITY(U,$J,358.3,23764,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,23764,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,23764,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,23765,0)
+ ;;=I15.2^^73^971^2
+ ;;^UTILITY(U,$J,358.3,23765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12315,1,3,0)
- ;;=3^Problems Related to Awaiting Facility Admission
- ;;^UTILITY(U,$J,358.3,12315,1,4,0)
- ;;=4^Z75.1
- ;;^UTILITY(U,$J,358.3,12315,2)
- ;;=^5063290
- ;;^UTILITY(U,$J,358.3,12316,0)
- ;;=Z63.9^^40^594^152
- ;;^UTILITY(U,$J,358.3,12316,1,0)
+ ;;^UTILITY(U,$J,358.3,23765,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,23765,1,4,0)
+ ;;=4^I15.2
+ ;;^UTILITY(U,$J,358.3,23765,2)
+ ;;=^5007073
+ ;;^UTILITY(U,$J,358.3,23766,0)
+ ;;=I15.8^^73^971^16
+ ;;^UTILITY(U,$J,358.3,23766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12316,1,3,0)
- ;;=3^Problems Related to Primary Support Group
- ;;^UTILITY(U,$J,358.3,12316,1,4,0)
- ;;=4^Z63.9
- ;;^UTILITY(U,$J,358.3,12316,2)
- ;;=^5063175
- ;;^UTILITY(U,$J,358.3,12317,0)
- ;;=Z74.09^^40^594^154
+ ;;^UTILITY(U,$J,358.3,23766,1,3,0)
+ ;;=3^Secondary Hypertension,Oth
+ ;;^UTILITY(U,$J,358.3,23766,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,23766,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,23767,0)
+ ;;=I15.9^^73^971^17
+ ;;^UTILITY(U,$J,358.3,23767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23767,1,3,0)
+ ;;=3^Secondary Hypertension,Unspec
+ ;;^UTILITY(U,$J,358.3,23767,1,4,0)
+ ;;=4^I15.9
+ ;;^UTILITY(U,$J,358.3,23767,2)
+ ;;=^5007075
+ ;;^UTILITY(U,$J,358.3,23768,0)
+ ;;=I16.0^^73^971^14
+ ;;^UTILITY(U,$J,358.3,23768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23768,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,23768,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,23768,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,23769,0)
+ ;;=I16.1^^73^971^7
+ ;;^UTILITY(U,$J,358.3,23769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23769,1,3,0)
+ ;;=3^Hypertensive Emergency
+ ;;^UTILITY(U,$J,358.3,23769,1,4,0)
+ ;;=4^I16.1
+ ;;^UTILITY(U,$J,358.3,23769,2)
+ ;;=^8204721
+ ;;^UTILITY(U,$J,358.3,23770,0)
+ ;;=I16.9^^73^971^6
+ ;;^UTILITY(U,$J,358.3,23770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23770,1,3,0)
+ ;;=3^Hypertensive Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,23770,1,4,0)
+ ;;=4^I16.9
+ ;;^UTILITY(U,$J,358.3,23770,2)
+ ;;=^5138600
+ ;;^UTILITY(U,$J,358.3,23771,0)
+ ;;=A07.0^^73^972^5
+ ;;^UTILITY(U,$J,358.3,23771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23771,1,3,0)
+ ;;=3^Balantidiasis
+ ;;^UTILITY(U,$J,358.3,23771,1,4,0)
+ ;;=4^A07.0
+ ;;^UTILITY(U,$J,358.3,23771,2)
+ ;;=^12533
+ ;;^UTILITY(U,$J,358.3,23772,0)
+ ;;=A07.1^^73^972^9
+ ;;^UTILITY(U,$J,358.3,23772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23772,1,3,0)
+ ;;=3^Giardiasis [lambliasis]
+ ;;^UTILITY(U,$J,358.3,23772,1,4,0)
+ ;;=4^A07.1
+ ;;^UTILITY(U,$J,358.3,23772,2)
+ ;;=^5000049
+ ;;^UTILITY(U,$J,358.3,23773,0)
+ ;;=A07.2^^73^972^7
+ ;;^UTILITY(U,$J,358.3,23773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23773,1,3,0)
+ ;;=3^Cryptosporidiosis
+ ;;^UTILITY(U,$J,358.3,23773,1,4,0)
+ ;;=4^A07.2
+ ;;^UTILITY(U,$J,358.3,23773,2)
+ ;;=^29629
+ ;;^UTILITY(U,$J,358.3,23774,0)
+ ;;=A07.3^^73^972^12
+ ;;^UTILITY(U,$J,358.3,23774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23774,1,3,0)
+ ;;=3^Isosporiasis
+ ;;^UTILITY(U,$J,358.3,23774,1,4,0)
+ ;;=4^A07.3
+ ;;^UTILITY(U,$J,358.3,23774,2)
+ ;;=^5000050
+ ;;^UTILITY(U,$J,358.3,23775,0)
+ ;;=A07.4^^73^972^8
+ ;;^UTILITY(U,$J,358.3,23775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23775,1,3,0)
+ ;;=3^Cyclosporiasis
+ ;;^UTILITY(U,$J,358.3,23775,1,4,0)
+ ;;=4^A07.4
+ ;;^UTILITY(U,$J,358.3,23775,2)
+ ;;=^321973
+ ;;^UTILITY(U,$J,358.3,23776,0)
+ ;;=A07.8^^73^972^14
+ ;;^UTILITY(U,$J,358.3,23776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23776,1,3,0)
+ ;;=3^Protozoal Intestinal Diseases,Oth Spec
+ ;;^UTILITY(U,$J,358.3,23776,1,4,0)
+ ;;=4^A07.8
+ ;;^UTILITY(U,$J,358.3,23776,2)
+ ;;=^265972
+ ;;^UTILITY(U,$J,358.3,23777,0)
+ ;;=A07.9^^73^972^13
+ ;;^UTILITY(U,$J,358.3,23777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23777,1,3,0)
+ ;;=3^Protozoal Intestinal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,23777,1,4,0)
+ ;;=4^A07.9
+ ;;^UTILITY(U,$J,358.3,23777,2)
+ ;;=^5000051
+ ;;^UTILITY(U,$J,358.3,23778,0)
+ ;;=A08.0^^73^972^15
+ ;;^UTILITY(U,$J,358.3,23778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23778,1,3,0)
+ ;;=3^Rotaviral Enteritis
+ ;;^UTILITY(U,$J,358.3,23778,1,4,0)
+ ;;=4^A08.0
+ ;;^UTILITY(U,$J,358.3,23778,2)
+ ;;=^5000052
+ ;;^UTILITY(U,$J,358.3,23779,0)
+ ;;=A08.11^^73^972^1
+ ;;^UTILITY(U,$J,358.3,23779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23779,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Norwalk Agent
+ ;;^UTILITY(U,$J,358.3,23779,1,4,0)
+ ;;=4^A08.11
+ ;;^UTILITY(U,$J,358.3,23779,2)
+ ;;=^5000053
+ ;;^UTILITY(U,$J,358.3,23780,0)
+ ;;=A08.19^^73^972^2
+ ;;^UTILITY(U,$J,358.3,23780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23780,1,3,0)
+ ;;=3^Acute Gastroenteropathy d/t Oth Small Round Viruses
+ ;;^UTILITY(U,$J,358.3,23780,1,4,0)
+ ;;=4^A08.19
+ ;;^UTILITY(U,$J,358.3,23780,2)
+ ;;=^5000054
+ ;;^UTILITY(U,$J,358.3,23781,0)
+ ;;=A08.2^^73^972^3
+ ;;^UTILITY(U,$J,358.3,23781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23781,1,3,0)
+ ;;=3^Adenoviral Enteritis
+ ;;^UTILITY(U,$J,358.3,23781,1,4,0)
+ ;;=4^A08.2
+ ;;^UTILITY(U,$J,358.3,23781,2)
+ ;;=^5000055
+ ;;^UTILITY(U,$J,358.3,23782,0)
+ ;;=A08.31^^73^972^6
+ ;;^UTILITY(U,$J,358.3,23782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23782,1,3,0)
+ ;;=3^Calicivirus enteritis
+ ;;^UTILITY(U,$J,358.3,23782,1,4,0)
+ ;;=4^A08.31
+ ;;^UTILITY(U,$J,358.3,23782,2)
+ ;;=^5000056
+ ;;^UTILITY(U,$J,358.3,23783,0)
+ ;;=A08.32^^73^972^4
+ ;;^UTILITY(U,$J,358.3,23783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23783,1,3,0)
+ ;;=3^Astrovirus enteritis
+ ;;^UTILITY(U,$J,358.3,23783,1,4,0)
+ ;;=4^A08.32
+ ;;^UTILITY(U,$J,358.3,23783,2)
+ ;;=^5000057
+ ;;^UTILITY(U,$J,358.3,23784,0)
+ ;;=A08.39^^73^972^16
+ ;;^UTILITY(U,$J,358.3,23784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23784,1,3,0)
+ ;;=3^Viral Enteritis,Oth
+ ;;^UTILITY(U,$J,358.3,23784,1,4,0)
+ ;;=4^A08.39
+ ;;^UTILITY(U,$J,358.3,23784,2)
+ ;;=^5000058
+ ;;^UTILITY(U,$J,358.3,23785,0)
+ ;;=A08.4^^73^972^17
+ ;;^UTILITY(U,$J,358.3,23785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23785,1,3,0)
+ ;;=3^Viral Intestinal Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,23785,1,4,0)
+ ;;=4^A08.4
+ ;;^UTILITY(U,$J,358.3,23785,2)
+ ;;=^5000059
+ ;;^UTILITY(U,$J,358.3,23786,0)
+ ;;=A08.8^^73^972^11
+ ;;^UTILITY(U,$J,358.3,23786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23786,1,3,0)
+ ;;=3^Intestinal Infections,Oth Spec
+ ;;^UTILITY(U,$J,358.3,23786,1,4,0)
+ ;;=4^A08.8
+ ;;^UTILITY(U,$J,358.3,23786,2)
+ ;;=^5000060
+ ;;^UTILITY(U,$J,358.3,23787,0)
+ ;;=A09.^^73^972^10
+ ;;^UTILITY(U,$J,358.3,23787,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23787,1,3,0)
+ ;;=3^Infectious Gastroenteritis & Colitis,Unspec
+ ;;^UTILITY(U,$J,358.3,23787,1,4,0)
+ ;;=4^A09.
+ ;;^UTILITY(U,$J,358.3,23787,2)
+ ;;=^5000061
+ ;;^UTILITY(U,$J,358.3,23788,0)
+ ;;=J12.0^^73^973^1
+ ;;^UTILITY(U,$J,358.3,23788,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23788,1,3,0)
+ ;;=3^Adenoviral Pneumonia
+ ;;^UTILITY(U,$J,358.3,23788,1,4,0)
+ ;;=4^J12.0
+ ;;^UTILITY(U,$J,358.3,23788,2)
+ ;;=^5008164
+ ;;^UTILITY(U,$J,358.3,23789,0)
+ ;;=J12.1^^73^973^30
+ ;;^UTILITY(U,$J,358.3,23789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23789,1,3,0)
+ ;;=3^Respiratory Syncytial Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,23789,1,4,0)
+ ;;=4^J12.1
+ ;;^UTILITY(U,$J,358.3,23789,2)
+ ;;=^5008165
+ ;;^UTILITY(U,$J,358.3,23790,0)
+ ;;=J12.2^^73^973^4
+ ;;^UTILITY(U,$J,358.3,23790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23790,1,3,0)
+ ;;=3^Parainfluenza Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,23790,1,4,0)
+ ;;=4^J12.2
+ ;;^UTILITY(U,$J,358.3,23790,2)
+ ;;=^5008166
+ ;;^UTILITY(U,$J,358.3,23791,0)
+ ;;=J12.3^^73^973^3
+ ;;^UTILITY(U,$J,358.3,23791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23791,1,3,0)
+ ;;=3^Human Metapneumovirus Pneumonia
+ ;;^UTILITY(U,$J,358.3,23791,1,4,0)
+ ;;=4^J12.3
+ ;;^UTILITY(U,$J,358.3,23791,2)
+ ;;=^5008167
+ ;;^UTILITY(U,$J,358.3,23792,0)
+ ;;=J12.81^^73^973^17
+ ;;^UTILITY(U,$J,358.3,23792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23792,1,3,0)
+ ;;=3^Pneumonia d/t SARS-Associated Coronavirus
+ ;;^UTILITY(U,$J,358.3,23792,1,4,0)
+ ;;=4^J12.81
+ ;;^UTILITY(U,$J,358.3,23792,2)
+ ;;=^329925
+ ;;^UTILITY(U,$J,358.3,23793,0)
+ ;;=J12.89^^73^973^28
+ ;;^UTILITY(U,$J,358.3,23793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23793,1,3,0)
+ ;;=3^Pneumonia,Viral,Other
+ ;;^UTILITY(U,$J,358.3,23793,1,4,0)
+ ;;=4^J12.89
+ ;;^UTILITY(U,$J,358.3,23793,2)
+ ;;=^5008168
+ ;;^UTILITY(U,$J,358.3,23794,0)
+ ;;=J12.9^^73^973^29
+ ;;^UTILITY(U,$J,358.3,23794,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23794,1,3,0)
+ ;;=3^Pneumonia,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,23794,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,23794,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,23795,0)
+ ;;=J13.^^73^973^19
+ ;;^UTILITY(U,$J,358.3,23795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23795,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,23795,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,23795,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,23796,0)
+ ;;=J14.^^73^973^6
+ ;;^UTILITY(U,$J,358.3,23796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23796,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,23796,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,23796,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,23797,0)
+ ;;=J15.0^^73^973^7
+ ;;^UTILITY(U,$J,358.3,23797,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23797,1,3,0)
+ ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;^UTILITY(U,$J,358.3,23797,1,4,0)
+ ;;=4^J15.0
+ ;;^UTILITY(U,$J,358.3,23797,2)
+ ;;=^269931
+ ;;^UTILITY(U,$J,358.3,23798,0)
+ ;;=J15.1^^73^973^16
+ ;;^UTILITY(U,$J,358.3,23798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23798,1,3,0)
+ ;;=3^Pneumonia d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,23798,1,4,0)
+ ;;=4^J15.1
+ ;;^UTILITY(U,$J,358.3,23798,2)
+ ;;=^269932
+ ;;^UTILITY(U,$J,358.3,23799,0)
+ ;;=J15.20^^73^973^18
+ ;;^UTILITY(U,$J,358.3,23799,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23799,1,3,0)
+ ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,23799,1,4,0)
+ ;;=4^J15.20
+ ;;^UTILITY(U,$J,358.3,23799,2)
+ ;;=^321179
+ ;;^UTILITY(U,$J,358.3,23800,0)
+ ;;=J15.211^^73^973^9
+ ;;^UTILITY(U,$J,358.3,23800,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23800,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Suscep Staph
+ ;;^UTILITY(U,$J,358.3,23800,1,4,0)
+ ;;=4^J15.211
+ ;;^UTILITY(U,$J,358.3,23800,2)
+ ;;=^336833
+ ;;^UTILITY(U,$J,358.3,23801,0)
+ ;;=J15.212^^73^973^8
+ ;;^UTILITY(U,$J,358.3,23801,1,0)
+ ;;=^358.31IA^4^2

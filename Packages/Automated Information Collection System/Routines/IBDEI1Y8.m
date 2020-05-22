@@ -1,136 +1,116 @@
-IBDEI1Y8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Y8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33084,1,0)
+ ;;^UTILITY(U,$J,358.3,31148,0)
+ ;;=O45.021^^126^1619^42
+ ;;^UTILITY(U,$J,358.3,31148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33084,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,33084,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,33084,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,33085,0)
- ;;=R74.8^^131^1664^1
- ;;^UTILITY(U,$J,358.3,33085,1,0)
+ ;;^UTILITY(U,$J,358.3,31148,1,3,0)
+ ;;=3^Prem separtn of placenta w dissem intravasc coag, first tri
+ ;;^UTILITY(U,$J,358.3,31148,1,4,0)
+ ;;=4^O45.021
+ ;;^UTILITY(U,$J,358.3,31148,2)
+ ;;=^5017452
+ ;;^UTILITY(U,$J,358.3,31149,0)
+ ;;=O45.022^^126^1619^43
+ ;;^UTILITY(U,$J,358.3,31149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33085,1,3,0)
- ;;=3^Abnormal Levels of Serum Enzymes
- ;;^UTILITY(U,$J,358.3,33085,1,4,0)
- ;;=4^R74.8
- ;;^UTILITY(U,$J,358.3,33085,2)
- ;;=^5019566
- ;;^UTILITY(U,$J,358.3,33086,0)
- ;;=R97.2^^131^1664^18
- ;;^UTILITY(U,$J,358.3,33086,1,0)
+ ;;^UTILITY(U,$J,358.3,31149,1,3,0)
+ ;;=3^Prem separtn of placenta w dissem intravasc coag, second tri
+ ;;^UTILITY(U,$J,358.3,31149,1,4,0)
+ ;;=4^O45.022
+ ;;^UTILITY(U,$J,358.3,31149,2)
+ ;;=^5017453
+ ;;^UTILITY(U,$J,358.3,31150,0)
+ ;;=O45.023^^126^1619^44
+ ;;^UTILITY(U,$J,358.3,31150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33086,1,3,0)
- ;;=3^Elevated Prostate Specific Antigen
- ;;^UTILITY(U,$J,358.3,33086,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,33086,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,33087,0)
- ;;=R03.0^^131^1664^17
- ;;^UTILITY(U,$J,358.3,33087,1,0)
+ ;;^UTILITY(U,$J,358.3,31150,1,3,0)
+ ;;=3^Prem separtn of placenta w dissem intravasc coag, third tri
+ ;;^UTILITY(U,$J,358.3,31150,1,4,0)
+ ;;=4^O45.023
+ ;;^UTILITY(U,$J,358.3,31150,2)
+ ;;=^5017454
+ ;;^UTILITY(U,$J,358.3,31151,0)
+ ;;=O45.091^^126^1619^45
+ ;;^UTILITY(U,$J,358.3,31151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33087,1,3,0)
- ;;=3^Elevated BP Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,33087,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,33087,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,33088,0)
- ;;=Z91.19^^131^1664^42
- ;;^UTILITY(U,$J,358.3,33088,1,0)
+ ;;^UTILITY(U,$J,358.3,31151,1,3,0)
+ ;;=3^Prem separtn of placenta w oth coag defect, first trimester
+ ;;^UTILITY(U,$J,358.3,31151,1,4,0)
+ ;;=4^O45.091
+ ;;^UTILITY(U,$J,358.3,31151,2)
+ ;;=^5017456
+ ;;^UTILITY(U,$J,358.3,31152,0)
+ ;;=O45.092^^126^1619^46
+ ;;^UTILITY(U,$J,358.3,31152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33088,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,33088,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,33088,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,33089,0)
- ;;=E66.01^^131^1664^43
- ;;^UTILITY(U,$J,358.3,33089,1,0)
+ ;;^UTILITY(U,$J,358.3,31152,1,3,0)
+ ;;=3^Prem separtn of placenta w oth coag defect, second trimester
+ ;;^UTILITY(U,$J,358.3,31152,1,4,0)
+ ;;=4^O45.092
+ ;;^UTILITY(U,$J,358.3,31152,2)
+ ;;=^5017457
+ ;;^UTILITY(U,$J,358.3,31153,0)
+ ;;=O45.093^^126^1619^47
+ ;;^UTILITY(U,$J,358.3,31153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33089,1,3,0)
- ;;=3^Obesity,Morbid
- ;;^UTILITY(U,$J,358.3,33089,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,33089,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,33090,0)
- ;;=H93.19^^131^1664^54
- ;;^UTILITY(U,$J,358.3,33090,1,0)
+ ;;^UTILITY(U,$J,358.3,31153,1,3,0)
+ ;;=3^Prem separtn of placenta w oth coag defect, third trimester
+ ;;^UTILITY(U,$J,358.3,31153,1,4,0)
+ ;;=4^O45.093
+ ;;^UTILITY(U,$J,358.3,31153,2)
+ ;;=^5017458
+ ;;^UTILITY(U,$J,358.3,31154,0)
+ ;;=O46.001^^126^1619^4
+ ;;^UTILITY(U,$J,358.3,31154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33090,1,3,0)
- ;;=3^Tinnitus,Unspec Ear
- ;;^UTILITY(U,$J,358.3,33090,1,4,0)
- ;;=4^H93.19
- ;;^UTILITY(U,$J,358.3,33090,2)
- ;;=^5006967
- ;;^UTILITY(U,$J,358.3,33091,0)
- ;;=G47.00^^131^1664^31
- ;;^UTILITY(U,$J,358.3,33091,1,0)
+ ;;^UTILITY(U,$J,358.3,31154,1,3,0)
+ ;;=3^Antepartum hemorrhage w coag defect, unsp, first trimester
+ ;;^UTILITY(U,$J,358.3,31154,1,4,0)
+ ;;=4^O46.001
+ ;;^UTILITY(U,$J,358.3,31154,2)
+ ;;=^5017467
+ ;;^UTILITY(U,$J,358.3,31155,0)
+ ;;=O46.002^^126^1619^5
+ ;;^UTILITY(U,$J,358.3,31155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33091,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,33091,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,33091,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,33092,0)
- ;;=F43.10^^131^1664^47
- ;;^UTILITY(U,$J,358.3,33092,1,0)
+ ;;^UTILITY(U,$J,358.3,31155,1,3,0)
+ ;;=3^Antepartum hemorrhage w coag defect, unsp, second trimester
+ ;;^UTILITY(U,$J,358.3,31155,1,4,0)
+ ;;=4^O46.002
+ ;;^UTILITY(U,$J,358.3,31155,2)
+ ;;=^5017468
+ ;;^UTILITY(U,$J,358.3,31156,0)
+ ;;=O46.003^^126^1619^6
+ ;;^UTILITY(U,$J,358.3,31156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33092,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,33092,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,33092,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,33093,0)
- ;;=F43.11^^131^1664^45
- ;;^UTILITY(U,$J,358.3,33093,1,0)
+ ;;^UTILITY(U,$J,358.3,31156,1,3,0)
+ ;;=3^Antepartum hemorrhage w coag defect, unsp, third trimester
+ ;;^UTILITY(U,$J,358.3,31156,1,4,0)
+ ;;=4^O46.003
+ ;;^UTILITY(U,$J,358.3,31156,2)
+ ;;=^5017469
+ ;;^UTILITY(U,$J,358.3,31157,0)
+ ;;=O46.011^^126^1619^1
+ ;;^UTILITY(U,$J,358.3,31157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33093,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,33093,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,33093,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,33094,0)
- ;;=F43.12^^131^1664^46
- ;;^UTILITY(U,$J,358.3,33094,1,0)
+ ;;^UTILITY(U,$J,358.3,31157,1,3,0)
+ ;;=3^Antepartum hemorrhage w afibrinogenemia, first trimester
+ ;;^UTILITY(U,$J,358.3,31157,1,4,0)
+ ;;=4^O46.011
+ ;;^UTILITY(U,$J,358.3,31157,2)
+ ;;=^5017471
+ ;;^UTILITY(U,$J,358.3,31158,0)
+ ;;=O46.012^^126^1619^2
+ ;;^UTILITY(U,$J,358.3,31158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33094,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,33094,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,33094,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,33095,0)
- ;;=I25.119^^131^1664^5
- ;;^UTILITY(U,$J,358.3,33095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33095,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,33095,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,33095,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,33096,0)
- ;;=I25.10^^131^1664^7
- ;;^UTILITY(U,$J,358.3,33096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33096,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,33096,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,33096,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,33097,0)
- ;;=I25.110^^131^1664^6
- ;;^UTILITY(U,$J,358.3,33097,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31158,1,3,0)
+ ;;=3^Antepartum hemorrhage w afibrinogenemia, second trimester
+ ;;^UTILITY(U,$J,358.3,31158,1,4,0)
+ ;;=4^O46.012
+ ;;^UTILITY(U,$J,358.3,31158,2)
+ ;;=^5017472
+ ;;^UTILITY(U,$J,358.3,31159,0)
+ ;;=O46.013^^126^1619^3

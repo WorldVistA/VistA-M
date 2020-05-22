@@ -1,128 +1,122 @@
-IBDEI1HF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25160,1,0)
+ ;;^UTILITY(U,$J,358.3,23698,0)
+ ;;=E11.649^^105^1185^7
+ ;;^UTILITY(U,$J,358.3,23698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25160,1,3,0)
- ;;=3^Acrophobia
- ;;^UTILITY(U,$J,358.3,25160,1,4,0)
- ;;=4^F40.241
- ;;^UTILITY(U,$J,358.3,25160,2)
- ;;=^5003555
- ;;^UTILITY(U,$J,358.3,25161,0)
- ;;=F40.248^^95^1140^18
- ;;^UTILITY(U,$J,358.3,25161,1,0)
+ ;;^UTILITY(U,$J,358.3,23698,1,3,0)
+ ;;=3^DM 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,23698,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,23698,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,23699,0)
+ ;;=E11.65^^105^1185^3
+ ;;^UTILITY(U,$J,358.3,23699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25161,1,3,0)
- ;;=3^Situational Type Phobia NEC
- ;;^UTILITY(U,$J,358.3,25161,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,25161,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,25162,0)
- ;;=F40.01^^95^1140^3
- ;;^UTILITY(U,$J,358.3,25162,1,0)
+ ;;^UTILITY(U,$J,358.3,23699,1,3,0)
+ ;;=3^DM 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,23699,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,23699,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,23700,0)
+ ;;=E11.29^^105^1185^22
+ ;;^UTILITY(U,$J,358.3,23700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25162,1,3,0)
- ;;=3^Agoraphobia w/ Panic Disorder
- ;;^UTILITY(U,$J,358.3,25162,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,25162,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,25163,0)
- ;;=F40.298^^95^1140^16
- ;;^UTILITY(U,$J,358.3,25163,1,0)
+ ;;^UTILITY(U,$J,358.3,23700,1,3,0)
+ ;;=3^DM 2 w/ Oth Kidney Complication
+ ;;^UTILITY(U,$J,358.3,23700,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,23700,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,23701,0)
+ ;;=E11.3211^^105^1185^8
+ ;;^UTILITY(U,$J,358.3,23701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25163,1,3,0)
- ;;=3^Phobia,Oth Specified
- ;;^UTILITY(U,$J,358.3,25163,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,25163,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,25164,0)
- ;;=F93.0^^95^1140^17
- ;;^UTILITY(U,$J,358.3,25164,1,0)
+ ;;^UTILITY(U,$J,358.3,23701,1,3,0)
+ ;;=3^DM 2 w/ Mild NPDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,23701,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,23701,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,23702,0)
+ ;;=E11.3212^^105^1185^9
+ ;;^UTILITY(U,$J,358.3,23702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25164,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,25164,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,25164,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,25165,0)
- ;;=F41.8^^95^1140^7
- ;;^UTILITY(U,$J,358.3,25165,1,0)
+ ;;^UTILITY(U,$J,358.3,23702,1,3,0)
+ ;;=3^DM 2 w/ Mild NPDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,23702,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,23702,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,23703,0)
+ ;;=E11.3213^^105^1185^10
+ ;;^UTILITY(U,$J,358.3,23703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25165,1,3,0)
- ;;=3^Anxiety Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25165,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,25165,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,25166,0)
- ;;=F06.33^^95^1141^1
- ;;^UTILITY(U,$J,358.3,25166,1,0)
+ ;;^UTILITY(U,$J,358.3,23703,1,3,0)
+ ;;=3^DM 2 w/ Mild NPDR w/ Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,23703,1,4,0)
+ ;;=4^E11.3213
+ ;;^UTILITY(U,$J,358.3,23703,2)
+ ;;=^5138333
+ ;;^UTILITY(U,$J,358.3,23704,0)
+ ;;=E11.3291^^105^1185^11
+ ;;^UTILITY(U,$J,358.3,23704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25166,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,25166,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,25166,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,25167,0)
- ;;=F06.34^^95^1141^2
- ;;^UTILITY(U,$J,358.3,25167,1,0)
+ ;;^UTILITY(U,$J,358.3,23704,1,3,0)
+ ;;=3^DM 2 w/ Mild NPDR w/o Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,23704,1,4,0)
+ ;;=4^E11.3291
+ ;;^UTILITY(U,$J,358.3,23704,2)
+ ;;=^5138335
+ ;;^UTILITY(U,$J,358.3,23705,0)
+ ;;=E11.3292^^105^1185^12
+ ;;^UTILITY(U,$J,358.3,23705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25167,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,25167,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,25167,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,25168,0)
- ;;=F31.11^^95^1141^6
- ;;^UTILITY(U,$J,358.3,25168,1,0)
+ ;;^UTILITY(U,$J,358.3,23705,1,3,0)
+ ;;=3^DM 2 w/ Mild NPDR w/o Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,23705,1,4,0)
+ ;;=4^E11.3292
+ ;;^UTILITY(U,$J,358.3,23705,2)
+ ;;=^5138336
+ ;;^UTILITY(U,$J,358.3,23706,0)
+ ;;=E11.3293^^105^1185^13
+ ;;^UTILITY(U,$J,358.3,23706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25168,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,25168,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,25168,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,25169,0)
- ;;=F31.12^^95^1141^7
- ;;^UTILITY(U,$J,358.3,25169,1,0)
+ ;;^UTILITY(U,$J,358.3,23706,1,3,0)
+ ;;=3^DM 2 w/ Mild NPDR w/o Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,23706,1,4,0)
+ ;;=4^E11.3293
+ ;;^UTILITY(U,$J,358.3,23706,2)
+ ;;=^5138337
+ ;;^UTILITY(U,$J,358.3,23707,0)
+ ;;=E11.3311^^105^1185^14
+ ;;^UTILITY(U,$J,358.3,23707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25169,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,25169,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,25169,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,25170,0)
- ;;=F31.13^^95^1141^8
- ;;^UTILITY(U,$J,358.3,25170,1,0)
+ ;;^UTILITY(U,$J,358.3,23707,1,3,0)
+ ;;=3^DM 2 w/ Mod NPDR w/ Macular Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,23707,1,4,0)
+ ;;=4^E11.3311
+ ;;^UTILITY(U,$J,358.3,23707,2)
+ ;;=^5138339
+ ;;^UTILITY(U,$J,358.3,23708,0)
+ ;;=E11.3312^^105^1185^15
+ ;;^UTILITY(U,$J,358.3,23708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25170,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,25170,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,25170,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,25171,0)
- ;;=F31.2^^95^1141^9
- ;;^UTILITY(U,$J,358.3,25171,1,0)
+ ;;^UTILITY(U,$J,358.3,23708,1,3,0)
+ ;;=3^DM 2 w/ Mod NPDR w/ Macular Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,23708,1,4,0)
+ ;;=4^E11.3312
+ ;;^UTILITY(U,$J,358.3,23708,2)
+ ;;=^5138340
+ ;;^UTILITY(U,$J,358.3,23709,0)
+ ;;=E11.3313^^105^1185^16
+ ;;^UTILITY(U,$J,358.3,23709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25171,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,25171,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,25171,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,25172,0)
- ;;=F31.73^^95^1141^10
- ;;^UTILITY(U,$J,358.3,25172,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25172,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,23709,1,3,0)
+ ;;=3^DM 2 w/ Mod NPDR w/ Macular Edema,Bilateral
+ ;;^UTILITY(U,$J,358.3,23709,1,4,0)
+ ;;=4^E11.3313

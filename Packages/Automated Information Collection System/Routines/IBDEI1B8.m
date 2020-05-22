@@ -1,134 +1,122 @@
-IBDEI1B8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1B8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22274,0)
- ;;=G43.909^^87^978^5
- ;;^UTILITY(U,$J,358.3,22274,1,0)
+ ;;^UTILITY(U,$J,358.3,20944,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,20945,0)
+ ;;=Z64.1^^95^1038^4
+ ;;^UTILITY(U,$J,358.3,20945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22274,1,3,0)
- ;;=3^Migraine,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,22274,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,22274,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,22275,0)
- ;;=G44.009^^87^978^1
- ;;^UTILITY(U,$J,358.3,22275,1,0)
+ ;;^UTILITY(U,$J,358.3,20945,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,20945,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,20945,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,20946,0)
+ ;;=Z64.4^^95^1038^1
+ ;;^UTILITY(U,$J,358.3,20946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22275,1,3,0)
- ;;=3^Cluster Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,22275,1,4,0)
- ;;=4^G44.009
- ;;^UTILITY(U,$J,358.3,22275,2)
- ;;=^5003921
- ;;^UTILITY(U,$J,358.3,22276,0)
- ;;=G44.40^^87^978^4
- ;;^UTILITY(U,$J,358.3,22276,1,0)
+ ;;^UTILITY(U,$J,358.3,20946,1,3,0)
+ ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
+ ;;^UTILITY(U,$J,358.3,20946,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,20946,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,20947,0)
+ ;;=Z65.5^^95^1038^2
+ ;;^UTILITY(U,$J,358.3,20947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22276,1,3,0)
- ;;=3^Medication Overuse Headache,Not Intractable
- ;;^UTILITY(U,$J,358.3,22276,1,4,0)
- ;;=4^G44.40
- ;;^UTILITY(U,$J,358.3,22276,2)
- ;;=^5003947
- ;;^UTILITY(U,$J,358.3,22277,0)
- ;;=G44.89^^87^978^3
- ;;^UTILITY(U,$J,358.3,22277,1,0)
+ ;;^UTILITY(U,$J,358.3,20947,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,20947,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,20947,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,20948,0)
+ ;;=Z65.8^^95^1038^5
+ ;;^UTILITY(U,$J,358.3,20948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22277,1,3,0)
- ;;=3^Headache Syndrome NEC
- ;;^UTILITY(U,$J,358.3,22277,1,4,0)
- ;;=4^G44.89
- ;;^UTILITY(U,$J,358.3,22277,2)
- ;;=^5003954
- ;;^UTILITY(U,$J,358.3,22278,0)
- ;;=G44.84^^87^978^7
- ;;^UTILITY(U,$J,358.3,22278,1,0)
+ ;;^UTILITY(U,$J,358.3,20948,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Other
+ ;;^UTILITY(U,$J,358.3,20948,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,20948,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,20949,0)
+ ;;=Z65.9^^95^1038^3
+ ;;^UTILITY(U,$J,358.3,20949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22278,1,3,0)
- ;;=3^Primary Exertional Headache
- ;;^UTILITY(U,$J,358.3,22278,1,4,0)
- ;;=4^G44.84
- ;;^UTILITY(U,$J,358.3,22278,2)
- ;;=^336563
- ;;^UTILITY(U,$J,358.3,22279,0)
- ;;=G44.301^^87^978^6
- ;;^UTILITY(U,$J,358.3,22279,1,0)
+ ;;^UTILITY(U,$J,358.3,20949,1,3,0)
+ ;;=3^Problem Related to Psychosocial Circumstances,Unspec
+ ;;^UTILITY(U,$J,358.3,20949,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,20949,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,20950,0)
+ ;;=Z65.4^^95^1038^8
+ ;;^UTILITY(U,$J,358.3,20950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22279,1,3,0)
- ;;=3^Post-Traumatic Headache,Unspec,Intractable
- ;;^UTILITY(U,$J,358.3,22279,1,4,0)
- ;;=4^G44.301
- ;;^UTILITY(U,$J,358.3,22279,2)
- ;;=^5003941
- ;;^UTILITY(U,$J,358.3,22280,0)
- ;;=G44.209^^87^978^8
- ;;^UTILITY(U,$J,358.3,22280,1,0)
+ ;;^UTILITY(U,$J,358.3,20950,1,3,0)
+ ;;=3^Victim of Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,20950,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,20950,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,20951,0)
+ ;;=Z62.820^^95^1039^4
+ ;;^UTILITY(U,$J,358.3,20951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22280,1,3,0)
- ;;=3^Tension-Type Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,22280,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,22280,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,22281,0)
- ;;=I50.32^^87^979^5
- ;;^UTILITY(U,$J,358.3,22281,1,0)
+ ;;^UTILITY(U,$J,358.3,20951,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,20951,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,20951,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,20952,0)
+ ;;=Z62.891^^95^1039^6
+ ;;^UTILITY(U,$J,358.3,20952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22281,1,3,0)
- ;;=3^Diastolic Heart Failure,Chronic
- ;;^UTILITY(U,$J,358.3,22281,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,22281,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,22282,0)
- ;;=I50.33^^87^979^4
- ;;^UTILITY(U,$J,358.3,22282,1,0)
+ ;;^UTILITY(U,$J,358.3,20952,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,20952,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,20952,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,20953,0)
+ ;;=Z62.898^^95^1039^1
+ ;;^UTILITY(U,$J,358.3,20953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22282,1,3,0)
- ;;=3^Diastolic Heart Failure,Acute on Chronic
- ;;^UTILITY(U,$J,358.3,22282,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,22282,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,22283,0)
- ;;=I50.40^^87^979^9
- ;;^UTILITY(U,$J,358.3,22283,1,0)
+ ;;^UTILITY(U,$J,358.3,20953,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,20953,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,20953,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,20954,0)
+ ;;=Z63.0^^95^1039^5
+ ;;^UTILITY(U,$J,358.3,20954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22283,1,3,0)
- ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
- ;;^UTILITY(U,$J,358.3,22283,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,22283,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,22284,0)
- ;;=I51.7^^87^979^2
- ;;^UTILITY(U,$J,358.3,22284,1,0)
+ ;;^UTILITY(U,$J,358.3,20954,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,20954,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,20954,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,20955,0)
+ ;;=Z63.5^^95^1039^2
+ ;;^UTILITY(U,$J,358.3,20955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22284,1,3,0)
- ;;=3^Cardiomegaly
- ;;^UTILITY(U,$J,358.3,22284,1,4,0)
- ;;=4^I51.7
- ;;^UTILITY(U,$J,358.3,22284,2)
- ;;=^5007257
- ;;^UTILITY(U,$J,358.3,22285,0)
- ;;=I42.6^^87^979^1
- ;;^UTILITY(U,$J,358.3,22285,1,0)
+ ;;^UTILITY(U,$J,358.3,20955,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,20955,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,20955,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,20956,0)
+ ;;=Z63.8^^95^1039^3
+ ;;^UTILITY(U,$J,358.3,20956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22285,1,3,0)
- ;;=3^Alcoholic Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,22285,1,4,0)
- ;;=4^I42.6
- ;;^UTILITY(U,$J,358.3,22285,2)
- ;;=^5007197
- ;;^UTILITY(U,$J,358.3,22286,0)
- ;;=I50.1^^87^979^8
- ;;^UTILITY(U,$J,358.3,22286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22286,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,22286,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,22286,2)
- ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,20956,1,3,0)
+ ;;=3^High Expressed Emotion Level w/in Family

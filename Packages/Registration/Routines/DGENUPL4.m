@@ -1,5 +1,5 @@
 DGENUPL4 ;ALB/CJM,RTK,ISA/KWP,ISD/GSN,PHH,RGL,PJR,BRM,TDM,TMK,EG,BAJ,HM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;6/28/11 4:36pm
- ;;5.3;REGISTRATION;**147,177,232,253,327,367,377,514,451,625,673,708,688,841,842,972**;Aug 13,1993;Build 80
+ ;;5.3;REGISTRATION;**147,177,232,253,327,367,377,514,451,625,673,708,688,841,842,972,952**;Aug 13,1993;Build 160
  ;
 UOBJECTS(DFN,DGPAT,DGELG,DGCDIS,DGOEIF,MSGID,ERRCOUNT,MSGS,OLDPAT,OLDELG,OLDCDIS,OLDOEIF) ;
  ;Used to update PATIENT, ELIGIBILITY, CATASTROPHIC
@@ -154,7 +154,7 @@ MERGE ;
  ; overlays catastrophic disability array with data from HEC
  ;        DGCDIS() is info from HEC
  ;
- N SUB,SUB2,LOC,HEC,NATCODE
+ N SUB,SUB2,LOC,HEC,NATCODE,ISOTH
  M DGPAT3=OLDPAT,DGELG3=OLDELG
  ;Replace POW in VistA with HEC data
  I '$D(DGPAT3("POWI")) S DGELG3("POW")=""
@@ -207,10 +207,13 @@ MERGE ;
  S NATCODE=$$NATCODE^DGENELA(DGELG("ELIG","CODE")) I NATCODE S HEC(NATCODE)=""
  S SUB=0 F  S SUB=$O(DGELG("ELIG","CODE",SUB)) Q:'SUB  S NATCODE=$$NATCODE^DGENELA(SUB) I NATCODE S HEC(NATCODE)=""
  S SUB=0 F  S SUB=$O(DGELG3("ELIG","CODE",SUB)) Q:'SUB  S NATCODE=$$NATCODE^DGENELA(SUB) I NATCODE S LOC(NATCODE)=""
- ;Now discard the codes in the local patient database that don't map to a national code sent by HEC, as well as HUMANIARIAN EMERGENCY code if not sent by HEC: 
- S SUB=0
- F  S SUB=$O(DGELG3("ELIG","CODE",SUB)) Q:'SUB  D
+ ;Now discard the codes in the local patient database that don't map to a national code sent by HEC, as well as HUMANIARIAN EMERGENCY code if not sent by HEC:
+ ;Also discard EXPANDED MH CARE NON-ENROLLEE secondary eligibility if primary eligibility is something other than EXPANDED MH CARE NON-ENROLLEE
+ S ISOTH=($$GET1^DIQ(8,DGELG3("ELIG","CODE")_",",.01)="EXPANDED MH CARE NON-ENROLLEE") ; DG*5.3*952
+ S SUB=0 F  S SUB=$O(DGELG3("ELIG","CODE",SUB)) Q:'SUB  D
  .I $P($G(^DIC(8,SUB,0)),"^",5)="Y"!($P($G(^DIC(8,SUB,0)),"^")["HUMANITARIAN EMERGENCY"),'$D(HEC($$NATCODE^DGENELA(SUB))) K DGELG3("ELIG","CODE",SUB)
+ .I 'ISOTH,$$GET1^DIQ(8,SUB_",",.01)="EXPANDED MH CARE NON-ENROLLEE" K DGELG3("ELIG","CODE",SUB) ; DG*5.3*952
+ .Q
  ;now add codes included in the update that the local database does not already contain
  S SUB=0
  F  S SUB=$O(DGELG("ELIG","CODE",SUB)) Q:'SUB  D

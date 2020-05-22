@@ -1,136 +1,122 @@
-IBDEI1OL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28564,0)
- ;;=Z51.11^^112^1429^3
- ;;^UTILITY(U,$J,358.3,28564,1,0)
+ ;;^UTILITY(U,$J,358.3,26871,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,26872,0)
+ ;;=G25.79^^110^1293^9
+ ;;^UTILITY(U,$J,358.3,26872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28564,1,3,0)
- ;;=3^Antineoplastic Chemotherapy
- ;;^UTILITY(U,$J,358.3,28564,1,4,0)
- ;;=4^Z51.11
- ;;^UTILITY(U,$J,358.3,28564,2)
- ;;=^5063061
- ;;^UTILITY(U,$J,358.3,28565,0)
- ;;=Z71.9^^112^1429^14
- ;;^UTILITY(U,$J,358.3,28565,1,0)
+ ;;^UTILITY(U,$J,358.3,26872,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,26872,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,26872,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,26873,0)
+ ;;=T43.205A^^110^1293^4
+ ;;^UTILITY(U,$J,358.3,26873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28565,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,28565,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,28565,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,28566,0)
- ;;=Z76.0^^112^1429^19
- ;;^UTILITY(U,$J,358.3,28566,1,0)
+ ;;^UTILITY(U,$J,358.3,26873,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26873,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,26873,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,26874,0)
+ ;;=T43.205D^^110^1293^5
+ ;;^UTILITY(U,$J,358.3,26874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28566,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,28566,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,28566,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,28567,0)
- ;;=Z02.9^^112^1429^2
- ;;^UTILITY(U,$J,358.3,28567,1,0)
+ ;;^UTILITY(U,$J,358.3,26874,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,26874,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,26874,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,26875,0)
+ ;;=T43.205S^^110^1293^6
+ ;;^UTILITY(U,$J,358.3,26875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28567,1,3,0)
- ;;=3^Administrative Exam,Unspec
- ;;^UTILITY(U,$J,358.3,28567,1,4,0)
- ;;=4^Z02.9
- ;;^UTILITY(U,$J,358.3,28567,2)
- ;;=^5062646
- ;;^UTILITY(U,$J,358.3,28568,0)
- ;;=Z59.0^^112^1429^18
- ;;^UTILITY(U,$J,358.3,28568,1,0)
+ ;;^UTILITY(U,$J,358.3,26875,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,26875,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,26875,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,26876,0)
+ ;;=G25.71^^110^1293^7
+ ;;^UTILITY(U,$J,358.3,26876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28568,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,28568,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,28568,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,28569,0)
- ;;=Z71.0^^112^1429^20
- ;;^UTILITY(U,$J,358.3,28569,1,0)
+ ;;^UTILITY(U,$J,358.3,26876,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,26876,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,26876,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,26877,0)
+ ;;=G24.02^^110^1293^8
+ ;;^UTILITY(U,$J,358.3,26877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28569,1,3,0)
- ;;=3^Persons Consulting on Behalf of Another Person
- ;;^UTILITY(U,$J,358.3,28569,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,28569,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,28570,0)
- ;;=Z01.818^^112^1429^21
- ;;^UTILITY(U,$J,358.3,28570,1,0)
+ ;;^UTILITY(U,$J,358.3,26877,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,26877,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,26877,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,26878,0)
+ ;;=G21.0^^110^1293^12
+ ;;^UTILITY(U,$J,358.3,26878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28570,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,28570,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,28570,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,28571,0)
- ;;=Z04.9^^112^1429^15
- ;;^UTILITY(U,$J,358.3,28571,1,0)
+ ;;^UTILITY(U,$J,358.3,26878,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,26878,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,26878,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,26879,0)
+ ;;=T50.905A^^110^1293^1
+ ;;^UTILITY(U,$J,358.3,26879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28571,1,3,0)
- ;;=3^Exam/Observation for Unspec Reason
- ;;^UTILITY(U,$J,358.3,28571,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,28571,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,28572,0)
- ;;=Z49.01^^112^1429^16
- ;;^UTILITY(U,$J,358.3,28572,1,0)
+ ;;^UTILITY(U,$J,358.3,26879,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26879,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,26879,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,26880,0)
+ ;;=T50.905S^^110^1293^2
+ ;;^UTILITY(U,$J,358.3,26880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28572,1,3,0)
- ;;=3^Fitting/Adjustment of Extracorpeal Dialysis Catheter
- ;;^UTILITY(U,$J,358.3,28572,1,4,0)
- ;;=4^Z49.01
- ;;^UTILITY(U,$J,358.3,28572,2)
- ;;=^5063056
- ;;^UTILITY(U,$J,358.3,28573,0)
- ;;=Z71.3^^112^1430^3
- ;;^UTILITY(U,$J,358.3,28573,1,0)
+ ;;^UTILITY(U,$J,358.3,26880,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,26880,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,26880,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,26881,0)
+ ;;=T50.905D^^110^1293^3
+ ;;^UTILITY(U,$J,358.3,26881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28573,1,3,0)
- ;;=3^Dietary Counseling/Surveillance
- ;;^UTILITY(U,$J,358.3,28573,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,28573,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,28574,0)
- ;;=Z00.00^^112^1430^6
- ;;^UTILITY(U,$J,358.3,28574,1,0)
+ ;;^UTILITY(U,$J,358.3,26881,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,26881,1,4,0)
+ ;;=4^T50.905D
+ ;;^UTILITY(U,$J,358.3,26881,2)
+ ;;=^5052161
+ ;;^UTILITY(U,$J,358.3,26882,0)
+ ;;=F45.22^^110^1294^1
+ ;;^UTILITY(U,$J,358.3,26882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28574,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,28574,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,28574,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,28575,0)
- ;;=Z01.89^^112^1430^12
- ;;^UTILITY(U,$J,358.3,28575,1,0)
+ ;;^UTILITY(U,$J,358.3,26882,1,3,0)
+ ;;=3^Body Dysmorphic D/O
+ ;;^UTILITY(U,$J,358.3,26882,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,26882,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,26883,0)
+ ;;=F63.3^^110^1294^8
+ ;;^UTILITY(U,$J,358.3,26883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28575,1,3,0)
- ;;=3^Special Exam NEC
- ;;^UTILITY(U,$J,358.3,28575,1,4,0)
- ;;=4^Z01.89
- ;;^UTILITY(U,$J,358.3,28575,2)
- ;;=^5062632
- ;;^UTILITY(U,$J,358.3,28576,0)
- ;;=Z11.59^^112^1430^13
- ;;^UTILITY(U,$J,358.3,28576,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28576,1,3,0)
- ;;=3^Viral Disease Screening NEC
- ;;^UTILITY(U,$J,358.3,28576,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,28576,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,28577,0)
- ;;=Z12.39^^112^1430^8
+ ;;^UTILITY(U,$J,358.3,26883,1,3,0)
+ ;;=3^Trichotillomania (Hair-Pulling D/O)

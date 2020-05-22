@@ -1,124 +1,118 @@
-IBDEI2E7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2E7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40594,1,4,0)
- ;;=4^I70.543
- ;;^UTILITY(U,$J,358.3,40594,2)
- ;;=^5007711
- ;;^UTILITY(U,$J,358.3,40595,0)
- ;;=I70.544^^159^1993^58
- ;;^UTILITY(U,$J,358.3,40595,1,0)
+ ;;^UTILITY(U,$J,358.3,38174,0)
+ ;;=S91.231A^^146^1931^31
+ ;;^UTILITY(U,$J,358.3,38174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40595,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,40595,1,4,0)
- ;;=4^I70.544
- ;;^UTILITY(U,$J,358.3,40595,2)
- ;;=^5007712
- ;;^UTILITY(U,$J,358.3,40596,0)
- ;;=I70.545^^159^1993^59
- ;;^UTILITY(U,$J,358.3,40596,1,0)
+ ;;^UTILITY(U,$J,358.3,38174,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38174,1,4,0)
+ ;;=4^S91.231A
+ ;;^UTILITY(U,$J,358.3,38174,2)
+ ;;=^5044290
+ ;;^UTILITY(U,$J,358.3,38175,0)
+ ;;=S91.232A^^146^1931^27
+ ;;^UTILITY(U,$J,358.3,38175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40596,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,40596,1,4,0)
- ;;=4^I70.545
- ;;^UTILITY(U,$J,358.3,40596,2)
- ;;=^5007713
- ;;^UTILITY(U,$J,358.3,40597,0)
- ;;=I70.631^^159^1993^70
- ;;^UTILITY(U,$J,358.3,40597,1,0)
+ ;;^UTILITY(U,$J,358.3,38175,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, lft grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38175,1,4,0)
+ ;;=4^S91.232A
+ ;;^UTILITY(U,$J,358.3,38175,2)
+ ;;=^5044293
+ ;;^UTILITY(U,$J,358.3,38176,0)
+ ;;=S91.234A^^146^1931^33
+ ;;^UTILITY(U,$J,358.3,38176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40597,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,40597,1,4,0)
- ;;=4^I70.631
- ;;^UTILITY(U,$J,358.3,40597,2)
- ;;=^5007740
- ;;^UTILITY(U,$J,358.3,40598,0)
- ;;=I70.632^^159^1993^71
- ;;^UTILITY(U,$J,358.3,40598,1,0)
+ ;;^UTILITY(U,$J,358.3,38176,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38176,1,4,0)
+ ;;=4^S91.234A
+ ;;^UTILITY(U,$J,358.3,38176,2)
+ ;;=^5044296
+ ;;^UTILITY(U,$J,358.3,38177,0)
+ ;;=S91.202A^^146^1931^3
+ ;;^UTILITY(U,$J,358.3,38177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40598,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,40598,1,4,0)
- ;;=4^I70.632
- ;;^UTILITY(U,$J,358.3,40598,2)
- ;;=^5007741
- ;;^UTILITY(U,$J,358.3,40599,0)
- ;;=I70.633^^159^1993^72
- ;;^UTILITY(U,$J,358.3,40599,1,0)
+ ;;^UTILITY(U,$J,358.3,38177,1,3,0)
+ ;;=3^Open wound, lft grt toe w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,38177,1,4,0)
+ ;;=4^S91.202A
+ ;;^UTILITY(U,$J,358.3,38177,2)
+ ;;=^5137421
+ ;;^UTILITY(U,$J,358.3,38178,0)
+ ;;=S91.204A^^146^1931^11
+ ;;^UTILITY(U,$J,358.3,38178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40599,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,40599,1,4,0)
- ;;=4^I70.633
- ;;^UTILITY(U,$J,358.3,40599,2)
- ;;=^5007742
- ;;^UTILITY(U,$J,358.3,40600,0)
- ;;=I70.634^^159^1993^73
- ;;^UTILITY(U,$J,358.3,40600,1,0)
+ ;;^UTILITY(U,$J,358.3,38178,1,3,0)
+ ;;=3^Open wound, rt lsr toe(s) w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,38178,1,4,0)
+ ;;=4^S91.204A
+ ;;^UTILITY(U,$J,358.3,38178,2)
+ ;;=^5044267
+ ;;^UTILITY(U,$J,358.3,38179,0)
+ ;;=S91.205A^^146^1931^5
+ ;;^UTILITY(U,$J,358.3,38179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40600,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,40600,1,4,0)
- ;;=4^I70.634
- ;;^UTILITY(U,$J,358.3,40600,2)
- ;;=^5007743
- ;;^UTILITY(U,$J,358.3,40601,0)
- ;;=I70.635^^159^1993^74
- ;;^UTILITY(U,$J,358.3,40601,1,0)
+ ;;^UTILITY(U,$J,358.3,38179,1,3,0)
+ ;;=3^Open wound, lft lsr toe(s) w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,38179,1,4,0)
+ ;;=4^S91.205A
+ ;;^UTILITY(U,$J,358.3,38179,2)
+ ;;=^5137430
+ ;;^UTILITY(U,$J,358.3,38180,0)
+ ;;=S91.134A^^146^1931^34
+ ;;^UTILITY(U,$J,358.3,38180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40601,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,40601,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,40601,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,40602,0)
- ;;=I70.641^^159^1993^65
- ;;^UTILITY(U,$J,358.3,40602,1,0)
+ ;;^UTILITY(U,$J,358.3,38180,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38180,1,4,0)
+ ;;=4^S91.134A
+ ;;^UTILITY(U,$J,358.3,38180,2)
+ ;;=^5044222
+ ;;^UTILITY(U,$J,358.3,38181,0)
+ ;;=S91.135A^^146^1931^29
+ ;;^UTILITY(U,$J,358.3,38181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40602,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,40602,1,4,0)
- ;;=4^I70.641
- ;;^UTILITY(U,$J,358.3,40602,2)
- ;;=^5007747
- ;;^UTILITY(U,$J,358.3,40603,0)
- ;;=I70.642^^159^1993^66
- ;;^UTILITY(U,$J,358.3,40603,1,0)
+ ;;^UTILITY(U,$J,358.3,38181,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, lft lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38181,1,4,0)
+ ;;=4^S91.135A
+ ;;^UTILITY(U,$J,358.3,38181,2)
+ ;;=^5044225
+ ;;^UTILITY(U,$J,358.3,38182,0)
+ ;;=S91.201A^^146^1931^9
+ ;;^UTILITY(U,$J,358.3,38182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40603,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,40603,1,4,0)
- ;;=4^I70.642
- ;;^UTILITY(U,$J,358.3,40603,2)
- ;;=^5007748
- ;;^UTILITY(U,$J,358.3,40604,0)
- ;;=I70.643^^159^1993^67
- ;;^UTILITY(U,$J,358.3,40604,1,0)
+ ;;^UTILITY(U,$J,358.3,38182,1,3,0)
+ ;;=3^Open wound, rt grt toe w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,38182,1,4,0)
+ ;;=4^S91.201A
+ ;;^UTILITY(U,$J,358.3,38182,2)
+ ;;=^5044264
+ ;;^UTILITY(U,$J,358.3,38183,0)
+ ;;=S91.131A^^146^1931^32
+ ;;^UTILITY(U,$J,358.3,38183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40604,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,40604,1,4,0)
- ;;=4^I70.643
- ;;^UTILITY(U,$J,358.3,40604,2)
- ;;=^5007749
- ;;^UTILITY(U,$J,358.3,40605,0)
- ;;=I70.644^^159^1993^68
- ;;^UTILITY(U,$J,358.3,40605,1,0)
+ ;;^UTILITY(U,$J,358.3,38183,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38183,1,4,0)
+ ;;=4^S91.131A
+ ;;^UTILITY(U,$J,358.3,38183,2)
+ ;;=^5044213
+ ;;^UTILITY(U,$J,358.3,38184,0)
+ ;;=S91.132A^^146^1931^28
+ ;;^UTILITY(U,$J,358.3,38184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40605,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,40605,1,4,0)
- ;;=4^I70.644
- ;;^UTILITY(U,$J,358.3,40605,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,40606,0)
- ;;=I70.645^^159^1993^69
- ;;^UTILITY(U,$J,358.3,40606,1,0)
+ ;;^UTILITY(U,$J,358.3,38184,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, lft grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,38184,1,4,0)
+ ;;=4^S91.132A
+ ;;^UTILITY(U,$J,358.3,38184,2)
+ ;;=^5044216
+ ;;^UTILITY(U,$J,358.3,38185,0)
+ ;;=S91.041A^^146^1931^19
+ ;;^UTILITY(U,$J,358.3,38185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40606,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot

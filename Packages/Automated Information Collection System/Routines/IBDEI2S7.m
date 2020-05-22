@@ -1,134 +1,122 @@
-IBDEI2S7 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2S7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46693,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,46694,0)
- ;;=M54.5^^206^2306^14
- ;;^UTILITY(U,$J,358.3,46694,1,0)
+ ;;^UTILITY(U,$J,358.3,44355,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,44355,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,44356,0)
+ ;;=F18.121^^164^2196^16
+ ;;^UTILITY(U,$J,358.3,44356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46694,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,46694,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,46694,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,46695,0)
- ;;=S22.43XA^^206^2306^6
- ;;^UTILITY(U,$J,358.3,46695,1,0)
+ ;;^UTILITY(U,$J,358.3,44356,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44356,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,44356,2)
+ ;;=^5003382
+ ;;^UTILITY(U,$J,358.3,44357,0)
+ ;;=F18.221^^164^2196^17
+ ;;^UTILITY(U,$J,358.3,44357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46695,1,3,0)
- ;;=3^Fx Mult Ribs Bilateral,Init Enctr
- ;;^UTILITY(U,$J,358.3,46695,1,4,0)
- ;;=4^S22.43XA
- ;;^UTILITY(U,$J,358.3,46695,2)
- ;;=^5023135
- ;;^UTILITY(U,$J,358.3,46696,0)
- ;;=S22.42XA^^206^2306^7
- ;;^UTILITY(U,$J,358.3,46696,1,0)
+ ;;^UTILITY(U,$J,358.3,44357,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44357,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,44357,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,44358,0)
+ ;;=F18.921^^164^2196^18
+ ;;^UTILITY(U,$J,358.3,44358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46696,1,3,0)
- ;;=3^Fx Mult Ribs Left Side,Init Enctr
- ;;^UTILITY(U,$J,358.3,46696,1,4,0)
- ;;=4^S22.42XA
- ;;^UTILITY(U,$J,358.3,46696,2)
- ;;=^5023129
- ;;^UTILITY(U,$J,358.3,46697,0)
- ;;=S22.41XA^^206^2306^8
- ;;^UTILITY(U,$J,358.3,46697,1,0)
+ ;;^UTILITY(U,$J,358.3,44358,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44358,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,44358,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,44359,0)
+ ;;=F18.129^^164^2196^19
+ ;;^UTILITY(U,$J,358.3,44359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46697,1,3,0)
- ;;=3^Fx Mult Ribs Right Side,Init Enctr
- ;;^UTILITY(U,$J,358.3,46697,1,4,0)
- ;;=4^S22.41XA
- ;;^UTILITY(U,$J,358.3,46697,2)
- ;;=^5023123
- ;;^UTILITY(U,$J,358.3,46698,0)
- ;;=G70.00^^206^2306^15
- ;;^UTILITY(U,$J,358.3,46698,1,0)
+ ;;^UTILITY(U,$J,358.3,44359,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44359,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,44359,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,44360,0)
+ ;;=F18.229^^164^2196^20
+ ;;^UTILITY(U,$J,358.3,44360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46698,1,3,0)
- ;;=3^Myasthenia Gracis w/o Exacerbation
- ;;^UTILITY(U,$J,358.3,46698,1,4,0)
- ;;=4^G70.00
- ;;^UTILITY(U,$J,358.3,46698,2)
- ;;=^329920
- ;;^UTILITY(U,$J,358.3,46699,0)
- ;;=G72.9^^206^2306^16
- ;;^UTILITY(U,$J,358.3,46699,1,0)
+ ;;^UTILITY(U,$J,358.3,44360,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44360,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,44360,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,44361,0)
+ ;;=F18.929^^164^2196^21
+ ;;^UTILITY(U,$J,358.3,44361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46699,1,3,0)
- ;;=3^Myopathy,Unspec
- ;;^UTILITY(U,$J,358.3,46699,1,4,0)
- ;;=4^G72.9
- ;;^UTILITY(U,$J,358.3,46699,2)
- ;;=^5004101
- ;;^UTILITY(U,$J,358.3,46700,0)
- ;;=M54.89^^206^2306^4
- ;;^UTILITY(U,$J,358.3,46700,1,0)
+ ;;^UTILITY(U,$J,358.3,44361,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44361,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,44361,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,44362,0)
+ ;;=F18.180^^164^2196^1
+ ;;^UTILITY(U,$J,358.3,44362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46700,1,3,0)
- ;;=3^Dorsalgia NEC
- ;;^UTILITY(U,$J,358.3,46700,1,4,0)
- ;;=4^M54.89
- ;;^UTILITY(U,$J,358.3,46700,2)
- ;;=^5012313
- ;;^UTILITY(U,$J,358.3,46701,0)
- ;;=M51.86^^206^2306^12
- ;;^UTILITY(U,$J,358.3,46701,1,0)
+ ;;^UTILITY(U,$J,358.3,44362,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44362,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,44362,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,44363,0)
+ ;;=F18.280^^164^2196^2
+ ;;^UTILITY(U,$J,358.3,44363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46701,1,3,0)
- ;;=3^Intervertebral Disc Disorders,Lumbar Region NEC
- ;;^UTILITY(U,$J,358.3,46701,1,4,0)
- ;;=4^M51.86
- ;;^UTILITY(U,$J,358.3,46701,2)
- ;;=^5012261
- ;;^UTILITY(U,$J,358.3,46702,0)
- ;;=M51.87^^206^2306^13
- ;;^UTILITY(U,$J,358.3,46702,1,0)
+ ;;^UTILITY(U,$J,358.3,44363,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44363,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,44363,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,44364,0)
+ ;;=F18.980^^164^2196^3
+ ;;^UTILITY(U,$J,358.3,44364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46702,1,3,0)
- ;;=3^Intervertebral Disc Disorders,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,46702,1,4,0)
- ;;=4^M51.87
- ;;^UTILITY(U,$J,358.3,46702,2)
- ;;=^5012262
- ;;^UTILITY(U,$J,358.3,46703,0)
- ;;=M05.872^^206^2306^24
- ;;^UTILITY(U,$J,358.3,46703,1,0)
+ ;;^UTILITY(U,$J,358.3,44364,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44364,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,44364,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,44365,0)
+ ;;=F18.94^^164^2196^6
+ ;;^UTILITY(U,$J,358.3,44365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46703,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,46703,1,4,0)
- ;;=4^M05.872
- ;;^UTILITY(U,$J,358.3,46703,2)
- ;;=^5010043
- ;;^UTILITY(U,$J,358.3,46704,0)
- ;;=M05.822^^206^2306^25
- ;;^UTILITY(U,$J,358.3,46704,1,0)
+ ;;^UTILITY(U,$J,358.3,44365,1,3,0)
+ ;;=3^Inhalant Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44365,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,44365,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,44366,0)
+ ;;=F18.17^^164^2196^7
+ ;;^UTILITY(U,$J,358.3,44366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46704,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Elbow
- ;;^UTILITY(U,$J,358.3,46704,1,4,0)
- ;;=4^M05.822
- ;;^UTILITY(U,$J,358.3,46704,2)
- ;;=^5010028
- ;;^UTILITY(U,$J,358.3,46705,0)
- ;;=M05.842^^206^2306^26
- ;;^UTILITY(U,$J,358.3,46705,1,0)
+ ;;^UTILITY(U,$J,358.3,44366,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44366,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,44366,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,44367,0)
+ ;;=F18.27^^164^2196^8
+ ;;^UTILITY(U,$J,358.3,44367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46705,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Hand
- ;;^UTILITY(U,$J,358.3,46705,1,4,0)
- ;;=4^M05.842
- ;;^UTILITY(U,$J,358.3,46705,2)
- ;;=^5010034
- ;;^UTILITY(U,$J,358.3,46706,0)
- ;;=M05.852^^206^2306^27
- ;;^UTILITY(U,$J,358.3,46706,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46706,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Hip
- ;;^UTILITY(U,$J,358.3,46706,1,4,0)
- ;;=4^M05.852

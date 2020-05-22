@@ -1,132 +1,122 @@
-IBDEI32V ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32V ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51621,2)
- ;;=^5004132
- ;;^UTILITY(U,$J,358.3,51622,0)
- ;;=G82.50^^225^2504^5
- ;;^UTILITY(U,$J,358.3,51622,1,0)
+ ;;^UTILITY(U,$J,358.3,49142,0)
+ ;;=W18.2XXD^^185^2430^23
+ ;;^UTILITY(U,$J,358.3,49142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51622,1,3,0)
- ;;=3^Quadriplegia,Unspec
- ;;^UTILITY(U,$J,358.3,51622,1,4,0)
- ;;=4^G82.50
- ;;^UTILITY(U,$J,358.3,51622,2)
- ;;=^5004128
- ;;^UTILITY(U,$J,358.3,51623,0)
- ;;=L89.010^^225^2505^60
- ;;^UTILITY(U,$J,358.3,51623,1,0)
+ ;;^UTILITY(U,$J,358.3,49142,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Subsequent
+ ;;^UTILITY(U,$J,358.3,49142,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,49142,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,49143,0)
+ ;;=W11.XXXD^^185^2430^14
+ ;;^UTILITY(U,$J,358.3,49143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51623,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Unstageable
- ;;^UTILITY(U,$J,358.3,51623,1,4,0)
- ;;=4^L89.010
- ;;^UTILITY(U,$J,358.3,51623,2)
- ;;=^5009337
- ;;^UTILITY(U,$J,358.3,51624,0)
- ;;=L89.011^^225^2505^55
- ;;^UTILITY(U,$J,358.3,51624,1,0)
+ ;;^UTILITY(U,$J,358.3,49143,1,3,0)
+ ;;=3^Fall from Ladder,Subsequent
+ ;;^UTILITY(U,$J,358.3,49143,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,49143,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,49144,0)
+ ;;=W01.10XD^^185^2430^2
+ ;;^UTILITY(U,$J,358.3,49144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51624,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Stage 1
- ;;^UTILITY(U,$J,358.3,51624,1,4,0)
- ;;=4^L89.011
- ;;^UTILITY(U,$J,358.3,51624,2)
- ;;=^5009338
- ;;^UTILITY(U,$J,358.3,51625,0)
- ;;=L89.012^^225^2505^56
- ;;^UTILITY(U,$J,358.3,51625,1,0)
+ ;;^UTILITY(U,$J,358.3,49144,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,49144,1,4,0)
+ ;;=4^W01.10XD
+ ;;^UTILITY(U,$J,358.3,49144,2)
+ ;;=^5059526
+ ;;^UTILITY(U,$J,358.3,49145,0)
+ ;;=W01.0XXD^^185^2430^3
+ ;;^UTILITY(U,$J,358.3,49145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51625,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Stage 2
- ;;^UTILITY(U,$J,358.3,51625,1,4,0)
- ;;=4^L89.012
- ;;^UTILITY(U,$J,358.3,51625,2)
- ;;=^5009339
- ;;^UTILITY(U,$J,358.3,51626,0)
- ;;=L89.013^^225^2505^57
- ;;^UTILITY(U,$J,358.3,51626,1,0)
+ ;;^UTILITY(U,$J,358.3,49145,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,49145,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,49145,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,49146,0)
+ ;;=W18.30XD^^185^2430^4
+ ;;^UTILITY(U,$J,358.3,49146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51626,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Stage 3
- ;;^UTILITY(U,$J,358.3,51626,1,4,0)
- ;;=4^L89.013
- ;;^UTILITY(U,$J,358.3,51626,2)
- ;;=^5009340
- ;;^UTILITY(U,$J,358.3,51627,0)
- ;;=L89.014^^225^2505^58
- ;;^UTILITY(U,$J,358.3,51627,1,0)
+ ;;^UTILITY(U,$J,358.3,49146,1,3,0)
+ ;;=3^Fall Same Level,Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,49146,1,4,0)
+ ;;=4^W18.30XD
+ ;;^UTILITY(U,$J,358.3,49146,2)
+ ;;=^5059810
+ ;;^UTILITY(U,$J,358.3,49147,0)
+ ;;=W04.XXXD^^185^2430^6
+ ;;^UTILITY(U,$J,358.3,49147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51627,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Stage 4
- ;;^UTILITY(U,$J,358.3,51627,1,4,0)
- ;;=4^L89.014
- ;;^UTILITY(U,$J,358.3,51627,2)
- ;;=^5009341
- ;;^UTILITY(U,$J,358.3,51628,0)
- ;;=L89.019^^225^2505^59
- ;;^UTILITY(U,$J,358.3,51628,1,0)
+ ;;^UTILITY(U,$J,358.3,49147,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Subsequent
+ ;;^UTILITY(U,$J,358.3,49147,1,4,0)
+ ;;=4^W04.XXXD
+ ;;^UTILITY(U,$J,358.3,49147,2)
+ ;;=^5059548
+ ;;^UTILITY(U,$J,358.3,49148,0)
+ ;;=W17.89XD^^185^2430^18
+ ;;^UTILITY(U,$J,358.3,49148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51628,1,3,0)
- ;;=3^Pressure Ulcer Right Elbow,Stage Unspec
- ;;^UTILITY(U,$J,358.3,51628,1,4,0)
- ;;=4^L89.019
- ;;^UTILITY(U,$J,358.3,51628,2)
- ;;=^5133648
- ;;^UTILITY(U,$J,358.3,51629,0)
- ;;=L89.020^^225^2505^18
- ;;^UTILITY(U,$J,358.3,51629,1,0)
+ ;;^UTILITY(U,$J,358.3,49148,1,3,0)
+ ;;=3^Fall from One Level to Another,Subsequent
+ ;;^UTILITY(U,$J,358.3,49148,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,49148,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,49149,0)
+ ;;=W03.XXXD^^185^2430^1
+ ;;^UTILITY(U,$J,358.3,49149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51629,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Unstageable
- ;;^UTILITY(U,$J,358.3,51629,1,4,0)
- ;;=4^L89.020
- ;;^UTILITY(U,$J,358.3,51629,2)
- ;;=^5009342
- ;;^UTILITY(U,$J,358.3,51630,0)
- ;;=L89.021^^225^2505^13
- ;;^UTILITY(U,$J,358.3,51630,1,0)
+ ;;^UTILITY(U,$J,358.3,49149,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
+ ;;^UTILITY(U,$J,358.3,49149,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,49149,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,49150,0)
+ ;;=W18.00XD^^185^2430^8
+ ;;^UTILITY(U,$J,358.3,49150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51630,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 1
- ;;^UTILITY(U,$J,358.3,51630,1,4,0)
- ;;=4^L89.021
- ;;^UTILITY(U,$J,358.3,51630,2)
- ;;=^5009343
- ;;^UTILITY(U,$J,358.3,51631,0)
- ;;=L89.022^^225^2505^14
- ;;^UTILITY(U,$J,358.3,51631,1,0)
+ ;;^UTILITY(U,$J,358.3,49150,1,3,0)
+ ;;=3^Fall d/t Striking Unspec Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,49150,1,4,0)
+ ;;=4^W18.00XD
+ ;;^UTILITY(U,$J,358.3,49150,2)
+ ;;=^5059791
+ ;;^UTILITY(U,$J,358.3,49151,0)
+ ;;=W00.9XXD^^185^2430^7
+ ;;^UTILITY(U,$J,358.3,49151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51631,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 2
- ;;^UTILITY(U,$J,358.3,51631,1,4,0)
- ;;=4^L89.022
- ;;^UTILITY(U,$J,358.3,51631,2)
- ;;=^5009344
- ;;^UTILITY(U,$J,358.3,51632,0)
- ;;=L89.023^^225^2505^15
- ;;^UTILITY(U,$J,358.3,51632,1,0)
+ ;;^UTILITY(U,$J,358.3,49151,1,3,0)
+ ;;=3^Fall d/t Snow/Ice,Subsequent
+ ;;^UTILITY(U,$J,358.3,49151,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,49151,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,49152,0)
+ ;;=W19.XXXD^^185^2430^5
+ ;;^UTILITY(U,$J,358.3,49152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51632,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 3
- ;;^UTILITY(U,$J,358.3,51632,1,4,0)
- ;;=4^L89.023
- ;;^UTILITY(U,$J,358.3,51632,2)
- ;;=^5009345
- ;;^UTILITY(U,$J,358.3,51633,0)
- ;;=L89.024^^225^2505^16
- ;;^UTILITY(U,$J,358.3,51633,1,0)
+ ;;^UTILITY(U,$J,358.3,49152,1,3,0)
+ ;;=3^Fall Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,49152,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,49152,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,49153,0)
+ ;;=W18.40XD^^185^2430^24
+ ;;^UTILITY(U,$J,358.3,49153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51633,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 4
- ;;^UTILITY(U,$J,358.3,51633,1,4,0)
- ;;=4^L89.024
- ;;^UTILITY(U,$J,358.3,51633,2)
- ;;=^5009346
- ;;^UTILITY(U,$J,358.3,51634,0)
- ;;=L89.029^^225^2505^17
- ;;^UTILITY(U,$J,358.3,51634,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51634,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,49153,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Subsequent
+ ;;^UTILITY(U,$J,358.3,49153,1,4,0)
+ ;;=4^W18.40XD

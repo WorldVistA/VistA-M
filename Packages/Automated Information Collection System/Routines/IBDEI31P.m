@@ -1,130 +1,114 @@
-IBDEI31P ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51056,1,0)
+ ;;^UTILITY(U,$J,358.3,48628,1,4,0)
+ ;;=4^I69.923
+ ;;^UTILITY(U,$J,358.3,48628,2)
+ ;;=^5007556
+ ;;^UTILITY(U,$J,358.3,48629,0)
+ ;;=I69.952^^185^2424^26
+ ;;^UTILITY(U,$J,358.3,48629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51056,1,3,0)
- ;;=3^Cryst arthropths, lft elbow, oth, spec
- ;;^UTILITY(U,$J,358.3,51056,1,4,0)
- ;;=4^M11.822
- ;;^UTILITY(U,$J,358.3,51056,2)
- ;;=^5010478
- ;;^UTILITY(U,$J,358.3,51057,0)
- ;;=M11.831^^222^2467^32
- ;;^UTILITY(U,$J,358.3,51057,1,0)
+ ;;^UTILITY(U,$J,358.3,48629,1,3,0)
+ ;;=3^Cerebrovascular Disease,Hemiplegia/Hemiparesis,Left Dominant Side
+ ;;^UTILITY(U,$J,358.3,48629,1,4,0)
+ ;;=4^I69.952
+ ;;^UTILITY(U,$J,358.3,48629,2)
+ ;;=^5133586
+ ;;^UTILITY(U,$J,358.3,48630,0)
+ ;;=I69.954^^185^2424^27
+ ;;^UTILITY(U,$J,358.3,48630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51057,1,3,0)
- ;;=3^Cryst arthropths, rt wrist, oth, spec
- ;;^UTILITY(U,$J,358.3,51057,1,4,0)
- ;;=4^M11.831
- ;;^UTILITY(U,$J,358.3,51057,2)
- ;;=^5010480
- ;;^UTILITY(U,$J,358.3,51058,0)
- ;;=M11.832^^222^2467^24
- ;;^UTILITY(U,$J,358.3,51058,1,0)
+ ;;^UTILITY(U,$J,358.3,48630,1,3,0)
+ ;;=3^Cerebrovascular Disease,Hemiplegia/Hemiparesis,Left Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48630,1,4,0)
+ ;;=4^I69.954
+ ;;^UTILITY(U,$J,358.3,48630,2)
+ ;;=^5133587
+ ;;^UTILITY(U,$J,358.3,48631,0)
+ ;;=I69.951^^185^2424^28
+ ;;^UTILITY(U,$J,358.3,48631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51058,1,3,0)
- ;;=3^Cryst arthropths, lft wrist, oth, spec
- ;;^UTILITY(U,$J,358.3,51058,1,4,0)
- ;;=4^M11.832
- ;;^UTILITY(U,$J,358.3,51058,2)
- ;;=^5010481
- ;;^UTILITY(U,$J,358.3,51059,0)
- ;;=M11.841^^222^2467^28
- ;;^UTILITY(U,$J,358.3,51059,1,0)
+ ;;^UTILITY(U,$J,358.3,48631,1,3,0)
+ ;;=3^Cerebrovascular Disease,Hemiplegia/Hemiparesis,Right Dominant Side
+ ;;^UTILITY(U,$J,358.3,48631,1,4,0)
+ ;;=4^I69.951
+ ;;^UTILITY(U,$J,358.3,48631,2)
+ ;;=^5007561
+ ;;^UTILITY(U,$J,358.3,48632,0)
+ ;;=I69.953^^185^2424^29
+ ;;^UTILITY(U,$J,358.3,48632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51059,1,3,0)
- ;;=3^Cryst arthropths, rt hand, oth, spec
- ;;^UTILITY(U,$J,358.3,51059,1,4,0)
- ;;=4^M11.841
- ;;^UTILITY(U,$J,358.3,51059,2)
- ;;=^5010483
- ;;^UTILITY(U,$J,358.3,51060,0)
- ;;=M11.842^^222^2467^20
- ;;^UTILITY(U,$J,358.3,51060,1,0)
+ ;;^UTILITY(U,$J,358.3,48632,1,3,0)
+ ;;=3^Cerebrovascular Disease,Hemiplegia/Hemiparesis,Right Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48632,1,4,0)
+ ;;=4^I69.953
+ ;;^UTILITY(U,$J,358.3,48632,2)
+ ;;=^5007562
+ ;;^UTILITY(U,$J,358.3,48633,0)
+ ;;=I69.942^^185^2424^30
+ ;;^UTILITY(U,$J,358.3,48633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51060,1,3,0)
- ;;=3^Cryst arthropths, lft hand, oth, spec
- ;;^UTILITY(U,$J,358.3,51060,1,4,0)
- ;;=4^M11.842
- ;;^UTILITY(U,$J,358.3,51060,2)
- ;;=^5010484
- ;;^UTILITY(U,$J,358.3,51061,0)
- ;;=M11.851^^222^2467^29
- ;;^UTILITY(U,$J,358.3,51061,1,0)
+ ;;^UTILITY(U,$J,358.3,48633,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Lower Dominant Side
+ ;;^UTILITY(U,$J,358.3,48633,1,4,0)
+ ;;=4^I69.942
+ ;;^UTILITY(U,$J,358.3,48633,2)
+ ;;=^5133582
+ ;;^UTILITY(U,$J,358.3,48634,0)
+ ;;=I69.944^^185^2424^31
+ ;;^UTILITY(U,$J,358.3,48634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51061,1,3,0)
- ;;=3^Cryst arthropths, rt hip, oth, spec
- ;;^UTILITY(U,$J,358.3,51061,1,4,0)
- ;;=4^M11.851
- ;;^UTILITY(U,$J,358.3,51061,2)
- ;;=^5010486
- ;;^UTILITY(U,$J,358.3,51062,0)
- ;;=M11.852^^222^2467^21
- ;;^UTILITY(U,$J,358.3,51062,1,0)
+ ;;^UTILITY(U,$J,358.3,48634,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Lower Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48634,1,4,0)
+ ;;=4^I69.944
+ ;;^UTILITY(U,$J,358.3,48634,2)
+ ;;=^5133585
+ ;;^UTILITY(U,$J,358.3,48635,0)
+ ;;=I69.932^^185^2424^32
+ ;;^UTILITY(U,$J,358.3,48635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51062,1,3,0)
- ;;=3^Cryst arthropths, lft hip, oth, spec
- ;;^UTILITY(U,$J,358.3,51062,1,4,0)
- ;;=4^M11.852
- ;;^UTILITY(U,$J,358.3,51062,2)
- ;;=^5010487
- ;;^UTILITY(U,$J,358.3,51063,0)
- ;;=M11.861^^222^2467^30
- ;;^UTILITY(U,$J,358.3,51063,1,0)
+ ;;^UTILITY(U,$J,358.3,48635,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Upper Dominant Side
+ ;;^UTILITY(U,$J,358.3,48635,1,4,0)
+ ;;=4^I69.932
+ ;;^UTILITY(U,$J,358.3,48635,2)
+ ;;=^5133580
+ ;;^UTILITY(U,$J,358.3,48636,0)
+ ;;=I69.934^^185^2424^33
+ ;;^UTILITY(U,$J,358.3,48636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51063,1,3,0)
- ;;=3^Cryst arthropths, rt knee, oth, spec
- ;;^UTILITY(U,$J,358.3,51063,1,4,0)
- ;;=4^M11.861
- ;;^UTILITY(U,$J,358.3,51063,2)
- ;;=^5010489
- ;;^UTILITY(U,$J,358.3,51064,0)
- ;;=M11.862^^222^2467^22
- ;;^UTILITY(U,$J,358.3,51064,1,0)
+ ;;^UTILITY(U,$J,358.3,48636,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Upper Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48636,1,4,0)
+ ;;=4^I69.934
+ ;;^UTILITY(U,$J,358.3,48636,2)
+ ;;=^5133583
+ ;;^UTILITY(U,$J,358.3,48637,0)
+ ;;=I69.941^^185^2424^34
+ ;;^UTILITY(U,$J,358.3,48637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51064,1,3,0)
- ;;=3^Cryst arthropths, lft knee, oth, spec
- ;;^UTILITY(U,$J,358.3,51064,1,4,0)
- ;;=4^M11.862
- ;;^UTILITY(U,$J,358.3,51064,2)
- ;;=^5010490
- ;;^UTILITY(U,$J,358.3,51065,0)
- ;;=M11.871^^222^2467^26
- ;;^UTILITY(U,$J,358.3,51065,1,0)
+ ;;^UTILITY(U,$J,358.3,48637,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Lower Dominant Side
+ ;;^UTILITY(U,$J,358.3,48637,1,4,0)
+ ;;=4^I69.941
+ ;;^UTILITY(U,$J,358.3,48637,2)
+ ;;=^5133581
+ ;;^UTILITY(U,$J,358.3,48638,0)
+ ;;=I69.943^^185^2424^35
+ ;;^UTILITY(U,$J,358.3,48638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51065,1,3,0)
- ;;=3^Cryst arthropths, rt ankle & ft, oth, spec
- ;;^UTILITY(U,$J,358.3,51065,1,4,0)
- ;;=4^M11.871
- ;;^UTILITY(U,$J,358.3,51065,2)
- ;;=^5010492
- ;;^UTILITY(U,$J,358.3,51066,0)
- ;;=M11.872^^222^2467^18
- ;;^UTILITY(U,$J,358.3,51066,1,0)
+ ;;^UTILITY(U,$J,358.3,48638,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48638,1,4,0)
+ ;;=4^I69.943
+ ;;^UTILITY(U,$J,358.3,48638,2)
+ ;;=^5133584
+ ;;^UTILITY(U,$J,358.3,48639,0)
+ ;;=I69.931^^185^2424^36
+ ;;^UTILITY(U,$J,358.3,48639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51066,1,3,0)
- ;;=3^Cryst arthropths, lft ankle & ft, oth, spec
- ;;^UTILITY(U,$J,358.3,51066,1,4,0)
- ;;=4^M11.872
- ;;^UTILITY(U,$J,358.3,51066,2)
- ;;=^5010493
- ;;^UTILITY(U,$J,358.3,51067,0)
- ;;=M11.88^^222^2467^35
- ;;^UTILITY(U,$J,358.3,51067,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51067,1,3,0)
- ;;=3^Cryst arthropths, vertebrae, oth, spec
- ;;^UTILITY(U,$J,358.3,51067,1,4,0)
- ;;=4^M11.88
- ;;^UTILITY(U,$J,358.3,51067,2)
- ;;=^5010495
- ;;^UTILITY(U,$J,358.3,51068,0)
- ;;=M11.89^^222^2467^25
- ;;^UTILITY(U,$J,358.3,51068,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51068,1,3,0)
- ;;=3^Cryst arthropths, multiple sites, oth, spec
- ;;^UTILITY(U,$J,358.3,51068,1,4,0)
- ;;=4^M11.89
+ ;;^UTILITY(U,$J,358.3,48639,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Upper Dominant Side

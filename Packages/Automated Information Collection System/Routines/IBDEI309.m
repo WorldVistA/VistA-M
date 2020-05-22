@@ -1,134 +1,126 @@
-IBDEI309 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI309 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50380,1,4,0)
- ;;=4^M05.861
- ;;^UTILITY(U,$J,358.3,50380,2)
- ;;=^5010039
- ;;^UTILITY(U,$J,358.3,50381,0)
- ;;=M05.811^^219^2448^37
- ;;^UTILITY(U,$J,358.3,50381,1,0)
+ ;;^UTILITY(U,$J,358.3,47993,0)
+ ;;=I73.00^^185^2414^75
+ ;;^UTILITY(U,$J,358.3,47993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50381,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Shldr
- ;;^UTILITY(U,$J,358.3,50381,1,4,0)
- ;;=4^M05.811
- ;;^UTILITY(U,$J,358.3,50381,2)
- ;;=^5010024
- ;;^UTILITY(U,$J,358.3,50382,0)
- ;;=M05.831^^219^2448^38
- ;;^UTILITY(U,$J,358.3,50382,1,0)
+ ;;^UTILITY(U,$J,358.3,47993,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,47993,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,47993,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,47994,0)
+ ;;=R57.0^^185^2414^76
+ ;;^UTILITY(U,$J,358.3,47994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50382,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Wrist
- ;;^UTILITY(U,$J,358.3,50382,1,4,0)
- ;;=4^M05.831
- ;;^UTILITY(U,$J,358.3,50382,2)
- ;;=^5010030
- ;;^UTILITY(U,$J,358.3,50383,0)
- ;;=M05.80^^219^2448^39
- ;;^UTILITY(U,$J,358.3,50383,1,0)
+ ;;^UTILITY(U,$J,358.3,47994,1,3,0)
+ ;;=3^Shock,Cardiogenic
+ ;;^UTILITY(U,$J,358.3,47994,1,4,0)
+ ;;=4^R57.0
+ ;;^UTILITY(U,$J,358.3,47994,2)
+ ;;=^5019525
+ ;;^UTILITY(U,$J,358.3,47995,0)
+ ;;=R57.1^^185^2414^77
+ ;;^UTILITY(U,$J,358.3,47995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50383,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Unspec Site
- ;;^UTILITY(U,$J,358.3,50383,1,4,0)
- ;;=4^M05.80
- ;;^UTILITY(U,$J,358.3,50383,2)
- ;;=^5010023
- ;;^UTILITY(U,$J,358.3,50384,0)
- ;;=M06.872^^219^2448^90
- ;;^UTILITY(U,$J,358.3,50384,1,0)
+ ;;^UTILITY(U,$J,358.3,47995,1,3,0)
+ ;;=3^Shock,Hypovolemic
+ ;;^UTILITY(U,$J,358.3,47995,1,4,0)
+ ;;=4^R57.1
+ ;;^UTILITY(U,$J,358.3,47995,2)
+ ;;=^60845
+ ;;^UTILITY(U,$J,358.3,47996,0)
+ ;;=R57.9^^185^2414^78
+ ;;^UTILITY(U,$J,358.3,47996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50384,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50384,1,4,0)
- ;;=4^M06.872
- ;;^UTILITY(U,$J,358.3,50384,2)
- ;;=^5010141
- ;;^UTILITY(U,$J,358.3,50385,0)
- ;;=M06.822^^219^2448^91
- ;;^UTILITY(U,$J,358.3,50385,1,0)
+ ;;^UTILITY(U,$J,358.3,47996,1,3,0)
+ ;;=3^Shock,Unspec
+ ;;^UTILITY(U,$J,358.3,47996,1,4,0)
+ ;;=4^R57.9
+ ;;^UTILITY(U,$J,358.3,47996,2)
+ ;;=^5019527
+ ;;^UTILITY(U,$J,358.3,47997,0)
+ ;;=R55.^^185^2414^79
+ ;;^UTILITY(U,$J,358.3,47997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50385,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Elbow
- ;;^UTILITY(U,$J,358.3,50385,1,4,0)
- ;;=4^M06.822
- ;;^UTILITY(U,$J,358.3,50385,2)
- ;;=^5010126
- ;;^UTILITY(U,$J,358.3,50386,0)
- ;;=M06.842^^219^2448^92
- ;;^UTILITY(U,$J,358.3,50386,1,0)
+ ;;^UTILITY(U,$J,358.3,47997,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,47997,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,47997,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,47998,0)
+ ;;=I78.0^^185^2414^80
+ ;;^UTILITY(U,$J,358.3,47998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50386,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Hand
- ;;^UTILITY(U,$J,358.3,50386,1,4,0)
- ;;=4^M06.842
- ;;^UTILITY(U,$J,358.3,50386,2)
- ;;=^5010132
- ;;^UTILITY(U,$J,358.3,50387,0)
- ;;=M06.852^^219^2448^93
- ;;^UTILITY(U,$J,358.3,50387,1,0)
+ ;;^UTILITY(U,$J,358.3,47998,1,3,0)
+ ;;=3^Telangiectasia,Hereditary Hemorrhagic
+ ;;^UTILITY(U,$J,358.3,47998,1,4,0)
+ ;;=4^I78.0
+ ;;^UTILITY(U,$J,358.3,47998,2)
+ ;;=^117566
+ ;;^UTILITY(U,$J,358.3,47999,0)
+ ;;=I73.1^^185^2414^20
+ ;;^UTILITY(U,$J,358.3,47999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50387,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Hip
- ;;^UTILITY(U,$J,358.3,50387,1,4,0)
- ;;=4^M06.852
- ;;^UTILITY(U,$J,358.3,50387,2)
- ;;=^5010135
- ;;^UTILITY(U,$J,358.3,50388,0)
- ;;=M06.862^^219^2448^94
- ;;^UTILITY(U,$J,358.3,50388,1,0)
+ ;;^UTILITY(U,$J,358.3,47999,1,3,0)
+ ;;=3^Buerger's Disease
+ ;;^UTILITY(U,$J,358.3,47999,1,4,0)
+ ;;=4^I73.1
+ ;;^UTILITY(U,$J,358.3,47999,2)
+ ;;=^5007798
+ ;;^UTILITY(U,$J,358.3,48000,0)
+ ;;=G45.9^^185^2414^81
+ ;;^UTILITY(U,$J,358.3,48000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50388,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Knee
- ;;^UTILITY(U,$J,358.3,50388,1,4,0)
- ;;=4^M06.862
- ;;^UTILITY(U,$J,358.3,50388,2)
- ;;=^5010138
- ;;^UTILITY(U,$J,358.3,50389,0)
- ;;=M06.812^^219^2448^95
- ;;^UTILITY(U,$J,358.3,50389,1,0)
+ ;;^UTILITY(U,$J,358.3,48000,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,48000,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,48000,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,48001,0)
+ ;;=G45.8^^185^2414^82
+ ;;^UTILITY(U,$J,358.3,48001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50389,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Shoulder
- ;;^UTILITY(U,$J,358.3,50389,1,4,0)
- ;;=4^M06.812
- ;;^UTILITY(U,$J,358.3,50389,2)
- ;;=^5010123
- ;;^UTILITY(U,$J,358.3,50390,0)
- ;;=M06.832^^219^2448^96
- ;;^UTILITY(U,$J,358.3,50390,1,0)
+ ;;^UTILITY(U,$J,358.3,48001,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attacks & Related Syndromes
+ ;;^UTILITY(U,$J,358.3,48001,1,4,0)
+ ;;=4^G45.8
+ ;;^UTILITY(U,$J,358.3,48001,2)
+ ;;=^5003958
+ ;;^UTILITY(U,$J,358.3,48002,0)
+ ;;=I83.019^^185^2414^85
+ ;;^UTILITY(U,$J,358.3,48002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50390,1,3,0)
- ;;=3^Rheumatoid Arthritis Left Wrist
- ;;^UTILITY(U,$J,358.3,50390,1,4,0)
- ;;=4^M06.832
- ;;^UTILITY(U,$J,358.3,50390,2)
- ;;=^5010129
- ;;^UTILITY(U,$J,358.3,50391,0)
- ;;=M06.89^^219^2448^97
- ;;^UTILITY(U,$J,358.3,50391,1,0)
+ ;;^UTILITY(U,$J,358.3,48002,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,48002,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,48002,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,48003,0)
+ ;;=I83.899^^185^2414^83
+ ;;^UTILITY(U,$J,358.3,48003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50391,1,3,0)
- ;;=3^Rheumatoid Arthritis Mult Sites
- ;;^UTILITY(U,$J,358.3,50391,1,4,0)
- ;;=4^M06.89
- ;;^UTILITY(U,$J,358.3,50391,2)
- ;;=^5010144
- ;;^UTILITY(U,$J,358.3,50392,0)
- ;;=M06.871^^219^2448^98
- ;;^UTILITY(U,$J,358.3,50392,1,0)
+ ;;^UTILITY(U,$J,358.3,48003,1,3,0)
+ ;;=3^Varicose Veins Lower Extrem w/ Other Complications
+ ;;^UTILITY(U,$J,358.3,48003,1,4,0)
+ ;;=4^I83.899
+ ;;^UTILITY(U,$J,358.3,48003,2)
+ ;;=^5008018
+ ;;^UTILITY(U,$J,358.3,48004,0)
+ ;;=I83.90^^185^2414^84
+ ;;^UTILITY(U,$J,358.3,48004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50392,1,3,0)
- ;;=3^Rheumatoid Arthritis Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50392,1,4,0)
- ;;=4^M06.871
- ;;^UTILITY(U,$J,358.3,50392,2)
- ;;=^5010140
- ;;^UTILITY(U,$J,358.3,50393,0)
- ;;=M06.821^^219^2448^99
- ;;^UTILITY(U,$J,358.3,50393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50393,1,3,0)
- ;;=3^Rheumatoid Arthritis Right Elbow
+ ;;^UTILITY(U,$J,358.3,48004,1,3,0)
+ ;;=3^Varicose Veins Lower Extrem,Asymptomatic
+ ;;^UTILITY(U,$J,358.3,48004,1,4,0)
+ ;;=4^I83.90
+ ;;^UTILITY(U,$J,358.3,48004,2)
+ ;;=^5008019
+ ;;^UTILITY(U,$J,358.3,48005,0)
+ ;;=I87.2^^185^2414^86

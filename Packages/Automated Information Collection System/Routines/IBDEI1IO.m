@@ -1,128 +1,116 @@
-IBDEI1IO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1IO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25735,0)
- ;;=J2680^^96^1187^11^^^^1
- ;;^UTILITY(U,$J,358.3,25735,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25735,1,2,0)
- ;;=2^J2680
- ;;^UTILITY(U,$J,358.3,25735,1,3,0)
- ;;=3^Fluphenazine Decanoate,up to 25mg
- ;;^UTILITY(U,$J,358.3,25736,0)
- ;;=90867^^96^1187^38^^^^1
- ;;^UTILITY(U,$J,358.3,25736,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25736,1,2,0)
- ;;=2^90867
- ;;^UTILITY(U,$J,358.3,25736,1,3,0)
- ;;=3^TMS Initial
- ;;^UTILITY(U,$J,358.3,25737,0)
- ;;=90868^^96^1187^40^^^^1
- ;;^UTILITY(U,$J,358.3,25737,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25737,1,2,0)
- ;;=2^90868
- ;;^UTILITY(U,$J,358.3,25737,1,3,0)
- ;;=3^TMS Subseq Delivery & Mgmt,per session
- ;;^UTILITY(U,$J,358.3,25738,0)
- ;;=90869^^96^1187^39^^^^1
- ;;^UTILITY(U,$J,358.3,25738,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25738,1,2,0)
- ;;=2^90869
- ;;^UTILITY(U,$J,358.3,25738,1,3,0)
- ;;=3^TMS Sub Motor Threshold Redetermination
- ;;^UTILITY(U,$J,358.3,25739,0)
- ;;=90899^^96^1187^44^^^^1
- ;;^UTILITY(U,$J,358.3,25739,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25739,1,2,0)
- ;;=2^90899
- ;;^UTILITY(U,$J,358.3,25739,1,3,0)
- ;;=3^Unlisted Psychiatric Service
- ;;^UTILITY(U,$J,358.3,25740,0)
- ;;=T1016^^96^1187^2^^^^1
- ;;^UTILITY(U,$J,358.3,25740,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25740,1,2,0)
- ;;=2^T1016
- ;;^UTILITY(U,$J,358.3,25740,1,3,0)
- ;;=3^Case Management,ea 15 min
- ;;^UTILITY(U,$J,358.3,25741,0)
- ;;=S9484^^96^1187^8^^^^1
- ;;^UTILITY(U,$J,358.3,25741,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25741,1,2,0)
- ;;=2^S9484
- ;;^UTILITY(U,$J,358.3,25741,1,3,0)
- ;;=3^Crisis Intervention,per hr
- ;;^UTILITY(U,$J,358.3,25742,0)
- ;;=H2011^^96^1187^7^^^^1
- ;;^UTILITY(U,$J,358.3,25742,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25742,1,2,0)
- ;;=2^H2011
- ;;^UTILITY(U,$J,358.3,25742,1,3,0)
- ;;=3^Crisis Intervention Svc,per 15 min
- ;;^UTILITY(U,$J,358.3,25743,0)
- ;;=99078^^96^1187^13^^^^1
- ;;^UTILITY(U,$J,358.3,25743,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25743,1,2,0)
- ;;=2^99078
- ;;^UTILITY(U,$J,358.3,25743,1,3,0)
- ;;=3^Group Health Education
- ;;^UTILITY(U,$J,358.3,25744,0)
- ;;=90870^^96^1187^10^^^^1
- ;;^UTILITY(U,$J,358.3,25744,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25744,1,2,0)
- ;;=2^90870
- ;;^UTILITY(U,$J,358.3,25744,1,3,0)
- ;;=3^ECT w/ Necessary Monitoring
- ;;^UTILITY(U,$J,358.3,25745,0)
- ;;=S9446^^96^1187^12^^^^1
- ;;^UTILITY(U,$J,358.3,25745,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25745,1,2,0)
- ;;=2^S9446
- ;;^UTILITY(U,$J,358.3,25745,1,3,0)
- ;;=3^Group Educational Svcs,NOS
- ;;^UTILITY(U,$J,358.3,25746,0)
- ;;=90887^^96^1187^5^^^^1
- ;;^UTILITY(U,$J,358.3,25746,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25746,1,2,0)
- ;;=2^90887
- ;;^UTILITY(U,$J,358.3,25746,1,3,0)
- ;;=3^Consult w/ Family for Exam/Test Results
- ;;^UTILITY(U,$J,358.3,25747,0)
- ;;=T1001^^96^1187^21^^^^1
- ;;^UTILITY(U,$J,358.3,25747,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25747,1,2,0)
- ;;=2^T1001
- ;;^UTILITY(U,$J,358.3,25747,1,3,0)
- ;;=3^Nursing Assessment/Evaluation
- ;;^UTILITY(U,$J,358.3,25748,0)
- ;;=S9452^^96^1187^22^^^^1
- ;;^UTILITY(U,$J,358.3,25748,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25748,1,2,0)
- ;;=2^S9452
- ;;^UTILITY(U,$J,358.3,25748,1,3,0)
- ;;=3^Nutrition Class,Non-MD,per session
- ;;^UTILITY(U,$J,358.3,25749,0)
- ;;=90885^^96^1187^28^^^^1
- ;;^UTILITY(U,$J,358.3,25749,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25749,1,2,0)
- ;;=2^90885
- ;;^UTILITY(U,$J,358.3,25749,1,3,0)
- ;;=3^Psychiatric Eval of Records/Rpts/Test
- ;;^UTILITY(U,$J,358.3,25750,0)
- ;;=H2027^^96^1187^29^^^^1
- ;;^UTILITY(U,$J,358.3,25750,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24258,0)
+ ;;=L97.219^^107^1201^234
+ ;;^UTILITY(U,$J,358.3,24258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24258,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,24258,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,24258,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,24259,0)
+ ;;=L97.221^^107^1201^185
+ ;;^UTILITY(U,$J,358.3,24259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24259,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,24259,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,24259,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,24260,0)
+ ;;=L97.222^^107^1201^186
+ ;;^UTILITY(U,$J,358.3,24260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24260,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,24260,1,4,0)
+ ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,24260,2)
+ ;;=^5009506
+ ;;^UTILITY(U,$J,358.3,24261,0)
+ ;;=L97.223^^107^1201^187
+ ;;^UTILITY(U,$J,358.3,24261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24261,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,24261,1,4,0)
+ ;;=4^L97.223
+ ;;^UTILITY(U,$J,358.3,24261,2)
+ ;;=^5009507
+ ;;^UTILITY(U,$J,358.3,24262,0)
+ ;;=L97.224^^107^1201^188
+ ;;^UTILITY(U,$J,358.3,24262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24262,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,24262,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,24262,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,24263,0)
+ ;;=L97.229^^107^1201^189
+ ;;^UTILITY(U,$J,358.3,24263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24263,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,24263,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,24263,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,24264,0)
+ ;;=L97.311^^107^1201^222
+ ;;^UTILITY(U,$J,358.3,24264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24264,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,24264,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,24264,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,24265,0)
+ ;;=L97.312^^107^1201^223
+ ;;^UTILITY(U,$J,358.3,24265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24265,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,24265,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,24265,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,24266,0)
+ ;;=L97.313^^107^1201^224
+ ;;^UTILITY(U,$J,358.3,24266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24266,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,24266,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,24266,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,24267,0)
+ ;;=L97.314^^107^1201^225
+ ;;^UTILITY(U,$J,358.3,24267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24267,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,24267,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,24267,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,24268,0)
+ ;;=L97.319^^107^1201^226
+ ;;^UTILITY(U,$J,358.3,24268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24268,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,24268,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,24268,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,24269,0)
+ ;;=L97.321^^107^1201^177

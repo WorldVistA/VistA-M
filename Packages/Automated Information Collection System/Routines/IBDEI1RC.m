@@ -1,132 +1,116 @@
-IBDEI1RC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29853,1,1,0)
- ;;=1^J9299
- ;;^UTILITY(U,$J,358.3,29853,1,3,0)
- ;;=3^Nivolumab Inj 1mg
- ;;^UTILITY(U,$J,358.3,29854,0)
- ;;=P9010^^116^1484^22^^^^1
- ;;^UTILITY(U,$J,358.3,29854,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29854,1,1,0)
- ;;=1^P9010
- ;;^UTILITY(U,$J,358.3,29854,1,3,0)
- ;;=3^Whole Blood,Ea Unit
- ;;^UTILITY(U,$J,358.3,29855,0)
- ;;=P9012^^116^1484^4^^^^1
- ;;^UTILITY(U,$J,358.3,29855,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29855,1,1,0)
- ;;=1^P9012
- ;;^UTILITY(U,$J,358.3,29855,1,3,0)
- ;;=3^Cryoprecipitate,Ea Unit
- ;;^UTILITY(U,$J,358.3,29856,0)
- ;;=P9016^^116^1484^18^^^^1
- ;;^UTILITY(U,$J,358.3,29856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29856,1,1,0)
- ;;=1^P9016
- ;;^UTILITY(U,$J,358.3,29856,1,3,0)
- ;;=3^RBC Leukocytes Reduced
- ;;^UTILITY(U,$J,358.3,29857,0)
- ;;=P9017^^116^1484^6^^^^1
- ;;^UTILITY(U,$J,358.3,29857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29857,1,1,0)
- ;;=1^P9017
- ;;^UTILITY(U,$J,358.3,29857,1,3,0)
- ;;=3^Plasma 1 Donor Frz w/in 8hrs
- ;;^UTILITY(U,$J,358.3,29858,0)
- ;;=P9019^^116^1484^10^^^^1
- ;;^UTILITY(U,$J,358.3,29858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29858,1,1,0)
- ;;=1^P9019
- ;;^UTILITY(U,$J,358.3,29858,1,3,0)
- ;;=3^Platelets,Ea Unit
- ;;^UTILITY(U,$J,358.3,29859,0)
- ;;=P9021^^116^1484^20^^^^1
- ;;^UTILITY(U,$J,358.3,29859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29859,1,1,0)
- ;;=1^P9021
- ;;^UTILITY(U,$J,358.3,29859,1,3,0)
- ;;=3^Red Blood Cells,Ea Unit
- ;;^UTILITY(U,$J,358.3,29860,0)
- ;;=P9022^^116^1484^21^^^^1
- ;;^UTILITY(U,$J,358.3,29860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29860,1,1,0)
- ;;=1^P9022
- ;;^UTILITY(U,$J,358.3,29860,1,3,0)
- ;;=3^Washed Red Blood Cells,Ea Unit
- ;;^UTILITY(U,$J,358.3,29861,0)
- ;;=P9023^^116^1484^5^^^^1
- ;;^UTILITY(U,$J,358.3,29861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29861,1,1,0)
- ;;=1^P9023
- ;;^UTILITY(U,$J,358.3,29861,1,3,0)
- ;;=3^Frozen Plasma,Pooled,SD
- ;;^UTILITY(U,$J,358.3,29862,0)
- ;;=P9034^^116^1484^12^^^^1
- ;;^UTILITY(U,$J,358.3,29862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29862,1,1,0)
- ;;=1^P9034
- ;;^UTILITY(U,$J,358.3,29862,1,3,0)
- ;;=3^Platelets,Pheresis
- ;;^UTILITY(U,$J,358.3,29863,0)
- ;;=P9035^^116^1484^8^^^^1
- ;;^UTILITY(U,$J,358.3,29863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29863,1,1,0)
- ;;=1^P9035
- ;;^UTILITY(U,$J,358.3,29863,1,3,0)
- ;;=3^Platelet Pheres Leuko Reduced
- ;;^UTILITY(U,$J,358.3,29864,0)
- ;;=P9036^^116^1484^9^^^^1
- ;;^UTILITY(U,$J,358.3,29864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29864,1,1,0)
- ;;=1^P9036
- ;;^UTILITY(U,$J,358.3,29864,1,3,0)
- ;;=3^Platelet Pheres Leukoredu Irrad
- ;;^UTILITY(U,$J,358.3,29865,0)
- ;;=P9038^^116^1484^16^^^^1
- ;;^UTILITY(U,$J,358.3,29865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29865,1,1,0)
- ;;=1^P9038
- ;;^UTILITY(U,$J,358.3,29865,1,3,0)
- ;;=3^RBC Irradiated
- ;;^UTILITY(U,$J,358.3,29866,0)
- ;;=P9039^^116^1484^15^^^^1
- ;;^UTILITY(U,$J,358.3,29866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29866,1,1,0)
- ;;=1^P9039
- ;;^UTILITY(U,$J,358.3,29866,1,3,0)
- ;;=3^RBC Deglycerolized
- ;;^UTILITY(U,$J,358.3,29867,0)
- ;;=P9040^^116^1484^17^^^^1
- ;;^UTILITY(U,$J,358.3,29867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29867,1,1,0)
- ;;=1^P9040
- ;;^UTILITY(U,$J,358.3,29867,1,3,0)
- ;;=3^RBC Leuko Reduced Irradiated
- ;;^UTILITY(U,$J,358.3,29868,0)
- ;;=P9044^^116^1484^3^^^^1
- ;;^UTILITY(U,$J,358.3,29868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29868,1,1,0)
- ;;=1^P9044
- ;;^UTILITY(U,$J,358.3,29868,1,3,0)
- ;;=3^Cryoprecip Reduced Plasma
- ;;^UTILITY(U,$J,358.3,29869,0)
- ;;=P9051^^116^1484^1^^^^1
- ;;^UTILITY(U,$J,358.3,29869,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28082,0)
+ ;;=F19.97^^113^1377^6
+ ;;^UTILITY(U,$J,358.3,28082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28082,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28082,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,28082,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,28083,0)
+ ;;=F19.188^^113^1377^7
+ ;;^UTILITY(U,$J,358.3,28083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28083,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28083,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,28083,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,28084,0)
+ ;;=F19.288^^113^1377^8
+ ;;^UTILITY(U,$J,358.3,28084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28084,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28084,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,28084,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,28085,0)
+ ;;=F19.988^^113^1377^9
+ ;;^UTILITY(U,$J,358.3,28085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28085,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28085,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,28085,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,28086,0)
+ ;;=F19.159^^113^1377^10
+ ;;^UTILITY(U,$J,358.3,28086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28086,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28086,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,28086,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,28087,0)
+ ;;=F19.259^^113^1377^11
+ ;;^UTILITY(U,$J,358.3,28087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28087,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28087,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,28087,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,28088,0)
+ ;;=F19.959^^113^1377^12
+ ;;^UTILITY(U,$J,358.3,28088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28088,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28088,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,28088,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,28089,0)
+ ;;=F19.181^^113^1377^13
+ ;;^UTILITY(U,$J,358.3,28089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28089,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28089,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,28089,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,28090,0)
+ ;;=F19.281^^113^1377^14
+ ;;^UTILITY(U,$J,358.3,28090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28090,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28090,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,28090,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,28091,0)
+ ;;=F19.981^^113^1377^15
+ ;;^UTILITY(U,$J,358.3,28091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28091,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sexual Dysfunc w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,28091,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,28091,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,28092,0)
+ ;;=F19.182^^113^1377^16
+ ;;^UTILITY(U,$J,358.3,28092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28092,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28092,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,28092,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,28093,0)
+ ;;=F19.282^^113^1377^17

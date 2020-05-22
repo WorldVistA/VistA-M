@@ -1,132 +1,120 @@
-IBDEI1RL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29992,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,29993,0)
- ;;=D59.1^^118^1493^15
- ;;^UTILITY(U,$J,358.3,29993,1,0)
+ ;;^UTILITY(U,$J,358.3,28186,1,4,0)
+ ;;=4^T43.206A
+ ;;^UTILITY(U,$J,358.3,28186,2)
+ ;;=^5050543
+ ;;^UTILITY(U,$J,358.3,28187,0)
+ ;;=T43.206S^^113^1379^7
+ ;;^UTILITY(U,$J,358.3,28187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29993,1,3,0)
- ;;=3^Autoimmune hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,29993,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,29993,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,29994,0)
- ;;=D59.0^^118^1493^17
- ;;^UTILITY(U,$J,358.3,29994,1,0)
+ ;;^UTILITY(U,$J,358.3,28187,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Sequela
+ ;;^UTILITY(U,$J,358.3,28187,1,4,0)
+ ;;=4^T43.206S
+ ;;^UTILITY(U,$J,358.3,28187,2)
+ ;;=^5050545
+ ;;^UTILITY(U,$J,358.3,28188,0)
+ ;;=T43.206D^^113^1379^8
+ ;;^UTILITY(U,$J,358.3,28188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29994,1,3,0)
- ;;=3^Drug-induced autoimmune hemolytic anemia
- ;;^UTILITY(U,$J,358.3,29994,1,4,0)
- ;;=4^D59.0
- ;;^UTILITY(U,$J,358.3,29994,2)
- ;;=^5002323
- ;;^UTILITY(U,$J,358.3,29995,0)
- ;;=D59.3^^118^1493^25
- ;;^UTILITY(U,$J,358.3,29995,1,0)
+ ;;^UTILITY(U,$J,358.3,28188,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28188,1,4,0)
+ ;;=4^T43.206D
+ ;;^UTILITY(U,$J,358.3,28188,2)
+ ;;=^5050544
+ ;;^UTILITY(U,$J,358.3,28189,0)
+ ;;=T43.506A^^113^1379^12
+ ;;^UTILITY(U,$J,358.3,28189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29995,1,3,0)
- ;;=3^Hemolytic-uremic syndrome
- ;;^UTILITY(U,$J,358.3,29995,1,4,0)
- ;;=4^D59.3
- ;;^UTILITY(U,$J,358.3,29995,2)
- ;;=^55823
- ;;^UTILITY(U,$J,358.3,29996,0)
- ;;=D59.4^^118^1493^33
- ;;^UTILITY(U,$J,358.3,29996,1,0)
+ ;;^UTILITY(U,$J,358.3,28189,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28189,1,4,0)
+ ;;=4^T43.506A
+ ;;^UTILITY(U,$J,358.3,28189,2)
+ ;;=^5050651
+ ;;^UTILITY(U,$J,358.3,28190,0)
+ ;;=T43.506S^^113^1379^13
+ ;;^UTILITY(U,$J,358.3,28190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29996,1,3,0)
- ;;=3^Nonautoimmune hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,29996,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,29996,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,29997,0)
- ;;=D59.5^^118^1493^37
- ;;^UTILITY(U,$J,358.3,29997,1,0)
+ ;;^UTILITY(U,$J,358.3,28190,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Sequela
+ ;;^UTILITY(U,$J,358.3,28190,1,4,0)
+ ;;=4^T43.506S
+ ;;^UTILITY(U,$J,358.3,28190,2)
+ ;;=^5050653
+ ;;^UTILITY(U,$J,358.3,28191,0)
+ ;;=T43.506D^^113^1379^14
+ ;;^UTILITY(U,$J,358.3,28191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29997,1,3,0)
- ;;=3^Paroxysmal nocturnal hemoglobinuria [Marchiafava-Micheli]
- ;;^UTILITY(U,$J,358.3,29997,1,4,0)
- ;;=4^D59.5
- ;;^UTILITY(U,$J,358.3,29997,2)
- ;;=^5002327
- ;;^UTILITY(U,$J,358.3,29998,0)
- ;;=D59.6^^118^1493^24
- ;;^UTILITY(U,$J,358.3,29998,1,0)
+ ;;^UTILITY(U,$J,358.3,28191,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,28191,1,4,0)
+ ;;=4^T43.506D
+ ;;^UTILITY(U,$J,358.3,28191,2)
+ ;;=^5050652
+ ;;^UTILITY(U,$J,358.3,28192,0)
+ ;;=99605^^114^1380^1^^^^1
+ ;;^UTILITY(U,$J,358.3,28192,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28192,1,2,0)
+ ;;=2^MTMS BY PHARM,INIT 15 MIN
+ ;;^UTILITY(U,$J,358.3,28192,1,3,0)
+ ;;=3^99605
+ ;;^UTILITY(U,$J,358.3,28193,0)
+ ;;=99607^^114^1380^2^^^^1
+ ;;^UTILITY(U,$J,358.3,28193,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28193,1,2,0)
+ ;;=2^MTMS BY PHARM, EA ADDL 15 MIN
+ ;;^UTILITY(U,$J,358.3,28193,1,3,0)
+ ;;=3^99607
+ ;;^UTILITY(U,$J,358.3,28194,0)
+ ;;=99606^^114^1381^1^^^^1
+ ;;^UTILITY(U,$J,358.3,28194,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28194,1,2,0)
+ ;;=2^MTMS BY PHARM,INIT 15 MIN
+ ;;^UTILITY(U,$J,358.3,28194,1,3,0)
+ ;;=3^99606
+ ;;^UTILITY(U,$J,358.3,28195,0)
+ ;;=99607^^114^1381^2^^^^1
+ ;;^UTILITY(U,$J,358.3,28195,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28195,1,2,0)
+ ;;=2^MTMS BY PHARM, EA ADDL 15 MIN
+ ;;^UTILITY(U,$J,358.3,28195,1,3,0)
+ ;;=3^99607
+ ;;^UTILITY(U,$J,358.3,28196,0)
+ ;;=98960^^114^1382^1^^^^1
+ ;;^UTILITY(U,$J,358.3,28196,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28196,1,2,0)
+ ;;=2^INDIVIDUAL PATIENT, EA 30 MIN
+ ;;^UTILITY(U,$J,358.3,28196,1,3,0)
+ ;;=3^98960
+ ;;^UTILITY(U,$J,358.3,28197,0)
+ ;;=98961^^114^1382^2^^^^1
+ ;;^UTILITY(U,$J,358.3,28197,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28197,1,2,0)
+ ;;=2^2-4 PATIENTS, EA 30 MIN
+ ;;^UTILITY(U,$J,358.3,28197,1,3,0)
+ ;;=3^98961
+ ;;^UTILITY(U,$J,358.3,28198,0)
+ ;;=98962^^114^1382^3^^^^1
+ ;;^UTILITY(U,$J,358.3,28198,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,28198,1,2,0)
+ ;;=2^5-8 PATIENTS, EA 30 MIN
+ ;;^UTILITY(U,$J,358.3,28198,1,3,0)
+ ;;=3^98962
+ ;;^UTILITY(U,$J,358.3,28199,0)
+ ;;=T74.11XA^^115^1383^7
+ ;;^UTILITY(U,$J,358.3,28199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29998,1,3,0)
- ;;=3^Hemoglobinuria due to hemolysis from other external causes
- ;;^UTILITY(U,$J,358.3,29998,1,4,0)
- ;;=4^D59.6
- ;;^UTILITY(U,$J,358.3,29998,2)
- ;;=^5002328
- ;;^UTILITY(U,$J,358.3,29999,0)
- ;;=D59.8^^118^1493^2
- ;;^UTILITY(U,$J,358.3,29999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29999,1,3,0)
- ;;=3^Acquired hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,29999,1,4,0)
- ;;=4^D59.8
- ;;^UTILITY(U,$J,358.3,29999,2)
- ;;=^5002329
- ;;^UTILITY(U,$J,358.3,30000,0)
- ;;=D59.9^^118^1493^1
- ;;^UTILITY(U,$J,358.3,30000,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30000,1,3,0)
- ;;=3^Acquired hemolytic anemia, unspecified
- ;;^UTILITY(U,$J,358.3,30000,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,30000,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,30001,0)
- ;;=D61.810^^118^1493^13
- ;;^UTILITY(U,$J,358.3,30001,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30001,1,3,0)
- ;;=3^Antineoplastic chemotherapy induced pancytopenia
- ;;^UTILITY(U,$J,358.3,30001,1,4,0)
- ;;=4^D61.810
- ;;^UTILITY(U,$J,358.3,30001,2)
- ;;=^5002339
- ;;^UTILITY(U,$J,358.3,30002,0)
- ;;=D61.811^^118^1493^20
- ;;^UTILITY(U,$J,358.3,30002,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30002,1,3,0)
- ;;=3^Drug-induced pancytopenia NEC
- ;;^UTILITY(U,$J,358.3,30002,1,4,0)
- ;;=4^D61.811
- ;;^UTILITY(U,$J,358.3,30002,2)
- ;;=^5002340
- ;;^UTILITY(U,$J,358.3,30003,0)
- ;;=D61.818^^118^1493^36
- ;;^UTILITY(U,$J,358.3,30003,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30003,1,3,0)
- ;;=3^Pancytopenia NEC
- ;;^UTILITY(U,$J,358.3,30003,1,4,0)
- ;;=4^D61.818
- ;;^UTILITY(U,$J,358.3,30003,2)
- ;;=^340501
- ;;^UTILITY(U,$J,358.3,30004,0)
- ;;=D61.82^^118^1493^32
- ;;^UTILITY(U,$J,358.3,30004,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30004,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,30004,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,30004,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,30005,0)
- ;;=D61.9^^118^1493^14
- ;;^UTILITY(U,$J,358.3,30005,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30005,1,3,0)
- ;;=3^Aplastic anemia, unspecified
+ ;;^UTILITY(U,$J,358.3,28199,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Init Enctr

@@ -1,130 +1,106 @@
-IBDEI3CL ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3CL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56244,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,56245,0)
- ;;=F19.97^^256^2795^29
- ;;^UTILITY(U,$J,358.3,56245,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56245,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,56245,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,56245,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,56246,0)
- ;;=F03.90^^256^2795^15
- ;;^UTILITY(U,$J,358.3,56246,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56246,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,56246,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,56246,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,56247,0)
- ;;=G30.0^^256^2795^2
- ;;^UTILITY(U,$J,358.3,56247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56247,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,56247,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,56247,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,56248,0)
- ;;=G30.1^^256^2795^3
- ;;^UTILITY(U,$J,358.3,56248,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56248,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,56248,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,56248,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,56249,0)
- ;;=G30.9^^256^2795^4
- ;;^UTILITY(U,$J,358.3,56249,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56249,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,56249,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,56249,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,56250,0)
- ;;=G10.^^256^2795^19
- ;;^UTILITY(U,$J,358.3,56250,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56250,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,56250,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,56250,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,56251,0)
- ;;=G10.^^256^2795^20
- ;;^UTILITY(U,$J,358.3,56251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56251,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,56251,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,56251,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,56252,0)
- ;;=G90.3^^256^2795^21
- ;;^UTILITY(U,$J,358.3,56252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56252,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,56252,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,56252,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,56253,0)
- ;;=G91.2^^256^2795^22
- ;;^UTILITY(U,$J,358.3,56253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56253,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,56253,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,56253,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,56254,0)
- ;;=G91.2^^256^2795^23
- ;;^UTILITY(U,$J,358.3,56254,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56254,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,56254,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,56254,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,56255,0)
- ;;=G30.8^^256^2795^5
- ;;^UTILITY(U,$J,358.3,56255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56255,1,3,0)
- ;;=3^Alzheimer's Diseases NEC
- ;;^UTILITY(U,$J,358.3,56255,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,56255,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,56256,0)
- ;;=G31.09^^256^2795^16
- ;;^UTILITY(U,$J,358.3,56256,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56256,1,3,0)
- ;;=3^Frontotemporal Dementia NEC
- ;;^UTILITY(U,$J,358.3,56256,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,56256,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,56257,0)
- ;;=G20.^^256^2795^24
- ;;^UTILITY(U,$J,358.3,56257,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.6,5,13,0)
+ ;;=^357.613V^10^10
+ ;;^UTILITY(U,$J,358.6,5,13,1,0)
+ ;;=1;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,5,13,2,0)
+ ;;=2;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,5,13,3,0)
+ ;;=3;IBD(358.98,^^1^^^^^9
+ ;;^UTILITY(U,$J,358.6,5,13,4,0)
+ ;;=1;IBE(358.99,^^0^^^^^
+ ;;^UTILITY(U,$J,358.6,5,13,5,0)
+ ;;=4;IBD(358.98,^^1^^^^^10
+ ;;^UTILITY(U,$J,358.6,5,13,6,0)
+ ;;=5;IBD(358.98,^^1^^^^^11
+ ;;^UTILITY(U,$J,358.6,5,13,7,0)
+ ;;=6;IBD(358.98,^^1^^^^^12
+ ;;^UTILITY(U,$J,358.6,5,13,8,0)
+ ;;=7;IBD(358.98,^^1^^^^^5
+ ;;^UTILITY(U,$J,358.6,5,13,9,0)
+ ;;=8;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,5,13,10,0)
+ ;;=9;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,5,14)
+ ;;=S Y=$$DSPICD10^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,5,16)
+ ;;=^^^^^^^^
+ ;;^UTILITY(U,$J,358.6,5,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,5,18)
+ ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
+ ;;^UTILITY(U,$J,358.6,5,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,6,0)
+ ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,6,1,0)
+ ;;=^^2^2^2961007^^^^
+ ;;^UTILITY(U,$J,358.6,6,1,1,0)
+ ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
+ ;;^UTILITY(U,$J,358.6,6,1,2,0)
+ ;;=are allowed.
+ ;;^UTILITY(U,$J,358.6,6,2)
+ ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
+ ;;^UTILITY(U,$J,358.6,6,3)
+ ;;=SELECT CPT PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,6,9)
+ ;;=S X=$$CPT^IBDFN12(X)
+ ;;^UTILITY(U,$J,358.6,6,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,6,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,6,15,1,0)
+ ;;=SHORT NAME^28^2^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,6,15,2,0)
+ ;;=DESCRIPTION^161^3^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,6,16)
+ ;;=o^4^Procedure Narrative^^r^5^CPT CODE^1
+ ;;^UTILITY(U,$J,358.6,7,0)
+ ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,7,1,0)
+ ;;=^^1^1^2960205^^^^
+ ;;^UTILITY(U,$J,358.6,7,1,1,0)
+ ;;=Used for inputting CPT coded procedures performed on the patient.
+ ;;^UTILITY(U,$J,358.6,7,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,7,3)
+ ;;=CPT4 PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,7,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,7,10)
+ ;;=Enter an active CPT procedure code.
+ ;;^UTILITY(U,$J,358.6,7,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,7,12)
+ ;;=PROCEDURE^1^6^7^3^2
+ ;;^UTILITY(U,$J,358.6,7,13,0)
+ ;;=^358.613V^2^2
+ ;;^UTILITY(U,$J,358.6,7,13,1,0)
+ ;;=1;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,7,13,2,0)
+ ;;=2;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,7,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,7,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,7,17)
+ ;;=D SLCTCPT^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,7,18)
+ ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
+ ;;^UTILITY(U,$J,358.6,7,19)
+ ;;=D CPT^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,8,0)
+ ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^9^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,8,1,0)
+ ;;=^^1^1^2941116^^^^
+ ;;^UTILITY(U,$J,358.6,8,1,1,0)
+ ;;=Allows for select of just Visit type CPT codes from the CPT file.
+ ;;^UTILITY(U,$J,358.6,8,2)
+ ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,8,3)
+ ;;=SELECT TYPE OF VISIT CPT
+ ;;^UTILITY(U,$J,358.6,8,11)
+ ;;=D TESTVST^IBDFN7

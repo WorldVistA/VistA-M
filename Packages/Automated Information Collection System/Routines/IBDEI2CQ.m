@@ -1,132 +1,120 @@
-IBDEI2CQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39870,0)
- ;;=H35.342^^153^1930^56
- ;;^UTILITY(U,$J,358.3,39870,1,0)
+ ;;^UTILITY(U,$J,358.3,37559,2)
+ ;;=^5045298
+ ;;^UTILITY(U,$J,358.3,37560,0)
+ ;;=S92.592A^^146^1917^197
+ ;;^UTILITY(U,$J,358.3,37560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39870,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Left Eye
- ;;^UTILITY(U,$J,358.3,39870,1,4,0)
- ;;=4^H35.342
- ;;^UTILITY(U,$J,358.3,39870,2)
- ;;=^5005651
- ;;^UTILITY(U,$J,358.3,39871,0)
- ;;=H35.343^^153^1930^55
- ;;^UTILITY(U,$J,358.3,39871,1,0)
+ ;;^UTILITY(U,$J,358.3,37560,1,3,0)
+ ;;=3^Fx of lft lsr toe(s), oth, init
+ ;;^UTILITY(U,$J,358.3,37560,1,4,0)
+ ;;=4^S92.592A
+ ;;^UTILITY(U,$J,358.3,37560,2)
+ ;;=^5045564
+ ;;^UTILITY(U,$J,358.3,37561,0)
+ ;;=S92.591A^^146^1917^214
+ ;;^UTILITY(U,$J,358.3,37561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39871,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Bilateral
- ;;^UTILITY(U,$J,358.3,39871,1,4,0)
- ;;=4^H35.343
- ;;^UTILITY(U,$J,358.3,39871,2)
- ;;=^5005652
- ;;^UTILITY(U,$J,358.3,39872,0)
- ;;=H35.381^^153^1930^104
- ;;^UTILITY(U,$J,358.3,39872,1,0)
+ ;;^UTILITY(U,$J,358.3,37561,1,3,0)
+ ;;=3^Fx of rt lsr toe(s), oth, init
+ ;;^UTILITY(U,$J,358.3,37561,1,4,0)
+ ;;=4^S92.591A
+ ;;^UTILITY(U,$J,358.3,37561,2)
+ ;;=^5045557
+ ;;^UTILITY(U,$J,358.3,37562,0)
+ ;;=S92.535A^^146^1917^314
+ ;;^UTILITY(U,$J,358.3,37562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39872,1,3,0)
- ;;=3^Toxic Maculopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,39872,1,4,0)
- ;;=4^H35.381
- ;;^UTILITY(U,$J,358.3,39872,2)
- ;;=^5005666
- ;;^UTILITY(U,$J,358.3,39873,0)
- ;;=H35.382^^153^1930^103
- ;;^UTILITY(U,$J,358.3,39873,1,0)
+ ;;^UTILITY(U,$J,358.3,37562,1,3,0)
+ ;;=3^Nondisp fx of dist phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37562,1,4,0)
+ ;;=4^S92.535A
+ ;;^UTILITY(U,$J,358.3,37562,2)
+ ;;=^5045543
+ ;;^UTILITY(U,$J,358.3,37563,0)
+ ;;=S92.534A^^146^1917^316
+ ;;^UTILITY(U,$J,358.3,37563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39873,1,3,0)
- ;;=3^Toxic Maculopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,39873,1,4,0)
- ;;=4^H35.382
- ;;^UTILITY(U,$J,358.3,39873,2)
- ;;=^5005667
- ;;^UTILITY(U,$J,358.3,39874,0)
- ;;=H35.371^^153^1930^69
- ;;^UTILITY(U,$J,358.3,39874,1,0)
+ ;;^UTILITY(U,$J,358.3,37563,1,3,0)
+ ;;=3^Nondisp fx of dist phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37563,1,4,0)
+ ;;=4^S92.534A
+ ;;^UTILITY(U,$J,358.3,37563,2)
+ ;;=^5045536
+ ;;^UTILITY(U,$J,358.3,37564,0)
+ ;;=S92.532A^^146^1917^87
+ ;;^UTILITY(U,$J,358.3,37564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39874,1,3,0)
- ;;=3^Puckering of Macular,Right Eye
- ;;^UTILITY(U,$J,358.3,39874,1,4,0)
- ;;=4^H35.371
- ;;^UTILITY(U,$J,358.3,39874,2)
- ;;=^5005662
- ;;^UTILITY(U,$J,358.3,39875,0)
- ;;=H35.372^^153^1930^68
- ;;^UTILITY(U,$J,358.3,39875,1,0)
+ ;;^UTILITY(U,$J,358.3,37564,1,3,0)
+ ;;=3^Disp fx of dist phalanc of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37564,1,4,0)
+ ;;=4^S92.532A
+ ;;^UTILITY(U,$J,358.3,37564,2)
+ ;;=^5045522
+ ;;^UTILITY(U,$J,358.3,37565,0)
+ ;;=S92.525A^^146^1917^330
+ ;;^UTILITY(U,$J,358.3,37565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39875,1,3,0)
- ;;=3^Puckering of Macular,Left Eye
- ;;^UTILITY(U,$J,358.3,39875,1,4,0)
- ;;=4^H35.372
- ;;^UTILITY(U,$J,358.3,39875,2)
- ;;=^5005663
- ;;^UTILITY(U,$J,358.3,39876,0)
- ;;=H35.362^^153^1930^37
- ;;^UTILITY(U,$J,358.3,39876,1,0)
+ ;;^UTILITY(U,$J,358.3,37565,1,3,0)
+ ;;=3^Nondisp fx of med phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37565,1,4,0)
+ ;;=4^S92.525A
+ ;;^UTILITY(U,$J,358.3,37565,2)
+ ;;=^5045501
+ ;;^UTILITY(U,$J,358.3,37566,0)
+ ;;=S92.531A^^146^1917^92
+ ;;^UTILITY(U,$J,358.3,37566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39876,1,3,0)
- ;;=3^Drusen of Macula,Left Eye
- ;;^UTILITY(U,$J,358.3,39876,1,4,0)
- ;;=4^H35.362
- ;;^UTILITY(U,$J,358.3,39876,2)
- ;;=^5005659
- ;;^UTILITY(U,$J,358.3,39877,0)
- ;;=H35.361^^153^1930^38
- ;;^UTILITY(U,$J,358.3,39877,1,0)
+ ;;^UTILITY(U,$J,358.3,37566,1,3,0)
+ ;;=3^Disp fx of dist phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37566,1,4,0)
+ ;;=4^S92.531A
+ ;;^UTILITY(U,$J,358.3,37566,2)
+ ;;=^5045515
+ ;;^UTILITY(U,$J,358.3,37567,0)
+ ;;=S92.524A^^146^1917^332
+ ;;^UTILITY(U,$J,358.3,37567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39877,1,3,0)
- ;;=3^Drusen of Macula,Right Eye
- ;;^UTILITY(U,$J,358.3,39877,1,4,0)
- ;;=4^H35.361
- ;;^UTILITY(U,$J,358.3,39877,2)
- ;;=^5005658
- ;;^UTILITY(U,$J,358.3,39878,0)
- ;;=H35.363^^153^1930^36
- ;;^UTILITY(U,$J,358.3,39878,1,0)
+ ;;^UTILITY(U,$J,358.3,37567,1,3,0)
+ ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37567,1,4,0)
+ ;;=4^S92.524A
+ ;;^UTILITY(U,$J,358.3,37567,2)
+ ;;=^5045494
+ ;;^UTILITY(U,$J,358.3,37568,0)
+ ;;=S92.522A^^146^1917^106
+ ;;^UTILITY(U,$J,358.3,37568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39878,1,3,0)
- ;;=3^Drusen of Macula,Bilateral
- ;;^UTILITY(U,$J,358.3,39878,1,4,0)
- ;;=4^H35.363
- ;;^UTILITY(U,$J,358.3,39878,2)
- ;;=^5005660
- ;;^UTILITY(U,$J,358.3,39879,0)
- ;;=H35.431^^153^1930^66
- ;;^UTILITY(U,$J,358.3,39879,1,0)
+ ;;^UTILITY(U,$J,358.3,37568,1,3,0)
+ ;;=3^Disp fx of med phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37568,1,4,0)
+ ;;=4^S92.522A
+ ;;^UTILITY(U,$J,358.3,37568,2)
+ ;;=^5045480
+ ;;^UTILITY(U,$J,358.3,37569,0)
+ ;;=S92.521A^^146^1917^108
+ ;;^UTILITY(U,$J,358.3,37569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39879,1,3,0)
- ;;=3^Paving Stone Degeneration of Retina,Right Eye
- ;;^UTILITY(U,$J,358.3,39879,1,4,0)
- ;;=4^H35.431
- ;;^UTILITY(U,$J,358.3,39879,2)
- ;;=^5005679
- ;;^UTILITY(U,$J,358.3,39880,0)
- ;;=H35.432^^153^1930^65
- ;;^UTILITY(U,$J,358.3,39880,1,0)
+ ;;^UTILITY(U,$J,358.3,37569,1,3,0)
+ ;;=3^Disp fx of med phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37569,1,4,0)
+ ;;=4^S92.521A
+ ;;^UTILITY(U,$J,358.3,37569,2)
+ ;;=^5045473
+ ;;^UTILITY(U,$J,358.3,37570,0)
+ ;;=S92.515A^^146^1917^345
+ ;;^UTILITY(U,$J,358.3,37570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39880,1,3,0)
- ;;=3^Paving Stone Degeneration of Retina,Left Eye
- ;;^UTILITY(U,$J,358.3,39880,1,4,0)
- ;;=4^H35.432
- ;;^UTILITY(U,$J,358.3,39880,2)
- ;;=^5005680
- ;;^UTILITY(U,$J,358.3,39881,0)
- ;;=H35.433^^153^1930^64
- ;;^UTILITY(U,$J,358.3,39881,1,0)
+ ;;^UTILITY(U,$J,358.3,37570,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37570,1,4,0)
+ ;;=4^S92.515A
+ ;;^UTILITY(U,$J,358.3,37570,2)
+ ;;=^5045459
+ ;;^UTILITY(U,$J,358.3,37571,0)
+ ;;=S92.514A^^146^1917^349
+ ;;^UTILITY(U,$J,358.3,37571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39881,1,3,0)
- ;;=3^Paving Stone Degeneration of Retina,Bilateral
- ;;^UTILITY(U,$J,358.3,39881,1,4,0)
- ;;=4^H35.433
- ;;^UTILITY(U,$J,358.3,39881,2)
- ;;=^5005681
- ;;^UTILITY(U,$J,358.3,39882,0)
- ;;=H35.411^^153^1930^52
- ;;^UTILITY(U,$J,358.3,39882,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39882,1,3,0)
- ;;=3^Lattice Degeneration of Retina,Right Eye
- ;;^UTILITY(U,$J,358.3,39882,1,4,0)
- ;;=4^H35.411

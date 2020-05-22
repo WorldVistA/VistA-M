@@ -1,126 +1,122 @@
-IBDEI1I6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1I6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25502,1,4,0)
- ;;=4^F12.259
- ;;^UTILITY(U,$J,358.3,25502,2)
- ;;=^5003174
- ;;^UTILITY(U,$J,358.3,25503,0)
- ;;=F12.959^^95^1167^4
- ;;^UTILITY(U,$J,358.3,25503,1,0)
+ ;;^UTILITY(U,$J,358.3,24039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25503,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25503,1,4,0)
- ;;=4^F12.959
- ;;^UTILITY(U,$J,358.3,25503,2)
- ;;=^5003185
- ;;^UTILITY(U,$J,358.3,25504,0)
- ;;=F12.988^^95^1167^5
- ;;^UTILITY(U,$J,358.3,25504,1,0)
+ ;;^UTILITY(U,$J,358.3,24039,1,3,0)
+ ;;=3^Benign Lipomatous Neop,Unspec
+ ;;^UTILITY(U,$J,358.3,24039,1,4,0)
+ ;;=4^D17.9
+ ;;^UTILITY(U,$J,358.3,24039,2)
+ ;;=^5002020
+ ;;^UTILITY(U,$J,358.3,24040,0)
+ ;;=E08.621^^107^1201^137
+ ;;^UTILITY(U,$J,358.3,24040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25504,1,3,0)
- ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25504,1,4,0)
- ;;=4^F12.988
- ;;^UTILITY(U,$J,358.3,25504,2)
- ;;=^5003187
- ;;^UTILITY(U,$J,358.3,25505,0)
- ;;=F12.929^^95^1167^13
- ;;^UTILITY(U,$J,358.3,25505,1,0)
+ ;;^UTILITY(U,$J,358.3,24040,1,3,0)
+ ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,24040,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,24040,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,24041,0)
+ ;;=E09.621^^107^1201^136
+ ;;^UTILITY(U,$J,358.3,24041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25505,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25505,1,4,0)
- ;;=4^F12.929
- ;;^UTILITY(U,$J,358.3,25505,2)
- ;;=^5003182
- ;;^UTILITY(U,$J,358.3,25506,0)
- ;;=F12.99^^95^1167^15
- ;;^UTILITY(U,$J,358.3,25506,1,0)
+ ;;^UTILITY(U,$J,358.3,24041,1,3,0)
+ ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,24041,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,24041,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,24042,0)
+ ;;=H05.011^^107^1201^112
+ ;;^UTILITY(U,$J,358.3,24042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25506,1,3,0)
- ;;=3^Cannabis Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25506,1,4,0)
- ;;=4^F12.99
- ;;^UTILITY(U,$J,358.3,25506,2)
- ;;=^5003188
- ;;^UTILITY(U,$J,358.3,25507,0)
- ;;=F16.10^^95^1168^17
- ;;^UTILITY(U,$J,358.3,25507,1,0)
+ ;;^UTILITY(U,$J,358.3,24042,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,24042,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,24042,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,24043,0)
+ ;;=H05.012^^107^1201^105
+ ;;^UTILITY(U,$J,358.3,24043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25507,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,25507,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,25507,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,25508,0)
- ;;=F16.20^^95^1168^18
- ;;^UTILITY(U,$J,358.3,25508,1,0)
+ ;;^UTILITY(U,$J,358.3,24043,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,24043,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,24043,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,24044,0)
+ ;;=H05.013^^107^1201^99
+ ;;^UTILITY(U,$J,358.3,24044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25508,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,25508,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,25508,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,25509,0)
- ;;=F16.21^^95^1168^19
- ;;^UTILITY(U,$J,358.3,25509,1,0)
+ ;;^UTILITY(U,$J,358.3,24044,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,24044,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,24044,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,24045,0)
+ ;;=I70.331^^107^1201^51
+ ;;^UTILITY(U,$J,358.3,24045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25509,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,25509,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,25509,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,25510,0)
- ;;=F16.983^^95^1168^16
- ;;^UTILITY(U,$J,358.3,25510,1,0)
+ ;;^UTILITY(U,$J,358.3,24045,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,24045,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,24045,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,24046,0)
+ ;;=I70.332^^107^1201^52
+ ;;^UTILITY(U,$J,358.3,24046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25510,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,25510,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,25510,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,25511,0)
- ;;=F16.121^^95^1168^10
- ;;^UTILITY(U,$J,358.3,25511,1,0)
+ ;;^UTILITY(U,$J,358.3,24046,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,24046,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,24046,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,24047,0)
+ ;;=I70.333^^107^1201^53
+ ;;^UTILITY(U,$J,358.3,24047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25511,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25511,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,25511,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,25512,0)
- ;;=F16.221^^95^1168^11
- ;;^UTILITY(U,$J,358.3,25512,1,0)
+ ;;^UTILITY(U,$J,358.3,24047,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,24047,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,24047,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,24048,0)
+ ;;=I70.334^^107^1201^54
+ ;;^UTILITY(U,$J,358.3,24048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25512,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25512,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,25512,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,25513,0)
- ;;=F16.921^^95^1168^12
- ;;^UTILITY(U,$J,358.3,25513,1,0)
+ ;;^UTILITY(U,$J,358.3,24048,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,24048,1,4,0)
+ ;;=4^I70.334
+ ;;^UTILITY(U,$J,358.3,24048,2)
+ ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,24049,0)
+ ;;=I70.335^^107^1201^55
+ ;;^UTILITY(U,$J,358.3,24049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25513,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25513,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,25513,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,25514,0)
- ;;=F16.129^^95^1168^13
- ;;^UTILITY(U,$J,358.3,25514,1,0)
+ ;;^UTILITY(U,$J,358.3,24049,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,24049,1,4,0)
+ ;;=4^I70.335
+ ;;^UTILITY(U,$J,358.3,24049,2)
+ ;;=^5007630
+ ;;^UTILITY(U,$J,358.3,24050,0)
+ ;;=I70.341^^107^1201^50
+ ;;^UTILITY(U,$J,358.3,24050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25514,1,3,0)
- ;;=3^Hallucinogen Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25514,1,4,0)
- ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,24050,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,24050,1,4,0)
+ ;;=4^I70.341
+ ;;^UTILITY(U,$J,358.3,24050,2)
+ ;;=^5007633

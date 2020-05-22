@@ -1,5 +1,5 @@
 PSOSUPOE ;BIR/RTR - Suspense pull via Listman ;3/1/96
- ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403,427,496**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403,427,496,544**;DEC 1997;Build 19
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 SEL I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  N PSOGETF,PSOGET,PSOGETFN,ORD,ORN,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
@@ -44,9 +44,13 @@ BEGQ Q:'$D(^PSRX(+$G(RXREC),0))
  ;   list of RXs that are pulled from suspense
  ; We also need to quit if the user discontinued from the reject notification screen as the RX Suspense record
  ;   is deleted by a discontinue
+ ;
+ ; Do not send a claim if the last submission was rejected and
+ ; all rejects have been closed.
+ ;
  N ACTION S ACTION=""
- I '$D(RXPR(RXREC)) D  I ACTION="Q"!(ACTION="D") D ULRX Q
- . N RFL S RFL=$G(RXFL(RXREC)) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
+ N RFL S RFL=$G(RXFL(RXREC)) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
+ I '$D(RXPR(RXREC)),$$SEND^PSOBPSU2(RXREC,RFL) D  I ACTION="Q"!(ACTION="D") D ULRX Q
  . D ECMESND^PSOBPSU1(RXREC,RFL,,"PP")
  . ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(RXREC,RFL) S ACTION="Q" W !!,"Pull early cannot be done for non-billable TRICARE/CHAMPVA Rx on the worklist" D DIR Q

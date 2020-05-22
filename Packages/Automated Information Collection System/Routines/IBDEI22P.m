@@ -1,124 +1,120 @@
-IBDEI22P ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35153,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,35153,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,35154,0)
- ;;=Y04.1XXD^^131^1699^2
- ;;^UTILITY(U,$J,358.3,35154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35154,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35154,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,35154,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,35155,0)
- ;;=Y04.2XXA^^131^1699^5
- ;;^UTILITY(U,$J,358.3,35155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35155,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,35155,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,35155,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,35156,0)
- ;;=Y04.8XXA^^131^1699^3
- ;;^UTILITY(U,$J,358.3,35156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35156,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,35156,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,35156,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,35157,0)
- ;;=Y04.2XXD^^131^1699^6
- ;;^UTILITY(U,$J,358.3,35157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35157,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35157,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,35157,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,35158,0)
- ;;=Y04.8XXD^^131^1699^4
- ;;^UTILITY(U,$J,358.3,35158,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35158,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35158,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,35158,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,35159,0)
- ;;=Y36.200A^^131^1699^124
- ;;^UTILITY(U,$J,358.3,35159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35159,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,35159,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,35159,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,35160,0)
- ;;=Y36.200D^^131^1699^125
- ;;^UTILITY(U,$J,358.3,35160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35160,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35160,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,35160,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,35161,0)
- ;;=Y36.300A^^131^1699^126
- ;;^UTILITY(U,$J,358.3,35161,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35161,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,35161,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,35161,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,35162,0)
- ;;=Y36.300D^^131^1699^127
- ;;^UTILITY(U,$J,358.3,35162,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35162,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35162,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,35162,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,35163,0)
- ;;=Y36.410A^^131^1699^121
- ;;^UTILITY(U,$J,358.3,35163,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35163,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,35163,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,35163,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,35164,0)
- ;;=Y36.410D^^131^1699^123
- ;;^UTILITY(U,$J,358.3,35164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35164,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35164,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,35164,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,35165,0)
- ;;=Y36.6X0A^^131^1699^113
- ;;^UTILITY(U,$J,358.3,35165,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35165,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33091,1,2,0)
+ ;;=2^97755
+ ;;^UTILITY(U,$J,358.3,33091,1,3,0)
+ ;;=3^Assistive Technology Assessment,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33092,0)
+ ;;=T1016^^129^1678^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33092,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33092,1,2,0)
+ ;;=2^T1016
+ ;;^UTILITY(U,$J,358.3,33092,1,3,0)
+ ;;=3^Case Management,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33093,0)
+ ;;=G9012^^129^1678^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33093,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33093,1,2,0)
+ ;;=2^G9012
+ ;;^UTILITY(U,$J,358.3,33093,1,3,0)
+ ;;=3^Case Mangement,NEC,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33094,0)
+ ;;=97750^^129^1678^16^^^^1
+ ;;^UTILITY(U,$J,358.3,33094,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33094,1,2,0)
+ ;;=2^97750
+ ;;^UTILITY(U,$J,358.3,33094,1,3,0)
+ ;;=3^Physical Performance Test,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33095,0)
+ ;;=98960^^129^1678^8^^^^1
+ ;;^UTILITY(U,$J,358.3,33095,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33095,1,2,0)
+ ;;=2^98960
+ ;;^UTILITY(U,$J,358.3,33095,1,3,0)
+ ;;=3^Ed/Training,Self-Mgmnt,1 Pt,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33096,0)
+ ;;=97537^^129^1678^7^^^^1
+ ;;^UTILITY(U,$J,358.3,33096,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33096,1,2,0)
+ ;;=2^97537
+ ;;^UTILITY(U,$J,358.3,33096,1,3,0)
+ ;;=3^Community/Occupation Trng,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33097,0)
+ ;;=98961^^129^1678^9^^^^1
+ ;;^UTILITY(U,$J,358.3,33097,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33097,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,33097,1,3,0)
+ ;;=3^Ed/Training,Self-Mgmnt,2-4 Pts,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33098,0)
+ ;;=98962^^129^1678^10^^^^1
+ ;;^UTILITY(U,$J,358.3,33098,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33098,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,33098,1,3,0)
+ ;;=3^Ed/Training,Self-Mgmnt,5-8 Pts,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,33099,0)
+ ;;=99366^^129^1678^14^^^^1
+ ;;^UTILITY(U,$J,358.3,33099,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33099,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,33099,1,3,0)
+ ;;=3^Interdisc. Team Mtg w/ Pt w/o Physician
+ ;;^UTILITY(U,$J,358.3,33100,0)
+ ;;=99368^^129^1678^15^^^^1
+ ;;^UTILITY(U,$J,358.3,33100,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33100,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,33100,1,3,0)
+ ;;=3^Interdisc. Team Mtg w/o Pt w/o Physician
+ ;;^UTILITY(U,$J,358.3,33101,0)
+ ;;=96156^^129^1678^13^^^^1
+ ;;^UTILITY(U,$J,358.3,33101,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33101,1,2,0)
+ ;;=2^96156
+ ;;^UTILITY(U,$J,358.3,33101,1,3,0)
+ ;;=3^Hlth/Behav Assess/Re-Assess
+ ;;^UTILITY(U,$J,358.3,33102,0)
+ ;;=96158^^129^1678^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33102,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33102,1,2,0)
+ ;;=2^96158
+ ;;^UTILITY(U,$J,358.3,33102,1,3,0)
+ ;;=3^Adjustment Counseling,1st 30 min
+ ;;^UTILITY(U,$J,358.3,33103,0)
+ ;;=96159^^129^1678^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33103,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33103,1,2,0)
+ ;;=2^96159
+ ;;^UTILITY(U,$J,358.3,33103,1,3,0)
+ ;;=3^Adjustment Counseling,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,33104,0)
+ ;;=96164^^129^1678^11^^^^1
+ ;;^UTILITY(U,$J,358.3,33104,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33104,1,2,0)
+ ;;=2^96164
+ ;;^UTILITY(U,$J,358.3,33104,1,3,0)
+ ;;=3^Group Train/Support,1st 30 min
+ ;;^UTILITY(U,$J,358.3,33105,0)
+ ;;=96165^^129^1678^12^^^^1
+ ;;^UTILITY(U,$J,358.3,33105,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33105,1,2,0)
+ ;;=2^96165
+ ;;^UTILITY(U,$J,358.3,33105,1,3,0)
+ ;;=3^Group Train/Support,Ea Addl 15 min

@@ -1,12 +1,24 @@
 IBECEAU2 ;ALB/CPM-Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646**;21-MAR-94;Build 5
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614,618,646,663,671**;21-MAR-94;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
  ; Input:   IBX  --  "C" (Cancel a charge), "E" (Edit a Charge)
  S DIC="^IBE(350.3,",DIC(0)="AEMQZ",DIC("A")="Select "_$S(IBX="E":"EDIT",1:"CANCELLATION")_" REASON: "
  S DIC("S")=$S(IBXA=7:"I 1",IBXA=6:"I $P(^(0),U,3)=3",IBXA=5:"I ($P(^(0),U,3)=1)!($P(^(0),U,3)=3)",1:"I ($P(^(0),U,3)=2)!($P(^(0),U,3)=3)")
- D ^DIC K DIC S IBCRES=+Y I Y<0 W !!,"No ",$S(IBX="E":"edit",1:"cancellation")," reason entered - the transaction cannot be completed."
+ D ^DIC K DIC
+ ;IB*2.0*663 - added block to prevent use of Non UC cancellation reasons on UC copays.
+ S IBCRES=+Y
+ I Y<0 W !!,"No ",$S(IBX="E":"edit",1:"cancellation")," reason entered - the transaction cannot be completed." Q
+ ;
+ I (IBX="C"),Y(0,0)="PATIENT DECEASED" Q
+ I (IBX="C"),Y(0,0)="RECD INPATIENT CARE" Q
+ I (IBX="C"),Y(0,0)="BILLED AT HIGHER TIER RATE" Q
+ I (IBX="C"),(Y(0,0)'["UC - "),($$GET1^DIQ(350.1,$P(IBND,U,3)_",",.01)["CC URGENT CARE") D
+ . W !!,"This is an Urgent Care Copayment. Please use an Urgent Care cancellation reason.",!,"This transaction cannot be completed.",!
+ . S IBCRES=-1
+ ;end IB*2.0*663
+ ;
  Q
  ;
 UNIT(DEF) ; Ask for units for Rx copay charges
@@ -52,7 +64,7 @@ FEE(DEF) ; Ask for Fee Amount
  ; Input:   DEF  --  Default value if previous charge is to be displayed
  N DIR,DIRUT,DUOUT,DTOUT,X,Y
  S:$G(DEF) DIR("B")=DEF
- S DIR(0)="NA^::2^K:X<0!(X>(IBMED-IBCLDOL)) X",DIR("A")="              Fee Amount: ",DIR("?")="^D HFEE^IBECEAU2"
+ S DIR(0)="NA^::2^K:X<0!(X>(IBMED-IBCLDOL)) X",DIR("A")="           Charge Amount: ",DIR("?")="^D HFEE^IBECEAU2"
  D ^DIR S IBCHG=Y I 'Y W !!,"Charge not entered - transaction cannot be completed." S IBY=-1
  Q
  ;

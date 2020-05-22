@@ -1,126 +1,128 @@
-IBDEI2XF ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49104,1,3,0)
- ;;=3^Nondisp body of right talus fx, sequela
- ;;^UTILITY(U,$J,358.3,49104,1,4,0)
- ;;=4^S92.124S
- ;;^UTILITY(U,$J,358.3,49104,2)
- ;;=^5044674
- ;;^UTILITY(U,$J,358.3,49105,0)
- ;;=S92.115S^^216^2414^98
- ;;^UTILITY(U,$J,358.3,49105,1,0)
+ ;;^UTILITY(U,$J,358.3,46703,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46703,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,46703,1,3,0)
+ ;;=3^Flu Vaccine
+ ;;^UTILITY(U,$J,358.3,46704,0)
+ ;;=D30.3^^179^2329^3
+ ;;^UTILITY(U,$J,358.3,46704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49105,1,3,0)
- ;;=3^Nondisp neck of left talus fx, sequela
- ;;^UTILITY(U,$J,358.3,49105,1,4,0)
- ;;=4^S92.115S
- ;;^UTILITY(U,$J,358.3,49105,2)
- ;;=^5044639
- ;;^UTILITY(U,$J,358.3,49106,0)
- ;;=S92.114S^^216^2414^99
- ;;^UTILITY(U,$J,358.3,49106,1,0)
+ ;;^UTILITY(U,$J,358.3,46704,1,3,0)
+ ;;=3^Benign neoplasm of bladder
+ ;;^UTILITY(U,$J,358.3,46704,1,4,0)
+ ;;=4^D30.3
+ ;;^UTILITY(U,$J,358.3,46704,2)
+ ;;=^267665
+ ;;^UTILITY(U,$J,358.3,46705,0)
+ ;;=N21.0^^179^2329^5
+ ;;^UTILITY(U,$J,358.3,46705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49106,1,3,0)
- ;;=3^Nondisp neck of right talus fx, sequela
- ;;^UTILITY(U,$J,358.3,49106,1,4,0)
- ;;=4^S92.114S
- ;;^UTILITY(U,$J,358.3,49106,2)
- ;;=^5044632
- ;;^UTILITY(U,$J,358.3,49107,0)
- ;;=S92.135S^^216^2414^100
- ;;^UTILITY(U,$J,358.3,49107,1,0)
+ ;;^UTILITY(U,$J,358.3,46705,1,3,0)
+ ;;=3^Calculus in bladder
+ ;;^UTILITY(U,$J,358.3,46705,1,4,0)
+ ;;=4^N21.0
+ ;;^UTILITY(U,$J,358.3,46705,2)
+ ;;=^5015611
+ ;;^UTILITY(U,$J,358.3,46706,0)
+ ;;=N30.00^^179^2329^2
+ ;;^UTILITY(U,$J,358.3,46706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49107,1,3,0)
- ;;=3^Nondisp posterior process fx of left talus, sequela
- ;;^UTILITY(U,$J,358.3,49107,1,4,0)
- ;;=4^S92.135S
- ;;^UTILITY(U,$J,358.3,49107,2)
- ;;=^5044723
- ;;^UTILITY(U,$J,358.3,49108,0)
- ;;=S92.134S^^216^2414^101
- ;;^UTILITY(U,$J,358.3,49108,1,0)
+ ;;^UTILITY(U,$J,358.3,46706,1,3,0)
+ ;;=3^Acute cystitis w/o hematuria
+ ;;^UTILITY(U,$J,358.3,46706,1,4,0)
+ ;;=4^N30.00
+ ;;^UTILITY(U,$J,358.3,46706,2)
+ ;;=^5015632
+ ;;^UTILITY(U,$J,358.3,46707,0)
+ ;;=N30.01^^179^2329^1
+ ;;^UTILITY(U,$J,358.3,46707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49108,1,3,0)
- ;;=3^Nondisp posterior process fx of right talus, sequela
- ;;^UTILITY(U,$J,358.3,49108,1,4,0)
- ;;=4^S92.134S
- ;;^UTILITY(U,$J,358.3,49108,2)
- ;;=^5044716
- ;;^UTILITY(U,$J,358.3,49109,0)
- ;;=S92.064S^^216^2414^89
- ;;^UTILITY(U,$J,358.3,49109,1,0)
+ ;;^UTILITY(U,$J,358.3,46707,1,3,0)
+ ;;=3^Acute cystitis w/ hematuria
+ ;;^UTILITY(U,$J,358.3,46707,1,4,0)
+ ;;=4^N30.01
+ ;;^UTILITY(U,$J,358.3,46707,2)
+ ;;=^5015633
+ ;;^UTILITY(U,$J,358.3,46708,0)
+ ;;=N30.10^^179^2329^14
+ ;;^UTILITY(U,$J,358.3,46708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49109,1,3,0)
- ;;=3^Nondisp intraarticular fx of right calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,49109,1,4,0)
- ;;=4^S92.064S
- ;;^UTILITY(U,$J,358.3,49109,2)
- ;;=^5044576
- ;;^UTILITY(U,$J,358.3,49110,0)
- ;;=S92.065S^^216^2414^88
- ;;^UTILITY(U,$J,358.3,49110,1,0)
+ ;;^UTILITY(U,$J,358.3,46708,1,3,0)
+ ;;=3^Interstitial cystitis w/o hematuria
+ ;;^UTILITY(U,$J,358.3,46708,1,4,0)
+ ;;=4^N30.10
+ ;;^UTILITY(U,$J,358.3,46708,2)
+ ;;=^5015634
+ ;;^UTILITY(U,$J,358.3,46709,0)
+ ;;=N30.11^^179^2329^13
+ ;;^UTILITY(U,$J,358.3,46709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49110,1,3,0)
- ;;=3^Nondisp intraarticular fx of left calcaneus, sequela
- ;;^UTILITY(U,$J,358.3,49110,1,4,0)
- ;;=4^S92.065S
- ;;^UTILITY(U,$J,358.3,49110,2)
- ;;=^5044583
- ;;^UTILITY(U,$J,358.3,49111,0)
- ;;=M84.472S^^216^2414^108
- ;;^UTILITY(U,$J,358.3,49111,1,0)
+ ;;^UTILITY(U,$J,358.3,46709,1,3,0)
+ ;;=3^Interstitial cystitis w/ hematuria
+ ;;^UTILITY(U,$J,358.3,46709,1,4,0)
+ ;;=4^N30.11
+ ;;^UTILITY(U,$J,358.3,46709,2)
+ ;;=^5015635
+ ;;^UTILITY(U,$J,358.3,46710,0)
+ ;;=N30.40^^179^2329^16
+ ;;^UTILITY(U,$J,358.3,46710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49111,1,3,0)
- ;;=3^Pathological fracture, left ankle, sequela
- ;;^UTILITY(U,$J,358.3,49111,1,4,0)
- ;;=4^M84.472S
- ;;^UTILITY(U,$J,358.3,49111,2)
- ;;=^5013973
- ;;^UTILITY(U,$J,358.3,49112,0)
- ;;=M84.471S^^216^2414^111
- ;;^UTILITY(U,$J,358.3,49112,1,0)
+ ;;^UTILITY(U,$J,358.3,46710,1,3,0)
+ ;;=3^Irradiation cystitis w/o hematuria
+ ;;^UTILITY(U,$J,358.3,46710,1,4,0)
+ ;;=4^N30.40
+ ;;^UTILITY(U,$J,358.3,46710,2)
+ ;;=^5015639
+ ;;^UTILITY(U,$J,358.3,46711,0)
+ ;;=N30.41^^179^2329^15
+ ;;^UTILITY(U,$J,358.3,46711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49112,1,3,0)
- ;;=3^Pathological fracture, right ankle, sequela
- ;;^UTILITY(U,$J,358.3,49112,1,4,0)
- ;;=4^M84.471S
- ;;^UTILITY(U,$J,358.3,49112,2)
- ;;=^5013967
- ;;^UTILITY(U,$J,358.3,49113,0)
- ;;=M84.372S^^216^2414^114
- ;;^UTILITY(U,$J,358.3,49113,1,0)
+ ;;^UTILITY(U,$J,358.3,46711,1,3,0)
+ ;;=3^Irradiation cystitis w/ hematuria
+ ;;^UTILITY(U,$J,358.3,46711,1,4,0)
+ ;;=4^N30.41
+ ;;^UTILITY(U,$J,358.3,46711,2)
+ ;;=^5015640
+ ;;^UTILITY(U,$J,358.3,46712,0)
+ ;;=N32.0^^179^2329^4
+ ;;^UTILITY(U,$J,358.3,46712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49113,1,3,0)
- ;;=3^Stress fracture, left ankle, sequela
- ;;^UTILITY(U,$J,358.3,49113,1,4,0)
- ;;=4^M84.372S
- ;;^UTILITY(U,$J,358.3,49113,2)
- ;;=^5013745
- ;;^UTILITY(U,$J,358.3,49114,0)
- ;;=M84.371S^^216^2414^117
- ;;^UTILITY(U,$J,358.3,49114,1,0)
+ ;;^UTILITY(U,$J,358.3,46712,1,3,0)
+ ;;=3^Bladder-neck obstruction
+ ;;^UTILITY(U,$J,358.3,46712,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,46712,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,46713,0)
+ ;;=N31.9^^179^2329^23
+ ;;^UTILITY(U,$J,358.3,46713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49114,1,3,0)
- ;;=3^Stress fracture, right ankle, sequela
- ;;^UTILITY(U,$J,358.3,49114,1,4,0)
- ;;=4^M84.371S
- ;;^UTILITY(U,$J,358.3,49114,2)
- ;;=^5013739
- ;;^UTILITY(U,$J,358.3,49115,0)
- ;;=S82.855S^^216^2414^106
- ;;^UTILITY(U,$J,358.3,49115,1,0)
+ ;;^UTILITY(U,$J,358.3,46713,1,3,0)
+ ;;=3^Neuromusc Dysfunction Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,46713,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,46713,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,46714,0)
+ ;;=N31.0^^179^2329^37
+ ;;^UTILITY(U,$J,358.3,46714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49115,1,3,0)
- ;;=3^Nondisp trimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,49115,1,4,0)
- ;;=4^S82.855S
- ;;^UTILITY(U,$J,358.3,49115,2)
- ;;=^5042654
- ;;^UTILITY(U,$J,358.3,49116,0)
- ;;=S82.854S^^216^2414^107
- ;;^UTILITY(U,$J,358.3,49116,1,0)
+ ;;^UTILITY(U,$J,358.3,46714,1,3,0)
+ ;;=3^Uninhibited neuropathic bladder, NEC
+ ;;^UTILITY(U,$J,358.3,46714,1,4,0)
+ ;;=4^N31.0
+ ;;^UTILITY(U,$J,358.3,46714,2)
+ ;;=^5015644
+ ;;^UTILITY(U,$J,358.3,46715,0)
+ ;;=N31.1^^179^2329^30
+ ;;^UTILITY(U,$J,358.3,46715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49116,1,3,0)
- ;;=3^Nondisp trimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,46715,1,3,0)
+ ;;=3^Reflex neuropathic bladder NEC
+ ;;^UTILITY(U,$J,358.3,46715,1,4,0)
+ ;;=4^N31.1

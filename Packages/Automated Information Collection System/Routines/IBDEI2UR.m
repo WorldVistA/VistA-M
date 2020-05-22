@@ -1,130 +1,130 @@
-IBDEI2UR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47866,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,47866,1,4,0)
- ;;=4^C4A.22
- ;;^UTILITY(U,$J,358.3,47866,2)
- ;;=^5001143
- ;;^UTILITY(U,$J,358.3,47867,0)
- ;;=C4A.30^^209^2358^4
- ;;^UTILITY(U,$J,358.3,47867,1,0)
+ ;;^UTILITY(U,$J,358.3,45501,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,45501,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,45502,0)
+ ;;=J01.00^^172^2270^65
+ ;;^UTILITY(U,$J,358.3,45502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47867,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Face,Part Unspec
- ;;^UTILITY(U,$J,358.3,47867,1,4,0)
- ;;=4^C4A.30
- ;;^UTILITY(U,$J,358.3,47867,2)
- ;;=^5001144
- ;;^UTILITY(U,$J,358.3,47868,0)
- ;;=C4A.39^^209^2358^3
- ;;^UTILITY(U,$J,358.3,47868,1,0)
+ ;;^UTILITY(U,$J,358.3,45502,1,3,0)
+ ;;=3^Sinusitis,Maxillary,Acute
+ ;;^UTILITY(U,$J,358.3,45502,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,45502,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,45503,0)
+ ;;=J01.01^^172^2270^67
+ ;;^UTILITY(U,$J,358.3,45503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47868,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Face,Oth Parts
- ;;^UTILITY(U,$J,358.3,47868,1,4,0)
- ;;=4^C4A.39
- ;;^UTILITY(U,$J,358.3,47868,2)
- ;;=^5001146
- ;;^UTILITY(U,$J,358.3,47869,0)
- ;;=C4A.4^^209^2358^15
- ;;^UTILITY(U,$J,358.3,47869,1,0)
+ ;;^UTILITY(U,$J,358.3,45503,1,3,0)
+ ;;=3^Sinusitis,Maxillary,Recurrent
+ ;;^UTILITY(U,$J,358.3,45503,1,4,0)
+ ;;=4^J01.01
+ ;;^UTILITY(U,$J,358.3,45503,2)
+ ;;=^5008117
+ ;;^UTILITY(U,$J,358.3,45504,0)
+ ;;=J01.10^^172^2270^62
+ ;;^UTILITY(U,$J,358.3,45504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47869,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,47869,1,4,0)
- ;;=4^C4A.4
- ;;^UTILITY(U,$J,358.3,47869,2)
- ;;=^5001147
- ;;^UTILITY(U,$J,358.3,47870,0)
- ;;=C4A.61^^209^2358^14
- ;;^UTILITY(U,$J,358.3,47870,1,0)
+ ;;^UTILITY(U,$J,358.3,45504,1,3,0)
+ ;;=3^Sinusitis,Frontal,Acute
+ ;;^UTILITY(U,$J,358.3,45504,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,45504,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,45505,0)
+ ;;=J01.11^^172^2270^64
+ ;;^UTILITY(U,$J,358.3,45505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47870,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,47870,1,4,0)
- ;;=4^C4A.61
- ;;^UTILITY(U,$J,358.3,47870,2)
- ;;=^5001152
- ;;^UTILITY(U,$J,358.3,47871,0)
- ;;=C4A.62^^209^2358^8
- ;;^UTILITY(U,$J,358.3,47871,1,0)
+ ;;^UTILITY(U,$J,358.3,45505,1,3,0)
+ ;;=3^Sinusitis,Frontal,Recurrent
+ ;;^UTILITY(U,$J,358.3,45505,1,4,0)
+ ;;=4^J01.11
+ ;;^UTILITY(U,$J,358.3,45505,2)
+ ;;=^5008119
+ ;;^UTILITY(U,$J,358.3,45506,0)
+ ;;=J01.20^^172^2270^59
+ ;;^UTILITY(U,$J,358.3,45506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47871,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,47871,1,4,0)
- ;;=4^C4A.62
- ;;^UTILITY(U,$J,358.3,47871,2)
- ;;=^5001153
- ;;^UTILITY(U,$J,358.3,47872,0)
- ;;=C4A.71^^209^2358^13
- ;;^UTILITY(U,$J,358.3,47872,1,0)
+ ;;^UTILITY(U,$J,358.3,45506,1,3,0)
+ ;;=3^Sinusitis,Ethmoid,Acute
+ ;;^UTILITY(U,$J,358.3,45506,1,4,0)
+ ;;=4^J01.20
+ ;;^UTILITY(U,$J,358.3,45506,2)
+ ;;=^5008120
+ ;;^UTILITY(U,$J,358.3,45507,0)
+ ;;=J01.21^^172^2270^60
+ ;;^UTILITY(U,$J,358.3,45507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47872,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,47872,1,4,0)
- ;;=4^C4A.71
- ;;^UTILITY(U,$J,358.3,47872,2)
- ;;=^5001155
- ;;^UTILITY(U,$J,358.3,47873,0)
- ;;=C4A.72^^209^2358^7
- ;;^UTILITY(U,$J,358.3,47873,1,0)
+ ;;^UTILITY(U,$J,358.3,45507,1,3,0)
+ ;;=3^Sinusitis,Ethmoid,Recurrent
+ ;;^UTILITY(U,$J,358.3,45507,1,4,0)
+ ;;=4^J01.21
+ ;;^UTILITY(U,$J,358.3,45507,2)
+ ;;=^5008121
+ ;;^UTILITY(U,$J,358.3,45508,0)
+ ;;=J01.30^^172^2270^69
+ ;;^UTILITY(U,$J,358.3,45508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47873,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,47873,1,4,0)
- ;;=4^C4A.72
- ;;^UTILITY(U,$J,358.3,47873,2)
- ;;=^5001156
- ;;^UTILITY(U,$J,358.3,47874,0)
- ;;=C4A.59^^209^2358^16
- ;;^UTILITY(U,$J,358.3,47874,1,0)
+ ;;^UTILITY(U,$J,358.3,45508,1,3,0)
+ ;;=3^Sinusitis,Sphenoidal,Acute
+ ;;^UTILITY(U,$J,358.3,45508,1,4,0)
+ ;;=4^J01.30
+ ;;^UTILITY(U,$J,358.3,45508,2)
+ ;;=^5008122
+ ;;^UTILITY(U,$J,358.3,45509,0)
+ ;;=J01.31^^172^2270^70
+ ;;^UTILITY(U,$J,358.3,45509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47874,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Trunk,Oth Part
- ;;^UTILITY(U,$J,358.3,47874,1,4,0)
- ;;=4^C4A.59
- ;;^UTILITY(U,$J,358.3,47874,2)
- ;;=^5001150
- ;;^UTILITY(U,$J,358.3,47875,0)
- ;;=C4A.51^^209^2358^1
- ;;^UTILITY(U,$J,358.3,47875,1,0)
+ ;;^UTILITY(U,$J,358.3,45509,1,3,0)
+ ;;=3^Sinusitis,Sphenoidal,Recurrent
+ ;;^UTILITY(U,$J,358.3,45509,1,4,0)
+ ;;=4^J01.31
+ ;;^UTILITY(U,$J,358.3,45509,2)
+ ;;=^5008123
+ ;;^UTILITY(U,$J,358.3,45510,0)
+ ;;=J01.40^^172^2270^51
+ ;;^UTILITY(U,$J,358.3,45510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47875,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Anal Skin
- ;;^UTILITY(U,$J,358.3,47875,1,4,0)
- ;;=4^C4A.51
- ;;^UTILITY(U,$J,358.3,47875,2)
- ;;=^5001148
- ;;^UTILITY(U,$J,358.3,47876,0)
- ;;=C4A.52^^209^2358^2
- ;;^UTILITY(U,$J,358.3,47876,1,0)
+ ;;^UTILITY(U,$J,358.3,45510,1,3,0)
+ ;;=3^Pansinusitis,Acute
+ ;;^UTILITY(U,$J,358.3,45510,1,4,0)
+ ;;=4^J01.40
+ ;;^UTILITY(U,$J,358.3,45510,2)
+ ;;=^5008124
+ ;;^UTILITY(U,$J,358.3,45511,0)
+ ;;=J01.41^^172^2270^53
+ ;;^UTILITY(U,$J,358.3,45511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47876,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Breast Skin
- ;;^UTILITY(U,$J,358.3,47876,1,4,0)
- ;;=4^C4A.52
- ;;^UTILITY(U,$J,358.3,47876,2)
- ;;=^5001149
- ;;^UTILITY(U,$J,358.3,47877,0)
- ;;=C4A.9^^209^2358^17
- ;;^UTILITY(U,$J,358.3,47877,1,0)
+ ;;^UTILITY(U,$J,358.3,45511,1,3,0)
+ ;;=3^Pansinusitis,Recurrent
+ ;;^UTILITY(U,$J,358.3,45511,1,4,0)
+ ;;=4^J01.41
+ ;;^UTILITY(U,$J,358.3,45511,2)
+ ;;=^5008125
+ ;;^UTILITY(U,$J,358.3,45512,0)
+ ;;=J32.0^^172^2270^66
+ ;;^UTILITY(U,$J,358.3,45512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47877,1,3,0)
- ;;=3^Merkel Cell Carcinoma,Unspec
- ;;^UTILITY(U,$J,358.3,47877,1,4,0)
- ;;=4^C4A.9
- ;;^UTILITY(U,$J,358.3,47877,2)
- ;;=^5001158
- ;;^UTILITY(U,$J,358.3,47878,0)
- ;;=C4A.8^^209^2358^10
- ;;^UTILITY(U,$J,358.3,47878,1,0)
+ ;;^UTILITY(U,$J,358.3,45512,1,3,0)
+ ;;=3^Sinusitis,Maxillary,Chronic
+ ;;^UTILITY(U,$J,358.3,45512,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,45512,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,45513,0)
+ ;;=J32.1^^172^2270^63
+ ;;^UTILITY(U,$J,358.3,45513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47878,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Overlapping Sites
- ;;^UTILITY(U,$J,358.3,47878,1,4,0)
- ;;=4^C4A.8
- ;;^UTILITY(U,$J,358.3,47878,2)
- ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,45513,1,3,0)
+ ;;=3^Sinusitis,Frontal,Chronic
+ ;;^UTILITY(U,$J,358.3,45513,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,45513,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,45514,0)
+ ;;=J32.2^^172^2270^61

@@ -1,124 +1,124 @@
-IBDEI2YS ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49688,1,4,0)
- ;;=4^S62.142S
- ;;^UTILITY(U,$J,358.3,49688,2)
- ;;=^5033352
- ;;^UTILITY(U,$J,358.3,49689,0)
- ;;=S62.141S^^216^2420^10
- ;;^UTILITY(U,$J,358.3,49689,1,0)
+ ;;^UTILITY(U,$J,358.3,47310,1,4,0)
+ ;;=4^J31.0
+ ;;^UTILITY(U,$J,358.3,47310,2)
+ ;;=^24434
+ ;;^UTILITY(U,$J,358.3,47311,0)
+ ;;=M06.9^^181^2361^15
+ ;;^UTILITY(U,$J,358.3,47311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49689,1,3,0)
- ;;=3^Disp fx of body of hamate bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,49689,1,4,0)
- ;;=4^S62.141S
- ;;^UTILITY(U,$J,358.3,49689,2)
- ;;=^5033345
- ;;^UTILITY(U,$J,358.3,49690,0)
- ;;=S62.132S^^216^2420^11
- ;;^UTILITY(U,$J,358.3,49690,1,0)
+ ;;^UTILITY(U,$J,358.3,47311,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,47311,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,47311,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,47312,0)
+ ;;=M54.10^^181^2361^1
+ ;;^UTILITY(U,$J,358.3,47312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49690,1,3,0)
- ;;=3^Disp fx of capitate bone, left wrist, sequela 
- ;;^UTILITY(U,$J,358.3,49690,1,4,0)
- ;;=4^S62.132S
- ;;^UTILITY(U,$J,358.3,49690,2)
- ;;=^5033310
- ;;^UTILITY(U,$J,358.3,49691,0)
- ;;=S62.131S^^216^2420^12
- ;;^UTILITY(U,$J,358.3,49691,1,0)
+ ;;^UTILITY(U,$J,358.3,47312,1,3,0)
+ ;;=3^Radiculopathy,Site Unspec
+ ;;^UTILITY(U,$J,358.3,47312,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,47312,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,47313,0)
+ ;;=R21.^^181^2361^2
+ ;;^UTILITY(U,$J,358.3,47313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49691,1,3,0)
- ;;=3^Disp fx of capitate bone, right wrist, sequela 
- ;;^UTILITY(U,$J,358.3,49691,1,4,0)
- ;;=4^S62.131S
- ;;^UTILITY(U,$J,358.3,49691,2)
- ;;=^5033303
- ;;^UTILITY(U,$J,358.3,49692,0)
- ;;=S62.012S^^216^2420^20
- ;;^UTILITY(U,$J,358.3,49692,1,0)
+ ;;^UTILITY(U,$J,358.3,47313,1,3,0)
+ ;;=3^Rash & Oth Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,47313,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,47313,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,47314,0)
+ ;;=J96.90^^181^2361^14
+ ;;^UTILITY(U,$J,358.3,47314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49692,1,3,0)
- ;;=3^Disp fx of distal pole of navicular bone of l wrist, sequela
- ;;^UTILITY(U,$J,358.3,49692,1,4,0)
- ;;=4^S62.012S
- ;;^UTILITY(U,$J,358.3,49692,2)
- ;;=^5033086
- ;;^UTILITY(U,$J,358.3,49693,0)
- ;;=S62.011S^^216^2420^21
- ;;^UTILITY(U,$J,358.3,49693,1,0)
+ ;;^UTILITY(U,$J,358.3,47314,1,3,0)
+ ;;=3^Resp Failure,Unspec whether w/ Hypoxia or Hypercapnia
+ ;;^UTILITY(U,$J,358.3,47314,1,4,0)
+ ;;=4^J96.90
+ ;;^UTILITY(U,$J,358.3,47314,2)
+ ;;=^5008356
+ ;;^UTILITY(U,$J,358.3,47315,0)
+ ;;=J96.92^^181^2361^12
+ ;;^UTILITY(U,$J,358.3,47315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49693,1,3,0)
- ;;=3^Disp fx of distal pole of navicular bone of r wrist, sequela
- ;;^UTILITY(U,$J,358.3,49693,1,4,0)
- ;;=4^S62.011S
- ;;^UTILITY(U,$J,358.3,49693,2)
- ;;=^5033079
- ;;^UTILITY(U,$J,358.3,49694,0)
- ;;=S62.152S^^216^2420^24
- ;;^UTILITY(U,$J,358.3,49694,1,0)
+ ;;^UTILITY(U,$J,358.3,47315,1,3,0)
+ ;;=3^Resp Failure,Unspec w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,47315,1,4,0)
+ ;;=4^J96.92
+ ;;^UTILITY(U,$J,358.3,47315,2)
+ ;;=^5008358
+ ;;^UTILITY(U,$J,358.3,47316,0)
+ ;;=J96.91^^181^2361^13
+ ;;^UTILITY(U,$J,358.3,47316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49694,1,3,0)
- ;;=3^Disp fx of hook process of hamate bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,49694,1,4,0)
- ;;=4^S62.152S
- ;;^UTILITY(U,$J,358.3,49694,2)
- ;;=^5033394
- ;;^UTILITY(U,$J,358.3,49695,0)
- ;;=S62.151S^^216^2420^25
- ;;^UTILITY(U,$J,358.3,49695,1,0)
+ ;;^UTILITY(U,$J,358.3,47316,1,3,0)
+ ;;=3^Resp Failure,Unspec w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,47316,1,4,0)
+ ;;=4^J96.91
+ ;;^UTILITY(U,$J,358.3,47316,2)
+ ;;=^5008357
+ ;;^UTILITY(U,$J,358.3,47317,0)
+ ;;=J96.00^^181^2361^8
+ ;;^UTILITY(U,$J,358.3,47317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49695,1,3,0)
- ;;=3^Disp fx of hook process of hamate bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,49695,1,4,0)
- ;;=4^S62.151S
- ;;^UTILITY(U,$J,358.3,49695,2)
- ;;=^5033387
- ;;^UTILITY(U,$J,358.3,49696,0)
- ;;=S62.122S^^216^2420^28
- ;;^UTILITY(U,$J,358.3,49696,1,0)
+ ;;^UTILITY(U,$J,358.3,47317,1,3,0)
+ ;;=3^Resp Failure,Acute,Unspec w/ Hypoxia or Hypercapnia
+ ;;^UTILITY(U,$J,358.3,47317,1,4,0)
+ ;;=4^J96.00
+ ;;^UTILITY(U,$J,358.3,47317,2)
+ ;;=^5008347
+ ;;^UTILITY(U,$J,358.3,47318,0)
+ ;;=J96.02^^181^2361^6
+ ;;^UTILITY(U,$J,358.3,47318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49696,1,3,0)
- ;;=3^Disp fx of lunate, left wrist, sequela       
- ;;^UTILITY(U,$J,358.3,49696,1,4,0)
- ;;=4^S62.122S
- ;;^UTILITY(U,$J,358.3,49696,2)
- ;;=^5033268
- ;;^UTILITY(U,$J,358.3,49697,0)
- ;;=S62.121S^^216^2420^29
- ;;^UTILITY(U,$J,358.3,49697,1,0)
+ ;;^UTILITY(U,$J,358.3,47318,1,3,0)
+ ;;=3^Resp Failure,Acute w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,47318,1,4,0)
+ ;;=4^J96.02
+ ;;^UTILITY(U,$J,358.3,47318,2)
+ ;;=^5008349
+ ;;^UTILITY(U,$J,358.3,47319,0)
+ ;;=J96.01^^181^2361^7
+ ;;^UTILITY(U,$J,358.3,47319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49697,1,3,0)
- ;;=3^Disp fx of lunate, right wrist, sequela      
- ;;^UTILITY(U,$J,358.3,49697,1,4,0)
- ;;=4^S62.121S
- ;;^UTILITY(U,$J,358.3,49697,2)
- ;;=^5033261
- ;;^UTILITY(U,$J,358.3,49698,0)
- ;;=S62.022S^^216^2420^30
- ;;^UTILITY(U,$J,358.3,49698,1,0)
+ ;;^UTILITY(U,$J,358.3,47319,1,3,0)
+ ;;=3^Resp Failure,Acute w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,47319,1,4,0)
+ ;;=4^J96.01
+ ;;^UTILITY(U,$J,358.3,47319,2)
+ ;;=^5008348
+ ;;^UTILITY(U,$J,358.3,47320,0)
+ ;;=J96.22^^181^2361^4
+ ;;^UTILITY(U,$J,358.3,47320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49698,1,3,0)
- ;;=3^Disp fx of middle third of navic bone of l wrist, sequela
- ;;^UTILITY(U,$J,358.3,49698,1,4,0)
- ;;=4^S62.022S
- ;;^UTILITY(U,$J,358.3,49698,2)
- ;;=^5033128
- ;;^UTILITY(U,$J,358.3,49699,0)
- ;;=S62.021S^^216^2420^31
- ;;^UTILITY(U,$J,358.3,49699,1,0)
+ ;;^UTILITY(U,$J,358.3,47320,1,3,0)
+ ;;=3^Resp Failure,Acute & Chronic w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,47320,1,4,0)
+ ;;=4^J96.22
+ ;;^UTILITY(U,$J,358.3,47320,2)
+ ;;=^5008355
+ ;;^UTILITY(U,$J,358.3,47321,0)
+ ;;=J96.21^^181^2361^5
+ ;;^UTILITY(U,$J,358.3,47321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49699,1,3,0)
- ;;=3^Disp fx of middle third of navic bone of r wrist, sequela
- ;;^UTILITY(U,$J,358.3,49699,1,4,0)
- ;;=4^S62.021S
- ;;^UTILITY(U,$J,358.3,49699,2)
- ;;=^5033121
- ;;^UTILITY(U,$J,358.3,49700,0)
- ;;=S62.162S^^216^2420^41
- ;;^UTILITY(U,$J,358.3,49700,1,0)
+ ;;^UTILITY(U,$J,358.3,47321,1,3,0)
+ ;;=3^Resp Failure,Acute & Chronic w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,47321,1,4,0)
+ ;;=4^J96.21
+ ;;^UTILITY(U,$J,358.3,47321,2)
+ ;;=^5008354
+ ;;^UTILITY(U,$J,358.3,47322,0)
+ ;;=J96.10^^181^2361^11
+ ;;^UTILITY(U,$J,358.3,47322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49700,1,3,0)
- ;;=3^Disp fx of pisiform, left wrist, sequela     
+ ;;^UTILITY(U,$J,358.3,47322,1,3,0)
+ ;;=3^Resp Failure,Chronic,Unspec w/ Hypoxia or Hypercapnia

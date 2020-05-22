@@ -1,134 +1,118 @@
-IBDEI2NU ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44645,0)
- ;;=Z99.2^^200^2229^141
- ;;^UTILITY(U,$J,358.3,44645,1,0)
+ ;;^UTILITY(U,$J,358.3,42434,2)
+ ;;=^5024820
+ ;;^UTILITY(U,$J,358.3,42435,0)
+ ;;=S32.441S^^155^2070^16
+ ;;^UTILITY(U,$J,358.3,42435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44645,1,3,0)
- ;;=3^Renal Dialysis Dependence
- ;;^UTILITY(U,$J,358.3,44645,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,44645,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,44646,0)
- ;;=Z99.81^^200^2229^144
- ;;^UTILITY(U,$J,358.3,44646,1,0)
+ ;;^UTILITY(U,$J,358.3,42435,1,3,0)
+ ;;=3^Disp fx of posterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42435,1,4,0)
+ ;;=4^S32.441S
+ ;;^UTILITY(U,$J,358.3,42435,2)
+ ;;=^5024814
+ ;;^UTILITY(U,$J,358.3,42436,0)
+ ;;=S32.422S^^155^2070^17
+ ;;^UTILITY(U,$J,358.3,42436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44646,1,3,0)
- ;;=3^Supplemental Oxygen Dependence
- ;;^UTILITY(U,$J,358.3,44646,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,44646,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,44647,0)
- ;;=Z90.79^^200^2229^2
- ;;^UTILITY(U,$J,358.3,44647,1,0)
+ ;;^UTILITY(U,$J,358.3,42436,1,3,0)
+ ;;=3^Disp fx of posterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42436,1,4,0)
+ ;;=4^S32.422S
+ ;;^UTILITY(U,$J,358.3,42436,2)
+ ;;=^5024748
+ ;;^UTILITY(U,$J,358.3,42437,0)
+ ;;=S32.421S^^155^2070^18
+ ;;^UTILITY(U,$J,358.3,42437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44647,1,3,0)
- ;;=3^Acquired Absence of Genital Organs NEC
- ;;^UTILITY(U,$J,358.3,44647,1,4,0)
- ;;=4^Z90.79
- ;;^UTILITY(U,$J,358.3,44647,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,44648,0)
- ;;=Z90.5^^200^2229^3
- ;;^UTILITY(U,$J,358.3,44648,1,0)
+ ;;^UTILITY(U,$J,358.3,42437,1,3,0)
+ ;;=3^Disp fx of posterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42437,1,4,0)
+ ;;=4^S32.421S
+ ;;^UTILITY(U,$J,358.3,42437,2)
+ ;;=^5024742
+ ;;^UTILITY(U,$J,358.3,42438,0)
+ ;;=S32.452S^^155^2070^19
+ ;;^UTILITY(U,$J,358.3,42438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44648,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,44648,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,44648,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,44649,0)
- ;;=Z90.2^^200^2229^6
- ;;^UTILITY(U,$J,358.3,44649,1,0)
+ ;;^UTILITY(U,$J,358.3,42438,1,3,0)
+ ;;=3^Disp fx of transverse of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42438,1,4,0)
+ ;;=4^S32.452S
+ ;;^UTILITY(U,$J,358.3,42438,2)
+ ;;=^5024856
+ ;;^UTILITY(U,$J,358.3,42439,0)
+ ;;=S32.451S^^155^2070^20
+ ;;^UTILITY(U,$J,358.3,42439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44649,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
- ;;^UTILITY(U,$J,358.3,44649,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,44649,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,44650,0)
- ;;=Z98.1^^200^2229^10
- ;;^UTILITY(U,$J,358.3,44650,1,0)
+ ;;^UTILITY(U,$J,358.3,42439,1,3,0)
+ ;;=3^Disp fx of transverse of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42439,1,4,0)
+ ;;=4^S32.451S
+ ;;^UTILITY(U,$J,358.3,42439,2)
+ ;;=^5024850
+ ;;^UTILITY(U,$J,358.3,42440,0)
+ ;;=S32.512S^^155^2070^21
+ ;;^UTILITY(U,$J,358.3,42440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44650,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,44650,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,44650,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,44651,0)
- ;;=Z94.7^^200^2229^16
- ;;^UTILITY(U,$J,358.3,44651,1,0)
+ ;;^UTILITY(U,$J,358.3,42440,1,3,0)
+ ;;=3^Fx of superior rim of left pubis, sequela
+ ;;^UTILITY(U,$J,358.3,42440,1,4,0)
+ ;;=4^S32.512S
+ ;;^UTILITY(U,$J,358.3,42440,2)
+ ;;=^5025018
+ ;;^UTILITY(U,$J,358.3,42441,0)
+ ;;=S32.511S^^155^2070^22
+ ;;^UTILITY(U,$J,358.3,42441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44651,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,44651,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,44651,2)
- ;;=^5063661
- ;;^UTILITY(U,$J,358.3,44652,0)
- ;;=Z83.511^^200^2229^30
- ;;^UTILITY(U,$J,358.3,44652,1,0)
+ ;;^UTILITY(U,$J,358.3,42441,1,3,0)
+ ;;=3^Fx of superior rim of right pubis, sequela
+ ;;^UTILITY(U,$J,358.3,42441,1,4,0)
+ ;;=4^S32.511S
+ ;;^UTILITY(U,$J,358.3,42441,2)
+ ;;=^5025012
+ ;;^UTILITY(U,$J,358.3,42442,0)
+ ;;=S32.810S^^155^2070^23
+ ;;^UTILITY(U,$J,358.3,42442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44652,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,44652,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,44652,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,44653,0)
- ;;=Z80.52^^200^2229^33
- ;;^UTILITY(U,$J,358.3,44653,1,0)
+ ;;^UTILITY(U,$J,358.3,42442,1,3,0)
+ ;;=3^Mult fx of pelvis w stable disrupt of pelvic ring, sequela
+ ;;^UTILITY(U,$J,358.3,42442,1,4,0)
+ ;;=4^S32.810S
+ ;;^UTILITY(U,$J,358.3,42442,2)
+ ;;=^5025102
+ ;;^UTILITY(U,$J,358.3,42443,0)
+ ;;=S32.811S^^155^2070^24
+ ;;^UTILITY(U,$J,358.3,42443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44653,1,3,0)
- ;;=3^Family Hx of Malig Neop of Baldder
- ;;^UTILITY(U,$J,358.3,44653,1,4,0)
- ;;=4^Z80.52
- ;;^UTILITY(U,$J,358.3,44653,2)
- ;;=^5063352
- ;;^UTILITY(U,$J,358.3,44654,0)
- ;;=Z80.51^^200^2229^36
- ;;^UTILITY(U,$J,358.3,44654,1,0)
+ ;;^UTILITY(U,$J,358.3,42443,1,3,0)
+ ;;=3^Mult fx of pelvis w unstable disrupt of pelvic ring, sequela
+ ;;^UTILITY(U,$J,358.3,42443,1,4,0)
+ ;;=4^S32.811S
+ ;;^UTILITY(U,$J,358.3,42443,2)
+ ;;=^5025108
+ ;;^UTILITY(U,$J,358.3,42444,0)
+ ;;=S32.465S^^155^2070^25
+ ;;^UTILITY(U,$J,358.3,42444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44654,1,3,0)
- ;;=3^Family Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,44654,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,44654,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,44655,0)
- ;;=Z83.41^^200^2229^43
- ;;^UTILITY(U,$J,358.3,44655,1,0)
+ ;;^UTILITY(U,$J,358.3,42444,1,3,0)
+ ;;=3^Nondisp associated transv/post fx left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42444,1,4,0)
+ ;;=4^S32.465S
+ ;;^UTILITY(U,$J,358.3,42444,2)
+ ;;=^5024910
+ ;;^UTILITY(U,$J,358.3,42445,0)
+ ;;=S32.464S^^155^2070^26
+ ;;^UTILITY(U,$J,358.3,42445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44655,1,3,0)
- ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
- ;;^UTILITY(U,$J,358.3,44655,1,4,0)
- ;;=4^Z83.41
- ;;^UTILITY(U,$J,358.3,44655,2)
- ;;=^5063380
- ;;^UTILITY(U,$J,358.3,44656,0)
- ;;=Z81.8^^200^2229^50
- ;;^UTILITY(U,$J,358.3,44656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44656,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
- ;;^UTILITY(U,$J,358.3,44656,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,44656,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,44657,0)
- ;;=Z81.4^^200^2229^51
- ;;^UTILITY(U,$J,358.3,44657,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44657,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence NEC
- ;;^UTILITY(U,$J,358.3,44657,1,4,0)
- ;;=4^Z81.4
- ;;^UTILITY(U,$J,358.3,44657,2)
- ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,42445,1,3,0)
+ ;;=3^Nondisp associated transv/post fx right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42445,1,4,0)
+ ;;=4^S32.464S
+ ;;^UTILITY(U,$J,358.3,42445,2)
+ ;;=^5024904
+ ;;^UTILITY(U,$J,358.3,42446,0)
+ ;;=S32.315S^^155^2070^32

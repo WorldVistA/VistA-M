@@ -1,128 +1,116 @@
-IBDEI198 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI198 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21315,1,3,0)
- ;;=3^Exp to Sunlight,Init Encntr
- ;;^UTILITY(U,$J,358.3,21315,1,4,0)
- ;;=4^X32.XXXA
- ;;^UTILITY(U,$J,358.3,21315,2)
- ;;=^5060847
- ;;^UTILITY(U,$J,358.3,21316,0)
- ;;=X32.XXXD^^84^948^16
- ;;^UTILITY(U,$J,358.3,21316,1,0)
+ ;;^UTILITY(U,$J,358.3,20093,2)
+ ;;=^5028460
+ ;;^UTILITY(U,$J,358.3,20094,0)
+ ;;=S49.032S^^93^999^117
+ ;;^UTILITY(U,$J,358.3,20094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21316,1,3,0)
- ;;=3^Exp to Sunlight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21316,1,4,0)
- ;;=4^X32.XXXD
- ;;^UTILITY(U,$J,358.3,21316,2)
- ;;=^5060848
- ;;^UTILITY(U,$J,358.3,21317,0)
- ;;=Y04.0XXA^^84^948^7
- ;;^UTILITY(U,$J,358.3,21317,1,0)
+ ;;^UTILITY(U,$J,358.3,20094,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20094,1,4,0)
+ ;;=4^S49.032S
+ ;;^UTILITY(U,$J,358.3,20094,2)
+ ;;=^5028400
+ ;;^UTILITY(U,$J,358.3,20095,0)
+ ;;=S49.031S^^93^999^118
+ ;;^UTILITY(U,$J,358.3,20095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21317,1,3,0)
- ;;=3^Assault by Unarmed Fight,Init Encntr
- ;;^UTILITY(U,$J,358.3,21317,1,4,0)
- ;;=4^Y04.0XXA
- ;;^UTILITY(U,$J,358.3,21317,2)
- ;;=^5061165
- ;;^UTILITY(U,$J,358.3,21318,0)
- ;;=Y04.0XXD^^84^948^8
- ;;^UTILITY(U,$J,358.3,21318,1,0)
+ ;;^UTILITY(U,$J,358.3,20095,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end humer, r arm, sqla
+ ;;^UTILITY(U,$J,358.3,20095,1,4,0)
+ ;;=4^S49.031S
+ ;;^UTILITY(U,$J,358.3,20095,2)
+ ;;=^5028394
+ ;;^UTILITY(U,$J,358.3,20096,0)
+ ;;=S49.112S^^93^999^107
+ ;;^UTILITY(U,$J,358.3,20096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21318,1,3,0)
- ;;=3^Assault by Unarmed Fight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21318,1,4,0)
- ;;=4^Y04.0XXD
- ;;^UTILITY(U,$J,358.3,21318,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,21319,0)
- ;;=Y04.1XXA^^84^948^1
- ;;^UTILITY(U,$J,358.3,21319,1,0)
+ ;;^UTILITY(U,$J,358.3,20096,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20096,1,4,0)
+ ;;=4^S49.112S
+ ;;^UTILITY(U,$J,358.3,20096,2)
+ ;;=^5134980
+ ;;^UTILITY(U,$J,358.3,20097,0)
+ ;;=S49.111S^^93^999^108
+ ;;^UTILITY(U,$J,358.3,20097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21319,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,21319,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,21319,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,21320,0)
- ;;=Y04.1XXD^^84^948^2
- ;;^UTILITY(U,$J,358.3,21320,1,0)
+ ;;^UTILITY(U,$J,358.3,20097,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20097,1,4,0)
+ ;;=4^S49.111S
+ ;;^UTILITY(U,$J,358.3,20097,2)
+ ;;=^5028442
+ ;;^UTILITY(U,$J,358.3,20098,0)
+ ;;=S49.012S^^93^999^109
+ ;;^UTILITY(U,$J,358.3,20098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21320,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21320,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,21320,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,21321,0)
- ;;=Y04.2XXA^^84^948^5
- ;;^UTILITY(U,$J,358.3,21321,1,0)
+ ;;^UTILITY(U,$J,358.3,20098,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20098,1,4,0)
+ ;;=4^S49.012S
+ ;;^UTILITY(U,$J,358.3,20098,2)
+ ;;=^5028364
+ ;;^UTILITY(U,$J,358.3,20099,0)
+ ;;=S49.011S^^93^999^110
+ ;;^UTILITY(U,$J,358.3,20099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21321,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,21321,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,21321,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,21322,0)
- ;;=Y04.8XXA^^84^948^3
- ;;^UTILITY(U,$J,358.3,21322,1,0)
+ ;;^UTILITY(U,$J,358.3,20099,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20099,1,4,0)
+ ;;=4^S49.011S
+ ;;^UTILITY(U,$J,358.3,20099,2)
+ ;;=^5028358
+ ;;^UTILITY(U,$J,358.3,20100,0)
+ ;;=S49.122S^^93^999^111
+ ;;^UTILITY(U,$J,358.3,20100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21322,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,21322,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,21322,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,21323,0)
- ;;=Y04.2XXD^^84^948^6
- ;;^UTILITY(U,$J,358.3,21323,1,0)
+ ;;^UTILITY(U,$J,358.3,20100,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20100,1,4,0)
+ ;;=4^S49.122S
+ ;;^UTILITY(U,$J,358.3,20100,2)
+ ;;=^5134986
+ ;;^UTILITY(U,$J,358.3,20101,0)
+ ;;=S49.121S^^93^999^112
+ ;;^UTILITY(U,$J,358.3,20101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21323,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21323,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,21323,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,21324,0)
- ;;=Y04.8XXD^^84^948^4
- ;;^UTILITY(U,$J,358.3,21324,1,0)
+ ;;^UTILITY(U,$J,358.3,20101,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20101,1,4,0)
+ ;;=4^S49.121S
+ ;;^UTILITY(U,$J,358.3,20101,2)
+ ;;=^5028454
+ ;;^UTILITY(U,$J,358.3,20102,0)
+ ;;=S49.022S^^93^999^113
+ ;;^UTILITY(U,$J,358.3,20102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21324,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21324,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,21324,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,21325,0)
- ;;=Y36.200A^^84^948^124
- ;;^UTILITY(U,$J,358.3,21325,1,0)
+ ;;^UTILITY(U,$J,358.3,20102,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20102,1,4,0)
+ ;;=4^S49.022S
+ ;;^UTILITY(U,$J,358.3,20102,2)
+ ;;=^5028382
+ ;;^UTILITY(U,$J,358.3,20103,0)
+ ;;=S49.021S^^93^999^114
+ ;;^UTILITY(U,$J,358.3,20103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21325,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,21325,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,21325,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,21326,0)
- ;;=Y36.200D^^84^948^125
- ;;^UTILITY(U,$J,358.3,21326,1,0)
+ ;;^UTILITY(U,$J,358.3,20103,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx upper end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,20103,1,4,0)
+ ;;=4^S49.021S
+ ;;^UTILITY(U,$J,358.3,20103,2)
+ ;;=^5028376
+ ;;^UTILITY(U,$J,358.3,20104,0)
+ ;;=S49.142S^^93^999^119
+ ;;^UTILITY(U,$J,358.3,20104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21326,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21326,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,21326,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,21327,0)
- ;;=Y36.300A^^84^948^126
- ;;^UTILITY(U,$J,358.3,21327,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21327,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,21327,1,4,0)
- ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,20104,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,20104,1,4,0)
+ ;;=4^S49.142S
+ ;;^UTILITY(U,$J,358.3,20104,2)
+ ;;=^5134998

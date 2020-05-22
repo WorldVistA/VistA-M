@@ -1,120 +1,118 @@
-IBDEI2EN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2EN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40800,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,40800,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,40800,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,40801,0)
- ;;=L97.421^^159^1993^186
- ;;^UTILITY(U,$J,358.3,40801,1,0)
+ ;;^UTILITY(U,$J,358.3,38381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40801,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,40801,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,40801,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,40802,0)
- ;;=L97.422^^159^1993^187
- ;;^UTILITY(U,$J,358.3,40802,1,0)
+ ;;^UTILITY(U,$J,358.3,38381,1,3,0)
+ ;;=3^Traum subrac hem w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,38381,1,4,0)
+ ;;=4^S06.6X5S
+ ;;^UTILITY(U,$J,358.3,38381,2)
+ ;;=^5021103
+ ;;^UTILITY(U,$J,358.3,38382,0)
+ ;;=S06.6X6S^^149^1948^45
+ ;;^UTILITY(U,$J,358.3,38382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40802,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,40802,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,40802,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,40803,0)
- ;;=L97.423^^159^1993^188
- ;;^UTILITY(U,$J,358.3,40803,1,0)
+ ;;^UTILITY(U,$J,358.3,38382,1,3,0)
+ ;;=3^Traum subrac hem w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,38382,1,4,0)
+ ;;=4^S06.6X6S
+ ;;^UTILITY(U,$J,358.3,38382,2)
+ ;;=^5021106
+ ;;^UTILITY(U,$J,358.3,38383,0)
+ ;;=S06.6X9S^^149^1948^54
+ ;;^UTILITY(U,$J,358.3,38383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40803,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,40803,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,40803,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,40804,0)
- ;;=L97.424^^159^1993^189
- ;;^UTILITY(U,$J,358.3,40804,1,0)
+ ;;^UTILITY(U,$J,358.3,38383,1,3,0)
+ ;;=3^Traum subrac hem w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,38383,1,4,0)
+ ;;=4^S06.6X9S
+ ;;^UTILITY(U,$J,358.3,38383,2)
+ ;;=^5021115
+ ;;^UTILITY(U,$J,358.3,38384,0)
+ ;;=S06.890A^^149^1948^29
+ ;;^UTILITY(U,$J,358.3,38384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40804,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,40804,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,40804,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,40805,0)
- ;;=L97.429^^159^1993^190
- ;;^UTILITY(U,$J,358.3,40805,1,0)
+ ;;^UTILITY(U,$J,358.3,38384,1,3,0)
+ ;;=3^Intcran inj w/o LOC, init encntr
+ ;;^UTILITY(U,$J,358.3,38384,1,4,0)
+ ;;=4^S06.890A
+ ;;^UTILITY(U,$J,358.3,38384,2)
+ ;;=^5021176
+ ;;^UTILITY(U,$J,358.3,38385,0)
+ ;;=S06.891A^^149^1948^23
+ ;;^UTILITY(U,$J,358.3,38385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40805,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,40805,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,40805,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,40806,0)
- ;;=L97.511^^159^1993^211
- ;;^UTILITY(U,$J,358.3,40806,1,0)
+ ;;^UTILITY(U,$J,358.3,38385,1,3,0)
+ ;;=3^Intcran inj w LOC of 30 minutes or less, init
+ ;;^UTILITY(U,$J,358.3,38385,1,4,0)
+ ;;=4^S06.891A
+ ;;^UTILITY(U,$J,358.3,38385,2)
+ ;;=^5021179
+ ;;^UTILITY(U,$J,358.3,38386,0)
+ ;;=S06.892A^^149^1948^24
+ ;;^UTILITY(U,$J,358.3,38386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40806,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,40806,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,40806,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,40807,0)
- ;;=L97.512^^159^1993^212
- ;;^UTILITY(U,$J,358.3,40807,1,0)
+ ;;^UTILITY(U,$J,358.3,38386,1,3,0)
+ ;;=3^Intcran inj w LOC of 31-59 min, init
+ ;;^UTILITY(U,$J,358.3,38386,1,4,0)
+ ;;=4^S06.892A
+ ;;^UTILITY(U,$J,358.3,38386,2)
+ ;;=^5021182
+ ;;^UTILITY(U,$J,358.3,38387,0)
+ ;;=S06.894A^^149^1948^25
+ ;;^UTILITY(U,$J,358.3,38387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40807,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,40807,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,40807,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,40808,0)
- ;;=L97.513^^159^1993^213
- ;;^UTILITY(U,$J,358.3,40808,1,0)
+ ;;^UTILITY(U,$J,358.3,38387,1,3,0)
+ ;;=3^Intcran inj w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,38387,1,4,0)
+ ;;=4^S06.894A
+ ;;^UTILITY(U,$J,358.3,38387,2)
+ ;;=^5021188
+ ;;^UTILITY(U,$J,358.3,38388,0)
+ ;;=S06.895A^^149^1948^21
+ ;;^UTILITY(U,$J,358.3,38388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40808,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,40808,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,40808,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,40809,0)
- ;;=L97.514^^159^1993^214
- ;;^UTILITY(U,$J,358.3,40809,1,0)
+ ;;^UTILITY(U,$J,358.3,38388,1,3,0)
+ ;;=3^Intcran inj w LOC >24 hr w ret consc lev, init
+ ;;^UTILITY(U,$J,358.3,38388,1,4,0)
+ ;;=4^S06.895A
+ ;;^UTILITY(U,$J,358.3,38388,2)
+ ;;=^5021191
+ ;;^UTILITY(U,$J,358.3,38389,0)
+ ;;=S06.896A^^149^1948^22
+ ;;^UTILITY(U,$J,358.3,38389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40809,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,40809,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,40809,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,40810,0)
- ;;=L97.519^^159^1993^215
- ;;^UTILITY(U,$J,358.3,40810,1,0)
+ ;;^UTILITY(U,$J,358.3,38389,1,3,0)
+ ;;=3^Intcran inj w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,38389,1,4,0)
+ ;;=4^S06.896A
+ ;;^UTILITY(U,$J,358.3,38389,2)
+ ;;=^5021194
+ ;;^UTILITY(U,$J,358.3,38390,0)
+ ;;=S06.897A^^149^1948^28
+ ;;^UTILITY(U,$J,358.3,38390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40810,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,40810,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,40810,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,40811,0)
- ;;=L97.521^^159^1993^181
- ;;^UTILITY(U,$J,358.3,40811,1,0)
+ ;;^UTILITY(U,$J,358.3,38390,1,3,0)
+ ;;=3^Intcran inj w LOC w death due to brain injury bf consc, init
+ ;;^UTILITY(U,$J,358.3,38390,1,4,0)
+ ;;=4^S06.897A
+ ;;^UTILITY(U,$J,358.3,38390,2)
+ ;;=^5021197
+ ;;^UTILITY(U,$J,358.3,38391,0)
+ ;;=S06.898A^^149^1948^27
+ ;;^UTILITY(U,$J,358.3,38391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40811,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,40811,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,40811,2)
- ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,38391,1,3,0)
+ ;;=3^Intcran inj w LOC w death d/t oth cause bf consc, init
+ ;;^UTILITY(U,$J,358.3,38391,1,4,0)
+ ;;=4^S06.898A
+ ;;^UTILITY(U,$J,358.3,38391,2)
+ ;;=^5021200
+ ;;^UTILITY(U,$J,358.3,38392,0)
+ ;;=S06.899A^^149^1948^26
+ ;;^UTILITY(U,$J,358.3,38392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38392,1,3,0)
+ ;;=3^Intcran inj w LOC of unsp duration, init

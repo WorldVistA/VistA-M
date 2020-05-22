@@ -1,134 +1,124 @@
-IBDEI30F ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI30F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50457,1,0)
+ ;;^UTILITY(U,$J,358.3,48066,0)
+ ;;=E11.638^^185^2417^35
+ ;;^UTILITY(U,$J,358.3,48066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50457,1,3,0)
- ;;=3^Rheumatoid Nodule Left Elbow
- ;;^UTILITY(U,$J,358.3,50457,1,4,0)
- ;;=4^M06.322
- ;;^UTILITY(U,$J,358.3,50457,2)
- ;;=^5010101
- ;;^UTILITY(U,$J,358.3,50458,0)
- ;;=M06.342^^219^2448^125
- ;;^UTILITY(U,$J,358.3,50458,1,0)
+ ;;^UTILITY(U,$J,358.3,48066,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Oral Complications
+ ;;^UTILITY(U,$J,358.3,48066,1,4,0)
+ ;;=4^E11.638
+ ;;^UTILITY(U,$J,358.3,48066,2)
+ ;;=^5002660
+ ;;^UTILITY(U,$J,358.3,48067,0)
+ ;;=E11.628^^185^2417^49
+ ;;^UTILITY(U,$J,358.3,48067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50458,1,3,0)
- ;;=3^Rheumatoid Nodule Left Hand
- ;;^UTILITY(U,$J,358.3,50458,1,4,0)
- ;;=4^M06.342
- ;;^UTILITY(U,$J,358.3,50458,2)
- ;;=^5010107
- ;;^UTILITY(U,$J,358.3,50459,0)
- ;;=M06.352^^219^2448^126
- ;;^UTILITY(U,$J,358.3,50459,1,0)
+ ;;^UTILITY(U,$J,358.3,48067,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Skin Complications
+ ;;^UTILITY(U,$J,358.3,48067,1,4,0)
+ ;;=4^E11.628
+ ;;^UTILITY(U,$J,358.3,48067,2)
+ ;;=^5002658
+ ;;^UTILITY(U,$J,358.3,48068,0)
+ ;;=E11.630^^185^2417^36
+ ;;^UTILITY(U,$J,358.3,48068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50459,1,3,0)
- ;;=3^Rheumatoid Nodule Left Hip
- ;;^UTILITY(U,$J,358.3,50459,1,4,0)
- ;;=4^M06.352
- ;;^UTILITY(U,$J,358.3,50459,2)
- ;;=^5010110
- ;;^UTILITY(U,$J,358.3,50460,0)
- ;;=M06.362^^219^2448^127
- ;;^UTILITY(U,$J,358.3,50460,1,0)
+ ;;^UTILITY(U,$J,358.3,48068,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,48068,1,4,0)
+ ;;=4^E11.630
+ ;;^UTILITY(U,$J,358.3,48068,2)
+ ;;=^5002659
+ ;;^UTILITY(U,$J,358.3,48069,0)
+ ;;=E11.8^^185^2417^53
+ ;;^UTILITY(U,$J,358.3,48069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50460,1,3,0)
- ;;=3^Rheumatoid Nodule Left Knee
- ;;^UTILITY(U,$J,358.3,50460,1,4,0)
- ;;=4^M06.362
- ;;^UTILITY(U,$J,358.3,50460,2)
- ;;=^5010113
- ;;^UTILITY(U,$J,358.3,50461,0)
- ;;=M06.312^^219^2448^128
- ;;^UTILITY(U,$J,358.3,50461,1,0)
+ ;;^UTILITY(U,$J,358.3,48069,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,48069,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,48069,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,48070,0)
+ ;;=E11.9^^185^2417^54
+ ;;^UTILITY(U,$J,358.3,48070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50461,1,3,0)
- ;;=3^Rheumatoid Nodule Left Shoulder
- ;;^UTILITY(U,$J,358.3,50461,1,4,0)
- ;;=4^M06.312
- ;;^UTILITY(U,$J,358.3,50461,2)
- ;;=^5010098
- ;;^UTILITY(U,$J,358.3,50462,0)
- ;;=M06.332^^219^2448^129
- ;;^UTILITY(U,$J,358.3,50462,1,0)
+ ;;^UTILITY(U,$J,358.3,48070,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,48070,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,48070,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,48071,0)
+ ;;=E11.36^^185^2417^9
+ ;;^UTILITY(U,$J,358.3,48071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50462,1,3,0)
- ;;=3^Rheumatoid Nodule Left Wrist
- ;;^UTILITY(U,$J,358.3,50462,1,4,0)
- ;;=4^M06.332
- ;;^UTILITY(U,$J,358.3,50462,2)
- ;;=^5010104
- ;;^UTILITY(U,$J,358.3,50463,0)
- ;;=M06.39^^219^2448^130
- ;;^UTILITY(U,$J,358.3,50463,1,0)
+ ;;^UTILITY(U,$J,358.3,48071,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Cataract
+ ;;^UTILITY(U,$J,358.3,48071,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,48071,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,48072,0)
+ ;;=E11.22^^185^2417^10
+ ;;^UTILITY(U,$J,358.3,48072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50463,1,3,0)
- ;;=3^Rheumatoid Nodule Mult Sites
- ;;^UTILITY(U,$J,358.3,50463,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,50463,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,50464,0)
- ;;=M06.371^^219^2448^131
- ;;^UTILITY(U,$J,358.3,50464,1,0)
+ ;;^UTILITY(U,$J,358.3,48072,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,48072,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,48072,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,48073,0)
+ ;;=E11.29^^185^2417^12
+ ;;^UTILITY(U,$J,358.3,48073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50464,1,3,0)
- ;;=3^Rheumatoid Nodule Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50464,1,4,0)
- ;;=4^M06.371
- ;;^UTILITY(U,$J,358.3,50464,2)
- ;;=^5010115
- ;;^UTILITY(U,$J,358.3,50465,0)
- ;;=M06.321^^219^2448^132
- ;;^UTILITY(U,$J,358.3,50465,1,0)
+ ;;^UTILITY(U,$J,358.3,48073,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,48073,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,48073,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,48074,0)
+ ;;=E11.21^^185^2417^13
+ ;;^UTILITY(U,$J,358.3,48074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50465,1,3,0)
- ;;=3^Rheumatoid Nodule Right Elbow
- ;;^UTILITY(U,$J,358.3,50465,1,4,0)
- ;;=4^M06.321
- ;;^UTILITY(U,$J,358.3,50465,2)
- ;;=^5010100
- ;;^UTILITY(U,$J,358.3,50466,0)
- ;;=M06.341^^219^2448^133
- ;;^UTILITY(U,$J,358.3,50466,1,0)
+ ;;^UTILITY(U,$J,358.3,48074,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,48074,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,48074,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,48075,0)
+ ;;=E11.39^^185^2417^16
+ ;;^UTILITY(U,$J,358.3,48075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50466,1,3,0)
- ;;=3^Rheumatoid Nodule Right Hand
- ;;^UTILITY(U,$J,358.3,50466,1,4,0)
- ;;=4^M06.341
- ;;^UTILITY(U,$J,358.3,50466,2)
- ;;=^5010106
- ;;^UTILITY(U,$J,358.3,50467,0)
- ;;=M06.351^^219^2448^134
- ;;^UTILITY(U,$J,358.3,50467,1,0)
+ ;;^UTILITY(U,$J,358.3,48075,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication
+ ;;^UTILITY(U,$J,358.3,48075,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,48075,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,48076,0)
+ ;;=Z72.4^^185^2417^55
+ ;;^UTILITY(U,$J,358.3,48076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50467,1,3,0)
- ;;=3^Rheumatoid Nodule Right Hip
- ;;^UTILITY(U,$J,358.3,50467,1,4,0)
- ;;=4^M06.351
- ;;^UTILITY(U,$J,358.3,50467,2)
- ;;=^5010109
- ;;^UTILITY(U,$J,358.3,50468,0)
- ;;=M06.361^^219^2448^135
- ;;^UTILITY(U,$J,358.3,50468,1,0)
+ ;;^UTILITY(U,$J,358.3,48076,1,3,0)
+ ;;=3^Diet & Eating Habits,Inappropriate
+ ;;^UTILITY(U,$J,358.3,48076,1,4,0)
+ ;;=4^Z72.4
+ ;;^UTILITY(U,$J,358.3,48076,2)
+ ;;=^5063257
+ ;;^UTILITY(U,$J,358.3,48077,0)
+ ;;=R68.81^^185^2417^56
+ ;;^UTILITY(U,$J,358.3,48077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50468,1,3,0)
- ;;=3^Rheumatoid Nodule Right Knee
- ;;^UTILITY(U,$J,358.3,50468,1,4,0)
- ;;=4^M06.361
- ;;^UTILITY(U,$J,358.3,50468,2)
- ;;=^5010112
- ;;^UTILITY(U,$J,358.3,50469,0)
- ;;=M06.311^^219^2448^136
- ;;^UTILITY(U,$J,358.3,50469,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50469,1,3,0)
- ;;=3^Rheumatoid Nodule Right Shoulder
- ;;^UTILITY(U,$J,358.3,50469,1,4,0)
- ;;=4^M06.311
- ;;^UTILITY(U,$J,358.3,50469,2)
- ;;=^5010097
- ;;^UTILITY(U,$J,358.3,50470,0)
- ;;=M06.331^^219^2448^137
+ ;;^UTILITY(U,$J,358.3,48077,1,3,0)
+ ;;=3^Early Satiety
+ ;;^UTILITY(U,$J,358.3,48077,1,4,0)
+ ;;=4^R68.81
+ ;;^UTILITY(U,$J,358.3,48077,2)
+ ;;=^5019554

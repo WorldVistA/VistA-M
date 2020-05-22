@@ -1,134 +1,126 @@
-IBDEI31U ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31U ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51122,0)
- ;;=M25.621^^222^2468^56
- ;;^UTILITY(U,$J,358.3,51122,1,0)
+ ;;^UTILITY(U,$J,358.3,48688,0)
+ ;;=G70.9^^185^2424^97
+ ;;^UTILITY(U,$J,358.3,48688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51122,1,3,0)
- ;;=3^Stiffness of rt elbow, NEC
- ;;^UTILITY(U,$J,358.3,51122,1,4,0)
- ;;=4^M25.621
- ;;^UTILITY(U,$J,358.3,51122,2)
- ;;=^5011624
- ;;^UTILITY(U,$J,358.3,51123,0)
- ;;=M25.622^^222^2468^51
- ;;^UTILITY(U,$J,358.3,51123,1,0)
+ ;;^UTILITY(U,$J,358.3,48688,1,3,0)
+ ;;=3^Myoneural Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48688,1,4,0)
+ ;;=4^G70.9
+ ;;^UTILITY(U,$J,358.3,48688,2)
+ ;;=^5004087
+ ;;^UTILITY(U,$J,358.3,48689,0)
+ ;;=G31.9^^185^2424^98
+ ;;^UTILITY(U,$J,358.3,48689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51123,1,3,0)
- ;;=3^Stiffness of lft elbow, NEC
- ;;^UTILITY(U,$J,358.3,51123,1,4,0)
- ;;=4^M25.622
- ;;^UTILITY(U,$J,358.3,51123,2)
- ;;=^5011625
- ;;^UTILITY(U,$J,358.3,51124,0)
- ;;=M25.631^^222^2468^60
- ;;^UTILITY(U,$J,358.3,51124,1,0)
+ ;;^UTILITY(U,$J,358.3,48689,1,3,0)
+ ;;=3^Nervous System Degenerative Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,48689,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,48689,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,48690,0)
+ ;;=G50.0^^185^2424^100
+ ;;^UTILITY(U,$J,358.3,48690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51124,1,3,0)
- ;;=3^Stiffness of rt wrist, NEC
- ;;^UTILITY(U,$J,358.3,51124,1,4,0)
- ;;=4^M25.631
- ;;^UTILITY(U,$J,358.3,51124,2)
- ;;=^5011627
- ;;^UTILITY(U,$J,358.3,51125,0)
- ;;=M25.632^^222^2468^55
- ;;^UTILITY(U,$J,358.3,51125,1,0)
+ ;;^UTILITY(U,$J,358.3,48690,1,3,0)
+ ;;=3^Neuralgia,Trigeminal
+ ;;^UTILITY(U,$J,358.3,48690,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,48690,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,48691,0)
+ ;;=G62.81^^185^2424^106
+ ;;^UTILITY(U,$J,358.3,48691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51125,1,3,0)
- ;;=3^Stiffness of lft wrist, NEC
- ;;^UTILITY(U,$J,358.3,51125,1,4,0)
- ;;=4^M25.632
- ;;^UTILITY(U,$J,358.3,51125,2)
- ;;=^5011628
- ;;^UTILITY(U,$J,358.3,51126,0)
- ;;=M25.651^^222^2468^57
- ;;^UTILITY(U,$J,358.3,51126,1,0)
+ ;;^UTILITY(U,$J,358.3,48691,1,3,0)
+ ;;=3^Neuropathy,Critical Illness Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,48691,1,4,0)
+ ;;=4^G62.81
+ ;;^UTILITY(U,$J,358.3,48691,2)
+ ;;=^328481
+ ;;^UTILITY(U,$J,358.3,48692,0)
+ ;;=G62.1^^185^2424^101
+ ;;^UTILITY(U,$J,358.3,48692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51126,1,3,0)
- ;;=3^Stiffness of rt hip, NEC
- ;;^UTILITY(U,$J,358.3,51126,1,4,0)
- ;;=4^M25.651
- ;;^UTILITY(U,$J,358.3,51126,2)
- ;;=^5011633
- ;;^UTILITY(U,$J,358.3,51127,0)
- ;;=M25.652^^222^2468^52
- ;;^UTILITY(U,$J,358.3,51127,1,0)
+ ;;^UTILITY(U,$J,358.3,48692,1,3,0)
+ ;;=3^Neuropathy,Alcoholic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,48692,1,4,0)
+ ;;=4^G62.1
+ ;;^UTILITY(U,$J,358.3,48692,2)
+ ;;=^5004076
+ ;;^UTILITY(U,$J,358.3,48693,0)
+ ;;=G51.0^^185^2424^102
+ ;;^UTILITY(U,$J,358.3,48693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51127,1,3,0)
- ;;=3^Stiffness of lft hip, NEC
- ;;^UTILITY(U,$J,358.3,51127,1,4,0)
- ;;=4^M25.652
- ;;^UTILITY(U,$J,358.3,51127,2)
- ;;=^5011634
- ;;^UTILITY(U,$J,358.3,51128,0)
- ;;=M25.661^^222^2468^58
- ;;^UTILITY(U,$J,358.3,51128,1,0)
+ ;;^UTILITY(U,$J,358.3,48693,1,3,0)
+ ;;=3^Neuropathy,Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,48693,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,48693,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,48694,0)
+ ;;=G56.01^^185^2424^104
+ ;;^UTILITY(U,$J,358.3,48694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51128,1,3,0)
- ;;=3^Stiffness of rt knee, NEC
- ;;^UTILITY(U,$J,358.3,51128,1,4,0)
- ;;=4^M25.661
- ;;^UTILITY(U,$J,358.3,51128,2)
- ;;=^5011636
- ;;^UTILITY(U,$J,358.3,51129,0)
- ;;=M25.662^^222^2468^53
- ;;^UTILITY(U,$J,358.3,51129,1,0)
+ ;;^UTILITY(U,$J,358.3,48694,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Rt Upper Limb
+ ;;^UTILITY(U,$J,358.3,48694,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,48694,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,48695,0)
+ ;;=G56.02^^185^2424^103
+ ;;^UTILITY(U,$J,358.3,48695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51129,1,3,0)
- ;;=3^Stiffness of lft knee, NEC
- ;;^UTILITY(U,$J,358.3,51129,1,4,0)
- ;;=4^M25.662
- ;;^UTILITY(U,$J,358.3,51129,2)
- ;;=^5011637
- ;;^UTILITY(U,$J,358.3,51130,0)
- ;;=R29.898^^222^2468^62
- ;;^UTILITY(U,$J,358.3,51130,1,0)
+ ;;^UTILITY(U,$J,358.3,48695,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Lt Upper Limb
+ ;;^UTILITY(U,$J,358.3,48695,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,48695,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,48696,0)
+ ;;=G52.9^^185^2424^105
+ ;;^UTILITY(U,$J,358.3,48696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51130,1,3,0)
- ;;=3^Sympt/signs invlvng msculskltal syst, oth
- ;;^UTILITY(U,$J,358.3,51130,1,4,0)
- ;;=4^R29.898
- ;;^UTILITY(U,$J,358.3,51130,2)
- ;;=^5019319
- ;;^UTILITY(U,$J,358.3,51131,0)
- ;;=M25.80^^222^2468^21
- ;;^UTILITY(U,$J,358.3,51131,1,0)
+ ;;^UTILITY(U,$J,358.3,48696,1,3,0)
+ ;;=3^Neuropathy,Cranial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48696,1,4,0)
+ ;;=4^G52.9
+ ;;^UTILITY(U,$J,358.3,48696,2)
+ ;;=^5004005
+ ;;^UTILITY(U,$J,358.3,48697,0)
+ ;;=G51.9^^185^2424^109
+ ;;^UTILITY(U,$J,358.3,48697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51131,1,3,0)
- ;;=3^Joint disorder, unspec joint, oth, spec
- ;;^UTILITY(U,$J,358.3,51131,1,4,0)
- ;;=4^M25.80
- ;;^UTILITY(U,$J,358.3,51131,2)
- ;;=^5011671
- ;;^UTILITY(U,$J,358.3,51132,0)
- ;;=M25.811^^222^2468^34
- ;;^UTILITY(U,$J,358.3,51132,1,0)
+ ;;^UTILITY(U,$J,358.3,48697,1,3,0)
+ ;;=3^Neuropathy,Facial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48697,1,4,0)
+ ;;=4^G51.9
+ ;;^UTILITY(U,$J,358.3,48697,2)
+ ;;=^5003998
+ ;;^UTILITY(U,$J,358.3,48698,0)
+ ;;=G62.0^^185^2424^107
+ ;;^UTILITY(U,$J,358.3,48698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51132,1,3,0)
- ;;=3^Joint disorders, rt shldr, oth, spec
- ;;^UTILITY(U,$J,358.3,51132,1,4,0)
- ;;=4^M25.811
- ;;^UTILITY(U,$J,358.3,51132,2)
- ;;=^5011672
- ;;^UTILITY(U,$J,358.3,51133,0)
- ;;=M25.812^^222^2468^27
- ;;^UTILITY(U,$J,358.3,51133,1,0)
+ ;;^UTILITY(U,$J,358.3,48698,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,48698,1,4,0)
+ ;;=4^G62.0
+ ;;^UTILITY(U,$J,358.3,48698,2)
+ ;;=^5004075
+ ;;^UTILITY(U,$J,358.3,48699,0)
+ ;;=G61.0^^185^2424^110
+ ;;^UTILITY(U,$J,358.3,48699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51133,1,3,0)
- ;;=3^Joint disorders, lft shldr, oth, spec
- ;;^UTILITY(U,$J,358.3,51133,1,4,0)
- ;;=4^M25.812
- ;;^UTILITY(U,$J,358.3,51133,2)
- ;;=^5011673
- ;;^UTILITY(U,$J,358.3,51134,0)
- ;;=M25.821^^222^2468^30
- ;;^UTILITY(U,$J,358.3,51134,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51134,1,3,0)
- ;;=3^Joint disorders, rt elbow, oth, spec
- ;;^UTILITY(U,$J,358.3,51134,1,4,0)
- ;;=4^M25.821
- ;;^UTILITY(U,$J,358.3,51134,2)
- ;;=^5011675
+ ;;^UTILITY(U,$J,358.3,48699,1,3,0)
+ ;;=3^Neuropathy,Guillain-Barre Syndrome
+ ;;^UTILITY(U,$J,358.3,48699,1,4,0)
+ ;;=4^G61.0
+ ;;^UTILITY(U,$J,358.3,48699,2)
+ ;;=^53405
+ ;;^UTILITY(U,$J,358.3,48700,0)
+ ;;=G60.9^^185^2424^111

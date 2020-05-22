@@ -1,126 +1,126 @@
-IBDEI2TO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47378,0)
- ;;=C82.64^^209^2346^94
- ;;^UTILITY(U,$J,358.3,47378,1,0)
+ ;;^UTILITY(U,$J,358.3,45017,1,3,0)
+ ;;=3^Postprocedure Hemorrhage of Skin/SQ Tissue After Derm Procedure
+ ;;^UTILITY(U,$J,358.3,45017,1,4,0)
+ ;;=4^L76.21
+ ;;^UTILITY(U,$J,358.3,45017,2)
+ ;;=^5009306
+ ;;^UTILITY(U,$J,358.3,45018,0)
+ ;;=L76.22^^170^2243^26
+ ;;^UTILITY(U,$J,358.3,45018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47378,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47378,1,4,0)
- ;;=4^C82.64
- ;;^UTILITY(U,$J,358.3,47378,2)
- ;;=^5001525
- ;;^UTILITY(U,$J,358.3,47379,0)
- ;;=C82.65^^209^2346^97
- ;;^UTILITY(U,$J,358.3,47379,1,0)
+ ;;^UTILITY(U,$J,358.3,45018,1,3,0)
+ ;;=3^Postprocedure Hemorrhage of Skin/SQ Tissue After Oth Procedure
+ ;;^UTILITY(U,$J,358.3,45018,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,45018,2)
+ ;;=^5009307
+ ;;^UTILITY(U,$J,358.3,45019,0)
+ ;;=L41.9^^170^2243^3
+ ;;^UTILITY(U,$J,358.3,45019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47379,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47379,1,4,0)
- ;;=4^C82.65
- ;;^UTILITY(U,$J,358.3,47379,2)
- ;;=^5001526
- ;;^UTILITY(U,$J,358.3,47380,0)
- ;;=C82.66^^209^2346^100
- ;;^UTILITY(U,$J,358.3,47380,1,0)
+ ;;^UTILITY(U,$J,358.3,45019,1,3,0)
+ ;;=3^Parapsoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,45019,1,4,0)
+ ;;=4^L41.9
+ ;;^UTILITY(U,$J,358.3,45019,2)
+ ;;=^5009177
+ ;;^UTILITY(U,$J,358.3,45020,0)
+ ;;=L70.5^^170^2243^14
+ ;;^UTILITY(U,$J,358.3,45020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47380,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47380,1,4,0)
- ;;=4^C82.66
- ;;^UTILITY(U,$J,358.3,47380,2)
- ;;=^5001527
- ;;^UTILITY(U,$J,358.3,47381,0)
- ;;=C82.67^^209^2346^102
- ;;^UTILITY(U,$J,358.3,47381,1,0)
+ ;;^UTILITY(U,$J,358.3,45020,1,3,0)
+ ;;=3^Picker's Acne
+ ;;^UTILITY(U,$J,358.3,45020,1,4,0)
+ ;;=4^L70.5
+ ;;^UTILITY(U,$J,358.3,45020,2)
+ ;;=^5009272
+ ;;^UTILITY(U,$J,358.3,45021,0)
+ ;;=L81.9^^170^2243^15
+ ;;^UTILITY(U,$J,358.3,45021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47381,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Spleen
- ;;^UTILITY(U,$J,358.3,47381,1,4,0)
- ;;=4^C82.67
- ;;^UTILITY(U,$J,358.3,47381,2)
- ;;=^5001528
- ;;^UTILITY(U,$J,358.3,47382,0)
- ;;=C82.68^^209^2346^101
- ;;^UTILITY(U,$J,358.3,47382,1,0)
+ ;;^UTILITY(U,$J,358.3,45021,1,3,0)
+ ;;=3^Pigmentation Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45021,1,4,0)
+ ;;=4^L81.9
+ ;;^UTILITY(U,$J,358.3,45021,2)
+ ;;=^5009319
+ ;;^UTILITY(U,$J,358.3,45022,0)
+ ;;=L66.3^^170^2243^7
+ ;;^UTILITY(U,$J,358.3,45022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47382,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47382,1,4,0)
- ;;=4^C82.68
- ;;^UTILITY(U,$J,358.3,47382,2)
- ;;=^5001529
- ;;^UTILITY(U,$J,358.3,47383,0)
- ;;=C82.69^^209^2346^95
- ;;^UTILITY(U,$J,358.3,47383,1,0)
+ ;;^UTILITY(U,$J,358.3,45022,1,3,0)
+ ;;=3^Perifolliculitis Capitis Abscedens
+ ;;^UTILITY(U,$J,358.3,45022,1,4,0)
+ ;;=4^L66.3
+ ;;^UTILITY(U,$J,358.3,45022,2)
+ ;;=^5009255
+ ;;^UTILITY(U,$J,358.3,45023,0)
+ ;;=R23.3^^170^2243^13
+ ;;^UTILITY(U,$J,358.3,45023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47383,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47383,1,4,0)
- ;;=4^C82.69
- ;;^UTILITY(U,$J,358.3,47383,2)
- ;;=^5001530
- ;;^UTILITY(U,$J,358.3,47384,0)
- ;;=C82.80^^209^2346^199
- ;;^UTILITY(U,$J,358.3,47384,1,0)
+ ;;^UTILITY(U,$J,358.3,45023,1,3,0)
+ ;;=3^Petechiae
+ ;;^UTILITY(U,$J,358.3,45023,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,45023,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,45024,0)
+ ;;=D69.3^^170^2243^46
+ ;;^UTILITY(U,$J,358.3,45024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47384,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Unspec Site
- ;;^UTILITY(U,$J,358.3,47384,1,4,0)
- ;;=4^C82.80
- ;;^UTILITY(U,$J,358.3,47384,2)
- ;;=^5001531
- ;;^UTILITY(U,$J,358.3,47385,0)
- ;;=C82.81^^209^2346^192
- ;;^UTILITY(U,$J,358.3,47385,1,0)
+ ;;^UTILITY(U,$J,358.3,45024,1,3,0)
+ ;;=3^Purpura Immune Hemorrhagic/Idopathic Thrombocytopenic
+ ;;^UTILITY(U,$J,358.3,45024,1,4,0)
+ ;;=4^D69.3
+ ;;^UTILITY(U,$J,358.3,45024,2)
+ ;;=^332746
+ ;;^UTILITY(U,$J,358.3,45025,0)
+ ;;=D69.2^^170^2243^47
+ ;;^UTILITY(U,$J,358.3,45025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47385,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47385,1,4,0)
- ;;=4^C82.81
- ;;^UTILITY(U,$J,358.3,47385,2)
- ;;=^5001532
- ;;^UTILITY(U,$J,358.3,47386,0)
- ;;=C82.82^^209^2346^196
- ;;^UTILITY(U,$J,358.3,47386,1,0)
+ ;;^UTILITY(U,$J,358.3,45025,1,3,0)
+ ;;=3^Purpura Simplex
+ ;;^UTILITY(U,$J,358.3,45025,1,4,0)
+ ;;=4^D69.2
+ ;;^UTILITY(U,$J,358.3,45025,2)
+ ;;=^5002366
+ ;;^UTILITY(U,$J,358.3,45026,0)
+ ;;=L76.31^^170^2243^23
+ ;;^UTILITY(U,$J,358.3,45026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47386,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47386,1,4,0)
- ;;=4^C82.82
- ;;^UTILITY(U,$J,358.3,47386,2)
- ;;=^5001533
- ;;^UTILITY(U,$J,358.3,47387,0)
- ;;=C82.83^^209^2346^194
- ;;^UTILITY(U,$J,358.3,47387,1,0)
+ ;;^UTILITY(U,$J,358.3,45026,1,3,0)
+ ;;=3^Postprocedure Hematoma of Skin/SQ After Derm Procedure
+ ;;^UTILITY(U,$J,358.3,45026,1,4,0)
+ ;;=4^L76.31
+ ;;^UTILITY(U,$J,358.3,45026,2)
+ ;;=^5138774
+ ;;^UTILITY(U,$J,358.3,45027,0)
+ ;;=L76.32^^170^2243^24
+ ;;^UTILITY(U,$J,358.3,45027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47387,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47387,1,4,0)
- ;;=4^C82.83
- ;;^UTILITY(U,$J,358.3,47387,2)
- ;;=^5001534
- ;;^UTILITY(U,$J,358.3,47388,0)
- ;;=C82.84^^209^2346^190
- ;;^UTILITY(U,$J,358.3,47388,1,0)
+ ;;^UTILITY(U,$J,358.3,45027,1,3,0)
+ ;;=3^Postprocedure Hematoma of Skin/SQ After Oth Procedure
+ ;;^UTILITY(U,$J,358.3,45027,1,4,0)
+ ;;=4^L76.32
+ ;;^UTILITY(U,$J,358.3,45027,2)
+ ;;=^5138775
+ ;;^UTILITY(U,$J,358.3,45028,0)
+ ;;=R73.03^^170^2243^27
+ ;;^UTILITY(U,$J,358.3,45028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47388,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47388,1,4,0)
- ;;=4^C82.84
- ;;^UTILITY(U,$J,358.3,47388,2)
- ;;=^5001535
- ;;^UTILITY(U,$J,358.3,47389,0)
- ;;=C82.85^^209^2346^193
- ;;^UTILITY(U,$J,358.3,47389,1,0)
+ ;;^UTILITY(U,$J,358.3,45028,1,3,0)
+ ;;=3^Pre-Diabetes
+ ;;^UTILITY(U,$J,358.3,45028,1,4,0)
+ ;;=4^R73.03
+ ;;^UTILITY(U,$J,358.3,45028,2)
+ ;;=^8295662
+ ;;^UTILITY(U,$J,358.3,45029,0)
+ ;;=L71.9^^170^2244^7
+ ;;^UTILITY(U,$J,358.3,45029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47389,1,3,0)
- ;;=3^Follicular Lymphoma NEC,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47389,1,4,0)
- ;;=4^C82.85
- ;;^UTILITY(U,$J,358.3,47389,2)
- ;;=^5001536
- ;;^UTILITY(U,$J,358.3,47390,0)
- ;;=C82.86^^209^2346^195
+ ;;^UTILITY(U,$J,358.3,45029,1,3,0)
+ ;;=3^Rosacea,Unspec

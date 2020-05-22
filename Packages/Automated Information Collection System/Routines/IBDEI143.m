@@ -1,264 +1,120 @@
-IBDEI143 ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI143 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40356,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,40356,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,40357,0)
- ;;=V00.812D^^148^1966^134
- ;;^UTILITY(U,$J,358.3,40357,1,0)
+ ;;^UTILITY(U,$J,358.3,17856,0)
+ ;;=Y04.1XXD^^88^898^2
+ ;;^UTILITY(U,$J,358.3,17856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40357,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40357,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,40357,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,40358,0)
- ;;=V00.818A^^148^1966^131
- ;;^UTILITY(U,$J,358.3,40358,1,0)
+ ;;^UTILITY(U,$J,358.3,17856,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17856,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,17856,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,17857,0)
+ ;;=Y04.2XXA^^88^898^5
+ ;;^UTILITY(U,$J,358.3,17857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40358,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,40358,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,40358,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,40359,0)
- ;;=V00.818D^^148^1966^132
- ;;^UTILITY(U,$J,358.3,40359,1,0)
+ ;;^UTILITY(U,$J,358.3,17857,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17857,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,17857,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,17858,0)
+ ;;=Y04.8XXA^^88^898^3
+ ;;^UTILITY(U,$J,358.3,17858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40359,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40359,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,40359,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,40360,0)
- ;;=V00.831A^^148^1966^43
- ;;^UTILITY(U,$J,358.3,40360,1,0)
+ ;;^UTILITY(U,$J,358.3,17858,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17858,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,17858,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,17859,0)
+ ;;=Y04.2XXD^^88^898^6
+ ;;^UTILITY(U,$J,358.3,17859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40360,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,40360,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,40360,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,40361,0)
- ;;=V00.831D^^148^1966^44
- ;;^UTILITY(U,$J,358.3,40361,1,0)
+ ;;^UTILITY(U,$J,358.3,17859,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17859,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,17859,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,17860,0)
+ ;;=Y04.8XXD^^88^898^4
+ ;;^UTILITY(U,$J,358.3,17860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40361,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40361,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,40361,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,40362,0)
- ;;=V00.832A^^148^1966^95
- ;;^UTILITY(U,$J,358.3,40362,1,0)
+ ;;^UTILITY(U,$J,358.3,17860,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17860,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,17860,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,17861,0)
+ ;;=Y36.200A^^88^898^133
+ ;;^UTILITY(U,$J,358.3,17861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40362,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,40362,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,40362,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,40363,0)
- ;;=V00.832D^^148^1966^96
- ;;^UTILITY(U,$J,358.3,40363,1,0)
+ ;;^UTILITY(U,$J,358.3,17861,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17861,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,17861,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,17862,0)
+ ;;=Y36.200D^^88^898^134
+ ;;^UTILITY(U,$J,358.3,17862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40363,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40363,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,40363,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,40364,0)
- ;;=V00.838A^^148^1966^93
- ;;^UTILITY(U,$J,358.3,40364,1,0)
+ ;;^UTILITY(U,$J,358.3,17862,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17862,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,17862,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,17863,0)
+ ;;=Y36.300A^^88^898^135
+ ;;^UTILITY(U,$J,358.3,17863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40364,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,40364,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,40364,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,40365,0)
- ;;=V00.838D^^148^1966^94
- ;;^UTILITY(U,$J,358.3,40365,1,0)
+ ;;^UTILITY(U,$J,358.3,17863,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17863,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,17863,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,17864,0)
+ ;;=Y36.300D^^88^898^136
+ ;;^UTILITY(U,$J,358.3,17864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40365,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40365,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,40365,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,40366,0)
- ;;=V00.891A^^148^1966^57
- ;;^UTILITY(U,$J,358.3,40366,1,0)
+ ;;^UTILITY(U,$J,358.3,17864,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17864,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,17864,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,17865,0)
+ ;;=Y36.410A^^88^898^130
+ ;;^UTILITY(U,$J,358.3,17865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40366,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,40366,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,40366,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,40367,0)
- ;;=V00.891D^^148^1966^58
- ;;^UTILITY(U,$J,358.3,40367,1,0)
+ ;;^UTILITY(U,$J,358.3,17865,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17865,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,17865,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,17866,0)
+ ;;=Y36.410D^^88^898^132
+ ;;^UTILITY(U,$J,358.3,17866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40367,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40367,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,40367,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,40368,0)
- ;;=V00.892A^^148^1966^99
- ;;^UTILITY(U,$J,358.3,40368,1,0)
+ ;;^UTILITY(U,$J,358.3,17866,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17866,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,17866,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,17867,0)
+ ;;=Y36.6X0A^^88^898^122
+ ;;^UTILITY(U,$J,358.3,17867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40368,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,40368,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,40368,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,40369,0)
- ;;=V00.892D^^148^1966^100
- ;;^UTILITY(U,$J,358.3,40369,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40369,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40369,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,40369,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,40370,0)
- ;;=V00.898A^^148^1966^97
- ;;^UTILITY(U,$J,358.3,40370,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40370,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,40370,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,40370,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,40371,0)
- ;;=V00.898D^^148^1966^98
- ;;^UTILITY(U,$J,358.3,40371,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40371,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40371,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,40371,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,40372,0)
- ;;=W00.0XXA^^148^1966^79
- ;;^UTILITY(U,$J,358.3,40372,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40372,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,40372,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,40372,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,40373,0)
- ;;=W00.0XXD^^148^1966^80
- ;;^UTILITY(U,$J,358.3,40373,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40373,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40373,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,40373,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,40374,0)
- ;;=W00.1XXA^^148^1966^59
- ;;^UTILITY(U,$J,358.3,40374,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40374,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,40374,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,40374,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,40375,0)
- ;;=W00.1XXD^^148^1966^60
- ;;^UTILITY(U,$J,358.3,40375,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40375,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40375,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,40375,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,40376,0)
- ;;=W00.2XXA^^148^1966^53
- ;;^UTILITY(U,$J,358.3,40376,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40376,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,40376,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,40376,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,40377,0)
- ;;=W00.2XXD^^148^1966^54
- ;;^UTILITY(U,$J,358.3,40377,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40377,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40377,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,40377,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,40378,0)
- ;;=W00.9XXA^^148^1966^25
- ;;^UTILITY(U,$J,358.3,40378,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40378,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,40378,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,40378,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,40379,0)
- ;;=W00.9XXD^^148^1966^26
- ;;^UTILITY(U,$J,358.3,40379,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40379,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40379,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,40379,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,40380,0)
- ;;=W01.0XXA^^148^1966^87
- ;;^UTILITY(U,$J,358.3,40380,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40380,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,40380,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,40380,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,40381,0)
- ;;=W01.0XXD^^148^1966^88
- ;;^UTILITY(U,$J,358.3,40381,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40381,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,40381,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,40381,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,40382,0)
- ;;=W03.XXXA^^148^1966^85
- ;;^UTILITY(U,$J,358.3,40382,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40382,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17867,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr

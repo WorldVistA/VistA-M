@@ -1,130 +1,124 @@
-IBDEI1VZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32037,1,4,0)
- ;;=4^S92.131A
- ;;^UTILITY(U,$J,358.3,32037,2)
- ;;=^5044689
- ;;^UTILITY(U,$J,358.3,32038,0)
- ;;=S92.125A^^126^1609^307
- ;;^UTILITY(U,$J,358.3,32038,1,0)
+ ;;^UTILITY(U,$J,358.3,30133,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,30133,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,30134,0)
+ ;;=G47.22^^120^1537^4
+ ;;^UTILITY(U,$J,358.3,30134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32038,1,3,0)
- ;;=3^Nondisp fx of body of lft talus, init
- ;;^UTILITY(U,$J,358.3,32038,1,4,0)
- ;;=4^S92.125A
- ;;^UTILITY(U,$J,358.3,32038,2)
- ;;=^5044675
- ;;^UTILITY(U,$J,358.3,32039,0)
- ;;=S92.124A^^126^1609^309
- ;;^UTILITY(U,$J,358.3,32039,1,0)
+ ;;^UTILITY(U,$J,358.3,30134,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,30134,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,30134,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,30135,0)
+ ;;=G47.23^^120^1537^6
+ ;;^UTILITY(U,$J,358.3,30135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32039,1,3,0)
- ;;=3^Nondisp fx of body of rt talus, init
- ;;^UTILITY(U,$J,358.3,32039,1,4,0)
- ;;=4^S92.124A
- ;;^UTILITY(U,$J,358.3,32039,2)
- ;;=^5044668
- ;;^UTILITY(U,$J,358.3,32040,0)
- ;;=S92.122A^^126^1609^82
- ;;^UTILITY(U,$J,358.3,32040,1,0)
+ ;;^UTILITY(U,$J,358.3,30135,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,30135,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,30135,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,30136,0)
+ ;;=G47.24^^120^1537^7
+ ;;^UTILITY(U,$J,358.3,30136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32040,1,3,0)
- ;;=3^Disp fx of body of lft talus, init
- ;;^UTILITY(U,$J,358.3,32040,1,4,0)
- ;;=4^S92.122A
- ;;^UTILITY(U,$J,358.3,32040,2)
- ;;=^5044654
- ;;^UTILITY(U,$J,358.3,32041,0)
- ;;=S92.121A^^126^1609^84
- ;;^UTILITY(U,$J,358.3,32041,1,0)
+ ;;^UTILITY(U,$J,358.3,30136,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,30136,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,30136,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,30137,0)
+ ;;=G47.26^^120^1537^8
+ ;;^UTILITY(U,$J,358.3,30137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32041,1,3,0)
- ;;=3^Disp fx of body of rt talus, init
- ;;^UTILITY(U,$J,358.3,32041,1,4,0)
- ;;=4^S92.121A
- ;;^UTILITY(U,$J,358.3,32041,2)
- ;;=^5044647
- ;;^UTILITY(U,$J,358.3,32042,0)
- ;;=S92.115A^^126^1609^339
- ;;^UTILITY(U,$J,358.3,32042,1,0)
+ ;;^UTILITY(U,$J,358.3,30137,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,30137,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,30137,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,30138,0)
+ ;;=G47.20^^120^1537^9
+ ;;^UTILITY(U,$J,358.3,30138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32042,1,3,0)
- ;;=3^Nondisp fx of neck of lft talus, init
- ;;^UTILITY(U,$J,358.3,32042,1,4,0)
- ;;=4^S92.115A
- ;;^UTILITY(U,$J,358.3,32042,2)
- ;;=^5044633
- ;;^UTILITY(U,$J,358.3,32043,0)
- ;;=S92.114A^^126^1609^340
- ;;^UTILITY(U,$J,358.3,32043,1,0)
+ ;;^UTILITY(U,$J,358.3,30138,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Unspec Type
+ ;;^UTILITY(U,$J,358.3,30138,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,30138,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,30139,0)
+ ;;=F51.3^^120^1537^21
+ ;;^UTILITY(U,$J,358.3,30139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32043,1,3,0)
- ;;=3^Nondisp fx of neck of rt talus, init
- ;;^UTILITY(U,$J,358.3,32043,1,4,0)
- ;;=4^S92.114A
- ;;^UTILITY(U,$J,358.3,32043,2)
- ;;=^5044626
- ;;^UTILITY(U,$J,358.3,32044,0)
- ;;=S92.112A^^126^1609^114
- ;;^UTILITY(U,$J,358.3,32044,1,0)
+ ;;^UTILITY(U,$J,358.3,30139,1,3,0)
+ ;;=3^Non-REM Sleep Arousal D/O;Sleepwalking Type
+ ;;^UTILITY(U,$J,358.3,30139,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,30139,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,30140,0)
+ ;;=F51.4^^120^1537^20
+ ;;^UTILITY(U,$J,358.3,30140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32044,1,3,0)
- ;;=3^Disp fx of neck of lft talus, init
- ;;^UTILITY(U,$J,358.3,32044,1,4,0)
- ;;=4^S92.112A
- ;;^UTILITY(U,$J,358.3,32044,2)
- ;;=^5044612
- ;;^UTILITY(U,$J,358.3,32045,0)
- ;;=S92.251A^^126^1609^113
- ;;^UTILITY(U,$J,358.3,32045,1,0)
+ ;;^UTILITY(U,$J,358.3,30140,1,3,0)
+ ;;=3^Non-REM Sleep Arousal D/O;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,30140,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,30140,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,30141,0)
+ ;;=F51.5^^120^1537^19
+ ;;^UTILITY(U,$J,358.3,30141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32045,1,3,0)
- ;;=3^Disp fx of navicular of rt ft, init
- ;;^UTILITY(U,$J,358.3,32045,1,4,0)
- ;;=4^S92.251A
- ;;^UTILITY(U,$J,358.3,32045,2)
- ;;=^5045004
- ;;^UTILITY(U,$J,358.3,32046,0)
- ;;=S92.252A^^126^1609^112
- ;;^UTILITY(U,$J,358.3,32046,1,0)
+ ;;^UTILITY(U,$J,358.3,30141,1,3,0)
+ ;;=3^Nightmare D/O
+ ;;^UTILITY(U,$J,358.3,30141,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,30141,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,30142,0)
+ ;;=G47.52^^120^1537^23
+ ;;^UTILITY(U,$J,358.3,30142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32046,1,3,0)
- ;;=3^Disp fx of navicular of lft ft, init
- ;;^UTILITY(U,$J,358.3,32046,1,4,0)
- ;;=4^S92.252A
- ;;^UTILITY(U,$J,358.3,32046,2)
- ;;=^5045011
- ;;^UTILITY(U,$J,358.3,32047,0)
- ;;=S92.254A^^126^1609^338
- ;;^UTILITY(U,$J,358.3,32047,1,0)
+ ;;^UTILITY(U,$J,358.3,30142,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior D/O
+ ;;^UTILITY(U,$J,358.3,30142,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,30142,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,30143,0)
+ ;;=G25.81^^120^1537^24
+ ;;^UTILITY(U,$J,358.3,30143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32047,1,3,0)
- ;;=3^Nondisp fx of navicular of rt ft, init
- ;;^UTILITY(U,$J,358.3,32047,1,4,0)
- ;;=4^S92.254A
- ;;^UTILITY(U,$J,358.3,32047,2)
- ;;=^5045025
- ;;^UTILITY(U,$J,358.3,32048,0)
- ;;=S92.255A^^126^1609^321
- ;;^UTILITY(U,$J,358.3,32048,1,0)
+ ;;^UTILITY(U,$J,358.3,30143,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,30143,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,30143,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,30144,0)
+ ;;=G47.19^^120^1537^11
+ ;;^UTILITY(U,$J,358.3,30144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32048,1,3,0)
- ;;=3^Nondisp fx of lft ft, init
- ;;^UTILITY(U,$J,358.3,32048,1,4,0)
- ;;=4^S92.255A
- ;;^UTILITY(U,$J,358.3,32048,2)
- ;;=^5045032
- ;;^UTILITY(U,$J,358.3,32049,0)
- ;;=S92.211A^^126^1609^86
- ;;^UTILITY(U,$J,358.3,32049,1,0)
+ ;;^UTILITY(U,$J,358.3,30144,1,3,0)
+ ;;=3^Hypersomnolence D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,30144,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,30144,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,30145,0)
+ ;;=G47.8^^120^1537^28
+ ;;^UTILITY(U,$J,358.3,30145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32049,1,3,0)
- ;;=3^Disp fx of cuboid bone of rt ft, init
- ;;^UTILITY(U,$J,358.3,32049,1,4,0)
- ;;=4^S92.211A
- ;;^UTILITY(U,$J,358.3,32049,2)
- ;;=^5044836
- ;;^UTILITY(U,$J,358.3,32050,0)
- ;;=S92.212A^^126^1609^85
+ ;;^UTILITY(U,$J,358.3,30145,1,3,0)
+ ;;=3^Sleep-Wake D/O,Other Specified

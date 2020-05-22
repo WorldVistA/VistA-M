@@ -1,130 +1,128 @@
-IBDEI3AD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3AD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55221,0)
- ;;=Z83.511^^256^2776^30
- ;;^UTILITY(U,$J,358.3,55221,1,0)
+ ;;^UTILITY(U,$J,358.3,52446,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,52446,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,52447,0)
+ ;;=I50.33^^194^2537^2
+ ;;^UTILITY(U,$J,358.3,52447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55221,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,55221,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,55221,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,55222,0)
- ;;=Z80.52^^256^2776^33
- ;;^UTILITY(U,$J,358.3,55222,1,0)
+ ;;^UTILITY(U,$J,358.3,52447,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,52447,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,52447,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,52448,0)
+ ;;=I50.40^^194^2537^8
+ ;;^UTILITY(U,$J,358.3,52448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55222,1,3,0)
- ;;=3^Family Hx of Malig Neop of Baldder
- ;;^UTILITY(U,$J,358.3,55222,1,4,0)
- ;;=4^Z80.52
- ;;^UTILITY(U,$J,358.3,55222,2)
- ;;=^5063352
- ;;^UTILITY(U,$J,358.3,55223,0)
- ;;=Z80.51^^256^2776^36
- ;;^UTILITY(U,$J,358.3,55223,1,0)
+ ;;^UTILITY(U,$J,358.3,52448,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,52448,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,52448,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,52449,0)
+ ;;=I50.41^^194^2537^5
+ ;;^UTILITY(U,$J,358.3,52449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55223,1,3,0)
- ;;=3^Family Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,55223,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,55223,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,55224,0)
- ;;=Z83.41^^256^2776^43
- ;;^UTILITY(U,$J,358.3,55224,1,0)
+ ;;^UTILITY(U,$J,358.3,52449,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute
+ ;;^UTILITY(U,$J,358.3,52449,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,52449,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,52450,0)
+ ;;=I50.42^^194^2537^7
+ ;;^UTILITY(U,$J,358.3,52450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55224,1,3,0)
- ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
- ;;^UTILITY(U,$J,358.3,55224,1,4,0)
- ;;=4^Z83.41
- ;;^UTILITY(U,$J,358.3,55224,2)
- ;;=^5063380
- ;;^UTILITY(U,$J,358.3,55225,0)
- ;;=Z81.8^^256^2776^50
- ;;^UTILITY(U,$J,358.3,55225,1,0)
+ ;;^UTILITY(U,$J,358.3,52450,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,52450,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,52450,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,52451,0)
+ ;;=I50.43^^194^2537^6
+ ;;^UTILITY(U,$J,358.3,52451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55225,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
- ;;^UTILITY(U,$J,358.3,55225,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,55225,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,55226,0)
- ;;=Z81.4^^256^2776^51
- ;;^UTILITY(U,$J,358.3,55226,1,0)
+ ;;^UTILITY(U,$J,358.3,52451,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,52451,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,52451,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,52452,0)
+ ;;=I50.9^^194^2537^13
+ ;;^UTILITY(U,$J,358.3,52452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55226,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence NEC
- ;;^UTILITY(U,$J,358.3,55226,1,4,0)
- ;;=4^Z81.4
- ;;^UTILITY(U,$J,358.3,55226,2)
- ;;=^5063362
- ;;^UTILITY(U,$J,358.3,55227,0)
- ;;=Z98.0^^256^2776^62
- ;;^UTILITY(U,$J,358.3,55227,1,0)
+ ;;^UTILITY(U,$J,358.3,52452,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,52452,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,52452,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,52453,0)
+ ;;=I09.81^^194^2537^15
+ ;;^UTILITY(U,$J,358.3,52453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55227,1,3,0)
- ;;=3^Intestinal Bypass/Anastomosis Status
- ;;^UTILITY(U,$J,358.3,55227,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,55227,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,55228,0)
- ;;=Z91.128^^256^2776^61
- ;;^UTILITY(U,$J,358.3,55228,1,0)
+ ;;^UTILITY(U,$J,358.3,52453,1,3,0)
+ ;;=3^Rheumatic Heart Failure
+ ;;^UTILITY(U,$J,358.3,52453,1,4,0)
+ ;;=4^I09.81
+ ;;^UTILITY(U,$J,358.3,52453,2)
+ ;;=^5007059
+ ;;^UTILITY(U,$J,358.3,52454,0)
+ ;;=E86.0^^194^2538^1
+ ;;^UTILITY(U,$J,358.3,52454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55228,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,55228,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,55228,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,55229,0)
- ;;=Z77.120^^256^2776^67
- ;;^UTILITY(U,$J,358.3,55229,1,0)
+ ;;^UTILITY(U,$J,358.3,52454,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,52454,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,52454,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,52455,0)
+ ;;=E86.1^^194^2538^4
+ ;;^UTILITY(U,$J,358.3,52455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55229,1,3,0)
- ;;=3^Mold (Toxic) Contact/Exposure
- ;;^UTILITY(U,$J,358.3,55229,1,4,0)
- ;;=4^Z77.120
- ;;^UTILITY(U,$J,358.3,55229,2)
- ;;=^5063318
- ;;^UTILITY(U,$J,358.3,55230,0)
- ;;=Z86.74^^256^2776^110
- ;;^UTILITY(U,$J,358.3,55230,1,0)
+ ;;^UTILITY(U,$J,358.3,52455,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,52455,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,52455,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,52456,0)
+ ;;=E86.9^^194^2538^5
+ ;;^UTILITY(U,$J,358.3,52456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55230,1,3,0)
- ;;=3^Personal Hx of Sudden Cardiac Arrest 
- ;;^UTILITY(U,$J,358.3,55230,1,4,0)
- ;;=4^Z86.74
- ;;^UTILITY(U,$J,358.3,55230,2)
- ;;=^5063478
- ;;^UTILITY(U,$J,358.3,55231,0)
- ;;=Z86.718^^256^2776^117
- ;;^UTILITY(U,$J,358.3,55231,1,0)
+ ;;^UTILITY(U,$J,358.3,52456,1,3,0)
+ ;;=3^Volume Depletion,Unspec
+ ;;^UTILITY(U,$J,358.3,52456,1,4,0)
+ ;;=4^E86.9
+ ;;^UTILITY(U,$J,358.3,52456,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,52457,0)
+ ;;=E87.0^^194^2538^2
+ ;;^UTILITY(U,$J,358.3,52457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55231,1,3,0)
- ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
- ;;^UTILITY(U,$J,358.3,55231,1,4,0)
- ;;=4^Z86.718
- ;;^UTILITY(U,$J,358.3,55231,2)
- ;;=^5063475
- ;;^UTILITY(U,$J,358.3,55232,0)
- ;;=Z96.1^^256^2776^127
- ;;^UTILITY(U,$J,358.3,55232,1,0)
+ ;;^UTILITY(U,$J,358.3,52457,1,3,0)
+ ;;=3^Hyperosmolality & Hypernatremia
+ ;;^UTILITY(U,$J,358.3,52457,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,52457,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,52458,0)
+ ;;=E87.1^^194^2538^3
+ ;;^UTILITY(U,$J,358.3,52458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55232,1,3,0)
- ;;=3^Presence of Intraocular Lens
- ;;^UTILITY(U,$J,358.3,55232,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,55232,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,55233,0)
- ;;=Z96.612^^256^2776^132
- ;;^UTILITY(U,$J,358.3,55233,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55233,1,3,0)
- ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,52458,1,3,0)
+ ;;=3^Hypo-osmolality & Hyponatremia
+ ;;^UTILITY(U,$J,358.3,52458,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,52458,2)
+ ;;=^5003019

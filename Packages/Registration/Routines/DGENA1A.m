@@ -1,5 +1,5 @@
 DGENA1A ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TDM,JLS,HM - Enrollment API - File Data Continued ;5/10/11 12:03pm
- ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909,940,972**;Aug 13,1993;Build 80
+ ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909,940,972,952**;Aug 13,1993;Build 160
  ;
 KILLALL(DGENRIEN) ;
  ;kills all x-refs on the record in the Patient Enrollment file
@@ -114,6 +114,7 @@ EDIT(DA,DGENR) ;
  S NODE=NODE_U_DGENR("ELIG","MOHAWRDDATE")  ;field added with DG*5.3*972 HM
  S NODE=NODE_U_DGENR("ELIG","MOHSTATDATE")  ;field added with DG*5.3*972 HM
  S NODE=NODE_U_DGENR("ELIG","MOHEXEMPDATE")  ;field added with DG*5.3*972 HM
+ S NODE=NODE_U_$G(DGENR("ELIG","OTHTYPE")) ; DG*5.3*952
  S ^DGEN(27.11,DA,"E")=NODE
  S ^DGEN(27.11,DA,"U")=DGENR("DATETIME")_U_DGENR("USER")
  ;

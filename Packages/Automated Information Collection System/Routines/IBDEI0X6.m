@@ -1,356 +1,128 @@
-IBDEI0X6 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0X6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43527,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,43527,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,43528,0)
- ;;=G43.809^^127^1862^28
- ;;^UTILITY(U,$J,358.3,43528,1,0)
+ ;;^UTILITY(U,$J,358.3,14771,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,14771,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,14772,0)
+ ;;=K22.2^^85^834^32
+ ;;^UTILITY(U,$J,358.3,14772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43528,1,3,0)
- ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,43528,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,43528,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,43529,0)
- ;;=G43.B0^^127^1862^30
- ;;^UTILITY(U,$J,358.3,43529,1,0)
+ ;;^UTILITY(U,$J,358.3,14772,1,3,0)
+ ;;=3^Obstruction of Esophagus
+ ;;^UTILITY(U,$J,358.3,14772,1,4,0)
+ ;;=4^K22.2
+ ;;^UTILITY(U,$J,358.3,14772,2)
+ ;;=^5008507
+ ;;^UTILITY(U,$J,358.3,14773,0)
+ ;;=K22.3^^85^834^33
+ ;;^UTILITY(U,$J,358.3,14773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43529,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Not Intractable
- ;;^UTILITY(U,$J,358.3,43529,1,4,0)
- ;;=4^G43.B0
- ;;^UTILITY(U,$J,358.3,43529,2)
- ;;=^5003914
- ;;^UTILITY(U,$J,358.3,43530,0)
- ;;=G43.C0^^127^1862^17
- ;;^UTILITY(U,$J,358.3,43530,1,0)
+ ;;^UTILITY(U,$J,358.3,14773,1,3,0)
+ ;;=3^Perforation of Esophagus
+ ;;^UTILITY(U,$J,358.3,14773,1,4,0)
+ ;;=4^K22.3
+ ;;^UTILITY(U,$J,358.3,14773,2)
+ ;;=^5008508
+ ;;^UTILITY(U,$J,358.3,14774,0)
+ ;;=T54.3X1A^^85^834^37
+ ;;^UTILITY(U,$J,358.3,14774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43530,1,3,0)
- ;;=3^Headache Syndromes,Periodic Not Intractable
- ;;^UTILITY(U,$J,358.3,43530,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,43530,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,43531,0)
- ;;=G43.A0^^127^1862^8
- ;;^UTILITY(U,$J,358.3,43531,1,0)
+ ;;^UTILITY(U,$J,358.3,14774,1,3,0)
+ ;;=3^Toxic Alkali Injury,Accidental,Initial
+ ;;^UTILITY(U,$J,358.3,14774,1,4,0)
+ ;;=4^T54.3X1A
+ ;;^UTILITY(U,$J,358.3,14774,2)
+ ;;=^5052610
+ ;;^UTILITY(U,$J,358.3,14775,0)
+ ;;=T54.3X1D^^85^834^39
+ ;;^UTILITY(U,$J,358.3,14775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43531,1,3,0)
- ;;=3^Cyclical Vomiting Not Intractable
- ;;^UTILITY(U,$J,358.3,43531,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,43531,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,43532,0)
- ;;=G43.C1^^127^1862^16
- ;;^UTILITY(U,$J,358.3,43532,1,0)
+ ;;^UTILITY(U,$J,358.3,14775,1,3,0)
+ ;;=3^Toxic Alkali Injury,Accidental,Subsequent
+ ;;^UTILITY(U,$J,358.3,14775,1,4,0)
+ ;;=4^T54.3X1D
+ ;;^UTILITY(U,$J,358.3,14775,2)
+ ;;=^5052611
+ ;;^UTILITY(U,$J,358.3,14776,0)
+ ;;=T54.3X1S^^85^834^38
+ ;;^UTILITY(U,$J,358.3,14776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43532,1,3,0)
- ;;=3^Headache Syndromes,Periodic Intractable
- ;;^UTILITY(U,$J,358.3,43532,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,43532,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,43533,0)
- ;;=G43.B1^^127^1862^29
- ;;^UTILITY(U,$J,358.3,43533,1,0)
+ ;;^UTILITY(U,$J,358.3,14776,1,3,0)
+ ;;=3^Toxic Alkali Injury,Accidental,Sequela
+ ;;^UTILITY(U,$J,358.3,14776,1,4,0)
+ ;;=4^T54.3X1S
+ ;;^UTILITY(U,$J,358.3,14776,2)
+ ;;=^5052612
+ ;;^UTILITY(U,$J,358.3,14777,0)
+ ;;=T54.2X1A^^85^834^34
+ ;;^UTILITY(U,$J,358.3,14777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43533,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Intractable
- ;;^UTILITY(U,$J,358.3,43533,1,4,0)
- ;;=4^G43.B1
- ;;^UTILITY(U,$J,358.3,43533,2)
- ;;=^5003915
- ;;^UTILITY(U,$J,358.3,43534,0)
- ;;=G43.A1^^127^1862^7
- ;;^UTILITY(U,$J,358.3,43534,1,0)
+ ;;^UTILITY(U,$J,358.3,14777,1,3,0)
+ ;;=3^Toxic Acid Injury,Accidental,Initial
+ ;;^UTILITY(U,$J,358.3,14777,1,4,0)
+ ;;=4^T54.2X1A
+ ;;^UTILITY(U,$J,358.3,14777,2)
+ ;;=^5052598
+ ;;^UTILITY(U,$J,358.3,14778,0)
+ ;;=T54.2X1D^^85^834^36
+ ;;^UTILITY(U,$J,358.3,14778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43534,1,3,0)
- ;;=3^Cyclical Vomiting Intractable
- ;;^UTILITY(U,$J,358.3,43534,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,43534,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,43535,0)
- ;;=G43.819^^127^1862^25
- ;;^UTILITY(U,$J,358.3,43535,1,0)
+ ;;^UTILITY(U,$J,358.3,14778,1,3,0)
+ ;;=3^Toxic Acid Injury,Accidental,Subsequent
+ ;;^UTILITY(U,$J,358.3,14778,1,4,0)
+ ;;=4^T54.2X1D
+ ;;^UTILITY(U,$J,358.3,14778,2)
+ ;;=^5052599
+ ;;^UTILITY(U,$J,358.3,14779,0)
+ ;;=T54.2X1S^^85^834^35
+ ;;^UTILITY(U,$J,358.3,14779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43535,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,43535,1,4,0)
- ;;=4^G43.819
- ;;^UTILITY(U,$J,358.3,43535,2)
- ;;=^5003903
- ;;^UTILITY(U,$J,358.3,43536,0)
- ;;=G43.909^^127^1862^27
- ;;^UTILITY(U,$J,358.3,43536,1,0)
+ ;;^UTILITY(U,$J,358.3,14779,1,3,0)
+ ;;=3^Toxic Acid Injury,Accidental,Sequela
+ ;;^UTILITY(U,$J,358.3,14779,1,4,0)
+ ;;=4^T54.2X1S
+ ;;^UTILITY(U,$J,358.3,14779,2)
+ ;;=^5052600
+ ;;^UTILITY(U,$J,358.3,14780,0)
+ ;;=K22.11^^85^834^40
+ ;;^UTILITY(U,$J,358.3,14780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43536,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,43536,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,43536,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,43537,0)
- ;;=G43.919^^127^1862^26
- ;;^UTILITY(U,$J,358.3,43537,1,0)
+ ;;^UTILITY(U,$J,358.3,14780,1,3,0)
+ ;;=3^Ulcer of Esophagus w/ Bleeding
+ ;;^UTILITY(U,$J,358.3,14780,1,4,0)
+ ;;=4^K22.11
+ ;;^UTILITY(U,$J,358.3,14780,2)
+ ;;=^329930
+ ;;^UTILITY(U,$J,358.3,14781,0)
+ ;;=K22.9^^85^834^9
+ ;;^UTILITY(U,$J,358.3,14781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43537,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,43537,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,43537,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,43538,0)
- ;;=G51.0^^127^1862^5
- ;;^UTILITY(U,$J,358.3,43538,1,0)
+ ;;^UTILITY(U,$J,358.3,14781,1,3,0)
+ ;;=3^Disease of Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,14781,1,4,0)
+ ;;=4^K22.9
+ ;;^UTILITY(U,$J,358.3,14781,2)
+ ;;=^5008516
+ ;;^UTILITY(U,$J,358.3,14782,0)
+ ;;=D00.1^^85^834^7
+ ;;^UTILITY(U,$J,358.3,14782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43538,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,43538,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,43538,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,43539,0)
- ;;=G57.10^^127^1862^22
- ;;^UTILITY(U,$J,358.3,43539,1,0)
+ ;;^UTILITY(U,$J,358.3,14782,1,3,0)
+ ;;=3^Carcinoma in Situ,Esophagus
+ ;;^UTILITY(U,$J,358.3,14782,1,4,0)
+ ;;=4^D00.1
+ ;;^UTILITY(U,$J,358.3,14782,2)
+ ;;=^267710
+ ;;^UTILITY(U,$J,358.3,14783,0)
+ ;;=D12.5^^85^835^12
+ ;;^UTILITY(U,$J,358.3,14783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43539,1,3,0)
- ;;=3^Meralgia Paresthetica Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,43539,1,4,0)
- ;;=4^G57.10
- ;;^UTILITY(U,$J,358.3,43539,2)
- ;;=^5004041
- ;;^UTILITY(U,$J,358.3,43540,0)
- ;;=G57.12^^127^1862^23
- ;;^UTILITY(U,$J,358.3,43540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43540,1,3,0)
- ;;=3^Meralgia Paresthetica,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,43540,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,43540,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,43541,0)
- ;;=G57.11^^127^1862^24
- ;;^UTILITY(U,$J,358.3,43541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43541,1,3,0)
- ;;=3^Meralgia Paresthetica,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,43541,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,43541,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,43542,0)
- ;;=G60.8^^127^1862^32
- ;;^UTILITY(U,$J,358.3,43542,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43542,1,3,0)
- ;;=3^Neuropathies,Oth Hereditary and Idiopathic
- ;;^UTILITY(U,$J,358.3,43542,1,4,0)
- ;;=4^G60.8
- ;;^UTILITY(U,$J,358.3,43542,2)
- ;;=^5004070
- ;;^UTILITY(U,$J,358.3,43543,0)
- ;;=G60.9^^127^1862^33
- ;;^UTILITY(U,$J,358.3,43543,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43543,1,3,0)
- ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
- ;;^UTILITY(U,$J,358.3,43543,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,43543,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,43544,0)
- ;;=I69.959^^127^1862^18
- ;;^UTILITY(U,$J,358.3,43544,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43544,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,43544,1,4,0)
- ;;=4^I69.959
- ;;^UTILITY(U,$J,358.3,43544,2)
- ;;=^5007563
- ;;^UTILITY(U,$J,358.3,43545,0)
- ;;=I69.359^^127^1862^19
- ;;^UTILITY(U,$J,358.3,43545,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43545,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,43545,1,4,0)
- ;;=4^I69.359
- ;;^UTILITY(U,$J,358.3,43545,2)
- ;;=^5007508
- ;;^UTILITY(U,$J,358.3,43546,0)
- ;;=S14.109S^^127^1862^39
- ;;^UTILITY(U,$J,358.3,43546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43546,1,3,0)
- ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
- ;;^UTILITY(U,$J,358.3,43546,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,43546,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,43547,0)
- ;;=S34.109S^^127^1862^40
- ;;^UTILITY(U,$J,358.3,43547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43547,1,3,0)
- ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord
- ;;^UTILITY(U,$J,358.3,43547,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,43547,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,43548,0)
- ;;=S24.109S^^127^1862^41
- ;;^UTILITY(U,$J,358.3,43548,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43548,1,3,0)
- ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
- ;;^UTILITY(U,$J,358.3,43548,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,43548,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,43549,0)
- ;;=G89.0^^127^1863^1
- ;;^UTILITY(U,$J,358.3,43549,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43549,1,3,0)
- ;;=3^Central Pain Syndrome
- ;;^UTILITY(U,$J,358.3,43549,1,4,0)
- ;;=4^G89.0
- ;;^UTILITY(U,$J,358.3,43549,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,43550,0)
- ;;=G89.11^^127^1863^10
- ;;^UTILITY(U,$J,358.3,43550,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43550,1,3,0)
- ;;=3^Pain d/t Trauma,Acute
- ;;^UTILITY(U,$J,358.3,43550,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,43550,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,43551,0)
- ;;=G89.12^^127^1863^14
- ;;^UTILITY(U,$J,358.3,43551,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43551,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Acute
- ;;^UTILITY(U,$J,358.3,43551,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,43551,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,43552,0)
- ;;=G89.18^^127^1863^16
- ;;^UTILITY(U,$J,358.3,43552,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43552,1,3,0)
- ;;=3^Postprocedural Pain,Oth Acute
- ;;^UTILITY(U,$J,358.3,43552,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,43552,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,43553,0)
- ;;=R52.^^127^1863^12
- ;;^UTILITY(U,$J,358.3,43553,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43553,1,3,0)
- ;;=3^Pain,Unspec
- ;;^UTILITY(U,$J,358.3,43553,1,4,0)
- ;;=4^R52.
- ;;^UTILITY(U,$J,358.3,43553,2)
- ;;=^5019514
- ;;^UTILITY(U,$J,358.3,43554,0)
- ;;=G89.21^^127^1863^11
- ;;^UTILITY(U,$J,358.3,43554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43554,1,3,0)
- ;;=3^Pain d/t Trauma,Chronic
- ;;^UTILITY(U,$J,358.3,43554,1,4,0)
- ;;=4^G89.21
- ;;^UTILITY(U,$J,358.3,43554,2)
- ;;=^5004155
- ;;^UTILITY(U,$J,358.3,43555,0)
- ;;=G89.22^^127^1863^15
- ;;^UTILITY(U,$J,358.3,43555,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43555,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Chronic
- ;;^UTILITY(U,$J,358.3,43555,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,43555,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,43556,0)
- ;;=G89.28^^127^1863^17
- ;;^UTILITY(U,$J,358.3,43556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43556,1,3,0)
- ;;=3^Postprocedural Pain,Oth Chronic
- ;;^UTILITY(U,$J,358.3,43556,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,43556,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,43557,0)
- ;;=G89.3^^127^1863^9
- ;;^UTILITY(U,$J,358.3,43557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43557,1,3,0)
- ;;=3^Neoplasm Related Pain,Acute/Chronic
- ;;^UTILITY(U,$J,358.3,43557,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,43557,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,43558,0)
- ;;=G89.4^^127^1863^2
- ;;^UTILITY(U,$J,358.3,43558,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43558,1,3,0)
- ;;=3^Chronic Pain Syndrome
- ;;^UTILITY(U,$J,358.3,43558,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,43558,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,43559,0)
- ;;=M27.0^^127^1863^3
- ;;^UTILITY(U,$J,358.3,43559,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43559,1,3,0)
- ;;=3^Developmental Disorder of Jaws
- ;;^UTILITY(U,$J,358.3,43559,1,4,0)
- ;;=4^M27.0
- ;;^UTILITY(U,$J,358.3,43559,2)
- ;;=^5011722
- ;;^UTILITY(U,$J,358.3,43560,0)
- ;;=M27.9^^127^1863^4
- ;;^UTILITY(U,$J,358.3,43560,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43560,1,3,0)
- ;;=3^Disease of Jaws,Unspec
- ;;^UTILITY(U,$J,358.3,43560,1,4,0)
- ;;=4^M27.9
- ;;^UTILITY(U,$J,358.3,43560,2)
- ;;=^5011737
- ;;^UTILITY(U,$J,358.3,43561,0)
- ;;=R68.84^^127^1863^8
- ;;^UTILITY(U,$J,358.3,43561,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43561,1,3,0)
- ;;=3^Jaw Pain
- ;;^UTILITY(U,$J,358.3,43561,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,43561,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,43562,0)
- ;;=N48.9^^127^1863^6
- ;;^UTILITY(U,$J,358.3,43562,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43562,1,3,0)
- ;;=3^Disorder of Penis,Unspec
- ;;^UTILITY(U,$J,358.3,43562,1,4,0)
- ;;=4^N48.9
+ ;;^UTILITY(U,$J,358.3,14783,1,3,0)
+ ;;=3^Benign neoplasm,Sigmoid
+ ;;^UTILITY(U,$J,358.3,14783,1,4,0)
+ ;;=4^D12.5
+ ;;^UTILITY(U,$J,358.3,14783,2)
+ ;;=^5001968

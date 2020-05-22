@@ -1,120 +1,120 @@
-IBDEI1PT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29125,0)
- ;;=O36.1124^^115^1455^29
- ;;^UTILITY(U,$J,358.3,29125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29125,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29125,1,4,0)
- ;;=4^O36.1124
- ;;^UTILITY(U,$J,358.3,29125,2)
- ;;=^5016904
- ;;^UTILITY(U,$J,358.3,29126,0)
- ;;=O36.1125^^115^1455^30
- ;;^UTILITY(U,$J,358.3,29126,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29126,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,29126,1,4,0)
- ;;=4^O36.1125
- ;;^UTILITY(U,$J,358.3,29126,2)
- ;;=^5016905
- ;;^UTILITY(U,$J,358.3,29127,0)
- ;;=O36.1130^^115^1455^31
- ;;^UTILITY(U,$J,358.3,29127,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29127,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, unsp
- ;;^UTILITY(U,$J,358.3,29127,1,4,0)
- ;;=4^O36.1130
- ;;^UTILITY(U,$J,358.3,29127,2)
- ;;=^5016907
- ;;^UTILITY(U,$J,358.3,29128,0)
- ;;=O36.1131^^115^1455^32
- ;;^UTILITY(U,$J,358.3,29128,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29128,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,29128,1,4,0)
- ;;=4^O36.1131
- ;;^UTILITY(U,$J,358.3,29128,2)
- ;;=^5016908
- ;;^UTILITY(U,$J,358.3,29129,0)
- ;;=O36.1132^^115^1455^33
- ;;^UTILITY(U,$J,358.3,29129,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29129,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,29129,1,4,0)
- ;;=4^O36.1132
- ;;^UTILITY(U,$J,358.3,29129,2)
- ;;=^5016909
- ;;^UTILITY(U,$J,358.3,29130,0)
- ;;=O36.1133^^115^1455^34
- ;;^UTILITY(U,$J,358.3,29130,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29130,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,29130,1,4,0)
- ;;=4^O36.1133
- ;;^UTILITY(U,$J,358.3,29130,2)
- ;;=^5016910
- ;;^UTILITY(U,$J,358.3,29131,0)
- ;;=O36.1134^^115^1455^35
- ;;^UTILITY(U,$J,358.3,29131,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29131,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29131,1,4,0)
- ;;=4^O36.1134
- ;;^UTILITY(U,$J,358.3,29131,2)
- ;;=^5016911
- ;;^UTILITY(U,$J,358.3,29132,0)
- ;;=O36.1135^^115^1455^36
- ;;^UTILITY(U,$J,358.3,29132,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29132,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 5
- ;;^UTILITY(U,$J,358.3,29132,1,4,0)
- ;;=4^O36.1135
- ;;^UTILITY(U,$J,358.3,29132,2)
- ;;=^5016912
- ;;^UTILITY(U,$J,358.3,29133,0)
- ;;=O36.1910^^115^1455^146
- ;;^UTILITY(U,$J,358.3,29133,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29133,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, unsp
- ;;^UTILITY(U,$J,358.3,29133,1,4,0)
- ;;=4^O36.1910
- ;;^UTILITY(U,$J,358.3,29133,2)
- ;;=^5016919
- ;;^UTILITY(U,$J,358.3,29134,0)
- ;;=O36.1911^^115^1455^147
- ;;^UTILITY(U,$J,358.3,29134,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29134,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29134,1,4,0)
- ;;=4^O36.1911
- ;;^UTILITY(U,$J,358.3,29134,2)
- ;;=^5016920
- ;;^UTILITY(U,$J,358.3,29135,0)
- ;;=O36.1912^^115^1455^148
- ;;^UTILITY(U,$J,358.3,29135,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29135,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29135,1,4,0)
- ;;=4^O36.1912
- ;;^UTILITY(U,$J,358.3,29135,2)
- ;;=^5016921
- ;;^UTILITY(U,$J,358.3,29136,0)
- ;;=O36.1913^^115^1455^149
- ;;^UTILITY(U,$J,358.3,29136,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29136,1,3,0)
- ;;=3^Maternal care for oth isoimmun, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,27400,1,0)
+ ;;=^358.31IA^1^1
+ ;;^UTILITY(U,$J,358.3,27400,1,1,0)
+ ;;=1^Nursing Only Visit
+ ;;^UTILITY(U,$J,358.3,27401,0)
+ ;;=S9446^^112^1327^1^^^^1
+ ;;^UTILITY(U,$J,358.3,27401,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27401,1,2,0)
+ ;;=2^S9446
+ ;;^UTILITY(U,$J,358.3,27401,1,3,0)
+ ;;=3^Group Health Education/Counseling
+ ;;^UTILITY(U,$J,358.3,27402,0)
+ ;;=S9454^^112^1327^6^^^^1
+ ;;^UTILITY(U,$J,358.3,27402,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27402,1,2,0)
+ ;;=2^S9454
+ ;;^UTILITY(U,$J,358.3,27402,1,3,0)
+ ;;=3^Stress Management Class,Per Session
+ ;;^UTILITY(U,$J,358.3,27403,0)
+ ;;=98961^^112^1327^4^^^^1
+ ;;^UTILITY(U,$J,358.3,27403,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27403,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,27403,1,3,0)
+ ;;=3^Self-Mgmt Educ 2-4 Pts,Ea 30min
+ ;;^UTILITY(U,$J,358.3,27404,0)
+ ;;=98962^^112^1327^5^^^^1
+ ;;^UTILITY(U,$J,358.3,27404,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27404,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,27404,1,3,0)
+ ;;=3^Self-Mgmt Educ 5-8 Pts,Ea 30min
+ ;;^UTILITY(U,$J,358.3,27405,0)
+ ;;=H0046^^112^1327^3^^^^1
+ ;;^UTILITY(U,$J,358.3,27405,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27405,1,2,0)
+ ;;=2^H0046
+ ;;^UTILITY(U,$J,358.3,27405,1,3,0)
+ ;;=3^PTSD Group
+ ;;^UTILITY(U,$J,358.3,27406,0)
+ ;;=S9445^^112^1327^2^^^^1
+ ;;^UTILITY(U,$J,358.3,27406,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27406,1,2,0)
+ ;;=2^S9445
+ ;;^UTILITY(U,$J,358.3,27406,1,3,0)
+ ;;=3^Indiv Health Education/Counseling
+ ;;^UTILITY(U,$J,358.3,27407,0)
+ ;;=Q3014^^112^1328^13^^^^1
+ ;;^UTILITY(U,$J,358.3,27407,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27407,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,27407,1,3,0)
+ ;;=3^Telehealth Facility Fee
+ ;;^UTILITY(U,$J,358.3,27408,0)
+ ;;=G0177^^112^1328^14^^^^1
+ ;;^UTILITY(U,$J,358.3,27408,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27408,1,2,0)
+ ;;=2^G0177
+ ;;^UTILITY(U,$J,358.3,27408,1,3,0)
+ ;;=3^Train/Ed Svcs for Care/Tx of Disabiling MH Problem,45+ min
+ ;;^UTILITY(U,$J,358.3,27409,0)
+ ;;=97537^^112^1328^1^^^^1
+ ;;^UTILITY(U,$J,358.3,27409,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27409,1,2,0)
+ ;;=2^97537
+ ;;^UTILITY(U,$J,358.3,27409,1,3,0)
+ ;;=3^Community/Work Reinteg Trng,1-1,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,27410,0)
+ ;;=H2000^^112^1328^2^^^^1
+ ;;^UTILITY(U,$J,358.3,27410,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27410,1,2,0)
+ ;;=2^H2000
+ ;;^UTILITY(U,$J,358.3,27410,1,3,0)
+ ;;=3^Comprehensive Multidisc Evaluation
+ ;;^UTILITY(U,$J,358.3,27411,0)
+ ;;=H2011^^112^1328^3^^^^1
+ ;;^UTILITY(U,$J,358.3,27411,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27411,1,2,0)
+ ;;=2^H2011
+ ;;^UTILITY(U,$J,358.3,27411,1,3,0)
+ ;;=3^Crisis Intervention Svc,per 15 min
+ ;;^UTILITY(U,$J,358.3,27412,0)
+ ;;=H0031^^112^1328^4^^^^1
+ ;;^UTILITY(U,$J,358.3,27412,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27412,1,2,0)
+ ;;=2^H0031
+ ;;^UTILITY(U,$J,358.3,27412,1,3,0)
+ ;;=3^MH Assessment by Non-Phys
+ ;;^UTILITY(U,$J,358.3,27413,0)
+ ;;=H0032^^112^1328^5^^^^1
+ ;;^UTILITY(U,$J,358.3,27413,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27413,1,2,0)
+ ;;=2^H0032
+ ;;^UTILITY(U,$J,358.3,27413,1,3,0)
+ ;;=3^MH Svc Plan Development by Non-Phys
+ ;;^UTILITY(U,$J,358.3,27414,0)
+ ;;=H2025^^112^1328^6^^^^1
+ ;;^UTILITY(U,$J,358.3,27414,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27414,1,2,0)
+ ;;=2^H2025
+ ;;^UTILITY(U,$J,358.3,27414,1,3,0)
+ ;;=3^Ongoing Supp to Maint Employ,per 15 min

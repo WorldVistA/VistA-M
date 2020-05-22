@@ -1,136 +1,124 @@
-IBDEI24J ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24J ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36021,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,36022,0)
- ;;=J45.998^^134^1740^2
- ;;^UTILITY(U,$J,358.3,36022,1,0)
+ ;;^UTILITY(U,$J,358.3,33929,1,4,0)
+ ;;=4^S63.501D
+ ;;^UTILITY(U,$J,358.3,33929,2)
+ ;;=^5035584
+ ;;^UTILITY(U,$J,358.3,33930,0)
+ ;;=S52.501D^^132^1714^12
+ ;;^UTILITY(U,$J,358.3,33930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36022,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,36022,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,36022,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,36023,0)
- ;;=J43.8^^134^1740^15
- ;;^UTILITY(U,$J,358.3,36023,1,0)
+ ;;^UTILITY(U,$J,358.3,33930,1,3,0)
+ ;;=3^Fracture of the lower end of right radius, subs encntr
+ ;;^UTILITY(U,$J,358.3,33930,1,4,0)
+ ;;=4^S52.501D
+ ;;^UTILITY(U,$J,358.3,33930,2)
+ ;;=^5030590
+ ;;^UTILITY(U,$J,358.3,33931,0)
+ ;;=Z89.442^^132^1715^1
+ ;;^UTILITY(U,$J,358.3,33931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36023,1,3,0)
- ;;=3^Emphysema NEC
- ;;^UTILITY(U,$J,358.3,36023,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,36023,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,36024,0)
- ;;=J43.1^^134^1740^28
- ;;^UTILITY(U,$J,358.3,36024,1,0)
+ ;;^UTILITY(U,$J,358.3,33931,1,3,0)
+ ;;=3^Acquired absence of left ankle
+ ;;^UTILITY(U,$J,358.3,33931,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,33931,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,33932,0)
+ ;;=Z89.432^^132^1715^2
+ ;;^UTILITY(U,$J,358.3,33932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36024,1,3,0)
- ;;=3^Panlobular Emphysema
- ;;^UTILITY(U,$J,358.3,36024,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,36024,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,36025,0)
- ;;=J45.51^^134^1740^29
- ;;^UTILITY(U,$J,358.3,36025,1,0)
+ ;;^UTILITY(U,$J,358.3,33932,1,3,0)
+ ;;=3^Acquired absence of left foot
+ ;;^UTILITY(U,$J,358.3,33932,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,33932,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,33933,0)
+ ;;=Z89.412^^132^1715^3
+ ;;^UTILITY(U,$J,358.3,33933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36025,1,3,0)
- ;;=3^Severe Persistent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,36025,1,4,0)
- ;;=4^J45.51
- ;;^UTILITY(U,$J,358.3,36025,2)
- ;;=^5008252
- ;;^UTILITY(U,$J,358.3,36026,0)
- ;;=J45.52^^134^1740^30
- ;;^UTILITY(U,$J,358.3,36026,1,0)
+ ;;^UTILITY(U,$J,358.3,33933,1,3,0)
+ ;;=3^Acquired absence of left great toe
+ ;;^UTILITY(U,$J,358.3,33933,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,33933,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,33934,0)
+ ;;=Z89.112^^132^1715^4
+ ;;^UTILITY(U,$J,358.3,33934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36026,1,3,0)
- ;;=3^Severe Persistent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,36026,1,4,0)
- ;;=4^J45.52
- ;;^UTILITY(U,$J,358.3,36026,2)
- ;;=^5008253
- ;;^UTILITY(U,$J,358.3,36027,0)
- ;;=J45.50^^134^1740^31
- ;;^UTILITY(U,$J,358.3,36027,1,0)
+ ;;^UTILITY(U,$J,358.3,33934,1,3,0)
+ ;;=3^Acquired absence of left hand
+ ;;^UTILITY(U,$J,358.3,33934,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,33934,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,33935,0)
+ ;;=Z89.622^^132^1715^5
+ ;;^UTILITY(U,$J,358.3,33935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36027,1,3,0)
- ;;=3^Severe Persistent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,36027,1,4,0)
- ;;=4^J45.50
- ;;^UTILITY(U,$J,358.3,36027,2)
- ;;=^5008251
- ;;^UTILITY(U,$J,358.3,36028,0)
- ;;=J43.0^^134^1740^32
- ;;^UTILITY(U,$J,358.3,36028,1,0)
+ ;;^UTILITY(U,$J,358.3,33935,1,3,0)
+ ;;=3^Acquired absence of left hip joint
+ ;;^UTILITY(U,$J,358.3,33935,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,33935,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,33936,0)
+ ;;=Z89.612^^132^1715^6
+ ;;^UTILITY(U,$J,358.3,33936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36028,1,3,0)
- ;;=3^Unilateral Pulmonary Emphysema
- ;;^UTILITY(U,$J,358.3,36028,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,36028,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,36029,0)
- ;;=J45.901^^134^1740^3
- ;;^UTILITY(U,$J,358.3,36029,1,0)
+ ;;^UTILITY(U,$J,358.3,33936,1,3,0)
+ ;;=3^Acquired absence of left leg above knee
+ ;;^UTILITY(U,$J,358.3,33936,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,33936,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,33937,0)
+ ;;=Z89.512^^132^1715^7
+ ;;^UTILITY(U,$J,358.3,33937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36029,1,3,0)
- ;;=3^Asthma w/ Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,36029,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,36029,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,36030,0)
- ;;=J45.902^^134^1740^4
- ;;^UTILITY(U,$J,358.3,36030,1,0)
+ ;;^UTILITY(U,$J,358.3,33937,1,3,0)
+ ;;=3^Acquired absence of left leg below knee
+ ;;^UTILITY(U,$J,358.3,33937,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,33937,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,33938,0)
+ ;;=Z89.212^^132^1715^8
+ ;;^UTILITY(U,$J,358.3,33938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36030,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,36030,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,36030,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,36031,0)
- ;;=J45.909^^134^1740^5
- ;;^UTILITY(U,$J,358.3,36031,1,0)
+ ;;^UTILITY(U,$J,358.3,33938,1,3,0)
+ ;;=3^Acquired absence of left upper limb below elbow
+ ;;^UTILITY(U,$J,358.3,33938,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,33938,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,33939,0)
+ ;;=Z89.422^^132^1715^9
+ ;;^UTILITY(U,$J,358.3,33939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36031,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,36031,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,36031,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,36032,0)
- ;;=J42.^^134^1740^13
- ;;^UTILITY(U,$J,358.3,36032,1,0)
+ ;;^UTILITY(U,$J,358.3,33939,1,3,0)
+ ;;=3^Acquired absence of other left toe(s)
+ ;;^UTILITY(U,$J,358.3,33939,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,33939,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,33940,0)
+ ;;=Z89.421^^132^1715^10
+ ;;^UTILITY(U,$J,358.3,33940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36032,1,3,0)
- ;;=3^Chr Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,36032,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,36032,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,36033,0)
- ;;=I95.1^^134^1741^1
- ;;^UTILITY(U,$J,358.3,36033,1,0)
+ ;;^UTILITY(U,$J,358.3,33940,1,3,0)
+ ;;=3^Acquired absence of other right toe(s)
+ ;;^UTILITY(U,$J,358.3,33940,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,33940,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,33941,0)
+ ;;=Z89.441^^132^1715^11
+ ;;^UTILITY(U,$J,358.3,33941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36033,1,3,0)
- ;;=3^Orthostatic Hypotension
- ;;^UTILITY(U,$J,358.3,36033,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,36033,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,36034,0)
- ;;=I73.9^^134^1741^2
- ;;^UTILITY(U,$J,358.3,36034,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36034,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,36034,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,36034,2)
- ;;=^184182
+ ;;^UTILITY(U,$J,358.3,33941,1,3,0)
+ ;;=3^Acquired absence of right ankle

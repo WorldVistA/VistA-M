@@ -1,126 +1,122 @@
-IBDEI18K ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21013,1,0)
+ ;;^UTILITY(U,$J,358.3,19820,2)
+ ;;=^5044485
+ ;;^UTILITY(U,$J,358.3,19821,0)
+ ;;=S92.034S^^93^996^71
+ ;;^UTILITY(U,$J,358.3,19821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21013,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,21013,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,21013,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,21014,0)
- ;;=S56.415A^^84^942^54
- ;;^UTILITY(U,$J,358.3,21014,1,0)
+ ;;^UTILITY(U,$J,358.3,19821,1,3,0)
+ ;;=3^Nondisp avulsion tuberosity fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,19821,1,4,0)
+ ;;=4^S92.034S
+ ;;^UTILITY(U,$J,358.3,19821,2)
+ ;;=^5044478
+ ;;^UTILITY(U,$J,358.3,19822,0)
+ ;;=S92.145S^^93^996^84
+ ;;^UTILITY(U,$J,358.3,19822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21014,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,21014,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,21014,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,21015,0)
- ;;=S56.416A^^84^942^34
- ;;^UTILITY(U,$J,358.3,21015,1,0)
+ ;;^UTILITY(U,$J,358.3,19822,1,3,0)
+ ;;=3^Nondisp dome fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,19822,1,4,0)
+ ;;=4^S92.145S
+ ;;^UTILITY(U,$J,358.3,19822,2)
+ ;;=^5044765
+ ;;^UTILITY(U,$J,358.3,19823,0)
+ ;;=S92.144S^^93^996^85
+ ;;^UTILITY(U,$J,358.3,19823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21015,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,21015,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,21015,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,21016,0)
- ;;=S66.912A^^84^942^22
- ;;^UTILITY(U,$J,358.3,21016,1,0)
+ ;;^UTILITY(U,$J,358.3,19823,1,3,0)
+ ;;=3^Nondisp dome fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,19823,1,4,0)
+ ;;=4^S92.144S
+ ;;^UTILITY(U,$J,358.3,19823,2)
+ ;;=^5044758
+ ;;^UTILITY(U,$J,358.3,19824,0)
+ ;;=S92.025S^^93^996^66
+ ;;^UTILITY(U,$J,358.3,19824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21016,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,21016,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,21016,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,21017,0)
- ;;=S66.911A^^84^942^42
- ;;^UTILITY(U,$J,358.3,21017,1,0)
+ ;;^UTILITY(U,$J,358.3,19824,1,3,0)
+ ;;=3^Nondisp anterior process fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,19824,1,4,0)
+ ;;=4^S92.025S
+ ;;^UTILITY(U,$J,358.3,19824,2)
+ ;;=^5044443
+ ;;^UTILITY(U,$J,358.3,19825,0)
+ ;;=S92.024S^^93^996^67
+ ;;^UTILITY(U,$J,358.3,19825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21017,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,21017,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,21017,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,21018,0)
- ;;=S63.501A^^84^942^18
- ;;^UTILITY(U,$J,358.3,21018,1,0)
+ ;;^UTILITY(U,$J,358.3,19825,1,3,0)
+ ;;=3^Nondisp anterior process fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,19825,1,4,0)
+ ;;=4^S92.024S
+ ;;^UTILITY(U,$J,358.3,19825,2)
+ ;;=^5044436
+ ;;^UTILITY(U,$J,358.3,19826,0)
+ ;;=S92.015S^^93^996^74
+ ;;^UTILITY(U,$J,358.3,19826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21018,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,21018,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,21018,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,21019,0)
- ;;=S63.502A^^84^942^7
- ;;^UTILITY(U,$J,358.3,21019,1,0)
+ ;;^UTILITY(U,$J,358.3,19826,1,3,0)
+ ;;=3^Nondisp body of left calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,19826,1,4,0)
+ ;;=4^S92.015S
+ ;;^UTILITY(U,$J,358.3,19826,2)
+ ;;=^5044401
+ ;;^UTILITY(U,$J,358.3,19827,0)
+ ;;=S92.125S^^93^996^75
+ ;;^UTILITY(U,$J,358.3,19827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21019,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,21019,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,21019,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,21020,0)
- ;;=S83.8X1A^^84^942^16
- ;;^UTILITY(U,$J,358.3,21020,1,0)
+ ;;^UTILITY(U,$J,358.3,19827,1,3,0)
+ ;;=3^Nondisp body of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,19827,1,4,0)
+ ;;=4^S92.125S
+ ;;^UTILITY(U,$J,358.3,19827,2)
+ ;;=^5044681
+ ;;^UTILITY(U,$J,358.3,19828,0)
+ ;;=S92.014S^^93^996^76
+ ;;^UTILITY(U,$J,358.3,19828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21020,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,21020,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,21020,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,21021,0)
- ;;=S83.8X2A^^84^942^5
- ;;^UTILITY(U,$J,358.3,21021,1,0)
+ ;;^UTILITY(U,$J,358.3,19828,1,3,0)
+ ;;=3^Nondisp body of right calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,19828,1,4,0)
+ ;;=4^S92.014S
+ ;;^UTILITY(U,$J,358.3,19828,2)
+ ;;=^5044394
+ ;;^UTILITY(U,$J,358.3,19829,0)
+ ;;=S92.124S^^93^996^77
+ ;;^UTILITY(U,$J,358.3,19829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21021,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,21021,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,21021,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,21022,0)
- ;;=S86.211A^^84^942^47
- ;;^UTILITY(U,$J,358.3,21022,1,0)
+ ;;^UTILITY(U,$J,358.3,19829,1,3,0)
+ ;;=3^Nondisp body of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,19829,1,4,0)
+ ;;=4^S92.124S
+ ;;^UTILITY(U,$J,358.3,19829,2)
+ ;;=^5044674
+ ;;^UTILITY(U,$J,358.3,19830,0)
+ ;;=S92.115S^^93^996^98
+ ;;^UTILITY(U,$J,358.3,19830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21022,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,21022,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,21022,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,21023,0)
- ;;=S86.212A^^84^942^27
- ;;^UTILITY(U,$J,358.3,21023,1,0)
+ ;;^UTILITY(U,$J,358.3,19830,1,3,0)
+ ;;=3^Nondisp neck of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,19830,1,4,0)
+ ;;=4^S92.115S
+ ;;^UTILITY(U,$J,358.3,19830,2)
+ ;;=^5044639
+ ;;^UTILITY(U,$J,358.3,19831,0)
+ ;;=S92.114S^^93^996^99
+ ;;^UTILITY(U,$J,358.3,19831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21023,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,21023,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,21023,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,21024,0)
- ;;=S86.311A^^84^942^49
- ;;^UTILITY(U,$J,358.3,21024,1,0)
+ ;;^UTILITY(U,$J,358.3,19831,1,3,0)
+ ;;=3^Nondisp neck of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,19831,1,4,0)
+ ;;=4^S92.114S
+ ;;^UTILITY(U,$J,358.3,19831,2)
+ ;;=^5044632
+ ;;^UTILITY(U,$J,358.3,19832,0)
+ ;;=S92.135S^^93^996^100
+ ;;^UTILITY(U,$J,358.3,19832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21024,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,21024,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,21024,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,21025,0)
- ;;=S86.312A^^84^942^29
- ;;^UTILITY(U,$J,358.3,21025,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19832,1,3,0)
+ ;;=3^Nondisp posterior process fx of left talus, sequela

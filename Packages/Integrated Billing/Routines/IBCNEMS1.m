@@ -1,5 +1,5 @@
 IBCNEMS1 ;AITC/DM - Consolidated Mailman messages; 12-JUNE-2018
- ;;2.0;INTEGRATED BILLING;**621,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**621,631,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; 
@@ -64,5 +64,13 @@ MSG003(MSG,ERRGB,TQN,RESP,BUFF) ;  Create and send a response processing error w
  S MSG(9)=""
  S MSG(10)="If you continue to receive this error message, you should contact"
  S MSG(11)="your IRM and possibly call the Help Desk for assistance."
+ Q
+ ;
+ ;/vd-IB*2*659 - The following module of code was added.
+MSG004(MSG,SITE) ;  Create a message that the IIV EC logical link is stuck/down.
+ ;
+ S MSG(1)="Check of IIV EC Logical Link: No activity seen in link"
+ S MSG(2)="for site: "_SITE_"."
+ S MSG(3)="The IIV EC logical link needs to be bounced or turned on."
  Q
  ;

@@ -1,122 +1,122 @@
-IBDEI2XU ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49283,1,4,0)
- ;;=4^S32.484S
- ;;^UTILITY(U,$J,358.3,49283,2)
- ;;=^5024976
- ;;^UTILITY(U,$J,358.3,49284,0)
- ;;=S32.435S^^216^2416^28
- ;;^UTILITY(U,$J,358.3,49284,1,0)
+ ;;^UTILITY(U,$J,358.3,46888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49284,1,3,0)
- ;;=3^Nondisp fx of anterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49284,1,4,0)
- ;;=4^S32.435S
- ;;^UTILITY(U,$J,358.3,49284,2)
- ;;=^5024802
- ;;^UTILITY(U,$J,358.3,49285,0)
- ;;=S32.434S^^216^2416^29
- ;;^UTILITY(U,$J,358.3,49285,1,0)
+ ;;^UTILITY(U,$J,358.3,46888,1,3,0)
+ ;;=3^Change/Rem of Drains
+ ;;^UTILITY(U,$J,358.3,46888,1,4,0)
+ ;;=4^Z48.03
+ ;;^UTILITY(U,$J,358.3,46888,2)
+ ;;=^5063036
+ ;;^UTILITY(U,$J,358.3,46889,0)
+ ;;=Z48.816^^179^2338^1
+ ;;^UTILITY(U,$J,358.3,46889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49285,1,3,0)
- ;;=3^Nondisp fx of anterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49285,1,4,0)
- ;;=4^S32.434S
- ;;^UTILITY(U,$J,358.3,49285,2)
- ;;=^5024796
- ;;^UTILITY(U,$J,358.3,49286,0)
- ;;=S32.415S^^216^2416^30
- ;;^UTILITY(U,$J,358.3,49286,1,0)
+ ;;^UTILITY(U,$J,358.3,46889,1,3,0)
+ ;;=3^Aftercare Following GU System Surg
+ ;;^UTILITY(U,$J,358.3,46889,1,4,0)
+ ;;=4^Z48.816
+ ;;^UTILITY(U,$J,358.3,46889,2)
+ ;;=^5063053
+ ;;^UTILITY(U,$J,358.3,46890,0)
+ ;;=T83.411A^^179^2338^3
+ ;;^UTILITY(U,$J,358.3,46890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49286,1,3,0)
- ;;=3^Nondisp fx of anterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49286,1,4,0)
- ;;=4^S32.415S
- ;;^UTILITY(U,$J,358.3,49286,2)
- ;;=^5024730
- ;;^UTILITY(U,$J,358.3,49287,0)
- ;;=S32.414S^^216^2416^31
- ;;^UTILITY(U,$J,358.3,49287,1,0)
+ ;;^UTILITY(U,$J,358.3,46890,1,3,0)
+ ;;=3^Brkdwn (mech) impl testic prosth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46890,1,4,0)
+ ;;=4^T83.411A
+ ;;^UTILITY(U,$J,358.3,46890,2)
+ ;;=^5140120
+ ;;^UTILITY(U,$J,358.3,46891,0)
+ ;;=T83.113A^^179^2338^9
+ ;;^UTILITY(U,$J,358.3,46891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49287,1,3,0)
- ;;=3^Nondisp fx of anterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49287,1,4,0)
- ;;=4^S32.414S
- ;;^UTILITY(U,$J,358.3,49287,2)
- ;;=^5024724
- ;;^UTILITY(U,$J,358.3,49288,0)
- ;;=S32.475S^^216^2416^37
- ;;^UTILITY(U,$J,358.3,49288,1,0)
+ ;;^UTILITY(U,$J,358.3,46891,1,3,0)
+ ;;=3^Brkdwn (mech) urin stnt,other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46891,1,4,0)
+ ;;=4^T83.113A
+ ;;^UTILITY(U,$J,358.3,46891,2)
+ ;;=^5140090
+ ;;^UTILITY(U,$J,358.3,46892,0)
+ ;;=T83.123A^^179^2338^18
+ ;;^UTILITY(U,$J,358.3,46892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49288,1,3,0)
- ;;=3^Nondisp fx of medial wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49288,1,4,0)
- ;;=4^S32.475S
- ;;^UTILITY(U,$J,358.3,49288,2)
- ;;=^5024946
- ;;^UTILITY(U,$J,358.3,49289,0)
- ;;=S32.474S^^216^2416^38
- ;;^UTILITY(U,$J,358.3,49289,1,0)
+ ;;^UTILITY(U,$J,358.3,46892,1,3,0)
+ ;;=3^Dsplcmnt oth urinary stent,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46892,1,4,0)
+ ;;=4^T83.123A
+ ;;^UTILITY(U,$J,358.3,46892,2)
+ ;;=^5140099
+ ;;^UTILITY(U,$J,358.3,46893,0)
+ ;;=T83.421A^^179^2338^16
+ ;;^UTILITY(U,$J,358.3,46893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49289,1,3,0)
- ;;=3^Nondisp fx of medial wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49289,1,4,0)
- ;;=4^S32.474S
- ;;^UTILITY(U,$J,358.3,49289,2)
- ;;=^5024940
- ;;^UTILITY(U,$J,358.3,49290,0)
- ;;=S32.445S^^216^2416^39
- ;;^UTILITY(U,$J,358.3,49290,1,0)
+ ;;^UTILITY(U,$J,358.3,46893,1,3,0)
+ ;;=3^Dsplcmnt impl testic prosth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46893,1,4,0)
+ ;;=4^T83.421A
+ ;;^UTILITY(U,$J,358.3,46893,2)
+ ;;=^5140126
+ ;;^UTILITY(U,$J,358.3,46894,0)
+ ;;=N99.840^^179^2338^46
+ ;;^UTILITY(U,$J,358.3,46894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49290,1,3,0)
- ;;=3^Nondisp fx of posterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49290,1,4,0)
- ;;=4^S32.445S
- ;;^UTILITY(U,$J,358.3,49290,2)
- ;;=^5024838
- ;;^UTILITY(U,$J,358.3,49291,0)
- ;;=S32.444S^^216^2416^40
- ;;^UTILITY(U,$J,358.3,49291,1,0)
+ ;;^UTILITY(U,$J,358.3,46894,1,3,0)
+ ;;=3^Postproc hmtma,GU syst org/struct fol GU sys proc
+ ;;^UTILITY(U,$J,358.3,46894,1,4,0)
+ ;;=4^N99.840
+ ;;^UTILITY(U,$J,358.3,46894,2)
+ ;;=^5138992
+ ;;^UTILITY(U,$J,358.3,46895,0)
+ ;;=T81.40XA^^179^2338^34
+ ;;^UTILITY(U,$J,358.3,46895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49291,1,3,0)
- ;;=3^Nondisp fx of posterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49291,1,4,0)
- ;;=4^S32.444S
- ;;^UTILITY(U,$J,358.3,49291,2)
- ;;=^5024832
- ;;^UTILITY(U,$J,358.3,49292,0)
- ;;=S32.425S^^216^2416^41
- ;;^UTILITY(U,$J,358.3,49292,1,0)
+ ;;^UTILITY(U,$J,358.3,46895,1,3,0)
+ ;;=3^Infect Following Procedure,Unspec,Init
+ ;;^UTILITY(U,$J,358.3,46895,1,4,0)
+ ;;=4^T81.40XA
+ ;;^UTILITY(U,$J,358.3,46895,2)
+ ;;=^5157584
+ ;;^UTILITY(U,$J,358.3,46896,0)
+ ;;=T81.40XD^^179^2338^36
+ ;;^UTILITY(U,$J,358.3,46896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49292,1,3,0)
- ;;=3^Nondisp fx of posterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49292,1,4,0)
- ;;=4^S32.425S
- ;;^UTILITY(U,$J,358.3,49292,2)
- ;;=^5024766
- ;;^UTILITY(U,$J,358.3,49293,0)
- ;;=S32.424S^^216^2416^42
- ;;^UTILITY(U,$J,358.3,49293,1,0)
+ ;;^UTILITY(U,$J,358.3,46896,1,3,0)
+ ;;=3^Infect Following Procedure,Unspec,Subs
+ ;;^UTILITY(U,$J,358.3,46896,1,4,0)
+ ;;=4^T81.40XD
+ ;;^UTILITY(U,$J,358.3,46896,2)
+ ;;=^5157585
+ ;;^UTILITY(U,$J,358.3,46897,0)
+ ;;=T81.40XS^^179^2338^36
+ ;;^UTILITY(U,$J,358.3,46897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49293,1,3,0)
- ;;=3^Nondisp fx of posterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49293,1,4,0)
- ;;=4^S32.424S
- ;;^UTILITY(U,$J,358.3,49293,2)
- ;;=^5024760
- ;;^UTILITY(U,$J,358.3,49294,0)
- ;;=S32.455S^^216^2416^43
- ;;^UTILITY(U,$J,358.3,49294,1,0)
+ ;;^UTILITY(U,$J,358.3,46897,1,3,0)
+ ;;=3^Infect Following Procedure,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46897,1,4,0)
+ ;;=4^T81.40XS
+ ;;^UTILITY(U,$J,358.3,46897,2)
+ ;;=^5157586
+ ;;^UTILITY(U,$J,358.3,46898,0)
+ ;;=T81.41XA^^179^2338^31
+ ;;^UTILITY(U,$J,358.3,46898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49294,1,3,0)
- ;;=3^Nondisp fx of transverse of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49294,1,4,0)
- ;;=4^S32.455S
- ;;^UTILITY(U,$J,358.3,49294,2)
- ;;=^5024874
- ;;^UTILITY(U,$J,358.3,49295,0)
- ;;=S32.454S^^216^2416^44
- ;;^UTILITY(U,$J,358.3,49295,1,0)
+ ;;^UTILITY(U,$J,358.3,46898,1,3,0)
+ ;;=3^Infect Following Proced,Superfic Incis Surg Site,Init
+ ;;^UTILITY(U,$J,358.3,46898,1,4,0)
+ ;;=4^T81.41XA
+ ;;^UTILITY(U,$J,358.3,46898,2)
+ ;;=^5157587
+ ;;^UTILITY(U,$J,358.3,46899,0)
+ ;;=T81.41XD^^179^2338^32
+ ;;^UTILITY(U,$J,358.3,46899,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46899,1,3,0)
+ ;;=3^Infect Following Proced,Superfic Incis Surg Site,Subs
+ ;;^UTILITY(U,$J,358.3,46899,1,4,0)
+ ;;=4^T81.41XD
+ ;;^UTILITY(U,$J,358.3,46899,2)
+ ;;=^5157588

@@ -1,130 +1,122 @@
-IBDEI1KO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26671,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,26671,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,26671,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,26672,0)
- ;;=G24.01^^100^1276^16
- ;;^UTILITY(U,$J,358.3,26672,1,0)
+ ;;^UTILITY(U,$J,358.3,25129,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,25130,0)
+ ;;=J12.9^^107^1213^69
+ ;;^UTILITY(U,$J,358.3,25130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26672,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,26672,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,26672,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,26673,0)
- ;;=G24.09^^100^1276^17
- ;;^UTILITY(U,$J,358.3,26673,1,0)
+ ;;^UTILITY(U,$J,358.3,25130,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,25130,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,25130,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,25131,0)
+ ;;=J10.08^^107^1213^41
+ ;;^UTILITY(U,$J,358.3,25131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26673,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,26673,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,26673,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,26674,0)
- ;;=G25.1^^100^1276^12
- ;;^UTILITY(U,$J,358.3,26674,1,0)
+ ;;^UTILITY(U,$J,358.3,25131,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,25131,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,25131,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,25132,0)
+ ;;=J10.00^^107^1213^40
+ ;;^UTILITY(U,$J,358.3,25132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26674,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,26674,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,26674,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,26675,0)
- ;;=G25.71^^100^1276^15
- ;;^UTILITY(U,$J,358.3,26675,1,0)
+ ;;^UTILITY(U,$J,358.3,25132,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,25132,1,4,0)
+ ;;=4^J10.00
+ ;;^UTILITY(U,$J,358.3,25132,2)
+ ;;=^5008148
+ ;;^UTILITY(U,$J,358.3,25133,0)
+ ;;=J11.08^^107^1213^43
+ ;;^UTILITY(U,$J,358.3,25133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26675,1,3,0)
- ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
- ;;^UTILITY(U,$J,358.3,26675,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,26675,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,26676,0)
- ;;=G25.79^^100^1276^10
- ;;^UTILITY(U,$J,358.3,26676,1,0)
+ ;;^UTILITY(U,$J,358.3,25133,1,3,0)
+ ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
+ ;;^UTILITY(U,$J,358.3,25133,1,4,0)
+ ;;=4^J11.08
+ ;;^UTILITY(U,$J,358.3,25133,2)
+ ;;=^5008157
+ ;;^UTILITY(U,$J,358.3,25134,0)
+ ;;=J10.1^^107^1213^42
+ ;;^UTILITY(U,$J,358.3,25134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26676,1,3,0)
- ;;=3^Medication-Induced Movement Disorder NEC
- ;;^UTILITY(U,$J,358.3,26676,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,26676,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,26677,0)
- ;;=T43.205A^^100^1276^4
- ;;^UTILITY(U,$J,358.3,26677,1,0)
+ ;;^UTILITY(U,$J,358.3,25134,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,25134,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,25134,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,25135,0)
+ ;;=J10.01^^107^1213^39
+ ;;^UTILITY(U,$J,358.3,25135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26677,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,26677,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,26677,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,26678,0)
- ;;=T43.205D^^100^1276^5
- ;;^UTILITY(U,$J,358.3,26678,1,0)
+ ;;^UTILITY(U,$J,358.3,25135,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,25135,1,4,0)
+ ;;=4^J10.01
+ ;;^UTILITY(U,$J,358.3,25135,2)
+ ;;=^5008149
+ ;;^UTILITY(U,$J,358.3,25136,0)
+ ;;=J11.1^^107^1213^44
+ ;;^UTILITY(U,$J,358.3,25136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26678,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,26678,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,26678,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,26679,0)
- ;;=T43.205S^^100^1276^6
- ;;^UTILITY(U,$J,358.3,26679,1,0)
+ ;;^UTILITY(U,$J,358.3,25136,1,3,0)
+ ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,25136,1,4,0)
+ ;;=4^J11.1
+ ;;^UTILITY(U,$J,358.3,25136,2)
+ ;;=^5008158
+ ;;^UTILITY(U,$J,358.3,25137,0)
+ ;;=N12.^^107^1213^85
+ ;;^UTILITY(U,$J,358.3,25137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26679,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,26679,1,4,0)
- ;;=4^T43.205S
- ;;^UTILITY(U,$J,358.3,26679,2)
- ;;=^5050542
- ;;^UTILITY(U,$J,358.3,26680,0)
- ;;=G25.71^^100^1276^7
- ;;^UTILITY(U,$J,358.3,26680,1,0)
+ ;;^UTILITY(U,$J,358.3,25137,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,25137,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,25137,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,25138,0)
+ ;;=N11.9^^107^1213^86
+ ;;^UTILITY(U,$J,358.3,25138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26680,1,3,0)
- ;;=3^Medication-Induced Acute Akathisia
- ;;^UTILITY(U,$J,358.3,26680,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,26680,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,26681,0)
- ;;=G24.02^^100^1276^9
- ;;^UTILITY(U,$J,358.3,26681,1,0)
+ ;;^UTILITY(U,$J,358.3,25138,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis,Chronic
+ ;;^UTILITY(U,$J,358.3,25138,1,4,0)
+ ;;=4^N11.9
+ ;;^UTILITY(U,$J,358.3,25138,2)
+ ;;=^5015574
+ ;;^UTILITY(U,$J,358.3,25139,0)
+ ;;=N13.6^^107^1213^73
+ ;;^UTILITY(U,$J,358.3,25139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26681,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,26681,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,26681,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,26682,0)
- ;;=G21.0^^100^1276^13
- ;;^UTILITY(U,$J,358.3,26682,1,0)
+ ;;^UTILITY(U,$J,358.3,25139,1,3,0)
+ ;;=3^Pyonephrosis
+ ;;^UTILITY(U,$J,358.3,25139,1,4,0)
+ ;;=4^N13.6
+ ;;^UTILITY(U,$J,358.3,25139,2)
+ ;;=^101552
+ ;;^UTILITY(U,$J,358.3,25140,0)
+ ;;=N30.91^^107^1213^19
+ ;;^UTILITY(U,$J,358.3,25140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26682,1,3,0)
- ;;=3^Neuroleptic Malignant Syndrome
- ;;^UTILITY(U,$J,358.3,26682,1,4,0)
- ;;=4^G21.0
- ;;^UTILITY(U,$J,358.3,26682,2)
- ;;=^5003771
- ;;^UTILITY(U,$J,358.3,26683,0)
- ;;=T50.905A^^100^1276^1
- ;;^UTILITY(U,$J,358.3,26683,1,0)
+ ;;^UTILITY(U,$J,358.3,25140,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,25140,1,4,0)
+ ;;=4^N30.91
+ ;;^UTILITY(U,$J,358.3,25140,2)
+ ;;=^5015643
+ ;;^UTILITY(U,$J,358.3,25141,0)
+ ;;=N30.90^^107^1213^20
+ ;;^UTILITY(U,$J,358.3,25141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26683,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Init Encntr
- ;;^UTILITY(U,$J,358.3,26683,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,26683,2)
- ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,25141,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Unspec

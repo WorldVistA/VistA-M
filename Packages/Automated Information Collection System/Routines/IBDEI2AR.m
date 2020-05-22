@@ -1,126 +1,120 @@
-IBDEI2AR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38966,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Site Unspec
- ;;^UTILITY(U,$J,358.3,38966,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,38966,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,38967,0)
- ;;=I83.029^^151^1908^2
- ;;^UTILITY(U,$J,358.3,38967,1,0)
+ ;;^UTILITY(U,$J,358.3,36672,2)
+ ;;=^5033787
+ ;;^UTILITY(U,$J,358.3,36673,0)
+ ;;=S62.002A^^142^1863^184
+ ;;^UTILITY(U,$J,358.3,36673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38967,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Site Unspec
- ;;^UTILITY(U,$J,358.3,38967,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,38967,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,38968,0)
- ;;=I83.012^^151^1908^8
- ;;^UTILITY(U,$J,358.3,38968,1,0)
+ ;;^UTILITY(U,$J,358.3,36673,1,3,0)
+ ;;=3^Fx Navicular Bone,Left Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36673,1,4,0)
+ ;;=4^S62.002A
+ ;;^UTILITY(U,$J,358.3,36673,2)
+ ;;=^5033066
+ ;;^UTILITY(U,$J,358.3,36674,0)
+ ;;=S62.001A^^142^1863^185
+ ;;^UTILITY(U,$J,358.3,36674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38968,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,38968,1,4,0)
- ;;=4^I83.012
- ;;^UTILITY(U,$J,358.3,38968,2)
- ;;=^5007974
- ;;^UTILITY(U,$J,358.3,38969,0)
- ;;=I83.013^^151^1908^9
- ;;^UTILITY(U,$J,358.3,38969,1,0)
+ ;;^UTILITY(U,$J,358.3,36674,1,3,0)
+ ;;=3^Fx Navicular Bone,Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36674,1,4,0)
+ ;;=4^S62.001A
+ ;;^UTILITY(U,$J,358.3,36674,2)
+ ;;=^5033059
+ ;;^UTILITY(U,$J,358.3,36675,0)
+ ;;=S62.301A^^142^1863^200
+ ;;^UTILITY(U,$J,358.3,36675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38969,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,38969,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,38969,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,38970,0)
- ;;=I83.014^^151^1908^10
- ;;^UTILITY(U,$J,358.3,38970,1,0)
+ ;;^UTILITY(U,$J,358.3,36675,1,3,0)
+ ;;=3^Fx Second Metacarpal Bone,Left Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36675,1,4,0)
+ ;;=4^S62.301A
+ ;;^UTILITY(U,$J,358.3,36675,2)
+ ;;=^5033766
+ ;;^UTILITY(U,$J,358.3,36676,0)
+ ;;=S62.300A^^142^1863^201
+ ;;^UTILITY(U,$J,358.3,36676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38970,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,38970,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,38970,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,38971,0)
- ;;=I83.11^^151^1908^6
- ;;^UTILITY(U,$J,358.3,38971,1,0)
+ ;;^UTILITY(U,$J,358.3,36676,1,3,0)
+ ;;=3^Fx Second Metacarpal Bone,Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36676,1,4,0)
+ ;;=4^S62.300A
+ ;;^UTILITY(U,$J,358.3,36676,2)
+ ;;=^5033759
+ ;;^UTILITY(U,$J,358.3,36677,0)
+ ;;=S62.303A^^142^1863^202
+ ;;^UTILITY(U,$J,358.3,36677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38971,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,38971,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,38971,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,38972,0)
- ;;=I83.022^^151^1908^3
- ;;^UTILITY(U,$J,358.3,38972,1,0)
+ ;;^UTILITY(U,$J,358.3,36677,1,3,0)
+ ;;=3^Fx Third Metacarpal Bone,Left Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36677,1,4,0)
+ ;;=4^S62.303A
+ ;;^UTILITY(U,$J,358.3,36677,2)
+ ;;=^5033780
+ ;;^UTILITY(U,$J,358.3,36678,0)
+ ;;=S62.302A^^142^1863^203
+ ;;^UTILITY(U,$J,358.3,36678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38972,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,38972,1,4,0)
- ;;=4^I83.022
- ;;^UTILITY(U,$J,358.3,38972,2)
- ;;=^5007981
- ;;^UTILITY(U,$J,358.3,38973,0)
- ;;=I83.023^^151^1908^4
- ;;^UTILITY(U,$J,358.3,38973,1,0)
+ ;;^UTILITY(U,$J,358.3,36678,1,3,0)
+ ;;=3^Fx Third Metacarpal Bone,Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36678,1,4,0)
+ ;;=4^S62.302A
+ ;;^UTILITY(U,$J,358.3,36678,2)
+ ;;=^5033773
+ ;;^UTILITY(U,$J,358.3,36679,0)
+ ;;=S65.509A^^142^1863^221
+ ;;^UTILITY(U,$J,358.3,36679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38973,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,38973,1,4,0)
- ;;=4^I83.023
- ;;^UTILITY(U,$J,358.3,38973,2)
- ;;=^5007982
- ;;^UTILITY(U,$J,358.3,38974,0)
- ;;=I83.024^^151^1908^5
- ;;^UTILITY(U,$J,358.3,38974,1,0)
+ ;;^UTILITY(U,$J,358.3,36679,1,3,0)
+ ;;=3^Injury Blood Vessel Finger Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36679,1,4,0)
+ ;;=4^S65.509A
+ ;;^UTILITY(U,$J,358.3,36679,2)
+ ;;=^5035982
+ ;;^UTILITY(U,$J,358.3,36680,0)
+ ;;=S65.402A^^142^1863^222
+ ;;^UTILITY(U,$J,358.3,36680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38974,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,38974,1,4,0)
- ;;=4^I83.024
- ;;^UTILITY(U,$J,358.3,38974,2)
- ;;=^5007983
- ;;^UTILITY(U,$J,358.3,38975,0)
- ;;=I83.12^^151^1908^1
- ;;^UTILITY(U,$J,358.3,38975,1,0)
+ ;;^UTILITY(U,$J,358.3,36680,1,3,0)
+ ;;=3^Injury Blood Vessel Left Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36680,1,4,0)
+ ;;=4^S65.402A
+ ;;^UTILITY(U,$J,358.3,36680,2)
+ ;;=^5035934
+ ;;^UTILITY(U,$J,358.3,36681,0)
+ ;;=S65.401A^^142^1863^223
+ ;;^UTILITY(U,$J,358.3,36681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38975,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,38975,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,38975,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,38976,0)
- ;;=I87.2^^151^1908^11
- ;;^UTILITY(U,$J,358.3,38976,1,0)
+ ;;^UTILITY(U,$J,358.3,36681,1,3,0)
+ ;;=3^Injury Blood Vessel Right Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36681,1,4,0)
+ ;;=4^S65.401A
+ ;;^UTILITY(U,$J,358.3,36681,2)
+ ;;=^5035931
+ ;;^UTILITY(U,$J,358.3,36682,0)
+ ;;=S69.92XA^^142^1863^268
+ ;;^UTILITY(U,$J,358.3,36682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38976,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,38976,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,38976,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,38977,0)
- ;;=L85.3^^151^1909^1
- ;;^UTILITY(U,$J,358.3,38977,1,0)
+ ;;^UTILITY(U,$J,358.3,36682,1,3,0)
+ ;;=3^Injury,Left Wrist/Hand/Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36682,1,4,0)
+ ;;=4^S69.92XA
+ ;;^UTILITY(U,$J,358.3,36682,2)
+ ;;=^5036828
+ ;;^UTILITY(U,$J,358.3,36683,0)
+ ;;=S69.91XA^^142^1863^269
+ ;;^UTILITY(U,$J,358.3,36683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38977,1,3,0)
- ;;=3^Xerosis Cutis
- ;;^UTILITY(U,$J,358.3,38977,1,4,0)
- ;;=4^L85.3
- ;;^UTILITY(U,$J,358.3,38977,2)
- ;;=^5009323
- ;;^UTILITY(U,$J,358.3,38978,0)
- ;;=L03.113^^151^1910^32
- ;;^UTILITY(U,$J,358.3,38978,1,0)
+ ;;^UTILITY(U,$J,358.3,36683,1,3,0)
+ ;;=3^Injury,Right Wrist/Hand/Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36683,1,4,0)
+ ;;=4^S69.91XA
+ ;;^UTILITY(U,$J,358.3,36683,2)
+ ;;=^5036825
+ ;;^UTILITY(U,$J,358.3,36684,0)
+ ;;=S95.902A^^142^1863^224
+ ;;^UTILITY(U,$J,358.3,36684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38978,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb

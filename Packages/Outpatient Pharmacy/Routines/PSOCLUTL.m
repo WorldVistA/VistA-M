@@ -1,14 +1,25 @@
-PSOCLUTL ;BHAM ISC/DMA - utilities for clozapine reporting system ;10 May 2019 09:01:28
- ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457**;DEC 1997;Build 116
+PSOCLUTL ;BHAM ISC/DMA - utilities for clozapine reporting system ;4 Oct 2019 12:29:40
+ ;;7.0;OUTPATIENT PHARMACY;**28,56,122,222,268,457,574**;DEC 1997;Build 53
  ;External reference ^YSCL(603.01 supported by DBIA 2697
  ;External reference ^PS(55 supported by DBIA 2228
  ;
 REG ; Register Clozapine Patient
  N DIC,DIR
- S DIC=55,DLAYGO=55,DIC(0)="AEQL",DIC("A")="Select patient to register: " D ^DIC K DIC,DLAYGO G END:Y<0
+ ; Added "M" to the DIC(0)  ; PSO*7.0*574
+ S DIC=55,DLAYGO=55,DIC(0)="AEQLM",DIC("A")="Select patient to register: " D ^DIC K DIC,DLAYGO G END:Y<0
  S PSO1=+Y,PSONAME=$$GET1^DIQ(2,PSO1,.01)
  D:$$GET1^DIQ(55,PSO1,52.1,"I")'=2 EN^PSOHLUP(PSO1) N ANQX
- I '$$FIND1^DIC(603.01,,"Q",PSO1,"C") W !!,PSONAME_" has not been authorized for Clozapine",!,"by the NCCC in Dallas.  Contact the NCCC in Dallas for authorization." D OVER G:'$G(%) REG S JADOVER=""
+ ; PSO*7.0*574
+ I '$$FIND1^DIC(603.01,,"Q",PSO1,"C") D  Q
+ . N DIR,X,Y
+ . W !!,PSONAME_" has not been authorized for Clozapine"
+ . W !,"by the NCCC (National Clozapine Coordinating Center)."
+ . W !,"This option is only available for known NCCC-registered patients."
+ . W !,"To dispense clozapine under a temporary registration for an authorized emergency"
+ . W !,"override situation, use the VistA Patient Prescription Processing option."
+ . W !,"Contact the NCCC during regular business hours for registration.",!
+ . S DIR(0)="E",DIR("A")="Press enter" D ^DIR
+ ;W !!,PSONAME_" has not been authorized for Clozapine",!,"by the NCCC in Dallas.  Contact the NCCC in Dallas for authorization." D OVER G:'$G(%) REG S JADOVER=""
  S PSO4=$$GET1^DIQ(55,PSO1,53) I PSO4]"" W !!,PSONAME_" is already registered with number "_PSO4,!!,"Use the edit option to change registration data, or",!,"contact your supervisor",! G REG
 NUMBER ;
  S DIR(0)="55,53",Y=$$GET1^DIQ(603.01,$$FIND1^DIC(603.01,,"Q",PSO1,"C"),.01)
@@ -46,7 +57,7 @@ SAVE ;
  S DA=PSO1,DIE=55,DR="53////"_PSO2_";54////"_PSO3_";57////"_PSO4_";56////0;58////"_DT
  L +^PS(55,DA):DILOCKTM E  W !!,$C(7),"Patient "_PSONAME_" is being edited by another user!  Try Later." S ANQX=1 D END G END1
  D ^DIE L -^PS(55,DA)
- S $P(^XTMP("PSJ CLOZ",0),U,4)=PSO2  ; save last temp reg#
+ S:PSO2?1U6N $P(^XTMP("PSJ CLOZ",0),U,4)=PSO2  ; save last temp reg#
 END ;
  K %,%Y,C,D,D0,DA,DI,DQ,DIC,DIE,DR,PSO,PSO1,PSO2,PSO3,PSO4,PSOC,PSOLN,PSONAME,PSONO,PSOT,R,SSNVAERR,XMDUZ,XMSUB,XMTEXT,Y
  I '$G(PSCLOZ) K ^TMP($J),^TMP("PSO",$J)

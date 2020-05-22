@@ -1,134 +1,116 @@
-IBDEI30Q ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI30Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50599,2)
- ;;=^5008245
- ;;^UTILITY(U,$J,358.3,50600,0)
- ;;=J45.41^^219^2457^24
- ;;^UTILITY(U,$J,358.3,50600,1,0)
+ ;;^UTILITY(U,$J,358.3,48199,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,48200,0)
+ ;;=H54.61^^185^2418^51
+ ;;^UTILITY(U,$J,358.3,48200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50600,1,3,0)
- ;;=3^Moderate Persistent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,50600,1,4,0)
- ;;=4^J45.41
- ;;^UTILITY(U,$J,358.3,50600,2)
- ;;=^5008249
- ;;^UTILITY(U,$J,358.3,50601,0)
- ;;=J45.42^^219^2457^25
- ;;^UTILITY(U,$J,358.3,50601,1,0)
+ ;;^UTILITY(U,$J,358.3,48200,1,3,0)
+ ;;=3^Visual Loss Rt Eye,Normal Vision Lt Eye
+ ;;^UTILITY(U,$J,358.3,48200,1,4,0)
+ ;;=4^H54.61
+ ;;^UTILITY(U,$J,358.3,48200,2)
+ ;;=^5006367
+ ;;^UTILITY(U,$J,358.3,48201,0)
+ ;;=H54.3^^185^2418^49
+ ;;^UTILITY(U,$J,358.3,48201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50601,1,3,0)
- ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,50601,1,4,0)
- ;;=4^J45.42
- ;;^UTILITY(U,$J,358.3,50601,2)
- ;;=^5008250
- ;;^UTILITY(U,$J,358.3,50602,0)
- ;;=J45.40^^219^2457^26
- ;;^UTILITY(U,$J,358.3,50602,1,0)
+ ;;^UTILITY(U,$J,358.3,48201,1,3,0)
+ ;;=3^Visual Loss Both Eyes,Unqualified
+ ;;^UTILITY(U,$J,358.3,48201,1,4,0)
+ ;;=4^H54.3
+ ;;^UTILITY(U,$J,358.3,48201,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,48202,0)
+ ;;=H35.3110^^185^2418^38
+ ;;^UTILITY(U,$J,358.3,48202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50602,1,3,0)
- ;;=3^Moderate Persistent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,50602,1,4,0)
- ;;=4^J45.40
- ;;^UTILITY(U,$J,358.3,50602,2)
- ;;=^5008248
- ;;^UTILITY(U,$J,358.3,50603,0)
- ;;=J41.1^^219^2457^27
- ;;^UTILITY(U,$J,358.3,50603,1,0)
+ ;;^UTILITY(U,$J,358.3,48202,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Right Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,48202,1,4,0)
+ ;;=4^H35.3110
+ ;;^UTILITY(U,$J,358.3,48202,2)
+ ;;=^5138500
+ ;;^UTILITY(U,$J,358.3,48203,0)
+ ;;=H35.3111^^185^2418^39
+ ;;^UTILITY(U,$J,358.3,48203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50603,1,3,0)
- ;;=3^Mucopurulent Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,50603,1,4,0)
- ;;=4^J41.1
- ;;^UTILITY(U,$J,358.3,50603,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,50604,0)
- ;;=J45.998^^219^2457^2
- ;;^UTILITY(U,$J,358.3,50604,1,0)
+ ;;^UTILITY(U,$J,358.3,48203,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Right Eye,Early Dry Stage
+ ;;^UTILITY(U,$J,358.3,48203,1,4,0)
+ ;;=4^H35.3111
+ ;;^UTILITY(U,$J,358.3,48203,2)
+ ;;=^5138501
+ ;;^UTILITY(U,$J,358.3,48204,0)
+ ;;=H35.3112^^185^2418^40
+ ;;^UTILITY(U,$J,358.3,48204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50604,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,50604,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,50604,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,50605,0)
- ;;=J43.8^^219^2457^15
- ;;^UTILITY(U,$J,358.3,50605,1,0)
+ ;;^UTILITY(U,$J,358.3,48204,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Right Eye,Intermed Dry Stage
+ ;;^UTILITY(U,$J,358.3,48204,1,4,0)
+ ;;=4^H35.3112
+ ;;^UTILITY(U,$J,358.3,48204,2)
+ ;;=^5138502
+ ;;^UTILITY(U,$J,358.3,48205,0)
+ ;;=H35.3120^^185^2418^35
+ ;;^UTILITY(U,$J,358.3,48205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50605,1,3,0)
- ;;=3^Emphysema NEC
- ;;^UTILITY(U,$J,358.3,50605,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,50605,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,50606,0)
- ;;=J43.1^^219^2457^28
- ;;^UTILITY(U,$J,358.3,50606,1,0)
+ ;;^UTILITY(U,$J,358.3,48205,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Left Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,48205,1,4,0)
+ ;;=4^H35.3120
+ ;;^UTILITY(U,$J,358.3,48205,2)
+ ;;=^5138505
+ ;;^UTILITY(U,$J,358.3,48206,0)
+ ;;=H35.3121^^185^2418^36
+ ;;^UTILITY(U,$J,358.3,48206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50606,1,3,0)
- ;;=3^Panlobular Emphysema
- ;;^UTILITY(U,$J,358.3,50606,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,50606,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,50607,0)
- ;;=J45.51^^219^2457^29
- ;;^UTILITY(U,$J,358.3,50607,1,0)
+ ;;^UTILITY(U,$J,358.3,48206,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Left Eye,Dry Stage
+ ;;^UTILITY(U,$J,358.3,48206,1,4,0)
+ ;;=4^H35.3121
+ ;;^UTILITY(U,$J,358.3,48206,2)
+ ;;=^5138506
+ ;;^UTILITY(U,$J,358.3,48207,0)
+ ;;=H35.3122^^185^2418^37
+ ;;^UTILITY(U,$J,358.3,48207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50607,1,3,0)
- ;;=3^Severe Persistent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,50607,1,4,0)
- ;;=4^J45.51
- ;;^UTILITY(U,$J,358.3,50607,2)
- ;;=^5008252
- ;;^UTILITY(U,$J,358.3,50608,0)
- ;;=J45.52^^219^2457^30
- ;;^UTILITY(U,$J,358.3,50608,1,0)
+ ;;^UTILITY(U,$J,358.3,48207,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Left Eye,Intermed Dry Stage
+ ;;^UTILITY(U,$J,358.3,48207,1,4,0)
+ ;;=4^H35.3122
+ ;;^UTILITY(U,$J,358.3,48207,2)
+ ;;=^5138507
+ ;;^UTILITY(U,$J,358.3,48208,0)
+ ;;=H35.3130^^185^2418^32
+ ;;^UTILITY(U,$J,358.3,48208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50608,1,3,0)
- ;;=3^Severe Persistent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,50608,1,4,0)
- ;;=4^J45.52
- ;;^UTILITY(U,$J,358.3,50608,2)
- ;;=^5008253
- ;;^UTILITY(U,$J,358.3,50609,0)
- ;;=J45.50^^219^2457^31
- ;;^UTILITY(U,$J,358.3,50609,1,0)
+ ;;^UTILITY(U,$J,358.3,48208,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Bilateral,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,48208,1,4,0)
+ ;;=4^H35.3130
+ ;;^UTILITY(U,$J,358.3,48208,2)
+ ;;=^5138510
+ ;;^UTILITY(U,$J,358.3,48209,0)
+ ;;=H35.3131^^185^2418^33
+ ;;^UTILITY(U,$J,358.3,48209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50609,1,3,0)
- ;;=3^Severe Persistent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,50609,1,4,0)
- ;;=4^J45.50
- ;;^UTILITY(U,$J,358.3,50609,2)
- ;;=^5008251
- ;;^UTILITY(U,$J,358.3,50610,0)
- ;;=J43.0^^219^2457^32
- ;;^UTILITY(U,$J,358.3,50610,1,0)
+ ;;^UTILITY(U,$J,358.3,48209,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Bilateral,Early Dry Stage
+ ;;^UTILITY(U,$J,358.3,48209,1,4,0)
+ ;;=4^H35.3131
+ ;;^UTILITY(U,$J,358.3,48209,2)
+ ;;=^5138511
+ ;;^UTILITY(U,$J,358.3,48210,0)
+ ;;=H35.3132^^185^2418^34
+ ;;^UTILITY(U,$J,358.3,48210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50610,1,3,0)
- ;;=3^Unilateral Pulmonary Emphysema
- ;;^UTILITY(U,$J,358.3,50610,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,50610,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,50611,0)
- ;;=J45.901^^219^2457^3
- ;;^UTILITY(U,$J,358.3,50611,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50611,1,3,0)
- ;;=3^Asthma w/ Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,50611,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,50611,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,50612,0)
- ;;=J45.902^^219^2457^4
- ;;^UTILITY(U,$J,358.3,50612,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50612,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,50612,1,4,0)
- ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,48210,1,3,0)
+ ;;=3^Nonexudative Age-Related Mclr Degn,Bilateral,Intermed Dry Stage
+ ;;^UTILITY(U,$J,358.3,48210,1,4,0)
+ ;;=4^H35.3132
+ ;;^UTILITY(U,$J,358.3,48210,2)
+ ;;=^5138512

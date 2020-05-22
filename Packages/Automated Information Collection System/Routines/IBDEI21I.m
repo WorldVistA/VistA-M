@@ -1,134 +1,128 @@
-IBDEI21I ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI21I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34604,1,3,0)
- ;;=3^Defects in Complement System
- ;;^UTILITY(U,$J,358.3,34604,1,4,0)
- ;;=4^D84.1
- ;;^UTILITY(U,$J,358.3,34604,2)
- ;;=^5002439
- ;;^UTILITY(U,$J,358.3,34605,0)
- ;;=D81.810^^131^1690^5
- ;;^UTILITY(U,$J,358.3,34605,1,0)
+ ;;^UTILITY(U,$J,358.3,32558,2)
+ ;;=^5151360
+ ;;^UTILITY(U,$J,358.3,32559,0)
+ ;;=H54.2X21^^128^1663^16
+ ;;^UTILITY(U,$J,358.3,32559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34605,1,3,0)
- ;;=3^Biotinidase Deficiency
- ;;^UTILITY(U,$J,358.3,34605,1,4,0)
- ;;=4^D81.810
- ;;^UTILITY(U,$J,358.3,34605,2)
- ;;=^5002422
- ;;^UTILITY(U,$J,358.3,34606,0)
- ;;=E88.01^^131^1690^2
- ;;^UTILITY(U,$J,358.3,34606,1,0)
+ ;;^UTILITY(U,$J,358.3,32559,1,3,0)
+ ;;=3^OD Low Vision Cat 2/OS Low Vision Cat 1
+ ;;^UTILITY(U,$J,358.3,32559,1,4,0)
+ ;;=4^H54.2X21
+ ;;^UTILITY(U,$J,358.3,32559,2)
+ ;;=^5151361
+ ;;^UTILITY(U,$J,358.3,32560,0)
+ ;;=H54.2X22^^128^1663^17
+ ;;^UTILITY(U,$J,358.3,32560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34606,1,3,0)
- ;;=3^Apha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,34606,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,34606,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,34607,0)
- ;;=J09.X1^^131^1690^25
- ;;^UTILITY(U,$J,358.3,34607,1,0)
+ ;;^UTILITY(U,$J,358.3,32560,1,3,0)
+ ;;=3^OD Low Vision Cat 2/OS Low Vision Cat 2
+ ;;^UTILITY(U,$J,358.3,32560,1,4,0)
+ ;;=4^H54.2X22
+ ;;^UTILITY(U,$J,358.3,32560,2)
+ ;;=^5151362
+ ;;^UTILITY(U,$J,358.3,32561,0)
+ ;;=G45.3^^128^1664^2
+ ;;^UTILITY(U,$J,358.3,32561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34607,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,34607,1,4,0)
- ;;=4^J09.X1
- ;;^UTILITY(U,$J,358.3,34607,2)
- ;;=^5008144
- ;;^UTILITY(U,$J,358.3,34608,0)
- ;;=J09.X2^^131^1690^26
- ;;^UTILITY(U,$J,358.3,34608,1,0)
+ ;;^UTILITY(U,$J,358.3,32561,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,32561,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,32561,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,32562,0)
+ ;;=H57.01^^128^1664^6
+ ;;^UTILITY(U,$J,358.3,32562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34608,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
- ;;^UTILITY(U,$J,358.3,34608,1,4,0)
- ;;=4^J09.X2
- ;;^UTILITY(U,$J,358.3,34608,2)
- ;;=^5008145
- ;;^UTILITY(U,$J,358.3,34609,0)
- ;;=J09.X3^^131^1690^27
- ;;^UTILITY(U,$J,358.3,34609,1,0)
+ ;;^UTILITY(U,$J,358.3,32562,1,3,0)
+ ;;=3^Argyll Robertson Pupil,Atypical
+ ;;^UTILITY(U,$J,358.3,32562,1,4,0)
+ ;;=4^H57.01
+ ;;^UTILITY(U,$J,358.3,32562,2)
+ ;;=^269319
+ ;;^UTILITY(U,$J,358.3,32563,0)
+ ;;=H40.033^^128^1664^3
+ ;;^UTILITY(U,$J,358.3,32563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34609,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,34609,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,34609,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,34610,0)
- ;;=J09.X9^^131^1690^28
- ;;^UTILITY(U,$J,358.3,34610,1,0)
+ ;;^UTILITY(U,$J,358.3,32563,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,32563,1,4,0)
+ ;;=4^H40.033
+ ;;^UTILITY(U,$J,358.3,32563,2)
+ ;;=^5005734
+ ;;^UTILITY(U,$J,358.3,32564,0)
+ ;;=H40.032^^128^1664^4
+ ;;^UTILITY(U,$J,358.3,32564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34610,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,34610,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,34610,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,34611,0)
- ;;=J44.9^^131^1690^14
- ;;^UTILITY(U,$J,358.3,34611,1,0)
+ ;;^UTILITY(U,$J,358.3,32564,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Left Eye
+ ;;^UTILITY(U,$J,358.3,32564,1,4,0)
+ ;;=4^H40.032
+ ;;^UTILITY(U,$J,358.3,32564,2)
+ ;;=^5005733
+ ;;^UTILITY(U,$J,358.3,32565,0)
+ ;;=H40.031^^128^1664^5
+ ;;^UTILITY(U,$J,358.3,32565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34611,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,34611,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,34611,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,34612,0)
- ;;=J44.1^^131^1690^12
- ;;^UTILITY(U,$J,358.3,34612,1,0)
+ ;;^UTILITY(U,$J,358.3,32565,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Right Eye
+ ;;^UTILITY(U,$J,358.3,32565,1,4,0)
+ ;;=4^H40.031
+ ;;^UTILITY(U,$J,358.3,32565,2)
+ ;;=^5005732
+ ;;^UTILITY(U,$J,358.3,32566,0)
+ ;;=H05.401^^128^1664^10
+ ;;^UTILITY(U,$J,358.3,32566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34612,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,34612,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,34612,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,34613,0)
- ;;=J42.^^131^1690^10
- ;;^UTILITY(U,$J,358.3,34613,1,0)
+ ;;^UTILITY(U,$J,358.3,32566,1,3,0)
+ ;;=3^Enophthalmos,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,32566,1,4,0)
+ ;;=4^H05.401
+ ;;^UTILITY(U,$J,358.3,32566,2)
+ ;;=^5004631
+ ;;^UTILITY(U,$J,358.3,32567,0)
+ ;;=H05.402^^128^1664^9
+ ;;^UTILITY(U,$J,358.3,32567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34613,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,34613,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,34613,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,34614,0)
- ;;=J43.9^^131^1690^22
- ;;^UTILITY(U,$J,358.3,34614,1,0)
+ ;;^UTILITY(U,$J,358.3,32567,1,3,0)
+ ;;=3^Enophthalmos,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,32567,1,4,0)
+ ;;=4^H05.402
+ ;;^UTILITY(U,$J,358.3,32567,2)
+ ;;=^5004632
+ ;;^UTILITY(U,$J,358.3,32568,0)
+ ;;=H05.403^^128^1664^8
+ ;;^UTILITY(U,$J,358.3,32568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34614,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,34614,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,34614,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,34615,0)
- ;;=J43.0^^131^1690^30
- ;;^UTILITY(U,$J,358.3,34615,1,0)
+ ;;^UTILITY(U,$J,358.3,32568,1,3,0)
+ ;;=3^Enophthalmos,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,32568,1,4,0)
+ ;;=4^H05.403
+ ;;^UTILITY(U,$J,358.3,32568,2)
+ ;;=^5004633
+ ;;^UTILITY(U,$J,358.3,32569,0)
+ ;;=H05.20^^128^1664^7
+ ;;^UTILITY(U,$J,358.3,32569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34615,1,3,0)
- ;;=3^MacLeod's Syndrome
- ;;^UTILITY(U,$J,358.3,34615,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,34615,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,34616,0)
- ;;=J43.1^^131^1690^21
- ;;^UTILITY(U,$J,358.3,34616,1,0)
+ ;;^UTILITY(U,$J,358.3,32569,1,3,0)
+ ;;=3^EXophthalmos,Unspec
+ ;;^UTILITY(U,$J,358.3,32569,1,4,0)
+ ;;=4^H05.20
+ ;;^UTILITY(U,$J,358.3,32569,2)
+ ;;=^5004585
+ ;;^UTILITY(U,$J,358.3,32570,0)
+ ;;=H44.521^^128^1664^13
+ ;;^UTILITY(U,$J,358.3,32570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34616,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,34616,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,34616,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,34617,0)
- ;;=J43.2^^131^1690^19
- ;;^UTILITY(U,$J,358.3,34617,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32570,1,3,0)
+ ;;=3^GLOBE,Atrophy of Globe,Right Eye
+ ;;^UTILITY(U,$J,358.3,32570,1,4,0)
+ ;;=4^H44.521
+ ;;^UTILITY(U,$J,358.3,32570,2)
+ ;;=^5006025
+ ;;^UTILITY(U,$J,358.3,32571,0)
+ ;;=H44.522^^128^1664^12

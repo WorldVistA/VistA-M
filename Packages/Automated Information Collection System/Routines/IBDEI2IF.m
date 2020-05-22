@@ -1,122 +1,126 @@
-IBDEI2IF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2IF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42549,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,42549,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,42550,0)
- ;;=Y36.6X0D^^159^2023^115
- ;;^UTILITY(U,$J,358.3,42550,1,0)
+ ;;^UTILITY(U,$J,358.3,40077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42550,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42550,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,42550,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,42551,0)
- ;;=Y36.7X0A^^159^2023^128
- ;;^UTILITY(U,$J,358.3,42551,1,0)
+ ;;^UTILITY(U,$J,358.3,40077,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,40077,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,40077,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,40078,0)
+ ;;=G90.59^^152^2006^35
+ ;;^UTILITY(U,$J,358.3,40078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42551,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42551,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,42551,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,42552,0)
- ;;=Y36.7X0D^^159^2023^129
- ;;^UTILITY(U,$J,358.3,42552,1,0)
+ ;;^UTILITY(U,$J,358.3,40078,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,40078,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,40078,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,40079,0)
+ ;;=G56.01^^152^2006^13
+ ;;^UTILITY(U,$J,358.3,40079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42552,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42552,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,42552,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,42553,0)
- ;;=Y36.810A^^159^2023^22
- ;;^UTILITY(U,$J,358.3,42553,1,0)
+ ;;^UTILITY(U,$J,358.3,40079,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40079,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,40079,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,40080,0)
+ ;;=G56.02^^152^2006^12
+ ;;^UTILITY(U,$J,358.3,40080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42553,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42553,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,42553,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,42554,0)
- ;;=Y36.810D^^159^2023^23
- ;;^UTILITY(U,$J,358.3,42554,1,0)
+ ;;^UTILITY(U,$J,358.3,40080,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40080,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,40080,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,40081,0)
+ ;;=G56.21^^152^2006^60
+ ;;^UTILITY(U,$J,358.3,40081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42554,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42554,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,42554,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,42555,0)
- ;;=Y36.820A^^159^2023^19
- ;;^UTILITY(U,$J,358.3,42555,1,0)
+ ;;^UTILITY(U,$J,358.3,40081,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40081,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,40081,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,40082,0)
+ ;;=G56.22^^152^2006^59
+ ;;^UTILITY(U,$J,358.3,40082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42555,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42555,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,42555,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,42556,0)
- ;;=Y36.820D^^159^2023^20
- ;;^UTILITY(U,$J,358.3,42556,1,0)
+ ;;^UTILITY(U,$J,358.3,40082,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40082,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,40082,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,40083,0)
+ ;;=L40.52^^152^2006^143
+ ;;^UTILITY(U,$J,358.3,40083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42556,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42556,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,42556,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,42557,0)
- ;;=Y37.200A^^159^2023^91
- ;;^UTILITY(U,$J,358.3,42557,1,0)
+ ;;^UTILITY(U,$J,358.3,40083,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,40083,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,40083,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,40084,0)
+ ;;=L40.53^^152^2006^144
+ ;;^UTILITY(U,$J,358.3,40084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42557,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42557,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,42557,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,42558,0)
- ;;=Y37.200D^^159^2023^92
- ;;^UTILITY(U,$J,358.3,42558,1,0)
+ ;;^UTILITY(U,$J,358.3,40084,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,40084,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,40084,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,40085,0)
+ ;;=M32.9^^152^2006^187
+ ;;^UTILITY(U,$J,358.3,40085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42558,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42558,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,42558,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,42559,0)
- ;;=X00.1XXA^^159^2023^13
- ;;^UTILITY(U,$J,358.3,42559,1,0)
+ ;;^UTILITY(U,$J,358.3,40085,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,40085,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,40085,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,40086,0)
+ ;;=M32.0^^152^2006^183
+ ;;^UTILITY(U,$J,358.3,40086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42559,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,42559,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,42559,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,42560,0)
- ;;=X00.1XXD^^159^2023^14
- ;;^UTILITY(U,$J,358.3,42560,1,0)
+ ;;^UTILITY(U,$J,358.3,40086,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,40086,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,40086,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,40087,0)
+ ;;=M32.13^^152^2006^185
+ ;;^UTILITY(U,$J,358.3,40087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42560,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42560,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,42560,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,42561,0)
- ;;=Y36.820S^^159^2023^21
- ;;^UTILITY(U,$J,358.3,42561,1,0)
+ ;;^UTILITY(U,$J,358.3,40087,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,40087,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,40087,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,40088,0)
+ ;;=M32.14^^152^2006^184
+ ;;^UTILITY(U,$J,358.3,40088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40088,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,40088,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,40088,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,40089,0)
+ ;;=M32.12^^152^2006^186
+ ;;^UTILITY(U,$J,358.3,40089,1,0)
  ;;=^358.31IA^4^2

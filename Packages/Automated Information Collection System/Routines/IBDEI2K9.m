@@ -1,134 +1,120 @@
-IBDEI2K9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2K9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43451,1,4,0)
- ;;=4^I80.212
- ;;^UTILITY(U,$J,358.3,43451,2)
- ;;=^5007832
- ;;^UTILITY(U,$J,358.3,43452,0)
- ;;=I80.213^^167^2078^133
- ;;^UTILITY(U,$J,358.3,43452,1,0)
+ ;;^UTILITY(U,$J,358.3,40881,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,40881,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,40881,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,40882,0)
+ ;;=V00.811A^^152^2019^50
+ ;;^UTILITY(U,$J,358.3,40882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43452,1,3,0)
- ;;=3^Phleb & Thrombphleb Bil Iliac Vein
- ;;^UTILITY(U,$J,358.3,43452,1,4,0)
- ;;=4^I80.213
- ;;^UTILITY(U,$J,358.3,43452,2)
- ;;=^5007833
- ;;^UTILITY(U,$J,358.3,43453,0)
- ;;=I82.411^^167^2078^22
- ;;^UTILITY(U,$J,358.3,43453,1,0)
+ ;;^UTILITY(U,$J,358.3,40882,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,40882,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,40882,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,40883,0)
+ ;;=V00.811D^^152^2019^51
+ ;;^UTILITY(U,$J,358.3,40883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43453,1,3,0)
- ;;=3^AC Embol & Thromb Rt Fem Vein
- ;;^UTILITY(U,$J,358.3,43453,1,4,0)
- ;;=4^I82.411
- ;;^UTILITY(U,$J,358.3,43453,2)
- ;;=^5007857
- ;;^UTILITY(U,$J,358.3,43454,0)
- ;;=I82.412^^167^2078^12
- ;;^UTILITY(U,$J,358.3,43454,1,0)
+ ;;^UTILITY(U,$J,358.3,40883,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40883,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,40883,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,40884,0)
+ ;;=V00.812A^^152^2019^142
+ ;;^UTILITY(U,$J,358.3,40884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43454,1,3,0)
- ;;=3^AC Embol & Thromb Lt Fem Vein
- ;;^UTILITY(U,$J,358.3,43454,1,4,0)
- ;;=4^I82.412
- ;;^UTILITY(U,$J,358.3,43454,2)
- ;;=^5007858
- ;;^UTILITY(U,$J,358.3,43455,0)
- ;;=I82.413^^167^2078^2
- ;;^UTILITY(U,$J,358.3,43455,1,0)
+ ;;^UTILITY(U,$J,358.3,40884,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40884,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,40884,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,40885,0)
+ ;;=V00.812D^^152^2019^143
+ ;;^UTILITY(U,$J,358.3,40885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43455,1,3,0)
- ;;=3^AC Embol & Thromb Bil Fem Vein
- ;;^UTILITY(U,$J,358.3,43455,1,4,0)
- ;;=4^I82.413
- ;;^UTILITY(U,$J,358.3,43455,2)
- ;;=^5007859
- ;;^UTILITY(U,$J,358.3,43456,0)
- ;;=I82.421^^167^2078^23
- ;;^UTILITY(U,$J,358.3,43456,1,0)
+ ;;^UTILITY(U,$J,358.3,40885,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40885,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,40885,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,40886,0)
+ ;;=V00.818A^^152^2019^140
+ ;;^UTILITY(U,$J,358.3,40886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43456,1,3,0)
- ;;=3^AC Embol & Thromb Rt Iliac Vein
- ;;^UTILITY(U,$J,358.3,43456,1,4,0)
- ;;=4^I82.421
- ;;^UTILITY(U,$J,358.3,43456,2)
- ;;=^5007861
- ;;^UTILITY(U,$J,358.3,43457,0)
- ;;=I82.422^^167^2078^13
- ;;^UTILITY(U,$J,358.3,43457,1,0)
+ ;;^UTILITY(U,$J,358.3,40886,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40886,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,40886,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,40887,0)
+ ;;=V00.818D^^152^2019^141
+ ;;^UTILITY(U,$J,358.3,40887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43457,1,3,0)
- ;;=3^AC Embol & Thromb Lt Iliac Vein
- ;;^UTILITY(U,$J,358.3,43457,1,4,0)
- ;;=4^I82.422
- ;;^UTILITY(U,$J,358.3,43457,2)
- ;;=^5007862
- ;;^UTILITY(U,$J,358.3,43458,0)
- ;;=I82.423^^167^2078^3
- ;;^UTILITY(U,$J,358.3,43458,1,0)
+ ;;^UTILITY(U,$J,358.3,40887,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40887,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,40887,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,40888,0)
+ ;;=V00.831A^^152^2019^48
+ ;;^UTILITY(U,$J,358.3,40888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43458,1,3,0)
- ;;=3^AC Embol & Thromb Bil Iliac Vein
- ;;^UTILITY(U,$J,358.3,43458,1,4,0)
- ;;=4^I82.423
- ;;^UTILITY(U,$J,358.3,43458,2)
- ;;=^5007863
- ;;^UTILITY(U,$J,358.3,43459,0)
- ;;=I82.431^^167^2078^25
- ;;^UTILITY(U,$J,358.3,43459,1,0)
+ ;;^UTILITY(U,$J,358.3,40888,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40888,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,40888,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,40889,0)
+ ;;=V00.831D^^152^2019^49
+ ;;^UTILITY(U,$J,358.3,40889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43459,1,3,0)
- ;;=3^AC Embol & Thromb Rt Pop Vein
- ;;^UTILITY(U,$J,358.3,43459,1,4,0)
- ;;=4^I82.431
- ;;^UTILITY(U,$J,358.3,43459,2)
- ;;=^5007865
- ;;^UTILITY(U,$J,358.3,43460,0)
- ;;=I82.432^^167^2078^15
- ;;^UTILITY(U,$J,358.3,43460,1,0)
+ ;;^UTILITY(U,$J,358.3,40889,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40889,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,40889,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,40890,0)
+ ;;=V00.832A^^152^2019^100
+ ;;^UTILITY(U,$J,358.3,40890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43460,1,3,0)
- ;;=3^AC Embol & Thromb Lt Pop Vein
- ;;^UTILITY(U,$J,358.3,43460,1,4,0)
- ;;=4^I82.432
- ;;^UTILITY(U,$J,358.3,43460,2)
- ;;=^5007866
- ;;^UTILITY(U,$J,358.3,43461,0)
- ;;=I82.433^^167^2078^5
- ;;^UTILITY(U,$J,358.3,43461,1,0)
+ ;;^UTILITY(U,$J,358.3,40890,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40890,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,40890,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,40891,0)
+ ;;=V00.832D^^152^2019^101
+ ;;^UTILITY(U,$J,358.3,40891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43461,1,3,0)
- ;;=3^AC Embol & Thromb Bil Pop Vein
- ;;^UTILITY(U,$J,358.3,43461,1,4,0)
- ;;=4^I82.433
- ;;^UTILITY(U,$J,358.3,43461,2)
- ;;=^5007867
- ;;^UTILITY(U,$J,358.3,43462,0)
- ;;=I82.4Y1^^167^2078^26
- ;;^UTILITY(U,$J,358.3,43462,1,0)
+ ;;^UTILITY(U,$J,358.3,40891,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40891,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,40891,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,40892,0)
+ ;;=V00.838A^^152^2019^98
+ ;;^UTILITY(U,$J,358.3,40892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43462,1,3,0)
- ;;=3^AC Embol & Thromb Rt Prox LE Deep Veins
- ;;^UTILITY(U,$J,358.3,43462,1,4,0)
- ;;=4^I82.4Y1
- ;;^UTILITY(U,$J,358.3,43462,2)
- ;;=^5007877
- ;;^UTILITY(U,$J,358.3,43463,0)
- ;;=I82.4Y2^^167^2078^16
- ;;^UTILITY(U,$J,358.3,43463,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43463,1,3,0)
- ;;=3^AC Embol & Thromb Lt Prox LE Deep Veins
- ;;^UTILITY(U,$J,358.3,43463,1,4,0)
- ;;=4^I82.4Y2
- ;;^UTILITY(U,$J,358.3,43463,2)
- ;;=^5007878
- ;;^UTILITY(U,$J,358.3,43464,0)
- ;;=I82.4Y3^^167^2078^6
- ;;^UTILITY(U,$J,358.3,43464,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43464,1,3,0)
- ;;=3^AC Embol & Thromb Bil Prox LE Deep Veins
+ ;;^UTILITY(U,$J,358.3,40892,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40892,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,40892,2)
+ ;;=^5055961

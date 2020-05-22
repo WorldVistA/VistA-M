@@ -1,128 +1,128 @@
-IBDEI37K ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI37K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53894,1,0)
+ ;;^UTILITY(U,$J,358.3,51221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53894,1,3,0)
- ;;=3^Enterocolitis due to Clostridium difficile
- ;;^UTILITY(U,$J,358.3,53894,1,4,0)
- ;;=4^A04.7
- ;;^UTILITY(U,$J,358.3,53894,2)
- ;;=^5000029
- ;;^UTILITY(U,$J,358.3,53895,0)
- ;;=R73.09^^253^2727^3
- ;;^UTILITY(U,$J,358.3,53895,1,0)
+ ;;^UTILITY(U,$J,358.3,51221,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,51221,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,51221,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,51222,0)
+ ;;=M70.22^^193^2503^67
+ ;;^UTILITY(U,$J,358.3,51222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53895,1,3,0)
- ;;=3^Abnormal glucose NEC
- ;;^UTILITY(U,$J,358.3,53895,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,53895,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,53896,0)
- ;;=R80.9^^253^2727^39
- ;;^UTILITY(U,$J,358.3,53896,1,0)
+ ;;^UTILITY(U,$J,358.3,51222,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,51222,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,51222,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,51223,0)
+ ;;=M71.161^^193^2503^50
+ ;;^UTILITY(U,$J,358.3,51223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53896,1,3,0)
- ;;=3^Proteinuria, unspecified
- ;;^UTILITY(U,$J,358.3,53896,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,53896,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,53897,0)
- ;;=R94.5^^253^2727^4
- ;;^UTILITY(U,$J,358.3,53897,1,0)
+ ;;^UTILITY(U,$J,358.3,51223,1,3,0)
+ ;;=3^Infective Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,51223,1,4,0)
+ ;;=4^M71.161
+ ;;^UTILITY(U,$J,358.3,51223,2)
+ ;;=^5013139
+ ;;^UTILITY(U,$J,358.3,51224,0)
+ ;;=M71.162^^193^2503^49
+ ;;^UTILITY(U,$J,358.3,51224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53897,1,3,0)
- ;;=3^Abnormal results of liver function studies
- ;;^UTILITY(U,$J,358.3,53897,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,53897,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,53898,0)
- ;;=Z55.9^^253^2727^36
- ;;^UTILITY(U,$J,358.3,53898,1,0)
+ ;;^UTILITY(U,$J,358.3,51224,1,3,0)
+ ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,51224,1,4,0)
+ ;;=4^M71.162
+ ;;^UTILITY(U,$J,358.3,51224,2)
+ ;;=^5013140
+ ;;^UTILITY(U,$J,358.3,51225,0)
+ ;;=M72.0^^193^2503^122
+ ;;^UTILITY(U,$J,358.3,51225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53898,1,3,0)
- ;;=3^Problems related to education and literacy, unspecified
- ;;^UTILITY(U,$J,358.3,53898,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,53898,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,53899,0)
- ;;=Z76.82^^253^2727^10
- ;;^UTILITY(U,$J,358.3,53899,1,0)
+ ;;^UTILITY(U,$J,358.3,51225,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,51225,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,51225,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,51226,0)
+ ;;=M75.111^^193^2503^167
+ ;;^UTILITY(U,$J,358.3,51226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53899,1,3,0)
- ;;=3^Awaiting organ transplant status
- ;;^UTILITY(U,$J,358.3,53899,1,4,0)
- ;;=4^Z76.82
- ;;^UTILITY(U,$J,358.3,53899,2)
- ;;=^331582
- ;;^UTILITY(U,$J,358.3,53900,0)
- ;;=T81.30XA^^253^2728^25
- ;;^UTILITY(U,$J,358.3,53900,1,0)
+ ;;^UTILITY(U,$J,358.3,51226,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,51226,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,51226,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,51227,0)
+ ;;=M75.112^^193^2503^166
+ ;;^UTILITY(U,$J,358.3,51227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53900,1,3,0)
- ;;=3^Disruption of wound, unspecified, initial encounter
- ;;^UTILITY(U,$J,358.3,53900,1,4,0)
- ;;=4^T81.30XA
- ;;^UTILITY(U,$J,358.3,53900,2)
- ;;=^5054467
- ;;^UTILITY(U,$J,358.3,53901,0)
- ;;=T81.30XD^^253^2728^27
- ;;^UTILITY(U,$J,358.3,53901,1,0)
+ ;;^UTILITY(U,$J,358.3,51227,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,51227,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,51227,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,51228,0)
+ ;;=M75.51^^193^2503^10
+ ;;^UTILITY(U,$J,358.3,51228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53901,1,3,0)
- ;;=3^Disruption of wound, unspecified, subsequent encounter
- ;;^UTILITY(U,$J,358.3,53901,1,4,0)
- ;;=4^T81.30XD
- ;;^UTILITY(U,$J,358.3,53901,2)
- ;;=^5054468
- ;;^UTILITY(U,$J,358.3,53902,0)
- ;;=T81.30XS^^253^2728^26
- ;;^UTILITY(U,$J,358.3,53902,1,0)
+ ;;^UTILITY(U,$J,358.3,51228,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,51228,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,51228,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,51229,0)
+ ;;=M75.52^^193^2503^9
+ ;;^UTILITY(U,$J,358.3,51229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53902,1,3,0)
- ;;=3^Disruption of wound, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,53902,1,4,0)
- ;;=4^T81.30XS
- ;;^UTILITY(U,$J,358.3,53902,2)
- ;;=^5054469
- ;;^UTILITY(U,$J,358.3,53903,0)
- ;;=T81.31XA^^253^2728^16
- ;;^UTILITY(U,$J,358.3,53903,1,0)
+ ;;^UTILITY(U,$J,358.3,51229,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,51229,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,51229,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,51230,0)
+ ;;=M77.11^^193^2503^58
+ ;;^UTILITY(U,$J,358.3,51230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53903,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, init
- ;;^UTILITY(U,$J,358.3,53903,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,53903,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,53904,0)
- ;;=T81.31XD^^253^2728^17
- ;;^UTILITY(U,$J,358.3,53904,1,0)
+ ;;^UTILITY(U,$J,358.3,51230,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,51230,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,51230,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,51231,0)
+ ;;=M77.12^^193^2503^57
+ ;;^UTILITY(U,$J,358.3,51231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53904,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, subs
- ;;^UTILITY(U,$J,358.3,53904,1,4,0)
- ;;=4^T81.31XD
- ;;^UTILITY(U,$J,358.3,53904,2)
- ;;=^5054471
- ;;^UTILITY(U,$J,358.3,53905,0)
- ;;=T81.31XS^^253^2728^18
- ;;^UTILITY(U,$J,358.3,53905,1,0)
+ ;;^UTILITY(U,$J,358.3,51231,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,51231,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,51231,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,51232,0)
+ ;;=M79.7^^193^2503^40
+ ;;^UTILITY(U,$J,358.3,51232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53905,1,3,0)
- ;;=3^Disruption of external surgical wound, NEC, sequela
- ;;^UTILITY(U,$J,358.3,53905,1,4,0)
- ;;=4^T81.31XS
- ;;^UTILITY(U,$J,358.3,53905,2)
- ;;=^5054472
- ;;^UTILITY(U,$J,358.3,53906,0)
- ;;=T81.32XA^^253^2728^19
- ;;^UTILITY(U,$J,358.3,53906,1,0)
+ ;;^UTILITY(U,$J,358.3,51232,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,51232,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,51232,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,51233,0)
+ ;;=M80.08XA^^193^2503^1
+ ;;^UTILITY(U,$J,358.3,51233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53906,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, init
+ ;;^UTILITY(U,$J,358.3,51233,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr

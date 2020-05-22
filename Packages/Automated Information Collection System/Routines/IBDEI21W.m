@@ -1,128 +1,128 @@
-IBDEI21W ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI21W ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34791,1,0)
+ ;;^UTILITY(U,$J,358.3,32733,0)
+ ;;=H21.41^^128^1667^48
+ ;;^UTILITY(U,$J,358.3,32733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34791,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,34791,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,34791,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,34792,0)
- ;;=R90.89^^131^1692^13
- ;;^UTILITY(U,$J,358.3,34792,1,0)
+ ;;^UTILITY(U,$J,358.3,32733,1,3,0)
+ ;;=3^Pupillary Membranes,OD
+ ;;^UTILITY(U,$J,358.3,32733,1,4,0)
+ ;;=4^H21.41
+ ;;^UTILITY(U,$J,358.3,32733,2)
+ ;;=^5005232
+ ;;^UTILITY(U,$J,358.3,32734,0)
+ ;;=H21.552^^128^1667^65
+ ;;^UTILITY(U,$J,358.3,32734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34792,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,34792,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,34792,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,34793,0)
- ;;=R91.8^^131^1692^18
- ;;^UTILITY(U,$J,358.3,34793,1,0)
+ ;;^UTILITY(U,$J,358.3,32734,1,3,0)
+ ;;=3^Recession of Chamber Angle,OS
+ ;;^UTILITY(U,$J,358.3,32734,1,4,0)
+ ;;=4^H21.552
+ ;;^UTILITY(U,$J,358.3,32734,2)
+ ;;=^5005256
+ ;;^UTILITY(U,$J,358.3,32735,0)
+ ;;=H21.551^^128^1667^64
+ ;;^UTILITY(U,$J,358.3,32735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34793,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,34793,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,34793,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,34794,0)
- ;;=R92.0^^131^1692^117
- ;;^UTILITY(U,$J,358.3,34794,1,0)
+ ;;^UTILITY(U,$J,358.3,32735,1,3,0)
+ ;;=3^Recession of Chamber Angle,OD
+ ;;^UTILITY(U,$J,358.3,32735,1,4,0)
+ ;;=4^H21.551
+ ;;^UTILITY(U,$J,358.3,32735,2)
+ ;;=^5005255
+ ;;^UTILITY(U,$J,358.3,32736,0)
+ ;;=H18.832^^128^1667^28
+ ;;^UTILITY(U,$J,358.3,32736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34794,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,34794,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,34794,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,34795,0)
- ;;=R92.1^^131^1692^116
- ;;^UTILITY(U,$J,358.3,34795,1,0)
+ ;;^UTILITY(U,$J,358.3,32736,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,OS
+ ;;^UTILITY(U,$J,358.3,32736,1,4,0)
+ ;;=4^H18.832
+ ;;^UTILITY(U,$J,358.3,32736,2)
+ ;;=^5005127
+ ;;^UTILITY(U,$J,358.3,32737,0)
+ ;;=H18.831^^128^1667^27
+ ;;^UTILITY(U,$J,358.3,32737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34795,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,34795,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,34795,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,34796,0)
- ;;=R92.2^^131^1692^91
- ;;^UTILITY(U,$J,358.3,34796,1,0)
+ ;;^UTILITY(U,$J,358.3,32737,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,OD
+ ;;^UTILITY(U,$J,358.3,32737,1,4,0)
+ ;;=4^H18.831
+ ;;^UTILITY(U,$J,358.3,32737,2)
+ ;;=^5005126
+ ;;^UTILITY(U,$J,358.3,32738,0)
+ ;;=H16.102^^128^1667^2
+ ;;^UTILITY(U,$J,358.3,32738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34796,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,34796,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,34796,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,34797,0)
- ;;=R93.0^^131^1692^10
- ;;^UTILITY(U,$J,358.3,34797,1,0)
+ ;;^UTILITY(U,$J,358.3,32738,1,3,0)
+ ;;=3^Superficial Keratitis,Unspec,OS
+ ;;^UTILITY(U,$J,358.3,32738,1,4,0)
+ ;;=4^H16.102
+ ;;^UTILITY(U,$J,358.3,32738,2)
+ ;;=^5004899
+ ;;^UTILITY(U,$J,358.3,32739,0)
+ ;;=H16.101^^128^1667^1
+ ;;^UTILITY(U,$J,358.3,32739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34797,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,34797,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,34797,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,34798,0)
- ;;=R93.2^^131^1692^9
- ;;^UTILITY(U,$J,358.3,34798,1,0)
+ ;;^UTILITY(U,$J,358.3,32739,1,3,0)
+ ;;=3^Superficial Keratitis,Unspec,OD
+ ;;^UTILITY(U,$J,358.3,32739,1,4,0)
+ ;;=4^H16.101
+ ;;^UTILITY(U,$J,358.3,32739,2)
+ ;;=^5004898
+ ;;^UTILITY(U,$J,358.3,32740,0)
+ ;;=H16.103^^128^1667^3
+ ;;^UTILITY(U,$J,358.3,32740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34798,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,34798,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,34798,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,34799,0)
- ;;=R93.3^^131^1692^7
- ;;^UTILITY(U,$J,358.3,34799,1,0)
+ ;;^UTILITY(U,$J,358.3,32740,1,3,0)
+ ;;=3^Superficial Keratitis,Unspec,OU
+ ;;^UTILITY(U,$J,358.3,32740,1,4,0)
+ ;;=4^H16.103
+ ;;^UTILITY(U,$J,358.3,32740,2)
+ ;;=^5004900
+ ;;^UTILITY(U,$J,358.3,32741,0)
+ ;;=H17.9^^128^1667^26
+ ;;^UTILITY(U,$J,358.3,32741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34799,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,34799,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,34799,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,34800,0)
- ;;=R93.4^^131^1692^11
- ;;^UTILITY(U,$J,358.3,34800,1,0)
+ ;;^UTILITY(U,$J,358.3,32741,1,3,0)
+ ;;=3^Corneal Scar & Opacity,Unspec
+ ;;^UTILITY(U,$J,358.3,32741,1,4,0)
+ ;;=4^H17.9
+ ;;^UTILITY(U,$J,358.3,32741,2)
+ ;;=^5005003
+ ;;^UTILITY(U,$J,358.3,32742,0)
+ ;;=H21.9^^128^1667^73
+ ;;^UTILITY(U,$J,358.3,32742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34800,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,34800,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,34800,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,34801,0)
- ;;=R93.5^^131^1692^6
- ;;^UTILITY(U,$J,358.3,34801,1,0)
+ ;;^UTILITY(U,$J,358.3,32742,1,3,0)
+ ;;=3^Iris & Ciliary Body Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32742,1,4,0)
+ ;;=4^H21.9
+ ;;^UTILITY(U,$J,358.3,32742,2)
+ ;;=^123847
+ ;;^UTILITY(U,$J,358.3,32743,0)
+ ;;=H40.10X4^^128^1668^5
+ ;;^UTILITY(U,$J,358.3,32743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34801,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,34801,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,34801,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,34802,0)
- ;;=R93.6^^131^1692^8
- ;;^UTILITY(U,$J,358.3,34802,1,0)
+ ;;^UTILITY(U,$J,358.3,32743,1,3,0)
+ ;;=3^OAG,Unspec,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,32743,1,4,0)
+ ;;=4^H40.10X4
+ ;;^UTILITY(U,$J,358.3,32743,2)
+ ;;=^5005752
+ ;;^UTILITY(U,$J,358.3,32744,0)
+ ;;=H40.10X1^^128^1668^2
+ ;;^UTILITY(U,$J,358.3,32744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34802,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,34802,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,34802,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,34803,0)
- ;;=R94.4^^131^1692^16
- ;;^UTILITY(U,$J,358.3,34803,1,0)
+ ;;^UTILITY(U,$J,358.3,32744,1,3,0)
+ ;;=3^OAG,Unspec,Mild Stage
+ ;;^UTILITY(U,$J,358.3,32744,1,4,0)
+ ;;=4^H40.10X1
+ ;;^UTILITY(U,$J,358.3,32744,2)
+ ;;=^5005749
+ ;;^UTILITY(U,$J,358.3,32745,0)
+ ;;=H40.10X2^^128^1668^3
+ ;;^UTILITY(U,$J,358.3,32745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34803,1,3,0)
- ;;=3^Abnormal Kidney Function Studies

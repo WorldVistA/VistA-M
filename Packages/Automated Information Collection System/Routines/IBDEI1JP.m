@@ -1,126 +1,124 @@
-IBDEI1JP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26219,2)
- ;;=^5003185
- ;;^UTILITY(U,$J,358.3,26220,0)
- ;;=F12.988^^98^1237^5
- ;;^UTILITY(U,$J,358.3,26220,1,0)
+ ;;^UTILITY(U,$J,358.3,24704,0)
+ ;;=G44.301^^107^1209^6
+ ;;^UTILITY(U,$J,358.3,24704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26220,1,3,0)
- ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26220,1,4,0)
- ;;=4^F12.988
- ;;^UTILITY(U,$J,358.3,26220,2)
- ;;=^5003187
- ;;^UTILITY(U,$J,358.3,26221,0)
- ;;=F12.929^^98^1237^13
- ;;^UTILITY(U,$J,358.3,26221,1,0)
+ ;;^UTILITY(U,$J,358.3,24704,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,24704,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,24704,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,24705,0)
+ ;;=G44.209^^107^1209^8
+ ;;^UTILITY(U,$J,358.3,24705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26221,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26221,1,4,0)
- ;;=4^F12.929
- ;;^UTILITY(U,$J,358.3,26221,2)
- ;;=^5003182
- ;;^UTILITY(U,$J,358.3,26222,0)
- ;;=F12.99^^98^1237^15
- ;;^UTILITY(U,$J,358.3,26222,1,0)
+ ;;^UTILITY(U,$J,358.3,24705,1,3,0)
+ ;;=3^Tension-Type Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,24705,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,24705,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,24706,0)
+ ;;=I30.0^^107^1210^5
+ ;;^UTILITY(U,$J,358.3,24706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26222,1,3,0)
- ;;=3^Cannabis Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26222,1,4,0)
- ;;=4^F12.99
- ;;^UTILITY(U,$J,358.3,26222,2)
- ;;=^5003188
- ;;^UTILITY(U,$J,358.3,26223,0)
- ;;=F16.10^^98^1238^17
- ;;^UTILITY(U,$J,358.3,26223,1,0)
+ ;;^UTILITY(U,$J,358.3,24706,1,3,0)
+ ;;=3^Idiopathic Pericarditis,Acute Nonspec
+ ;;^UTILITY(U,$J,358.3,24706,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,24706,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,24707,0)
+ ;;=I34.8^^107^1210^6
+ ;;^UTILITY(U,$J,358.3,24707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26223,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,26223,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,26223,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,26224,0)
- ;;=F16.20^^98^1238^18
- ;;^UTILITY(U,$J,358.3,26224,1,0)
+ ;;^UTILITY(U,$J,358.3,24707,1,3,0)
+ ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,24707,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,24707,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,24708,0)
+ ;;=I34.0^^107^1210^13
+ ;;^UTILITY(U,$J,358.3,24708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26224,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,26224,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,26224,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,26225,0)
- ;;=F16.21^^98^1238^19
- ;;^UTILITY(U,$J,358.3,26225,1,0)
+ ;;^UTILITY(U,$J,358.3,24708,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,24708,1,4,0)
+ ;;=4^I34.0
+ ;;^UTILITY(U,$J,358.3,24708,2)
+ ;;=^5007169
+ ;;^UTILITY(U,$J,358.3,24709,0)
+ ;;=I34.9^^107^1210^12
+ ;;^UTILITY(U,$J,358.3,24709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26225,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,26225,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,26225,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,26226,0)
- ;;=F16.983^^98^1238^16
- ;;^UTILITY(U,$J,358.3,26226,1,0)
+ ;;^UTILITY(U,$J,358.3,24709,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24709,1,4,0)
+ ;;=4^I34.9
+ ;;^UTILITY(U,$J,358.3,24709,2)
+ ;;=^5007173
+ ;;^UTILITY(U,$J,358.3,24710,0)
+ ;;=I34.2^^107^1210^7
+ ;;^UTILITY(U,$J,358.3,24710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26226,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,26226,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,26226,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,26227,0)
- ;;=F16.121^^98^1238^10
- ;;^UTILITY(U,$J,358.3,26227,1,0)
+ ;;^UTILITY(U,$J,358.3,24710,1,3,0)
+ ;;=3^Nonrhematic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,24710,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,24710,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,24711,0)
+ ;;=I35.0^^107^1210^10
+ ;;^UTILITY(U,$J,358.3,24711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26227,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26227,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,26227,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,26228,0)
- ;;=F16.221^^98^1238^11
- ;;^UTILITY(U,$J,358.3,26228,1,0)
+ ;;^UTILITY(U,$J,358.3,24711,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,24711,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,24711,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,24712,0)
+ ;;=I35.1^^107^1210^9
+ ;;^UTILITY(U,$J,358.3,24712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26228,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26228,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,26228,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,26229,0)
- ;;=F16.921^^98^1238^12
- ;;^UTILITY(U,$J,358.3,26229,1,0)
+ ;;^UTILITY(U,$J,358.3,24712,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,24712,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,24712,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,24713,0)
+ ;;=I35.2^^107^1210^11
+ ;;^UTILITY(U,$J,358.3,24713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26229,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26229,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,26229,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,26230,0)
- ;;=F16.129^^98^1238^13
- ;;^UTILITY(U,$J,358.3,26230,1,0)
+ ;;^UTILITY(U,$J,358.3,24713,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,24713,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,24713,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,24714,0)
+ ;;=I35.9^^107^1210^8
+ ;;^UTILITY(U,$J,358.3,24714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26230,1,3,0)
- ;;=3^Hallucinogen Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26230,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,26230,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,26231,0)
- ;;=F16.229^^98^1238^14
- ;;^UTILITY(U,$J,358.3,26231,1,0)
+ ;;^UTILITY(U,$J,358.3,24714,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24714,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,24714,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,24715,0)
+ ;;=I38.^^107^1210^4
+ ;;^UTILITY(U,$J,358.3,24715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26231,1,3,0)
- ;;=3^Hallucinogen Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26231,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,26231,2)
- ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,24715,1,3,0)
+ ;;=3^Endocarditis,Valve Unspec
+ ;;^UTILITY(U,$J,358.3,24715,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,24715,2)
+ ;;=^40327

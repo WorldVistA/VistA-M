@@ -1,136 +1,122 @@
-IBDEI1B4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1B4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22220,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,22220,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,22220,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,22221,0)
- ;;=N47.3^^87^977^24
- ;;^UTILITY(U,$J,358.3,22221,1,0)
+ ;;^UTILITY(U,$J,358.3,20895,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,20895,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,20896,0)
+ ;;=Z62.812^^95^1032^7
+ ;;^UTILITY(U,$J,358.3,20896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22221,1,3,0)
- ;;=3^Deficient Foreskin
- ;;^UTILITY(U,$J,358.3,22221,1,4,0)
- ;;=4^N47.3
- ;;^UTILITY(U,$J,358.3,22221,2)
- ;;=^5015726
- ;;^UTILITY(U,$J,358.3,22222,0)
- ;;=N47.5^^87^977^1
- ;;^UTILITY(U,$J,358.3,22222,1,0)
+ ;;^UTILITY(U,$J,358.3,20896,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,20896,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,20896,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,20897,0)
+ ;;=Z62.810^^95^1032^8
+ ;;^UTILITY(U,$J,358.3,20897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22222,1,3,0)
- ;;=3^Adhesions Prepuce & Glans Penis
- ;;^UTILITY(U,$J,358.3,22222,1,4,0)
- ;;=4^N47.5
- ;;^UTILITY(U,$J,358.3,22222,2)
- ;;=^5015728
- ;;^UTILITY(U,$J,358.3,22223,0)
- ;;=N47.4^^87^977^19
- ;;^UTILITY(U,$J,358.3,22223,1,0)
+ ;;^UTILITY(U,$J,358.3,20897,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical Abuse
+ ;;^UTILITY(U,$J,358.3,20897,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,20897,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,20898,0)
+ ;;=Z91.83^^95^1032^23
+ ;;^UTILITY(U,$J,358.3,20898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22223,1,3,0)
- ;;=3^Cyst of Prepuce,Benign
- ;;^UTILITY(U,$J,358.3,22223,1,4,0)
- ;;=4^N47.4
- ;;^UTILITY(U,$J,358.3,22223,2)
- ;;=^5015727
- ;;^UTILITY(U,$J,358.3,22224,0)
- ;;=N47.8^^87^977^25
- ;;^UTILITY(U,$J,358.3,22224,1,0)
+ ;;^UTILITY(U,$J,358.3,20898,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,20898,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,20898,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,20899,0)
+ ;;=Z62.810^^95^1032^10
+ ;;^UTILITY(U,$J,358.3,20899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22224,1,3,0)
- ;;=3^Disorders of Prepuce
- ;;^UTILITY(U,$J,358.3,22224,1,4,0)
- ;;=4^N47.8
- ;;^UTILITY(U,$J,358.3,22224,2)
- ;;=^5015730
- ;;^UTILITY(U,$J,358.3,22225,0)
- ;;=N47.7^^87^977^58
- ;;^UTILITY(U,$J,358.3,22225,1,0)
+ ;;^UTILITY(U,$J,358.3,20899,1,3,0)
+ ;;=3^Personal Hx of Childhood Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,20899,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,20899,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,20900,0)
+ ;;=Z91.412^^95^1032^15
+ ;;^UTILITY(U,$J,358.3,20900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22225,1,3,0)
- ;;=3^Inflammatory Diseases of Prepuce
- ;;^UTILITY(U,$J,358.3,22225,1,4,0)
- ;;=4^N47.7
- ;;^UTILITY(U,$J,358.3,22225,2)
- ;;=^5015729
- ;;^UTILITY(U,$J,358.3,22226,0)
- ;;=N47.6^^87^977^3
- ;;^UTILITY(U,$J,358.3,22226,1,0)
+ ;;^UTILITY(U,$J,358.3,20900,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,20900,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,20900,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,20901,0)
+ ;;=Z91.411^^95^1032^16
+ ;;^UTILITY(U,$J,358.3,20901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22226,1,3,0)
- ;;=3^Balanoposthitis
- ;;^UTILITY(U,$J,358.3,22226,1,4,0)
- ;;=4^N47.6
- ;;^UTILITY(U,$J,358.3,22226,2)
- ;;=^12530
- ;;^UTILITY(U,$J,358.3,22227,0)
- ;;=N48.1^^87^977^2
- ;;^UTILITY(U,$J,358.3,22227,1,0)
+ ;;^UTILITY(U,$J,358.3,20901,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,20901,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,20901,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,20902,0)
+ ;;=Z91.410^^95^1032^17
+ ;;^UTILITY(U,$J,358.3,20902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22227,1,3,0)
- ;;=3^Balanitis
- ;;^UTILITY(U,$J,358.3,22227,1,4,0)
- ;;=4^N48.1
- ;;^UTILITY(U,$J,358.3,22227,2)
- ;;=^12525
- ;;^UTILITY(U,$J,358.3,22228,0)
- ;;=N52.34^^87^977^38
- ;;^UTILITY(U,$J,358.3,22228,1,0)
+ ;;^UTILITY(U,$J,358.3,20902,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Violence,Physical
+ ;;^UTILITY(U,$J,358.3,20902,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,20902,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,20903,0)
+ ;;=Z91.410^^95^1032^18
+ ;;^UTILITY(U,$J,358.3,20903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22228,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,22228,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,22228,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,22229,0)
- ;;=N52.39^^87^977^40
- ;;^UTILITY(U,$J,358.3,22229,1,0)
+ ;;^UTILITY(U,$J,358.3,20903,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,20903,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,20903,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,20904,0)
+ ;;=Z75.3^^95^1032^21
+ ;;^UTILITY(U,$J,358.3,20904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22229,1,3,0)
- ;;=3^Erectile Dysfunction Post-Surgical
- ;;^UTILITY(U,$J,358.3,22229,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,22229,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,22230,0)
- ;;=N52.33^^87^977^39
- ;;^UTILITY(U,$J,358.3,22230,1,0)
+ ;;^UTILITY(U,$J,358.3,20904,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health Care Facilities
+ ;;^UTILITY(U,$J,358.3,20904,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,20904,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,20905,0)
+ ;;=Z75.4^^95^1032^22
+ ;;^UTILITY(U,$J,358.3,20905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22230,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,22230,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,22230,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,22231,0)
- ;;=N52.32^^87^977^36
- ;;^UTILITY(U,$J,358.3,22231,1,0)
+ ;;^UTILITY(U,$J,358.3,20905,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
+ ;;^UTILITY(U,$J,358.3,20905,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,20905,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,20906,0)
+ ;;=Z91.42^^95^1032^11
+ ;;^UTILITY(U,$J,358.3,20906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22231,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,22231,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,22231,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,22232,0)
- ;;=N52.31^^87^977^37
- ;;^UTILITY(U,$J,358.3,22232,1,0)
+ ;;^UTILITY(U,$J,358.3,20906,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,20906,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,20906,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,20907,0)
+ ;;=Z70.9^^95^1033^2
+ ;;^UTILITY(U,$J,358.3,20907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22232,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,22232,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,22232,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,22233,0)
- ;;=N52.2^^87^977^43
- ;;^UTILITY(U,$J,358.3,22233,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22233,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced

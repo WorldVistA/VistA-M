@@ -1,132 +1,128 @@
-IBDEI26S ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37095,1,4,0)
- ;;=4^M49.80
- ;;^UTILITY(U,$J,358.3,37095,2)
- ;;=^5012205
- ;;^UTILITY(U,$J,358.3,37096,0)
- ;;=M49.81^^140^1787^250
- ;;^UTILITY(U,$J,358.3,37096,1,0)
+ ;;^UTILITY(U,$J,358.3,34922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37096,1,3,0)
- ;;=3^Spondylopathy Occipt-Atlan-Ax Region
- ;;^UTILITY(U,$J,358.3,37096,1,4,0)
- ;;=4^M49.81
- ;;^UTILITY(U,$J,358.3,37096,2)
- ;;=^5012206
- ;;^UTILITY(U,$J,358.3,37097,0)
- ;;=M49.82^^140^1787^246
- ;;^UTILITY(U,$J,358.3,37097,1,0)
+ ;;^UTILITY(U,$J,358.3,34922,1,3,0)
+ ;;=3^Acquired Absence,Lt Hip Joint
+ ;;^UTILITY(U,$J,358.3,34922,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,34922,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,34923,0)
+ ;;=Z89.612^^137^1789^9
+ ;;^UTILITY(U,$J,358.3,34923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37097,1,3,0)
- ;;=3^Spondylopathy Cervical Region
- ;;^UTILITY(U,$J,358.3,37097,1,4,0)
- ;;=4^M49.82
- ;;^UTILITY(U,$J,358.3,37097,2)
- ;;=^5012207
- ;;^UTILITY(U,$J,358.3,37098,0)
- ;;=M49.83^^140^1787^247
- ;;^UTILITY(U,$J,358.3,37098,1,0)
+ ;;^UTILITY(U,$J,358.3,34923,1,3,0)
+ ;;=3^Acquired Absence,Lt Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,34923,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,34923,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,34924,0)
+ ;;=Z89.512^^137^1789^10
+ ;;^UTILITY(U,$J,358.3,34924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37098,1,3,0)
- ;;=3^Spondylopathy Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,37098,1,4,0)
- ;;=4^M49.83
- ;;^UTILITY(U,$J,358.3,37098,2)
- ;;=^5012208
- ;;^UTILITY(U,$J,358.3,37099,0)
- ;;=M49.84^^140^1787^253
- ;;^UTILITY(U,$J,358.3,37099,1,0)
+ ;;^UTILITY(U,$J,358.3,34924,1,3,0)
+ ;;=3^Acquired Absence,Lt Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,34924,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,34924,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,34925,0)
+ ;;=Z89.232^^137^1789^11
+ ;;^UTILITY(U,$J,358.3,34925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37099,1,3,0)
- ;;=3^Spondylopathy Thoracic Region
- ;;^UTILITY(U,$J,358.3,37099,1,4,0)
- ;;=4^M49.84
- ;;^UTILITY(U,$J,358.3,37099,2)
- ;;=^5012209
- ;;^UTILITY(U,$J,358.3,37100,0)
- ;;=M49.85^^140^1787^254
- ;;^UTILITY(U,$J,358.3,37100,1,0)
+ ;;^UTILITY(U,$J,358.3,34925,1,3,0)
+ ;;=3^Acquired Absence,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,34925,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,34925,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,34926,0)
+ ;;=Z89.012^^137^1789^12
+ ;;^UTILITY(U,$J,358.3,34926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37100,1,3,0)
- ;;=3^Spondylopathy Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,37100,1,4,0)
- ;;=4^M49.85
- ;;^UTILITY(U,$J,358.3,37100,2)
- ;;=^5012210
- ;;^UTILITY(U,$J,358.3,37101,0)
- ;;=M49.86^^140^1787^248
- ;;^UTILITY(U,$J,358.3,37101,1,0)
+ ;;^UTILITY(U,$J,358.3,34926,1,3,0)
+ ;;=3^Acquired Absence,Lt Thumb
+ ;;^UTILITY(U,$J,358.3,34926,1,4,0)
+ ;;=4^Z89.012
+ ;;^UTILITY(U,$J,358.3,34926,2)
+ ;;=^5063532
+ ;;^UTILITY(U,$J,358.3,34927,0)
+ ;;=Z89.222^^137^1789^2
+ ;;^UTILITY(U,$J,358.3,34927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37101,1,3,0)
- ;;=3^Spondylopathy Lumbar Region
- ;;^UTILITY(U,$J,358.3,37101,1,4,0)
- ;;=4^M49.86
- ;;^UTILITY(U,$J,358.3,37101,2)
- ;;=^5012211
- ;;^UTILITY(U,$J,358.3,37102,0)
- ;;=M49.87^^140^1787^249
- ;;^UTILITY(U,$J,358.3,37102,1,0)
+ ;;^UTILITY(U,$J,358.3,34927,1,3,0)
+ ;;=3^Acquired Absence,Lt Arm Above Elbow
+ ;;^UTILITY(U,$J,358.3,34927,1,4,0)
+ ;;=4^Z89.222
+ ;;^UTILITY(U,$J,358.3,34927,2)
+ ;;=^5063549
+ ;;^UTILITY(U,$J,358.3,34928,0)
+ ;;=Z89.212^^137^1789^3
+ ;;^UTILITY(U,$J,358.3,34928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37102,1,3,0)
- ;;=3^Spondylopathy Lumboscrl Region
- ;;^UTILITY(U,$J,358.3,37102,1,4,0)
- ;;=4^M49.87
- ;;^UTILITY(U,$J,358.3,37102,2)
- ;;=^5012212
- ;;^UTILITY(U,$J,358.3,37103,0)
- ;;=M49.88^^140^1787^251
- ;;^UTILITY(U,$J,358.3,37103,1,0)
+ ;;^UTILITY(U,$J,358.3,34928,1,3,0)
+ ;;=3^Acquired Absence,Lt Arm Below Elbow
+ ;;^UTILITY(U,$J,358.3,34928,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,34928,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,34929,0)
+ ;;=Z89.122^^137^1789^14
+ ;;^UTILITY(U,$J,358.3,34929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37103,1,3,0)
- ;;=3^Spondylopathy Sacral/Sacrocygl Region
- ;;^UTILITY(U,$J,358.3,37103,1,4,0)
- ;;=4^M49.88
- ;;^UTILITY(U,$J,358.3,37103,2)
- ;;=^5012213
- ;;^UTILITY(U,$J,358.3,37104,0)
- ;;=M46.90^^140^1787^173
- ;;^UTILITY(U,$J,358.3,37104,1,0)
+ ;;^UTILITY(U,$J,358.3,34929,1,3,0)
+ ;;=3^Acquired Absence,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,34929,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,34929,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,34930,0)
+ ;;=Z89.422^^137^1789^13
+ ;;^UTILITY(U,$J,358.3,34930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37104,1,3,0)
- ;;=3^Inflmtry spndylopthies, unspec site
- ;;^UTILITY(U,$J,358.3,37104,1,4,0)
- ;;=4^M46.90
- ;;^UTILITY(U,$J,358.3,37104,2)
- ;;=^5012030
- ;;^UTILITY(U,$J,358.3,37105,0)
- ;;=M46.91^^140^1787^169
- ;;^UTILITY(U,$J,358.3,37105,1,0)
+ ;;^UTILITY(U,$J,358.3,34930,1,3,0)
+ ;;=3^Acquired Absence,Lt Toe(s)
+ ;;^UTILITY(U,$J,358.3,34930,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,34930,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,34931,0)
+ ;;=Z89.421^^137^1789^27
+ ;;^UTILITY(U,$J,358.3,34931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37105,1,3,0)
- ;;=3^Inflmtry spndylopthies, occipt-atlan-ax regn, unspec
- ;;^UTILITY(U,$J,358.3,37105,1,4,0)
- ;;=4^M46.91
- ;;^UTILITY(U,$J,358.3,37105,2)
- ;;=^5012031
- ;;^UTILITY(U,$J,358.3,37106,0)
- ;;=M46.92^^140^1787^165
- ;;^UTILITY(U,$J,358.3,37106,1,0)
+ ;;^UTILITY(U,$J,358.3,34931,1,3,0)
+ ;;=3^Acquired Absence,Rt Toe(s)
+ ;;^UTILITY(U,$J,358.3,34931,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,34931,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,34932,0)
+ ;;=Z89.441^^137^1789^15
+ ;;^UTILITY(U,$J,358.3,34932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37106,1,3,0)
- ;;=3^Inflmtry spndylopthies, crvcl regn, unspec
- ;;^UTILITY(U,$J,358.3,37106,1,4,0)
- ;;=4^M46.92
- ;;^UTILITY(U,$J,358.3,37106,2)
- ;;=^5012032
- ;;^UTILITY(U,$J,358.3,37107,0)
- ;;=M46.93^^140^1787^166
- ;;^UTILITY(U,$J,358.3,37107,1,0)
+ ;;^UTILITY(U,$J,358.3,34932,1,3,0)
+ ;;=3^Acquired Absence,Rt Ankle
+ ;;^UTILITY(U,$J,358.3,34932,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,34932,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,34933,0)
+ ;;=Z89.021^^137^1789^18
+ ;;^UTILITY(U,$J,358.3,34933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37107,1,3,0)
- ;;=3^Inflmtry spndylopthies, crvicothor regn, unspec
- ;;^UTILITY(U,$J,358.3,37107,1,4,0)
- ;;=4^M46.93
- ;;^UTILITY(U,$J,358.3,37107,2)
- ;;=^5012033
- ;;^UTILITY(U,$J,358.3,37108,0)
- ;;=M46.94^^140^1787^171
- ;;^UTILITY(U,$J,358.3,37108,1,0)
+ ;;^UTILITY(U,$J,358.3,34933,1,3,0)
+ ;;=3^Acquired Absence,Rt Finger(s)
+ ;;^UTILITY(U,$J,358.3,34933,1,4,0)
+ ;;=4^Z89.021
+ ;;^UTILITY(U,$J,358.3,34933,2)
+ ;;=^5063534
+ ;;^UTILITY(U,$J,358.3,34934,0)
+ ;;=Z89.431^^137^1789^19
+ ;;^UTILITY(U,$J,358.3,34934,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34934,1,3,0)
+ ;;=3^Acquired Absence,Rt Foot

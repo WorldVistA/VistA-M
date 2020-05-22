@@ -1,5 +1,5 @@
 VAFHLZE1 ;BPFO/JRP,TDM,JLS - Data extractor for ZEL segment ;5/24/06 3:43pm
- ;;5.3;Registration;**342,497,602,672,653,909**;Aug 13,1993;Build 32
+ ;;5.3;Registration;**342,497,602,672,653,909,952**;Aug 13,1993;Build 160
  ;
 GETDATA ;Get information needed to build ZEL  segment
  ;Input: Existence of the following variables is assumed
@@ -22,7 +22,7 @@ GETDATA ;Get information needed to build ZEL  segment
  ;       long ID (seq 3), and short ID (seq 4) will be the only fields
  ;       returned for all other eligibilities.
  ;
- N PRIME,VAF,VAFMST,X
+ N IEN33,ISOTH,J,PRIME,VAF,VAFMST,X
  K VAFHLZEL
  ;If true, primary eligibility (return all fields)
  S PRIME=+VAFNODE=+VAFPELIG
@@ -139,5 +139,12 @@ GETDATA ;Get information needed to build ZEL  segment
  I VAFSTR[43 S X=$P(VAF(.3217),"^",3),VAFHLZEL(43)=$S(X]"":X,1:HLQ)
  ;CAMP LEJEUNE ELIGIBILITY SOURCE OF CHANGE 
  I VAFSTR[44 S X=$P(VAF(.3217),"^",4),VAFHLZEL(44)=$S(X]"":X,1:HLQ)
+ S ISOTH="",IEN33=+$O(^DGOTH(33,"B",DFN,"")) I IEN33 S ISOTH=$$GET1^DIQ(33,IEN33_",",.02,"I")
+ ;OTH Eligibility Indicator
+ I VAFSTR[45 S VAFHLZEL(45)=$S(IEN33:ISOTH,1:"")
+ ;OTH Eligibility Factor Code
+ I VAFSTR[46 S VAFHLZEL(46)="" S:IEN33 X=$$GET1^DIQ(2,DFN_",",.5501,"I"),VAFHLZEL(46)=$S(X="OTH-90":1,X="OTH-EXT":2,1:"")
+ ;OTH Eligibility Update Date
+ I VAFSTR[47 S VAFHLZEL(47)=$S(IEN33:$$HLDATE^HLFNC($$GETTIMST^DGOTHEL(DFN)),1:"")
  ;Done
  Q

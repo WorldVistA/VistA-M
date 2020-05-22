@@ -1,334 +1,698 @@
-IBDEI0CB ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0CB ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15603,1,4,0)
- ;;=4^I69.320
- ;;^UTILITY(U,$J,358.3,15603,2)
- ;;=^5007491
- ;;^UTILITY(U,$J,358.3,15604,0)
- ;;=I69.120^^47^703^3
- ;;^UTILITY(U,$J,358.3,15604,1,0)
+ ;;^UTILITY(U,$J,358.3,30140,0)
+ ;;=H93.12^^92^1196^42
+ ;;^UTILITY(U,$J,358.3,30140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15604,1,3,0)
- ;;=3^Aphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,15604,1,4,0)
- ;;=4^I69.120
- ;;^UTILITY(U,$J,358.3,15604,2)
- ;;=^5007427
- ;;^UTILITY(U,$J,358.3,15605,0)
- ;;=I69.020^^47^703^4
- ;;^UTILITY(U,$J,358.3,15605,1,0)
+ ;;^UTILITY(U,$J,358.3,30140,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,30140,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,30140,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,30141,0)
+ ;;=H93.11^^92^1196^43
+ ;;^UTILITY(U,$J,358.3,30141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15605,1,3,0)
- ;;=3^Aphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,15605,1,4,0)
- ;;=4^I69.020
- ;;^UTILITY(U,$J,358.3,15605,2)
- ;;=^5007395
- ;;^UTILITY(U,$J,358.3,15606,0)
- ;;=I69.820^^47^703^5
- ;;^UTILITY(U,$J,358.3,15606,1,0)
+ ;;^UTILITY(U,$J,358.3,30141,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,30141,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,30141,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,30142,0)
+ ;;=H92.01^^92^1196^33
+ ;;^UTILITY(U,$J,358.3,30142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15606,1,3,0)
- ;;=3^Aphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,15606,1,4,0)
- ;;=4^I69.820
- ;;^UTILITY(U,$J,358.3,15606,2)
- ;;=^5007522
- ;;^UTILITY(U,$J,358.3,15607,0)
- ;;=I69.220^^47^703^6
- ;;^UTILITY(U,$J,358.3,15607,1,0)
+ ;;^UTILITY(U,$J,358.3,30142,1,3,0)
+ ;;=3^Otalgia,Right Ear
+ ;;^UTILITY(U,$J,358.3,30142,1,4,0)
+ ;;=4^H92.01
+ ;;^UTILITY(U,$J,358.3,30142,2)
+ ;;=^5006945
+ ;;^UTILITY(U,$J,358.3,30143,0)
+ ;;=H92.02^^92^1196^32
+ ;;^UTILITY(U,$J,358.3,30143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15607,1,3,0)
- ;;=3^Aphasia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,15607,1,4,0)
- ;;=4^I69.220
- ;;^UTILITY(U,$J,358.3,15607,2)
- ;;=^5007459
- ;;^UTILITY(U,$J,358.3,15608,0)
- ;;=I69.290^^47^703^11
- ;;^UTILITY(U,$J,358.3,15608,1,0)
+ ;;^UTILITY(U,$J,358.3,30143,1,3,0)
+ ;;=3^Otalgia,Left Ear
+ ;;^UTILITY(U,$J,358.3,30143,1,4,0)
+ ;;=4^H92.02
+ ;;^UTILITY(U,$J,358.3,30143,2)
+ ;;=^5006946
+ ;;^UTILITY(U,$J,358.3,30144,0)
+ ;;=H92.03^^92^1196^31
+ ;;^UTILITY(U,$J,358.3,30144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15608,1,3,0)
- ;;=3^Apraxia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,15608,1,4,0)
- ;;=4^I69.290
- ;;^UTILITY(U,$J,358.3,15608,2)
- ;;=^5007484
- ;;^UTILITY(U,$J,358.3,15609,0)
- ;;=I69.390^^47^703^7
- ;;^UTILITY(U,$J,358.3,15609,1,0)
+ ;;^UTILITY(U,$J,358.3,30144,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,30144,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,30144,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,30145,0)
+ ;;=H91.92^^92^1196^22
+ ;;^UTILITY(U,$J,358.3,30145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15609,1,3,0)
- ;;=3^Apraxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,15609,1,4,0)
- ;;=4^I69.390
- ;;^UTILITY(U,$J,358.3,15609,2)
- ;;=^5007515
- ;;^UTILITY(U,$J,358.3,15610,0)
- ;;=I69.190^^47^703^8
- ;;^UTILITY(U,$J,358.3,15610,1,0)
+ ;;^UTILITY(U,$J,358.3,30145,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,30145,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,30145,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,30146,0)
+ ;;=H91.93^^92^1196^21
+ ;;^UTILITY(U,$J,358.3,30146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15610,1,3,0)
- ;;=3^Apraxia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,15610,1,4,0)
- ;;=4^I69.190
- ;;^UTILITY(U,$J,358.3,15610,2)
- ;;=^5007452
- ;;^UTILITY(U,$J,358.3,15611,0)
- ;;=I69.090^^47^703^9
- ;;^UTILITY(U,$J,358.3,15611,1,0)
+ ;;^UTILITY(U,$J,358.3,30146,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,30146,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,30146,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,30147,0)
+ ;;=H91.91^^92^1196^23
+ ;;^UTILITY(U,$J,358.3,30147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15611,1,3,0)
- ;;=3^Apraxia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,15611,1,4,0)
- ;;=4^I69.090
- ;;^UTILITY(U,$J,358.3,15611,2)
- ;;=^5007420
- ;;^UTILITY(U,$J,358.3,15612,0)
- ;;=I69.890^^47^703^10
- ;;^UTILITY(U,$J,358.3,15612,1,0)
+ ;;^UTILITY(U,$J,358.3,30147,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,30147,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,30147,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,30148,0)
+ ;;=H65.02^^92^1196^4
+ ;;^UTILITY(U,$J,358.3,30148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15612,1,3,0)
- ;;=3^Apraxia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,15612,1,4,0)
- ;;=4^I69.890
- ;;^UTILITY(U,$J,358.3,15612,2)
- ;;=^5007546
- ;;^UTILITY(U,$J,358.3,15613,0)
- ;;=I69.393^^47^703^12
- ;;^UTILITY(U,$J,358.3,15613,1,0)
+ ;;^UTILITY(U,$J,358.3,30148,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,30148,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,30148,2)
+ ;;=^5006571
+ ;;^UTILITY(U,$J,358.3,30149,0)
+ ;;=H60.312^^92^1196^19
+ ;;^UTILITY(U,$J,358.3,30149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15613,1,3,0)
- ;;=3^Ataxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,15613,1,4,0)
- ;;=4^I69.393
- ;;^UTILITY(U,$J,358.3,15613,2)
- ;;=^5007518
- ;;^UTILITY(U,$J,358.3,15614,0)
- ;;=I69.193^^47^703^13
- ;;^UTILITY(U,$J,358.3,15614,1,0)
+ ;;^UTILITY(U,$J,358.3,30149,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,30149,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,30149,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,30150,0)
+ ;;=H60.311^^92^1196^20
+ ;;^UTILITY(U,$J,358.3,30150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15614,1,3,0)
- ;;=3^Ataxia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,15614,1,4,0)
- ;;=4^I69.193
- ;;^UTILITY(U,$J,358.3,15614,2)
- ;;=^5007455
- ;;^UTILITY(U,$J,358.3,15615,0)
- ;;=I69.293^^47^703^16
- ;;^UTILITY(U,$J,358.3,15615,1,0)
+ ;;^UTILITY(U,$J,358.3,30150,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,30150,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,30150,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,30151,0)
+ ;;=H55.09^^92^1196^30
+ ;;^UTILITY(U,$J,358.3,30151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15615,1,3,0)
- ;;=3^Ataxia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,15615,1,4,0)
- ;;=4^I69.293
- ;;^UTILITY(U,$J,358.3,15615,2)
- ;;=^5007487
- ;;^UTILITY(U,$J,358.3,15616,0)
- ;;=I69.093^^47^703^14
- ;;^UTILITY(U,$J,358.3,15616,1,0)
+ ;;^UTILITY(U,$J,358.3,30151,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,30151,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,30151,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,30152,0)
+ ;;=H60.01^^92^1196^2
+ ;;^UTILITY(U,$J,358.3,30152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15616,1,3,0)
- ;;=3^Ataxia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,15616,1,4,0)
- ;;=4^I69.093
- ;;^UTILITY(U,$J,358.3,15616,2)
- ;;=^5007423
- ;;^UTILITY(U,$J,358.3,15617,0)
- ;;=I69.893^^47^703^15
- ;;^UTILITY(U,$J,358.3,15617,1,0)
+ ;;^UTILITY(U,$J,358.3,30152,1,3,0)
+ ;;=3^Abscess External Ear,Right
+ ;;^UTILITY(U,$J,358.3,30152,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,30152,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,30153,0)
+ ;;=H60.02^^92^1196^1
+ ;;^UTILITY(U,$J,358.3,30153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15617,1,3,0)
- ;;=3^Ataxia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,15617,1,4,0)
- ;;=4^I69.893
- ;;^UTILITY(U,$J,358.3,15617,2)
- ;;=^5007549
- ;;^UTILITY(U,$J,358.3,15618,0)
- ;;=I69.31^^47^703^17
- ;;^UTILITY(U,$J,358.3,15618,1,0)
+ ;;^UTILITY(U,$J,358.3,30153,1,3,0)
+ ;;=3^Abscess External Ear,Left
+ ;;^UTILITY(U,$J,358.3,30153,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,30153,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,30154,0)
+ ;;=H60.12^^92^1196^13
+ ;;^UTILITY(U,$J,358.3,30154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15618,1,3,0)
- ;;=3^Cognitive deficits following cerebral infarction
- ;;^UTILITY(U,$J,358.3,15618,1,4,0)
- ;;=4^I69.31
- ;;^UTILITY(U,$J,358.3,15618,2)
- ;;=^5007490
- ;;^UTILITY(U,$J,358.3,15619,0)
- ;;=I69.11^^47^703^18
- ;;^UTILITY(U,$J,358.3,15619,1,0)
+ ;;^UTILITY(U,$J,358.3,30154,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,30154,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,30154,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,30155,0)
+ ;;=H60.11^^92^1196^14
+ ;;^UTILITY(U,$J,358.3,30155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15619,1,3,0)
- ;;=3^Cognitive deficits following nontraumatic intcrbl hemorrhage
- ;;^UTILITY(U,$J,358.3,15619,1,4,0)
- ;;=4^I69.11
- ;;^UTILITY(U,$J,358.3,15619,2)
- ;;=^5007426
- ;;^UTILITY(U,$J,358.3,15620,0)
- ;;=I69.01^^47^703^19
- ;;^UTILITY(U,$J,358.3,15620,1,0)
+ ;;^UTILITY(U,$J,358.3,30155,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,30155,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,30155,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,30156,0)
+ ;;=H61.21^^92^1196^26
+ ;;^UTILITY(U,$J,358.3,30156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15620,1,3,0)
- ;;=3^Cognitive deficits following ntrm subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,15620,1,4,0)
- ;;=4^I69.01
- ;;^UTILITY(U,$J,358.3,15620,2)
- ;;=^5007394
- ;;^UTILITY(U,$J,358.3,15621,0)
- ;;=I69.81^^47^703^21
- ;;^UTILITY(U,$J,358.3,15621,1,0)
+ ;;^UTILITY(U,$J,358.3,30156,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,30156,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,30156,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,30157,0)
+ ;;=H61.22^^92^1196^25
+ ;;^UTILITY(U,$J,358.3,30157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15621,1,3,0)
- ;;=3^Cognitive deficits following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,15621,1,4,0)
- ;;=4^I69.81
- ;;^UTILITY(U,$J,358.3,15621,2)
- ;;=^5007521
- ;;^UTILITY(U,$J,358.3,15622,0)
- ;;=I69.21^^47^703^20
- ;;^UTILITY(U,$J,358.3,15622,1,0)
+ ;;^UTILITY(U,$J,358.3,30157,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,30157,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,30157,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,30158,0)
+ ;;=H61.23^^92^1196^24
+ ;;^UTILITY(U,$J,358.3,30158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15622,1,3,0)
- ;;=3^Cognitive deficits following oth ntrm intcrn hemorrhage
- ;;^UTILITY(U,$J,358.3,15622,1,4,0)
- ;;=4^I69.21
- ;;^UTILITY(U,$J,358.3,15622,2)
- ;;=^5007458
- ;;^UTILITY(U,$J,358.3,15623,0)
- ;;=I69.391^^47^703^22
- ;;^UTILITY(U,$J,358.3,15623,1,0)
+ ;;^UTILITY(U,$J,358.3,30158,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,30158,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,30158,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,30159,0)
+ ;;=H81.01^^92^1196^29
+ ;;^UTILITY(U,$J,358.3,30159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15623,1,3,0)
- ;;=3^Dysphagia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,15623,1,4,0)
- ;;=4^I69.391
- ;;^UTILITY(U,$J,358.3,15623,2)
- ;;=^5007516
- ;;^UTILITY(U,$J,358.3,15624,0)
- ;;=I69.191^^47^703^23
- ;;^UTILITY(U,$J,358.3,15624,1,0)
+ ;;^UTILITY(U,$J,358.3,30159,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,30159,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,30159,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,30160,0)
+ ;;=H81.02^^92^1196^28
+ ;;^UTILITY(U,$J,358.3,30160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15624,1,3,0)
- ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,15624,1,4,0)
- ;;=4^I69.191
- ;;^UTILITY(U,$J,358.3,15624,2)
- ;;=^5007453
- ;;^UTILITY(U,$J,358.3,15625,0)
- ;;=I69.291^^47^703^25
- ;;^UTILITY(U,$J,358.3,15625,1,0)
+ ;;^UTILITY(U,$J,358.3,30160,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,30160,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,30160,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,30161,0)
+ ;;=H81.03^^92^1196^27
+ ;;^UTILITY(U,$J,358.3,30161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15625,1,3,0)
- ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,15625,1,4,0)
- ;;=4^I69.291
- ;;^UTILITY(U,$J,358.3,15625,2)
- ;;=^5007485
- ;;^UTILITY(U,$J,358.3,15626,0)
- ;;=I69.091^^47^703^24
- ;;^UTILITY(U,$J,358.3,15626,1,0)
+ ;;^UTILITY(U,$J,358.3,30161,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,30161,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,30161,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,30162,0)
+ ;;=H81.12^^92^1196^9
+ ;;^UTILITY(U,$J,358.3,30162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15626,1,3,0)
- ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,15626,1,4,0)
- ;;=4^I69.091
- ;;^UTILITY(U,$J,358.3,15626,2)
- ;;=^5007421
- ;;^UTILITY(U,$J,358.3,15627,0)
- ;;=I69.891^^47^703^26
- ;;^UTILITY(U,$J,358.3,15627,1,0)
+ ;;^UTILITY(U,$J,358.3,30162,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,30162,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,30162,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,30163,0)
+ ;;=H81.11^^92^1196^10
+ ;;^UTILITY(U,$J,358.3,30163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15627,1,3,0)
- ;;=3^Dysphagia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,15627,1,4,0)
- ;;=4^I69.891
- ;;^UTILITY(U,$J,358.3,15627,2)
- ;;=^5007547
- ;;^UTILITY(U,$J,358.3,15628,0)
- ;;=I69.321^^47^703^27
- ;;^UTILITY(U,$J,358.3,15628,1,0)
+ ;;^UTILITY(U,$J,358.3,30163,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,30163,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,30163,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,30164,0)
+ ;;=H81.13^^92^1196^8
+ ;;^UTILITY(U,$J,358.3,30164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15628,1,3,0)
- ;;=3^Dysphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,15628,1,4,0)
- ;;=4^I69.321
- ;;^UTILITY(U,$J,358.3,15628,2)
- ;;=^5007492
- ;;^UTILITY(U,$J,358.3,15629,0)
- ;;=I69.121^^47^703^28
- ;;^UTILITY(U,$J,358.3,15629,1,0)
+ ;;^UTILITY(U,$J,358.3,30164,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,30164,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,30164,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,30165,0)
+ ;;=H81.10^^92^1196^11
+ ;;^UTILITY(U,$J,358.3,30165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15629,1,3,0)
- ;;=3^Dysphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,15629,1,4,0)
- ;;=4^I69.121
- ;;^UTILITY(U,$J,358.3,15629,2)
- ;;=^5007428
- ;;^UTILITY(U,$J,358.3,15630,0)
- ;;=I69.021^^47^703^29
- ;;^UTILITY(U,$J,358.3,15630,1,0)
+ ;;^UTILITY(U,$J,358.3,30165,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,30165,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,30165,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,30166,0)
+ ;;=B37.84^^92^1196^12
+ ;;^UTILITY(U,$J,358.3,30166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15630,1,3,0)
- ;;=3^Dysphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,15630,1,4,0)
- ;;=4^I69.021
- ;;^UTILITY(U,$J,358.3,15630,2)
- ;;=^5007396
- ;;^UTILITY(U,$J,358.3,15631,0)
- ;;=I69.821^^47^703^31
- ;;^UTILITY(U,$J,358.3,15631,1,0)
+ ;;^UTILITY(U,$J,358.3,30166,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,30166,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,30166,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,30167,0)
+ ;;=H60.313^^92^1196^18
+ ;;^UTILITY(U,$J,358.3,30167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15631,1,3,0)
- ;;=3^Dysphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,15631,1,4,0)
- ;;=4^I69.821
- ;;^UTILITY(U,$J,358.3,15631,2)
- ;;=^5007523
- ;;^UTILITY(U,$J,358.3,15632,0)
- ;;=I69.221^^47^703^30
- ;;^UTILITY(U,$J,358.3,15632,1,0)
+ ;;^UTILITY(U,$J,358.3,30167,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,30167,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,30167,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,30168,0)
+ ;;=H93.A3^^92^1196^38
+ ;;^UTILITY(U,$J,358.3,30168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15632,1,3,0)
- ;;=3^Dysphasia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,15632,1,4,0)
- ;;=4^I69.221
- ;;^UTILITY(U,$J,358.3,15632,2)
- ;;=^5007460
- ;;^UTILITY(U,$J,358.3,15633,0)
- ;;=G11.1^^47^703^32
- ;;^UTILITY(U,$J,358.3,15633,1,0)
+ ;;^UTILITY(U,$J,358.3,30168,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,30168,1,4,0)
+ ;;=4^H93.A3
+ ;;^UTILITY(U,$J,358.3,30168,2)
+ ;;=^5138592
+ ;;^UTILITY(U,$J,358.3,30169,0)
+ ;;=H93.A1^^92^1196^40
+ ;;^UTILITY(U,$J,358.3,30169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15633,1,3,0)
- ;;=3^Early-onset cerebellar ataxia
- ;;^UTILITY(U,$J,358.3,15633,1,4,0)
- ;;=4^G11.1
- ;;^UTILITY(U,$J,358.3,15633,2)
- ;;=^5003753
- ;;^UTILITY(U,$J,358.3,15634,0)
- ;;=I69.392^^47^703^33
- ;;^UTILITY(U,$J,358.3,15634,1,0)
+ ;;^UTILITY(U,$J,358.3,30169,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,30169,1,4,0)
+ ;;=4^H93.A1
+ ;;^UTILITY(U,$J,358.3,30169,2)
+ ;;=^5138590
+ ;;^UTILITY(U,$J,358.3,30170,0)
+ ;;=H93.A2^^92^1196^39
+ ;;^UTILITY(U,$J,358.3,30170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15634,1,3,0)
- ;;=3^Facial weakness following cerebral infarction
- ;;^UTILITY(U,$J,358.3,15634,1,4,0)
- ;;=4^I69.392
- ;;^UTILITY(U,$J,358.3,15634,2)
- ;;=^5007517
- ;;^UTILITY(U,$J,358.3,15635,0)
- ;;=I69.192^^47^703^34
- ;;^UTILITY(U,$J,358.3,15635,1,0)
+ ;;^UTILITY(U,$J,358.3,30170,1,3,0)
+ ;;=3^Pulsatile Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,30170,1,4,0)
+ ;;=4^H93.A2
+ ;;^UTILITY(U,$J,358.3,30170,2)
+ ;;=^5138591
+ ;;^UTILITY(U,$J,358.3,30171,0)
+ ;;=B37.0^^92^1197^13
+ ;;^UTILITY(U,$J,358.3,30171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15635,1,3,0)
- ;;=3^Facial weakness following nontraumatic intcrbl hemorrhage
- ;;^UTILITY(U,$J,358.3,15635,1,4,0)
- ;;=4^I69.192
- ;;^UTILITY(U,$J,358.3,15635,2)
- ;;=^5007454
- ;;^UTILITY(U,$J,358.3,15636,0)
- ;;=I69.292^^47^703^36
- ;;^UTILITY(U,$J,358.3,15636,1,0)
+ ;;^UTILITY(U,$J,358.3,30171,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,30171,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,30171,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,30172,0)
+ ;;=B37.83^^92^1197^12
+ ;;^UTILITY(U,$J,358.3,30172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15636,1,3,0)
- ;;=3^Facial weakness following oth nontraumatic intcrn hemorrhage
+ ;;^UTILITY(U,$J,358.3,30172,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,30172,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,30172,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,30173,0)
+ ;;=J00.^^92^1197^6
+ ;;^UTILITY(U,$J,358.3,30173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30173,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,30173,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,30173,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,30174,0)
+ ;;=J01.00^^92^1197^5
+ ;;^UTILITY(U,$J,358.3,30174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30174,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30174,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,30174,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,30175,0)
+ ;;=J01.10^^92^1197^1
+ ;;^UTILITY(U,$J,358.3,30175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30175,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30175,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,30175,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,30176,0)
+ ;;=J02.9^^92^1197^7
+ ;;^UTILITY(U,$J,358.3,30176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30176,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30176,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,30176,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,30177,0)
+ ;;=J03.91^^92^1197^8
+ ;;^UTILITY(U,$J,358.3,30177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30177,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30177,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,30177,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,30178,0)
+ ;;=J04.0^^92^1197^3
+ ;;^UTILITY(U,$J,358.3,30178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30178,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,30178,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,30178,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,30179,0)
+ ;;=J06.0^^92^1197^4
+ ;;^UTILITY(U,$J,358.3,30179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30179,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,30179,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,30179,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,30180,0)
+ ;;=J06.9^^92^1197^9
+ ;;^UTILITY(U,$J,358.3,30180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30180,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,30180,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,30180,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,30181,0)
+ ;;=J33.9^^92^1197^19
+ ;;^UTILITY(U,$J,358.3,30181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30181,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,30181,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,30181,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,30182,0)
+ ;;=J32.0^^92^1197^15
+ ;;^UTILITY(U,$J,358.3,30182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30182,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,30182,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,30182,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,30183,0)
+ ;;=J32.1^^92^1197^14
+ ;;^UTILITY(U,$J,358.3,30183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30183,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,30183,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,30183,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,30184,0)
+ ;;=J32.9^^92^1197^16
+ ;;^UTILITY(U,$J,358.3,30184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30184,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30184,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,30184,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,30185,0)
+ ;;=J30.9^^92^1197^11
+ ;;^UTILITY(U,$J,358.3,30185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30185,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,30185,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,30185,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,30186,0)
+ ;;=J30.0^^92^1197^24
+ ;;^UTILITY(U,$J,358.3,30186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30186,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,30186,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,30186,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,30187,0)
+ ;;=K05.00^^92^1197^2
+ ;;^UTILITY(U,$J,358.3,30187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30187,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,30187,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,30187,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,30188,0)
+ ;;=R04.0^^92^1197^17
+ ;;^UTILITY(U,$J,358.3,30188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30188,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,30188,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,30188,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,30189,0)
+ ;;=R09.82^^92^1197^21
+ ;;^UTILITY(U,$J,358.3,30189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30189,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,30189,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,30189,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,30190,0)
+ ;;=K12.30^^92^1197^20
+ ;;^UTILITY(U,$J,358.3,30190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30190,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,30190,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,30190,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,30191,0)
+ ;;=J30.1^^92^1197^10
+ ;;^UTILITY(U,$J,358.3,30191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30191,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,30191,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,30191,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,30192,0)
+ ;;=R09.81^^92^1197^18
+ ;;^UTILITY(U,$J,358.3,30192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30192,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,30192,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,30192,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,30193,0)
+ ;;=I69.928^^92^1197^22
+ ;;^UTILITY(U,$J,358.3,30193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30193,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,30193,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,30193,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,30194,0)
+ ;;=I69.328^^92^1197^23
+ ;;^UTILITY(U,$J,358.3,30194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30194,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,30194,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,30194,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,30195,0)
+ ;;=H81.4^^92^1197^25
+ ;;^UTILITY(U,$J,358.3,30195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30195,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,30195,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,30195,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,30196,0)
+ ;;=E04.0^^92^1198^21
+ ;;^UTILITY(U,$J,358.3,30196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30196,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,30196,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,30196,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,30197,0)
+ ;;=E04.1^^92^1198^23
+ ;;^UTILITY(U,$J,358.3,30197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30197,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,30197,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,30197,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,30198,0)
+ ;;=E04.2^^92^1198^22
+ ;;^UTILITY(U,$J,358.3,30198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30198,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,30198,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,30198,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,30199,0)
+ ;;=E01.1^^92^1198^17
+ ;;^UTILITY(U,$J,358.3,30199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30199,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,30199,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,30199,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,30200,0)
+ ;;=E05.00^^92^1198^39
+ ;;^UTILITY(U,$J,358.3,30200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30200,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,30200,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,30200,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,30201,0)
+ ;;=E05.01^^92^1198^38
+ ;;^UTILITY(U,$J,358.3,30201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30201,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,30201,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,30201,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,30202,0)
+ ;;=E05.90^^92^1198^41
+ ;;^UTILITY(U,$J,358.3,30202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30202,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,30202,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,30202,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,30203,0)
+ ;;=E05.91^^92^1198^40
+ ;;^UTILITY(U,$J,358.3,30203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30203,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,30203,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,30203,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,30204,0)
+ ;;=E89.0^^92^1198^32
+ ;;^UTILITY(U,$J,358.3,30204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30204,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,30204,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,30204,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,30205,0)
+ ;;=E03.2^^92^1198^13
+ ;;^UTILITY(U,$J,358.3,30205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30205,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,30205,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,30205,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,30206,0)
+ ;;=E03.9^^92^1198^14
+ ;;^UTILITY(U,$J,358.3,30206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30206,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,30206,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,30206,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,30207,0)
+ ;;=E06.0^^92^1198^36
+ ;;^UTILITY(U,$J,358.3,30207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30207,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,30207,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,30207,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,30208,0)
+ ;;=E06.1^^92^1198^37
+ ;;^UTILITY(U,$J,358.3,30208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30208,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,30208,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,30208,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,30209,0)
+ ;;=C73.^^92^1198^19
+ ;;^UTILITY(U,$J,358.3,30209,1,0)
+ ;;=^358.31IA^4^2

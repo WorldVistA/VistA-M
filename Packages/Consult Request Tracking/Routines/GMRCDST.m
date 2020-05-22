@@ -1,8 +1,9 @@
 GMRCDST ;ABV/BL - Retrieve Decision from DST server;03/28/2019
- ;;3.0;CONSULT/REQUEST TRACKING;**124,139**;DEC 27, 1997;Build 10
+ ;;3.0;CONSULT/REQUEST TRACKING;**124,139,152**;DEC 27, 1997;Build 5
  ;
- ;IA6173  (In process of submission)
- ;IA6171  (In process of submission)
+ ;SAC EXEMPTION 20200131-01 : GMRC use of vendor specific code
+ ;IA6173
+ ;IA6171
  ;
 PROT(MSG)  ;GMRC SIGNED CONSULT DST-PROTOCOL ENTRY POINT
  ;
@@ -41,16 +42,20 @@ PROT(MSG)  ;GMRC SIGNED CONSULT DST-PROTOCOL ENTRY POINT
  ;
 DUPID(IEN123,ID)  ;Check to see if this ID has already been entered into the consult
  ;
- N CNODE,CINC,DUP,NOTEID
- S DUP=0,CNODE=0
+ N CNODE,CINC,DUP,NOTEID,EDATA
+ S DUP=0,CNODE=0,EDATA=0
  I IEN123="" Q DUP
  F  S CNODE=$O(^GMR(123,IEN123,40,CNODE)) Q:+CNODE'=CNODE!(DUP)  D
  . S CINC=0
  . F  S CINC=$O(^GMR(123,IEN123,40,CNODE,1,CINC)) Q:CINC=""!(DUP)  D
+ . . I ^GMR(123,IEN123,40,CNODE,1,CINC,0)["CSC-Consult primary stop code:" S EDATA=1
  . . I ^GMR(123,IEN123,40,CNODE,1,CINC,0)["DST ID:" D
  . . . S NOTEID=""
  . . . S NOTEID=$P(^GMR(123,IEN123,40,CNODE,1,CINC,0),"DST ID:",2)
  . . . I NOTEID[ID S DUP=1
+ ;Check if we have already loaded DST data
+ ;If DUP is positive but EDATA=0 no data is actually loaded, set DUP to 0
+ I 'EDATA S DUP=0
  Q DUP
  ;
 GETDST(IEN123,ID) ;
@@ -75,7 +80,8 @@ GETDST(IEN123,ID) ;
  S RESOURCE="/"_ID
  ; Get an instance of the REST request object.
  S REQUEST=$$GETREST^XOBWLIB(SERVICE,SERVER)
- S REQUEST.Timeout=1
+ S REQUEST.Timeout=60
+ S REQUEST.OpenTimeout=30
  ;
 TRYAG ; Execute the HTTP Get method.
  K XUERR,RESPJSON,AFOR,APAY,GMRCSS
@@ -88,7 +94,7 @@ TRYAG ; Execute the HTTP Get method.
  . I XUERR["ObjectError" S COM(3)=XUERR.domain,COM(4)=XUERR.errorType
  . S ERRFLG=1,NUMERR=NUMERR+1
  ;If the ERRFLG then store the error in the consult
- I ERRFLG&(NUMERR<5) H 1 G TRYAG
+ I ERRFLG&(NUMERR<10) H 2 G TRYAG
  I ERRFLG D CMT^GMRCGUIB(IEN123,.COM,"",DT,DUZ) Q 0
  ; Process the response.
  S RESPONSE=REQUEST.HttpResponse
@@ -100,7 +106,7 @@ TRYAG ; Execute the HTTP Get method.
  ;current data is blob of text with ^ delimited fields. Put each field on its own line
  F I=1:1:$L(RESPJSON,"^") D
  . S COM(I)=$P(RESPJSON,"^",I)
- . I COM(I)="" K COM(I)
+ . I COM(I)="" K COM(I) Q  ;BL;152 need to quit before checking for Autoforward
  . ;check for autoforwarding GMRC*3.0*139
  . I COM(I)["DAF-DST Forwarding:" D
  . . I $P(COM(I),":",2)["YES" S AFOR=1
@@ -285,7 +291,8 @@ SVDATA() ; extrinsic variable, save original FileMan data, returns storage node
  ;
  D DT^DICRW
  N FMERRCNT,GMRXTMP,GMRIEN,LN,NTRY,TXT,V,X,Y
- S Y=$$NOW^XLFDT,GMRXTMP=$NA(^XTMP("GMR INSTALL LOG",Y))  ; XTMP storage location
+ ;S Y=$$NOW^XLFDT,GMRXTMP=$NA(^XTMP("GMR INSTALL LOG",Y))  ; XTMP storage location
+ S Y=$$NOW^XLFDT,GMRXTMP=$NA(^XTMP("GMR INSTALL LOG "_Y))  ; XTMP storage location
  ; ^XTMP log data expires in 90 days
  S X=$G(@GMRXTMP@(0)) S:X="" @GMRXTMP@(0)=$$FMADD^XLFDT(DT,90)_U_Y_"^GMR installation "_$$FMTE^XLFDT(Y)
  ;

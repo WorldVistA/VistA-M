@@ -1,130 +1,124 @@
-IBDEI1CI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22870,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,22870,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,22871,0)
- ;;=M19.90^^87^987^68
- ;;^UTILITY(U,$J,358.3,22871,1,0)
+ ;;^UTILITY(U,$J,358.3,21491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22871,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,22871,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,22871,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,22872,0)
- ;;=M25.40^^87^987^37
- ;;^UTILITY(U,$J,358.3,22872,1,0)
+ ;;^UTILITY(U,$J,358.3,21491,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,21491,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,21491,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,21492,0)
+ ;;=Z75.1^^95^1079^4
+ ;;^UTILITY(U,$J,358.3,21492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22872,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,22872,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,22872,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,22873,0)
- ;;=M45.0^^87^987^6
- ;;^UTILITY(U,$J,358.3,22873,1,0)
+ ;;^UTILITY(U,$J,358.3,21492,1,3,0)
+ ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
+ ;;^UTILITY(U,$J,358.3,21492,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,21492,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,21493,0)
+ ;;=Z75.4^^95^1079^6
+ ;;^UTILITY(U,$J,358.3,21493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22873,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,22873,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,22873,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,22874,0)
- ;;=M45.2^^87^987^3
- ;;^UTILITY(U,$J,358.3,22874,1,0)
+ ;;^UTILITY(U,$J,358.3,21493,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,21493,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,21493,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,21494,0)
+ ;;=Z75.8^^95^1079^2
+ ;;^UTILITY(U,$J,358.3,21494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22874,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,22874,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,22874,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,22875,0)
- ;;=M45.4^^87^987^7
- ;;^UTILITY(U,$J,358.3,22875,1,0)
+ ;;^UTILITY(U,$J,358.3,21494,1,3,0)
+ ;;=3^Medical Facilities/Health Care Problems
+ ;;^UTILITY(U,$J,358.3,21494,1,4,0)
+ ;;=4^Z75.8
+ ;;^UTILITY(U,$J,358.3,21494,2)
+ ;;=^5063295
+ ;;^UTILITY(U,$J,358.3,21495,0)
+ ;;=Z71.9^^95^1079^1
+ ;;^UTILITY(U,$J,358.3,21495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22875,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,22875,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,22875,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,22876,0)
- ;;=M45.7^^87^987^4
- ;;^UTILITY(U,$J,358.3,22876,1,0)
+ ;;^UTILITY(U,$J,358.3,21495,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,21495,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,21495,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,21496,0)
+ ;;=Z89.201^^95^1080^10
+ ;;^UTILITY(U,$J,358.3,21496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22876,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,22876,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,22876,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,22877,0)
- ;;=M45.8^^87^987^5
- ;;^UTILITY(U,$J,358.3,22877,1,0)
+ ;;^UTILITY(U,$J,358.3,21496,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb,Unspec Level
+ ;;^UTILITY(U,$J,358.3,21496,1,4,0)
+ ;;=4^Z89.201
+ ;;^UTILITY(U,$J,358.3,21496,2)
+ ;;=^5063543
+ ;;^UTILITY(U,$J,358.3,21497,0)
+ ;;=Z89.202^^95^1080^4
+ ;;^UTILITY(U,$J,358.3,21497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22877,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,22877,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,22877,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,22878,0)
- ;;=M47.22^^87^987^172
- ;;^UTILITY(U,$J,358.3,22878,1,0)
+ ;;^UTILITY(U,$J,358.3,21497,1,3,0)
+ ;;=3^Acquired Absence of Left Upper Limb,Unspec Level
+ ;;^UTILITY(U,$J,358.3,21497,1,4,0)
+ ;;=4^Z89.202
+ ;;^UTILITY(U,$J,358.3,21497,2)
+ ;;=^5063544
+ ;;^UTILITY(U,$J,358.3,21498,0)
+ ;;=Z89.111^^95^1080^6
+ ;;^UTILITY(U,$J,358.3,21498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22878,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,22878,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,22878,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,22879,0)
- ;;=M47.24^^87^987^174
- ;;^UTILITY(U,$J,358.3,22879,1,0)
+ ;;^UTILITY(U,$J,358.3,21498,1,3,0)
+ ;;=3^Acquired Absence of Right Hand
+ ;;^UTILITY(U,$J,358.3,21498,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,21498,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,21499,0)
+ ;;=Z89.112^^95^1080^1
+ ;;^UTILITY(U,$J,358.3,21499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22879,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,22879,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,22879,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,22880,0)
- ;;=M47.27^^87^987^173
- ;;^UTILITY(U,$J,358.3,22880,1,0)
+ ;;^UTILITY(U,$J,358.3,21499,1,3,0)
+ ;;=3^Acquired Absence of Left Hand
+ ;;^UTILITY(U,$J,358.3,21499,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,21499,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,21500,0)
+ ;;=Z89.121^^95^1080^11
+ ;;^UTILITY(U,$J,358.3,21500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22880,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,22880,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,22880,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,22881,0)
- ;;=M47.812^^87^987^169
- ;;^UTILITY(U,$J,358.3,22881,1,0)
+ ;;^UTILITY(U,$J,358.3,21500,1,3,0)
+ ;;=3^Acquired Absence of Right Wrist
+ ;;^UTILITY(U,$J,358.3,21500,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,21500,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,21501,0)
+ ;;=Z89.122^^95^1080^5
+ ;;^UTILITY(U,$J,358.3,21501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22881,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,22881,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,22881,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,22882,0)
- ;;=M47.814^^87^987^170
- ;;^UTILITY(U,$J,358.3,22882,1,0)
+ ;;^UTILITY(U,$J,358.3,21501,1,3,0)
+ ;;=3^Acquired Absence of Left Wrist
+ ;;^UTILITY(U,$J,358.3,21501,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,21501,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,21502,0)
+ ;;=Z89.211^^95^1080^9
+ ;;^UTILITY(U,$J,358.3,21502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22882,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,22882,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,22882,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,22883,0)
- ;;=M47.817^^87^987^171
+ ;;^UTILITY(U,$J,358.3,21502,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb Below Elbow
+ ;;^UTILITY(U,$J,358.3,21502,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,21502,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,21503,0)
+ ;;=Z89.212^^95^1080^12

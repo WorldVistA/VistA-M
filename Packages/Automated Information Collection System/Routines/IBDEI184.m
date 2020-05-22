@@ -1,140 +1,120 @@
-IBDEI184 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI184 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20802,1,0)
+ ;;^UTILITY(U,$J,358.3,19636,1,4,0)
+ ;;=4^S72.112S
+ ;;^UTILITY(U,$J,358.3,19636,2)
+ ;;=^5037658
+ ;;^UTILITY(U,$J,358.3,19637,0)
+ ;;=S72.114S^^93^995^67
+ ;;^UTILITY(U,$J,358.3,19637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20802,1,3,0)
- ;;=3^Breathing Abnormalities,Other
- ;;^UTILITY(U,$J,358.3,20802,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,20802,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,20803,0)
- ;;=R06.83^^84^939^54
- ;;^UTILITY(U,$J,358.3,20803,1,0)
+ ;;^UTILITY(U,$J,358.3,19637,1,3,0)
+ ;;=3^Nondisp greater trochanter fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19637,1,4,0)
+ ;;=4^S72.114S
+ ;;^UTILITY(U,$J,358.3,19637,2)
+ ;;=^5037690
+ ;;^UTILITY(U,$J,358.3,19638,0)
+ ;;=S72.115S^^93^995^66
+ ;;^UTILITY(U,$J,358.3,19638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20803,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,20803,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,20803,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,20804,0)
- ;;=R06.3^^84^939^32
- ;;^UTILITY(U,$J,358.3,20804,1,0)
+ ;;^UTILITY(U,$J,358.3,19638,1,3,0)
+ ;;=3^Nondisp greater trochanter fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19638,1,4,0)
+ ;;=4^S72.115S
+ ;;^UTILITY(U,$J,358.3,19638,2)
+ ;;=^5037706
+ ;;^UTILITY(U,$J,358.3,19639,0)
+ ;;=S72.121S^^93^995^25
+ ;;^UTILITY(U,$J,358.3,19639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20804,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,20804,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,20804,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,20805,0)
- ;;=R06.1^^84^939^56
- ;;^UTILITY(U,$J,358.3,20805,1,0)
+ ;;^UTILITY(U,$J,358.3,19639,1,3,0)
+ ;;=3^Displaced lesser trochanter fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19639,1,4,0)
+ ;;=4^S72.121S
+ ;;^UTILITY(U,$J,358.3,19639,2)
+ ;;=^5037738
+ ;;^UTILITY(U,$J,358.3,19640,0)
+ ;;=S72.122S^^93^995^24
+ ;;^UTILITY(U,$J,358.3,19640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20805,1,3,0)
- ;;=3^Stridor
- ;;^UTILITY(U,$J,358.3,20805,1,4,0)
- ;;=4^R06.1
- ;;^UTILITY(U,$J,358.3,20805,2)
- ;;=^5019183
- ;;^UTILITY(U,$J,358.3,20806,0)
- ;;=R05.^^84^939^15
- ;;^UTILITY(U,$J,358.3,20806,1,0)
+ ;;^UTILITY(U,$J,358.3,19640,1,3,0)
+ ;;=3^Displaced lesser trochanter fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19640,1,4,0)
+ ;;=4^S72.122S
+ ;;^UTILITY(U,$J,358.3,19640,2)
+ ;;=^5037754
+ ;;^UTILITY(U,$J,358.3,19641,0)
+ ;;=S72.124S^^93^995^73
+ ;;^UTILITY(U,$J,358.3,19641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20806,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,20806,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,20806,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,20807,0)
- ;;=R04.2^^84^939^24
- ;;^UTILITY(U,$J,358.3,20807,1,0)
+ ;;^UTILITY(U,$J,358.3,19641,1,3,0)
+ ;;=3^Nondisp lesser trochanter fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19641,1,4,0)
+ ;;=4^S72.124S
+ ;;^UTILITY(U,$J,358.3,19641,2)
+ ;;=^5037786
+ ;;^UTILITY(U,$J,358.3,19642,0)
+ ;;=S72.125S^^93^995^72
+ ;;^UTILITY(U,$J,358.3,19642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20807,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,20807,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,20807,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,20808,0)
- ;;=R91.8^^84^939^1
- ;;^UTILITY(U,$J,358.3,20808,1,0)
+ ;;^UTILITY(U,$J,358.3,19642,1,3,0)
+ ;;=3^Nondisp lesser trochanter fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19642,1,4,0)
+ ;;=4^S72.125S
+ ;;^UTILITY(U,$J,358.3,19642,2)
+ ;;=^5037802
+ ;;^UTILITY(U,$J,358.3,19643,0)
+ ;;=S72.131S^^93^995^7
+ ;;^UTILITY(U,$J,358.3,19643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20808,1,3,0)
- ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
- ;;^UTILITY(U,$J,358.3,20808,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,20808,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,20809,0)
- ;;=R06.2^^84^939^57
- ;;^UTILITY(U,$J,358.3,20809,1,0)
+ ;;^UTILITY(U,$J,358.3,19643,1,3,0)
+ ;;=3^Displaced apophyseal fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19643,1,4,0)
+ ;;=4^S72.131S
+ ;;^UTILITY(U,$J,358.3,19643,2)
+ ;;=^5037834
+ ;;^UTILITY(U,$J,358.3,19644,0)
+ ;;=S72.132S^^93^995^6
+ ;;^UTILITY(U,$J,358.3,19644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20809,1,3,0)
- ;;=3^Wheezing
- ;;^UTILITY(U,$J,358.3,20809,1,4,0)
- ;;=4^R06.2
- ;;^UTILITY(U,$J,358.3,20809,2)
- ;;=^5019184
- ;;^UTILITY(U,$J,358.3,20810,0)
- ;;=J44.0^^84^939^13
- ;;^UTILITY(U,$J,358.3,20810,1,0)
+ ;;^UTILITY(U,$J,358.3,19644,1,3,0)
+ ;;=3^Displaced apophyseal fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19644,1,4,0)
+ ;;=4^S72.132S
+ ;;^UTILITY(U,$J,358.3,19644,2)
+ ;;=^5037850
+ ;;^UTILITY(U,$J,358.3,19645,0)
+ ;;=S72.134S^^93^995^55
+ ;;^UTILITY(U,$J,358.3,19645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20810,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,20810,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,20810,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,20811,0)
- ;;=J94.1^^84^939^23
- ;;^UTILITY(U,$J,358.3,20811,1,0)
+ ;;^UTILITY(U,$J,358.3,19645,1,3,0)
+ ;;=3^Nondisp apophyseal fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19645,1,4,0)
+ ;;=4^S72.134S
+ ;;^UTILITY(U,$J,358.3,19645,2)
+ ;;=^5037882
+ ;;^UTILITY(U,$J,358.3,19646,0)
+ ;;=S72.135S^^93^995^54
+ ;;^UTILITY(U,$J,358.3,19646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20811,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,20811,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,20811,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,20812,0)
- ;;=G47.33^^84^939^31
- ;;^UTILITY(U,$J,358.3,20812,1,0)
+ ;;^UTILITY(U,$J,358.3,19646,1,3,0)
+ ;;=3^Nondisp apophyseal fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19646,1,4,0)
+ ;;=4^S72.135S
+ ;;^UTILITY(U,$J,358.3,19646,2)
+ ;;=^5037898
+ ;;^UTILITY(U,$J,358.3,19647,0)
+ ;;=S72.141S^^93^995^21
+ ;;^UTILITY(U,$J,358.3,19647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20812,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,20812,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,20812,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,20813,0)
- ;;=R91.1^^84^939^55
- ;;^UTILITY(U,$J,358.3,20813,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20813,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,20813,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,20813,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,20814,0)
- ;;=T74.21XA^^84^940^1
- ;;^UTILITY(U,$J,358.3,20814,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20814,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
- ;;^UTILITY(U,$J,358.3,20814,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,20814,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,20815,0)
- ;;=T76.21XA^^84^940^4
- ;;^UTILITY(U,$J,358.3,20815,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20815,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
- ;;^UTILITY(U,$J,358.3,20815,1,4,0)
- ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,19647,1,3,0)
+ ;;=3^Displaced intertrochanteric fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19647,1,4,0)
+ ;;=4^S72.141S
+ ;;^UTILITY(U,$J,358.3,19647,2)
+ ;;=^5037930
+ ;;^UTILITY(U,$J,358.3,19648,0)
+ ;;=S72.142S^^93^995^20

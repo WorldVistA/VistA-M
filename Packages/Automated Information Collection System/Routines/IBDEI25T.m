@@ -1,126 +1,118 @@
-IBDEI25T ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36636,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hip
- ;;^UTILITY(U,$J,358.3,36636,1,4,0)
- ;;=4^M05.152
- ;;^UTILITY(U,$J,358.3,36636,2)
- ;;=^5009876
- ;;^UTILITY(U,$J,358.3,36637,0)
- ;;=M05.162^^137^1768^30
- ;;^UTILITY(U,$J,358.3,36637,1,0)
+ ;;^UTILITY(U,$J,358.3,34484,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,34484,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,34485,0)
+ ;;=F13.129^^134^1748^23
+ ;;^UTILITY(U,$J,358.3,34485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36637,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Knee
- ;;^UTILITY(U,$J,358.3,36637,1,4,0)
- ;;=4^M05.162
- ;;^UTILITY(U,$J,358.3,36637,2)
- ;;=^5009879
- ;;^UTILITY(U,$J,358.3,36638,0)
- ;;=M05.112^^137^1768^31
- ;;^UTILITY(U,$J,358.3,36638,1,0)
+ ;;^UTILITY(U,$J,358.3,34485,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34485,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,34485,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,34486,0)
+ ;;=F13.229^^134^1748^24
+ ;;^UTILITY(U,$J,358.3,34486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36638,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Shldr
- ;;^UTILITY(U,$J,358.3,36638,1,4,0)
- ;;=4^M05.112
- ;;^UTILITY(U,$J,358.3,36638,2)
- ;;=^5009864
- ;;^UTILITY(U,$J,358.3,36639,0)
- ;;=M05.132^^137^1768^32
- ;;^UTILITY(U,$J,358.3,36639,1,0)
+ ;;^UTILITY(U,$J,358.3,34486,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34486,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,34486,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,34487,0)
+ ;;=F13.929^^134^1748^25
+ ;;^UTILITY(U,$J,358.3,34487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36639,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
- ;;^UTILITY(U,$J,358.3,36639,1,4,0)
- ;;=4^M05.132
- ;;^UTILITY(U,$J,358.3,36639,2)
- ;;=^5009870
- ;;^UTILITY(U,$J,358.3,36640,0)
- ;;=M05.19^^137^1768^33
- ;;^UTILITY(U,$J,358.3,36640,1,0)
+ ;;^UTILITY(U,$J,358.3,34487,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34487,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,34487,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,34488,0)
+ ;;=F13.121^^134^1748^21
+ ;;^UTILITY(U,$J,358.3,34488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36640,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Mult Sites
- ;;^UTILITY(U,$J,358.3,36640,1,4,0)
- ;;=4^M05.19
- ;;^UTILITY(U,$J,358.3,36640,2)
- ;;=^5009884
- ;;^UTILITY(U,$J,358.3,36641,0)
- ;;=M05.171^^137^1768^34
- ;;^UTILITY(U,$J,358.3,36641,1,0)
+ ;;^UTILITY(U,$J,358.3,34488,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34488,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,34488,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,34489,0)
+ ;;=F13.221^^134^1748^22
+ ;;^UTILITY(U,$J,358.3,34489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36641,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,36641,1,4,0)
- ;;=4^M05.171
- ;;^UTILITY(U,$J,358.3,36641,2)
- ;;=^5009881
- ;;^UTILITY(U,$J,358.3,36642,0)
- ;;=M05.121^^137^1768^35
- ;;^UTILITY(U,$J,358.3,36642,1,0)
+ ;;^UTILITY(U,$J,358.3,34489,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34489,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,34489,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,34490,0)
+ ;;=F13.10^^134^1748^27
+ ;;^UTILITY(U,$J,358.3,34490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36642,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Elbow
- ;;^UTILITY(U,$J,358.3,36642,1,4,0)
- ;;=4^M05.121
- ;;^UTILITY(U,$J,358.3,36642,2)
- ;;=^5009866
- ;;^UTILITY(U,$J,358.3,36643,0)
- ;;=M05.141^^137^1768^36
- ;;^UTILITY(U,$J,358.3,36643,1,0)
+ ;;^UTILITY(U,$J,358.3,34490,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,34490,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,34490,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,34491,0)
+ ;;=F13.20^^134^1748^29
+ ;;^UTILITY(U,$J,358.3,34491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36643,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hand
- ;;^UTILITY(U,$J,358.3,36643,1,4,0)
- ;;=4^M05.141
- ;;^UTILITY(U,$J,358.3,36643,2)
- ;;=^5009872
- ;;^UTILITY(U,$J,358.3,36644,0)
- ;;=M05.151^^137^1768^37
- ;;^UTILITY(U,$J,358.3,36644,1,0)
+ ;;^UTILITY(U,$J,358.3,34491,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,34491,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,34491,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,34492,0)
+ ;;=F13.232^^134^1748^33
+ ;;^UTILITY(U,$J,358.3,34492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36644,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hip
- ;;^UTILITY(U,$J,358.3,36644,1,4,0)
- ;;=4^M05.151
- ;;^UTILITY(U,$J,358.3,36644,2)
- ;;=^5009875
- ;;^UTILITY(U,$J,358.3,36645,0)
- ;;=M05.161^^137^1768^38
- ;;^UTILITY(U,$J,358.3,36645,1,0)
+ ;;^UTILITY(U,$J,358.3,34492,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/ Percep Disturb Use DO (Mod/Sev)
+ ;;^UTILITY(U,$J,358.3,34492,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,34492,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,34493,0)
+ ;;=F13.239^^134^1748^35
+ ;;^UTILITY(U,$J,358.3,34493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36645,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Knee
- ;;^UTILITY(U,$J,358.3,36645,1,4,0)
- ;;=4^M05.161
- ;;^UTILITY(U,$J,358.3,36645,2)
- ;;=^5009878
- ;;^UTILITY(U,$J,358.3,36646,0)
- ;;=M05.111^^137^1768^39
- ;;^UTILITY(U,$J,358.3,36646,1,0)
+ ;;^UTILITY(U,$J,358.3,34493,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/o Percep Disturb Use DO (Mod/Sev)
+ ;;^UTILITY(U,$J,358.3,34493,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,34493,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,34494,0)
+ ;;=F13.231^^134^1748^31
+ ;;^UTILITY(U,$J,358.3,34494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36646,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Shldr
- ;;^UTILITY(U,$J,358.3,36646,1,4,0)
- ;;=4^M05.111
- ;;^UTILITY(U,$J,358.3,36646,2)
- ;;=^5009863
- ;;^UTILITY(U,$J,358.3,36647,0)
- ;;=M05.131^^137^1768^40
- ;;^UTILITY(U,$J,358.3,36647,1,0)
+ ;;^UTILITY(U,$J,358.3,34494,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD Delirium w/Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34494,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,34494,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,34495,0)
+ ;;=F13.99^^134^1748^26
+ ;;^UTILITY(U,$J,358.3,34495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36647,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Wrist
- ;;^UTILITY(U,$J,358.3,36647,1,4,0)
- ;;=4^M05.131
- ;;^UTILITY(U,$J,358.3,36647,2)
- ;;=^5009869
- ;;^UTILITY(U,$J,358.3,36648,0)
- ;;=M05.10^^137^1768^41
- ;;^UTILITY(U,$J,358.3,36648,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36648,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Unspec Site
+ ;;^UTILITY(U,$J,358.3,34495,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34495,1,4,0)
+ ;;=4^F13.99
+ ;;^UTILITY(U,$J,358.3,34495,2)
+ ;;=^5133353

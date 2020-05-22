@@ -1,340 +1,692 @@
-IBDEI08H ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI08H ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10702,1,4,0)
- ;;=4^S01.85XA
- ;;^UTILITY(U,$J,358.3,10702,2)
- ;;=^5020237
- ;;^UTILITY(U,$J,358.3,10703,0)
- ;;=S11.85XA^^37^559^32
- ;;^UTILITY(U,$J,358.3,10703,1,0)
+ ;;^UTILITY(U,$J,358.3,20702,2)
+ ;;=^8204721
+ ;;^UTILITY(U,$J,358.3,20703,0)
+ ;;=I16.0^^70^879^25
+ ;;^UTILITY(U,$J,358.3,20703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10703,1,3,0)
- ;;=3^Open Bite of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,10703,1,4,0)
- ;;=4^S11.85XA
- ;;^UTILITY(U,$J,358.3,10703,2)
- ;;=^5021521
- ;;^UTILITY(U,$J,358.3,10704,0)
- ;;=S91.051A^^37^559^37
- ;;^UTILITY(U,$J,358.3,10704,1,0)
+ ;;^UTILITY(U,$J,358.3,20703,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,20703,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,20703,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,20704,0)
+ ;;=I12.9^^70^879^15
+ ;;^UTILITY(U,$J,358.3,20704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10704,1,3,0)
- ;;=3^Open Bite of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,10704,1,4,0)
- ;;=4^S91.051A
- ;;^UTILITY(U,$J,358.3,10704,2)
- ;;=^5044159
- ;;^UTILITY(U,$J,358.3,10705,0)
- ;;=S31.815A^^37^559^38
- ;;^UTILITY(U,$J,358.3,10705,1,0)
+ ;;^UTILITY(U,$J,358.3,20704,1,3,0)
+ ;;=3^HTN CKD w/ Stage 1-4 CKD or Unspec
+ ;;^UTILITY(U,$J,358.3,20704,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,20704,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,20705,0)
+ ;;=I12.0^^70^879^16
+ ;;^UTILITY(U,$J,358.3,20705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10705,1,3,0)
- ;;=3^Open Bite of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,10705,1,4,0)
- ;;=4^S31.815A
- ;;^UTILITY(U,$J,358.3,10705,2)
- ;;=^5024305
- ;;^UTILITY(U,$J,358.3,10706,0)
- ;;=S01.451A^^37^559^39
- ;;^UTILITY(U,$J,358.3,10706,1,0)
+ ;;^UTILITY(U,$J,358.3,20705,1,3,0)
+ ;;=3^HTN CKD w/ Stage 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,20705,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,20705,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,20706,0)
+ ;;=I13.10^^70^879^19
+ ;;^UTILITY(U,$J,358.3,20706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10706,1,3,0)
- ;;=3^Open Bite of Right Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10706,1,4,0)
- ;;=4^S01.451A
- ;;^UTILITY(U,$J,358.3,10706,2)
- ;;=^5020177
- ;;^UTILITY(U,$J,358.3,10707,0)
- ;;=S01.351A^^37^559^40
- ;;^UTILITY(U,$J,358.3,10707,1,0)
+ ;;^UTILITY(U,$J,358.3,20706,1,3,0)
+ ;;=3^HTN Heart & CKD w/o Heart Fail w/ 1-4 CKD or Unspec
+ ;;^UTILITY(U,$J,358.3,20706,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,20706,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,20707,0)
+ ;;=I13.11^^70^879^20
+ ;;^UTILITY(U,$J,358.3,20707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10707,1,3,0)
- ;;=3^Open Bite of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,10707,1,4,0)
- ;;=4^S01.351A
- ;;^UTILITY(U,$J,358.3,10707,2)
- ;;=^5020138
- ;;^UTILITY(U,$J,358.3,10708,0)
- ;;=S51.051A^^37^559^41
- ;;^UTILITY(U,$J,358.3,10708,1,0)
+ ;;^UTILITY(U,$J,358.3,20707,1,3,0)
+ ;;=3^HTN Heart & CKD w/o Heart Fail w/ 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,20707,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,20707,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,20708,0)
+ ;;=I13.0^^70^879^17
+ ;;^UTILITY(U,$J,358.3,20708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10708,1,3,0)
- ;;=3^Open Bite of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,10708,1,4,0)
- ;;=4^S51.051A
- ;;^UTILITY(U,$J,358.3,10708,2)
- ;;=^5028650
- ;;^UTILITY(U,$J,358.3,10709,0)
- ;;=S91.351A^^37^559^42
- ;;^UTILITY(U,$J,358.3,10709,1,0)
+ ;;^UTILITY(U,$J,358.3,20708,1,3,0)
+ ;;=3^HTN Heart & CKD w/ Heart Fail w/ 1-4 CKD or Unspec
+ ;;^UTILITY(U,$J,358.3,20708,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,20708,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,20709,0)
+ ;;=I13.2^^70^879^18
+ ;;^UTILITY(U,$J,358.3,20709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10709,1,3,0)
- ;;=3^Open Bite of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,10709,1,4,0)
- ;;=4^S91.351A
- ;;^UTILITY(U,$J,358.3,10709,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,10710,0)
- ;;=S91.251A^^37^559^43
- ;;^UTILITY(U,$J,358.3,10710,1,0)
+ ;;^UTILITY(U,$J,358.3,20709,1,3,0)
+ ;;=3^HTN Heart & CKD w/ Heart Fail w/ 5 CKD or ESRD
+ ;;^UTILITY(U,$J,358.3,20709,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,20709,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,20710,0)
+ ;;=I31.9^^70^879^32
+ ;;^UTILITY(U,$J,358.3,20710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10710,1,3,0)
- ;;=3^Open Bite of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10710,1,4,0)
- ;;=4^S91.251A
- ;;^UTILITY(U,$J,358.3,10710,2)
- ;;=^5044305
- ;;^UTILITY(U,$J,358.3,10711,0)
- ;;=S61.451A^^37^559^44
- ;;^UTILITY(U,$J,358.3,10711,1,0)
+ ;;^UTILITY(U,$J,358.3,20710,1,3,0)
+ ;;=3^Pericardial Disease NOS
+ ;;^UTILITY(U,$J,358.3,20710,1,4,0)
+ ;;=4^I31.9
+ ;;^UTILITY(U,$J,358.3,20710,2)
+ ;;=^5007165
+ ;;^UTILITY(U,$J,358.3,20711,0)
+ ;;=I48.20^^70^879^5
+ ;;^UTILITY(U,$J,358.3,20711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10711,1,3,0)
- ;;=3^Open Bite of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,10711,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,10711,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,10712,0)
- ;;=S71.051A^^37^559^45
- ;;^UTILITY(U,$J,358.3,10712,1,0)
+ ;;^UTILITY(U,$J,358.3,20711,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,20711,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,20711,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,20712,0)
+ ;;=I48.21^^70^879^8
+ ;;^UTILITY(U,$J,358.3,20712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10712,1,3,0)
- ;;=3^Open Bite of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,10712,1,4,0)
- ;;=4^S71.051A
- ;;^UTILITY(U,$J,358.3,10712,2)
- ;;=^5036999
- ;;^UTILITY(U,$J,358.3,10713,0)
- ;;=S61.350A^^37^559^46
- ;;^UTILITY(U,$J,358.3,10713,1,0)
+ ;;^UTILITY(U,$J,358.3,20712,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,20712,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,20712,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,20713,0)
+ ;;=I48.11^^70^879^6
+ ;;^UTILITY(U,$J,358.3,20713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10713,1,3,0)
- ;;=3^Open Bite of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10713,1,4,0)
- ;;=4^S61.350A
- ;;^UTILITY(U,$J,358.3,10713,2)
- ;;=^5032966
- ;;^UTILITY(U,$J,358.3,10714,0)
- ;;=S61.250A^^37^559^47
- ;;^UTILITY(U,$J,358.3,10714,1,0)
+ ;;^UTILITY(U,$J,358.3,20713,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,20713,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,20713,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,20714,0)
+ ;;=I48.19^^70^879^7
+ ;;^UTILITY(U,$J,358.3,20714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10714,1,3,0)
- ;;=3^Open Bite of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10714,1,4,0)
- ;;=4^S61.250A
- ;;^UTILITY(U,$J,358.3,10714,2)
- ;;=^5032861
- ;;^UTILITY(U,$J,358.3,10715,0)
- ;;=S81.051A^^37^559^48
- ;;^UTILITY(U,$J,358.3,10715,1,0)
+ ;;^UTILITY(U,$J,358.3,20714,1,3,0)
+ ;;=3^Atrial Fibrillation,Oth Persistent
+ ;;^UTILITY(U,$J,358.3,20714,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,20714,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,20715,0)
+ ;;=Z71.89^^70^880^1
+ ;;^UTILITY(U,$J,358.3,20715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10715,1,3,0)
- ;;=3^Open Bite of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,10715,1,4,0)
- ;;=4^S81.051A
- ;;^UTILITY(U,$J,358.3,10715,2)
- ;;=^5040056
- ;;^UTILITY(U,$J,358.3,10716,0)
- ;;=S91.254A^^37^559^49
- ;;^UTILITY(U,$J,358.3,10716,1,0)
+ ;;^UTILITY(U,$J,358.3,20715,1,3,0)
+ ;;=3^Counseling,Other Specified
+ ;;^UTILITY(U,$J,358.3,20715,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,20715,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,20716,0)
+ ;;=Z71.7^^70^880^2
+ ;;^UTILITY(U,$J,358.3,20716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10716,1,3,0)
- ;;=3^Open Bite of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10716,1,4,0)
- ;;=4^S91.254A
- ;;^UTILITY(U,$J,358.3,10716,2)
- ;;=^5044308
- ;;^UTILITY(U,$J,358.3,10717,0)
- ;;=S91.154A^^37^559^50
- ;;^UTILITY(U,$J,358.3,10717,1,0)
+ ;;^UTILITY(U,$J,358.3,20716,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,20716,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,20716,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,20717,0)
+ ;;=Z76.89^^70^880^5
+ ;;^UTILITY(U,$J,358.3,20717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10717,1,3,0)
- ;;=3^Open Bite of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10717,1,4,0)
- ;;=4^S91.154A
- ;;^UTILITY(U,$J,358.3,10717,2)
- ;;=^5044252
- ;;^UTILITY(U,$J,358.3,10718,0)
- ;;=S61.356A^^37^559^51
- ;;^UTILITY(U,$J,358.3,10718,1,0)
+ ;;^UTILITY(U,$J,358.3,20717,1,3,0)
+ ;;=3^Persons Encountering Health Services for Oth Circumstances
+ ;;^UTILITY(U,$J,358.3,20717,1,4,0)
+ ;;=4^Z76.89
+ ;;^UTILITY(U,$J,358.3,20717,2)
+ ;;=^5063304
+ ;;^UTILITY(U,$J,358.3,20718,0)
+ ;;=Z01.812^^70^880^3
+ ;;^UTILITY(U,$J,358.3,20718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10718,1,3,0)
- ;;=3^Open Bite of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10718,1,4,0)
- ;;=4^S61.356A
- ;;^UTILITY(U,$J,358.3,10718,2)
- ;;=^5032975
- ;;^UTILITY(U,$J,358.3,10719,0)
- ;;=S61.256A^^37^559^52
- ;;^UTILITY(U,$J,358.3,10719,1,0)
+ ;;^UTILITY(U,$J,358.3,20718,1,3,0)
+ ;;=3^Lab Result Counseling
+ ;;^UTILITY(U,$J,358.3,20718,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,20718,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,20719,0)
+ ;;=Z11.7^^70^880^6
+ ;;^UTILITY(U,$J,358.3,20719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10719,1,3,0)
- ;;=3^Open Bite of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10719,1,4,0)
- ;;=4^S61.256A
- ;;^UTILITY(U,$J,358.3,10719,2)
- ;;=^5032879
- ;;^UTILITY(U,$J,358.3,10720,0)
- ;;=S81.851A^^37^559^53
- ;;^UTILITY(U,$J,358.3,10720,1,0)
+ ;;^UTILITY(U,$J,358.3,20719,1,3,0)
+ ;;=3^Testing for Latent Tuberculosis Infection
+ ;;^UTILITY(U,$J,358.3,20719,1,4,0)
+ ;;=4^Z11.7
+ ;;^UTILITY(U,$J,358.3,20719,2)
+ ;;=^5158320
+ ;;^UTILITY(U,$J,358.3,20720,0)
+ ;;=Z22.7^^70^880^4
+ ;;^UTILITY(U,$J,358.3,20720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10720,1,3,0)
- ;;=3^Open Bite of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,10720,1,4,0)
- ;;=4^S81.851A
- ;;^UTILITY(U,$J,358.3,10720,2)
- ;;=^5040095
- ;;^UTILITY(U,$J,358.3,10721,0)
- ;;=S61.352A^^37^559^54
- ;;^UTILITY(U,$J,358.3,10721,1,0)
+ ;;^UTILITY(U,$J,358.3,20720,1,3,0)
+ ;;=3^Latent Tuberculosis
+ ;;^UTILITY(U,$J,358.3,20720,1,4,0)
+ ;;=4^Z22.7
+ ;;^UTILITY(U,$J,358.3,20720,2)
+ ;;=^5158321
+ ;;^UTILITY(U,$J,358.3,20721,0)
+ ;;=E03.9^^70^881^29
+ ;;^UTILITY(U,$J,358.3,20721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10721,1,3,0)
- ;;=3^Open Bite of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10721,1,4,0)
- ;;=4^S61.352A
- ;;^UTILITY(U,$J,358.3,10721,2)
- ;;=^5032969
- ;;^UTILITY(U,$J,358.3,10722,0)
- ;;=S61.252A^^37^559^55
- ;;^UTILITY(U,$J,358.3,10722,1,0)
+ ;;^UTILITY(U,$J,358.3,20721,1,3,0)
+ ;;=3^Hypothroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,20721,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,20721,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,20722,0)
+ ;;=E11.9^^70^881^23
+ ;;^UTILITY(U,$J,358.3,20722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10722,1,3,0)
- ;;=3^Open Bite of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10722,1,4,0)
- ;;=4^S61.252A
- ;;^UTILITY(U,$J,358.3,10722,2)
- ;;=^5032867
- ;;^UTILITY(U,$J,358.3,10723,0)
- ;;=S61.354A^^37^559^56
- ;;^UTILITY(U,$J,358.3,10723,1,0)
+ ;;^UTILITY(U,$J,358.3,20722,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,20722,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,20722,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,20723,0)
+ ;;=E10.9^^70^881^7
+ ;;^UTILITY(U,$J,358.3,20723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10723,1,3,0)
- ;;=3^Open Bite of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10723,1,4,0)
- ;;=4^S61.354A
- ;;^UTILITY(U,$J,358.3,10723,2)
- ;;=^5032972
- ;;^UTILITY(U,$J,358.3,10724,0)
- ;;=S61.254A^^37^559^57
- ;;^UTILITY(U,$J,358.3,10724,1,0)
+ ;;^UTILITY(U,$J,358.3,20723,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,20723,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,20723,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,20724,0)
+ ;;=E11.65^^70^881^16
+ ;;^UTILITY(U,$J,358.3,20724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10724,1,3,0)
- ;;=3^Open Bite of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10724,1,4,0)
- ;;=4^S61.254A
- ;;^UTILITY(U,$J,358.3,10724,2)
- ;;=^5032873
- ;;^UTILITY(U,$J,358.3,10725,0)
- ;;=S41.051A^^37^559^58
- ;;^UTILITY(U,$J,358.3,10725,1,0)
+ ;;^UTILITY(U,$J,358.3,20724,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,20724,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,20724,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,20725,0)
+ ;;=E53.8^^70^881^34
+ ;;^UTILITY(U,$J,358.3,20725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10725,1,3,0)
- ;;=3^Open Bite of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,10725,1,4,0)
- ;;=4^S41.051A
- ;;^UTILITY(U,$J,358.3,10725,2)
- ;;=^5026321
- ;;^UTILITY(U,$J,358.3,10726,0)
- ;;=S71.151A^^37^559^59
- ;;^UTILITY(U,$J,358.3,10726,1,0)
+ ;;^UTILITY(U,$J,358.3,20725,1,3,0)
+ ;;=3^Vitamin B Deficiency NEC
+ ;;^UTILITY(U,$J,358.3,20725,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,20725,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,20726,0)
+ ;;=E78.5^^70^881^27
+ ;;^UTILITY(U,$J,358.3,20726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10726,1,3,0)
- ;;=3^Open Bite of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,10726,1,4,0)
- ;;=4^S71.151A
- ;;^UTILITY(U,$J,358.3,10726,2)
- ;;=^5037038
- ;;^UTILITY(U,$J,358.3,10727,0)
- ;;=S61.151A^^37^559^60
- ;;^UTILITY(U,$J,358.3,10727,1,0)
+ ;;^UTILITY(U,$J,358.3,20726,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20726,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,20726,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,20727,0)
+ ;;=E66.01^^70^881^31
+ ;;^UTILITY(U,$J,358.3,20727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10727,1,3,0)
- ;;=3^Open Bite of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10727,1,4,0)
- ;;=4^S61.151A
- ;;^UTILITY(U,$J,358.3,10727,2)
- ;;=^5032738
- ;;^UTILITY(U,$J,358.3,10728,0)
- ;;=S61.051A^^37^559^61
- ;;^UTILITY(U,$J,358.3,10728,1,0)
+ ;;^UTILITY(U,$J,358.3,20727,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,20727,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,20727,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,20728,0)
+ ;;=D64.9^^70^881^6
+ ;;^UTILITY(U,$J,358.3,20728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10728,1,3,0)
- ;;=3^Open Bite of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,10728,1,4,0)
- ;;=4^S61.051A
- ;;^UTILITY(U,$J,358.3,10728,2)
- ;;=^5032714
- ;;^UTILITY(U,$J,358.3,10729,0)
- ;;=S61.551A^^37^559^62
- ;;^UTILITY(U,$J,358.3,10729,1,0)
+ ;;^UTILITY(U,$J,358.3,20728,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20728,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,20728,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,20729,0)
+ ;;=D68.318^^70^881^25
+ ;;^UTILITY(U,$J,358.3,20729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10729,1,3,0)
- ;;=3^Open Bite of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,10729,1,4,0)
- ;;=4^S61.551A
- ;;^UTILITY(U,$J,358.3,10729,2)
- ;;=^5033050
- ;;^UTILITY(U,$J,358.3,10730,0)
- ;;=S01.05XA^^37^559^63
- ;;^UTILITY(U,$J,358.3,10730,1,0)
+ ;;^UTILITY(U,$J,358.3,20729,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Intrns Circ Anticoag/Antibodies/Inhibitors
+ ;;^UTILITY(U,$J,358.3,20729,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,20729,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,20730,0)
+ ;;=D50.9^^70^881^30
+ ;;^UTILITY(U,$J,358.3,20730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10730,1,3,0)
- ;;=3^Open Bite of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,10730,1,4,0)
- ;;=4^S01.05XA
- ;;^UTILITY(U,$J,358.3,10730,2)
- ;;=^5020048
- ;;^UTILITY(U,$J,358.3,10731,0)
- ;;=S01.95XA^^37^559^2
- ;;^UTILITY(U,$J,358.3,10731,1,0)
+ ;;^UTILITY(U,$J,358.3,20730,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20730,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,20730,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,20731,0)
+ ;;=D64.81^^70^881^3
+ ;;^UTILITY(U,$J,358.3,20731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10731,1,3,0)
- ;;=3^Open Bite of Head,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,10731,1,4,0)
- ;;=4^S01.95XA
- ;;^UTILITY(U,$J,358.3,10731,2)
- ;;=^5020249
- ;;^UTILITY(U,$J,358.3,10732,0)
- ;;=S11.95XA^^37^559^33
- ;;^UTILITY(U,$J,358.3,10732,1,0)
+ ;;^UTILITY(U,$J,358.3,20731,1,3,0)
+ ;;=3^Anemia d/t Antineoplastic Chemotherapy
+ ;;^UTILITY(U,$J,358.3,20731,1,4,0)
+ ;;=4^D64.81
+ ;;^UTILITY(U,$J,358.3,20731,2)
+ ;;=^5002349
+ ;;^UTILITY(U,$J,358.3,20732,0)
+ ;;=D63.1^^70^881^5
+ ;;^UTILITY(U,$J,358.3,20732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10732,1,3,0)
- ;;=3^Open Bite of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,10732,1,4,0)
- ;;=4^S11.95XA
- ;;^UTILITY(U,$J,358.3,10732,2)
- ;;=^5021542
- ;;^UTILITY(U,$J,358.3,10733,0)
- ;;=S01.03XA^^37^560^64
- ;;^UTILITY(U,$J,358.3,10733,1,0)
+ ;;^UTILITY(U,$J,358.3,20732,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,20732,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,20732,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,20733,0)
+ ;;=D62.^^70^881^1
+ ;;^UTILITY(U,$J,358.3,20733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10733,1,3,0)
- ;;=3^Puncture Wound w/o FB of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,10733,1,4,0)
- ;;=4^S01.03XA
- ;;^UTILITY(U,$J,358.3,10733,2)
- ;;=^5020042
- ;;^UTILITY(U,$J,358.3,10734,0)
- ;;=S01.331A^^37^560^40
- ;;^UTILITY(U,$J,358.3,10734,1,0)
+ ;;^UTILITY(U,$J,358.3,20733,1,3,0)
+ ;;=3^Acute Blood Loss Anemia
+ ;;^UTILITY(U,$J,358.3,20733,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,20733,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,20734,0)
+ ;;=D51.9^^70^881^36
+ ;;^UTILITY(U,$J,358.3,20734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10734,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,10734,1,4,0)
- ;;=4^S01.331A
- ;;^UTILITY(U,$J,358.3,10734,2)
- ;;=^5020126
- ;;^UTILITY(U,$J,358.3,10735,0)
- ;;=S01.332A^^37^560^8
- ;;^UTILITY(U,$J,358.3,10735,1,0)
+ ;;^UTILITY(U,$J,358.3,20734,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20734,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,20734,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,20735,0)
+ ;;=D51.3^^70^881^35
+ ;;^UTILITY(U,$J,358.3,20735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10735,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,10735,1,4,0)
- ;;=4^S01.332A
- ;;^UTILITY(U,$J,358.3,10735,2)
- ;;=^5020129
- ;;^UTILITY(U,$J,358.3,10736,0)
- ;;=S01.23XA^^37^560^34
+ ;;^UTILITY(U,$J,358.3,20735,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Dietary
+ ;;^UTILITY(U,$J,358.3,20735,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,20735,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,20736,0)
+ ;;=D51.0^^70^881^32
+ ;;^UTILITY(U,$J,358.3,20736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20736,1,3,0)
+ ;;=3^Pernicious Anemia
+ ;;^UTILITY(U,$J,358.3,20736,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,20736,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,20737,0)
+ ;;=D50.0^^70^881^4
+ ;;^UTILITY(U,$J,358.3,20737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20737,1,3,0)
+ ;;=3^Anemia d/t Blood Loss (Chronic)
+ ;;^UTILITY(U,$J,358.3,20737,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,20737,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,20738,0)
+ ;;=E11.21^^70^881^19
+ ;;^UTILITY(U,$J,358.3,20738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20738,1,3,0)
+ ;;=3^DM Type 2 w/ Nephropathy
+ ;;^UTILITY(U,$J,358.3,20738,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,20738,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,20739,0)
+ ;;=E11.22^^70^881^9
+ ;;^UTILITY(U,$J,358.3,20739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20739,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,20739,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,20739,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,20740,0)
+ ;;=E11.29^^70^881^20
+ ;;^UTILITY(U,$J,358.3,20740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20740,1,3,0)
+ ;;=3^DM Type 2 w/ Other Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,20740,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,20740,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,20741,0)
+ ;;=E11.311^^70^881^21
+ ;;^UTILITY(U,$J,358.3,20741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20741,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/ Macular edema
+ ;;^UTILITY(U,$J,358.3,20741,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,20741,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,20742,0)
+ ;;=E11.319^^70^881^22
+ ;;^UTILITY(U,$J,358.3,20742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20742,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,20742,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,20742,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,20743,0)
+ ;;=E11.40^^70^881^11
+ ;;^UTILITY(U,$J,358.3,20743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20743,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,20743,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,20743,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,20744,0)
+ ;;=E11.41^^70^881^10
+ ;;^UTILITY(U,$J,358.3,20744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20744,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,20744,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,20744,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,20745,0)
+ ;;=E11.42^^70^881^14
+ ;;^UTILITY(U,$J,358.3,20745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20745,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,20745,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,20745,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,20746,0)
+ ;;=E11.43^^70^881^8
+ ;;^UTILITY(U,$J,358.3,20746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20746,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,20746,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,20746,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,20747,0)
+ ;;=E11.51^^70^881^12
+ ;;^UTILITY(U,$J,358.3,20747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20747,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,20747,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,20747,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,20748,0)
+ ;;=E11.52^^70^881^13
+ ;;^UTILITY(U,$J,358.3,20748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20748,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,20748,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,20748,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,20749,0)
+ ;;=E11.621^^70^881^15
+ ;;^UTILITY(U,$J,358.3,20749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20749,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,20749,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,20749,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,20750,0)
+ ;;=E11.641^^70^881^17
+ ;;^UTILITY(U,$J,358.3,20750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20750,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,20750,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,20750,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,20751,0)
+ ;;=E11.649^^70^881^18
+ ;;^UTILITY(U,$J,358.3,20751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20751,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,20751,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,20751,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,20752,0)
+ ;;=E78.01^^70^881^24
+ ;;^UTILITY(U,$J,358.3,20752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20752,1,3,0)
+ ;;=3^Familial Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,20752,1,4,0)
+ ;;=4^E78.01
+ ;;^UTILITY(U,$J,358.3,20752,2)
+ ;;=^7570555
+ ;;^UTILITY(U,$J,358.3,20753,0)
+ ;;=E78.00^^70^881^33
+ ;;^UTILITY(U,$J,358.3,20753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20753,1,3,0)
+ ;;=3^Pure Hypercholesterolemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20753,1,4,0)
+ ;;=4^E78.00
+ ;;^UTILITY(U,$J,358.3,20753,2)
+ ;;=^5138435
+ ;;^UTILITY(U,$J,358.3,20754,0)
+ ;;=E85.9^^70^881^2
+ ;;^UTILITY(U,$J,358.3,20754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20754,1,3,0)
+ ;;=3^Amyloidosis NOS
+ ;;^UTILITY(U,$J,358.3,20754,1,4,0)
+ ;;=4^E85.9
+ ;;^UTILITY(U,$J,358.3,20754,2)
+ ;;=^334185
+ ;;^UTILITY(U,$J,358.3,20755,0)
+ ;;=E87.5^^70^881^26
+ ;;^UTILITY(U,$J,358.3,20755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20755,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,20755,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,20755,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,20756,0)
+ ;;=E21.3^^70^881^28
+ ;;^UTILITY(U,$J,358.3,20756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20756,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,20756,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,20756,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,20757,0)
+ ;;=H11.33^^70^882^2
+ ;;^UTILITY(U,$J,358.3,20757,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20757,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,20757,1,4,0)
+ ;;=4^H11.33
+ ;;^UTILITY(U,$J,358.3,20757,2)
+ ;;=^5004784
+ ;;^UTILITY(U,$J,358.3,20758,0)
+ ;;=H11.31^^70^882^4
+ ;;^UTILITY(U,$J,358.3,20758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20758,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,20758,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,20758,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,20759,0)
+ ;;=H11.32^^70^882^3
+ ;;^UTILITY(U,$J,358.3,20759,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20759,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,20759,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,20759,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,20760,0)
+ ;;=H61.23^^70^882^23
+ ;;^UTILITY(U,$J,358.3,20760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20760,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,20760,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,20760,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,20761,0)
+ ;;=H61.22^^70^882^24
+ ;;^UTILITY(U,$J,358.3,20761,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20761,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,20761,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,20761,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,20762,0)
+ ;;=H66.91^^70^882^28
+ ;;^UTILITY(U,$J,358.3,20762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20762,1,3,0)
+ ;;=3^Otitis Media,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,20762,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,20762,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,20763,0)
+ ;;=H66.92^^70^882^27
+ ;;^UTILITY(U,$J,358.3,20763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20763,1,3,0)
+ ;;=3^Otitis Media,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,20763,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,20763,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,20764,0)
+ ;;=H66.93^^70^882^26
+ ;;^UTILITY(U,$J,358.3,20764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20764,1,3,0)
+ ;;=3^Otitis Media,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,20764,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,20764,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,20765,0)
+ ;;=H91.91^^70^882^22
+ ;;^UTILITY(U,$J,358.3,20765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20765,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,20765,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,20765,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,20766,0)
+ ;;=H91.92^^70^882^21
+ ;;^UTILITY(U,$J,358.3,20766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20766,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,20766,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,20766,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,20767,0)
+ ;;=H91.93^^70^882^20
+ ;;^UTILITY(U,$J,358.3,20767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20767,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,20767,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,20767,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,20768,0)
+ ;;=H61.21^^70^882^25
+ ;;^UTILITY(U,$J,358.3,20768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20768,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,20768,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,20768,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,20769,0)
+ ;;=R43.0^^70^882^1
+ ;;^UTILITY(U,$J,358.3,20769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20769,1,3,0)
+ ;;=3^Anosmia
+ ;;^UTILITY(U,$J,358.3,20769,1,4,0)
+ ;;=4^R43.0
+ ;;^UTILITY(U,$J,358.3,20769,2)
+ ;;=^7949
+ ;;^UTILITY(U,$J,358.3,20770,0)
+ ;;=H40.1110^^70^882^19
+ ;;^UTILITY(U,$J,358.3,20770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20770,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,20770,1,4,0)
+ ;;=4^H40.1110
+ ;;^UTILITY(U,$J,358.3,20770,2)
+ ;;=^5138536
+ ;;^UTILITY(U,$J,358.3,20771,0)
+ ;;=H40.1111^^70^882^16
+ ;;^UTILITY(U,$J,358.3,20771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20771,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Rt Eye,Mild Stage

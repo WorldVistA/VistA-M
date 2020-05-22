@@ -1,134 +1,116 @@
-IBDEI173 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI173 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20318,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,20319,0)
- ;;=Z90.2^^84^930^6
- ;;^UTILITY(U,$J,358.3,20319,1,0)
+ ;;^UTILITY(U,$J,358.3,19201,1,4,0)
+ ;;=4^I69.141
+ ;;^UTILITY(U,$J,358.3,19201,2)
+ ;;=^5007437
+ ;;^UTILITY(U,$J,358.3,19202,0)
+ ;;=I69.142^^93^989^58
+ ;;^UTILITY(U,$J,358.3,19202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20319,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
- ;;^UTILITY(U,$J,358.3,20319,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,20319,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,20320,0)
- ;;=Z98.1^^84^930^10
- ;;^UTILITY(U,$J,358.3,20320,1,0)
+ ;;^UTILITY(U,$J,358.3,19202,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,19202,1,4,0)
+ ;;=4^I69.142
+ ;;^UTILITY(U,$J,358.3,19202,2)
+ ;;=^5133573
+ ;;^UTILITY(U,$J,358.3,19203,0)
+ ;;=I69.143^^93^989^59
+ ;;^UTILITY(U,$J,358.3,19203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20320,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,20320,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,20320,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,20321,0)
- ;;=Z94.7^^84^930^16
- ;;^UTILITY(U,$J,358.3,20321,1,0)
+ ;;^UTILITY(U,$J,358.3,19203,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19203,1,4,0)
+ ;;=4^I69.143
+ ;;^UTILITY(U,$J,358.3,19203,2)
+ ;;=^5007438
+ ;;^UTILITY(U,$J,358.3,19204,0)
+ ;;=I69.144^^93^989^60
+ ;;^UTILITY(U,$J,358.3,19204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20321,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,20321,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,20321,2)
- ;;=^5063661
- ;;^UTILITY(U,$J,358.3,20322,0)
- ;;=Z83.511^^84^930^30
- ;;^UTILITY(U,$J,358.3,20322,1,0)
+ ;;^UTILITY(U,$J,358.3,19204,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,19204,1,4,0)
+ ;;=4^I69.144
+ ;;^UTILITY(U,$J,358.3,19204,2)
+ ;;=^5007439
+ ;;^UTILITY(U,$J,358.3,19205,0)
+ ;;=I69.041^^93^989^61
+ ;;^UTILITY(U,$J,358.3,19205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20322,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,20322,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,20322,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,20323,0)
- ;;=Z80.52^^84^930^33
- ;;^UTILITY(U,$J,358.3,20323,1,0)
+ ;;^UTILITY(U,$J,358.3,19205,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,19205,1,4,0)
+ ;;=4^I69.041
+ ;;^UTILITY(U,$J,358.3,19205,2)
+ ;;=^5007405
+ ;;^UTILITY(U,$J,358.3,19206,0)
+ ;;=I69.042^^93^989^62
+ ;;^UTILITY(U,$J,358.3,19206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20323,1,3,0)
- ;;=3^Family Hx of Malig Neop of Baldder
- ;;^UTILITY(U,$J,358.3,20323,1,4,0)
- ;;=4^Z80.52
- ;;^UTILITY(U,$J,358.3,20323,2)
- ;;=^5063352
- ;;^UTILITY(U,$J,358.3,20324,0)
- ;;=Z80.51^^84^930^36
- ;;^UTILITY(U,$J,358.3,20324,1,0)
+ ;;^UTILITY(U,$J,358.3,19206,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,19206,1,4,0)
+ ;;=4^I69.042
+ ;;^UTILITY(U,$J,358.3,19206,2)
+ ;;=^5133572
+ ;;^UTILITY(U,$J,358.3,19207,0)
+ ;;=I69.043^^93^989^63
+ ;;^UTILITY(U,$J,358.3,19207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20324,1,3,0)
- ;;=3^Family Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,20324,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,20324,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,20325,0)
- ;;=Z83.41^^84^930^43
- ;;^UTILITY(U,$J,358.3,20325,1,0)
+ ;;^UTILITY(U,$J,358.3,19207,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff r nondom side
+ ;;^UTILITY(U,$J,358.3,19207,1,4,0)
+ ;;=4^I69.043
+ ;;^UTILITY(U,$J,358.3,19207,2)
+ ;;=^5007406
+ ;;^UTILITY(U,$J,358.3,19208,0)
+ ;;=I69.044^^93^989^64
+ ;;^UTILITY(U,$J,358.3,19208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20325,1,3,0)
- ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
- ;;^UTILITY(U,$J,358.3,20325,1,4,0)
- ;;=4^Z83.41
- ;;^UTILITY(U,$J,358.3,20325,2)
- ;;=^5063380
- ;;^UTILITY(U,$J,358.3,20326,0)
- ;;=Z81.8^^84^930^50
- ;;^UTILITY(U,$J,358.3,20326,1,0)
+ ;;^UTILITY(U,$J,358.3,19208,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,19208,1,4,0)
+ ;;=4^I69.044
+ ;;^UTILITY(U,$J,358.3,19208,2)
+ ;;=^5007407
+ ;;^UTILITY(U,$J,358.3,19209,0)
+ ;;=I69.841^^93^989^67
+ ;;^UTILITY(U,$J,358.3,19209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20326,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
- ;;^UTILITY(U,$J,358.3,20326,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,20326,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,20327,0)
- ;;=Z81.4^^84^930^51
- ;;^UTILITY(U,$J,358.3,20327,1,0)
+ ;;^UTILITY(U,$J,358.3,19209,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc disease aff right dom side
+ ;;^UTILITY(U,$J,358.3,19209,1,4,0)
+ ;;=4^I69.841
+ ;;^UTILITY(U,$J,358.3,19209,2)
+ ;;=^5007532
+ ;;^UTILITY(U,$J,358.3,19210,0)
+ ;;=I69.842^^93^989^68
+ ;;^UTILITY(U,$J,358.3,19210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20327,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence NEC
- ;;^UTILITY(U,$J,358.3,20327,1,4,0)
- ;;=4^Z81.4
- ;;^UTILITY(U,$J,358.3,20327,2)
- ;;=^5063362
- ;;^UTILITY(U,$J,358.3,20328,0)
- ;;=Z98.0^^84^930^62
- ;;^UTILITY(U,$J,358.3,20328,1,0)
+ ;;^UTILITY(U,$J,358.3,19210,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc disease aff left dom side
+ ;;^UTILITY(U,$J,358.3,19210,1,4,0)
+ ;;=4^I69.842
+ ;;^UTILITY(U,$J,358.3,19210,2)
+ ;;=^5133577
+ ;;^UTILITY(U,$J,358.3,19211,0)
+ ;;=I69.843^^93^989^65
+ ;;^UTILITY(U,$J,358.3,19211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20328,1,3,0)
- ;;=3^Intestinal Bypass/Anastomosis Status
- ;;^UTILITY(U,$J,358.3,20328,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,20328,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,20329,0)
- ;;=Z91.128^^84^930^61
- ;;^UTILITY(U,$J,358.3,20329,1,0)
+ ;;^UTILITY(U,$J,358.3,19211,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19211,1,4,0)
+ ;;=4^I69.843
+ ;;^UTILITY(U,$J,358.3,19211,2)
+ ;;=^5007533
+ ;;^UTILITY(U,$J,358.3,19212,0)
+ ;;=I69.844^^93^989^66
+ ;;^UTILITY(U,$J,358.3,19212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20329,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,20329,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,20329,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,20330,0)
- ;;=Z77.120^^84^930^67
- ;;^UTILITY(U,$J,358.3,20330,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20330,1,3,0)
- ;;=3^Mold (Toxic) Contact/Exposure
- ;;^UTILITY(U,$J,358.3,20330,1,4,0)
- ;;=4^Z77.120
- ;;^UTILITY(U,$J,358.3,20330,2)
- ;;=^5063318
- ;;^UTILITY(U,$J,358.3,20331,0)
- ;;=Z86.74^^84^930^110
- ;;^UTILITY(U,$J,358.3,20331,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20331,1,3,0)
- ;;=3^Personal Hx of Sudden Cardiac Arrest 
- ;;^UTILITY(U,$J,358.3,20331,1,4,0)
- ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,19212,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
+ ;;^UTILITY(U,$J,358.3,19212,1,4,0)
+ ;;=4^I69.844

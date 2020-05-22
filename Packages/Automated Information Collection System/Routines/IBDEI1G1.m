@@ -1,122 +1,128 @@
-IBDEI1G1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1G1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24529,1,0)
+ ;;^UTILITY(U,$J,358.3,23084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24529,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,24529,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,24529,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,24530,0)
- ;;=T76.11XD^^93^1090^8
- ;;^UTILITY(U,$J,358.3,24530,1,0)
+ ;;^UTILITY(U,$J,358.3,23084,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,23084,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,23084,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,23085,0)
+ ;;=R07.9^^105^1167^15
+ ;;^UTILITY(U,$J,358.3,23085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24530,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,24530,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,24530,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,24531,0)
- ;;=Z69.11^^93^1090^28
- ;;^UTILITY(U,$J,358.3,24531,1,0)
+ ;;^UTILITY(U,$J,358.3,23085,1,3,0)
+ ;;=3^Chest Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,23085,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,23085,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,23086,0)
+ ;;=Z95.2^^105^1167^46
+ ;;^UTILITY(U,$J,358.3,23086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24531,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
- ;;^UTILITY(U,$J,358.3,24531,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,24531,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,24532,0)
- ;;=Z91.410^^93^1090^29
- ;;^UTILITY(U,$J,358.3,24532,1,0)
+ ;;^UTILITY(U,$J,358.3,23086,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,23086,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,23086,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,23087,0)
+ ;;=Z95.0^^105^1167^45
+ ;;^UTILITY(U,$J,358.3,23087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24532,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,24532,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,24532,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,24533,0)
- ;;=Z69.12^^93^1090^26
- ;;^UTILITY(U,$J,358.3,24533,1,0)
+ ;;^UTILITY(U,$J,358.3,23087,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,23087,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,23087,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,23088,0)
+ ;;=Z95.810^^105^1167^44
+ ;;^UTILITY(U,$J,358.3,23088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24533,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,24533,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,24533,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,24534,0)
- ;;=T74.21XA^^93^1090^13
- ;;^UTILITY(U,$J,358.3,24534,1,0)
+ ;;^UTILITY(U,$J,358.3,23088,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Defibrillator
+ ;;^UTILITY(U,$J,358.3,23088,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,23088,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,23089,0)
+ ;;=Z95.1^^105^1167^43
+ ;;^UTILITY(U,$J,358.3,23089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24534,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,24534,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,24534,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,24535,0)
- ;;=T74.21XD^^93^1090^14
- ;;^UTILITY(U,$J,358.3,24535,1,0)
+ ;;^UTILITY(U,$J,358.3,23089,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass Graft
+ ;;^UTILITY(U,$J,358.3,23089,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,23089,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,23090,0)
+ ;;=I71.3^^105^1167^1
+ ;;^UTILITY(U,$J,358.3,23090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24535,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,24535,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,24535,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,24536,0)
- ;;=T76.21XA^^93^1090^15
- ;;^UTILITY(U,$J,358.3,24536,1,0)
+ ;;^UTILITY(U,$J,358.3,23090,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,23090,1,4,0)
+ ;;=4^I71.3
+ ;;^UTILITY(U,$J,358.3,23090,2)
+ ;;=^5007788
+ ;;^UTILITY(U,$J,358.3,23091,0)
+ ;;=I25.110^^105^1167^5
+ ;;^UTILITY(U,$J,358.3,23091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24536,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,24536,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,24536,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,24537,0)
- ;;=T76.21XD^^93^1090^16
- ;;^UTILITY(U,$J,358.3,24537,1,0)
+ ;;^UTILITY(U,$J,358.3,23091,1,3,0)
+ ;;=3^Athscl Hrt Dis,Nat Cor Art w/ USA
+ ;;^UTILITY(U,$J,358.3,23091,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,23091,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,23092,0)
+ ;;=I25.119^^105^1167^6
+ ;;^UTILITY(U,$J,358.3,23092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24537,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,24537,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,24537,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,24538,0)
- ;;=Z69.81^^93^1090^27
- ;;^UTILITY(U,$J,358.3,24538,1,0)
+ ;;^UTILITY(U,$J,358.3,23092,1,3,0)
+ ;;=3^Athscl Hrt Dis,Nat Cor Art w/ Unspec AP
+ ;;^UTILITY(U,$J,358.3,23092,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,23092,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,23093,0)
+ ;;=I25.118^^105^1167^4
+ ;;^UTILITY(U,$J,358.3,23093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24538,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,24538,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,24538,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,24539,0)
- ;;=Z69.82^^93^1090^21
- ;;^UTILITY(U,$J,358.3,24539,1,0)
+ ;;^UTILITY(U,$J,358.3,23093,1,3,0)
+ ;;=3^Athscl Hrt Dis,Nat Cor Art w/ Oth Form AP
+ ;;^UTILITY(U,$J,358.3,23093,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,23093,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,23094,0)
+ ;;=I42.6^^105^1167^3
+ ;;^UTILITY(U,$J,358.3,23094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24539,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,24539,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,24539,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,24540,0)
- ;;=T74.01XA^^93^1090^1
- ;;^UTILITY(U,$J,358.3,24540,1,0)
+ ;;^UTILITY(U,$J,358.3,23094,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,23094,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,23094,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,23095,0)
+ ;;=I42.0^^105^1167^16
+ ;;^UTILITY(U,$J,358.3,23095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24540,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,24540,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,24540,2)
- ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,23095,1,3,0)
+ ;;=3^Dilated Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,23095,1,4,0)
+ ;;=4^I42.0
+ ;;^UTILITY(U,$J,358.3,23095,2)
+ ;;=^5007194
+ ;;^UTILITY(U,$J,358.3,23096,0)
+ ;;=I50.21^^105^1167^27
+ ;;^UTILITY(U,$J,358.3,23096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23096,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute

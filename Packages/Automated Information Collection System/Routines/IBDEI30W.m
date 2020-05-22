@@ -1,134 +1,128 @@
-IBDEI30W ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI30W ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50677,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,50677,1,4,0)
- ;;=4^R22.41
- ;;^UTILITY(U,$J,358.3,50677,2)
- ;;=^5134178
- ;;^UTILITY(U,$J,358.3,50678,0)
- ;;=R22.31^^219^2459^46
- ;;^UTILITY(U,$J,358.3,50678,1,0)
+ ;;^UTILITY(U,$J,358.3,48271,0)
+ ;;=N83.9^^185^2420^38
+ ;;^UTILITY(U,$J,358.3,48271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50678,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,50678,1,4,0)
- ;;=4^R22.31
- ;;^UTILITY(U,$J,358.3,50678,2)
- ;;=^5019288
- ;;^UTILITY(U,$J,358.3,50679,0)
- ;;=R22.9^^219^2459^47
- ;;^UTILITY(U,$J,358.3,50679,1,0)
+ ;;^UTILITY(U,$J,358.3,48271,1,3,0)
+ ;;=3^Fallopion & Broad Ligament Noninflammatory Disorder of Ovary,Unspec
+ ;;^UTILITY(U,$J,358.3,48271,1,4,0)
+ ;;=4^N83.9
+ ;;^UTILITY(U,$J,358.3,48271,2)
+ ;;=^5015865
+ ;;^UTILITY(U,$J,358.3,48272,0)
+ ;;=N82.9^^185^2420^39
+ ;;^UTILITY(U,$J,358.3,48272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50679,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Unspec
- ;;^UTILITY(U,$J,358.3,50679,1,4,0)
- ;;=4^R22.9
- ;;^UTILITY(U,$J,358.3,50679,2)
- ;;=^5019292
- ;;^UTILITY(U,$J,358.3,50680,0)
- ;;=R22.33^^219^2459^40
- ;;^UTILITY(U,$J,358.3,50680,1,0)
+ ;;^UTILITY(U,$J,358.3,48272,1,3,0)
+ ;;=3^Fistulae,Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,48272,1,4,0)
+ ;;=4^N82.9
+ ;;^UTILITY(U,$J,358.3,48272,2)
+ ;;=^5015853
+ ;;^UTILITY(U,$J,358.3,48273,0)
+ ;;=N49.9^^185^2420^41
+ ;;^UTILITY(U,$J,358.3,48273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50680,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
- ;;^UTILITY(U,$J,358.3,50680,1,4,0)
- ;;=4^R22.33
- ;;^UTILITY(U,$J,358.3,50680,2)
- ;;=^5019290
- ;;^UTILITY(U,$J,358.3,50681,0)
- ;;=R11.2^^219^2459^50
- ;;^UTILITY(U,$J,358.3,50681,1,0)
+ ;;^UTILITY(U,$J,358.3,48273,1,3,0)
+ ;;=3^Genital Organ Inflammatory Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,48273,1,4,0)
+ ;;=4^N49.9
+ ;;^UTILITY(U,$J,358.3,48273,2)
+ ;;=^5015749
+ ;;^UTILITY(U,$J,358.3,48274,0)
+ ;;=N50.9^^185^2420^40
+ ;;^UTILITY(U,$J,358.3,48274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50681,1,3,0)
- ;;=3^Nausea w/ Vomitin,Unspec
- ;;^UTILITY(U,$J,358.3,50681,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,50681,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,50682,0)
- ;;=R53.0^^219^2459^51
- ;;^UTILITY(U,$J,358.3,50682,1,0)
+ ;;^UTILITY(U,$J,358.3,48274,1,3,0)
+ ;;=3^Genital Organ Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,48274,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,48274,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,48275,0)
+ ;;=N81.10^^185^2420^25
+ ;;^UTILITY(U,$J,358.3,48275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50682,1,3,0)
- ;;=3^Neoplastic Related Fatigue
- ;;^UTILITY(U,$J,358.3,50682,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,50682,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,50683,0)
- ;;=E66.9^^219^2459^53
- ;;^UTILITY(U,$J,358.3,50683,1,0)
+ ;;^UTILITY(U,$J,358.3,48275,1,3,0)
+ ;;=3^Cystocele,Unspec
+ ;;^UTILITY(U,$J,358.3,48275,1,4,0)
+ ;;=4^N81.10
+ ;;^UTILITY(U,$J,358.3,48275,2)
+ ;;=^5015838
+ ;;^UTILITY(U,$J,358.3,48276,0)
+ ;;=R39.9^^185^2420^42
+ ;;^UTILITY(U,$J,358.3,48276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50683,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,50683,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,50683,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,50684,0)
- ;;=M87.10^^219^2459^54
- ;;^UTILITY(U,$J,358.3,50684,1,0)
+ ;;^UTILITY(U,$J,358.3,48276,1,3,0)
+ ;;=3^Genitourinary System,Unspec Signs/Symptoms
+ ;;^UTILITY(U,$J,358.3,48276,1,4,0)
+ ;;=4^R39.9
+ ;;^UTILITY(U,$J,358.3,48276,2)
+ ;;=^5019351
+ ;;^UTILITY(U,$J,358.3,48277,0)
+ ;;=R31.9^^185^2420^45
+ ;;^UTILITY(U,$J,358.3,48277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50684,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Unspec Bone
- ;;^UTILITY(U,$J,358.3,50684,1,4,0)
- ;;=4^M87.10
- ;;^UTILITY(U,$J,358.3,50684,2)
- ;;=^5014700
- ;;^UTILITY(U,$J,358.3,50685,0)
- ;;=M87.20^^219^2459^55
- ;;^UTILITY(U,$J,358.3,50685,1,0)
+ ;;^UTILITY(U,$J,358.3,48277,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,48277,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,48277,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,48278,0)
+ ;;=R39.11^^185^2420^46
+ ;;^UTILITY(U,$J,358.3,48278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50685,1,3,0)
- ;;=3^Osteonecrosis d/t Previous Trauma,Unspec Bone
- ;;^UTILITY(U,$J,358.3,50685,1,4,0)
- ;;=4^M87.20
- ;;^UTILITY(U,$J,358.3,50685,2)
- ;;=^5014744
- ;;^UTILITY(U,$J,358.3,50686,0)
- ;;=M90.50^^219^2459^56
- ;;^UTILITY(U,$J,358.3,50686,1,0)
+ ;;^UTILITY(U,$J,358.3,48278,1,3,0)
+ ;;=3^Hesitancy of Micturition
+ ;;^UTILITY(U,$J,358.3,48278,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,48278,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,48279,0)
+ ;;=N43.3^^185^2420^47
+ ;;^UTILITY(U,$J,358.3,48279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50686,1,3,0)
- ;;=3^Osteonecrosis in Diseases Classified Elsewhere,Unspec Site
- ;;^UTILITY(U,$J,358.3,50686,1,4,0)
- ;;=4^M90.50
- ;;^UTILITY(U,$J,358.3,50686,2)
- ;;=^5015120
- ;;^UTILITY(U,$J,358.3,50687,0)
- ;;=M87.9^^219^2459^57
- ;;^UTILITY(U,$J,358.3,50687,1,0)
+ ;;^UTILITY(U,$J,358.3,48279,1,3,0)
+ ;;=3^Hydrocele,Unspec
+ ;;^UTILITY(U,$J,358.3,48279,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,48279,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,48280,0)
+ ;;=N95.1^^185^2420^57
+ ;;^UTILITY(U,$J,358.3,48280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50687,1,3,0)
- ;;=3^Osteonecrosis,Unspec
- ;;^UTILITY(U,$J,358.3,50687,1,4,0)
- ;;=4^M87.9
- ;;^UTILITY(U,$J,358.3,50687,2)
- ;;=^5014873
- ;;^UTILITY(U,$J,358.3,50688,0)
- ;;=R06.89^^219^2459^10
- ;;^UTILITY(U,$J,358.3,50688,1,0)
+ ;;^UTILITY(U,$J,358.3,48280,1,3,0)
+ ;;=3^Menopausal & Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,48280,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,48280,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,48281,0)
+ ;;=N95.9^^185^2420^58
+ ;;^UTILITY(U,$J,358.3,48281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50688,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,50688,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,50688,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,50689,0)
- ;;=R53.83^^219^2459^34
- ;;^UTILITY(U,$J,358.3,50689,1,0)
+ ;;^UTILITY(U,$J,358.3,48281,1,3,0)
+ ;;=3^Menopausal & Perimenopausal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48281,1,4,0)
+ ;;=4^N95.9
+ ;;^UTILITY(U,$J,358.3,48281,2)
+ ;;=^5015929
+ ;;^UTILITY(U,$J,358.3,48282,0)
+ ;;=R35.1^^185^2420^61
+ ;;^UTILITY(U,$J,358.3,48282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50689,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,50689,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,50689,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,50690,0)
- ;;=R06.09^^219^2459^28
- ;;^UTILITY(U,$J,358.3,50690,1,0)
+ ;;^UTILITY(U,$J,358.3,48282,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,48282,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,48282,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,48283,0)
+ ;;=N45.2^^185^2420^62
+ ;;^UTILITY(U,$J,358.3,48283,1,0)
  ;;=^358.31IA^4^2

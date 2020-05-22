@@ -1,124 +1,130 @@
-IBDEI1MI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27537,1,4,0)
- ;;=4^N06.0
- ;;^UTILITY(U,$J,358.3,27537,2)
- ;;=^5015549
- ;;^UTILITY(U,$J,358.3,27538,0)
- ;;=N06.1^^106^1363^39
- ;;^UTILITY(U,$J,358.3,27538,1,0)
+ ;;^UTILITY(U,$J,358.3,25936,0)
+ ;;=R87.610^^107^1227^3
+ ;;^UTILITY(U,$J,358.3,25936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27538,1,3,0)
- ;;=3^Isolated proteinuria w/ focal & segmental glomerular lesions
- ;;^UTILITY(U,$J,358.3,27538,1,4,0)
- ;;=4^N06.1
- ;;^UTILITY(U,$J,358.3,27538,2)
- ;;=^5015550
- ;;^UTILITY(U,$J,358.3,27539,0)
- ;;=N06.2^^106^1363^36
- ;;^UTILITY(U,$J,358.3,27539,1,0)
+ ;;^UTILITY(U,$J,358.3,25936,1,3,0)
+ ;;=3^ASC-US
+ ;;^UTILITY(U,$J,358.3,25936,1,4,0)
+ ;;=4^R87.610
+ ;;^UTILITY(U,$J,358.3,25936,2)
+ ;;=^5019668
+ ;;^UTILITY(U,$J,358.3,25937,0)
+ ;;=Z98.82^^107^1227^14
+ ;;^UTILITY(U,$J,358.3,25937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27539,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse membranous glomerulonephritis
- ;;^UTILITY(U,$J,358.3,27539,1,4,0)
- ;;=4^N06.2
- ;;^UTILITY(U,$J,358.3,27539,2)
- ;;=^5015551
- ;;^UTILITY(U,$J,358.3,27540,0)
- ;;=N06.3^^106^1363^37
- ;;^UTILITY(U,$J,358.3,27540,1,0)
+ ;;^UTILITY(U,$J,358.3,25937,1,3,0)
+ ;;=3^Breast Implant Status
+ ;;^UTILITY(U,$J,358.3,25937,1,4,0)
+ ;;=4^Z98.82
+ ;;^UTILITY(U,$J,358.3,25937,2)
+ ;;=^5063747
+ ;;^UTILITY(U,$J,358.3,25938,0)
+ ;;=B37.3^^107^1227^15
+ ;;^UTILITY(U,$J,358.3,25938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27540,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27540,1,4,0)
- ;;=4^N06.3
- ;;^UTILITY(U,$J,358.3,27540,2)
- ;;=^5015552
- ;;^UTILITY(U,$J,358.3,27541,0)
- ;;=N06.4^^106^1363^35
- ;;^UTILITY(U,$J,358.3,27541,1,0)
+ ;;^UTILITY(U,$J,358.3,25938,1,3,0)
+ ;;=3^Candidiasis of Vulva & Vagina
+ ;;^UTILITY(U,$J,358.3,25938,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,25938,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,25939,0)
+ ;;=D06.9^^107^1227^16
+ ;;^UTILITY(U,$J,358.3,25939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27541,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27541,1,4,0)
- ;;=4^N06.4
- ;;^UTILITY(U,$J,358.3,27541,2)
- ;;=^5015553
- ;;^UTILITY(U,$J,358.3,27542,0)
- ;;=N06.5^^106^1363^38
- ;;^UTILITY(U,$J,358.3,27542,1,0)
+ ;;^UTILITY(U,$J,358.3,25939,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Unspec
+ ;;^UTILITY(U,$J,358.3,25939,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,25939,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,25940,0)
+ ;;=D06.0^^107^1227^17
+ ;;^UTILITY(U,$J,358.3,25940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27542,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse mesangiocapillary glomrlneph
- ;;^UTILITY(U,$J,358.3,27542,1,4,0)
- ;;=4^N06.5
- ;;^UTILITY(U,$J,358.3,27542,2)
- ;;=^5015554
- ;;^UTILITY(U,$J,358.3,27543,0)
- ;;=N06.6^^106^1363^33
- ;;^UTILITY(U,$J,358.3,27543,1,0)
+ ;;^UTILITY(U,$J,358.3,25940,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,25940,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,25940,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,25941,0)
+ ;;=D06.1^^107^1227^18
+ ;;^UTILITY(U,$J,358.3,25941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27543,1,3,0)
- ;;=3^Isolated proteinuria w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,27543,1,4,0)
- ;;=4^N06.6
- ;;^UTILITY(U,$J,358.3,27543,2)
- ;;=^5015555
- ;;^UTILITY(U,$J,358.3,27544,0)
- ;;=N06.7^^106^1363^34
- ;;^UTILITY(U,$J,358.3,27544,1,0)
+ ;;^UTILITY(U,$J,358.3,25941,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,25941,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,25941,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,25942,0)
+ ;;=A56.02^^107^1227^19
+ ;;^UTILITY(U,$J,358.3,25942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27544,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse crescentic glomerulonephritis
- ;;^UTILITY(U,$J,358.3,27544,1,4,0)
- ;;=4^N06.7
- ;;^UTILITY(U,$J,358.3,27544,2)
- ;;=^5015556
- ;;^UTILITY(U,$J,358.3,27545,0)
- ;;=N06.8^^106^1363^41
- ;;^UTILITY(U,$J,358.3,27545,1,0)
+ ;;^UTILITY(U,$J,358.3,25942,1,3,0)
+ ;;=3^Chlamydial Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,25942,1,4,0)
+ ;;=4^A56.02
+ ;;^UTILITY(U,$J,358.3,25942,2)
+ ;;=^5000340
+ ;;^UTILITY(U,$J,358.3,25943,0)
+ ;;=N81.12^^107^1227^22
+ ;;^UTILITY(U,$J,358.3,25943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27545,1,3,0)
- ;;=3^Isolated proteinuria w/ other morphologic lesion
- ;;^UTILITY(U,$J,358.3,27545,1,4,0)
- ;;=4^N06.8
- ;;^UTILITY(U,$J,358.3,27545,2)
- ;;=^5015557
- ;;^UTILITY(U,$J,358.3,27546,0)
- ;;=N06.9^^106^1363^42
- ;;^UTILITY(U,$J,358.3,27546,1,0)
+ ;;^UTILITY(U,$J,358.3,25943,1,3,0)
+ ;;=3^Cystocele,Lateral
+ ;;^UTILITY(U,$J,358.3,25943,1,4,0)
+ ;;=4^N81.12
+ ;;^UTILITY(U,$J,358.3,25943,2)
+ ;;=^331535
+ ;;^UTILITY(U,$J,358.3,25944,0)
+ ;;=N81.11^^107^1227^23
+ ;;^UTILITY(U,$J,358.3,25944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27546,1,3,0)
- ;;=3^Isolated proteinuria w/ unspecified morphologic lesion
- ;;^UTILITY(U,$J,358.3,27546,1,4,0)
- ;;=4^N06.9
- ;;^UTILITY(U,$J,358.3,27546,2)
- ;;=^5015558
- ;;^UTILITY(U,$J,358.3,27547,0)
- ;;=N07.0^^106^1363^30
- ;;^UTILITY(U,$J,358.3,27547,1,0)
+ ;;^UTILITY(U,$J,358.3,25944,1,3,0)
+ ;;=3^Cystocele,Midline
+ ;;^UTILITY(U,$J,358.3,25944,1,4,0)
+ ;;=4^N81.11
+ ;;^UTILITY(U,$J,358.3,25944,2)
+ ;;=^331534
+ ;;^UTILITY(U,$J,358.3,25945,0)
+ ;;=N81.10^^107^1227^24
+ ;;^UTILITY(U,$J,358.3,25945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27547,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ minor glomerular abnormality
- ;;^UTILITY(U,$J,358.3,27547,1,4,0)
- ;;=4^N07.0
- ;;^UTILITY(U,$J,358.3,27547,2)
- ;;=^5015559
- ;;^UTILITY(U,$J,358.3,27548,0)
- ;;=N07.1^^106^1363^29
- ;;^UTILITY(U,$J,358.3,27548,1,0)
+ ;;^UTILITY(U,$J,358.3,25945,1,3,0)
+ ;;=3^Cystocele,Unspec
+ ;;^UTILITY(U,$J,358.3,25945,1,4,0)
+ ;;=4^N81.10
+ ;;^UTILITY(U,$J,358.3,25945,2)
+ ;;=^5015838
+ ;;^UTILITY(U,$J,358.3,25946,0)
+ ;;=R87.614^^107^1227^25
+ ;;^UTILITY(U,$J,358.3,25946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27548,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ focal & seg glomerular lesions
- ;;^UTILITY(U,$J,358.3,27548,1,4,0)
- ;;=4^N07.1
- ;;^UTILITY(U,$J,358.3,27548,2)
- ;;=^5015560
- ;;^UTILITY(U,$J,358.3,27549,0)
- ;;=N07.2^^106^1363^24
- ;;^UTILITY(U,$J,358.3,27549,1,0)
+ ;;^UTILITY(U,$J,358.3,25946,1,3,0)
+ ;;=3^Cytologic Evidence of Malig on Smear of Cervix
+ ;;^UTILITY(U,$J,358.3,25946,1,4,0)
+ ;;=4^R87.614
+ ;;^UTILITY(U,$J,358.3,25946,2)
+ ;;=^5019672
+ ;;^UTILITY(U,$J,358.3,25947,0)
+ ;;=N87.9^^107^1227^35
+ ;;^UTILITY(U,$J,358.3,25947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27549,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,25947,1,3,0)
+ ;;=3^Dysplasia of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,25947,1,4,0)
+ ;;=4^N87.9
+ ;;^UTILITY(U,$J,358.3,25947,2)
+ ;;=^5015877
+ ;;^UTILITY(U,$J,358.3,25948,0)
+ ;;=R30.0^^107^1227^36
+ ;;^UTILITY(U,$J,358.3,25948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25948,1,3,0)
+ ;;=3^Dysuria

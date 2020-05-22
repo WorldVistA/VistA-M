@@ -1,132 +1,130 @@
-IBDEI2RI ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46372,2)
- ;;=^5001371
- ;;^UTILITY(U,$J,358.3,46373,0)
- ;;=C34.02^^206^2296^12
- ;;^UTILITY(U,$J,358.3,46373,1,0)
+ ;;^UTILITY(U,$J,358.3,44055,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,44055,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,44056,0)
+ ;;=F42.4^^164^2177^2
+ ;;^UTILITY(U,$J,358.3,44056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46373,1,3,0)
- ;;=3^Malig Neop Left Main Bronchus
- ;;^UTILITY(U,$J,358.3,46373,1,4,0)
- ;;=4^C34.02
- ;;^UTILITY(U,$J,358.3,46373,2)
- ;;=^5000959
- ;;^UTILITY(U,$J,358.3,46374,0)
- ;;=C34.32^^206^2296^11
- ;;^UTILITY(U,$J,358.3,46374,1,0)
+ ;;^UTILITY(U,$J,358.3,44056,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) D/O
+ ;;^UTILITY(U,$J,358.3,44056,1,4,0)
+ ;;=4^F42.4
+ ;;^UTILITY(U,$J,358.3,44056,2)
+ ;;=^5138446
+ ;;^UTILITY(U,$J,358.3,44057,0)
+ ;;=F42.3^^164^2177^3
+ ;;^UTILITY(U,$J,358.3,44057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46374,1,3,0)
- ;;=3^Malig Neop Left Lower Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46374,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,46374,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,46375,0)
- ;;=C34.31^^206^2296^20
- ;;^UTILITY(U,$J,358.3,46375,1,0)
+ ;;^UTILITY(U,$J,358.3,44057,1,3,0)
+ ;;=3^Hoarding D/O
+ ;;^UTILITY(U,$J,358.3,44057,1,4,0)
+ ;;=4^F42.3
+ ;;^UTILITY(U,$J,358.3,44057,2)
+ ;;=^5138445
+ ;;^UTILITY(U,$J,358.3,44058,0)
+ ;;=F42.9^^164^2177^7
+ ;;^UTILITY(U,$J,358.3,44058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46375,1,3,0)
- ;;=3^Malig Neop Right Lower Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46375,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,46375,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,46376,0)
- ;;=C39.9^^206^2296^14
- ;;^UTILITY(U,$J,358.3,46376,1,0)
+ ;;^UTILITY(U,$J,358.3,44058,1,3,0)
+ ;;=3^OCD,Unspec
+ ;;^UTILITY(U,$J,358.3,44058,1,4,0)
+ ;;=4^F42.9
+ ;;^UTILITY(U,$J,358.3,44058,2)
+ ;;=^5138448
+ ;;^UTILITY(U,$J,358.3,44059,0)
+ ;;=F42.2^^164^2177^5
+ ;;^UTILITY(U,$J,358.3,44059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46376,1,3,0)
- ;;=3^Malig Neop Lower Respiratory Tract,Unspec Part
- ;;^UTILITY(U,$J,358.3,46376,1,4,0)
- ;;=4^C39.9
- ;;^UTILITY(U,$J,358.3,46376,2)
- ;;=^5000972
- ;;^UTILITY(U,$J,358.3,46377,0)
- ;;=C34.2^^206^2296^15
- ;;^UTILITY(U,$J,358.3,46377,1,0)
+ ;;^UTILITY(U,$J,358.3,44059,1,3,0)
+ ;;=3^OCD,Mixed Obsess Thoughts & Acts
+ ;;^UTILITY(U,$J,358.3,44059,1,4,0)
+ ;;=4^F42.2
+ ;;^UTILITY(U,$J,358.3,44059,2)
+ ;;=^5138444
+ ;;^UTILITY(U,$J,358.3,44060,0)
+ ;;=F42.8^^164^2177^6
+ ;;^UTILITY(U,$J,358.3,44060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46377,1,3,0)
- ;;=3^Malig Neop Middle Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46377,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,46377,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,46378,0)
- ;;=C34.82^^206^2296^16
- ;;^UTILITY(U,$J,358.3,46378,1,0)
+ ;;^UTILITY(U,$J,358.3,44060,1,3,0)
+ ;;=3^OCD,Oth Spec
+ ;;^UTILITY(U,$J,358.3,44060,1,4,0)
+ ;;=4^F42.8
+ ;;^UTILITY(U,$J,358.3,44060,2)
+ ;;=^5138447
+ ;;^UTILITY(U,$J,358.3,44061,0)
+ ;;=Z91.49^^164^2178^16
+ ;;^UTILITY(U,$J,358.3,44061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46378,1,3,0)
- ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46378,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,46378,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,46379,0)
- ;;=C34.81^^206^2296^17
- ;;^UTILITY(U,$J,358.3,46379,1,0)
+ ;;^UTILITY(U,$J,358.3,44061,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,44061,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,44061,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,44062,0)
+ ;;=Z91.5^^164^2178^17
+ ;;^UTILITY(U,$J,358.3,44062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46379,1,3,0)
- ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46379,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,46379,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,46380,0)
- ;;=C38.4^^206^2296^18
- ;;^UTILITY(U,$J,358.3,46380,1,0)
+ ;;^UTILITY(U,$J,358.3,44062,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,44062,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,44062,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,44063,0)
+ ;;=Z91.82^^164^2178^15
+ ;;^UTILITY(U,$J,358.3,44063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46380,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,46380,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,46380,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,46381,0)
- ;;=C34.01^^206^2296^21
- ;;^UTILITY(U,$J,358.3,46381,1,0)
+ ;;^UTILITY(U,$J,358.3,44063,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,44063,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,44063,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,44064,0)
+ ;;=Z91.89^^164^2178^18
+ ;;^UTILITY(U,$J,358.3,44064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46381,1,3,0)
- ;;=3^Malig Neop Right Main Bronchus
- ;;^UTILITY(U,$J,358.3,46381,1,4,0)
- ;;=4^C34.01
- ;;^UTILITY(U,$J,358.3,46381,2)
- ;;=^5000958
- ;;^UTILITY(U,$J,358.3,46382,0)
- ;;=C34.92^^206^2296^10
- ;;^UTILITY(U,$J,358.3,46382,1,0)
+ ;;^UTILITY(U,$J,358.3,44064,1,3,0)
+ ;;=3^Personal Risk Factors,Other
+ ;;^UTILITY(U,$J,358.3,44064,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,44064,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,44065,0)
+ ;;=Z72.9^^164^2178^19
+ ;;^UTILITY(U,$J,358.3,44065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46382,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,46382,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,46382,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,46383,0)
- ;;=C34.91^^206^2296^19
- ;;^UTILITY(U,$J,358.3,46383,1,0)
+ ;;^UTILITY(U,$J,358.3,44065,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,44065,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,44065,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,44066,0)
+ ;;=Z91.19^^164^2178^5
+ ;;^UTILITY(U,$J,358.3,44066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46383,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,46383,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,46383,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,46384,0)
- ;;=C34.12^^206^2296^13
- ;;^UTILITY(U,$J,358.3,46384,1,0)
+ ;;^UTILITY(U,$J,358.3,44066,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,44066,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,44066,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,44067,0)
+ ;;=E66.9^^164^2178^6
+ ;;^UTILITY(U,$J,358.3,44067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46384,1,3,0)
- ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46384,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,46384,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,46385,0)
- ;;=C34.11^^206^2296^22
- ;;^UTILITY(U,$J,358.3,46385,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46385,1,3,0)
- ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,44067,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,44067,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,44067,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,44068,0)
+ ;;=Z76.5^^164^2178^3

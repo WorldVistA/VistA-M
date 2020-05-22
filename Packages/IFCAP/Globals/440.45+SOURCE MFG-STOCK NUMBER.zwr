@@ -1,0 +1,17 @@
+OSEHRA ZGO Export: SOURCE MFG/STOCK NUMBER
+ZWR
+^PRC(440.45,0)="SOURCE MFG/STOCK NUMBER^440.45^7^7"
+^PRC(440.45,1,0)="MANUFACTURER^Manufacturer"
+^PRC(440.45,2,0)="VENDOR^Vendor"
+^PRC(440.45,3,0)="GS1^GSI, formerly European Article Numbering (EAN) Association"
+^PRC(440.45,4,0)="HIBCC^Health Industry Business Communications Council"
+^PRC(440.45,5,0)="ICCBBA^International Council for Commonality in Blood Banking Automation"
+^PRC(440.45,6,0)="NHRIC^National Health Related Items Code"
+^PRC(440.45,7,0)="NDC^National Drug Code Directory"
+^PRC(440.45,"B","GS1",3)=""
+^PRC(440.45,"B","HIBCC",4)=""
+^PRC(440.45,"B","ICCBBA",5)=""
+^PRC(440.45,"B","MANUFACTURER",1)=""
+^PRC(440.45,"B","NDC",7)=""
+^PRC(440.45,"B","NHRIC",6)=""
+^PRC(440.45,"B","VENDOR",2)=""

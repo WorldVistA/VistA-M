@@ -1,120 +1,126 @@
-IBDEI2WT ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48840,1,0)
+ ;;^UTILITY(U,$J,358.3,46406,1,4,0)
+ ;;=4^H33.001
+ ;;^UTILITY(U,$J,358.3,46406,2)
+ ;;=^5005490
+ ;;^UTILITY(U,$J,358.3,46407,0)
+ ;;=H33.002^^176^2309^7
+ ;;^UTILITY(U,$J,358.3,46407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48840,1,3,0)
- ;;=3^Epidural hemorrhage w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,48840,1,4,0)
- ;;=4^S06.4X9S
- ;;^UTILITY(U,$J,358.3,48840,2)
- ;;=^5021055
- ;;^UTILITY(U,$J,358.3,48841,0)
- ;;=S06.4X0S^^216^2412^62
- ;;^UTILITY(U,$J,358.3,48841,1,0)
+ ;;^UTILITY(U,$J,358.3,46407,1,3,0)
+ ;;=3^Retinal Break w/ Retinal Detach,Left Eye
+ ;;^UTILITY(U,$J,358.3,46407,1,4,0)
+ ;;=4^H33.002
+ ;;^UTILITY(U,$J,358.3,46407,2)
+ ;;=^5005491
+ ;;^UTILITY(U,$J,358.3,46408,0)
+ ;;=H33.311^^176^2309^8
+ ;;^UTILITY(U,$J,358.3,46408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48841,1,3,0)
- ;;=3^Epidural hemorrhage without LOC, sequela
- ;;^UTILITY(U,$J,358.3,48841,1,4,0)
- ;;=4^S06.4X0S
- ;;^UTILITY(U,$J,358.3,48841,2)
- ;;=^5021028
- ;;^UTILITY(U,$J,358.3,48842,0)
- ;;=S06.825S^^216^2412^63
- ;;^UTILITY(U,$J,358.3,48842,1,0)
+ ;;^UTILITY(U,$J,358.3,46408,1,3,0)
+ ;;=3^Horseshoe Retinal Tear w/o Detach,Right Eye
+ ;;^UTILITY(U,$J,358.3,46408,1,4,0)
+ ;;=4^H33.311
+ ;;^UTILITY(U,$J,358.3,46408,2)
+ ;;=^5005535
+ ;;^UTILITY(U,$J,358.3,46409,0)
+ ;;=H33.312^^176^2309^9
+ ;;^UTILITY(U,$J,358.3,46409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48842,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,48842,1,4,0)
- ;;=4^S06.825S
- ;;^UTILITY(U,$J,358.3,48842,2)
- ;;=^5021163
- ;;^UTILITY(U,$J,358.3,48843,0)
- ;;=S06.826S^^216^2412^64
- ;;^UTILITY(U,$J,358.3,48843,1,0)
+ ;;^UTILITY(U,$J,358.3,46409,1,3,0)
+ ;;=3^Horseshoe Retinal Tear w/o Detach,Left Eye
+ ;;^UTILITY(U,$J,358.3,46409,1,4,0)
+ ;;=4^H33.312
+ ;;^UTILITY(U,$J,358.3,46409,2)
+ ;;=^5005536
+ ;;^UTILITY(U,$J,358.3,46410,0)
+ ;;=H33.031^^176^2309^10
+ ;;^UTILITY(U,$J,358.3,46410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48843,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,48843,1,4,0)
- ;;=4^S06.826S
- ;;^UTILITY(U,$J,358.3,48843,2)
- ;;=^5021166
- ;;^UTILITY(U,$J,358.3,48844,0)
- ;;=S06.823S^^216^2412^65
- ;;^UTILITY(U,$J,358.3,48844,1,0)
+ ;;^UTILITY(U,$J,358.3,46410,1,3,0)
+ ;;=3^Giant Retinal Tear w/ Detach,Right Eye
+ ;;^UTILITY(U,$J,358.3,46410,1,4,0)
+ ;;=4^H33.031
+ ;;^UTILITY(U,$J,358.3,46410,2)
+ ;;=^5005501
+ ;;^UTILITY(U,$J,358.3,46411,0)
+ ;;=H33.032^^176^2309^11
+ ;;^UTILITY(U,$J,358.3,46411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48844,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,48844,1,4,0)
- ;;=4^S06.823S
- ;;^UTILITY(U,$J,358.3,48844,2)
- ;;=^5021157
- ;;^UTILITY(U,$J,358.3,48845,0)
- ;;=S06.821S^^216^2412^66
- ;;^UTILITY(U,$J,358.3,48845,1,0)
+ ;;^UTILITY(U,$J,358.3,46411,1,3,0)
+ ;;=3^Giant Retinal Tear w/ Detach,Left Eye
+ ;;^UTILITY(U,$J,358.3,46411,1,4,0)
+ ;;=4^H33.032
+ ;;^UTILITY(U,$J,358.3,46411,2)
+ ;;=^5005502
+ ;;^UTILITY(U,$J,358.3,46412,0)
+ ;;=H33.051^^176^2309^12
+ ;;^UTILITY(U,$J,358.3,46412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48845,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,48845,1,4,0)
- ;;=4^S06.821S
- ;;^UTILITY(U,$J,358.3,48845,2)
- ;;=^5021151
- ;;^UTILITY(U,$J,358.3,48846,0)
- ;;=S06.822S^^216^2412^67
- ;;^UTILITY(U,$J,358.3,48846,1,0)
+ ;;^UTILITY(U,$J,358.3,46412,1,3,0)
+ ;;=3^Total Retinal Detach,Right Eye
+ ;;^UTILITY(U,$J,358.3,46412,1,4,0)
+ ;;=4^H33.051
+ ;;^UTILITY(U,$J,358.3,46412,2)
+ ;;=^5005509
+ ;;^UTILITY(U,$J,358.3,46413,0)
+ ;;=H33.052^^176^2309^13
+ ;;^UTILITY(U,$J,358.3,46413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48846,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,48846,1,4,0)
- ;;=4^S06.822S
- ;;^UTILITY(U,$J,358.3,48846,2)
- ;;=^5021154
- ;;^UTILITY(U,$J,358.3,48847,0)
- ;;=S06.824S^^216^2412^68
- ;;^UTILITY(U,$J,358.3,48847,1,0)
+ ;;^UTILITY(U,$J,358.3,46413,1,3,0)
+ ;;=3^Total Retinal Detach,Left Eye
+ ;;^UTILITY(U,$J,358.3,46413,1,4,0)
+ ;;=4^H33.052
+ ;;^UTILITY(U,$J,358.3,46413,2)
+ ;;=^5005510
+ ;;^UTILITY(U,$J,358.3,46414,0)
+ ;;=H43.11^^176^2309^14
+ ;;^UTILITY(U,$J,358.3,46414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48847,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,48847,1,4,0)
- ;;=4^S06.824S
- ;;^UTILITY(U,$J,358.3,48847,2)
- ;;=^5021160
- ;;^UTILITY(U,$J,358.3,48848,0)
- ;;=S06.829S^^216^2412^69
- ;;^UTILITY(U,$J,358.3,48848,1,0)
+ ;;^UTILITY(U,$J,358.3,46414,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,46414,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,46414,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,46415,0)
+ ;;=H43.12^^176^2309^15
+ ;;^UTILITY(U,$J,358.3,46415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48848,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,48848,1,4,0)
- ;;=4^S06.829S
- ;;^UTILITY(U,$J,358.3,48848,2)
- ;;=^5021175
- ;;^UTILITY(U,$J,358.3,48849,0)
- ;;=S06.820S^^216^2412^70
- ;;^UTILITY(U,$J,358.3,48849,1,0)
+ ;;^UTILITY(U,$J,358.3,46415,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,46415,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,46415,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,46416,0)
+ ;;=H35.431^^176^2309^16
+ ;;^UTILITY(U,$J,358.3,46416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48849,1,3,0)
- ;;=3^Inj left int carotid, intcr w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,48849,1,4,0)
- ;;=4^S06.820S
- ;;^UTILITY(U,$J,358.3,48849,2)
- ;;=^5021148
- ;;^UTILITY(U,$J,358.3,48850,0)
- ;;=S06.815S^^216^2412^71
- ;;^UTILITY(U,$J,358.3,48850,1,0)
+ ;;^UTILITY(U,$J,358.3,46416,1,3,0)
+ ;;=3^Paving Stone Degen,Right Eye
+ ;;^UTILITY(U,$J,358.3,46416,1,4,0)
+ ;;=4^H35.431
+ ;;^UTILITY(U,$J,358.3,46416,2)
+ ;;=^5005679
+ ;;^UTILITY(U,$J,358.3,46417,0)
+ ;;=H35.432^^176^2309^17
+ ;;^UTILITY(U,$J,358.3,46417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48850,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,48850,1,4,0)
- ;;=4^S06.815S
- ;;^UTILITY(U,$J,358.3,48850,2)
- ;;=^5021133
- ;;^UTILITY(U,$J,358.3,48851,0)
- ;;=S06.816S^^216^2412^72
- ;;^UTILITY(U,$J,358.3,48851,1,0)
+ ;;^UTILITY(U,$J,358.3,46417,1,3,0)
+ ;;=3^Paving Stone Degen,Left Eye
+ ;;^UTILITY(U,$J,358.3,46417,1,4,0)
+ ;;=4^H35.432
+ ;;^UTILITY(U,$J,358.3,46417,2)
+ ;;=^5005680
+ ;;^UTILITY(U,$J,358.3,46418,0)
+ ;;=H35.411^^176^2309^18
+ ;;^UTILITY(U,$J,358.3,46418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48851,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,48851,1,4,0)
- ;;=4^S06.816S
+ ;;^UTILITY(U,$J,358.3,46418,1,3,0)
+ ;;=3^Lattice Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,46418,1,4,0)
+ ;;=4^H35.411

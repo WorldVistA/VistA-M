@@ -1,128 +1,126 @@
-IBDEI1IL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1IL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25690,1,4,0)
- ;;=4^F15.93
- ;;^UTILITY(U,$J,358.3,25690,2)
- ;;=^5003315
- ;;^UTILITY(U,$J,358.3,25691,0)
- ;;=F15.180^^95^1184^1
- ;;^UTILITY(U,$J,358.3,25691,1,0)
+ ;;^UTILITY(U,$J,358.3,24222,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,24223,0)
+ ;;=L85.0^^107^1201^9
+ ;;^UTILITY(U,$J,358.3,24223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25691,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25691,1,4,0)
- ;;=4^F15.180
- ;;^UTILITY(U,$J,358.3,25691,2)
- ;;=^5003291
- ;;^UTILITY(U,$J,358.3,25692,0)
- ;;=F15.280^^95^1184^2
- ;;^UTILITY(U,$J,358.3,25692,1,0)
+ ;;^UTILITY(U,$J,358.3,24223,1,3,0)
+ ;;=3^Acquired Ichthyosis
+ ;;^UTILITY(U,$J,358.3,24223,1,4,0)
+ ;;=4^L85.0
+ ;;^UTILITY(U,$J,358.3,24223,2)
+ ;;=^5009320
+ ;;^UTILITY(U,$J,358.3,24224,0)
+ ;;=L85.1^^107^1201^11
+ ;;^UTILITY(U,$J,358.3,24224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25692,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25692,1,4,0)
- ;;=4^F15.280
- ;;^UTILITY(U,$J,358.3,25692,2)
- ;;=^5003306
- ;;^UTILITY(U,$J,358.3,25693,0)
- ;;=F15.980^^95^1184^3
- ;;^UTILITY(U,$J,358.3,25693,1,0)
+ ;;^UTILITY(U,$J,358.3,24224,1,3,0)
+ ;;=3^Acquired Keratosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,24224,1,4,0)
+ ;;=4^L85.1
+ ;;^UTILITY(U,$J,358.3,24224,2)
+ ;;=^5009321
+ ;;^UTILITY(U,$J,358.3,24225,0)
+ ;;=L85.2^^107^1201^169
+ ;;^UTILITY(U,$J,358.3,24225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25693,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25693,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,25693,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,25694,0)
- ;;=F15.182^^95^1184^4
- ;;^UTILITY(U,$J,358.3,25694,1,0)
+ ;;^UTILITY(U,$J,358.3,24225,1,3,0)
+ ;;=3^Keratosis Punctata
+ ;;^UTILITY(U,$J,358.3,24225,1,4,0)
+ ;;=4^L85.2
+ ;;^UTILITY(U,$J,358.3,24225,2)
+ ;;=^5009322
+ ;;^UTILITY(U,$J,358.3,24226,0)
+ ;;=L85.3^^107^1201^329
+ ;;^UTILITY(U,$J,358.3,24226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25694,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25694,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,25694,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,25695,0)
- ;;=F15.282^^95^1184^5
- ;;^UTILITY(U,$J,358.3,25695,1,0)
+ ;;^UTILITY(U,$J,358.3,24226,1,3,0)
+ ;;=3^Xerosis Cutis
+ ;;^UTILITY(U,$J,358.3,24226,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,24226,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,24227,0)
+ ;;=L86.^^107^1201^167
+ ;;^UTILITY(U,$J,358.3,24227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25695,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25695,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,25695,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,25696,0)
- ;;=F15.982^^95^1184^6
- ;;^UTILITY(U,$J,358.3,25696,1,0)
+ ;;^UTILITY(U,$J,358.3,24227,1,3,0)
+ ;;=3^Keratoderma in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,24227,1,4,0)
+ ;;=4^L86.
+ ;;^UTILITY(U,$J,358.3,24227,2)
+ ;;=^5009326
+ ;;^UTILITY(U,$J,358.3,24228,0)
+ ;;=L87.0^^107^1201^168
+ ;;^UTILITY(U,$J,358.3,24228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25696,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25696,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,25696,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,25697,0)
- ;;=F15.99^^95^1184^9
- ;;^UTILITY(U,$J,358.3,25697,1,0)
+ ;;^UTILITY(U,$J,358.3,24228,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,24228,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,24228,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,24229,0)
+ ;;=L87.2^^107^1201^144
+ ;;^UTILITY(U,$J,358.3,24229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25697,1,3,0)
- ;;=3^Caffeinie Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25697,1,4,0)
- ;;=4^F15.99
- ;;^UTILITY(U,$J,358.3,25697,2)
- ;;=^5133358
- ;;^UTILITY(U,$J,358.3,25698,0)
- ;;=90833^^96^1185^1^^^^1
- ;;^UTILITY(U,$J,358.3,25698,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25698,1,2,0)
- ;;=2^90833
- ;;^UTILITY(U,$J,358.3,25698,1,3,0)
- ;;=3^Psytx 16-37 min;Report w/ E&M
- ;;^UTILITY(U,$J,358.3,25699,0)
- ;;=90836^^96^1185^2^^^^1
- ;;^UTILITY(U,$J,358.3,25699,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25699,1,2,0)
- ;;=2^90836
- ;;^UTILITY(U,$J,358.3,25699,1,3,0)
- ;;=3^Psytx 38-52 min;Report w/ E&M
- ;;^UTILITY(U,$J,358.3,25700,0)
- ;;=90838^^96^1185^3^^^^1
- ;;^UTILITY(U,$J,358.3,25700,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25700,1,2,0)
- ;;=2^90838
- ;;^UTILITY(U,$J,358.3,25700,1,3,0)
- ;;=3^Psytx 53-89 min;Report w/ E&M
- ;;^UTILITY(U,$J,358.3,25701,0)
- ;;=90853^^96^1186^4^^^^1
- ;;^UTILITY(U,$J,358.3,25701,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25701,1,2,0)
- ;;=2^90853
- ;;^UTILITY(U,$J,358.3,25701,1,3,0)
- ;;=3^Group Psychotherapy
- ;;^UTILITY(U,$J,358.3,25702,0)
- ;;=90846^^96^1186^5^^^^1
- ;;^UTILITY(U,$J,358.3,25702,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25702,1,2,0)
- ;;=2^90846
- ;;^UTILITY(U,$J,358.3,25702,1,3,0)
- ;;=3^Family Psychotherapy w/o pt.
- ;;^UTILITY(U,$J,358.3,25703,0)
- ;;=90847^^96^1186^6^^^^1
- ;;^UTILITY(U,$J,358.3,25703,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,25703,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,25703,1,3,0)
- ;;=3^Family Psychotherpy w/pt.
- ;;^UTILITY(U,$J,358.3,25704,0)
- ;;=90875^^96^1186^7^^^^1
+ ;;^UTILITY(U,$J,358.3,24229,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,24229,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,24229,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,24230,0)
+ ;;=L89.300^^107^1201^282
+ ;;^UTILITY(U,$J,358.3,24230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24230,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,24230,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,24230,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,24231,0)
+ ;;=L89.301^^107^1201^277
+ ;;^UTILITY(U,$J,358.3,24231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24231,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,24231,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,24231,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,24232,0)
+ ;;=L89.302^^107^1201^278
+ ;;^UTILITY(U,$J,358.3,24232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24232,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,24232,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,24232,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,24233,0)
+ ;;=L89.303^^107^1201^279
+ ;;^UTILITY(U,$J,358.3,24233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24233,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,24233,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,24233,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,24234,0)
+ ;;=L89.304^^107^1201^280
+ ;;^UTILITY(U,$J,358.3,24234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24234,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,24234,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,24234,2)
+ ;;=^5009393

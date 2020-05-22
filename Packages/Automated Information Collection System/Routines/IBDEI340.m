@@ -1,132 +1,126 @@
-IBDEI340 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI340 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52187,2)
- ;;=^5063555
- ;;^UTILITY(U,$J,358.3,52188,0)
- ;;=Z89.421^^235^2576^14
- ;;^UTILITY(U,$J,358.3,52188,1,0)
+ ;;^UTILITY(U,$J,358.3,49661,1,3,0)
+ ;;=3^Dementia w/o Bhv Dstrb,Unsp
+ ;;^UTILITY(U,$J,358.3,49661,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,49661,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,49662,0)
+ ;;=F01.51^^191^2477^30
+ ;;^UTILITY(U,$J,358.3,49662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52188,1,3,0)
- ;;=3^Acquired Absence of Right Toe(s)
- ;;^UTILITY(U,$J,358.3,52188,1,4,0)
- ;;=4^Z89.421
- ;;^UTILITY(U,$J,358.3,52188,2)
- ;;=^5063557
- ;;^UTILITY(U,$J,358.3,52189,0)
- ;;=Z89.422^^235^2576^7
- ;;^UTILITY(U,$J,358.3,52189,1,0)
+ ;;^UTILITY(U,$J,358.3,49662,1,3,0)
+ ;;=3^Vascular Dementia w/ Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49662,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,49662,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,49663,0)
+ ;;=F01.50^^191^2477^31
+ ;;^UTILITY(U,$J,358.3,49663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52189,1,3,0)
- ;;=3^Acquired Absence of Left Toe(s)
- ;;^UTILITY(U,$J,358.3,52189,1,4,0)
- ;;=4^Z89.422
- ;;^UTILITY(U,$J,358.3,52189,2)
- ;;=^5063558
- ;;^UTILITY(U,$J,358.3,52190,0)
- ;;=Z89.431^^235^2576^9
- ;;^UTILITY(U,$J,358.3,52190,1,0)
+ ;;^UTILITY(U,$J,358.3,49663,1,3,0)
+ ;;=3^Vascular Dementia w/o Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49663,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,49663,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,49664,0)
+ ;;=A81.9^^191^2477^6
+ ;;^UTILITY(U,$J,358.3,49664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52190,1,3,0)
- ;;=3^Acquired Absence of Right Foot
- ;;^UTILITY(U,$J,358.3,52190,1,4,0)
- ;;=4^Z89.431
- ;;^UTILITY(U,$J,358.3,52190,2)
- ;;=^5063560
- ;;^UTILITY(U,$J,358.3,52191,0)
- ;;=Z89.432^^235^2576^2
- ;;^UTILITY(U,$J,358.3,52191,1,0)
+ ;;^UTILITY(U,$J,358.3,49664,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,49664,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,49664,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,49665,0)
+ ;;=A81.09^^191^2477^8
+ ;;^UTILITY(U,$J,358.3,49665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52191,1,3,0)
- ;;=3^Acquired Absence of Left Foot
- ;;^UTILITY(U,$J,358.3,52191,1,4,0)
- ;;=4^Z89.432
- ;;^UTILITY(U,$J,358.3,52191,2)
- ;;=^5063561
- ;;^UTILITY(U,$J,358.3,52192,0)
- ;;=Z89.441^^235^2576^8
- ;;^UTILITY(U,$J,358.3,52192,1,0)
+ ;;^UTILITY(U,$J,358.3,49665,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease NEC
+ ;;^UTILITY(U,$J,358.3,49665,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,49665,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,49666,0)
+ ;;=A81.00^^191^2477^9
+ ;;^UTILITY(U,$J,358.3,49666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52192,1,3,0)
- ;;=3^Acquired Absence of Right Ankle
- ;;^UTILITY(U,$J,358.3,52192,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,52192,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,52193,0)
- ;;=Z89.442^^235^2576^1
- ;;^UTILITY(U,$J,358.3,52193,1,0)
+ ;;^UTILITY(U,$J,358.3,49666,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,49666,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,49666,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,49667,0)
+ ;;=A81.01^^191^2477^10
+ ;;^UTILITY(U,$J,358.3,49667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52193,1,3,0)
- ;;=3^Acquired Absence of Left Ankle
- ;;^UTILITY(U,$J,358.3,52193,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,52193,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,52194,0)
- ;;=Z89.511^^235^2576^13
- ;;^UTILITY(U,$J,358.3,52194,1,0)
+ ;;^UTILITY(U,$J,358.3,49667,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,49667,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,49667,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,49668,0)
+ ;;=A81.89^^191^2477^7
+ ;;^UTILITY(U,$J,358.3,49668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52194,1,3,0)
- ;;=3^Acquired Absence of Right Leg Below Knee
- ;;^UTILITY(U,$J,358.3,52194,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,52194,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,52195,0)
- ;;=Z89.512^^235^2576^6
- ;;^UTILITY(U,$J,358.3,52195,1,0)
+ ;;^UTILITY(U,$J,358.3,49668,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,49668,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,49668,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,49669,0)
+ ;;=A81.2^^191^2477^27
+ ;;^UTILITY(U,$J,358.3,49669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52195,1,3,0)
- ;;=3^Acquired Absence of Left Leg Below Knee
- ;;^UTILITY(U,$J,358.3,52195,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,52195,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,52196,0)
- ;;=Z89.611^^235^2576^12
- ;;^UTILITY(U,$J,358.3,52196,1,0)
+ ;;^UTILITY(U,$J,358.3,49669,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,49669,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,49669,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,49670,0)
+ ;;=B20.^^191^2477^17
+ ;;^UTILITY(U,$J,358.3,49670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52196,1,3,0)
- ;;=3^Acquired Absence of Right Leg Above Knee
- ;;^UTILITY(U,$J,358.3,52196,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,52196,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,52197,0)
- ;;=Z89.612^^235^2576^5
- ;;^UTILITY(U,$J,358.3,52197,1,0)
+ ;;^UTILITY(U,$J,358.3,49670,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49670,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,49670,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,49671,0)
+ ;;=B20.^^191^2477^18
+ ;;^UTILITY(U,$J,358.3,49671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52197,1,3,0)
- ;;=3^Acquired Absence of Left Leg Above Knee
- ;;^UTILITY(U,$J,358.3,52197,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,52197,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,52198,0)
- ;;=Z89.621^^235^2576^11
- ;;^UTILITY(U,$J,358.3,52198,1,0)
+ ;;^UTILITY(U,$J,358.3,49671,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Bhv Dstrb
+ ;;^UTILITY(U,$J,358.3,49671,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,49671,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,49672,0)
+ ;;=F10.27^^191^2477^1
+ ;;^UTILITY(U,$J,358.3,49672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52198,1,3,0)
- ;;=3^Acquired Absence of Right Hip Joint
- ;;^UTILITY(U,$J,358.3,52198,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,52198,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,52199,0)
- ;;=Z89.622^^235^2576^4
- ;;^UTILITY(U,$J,358.3,52199,1,0)
+ ;;^UTILITY(U,$J,358.3,49672,1,3,0)
+ ;;=3^Alc Dep w/ Alc-Induced Persist Dementia
+ ;;^UTILITY(U,$J,358.3,49672,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,49672,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,49673,0)
+ ;;=F19.97^^191^2477^29
+ ;;^UTILITY(U,$J,358.3,49673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52199,1,3,0)
- ;;=3^Acquired Absence of Left Hip Joint
- ;;^UTILITY(U,$J,358.3,52199,1,4,0)
- ;;=4^Z89.622
- ;;^UTILITY(U,$J,358.3,52199,2)
- ;;=^5063576
- ;;^UTILITY(U,$J,358.3,52200,0)
- ;;=Z75.3^^235^2577^5
- ;;^UTILITY(U,$J,358.3,52200,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52200,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,49673,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC

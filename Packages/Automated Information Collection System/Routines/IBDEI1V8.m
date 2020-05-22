@@ -1,126 +1,118 @@
-IBDEI1V8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1V8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31699,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,31700,0)
- ;;=I70.344^^126^1604^57
- ;;^UTILITY(U,$J,358.3,31700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31700,1,3,0)
- ;;=3^Athscl Bypass,Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31700,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,31700,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,31701,0)
- ;;=I70.334^^126^1604^59
- ;;^UTILITY(U,$J,358.3,31701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31701,1,3,0)
- ;;=3^Athscl Bypass,Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31701,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,31701,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,31702,0)
- ;;=I70.333^^126^1604^58
- ;;^UTILITY(U,$J,358.3,31702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31702,1,3,0)
- ;;=3^Athscl Bypass,Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31702,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,31702,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,31703,0)
- ;;=I70.242^^126^1604^65
- ;;^UTILITY(U,$J,358.3,31703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31703,1,3,0)
- ;;=3^Athscl Native Arteries,Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,31703,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,31703,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,31704,0)
- ;;=I70.232^^126^1604^69
- ;;^UTILITY(U,$J,358.3,31704,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31704,1,3,0)
- ;;=3^Athscl Native Arteries,Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,31704,1,4,0)
- ;;=4^I70.232
- ;;^UTILITY(U,$J,358.3,31704,2)
- ;;=^5007589
- ;;^UTILITY(U,$J,358.3,31705,0)
- ;;=I70.245^^126^1604^66
- ;;^UTILITY(U,$J,358.3,31705,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31705,1,3,0)
- ;;=3^Athscl Native Arteries,Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31705,1,4,0)
- ;;=4^I70.245
- ;;^UTILITY(U,$J,358.3,31705,2)
- ;;=^5007599
- ;;^UTILITY(U,$J,358.3,31706,0)
- ;;=I70.244^^126^1604^67
- ;;^UTILITY(U,$J,358.3,31706,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31706,1,3,0)
- ;;=3^Athscl Native Arteries,Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31706,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,31706,2)
- ;;=^5007598
- ;;^UTILITY(U,$J,358.3,31707,0)
- ;;=I70.243^^126^1604^64
- ;;^UTILITY(U,$J,358.3,31707,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31707,1,3,0)
- ;;=3^Athscl Native Arteries,Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31707,1,4,0)
- ;;=4^I70.243
- ;;^UTILITY(U,$J,358.3,31707,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,31708,0)
- ;;=I70.233^^126^1604^68
- ;;^UTILITY(U,$J,358.3,31708,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31708,1,3,0)
- ;;=3^Athscl Native Arteries,Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31708,1,4,0)
- ;;=4^I70.233
- ;;^UTILITY(U,$J,358.3,31708,2)
- ;;=^5007590
- ;;^UTILITY(U,$J,358.3,31709,0)
- ;;=I70.235^^126^1604^70
- ;;^UTILITY(U,$J,358.3,31709,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31709,1,3,0)
- ;;=3^Athscl Native Arteries,Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31709,1,4,0)
- ;;=4^I70.235
- ;;^UTILITY(U,$J,358.3,31709,2)
- ;;=^5007592
- ;;^UTILITY(U,$J,358.3,31710,0)
- ;;=I70.234^^126^1604^71
- ;;^UTILITY(U,$J,358.3,31710,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31710,1,3,0)
- ;;=3^Athscl Native Arteries,Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31710,1,4,0)
- ;;=4^I70.234
- ;;^UTILITY(U,$J,358.3,31710,2)
- ;;=^5007591
- ;;^UTILITY(U,$J,358.3,31711,0)
- ;;=I70.543^^126^1604^72
- ;;^UTILITY(U,$J,358.3,31711,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31711,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass,Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31711,1,4,0)
- ;;=4^I70.543
- ;;^UTILITY(U,$J,358.3,31711,2)
- ;;=^5007711
+ ;;^UTILITY(U,$J,358.3,29796,1,3,0)
+ ;;=3^Group Therapeutic Procedure (2+ Indiv)
+ ;;^UTILITY(U,$J,358.3,29797,0)
+ ;;=96112^^119^1506^7^^^^1
+ ;;^UTILITY(U,$J,358.3,29797,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29797,1,2,0)
+ ;;=2^96112
+ ;;^UTILITY(U,$J,358.3,29797,1,3,0)
+ ;;=3^Dvlpmnt Tst by PhD w/ Intrp & Rpt,1st hr
+ ;;^UTILITY(U,$J,358.3,29798,0)
+ ;;=96113^^119^1506^8^^^^1
+ ;;^UTILITY(U,$J,358.3,29798,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29798,1,2,0)
+ ;;=2^96113
+ ;;^UTILITY(U,$J,358.3,29798,1,3,0)
+ ;;=3^Dvlpmnt Tst by PhD w/ Intrp & Rpt,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,29799,0)
+ ;;=97129^^119^1506^21^^^^1
+ ;;^UTILITY(U,$J,358.3,29799,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29799,1,2,0)
+ ;;=2^97129
+ ;;^UTILITY(U,$J,358.3,29799,1,3,0)
+ ;;=3^Therapeutic Intrvn,1st 15 min
+ ;;^UTILITY(U,$J,358.3,29800,0)
+ ;;=97130^^119^1506^22^^^^1
+ ;;^UTILITY(U,$J,358.3,29800,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29800,1,2,0)
+ ;;=2^97130
+ ;;^UTILITY(U,$J,358.3,29800,1,3,0)
+ ;;=3^Therapeutic Intrvn,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,29801,0)
+ ;;=96156^^119^1507^1^^^^1
+ ;;^UTILITY(U,$J,358.3,29801,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29801,1,2,0)
+ ;;=2^96156
+ ;;^UTILITY(U,$J,358.3,29801,1,3,0)
+ ;;=3^Hlth/Behav Assess/Re-Assess
+ ;;^UTILITY(U,$J,358.3,29802,0)
+ ;;=96158^^119^1507^8^^^^1
+ ;;^UTILITY(U,$J,358.3,29802,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29802,1,2,0)
+ ;;=2^96158
+ ;;^UTILITY(U,$J,358.3,29802,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Ind,1st 30 min
+ ;;^UTILITY(U,$J,358.3,29803,0)
+ ;;=96159^^119^1507^9^^^^1
+ ;;^UTILITY(U,$J,358.3,29803,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29803,1,2,0)
+ ;;=2^96159
+ ;;^UTILITY(U,$J,358.3,29803,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Ind,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,29804,0)
+ ;;=96164^^119^1507^6^^^^1
+ ;;^UTILITY(U,$J,358.3,29804,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29804,1,2,0)
+ ;;=2^96164
+ ;;^UTILITY(U,$J,358.3,29804,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Grp,1st 30 min
+ ;;^UTILITY(U,$J,358.3,29805,0)
+ ;;=96165^^119^1507^7^^^^1
+ ;;^UTILITY(U,$J,358.3,29805,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29805,1,2,0)
+ ;;=2^96165
+ ;;^UTILITY(U,$J,358.3,29805,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Grp,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,29806,0)
+ ;;=96167^^119^1507^2^^^^1
+ ;;^UTILITY(U,$J,358.3,29806,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29806,1,2,0)
+ ;;=2^96167
+ ;;^UTILITY(U,$J,358.3,29806,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Fam w/ Pt,1st 30 min
+ ;;^UTILITY(U,$J,358.3,29807,0)
+ ;;=96168^^119^1507^3^^^^1
+ ;;^UTILITY(U,$J,358.3,29807,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29807,1,2,0)
+ ;;=2^96168
+ ;;^UTILITY(U,$J,358.3,29807,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Fam w/ Pt,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,29808,0)
+ ;;=96170^^119^1507^4^^^^1
+ ;;^UTILITY(U,$J,358.3,29808,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29808,1,2,0)
+ ;;=2^96170
+ ;;^UTILITY(U,$J,358.3,29808,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Fam w/o Pt,1st 30 min
+ ;;^UTILITY(U,$J,358.3,29809,0)
+ ;;=96171^^119^1507^5^^^^1
+ ;;^UTILITY(U,$J,358.3,29809,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29809,1,2,0)
+ ;;=2^96171
+ ;;^UTILITY(U,$J,358.3,29809,1,3,0)
+ ;;=3^Hlth/Behav Intrvn,Fam w/o Pt,Ea Addl 15 min
+ ;;^UTILITY(U,$J,358.3,29810,0)
+ ;;=99368^^119^1508^2^^^^1
+ ;;^UTILITY(U,$J,358.3,29810,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29810,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,29810,1,3,0)
+ ;;=3^Non-Rx Prov Team Conf w/o Pt &/or Family,30+ min

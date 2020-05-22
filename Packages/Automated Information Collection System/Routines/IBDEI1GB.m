@@ -1,138 +1,128 @@
-IBDEI1GB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24652,1,4,0)
- ;;=4^F32.4
- ;;^UTILITY(U,$J,358.3,24652,2)
- ;;=^5003525
- ;;^UTILITY(U,$J,358.3,24653,0)
- ;;=F32.5^^93^1095^15
- ;;^UTILITY(U,$J,358.3,24653,1,0)
+ ;;^UTILITY(U,$J,358.3,23208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24653,1,3,0)
- ;;=3^MDD,Single Episode,In Full Remission
- ;;^UTILITY(U,$J,358.3,24653,1,4,0)
- ;;=4^F32.5
- ;;^UTILITY(U,$J,358.3,24653,2)
- ;;=^5003526
- ;;^UTILITY(U,$J,358.3,24654,0)
- ;;=F33.9^^93^1095^13
- ;;^UTILITY(U,$J,358.3,24654,1,0)
+ ;;^UTILITY(U,$J,358.3,23208,1,3,0)
+ ;;=3^Nonobstructive Reflux-Associated Chronic Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,23208,1,4,0)
+ ;;=4^N11.0
+ ;;^UTILITY(U,$J,358.3,23208,2)
+ ;;=^5015571
+ ;;^UTILITY(U,$J,358.3,23209,0)
+ ;;=N11.8^^105^1170^23
+ ;;^UTILITY(U,$J,358.3,23209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24654,1,3,0)
- ;;=3^MDD,Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,24654,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,24654,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,24655,0)
- ;;=F33.0^^93^1095^10
- ;;^UTILITY(U,$J,358.3,24655,1,0)
+ ;;^UTILITY(U,$J,358.3,23209,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis,Chronic NEC
+ ;;^UTILITY(U,$J,358.3,23209,1,4,0)
+ ;;=4^N11.8
+ ;;^UTILITY(U,$J,358.3,23209,2)
+ ;;=^5015573
+ ;;^UTILITY(U,$J,358.3,23210,0)
+ ;;=N30.90^^105^1170^8
+ ;;^UTILITY(U,$J,358.3,23210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24655,1,3,0)
- ;;=3^MDD,Recurrent,Mild
- ;;^UTILITY(U,$J,358.3,24655,1,4,0)
- ;;=4^F33.0
- ;;^UTILITY(U,$J,358.3,24655,2)
- ;;=^5003529
- ;;^UTILITY(U,$J,358.3,24656,0)
- ;;=F33.1^^93^1095^11
- ;;^UTILITY(U,$J,358.3,24656,1,0)
+ ;;^UTILITY(U,$J,358.3,23210,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,23210,1,4,0)
+ ;;=4^N30.90
+ ;;^UTILITY(U,$J,358.3,23210,2)
+ ;;=^5015642
+ ;;^UTILITY(U,$J,358.3,23211,0)
+ ;;=N32.0^^105^1170^1
+ ;;^UTILITY(U,$J,358.3,23211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24656,1,3,0)
- ;;=3^MDD,Recurrent,Moderate
- ;;^UTILITY(U,$J,358.3,24656,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,24656,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,24657,0)
- ;;=F33.2^^93^1095^12
- ;;^UTILITY(U,$J,358.3,24657,1,0)
+ ;;^UTILITY(U,$J,358.3,23211,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,23211,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,23211,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,23212,0)
+ ;;=N31.9^^105^1170^18
+ ;;^UTILITY(U,$J,358.3,23212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24657,1,3,0)
- ;;=3^MDD,Recurrent,Severe
- ;;^UTILITY(U,$J,358.3,24657,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,24657,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,24658,0)
- ;;=F33.3^^93^1095^7
- ;;^UTILITY(U,$J,358.3,24658,1,0)
+ ;;^UTILITY(U,$J,358.3,23212,1,3,0)
+ ;;=3^Neuromuscular Bladder Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,23212,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,23212,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,23213,0)
+ ;;=N40.0^^105^1170^12
+ ;;^UTILITY(U,$J,358.3,23213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24658,1,3,0)
- ;;=3^MDD,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,24658,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,24658,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,24659,0)
- ;;=F33.41^^93^1095^9
- ;;^UTILITY(U,$J,358.3,24659,1,0)
+ ;;^UTILITY(U,$J,358.3,23213,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,23213,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,23213,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,23214,0)
+ ;;=N40.1^^105^1170^11
+ ;;^UTILITY(U,$J,358.3,23214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24659,1,3,0)
- ;;=3^MDD,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,24659,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,24659,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,24660,0)
- ;;=F33.42^^93^1095^8
- ;;^UTILITY(U,$J,358.3,24660,1,0)
+ ;;^UTILITY(U,$J,358.3,23214,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,23214,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,23214,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,23215,0)
+ ;;=N45.1^^105^1170^13
+ ;;^UTILITY(U,$J,358.3,23215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24660,1,3,0)
- ;;=3^MDD,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,24660,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,24660,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,24661,0)
- ;;=F34.8^^93^1095^6
- ;;^UTILITY(U,$J,358.3,24661,1,0)
+ ;;^UTILITY(U,$J,358.3,23215,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,23215,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,23215,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,23216,0)
+ ;;=N45.2^^105^1170^21
+ ;;^UTILITY(U,$J,358.3,23216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24661,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,24661,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,24661,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,24662,0)
- ;;=F32.8^^93^1095^1
- ;;^UTILITY(U,$J,358.3,24662,1,0)
+ ;;^UTILITY(U,$J,358.3,23216,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,23216,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,23216,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,23217,0)
+ ;;=N45.3^^105^1170^14
+ ;;^UTILITY(U,$J,358.3,23217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24662,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,24662,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,24662,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,24663,0)
- ;;=F34.1^^93^1095^22
- ;;^UTILITY(U,$J,358.3,24663,1,0)
+ ;;^UTILITY(U,$J,358.3,23217,1,3,0)
+ ;;=3^Epididymo-Orchitis
+ ;;^UTILITY(U,$J,358.3,23217,1,4,0)
+ ;;=4^N45.3
+ ;;^UTILITY(U,$J,358.3,23217,2)
+ ;;=^5015707
+ ;;^UTILITY(U,$J,358.3,23218,0)
+ ;;=Q61.3^^105^1170^22
+ ;;^UTILITY(U,$J,358.3,23218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24663,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,24663,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,24663,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,24664,0)
- ;;=F32.9^^93^1095^5
- ;;^UTILITY(U,$J,358.3,24664,1,0)
+ ;;^UTILITY(U,$J,358.3,23218,1,3,0)
+ ;;=3^Polycystic Kidney,Unspec
+ ;;^UTILITY(U,$J,358.3,23218,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,23218,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,23219,0)
+ ;;=R30.0^^105^1170^9
+ ;;^UTILITY(U,$J,358.3,23219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24664,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24664,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,24664,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,24665,0)
- ;;=N94.3^^93^1095^23
- ;;^UTILITY(U,$J,358.3,24665,1,0)
+ ;;^UTILITY(U,$J,358.3,23219,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,23219,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,23219,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,23220,0)
+ ;;=R33.9^^105^1170^28
+ ;;^UTILITY(U,$J,358.3,23220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24665,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,24665,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,24665,2)
- ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,23220,1,3,0)
+ ;;=3^Urine Retention,Unspec

@@ -1,5 +1,5 @@
 ONCPTX ;Hines OIFO/GWB - First Course of Treatment ;10/05/11
- ;;2.2;ONCOLOGY;**1,5,6**;Jul 31, 2013;Build 10
+ ;;2.2;ONCOLOGY;**1,5,6,10**;Jul 31, 2013;Build 20
  ;
  N DATEDX
  S DATEDX=$P($G(^ONCO(165.5,D0,0)),U,16)
@@ -130,23 +130,48 @@ FORDS ;Surgical Procedures (FORDS)
 RAD ;Radiation
  D FST^ONCOAIP
  N DASHES S $P(DASHES,"-",80)="-"
- ;W !," RADIATION"
- ;W !," ---------"
  N DI,DIC,DR,DA,DIQ K ONC
  S DIC="^ONCO(165.5,"
- S DR="51;51.2;51.3;51.4;51.5;56;75;125;126;363;442;363.1;443;361"
+ S DR="51;51.2;51.3;51.4;51.5;56;75;125;126;363;442;363.1;443;361;5501:5527;7024:7026"
  S DA=D0,DIQ="ONC(" D EN^DIQ1
  F I=51.2,126,125,363,363.1,56,51.3,51.4,75,442,443 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
- W !," Radiation....................: ",ONC(165.5,DA,51.2)
+ F I=5501,5502,5503,5504,5505,5506,5507,5511,5512,5513,5514,5515,5516,5517,5521,5522,5523,5524,5525,5526,5527,7024,7025,7026 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)<3180101 W !," Radiation....................: ",ONC(165.5,DA,51.2)
  W !," Date radiation started.......: ",ONC(165.5,DA,51)
- W !," Radiation @fac...............: ",ONC(165.5,DA,51.5)," ",ONC(165.5,DA,51.4)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)<3180101 W !," Radiation @fac...............: ",ONC(165.5,DA,51.5)," ",ONC(165.5,DA,51.4)
  W !," Location of radiation tx.....: ",ONC(165.5,DA,126)
- W !," Radiation treatment volume...: ",ONC(165.5,DA,125)
- W !," Regional treatment modality..: ",ONC(165.5,DA,363)
- W !," Regional dose:cGy............: ",ONC(165.5,DA,442)
- W !," Boost treatment modality.....: ",ONC(165.5,DA,363.1)
- W !," Boost dose:cGy...............: ",ONC(165.5,DA,443)
- W !," Number of txs to this volume.: ",ONC(165.5,DA,56)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)<3180101 D
+ .W !," Radiation treatment volume...: ",ONC(165.5,DA,125)
+ .W !," Regional treatment modality..: ",ONC(165.5,DA,363)
+ .W !," Regional dose:cGy............: ",ONC(165.5,DA,442)
+ .W !," Boost treatment modality.....: ",ONC(165.5,DA,363.1)
+ .W !," Boost dose:cGy...............: ",ONC(165.5,DA,443)
+ .W !," Number of txs to this volume.: ",ONC(165.5,DA,56)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3171231 D
+ .W !," Phase I rad treatment volume...........: ",ONC(165.5,DA,5504)
+ .W !," Phase I rad to draining lymph nodes....: ",ONC(165.5,DA,5505)
+ .W !," Phase I treatment modality.............: ",ONC(165.5,DA,5506)
+ .W !," Phase I rad external beam planning.....: ",ONC(165.5,DA,5502)
+ .W !," Phase I dose per fraction..............: ",ONC(165.5,DA,5501)
+ .W !," Phase I number of fractions............: ",ONC(165.5,DA,5503)
+ .W !," Phase I total dose.....................: ",ONC(165.5,DA,5507)
+ .I ONC(165.5,DA,5514)'="" W !," Phase II rad treatment volume..........: ",ONC(165.5,DA,5514)
+ .I ONC(165.5,DA,5515)'="" W !," Phase II rad to draining lymph nodes...: ",ONC(165.5,DA,5515)
+ .I ONC(165.5,DA,5516)'="" W !," Phase II treatment modality............: ",ONC(165.5,DA,5516)
+ .I ONC(165.5,DA,5512)'="" W !," Phase II rad external beam planning....: ",ONC(165.5,DA,5512)
+ .I ONC(165.5,DA,5511)'="" W !," Phase II dose per fraction.............: ",ONC(165.5,DA,5511)
+ .I ONC(165.5,DA,5513)'="" W !," Phase II number of fractions...........: ",ONC(165.5,DA,5513)
+ .I ONC(165.5,DA,5517)'="" W !," Phase II total dose....................: ",ONC(165.5,DA,5517)
+ .I ONC(165.5,DA,5524)'="" W !," Phase III rad treatment volume.........: ",ONC(165.5,DA,5524)
+ .I ONC(165.5,DA,5525)'="" W !," Phase III rad to draining lymph nodes..: ",ONC(165.5,DA,5525)
+ .I ONC(165.5,DA,5526)'="" W !," Phase III treatment modality...........: ",ONC(165.5,DA,5526)
+ .I ONC(165.5,DA,5522)'="" W !," Phase III rad external beam planning...: ",ONC(165.5,DA,5522)
+ .I ONC(165.5,DA,5521)'="" W !," Phase III dose per fraction............: ",ONC(165.5,DA,5521)
+ .I ONC(165.5,DA,5523)'="" W !," Phase III number of fractions..........: ",ONC(165.5,DA,5523)
+ .I ONC(165.5,DA,5527)'="" W !," Phase III total dose...................: ",ONC(165.5,DA,5527)
+ .W !," Number of Phases Rad TX to this Volume.: ",ONC(165.5,DA,7024)
+ .W !," Radiation Treatment Disc Early.........: ",ONC(165.5,DA,7025)
+ .W !," Total Dose.............................: ",ONC(165.5,DA,7026)
  W !," Radiation/surgery sequence...: ",ONC(165.5,DA,51.3)
  W !," Date radiation ended.........: ",ONC(165.5,DA,361)
  W !," Reason for no radiation......: ",ONC(165.5,DA,75)

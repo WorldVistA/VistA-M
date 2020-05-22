@@ -1,130 +1,118 @@
-IBDEI1V0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1V0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31591,1,2,0)
- ;;=2^Contact Layer <= 16 Sq In
- ;;^UTILITY(U,$J,358.3,31591,1,3,0)
- ;;=3^A6206
- ;;^UTILITY(U,$J,358.3,31592,0)
- ;;=A6402^^125^1600^29^^^^1
- ;;^UTILITY(U,$J,358.3,31592,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31592,1,2,0)
- ;;=2^Sterile Gauze <= 16 Sq In
- ;;^UTILITY(U,$J,358.3,31592,1,3,0)
- ;;=3^A6402
- ;;^UTILITY(U,$J,358.3,31593,0)
- ;;=A6262^^125^1600^33^^^^1
- ;;^UTILITY(U,$J,358.3,31593,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31593,1,2,0)
- ;;=2^Wound Filler Dry Form/Gram
- ;;^UTILITY(U,$J,358.3,31593,1,3,0)
- ;;=3^A6262
- ;;^UTILITY(U,$J,358.3,31594,0)
- ;;=A6261^^125^1600^34^^^^1
- ;;^UTILITY(U,$J,358.3,31594,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31594,1,2,0)
- ;;=2^Wound Filler Gel/Paste per Oz
- ;;^UTILITY(U,$J,358.3,31594,1,3,0)
- ;;=3^A6261
- ;;^UTILITY(U,$J,358.3,31595,0)
- ;;=Q4131^^125^1600^12^^^^1
- ;;^UTILITY(U,$J,358.3,31595,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31595,1,2,0)
- ;;=2^Epifix
- ;;^UTILITY(U,$J,358.3,31595,1,3,0)
- ;;=3^Q4131
- ;;^UTILITY(U,$J,358.3,31596,0)
- ;;=L3040^^125^1600^13^^^^1
- ;;^UTILITY(U,$J,358.3,31596,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31596,1,2,0)
- ;;=2^Foot Arch Support Premold Longit
- ;;^UTILITY(U,$J,358.3,31596,1,3,0)
- ;;=3^L3040
- ;;^UTILITY(U,$J,358.3,31597,0)
- ;;=L3219^^125^1600^25^^^^1
- ;;^UTILITY(U,$J,358.3,31597,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31597,1,2,0)
- ;;=2^Orthopedic Mens Shoes Oxford,Each
- ;;^UTILITY(U,$J,358.3,31597,1,3,0)
- ;;=3^L3219
- ;;^UTILITY(U,$J,358.3,31598,0)
- ;;=L3221^^125^1600^24^^^^1
- ;;^UTILITY(U,$J,358.3,31598,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31598,1,2,0)
- ;;=2^Orthopedic Mens Shoes Dpth Inlay,Each
- ;;^UTILITY(U,$J,358.3,31598,1,3,0)
- ;;=3^L3221
- ;;^UTILITY(U,$J,358.3,31599,0)
- ;;=Q4102^^125^1600^23^^^^1
- ;;^UTILITY(U,$J,358.3,31599,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31599,1,2,0)
- ;;=2^Oasis Wound Matrix
- ;;^UTILITY(U,$J,358.3,31599,1,3,0)
- ;;=3^Q4102
- ;;^UTILITY(U,$J,358.3,31600,0)
- ;;=L4360^^125^1600^27^^^^1
- ;;^UTILITY(U,$J,358.3,31600,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31600,1,2,0)
- ;;=2^Pneumatic Walking Splint
- ;;^UTILITY(U,$J,358.3,31600,1,3,0)
- ;;=3^L4360
- ;;^UTILITY(U,$J,358.3,31601,0)
- ;;=A6219^^125^1600^15^^^^1
- ;;^UTILITY(U,$J,358.3,31601,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31601,1,2,0)
- ;;=2^Gauze <= 16sq in w/ Border
- ;;^UTILITY(U,$J,358.3,31601,1,3,0)
- ;;=3^A6219
- ;;^UTILITY(U,$J,358.3,31602,0)
- ;;=Q4121^^125^1600^31^^^^1
- ;;^UTILITY(U,$J,358.3,31602,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31602,1,2,0)
- ;;=2^Theraskin,per sq cen
- ;;^UTILITY(U,$J,358.3,31602,1,3,0)
- ;;=3^Q4121
- ;;^UTILITY(U,$J,358.3,31603,0)
- ;;=Q4124^^125^1600^22^^^^1
- ;;^UTILITY(U,$J,358.3,31603,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31603,1,2,0)
- ;;=2^Oasis Tri-Layer Wound Matrix,per sq cen
- ;;^UTILITY(U,$J,358.3,31603,1,3,0)
- ;;=3^Q4124
- ;;^UTILITY(U,$J,358.3,31604,0)
- ;;=Q4101^^125^1600^2^^^^1
- ;;^UTILITY(U,$J,358.3,31604,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31604,1,2,0)
- ;;=2^Apligraf
- ;;^UTILITY(U,$J,358.3,31604,1,3,0)
- ;;=3^Q4101
- ;;^UTILITY(U,$J,358.3,31605,0)
- ;;=A4580^^125^1600^4^^^^1
- ;;^UTILITY(U,$J,358.3,31605,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31605,1,2,0)
- ;;=2^Cast Supplies,Plaster
- ;;^UTILITY(U,$J,358.3,31605,1,3,0)
- ;;=3^A4580
- ;;^UTILITY(U,$J,358.3,31606,0)
- ;;=A4590^^125^1600^3^^^^1
- ;;^UTILITY(U,$J,358.3,31606,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31606,1,2,0)
- ;;=2^Cast Material,Special Fbrgl
- ;;^UTILITY(U,$J,358.3,31606,1,3,0)
- ;;=3^A4590
- ;;^UTILITY(U,$J,358.3,31607,0)
- ;;=A6021^^125^1600^10^^^^1
+ ;;^UTILITY(U,$J,358.3,29696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29696,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29696,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,29696,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,29697,0)
+ ;;=F15.282^^118^1502^52
+ ;;^UTILITY(U,$J,358.3,29697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29697,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29697,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,29697,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,29698,0)
+ ;;=F15.982^^118^1502^53
+ ;;^UTILITY(U,$J,358.3,29698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29698,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29698,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,29698,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,29699,0)
+ ;;=F15.122^^118^1502^57
+ ;;^UTILITY(U,$J,358.3,29699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29699,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29699,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,29699,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,29700,0)
+ ;;=F15.222^^118^1502^58
+ ;;^UTILITY(U,$J,358.3,29700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29700,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29700,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,29700,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,29701,0)
+ ;;=F15.922^^118^1502^59
+ ;;^UTILITY(U,$J,358.3,29701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29701,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29701,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,29701,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,29702,0)
+ ;;=F15.129^^118^1502^60
+ ;;^UTILITY(U,$J,358.3,29702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29702,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29702,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,29702,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,29703,0)
+ ;;=F15.229^^118^1502^61
+ ;;^UTILITY(U,$J,358.3,29703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29703,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29703,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,29703,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,29704,0)
+ ;;=F15.929^^118^1502^62
+ ;;^UTILITY(U,$J,358.3,29704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29704,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29704,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,29704,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,29705,0)
+ ;;=F15.121^^118^1502^54
+ ;;^UTILITY(U,$J,358.3,29705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29705,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29705,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,29705,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,29706,0)
+ ;;=F15.221^^118^1502^55
+ ;;^UTILITY(U,$J,358.3,29706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29706,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29706,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,29706,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,29707,0)
+ ;;=F15.921^^118^1502^56
+ ;;^UTILITY(U,$J,358.3,29707,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29707,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/o Use D/O

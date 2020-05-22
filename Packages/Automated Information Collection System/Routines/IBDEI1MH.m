@@ -1,124 +1,128 @@
-IBDEI1MH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27525,1,4,0)
- ;;=4^N04.8
- ;;^UTILITY(U,$J,358.3,27525,2)
- ;;=^5015539
- ;;^UTILITY(U,$J,358.3,27526,0)
- ;;=N04.9^^106^1363^62
- ;;^UTILITY(U,$J,358.3,27526,1,0)
+ ;;^UTILITY(U,$J,358.3,25923,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,25923,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,25924,0)
+ ;;=R87.619^^107^1227^4
+ ;;^UTILITY(U,$J,358.3,25924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27526,1,3,0)
- ;;=3^Nephrotic syndrome w/ unspecified morphologic changes
- ;;^UTILITY(U,$J,358.3,27526,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,27526,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,27527,0)
- ;;=N05.0^^106^1363^50
- ;;^UTILITY(U,$J,358.3,27527,1,0)
+ ;;^UTILITY(U,$J,358.3,25924,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,25924,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,25924,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,25925,0)
+ ;;=Z79.890^^107^1227^56
+ ;;^UTILITY(U,$J,358.3,25925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27527,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ minor glomerular abnormality
- ;;^UTILITY(U,$J,358.3,27527,1,4,0)
- ;;=4^N05.0
- ;;^UTILITY(U,$J,358.3,27527,2)
- ;;=^5015541
- ;;^UTILITY(U,$J,358.3,27528,0)
- ;;=N05.1^^106^1363^49
- ;;^UTILITY(U,$J,358.3,27528,1,0)
+ ;;^UTILITY(U,$J,358.3,25925,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,25925,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,25925,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,25926,0)
+ ;;=Z33.1^^107^1227^94
+ ;;^UTILITY(U,$J,358.3,25926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27528,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ focal & segmental glomerular lesions
- ;;^UTILITY(U,$J,358.3,27528,1,4,0)
- ;;=4^N05.1
- ;;^UTILITY(U,$J,358.3,27528,2)
- ;;=^5015542
- ;;^UTILITY(U,$J,358.3,27529,0)
- ;;=N05.2^^106^1363^46
- ;;^UTILITY(U,$J,358.3,27529,1,0)
+ ;;^UTILITY(U,$J,358.3,25926,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,25926,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,25926,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,25927,0)
+ ;;=Z39.2^^107^1227^90
+ ;;^UTILITY(U,$J,358.3,25927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27529,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse membranous glomrlneph
- ;;^UTILITY(U,$J,358.3,27529,1,4,0)
- ;;=4^N05.2
- ;;^UTILITY(U,$J,358.3,27529,2)
- ;;=^5015543
- ;;^UTILITY(U,$J,358.3,27530,0)
- ;;=N05.3^^106^1363^47
- ;;^UTILITY(U,$J,358.3,27530,1,0)
+ ;;^UTILITY(U,$J,358.3,25927,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,25927,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,25927,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,25928,0)
+ ;;=Z30.09^^107^1227^21
+ ;;^UTILITY(U,$J,358.3,25928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27530,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27530,1,4,0)
- ;;=4^N05.3
- ;;^UTILITY(U,$J,358.3,27530,2)
- ;;=^5015544
- ;;^UTILITY(U,$J,358.3,27531,0)
- ;;=N05.4^^106^1363^45
- ;;^UTILITY(U,$J,358.3,27531,1,0)
+ ;;^UTILITY(U,$J,358.3,25928,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,25928,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,25928,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,25929,0)
+ ;;=Z30.9^^107^1227^20
+ ;;^UTILITY(U,$J,358.3,25929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27531,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27531,1,4,0)
- ;;=4^N05.4
- ;;^UTILITY(U,$J,358.3,27531,2)
- ;;=^5015545
- ;;^UTILITY(U,$J,358.3,27532,0)
- ;;=N05.5^^106^1363^48
- ;;^UTILITY(U,$J,358.3,27532,1,0)
+ ;;^UTILITY(U,$J,358.3,25929,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,25929,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,25929,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,25930,0)
+ ;;=N64.3^^107^1227^52
+ ;;^UTILITY(U,$J,358.3,25930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27532,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,27532,1,4,0)
- ;;=4^N05.5
- ;;^UTILITY(U,$J,358.3,27532,2)
- ;;=^5015546
- ;;^UTILITY(U,$J,358.3,27533,0)
- ;;=N05.6^^106^1363^43
- ;;^UTILITY(U,$J,358.3,27533,1,0)
+ ;;^UTILITY(U,$J,358.3,25930,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,25930,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,25930,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,25931,0)
+ ;;=R92.2^^107^1227^59
+ ;;^UTILITY(U,$J,358.3,25931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27533,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,27533,1,4,0)
- ;;=4^N05.6
- ;;^UTILITY(U,$J,358.3,27533,2)
- ;;=^5015547
- ;;^UTILITY(U,$J,358.3,27534,0)
- ;;=N05.7^^106^1363^44
- ;;^UTILITY(U,$J,358.3,27534,1,0)
+ ;;^UTILITY(U,$J,358.3,25931,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,25931,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,25931,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,25932,0)
+ ;;=Z30.432^^107^1227^98
+ ;;^UTILITY(U,$J,358.3,25932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27534,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ diffuse crescentic glomrlneph
- ;;^UTILITY(U,$J,358.3,27534,1,4,0)
- ;;=4^N05.7
- ;;^UTILITY(U,$J,358.3,27534,2)
- ;;=^5015548
- ;;^UTILITY(U,$J,358.3,27535,0)
- ;;=N05.8^^106^1363^51
- ;;^UTILITY(U,$J,358.3,27535,1,0)
+ ;;^UTILITY(U,$J,358.3,25932,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,25932,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,25932,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,25933,0)
+ ;;=A63.0^^107^1227^12
+ ;;^UTILITY(U,$J,358.3,25933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27535,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ oth morphologic changes
- ;;^UTILITY(U,$J,358.3,27535,1,4,0)
- ;;=4^N05.8
- ;;^UTILITY(U,$J,358.3,27535,2)
- ;;=^5134085
- ;;^UTILITY(U,$J,358.3,27536,0)
- ;;=N05.9^^106^1363^52
- ;;^UTILITY(U,$J,358.3,27536,1,0)
+ ;;^UTILITY(U,$J,358.3,25933,1,3,0)
+ ;;=3^Anogenital Warts,Verereal
+ ;;^UTILITY(U,$J,358.3,25933,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,25933,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,25934,0)
+ ;;=R63.0^^107^1227^13
+ ;;^UTILITY(U,$J,358.3,25934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27536,1,3,0)
- ;;=3^Nephritic syndrome unspec w/ unspec morphologic changes
- ;;^UTILITY(U,$J,358.3,27536,1,4,0)
- ;;=4^N05.9
- ;;^UTILITY(U,$J,358.3,27536,2)
- ;;=^5134086
- ;;^UTILITY(U,$J,358.3,27537,0)
- ;;=N06.0^^106^1363^40
- ;;^UTILITY(U,$J,358.3,27537,1,0)
+ ;;^UTILITY(U,$J,358.3,25934,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,25934,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,25934,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,25935,0)
+ ;;=R87.611^^107^1227^2
+ ;;^UTILITY(U,$J,358.3,25935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27537,1,3,0)
- ;;=3^Isolated proteinuria w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,25935,1,3,0)
+ ;;=3^ASC-H
+ ;;^UTILITY(U,$J,358.3,25935,1,4,0)
+ ;;=4^R87.611
+ ;;^UTILITY(U,$J,358.3,25935,2)
+ ;;=^5019669

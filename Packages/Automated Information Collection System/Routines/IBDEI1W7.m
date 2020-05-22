@@ -1,126 +1,122 @@
-IBDEI1W7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1W7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32136,0)
- ;;=T34.831A^^126^1609^190
- ;;^UTILITY(U,$J,358.3,32136,1,0)
+ ;;^UTILITY(U,$J,358.3,30228,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30228,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,30228,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,30229,0)
+ ;;=F16.24^^120^1540^5
+ ;;^UTILITY(U,$J,358.3,30229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32136,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt toe(s), init
- ;;^UTILITY(U,$J,358.3,32136,1,4,0)
- ;;=4^T34.831A
- ;;^UTILITY(U,$J,358.3,32136,2)
- ;;=^5049241
- ;;^UTILITY(U,$J,358.3,32137,0)
- ;;=T34.832A^^126^1609^185
- ;;^UTILITY(U,$J,358.3,32137,1,0)
+ ;;^UTILITY(U,$J,358.3,30229,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30229,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,30229,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,30230,0)
+ ;;=F16.94^^120^1540^6
+ ;;^UTILITY(U,$J,358.3,30230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32137,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft toe(s), init
- ;;^UTILITY(U,$J,358.3,32137,1,4,0)
- ;;=4^T34.832A
- ;;^UTILITY(U,$J,358.3,32137,2)
- ;;=^5049244
- ;;^UTILITY(U,$J,358.3,32138,0)
- ;;=T33.811A^^126^1609^178
- ;;^UTILITY(U,$J,358.3,32138,1,0)
+ ;;^UTILITY(U,$J,358.3,30230,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30230,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,30230,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,30231,0)
+ ;;=F16.159^^120^1540^7
+ ;;^UTILITY(U,$J,358.3,30231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32138,1,3,0)
- ;;=3^Frostbite of rt ankl, Superficial,init
- ;;^UTILITY(U,$J,358.3,32138,1,4,0)
- ;;=4^T33.811A
- ;;^UTILITY(U,$J,358.3,32138,2)
- ;;=^5049112
- ;;^UTILITY(U,$J,358.3,32139,0)
- ;;=T33.812A^^126^1609^175
- ;;^UTILITY(U,$J,358.3,32139,1,0)
+ ;;^UTILITY(U,$J,358.3,30231,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30231,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,30231,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,30232,0)
+ ;;=F16.259^^120^1540^8
+ ;;^UTILITY(U,$J,358.3,30232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32139,1,3,0)
- ;;=3^Frostbite of lft ankl,Superficial, init
- ;;^UTILITY(U,$J,358.3,32139,1,4,0)
- ;;=4^T33.812A
- ;;^UTILITY(U,$J,358.3,32139,2)
- ;;=^5049115
- ;;^UTILITY(U,$J,358.3,32140,0)
- ;;=T33.821A^^126^1609^179
- ;;^UTILITY(U,$J,358.3,32140,1,0)
+ ;;^UTILITY(U,$J,358.3,30232,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30232,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,30232,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,30233,0)
+ ;;=F16.959^^120^1540^9
+ ;;^UTILITY(U,$J,358.3,30233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32140,1,3,0)
- ;;=3^Frostbite of rt ft,Superficial, init
- ;;^UTILITY(U,$J,358.3,32140,1,4,0)
- ;;=4^T33.821A
- ;;^UTILITY(U,$J,358.3,32140,2)
- ;;=^5049121
- ;;^UTILITY(U,$J,358.3,32141,0)
- ;;=T33.822A^^126^1609^176
- ;;^UTILITY(U,$J,358.3,32141,1,0)
+ ;;^UTILITY(U,$J,358.3,30233,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30233,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,30233,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,30234,0)
+ ;;=F16.99^^120^1540^17
+ ;;^UTILITY(U,$J,358.3,30234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32141,1,3,0)
- ;;=3^Frostbite of lft ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,32141,1,4,0)
- ;;=4^T33.822A
- ;;^UTILITY(U,$J,358.3,32141,2)
- ;;=^5049124
- ;;^UTILITY(U,$J,358.3,32142,0)
- ;;=T33.831A^^126^1609^180
- ;;^UTILITY(U,$J,358.3,32142,1,0)
+ ;;^UTILITY(U,$J,358.3,30234,1,3,0)
+ ;;=3^Hallucinogen Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30234,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,30234,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,30235,0)
+ ;;=F16.983^^120^1540^16
+ ;;^UTILITY(U,$J,358.3,30235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32142,1,3,0)
- ;;=3^Frostbite of rt toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,32142,1,4,0)
- ;;=4^T33.831A
- ;;^UTILITY(U,$J,358.3,32142,2)
- ;;=^5049130
- ;;^UTILITY(U,$J,358.3,32143,0)
- ;;=T33.832A^^126^1609^177
- ;;^UTILITY(U,$J,358.3,32143,1,0)
+ ;;^UTILITY(U,$J,358.3,30235,1,3,0)
+ ;;=3^Hallucinogen Persisting Perception D/O
+ ;;^UTILITY(U,$J,358.3,30235,1,4,0)
+ ;;=4^F16.983
+ ;;^UTILITY(U,$J,358.3,30235,2)
+ ;;=^5003358
+ ;;^UTILITY(U,$J,358.3,30236,0)
+ ;;=F16.21^^120^1540^20
+ ;;^UTILITY(U,$J,358.3,30236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32143,1,3,0)
- ;;=3^Frostbite of lft toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,32143,1,4,0)
- ;;=4^T33.832A
- ;;^UTILITY(U,$J,358.3,32143,2)
- ;;=^5049133
- ;;^UTILITY(U,$J,358.3,32144,0)
- ;;=T34.811A^^126^1609^186
- ;;^UTILITY(U,$J,358.3,32144,1,0)
+ ;;^UTILITY(U,$J,358.3,30236,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,30236,1,4,0)
+ ;;=4^F16.21
+ ;;^UTILITY(U,$J,358.3,30236,2)
+ ;;=^5003337
+ ;;^UTILITY(U,$J,358.3,30237,0)
+ ;;=F16.11^^120^1540^18
+ ;;^UTILITY(U,$J,358.3,30237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32144,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt ankl, init
- ;;^UTILITY(U,$J,358.3,32144,1,4,0)
- ;;=4^T34.811A
- ;;^UTILITY(U,$J,358.3,32144,2)
- ;;=^5049223
- ;;^UTILITY(U,$J,358.3,32145,0)
- ;;=T34.812A^^126^1609^181
- ;;^UTILITY(U,$J,358.3,32145,1,0)
+ ;;^UTILITY(U,$J,358.3,30237,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,30237,1,4,0)
+ ;;=4^F16.11
+ ;;^UTILITY(U,$J,358.3,30237,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,30238,0)
+ ;;=F11.10^^120^1541^25
+ ;;^UTILITY(U,$J,358.3,30238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32145,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft ankl, init
- ;;^UTILITY(U,$J,358.3,32145,1,4,0)
- ;;=4^T34.812A
- ;;^UTILITY(U,$J,358.3,32145,2)
- ;;=^5049226
- ;;^UTILITY(U,$J,358.3,32146,0)
- ;;=Z46.89^^126^1609^161
- ;;^UTILITY(U,$J,358.3,32146,1,0)
+ ;;^UTILITY(U,$J,358.3,30238,1,3,0)
+ ;;=3^Opioid Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,30238,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,30238,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,30239,0)
+ ;;=F11.129^^120^1541^22
+ ;;^UTILITY(U,$J,358.3,30239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32146,1,3,0)
- ;;=3^Fitting and adjustment of device, other
- ;;^UTILITY(U,$J,358.3,32146,1,4,0)
- ;;=4^Z46.89
- ;;^UTILITY(U,$J,358.3,32146,2)
- ;;=^5063023
- ;;^UTILITY(U,$J,358.3,32147,0)
- ;;=S92.532K^^126^1609^90
- ;;^UTILITY(U,$J,358.3,32147,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32147,1,3,0)
- ;;=3^Disp fx of dist phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32147,1,4,0)
- ;;=4^S92.532K
- ;;^UTILITY(U,$J,358.3,32147,2)
- ;;=^5045526
- ;;^UTILITY(U,$J,358.3,32148,0)
- ;;=S92.531K^^126^1609^93
+ ;;^UTILITY(U,$J,358.3,30239,1,3,0)
+ ;;=3^Opioid Intox w/o Perceptual Dists w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30239,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,30239,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,30240,0)
+ ;;=F11.14^^120^1541^5

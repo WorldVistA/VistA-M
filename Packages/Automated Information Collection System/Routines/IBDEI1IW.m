@@ -1,124 +1,118 @@
-IBDEI1IW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1IW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25852,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,25852,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,25852,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,25853,0)
- ;;=T76.31XD^^98^1209^12
- ;;^UTILITY(U,$J,358.3,25853,1,0)
+ ;;^UTILITY(U,$J,358.3,24347,2)
+ ;;=^5151460
+ ;;^UTILITY(U,$J,358.3,24348,0)
+ ;;=L97.418^^107^1201^253
+ ;;^UTILITY(U,$J,358.3,24348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25853,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,25853,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,25853,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,25854,0)
- ;;=Z91.411^^98^1209^30
- ;;^UTILITY(U,$J,358.3,25854,1,0)
+ ;;^UTILITY(U,$J,358.3,24348,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Hell/Midft w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,24348,1,4,0)
+ ;;=4^L97.418
+ ;;^UTILITY(U,$J,358.3,24348,2)
+ ;;=^5151462
+ ;;^UTILITY(U,$J,358.3,24349,0)
+ ;;=L97.916^^107^1201^259
+ ;;^UTILITY(U,$J,358.3,24349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25854,1,3,0)
- ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
- ;;^UTILITY(U,$J,358.3,25854,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,25854,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,25855,0)
- ;;=Z69.021^^98^1209^17
- ;;^UTILITY(U,$J,358.3,25855,1,0)
+ ;;^UTILITY(U,$J,358.3,24349,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,24349,1,4,0)
+ ;;=4^L97.916
+ ;;^UTILITY(U,$J,358.3,24349,2)
+ ;;=^5151488
+ ;;^UTILITY(U,$J,358.3,24350,0)
+ ;;=L97.915^^107^1201^260
+ ;;^UTILITY(U,$J,358.3,24350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25855,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
- ;;^UTILITY(U,$J,358.3,25855,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25855,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25856,0)
- ;;=Z69.021^^98^1209^18
- ;;^UTILITY(U,$J,358.3,25856,1,0)
+ ;;^UTILITY(U,$J,358.3,24350,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,24350,1,4,0)
+ ;;=4^L97.915
+ ;;^UTILITY(U,$J,358.3,24350,2)
+ ;;=^5151487
+ ;;^UTILITY(U,$J,358.3,24351,0)
+ ;;=L97.918^^107^1201^261
+ ;;^UTILITY(U,$J,358.3,24351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25856,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
- ;;^UTILITY(U,$J,358.3,25856,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25856,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25857,0)
- ;;=Z69.021^^98^1209^19
- ;;^UTILITY(U,$J,358.3,25857,1,0)
+ ;;^UTILITY(U,$J,358.3,24351,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,24351,1,4,0)
+ ;;=4^L97.918
+ ;;^UTILITY(U,$J,358.3,24351,2)
+ ;;=^5151489
+ ;;^UTILITY(U,$J,358.3,24352,0)
+ ;;=L97.116^^107^1201^267
+ ;;^UTILITY(U,$J,358.3,24352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25857,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,25857,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25857,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25858,0)
- ;;=Z69.021^^98^1209^20
- ;;^UTILITY(U,$J,358.3,25858,1,0)
+ ;;^UTILITY(U,$J,358.3,24352,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,24352,1,4,0)
+ ;;=4^L97.116
+ ;;^UTILITY(U,$J,358.3,24352,2)
+ ;;=^5151434
+ ;;^UTILITY(U,$J,358.3,24353,0)
+ ;;=L97.115^^107^1201^268
+ ;;^UTILITY(U,$J,358.3,24353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25858,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,25858,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25858,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25859,0)
- ;;=Z69.011^^98^1209^22
- ;;^UTILITY(U,$J,358.3,25859,1,0)
+ ;;^UTILITY(U,$J,358.3,24353,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,24353,1,4,0)
+ ;;=4^L97.115
+ ;;^UTILITY(U,$J,358.3,24353,2)
+ ;;=^5151433
+ ;;^UTILITY(U,$J,358.3,24354,0)
+ ;;=L89.306^^107^1201^276
+ ;;^UTILITY(U,$J,358.3,24354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25859,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,25859,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,25859,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,25860,0)
- ;;=Z69.011^^98^1209^23
- ;;^UTILITY(U,$J,358.3,25860,1,0)
+ ;;^UTILITY(U,$J,358.3,24354,1,3,0)
+ ;;=3^Pressure Induced Deep Tissue Damage,Unspec Buttock
+ ;;^UTILITY(U,$J,358.3,24354,1,4,0)
+ ;;=4^L89.306
+ ;;^UTILITY(U,$J,358.3,24354,2)
+ ;;=^5158088
+ ;;^UTILITY(U,$J,358.3,24355,0)
+ ;;=L89.46^^107^1201^275
+ ;;^UTILITY(U,$J,358.3,24355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25860,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Neglect
- ;;^UTILITY(U,$J,358.3,25860,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,25860,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,25861,0)
- ;;=Z69.011^^98^1209^24
- ;;^UTILITY(U,$J,358.3,25861,1,0)
+ ;;^UTILITY(U,$J,358.3,24355,1,3,0)
+ ;;=3^Pressure Induced Deep Tissue Damage,Contig Site:Back/Buttock/Hip
+ ;;^UTILITY(U,$J,358.3,24355,1,4,0)
+ ;;=4^L89.46
+ ;;^UTILITY(U,$J,358.3,24355,2)
+ ;;=^5158091
+ ;;^UTILITY(U,$J,358.3,24356,0)
+ ;;=L02.818^^107^1201^128
+ ;;^UTILITY(U,$J,358.3,24356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25861,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,25861,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,25861,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,25862,0)
- ;;=Z69.011^^98^1209^25
- ;;^UTILITY(U,$J,358.3,25862,1,0)
+ ;;^UTILITY(U,$J,358.3,24356,1,3,0)
+ ;;=3^Cutaneous Abscess of Other Sites
+ ;;^UTILITY(U,$J,358.3,24356,1,4,0)
+ ;;=4^L02.818
+ ;;^UTILITY(U,$J,358.3,24356,2)
+ ;;=^5009011
+ ;;^UTILITY(U,$J,358.3,24357,0)
+ ;;=H65.03^^107^1202^3
+ ;;^UTILITY(U,$J,358.3,24357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25862,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,25862,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,25862,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,25863,0)
- ;;=F06.4^^98^1210^6
- ;;^UTILITY(U,$J,358.3,25863,1,0)
+ ;;^UTILITY(U,$J,358.3,24357,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,24357,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,24357,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,24358,0)
+ ;;=H65.01^^107^1202^5
+ ;;^UTILITY(U,$J,358.3,24358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25863,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,25863,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,25863,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,25864,0)
- ;;=F41.0^^98^1210^15
- ;;^UTILITY(U,$J,358.3,25864,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24358,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,24358,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,24358,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,24359,0)
+ ;;=H65.23^^107^1202^15

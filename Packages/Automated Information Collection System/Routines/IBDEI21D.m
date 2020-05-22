@@ -1,132 +1,124 @@
-IBDEI21D ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI21D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34538,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,34538,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,34539,0)
- ;;=G43.A0^^131^1687^8
- ;;^UTILITY(U,$J,358.3,34539,1,0)
+ ;;^UTILITY(U,$J,358.3,32498,1,4,0)
+ ;;=4^H52.4
+ ;;^UTILITY(U,$J,358.3,32498,2)
+ ;;=^98095
+ ;;^UTILITY(U,$J,358.3,32499,0)
+ ;;=H52.7^^128^1662^11
+ ;;^UTILITY(U,$J,358.3,32499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34539,1,3,0)
- ;;=3^Cyclical Vomiting Not Intractable
- ;;^UTILITY(U,$J,358.3,34539,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,34539,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,34540,0)
- ;;=G43.C1^^131^1687^16
- ;;^UTILITY(U,$J,358.3,34540,1,0)
+ ;;^UTILITY(U,$J,358.3,32499,1,3,0)
+ ;;=3^Refractive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32499,1,4,0)
+ ;;=4^H52.7
+ ;;^UTILITY(U,$J,358.3,32499,2)
+ ;;=^5006291
+ ;;^UTILITY(U,$J,358.3,32500,0)
+ ;;=H47.612^^128^1662^15
+ ;;^UTILITY(U,$J,358.3,32500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34540,1,3,0)
- ;;=3^Headache Syndromes,Periodic Intractable
- ;;^UTILITY(U,$J,358.3,34540,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,34540,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,34541,0)
- ;;=G43.B1^^131^1687^29
- ;;^UTILITY(U,$J,358.3,34541,1,0)
+ ;;^UTILITY(U,$J,358.3,32500,1,3,0)
+ ;;=3^Cortical Blindness,Lt Side of Brain
+ ;;^UTILITY(U,$J,358.3,32500,1,4,0)
+ ;;=4^H47.612
+ ;;^UTILITY(U,$J,358.3,32500,2)
+ ;;=^5006167
+ ;;^UTILITY(U,$J,358.3,32501,0)
+ ;;=H47.611^^128^1662^14
+ ;;^UTILITY(U,$J,358.3,32501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34541,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Intractable
- ;;^UTILITY(U,$J,358.3,34541,1,4,0)
- ;;=4^G43.B1
- ;;^UTILITY(U,$J,358.3,34541,2)
- ;;=^5003915
- ;;^UTILITY(U,$J,358.3,34542,0)
- ;;=G43.A1^^131^1687^7
- ;;^UTILITY(U,$J,358.3,34542,1,0)
+ ;;^UTILITY(U,$J,358.3,32501,1,3,0)
+ ;;=3^Cortical Blindness,Rt Side of Brain
+ ;;^UTILITY(U,$J,358.3,32501,1,4,0)
+ ;;=4^H47.611
+ ;;^UTILITY(U,$J,358.3,32501,2)
+ ;;=^5006166
+ ;;^UTILITY(U,$J,358.3,32502,0)
+ ;;=H47.619^^128^1662^16
+ ;;^UTILITY(U,$J,358.3,32502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34542,1,3,0)
- ;;=3^Cyclical Vomiting Intractable
- ;;^UTILITY(U,$J,358.3,34542,1,4,0)
- ;;=4^G43.A1
- ;;^UTILITY(U,$J,358.3,34542,2)
- ;;=^5003913
- ;;^UTILITY(U,$J,358.3,34543,0)
- ;;=G43.819^^131^1687^25
- ;;^UTILITY(U,$J,358.3,34543,1,0)
+ ;;^UTILITY(U,$J,358.3,32502,1,3,0)
+ ;;=3^Cortical Blindness,Unspec Side of Brain
+ ;;^UTILITY(U,$J,358.3,32502,1,4,0)
+ ;;=4^H47.619
+ ;;^UTILITY(U,$J,358.3,32502,2)
+ ;;=^5006168
+ ;;^UTILITY(U,$J,358.3,32503,0)
+ ;;=H47.642^^128^1662^18
+ ;;^UTILITY(U,$J,358.3,32503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34543,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,34543,1,4,0)
- ;;=4^G43.819
- ;;^UTILITY(U,$J,358.3,34543,2)
- ;;=^5003903
- ;;^UTILITY(U,$J,358.3,34544,0)
- ;;=G43.909^^131^1687^27
- ;;^UTILITY(U,$J,358.3,34544,1,0)
+ ;;^UTILITY(U,$J,358.3,32503,1,3,0)
+ ;;=3^D/O of Visual Cortex in Vasc D/O,Lt Side of Brain
+ ;;^UTILITY(U,$J,358.3,32503,1,4,0)
+ ;;=4^H47.642
+ ;;^UTILITY(U,$J,358.3,32503,2)
+ ;;=^5006176
+ ;;^UTILITY(U,$J,358.3,32504,0)
+ ;;=H47.641^^128^1662^17
+ ;;^UTILITY(U,$J,358.3,32504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34544,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,34544,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,34544,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,34545,0)
- ;;=G43.919^^131^1687^26
- ;;^UTILITY(U,$J,358.3,34545,1,0)
+ ;;^UTILITY(U,$J,358.3,32504,1,3,0)
+ ;;=3^D/O of Visual Cortex in Vasc D/O,Rt Side of Brain
+ ;;^UTILITY(U,$J,358.3,32504,1,4,0)
+ ;;=4^H47.641
+ ;;^UTILITY(U,$J,358.3,32504,2)
+ ;;=^5006175
+ ;;^UTILITY(U,$J,358.3,32505,0)
+ ;;=H47.649^^128^1662^19
+ ;;^UTILITY(U,$J,358.3,32505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34545,1,3,0)
- ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,34545,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,34545,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,34546,0)
- ;;=G51.0^^131^1687^5
- ;;^UTILITY(U,$J,358.3,34546,1,0)
+ ;;^UTILITY(U,$J,358.3,32505,1,3,0)
+ ;;=3^D/O of Visual Cortex in Vasc D/O,Unspec Side of Brain
+ ;;^UTILITY(U,$J,358.3,32505,1,4,0)
+ ;;=4^H47.649
+ ;;^UTILITY(U,$J,358.3,32505,2)
+ ;;=^5006177
+ ;;^UTILITY(U,$J,358.3,32506,0)
+ ;;=H53.483^^128^1662^25
+ ;;^UTILITY(U,$J,358.3,32506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34546,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,34546,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,34546,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,34547,0)
- ;;=G57.10^^131^1687^22
- ;;^UTILITY(U,$J,358.3,34547,1,0)
+ ;;^UTILITY(U,$J,358.3,32506,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field,Bilateral
+ ;;^UTILITY(U,$J,358.3,32506,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,32506,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,32507,0)
+ ;;=H53.482^^128^1662^24
+ ;;^UTILITY(U,$J,358.3,32507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34547,1,3,0)
- ;;=3^Meralgia Paresthetica Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,34547,1,4,0)
- ;;=4^G57.10
- ;;^UTILITY(U,$J,358.3,34547,2)
- ;;=^5004041
- ;;^UTILITY(U,$J,358.3,34548,0)
- ;;=G57.12^^131^1687^23
- ;;^UTILITY(U,$J,358.3,34548,1,0)
+ ;;^UTILITY(U,$J,358.3,32507,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32507,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,32507,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,32508,0)
+ ;;=H53.481^^128^1662^23
+ ;;^UTILITY(U,$J,358.3,32508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34548,1,3,0)
- ;;=3^Meralgia Paresthetica,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,34548,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,34548,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,34549,0)
- ;;=G57.11^^131^1687^24
- ;;^UTILITY(U,$J,358.3,34549,1,0)
+ ;;^UTILITY(U,$J,358.3,32508,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32508,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,32508,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,32509,0)
+ ;;=H53.71^^128^1662^13
+ ;;^UTILITY(U,$J,358.3,32509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34549,1,3,0)
- ;;=3^Meralgia Paresthetica,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,34549,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,34549,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,34550,0)
- ;;=G60.8^^131^1687^32
- ;;^UTILITY(U,$J,358.3,34550,1,0)
+ ;;^UTILITY(U,$J,358.3,32509,1,3,0)
+ ;;=3^Glare Sensitivity
+ ;;^UTILITY(U,$J,358.3,32509,1,4,0)
+ ;;=4^H53.71
+ ;;^UTILITY(U,$J,358.3,32509,2)
+ ;;=^5006354
+ ;;^UTILITY(U,$J,358.3,32510,0)
+ ;;=H53.47^^128^1662^29
+ ;;^UTILITY(U,$J,358.3,32510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34550,1,3,0)
- ;;=3^Neuropathies,Oth Hereditary and Idiopathic
- ;;^UTILITY(U,$J,358.3,34550,1,4,0)
- ;;=4^G60.8
- ;;^UTILITY(U,$J,358.3,34550,2)
- ;;=^5004070
- ;;^UTILITY(U,$J,358.3,34551,0)
- ;;=G60.9^^131^1687^33
- ;;^UTILITY(U,$J,358.3,34551,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32510,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects

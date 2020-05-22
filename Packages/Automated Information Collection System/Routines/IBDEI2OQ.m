@@ -1,136 +1,120 @@
-IBDEI2OQ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45059,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,45059,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,45059,2)
- ;;=^5062688
- ;;^UTILITY(U,$J,358.3,45060,0)
- ;;=Z00.00^^200^2237^9
- ;;^UTILITY(U,$J,358.3,45060,1,0)
+ ;;^UTILITY(U,$J,358.3,42795,2)
+ ;;=^5030510
+ ;;^UTILITY(U,$J,358.3,42796,0)
+ ;;=S52.532S^^155^2074^7
+ ;;^UTILITY(U,$J,358.3,42796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45060,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,45060,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,45060,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,45061,0)
- ;;=Z02.79^^200^2237^11
- ;;^UTILITY(U,$J,358.3,45061,1,0)
+ ;;^UTILITY(U,$J,358.3,42796,1,3,0)
+ ;;=3^Colles' fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42796,1,4,0)
+ ;;=4^S52.532S
+ ;;^UTILITY(U,$J,358.3,42796,2)
+ ;;=^5030752
+ ;;^UTILITY(U,$J,358.3,42797,0)
+ ;;=S52.531S^^155^2074^8
+ ;;^UTILITY(U,$J,358.3,42797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45061,1,3,0)
- ;;=3^Medical Certificate Encounter
- ;;^UTILITY(U,$J,358.3,45061,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,45061,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,45062,0)
- ;;=Z71.3^^200^2237^7
- ;;^UTILITY(U,$J,358.3,45062,1,0)
+ ;;^UTILITY(U,$J,358.3,42797,1,3,0)
+ ;;=3^Colles' fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42797,1,4,0)
+ ;;=4^S52.531S
+ ;;^UTILITY(U,$J,358.3,42797,2)
+ ;;=^5030736
+ ;;^UTILITY(U,$J,358.3,42798,0)
+ ;;=S52.352S^^155^2074^13
+ ;;^UTILITY(U,$J,358.3,42798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45062,1,3,0)
- ;;=3^Dietary Counseling
- ;;^UTILITY(U,$J,358.3,45062,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,45062,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,45063,0)
- ;;=Z71.7^^200^2237^10
- ;;^UTILITY(U,$J,358.3,45063,1,0)
+ ;;^UTILITY(U,$J,358.3,42798,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of radius, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42798,1,4,0)
+ ;;=4^S52.352S
+ ;;^UTILITY(U,$J,358.3,42798,2)
+ ;;=^5030286
+ ;;^UTILITY(U,$J,358.3,42799,0)
+ ;;=S52.351S^^155^2074^15
+ ;;^UTILITY(U,$J,358.3,42799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45063,1,3,0)
- ;;=3^HIV Counseling
- ;;^UTILITY(U,$J,358.3,45063,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,45063,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,45064,0)
- ;;=Z71.6^^200^2237^15
- ;;^UTILITY(U,$J,358.3,45064,1,0)
+ ;;^UTILITY(U,$J,358.3,42799,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of ulna, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42799,1,4,0)
+ ;;=4^S52.351S
+ ;;^UTILITY(U,$J,358.3,42799,2)
+ ;;=^5030270
+ ;;^UTILITY(U,$J,358.3,42800,0)
+ ;;=S52.122S^^155^2074^22
+ ;;^UTILITY(U,$J,358.3,42800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45064,1,3,0)
- ;;=3^Tobacco Abuse Counseling
- ;;^UTILITY(U,$J,358.3,45064,1,4,0)
- ;;=4^Z71.6
- ;;^UTILITY(U,$J,358.3,45064,2)
- ;;=^5063250
- ;;^UTILITY(U,$J,358.3,45065,0)
- ;;=D86.0^^200^2238^45
- ;;^UTILITY(U,$J,358.3,45065,1,0)
+ ;;^UTILITY(U,$J,358.3,42800,1,3,0)
+ ;;=3^Disp fx of head of left radius, sequela      
+ ;;^UTILITY(U,$J,358.3,42800,1,4,0)
+ ;;=4^S52.122S
+ ;;^UTILITY(U,$J,358.3,42800,2)
+ ;;=^5029078
+ ;;^UTILITY(U,$J,358.3,42801,0)
+ ;;=S52.121S^^155^2074^23
+ ;;^UTILITY(U,$J,358.3,42801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45065,1,3,0)
- ;;=3^Sarcoidosis of Lung
- ;;^UTILITY(U,$J,358.3,45065,1,4,0)
- ;;=4^D86.0
- ;;^UTILITY(U,$J,358.3,45065,2)
- ;;=^5002442
- ;;^UTILITY(U,$J,358.3,45066,0)
- ;;=D86.1^^200^2238^47
- ;;^UTILITY(U,$J,358.3,45066,1,0)
+ ;;^UTILITY(U,$J,358.3,42801,1,3,0)
+ ;;=3^Disp fx of head of right radius, sequela     
+ ;;^UTILITY(U,$J,358.3,42801,1,4,0)
+ ;;=4^S52.121S
+ ;;^UTILITY(U,$J,358.3,42801,2)
+ ;;=^5029062
+ ;;^UTILITY(U,$J,358.3,42802,0)
+ ;;=S52.132S^^155^2074^32
+ ;;^UTILITY(U,$J,358.3,42802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45066,1,3,0)
- ;;=3^Sarcoidosis of Lymph nodes
- ;;^UTILITY(U,$J,358.3,45066,1,4,0)
- ;;=4^D86.1
- ;;^UTILITY(U,$J,358.3,45066,2)
- ;;=^5002443
- ;;^UTILITY(U,$J,358.3,45067,0)
- ;;=D86.2^^200^2238^46
- ;;^UTILITY(U,$J,358.3,45067,1,0)
+ ;;^UTILITY(U,$J,358.3,42802,1,3,0)
+ ;;=3^Disp fx of neck of left radius, sequela      
+ ;;^UTILITY(U,$J,358.3,42802,1,4,0)
+ ;;=4^S52.132S
+ ;;^UTILITY(U,$J,358.3,42802,2)
+ ;;=^5029174
+ ;;^UTILITY(U,$J,358.3,42803,0)
+ ;;=S52.131S^^155^2074^33
+ ;;^UTILITY(U,$J,358.3,42803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45067,1,3,0)
- ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,45067,1,4,0)
- ;;=4^D86.2
- ;;^UTILITY(U,$J,358.3,45067,2)
- ;;=^5002444
- ;;^UTILITY(U,$J,358.3,45068,0)
- ;;=D86.89^^200^2238^48
- ;;^UTILITY(U,$J,358.3,45068,1,0)
+ ;;^UTILITY(U,$J,358.3,42803,1,3,0)
+ ;;=3^Disp fx of neck of right radius, sequela     
+ ;;^UTILITY(U,$J,358.3,42803,1,4,0)
+ ;;=4^S52.131S
+ ;;^UTILITY(U,$J,358.3,42803,2)
+ ;;=^5029158
+ ;;^UTILITY(U,$J,358.3,42804,0)
+ ;;=S52.332S^^155^2074^34
+ ;;^UTILITY(U,$J,358.3,42804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45068,1,3,0)
- ;;=3^Sarcoidosis of Other Sites
- ;;^UTILITY(U,$J,358.3,45068,1,4,0)
- ;;=4^D86.89
- ;;^UTILITY(U,$J,358.3,45068,2)
- ;;=^5002453
- ;;^UTILITY(U,$J,358.3,45069,0)
- ;;=D86.9^^200^2238^51
- ;;^UTILITY(U,$J,358.3,45069,1,0)
+ ;;^UTILITY(U,$J,358.3,42804,1,3,0)
+ ;;=3^Disp fx of oblique shaft of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42804,1,4,0)
+ ;;=4^S52.332S
+ ;;^UTILITY(U,$J,358.3,42804,2)
+ ;;=^5030094
+ ;;^UTILITY(U,$J,358.3,42805,0)
+ ;;=S52.331S^^155^2074^36
+ ;;^UTILITY(U,$J,358.3,42805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45069,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,45069,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,45069,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,45070,0)
- ;;=D86.86^^200^2238^39
- ;;^UTILITY(U,$J,358.3,45070,1,0)
+ ;;^UTILITY(U,$J,358.3,42805,1,3,0)
+ ;;=3^Disp fx of oblique shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42805,1,4,0)
+ ;;=4^S52.331S
+ ;;^UTILITY(U,$J,358.3,42805,2)
+ ;;=^5030078
+ ;;^UTILITY(U,$J,358.3,42806,0)
+ ;;=S52.362S^^155^2074^47
+ ;;^UTILITY(U,$J,358.3,42806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45070,1,3,0)
- ;;=3^Sarcoid Arthropathy
- ;;^UTILITY(U,$J,358.3,45070,1,4,0)
- ;;=4^D86.86
- ;;^UTILITY(U,$J,358.3,45070,2)
- ;;=^5002451
- ;;^UTILITY(U,$J,358.3,45071,0)
- ;;=D86.87^^200^2238^43
- ;;^UTILITY(U,$J,358.3,45071,1,0)
+ ;;^UTILITY(U,$J,358.3,42806,1,3,0)
+ ;;=3^Disp fx of segmental shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42806,1,4,0)
+ ;;=4^S52.362S
+ ;;^UTILITY(U,$J,358.3,42806,2)
+ ;;=^5030382
+ ;;^UTILITY(U,$J,358.3,42807,0)
+ ;;=S52.361S^^155^2074^48
+ ;;^UTILITY(U,$J,358.3,42807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45071,1,3,0)
- ;;=3^Sarcoid Myositis
- ;;^UTILITY(U,$J,358.3,45071,1,4,0)
- ;;=4^D86.87
- ;;^UTILITY(U,$J,358.3,45071,2)
- ;;=^5002452
- ;;^UTILITY(U,$J,358.3,45072,0)
- ;;=D86.3^^200^2238^49
- ;;^UTILITY(U,$J,358.3,45072,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45072,1,3,0)
- ;;=3^Sarcoidosis of Skin

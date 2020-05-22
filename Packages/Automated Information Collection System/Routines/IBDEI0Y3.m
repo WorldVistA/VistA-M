@@ -1,346 +1,128 @@
-IBDEI0Y3 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0Y3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44733,1,3,0)
- ;;=3^Complications of Procedures NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,44733,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,44733,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,44734,0)
- ;;=L12.8^^133^1910^45
- ;;^UTILITY(U,$J,358.3,44734,1,0)
+ ;;^UTILITY(U,$J,358.3,15184,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,15185,0)
+ ;;=Z85.09^^85^842^6
+ ;;^UTILITY(U,$J,358.3,15185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44734,1,3,0)
- ;;=3^Pemphigoid,Other
- ;;^UTILITY(U,$J,358.3,44734,1,4,0)
- ;;=4^L12.8
- ;;^UTILITY(U,$J,358.3,44734,2)
- ;;=^5009101
- ;;^UTILITY(U,$J,358.3,44735,0)
- ;;=L88.^^133^1910^46
- ;;^UTILITY(U,$J,358.3,44735,1,0)
+ ;;^UTILITY(U,$J,358.3,15185,1,3,0)
+ ;;=3^Personal Hx malignancy,Biliary tract & Gallbladder
+ ;;^UTILITY(U,$J,358.3,15185,1,4,0)
+ ;;=4^Z85.09
+ ;;^UTILITY(U,$J,358.3,15185,2)
+ ;;=^5063406
+ ;;^UTILITY(U,$J,358.3,15186,0)
+ ;;=Z85.05^^85^842^9
+ ;;^UTILITY(U,$J,358.3,15186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44735,1,3,0)
- ;;=3^Pyoderma Gangrenosum
- ;;^UTILITY(U,$J,358.3,44735,1,4,0)
- ;;=4^L88.
- ;;^UTILITY(U,$J,358.3,44735,2)
- ;;=^186812
- ;;^UTILITY(U,$J,358.3,44736,0)
- ;;=S91.002A^^133^1910^29
- ;;^UTILITY(U,$J,358.3,44736,1,0)
+ ;;^UTILITY(U,$J,358.3,15186,1,3,0)
+ ;;=3^Personal Hx malignancy,Liver
+ ;;^UTILITY(U,$J,358.3,15186,1,4,0)
+ ;;=4^Z85.05
+ ;;^UTILITY(U,$J,358.3,15186,2)
+ ;;=^5063402
+ ;;^UTILITY(U,$J,358.3,15187,0)
+ ;;=Z12.0^^85^842^15
+ ;;^UTILITY(U,$J,358.3,15187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44736,1,3,0)
- ;;=3^Open Wound,Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,44736,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,44736,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,44737,0)
- ;;=S91.302A^^133^1910^31
- ;;^UTILITY(U,$J,358.3,44737,1,0)
+ ;;^UTILITY(U,$J,358.3,15187,1,3,0)
+ ;;=3^Screening for Gastric Cancer
+ ;;^UTILITY(U,$J,358.3,15187,1,4,0)
+ ;;=4^Z12.0
+ ;;^UTILITY(U,$J,358.3,15187,2)
+ ;;=^5062679
+ ;;^UTILITY(U,$J,358.3,15188,0)
+ ;;=Z13.811^^85^842^16
+ ;;^UTILITY(U,$J,358.3,15188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44737,1,3,0)
- ;;=3^Open Wound,Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,44737,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,44737,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,44738,0)
- ;;=S81.002A^^133^1910^33
- ;;^UTILITY(U,$J,358.3,44738,1,0)
+ ;;^UTILITY(U,$J,358.3,15188,1,3,0)
+ ;;=3^Screening for Lower Gastrointestinal Disorder(s)
+ ;;^UTILITY(U,$J,358.3,15188,1,4,0)
+ ;;=4^Z13.811
+ ;;^UTILITY(U,$J,358.3,15188,2)
+ ;;=^5062711
+ ;;^UTILITY(U,$J,358.3,15189,0)
+ ;;=Z13.810^^85^842^17
+ ;;^UTILITY(U,$J,358.3,15189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44738,1,3,0)
- ;;=3^Open Wound,Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,44738,1,4,0)
- ;;=4^S81.002A
- ;;^UTILITY(U,$J,358.3,44738,2)
- ;;=^5040029
- ;;^UTILITY(U,$J,358.3,44739,0)
- ;;=S81.802A^^133^1910^35
- ;;^UTILITY(U,$J,358.3,44739,1,0)
+ ;;^UTILITY(U,$J,358.3,15189,1,3,0)
+ ;;=3^Screening for Upper Gastrointestinal Disorder(s)
+ ;;^UTILITY(U,$J,358.3,15189,1,4,0)
+ ;;=4^Z13.810
+ ;;^UTILITY(U,$J,358.3,15189,2)
+ ;;=^5062710
+ ;;^UTILITY(U,$J,358.3,15190,0)
+ ;;=Z11.0^^85^842^18
+ ;;^UTILITY(U,$J,358.3,15190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44739,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,44739,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,44739,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,44740,0)
- ;;=S91.001A^^133^1910^37
- ;;^UTILITY(U,$J,358.3,44740,1,0)
+ ;;^UTILITY(U,$J,358.3,15190,1,3,0)
+ ;;=3^Screening for Viral Intestinal Diseases
+ ;;^UTILITY(U,$J,358.3,15190,1,4,0)
+ ;;=4^Z11.0
+ ;;^UTILITY(U,$J,358.3,15190,2)
+ ;;=^5062669
+ ;;^UTILITY(U,$J,358.3,15191,0)
+ ;;=K82.4^^85^843^30
+ ;;^UTILITY(U,$J,358.3,15191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44740,1,3,0)
- ;;=3^Open Wound,Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,44740,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,44740,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,44741,0)
- ;;=S91.301A^^133^1910^39
- ;;^UTILITY(U,$J,358.3,44741,1,0)
+ ;;^UTILITY(U,$J,358.3,15191,1,3,0)
+ ;;=3^Polyp of Gallbladder
+ ;;^UTILITY(U,$J,358.3,15191,1,4,0)
+ ;;=4^K82.4
+ ;;^UTILITY(U,$J,358.3,15191,2)
+ ;;=^265888
+ ;;^UTILITY(U,$J,358.3,15192,0)
+ ;;=C23.^^85^843^27
+ ;;^UTILITY(U,$J,358.3,15192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44741,1,3,0)
- ;;=3^Open Wound,Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,44741,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,44741,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,44742,0)
- ;;=S81.001A^^133^1910^41
- ;;^UTILITY(U,$J,358.3,44742,1,0)
+ ;;^UTILITY(U,$J,358.3,15192,1,3,0)
+ ;;=3^Malignant neoplasm,Gallbladder
+ ;;^UTILITY(U,$J,358.3,15192,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,15192,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,15193,0)
+ ;;=K82.8^^85^843^21
+ ;;^UTILITY(U,$J,358.3,15193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44742,1,3,0)
- ;;=3^Open Wound,Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,44742,1,4,0)
- ;;=4^S81.001A
- ;;^UTILITY(U,$J,358.3,44742,2)
- ;;=^5040026
- ;;^UTILITY(U,$J,358.3,44743,0)
- ;;=S81.801A^^133^1910^43
- ;;^UTILITY(U,$J,358.3,44743,1,0)
+ ;;^UTILITY(U,$J,358.3,15193,1,3,0)
+ ;;=3^Gallbladder dyskinesia
+ ;;^UTILITY(U,$J,358.3,15193,1,4,0)
+ ;;=4^K82.8
+ ;;^UTILITY(U,$J,358.3,15193,2)
+ ;;=^5008874
+ ;;^UTILITY(U,$J,358.3,15194,0)
+ ;;=R17.^^85^843^24
+ ;;^UTILITY(U,$J,358.3,15194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44743,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,44743,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,44743,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,44744,0)
- ;;=I83.892^^133^1910^48
- ;;^UTILITY(U,$J,358.3,44744,1,0)
+ ;;^UTILITY(U,$J,358.3,15194,1,3,0)
+ ;;=3^Jaundice
+ ;;^UTILITY(U,$J,358.3,15194,1,4,0)
+ ;;=4^R17.
+ ;;^UTILITY(U,$J,358.3,15194,2)
+ ;;=^5019251
+ ;;^UTILITY(U,$J,358.3,15195,0)
+ ;;=C24.0^^85^843^26
+ ;;^UTILITY(U,$J,358.3,15195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44744,1,3,0)
- ;;=3^Varicose Veins,Left Lower Extrem w/ Oth Complications
- ;;^UTILITY(U,$J,358.3,44744,1,4,0)
- ;;=4^I83.892
- ;;^UTILITY(U,$J,358.3,44744,2)
- ;;=^5008016
- ;;^UTILITY(U,$J,358.3,44745,0)
- ;;=I83.229^^133^1910^49
- ;;^UTILITY(U,$J,358.3,44745,1,0)
+ ;;^UTILITY(U,$J,358.3,15195,1,3,0)
+ ;;=3^Malignant neoplasm,Extrahepatic bile duct
+ ;;^UTILITY(U,$J,358.3,15195,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,15195,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,15196,0)
+ ;;=K83.9^^85^843^19
+ ;;^UTILITY(U,$J,358.3,15196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44745,1,3,0)
- ;;=3^Varicose Veins,Left Lower Extrem w/ Ulcer & Inflam Unspec Site
- ;;^UTILITY(U,$J,358.3,44745,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,44745,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,44746,0)
- ;;=I83.12^^133^1910^47
- ;;^UTILITY(U,$J,358.3,44746,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44746,1,3,0)
- ;;=3^Varicose Veins,Left Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,44746,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,44746,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,44747,0)
- ;;=I83.029^^133^1910^50
- ;;^UTILITY(U,$J,358.3,44747,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44747,1,3,0)
- ;;=3^Varicose Veins,Left Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,44747,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,44747,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,44748,0)
- ;;=I83.891^^133^1910^52
- ;;^UTILITY(U,$J,358.3,44748,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44748,1,3,0)
- ;;=3^Varicose Veins,Right Lower Extrem w/ Oth Complications
- ;;^UTILITY(U,$J,358.3,44748,1,4,0)
- ;;=4^I83.891
- ;;^UTILITY(U,$J,358.3,44748,2)
- ;;=^5008015
- ;;^UTILITY(U,$J,358.3,44749,0)
- ;;=I83.219^^133^1910^53
- ;;^UTILITY(U,$J,358.3,44749,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44749,1,3,0)
- ;;=3^Varicose Veins,Right Lower Extrem w/ Ulcer & Inflam Unspec Site
- ;;^UTILITY(U,$J,358.3,44749,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,44749,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,44750,0)
- ;;=I83.11^^133^1910^51
- ;;^UTILITY(U,$J,358.3,44750,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44750,1,3,0)
- ;;=3^Varicose Veins,Right Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,44750,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,44750,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,44751,0)
- ;;=I83.019^^133^1910^54
- ;;^UTILITY(U,$J,358.3,44751,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44751,1,3,0)
- ;;=3^Varicose Veins,Right Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,44751,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,44751,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,44752,0)
- ;;=I87.2^^133^1910^55
- ;;^UTILITY(U,$J,358.3,44752,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44752,1,3,0)
- ;;=3^Venous Insufficiency,Chr,Peripheral
- ;;^UTILITY(U,$J,358.3,44752,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,44752,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,44753,0)
- ;;=S91.022D^^133^1910^14
- ;;^UTILITY(U,$J,358.3,44753,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44753,1,3,0)
- ;;=3^Laceration w/ FB,Left Ankle,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44753,1,4,0)
- ;;=4^S91.022D
- ;;^UTILITY(U,$J,358.3,44753,2)
- ;;=^5137407
- ;;^UTILITY(U,$J,358.3,44754,0)
- ;;=S91.322D^^133^1910^16
- ;;^UTILITY(U,$J,358.3,44754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44754,1,3,0)
- ;;=3^Laceration w/ FB,Left Foot,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44754,1,4,0)
- ;;=4^S91.322D
- ;;^UTILITY(U,$J,358.3,44754,2)
- ;;=^5137528
- ;;^UTILITY(U,$J,358.3,44755,0)
- ;;=S81.022D^^133^1910^18
- ;;^UTILITY(U,$J,358.3,44755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44755,1,3,0)
- ;;=3^Laceration w/ FB,Left Knee,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44755,1,4,0)
- ;;=4^S81.022D
- ;;^UTILITY(U,$J,358.3,44755,2)
- ;;=^5136677
- ;;^UTILITY(U,$J,358.3,44756,0)
- ;;=S81.822D^^133^1910^20
- ;;^UTILITY(U,$J,358.3,44756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44756,1,3,0)
- ;;=3^Laceration w/ FB,Left Lower Leg,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44756,1,4,0)
- ;;=4^S81.822D
- ;;^UTILITY(U,$J,358.3,44756,2)
- ;;=^5136692
- ;;^UTILITY(U,$J,358.3,44757,0)
- ;;=S91.021D^^133^1910^22
- ;;^UTILITY(U,$J,358.3,44757,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44757,1,3,0)
- ;;=3^Laceration w/ FB,Right Ankle,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44757,1,4,0)
- ;;=4^S91.021D
- ;;^UTILITY(U,$J,358.3,44757,2)
- ;;=^5044145
- ;;^UTILITY(U,$J,358.3,44758,0)
- ;;=S91.321D^^133^1910^24
- ;;^UTILITY(U,$J,358.3,44758,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44758,1,3,0)
- ;;=3^Laceration w/ FB,Right Foot,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44758,1,4,0)
- ;;=4^S91.321D
- ;;^UTILITY(U,$J,358.3,44758,2)
- ;;=^5044330
- ;;^UTILITY(U,$J,358.3,44759,0)
- ;;=S81.021D^^133^1910^26
- ;;^UTILITY(U,$J,358.3,44759,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44759,1,3,0)
- ;;=3^Laceration w/ FB,Right Knee,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44759,1,4,0)
- ;;=4^S81.021D
- ;;^UTILITY(U,$J,358.3,44759,2)
- ;;=^5040042
- ;;^UTILITY(U,$J,358.3,44760,0)
- ;;=S81.821D^^133^1910^28
- ;;^UTILITY(U,$J,358.3,44760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44760,1,3,0)
- ;;=3^Laceration w/ FB,Right Lower Leg,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44760,1,4,0)
- ;;=4^S81.821D
- ;;^UTILITY(U,$J,358.3,44760,2)
- ;;=^5040081
- ;;^UTILITY(U,$J,358.3,44761,0)
- ;;=S91.002D^^133^1910^30
- ;;^UTILITY(U,$J,358.3,44761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44761,1,3,0)
- ;;=3^Open Wound,Left Ankle,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44761,1,4,0)
- ;;=4^S91.002D
- ;;^UTILITY(U,$J,358.3,44761,2)
- ;;=^5044133
- ;;^UTILITY(U,$J,358.3,44762,0)
- ;;=S91.302D^^133^1910^32
- ;;^UTILITY(U,$J,358.3,44762,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44762,1,3,0)
- ;;=3^Open Wound,Left Foot,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44762,1,4,0)
- ;;=4^S91.302D
- ;;^UTILITY(U,$J,358.3,44762,2)
- ;;=^5044318
- ;;^UTILITY(U,$J,358.3,44763,0)
- ;;=S81.002D^^133^1910^34
- ;;^UTILITY(U,$J,358.3,44763,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44763,1,3,0)
- ;;=3^Open Wound,Left Knee,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44763,1,4,0)
- ;;=4^S81.002D
- ;;^UTILITY(U,$J,358.3,44763,2)
- ;;=^5040030
- ;;^UTILITY(U,$J,358.3,44764,0)
- ;;=S81.802D^^133^1910^36
- ;;^UTILITY(U,$J,358.3,44764,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44764,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44764,1,4,0)
- ;;=4^S81.802D
- ;;^UTILITY(U,$J,358.3,44764,2)
- ;;=^5040069
- ;;^UTILITY(U,$J,358.3,44765,0)
- ;;=S91.001D^^133^1910^38
- ;;^UTILITY(U,$J,358.3,44765,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44765,1,3,0)
- ;;=3^Open Wound,Right Ankle,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44765,1,4,0)
- ;;=4^S91.001D
- ;;^UTILITY(U,$J,358.3,44765,2)
- ;;=^5044130
- ;;^UTILITY(U,$J,358.3,44766,0)
- ;;=S91.301D^^133^1910^40
- ;;^UTILITY(U,$J,358.3,44766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44766,1,3,0)
- ;;=3^Open Wound,Right Foot,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44766,1,4,0)
- ;;=4^S91.301D
- ;;^UTILITY(U,$J,358.3,44766,2)
- ;;=^5044315
- ;;^UTILITY(U,$J,358.3,44767,0)
- ;;=S81.001D^^133^1910^42
- ;;^UTILITY(U,$J,358.3,44767,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44767,1,3,0)
- ;;=3^Open Wound,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,15196,1,3,0)
+ ;;=3^Disease of Biliary tract,unspec
+ ;;^UTILITY(U,$J,358.3,15196,1,4,0)
+ ;;=4^K83.9
+ ;;^UTILITY(U,$J,358.3,15196,2)
+ ;;=^5008881
+ ;;^UTILITY(U,$J,358.3,15197,0)
+ ;;=K80.33^^85^843^4

@@ -1,126 +1,128 @@
-IBDEI2WF ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48667,2)
- ;;=^5010061
- ;;^UTILITY(U,$J,358.3,48668,0)
- ;;=M06.062^^216^2410^84
- ;;^UTILITY(U,$J,358.3,48668,1,0)
+ ;;^UTILITY(U,$J,358.3,46237,1,3,0)
+ ;;=3^Corneal FB,Right Eye,Init Enctr
+ ;;^UTILITY(U,$J,358.3,46237,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,46237,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,46238,0)
+ ;;=T15.02XA^^176^2302^28
+ ;;^UTILITY(U,$J,358.3,46238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48668,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left knee 
- ;;^UTILITY(U,$J,358.3,48668,1,4,0)
- ;;=4^M06.062
- ;;^UTILITY(U,$J,358.3,48668,2)
- ;;=^5010064
- ;;^UTILITY(U,$J,358.3,48669,0)
- ;;=M06.012^^216^2410^85
- ;;^UTILITY(U,$J,358.3,48669,1,0)
+ ;;^UTILITY(U,$J,358.3,46238,1,3,0)
+ ;;=3^Corneal FB,Left Eye,Init Enctr
+ ;;^UTILITY(U,$J,358.3,46238,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,46238,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,46239,0)
+ ;;=H25.11^^176^2303^1
+ ;;^UTILITY(U,$J,358.3,46239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48669,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left shoulder
- ;;^UTILITY(U,$J,358.3,48669,1,4,0)
- ;;=4^M06.012
- ;;^UTILITY(U,$J,358.3,48669,2)
- ;;=^5010049
- ;;^UTILITY(U,$J,358.3,48670,0)
- ;;=M06.032^^216^2410^86
- ;;^UTILITY(U,$J,358.3,48670,1,0)
+ ;;^UTILITY(U,$J,358.3,46239,1,3,0)
+ ;;=3^Cataract,Nuclear Age-Related,Right Eye
+ ;;^UTILITY(U,$J,358.3,46239,1,4,0)
+ ;;=4^H25.11
+ ;;^UTILITY(U,$J,358.3,46239,2)
+ ;;=^5005284
+ ;;^UTILITY(U,$J,358.3,46240,0)
+ ;;=H25.12^^176^2303^2
+ ;;^UTILITY(U,$J,358.3,46240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48670,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left wrist 
- ;;^UTILITY(U,$J,358.3,48670,1,4,0)
- ;;=4^M06.032
- ;;^UTILITY(U,$J,358.3,48670,2)
- ;;=^5010055
- ;;^UTILITY(U,$J,358.3,48671,0)
- ;;=M06.071^^216^2410^87
- ;;^UTILITY(U,$J,358.3,48671,1,0)
+ ;;^UTILITY(U,$J,358.3,46240,1,3,0)
+ ;;=3^Cataract,Nuclear Age-Related,Left Eye
+ ;;^UTILITY(U,$J,358.3,46240,1,4,0)
+ ;;=4^H25.12
+ ;;^UTILITY(U,$J,358.3,46240,2)
+ ;;=^5005285
+ ;;^UTILITY(U,$J,358.3,46241,0)
+ ;;=H25.13^^176^2303^3
+ ;;^UTILITY(U,$J,358.3,46241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48671,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right ank/ft 
- ;;^UTILITY(U,$J,358.3,48671,1,4,0)
- ;;=4^M06.071
- ;;^UTILITY(U,$J,358.3,48671,2)
- ;;=^5010066
- ;;^UTILITY(U,$J,358.3,48672,0)
- ;;=M06.021^^216^2410^88
- ;;^UTILITY(U,$J,358.3,48672,1,0)
+ ;;^UTILITY(U,$J,358.3,46241,1,3,0)
+ ;;=3^Cataract,Nuclear Age-Related,Bilateral
+ ;;^UTILITY(U,$J,358.3,46241,1,4,0)
+ ;;=4^H25.13
+ ;;^UTILITY(U,$J,358.3,46241,2)
+ ;;=^5005286
+ ;;^UTILITY(U,$J,358.3,46242,0)
+ ;;=H25.019^^176^2303^4
+ ;;^UTILITY(U,$J,358.3,46242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48672,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right elbow 
- ;;^UTILITY(U,$J,358.3,48672,1,4,0)
- ;;=4^M06.021
- ;;^UTILITY(U,$J,358.3,48672,2)
- ;;=^5010051
- ;;^UTILITY(U,$J,358.3,48673,0)
- ;;=M06.041^^216^2410^89
- ;;^UTILITY(U,$J,358.3,48673,1,0)
+ ;;^UTILITY(U,$J,358.3,46242,1,3,0)
+ ;;=3^Cataract,Cortical,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46242,1,4,0)
+ ;;=4^H25.019
+ ;;^UTILITY(U,$J,358.3,46242,2)
+ ;;=^5005270
+ ;;^UTILITY(U,$J,358.3,46243,0)
+ ;;=H25.049^^176^2303^5
+ ;;^UTILITY(U,$J,358.3,46243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48673,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right hand 
- ;;^UTILITY(U,$J,358.3,48673,1,4,0)
- ;;=4^M06.041
- ;;^UTILITY(U,$J,358.3,48673,2)
- ;;=^5010057
- ;;^UTILITY(U,$J,358.3,48674,0)
- ;;=M06.051^^216^2410^90
- ;;^UTILITY(U,$J,358.3,48674,1,0)
+ ;;^UTILITY(U,$J,358.3,46243,1,3,0)
+ ;;=3^Cataract,PSC,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46243,1,4,0)
+ ;;=4^H25.049
+ ;;^UTILITY(U,$J,358.3,46243,2)
+ ;;=^5005278
+ ;;^UTILITY(U,$J,358.3,46244,0)
+ ;;=H26.109^^176^2303^28
+ ;;^UTILITY(U,$J,358.3,46244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48674,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right hip 
- ;;^UTILITY(U,$J,358.3,48674,1,4,0)
- ;;=4^M06.051
- ;;^UTILITY(U,$J,358.3,48674,2)
- ;;=^5010060
- ;;^UTILITY(U,$J,358.3,48675,0)
- ;;=M06.061^^216^2410^91
- ;;^UTILITY(U,$J,358.3,48675,1,0)
+ ;;^UTILITY(U,$J,358.3,46244,1,3,0)
+ ;;=3^Cataract,Traumatic,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46244,1,4,0)
+ ;;=4^H26.109
+ ;;^UTILITY(U,$J,358.3,46244,2)
+ ;;=^5133478
+ ;;^UTILITY(U,$J,358.3,46245,0)
+ ;;=H53.71^^176^2303^17
+ ;;^UTILITY(U,$J,358.3,46245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48675,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right knee
- ;;^UTILITY(U,$J,358.3,48675,1,4,0)
- ;;=4^M06.061
- ;;^UTILITY(U,$J,358.3,48675,2)
- ;;=^5010063
- ;;^UTILITY(U,$J,358.3,48676,0)
- ;;=M06.011^^216^2410^92
- ;;^UTILITY(U,$J,358.3,48676,1,0)
+ ;;^UTILITY(U,$J,358.3,46245,1,3,0)
+ ;;=3^Glare Sensitivity
+ ;;^UTILITY(U,$J,358.3,46245,1,4,0)
+ ;;=4^H53.71
+ ;;^UTILITY(U,$J,358.3,46245,2)
+ ;;=^5006354
+ ;;^UTILITY(U,$J,358.3,46246,0)
+ ;;=H52.13^^176^2303^7
+ ;;^UTILITY(U,$J,358.3,46246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48676,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right shoulder
- ;;^UTILITY(U,$J,358.3,48676,1,4,0)
- ;;=4^M06.011
- ;;^UTILITY(U,$J,358.3,48676,2)
- ;;=^5010048
- ;;^UTILITY(U,$J,358.3,48677,0)
- ;;=M06.031^^216^2410^93
- ;;^UTILITY(U,$J,358.3,48677,1,0)
+ ;;^UTILITY(U,$J,358.3,46246,1,3,0)
+ ;;=3^Myopia,Bilateral
+ ;;^UTILITY(U,$J,358.3,46246,1,4,0)
+ ;;=4^H52.13
+ ;;^UTILITY(U,$J,358.3,46246,2)
+ ;;=^5006266
+ ;;^UTILITY(U,$J,358.3,46247,0)
+ ;;=H52.03^^176^2303^8
+ ;;^UTILITY(U,$J,358.3,46247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48677,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right wrist 
- ;;^UTILITY(U,$J,358.3,48677,1,4,0)
- ;;=4^M06.031
- ;;^UTILITY(U,$J,358.3,48677,2)
- ;;=^5010054
- ;;^UTILITY(U,$J,358.3,48678,0)
- ;;=M06.08^^216^2410^94
- ;;^UTILITY(U,$J,358.3,48678,1,0)
+ ;;^UTILITY(U,$J,358.3,46247,1,3,0)
+ ;;=3^Hypermetropia,Bilateral
+ ;;^UTILITY(U,$J,358.3,46247,1,4,0)
+ ;;=4^H52.03
+ ;;^UTILITY(U,$J,358.3,46247,2)
+ ;;=^5006262
+ ;;^UTILITY(U,$J,358.3,46248,0)
+ ;;=H52.203^^176^2303^9
+ ;;^UTILITY(U,$J,358.3,46248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48678,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, vertebrae
- ;;^UTILITY(U,$J,358.3,48678,1,4,0)
- ;;=4^M06.08
- ;;^UTILITY(U,$J,358.3,48678,2)
- ;;=^5010069
- ;;^UTILITY(U,$J,358.3,48679,0)
- ;;=M06.272^^216^2410^123
- ;;^UTILITY(U,$J,358.3,48679,1,0)
+ ;;^UTILITY(U,$J,358.3,46248,1,3,0)
+ ;;=3^Astigmatism,Bilateral
+ ;;^UTILITY(U,$J,358.3,46248,1,4,0)
+ ;;=4^H52.203
+ ;;^UTILITY(U,$J,358.3,46248,2)
+ ;;=^5006269
+ ;;^UTILITY(U,$J,358.3,46249,0)
+ ;;=Z98.49^^176^2303^10
+ ;;^UTILITY(U,$J,358.3,46249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48679,1,3,0)
- ;;=3^Rheumatoid bursitis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,48679,1,4,0)
- ;;=4^M06.272
- ;;^UTILITY(U,$J,358.3,48679,2)
- ;;=^5010092
+ ;;^UTILITY(U,$J,358.3,46249,1,3,0)
+ ;;=3^Cataract Extraction Status,Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46249,1,4,0)
+ ;;=4^Z98.49

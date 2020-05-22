@@ -1,136 +1,122 @@
-IBDEI2IU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2IU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42770,2)
- ;;=^5015632
- ;;^UTILITY(U,$J,358.3,42771,0)
- ;;=N30.01^^162^2040^1
- ;;^UTILITY(U,$J,358.3,42771,1,0)
+ ;;^UTILITY(U,$J,358.3,40259,2)
+ ;;=^5011052
+ ;;^UTILITY(U,$J,358.3,40260,0)
+ ;;=M20.41^^152^2006^43
+ ;;^UTILITY(U,$J,358.3,40260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42771,1,3,0)
- ;;=3^Acute cystitis w/ hematuria
- ;;^UTILITY(U,$J,358.3,42771,1,4,0)
- ;;=4^N30.01
- ;;^UTILITY(U,$J,358.3,42771,2)
- ;;=^5015633
- ;;^UTILITY(U,$J,358.3,42772,0)
- ;;=N30.10^^162^2040^7
- ;;^UTILITY(U,$J,358.3,42772,1,0)
+ ;;^UTILITY(U,$J,358.3,40260,1,3,0)
+ ;;=3^Hammer Toe(s),Acquired,Right Foot
+ ;;^UTILITY(U,$J,358.3,40260,1,4,0)
+ ;;=4^M20.41
+ ;;^UTILITY(U,$J,358.3,40260,2)
+ ;;=^5011051
+ ;;^UTILITY(U,$J,358.3,40261,0)
+ ;;=M48.061^^152^2006^176
+ ;;^UTILITY(U,$J,358.3,40261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42772,1,3,0)
- ;;=3^Interstitial cystitis w/o hematuria
- ;;^UTILITY(U,$J,358.3,42772,1,4,0)
- ;;=4^N30.10
- ;;^UTILITY(U,$J,358.3,42772,2)
- ;;=^5015634
- ;;^UTILITY(U,$J,358.3,42773,0)
- ;;=N30.11^^162^2040^6
- ;;^UTILITY(U,$J,358.3,42773,1,0)
+ ;;^UTILITY(U,$J,358.3,40261,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Caludication
+ ;;^UTILITY(U,$J,358.3,40261,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,40261,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,40262,0)
+ ;;=M48.062^^152^2006^175
+ ;;^UTILITY(U,$J,358.3,40262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42773,1,3,0)
- ;;=3^Interstitial cystitis w/ hematuria
- ;;^UTILITY(U,$J,358.3,42773,1,4,0)
- ;;=4^N30.11
- ;;^UTILITY(U,$J,358.3,42773,2)
- ;;=^5015635
- ;;^UTILITY(U,$J,358.3,42774,0)
- ;;=N30.40^^162^2040^9
- ;;^UTILITY(U,$J,358.3,42774,1,0)
+ ;;^UTILITY(U,$J,358.3,40262,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,40262,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,40262,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,40263,0)
+ ;;=M79.10^^152^2006^65
+ ;;^UTILITY(U,$J,358.3,40263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42774,1,3,0)
- ;;=3^Irradiation cystitis w/o hematuria
- ;;^UTILITY(U,$J,358.3,42774,1,4,0)
- ;;=4^N30.40
- ;;^UTILITY(U,$J,358.3,42774,2)
- ;;=^5015639
- ;;^UTILITY(U,$J,358.3,42775,0)
- ;;=N30.41^^162^2040^8
- ;;^UTILITY(U,$J,358.3,42775,1,0)
+ ;;^UTILITY(U,$J,358.3,40263,1,3,0)
+ ;;=3^Myalgia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,40263,1,4,0)
+ ;;=4^M79.10
+ ;;^UTILITY(U,$J,358.3,40263,2)
+ ;;=^5157394
+ ;;^UTILITY(U,$J,358.3,40264,0)
+ ;;=B02.0^^152^2007^47
+ ;;^UTILITY(U,$J,358.3,40264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42775,1,3,0)
- ;;=3^Irradiation cystitis w/ hematuria
- ;;^UTILITY(U,$J,358.3,42775,1,4,0)
- ;;=4^N30.41
- ;;^UTILITY(U,$J,358.3,42775,2)
- ;;=^5015640
- ;;^UTILITY(U,$J,358.3,42776,0)
- ;;=N32.0^^162^2040^4
- ;;^UTILITY(U,$J,358.3,42776,1,0)
+ ;;^UTILITY(U,$J,358.3,40264,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,40264,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,40264,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,40265,0)
+ ;;=B02.29^^152^2007^37
+ ;;^UTILITY(U,$J,358.3,40265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42776,1,3,0)
- ;;=3^Bladder-neck obstruction
- ;;^UTILITY(U,$J,358.3,42776,1,4,0)
- ;;=4^N32.0
- ;;^UTILITY(U,$J,358.3,42776,2)
- ;;=^5015649
- ;;^UTILITY(U,$J,358.3,42777,0)
- ;;=N31.9^^162^2040^10
- ;;^UTILITY(U,$J,358.3,42777,1,0)
+ ;;^UTILITY(U,$J,358.3,40265,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,40265,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,40265,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,40266,0)
+ ;;=F03.90^^152^2007^11
+ ;;^UTILITY(U,$J,358.3,40266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42777,1,3,0)
- ;;=3^Neuromusc Dysfunction Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,42777,1,4,0)
- ;;=4^N31.9
- ;;^UTILITY(U,$J,358.3,42777,2)
- ;;=^5015648
- ;;^UTILITY(U,$J,358.3,42778,0)
- ;;=N31.0^^162^2040^14
- ;;^UTILITY(U,$J,358.3,42778,1,0)
+ ;;^UTILITY(U,$J,358.3,40266,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,40266,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,40266,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,40267,0)
+ ;;=F03.91^^152^2007^10
+ ;;^UTILITY(U,$J,358.3,40267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42778,1,3,0)
- ;;=3^Uninhibited neuropathic bladder, NEC
- ;;^UTILITY(U,$J,358.3,42778,1,4,0)
- ;;=4^N31.0
- ;;^UTILITY(U,$J,358.3,42778,2)
- ;;=^5015644
- ;;^UTILITY(U,$J,358.3,42779,0)
- ;;=N31.1^^162^2040^12
- ;;^UTILITY(U,$J,358.3,42779,1,0)
+ ;;^UTILITY(U,$J,358.3,40267,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,40267,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,40267,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,40268,0)
+ ;;=F01.50^^152^2007^13
+ ;;^UTILITY(U,$J,358.3,40268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42779,1,3,0)
- ;;=3^Reflex neuropathic bladder NEC
- ;;^UTILITY(U,$J,358.3,42779,1,4,0)
- ;;=4^N31.1
- ;;^UTILITY(U,$J,358.3,42779,2)
- ;;=^5015645
- ;;^UTILITY(U,$J,358.3,42780,0)
- ;;=Z87.440^^162^2040^11
- ;;^UTILITY(U,$J,358.3,42780,1,0)
+ ;;^UTILITY(U,$J,358.3,40268,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,40268,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,40268,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,40269,0)
+ ;;=F10.27^^152^2007^12
+ ;;^UTILITY(U,$J,358.3,40269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42780,1,3,0)
- ;;=3^Personal Hx of UTI
- ;;^UTILITY(U,$J,358.3,42780,1,4,0)
- ;;=4^Z87.440
- ;;^UTILITY(U,$J,358.3,42780,2)
- ;;=^5063495
- ;;^UTILITY(U,$J,358.3,42781,0)
- ;;=N39.0^^162^2040^13
- ;;^UTILITY(U,$J,358.3,42781,1,0)
+ ;;^UTILITY(U,$J,358.3,40269,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,40269,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,40269,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,40270,0)
+ ;;=F06.1^^152^2007^7
+ ;;^UTILITY(U,$J,358.3,40270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42781,1,3,0)
- ;;=3^UTI,Site Unspec
- ;;^UTILITY(U,$J,358.3,42781,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,42781,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,42782,0)
- ;;=D30.01^^162^2041^4
- ;;^UTILITY(U,$J,358.3,42782,1,0)
+ ;;^UTILITY(U,$J,358.3,40270,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,40270,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,40270,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,40271,0)
+ ;;=F06.8^^152^2007^22
+ ;;^UTILITY(U,$J,358.3,40271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42782,1,3,0)
- ;;=3^Benign neoplasm of right kidney
- ;;^UTILITY(U,$J,358.3,42782,1,4,0)
- ;;=4^D30.01
- ;;^UTILITY(U,$J,358.3,42782,2)
- ;;=^5002101
- ;;^UTILITY(U,$J,358.3,42783,0)
- ;;=D30.02^^162^2041^1
- ;;^UTILITY(U,$J,358.3,42783,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42783,1,3,0)
- ;;=3^Benign neoplasm of left kidney
- ;;^UTILITY(U,$J,358.3,42783,1,4,0)
- ;;=4^D30.02
- ;;^UTILITY(U,$J,358.3,42783,2)
- ;;=^5002102
+ ;;^UTILITY(U,$J,358.3,40271,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other

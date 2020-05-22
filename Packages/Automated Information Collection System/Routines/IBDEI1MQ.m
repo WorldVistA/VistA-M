@@ -1,130 +1,116 @@
-IBDEI1MQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27650,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27650,1,2,0)
- ;;=2^95803
- ;;^UTILITY(U,$J,358.3,27650,1,3,0)
- ;;=3^Actigraphy Testing (72hrs/14 consecutive days)
- ;;^UTILITY(U,$J,358.3,27651,0)
- ;;=95810^^108^1373^5^^^^1
- ;;^UTILITY(U,$J,358.3,27651,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27651,1,2,0)
- ;;=2^95810
- ;;^UTILITY(U,$J,358.3,27651,1,3,0)
- ;;=3^Polysomnography w/ 4+ Parameters         
- ;;^UTILITY(U,$J,358.3,27652,0)
- ;;=95811^^108^1373^6^^^^1
- ;;^UTILITY(U,$J,358.3,27652,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27652,1,2,0)
- ;;=2^95811
- ;;^UTILITY(U,$J,358.3,27652,1,3,0)
- ;;=3^Polysomnography w/ 4+ Parameters w/ CPAP
- ;;^UTILITY(U,$J,358.3,27653,0)
- ;;=95860^^108^1374^12^^^^1
- ;;^UTILITY(U,$J,358.3,27653,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27653,1,2,0)
- ;;=2^95860
- ;;^UTILITY(U,$J,358.3,27653,1,3,0)
- ;;=3^EMG, one extremity
- ;;^UTILITY(U,$J,358.3,27654,0)
- ;;=95861^^108^1374^1^^^^1
- ;;^UTILITY(U,$J,358.3,27654,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27654,1,2,0)
- ;;=2^95861
- ;;^UTILITY(U,$J,358.3,27654,1,3,0)
- ;;=3^EMG, 2 extremities
- ;;^UTILITY(U,$J,358.3,27655,0)
- ;;=95863^^108^1374^2^^^^1
- ;;^UTILITY(U,$J,358.3,27655,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27655,1,2,0)
- ;;=2^95863
- ;;^UTILITY(U,$J,358.3,27655,1,3,0)
- ;;=3^EMG, 3 extremities
- ;;^UTILITY(U,$J,358.3,27656,0)
- ;;=95864^^108^1374^3^^^^1
- ;;^UTILITY(U,$J,358.3,27656,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27656,1,2,0)
- ;;=2^95864
- ;;^UTILITY(U,$J,358.3,27656,1,3,0)
- ;;=3^EMG, 4 extremities
- ;;^UTILITY(U,$J,358.3,27657,0)
- ;;=95869^^108^1374^11^^^^1
- ;;^UTILITY(U,$J,358.3,27657,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27657,1,2,0)
- ;;=2^95869
- ;;^UTILITY(U,$J,358.3,27657,1,3,0)
- ;;=3^EMG, Thoracic Paraspinal Muscles,T-2 to T-11
- ;;^UTILITY(U,$J,358.3,27658,0)
- ;;=95867^^108^1374^6^^^^1
- ;;^UTILITY(U,$J,358.3,27658,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27658,1,2,0)
- ;;=2^95867
- ;;^UTILITY(U,$J,358.3,27658,1,3,0)
- ;;=3^EMG, Cranial Nerve supplied Muscles, unilat
- ;;^UTILITY(U,$J,358.3,27659,0)
- ;;=51785^^108^1374^4^^^^1
- ;;^UTILITY(U,$J,358.3,27659,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27659,1,2,0)
- ;;=2^51785
- ;;^UTILITY(U,$J,358.3,27659,1,3,0)
- ;;=3^EMG, Anal/Urinary Muscle
- ;;^UTILITY(U,$J,358.3,27660,0)
- ;;=51792^^108^1374^30^^^^1
- ;;^UTILITY(U,$J,358.3,27660,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27660,1,2,0)
- ;;=2^51792
- ;;^UTILITY(U,$J,358.3,27660,1,3,0)
- ;;=3^Urinary Reflex Study
- ;;^UTILITY(U,$J,358.3,27661,0)
- ;;=95865^^108^1374^8^^^^1
- ;;^UTILITY(U,$J,358.3,27661,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27661,1,2,0)
- ;;=2^95865
- ;;^UTILITY(U,$J,358.3,27661,1,3,0)
- ;;=3^EMG, Larynx
- ;;^UTILITY(U,$J,358.3,27662,0)
- ;;=95866^^108^1374^7^^^^1
- ;;^UTILITY(U,$J,358.3,27662,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27662,1,2,0)
- ;;=2^95866
- ;;^UTILITY(U,$J,358.3,27662,1,3,0)
- ;;=3^EMG, Hemidiaphragm
- ;;^UTILITY(U,$J,358.3,27663,0)
- ;;=95870^^108^1374^9^^^^1
- ;;^UTILITY(U,$J,358.3,27663,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27663,1,2,0)
- ;;=2^95870
- ;;^UTILITY(U,$J,358.3,27663,1,3,0)
- ;;=3^EMG, Limited-One extremity
- ;;^UTILITY(U,$J,358.3,27664,0)
- ;;=95872^^108^1374^10^^^^1
- ;;^UTILITY(U,$J,358.3,27664,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27664,1,2,0)
- ;;=2^95872
- ;;^UTILITY(U,$J,358.3,27664,1,3,0)
- ;;=3^EMG, Single Fiber Electrode
- ;;^UTILITY(U,$J,358.3,27665,0)
- ;;=95873^^108^1374^16^^^^1
- ;;^UTILITY(U,$J,358.3,27665,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27665,1,2,0)
- ;;=2^95873
- ;;^UTILITY(U,$J,358.3,27665,1,3,0)
- ;;=3^Elec Stim,Guide chemodenervation
+ ;;^UTILITY(U,$J,358.3,26034,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,26034,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,26034,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,26035,0)
+ ;;=R40.2222^^107^1229^20
+ ;;^UTILITY(U,$J,358.3,26035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26035,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,26035,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,26035,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,26036,0)
+ ;;=R40.2221^^107^1229^21
+ ;;^UTILITY(U,$J,358.3,26036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26036,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,26036,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,26036,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,26037,0)
+ ;;=R40.2220^^107^1229^22
+ ;;^UTILITY(U,$J,358.3,26037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26037,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,26037,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,26037,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,26038,0)
+ ;;=R40.2214^^107^1229^23
+ ;;^UTILITY(U,$J,358.3,26038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26038,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,26038,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,26038,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,26039,0)
+ ;;=R40.2213^^107^1229^25
+ ;;^UTILITY(U,$J,358.3,26039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26039,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,26039,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,26039,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,26040,0)
+ ;;=R40.2212^^107^1229^24
+ ;;^UTILITY(U,$J,358.3,26040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26040,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,26040,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,26040,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,26041,0)
+ ;;=R40.2344^^107^1229^6
+ ;;^UTILITY(U,$J,358.3,26041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26041,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,26041,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,26041,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,26042,0)
+ ;;=R40.2343^^107^1229^7
+ ;;^UTILITY(U,$J,358.3,26042,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26042,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,26042,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,26042,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,26043,0)
+ ;;=R40.2342^^107^1229^8
+ ;;^UTILITY(U,$J,358.3,26043,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26043,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,26043,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,26043,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,26044,0)
+ ;;=R40.2341^^107^1229^9
+ ;;^UTILITY(U,$J,358.3,26044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26044,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,26044,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,26044,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,26045,0)
+ ;;=R40.2340^^107^1229^10
+ ;;^UTILITY(U,$J,358.3,26045,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26045,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time

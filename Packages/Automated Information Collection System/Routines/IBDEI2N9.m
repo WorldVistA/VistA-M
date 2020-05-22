@@ -1,52 +1,120 @@
-IBDEI2N9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.93)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2N9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.93,0,"GL")
- ;;=^IBE(358.93,
- ;;^DIC("B","IMP/EXP MULTIPLE CHOICE FIELD",358.93)
- ;;=
- ;;^DIC(358.93,"%D",0)
- ;;=^^2^2^2951024^^^
- ;;^DIC(358.93,"%D",1,0)
- ;;=This file is used as a work space for the import/export utility of the
- ;;^DIC(358.93,"%D",2,0)
- ;;=encounter form utilities.
- ;;^DD(358.93,0)
- ;;=FIELD^^1^9
- ;;^DD(358.93,0,"DDA")
- ;;=N
- ;;^DD(358.93,0,"DT")
- ;;=2960119
- ;;^DD(358.93,0,"IX","A",358.931,.01)
- ;;=
- ;;^DD(358.93,0,"IX","A1",358.931,.02)
- ;;=
- ;;^DD(358.93,0,"IX","B",358.93,.01)
- ;;=
- ;;^DD(358.93,0,"IX","C",358.93,.08)
- ;;=
- ;;^DD(358.93,0,"NM","IMP/EXP MULTIPLE CHOICE FIELD")
- ;;=
- ;;^DD(358.93,0,"VRPK")
- ;;=IBD
- ;;^DD(358.93,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.93,.01,1,0)
- ;;=^.1
- ;;^DD(358.93,.01,1,1,0)
- ;;=358.93^B
- ;;^DD(358.93,.01,1,1,1)
- ;;=S ^IBE(358.93,"B",$E(X,1,30),DA)=""
- ;;^DD(358.93,.01,1,1,2)
- ;;=K ^IBE(358.93,"B",$E(X,1,30),DA)
- ;;^DD(358.93,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.93,.01,21,0)
- ;;=^^2^2^2930623^^^^
- ;;^DD(358.93,.01,21,1,0)
- ;;= 
- ;;^DD(358.93,.01,21,2,0)
- ;;=The division the setup is for.
- ;;^DD(358.93,.01,"DT")
- ;;=2930518
+ ;;^UTILITY(U,$J,358.3,42195,1,3,0)
+ ;;=3^Pathological fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,42195,1,4,0)
+ ;;=4^M84.478S
+ ;;^UTILITY(U,$J,358.3,42195,2)
+ ;;=^5014009
+ ;;^UTILITY(U,$J,358.3,42196,0)
+ ;;=M84.477S^^155^2068^113
+ ;;^UTILITY(U,$J,358.3,42196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42196,1,3,0)
+ ;;=3^Pathological fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,42196,1,4,0)
+ ;;=4^M84.477S
+ ;;^UTILITY(U,$J,358.3,42196,2)
+ ;;=^5014003
+ ;;^UTILITY(U,$J,358.3,42197,0)
+ ;;=M84.378S^^155^2068^116
+ ;;^UTILITY(U,$J,358.3,42197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42197,1,3,0)
+ ;;=3^Stress fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,42197,1,4,0)
+ ;;=4^M84.378S
+ ;;^UTILITY(U,$J,358.3,42197,2)
+ ;;=^5013781
+ ;;^UTILITY(U,$J,358.3,42198,0)
+ ;;=M84.377S^^155^2068^119
+ ;;^UTILITY(U,$J,358.3,42198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42198,1,3,0)
+ ;;=3^Stress fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,42198,1,4,0)
+ ;;=4^M84.377S
+ ;;^UTILITY(U,$J,358.3,42198,2)
+ ;;=^5013775
+ ;;^UTILITY(U,$J,358.3,42199,0)
+ ;;=S92.212S^^155^2068^23
+ ;;^UTILITY(U,$J,358.3,42199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42199,1,3,0)
+ ;;=3^Disp cuboid bone of left foot fx, sequela
+ ;;^UTILITY(U,$J,358.3,42199,1,4,0)
+ ;;=4^S92.212S
+ ;;^UTILITY(U,$J,358.3,42199,2)
+ ;;=^5044849
+ ;;^UTILITY(U,$J,358.3,42200,0)
+ ;;=S92.211S^^155^2068^24
+ ;;^UTILITY(U,$J,358.3,42200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42200,1,3,0)
+ ;;=3^Disp cuboid bone of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,42200,1,4,0)
+ ;;=4^S92.211S
+ ;;^UTILITY(U,$J,358.3,42200,2)
+ ;;=^5044842
+ ;;^UTILITY(U,$J,358.3,42201,0)
+ ;;=S92.352S^^155^2068^9
+ ;;^UTILITY(U,$J,358.3,42201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42201,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,42201,1,4,0)
+ ;;=4^S92.352S
+ ;;^UTILITY(U,$J,358.3,42201,2)
+ ;;=^5045241
+ ;;^UTILITY(U,$J,358.3,42202,0)
+ ;;=S92.351S^^155^2068^10
+ ;;^UTILITY(U,$J,358.3,42202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42202,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,42202,1,4,0)
+ ;;=4^S92.351S
+ ;;^UTILITY(U,$J,358.3,42202,2)
+ ;;=^5045234
+ ;;^UTILITY(U,$J,358.3,42203,0)
+ ;;=S92.312S^^155^2068^1
+ ;;^UTILITY(U,$J,358.3,42203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42203,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,42203,1,4,0)
+ ;;=4^S92.312S
+ ;;^UTILITY(U,$J,358.3,42203,2)
+ ;;=^5045073
+ ;;^UTILITY(U,$J,358.3,42204,0)
+ ;;=S92.311S^^155^2068^2
+ ;;^UTILITY(U,$J,358.3,42204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42204,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,42204,1,4,0)
+ ;;=4^S92.311S
+ ;;^UTILITY(U,$J,358.3,42204,2)
+ ;;=^5045066
+ ;;^UTILITY(U,$J,358.3,42205,0)
+ ;;=S92.342S^^155^2068^7
+ ;;^UTILITY(U,$J,358.3,42205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42205,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,42205,1,4,0)
+ ;;=4^S92.342S
+ ;;^UTILITY(U,$J,358.3,42205,2)
+ ;;=^5045199
+ ;;^UTILITY(U,$J,358.3,42206,0)
+ ;;=S92.341S^^155^2068^8
+ ;;^UTILITY(U,$J,358.3,42206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42206,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,42206,1,4,0)
+ ;;=4^S92.341S
+ ;;^UTILITY(U,$J,358.3,42206,2)
+ ;;=^5045192

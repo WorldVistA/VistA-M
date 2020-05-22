@@ -1,126 +1,122 @@
-IBDEI17L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20553,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,20553,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,20554,0)
- ;;=M47.22^^84^935^172
- ;;^UTILITY(U,$J,358.3,20554,1,0)
+ ;;^UTILITY(U,$J,358.3,19415,1,4,0)
+ ;;=4^M05.572
+ ;;^UTILITY(U,$J,358.3,19415,2)
+ ;;=^5009974
+ ;;^UTILITY(U,$J,358.3,19416,0)
+ ;;=M05.522^^93^992^135
+ ;;^UTILITY(U,$J,358.3,19416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20554,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,20554,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,20554,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,20555,0)
- ;;=M47.24^^84^935^174
- ;;^UTILITY(U,$J,358.3,20555,1,0)
+ ;;^UTILITY(U,$J,358.3,19416,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of left elbow
+ ;;^UTILITY(U,$J,358.3,19416,1,4,0)
+ ;;=4^M05.522
+ ;;^UTILITY(U,$J,358.3,19416,2)
+ ;;=^5009959
+ ;;^UTILITY(U,$J,358.3,19417,0)
+ ;;=M05.542^^93^992^136
+ ;;^UTILITY(U,$J,358.3,19417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20555,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,20555,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,20555,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,20556,0)
- ;;=M47.27^^84^935^173
- ;;^UTILITY(U,$J,358.3,20556,1,0)
+ ;;^UTILITY(U,$J,358.3,19417,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of left hand 
+ ;;^UTILITY(U,$J,358.3,19417,1,4,0)
+ ;;=4^M05.542
+ ;;^UTILITY(U,$J,358.3,19417,2)
+ ;;=^5009965
+ ;;^UTILITY(U,$J,358.3,19418,0)
+ ;;=M05.552^^93^992^137
+ ;;^UTILITY(U,$J,358.3,19418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20556,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,20556,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,20556,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,20557,0)
- ;;=M47.812^^84^935^169
- ;;^UTILITY(U,$J,358.3,20557,1,0)
+ ;;^UTILITY(U,$J,358.3,19418,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of left hip
+ ;;^UTILITY(U,$J,358.3,19418,1,4,0)
+ ;;=4^M05.552
+ ;;^UTILITY(U,$J,358.3,19418,2)
+ ;;=^5009968
+ ;;^UTILITY(U,$J,358.3,19419,0)
+ ;;=M05.562^^93^992^138
+ ;;^UTILITY(U,$J,358.3,19419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20557,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,20557,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,20557,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,20558,0)
- ;;=M47.814^^84^935^170
- ;;^UTILITY(U,$J,358.3,20558,1,0)
+ ;;^UTILITY(U,$J,358.3,19419,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of left knee 
+ ;;^UTILITY(U,$J,358.3,19419,1,4,0)
+ ;;=4^M05.562
+ ;;^UTILITY(U,$J,358.3,19419,2)
+ ;;=^5009971
+ ;;^UTILITY(U,$J,358.3,19420,0)
+ ;;=M05.512^^93^992^139
+ ;;^UTILITY(U,$J,358.3,19420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20558,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,20558,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,20558,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,20559,0)
- ;;=M47.817^^84^935^171
- ;;^UTILITY(U,$J,358.3,20559,1,0)
+ ;;^UTILITY(U,$J,358.3,19420,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of left shoulder 
+ ;;^UTILITY(U,$J,358.3,19420,1,4,0)
+ ;;=4^M05.512
+ ;;^UTILITY(U,$J,358.3,19420,2)
+ ;;=^5009956
+ ;;^UTILITY(U,$J,358.3,19421,0)
+ ;;=M05.532^^93^992^140
+ ;;^UTILITY(U,$J,358.3,19421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20559,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,20559,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,20559,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,20560,0)
- ;;=M48.50XA^^84^935^21
- ;;^UTILITY(U,$J,358.3,20560,1,0)
+ ;;^UTILITY(U,$J,358.3,19421,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of left wrist
+ ;;^UTILITY(U,$J,358.3,19421,1,4,0)
+ ;;=4^M05.532
+ ;;^UTILITY(U,$J,358.3,19421,2)
+ ;;=^5009962
+ ;;^UTILITY(U,$J,358.3,19422,0)
+ ;;=M05.59^^93^992^133
+ ;;^UTILITY(U,$J,358.3,19422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20560,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,20560,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,20560,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,20561,0)
- ;;=M48.50XD^^84^935^22
- ;;^UTILITY(U,$J,358.3,20561,1,0)
+ ;;^UTILITY(U,$J,358.3,19422,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit mult sites 
+ ;;^UTILITY(U,$J,358.3,19422,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,19422,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,19423,0)
+ ;;=M05.571^^93^992^141
+ ;;^UTILITY(U,$J,358.3,19423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20561,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20561,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,20561,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,20562,0)
- ;;=M48.52XA^^84^935^23
- ;;^UTILITY(U,$J,358.3,20562,1,0)
+ ;;^UTILITY(U,$J,358.3,19423,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right ank/ft
+ ;;^UTILITY(U,$J,358.3,19423,1,4,0)
+ ;;=4^M05.571
+ ;;^UTILITY(U,$J,358.3,19423,2)
+ ;;=^5009973
+ ;;^UTILITY(U,$J,358.3,19424,0)
+ ;;=M05.521^^93^992^142
+ ;;^UTILITY(U,$J,358.3,19424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20562,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,20562,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,20562,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,20563,0)
- ;;=M48.52XD^^84^935^24
- ;;^UTILITY(U,$J,358.3,20563,1,0)
+ ;;^UTILITY(U,$J,358.3,19424,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right elbow 
+ ;;^UTILITY(U,$J,358.3,19424,1,4,0)
+ ;;=4^M05.521
+ ;;^UTILITY(U,$J,358.3,19424,2)
+ ;;=^5009958
+ ;;^UTILITY(U,$J,358.3,19425,0)
+ ;;=M05.541^^93^992^143
+ ;;^UTILITY(U,$J,358.3,19425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20563,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,20563,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,20563,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,20564,0)
- ;;=M48.54XA^^84^935^32
- ;;^UTILITY(U,$J,358.3,20564,1,0)
+ ;;^UTILITY(U,$J,358.3,19425,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right hand 
+ ;;^UTILITY(U,$J,358.3,19425,1,4,0)
+ ;;=4^M05.541
+ ;;^UTILITY(U,$J,358.3,19425,2)
+ ;;=^5009964
+ ;;^UTILITY(U,$J,358.3,19426,0)
+ ;;=M05.551^^93^992^144
+ ;;^UTILITY(U,$J,358.3,19426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20564,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,20564,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,20564,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,20565,0)
- ;;=M48.54XD^^84^935^33
- ;;^UTILITY(U,$J,358.3,20565,1,0)
+ ;;^UTILITY(U,$J,358.3,19426,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right hip 
+ ;;^UTILITY(U,$J,358.3,19426,1,4,0)
+ ;;=4^M05.551
+ ;;^UTILITY(U,$J,358.3,19426,2)
+ ;;=^5009967
+ ;;^UTILITY(U,$J,358.3,19427,0)
+ ;;=M05.561^^93^992^145
+ ;;^UTILITY(U,$J,358.3,19427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20565,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20565,1,4,0)
- ;;=4^M48.54XD

@@ -1,126 +1,124 @@
-IBDEI1SG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30381,1,4,0)
- ;;=4^D68.52
- ;;^UTILITY(U,$J,358.3,30381,2)
- ;;=^5002359
- ;;^UTILITY(U,$J,358.3,30382,0)
- ;;=D68.59^^118^1507^15
- ;;^UTILITY(U,$J,358.3,30382,1,0)
+ ;;^UTILITY(U,$J,358.3,28565,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28565,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,28565,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,28566,0)
+ ;;=F12.280^^115^1407^2
+ ;;^UTILITY(U,$J,358.3,28566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30382,1,3,0)
- ;;=3^Primary Thrombophilia NEC
- ;;^UTILITY(U,$J,358.3,30382,1,4,0)
- ;;=4^D68.59
- ;;^UTILITY(U,$J,358.3,30382,2)
- ;;=^5002360
- ;;^UTILITY(U,$J,358.3,30383,0)
- ;;=D68.61^^118^1507^2
- ;;^UTILITY(U,$J,358.3,30383,1,0)
+ ;;^UTILITY(U,$J,358.3,28566,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28566,1,4,0)
+ ;;=4^F12.280
+ ;;^UTILITY(U,$J,358.3,28566,2)
+ ;;=^5003175
+ ;;^UTILITY(U,$J,358.3,28567,0)
+ ;;=F12.188^^115^1407^7
+ ;;^UTILITY(U,$J,358.3,28567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30383,1,3,0)
- ;;=3^Antiphospholipid syndrome
- ;;^UTILITY(U,$J,358.3,30383,1,4,0)
- ;;=4^D68.61
- ;;^UTILITY(U,$J,358.3,30383,2)
- ;;=^185421
- ;;^UTILITY(U,$J,358.3,30384,0)
- ;;=D68.62^^118^1507^3
- ;;^UTILITY(U,$J,358.3,30384,1,0)
+ ;;^UTILITY(U,$J,358.3,28567,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28567,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,28567,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,28568,0)
+ ;;=F12.288^^115^1407^8
+ ;;^UTILITY(U,$J,358.3,28568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30384,1,3,0)
- ;;=3^Lupus anticoagulant syndrome
- ;;^UTILITY(U,$J,358.3,30384,1,4,0)
- ;;=4^D68.62
- ;;^UTILITY(U,$J,358.3,30384,2)
- ;;=^5002361
- ;;^UTILITY(U,$J,358.3,30385,0)
- ;;=Z85.810^^118^1508^3
- ;;^UTILITY(U,$J,358.3,30385,1,0)
+ ;;^UTILITY(U,$J,358.3,28568,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28568,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,28568,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,28569,0)
+ ;;=F12.99^^115^1407^18
+ ;;^UTILITY(U,$J,358.3,28569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30385,1,3,0)
- ;;=3^Personal history of malignant neoplasm of tongue
- ;;^UTILITY(U,$J,358.3,30385,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,30385,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,30386,0)
- ;;=Z85.818^^118^1508^4
- ;;^UTILITY(U,$J,358.3,30386,1,0)
+ ;;^UTILITY(U,$J,358.3,28569,1,3,0)
+ ;;=3^Cannabis Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28569,1,4,0)
+ ;;=4^F12.99
+ ;;^UTILITY(U,$J,358.3,28569,2)
+ ;;=^5003188
+ ;;^UTILITY(U,$J,358.3,28570,0)
+ ;;=F12.21^^115^1407^24
+ ;;^UTILITY(U,$J,358.3,28570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30386,1,3,0)
- ;;=3^Personal history of malignant neoplasm of site of lip, oral cav, & pharynx
- ;;^UTILITY(U,$J,358.3,30386,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,30386,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,30387,0)
- ;;=Z85.01^^118^1508^5
- ;;^UTILITY(U,$J,358.3,30387,1,0)
+ ;;^UTILITY(U,$J,358.3,28570,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,28570,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,28570,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,28571,0)
+ ;;=F12.23^^115^1407^23
+ ;;^UTILITY(U,$J,358.3,28571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30387,1,3,0)
- ;;=3^Personal history of malignant neoplasm of esophagus
- ;;^UTILITY(U,$J,358.3,30387,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,30387,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,30388,0)
- ;;=Z85.028^^118^1508^6
- ;;^UTILITY(U,$J,358.3,30388,1,0)
+ ;;^UTILITY(U,$J,358.3,28571,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev w/ WD
+ ;;^UTILITY(U,$J,358.3,28571,1,4,0)
+ ;;=4^F12.23
+ ;;^UTILITY(U,$J,358.3,28571,2)
+ ;;=^5157301
+ ;;^UTILITY(U,$J,358.3,28572,0)
+ ;;=F12.129^^115^1407^19
+ ;;^UTILITY(U,$J,358.3,28572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30388,1,3,0)
- ;;=3^Personal history of malignant neoplasm of stomach NEC
- ;;^UTILITY(U,$J,358.3,30388,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,30388,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,30389,0)
- ;;=Z85.038^^118^1508^7
- ;;^UTILITY(U,$J,358.3,30389,1,0)
+ ;;^UTILITY(U,$J,358.3,28572,1,3,0)
+ ;;=3^Cannabis Use D/O Mild w/ Intoxication
+ ;;^UTILITY(U,$J,358.3,28572,1,4,0)
+ ;;=4^F12.129
+ ;;^UTILITY(U,$J,358.3,28572,2)
+ ;;=^5003159
+ ;;^UTILITY(U,$J,358.3,28573,0)
+ ;;=F12.93^^115^1407^26
+ ;;^UTILITY(U,$J,358.3,28573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30389,1,3,0)
- ;;=3^Personal history of malignant neoplasm of large intestine
- ;;^UTILITY(U,$J,358.3,30389,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,30389,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,30390,0)
- ;;=Z85.048^^118^1508^8
- ;;^UTILITY(U,$J,358.3,30390,1,0)
+ ;;^UTILITY(U,$J,358.3,28573,1,3,0)
+ ;;=3^Cannabis Withdrawal w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28573,1,4,0)
+ ;;=4^F12.93
+ ;;^UTILITY(U,$J,358.3,28573,2)
+ ;;=^5157302
+ ;;^UTILITY(U,$J,358.3,28574,0)
+ ;;=F12.11^^115^1407^21
+ ;;^UTILITY(U,$J,358.3,28574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30390,1,3,0)
- ;;=3^Personal history of malignant neoplasm of rectum, rectosig junct, and anus
- ;;^UTILITY(U,$J,358.3,30390,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,30390,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,30391,0)
- ;;=Z85.05^^118^1508^9
- ;;^UTILITY(U,$J,358.3,30391,1,0)
+ ;;^UTILITY(U,$J,358.3,28574,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild,In Early Remission
+ ;;^UTILITY(U,$J,358.3,28574,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,28574,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,28575,0)
+ ;;=F16.10^^115^1408^19
+ ;;^UTILITY(U,$J,358.3,28575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30391,1,3,0)
- ;;=3^Personal history of malignant neoplasm of liver
- ;;^UTILITY(U,$J,358.3,30391,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,30391,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,30392,0)
- ;;=Z85.068^^118^1508^10
- ;;^UTILITY(U,$J,358.3,30392,1,0)
+ ;;^UTILITY(U,$J,358.3,28575,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,28575,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,28575,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,28576,0)
+ ;;=F16.20^^115^1408^21
+ ;;^UTILITY(U,$J,358.3,28576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30392,1,3,0)
- ;;=3^Personal history of malignant neoplasm of small intestine
- ;;^UTILITY(U,$J,358.3,30392,1,4,0)
- ;;=4^Z85.068
- ;;^UTILITY(U,$J,358.3,30392,2)
- ;;=^5063404
- ;;^UTILITY(U,$J,358.3,30393,0)
- ;;=Z85.07^^118^1508^11
- ;;^UTILITY(U,$J,358.3,30393,1,0)
+ ;;^UTILITY(U,$J,358.3,28576,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,28576,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,28576,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,28577,0)
+ ;;=F16.121^^115^1408^10
+ ;;^UTILITY(U,$J,358.3,28577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30393,1,3,0)
- ;;=3^Personal history of malignant neoplasm of pancreas
- ;;^UTILITY(U,$J,358.3,30393,1,4,0)
- ;;=4^Z85.07

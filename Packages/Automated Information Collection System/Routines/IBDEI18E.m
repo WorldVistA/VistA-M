@@ -1,140 +1,122 @@
-IBDEI18E ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20937,1,4,0)
- ;;=4^R63.2
- ;;^UTILITY(U,$J,358.3,20937,2)
- ;;=^5019540
- ;;^UTILITY(U,$J,358.3,20938,0)
- ;;=R63.3^^84^941^72
- ;;^UTILITY(U,$J,358.3,20938,1,0)
+ ;;^UTILITY(U,$J,358.3,19750,2)
+ ;;=^5045325
+ ;;^UTILITY(U,$J,358.3,19751,0)
+ ;;=S92.514S^^93^996^105
+ ;;^UTILITY(U,$J,358.3,19751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20938,1,3,0)
- ;;=3^Feeding Difficulties
- ;;^UTILITY(U,$J,358.3,20938,1,4,0)
- ;;=4^R63.3
- ;;^UTILITY(U,$J,358.3,20938,2)
- ;;=^5019541
- ;;^UTILITY(U,$J,358.3,20939,0)
- ;;=R63.4^^84^941^29
- ;;^UTILITY(U,$J,358.3,20939,1,0)
+ ;;^UTILITY(U,$J,358.3,19751,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19751,1,4,0)
+ ;;=4^S92.514S
+ ;;^UTILITY(U,$J,358.3,19751,2)
+ ;;=^5045458
+ ;;^UTILITY(U,$J,358.3,19752,0)
+ ;;=M84.478S^^93^996^110
+ ;;^UTILITY(U,$J,358.3,19752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20939,1,3,0)
- ;;=3^Abnormal Weight Loss
- ;;^UTILITY(U,$J,358.3,20939,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,20939,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,20940,0)
- ;;=R63.5^^84^941^28
- ;;^UTILITY(U,$J,358.3,20940,1,0)
+ ;;^UTILITY(U,$J,358.3,19752,1,3,0)
+ ;;=3^Pathological fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19752,1,4,0)
+ ;;=4^M84.478S
+ ;;^UTILITY(U,$J,358.3,19752,2)
+ ;;=^5014009
+ ;;^UTILITY(U,$J,358.3,19753,0)
+ ;;=M84.477S^^93^996^113
+ ;;^UTILITY(U,$J,358.3,19753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20940,1,3,0)
- ;;=3^Abnormal Weight Gain
- ;;^UTILITY(U,$J,358.3,20940,1,4,0)
- ;;=4^R63.5
- ;;^UTILITY(U,$J,358.3,20940,2)
- ;;=^5019543
- ;;^UTILITY(U,$J,358.3,20941,0)
- ;;=R64.^^84^941^46
- ;;^UTILITY(U,$J,358.3,20941,1,0)
+ ;;^UTILITY(U,$J,358.3,19753,1,3,0)
+ ;;=3^Pathological fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19753,1,4,0)
+ ;;=4^M84.477S
+ ;;^UTILITY(U,$J,358.3,19753,2)
+ ;;=^5014003
+ ;;^UTILITY(U,$J,358.3,19754,0)
+ ;;=M84.378S^^93^996^116
+ ;;^UTILITY(U,$J,358.3,19754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20941,1,3,0)
- ;;=3^Cachexia
- ;;^UTILITY(U,$J,358.3,20941,1,4,0)
- ;;=4^R64.
- ;;^UTILITY(U,$J,358.3,20941,2)
- ;;=^17920
- ;;^UTILITY(U,$J,358.3,20942,0)
- ;;=R68.3^^84^941^51
- ;;^UTILITY(U,$J,358.3,20942,1,0)
+ ;;^UTILITY(U,$J,358.3,19754,1,3,0)
+ ;;=3^Stress fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19754,1,4,0)
+ ;;=4^M84.378S
+ ;;^UTILITY(U,$J,358.3,19754,2)
+ ;;=^5013781
+ ;;^UTILITY(U,$J,358.3,19755,0)
+ ;;=M84.377S^^93^996^119
+ ;;^UTILITY(U,$J,358.3,19755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20942,1,3,0)
- ;;=3^Clubbing of Fingers
- ;;^UTILITY(U,$J,358.3,20942,1,4,0)
- ;;=4^R68.3
- ;;^UTILITY(U,$J,358.3,20942,2)
- ;;=^5019553
- ;;^UTILITY(U,$J,358.3,20943,0)
- ;;=R73.01^^84^941^89
- ;;^UTILITY(U,$J,358.3,20943,1,0)
+ ;;^UTILITY(U,$J,358.3,19755,1,3,0)
+ ;;=3^Stress fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19755,1,4,0)
+ ;;=4^M84.377S
+ ;;^UTILITY(U,$J,358.3,19755,2)
+ ;;=^5013775
+ ;;^UTILITY(U,$J,358.3,19756,0)
+ ;;=S92.212S^^93^996^23
+ ;;^UTILITY(U,$J,358.3,19756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20943,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,20943,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,20943,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,20944,0)
- ;;=R73.02^^84^941^90
- ;;^UTILITY(U,$J,358.3,20944,1,0)
+ ;;^UTILITY(U,$J,358.3,19756,1,3,0)
+ ;;=3^Disp cuboid bone of left foot fx, sequela
+ ;;^UTILITY(U,$J,358.3,19756,1,4,0)
+ ;;=4^S92.212S
+ ;;^UTILITY(U,$J,358.3,19756,2)
+ ;;=^5044849
+ ;;^UTILITY(U,$J,358.3,19757,0)
+ ;;=S92.211S^^93^996^24
+ ;;^UTILITY(U,$J,358.3,19757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20944,1,3,0)
- ;;=3^Impaired Glucose Tolerance (oral)
- ;;^UTILITY(U,$J,358.3,20944,1,4,0)
- ;;=4^R73.02
- ;;^UTILITY(U,$J,358.3,20944,2)
- ;;=^5019562
- ;;^UTILITY(U,$J,358.3,20945,0)
- ;;=R73.09^^84^941^15
- ;;^UTILITY(U,$J,358.3,20945,1,0)
+ ;;^UTILITY(U,$J,358.3,19757,1,3,0)
+ ;;=3^Disp cuboid bone of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19757,1,4,0)
+ ;;=4^S92.211S
+ ;;^UTILITY(U,$J,358.3,19757,2)
+ ;;=^5044842
+ ;;^UTILITY(U,$J,358.3,19758,0)
+ ;;=S92.352S^^93^996^9
+ ;;^UTILITY(U,$J,358.3,19758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20945,1,3,0)
- ;;=3^Abnormal Glucose NEC
- ;;^UTILITY(U,$J,358.3,20945,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,20945,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,20946,0)
- ;;=R73.9^^84^941^84
- ;;^UTILITY(U,$J,358.3,20946,1,0)
+ ;;^UTILITY(U,$J,358.3,19758,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,19758,1,4,0)
+ ;;=4^S92.352S
+ ;;^UTILITY(U,$J,358.3,19758,2)
+ ;;=^5045241
+ ;;^UTILITY(U,$J,358.3,19759,0)
+ ;;=S92.351S^^93^996^10
+ ;;^UTILITY(U,$J,358.3,19759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20946,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,20946,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,20946,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,20947,0)
- ;;=R76.11^^84^941^142
- ;;^UTILITY(U,$J,358.3,20947,1,0)
+ ;;^UTILITY(U,$J,358.3,19759,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,19759,1,4,0)
+ ;;=4^S92.351S
+ ;;^UTILITY(U,$J,358.3,19759,2)
+ ;;=^5045234
+ ;;^UTILITY(U,$J,358.3,19760,0)
+ ;;=S92.312S^^93^996^1
+ ;;^UTILITY(U,$J,358.3,19760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20947,1,3,0)
- ;;=3^Positive PPD
- ;;^UTILITY(U,$J,358.3,20947,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,20947,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,20948,0)
- ;;=R79.1^^84^941^3
- ;;^UTILITY(U,$J,358.3,20948,1,0)
+ ;;^UTILITY(U,$J,358.3,19760,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,19760,1,4,0)
+ ;;=4^S92.312S
+ ;;^UTILITY(U,$J,358.3,19760,2)
+ ;;=^5045073
+ ;;^UTILITY(U,$J,358.3,19761,0)
+ ;;=S92.311S^^93^996^2
+ ;;^UTILITY(U,$J,358.3,19761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20948,1,3,0)
- ;;=3^Abnormal Coagulation Profile
- ;;^UTILITY(U,$J,358.3,20948,1,4,0)
- ;;=4^R79.1
- ;;^UTILITY(U,$J,358.3,20948,2)
- ;;=^5019591
- ;;^UTILITY(U,$J,358.3,20949,0)
- ;;=R82.5^^84^941^69
- ;;^UTILITY(U,$J,358.3,20949,1,0)
+ ;;^UTILITY(U,$J,358.3,19761,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,19761,1,4,0)
+ ;;=4^S92.311S
+ ;;^UTILITY(U,$J,358.3,19761,2)
+ ;;=^5045066
+ ;;^UTILITY(U,$J,358.3,19762,0)
+ ;;=S92.342S^^93^996^7
+ ;;^UTILITY(U,$J,358.3,19762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20949,1,3,0)
- ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
- ;;^UTILITY(U,$J,358.3,20949,1,4,0)
- ;;=4^R82.5
- ;;^UTILITY(U,$J,358.3,20949,2)
- ;;=^5019605
- ;;^UTILITY(U,$J,358.3,20950,0)
- ;;=R82.6^^84^941^26
- ;;^UTILITY(U,$J,358.3,20950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20950,1,3,0)
- ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
- ;;^UTILITY(U,$J,358.3,20950,1,4,0)
- ;;=4^R82.6
- ;;^UTILITY(U,$J,358.3,20950,2)
- ;;=^5019606
- ;;^UTILITY(U,$J,358.3,20951,0)
- ;;=R82.7^^84^941^27
+ ;;^UTILITY(U,$J,358.3,19762,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of left foot,sequela

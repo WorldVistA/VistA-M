@@ -1,124 +1,124 @@
-IBDEI1SO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30495,0)
- ;;=64490^^120^1515^27^^^^1
- ;;^UTILITY(U,$J,358.3,30495,1,0)
+ ;;^UTILITY(U,$J,358.3,28658,0)
+ ;;=F13.931^^115^1410^32
+ ;;^UTILITY(U,$J,358.3,28658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30495,1,2,0)
- ;;=2^Paravert Facet Block,Cerv/Thor,1st Lev
- ;;^UTILITY(U,$J,358.3,30495,1,4,0)
- ;;=4^64490
- ;;^UTILITY(U,$J,358.3,30496,0)
- ;;=64491^^120^1515^28^^^^1
- ;;^UTILITY(U,$J,358.3,30496,1,0)
+ ;;^UTILITY(U,$J,358.3,28658,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/ Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28658,1,4,0)
+ ;;=4^F13.931
+ ;;^UTILITY(U,$J,358.3,28658,2)
+ ;;=^5003226
+ ;;^UTILITY(U,$J,358.3,28659,0)
+ ;;=F13.932^^115^1410^34
+ ;;^UTILITY(U,$J,358.3,28659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30496,1,2,0)
- ;;=2^Paravert Facet Block,Cerv/Thor,2nd Lev
- ;;^UTILITY(U,$J,358.3,30496,1,4,0)
- ;;=4^64491
- ;;^UTILITY(U,$J,358.3,30497,0)
- ;;=64492^^120^1515^25^^^^1
- ;;^UTILITY(U,$J,358.3,30497,1,0)
+ ;;^UTILITY(U,$J,358.3,28659,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28659,1,4,0)
+ ;;=4^F13.932
+ ;;^UTILITY(U,$J,358.3,28659,2)
+ ;;=^5003227
+ ;;^UTILITY(U,$J,358.3,28660,0)
+ ;;=F13.939^^115^1410^36
+ ;;^UTILITY(U,$J,358.3,28660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30497,1,2,0)
- ;;=2^Paravert Facet Blk,Cerv/Thor,Ea Addl Lev
- ;;^UTILITY(U,$J,358.3,30497,1,4,0)
- ;;=4^64492
- ;;^UTILITY(U,$J,358.3,30498,0)
- ;;=64493^^120^1515^29^^^^1
- ;;^UTILITY(U,$J,358.3,30498,1,0)
+ ;;^UTILITY(U,$J,358.3,28660,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/o Percep Dist w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28660,1,4,0)
+ ;;=4^F13.939
+ ;;^UTILITY(U,$J,358.3,28660,2)
+ ;;=^5003228
+ ;;^UTILITY(U,$J,358.3,28661,0)
+ ;;=F17.200^^115^1411^3
+ ;;^UTILITY(U,$J,358.3,28661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30498,1,2,0)
- ;;=2^Paravert Facet Block,Thor/Lumb,1st Lev
- ;;^UTILITY(U,$J,358.3,30498,1,4,0)
- ;;=4^64493
- ;;^UTILITY(U,$J,358.3,30499,0)
- ;;=64494^^120^1515^30^^^^1
- ;;^UTILITY(U,$J,358.3,30499,1,0)
+ ;;^UTILITY(U,$J,358.3,28661,1,3,0)
+ ;;=3^Nicotine Use D/O,Mod/Sev
+ ;;^UTILITY(U,$J,358.3,28661,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,28661,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,28662,0)
+ ;;=F17.203^^115^1411^6
+ ;;^UTILITY(U,$J,358.3,28662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30499,1,2,0)
- ;;=2^Paravert Facet Block,Thor/Lumb,2nd Lev
- ;;^UTILITY(U,$J,358.3,30499,1,4,0)
- ;;=4^64494
- ;;^UTILITY(U,$J,358.3,30500,0)
- ;;=64495^^120^1515^26^^^^1
- ;;^UTILITY(U,$J,358.3,30500,1,0)
+ ;;^UTILITY(U,$J,358.3,28662,1,3,0)
+ ;;=3^Nicotine Withdrawal
+ ;;^UTILITY(U,$J,358.3,28662,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,28662,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,28663,0)
+ ;;=F17.208^^115^1411^1
+ ;;^UTILITY(U,$J,358.3,28663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30500,1,2,0)
- ;;=2^Paravert Facet Blk,Thor/Lum,Ea Addl Lev
- ;;^UTILITY(U,$J,358.3,30500,1,4,0)
- ;;=4^64495
- ;;^UTILITY(U,$J,358.3,30501,0)
- ;;=64510^^120^1515^1^^^^1
- ;;^UTILITY(U,$J,358.3,30501,1,0)
+ ;;^UTILITY(U,$J,358.3,28663,1,3,0)
+ ;;=3^Nicotine Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28663,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,28663,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,28664,0)
+ ;;=F17.209^^115^1411^2
+ ;;^UTILITY(U,$J,358.3,28664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30501,1,2,0)
- ;;=2^Automonic Nerve Inj Stellate Ganglion
- ;;^UTILITY(U,$J,358.3,30501,1,4,0)
- ;;=4^64510
- ;;^UTILITY(U,$J,358.3,30502,0)
- ;;=64520^^120^1515^2^^^^1
- ;;^UTILITY(U,$J,358.3,30502,1,0)
+ ;;^UTILITY(U,$J,358.3,28664,1,3,0)
+ ;;=3^Nicotine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28664,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,28664,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,28665,0)
+ ;;=Z72.0^^115^1411^7
+ ;;^UTILITY(U,$J,358.3,28665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30502,1,2,0)
- ;;=2^Automonic Nerve Inj Thoracic/Lumbar
- ;;^UTILITY(U,$J,358.3,30502,1,4,0)
- ;;=4^64520
- ;;^UTILITY(U,$J,358.3,30503,0)
- ;;=64455^^120^1515^18^^^^1
- ;;^UTILITY(U,$J,358.3,30503,1,0)
+ ;;^UTILITY(U,$J,358.3,28665,1,3,0)
+ ;;=3^Tobacco Use D/O,Mild
+ ;;^UTILITY(U,$J,358.3,28665,1,4,0)
+ ;;=4^Z72.0
+ ;;^UTILITY(U,$J,358.3,28665,2)
+ ;;=^5063255
+ ;;^UTILITY(U,$J,358.3,28666,0)
+ ;;=F17.211^^115^1411^4
+ ;;^UTILITY(U,$J,358.3,28666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30503,1,2,0)
- ;;=2^N Block Common Plantar Digit
- ;;^UTILITY(U,$J,358.3,30503,1,4,0)
- ;;=4^64455
- ;;^UTILITY(U,$J,358.3,30504,0)
- ;;=64486^^120^1515^39^^^^1
- ;;^UTILITY(U,$J,358.3,30504,1,0)
+ ;;^UTILITY(U,$J,358.3,28666,1,3,0)
+ ;;=3^Nicotine Use D/O,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,28666,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,28666,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,28667,0)
+ ;;=F17.201^^115^1411^5
+ ;;^UTILITY(U,$J,358.3,28667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30504,1,2,0)
- ;;=2^TAP Abdom Plane Block,Unil w/ Image Guid
- ;;^UTILITY(U,$J,358.3,30504,1,4,0)
- ;;=4^64486
- ;;^UTILITY(U,$J,358.3,30505,0)
- ;;=64487^^120^1515^41^^^^1
- ;;^UTILITY(U,$J,358.3,30505,1,0)
+ ;;^UTILITY(U,$J,358.3,28667,1,3,0)
+ ;;=3^Nicotine Use D/O,Unspec,In Remiss
+ ;;^UTILITY(U,$J,358.3,28667,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,28667,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,28668,0)
+ ;;=F43.0^^115^1412^1
+ ;;^UTILITY(U,$J,358.3,28668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30505,1,2,0)
- ;;=2^TAP Block by Cont Inf w/ Image Guidance
- ;;^UTILITY(U,$J,358.3,30505,1,4,0)
- ;;=4^64487
- ;;^UTILITY(U,$J,358.3,30506,0)
- ;;=64488^^120^1515^42^^^^1
- ;;^UTILITY(U,$J,358.3,30506,1,0)
+ ;;^UTILITY(U,$J,358.3,28668,1,3,0)
+ ;;=3^Acute Stress D/O
+ ;;^UTILITY(U,$J,358.3,28668,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,28668,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,28669,0)
+ ;;=F43.21^^115^1412^3
+ ;;^UTILITY(U,$J,358.3,28669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30506,1,2,0)
- ;;=2^TAP Block by Inj,Bilat w/ Image Guidance
- ;;^UTILITY(U,$J,358.3,30506,1,4,0)
- ;;=4^64488
- ;;^UTILITY(U,$J,358.3,30507,0)
- ;;=64489^^120^1515^40^^^^1
- ;;^UTILITY(U,$J,358.3,30507,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30507,1,2,0)
- ;;=2^TAP Block Bilat by Cont Infusion w/ Image Guidance
- ;;^UTILITY(U,$J,358.3,30507,1,4,0)
- ;;=4^64489
- ;;^UTILITY(U,$J,358.3,30508,0)
- ;;=64402^^120^1515^8^^^^1
- ;;^UTILITY(U,$J,358.3,30508,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30508,1,2,0)
- ;;=2^Facial Nerve Block
- ;;^UTILITY(U,$J,358.3,30508,1,4,0)
- ;;=4^64402
- ;;^UTILITY(U,$J,358.3,30509,0)
- ;;=64447^^120^1515^19^^^^1
- ;;^UTILITY(U,$J,358.3,30509,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30509,1,2,0)
- ;;=2^N Block Inj FEM Single
- ;;^UTILITY(U,$J,358.3,30509,1,4,0)
- ;;=4^64447
+ ;;^UTILITY(U,$J,358.3,28669,1,3,0)
+ ;;=3^Adjustment D/O w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,28669,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,28669,2)
+ ;;=^331948

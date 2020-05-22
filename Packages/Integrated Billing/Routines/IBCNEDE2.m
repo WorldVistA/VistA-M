@@ -1,5 +1,5 @@
 IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -15,7 +15,7 @@ EN ; Loop through designated cross-references for updates
  ; IB*2.0*549 - Added YY,ZZ, Re-Arranged in alphabetical order
  N ACTINS,APTDT,CLNC,CNT,DATA1,DATA2,DFN,DISYS,ELG,ENDDT,EXCLTOC,EXCLTOP,FOUND1,FOUND2,FRESHDAY
  N FRESHDT,GIEN,IBCNETOT,IBDDI,IBINDT,IBINS,IBSDA,IBSDATA,IBOUTP,INREC,INS,INSIEN,INSNAME
- N MAXCNT,MCAREFLG,NUM,OK,PATID,PAYER,PAYERID,PAYERSTR,PIEN
+ N MAXCNT,MCAREFLG,MFRESHDAY,NUM,OK,PATID,PAYER,PAYERID,PAYERSTR,PIEN   ;/vd-IB*2*659 - Added the MFRESHDAY variable for Medicare Frequency.
  N SETSTR,SID,SIDACT,SIDARRAY,SIDCNT,SIDDATA,SLCCRIT1,SRVICEDT,SUPPBUFF,SYMBOL
  N TODAYSDT,TQIEN,QURYFLAG,VAIN,VDATE,YY,ZZ
  ;
@@ -26,6 +26,7 @@ EN ; Loop through designated cross-references for updates
  S:MAXCNT="" MAXCNT=9999999999
  S SUPPBUFF=$P(SETSTR,U,5)                   ; Suppress Buffer Flag
  S FRESHDAY=$P($G(^IBE(350.9,1,51)),U,1)     ; Freshness days span
+ S MFRESHDAY=$$GET1^DIQ(350.9,"1,",51.32)    ;/vd-IB*2*659 - Medicare Freshness days span
  S CNT=0                                     ; Init. TQ entry counter
  S ENDDT=$$FMADD^XLFDT(DT,SLCCRIT1)   ; End of appt. date selection range
  S IBCNETOT=0               ; Initialize count for periodic TaskMan check
@@ -61,9 +62,9 @@ EN ; Loop through designated cross-references for updates
  .. ;
  .. ; Loop through dates in range at clinic
  .. F  S APTDT=$O(^TMP($J,"SDAMA301",CLNC,DFN,APTDT)) Q:('APTDT)!((APTDT\1)>ENDDT)!(CNT'<MAXCNT)  D  Q:$G(ZTSTOP)
+ ... ;S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)    ;/vd - IB*2.0*659 - moved the setting of FRESHDT to right after the OKFRESH call
  ... ;
  ... S SRVICEDT=APTDT\1 ;Set service date equal to appointment date
- ... S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)
  ... ;
  ... ; Update count for periodic check
  ... S IBCNETOT=IBCNETOT+1
@@ -86,6 +87,7 @@ EN ; Loop through designated cross-references for updates
  ... ;
  ... S INREC=0 ; Record IEN
  ... F  S INREC=$O(ACTINS(INREC)) Q:('INREC)!(CNT'<MAXCNT)  D
+ ... . N MFLG  ;Initialized in $$OKFRESH  IB*2.0*659/VD
  ... . S INSIEN=$P($G(ACTINS(INREC,0)),U,1) ; Insurance ien
  ... . S INSNAME=$P($G(^DIC(36,INSIEN,0)),U)
  ... . ;
@@ -96,11 +98,19 @@ EN ; Loop through designated cross-references for updates
  ... . ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Coverage
  ... . Q:EXCLTOC[("^"_ZZ_"^")                    ; Excluded Type of Coverage
  ... . ;
+ ... . ;/vd-IB*2*659 - Replaced the following lines with the call to OKFRESH
+ ... . ;               which properly identify those policies to exclude when
+ ... . ;               verified within the "freshness days" for Medicare and
+ ... . ;               non-Medicare policies.
  ... . ; Exclude policies that have been verified within "freshness days"
- ... . S VDATE=$P($G(ACTINS(INREC,1)),U,3)
- ... . I VDATE'="",SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) Q
+ ... . ;S VDATE=$P($G(ACTINS(INREC,1)),U,3)
+ ... . ;I VDATE'="",SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) Q
+ ... . I '$$OKFRESH(INREC,FRESHDAY,MFRESHDAY,.MFLG) Q
+ ... . S FRESHDT=$$FMADD^XLFDT(SRVICEDT,$S(MFLG:-MFRESHDAY,1:-FRESHDAY))
+ ... . ;
  ... . ; Allow only one MEDICARE transmission per patient
  ... . I INSNAME["MEDICARE",MCAREFLG Q
+ ... . ;
  ... . ; Exclude pharmacy policies IB*2.0*549 - Commented out following line
  ... . ;I $$GET1^DIQ(36,INSIEN_",",.13)="PRESCRIPTION ONLY" Q
  ... . S GIEN=+$P($G(ACTINS(INREC,0)),U,18)
@@ -145,7 +155,8 @@ EN ; Loop through designated cross-references for updates
  ... . D TQUPDSV^IBCNEUT5(DFN,PIEN,SRVICEDT)
  ... . ;
  ... . ; Quit before filing if outstanding entries in TQ
- ... . I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,FRESHDAY,0) Q  ;IB*2.0*621 add flag, from EICDEXT 
+ ... . ; IB*2.0*659/VD - Added $S for MFLG
+ ... . I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,$S(MFLG:MFRESHDAY,1:FRESHDAY),0) Q  ;IB*2.0*621 add flag, from EICDEXT 
  ... . ;
  ... . S QURYFLAG="V"
  ... . K SIDARRAY
@@ -156,6 +167,7 @@ EN ; Loop through designated cross-references for updates
  ... . ;
  ... . S SID=""
  ... . F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D:$P(SID,"_")'="" SET($P(SID,"_"),$P(SID,"_",2),PATID) S:INSNAME["MEDICARE" MCAREFLG=1
+ ... . ;
  ... . I SIDACT=4 D
  ... . . D SET("","",PATID)
  ... . . S:INSNAME["MEDICARE" MCAREFLG=1
@@ -258,6 +270,31 @@ ERRMSG ; Send a message indicating an extract error has occurred
  D MSG^IBCNEUT5(MGRP,XMSUB,"MSG(")
  ;
  Q
+ ;
+ ;/vd-IB*2.0*659 - Added the OKFRESH module of code to verify Policies.
+OKFRESH(INREC,FRESHDAY,MFRESHDAY,MFLG) ; Identify those policies to exclude when
+ ;               verified within the "freshness days" for Medicare and non-Medicare policies.
+ ; INPUT:
+ ;   INREC     - IEN to current Insurance Plan
+ ;   FRESHDAY  - Freshness Days Span
+ ;   MFRESHDAY - Medicare Freshness Days Span
+ ;   MFLG      - Used to determine if the insurance plan is a Medicare Plan -  1=MEDICARE,  0=non-MEDICARE
+ ; OUTPUT:
+ ;   OK = 0 - Exclude Policy
+ ;      = 1 - Include Policy
+ N GIEN,IIEN,OK,VDATE
+ S MFLG=0,OK=1,VDATE=$P($G(ACTINS(INREC,1)),U,3)
+ S IIEN=$P($G(ACTINS(INREC,0)),U,1) ; Insurance ien
+ I $$GET1^DIQ(36,IIEN_",",3.1)=$$GET1^DIQ(350.9,"1,",51.25) S MFLG=1  ; These are Medicare Part A and Part B Policies.
+ I 'MFLG D   ;Determine if Group Plan is for Medicare Replacement (Part C) Policies (MEDICARE ADVANTAGE)
+ . S GIEN=+$P($G(ACTINS(INREC,0)),U,18)   ; Group Plan ien
+ . I GIEN,$$GET1^DIQ(355.3,GIEN_",",.09)="MEDICARE ADVANTAGE" S MFLG=1   ; Type of Policy
+ . Q
+ I $$GET1^DIQ(36,IIEN_",",.01)="MEDICARE PART D (WNR)" S MFLG=1  ; This is a Medicare Part D (MEDICARE (WNR))
+ ;
+ I VDATE'="",'MFLG,SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) S OK=0     ;Non-Medicare Policy outside of Freshness Day span
+ I VDATE'="",MFLG,SRVICEDT'>$$FMADD^XLFDT(VDATE,MFRESHDAY) S OK=0     ;Medicare Policy outside of Medicare Freshness Day span
+ Q OK
  ;
 EXPIRED(EXPDT) ; check if insurance policy has already expired
  ; EXPDT - expiration date (2.312/3)

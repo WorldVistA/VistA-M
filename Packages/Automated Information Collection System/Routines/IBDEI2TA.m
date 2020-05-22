@@ -1,130 +1,128 @@
-IBDEI2TA ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47208,0)
- ;;=C49.3^^209^2341^10
- ;;^UTILITY(U,$J,358.3,47208,1,0)
+ ;;^UTILITY(U,$J,358.3,44845,1,3,0)
+ ;;=3^Furuncle,Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,44845,1,4,0)
+ ;;=4^L02.221
+ ;;^UTILITY(U,$J,358.3,44845,2)
+ ;;=^5008957
+ ;;^UTILITY(U,$J,358.3,44846,0)
+ ;;=L02.222^^170^2238^6
+ ;;^UTILITY(U,$J,358.3,44846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47208,1,3,0)
- ;;=3^Malig Neop of Thorax Connective/Soft Tissue
- ;;^UTILITY(U,$J,358.3,47208,1,4,0)
- ;;=4^C49.3
- ;;^UTILITY(U,$J,358.3,47208,2)
- ;;=^5001131
- ;;^UTILITY(U,$J,358.3,47209,0)
- ;;=C49.4^^209^2341^1
- ;;^UTILITY(U,$J,358.3,47209,1,0)
+ ;;^UTILITY(U,$J,358.3,44846,1,3,0)
+ ;;=3^Furuncle,Back
+ ;;^UTILITY(U,$J,358.3,44846,1,4,0)
+ ;;=4^L02.222
+ ;;^UTILITY(U,$J,358.3,44846,2)
+ ;;=^5008958
+ ;;^UTILITY(U,$J,358.3,44847,0)
+ ;;=L02.223^^170^2238^7
+ ;;^UTILITY(U,$J,358.3,44847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47209,1,3,0)
- ;;=3^Malig Neop of Abdomen Connective/Soft Tissue
- ;;^UTILITY(U,$J,358.3,47209,1,4,0)
- ;;=4^C49.4
- ;;^UTILITY(U,$J,358.3,47209,2)
- ;;=^5001132
- ;;^UTILITY(U,$J,358.3,47210,0)
- ;;=C49.5^^209^2341^7
- ;;^UTILITY(U,$J,358.3,47210,1,0)
+ ;;^UTILITY(U,$J,358.3,44847,1,3,0)
+ ;;=3^Furuncle,Chest Wall
+ ;;^UTILITY(U,$J,358.3,44847,1,4,0)
+ ;;=4^L02.223
+ ;;^UTILITY(U,$J,358.3,44847,2)
+ ;;=^5008959
+ ;;^UTILITY(U,$J,358.3,44848,0)
+ ;;=L02.224^^170^2238^8
+ ;;^UTILITY(U,$J,358.3,44848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47210,1,3,0)
- ;;=3^Malig Neop of Pelvis Connective/Soft Tissue
- ;;^UTILITY(U,$J,358.3,47210,1,4,0)
- ;;=4^C49.5
- ;;^UTILITY(U,$J,358.3,47210,2)
- ;;=^5001133
- ;;^UTILITY(U,$J,358.3,47211,0)
- ;;=C49.6^^209^2341^11
- ;;^UTILITY(U,$J,358.3,47211,1,0)
+ ;;^UTILITY(U,$J,358.3,44848,1,3,0)
+ ;;=3^Furuncle,Groin
+ ;;^UTILITY(U,$J,358.3,44848,1,4,0)
+ ;;=4^L02.224
+ ;;^UTILITY(U,$J,358.3,44848,2)
+ ;;=^5008960
+ ;;^UTILITY(U,$J,358.3,44849,0)
+ ;;=L02.422^^170^2238^9
+ ;;^UTILITY(U,$J,358.3,44849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47211,1,3,0)
- ;;=3^Malig Neop of Trunk Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,47211,1,4,0)
- ;;=4^C49.6
- ;;^UTILITY(U,$J,358.3,47211,2)
- ;;=^5001134
- ;;^UTILITY(U,$J,358.3,47212,0)
- ;;=C49.8^^209^2341^6
- ;;^UTILITY(U,$J,358.3,47212,1,0)
+ ;;^UTILITY(U,$J,358.3,44849,1,3,0)
+ ;;=3^Furuncle,Left Axilla
+ ;;^UTILITY(U,$J,358.3,44849,1,4,0)
+ ;;=4^L02.422
+ ;;^UTILITY(U,$J,358.3,44849,2)
+ ;;=^5008981
+ ;;^UTILITY(U,$J,358.3,44850,0)
+ ;;=L02.421^^170^2238^12
+ ;;^UTILITY(U,$J,358.3,44850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47212,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Connective/Soft Tissue
- ;;^UTILITY(U,$J,358.3,47212,1,4,0)
- ;;=4^C49.8
- ;;^UTILITY(U,$J,358.3,47212,2)
- ;;=^5001135
- ;;^UTILITY(U,$J,358.3,47213,0)
- ;;=C49.9^^209^2341^2
- ;;^UTILITY(U,$J,358.3,47213,1,0)
+ ;;^UTILITY(U,$J,358.3,44850,1,3,0)
+ ;;=3^Furuncle,Right Axilla
+ ;;^UTILITY(U,$J,358.3,44850,1,4,0)
+ ;;=4^L02.421
+ ;;^UTILITY(U,$J,358.3,44850,2)
+ ;;=^5008980
+ ;;^UTILITY(U,$J,358.3,44851,0)
+ ;;=L02.426^^170^2238^10
+ ;;^UTILITY(U,$J,358.3,44851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47213,1,3,0)
- ;;=3^Malig Neop of Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,47213,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,47213,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,47214,0)
- ;;=C15.3^^209^2342^5
- ;;^UTILITY(U,$J,358.3,47214,1,0)
+ ;;^UTILITY(U,$J,358.3,44851,1,3,0)
+ ;;=3^Furuncle,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,44851,1,4,0)
+ ;;=4^L02.426
+ ;;^UTILITY(U,$J,358.3,44851,2)
+ ;;=^5133643
+ ;;^UTILITY(U,$J,358.3,44852,0)
+ ;;=L02.425^^170^2238^13
+ ;;^UTILITY(U,$J,358.3,44852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47214,1,3,0)
- ;;=3^Malig Neop of Upper Third of Esophagus
- ;;^UTILITY(U,$J,358.3,47214,1,4,0)
- ;;=4^C15.3
- ;;^UTILITY(U,$J,358.3,47214,2)
- ;;=^267059
- ;;^UTILITY(U,$J,358.3,47215,0)
- ;;=C15.4^^209^2342^3
- ;;^UTILITY(U,$J,358.3,47215,1,0)
+ ;;^UTILITY(U,$J,358.3,44852,1,3,0)
+ ;;=3^Furuncle,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,44852,1,4,0)
+ ;;=4^L02.425
+ ;;^UTILITY(U,$J,358.3,44852,2)
+ ;;=^5008984
+ ;;^UTILITY(U,$J,358.3,44853,0)
+ ;;=L02.424^^170^2238^11
+ ;;^UTILITY(U,$J,358.3,44853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47215,1,3,0)
- ;;=3^Malig Neop of Middle Third of Esophagus
- ;;^UTILITY(U,$J,358.3,47215,1,4,0)
- ;;=4^C15.4
- ;;^UTILITY(U,$J,358.3,47215,2)
- ;;=^267060
- ;;^UTILITY(U,$J,358.3,47216,0)
- ;;=C15.5^^209^2342^2
- ;;^UTILITY(U,$J,358.3,47216,1,0)
+ ;;^UTILITY(U,$J,358.3,44853,1,3,0)
+ ;;=3^Furuncle,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,44853,1,4,0)
+ ;;=4^L02.424
+ ;;^UTILITY(U,$J,358.3,44853,2)
+ ;;=^5008983
+ ;;^UTILITY(U,$J,358.3,44854,0)
+ ;;=L02.423^^170^2238^14
+ ;;^UTILITY(U,$J,358.3,44854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47216,1,3,0)
- ;;=3^Malig Neop of Lower Third of Esophagus
- ;;^UTILITY(U,$J,358.3,47216,1,4,0)
- ;;=4^C15.5
- ;;^UTILITY(U,$J,358.3,47216,2)
- ;;=^267061
- ;;^UTILITY(U,$J,358.3,47217,0)
- ;;=C15.8^^209^2342^4
- ;;^UTILITY(U,$J,358.3,47217,1,0)
+ ;;^UTILITY(U,$J,358.3,44854,1,3,0)
+ ;;=3^Furuncle,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,44854,1,4,0)
+ ;;=4^L02.423
+ ;;^UTILITY(U,$J,358.3,44854,2)
+ ;;=^5008982
+ ;;^UTILITY(U,$J,358.3,44855,0)
+ ;;=L73.8^^170^2238^2
+ ;;^UTILITY(U,$J,358.3,44855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47217,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Esophagus
- ;;^UTILITY(U,$J,358.3,47217,1,4,0)
- ;;=4^C15.8
- ;;^UTILITY(U,$J,358.3,47217,2)
- ;;=^5000918
- ;;^UTILITY(U,$J,358.3,47218,0)
- ;;=C15.9^^209^2342^1
- ;;^UTILITY(U,$J,358.3,47218,1,0)
+ ;;^UTILITY(U,$J,358.3,44855,1,3,0)
+ ;;=3^Follicular D/O,Oth Spec (Superficial Folliculitis)
+ ;;^UTILITY(U,$J,358.3,44855,1,4,0)
+ ;;=4^L73.8
+ ;;^UTILITY(U,$J,358.3,44855,2)
+ ;;=^5009285
+ ;;^UTILITY(U,$J,358.3,44856,0)
+ ;;=B09.^^170^2239^4
+ ;;^UTILITY(U,$J,358.3,44856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47218,1,3,0)
- ;;=3^Malig Neop of Esophagus,Unspec
- ;;^UTILITY(U,$J,358.3,47218,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,47218,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,47219,0)
- ;;=C13.0^^209^2343^4
- ;;^UTILITY(U,$J,358.3,47219,1,0)
+ ;;^UTILITY(U,$J,358.3,44856,1,3,0)
+ ;;=3^Infection,Viral w/ Skin/Mucous Membrane Lesions
+ ;;^UTILITY(U,$J,358.3,44856,1,4,0)
+ ;;=4^B09.
+ ;;^UTILITY(U,$J,358.3,44856,2)
+ ;;=^5000534
+ ;;^UTILITY(U,$J,358.3,44857,0)
+ ;;=L08.9^^170^2239^3
+ ;;^UTILITY(U,$J,358.3,44857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47219,1,3,0)
- ;;=3^Malig Neop of Postcricoid Region
- ;;^UTILITY(U,$J,358.3,47219,1,4,0)
- ;;=4^C13.0
- ;;^UTILITY(U,$J,358.3,47219,2)
- ;;=^5000912
- ;;^UTILITY(U,$J,358.3,47220,0)
- ;;=C13.1^^209^2343^1
- ;;^UTILITY(U,$J,358.3,47220,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47220,1,3,0)
- ;;=3^Malig Neop of Aryepiglottic Fold
+ ;;^UTILITY(U,$J,358.3,44857,1,3,0)
+ ;;=3^Infection Local of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,44857,1,4,0)
+ ;;=4^L08.9

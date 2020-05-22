@@ -1,130 +1,128 @@
-IBDEI26U ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26U ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37120,1,4,0)
- ;;=4^M48.21
- ;;^UTILITY(U,$J,358.3,37120,2)
- ;;=^5012107
- ;;^UTILITY(U,$J,358.3,37121,0)
- ;;=M48.22^^140^1787^179
- ;;^UTILITY(U,$J,358.3,37121,1,0)
+ ;;^UTILITY(U,$J,358.3,34947,0)
+ ;;=H61.21^^137^1790^3
+ ;;^UTILITY(U,$J,358.3,34947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37121,1,3,0)
- ;;=3^Kissing spine, cervical region
- ;;^UTILITY(U,$J,358.3,37121,1,4,0)
- ;;=4^M48.22
- ;;^UTILITY(U,$J,358.3,37121,2)
- ;;=^5012108
- ;;^UTILITY(U,$J,358.3,37122,0)
- ;;=M48.23^^140^1787^180
- ;;^UTILITY(U,$J,358.3,37122,1,0)
+ ;;^UTILITY(U,$J,358.3,34947,1,3,0)
+ ;;=3^Impacted Cerumen,Rt Ear
+ ;;^UTILITY(U,$J,358.3,34947,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,34947,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,34948,0)
+ ;;=H90.6^^137^1790^4
+ ;;^UTILITY(U,$J,358.3,34948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37122,1,3,0)
- ;;=3^Kissing spine, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,37122,1,4,0)
- ;;=4^M48.23
- ;;^UTILITY(U,$J,358.3,37122,2)
- ;;=^5012109
- ;;^UTILITY(U,$J,358.3,37123,0)
- ;;=M48.24^^140^1787^185
- ;;^UTILITY(U,$J,358.3,37123,1,0)
+ ;;^UTILITY(U,$J,358.3,34948,1,3,0)
+ ;;=3^Mix Cndct/Snrl Hearing Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,34948,1,4,0)
+ ;;=4^H90.6
+ ;;^UTILITY(U,$J,358.3,34948,2)
+ ;;=^5006924
+ ;;^UTILITY(U,$J,358.3,34949,0)
+ ;;=H90.72^^137^1790^5
+ ;;^UTILITY(U,$J,358.3,34949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37123,1,3,0)
- ;;=3^Kissing spine, thoracic region
- ;;^UTILITY(U,$J,358.3,37123,1,4,0)
- ;;=4^M48.24
- ;;^UTILITY(U,$J,358.3,37123,2)
- ;;=^5012110
- ;;^UTILITY(U,$J,358.3,37124,0)
- ;;=M48.25^^140^1787^186
- ;;^UTILITY(U,$J,358.3,37124,1,0)
+ ;;^UTILITY(U,$J,358.3,34949,1,3,0)
+ ;;=3^Mix Cndct/Snrl Hearing Loss,Lt Ear
+ ;;^UTILITY(U,$J,358.3,34949,1,4,0)
+ ;;=4^H90.72
+ ;;^UTILITY(U,$J,358.3,34949,2)
+ ;;=^5006926
+ ;;^UTILITY(U,$J,358.3,34950,0)
+ ;;=H90.71^^137^1790^6
+ ;;^UTILITY(U,$J,358.3,34950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37124,1,3,0)
- ;;=3^Kissing spine, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,37124,1,4,0)
- ;;=4^M48.25
- ;;^UTILITY(U,$J,358.3,37124,2)
- ;;=^5012111
- ;;^UTILITY(U,$J,358.3,37125,0)
- ;;=M48.26^^140^1787^181
- ;;^UTILITY(U,$J,358.3,37125,1,0)
+ ;;^UTILITY(U,$J,358.3,34950,1,3,0)
+ ;;=3^Mix Cndct/Snrl Hearing Loss,Rt Ear
+ ;;^UTILITY(U,$J,358.3,34950,1,4,0)
+ ;;=4^H90.71
+ ;;^UTILITY(U,$J,358.3,34950,2)
+ ;;=^5006925
+ ;;^UTILITY(U,$J,358.3,34951,0)
+ ;;=H90.8^^137^1790^7
+ ;;^UTILITY(U,$J,358.3,34951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37125,1,3,0)
- ;;=3^Kissing spine, lumbar region
- ;;^UTILITY(U,$J,358.3,37125,1,4,0)
- ;;=4^M48.26
- ;;^UTILITY(U,$J,358.3,37125,2)
- ;;=^5012112
- ;;^UTILITY(U,$J,358.3,37126,0)
- ;;=M48.27^^140^1787^182
- ;;^UTILITY(U,$J,358.3,37126,1,0)
+ ;;^UTILITY(U,$J,358.3,34951,1,3,0)
+ ;;=3^Mix Cndct/Snrl Hearing Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,34951,1,4,0)
+ ;;=4^H90.8
+ ;;^UTILITY(U,$J,358.3,34951,2)
+ ;;=^5006927
+ ;;^UTILITY(U,$J,358.3,34952,0)
+ ;;=H90.3^^137^1790^8
+ ;;^UTILITY(U,$J,358.3,34952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37126,1,3,0)
- ;;=3^Kissing spine, lumbosacral region
- ;;^UTILITY(U,$J,358.3,37126,1,4,0)
- ;;=4^M48.27
- ;;^UTILITY(U,$J,358.3,37126,2)
- ;;=^5012113
- ;;^UTILITY(U,$J,358.3,37127,0)
- ;;=M48.10^^140^1787^55
- ;;^UTILITY(U,$J,358.3,37127,1,0)
+ ;;^UTILITY(U,$J,358.3,34952,1,3,0)
+ ;;=3^Sensorineural Hearing Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,34952,1,4,0)
+ ;;=4^H90.3
+ ;;^UTILITY(U,$J,358.3,34952,2)
+ ;;=^335328
+ ;;^UTILITY(U,$J,358.3,34953,0)
+ ;;=H90.42^^137^1790^9
+ ;;^UTILITY(U,$J,358.3,34953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37127,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], site unspec
- ;;^UTILITY(U,$J,358.3,37127,1,4,0)
- ;;=4^M48.10
- ;;^UTILITY(U,$J,358.3,37127,2)
- ;;=^5012096
- ;;^UTILITY(U,$J,358.3,37128,0)
- ;;=M48.11^^140^1787^53
- ;;^UTILITY(U,$J,358.3,37128,1,0)
+ ;;^UTILITY(U,$J,358.3,34953,1,3,0)
+ ;;=3^Sensorineural Hearing Loss,Lt Ear
+ ;;^UTILITY(U,$J,358.3,34953,1,4,0)
+ ;;=4^H90.42
+ ;;^UTILITY(U,$J,358.3,34953,2)
+ ;;=^5006922
+ ;;^UTILITY(U,$J,358.3,34954,0)
+ ;;=H90.41^^137^1790^10
+ ;;^UTILITY(U,$J,358.3,34954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37128,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], ocpito-atlanto-ax regn
- ;;^UTILITY(U,$J,358.3,37128,1,4,0)
- ;;=4^M48.11
- ;;^UTILITY(U,$J,358.3,37128,2)
- ;;=^5012097
- ;;^UTILITY(U,$J,358.3,37129,0)
- ;;=M48.12^^140^1787^48
- ;;^UTILITY(U,$J,358.3,37129,1,0)
+ ;;^UTILITY(U,$J,358.3,34954,1,3,0)
+ ;;=3^Sensorineural Hearing Loss,Rt Ear
+ ;;^UTILITY(U,$J,358.3,34954,1,4,0)
+ ;;=4^H90.41
+ ;;^UTILITY(U,$J,358.3,34954,2)
+ ;;=^5006921
+ ;;^UTILITY(U,$J,358.3,34955,0)
+ ;;=H93.13^^137^1790^11
+ ;;^UTILITY(U,$J,358.3,34955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37129,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], crvcl region
- ;;^UTILITY(U,$J,358.3,37129,1,4,0)
+ ;;^UTILITY(U,$J,358.3,34955,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,34955,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,34955,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,34956,0)
+ ;;=H93.12^^137^1790^12
+ ;;^UTILITY(U,$J,358.3,34956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34956,1,3,0)
+ ;;=3^Tinnitus,Lt Ear
+ ;;^UTILITY(U,$J,358.3,34956,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,34956,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,34957,0)
+ ;;=H93.11^^137^1790^13
+ ;;^UTILITY(U,$J,358.3,34957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34957,1,3,0)
+ ;;=3^Tinnitus,Rt Ear
+ ;;^UTILITY(U,$J,358.3,34957,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,34957,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,34958,0)
+ ;;=M48.12^^137^1791^1
+ ;;^UTILITY(U,$J,358.3,34958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34958,1,3,0)
+ ;;=3^Ankylosing Hyperostosis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,34958,1,4,0)
  ;;=4^M48.12
- ;;^UTILITY(U,$J,358.3,37129,2)
+ ;;^UTILITY(U,$J,358.3,34958,2)
  ;;=^5012098
- ;;^UTILITY(U,$J,358.3,37130,0)
- ;;=M48.13^^140^1787^49
- ;;^UTILITY(U,$J,358.3,37130,1,0)
+ ;;^UTILITY(U,$J,358.3,34959,0)
+ ;;=M48.16^^137^1791^3
+ ;;^UTILITY(U,$J,358.3,34959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37130,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], crvicothor regn
- ;;^UTILITY(U,$J,358.3,37130,1,4,0)
- ;;=4^M48.13
- ;;^UTILITY(U,$J,358.3,37130,2)
- ;;=^5012099
- ;;^UTILITY(U,$J,358.3,37131,0)
- ;;=M48.14^^140^1787^56
- ;;^UTILITY(U,$J,358.3,37131,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37131,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], thor regn
- ;;^UTILITY(U,$J,358.3,37131,1,4,0)
- ;;=4^M48.14
- ;;^UTILITY(U,$J,358.3,37131,2)
- ;;=^5012100
- ;;^UTILITY(U,$J,358.3,37132,0)
- ;;=M48.15^^140^1787^57
- ;;^UTILITY(U,$J,358.3,37132,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37132,1,3,0)
- ;;=3^Ankylsng hyperostosis [Forestier], thoralmbr regn
- ;;^UTILITY(U,$J,358.3,37132,1,4,0)
- ;;=4^M48.15
- ;;^UTILITY(U,$J,358.3,37132,2)
- ;;=^5012101
- ;;^UTILITY(U,$J,358.3,37133,0)
- ;;=M48.16^^140^1787^50

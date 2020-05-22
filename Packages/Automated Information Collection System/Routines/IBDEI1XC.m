@@ -1,128 +1,132 @@
-IBDEI1XC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32638,1,0)
+ ;;^UTILITY(U,$J,358.3,30735,1,3,0)
+ ;;=3^HTN w/ CKD w/ Stage 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,30735,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,30735,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,30736,0)
+ ;;=I95.1^^123^1584^10
+ ;;^UTILITY(U,$J,358.3,30736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32638,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ unsp sev, oth prt
- ;;^UTILITY(U,$J,358.3,32638,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,32638,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,32639,0)
- ;;=L97.524^^126^1621^13
- ;;^UTILITY(U,$J,358.3,32639,1,0)
+ ;;^UTILITY(U,$J,358.3,30736,1,3,0)
+ ;;=3^Hypotension,Orthostatic
+ ;;^UTILITY(U,$J,358.3,30736,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,30736,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,30737,0)
+ ;;=I95.89^^123^1584^11
+ ;;^UTILITY(U,$J,358.3,30737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32639,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ necr of bone, oth prt
- ;;^UTILITY(U,$J,358.3,32639,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,32639,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,32640,0)
- ;;=L97.523^^126^1621^14
- ;;^UTILITY(U,$J,358.3,32640,1,0)
+ ;;^UTILITY(U,$J,358.3,30737,1,3,0)
+ ;;=3^Hypotension,Other
+ ;;^UTILITY(U,$J,358.3,30737,1,4,0)
+ ;;=4^I95.89
+ ;;^UTILITY(U,$J,358.3,30737,2)
+ ;;=^5008079
+ ;;^UTILITY(U,$J,358.3,30738,0)
+ ;;=N17.9^^123^1584^12
+ ;;^UTILITY(U,$J,358.3,30738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32640,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ necr muscle, oth prt
- ;;^UTILITY(U,$J,358.3,32640,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,32640,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,32641,0)
- ;;=L97.522^^126^1621^12
- ;;^UTILITY(U,$J,358.3,32641,1,0)
+ ;;^UTILITY(U,$J,358.3,30738,1,3,0)
+ ;;=3^Kidney Failure,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,30738,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,30738,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,30739,0)
+ ;;=N18.5^^123^1584^3
+ ;;^UTILITY(U,$J,358.3,30739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32641,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ fat layer exp, oth prt
- ;;^UTILITY(U,$J,358.3,32641,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,32641,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,32642,0)
- ;;=L98.499^^126^1621^42
- ;;^UTILITY(U,$J,358.3,32642,1,0)
+ ;;^UTILITY(U,$J,358.3,30739,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,30739,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,30739,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,30740,0)
+ ;;=N18.9^^123^1584^4
+ ;;^UTILITY(U,$J,358.3,30740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32642,1,3,0)
- ;;=3^Non-pressure chron ulcer skin, sites w/ unsp severity
- ;;^UTILITY(U,$J,358.3,32642,1,4,0)
- ;;=4^L98.499
- ;;^UTILITY(U,$J,358.3,32642,2)
- ;;=^5009591
- ;;^UTILITY(U,$J,358.3,32643,0)
- ;;=R26.81^^126^1621^43
- ;;^UTILITY(U,$J,358.3,32643,1,0)
+ ;;^UTILITY(U,$J,358.3,30740,1,3,0)
+ ;;=3^Chronic Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,30740,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,30740,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,30741,0)
+ ;;=N39.0^^123^1584^14
+ ;;^UTILITY(U,$J,358.3,30741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32643,1,3,0)
- ;;=3^Unsteadiness on Feet
- ;;^UTILITY(U,$J,358.3,32643,1,4,0)
- ;;=4^R26.81
- ;;^UTILITY(U,$J,358.3,32643,2)
- ;;=^5019307
- ;;^UTILITY(U,$J,358.3,32644,0)
- ;;=E53.8^^126^1622^24
- ;;^UTILITY(U,$J,358.3,32644,1,0)
+ ;;^UTILITY(U,$J,358.3,30741,1,3,0)
+ ;;=3^Urinary Tract Infection,Unspec Site
+ ;;^UTILITY(U,$J,358.3,30741,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,30741,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,30742,0)
+ ;;=R31.9^^123^1584^8
+ ;;^UTILITY(U,$J,358.3,30742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32644,1,3,0)
- ;;=3^Vitamin B Group Deficiency NEC
- ;;^UTILITY(U,$J,358.3,32644,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,32644,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,32645,0)
- ;;=M21.171^^126^1622^19
- ;;^UTILITY(U,$J,358.3,32645,1,0)
+ ;;^UTILITY(U,$J,358.3,30742,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,30742,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,30742,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,30743,0)
+ ;;=R31.0^^123^1584^7
+ ;;^UTILITY(U,$J,358.3,30743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32645,1,3,0)
- ;;=3^Varus deformity, rt ankl, NEC
- ;;^UTILITY(U,$J,358.3,32645,1,4,0)
- ;;=4^M21.171
- ;;^UTILITY(U,$J,358.3,32645,2)
- ;;=^5011082
- ;;^UTILITY(U,$J,358.3,32646,0)
- ;;=M21.172^^126^1622^18
- ;;^UTILITY(U,$J,358.3,32646,1,0)
+ ;;^UTILITY(U,$J,358.3,30743,1,3,0)
+ ;;=3^Hematuria,Gross
+ ;;^UTILITY(U,$J,358.3,30743,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,30743,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,30744,0)
+ ;;=R60.9^^123^1584^6
+ ;;^UTILITY(U,$J,358.3,30744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32646,1,3,0)
- ;;=3^Varus deformity, lft ankl, NEC
- ;;^UTILITY(U,$J,358.3,32646,1,4,0)
- ;;=4^M21.172
- ;;^UTILITY(U,$J,358.3,32646,2)
- ;;=^5011083
- ;;^UTILITY(U,$J,358.3,32647,0)
- ;;=Q66.3^^126^1622^17
- ;;^UTILITY(U,$J,358.3,32647,1,0)
+ ;;^UTILITY(U,$J,358.3,30744,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,30744,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,30744,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,30745,0)
+ ;;=R07.89^^123^1584^2
+ ;;^UTILITY(U,$J,358.3,30745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32647,1,3,0)
- ;;=3^Varus Deformity of Foot,Congenital
- ;;^UTILITY(U,$J,358.3,32647,1,4,0)
- ;;=4^Q66.3
- ;;^UTILITY(U,$J,358.3,32647,2)
- ;;=^5018864
- ;;^UTILITY(U,$J,358.3,32648,0)
- ;;=I83.12^^126^1622^1
- ;;^UTILITY(U,$J,358.3,32648,1,0)
+ ;;^UTILITY(U,$J,358.3,30745,1,3,0)
+ ;;=3^Chest Pain,Other
+ ;;^UTILITY(U,$J,358.3,30745,1,4,0)
+ ;;=4^R07.89
+ ;;^UTILITY(U,$J,358.3,30745,2)
+ ;;=^5019200
+ ;;^UTILITY(U,$J,358.3,30746,0)
+ ;;=Z99.2^^123^1584^5
+ ;;^UTILITY(U,$J,358.3,30746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32648,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ inflammation
- ;;^UTILITY(U,$J,358.3,32648,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,32648,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,32649,0)
- ;;=I83.11^^126^1622^9
- ;;^UTILITY(U,$J,358.3,32649,1,0)
+ ;;^UTILITY(U,$J,358.3,30746,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,30746,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,30746,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,30747,0)
+ ;;=Z91.15^^123^1584^13
+ ;;^UTILITY(U,$J,358.3,30747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32649,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ inflammation
- ;;^UTILITY(U,$J,358.3,32649,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,32649,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,32650,0)
- ;;=I83.212^^126^1622^12
- ;;^UTILITY(U,$J,358.3,32650,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32650,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc calf & inflammation
+ ;;^UTILITY(U,$J,358.3,30747,1,3,0)
+ ;;=3^Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,30747,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,30747,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,30748,0)
+ ;;=N18.6^^123^1585^4

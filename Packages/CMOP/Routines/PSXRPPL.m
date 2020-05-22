@@ -1,5 +1,5 @@
 PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 AM
- ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69,70,81,83**;11 Apr 97;Build 2
+ ;;2.0;CMOP;**3,23,33,28,40,42,41,48,62,58,66,65,69,70,81,83,87**;11 Apr 97;Build 8
  ;Reference to ^PS(52.5,  supported by DBIA #1978
  ;Reference to ^PSRX(     supported by DBIA #1977
  ;Reference to ^PSOHLSN1  supported by DBIA #2385
@@ -12,6 +12,8 @@ PSXRPPL ;BIR/WPB,BAB-Gathers data for the CMOP Transmission ;13 Mar 2002  10:31 
  ;Reference to ^BPSUTIL   supported by DBIA #4410
  ;Reference to ^PS(59     supported by DBIA #1976
  ;Reference to $$SELPRT^PSOFDAUT supported by DBIA #5740
+ ;Reference to LOG^BPSOSL supported by ICR# 6764
+ ;Reference to IEN59^BPSOSRX supported by ICR# 4412
  ;
  ;Called from PSXRSUS -Builds ^PSX(550.2,,15,"C" , and returns to PSXRSUS or PSXRTRAN
  ;
@@ -21,20 +23,35 @@ SDT ;
  I $D(XRTL) D T0^%ZOSV
  S PSXTDIV=PSOSITE,PSXTYP=$S(+$G(PSXCS):"C",1:"N")
  ;
- ; - Submitting prescriptions to ECME (Electronic Claims Mgmt Engine) - 3rd pary
+ ; $$SBTECME^PSXRPPL1 goes through the suspense queue for either CS
+ ; or non-CS prescriptions (according to PSXTYP), up to and including
+ ; the through date (PRTDT).  For each Rx, it will send a claim if
+ ; the patient has insurance.
+ ;
  I $$ECMEON^BPSUTIL(PSXTDIV),$$CMOPON^BPSUTIL(PSXTDIV) D
  . N BPSCNT S BPSCNT=$$SBTECME^PSXRPPL1(PSXTYP,PSXTDIV,PRTDT,PSXDTRG)
  . ; - Wait 15 seconds per prescription sent to ECME (max of 2 hours)
  . I BPSCNT>0 H 60+$S((BPSCNT*15)>7200:7200,1:(BPSCNT*15))
  ;
- ; - Transmitting prescription to CMOP (up to THROUGH DATE)
+ ; After many additional checks, GETDATA^PSXRPPL will eventually add
+ ; each prescription to this batch (see RS550215, below).  Late in the
+ ; process, either they will be sent to CMOP (EN^PSXRTR) or labels
+ ; will be printed (PRT^PSXRPPL).
+ ;
  K ^TMP("PSXEPHIN",$J)
- S SDT=0 F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)) S XDFN=0 Q:(SDT>PRTDT)!(SDT'>0)  D
- . F  S XDFN=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,XDFN)) S REC=0 Q:(XDFN'>0)!(XDFN="")  D
+ S SDT=0
+ F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)),XDFN=0 Q:(SDT>PRTDT)!(SDT'>0)  D
+ . F  S XDFN=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,XDFN)),REC=0 Q:(XDFN'>0)!(XDFN="")  D
  . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,XDFN,REC)) Q:(REC'>0)!(REC="")  D
  . . . D GETDATA D:$G(RXN) PSOUL^PSSLOCK(RXN),OERRLOCK(RXN)
  ;
- ; - Pulling prescriptions ahead (parameter in OUTPATIENT SITE file #59)
+ ; After making a first pass through the suspense queue (SBTECME^
+ ; PSXRPPL1), it will now make a second pass (CHKDFN^PSXRPPL2) to look
+ ; for additional Rxs for patients who already have an Rx in the batch.
+ ; CHKDFN^PSXRPPL2 makes a pass and sends claims when appropriate, and
+ ; CHKDFN^PSXRPPL makes the same pass and calls GETDATA, which condi-
+ ; tionally adds each Rx to the batch.
+ ;
  I $G(PSXBAT),'$G(PSXRTRAN) D CHKDFN^PSXRPPL2(PRTDT)
  I $G(PSXBAT),'$G(PSXRTRAN) D CHKDFN
  ;
@@ -42,11 +59,12 @@ SDT ;
  I $D(^TMP("PSXEPHIN",$J)) D ^PSXBPSMS K ^TMP("PSXEPHIN",$J),^TMP("PSXEPHNB",$J)
  ;
 EXIT ;   
- K SDT,DFN,REC,RXNUM,PSXOK,FILNUM,REF,PNAME,CNAME,DIE,DR,NDFN,%,CNT,COM,DTTM,FILL,JJ,PRTDT,PSXDIV,XDFN,NFLAG,CIND,XDFN
+ K SDT,DFN,REC,RXNUM,PSXOK,FILNUM,REF,PNAME,CNAME,DIE,DR,%,CNT,COM,DTTM,FILL,JJ,PRTDT,PSXDIV,XDFN,NFLAG,CIND
  K CHKDT,DAYS,DRUG,DRUGCHK,NM,OPDT,PHARCLK,PHY,PSTAT,PTRA,PTRB,QTY,REL,RXERR,RXF,SFN,PSXDGST,PSXMC,PSXMDT
  S:$D(XRT0) XRTN=$T(+0) D:$D(XRT0) T1^%ZOSV
  K ^TMP("PSXEPHIN",$J),^TMP("PSXEPHNB",$J)
  Q
+ ;
 GETDATA ;Screens rxs and builds data
  ;PSXOK=1:NOT CMOP DRUG OR DO NOT MAIL,2:TRADENAME,3:WINDOW,4:PRINTED,5:NOT SUSPENDED
  ;PSXOK=6:ALREADY RELEASED,7:DIFFERENT DIVISION,8:BAD DATA IN 52.5
@@ -65,8 +83,12 @@ GETDATA ;Screens rxs and builds data
  ..D CHKACT^PSXMISC1(RXN)
  I PSXOK=8 K RXN Q
  ;
- N EPHQT S EPHQT=0
- I $$PATCH^XPDUTL("PSO*7.0*148") D EPHARM^PSXRPPL2 I EPHQT Q
+ N EPHQT
+ S EPHQT=0
+ I $$PATCH^XPDUTL("PSO*7.0*148"),'$$TRICVANB^PSXRPPL1(RXN,RFL) D EPHARM^PSXRPPL2
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RXN,RFL),$T(+0)_"-GETDATA, EPHQT="_EPHQT)  ; ICR #4412,6764
+ I EPHQT Q
+ ;
  D CHKDATA^PSXMISC1
 SET Q:(PSXOK=7)!(PSXOK=8)!(PSXOK=9)
  S PNAME=$G(VADM(1))
@@ -82,17 +104,18 @@ DELETE ; deletes the CMOP STATUS field in PS(52.5, reindex 'AC' x-ref
  S ^PS(52.5,"AC",$P(^PS(52.5,REC,0),"^",3),$P(^PS(52.5,REC,0),"^",2),REC)=""
  L -^PS(52.5,REC)
  Q
- ;the rest of the sub-routines go through the ^PSX(550.2,,15,"C"
- ;global and checks for RXs within the days ahead range and
- ;builds the ^PSX(550.2,PSXBAT,
-CHKDFN ; use the patient 'C' index under RX multiple in file 550.2 to GET dfn to gather Patients' future RXs
+ ;
+CHKDFN ;
  I '$D(^PSX(550.2,PSXBAT,15,"C")) Q
- S PSXPTNM="" F  S PSXPTNM=$O(^PSX(550.2,PSXBAT,15,"C",PSXPTNM)) Q:PSXPTNM=""  D
- . S XDFN=0 F  S XDFN=$O(^PSX(550.2,PSXBAT,"15","C",PSXPTNM,XDFN)) Q:(XDFN'>0)  D
- . . S SDT=PRTDT F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)),NDFN=0 Q:(SDT>PSXDTRG)!(SDT="")  D
- . . . F  S NDFN=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN)),REC=0 Q:NDFN'>0  I NDFN=XDFN D
- . . . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN,REC)) Q:REC'>0  D
- . . . . . D GETDATA D:$G(RXN) PSOUL^PSSLOCK(RXN),OERRLOCK(RXN)
+ S PSXPTNM=""
+ F  S PSXPTNM=$O(^PSX(550.2,PSXBAT,15,"C",PSXPTNM)) Q:PSXPTNM=""  D
+ . S XDFN=0
+ . F  S XDFN=$O(^PSX(550.2,PSXBAT,"15","C",PSXPTNM,XDFN)) Q:(XDFN'>0)  D
+ . . S SDT=PRTDT
+ . . F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)) Q:(SDT>PSXDTRG)!(SDT="")  D
+ . . . S REC=0
+ . . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,XDFN,REC)) Q:REC'>0  D
+ . . . . D GETDATA D:$G(RXN) PSOUL^PSSLOCK(RXN),OERRLOCK(RXN)
  Q
  ;
 BEGIN ; Select print device
@@ -116,17 +139,19 @@ FDAMG ; Selects FDA Medication Guide Printer
  . I FDAPRT'="",(FDAPRT'="^") S PSOFDAPT=FDAPRT
  Q
  ;
-PRT ; w auto error trapping
+PRT ; Print labels.
  D NOW^%DTC S DTTM=% K %
  S NM="" F  S NM=$O(^PSX(550.2,PSXBAT,15,"C",NM)) Q:NM=""  D DFN,PPL ;gather patient RXs, print patient RXs
  S DIK="^PSX(550.2,",DA=PSXBAT D ^DIK K PSXBAT
  K CHKDT,CIND,DAYS,DRUG,DRUGCHK,NFLAG,NM,ORD,PDT,PHARCLK,PHY,PSTAT,PTRA,PTRB,QTY,REL,RXERR,RXF,SFN,SIG,SITE,SUS,SUSPT
  Q
+ ;
 DFN S DFN=0,NFLAG=2
  F  S DFN=$O(^PSX(550.2,PSXBAT,15,"C",NM,DFN)),RXN=0 Q:(DFN="")!(DFN'>0)  D
  .F  S RXN=$O(^PSX(550.2,PSXBAT,15,"C",NM,DFN,RXN)),RXF="" Q:(RXN="")!(RXN'>0)  D
  ..F  S RXF=$O(^PSX(550.2,PSXBAT,15,"C",NM,DFN,RXN,RXF)) Q:RXF=""  D BLD
  Q
+ ;
 BLD ;
  S BATRXDA=$O(^PSX(550.2,PSXBAT,15,"B",RXN,0)) D NOW^%DTC S DTTM=%
  S REC=$P(^PSX(550.2,PSXBAT,15,BATRXDA,0),U,5),SUS=$O(^PS(52.5,"B",RXN,0))
@@ -146,8 +171,10 @@ LOCK L +^PSRX(RXN):600 G:'$T LOCK
  S ^PSRX(RXN,"A",CNT,0)=DTTM_"^S^"_DUZ_"^"_RFCNT_"^"_COM L -^PSRX(RXN)
  K CNT,COM,RFCNT,%,JJ,RF,Y,RXCNTR
  Q
+ ;
 PPL K PPL,PPL1 S ORD="" F  S ORD=$O(PSOSU(ORD)) Q:(ORD="")!(ORD'>0)  D PPL1
  Q
+ ;
 PPL1 ; print patient labels
  F SFN=0:0 S SFN=$O(PSOSU(ORD,SFN)) Q:'SFN  D
  . S:$L($G(PPL))<240 PPL=$P(PSOSU(ORD,SFN),"^")_","_$G(PPL)
@@ -158,6 +185,7 @@ PPL1 ; print patient labels
  I $D(PPL1) S PSNP=0,PPL=PPL1 D QLBL^PSORXL
  K PPL,PPL1,PSOSU(ORD)
  Q
+ ;
 DQUE ; sets the CMOP indicator field, and printed field in 52.5
  L +^PS(52.5,REC):600 G:'$T DQUE
  I NFLAG=4 D
@@ -174,6 +202,7 @@ DQUE ; sets the CMOP indicator field, and printed field in 52.5
  L -^PS(52.5,REC)
  I $G(NFLAG)=2 D EN^PSOHLSN1(RXN,"SC","ZU","CMOP Suspense Label Printed")
  Q
+ ;
 RX550215 ; put RX into RX multiple TRANS 550.215 for PSXBAT
  I '$G(PSXBAT) D BATCH^PSXRSYU ; first time through create batch, & return PSXBAT
  K DD,DO,DIC,DA,DR,D0
@@ -184,6 +213,7 @@ RX550215 ; put RX into RX multiple TRANS 550.215 for PSXBAT
  S PSXRXTDA=+Y ;RX DA within PSXBAT 'T'ransmission
  K DD,DO,DIC,DA,DR,D0
  Q
+ ;
 OERRLOCK(RXN) ; set XTMP for OERR/CPRS order locking
  I $G(PSXBAT),$G(RXN),$G(PSXRXTDA) I 1
  E  Q
@@ -195,8 +225,10 @@ RXNSET ; set ^XTMP("ORLK-"_ORDER per IA 4001 needs RXN
  S NOW=$$NOW^XLFDT,NOW1=$$FMADD^XLFDT(NOW,1)
  S ^XTMP("ORLK-"_+ORD,0)=NOW1_U_NOW_"^CPRS/CMOP RX/Order Lock",^(1)=DUZ_U_$J
  Q
+ ;
 RXNCLEAR ; needs RXN
  Q:'$G(RXN)
  N ORD S ORD=+$P($G(^PSRX(+$G(RXN),"OR1")),"^",2) Q:'ORD
  I $D(^XTMP("ORLK-"_ORD,0)),^(0)["CPRS/CMOP" K ^XTMP("ORLK-"_ORD)
  Q
+ ;

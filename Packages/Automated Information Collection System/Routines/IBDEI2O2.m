@@ -1,136 +1,116 @@
-IBDEI2O2 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2O2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44749,1,0)
+ ;;^UTILITY(U,$J,358.3,42524,1,4,0)
+ ;;=4^S42.364S
+ ;;^UTILITY(U,$J,358.3,42524,2)
+ ;;=^5027258
+ ;;^UTILITY(U,$J,358.3,42525,0)
+ ;;=S42.415S^^155^2071^91
+ ;;^UTILITY(U,$J,358.3,42525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44749,1,3,0)
- ;;=3^Fever,Drug-Induced
- ;;^UTILITY(U,$J,358.3,44749,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,44749,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,44750,0)
- ;;=R50.9^^200^2230^27
- ;;^UTILITY(U,$J,358.3,44750,1,0)
+ ;;^UTILITY(U,$J,358.3,42525,1,3,0)
+ ;;=3^Nondisp fx of simple suprcndl w/o intrcndl fx left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42525,1,4,0)
+ ;;=4^S42.415S
+ ;;^UTILITY(U,$J,358.3,42525,2)
+ ;;=^5027335
+ ;;^UTILITY(U,$J,358.3,42526,0)
+ ;;=S42.414S^^155^2071^92
+ ;;^UTILITY(U,$J,358.3,42526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44750,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,44750,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,44750,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,44751,0)
- ;;=R76.11^^200^2230^1
- ;;^UTILITY(U,$J,358.3,44751,1,0)
+ ;;^UTILITY(U,$J,358.3,42526,1,3,0)
+ ;;=3^Nondisp fx of simple suprcndl w/o intrcndl fx right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42526,1,4,0)
+ ;;=4^S42.414S
+ ;;^UTILITY(U,$J,358.3,42526,2)
+ ;;=^5027328
+ ;;^UTILITY(U,$J,358.3,42527,0)
+ ;;=S42.345S^^155^2071^93
+ ;;^UTILITY(U,$J,358.3,42527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44751,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,44751,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,44751,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,44752,0)
- ;;=Z21.^^200^2230^30
- ;;^UTILITY(U,$J,358.3,44752,1,0)
+ ;;^UTILITY(U,$J,358.3,42527,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of humerus, left arm, sequela   
+ ;;^UTILITY(U,$J,358.3,42527,1,4,0)
+ ;;=4^S42.345S
+ ;;^UTILITY(U,$J,358.3,42527,2)
+ ;;=^5027181
+ ;;^UTILITY(U,$J,358.3,42528,0)
+ ;;=S42.344S^^155^2071^94
+ ;;^UTILITY(U,$J,358.3,42528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44752,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,44752,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,44752,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,44753,0)
- ;;=B37.0^^200^2230^16
- ;;^UTILITY(U,$J,358.3,44753,1,0)
+ ;;^UTILITY(U,$J,358.3,42528,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of humerus, right arm, sequela  
+ ;;^UTILITY(U,$J,358.3,42528,1,4,0)
+ ;;=4^S42.344S
+ ;;^UTILITY(U,$J,358.3,42528,2)
+ ;;=^5027174
+ ;;^UTILITY(U,$J,358.3,42529,0)
+ ;;=S42.475S^^155^2071^97
+ ;;^UTILITY(U,$J,358.3,42529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44753,1,3,0)
- ;;=3^Candidal Stomatitis (Oral Thrush)
- ;;^UTILITY(U,$J,358.3,44753,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,44753,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,44754,0)
- ;;=B97.10^^200^2230^22
- ;;^UTILITY(U,$J,358.3,44754,1,0)
+ ;;^UTILITY(U,$J,358.3,42529,1,3,0)
+ ;;=3^Nondisp fx of transcondylar of left humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,42529,1,4,0)
+ ;;=4^S42.475S
+ ;;^UTILITY(U,$J,358.3,42529,2)
+ ;;=^5027608
+ ;;^UTILITY(U,$J,358.3,42530,0)
+ ;;=S42.474S^^155^2071^98
+ ;;^UTILITY(U,$J,358.3,42530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44754,1,3,0)
- ;;=3^Enterovirus,Unspec,as Cause of Disease
- ;;^UTILITY(U,$J,358.3,44754,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,44754,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,44755,0)
- ;;=R50.82^^200^2230^24
- ;;^UTILITY(U,$J,358.3,44755,1,0)
+ ;;^UTILITY(U,$J,358.3,42530,1,3,0)
+ ;;=3^Nondisp fx of transcondylar of right humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,42530,1,4,0)
+ ;;=4^S42.474S
+ ;;^UTILITY(U,$J,358.3,42530,2)
+ ;;=^5027601
+ ;;^UTILITY(U,$J,358.3,42531,0)
+ ;;=S42.325S^^155^2071^99
+ ;;^UTILITY(U,$J,358.3,42531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44755,1,3,0)
- ;;=3^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,44755,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,44755,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,44756,0)
- ;;=R50.83^^200^2230^26
- ;;^UTILITY(U,$J,358.3,44756,1,0)
+ ;;^UTILITY(U,$J,358.3,42531,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42531,1,4,0)
+ ;;=4^S42.325S
+ ;;^UTILITY(U,$J,358.3,42531,2)
+ ;;=^5027097
+ ;;^UTILITY(U,$J,358.3,42532,0)
+ ;;=S42.324S^^155^2071^100
+ ;;^UTILITY(U,$J,358.3,42532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44756,1,3,0)
- ;;=3^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,44756,1,4,0)
- ;;=4^R50.83
- ;;^UTILITY(U,$J,358.3,44756,2)
- ;;=^5019510
- ;;^UTILITY(U,$J,358.3,44757,0)
- ;;=R50.84^^200^2230^25
- ;;^UTILITY(U,$J,358.3,44757,1,0)
+ ;;^UTILITY(U,$J,358.3,42532,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of humerus, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42532,1,4,0)
+ ;;=4^S42.324S
+ ;;^UTILITY(U,$J,358.3,42532,2)
+ ;;=^5027090
+ ;;^UTILITY(U,$J,358.3,42533,0)
+ ;;=M84.422S^^155^2071^101
+ ;;^UTILITY(U,$J,358.3,42533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44757,1,3,0)
- ;;=3^Fever,Posttransfusion
- ;;^UTILITY(U,$J,358.3,44757,1,4,0)
- ;;=4^R50.84
- ;;^UTILITY(U,$J,358.3,44757,2)
- ;;=^5019511
- ;;^UTILITY(U,$J,358.3,44758,0)
- ;;=B02.23^^200^2230^70
- ;;^UTILITY(U,$J,358.3,44758,1,0)
+ ;;^UTILITY(U,$J,358.3,42533,1,3,0)
+ ;;=3^Pathological fracture, left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42533,1,4,0)
+ ;;=4^M84.422S
+ ;;^UTILITY(U,$J,358.3,42533,2)
+ ;;=^5013829
+ ;;^UTILITY(U,$J,358.3,42534,0)
+ ;;=M84.421S^^155^2071^103
+ ;;^UTILITY(U,$J,358.3,42534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44758,1,3,0)
- ;;=3^Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,44758,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,44758,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,44759,0)
- ;;=B02.22^^200^2230^71
- ;;^UTILITY(U,$J,358.3,44759,1,0)
+ ;;^UTILITY(U,$J,358.3,42534,1,3,0)
+ ;;=3^Pathological fracture, right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42534,1,4,0)
+ ;;=4^M84.421S
+ ;;^UTILITY(U,$J,358.3,42534,2)
+ ;;=^5013823
+ ;;^UTILITY(U,$J,358.3,42535,0)
+ ;;=S49.132S^^155^2071^116
+ ;;^UTILITY(U,$J,358.3,42535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44759,1,3,0)
- ;;=3^Postherpetic Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,44759,1,4,0)
- ;;=4^B02.22
- ;;^UTILITY(U,$J,358.3,44759,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,44760,0)
- ;;=J03.91^^200^2230^80
- ;;^UTILITY(U,$J,358.3,44760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44760,1,3,0)
- ;;=3^Tonsillitis,Acute Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,44760,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,44760,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,44761,0)
- ;;=K70.0^^200^2231^3
- ;;^UTILITY(U,$J,358.3,44761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44761,1,3,0)
- ;;=3^Alcoholic Fatty Liver
- ;;^UTILITY(U,$J,358.3,44761,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,44761,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,44762,0)
- ;;=K70.11^^200^2231^7
- ;;^UTILITY(U,$J,358.3,44762,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42535,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,42535,1,4,0)
+ ;;=4^S49.132S

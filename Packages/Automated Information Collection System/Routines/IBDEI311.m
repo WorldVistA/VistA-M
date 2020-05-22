@@ -1,130 +1,128 @@
-IBDEI311 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI311 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50750,1,0)
+ ;;^UTILITY(U,$J,358.3,48333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50750,1,3,0)
- ;;=3^Vitamin D deficiency, unspec
- ;;^UTILITY(U,$J,358.3,50750,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,50750,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,50751,0)
- ;;=G56.91^^222^2466^192
- ;;^UTILITY(U,$J,358.3,50751,1,0)
+ ;;^UTILITY(U,$J,358.3,48333,1,3,0)
+ ;;=3^Urinary Incontinence,Post-Void Dribbling
+ ;;^UTILITY(U,$J,358.3,48333,1,4,0)
+ ;;=4^N39.43
+ ;;^UTILITY(U,$J,358.3,48333,2)
+ ;;=^5015682
+ ;;^UTILITY(U,$J,358.3,48334,0)
+ ;;=N39.3^^185^2420^122
+ ;;^UTILITY(U,$J,358.3,48334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50751,1,3,0)
- ;;=3^Mononeuropathy of rt upr limb, unspec
- ;;^UTILITY(U,$J,358.3,50751,1,4,0)
- ;;=4^G56.91
- ;;^UTILITY(U,$J,358.3,50751,2)
- ;;=^5004036
- ;;^UTILITY(U,$J,358.3,50752,0)
- ;;=G56.92^^222^2466^191
- ;;^UTILITY(U,$J,358.3,50752,1,0)
+ ;;^UTILITY(U,$J,358.3,48334,1,3,0)
+ ;;=3^Urinary Incontinence,Stress,Male/Female
+ ;;^UTILITY(U,$J,358.3,48334,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,48334,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,48335,0)
+ ;;=R32.^^185^2420^123
+ ;;^UTILITY(U,$J,358.3,48335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50752,1,3,0)
- ;;=3^Mononeuropathy of lft upr limb, unspec
- ;;^UTILITY(U,$J,358.3,50752,1,4,0)
- ;;=4^G56.92
- ;;^UTILITY(U,$J,358.3,50752,2)
- ;;=^5004037
- ;;^UTILITY(U,$J,358.3,50753,0)
- ;;=M30.0^^222^2466^200
- ;;^UTILITY(U,$J,358.3,50753,1,0)
+ ;;^UTILITY(U,$J,358.3,48335,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,48335,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,48335,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,48336,0)
+ ;;=N39.41^^185^2420^124
+ ;;^UTILITY(U,$J,358.3,48336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50753,1,3,0)
- ;;=3^Polyarteritis nodosa
- ;;^UTILITY(U,$J,358.3,50753,1,4,0)
- ;;=4^M30.0
- ;;^UTILITY(U,$J,358.3,50753,2)
- ;;=^5011738
- ;;^UTILITY(U,$J,358.3,50754,0)
- ;;=M35.9^^222^2466^281
- ;;^UTILITY(U,$J,358.3,50754,1,0)
+ ;;^UTILITY(U,$J,358.3,48336,1,3,0)
+ ;;=3^Urinary Incontinence,Urge
+ ;;^UTILITY(U,$J,358.3,48336,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,48336,2)
+ ;;=Urinary Incontinence,Urge^5015680
+ ;;^UTILITY(U,$J,358.3,48337,0)
+ ;;=R33.0^^185^2420^125
+ ;;^UTILITY(U,$J,358.3,48337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50754,1,3,0)
- ;;=3^Systemic involvement of connective tissue, unspec
- ;;^UTILITY(U,$J,358.3,50754,1,4,0)
- ;;=4^M35.9
- ;;^UTILITY(U,$J,358.3,50754,2)
- ;;=^5011797
- ;;^UTILITY(U,$J,358.3,50755,0)
- ;;=M45.9^^222^2466^47
- ;;^UTILITY(U,$J,358.3,50755,1,0)
+ ;;^UTILITY(U,$J,358.3,48337,1,3,0)
+ ;;=3^Urinary Retention,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,48337,1,4,0)
+ ;;=4^R33.0
+ ;;^UTILITY(U,$J,358.3,48337,2)
+ ;;=^5019330
+ ;;^UTILITY(U,$J,358.3,48338,0)
+ ;;=R33.9^^185^2420^126
+ ;;^UTILITY(U,$J,358.3,48338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50755,1,3,0)
- ;;=3^Ankylosing spondylitis unspec sites in spine
- ;;^UTILITY(U,$J,358.3,50755,1,4,0)
- ;;=4^M45.9
- ;;^UTILITY(U,$J,358.3,50755,2)
- ;;=^5011969
- ;;^UTILITY(U,$J,358.3,50756,0)
- ;;=M45.0^^222^2466^42
- ;;^UTILITY(U,$J,358.3,50756,1,0)
+ ;;^UTILITY(U,$J,358.3,48338,1,3,0)
+ ;;=3^Urinary Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,48338,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,48338,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,48339,0)
+ ;;=R39.12^^185^2420^127
+ ;;^UTILITY(U,$J,358.3,48339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50756,1,3,0)
- ;;=3^Ankylosing spondylitis mltpl sites in spine
- ;;^UTILITY(U,$J,358.3,50756,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,50756,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,50757,0)
- ;;=M45.1^^222^2466^43
- ;;^UTILITY(U,$J,358.3,50757,1,0)
+ ;;^UTILITY(U,$J,358.3,48339,1,3,0)
+ ;;=3^Urinary Stream,Poor
+ ;;^UTILITY(U,$J,358.3,48339,1,4,0)
+ ;;=4^R39.12
+ ;;^UTILITY(U,$J,358.3,48339,2)
+ ;;=^5019342
+ ;;^UTILITY(U,$J,358.3,48340,0)
+ ;;=R39.13^^185^2420^128
+ ;;^UTILITY(U,$J,358.3,48340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50757,1,3,0)
- ;;=3^Ankylosing spondylitis occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,50757,1,4,0)
- ;;=4^M45.1
- ;;^UTILITY(U,$J,358.3,50757,2)
- ;;=^5011961
- ;;^UTILITY(U,$J,358.3,50758,0)
- ;;=M45.2^^222^2466^38
- ;;^UTILITY(U,$J,358.3,50758,1,0)
+ ;;^UTILITY(U,$J,358.3,48340,1,3,0)
+ ;;=3^Urinary Stream,Splitting
+ ;;^UTILITY(U,$J,358.3,48340,1,4,0)
+ ;;=4^R39.13
+ ;;^UTILITY(U,$J,358.3,48340,2)
+ ;;=^5019343
+ ;;^UTILITY(U,$J,358.3,48341,0)
+ ;;=N39.9^^185^2420^129
+ ;;^UTILITY(U,$J,358.3,48341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50758,1,3,0)
- ;;=3^Ankylosing spondylitis cervical region
- ;;^UTILITY(U,$J,358.3,50758,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,50758,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,50759,0)
- ;;=M45.3^^222^2466^39
- ;;^UTILITY(U,$J,358.3,50759,1,0)
+ ;;^UTILITY(U,$J,358.3,48341,1,3,0)
+ ;;=3^Urinary System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48341,1,4,0)
+ ;;=4^N39.9
+ ;;^UTILITY(U,$J,358.3,48341,2)
+ ;;=^5015688
+ ;;^UTILITY(U,$J,358.3,48342,0)
+ ;;=N39.0^^185^2420^105
+ ;;^UTILITY(U,$J,358.3,48342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50759,1,3,0)
- ;;=3^Ankylosing spondylitis crvicothrcic region
- ;;^UTILITY(U,$J,358.3,50759,1,4,0)
- ;;=4^M45.3
- ;;^UTILITY(U,$J,358.3,50759,2)
- ;;=^5011963
- ;;^UTILITY(U,$J,358.3,50760,0)
- ;;=M45.4^^222^2466^45
- ;;^UTILITY(U,$J,358.3,50760,1,0)
+ ;;^UTILITY(U,$J,358.3,48342,1,3,0)
+ ;;=3^UTI,Site not Specified
+ ;;^UTILITY(U,$J,358.3,48342,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,48342,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,48343,0)
+ ;;=Z87.440^^185^2420^77
+ ;;^UTILITY(U,$J,358.3,48343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50760,1,3,0)
- ;;=3^Ankylosing spondylitis thoracic region
- ;;^UTILITY(U,$J,358.3,50760,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,50760,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,50761,0)
- ;;=M45.5^^222^2466^46
- ;;^UTILITY(U,$J,358.3,50761,1,0)
+ ;;^UTILITY(U,$J,358.3,48343,1,3,0)
+ ;;=3^Personal Hx of UTI
+ ;;^UTILITY(U,$J,358.3,48343,1,4,0)
+ ;;=4^Z87.440
+ ;;^UTILITY(U,$J,358.3,48343,2)
+ ;;=^5063495
+ ;;^UTILITY(U,$J,358.3,48344,0)
+ ;;=R39.15^^185^2420^130
+ ;;^UTILITY(U,$J,358.3,48344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50761,1,3,0)
- ;;=3^Ankylosing spondylitis thoracolumbar regn
- ;;^UTILITY(U,$J,358.3,50761,1,4,0)
- ;;=4^M45.5
- ;;^UTILITY(U,$J,358.3,50761,2)
- ;;=^5011965
- ;;^UTILITY(U,$J,358.3,50762,0)
- ;;=M45.6^^222^2466^40
- ;;^UTILITY(U,$J,358.3,50762,1,0)
+ ;;^UTILITY(U,$J,358.3,48344,1,3,0)
+ ;;=3^Urinary Urgency
+ ;;^UTILITY(U,$J,358.3,48344,1,4,0)
+ ;;=4^R39.15
+ ;;^UTILITY(U,$J,358.3,48344,2)
+ ;;=^5019345
+ ;;^UTILITY(U,$J,358.3,48345,0)
+ ;;=R39.0^^185^2420^112
+ ;;^UTILITY(U,$J,358.3,48345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50762,1,3,0)
- ;;=3^Ankylosing spondylitis lumbar region
- ;;^UTILITY(U,$J,358.3,50762,1,4,0)
- ;;=4^M45.6
+ ;;^UTILITY(U,$J,358.3,48345,1,3,0)
+ ;;=3^Urinary Extravasation

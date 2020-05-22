@@ -1,138 +1,112 @@
-IBDEI38K ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54386,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,54386,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,54387,0)
- ;;=L40.1^^256^2764^256
- ;;^UTILITY(U,$J,358.3,54387,1,0)
+ ;;^UTILITY(U,$J,358.3,51665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54387,1,3,0)
- ;;=3^Pustulosis Psoriasis,Generalized
- ;;^UTILITY(U,$J,358.3,54387,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,54387,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,54388,0)
- ;;=L40.2^^256^2764^11
- ;;^UTILITY(U,$J,358.3,54388,1,0)
+ ;;^UTILITY(U,$J,358.3,51665,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51665,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,51665,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,51666,0)
+ ;;=S56.117A^^193^2510^46
+ ;;^UTILITY(U,$J,358.3,51666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54388,1,3,0)
- ;;=3^Acrodermatitis Continua
- ;;^UTILITY(U,$J,358.3,54388,1,4,0)
- ;;=4^L40.2
- ;;^UTILITY(U,$J,358.3,54388,2)
- ;;=^5009162
- ;;^UTILITY(U,$J,358.3,54389,0)
- ;;=L40.3^^256^2764^255
- ;;^UTILITY(U,$J,358.3,54389,1,0)
+ ;;^UTILITY(U,$J,358.3,51666,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51666,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,51666,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,51667,0)
+ ;;=S56.118A^^193^2510^26
+ ;;^UTILITY(U,$J,358.3,51667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54389,1,3,0)
- ;;=3^Pustulosis Palmaris et Plantaris
- ;;^UTILITY(U,$J,358.3,54389,1,4,0)
- ;;=4^L40.3
- ;;^UTILITY(U,$J,358.3,54389,2)
- ;;=^5009163
- ;;^UTILITY(U,$J,358.3,54390,0)
- ;;=L40.4^^256^2764^157
- ;;^UTILITY(U,$J,358.3,54390,1,0)
+ ;;^UTILITY(U,$J,358.3,51667,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51667,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,51667,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,51668,0)
+ ;;=S56.211A^^193^2510^40
+ ;;^UTILITY(U,$J,358.3,51668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54390,1,3,0)
- ;;=3^Guttate Psoriasis
- ;;^UTILITY(U,$J,358.3,54390,1,4,0)
- ;;=4^L40.4
- ;;^UTILITY(U,$J,358.3,54390,2)
- ;;=^5009164
- ;;^UTILITY(U,$J,358.3,54391,0)
- ;;=L40.8^^256^2764^252
- ;;^UTILITY(U,$J,358.3,54391,1,0)
+ ;;^UTILITY(U,$J,358.3,51668,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51668,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,51668,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,51669,0)
+ ;;=S56.212A^^193^2510^20
+ ;;^UTILITY(U,$J,358.3,51669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54391,1,3,0)
- ;;=3^Psoriasis NEC
- ;;^UTILITY(U,$J,358.3,54391,1,4,0)
- ;;=4^L40.8
- ;;^UTILITY(U,$J,358.3,54391,2)
- ;;=^271917
- ;;^UTILITY(U,$J,358.3,54392,0)
- ;;=L40.9^^256^2764^254
- ;;^UTILITY(U,$J,358.3,54392,1,0)
+ ;;^UTILITY(U,$J,358.3,51669,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51669,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,51669,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,51670,0)
+ ;;=S56.311A^^193^2510^56
+ ;;^UTILITY(U,$J,358.3,51670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54392,1,3,0)
- ;;=3^Psoriasis,Unspec
- ;;^UTILITY(U,$J,358.3,54392,1,4,0)
- ;;=4^L40.9
- ;;^UTILITY(U,$J,358.3,54392,2)
- ;;=^5009171
- ;;^UTILITY(U,$J,358.3,54393,0)
- ;;=L50.9^^256^2764^286
- ;;^UTILITY(U,$J,358.3,54393,1,0)
+ ;;^UTILITY(U,$J,358.3,51670,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51670,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,51670,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,51671,0)
+ ;;=S56.312A^^193^2510^35
+ ;;^UTILITY(U,$J,358.3,51671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54393,1,3,0)
- ;;=3^Urticaria,Unspec
- ;;^UTILITY(U,$J,358.3,54393,1,4,0)
- ;;=4^L50.9
- ;;^UTILITY(U,$J,358.3,54393,2)
- ;;=^5009204
- ;;^UTILITY(U,$J,358.3,54394,0)
- ;;=L53.8^^256^2764^147
- ;;^UTILITY(U,$J,358.3,54394,1,0)
+ ;;^UTILITY(U,$J,358.3,51671,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51671,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,51671,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,51672,0)
+ ;;=S56.411A^^193^2510^44
+ ;;^UTILITY(U,$J,358.3,51672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54394,1,3,0)
- ;;=3^Erythematous Conditions NEC
- ;;^UTILITY(U,$J,358.3,54394,1,4,0)
- ;;=4^L53.8
- ;;^UTILITY(U,$J,358.3,54394,2)
- ;;=^88044
- ;;^UTILITY(U,$J,358.3,54395,0)
- ;;=L53.9^^256^2764^146
- ;;^UTILITY(U,$J,358.3,54395,1,0)
+ ;;^UTILITY(U,$J,358.3,51672,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51672,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,51672,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,51673,0)
+ ;;=S56.412A^^193^2510^24
+ ;;^UTILITY(U,$J,358.3,51673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54395,1,3,0)
- ;;=3^Erythematous Condition,Unspec
- ;;^UTILITY(U,$J,358.3,54395,1,4,0)
- ;;=4^L53.9
- ;;^UTILITY(U,$J,358.3,54395,2)
- ;;=^5009210
- ;;^UTILITY(U,$J,358.3,54396,0)
- ;;=L54.^^256^2764^145
- ;;^UTILITY(U,$J,358.3,54396,1,0)
+ ;;^UTILITY(U,$J,358.3,51673,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51673,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,51673,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,51674,0)
+ ;;=S56.413A^^193^2510^52
+ ;;^UTILITY(U,$J,358.3,51674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54396,1,3,0)
- ;;=3^Erythema in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,54396,1,4,0)
- ;;=4^L54.
- ;;^UTILITY(U,$J,358.3,54396,2)
- ;;=^5009211
- ;;^UTILITY(U,$J,358.3,54397,0)
- ;;=L56.0^^256^2764^139
- ;;^UTILITY(U,$J,358.3,54397,1,0)
+ ;;^UTILITY(U,$J,358.3,51674,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51674,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,51674,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,51675,0)
+ ;;=S56.414A^^193^2510^32
+ ;;^UTILITY(U,$J,358.3,51675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54397,1,3,0)
- ;;=3^Drug Phototoxic Response
- ;;^UTILITY(U,$J,358.3,54397,1,4,0)
- ;;=4^L56.0
- ;;^UTILITY(U,$J,358.3,54397,2)
- ;;=^5009214
- ;;^UTILITY(U,$J,358.3,54398,0)
- ;;=L56.1^^256^2764^138
- ;;^UTILITY(U,$J,358.3,54398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54398,1,3,0)
- ;;=3^Drug Photoallergic Response
- ;;^UTILITY(U,$J,358.3,54398,1,4,0)
- ;;=4^L56.1
- ;;^UTILITY(U,$J,358.3,54398,2)
- ;;=^5009215
- ;;^UTILITY(U,$J,358.3,54399,0)
- ;;=L56.2^^256^2764^236
- ;;^UTILITY(U,$J,358.3,54399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54399,1,3,0)
- ;;=3^Photocontact Dermatitis
- ;;^UTILITY(U,$J,358.3,54399,1,4,0)
- ;;=4^L56.2
- ;;^UTILITY(U,$J,358.3,54399,2)
- ;;=^5009216
+ ;;^UTILITY(U,$J,358.3,51675,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51675,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,51675,2)
+ ;;=^5031772

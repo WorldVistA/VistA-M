@@ -1,136 +1,124 @@
-IBDEI28W ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28W ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38090,0)
- ;;=Z59.2^^145^1838^1
- ;;^UTILITY(U,$J,358.3,38090,1,0)
+ ;;^UTILITY(U,$J,358.3,35848,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,35848,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,35849,0)
+ ;;=M19.041^^139^1826^28
+ ;;^UTILITY(U,$J,358.3,35849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38090,1,3,0)
- ;;=3^Discord w/ Neighbors,Lodgers or Landlord
- ;;^UTILITY(U,$J,358.3,38090,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,38090,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,38091,0)
- ;;=Z59.0^^145^1838^3
- ;;^UTILITY(U,$J,358.3,38091,1,0)
+ ;;^UTILITY(U,$J,358.3,35849,1,3,0)
+ ;;=3^Primary Osteoarthritis,Rt Hand
+ ;;^UTILITY(U,$J,358.3,35849,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,35849,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,35850,0)
+ ;;=M19.011^^139^1826^29
+ ;;^UTILITY(U,$J,358.3,35850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38091,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,38091,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,38091,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,38092,0)
- ;;=Z59.1^^145^1838^5
- ;;^UTILITY(U,$J,358.3,38092,1,0)
+ ;;^UTILITY(U,$J,358.3,35850,1,3,0)
+ ;;=3^Primary Osteoarthritis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,35850,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,35850,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,35851,0)
+ ;;=M76.12^^139^1826^30
+ ;;^UTILITY(U,$J,358.3,35851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38092,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,38092,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,38092,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,38093,0)
- ;;=Z59.3^^145^1838^9
- ;;^UTILITY(U,$J,358.3,38093,1,0)
+ ;;^UTILITY(U,$J,358.3,35851,1,3,0)
+ ;;=3^Psoas Tendinitis,Lt Hip
+ ;;^UTILITY(U,$J,358.3,35851,1,4,0)
+ ;;=4^M76.12
+ ;;^UTILITY(U,$J,358.3,35851,2)
+ ;;=^5013271
+ ;;^UTILITY(U,$J,358.3,35852,0)
+ ;;=M76.11^^139^1826^31
+ ;;^UTILITY(U,$J,358.3,35852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38093,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,38093,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,38093,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,38094,0)
- ;;=Z59.4^^145^1838^7
- ;;^UTILITY(U,$J,358.3,38094,1,0)
+ ;;^UTILITY(U,$J,358.3,35852,1,3,0)
+ ;;=3^Psoas Tendinitis,Rt Hip
+ ;;^UTILITY(U,$J,358.3,35852,1,4,0)
+ ;;=4^M76.11
+ ;;^UTILITY(U,$J,358.3,35852,2)
+ ;;=^5013270
+ ;;^UTILITY(U,$J,358.3,35853,0)
+ ;;=M70.62^^139^1826^16
+ ;;^UTILITY(U,$J,358.3,35853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38094,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,38094,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,38094,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,38095,0)
- ;;=Z59.5^^145^1838^2
- ;;^UTILITY(U,$J,358.3,38095,1,0)
+ ;;^UTILITY(U,$J,358.3,35853,1,3,0)
+ ;;=3^Greater Trochanteric Bursitis,Lt Hip
+ ;;^UTILITY(U,$J,358.3,35853,1,4,0)
+ ;;=4^M70.62
+ ;;^UTILITY(U,$J,358.3,35853,2)
+ ;;=^5013060
+ ;;^UTILITY(U,$J,358.3,35854,0)
+ ;;=M70.61^^139^1826^17
+ ;;^UTILITY(U,$J,358.3,35854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38095,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,38095,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,38095,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,38096,0)
- ;;=Z59.6^^145^1838^8
- ;;^UTILITY(U,$J,358.3,38096,1,0)
+ ;;^UTILITY(U,$J,358.3,35854,1,3,0)
+ ;;=3^Greater Trochanteric Bursitis,Rt Hip
+ ;;^UTILITY(U,$J,358.3,35854,1,4,0)
+ ;;=4^M70.61
+ ;;^UTILITY(U,$J,358.3,35854,2)
+ ;;=^5013059
+ ;;^UTILITY(U,$J,358.3,35855,0)
+ ;;=M70.51^^139^1826^22
+ ;;^UTILITY(U,$J,358.3,35855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38096,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,38096,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,38096,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,38097,0)
- ;;=Z59.7^^145^1838^6
- ;;^UTILITY(U,$J,358.3,38097,1,0)
+ ;;^UTILITY(U,$J,358.3,35855,1,3,0)
+ ;;=3^Pes Anserine Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,35855,1,4,0)
+ ;;=4^M70.51
+ ;;^UTILITY(U,$J,358.3,35855,2)
+ ;;=^5013056
+ ;;^UTILITY(U,$J,358.3,35856,0)
+ ;;=M70.52^^139^1826^21
+ ;;^UTILITY(U,$J,358.3,35856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38097,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,38097,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,38097,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,38098,0)
- ;;=Z59.9^^145^1838^4
- ;;^UTILITY(U,$J,358.3,38098,1,0)
+ ;;^UTILITY(U,$J,358.3,35856,1,3,0)
+ ;;=3^Pes Anserine Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,35856,1,4,0)
+ ;;=4^M70.52
+ ;;^UTILITY(U,$J,358.3,35856,2)
+ ;;=^5013057
+ ;;^UTILITY(U,$J,358.3,35857,0)
+ ;;=S22.9XXS^^139^1827^3
+ ;;^UTILITY(U,$J,358.3,35857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38098,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,38098,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,38098,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,38099,0)
- ;;=G21.19^^145^1839^11
- ;;^UTILITY(U,$J,358.3,38099,1,0)
+ ;;^UTILITY(U,$J,358.3,35857,1,3,0)
+ ;;=3^Fx,Bony thorax, part unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,35857,1,4,0)
+ ;;=4^S22.9XXS
+ ;;^UTILITY(U,$J,358.3,35857,2)
+ ;;=^5023158
+ ;;^UTILITY(U,$J,358.3,35858,0)
+ ;;=S42.92XS^^139^1827^9
+ ;;^UTILITY(U,$J,358.3,35858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38099,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,38099,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,38099,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,38100,0)
- ;;=G21.11^^145^1839^14
- ;;^UTILITY(U,$J,358.3,38100,1,0)
+ ;;^UTILITY(U,$J,358.3,35858,1,3,0)
+ ;;=3^Fx,Left shoulder girdle, part unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,35858,1,4,0)
+ ;;=4^S42.92XS
+ ;;^UTILITY(U,$J,358.3,35858,2)
+ ;;=^5027656
+ ;;^UTILITY(U,$J,358.3,35859,0)
+ ;;=S12.9XXS^^139^1827^18
+ ;;^UTILITY(U,$J,358.3,35859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38100,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,38100,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,38100,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,38101,0)
- ;;=G24.02^^145^1839^8
- ;;^UTILITY(U,$J,358.3,38101,1,0)
+ ;;^UTILITY(U,$J,358.3,35859,1,3,0)
+ ;;=3^Fx,Neck, unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,35859,1,4,0)
+ ;;=4^S12.9XXS
+ ;;^UTILITY(U,$J,358.3,35859,2)
+ ;;=^5021964
+ ;;^UTILITY(U,$J,358.3,35860,0)
+ ;;=S42.91XS^^139^1827^27
+ ;;^UTILITY(U,$J,358.3,35860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38101,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,38101,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,38101,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,38102,0)
- ;;=G24.01^^145^1839^16
- ;;^UTILITY(U,$J,358.3,38102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38102,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,38102,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,38102,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,38103,0)
- ;;=G24.09^^145^1839^17
+ ;;^UTILITY(U,$J,358.3,35860,1,3,0)
+ ;;=3^Fx,Right shoulder girdle, part unspecified, sequela

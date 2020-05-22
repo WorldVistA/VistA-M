@@ -1,126 +1,122 @@
-IBDEI1SF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30369,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of digestive system
- ;;^UTILITY(U,$J,358.3,30369,1,4,0)
- ;;=4^D49.0
- ;;^UTILITY(U,$J,358.3,30369,2)
- ;;=^5002270
- ;;^UTILITY(U,$J,358.3,30370,0)
- ;;=D49.1^^118^1507^12
- ;;^UTILITY(U,$J,358.3,30370,1,0)
+ ;;^UTILITY(U,$J,358.3,28553,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,28553,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,28554,0)
+ ;;=F12.921^^115^1407^12
+ ;;^UTILITY(U,$J,358.3,28554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30370,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of respiratory system
- ;;^UTILITY(U,$J,358.3,30370,1,4,0)
- ;;=4^D49.1
- ;;^UTILITY(U,$J,358.3,30370,2)
- ;;=^5002271
- ;;^UTILITY(U,$J,358.3,30371,0)
- ;;=D49.2^^118^1507^5
- ;;^UTILITY(U,$J,358.3,30371,1,0)
+ ;;^UTILITY(U,$J,358.3,28554,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28554,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,28554,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,28555,0)
+ ;;=F12.229^^115^1407^16
+ ;;^UTILITY(U,$J,358.3,28555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30371,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of bone, soft tissue, and skin
- ;;^UTILITY(U,$J,358.3,30371,1,4,0)
- ;;=4^D49.2
- ;;^UTILITY(U,$J,358.3,30371,2)
- ;;=^5002272
- ;;^UTILITY(U,$J,358.3,30372,0)
- ;;=D49.3^^118^1507^7
- ;;^UTILITY(U,$J,358.3,30372,1,0)
+ ;;^UTILITY(U,$J,358.3,28555,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28555,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,28555,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,28556,0)
+ ;;=F12.122^^115^1407^13
+ ;;^UTILITY(U,$J,358.3,28556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30372,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of breast
- ;;^UTILITY(U,$J,358.3,30372,1,4,0)
- ;;=4^D49.3
- ;;^UTILITY(U,$J,358.3,30372,2)
- ;;=^5002273
- ;;^UTILITY(U,$J,358.3,30373,0)
- ;;=D49.4^^118^1507^4
- ;;^UTILITY(U,$J,358.3,30373,1,0)
+ ;;^UTILITY(U,$J,358.3,28556,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28556,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,28556,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,28557,0)
+ ;;=F12.222^^115^1407^14
+ ;;^UTILITY(U,$J,358.3,28557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30373,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of bladder
- ;;^UTILITY(U,$J,358.3,30373,1,4,0)
- ;;=4^D49.4
- ;;^UTILITY(U,$J,358.3,30373,2)
- ;;=^5002274
- ;;^UTILITY(U,$J,358.3,30374,0)
- ;;=D49.5^^118^1507^10
- ;;^UTILITY(U,$J,358.3,30374,1,0)
+ ;;^UTILITY(U,$J,358.3,28557,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28557,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,28557,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,28558,0)
+ ;;=F12.922^^115^1407^15
+ ;;^UTILITY(U,$J,358.3,28558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30374,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of other genitourinary organs
- ;;^UTILITY(U,$J,358.3,30374,1,4,0)
- ;;=4^D49.5
- ;;^UTILITY(U,$J,358.3,30374,2)
- ;;=^5002275
- ;;^UTILITY(U,$J,358.3,30375,0)
- ;;=D49.6^^118^1507^6
- ;;^UTILITY(U,$J,358.3,30375,1,0)
+ ;;^UTILITY(U,$J,358.3,28558,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28558,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,28558,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,28559,0)
+ ;;=F12.980^^115^1407^3
+ ;;^UTILITY(U,$J,358.3,28559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30375,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of brain
- ;;^UTILITY(U,$J,358.3,30375,1,4,0)
- ;;=4^D49.6
- ;;^UTILITY(U,$J,358.3,30375,2)
- ;;=^5002276
- ;;^UTILITY(U,$J,358.3,30376,0)
- ;;=D49.7^^118^1507^9
- ;;^UTILITY(U,$J,358.3,30376,1,0)
+ ;;^UTILITY(U,$J,358.3,28559,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28559,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,28559,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,28560,0)
+ ;;=F12.159^^115^1407^4
+ ;;^UTILITY(U,$J,358.3,28560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30376,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of endo glands
- ;;^UTILITY(U,$J,358.3,30376,1,4,0)
- ;;=4^D49.7
- ;;^UTILITY(U,$J,358.3,30376,2)
- ;;=^5002277
- ;;^UTILITY(U,$J,358.3,30377,0)
- ;;=D49.81^^118^1507^13
- ;;^UTILITY(U,$J,358.3,30377,1,0)
+ ;;^UTILITY(U,$J,358.3,28560,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28560,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,28560,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,28561,0)
+ ;;=F12.259^^115^1407^5
+ ;;^UTILITY(U,$J,358.3,28561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30377,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of retina and choroid
- ;;^UTILITY(U,$J,358.3,30377,1,4,0)
- ;;=4^D49.81
- ;;^UTILITY(U,$J,358.3,30377,2)
- ;;=^5002278
- ;;^UTILITY(U,$J,358.3,30378,0)
- ;;=D49.89^^118^1507^11
- ;;^UTILITY(U,$J,358.3,30378,1,0)
+ ;;^UTILITY(U,$J,358.3,28561,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28561,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,28561,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,28562,0)
+ ;;=F12.959^^115^1407^6
+ ;;^UTILITY(U,$J,358.3,28562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30378,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of other specified sites
- ;;^UTILITY(U,$J,358.3,30378,1,4,0)
- ;;=4^D49.89
- ;;^UTILITY(U,$J,358.3,30378,2)
- ;;=^5002279
- ;;^UTILITY(U,$J,358.3,30379,0)
- ;;=D49.9^^118^1507^14
- ;;^UTILITY(U,$J,358.3,30379,1,0)
+ ;;^UTILITY(U,$J,358.3,28562,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28562,1,4,0)
+ ;;=4^F12.959
+ ;;^UTILITY(U,$J,358.3,28562,2)
+ ;;=^5003185
+ ;;^UTILITY(U,$J,358.3,28563,0)
+ ;;=F12.988^^115^1407^9
+ ;;^UTILITY(U,$J,358.3,28563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30379,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of unspecified site
- ;;^UTILITY(U,$J,358.3,30379,1,4,0)
- ;;=4^D49.9
- ;;^UTILITY(U,$J,358.3,30379,2)
- ;;=^5002280
- ;;^UTILITY(U,$J,358.3,30380,0)
- ;;=D68.51^^118^1507^1
- ;;^UTILITY(U,$J,358.3,30380,1,0)
+ ;;^UTILITY(U,$J,358.3,28563,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28563,1,4,0)
+ ;;=4^F12.988
+ ;;^UTILITY(U,$J,358.3,28563,2)
+ ;;=^5003187
+ ;;^UTILITY(U,$J,358.3,28564,0)
+ ;;=F12.929^^115^1407^17
+ ;;^UTILITY(U,$J,358.3,28564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30380,1,3,0)
- ;;=3^Activated protein C resistance
- ;;^UTILITY(U,$J,358.3,30380,1,4,0)
- ;;=4^D68.51
- ;;^UTILITY(U,$J,358.3,30380,2)
- ;;=^5002358
- ;;^UTILITY(U,$J,358.3,30381,0)
- ;;=D68.52^^118^1507^16
- ;;^UTILITY(U,$J,358.3,30381,1,0)
+ ;;^UTILITY(U,$J,358.3,28564,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28564,1,4,0)
+ ;;=4^F12.929
+ ;;^UTILITY(U,$J,358.3,28564,2)
+ ;;=^5003182
+ ;;^UTILITY(U,$J,358.3,28565,0)
+ ;;=F12.180^^115^1407^1
+ ;;^UTILITY(U,$J,358.3,28565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30381,1,3,0)
- ;;=3^Prothrombin gene mutation

@@ -1,142 +1,118 @@
-IBDEI18S ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21113,2)
- ;;=^270517
- ;;^UTILITY(U,$J,358.3,21114,0)
- ;;=N84.9^^84^945^46
- ;;^UTILITY(U,$J,358.3,21114,1,0)
+ ;;^UTILITY(U,$J,358.3,19913,0)
+ ;;=M84.442S^^93^997^120
+ ;;^UTILITY(U,$J,358.3,19913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21114,1,3,0)
- ;;=3^Polyp of Female Genital Tract,Unspec
- ;;^UTILITY(U,$J,358.3,21114,1,4,0)
- ;;=4^N84.9
- ;;^UTILITY(U,$J,358.3,21114,2)
- ;;=^5015869
- ;;^UTILITY(U,$J,358.3,21115,0)
- ;;=N84.1^^84^945^44
- ;;^UTILITY(U,$J,358.3,21115,1,0)
+ ;;^UTILITY(U,$J,358.3,19913,1,3,0)
+ ;;=3^Pathological fracture, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19913,1,4,0)
+ ;;=4^M84.442S
+ ;;^UTILITY(U,$J,358.3,19913,2)
+ ;;=^5013877
+ ;;^UTILITY(U,$J,358.3,19914,0)
+ ;;=M84.441S^^93^997^122
+ ;;^UTILITY(U,$J,358.3,19914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21115,1,3,0)
- ;;=3^Polyp of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,21115,1,4,0)
- ;;=4^N84.1
- ;;^UTILITY(U,$J,358.3,21115,2)
- ;;=^5015866
- ;;^UTILITY(U,$J,358.3,21116,0)
- ;;=N89.1^^84^945^63
- ;;^UTILITY(U,$J,358.3,21116,1,0)
+ ;;^UTILITY(U,$J,358.3,19914,1,3,0)
+ ;;=3^Pathological fracture, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19914,1,4,0)
+ ;;=4^M84.441S
+ ;;^UTILITY(U,$J,358.3,19914,2)
+ ;;=^5013871
+ ;;^UTILITY(U,$J,358.3,19915,0)
+ ;;=M84.342S^^93^997^124
+ ;;^UTILITY(U,$J,358.3,19915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21116,1,3,0)
- ;;=3^Vaginal Dysplasia,Moderate
- ;;^UTILITY(U,$J,358.3,21116,1,4,0)
- ;;=4^N89.1
- ;;^UTILITY(U,$J,358.3,21116,2)
- ;;=^5015886
- ;;^UTILITY(U,$J,358.3,21117,0)
- ;;=N89.0^^84^945^62
- ;;^UTILITY(U,$J,358.3,21117,1,0)
+ ;;^UTILITY(U,$J,358.3,19915,1,3,0)
+ ;;=3^Stress fracture, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19915,1,4,0)
+ ;;=4^M84.342S
+ ;;^UTILITY(U,$J,358.3,19915,2)
+ ;;=^5013649
+ ;;^UTILITY(U,$J,358.3,19916,0)
+ ;;=M84.341S^^93^997^126
+ ;;^UTILITY(U,$J,358.3,19916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21117,1,3,0)
- ;;=3^Vaginal Dysplasia,Mild
- ;;^UTILITY(U,$J,358.3,21117,1,4,0)
- ;;=4^N89.0
- ;;^UTILITY(U,$J,358.3,21117,2)
- ;;=^5015885
- ;;^UTILITY(U,$J,358.3,21118,0)
- ;;=N89.3^^84^945^64
- ;;^UTILITY(U,$J,358.3,21118,1,0)
+ ;;^UTILITY(U,$J,358.3,19916,1,3,0)
+ ;;=3^Stress fracture, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19916,1,4,0)
+ ;;=4^M84.341S
+ ;;^UTILITY(U,$J,358.3,19916,2)
+ ;;=^5013643
+ ;;^UTILITY(U,$J,358.3,19917,0)
+ ;;=S62.631S^^93^997^11
+ ;;^UTILITY(U,$J,358.3,19917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21118,1,3,0)
- ;;=3^Vaginal Dysplasia,Unspec
- ;;^UTILITY(U,$J,358.3,21118,1,4,0)
- ;;=4^N89.3
- ;;^UTILITY(U,$J,358.3,21118,2)
- ;;=^5015887
- ;;^UTILITY(U,$J,358.3,21119,0)
- ;;=N90.4^^84^945^32
- ;;^UTILITY(U,$J,358.3,21119,1,0)
+ ;;^UTILITY(U,$J,358.3,19917,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19917,1,4,0)
+ ;;=4^S62.631S
+ ;;^UTILITY(U,$J,358.3,19917,2)
+ ;;=^5034605
+ ;;^UTILITY(U,$J,358.3,19918,0)
+ ;;=S62.637S^^93^997^12
+ ;;^UTILITY(U,$J,358.3,19918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21119,1,3,0)
- ;;=3^Leukoplakia of Vulva
- ;;^UTILITY(U,$J,358.3,21119,1,4,0)
- ;;=4^N90.4
- ;;^UTILITY(U,$J,358.3,21119,2)
- ;;=^5015894
- ;;^UTILITY(U,$J,358.3,21120,0)
- ;;=N94.1^^84^945^17
- ;;^UTILITY(U,$J,358.3,21120,1,0)
+ ;;^UTILITY(U,$J,358.3,19918,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19918,1,4,0)
+ ;;=4^S62.637S
+ ;;^UTILITY(U,$J,358.3,19918,2)
+ ;;=^5034647
+ ;;^UTILITY(U,$J,358.3,19919,0)
+ ;;=S62.633S^^93^997^13
+ ;;^UTILITY(U,$J,358.3,19919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21120,1,3,0)
- ;;=3^Dyspareunia
- ;;^UTILITY(U,$J,358.3,21120,1,4,0)
- ;;=4^N94.1
- ;;^UTILITY(U,$J,358.3,21120,2)
- ;;=^5015917
- ;;^UTILITY(U,$J,358.3,21121,0)
- ;;=N94.2^^84^945^65
- ;;^UTILITY(U,$J,358.3,21121,1,0)
+ ;;^UTILITY(U,$J,358.3,19919,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19919,1,4,0)
+ ;;=4^S62.633S
+ ;;^UTILITY(U,$J,358.3,19919,2)
+ ;;=^5034619
+ ;;^UTILITY(U,$J,358.3,19920,0)
+ ;;=S62.635S^^93^997^14
+ ;;^UTILITY(U,$J,358.3,19920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21121,1,3,0)
- ;;=3^Vaginismus
- ;;^UTILITY(U,$J,358.3,21121,1,4,0)
- ;;=4^N94.2
- ;;^UTILITY(U,$J,358.3,21121,2)
- ;;=^5015918
- ;;^UTILITY(U,$J,358.3,21122,0)
- ;;=N94.0^^84^945^36
- ;;^UTILITY(U,$J,358.3,21122,1,0)
+ ;;^UTILITY(U,$J,358.3,19920,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19920,1,4,0)
+ ;;=4^S62.635S
+ ;;^UTILITY(U,$J,358.3,19920,2)
+ ;;=^5034633
+ ;;^UTILITY(U,$J,358.3,19921,0)
+ ;;=S62.630S^^93^997^16
+ ;;^UTILITY(U,$J,358.3,19921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21122,1,3,0)
- ;;=3^Mittelschmerz
- ;;^UTILITY(U,$J,358.3,21122,1,4,0)
- ;;=4^N94.0
- ;;^UTILITY(U,$J,358.3,21122,2)
- ;;=^265259
- ;;^UTILITY(U,$J,358.3,21123,0)
- ;;=N94.6^^84^945^16
- ;;^UTILITY(U,$J,358.3,21123,1,0)
+ ;;^UTILITY(U,$J,358.3,19921,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19921,1,4,0)
+ ;;=4^S62.630S
+ ;;^UTILITY(U,$J,358.3,19921,2)
+ ;;=^5034598
+ ;;^UTILITY(U,$J,358.3,19922,0)
+ ;;=S62.636S^^93^997^17
+ ;;^UTILITY(U,$J,358.3,19922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21123,1,3,0)
- ;;=3^Dysmenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,21123,1,4,0)
- ;;=4^N94.6
- ;;^UTILITY(U,$J,358.3,21123,2)
- ;;=^5015922
- ;;^UTILITY(U,$J,358.3,21124,0)
- ;;=N94.5^^84^945^15
- ;;^UTILITY(U,$J,358.3,21124,1,0)
+ ;;^UTILITY(U,$J,358.3,19922,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19922,1,4,0)
+ ;;=4^S62.636S
+ ;;^UTILITY(U,$J,358.3,19922,2)
+ ;;=^5034640
+ ;;^UTILITY(U,$J,358.3,19923,0)
+ ;;=S62.632S^^93^997^18
+ ;;^UTILITY(U,$J,358.3,19923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21124,1,3,0)
- ;;=3^Dysmenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,21124,1,4,0)
- ;;=4^N94.5
- ;;^UTILITY(U,$J,358.3,21124,2)
- ;;=^5015921
- ;;^UTILITY(U,$J,358.3,21125,0)
- ;;=N94.4^^84^945^14
- ;;^UTILITY(U,$J,358.3,21125,1,0)
+ ;;^UTILITY(U,$J,358.3,19923,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19923,1,4,0)
+ ;;=4^S62.632S
+ ;;^UTILITY(U,$J,358.3,19923,2)
+ ;;=^5034612
+ ;;^UTILITY(U,$J,358.3,19924,0)
+ ;;=S62.634S^^93^997^19
+ ;;^UTILITY(U,$J,358.3,19924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21125,1,3,0)
- ;;=3^Dysmenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,21125,1,4,0)
- ;;=4^N94.4
- ;;^UTILITY(U,$J,358.3,21125,2)
- ;;=^5015920
- ;;^UTILITY(U,$J,358.3,21126,0)
- ;;=N94.3^^84^945^51
- ;;^UTILITY(U,$J,358.3,21126,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21126,1,3,0)
- ;;=3^Premenstrual Tension Syndrome
- ;;^UTILITY(U,$J,358.3,21126,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,21126,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,21127,0)
- ;;=N91.0^^84^945^6
- ;;^UTILITY(U,$J,358.3,21127,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21127,1,3,0)
- ;;=3^Amenorrhea,Primary

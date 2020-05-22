@@ -1,5 +1,5 @@
 PSOSUPRX ;BIR/RTR - Suspense pull early ;3/1/96
- ;;7.0;OUTPATIENT PHARMACY;**8,36,130,185,148,287,358,385,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**8,36,130,185,148,287,358,385,427,544**;DEC 1997;Build 19
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSLOCK supported by DBIA 2789
 ST N PSOPLLRX D:'$D(PSOPAR) ^PSOLSET G:'$D(PSOPAR) ST
@@ -73,6 +73,12 @@ QUES ;
  ;
  ; - Submitting Rx to ECME for 3rd Party Billing
  N RFL S RFL=RXFL(RXREC) I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RXREC)
+ ;
+ ; Do not send a claim if the last submission was rejected and
+ ; all rejects have been closed.
+ ;
+ I '$$SEND^PSOBPSU2(RXREC,RFL) Q
+ ;
  D ECMESND^PSOBPSU1(RXREC,RFL,,"PE")
  ; Quit if there is an unresolved TRICARE/CHAMPVA non-billable reject code, PSO*7*358
  I $$PSOET^PSOREJP3(RXREC,RFL) S PSOQFLAG=1 Q

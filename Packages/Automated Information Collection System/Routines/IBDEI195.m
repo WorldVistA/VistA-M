@@ -1,130 +1,116 @@
-IBDEI195 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI195 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21278,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21278,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,21278,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,21279,0)
- ;;=W17.2XXA^^84^948^77
- ;;^UTILITY(U,$J,358.3,21279,1,0)
+ ;;^UTILITY(U,$J,358.3,20060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21279,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,21279,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,21279,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,21280,0)
- ;;=W17.2XXD^^84^948^78
- ;;^UTILITY(U,$J,358.3,21280,1,0)
+ ;;^UTILITY(U,$J,358.3,20060,1,3,0)
+ ;;=3^Incarcerated fx of medial epicondyl of l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20060,1,4,0)
+ ;;=4^S42.448S
+ ;;^UTILITY(U,$J,358.3,20060,2)
+ ;;=^5027482
+ ;;^UTILITY(U,$J,358.3,20061,0)
+ ;;=S42.447S^^93^999^56
+ ;;^UTILITY(U,$J,358.3,20061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21280,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21280,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,21280,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,21281,0)
- ;;=W17.3XXA^^84^948^75
- ;;^UTILITY(U,$J,358.3,21281,1,0)
+ ;;^UTILITY(U,$J,358.3,20061,1,3,0)
+ ;;=3^Incarcerated fx of medial epicondyl of r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20061,1,4,0)
+ ;;=4^S42.447S
+ ;;^UTILITY(U,$J,358.3,20061,2)
+ ;;=^5027475
+ ;;^UTILITY(U,$J,358.3,20062,0)
+ ;;=S42.355S^^93^999^61
+ ;;^UTILITY(U,$J,358.3,20062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21281,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
- ;;^UTILITY(U,$J,358.3,21281,1,4,0)
- ;;=4^W17.3XXA
- ;;^UTILITY(U,$J,358.3,21281,2)
- ;;=^5059775
- ;;^UTILITY(U,$J,358.3,21282,0)
- ;;=W17.3XXD^^84^948^76
- ;;^UTILITY(U,$J,358.3,21282,1,0)
+ ;;^UTILITY(U,$J,358.3,20062,1,3,0)
+ ;;=3^Nondisp fx of commnt shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20062,1,4,0)
+ ;;=4^S42.355S
+ ;;^UTILITY(U,$J,358.3,20062,2)
+ ;;=^5027223
+ ;;^UTILITY(U,$J,358.3,20063,0)
+ ;;=S42.354S^^93^999^62
+ ;;^UTILITY(U,$J,358.3,20063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21282,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21282,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,21282,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,21283,0)
- ;;=W17.4XXA^^84^948^39
- ;;^UTILITY(U,$J,358.3,21283,1,0)
+ ;;^UTILITY(U,$J,358.3,20063,1,3,0)
+ ;;=3^Nondisp fx of commnt shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20063,1,4,0)
+ ;;=4^S42.354S
+ ;;^UTILITY(U,$J,358.3,20063,2)
+ ;;=^5027216
+ ;;^UTILITY(U,$J,358.3,20064,0)
+ ;;=S42.425S^^93^999^63
+ ;;^UTILITY(U,$J,358.3,20064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21283,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,21283,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,21283,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,21284,0)
- ;;=W17.4XXD^^84^948^40
- ;;^UTILITY(U,$J,358.3,21284,1,0)
+ ;;^UTILITY(U,$J,358.3,20064,1,3,0)
+ ;;=3^Nondisp fx of commnt suprcndl w/o intrcndl fx left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20064,1,4,0)
+ ;;=4^S42.425S
+ ;;^UTILITY(U,$J,358.3,20064,2)
+ ;;=^5027377
+ ;;^UTILITY(U,$J,358.3,20065,0)
+ ;;=S42.424S^^93^999^64
+ ;;^UTILITY(U,$J,358.3,20065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21284,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21284,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,21284,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,21285,0)
- ;;=W17.81XA^^84^948^27
- ;;^UTILITY(U,$J,358.3,21285,1,0)
+ ;;^UTILITY(U,$J,358.3,20065,1,3,0)
+ ;;=3^Nondisp fx of commnt suprcndl w/o intrcndl fx right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20065,1,4,0)
+ ;;=4^S42.424S
+ ;;^UTILITY(U,$J,358.3,20065,2)
+ ;;=^5027370
+ ;;^UTILITY(U,$J,358.3,20066,0)
+ ;;=S42.435S^^93^999^74
+ ;;^UTILITY(U,$J,358.3,20066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21285,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,21285,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,21285,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,21286,0)
- ;;=W17.81XD^^84^948^28
- ;;^UTILITY(U,$J,358.3,21286,1,0)
+ ;;^UTILITY(U,$J,358.3,20066,1,3,0)
+ ;;=3^Nondisp fx of lateral epicondyle of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20066,1,4,0)
+ ;;=4^S42.435S
+ ;;^UTILITY(U,$J,358.3,20066,2)
+ ;;=^5027419
+ ;;^UTILITY(U,$J,358.3,20067,0)
+ ;;=S42.434S^^93^999^75
+ ;;^UTILITY(U,$J,358.3,20067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21286,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21286,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,21286,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,21287,0)
- ;;=W17.89XA^^84^948^55
- ;;^UTILITY(U,$J,358.3,21287,1,0)
+ ;;^UTILITY(U,$J,358.3,20067,1,3,0)
+ ;;=3^Nondisp fx of lateral epicondyle of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20067,1,4,0)
+ ;;=4^S42.434S
+ ;;^UTILITY(U,$J,358.3,20067,2)
+ ;;=^5027412
+ ;;^UTILITY(U,$J,358.3,20068,0)
+ ;;=S42.445S^^93^999^80
+ ;;^UTILITY(U,$J,358.3,20068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21287,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,21287,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,21287,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,21288,0)
- ;;=W17.89XD^^84^948^56
- ;;^UTILITY(U,$J,358.3,21288,1,0)
+ ;;^UTILITY(U,$J,358.3,20068,1,3,0)
+ ;;=3^Nondisp fx of medial epicondyle of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20068,1,4,0)
+ ;;=4^S42.445S
+ ;;^UTILITY(U,$J,358.3,20068,2)
+ ;;=^5027461
+ ;;^UTILITY(U,$J,358.3,20069,0)
+ ;;=S42.444S^^93^999^81
+ ;;^UTILITY(U,$J,358.3,20069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21288,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21288,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,21288,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,21289,0)
- ;;=W18.11XA^^84^948^63
- ;;^UTILITY(U,$J,358.3,21289,1,0)
+ ;;^UTILITY(U,$J,358.3,20069,1,3,0)
+ ;;=3^Nondisp fx of medial epicondyle of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20069,1,4,0)
+ ;;=4^S42.444S
+ ;;^UTILITY(U,$J,358.3,20069,2)
+ ;;=^5027454
+ ;;^UTILITY(U,$J,358.3,20070,0)
+ ;;=S42.255S^^93^999^68
+ ;;^UTILITY(U,$J,358.3,20070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21289,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,21289,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,21289,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,21290,0)
- ;;=W18.11XD^^84^948^64
- ;;^UTILITY(U,$J,358.3,21290,1,0)
+ ;;^UTILITY(U,$J,358.3,20070,1,3,0)
+ ;;=3^Nondisp fx of greater tuberosity of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,20070,1,4,0)
+ ;;=4^S42.255S
+ ;;^UTILITY(U,$J,358.3,20070,2)
+ ;;=^5026921
+ ;;^UTILITY(U,$J,358.3,20071,0)
+ ;;=S42.254S^^93^999^69
+ ;;^UTILITY(U,$J,358.3,20071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21290,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21290,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,21290,2)
- ;;=^5059802

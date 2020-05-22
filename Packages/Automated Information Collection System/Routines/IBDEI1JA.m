@@ -1,132 +1,122 @@
-IBDEI1JA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26030,0)
- ;;=F63.3^^98^1221^8
- ;;^UTILITY(U,$J,358.3,26030,1,0)
+ ;;^UTILITY(U,$J,358.3,24520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26030,1,3,0)
- ;;=3^Trichotillomania
- ;;^UTILITY(U,$J,358.3,26030,1,4,0)
- ;;=4^F63.3
- ;;^UTILITY(U,$J,358.3,26030,2)
- ;;=^5003643
- ;;^UTILITY(U,$J,358.3,26031,0)
- ;;=L98.1^^98^1221^2
- ;;^UTILITY(U,$J,358.3,26031,1,0)
+ ;;^UTILITY(U,$J,358.3,24520,1,3,0)
+ ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,24520,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,24520,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,24521,0)
+ ;;=K46.9^^107^1207^1
+ ;;^UTILITY(U,$J,358.3,24521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26031,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,26031,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,26031,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,26032,0)
- ;;=F68.10^^98^1221^3
- ;;^UTILITY(U,$J,358.3,26032,1,0)
+ ;;^UTILITY(U,$J,358.3,24521,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,24521,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,24521,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,24522,0)
+ ;;=K50.90^^107^1207^31
+ ;;^UTILITY(U,$J,358.3,24522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26032,1,3,0)
- ;;=3^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,26032,1,4,0)
- ;;=4^F68.10
- ;;^UTILITY(U,$J,358.3,26032,2)
- ;;=^5003663
- ;;^UTILITY(U,$J,358.3,26033,0)
- ;;=F63.9^^98^1221^5
- ;;^UTILITY(U,$J,358.3,26033,1,0)
+ ;;^UTILITY(U,$J,358.3,24522,1,3,0)
+ ;;=3^Crohn's Disease w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,24522,1,4,0)
+ ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,24522,2)
+ ;;=^5008645
+ ;;^UTILITY(U,$J,358.3,24523,0)
+ ;;=K50.911^^107^1207^29
+ ;;^UTILITY(U,$J,358.3,24523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26033,1,3,0)
- ;;=3^Impulse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26033,1,4,0)
- ;;=4^F63.9
- ;;^UTILITY(U,$J,358.3,26033,2)
- ;;=^5003646
- ;;^UTILITY(U,$J,358.3,26034,0)
- ;;=F42.^^98^1221^4
- ;;^UTILITY(U,$J,358.3,26034,1,0)
+ ;;^UTILITY(U,$J,358.3,24523,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,24523,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,24523,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,24524,0)
+ ;;=K50.912^^107^1207^27
+ ;;^UTILITY(U,$J,358.3,24524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26034,1,3,0)
- ;;=3^Hoarding Disorder
- ;;^UTILITY(U,$J,358.3,26034,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,26034,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,26035,0)
- ;;=F06.8^^98^1221^6
- ;;^UTILITY(U,$J,358.3,26035,1,0)
+ ;;^UTILITY(U,$J,358.3,24524,1,3,0)
+ ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,24524,1,4,0)
+ ;;=4^K50.912
+ ;;^UTILITY(U,$J,358.3,24524,2)
+ ;;=^5008647
+ ;;^UTILITY(U,$J,358.3,24525,0)
+ ;;=K50.919^^107^1207^30
+ ;;^UTILITY(U,$J,358.3,24525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26035,1,3,0)
- ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,26035,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,26035,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,26036,0)
- ;;=F06.2^^98^1222^5
- ;;^UTILITY(U,$J,358.3,26036,1,0)
+ ;;^UTILITY(U,$J,358.3,24525,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,24525,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,24525,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,24526,0)
+ ;;=K50.914^^107^1207^25
+ ;;^UTILITY(U,$J,358.3,24526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26036,1,3,0)
- ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,26036,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,26036,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,26037,0)
- ;;=F06.0^^98^1222^6
- ;;^UTILITY(U,$J,358.3,26037,1,0)
+ ;;^UTILITY(U,$J,358.3,24526,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,24526,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,24526,2)
+ ;;=^5008649
+ ;;^UTILITY(U,$J,358.3,24527,0)
+ ;;=K50.913^^107^1207^26
+ ;;^UTILITY(U,$J,358.3,24527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26037,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,26037,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,26037,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,26038,0)
- ;;=F06.4^^98^1222^1
- ;;^UTILITY(U,$J,358.3,26038,1,0)
+ ;;^UTILITY(U,$J,358.3,24527,1,3,0)
+ ;;=3^Crohn's Disease w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,24527,1,4,0)
+ ;;=4^K50.913
+ ;;^UTILITY(U,$J,358.3,24527,2)
+ ;;=^5008648
+ ;;^UTILITY(U,$J,358.3,24528,0)
+ ;;=K50.918^^107^1207^28
+ ;;^UTILITY(U,$J,358.3,24528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26038,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,26038,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,26038,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,26039,0)
- ;;=F06.1^^98^1222^2
- ;;^UTILITY(U,$J,358.3,26039,1,0)
+ ;;^UTILITY(U,$J,358.3,24528,1,3,0)
+ ;;=3^Crohn's Disease w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,24528,1,4,0)
+ ;;=4^K50.918
+ ;;^UTILITY(U,$J,358.3,24528,2)
+ ;;=^5008650
+ ;;^UTILITY(U,$J,358.3,24529,0)
+ ;;=K51.90^^107^1207^90
+ ;;^UTILITY(U,$J,358.3,24529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26039,1,3,0)
- ;;=3^Catatonia Associated w/ Schizophrenia
- ;;^UTILITY(U,$J,358.3,26039,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,26039,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,26040,0)
- ;;=R41.9^^98^1222^3
- ;;^UTILITY(U,$J,358.3,26040,1,0)
+ ;;^UTILITY(U,$J,358.3,24529,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,24529,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,24529,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,24530,0)
+ ;;=K51.919^^107^1207^89
+ ;;^UTILITY(U,$J,358.3,24530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26040,1,3,0)
- ;;=3^Neurocognitive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26040,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,26040,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,26041,0)
- ;;=F29.^^98^1222^7
- ;;^UTILITY(U,$J,358.3,26041,1,0)
+ ;;^UTILITY(U,$J,358.3,24530,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,24530,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,24530,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,24531,0)
+ ;;=K51.918^^107^1207^87
+ ;;^UTILITY(U,$J,358.3,24531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26041,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26041,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,26041,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,26042,0)
- ;;=F07.0^^98^1222^4
- ;;^UTILITY(U,$J,358.3,26042,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26042,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,26042,1,4,0)
- ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,24531,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,24531,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,24531,2)
+ ;;=^5008699

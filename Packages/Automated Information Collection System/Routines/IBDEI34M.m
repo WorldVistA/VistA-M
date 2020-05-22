@@ -1,136 +1,118 @@
-IBDEI34M ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52473,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,52473,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,52474,0)
- ;;=F65.9^^237^2606^5
- ;;^UTILITY(U,$J,358.3,52474,1,0)
+ ;;^UTILITY(U,$J,358.3,49934,1,4,0)
+ ;;=4^I70.335
+ ;;^UTILITY(U,$J,358.3,49934,2)
+ ;;=^5007630
+ ;;^UTILITY(U,$J,358.3,49935,0)
+ ;;=I70.341^^193^2487^50
+ ;;^UTILITY(U,$J,358.3,49935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52474,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52474,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,52474,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,52475,0)
- ;;=F60.0^^237^2607^8
- ;;^UTILITY(U,$J,358.3,52475,1,0)
+ ;;^UTILITY(U,$J,358.3,49935,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,49935,1,4,0)
+ ;;=4^I70.341
+ ;;^UTILITY(U,$J,358.3,49935,2)
+ ;;=^5007633
+ ;;^UTILITY(U,$J,358.3,49936,0)
+ ;;=I70.342^^193^2487^47
+ ;;^UTILITY(U,$J,358.3,49936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52475,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,52475,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,52475,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,52476,0)
- ;;=F60.1^^237^2607^11
- ;;^UTILITY(U,$J,358.3,52476,1,0)
+ ;;^UTILITY(U,$J,358.3,49936,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,49936,1,4,0)
+ ;;=4^I70.342
+ ;;^UTILITY(U,$J,358.3,49936,2)
+ ;;=^5007634
+ ;;^UTILITY(U,$J,358.3,49937,0)
+ ;;=I70.343^^193^2487^46
+ ;;^UTILITY(U,$J,358.3,49937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52476,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,52476,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,52476,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,52477,0)
- ;;=F21.^^237^2607^12
- ;;^UTILITY(U,$J,358.3,52477,1,0)
+ ;;^UTILITY(U,$J,358.3,49937,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,49937,1,4,0)
+ ;;=4^I70.343
+ ;;^UTILITY(U,$J,358.3,49937,2)
+ ;;=^5007635
+ ;;^UTILITY(U,$J,358.3,49938,0)
+ ;;=I70.344^^193^2487^48
+ ;;^UTILITY(U,$J,358.3,49938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52477,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,52477,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,52477,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,52478,0)
- ;;=F60.5^^237^2607^7
- ;;^UTILITY(U,$J,358.3,52478,1,0)
+ ;;^UTILITY(U,$J,358.3,49938,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,49938,1,4,0)
+ ;;=4^I70.344
+ ;;^UTILITY(U,$J,358.3,49938,2)
+ ;;=^5007636
+ ;;^UTILITY(U,$J,358.3,49939,0)
+ ;;=I70.345^^193^2487^49
+ ;;^UTILITY(U,$J,358.3,49939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52478,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,52478,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,52478,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,52479,0)
- ;;=F60.4^^237^2607^5
- ;;^UTILITY(U,$J,358.3,52479,1,0)
+ ;;^UTILITY(U,$J,358.3,49939,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,49939,1,4,0)
+ ;;=4^I70.345
+ ;;^UTILITY(U,$J,358.3,49939,2)
+ ;;=^5007637
+ ;;^UTILITY(U,$J,358.3,49940,0)
+ ;;=I70.431^^193^2487^41
+ ;;^UTILITY(U,$J,358.3,49940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52479,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,52479,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,52479,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,52480,0)
- ;;=F60.7^^237^2607^4
- ;;^UTILITY(U,$J,358.3,52480,1,0)
+ ;;^UTILITY(U,$J,358.3,49940,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,49940,1,4,0)
+ ;;=4^I70.431
+ ;;^UTILITY(U,$J,358.3,49940,2)
+ ;;=^5007664
+ ;;^UTILITY(U,$J,358.3,49941,0)
+ ;;=I70.432^^193^2487^42
+ ;;^UTILITY(U,$J,358.3,49941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52480,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,52480,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,52480,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,52481,0)
- ;;=F60.2^^237^2607^1
- ;;^UTILITY(U,$J,358.3,52481,1,0)
+ ;;^UTILITY(U,$J,358.3,49941,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,49941,1,4,0)
+ ;;=4^I70.432
+ ;;^UTILITY(U,$J,358.3,49941,2)
+ ;;=^5007665
+ ;;^UTILITY(U,$J,358.3,49942,0)
+ ;;=I70.433^^193^2487^43
+ ;;^UTILITY(U,$J,358.3,49942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52481,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,52481,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,52481,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,52482,0)
- ;;=F60.81^^237^2607^6
- ;;^UTILITY(U,$J,358.3,52482,1,0)
+ ;;^UTILITY(U,$J,358.3,49942,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,49942,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,49942,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,49943,0)
+ ;;=I70.434^^193^2487^44
+ ;;^UTILITY(U,$J,358.3,49943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52482,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,52482,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,52482,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,52483,0)
- ;;=F60.6^^237^2607^2
- ;;^UTILITY(U,$J,358.3,52483,1,0)
+ ;;^UTILITY(U,$J,358.3,49943,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,49943,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,49943,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,49944,0)
+ ;;=I70.435^^193^2487^45
+ ;;^UTILITY(U,$J,358.3,49944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52483,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,52483,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,52483,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,52484,0)
- ;;=F60.3^^237^2607^3
- ;;^UTILITY(U,$J,358.3,52484,1,0)
+ ;;^UTILITY(U,$J,358.3,49944,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,49944,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,49944,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,49945,0)
+ ;;=I70.441^^193^2487^36
+ ;;^UTILITY(U,$J,358.3,49945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52484,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,52484,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,52484,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,52485,0)
- ;;=F60.89^^237^2607^9
- ;;^UTILITY(U,$J,358.3,52485,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52485,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,52485,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,52485,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,52486,0)
- ;;=F60.9^^237^2607^10
- ;;^UTILITY(U,$J,358.3,52486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52486,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52486,1,4,0)
- ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,49945,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,49945,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,49945,2)
+ ;;=^5007671

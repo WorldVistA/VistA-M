@@ -1,140 +1,122 @@
-IBDEI18B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20896,1,0)
+ ;;^UTILITY(U,$J,358.3,19716,1,3,0)
+ ;;=3^Displaced transverse fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,19716,1,4,0)
+ ;;=4^S82.032S
+ ;;^UTILITY(U,$J,358.3,19716,2)
+ ;;=^5040364
+ ;;^UTILITY(U,$J,358.3,19717,0)
+ ;;=S82.034S^^93^995^98
+ ;;^UTILITY(U,$J,358.3,19717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20896,1,3,0)
- ;;=3^Paralytic Gait
- ;;^UTILITY(U,$J,358.3,20896,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,20896,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,20897,0)
- ;;=R26.81^^84^941^156
- ;;^UTILITY(U,$J,358.3,20897,1,0)
+ ;;^UTILITY(U,$J,358.3,19717,1,3,0)
+ ;;=3^Nondisp transverse fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,19717,1,4,0)
+ ;;=4^S82.034S
+ ;;^UTILITY(U,$J,358.3,19717,2)
+ ;;=^5040396
+ ;;^UTILITY(U,$J,358.3,19718,0)
+ ;;=S82.035S^^93^995^97
+ ;;^UTILITY(U,$J,358.3,19718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20897,1,3,0)
- ;;=3^Unsteadiness on Feet
- ;;^UTILITY(U,$J,358.3,20897,1,4,0)
- ;;=4^R26.81
- ;;^UTILITY(U,$J,358.3,20897,2)
- ;;=^5019307
- ;;^UTILITY(U,$J,358.3,20898,0)
- ;;=R26.89^^84^941^30
- ;;^UTILITY(U,$J,358.3,20898,1,0)
+ ;;^UTILITY(U,$J,358.3,19718,1,3,0)
+ ;;=3^Nondisp transverse fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,19718,1,4,0)
+ ;;=4^S82.035S
+ ;;^UTILITY(U,$J,358.3,19718,2)
+ ;;=^5040412
+ ;;^UTILITY(U,$J,358.3,19719,0)
+ ;;=S82.041S^^93^995^13
+ ;;^UTILITY(U,$J,358.3,19719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20898,1,3,0)
- ;;=3^Abnormalities of Gait and Mobility NEC
- ;;^UTILITY(U,$J,358.3,20898,1,4,0)
- ;;=4^R26.89
- ;;^UTILITY(U,$J,358.3,20898,2)
- ;;=^5019308
- ;;^UTILITY(U,$J,358.3,20899,0)
- ;;=R26.9^^84^941^31
- ;;^UTILITY(U,$J,358.3,20899,1,0)
+ ;;^UTILITY(U,$J,358.3,19719,1,3,0)
+ ;;=3^Displaced comminuted fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,19719,1,4,0)
+ ;;=4^S82.041S
+ ;;^UTILITY(U,$J,358.3,19719,2)
+ ;;=^5040444
+ ;;^UTILITY(U,$J,358.3,19720,0)
+ ;;=S82.042S^^93^995^12
+ ;;^UTILITY(U,$J,358.3,19720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20899,1,3,0)
- ;;=3^Abnormalities of Gait and Mobility,Unspec
- ;;^UTILITY(U,$J,358.3,20899,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,20899,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,20900,0)
- ;;=R27.0^^84^941^42
- ;;^UTILITY(U,$J,358.3,20900,1,0)
+ ;;^UTILITY(U,$J,358.3,19720,1,3,0)
+ ;;=3^Displaced comminuted fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,19720,1,4,0)
+ ;;=4^S82.042S
+ ;;^UTILITY(U,$J,358.3,19720,2)
+ ;;=^5040460
+ ;;^UTILITY(U,$J,358.3,19721,0)
+ ;;=S82.044S^^93^995^61
+ ;;^UTILITY(U,$J,358.3,19721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20900,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,20900,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,20900,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,20901,0)
- ;;=R27.8^^84^941^100
- ;;^UTILITY(U,$J,358.3,20901,1,0)
+ ;;^UTILITY(U,$J,358.3,19721,1,3,0)
+ ;;=3^Nondisp comminuted fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,19721,1,4,0)
+ ;;=4^S82.044S
+ ;;^UTILITY(U,$J,358.3,19721,2)
+ ;;=^5040492
+ ;;^UTILITY(U,$J,358.3,19722,0)
+ ;;=S82.045S^^93^995^60
+ ;;^UTILITY(U,$J,358.3,19722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20901,1,3,0)
- ;;=3^Lack of Coordination NEC
- ;;^UTILITY(U,$J,358.3,20901,1,4,0)
- ;;=4^R27.8
- ;;^UTILITY(U,$J,358.3,20901,2)
- ;;=^5019311
- ;;^UTILITY(U,$J,358.3,20902,0)
- ;;=R27.9^^84^941^101
- ;;^UTILITY(U,$J,358.3,20902,1,0)
+ ;;^UTILITY(U,$J,358.3,19722,1,3,0)
+ ;;=3^Nondisp comminuted fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,19722,1,4,0)
+ ;;=4^S82.045S
+ ;;^UTILITY(U,$J,358.3,19722,2)
+ ;;=^5040508
+ ;;^UTILITY(U,$J,358.3,19723,0)
+ ;;=S72.045S^^93^995^58
+ ;;^UTILITY(U,$J,358.3,19723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20902,1,3,0)
- ;;=3^Lack of Coordination,Unspec
- ;;^UTILITY(U,$J,358.3,20902,1,4,0)
- ;;=4^R27.9
- ;;^UTILITY(U,$J,358.3,20902,2)
- ;;=^5019312
- ;;^UTILITY(U,$J,358.3,20903,0)
- ;;=R29.0^^84^941^153
- ;;^UTILITY(U,$J,358.3,20903,1,0)
+ ;;^UTILITY(U,$J,358.3,19723,1,3,0)
+ ;;=3^Nondisp base of neck fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19723,1,4,0)
+ ;;=4^S72.045S
+ ;;^UTILITY(U,$J,358.3,19723,2)
+ ;;=^5037392
+ ;;^UTILITY(U,$J,358.3,19724,0)
+ ;;=S72.345S^^93^995^89
+ ;;^UTILITY(U,$J,358.3,19724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20903,1,3,0)
- ;;=3^Tetany
- ;;^UTILITY(U,$J,358.3,20903,1,4,0)
- ;;=4^R29.0
- ;;^UTILITY(U,$J,358.3,20903,2)
- ;;=^118032
- ;;^UTILITY(U,$J,358.3,20904,0)
- ;;=R29.1^^84^941^118
- ;;^UTILITY(U,$J,358.3,20904,1,0)
+ ;;^UTILITY(U,$J,358.3,19724,1,3,0)
+ ;;=3^Nondisp spiral fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19724,1,4,0)
+ ;;=4^S72.345S
+ ;;^UTILITY(U,$J,358.3,19724,2)
+ ;;=^5038415
+ ;;^UTILITY(U,$J,358.3,19725,0)
+ ;;=M84.752S^^93^995^52
+ ;;^UTILITY(U,$J,358.3,19725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20904,1,3,0)
- ;;=3^Meningismus
- ;;^UTILITY(U,$J,358.3,20904,1,4,0)
- ;;=4^R29.1
- ;;^UTILITY(U,$J,358.3,20904,2)
- ;;=^5019313
- ;;^UTILITY(U,$J,358.3,20905,0)
- ;;=R29.5^^84^941^155
- ;;^UTILITY(U,$J,358.3,20905,1,0)
+ ;;^UTILITY(U,$J,358.3,19725,1,3,0)
+ ;;=3^Incomp Atypical Femoral Fx,Left 
+ ;;^UTILITY(U,$J,358.3,19725,1,4,0)
+ ;;=4^M84.752S
+ ;;^UTILITY(U,$J,358.3,19725,2)
+ ;;=^5138850
+ ;;^UTILITY(U,$J,358.3,19726,0)
+ ;;=M84.750S^^93^995^1
+ ;;^UTILITY(U,$J,358.3,19726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20905,1,3,0)
- ;;=3^Transient Paralysis
- ;;^UTILITY(U,$J,358.3,20905,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,20905,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,20906,0)
- ;;=R34.^^84^941^39
- ;;^UTILITY(U,$J,358.3,20906,1,0)
+ ;;^UTILITY(U,$J,358.3,19726,1,3,0)
+ ;;=3^Atypical Femoral Fx,Unspec
+ ;;^UTILITY(U,$J,358.3,19726,1,4,0)
+ ;;=4^M84.750S
+ ;;^UTILITY(U,$J,358.3,19726,2)
+ ;;=^5138838
+ ;;^UTILITY(U,$J,358.3,19727,0)
+ ;;=M84.751S^^93^995^53
+ ;;^UTILITY(U,$J,358.3,19727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20906,1,3,0)
- ;;=3^Anuria and Oliguria
- ;;^UTILITY(U,$J,358.3,20906,1,4,0)
- ;;=4^R34.
- ;;^UTILITY(U,$J,358.3,20906,2)
- ;;=^5019333
- ;;^UTILITY(U,$J,358.3,20907,0)
- ;;=R35.8^^84^941^140
- ;;^UTILITY(U,$J,358.3,20907,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20907,1,3,0)
- ;;=3^Polyuria NEC
- ;;^UTILITY(U,$J,358.3,20907,1,4,0)
- ;;=4^R35.8
- ;;^UTILITY(U,$J,358.3,20907,2)
- ;;=^5019336
- ;;^UTILITY(U,$J,358.3,20908,0)
- ;;=R39.12^^84^941^141
- ;;^UTILITY(U,$J,358.3,20908,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20908,1,3,0)
- ;;=3^Poor Urinary Stream
- ;;^UTILITY(U,$J,358.3,20908,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,20908,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,20909,0)
- ;;=R39.14^^84^941^73
- ;;^UTILITY(U,$J,358.3,20909,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20909,1,3,0)
- ;;=3^Feeling of Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,20909,1,4,0)
- ;;=4^R39.14
+ ;;^UTILITY(U,$J,358.3,19727,1,3,0)
+ ;;=3^Incomp Atypical Femoral Fx,Right
+ ;;^UTILITY(U,$J,358.3,19727,1,4,0)
+ ;;=4^M84.751S
+ ;;^UTILITY(U,$J,358.3,19727,2)
+ ;;=^5138844
+ ;;^UTILITY(U,$J,358.3,19728,0)
+ ;;=M84.754S^^93^995^5

@@ -1,132 +1,122 @@
-IBDEI35M ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI35M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52952,2)
- ;;=^5001899
- ;;^UTILITY(U,$J,358.3,52953,0)
- ;;=D03.61^^243^2655^56
- ;;^UTILITY(U,$J,358.3,52953,1,0)
+ ;;^UTILITY(U,$J,358.3,50366,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,50367,0)
+ ;;=S05.01XA^^193^2492^4
+ ;;^UTILITY(U,$J,358.3,50367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52953,1,3,0)
- ;;=3^Melanoma in Situ Right Upper Limb
- ;;^UTILITY(U,$J,358.3,52953,1,4,0)
- ;;=4^D03.61
- ;;^UTILITY(U,$J,358.3,52953,2)
- ;;=^5001902
- ;;^UTILITY(U,$J,358.3,52954,0)
- ;;=D03.62^^243^2655^52
- ;;^UTILITY(U,$J,358.3,52954,1,0)
+ ;;^UTILITY(U,$J,358.3,50367,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,50367,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,50367,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,50368,0)
+ ;;=T15.02XA^^193^2492^1
+ ;;^UTILITY(U,$J,358.3,50368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52954,1,3,0)
- ;;=3^Melanoma in Situ Left Upper Limb
- ;;^UTILITY(U,$J,358.3,52954,1,4,0)
- ;;=4^D03.62
- ;;^UTILITY(U,$J,358.3,52954,2)
- ;;=^5001903
- ;;^UTILITY(U,$J,358.3,52955,0)
- ;;=D03.71^^243^2655^55
- ;;^UTILITY(U,$J,358.3,52955,1,0)
+ ;;^UTILITY(U,$J,358.3,50368,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,50368,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,50368,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,50369,0)
+ ;;=T15.01XA^^193^2492^2
+ ;;^UTILITY(U,$J,358.3,50369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52955,1,3,0)
- ;;=3^Melanoma in Situ Right Lower Limb
- ;;^UTILITY(U,$J,358.3,52955,1,4,0)
- ;;=4^D03.71
- ;;^UTILITY(U,$J,358.3,52955,2)
- ;;=^5001905
- ;;^UTILITY(U,$J,358.3,52956,0)
- ;;=D03.72^^243^2655^51
- ;;^UTILITY(U,$J,358.3,52956,1,0)
+ ;;^UTILITY(U,$J,358.3,50369,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,50369,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,50369,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,50370,0)
+ ;;=S00.252A^^193^2492^5
+ ;;^UTILITY(U,$J,358.3,50370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52956,1,3,0)
- ;;=3^Melanoma in Situ Left Lower Limb
- ;;^UTILITY(U,$J,358.3,52956,1,4,0)
- ;;=4^D03.72
- ;;^UTILITY(U,$J,358.3,52956,2)
- ;;=^5001906
- ;;^UTILITY(U,$J,358.3,52957,0)
- ;;=D03.8^^243^2655^61
- ;;^UTILITY(U,$J,358.3,52957,1,0)
+ ;;^UTILITY(U,$J,358.3,50370,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,50370,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,50370,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,50371,0)
+ ;;=S00.251A^^193^2492^6
+ ;;^UTILITY(U,$J,358.3,50371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52957,1,3,0)
- ;;=3^Melanoma in Situ of Other Sites
- ;;^UTILITY(U,$J,358.3,52957,1,4,0)
- ;;=4^D03.8
- ;;^UTILITY(U,$J,358.3,52957,2)
- ;;=^5001907
- ;;^UTILITY(U,$J,358.3,52958,0)
- ;;=D22.0^^243^2655^38
- ;;^UTILITY(U,$J,358.3,52958,1,0)
+ ;;^UTILITY(U,$J,358.3,50371,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,50371,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,50371,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,50372,0)
+ ;;=B96.81^^193^2493^63
+ ;;^UTILITY(U,$J,358.3,50372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52958,1,3,0)
- ;;=3^Melanocytic Nevi of Lip
- ;;^UTILITY(U,$J,358.3,52958,1,4,0)
- ;;=4^D22.0
- ;;^UTILITY(U,$J,358.3,52958,2)
- ;;=^5002041
- ;;^UTILITY(U,$J,358.3,52959,0)
- ;;=D22.12^^243^2655^35
- ;;^UTILITY(U,$J,358.3,52959,1,0)
+ ;;^UTILITY(U,$J,358.3,50372,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,50372,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,50372,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,50373,0)
+ ;;=B15.9^^193^2493^65
+ ;;^UTILITY(U,$J,358.3,50373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52959,1,3,0)
- ;;=3^Melanocytic Nevi of Left Eyelid
- ;;^UTILITY(U,$J,358.3,52959,1,4,0)
- ;;=4^D22.12
- ;;^UTILITY(U,$J,358.3,52959,2)
- ;;=^5002044
- ;;^UTILITY(U,$J,358.3,52960,0)
- ;;=D22.11^^243^2655^40
- ;;^UTILITY(U,$J,358.3,52960,1,0)
+ ;;^UTILITY(U,$J,358.3,50373,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,50373,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,50373,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,50374,0)
+ ;;=B16.9^^193^2493^66
+ ;;^UTILITY(U,$J,358.3,50374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52960,1,3,0)
- ;;=3^Melanocytic Nevi of Right Eyelid
- ;;^UTILITY(U,$J,358.3,52960,1,4,0)
- ;;=4^D22.11
- ;;^UTILITY(U,$J,358.3,52960,2)
- ;;=^5002043
- ;;^UTILITY(U,$J,358.3,52961,0)
- ;;=D22.21^^243^2655^39
- ;;^UTILITY(U,$J,358.3,52961,1,0)
+ ;;^UTILITY(U,$J,358.3,50374,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,50374,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,50374,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,50375,0)
+ ;;=B19.10^^193^2493^68
+ ;;^UTILITY(U,$J,358.3,50375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52961,1,3,0)
- ;;=3^Melanocytic Nevi of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,52961,1,4,0)
- ;;=4^D22.21
- ;;^UTILITY(U,$J,358.3,52961,2)
- ;;=^5002046
- ;;^UTILITY(U,$J,358.3,52962,0)
- ;;=D22.22^^243^2655^34
- ;;^UTILITY(U,$J,358.3,52962,1,0)
+ ;;^UTILITY(U,$J,358.3,50375,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,50375,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,50375,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,50376,0)
+ ;;=B18.1^^193^2493^67
+ ;;^UTILITY(U,$J,358.3,50376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52962,1,3,0)
- ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,52962,1,4,0)
- ;;=4^D22.22
- ;;^UTILITY(U,$J,358.3,52962,2)
- ;;=^5002047
- ;;^UTILITY(U,$J,358.3,52963,0)
- ;;=D22.30^^243^2655^45
- ;;^UTILITY(U,$J,358.3,52963,1,0)
+ ;;^UTILITY(U,$J,358.3,50376,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,50376,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,50376,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,50377,0)
+ ;;=B17.10^^193^2493^69
+ ;;^UTILITY(U,$J,358.3,50377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52963,1,3,0)
- ;;=3^Melanocytic Nevi of Unspec Part of Face
- ;;^UTILITY(U,$J,358.3,52963,1,4,0)
- ;;=4^D22.30
- ;;^UTILITY(U,$J,358.3,52963,2)
- ;;=^5002048
- ;;^UTILITY(U,$J,358.3,52964,0)
- ;;=D22.4^^243^2655^43
- ;;^UTILITY(U,$J,358.3,52964,1,0)
+ ;;^UTILITY(U,$J,358.3,50377,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,50377,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,50377,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,50378,0)
+ ;;=B18.2^^193^2493^70
+ ;;^UTILITY(U,$J,358.3,50378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52964,1,3,0)
- ;;=3^Melanocytic Nevi of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,52964,1,4,0)
- ;;=4^D22.4
- ;;^UTILITY(U,$J,358.3,52964,2)
- ;;=^5002050
- ;;^UTILITY(U,$J,358.3,52965,0)
- ;;=D22.5^^243^2655^44
- ;;^UTILITY(U,$J,358.3,52965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52965,1,3,0)
- ;;=3^Melanocytic Nevi of Trunk
+ ;;^UTILITY(U,$J,358.3,50378,1,3,0)
+ ;;=3^Hepatitis C,Chronic Viral

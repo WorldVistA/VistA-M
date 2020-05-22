@@ -1,338 +1,128 @@
-IBDEI0IC ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0IC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23269,1,0)
+ ;;^UTILITY(U,$J,358.3,7999,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,7999,1,4,0)
+ ;;=4^C43.72
+ ;;^UTILITY(U,$J,358.3,7999,2)
+ ;;=^5001013
+ ;;^UTILITY(U,$J,358.3,8000,0)
+ ;;=C43.8^^65^517^10
+ ;;^UTILITY(U,$J,358.3,8000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23269,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,23269,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,23269,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,23270,0)
- ;;=F31.2^^61^897^9
- ;;^UTILITY(U,$J,358.3,23270,1,0)
+ ;;^UTILITY(U,$J,358.3,8000,1,3,0)
+ ;;=3^Malig Melanoma of Overlapping Sites of Skin
+ ;;^UTILITY(U,$J,358.3,8000,1,4,0)
+ ;;=4^C43.8
+ ;;^UTILITY(U,$J,358.3,8000,2)
+ ;;=^5001014
+ ;;^UTILITY(U,$J,358.3,8001,0)
+ ;;=D03.0^^65^517^66
+ ;;^UTILITY(U,$J,358.3,8001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23270,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,23270,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,23270,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,23271,0)
- ;;=F31.73^^61^897^10
- ;;^UTILITY(U,$J,358.3,23271,1,0)
+ ;;^UTILITY(U,$J,358.3,8001,1,3,0)
+ ;;=3^Melanoma in Situ of Lip
+ ;;^UTILITY(U,$J,358.3,8001,1,4,0)
+ ;;=4^D03.0
+ ;;^UTILITY(U,$J,358.3,8001,2)
+ ;;=^5001888
+ ;;^UTILITY(U,$J,358.3,8002,0)
+ ;;=D03.21^^65^517^58
+ ;;^UTILITY(U,$J,358.3,8002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23271,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,23271,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,23271,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,23272,0)
- ;;=F31.74^^61^897^11
- ;;^UTILITY(U,$J,358.3,23272,1,0)
+ ;;^UTILITY(U,$J,358.3,8002,1,3,0)
+ ;;=3^Melanoma in Situ Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,8002,1,4,0)
+ ;;=4^D03.21
+ ;;^UTILITY(U,$J,358.3,8002,2)
+ ;;=^5001893
+ ;;^UTILITY(U,$J,358.3,8003,0)
+ ;;=D03.22^^65^517^55
+ ;;^UTILITY(U,$J,358.3,8003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23272,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,23272,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,23272,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,23273,0)
- ;;=F31.31^^61^897^13
- ;;^UTILITY(U,$J,358.3,23273,1,0)
+ ;;^UTILITY(U,$J,358.3,8003,1,3,0)
+ ;;=3^Melanoma in Situ Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,8003,1,4,0)
+ ;;=4^D03.22
+ ;;^UTILITY(U,$J,358.3,8003,2)
+ ;;=^5001894
+ ;;^UTILITY(U,$J,358.3,8004,0)
+ ;;=D03.30^^65^517^63
+ ;;^UTILITY(U,$J,358.3,8004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23273,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,23273,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,23273,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,23274,0)
- ;;=F31.32^^61^897^14
- ;;^UTILITY(U,$J,358.3,23274,1,0)
+ ;;^UTILITY(U,$J,358.3,8004,1,3,0)
+ ;;=3^Melanoma in Situ Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,8004,1,4,0)
+ ;;=4^D03.30
+ ;;^UTILITY(U,$J,358.3,8004,2)
+ ;;=^5001895
+ ;;^UTILITY(U,$J,358.3,8005,0)
+ ;;=D03.4^^65^517^61
+ ;;^UTILITY(U,$J,358.3,8005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23274,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,23274,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,23274,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,23275,0)
- ;;=F31.4^^61^897^15
- ;;^UTILITY(U,$J,358.3,23275,1,0)
+ ;;^UTILITY(U,$J,358.3,8005,1,3,0)
+ ;;=3^Melanoma in Situ Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,8005,1,4,0)
+ ;;=4^D03.4
+ ;;^UTILITY(U,$J,358.3,8005,2)
+ ;;=^5001897
+ ;;^UTILITY(U,$J,358.3,8006,0)
+ ;;=D03.59^^65^517^62
+ ;;^UTILITY(U,$J,358.3,8006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23275,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,23275,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,23275,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,23276,0)
- ;;=F31.5^^61^897^16
- ;;^UTILITY(U,$J,358.3,23276,1,0)
+ ;;^UTILITY(U,$J,358.3,8006,1,3,0)
+ ;;=3^Melanoma in Situ Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,8006,1,4,0)
+ ;;=4^D03.59
+ ;;^UTILITY(U,$J,358.3,8006,2)
+ ;;=^5001900
+ ;;^UTILITY(U,$J,358.3,8007,0)
+ ;;=D03.51^^65^517^53
+ ;;^UTILITY(U,$J,358.3,8007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23276,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,23276,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,23276,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,23277,0)
- ;;=F31.75^^61^897^18
- ;;^UTILITY(U,$J,358.3,23277,1,0)
+ ;;^UTILITY(U,$J,358.3,8007,1,3,0)
+ ;;=3^Melanoma in Situ Anal Skin
+ ;;^UTILITY(U,$J,358.3,8007,1,4,0)
+ ;;=4^D03.51
+ ;;^UTILITY(U,$J,358.3,8007,2)
+ ;;=^5001898
+ ;;^UTILITY(U,$J,358.3,8008,0)
+ ;;=D03.52^^65^517^54
+ ;;^UTILITY(U,$J,358.3,8008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23277,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,23277,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,23277,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,23278,0)
- ;;=F31.76^^61^897^17
- ;;^UTILITY(U,$J,358.3,23278,1,0)
+ ;;^UTILITY(U,$J,358.3,8008,1,3,0)
+ ;;=3^Melanoma in Situ Breast,Skin/Soft Tissue
+ ;;^UTILITY(U,$J,358.3,8008,1,4,0)
+ ;;=4^D03.52
+ ;;^UTILITY(U,$J,358.3,8008,2)
+ ;;=^5001899
+ ;;^UTILITY(U,$J,358.3,8009,0)
+ ;;=D03.61^^65^517^60
+ ;;^UTILITY(U,$J,358.3,8009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23278,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,23278,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,23278,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,23279,0)
- ;;=F31.81^^61^897^23
- ;;^UTILITY(U,$J,358.3,23279,1,0)
+ ;;^UTILITY(U,$J,358.3,8009,1,3,0)
+ ;;=3^Melanoma in Situ Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,8009,1,4,0)
+ ;;=4^D03.61
+ ;;^UTILITY(U,$J,358.3,8009,2)
+ ;;=^5001902
+ ;;^UTILITY(U,$J,358.3,8010,0)
+ ;;=D03.62^^65^517^57
+ ;;^UTILITY(U,$J,358.3,8010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23279,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,23279,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,23279,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,23280,0)
- ;;=F34.0^^61^897^24
- ;;^UTILITY(U,$J,358.3,23280,1,0)
+ ;;^UTILITY(U,$J,358.3,8010,1,3,0)
+ ;;=3^Melanoma in Situ Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,8010,1,4,0)
+ ;;=4^D03.62
+ ;;^UTILITY(U,$J,358.3,8010,2)
+ ;;=^5001903
+ ;;^UTILITY(U,$J,358.3,8011,0)
+ ;;=D03.71^^65^517^59
+ ;;^UTILITY(U,$J,358.3,8011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23280,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,23280,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,23280,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,23281,0)
- ;;=F31.0^^61^897^20
- ;;^UTILITY(U,$J,358.3,23281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23281,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,23281,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,23281,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,23282,0)
- ;;=F31.71^^61^897^22
- ;;^UTILITY(U,$J,358.3,23282,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23282,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,23282,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,23282,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,23283,0)
- ;;=F31.72^^61^897^21
- ;;^UTILITY(U,$J,358.3,23283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23283,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,23283,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,23283,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,23284,0)
- ;;=F06.33^^61^897^3
- ;;^UTILITY(U,$J,358.3,23284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23284,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic/Hypomanic-Like Episode
- ;;^UTILITY(U,$J,358.3,23284,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,23284,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,23285,0)
- ;;=F31.9^^61^897^12
- ;;^UTILITY(U,$J,358.3,23285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23285,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Unsp
- ;;^UTILITY(U,$J,358.3,23285,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,23285,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,23286,0)
- ;;=F31.9^^61^897^19
- ;;^UTILITY(U,$J,358.3,23286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23286,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unsp
- ;;^UTILITY(U,$J,358.3,23286,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,23286,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,23287,0)
- ;;=F31.89^^61^897^4
- ;;^UTILITY(U,$J,358.3,23287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23287,1,3,0)
- ;;=3^Bipolar & Related Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,23287,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,23287,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,23288,0)
- ;;=F31.9^^61^897^5
- ;;^UTILITY(U,$J,358.3,23288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23288,1,3,0)
- ;;=3^Bipolar & Related Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,23288,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,23288,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,23289,0)
- ;;=A81.00^^61^898^8
- ;;^UTILITY(U,$J,358.3,23289,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23289,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23289,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,23289,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,23290,0)
- ;;=A81.09^^61^898^7
- ;;^UTILITY(U,$J,358.3,23290,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23290,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,23290,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,23290,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,23291,0)
- ;;=A81.2^^61^898^72
- ;;^UTILITY(U,$J,358.3,23291,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23291,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,23291,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,23291,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,23292,0)
- ;;=F01.50^^61^898^46
- ;;^UTILITY(U,$J,358.3,23292,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23292,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23292,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,23292,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,23293,0)
- ;;=F01.51^^61^898^47
- ;;^UTILITY(U,$J,358.3,23293,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23293,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23293,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,23293,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,23294,0)
- ;;=F02.80^^61^898^34
- ;;^UTILITY(U,$J,358.3,23294,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23294,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss ALZHEIMER'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23294,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,23294,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,23295,0)
- ;;=F02.81^^61^898^35
- ;;^UTILITY(U,$J,358.3,23295,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23295,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss ALZHEIMER'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23295,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,23295,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,23296,0)
- ;;=G30.9^^61^898^4
- ;;^UTILITY(U,$J,358.3,23296,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23296,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23296,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,23296,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,23297,0)
- ;;=G31.01^^61^898^70
- ;;^UTILITY(U,$J,358.3,23297,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23297,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,23297,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,23297,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,23298,0)
- ;;=G94.^^61^898^6
- ;;^UTILITY(U,$J,358.3,23298,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23298,1,3,0)
- ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
- ;;^UTILITY(U,$J,358.3,23298,1,4,0)
- ;;=4^G94.
- ;;^UTILITY(U,$J,358.3,23298,2)
- ;;=^5004187
- ;;^UTILITY(U,$J,358.3,23299,0)
- ;;=G31.83^^61^898^18
- ;;^UTILITY(U,$J,358.3,23299,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23299,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,23299,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,23299,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,23300,0)
- ;;=G31.89^^61^898^11
- ;;^UTILITY(U,$J,358.3,23300,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23300,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System NEC
- ;;^UTILITY(U,$J,358.3,23300,1,4,0)
- ;;=4^G31.89
- ;;^UTILITY(U,$J,358.3,23300,2)
- ;;=^5003814
- ;;^UTILITY(U,$J,358.3,23301,0)
- ;;=G31.9^^61^898^12
- ;;^UTILITY(U,$J,358.3,23301,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23301,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,23301,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,23301,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,23302,0)
- ;;=G23.8^^61^898^10
- ;;^UTILITY(U,$J,358.3,23302,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23302,1,3,0)
- ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,8011,1,3,0)
+ ;;=3^Melanoma in Situ Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,8011,1,4,0)
+ ;;=4^D03.71

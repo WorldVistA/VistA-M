@@ -1,5 +1,5 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617,624**;21-MAR-94;Build 10
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617,624,636**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
@@ -22,8 +22,10 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ;clean up the list of non-answered SC/Env.indicators questions and INS
  K IBD("SC/EI NO ANSW"),IBD("INS")
  ;
- N IBTRKR,IBARR,IBADT,IBRXN,IBFIL,IBTRKRN,IBRMARK,IBANY,IBX,IBT,IBINS,IBSAVE,IBPRDATA,IBDISPFEE,IBADMINFEE
- N IBFEE,IBBI,IBIT,IBPRICE,IBRS,IBRT,IBTRN,IBCHG,IBRES,IBNEEDS,IBELIG,IBDEA,IBPTYP,IBACDUTY,IBINSXRES
+ N IBACDUTY,IBADMINFEE,IBADT,IBANY,IBARR,IBBI,IBCHG,IBDEA,IBDISPFEE
+ N IBELIG,IBFEE,IBFIL,IBINGCOST,IBINS,IBINSXRES,IBIT,IBNEEDS,IBPRDATA
+ N IBPRICE,IBPTYP,IBRES,IBRMARK,IBROIMAIBRS,IBRT,IBRXN,IBSAVE,IBT
+ N IBTRKR,IBTRKRN,IBTRN,IBX
  ;
  ; eligibility verification request flag - esg 9/9/10 IB*2*435
  S IBELIG=($G(IBD("RX ACTION"))="ELIG")
@@ -51,6 +53,7 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  . S IBRES=1
  . D SETINSUR(IBADT,IBRT,IBELIG,.IBINS,.IBD,.IBRES)
  . Q
+ ;
  ; additional data integrity checks
  S IBRXN=+$G(IBD("IEN")) I 'IBRXN S IBRES="0^No Rx IEN" G RXQ
  S IBFIL=+$G(IBD("FILL NUMBER"),-1) I IBFIL<0 S IBRES="0^No fill number" G RXQ
@@ -68,10 +71,14 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  I $G(IBD("NO ECME INSURANCE")) S IBINSXRES=$G(IBRES)      ; save IBRES when there are insurance errors
  ;
  ;for secondary billing - skip claim tracking functionality
- G:$G(IBD("RXCOB"))>1 GETINS
+ I $G(IBD("RXCOB"))>1 G GETINS
  ;
  ; -- claims tracking info
- I IBTRKRN,$$PAPERBIL^IBNCPNB(IBTRKRN) S IBRES="0^Existing IB Bill in CT",IBD("NO ECME INSURANCE")=1 G RXQ
+ I IBTRKRN,$$PAPERBIL^IBNCPNB(IBTRKRN) D  G RXQ
+ . S IBRES="0^Existing IB Bill in CT.  OPECC to Cancel Existing Bill in IB & Resubmit Claim"
+ . S IBD("NO ECME INSURANCE")=1
+ . ; Add comment to be displayed on the ECME User Screen
+ . D ADDCOMM^BPSBUTL(IBRXN,IBFIL,"OPECC to Cancel Existing Bill in IB & Resubmit Claim")
  ;
  ; -- no pharmacy coverage, update ct if applicable, quit
  I '$$PTCOV^IBCNSU3(DFN,IBADT,"PHARMACY",.IBANY) S IBRMARK=$S($G(IBANY):"SERVICE NOT COVERED",1:"NOT INSURED") D:$P(IBTRKR,U,4)=2 CT S IBRES="0^"_IBRMARK,IBD("NO ECME INSURANCE")=1 G RXQ
@@ -123,7 +130,7 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  . S IBNBRT=$P($G(^IBE(356.8,IBNBR,0)),U) Q:IBNBRT=""
  . ;
  . ; if refill was deleted (not RX) and now the refill is re-entered
- . ;use $$RXSTATUS^IBNCPRR instead of $G(^PSRX(IBRXN,"STA"))
+ . ; use $$RXSTATUS^IBNCPRR instead of $G(^PSRX(IBRXN,"STA"))
  . I IBNBRT="PRESCRIPTION DELETED",$$RXSTATUS^IBNCPRR(DFN,IBRXN)'=13 D  Q
  . . N DIE,DA,DR
  . . ; clean up REASON NOT BILLABLE and ADDITIONAL COMMENT
@@ -141,11 +148,13 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  . ;
  . ; Clean up 'DRUG NOT BILLABLE' since we made it through the $$BILLABLE function above - IB*2*550
  . I IBNBRT="DRUG NOT BILLABLE" D  Q
- .. N DIE,DA,DR
- .. S DIE="^IBT(356,",DA=+IBTRKRN,DR=".19////@;1.08////@" D ^DIE
- .. Q
+ . . N DIE,DA,DR
+ . . S DIE="^IBT(356,",DA=+IBTRKRN,DR=".19////@;1.08////@" D ^DIE
+ . . Q
  . ;
  . S IBRMARK=IBNBRT
+ . Q
+ ;
  I $D(IBRMARK) S IBRES="0^Non-Billable in CT: "_IBRMARK G RXQ
  ;
 GETINS ; -- examine the insurance data for a patient
@@ -172,25 +181,32 @@ RATEPRIC ; determine rates/prices to use
  ;36^2991001
  ;
  ; return the true value of drug cost for 3rd party bill if it is zero
- I IBD("COST")=0,$P($G(^DGCR(399.3,+$P(IBRT,U,1),0)),U,5) S IBD("COST")=$$RXPCT(.IBD,.BWHERE)
+ I +IBD("COST")=0,$P($G(^DGCR(399.3,+$P(IBRT,U,1),0)),U,5) S IBD("COST")=$$RXPCT(.IBD,.BWHERE)
  ;
- ; get fees if any, ignore return, don't care about price, just need fees
+ ; $$RATECHG^IBCRCC will return dispensing fee and administrative fee
+ ; (in IBFEE, passed by reference) and adjusted charge amount based on
+ ; the rate schedule.
+ ;
  S IBCHG=$$RATECHG^IBCRCC(+IBRS,$S($P(IBRT,U,2)'="C":1,1:IBD("QTY")*IBD("COST")),IBADT,.IBFEE)
  I $P(IBRT,U,2)="C" S IBPRICE=+IBCHG
- ;
  S IBDISPFEE=+$P($G(IBFEE),U,1)     ; dispensing fee
  S IBADMINFEE=+$P($G(IBFEE),U,2)    ; administrative fee
  ;
  I 'IBPRICE D CT S IBRES="0^Cannot find price for Item" G RXQ
  ;
+ ; Calculate the ingredient cost.  Default to 0.01 if less than that.
+ ;
+ S IBINGCOST=IBD("QTY")*IBD("COST")
+ I IBINGCOST<0.01 S IBINGCOST=0.01,IBPRICE=IBPRICE+0.01
+ ;
  ; build pricing data string
  S IBPRDATA=""
  S $P(IBPRDATA,U,1)=IBDISPFEE                     ; dispensing fee
  S $P(IBPRDATA,U,2)=$S($P(IBRT,U,2)="A":"01",$P(IBRT,U,2)="C":"05",1:"07")   ; basis of cost determination
- S $P(IBPRDATA,U,3)=$S($P(IBRT,U,2)="C":IBD("QTY")*IBD("COST")+IBDISPFEE,$P(IBRT,U,2)="A":IBPRICE-IBDISPFEE-IBADMINFEE,1:IBPRICE)   ; basis of cost amount
+ S $P(IBPRDATA,U,3)=$S($P(IBRT,U,2)="C":IBINGCOST+IBDISPFEE,$P(IBRT,U,2)="A":IBPRICE-IBDISPFEE-IBADMINFEE,1:IBPRICE)   ; basis of cost amount
  S $P(IBPRDATA,U,4)=IBPRICE                       ; gross amount due
  S $P(IBPRDATA,U,5)=IBADMINFEE                    ; administrative fee
- S $P(IBPRDATA,U,6)=IBD("QTY")*IBD("COST")        ; ingredient cost
+ S $P(IBPRDATA,U,6)=IBINGCOST                     ; ingredient cost
  S $P(IBPRDATA,U,7)=IBPRICE-IBADMINFEE            ; usual & customary charge (U&C)
  ;
  ; store the pricing data string on each node 2 that may exist
@@ -215,7 +231,7 @@ RXQ ; final processing
  ;
  ;
 CT ; files in claims tracking
- Q:$G(IBD("RXCOB"))>1  ;Claim Tracking is updated only for the primary payer (payer sequence =1)
+ I $G(IBD("RXCOB"))>1 Q  ;Claim Tracking is updated only for the primary payer (payer sequence =1)
  ;If null then the payer sequence = Primary is assumed
  I IBTRKR D CT^IBNCPDPU(DFN,IBRXN,IBFIL,IBADT,$G(IBRMARK))
  Q

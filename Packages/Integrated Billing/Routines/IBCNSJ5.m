@@ -1,5 +1,5 @@
 IBCNSJ5 ;ALB/TMP - INSURANCE PLAN MAINTENANCE ACTION PROCESSING ; 09-AUG-95
- ;;2.0;INTEGRATED BILLING;**43,516,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**43,516,549,652**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PL ; -- Insurance Company Plan List
@@ -145,5 +145,27 @@ CV1 ;Edit coverage limitations from edit plan
  . S VALMBCK="R"
  D EDCOV^IBCNSJ51
  D INIT^IBCNSC4
+ Q
+ ;
+ ;IB*2.0*652/TAZ - Add logic for New Plan
+NP ;Add a New Plan without subscribers
+ N DA,DIE,DR,IBCPOL
+ D FULL^VALM1 W !!
+ ; Add plan and check for duplicates
+ D NEW^IBCNSJ3(IBCNS,.IBCPOL,,1,1)
+ ; If plan not added go to exit
+ I IBCPOL<1 G NPQ
+ ;
+ W !!,"Now you may enter the plan information.",!
+ ;Edit fields of New Policy
+ S DIE="^IBA(355.3,",DA=IBCPOL
+ S DR="S IBAD=$P($G(^IBA(355.3,DA,0)),U,2),Y=$S(IBAD=0:""@55"",IBAD="""":""@1"",1:""@25"");"
+ S DR=DR_"@1;.02;@25;2.01;2.02;@55;6.02;6.03;.09;.15;S Y=$S($$CATOK^IBCEMRA($P(^(0),U,14)):""@60"",1:""@65"");"
+ S DR=DR_"@60;.14;@65;.16;I '$$FTFV^IBCNSU31(X) S Y=""@66"";.17;@66;.13;.05;.12;.06;.07;.08//YES;"
+ D ^DIE
+ ;
+NPQ ;
+ I '$D(IBFASTXT) D INIT^IBCNSU2
+ S VALMBCK="R"
  Q
  ;

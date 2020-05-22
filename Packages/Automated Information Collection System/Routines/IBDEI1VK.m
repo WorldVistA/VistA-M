@@ -1,134 +1,128 @@
-IBDEI1VK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31847,1,4,0)
- ;;=4^S90.222A
- ;;^UTILITY(U,$J,358.3,31847,2)
- ;;=^5137385
- ;;^UTILITY(U,$J,358.3,31848,0)
- ;;=T79.A21A^^126^1606^14
- ;;^UTILITY(U,$J,358.3,31848,1,0)
+ ;;^UTILITY(U,$J,358.3,29947,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,29948,0)
+ ;;=F01.50^^120^1518^33
+ ;;^UTILITY(U,$J,358.3,29948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31848,1,3,0)
- ;;=3^Compartment Syndrome,Right Lower Extremity,Traumatic
- ;;^UTILITY(U,$J,358.3,31848,1,4,0)
- ;;=4^T79.A21A
- ;;^UTILITY(U,$J,358.3,31848,2)
- ;;=^5054335
- ;;^UTILITY(U,$J,358.3,31849,0)
- ;;=T79.A22A^^126^1606^12
- ;;^UTILITY(U,$J,358.3,31849,1,0)
+ ;;^UTILITY(U,$J,358.3,29948,1,3,0)
+ ;;=3^Vascular Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,29948,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,29948,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,29949,0)
+ ;;=F06.31^^120^1519^1
+ ;;^UTILITY(U,$J,358.3,29949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31849,1,3,0)
- ;;=3^Compartment Syndrome,Left Lower Extremity,Traumatic
- ;;^UTILITY(U,$J,358.3,31849,1,4,0)
- ;;=4^T79.A22A
- ;;^UTILITY(U,$J,358.3,31849,2)
- ;;=^5137969
- ;;^UTILITY(U,$J,358.3,31850,0)
- ;;=G57.71^^126^1606^4
- ;;^UTILITY(U,$J,358.3,31850,1,0)
+ ;;^UTILITY(U,$J,358.3,29949,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Dep Feat
+ ;;^UTILITY(U,$J,358.3,29949,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,29949,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,29950,0)
+ ;;=F06.32^^120^1519^2
+ ;;^UTILITY(U,$J,358.3,29950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31850,1,3,0)
- ;;=3^Causalgia of rt lwr limb
- ;;^UTILITY(U,$J,358.3,31850,1,4,0)
- ;;=4^G57.71
- ;;^UTILITY(U,$J,358.3,31850,2)
- ;;=^5133365
- ;;^UTILITY(U,$J,358.3,31851,0)
- ;;=G57.72^^126^1606^3
- ;;^UTILITY(U,$J,358.3,31851,1,0)
+ ;;^UTILITY(U,$J,358.3,29950,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Maj Dep-Like Ep
+ ;;^UTILITY(U,$J,358.3,29950,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,29950,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,29951,0)
+ ;;=F32.0^^120^1519^17
+ ;;^UTILITY(U,$J,358.3,29951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31851,1,3,0)
- ;;=3^Causalgia of lft lwr limb
- ;;^UTILITY(U,$J,358.3,31851,1,4,0)
- ;;=4^G57.72
- ;;^UTILITY(U,$J,358.3,31851,2)
- ;;=^5133366
- ;;^UTILITY(U,$J,358.3,31852,0)
- ;;=L30.2^^126^1606^69
- ;;^UTILITY(U,$J,358.3,31852,1,0)
+ ;;^UTILITY(U,$J,358.3,29951,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,29951,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,29951,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,29952,0)
+ ;;=F32.1^^120^1519^18
+ ;;^UTILITY(U,$J,358.3,29952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31852,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,31852,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,31852,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,31853,0)
- ;;=Q66.7^^126^1606^15
- ;;^UTILITY(U,$J,358.3,31853,1,0)
+ ;;^UTILITY(U,$J,358.3,29952,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,29952,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,29952,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,29953,0)
+ ;;=F32.2^^120^1519^19
+ ;;^UTILITY(U,$J,358.3,29953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31853,1,3,0)
- ;;=3^Congenital Pes Cavus
- ;;^UTILITY(U,$J,358.3,31853,1,4,0)
- ;;=4^Q66.7
- ;;^UTILITY(U,$J,358.3,31853,2)
- ;;=^5018870
- ;;^UTILITY(U,$J,358.3,31854,0)
- ;;=Q66.52^^126^1606^16
- ;;^UTILITY(U,$J,358.3,31854,1,0)
+ ;;^UTILITY(U,$J,358.3,29953,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,29953,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,29953,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,29954,0)
+ ;;=F32.3^^120^1519^14
+ ;;^UTILITY(U,$J,358.3,29954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31854,1,3,0)
- ;;=3^Congenital Pes Planus,Left Foot
- ;;^UTILITY(U,$J,358.3,31854,1,4,0)
- ;;=4^Q66.52
- ;;^UTILITY(U,$J,358.3,31854,2)
- ;;=^5018868
- ;;^UTILITY(U,$J,358.3,31855,0)
- ;;=Q66.51^^126^1606^17
- ;;^UTILITY(U,$J,358.3,31855,1,0)
+ ;;^UTILITY(U,$J,358.3,29954,1,3,0)
+ ;;=3^MDD,Single Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,29954,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,29954,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,29955,0)
+ ;;=F32.4^^120^1519^16
+ ;;^UTILITY(U,$J,358.3,29955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31855,1,3,0)
- ;;=3^Congenital Pes Planus,Right Foot
- ;;^UTILITY(U,$J,358.3,31855,1,4,0)
- ;;=4^Q66.51
- ;;^UTILITY(U,$J,358.3,31855,2)
- ;;=^5018867
- ;;^UTILITY(U,$J,358.3,31856,0)
- ;;=M77.32^^126^1606^1
- ;;^UTILITY(U,$J,358.3,31856,1,0)
+ ;;^UTILITY(U,$J,358.3,29955,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,29955,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,29955,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,29956,0)
+ ;;=F32.5^^120^1519^15
+ ;;^UTILITY(U,$J,358.3,29956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31856,1,3,0)
- ;;=3^Calcaneal Spur,Left Foot
- ;;^UTILITY(U,$J,358.3,31856,1,4,0)
- ;;=4^M77.32
- ;;^UTILITY(U,$J,358.3,31856,2)
- ;;=^5013311
- ;;^UTILITY(U,$J,358.3,31857,0)
- ;;=M77.31^^126^1606^2
- ;;^UTILITY(U,$J,358.3,31857,1,0)
+ ;;^UTILITY(U,$J,358.3,29956,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,29956,1,4,0)
+ ;;=4^F32.5
+ ;;^UTILITY(U,$J,358.3,29956,2)
+ ;;=^5003526
+ ;;^UTILITY(U,$J,358.3,29957,0)
+ ;;=F33.9^^120^1519^13
+ ;;^UTILITY(U,$J,358.3,29957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31857,1,3,0)
- ;;=3^Calcaneal Spur,Right Foot
- ;;^UTILITY(U,$J,358.3,31857,1,4,0)
- ;;=4^M77.31
- ;;^UTILITY(U,$J,358.3,31857,2)
- ;;=^5013310
- ;;^UTILITY(U,$J,358.3,31858,0)
- ;;=Z48.03^^126^1606^7
- ;;^UTILITY(U,$J,358.3,31858,1,0)
+ ;;^UTILITY(U,$J,358.3,29957,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,29957,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,29957,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,29958,0)
+ ;;=F33.0^^120^1519^10
+ ;;^UTILITY(U,$J,358.3,29958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31858,1,3,0)
- ;;=3^Change/Removal of Drains
- ;;^UTILITY(U,$J,358.3,31858,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,31858,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,31859,0)
- ;;=E11.51^^126^1607^30
- ;;^UTILITY(U,$J,358.3,31859,1,0)
+ ;;^UTILITY(U,$J,358.3,29958,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,29958,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,29958,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,29959,0)
+ ;;=F33.1^^120^1519^11
+ ;;^UTILITY(U,$J,358.3,29959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31859,1,3,0)
- ;;=3^DM Type 2 w/ Diab Periph Angiopath w/o Gangrene
- ;;^UTILITY(U,$J,358.3,31859,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,31859,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,31860,0)
- ;;=E11.52^^126^1607^29
- ;;^UTILITY(U,$J,358.3,31860,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31860,1,3,0)
- ;;=3^DM Type 2 w/ Diab Periph Angiopath w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,29959,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,29959,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,29959,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,29960,0)
+ ;;=F33.2^^120^1519^12

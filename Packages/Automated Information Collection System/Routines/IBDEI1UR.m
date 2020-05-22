@@ -1,112 +1,132 @@
-IBDEI1UR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31468,1,2,0)
- ;;=2^Excision of neuroma; digital nerve, one or both, same digit
- ;;^UTILITY(U,$J,358.3,31468,1,3,0)
- ;;=3^64776
- ;;^UTILITY(U,$J,358.3,31469,0)
- ;;=64778^^125^1593^10^^^^1
- ;;^UTILITY(U,$J,358.3,31469,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31469,1,2,0)
- ;;=2^Excision of neuroma; digital nerve, each additional digit (list separately in addition to code for primary procedure)
- ;;^UTILITY(U,$J,358.3,31469,1,3,0)
- ;;=3^64778
- ;;^UTILITY(U,$J,358.3,31470,0)
- ;;=64782^^125^1593^11^^^^1
- ;;^UTILITY(U,$J,358.3,31470,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31470,1,2,0)
- ;;=2^Excision of neuroma; hand or foot, except digital nerve
- ;;^UTILITY(U,$J,358.3,31470,1,3,0)
- ;;=3^64782
- ;;^UTILITY(U,$J,358.3,31471,0)
- ;;=64783^^125^1593^12^^^^1
- ;;^UTILITY(U,$J,358.3,31471,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31471,1,2,0)
- ;;=2^Excision of neuroma; hand or foot, each additional nerve, except same digit
- ;;^UTILITY(U,$J,358.3,31471,1,3,0)
- ;;=3^64783
- ;;^UTILITY(U,$J,358.3,31472,0)
- ;;=29999^^125^1594^19^^^^1
- ;;^UTILITY(U,$J,358.3,31472,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31472,1,2,0)
- ;;=2^Unlisted procedure, arthroscopy
- ;;^UTILITY(U,$J,358.3,31472,1,3,0)
- ;;=3^29999
- ;;^UTILITY(U,$J,358.3,31473,0)
- ;;=29893^^125^1594^11^^^^1
- ;;^UTILITY(U,$J,358.3,31473,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31473,1,2,0)
- ;;=2^Endoscopic plantar fasciotomy
- ;;^UTILITY(U,$J,358.3,31473,1,3,0)
- ;;=3^29893
- ;;^UTILITY(U,$J,358.3,31474,0)
- ;;=29894^^125^1594^3^^^^1
- ;;^UTILITY(U,$J,358.3,31474,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31474,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; w/removalof loose body or foreign body
- ;;^UTILITY(U,$J,358.3,31474,1,3,0)
- ;;=3^29894
- ;;^UTILITY(U,$J,358.3,31475,0)
- ;;=29897^^125^1594^1^^^^1
- ;;^UTILITY(U,$J,358.3,31475,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31475,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, limited
- ;;^UTILITY(U,$J,358.3,31475,1,3,0)
- ;;=3^29897
- ;;^UTILITY(U,$J,358.3,31476,0)
- ;;=29898^^125^1594^2^^^^1
- ;;^UTILITY(U,$J,358.3,31476,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31476,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, extensive
- ;;^UTILITY(U,$J,358.3,31476,1,3,0)
- ;;=3^29898
- ;;^UTILITY(U,$J,358.3,31477,0)
- ;;=20220^^125^1594^8^^^^1
- ;;^UTILITY(U,$J,358.3,31477,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31477,1,2,0)
- ;;=2^Biopsy, bone, trocar, or needle; superficial
- ;;^UTILITY(U,$J,358.3,31477,1,3,0)
- ;;=3^20220
- ;;^UTILITY(U,$J,358.3,31478,0)
- ;;=20650^^125^1594^14^^^^1
- ;;^UTILITY(U,$J,358.3,31478,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31478,1,2,0)
- ;;=2^Insertion of wire or pin with application of skeletal traction, including removal
- ;;^UTILITY(U,$J,358.3,31478,1,3,0)
- ;;=3^20650
- ;;^UTILITY(U,$J,358.3,31479,0)
- ;;=64726^^125^1594^10^^^^1
- ;;^UTILITY(U,$J,358.3,31479,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31479,1,2,0)
- ;;=2^Decompression; plantar digital nerve
- ;;^UTILITY(U,$J,358.3,31479,1,3,0)
- ;;=3^64726
- ;;^UTILITY(U,$J,358.3,31480,0)
- ;;=64999^^125^1594^20^^^^1
- ;;^UTILITY(U,$J,358.3,31480,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31480,1,2,0)
- ;;=2^Unlisted procedure, nervous system
- ;;^UTILITY(U,$J,358.3,31480,1,3,0)
- ;;=3^64999
- ;;^UTILITY(U,$J,358.3,31481,0)
- ;;=93922^^125^1594^18^^^^1
- ;;^UTILITY(U,$J,358.3,31481,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31481,1,2,0)
- ;;=2^Non-invasive physiologic studies of upper or lower extremity arteries, single level, bilateral
- ;;^UTILITY(U,$J,358.3,31481,1,3,0)
- ;;=3^93922
+ ;;^UTILITY(U,$J,358.3,29587,1,3,0)
+ ;;=3^Kleptomania
+ ;;^UTILITY(U,$J,358.3,29587,1,4,0)
+ ;;=4^F63.2
+ ;;^UTILITY(U,$J,358.3,29587,2)
+ ;;=^5003642
+ ;;^UTILITY(U,$J,358.3,29588,0)
+ ;;=F91.3^^118^1494^8
+ ;;^UTILITY(U,$J,358.3,29588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29588,1,3,0)
+ ;;=3^Oppositional Defiant D/O
+ ;;^UTILITY(U,$J,358.3,29588,1,4,0)
+ ;;=4^F91.3
+ ;;^UTILITY(U,$J,358.3,29588,2)
+ ;;=^331955
+ ;;^UTILITY(U,$J,358.3,29589,0)
+ ;;=F63.1^^118^1494^9
+ ;;^UTILITY(U,$J,358.3,29589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29589,1,3,0)
+ ;;=3^Pyromania
+ ;;^UTILITY(U,$J,358.3,29589,1,4,0)
+ ;;=4^F63.1
+ ;;^UTILITY(U,$J,358.3,29589,2)
+ ;;=^5003641
+ ;;^UTILITY(U,$J,358.3,29590,0)
+ ;;=F91.8^^118^1494^4
+ ;;^UTILITY(U,$J,358.3,29590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29590,1,3,0)
+ ;;=3^Disruptive,Impulse-Control & Conduct D/O,Oth 
+ ;;^UTILITY(U,$J,358.3,29590,1,4,0)
+ ;;=4^F91.8
+ ;;^UTILITY(U,$J,358.3,29590,2)
+ ;;=^5003700
+ ;;^UTILITY(U,$J,358.3,29591,0)
+ ;;=R45.6^^118^1494^10
+ ;;^UTILITY(U,$J,358.3,29591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29591,1,3,0)
+ ;;=3^Violent Behavior
+ ;;^UTILITY(U,$J,358.3,29591,1,4,0)
+ ;;=4^R45.6
+ ;;^UTILITY(U,$J,358.3,29591,2)
+ ;;=^5019467
+ ;;^UTILITY(U,$J,358.3,29592,0)
+ ;;=R45.850^^118^1494^5
+ ;;^UTILITY(U,$J,358.3,29592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29592,1,3,0)
+ ;;=3^Homicidal Ideations
+ ;;^UTILITY(U,$J,358.3,29592,1,4,0)
+ ;;=4^R45.850
+ ;;^UTILITY(U,$J,358.3,29592,2)
+ ;;=^5019473
+ ;;^UTILITY(U,$J,358.3,29593,0)
+ ;;=F98.0^^118^1495^2
+ ;;^UTILITY(U,$J,358.3,29593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29593,1,3,0)
+ ;;=3^Enuresis
+ ;;^UTILITY(U,$J,358.3,29593,1,4,0)
+ ;;=4^F98.0
+ ;;^UTILITY(U,$J,358.3,29593,2)
+ ;;=^5003711
+ ;;^UTILITY(U,$J,358.3,29594,0)
+ ;;=F98.1^^118^1495^1
+ ;;^UTILITY(U,$J,358.3,29594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29594,1,3,0)
+ ;;=3^Encopresis
+ ;;^UTILITY(U,$J,358.3,29594,1,4,0)
+ ;;=4^F98.1
+ ;;^UTILITY(U,$J,358.3,29594,2)
+ ;;=^5003712
+ ;;^UTILITY(U,$J,358.3,29595,0)
+ ;;=N39.498^^118^1495^4
+ ;;^UTILITY(U,$J,358.3,29595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29595,1,3,0)
+ ;;=3^Urinary Incontinence,Oth Spec
+ ;;^UTILITY(U,$J,358.3,29595,1,4,0)
+ ;;=4^N39.498
+ ;;^UTILITY(U,$J,358.3,29595,2)
+ ;;=^5015686
+ ;;^UTILITY(U,$J,358.3,29596,0)
+ ;;=R15.9^^118^1495^3
+ ;;^UTILITY(U,$J,358.3,29596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29596,1,3,0)
+ ;;=3^Full Incontinence of Feces
+ ;;^UTILITY(U,$J,358.3,29596,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,29596,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,29597,0)
+ ;;=R32.^^118^1495^5
+ ;;^UTILITY(U,$J,358.3,29597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29597,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,29597,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,29597,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,29598,0)
+ ;;=F63.0^^118^1496^1
+ ;;^UTILITY(U,$J,358.3,29598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29598,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,29598,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,29598,2)
+ ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,29599,0)
+ ;;=F06.8^^118^1497^2
+ ;;^UTILITY(U,$J,358.3,29599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29599,1,3,0)
+ ;;=3^Mental D/O,Oth Spec,d/t Anth Med Cond
+ ;;^UTILITY(U,$J,358.3,29599,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,29599,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,29600,0)
+ ;;=F09.^^118^1497^3

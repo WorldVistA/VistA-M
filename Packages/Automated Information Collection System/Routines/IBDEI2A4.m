@@ -1,130 +1,116 @@
-IBDEI2A4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2A4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38660,1,4,0)
- ;;=4^Y36.270S
- ;;^UTILITY(U,$J,358.3,38660,2)
- ;;=^5061651
- ;;^UTILITY(U,$J,358.3,38661,0)
- ;;=Y36.290S^^148^1891^10
- ;;^UTILITY(U,$J,358.3,38661,1,0)
+ ;;^UTILITY(U,$J,358.3,36404,1,4,0)
+ ;;=4^S68.117A
+ ;;^UTILITY(U,$J,358.3,36404,2)
+ ;;=^5036660
+ ;;^UTILITY(U,$J,358.3,36405,0)
+ ;;=S68.113A^^142^1863^56
+ ;;^UTILITY(U,$J,358.3,36405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38661,1,3,0)
- ;;=3^War op involving oth explosn and fragments, milt, sequela
- ;;^UTILITY(U,$J,358.3,38661,1,4,0)
- ;;=4^Y36.290S
- ;;^UTILITY(U,$J,358.3,38661,2)
- ;;=^5061657
- ;;^UTILITY(U,$J,358.3,38662,0)
- ;;=Y36.321S^^148^1891^7
- ;;^UTILITY(U,$J,358.3,38662,1,0)
+ ;;^UTILITY(U,$J,358.3,36405,1,3,0)
+ ;;=3^Amputation,Traumatic,Left MCP Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36405,1,4,0)
+ ;;=4^S68.113A
+ ;;^UTILITY(U,$J,358.3,36405,2)
+ ;;=^5036648
+ ;;^UTILITY(U,$J,358.3,36406,0)
+ ;;=S68.115A^^142^1863^57
+ ;;^UTILITY(U,$J,358.3,36406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38662,1,3,0)
- ;;=3^War op involving incendiary bullet, civilian, sequela
- ;;^UTILITY(U,$J,358.3,38662,1,4,0)
- ;;=4^Y36.321S
- ;;^UTILITY(U,$J,358.3,38662,2)
- ;;=^5061678
- ;;^UTILITY(U,$J,358.3,38663,0)
- ;;=Y36.411S^^148^1891^11
- ;;^UTILITY(U,$J,358.3,38663,1,0)
+ ;;^UTILITY(U,$J,358.3,36406,1,3,0)
+ ;;=3^Amputation,Traumatic,Left MCP Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36406,1,4,0)
+ ;;=4^S68.115A
+ ;;^UTILITY(U,$J,358.3,36406,2)
+ ;;=^5036654
+ ;;^UTILITY(U,$J,358.3,36407,0)
+ ;;=S68.012A^^142^1863^58
+ ;;^UTILITY(U,$J,358.3,36407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38663,1,3,0)
- ;;=3^War op involving rubber bullets, civilian, sequela
- ;;^UTILITY(U,$J,358.3,38663,1,4,0)
- ;;=4^Y36.411S
- ;;^UTILITY(U,$J,358.3,38663,2)
- ;;=^5061696
- ;;^UTILITY(U,$J,358.3,38664,0)
- ;;=Y36.491S^^148^1891^8
- ;;^UTILITY(U,$J,358.3,38664,1,0)
+ ;;^UTILITY(U,$J,358.3,36407,1,3,0)
+ ;;=3^Amputation,Traumatic,Left MCP Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36407,1,4,0)
+ ;;=4^S68.012A
+ ;;^UTILITY(U,$J,358.3,36407,2)
+ ;;=^5036624
+ ;;^UTILITY(U,$J,358.3,36408,0)
+ ;;=S68.611A^^142^1863^61
+ ;;^UTILITY(U,$J,358.3,36408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38664,1,3,0)
- ;;=3^War op involving oth conventl warfare, civilian, sequela
- ;;^UTILITY(U,$J,358.3,38664,1,4,0)
- ;;=4^Y36.491S
- ;;^UTILITY(U,$J,358.3,38664,2)
- ;;=^5061738
- ;;^UTILITY(U,$J,358.3,38665,0)
- ;;=Y36.511S^^148^1891^14
- ;;^UTILITY(U,$J,358.3,38665,1,0)
+ ;;^UTILITY(U,$J,358.3,36408,1,3,0)
+ ;;=3^Amputation,Traumatic,Left Trnsphal Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36408,1,4,0)
+ ;;=4^S68.611A
+ ;;^UTILITY(U,$J,358.3,36408,2)
+ ;;=^5036738
+ ;;^UTILITY(U,$J,358.3,36409,0)
+ ;;=S68.617A^^142^1863^62
+ ;;^UTILITY(U,$J,358.3,36409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38665,1,3,0)
- ;;=3^War op w direct blast effect of nuclear weapon, civ, sequela
- ;;^UTILITY(U,$J,358.3,38665,1,4,0)
- ;;=4^Y36.511S
- ;;^UTILITY(U,$J,358.3,38665,2)
- ;;=^5061750
- ;;^UTILITY(U,$J,358.3,38666,0)
- ;;=Y36.6X1S^^148^1891^1
- ;;^UTILITY(U,$J,358.3,38666,1,0)
+ ;;^UTILITY(U,$J,358.3,36409,1,3,0)
+ ;;=3^Amputation,Traumatic,Left Trnsphal Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36409,1,4,0)
+ ;;=4^S68.617A
+ ;;^UTILITY(U,$J,358.3,36409,2)
+ ;;=^5036756
+ ;;^UTILITY(U,$J,358.3,36410,0)
+ ;;=S68.613A^^142^1863^63
+ ;;^UTILITY(U,$J,358.3,36410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38666,1,3,0)
- ;;=3^War op involving biolg weapons, civilian, sequela
- ;;^UTILITY(U,$J,358.3,38666,1,4,0)
- ;;=4^Y36.6X1S
- ;;^UTILITY(U,$J,358.3,38666,2)
- ;;=^5061780
- ;;^UTILITY(U,$J,358.3,38667,0)
- ;;=Y36.7X0S^^148^1891^13
- ;;^UTILITY(U,$J,358.3,38667,1,0)
+ ;;^UTILITY(U,$J,358.3,36410,1,3,0)
+ ;;=3^Amputation,Traumatic,Left Trnsphal Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36410,1,4,0)
+ ;;=4^S68.613A
+ ;;^UTILITY(U,$J,358.3,36410,2)
+ ;;=^5036744
+ ;;^UTILITY(U,$J,358.3,36411,0)
+ ;;=S68.615A^^142^1863^64
+ ;;^UTILITY(U,$J,358.3,36411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38667,1,3,0)
- ;;=3^War op w chem weapons and oth unconvtl warfare, milt, sqla
- ;;^UTILITY(U,$J,358.3,38667,1,4,0)
- ;;=4^Y36.7X0S
- ;;^UTILITY(U,$J,358.3,38667,2)
- ;;=^5061783
- ;;^UTILITY(U,$J,358.3,38668,0)
- ;;=99201^^149^1892^1
- ;;^UTILITY(U,$J,358.3,38668,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,38668,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,38668,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,38669,0)
- ;;=99202^^149^1892^2
- ;;^UTILITY(U,$J,358.3,38669,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,38669,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,38669,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,38670,0)
- ;;=99203^^149^1892^3
- ;;^UTILITY(U,$J,358.3,38670,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,38670,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,38670,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,38671,0)
- ;;=99204^^149^1892^4
- ;;^UTILITY(U,$J,358.3,38671,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,38671,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,38671,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,38672,0)
- ;;=99205^^149^1892^5
- ;;^UTILITY(U,$J,358.3,38672,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,38672,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,38672,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,38673,0)
- ;;=99211^^149^1893^1
- ;;^UTILITY(U,$J,358.3,38673,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,38673,1,1,0)
- ;;=1^Brief (no MD seen)
- ;;^UTILITY(U,$J,358.3,38673,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,38674,0)
- ;;=99212^^149^1893^2
- ;;^UTILITY(U,$J,358.3,38674,1,0)
- ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,36411,1,3,0)
+ ;;=3^Amputation,Traumatic,Left Trnsphal Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36411,1,4,0)
+ ;;=4^S68.615A
+ ;;^UTILITY(U,$J,358.3,36411,2)
+ ;;=^5036750
+ ;;^UTILITY(U,$J,358.3,36412,0)
+ ;;=S68.512A^^142^1863^65
+ ;;^UTILITY(U,$J,358.3,36412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36412,1,3,0)
+ ;;=3^Amputation,Traumatic,Left Trnsphal Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36412,1,4,0)
+ ;;=4^S68.512A
+ ;;^UTILITY(U,$J,358.3,36412,2)
+ ;;=^5036720
+ ;;^UTILITY(U,$J,358.3,36413,0)
+ ;;=S58.111A^^142^1863^68
+ ;;^UTILITY(U,$J,358.3,36413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36413,1,3,0)
+ ;;=3^Amputation,Traumatic,Right Arm Between Elbow & Wrist Level,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36413,1,4,0)
+ ;;=4^S58.111A
+ ;;^UTILITY(U,$J,358.3,36413,2)
+ ;;=^5031925
+ ;;^UTILITY(U,$J,358.3,36414,0)
+ ;;=S98.131A^^142^1863^66
+ ;;^UTILITY(U,$J,358.3,36414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36414,1,3,0)
+ ;;=3^Amputation,Traumatic,Right 1 Lesser Toe,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36414,1,4,0)
+ ;;=4^S98.131A
+ ;;^UTILITY(U,$J,358.3,36414,2)
+ ;;=^5046281
+ ;;^UTILITY(U,$J,358.3,36415,0)
+ ;;=S98.011A^^142^1863^69
+ ;;^UTILITY(U,$J,358.3,36415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36415,1,3,0)
+ ;;=3^Amputation,Traumatic,Right Foot at Ankle Level,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36415,1,4,0)
+ ;;=4^S98.011A

@@ -1,284 +1,126 @@
-IBDEI14S ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI14S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41082,1,0)
+ ;;^UTILITY(U,$J,358.3,18160,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,18160,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,18160,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,18161,0)
+ ;;=J15.0^^88^912^7
+ ;;^UTILITY(U,$J,358.3,18161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41082,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,41082,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,41082,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,41083,0)
- ;;=Z48.812^^153^2005^1
- ;;^UTILITY(U,$J,358.3,41083,1,0)
+ ;;^UTILITY(U,$J,358.3,18161,1,3,0)
+ ;;=3^Pneumonia d/t Klebsiella Pneumoniae
+ ;;^UTILITY(U,$J,358.3,18161,1,4,0)
+ ;;=4^J15.0
+ ;;^UTILITY(U,$J,358.3,18161,2)
+ ;;=^269931
+ ;;^UTILITY(U,$J,358.3,18162,0)
+ ;;=J15.1^^88^912^16
+ ;;^UTILITY(U,$J,358.3,18162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41083,1,3,0)
- ;;=3^Circulatory System Surgery Aftercare
- ;;^UTILITY(U,$J,358.3,41083,1,4,0)
- ;;=4^Z48.812
- ;;^UTILITY(U,$J,358.3,41083,2)
- ;;=^5063049
- ;;^UTILITY(U,$J,358.3,41084,0)
- ;;=Z09.^^153^2005^2
- ;;^UTILITY(U,$J,358.3,41084,1,0)
+ ;;^UTILITY(U,$J,358.3,18162,1,3,0)
+ ;;=3^Pneumonia d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,18162,1,4,0)
+ ;;=4^J15.1
+ ;;^UTILITY(U,$J,358.3,18162,2)
+ ;;=^269932
+ ;;^UTILITY(U,$J,358.3,18163,0)
+ ;;=J15.20^^88^912^18
+ ;;^UTILITY(U,$J,358.3,18163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41084,1,3,0)
- ;;=3^F/U Exam Aftr Tx,Cond Oth Than Malig Neop
- ;;^UTILITY(U,$J,358.3,41084,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,41084,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,41085,0)
- ;;=I25.10^^153^2006^2
- ;;^UTILITY(U,$J,358.3,41085,1,0)
+ ;;^UTILITY(U,$J,358.3,18163,1,3,0)
+ ;;=3^Pneumonia d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,18163,1,4,0)
+ ;;=4^J15.20
+ ;;^UTILITY(U,$J,358.3,18163,2)
+ ;;=^321179
+ ;;^UTILITY(U,$J,358.3,18164,0)
+ ;;=J15.211^^88^912^9
+ ;;^UTILITY(U,$J,358.3,18164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41085,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,41085,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,41085,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,41086,0)
- ;;=I25.110^^153^2006^3
- ;;^UTILITY(U,$J,358.3,41086,1,0)
+ ;;^UTILITY(U,$J,358.3,18164,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Suscep Staph
+ ;;^UTILITY(U,$J,358.3,18164,1,4,0)
+ ;;=4^J15.211
+ ;;^UTILITY(U,$J,358.3,18164,2)
+ ;;=^336833
+ ;;^UTILITY(U,$J,358.3,18165,0)
+ ;;=J15.212^^88^912^8
+ ;;^UTILITY(U,$J,358.3,18165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41086,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unstable AP
- ;;^UTILITY(U,$J,358.3,41086,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,41086,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,41087,0)
- ;;=I25.111^^153^2006^4
- ;;^UTILITY(U,$J,358.3,41087,1,0)
+ ;;^UTILITY(U,$J,358.3,18165,1,3,0)
+ ;;=3^Pneumonia d/t Methicillin Resistant Staph Aureus
+ ;;^UTILITY(U,$J,358.3,18165,1,4,0)
+ ;;=4^J15.212
+ ;;^UTILITY(U,$J,358.3,18165,2)
+ ;;=^336602
+ ;;^UTILITY(U,$J,358.3,18166,0)
+ ;;=J15.29^^88^912^11
+ ;;^UTILITY(U,$J,358.3,18166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41087,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ AP w/ Spasm
- ;;^UTILITY(U,$J,358.3,41087,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,41087,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,41088,0)
- ;;=I25.118^^153^2006^5
- ;;^UTILITY(U,$J,358.3,41088,1,0)
+ ;;^UTILITY(U,$J,358.3,18166,1,3,0)
+ ;;=3^Pneumonia d/t Oth Staph
+ ;;^UTILITY(U,$J,358.3,18166,1,4,0)
+ ;;=4^J15.29
+ ;;^UTILITY(U,$J,358.3,18166,2)
+ ;;=^5008172
+ ;;^UTILITY(U,$J,358.3,18167,0)
+ ;;=J15.3^^88^912^20
+ ;;^UTILITY(U,$J,358.3,18167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41088,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Oth AP
- ;;^UTILITY(U,$J,358.3,41088,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,41088,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,41089,0)
- ;;=I25.119^^153^2006^6
- ;;^UTILITY(U,$J,358.3,41089,1,0)
+ ;;^UTILITY(U,$J,358.3,18167,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus,Group B
+ ;;^UTILITY(U,$J,358.3,18167,1,4,0)
+ ;;=4^J15.3
+ ;;^UTILITY(U,$J,358.3,18167,2)
+ ;;=^5008173
+ ;;^UTILITY(U,$J,358.3,18168,0)
+ ;;=J15.4^^88^912^15
+ ;;^UTILITY(U,$J,358.3,18168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41089,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unspec AP
- ;;^UTILITY(U,$J,358.3,41089,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,41089,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,41090,0)
- ;;=I50.9^^153^2006^12
- ;;^UTILITY(U,$J,358.3,41090,1,0)
+ ;;^UTILITY(U,$J,358.3,18168,1,3,0)
+ ;;=3^Pneumonia d/t Other Streptococci
+ ;;^UTILITY(U,$J,358.3,18168,1,4,0)
+ ;;=4^J15.4
+ ;;^UTILITY(U,$J,358.3,18168,2)
+ ;;=^5008174
+ ;;^UTILITY(U,$J,358.3,18169,0)
+ ;;=J15.5^^88^912^5
+ ;;^UTILITY(U,$J,358.3,18169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41090,1,3,0)
- ;;=3^Heart Failure,Comp/Uncomp
- ;;^UTILITY(U,$J,358.3,41090,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,41090,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,41091,0)
- ;;=I65.21^^153^2006^16
- ;;^UTILITY(U,$J,358.3,41091,1,0)
+ ;;^UTILITY(U,$J,358.3,18169,1,3,0)
+ ;;=3^Pneumonia d/t Escherichia Coli
+ ;;^UTILITY(U,$J,358.3,18169,1,4,0)
+ ;;=4^J15.5
+ ;;^UTILITY(U,$J,358.3,18169,2)
+ ;;=^5008175
+ ;;^UTILITY(U,$J,358.3,18170,0)
+ ;;=J15.6^^88^912^12
+ ;;^UTILITY(U,$J,358.3,18170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41091,1,3,0)
- ;;=3^Occl & Sten,Rt Carotid Artery
- ;;^UTILITY(U,$J,358.3,41091,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,41091,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,41092,0)
- ;;=I65.22^^153^2006^14
- ;;^UTILITY(U,$J,358.3,41092,1,0)
+ ;;^UTILITY(U,$J,358.3,18170,1,3,0)
+ ;;=3^Pneumonia d/t Other Aerobic Gram-Neg Bacteria
+ ;;^UTILITY(U,$J,358.3,18170,1,4,0)
+ ;;=4^J15.6
+ ;;^UTILITY(U,$J,358.3,18170,2)
+ ;;=^5008176
+ ;;^UTILITY(U,$J,358.3,18171,0)
+ ;;=J15.7^^88^912^10
+ ;;^UTILITY(U,$J,358.3,18171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41092,1,3,0)
- ;;=3^Occl & Sten,Lt Carotid Artery
- ;;^UTILITY(U,$J,358.3,41092,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,41092,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,41093,0)
- ;;=I65.23^^153^2006^13
- ;;^UTILITY(U,$J,358.3,41093,1,0)
+ ;;^UTILITY(U,$J,358.3,18171,1,3,0)
+ ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,18171,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,18171,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,18172,0)
+ ;;=J15.8^^88^912^13
+ ;;^UTILITY(U,$J,358.3,18172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41093,1,3,0)
- ;;=3^Occl & Sten,Bil Carotid Arteries
- ;;^UTILITY(U,$J,358.3,41093,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,41093,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,41094,0)
- ;;=I65.8^^153^2006^15
- ;;^UTILITY(U,$J,358.3,41094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41094,1,3,0)
- ;;=3^Occl & Sten,Precerb Arteries
- ;;^UTILITY(U,$J,358.3,41094,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,41094,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,41095,0)
- ;;=I70.211^^153^2006^9
- ;;^UTILITY(U,$J,358.3,41095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41095,1,3,0)
- ;;=3^Athscl Ntv Art,Rt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,41095,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,41095,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,41096,0)
- ;;=I70.212^^153^2006^8
- ;;^UTILITY(U,$J,358.3,41096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41096,1,3,0)
- ;;=3^Athscl Ntv Art,Lt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,41096,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,41096,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,41097,0)
- ;;=I70.213^^153^2006^7
- ;;^UTILITY(U,$J,358.3,41097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41097,1,3,0)
- ;;=3^Athscl Ntv Art,Bil Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,41097,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,41097,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,41098,0)
- ;;=I71.2^^153^2006^21
- ;;^UTILITY(U,$J,358.3,41098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41098,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,41098,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,41098,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,41099,0)
- ;;=I71.4^^153^2006^1
- ;;^UTILITY(U,$J,358.3,41099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41099,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,41099,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,41099,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,41100,0)
- ;;=I73.9^^153^2006^19
- ;;^UTILITY(U,$J,358.3,41100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41100,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,41100,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,41100,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,41101,0)
- ;;=I74.2^^153^2006^11
- ;;^UTILITY(U,$J,358.3,41101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41101,1,3,0)
- ;;=3^Embol & Thromb UE Arteries
- ;;^UTILITY(U,$J,358.3,41101,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,41101,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,41102,0)
- ;;=I74.3^^153^2006^10
- ;;^UTILITY(U,$J,358.3,41102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41102,1,3,0)
- ;;=3^Embol & Thromb LE Arteries
- ;;^UTILITY(U,$J,358.3,41102,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,41102,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,41103,0)
- ;;=M79.604^^153^2006^18
- ;;^UTILITY(U,$J,358.3,41103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41103,1,3,0)
- ;;=3^Pain,Right Leg
- ;;^UTILITY(U,$J,358.3,41103,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,41103,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,41104,0)
- ;;=M79.605^^153^2006^17
- ;;^UTILITY(U,$J,358.3,41104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41104,1,3,0)
- ;;=3^Pain,Left Leg
- ;;^UTILITY(U,$J,358.3,41104,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,41104,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,41105,0)
- ;;=Z13.6^^153^2006^20
- ;;^UTILITY(U,$J,358.3,41105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41105,1,3,0)
- ;;=3^Screening for Cardiovascular Disorders
- ;;^UTILITY(U,$J,358.3,41105,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,41105,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,41106,0)
- ;;=C77.0^^153^2007^12
- ;;^UTILITY(U,$J,358.3,41106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41106,1,3,0)
- ;;=3^Met Malig Neop LNs Head,Face,Neck
- ;;^UTILITY(U,$J,358.3,41106,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,41106,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,41107,0)
- ;;=C77.1^^153^2007^11
- ;;^UTILITY(U,$J,358.3,41107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41107,1,3,0)
- ;;=3^Met Malig Neop Intrathoracic LNs
- ;;^UTILITY(U,$J,358.3,41107,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,41107,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,41108,0)
- ;;=C77.2^^153^2007^9
- ;;^UTILITY(U,$J,358.3,41108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41108,1,3,0)
- ;;=3^Met Malig Neop Intra-Abdominal LNs
- ;;^UTILITY(U,$J,358.3,41108,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,41108,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,41109,0)
- ;;=C77.3^^153^2007^1
- ;;^UTILITY(U,$J,358.3,41109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41109,1,3,0)
- ;;=3^Met Malig Neop Ax & Upper Limb LNs
- ;;^UTILITY(U,$J,358.3,41109,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,41109,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,41110,0)
- ;;=C77.4^^153^2007^8
+ ;;^UTILITY(U,$J,358.3,18172,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Bacteria

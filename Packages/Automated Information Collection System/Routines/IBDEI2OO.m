@@ -1,138 +1,118 @@
-IBDEI2OO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45032,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,45032,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,45033,0)
- ;;=G89.12^^200^2236^14
- ;;^UTILITY(U,$J,358.3,45033,1,0)
+ ;;^UTILITY(U,$J,358.3,42772,1,4,0)
+ ;;=4^S22.071S
+ ;;^UTILITY(U,$J,358.3,42772,2)
+ ;;=^5023026
+ ;;^UTILITY(U,$J,358.3,42773,0)
+ ;;=S32.031S^^155^2073^45
+ ;;^UTILITY(U,$J,358.3,42773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45033,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Acute
- ;;^UTILITY(U,$J,358.3,45033,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,45033,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,45034,0)
- ;;=G89.18^^200^2236^16
- ;;^UTILITY(U,$J,358.3,45034,1,0)
+ ;;^UTILITY(U,$J,358.3,42773,1,3,0)
+ ;;=3^Stable burst fracture of third lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42773,1,4,0)
+ ;;=4^S32.031S
+ ;;^UTILITY(U,$J,358.3,42773,2)
+ ;;=^5024442
+ ;;^UTILITY(U,$J,358.3,42774,0)
+ ;;=S22.031S^^155^2073^46
+ ;;^UTILITY(U,$J,358.3,42774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45034,1,3,0)
- ;;=3^Postprocedural Pain,Oth Acute
- ;;^UTILITY(U,$J,358.3,45034,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,45034,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,45035,0)
- ;;=R52.^^200^2236^12
- ;;^UTILITY(U,$J,358.3,45035,1,0)
+ ;;^UTILITY(U,$J,358.3,42774,1,3,0)
+ ;;=3^Stable burst fracture of third thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42774,1,4,0)
+ ;;=4^S22.031S
+ ;;^UTILITY(U,$J,358.3,42774,2)
+ ;;=^5022906
+ ;;^UTILITY(U,$J,358.3,42775,0)
+ ;;=S32.111S^^155^2073^20
+ ;;^UTILITY(U,$J,358.3,42775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45035,1,3,0)
- ;;=3^Pain,Unspec
- ;;^UTILITY(U,$J,358.3,45035,1,4,0)
- ;;=4^R52.
- ;;^UTILITY(U,$J,358.3,45035,2)
- ;;=^5019514
- ;;^UTILITY(U,$J,358.3,45036,0)
- ;;=G89.21^^200^2236^11
- ;;^UTILITY(U,$J,358.3,45036,1,0)
+ ;;^UTILITY(U,$J,358.3,42775,1,3,0)
+ ;;=3^Minimally displaced Zone I fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42775,1,4,0)
+ ;;=4^S32.111S
+ ;;^UTILITY(U,$J,358.3,42775,2)
+ ;;=^5024538
+ ;;^UTILITY(U,$J,358.3,42776,0)
+ ;;=S32.121S^^155^2073^21
+ ;;^UTILITY(U,$J,358.3,42776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45036,1,3,0)
- ;;=3^Pain d/t Trauma,Chronic
- ;;^UTILITY(U,$J,358.3,45036,1,4,0)
- ;;=4^G89.21
- ;;^UTILITY(U,$J,358.3,45036,2)
- ;;=^5004155
- ;;^UTILITY(U,$J,358.3,45037,0)
- ;;=G89.22^^200^2236^15
- ;;^UTILITY(U,$J,358.3,45037,1,0)
+ ;;^UTILITY(U,$J,358.3,42776,1,3,0)
+ ;;=3^Minimally displaced Zone II fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42776,1,4,0)
+ ;;=4^S32.121S
+ ;;^UTILITY(U,$J,358.3,42776,2)
+ ;;=^5024562
+ ;;^UTILITY(U,$J,358.3,42777,0)
+ ;;=S32.131S^^155^2073^22
+ ;;^UTILITY(U,$J,358.3,42777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45037,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Chronic
- ;;^UTILITY(U,$J,358.3,45037,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,45037,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,45038,0)
- ;;=G89.28^^200^2236^17
- ;;^UTILITY(U,$J,358.3,45038,1,0)
+ ;;^UTILITY(U,$J,358.3,42777,1,3,0)
+ ;;=3^Minimally displaced Zone III fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42777,1,4,0)
+ ;;=4^S32.131S
+ ;;^UTILITY(U,$J,358.3,42777,2)
+ ;;=^5024586
+ ;;^UTILITY(U,$J,358.3,42778,0)
+ ;;=S32.110S^^155^2073^24
+ ;;^UTILITY(U,$J,358.3,42778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45038,1,3,0)
- ;;=3^Postprocedural Pain,Oth Chronic
- ;;^UTILITY(U,$J,358.3,45038,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,45038,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,45039,0)
- ;;=G89.3^^200^2236^9
- ;;^UTILITY(U,$J,358.3,45039,1,0)
+ ;;^UTILITY(U,$J,358.3,42778,1,3,0)
+ ;;=3^Nondisp Zone I fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42778,1,4,0)
+ ;;=4^S32.110S
+ ;;^UTILITY(U,$J,358.3,42778,2)
+ ;;=^5024532
+ ;;^UTILITY(U,$J,358.3,42779,0)
+ ;;=S32.120S^^155^2073^25
+ ;;^UTILITY(U,$J,358.3,42779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45039,1,3,0)
- ;;=3^Neoplasm Related Pain,Acute/Chronic
- ;;^UTILITY(U,$J,358.3,45039,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,45039,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,45040,0)
- ;;=G89.4^^200^2236^2
- ;;^UTILITY(U,$J,358.3,45040,1,0)
+ ;;^UTILITY(U,$J,358.3,42779,1,3,0)
+ ;;=3^Nondisp Zone II fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42779,1,4,0)
+ ;;=4^S32.120S
+ ;;^UTILITY(U,$J,358.3,42779,2)
+ ;;=^5024556
+ ;;^UTILITY(U,$J,358.3,42780,0)
+ ;;=S32.130S^^155^2073^26
+ ;;^UTILITY(U,$J,358.3,42780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45040,1,3,0)
- ;;=3^Chronic Pain Syndrome
- ;;^UTILITY(U,$J,358.3,45040,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,45040,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,45041,0)
- ;;=M27.0^^200^2236^3
- ;;^UTILITY(U,$J,358.3,45041,1,0)
+ ;;^UTILITY(U,$J,358.3,42780,1,3,0)
+ ;;=3^Nondisp Zone III fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42780,1,4,0)
+ ;;=4^S32.130S
+ ;;^UTILITY(U,$J,358.3,42780,2)
+ ;;=^5024580
+ ;;^UTILITY(U,$J,358.3,42781,0)
+ ;;=S32.112S^^155^2073^30
+ ;;^UTILITY(U,$J,358.3,42781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45041,1,3,0)
- ;;=3^Developmental Disorder of Jaws
- ;;^UTILITY(U,$J,358.3,45041,1,4,0)
- ;;=4^M27.0
- ;;^UTILITY(U,$J,358.3,45041,2)
- ;;=^5011722
- ;;^UTILITY(U,$J,358.3,45042,0)
- ;;=M27.9^^200^2236^4
- ;;^UTILITY(U,$J,358.3,45042,1,0)
+ ;;^UTILITY(U,$J,358.3,42781,1,3,0)
+ ;;=3^Severely displaced Zone I fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42781,1,4,0)
+ ;;=4^S32.112S
+ ;;^UTILITY(U,$J,358.3,42781,2)
+ ;;=^5024544
+ ;;^UTILITY(U,$J,358.3,42782,0)
+ ;;=S32.122S^^155^2073^31
+ ;;^UTILITY(U,$J,358.3,42782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45042,1,3,0)
- ;;=3^Disease of Jaws,Unspec
- ;;^UTILITY(U,$J,358.3,45042,1,4,0)
- ;;=4^M27.9
- ;;^UTILITY(U,$J,358.3,45042,2)
- ;;=^5011737
- ;;^UTILITY(U,$J,358.3,45043,0)
- ;;=R68.84^^200^2236^8
- ;;^UTILITY(U,$J,358.3,45043,1,0)
+ ;;^UTILITY(U,$J,358.3,42782,1,3,0)
+ ;;=3^Severely displaced Zone II fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42782,1,4,0)
+ ;;=4^S32.122S
+ ;;^UTILITY(U,$J,358.3,42782,2)
+ ;;=^5024568
+ ;;^UTILITY(U,$J,358.3,42783,0)
+ ;;=S32.132S^^155^2073^32
+ ;;^UTILITY(U,$J,358.3,42783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45043,1,3,0)
- ;;=3^Jaw Pain
- ;;^UTILITY(U,$J,358.3,45043,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,45043,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,45044,0)
- ;;=N48.9^^200^2236^6
- ;;^UTILITY(U,$J,358.3,45044,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45044,1,3,0)
- ;;=3^Disorder of Penis,Unspec
- ;;^UTILITY(U,$J,358.3,45044,1,4,0)
- ;;=4^N48.9
- ;;^UTILITY(U,$J,358.3,45044,2)
- ;;=^5015743
- ;;^UTILITY(U,$J,358.3,45045,0)
- ;;=N50.9^^200^2236^5
- ;;^UTILITY(U,$J,358.3,45045,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45045,1,3,0)
- ;;=3^Disorder of Male Genital Organs,Unspec
- ;;^UTILITY(U,$J,358.3,45045,1,4,0)
- ;;=4^N50.9
- ;;^UTILITY(U,$J,358.3,45045,2)
- ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,42783,1,3,0)
+ ;;=3^Severely displaced Zone III fracture of sacrum, sequela
+ ;;^UTILITY(U,$J,358.3,42783,1,4,0)
+ ;;=4^S32.132S
+ ;;^UTILITY(U,$J,358.3,42783,2)
+ ;;=^5024592

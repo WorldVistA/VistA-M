@@ -1,5 +1,5 @@
-DGPREP1 ;ALB/SCK - Program to Display Pre-Registration List Cont. 1 ; 12/9/03 3:22pm
- ;;5.3;Registration;**109,136,574,903**;Aug 13, 1993;Build 82
+DGPREP1 ;ALB/SCK,PWC - Program to Display Pre-Registration List Cont. 1 ;Jul 29, 2019@12:00
+ ;;5.3;Registration;**109,136,574,903,980**;Aug 13, 1993;Build 4
  ;
  ; Subroutine DIREDT Linetag 26-29 added by patch DG*5.3*903 which was submitted to 
  ; OSEHRA on 04/02/2015 by HP. This update was authored by James Harris 2014-2015
@@ -176,7 +176,8 @@ UPDLOG(DFN,DGPS,DGPDV) ;  Update PRE-REGISTRATION CALL LOG File, #41.43
  I Y<0 W *7,"Problem adding to file - PRE-REGISTRATION CALL LOG"
  I Y'<0 D
  . S DIE="^DGS(41.43,"
- . S DR="1////^S X=DFN;2////^S X=DUZ;3///^S X=DGPS;5////^S X=$S(+DGPDV>0:DGPDV,1:"""")"
+ . ;VSR (PWC) patch DG*5.3*980 change four slashes to three slashes for validation before filing except for DUZ
+ . S DR="1///^S X=DFN;2////^S X=DUZ;3///^S X=DGPS;5///^S X=$S(+DGPDV>0:DGPDV,1:"""")"
  . S DA=+Y
  . D ^DIE K DIE
  . I $D(Y) D 

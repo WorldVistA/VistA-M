@@ -1,122 +1,118 @@
-IBDEI1MU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27711,1,4,0)
- ;;=4^G40.309
- ;;^UTILITY(U,$J,358.3,27711,2)
- ;;=^5003842
- ;;^UTILITY(U,$J,358.3,27712,0)
- ;;=G40.311^^109^1381^15
- ;;^UTILITY(U,$J,358.3,27712,1,0)
+ ;;^UTILITY(U,$J,358.3,26080,0)
+ ;;=W00.2XXD^^107^1230^59
+ ;;^UTILITY(U,$J,358.3,26080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27712,1,3,0)
- ;;=3^Generalized Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27712,1,4,0)
- ;;=4^G40.311
- ;;^UTILITY(U,$J,358.3,27712,2)
- ;;=^5003843
- ;;^UTILITY(U,$J,358.3,27713,0)
- ;;=G40.319^^109^1381^16
- ;;^UTILITY(U,$J,358.3,27713,1,0)
+ ;;^UTILITY(U,$J,358.3,26080,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26080,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,26080,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,26081,0)
+ ;;=W00.9XXA^^107^1230^30
+ ;;^UTILITY(U,$J,358.3,26081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27713,1,3,0)
- ;;=3^Generalized Seizures Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27713,1,4,0)
- ;;=4^G40.319
- ;;^UTILITY(U,$J,358.3,27713,2)
- ;;=^5003844
- ;;^UTILITY(U,$J,358.3,27714,0)
- ;;=G40.409^^109^1381^20
- ;;^UTILITY(U,$J,358.3,27714,1,0)
+ ;;^UTILITY(U,$J,358.3,26081,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26081,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,26081,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,26082,0)
+ ;;=W00.9XXD^^107^1230^31
+ ;;^UTILITY(U,$J,358.3,26082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27714,1,3,0)
- ;;=3^Generalized Seizures,Other, Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27714,1,4,0)
- ;;=4^G40.409
- ;;^UTILITY(U,$J,358.3,27714,2)
- ;;=^5003846
- ;;^UTILITY(U,$J,358.3,27715,0)
- ;;=G40.411^^109^1381^18
- ;;^UTILITY(U,$J,358.3,27715,1,0)
+ ;;^UTILITY(U,$J,358.3,26082,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26082,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,26082,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,26083,0)
+ ;;=W01.0XXA^^107^1230^92
+ ;;^UTILITY(U,$J,358.3,26083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27715,1,3,0)
- ;;=3^Generalized Seizures,Other, Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27715,1,4,0)
- ;;=4^G40.411
- ;;^UTILITY(U,$J,358.3,27715,2)
- ;;=^5003847
- ;;^UTILITY(U,$J,358.3,27716,0)
- ;;=G40.419^^109^1381^19
- ;;^UTILITY(U,$J,358.3,27716,1,0)
+ ;;^UTILITY(U,$J,358.3,26083,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26083,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,26083,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,26084,0)
+ ;;=W01.0XXD^^107^1230^93
+ ;;^UTILITY(U,$J,358.3,26084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27716,1,3,0)
- ;;=3^Generalized Seizures,Other, Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27716,1,4,0)
- ;;=4^G40.419
- ;;^UTILITY(U,$J,358.3,27716,2)
- ;;=^5003848
- ;;^UTILITY(U,$J,358.3,27717,0)
- ;;=G40.209^^109^1381^7
- ;;^UTILITY(U,$J,358.3,27717,1,0)
+ ;;^UTILITY(U,$J,358.3,26084,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26084,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,26084,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,26085,0)
+ ;;=W03.XXXA^^107^1230^90
+ ;;^UTILITY(U,$J,358.3,26085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27717,1,3,0)
- ;;=3^Complex Partial Seizures Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27717,1,4,0)
- ;;=4^G40.209
- ;;^UTILITY(U,$J,358.3,27717,2)
- ;;=^5003838
- ;;^UTILITY(U,$J,358.3,27718,0)
- ;;=G40.211^^109^1381^5
- ;;^UTILITY(U,$J,358.3,27718,1,0)
+ ;;^UTILITY(U,$J,358.3,26085,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26085,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,26085,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,26086,0)
+ ;;=W03.XXXD^^107^1230^91
+ ;;^UTILITY(U,$J,358.3,26086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27718,1,3,0)
- ;;=3^Complex Partial Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27718,1,4,0)
- ;;=4^G40.211
- ;;^UTILITY(U,$J,358.3,27718,2)
- ;;=^5003839
- ;;^UTILITY(U,$J,358.3,27719,0)
- ;;=G40.219^^109^1381^6
- ;;^UTILITY(U,$J,358.3,27719,1,0)
+ ;;^UTILITY(U,$J,358.3,26086,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26086,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,26086,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,26087,0)
+ ;;=W05.0XXA^^107^1230^56
+ ;;^UTILITY(U,$J,358.3,26087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27719,1,3,0)
- ;;=3^Complex Partial Seizures Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27719,1,4,0)
- ;;=4^G40.219
- ;;^UTILITY(U,$J,358.3,27719,2)
- ;;=^5003840
- ;;^UTILITY(U,$J,358.3,27720,0)
- ;;=G40.109^^109^1381^28
- ;;^UTILITY(U,$J,358.3,27720,1,0)
+ ;;^UTILITY(U,$J,358.3,26087,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26087,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,26087,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,26088,0)
+ ;;=W05.0XXD^^107^1230^57
+ ;;^UTILITY(U,$J,358.3,26088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27720,1,3,0)
- ;;=3^Simple Partial Seizures Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27720,1,4,0)
- ;;=4^G40.109
- ;;^UTILITY(U,$J,358.3,27720,2)
- ;;=^5003834
- ;;^UTILITY(U,$J,358.3,27721,0)
- ;;=G40.111^^109^1381^26
- ;;^UTILITY(U,$J,358.3,27721,1,0)
+ ;;^UTILITY(U,$J,358.3,26088,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26088,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,26088,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,26089,0)
+ ;;=W05.1XXA^^107^1230^54
+ ;;^UTILITY(U,$J,358.3,26089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27721,1,3,0)
- ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27721,1,4,0)
- ;;=4^G40.111
- ;;^UTILITY(U,$J,358.3,27721,2)
- ;;=^5003835
- ;;^UTILITY(U,$J,358.3,27722,0)
- ;;=G40.119^^109^1381^27
- ;;^UTILITY(U,$J,358.3,27722,1,0)
+ ;;^UTILITY(U,$J,358.3,26089,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26089,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,26089,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,26090,0)
+ ;;=W05.1XXD^^107^1230^55
+ ;;^UTILITY(U,$J,358.3,26090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27722,1,3,0)
- ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27722,1,4,0)
- ;;=4^G40.119
- ;;^UTILITY(U,$J,358.3,27722,2)
- ;;=^5003836
- ;;^UTILITY(U,$J,358.3,27723,0)
- ;;=G40.B09^^109^1381^23
- ;;^UTILITY(U,$J,358.3,27723,1,0)
+ ;;^UTILITY(U,$J,358.3,26090,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26090,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,26090,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,26091,0)
+ ;;=W05.2XXA^^107^1230^52
+ ;;^UTILITY(U,$J,358.3,26091,1,0)
  ;;=^358.31IA^4^2

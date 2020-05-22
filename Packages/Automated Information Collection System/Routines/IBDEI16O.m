@@ -1,8 +1,124 @@
-IBDEI16O ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.93)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16O ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.93)
- ;;=^IBE(358.93,
- ;;^UTILITY(U,$J,358.93,0)
- ;;=IMP/EXP MULTIPLE CHOICE FIELD^358.93^0^0
+ ;;^UTILITY(U,$J,358.3,19015,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,19015,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,19016,0)
+ ;;=F15.929^^91^976^62
+ ;;^UTILITY(U,$J,358.3,19016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19016,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19016,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,19016,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,19017,0)
+ ;;=F15.121^^91^976^54
+ ;;^UTILITY(U,$J,358.3,19017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19017,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19017,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,19017,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,19018,0)
+ ;;=F15.221^^91^976^55
+ ;;^UTILITY(U,$J,358.3,19018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19018,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19018,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,19018,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,19019,0)
+ ;;=F15.921^^91^976^56
+ ;;^UTILITY(U,$J,358.3,19019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19019,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19019,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,19019,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,19020,0)
+ ;;=F15.23^^91^976^67
+ ;;^UTILITY(U,$J,358.3,19020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19020,1,3,0)
+ ;;=3^Oth Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,19020,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,19020,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,19021,0)
+ ;;=F15.10^^91^976^64
+ ;;^UTILITY(U,$J,358.3,19021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19021,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,19021,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,19021,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,19022,0)
+ ;;=F15.20^^91^976^65
+ ;;^UTILITY(U,$J,358.3,19022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19022,1,3,0)
+ ;;=3^Oth Stimulant Mod/Sev Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,19022,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,19022,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,19023,0)
+ ;;=F14.180^^91^976^1
+ ;;^UTILITY(U,$J,358.3,19023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19023,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19023,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,19023,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,19024,0)
+ ;;=F14.280^^91^976^2
+ ;;^UTILITY(U,$J,358.3,19024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19024,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19024,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,19024,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,19025,0)
+ ;;=F14.980^^91^976^3
+ ;;^UTILITY(U,$J,358.3,19025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19025,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19025,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,19025,2)
+ ;;=^5003278
+ ;;^UTILITY(U,$J,358.3,19026,0)
+ ;;=F14.14^^91^976^4
+ ;;^UTILITY(U,$J,358.3,19026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19026,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19026,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,19026,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,19027,0)
+ ;;=F14.24^^91^976^5
+ ;;^UTILITY(U,$J,358.3,19027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19027,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mod/Sev Use D/O

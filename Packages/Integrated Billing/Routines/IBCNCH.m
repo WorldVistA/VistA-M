@@ -1,5 +1,5 @@
 IBCNCH ;ALB/FA - PATIENT POLICY COMMENT HISTORY ;05-MAR-2015
- ;;2.0;INTEGRATED BILLING;**549,582**;21-MAR-94;Build 77
+ ;;2.0;INTEGRATED BILLING;**549,582,652**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(DFN,IBIIEN,MODE) ;EP 
@@ -123,45 +123,109 @@ UNLOCKN(DFN,IBIIEN) ; Unlock Adding of comments for a specified patient
  Q
  ;
 DELETE(COMIN)  ;EP
- ; Protocol action to Delete a Patient Policy Comment
- ; Input:   COMIN   - IEN of the selected Patient Policy Comment
+ ; Protocol action to Delete a (or multiple) Patient Policy Comment(s)
+ ; Input:   COMIN   - IEN of the selected Patient Policy Comment(s)
  ;                    Optional - Only sent when called from the expanded
  ;                               comment listman template.
  ;          DFN     - IEN of the selected Patient
  ;          IBIIEN  - ^DPT(DFN,.312,IBIIEN,0) Where IBIIEN is the
  ;                    multiple IEN of the selected patient policy
- N COMIEN,DA,DIK,FROMEE
- S VALMBCK="R"
+ N COMIEN,DA,DLTDONE,DIK,FROMEE,MULTI   ; IB*2.0*652-Added DLTDONE & MULTI
+ S VALMBCK="R",MULTI=0
  D FULL^VALM1
  S COMIEN=$S($D(COMIN):COMIN,1:"")
  S FROMEE=$S(COMIEN'="":1,1:0)
+ ;
+ ;/vd-IB*2*652-Beginning of delete comment code 
+ ;Does user have IBCN PT POLICY COMNT DELETE security key to delete any comment?
+ N COMIENS,IBKEY,IBSUP S IBSUP=0
+ D OWNSKEY^XUSRB(.IBKEY,"IBCN PT POLICY COMNT DELETE",DUZ) ; IA 3277
+ S:IBKEY(0)=1 IBSUP=1
+ ; If user has IBCN PT POLICY COMNT DELETE key allow multi-delete. 
+ ; Not allowed from expanded comments.
+ I IBSUP,'COMIEN D  Q
+ . N SELERR S SELERR=0
+ . S MULTI=1
+ . S:COMIEN="" COMIEN=$$MULTCOM^IBCNCH(1,"Select Comment(s) to delete","","IBCNCHIX")
+ . Q:COMIEN=""
+ . ;
+ . ;Loop thru multi-selections & create array of comments to delete.
+ . N ARYCNT,ARYNO,ARYNUMS,IBI,IBI1,IBI2
+ . S COMIEN=$TR(COMIEN,";",",")   ; Translate ";" to "," to easily piece apart line.
+ . S ARYCNT=$L(COMIEN,",") ; Get # of params to delete
+ . F IBI=1:1:ARYCNT D  Q:SELERR
+ .. S ARYNO=$P(COMIEN,",",IBI)
+ .. I ARYNO'["-",$D(^TMP($J,"IBCNCHIX",ARYNO)) S ARYNUMS(ARYNO)="" Q  ; Capture param as a single entry.
+ .. I ARYNO'["-" S SELERR=1 Q   ; Invalid entry
+ .. S IBI1=$P(ARYNO,"-"),IBI2=$P(ARYNO,"-",2)  ; Get a selected range
+ .. I '$D(^TMP($J,"IBCNCHIX",IBI1))!'$D(^TMP($J,"IBCNCHIX",IBI2)) S SELERR=1 Q   ; Invalid entry
+ .. F IBI=IBI1:1:IBI2 S ARYNUMS(IBI)=""        ; Get the range of #s
+ .. Q
+ . I SELERR D  Q  ; If an invalid entry was made display error message. 
+ .. W !,*7,">>>> Invalid selection number"
+ .. K DIR
+ .. D PAUSE^VALM1
+ . ;
+ . I $$ASKYN("Are you sure you want to Delete "_$S(((COMIEN["-")!(COMIEN[",")):"these Comments",1:"this Comment")) D
+ .. ;Loop thru array of comments to delete
+ .. S ARYNO=""
+ .. F  S ARYNO=$O(ARYNUMS(ARYNO)) Q:ARYNO=""  D
+ ... S COMIEN=+$P(^TMP($J,"IBCNCHIX",ARYNO),U,9) Q:'COMIEN
+ ... S DLTDONE=0 D DELETIT(COMIEN,MULTI,DLTDONE)
+ .. ;
+ . I FROMEE=1 S VALMBCK="Q" Q
+ . D INIT
+ . Q
+ ;/vd-IB*2*652-End of delete comment code
+ ;
  S:COMIEN="" COMIEN=$$SELCOM(1,"Select Comment to delete","","IBCNCHIX")
  Q:COMIEN=""
  ;
- ; Lock Deletion of this patient policy comment
+ ;/vd-IB*2.0*652-The following is if the user doesn't have the IBCN PT POLICY COMMNT DELETE key...MULTI=0.
+ S DLTDONE=0 D DELETIT(COMIEN,MULTI,.DLTDONE)
+ ;
+ ;I FROMEE=1 S VALMBCK="Q" Q   ;/vd-IB*2.0*652-Replaced this line of code with the following.
+ I FROMEE=1 D  Q 
+ . I 'DLTDONE S VALMBCK="R" Q  ; If in 'EE' & didn't delete a comment, stay in 'EE'.
+ . I DLTDONE=1 S VALMBCK="Q"   ; If in 'EE' & the comment is deleted, exit 'EE' & return to list of comments.
+ ;
+ D INIT                                     ; Rebuild the list
+ Q
+ ;
+DELETIT(COMIEN,MULTI,DLTDONE) ; Lock Deletion of this patient policy comment
+ ;  COMIEN = comment to be deleted.
+ ;  MULTI  = 0 - display OK TO DELETE question per normal.
+ ;         = 1 - display OK TO DELETE question once for all selected comments.
+ ;  DLTDONE = 0 - selection not deleted.
+ ;          = 1 - selection deleted.
+ N XX S XX=0
  I '$$LOCKC(DFN,IBIIEN,COMIEN) D  Q
  . W !!,*7,"Someone is editing or deleting this Patient Policy Comment."
  . W !,"Try again later."
  . D PAUSE^VALM1
  ;
  ; Ok to delete this comment?
- S XX=$$OK2EDIT(DFN,IBIIEN,COMIEN,"Delete")
+ I 'MULTI S XX=$$OK2EDIT(DFN,IBIIEN,COMIEN,"Delete")
  I +XX=-1 D  Q                              ; Unable to delete
  . D UNLOCKC(DFN,IBIIEN,COMIEN)
- . W !,*7,$P(XX,"^",2)
+ . N IL,IMX
+ . S IMX=$l(XX,"^")  ; Determine the max # of lines that are to be printed.
+ . W *7
+ . S IL=2 F IL=IL:1:IMX D   ; Since the 1st piece is not part of the comment, start w/the 2nd piece & display up to the max.
+ . . W !,$P(XX,"^",IL)
  . D PAUSE^VALM1
  ;
  ; Give final Warning
- I '$$ASKYN("Are you Sure you want to Delete this Comment") D  Q
+ I 'MULTI,'$$ASKYN("Are you sure you want to Delete this Comment") D  Q
  . D UNLOCKC(DFN,IBIIEN,COMIEN)
  ;
  S DA=COMIEN,DA(1)=IBIIEN,DA(2)=DFN
  S DIK="^DPT(DA(2),.312,DA(1),13,"
- D ^DIK                                     ; Delete the Patient Policy Comment
+ D ^DIK ; Delete the Patient Policy Comment
  D UNLOCKC(DFN,IBIIEN,COMIEN)
- I FROMEE=1 S VALMBCK="Q" Q
- D INIT                                     ; Rebuild the list
+ S DLTDONE=1
  Q
+ ;/vd-IB*2.0*652-End of new code for enhanced deleting of Patient Policy Comments
  ;
 ASKYN(PROMPT,DEFAULT)   ; Ask a yes/no question
  ; Input:   PROMPT      - Question to be asked
@@ -221,7 +285,8 @@ EDITCOM(DFN,IBIIEN,COMIEN,FROMEE) ; Edit the selected comment
  S EDT=$$NOW^XLFDT()
  S DIE="^DPT(DFN,.312,IBIIEN,13,"
  S DA=COMIEN,DA(1)=IBIIEN,DA(2)=DFN
- S DR=".01///"_EDT_";.02///"_DUZ_";.04Person Contacted;.05Contact Person Phone"
+ ;/vd-IB*2*652 - Added 4th dashes to prevent re-validating problem from occuring in ^DIE.
+ S DR=".01////"_EDT_";.02////"_DUZ_";.04Person Contacted;.05Contact Person Phone"
  S DR=DR_";.07Contact Method;.06Call Reference Number;.08Authorization Number"
  S DR=DR_";.03Comment"
  D ^DIE
@@ -246,13 +311,17 @@ OK2EDIT(DFN,IBIIEN,COMIEN,WHICH) ; Check to see if it's ok to Edit/Delete the
  S COMDT=$O(^DPT(DFN,.312,IBIIEN,13,"B",""),-1)
  S XX=$O(^DPT(DFN,.312,IBIIEN,13,"B",COMDT,""))
  I COMIEN'=XX D  Q OK
+ . I WHICH="Delete",+$G(IBSUP) Q   ;\vd - IB*2*652 - If in DELETE mode need to have proper Security Key to delete.
  . S OK="-1^Unable to "_WHICH_". Selected comment is not the latest comment."
+ . I WHICH="Delete" S OK=OK_"^Contact your supervisor for assistance. "   ;/vd - IB*2.0*652 - Added the part about contacting your super.
  ;
  ; Make sure the user trying to edit or delete is the user who entered the
  ; comment
  S XX=$$GET1^DIQ(2.342,COMIEN_","_IBIIEN_","_DFN_",",.02,"I")
  I XX'=DUZ D  Q OK
+ . I WHICH="Delete",+$G(IBSUP) Q   ;\vd - IB*2*652 - If in DELETE mode need to have proper Security Key to delete.
  . S OK="-1^Unable to "_WHICH_". Selected comment was entered by a different user."
+ . I WHICH="Delete" S OK=OK_"^Contact your supervisor for assistance. "   ;/vd - IB*2.0*652 - Added the part about contacting your super.
  ;
  ; Make sure today's date is the same as when the comment was last edited
  ; comment
@@ -260,7 +329,9 @@ OK2EDIT(DFN,IBIIEN,COMIEN,WHICH) ; Check to see if it's ok to Edit/Delete the
  S XX=$P(XX,".",1)
  S TDT=$$NOW^XLFDT(),TDT=$P(TDT,".",1)
  I XX'=TDT D  Q OK
+ . I WHICH="Delete",+$G(IBSUP) Q   ;\vd - IB*2*652 - If in DELETE mode need to have proper Security Key to delete.
  . S OK="-1^Unable to "_WHICH_". Selected comment is outside the "_WHICH_" window."
+ . I WHICH="Delete" S OK=OK_"^Contact your supervisor for assistance. "   ;/vd - IB*2.0*652 - Added the part about contacting your super.
  Q OK
  ;
 LOCKC(DFN,IBIIEN,COMIEN) ; Lock Editing of a selected Patient Policy Comment
@@ -288,6 +359,53 @@ HELP ;EP
  D DISP^XQORM1
  W !!
  Q
+ ;
+ ;/vd - IB*2*652 - Beginning of code (delete comment)
+ ;-------------------------------------------------
+MULTCOM(FULL,PROMPT,COMCNT,WLIST) ;Allow selection of multiple comments to be deleted
+ ; Select Entry(s) to perform an action upon
+ ; Input: FULL - 1 - full screen mode, 0 otherwise
+ ; PROMPT - Prompt to be displayed to the user
+ ; WLIST - Worklist, the user is selecting from
+ ; ^TMP($J,"IBCNCHIX") - Index of displayed lines of the Comment 
+ ; History Worklist
+ ; Output: COMCNT - Comment Number of the selected Comment
+ ; Returns: Select Comment IEN
+ ; Error message if invalid selection
+ N COMIEN,DIROUT,DIRUT,DLINE,DTOUT,DUOUT,END,START,X,Y
+ S:'$D(WLIST) WLIST="IBCNCHIX"
+ S START=1,END=$O(^TMP($J,WLIST,""),-1)+0
+ D:FULL FULL^VALM1
+ S COMCNT=$P($P($G(XQORNOD(0)),"^",4),"=",2) ; User selection with action
+ S COMCNT=$TR(COMCNT,"/\; .",",,,,,") ; Check for multi-selection
+ ;
+ I '+$G(MULTI),COMCNT["," D  Q ""      ; /vd - IB-2-652 - MULTI is used to allow for multi-selection for supervisors.
+ . W !,*7,">>>> Only single entry selection is allowed"
+ . K DIR
+ . D PAUSE^VALM1
+ ;
+ I $O(^TMP($J,"IBCNCHIX",""))="" D  Q ""
+ . S X=$P(PROMPT," ",$L(PROMPT," "))
+ . W !,*7,">>>> No comments to "_X
+ . K DIR
+ . D PAUSE^VALM1
+ ;
+ S:COMCNT="" COMCNT=$$MLTENTRY(PROMPT,START,END)
+ Q:((COMCNT="")!(COMCNT="^")) ""
+ Q COMCNT
+ ;
+MLTENTRY(PROMPT,START,END) ; select a comment
+ ; Input: PROMPT - Prompt to be displayed to the user
+ ; START - Start comment # that can be selected
+ ; END - Ending comment # that can be selected
+ ; Returns: Selected Comment # or "" if not selected
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="LC^"_START_":"_END_":0"
+ S DIR("A")=PROMPT
+ D ^DIR K DIR
+ Q X
+ ;-------------------------------------------------
+ ;/vd - IB*2*652 - End of code (delete comment)
  ;
 SELCOM(FULL,PROMPT,COMCNT,WLIST)    ;EP
  ; Select Entry(s) to perform an action upon

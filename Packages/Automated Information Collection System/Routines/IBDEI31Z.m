@@ -1,132 +1,122 @@
-IBDEI31Z ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51186,2)
- ;;=^5010850
- ;;^UTILITY(U,$J,358.3,51187,0)
- ;;=M19.272^^222^2471^22
- ;;^UTILITY(U,$J,358.3,51187,1,0)
+ ;;^UTILITY(U,$J,358.3,48748,1,3,0)
+ ;;=3^Attn & Concentration Deficit After Cerebral Infrc
+ ;;^UTILITY(U,$J,358.3,48748,1,4,0)
+ ;;=4^I69.310
+ ;;^UTILITY(U,$J,358.3,48748,2)
+ ;;=^5138644
+ ;;^UTILITY(U,$J,358.3,48749,0)
+ ;;=I69.311^^185^2424^86
+ ;;^UTILITY(U,$J,358.3,48749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51187,1,3,0)
- ;;=3^Second osteoarthritis, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,51187,1,4,0)
- ;;=4^M19.272
- ;;^UTILITY(U,$J,358.3,51187,2)
- ;;=^5010851
- ;;^UTILITY(U,$J,358.3,51188,0)
- ;;=M19.90^^222^2471^1
- ;;^UTILITY(U,$J,358.3,51188,1,0)
+ ;;^UTILITY(U,$J,358.3,48749,1,3,0)
+ ;;=3^Memory Deficit After Cerebral Infrc
+ ;;^UTILITY(U,$J,358.3,48749,1,4,0)
+ ;;=4^I69.311
+ ;;^UTILITY(U,$J,358.3,48749,2)
+ ;;=^5138645
+ ;;^UTILITY(U,$J,358.3,48750,0)
+ ;;=I69.312^^185^2424^144
+ ;;^UTILITY(U,$J,358.3,48750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51188,1,3,0)
- ;;=3^Osteoarthritis, unspec site, unspec
- ;;^UTILITY(U,$J,358.3,51188,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,51188,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,51189,0)
- ;;=M16.11^^222^2471^13
- ;;^UTILITY(U,$J,358.3,51189,1,0)
+ ;;^UTILITY(U,$J,358.3,48750,1,3,0)
+ ;;=3^Vis Def/Sptl Nglct After Cerebral Infrc
+ ;;^UTILITY(U,$J,358.3,48750,1,4,0)
+ ;;=4^I69.312
+ ;;^UTILITY(U,$J,358.3,48750,2)
+ ;;=^5138646
+ ;;^UTILITY(U,$J,358.3,48751,0)
+ ;;=I69.313^^185^2424^131
+ ;;^UTILITY(U,$J,358.3,48751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51189,1,3,0)
- ;;=3^Prim osteoarthritis, rt hip
- ;;^UTILITY(U,$J,358.3,51189,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,51189,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,51190,0)
- ;;=M16.12^^222^2471^6
- ;;^UTILITY(U,$J,358.3,51190,1,0)
+ ;;^UTILITY(U,$J,358.3,48751,1,3,0)
+ ;;=3^Psychomotor Deficit After Cerebral Infrc
+ ;;^UTILITY(U,$J,358.3,48751,1,4,0)
+ ;;=4^I69.313
+ ;;^UTILITY(U,$J,358.3,48751,2)
+ ;;=^5138647
+ ;;^UTILITY(U,$J,358.3,48752,0)
+ ;;=I69.314^^185^2424^73
+ ;;^UTILITY(U,$J,358.3,48752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51190,1,3,0)
- ;;=3^Prim osteoarthritis, lft hip
- ;;^UTILITY(U,$J,358.3,51190,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,51190,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,51191,0)
- ;;=M17.11^^222^2471^14
- ;;^UTILITY(U,$J,358.3,51191,1,0)
+ ;;^UTILITY(U,$J,358.3,48752,1,3,0)
+ ;;=3^Fntl Lobe & Exec Fcn Deficit After Cerebral Infc
+ ;;^UTILITY(U,$J,358.3,48752,1,4,0)
+ ;;=4^I69.314
+ ;;^UTILITY(U,$J,358.3,48752,2)
+ ;;=^5138648
+ ;;^UTILITY(U,$J,358.3,48753,0)
+ ;;=I69.315^^185^2424^51
+ ;;^UTILITY(U,$J,358.3,48753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51191,1,3,0)
- ;;=3^Prim osteoarthritis, rt knee
- ;;^UTILITY(U,$J,358.3,51191,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,51191,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,51192,0)
- ;;=M17.12^^222^2471^7
- ;;^UTILITY(U,$J,358.3,51192,1,0)
+ ;;^UTILITY(U,$J,358.3,48753,1,3,0)
+ ;;=3^Cognitive Social/Emotional Deficit After Cerebral Infc
+ ;;^UTILITY(U,$J,358.3,48753,1,4,0)
+ ;;=4^I69.315
+ ;;^UTILITY(U,$J,358.3,48753,2)
+ ;;=^5138649
+ ;;^UTILITY(U,$J,358.3,48754,0)
+ ;;=I69.318^^185^2424^46
+ ;;^UTILITY(U,$J,358.3,48754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51192,1,3,0)
- ;;=3^Prim osteoarthritis, lft knee
- ;;^UTILITY(U,$J,358.3,51192,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,51192,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,51193,0)
- ;;=M16.7^^222^2471^19
- ;;^UTILITY(U,$J,358.3,51193,1,0)
+ ;;^UTILITY(U,$J,358.3,48754,1,3,0)
+ ;;=3^Cognitive Fnctn Symptoms/Signs After Cerebral Infrc
+ ;;^UTILITY(U,$J,358.3,48754,1,4,0)
+ ;;=4^I69.318
+ ;;^UTILITY(U,$J,358.3,48754,2)
+ ;;=^5138650
+ ;;^UTILITY(U,$J,358.3,48755,0)
+ ;;=R10.817^^185^2425^1
+ ;;^UTILITY(U,$J,358.3,48755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51193,1,3,0)
- ;;=3^Second osteoarthritis, hip, unlit, oth
- ;;^UTILITY(U,$J,358.3,51193,1,4,0)
- ;;=4^M16.7
- ;;^UTILITY(U,$J,358.3,51193,2)
- ;;=^5010782
- ;;^UTILITY(U,$J,358.3,51194,0)
- ;;=M16.6^^222^2471^18
- ;;^UTILITY(U,$J,358.3,51194,1,0)
+ ;;^UTILITY(U,$J,358.3,48755,1,3,0)
+ ;;=3^Abdominal Tenderness,Generalized
+ ;;^UTILITY(U,$J,358.3,48755,1,4,0)
+ ;;=4^R10.817
+ ;;^UTILITY(U,$J,358.3,48755,2)
+ ;;=^5019219
+ ;;^UTILITY(U,$J,358.3,48756,0)
+ ;;=R10.827^^185^2425^2
+ ;;^UTILITY(U,$J,358.3,48756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51194,1,3,0)
- ;;=3^Second osteoarthritis, hip, bilat, oth
- ;;^UTILITY(U,$J,358.3,51194,1,4,0)
- ;;=4^M16.6
- ;;^UTILITY(U,$J,358.3,51194,2)
- ;;=^5010781
- ;;^UTILITY(U,$J,358.3,51195,0)
- ;;=M17.5^^222^2471^21
- ;;^UTILITY(U,$J,358.3,51195,1,0)
+ ;;^UTILITY(U,$J,358.3,48756,1,3,0)
+ ;;=3^Abdominal Tenderness,Rebound,Generalized
+ ;;^UTILITY(U,$J,358.3,48756,1,4,0)
+ ;;=4^R10.827
+ ;;^UTILITY(U,$J,358.3,48756,2)
+ ;;=^5019226
+ ;;^UTILITY(U,$J,358.3,48757,0)
+ ;;=R10.829^^185^2425^3
+ ;;^UTILITY(U,$J,358.3,48757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51195,1,3,0)
- ;;=3^Second osteoarthritis, knee, unilat, oth
- ;;^UTILITY(U,$J,358.3,51195,1,4,0)
- ;;=4^M17.5
- ;;^UTILITY(U,$J,358.3,51195,2)
- ;;=^5010793
- ;;^UTILITY(U,$J,358.3,51196,0)
- ;;=M17.4^^222^2471^20
- ;;^UTILITY(U,$J,358.3,51196,1,0)
+ ;;^UTILITY(U,$J,358.3,48757,1,3,0)
+ ;;=3^Abdominal Tenderness,Rebound,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48757,1,4,0)
+ ;;=4^R10.829
+ ;;^UTILITY(U,$J,358.3,48757,2)
+ ;;=^5019227
+ ;;^UTILITY(U,$J,358.3,48758,0)
+ ;;=R10.819^^185^2425^4
+ ;;^UTILITY(U,$J,358.3,48758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51196,1,3,0)
- ;;=3^Second osteoarthritis, knee, bilat, oth
- ;;^UTILITY(U,$J,358.3,51196,1,4,0)
- ;;=4^M17.4
- ;;^UTILITY(U,$J,358.3,51196,2)
- ;;=^5010792
- ;;^UTILITY(U,$J,358.3,51197,0)
- ;;=M86.10^^222^2472^18
- ;;^UTILITY(U,$J,358.3,51197,1,0)
+ ;;^UTILITY(U,$J,358.3,48758,1,3,0)
+ ;;=3^Abdominal Tenderness,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48758,1,4,0)
+ ;;=4^R10.819
+ ;;^UTILITY(U,$J,358.3,48758,2)
+ ;;=^5019220
+ ;;^UTILITY(U,$J,358.3,48759,0)
+ ;;=G89.0^^185^2425^6
+ ;;^UTILITY(U,$J,358.3,48759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51197,1,3,0)
- ;;=3^Osteomyelitis, acute, unspec site, oth
- ;;^UTILITY(U,$J,358.3,51197,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,51197,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,51198,0)
- ;;=M86.20^^222^2472^48
- ;;^UTILITY(U,$J,358.3,51198,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51198,1,3,0)
- ;;=3^Osteomyelitis, subacute, unspec site
- ;;^UTILITY(U,$J,358.3,51198,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,51198,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,51199,0)
- ;;=M86.111^^222^2472^16
- ;;^UTILITY(U,$J,358.3,51199,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51199,1,3,0)
- ;;=3^Osteomyelitis, acute, rt shldr, oth
+ ;;^UTILITY(U,$J,358.3,48759,1,3,0)
+ ;;=3^Pain Syndrome,Central
+ ;;^UTILITY(U,$J,358.3,48759,1,4,0)
+ ;;=4^G89.0
+ ;;^UTILITY(U,$J,358.3,48759,2)
+ ;;=^334189
+ ;;^UTILITY(U,$J,358.3,48760,0)
+ ;;=G89.4^^185^2425^7

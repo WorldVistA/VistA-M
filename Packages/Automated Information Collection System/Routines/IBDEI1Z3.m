@@ -1,136 +1,120 @@
-IBDEI1Z3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Z3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33477,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,33477,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,33478,0)
- ;;=H55.09^^131^1670^30
- ;;^UTILITY(U,$J,358.3,33478,1,0)
+ ;;^UTILITY(U,$J,358.3,31503,1,4,0)
+ ;;=4^O36.0131
+ ;;^UTILITY(U,$J,358.3,31503,2)
+ ;;=^5016857
+ ;;^UTILITY(U,$J,358.3,31504,0)
+ ;;=O36.0132^^126^1626^69
+ ;;^UTILITY(U,$J,358.3,31504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33478,1,3,0)
- ;;=3^Nystagmus NEC
- ;;^UTILITY(U,$J,358.3,33478,1,4,0)
- ;;=4^H55.09
- ;;^UTILITY(U,$J,358.3,33478,2)
- ;;=^87599
- ;;^UTILITY(U,$J,358.3,33479,0)
- ;;=H60.01^^131^1670^2
- ;;^UTILITY(U,$J,358.3,33479,1,0)
+ ;;^UTILITY(U,$J,358.3,31504,1,3,0)
+ ;;=3^Maternal care for Anti-D antibodies,3rd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31504,1,4,0)
+ ;;=4^O36.0132
+ ;;^UTILITY(U,$J,358.3,31504,2)
+ ;;=^5016858
+ ;;^UTILITY(U,$J,358.3,31505,0)
+ ;;=O36.0133^^126^1626^70
+ ;;^UTILITY(U,$J,358.3,31505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33479,1,3,0)
- ;;=3^Abscess External Ear,Right
- ;;^UTILITY(U,$J,358.3,33479,1,4,0)
- ;;=4^H60.01
- ;;^UTILITY(U,$J,358.3,33479,2)
- ;;=^5006436
- ;;^UTILITY(U,$J,358.3,33480,0)
- ;;=H60.02^^131^1670^1
- ;;^UTILITY(U,$J,358.3,33480,1,0)
+ ;;^UTILITY(U,$J,358.3,31505,1,3,0)
+ ;;=3^Maternal care for Anti-D antibodies,3rd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31505,1,4,0)
+ ;;=4^O36.0133
+ ;;^UTILITY(U,$J,358.3,31505,2)
+ ;;=^5016859
+ ;;^UTILITY(U,$J,358.3,31506,0)
+ ;;=O36.0134^^126^1626^71
+ ;;^UTILITY(U,$J,358.3,31506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33480,1,3,0)
- ;;=3^Abscess External Ear,Left
- ;;^UTILITY(U,$J,358.3,33480,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,33480,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,33481,0)
- ;;=H60.12^^131^1670^13
- ;;^UTILITY(U,$J,358.3,33481,1,0)
+ ;;^UTILITY(U,$J,358.3,31506,1,3,0)
+ ;;=3^Maternal care for Anti-D antibodies,3rd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31506,1,4,0)
+ ;;=4^O36.0134
+ ;;^UTILITY(U,$J,358.3,31506,2)
+ ;;=^5016860
+ ;;^UTILITY(U,$J,358.3,31507,0)
+ ;;=O36.0135^^126^1626^72
+ ;;^UTILITY(U,$J,358.3,31507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33481,1,3,0)
- ;;=3^Cellulitis External Ear,Left
- ;;^UTILITY(U,$J,358.3,33481,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,33481,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,33482,0)
- ;;=H60.11^^131^1670^14
- ;;^UTILITY(U,$J,358.3,33482,1,0)
+ ;;^UTILITY(U,$J,358.3,31507,1,3,0)
+ ;;=3^Maternal care for Anti-D antibodies,3rd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31507,1,4,0)
+ ;;=4^O36.0135
+ ;;^UTILITY(U,$J,358.3,31507,2)
+ ;;=^5016861
+ ;;^UTILITY(U,$J,358.3,31508,0)
+ ;;=O36.0910^^126^1626^164
+ ;;^UTILITY(U,$J,358.3,31508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33482,1,3,0)
- ;;=3^Cellulitis External Ear,Right
- ;;^UTILITY(U,$J,358.3,33482,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,33482,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,33483,0)
- ;;=H61.21^^131^1670^26
- ;;^UTILITY(U,$J,358.3,33483,1,0)
+ ;;^UTILITY(U,$J,358.3,31508,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,1st tri,unsp
+ ;;^UTILITY(U,$J,358.3,31508,1,4,0)
+ ;;=4^O36.0910
+ ;;^UTILITY(U,$J,358.3,31508,2)
+ ;;=^5016870
+ ;;^UTILITY(U,$J,358.3,31509,0)
+ ;;=O36.0911^^126^1626^165
+ ;;^UTILITY(U,$J,358.3,31509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33483,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,33483,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,33483,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,33484,0)
- ;;=H61.22^^131^1670^25
- ;;^UTILITY(U,$J,358.3,33484,1,0)
+ ;;^UTILITY(U,$J,358.3,31509,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,1st tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31509,1,4,0)
+ ;;=4^O36.0911
+ ;;^UTILITY(U,$J,358.3,31509,2)
+ ;;=^5016871
+ ;;^UTILITY(U,$J,358.3,31510,0)
+ ;;=O36.0912^^126^1626^166
+ ;;^UTILITY(U,$J,358.3,31510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33484,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,33484,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,33484,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,33485,0)
- ;;=H61.23^^131^1670^24
- ;;^UTILITY(U,$J,358.3,33485,1,0)
+ ;;^UTILITY(U,$J,358.3,31510,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,1st tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31510,1,4,0)
+ ;;=4^O36.0912
+ ;;^UTILITY(U,$J,358.3,31510,2)
+ ;;=^5016872
+ ;;^UTILITY(U,$J,358.3,31511,0)
+ ;;=O36.0913^^126^1626^167
+ ;;^UTILITY(U,$J,358.3,31511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33485,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral 
- ;;^UTILITY(U,$J,358.3,33485,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,33485,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,33486,0)
- ;;=H81.01^^131^1670^29
- ;;^UTILITY(U,$J,358.3,33486,1,0)
+ ;;^UTILITY(U,$J,358.3,31511,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,1st tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31511,1,4,0)
+ ;;=4^O36.0913
+ ;;^UTILITY(U,$J,358.3,31511,2)
+ ;;=^5016873
+ ;;^UTILITY(U,$J,358.3,31512,0)
+ ;;=O36.0914^^126^1626^168
+ ;;^UTILITY(U,$J,358.3,31512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33486,1,3,0)
- ;;=3^Meniere's Disease,Right Ear
- ;;^UTILITY(U,$J,358.3,33486,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,33486,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,33487,0)
- ;;=H81.02^^131^1670^28
- ;;^UTILITY(U,$J,358.3,33487,1,0)
+ ;;^UTILITY(U,$J,358.3,31512,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,1st tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31512,1,4,0)
+ ;;=4^O36.0914
+ ;;^UTILITY(U,$J,358.3,31512,2)
+ ;;=^5016874
+ ;;^UTILITY(U,$J,358.3,31513,0)
+ ;;=O36.0915^^126^1626^169
+ ;;^UTILITY(U,$J,358.3,31513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33487,1,3,0)
- ;;=3^Meniere's Disease,Left Ear
- ;;^UTILITY(U,$J,358.3,33487,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,33487,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,33488,0)
- ;;=H81.03^^131^1670^27
- ;;^UTILITY(U,$J,358.3,33488,1,0)
+ ;;^UTILITY(U,$J,358.3,31513,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,1st tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31513,1,4,0)
+ ;;=4^O36.0915
+ ;;^UTILITY(U,$J,358.3,31513,2)
+ ;;=^5016875
+ ;;^UTILITY(U,$J,358.3,31514,0)
+ ;;=O36.0920^^126^1626^170
+ ;;^UTILITY(U,$J,358.3,31514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33488,1,3,0)
- ;;=3^Meniere's Disease,Bilateral
- ;;^UTILITY(U,$J,358.3,33488,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,33488,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,33489,0)
- ;;=H81.12^^131^1670^9
- ;;^UTILITY(U,$J,358.3,33489,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33489,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,33489,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,33489,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,33490,0)
- ;;=H81.11^^131^1670^10
- ;;^UTILITY(U,$J,358.3,33490,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33490,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,33490,1,4,0)
- ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,31514,1,3,0)
+ ;;=3^Maternal care,oth rhesus isoimmun,2nd tri,unsp
+ ;;^UTILITY(U,$J,358.3,31514,1,4,0)
+ ;;=4^O36.0920
+ ;;^UTILITY(U,$J,358.3,31514,2)
+ ;;=^5016876
+ ;;^UTILITY(U,$J,358.3,31515,0)
+ ;;=O36.0921^^126^1626^171

@@ -1,134 +1,126 @@
-IBDEI23K ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35570,0)
- ;;=H60.92^^134^1724^15
- ;;^UTILITY(U,$J,358.3,35570,1,0)
+ ;;^UTILITY(U,$J,358.3,33519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35570,1,3,0)
- ;;=3^Otitis Externa Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35570,1,4,0)
- ;;=4^H60.92
- ;;^UTILITY(U,$J,358.3,35570,2)
- ;;=^5133525
- ;;^UTILITY(U,$J,358.3,35571,0)
- ;;=H60.91^^134^1724^16
- ;;^UTILITY(U,$J,358.3,35571,1,0)
+ ;;^UTILITY(U,$J,358.3,33519,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,33519,1,4,0)
+ ;;=4^M00.872
+ ;;^UTILITY(U,$J,358.3,33519,2)
+ ;;=^5009689
+ ;;^UTILITY(U,$J,358.3,33520,0)
+ ;;=M00.871^^132^1704^2
+ ;;^UTILITY(U,$J,358.3,33520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35571,1,3,0)
- ;;=3^Otitis Externa Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35571,1,4,0)
- ;;=4^H60.91
- ;;^UTILITY(U,$J,358.3,35571,2)
- ;;=^5133524
- ;;^UTILITY(U,$J,358.3,35572,0)
- ;;=J30.9^^134^1724^4
- ;;^UTILITY(U,$J,358.3,35572,1,0)
+ ;;^UTILITY(U,$J,358.3,33520,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,33520,1,4,0)
+ ;;=4^M00.871
+ ;;^UTILITY(U,$J,358.3,33520,2)
+ ;;=^5009688
+ ;;^UTILITY(U,$J,358.3,33521,0)
+ ;;=L03.116^^132^1704^3
+ ;;^UTILITY(U,$J,358.3,33521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35572,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,35572,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,35572,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,35573,0)
- ;;=J38.00^^134^1724^20
- ;;^UTILITY(U,$J,358.3,35573,1,0)
+ ;;^UTILITY(U,$J,358.3,33521,1,3,0)
+ ;;=3^Cellulitis of left lower limb
+ ;;^UTILITY(U,$J,358.3,33521,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,33521,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,33522,0)
+ ;;=L03.115^^132^1704^4
+ ;;^UTILITY(U,$J,358.3,33522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35573,1,3,0)
- ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,35573,1,4,0)
- ;;=4^J38.00
- ;;^UTILITY(U,$J,358.3,35573,2)
- ;;=^5008219
- ;;^UTILITY(U,$J,358.3,35574,0)
- ;;=K92.2^^134^1725^2
- ;;^UTILITY(U,$J,358.3,35574,1,0)
+ ;;^UTILITY(U,$J,358.3,33522,1,3,0)
+ ;;=3^Cellulitis of right lower limb
+ ;;^UTILITY(U,$J,358.3,33522,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,33522,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,33523,0)
+ ;;=M20.22^^132^1704^7
+ ;;^UTILITY(U,$J,358.3,33523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35574,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,35574,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,35574,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,35575,0)
- ;;=K27.9^^134^1725^3
- ;;^UTILITY(U,$J,358.3,35575,1,0)
+ ;;^UTILITY(U,$J,358.3,33523,1,3,0)
+ ;;=3^Hallux rigidus, left foot
+ ;;^UTILITY(U,$J,358.3,33523,1,4,0)
+ ;;=4^M20.22
+ ;;^UTILITY(U,$J,358.3,33523,2)
+ ;;=^5011046
+ ;;^UTILITY(U,$J,358.3,33524,0)
+ ;;=M20.21^^132^1704^8
+ ;;^UTILITY(U,$J,358.3,33524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35575,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
- ;;^UTILITY(U,$J,358.3,35575,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,35575,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,35576,0)
- ;;=K46.9^^134^1725^1
- ;;^UTILITY(U,$J,358.3,35576,1,0)
+ ;;^UTILITY(U,$J,358.3,33524,1,3,0)
+ ;;=3^Hallux rigidus, right foot
+ ;;^UTILITY(U,$J,358.3,33524,1,4,0)
+ ;;=4^M20.21
+ ;;^UTILITY(U,$J,358.3,33524,2)
+ ;;=^5011045
+ ;;^UTILITY(U,$J,358.3,33525,0)
+ ;;=M20.12^^132^1704^9
+ ;;^UTILITY(U,$J,358.3,33525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35576,1,3,0)
- ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,35576,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,35576,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,35577,0)
- ;;=N14.0^^134^1726^1
- ;;^UTILITY(U,$J,358.3,35577,1,0)
+ ;;^UTILITY(U,$J,358.3,33525,1,3,0)
+ ;;=3^Hallux valgus (acquired), left foot
+ ;;^UTILITY(U,$J,358.3,33525,1,4,0)
+ ;;=4^M20.12
+ ;;^UTILITY(U,$J,358.3,33525,2)
+ ;;=^5011043
+ ;;^UTILITY(U,$J,358.3,33526,0)
+ ;;=M20.11^^132^1704^10
+ ;;^UTILITY(U,$J,358.3,33526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35577,1,3,0)
- ;;=3^Analgesic Nephropathy
- ;;^UTILITY(U,$J,358.3,35577,1,4,0)
- ;;=4^N14.0
- ;;^UTILITY(U,$J,358.3,35577,2)
- ;;=^5015590
- ;;^UTILITY(U,$J,358.3,35578,0)
- ;;=N15.0^^134^1726^2
- ;;^UTILITY(U,$J,358.3,35578,1,0)
+ ;;^UTILITY(U,$J,358.3,33526,1,3,0)
+ ;;=3^Hallux valgus (acquired), right foot
+ ;;^UTILITY(U,$J,358.3,33526,1,4,0)
+ ;;=4^M20.11
+ ;;^UTILITY(U,$J,358.3,33526,2)
+ ;;=^5011042
+ ;;^UTILITY(U,$J,358.3,33527,0)
+ ;;=M10.072^^132^1704^11
+ ;;^UTILITY(U,$J,358.3,33527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35578,1,3,0)
- ;;=3^Balkan Nephropathy
- ;;^UTILITY(U,$J,358.3,35578,1,4,0)
- ;;=4^N15.0
- ;;^UTILITY(U,$J,358.3,35578,2)
- ;;=^12543
- ;;^UTILITY(U,$J,358.3,35579,0)
- ;;=N18.9^^134^1726^3
- ;;^UTILITY(U,$J,358.3,35579,1,0)
+ ;;^UTILITY(U,$J,358.3,33527,1,3,0)
+ ;;=3^Idiopathic gout, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,33527,1,4,0)
+ ;;=4^M10.072
+ ;;^UTILITY(U,$J,358.3,33527,2)
+ ;;=^5010304
+ ;;^UTILITY(U,$J,358.3,33528,0)
+ ;;=M10.071^^132^1704^12
+ ;;^UTILITY(U,$J,358.3,33528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35579,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,35579,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,35579,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,35580,0)
- ;;=N28.9^^134^1726^17
- ;;^UTILITY(U,$J,358.3,35580,1,0)
+ ;;^UTILITY(U,$J,358.3,33528,1,3,0)
+ ;;=3^Idiopathic gout, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,33528,1,4,0)
+ ;;=4^M10.071
+ ;;^UTILITY(U,$J,358.3,33528,2)
+ ;;=^5010303
+ ;;^UTILITY(U,$J,358.3,33529,0)
+ ;;=M77.42^^132^1704^13
+ ;;^UTILITY(U,$J,358.3,33529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35580,1,3,0)
- ;;=3^Kidney/Ureter Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,35580,1,4,0)
- ;;=4^N28.9
- ;;^UTILITY(U,$J,358.3,35580,2)
- ;;=^5015630
- ;;^UTILITY(U,$J,358.3,35581,0)
- ;;=N40.0^^134^1726^4
- ;;^UTILITY(U,$J,358.3,35581,1,0)
+ ;;^UTILITY(U,$J,358.3,33529,1,3,0)
+ ;;=3^Metatarsalgia, left foot
+ ;;^UTILITY(U,$J,358.3,33529,1,4,0)
+ ;;=4^M77.42
+ ;;^UTILITY(U,$J,358.3,33529,2)
+ ;;=^5013314
+ ;;^UTILITY(U,$J,358.3,33530,0)
+ ;;=M77.41^^132^1704^14
+ ;;^UTILITY(U,$J,358.3,33530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35581,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,35581,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,35581,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,35582,0)
- ;;=N07.6^^134^1726^5
- ;;^UTILITY(U,$J,358.3,35582,1,0)
+ ;;^UTILITY(U,$J,358.3,33530,1,3,0)
+ ;;=3^Metatarsalgia, right foot
+ ;;^UTILITY(U,$J,358.3,33530,1,4,0)
+ ;;=4^M77.41
+ ;;^UTILITY(U,$J,358.3,33530,2)
+ ;;=^5013313
+ ;;^UTILITY(U,$J,358.3,33531,0)
+ ;;=M77.52^^132^1704^5
+ ;;^UTILITY(U,$J,358.3,33531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35582,1,3,0)
- ;;=3^Hereditary Nephropathy w/ Dense Deposit Disease NEC
- ;;^UTILITY(U,$J,358.3,35582,1,4,0)
- ;;=4^N07.6
- ;;^UTILITY(U,$J,358.3,35582,2)
- ;;=^5015565

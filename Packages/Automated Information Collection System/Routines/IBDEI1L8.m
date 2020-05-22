@@ -1,124 +1,128 @@
-IBDEI1L8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1L8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26921,1,4,0)
- ;;=4^F11.121
- ;;^UTILITY(U,$J,358.3,26921,2)
- ;;=^5003116
- ;;^UTILITY(U,$J,358.3,26922,0)
- ;;=F11.221^^100^1295^14
- ;;^UTILITY(U,$J,358.3,26922,1,0)
+ ;;^UTILITY(U,$J,358.3,25373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26922,1,3,0)
- ;;=3^Opioid Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26922,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,26922,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,26923,0)
- ;;=F11.921^^100^1295^15
- ;;^UTILITY(U,$J,358.3,26923,1,0)
+ ;;^UTILITY(U,$J,358.3,25373,1,3,0)
+ ;;=3^Osteitis Deformans of Skull
+ ;;^UTILITY(U,$J,358.3,25373,1,4,0)
+ ;;=4^M88.0
+ ;;^UTILITY(U,$J,358.3,25373,2)
+ ;;=^5014874
+ ;;^UTILITY(U,$J,358.3,25374,0)
+ ;;=M88.1^^107^1217^71
+ ;;^UTILITY(U,$J,358.3,25374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26923,1,3,0)
- ;;=3^Opioid Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26923,1,4,0)
- ;;=4^F11.921
- ;;^UTILITY(U,$J,358.3,26923,2)
- ;;=^5003144
- ;;^UTILITY(U,$J,358.3,26924,0)
- ;;=F11.229^^100^1295^20
- ;;^UTILITY(U,$J,358.3,26924,1,0)
+ ;;^UTILITY(U,$J,358.3,25374,1,3,0)
+ ;;=3^Osteitis Deformans of Vertebrae
+ ;;^UTILITY(U,$J,358.3,25374,1,4,0)
+ ;;=4^M88.1
+ ;;^UTILITY(U,$J,358.3,25374,2)
+ ;;=^5014875
+ ;;^UTILITY(U,$J,358.3,25375,0)
+ ;;=M88.89^^107^1217^69
+ ;;^UTILITY(U,$J,358.3,25375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26924,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26924,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,26924,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,26925,0)
- ;;=F11.929^^100^1295^21
- ;;^UTILITY(U,$J,358.3,26925,1,0)
+ ;;^UTILITY(U,$J,358.3,25375,1,3,0)
+ ;;=3^Osteitis Deformans of Mult Sites
+ ;;^UTILITY(U,$J,358.3,25375,1,4,0)
+ ;;=4^M88.89
+ ;;^UTILITY(U,$J,358.3,25375,2)
+ ;;=^5014898
+ ;;^UTILITY(U,$J,358.3,25376,0)
+ ;;=M94.0^^107^1217^16
+ ;;^UTILITY(U,$J,358.3,25376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26925,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26925,1,4,0)
- ;;=4^F11.929
- ;;^UTILITY(U,$J,358.3,26925,2)
- ;;=^5003146
- ;;^UTILITY(U,$J,358.3,26926,0)
- ;;=F11.122^^100^1295^16
- ;;^UTILITY(U,$J,358.3,26926,1,0)
+ ;;^UTILITY(U,$J,358.3,25376,1,3,0)
+ ;;=3^Chondrocostal Junction Syndrome/Costochondritis
+ ;;^UTILITY(U,$J,358.3,25376,1,4,0)
+ ;;=4^M94.0
+ ;;^UTILITY(U,$J,358.3,25376,2)
+ ;;=^5015327
+ ;;^UTILITY(U,$J,358.3,25377,0)
+ ;;=M94.20^^107^1217^19
+ ;;^UTILITY(U,$J,358.3,25377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26926,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26926,1,4,0)
- ;;=4^F11.122
- ;;^UTILITY(U,$J,358.3,26926,2)
- ;;=^5003117
- ;;^UTILITY(U,$J,358.3,26927,0)
- ;;=F11.222^^100^1295^17
- ;;^UTILITY(U,$J,358.3,26927,1,0)
+ ;;^UTILITY(U,$J,358.3,25377,1,3,0)
+ ;;=3^Chondromalacia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,25377,1,4,0)
+ ;;=4^M94.20
+ ;;^UTILITY(U,$J,358.3,25377,2)
+ ;;=^5015329
+ ;;^UTILITY(U,$J,358.3,25378,0)
+ ;;=M94.261^^107^1217^18
+ ;;^UTILITY(U,$J,358.3,25378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26927,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26927,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,26927,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,26928,0)
- ;;=F11.922^^100^1295^18
- ;;^UTILITY(U,$J,358.3,26928,1,0)
+ ;;^UTILITY(U,$J,358.3,25378,1,3,0)
+ ;;=3^Chondromalacia,Right Knee
+ ;;^UTILITY(U,$J,358.3,25378,1,4,0)
+ ;;=4^M94.261
+ ;;^UTILITY(U,$J,358.3,25378,2)
+ ;;=^5015345
+ ;;^UTILITY(U,$J,358.3,25379,0)
+ ;;=M94.262^^107^1217^17
+ ;;^UTILITY(U,$J,358.3,25379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26928,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26928,1,4,0)
- ;;=4^F11.922
- ;;^UTILITY(U,$J,358.3,26928,2)
- ;;=^5003145
- ;;^UTILITY(U,$J,358.3,26929,0)
- ;;=F11.99^^100^1295^22
- ;;^UTILITY(U,$J,358.3,26929,1,0)
+ ;;^UTILITY(U,$J,358.3,25379,1,3,0)
+ ;;=3^Chondromalacia,Left Knee
+ ;;^UTILITY(U,$J,358.3,25379,1,4,0)
+ ;;=4^M94.262
+ ;;^UTILITY(U,$J,358.3,25379,2)
+ ;;=^5015346
+ ;;^UTILITY(U,$J,358.3,25380,0)
+ ;;=R25.2^^107^1217^37
+ ;;^UTILITY(U,$J,358.3,25380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26929,1,3,0)
- ;;=3^Opioid Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26929,1,4,0)
- ;;=4^F11.99
- ;;^UTILITY(U,$J,358.3,26929,2)
- ;;=^5133352
- ;;^UTILITY(U,$J,358.3,26930,0)
- ;;=F19.10^^100^1296^3
- ;;^UTILITY(U,$J,358.3,26930,1,0)
+ ;;^UTILITY(U,$J,358.3,25380,1,3,0)
+ ;;=3^Cramp and Spasm
+ ;;^UTILITY(U,$J,358.3,25380,1,4,0)
+ ;;=4^R25.2
+ ;;^UTILITY(U,$J,358.3,25380,2)
+ ;;=^5019301
+ ;;^UTILITY(U,$J,358.3,25381,0)
+ ;;=R70.0^^107^1217^39
+ ;;^UTILITY(U,$J,358.3,25381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26930,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26930,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,26930,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,26931,0)
- ;;=F19.14^^100^1296^1
- ;;^UTILITY(U,$J,358.3,26931,1,0)
+ ;;^UTILITY(U,$J,358.3,25381,1,3,0)
+ ;;=3^Elevated Erythrocyte Sedimentation Rate
+ ;;^UTILITY(U,$J,358.3,25381,1,4,0)
+ ;;=4^R70.0
+ ;;^UTILITY(U,$J,358.3,25381,2)
+ ;;=^5019559
+ ;;^UTILITY(U,$J,358.3,25382,0)
+ ;;=M25.511^^107^1217^119
+ ;;^UTILITY(U,$J,358.3,25382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26931,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,26931,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,26931,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,26932,0)
- ;;=F19.182^^100^1296^2
- ;;^UTILITY(U,$J,358.3,26932,1,0)
+ ;;^UTILITY(U,$J,358.3,25382,1,3,0)
+ ;;=3^Pain in Right Shoulder
+ ;;^UTILITY(U,$J,358.3,25382,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,25382,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,25383,0)
+ ;;=M25.512^^107^1217^109
+ ;;^UTILITY(U,$J,358.3,25383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26932,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,26932,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,26932,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,26933,0)
- ;;=F19.20^^100^1296^6
- ;;^UTILITY(U,$J,358.3,26933,1,0)
+ ;;^UTILITY(U,$J,358.3,25383,1,3,0)
+ ;;=3^Pain in Left Shoulder
+ ;;^UTILITY(U,$J,358.3,25383,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,25383,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,25384,0)
+ ;;=M25.521^^107^1217^113
+ ;;^UTILITY(U,$J,358.3,25384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26933,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25384,1,3,0)
+ ;;=3^Pain in Right Elbow
+ ;;^UTILITY(U,$J,358.3,25384,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,25384,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,25385,0)
+ ;;=M25.522^^107^1217^103
+ ;;^UTILITY(U,$J,358.3,25385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25385,1,3,0)
+ ;;=3^Pain in Left Elbow

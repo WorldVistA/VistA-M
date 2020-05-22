@@ -1,128 +1,124 @@
-IBDEI37L ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI37L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53906,1,4,0)
- ;;=4^T81.32XA
- ;;^UTILITY(U,$J,358.3,53906,2)
- ;;=^5054473
- ;;^UTILITY(U,$J,358.3,53907,0)
- ;;=T81.32XD^^253^2728^20
- ;;^UTILITY(U,$J,358.3,53907,1,0)
+ ;;^UTILITY(U,$J,358.3,51233,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,51233,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,51234,0)
+ ;;=M80.08XD^^193^2503^2
+ ;;^UTILITY(U,$J,358.3,51234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53907,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, subs
- ;;^UTILITY(U,$J,358.3,53907,1,4,0)
- ;;=4^T81.32XD
- ;;^UTILITY(U,$J,358.3,53907,2)
- ;;=^5054474
- ;;^UTILITY(U,$J,358.3,53908,0)
- ;;=T81.32XS^^253^2728^21
- ;;^UTILITY(U,$J,358.3,53908,1,0)
+ ;;^UTILITY(U,$J,358.3,51234,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51234,1,4,0)
+ ;;=4^M80.08XD
+ ;;^UTILITY(U,$J,358.3,51234,2)
+ ;;=^5013496
+ ;;^UTILITY(U,$J,358.3,51235,0)
+ ;;=M84.48XA^^193^2503^123
+ ;;^UTILITY(U,$J,358.3,51235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53908,1,3,0)
- ;;=3^Disruption of internal surgical wound, NEC, sequela
- ;;^UTILITY(U,$J,358.3,53908,1,4,0)
- ;;=4^T81.32XS
- ;;^UTILITY(U,$J,358.3,53908,2)
- ;;=^5054475
- ;;^UTILITY(U,$J,358.3,53909,0)
- ;;=T81.33XA^^253^2728^22
- ;;^UTILITY(U,$J,358.3,53909,1,0)
+ ;;^UTILITY(U,$J,358.3,51235,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,51235,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,51235,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,51236,0)
+ ;;=M84.48XD^^193^2503^124
+ ;;^UTILITY(U,$J,358.3,51236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53909,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, init encntr
- ;;^UTILITY(U,$J,358.3,53909,1,4,0)
- ;;=4^T81.33XA
- ;;^UTILITY(U,$J,358.3,53909,2)
- ;;=^5054476
- ;;^UTILITY(U,$J,358.3,53910,0)
- ;;=T81.33XD^^253^2728^23
- ;;^UTILITY(U,$J,358.3,53910,1,0)
+ ;;^UTILITY(U,$J,358.3,51236,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,51236,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,51236,2)
+ ;;=^5014017
+ ;;^UTILITY(U,$J,358.3,51237,0)
+ ;;=M87.011^^193^2503^48
+ ;;^UTILITY(U,$J,358.3,51237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53910,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, subs encntr
- ;;^UTILITY(U,$J,358.3,53910,1,4,0)
- ;;=4^T81.33XD
- ;;^UTILITY(U,$J,358.3,53910,2)
- ;;=^5054477
- ;;^UTILITY(U,$J,358.3,53911,0)
- ;;=T81.33XS^^253^2728^24
- ;;^UTILITY(U,$J,358.3,53911,1,0)
+ ;;^UTILITY(U,$J,358.3,51237,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,51237,1,4,0)
+ ;;=4^M87.011
+ ;;^UTILITY(U,$J,358.3,51237,2)
+ ;;=^5014658
+ ;;^UTILITY(U,$J,358.3,51238,0)
+ ;;=M87.012^^193^2503^45
+ ;;^UTILITY(U,$J,358.3,51238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53911,1,3,0)
- ;;=3^Disruption of traumatic injury wound repair, sequela
- ;;^UTILITY(U,$J,358.3,53911,1,4,0)
- ;;=4^T81.33XS
- ;;^UTILITY(U,$J,358.3,53911,2)
- ;;=^5054478
- ;;^UTILITY(U,$J,358.3,53912,0)
- ;;=T81.4XXA^^253^2728^36
- ;;^UTILITY(U,$J,358.3,53912,1,0)
+ ;;^UTILITY(U,$J,358.3,51238,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,51238,1,4,0)
+ ;;=4^M87.012
+ ;;^UTILITY(U,$J,358.3,51238,2)
+ ;;=^5014659
+ ;;^UTILITY(U,$J,358.3,51239,0)
+ ;;=M87.050^^193^2503^46
+ ;;^UTILITY(U,$J,358.3,51239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53912,1,3,0)
- ;;=3^Infection following a procedure, initial encounter
- ;;^UTILITY(U,$J,358.3,53912,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,53912,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,53913,0)
- ;;=K68.11^^253^2728^54
- ;;^UTILITY(U,$J,358.3,53913,1,0)
+ ;;^UTILITY(U,$J,358.3,51239,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Pelvis
+ ;;^UTILITY(U,$J,358.3,51239,1,4,0)
+ ;;=4^M87.050
+ ;;^UTILITY(U,$J,358.3,51239,2)
+ ;;=^5014679
+ ;;^UTILITY(U,$J,358.3,51240,0)
+ ;;=M87.051^^193^2503^47
+ ;;^UTILITY(U,$J,358.3,51240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53913,1,3,0)
- ;;=3^Postprocedural retroperitoneal abscess
- ;;^UTILITY(U,$J,358.3,53913,1,4,0)
- ;;=4^K68.11
- ;;^UTILITY(U,$J,358.3,53913,2)
- ;;=^5008782
- ;;^UTILITY(U,$J,358.3,53914,0)
- ;;=T81.89XA^^253^2728^14
- ;;^UTILITY(U,$J,358.3,53914,1,0)
+ ;;^UTILITY(U,$J,358.3,51240,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Femur
+ ;;^UTILITY(U,$J,358.3,51240,1,4,0)
+ ;;=4^M87.051
+ ;;^UTILITY(U,$J,358.3,51240,2)
+ ;;=^5014680
+ ;;^UTILITY(U,$J,358.3,51241,0)
+ ;;=M87.052^^193^2503^44
+ ;;^UTILITY(U,$J,358.3,51241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53914,1,3,0)
- ;;=3^Complications of procedures, NEC, init
- ;;^UTILITY(U,$J,358.3,53914,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,53914,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,53915,0)
- ;;=Z91.19^^253^2728^50
- ;;^UTILITY(U,$J,358.3,53915,1,0)
+ ;;^UTILITY(U,$J,358.3,51241,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Femur
+ ;;^UTILITY(U,$J,358.3,51241,1,4,0)
+ ;;=4^M87.052
+ ;;^UTILITY(U,$J,358.3,51241,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,51242,0)
+ ;;=M87.111^^193^2503^78
+ ;;^UTILITY(U,$J,358.3,51242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53915,1,3,0)
- ;;=3^Patient's noncompliance w oth medical treatment and regimen
- ;;^UTILITY(U,$J,358.3,53915,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,53915,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,53916,0)
- ;;=Z48.298^^253^2728^3
- ;;^UTILITY(U,$J,358.3,53916,1,0)
+ ;;^UTILITY(U,$J,358.3,51242,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,51242,1,4,0)
+ ;;=4^M87.111
+ ;;^UTILITY(U,$J,358.3,51242,2)
+ ;;=^5014701
+ ;;^UTILITY(U,$J,358.3,51243,0)
+ ;;=M87.112^^193^2503^75
+ ;;^UTILITY(U,$J,358.3,51243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53916,1,3,0)
- ;;=3^Aftercare following other organ transplant
- ;;^UTILITY(U,$J,358.3,53916,1,4,0)
- ;;=4^Z48.298
- ;;^UTILITY(U,$J,358.3,53916,2)
- ;;=^5063045
- ;;^UTILITY(U,$J,358.3,53917,0)
- ;;=T86.830^^253^2728^7
- ;;^UTILITY(U,$J,358.3,53917,1,0)
+ ;;^UTILITY(U,$J,358.3,51243,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,51243,1,4,0)
+ ;;=4^M87.112
+ ;;^UTILITY(U,$J,358.3,51243,2)
+ ;;=^5014702
+ ;;^UTILITY(U,$J,358.3,51244,0)
+ ;;=M87.150^^193^2503^76
+ ;;^UTILITY(U,$J,358.3,51244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53917,1,3,0)
- ;;=3^Bone graft rejection
- ;;^UTILITY(U,$J,358.3,53917,1,4,0)
- ;;=4^T86.830
- ;;^UTILITY(U,$J,358.3,53917,2)
- ;;=^5055739
- ;;^UTILITY(U,$J,358.3,53918,0)
- ;;=T86.831^^253^2728^5
- ;;^UTILITY(U,$J,358.3,53918,1,0)
+ ;;^UTILITY(U,$J,358.3,51244,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Pelvis
+ ;;^UTILITY(U,$J,358.3,51244,1,4,0)
+ ;;=4^M87.150
+ ;;^UTILITY(U,$J,358.3,51244,2)
+ ;;=^5014722
+ ;;^UTILITY(U,$J,358.3,51245,0)
+ ;;=M87.151^^193^2503^77
+ ;;^UTILITY(U,$J,358.3,51245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53918,1,3,0)
- ;;=3^Bone graft failure
- ;;^UTILITY(U,$J,358.3,53918,1,4,0)
- ;;=4^T86.831
- ;;^UTILITY(U,$J,358.3,53918,2)
- ;;=^5055740
+ ;;^UTILITY(U,$J,358.3,51245,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Femur

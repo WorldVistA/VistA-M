@@ -1,132 +1,124 @@
-IBDEI24D ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35944,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,35944,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,35945,0)
- ;;=F17.221^^134^1737^5
- ;;^UTILITY(U,$J,358.3,35945,1,0)
+ ;;^UTILITY(U,$J,358.3,33860,0)
+ ;;=S80.11XA^^132^1713^7
+ ;;^UTILITY(U,$J,358.3,33860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35945,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,35945,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,35945,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,35946,0)
- ;;=F17.220^^134^1737^6
- ;;^UTILITY(U,$J,358.3,35946,1,0)
+ ;;^UTILITY(U,$J,358.3,33860,1,3,0)
+ ;;=3^Contusion of right lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,33860,1,4,0)
+ ;;=4^S80.11XA
+ ;;^UTILITY(U,$J,358.3,33860,2)
+ ;;=^5039900
+ ;;^UTILITY(U,$J,358.3,33861,0)
+ ;;=S82.425A^^132^1713^17
+ ;;^UTILITY(U,$J,358.3,33861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35946,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,35946,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,35946,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,35947,0)
- ;;=F17.211^^134^1737^7
- ;;^UTILITY(U,$J,358.3,35947,1,0)
+ ;;^UTILITY(U,$J,358.3,33861,1,3,0)
+ ;;=3^Nondisp transverse fracture of shaft of left fibula, init
+ ;;^UTILITY(U,$J,358.3,33861,1,4,0)
+ ;;=4^S82.425A
+ ;;^UTILITY(U,$J,358.3,33861,2)
+ ;;=^5041778
+ ;;^UTILITY(U,$J,358.3,33862,0)
+ ;;=S82.424A^^132^1713^18
+ ;;^UTILITY(U,$J,358.3,33862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35947,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,35947,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,35947,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,35948,0)
- ;;=F17.210^^134^1737^8
- ;;^UTILITY(U,$J,358.3,35948,1,0)
+ ;;^UTILITY(U,$J,358.3,33862,1,3,0)
+ ;;=3^Nondisp transverse fracture of shaft of right fibula, init
+ ;;^UTILITY(U,$J,358.3,33862,1,4,0)
+ ;;=4^S82.424A
+ ;;^UTILITY(U,$J,358.3,33862,2)
+ ;;=^5041762
+ ;;^UTILITY(U,$J,358.3,33863,0)
+ ;;=S82.292A^^132^1713^9
+ ;;^UTILITY(U,$J,358.3,33863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35948,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,35948,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,35948,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,35949,0)
- ;;=F17.291^^134^1737^9
- ;;^UTILITY(U,$J,358.3,35949,1,0)
+ ;;^UTILITY(U,$J,358.3,33863,1,3,0)
+ ;;=3^Fracture of shaft of left tibia, init for clos fx NEC
+ ;;^UTILITY(U,$J,358.3,33863,1,4,0)
+ ;;=4^S82.292A
+ ;;^UTILITY(U,$J,358.3,33863,2)
+ ;;=^5136798
+ ;;^UTILITY(U,$J,358.3,33864,0)
+ ;;=S82.291A^^132^1713^10
+ ;;^UTILITY(U,$J,358.3,33864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35949,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,35949,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,35949,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,35950,0)
- ;;=F17.290^^134^1737^10
- ;;^UTILITY(U,$J,358.3,35950,1,0)
+ ;;^UTILITY(U,$J,358.3,33864,1,3,0)
+ ;;=3^Fracture of shaft of right tibia, init for clos fx NEC
+ ;;^UTILITY(U,$J,358.3,33864,1,4,0)
+ ;;=4^S82.291A
+ ;;^UTILITY(U,$J,358.3,33864,2)
+ ;;=^5041619
+ ;;^UTILITY(U,$J,358.3,33865,0)
+ ;;=M79.672^^132^1713^21
+ ;;^UTILITY(U,$J,358.3,33865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35950,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,35950,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,35950,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,35951,0)
- ;;=F17.201^^134^1737^11
- ;;^UTILITY(U,$J,358.3,35951,1,0)
+ ;;^UTILITY(U,$J,358.3,33865,1,3,0)
+ ;;=3^Pain in left foot
+ ;;^UTILITY(U,$J,358.3,33865,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,33865,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,33866,0)
+ ;;=M79.605^^132^1713^22
+ ;;^UTILITY(U,$J,358.3,33866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35951,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,In Remission
- ;;^UTILITY(U,$J,358.3,35951,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,35951,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,35952,0)
- ;;=F17.200^^134^1737^12
- ;;^UTILITY(U,$J,358.3,35952,1,0)
+ ;;^UTILITY(U,$J,358.3,33866,1,3,0)
+ ;;=3^Pain in left leg
+ ;;^UTILITY(U,$J,358.3,33866,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,33866,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,33867,0)
+ ;;=M79.662^^132^1713^23
+ ;;^UTILITY(U,$J,358.3,33867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35952,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,35952,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,35952,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,35953,0)
- ;;=F19.20^^134^1737^16
- ;;^UTILITY(U,$J,358.3,35953,1,0)
+ ;;^UTILITY(U,$J,358.3,33867,1,3,0)
+ ;;=3^Pain in left lower leg
+ ;;^UTILITY(U,$J,358.3,33867,1,4,0)
+ ;;=4^M79.662
+ ;;^UTILITY(U,$J,358.3,33867,2)
+ ;;=^5013348
+ ;;^UTILITY(U,$J,358.3,33868,0)
+ ;;=M79.652^^132^1713^24
+ ;;^UTILITY(U,$J,358.3,33868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35953,1,3,0)
- ;;=3^Psycoactive Substance Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,35953,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,35953,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,35954,0)
- ;;=F43.11^^134^1737^13
- ;;^UTILITY(U,$J,358.3,35954,1,0)
+ ;;^UTILITY(U,$J,358.3,33868,1,3,0)
+ ;;=3^Pain in left thigh
+ ;;^UTILITY(U,$J,358.3,33868,1,4,0)
+ ;;=4^M79.652
+ ;;^UTILITY(U,$J,358.3,33868,2)
+ ;;=^5013345
+ ;;^UTILITY(U,$J,358.3,33869,0)
+ ;;=M79.675^^132^1713^25
+ ;;^UTILITY(U,$J,358.3,33869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35954,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,35954,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,35954,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,35955,0)
- ;;=F43.12^^134^1737^14
- ;;^UTILITY(U,$J,358.3,35955,1,0)
+ ;;^UTILITY(U,$J,358.3,33869,1,3,0)
+ ;;=3^Pain in left toe(s)
+ ;;^UTILITY(U,$J,358.3,33869,1,4,0)
+ ;;=4^M79.675
+ ;;^UTILITY(U,$J,358.3,33869,2)
+ ;;=^5013354
+ ;;^UTILITY(U,$J,358.3,33870,0)
+ ;;=M79.671^^132^1713^26
+ ;;^UTILITY(U,$J,358.3,33870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35955,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,35955,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,35955,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,35956,0)
- ;;=F43.10^^134^1737^15
- ;;^UTILITY(U,$J,358.3,35956,1,0)
+ ;;^UTILITY(U,$J,358.3,33870,1,3,0)
+ ;;=3^Pain in right foot
+ ;;^UTILITY(U,$J,358.3,33870,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,33870,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,33871,0)
+ ;;=M79.604^^132^1713^27
+ ;;^UTILITY(U,$J,358.3,33871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35956,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,35956,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,35956,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,35957,0)
- ;;=Z87.891^^134^1737^3
- ;;^UTILITY(U,$J,358.3,35957,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33871,1,3,0)
+ ;;=3^Pain in right leg
+ ;;^UTILITY(U,$J,358.3,33871,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,33871,2)
+ ;;=^5013328

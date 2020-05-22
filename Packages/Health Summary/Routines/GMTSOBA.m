@@ -1,5 +1,5 @@
-GMTSOBA ; SLC/KER - HS Object - Ask               ; 06/24/2009
- ;;2.7;Health Summary;**58,89**;Oct 20, 1995;Build 61
+GMTSOBA ;SLC/KER,PWC - HS Object - Ask ;July 17, 2019@10:12 AM
+ ;;2.7;Health Summary;**58,89,130**;Oct 20, 1995;Build 1
  ;
  ; External References
  ;   DBIA  10018  ^DIE  (file #142.5)
@@ -29,7 +29,8 @@ OBJ ; Create/Edit Object
  . K DTOUT,DUOUT,DIRUT,DIROUT
  . S GMTSTYPE=$$TY^GMTSOBL(GMTSDEF)
  . I $D(DTOUT)!($D(DUOUT))!($D(DIRUT))!($D(DIROUT)) S GMTSQ=1 Q
- . S DR=".03////^S X=$G(GMTSTYPE)"
+ . ;VSR - pwc GMTS*2.7*130 change //// to /// for validation before storage
+ . S DR=".03///^S X=$G(GMTSTYPE)"
  . S DIE="^GMT(142.5,",DA=+($G(DA)) S GMTSED=0
  . F GMTSI=1:1:3 Q:GMTSI>3  L +^GMT(142.5,+($G(DA))):0 H:'$T 1 I $T D
  . . D ^DIE S GMTSED=1 S $P(^GMT(142.5,+DA,0),U,19)=$$NOW^XLFDT,GMTSI=4
@@ -55,15 +56,17 @@ OBJ ; Create/Edit Object
  S GMTSNOD=$S($D(GMTSOBJ("SUPPRESS COMPONENTS")):1,1:0)
  S:+GMTSCHD'>0 (GMTSLIM,GMTSBLK)=0
  S:'$L($G(GMTSLBL)) GMTSLBL="@",(GMTSULB,GMTSLBB)=0
- N DR S DR=".02////^S X=$G(GMTSLBL);"
- S:$L($G(GMTSTIM))&($G(GMTSTIM)'="@") DR=DR_".04////^S X=$G(GMTSTIM);"
- S DR=DR_".05////^S X=$G(GMTSNOD);",DR=DR_".06////^S X=$G(GMTSHDR);"
- S DR=DR_".07////^S X=$G(GMTSULB);",DR=DR_".08////^S X=$G(GMTSLBB);"
- S DR=DR_".09////^S X=$G(GMTSRDT);",DR=DR_".1////^S X=$G(GMTSCON);"
- S DR=DR_".11////^S X=$G(GMTSRHD);",DR=DR_".12////^S X=$G(GMTSCHD);"
- S DR=DR_".13////^S X=$G(GMTSUND);",DR=DR_".14////^S X=$G(GMTSLIM);"
- S DR=DR_".15////^S X=$G(GMTSBLK);",DR=DR_".16////^S X=$G(GMTSDEC);"
- S DR=DR_"2////^S X=$G(GMTSNDAT);"
+ ; ;VSR  pwc  GMTS*2.7*130  replace //// with /// for validation before storage
+ N DR S DR=".02///^S X=$G(GMTSLBL);"
+ S:$L($G(GMTSTIM))&($G(GMTSTIM)'="@") DR=DR_".04///^S X=$G(GMTSTIM);"
+ S DR=DR_".05///^S X=$G(GMTSNOD);",DR=DR_".06///^S X=$G(GMTSHDR);"
+ S DR=DR_".07///^S X=$G(GMTSULB);",DR=DR_".08///^S X=$G(GMTSLBB);"
+ S DR=DR_".09///^S X=$G(GMTSRDT);",DR=DR_".1///^S X=$G(GMTSCON);"
+ S DR=DR_".11///^S X=$G(GMTSRHD);",DR=DR_".12///^S X=$G(GMTSCHD);"
+ S DR=DR_".13///^S X=$G(GMTSUND);",DR=DR_".14///^S X=$G(GMTSLIM);"
+ S DR=DR_".15///^S X=$G(GMTSBLK);",DR=DR_".16///^S X=$G(GMTSDEC);"
+ S DR=DR_"2///^S X=$G(GMTSNDAT);"
+ ; End of VSR patch GMTS*2.7*130
  S:+($G(GMTSDES))>0 DR=DR_"1" S:$E(DR,1)=";" DR=$E(DR,2,$L(DR)) S:$E(DR,$L(DR))=";" DR=$E(DR,1,($L(DR)-1))
  S DIE="^GMT(142.5,",DA=+($G(DA)) S GMTSED=0 W:+($G(GMTSDES))>0 !
  F GMTSI=1:1:3 Q:GMTSI>3  L +^GMT(142.5,+($G(DA))):0 H:'$T 1 I $T D

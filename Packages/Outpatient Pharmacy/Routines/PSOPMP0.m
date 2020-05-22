@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500,482,570**;DEC 1997;Build 8
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -50,7 +50,7 @@ INIT ;Populates the Body section for ListMan
  Q
  ;
 SETLINE ;Sets the line to be displayed in ListMan
- N TYPE,STS,SUB,SEQ,LINE,Z,TOTAL,I,X,X1,ORDCNT,LBL,LN,IENSUB,GROUP,GRP,QTYL
+ N TYPE,STS,SUB,SEQ,LINE,Z,TOTAL,I,X,X1,ORDCNT,LBL,LN,IENSUB,GROUP,GRP,QTYL,ORNUM1,ERXIEN1
  I '$D(^TMP("PSOPMPSR",$J)) D  Q
  . F I=1:1:6 S ^TMP("PSOPMP0",$J,I,0)=""
  . S ^TMP("PSOPMP0",$J,7,0)="                    No prescriptions found for this patient."
@@ -71,9 +71,12 @@ SETLINE ;Sets the line to be displayed in ListMan
  . . F  S SUB=$O(^TMP("PSOPMPSR",$J,GROUP,STS,SUB),$S(PSORDER="A":1,1:-1)) Q:SUB=""  D
  . . . S Z=$G(^TMP("PSOPMPSR",$J,GROUP,STS,SUB))
  . . . S X1="",SEQ=$G(SEQ)+1,X1=$J(SEQ,3)
+ . . . I GRP'["P" K ERXIEN1 S ORNUM1=$$GET1^DIQ(52,+Z,39.3,"I") D:ORNUM1  S X1=X1_$S($G(ERXIEN1):"& ",1:"")
+ . . . . S ERXIEN1=$$CHKERX^PSOERXU1(ORNUM1)
  . . . S QTYL=$L($P(Z,"^",4)) S:QTYL<5 QTYL=5
- . . . I GRP["R"!(GRP["T")!(GRP["H") S $E(X1,5)=$P(Z,"^",2),$E(X1,19)=$E($P(Z,"^",3),1,(32-QTYL))
- . . . I GRP["P"!(GRP["N") S $E(X1,5)=$P(Z,"^",3)
+ . . . I GRP["R"!(GRP["T")!(GRP["H") S $E(X1,$S($G(ERXIEN1):6,1:5))=$P(Z,"^",2),$E(X1,19)=$E($P(Z,"^",3),1,(32-QTYL))
+ . . . I GRP["P"!(GRP["N") K ERXIEN1 S ORNUM1=$$GET1^DIQ(52.41,+Z,.01,"I") D:ORNUM1  S $E(X1,4)=$S($G(ERXIEN1):"& ",1:" ")_$P(Z,"^",3)
+ . . . . S ERXIEN1=$$CHKERX^PSOERXU1(ORNUM1)
  . . . I GRP["N" S $E(X1,49)="Date Documented:"
  . . . I GRP'["N" S $E(X1,52-QTYL)=$J($P(Z,"^",4),QTYL),$E(X1,53)=$P(Z,"^",5),$E(X1,57)=$P(Z,"^",6)
  . . . S $E(X1,66)=$P(Z,"^",7)

@@ -1,128 +1,126 @@
-IBDEI28X ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28X ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38103,1,0)
+ ;;^UTILITY(U,$J,358.3,35860,1,4,0)
+ ;;=4^S42.91XS
+ ;;^UTILITY(U,$J,358.3,35860,2)
+ ;;=^5027649
+ ;;^UTILITY(U,$J,358.3,35861,0)
+ ;;=S72.001S^^139^1827^22
+ ;;^UTILITY(U,$J,358.3,35861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38103,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,38103,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,38103,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,38104,0)
- ;;=G25.1^^145^1839^12
- ;;^UTILITY(U,$J,358.3,38104,1,0)
+ ;;^UTILITY(U,$J,358.3,35861,1,3,0)
+ ;;=3^Fx,Right Femur Neck,Unspec Part,Sequela
+ ;;^UTILITY(U,$J,358.3,35861,1,4,0)
+ ;;=4^S72.001S
+ ;;^UTILITY(U,$J,358.3,35861,2)
+ ;;=^5037062
+ ;;^UTILITY(U,$J,358.3,35862,0)
+ ;;=S32.9XXS^^139^1827^14
+ ;;^UTILITY(U,$J,358.3,35862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38104,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,38104,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,38104,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,38105,0)
- ;;=G25.71^^145^1839^15
- ;;^UTILITY(U,$J,358.3,38105,1,0)
+ ;;^UTILITY(U,$J,358.3,35862,1,3,0)
+ ;;=3^Fx,Lumbosacral Spine & Pelvis,Unspec Parts,Sequla
+ ;;^UTILITY(U,$J,358.3,35862,1,4,0)
+ ;;=4^S32.9XXS
+ ;;^UTILITY(U,$J,358.3,35862,2)
+ ;;=^5025126
+ ;;^UTILITY(U,$J,358.3,35863,0)
+ ;;=S92.902S^^139^1827^5
+ ;;^UTILITY(U,$J,358.3,35863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38105,1,3,0)
- ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
- ;;^UTILITY(U,$J,358.3,38105,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,38105,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,38106,0)
- ;;=G25.79^^145^1839^10
- ;;^UTILITY(U,$J,358.3,38106,1,0)
+ ;;^UTILITY(U,$J,358.3,35863,1,3,0)
+ ;;=3^Fx,Left foot, sequela
+ ;;^UTILITY(U,$J,358.3,35863,1,4,0)
+ ;;=4^S92.902S
+ ;;^UTILITY(U,$J,358.3,35863,2)
+ ;;=^5045591
+ ;;^UTILITY(U,$J,358.3,35864,0)
+ ;;=S52.92XS^^139^1827^6
+ ;;^UTILITY(U,$J,358.3,35864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38106,1,3,0)
- ;;=3^Medication-Induced Movement Disorder NEC
- ;;^UTILITY(U,$J,358.3,38106,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,38106,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,38107,0)
- ;;=T43.205A^^145^1839^4
- ;;^UTILITY(U,$J,358.3,38107,1,0)
+ ;;^UTILITY(U,$J,358.3,35864,1,3,0)
+ ;;=3^Fx,Left forearm, sequela
+ ;;^UTILITY(U,$J,358.3,35864,1,4,0)
+ ;;=4^S52.92XS
+ ;;^UTILITY(U,$J,358.3,35864,2)
+ ;;=^5031189
+ ;;^UTILITY(U,$J,358.3,35865,0)
+ ;;=S82.92XS^^139^1827^7
+ ;;^UTILITY(U,$J,358.3,35865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38107,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,38107,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,38107,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,38108,0)
- ;;=T43.205D^^145^1839^5
- ;;^UTILITY(U,$J,358.3,38108,1,0)
+ ;;^UTILITY(U,$J,358.3,35865,1,3,0)
+ ;;=3^Fx,Left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,35865,1,4,0)
+ ;;=4^S82.92XS
+ ;;^UTILITY(U,$J,358.3,35865,2)
+ ;;=^5136992
+ ;;^UTILITY(U,$J,358.3,35866,0)
+ ;;=S82.002S^^139^1827^8
+ ;;^UTILITY(U,$J,358.3,35866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38108,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,38108,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,38108,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,38109,0)
- ;;=T43.205S^^145^1839^6
- ;;^UTILITY(U,$J,358.3,38109,1,0)
+ ;;^UTILITY(U,$J,358.3,35866,1,3,0)
+ ;;=3^Fx,Left patella, sequela
+ ;;^UTILITY(U,$J,358.3,35866,1,4,0)
+ ;;=4^S82.002S
+ ;;^UTILITY(U,$J,358.3,35866,2)
+ ;;=^5040135
+ ;;^UTILITY(U,$J,358.3,35867,0)
+ ;;=S92.912S^^139^1827^10
+ ;;^UTILITY(U,$J,358.3,35867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38109,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,38109,1,4,0)
- ;;=4^T43.205S
- ;;^UTILITY(U,$J,358.3,38109,2)
- ;;=^5050542
- ;;^UTILITY(U,$J,358.3,38110,0)
- ;;=G25.71^^145^1839^7
- ;;^UTILITY(U,$J,358.3,38110,1,0)
+ ;;^UTILITY(U,$J,358.3,35867,1,3,0)
+ ;;=3^Fx,Left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,35867,1,4,0)
+ ;;=4^S92.912S
+ ;;^UTILITY(U,$J,358.3,35867,2)
+ ;;=^5045605
+ ;;^UTILITY(U,$J,358.3,35868,0)
+ ;;=S62.92XS^^139^1827^11
+ ;;^UTILITY(U,$J,358.3,35868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38110,1,3,0)
- ;;=3^Medication-Induced Acute Akathisia
- ;;^UTILITY(U,$J,358.3,38110,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,38110,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,38111,0)
- ;;=G24.02^^145^1839^9
- ;;^UTILITY(U,$J,358.3,38111,1,0)
+ ;;^UTILITY(U,$J,358.3,35868,1,3,0)
+ ;;=3^Fx,Left wrist and hand, sequela
+ ;;^UTILITY(U,$J,358.3,35868,1,4,0)
+ ;;=4^S62.92XS
+ ;;^UTILITY(U,$J,358.3,35868,2)
+ ;;=^5034892
+ ;;^UTILITY(U,$J,358.3,35869,0)
+ ;;=S42.402S^^139^1827^12
+ ;;^UTILITY(U,$J,358.3,35869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38111,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,38111,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,38111,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,38112,0)
- ;;=G21.0^^145^1839^13
- ;;^UTILITY(U,$J,358.3,38112,1,0)
+ ;;^UTILITY(U,$J,358.3,35869,1,3,0)
+ ;;=3^Fx,Lower end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,35869,1,4,0)
+ ;;=4^S42.402S
+ ;;^UTILITY(U,$J,358.3,35869,2)
+ ;;=^5134725
+ ;;^UTILITY(U,$J,358.3,35870,0)
+ ;;=S42.401S^^139^1827^13
+ ;;^UTILITY(U,$J,358.3,35870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38112,1,3,0)
- ;;=3^Neuroleptic Malignant Syndrome
- ;;^UTILITY(U,$J,358.3,38112,1,4,0)
- ;;=4^G21.0
- ;;^UTILITY(U,$J,358.3,38112,2)
- ;;=^5003771
- ;;^UTILITY(U,$J,358.3,38113,0)
- ;;=T50.905A^^145^1839^1
- ;;^UTILITY(U,$J,358.3,38113,1,0)
+ ;;^UTILITY(U,$J,358.3,35870,1,3,0)
+ ;;=3^Fx,Lower end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,35870,1,4,0)
+ ;;=4^S42.401S
+ ;;^UTILITY(U,$J,358.3,35870,2)
+ ;;=^5027300
+ ;;^UTILITY(U,$J,358.3,35871,0)
+ ;;=S92.901S^^139^1827^23
+ ;;^UTILITY(U,$J,358.3,35871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38113,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Init Encntr
- ;;^UTILITY(U,$J,358.3,38113,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,38113,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,38114,0)
- ;;=T50.905D^^145^1839^3
- ;;^UTILITY(U,$J,358.3,38114,1,0)
+ ;;^UTILITY(U,$J,358.3,35871,1,3,0)
+ ;;=3^Fx,Right foot, sequela
+ ;;^UTILITY(U,$J,358.3,35871,1,4,0)
+ ;;=4^S92.901S
+ ;;^UTILITY(U,$J,358.3,35871,2)
+ ;;=^5045584
+ ;;^UTILITY(U,$J,358.3,35872,0)
+ ;;=S52.91XS^^139^1827^24
+ ;;^UTILITY(U,$J,358.3,35872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38114,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,38114,1,4,0)
- ;;=4^T50.905D
- ;;^UTILITY(U,$J,358.3,38114,2)
- ;;=^5052161
- ;;^UTILITY(U,$J,358.3,38115,0)
- ;;=T50.905S^^145^1839^2
- ;;^UTILITY(U,$J,358.3,38115,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38115,1,3,0)
- ;;=3^Adverse Effect of Unspec Medication,Sequela
+ ;;^UTILITY(U,$J,358.3,35872,1,3,0)
+ ;;=3^Fx,Right forearm, sequela
+ ;;^UTILITY(U,$J,358.3,35872,1,4,0)
+ ;;=4^S52.91XS

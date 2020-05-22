@@ -1,132 +1,122 @@
-IBDEI1DS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23469,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,23470,0)
- ;;=R92.8^^87^997^4
- ;;^UTILITY(U,$J,358.3,23470,1,0)
+ ;;^UTILITY(U,$J,358.3,22071,1,3,0)
+ ;;=3^Inadqute social skills, not elswhr classified
+ ;;^UTILITY(U,$J,358.3,22071,1,4,0)
+ ;;=4^Z73.4
+ ;;^UTILITY(U,$J,358.3,22071,2)
+ ;;=^5063272
+ ;;^UTILITY(U,$J,358.3,22072,0)
+ ;;=Z79.2^^99^1125^22
+ ;;^UTILITY(U,$J,358.3,22072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23470,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,23470,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,23470,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,23471,0)
- ;;=R87.619^^87^997^1
- ;;^UTILITY(U,$J,358.3,23471,1,0)
+ ;;^UTILITY(U,$J,358.3,22072,1,3,0)
+ ;;=3^Long term (current) use of antibiotics
+ ;;^UTILITY(U,$J,358.3,22072,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,22072,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,22073,0)
+ ;;=Z79.01^^99^1125^23
+ ;;^UTILITY(U,$J,358.3,22073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23471,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,23471,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,23471,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,23472,0)
- ;;=Z79.890^^87^997^26
- ;;^UTILITY(U,$J,358.3,23472,1,0)
+ ;;^UTILITY(U,$J,358.3,22073,1,3,0)
+ ;;=3^Long term (current) use of anticoagulants
+ ;;^UTILITY(U,$J,358.3,22073,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,22073,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,22074,0)
+ ;;=Z79.02^^99^1125^24
+ ;;^UTILITY(U,$J,358.3,22074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23472,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,23472,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,23472,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,23473,0)
- ;;=Z33.1^^87^997^50
- ;;^UTILITY(U,$J,358.3,23473,1,0)
+ ;;^UTILITY(U,$J,358.3,22074,1,3,0)
+ ;;=3^Long term (current) use of antithrombtc/antipltlts
+ ;;^UTILITY(U,$J,358.3,22074,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,22074,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,22075,0)
+ ;;=Z79.82^^99^1125^25
+ ;;^UTILITY(U,$J,358.3,22075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23473,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,23473,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,23473,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,23474,0)
- ;;=Z39.2^^87^997^49
- ;;^UTILITY(U,$J,358.3,23474,1,0)
+ ;;^UTILITY(U,$J,358.3,22075,1,3,0)
+ ;;=3^Long term (current) use of aspirin
+ ;;^UTILITY(U,$J,358.3,22075,1,4,0)
+ ;;=4^Z79.82
+ ;;^UTILITY(U,$J,358.3,22075,2)
+ ;;=^5063340
+ ;;^UTILITY(U,$J,358.3,22076,0)
+ ;;=Z79.899^^99^1125^21
+ ;;^UTILITY(U,$J,358.3,22076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23474,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,23474,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,23474,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,23475,0)
- ;;=Z30.09^^87^997^10
- ;;^UTILITY(U,$J,358.3,23475,1,0)
+ ;;^UTILITY(U,$J,358.3,22076,1,3,0)
+ ;;=3^Long term (current) drug therapy, oth
+ ;;^UTILITY(U,$J,358.3,22076,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,22076,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,22077,0)
+ ;;=Z79.51^^99^1125^26
+ ;;^UTILITY(U,$J,358.3,22077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23475,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,23475,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,23475,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,23476,0)
- ;;=Z30.9^^87^997^9
- ;;^UTILITY(U,$J,358.3,23476,1,0)
+ ;;^UTILITY(U,$J,358.3,22077,1,3,0)
+ ;;=3^Long term (current) use of inhaled steroids
+ ;;^UTILITY(U,$J,358.3,22077,1,4,0)
+ ;;=4^Z79.51
+ ;;^UTILITY(U,$J,358.3,22077,2)
+ ;;=^5063335
+ ;;^UTILITY(U,$J,358.3,22078,0)
+ ;;=Z79.4^^99^1125^27
+ ;;^UTILITY(U,$J,358.3,22078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23476,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,23476,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,23476,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,23477,0)
- ;;=N64.3^^87^997^23
- ;;^UTILITY(U,$J,358.3,23477,1,0)
+ ;;^UTILITY(U,$J,358.3,22078,1,3,0)
+ ;;=3^Long term (current) use of insulin
+ ;;^UTILITY(U,$J,358.3,22078,1,4,0)
+ ;;=4^Z79.4
+ ;;^UTILITY(U,$J,358.3,22078,2)
+ ;;=^5063334
+ ;;^UTILITY(U,$J,358.3,22079,0)
+ ;;=Z79.1^^99^1125^28
+ ;;^UTILITY(U,$J,358.3,22079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23477,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,23477,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,23477,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,23478,0)
- ;;=R92.2^^87^997^27
- ;;^UTILITY(U,$J,358.3,23478,1,0)
+ ;;^UTILITY(U,$J,358.3,22079,1,3,0)
+ ;;=3^Long term (current) use of non-stroidl non-inflam (NSAID)
+ ;;^UTILITY(U,$J,358.3,22079,1,4,0)
+ ;;=4^Z79.1
+ ;;^UTILITY(U,$J,358.3,22079,2)
+ ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,22080,0)
+ ;;=Z79.891^^99^1125^29
+ ;;^UTILITY(U,$J,358.3,22080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23478,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,23478,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,23478,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,23479,0)
- ;;=Z30.432^^87^997^53
- ;;^UTILITY(U,$J,358.3,23479,1,0)
+ ;;^UTILITY(U,$J,358.3,22080,1,3,0)
+ ;;=3^Long term (current) use of opiate analgesic
+ ;;^UTILITY(U,$J,358.3,22080,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,22080,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,22081,0)
+ ;;=Z79.52^^99^1125^31
+ ;;^UTILITY(U,$J,358.3,22081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23479,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,23479,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,23479,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,23480,0)
- ;;=S31.000A^^87^998^5
- ;;^UTILITY(U,$J,358.3,23480,1,0)
+ ;;^UTILITY(U,$J,358.3,22081,1,3,0)
+ ;;=3^Long term (current) use of systemic steroids
+ ;;^UTILITY(U,$J,358.3,22081,1,4,0)
+ ;;=4^Z79.52
+ ;;^UTILITY(U,$J,358.3,22081,2)
+ ;;=^5063336
+ ;;^UTILITY(U,$J,358.3,22082,0)
+ ;;=Z91.19^^99^1125^41
+ ;;^UTILITY(U,$J,358.3,22082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23480,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,23480,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,23480,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,23481,0)
- ;;=S31.010A^^87^998^2
- ;;^UTILITY(U,$J,358.3,23481,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23481,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,23481,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,23481,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,23482,0)
- ;;=T07.^^87^998^4
- ;;^UTILITY(U,$J,358.3,23482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23482,1,3,0)
- ;;=3^Multiple Injuries,Unspec
+ ;;^UTILITY(U,$J,358.3,22082,1,3,0)
+ ;;=3^Pt's noncmplnc w oth med'l trmnt & regimen
+ ;;^UTILITY(U,$J,358.3,22082,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,22082,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,22083,0)
+ ;;=Z73.89^^99^1125^33

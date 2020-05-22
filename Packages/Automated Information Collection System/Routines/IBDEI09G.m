@@ -1,372 +1,656 @@
-IBDEI09G ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI09G ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11955,1,3,0)
- ;;=3^Paralysis,Transient
- ;;^UTILITY(U,$J,358.3,11955,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,11955,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,11956,0)
- ;;=G83.9^^40^590^108
- ;;^UTILITY(U,$J,358.3,11956,1,0)
+ ;;^UTILITY(U,$J,358.3,23130,0)
+ ;;=S63.502A^^73^953^7
+ ;;^UTILITY(U,$J,358.3,23130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11956,1,3,0)
- ;;=3^Paralytic Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,11956,1,4,0)
- ;;=4^G83.9
- ;;^UTILITY(U,$J,358.3,11956,2)
- ;;=^5004151
- ;;^UTILITY(U,$J,358.3,11957,0)
- ;;=G82.20^^40^590^109
- ;;^UTILITY(U,$J,358.3,11957,1,0)
+ ;;^UTILITY(U,$J,358.3,23130,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,23130,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,23130,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,23131,0)
+ ;;=S83.8X1A^^73^953^16
+ ;;^UTILITY(U,$J,358.3,23131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11957,1,3,0)
- ;;=3^Paraplegia,Unspec
- ;;^UTILITY(U,$J,358.3,11957,1,4,0)
- ;;=4^G82.20
- ;;^UTILITY(U,$J,358.3,11957,2)
- ;;=^5004125
- ;;^UTILITY(U,$J,358.3,11958,0)
- ;;=G21.9^^40^590^111
- ;;^UTILITY(U,$J,358.3,11958,1,0)
+ ;;^UTILITY(U,$J,358.3,23131,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,23131,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,23131,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,23132,0)
+ ;;=S83.8X2A^^73^953^5
+ ;;^UTILITY(U,$J,358.3,23132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11958,1,3,0)
- ;;=3^Parkinsonism,Secondary,Unspec
- ;;^UTILITY(U,$J,358.3,11958,1,4,0)
- ;;=4^G21.9
- ;;^UTILITY(U,$J,358.3,11958,2)
- ;;=^5003778
- ;;^UTILITY(U,$J,358.3,11959,0)
- ;;=G20.^^40^590^110
- ;;^UTILITY(U,$J,358.3,11959,1,0)
+ ;;^UTILITY(U,$J,358.3,23132,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,23132,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,23132,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,23133,0)
+ ;;=S86.211A^^73^953^47
+ ;;^UTILITY(U,$J,358.3,23133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11959,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,11959,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,11959,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,11960,0)
- ;;=G14.^^40^590^114
- ;;^UTILITY(U,$J,358.3,11960,1,0)
+ ;;^UTILITY(U,$J,358.3,23133,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23133,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,23133,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,23134,0)
+ ;;=S86.212A^^73^953^27
+ ;;^UTILITY(U,$J,358.3,23134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11960,1,3,0)
- ;;=3^Postpolio Syndrome
- ;;^UTILITY(U,$J,358.3,11960,1,4,0)
- ;;=4^G14.
- ;;^UTILITY(U,$J,358.3,11960,2)
- ;;=^5003769
- ;;^UTILITY(U,$J,358.3,11961,0)
- ;;=G45.2^^40^590^115
- ;;^UTILITY(U,$J,358.3,11961,1,0)
+ ;;^UTILITY(U,$J,358.3,23134,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23134,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,23134,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,23135,0)
+ ;;=S86.311A^^73^953^49
+ ;;^UTILITY(U,$J,358.3,23135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11961,1,3,0)
- ;;=3^Precerebral Artery Syndromes,Multiple/Bilateral
- ;;^UTILITY(U,$J,358.3,11961,1,4,0)
- ;;=4^G45.2
- ;;^UTILITY(U,$J,358.3,11961,2)
- ;;=^5003957
- ;;^UTILITY(U,$J,358.3,11962,0)
- ;;=G12.22^^40^590^116
- ;;^UTILITY(U,$J,358.3,11962,1,0)
+ ;;^UTILITY(U,$J,358.3,23135,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23135,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,23135,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,23136,0)
+ ;;=S86.312A^^73^953^29
+ ;;^UTILITY(U,$J,358.3,23136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11962,1,3,0)
- ;;=3^Progressive Bulbar Palsy
- ;;^UTILITY(U,$J,358.3,11962,1,4,0)
- ;;=4^G12.22
- ;;^UTILITY(U,$J,358.3,11962,2)
- ;;=^98866
- ;;^UTILITY(U,$J,358.3,11963,0)
- ;;=G82.50^^40^590^117
- ;;^UTILITY(U,$J,358.3,11963,1,0)
+ ;;^UTILITY(U,$J,358.3,23136,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23136,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,23136,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,23137,0)
+ ;;=S86.811A^^73^953^48
+ ;;^UTILITY(U,$J,358.3,23137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11963,1,3,0)
- ;;=3^Quadriplegia,Unspec
- ;;^UTILITY(U,$J,358.3,11963,1,4,0)
- ;;=4^G82.50
- ;;^UTILITY(U,$J,358.3,11963,2)
- ;;=^5004128
- ;;^UTILITY(U,$J,358.3,11964,0)
- ;;=R29.2^^40^590^118
- ;;^UTILITY(U,$J,358.3,11964,1,0)
+ ;;^UTILITY(U,$J,358.3,23137,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,23137,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,23137,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,23138,0)
+ ;;=S86.812A^^73^953^28
+ ;;^UTILITY(U,$J,358.3,23138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11964,1,3,0)
- ;;=3^Reflex,Abnormal
- ;;^UTILITY(U,$J,358.3,11964,1,4,0)
- ;;=4^R29.2
- ;;^UTILITY(U,$J,358.3,11964,2)
- ;;=^5019314
- ;;^UTILITY(U,$J,358.3,11965,0)
- ;;=G25.81^^40^590^119
- ;;^UTILITY(U,$J,358.3,11965,1,0)
+ ;;^UTILITY(U,$J,358.3,23138,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,23138,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,23138,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,23139,0)
+ ;;=S86.111A^^73^953^50
+ ;;^UTILITY(U,$J,358.3,23139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11965,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,11965,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,11965,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,11966,0)
- ;;=G95.9^^40^590^120
- ;;^UTILITY(U,$J,358.3,11966,1,0)
+ ;;^UTILITY(U,$J,358.3,23139,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23139,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,23139,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,23140,0)
+ ;;=S86.112A^^73^953^30
+ ;;^UTILITY(U,$J,358.3,23140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11966,1,3,0)
- ;;=3^Spinal Cord Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11966,1,4,0)
- ;;=4^G95.9
- ;;^UTILITY(U,$J,358.3,11966,2)
- ;;=^5004194
- ;;^UTILITY(U,$J,358.3,11967,0)
- ;;=G12.9^^40^590^121
- ;;^UTILITY(U,$J,358.3,11967,1,0)
+ ;;^UTILITY(U,$J,358.3,23140,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23140,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,23140,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,23141,0)
+ ;;=S83.401A^^73^953^15
+ ;;^UTILITY(U,$J,358.3,23141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11967,1,3,0)
- ;;=3^Spinal Muscular Atrophy,Unspec
- ;;^UTILITY(U,$J,358.3,11967,1,4,0)
- ;;=4^G12.9
- ;;^UTILITY(U,$J,358.3,11967,2)
- ;;=^5003764
- ;;^UTILITY(U,$J,358.3,11968,0)
- ;;=R55.^^40^590^122
- ;;^UTILITY(U,$J,358.3,11968,1,0)
+ ;;^UTILITY(U,$J,358.3,23141,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,23141,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,23141,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,23142,0)
+ ;;=S83.402A^^73^953^4
+ ;;^UTILITY(U,$J,358.3,23142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11968,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,11968,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,11968,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,11969,0)
- ;;=G45.9^^40^590^123
- ;;^UTILITY(U,$J,358.3,11969,1,0)
+ ;;^UTILITY(U,$J,358.3,23142,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,23142,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,23142,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,23143,0)
+ ;;=S93.402A^^73^953^2
+ ;;^UTILITY(U,$J,358.3,23143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11969,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,11969,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,11969,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,11970,0)
- ;;=Z86.73^^40^590^113
- ;;^UTILITY(U,$J,358.3,11970,1,0)
+ ;;^UTILITY(U,$J,358.3,23143,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,23143,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,23143,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,23144,0)
+ ;;=S93.401A^^73^953^13
+ ;;^UTILITY(U,$J,358.3,23144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11970,1,3,0)
- ;;=3^Personal Hx of TIA/Cerebral Infarction
- ;;^UTILITY(U,$J,358.3,11970,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,11970,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,11971,0)
- ;;=Z87.820^^40^590^112
- ;;^UTILITY(U,$J,358.3,11971,1,0)
+ ;;^UTILITY(U,$J,358.3,23144,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,23144,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,23144,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,23145,0)
+ ;;=S56.511A^^73^953^39
+ ;;^UTILITY(U,$J,358.3,23145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11971,1,3,0)
- ;;=3^Personal Hx of TBI
- ;;^UTILITY(U,$J,358.3,11971,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,11971,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,11972,0)
- ;;=G25.0^^40^590^124
- ;;^UTILITY(U,$J,358.3,11972,1,0)
+ ;;^UTILITY(U,$J,358.3,23145,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,23145,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,23145,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,23146,0)
+ ;;=S56.512A^^73^953^19
+ ;;^UTILITY(U,$J,358.3,23146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11972,1,3,0)
- ;;=3^Tremor,Essential
- ;;^UTILITY(U,$J,358.3,11972,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,11972,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,11973,0)
- ;;=R25.1^^40^590^125
- ;;^UTILITY(U,$J,358.3,11973,1,0)
+ ;;^UTILITY(U,$J,358.3,23146,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,23146,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,23146,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,23147,0)
+ ;;=S13.8XXA^^73^953^10
+ ;;^UTILITY(U,$J,358.3,23147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11973,1,3,0)
- ;;=3^Tremor,Unspec
- ;;^UTILITY(U,$J,358.3,11973,1,4,0)
- ;;=4^R25.1
- ;;^UTILITY(U,$J,358.3,11973,2)
- ;;=^5019300
- ;;^UTILITY(U,$J,358.3,11974,0)
- ;;=G45.0^^40^590^126
- ;;^UTILITY(U,$J,358.3,11974,1,0)
+ ;;^UTILITY(U,$J,358.3,23147,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23147,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,23147,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,23148,0)
+ ;;=S16.1XXA^^73^953^37
+ ;;^UTILITY(U,$J,358.3,23148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11974,1,3,0)
- ;;=3^Vertebro-Basilar Artery Syndrome
- ;;^UTILITY(U,$J,358.3,11974,1,4,0)
- ;;=4^G45.0
- ;;^UTILITY(U,$J,358.3,11974,2)
- ;;=^5003955
- ;;^UTILITY(U,$J,358.3,11975,0)
- ;;=R26.2^^40^590^127
- ;;^UTILITY(U,$J,358.3,11975,1,0)
+ ;;^UTILITY(U,$J,358.3,23148,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23148,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,23148,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,23149,0)
+ ;;=S33.5XXA^^73^953^8
+ ;;^UTILITY(U,$J,358.3,23149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11975,1,3,0)
- ;;=3^Walking,Difficulty NEC
- ;;^UTILITY(U,$J,358.3,11975,1,4,0)
- ;;=4^R26.2
- ;;^UTILITY(U,$J,358.3,11975,2)
- ;;=^5019306
- ;;^UTILITY(U,$J,358.3,11976,0)
- ;;=R53.1^^40^590^128
- ;;^UTILITY(U,$J,358.3,11976,1,0)
+ ;;^UTILITY(U,$J,358.3,23149,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23149,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,23149,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,23150,0)
+ ;;=F10.20^^73^954^5
+ ;;^UTILITY(U,$J,358.3,23150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11976,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,11976,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,11976,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,11977,0)
- ;;=R29.810^^40^590^129
- ;;^UTILITY(U,$J,358.3,11977,1,0)
+ ;;^UTILITY(U,$J,358.3,23150,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23150,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,23150,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,23151,0)
+ ;;=F11.29^^73^954^50
+ ;;^UTILITY(U,$J,358.3,23151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11977,1,3,0)
- ;;=3^Weakness,Facial
- ;;^UTILITY(U,$J,358.3,11977,1,4,0)
- ;;=4^R29.810
- ;;^UTILITY(U,$J,358.3,11977,2)
- ;;=^329954
- ;;^UTILITY(U,$J,358.3,11978,0)
- ;;=R10.817^^40^591^1
- ;;^UTILITY(U,$J,358.3,11978,1,0)
+ ;;^UTILITY(U,$J,358.3,23151,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,23151,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,23151,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,23152,0)
+ ;;=F11.288^^73^954^49
+ ;;^UTILITY(U,$J,358.3,23152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11978,1,3,0)
- ;;=3^Abdominal Tenderness,Generalized
- ;;^UTILITY(U,$J,358.3,11978,1,4,0)
- ;;=4^R10.817
- ;;^UTILITY(U,$J,358.3,11978,2)
- ;;=^5019219
- ;;^UTILITY(U,$J,358.3,11979,0)
- ;;=R10.827^^40^591^2
- ;;^UTILITY(U,$J,358.3,11979,1,0)
+ ;;^UTILITY(U,$J,358.3,23152,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,23152,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,23152,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,23153,0)
+ ;;=F11.282^^73^954^48
+ ;;^UTILITY(U,$J,358.3,23153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11979,1,3,0)
- ;;=3^Abdominal Tenderness,Rebound,Generalized
- ;;^UTILITY(U,$J,358.3,11979,1,4,0)
- ;;=4^R10.827
- ;;^UTILITY(U,$J,358.3,11979,2)
- ;;=^5019226
- ;;^UTILITY(U,$J,358.3,11980,0)
- ;;=R10.829^^40^591^3
- ;;^UTILITY(U,$J,358.3,11980,1,0)
+ ;;^UTILITY(U,$J,358.3,23153,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,23153,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,23153,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,23154,0)
+ ;;=F11.281^^73^954^47
+ ;;^UTILITY(U,$J,358.3,23154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11980,1,3,0)
- ;;=3^Abdominal Tenderness,Rebound,Unspec Site
- ;;^UTILITY(U,$J,358.3,11980,1,4,0)
- ;;=4^R10.829
- ;;^UTILITY(U,$J,358.3,11980,2)
- ;;=^5019227
- ;;^UTILITY(U,$J,358.3,11981,0)
- ;;=R10.819^^40^591^4
- ;;^UTILITY(U,$J,358.3,11981,1,0)
+ ;;^UTILITY(U,$J,358.3,23154,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,23154,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,23154,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,23155,0)
+ ;;=F11.259^^73^954^46
+ ;;^UTILITY(U,$J,358.3,23155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11981,1,3,0)
- ;;=3^Abdominal Tenderness,Unspec Site
- ;;^UTILITY(U,$J,358.3,11981,1,4,0)
- ;;=4^R10.819
- ;;^UTILITY(U,$J,358.3,11981,2)
- ;;=^5019220
- ;;^UTILITY(U,$J,358.3,11982,0)
- ;;=G89.0^^40^591^6
- ;;^UTILITY(U,$J,358.3,11982,1,0)
+ ;;^UTILITY(U,$J,358.3,23155,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,23155,1,4,0)
+ ;;=4^F11.259
+ ;;^UTILITY(U,$J,358.3,23155,2)
+ ;;=^5003137
+ ;;^UTILITY(U,$J,358.3,23156,0)
+ ;;=F11.251^^73^954^39
+ ;;^UTILITY(U,$J,358.3,23156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11982,1,3,0)
- ;;=3^Pain Syndrome,Central
- ;;^UTILITY(U,$J,358.3,11982,1,4,0)
- ;;=4^G89.0
- ;;^UTILITY(U,$J,358.3,11982,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,11983,0)
- ;;=G89.4^^40^591^7
- ;;^UTILITY(U,$J,358.3,11983,1,0)
+ ;;^UTILITY(U,$J,358.3,23156,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,23156,1,4,0)
+ ;;=4^F11.251
+ ;;^UTILITY(U,$J,358.3,23156,2)
+ ;;=^5003136
+ ;;^UTILITY(U,$J,358.3,23157,0)
+ ;;=F11.250^^73^954^40
+ ;;^UTILITY(U,$J,358.3,23157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11983,1,3,0)
- ;;=3^Pain Syndrome,Chronic
- ;;^UTILITY(U,$J,358.3,11983,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,11983,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,11984,0)
- ;;=R10.0^^40^591^8
- ;;^UTILITY(U,$J,358.3,11984,1,0)
+ ;;^UTILITY(U,$J,358.3,23157,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,23157,1,4,0)
+ ;;=4^F11.250
+ ;;^UTILITY(U,$J,358.3,23157,2)
+ ;;=^5003135
+ ;;^UTILITY(U,$J,358.3,23158,0)
+ ;;=F11.24^^73^954^45
+ ;;^UTILITY(U,$J,358.3,23158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11984,1,3,0)
- ;;=3^Pain,Abdomen,Acute
- ;;^UTILITY(U,$J,358.3,11984,1,4,0)
- ;;=4^R10.0
- ;;^UTILITY(U,$J,358.3,11984,2)
- ;;=^885
- ;;^UTILITY(U,$J,358.3,11985,0)
- ;;=R14.1^^40^591^9
- ;;^UTILITY(U,$J,358.3,11985,1,0)
+ ;;^UTILITY(U,$J,358.3,23158,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,23158,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,23158,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,23159,0)
+ ;;=F11.23^^73^954^51
+ ;;^UTILITY(U,$J,358.3,23159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11985,1,3,0)
- ;;=3^Pain,Abdominal d/t Gas
- ;;^UTILITY(U,$J,358.3,11985,1,4,0)
- ;;=4^R14.1
- ;;^UTILITY(U,$J,358.3,11985,2)
- ;;=^5019241
- ;;^UTILITY(U,$J,358.3,11986,0)
- ;;=R10.84^^40^591^14
- ;;^UTILITY(U,$J,358.3,11986,1,0)
+ ;;^UTILITY(U,$J,358.3,23159,1,3,0)
+ ;;=3^Opioid Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,23159,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,23159,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,23160,0)
+ ;;=F11.20^^73^954^52
+ ;;^UTILITY(U,$J,358.3,23160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11986,1,3,0)
- ;;=3^Pain,AbdominalGeneralized
- ;;^UTILITY(U,$J,358.3,11986,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,11986,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,11987,0)
- ;;=R10.32^^40^591^10
- ;;^UTILITY(U,$J,358.3,11987,1,0)
+ ;;^UTILITY(U,$J,358.3,23160,1,3,0)
+ ;;=3^Opioid Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23160,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,23160,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,23161,0)
+ ;;=F11.229^^73^954^44
+ ;;^UTILITY(U,$J,358.3,23161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11987,1,3,0)
- ;;=3^Pain,Abdominal,Lower Left Quadrant
- ;;^UTILITY(U,$J,358.3,11987,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,11987,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,11988,0)
- ;;=R10.31^^40^591^11
- ;;^UTILITY(U,$J,358.3,11988,1,0)
+ ;;^UTILITY(U,$J,358.3,23161,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,23161,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,23161,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,23162,0)
+ ;;=F11.222^^73^954^42
+ ;;^UTILITY(U,$J,358.3,23162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11988,1,3,0)
- ;;=3^Pain,Abdominal,Lower Right Quadrant
- ;;^UTILITY(U,$J,358.3,11988,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,11988,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,11989,0)
- ;;=R10.12^^40^591^12
- ;;^UTILITY(U,$J,358.3,11989,1,0)
+ ;;^UTILITY(U,$J,358.3,23162,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,23162,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,23162,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,23163,0)
+ ;;=F11.221^^73^954^41
+ ;;^UTILITY(U,$J,358.3,23163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11989,1,3,0)
- ;;=3^Pain,Abdominal,Upper Left Quadrant
- ;;^UTILITY(U,$J,358.3,11989,1,4,0)
- ;;=4^R10.12
- ;;^UTILITY(U,$J,358.3,11989,2)
- ;;=^5019207
- ;;^UTILITY(U,$J,358.3,11990,0)
- ;;=R10.11^^40^591^13
- ;;^UTILITY(U,$J,358.3,11990,1,0)
+ ;;^UTILITY(U,$J,358.3,23163,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,23163,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,23163,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,23164,0)
+ ;;=F11.220^^73^954^43
+ ;;^UTILITY(U,$J,358.3,23164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11990,1,3,0)
- ;;=3^Pain,Abdominal,Upper Right Quadrant
- ;;^UTILITY(U,$J,358.3,11990,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,11990,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,11991,0)
- ;;=G89.11^^40^591^15
- ;;^UTILITY(U,$J,358.3,11991,1,0)
+ ;;^UTILITY(U,$J,358.3,23164,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23164,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,23164,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,23165,0)
+ ;;=F14.29^^73^954^24
+ ;;^UTILITY(U,$J,358.3,23165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11991,1,3,0)
- ;;=3^Pain,Acute d/t Trauma
- ;;^UTILITY(U,$J,358.3,11991,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,11991,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,11992,0)
- ;;=G89.18^^40^591^17
+ ;;^UTILITY(U,$J,358.3,23165,1,3,0)
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,23165,1,4,0)
+ ;;=4^F14.29
+ ;;^UTILITY(U,$J,358.3,23165,2)
+ ;;=^5003268
+ ;;^UTILITY(U,$J,358.3,23166,0)
+ ;;=F14.288^^73^954^23
+ ;;^UTILITY(U,$J,358.3,23166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23166,1,3,0)
+ ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,23166,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,23166,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,23167,0)
+ ;;=F14.282^^73^954^17
+ ;;^UTILITY(U,$J,358.3,23167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23167,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,23167,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,23167,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,23168,0)
+ ;;=F14.281^^73^954^18
+ ;;^UTILITY(U,$J,358.3,23168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23168,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,23168,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,23168,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,23169,0)
+ ;;=F14.280^^73^954^15
+ ;;^UTILITY(U,$J,358.3,23169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23169,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,23169,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,23169,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,23170,0)
+ ;;=F14.259^^73^954^14
+ ;;^UTILITY(U,$J,358.3,23170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23170,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,23170,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,23170,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,23171,0)
+ ;;=F14.251^^73^954^13
+ ;;^UTILITY(U,$J,358.3,23171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23171,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,23171,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,23171,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,23172,0)
+ ;;=F14.250^^73^954^12
+ ;;^UTILITY(U,$J,358.3,23172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23172,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,23172,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,23172,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,23173,0)
+ ;;=F14.24^^73^954^16
+ ;;^UTILITY(U,$J,358.3,23173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23173,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,23173,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,23173,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,23174,0)
+ ;;=F14.23^^73^954^25
+ ;;^UTILITY(U,$J,358.3,23174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23174,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,23174,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,23174,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,23175,0)
+ ;;=F14.229^^73^954^22
+ ;;^UTILITY(U,$J,358.3,23175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23175,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,23175,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,23175,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,23176,0)
+ ;;=F14.222^^73^954^20
+ ;;^UTILITY(U,$J,358.3,23176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23176,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,23176,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,23176,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,23177,0)
+ ;;=F14.221^^73^954^19
+ ;;^UTILITY(U,$J,358.3,23177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23177,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,23177,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,23177,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,23178,0)
+ ;;=F14.220^^73^954^21
+ ;;^UTILITY(U,$J,358.3,23178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23178,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23178,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,23178,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,23179,0)
+ ;;=F14.20^^73^954^26
+ ;;^UTILITY(U,$J,358.3,23179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23179,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,23179,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,23179,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,23180,0)
+ ;;=F10.120^^73^954^1
+ ;;^UTILITY(U,$J,358.3,23180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23180,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23180,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,23180,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,23181,0)
+ ;;=F10.10^^73^954^3
+ ;;^UTILITY(U,$J,358.3,23181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23181,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23181,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,23181,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,23182,0)
+ ;;=F17.201^^73^954^31
+ ;;^UTILITY(U,$J,358.3,23182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23182,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,23182,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,23182,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,23183,0)
+ ;;=F17.210^^73^954^30
+ ;;^UTILITY(U,$J,358.3,23183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23183,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23183,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,23183,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,23184,0)
+ ;;=F17.291^^73^954^32
+ ;;^UTILITY(U,$J,358.3,23184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23184,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,23184,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,23184,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,23185,0)
+ ;;=F17.290^^73^954^33
+ ;;^UTILITY(U,$J,358.3,23185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23185,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23185,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,23185,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,23186,0)
+ ;;=F17.221^^73^954^27
+ ;;^UTILITY(U,$J,358.3,23186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23186,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,23186,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,23186,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,23187,0)
+ ;;=F17.220^^73^954^28
+ ;;^UTILITY(U,$J,358.3,23187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23187,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23187,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,23187,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,23188,0)
+ ;;=F17.211^^73^954^29
+ ;;^UTILITY(U,$J,358.3,23188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23188,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,23188,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,23188,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,23189,0)
+ ;;=F17.200^^73^954^34
+ ;;^UTILITY(U,$J,358.3,23189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23189,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23189,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,23189,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,23190,0)
+ ;;=F11.120^^73^954^35
+ ;;^UTILITY(U,$J,358.3,23190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23190,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23190,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,23190,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,23191,0)
+ ;;=F11.10^^73^954^38
+ ;;^UTILITY(U,$J,358.3,23191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23191,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23191,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,23191,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,23192,0)
+ ;;=F11.129^^73^954^36
+ ;;^UTILITY(U,$J,358.3,23192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23192,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,23192,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,23192,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,23193,0)
+ ;;=F10.21^^73^954^4
+ ;;^UTILITY(U,$J,358.3,23193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23193,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,23193,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,23193,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,23194,0)
+ ;;=F12.10^^73^954^7
+ ;;^UTILITY(U,$J,358.3,23194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23194,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,23194,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,23194,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,23195,0)
+ ;;=F12.20^^73^954^9

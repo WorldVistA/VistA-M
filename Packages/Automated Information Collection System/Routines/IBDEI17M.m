@@ -1,132 +1,122 @@
-IBDEI17M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20565,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,20566,0)
- ;;=M48.57XA^^84^935^25
- ;;^UTILITY(U,$J,358.3,20566,1,0)
+ ;;^UTILITY(U,$J,358.3,19427,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right knee
+ ;;^UTILITY(U,$J,358.3,19427,1,4,0)
+ ;;=4^M05.561
+ ;;^UTILITY(U,$J,358.3,19427,2)
+ ;;=^5009970
+ ;;^UTILITY(U,$J,358.3,19428,0)
+ ;;=M05.511^^93^992^146
+ ;;^UTILITY(U,$J,358.3,19428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20566,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,20566,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,20566,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,20567,0)
- ;;=M48.57XD^^84^935^26
- ;;^UTILITY(U,$J,358.3,20567,1,0)
+ ;;^UTILITY(U,$J,358.3,19428,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right shoulder 
+ ;;^UTILITY(U,$J,358.3,19428,1,4,0)
+ ;;=4^M05.511
+ ;;^UTILITY(U,$J,358.3,19428,2)
+ ;;=^5009955
+ ;;^UTILITY(U,$J,358.3,19429,0)
+ ;;=M05.531^^93^992^147
+ ;;^UTILITY(U,$J,358.3,19429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20567,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,20567,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,20567,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,20568,0)
- ;;=M50.30^^84^935^13
- ;;^UTILITY(U,$J,358.3,20568,1,0)
+ ;;^UTILITY(U,$J,358.3,19429,1,3,0)
+ ;;=3^Rheu polyneurop w rheu arthrit of right wrist 
+ ;;^UTILITY(U,$J,358.3,19429,1,4,0)
+ ;;=4^M05.531
+ ;;^UTILITY(U,$J,358.3,19429,2)
+ ;;=^5009961
+ ;;^UTILITY(U,$J,358.3,19430,0)
+ ;;=M19.272^^93^992^178
+ ;;^UTILITY(U,$J,358.3,19430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20568,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,20568,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,20568,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,20569,0)
- ;;=M51.14^^84^935^52
- ;;^UTILITY(U,$J,358.3,20569,1,0)
+ ;;^UTILITY(U,$J,358.3,19430,1,3,0)
+ ;;=3^Secondary osteoarthritis, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,19430,1,4,0)
+ ;;=4^M19.272
+ ;;^UTILITY(U,$J,358.3,19430,2)
+ ;;=^5010851
+ ;;^UTILITY(U,$J,358.3,19431,0)
+ ;;=M19.271^^93^992^181
+ ;;^UTILITY(U,$J,358.3,19431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20569,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,20569,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,20569,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,20570,0)
- ;;=M51.17^^84^935^51
- ;;^UTILITY(U,$J,358.3,20570,1,0)
+ ;;^UTILITY(U,$J,358.3,19431,1,3,0)
+ ;;=3^Secondary osteoarthritis, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,19431,1,4,0)
+ ;;=4^M19.271
+ ;;^UTILITY(U,$J,358.3,19431,2)
+ ;;=^5010850
+ ;;^UTILITY(U,$J,358.3,19432,0)
+ ;;=M19.242^^93^992^179
+ ;;^UTILITY(U,$J,358.3,19432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20570,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,20570,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,20570,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,20571,0)
- ;;=M51.34^^84^935^50
- ;;^UTILITY(U,$J,358.3,20571,1,0)
+ ;;^UTILITY(U,$J,358.3,19432,1,3,0)
+ ;;=3^Secondary osteoarthritis, left hand
+ ;;^UTILITY(U,$J,358.3,19432,1,4,0)
+ ;;=4^M19.242
+ ;;^UTILITY(U,$J,358.3,19432,2)
+ ;;=^5010848
+ ;;^UTILITY(U,$J,358.3,19433,0)
+ ;;=M19.212^^93^992^180
+ ;;^UTILITY(U,$J,358.3,19433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20571,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Thoracic Region
- ;;^UTILITY(U,$J,358.3,20571,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,20571,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,20572,0)
- ;;=M51.37^^84^935^49
- ;;^UTILITY(U,$J,358.3,20572,1,0)
+ ;;^UTILITY(U,$J,358.3,19433,1,3,0)
+ ;;=3^Secondary osteoarthritis, left shoulder
+ ;;^UTILITY(U,$J,358.3,19433,1,4,0)
+ ;;=4^M19.212
+ ;;^UTILITY(U,$J,358.3,19433,2)
+ ;;=^5010839
+ ;;^UTILITY(U,$J,358.3,19434,0)
+ ;;=M19.241^^93^992^182
+ ;;^UTILITY(U,$J,358.3,19434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20572,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,20572,1,4,0)
- ;;=4^M51.37
- ;;^UTILITY(U,$J,358.3,20572,2)
- ;;=^5012254
- ;;^UTILITY(U,$J,358.3,20573,0)
- ;;=M54.14^^84^935^140
- ;;^UTILITY(U,$J,358.3,20573,1,0)
+ ;;^UTILITY(U,$J,358.3,19434,1,3,0)
+ ;;=3^Secondary osteoarthritis, right hand
+ ;;^UTILITY(U,$J,358.3,19434,1,4,0)
+ ;;=4^M19.241
+ ;;^UTILITY(U,$J,358.3,19434,2)
+ ;;=^5010847
+ ;;^UTILITY(U,$J,358.3,19435,0)
+ ;;=M19.211^^93^992^183
+ ;;^UTILITY(U,$J,358.3,19435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20573,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,20573,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,20573,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,20574,0)
- ;;=M54.17^^84^935^139
- ;;^UTILITY(U,$J,358.3,20574,1,0)
+ ;;^UTILITY(U,$J,358.3,19435,1,3,0)
+ ;;=3^Secondary osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,19435,1,4,0)
+ ;;=4^M19.211
+ ;;^UTILITY(U,$J,358.3,19435,2)
+ ;;=^5010838
+ ;;^UTILITY(U,$J,358.3,19436,0)
+ ;;=M67.02^^93^992^184
+ ;;^UTILITY(U,$J,358.3,19436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20574,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,20574,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,20574,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,20575,0)
- ;;=M54.2^^84^935^14
- ;;^UTILITY(U,$J,358.3,20575,1,0)
+ ;;^UTILITY(U,$J,358.3,19436,1,3,0)
+ ;;=3^Short Achilles tendon (acquired), left ankle
+ ;;^UTILITY(U,$J,358.3,19436,1,4,0)
+ ;;=4^M67.02
+ ;;^UTILITY(U,$J,358.3,19436,2)
+ ;;=^5012907
+ ;;^UTILITY(U,$J,358.3,19437,0)
+ ;;=M67.01^^93^992^185
+ ;;^UTILITY(U,$J,358.3,19437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20575,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,20575,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,20575,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,20576,0)
- ;;=M54.31^^84^935^163
- ;;^UTILITY(U,$J,358.3,20576,1,0)
+ ;;^UTILITY(U,$J,358.3,19437,1,3,0)
+ ;;=3^Short Achilles tendon (acquired), right ankle
+ ;;^UTILITY(U,$J,358.3,19437,1,4,0)
+ ;;=4^M67.01
+ ;;^UTILITY(U,$J,358.3,19437,2)
+ ;;=^5012906
+ ;;^UTILITY(U,$J,358.3,19438,0)
+ ;;=M66.232^^93^992^186
+ ;;^UTILITY(U,$J,358.3,19438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20576,1,3,0)
- ;;=3^Sciatica,Right Side
- ;;^UTILITY(U,$J,358.3,20576,1,4,0)
- ;;=4^M54.31
- ;;^UTILITY(U,$J,358.3,20576,2)
- ;;=^5012306
- ;;^UTILITY(U,$J,358.3,20577,0)
- ;;=M54.32^^84^935^162
- ;;^UTILITY(U,$J,358.3,20577,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20577,1,3,0)
- ;;=3^Sciatica,Left Side
- ;;^UTILITY(U,$J,358.3,20577,1,4,0)
- ;;=4^M54.32
- ;;^UTILITY(U,$J,358.3,20577,2)
- ;;=^5012307
- ;;^UTILITY(U,$J,358.3,20578,0)
- ;;=M54.5^^84^935^57
- ;;^UTILITY(U,$J,358.3,20578,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20578,1,3,0)
- ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,19438,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, left forearm
+ ;;^UTILITY(U,$J,358.3,19438,1,4,0)
+ ;;=4^M66.232
+ ;;^UTILITY(U,$J,358.3,19438,2)
+ ;;=^5012855
+ ;;^UTILITY(U,$J,358.3,19439,0)
+ ;;=M66.242^^93^992^187

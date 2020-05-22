@@ -1,134 +1,124 @@
-IBDEI39C ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54743,2)
- ;;=^5008755
- ;;^UTILITY(U,$J,358.3,54744,0)
- ;;=K92.1^^256^2770^71
- ;;^UTILITY(U,$J,358.3,54744,1,0)
+ ;;^UTILITY(U,$J,358.3,51999,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,51999,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,52000,0)
+ ;;=W14.XXXA^^193^2516^70
+ ;;^UTILITY(U,$J,358.3,52000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54744,1,3,0)
- ;;=3^Melena
- ;;^UTILITY(U,$J,358.3,54744,1,4,0)
- ;;=4^K92.1
- ;;^UTILITY(U,$J,358.3,54744,2)
- ;;=^5008914
- ;;^UTILITY(U,$J,358.3,54745,0)
- ;;=R19.5^^256^2770^48
- ;;^UTILITY(U,$J,358.3,54745,1,0)
+ ;;^UTILITY(U,$J,358.3,52000,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52000,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,52000,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,52001,0)
+ ;;=W14.XXXD^^193^2516^71
+ ;;^UTILITY(U,$J,358.3,52001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54745,1,3,0)
- ;;=3^Fecal Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,54745,1,4,0)
- ;;=4^R19.5
- ;;^UTILITY(U,$J,358.3,54745,2)
- ;;=^5019274
- ;;^UTILITY(U,$J,358.3,54746,0)
- ;;=A54.00^^256^2771^47
- ;;^UTILITY(U,$J,358.3,54746,1,0)
+ ;;^UTILITY(U,$J,358.3,52001,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52001,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,52001,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,52002,0)
+ ;;=W17.2XXA^^193^2516^82
+ ;;^UTILITY(U,$J,358.3,52002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54746,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,54746,1,4,0)
- ;;=4^A54.00
- ;;^UTILITY(U,$J,358.3,54746,2)
- ;;=^5000311
- ;;^UTILITY(U,$J,358.3,54747,0)
- ;;=A54.09^^256^2771^48
- ;;^UTILITY(U,$J,358.3,54747,1,0)
+ ;;^UTILITY(U,$J,358.3,52002,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52002,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,52002,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,52003,0)
+ ;;=W17.2XXD^^193^2516^83
+ ;;^UTILITY(U,$J,358.3,52003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54747,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
- ;;^UTILITY(U,$J,358.3,54747,1,4,0)
- ;;=4^A54.09
- ;;^UTILITY(U,$J,358.3,54747,2)
- ;;=^5000315
- ;;^UTILITY(U,$J,358.3,54748,0)
- ;;=A54.02^^256^2771^49
- ;;^UTILITY(U,$J,358.3,54748,1,0)
+ ;;^UTILITY(U,$J,358.3,52003,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52003,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,52003,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,52004,0)
+ ;;=W17.3XXA^^193^2516^80
+ ;;^UTILITY(U,$J,358.3,52004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54748,1,3,0)
- ;;=3^Gonococcal Vulvovaginitis,Unspec
- ;;^UTILITY(U,$J,358.3,54748,1,4,0)
- ;;=4^A54.02
- ;;^UTILITY(U,$J,358.3,54748,2)
- ;;=^5000313
- ;;^UTILITY(U,$J,358.3,54749,0)
- ;;=A54.1^^256^2771^46
- ;;^UTILITY(U,$J,358.3,54749,1,0)
+ ;;^UTILITY(U,$J,358.3,52004,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52004,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,52004,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,52005,0)
+ ;;=W17.3XXD^^193^2516^81
+ ;;^UTILITY(U,$J,358.3,52005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54749,1,3,0)
- ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
- ;;^UTILITY(U,$J,358.3,54749,1,4,0)
- ;;=4^A54.1
- ;;^UTILITY(U,$J,358.3,54749,2)
- ;;=^5000316
- ;;^UTILITY(U,$J,358.3,54750,0)
- ;;=A54.01^^256^2771^45
- ;;^UTILITY(U,$J,358.3,54750,1,0)
+ ;;^UTILITY(U,$J,358.3,52005,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52005,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,52005,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,52006,0)
+ ;;=W17.4XXA^^193^2516^44
+ ;;^UTILITY(U,$J,358.3,52006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54750,1,3,0)
- ;;=3^Gonococcal Cystitis & Urethritis,Unspec
- ;;^UTILITY(U,$J,358.3,54750,1,4,0)
- ;;=4^A54.01
- ;;^UTILITY(U,$J,358.3,54750,2)
- ;;=^5000312
- ;;^UTILITY(U,$J,358.3,54751,0)
- ;;=B37.49^^256^2771^12
- ;;^UTILITY(U,$J,358.3,54751,1,0)
+ ;;^UTILITY(U,$J,358.3,52006,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52006,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,52006,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,52007,0)
+ ;;=W17.4XXD^^193^2516^45
+ ;;^UTILITY(U,$J,358.3,52007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54751,1,3,0)
- ;;=3^Candidiasis Urogenital,Other
- ;;^UTILITY(U,$J,358.3,54751,1,4,0)
- ;;=4^B37.49
- ;;^UTILITY(U,$J,358.3,54751,2)
- ;;=^5000618
- ;;^UTILITY(U,$J,358.3,54752,0)
- ;;=B37.41^^256^2771^11
- ;;^UTILITY(U,$J,358.3,54752,1,0)
+ ;;^UTILITY(U,$J,358.3,52007,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52007,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,52007,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,52008,0)
+ ;;=W17.81XA^^193^2516^32
+ ;;^UTILITY(U,$J,358.3,52008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54752,1,3,0)
- ;;=3^Candidal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,54752,1,4,0)
- ;;=4^B37.41
- ;;^UTILITY(U,$J,358.3,54752,2)
- ;;=^5000616
- ;;^UTILITY(U,$J,358.3,54753,0)
- ;;=B37.42^^256^2771^10
- ;;^UTILITY(U,$J,358.3,54753,1,0)
+ ;;^UTILITY(U,$J,358.3,52008,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52008,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,52008,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,52009,0)
+ ;;=W17.81XD^^193^2516^33
+ ;;^UTILITY(U,$J,358.3,52009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54753,1,3,0)
- ;;=3^Candidal Balanitis
- ;;^UTILITY(U,$J,358.3,54753,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,54753,2)
- ;;=^5000617
- ;;^UTILITY(U,$J,358.3,54754,0)
- ;;=A59.03^^256^2771^96
- ;;^UTILITY(U,$J,358.3,54754,1,0)
+ ;;^UTILITY(U,$J,358.3,52009,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52009,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,52009,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,52010,0)
+ ;;=W17.89XA^^193^2516^60
+ ;;^UTILITY(U,$J,358.3,52010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54754,1,3,0)
- ;;=3^Trichomonal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,54754,1,4,0)
- ;;=4^A59.03
- ;;^UTILITY(U,$J,358.3,54754,2)
- ;;=^5000349
- ;;^UTILITY(U,$J,358.3,54755,0)
- ;;=E87.6^^256^2771^57
- ;;^UTILITY(U,$J,358.3,54755,1,0)
+ ;;^UTILITY(U,$J,358.3,52010,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52010,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,52010,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,52011,0)
+ ;;=W17.89XD^^193^2516^61
+ ;;^UTILITY(U,$J,358.3,52011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54755,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,54755,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,54755,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,54756,0)
- ;;=F52.0^^256^2771^56
- ;;^UTILITY(U,$J,358.3,54756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54756,1,3,0)
- ;;=3^Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,54756,1,4,0)
- ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,52011,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr

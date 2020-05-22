@@ -1,128 +1,118 @@
-IBDEI1FH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24273,0)
- ;;=F15.10^^90^1062^4
- ;;^UTILITY(U,$J,358.3,24273,1,0)
+ ;;^UTILITY(U,$J,358.3,22857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24273,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24273,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,24273,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,24274,0)
- ;;=F15.14^^90^1062^2
- ;;^UTILITY(U,$J,358.3,24274,1,0)
+ ;;^UTILITY(U,$J,358.3,22857,1,3,0)
+ ;;=3^Mech Compl of Femoral Arterial Graft,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22857,1,4,0)
+ ;;=4^T82.392A
+ ;;^UTILITY(U,$J,358.3,22857,2)
+ ;;=^5054791
+ ;;^UTILITY(U,$J,358.3,22858,0)
+ ;;=T82.399A^^105^1166^165
+ ;;^UTILITY(U,$J,358.3,22858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24274,1,3,0)
- ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24274,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,24274,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,24275,0)
- ;;=F15.182^^90^1062^3
- ;;^UTILITY(U,$J,358.3,24275,1,0)
+ ;;^UTILITY(U,$J,358.3,22858,1,3,0)
+ ;;=3^Mech Compl of Vascular Graft,Unspec,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22858,1,4,0)
+ ;;=4^T82.399A
+ ;;^UTILITY(U,$J,358.3,22858,2)
+ ;;=^5054797
+ ;;^UTILITY(U,$J,358.3,22859,0)
+ ;;=T82.41XA^^105^1166^16
+ ;;^UTILITY(U,$J,358.3,22859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24275,1,3,0)
- ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24275,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,24275,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,24276,0)
- ;;=F15.20^^90^1062^5
- ;;^UTILITY(U,$J,358.3,24276,1,0)
+ ;;^UTILITY(U,$J,358.3,22859,1,3,0)
+ ;;=3^Breakdown,Vasc Dialysis Cath,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22859,1,4,0)
+ ;;=4^T82.41XA
+ ;;^UTILITY(U,$J,358.3,22859,2)
+ ;;=^5054800
+ ;;^UTILITY(U,$J,358.3,22860,0)
+ ;;=T82.42XA^^105^1166^44
+ ;;^UTILITY(U,$J,358.3,22860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24276,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,24276,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,24276,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,24277,0)
- ;;=F15.21^^90^1062^6
- ;;^UTILITY(U,$J,358.3,24277,1,0)
+ ;;^UTILITY(U,$J,358.3,22860,1,3,0)
+ ;;=3^Dsplcmnt of Vascular Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22860,1,4,0)
+ ;;=4^T82.42XA
+ ;;^UTILITY(U,$J,358.3,22860,2)
+ ;;=^5054803
+ ;;^UTILITY(U,$J,358.3,22861,0)
+ ;;=T82.43XA^^105^1166^143
+ ;;^UTILITY(U,$J,358.3,22861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24277,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,24277,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,24277,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,24278,0)
- ;;=F15.23^^90^1062^1
- ;;^UTILITY(U,$J,358.3,24278,1,0)
+ ;;^UTILITY(U,$J,358.3,22861,1,3,0)
+ ;;=3^Leakage of Vascular Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22861,1,4,0)
+ ;;=4^T82.43XA
+ ;;^UTILITY(U,$J,358.3,22861,2)
+ ;;=^5054806
+ ;;^UTILITY(U,$J,358.3,22862,0)
+ ;;=T82.49XA^^105^1166^27
+ ;;^UTILITY(U,$J,358.3,22862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24278,1,3,0)
- ;;=3^Amphetamine or Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,24278,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,24278,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,24279,0)
- ;;=F12.10^^90^1063^16
- ;;^UTILITY(U,$J,358.3,24279,1,0)
+ ;;^UTILITY(U,$J,358.3,22862,1,3,0)
+ ;;=3^Complic,Vasc Dialysis Cath NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22862,1,4,0)
+ ;;=4^T82.49XA
+ ;;^UTILITY(U,$J,358.3,22862,2)
+ ;;=^5054809
+ ;;^UTILITY(U,$J,358.3,22863,0)
+ ;;=T82.510A^^105^1166^13
+ ;;^UTILITY(U,$J,358.3,22863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24279,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24279,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,24279,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,24280,0)
- ;;=F12.180^^90^1063^20
- ;;^UTILITY(U,$J,358.3,24280,1,0)
+ ;;^UTILITY(U,$J,358.3,22863,1,3,0)
+ ;;=3^Breakdown,Surg Created AV Fist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22863,1,4,0)
+ ;;=4^T82.510A
+ ;;^UTILITY(U,$J,358.3,22863,2)
+ ;;=^5054812
+ ;;^UTILITY(U,$J,358.3,22864,0)
+ ;;=T82.511A^^105^1166^14
+ ;;^UTILITY(U,$J,358.3,22864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24280,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
- ;;^UTILITY(U,$J,358.3,24280,1,4,0)
- ;;=4^F12.180
- ;;^UTILITY(U,$J,358.3,24280,2)
- ;;=^5003163
- ;;^UTILITY(U,$J,358.3,24281,0)
- ;;=F12.188^^90^1063^22
- ;;^UTILITY(U,$J,358.3,24281,1,0)
+ ;;^UTILITY(U,$J,358.3,22864,1,3,0)
+ ;;=3^Breakdown,Surg Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22864,1,4,0)
+ ;;=4^T82.511A
+ ;;^UTILITY(U,$J,358.3,22864,2)
+ ;;=^5054815
+ ;;^UTILITY(U,$J,358.3,22865,0)
+ ;;=T82.513A^^105^1166^3
+ ;;^UTILITY(U,$J,358.3,22865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24281,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24281,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,24281,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,24282,0)
- ;;=F12.20^^90^1063^17
- ;;^UTILITY(U,$J,358.3,24282,1,0)
+ ;;^UTILITY(U,$J,358.3,22865,1,3,0)
+ ;;=3^Breakdown,Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22865,1,4,0)
+ ;;=4^T82.513A
+ ;;^UTILITY(U,$J,358.3,22865,2)
+ ;;=^5054821
+ ;;^UTILITY(U,$J,358.3,22866,0)
+ ;;=T82.515A^^105^1166^15
+ ;;^UTILITY(U,$J,358.3,22866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24282,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,24282,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,24282,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,24283,0)
- ;;=F12.21^^90^1063^18
- ;;^UTILITY(U,$J,358.3,24283,1,0)
+ ;;^UTILITY(U,$J,358.3,22866,1,3,0)
+ ;;=3^Breakdown,Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22866,1,4,0)
+ ;;=4^T82.515A
+ ;;^UTILITY(U,$J,358.3,22866,2)
+ ;;=^5054827
+ ;;^UTILITY(U,$J,358.3,22867,0)
+ ;;=T82.519A^^105^1166^4
+ ;;^UTILITY(U,$J,358.3,22867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24283,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,24283,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,24283,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,24284,0)
- ;;=F12.288^^90^1063^19
- ;;^UTILITY(U,$J,358.3,24284,1,0)
+ ;;^UTILITY(U,$J,358.3,22867,1,3,0)
+ ;;=3^Breakdown,Card/Vasc Devices/Implants,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22867,1,4,0)
+ ;;=4^T82.519A
+ ;;^UTILITY(U,$J,358.3,22867,2)
+ ;;=^5054833
+ ;;^UTILITY(U,$J,358.3,22868,0)
+ ;;=T82.520A^^105^1166^41
+ ;;^UTILITY(U,$J,358.3,22868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24284,1,3,0)
- ;;=3^Cannabis Withdrawal
- ;;^UTILITY(U,$J,358.3,24284,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,24284,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,24285,0)
- ;;=F12.280^^90^1063^21
- ;;^UTILITY(U,$J,358.3,24285,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22868,1,3,0)
+ ;;=3^Dsplcmnt of Surgically Created AV Fistula,Init Encntr

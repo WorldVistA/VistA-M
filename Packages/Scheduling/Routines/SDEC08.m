@@ -1,5 +1,6 @@
 SDEC08 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,651,658,665,722**;Aug 13, 1993;Build 26
+ ;;5.3;Scheduling;**627,651,658,665,722,740,744**;Aug 13, 1993;Build 3
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -28,16 +29,16 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointm
  S @SDECY@(SDECI)="T00020ERRORID"_$C(30)
  S SDECI=SDECI+1
  ;validate SDEC APPOINTMENT pointer (required)
- I '$D(^SDEC(409.84,+$G(SDECAPTID),0)) D ERR(SDECI,"SDEC08: Invalid Appointment ID") Q
+ I '$D(^SDEC(409.84,+$G(SDECAPTID),0)) D ADERR(SDECI,.SDECY,"SDEC08: Invalid Appointment ID",+$G(SDECAPTID),0) Q  ;BI/SD*5.3*740 added ADERR
  ;validate appointment status type (required)
  S SDECTYP=$G(SDECTYP)
  S SDECTYP=$S(SDECTYP="C":"C",SDECTYP="CANCELLED BY CLINIC":"C",SDECTYP="PC":"PC",SDECTYP="CANCELLED BY PATIENT":"PC",1:"")
- I SDECTYP="" D ERR(SDECI,"SDEC08: Invalid status type") Q
+ I SDECTYP="" D ADERR(SDECI,.SDECY,"SDEC08: Invalid status type",+$G(SDECAPTID),0) Q   ;BI/SD*5.3*740 added ADERR
  ;validate CANCELLATION REASON pointer (optional)
  S SDECCR=$G(SDECCR)
  I SDECCR'="" I '$D(^SD(409.2,+SDECCR,0)) S SDECCR=$O(^SD(409.2,"B","SDECCR",0))
  ;validate SDECNOT
- S SDECNOT=$TR(SDECNOT,"^"," ")  ;alb/sat 658 - strip out ^
+ S SDECNOT=$TR($G(SDECNOT),"^"," ")  ;alb/sat 658 - strip out ^
  ;validate cancel date/time
  S SDECDATE=$G(SDECDATE)
  I SDECDATE'="" S %DT="T" S X=SDECDATE D ^%DT S SDECDATE=Y I Y=-1 S SDECDATE=""
@@ -47,15 +48,13 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointm
  I SDUSER'="" I '$D(^VA(200,+SDUSER,0)) S SDUSER=""
  I SDUSER="" S SDUSER=DUZ
  ;
- TSTART
- ;
  ;Delete APPOINTMENT entries
  S SDECNOD=^SDEC(409.84,SDECAPTID,0)
  S SDECPATID=$P(SDECNOD,U,5)
  S SDECSTART=$P(SDECNOD,U)
  ;
  ;Lock SDEC node
- L +^SDEC(409.84,SDECPATID):5 I '$T D ERR(SDECI+1,"Another user is working with this patient's record.  Please try again later") TROLLBACK  Q
+ L +^SDEC(409.84,SDECPATID):5 I '$T D ADERR(SDECI+1,.SDECY,"Another user is working with this patient's record.  Please try again later",+SDECPATID,0) Q   ;BI/SD *5.3*740
  ;cancel check-in if walk-in
  I $P(SDECNOD,U,13)="y" D
  .S SDRET=""
@@ -64,7 +63,7 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointm
  D SDECCAN(SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER,1)
  ;
  S SDECSC1=$P(SDECNOD,U,7) ;RESOURCEID
- I SDECSC1]"",$D(^SDEC(409.831,SDECSC1,0)) D  I +$G(SDECZ) S SDECERR=+SDECZ D ERR(SDECI,$P(SDECZ,U,2)) Q
+ I SDECSC1]"",$D(^SDEC(409.831,SDECSC1,0)) D  I +$G(SDECZ) S SDECERR=+SDECZ D ADERR(SDECI,.SDECY,$P(SDECZ,U,2),+SDECPATID,1) Q   ;BI/SD*5.3*740 added ADERR
  . S SDECNOD=^SDEC(409.831,SDECSC1,0)
  . S SDECLOC=$P(SDECNOD,U,4) ;HOSPITAL LOCATION
  . Q:'+SDECLOC
@@ -88,14 +87,20 @@ APPDEL(SDECY,SDECAPTID,SDECTYP,SDECCR,SDECNOT,SDECDATE,SDUSER) ;Cancels appointm
  . Q:+$G(SDECZ)
  . D AVUPDT(SDECLOC,SDECSTART,SDECLEN)
  . D AR433D^SDECAR2(SDECAPTID)
- . ;L
- ;
- TCOMMIT
  L -^SDEC(409.84,SDECPATID)
  S SDECI=SDECI+1
  S @SDECY@(SDECI)=""_$C(30)
  S SDECI=SDECI+1
  S @SDECY@(SDECI)=$C(31)
+ Q
+ ;
+ADERR(SDECI,SDECY,SDECERR,SDECPATID,LOCK) ;Error processing   BI/SD*5.3*740
+ S SDECI=SDECI+1
+ S SDECERR=$TR(SDECERR,"^","~")
+ S @SDECY@(SDECI)=SDECERR_$C(30)
+ S SDECI=SDECI+1
+ S @SDECY@(SDECI)=$C(31)
+ I LOCK=1  L -^SDEC(409.84,SDECPATID)
  Q
  ;
 AVUPDT(SDECSCD,SDECSTART,SDECLEN) ;Update Clinic availability
@@ -112,8 +117,7 @@ AVUPDT(SDECSCD,SDECSTART,SDECLEN) ;Update Clinic availability
  Q
  ;
 APCAN(SDECZ,SDECLOC,SDECDFN,SDECSD,SDECAPTID,SDECLEN) ;
- ;Cancel appointment for patient SDECDFN in clinic SDECSC1
- ;at time SDECSD
+ ;Cancel appointment for patient SDECDFN in clinic SDECSC1 at time SDECSD
  N SDECPNOD,SDECC,DA,DIE,DPTST,DR,%H
  ;save data into SDEC APPOINTMENT in case of un-cancel (status & appt length)
  S SDECPNOD=^DPT(SDECPATID,"S",SDECSD,0)
@@ -301,17 +305,11 @@ CANCEL(BSDR) ;EP; called to cancel appt
  D UPDATE^DIE("","SDFDA")
  N SDPCE
  S SDPCE=$P($G(^DPT(DFN,"S",SDT,0)),U,20)
- D:+SDPCE EN^SDCODEL(SDPCE,0)  ;remove OUTPATIENT ENCOUNTER link
- ;
- ; cancel appointment in ^SC
- ;NEW DIK,DA  ;*zeb+4 722 2/21/19 mark as canceled instead of (failing to) delete so expand entry works correctly
- ;S DIK="^SC("_BSDR("CLN")_",""S"","_BSDR("ADT")_",1,"
- ;S DA(2)=BSDR("CLN"),DA(1)=BSDR("ADT"),DA=IEN
- ;D ^DIK
+ D:+SDPCE EN^SDCODEL(SDPCE,2,"","CANCEL")  ;remove OUTPATIENT ENCOUNTER link  ;*zeb 10/25/18 722 pass in correct SDMODE and delete source
  S $P(^SC(BSDR("CLN"),"S",BSDR("ADT"),1,HLAPTIEN,0),"^",9)="C"
  ; call event driver
  S SDATA=SDDA_U_DFN_U_SDT_U_SDCL
- ;D CANCEL^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDMODE,SDCPHDL)
+ D CANCEL^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDMODE,SDCPHDL)  ;*zeb 10/25/18 722 uncomment to re-enable event driver
  Q 0
  ;
 UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
@@ -325,11 +323,10 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  K ^TMP("SDEC",$J)
  S SDECY="^TMP(""SDEC"","_$J_")"
  S ^TMP("SDEC",$J,SDECI)="T00020ERRORID"_$C(30)
- TSTART
- I '+SDECAPTID TROLLBACK  D ERR(SDECI+1,"Invalid Appointment ID.") Q
- I '$D(^SDEC(409.84,SDECAPTID,0)) TROLLBACK  D ERR(SDECI+1,"Invalid Appointment ID") Q
+ I '+SDECAPTID D ERR(SDECI+1,"Invalid Appointment ID.",+$G(SDECAPTID),0) Q   ;BI/SD*5.3*740
+ I '$D(^SDEC(409.84,SDECAPTID,0)) D ERR(SDECI+1,"Invalid Appointment ID",+SDECAPTID,0) Q   ;BI/SD*5.3*740
  ;Make sure appointment is cancelled
- I $$GET1^DIQ(409.84,SDECAPTID_",",.12)="" TROLLBACK  D ERR(SDECI+1,"Appointment is not Cancelled.") Q
+ I $$GET1^DIQ(409.84,SDECAPTID_",",.12)="" D ERR(SDECI+1,"Appointment is not Cancelled.",+SDECAPTID,0) Q   ;BI/SD*5.3*740
  S SDECNOD=^SDEC(409.84,SDECAPTID,0)
  ;appts cancelled by patient cannot be un-cancelled. /* removed 9/17/2010 */
  ;I $P(^DPT($P(SDECNOD,U,5),"S",$P(SDECNOD,U,1),0),U,2)="PC" TROLLBACK  D ERR(SDECI+1,"Cancelled by patient appointment cannot be uncancelled.") Q
@@ -344,10 +341,10 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  S SDECSTART=$P(SDECNOD,U)                  ;appt start time
  S SDECWKIN=$P($G(SDECNOD),U,13)            ;walk-in
  ;lock SDEC node
- L +^SDEC(409.84,SDECPATID):5 I '$T D ERR(SDECI+1,"Another user is working with this patient's record.  Please try again later") TROLLBACK  Q
+ L +^SDEC(409.84,SDECPATID):5 I '$T D ERR(SDECI+1,"Another user is working with this patient's record.  Please try again later",+SDECPATID,0) Q   ;BI/SD*5.3*740
  ;un-cancel SDEC APPOINTMENT
  D SDECUCAN(SDECAPTID)
- I SDECSC1]"",$D(^SDEC(409.831,SDECSC1,0)) D  I +$G(SDECZ) S SDECERR=SDECERR_$P(SDECZ,U,2) D ERR(SDECI,SDECERR) Q
+ I SDECSC1]"",$D(^SDEC(409.831,SDECSC1,0)) D  I +$G(SDECZ) S SDECERR=SDECERR_$P(SDECZ,U,2) D ERR(SDECI,SDECERR,+SDECPATID,1) Q   ;BI/SD*5.3*740
  . S SDECLOC=""
  . S SDECNOD=^SDEC(409.831,SDECSC1,0)
  . S SDECLOC=$P(SDECNOD,U,4) ;HOSPITAL LOCATION   ;support for single HOSPITAL LOCATION in SDEC RESOURCE
@@ -356,7 +353,6 @@ UNDOCANA(SDECY,SDECAPTID) ;Undo Cancel Appointment
  . ;un-cancel patient appointment and re-instate clinic appointment
  . S SDECZ=""
  . D APUCAN(.SDECZ,SDECLOC,SDECPATID,SDECSTART,SDECDAM,SDECDEC,SDECLEN,SDECNOTE,SDECSC1,SDECWKIN)
- TCOMMIT
  L -^SDEC(409.84,SDECPATID)
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)=""_$C(30)
@@ -425,13 +421,14 @@ UNCANCEL(BSDR) ;PEP; called to un-cancel appt
  S SDECERR=$$APPVISTA^SDEC07B(BSDR("LEN"),BSDR("NOTE"),BSDR("PAT"),BSDR("RES"),BSDR("ADT"),BSDR("WKIN"),BSDR("CLN"),.SDECI)  ;alb/sat 665 APPVISTA moved to SDEC07B
  Q SDECERR
  ;
-ERR(SDECI,SDECERR) ;Error processing
+ERR(SDECI,SDECERR,SDECPATID,LOCK) ;Error processing   BI/SD*5.3*740 added two parameters
  S SDECI=SDECI+1
  S SDECERR=$TR(SDECERR,"^","~")
- TROLLBACK
+ ;TROLLBACK
  S ^TMP("SDEC",$J,SDECI)=SDECERR_$C(30)
  S SDECI=SDECI+1
  S ^TMP("SDEC",$J,SDECI)=$C(31)
+ I $G(LOCK)=1  L -^SDEC(409.84,SDECPATID)   ;BI/SD*5.3*740
  Q
  ;
 ETRAP ;EP Error trap entry

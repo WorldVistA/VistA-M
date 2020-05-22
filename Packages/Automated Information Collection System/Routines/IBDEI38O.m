@@ -1,132 +1,120 @@
-IBDEI38O ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38O ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54440,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Unstageable
- ;;^UTILITY(U,$J,358.3,54440,1,4,0)
- ;;=4^L89.300
- ;;^UTILITY(U,$J,358.3,54440,2)
- ;;=^5009389
- ;;^UTILITY(U,$J,358.3,54441,0)
- ;;=L89.301^^256^2764^237
- ;;^UTILITY(U,$J,358.3,54441,1,0)
+ ;;^UTILITY(U,$J,358.3,51710,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,51711,0)
+ ;;=F11.20^^193^2511^52
+ ;;^UTILITY(U,$J,358.3,51711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54441,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 1
- ;;^UTILITY(U,$J,358.3,54441,1,4,0)
- ;;=4^L89.301
- ;;^UTILITY(U,$J,358.3,54441,2)
- ;;=^5009390
- ;;^UTILITY(U,$J,358.3,54442,0)
- ;;=L89.302^^256^2764^238
- ;;^UTILITY(U,$J,358.3,54442,1,0)
+ ;;^UTILITY(U,$J,358.3,51711,1,3,0)
+ ;;=3^Opioid Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,51711,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,51711,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,51712,0)
+ ;;=F11.229^^193^2511^44
+ ;;^UTILITY(U,$J,358.3,51712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54442,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 2
- ;;^UTILITY(U,$J,358.3,54442,1,4,0)
- ;;=4^L89.302
- ;;^UTILITY(U,$J,358.3,54442,2)
- ;;=^5009391
- ;;^UTILITY(U,$J,358.3,54443,0)
- ;;=L89.303^^256^2764^239
- ;;^UTILITY(U,$J,358.3,54443,1,0)
+ ;;^UTILITY(U,$J,358.3,51712,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,51712,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,51712,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,51713,0)
+ ;;=F11.222^^193^2511^42
+ ;;^UTILITY(U,$J,358.3,51713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54443,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 3
- ;;^UTILITY(U,$J,358.3,54443,1,4,0)
- ;;=4^L89.303
- ;;^UTILITY(U,$J,358.3,54443,2)
- ;;=^5009392
- ;;^UTILITY(U,$J,358.3,54444,0)
- ;;=L89.304^^256^2764^240
- ;;^UTILITY(U,$J,358.3,54444,1,0)
+ ;;^UTILITY(U,$J,358.3,51713,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,51713,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,51713,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,51714,0)
+ ;;=F11.221^^193^2511^41
+ ;;^UTILITY(U,$J,358.3,51714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54444,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,54444,1,4,0)
- ;;=4^L89.304
- ;;^UTILITY(U,$J,358.3,54444,2)
- ;;=^5009393
- ;;^UTILITY(U,$J,358.3,54445,0)
- ;;=L89.309^^256^2764^241
- ;;^UTILITY(U,$J,358.3,54445,1,0)
+ ;;^UTILITY(U,$J,358.3,51714,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,51714,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,51714,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,51715,0)
+ ;;=F11.220^^193^2511^43
+ ;;^UTILITY(U,$J,358.3,51715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54445,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,54445,1,4,0)
- ;;=4^L89.309
- ;;^UTILITY(U,$J,358.3,54445,2)
- ;;=^5133672
- ;;^UTILITY(U,$J,358.3,54446,0)
- ;;=L89.90^^256^2764^247
- ;;^UTILITY(U,$J,358.3,54446,1,0)
+ ;;^UTILITY(U,$J,358.3,51715,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,51715,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,51715,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,51716,0)
+ ;;=F14.29^^193^2511^24
+ ;;^UTILITY(U,$J,358.3,51716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54446,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
- ;;^UTILITY(U,$J,358.3,54446,1,4,0)
- ;;=4^L89.90
- ;;^UTILITY(U,$J,358.3,54446,2)
- ;;=^5133666
- ;;^UTILITY(U,$J,358.3,54447,0)
- ;;=L89.91^^256^2764^243
- ;;^UTILITY(U,$J,358.3,54447,1,0)
+ ;;^UTILITY(U,$J,358.3,51716,1,3,0)
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,51716,1,4,0)
+ ;;=4^F14.29
+ ;;^UTILITY(U,$J,358.3,51716,2)
+ ;;=^5003268
+ ;;^UTILITY(U,$J,358.3,51717,0)
+ ;;=F14.288^^193^2511^23
+ ;;^UTILITY(U,$J,358.3,51717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54447,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 1
- ;;^UTILITY(U,$J,358.3,54447,1,4,0)
- ;;=4^L89.91
- ;;^UTILITY(U,$J,358.3,54447,2)
- ;;=^5133664
- ;;^UTILITY(U,$J,358.3,54448,0)
- ;;=L89.92^^256^2764^244
- ;;^UTILITY(U,$J,358.3,54448,1,0)
+ ;;^UTILITY(U,$J,358.3,51717,1,3,0)
+ ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,51717,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,51717,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,51718,0)
+ ;;=F14.282^^193^2511^17
+ ;;^UTILITY(U,$J,358.3,51718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54448,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 2
- ;;^UTILITY(U,$J,358.3,54448,1,4,0)
- ;;=4^L89.92
- ;;^UTILITY(U,$J,358.3,54448,2)
- ;;=^5133667
- ;;^UTILITY(U,$J,358.3,54449,0)
- ;;=L89.93^^256^2764^245
- ;;^UTILITY(U,$J,358.3,54449,1,0)
+ ;;^UTILITY(U,$J,358.3,51718,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,51718,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,51718,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,51719,0)
+ ;;=F14.281^^193^2511^18
+ ;;^UTILITY(U,$J,358.3,51719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54449,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 3
- ;;^UTILITY(U,$J,358.3,54449,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,54449,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,54450,0)
- ;;=L89.94^^256^2764^246
- ;;^UTILITY(U,$J,358.3,54450,1,0)
+ ;;^UTILITY(U,$J,358.3,51719,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,51719,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,51719,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,51720,0)
+ ;;=F14.280^^193^2511^15
+ ;;^UTILITY(U,$J,358.3,51720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54450,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 4
- ;;^UTILITY(U,$J,358.3,54450,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,54450,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,54451,0)
- ;;=L89.95^^256^2764^248
- ;;^UTILITY(U,$J,358.3,54451,1,0)
+ ;;^UTILITY(U,$J,358.3,51720,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,51720,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,51720,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,51721,0)
+ ;;=F14.259^^193^2511^14
+ ;;^UTILITY(U,$J,358.3,51721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54451,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unstageable
- ;;^UTILITY(U,$J,358.3,54451,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,54451,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,54452,0)
- ;;=L92.0^^256^2764^156
- ;;^UTILITY(U,$J,358.3,54452,1,0)
+ ;;^UTILITY(U,$J,358.3,51721,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,51721,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,51721,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,51722,0)
+ ;;=F14.251^^193^2511^13
+ ;;^UTILITY(U,$J,358.3,51722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54452,1,3,0)
- ;;=3^Granuloma Annulare
- ;;^UTILITY(U,$J,358.3,54452,1,4,0)
- ;;=4^L92.0
- ;;^UTILITY(U,$J,358.3,54452,2)
- ;;=^184052
- ;;^UTILITY(U,$J,358.3,54453,0)
- ;;=L95.1^^256^2764^143

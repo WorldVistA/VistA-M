@@ -1,132 +1,124 @@
-IBDEI2B3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2B3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39126,1,0)
+ ;;^UTILITY(U,$J,358.3,36815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39126,1,3,0)
- ;;=3^Marginal Corneal Ulcer,Right Eye
- ;;^UTILITY(U,$J,358.3,39126,1,4,0)
- ;;=4^H16.041
- ;;^UTILITY(U,$J,358.3,39126,2)
- ;;=^5004882
- ;;^UTILITY(U,$J,358.3,39127,0)
- ;;=H16.011^^153^1920^31
- ;;^UTILITY(U,$J,358.3,39127,1,0)
+ ;;^UTILITY(U,$J,358.3,36815,1,3,0)
+ ;;=3^Aftercare following Surgery,Teeth/Oral Cavity
+ ;;^UTILITY(U,$J,358.3,36815,1,4,0)
+ ;;=4^Z48.814
+ ;;^UTILITY(U,$J,358.3,36815,2)
+ ;;=^5063051
+ ;;^UTILITY(U,$J,358.3,36816,0)
+ ;;=Z09.^^142^1864^11
+ ;;^UTILITY(U,$J,358.3,36816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39127,1,3,0)
- ;;=3^Central Corneal Ulcer,Right Eye
- ;;^UTILITY(U,$J,358.3,39127,1,4,0)
- ;;=4^H16.011
- ;;^UTILITY(U,$J,358.3,39127,2)
- ;;=^5004870
- ;;^UTILITY(U,$J,358.3,39128,0)
- ;;=H16.012^^153^1920^30
- ;;^UTILITY(U,$J,358.3,39128,1,0)
+ ;;^UTILITY(U,$J,358.3,36816,1,3,0)
+ ;;=3^Aftercare following Treatment for Condition Oth Than Malig Neop
+ ;;^UTILITY(U,$J,358.3,36816,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,36816,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,36817,0)
+ ;;=Z48.00^^142^1864^12
+ ;;^UTILITY(U,$J,358.3,36817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39128,1,3,0)
- ;;=3^Central Corneal Ulcer,Left Eye
- ;;^UTILITY(U,$J,358.3,39128,1,4,0)
- ;;=4^H16.012
- ;;^UTILITY(U,$J,358.3,39128,2)
- ;;=^5004871
- ;;^UTILITY(U,$J,358.3,39129,0)
- ;;=H16.141^^153^1920^144
- ;;^UTILITY(U,$J,358.3,39129,1,0)
+ ;;^UTILITY(U,$J,358.3,36817,1,3,0)
+ ;;=3^Change/Removal Nonsurgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,36817,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,36817,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,36818,0)
+ ;;=Z48.01^^142^1864^13
+ ;;^UTILITY(U,$J,358.3,36818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39129,1,3,0)
- ;;=3^Punctate Keratitis,Right Eye
- ;;^UTILITY(U,$J,358.3,39129,1,4,0)
- ;;=4^H16.141
- ;;^UTILITY(U,$J,358.3,39129,2)
- ;;=^5004913
- ;;^UTILITY(U,$J,358.3,39130,0)
- ;;=H16.142^^153^1920^143
- ;;^UTILITY(U,$J,358.3,39130,1,0)
+ ;;^UTILITY(U,$J,358.3,36818,1,3,0)
+ ;;=3^Change/Removal Surgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,36818,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,36818,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,36819,0)
+ ;;=Z48.02^^142^1864^14
+ ;;^UTILITY(U,$J,358.3,36819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39130,1,3,0)
- ;;=3^Punctate Keratitis,Left Eye
- ;;^UTILITY(U,$J,358.3,39130,1,4,0)
- ;;=4^H16.142
- ;;^UTILITY(U,$J,358.3,39130,2)
- ;;=^5004914
- ;;^UTILITY(U,$J,358.3,39131,0)
- ;;=H16.121^^153^1920^75
- ;;^UTILITY(U,$J,358.3,39131,1,0)
+ ;;^UTILITY(U,$J,358.3,36819,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,36819,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,36819,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,36820,0)
+ ;;=Z91.5^^142^1865^1
+ ;;^UTILITY(U,$J,358.3,36820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39131,1,3,0)
- ;;=3^Filamentary Keratitis,Right Eye
- ;;^UTILITY(U,$J,358.3,39131,1,4,0)
- ;;=4^H16.121
- ;;^UTILITY(U,$J,358.3,39131,2)
- ;;=^5004905
- ;;^UTILITY(U,$J,358.3,39132,0)
- ;;=H16.122^^153^1920^74
- ;;^UTILITY(U,$J,358.3,39132,1,0)
+ ;;^UTILITY(U,$J,358.3,36820,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,36820,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,36820,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,36821,0)
+ ;;=R45.851^^142^1865^2
+ ;;^UTILITY(U,$J,358.3,36821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39132,1,3,0)
- ;;=3^Filamentary Keratitis,Left Eye
- ;;^UTILITY(U,$J,358.3,39132,1,4,0)
- ;;=4^H16.122
- ;;^UTILITY(U,$J,358.3,39132,2)
- ;;=^5004906
- ;;^UTILITY(U,$J,358.3,39133,0)
- ;;=H16.221^^153^1920^97
- ;;^UTILITY(U,$J,358.3,39133,1,0)
+ ;;^UTILITY(U,$J,358.3,36821,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,36821,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,36821,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,36822,0)
+ ;;=T14.91XA^^142^1865^3
+ ;;^UTILITY(U,$J,358.3,36822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39133,1,3,0)
- ;;=3^Keratoconjunct Sicca,Right Eye
- ;;^UTILITY(U,$J,358.3,39133,1,4,0)
- ;;=4^H16.221
- ;;^UTILITY(U,$J,358.3,39133,2)
- ;;=^5004924
- ;;^UTILITY(U,$J,358.3,39134,0)
- ;;=H16.222^^153^1920^96
- ;;^UTILITY(U,$J,358.3,39134,1,0)
+ ;;^UTILITY(U,$J,358.3,36822,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,36822,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,36822,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,36823,0)
+ ;;=T14.91XD^^142^1865^4
+ ;;^UTILITY(U,$J,358.3,36823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39134,1,3,0)
- ;;=3^Keratoconjunct Sicca,Left Eye
- ;;^UTILITY(U,$J,358.3,39134,1,4,0)
- ;;=4^H16.222
- ;;^UTILITY(U,$J,358.3,39134,2)
- ;;=^5004925
- ;;^UTILITY(U,$J,358.3,39135,0)
- ;;=H16.223^^153^1920^95
- ;;^UTILITY(U,$J,358.3,39135,1,0)
+ ;;^UTILITY(U,$J,358.3,36823,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,36823,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,36823,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,36824,0)
+ ;;=T14.91XS^^142^1865^5
+ ;;^UTILITY(U,$J,358.3,36824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39135,1,3,0)
- ;;=3^Keratoconjunct Sicca,Bilateral
- ;;^UTILITY(U,$J,358.3,39135,1,4,0)
- ;;=4^H16.223
- ;;^UTILITY(U,$J,358.3,39135,2)
- ;;=^5004926
- ;;^UTILITY(U,$J,358.3,39136,0)
- ;;=H16.211^^153^1920^67
- ;;^UTILITY(U,$J,358.3,39136,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39136,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Right Eye
- ;;^UTILITY(U,$J,358.3,39136,1,4,0)
- ;;=4^H16.211
- ;;^UTILITY(U,$J,358.3,39136,2)
- ;;=^5004920
- ;;^UTILITY(U,$J,358.3,39137,0)
- ;;=H16.212^^153^1920^66
- ;;^UTILITY(U,$J,358.3,39137,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39137,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Left Eye
- ;;^UTILITY(U,$J,358.3,39137,1,4,0)
- ;;=4^H16.212
- ;;^UTILITY(U,$J,358.3,39137,2)
- ;;=^5004921
- ;;^UTILITY(U,$J,358.3,39138,0)
- ;;=H16.201^^153^1920^103
- ;;^UTILITY(U,$J,358.3,39138,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39138,1,3,0)
- ;;=3^Keratoconjunctivitis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39138,1,4,0)
- ;;=4^H16.201
- ;;^UTILITY(U,$J,358.3,39138,2)
- ;;=^5004917
+ ;;^UTILITY(U,$J,358.3,36824,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,36824,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,36824,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,36825,0)
+ ;;=11000^^143^1866^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36825,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36825,1,2,0)
+ ;;=2^11000
+ ;;^UTILITY(U,$J,358.3,36825,1,3,0)
+ ;;=3^Debride ext eczematous skin,<10%
+ ;;^UTILITY(U,$J,358.3,36826,0)
+ ;;=11001^^143^1866^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36826,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36826,1,2,0)
+ ;;=2^11001
+ ;;^UTILITY(U,$J,358.3,36826,1,3,0)
+ ;;=3^Debride ext eczematous skin,Ea 10%
+ ;;^UTILITY(U,$J,358.3,36827,0)
+ ;;=11042^^143^1866^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36827,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36827,1,2,0)
+ ;;=2^11042

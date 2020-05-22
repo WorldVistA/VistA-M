@@ -1,130 +1,122 @@
-IBDEI2C8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2C8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39641,0)
- ;;=S02.3XXA^^153^1927^22
- ;;^UTILITY(U,$J,358.3,39641,1,0)
+ ;;^UTILITY(U,$J,358.3,37346,1,3,0)
+ ;;=3^Dermatitis,Nummular
+ ;;^UTILITY(U,$J,358.3,37346,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,37346,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,37347,0)
+ ;;=L30.8^^146^1915^51
+ ;;^UTILITY(U,$J,358.3,37347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39641,1,3,0)
- ;;=3^Fx of Orbital Floor,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,39641,1,4,0)
- ;;=4^S02.3XXA
- ;;^UTILITY(U,$J,358.3,39641,2)
- ;;=^5020312
- ;;^UTILITY(U,$J,358.3,39642,0)
- ;;=H51.9^^153^1927^7
- ;;^UTILITY(U,$J,358.3,39642,1,0)
+ ;;^UTILITY(U,$J,358.3,37347,1,3,0)
+ ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,37347,1,4,0)
+ ;;=4^L30.8
+ ;;^UTILITY(U,$J,358.3,37347,2)
+ ;;=^5009158
+ ;;^UTILITY(U,$J,358.3,37348,0)
+ ;;=S93.305A^^146^1915^66
+ ;;^UTILITY(U,$J,358.3,37348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39642,1,3,0)
- ;;=3^Binocular Movement Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,39642,1,4,0)
- ;;=4^H51.9
- ;;^UTILITY(U,$J,358.3,39642,2)
- ;;=^5006258
- ;;^UTILITY(U,$J,358.3,39643,0)
- ;;=H49.13^^153^1927^19
- ;;^UTILITY(U,$J,358.3,39643,1,0)
+ ;;^UTILITY(U,$J,358.3,37348,1,3,0)
+ ;;=3^Dislocation of lft ft, unspec, init enc
+ ;;^UTILITY(U,$J,358.3,37348,1,4,0)
+ ;;=4^S93.305A
+ ;;^UTILITY(U,$J,358.3,37348,2)
+ ;;=^5045729
+ ;;^UTILITY(U,$J,358.3,37349,0)
+ ;;=S93.304A^^146^1915^69
+ ;;^UTILITY(U,$J,358.3,37349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39643,1,3,0)
- ;;=3^Fourth Trochlear Nerve Palsy,Bilateral
- ;;^UTILITY(U,$J,358.3,39643,1,4,0)
- ;;=4^H49.13
- ;;^UTILITY(U,$J,358.3,39643,2)
- ;;=^5006186
- ;;^UTILITY(U,$J,358.3,39644,0)
- ;;=H47.013^^153^1927^26
- ;;^UTILITY(U,$J,358.3,39644,1,0)
+ ;;^UTILITY(U,$J,358.3,37349,1,3,0)
+ ;;=3^Dislocation of rt ft, unspec, init enc
+ ;;^UTILITY(U,$J,358.3,37349,1,4,0)
+ ;;=4^S93.304A
+ ;;^UTILITY(U,$J,358.3,37349,2)
+ ;;=^5045726
+ ;;^UTILITY(U,$J,358.3,37350,0)
+ ;;=S93.325A^^146^1915^71
+ ;;^UTILITY(U,$J,358.3,37350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39644,1,3,0)
- ;;=3^Ischemic Optic Neuropathy,Bilateral
- ;;^UTILITY(U,$J,358.3,39644,1,4,0)
- ;;=4^H47.013
- ;;^UTILITY(U,$J,358.3,39644,2)
- ;;=^5006107
- ;;^UTILITY(U,$J,358.3,39645,0)
- ;;=D86.82^^153^1927^33
- ;;^UTILITY(U,$J,358.3,39645,1,0)
+ ;;^UTILITY(U,$J,358.3,37350,1,3,0)
+ ;;=3^Dislocation of tarsometatarsal jnt of lft ft, init enc
+ ;;^UTILITY(U,$J,358.3,37350,1,4,0)
+ ;;=4^S93.325A
+ ;;^UTILITY(U,$J,358.3,37350,2)
+ ;;=^5045762
+ ;;^UTILITY(U,$J,358.3,37351,0)
+ ;;=S93.324A^^146^1915^72
+ ;;^UTILITY(U,$J,358.3,37351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39645,1,3,0)
- ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
- ;;^UTILITY(U,$J,358.3,39645,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,39645,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,39646,0)
- ;;=H49.883^^153^1927^38
- ;;^UTILITY(U,$J,358.3,39646,1,0)
+ ;;^UTILITY(U,$J,358.3,37351,1,3,0)
+ ;;=3^Dislocation of tarsometatarsal jnt of rt ft, init enc
+ ;;^UTILITY(U,$J,358.3,37351,1,4,0)
+ ;;=4^S93.324A
+ ;;^UTILITY(U,$J,358.3,37351,2)
+ ;;=^5045759
+ ;;^UTILITY(U,$J,358.3,37352,0)
+ ;;=S93.334A^^146^1915^68
+ ;;^UTILITY(U,$J,358.3,37352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39646,1,3,0)
- ;;=3^Paralytic Strabismus,Bilateral
- ;;^UTILITY(U,$J,358.3,39646,1,4,0)
- ;;=4^H49.883
- ;;^UTILITY(U,$J,358.3,39646,2)
- ;;=^5006205
- ;;^UTILITY(U,$J,358.3,39647,0)
- ;;=H49.23^^153^1927^44
- ;;^UTILITY(U,$J,358.3,39647,1,0)
+ ;;^UTILITY(U,$J,358.3,37352,1,3,0)
+ ;;=3^Dislocation of rt ft, oth, init enc
+ ;;^UTILITY(U,$J,358.3,37352,1,4,0)
+ ;;=4^S93.334A
+ ;;^UTILITY(U,$J,358.3,37352,2)
+ ;;=^5045771
+ ;;^UTILITY(U,$J,358.3,37353,0)
+ ;;=S93.335A^^146^1915^65
+ ;;^UTILITY(U,$J,358.3,37353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39647,1,3,0)
- ;;=3^Sixth Abducent Nerve Palsy,Bilateral
- ;;^UTILITY(U,$J,358.3,39647,1,4,0)
- ;;=4^H49.23
- ;;^UTILITY(U,$J,358.3,39647,2)
- ;;=^5006190
- ;;^UTILITY(U,$J,358.3,39648,0)
- ;;=H49.03^^153^1927^48
- ;;^UTILITY(U,$J,358.3,39648,1,0)
+ ;;^UTILITY(U,$J,358.3,37353,1,3,0)
+ ;;=3^Dislocation of lft ft, oth, init enc
+ ;;^UTILITY(U,$J,358.3,37353,1,4,0)
+ ;;=4^S93.335A
+ ;;^UTILITY(U,$J,358.3,37353,2)
+ ;;=^5137669
+ ;;^UTILITY(U,$J,358.3,37354,0)
+ ;;=S93.125A^^146^1915^58
+ ;;^UTILITY(U,$J,358.3,37354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39648,1,3,0)
- ;;=3^Third Oculomotor Nerve Palsy,Bilateral
- ;;^UTILITY(U,$J,358.3,39648,1,4,0)
- ;;=4^H49.03
- ;;^UTILITY(U,$J,358.3,39648,2)
- ;;=^5006182
- ;;^UTILITY(U,$J,358.3,39649,0)
- ;;=H34.03^^153^1927^51
- ;;^UTILITY(U,$J,358.3,39649,1,0)
+ ;;^UTILITY(U,$J,358.3,37354,1,3,0)
+ ;;=3^Dislocation of MTP joint of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37354,1,4,0)
+ ;;=4^S93.125A
+ ;;^UTILITY(U,$J,358.3,37354,2)
+ ;;=^5045669
+ ;;^UTILITY(U,$J,358.3,37355,0)
+ ;;=S93.124A^^146^1915^60
+ ;;^UTILITY(U,$J,358.3,37355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39649,1,3,0)
- ;;=3^Transient Retinal Artery Occlusion,Bilateral
- ;;^UTILITY(U,$J,358.3,39649,1,4,0)
- ;;=4^H34.03
- ;;^UTILITY(U,$J,358.3,39649,2)
- ;;=^5005555
- ;;^UTILITY(U,$J,358.3,39650,0)
- ;;=Z90.01^^153^1928^1
- ;;^UTILITY(U,$J,358.3,39650,1,0)
+ ;;^UTILITY(U,$J,358.3,37355,1,3,0)
+ ;;=3^Dislocation of MTP joint of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,37355,1,4,0)
+ ;;=4^S93.124A
+ ;;^UTILITY(U,$J,358.3,37355,2)
+ ;;=^5045666
+ ;;^UTILITY(U,$J,358.3,37356,0)
+ ;;=S93.121A^^146^1915^59
+ ;;^UTILITY(U,$J,358.3,37356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39650,1,3,0)
- ;;=3^Acquired Absence of Eye
- ;;^UTILITY(U,$J,358.3,39650,1,4,0)
- ;;=4^Z90.01
- ;;^UTILITY(U,$J,358.3,39650,2)
- ;;=^322068
- ;;^UTILITY(U,$J,358.3,39651,0)
- ;;=H04.552^^153^1928^2
- ;;^UTILITY(U,$J,358.3,39651,1,0)
+ ;;^UTILITY(U,$J,358.3,37356,1,3,0)
+ ;;=3^Dislocation of MTP joint of rt great toe, init
+ ;;^UTILITY(U,$J,358.3,37356,1,4,0)
+ ;;=4^S93.121A
+ ;;^UTILITY(U,$J,358.3,37356,2)
+ ;;=^5045657
+ ;;^UTILITY(U,$J,358.3,37357,0)
+ ;;=S93.122A^^146^1915^57
+ ;;^UTILITY(U,$J,358.3,37357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39651,1,3,0)
- ;;=3^Acquired Stenosis of Left Nasolacrimal Duct
- ;;^UTILITY(U,$J,358.3,39651,1,4,0)
- ;;=4^H04.552
- ;;^UTILITY(U,$J,358.3,39651,2)
- ;;=^5004539
- ;;^UTILITY(U,$J,358.3,39652,0)
- ;;=H04.551^^153^1928^3
- ;;^UTILITY(U,$J,358.3,39652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39652,1,3,0)
- ;;=3^Acquired Stenosis of Right Nasolacrimal Duct
- ;;^UTILITY(U,$J,358.3,39652,1,4,0)
- ;;=4^H04.551
- ;;^UTILITY(U,$J,358.3,39652,2)
- ;;=^5004538
- ;;^UTILITY(U,$J,358.3,39653,0)
- ;;=H01.115^^153^1928^4
- ;;^UTILITY(U,$J,358.3,39653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39653,1,3,0)
- ;;=3^Allergic Dermatitis of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,37357,1,3,0)
+ ;;=3^Dislocation of MTP joint of lft great toe, init
+ ;;^UTILITY(U,$J,358.3,37357,1,4,0)
+ ;;=4^S93.122A
+ ;;^UTILITY(U,$J,358.3,37357,2)
+ ;;=^5045660
+ ;;^UTILITY(U,$J,358.3,37358,0)
+ ;;=S93.111A^^146^1915^63

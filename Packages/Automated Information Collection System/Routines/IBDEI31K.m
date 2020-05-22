@@ -1,134 +1,124 @@
-IBDEI31K ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31K ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50991,1,3,0)
- ;;=3^Bursopathies, oth site, oth, spec
- ;;^UTILITY(U,$J,358.3,50991,1,4,0)
- ;;=4^M71.88
- ;;^UTILITY(U,$J,358.3,50991,2)
- ;;=^5133868
- ;;^UTILITY(U,$J,358.3,50992,0)
- ;;=M71.89^^222^2466^78
- ;;^UTILITY(U,$J,358.3,50992,1,0)
+ ;;^UTILITY(U,$J,358.3,48566,1,4,0)
+ ;;=4^M90.80
+ ;;^UTILITY(U,$J,358.3,48566,2)
+ ;;=^5015168
+ ;;^UTILITY(U,$J,358.3,48567,0)
+ ;;=M80.00XA^^185^2423^127
+ ;;^UTILITY(U,$J,358.3,48567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50992,1,3,0)
- ;;=3^Bursopathies, multpl sites, oth, spec
- ;;^UTILITY(U,$J,358.3,50992,1,4,0)
- ;;=4^M71.89
- ;;^UTILITY(U,$J,358.3,50992,2)
- ;;=^5013231
- ;;^UTILITY(U,$J,358.3,50993,0)
- ;;=R76.0^^222^2466^212
- ;;^UTILITY(U,$J,358.3,50993,1,0)
+ ;;^UTILITY(U,$J,358.3,48567,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48567,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,48567,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,48568,0)
+ ;;=M80.00XG^^185^2423^128
+ ;;^UTILITY(U,$J,358.3,48568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50993,1,3,0)
- ;;=3^Raised antibody titer
- ;;^UTILITY(U,$J,358.3,50993,1,4,0)
- ;;=4^R76.0
- ;;^UTILITY(U,$J,358.3,50993,2)
- ;;=^5019569
- ;;^UTILITY(U,$J,358.3,50994,0)
- ;;=R76.9^^222^2466^2
- ;;^UTILITY(U,$J,358.3,50994,1,0)
+ ;;^UTILITY(U,$J,358.3,48568,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,48568,1,4,0)
+ ;;=4^M80.00XG
+ ;;^UTILITY(U,$J,358.3,48568,2)
+ ;;=^5013365
+ ;;^UTILITY(U,$J,358.3,48569,0)
+ ;;=M80.00XP^^185^2423^129
+ ;;^UTILITY(U,$J,358.3,48569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50994,1,3,0)
- ;;=3^Abnl immunological fndgs in serum, unspec
- ;;^UTILITY(U,$J,358.3,50994,1,4,0)
- ;;=4^R76.9
- ;;^UTILITY(U,$J,358.3,50994,2)
- ;;=^5019573
- ;;^UTILITY(U,$J,358.3,50995,0)
- ;;=M31.7^^222^2466^190
- ;;^UTILITY(U,$J,358.3,50995,1,0)
+ ;;^UTILITY(U,$J,358.3,48569,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,48569,1,4,0)
+ ;;=4^M80.00XP
+ ;;^UTILITY(U,$J,358.3,48569,2)
+ ;;=^5013367
+ ;;^UTILITY(U,$J,358.3,48570,0)
+ ;;=M80.00XK^^185^2423^130
+ ;;^UTILITY(U,$J,358.3,48570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50995,1,3,0)
- ;;=3^Microscopic polyangiitis
- ;;^UTILITY(U,$J,358.3,50995,1,4,0)
- ;;=4^M31.7
- ;;^UTILITY(U,$J,358.3,50995,2)
- ;;=^5011749
- ;;^UTILITY(U,$J,358.3,50996,0)
- ;;=M31.4^^222^2466^58
- ;;^UTILITY(U,$J,358.3,50996,1,0)
+ ;;^UTILITY(U,$J,358.3,48570,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,48570,1,4,0)
+ ;;=4^M80.00XK
+ ;;^UTILITY(U,$J,358.3,48570,2)
+ ;;=^5013366
+ ;;^UTILITY(U,$J,358.3,48571,0)
+ ;;=M80.00XD^^185^2423^131
+ ;;^UTILITY(U,$J,358.3,48571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50996,1,3,0)
- ;;=3^Aortic arch syndrome [Takayasu]
- ;;^UTILITY(U,$J,358.3,50996,1,4,0)
- ;;=4^M31.4
- ;;^UTILITY(U,$J,358.3,50996,2)
- ;;=^5011746
- ;;^UTILITY(U,$J,358.3,50997,0)
- ;;=I77.6^^222^2466^59
- ;;^UTILITY(U,$J,358.3,50997,1,0)
+ ;;^UTILITY(U,$J,358.3,48571,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Routine Healing
+ ;;^UTILITY(U,$J,358.3,48571,1,4,0)
+ ;;=4^M80.00XD
+ ;;^UTILITY(U,$J,358.3,48571,2)
+ ;;=^5013364
+ ;;^UTILITY(U,$J,358.3,48572,0)
+ ;;=M80.00XS^^185^2423^132
+ ;;^UTILITY(U,$J,358.3,48572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50997,1,3,0)
- ;;=3^Arteritis, unspec
- ;;^UTILITY(U,$J,358.3,50997,1,4,0)
- ;;=4^I77.6
- ;;^UTILITY(U,$J,358.3,50997,2)
- ;;=^5007813
- ;;^UTILITY(U,$J,358.3,50998,0)
- ;;=M26.62^^222^2466^60
- ;;^UTILITY(U,$J,358.3,50998,1,0)
+ ;;^UTILITY(U,$J,358.3,48572,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,48572,1,4,0)
+ ;;=4^M80.00XS
+ ;;^UTILITY(U,$J,358.3,48572,2)
+ ;;=^5013368
+ ;;^UTILITY(U,$J,358.3,48573,0)
+ ;;=M81.0^^185^2423^126
+ ;;^UTILITY(U,$J,358.3,48573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50998,1,3,0)
- ;;=3^Arthralgia of temporomandibular joint
- ;;^UTILITY(U,$J,358.3,50998,1,4,0)
- ;;=4^M26.62
- ;;^UTILITY(U,$J,358.3,50998,2)
- ;;=^270034
- ;;^UTILITY(U,$J,358.3,50999,0)
- ;;=M12.9^^222^2466^61
- ;;^UTILITY(U,$J,358.3,50999,1,0)
+ ;;^UTILITY(U,$J,358.3,48573,1,3,0)
+ ;;=3^Osteoporosis,Age-Related
+ ;;^UTILITY(U,$J,358.3,48573,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,48573,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,48574,0)
+ ;;=Z87.310^^185^2423^137
+ ;;^UTILITY(U,$J,358.3,48574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50999,1,3,0)
- ;;=3^Arthropathy, unspec
- ;;^UTILITY(U,$J,358.3,50999,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,50999,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,51000,0)
- ;;=M35.2^^222^2466^62
- ;;^UTILITY(U,$J,358.3,51000,1,0)
+ ;;^UTILITY(U,$J,358.3,48574,1,3,0)
+ ;;=3^Personal Hx of Healed Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,48574,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,48574,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,48575,0)
+ ;;=M81.6^^185^2423^133
+ ;;^UTILITY(U,$J,358.3,48575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51000,1,3,0)
- ;;=3^Behcet's disease
- ;;^UTILITY(U,$J,358.3,51000,1,4,0)
- ;;=4^M35.2
- ;;^UTILITY(U,$J,358.3,51000,2)
- ;;=^263705
- ;;^UTILITY(U,$J,358.3,51001,0)
- ;;=I82.91^^222^2466^94
- ;;^UTILITY(U,$J,358.3,51001,1,0)
+ ;;^UTILITY(U,$J,358.3,48575,1,3,0)
+ ;;=3^Osteoporosis,Localized
+ ;;^UTILITY(U,$J,358.3,48575,1,4,0)
+ ;;=4^M81.6
+ ;;^UTILITY(U,$J,358.3,48575,2)
+ ;;=^5013556
+ ;;^UTILITY(U,$J,358.3,48576,0)
+ ;;=M54.00^^185^2423^134
+ ;;^UTILITY(U,$J,358.3,48576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51001,1,3,0)
- ;;=3^Chron embolism & thrombosis of unspec vein
- ;;^UTILITY(U,$J,358.3,51001,1,4,0)
- ;;=4^I82.91
- ;;^UTILITY(U,$J,358.3,51001,2)
- ;;=^5007941
- ;;^UTILITY(U,$J,358.3,51002,0)
- ;;=M1A.30X1^^222^2466^151
- ;;^UTILITY(U,$J,358.3,51002,1,0)
+ ;;^UTILITY(U,$J,358.3,48576,1,3,0)
+ ;;=3^Panniculitis,Neck/Back,Unspec Site
+ ;;^UTILITY(U,$J,358.3,48576,1,4,0)
+ ;;=4^M54.00
+ ;;^UTILITY(U,$J,358.3,48576,2)
+ ;;=^5012285
+ ;;^UTILITY(U,$J,358.3,48577,0)
+ ;;=M79.3^^185^2423^135
+ ;;^UTILITY(U,$J,358.3,48577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51002,1,3,0)
- ;;=3^Gout, chron d/t renal imprmnt, unsp site, w/ tophus (tophi)
- ;;^UTILITY(U,$J,358.3,51002,1,4,0)
- ;;=4^M1A.30X1
- ;;^UTILITY(U,$J,358.3,51002,2)
- ;;=^5010960
- ;;^UTILITY(U,$J,358.3,51003,0)
- ;;=M1A.9XX1^^222^2466^155
- ;;^UTILITY(U,$J,358.3,51003,1,0)
+ ;;^UTILITY(U,$J,358.3,48577,1,3,0)
+ ;;=3^Panniculitis,Unspec
+ ;;^UTILITY(U,$J,358.3,48577,1,4,0)
+ ;;=4^M79.3
+ ;;^UTILITY(U,$J,358.3,48577,2)
+ ;;=^5013323
+ ;;^UTILITY(U,$J,358.3,48578,0)
+ ;;=M62.3^^185^2423^136
+ ;;^UTILITY(U,$J,358.3,48578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51003,1,3,0)
- ;;=3^Gout, chron, unspec, w/ tophus (tophi)
- ;;^UTILITY(U,$J,358.3,51003,1,4,0)
- ;;=4^M1A.9XX1
- ;;^UTILITY(U,$J,358.3,51003,2)
- ;;=^5133773
- ;;^UTILITY(U,$J,358.3,51004,0)
- ;;=Z79.52^^222^2466^188
- ;;^UTILITY(U,$J,358.3,51004,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,48578,1,3,0)
+ ;;=3^Paraplegic Immobility Syndrome

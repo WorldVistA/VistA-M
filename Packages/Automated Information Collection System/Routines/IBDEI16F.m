@@ -1,132 +1,132 @@
-IBDEI16F ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.6,0,"GL")
- ;;=^IBE(358.6,
- ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
- ;;=
- ;;^DIC(358.6,"%D",0)
- ;;=^^1^1^2950927^^^^
- ;;^DIC(358.6,"%D",1,0)
- ;;=This file is used as a workspace by the import/export utility.
- ;;^DIC(358.6,"%D",2,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.6,"%D",3,0)
- ;;=that is being imported or exported.
- ;;^DIC(358.6,"%D",4,0)
- ;;= 
- ;;^DIC(358.6,"%D",5,0)
- ;;=This file contains a description of all of the interfaces with other packages.
- ;;^DIC(358.6,"%D",6,0)
- ;;=The form will invoke the proper interface routines by doing a lookup on
- ;;^DIC(358.6,"%D",7,0)
- ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
- ;;^DIC(358.6,"%D",8,0)
- ;;=fields are for documentation purposes and to verify that the proper
- ;;^DIC(358.6,"%D",9,0)
- ;;=variables are defined. Data will be exchanged between the encounter form
- ;;^DIC(358.6,"%D",10,0)
- ;;=utilities and other packages by putting the data in a predefined location.
- ;;^DIC(358.6,"%D",11,0)
- ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
- ;;^DIC(358.6,"%D",12,0)
- ;;=For output routines, but not selection routines, the fourth subscript is
- ;;^DIC(358.6,"%D",13,0)
- ;;=be the patient DFN. The next subscript is the name of the Package
- ;;^DIC(358.6,"%D",14,0)
- ;;=Interface. For single valued data and record valued data there is no
- ;;^DIC(358.6,"%D",15,0)
- ;;=additional subscript. For interfaces returning a list there is one
- ;;^DIC(358.6,"%D",16,0)
- ;;=additional subscript level, the number of the item on the list. For
- ;;^DIC(358.6,"%D",17,0)
- ;;=word processing type data the data will be in FM word-processing format,
- ;;^DIC(358.6,"%D",18,0)
- ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
- ;;^DIC(358.6,"%D",19,0)
- ;;=these items of data can have its own entry in the Package Interface file,
- ;;^DIC(358.6,"%D",20,0)
- ;;=but by using the same entry point there is a savings because all of the
- ;;^DIC(358.6,"%D",21,0)
- ;;=data on that node can be obtained at once. The routines that invoke the
- ;;^DIC(358.6,"%D",22,0)
- ;;=entry point keep track of the entry points already invoked so they are
- ;;^DIC(358.6,"%D",23,0)
- ;;=not repeated.
- ;;^DD(358.6,0)
- ;;=FIELD^^21^76
- ;;^DD(358.6,0,"DDA")
- ;;=N
- ;;^DD(358.6,0,"DT")
- ;;=3000124
- ;;^DD(358.6,0,"ID",.06)
- ;;=W ""
- ;;^DD(358.6,0,"ID","WRITE")
- ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
- ;;^DD(358.6,0,"ID","WRITE1")
- ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
- ;;^DD(358.6,0,"IX","B",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"IX","C",358.6,.04)
- ;;=
- ;;^DD(358.6,0,"IX","D",358.6,3)
- ;;=
- ;;^DD(358.6,0,"IX","E",358.6,.01)
- ;;=
- ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
- ;;=
- ;;^DD(358.6,0,"PT",358.2,.11)
- ;;=
- ;;^DD(358.6,0,"PT",358.5,.03)
- ;;=
- ;;^DD(358.6,0,"PT",358.6,.13)
- ;;=
- ;;^DD(358.6,0,"PT",358.93,.06)
- ;;=
- ;;^DD(358.6,0,"VRPK")
- ;;=IBD
- ;;^DD(358.6,.01,0)
- ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.6,.01,1,0)
- ;;=^.1
- ;;^DD(358.6,.01,1,1,0)
- ;;=358.6^B
- ;;^DD(358.6,.01,1,1,1)
- ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
- ;;^DD(358.6,.01,1,1,2)
- ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)
- ;;^DD(358.6,.01,1,2,0)
- ;;=358.6^E^MUMPS
- ;;^DD(358.6,.01,1,2,1)
- ;;=S ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)=""
- ;;^DD(358.6,.01,1,2,2)
- ;;=K ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)
- ;;^DD(358.6,.01,1,2,"%D",0)
- ;;=^^4^4^2940224^
- ;;^DD(358.6,.01,1,2,"%D",1,0)
- ;;= 
- ;;^DD(358.6,.01,1,2,"%D",2,0)
- ;;=For package interfaces that are output routines the name has the custodial
- ;;^DD(358.6,.01,1,2,"%D",3,0)
- ;;=package's name space as a prefix. This cross-reference removes that
- ;;^DD(358.6,.01,1,2,"%D",4,0)
- ;;=prefix. It is used to improve the display of output routines for the user.
- ;;^DD(358.6,.01,1,2,"DT")
- ;;=2930409
- ;;^DD(358.6,.01,3)
- ;;=Answer must be 3-40 characters in length. All entries with Action Type other than PRINT REPORT must be be prefixed with the namespace of the package that is responsible for the data.
- ;;^DD(358.6,.01,21,0)
- ;;=^^3^3^2950412^^^^
- ;;^DD(358.6,.01,21,1,0)
- ;;= 
- ;;^DD(358.6,.01,21,2,0)
- ;;=The name of the Package Interface. For interfaces returning data the name
- ;;^DD(358.6,.01,21,3,0)
- ;;=should be preceded with the namespace of the package.
- ;;^DD(358.6,.01,23,0)
- ;;=^^1^1^2950412^
- ;;^DD(358.6,.01,23,1,0)
- ;;= 
- ;;^DD(358.6,.01,"DT")
- ;;=2930409
+ ;;^UTILITY(U,$J,358.3,18907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18907,1,3,0)
+ ;;=3^Urinary Incontinence,Oth Spec
+ ;;^UTILITY(U,$J,358.3,18907,1,4,0)
+ ;;=4^N39.498
+ ;;^UTILITY(U,$J,358.3,18907,2)
+ ;;=^5015686
+ ;;^UTILITY(U,$J,358.3,18908,0)
+ ;;=R15.9^^91^969^3
+ ;;^UTILITY(U,$J,358.3,18908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18908,1,3,0)
+ ;;=3^Full Incontinence of Feces
+ ;;^UTILITY(U,$J,358.3,18908,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,18908,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,18909,0)
+ ;;=R32.^^91^969^5
+ ;;^UTILITY(U,$J,358.3,18909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18909,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,18909,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,18909,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,18910,0)
+ ;;=F63.0^^91^970^1
+ ;;^UTILITY(U,$J,358.3,18910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18910,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,18910,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,18910,2)
+ ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,18911,0)
+ ;;=F06.8^^91^971^2
+ ;;^UTILITY(U,$J,358.3,18911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18911,1,3,0)
+ ;;=3^Mental D/O,Oth Spec,d/t Anth Med Cond
+ ;;^UTILITY(U,$J,358.3,18911,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,18911,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,18912,0)
+ ;;=F09.^^91^971^3
+ ;;^UTILITY(U,$J,358.3,18912,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18912,1,3,0)
+ ;;=3^Mental D/O,Unspec,d/t Anth Med Cond
+ ;;^UTILITY(U,$J,358.3,18912,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,18912,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,18913,0)
+ ;;=F99.^^91^971^1
+ ;;^UTILITY(U,$J,358.3,18913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18913,1,3,0)
+ ;;=3^Mental D/O NOS
+ ;;^UTILITY(U,$J,358.3,18913,1,4,0)
+ ;;=4^F99.
+ ;;^UTILITY(U,$J,358.3,18913,2)
+ ;;=^5003720
+ ;;^UTILITY(U,$J,358.3,18914,0)
+ ;;=Z03.89^^91^971^4
+ ;;^UTILITY(U,$J,358.3,18914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18914,1,3,0)
+ ;;=3^Obs for Oth Suspect Dis/Cond R/O
+ ;;^UTILITY(U,$J,358.3,18914,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,18914,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,18915,0)
+ ;;=F84.0^^91^972^7
+ ;;^UTILITY(U,$J,358.3,18915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18915,1,3,0)
+ ;;=3^Autistic D/O
+ ;;^UTILITY(U,$J,358.3,18915,1,4,0)
+ ;;=4^F84.0
+ ;;^UTILITY(U,$J,358.3,18915,2)
+ ;;=^5003684
+ ;;^UTILITY(U,$J,358.3,18916,0)
+ ;;=F80.9^^91^972^10
+ ;;^UTILITY(U,$J,358.3,18916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18916,1,3,0)
+ ;;=3^Communication D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,18916,1,4,0)
+ ;;=4^F80.9
+ ;;^UTILITY(U,$J,358.3,18916,2)
+ ;;=^5003678
+ ;;^UTILITY(U,$J,358.3,18917,0)
+ ;;=F82.^^91^972^11
+ ;;^UTILITY(U,$J,358.3,18917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18917,1,3,0)
+ ;;=3^Developmental Coordination D/O
+ ;;^UTILITY(U,$J,358.3,18917,1,4,0)
+ ;;=4^F82.
+ ;;^UTILITY(U,$J,358.3,18917,2)
+ ;;=^5003683
+ ;;^UTILITY(U,$J,358.3,18918,0)
+ ;;=F88.^^91^972^24
+ ;;^UTILITY(U,$J,358.3,18918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18918,1,3,0)
+ ;;=3^Psych Development D/O,Other
+ ;;^UTILITY(U,$J,358.3,18918,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,18918,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,18919,0)
+ ;;=F80.2^^91^972^17
+ ;;^UTILITY(U,$J,358.3,18919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18919,1,3,0)
+ ;;=3^Language D/O
+ ;;^UTILITY(U,$J,358.3,18919,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,18919,2)
+ ;;=^331959

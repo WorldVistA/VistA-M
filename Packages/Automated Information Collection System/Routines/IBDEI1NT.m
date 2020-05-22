@@ -1,130 +1,126 @@
-IBDEI1NT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1NT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28198,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 2
- ;;^UTILITY(U,$J,358.3,28198,1,4,0)
- ;;=4^L89.022
- ;;^UTILITY(U,$J,358.3,28198,2)
- ;;=^5009344
- ;;^UTILITY(U,$J,358.3,28199,0)
- ;;=L89.023^^112^1416^27
- ;;^UTILITY(U,$J,358.3,28199,1,0)
+ ;;^UTILITY(U,$J,358.3,26501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28199,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 3
- ;;^UTILITY(U,$J,358.3,28199,1,4,0)
- ;;=4^L89.023
- ;;^UTILITY(U,$J,358.3,28199,2)
- ;;=^5009345
- ;;^UTILITY(U,$J,358.3,28200,0)
- ;;=L89.024^^112^1416^28
- ;;^UTILITY(U,$J,358.3,28200,1,0)
+ ;;^UTILITY(U,$J,358.3,26501,1,3,0)
+ ;;=3^Enteritis,Adenoviral
+ ;;^UTILITY(U,$J,358.3,26501,1,4,0)
+ ;;=4^A08.2
+ ;;^UTILITY(U,$J,358.3,26501,2)
+ ;;=^5000055
+ ;;^UTILITY(U,$J,358.3,26502,0)
+ ;;=A08.31^^107^1246^5
+ ;;^UTILITY(U,$J,358.3,26502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28200,1,3,0)
- ;;=3^Pressure Ulcer Left Elbow,Stage 4
- ;;^UTILITY(U,$J,358.3,28200,1,4,0)
- ;;=4^L89.024
- ;;^UTILITY(U,$J,358.3,28200,2)
- ;;=^5009346
- ;;^UTILITY(U,$J,358.3,28201,0)
- ;;=L89.110^^112^1416^102
- ;;^UTILITY(U,$J,358.3,28201,1,0)
+ ;;^UTILITY(U,$J,358.3,26502,1,3,0)
+ ;;=3^Enteritis,Calicivirus
+ ;;^UTILITY(U,$J,358.3,26502,1,4,0)
+ ;;=4^A08.31
+ ;;^UTILITY(U,$J,358.3,26502,2)
+ ;;=^5000056
+ ;;^UTILITY(U,$J,358.3,26503,0)
+ ;;=A08.32^^107^1246^4
+ ;;^UTILITY(U,$J,358.3,26503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28201,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,28201,1,4,0)
- ;;=4^L89.110
- ;;^UTILITY(U,$J,358.3,28201,2)
- ;;=^5009352
- ;;^UTILITY(U,$J,358.3,28202,0)
- ;;=L89.111^^112^1416^97
- ;;^UTILITY(U,$J,358.3,28202,1,0)
+ ;;^UTILITY(U,$J,358.3,26503,1,3,0)
+ ;;=3^Enteritis,Astrovirus
+ ;;^UTILITY(U,$J,358.3,26503,1,4,0)
+ ;;=4^A08.32
+ ;;^UTILITY(U,$J,358.3,26503,2)
+ ;;=^5000058
+ ;;^UTILITY(U,$J,358.3,26504,0)
+ ;;=A08.4^^107^1246^8
+ ;;^UTILITY(U,$J,358.3,26504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28202,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,28202,1,4,0)
- ;;=4^L89.111
- ;;^UTILITY(U,$J,358.3,28202,2)
- ;;=^5009353
- ;;^UTILITY(U,$J,358.3,28203,0)
- ;;=L89.112^^112^1416^98
- ;;^UTILITY(U,$J,358.3,28203,1,0)
+ ;;^UTILITY(U,$J,358.3,26504,1,3,0)
+ ;;=3^Viral Intestinal Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,26504,1,4,0)
+ ;;=4^A08.4
+ ;;^UTILITY(U,$J,358.3,26504,2)
+ ;;=^5000059
+ ;;^UTILITY(U,$J,358.3,26505,0)
+ ;;=A08.8^^107^1246^7
+ ;;^UTILITY(U,$J,358.3,26505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28203,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,28203,1,4,0)
- ;;=4^L89.112
- ;;^UTILITY(U,$J,358.3,28203,2)
- ;;=^5009354
- ;;^UTILITY(U,$J,358.3,28204,0)
- ;;=L89.113^^112^1416^99
- ;;^UTILITY(U,$J,358.3,28204,1,0)
+ ;;^UTILITY(U,$J,358.3,26505,1,3,0)
+ ;;=3^Intestinal Infections,Oth Spec
+ ;;^UTILITY(U,$J,358.3,26505,1,4,0)
+ ;;=4^A08.8
+ ;;^UTILITY(U,$J,358.3,26505,2)
+ ;;=^5000060
+ ;;^UTILITY(U,$J,358.3,26506,0)
+ ;;=J68.0^^107^1247^2
+ ;;^UTILITY(U,$J,358.3,26506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28204,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,28204,1,4,0)
- ;;=4^L89.113
- ;;^UTILITY(U,$J,358.3,28204,2)
- ;;=^5009355
- ;;^UTILITY(U,$J,358.3,28205,0)
- ;;=L89.114^^112^1416^100
- ;;^UTILITY(U,$J,358.3,28205,1,0)
+ ;;^UTILITY(U,$J,358.3,26506,1,3,0)
+ ;;=3^Bronchitis/Pneumonitis d/t Chem/Gases/Vapers
+ ;;^UTILITY(U,$J,358.3,26506,1,4,0)
+ ;;=4^J68.0
+ ;;^UTILITY(U,$J,358.3,26506,2)
+ ;;=^5008281
+ ;;^UTILITY(U,$J,358.3,26507,0)
+ ;;=J69.1^^107^1247^4
+ ;;^UTILITY(U,$J,358.3,26507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28205,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,28205,1,4,0)
- ;;=4^L89.114
- ;;^UTILITY(U,$J,358.3,28205,2)
- ;;=^5009356
- ;;^UTILITY(U,$J,358.3,28206,0)
- ;;=L89.119^^112^1416^101
- ;;^UTILITY(U,$J,358.3,28206,1,0)
+ ;;^UTILITY(U,$J,358.3,26507,1,3,0)
+ ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
+ ;;^UTILITY(U,$J,358.3,26507,1,4,0)
+ ;;=4^J69.1
+ ;;^UTILITY(U,$J,358.3,26507,2)
+ ;;=^95664
+ ;;^UTILITY(U,$J,358.3,26508,0)
+ ;;=J68.9^^107^1247^6
+ ;;^UTILITY(U,$J,358.3,26508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28206,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28206,1,4,0)
- ;;=4^L89.119
- ;;^UTILITY(U,$J,358.3,28206,2)
- ;;=^5009357
- ;;^UTILITY(U,$J,358.3,28207,0)
- ;;=L89.120^^112^1416^54
- ;;^UTILITY(U,$J,358.3,28207,1,0)
+ ;;^UTILITY(U,$J,358.3,26508,1,3,0)
+ ;;=3^Respiratory Condition,Unspec d/t Chem/Gases/Fumes/Vapors
+ ;;^UTILITY(U,$J,358.3,26508,1,4,0)
+ ;;=4^J68.9
+ ;;^UTILITY(U,$J,358.3,26508,2)
+ ;;=^5008287
+ ;;^UTILITY(U,$J,358.3,26509,0)
+ ;;=J82.^^107^1247^5
+ ;;^UTILITY(U,$J,358.3,26509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28207,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,28207,1,4,0)
- ;;=4^L89.120
- ;;^UTILITY(U,$J,358.3,28207,2)
- ;;=^5009358
- ;;^UTILITY(U,$J,358.3,28208,0)
- ;;=L89.121^^112^1416^49
- ;;^UTILITY(U,$J,358.3,28208,1,0)
+ ;;^UTILITY(U,$J,358.3,26509,1,3,0)
+ ;;=3^Pulmonary Eosinophilia NEC
+ ;;^UTILITY(U,$J,358.3,26509,1,4,0)
+ ;;=4^J82.
+ ;;^UTILITY(U,$J,358.3,26509,2)
+ ;;=^5008297
+ ;;^UTILITY(U,$J,358.3,26510,0)
+ ;;=J84.114^^107^1247^1
+ ;;^UTILITY(U,$J,358.3,26510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28208,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,28208,1,4,0)
- ;;=4^L89.121
- ;;^UTILITY(U,$J,358.3,28208,2)
- ;;=^5009359
- ;;^UTILITY(U,$J,358.3,28209,0)
- ;;=L89.122^^112^1416^50
- ;;^UTILITY(U,$J,358.3,28209,1,0)
+ ;;^UTILITY(U,$J,358.3,26510,1,3,0)
+ ;;=3^Acute Interstitial Pneumonitis
+ ;;^UTILITY(U,$J,358.3,26510,1,4,0)
+ ;;=4^J84.114
+ ;;^UTILITY(U,$J,358.3,26510,2)
+ ;;=^340536
+ ;;^UTILITY(U,$J,358.3,26511,0)
+ ;;=J84.89^^107^1247^3
+ ;;^UTILITY(U,$J,358.3,26511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28209,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,28209,1,4,0)
- ;;=4^L89.122
- ;;^UTILITY(U,$J,358.3,28209,2)
- ;;=^5009360
- ;;^UTILITY(U,$J,358.3,28210,0)
- ;;=L89.123^^112^1416^51
- ;;^UTILITY(U,$J,358.3,28210,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28210,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,28210,1,4,0)
- ;;=4^L89.123
- ;;^UTILITY(U,$J,358.3,28210,2)
- ;;=^5009361
+ ;;^UTILITY(U,$J,358.3,26511,1,3,0)
+ ;;=3^Interstitial Pulmonary Diseases,Oth Spec
+ ;;^UTILITY(U,$J,358.3,26511,1,4,0)
+ ;;=4^J84.89
+ ;;^UTILITY(U,$J,358.3,26511,2)
+ ;;=^5008303
+ ;;^UTILITY(U,$J,358.3,26512,0)
+ ;;=96125^^108^1248^56^^^^1
+ ;;^UTILITY(U,$J,358.3,26512,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26512,1,2,0)
+ ;;=2^96125
+ ;;^UTILITY(U,$J,358.3,26512,1,3,0)
+ ;;=3^STANDARDIZED COGNITIVE PERFORM TST,PER HR W/ INTERP & RPT
+ ;;^UTILITY(U,$J,358.3,26513,0)
+ ;;=90882^^108^1248^16^^^^1
+ ;;^UTILITY(U,$J,358.3,26513,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,26513,1,2,0)
+ ;;=2^90882

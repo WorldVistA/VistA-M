@@ -1,134 +1,122 @@
-IBDEI248 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI248 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35879,1,0)
+ ;;^UTILITY(U,$J,358.3,33802,0)
+ ;;=S73.014D^^132^1711^41
+ ;;^UTILITY(U,$J,358.3,33802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35879,1,3,0)
- ;;=3^Rheumatoid Nodule Left Hand
- ;;^UTILITY(U,$J,358.3,35879,1,4,0)
- ;;=4^M06.342
- ;;^UTILITY(U,$J,358.3,35879,2)
- ;;=^5010107
- ;;^UTILITY(U,$J,358.3,35880,0)
- ;;=M06.352^^134^1731^126
- ;;^UTILITY(U,$J,358.3,35880,1,0)
+ ;;^UTILITY(U,$J,358.3,33802,1,3,0)
+ ;;=3^Posterior dislocation of right hip, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33802,1,4,0)
+ ;;=4^S73.014D
+ ;;^UTILITY(U,$J,358.3,33802,2)
+ ;;=^5039247
+ ;;^UTILITY(U,$J,358.3,33803,0)
+ ;;=M25.451^^132^1711^20
+ ;;^UTILITY(U,$J,358.3,33803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35880,1,3,0)
- ;;=3^Rheumatoid Nodule Left Hip
- ;;^UTILITY(U,$J,358.3,35880,1,4,0)
- ;;=4^M06.352
- ;;^UTILITY(U,$J,358.3,35880,2)
- ;;=^5010110
- ;;^UTILITY(U,$J,358.3,35881,0)
- ;;=M06.362^^134^1731^127
- ;;^UTILITY(U,$J,358.3,35881,1,0)
+ ;;^UTILITY(U,$J,358.3,33803,1,3,0)
+ ;;=3^Effusion, right hip
+ ;;^UTILITY(U,$J,358.3,33803,1,4,0)
+ ;;=4^M25.451
+ ;;^UTILITY(U,$J,358.3,33803,2)
+ ;;=^5011588
+ ;;^UTILITY(U,$J,358.3,33804,0)
+ ;;=M25.452^^132^1711^19
+ ;;^UTILITY(U,$J,358.3,33804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35881,1,3,0)
- ;;=3^Rheumatoid Nodule Left Knee
- ;;^UTILITY(U,$J,358.3,35881,1,4,0)
- ;;=4^M06.362
- ;;^UTILITY(U,$J,358.3,35881,2)
- ;;=^5010113
- ;;^UTILITY(U,$J,358.3,35882,0)
- ;;=M06.312^^134^1731^128
- ;;^UTILITY(U,$J,358.3,35882,1,0)
+ ;;^UTILITY(U,$J,358.3,33804,1,3,0)
+ ;;=3^Effusion, left hip
+ ;;^UTILITY(U,$J,358.3,33804,1,4,0)
+ ;;=4^M25.452
+ ;;^UTILITY(U,$J,358.3,33804,2)
+ ;;=^5011589
+ ;;^UTILITY(U,$J,358.3,33805,0)
+ ;;=T84.020A^^132^1711^9
+ ;;^UTILITY(U,$J,358.3,33805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35882,1,3,0)
- ;;=3^Rheumatoid Nodule Left Shoulder
- ;;^UTILITY(U,$J,358.3,35882,1,4,0)
- ;;=4^M06.312
- ;;^UTILITY(U,$J,358.3,35882,2)
- ;;=^5010098
- ;;^UTILITY(U,$J,358.3,35883,0)
- ;;=M06.332^^134^1731^129
- ;;^UTILITY(U,$J,358.3,35883,1,0)
+ ;;^UTILITY(U,$J,358.3,33805,1,3,0)
+ ;;=3^Dislocation of internal right hip prosthesis, init encntr
+ ;;^UTILITY(U,$J,358.3,33805,1,4,0)
+ ;;=4^T84.020A
+ ;;^UTILITY(U,$J,358.3,33805,2)
+ ;;=^5055121
+ ;;^UTILITY(U,$J,358.3,33806,0)
+ ;;=T84.020D^^132^1711^10
+ ;;^UTILITY(U,$J,358.3,33806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35883,1,3,0)
- ;;=3^Rheumatoid Nodule Left Wrist
- ;;^UTILITY(U,$J,358.3,35883,1,4,0)
- ;;=4^M06.332
- ;;^UTILITY(U,$J,358.3,35883,2)
- ;;=^5010104
- ;;^UTILITY(U,$J,358.3,35884,0)
- ;;=M06.39^^134^1731^130
- ;;^UTILITY(U,$J,358.3,35884,1,0)
+ ;;^UTILITY(U,$J,358.3,33806,1,3,0)
+ ;;=3^Dislocation of internal right hip prosthesis, subs encntr
+ ;;^UTILITY(U,$J,358.3,33806,1,4,0)
+ ;;=4^T84.020D
+ ;;^UTILITY(U,$J,358.3,33806,2)
+ ;;=^5055122
+ ;;^UTILITY(U,$J,358.3,33807,0)
+ ;;=M75.02^^132^1712^1
+ ;;^UTILITY(U,$J,358.3,33807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35884,1,3,0)
- ;;=3^Rheumatoid Nodule Mult Sites
- ;;^UTILITY(U,$J,358.3,35884,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,35884,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,35885,0)
- ;;=M06.371^^134^1731^131
- ;;^UTILITY(U,$J,358.3,35885,1,0)
+ ;;^UTILITY(U,$J,358.3,33807,1,3,0)
+ ;;=3^Adhesive capsulitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,33807,1,4,0)
+ ;;=4^M75.02
+ ;;^UTILITY(U,$J,358.3,33807,2)
+ ;;=^5013240
+ ;;^UTILITY(U,$J,358.3,33808,0)
+ ;;=M75.01^^132^1712^2
+ ;;^UTILITY(U,$J,358.3,33808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35885,1,3,0)
- ;;=3^Rheumatoid Nodule Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35885,1,4,0)
- ;;=4^M06.371
- ;;^UTILITY(U,$J,358.3,35885,2)
- ;;=^5010115
- ;;^UTILITY(U,$J,358.3,35886,0)
- ;;=M06.321^^134^1731^132
- ;;^UTILITY(U,$J,358.3,35886,1,0)
+ ;;^UTILITY(U,$J,358.3,33808,1,3,0)
+ ;;=3^Adhesive capsulitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,33808,1,4,0)
+ ;;=4^M75.01
+ ;;^UTILITY(U,$J,358.3,33808,2)
+ ;;=^5013239
+ ;;^UTILITY(U,$J,358.3,33809,0)
+ ;;=M00.812^^132^1712^3
+ ;;^UTILITY(U,$J,358.3,33809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35886,1,3,0)
- ;;=3^Rheumatoid Nodule Right Elbow
- ;;^UTILITY(U,$J,358.3,35886,1,4,0)
- ;;=4^M06.321
- ;;^UTILITY(U,$J,358.3,35886,2)
- ;;=^5010100
- ;;^UTILITY(U,$J,358.3,35887,0)
- ;;=M06.341^^134^1731^133
- ;;^UTILITY(U,$J,358.3,35887,1,0)
+ ;;^UTILITY(U,$J,358.3,33809,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, left shoulder
+ ;;^UTILITY(U,$J,358.3,33809,1,4,0)
+ ;;=4^M00.812
+ ;;^UTILITY(U,$J,358.3,33809,2)
+ ;;=^5009671
+ ;;^UTILITY(U,$J,358.3,33810,0)
+ ;;=M00.811^^132^1712^4
+ ;;^UTILITY(U,$J,358.3,33810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35887,1,3,0)
- ;;=3^Rheumatoid Nodule Right Hand
- ;;^UTILITY(U,$J,358.3,35887,1,4,0)
- ;;=4^M06.341
- ;;^UTILITY(U,$J,358.3,35887,2)
- ;;=^5010106
- ;;^UTILITY(U,$J,358.3,35888,0)
- ;;=M06.351^^134^1731^134
- ;;^UTILITY(U,$J,358.3,35888,1,0)
+ ;;^UTILITY(U,$J,358.3,33810,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, right shoulder
+ ;;^UTILITY(U,$J,358.3,33810,1,4,0)
+ ;;=4^M00.811
+ ;;^UTILITY(U,$J,358.3,33810,2)
+ ;;=^5009670
+ ;;^UTILITY(U,$J,358.3,33811,0)
+ ;;=M75.22^^132^1712^5
+ ;;^UTILITY(U,$J,358.3,33811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35888,1,3,0)
- ;;=3^Rheumatoid Nodule Right Hip
- ;;^UTILITY(U,$J,358.3,35888,1,4,0)
- ;;=4^M06.351
- ;;^UTILITY(U,$J,358.3,35888,2)
- ;;=^5010109
- ;;^UTILITY(U,$J,358.3,35889,0)
- ;;=M06.361^^134^1731^135
- ;;^UTILITY(U,$J,358.3,35889,1,0)
+ ;;^UTILITY(U,$J,358.3,33811,1,3,0)
+ ;;=3^Bicipital tendinitis, left shoulder
+ ;;^UTILITY(U,$J,358.3,33811,1,4,0)
+ ;;=4^M75.22
+ ;;^UTILITY(U,$J,358.3,33811,2)
+ ;;=^5013252
+ ;;^UTILITY(U,$J,358.3,33812,0)
+ ;;=M75.21^^132^1712^6
+ ;;^UTILITY(U,$J,358.3,33812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35889,1,3,0)
- ;;=3^Rheumatoid Nodule Right Knee
- ;;^UTILITY(U,$J,358.3,35889,1,4,0)
- ;;=4^M06.361
- ;;^UTILITY(U,$J,358.3,35889,2)
- ;;=^5010112
- ;;^UTILITY(U,$J,358.3,35890,0)
- ;;=M06.311^^134^1731^136
- ;;^UTILITY(U,$J,358.3,35890,1,0)
+ ;;^UTILITY(U,$J,358.3,33812,1,3,0)
+ ;;=3^Bicipital tendinitis, right shoulder
+ ;;^UTILITY(U,$J,358.3,33812,1,4,0)
+ ;;=4^M75.21
+ ;;^UTILITY(U,$J,358.3,33812,2)
+ ;;=^5013251
+ ;;^UTILITY(U,$J,358.3,33813,0)
+ ;;=M75.52^^132^1712^7
+ ;;^UTILITY(U,$J,358.3,33813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35890,1,3,0)
- ;;=3^Rheumatoid Nodule Right Shoulder
- ;;^UTILITY(U,$J,358.3,35890,1,4,0)
- ;;=4^M06.311
- ;;^UTILITY(U,$J,358.3,35890,2)
- ;;=^5010097
- ;;^UTILITY(U,$J,358.3,35891,0)
- ;;=M06.331^^134^1731^137
- ;;^UTILITY(U,$J,358.3,35891,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35891,1,3,0)
- ;;=3^Rheumatoid Nodule Right Wrist
- ;;^UTILITY(U,$J,358.3,35891,1,4,0)
- ;;=4^M06.331
- ;;^UTILITY(U,$J,358.3,35891,2)
- ;;=^5010103
- ;;^UTILITY(U,$J,358.3,35892,0)
- ;;=M06.30^^134^1731^138
+ ;;^UTILITY(U,$J,358.3,33813,1,3,0)
+ ;;=3^Bursitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,33813,1,4,0)
+ ;;=4^M75.52

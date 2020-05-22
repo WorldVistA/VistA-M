@@ -1,132 +1,122 @@
-IBDEI308 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI308 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50367,2)
- ;;=^5012262
- ;;^UTILITY(U,$J,358.3,50368,0)
- ;;=M05.872^^219^2448^24
- ;;^UTILITY(U,$J,358.3,50368,1,0)
+ ;;^UTILITY(U,$J,358.3,47981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50368,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50368,1,4,0)
- ;;=4^M05.872
- ;;^UTILITY(U,$J,358.3,50368,2)
- ;;=^5010043
- ;;^UTILITY(U,$J,358.3,50369,0)
- ;;=M05.822^^219^2448^25
- ;;^UTILITY(U,$J,358.3,50369,1,0)
+ ;;^UTILITY(U,$J,358.3,47981,1,3,0)
+ ;;=3^Postprocedural State,Peripheral Vascular Angioplasty
+ ;;^UTILITY(U,$J,358.3,47981,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,47981,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,47982,0)
+ ;;=Z95.810^^185^2414^63
+ ;;^UTILITY(U,$J,358.3,47982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50369,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Elbow
- ;;^UTILITY(U,$J,358.3,50369,1,4,0)
- ;;=4^M05.822
- ;;^UTILITY(U,$J,358.3,50369,2)
- ;;=^5010028
- ;;^UTILITY(U,$J,358.3,50370,0)
- ;;=M05.842^^219^2448^26
- ;;^UTILITY(U,$J,358.3,50370,1,0)
+ ;;^UTILITY(U,$J,358.3,47982,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Defibrillator
+ ;;^UTILITY(U,$J,358.3,47982,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,47982,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,47983,0)
+ ;;=Z95.5^^185^2414^66
+ ;;^UTILITY(U,$J,358.3,47983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50370,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Hand
- ;;^UTILITY(U,$J,358.3,50370,1,4,0)
- ;;=4^M05.842
- ;;^UTILITY(U,$J,358.3,50370,2)
- ;;=^5010034
- ;;^UTILITY(U,$J,358.3,50371,0)
- ;;=M05.852^^219^2448^27
- ;;^UTILITY(U,$J,358.3,50371,1,0)
+ ;;^UTILITY(U,$J,358.3,47983,1,3,0)
+ ;;=3^Presence of Coronary Angioplasty Implant & Graft
+ ;;^UTILITY(U,$J,358.3,47983,1,4,0)
+ ;;=4^Z95.5
+ ;;^UTILITY(U,$J,358.3,47983,2)
+ ;;=^5063673
+ ;;^UTILITY(U,$J,358.3,47984,0)
+ ;;=Z95.811^^185^2414^68
+ ;;^UTILITY(U,$J,358.3,47984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50371,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Hip
- ;;^UTILITY(U,$J,358.3,50371,1,4,0)
- ;;=4^M05.852
- ;;^UTILITY(U,$J,358.3,50371,2)
- ;;=^5010037
- ;;^UTILITY(U,$J,358.3,50372,0)
- ;;=M05.862^^219^2448^28
- ;;^UTILITY(U,$J,358.3,50372,1,0)
+ ;;^UTILITY(U,$J,358.3,47984,1,3,0)
+ ;;=3^Presence of Heart Assist Device
+ ;;^UTILITY(U,$J,358.3,47984,1,4,0)
+ ;;=4^Z95.811
+ ;;^UTILITY(U,$J,358.3,47984,2)
+ ;;=^5063675
+ ;;^UTILITY(U,$J,358.3,47985,0)
+ ;;=Z95.812^^185^2414^67
+ ;;^UTILITY(U,$J,358.3,47985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50372,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Knee
- ;;^UTILITY(U,$J,358.3,50372,1,4,0)
- ;;=4^M05.862
- ;;^UTILITY(U,$J,358.3,50372,2)
- ;;=^5010040
- ;;^UTILITY(U,$J,358.3,50373,0)
- ;;=M05.812^^219^2448^29
- ;;^UTILITY(U,$J,358.3,50373,1,0)
+ ;;^UTILITY(U,$J,358.3,47985,1,3,0)
+ ;;=3^Presence of Fully Implantable Artificial Heart
+ ;;^UTILITY(U,$J,358.3,47985,1,4,0)
+ ;;=4^Z95.812
+ ;;^UTILITY(U,$J,358.3,47985,2)
+ ;;=^5063676
+ ;;^UTILITY(U,$J,358.3,47986,0)
+ ;;=Z95.818^^185^2414^64
+ ;;^UTILITY(U,$J,358.3,47986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50373,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Shldr
- ;;^UTILITY(U,$J,358.3,50373,1,4,0)
- ;;=4^M05.812
- ;;^UTILITY(U,$J,358.3,50373,2)
- ;;=^5010025
- ;;^UTILITY(U,$J,358.3,50374,0)
- ;;=M05.832^^219^2448^30
- ;;^UTILITY(U,$J,358.3,50374,1,0)
+ ;;^UTILITY(U,$J,358.3,47986,1,3,0)
+ ;;=3^Presence of Cardiac Implants & Grafts,Other
+ ;;^UTILITY(U,$J,358.3,47986,1,4,0)
+ ;;=4^Z95.818
+ ;;^UTILITY(U,$J,358.3,47986,2)
+ ;;=^5063677
+ ;;^UTILITY(U,$J,358.3,47987,0)
+ ;;=Z95.820^^185^2414^69
+ ;;^UTILITY(U,$J,358.3,47987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50374,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Left Wrist
- ;;^UTILITY(U,$J,358.3,50374,1,4,0)
- ;;=4^M05.832
- ;;^UTILITY(U,$J,358.3,50374,2)
- ;;=^5010031
- ;;^UTILITY(U,$J,358.3,50375,0)
- ;;=M05.89^^219^2448^31
- ;;^UTILITY(U,$J,358.3,50375,1,0)
+ ;;^UTILITY(U,$J,358.3,47987,1,3,0)
+ ;;=3^Presence of Peripheral Vasc Angioplasty w/ Implants & Grafts
+ ;;^UTILITY(U,$J,358.3,47987,1,4,0)
+ ;;=4^Z95.820
+ ;;^UTILITY(U,$J,358.3,47987,2)
+ ;;=^5063678
+ ;;^UTILITY(U,$J,358.3,47988,0)
+ ;;=Z95.828^^185^2414^71
+ ;;^UTILITY(U,$J,358.3,47988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50375,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Mult Sites
- ;;^UTILITY(U,$J,358.3,50375,1,4,0)
- ;;=4^M05.89
- ;;^UTILITY(U,$J,358.3,50375,2)
- ;;=^5010045
- ;;^UTILITY(U,$J,358.3,50376,0)
- ;;=M05.871^^219^2448^32
- ;;^UTILITY(U,$J,358.3,50376,1,0)
+ ;;^UTILITY(U,$J,358.3,47988,1,3,0)
+ ;;=3^Presence of Vascular Implants & Grafts,Other
+ ;;^UTILITY(U,$J,358.3,47988,1,4,0)
+ ;;=4^Z95.828
+ ;;^UTILITY(U,$J,358.3,47988,2)
+ ;;=^5063679
+ ;;^UTILITY(U,$J,358.3,47989,0)
+ ;;=Z95.2^^185^2414^70
+ ;;^UTILITY(U,$J,358.3,47989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50376,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50376,1,4,0)
- ;;=4^M05.871
- ;;^UTILITY(U,$J,358.3,50376,2)
- ;;=^5010042
- ;;^UTILITY(U,$J,358.3,50377,0)
- ;;=M05.821^^219^2448^33
- ;;^UTILITY(U,$J,358.3,50377,1,0)
+ ;;^UTILITY(U,$J,358.3,47989,1,3,0)
+ ;;=3^Presence of Prostetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,47989,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,47989,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,47990,0)
+ ;;=Z95.3^^185^2414^72
+ ;;^UTILITY(U,$J,358.3,47990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50377,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Elbow
- ;;^UTILITY(U,$J,358.3,50377,1,4,0)
- ;;=4^M05.821
- ;;^UTILITY(U,$J,358.3,50377,2)
- ;;=^5010027
- ;;^UTILITY(U,$J,358.3,50378,0)
- ;;=M05.841^^219^2448^34
- ;;^UTILITY(U,$J,358.3,50378,1,0)
+ ;;^UTILITY(U,$J,358.3,47990,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,47990,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,47990,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,47991,0)
+ ;;=I27.9^^185^2414^73
+ ;;^UTILITY(U,$J,358.3,47991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50378,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Hand
- ;;^UTILITY(U,$J,358.3,50378,1,4,0)
- ;;=4^M05.841
- ;;^UTILITY(U,$J,358.3,50378,2)
- ;;=^5010033
- ;;^UTILITY(U,$J,358.3,50379,0)
- ;;=M05.851^^219^2448^35
- ;;^UTILITY(U,$J,358.3,50379,1,0)
+ ;;^UTILITY(U,$J,358.3,47991,1,3,0)
+ ;;=3^Pulmonary Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,47991,1,4,0)
+ ;;=4^I27.9
+ ;;^UTILITY(U,$J,358.3,47991,2)
+ ;;=^5007154
+ ;;^UTILITY(U,$J,358.3,47992,0)
+ ;;=I27.0^^185^2414^74
+ ;;^UTILITY(U,$J,358.3,47992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50379,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Hip
- ;;^UTILITY(U,$J,358.3,50379,1,4,0)
- ;;=4^M05.851
- ;;^UTILITY(U,$J,358.3,50379,2)
- ;;=^5010036
- ;;^UTILITY(U,$J,358.3,50380,0)
- ;;=M05.861^^219^2448^36
- ;;^UTILITY(U,$J,358.3,50380,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50380,1,3,0)
- ;;=3^Rheu Arth w/ Rheu Factor Right Knee
+ ;;^UTILITY(U,$J,358.3,47992,1,3,0)
+ ;;=3^Pulmonary Hypertension,Primary
+ ;;^UTILITY(U,$J,358.3,47992,1,4,0)
+ ;;=4^I27.0
+ ;;^UTILITY(U,$J,358.3,47992,2)
+ ;;=^265310

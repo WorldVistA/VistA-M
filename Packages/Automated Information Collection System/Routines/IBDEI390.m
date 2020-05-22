@@ -1,132 +1,128 @@
-IBDEI390 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI390 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54589,1,4,0)
- ;;=4^E04.0
- ;;^UTILITY(U,$J,358.3,54589,2)
- ;;=^5002477
- ;;^UTILITY(U,$J,358.3,54590,0)
- ;;=E04.1^^256^2767^41
- ;;^UTILITY(U,$J,358.3,54590,1,0)
+ ;;^UTILITY(U,$J,358.3,51858,0)
+ ;;=Z32.00^^193^2513^93
+ ;;^UTILITY(U,$J,358.3,51858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54590,1,3,0)
- ;;=3^Nontoxic Single Thyroid Nodule
- ;;^UTILITY(U,$J,358.3,54590,1,4,0)
- ;;=4^E04.1
- ;;^UTILITY(U,$J,358.3,54590,2)
- ;;=^5002478
- ;;^UTILITY(U,$J,358.3,54591,0)
- ;;=E04.2^^256^2767^40
- ;;^UTILITY(U,$J,358.3,54591,1,0)
+ ;;^UTILITY(U,$J,358.3,51858,1,3,0)
+ ;;=3^Pregnancy Test,Unknown Result
+ ;;^UTILITY(U,$J,358.3,51858,1,4,0)
+ ;;=4^Z32.00
+ ;;^UTILITY(U,$J,358.3,51858,2)
+ ;;=^5062848
+ ;;^UTILITY(U,$J,358.3,51859,0)
+ ;;=N81.6^^193^2513^97
+ ;;^UTILITY(U,$J,358.3,51859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54591,1,3,0)
- ;;=3^Nontoxic Multinodular Goiter
- ;;^UTILITY(U,$J,358.3,54591,1,4,0)
- ;;=4^E04.2
- ;;^UTILITY(U,$J,358.3,54591,2)
- ;;=^267790
- ;;^UTILITY(U,$J,358.3,54592,0)
- ;;=E01.1^^256^2767^36
- ;;^UTILITY(U,$J,358.3,54592,1,0)
+ ;;^UTILITY(U,$J,358.3,51859,1,3,0)
+ ;;=3^Rectocele w/o Uterine Prolapse
+ ;;^UTILITY(U,$J,358.3,51859,1,4,0)
+ ;;=4^N81.6
+ ;;^UTILITY(U,$J,358.3,51859,2)
+ ;;=^259590
+ ;;^UTILITY(U,$J,358.3,51860,0)
+ ;;=Z12.39^^193^2513^101
+ ;;^UTILITY(U,$J,358.3,51860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54592,1,3,0)
- ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
- ;;^UTILITY(U,$J,358.3,54592,1,4,0)
- ;;=4^E01.1
- ;;^UTILITY(U,$J,358.3,54592,2)
- ;;=^5002465
- ;;^UTILITY(U,$J,358.3,54593,0)
- ;;=E05.00^^256^2767^56
- ;;^UTILITY(U,$J,358.3,54593,1,0)
+ ;;^UTILITY(U,$J,358.3,51860,1,3,0)
+ ;;=3^Screening for Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,51860,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,51860,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,51861,0)
+ ;;=Z12.72^^193^2513^102
+ ;;^UTILITY(U,$J,358.3,51861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54593,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
- ;;^UTILITY(U,$J,358.3,54593,1,4,0)
- ;;=4^E05.00
- ;;^UTILITY(U,$J,358.3,54593,2)
- ;;=^5002481
- ;;^UTILITY(U,$J,358.3,54594,0)
- ;;=E05.01^^256^2767^55
- ;;^UTILITY(U,$J,358.3,54594,1,0)
+ ;;^UTILITY(U,$J,358.3,51861,1,3,0)
+ ;;=3^Screening for Malig Neop of Vagina
+ ;;^UTILITY(U,$J,358.3,51861,1,4,0)
+ ;;=4^Z12.72
+ ;;^UTILITY(U,$J,358.3,51861,2)
+ ;;=^5062691
+ ;;^UTILITY(U,$J,358.3,51862,0)
+ ;;=Z12.31^^193^2513^100
+ ;;^UTILITY(U,$J,358.3,51862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54594,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,54594,1,4,0)
- ;;=4^E05.01
- ;;^UTILITY(U,$J,358.3,54594,2)
- ;;=^5002482
- ;;^UTILITY(U,$J,358.3,54595,0)
- ;;=E05.90^^256^2767^58
- ;;^UTILITY(U,$J,358.3,54595,1,0)
+ ;;^UTILITY(U,$J,358.3,51862,1,3,0)
+ ;;=3^Screening Mammogram for Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,51862,1,4,0)
+ ;;=4^Z12.31
+ ;;^UTILITY(U,$J,358.3,51862,2)
+ ;;=^5062685
+ ;;^UTILITY(U,$J,358.3,51863,0)
+ ;;=A59.01^^193^2513^109
+ ;;^UTILITY(U,$J,358.3,51863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54595,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,54595,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,54595,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,54596,0)
- ;;=E05.91^^256^2767^57
- ;;^UTILITY(U,$J,358.3,54596,1,0)
+ ;;^UTILITY(U,$J,358.3,51863,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,51863,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,51863,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,51864,0)
+ ;;=N81.3^^193^2513^110
+ ;;^UTILITY(U,$J,358.3,51864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54596,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,54596,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,54596,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,54597,0)
- ;;=E89.0^^256^2767^50
- ;;^UTILITY(U,$J,358.3,54597,1,0)
+ ;;^UTILITY(U,$J,358.3,51864,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Complete
+ ;;^UTILITY(U,$J,358.3,51864,1,4,0)
+ ;;=4^N81.3
+ ;;^UTILITY(U,$J,358.3,51864,2)
+ ;;=^5015840
+ ;;^UTILITY(U,$J,358.3,51865,0)
+ ;;=N81.2^^193^2513^111
+ ;;^UTILITY(U,$J,358.3,51865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54597,1,3,0)
- ;;=3^Postprocedural Hypothyroidism
- ;;^UTILITY(U,$J,358.3,54597,1,4,0)
- ;;=4^E89.0
- ;;^UTILITY(U,$J,358.3,54597,2)
- ;;=^5003035
- ;;^UTILITY(U,$J,358.3,54598,0)
- ;;=E03.2^^256^2767^32
- ;;^UTILITY(U,$J,358.3,54598,1,0)
+ ;;^UTILITY(U,$J,358.3,51865,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Incomplete
+ ;;^UTILITY(U,$J,358.3,51865,1,4,0)
+ ;;=4^N81.2
+ ;;^UTILITY(U,$J,358.3,51865,2)
+ ;;=^5015839
+ ;;^UTILITY(U,$J,358.3,51866,0)
+ ;;=N76.0^^193^2513^117
+ ;;^UTILITY(U,$J,358.3,51866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54598,1,3,0)
- ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
- ;;^UTILITY(U,$J,358.3,54598,1,4,0)
- ;;=4^E03.2
- ;;^UTILITY(U,$J,358.3,54598,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,54599,0)
- ;;=E03.9^^256^2767^33
- ;;^UTILITY(U,$J,358.3,54599,1,0)
+ ;;^UTILITY(U,$J,358.3,51866,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,51866,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,51866,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,51867,0)
+ ;;=N95.2^^193^2513^118
+ ;;^UTILITY(U,$J,358.3,51867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54599,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,54599,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,54599,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,54600,0)
- ;;=E06.0^^256^2767^53
- ;;^UTILITY(U,$J,358.3,54600,1,0)
+ ;;^UTILITY(U,$J,358.3,51867,1,3,0)
+ ;;=3^Vaginitis,Atrophic,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,51867,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,51867,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,51868,0)
+ ;;=N76.1^^193^2513^119
+ ;;^UTILITY(U,$J,358.3,51868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54600,1,3,0)
- ;;=3^Thyroiditis,Acute
- ;;^UTILITY(U,$J,358.3,54600,1,4,0)
- ;;=4^E06.0
- ;;^UTILITY(U,$J,358.3,54600,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,54601,0)
- ;;=E06.1^^256^2767^54
- ;;^UTILITY(U,$J,358.3,54601,1,0)
+ ;;^UTILITY(U,$J,358.3,51868,1,3,0)
+ ;;=3^Vaginitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,51868,1,4,0)
+ ;;=4^N76.1
+ ;;^UTILITY(U,$J,358.3,51868,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,51869,0)
+ ;;=N94.810^^193^2513^121
+ ;;^UTILITY(U,$J,358.3,51869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54601,1,3,0)
- ;;=3^Thyroiditis,Subacute
- ;;^UTILITY(U,$J,358.3,54601,1,4,0)
- ;;=4^E06.1
- ;;^UTILITY(U,$J,358.3,54601,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,54602,0)
- ;;=C73.^^256^2767^37
- ;;^UTILITY(U,$J,358.3,54602,1,0)
+ ;;^UTILITY(U,$J,358.3,51869,1,3,0)
+ ;;=3^Vulvar Vestibulitis
+ ;;^UTILITY(U,$J,358.3,51869,1,4,0)
+ ;;=4^N94.810
+ ;;^UTILITY(U,$J,358.3,51869,2)
+ ;;=^336618
+ ;;^UTILITY(U,$J,358.3,51870,0)
+ ;;=N76.2^^193^2513^122
+ ;;^UTILITY(U,$J,358.3,51870,1,0)
  ;;=^358.31IA^4^2

@@ -1,128 +1,124 @@
-IBDEI271 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI271 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37210,1,3,0)
- ;;=3^Compl rotatr-cuff tear/ruptr of lft shldr, not trauma
- ;;^UTILITY(U,$J,358.3,37210,1,4,0)
- ;;=4^M75.122
- ;;^UTILITY(U,$J,358.3,37210,2)
- ;;=^5013249
- ;;^UTILITY(U,$J,358.3,37211,0)
- ;;=M66.821^^140^1787^273
- ;;^UTILITY(U,$J,358.3,37211,1,0)
+ ;;^UTILITY(U,$J,358.3,35030,1,4,0)
+ ;;=4^G81.92
+ ;;^UTILITY(U,$J,358.3,35030,2)
+ ;;=^5004122
+ ;;^UTILITY(U,$J,358.3,35031,0)
+ ;;=G81.94^^137^1792^7
+ ;;^UTILITY(U,$J,358.3,35031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37211,1,3,0)
- ;;=3^Spont rptr of oth tendons, rt upper arm
- ;;^UTILITY(U,$J,358.3,37211,1,4,0)
- ;;=4^M66.821
- ;;^UTILITY(U,$J,358.3,37211,2)
- ;;=^5012896
- ;;^UTILITY(U,$J,358.3,37212,0)
- ;;=M66.822^^140^1787^271
- ;;^UTILITY(U,$J,358.3,37212,1,0)
+ ;;^UTILITY(U,$J,358.3,35031,1,3,0)
+ ;;=3^Hemiplegia,Unspec Affecting Left Nondominant Side
+ ;;^UTILITY(U,$J,358.3,35031,1,4,0)
+ ;;=4^G81.94
+ ;;^UTILITY(U,$J,358.3,35031,2)
+ ;;=^5004124
+ ;;^UTILITY(U,$J,358.3,35032,0)
+ ;;=G81.91^^137^1792^8
+ ;;^UTILITY(U,$J,358.3,35032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37212,1,3,0)
- ;;=3^Spont rptr of oth tendons, lft upper arm
- ;;^UTILITY(U,$J,358.3,37212,1,4,0)
- ;;=4^M66.822
- ;;^UTILITY(U,$J,358.3,37212,2)
- ;;=^5133838
- ;;^UTILITY(U,$J,358.3,37213,0)
- ;;=M66.231^^140^1787^260
- ;;^UTILITY(U,$J,358.3,37213,1,0)
+ ;;^UTILITY(U,$J,358.3,35032,1,3,0)
+ ;;=3^Hemiplegia,Unspec Affecting Right Dominant Side
+ ;;^UTILITY(U,$J,358.3,35032,1,4,0)
+ ;;=4^G81.91
+ ;;^UTILITY(U,$J,358.3,35032,2)
+ ;;=^5004121
+ ;;^UTILITY(U,$J,358.3,35033,0)
+ ;;=G81.93^^137^1792^9
+ ;;^UTILITY(U,$J,358.3,35033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37213,1,3,0)
- ;;=3^Spont rptr of extensor tendons, rt forearm
- ;;^UTILITY(U,$J,358.3,37213,1,4,0)
- ;;=4^M66.231
- ;;^UTILITY(U,$J,358.3,37213,2)
- ;;=^5012854
- ;;^UTILITY(U,$J,358.3,37214,0)
- ;;=M66.232^^140^1787^256
- ;;^UTILITY(U,$J,358.3,37214,1,0)
+ ;;^UTILITY(U,$J,358.3,35033,1,3,0)
+ ;;=3^Hemiplegia,Unspec Affecting Right Nondominant Side
+ ;;^UTILITY(U,$J,358.3,35033,1,4,0)
+ ;;=4^G81.93
+ ;;^UTILITY(U,$J,358.3,35033,2)
+ ;;=^5004123
+ ;;^UTILITY(U,$J,358.3,35034,0)
+ ;;=I69.942^^137^1792^22
+ ;;^UTILITY(U,$J,358.3,35034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37214,1,3,0)
- ;;=3^Spont rptr of extensor tendons, lft forearm
- ;;^UTILITY(U,$J,358.3,37214,1,4,0)
- ;;=4^M66.232
- ;;^UTILITY(U,$J,358.3,37214,2)
- ;;=^5012855
- ;;^UTILITY(U,$J,358.3,37215,0)
- ;;=M66.241^^140^1787^261
- ;;^UTILITY(U,$J,358.3,37215,1,0)
+ ;;^UTILITY(U,$J,358.3,35034,1,3,0)
+ ;;=3^Monoplg LL after Unsp Crbvasc Dis,Left Dominant Side
+ ;;^UTILITY(U,$J,358.3,35034,1,4,0)
+ ;;=4^I69.942
+ ;;^UTILITY(U,$J,358.3,35034,2)
+ ;;=^5133582
+ ;;^UTILITY(U,$J,358.3,35035,0)
+ ;;=I69.944^^137^1792^23
+ ;;^UTILITY(U,$J,358.3,35035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37215,1,3,0)
- ;;=3^Spont rptr of extensor tendons, rt hand
- ;;^UTILITY(U,$J,358.3,37215,1,4,0)
- ;;=4^M66.241
- ;;^UTILITY(U,$J,358.3,37215,2)
- ;;=^5012857
- ;;^UTILITY(U,$J,358.3,37216,0)
- ;;=M66.242^^140^1787^257
- ;;^UTILITY(U,$J,358.3,37216,1,0)
+ ;;^UTILITY(U,$J,358.3,35035,1,3,0)
+ ;;=3^Monoplg LL after Unsp Crbvasc Dis,Left Nondominant Side
+ ;;^UTILITY(U,$J,358.3,35035,1,4,0)
+ ;;=4^I69.944
+ ;;^UTILITY(U,$J,358.3,35035,2)
+ ;;=^5133585
+ ;;^UTILITY(U,$J,358.3,35036,0)
+ ;;=I69.941^^137^1792^24
+ ;;^UTILITY(U,$J,358.3,35036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37216,1,3,0)
- ;;=3^Spont rptr of extensor tendons, lft hand
- ;;^UTILITY(U,$J,358.3,37216,1,4,0)
- ;;=4^M66.242
- ;;^UTILITY(U,$J,358.3,37216,2)
- ;;=^5012858
- ;;^UTILITY(U,$J,358.3,37217,0)
- ;;=M66.331^^140^1787^267
- ;;^UTILITY(U,$J,358.3,37217,1,0)
+ ;;^UTILITY(U,$J,358.3,35036,1,3,0)
+ ;;=3^Monoplg LL after Unsp Crbvasc Dis,Right Dominant Side
+ ;;^UTILITY(U,$J,358.3,35036,1,4,0)
+ ;;=4^I69.941
+ ;;^UTILITY(U,$J,358.3,35036,2)
+ ;;=^5133581
+ ;;^UTILITY(U,$J,358.3,35037,0)
+ ;;=I69.943^^137^1792^25
+ ;;^UTILITY(U,$J,358.3,35037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37217,1,3,0)
- ;;=3^Spont rptr of flexor tendons, rt forearm
- ;;^UTILITY(U,$J,358.3,37217,1,4,0)
- ;;=4^M66.331
- ;;^UTILITY(U,$J,358.3,37217,2)
- ;;=^5012878
- ;;^UTILITY(U,$J,358.3,37218,0)
- ;;=M66.332^^140^1787^264
- ;;^UTILITY(U,$J,358.3,37218,1,0)
+ ;;^UTILITY(U,$J,358.3,35037,1,3,0)
+ ;;=3^Monoplg LL after Unsp Crbvasc Dis,Right Nondominant Side
+ ;;^UTILITY(U,$J,358.3,35037,1,4,0)
+ ;;=4^I69.943
+ ;;^UTILITY(U,$J,358.3,35037,2)
+ ;;=^5133584
+ ;;^UTILITY(U,$J,358.3,35038,0)
+ ;;=G35.^^137^1792^26
+ ;;^UTILITY(U,$J,358.3,35038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37218,1,3,0)
- ;;=3^Spont rptr of flexor tendons, lft forearm
- ;;^UTILITY(U,$J,358.3,37218,1,4,0)
- ;;=4^M66.332
- ;;^UTILITY(U,$J,358.3,37218,2)
- ;;=^5012879
- ;;^UTILITY(U,$J,358.3,37219,0)
- ;;=M66.341^^140^1787^268
- ;;^UTILITY(U,$J,358.3,37219,1,0)
+ ;;^UTILITY(U,$J,358.3,35038,1,3,0)
+ ;;=3^Multiple sclerosis
+ ;;^UTILITY(U,$J,358.3,35038,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,35038,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,35039,0)
+ ;;=G20.^^137^1792^27
+ ;;^UTILITY(U,$J,358.3,35039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37219,1,3,0)
- ;;=3^Spont rptr of flexor tendons, rt hand
- ;;^UTILITY(U,$J,358.3,37219,1,4,0)
- ;;=4^M66.341
- ;;^UTILITY(U,$J,358.3,37219,2)
- ;;=^5012881
- ;;^UTILITY(U,$J,358.3,37220,0)
- ;;=M66.342^^140^1787^265
- ;;^UTILITY(U,$J,358.3,37220,1,0)
+ ;;^UTILITY(U,$J,358.3,35039,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,35039,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,35039,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,35040,0)
+ ;;=R56.9^^137^1792^3
+ ;;^UTILITY(U,$J,358.3,35040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37220,1,3,0)
- ;;=3^Spont rptr of flexor tendons, lft hand
- ;;^UTILITY(U,$J,358.3,37220,1,4,0)
- ;;=4^M66.342
- ;;^UTILITY(U,$J,358.3,37220,2)
- ;;=^5012882
- ;;^UTILITY(U,$J,358.3,37221,0)
- ;;=M66.251^^140^1787^263
- ;;^UTILITY(U,$J,358.3,37221,1,0)
+ ;;^UTILITY(U,$J,358.3,35040,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,35040,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,35040,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,35041,0)
+ ;;=S06.9X5S^^137^1792^14
+ ;;^UTILITY(U,$J,358.3,35041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37221,1,3,0)
- ;;=3^Spont rptr of extensor tendons, rt thigh
- ;;^UTILITY(U,$J,358.3,37221,1,4,0)
- ;;=4^M66.251
- ;;^UTILITY(U,$J,358.3,37221,2)
- ;;=^5012860
- ;;^UTILITY(U,$J,358.3,37222,0)
- ;;=M66.252^^140^1787^259
- ;;^UTILITY(U,$J,358.3,37222,1,0)
+ ;;^UTILITY(U,$J,358.3,35041,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,35041,1,4,0)
+ ;;=4^S06.9X5S
+ ;;^UTILITY(U,$J,358.3,35041,2)
+ ;;=^5021223
+ ;;^UTILITY(U,$J,358.3,35042,0)
+ ;;=S06.9X6S^^137^1792^15
+ ;;^UTILITY(U,$J,358.3,35042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37222,1,3,0)
- ;;=3^Spont rptr of extensor tendons, lft thigh
- ;;^UTILITY(U,$J,358.3,37222,1,4,0)
- ;;=4^M66.252
+ ;;^UTILITY(U,$J,358.3,35042,1,3,0)
+ ;;=3^Intcrn injury w LOC >24 hr w/o ret consc w surv, sqla

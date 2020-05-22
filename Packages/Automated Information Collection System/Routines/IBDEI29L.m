@@ -1,130 +1,128 @@
-IBDEI29L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI29L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38402,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,38403,0)
- ;;=F43.10^^145^1863^11
- ;;^UTILITY(U,$J,358.3,38403,1,0)
+ ;;^UTILITY(U,$J,358.3,36154,0)
+ ;;=M06.342^^139^1832^67
+ ;;^UTILITY(U,$J,358.3,36154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38403,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,38403,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,38403,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,38404,0)
- ;;=F43.8^^145^1863^12
- ;;^UTILITY(U,$J,358.3,38404,1,0)
+ ;;^UTILITY(U,$J,358.3,36154,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Hand
+ ;;^UTILITY(U,$J,358.3,36154,1,4,0)
+ ;;=4^M06.342
+ ;;^UTILITY(U,$J,358.3,36154,2)
+ ;;=^5010107
+ ;;^UTILITY(U,$J,358.3,36155,0)
+ ;;=M06.352^^139^1832^68
+ ;;^UTILITY(U,$J,358.3,36155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38404,1,3,0)
- ;;=3^Reaction to Severe Stress,Other
- ;;^UTILITY(U,$J,358.3,38404,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,38404,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,38405,0)
- ;;=F43.9^^145^1863^13
- ;;^UTILITY(U,$J,358.3,38405,1,0)
+ ;;^UTILITY(U,$J,358.3,36155,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Hip
+ ;;^UTILITY(U,$J,358.3,36155,1,4,0)
+ ;;=4^M06.352
+ ;;^UTILITY(U,$J,358.3,36155,2)
+ ;;=^5010110
+ ;;^UTILITY(U,$J,358.3,36156,0)
+ ;;=M06.362^^139^1832^69
+ ;;^UTILITY(U,$J,358.3,36156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38405,1,3,0)
- ;;=3^Reaction to Severe Stress,Unspec
- ;;^UTILITY(U,$J,358.3,38405,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,38405,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,38406,0)
- ;;=F94.1^^145^1863^14
- ;;^UTILITY(U,$J,358.3,38406,1,0)
+ ;;^UTILITY(U,$J,358.3,36156,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Knee
+ ;;^UTILITY(U,$J,358.3,36156,1,4,0)
+ ;;=4^M06.362
+ ;;^UTILITY(U,$J,358.3,36156,2)
+ ;;=^5010113
+ ;;^UTILITY(U,$J,358.3,36157,0)
+ ;;=M06.312^^139^1832^70
+ ;;^UTILITY(U,$J,358.3,36157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38406,1,3,0)
- ;;=3^Reactive Attachment Disorder
- ;;^UTILITY(U,$J,358.3,38406,1,4,0)
- ;;=4^F94.1
- ;;^UTILITY(U,$J,358.3,38406,2)
- ;;=^5003705
- ;;^UTILITY(U,$J,358.3,38407,0)
- ;;=F94.2^^145^1863^8
- ;;^UTILITY(U,$J,358.3,38407,1,0)
+ ;;^UTILITY(U,$J,358.3,36157,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,36157,1,4,0)
+ ;;=4^M06.312
+ ;;^UTILITY(U,$J,358.3,36157,2)
+ ;;=^5010098
+ ;;^UTILITY(U,$J,358.3,36158,0)
+ ;;=M06.332^^139^1832^71
+ ;;^UTILITY(U,$J,358.3,36158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38407,1,3,0)
- ;;=3^Disinhibited Social Engagement Disorder
- ;;^UTILITY(U,$J,358.3,38407,1,4,0)
- ;;=4^F94.2
- ;;^UTILITY(U,$J,358.3,38407,2)
- ;;=^5003706
- ;;^UTILITY(U,$J,358.3,38408,0)
- ;;=F18.10^^145^1864^21
- ;;^UTILITY(U,$J,358.3,38408,1,0)
+ ;;^UTILITY(U,$J,358.3,36158,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,36158,1,4,0)
+ ;;=4^M06.332
+ ;;^UTILITY(U,$J,358.3,36158,2)
+ ;;=^5010104
+ ;;^UTILITY(U,$J,358.3,36159,0)
+ ;;=M06.39^^139^1832^72
+ ;;^UTILITY(U,$J,358.3,36159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38408,1,3,0)
- ;;=3^Inhalant Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38408,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,38408,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,38409,0)
- ;;=F18.20^^145^1864^22
- ;;^UTILITY(U,$J,358.3,38409,1,0)
+ ;;^UTILITY(U,$J,358.3,36159,1,3,0)
+ ;;=3^Rheumatoid Nodule,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,36159,1,4,0)
+ ;;=4^M06.39
+ ;;^UTILITY(U,$J,358.3,36159,2)
+ ;;=^5010119
+ ;;^UTILITY(U,$J,358.3,36160,0)
+ ;;=M06.371^^139^1832^73
+ ;;^UTILITY(U,$J,358.3,36160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38409,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38409,1,4,0)
- ;;=4^F18.20
- ;;^UTILITY(U,$J,358.3,38409,2)
- ;;=^5003392
- ;;^UTILITY(U,$J,358.3,38410,0)
- ;;=F18.21^^145^1864^23
- ;;^UTILITY(U,$J,358.3,38410,1,0)
+ ;;^UTILITY(U,$J,358.3,36160,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36160,1,4,0)
+ ;;=4^M06.371
+ ;;^UTILITY(U,$J,358.3,36160,2)
+ ;;=^5010115
+ ;;^UTILITY(U,$J,358.3,36161,0)
+ ;;=M06.321^^139^1832^74
+ ;;^UTILITY(U,$J,358.3,36161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38410,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,38410,1,4,0)
- ;;=4^F18.21
- ;;^UTILITY(U,$J,358.3,38410,2)
- ;;=^5003393
- ;;^UTILITY(U,$J,358.3,38411,0)
- ;;=F18.14^^145^1864^24
- ;;^UTILITY(U,$J,358.3,38411,1,0)
+ ;;^UTILITY(U,$J,358.3,36161,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,36161,1,4,0)
+ ;;=4^M06.321
+ ;;^UTILITY(U,$J,358.3,36161,2)
+ ;;=^5010100
+ ;;^UTILITY(U,$J,358.3,36162,0)
+ ;;=M06.341^^139^1832^75
+ ;;^UTILITY(U,$J,358.3,36162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38411,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38411,1,4,0)
- ;;=4^F18.14
- ;;^UTILITY(U,$J,358.3,38411,2)
- ;;=^5003384
- ;;^UTILITY(U,$J,358.3,38412,0)
- ;;=F18.24^^145^1864^25
- ;;^UTILITY(U,$J,358.3,38412,1,0)
+ ;;^UTILITY(U,$J,358.3,36162,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Hand
+ ;;^UTILITY(U,$J,358.3,36162,1,4,0)
+ ;;=4^M06.341
+ ;;^UTILITY(U,$J,358.3,36162,2)
+ ;;=^5010106
+ ;;^UTILITY(U,$J,358.3,36163,0)
+ ;;=M06.351^^139^1832^76
+ ;;^UTILITY(U,$J,358.3,36163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38412,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38412,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,38412,2)
- ;;=^5003397
- ;;^UTILITY(U,$J,358.3,38413,0)
- ;;=F18.121^^145^1864^14
- ;;^UTILITY(U,$J,358.3,38413,1,0)
+ ;;^UTILITY(U,$J,358.3,36163,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Hip
+ ;;^UTILITY(U,$J,358.3,36163,1,4,0)
+ ;;=4^M06.351
+ ;;^UTILITY(U,$J,358.3,36163,2)
+ ;;=^5010109
+ ;;^UTILITY(U,$J,358.3,36164,0)
+ ;;=M06.361^^139^1832^77
+ ;;^UTILITY(U,$J,358.3,36164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38413,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38413,1,4,0)
- ;;=4^F18.121
- ;;^UTILITY(U,$J,358.3,38413,2)
- ;;=^5003382
- ;;^UTILITY(U,$J,358.3,38414,0)
- ;;=F18.221^^145^1864^15
- ;;^UTILITY(U,$J,358.3,38414,1,0)
+ ;;^UTILITY(U,$J,358.3,36164,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Knee
+ ;;^UTILITY(U,$J,358.3,36164,1,4,0)
+ ;;=4^M06.361
+ ;;^UTILITY(U,$J,358.3,36164,2)
+ ;;=^5010112
+ ;;^UTILITY(U,$J,358.3,36165,0)
+ ;;=M06.311^^139^1832^78
+ ;;^UTILITY(U,$J,358.3,36165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38414,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38414,1,4,0)
- ;;=4^F18.221
- ;;^UTILITY(U,$J,358.3,38414,2)
- ;;=^5003395
- ;;^UTILITY(U,$J,358.3,38415,0)
- ;;=F18.921^^145^1864^16
- ;;^UTILITY(U,$J,358.3,38415,1,0)
+ ;;^UTILITY(U,$J,358.3,36165,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,36165,1,4,0)
+ ;;=4^M06.311
+ ;;^UTILITY(U,$J,358.3,36165,2)
+ ;;=^5010097
+ ;;^UTILITY(U,$J,358.3,36166,0)
+ ;;=M06.331^^139^1832^79
+ ;;^UTILITY(U,$J,358.3,36166,1,0)
  ;;=^358.31IA^4^2

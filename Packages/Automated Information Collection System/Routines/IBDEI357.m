@@ -1,134 +1,118 @@
-IBDEI357 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI357 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52754,2)
- ;;=^5003947
- ;;^UTILITY(U,$J,358.3,52755,0)
- ;;=G44.41^^240^2641^8
- ;;^UTILITY(U,$J,358.3,52755,1,0)
+ ;;^UTILITY(U,$J,358.3,50185,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,50185,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,50186,0)
+ ;;=L97.923^^193^2487^209
+ ;;^UTILITY(U,$J,358.3,50186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52755,1,3,0)
- ;;=3^Drug-induced headache, not elsewhere classified, intractable
- ;;^UTILITY(U,$J,358.3,52755,1,4,0)
- ;;=4^G44.41
- ;;^UTILITY(U,$J,358.3,52755,2)
- ;;=^5003948
- ;;^UTILITY(U,$J,358.3,52756,0)
- ;;=G44.51^^240^2641^13
- ;;^UTILITY(U,$J,358.3,52756,1,0)
+ ;;^UTILITY(U,$J,358.3,50186,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,50186,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,50186,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,50187,0)
+ ;;=L97.924^^193^2487^210
+ ;;^UTILITY(U,$J,358.3,50187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52756,1,3,0)
- ;;=3^Hemicrania continua
- ;;^UTILITY(U,$J,358.3,52756,1,4,0)
- ;;=4^G44.51
- ;;^UTILITY(U,$J,358.3,52756,2)
- ;;=^5003949
- ;;^UTILITY(U,$J,358.3,52757,0)
- ;;=G44.52^^240^2641^19
- ;;^UTILITY(U,$J,358.3,52757,1,0)
+ ;;^UTILITY(U,$J,358.3,50187,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,50187,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,50187,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,50188,0)
+ ;;=L97.929^^193^2487^211
+ ;;^UTILITY(U,$J,358.3,50188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52757,1,3,0)
- ;;=3^New daily persistent headache (NDPH)
- ;;^UTILITY(U,$J,358.3,52757,1,4,0)
- ;;=4^G44.52
- ;;^UTILITY(U,$J,358.3,52757,2)
- ;;=^5003950
- ;;^UTILITY(U,$J,358.3,52758,0)
- ;;=G44.53^^240^2641^27
- ;;^UTILITY(U,$J,358.3,52758,1,0)
+ ;;^UTILITY(U,$J,358.3,50188,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,50188,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,50188,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,50189,0)
+ ;;=L98.2^^193^2487^152
+ ;;^UTILITY(U,$J,358.3,50189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52758,1,3,0)
- ;;=3^Primary thunderclap headache
- ;;^UTILITY(U,$J,358.3,52758,1,4,0)
- ;;=4^G44.53
- ;;^UTILITY(U,$J,358.3,52758,2)
- ;;=^5003951
- ;;^UTILITY(U,$J,358.3,52759,0)
- ;;=G44.59^^240^2641^6
- ;;^UTILITY(U,$J,358.3,52759,1,0)
+ ;;^UTILITY(U,$J,358.3,50189,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,50189,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,50189,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,50190,0)
+ ;;=L98.9^^193^2487^307
+ ;;^UTILITY(U,$J,358.3,50190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52759,1,3,0)
- ;;=3^Complicated headache syndrome, other
- ;;^UTILITY(U,$J,358.3,52759,1,4,0)
- ;;=4^G44.59
- ;;^UTILITY(U,$J,358.3,52759,2)
- ;;=^336559
- ;;^UTILITY(U,$J,358.3,52760,0)
- ;;=G44.81^^240^2641^14
- ;;^UTILITY(U,$J,358.3,52760,1,0)
+ ;;^UTILITY(U,$J,358.3,50190,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,50190,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,50190,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,50191,0)
+ ;;=I70.731^^193^2487^81
+ ;;^UTILITY(U,$J,358.3,50191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52760,1,3,0)
- ;;=3^Hypnic headache
- ;;^UTILITY(U,$J,358.3,52760,1,4,0)
- ;;=4^G44.81
- ;;^UTILITY(U,$J,358.3,52760,2)
- ;;=^336560
- ;;^UTILITY(U,$J,358.3,52761,0)
- ;;=G44.83^^240^2641^24
- ;;^UTILITY(U,$J,358.3,52761,1,0)
+ ;;^UTILITY(U,$J,358.3,50191,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,50191,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,50191,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,50192,0)
+ ;;=I70.732^^193^2487^82
+ ;;^UTILITY(U,$J,358.3,50192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52761,1,3,0)
- ;;=3^Primary cough headache
- ;;^UTILITY(U,$J,358.3,52761,1,4,0)
- ;;=4^G44.83
- ;;^UTILITY(U,$J,358.3,52761,2)
- ;;=^336562
- ;;^UTILITY(U,$J,358.3,52762,0)
- ;;=G44.84^^240^2641^25
- ;;^UTILITY(U,$J,358.3,52762,1,0)
+ ;;^UTILITY(U,$J,358.3,50192,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,50192,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,50192,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,50193,0)
+ ;;=I70.733^^193^2487^83
+ ;;^UTILITY(U,$J,358.3,50193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52762,1,3,0)
- ;;=3^Primary exertional headache
- ;;^UTILITY(U,$J,358.3,52762,1,4,0)
- ;;=4^G44.84
- ;;^UTILITY(U,$J,358.3,52762,2)
- ;;=^336563
- ;;^UTILITY(U,$J,358.3,52763,0)
- ;;=G44.85^^240^2641^26
- ;;^UTILITY(U,$J,358.3,52763,1,0)
+ ;;^UTILITY(U,$J,358.3,50193,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,50193,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,50193,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,50194,0)
+ ;;=I70.734^^193^2487^84
+ ;;^UTILITY(U,$J,358.3,50194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52763,1,3,0)
- ;;=3^Primary stabbing headache
- ;;^UTILITY(U,$J,358.3,52763,1,4,0)
- ;;=4^G44.85
- ;;^UTILITY(U,$J,358.3,52763,2)
- ;;=^5003953
- ;;^UTILITY(U,$J,358.3,52764,0)
- ;;=G44.89^^240^2641^12
- ;;^UTILITY(U,$J,358.3,52764,1,0)
+ ;;^UTILITY(U,$J,358.3,50194,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,50194,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,50194,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,50195,0)
+ ;;=I70.735^^193^2487^85
+ ;;^UTILITY(U,$J,358.3,50195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52764,1,3,0)
- ;;=3^Headache syndrome, other
- ;;^UTILITY(U,$J,358.3,52764,1,4,0)
- ;;=4^G44.89
- ;;^UTILITY(U,$J,358.3,52764,2)
- ;;=^5003954
- ;;^UTILITY(U,$J,358.3,52765,0)
- ;;=Z65.5^^240^2642^1
- ;;^UTILITY(U,$J,358.3,52765,1,0)
+ ;;^UTILITY(U,$J,358.3,50195,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,50195,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,50195,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,50196,0)
+ ;;=I70.741^^193^2487^80
+ ;;^UTILITY(U,$J,358.3,50196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52765,1,3,0)
- ;;=3^Exposure to disaster, war and other hostilities
- ;;^UTILITY(U,$J,358.3,52765,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,52765,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,52766,0)
- ;;=E66.9^^240^2643^20
- ;;^UTILITY(U,$J,358.3,52766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52766,1,3,0)
- ;;=3^Obesity, unspecified
- ;;^UTILITY(U,$J,358.3,52766,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,52766,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,52767,0)
- ;;=E66.01^^240^2643^17
- ;;^UTILITY(U,$J,358.3,52767,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52767,1,3,0)
- ;;=3^Morbid (severe) obesity due to excess calories
- ;;^UTILITY(U,$J,358.3,52767,1,4,0)
- ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,50196,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,50196,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,50196,2)
+ ;;=^5133601

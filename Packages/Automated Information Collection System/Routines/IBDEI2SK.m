@@ -1,130 +1,120 @@
-IBDEI2SK ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46862,1,0)
+ ;;^UTILITY(U,$J,358.3,44512,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44512,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,44512,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,44513,0)
+ ;;=F15.229^^164^2207^61
+ ;;^UTILITY(U,$J,358.3,44513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46862,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episoide,Unspec
- ;;^UTILITY(U,$J,358.3,46862,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,46862,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,46863,0)
- ;;=F17.221^^206^2312^4
- ;;^UTILITY(U,$J,358.3,46863,1,0)
+ ;;^UTILITY(U,$J,358.3,44513,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44513,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,44513,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,44514,0)
+ ;;=F15.929^^164^2207^62
+ ;;^UTILITY(U,$J,358.3,44514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46863,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,46863,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,46863,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,46864,0)
- ;;=F17.220^^206^2312^5
- ;;^UTILITY(U,$J,358.3,46864,1,0)
+ ;;^UTILITY(U,$J,358.3,44514,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44514,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,44514,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,44515,0)
+ ;;=F15.121^^164^2207^54
+ ;;^UTILITY(U,$J,358.3,44515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46864,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,46864,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,46864,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,46865,0)
- ;;=F17.211^^206^2312^6
- ;;^UTILITY(U,$J,358.3,46865,1,0)
+ ;;^UTILITY(U,$J,358.3,44515,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44515,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,44515,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,44516,0)
+ ;;=F15.221^^164^2207^55
+ ;;^UTILITY(U,$J,358.3,44516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46865,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,46865,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,46865,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,46866,0)
- ;;=F17.210^^206^2312^7
- ;;^UTILITY(U,$J,358.3,46866,1,0)
+ ;;^UTILITY(U,$J,358.3,44516,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44516,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,44516,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,44517,0)
+ ;;=F15.921^^164^2207^56
+ ;;^UTILITY(U,$J,358.3,44517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46866,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,46866,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,46866,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,46867,0)
- ;;=F17.291^^206^2312^8
- ;;^UTILITY(U,$J,358.3,46867,1,0)
+ ;;^UTILITY(U,$J,358.3,44517,1,3,0)
+ ;;=3^Oth Stimulant Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44517,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,44517,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,44518,0)
+ ;;=F15.23^^164^2207^67
+ ;;^UTILITY(U,$J,358.3,44518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46867,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,46867,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,46867,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,46868,0)
- ;;=F17.290^^206^2312^9
- ;;^UTILITY(U,$J,358.3,46868,1,0)
+ ;;^UTILITY(U,$J,358.3,44518,1,3,0)
+ ;;=3^Oth Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,44518,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,44518,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,44519,0)
+ ;;=F15.10^^164^2207^64
+ ;;^UTILITY(U,$J,358.3,44519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46868,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,46868,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,46868,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,46869,0)
- ;;=F17.201^^206^2312^10
- ;;^UTILITY(U,$J,358.3,46869,1,0)
+ ;;^UTILITY(U,$J,358.3,44519,1,3,0)
+ ;;=3^Oth Stimulant Mild Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,44519,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,44519,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,44520,0)
+ ;;=F15.20^^164^2207^65
+ ;;^UTILITY(U,$J,358.3,44520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46869,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,In Remission
- ;;^UTILITY(U,$J,358.3,46869,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,46869,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,46870,0)
- ;;=F17.200^^206^2312^11
- ;;^UTILITY(U,$J,358.3,46870,1,0)
+ ;;^UTILITY(U,$J,358.3,44520,1,3,0)
+ ;;=3^Oth Stimulant Mod/Sev Use D/O,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,44520,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,44520,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,44521,0)
+ ;;=F14.180^^164^2207^1
+ ;;^UTILITY(U,$J,358.3,44521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46870,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,46870,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,46870,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,46871,0)
- ;;=F19.20^^206^2312^15
- ;;^UTILITY(U,$J,358.3,46871,1,0)
+ ;;^UTILITY(U,$J,358.3,44521,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44521,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,44521,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,44522,0)
+ ;;=F14.280^^164^2207^2
+ ;;^UTILITY(U,$J,358.3,44522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46871,1,3,0)
- ;;=3^Psycoactive Substance Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,46871,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,46871,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,46872,0)
- ;;=F43.11^^206^2312^12
- ;;^UTILITY(U,$J,358.3,46872,1,0)
+ ;;^UTILITY(U,$J,358.3,44522,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44522,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,44522,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,44523,0)
+ ;;=F14.980^^164^2207^3
+ ;;^UTILITY(U,$J,358.3,44523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46872,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,46872,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,46872,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,46873,0)
- ;;=F43.12^^206^2312^13
- ;;^UTILITY(U,$J,358.3,46873,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46873,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,46873,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,46873,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,46874,0)
- ;;=F43.10^^206^2312^14
- ;;^UTILITY(U,$J,358.3,46874,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46874,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,46874,1,4,0)
- ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,44523,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44523,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,44523,2)
+ ;;=^5003278

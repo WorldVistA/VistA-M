@@ -1,132 +1,130 @@
-IBDEI1FD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24224,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,24224,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,24225,0)
- ;;=G47.19^^90^1060^11
- ;;^UTILITY(U,$J,358.3,24225,1,0)
+ ;;^UTILITY(U,$J,358.3,22809,1,3,0)
+ ;;=3^Cartilage Mass
+ ;;^UTILITY(U,$J,358.3,22809,1,4,0)
+ ;;=4^M94.9
+ ;;^UTILITY(U,$J,358.3,22809,2)
+ ;;=^5015366
+ ;;^UTILITY(U,$J,358.3,22810,0)
+ ;;=R22.9^^105^1165^27
+ ;;^UTILITY(U,$J,358.3,22810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24225,1,3,0)
- ;;=3^Hypersomnolence Disorder NEC
- ;;^UTILITY(U,$J,358.3,24225,1,4,0)
- ;;=4^G47.19
- ;;^UTILITY(U,$J,358.3,24225,2)
- ;;=^5003973
- ;;^UTILITY(U,$J,358.3,24226,0)
- ;;=G47.8^^90^1060^27
- ;;^UTILITY(U,$J,358.3,24226,1,0)
+ ;;^UTILITY(U,$J,358.3,22810,1,3,0)
+ ;;=3^Skin Mass
+ ;;^UTILITY(U,$J,358.3,22810,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,22810,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,22811,0)
+ ;;=R22.1^^105^1165^25
+ ;;^UTILITY(U,$J,358.3,22811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24226,1,3,0)
- ;;=3^Sleep-Wake Disorder NEC
- ;;^UTILITY(U,$J,358.3,24226,1,4,0)
- ;;=4^G47.8
- ;;^UTILITY(U,$J,358.3,24226,2)
- ;;=^5003989
- ;;^UTILITY(U,$J,358.3,24227,0)
- ;;=G47.411^^90^1060^16
- ;;^UTILITY(U,$J,358.3,24227,1,0)
+ ;;^UTILITY(U,$J,358.3,22811,1,3,0)
+ ;;=3^Neck Mass
+ ;;^UTILITY(U,$J,358.3,22811,1,4,0)
+ ;;=4^R22.1
+ ;;^UTILITY(U,$J,358.3,22811,2)
+ ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,22812,0)
+ ;;=R59.9^^105^1165^24
+ ;;^UTILITY(U,$J,358.3,22812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24227,1,3,0)
- ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,24227,1,4,0)
- ;;=4^G47.411
- ;;^UTILITY(U,$J,358.3,24227,2)
- ;;=^5003981
- ;;^UTILITY(U,$J,358.3,24228,0)
- ;;=G47.37^^90^1060^2
- ;;^UTILITY(U,$J,358.3,24228,1,0)
+ ;;^UTILITY(U,$J,358.3,22812,1,3,0)
+ ;;=3^Lymph Node Mass
+ ;;^UTILITY(U,$J,358.3,22812,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,22812,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,22813,0)
+ ;;=R22.2^^105^1165^23
+ ;;^UTILITY(U,$J,358.3,22813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24228,1,3,0)
- ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
- ;;^UTILITY(U,$J,358.3,24228,1,4,0)
- ;;=4^G47.37
- ;;^UTILITY(U,$J,358.3,24228,2)
- ;;=^332767
- ;;^UTILITY(U,$J,358.3,24229,0)
- ;;=G47.31^^90^1060^3
- ;;^UTILITY(U,$J,358.3,24229,1,0)
+ ;;^UTILITY(U,$J,358.3,22813,1,3,0)
+ ;;=3^Lung/Chest Mass
+ ;;^UTILITY(U,$J,358.3,22813,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,22813,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,22814,0)
+ ;;=N63.0^^105^1165^19
+ ;;^UTILITY(U,$J,358.3,22814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24229,1,3,0)
- ;;=3^Central Sleep Apnea,Idiopathic Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,24229,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,24229,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,24230,0)
- ;;=F51.11^^90^1060^10
- ;;^UTILITY(U,$J,358.3,24230,1,0)
+ ;;^UTILITY(U,$J,358.3,22814,1,3,0)
+ ;;=3^Breast Mass/Lump
+ ;;^UTILITY(U,$J,358.3,22814,1,4,0)
+ ;;=4^N63.0
+ ;;^UTILITY(U,$J,358.3,22814,2)
+ ;;=^5151518
+ ;;^UTILITY(U,$J,358.3,22815,0)
+ ;;=N63.32^^105^1165^3
+ ;;^UTILITY(U,$J,358.3,22815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24230,1,3,0)
- ;;=3^Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,24230,1,4,0)
- ;;=4^F51.11
- ;;^UTILITY(U,$J,358.3,24230,2)
- ;;=^5003609
- ;;^UTILITY(U,$J,358.3,24231,0)
- ;;=F51.01^^90^1060^13
- ;;^UTILITY(U,$J,358.3,24231,1,0)
+ ;;^UTILITY(U,$J,358.3,22815,1,3,0)
+ ;;=3^Breast Lump,Axillary Tail,Left
+ ;;^UTILITY(U,$J,358.3,22815,1,4,0)
+ ;;=4^N63.32
+ ;;^UTILITY(U,$J,358.3,22815,2)
+ ;;=^5151530
+ ;;^UTILITY(U,$J,358.3,22816,0)
+ ;;=N63.31^^105^1165^4
+ ;;^UTILITY(U,$J,358.3,22816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24231,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,24231,1,4,0)
- ;;=4^F51.01
- ;;^UTILITY(U,$J,358.3,24231,2)
- ;;=^5003603
- ;;^UTILITY(U,$J,358.3,24232,0)
- ;;=G47.36^^90^1060^24
- ;;^UTILITY(U,$J,358.3,24232,1,0)
+ ;;^UTILITY(U,$J,358.3,22816,1,3,0)
+ ;;=3^Breast Lump,Axillary Tail,Right
+ ;;^UTILITY(U,$J,358.3,22816,1,4,0)
+ ;;=4^N63.31
+ ;;^UTILITY(U,$J,358.3,22816,2)
+ ;;=^5151529
+ ;;^UTILITY(U,$J,358.3,22817,0)
+ ;;=N63.24^^105^1165^5
+ ;;^UTILITY(U,$J,358.3,22817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24232,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
- ;;^UTILITY(U,$J,358.3,24232,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,24232,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,24233,0)
- ;;=G47.35^^90^1060^25
- ;;^UTILITY(U,$J,358.3,24233,1,0)
+ ;;^UTILITY(U,$J,358.3,22817,1,3,0)
+ ;;=3^Breast Lump,Lower Inner Quadrant,Left
+ ;;^UTILITY(U,$J,358.3,22817,1,4,0)
+ ;;=4^N63.24
+ ;;^UTILITY(U,$J,358.3,22817,2)
+ ;;=^5151528
+ ;;^UTILITY(U,$J,358.3,22818,0)
+ ;;=N63.23^^105^1165^7
+ ;;^UTILITY(U,$J,358.3,22818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24233,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,24233,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,24233,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,24234,0)
- ;;=G47.34^^90^1060^26
- ;;^UTILITY(U,$J,358.3,24234,1,0)
+ ;;^UTILITY(U,$J,358.3,22818,1,3,0)
+ ;;=3^Breast Lump,Lower Outer Quadrant,Left
+ ;;^UTILITY(U,$J,358.3,22818,1,4,0)
+ ;;=4^N63.23
+ ;;^UTILITY(U,$J,358.3,22818,2)
+ ;;=^5151527
+ ;;^UTILITY(U,$J,358.3,22819,0)
+ ;;=N63.20^^105^1165^11
+ ;;^UTILITY(U,$J,358.3,22819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24234,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
- ;;^UTILITY(U,$J,358.3,24234,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,24234,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,24235,0)
- ;;=G47.9^^90^1060^28
- ;;^UTILITY(U,$J,358.3,24235,1,0)
+ ;;^UTILITY(U,$J,358.3,22819,1,3,0)
+ ;;=3^Breast Lump,Unspec Quadrant,Left
+ ;;^UTILITY(U,$J,358.3,22819,1,4,0)
+ ;;=4^N63.20
+ ;;^UTILITY(U,$J,358.3,22819,2)
+ ;;=^5151524
+ ;;^UTILITY(U,$J,358.3,22820,0)
+ ;;=N63.22^^105^1165^15
+ ;;^UTILITY(U,$J,358.3,22820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24235,1,3,0)
- ;;=3^Sleep-Wake Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24235,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,24235,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,24236,0)
- ;;=F10.10^^90^1061^27
- ;;^UTILITY(U,$J,358.3,24236,1,0)
+ ;;^UTILITY(U,$J,358.3,22820,1,3,0)
+ ;;=3^Breast Lump,Upper Inner Quadrant,Left
+ ;;^UTILITY(U,$J,358.3,22820,1,4,0)
+ ;;=4^N63.22
+ ;;^UTILITY(U,$J,358.3,22820,2)
+ ;;=^5151526
+ ;;^UTILITY(U,$J,358.3,22821,0)
+ ;;=N63.21^^105^1165^17
+ ;;^UTILITY(U,$J,358.3,22821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24236,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24236,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,24236,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,24237,0)
- ;;=F10.14^^90^1061^34
- ;;^UTILITY(U,$J,358.3,24237,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22821,1,3,0)
+ ;;=3^Breast Lump,Upper Outer Quadrant,Left
+ ;;^UTILITY(U,$J,358.3,22821,1,4,0)
+ ;;=4^N63.21
+ ;;^UTILITY(U,$J,358.3,22821,2)
+ ;;=^5151525

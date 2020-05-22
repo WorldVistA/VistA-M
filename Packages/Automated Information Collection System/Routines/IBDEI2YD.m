@@ -1,124 +1,130 @@
-IBDEI2YD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49509,1,4,0)
- ;;=4^S82.422S
- ;;^UTILITY(U,$J,358.3,49509,2)
- ;;=^5041745
- ;;^UTILITY(U,$J,358.3,49510,0)
- ;;=S82.421S^^216^2418^35
- ;;^UTILITY(U,$J,358.3,49510,1,0)
+ ;;^UTILITY(U,$J,358.3,47124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49510,1,3,0)
- ;;=3^Disp fx of transverse shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,49510,1,4,0)
- ;;=4^S82.421S
- ;;^UTILITY(U,$J,358.3,49510,2)
- ;;=^5041729
- ;;^UTILITY(U,$J,358.3,49511,0)
- ;;=S82.455S^^216^2418^42
- ;;^UTILITY(U,$J,358.3,49511,1,0)
+ ;;^UTILITY(U,$J,358.3,47124,1,3,0)
+ ;;=3^Fatigue,Other
+ ;;^UTILITY(U,$J,358.3,47124,1,4,0)
+ ;;=4^R53.83
+ ;;^UTILITY(U,$J,358.3,47124,2)
+ ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,47125,0)
+ ;;=R60.9^^181^2353^1
+ ;;^UTILITY(U,$J,358.3,47125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49511,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,49511,1,4,0)
- ;;=4^S82.455S
- ;;^UTILITY(U,$J,358.3,49511,2)
- ;;=^5042081
- ;;^UTILITY(U,$J,358.3,49512,0)
- ;;=S82.454S^^216^2418^44
- ;;^UTILITY(U,$J,358.3,49512,1,0)
+ ;;^UTILITY(U,$J,358.3,47125,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,47125,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,47125,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,47126,0)
+ ;;=R04.0^^181^2353^7
+ ;;^UTILITY(U,$J,358.3,47126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49512,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,49512,1,4,0)
- ;;=4^S82.454S
- ;;^UTILITY(U,$J,358.3,49512,2)
- ;;=^5042065
- ;;^UTILITY(U,$J,358.3,49513,0)
- ;;=S82.65XS^^216^2418^47
- ;;^UTILITY(U,$J,358.3,49513,1,0)
+ ;;^UTILITY(U,$J,358.3,47126,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,47126,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,47126,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,47127,0)
+ ;;=G40.909^^181^2353^6
+ ;;^UTILITY(U,$J,358.3,47127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49513,1,3,0)
- ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,49513,1,4,0)
- ;;=4^S82.65XS
- ;;^UTILITY(U,$J,358.3,49513,2)
- ;;=^5042390
- ;;^UTILITY(U,$J,358.3,49514,0)
- ;;=S82.64XS^^216^2418^48
- ;;^UTILITY(U,$J,358.3,49514,1,0)
+ ;;^UTILITY(U,$J,358.3,47127,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,47127,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,47127,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,47128,0)
+ ;;=M77.9^^181^2353^5
+ ;;^UTILITY(U,$J,358.3,47128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49514,1,3,0)
- ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,49514,1,4,0)
- ;;=4^S82.64XS
- ;;^UTILITY(U,$J,358.3,49514,2)
- ;;=^5042374
- ;;^UTILITY(U,$J,358.3,49515,0)
- ;;=S82.435S^^216^2418^55
- ;;^UTILITY(U,$J,358.3,49515,1,0)
+ ;;^UTILITY(U,$J,358.3,47128,1,3,0)
+ ;;=3^Enthesopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,47128,1,4,0)
+ ;;=4^M77.9
+ ;;^UTILITY(U,$J,358.3,47128,2)
+ ;;=^5013319
+ ;;^UTILITY(U,$J,358.3,47129,0)
+ ;;=M10.9^^181^2354^8
+ ;;^UTILITY(U,$J,358.3,47129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49515,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,49515,1,4,0)
- ;;=4^S82.435S
- ;;^UTILITY(U,$J,358.3,49515,2)
- ;;=^5041889
- ;;^UTILITY(U,$J,358.3,49516,0)
- ;;=S82.434S^^216^2418^57
- ;;^UTILITY(U,$J,358.3,49516,1,0)
+ ;;^UTILITY(U,$J,358.3,47129,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,47129,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,47129,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,47130,0)
+ ;;=H40.9^^181^2354^7
+ ;;^UTILITY(U,$J,358.3,47130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49516,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,49516,1,4,0)
- ;;=4^S82.434S
- ;;^UTILITY(U,$J,358.3,49516,2)
- ;;=^5041873
- ;;^UTILITY(U,$J,358.3,49517,0)
- ;;=S82.465S^^216^2418^63
- ;;^UTILITY(U,$J,358.3,49517,1,0)
+ ;;^UTILITY(U,$J,358.3,47130,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,47130,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,47130,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,47131,0)
+ ;;=K21.9^^181^2354^1
+ ;;^UTILITY(U,$J,358.3,47131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49517,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
- ;;^UTILITY(U,$J,358.3,49517,1,4,0)
- ;;=4^S82.465S
- ;;^UTILITY(U,$J,358.3,49517,2)
- ;;=^5042177
- ;;^UTILITY(U,$J,358.3,49518,0)
- ;;=S82.464S^^216^2418^66
- ;;^UTILITY(U,$J,358.3,49518,1,0)
+ ;;^UTILITY(U,$J,358.3,47131,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,47131,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,47131,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,47132,0)
+ ;;=K29.70^^181^2354^4
+ ;;^UTILITY(U,$J,358.3,47132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49518,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,49518,1,4,0)
- ;;=4^S82.464S
- ;;^UTILITY(U,$J,358.3,49518,2)
- ;;=^5042161
- ;;^UTILITY(U,$J,358.3,49519,0)
- ;;=S82.445S^^216^2418^67
- ;;^UTILITY(U,$J,358.3,49519,1,0)
+ ;;^UTILITY(U,$J,358.3,47132,1,3,0)
+ ;;=3^Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,47132,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,47132,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,47133,0)
+ ;;=K52.9^^181^2354^5
+ ;;^UTILITY(U,$J,358.3,47133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49519,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,49519,1,4,0)
- ;;=4^S82.445S
- ;;^UTILITY(U,$J,358.3,49519,2)
- ;;=^5041985
- ;;^UTILITY(U,$J,358.3,49520,0)
- ;;=S82.444S^^216^2418^69
- ;;^UTILITY(U,$J,358.3,49520,1,0)
+ ;;^UTILITY(U,$J,358.3,47133,1,3,0)
+ ;;=3^Gastroenteritis & Colitis Noninfective,Unspec
+ ;;^UTILITY(U,$J,358.3,47133,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,47133,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,47134,0)
+ ;;=K82.9^^181^2354^2
+ ;;^UTILITY(U,$J,358.3,47134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49520,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,49520,1,4,0)
- ;;=4^S82.444S
- ;;^UTILITY(U,$J,358.3,49520,2)
- ;;=^5041969
- ;;^UTILITY(U,$J,358.3,49521,0)
- ;;=S82.425S^^216^2418^72
- ;;^UTILITY(U,$J,358.3,49521,1,0)
+ ;;^UTILITY(U,$J,358.3,47134,1,3,0)
+ ;;=3^Gallbladder Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,47134,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,47134,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,47135,0)
+ ;;=K92.2^^181^2354^6
+ ;;^UTILITY(U,$J,358.3,47135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49521,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,47135,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,47135,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,47135,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,47136,0)
+ ;;=K25.9^^181^2354^3
+ ;;^UTILITY(U,$J,358.3,47136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47136,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,47136,1,4,0)
+ ;;=4^K25.9

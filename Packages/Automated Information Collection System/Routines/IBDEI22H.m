@@ -1,126 +1,126 @@
-IBDEI22H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35054,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,35055,0)
- ;;=V00.812A^^131^1699^133
- ;;^UTILITY(U,$J,358.3,35055,1,0)
+ ;;^UTILITY(U,$J,358.3,32991,2)
+ ;;=^5006175
+ ;;^UTILITY(U,$J,358.3,32992,0)
+ ;;=H47.323^^128^1674^3
+ ;;^UTILITY(U,$J,358.3,32992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35055,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,35055,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,35055,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,35056,0)
- ;;=V00.812D^^131^1699^134
- ;;^UTILITY(U,$J,358.3,35056,1,0)
+ ;;^UTILITY(U,$J,358.3,32992,1,3,0)
+ ;;=3^Drusen of Optic Disc,Bilateral
+ ;;^UTILITY(U,$J,358.3,32992,1,4,0)
+ ;;=4^H47.323
+ ;;^UTILITY(U,$J,358.3,32992,2)
+ ;;=^5006143
+ ;;^UTILITY(U,$J,358.3,32993,0)
+ ;;=H47.321^^128^1674^1
+ ;;^UTILITY(U,$J,358.3,32993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35056,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35056,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,35056,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,35057,0)
- ;;=V00.818A^^131^1699^131
- ;;^UTILITY(U,$J,358.3,35057,1,0)
+ ;;^UTILITY(U,$J,358.3,32993,1,3,0)
+ ;;=3^Drusen of Optic Disc,Right Eye
+ ;;^UTILITY(U,$J,358.3,32993,1,4,0)
+ ;;=4^H47.321
+ ;;^UTILITY(U,$J,358.3,32993,2)
+ ;;=^5006141
+ ;;^UTILITY(U,$J,358.3,32994,0)
+ ;;=H47.322^^128^1674^2
+ ;;^UTILITY(U,$J,358.3,32994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35057,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,35057,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,35057,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,35058,0)
- ;;=V00.818D^^131^1699^132
- ;;^UTILITY(U,$J,358.3,35058,1,0)
+ ;;^UTILITY(U,$J,358.3,32994,1,3,0)
+ ;;=3^Drusen of Optic Disc,Left Eye
+ ;;^UTILITY(U,$J,358.3,32994,1,4,0)
+ ;;=4^H47.322
+ ;;^UTILITY(U,$J,358.3,32994,2)
+ ;;=^5006142
+ ;;^UTILITY(U,$J,358.3,32995,0)
+ ;;=M31.6^^128^1674^19
+ ;;^UTILITY(U,$J,358.3,32995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35058,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35058,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,35058,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,35059,0)
- ;;=V00.831A^^131^1699^43
- ;;^UTILITY(U,$J,358.3,35059,1,0)
+ ;;^UTILITY(U,$J,358.3,32995,1,3,0)
+ ;;=3^Giant Cell Arteritis,Other
+ ;;^UTILITY(U,$J,358.3,32995,1,4,0)
+ ;;=4^M31.6
+ ;;^UTILITY(U,$J,358.3,32995,2)
+ ;;=^5011748
+ ;;^UTILITY(U,$J,358.3,32996,0)
+ ;;=H53.47^^128^1674^26
+ ;;^UTILITY(U,$J,358.3,32996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35059,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,35059,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,35059,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,35060,0)
- ;;=V00.831D^^131^1699^44
- ;;^UTILITY(U,$J,358.3,35060,1,0)
+ ;;^UTILITY(U,$J,358.3,32996,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects
+ ;;^UTILITY(U,$J,358.3,32996,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,32996,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,32997,0)
+ ;;=H53.462^^128^1674^25
+ ;;^UTILITY(U,$J,358.3,32997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35060,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35060,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,35060,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,35061,0)
- ;;=V00.832A^^131^1699^95
- ;;^UTILITY(U,$J,358.3,35061,1,0)
+ ;;^UTILITY(U,$J,358.3,32997,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Left Side
+ ;;^UTILITY(U,$J,358.3,32997,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,32997,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,32998,0)
+ ;;=H53.461^^128^1674^24
+ ;;^UTILITY(U,$J,358.3,32998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35061,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,35061,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,35061,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,35062,0)
- ;;=V00.832D^^131^1699^96
- ;;^UTILITY(U,$J,358.3,35062,1,0)
+ ;;^UTILITY(U,$J,358.3,32998,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Right Side
+ ;;^UTILITY(U,$J,358.3,32998,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,32998,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,32999,0)
+ ;;=H47.013^^128^1674^9
+ ;;^UTILITY(U,$J,358.3,32999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35062,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35062,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,35062,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,35063,0)
- ;;=V00.838A^^131^1699^93
- ;;^UTILITY(U,$J,358.3,35063,1,0)
+ ;;^UTILITY(U,$J,358.3,32999,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,32999,1,4,0)
+ ;;=4^H47.013
+ ;;^UTILITY(U,$J,358.3,32999,2)
+ ;;=^5006107
+ ;;^UTILITY(U,$J,358.3,33000,0)
+ ;;=H47.011^^128^1674^7
+ ;;^UTILITY(U,$J,358.3,33000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35063,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,35063,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,35063,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,35064,0)
- ;;=V00.838D^^131^1699^94
- ;;^UTILITY(U,$J,358.3,35064,1,0)
+ ;;^UTILITY(U,$J,358.3,33000,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,33000,1,4,0)
+ ;;=4^H47.011
+ ;;^UTILITY(U,$J,358.3,33000,2)
+ ;;=^5006105
+ ;;^UTILITY(U,$J,358.3,33001,0)
+ ;;=H47.012^^128^1674^8
+ ;;^UTILITY(U,$J,358.3,33001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35064,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35064,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,35064,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,35065,0)
- ;;=V00.891A^^131^1699^57
- ;;^UTILITY(U,$J,358.3,35065,1,0)
+ ;;^UTILITY(U,$J,358.3,33001,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,33001,1,4,0)
+ ;;=4^H47.012
+ ;;^UTILITY(U,$J,358.3,33001,2)
+ ;;=^5006106
+ ;;^UTILITY(U,$J,358.3,33002,0)
+ ;;=H47.233^^128^1674^6
+ ;;^UTILITY(U,$J,358.3,33002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35065,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,35065,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,35065,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,35066,0)
- ;;=V00.891D^^131^1699^58
- ;;^UTILITY(U,$J,358.3,35066,1,0)
+ ;;^UTILITY(U,$J,358.3,33002,1,3,0)
+ ;;=3^Optic Atrophy,Glaucomatous,Bilateral
+ ;;^UTILITY(U,$J,358.3,33002,1,4,0)
+ ;;=4^H47.233
+ ;;^UTILITY(U,$J,358.3,33002,2)
+ ;;=^5006133
+ ;;^UTILITY(U,$J,358.3,33003,0)
+ ;;=H47.231^^128^1674^4
+ ;;^UTILITY(U,$J,358.3,33003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35066,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35066,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,35066,2)
- ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,33003,1,3,0)
+ ;;=3^Optic Atrophy,Glaucomatous,Right Eye
+ ;;^UTILITY(U,$J,358.3,33003,1,4,0)
+ ;;=4^H47.231
+ ;;^UTILITY(U,$J,358.3,33003,2)
+ ;;=^5006131

@@ -1,122 +1,120 @@
-IBDEI1ZG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33646,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,33647,0)
- ;;=K57.30^^131^1675^42
- ;;^UTILITY(U,$J,358.3,33647,1,0)
+ ;;^UTILITY(U,$J,358.3,31654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33647,1,3,0)
- ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33647,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,33647,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,33648,0)
- ;;=K57.50^^131^1675^43
- ;;^UTILITY(U,$J,358.3,33648,1,0)
+ ;;^UTILITY(U,$J,358.3,31654,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Unsp Fts
+ ;;^UTILITY(U,$J,358.3,31654,1,4,0)
+ ;;=4^O36.8329
+ ;;^UTILITY(U,$J,358.3,31654,2)
+ ;;=^5151561
+ ;;^UTILITY(U,$J,358.3,31655,0)
+ ;;=O36.8331^^126^1626^13
+ ;;^UTILITY(U,$J,358.3,31655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33648,1,3,0)
- ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33648,1,4,0)
- ;;=4^K57.50
- ;;^UTILITY(U,$J,358.3,33648,2)
- ;;=^5008729
- ;;^UTILITY(U,$J,358.3,33649,0)
- ;;=K57.90^^131^1675^41
- ;;^UTILITY(U,$J,358.3,33649,1,0)
+ ;;^UTILITY(U,$J,358.3,31655,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 1
+ ;;^UTILITY(U,$J,358.3,31655,1,4,0)
+ ;;=4^O36.8331
+ ;;^UTILITY(U,$J,358.3,31655,2)
+ ;;=^5151563
+ ;;^UTILITY(U,$J,358.3,31656,0)
+ ;;=O36.8332^^126^1626^14
+ ;;^UTILITY(U,$J,358.3,31656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33649,1,3,0)
- ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33649,1,4,0)
- ;;=4^K57.90
- ;;^UTILITY(U,$J,358.3,33649,2)
- ;;=^5008735
- ;;^UTILITY(U,$J,358.3,33650,0)
- ;;=K57.20^^131^1675^37
- ;;^UTILITY(U,$J,358.3,33650,1,0)
+ ;;^UTILITY(U,$J,358.3,31656,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 2
+ ;;^UTILITY(U,$J,358.3,31656,1,4,0)
+ ;;=4^O36.8332
+ ;;^UTILITY(U,$J,358.3,31656,2)
+ ;;=^5151564
+ ;;^UTILITY(U,$J,358.3,31657,0)
+ ;;=O36.8333^^126^1626^15
+ ;;^UTILITY(U,$J,358.3,31657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33650,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33650,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,33650,2)
- ;;=^5008721
- ;;^UTILITY(U,$J,358.3,33651,0)
- ;;=K57.92^^131^1675^36
- ;;^UTILITY(U,$J,358.3,33651,1,0)
+ ;;^UTILITY(U,$J,358.3,31657,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 3
+ ;;^UTILITY(U,$J,358.3,31657,1,4,0)
+ ;;=4^O36.8333
+ ;;^UTILITY(U,$J,358.3,31657,2)
+ ;;=^5151565
+ ;;^UTILITY(U,$J,358.3,31658,0)
+ ;;=O36.8334^^126^1626^16
+ ;;^UTILITY(U,$J,358.3,31658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33651,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33651,1,4,0)
- ;;=4^K57.92
- ;;^UTILITY(U,$J,358.3,33651,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,33652,0)
- ;;=K57.80^^131^1675^35
- ;;^UTILITY(U,$J,358.3,33652,1,0)
+ ;;^UTILITY(U,$J,358.3,31658,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 4
+ ;;^UTILITY(U,$J,358.3,31658,1,4,0)
+ ;;=4^O36.8334
+ ;;^UTILITY(U,$J,358.3,31658,2)
+ ;;=^5151566
+ ;;^UTILITY(U,$J,358.3,31659,0)
+ ;;=O36.8335^^126^1626^17
+ ;;^UTILITY(U,$J,358.3,31659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33652,1,3,0)
- ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33652,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,33652,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,33653,0)
- ;;=K57.52^^131^1675^40
- ;;^UTILITY(U,$J,358.3,33653,1,0)
+ ;;^UTILITY(U,$J,358.3,31659,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Fts 5
+ ;;^UTILITY(U,$J,358.3,31659,1,4,0)
+ ;;=4^O36.8335
+ ;;^UTILITY(U,$J,358.3,31659,2)
+ ;;=^5151567
+ ;;^UTILITY(U,$J,358.3,31660,0)
+ ;;=O36.8339^^126^1626^18
+ ;;^UTILITY(U,$J,358.3,31660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33653,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33653,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,33653,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,33654,0)
- ;;=K57.40^^131^1675^39
- ;;^UTILITY(U,$J,358.3,33654,1,0)
+ ;;^UTILITY(U,$J,358.3,31660,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,3rd Tri,Unsp Fts
+ ;;^UTILITY(U,$J,358.3,31660,1,4,0)
+ ;;=4^O36.8339
+ ;;^UTILITY(U,$J,358.3,31660,2)
+ ;;=^5151568
+ ;;^UTILITY(U,$J,358.3,31661,0)
+ ;;=O41.01X0^^126^1627^44
+ ;;^UTILITY(U,$J,358.3,31661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33654,1,3,0)
- ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33654,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,33654,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,33655,0)
- ;;=K57.32^^131^1675^38
- ;;^UTILITY(U,$J,358.3,33655,1,0)
+ ;;^UTILITY(U,$J,358.3,31661,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,31661,1,4,0)
+ ;;=4^O41.01X0
+ ;;^UTILITY(U,$J,358.3,31661,2)
+ ;;=^5017220
+ ;;^UTILITY(U,$J,358.3,31662,0)
+ ;;=O41.01X1^^126^1627^39
+ ;;^UTILITY(U,$J,358.3,31662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33655,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33655,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,33655,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,33656,0)
- ;;=K59.00^^131^1675^20
- ;;^UTILITY(U,$J,358.3,33656,1,0)
+ ;;^UTILITY(U,$J,358.3,31662,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31662,1,4,0)
+ ;;=4^O41.01X1
+ ;;^UTILITY(U,$J,358.3,31662,2)
+ ;;=^5017221
+ ;;^UTILITY(U,$J,358.3,31663,0)
+ ;;=O41.01X2^^126^1627^40
+ ;;^UTILITY(U,$J,358.3,31663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33656,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,33656,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,33656,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,33657,0)
- ;;=K58.9^^131^1675^70
- ;;^UTILITY(U,$J,358.3,33657,1,0)
+ ;;^UTILITY(U,$J,358.3,31663,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31663,1,4,0)
+ ;;=4^O41.01X2
+ ;;^UTILITY(U,$J,358.3,31663,2)
+ ;;=^5017222
+ ;;^UTILITY(U,$J,358.3,31664,0)
+ ;;=O41.01X3^^126^1627^41
+ ;;^UTILITY(U,$J,358.3,31664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33657,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,33657,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,33657,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,33658,0)
- ;;=K58.0^^131^1675^69
- ;;^UTILITY(U,$J,358.3,33658,1,0)
+ ;;^UTILITY(U,$J,358.3,31664,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31664,1,4,0)
+ ;;=4^O41.01X3
+ ;;^UTILITY(U,$J,358.3,31664,2)
+ ;;=^5017223
+ ;;^UTILITY(U,$J,358.3,31665,0)
+ ;;=O41.01X4^^126^1627^42
+ ;;^UTILITY(U,$J,358.3,31665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33658,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,31665,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31665,1,4,0)
+ ;;=4^O41.01X4

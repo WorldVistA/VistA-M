@@ -1,134 +1,126 @@
-IBDEI2T6 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2T6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47156,1,0)
+ ;;^UTILITY(U,$J,358.3,44796,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,44796,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,44797,0)
+ ;;=L98.1^^170^2236^9
+ ;;^UTILITY(U,$J,358.3,44797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47156,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Left Breast
- ;;^UTILITY(U,$J,358.3,47156,1,4,0)
- ;;=4^C50.812
- ;;^UTILITY(U,$J,358.3,47156,2)
- ;;=^5001190
- ;;^UTILITY(U,$J,358.3,47157,0)
- ;;=Z92.23^^209^2339^19
- ;;^UTILITY(U,$J,358.3,47157,1,0)
+ ;;^UTILITY(U,$J,358.3,44797,1,3,0)
+ ;;=3^Dermatitis,Factitial
+ ;;^UTILITY(U,$J,358.3,44797,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,44797,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,44798,0)
+ ;;=L30.3^^170^2236^11
+ ;;^UTILITY(U,$J,358.3,44798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47157,1,3,0)
- ;;=3^Personal Hx of Estrogen Therapy
- ;;^UTILITY(U,$J,358.3,47157,1,4,0)
- ;;=4^Z92.23
- ;;^UTILITY(U,$J,358.3,47157,2)
- ;;=^5063632
- ;;^UTILITY(U,$J,358.3,47158,0)
- ;;=C50.911^^209^2339^12
- ;;^UTILITY(U,$J,358.3,47158,1,0)
+ ;;^UTILITY(U,$J,358.3,44798,1,3,0)
+ ;;=3^Dermatitis,Infective
+ ;;^UTILITY(U,$J,358.3,44798,1,4,0)
+ ;;=4^L30.3
+ ;;^UTILITY(U,$J,358.3,44798,2)
+ ;;=^5009156
+ ;;^UTILITY(U,$J,358.3,44799,0)
+ ;;=L56.2^^170^2236^19
+ ;;^UTILITY(U,$J,358.3,44799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47158,1,3,0)
- ;;=3^Malig Neop of Right Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,47158,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,47158,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,47159,0)
- ;;=C50.912^^209^2339^2
- ;;^UTILITY(U,$J,358.3,47159,1,0)
+ ;;^UTILITY(U,$J,358.3,44799,1,3,0)
+ ;;=3^Dermatitis,Photocontact
+ ;;^UTILITY(U,$J,358.3,44799,1,4,0)
+ ;;=4^L56.2
+ ;;^UTILITY(U,$J,358.3,44799,2)
+ ;;=^5009216
+ ;;^UTILITY(U,$J,358.3,44800,0)
+ ;;=L71.0^^170^2236^18
+ ;;^UTILITY(U,$J,358.3,44800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47159,1,3,0)
- ;;=3^Malig Neop of Left Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,47159,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,47159,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,47160,0)
- ;;=C71.0^^209^2340^8
- ;;^UTILITY(U,$J,358.3,47160,1,0)
+ ;;^UTILITY(U,$J,358.3,44800,1,3,0)
+ ;;=3^Dermatitis,Perioral
+ ;;^UTILITY(U,$J,358.3,44800,1,4,0)
+ ;;=4^L71.0
+ ;;^UTILITY(U,$J,358.3,44800,2)
+ ;;=^5009274
+ ;;^UTILITY(U,$J,358.3,44801,0)
+ ;;=L23.1^^170^2236^2
+ ;;^UTILITY(U,$J,358.3,44801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47160,1,3,0)
- ;;=3^Malig Neop of Cerebrum,Except Lobes/Ventricles
- ;;^UTILITY(U,$J,358.3,47160,1,4,0)
- ;;=4^C71.0
- ;;^UTILITY(U,$J,358.3,47160,2)
- ;;=^267280
- ;;^UTILITY(U,$J,358.3,47161,0)
- ;;=C71.1^^209^2340^12
- ;;^UTILITY(U,$J,358.3,47161,1,0)
+ ;;^UTILITY(U,$J,358.3,44801,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Adhesives
+ ;;^UTILITY(U,$J,358.3,44801,1,4,0)
+ ;;=4^L23.1
+ ;;^UTILITY(U,$J,358.3,44801,2)
+ ;;=^5009116
+ ;;^UTILITY(U,$J,358.3,44802,0)
+ ;;=L23.81^^170^2236^3
+ ;;^UTILITY(U,$J,358.3,44802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47161,1,3,0)
- ;;=3^Malig Neop of Frontal Lobe
- ;;^UTILITY(U,$J,358.3,47161,1,4,0)
- ;;=4^C71.1
- ;;^UTILITY(U,$J,358.3,47161,2)
- ;;=^267281
- ;;^UTILITY(U,$J,358.3,47162,0)
- ;;=C71.2^^209^2340^43
- ;;^UTILITY(U,$J,358.3,47162,1,0)
+ ;;^UTILITY(U,$J,358.3,44802,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Animal Dander
+ ;;^UTILITY(U,$J,358.3,44802,1,4,0)
+ ;;=4^L23.81
+ ;;^UTILITY(U,$J,358.3,44802,2)
+ ;;=^5009123
+ ;;^UTILITY(U,$J,358.3,44803,0)
+ ;;=L23.0^^170^2236^5
+ ;;^UTILITY(U,$J,358.3,44803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47162,1,3,0)
- ;;=3^Malig Neop of Temporal Lobe
- ;;^UTILITY(U,$J,358.3,47162,1,4,0)
- ;;=4^C71.2
- ;;^UTILITY(U,$J,358.3,47162,2)
- ;;=^267282
- ;;^UTILITY(U,$J,358.3,47163,0)
- ;;=C71.3^^209^2340^29
- ;;^UTILITY(U,$J,358.3,47163,1,0)
+ ;;^UTILITY(U,$J,358.3,44803,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Metals
+ ;;^UTILITY(U,$J,358.3,44803,1,4,0)
+ ;;=4^L23.0
+ ;;^UTILITY(U,$J,358.3,44803,2)
+ ;;=^5009115
+ ;;^UTILITY(U,$J,358.3,44804,0)
+ ;;=B00.1^^170^2236^10
+ ;;^UTILITY(U,$J,358.3,44804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47163,1,3,0)
- ;;=3^Malig Neop of Parietal Lobe
- ;;^UTILITY(U,$J,358.3,47163,1,4,0)
- ;;=4^C71.3
- ;;^UTILITY(U,$J,358.3,47163,2)
- ;;=^267283
- ;;^UTILITY(U,$J,358.3,47164,0)
- ;;=C71.4^^209^2340^25
- ;;^UTILITY(U,$J,358.3,47164,1,0)
+ ;;^UTILITY(U,$J,358.3,44804,1,3,0)
+ ;;=3^Dermatitis,Herpes Simplex
+ ;;^UTILITY(U,$J,358.3,44804,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,44804,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,44805,0)
+ ;;=L24.0^^170^2236^13
+ ;;^UTILITY(U,$J,358.3,44805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47164,1,3,0)
- ;;=3^Malig Neop of Occipital Lobe
- ;;^UTILITY(U,$J,358.3,47164,1,4,0)
- ;;=4^C71.4
- ;;^UTILITY(U,$J,358.3,47164,2)
- ;;=^267284
- ;;^UTILITY(U,$J,358.3,47165,0)
- ;;=C71.5^^209^2340^7
- ;;^UTILITY(U,$J,358.3,47165,1,0)
+ ;;^UTILITY(U,$J,358.3,44805,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Detergents
+ ;;^UTILITY(U,$J,358.3,44805,1,4,0)
+ ;;=4^L24.0
+ ;;^UTILITY(U,$J,358.3,44805,2)
+ ;;=^5009126
+ ;;^UTILITY(U,$J,358.3,44806,0)
+ ;;=L24.81^^170^2236^14
+ ;;^UTILITY(U,$J,358.3,44806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47165,1,3,0)
- ;;=3^Malig Neop of Cerebral Ventricle
- ;;^UTILITY(U,$J,358.3,47165,1,4,0)
- ;;=4^C71.5
- ;;^UTILITY(U,$J,358.3,47165,2)
- ;;=^5001294
- ;;^UTILITY(U,$J,358.3,47166,0)
- ;;=C71.6^^209^2340^5
- ;;^UTILITY(U,$J,358.3,47166,1,0)
+ ;;^UTILITY(U,$J,358.3,44806,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Metals
+ ;;^UTILITY(U,$J,358.3,44806,1,4,0)
+ ;;=4^L24.81
+ ;;^UTILITY(U,$J,358.3,44806,2)
+ ;;=^5009134
+ ;;^UTILITY(U,$J,358.3,44807,0)
+ ;;=L24.2^^170^2236^15
+ ;;^UTILITY(U,$J,358.3,44807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47166,1,3,0)
- ;;=3^Malig Neop of Cerebellum
- ;;^UTILITY(U,$J,358.3,47166,1,4,0)
- ;;=4^C71.6
- ;;^UTILITY(U,$J,358.3,47166,2)
- ;;=^5001295
- ;;^UTILITY(U,$J,358.3,47167,0)
- ;;=C71.7^^209^2340^1
- ;;^UTILITY(U,$J,358.3,47167,1,0)
+ ;;^UTILITY(U,$J,358.3,44807,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Solvents
+ ;;^UTILITY(U,$J,358.3,44807,1,4,0)
+ ;;=4^L24.2
+ ;;^UTILITY(U,$J,358.3,44807,2)
+ ;;=^5009128
+ ;;^UTILITY(U,$J,358.3,44808,0)
+ ;;=E08.620^^170^2236^22
+ ;;^UTILITY(U,$J,358.3,44808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47167,1,3,0)
- ;;=3^Malig Neop of Brain Stem
- ;;^UTILITY(U,$J,358.3,47167,1,4,0)
- ;;=4^C71.7
- ;;^UTILITY(U,$J,358.3,47167,2)
- ;;=^267287
- ;;^UTILITY(U,$J,358.3,47168,0)
- ;;=C71.8^^209^2340^26
- ;;^UTILITY(U,$J,358.3,47168,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47168,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Brain
- ;;^UTILITY(U,$J,358.3,47168,1,4,0)
- ;;=4^C71.8
- ;;^UTILITY(U,$J,358.3,47168,2)
- ;;=^5001296
- ;;^UTILITY(U,$J,358.3,47169,0)
- ;;=C69.01^^209^2340^33
+ ;;^UTILITY(U,$J,358.3,44808,1,3,0)
+ ;;=3^Diabetes d/t Underlying Condition w/ DM Dermatitis
+ ;;^UTILITY(U,$J,358.3,44808,1,4,0)
+ ;;=4^E08.620

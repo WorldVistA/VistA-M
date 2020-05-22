@@ -1,134 +1,122 @@
-IBDEI2D4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2D4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40064,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,40064,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,40065,0)
- ;;=N18.6^^156^1949^3
- ;;^UTILITY(U,$J,358.3,40065,1,0)
+ ;;^UTILITY(U,$J,358.3,37718,1,4,0)
+ ;;=4^S92.115K
+ ;;^UTILITY(U,$J,358.3,37718,2)
+ ;;=^5044637
+ ;;^UTILITY(U,$J,358.3,37719,0)
+ ;;=S92.112K^^146^1917^57
+ ;;^UTILITY(U,$J,358.3,37719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40065,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,40065,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,40065,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,40066,0)
- ;;=B17.11^^156^1950^2
- ;;^UTILITY(U,$J,358.3,40066,1,0)
+ ;;^UTILITY(U,$J,358.3,37719,1,3,0)
+ ;;=3^Disp fx neck lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37719,1,4,0)
+ ;;=4^S92.112K
+ ;;^UTILITY(U,$J,358.3,37719,2)
+ ;;=^5044616
+ ;;^UTILITY(U,$J,358.3,37720,0)
+ ;;=S92.111K^^146^1917^58
+ ;;^UTILITY(U,$J,358.3,37720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40066,1,3,0)
- ;;=3^Acute hepatitis C with hepatic coma
- ;;^UTILITY(U,$J,358.3,40066,1,4,0)
- ;;=4^B17.11
- ;;^UTILITY(U,$J,358.3,40066,2)
- ;;=^331777
- ;;^UTILITY(U,$J,358.3,40067,0)
- ;;=B18.2^^156^1950^9
- ;;^UTILITY(U,$J,358.3,40067,1,0)
+ ;;^UTILITY(U,$J,358.3,37720,1,3,0)
+ ;;=3^Disp fx neck rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37720,1,4,0)
+ ;;=4^S92.111K
+ ;;^UTILITY(U,$J,358.3,37720,2)
+ ;;=^5044609
+ ;;^UTILITY(U,$J,358.3,37721,0)
+ ;;=S92.142K^^146^1917^20
+ ;;^UTILITY(U,$J,358.3,37721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40067,1,3,0)
- ;;=3^Chronic viral hepatitis C
- ;;^UTILITY(U,$J,358.3,40067,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,40067,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,40068,0)
- ;;=B17.10^^156^1950^3
- ;;^UTILITY(U,$J,358.3,40068,1,0)
+ ;;^UTILITY(U,$J,358.3,37721,1,3,0)
+ ;;=3^Disp dome fx lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37721,1,4,0)
+ ;;=4^S92.142K
+ ;;^UTILITY(U,$J,358.3,37721,2)
+ ;;=^5044742
+ ;;^UTILITY(U,$J,358.3,37722,0)
+ ;;=S92.141K^^146^1917^23
+ ;;^UTILITY(U,$J,358.3,37722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40068,1,3,0)
- ;;=3^Acute hepatitis C without hepatic coma
- ;;^UTILITY(U,$J,358.3,40068,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,40068,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,40069,0)
- ;;=B19.20^^156^1950^23
- ;;^UTILITY(U,$J,358.3,40069,1,0)
+ ;;^UTILITY(U,$J,358.3,37722,1,3,0)
+ ;;=3^Disp dome fx rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37722,1,4,0)
+ ;;=4^S92.141K
+ ;;^UTILITY(U,$J,358.3,37722,2)
+ ;;=^5044735
+ ;;^UTILITY(U,$J,358.3,37723,0)
+ ;;=S92.135K^^146^1917^356
+ ;;^UTILITY(U,$J,358.3,37723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40069,1,3,0)
- ;;=3^Viral hepatitis C without hepatic coma,Unspec
- ;;^UTILITY(U,$J,358.3,40069,1,4,0)
- ;;=4^B19.20
- ;;^UTILITY(U,$J,358.3,40069,2)
- ;;=^331436
- ;;^UTILITY(U,$J,358.3,40070,0)
- ;;=B19.21^^156^1950^22
- ;;^UTILITY(U,$J,358.3,40070,1,0)
+ ;;^UTILITY(U,$J,358.3,37723,1,3,0)
+ ;;=3^Nondisp fx post pro lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37723,1,4,0)
+ ;;=4^S92.135K
+ ;;^UTILITY(U,$J,358.3,37723,2)
+ ;;=^5044721
+ ;;^UTILITY(U,$J,358.3,37724,0)
+ ;;=S92.134K^^146^1917^357
+ ;;^UTILITY(U,$J,358.3,37724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40070,1,3,0)
- ;;=3^Viral hepatitis C with hepatic coma,Unspec
- ;;^UTILITY(U,$J,358.3,40070,1,4,0)
- ;;=4^B19.21
- ;;^UTILITY(U,$J,358.3,40070,2)
- ;;=^331437
- ;;^UTILITY(U,$J,358.3,40071,0)
- ;;=C22.0^^156^1950^15
- ;;^UTILITY(U,$J,358.3,40071,1,0)
+ ;;^UTILITY(U,$J,358.3,37724,1,3,0)
+ ;;=3^Nondisp fx post pro rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37724,1,4,0)
+ ;;=4^S92.134K
+ ;;^UTILITY(U,$J,358.3,37724,2)
+ ;;=^5044714
+ ;;^UTILITY(U,$J,358.3,37725,0)
+ ;;=S92.132K^^146^1917^130
+ ;;^UTILITY(U,$J,358.3,37725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40071,1,3,0)
- ;;=3^Liver cell carcinoma
- ;;^UTILITY(U,$J,358.3,40071,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,40071,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,40072,0)
- ;;=C22.7^^156^1950^7
- ;;^UTILITY(U,$J,358.3,40072,1,0)
+ ;;^UTILITY(U,$J,358.3,37725,1,3,0)
+ ;;=3^Disp fx post pro lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37725,1,4,0)
+ ;;=4^S92.132K
+ ;;^UTILITY(U,$J,358.3,37725,2)
+ ;;=^5044700
+ ;;^UTILITY(U,$J,358.3,37726,0)
+ ;;=S92.131K^^146^1917^131
+ ;;^UTILITY(U,$J,358.3,37726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40072,1,3,0)
- ;;=3^Carcinomas of liver NEC
- ;;^UTILITY(U,$J,358.3,40072,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,40072,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,40073,0)
- ;;=C22.8^^156^1950^18
- ;;^UTILITY(U,$J,358.3,40073,1,0)
+ ;;^UTILITY(U,$J,358.3,37726,1,3,0)
+ ;;=3^Disp fx post pro rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37726,1,4,0)
+ ;;=4^S92.131K
+ ;;^UTILITY(U,$J,358.3,37726,2)
+ ;;=^5044693
+ ;;^UTILITY(U,$J,358.3,37727,0)
+ ;;=S92.125K^^146^1917^256
+ ;;^UTILITY(U,$J,358.3,37727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40073,1,3,0)
- ;;=3^Malignant neoplasm of liver, primary
- ;;^UTILITY(U,$J,358.3,40073,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,40073,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,40074,0)
- ;;=C22.1^^156^1950^13
- ;;^UTILITY(U,$J,358.3,40074,1,0)
+ ;;^UTILITY(U,$J,358.3,37727,1,3,0)
+ ;;=3^Nondisp fx body lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37727,1,4,0)
+ ;;=4^S92.125K
+ ;;^UTILITY(U,$J,358.3,37727,2)
+ ;;=^5044679
+ ;;^UTILITY(U,$J,358.3,37728,0)
+ ;;=S92.124K^^146^1917^258
+ ;;^UTILITY(U,$J,358.3,37728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40074,1,3,0)
- ;;=3^Intrahepatic bile duct carcinoma
- ;;^UTILITY(U,$J,358.3,40074,1,4,0)
- ;;=4^C22.1
- ;;^UTILITY(U,$J,358.3,40074,2)
- ;;=^5000934
- ;;^UTILITY(U,$J,358.3,40075,0)
- ;;=C22.9^^156^1950^17
- ;;^UTILITY(U,$J,358.3,40075,1,0)
+ ;;^UTILITY(U,$J,358.3,37728,1,3,0)
+ ;;=3^Nondisp fx body rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37728,1,4,0)
+ ;;=4^S92.124K
+ ;;^UTILITY(U,$J,358.3,37728,2)
+ ;;=^5044672
+ ;;^UTILITY(U,$J,358.3,37729,0)
+ ;;=S92.122K^^146^1917^31
+ ;;^UTILITY(U,$J,358.3,37729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40075,1,3,0)
- ;;=3^Malignant neoplasm of liver
- ;;^UTILITY(U,$J,358.3,40075,1,4,0)
- ;;=4^C22.9
- ;;^UTILITY(U,$J,358.3,40075,2)
- ;;=^267096
- ;;^UTILITY(U,$J,358.3,40076,0)
- ;;=C78.7^^156^1950^21
- ;;^UTILITY(U,$J,358.3,40076,1,0)
+ ;;^UTILITY(U,$J,358.3,37729,1,3,0)
+ ;;=3^Disp fx body lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37729,1,4,0)
+ ;;=4^S92.122K
+ ;;^UTILITY(U,$J,358.3,37729,2)
+ ;;=^5044658
+ ;;^UTILITY(U,$J,358.3,37730,0)
+ ;;=S92.121K^^146^1917^33
+ ;;^UTILITY(U,$J,358.3,37730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40076,1,3,0)
- ;;=3^Secondary malig neoplasm of liver and intrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,40076,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,40076,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,40077,0)
- ;;=K74.60^^156^1950^11
- ;;^UTILITY(U,$J,358.3,40077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40077,1,3,0)
- ;;=3^Cirrhosis of liver,Unspec

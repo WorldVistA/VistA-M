@@ -1,126 +1,120 @@
-IBDEI1Q1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29218,1,4,0)
- ;;=4^O40.1XX4
- ;;^UTILITY(U,$J,358.3,29218,2)
- ;;=^5017191
- ;;^UTILITY(U,$J,358.3,29219,0)
- ;;=O40.1XX5^^115^1455^204
- ;;^UTILITY(U,$J,358.3,29219,1,0)
+ ;;^UTILITY(U,$J,358.3,27512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29219,1,3,0)
- ;;=3^Polyhydramnios, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29219,1,4,0)
- ;;=4^O40.1XX5
- ;;^UTILITY(U,$J,358.3,29219,2)
- ;;=^5017192
- ;;^UTILITY(U,$J,358.3,29220,0)
- ;;=O40.2XX0^^115^1455^211
- ;;^UTILITY(U,$J,358.3,29220,1,0)
+ ;;^UTILITY(U,$J,358.3,27512,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,27512,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,27512,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,27513,0)
+ ;;=Z69.021^^113^1337^20
+ ;;^UTILITY(U,$J,358.3,27513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29220,1,3,0)
- ;;=3^Polyhydramnios, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29220,1,4,0)
- ;;=4^O40.2XX0
- ;;^UTILITY(U,$J,358.3,29220,2)
- ;;=^5017194
- ;;^UTILITY(U,$J,358.3,29221,0)
- ;;=O40.2XX1^^115^1455^206
- ;;^UTILITY(U,$J,358.3,29221,1,0)
+ ;;^UTILITY(U,$J,358.3,27513,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,27513,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,27513,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,27514,0)
+ ;;=Z69.011^^113^1337^22
+ ;;^UTILITY(U,$J,358.3,27514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29221,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29221,1,4,0)
- ;;=4^O40.2XX1
- ;;^UTILITY(U,$J,358.3,29221,2)
- ;;=^5017195
- ;;^UTILITY(U,$J,358.3,29222,0)
- ;;=O40.2XX2^^115^1455^207
- ;;^UTILITY(U,$J,358.3,29222,1,0)
+ ;;^UTILITY(U,$J,358.3,27514,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,27514,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,27514,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,27515,0)
+ ;;=Z69.12^^113^1337^19
+ ;;^UTILITY(U,$J,358.3,27515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29222,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29222,1,4,0)
- ;;=4^O40.2XX2
- ;;^UTILITY(U,$J,358.3,29222,2)
- ;;=^5017196
- ;;^UTILITY(U,$J,358.3,29223,0)
- ;;=O40.2XX3^^115^1455^208
- ;;^UTILITY(U,$J,358.3,29223,1,0)
+ ;;^UTILITY(U,$J,358.3,27515,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,27515,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,27515,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,27516,0)
+ ;;=Z62.812^^113^1337^28
+ ;;^UTILITY(U,$J,358.3,27516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29223,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29223,1,4,0)
- ;;=4^O40.2XX3
- ;;^UTILITY(U,$J,358.3,29223,2)
- ;;=^5017197
- ;;^UTILITY(U,$J,358.3,29224,0)
- ;;=O40.2XX4^^115^1455^209
- ;;^UTILITY(U,$J,358.3,29224,1,0)
+ ;;^UTILITY(U,$J,358.3,27516,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,27516,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,27516,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,27517,0)
+ ;;=Z62.810^^113^1337^29
+ ;;^UTILITY(U,$J,358.3,27517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29224,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29224,1,4,0)
- ;;=4^O40.2XX4
- ;;^UTILITY(U,$J,358.3,29224,2)
- ;;=^5017198
- ;;^UTILITY(U,$J,358.3,29225,0)
- ;;=O40.2XX5^^115^1455^210
- ;;^UTILITY(U,$J,358.3,29225,1,0)
+ ;;^UTILITY(U,$J,358.3,27517,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical & Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,27517,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,27517,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,27518,0)
+ ;;=Z62.811^^113^1337^30
+ ;;^UTILITY(U,$J,358.3,27518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29225,1,3,0)
- ;;=3^Polyhydramnios, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29225,1,4,0)
- ;;=4^O40.2XX5
- ;;^UTILITY(U,$J,358.3,29225,2)
- ;;=^5017199
- ;;^UTILITY(U,$J,358.3,29226,0)
- ;;=O40.3XX0^^115^1455^217
- ;;^UTILITY(U,$J,358.3,29226,1,0)
+ ;;^UTILITY(U,$J,358.3,27518,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,27518,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,27518,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,27519,0)
+ ;;=T76.51XA^^113^1337^1
+ ;;^UTILITY(U,$J,358.3,27519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29226,1,3,0)
- ;;=3^Polyhydramnios, third trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29226,1,4,0)
- ;;=4^O40.3XX0
- ;;^UTILITY(U,$J,358.3,29226,2)
- ;;=^5017201
- ;;^UTILITY(U,$J,358.3,29227,0)
- ;;=O40.3XX1^^115^1455^212
- ;;^UTILITY(U,$J,358.3,29227,1,0)
+ ;;^UTILITY(U,$J,358.3,27519,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,27519,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,27519,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,27520,0)
+ ;;=T76.51XD^^113^1337^2
+ ;;^UTILITY(U,$J,358.3,27520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29227,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29227,1,4,0)
- ;;=4^O40.3XX1
- ;;^UTILITY(U,$J,358.3,29227,2)
- ;;=^5017202
- ;;^UTILITY(U,$J,358.3,29228,0)
- ;;=O40.3XX2^^115^1455^213
- ;;^UTILITY(U,$J,358.3,29228,1,0)
+ ;;^UTILITY(U,$J,358.3,27520,1,3,0)
+ ;;=3^Adult Forced Sexual Exploitation,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,27520,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,27520,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,27521,0)
+ ;;=Z91.42^^113^1337^31
+ ;;^UTILITY(U,$J,358.3,27521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29228,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29228,1,4,0)
- ;;=4^O40.3XX2
- ;;^UTILITY(U,$J,358.3,29228,2)
- ;;=^5017203
- ;;^UTILITY(U,$J,358.3,29229,0)
- ;;=O40.3XX3^^115^1455^214
- ;;^UTILITY(U,$J,358.3,29229,1,0)
+ ;;^UTILITY(U,$J,358.3,27521,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,27521,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,27521,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,27522,0)
+ ;;=Z62.813^^113^1337^32
+ ;;^UTILITY(U,$J,358.3,27522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29229,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29229,1,4,0)
- ;;=4^O40.3XX3
- ;;^UTILITY(U,$J,358.3,29229,2)
- ;;=^5017204
- ;;^UTILITY(U,$J,358.3,29230,0)
- ;;=O40.3XX4^^115^1455^215
- ;;^UTILITY(U,$J,358.3,29230,1,0)
+ ;;^UTILITY(U,$J,358.3,27522,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,27522,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,27522,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,27523,0)
+ ;;=F06.4^^113^1338^3
+ ;;^UTILITY(U,$J,358.3,27523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29230,1,3,0)
- ;;=3^Polyhydramnios, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29230,1,4,0)
- ;;=4^O40.3XX4
+ ;;^UTILITY(U,$J,358.3,27523,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,27523,1,4,0)
+ ;;=4^F06.4

@@ -1,5 +1,5 @@
-XUESSO4 ;ISD/HGW Enhanced Single Sign-On Utilities ;04/12/17  10:23
- ;;8.0;KERNEL;**659,630**;Jul 10, 1995;Build 13
+XUESSO4 ;ISD/HGW Enhanced Single Sign-On Utilities ;03/23/2020 08:58
+ ;;8.0;KERNEL;**659,630,701,727**;Jul 10, 1995;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -171,13 +171,14 @@ ESSO(RET,DOC) ; RPC. XUS ESSO VALIDATE - IA #6295
  ;3 Strikes
  I $$LKCHECK^XUSTZIP($G(IO("IP"))) S XUMSG=7 G VAX^XUSRB ;IP locked
  S DUZ=$$EN^XUSAML(DOC) ;Process SAML token
- I DUZ'>0,$$FAIL^XUS3 D  G VAX^XUSRB
- . S XUM=1,XUMSG=7,X=$$RA^XUSTZ H 5 ;3 Strikes
- I DUZ'>0 S XUMSG=63 G VAX^XUSRB
+ I DUZ'>0 D  G VAX^XUSRB ; p701 failure already recorded in $$EN^XUSAML
+ . S XUM=1,XUMSG=63
  D USER^XUS(DUZ) ;Build USER
- S XUMSG=$$UVALID^XUS() G:XUMSG VAX^XUSRB ;Check if user is locked out, terminated, or disusered
+ S XUMSG=$$UVALID^XUS() ;Check user's status: locked out, terminated, disusered, verify code
+ I XUMSG>0 S:$$REMOTEOK(.DUZ) XUMSG=0 ; p727
+ G:XUMSG VAX^XUSRB
  I DUZ>0 S XUMSG=$$POST^XUSRB(1)
- I XUMSG>0 S DUZ=0
+ I XUMSG>0,'$$REMOTEOK(.DUZ) S DUZ=0 ; p727
  D:DUZ>0 POST2^XUSRB
  I +$G(DUZ("REMAPP"))>0 D  ;Role-based access
  . S XOPTION=$P($G(^XWB(8994.5,+DUZ("REMAPP"),0)),U,2)
@@ -185,3 +186,15 @@ ESSO(RET,DOC) ; RPC. XUS ESSO VALIDATE - IA #6295
  S RET(0)=DUZ,RET(1)=XUM,RET(2)=0,RET(3)=$S(XUMSG:$$TXT^XUS3(XUMSG),1:""),RET(4)=0
  Q
  ;
+REMOTEOK(DUZ) ;
+ N AUTH,REMOTE
+ S REMOTE=+$G(DUZ("REMAPP"))>0
+ S AUTH=$G(DUZ("AUTHENTICATION"))
+ I REMOTE,(AUTH="SSOI")!(AUTH="SSOE")!(AUTH="NHIN") Q 1
+ Q 0
+ ;
+ACTIVE(RES,XUIEN) ; XUS ACTIVE USER RPC #6294
+ ;Check if user in XUIEN is active or if no XUIEN if current user is active
+ S XUIEN=$G(XUIEN,DUZ)
+ S RES=$$ACTIVE^XUSER(XUIEN)
+ Q

@@ -1,140 +1,120 @@
-IBDEI2JN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43151,1,4,0)
- ;;=4^I72.8
- ;;^UTILITY(U,$J,358.3,43151,2)
- ;;=^5007794
- ;;^UTILITY(U,$J,358.3,43152,0)
- ;;=I72.9^^164^2060^43
- ;;^UTILITY(U,$J,358.3,43152,1,0)
+ ;;^UTILITY(U,$J,358.3,40616,0)
+ ;;=S56.415A^^152^2013^54
+ ;;^UTILITY(U,$J,358.3,40616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43152,1,3,0)
- ;;=3^Aneurysm,Unspec Site
- ;;^UTILITY(U,$J,358.3,43152,1,4,0)
- ;;=4^I72.9
- ;;^UTILITY(U,$J,358.3,43152,2)
- ;;=^5007795
- ;;^UTILITY(U,$J,358.3,43153,0)
- ;;=I74.5^^164^2060^107
- ;;^UTILITY(U,$J,358.3,43153,1,0)
+ ;;^UTILITY(U,$J,358.3,40616,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40616,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,40616,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,40617,0)
+ ;;=S56.416A^^152^2013^34
+ ;;^UTILITY(U,$J,358.3,40617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43153,1,3,0)
- ;;=3^Embolism & Thrombosis of Iliac Artery
- ;;^UTILITY(U,$J,358.3,43153,1,4,0)
- ;;=4^I74.5
- ;;^UTILITY(U,$J,358.3,43153,2)
- ;;=^269792
- ;;^UTILITY(U,$J,358.3,43154,0)
- ;;=I71.1^^164^2060^143
- ;;^UTILITY(U,$J,358.3,43154,1,0)
+ ;;^UTILITY(U,$J,358.3,40617,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,40617,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,40617,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,40618,0)
+ ;;=S66.912A^^152^2013^22
+ ;;^UTILITY(U,$J,358.3,40618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43154,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,43154,1,4,0)
- ;;=4^I71.1
- ;;^UTILITY(U,$J,358.3,43154,2)
- ;;=^5007786
- ;;^UTILITY(U,$J,358.3,43155,0)
- ;;=R10.9^^164^2061^6
- ;;^UTILITY(U,$J,358.3,43155,1,0)
+ ;;^UTILITY(U,$J,358.3,40618,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,40618,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,40618,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,40619,0)
+ ;;=S66.911A^^152^2013^42
+ ;;^UTILITY(U,$J,358.3,40619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43155,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,43155,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,43155,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,43156,0)
- ;;=R10.11^^164^2061^5
- ;;^UTILITY(U,$J,358.3,43156,1,0)
+ ;;^UTILITY(U,$J,358.3,40619,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,40619,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,40619,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,40620,0)
+ ;;=S63.501A^^152^2013^18
+ ;;^UTILITY(U,$J,358.3,40620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43156,1,3,0)
- ;;=3^Abdominal Pain,RUQ
- ;;^UTILITY(U,$J,358.3,43156,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,43156,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,43157,0)
- ;;=R10.12^^164^2061^3
- ;;^UTILITY(U,$J,358.3,43157,1,0)
+ ;;^UTILITY(U,$J,358.3,40620,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,40620,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,40620,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,40621,0)
+ ;;=S63.502A^^152^2013^7
+ ;;^UTILITY(U,$J,358.3,40621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43157,1,3,0)
- ;;=3^Abdominal Pain,LUQ
- ;;^UTILITY(U,$J,358.3,43157,1,4,0)
- ;;=4^R10.12
- ;;^UTILITY(U,$J,358.3,43157,2)
- ;;=^5019207
- ;;^UTILITY(U,$J,358.3,43158,0)
- ;;=R10.31^^164^2061^4
- ;;^UTILITY(U,$J,358.3,43158,1,0)
+ ;;^UTILITY(U,$J,358.3,40621,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,40621,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,40621,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,40622,0)
+ ;;=S83.8X1A^^152^2013^16
+ ;;^UTILITY(U,$J,358.3,40622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43158,1,3,0)
- ;;=3^Abdominal Pain,RLQ
- ;;^UTILITY(U,$J,358.3,43158,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,43158,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,43159,0)
- ;;=R10.32^^164^2061^2
- ;;^UTILITY(U,$J,358.3,43159,1,0)
+ ;;^UTILITY(U,$J,358.3,40622,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,40622,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,40622,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,40623,0)
+ ;;=S83.8X2A^^152^2013^5
+ ;;^UTILITY(U,$J,358.3,40623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43159,1,3,0)
- ;;=3^Abdominal Pain,LLQ
- ;;^UTILITY(U,$J,358.3,43159,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,43159,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,43160,0)
- ;;=R10.33^^164^2061^8
- ;;^UTILITY(U,$J,358.3,43160,1,0)
+ ;;^UTILITY(U,$J,358.3,40623,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,40623,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,40623,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,40624,0)
+ ;;=S86.211A^^152^2013^47
+ ;;^UTILITY(U,$J,358.3,40624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43160,1,3,0)
- ;;=3^Periumbilical Pain
- ;;^UTILITY(U,$J,358.3,43160,1,4,0)
- ;;=4^R10.33
- ;;^UTILITY(U,$J,358.3,43160,2)
- ;;=^5019213
- ;;^UTILITY(U,$J,358.3,43161,0)
- ;;=R10.13^^164^2061^7
- ;;^UTILITY(U,$J,358.3,43161,1,0)
+ ;;^UTILITY(U,$J,358.3,40624,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,40624,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,40624,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,40625,0)
+ ;;=S86.212A^^152^2013^27
+ ;;^UTILITY(U,$J,358.3,40625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43161,1,3,0)
- ;;=3^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,43161,1,4,0)
- ;;=4^R10.13
- ;;^UTILITY(U,$J,358.3,43161,2)
- ;;=^5019208
- ;;^UTILITY(U,$J,358.3,43162,0)
- ;;=R10.84^^164^2061^1
- ;;^UTILITY(U,$J,358.3,43162,1,0)
+ ;;^UTILITY(U,$J,358.3,40625,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,40625,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,40625,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,40626,0)
+ ;;=S86.311A^^152^2013^49
+ ;;^UTILITY(U,$J,358.3,40626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43162,1,3,0)
- ;;=3^Abdominal Pain,Generalized
- ;;^UTILITY(U,$J,358.3,43162,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,43162,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,43163,0)
- ;;=Z48.01^^164^2062^4
- ;;^UTILITY(U,$J,358.3,43163,1,0)
+ ;;^UTILITY(U,$J,358.3,40626,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,40626,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,40626,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,40627,0)
+ ;;=S86.312A^^152^2013^29
+ ;;^UTILITY(U,$J,358.3,40627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43163,1,3,0)
- ;;=3^Wound Dressing Change/Removal
- ;;^UTILITY(U,$J,358.3,43163,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,43163,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,43164,0)
- ;;=Z48.02^^164^2062^3
- ;;^UTILITY(U,$J,358.3,43164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43164,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,43164,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,43164,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,43165,0)
- ;;=Z48.812^^164^2062^1
+ ;;^UTILITY(U,$J,358.3,40627,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon

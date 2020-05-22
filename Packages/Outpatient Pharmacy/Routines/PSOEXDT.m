@@ -1,5 +1,5 @@
 PSOEXDT ;BHAM ISC/SAB - set exp. date and determine rx status ; 10/24/92 13:24
- ;;7.0;OUTPATIENT PHARMACY;**23,73,222,486**;DEC 1997;Build 33
+ ;;7.0;OUTPATIENT PHARMACY;**23,73,222,486,574**;DEC 1997;Build 53
  ;
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference ^PSDRUG( supported by DBIA 221
@@ -7,7 +7,9 @@ PSOEXDT ;BHAM ISC/SAB - set exp. date and determine rx status ; 10/24/92 13:24
  ; held in rx0, and the second node is held in rx2.  the variable 'j' is
  ; the internal number in the prescription file (^psrx).
  ;
-A S CS=0,RFLS=$P(RX0,"^",9),DYS=$P(RX0,"^",8),(ISSDT,X1)=$P(RX0,"^",13),X2=DYS*(RFLS+1)\1,PSODEA=$P(^PSDRUG($P(RX0,"^",6),0),"^",3)
+ ; Added Clozapine check to not modify Expires date ; PSO*574
+A Q:+$G(PSORXED("CLOZ EDIT")) 
+ S CS=0,RFLS=$P(RX0,"^",9),DYS=$P(RX0,"^",8),(ISSDT,X1)=$P(RX0,"^",13),X2=DYS*(RFLS+1)\1,PSODEA=$P(^PSDRUG($P(RX0,"^",6),0),"^",3)
  F DEA=1:1 Q:$E(PSODEA,DEA)=""  I $E(+PSODEA,DEA)>1,$E(+PSODEA,DEA)<6 S $P(CS,"^")=1 S:$E(+PSODEA,DEA)=2 $P(CS,"^",2)=1
  I $G(CLOZPAT)=2&(RFLS) S X2=28 G DT  ;486 Begin
  I $G(CLOZPAT)=1&(RFLS) S X2=14 G DT

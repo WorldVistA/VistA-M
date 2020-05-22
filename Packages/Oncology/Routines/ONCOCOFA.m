@@ -1,5 +1,5 @@
 ONCOCOFA ;Hines OIFO - COMPUTED FIELDS FOR FOLLOW-UP ;6/23/93  09:59
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,10**;Jul 31, 2013;Build 20
  ;
 MTS ;Multiple TUMOR STATUS within FOLLOWUP
  ;Called by FHC^ONCODLF,FHP^ONCODLF
@@ -13,12 +13,15 @@ MTS ;Multiple TUMOR STATUS within FOLLOWUP
 MTSWLP ;Multiple tumor status write loop - called from MTS if >1 primary
  N K
  F K=1:1:JACT D
- .N PD0,ST,ST1,TD1,TS
+ .N PD0,ST,ST1,STNUM,ST1NUM,TD1,TS
  .S PD0=XY(K)
- .S ST=$$GETVAL^ONCOU(165.5,PD0,.01)
- .S ST1=$$GETVAL^ONCOU(165.5,PD0,20) S:ST1'="" ST=ST1
+ .;S ST=$$GETVAL^ONCOU(165.5,PD0,.01)
+ .S STNUM=$P($G(^ONCO(165.5,PD0,0)),"^",1),ST=$P($G(^ONCO(164.2,STNUM,0)),"^",1)
+ .;S ST1=$$GETVAL^ONCOU(165.5,PD0,20) S:ST1'="" ST=ST1
+ .S ST1NUM=$P($G(^ONCO(165.5,PD0,2)),"^",1),ST1=$P($G(^ONCO(164,ST1NUM,0)),"^",1) S:ST1'="" ST=ST1
  .S TD1=+$O(^ONCO(165.5,PD0,"TS","B",+FDAT,0))
- .S TS="" S:TD1 TS=$$GETVAL^ONCOU(165.5,PD0,73,TD1,.02)
+ .;S TS="" S:TD1 TS=$$GETVAL^ONCOU(165.5,PD0,73,TD1,.02)
+ .S TS="" S:TD1 TSNUM=$P($G(^ONCO(165.5,PD0,"TS",TD1,0)),"^",2),TS=$P($G(^ONCO(164.42,TSNUM,0)),"^",1)
  .K DOTS S $P(DOTS,".",30-$L(ST))="."
  .W !?2,ST,$G(DOTS),": ",$S(TS="":"Tumor Status not stated",1:TS) W:K=JACT !
  Q

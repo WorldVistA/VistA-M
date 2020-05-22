@@ -1,138 +1,120 @@
-IBDEI2ZG ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50006,1,0)
+ ;;^UTILITY(U,$J,358.3,47632,1,3,0)
+ ;;=3^Hygiene,Personal,Very Lowe Level
+ ;;^UTILITY(U,$J,358.3,47632,1,4,0)
+ ;;=4^R46.0
+ ;;^UTILITY(U,$J,358.3,47632,2)
+ ;;=^5019478
+ ;;^UTILITY(U,$J,358.3,47633,0)
+ ;;=F39.^^185^2409^14
+ ;;^UTILITY(U,$J,358.3,47633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50006,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,50006,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,50006,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,50007,0)
- ;;=G47.30^^219^2435^10
- ;;^UTILITY(U,$J,358.3,50007,1,0)
+ ;;^UTILITY(U,$J,358.3,47633,1,3,0)
+ ;;=3^Mood Affective Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,47633,1,4,0)
+ ;;=4^F39.
+ ;;^UTILITY(U,$J,358.3,47633,2)
+ ;;=^5003541
+ ;;^UTILITY(U,$J,358.3,47634,0)
+ ;;=F06.30^^185^2409^15
+ ;;^UTILITY(U,$J,358.3,47634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50007,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,50007,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,50007,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,50008,0)
- ;;=G47.00^^219^2435^3
- ;;^UTILITY(U,$J,358.3,50008,1,0)
+ ;;^UTILITY(U,$J,358.3,47634,1,3,0)
+ ;;=3^Mood Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,47634,1,4,0)
+ ;;=4^F06.30
+ ;;^UTILITY(U,$J,358.3,47634,2)
+ ;;=^5003056
+ ;;^UTILITY(U,$J,358.3,47635,0)
+ ;;=F17.221^^185^2409^19
+ ;;^UTILITY(U,$J,358.3,47635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50008,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,50008,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,50008,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,50009,0)
- ;;=G47.10^^219^2435^2
- ;;^UTILITY(U,$J,358.3,50009,1,0)
+ ;;^UTILITY(U,$J,358.3,47635,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,in Remission
+ ;;^UTILITY(U,$J,358.3,47635,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,47635,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,47636,0)
+ ;;=F17.220^^185^2409^18
+ ;;^UTILITY(U,$J,358.3,47636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50009,1,3,0)
- ;;=3^Hypersomnia,Unspec
- ;;^UTILITY(U,$J,358.3,50009,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,50009,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,50010,0)
- ;;=G47.52^^219^2435^8
- ;;^UTILITY(U,$J,358.3,50010,1,0)
+ ;;^UTILITY(U,$J,358.3,47636,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,47636,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,47636,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,47637,0)
+ ;;=F17.229^^185^2409^16
+ ;;^UTILITY(U,$J,358.3,47637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50010,1,3,0)
- ;;=3^REM Sleep Behavior Disorder
- ;;^UTILITY(U,$J,358.3,50010,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,50010,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,50011,0)
- ;;=R06.83^^219^2435^11
- ;;^UTILITY(U,$J,358.3,50011,1,0)
+ ;;^UTILITY(U,$J,358.3,47637,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,47637,1,4,0)
+ ;;=4^F17.229
+ ;;^UTILITY(U,$J,358.3,47637,2)
+ ;;=^5003374
+ ;;^UTILITY(U,$J,358.3,47638,0)
+ ;;=F17.223^^185^2409^17
+ ;;^UTILITY(U,$J,358.3,47638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50011,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,50011,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,50011,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,50012,0)
- ;;=E66.2^^219^2435^5
- ;;^UTILITY(U,$J,358.3,50012,1,0)
+ ;;^UTILITY(U,$J,358.3,47638,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,47638,1,4,0)
+ ;;=4^F17.223
+ ;;^UTILITY(U,$J,358.3,47638,2)
+ ;;=^5003372
+ ;;^UTILITY(U,$J,358.3,47639,0)
+ ;;=F17.211^^185^2409^23
+ ;;^UTILITY(U,$J,358.3,47639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50012,1,3,0)
- ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,50012,1,4,0)
- ;;=4^E66.2
- ;;^UTILITY(U,$J,358.3,50012,2)
- ;;=^5002829
- ;;^UTILITY(U,$J,358.3,50013,0)
- ;;=G47.33^^219^2435^7
- ;;^UTILITY(U,$J,358.3,50013,1,0)
+ ;;^UTILITY(U,$J,358.3,47639,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,in Remission
+ ;;^UTILITY(U,$J,358.3,47639,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,47639,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,47640,0)
+ ;;=F17.210^^185^2409^22
+ ;;^UTILITY(U,$J,358.3,47640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50013,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,50013,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,50013,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,50014,0)
- ;;=G47.31^^219^2436^1
- ;;^UTILITY(U,$J,358.3,50014,1,0)
+ ;;^UTILITY(U,$J,358.3,47640,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,47640,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,47640,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,47641,0)
+ ;;=F17.219^^185^2409^20
+ ;;^UTILITY(U,$J,358.3,47641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50014,1,3,0)
- ;;=3^Central Sleep Apnea,Primary
- ;;^UTILITY(U,$J,358.3,50014,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,50014,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,50015,0)
- ;;=G47.36^^219^2436^2
- ;;^UTILITY(U,$J,358.3,50015,1,0)
+ ;;^UTILITY(U,$J,358.3,47641,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,47641,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,47641,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,47642,0)
+ ;;=F17.213^^185^2409^21
+ ;;^UTILITY(U,$J,358.3,47642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50015,1,3,0)
- ;;=3^Hypoventilation,Sleep Related
- ;;^UTILITY(U,$J,358.3,50015,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,50015,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,50016,0)
- ;;=G47.33^^219^2436^3
- ;;^UTILITY(U,$J,358.3,50016,1,0)
+ ;;^UTILITY(U,$J,358.3,47642,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,47642,1,4,0)
+ ;;=4^F17.213
+ ;;^UTILITY(U,$J,358.3,47642,2)
+ ;;=^5003367
+ ;;^UTILITY(U,$J,358.3,47643,0)
+ ;;=F17.291^^185^2409^24
+ ;;^UTILITY(U,$J,358.3,47643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50016,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,50016,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,50016,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,50017,0)
- ;;=Z43.0^^219^2437^3
- ;;^UTILITY(U,$J,358.3,50017,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50017,1,3,0)
- ;;=3^Attention to Tracheostomy
- ;;^UTILITY(U,$J,358.3,50017,1,4,0)
- ;;=4^Z43.0
- ;;^UTILITY(U,$J,358.3,50017,2)
- ;;=^5062958
- ;;^UTILITY(U,$J,358.3,50018,0)
- ;;=Z71.3^^219^2437^5
- ;;^UTILITY(U,$J,358.3,50018,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50018,1,3,0)
- ;;=3^Counseling & Surveillance,Dietary
- ;;^UTILITY(U,$J,358.3,50018,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,50018,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,50019,0)
- ;;=Z71.89^^219^2437^6
- ;;^UTILITY(U,$J,358.3,50019,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50019,1,3,0)
- ;;=3^Counseling,Other Spec
+ ;;^UTILITY(U,$J,358.3,47643,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,in Remission
+ ;;^UTILITY(U,$J,358.3,47643,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,47643,2)
+ ;;=^5003376

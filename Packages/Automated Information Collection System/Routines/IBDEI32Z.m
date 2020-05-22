@@ -1,130 +1,130 @@
-IBDEI32Z ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51672,1,3,0)
- ;;=3^Pressure Ulcer Right Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,51672,1,4,0)
- ;;=4^L89.319
- ;;^UTILITY(U,$J,358.3,51672,2)
- ;;=^5133670
- ;;^UTILITY(U,$J,358.3,51673,0)
- ;;=L89.311^^225^2505^49
- ;;^UTILITY(U,$J,358.3,51673,1,0)
+ ;;^UTILITY(U,$J,358.3,49193,1,3,0)
+ ;;=3^Malig Neop Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,49193,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,49193,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,49194,0)
+ ;;=C67.9^^187^2437^8
+ ;;^UTILITY(U,$J,358.3,49194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51673,1,3,0)
- ;;=3^Pressure Ulcer Right Buttock,Stage 1
- ;;^UTILITY(U,$J,358.3,51673,1,4,0)
- ;;=4^L89.311
- ;;^UTILITY(U,$J,358.3,51673,2)
- ;;=^5009395
- ;;^UTILITY(U,$J,358.3,51674,0)
- ;;=L89.312^^225^2505^50
- ;;^UTILITY(U,$J,358.3,51674,1,0)
+ ;;^UTILITY(U,$J,358.3,49194,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,49194,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,49194,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,49195,0)
+ ;;=C76.0^^187^2437^16
+ ;;^UTILITY(U,$J,358.3,49195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51674,1,3,0)
- ;;=3^Pressure Ulcer Right Buttock,Stage 2
- ;;^UTILITY(U,$J,358.3,51674,1,4,0)
- ;;=4^L89.312
- ;;^UTILITY(U,$J,358.3,51674,2)
- ;;=^5009396
- ;;^UTILITY(U,$J,358.3,51675,0)
- ;;=L89.313^^225^2505^51
- ;;^UTILITY(U,$J,358.3,51675,1,0)
+ ;;^UTILITY(U,$J,358.3,49195,1,3,0)
+ ;;=3^Malig Neop Head,Face & Neck
+ ;;^UTILITY(U,$J,358.3,49195,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,49195,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,49196,0)
+ ;;=C64.1^^187^2437^18
+ ;;^UTILITY(U,$J,358.3,49196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51675,1,3,0)
- ;;=3^Pressure Ulcer Right Buttock,Stage 3
- ;;^UTILITY(U,$J,358.3,51675,1,4,0)
- ;;=4^L89.313
- ;;^UTILITY(U,$J,358.3,51675,2)
- ;;=^5009397
- ;;^UTILITY(U,$J,358.3,51676,0)
- ;;=L89.314^^225^2505^52
- ;;^UTILITY(U,$J,358.3,51676,1,0)
+ ;;^UTILITY(U,$J,358.3,49196,1,3,0)
+ ;;=3^Malig Neop Kidney,Right
+ ;;^UTILITY(U,$J,358.3,49196,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,49196,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,49197,0)
+ ;;=C64.2^^187^2437^17
+ ;;^UTILITY(U,$J,358.3,49197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51676,1,3,0)
- ;;=3^Pressure Ulcer Right Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,51676,1,4,0)
- ;;=4^L89.314
- ;;^UTILITY(U,$J,358.3,51676,2)
- ;;=^5009398
- ;;^UTILITY(U,$J,358.3,51677,0)
- ;;=L89.320^^225^2505^12
- ;;^UTILITY(U,$J,358.3,51677,1,0)
+ ;;^UTILITY(U,$J,358.3,49197,1,3,0)
+ ;;=3^Malig Neop Kidney,Left
+ ;;^UTILITY(U,$J,358.3,49197,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,49197,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,49198,0)
+ ;;=C71.9^^187^2437^9
+ ;;^UTILITY(U,$J,358.3,49198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51677,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Unstageable
- ;;^UTILITY(U,$J,358.3,51677,1,4,0)
- ;;=4^L89.320
- ;;^UTILITY(U,$J,358.3,51677,2)
- ;;=^5009399
- ;;^UTILITY(U,$J,358.3,51678,0)
- ;;=L89.329^^225^2505^11
- ;;^UTILITY(U,$J,358.3,51678,1,0)
+ ;;^UTILITY(U,$J,358.3,49198,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,49198,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,49198,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,49199,0)
+ ;;=C16.9^^187^2437^24
+ ;;^UTILITY(U,$J,358.3,49199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51678,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,51678,1,4,0)
- ;;=4^L89.329
- ;;^UTILITY(U,$J,358.3,51678,2)
- ;;=^5133671
- ;;^UTILITY(U,$J,358.3,51679,0)
- ;;=L89.321^^225^2505^7
- ;;^UTILITY(U,$J,358.3,51679,1,0)
+ ;;^UTILITY(U,$J,358.3,49199,1,3,0)
+ ;;=3^Malig Neop Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,49199,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,49199,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,49200,0)
+ ;;=C20.^^187^2437^23
+ ;;^UTILITY(U,$J,358.3,49200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51679,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 1
- ;;^UTILITY(U,$J,358.3,51679,1,4,0)
- ;;=4^L89.321
- ;;^UTILITY(U,$J,358.3,51679,2)
- ;;=^5009400
- ;;^UTILITY(U,$J,358.3,51680,0)
- ;;=L89.322^^225^2505^8
- ;;^UTILITY(U,$J,358.3,51680,1,0)
+ ;;^UTILITY(U,$J,358.3,49200,1,3,0)
+ ;;=3^Malig Neop Rectum
+ ;;^UTILITY(U,$J,358.3,49200,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,49200,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,49201,0)
+ ;;=C43.9^^187^2437^6
+ ;;^UTILITY(U,$J,358.3,49201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51680,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 2
- ;;^UTILITY(U,$J,358.3,51680,1,4,0)
- ;;=4^L89.322
- ;;^UTILITY(U,$J,358.3,51680,2)
- ;;=^5009401
- ;;^UTILITY(U,$J,358.3,51681,0)
- ;;=L89.323^^225^2505^9
- ;;^UTILITY(U,$J,358.3,51681,1,0)
+ ;;^UTILITY(U,$J,358.3,49201,1,3,0)
+ ;;=3^Malig Melanoma Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,49201,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,49201,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,49202,0)
+ ;;=C22.9^^187^2437^21
+ ;;^UTILITY(U,$J,358.3,49202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51681,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 3
- ;;^UTILITY(U,$J,358.3,51681,1,4,0)
- ;;=4^L89.323
- ;;^UTILITY(U,$J,358.3,51681,2)
- ;;=^5009402
- ;;^UTILITY(U,$J,358.3,51682,0)
- ;;=L89.324^^225^2505^10
- ;;^UTILITY(U,$J,358.3,51682,1,0)
+ ;;^UTILITY(U,$J,358.3,49202,1,3,0)
+ ;;=3^Malig Neop Liver,Unspec as Prim/Sec
+ ;;^UTILITY(U,$J,358.3,49202,1,4,0)
+ ;;=4^C22.9
+ ;;^UTILITY(U,$J,358.3,49202,2)
+ ;;=^267096
+ ;;^UTILITY(U,$J,358.3,49203,0)
+ ;;=C32.9^^187^2437^19
+ ;;^UTILITY(U,$J,358.3,49203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51682,1,3,0)
- ;;=3^Pressure Ulcer Left Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,51682,1,4,0)
- ;;=4^L89.324
- ;;^UTILITY(U,$J,358.3,51682,2)
- ;;=^5009403
- ;;^UTILITY(U,$J,358.3,51683,0)
- ;;=L89.510^^225^2505^48
- ;;^UTILITY(U,$J,358.3,51683,1,0)
+ ;;^UTILITY(U,$J,358.3,49203,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,49203,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,49203,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,49204,0)
+ ;;=C50.911^^187^2437^11
+ ;;^UTILITY(U,$J,358.3,49204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51683,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Unstageable
- ;;^UTILITY(U,$J,358.3,51683,1,4,0)
- ;;=4^L89.510
- ;;^UTILITY(U,$J,358.3,51683,2)
- ;;=^5009415
- ;;^UTILITY(U,$J,358.3,51684,0)
- ;;=L89.519^^225^2505^47
- ;;^UTILITY(U,$J,358.3,51684,1,0)
+ ;;^UTILITY(U,$J,358.3,49204,1,3,0)
+ ;;=3^Malig Neop Breast,Right,Female
+ ;;^UTILITY(U,$J,358.3,49204,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,49204,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,49205,0)
+ ;;=C50.912^^187^2437^10
+ ;;^UTILITY(U,$J,358.3,49205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51684,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
- ;;^UTILITY(U,$J,358.3,51684,1,4,0)
- ;;=4^L89.519
- ;;^UTILITY(U,$J,358.3,51684,2)
- ;;=^5133673
+ ;;^UTILITY(U,$J,358.3,49205,1,3,0)
+ ;;=3^Malig Neop Breast,Left,Female
+ ;;^UTILITY(U,$J,358.3,49205,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,49205,2)
+ ;;=^5001196

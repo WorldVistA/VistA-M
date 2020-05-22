@@ -1,132 +1,118 @@
-IBDEI24I ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36009,0)
- ;;=J45.991^^134^1740^14
- ;;^UTILITY(U,$J,358.3,36009,1,0)
+ ;;^UTILITY(U,$J,358.3,33918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36009,1,3,0)
- ;;=3^Cough Variant Asthma
- ;;^UTILITY(U,$J,358.3,36009,1,4,0)
- ;;=4^J45.991
- ;;^UTILITY(U,$J,358.3,36009,2)
- ;;=^329927
- ;;^UTILITY(U,$J,358.3,36010,0)
- ;;=J43.9^^134^1740^16
- ;;^UTILITY(U,$J,358.3,36010,1,0)
+ ;;^UTILITY(U,$J,358.3,33918,1,3,0)
+ ;;=3^Sprain of left wrist, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,33918,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,33918,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,33919,0)
+ ;;=S63.501A^^132^1714^29
+ ;;^UTILITY(U,$J,358.3,33919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36010,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,36010,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,36010,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,36011,0)
- ;;=J45.990^^134^1740^17
- ;;^UTILITY(U,$J,358.3,36011,1,0)
+ ;;^UTILITY(U,$J,358.3,33919,1,3,0)
+ ;;=3^Sprain of right wrist, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,33919,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,33919,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,33920,0)
+ ;;=S52.532D^^132^1714^6
+ ;;^UTILITY(U,$J,358.3,33920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36011,1,3,0)
- ;;=3^Exercise Induced Bronchospasm
- ;;^UTILITY(U,$J,358.3,36011,1,4,0)
- ;;=4^J45.990
- ;;^UTILITY(U,$J,358.3,36011,2)
- ;;=^329926
- ;;^UTILITY(U,$J,358.3,36012,0)
- ;;=J45.22^^134^1740^19
- ;;^UTILITY(U,$J,358.3,36012,1,0)
+ ;;^UTILITY(U,$J,358.3,33920,1,3,0)
+ ;;=3^Colles' fracture of left radius, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33920,1,4,0)
+ ;;=4^S52.532D
+ ;;^UTILITY(U,$J,358.3,33920,2)
+ ;;=^5030740
+ ;;^UTILITY(U,$J,358.3,33921,0)
+ ;;=S52.531D^^132^1714^8
+ ;;^UTILITY(U,$J,358.3,33921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36012,1,3,0)
- ;;=3^Mild Intermittent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,36012,1,4,0)
- ;;=4^J45.22
- ;;^UTILITY(U,$J,358.3,36012,2)
- ;;=^5008244
- ;;^UTILITY(U,$J,358.3,36013,0)
- ;;=J45.20^^134^1740^20
- ;;^UTILITY(U,$J,358.3,36013,1,0)
+ ;;^UTILITY(U,$J,358.3,33921,1,3,0)
+ ;;=3^Colles' fracture of right radius, subs for clos fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33921,1,4,0)
+ ;;=4^S52.531D
+ ;;^UTILITY(U,$J,358.3,33921,2)
+ ;;=^5030724
+ ;;^UTILITY(U,$J,358.3,33922,0)
+ ;;=S52.502D^^132^1714^10
+ ;;^UTILITY(U,$J,358.3,33922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36013,1,3,0)
- ;;=3^Mild Intermittent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,36013,1,4,0)
- ;;=4^J45.20
- ;;^UTILITY(U,$J,358.3,36013,2)
- ;;=^5008242
- ;;^UTILITY(U,$J,358.3,36014,0)
- ;;=J45.21^^134^1740^18
- ;;^UTILITY(U,$J,358.3,36014,1,0)
+ ;;^UTILITY(U,$J,358.3,33922,1,3,0)
+ ;;=3^Fracture of the lower end of left radius, subs encntr
+ ;;^UTILITY(U,$J,358.3,33922,1,4,0)
+ ;;=4^S52.502D
+ ;;^UTILITY(U,$J,358.3,33922,2)
+ ;;=^5030605
+ ;;^UTILITY(U,$J,358.3,33923,0)
+ ;;=S62.101D^^132^1714^15
+ ;;^UTILITY(U,$J,358.3,33923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36014,1,3,0)
- ;;=3^Mild Intermittent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,36014,1,4,0)
- ;;=4^J45.21
- ;;^UTILITY(U,$J,358.3,36014,2)
- ;;=^5008243
- ;;^UTILITY(U,$J,358.3,36015,0)
- ;;=J45.31^^134^1740^21
- ;;^UTILITY(U,$J,358.3,36015,1,0)
+ ;;^UTILITY(U,$J,358.3,33923,1,3,0)
+ ;;=3^Fx unsp carpal bone, right wrist, subs for fx w routn heal
+ ;;^UTILITY(U,$J,358.3,33923,1,4,0)
+ ;;=4^S62.101D
+ ;;^UTILITY(U,$J,358.3,33923,2)
+ ;;=^5033201
+ ;;^UTILITY(U,$J,358.3,33924,0)
+ ;;=M19.131^^132^1714^21
+ ;;^UTILITY(U,$J,358.3,33924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36015,1,3,0)
- ;;=3^Mild Persistent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,36015,1,4,0)
- ;;=4^J45.31
- ;;^UTILITY(U,$J,358.3,36015,2)
- ;;=^5008246
- ;;^UTILITY(U,$J,358.3,36016,0)
- ;;=J45.32^^134^1740^22
- ;;^UTILITY(U,$J,358.3,36016,1,0)
+ ;;^UTILITY(U,$J,358.3,33924,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right wrist
+ ;;^UTILITY(U,$J,358.3,33924,1,4,0)
+ ;;=4^M19.131
+ ;;^UTILITY(U,$J,358.3,33924,2)
+ ;;=^5010829
+ ;;^UTILITY(U,$J,358.3,33925,0)
+ ;;=M19.132^^132^1714^20
+ ;;^UTILITY(U,$J,358.3,33925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36016,1,3,0)
- ;;=3^Mild Persistent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,36016,1,4,0)
- ;;=4^J45.32
- ;;^UTILITY(U,$J,358.3,36016,2)
- ;;=^5008247
- ;;^UTILITY(U,$J,358.3,36017,0)
- ;;=J45.30^^134^1740^23
- ;;^UTILITY(U,$J,358.3,36017,1,0)
+ ;;^UTILITY(U,$J,358.3,33925,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left wrist
+ ;;^UTILITY(U,$J,358.3,33925,1,4,0)
+ ;;=4^M19.132
+ ;;^UTILITY(U,$J,358.3,33925,2)
+ ;;=^5010830
+ ;;^UTILITY(U,$J,358.3,33926,0)
+ ;;=M19.231^^132^1714^26
+ ;;^UTILITY(U,$J,358.3,33926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36017,1,3,0)
- ;;=3^Mild Persistent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,36017,1,4,0)
- ;;=4^J45.30
- ;;^UTILITY(U,$J,358.3,36017,2)
- ;;=^5008245
- ;;^UTILITY(U,$J,358.3,36018,0)
- ;;=J45.41^^134^1740^24
- ;;^UTILITY(U,$J,358.3,36018,1,0)
+ ;;^UTILITY(U,$J,358.3,33926,1,3,0)
+ ;;=3^Secondary osteoarthritis, right wrist
+ ;;^UTILITY(U,$J,358.3,33926,1,4,0)
+ ;;=4^M19.231
+ ;;^UTILITY(U,$J,358.3,33926,2)
+ ;;=^5010844
+ ;;^UTILITY(U,$J,358.3,33927,0)
+ ;;=M19.232^^132^1714^25
+ ;;^UTILITY(U,$J,358.3,33927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36018,1,3,0)
- ;;=3^Moderate Persistent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,36018,1,4,0)
- ;;=4^J45.41
- ;;^UTILITY(U,$J,358.3,36018,2)
- ;;=^5008249
- ;;^UTILITY(U,$J,358.3,36019,0)
- ;;=J45.42^^134^1740^25
- ;;^UTILITY(U,$J,358.3,36019,1,0)
+ ;;^UTILITY(U,$J,358.3,33927,1,3,0)
+ ;;=3^Secondary osteoarthritis, left wrist
+ ;;^UTILITY(U,$J,358.3,33927,1,4,0)
+ ;;=4^M19.232
+ ;;^UTILITY(U,$J,358.3,33927,2)
+ ;;=^5010845
+ ;;^UTILITY(U,$J,358.3,33928,0)
+ ;;=S63.502D^^132^1714^28
+ ;;^UTILITY(U,$J,358.3,33928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36019,1,3,0)
- ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,36019,1,4,0)
- ;;=4^J45.42
- ;;^UTILITY(U,$J,358.3,36019,2)
- ;;=^5008250
- ;;^UTILITY(U,$J,358.3,36020,0)
- ;;=J45.40^^134^1740^26
- ;;^UTILITY(U,$J,358.3,36020,1,0)
+ ;;^UTILITY(U,$J,358.3,33928,1,3,0)
+ ;;=3^Sprain of left wrist, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33928,1,4,0)
+ ;;=4^S63.502D
+ ;;^UTILITY(U,$J,358.3,33928,2)
+ ;;=^5035587
+ ;;^UTILITY(U,$J,358.3,33929,0)
+ ;;=S63.501D^^132^1714^30
+ ;;^UTILITY(U,$J,358.3,33929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36020,1,3,0)
- ;;=3^Moderate Persistent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,36020,1,4,0)
- ;;=4^J45.40
- ;;^UTILITY(U,$J,358.3,36020,2)
- ;;=^5008248
- ;;^UTILITY(U,$J,358.3,36021,0)
- ;;=J41.1^^134^1740^27
- ;;^UTILITY(U,$J,358.3,36021,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36021,1,3,0)
- ;;=3^Mucopurulent Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,36021,1,4,0)
- ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,33929,1,3,0)
+ ;;=3^Sprain of right wrist, subsequent encounter

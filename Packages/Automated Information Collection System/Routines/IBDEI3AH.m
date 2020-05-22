@@ -1,130 +1,126 @@
-IBDEI3AH ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3AH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55273,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,55273,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,55274,0)
- ;;=J20.8^^256^2777^12
- ;;^UTILITY(U,$J,358.3,55274,1,0)
+ ;;^UTILITY(U,$J,358.3,52495,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,52495,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,52495,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,52496,0)
+ ;;=E11.22^^194^2540^3
+ ;;^UTILITY(U,$J,358.3,52496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55274,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,55274,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,55274,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,55275,0)
- ;;=J20.5^^256^2777^14
- ;;^UTILITY(U,$J,358.3,55275,1,0)
+ ;;^UTILITY(U,$J,358.3,52496,1,3,0)
+ ;;=3^DM Type 2 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,52496,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,52496,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,52497,0)
+ ;;=E11.39^^194^2540^28
+ ;;^UTILITY(U,$J,358.3,52497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55275,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,55275,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,55275,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,55276,0)
- ;;=J20.7^^256^2777^9
- ;;^UTILITY(U,$J,358.3,55276,1,0)
+ ;;^UTILITY(U,$J,358.3,52497,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Ophth Compl
+ ;;^UTILITY(U,$J,358.3,52497,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,52497,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,52498,0)
+ ;;=E11.41^^194^2540^6
+ ;;^UTILITY(U,$J,358.3,52498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55276,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,55276,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,55276,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,55277,0)
- ;;=J20.6^^256^2777^15
- ;;^UTILITY(U,$J,358.3,55277,1,0)
+ ;;^UTILITY(U,$J,358.3,52498,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,52498,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,52498,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,52499,0)
+ ;;=E11.42^^194^2540^13
+ ;;^UTILITY(U,$J,358.3,52499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55277,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,55277,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,55277,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,55278,0)
- ;;=J18.9^^256^2777^67
- ;;^UTILITY(U,$J,358.3,55278,1,0)
+ ;;^UTILITY(U,$J,358.3,52499,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,52499,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,52499,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,52500,0)
+ ;;=E11.43^^194^2540^2
+ ;;^UTILITY(U,$J,358.3,52500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55278,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,55278,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,55278,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,55279,0)
- ;;=J18.8^^256^2777^68
- ;;^UTILITY(U,$J,358.3,55279,1,0)
+ ;;^UTILITY(U,$J,358.3,52500,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,52500,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,52500,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,52501,0)
+ ;;=E11.44^^194^2540^1
+ ;;^UTILITY(U,$J,358.3,52501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55279,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,55279,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,55279,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,55280,0)
- ;;=J11.00^^256^2777^28
- ;;^UTILITY(U,$J,358.3,55280,1,0)
+ ;;^UTILITY(U,$J,358.3,52501,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Amyotrophy
+ ;;^UTILITY(U,$J,358.3,52501,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,52501,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,52502,0)
+ ;;=E11.49^^194^2540^8
+ ;;^UTILITY(U,$J,358.3,52502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55280,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,55280,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,55280,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,55281,0)
- ;;=J12.9^^256^2777^69
- ;;^UTILITY(U,$J,358.3,55281,1,0)
+ ;;^UTILITY(U,$J,358.3,52502,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neurological Compl
+ ;;^UTILITY(U,$J,358.3,52502,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,52502,2)
+ ;;=^5002649
+ ;;^UTILITY(U,$J,358.3,52503,0)
+ ;;=E11.59^^194^2540^25
+ ;;^UTILITY(U,$J,358.3,52503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55281,1,3,0)
- ;;=3^Pneumonia,Viral Unspec
- ;;^UTILITY(U,$J,358.3,55281,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,55281,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,55282,0)
- ;;=J10.08^^256^2777^41
- ;;^UTILITY(U,$J,358.3,55282,1,0)
+ ;;^UTILITY(U,$J,358.3,52503,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Circulatory Compl
+ ;;^UTILITY(U,$J,358.3,52503,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,52503,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,52504,0)
+ ;;=E11.610^^194^2540^9
+ ;;^UTILITY(U,$J,358.3,52504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55282,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
- ;;^UTILITY(U,$J,358.3,55282,1,4,0)
- ;;=4^J10.08
- ;;^UTILITY(U,$J,358.3,55282,2)
- ;;=^5008150
- ;;^UTILITY(U,$J,358.3,55283,0)
- ;;=J10.00^^256^2777^40
- ;;^UTILITY(U,$J,358.3,55283,1,0)
+ ;;^UTILITY(U,$J,358.3,52504,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,52504,1,4,0)
+ ;;=4^E11.610
+ ;;^UTILITY(U,$J,358.3,52504,2)
+ ;;=^5002653
+ ;;^UTILITY(U,$J,358.3,52505,0)
+ ;;=E11.618^^194^2540^26
+ ;;^UTILITY(U,$J,358.3,52505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55283,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,55283,1,4,0)
- ;;=4^J10.00
- ;;^UTILITY(U,$J,358.3,55283,2)
- ;;=^5008148
- ;;^UTILITY(U,$J,358.3,55284,0)
- ;;=J11.08^^256^2777^43
- ;;^UTILITY(U,$J,358.3,55284,1,0)
+ ;;^UTILITY(U,$J,358.3,52505,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Arthropathy
+ ;;^UTILITY(U,$J,358.3,52505,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,52505,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,52506,0)
+ ;;=E11.621^^194^2540^16
+ ;;^UTILITY(U,$J,358.3,52506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55284,1,3,0)
- ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
- ;;^UTILITY(U,$J,358.3,55284,1,4,0)
- ;;=4^J11.08
- ;;^UTILITY(U,$J,358.3,55284,2)
- ;;=^5008157
- ;;^UTILITY(U,$J,358.3,55285,0)
- ;;=J10.1^^256^2777^42
- ;;^UTILITY(U,$J,358.3,55285,1,0)
+ ;;^UTILITY(U,$J,358.3,52506,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,52506,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,52506,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,52507,0)
+ ;;=E11.622^^194^2540^31
+ ;;^UTILITY(U,$J,358.3,52507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55285,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,55285,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,55285,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,55286,0)
- ;;=J10.01^^256^2777^39
+ ;;^UTILITY(U,$J,358.3,52507,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Skin Ulcer

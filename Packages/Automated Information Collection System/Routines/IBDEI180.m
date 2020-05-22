@@ -1,138 +1,116 @@
-IBDEI180 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI180 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20748,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,20748,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,20749,0)
- ;;=Z12.12^^84^938^14
- ;;^UTILITY(U,$J,358.3,20749,1,0)
+ ;;^UTILITY(U,$J,358.3,19590,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19590,1,4,0)
+ ;;=4^S06.359S
+ ;;^UTILITY(U,$J,358.3,19590,2)
+ ;;=^5020935
+ ;;^UTILITY(U,$J,358.3,19591,0)
+ ;;=S06.350S^^93^994^82
+ ;;^UTILITY(U,$J,358.3,19591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20749,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,20749,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,20749,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,20750,0)
- ;;=Z71.89^^84^938^12
- ;;^UTILITY(U,$J,358.3,20750,1,0)
+ ;;^UTILITY(U,$J,358.3,19591,1,3,0)
+ ;;=3^Traum hemor left cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19591,1,4,0)
+ ;;=4^S06.350S
+ ;;^UTILITY(U,$J,358.3,19591,2)
+ ;;=^5020908
+ ;;^UTILITY(U,$J,358.3,19592,0)
+ ;;=S06.345S^^93^994^83
+ ;;^UTILITY(U,$J,358.3,19592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20750,1,3,0)
- ;;=3^Other Specified Counseling
- ;;^UTILITY(U,$J,358.3,20750,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,20750,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,20751,0)
- ;;=Z12.5^^84^938^13
- ;;^UTILITY(U,$J,358.3,20751,1,0)
+ ;;^UTILITY(U,$J,358.3,19592,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19592,1,4,0)
+ ;;=4^S06.345S
+ ;;^UTILITY(U,$J,358.3,19592,2)
+ ;;=^5020893
+ ;;^UTILITY(U,$J,358.3,19593,0)
+ ;;=S06.346S^^93^994^84
+ ;;^UTILITY(U,$J,358.3,19593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20751,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,20751,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,20751,2)
- ;;=^5062688
- ;;^UTILITY(U,$J,358.3,20752,0)
- ;;=Z00.00^^84^938^9
- ;;^UTILITY(U,$J,358.3,20752,1,0)
+ ;;^UTILITY(U,$J,358.3,19593,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,19593,1,4,0)
+ ;;=4^S06.346S
+ ;;^UTILITY(U,$J,358.3,19593,2)
+ ;;=^5020896
+ ;;^UTILITY(U,$J,358.3,19594,0)
+ ;;=S06.343S^^93^994^90
+ ;;^UTILITY(U,$J,358.3,19594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20752,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,20752,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,20752,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,20753,0)
- ;;=Z02.79^^84^938^11
- ;;^UTILITY(U,$J,358.3,20753,1,0)
+ ;;^UTILITY(U,$J,358.3,19594,1,3,0)
+ ;;=3^Traum hemor right cerebrumb w LOC of 1-5 hrs 59 minutes, sequela
+ ;;^UTILITY(U,$J,358.3,19594,1,4,0)
+ ;;=4^S06.343S
+ ;;^UTILITY(U,$J,358.3,19594,2)
+ ;;=^5020887
+ ;;^UTILITY(U,$J,358.3,19595,0)
+ ;;=S06.341S^^93^994^85
+ ;;^UTILITY(U,$J,358.3,19595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20753,1,3,0)
- ;;=3^Medical Certificate Encounter
- ;;^UTILITY(U,$J,358.3,20753,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,20753,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,20754,0)
- ;;=Z71.3^^84^938^7
- ;;^UTILITY(U,$J,358.3,20754,1,0)
+ ;;^UTILITY(U,$J,358.3,19595,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19595,1,4,0)
+ ;;=4^S06.341S
+ ;;^UTILITY(U,$J,358.3,19595,2)
+ ;;=^5020881
+ ;;^UTILITY(U,$J,358.3,19596,0)
+ ;;=S06.342S^^93^994^86
+ ;;^UTILITY(U,$J,358.3,19596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20754,1,3,0)
- ;;=3^Dietary Counseling
- ;;^UTILITY(U,$J,358.3,20754,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,20754,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,20755,0)
- ;;=Z71.7^^84^938^10
- ;;^UTILITY(U,$J,358.3,20755,1,0)
+ ;;^UTILITY(U,$J,358.3,19596,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19596,1,4,0)
+ ;;=4^S06.342S
+ ;;^UTILITY(U,$J,358.3,19596,2)
+ ;;=^5020884
+ ;;^UTILITY(U,$J,358.3,19597,0)
+ ;;=S06.344S^^93^994^87
+ ;;^UTILITY(U,$J,358.3,19597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20755,1,3,0)
- ;;=3^HIV Counseling
- ;;^UTILITY(U,$J,358.3,20755,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,20755,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,20756,0)
- ;;=Z71.6^^84^938^15
- ;;^UTILITY(U,$J,358.3,20756,1,0)
+ ;;^UTILITY(U,$J,358.3,19597,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,19597,1,4,0)
+ ;;=4^S06.344S
+ ;;^UTILITY(U,$J,358.3,19597,2)
+ ;;=^5020890
+ ;;^UTILITY(U,$J,358.3,19598,0)
+ ;;=S06.349S^^93^994^88
+ ;;^UTILITY(U,$J,358.3,19598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20756,1,3,0)
- ;;=3^Tobacco Abuse Counseling
- ;;^UTILITY(U,$J,358.3,20756,1,4,0)
- ;;=4^Z71.6
- ;;^UTILITY(U,$J,358.3,20756,2)
- ;;=^5063250
- ;;^UTILITY(U,$J,358.3,20757,0)
- ;;=D86.0^^84^939^45
- ;;^UTILITY(U,$J,358.3,20757,1,0)
+ ;;^UTILITY(U,$J,358.3,19598,1,3,0)
+ ;;=3^Traum hemor right cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19598,1,4,0)
+ ;;=4^S06.349S
+ ;;^UTILITY(U,$J,358.3,19598,2)
+ ;;=^5020905
+ ;;^UTILITY(U,$J,358.3,19599,0)
+ ;;=S06.340S^^93^994^89
+ ;;^UTILITY(U,$J,358.3,19599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20757,1,3,0)
- ;;=3^Sarcoidosis of Lung
- ;;^UTILITY(U,$J,358.3,20757,1,4,0)
- ;;=4^D86.0
- ;;^UTILITY(U,$J,358.3,20757,2)
- ;;=^5002442
- ;;^UTILITY(U,$J,358.3,20758,0)
- ;;=D86.1^^84^939^47
- ;;^UTILITY(U,$J,358.3,20758,1,0)
+ ;;^UTILITY(U,$J,358.3,19599,1,3,0)
+ ;;=3^Traum hemor right cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19599,1,4,0)
+ ;;=4^S06.340S
+ ;;^UTILITY(U,$J,358.3,19599,2)
+ ;;=^5020878
+ ;;^UTILITY(U,$J,358.3,19600,0)
+ ;;=S06.6X5S^^93^994^99
+ ;;^UTILITY(U,$J,358.3,19600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20758,1,3,0)
- ;;=3^Sarcoidosis of Lymph nodes
- ;;^UTILITY(U,$J,358.3,20758,1,4,0)
- ;;=4^D86.1
- ;;^UTILITY(U,$J,358.3,20758,2)
- ;;=^5002443
- ;;^UTILITY(U,$J,358.3,20759,0)
- ;;=D86.2^^84^939^46
- ;;^UTILITY(U,$J,358.3,20759,1,0)
+ ;;^UTILITY(U,$J,358.3,19600,1,3,0)
+ ;;=3^Traum subrac hem w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19600,1,4,0)
+ ;;=4^S06.6X5S
+ ;;^UTILITY(U,$J,358.3,19600,2)
+ ;;=^5021103
+ ;;^UTILITY(U,$J,358.3,19601,0)
+ ;;=S06.6X6S^^93^994^100
+ ;;^UTILITY(U,$J,358.3,19601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20759,1,3,0)
- ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,20759,1,4,0)
- ;;=4^D86.2
- ;;^UTILITY(U,$J,358.3,20759,2)
- ;;=^5002444
- ;;^UTILITY(U,$J,358.3,20760,0)
- ;;=D86.89^^84^939^48
- ;;^UTILITY(U,$J,358.3,20760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20760,1,3,0)
- ;;=3^Sarcoidosis of Other Sites
- ;;^UTILITY(U,$J,358.3,20760,1,4,0)
- ;;=4^D86.89
- ;;^UTILITY(U,$J,358.3,20760,2)
- ;;=^5002453
- ;;^UTILITY(U,$J,358.3,20761,0)
- ;;=D86.9^^84^939^51
- ;;^UTILITY(U,$J,358.3,20761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20761,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,20761,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,20761,2)
- ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,19601,1,3,0)
+ ;;=3^Traum subrac hem w LOC >24 hr w/o ret consc w surv, sequela

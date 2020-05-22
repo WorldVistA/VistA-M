@@ -1,134 +1,124 @@
-IBDEI1N8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1N8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27891,2)
- ;;=^53405
- ;;^UTILITY(U,$J,358.3,27892,0)
- ;;=G61.81^^109^1391^4
- ;;^UTILITY(U,$J,358.3,27892,1,0)
+ ;;^UTILITY(U,$J,358.3,26244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27892,1,3,0)
- ;;=3^Chronic Inflammatory Demyelinating Polyneuritis
- ;;^UTILITY(U,$J,358.3,27892,1,4,0)
- ;;=4^G61.81
- ;;^UTILITY(U,$J,358.3,27892,2)
- ;;=^328480
- ;;^UTILITY(U,$J,358.3,27893,0)
- ;;=D86.81^^109^1391^9
- ;;^UTILITY(U,$J,358.3,27893,1,0)
+ ;;^UTILITY(U,$J,358.3,26244,1,3,0)
+ ;;=3^Acquired Absence of Cervix x/ Remaining Uterus
+ ;;^UTILITY(U,$J,358.3,26244,1,4,0)
+ ;;=4^Z90.712
+ ;;^UTILITY(U,$J,358.3,26244,2)
+ ;;=^5063593
+ ;;^UTILITY(U,$J,358.3,26245,0)
+ ;;=Z90.711^^107^1233^42
+ ;;^UTILITY(U,$J,358.3,26245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27893,1,3,0)
- ;;=3^Sarcoid Meningitis
- ;;^UTILITY(U,$J,358.3,27893,1,4,0)
- ;;=4^D86.81
- ;;^UTILITY(U,$J,358.3,27893,2)
- ;;=^5002446
- ;;^UTILITY(U,$J,358.3,27894,0)
- ;;=G51.0^^109^1392^2
- ;;^UTILITY(U,$J,358.3,27894,1,0)
+ ;;^UTILITY(U,$J,358.3,26245,1,3,0)
+ ;;=3^Acquired Absence of Uterus w/ Remaining Cervical Stump
+ ;;^UTILITY(U,$J,358.3,26245,1,4,0)
+ ;;=4^Z90.711
+ ;;^UTILITY(U,$J,358.3,26245,2)
+ ;;=^5063592
+ ;;^UTILITY(U,$J,358.3,26246,0)
+ ;;=Z90.5^^107^1233^18
+ ;;^UTILITY(U,$J,358.3,26246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27894,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,27894,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,27894,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,27895,0)
- ;;=G54.0^^109^1392^3
- ;;^UTILITY(U,$J,358.3,27895,1,0)
+ ;;^UTILITY(U,$J,358.3,26246,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,26246,1,4,0)
+ ;;=4^Z90.5
+ ;;^UTILITY(U,$J,358.3,26246,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,26247,0)
+ ;;=Z90.02^^107^1233^19
+ ;;^UTILITY(U,$J,358.3,26247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27895,1,3,0)
- ;;=3^Brachial Plexus Disorders
- ;;^UTILITY(U,$J,358.3,27895,1,4,0)
- ;;=4^G54.0
- ;;^UTILITY(U,$J,358.3,27895,2)
- ;;=^5004007
- ;;^UTILITY(U,$J,358.3,27896,0)
- ;;=G56.00^^109^1392^4
- ;;^UTILITY(U,$J,358.3,27896,1,0)
+ ;;^UTILITY(U,$J,358.3,26247,1,3,0)
+ ;;=3^Acquired Absence of Larynx
+ ;;^UTILITY(U,$J,358.3,26247,1,4,0)
+ ;;=4^Z90.02
+ ;;^UTILITY(U,$J,358.3,26247,2)
+ ;;=^5063579
+ ;;^UTILITY(U,$J,358.3,26248,0)
+ ;;=Z89.442^^107^1233^1
+ ;;^UTILITY(U,$J,358.3,26248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27896,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Unspec Upper Limb
- ;;^UTILITY(U,$J,358.3,27896,1,4,0)
- ;;=4^G56.00
- ;;^UTILITY(U,$J,358.3,27896,2)
- ;;=^5004017
- ;;^UTILITY(U,$J,358.3,27897,0)
- ;;=G56.20^^109^1392^14
- ;;^UTILITY(U,$J,358.3,27897,1,0)
+ ;;^UTILITY(U,$J,358.3,26248,1,3,0)
+ ;;=3^Acquired Absence of Ankle,Left
+ ;;^UTILITY(U,$J,358.3,26248,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,26248,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,26249,0)
+ ;;=Z90.12^^107^1233^3
+ ;;^UTILITY(U,$J,358.3,26249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27897,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Unspec Upper Limb
- ;;^UTILITY(U,$J,358.3,27897,1,4,0)
- ;;=4^G56.20
- ;;^UTILITY(U,$J,358.3,27897,2)
- ;;=^5004023
- ;;^UTILITY(U,$J,358.3,27898,0)
- ;;=G56.90^^109^1392^18
- ;;^UTILITY(U,$J,358.3,27898,1,0)
+ ;;^UTILITY(U,$J,358.3,26249,1,3,0)
+ ;;=3^Acquired Absence of Breast & Nipple,Left
+ ;;^UTILITY(U,$J,358.3,26249,1,4,0)
+ ;;=4^Z90.12
+ ;;^UTILITY(U,$J,358.3,26249,2)
+ ;;=^5063583
+ ;;^UTILITY(U,$J,358.3,26250,0)
+ ;;=Z89.022^^107^1233^8
+ ;;^UTILITY(U,$J,358.3,26250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27898,1,3,0)
- ;;=3^Mononeuropathy,Unspec Upper Limb
- ;;^UTILITY(U,$J,358.3,27898,1,4,0)
- ;;=4^G56.90
- ;;^UTILITY(U,$J,358.3,27898,2)
- ;;=^5004035
- ;;^UTILITY(U,$J,358.3,27899,0)
- ;;=G57.00^^109^1392^13
- ;;^UTILITY(U,$J,358.3,27899,1,0)
+ ;;^UTILITY(U,$J,358.3,26250,1,3,0)
+ ;;=3^Acquired Absence of Finger(s),Left
+ ;;^UTILITY(U,$J,358.3,26250,1,4,0)
+ ;;=4^Z89.022
+ ;;^UTILITY(U,$J,358.3,26250,2)
+ ;;=^5063535
+ ;;^UTILITY(U,$J,358.3,26251,0)
+ ;;=Z89.432^^107^1233^10
+ ;;^UTILITY(U,$J,358.3,26251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27899,1,3,0)
- ;;=3^Lesion Sciatic Nerve,Unspec Lower Limb
- ;;^UTILITY(U,$J,358.3,27899,1,4,0)
- ;;=4^G57.00
- ;;^UTILITY(U,$J,358.3,27899,2)
- ;;=^5004038
- ;;^UTILITY(U,$J,358.3,27900,0)
- ;;=G57.10^^109^1392^15
- ;;^UTILITY(U,$J,358.3,27900,1,0)
+ ;;^UTILITY(U,$J,358.3,26251,1,3,0)
+ ;;=3^Acquired Absence of Foot,Left
+ ;;^UTILITY(U,$J,358.3,26251,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,26251,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,26252,0)
+ ;;=Z89.412^^107^1233^12
+ ;;^UTILITY(U,$J,358.3,26252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27900,1,3,0)
- ;;=3^Meralgia Paresthetica,Unspec Lower Limb
- ;;^UTILITY(U,$J,358.3,27900,1,4,0)
- ;;=4^G57.10
- ;;^UTILITY(U,$J,358.3,27900,2)
- ;;=^5004041
- ;;^UTILITY(U,$J,358.3,27901,0)
- ;;=G57.90^^109^1392^17
- ;;^UTILITY(U,$J,358.3,27901,1,0)
+ ;;^UTILITY(U,$J,358.3,26252,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Left
+ ;;^UTILITY(U,$J,358.3,26252,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,26252,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,26253,0)
+ ;;=Z89.112^^107^1233^14
+ ;;^UTILITY(U,$J,358.3,26253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27901,1,3,0)
- ;;=3^Mononeuropathy,Unspec Lower Limb
- ;;^UTILITY(U,$J,358.3,27901,1,4,0)
- ;;=4^G57.90
- ;;^UTILITY(U,$J,358.3,27901,2)
- ;;=^5004061
- ;;^UTILITY(U,$J,358.3,27902,0)
- ;;=G58.7^^109^1392^16
- ;;^UTILITY(U,$J,358.3,27902,1,0)
+ ;;^UTILITY(U,$J,358.3,26253,1,3,0)
+ ;;=3^Acquired Absence of Hand,Left
+ ;;^UTILITY(U,$J,358.3,26253,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,26253,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,26254,0)
+ ;;=Z89.622^^107^1233^16
+ ;;^UTILITY(U,$J,358.3,26254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27902,1,3,0)
- ;;=3^Mononeuritis Multiplex
- ;;^UTILITY(U,$J,358.3,27902,1,4,0)
- ;;=4^G58.7
- ;;^UTILITY(U,$J,358.3,27902,2)
- ;;=^5004063
- ;;^UTILITY(U,$J,358.3,27903,0)
- ;;=G60.0^^109^1392^8
- ;;^UTILITY(U,$J,358.3,27903,1,0)
+ ;;^UTILITY(U,$J,358.3,26254,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Left
+ ;;^UTILITY(U,$J,358.3,26254,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,26254,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,26255,0)
+ ;;=Z89.612^^107^1233^20
+ ;;^UTILITY(U,$J,358.3,26255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27903,1,3,0)
- ;;=3^Hereditary Motor & Sensory Neuropathy
- ;;^UTILITY(U,$J,358.3,27903,1,4,0)
- ;;=4^G60.0
- ;;^UTILITY(U,$J,358.3,27903,2)
- ;;=^5004067
- ;;^UTILITY(U,$J,358.3,27904,0)
- ;;=G60.3^^109^1392^9
- ;;^UTILITY(U,$J,358.3,27904,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27904,1,3,0)
- ;;=3^Idiopathic Progressive Neuropathy
- ;;^UTILITY(U,$J,358.3,27904,1,4,0)
- ;;=4^G60.3
+ ;;^UTILITY(U,$J,358.3,26255,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Left
+ ;;^UTILITY(U,$J,358.3,26255,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,26255,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,26256,0)
+ ;;=Z89.512^^107^1233^22

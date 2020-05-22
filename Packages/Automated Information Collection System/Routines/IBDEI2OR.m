@@ -1,132 +1,116 @@
-IBDEI2OR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45072,1,4,0)
- ;;=4^D86.3
- ;;^UTILITY(U,$J,358.3,45072,2)
- ;;=^5002445
- ;;^UTILITY(U,$J,358.3,45073,0)
- ;;=D86.81^^200^2238^41
- ;;^UTILITY(U,$J,358.3,45073,1,0)
+ ;;^UTILITY(U,$J,358.3,42807,1,3,0)
+ ;;=3^Disp fx of segmental shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42807,1,4,0)
+ ;;=4^S52.361S
+ ;;^UTILITY(U,$J,358.3,42807,2)
+ ;;=^5030366
+ ;;^UTILITY(U,$J,358.3,42808,0)
+ ;;=S52.342S^^155^2074^51
+ ;;^UTILITY(U,$J,358.3,42808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45073,1,3,0)
- ;;=3^Sarcoid Meningitis
- ;;^UTILITY(U,$J,358.3,45073,1,4,0)
- ;;=4^D86.81
- ;;^UTILITY(U,$J,358.3,45073,2)
- ;;=^5002446
- ;;^UTILITY(U,$J,358.3,45074,0)
- ;;=D86.82^^200^2238^50
- ;;^UTILITY(U,$J,358.3,45074,1,0)
+ ;;^UTILITY(U,$J,358.3,42808,1,3,0)
+ ;;=3^Disp fx of spiral shaft of radius, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42808,1,4,0)
+ ;;=4^S52.342S
+ ;;^UTILITY(U,$J,358.3,42808,2)
+ ;;=^5030190
+ ;;^UTILITY(U,$J,358.3,42809,0)
+ ;;=S52.341S^^155^2074^52
+ ;;^UTILITY(U,$J,358.3,42809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45074,1,3,0)
- ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
- ;;^UTILITY(U,$J,358.3,45074,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,45074,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,45075,0)
- ;;=D86.84^^200^2238^44
- ;;^UTILITY(U,$J,358.3,45075,1,0)
+ ;;^UTILITY(U,$J,358.3,42809,1,3,0)
+ ;;=3^Disp fx of spiral shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42809,1,4,0)
+ ;;=4^S52.341S
+ ;;^UTILITY(U,$J,358.3,42809,2)
+ ;;=^5030174
+ ;;^UTILITY(U,$J,358.3,42810,0)
+ ;;=S52.322S^^155^2074^55
+ ;;^UTILITY(U,$J,358.3,42810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45075,1,3,0)
- ;;=3^Sarcoid Pyelonephritis
- ;;^UTILITY(U,$J,358.3,45075,1,4,0)
- ;;=4^D86.84
- ;;^UTILITY(U,$J,358.3,45075,2)
- ;;=^5002449
- ;;^UTILITY(U,$J,358.3,45076,0)
- ;;=D86.85^^200^2238^42
- ;;^UTILITY(U,$J,358.3,45076,1,0)
+ ;;^UTILITY(U,$J,358.3,42810,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left radius, sequela   
+ ;;^UTILITY(U,$J,358.3,42810,1,4,0)
+ ;;=4^S52.322S
+ ;;^UTILITY(U,$J,358.3,42810,2)
+ ;;=^5029998
+ ;;^UTILITY(U,$J,358.3,42811,0)
+ ;;=S52.321S^^155^2074^57
+ ;;^UTILITY(U,$J,358.3,42811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45076,1,3,0)
- ;;=3^Sarcoid Myocarditis
- ;;^UTILITY(U,$J,358.3,45076,1,4,0)
- ;;=4^D86.85
- ;;^UTILITY(U,$J,358.3,45076,2)
- ;;=^5002450
- ;;^UTILITY(U,$J,358.3,45077,0)
- ;;=D86.83^^200^2238^40
- ;;^UTILITY(U,$J,358.3,45077,1,0)
+ ;;^UTILITY(U,$J,358.3,42811,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42811,1,4,0)
+ ;;=4^S52.321S
+ ;;^UTILITY(U,$J,358.3,42811,2)
+ ;;=^5029982
+ ;;^UTILITY(U,$J,358.3,42812,0)
+ ;;=S52.372S^^155^2074^65
+ ;;^UTILITY(U,$J,358.3,42812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45077,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
- ;;^UTILITY(U,$J,358.3,45077,1,4,0)
- ;;=4^D86.83
- ;;^UTILITY(U,$J,358.3,45077,2)
- ;;=^5002448
- ;;^UTILITY(U,$J,358.3,45078,0)
- ;;=D84.1^^200^2238^16
- ;;^UTILITY(U,$J,358.3,45078,1,0)
+ ;;^UTILITY(U,$J,358.3,42812,1,3,0)
+ ;;=3^Galeazzi's fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42812,1,4,0)
+ ;;=4^S52.372S
+ ;;^UTILITY(U,$J,358.3,42812,2)
+ ;;=^5030478
+ ;;^UTILITY(U,$J,358.3,42813,0)
+ ;;=S52.371S^^155^2074^66
+ ;;^UTILITY(U,$J,358.3,42813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45078,1,3,0)
- ;;=3^Defects in Complement System
- ;;^UTILITY(U,$J,358.3,45078,1,4,0)
- ;;=4^D84.1
- ;;^UTILITY(U,$J,358.3,45078,2)
- ;;=^5002439
- ;;^UTILITY(U,$J,358.3,45079,0)
- ;;=D81.810^^200^2238^5
- ;;^UTILITY(U,$J,358.3,45079,1,0)
+ ;;^UTILITY(U,$J,358.3,42813,1,3,0)
+ ;;=3^Galeazzi's fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42813,1,4,0)
+ ;;=4^S52.371S
+ ;;^UTILITY(U,$J,358.3,42813,2)
+ ;;=^5030462
+ ;;^UTILITY(U,$J,358.3,42814,0)
+ ;;=S52.312S^^155^2074^67
+ ;;^UTILITY(U,$J,358.3,42814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45079,1,3,0)
- ;;=3^Biotinidase Deficiency
- ;;^UTILITY(U,$J,358.3,45079,1,4,0)
- ;;=4^D81.810
- ;;^UTILITY(U,$J,358.3,45079,2)
- ;;=^5002422
- ;;^UTILITY(U,$J,358.3,45080,0)
- ;;=E88.01^^200^2238^2
- ;;^UTILITY(U,$J,358.3,45080,1,0)
+ ;;^UTILITY(U,$J,358.3,42814,1,3,0)
+ ;;=3^Greenstick fracture of shaft of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42814,1,4,0)
+ ;;=4^S52.312S
+ ;;^UTILITY(U,$J,358.3,42814,2)
+ ;;=^5029960
+ ;;^UTILITY(U,$J,358.3,42815,0)
+ ;;=S52.311S^^155^2074^69
+ ;;^UTILITY(U,$J,358.3,42815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45080,1,3,0)
- ;;=3^Apha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,45080,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,45080,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,45081,0)
- ;;=J09.X1^^200^2238^25
- ;;^UTILITY(U,$J,358.3,45081,1,0)
+ ;;^UTILITY(U,$J,358.3,42815,1,3,0)
+ ;;=3^Greenstick fracture of shaft of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42815,1,4,0)
+ ;;=4^S52.311S
+ ;;^UTILITY(U,$J,358.3,42815,2)
+ ;;=^5029954
+ ;;^UTILITY(U,$J,358.3,42816,0)
+ ;;=S52.355S^^155^2074^77
+ ;;^UTILITY(U,$J,358.3,42816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45081,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,45081,1,4,0)
- ;;=4^J09.X1
- ;;^UTILITY(U,$J,358.3,45081,2)
- ;;=^5008144
- ;;^UTILITY(U,$J,358.3,45082,0)
- ;;=J09.X2^^200^2238^26
- ;;^UTILITY(U,$J,358.3,45082,1,0)
+ ;;^UTILITY(U,$J,358.3,42816,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of radius, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42816,1,4,0)
+ ;;=4^S52.355S
+ ;;^UTILITY(U,$J,358.3,42816,2)
+ ;;=^5030334
+ ;;^UTILITY(U,$J,358.3,42817,0)
+ ;;=S52.354S^^155^2074^78
+ ;;^UTILITY(U,$J,358.3,42817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45082,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
- ;;^UTILITY(U,$J,358.3,45082,1,4,0)
- ;;=4^J09.X2
- ;;^UTILITY(U,$J,358.3,45082,2)
- ;;=^5008145
- ;;^UTILITY(U,$J,358.3,45083,0)
- ;;=J09.X3^^200^2238^27
- ;;^UTILITY(U,$J,358.3,45083,1,0)
+ ;;^UTILITY(U,$J,358.3,42817,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of radius, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42817,1,4,0)
+ ;;=4^S52.354S
+ ;;^UTILITY(U,$J,358.3,42817,2)
+ ;;=^5030318
+ ;;^UTILITY(U,$J,358.3,42818,0)
+ ;;=S52.125S^^155^2074^85
+ ;;^UTILITY(U,$J,358.3,42818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45083,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,45083,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,45083,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,45084,0)
- ;;=J09.X9^^200^2238^28
- ;;^UTILITY(U,$J,358.3,45084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45084,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,45084,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,45084,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,45085,0)
- ;;=J44.9^^200^2238^14
- ;;^UTILITY(U,$J,358.3,45085,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42818,1,3,0)
+ ;;=3^Nondisp fx of head of left radius, sequela

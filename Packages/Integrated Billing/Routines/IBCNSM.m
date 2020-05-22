@@ -1,5 +1,5 @@
 IBCNSM ;ALB/AAS - INSURANCE MANAGEMENT, LIST MANAGER INIT ROUTINE ;21-OCT-92
- ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435,528,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;also used for IA #4694
@@ -70,7 +70,8 @@ BLD ; -- build list of bills
  .S X=$$SETFLD^VALM1($$DAT1^IBOUTL($P(IBCDFND1,"^",3)),X,"VERIFIED ON")
  .S X=$$SETFLD^VALM1($$YN($P(IBCPOLD,"^",6)),X,"PRECERT")
  .S X=$$SETFLD^VALM1($$YN($P(IBCPOLD,"^",5)),X,"UR")
- .S X=$$SETFLD^VALM1($$YN($P(IBCDFND,"^",20)),X,"COB")
+ .;S X=$$SETFLD^VALM1($$YN($P(IBCDFND,"^",20)),X,"COB")  ;/vd-IB*2*659 - Replaced this line with the line below.
+ .S X=$$SETFLD^VALM1($$COB($P(IBCDFND,"^",20)),X,"COB")
  .K IBHOLD,IBGRP
  .D SET(X)
  .Q
@@ -111,6 +112,10 @@ FNL ; -- exit and clean up
  ;
 YN(X,Y) ; -- convert 1 or 0 to yes/no/unknown
  Q $S($G(X)="":$S($G(Y):"",1:"UNK"),X=0:"NO",X=1:"YES",1:"")
+ ;
+ ;/vd-IB*2*659 - Created the new module below to convert COB to appropriate display.
+COB(X) ; -- convert COB value to "UNK", "P", "S" or "T"
+ Q $S(+X:$E("PST",+X),1:"UNK")
  ;
 CP ; -- change patient
  N VALMQUIT

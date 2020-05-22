@@ -1,368 +1,122 @@
-IBDEI0HW ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0HW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22682,1,0)
+ ;;^UTILITY(U,$J,358.3,7795,0)
+ ;;=T82.827A^^63^503^12
+ ;;^UTILITY(U,$J,358.3,7795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22682,1,3,0)
- ;;=3^Vaginismus
- ;;^UTILITY(U,$J,358.3,22682,1,4,0)
- ;;=4^N94.2
- ;;^UTILITY(U,$J,358.3,22682,2)
- ;;=^5015918
- ;;^UTILITY(U,$J,358.3,22683,0)
- ;;=N94.0^^58^856^72
- ;;^UTILITY(U,$J,358.3,22683,1,0)
+ ;;^UTILITY(U,$J,358.3,7795,1,3,0)
+ ;;=3^Fibrosis of Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,7795,1,4,0)
+ ;;=4^T82.827A
+ ;;^UTILITY(U,$J,358.3,7795,2)
+ ;;=^5054920
+ ;;^UTILITY(U,$J,358.3,7796,0)
+ ;;=T82.837A^^63^503^14
+ ;;^UTILITY(U,$J,358.3,7796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22683,1,3,0)
- ;;=3^Mittelschmerz
- ;;^UTILITY(U,$J,358.3,22683,1,4,0)
- ;;=4^N94.0
- ;;^UTILITY(U,$J,358.3,22683,2)
- ;;=^265259
- ;;^UTILITY(U,$J,358.3,22684,0)
- ;;=N94.6^^58^856^34
- ;;^UTILITY(U,$J,358.3,22684,1,0)
+ ;;^UTILITY(U,$J,358.3,7796,1,3,0)
+ ;;=3^Hemorrhage of Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,7796,1,4,0)
+ ;;=4^T82.837A
+ ;;^UTILITY(U,$J,358.3,7796,2)
+ ;;=^5054926
+ ;;^UTILITY(U,$J,358.3,7797,0)
+ ;;=T82.847A^^63^503^23
+ ;;^UTILITY(U,$J,358.3,7797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22684,1,3,0)
- ;;=3^Dysmenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,22684,1,4,0)
- ;;=4^N94.6
- ;;^UTILITY(U,$J,358.3,22684,2)
- ;;=^5015922
- ;;^UTILITY(U,$J,358.3,22685,0)
- ;;=N94.5^^58^856^33
- ;;^UTILITY(U,$J,358.3,22685,1,0)
+ ;;^UTILITY(U,$J,358.3,7797,1,3,0)
+ ;;=3^Pain from Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,7797,1,4,0)
+ ;;=4^T82.847A
+ ;;^UTILITY(U,$J,358.3,7797,2)
+ ;;=^5054932
+ ;;^UTILITY(U,$J,358.3,7798,0)
+ ;;=T82.857A^^63^503^34
+ ;;^UTILITY(U,$J,358.3,7798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22685,1,3,0)
- ;;=3^Dysmenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,22685,1,4,0)
- ;;=4^N94.5
- ;;^UTILITY(U,$J,358.3,22685,2)
- ;;=^5015921
- ;;^UTILITY(U,$J,358.3,22686,0)
- ;;=N94.4^^58^856^32
- ;;^UTILITY(U,$J,358.3,22686,1,0)
+ ;;^UTILITY(U,$J,358.3,7798,1,3,0)
+ ;;=3^Stenosis of Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,7798,1,4,0)
+ ;;=4^T82.857A
+ ;;^UTILITY(U,$J,358.3,7798,2)
+ ;;=^5054938
+ ;;^UTILITY(U,$J,358.3,7799,0)
+ ;;=T82.867A^^63^503^36
+ ;;^UTILITY(U,$J,358.3,7799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22686,1,3,0)
- ;;=3^Dysmenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,22686,1,4,0)
- ;;=4^N94.4
- ;;^UTILITY(U,$J,358.3,22686,2)
- ;;=^5015920
- ;;^UTILITY(U,$J,358.3,22687,0)
- ;;=N94.3^^58^856^95
- ;;^UTILITY(U,$J,358.3,22687,1,0)
+ ;;^UTILITY(U,$J,358.3,7799,1,3,0)
+ ;;=3^Thrombosis of Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,7799,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,7799,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,7800,0)
+ ;;=T82.897A^^63^503^9
+ ;;^UTILITY(U,$J,358.3,7800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22687,1,3,0)
- ;;=3^Premenstrual Tension Syndrome
- ;;^UTILITY(U,$J,358.3,22687,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,22687,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,22688,0)
- ;;=N91.0^^58^856^13
- ;;^UTILITY(U,$J,358.3,22688,1,0)
+ ;;^UTILITY(U,$J,358.3,7800,1,3,0)
+ ;;=3^Complications of Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,7800,1,4,0)
+ ;;=4^T82.897A
+ ;;^UTILITY(U,$J,358.3,7800,2)
+ ;;=^5054950
+ ;;^UTILITY(U,$J,358.3,7801,0)
+ ;;=T82.110A^^63^503^1
+ ;;^UTILITY(U,$J,358.3,7801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22688,1,3,0)
- ;;=3^Amenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,22688,1,4,0)
- ;;=4^N91.0
- ;;^UTILITY(U,$J,358.3,22688,2)
- ;;=^5015902
- ;;^UTILITY(U,$J,358.3,22689,0)
- ;;=N91.1^^58^856^14
- ;;^UTILITY(U,$J,358.3,22689,1,0)
+ ;;^UTILITY(U,$J,358.3,7801,1,3,0)
+ ;;=3^Cardiac Electrode Breakdown,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7801,1,4,0)
+ ;;=4^T82.110A
+ ;;^UTILITY(U,$J,358.3,7801,2)
+ ;;=^5054680
+ ;;^UTILITY(U,$J,358.3,7802,0)
+ ;;=T82.111A^^63^503^4
+ ;;^UTILITY(U,$J,358.3,7802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22689,1,3,0)
- ;;=3^Amenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,22689,1,4,0)
- ;;=4^N91.1
- ;;^UTILITY(U,$J,358.3,22689,2)
- ;;=^5015903
- ;;^UTILITY(U,$J,358.3,22690,0)
- ;;=N91.2^^58^856^15
- ;;^UTILITY(U,$J,358.3,22690,1,0)
+ ;;^UTILITY(U,$J,358.3,7802,1,3,0)
+ ;;=3^Cardiac Pulse Generator Battery Breakdown,Init
+ ;;^UTILITY(U,$J,358.3,7802,1,4,0)
+ ;;=4^T82.111A
+ ;;^UTILITY(U,$J,358.3,7802,2)
+ ;;=^5054683
+ ;;^UTILITY(U,$J,358.3,7803,0)
+ ;;=T82.120A^^63^503^2
+ ;;^UTILITY(U,$J,358.3,7803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22690,1,3,0)
- ;;=3^Amenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,22690,1,4,0)
- ;;=4^N91.2
- ;;^UTILITY(U,$J,358.3,22690,2)
- ;;=^5015904
- ;;^UTILITY(U,$J,358.3,22691,0)
- ;;=N91.3^^58^856^75
- ;;^UTILITY(U,$J,358.3,22691,1,0)
+ ;;^UTILITY(U,$J,358.3,7803,1,3,0)
+ ;;=3^Cardiac Electrode Displacement,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7803,1,4,0)
+ ;;=4^T82.120A
+ ;;^UTILITY(U,$J,358.3,7803,2)
+ ;;=^5054692
+ ;;^UTILITY(U,$J,358.3,7804,0)
+ ;;=T82.121A^^63^503^5
+ ;;^UTILITY(U,$J,358.3,7804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22691,1,3,0)
- ;;=3^Oligomenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,22691,1,4,0)
- ;;=4^N91.3
- ;;^UTILITY(U,$J,358.3,22691,2)
- ;;=^5015905
- ;;^UTILITY(U,$J,358.3,22692,0)
- ;;=N91.4^^58^856^76
- ;;^UTILITY(U,$J,358.3,22692,1,0)
+ ;;^UTILITY(U,$J,358.3,7804,1,3,0)
+ ;;=3^Cardiac Pulse Generator Battery Displacement,Init
+ ;;^UTILITY(U,$J,358.3,7804,1,4,0)
+ ;;=4^T82.121A
+ ;;^UTILITY(U,$J,358.3,7804,2)
+ ;;=^5054695
+ ;;^UTILITY(U,$J,358.3,7805,0)
+ ;;=T82.190A^^63^503^3
+ ;;^UTILITY(U,$J,358.3,7805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22692,1,3,0)
- ;;=3^Oligomenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,22692,1,4,0)
- ;;=4^N91.4
- ;;^UTILITY(U,$J,358.3,22692,2)
- ;;=^5015906
- ;;^UTILITY(U,$J,358.3,22693,0)
- ;;=N91.5^^58^856^77
- ;;^UTILITY(U,$J,358.3,22693,1,0)
+ ;;^UTILITY(U,$J,358.3,7805,1,3,0)
+ ;;=3^Cardiac Electrode Mech Complication,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7805,1,4,0)
+ ;;=4^T82.190A
+ ;;^UTILITY(U,$J,358.3,7805,2)
+ ;;=^5054704
+ ;;^UTILITY(U,$J,358.3,7806,0)
+ ;;=T82.191A^^63^503^6
+ ;;^UTILITY(U,$J,358.3,7806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22693,1,3,0)
- ;;=3^Oligomenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,22693,1,4,0)
- ;;=4^N91.5
- ;;^UTILITY(U,$J,358.3,22693,2)
- ;;=^5015907
- ;;^UTILITY(U,$J,358.3,22694,0)
- ;;=N92.0^^58^856^41
- ;;^UTILITY(U,$J,358.3,22694,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22694,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,22694,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,22694,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,22695,0)
- ;;=N92.6^^58^856^63
- ;;^UTILITY(U,$J,358.3,22695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22695,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,22695,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,22695,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,22696,0)
- ;;=N92.5^^58^856^62
- ;;^UTILITY(U,$J,358.3,22696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22696,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,22696,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,22696,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,22697,0)
- ;;=N92.3^^58^856^80
- ;;^UTILITY(U,$J,358.3,22697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22697,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,22697,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,22697,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,22698,0)
- ;;=N89.7^^58^856^55
- ;;^UTILITY(U,$J,358.3,22698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22698,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,22698,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,22698,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,22699,0)
- ;;=N93.8^^58^856^5
- ;;^UTILITY(U,$J,358.3,22699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22699,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,22699,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,22699,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,22700,0)
- ;;=N93.9^^58^856^6
- ;;^UTILITY(U,$J,358.3,22700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22700,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,22700,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,22700,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,22701,0)
- ;;=N92.4^^58^856^39
- ;;^UTILITY(U,$J,358.3,22701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22701,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,22701,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,22701,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,22702,0)
- ;;=N95.0^^58^856^89
- ;;^UTILITY(U,$J,358.3,22702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22702,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,22702,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,22702,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,22703,0)
- ;;=N95.1^^58^856^71
- ;;^UTILITY(U,$J,358.3,22703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22703,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,22703,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,22703,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,22704,0)
- ;;=N97.0^^58^856^46
- ;;^UTILITY(U,$J,358.3,22704,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22704,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,22704,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,22704,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,22705,0)
- ;;=N97.9^^58^856^47
- ;;^UTILITY(U,$J,358.3,22705,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22705,1,3,0)
- ;;=3^Female Infertility,Unspec
- ;;^UTILITY(U,$J,358.3,22705,1,4,0)
- ;;=4^N97.9
- ;;^UTILITY(U,$J,358.3,22705,2)
- ;;=^5015935
- ;;^UTILITY(U,$J,358.3,22706,0)
- ;;=L29.2^^58^856^96
- ;;^UTILITY(U,$J,358.3,22706,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22706,1,3,0)
- ;;=3^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,22706,1,4,0)
- ;;=4^L29.2
- ;;^UTILITY(U,$J,358.3,22706,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,22707,0)
- ;;=R92.8^^58^856^7
- ;;^UTILITY(U,$J,358.3,22707,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22707,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,22707,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,22707,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,22708,0)
- ;;=R87.619^^58^856^4
- ;;^UTILITY(U,$J,358.3,22708,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22708,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,22708,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,22708,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,22709,0)
- ;;=Z79.890^^58^856^57
- ;;^UTILITY(U,$J,358.3,22709,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22709,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,22709,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,22709,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,22710,0)
- ;;=Z33.1^^58^856^94
- ;;^UTILITY(U,$J,358.3,22710,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22710,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,22710,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,22710,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,22711,0)
- ;;=Z39.2^^58^856^90
- ;;^UTILITY(U,$J,358.3,22711,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22711,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,22711,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,22711,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,22712,0)
- ;;=Z30.09^^58^856^25
- ;;^UTILITY(U,$J,358.3,22712,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22712,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,22712,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,22712,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,22713,0)
- ;;=Z30.9^^58^856^24
- ;;^UTILITY(U,$J,358.3,22713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22713,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,22713,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,22713,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,22714,0)
- ;;=N64.3^^58^856^53
- ;;^UTILITY(U,$J,358.3,22714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22714,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,22714,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,22714,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,22715,0)
- ;;=R92.2^^58^856^60
- ;;^UTILITY(U,$J,358.3,22715,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22715,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,22715,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,22715,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,22716,0)
- ;;=Z30.432^^58^856^98
- ;;^UTILITY(U,$J,358.3,22716,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22716,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,22716,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,22716,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,22717,0)
- ;;=Z90.710^^58^856^12
- ;;^UTILITY(U,$J,358.3,22717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22717,1,3,0)
- ;;=3^Acquired Absence of Cervix & Uterus
- ;;^UTILITY(U,$J,358.3,22717,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,22717,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,22718,0)
- ;;=Z90.13^^58^856^11
- ;;^UTILITY(U,$J,358.3,22718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22718,1,3,0)
- ;;=3^Acquired Absence of Breasts,Bilateral
+ ;;^UTILITY(U,$J,358.3,7806,1,3,0)
+ ;;=3^Cardiac Pulse Generator Battery Mech Complication,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7806,1,4,0)
+ ;;=4^T82.191A

@@ -1,136 +1,116 @@
-IBDEI2OV ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45125,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,45125,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,45126,0)
- ;;=T74.21XS^^200^2239^2
- ;;^UTILITY(U,$J,358.3,45126,1,0)
+ ;;^UTILITY(U,$J,358.3,42852,1,4,0)
+ ;;=4^S52.522S
+ ;;^UTILITY(U,$J,358.3,42852,2)
+ ;;=^5135272
+ ;;^UTILITY(U,$J,358.3,42853,0)
+ ;;=S52.521S^^155^2074^165
+ ;;^UTILITY(U,$J,358.3,42853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45126,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sequela
- ;;^UTILITY(U,$J,358.3,45126,1,4,0)
- ;;=4^T74.21XS
- ;;^UTILITY(U,$J,358.3,45126,2)
- ;;=^5054154
- ;;^UTILITY(U,$J,358.3,45127,0)
- ;;=T76.21XD^^200^2239^6
- ;;^UTILITY(U,$J,358.3,45127,1,0)
+ ;;^UTILITY(U,$J,358.3,42853,1,3,0)
+ ;;=3^Torus fracture of lower end of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42853,1,4,0)
+ ;;=4^S52.521S
+ ;;^UTILITY(U,$J,358.3,42853,2)
+ ;;=^5030720
+ ;;^UTILITY(U,$J,358.3,42854,0)
+ ;;=S52.111S^^155^2074^169
+ ;;^UTILITY(U,$J,358.3,42854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45127,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
- ;;^UTILITY(U,$J,358.3,45127,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,45127,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,45128,0)
- ;;=T76.21XS^^200^2239^5
- ;;^UTILITY(U,$J,358.3,45128,1,0)
+ ;;^UTILITY(U,$J,358.3,42854,1,3,0)
+ ;;=3^Torus fracture of upper end of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42854,1,4,0)
+ ;;=4^S52.111S
+ ;;^UTILITY(U,$J,358.3,42854,2)
+ ;;=^5029034
+ ;;^UTILITY(U,$J,358.3,42855,0)
+ ;;=S52.112S^^155^2074^167
+ ;;^UTILITY(U,$J,358.3,42855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45128,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sequela
- ;;^UTILITY(U,$J,358.3,45128,1,4,0)
- ;;=4^T76.21XS
- ;;^UTILITY(U,$J,358.3,45128,2)
- ;;=^5054229
- ;;^UTILITY(U,$J,358.3,45129,0)
- ;;=Y07.53^^200^2239^7
- ;;^UTILITY(U,$J,358.3,45129,1,0)
+ ;;^UTILITY(U,$J,358.3,42855,1,3,0)
+ ;;=3^Torus fracture of upper end of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42855,1,4,0)
+ ;;=4^S52.112S
+ ;;^UTILITY(U,$J,358.3,42855,2)
+ ;;=^5029040
+ ;;^UTILITY(U,$J,358.3,42856,0)
+ ;;=S62.142S^^155^2074^9
+ ;;^UTILITY(U,$J,358.3,42856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45129,1,3,0)
- ;;=3^Instructor,Perpetrator of MST
- ;;^UTILITY(U,$J,358.3,45129,1,4,0)
- ;;=4^Y07.53
- ;;^UTILITY(U,$J,358.3,45129,2)
- ;;=^5061207
- ;;^UTILITY(U,$J,358.3,45130,0)
- ;;=Y07.59^^200^2239^8
- ;;^UTILITY(U,$J,358.3,45130,1,0)
+ ;;^UTILITY(U,$J,358.3,42856,1,3,0)
+ ;;=3^Disp fx of body of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42856,1,4,0)
+ ;;=4^S62.142S
+ ;;^UTILITY(U,$J,358.3,42856,2)
+ ;;=^5033352
+ ;;^UTILITY(U,$J,358.3,42857,0)
+ ;;=S62.141S^^155^2074^10
+ ;;^UTILITY(U,$J,358.3,42857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45130,1,3,0)
- ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
- ;;^UTILITY(U,$J,358.3,45130,1,4,0)
- ;;=4^Y07.59
- ;;^UTILITY(U,$J,358.3,45130,2)
- ;;=^5061208
- ;;^UTILITY(U,$J,358.3,45131,0)
- ;;=E66.01^^200^2240^120
- ;;^UTILITY(U,$J,358.3,45131,1,0)
+ ;;^UTILITY(U,$J,358.3,42857,1,3,0)
+ ;;=3^Disp fx of body of hamate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42857,1,4,0)
+ ;;=4^S62.141S
+ ;;^UTILITY(U,$J,358.3,42857,2)
+ ;;=^5033345
+ ;;^UTILITY(U,$J,358.3,42858,0)
+ ;;=S62.132S^^155^2074^11
+ ;;^UTILITY(U,$J,358.3,42858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45131,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,45131,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,45131,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,45132,0)
- ;;=F18.10^^200^2240^95
- ;;^UTILITY(U,$J,358.3,45132,1,0)
+ ;;^UTILITY(U,$J,358.3,42858,1,3,0)
+ ;;=3^Disp fx of capitate bone, left wrist, sequela 
+ ;;^UTILITY(U,$J,358.3,42858,1,4,0)
+ ;;=4^S62.132S
+ ;;^UTILITY(U,$J,358.3,42858,2)
+ ;;=^5033310
+ ;;^UTILITY(U,$J,358.3,42859,0)
+ ;;=S62.131S^^155^2074^12
+ ;;^UTILITY(U,$J,358.3,42859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45132,1,3,0)
- ;;=3^Inhalant Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,45132,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,45132,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,45133,0)
- ;;=F55.0^^200^2240^38
- ;;^UTILITY(U,$J,358.3,45133,1,0)
+ ;;^UTILITY(U,$J,358.3,42859,1,3,0)
+ ;;=3^Disp fx of capitate bone, right wrist, sequela 
+ ;;^UTILITY(U,$J,358.3,42859,1,4,0)
+ ;;=4^S62.131S
+ ;;^UTILITY(U,$J,358.3,42859,2)
+ ;;=^5033303
+ ;;^UTILITY(U,$J,358.3,42860,0)
+ ;;=S62.012S^^155^2074^20
+ ;;^UTILITY(U,$J,358.3,42860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45133,1,3,0)
- ;;=3^Antacid Abuse
- ;;^UTILITY(U,$J,358.3,45133,1,4,0)
- ;;=4^F55.0
- ;;^UTILITY(U,$J,358.3,45133,2)
- ;;=^5003628
- ;;^UTILITY(U,$J,358.3,45134,0)
- ;;=F18.90^^200^2240^96
- ;;^UTILITY(U,$J,358.3,45134,1,0)
+ ;;^UTILITY(U,$J,358.3,42860,1,3,0)
+ ;;=3^Disp fx of distal pole of navicular bone of l wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42860,1,4,0)
+ ;;=4^S62.012S
+ ;;^UTILITY(U,$J,358.3,42860,2)
+ ;;=^5033086
+ ;;^UTILITY(U,$J,358.3,42861,0)
+ ;;=S62.011S^^155^2074^21
+ ;;^UTILITY(U,$J,358.3,42861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45134,1,3,0)
- ;;=3^Inhalant Use Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,45134,1,4,0)
- ;;=4^F18.90
- ;;^UTILITY(U,$J,358.3,45134,2)
- ;;=^5003405
- ;;^UTILITY(U,$J,358.3,45135,0)
- ;;=F55.2^^200^2240^102
- ;;^UTILITY(U,$J,358.3,45135,1,0)
+ ;;^UTILITY(U,$J,358.3,42861,1,3,0)
+ ;;=3^Disp fx of distal pole of navicular bone of r wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42861,1,4,0)
+ ;;=4^S62.011S
+ ;;^UTILITY(U,$J,358.3,42861,2)
+ ;;=^5033079
+ ;;^UTILITY(U,$J,358.3,42862,0)
+ ;;=S62.152S^^155^2074^24
+ ;;^UTILITY(U,$J,358.3,42862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45135,1,3,0)
- ;;=3^Laxative Abuse
- ;;^UTILITY(U,$J,358.3,45135,1,4,0)
- ;;=4^F55.2
- ;;^UTILITY(U,$J,358.3,45135,2)
- ;;=^5003630
- ;;^UTILITY(U,$J,358.3,45136,0)
- ;;=F55.1^^200^2240^81
- ;;^UTILITY(U,$J,358.3,45136,1,0)
+ ;;^UTILITY(U,$J,358.3,42862,1,3,0)
+ ;;=3^Disp fx of hook process of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42862,1,4,0)
+ ;;=4^S62.152S
+ ;;^UTILITY(U,$J,358.3,42862,2)
+ ;;=^5033394
+ ;;^UTILITY(U,$J,358.3,42863,0)
+ ;;=S62.151S^^155^2074^25
+ ;;^UTILITY(U,$J,358.3,42863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45136,1,3,0)
- ;;=3^Herbal/Folk Remedy Abuse
- ;;^UTILITY(U,$J,358.3,45136,1,4,0)
- ;;=4^F55.1
- ;;^UTILITY(U,$J,358.3,45136,2)
- ;;=^5003629
- ;;^UTILITY(U,$J,358.3,45137,0)
- ;;=F55.8^^200^2240^124
- ;;^UTILITY(U,$J,358.3,45137,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45137,1,3,0)
- ;;=3^Non-Psychoactive Substance Abuse
- ;;^UTILITY(U,$J,358.3,45137,1,4,0)
- ;;=4^F55.8
- ;;^UTILITY(U,$J,358.3,45137,2)
- ;;=^5003633
- ;;^UTILITY(U,$J,358.3,45138,0)
- ;;=F55.4^^200^2240^161
- ;;^UTILITY(U,$J,358.3,45138,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45138,1,3,0)
- ;;=3^Vitamin Abuse
- ;;^UTILITY(U,$J,358.3,45138,1,4,0)
- ;;=4^F55.4
+ ;;^UTILITY(U,$J,358.3,42863,1,3,0)
+ ;;=3^Disp fx of hook process of hamate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,42863,1,4,0)
+ ;;=4^S62.151S

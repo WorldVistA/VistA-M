@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM,HM -PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987**;Aug 13, 1993;Build 22
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM,HM,BDB -PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987,1006**;Aug 13, 1993;Build 6
  ; *286* Newing variables X,Y in OKLINE subroutine
  ; *358* If a patient is on a domiciliary ward, don't display MEANS
  ; TEST required/Medication Copayment Exemption messages
@@ -214,7 +214,8 @@ RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(15)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10)
  K DGARRAY,SDCNT,^TMP($J,"SDAMA301"),ADM,L,TRN,DIS,SSN,FA,C,COV,NOW,CT,DGD,DGD1,I ;Y killed after dghinqky
  Q
  ; KUM DG*5.3*936 Display Health Benefit Plans assigned to Veteran
-HBP W !!,"Veteran Medical Benefit Plan Currently Assigned to Veteran:" ;DG*5.3*987 HM
+HBP ;W !!,"Veteran Medical Benefit Plan Currently Assigned to Veteran:" ;DG*5.3*987 HM
+ W !!,"VHA Profiles Currently Assigned to Veteran:" ;DG*5.3*1006 BDB;DG*5.3*987 HM
  N DGHBP,HBP,DGCOUNT,DGHBIEN,DGPNAME,X,DGCNT,DGLN,DGLINE
  S DGCOUNT=0
  D GETHBP^DGHBPUTL(DFN)

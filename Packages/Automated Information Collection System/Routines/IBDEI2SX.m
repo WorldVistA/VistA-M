@@ -1,136 +1,120 @@
-IBDEI2SX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47029,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,47029,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,47030,0)
- ;;=R30.9^^206^2317^59
- ;;^UTILITY(U,$J,358.3,47030,1,0)
+ ;;^UTILITY(U,$J,358.3,44685,0)
+ ;;=G43.919^^167^2227^17
+ ;;^UTILITY(U,$J,358.3,44685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47030,1,3,0)
- ;;=3^Painful Micturition,Unspec
- ;;^UTILITY(U,$J,358.3,47030,1,4,0)
- ;;=4^R30.9
- ;;^UTILITY(U,$J,358.3,47030,2)
- ;;=^5019324
- ;;^UTILITY(U,$J,358.3,47031,0)
- ;;=R00.2^^206^2317^60
- ;;^UTILITY(U,$J,358.3,47031,1,0)
+ ;;^UTILITY(U,$J,358.3,44685,1,3,0)
+ ;;=3^Migraine, unsp, intractable, without status migrainosus
+ ;;^UTILITY(U,$J,358.3,44685,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,44685,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,44686,0)
+ ;;=G44.209^^167^2227^30
+ ;;^UTILITY(U,$J,358.3,44686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47031,1,3,0)
- ;;=3^Palpitations
- ;;^UTILITY(U,$J,358.3,47031,1,4,0)
- ;;=4^R00.2
- ;;^UTILITY(U,$J,358.3,47031,2)
- ;;=^5019165
- ;;^UTILITY(U,$J,358.3,47032,0)
- ;;=M84.58XA^^206^2317^61
- ;;^UTILITY(U,$J,358.3,47032,1,0)
+ ;;^UTILITY(U,$J,358.3,44686,1,3,0)
+ ;;=3^Tension-type headache, unspecified, not intractable
+ ;;^UTILITY(U,$J,358.3,44686,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,44686,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,44687,0)
+ ;;=G43.901^^167^2227^18
+ ;;^UTILITY(U,$J,358.3,44687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47032,1,3,0)
- ;;=3^Pathological Fx in Neoplastic Disease,Init Encntr
- ;;^UTILITY(U,$J,358.3,47032,1,4,0)
- ;;=4^M84.58XA
- ;;^UTILITY(U,$J,358.3,47032,2)
- ;;=^5014208
- ;;^UTILITY(U,$J,358.3,47033,0)
- ;;=M84.68XA^^206^2317^62
- ;;^UTILITY(U,$J,358.3,47033,1,0)
+ ;;^UTILITY(U,$J,358.3,44687,1,3,0)
+ ;;=3^Migraine, unsp, not intractable, with status migrainosus
+ ;;^UTILITY(U,$J,358.3,44687,1,4,0)
+ ;;=4^G43.901
+ ;;^UTILITY(U,$J,358.3,44687,2)
+ ;;=^5003908
+ ;;^UTILITY(U,$J,358.3,44688,0)
+ ;;=G43.911^^167^2227^16
+ ;;^UTILITY(U,$J,358.3,44688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47033,1,3,0)
- ;;=3^Pathological Fx in Oth Disease,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,47033,1,4,0)
- ;;=4^M84.68XA
- ;;^UTILITY(U,$J,358.3,47033,2)
- ;;=^5134051
- ;;^UTILITY(U,$J,358.3,47034,0)
- ;;=M84.48XA^^206^2317^63
- ;;^UTILITY(U,$J,358.3,47034,1,0)
+ ;;^UTILITY(U,$J,358.3,44688,1,3,0)
+ ;;=3^Migraine, unsp, intractable, with status migrainosus
+ ;;^UTILITY(U,$J,358.3,44688,1,4,0)
+ ;;=4^G43.911
+ ;;^UTILITY(U,$J,358.3,44688,2)
+ ;;=^5003910
+ ;;^UTILITY(U,$J,358.3,44689,0)
+ ;;=G44.201^^167^2227^29
+ ;;^UTILITY(U,$J,358.3,44689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47034,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,47034,1,4,0)
- ;;=4^M84.48XA
- ;;^UTILITY(U,$J,358.3,47034,2)
- ;;=^5014016
- ;;^UTILITY(U,$J,358.3,47035,0)
- ;;=R06.3^^206^2317^64
- ;;^UTILITY(U,$J,358.3,47035,1,0)
+ ;;^UTILITY(U,$J,358.3,44689,1,3,0)
+ ;;=3^Tension-type headache, unspecified, intractable
+ ;;^UTILITY(U,$J,358.3,44689,1,4,0)
+ ;;=4^G44.201
+ ;;^UTILITY(U,$J,358.3,44689,2)
+ ;;=^5003935
+ ;;^UTILITY(U,$J,358.3,44690,0)
+ ;;=G44.211^^167^2227^10
+ ;;^UTILITY(U,$J,358.3,44690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47035,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,47035,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,47035,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,47036,0)
- ;;=G93.3^^206^2317^65
- ;;^UTILITY(U,$J,358.3,47036,1,0)
+ ;;^UTILITY(U,$J,358.3,44690,1,3,0)
+ ;;=3^Episodic tension-type headache, intractable
+ ;;^UTILITY(U,$J,358.3,44690,1,4,0)
+ ;;=4^G44.211
+ ;;^UTILITY(U,$J,358.3,44690,2)
+ ;;=^5003937
+ ;;^UTILITY(U,$J,358.3,44691,0)
+ ;;=G44.219^^167^2227^11
+ ;;^UTILITY(U,$J,358.3,44691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47036,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,47036,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,47036,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,47037,0)
- ;;=G47.9^^206^2317^67
- ;;^UTILITY(U,$J,358.3,47037,1,0)
+ ;;^UTILITY(U,$J,358.3,44691,1,3,0)
+ ;;=3^Episodic tension-type headache, not intractable
+ ;;^UTILITY(U,$J,358.3,44691,1,4,0)
+ ;;=4^G44.219
+ ;;^UTILITY(U,$J,358.3,44691,2)
+ ;;=^5003938
+ ;;^UTILITY(U,$J,358.3,44692,0)
+ ;;=G44.229^^167^2227^6
+ ;;^UTILITY(U,$J,358.3,44692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47037,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,47037,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,47037,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,47038,0)
- ;;=R06.83^^206^2317^68
- ;;^UTILITY(U,$J,358.3,47038,1,0)
+ ;;^UTILITY(U,$J,358.3,44692,1,3,0)
+ ;;=3^Chronic tension-type headache, not intractable
+ ;;^UTILITY(U,$J,358.3,44692,1,4,0)
+ ;;=4^G44.229
+ ;;^UTILITY(U,$J,358.3,44692,2)
+ ;;=^5003940
+ ;;^UTILITY(U,$J,358.3,44693,0)
+ ;;=G44.301^^167^2227^23
+ ;;^UTILITY(U,$J,358.3,44693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47038,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,47038,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,47038,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,47039,0)
- ;;=R55.^^206^2317^69
- ;;^UTILITY(U,$J,358.3,47039,1,0)
+ ;;^UTILITY(U,$J,358.3,44693,1,3,0)
+ ;;=3^Post-traumatic headache, unspecified, intractable
+ ;;^UTILITY(U,$J,358.3,44693,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,44693,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,44694,0)
+ ;;=G44.309^^167^2227^24
+ ;;^UTILITY(U,$J,358.3,44694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47039,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,47039,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,47039,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,47040,0)
- ;;=M41.30^^206^2317^72
- ;;^UTILITY(U,$J,358.3,47040,1,0)
+ ;;^UTILITY(U,$J,358.3,44694,1,3,0)
+ ;;=3^Post-traumatic headache, unspecified, not intractable
+ ;;^UTILITY(U,$J,358.3,44694,1,4,0)
+ ;;=4^G44.309
+ ;;^UTILITY(U,$J,358.3,44694,2)
+ ;;=^5003942
+ ;;^UTILITY(U,$J,358.3,44695,0)
+ ;;=G44.311^^167^2227^1
+ ;;^UTILITY(U,$J,358.3,44695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47040,1,3,0)
- ;;=3^Thoracogenic Scoliosis,Unspec Site
- ;;^UTILITY(U,$J,358.3,47040,1,4,0)
- ;;=4^M41.30
- ;;^UTILITY(U,$J,358.3,47040,2)
- ;;=^5011864
- ;;^UTILITY(U,$J,358.3,47041,0)
- ;;=M41.35^^206^2317^71
- ;;^UTILITY(U,$J,358.3,47041,1,0)
+ ;;^UTILITY(U,$J,358.3,44695,1,3,0)
+ ;;=3^Acute post-traumatic headache, intractable
+ ;;^UTILITY(U,$J,358.3,44695,1,4,0)
+ ;;=4^G44.311
+ ;;^UTILITY(U,$J,358.3,44695,2)
+ ;;=^5003943
+ ;;^UTILITY(U,$J,358.3,44696,0)
+ ;;=G44.319^^167^2227^2
+ ;;^UTILITY(U,$J,358.3,44696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47041,1,3,0)
- ;;=3^Thoracogenic Scoliosis,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,47041,1,4,0)
- ;;=4^M41.35
- ;;^UTILITY(U,$J,358.3,47041,2)
- ;;=^5011866
- ;;^UTILITY(U,$J,358.3,47042,0)
- ;;=M41.34^^206^2317^70
- ;;^UTILITY(U,$J,358.3,47042,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47042,1,3,0)
- ;;=3^Thoracogenic Scoliosis,Thoracic Region
- ;;^UTILITY(U,$J,358.3,47042,1,4,0)
- ;;=4^M41.34
+ ;;^UTILITY(U,$J,358.3,44696,1,3,0)
+ ;;=3^Acute post-traumatic headache, not intractable

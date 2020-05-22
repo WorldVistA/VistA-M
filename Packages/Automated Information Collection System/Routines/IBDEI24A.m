@@ -1,134 +1,122 @@
-IBDEI24A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35904,1,4,0)
- ;;=4^M05.541
- ;;^UTILITY(U,$J,358.3,35904,2)
- ;;=^5009964
- ;;^UTILITY(U,$J,358.3,35905,0)
- ;;=M05.551^^134^1731^85
- ;;^UTILITY(U,$J,358.3,35905,1,0)
+ ;;^UTILITY(U,$J,358.3,33825,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,33825,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,33826,0)
+ ;;=M75.111^^132^1712^32
+ ;;^UTILITY(U,$J,358.3,33826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35905,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hip
- ;;^UTILITY(U,$J,358.3,35905,1,4,0)
- ;;=4^M05.551
- ;;^UTILITY(U,$J,358.3,35905,2)
- ;;=^5009967
- ;;^UTILITY(U,$J,358.3,35906,0)
- ;;=M05.561^^134^1731^86
- ;;^UTILITY(U,$J,358.3,35906,1,0)
+ ;;^UTILITY(U,$J,358.3,33826,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of r shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,33826,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,33826,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,33827,0)
+ ;;=M25.512^^132^1712^33
+ ;;^UTILITY(U,$J,358.3,33827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35906,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Knee
- ;;^UTILITY(U,$J,358.3,35906,1,4,0)
- ;;=4^M05.561
- ;;^UTILITY(U,$J,358.3,35906,2)
- ;;=^5009970
- ;;^UTILITY(U,$J,358.3,35907,0)
- ;;=M05.511^^134^1731^87
- ;;^UTILITY(U,$J,358.3,35907,1,0)
+ ;;^UTILITY(U,$J,358.3,33827,1,3,0)
+ ;;=3^Pain in left shoulder
+ ;;^UTILITY(U,$J,358.3,33827,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,33827,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,33828,0)
+ ;;=M25.511^^132^1712^34
+ ;;^UTILITY(U,$J,358.3,33828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35907,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Shoulder
- ;;^UTILITY(U,$J,358.3,35907,1,4,0)
- ;;=4^M05.511
- ;;^UTILITY(U,$J,358.3,35907,2)
- ;;=^5009955
- ;;^UTILITY(U,$J,358.3,35908,0)
- ;;=M05.531^^134^1731^88
- ;;^UTILITY(U,$J,358.3,35908,1,0)
+ ;;^UTILITY(U,$J,358.3,33828,1,3,0)
+ ;;=3^Pain in right shoulder
+ ;;^UTILITY(U,$J,358.3,33828,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,33828,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,33829,0)
+ ;;=S43.025A^^132^1712^37
+ ;;^UTILITY(U,$J,358.3,33829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35908,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Wrist
- ;;^UTILITY(U,$J,358.3,35908,1,4,0)
- ;;=4^M05.531
- ;;^UTILITY(U,$J,358.3,35908,2)
- ;;=^5009961
- ;;^UTILITY(U,$J,358.3,35909,0)
- ;;=M05.50^^134^1731^89
- ;;^UTILITY(U,$J,358.3,35909,1,0)
+ ;;^UTILITY(U,$J,358.3,33829,1,3,0)
+ ;;=3^Posterior dislocation of left humerus, initial encounter
+ ;;^UTILITY(U,$J,358.3,33829,1,4,0)
+ ;;=4^S43.025A
+ ;;^UTILITY(U,$J,358.3,33829,2)
+ ;;=^5027699
+ ;;^UTILITY(U,$J,358.3,33830,0)
+ ;;=S43.024A^^132^1712^39
+ ;;^UTILITY(U,$J,358.3,33830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35909,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Unspec Site
- ;;^UTILITY(U,$J,358.3,35909,1,4,0)
- ;;=4^M05.50
- ;;^UTILITY(U,$J,358.3,35909,2)
- ;;=^5009954
- ;;^UTILITY(U,$J,358.3,35910,0)
- ;;=G04.1^^134^1731^140
- ;;^UTILITY(U,$J,358.3,35910,1,0)
+ ;;^UTILITY(U,$J,358.3,33830,1,3,0)
+ ;;=3^Posterior dislocation of right humerus, initial encounter
+ ;;^UTILITY(U,$J,358.3,33830,1,4,0)
+ ;;=4^S43.024A
+ ;;^UTILITY(U,$J,358.3,33830,2)
+ ;;=^5027696
+ ;;^UTILITY(U,$J,358.3,33831,0)
+ ;;=M19.012^^132^1712^41
+ ;;^UTILITY(U,$J,358.3,33831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35910,1,3,0)
- ;;=3^Tropical Spastic Paraplegia
- ;;^UTILITY(U,$J,358.3,35910,1,4,0)
- ;;=4^G04.1
- ;;^UTILITY(U,$J,358.3,35910,2)
- ;;=^5003733
- ;;^UTILITY(U,$J,358.3,35911,0)
- ;;=M19.90^^134^1731^17
- ;;^UTILITY(U,$J,358.3,35911,1,0)
+ ;;^UTILITY(U,$J,358.3,33831,1,3,0)
+ ;;=3^Primary osteoarthritis, left shoulder
+ ;;^UTILITY(U,$J,358.3,33831,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,33831,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,33832,0)
+ ;;=M19.011^^132^1712^42
+ ;;^UTILITY(U,$J,358.3,33832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35911,1,3,0)
- ;;=3^Osteoarthritis Unspec Site
- ;;^UTILITY(U,$J,358.3,35911,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,35911,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,35912,0)
- ;;=Z48.02^^134^1732^1
- ;;^UTILITY(U,$J,358.3,35912,1,0)
+ ;;^UTILITY(U,$J,358.3,33832,1,3,0)
+ ;;=3^Primary osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,33832,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,33832,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,33833,0)
+ ;;=M24.412^^132^1712^43
+ ;;^UTILITY(U,$J,358.3,33833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35912,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,35912,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,35912,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,35913,0)
- ;;=J70.1^^134^1733^1
- ;;^UTILITY(U,$J,358.3,35913,1,0)
+ ;;^UTILITY(U,$J,358.3,33833,1,3,0)
+ ;;=3^Recurrent dislocation, left shoulder
+ ;;^UTILITY(U,$J,358.3,33833,1,4,0)
+ ;;=4^M24.412
+ ;;^UTILITY(U,$J,358.3,33833,2)
+ ;;=^5011372
+ ;;^UTILITY(U,$J,358.3,33834,0)
+ ;;=M24.411^^132^1712^44
+ ;;^UTILITY(U,$J,358.3,33834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35913,1,3,0)
- ;;=3^Chr Pulmonary Manifestations d/t Radiation
- ;;^UTILITY(U,$J,358.3,35913,1,4,0)
- ;;=4^J70.1
- ;;^UTILITY(U,$J,358.3,35913,2)
- ;;=^269983
- ;;^UTILITY(U,$J,358.3,35914,0)
- ;;=J70.0^^134^1734^1
- ;;^UTILITY(U,$J,358.3,35914,1,0)
+ ;;^UTILITY(U,$J,358.3,33834,1,3,0)
+ ;;=3^Recurrent dislocation, right shoulder
+ ;;^UTILITY(U,$J,358.3,33834,1,4,0)
+ ;;=4^M24.411
+ ;;^UTILITY(U,$J,358.3,33834,2)
+ ;;=^5011371
+ ;;^UTILITY(U,$J,358.3,33835,0)
+ ;;=M75.122^^132^1712^45
+ ;;^UTILITY(U,$J,358.3,33835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35914,1,3,0)
- ;;=3^Acute Pulmonary Manifestations d/t Radiation
- ;;^UTILITY(U,$J,358.3,35914,1,4,0)
- ;;=4^J70.0
- ;;^UTILITY(U,$J,358.3,35914,2)
- ;;=^269982
- ;;^UTILITY(U,$J,358.3,35915,0)
- ;;=J63.0^^134^1734^2
- ;;^UTILITY(U,$J,358.3,35915,1,0)
+ ;;^UTILITY(U,$J,358.3,33835,1,3,0)
+ ;;=3^Rotatr-cuff tear/ruptr of left shoulder, not trauma, complete
+ ;;^UTILITY(U,$J,358.3,33835,1,4,0)
+ ;;=4^M75.122
+ ;;^UTILITY(U,$J,358.3,33835,2)
+ ;;=^5013249
+ ;;^UTILITY(U,$J,358.3,33836,0)
+ ;;=M75.121^^132^1712^46
+ ;;^UTILITY(U,$J,358.3,33836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35915,1,3,0)
- ;;=3^Aluminosis of Lung
- ;;^UTILITY(U,$J,358.3,35915,1,4,0)
- ;;=4^J63.0
- ;;^UTILITY(U,$J,358.3,35915,2)
- ;;=^5008265
- ;;^UTILITY(U,$J,358.3,35916,0)
- ;;=J63.1^^134^1734^3
- ;;^UTILITY(U,$J,358.3,35916,1,0)
+ ;;^UTILITY(U,$J,358.3,33836,1,3,0)
+ ;;=3^Rotatr-cuff tear/ruptr of r shoulder, not trauma, complete
+ ;;^UTILITY(U,$J,358.3,33836,1,4,0)
+ ;;=4^M75.121
+ ;;^UTILITY(U,$J,358.3,33836,2)
+ ;;=^5013248
+ ;;^UTILITY(U,$J,358.3,33837,0)
+ ;;=M12.512^^132^1712^49
+ ;;^UTILITY(U,$J,358.3,33837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35916,1,3,0)
- ;;=3^Bauxite Fibrosis of Lung
- ;;^UTILITY(U,$J,358.3,35916,1,4,0)
- ;;=4^J63.1
- ;;^UTILITY(U,$J,358.3,35916,2)
- ;;=^5008266
- ;;^UTILITY(U,$J,358.3,35917,0)
- ;;=J63.2^^134^1734^4
- ;;^UTILITY(U,$J,358.3,35917,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35917,1,3,0)
- ;;=3^Berylliosis

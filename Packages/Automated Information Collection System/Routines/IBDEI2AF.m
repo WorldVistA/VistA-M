@@ -1,134 +1,120 @@
-IBDEI2AF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38807,1,4,0)
- ;;=4^C43.59
- ;;^UTILITY(U,$J,358.3,38807,2)
- ;;=^5001007
- ;;^UTILITY(U,$J,358.3,38808,0)
- ;;=C43.51^^151^1902^1
- ;;^UTILITY(U,$J,358.3,38808,1,0)
+ ;;^UTILITY(U,$J,358.3,36532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38808,1,3,0)
- ;;=3^Malig Melanoma of Anal Skin
- ;;^UTILITY(U,$J,358.3,38808,1,4,0)
- ;;=4^C43.51
- ;;^UTILITY(U,$J,358.3,38808,2)
- ;;=^5001005
- ;;^UTILITY(U,$J,358.3,38809,0)
- ;;=C43.52^^151^1902^15
- ;;^UTILITY(U,$J,358.3,38809,1,0)
+ ;;^UTILITY(U,$J,358.3,36532,1,3,0)
+ ;;=3^Laceration w/ FB Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36532,1,4,0)
+ ;;=4^S61.224A
+ ;;^UTILITY(U,$J,358.3,36532,2)
+ ;;=^5032807
+ ;;^UTILITY(U,$J,358.3,36533,0)
+ ;;=S41.021A^^142^1863^299
+ ;;^UTILITY(U,$J,358.3,36533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38809,1,3,0)
- ;;=3^Malig Melanoma of Skin of Breast
- ;;^UTILITY(U,$J,358.3,38809,1,4,0)
- ;;=4^C43.52
- ;;^UTILITY(U,$J,358.3,38809,2)
- ;;=^5001006
- ;;^UTILITY(U,$J,358.3,38810,0)
- ;;=C43.61^^151^1902^13
- ;;^UTILITY(U,$J,358.3,38810,1,0)
+ ;;^UTILITY(U,$J,358.3,36533,1,3,0)
+ ;;=3^Laceration w/ FB Right Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36533,1,4,0)
+ ;;=4^S41.021A
+ ;;^UTILITY(U,$J,358.3,36533,2)
+ ;;=^5026306
+ ;;^UTILITY(U,$J,358.3,36534,0)
+ ;;=S61.521A^^142^1863^303
+ ;;^UTILITY(U,$J,358.3,36534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38810,1,3,0)
- ;;=3^Malig Melanoma of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,38810,1,4,0)
- ;;=4^C43.61
- ;;^UTILITY(U,$J,358.3,38810,2)
- ;;=^5001009
- ;;^UTILITY(U,$J,358.3,38811,0)
- ;;=C43.62^^151^1902^6
- ;;^UTILITY(U,$J,358.3,38811,1,0)
+ ;;^UTILITY(U,$J,358.3,36534,1,3,0)
+ ;;=3^Laceration w/ FB Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36534,1,4,0)
+ ;;=4^S61.521A
+ ;;^UTILITY(U,$J,358.3,36534,2)
+ ;;=^5033035
+ ;;^UTILITY(U,$J,358.3,36535,0)
+ ;;=S01.02XA^^142^1863^304
+ ;;^UTILITY(U,$J,358.3,36535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38811,1,3,0)
- ;;=3^Malig Melanoma of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,38811,1,4,0)
- ;;=4^C43.62
- ;;^UTILITY(U,$J,358.3,38811,2)
- ;;=^5001010
- ;;^UTILITY(U,$J,358.3,38812,0)
- ;;=C43.71^^151^1902^12
- ;;^UTILITY(U,$J,358.3,38812,1,0)
+ ;;^UTILITY(U,$J,358.3,36535,1,3,0)
+ ;;=3^Laceration w/ FB Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36535,1,4,0)
+ ;;=4^S01.02XA
+ ;;^UTILITY(U,$J,358.3,36535,2)
+ ;;=^5020039
+ ;;^UTILITY(U,$J,358.3,36536,0)
+ ;;=S01.429A^^142^1863^305
+ ;;^UTILITY(U,$J,358.3,36536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38812,1,3,0)
- ;;=3^Malig Melanoma of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,38812,1,4,0)
- ;;=4^C43.71
- ;;^UTILITY(U,$J,358.3,38812,2)
- ;;=^5001012
- ;;^UTILITY(U,$J,358.3,38813,0)
- ;;=C43.72^^151^1902^5
- ;;^UTILITY(U,$J,358.3,38813,1,0)
+ ;;^UTILITY(U,$J,358.3,36536,1,3,0)
+ ;;=3^Laceration w/ FB Unspec Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36536,1,4,0)
+ ;;=4^S01.429A
+ ;;^UTILITY(U,$J,358.3,36536,2)
+ ;;=^5134223
+ ;;^UTILITY(U,$J,358.3,36537,0)
+ ;;=S91.322A^^142^1863^272
+ ;;^UTILITY(U,$J,358.3,36537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38813,1,3,0)
- ;;=3^Malig Melanoma of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,38813,1,4,0)
- ;;=4^C43.72
- ;;^UTILITY(U,$J,358.3,38813,2)
- ;;=^5001013
- ;;^UTILITY(U,$J,358.3,38814,0)
- ;;=C43.8^^151^1902^9
- ;;^UTILITY(U,$J,358.3,38814,1,0)
+ ;;^UTILITY(U,$J,358.3,36537,1,3,0)
+ ;;=3^Laceration w/ FB Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36537,1,4,0)
+ ;;=4^S91.322A
+ ;;^UTILITY(U,$J,358.3,36537,2)
+ ;;=^5137527
+ ;;^UTILITY(U,$J,358.3,36538,0)
+ ;;=S71.022A^^142^1863^277
+ ;;^UTILITY(U,$J,358.3,36538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38814,1,3,0)
- ;;=3^Malig Melanoma of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,38814,1,4,0)
- ;;=4^C43.8
- ;;^UTILITY(U,$J,358.3,38814,2)
- ;;=^5001014
- ;;^UTILITY(U,$J,358.3,38815,0)
- ;;=D03.0^^151^1902^60
- ;;^UTILITY(U,$J,358.3,38815,1,0)
+ ;;^UTILITY(U,$J,358.3,36538,1,3,0)
+ ;;=3^Laceration w/ FB Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36538,1,4,0)
+ ;;=4^S71.022A
+ ;;^UTILITY(U,$J,358.3,36538,2)
+ ;;=^5136178
+ ;;^UTILITY(U,$J,358.3,36539,0)
+ ;;=S71.122A^^142^1863^284
+ ;;^UTILITY(U,$J,358.3,36539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38815,1,3,0)
- ;;=3^Melanoma in Situ of Lip
- ;;^UTILITY(U,$J,358.3,38815,1,4,0)
- ;;=4^D03.0
- ;;^UTILITY(U,$J,358.3,38815,2)
- ;;=^5001888
- ;;^UTILITY(U,$J,358.3,38816,0)
- ;;=D03.11^^151^1902^54
- ;;^UTILITY(U,$J,358.3,38816,1,0)
+ ;;^UTILITY(U,$J,358.3,36539,1,3,0)
+ ;;=3^Laceration w/ FB Left Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36539,1,4,0)
+ ;;=4^S71.122A
+ ;;^UTILITY(U,$J,358.3,36539,2)
+ ;;=^5136193
+ ;;^UTILITY(U,$J,358.3,36540,0)
+ ;;=S91.321A^^142^1863^289
+ ;;^UTILITY(U,$J,358.3,36540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38816,1,3,0)
- ;;=3^Melanoma in Situ Right Eyelid
- ;;^UTILITY(U,$J,358.3,38816,1,4,0)
- ;;=4^D03.11
- ;;^UTILITY(U,$J,358.3,38816,2)
- ;;=^5001890
- ;;^UTILITY(U,$J,358.3,38817,0)
- ;;=D03.12^^151^1902^50
- ;;^UTILITY(U,$J,358.3,38817,1,0)
+ ;;^UTILITY(U,$J,358.3,36540,1,3,0)
+ ;;=3^Laceration w/ FB Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36540,1,4,0)
+ ;;=4^S91.321A
+ ;;^UTILITY(U,$J,358.3,36540,2)
+ ;;=^5044329
+ ;;^UTILITY(U,$J,358.3,36541,0)
+ ;;=S71.021A^^142^1863^293
+ ;;^UTILITY(U,$J,358.3,36541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38817,1,3,0)
- ;;=3^Melanoma in Situ Left Eyelid
- ;;^UTILITY(U,$J,358.3,38817,1,4,0)
- ;;=4^D03.12
- ;;^UTILITY(U,$J,358.3,38817,2)
- ;;=^5001891
- ;;^UTILITY(U,$J,358.3,38818,0)
- ;;=D03.21^^151^1902^53
- ;;^UTILITY(U,$J,358.3,38818,1,0)
+ ;;^UTILITY(U,$J,358.3,36541,1,3,0)
+ ;;=3^Laceration w/ FB Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36541,1,4,0)
+ ;;=4^S71.021A
+ ;;^UTILITY(U,$J,358.3,36541,2)
+ ;;=^5036984
+ ;;^UTILITY(U,$J,358.3,36542,0)
+ ;;=S71.121A^^142^1863^300
+ ;;^UTILITY(U,$J,358.3,36542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38818,1,3,0)
- ;;=3^Melanoma in Situ Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,38818,1,4,0)
- ;;=4^D03.21
- ;;^UTILITY(U,$J,358.3,38818,2)
- ;;=^5001893
- ;;^UTILITY(U,$J,358.3,38819,0)
- ;;=D03.22^^151^1902^49
- ;;^UTILITY(U,$J,358.3,38819,1,0)
+ ;;^UTILITY(U,$J,358.3,36542,1,3,0)
+ ;;=3^Laceration w/ FB Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36542,1,4,0)
+ ;;=4^S71.121A
+ ;;^UTILITY(U,$J,358.3,36542,2)
+ ;;=^5037023
+ ;;^UTILITY(U,$J,358.3,36543,0)
+ ;;=G56.32^^142^1863^306
+ ;;^UTILITY(U,$J,358.3,36543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38819,1,3,0)
- ;;=3^Melanoma in Situ Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,38819,1,4,0)
- ;;=4^D03.22
- ;;^UTILITY(U,$J,358.3,38819,2)
- ;;=^5001894
- ;;^UTILITY(U,$J,358.3,38820,0)
- ;;=D03.30^^151^1902^59
- ;;^UTILITY(U,$J,358.3,38820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38820,1,3,0)
- ;;=3^Melanoma in Situ Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,36543,1,3,0)
+ ;;=3^Lesion Radial Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,36543,1,4,0)
+ ;;=4^G56.32

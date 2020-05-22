@@ -1,124 +1,124 @@
-IBDEI2WZ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48911,1,4,0)
- ;;=4^S72.042S
- ;;^UTILITY(U,$J,358.3,48911,2)
- ;;=^5037344
- ;;^UTILITY(U,$J,358.3,48912,0)
- ;;=S72.044S^^216^2413^52
- ;;^UTILITY(U,$J,358.3,48912,1,0)
+ ;;^UTILITY(U,$J,358.3,46479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48912,1,3,0)
- ;;=3^Nondisp base of neck fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48912,1,4,0)
- ;;=4^S72.044S
- ;;^UTILITY(U,$J,358.3,48912,2)
- ;;=^5037376
- ;;^UTILITY(U,$J,358.3,48913,0)
- ;;=S72.061S^^216^2413^4
- ;;^UTILITY(U,$J,358.3,48913,1,0)
+ ;;^UTILITY(U,$J,358.3,46479,1,3,0)
+ ;;=3^Family Hx Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,46479,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,46479,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,46480,0)
+ ;;=Z83.518^^176^2312^12
+ ;;^UTILITY(U,$J,358.3,46480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48913,1,3,0)
- ;;=3^Displaced articular fx of head of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48913,1,4,0)
- ;;=4^S72.061S
- ;;^UTILITY(U,$J,358.3,48913,2)
- ;;=^5037461
- ;;^UTILITY(U,$J,358.3,48914,0)
- ;;=S72.062S^^216^2413^3
- ;;^UTILITY(U,$J,358.3,48914,1,0)
+ ;;^UTILITY(U,$J,358.3,46480,1,3,0)
+ ;;=3^Family Hx Other Eye Disorder
+ ;;^UTILITY(U,$J,358.3,46480,1,4,0)
+ ;;=4^Z83.518
+ ;;^UTILITY(U,$J,358.3,46480,2)
+ ;;=^5063383
+ ;;^UTILITY(U,$J,358.3,46481,0)
+ ;;=Z83.511^^176^2312^13
+ ;;^UTILITY(U,$J,358.3,46481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48914,1,3,0)
- ;;=3^Displaced articular fx of head of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48914,1,4,0)
- ;;=4^S72.062S
- ;;^UTILITY(U,$J,358.3,48914,2)
- ;;=^5037477
- ;;^UTILITY(U,$J,358.3,48915,0)
- ;;=S72.064S^^216^2413^50
- ;;^UTILITY(U,$J,358.3,48915,1,0)
+ ;;^UTILITY(U,$J,358.3,46481,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,46481,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,46481,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,46482,0)
+ ;;=H35.3211^^176^2313^1
+ ;;^UTILITY(U,$J,358.3,46482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48915,1,3,0)
- ;;=3^Nondisp articular fx of head of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48915,1,4,0)
- ;;=4^S72.064S
- ;;^UTILITY(U,$J,358.3,48915,2)
- ;;=^5037509
- ;;^UTILITY(U,$J,358.3,48916,0)
- ;;=S72.065S^^216^2413^49
- ;;^UTILITY(U,$J,358.3,48916,1,0)
+ ;;^UTILITY(U,$J,358.3,46482,1,3,0)
+ ;;=3^Exudative AMD,RIGHT eye,active CNV
+ ;;^UTILITY(U,$J,358.3,46482,1,4,0)
+ ;;=4^H35.3211
+ ;;^UTILITY(U,$J,358.3,46482,2)
+ ;;=^5138521
+ ;;^UTILITY(U,$J,358.3,46483,0)
+ ;;=H35.3221^^176^2313^2
+ ;;^UTILITY(U,$J,358.3,46483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48916,1,3,0)
- ;;=3^Nondisp articular fx of head of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48916,1,4,0)
- ;;=4^S72.065S
- ;;^UTILITY(U,$J,358.3,48916,2)
- ;;=^5037525
- ;;^UTILITY(U,$J,358.3,48917,0)
- ;;=S72.111S^^216^2413^14
- ;;^UTILITY(U,$J,358.3,48917,1,0)
+ ;;^UTILITY(U,$J,358.3,46483,1,3,0)
+ ;;=3^Exudative AMD,LEFT eye,active CNV 
+ ;;^UTILITY(U,$J,358.3,46483,1,4,0)
+ ;;=4^H35.3221
+ ;;^UTILITY(U,$J,358.3,46483,2)
+ ;;=^5138525
+ ;;^UTILITY(U,$J,358.3,46484,0)
+ ;;=H35.059^^176^2313^3
+ ;;^UTILITY(U,$J,358.3,46484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48917,1,3,0)
- ;;=3^Displaced greater trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48917,1,4,0)
- ;;=4^S72.111S
- ;;^UTILITY(U,$J,358.3,48917,2)
- ;;=^5037642
- ;;^UTILITY(U,$J,358.3,48918,0)
- ;;=S72.112S^^216^2413^13
- ;;^UTILITY(U,$J,358.3,48918,1,0)
+ ;;^UTILITY(U,$J,358.3,46484,1,3,0)
+ ;;=3^Retinal CNV or NV,unspec          
+ ;;^UTILITY(U,$J,358.3,46484,1,4,0)
+ ;;=4^H35.059
+ ;;^UTILITY(U,$J,358.3,46484,2)
+ ;;=^5005601
+ ;;^UTILITY(U,$J,358.3,46485,0)
+ ;;=H35.82^^176^2313^4
+ ;;^UTILITY(U,$J,358.3,46485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48918,1,3,0)
- ;;=3^Displaced greater trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48918,1,4,0)
- ;;=4^S72.112S
- ;;^UTILITY(U,$J,358.3,48918,2)
- ;;=^5037658
- ;;^UTILITY(U,$J,358.3,48919,0)
- ;;=S72.114S^^216^2413^60
- ;;^UTILITY(U,$J,358.3,48919,1,0)
+ ;;^UTILITY(U,$J,358.3,46485,1,3,0)
+ ;;=3^Retinal Ischemia,unspec           
+ ;;^UTILITY(U,$J,358.3,46485,1,4,0)
+ ;;=4^H35.82
+ ;;^UTILITY(U,$J,358.3,46485,2)
+ ;;=^5005716
+ ;;^UTILITY(U,$J,358.3,46486,0)
+ ;;=H35.81^^176^2313^5
+ ;;^UTILITY(U,$J,358.3,46486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48919,1,3,0)
- ;;=3^Nondisp greater trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48919,1,4,0)
- ;;=4^S72.114S
- ;;^UTILITY(U,$J,358.3,48919,2)
- ;;=^5037690
- ;;^UTILITY(U,$J,358.3,48920,0)
- ;;=S72.115S^^216^2413^59
- ;;^UTILITY(U,$J,358.3,48920,1,0)
+ ;;^UTILITY(U,$J,358.3,46486,1,3,0)
+ ;;=3^Retinal Edema,unspec              
+ ;;^UTILITY(U,$J,358.3,46486,1,4,0)
+ ;;=4^H35.81
+ ;;^UTILITY(U,$J,358.3,46486,2)
+ ;;=^5005715
+ ;;^UTILITY(U,$J,358.3,46487,0)
+ ;;=E11.3211^^176^2313^6
+ ;;^UTILITY(U,$J,358.3,46487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48920,1,3,0)
- ;;=3^Nondisp greater trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48920,1,4,0)
- ;;=4^S72.115S
- ;;^UTILITY(U,$J,358.3,48920,2)
- ;;=^5037706
- ;;^UTILITY(U,$J,358.3,48921,0)
- ;;=S72.121S^^216^2413^20
- ;;^UTILITY(U,$J,358.3,48921,1,0)
+ ;;^UTILITY(U,$J,358.3,46487,1,3,0)
+ ;;=3^DM Type 2 Mild NPDR w/ CME,RIGHT eye    
+ ;;^UTILITY(U,$J,358.3,46487,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,46487,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,46488,0)
+ ;;=E11.3212^^176^2313^7
+ ;;^UTILITY(U,$J,358.3,46488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48921,1,3,0)
- ;;=3^Displaced lesser trochanter fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48921,1,4,0)
- ;;=4^S72.121S
- ;;^UTILITY(U,$J,358.3,48921,2)
- ;;=^5037738
- ;;^UTILITY(U,$J,358.3,48922,0)
- ;;=S72.122S^^216^2413^19
- ;;^UTILITY(U,$J,358.3,48922,1,0)
+ ;;^UTILITY(U,$J,358.3,46488,1,3,0)
+ ;;=3^DM Type 2 Mild NPDR w/ CME,LEFT eye     
+ ;;^UTILITY(U,$J,358.3,46488,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,46488,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,46489,0)
+ ;;=E11.3311^^176^2313^8
+ ;;^UTILITY(U,$J,358.3,46489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48922,1,3,0)
- ;;=3^Displaced lesser trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48922,1,4,0)
- ;;=4^S72.122S
- ;;^UTILITY(U,$J,358.3,48922,2)
- ;;=^5037754
- ;;^UTILITY(U,$J,358.3,48923,0)
- ;;=S72.124S^^216^2413^66
- ;;^UTILITY(U,$J,358.3,48923,1,0)
+ ;;^UTILITY(U,$J,358.3,46489,1,3,0)
+ ;;=3^DM Type 2 Mod NPDR w/ CME,RIGHT eye     
+ ;;^UTILITY(U,$J,358.3,46489,1,4,0)
+ ;;=4^E11.3311
+ ;;^UTILITY(U,$J,358.3,46489,2)
+ ;;=^5138339
+ ;;^UTILITY(U,$J,358.3,46490,0)
+ ;;=E11.3312^^176^2313^9
+ ;;^UTILITY(U,$J,358.3,46490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48923,1,3,0)
- ;;=3^Nondisp lesser trochanter fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,46490,1,3,0)
+ ;;=3^DM Type 2 Mod NPDR w/ CME,LEFT eye      
+ ;;^UTILITY(U,$J,358.3,46490,1,4,0)
+ ;;=4^E11.3312
+ ;;^UTILITY(U,$J,358.3,46490,2)
+ ;;=^5138340
+ ;;^UTILITY(U,$J,358.3,46491,0)
+ ;;=E11.3411^^176^2313^10

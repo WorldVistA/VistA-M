@@ -1,8 +1,126 @@
-IBDEI11J ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11J ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.8)
- ;;=^IBE(358.8,
- ;;^UTILITY(U,$J,358.8,0)
- ;;=IMP/EXP TEXT AREA^358.8^0^0
+ ;;^UTILITY(U,$J,358.3,16729,2)
+ ;;=^5063665
+ ;;^UTILITY(U,$J,358.3,16730,0)
+ ;;=Z96.21^^88^880^6
+ ;;^UTILITY(U,$J,358.3,16730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16730,1,3,0)
+ ;;=3^Cochlear Implant Status
+ ;;^UTILITY(U,$J,358.3,16730,1,4,0)
+ ;;=4^Z96.21
+ ;;^UTILITY(U,$J,358.3,16730,2)
+ ;;=^5063684
+ ;;^UTILITY(U,$J,358.3,16731,0)
+ ;;=Z96.41^^88^880^132
+ ;;^UTILITY(U,$J,358.3,16731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16731,1,3,0)
+ ;;=3^Presence of Insulin Pump
+ ;;^UTILITY(U,$J,358.3,16731,1,4,0)
+ ;;=4^Z96.41
+ ;;^UTILITY(U,$J,358.3,16731,2)
+ ;;=^5063688
+ ;;^UTILITY(U,$J,358.3,16732,0)
+ ;;=Z96.641^^88^880^140
+ ;;^UTILITY(U,$J,358.3,16732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16732,1,3,0)
+ ;;=3^Presence of Right Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,16732,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,16732,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,16733,0)
+ ;;=Z96.642^^88^880^135
+ ;;^UTILITY(U,$J,358.3,16733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16733,1,3,0)
+ ;;=3^Presence of Left Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,16733,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,16733,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,16734,0)
+ ;;=Z96.643^^88^880^119
+ ;;^UTILITY(U,$J,358.3,16734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16734,1,3,0)
+ ;;=3^Presence of Artificial Hip Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,16734,1,4,0)
+ ;;=4^Z96.643
+ ;;^UTILITY(U,$J,358.3,16734,2)
+ ;;=^5063703
+ ;;^UTILITY(U,$J,358.3,16735,0)
+ ;;=Z96.651^^88^880^141
+ ;;^UTILITY(U,$J,358.3,16735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16735,1,3,0)
+ ;;=3^Presence of Right Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,16735,1,4,0)
+ ;;=4^Z96.651
+ ;;^UTILITY(U,$J,358.3,16735,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,16736,0)
+ ;;=Z96.652^^88^880^136
+ ;;^UTILITY(U,$J,358.3,16736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16736,1,3,0)
+ ;;=3^Presence of Left Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,16736,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,16736,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,16737,0)
+ ;;=Z96.653^^88^880^120
+ ;;^UTILITY(U,$J,358.3,16737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16737,1,3,0)
+ ;;=3^Presence of Artificial Knee Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,16737,1,4,0)
+ ;;=4^Z96.653
+ ;;^UTILITY(U,$J,358.3,16737,2)
+ ;;=^5063707
+ ;;^UTILITY(U,$J,358.3,16738,0)
+ ;;=Z96.7^^88^880^125
+ ;;^UTILITY(U,$J,358.3,16738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16738,1,3,0)
+ ;;=3^Presence of Bone/Tendon Implants NEC
+ ;;^UTILITY(U,$J,358.3,16738,1,4,0)
+ ;;=4^Z96.7
+ ;;^UTILITY(U,$J,358.3,16738,2)
+ ;;=^5063716
+ ;;^UTILITY(U,$J,358.3,16739,0)
+ ;;=Z97.11^^88^880^139
+ ;;^UTILITY(U,$J,358.3,16739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16739,1,3,0)
+ ;;=3^Presence of Right Artificial Arm
+ ;;^UTILITY(U,$J,358.3,16739,1,4,0)
+ ;;=4^Z97.11
+ ;;^UTILITY(U,$J,358.3,16739,2)
+ ;;=^5063722
+ ;;^UTILITY(U,$J,358.3,16740,0)
+ ;;=Z97.12^^88^880^134
+ ;;^UTILITY(U,$J,358.3,16740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16740,1,3,0)
+ ;;=3^Presence of Left Artificial Arm
+ ;;^UTILITY(U,$J,358.3,16740,1,4,0)
+ ;;=4^Z97.12
+ ;;^UTILITY(U,$J,358.3,16740,2)
+ ;;=^5063723
+ ;;^UTILITY(U,$J,358.3,16741,0)
+ ;;=Z97.13^^88^880^142
+ ;;^UTILITY(U,$J,358.3,16741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16741,1,3,0)
+ ;;=3^Presence of Right Artificial Leg
+ ;;^UTILITY(U,$J,358.3,16741,1,4,0)
+ ;;=4^Z97.13
+ ;;^UTILITY(U,$J,358.3,16741,2)
+ ;;=^5063724

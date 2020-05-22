@@ -1,142 +1,118 @@
-IBDEI1QP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29520,2)
- ;;=^5015977
- ;;^UTILITY(U,$J,358.3,29521,0)
- ;;=O02.81^^115^1468^5
- ;;^UTILITY(U,$J,358.3,29521,1,0)
+ ;;^UTILITY(U,$J,358.3,27807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29521,1,3,0)
- ;;=3^Inapp Chg HCG in Early Pregnancy
- ;;^UTILITY(U,$J,358.3,29521,1,4,0)
- ;;=4^O02.81
- ;;^UTILITY(U,$J,358.3,29521,2)
- ;;=^340611
- ;;^UTILITY(U,$J,358.3,29522,0)
- ;;=O03.4^^115^1468^6
- ;;^UTILITY(U,$J,358.3,29522,1,0)
+ ;;^UTILITY(U,$J,358.3,27807,1,3,0)
+ ;;=3^Alcohol Use DO (Mild),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,27807,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,27807,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,27808,0)
+ ;;=F10.20^^113^1360^34
+ ;;^UTILITY(U,$J,358.3,27808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29522,1,3,0)
- ;;=3^Incomplete SAB
- ;;^UTILITY(U,$J,358.3,29522,1,4,0)
- ;;=4^O03.4
- ;;^UTILITY(U,$J,358.3,29522,2)
- ;;=^5015993
- ;;^UTILITY(U,$J,358.3,29523,0)
- ;;=O02.1^^115^1468^7
- ;;^UTILITY(U,$J,358.3,29523,1,0)
+ ;;^UTILITY(U,$J,358.3,27808,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,27808,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,27808,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,27809,0)
+ ;;=F10.239^^113^1360^31
+ ;;^UTILITY(U,$J,358.3,27809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29523,1,3,0)
- ;;=3^Missed Abortion
- ;;^UTILITY(U,$J,358.3,29523,1,4,0)
- ;;=4^O02.1
- ;;^UTILITY(U,$J,358.3,29523,2)
- ;;=^1259
- ;;^UTILITY(U,$J,358.3,29524,0)
- ;;=N96.^^115^1468^8
- ;;^UTILITY(U,$J,358.3,29524,1,0)
+ ;;^UTILITY(U,$J,358.3,27809,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD,Unspec
+ ;;^UTILITY(U,$J,358.3,27809,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,27809,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,27810,0)
+ ;;=F10.180^^113^1360^1
+ ;;^UTILITY(U,$J,358.3,27810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29524,1,3,0)
- ;;=3^Recurrent Pregnancy Loss
- ;;^UTILITY(U,$J,358.3,29524,1,4,0)
- ;;=4^N96.
- ;;^UTILITY(U,$J,358.3,29524,2)
- ;;=^5015930
- ;;^UTILITY(U,$J,358.3,29525,0)
- ;;=O72.2^^115^1468^9
- ;;^UTILITY(U,$J,358.3,29525,1,0)
+ ;;^UTILITY(U,$J,358.3,27810,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27810,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,27810,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,27811,0)
+ ;;=F10.280^^113^1360^2
+ ;;^UTILITY(U,$J,358.3,27811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29525,1,3,0)
- ;;=3^Retained Products
- ;;^UTILITY(U,$J,358.3,29525,1,4,0)
- ;;=4^O72.2
- ;;^UTILITY(U,$J,358.3,29525,2)
- ;;=^271578
- ;;^UTILITY(U,$J,358.3,29526,0)
- ;;=O20.0^^115^1468^10
- ;;^UTILITY(U,$J,358.3,29526,1,0)
+ ;;^UTILITY(U,$J,358.3,27811,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27811,1,4,0)
+ ;;=4^F10.280
+ ;;^UTILITY(U,$J,358.3,27811,2)
+ ;;=^5003096
+ ;;^UTILITY(U,$J,358.3,27812,0)
+ ;;=F10.980^^113^1360^3
+ ;;^UTILITY(U,$J,358.3,27812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29526,1,3,0)
- ;;=3^Threatened Abortion
- ;;^UTILITY(U,$J,358.3,29526,1,4,0)
- ;;=4^O20.0
- ;;^UTILITY(U,$J,358.3,29526,2)
- ;;=^1287
- ;;^UTILITY(U,$J,358.3,29527,0)
- ;;=O00.1^^115^1468^11
- ;;^UTILITY(U,$J,358.3,29527,1,0)
+ ;;^UTILITY(U,$J,358.3,27812,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27812,1,4,0)
+ ;;=4^F10.980
+ ;;^UTILITY(U,$J,358.3,27812,2)
+ ;;=^5003110
+ ;;^UTILITY(U,$J,358.3,27813,0)
+ ;;=F10.26^^113^1360^4
+ ;;^UTILITY(U,$J,358.3,27813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29527,1,3,0)
- ;;=3^Tubal Pregnancy
- ;;^UTILITY(U,$J,358.3,29527,1,4,0)
- ;;=4^O00.1
- ;;^UTILITY(U,$J,358.3,29527,2)
- ;;=^97846
- ;;^UTILITY(U,$J,358.3,29528,0)
- ;;=R10.30^^115^1469^1
- ;;^UTILITY(U,$J,358.3,29528,1,0)
+ ;;^UTILITY(U,$J,358.3,27813,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Amnestic Cofabul Type w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27813,1,4,0)
+ ;;=4^F10.26
+ ;;^UTILITY(U,$J,358.3,27813,2)
+ ;;=^5003094
+ ;;^UTILITY(U,$J,358.3,27814,0)
+ ;;=F10.96^^113^1360^5
+ ;;^UTILITY(U,$J,358.3,27814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29528,1,3,0)
- ;;=3^Abdominal Pain,Lower,Unspec
- ;;^UTILITY(U,$J,358.3,29528,1,4,0)
- ;;=4^R10.30
- ;;^UTILITY(U,$J,358.3,29528,2)
- ;;=^5019210
- ;;^UTILITY(U,$J,358.3,29529,0)
- ;;=R10.9^^115^1469^2
- ;;^UTILITY(U,$J,358.3,29529,1,0)
+ ;;^UTILITY(U,$J,358.3,27814,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Amnestic Cofabul Type w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27814,1,4,0)
+ ;;=4^F10.96
+ ;;^UTILITY(U,$J,358.3,27814,2)
+ ;;=^5003108
+ ;;^UTILITY(U,$J,358.3,27815,0)
+ ;;=F10.27^^113^1360^6
+ ;;^UTILITY(U,$J,358.3,27815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29529,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,29529,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,29529,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,29530,0)
- ;;=R10.2^^115^1469^10
- ;;^UTILITY(U,$J,358.3,29530,1,0)
+ ;;^UTILITY(U,$J,358.3,27815,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Nonamnestic Confabul Type w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27815,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,27815,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,27816,0)
+ ;;=F10.97^^113^1360^7
+ ;;^UTILITY(U,$J,358.3,27816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29530,1,3,0)
- ;;=3^Pelvic Pain,Chronic
- ;;^UTILITY(U,$J,358.3,29530,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,29530,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,29531,0)
- ;;=N94.6^^115^1469^3
- ;;^UTILITY(U,$J,358.3,29531,1,0)
+ ;;^UTILITY(U,$J,358.3,27816,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Nonamnestic Confabul Type w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27816,1,4,0)
+ ;;=4^F10.97
+ ;;^UTILITY(U,$J,358.3,27816,2)
+ ;;=^5003109
+ ;;^UTILITY(U,$J,358.3,27817,0)
+ ;;=F10.288^^113^1360^8
+ ;;^UTILITY(U,$J,358.3,27817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29531,1,3,0)
- ;;=3^Dysmenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,29531,1,4,0)
- ;;=4^N94.6
- ;;^UTILITY(U,$J,358.3,29531,2)
- ;;=^5015922
- ;;^UTILITY(U,$J,358.3,29532,0)
- ;;=N94.1^^115^1469^4
- ;;^UTILITY(U,$J,358.3,29532,1,0)
+ ;;^UTILITY(U,$J,358.3,27817,1,3,0)
+ ;;=3^Alcohol Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27817,1,4,0)
+ ;;=4^F10.288
+ ;;^UTILITY(U,$J,358.3,27817,2)
+ ;;=^5003099
+ ;;^UTILITY(U,$J,358.3,27818,0)
+ ;;=F10.988^^113^1360^9
+ ;;^UTILITY(U,$J,358.3,27818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29532,1,3,0)
- ;;=3^Dyspareunia
- ;;^UTILITY(U,$J,358.3,29532,1,4,0)
- ;;=4^N94.1
- ;;^UTILITY(U,$J,358.3,29532,2)
- ;;=^5015917
- ;;^UTILITY(U,$J,358.3,29533,0)
- ;;=N80.9^^115^1469^5
- ;;^UTILITY(U,$J,358.3,29533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29533,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,29533,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,29533,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,29534,0)
- ;;=N94.0^^115^1469^6
- ;;^UTILITY(U,$J,358.3,29534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29534,1,3,0)
- ;;=3^Mittelschmerz
+ ;;^UTILITY(U,$J,358.3,27818,1,3,0)
+ ;;=3^Alcohol Induced Mild Neurocog D/O w/o Use D/O

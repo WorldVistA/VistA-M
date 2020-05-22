@@ -1,132 +1,120 @@
-IBDEI2UH ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47737,2)
- ;;=^5001003
- ;;^UTILITY(U,$J,358.3,47738,0)
- ;;=C43.8^^209^2347^11
- ;;^UTILITY(U,$J,358.3,47738,1,0)
+ ;;^UTILITY(U,$J,358.3,45377,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,45377,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,45378,0)
+ ;;=I69.910^^172^2266^5
+ ;;^UTILITY(U,$J,358.3,45378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47738,1,3,0)
- ;;=3^Malig Melanoma of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,47738,1,4,0)
- ;;=4^C43.8
- ;;^UTILITY(U,$J,358.3,47738,2)
- ;;=^5001014
- ;;^UTILITY(U,$J,358.3,47739,0)
- ;;=C43.9^^209^2347^17
- ;;^UTILITY(U,$J,358.3,47739,1,0)
+ ;;^UTILITY(U,$J,358.3,45378,1,3,0)
+ ;;=3^Attention/Concentration Deficit Following Cerebrvasc Disease
+ ;;^UTILITY(U,$J,358.3,45378,1,4,0)
+ ;;=4^I69.910
+ ;;^UTILITY(U,$J,358.3,45378,2)
+ ;;=^5138660
+ ;;^UTILITY(U,$J,358.3,45379,0)
+ ;;=I69.911^^172^2266^15
+ ;;^UTILITY(U,$J,358.3,45379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47739,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,47739,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,47739,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,47740,0)
- ;;=C06.0^^209^2348^1
- ;;^UTILITY(U,$J,358.3,47740,1,0)
+ ;;^UTILITY(U,$J,358.3,45379,1,3,0)
+ ;;=3^Memory Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45379,1,4,0)
+ ;;=4^I69.911
+ ;;^UTILITY(U,$J,358.3,45379,2)
+ ;;=^5138661
+ ;;^UTILITY(U,$J,358.3,45380,0)
+ ;;=I69.912^^172^2266^24
+ ;;^UTILITY(U,$J,358.3,45380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47740,1,3,0)
- ;;=3^Malig Neop of Cheek Mucosa
- ;;^UTILITY(U,$J,358.3,47740,1,4,0)
- ;;=4^C06.0
- ;;^UTILITY(U,$J,358.3,47740,2)
- ;;=^267019
- ;;^UTILITY(U,$J,358.3,47741,0)
- ;;=C06.1^^209^2348^7
- ;;^UTILITY(U,$J,358.3,47741,1,0)
+ ;;^UTILITY(U,$J,358.3,45380,1,3,0)
+ ;;=3^Visospatial Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45380,1,4,0)
+ ;;=4^I69.912
+ ;;^UTILITY(U,$J,358.3,45380,2)
+ ;;=^5138662
+ ;;^UTILITY(U,$J,358.3,45381,0)
+ ;;=I69.913^^172^2266^21
+ ;;^UTILITY(U,$J,358.3,45381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47741,1,3,0)
- ;;=3^Malig Neop of Vestibule of Mouth
- ;;^UTILITY(U,$J,358.3,47741,1,4,0)
- ;;=4^C06.1
- ;;^UTILITY(U,$J,358.3,47741,2)
- ;;=^267020
- ;;^UTILITY(U,$J,358.3,47742,0)
- ;;=C06.2^^209^2348^6
- ;;^UTILITY(U,$J,358.3,47742,1,0)
+ ;;^UTILITY(U,$J,358.3,45381,1,3,0)
+ ;;=3^Psychomotor Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45381,1,4,0)
+ ;;=4^I69.913
+ ;;^UTILITY(U,$J,358.3,45381,2)
+ ;;=^5138663
+ ;;^UTILITY(U,$J,358.3,45382,0)
+ ;;=I69.914^^172^2266^11
+ ;;^UTILITY(U,$J,358.3,45382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47742,1,3,0)
- ;;=3^Malig Neop of Retromolar Area
- ;;^UTILITY(U,$J,358.3,47742,1,4,0)
- ;;=4^C06.2
- ;;^UTILITY(U,$J,358.3,47742,2)
- ;;=^267025
- ;;^UTILITY(U,$J,358.3,47743,0)
- ;;=C06.80^^209^2348^3
- ;;^UTILITY(U,$J,358.3,47743,1,0)
+ ;;^UTILITY(U,$J,358.3,45382,1,3,0)
+ ;;=3^Frontal Lobe/Executive Fcn Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45382,1,4,0)
+ ;;=4^I69.914
+ ;;^UTILITY(U,$J,358.3,45382,2)
+ ;;=^5138664
+ ;;^UTILITY(U,$J,358.3,45383,0)
+ ;;=I69.915^^172^2266^10
+ ;;^UTILITY(U,$J,358.3,45383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47743,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Mouth,Unspec Parts
- ;;^UTILITY(U,$J,358.3,47743,1,4,0)
- ;;=4^C06.80
- ;;^UTILITY(U,$J,358.3,47743,2)
- ;;=^5000899
- ;;^UTILITY(U,$J,358.3,47744,0)
- ;;=C06.89^^209^2348^4
- ;;^UTILITY(U,$J,358.3,47744,1,0)
+ ;;^UTILITY(U,$J,358.3,45383,1,3,0)
+ ;;=3^Cognitive Social/Emotional Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45383,1,4,0)
+ ;;=4^I69.915
+ ;;^UTILITY(U,$J,358.3,45383,2)
+ ;;=^5138665
+ ;;^UTILITY(U,$J,358.3,45384,0)
+ ;;=I69.918^^172^2266^8
+ ;;^UTILITY(U,$J,358.3,45384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47744,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Mouth NEC
- ;;^UTILITY(U,$J,358.3,47744,1,4,0)
- ;;=4^C06.89
- ;;^UTILITY(U,$J,358.3,47744,2)
- ;;=^5000900
- ;;^UTILITY(U,$J,358.3,47745,0)
- ;;=C06.9^^209^2348^2
- ;;^UTILITY(U,$J,358.3,47745,1,0)
+ ;;^UTILITY(U,$J,358.3,45384,1,3,0)
+ ;;=3^Cognitive Function Oth Symp/Signs Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45384,1,4,0)
+ ;;=4^I69.918
+ ;;^UTILITY(U,$J,358.3,45384,2)
+ ;;=^5138666
+ ;;^UTILITY(U,$J,358.3,45385,0)
+ ;;=I69.919^^172^2266^9
+ ;;^UTILITY(U,$J,358.3,45385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47745,1,3,0)
- ;;=3^Malig Neop of Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,47745,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,47745,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,47746,0)
- ;;=C07.^^209^2348^5
- ;;^UTILITY(U,$J,358.3,47746,1,0)
+ ;;^UTILITY(U,$J,358.3,45385,1,3,0)
+ ;;=3^Cognitive Function Unspec Symp/Signs Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,45385,1,4,0)
+ ;;=4^I69.919
+ ;;^UTILITY(U,$J,358.3,45385,2)
+ ;;=^5138667
+ ;;^UTILITY(U,$J,358.3,45386,0)
+ ;;=K40.90^^172^2267^5
+ ;;^UTILITY(U,$J,358.3,45386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47746,1,3,0)
- ;;=3^Malig Neop of Parotid Gland
- ;;^UTILITY(U,$J,358.3,47746,1,4,0)
- ;;=4^C07.
- ;;^UTILITY(U,$J,358.3,47746,2)
- ;;=^267005
- ;;^UTILITY(U,$J,358.3,47747,0)
- ;;=C11.0^^209^2349^7
- ;;^UTILITY(U,$J,358.3,47747,1,0)
+ ;;^UTILITY(U,$J,358.3,45386,1,3,0)
+ ;;=3^Inguinal Hernia,Unil w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,45386,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,45386,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,45387,0)
+ ;;=K40.20^^172^2267^4
+ ;;^UTILITY(U,$J,358.3,45387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47747,1,3,0)
- ;;=3^Malig Neop of Superior Wall of Nasopharynx
- ;;^UTILITY(U,$J,358.3,47747,1,4,0)
- ;;=4^C11.0
- ;;^UTILITY(U,$J,358.3,47747,2)
- ;;=^267039
- ;;^UTILITY(U,$J,358.3,47748,0)
- ;;=C11.1^^209^2349^5
- ;;^UTILITY(U,$J,358.3,47748,1,0)
+ ;;^UTILITY(U,$J,358.3,45387,1,3,0)
+ ;;=3^Inguinal Hernia,Bilat w/o Obst/Gangr
+ ;;^UTILITY(U,$J,358.3,45387,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,45387,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,45388,0)
+ ;;=K42.9^^172^2267^6
+ ;;^UTILITY(U,$J,358.3,45388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47748,1,3,0)
- ;;=3^Malig Neop of Posterior Wall of Nasopharynx
- ;;^UTILITY(U,$J,358.3,47748,1,4,0)
- ;;=4^C11.1
- ;;^UTILITY(U,$J,358.3,47748,2)
- ;;=^267040
- ;;^UTILITY(U,$J,358.3,47749,0)
- ;;=C11.2^^209^2349^2
- ;;^UTILITY(U,$J,358.3,47749,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47749,1,3,0)
- ;;=3^Malig Neop of Lateral Wall of Nasopharynx
- ;;^UTILITY(U,$J,358.3,47749,1,4,0)
- ;;=4^C11.2
- ;;^UTILITY(U,$J,358.3,47749,2)
- ;;=^267041
- ;;^UTILITY(U,$J,358.3,47750,0)
- ;;=C11.3^^209^2349^1
- ;;^UTILITY(U,$J,358.3,47750,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47750,1,3,0)
- ;;=3^Malig Neop of Anterior Wall of Nasopharynx
+ ;;^UTILITY(U,$J,358.3,45388,1,3,0)
+ ;;=3^Umbilical hernia w/o obstruction/gangrene
+ ;;^UTILITY(U,$J,358.3,45388,1,4,0)
+ ;;=4^K42.9
+ ;;^UTILITY(U,$J,358.3,45388,2)
+ ;;=^5008606
+ ;;^UTILITY(U,$J,358.3,45389,0)
+ ;;=K43.2^^172^2267^3

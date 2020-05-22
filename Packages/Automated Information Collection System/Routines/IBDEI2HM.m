@@ -1,138 +1,124 @@
-IBDEI2HM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42187,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,42187,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,42188,0)
- ;;=R94.5^^159^2016^17
- ;;^UTILITY(U,$J,358.3,42188,1,0)
+ ;;^UTILITY(U,$J,358.3,39721,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,39721,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,39722,0)
+ ;;=D57.1^^152^2000^187
+ ;;^UTILITY(U,$J,358.3,39722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42188,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,42188,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,42188,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,42189,0)
- ;;=R94.6^^159^2016^21
- ;;^UTILITY(U,$J,358.3,42189,1,0)
+ ;;^UTILITY(U,$J,358.3,39722,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,39722,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,39722,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,39723,0)
+ ;;=D75.1^^152^2000^185
+ ;;^UTILITY(U,$J,358.3,39723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42189,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,42189,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,42189,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,42190,0)
- ;;=R94.7^^159^2016^5
- ;;^UTILITY(U,$J,358.3,42190,1,0)
+ ;;^UTILITY(U,$J,358.3,39723,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,39723,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,39723,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,39724,0)
+ ;;=C90.30^^152^2000^188
+ ;;^UTILITY(U,$J,358.3,39724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42190,1,3,0)
- ;;=3^Abnormal Endocrine Function Sutdies NEC
- ;;^UTILITY(U,$J,358.3,42190,1,4,0)
- ;;=4^R94.7
- ;;^UTILITY(U,$J,358.3,42190,2)
- ;;=^5019744
- ;;^UTILITY(U,$J,358.3,42191,0)
- ;;=R94.31^^159^2016^4
- ;;^UTILITY(U,$J,358.3,42191,1,0)
+ ;;^UTILITY(U,$J,358.3,39724,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,39724,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,39724,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,39725,0)
+ ;;=D56.3^^152^2000^189
+ ;;^UTILITY(U,$J,358.3,39725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42191,1,3,0)
- ;;=3^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,42191,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,42191,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,42192,0)
- ;;=R97.0^^159^2016^67
- ;;^UTILITY(U,$J,358.3,42192,1,0)
+ ;;^UTILITY(U,$J,358.3,39725,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,39725,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,39725,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,39726,0)
+ ;;=D56.9^^152^2000^190
+ ;;^UTILITY(U,$J,358.3,39726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42192,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen 
- ;;^UTILITY(U,$J,358.3,42192,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,42192,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,42193,0)
- ;;=R97.1^^159^2016^66
- ;;^UTILITY(U,$J,358.3,42193,1,0)
+ ;;^UTILITY(U,$J,358.3,39726,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,39726,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,39726,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,39727,0)
+ ;;=M31.1^^152^2000^192
+ ;;^UTILITY(U,$J,358.3,39727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42193,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,42193,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,42193,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,42194,0)
- ;;=R97.2^^159^2016^68
- ;;^UTILITY(U,$J,358.3,42194,1,0)
+ ;;^UTILITY(U,$J,358.3,39727,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,39727,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,39727,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,39728,0)
+ ;;=D51.2^^152^2000^193
+ ;;^UTILITY(U,$J,358.3,39728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42194,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,42194,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,42194,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,42195,0)
- ;;=R97.8^^159^2016^22
- ;;^UTILITY(U,$J,358.3,42195,1,0)
+ ;;^UTILITY(U,$J,358.3,39728,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,39728,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,39728,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,39729,0)
+ ;;=D05.92^^152^2000^36
+ ;;^UTILITY(U,$J,358.3,39729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42195,1,3,0)
- ;;=3^Abnormal Tumor Markers NEC
- ;;^UTILITY(U,$J,358.3,42195,1,4,0)
- ;;=4^R97.8
- ;;^UTILITY(U,$J,358.3,42195,2)
- ;;=^5019749
- ;;^UTILITY(U,$J,358.3,42196,0)
- ;;=R93.8^^159^2016^12
- ;;^UTILITY(U,$J,358.3,42196,1,0)
+ ;;^UTILITY(U,$J,358.3,39729,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,39729,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,39729,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,39730,0)
+ ;;=D05.91^^152^2000^38
+ ;;^UTILITY(U,$J,358.3,39730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42196,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Body Structures
- ;;^UTILITY(U,$J,358.3,42196,1,4,0)
- ;;=4^R93.8
- ;;^UTILITY(U,$J,358.3,42196,2)
- ;;=^5019721
- ;;^UTILITY(U,$J,358.3,42197,0)
- ;;=R93.1^^159^2016^14
- ;;^UTILITY(U,$J,358.3,42197,1,0)
+ ;;^UTILITY(U,$J,358.3,39730,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,39730,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,39730,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,39731,0)
+ ;;=D05.90^^152^2000^34
+ ;;^UTILITY(U,$J,358.3,39731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42197,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
- ;;^UTILITY(U,$J,358.3,42197,1,4,0)
- ;;=4^R93.1
- ;;^UTILITY(U,$J,358.3,42197,2)
- ;;=^5019714
- ;;^UTILITY(U,$J,358.3,42198,0)
- ;;=R68.83^^159^2016^48
- ;;^UTILITY(U,$J,358.3,42198,1,0)
+ ;;^UTILITY(U,$J,358.3,39731,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,39731,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,39731,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,39732,0)
+ ;;=D51.0^^152^2000^194
+ ;;^UTILITY(U,$J,358.3,39732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42198,1,3,0)
- ;;=3^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,42198,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,42198,2)
- ;;=^5019555
- ;;^UTILITY(U,$J,358.3,42199,0)
- ;;=R68.2^^159^2016^62
- ;;^UTILITY(U,$J,358.3,42199,1,0)
+ ;;^UTILITY(U,$J,358.3,39732,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,39732,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,39732,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,39733,0)
+ ;;=D51.1^^152^2000^195
+ ;;^UTILITY(U,$J,358.3,39733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42199,1,3,0)
- ;;=3^Dry Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,42199,1,4,0)
- ;;=4^R68.2
- ;;^UTILITY(U,$J,358.3,42199,2)
- ;;=^5019552
- ;;^UTILITY(U,$J,358.3,42200,0)
- ;;=R09.02^^159^2016^88
- ;;^UTILITY(U,$J,358.3,42200,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42200,1,3,0)
- ;;=3^Hypoxemia
- ;;^UTILITY(U,$J,358.3,42200,1,4,0)
- ;;=4^R09.02
- ;;^UTILITY(U,$J,358.3,42200,2)
- ;;=^332831
+ ;;^UTILITY(U,$J,358.3,39733,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria

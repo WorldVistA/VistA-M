@@ -1,138 +1,120 @@
-IBDEI17N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20578,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,20578,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,20579,0)
- ;;=M60.9^^84^935^62
- ;;^UTILITY(U,$J,358.3,20579,1,0)
+ ;;^UTILITY(U,$J,358.3,19439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20579,1,3,0)
- ;;=3^Myositis,Unspec
- ;;^UTILITY(U,$J,358.3,20579,1,4,0)
- ;;=4^M60.9
- ;;^UTILITY(U,$J,358.3,20579,2)
- ;;=^5012409
- ;;^UTILITY(U,$J,358.3,20580,0)
- ;;=M62.40^^84^935^35
- ;;^UTILITY(U,$J,358.3,20580,1,0)
+ ;;^UTILITY(U,$J,358.3,19439,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, left hand
+ ;;^UTILITY(U,$J,358.3,19439,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,19439,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,19440,0)
+ ;;=M66.231^^93^992^188
+ ;;^UTILITY(U,$J,358.3,19440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20580,1,3,0)
- ;;=3^Contracture of Muscle,Unspec
- ;;^UTILITY(U,$J,358.3,20580,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,20580,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,20581,0)
- ;;=M62.831^^84^935^60
- ;;^UTILITY(U,$J,358.3,20581,1,0)
+ ;;^UTILITY(U,$J,358.3,19440,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, right forearm
+ ;;^UTILITY(U,$J,358.3,19440,1,4,0)
+ ;;=4^M66.231
+ ;;^UTILITY(U,$J,358.3,19440,2)
+ ;;=^5012854
+ ;;^UTILITY(U,$J,358.3,19441,0)
+ ;;=M66.241^^93^992^189
+ ;;^UTILITY(U,$J,358.3,19441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20581,1,3,0)
- ;;=3^Muscle Spasm of Calf
- ;;^UTILITY(U,$J,358.3,20581,1,4,0)
- ;;=4^M62.831
- ;;^UTILITY(U,$J,358.3,20581,2)
- ;;=^5012681
- ;;^UTILITY(U,$J,358.3,20582,0)
- ;;=M62.838^^84^935^58
- ;;^UTILITY(U,$J,358.3,20582,1,0)
+ ;;^UTILITY(U,$J,358.3,19441,1,3,0)
+ ;;=3^Spontaneous rupture of extensor tendons, right hand
+ ;;^UTILITY(U,$J,358.3,19441,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,19441,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,19442,0)
+ ;;=M66.332^^93^992^190
+ ;;^UTILITY(U,$J,358.3,19442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20582,1,3,0)
- ;;=3^Muscle Spasm NEC
- ;;^UTILITY(U,$J,358.3,20582,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,20582,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,20583,0)
- ;;=M70.21^^84^935^64
- ;;^UTILITY(U,$J,358.3,20583,1,0)
+ ;;^UTILITY(U,$J,358.3,19442,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, left forearm
+ ;;^UTILITY(U,$J,358.3,19442,1,4,0)
+ ;;=4^M66.332
+ ;;^UTILITY(U,$J,358.3,19442,2)
+ ;;=^5012879
+ ;;^UTILITY(U,$J,358.3,19443,0)
+ ;;=M66.342^^93^992^191
+ ;;^UTILITY(U,$J,358.3,19443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20583,1,3,0)
- ;;=3^Olecranon Bursitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,20583,1,4,0)
- ;;=4^M70.21
- ;;^UTILITY(U,$J,358.3,20583,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,20584,0)
- ;;=M70.22^^84^935^63
- ;;^UTILITY(U,$J,358.3,20584,1,0)
+ ;;^UTILITY(U,$J,358.3,19443,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, left hand
+ ;;^UTILITY(U,$J,358.3,19443,1,4,0)
+ ;;=4^M66.342
+ ;;^UTILITY(U,$J,358.3,19443,2)
+ ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,19444,0)
+ ;;=M66.331^^93^992^192
+ ;;^UTILITY(U,$J,358.3,19444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20584,1,3,0)
- ;;=3^Olecranon Bursitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,20584,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,20584,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,20585,0)
- ;;=M71.161^^84^935^47
- ;;^UTILITY(U,$J,358.3,20585,1,0)
+ ;;^UTILITY(U,$J,358.3,19444,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, right forearm
+ ;;^UTILITY(U,$J,358.3,19444,1,4,0)
+ ;;=4^M66.331
+ ;;^UTILITY(U,$J,358.3,19444,2)
+ ;;=^5012878
+ ;;^UTILITY(U,$J,358.3,19445,0)
+ ;;=M66.341^^93^992^193
+ ;;^UTILITY(U,$J,358.3,19445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20585,1,3,0)
- ;;=3^Infective Bursitis,Right Knee
- ;;^UTILITY(U,$J,358.3,20585,1,4,0)
- ;;=4^M71.161
- ;;^UTILITY(U,$J,358.3,20585,2)
- ;;=^5013139
- ;;^UTILITY(U,$J,358.3,20586,0)
- ;;=M71.162^^84^935^46
- ;;^UTILITY(U,$J,358.3,20586,1,0)
+ ;;^UTILITY(U,$J,358.3,19445,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, right hand
+ ;;^UTILITY(U,$J,358.3,19445,1,4,0)
+ ;;=4^M66.341
+ ;;^UTILITY(U,$J,358.3,19445,2)
+ ;;=^5012881
+ ;;^UTILITY(U,$J,358.3,19446,0)
+ ;;=M66.342^^93^992^194
+ ;;^UTILITY(U,$J,358.3,19446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20586,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
- ;;^UTILITY(U,$J,358.3,20586,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,20586,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,20587,0)
- ;;=M72.0^^84^935^117
- ;;^UTILITY(U,$J,358.3,20587,1,0)
+ ;;^UTILITY(U,$J,358.3,19446,1,3,0)
+ ;;=3^Spontaneous rupture of flexor tendons, left hand
+ ;;^UTILITY(U,$J,358.3,19446,1,4,0)
+ ;;=4^M66.342
+ ;;^UTILITY(U,$J,358.3,19446,2)
+ ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,19447,0)
+ ;;=M66.841^^93^992^195
+ ;;^UTILITY(U,$J,358.3,19447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20587,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,20587,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,20587,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,20588,0)
- ;;=M75.111^^84^935^161
- ;;^UTILITY(U,$J,358.3,20588,1,0)
+ ;;^UTILITY(U,$J,358.3,19447,1,3,0)
+ ;;=3^Spontaneous rupture of other tendons, right hand
+ ;;^UTILITY(U,$J,358.3,19447,1,4,0)
+ ;;=4^M66.841
+ ;;^UTILITY(U,$J,358.3,19447,2)
+ ;;=^5012898
+ ;;^UTILITY(U,$J,358.3,19448,0)
+ ;;=M70.62^^93^992^198
+ ;;^UTILITY(U,$J,358.3,19448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20588,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,20588,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,20588,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,20589,0)
- ;;=M75.112^^84^935^160
- ;;^UTILITY(U,$J,358.3,20589,1,0)
+ ;;^UTILITY(U,$J,358.3,19448,1,3,0)
+ ;;=3^Trochanteric bursitis, left hip
+ ;;^UTILITY(U,$J,358.3,19448,1,4,0)
+ ;;=4^M70.62
+ ;;^UTILITY(U,$J,358.3,19448,2)
+ ;;=^5013060
+ ;;^UTILITY(U,$J,358.3,19449,0)
+ ;;=M70.61^^93^992^199
+ ;;^UTILITY(U,$J,358.3,19449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20589,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,20589,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,20589,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,20590,0)
- ;;=M75.51^^84^935^10
- ;;^UTILITY(U,$J,358.3,20590,1,0)
+ ;;^UTILITY(U,$J,358.3,19449,1,3,0)
+ ;;=3^Trochanteric bursitis, right hip
+ ;;^UTILITY(U,$J,358.3,19449,1,4,0)
+ ;;=4^M70.61
+ ;;^UTILITY(U,$J,358.3,19449,2)
+ ;;=^5013059
+ ;;^UTILITY(U,$J,358.3,19450,0)
+ ;;=M21.752^^93^992^200
+ ;;^UTILITY(U,$J,358.3,19450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20590,1,3,0)
- ;;=3^Bursitis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,20590,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,20590,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,20591,0)
- ;;=M75.52^^84^935^9
- ;;^UTILITY(U,$J,358.3,20591,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20591,1,3,0)
- ;;=3^Bursitis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,20591,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,20591,2)
- ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,19450,1,3,0)
+ ;;=3^Unequal limb length (acquired), left femur
+ ;;^UTILITY(U,$J,358.3,19450,1,4,0)
+ ;;=4^M21.752

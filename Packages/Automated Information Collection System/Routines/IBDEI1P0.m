@@ -1,122 +1,120 @@
-IBDEI1P0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1P0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28779,1,0)
+ ;;^UTILITY(U,$J,358.3,27055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28779,1,3,0)
- ;;=3^Antepartum hemorrhage w oth coag defect, third trimester
- ;;^UTILITY(U,$J,358.3,28779,1,4,0)
- ;;=4^O46.093
- ;;^UTILITY(U,$J,358.3,28779,2)
- ;;=^5017481
- ;;^UTILITY(U,$J,358.3,28780,0)
- ;;=O10.011^^115^1449^25
- ;;^UTILITY(U,$J,358.3,28780,1,0)
+ ;;^UTILITY(U,$J,358.3,27055,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27055,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,27055,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,27056,0)
+ ;;=F12.122^^110^1307^13
+ ;;^UTILITY(U,$J,358.3,27056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28780,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,28780,1,4,0)
- ;;=4^O10.011
- ;;^UTILITY(U,$J,358.3,28780,2)
- ;;=^5016108
- ;;^UTILITY(U,$J,358.3,28781,0)
- ;;=O10.012^^115^1449^26
- ;;^UTILITY(U,$J,358.3,28781,1,0)
+ ;;^UTILITY(U,$J,358.3,27056,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27056,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,27056,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,27057,0)
+ ;;=F12.222^^110^1307^14
+ ;;^UTILITY(U,$J,358.3,27057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28781,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,28781,1,4,0)
- ;;=4^O10.012
- ;;^UTILITY(U,$J,358.3,28781,2)
- ;;=^5016109
- ;;^UTILITY(U,$J,358.3,28782,0)
- ;;=O10.013^^115^1449^27
- ;;^UTILITY(U,$J,358.3,28782,1,0)
+ ;;^UTILITY(U,$J,358.3,27057,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27057,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,27057,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,27058,0)
+ ;;=F12.922^^110^1307^15
+ ;;^UTILITY(U,$J,358.3,27058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28782,1,3,0)
- ;;=3^Pre-existing essential htn comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,28782,1,4,0)
- ;;=4^O10.013
- ;;^UTILITY(U,$J,358.3,28782,2)
- ;;=^5016110
- ;;^UTILITY(U,$J,358.3,28783,0)
- ;;=O10.03^^115^1449^28
- ;;^UTILITY(U,$J,358.3,28783,1,0)
+ ;;^UTILITY(U,$J,358.3,27058,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27058,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,27058,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,27059,0)
+ ;;=F12.980^^110^1307^3
+ ;;^UTILITY(U,$J,358.3,27059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28783,1,3,0)
- ;;=3^Pre-existing essential htn comp the puerperium
- ;;^UTILITY(U,$J,358.3,28783,1,4,0)
- ;;=4^O10.03
- ;;^UTILITY(U,$J,358.3,28783,2)
- ;;=^5016113
- ;;^UTILITY(U,$J,358.3,28784,0)
- ;;=O10.411^^115^1449^34
- ;;^UTILITY(U,$J,358.3,28784,1,0)
+ ;;^UTILITY(U,$J,358.3,27059,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27059,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,27059,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,27060,0)
+ ;;=F12.159^^110^1307^4
+ ;;^UTILITY(U,$J,358.3,27060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28784,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,28784,1,4,0)
- ;;=4^O10.411
- ;;^UTILITY(U,$J,358.3,28784,2)
- ;;=^5016132
- ;;^UTILITY(U,$J,358.3,28785,0)
- ;;=O10.412^^115^1449^35
- ;;^UTILITY(U,$J,358.3,28785,1,0)
+ ;;^UTILITY(U,$J,358.3,27060,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27060,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,27060,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,27061,0)
+ ;;=F12.259^^110^1307^5
+ ;;^UTILITY(U,$J,358.3,27061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28785,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,28785,1,4,0)
- ;;=4^O10.412
- ;;^UTILITY(U,$J,358.3,28785,2)
- ;;=^5016133
- ;;^UTILITY(U,$J,358.3,28786,0)
- ;;=O10.413^^115^1449^36
- ;;^UTILITY(U,$J,358.3,28786,1,0)
+ ;;^UTILITY(U,$J,358.3,27061,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27061,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,27061,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,27062,0)
+ ;;=F12.959^^110^1307^6
+ ;;^UTILITY(U,$J,358.3,27062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28786,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,28786,1,4,0)
- ;;=4^O10.413
- ;;^UTILITY(U,$J,358.3,28786,2)
- ;;=^5016134
- ;;^UTILITY(U,$J,358.3,28787,0)
- ;;=O10.43^^115^1449^37
- ;;^UTILITY(U,$J,358.3,28787,1,0)
+ ;;^UTILITY(U,$J,358.3,27062,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27062,1,4,0)
+ ;;=4^F12.959
+ ;;^UTILITY(U,$J,358.3,27062,2)
+ ;;=^5003185
+ ;;^UTILITY(U,$J,358.3,27063,0)
+ ;;=F12.988^^110^1307^9
+ ;;^UTILITY(U,$J,358.3,27063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28787,1,3,0)
- ;;=3^Pre-existing secondary htn comp the puerperium
- ;;^UTILITY(U,$J,358.3,28787,1,4,0)
- ;;=4^O10.43
- ;;^UTILITY(U,$J,358.3,28787,2)
- ;;=^5016137
- ;;^UTILITY(U,$J,358.3,28788,0)
- ;;=O10.111^^115^1449^24
- ;;^UTILITY(U,$J,358.3,28788,1,0)
+ ;;^UTILITY(U,$J,358.3,27063,1,3,0)
+ ;;=3^Cannabis Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27063,1,4,0)
+ ;;=4^F12.988
+ ;;^UTILITY(U,$J,358.3,27063,2)
+ ;;=^5003187
+ ;;^UTILITY(U,$J,358.3,27064,0)
+ ;;=F12.929^^110^1307^17
+ ;;^UTILITY(U,$J,358.3,27064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28788,1,3,0)
- ;;=3^Pre-exist hyp heart disease comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,28788,1,4,0)
- ;;=4^O10.111
- ;;^UTILITY(U,$J,358.3,28788,2)
- ;;=^5016114
- ;;^UTILITY(U,$J,358.3,28789,0)
- ;;=O10.211^^115^1449^17
- ;;^UTILITY(U,$J,358.3,28789,1,0)
+ ;;^UTILITY(U,$J,358.3,27064,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27064,1,4,0)
+ ;;=4^F12.929
+ ;;^UTILITY(U,$J,358.3,27064,2)
+ ;;=^5003182
+ ;;^UTILITY(U,$J,358.3,27065,0)
+ ;;=F12.180^^110^1307^1
+ ;;^UTILITY(U,$J,358.3,27065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28789,1,3,0)
- ;;=3^Pre-exist hyp chronic kidney disease comp preg, first tri
- ;;^UTILITY(U,$J,358.3,28789,1,4,0)
- ;;=4^O10.211
- ;;^UTILITY(U,$J,358.3,28789,2)
- ;;=^5016120
- ;;^UTILITY(U,$J,358.3,28790,0)
- ;;=O10.212^^115^1449^18
- ;;^UTILITY(U,$J,358.3,28790,1,0)
+ ;;^UTILITY(U,$J,358.3,27065,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27065,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,27065,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,27066,0)
+ ;;=F12.280^^110^1307^2
+ ;;^UTILITY(U,$J,358.3,27066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28790,1,3,0)
- ;;=3^Pre-exist hyp chronic kidney disease comp preg, second tri
- ;;^UTILITY(U,$J,358.3,28790,1,4,0)
- ;;=4^O10.212
- ;;^UTILITY(U,$J,358.3,28790,2)
- ;;=^5016121
+ ;;^UTILITY(U,$J,358.3,27066,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27066,1,4,0)
+ ;;=4^F12.280

@@ -1,128 +1,114 @@
-IBDEI355 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI355 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52730,1,0)
+ ;;^UTILITY(U,$J,358.3,50163,1,4,0)
+ ;;=4^L97.419
+ ;;^UTILITY(U,$J,358.3,50163,2)
+ ;;=^5009534
+ ;;^UTILITY(U,$J,358.3,50164,0)
+ ;;=L97.421^^193^2487^201
+ ;;^UTILITY(U,$J,358.3,50164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52730,1,3,0)
- ;;=3^Adjustment disorder with disturbance of conduct
- ;;^UTILITY(U,$J,358.3,52730,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,52730,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,52731,0)
- ;;=F43.25^^240^2639^1
- ;;^UTILITY(U,$J,358.3,52731,1,0)
+ ;;^UTILITY(U,$J,358.3,50164,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,50164,1,4,0)
+ ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,50164,2)
+ ;;=^5009535
+ ;;^UTILITY(U,$J,358.3,50165,0)
+ ;;=L97.422^^193^2487^202
+ ;;^UTILITY(U,$J,358.3,50165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52731,1,3,0)
- ;;=3^Adjustment disorder w mixed disturb of emotions and conduct
- ;;^UTILITY(U,$J,358.3,52731,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,52731,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,52732,0)
- ;;=F43.29^^240^2639^6
- ;;^UTILITY(U,$J,358.3,52732,1,0)
+ ;;^UTILITY(U,$J,358.3,50165,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,50165,1,4,0)
+ ;;=4^L97.422
+ ;;^UTILITY(U,$J,358.3,50165,2)
+ ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,50166,0)
+ ;;=L97.423^^193^2487^203
+ ;;^UTILITY(U,$J,358.3,50166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52732,1,3,0)
- ;;=3^Adjustment disorder with other symptoms
- ;;^UTILITY(U,$J,358.3,52732,1,4,0)
- ;;=4^F43.29
- ;;^UTILITY(U,$J,358.3,52732,2)
- ;;=^5003574
- ;;^UTILITY(U,$J,358.3,52733,0)
- ;;=M79.7^^240^2640^2
- ;;^UTILITY(U,$J,358.3,52733,1,0)
+ ;;^UTILITY(U,$J,358.3,50166,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,50166,1,4,0)
+ ;;=4^L97.423
+ ;;^UTILITY(U,$J,358.3,50166,2)
+ ;;=^5009537
+ ;;^UTILITY(U,$J,358.3,50167,0)
+ ;;=L97.424^^193^2487^204
+ ;;^UTILITY(U,$J,358.3,50167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52733,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,52733,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,52733,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,52734,0)
- ;;=R20.2^^240^2640^3
- ;;^UTILITY(U,$J,358.3,52734,1,0)
+ ;;^UTILITY(U,$J,358.3,50167,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,50167,1,4,0)
+ ;;=4^L97.424
+ ;;^UTILITY(U,$J,358.3,50167,2)
+ ;;=^5009538
+ ;;^UTILITY(U,$J,358.3,50168,0)
+ ;;=L97.429^^193^2487^205
+ ;;^UTILITY(U,$J,358.3,50168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52734,1,3,0)
- ;;=3^Paresthesia of skin
- ;;^UTILITY(U,$J,358.3,52734,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,52734,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,52735,0)
- ;;=R42.^^240^2640^1
- ;;^UTILITY(U,$J,358.3,52735,1,0)
+ ;;^UTILITY(U,$J,358.3,50168,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,50168,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,50168,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,50169,0)
+ ;;=L97.511^^193^2487^238
+ ;;^UTILITY(U,$J,358.3,50169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52735,1,3,0)
- ;;=3^Dizziness and giddiness
- ;;^UTILITY(U,$J,358.3,52735,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,52735,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,52736,0)
- ;;=G43.C0^^240^2641^21
- ;;^UTILITY(U,$J,358.3,52736,1,0)
+ ;;^UTILITY(U,$J,358.3,50169,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,50169,1,4,0)
+ ;;=4^L97.511
+ ;;^UTILITY(U,$J,358.3,50169,2)
+ ;;=^5009545
+ ;;^UTILITY(U,$J,358.3,50170,0)
+ ;;=L97.512^^193^2487^239
+ ;;^UTILITY(U,$J,358.3,50170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52736,1,3,0)
- ;;=3^Periodic headache syndromes in chld/adlt, not intractable
- ;;^UTILITY(U,$J,358.3,52736,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,52736,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,52737,0)
- ;;=G43.C1^^240^2641^20
- ;;^UTILITY(U,$J,358.3,52737,1,0)
+ ;;^UTILITY(U,$J,358.3,50170,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,50170,1,4,0)
+ ;;=4^L97.512
+ ;;^UTILITY(U,$J,358.3,50170,2)
+ ;;=^5009546
+ ;;^UTILITY(U,$J,358.3,50171,0)
+ ;;=L97.513^^193^2487^240
+ ;;^UTILITY(U,$J,358.3,50171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52737,1,3,0)
- ;;=3^Periodic headache syndromes in child or adult, intractable
- ;;^UTILITY(U,$J,358.3,52737,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,52737,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,52738,0)
- ;;=R51.^^240^2641^11
- ;;^UTILITY(U,$J,358.3,52738,1,0)
+ ;;^UTILITY(U,$J,358.3,50171,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,50171,1,4,0)
+ ;;=4^L97.513
+ ;;^UTILITY(U,$J,358.3,50171,2)
+ ;;=^5009547
+ ;;^UTILITY(U,$J,358.3,50172,0)
+ ;;=L97.514^^193^2487^241
+ ;;^UTILITY(U,$J,358.3,50172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52738,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,52738,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,52738,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,52739,0)
- ;;=G43.909^^240^2641^18
- ;;^UTILITY(U,$J,358.3,52739,1,0)
+ ;;^UTILITY(U,$J,358.3,50172,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,50172,1,4,0)
+ ;;=4^L97.514
+ ;;^UTILITY(U,$J,358.3,50172,2)
+ ;;=^5009548
+ ;;^UTILITY(U,$J,358.3,50173,0)
+ ;;=L97.519^^193^2487^242
+ ;;^UTILITY(U,$J,358.3,50173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52739,1,3,0)
- ;;=3^Migraine, unsp, not intractable, without status migrainosus
- ;;^UTILITY(U,$J,358.3,52739,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,52739,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,52740,0)
- ;;=G43.919^^240^2641^16
- ;;^UTILITY(U,$J,358.3,52740,1,0)
+ ;;^UTILITY(U,$J,358.3,50173,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,50173,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,50173,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,50174,0)
+ ;;=L97.521^^193^2487^193
+ ;;^UTILITY(U,$J,358.3,50174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52740,1,3,0)
- ;;=3^Migraine, unsp, intractable, without status migrainosus
- ;;^UTILITY(U,$J,358.3,52740,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,52740,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,52741,0)
- ;;=G44.209^^240^2641^29
- ;;^UTILITY(U,$J,358.3,52741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52741,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,52741,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,52741,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,52742,0)
- ;;=G43.901^^240^2641^17
- ;;^UTILITY(U,$J,358.3,52742,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52742,1,3,0)
- ;;=3^Migraine, unsp, not intractable, with status migrainosus
+ ;;^UTILITY(U,$J,358.3,50174,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin

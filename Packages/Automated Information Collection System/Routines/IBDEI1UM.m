@@ -1,110 +1,126 @@
-IBDEI1UM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31401,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31401,1,2,0)
- ;;=2^Lengthening or shortening of tendon, leg or ankle; single tendon
- ;;^UTILITY(U,$J,358.3,31401,1,3,0)
- ;;=3^27685
- ;;^UTILITY(U,$J,358.3,31402,0)
- ;;=27695^^125^1591^14^^^^1
- ;;^UTILITY(U,$J,358.3,31402,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31402,1,2,0)
- ;;=2^Repair, primary, disrupted ligament, ankle; both collateral ligaments
- ;;^UTILITY(U,$J,358.3,31402,1,3,0)
- ;;=3^27695
- ;;^UTILITY(U,$J,358.3,31403,0)
- ;;=27698^^125^1591^16^^^^1
- ;;^UTILITY(U,$J,358.3,31403,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31403,1,2,0)
- ;;=2^Repair, secondary, disrupted ligament ankle, collateral
- ;;^UTILITY(U,$J,358.3,31403,1,3,0)
- ;;=3^27698
- ;;^UTILITY(U,$J,358.3,31404,0)
- ;;=28200^^125^1591^19^^^^1
- ;;^UTILITY(U,$J,358.3,31404,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31404,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; primary or secondary, without free graft, each tendon
- ;;^UTILITY(U,$J,358.3,31404,1,3,0)
- ;;=3^28200
- ;;^UTILITY(U,$J,358.3,31405,0)
- ;;=28202^^125^1591^20^^^^1
- ;;^UTILITY(U,$J,358.3,31405,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31405,1,2,0)
- ;;=2^Repair, tendon, flexor, foot; secondarywith free graft, each tendon (includes obtaining graft), 
- ;;^UTILITY(U,$J,358.3,31405,1,3,0)
- ;;=3^28202
- ;;^UTILITY(U,$J,358.3,31406,0)
- ;;=28210^^125^1591^18^^^^1
- ;;^UTILITY(U,$J,358.3,31406,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31406,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; secondary with free graft, each tendon (includes obtaining graft) 
- ;;^UTILITY(U,$J,358.3,31406,1,3,0)
- ;;=3^28210
- ;;^UTILITY(U,$J,358.3,31407,0)
- ;;=28208^^125^1591^17^^^^1
- ;;^UTILITY(U,$J,358.3,31407,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31407,1,2,0)
- ;;=2^Repair, tendon, extensor, foot; primary or secondary, each tendon
- ;;^UTILITY(U,$J,358.3,31407,1,3,0)
- ;;=3^28208
- ;;^UTILITY(U,$J,358.3,31408,0)
- ;;=28230^^125^1591^29^^^^1
- ;;^UTILITY(U,$J,358.3,31408,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31408,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; foot, single or multiple tendon(s)(separate procedure)
- ;;^UTILITY(U,$J,358.3,31408,1,3,0)
- ;;=3^28230
- ;;^UTILITY(U,$J,358.3,31409,0)
- ;;=28232^^125^1591^30^^^^1
- ;;^UTILITY(U,$J,358.3,31409,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31409,1,2,0)
- ;;=2^Tenotomy, open, tendon flexor; toe, single tendon (separate procedure) 
- ;;^UTILITY(U,$J,358.3,31409,1,3,0)
- ;;=3^28232
- ;;^UTILITY(U,$J,358.3,31410,0)
- ;;=28234^^125^1591^28^^^^1
- ;;^UTILITY(U,$J,358.3,31410,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31410,1,2,0)
- ;;=2^Tenotomy, open, extensor, foot or toe, each tendon
- ;;^UTILITY(U,$J,358.3,31410,1,3,0)
- ;;=3^28234
- ;;^UTILITY(U,$J,358.3,31411,0)
- ;;=28270^^125^1591^4^^^^1
- ;;^UTILITY(U,$J,358.3,31411,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31411,1,2,0)
- ;;=2^Capsulotomy; metatarsophalangeal joint, with or without tenorrhaphy, each joint (separate procedure) 
- ;;^UTILITY(U,$J,358.3,31411,1,3,0)
- ;;=3^28270
- ;;^UTILITY(U,$J,358.3,31412,0)
- ;;=28272^^125^1591^3^^^^1
- ;;^UTILITY(U,$J,358.3,31412,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31412,1,2,0)
- ;;=2^Capsulotomy; interphalangeal joint, each joint
- ;;^UTILITY(U,$J,358.3,31412,1,3,0)
- ;;=3^28272
- ;;^UTILITY(U,$J,358.3,31413,0)
- ;;=28285^^125^1591^6^^^^1
- ;;^UTILITY(U,$J,358.3,31413,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31413,1,2,0)
- ;;=2^Correction, hammertoe
- ;;^UTILITY(U,$J,358.3,31413,1,3,0)
- ;;=3^28285
- ;;^UTILITY(U,$J,358.3,31414,0)
- ;;=28288^^125^1591^9^^^^1
- ;;^UTILITY(U,$J,358.3,31414,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29527,0)
+ ;;=F17.211^^118^1489^4
+ ;;^UTILITY(U,$J,358.3,29527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29527,1,3,0)
+ ;;=3^Nicotine Use D/O,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,29527,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,29527,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,29528,0)
+ ;;=F17.201^^118^1489^5
+ ;;^UTILITY(U,$J,358.3,29528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29528,1,3,0)
+ ;;=3^Nicotine Use D/O,Unspec,In Remiss
+ ;;^UTILITY(U,$J,358.3,29528,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,29528,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,29529,0)
+ ;;=F43.0^^118^1490^1
+ ;;^UTILITY(U,$J,358.3,29529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29529,1,3,0)
+ ;;=3^Acute Stress D/O
+ ;;^UTILITY(U,$J,358.3,29529,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,29529,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,29530,0)
+ ;;=F43.21^^118^1490^3
+ ;;^UTILITY(U,$J,358.3,29530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29530,1,3,0)
+ ;;=3^Adjustment D/O w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,29530,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,29530,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,29531,0)
+ ;;=F43.22^^118^1490^2
+ ;;^UTILITY(U,$J,358.3,29531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29531,1,3,0)
+ ;;=3^Adjustment D/O w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,29531,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,29531,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,29532,0)
+ ;;=F43.23^^118^1490^5
+ ;;^UTILITY(U,$J,358.3,29532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29532,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,29532,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,29532,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,29533,0)
+ ;;=F43.24^^118^1490^4
+ ;;^UTILITY(U,$J,358.3,29533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29533,1,3,0)
+ ;;=3^Adjustment D/O w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,29533,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,29533,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,29534,0)
+ ;;=F43.25^^118^1490^6
+ ;;^UTILITY(U,$J,358.3,29534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29534,1,3,0)
+ ;;=3^Adjustment D/O w/ Mixed Disturb Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,29534,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,29534,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,29535,0)
+ ;;=F43.20^^118^1490^7
+ ;;^UTILITY(U,$J,358.3,29535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29535,1,3,0)
+ ;;=3^Adjustment D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29535,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,29535,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,29536,0)
+ ;;=F43.9^^118^1490^13
+ ;;^UTILITY(U,$J,358.3,29536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29536,1,3,0)
+ ;;=3^Trauma/Stressor-Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29536,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,29536,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,29537,0)
+ ;;=F94.1^^118^1490^11
+ ;;^UTILITY(U,$J,358.3,29537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29537,1,3,0)
+ ;;=3^Reactive Attachment D/O
+ ;;^UTILITY(U,$J,358.3,29537,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,29537,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,29538,0)
+ ;;=F94.2^^118^1490^8
+ ;;^UTILITY(U,$J,358.3,29538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29538,1,3,0)
+ ;;=3^Disinhibited Social Engagement D/O
+ ;;^UTILITY(U,$J,358.3,29538,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,29538,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,29539,0)
+ ;;=F43.8^^118^1490^12

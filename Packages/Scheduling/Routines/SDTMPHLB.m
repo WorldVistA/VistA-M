@@ -1,5 +1,5 @@
 SDTMPHLB ;MS/PB - TMP HL7 Routine;MAY 29, 2018
- ;;5.3;Scheduling;**704,733**;May 29, 2018;Build 72
+ ;;5.3;Scheduling;**704,733,714**;May 29, 2018;Build 80
  Q
 EN(CLINID) ; Entry to the routine to build an HL7 message
  ;notification to TMP about a new appointment in a TeleHealth Clinic
@@ -13,7 +13,7 @@ EN(CLINID) ; Entry to the routine to build an HL7 message
  I ($G(PSTOP)=""&($G(SSTOP)="")) Q 0 ;if both PSTOP and SSTOP are null, the clinic is not a tele health clinic so quit
  S:$G(PSTOP)'="" STOP=$$CHKCLIN^SDTMPHLA($G(PSTOP)) ;if STOP=0, primary stop code is not a tele health stop code so check secondary stop code to see if it is a tele health clinic
  ;I $G(STOP)=0,($$CHKCLIN^SDTMPHLA($G(SSTOP))'="") Q  ;if primary stop code is not tele health check secondary stop code if secondary not tele health stop
- I $G(STOP)=0 Q:$Q(SSTOP)'>0  S STOP=$$CHKCLIN^SDTMPHLA(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop
+ I $G(STOP)=0 Q:$G(SSTOP)'>0  S STOP=$$CHKCLIN^SDTMPHLA(SSTOP) ; if primary stop code is not tele health check secondary stop code if secondary not tele health stop
  Q:$G(STOP)=0  ; Double check for either primary or secondary stop code to be a tele health clinic
  N PARMS,SEG,WHOTO,ERROR,SEQ
  S PARMS("MESSAGE TYPE")="MFN",PARMS("EVENT")="M05"
@@ -63,22 +63,24 @@ MFE(CLINID,SEQ,SEG) ;
  D SET^HLOAPI(.SEG,CLINID,4)
  D SET^HLOAPI(.SEG,"CE",5) ; Primary key value type, this will always be CE
  Q
-LOC(CLINID,SEQ,SEG)  ;
- N INSTNUM,VISN,STATNUM,CLINNM
+LOC(CLINID,SEQ,SEG) ;
+ N INSTNUM,VISN,STATNUM,CLINNM,DIV,DIV1,DIV2,DIV3
  K LOC
  S CLINNM=CLIN(44,CLINID_",",.01,"E"),STATNUM=$G(CLIN(44,CLINID_",",3,"I"))
+ ;Patch 714 PB - 11/07/19 Add division id to HL7 message
+ S DIV1=$$GET1^DIQ(44,CLINID_",",3.5,"I") S:$G(DIV1)>0 DIV2=$P(^DG(40.8,$G(DIV1),0),"^",7) S:$G(DIV2)>0 DIV3=$$GET1^DIQ(4,DIV2_",",99,"E")
  D SET^HLOAPI(.SEG,"LOC",0) ; Set the segment type
  D SET^HLOAPI(.SEG,CLINID,1) ; IEN from the Hospital Location file
  D SET^HLOAPI(.SEG,CLINNM,2) ; .01 from the Hospital Location file for the clinic
  D SET^HLOAPI(.SEG,"C",3) ; location type, this will always be C for clinic
- S INSTNUM=$$KSP^XUPARAM("INST")
- S VISN=$$VISN(INSTNUM) S:$G(VISN)'>0 VISN=0  ; Makes the assumption that a medical center only has one Parent Facility in the Institution file
+ S INSTNUM=$$KSP^XUPARAM("INST"),INSTNUM=$P(^DIC(4,INSTNUM,99),"^")
+ S VISN=$$VISN(INSTNUM) S:$G(VISN)'>0 VISN=0 ; Makes the assumption that a medical center only has one Parent Facility in the Institution file
  ; Need to change how LOC is used to set the data on the LOC segment. this is causing problems
  S LOC=$G(CLINNM)_"^"_INSTNUM_"^^^"_$G(VISN)_"^"_$G(STATNUM)
  D SET^HLOAPI(.SEG,$G(CLINNM),4,1) ; Clinic name
  D SET^HLOAPI(.SEG,$G(INSTNUM),4,2) ; institution number
  D SET^HLOAPI(.SEG,$G(VISN),4,5) ; visn
- D SET^HLOAPI(.SEG,$G(STATNUM),4,6) ; station number
+ D SET^HLOAPI(.SEG,$G(DIV3),4,3) ; station number Patch 714 PB 11/07/19 division id as station number
  Q
 NTE(CLINID,SEQ,SEG) ;
  ;only one NTE per message. has the clinic start time and number of overbooks per day

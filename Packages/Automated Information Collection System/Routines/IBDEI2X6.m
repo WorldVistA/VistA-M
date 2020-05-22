@@ -1,126 +1,124 @@
-IBDEI2X6 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2X6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48995,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48995,1,3,0)
- ;;=3^Nondisp longitudinal fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,48995,1,4,0)
- ;;=4^S82.024S
- ;;^UTILITY(U,$J,358.3,48995,2)
- ;;=^5040300
- ;;^UTILITY(U,$J,358.3,48996,0)
- ;;=S82.025S^^216^2413^67
- ;;^UTILITY(U,$J,358.3,48996,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48996,1,3,0)
- ;;=3^Nondisp longitudinal fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,48996,1,4,0)
- ;;=4^S82.025S
- ;;^UTILITY(U,$J,358.3,48996,2)
- ;;=^5040316
- ;;^UTILITY(U,$J,358.3,48997,0)
- ;;=S82.031S^^216^2413^44
- ;;^UTILITY(U,$J,358.3,48997,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48997,1,3,0)
- ;;=3^Displaced transverse fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,48997,1,4,0)
- ;;=4^S82.031S
- ;;^UTILITY(U,$J,358.3,48997,2)
- ;;=^5040348
- ;;^UTILITY(U,$J,358.3,48998,0)
- ;;=S82.032S^^216^2413^43
- ;;^UTILITY(U,$J,358.3,48998,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48998,1,3,0)
- ;;=3^Displaced transverse fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,48998,1,4,0)
- ;;=4^S82.032S
- ;;^UTILITY(U,$J,358.3,48998,2)
- ;;=^5040364
- ;;^UTILITY(U,$J,358.3,48999,0)
- ;;=S82.034S^^216^2413^91
- ;;^UTILITY(U,$J,358.3,48999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48999,1,3,0)
- ;;=3^Nondisp transverse fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,48999,1,4,0)
- ;;=4^S82.034S
- ;;^UTILITY(U,$J,358.3,48999,2)
- ;;=^5040396
- ;;^UTILITY(U,$J,358.3,49000,0)
- ;;=S82.035S^^216^2413^90
- ;;^UTILITY(U,$J,358.3,49000,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49000,1,3,0)
- ;;=3^Nondisp transverse fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,49000,1,4,0)
- ;;=4^S82.035S
- ;;^UTILITY(U,$J,358.3,49000,2)
- ;;=^5040412
- ;;^UTILITY(U,$J,358.3,49001,0)
- ;;=S82.041S^^216^2413^8
- ;;^UTILITY(U,$J,358.3,49001,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49001,1,3,0)
- ;;=3^Displaced comminuted fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,49001,1,4,0)
- ;;=4^S82.041S
- ;;^UTILITY(U,$J,358.3,49001,2)
- ;;=^5040444
- ;;^UTILITY(U,$J,358.3,49002,0)
- ;;=S82.042S^^216^2413^7
- ;;^UTILITY(U,$J,358.3,49002,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49002,1,3,0)
- ;;=3^Displaced comminuted fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,49002,1,4,0)
- ;;=4^S82.042S
- ;;^UTILITY(U,$J,358.3,49002,2)
- ;;=^5040460
- ;;^UTILITY(U,$J,358.3,49003,0)
- ;;=S82.044S^^216^2413^54
- ;;^UTILITY(U,$J,358.3,49003,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49003,1,3,0)
- ;;=3^Nondisp comminuted fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,49003,1,4,0)
- ;;=4^S82.044S
- ;;^UTILITY(U,$J,358.3,49003,2)
- ;;=^5040492
- ;;^UTILITY(U,$J,358.3,49004,0)
- ;;=S82.045S^^216^2413^53
- ;;^UTILITY(U,$J,358.3,49004,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49004,1,3,0)
- ;;=3^Nondisp comminuted fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,49004,1,4,0)
- ;;=4^S82.045S
- ;;^UTILITY(U,$J,358.3,49004,2)
- ;;=^5040508
- ;;^UTILITY(U,$J,358.3,49005,0)
- ;;=S72.045S^^216^2413^51
- ;;^UTILITY(U,$J,358.3,49005,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49005,1,3,0)
- ;;=3^Nondisp base of neck fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,49005,1,4,0)
- ;;=4^S72.045S
- ;;^UTILITY(U,$J,358.3,49005,2)
- ;;=^5037392
- ;;^UTILITY(U,$J,358.3,49006,0)
- ;;=S72.345S^^216^2413^82
- ;;^UTILITY(U,$J,358.3,49006,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49006,1,3,0)
- ;;=3^Nondisp spiral fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,49006,1,4,0)
- ;;=4^S72.345S
- ;;^UTILITY(U,$J,358.3,49006,2)
- ;;=^5038415
- ;;^UTILITY(U,$J,358.3,49007,0)
- ;;=S92.422S^^216^2414^25
- ;;^UTILITY(U,$J,358.3,49007,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46568,0)
+ ;;=54250^^178^2319^10^^^^1
+ ;;^UTILITY(U,$J,358.3,46568,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46568,1,2,0)
+ ;;=2^54250
+ ;;^UTILITY(U,$J,358.3,46568,1,3,0)
+ ;;=3^Nocturnal Penile Tumescence
+ ;;^UTILITY(U,$J,358.3,46569,0)
+ ;;=55100^^178^2319^18^^^^1
+ ;;^UTILITY(U,$J,358.3,46569,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46569,1,2,0)
+ ;;=2^55100
+ ;;^UTILITY(U,$J,358.3,46569,1,3,0)
+ ;;=3^Scrotal I&D
+ ;;^UTILITY(U,$J,358.3,46570,0)
+ ;;=55250^^178^2319^19^^^^1
+ ;;^UTILITY(U,$J,358.3,46570,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46570,1,2,0)
+ ;;=2^55250
+ ;;^UTILITY(U,$J,358.3,46570,1,3,0)
+ ;;=3^Vasectomy
+ ;;^UTILITY(U,$J,358.3,46571,0)
+ ;;=55870^^178^2319^1^^^^1
+ ;;^UTILITY(U,$J,358.3,46571,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46571,1,2,0)
+ ;;=2^55870
+ ;;^UTILITY(U,$J,358.3,46571,1,3,0)
+ ;;=3^Electroejaculation
+ ;;^UTILITY(U,$J,358.3,46572,0)
+ ;;=55899^^178^2319^21^^^^1
+ ;;^UTILITY(U,$J,358.3,46572,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46572,1,2,0)
+ ;;=2^55899
+ ;;^UTILITY(U,$J,358.3,46572,1,3,0)
+ ;;=3^Vibratory Ejaculation
+ ;;^UTILITY(U,$J,358.3,46573,0)
+ ;;=64450^^178^2319^9^^^^1
+ ;;^UTILITY(U,$J,358.3,46573,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46573,1,2,0)
+ ;;=2^64450
+ ;;^UTILITY(U,$J,358.3,46573,1,3,0)
+ ;;=3^Nerve Block Inj,Periph Nerve
+ ;;^UTILITY(U,$J,358.3,46574,0)
+ ;;=54001^^178^2319^2^^^^1
+ ;;^UTILITY(U,$J,358.3,46574,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46574,1,2,0)
+ ;;=2^54001
+ ;;^UTILITY(U,$J,358.3,46574,1,3,0)
+ ;;=3^Excise Penial Adhesions
+ ;;^UTILITY(U,$J,358.3,46575,0)
+ ;;=54110^^178^2319^4^^^^1
+ ;;^UTILITY(U,$J,358.3,46575,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46575,1,2,0)
+ ;;=2^54110
+ ;;^UTILITY(U,$J,358.3,46575,1,3,0)
+ ;;=3^Excise of Penile Plaque
+ ;;^UTILITY(U,$J,358.3,46576,0)
+ ;;=54065^^178^2319^15^^^^1
+ ;;^UTILITY(U,$J,358.3,46576,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46576,1,2,0)
+ ;;=2^54065
+ ;;^UTILITY(U,$J,358.3,46576,1,3,0)
+ ;;=3^Penile Lesion Destruct,Complicated
+ ;;^UTILITY(U,$J,358.3,46577,0)
+ ;;=51700^^178^2320^3^^^^1
+ ;;^UTILITY(U,$J,358.3,46577,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46577,1,2,0)
+ ;;=2^51700
+ ;;^UTILITY(U,$J,358.3,46577,1,3,0)
+ ;;=3^Bladder Irrigation,Simple
+ ;;^UTILITY(U,$J,358.3,46578,0)
+ ;;=51600^^178^2320^7^^^^1
+ ;;^UTILITY(U,$J,358.3,46578,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46578,1,2,0)
+ ;;=2^51600
+ ;;^UTILITY(U,$J,358.3,46578,1,3,0)
+ ;;=3^Cystogram Inj Proc
+ ;;^UTILITY(U,$J,358.3,46579,0)
+ ;;=51701^^178^2320^4^^^^1
+ ;;^UTILITY(U,$J,358.3,46579,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46579,1,2,0)
+ ;;=2^51701
+ ;;^UTILITY(U,$J,358.3,46579,1,3,0)
+ ;;=3^Cath for Residual Urine (Straight Cath)
+ ;;^UTILITY(U,$J,358.3,46580,0)
+ ;;=51702^^178^2320^14^^^^1
+ ;;^UTILITY(U,$J,358.3,46580,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46580,1,2,0)
+ ;;=2^51702
+ ;;^UTILITY(U,$J,358.3,46580,1,3,0)
+ ;;=3^Foley Placement,Simple
+ ;;^UTILITY(U,$J,358.3,46581,0)
+ ;;=51703^^178^2320^13^^^^1
+ ;;^UTILITY(U,$J,358.3,46581,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46581,1,2,0)
+ ;;=2^51703
+ ;;^UTILITY(U,$J,358.3,46581,1,3,0)
+ ;;=3^Foley Placement,Complicated
+ ;;^UTILITY(U,$J,358.3,46582,0)
+ ;;=51102^^178^2320^2^^^^1
+ ;;^UTILITY(U,$J,358.3,46582,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46582,1,2,0)
+ ;;=2^51102
+ ;;^UTILITY(U,$J,358.3,46582,1,3,0)
+ ;;=3^Bladder Asp w/ Ins Suprapubic Cath

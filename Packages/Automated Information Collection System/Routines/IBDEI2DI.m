@@ -1,132 +1,120 @@
-IBDEI2DI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40243,0)
- ;;=T86.43^^156^1956^43
- ;;^UTILITY(U,$J,358.3,40243,1,0)
+ ;;^UTILITY(U,$J,358.3,37879,2)
+ ;;=^5055448
+ ;;^UTILITY(U,$J,358.3,37880,0)
+ ;;=T84.63XA^^146^1920^9
+ ;;^UTILITY(U,$J,358.3,37880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40243,1,3,0)
- ;;=3^Liver transplant infection
- ;;^UTILITY(U,$J,358.3,40243,1,4,0)
- ;;=4^T86.43
- ;;^UTILITY(U,$J,358.3,40243,2)
- ;;=^5055727
- ;;^UTILITY(U,$J,358.3,40244,0)
- ;;=T86.49^^156^1956^41
- ;;^UTILITY(U,$J,358.3,40244,1,0)
+ ;;^UTILITY(U,$J,358.3,37880,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix of spine, init
+ ;;^UTILITY(U,$J,358.3,37880,1,4,0)
+ ;;=4^T84.63XA
+ ;;^UTILITY(U,$J,358.3,37880,2)
+ ;;=^5055445
+ ;;^UTILITY(U,$J,358.3,37881,0)
+ ;;=T84.625A^^146^1920^3
+ ;;^UTILITY(U,$J,358.3,37881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40244,1,3,0)
- ;;=3^Liver transplant complications, other
- ;;^UTILITY(U,$J,358.3,40244,1,4,0)
- ;;=4^T86.49
- ;;^UTILITY(U,$J,358.3,40244,2)
- ;;=^5055728
- ;;^UTILITY(U,$J,358.3,40245,0)
- ;;=T86.5^^156^1956^15
- ;;^UTILITY(U,$J,358.3,40245,1,0)
+ ;;^UTILITY(U,$J,358.3,37881,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix lft fib, init
+ ;;^UTILITY(U,$J,358.3,37881,1,4,0)
+ ;;=4^T84.625A
+ ;;^UTILITY(U,$J,358.3,37881,2)
+ ;;=^5055439
+ ;;^UTILITY(U,$J,358.3,37882,0)
+ ;;=T84.624A^^146^1920^10
+ ;;^UTILITY(U,$J,358.3,37882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40245,1,3,0)
- ;;=3^Complications of stem cell transplant
- ;;^UTILITY(U,$J,358.3,40245,1,4,0)
- ;;=4^T86.5
- ;;^UTILITY(U,$J,358.3,40245,2)
- ;;=^5055729
- ;;^UTILITY(U,$J,358.3,40246,0)
- ;;=T86.810^^156^1956^48
- ;;^UTILITY(U,$J,358.3,40246,1,0)
+ ;;^UTILITY(U,$J,358.3,37882,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix rt fib, init
+ ;;^UTILITY(U,$J,358.3,37882,1,4,0)
+ ;;=4^T84.624A
+ ;;^UTILITY(U,$J,358.3,37882,2)
+ ;;=^5055436
+ ;;^UTILITY(U,$J,358.3,37883,0)
+ ;;=T84.612A^^146^1920^12
+ ;;^UTILITY(U,$J,358.3,37883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40246,1,3,0)
- ;;=3^Lung transplant rejection
- ;;^UTILITY(U,$J,358.3,40246,1,4,0)
- ;;=4^T86.810
- ;;^UTILITY(U,$J,358.3,40246,2)
- ;;=^5055730
- ;;^UTILITY(U,$J,358.3,40247,0)
- ;;=T86.811^^156^1956^46
- ;;^UTILITY(U,$J,358.3,40247,1,0)
+ ;;^UTILITY(U,$J,358.3,37883,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix rt radius, init
+ ;;^UTILITY(U,$J,358.3,37883,1,4,0)
+ ;;=4^T84.612A
+ ;;^UTILITY(U,$J,358.3,37883,2)
+ ;;=^5055409
+ ;;^UTILITY(U,$J,358.3,37884,0)
+ ;;=T84.611A^^146^1920^4
+ ;;^UTILITY(U,$J,358.3,37884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40247,1,3,0)
- ;;=3^Lung transplant failure
- ;;^UTILITY(U,$J,358.3,40247,1,4,0)
- ;;=4^T86.811
- ;;^UTILITY(U,$J,358.3,40247,2)
- ;;=^5055731
- ;;^UTILITY(U,$J,358.3,40248,0)
- ;;=T86.812^^156^1956^47
- ;;^UTILITY(U,$J,358.3,40248,1,0)
+ ;;^UTILITY(U,$J,358.3,37884,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix lft humerus, init
+ ;;^UTILITY(U,$J,358.3,37884,1,4,0)
+ ;;=4^T84.611A
+ ;;^UTILITY(U,$J,358.3,37884,2)
+ ;;=^5055406
+ ;;^UTILITY(U,$J,358.3,37885,0)
+ ;;=T84.610A^^146^1920^11
+ ;;^UTILITY(U,$J,358.3,37885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40248,1,3,0)
- ;;=3^Lung transplant infection
- ;;^UTILITY(U,$J,358.3,40248,1,4,0)
- ;;=4^T86.812
- ;;^UTILITY(U,$J,358.3,40248,2)
- ;;=^5055732
- ;;^UTILITY(U,$J,358.3,40249,0)
- ;;=T86.818^^156^1956^45
- ;;^UTILITY(U,$J,358.3,40249,1,0)
+ ;;^UTILITY(U,$J,358.3,37885,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix rt humerus, init
+ ;;^UTILITY(U,$J,358.3,37885,1,4,0)
+ ;;=4^T84.610A
+ ;;^UTILITY(U,$J,358.3,37885,2)
+ ;;=^5055403
+ ;;^UTILITY(U,$J,358.3,37886,0)
+ ;;=T84.623A^^146^1920^6
+ ;;^UTILITY(U,$J,358.3,37886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40249,1,3,0)
- ;;=3^Lung transplant complications, other
- ;;^UTILITY(U,$J,358.3,40249,1,4,0)
- ;;=4^T86.818
- ;;^UTILITY(U,$J,358.3,40249,2)
- ;;=^5055733
- ;;^UTILITY(U,$J,358.3,40250,0)
- ;;=T86.890^^156^1956^58
- ;;^UTILITY(U,$J,358.3,40250,1,0)
+ ;;^UTILITY(U,$J,358.3,37886,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix lft tib, init
+ ;;^UTILITY(U,$J,358.3,37886,1,4,0)
+ ;;=4^T84.623A
+ ;;^UTILITY(U,$J,358.3,37886,2)
+ ;;=^5055433
+ ;;^UTILITY(U,$J,358.3,37887,0)
+ ;;=T84.615A^^146^1920^7
+ ;;^UTILITY(U,$J,358.3,37887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40250,1,3,0)
- ;;=3^Tissue transplant rejection, other
- ;;^UTILITY(U,$J,358.3,40250,1,4,0)
- ;;=4^T86.890
- ;;^UTILITY(U,$J,358.3,40250,2)
- ;;=^5055754
- ;;^UTILITY(U,$J,358.3,40251,0)
- ;;=T86.891^^156^1956^56
- ;;^UTILITY(U,$J,358.3,40251,1,0)
+ ;;^UTILITY(U,$J,358.3,37887,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix lft ulna, init
+ ;;^UTILITY(U,$J,358.3,37887,1,4,0)
+ ;;=4^T84.615A
+ ;;^UTILITY(U,$J,358.3,37887,2)
+ ;;=^5055418
+ ;;^UTILITY(U,$J,358.3,37888,0)
+ ;;=T84.614A^^146^1920^2
+ ;;^UTILITY(U,$J,358.3,37888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40251,1,3,0)
- ;;=3^Tissue transplant failure, other
- ;;^UTILITY(U,$J,358.3,40251,1,4,0)
- ;;=4^T86.891
- ;;^UTILITY(U,$J,358.3,40251,2)
- ;;=^5055755
- ;;^UTILITY(U,$J,358.3,40252,0)
- ;;=T86.892^^156^1956^57
- ;;^UTILITY(U,$J,358.3,40252,1,0)
+ ;;^UTILITY(U,$J,358.3,37888,1,3,0)
+ ;;=3^Infect/inflm react d/t init fix rt ulna, init
+ ;;^UTILITY(U,$J,358.3,37888,1,4,0)
+ ;;=4^T84.614A
+ ;;^UTILITY(U,$J,358.3,37888,2)
+ ;;=^5055415
+ ;;^UTILITY(U,$J,358.3,37889,0)
+ ;;=T84.613A^^146^1920^5
+ ;;^UTILITY(U,$J,358.3,37889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40252,1,3,0)
- ;;=3^Tissue transplant infection, other
- ;;^UTILITY(U,$J,358.3,40252,1,4,0)
- ;;=4^T86.892
- ;;^UTILITY(U,$J,358.3,40252,2)
- ;;=^5055756
- ;;^UTILITY(U,$J,358.3,40253,0)
- ;;=T86.898^^156^1956^55
- ;;^UTILITY(U,$J,358.3,40253,1,0)
+ ;;^UTILITY(U,$J,358.3,37889,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix lft radius, init
+ ;;^UTILITY(U,$J,358.3,37889,1,4,0)
+ ;;=4^T84.613A
+ ;;^UTILITY(U,$J,358.3,37889,2)
+ ;;=^5055412
+ ;;^UTILITY(U,$J,358.3,37890,0)
+ ;;=L08.9^^146^1920^1
+ ;;^UTILITY(U,$J,358.3,37890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40253,1,3,0)
- ;;=3^Tissue transplant complications, other
- ;;^UTILITY(U,$J,358.3,40253,1,4,0)
- ;;=4^T86.898
- ;;^UTILITY(U,$J,358.3,40253,2)
- ;;=^5055757
- ;;^UTILITY(U,$J,358.3,40254,0)
- ;;=D89.810^^156^1956^1
- ;;^UTILITY(U,$J,358.3,40254,1,0)
+ ;;^UTILITY(U,$J,358.3,37890,1,3,0)
+ ;;=3^Infect Skin/Subcut Tissue,Localized,Unspec
+ ;;^UTILITY(U,$J,358.3,37890,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,37890,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,37891,0)
+ ;;=M25.374^^146^1920^22
+ ;;^UTILITY(U,$J,358.3,37891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40254,1,3,0)
- ;;=3^Acute graft-versus-host disease
- ;;^UTILITY(U,$J,358.3,40254,1,4,0)
- ;;=4^D89.810
- ;;^UTILITY(U,$J,358.3,40254,2)
- ;;=^336539
- ;;^UTILITY(U,$J,358.3,40255,0)
- ;;=D89.811^^156^1956^13
- ;;^UTILITY(U,$J,358.3,40255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40255,1,3,0)
- ;;=3^Chronic graft-versus-host disease
- ;;^UTILITY(U,$J,358.3,40255,1,4,0)
- ;;=4^D89.811

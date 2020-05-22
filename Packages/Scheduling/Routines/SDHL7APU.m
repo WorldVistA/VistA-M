@@ -1,5 +1,5 @@
 SDHL7APU ;MS/TG,PH - TMP HL7 Routine;OCT 16, 2018
- ;;5.3;Scheduling;**704**;AUG 17, 2018;Build 64
+ ;;5.3;Scheduling;**704,714**;AUG 17, 2018;Build 80
  ;
  ;  Integration Agreements:
  Q
@@ -13,42 +13,41 @@ MSH(MSH,INP,MSGARY) ;
 SCH(SCH,INP,MSGARY) ;
  N TM,TMM,CONSDSC,CANCODE
  S SDAPTYP="A|"
- S MSGARY("SDECATID")=$G(SCH(6))
+ S SDECATID=$G(SCH(6))
  S MSGARY("EVENT")=$G(SCH(6,1,1))  ;if the appointment is canceled check for cancel code and cancel reason, they are required
- S (MSGARY("CANCODE"),CANCODE)=$G(SCH(6,1,2))
+ S (SDECCR,CANCODE)=$G(SCH(6,1,2))
  I $G(MSGARY("EVENT"))="CANCELED" D
- . Q:$G(MSGARY("CANCODE"))=""
- . S MSGARY("CANCODE")=$O(^SD(409.2,"B",$G(CANCODE),0))
- . S:MSGARY("CANCODE")="" MSGARY("CANCODE")=11
- . S MSGARY("CSDAPTYP")=$G(SCH(6,1,4))
- S MSGARY("CANREMARKS")=$G(SCH(6,1,5))
- S MSGARY("CONSID")=""
- S MSGARY("SDECLEN")=$G(SCH(9))
- S MSGARY("SDECLENUNITS")=$G(SCH(10))
+ . Q:$G(SDECCR)=""
+ . S SDECCR=$O(^SD(409.2,"B",$G(CANCODE),0))
+ . S:(SDECCR)="" SDECCR=11
+ . S SDECTYP=$G(SCH(6,1,4))
+ ;S SDECNOT=$G(SCH(6,1,5))
+ S SDECLEN=$G(SCH(9))
+ ;S MSGARY("SDECLENUNITS")=$G(SCH(10))
  S TM=$G(SCH(11,1,4))
- I $G(SDDDT)="" S:$G(SCH(11,1,8))'="" (MSGARY("SDDDT"),SDDDT)=$G(SCH(11,1,8))
- I $G(SDDDT)="" S:$G(SCH(5,1,2))'="" (MSGARY("SDDDT"),SDDDT)=$G(SCH(5,1,2))
- S:$G(TM)'="" MSGARY("SDECSTART")=$P(TM,":",1,2)_":00Z"
- S INP(11)=$G(MSGARY("SDDDT"))
- S MSGARY("SDREQBY")=$G(SCH(16,1,1))
+ I $G(SDDDT)="" S:$G(SCH(11,1,8))'="" SDDDT=$G(SCH(11,1,8))
+ I $G(SDDDT)="" S:$G(SCH(5,1,2))'="" SDDDT=$G(SCH(5,1,2))
+ S:$G(TM)'="" SDECSTART=$P(TM,":",1,2)_":00Z"
+ ;S INP(11)=$G(SDDDT)
+ S SDREQBY=$G(SCH(16,1,1))
  N SCHEMAIL S SCHEMAIL=$$LOW^XLFSTR(SCH(13,1,4))
  S (DUZ,MSGARY("DUZ"))=$O(^VA(200,"ADUPN",$G(SCHEMAIL),""))
  S:$G(DUZ)'>0 (DUZ,MSGARY("DUZ"))=.5
- N SDTY S SDTYP=$G(SCH(6,1,4))
+ N SDTYP S SDTYP=$G(SCH(6,1,4))
  I $G(SDTYP)="R" D
- .S (MSGARY("RTCID"),SDCHILD)=$G(SCH(7,1,1)),(MSGARY("SDPARENT"),SDPARENT)=$G(SCH(24,1,1))
- .S:$G(SDCHILD)="" (MSGARY("RTCID"),SDCHILD)=$G(SCH(7,1,4))
- .S (MSGARY("SDAPTYP"),SDAPTYP)="R|"_$G(SDCHILD)
- .S (SDDDT,MSGARY("SDDDT"))=$P($G(^SDEC(409.85,$G(SDCHILD),0)),"^",16)
+ .S (RTCID,SDCHILD)=$G(SCH(7,1,1)),SDPARENT=$G(SCH(24,1,1))
+ .S:$G(SDCHILD)="" (RTCID,SDCHILD)=$G(SCH(7,1,4))
+ .S SDAPTYP="R|"_$G(SDCHILD)
  .S:$P($G(^SDEC(409.85,$G(SDCHILD),3)),"^",1)>0 SDMTC=1
  .I $G(SDPARENT)>0 S:$P($G(^SDEC(409.85,$G(SDPARENT),3)),"^",1)>0 SDMTC=1
- S:$G(SDTYP)="" SDTYP="A",(MSGARY("SDAPTYP"),SDAPTYP)="A|"
- S:$G(SDTYP)="A" SDTYP="A",(MSGARY("SDAPTYP"),SDAPTYP)="A|"
+ S:$G(SDTYP)="" SDTYP="A",SDAPTYP="A|"
+ S:$G(SDTYP)="A" SDTYP="A",SDAPTYP="A|"
  ;
  Q
 SCHNTE(SCHNTE,INP,MSGARY) ; 
  ;
- S MSGARY("SDECNOTE")=$G(SCHNTE(3))
+ S SDECNOTE=$G(SCHNTE(3))
+ I $G(MSGARY("EVENT"))="CANCELED" S SDECNOT=$G(SCHNTE(3))
  Q
 PID(PID,INP,MSGARY) ;
  ;
@@ -89,22 +88,26 @@ AIL(AIL,CNT,INP,MSGARY) ;
  N STCREC
  S STCREC=""
  S INP(6)=$G(AIL(1,3,1,1))
- S (SDCL,MSGARY("SDCL"))=$G(AIL(1,3,1,1))
+ S (SDCL)=$G(AIL(1,3,1,1))
  S:$G(AIL(2,3,1,1))'="" SDCL2=$G(AIL(2,3,1,1))
  S:$G(SDCL2)=$G(SDCL) SDCL3=1
  S INP(4)=$$NAME^XUAF4(+$G(AIL(1,3,1,4)))
  ;CLINIC STOP CODE
- D GETSTC^SDECCON(.STCREC,$P($G(MSGARY("SDCL")),U,1))
+ D GETSTC^SDECCON(.STCREC,$P($G(SDCL),U,1))
   I $G(AIL(1,4,1,2))="C" D
  .N XSDDDT,GMRDA
  .S GMRDA=$G(AIL(1,4,1,1)) S:$$LOW^XLFSTR($G(GMRDA))="undefined" GMRDA=""
- .S XSDDDT=$$GET1^DIQ(123,$G(GMRDA)_",",17,"I") S (SDDDT,MSGARY("SDDDT"))=$$FMTE^XLFDT(XSDDDT)
- .S MSGARY("CONSID")=$G(GMRDA),(MSGARY("SDAPTYP"),SDAPTYP)="C|"_$G(GMRDA)
+ .S XSDDDT=$$GET1^DIQ(123,$G(GMRDA)_",",17,"I") S SDDDT=$$FMTE^XLFDT(XSDDDT)
+ .S SDAPTYP="C|"_$G(GMRDA)
+ .S:$G(GMRDA)=""!($G(GMRDA)'>0) SDAPTYP="A|"  ;PB - Oct 24, Patch 714, put in to set SDAPTYP as a walkin - stops any looping issues
+ S:$G(AIL(1,3,1,4))=$G(AIL(2,3,1,4)) INTRA=1
+ I $G(AIL(1,4,1,2))="A" S SDAPTYP="A|"
+ I $G(AIL(1,4,1,2))="R" S SDAPTYP="R|"_$G(AIL(1,4,1,4))
  Q
 AILNTE(AILNTE,CNT,INP) ;
  S:$D(AILNTE) AILNTE(CNT,1)=1
- S MSGARY("AILNTE")=$G(AILNTE(1,3,2))
- I MSGARY("AILNTE")="" S MSGARY("AILNTE")=$G(AILNTE(1,3))
+ S AILNTE=$G(AILNTE(1,3,2))
+ I AILNTE="" S AILNTE=$G(AILNTE(1,3))
  Q
  ;
 AIP(AIP,CNT,INP,MSGARY) ;
@@ -123,7 +126,7 @@ CHKCHILD ;
  .I $G(SDPARENT)="" S:$G(SCH(24,1,1))'="" SDPARENT=$G(SCH(24,1,1))
  .I $G(SDPARENT)="" S:$G(SCH(23,1,1))'="" SDPARENT=$G(SCH(23,1,1))
  .;I $G(SDCHILD)=$G(SDPARENT) 
- .S:$G(SDPARENT)>0 MTC=$P($G(^SDEC(409.85,+$G(SDPARENT),3)),"^",3),(SDMRTC,MSGARY("SDMRTC"))=$S(MTC>0:"1",1:0)
+ .S:$G(SDPARENT)>0 MTC=$P($G(^SDEC(409.85,+$G(SDPARENT),3)),"^",3),SDMRTC=$S(MTC>0:"1",1:0)
  .Q:$G(MTC)=0  ; Not a multi RTC
  .S:$G(SDCL)>0 RTCCLIN=$P(^SDEC(409.85,$G(SDPARENT),0),"^",9)
  .S DUZ=$G(MSGARY("DUZ"))
@@ -229,16 +232,17 @@ ACKIN ;
  Q
 INP ; set up the INP array for calling ARSET^SDECAR2 to update the RTC orders
  ; Need to add code to add the rtcparent to the HL7 message and to parse it out. 
- N NODE3,INTV,NUMAPT,ORDATE
+ N NODE3,INTV,NUMAPT,ORDATE,SDCHILD,SDPARENT
  K INP
  S:$G(MSGARY("PROVIEN"))>0 INP(10)=$$GET1^DIQ(200,$G(MSGARY("PROVIEN"))_",",.01,"E")
  ;
- S PCE="" S PCE=$P($G(^DPT(MSGARY("DFN"),"ENR")),U,1) I PCE'="" D
+ S SDPARENT=$G(SCH(24,1,1))
+ S PCE="" S PCE=$P($G(^DPT($G(DFN),"ENR")),U,1) I PCE'="" D
  .S INP(13)=$$GET1^DIQ(27.11,PCE,.07,"E")
  S:$G(SDMRTC)'="" INP(14)=$S(SDMRTC=1:"YES",SDMRTC=0:"NO",1:"")
- I $G(MSGARY("SDPARENT"))'="" S SDPARENT=$G(MSGARY("SDPARENT"))
+ ;I $G(SDPARENT)'="" S SDPARENT=$G(MSGARY("SDPARENT"))
  I +$G(SDPARENT)>0 S NODE3=$G(^SDEC(409.85,+SDPARENT,3)),INTV=$P(NODE3,"^",2)
- S INP(1)=$G(SDCHILD) ;If a new RTC order this will be null so it will be added to the file. If this is not null, an update happens
+ S INP(1)=$P(SDAPTYP,"|") ;If a new RTC order this will be null so it will be added to the file. If this is not null, an update happens
  S INP(2)=$G(DFN)
  D NOW^%DTC S NOW=$$HTFM^XLFDT($H),INP(3)=$$FMTE^XLFDT(NOW)
  ;NEEDS THE TEXT INSTITUTION NAME
@@ -250,15 +254,17 @@ INP ; set up the INP array for calling ARSET^SDECAR2 to update the RTC orders
  N X11 S X11=$P($G(SDAPTYP),"|") S:$G(X11)="" X11="A"
  S INP(9)=$S(X11="A":"PATIENT",1:"PROVIDER") ;request by provider or patient. RTC orders and consults will always be PROVIDER otherwise it is PATIENT
  S:$G(MSGARY("PROVIEN"))>0 INP(10)=$$GET1^DIQ(200,$G(MSGARY("PROVIEN"))_",",.01,"E") ;Provider name - needs to be in lastname,firstname middle initial.
- S INP(11)=$G(SDDDT) ; Clinically Indicate Date for first appointment in the sequence, each of the remaining appointments have to be calculated
- S:$G(INP(11))="" (INP(11),SDDDT)=$G(SCH(5,1,2))
+ S SDDDT=$G(SCH(5,1,2))
+ S:$G(SDDDT)="" SDDDT=$G(SCH(11,1,8))
+ S:$G(SDDDT)="" SDDDT=$P($G(SDECSTART),"T",1) ; Clinically Indicate Date for first appointment in the sequence, each of the remaining appointments have to be calculated
+ S INP(11)=$G(SDDDT)
  S INP(12)=$G(SDECNOTE) ; RTC comments these are different than the comments that are stored in in file 44 appointment multiple. 
- S PCE="" S PCE=$P($G(^DPT(MSGARY("DFN"),"ENR")),U,1) I PCE'="" D
+ S PCE="" S PCE=$P($G(^DPT(DFN,"ENR")),U,1) I PCE'="" D
  .S INP(13)=$$GET1^DIQ(27.11,PCE,.07,"E")
  S INP(14)=""
  S:$G(SDMRTC)'="" INP(14)=$S(SDMRTC=1:"YES",SDMRTC=0:"NO",1:"NO")  ; SDMRTC=1:YES
  S INP(15)=$G(INTV) ;If MRTC, the interval in days between appointments
- S INP(16)=$G(RTCID) ;If MRTC, the appointment number for this appointment
+ S INP(16)=$G(AIL(1,4,1,4)) ;If MRTC, the appointment number for this appointment
  S INP(17)="" ;null for TMP
  N SCXX S SCXX=$S($G(SDPARENT)>0:$$GET1^DIQ(409.85,SDPARENT_",",15,"I"),1:0)
  S INP(18)=$S($G(SCXX)=1:"YES",1:"NO")  ;is this service connected? we can get this from the parent
@@ -332,18 +338,15 @@ ERRLKP(ERRTXT) ;
  . I ERTX1'="",ERTX2'="" I ERTXT[ERTX1 S ERTXT=ERTX2,XSP=1
  . Q
  Q ERTXT
-CONVTIME(TIME) ;Intrinsic Function. Convert XML time to FileMan format
- ;ZEXCEPT: %DT ;environment variable
- N X,XD,XOUT,XT,XZ,Y,%DT
+CONVTIME(TIME,INST) ;Intrinsic Function. Convert XML time to FileMan format
+ ;714 - PB if the clinic's division has a time zone in file 4 use it, otherwise default to the site time zone
+ N XZ,XOUT,XOUT1
  S XZ=0 I $G(TIME)["Z" S XZ=1 ;Zulu time (GMT)
- S XD=$P($G(TIME),"T",1) ;Date
- S XD=$P(XD,"-",2)_"/"_$P(XD,"-",3)_"/"_$P(XD,"-",1) ;Convert date to MM/DD/YYYY
- S XT=$P($G(TIME),"T",2) ;Time
- I XZ=1 S XT=$P(XT,"Z",1) ;Strip "Z" from time
- S X=XD_"@"_XT S %DT="RTS"
- D ^%DT S XOUT=Y
- I XZ=1 S XOUT=$$FMADD^XLFDT(XOUT,0,+$E($$TZ^XLFDT,1,3),0,0) ;Adjust from GMT
- K %DT(0)
+ S XOUT1=$TR(TIME,"TZ -:","")
+ S:$G(INST)'>0 INST=$$KSP^XUPARAM("INST")
+ S XOUT=$$HL7TFM^XLFDT(XOUT1)
+ I XZ=1 S OFFSET=$P($$UTC^DIUTC(XOUT,,$G(INST),,1),"^",3),XOUT=$$FMADD^XLFDT(XOUT,,OFFSET)
+ K %DT(0),INST
  Q XOUT
 CHKAPT(RET,DFN,CLINID) ;
  N XX,STATUS

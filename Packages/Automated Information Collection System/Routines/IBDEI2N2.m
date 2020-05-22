@@ -1,114 +1,116 @@
-IBDEI2N2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2N2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.6,6,1,1,0)
- ;;=Allows for select of just Visit type CPT codes from the CPT file.
- ;;^UTILITY(U,$J,358.6,6,2)
- ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
- ;;^UTILITY(U,$J,358.6,6,3)
- ;;=SELECT TYPE OF VISIT CPT
- ;;^UTILITY(U,$J,358.6,6,11)
- ;;=D TESTVST^IBDFN7
- ;;^UTILITY(U,$J,358.6,6,15,0)
- ;;=^358.615I^4^3
- ;;^UTILITY(U,$J,358.6,6,15,2,0)
- ;;=RECOMMENDED TEXT-SHORT NAME^40^2
- ;;^UTILITY(U,$J,358.6,6,15,3,0)
- ;;=RECOMMENDED HEADER^30^3
- ;;^UTILITY(U,$J,358.6,6,15,4,0)
- ;;=SHORT NAME FROM CPT FILE^28^4
- ;;^UTILITY(U,$J,358.6,7,0)
- ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
- ;;^UTILITY(U,$J,358.6,7,1,0)
- ;;=^^1^1^2951023^
- ;;^UTILITY(U,$J,358.6,7,1,1,0)
- ;;=Used for inputting the visit type that applies to the visit.
- ;;^UTILITY(U,$J,358.6,7,2)
- ;;=^^^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,7,3)
- ;;=VISIT TYPE OF VISIT
- ;;^UTILITY(U,$J,358.6,7,9)
- ;;=D INPUTCPT^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,7,10)
- ;;=Enter an active Visit Type code.
- ;;^UTILITY(U,$J,358.6,7,11)
- ;;=D TESTVST^IBDFN7
- ;;^UTILITY(U,$J,358.6,7,12)
- ;;=ENCOUNTER^5
- ;;^UTILITY(U,$J,358.6,7,14)
- ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
- ;;^UTILITY(U,$J,358.6,7,17)
- ;;=D SLCTVST^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,7,18)
- ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
- ;;^UTILITY(U,$J,358.6,7,19)
- ;;=D VST^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,8,0)
- ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^9^^^^1^1
- ;;^UTILITY(U,$J,358.6,8,1,0)
- ;;=^^2^2^3140327
- ;;^UTILITY(U,$J,358.6,8,1,1,0)
- ;;=Allows the user to select ICD-10 diagnosis codes from the ICD Diagnosis
- ;;^UTILITY(U,$J,358.6,8,1,2,0)
- ;;=file. Allows only active codes to be selected.
- ;;^UTILITY(U,$J,358.6,8,2)
- ;;=CODE^8^^^^^^^^^^^^^^^1^1
- ;;^UTILITY(U,$J,358.6,8,3)
- ;;=SELECT ICD10 ICD-10 CODES DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,8,9)
- ;;=D INPICD10^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,8,11)
- ;;=D TESTICD0^IBDFN7
- ;;^UTILITY(U,$J,358.6,8,13,0)
- ;;=^358.613V^2^2
- ;;^UTILITY(U,$J,358.6,8,13,1,0)
- ;;=1;IBD(358.98,
- ;;^UTILITY(U,$J,358.6,8,13,2,0)
- ;;=2;IBD(358.98,
- ;;^UTILITY(U,$J,358.6,8,15,0)
- ;;=^358.615I^2^2
- ;;^UTILITY(U,$J,358.6,8,15,1,0)
- ;;=DIAGNOSIS^60^2^^DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,8,15,2,0)
- ;;=DESCRIPTION^200^3^^DIAGNOSIS
- ;;^UTILITY(U,$J,358.6,8,16)
- ;;=o^4^Diagnosis^^r^5^ICD-10 Code^^1
- ;;^UTILITY(U,$J,358.6,8,17)
- ;;=D SLCTDX10^IBDFN12(.X)
- ;;^UTILITY(U,$J,358.6,8,19)
- ;;=D DX10^IBDFN14(X)
- ;;^UTILITY(U,$J,358.6,9,0)
- ;;=INPUT DIAGNOSIS CODE (ICD10)^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP^^^1
- ;;^UTILITY(U,$J,358.6,9,1,0)
- ;;=^^1^1^3140327
- ;;^UTILITY(U,$J,358.6,9,1,1,0)
- ;;=Used for inputting ICD10 diagnosis codes.
- ;;^UTILITY(U,$J,358.6,9,2)
- ;;=^^^^^^^^^^^^^^^^^1
- ;;^UTILITY(U,$J,358.6,9,3)
- ;;=INPUT ICD10 ICD-10 DIAGNOSIS CODES
- ;;^UTILITY(U,$J,358.6,9,9)
- ;;=D INPICD10^IBDFN8(.X)
- ;;^UTILITY(U,$J,358.6,9,10)
- ;;=Enter at least two characters of an active ICD10 diagnosis code.
- ;;^UTILITY(U,$J,358.6,9,11)
- ;;=D TESTICD0^IBDFN7
- ;;^UTILITY(U,$J,358.6,9,12)
- ;;=DIAGNOSIS/PROBLEM^1^13^14^2
- ;;^UTILITY(U,$J,358.6,9,13,0)
- ;;=^358.613V^10^10
- ;;^UTILITY(U,$J,358.6,9,13,1,0)
- ;;=1;IBD(358.98,^^1^^^^^2
- ;;^UTILITY(U,$J,358.6,9,13,2,0)
- ;;=2;IBD(358.98,^^1^^^^^2
- ;;^UTILITY(U,$J,358.6,9,13,3,0)
- ;;=3;IBD(358.98,^^1^^^^^9
- ;;^UTILITY(U,$J,358.6,9,13,4,0)
- ;;=3;IBE(358.99,^^0
- ;;^UTILITY(U,$J,358.6,9,13,5,0)
- ;;=4;IBD(358.98,^^1^^^^^10
- ;;^UTILITY(U,$J,358.6,9,13,6,0)
- ;;=5;IBD(358.98,^^1^^^^^11
- ;;^UTILITY(U,$J,358.6,9,13,7,0)
- ;;=6;IBD(358.98,^^1^^^^^12
+ ;;^UTILITY(U,$J,358.3,42116,1,3,0)
+ ;;=3^Nondisp segmental fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,42116,1,4,0)
+ ;;=4^S72.364S
+ ;;^UTILITY(U,$J,358.3,42116,2)
+ ;;=^5038591
+ ;;^UTILITY(U,$J,358.3,42117,0)
+ ;;=S72.365S^^155^2067^86
+ ;;^UTILITY(U,$J,358.3,42117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42117,1,3,0)
+ ;;=3^Nondisp segmental fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,42117,1,4,0)
+ ;;=4^S72.365S
+ ;;^UTILITY(U,$J,358.3,42117,2)
+ ;;=^5038607
+ ;;^UTILITY(U,$J,358.3,42118,0)
+ ;;=S72.421S^^155^2067^23
+ ;;^UTILITY(U,$J,358.3,42118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42118,1,3,0)
+ ;;=3^Displaced lateral condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,42118,1,4,0)
+ ;;=4^S72.421S
+ ;;^UTILITY(U,$J,358.3,42118,2)
+ ;;=^5038771
+ ;;^UTILITY(U,$J,358.3,42119,0)
+ ;;=S72.422S^^155^2067^22
+ ;;^UTILITY(U,$J,358.3,42119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42119,1,3,0)
+ ;;=3^Displaced lateral condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,42119,1,4,0)
+ ;;=4^S72.422S
+ ;;^UTILITY(U,$J,358.3,42119,2)
+ ;;=^5038787
+ ;;^UTILITY(U,$J,358.3,42120,0)
+ ;;=S72.424S^^155^2067^71
+ ;;^UTILITY(U,$J,358.3,42120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42120,1,3,0)
+ ;;=3^Nondisp lateral condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,42120,1,4,0)
+ ;;=4^S72.424S
+ ;;^UTILITY(U,$J,358.3,42120,2)
+ ;;=^5038819
+ ;;^UTILITY(U,$J,358.3,42121,0)
+ ;;=S72.425S^^155^2067^70
+ ;;^UTILITY(U,$J,358.3,42121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42121,1,3,0)
+ ;;=3^Nondisp lateral condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,42121,1,4,0)
+ ;;=4^S72.425S
+ ;;^UTILITY(U,$J,358.3,42121,2)
+ ;;=^5038835
+ ;;^UTILITY(U,$J,358.3,42122,0)
+ ;;=S72.431S^^155^2067^31
+ ;;^UTILITY(U,$J,358.3,42122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42122,1,3,0)
+ ;;=3^Displaced medial condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,42122,1,4,0)
+ ;;=4^S72.431S
+ ;;^UTILITY(U,$J,358.3,42122,2)
+ ;;=^5038867
+ ;;^UTILITY(U,$J,358.3,42123,0)
+ ;;=S72.432S^^155^2067^30
+ ;;^UTILITY(U,$J,358.3,42123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42123,1,3,0)
+ ;;=3^Displaced medial condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,42123,1,4,0)
+ ;;=4^S72.432S
+ ;;^UTILITY(U,$J,358.3,42123,2)
+ ;;=^5038883
+ ;;^UTILITY(U,$J,358.3,42124,0)
+ ;;=S72.434S^^155^2067^79
+ ;;^UTILITY(U,$J,358.3,42124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42124,1,3,0)
+ ;;=3^Nondisp medial condyle fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,42124,1,4,0)
+ ;;=4^S72.434S
+ ;;^UTILITY(U,$J,358.3,42124,2)
+ ;;=^5038915
+ ;;^UTILITY(U,$J,358.3,42125,0)
+ ;;=S72.435S^^155^2067^78
+ ;;^UTILITY(U,$J,358.3,42125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42125,1,3,0)
+ ;;=3^Nondisp medial condyle fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,42125,1,4,0)
+ ;;=4^S72.435S
+ ;;^UTILITY(U,$J,358.3,42125,2)
+ ;;=^5038931
+ ;;^UTILITY(U,$J,358.3,42126,0)
+ ;;=S72.441S^^155^2067^29
+ ;;^UTILITY(U,$J,358.3,42126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42126,1,3,0)
+ ;;=3^Displaced lower epiphysis fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,42126,1,4,0)
+ ;;=4^S72.441S
+ ;;^UTILITY(U,$J,358.3,42126,2)
+ ;;=^5038963
+ ;;^UTILITY(U,$J,358.3,42127,0)
+ ;;=S72.442S^^155^2067^28
+ ;;^UTILITY(U,$J,358.3,42127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42127,1,3,0)
+ ;;=3^Displaced lower epiphysis fx of left femur, sequela

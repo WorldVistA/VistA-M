@@ -1,12 +1,15 @@
-DGRPCE1 ;ALB/MIR/BRM/LBD,BAJ,TDM - CONSISTENCY CHECKER EDIT ; 10/20/10 4:16pm
- ;;5.3;Registration;**108,226,470,454,489,505,522,451,632,689,657,688,804,754,797,855,903**;Aug 13, 1993;Build 82
+DGRPCE1 ;ALB/MIR/BRM/LBD,BAJ,TDM - CONSISTENCY CHECKER EDIT ;10/20/10 4:16pm
+ ;;5.3;Registration;**108,226,470,454,489,505,522,451,632,689,657,688,804,754,797,855,903,952**;Aug 13, 1993;Build 160
  ;Per VHA Directive 6402, this routine should not be modified.
+ ;
  ;DG*5.3*855
  ; 315 Consistency Check added by patch DG*5.3*903 which was submitted to OSEHRA on 
- ; 04/02/2015 by HP. This update was authored by James Harris 2014-2015 
+ ; 04/02/2015 by HP. This update was authored by James Harris 2014-2015
+ ;DG*5.3*952
+ ; 14 Added EXPANDED MH CARE NON-ENROLLEE check
  ;
  N DGMSERR S DGMSERR=",67,72,73,79,81,83,"
- N I,J F I=1:1:8,16,53,57,58,61:1:88 D SASK
+ N I,J F I=1:1:8,16,53,57,58,61:1:89 D SASK
  F I=301,303,304,306:1:308,315,402,403,406,407,501:1:507,516,517 D SASK
  ;F I=49,50,52 D SASK ;BELOW REPLACED WITH ^IBCNSP2 CALL
  ;OLDS DR(2,2.312)="S DGRPADI="""";.01;1;2;15;8;7;3;6;S DGRPADI=X;I DGRPADI'=""v"" S Y=""@2312"";17///^S X=""`""_DFN;16///^S X=""01"";S Y=""@23121"";@2312;17;16//^S X=$S(DGRPADI=""s"":""02"",1:"""");@23121;9:14;"
@@ -32,7 +35,7 @@ ELIG ;eligibility code...if M11+, use compiled template, otherwise DR string
 6 ;;.08;
 7 ;;.09;
 8 ;;N FLG S FLG(2)=1 S:$G(DGER)[",61," FLG(1)=1 D EN^DGREGAED(DFN,.FLG);
-14 ;;.361;S DGECODE=$S($D(^DIC(8,+X,0)):$P(^(0),"^",1),1:"");S:$S(DGECODE["ALLIED":0,DGECODE["FEDERAL":0,1:1) Y=.323;.309;.323;D ^DGYZODS;S:'DGODS Y="@14";11500.02;11500.03;@14;
+14 ;;.361;S DGECODE=$S($D(^DIC(8,+X,0)):$P(^(0),"^",1),1:"");D:DGECODE["EXPANDED MH CARE NON-ENROLLEE" XPANDED^DGOTHD1(DFN);S:$S(DGECODE["ALLIED":0,DGECODE["FEDERAL":0,1:1) Y=.323;.309;.323;D ^DGYZODS;S:'DGODS Y="@14";11500.02;11500.03;@14;
 16 ;;.351;
 53 ;;.07;.31115;I $S(X']"":1,X=3:1,X=9:1,1:0) S Y="@53";.3111;S:X']"" Y="@53";.3113;S:X']"" Y=.3116;.3114;S:X']"" Y=.3116;.3115:.3117;.2205;.3119;@53;
 57 ;;.381;.382///NOW;
@@ -87,6 +90,7 @@ ELIG ;eligibility code...if M11+, use compiled template, otherwise DR string
 86 ;;1901;
 87 ;;D VETTYPE^DGRPE1;D MSG^DGRPE1 S Y=0;@114;K DGRDCHG;D DR^DGRPE1;.302;.3721;D EFF^DGRPE1;D:$G(DGRDCHG) BULL^DGRPE1;K DGRDCHG;
 88 ;;D EN^DGREGTED(DFN,"TEMP");
+89 ;;391;
 301 ;;.01;
 303 ;;.02;
 304 ;;.02;

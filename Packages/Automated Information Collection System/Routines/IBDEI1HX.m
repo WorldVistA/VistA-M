@@ -1,134 +1,130 @@
-IBDEI1HX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1HX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25391,1,0)
+ ;;^UTILITY(U,$J,358.3,23929,1,3,0)
+ ;;=3^Rash
+ ;;^UTILITY(U,$J,358.3,23929,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,23929,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,23930,0)
+ ;;=Z12.11^^107^1196^71
+ ;;^UTILITY(U,$J,358.3,23930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25391,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,25391,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,25391,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,25392,0)
- ;;=Z62.898^^95^1161^1
- ;;^UTILITY(U,$J,358.3,25392,1,0)
+ ;;^UTILITY(U,$J,358.3,23930,1,3,0)
+ ;;=3^Screening,Colon CA
+ ;;^UTILITY(U,$J,358.3,23930,1,4,0)
+ ;;=4^Z12.11
+ ;;^UTILITY(U,$J,358.3,23930,2)
+ ;;=^5062681
+ ;;^UTILITY(U,$J,358.3,23931,0)
+ ;;=Z12.39^^107^1196^69
+ ;;^UTILITY(U,$J,358.3,23931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25392,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
- ;;^UTILITY(U,$J,358.3,25392,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,25392,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,25393,0)
- ;;=Z63.0^^95^1161^5
- ;;^UTILITY(U,$J,358.3,25393,1,0)
+ ;;^UTILITY(U,$J,358.3,23931,1,3,0)
+ ;;=3^Screening,Breast CA
+ ;;^UTILITY(U,$J,358.3,23931,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,23931,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,23932,0)
+ ;;=Z12.4^^107^1196^70
+ ;;^UTILITY(U,$J,358.3,23932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25393,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
- ;;^UTILITY(U,$J,358.3,25393,1,4,0)
- ;;=4^Z63.0
- ;;^UTILITY(U,$J,358.3,25393,2)
- ;;=^5063164
- ;;^UTILITY(U,$J,358.3,25394,0)
- ;;=Z63.5^^95^1161^2
- ;;^UTILITY(U,$J,358.3,25394,1,0)
+ ;;^UTILITY(U,$J,358.3,23932,1,3,0)
+ ;;=3^Screening,Cervical CA
+ ;;^UTILITY(U,$J,358.3,23932,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,23932,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,23933,0)
+ ;;=Z13.6^^107^1196^68
+ ;;^UTILITY(U,$J,358.3,23933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25394,1,3,0)
- ;;=3^Disruption of Family by Separation or Divorce
- ;;^UTILITY(U,$J,358.3,25394,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,25394,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,25395,0)
- ;;=Z63.8^^95^1161^3
- ;;^UTILITY(U,$J,358.3,25395,1,0)
+ ;;^UTILITY(U,$J,358.3,23933,1,3,0)
+ ;;=3^Screening,AAA
+ ;;^UTILITY(U,$J,358.3,23933,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,23933,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,23934,0)
+ ;;=Z11.3^^107^1196^73
+ ;;^UTILITY(U,$J,358.3,23934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25395,1,3,0)
- ;;=3^High Exporessed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,25395,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,25395,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,25396,0)
- ;;=Z63.4^^95^1161^7
- ;;^UTILITY(U,$J,358.3,25396,1,0)
+ ;;^UTILITY(U,$J,358.3,23934,1,3,0)
+ ;;=3^Screening,STI
+ ;;^UTILITY(U,$J,358.3,23934,1,4,0)
+ ;;=4^Z11.3
+ ;;^UTILITY(U,$J,358.3,23934,2)
+ ;;=^5062672
+ ;;^UTILITY(U,$J,358.3,23935,0)
+ ;;=Z13.1^^107^1196^72
+ ;;^UTILITY(U,$J,358.3,23935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25396,1,3,0)
- ;;=3^Uncomplicated Bereavement
- ;;^UTILITY(U,$J,358.3,25396,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,25396,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,25397,0)
- ;;=F20.9^^95^1162^5
- ;;^UTILITY(U,$J,358.3,25397,1,0)
+ ;;^UTILITY(U,$J,358.3,23935,1,3,0)
+ ;;=3^Screening,Diabetes
+ ;;^UTILITY(U,$J,358.3,23935,1,4,0)
+ ;;=4^Z13.1
+ ;;^UTILITY(U,$J,358.3,23935,2)
+ ;;=^5062700
+ ;;^UTILITY(U,$J,358.3,23936,0)
+ ;;=M48.061^^107^1196^78
+ ;;^UTILITY(U,$J,358.3,23936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25397,1,3,0)
- ;;=3^Schizophrenia
- ;;^UTILITY(U,$J,358.3,25397,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,25397,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,25398,0)
- ;;=F20.81^^95^1162^8
- ;;^UTILITY(U,$J,358.3,25398,1,0)
+ ;;^UTILITY(U,$J,358.3,23936,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/o Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,23936,1,4,0)
+ ;;=4^M48.061
+ ;;^UTILITY(U,$J,358.3,23936,2)
+ ;;=^5151513
+ ;;^UTILITY(U,$J,358.3,23937,0)
+ ;;=M48.062^^107^1196^77
+ ;;^UTILITY(U,$J,358.3,23937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25398,1,3,0)
- ;;=3^Schizophreniform Disorder
- ;;^UTILITY(U,$J,358.3,25398,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,25398,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,25399,0)
- ;;=F22.^^95^1162^2
- ;;^UTILITY(U,$J,358.3,25399,1,0)
+ ;;^UTILITY(U,$J,358.3,23937,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbar Region w/ Neurogenic Claudication
+ ;;^UTILITY(U,$J,358.3,23937,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,23937,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,23938,0)
+ ;;=Z53.21^^107^1196^58
+ ;;^UTILITY(U,$J,358.3,23938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25399,1,3,0)
- ;;=3^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,25399,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,25399,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,25400,0)
- ;;=F23.^^95^1162^1
- ;;^UTILITY(U,$J,358.3,25400,1,0)
+ ;;^UTILITY(U,$J,358.3,23938,1,3,0)
+ ;;=3^PT left w/o being seen
+ ;;^UTILITY(U,$J,358.3,23938,1,4,0)
+ ;;=4^Z53.21
+ ;;^UTILITY(U,$J,358.3,23938,2)
+ ;;=^5063096
+ ;;^UTILITY(U,$J,358.3,23939,0)
+ ;;=Z78.9^^107^1196^79
+ ;;^UTILITY(U,$J,358.3,23939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25400,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,25400,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,25400,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,25401,0)
- ;;=F25.0^^95^1162^3
- ;;^UTILITY(U,$J,358.3,25401,1,0)
+ ;;^UTILITY(U,$J,358.3,23939,1,3,0)
+ ;;=3^Triaged to Primary Care Clinic
+ ;;^UTILITY(U,$J,358.3,23939,1,4,0)
+ ;;=4^Z78.9
+ ;;^UTILITY(U,$J,358.3,23939,2)
+ ;;=^5063329
+ ;;^UTILITY(U,$J,358.3,23940,0)
+ ;;=I48.20^^107^1196^8
+ ;;^UTILITY(U,$J,358.3,23940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25401,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,25401,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,25401,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,25402,0)
- ;;=F25.1^^95^1162^4
- ;;^UTILITY(U,$J,358.3,25402,1,0)
+ ;;^UTILITY(U,$J,358.3,23940,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,23940,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,23940,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,23941,0)
+ ;;=M54.6^^107^1196^61
+ ;;^UTILITY(U,$J,358.3,23941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25402,1,3,0)
- ;;=3^Schizoaffective Disorder,Depressive Type
- ;;^UTILITY(U,$J,358.3,25402,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,25402,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,25403,0)
- ;;=F28.^^95^1162^7
- ;;^UTILITY(U,$J,358.3,25403,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25403,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25403,1,4,0)
- ;;=4^F28.
- ;;^UTILITY(U,$J,358.3,25403,2)
- ;;=^5003483
- ;;^UTILITY(U,$J,358.3,25404,0)
- ;;=F29.^^95^1162^6
+ ;;^UTILITY(U,$J,358.3,23941,1,3,0)
+ ;;=3^Pain in Thoracic Spine
+ ;;^UTILITY(U,$J,358.3,23941,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,23941,2)
+ ;;=^272507

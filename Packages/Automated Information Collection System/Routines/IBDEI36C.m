@@ -1,136 +1,126 @@
-IBDEI36C ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI36C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53296,1,4,0)
- ;;=4^K82.9
- ;;^UTILITY(U,$J,358.3,53296,2)
- ;;=^5008875
- ;;^UTILITY(U,$J,358.3,53297,0)
- ;;=K92.2^^245^2679^15
- ;;^UTILITY(U,$J,358.3,53297,1,0)
+ ;;^UTILITY(U,$J,358.3,50683,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,50684,0)
+ ;;=C81.90^^193^2497^90
+ ;;^UTILITY(U,$J,358.3,50684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53297,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,53297,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,53297,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,53298,0)
- ;;=K25.9^^245^2679^12
- ;;^UTILITY(U,$J,358.3,53298,1,0)
+ ;;^UTILITY(U,$J,358.3,50684,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,50684,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,50684,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,50685,0)
+ ;;=D89.2^^193^2497^91
+ ;;^UTILITY(U,$J,358.3,50685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53298,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,53298,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,53298,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,53299,0)
- ;;=K20.9^^245^2679^7
- ;;^UTILITY(U,$J,358.3,53299,1,0)
+ ;;^UTILITY(U,$J,358.3,50685,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,50685,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,50685,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,50686,0)
+ ;;=D05.12^^193^2497^94
+ ;;^UTILITY(U,$J,358.3,50686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53299,1,3,0)
- ;;=3^Esophagitis, unspecified
- ;;^UTILITY(U,$J,358.3,53299,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,53299,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,53300,0)
- ;;=K22.10^^245^2679^9
- ;;^UTILITY(U,$J,358.3,53300,1,0)
+ ;;^UTILITY(U,$J,358.3,50686,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,50686,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,50686,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,50687,0)
+ ;;=D05.11^^193^2497^95
+ ;;^UTILITY(U,$J,358.3,50687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53300,1,3,0)
- ;;=3^Esophagus ulcer w/o bleeding
- ;;^UTILITY(U,$J,358.3,53300,1,4,0)
- ;;=4^K22.10
- ;;^UTILITY(U,$J,358.3,53300,2)
- ;;=^329929
- ;;^UTILITY(U,$J,358.3,53301,0)
- ;;=K22.11^^245^2679^8
- ;;^UTILITY(U,$J,358.3,53301,1,0)
+ ;;^UTILITY(U,$J,358.3,50687,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,50687,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,50687,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,50688,0)
+ ;;=D05.10^^193^2497^96
+ ;;^UTILITY(U,$J,358.3,50688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53301,1,3,0)
- ;;=3^Esophagus ulcer w/ bleeding
- ;;^UTILITY(U,$J,358.3,53301,1,4,0)
- ;;=4^K22.11
- ;;^UTILITY(U,$J,358.3,53301,2)
- ;;=^329930
- ;;^UTILITY(U,$J,358.3,53302,0)
- ;;=K22.2^^245^2679^6
- ;;^UTILITY(U,$J,358.3,53302,1,0)
+ ;;^UTILITY(U,$J,358.3,50688,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,50688,1,4,0)
+ ;;=4^D05.10
+ ;;^UTILITY(U,$J,358.3,50688,2)
+ ;;=^5001929
+ ;;^UTILITY(U,$J,358.3,50689,0)
+ ;;=D50.0^^193^2497^97
+ ;;^UTILITY(U,$J,358.3,50689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53302,1,3,0)
- ;;=3^Esophageal obstruction
- ;;^UTILITY(U,$J,358.3,53302,1,4,0)
- ;;=4^K22.2
- ;;^UTILITY(U,$J,358.3,53302,2)
- ;;=^5008507
- ;;^UTILITY(U,$J,358.3,53303,0)
- ;;=K26.9^^245^2679^5
- ;;^UTILITY(U,$J,358.3,53303,1,0)
+ ;;^UTILITY(U,$J,358.3,50689,1,3,0)
+ ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,50689,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,50689,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,50690,0)
+ ;;=D50.9^^193^2497^98
+ ;;^UTILITY(U,$J,358.3,50690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53303,1,3,0)
- ;;=3^Duodenal ulcer w/o hemorrhage/perforation
- ;;^UTILITY(U,$J,358.3,53303,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,53303,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,53304,0)
- ;;=K27.9^^245^2679^23
- ;;^UTILITY(U,$J,358.3,53304,1,0)
+ ;;^UTILITY(U,$J,358.3,50690,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,50690,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,50690,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,50691,0)
+ ;;=C46.9^^193^2497^99
+ ;;^UTILITY(U,$J,358.3,50691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53304,1,3,0)
- ;;=3^Peptic ulcer w/o hemorrhage/perforation
- ;;^UTILITY(U,$J,358.3,53304,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,53304,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,53305,0)
- ;;=K57.30^^245^2679^4
- ;;^UTILITY(U,$J,358.3,53305,1,0)
+ ;;^UTILITY(U,$J,358.3,50691,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,50691,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,50691,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,50692,0)
+ ;;=C22.0^^193^2497^100
+ ;;^UTILITY(U,$J,358.3,50692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53305,1,3,0)
- ;;=3^Diverticulosis lg intest w/o perforation/abscess w/o bleeding
- ;;^UTILITY(U,$J,358.3,53305,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,53305,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,53306,0)
- ;;=K58.9^^245^2679^20
- ;;^UTILITY(U,$J,358.3,53306,1,0)
+ ;;^UTILITY(U,$J,358.3,50692,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,50692,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,50692,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,50693,0)
+ ;;=D05.02^^193^2497^101
+ ;;^UTILITY(U,$J,358.3,50693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53306,1,3,0)
- ;;=3^IBS w/o diarrhea
- ;;^UTILITY(U,$J,358.3,53306,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,53306,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,53307,0)
- ;;=K59.09^^245^2679^3
- ;;^UTILITY(U,$J,358.3,53307,1,0)
+ ;;^UTILITY(U,$J,358.3,50693,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,50693,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,50693,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,50694,0)
+ ;;=D05.01^^193^2497^102
+ ;;^UTILITY(U,$J,358.3,50694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53307,1,3,0)
- ;;=3^Constipation, other
- ;;^UTILITY(U,$J,358.3,53307,1,4,0)
- ;;=4^K59.09
- ;;^UTILITY(U,$J,358.3,53307,2)
- ;;=^323540
- ;;^UTILITY(U,$J,358.3,53308,0)
- ;;=K62.5^^245^2679^16
- ;;^UTILITY(U,$J,358.3,53308,1,0)
+ ;;^UTILITY(U,$J,358.3,50694,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,50694,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,50694,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,50695,0)
+ ;;=D05.00^^193^2497^103
+ ;;^UTILITY(U,$J,358.3,50695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53308,1,3,0)
- ;;=3^Hemorrhage of anus & rectum
- ;;^UTILITY(U,$J,358.3,53308,1,4,0)
- ;;=4^K62.5
- ;;^UTILITY(U,$J,358.3,53308,2)
- ;;=^5008755
- ;;^UTILITY(U,$J,358.3,53309,0)
- ;;=K63.5^^245^2679^2
- ;;^UTILITY(U,$J,358.3,53309,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53309,1,3,0)
- ;;=3^Colon polyp
- ;;^UTILITY(U,$J,358.3,53309,1,4,0)
- ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,50695,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,50695,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,50695,2)
+ ;;=^5001926

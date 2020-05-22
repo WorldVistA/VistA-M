@@ -1,64 +1,130 @@
-IBDEI15Q ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI15Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.4,0,"GL")
- ;;=^IBE(358.4,
- ;;^DIC("B","IMP/EXP SELECTION GROUP",358.4)
- ;;=
- ;;^DIC(358.4,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.4,"%D",1,0)
- ;;= 
- ;;^DIC(358.4,"%D",2,0)
- ;;=This file is nearly identical to file #357.4. It is used by the
- ;;^DIC(358.4,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.4,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.4,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.4,0,"DDA")
- ;;=N
- ;;^DD(358.4,0,"DT")
- ;;=2950717
- ;;^DD(358.4,0,"ID",.02)
- ;;=W "   ",$P(^(0),U,2)
- ;;^DD(358.4,0,"ID",.03)
- ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
- ;;^DD(358.4,0,"IX","APO",358.4,.02)
- ;;=
- ;;^DD(358.4,0,"IX","APO1",358.4,.03)
- ;;=
- ;;^DD(358.4,0,"IX","B",358.4,.01)
- ;;=
- ;;^DD(358.4,0,"IX","D",358.4,.03)
- ;;=
- ;;^DD(358.4,0,"NM","IMP/EXP SELECTION GROUP")
- ;;=
- ;;^DD(358.4,0,"PT",358.3,.04)
- ;;=
- ;;^DD(358.4,0,"VRPK")
- ;;=IBD
- ;;^DD(358.4,.01,0)
- ;;=HEADER^RF^^0;1^K:$L(X)>40!($L(X)<1) X
- ;;^DD(358.4,.01,1,0)
- ;;=^.1
- ;;^DD(358.4,.01,1,1,0)
- ;;=358.4^B
- ;;^DD(358.4,.01,1,1,1)
- ;;=S ^IBE(358.4,"B",$E(X,1,30),DA)=""
- ;;^DD(358.4,.01,1,1,2)
- ;;=K ^IBE(358.4,"B",$E(X,1,30),DA)
- ;;^DD(358.4,.01,3)
- ;;=What text do you want to appear at the top of this group?
- ;;^DD(358.4,.01,21,0)
- ;;=^^2^2^2930604^^^^
- ;;^DD(358.4,.01,21,1,0)
- ;;= 
- ;;^DD(358.4,.01,21,2,0)
- ;;=The name given to a group of selections appearing on a selection list.
- ;;^DD(358.4,.01,"DEL",1,0)
- ;;=I '$G(IBLISTPR) W "...Selection Groups can only be deleted through the Encounter Form Utilities!"
- ;;^DD(358.4,.01,"DT")
- ;;=2930604
+ ;;^UTILITY(U,$J,358.3,18606,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,18606,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,18607,0)
+ ;;=F60.4^^91^951^5
+ ;;^UTILITY(U,$J,358.3,18607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18607,1,3,0)
+ ;;=3^Histrionic Personality D/O
+ ;;^UTILITY(U,$J,358.3,18607,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,18607,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,18608,0)
+ ;;=F60.7^^91^951^4
+ ;;^UTILITY(U,$J,358.3,18608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18608,1,3,0)
+ ;;=3^Dependent Personality D/O
+ ;;^UTILITY(U,$J,358.3,18608,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,18608,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,18609,0)
+ ;;=F60.2^^91^951^1
+ ;;^UTILITY(U,$J,358.3,18609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18609,1,3,0)
+ ;;=3^Antisocial Personality D/O
+ ;;^UTILITY(U,$J,358.3,18609,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,18609,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,18610,0)
+ ;;=F60.81^^91^951^6
+ ;;^UTILITY(U,$J,358.3,18610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18610,1,3,0)
+ ;;=3^Narcissistic Personality D/O
+ ;;^UTILITY(U,$J,358.3,18610,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,18610,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,18611,0)
+ ;;=F60.6^^91^951^2
+ ;;^UTILITY(U,$J,358.3,18611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18611,1,3,0)
+ ;;=3^Avoidant Personality D/O
+ ;;^UTILITY(U,$J,358.3,18611,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,18611,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,18612,0)
+ ;;=F60.3^^91^951^3
+ ;;^UTILITY(U,$J,358.3,18612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18612,1,3,0)
+ ;;=3^Borderline Personality D/O
+ ;;^UTILITY(U,$J,358.3,18612,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,18612,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,18613,0)
+ ;;=F60.89^^91^951^10
+ ;;^UTILITY(U,$J,358.3,18613,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18613,1,3,0)
+ ;;=3^Personality D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,18613,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,18613,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,18614,0)
+ ;;=F60.9^^91^951^11
+ ;;^UTILITY(U,$J,358.3,18614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18614,1,3,0)
+ ;;=3^Personality D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,18614,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,18614,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,18615,0)
+ ;;=F07.0^^91^951^9
+ ;;^UTILITY(U,$J,358.3,18615,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18615,1,3,0)
+ ;;=3^Personality Change d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,18615,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,18615,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,18616,0)
+ ;;=Z65.4^^91^952^5
+ ;;^UTILITY(U,$J,358.3,18616,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18616,1,3,0)
+ ;;=3^Victim of Crime
+ ;;^UTILITY(U,$J,358.3,18616,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,18616,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,18617,0)
+ ;;=Z65.0^^91^952^1
+ ;;^UTILITY(U,$J,358.3,18617,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18617,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,18617,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,18617,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,18618,0)
+ ;;=Z65.2^^91^952^4
+ ;;^UTILITY(U,$J,358.3,18618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18618,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,18618,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,18618,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,18619,0)
+ ;;=Z65.3^^91^952^3

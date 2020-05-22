@@ -1,130 +1,128 @@
-IBDEI26Q ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37070,1,0)
+ ;;^UTILITY(U,$J,358.3,34897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37070,1,3,0)
- ;;=3^Vitamin D deficiency, unspec
- ;;^UTILITY(U,$J,358.3,37070,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,37070,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,37071,0)
- ;;=G56.91^^140^1787^194
- ;;^UTILITY(U,$J,358.3,37071,1,0)
+ ;;^UTILITY(U,$J,358.3,34897,1,3,0)
+ ;;=3^Memory Deficit
+ ;;^UTILITY(U,$J,358.3,34897,1,4,0)
+ ;;=4^I69.911
+ ;;^UTILITY(U,$J,358.3,34897,2)
+ ;;=^5138661
+ ;;^UTILITY(U,$J,358.3,34898,0)
+ ;;=I69.912^^137^1788^31
+ ;;^UTILITY(U,$J,358.3,34898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37071,1,3,0)
- ;;=3^Mononeuropathy of rt upr limb, unspec
- ;;^UTILITY(U,$J,358.3,37071,1,4,0)
- ;;=4^G56.91
- ;;^UTILITY(U,$J,358.3,37071,2)
- ;;=^5004036
- ;;^UTILITY(U,$J,358.3,37072,0)
- ;;=G56.92^^140^1787^193
- ;;^UTILITY(U,$J,358.3,37072,1,0)
+ ;;^UTILITY(U,$J,358.3,34898,1,3,0)
+ ;;=3^Visuspatial Deficit & Spatial Neglect
+ ;;^UTILITY(U,$J,358.3,34898,1,4,0)
+ ;;=4^I69.912
+ ;;^UTILITY(U,$J,358.3,34898,2)
+ ;;=^5138662
+ ;;^UTILITY(U,$J,358.3,34899,0)
+ ;;=I69.913^^137^1788^27
+ ;;^UTILITY(U,$J,358.3,34899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37072,1,3,0)
- ;;=3^Mononeuropathy of lft upr limb, unspec
- ;;^UTILITY(U,$J,358.3,37072,1,4,0)
- ;;=4^G56.92
- ;;^UTILITY(U,$J,358.3,37072,2)
- ;;=^5004037
- ;;^UTILITY(U,$J,358.3,37073,0)
- ;;=M30.0^^140^1787^202
- ;;^UTILITY(U,$J,358.3,37073,1,0)
+ ;;^UTILITY(U,$J,358.3,34899,1,3,0)
+ ;;=3^Psychomotor Deficit
+ ;;^UTILITY(U,$J,358.3,34899,1,4,0)
+ ;;=4^I69.913
+ ;;^UTILITY(U,$J,358.3,34899,2)
+ ;;=^5138663
+ ;;^UTILITY(U,$J,358.3,34900,0)
+ ;;=I69.914^^137^1788^11
+ ;;^UTILITY(U,$J,358.3,34900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37073,1,3,0)
- ;;=3^Polyarteritis nodosa
- ;;^UTILITY(U,$J,358.3,37073,1,4,0)
- ;;=4^M30.0
- ;;^UTILITY(U,$J,358.3,37073,2)
- ;;=^5011738
- ;;^UTILITY(U,$J,358.3,37074,0)
- ;;=M35.9^^140^1787^282
- ;;^UTILITY(U,$J,358.3,37074,1,0)
+ ;;^UTILITY(U,$J,358.3,34900,1,3,0)
+ ;;=3^Frontal Lobe & Executive Function Deficit
+ ;;^UTILITY(U,$J,358.3,34900,1,4,0)
+ ;;=4^I69.914
+ ;;^UTILITY(U,$J,358.3,34900,2)
+ ;;=^5138664
+ ;;^UTILITY(U,$J,358.3,34901,0)
+ ;;=I69.915^^137^1788^5
+ ;;^UTILITY(U,$J,358.3,34901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37074,1,3,0)
- ;;=3^Systemic involvement of connective tissue, unspec
- ;;^UTILITY(U,$J,358.3,37074,1,4,0)
- ;;=4^M35.9
- ;;^UTILITY(U,$J,358.3,37074,2)
- ;;=^5011797
- ;;^UTILITY(U,$J,358.3,37075,0)
- ;;=M45.9^^140^1787^47
- ;;^UTILITY(U,$J,358.3,37075,1,0)
+ ;;^UTILITY(U,$J,358.3,34901,1,3,0)
+ ;;=3^Cognitive Social/Emotional Deficit
+ ;;^UTILITY(U,$J,358.3,34901,1,4,0)
+ ;;=4^I69.915
+ ;;^UTILITY(U,$J,358.3,34901,2)
+ ;;=^5138665
+ ;;^UTILITY(U,$J,358.3,34902,0)
+ ;;=I69.918^^137^1788^29
+ ;;^UTILITY(U,$J,358.3,34902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37075,1,3,0)
- ;;=3^Ankylosing spondylitis unspec sites in spine
- ;;^UTILITY(U,$J,358.3,37075,1,4,0)
- ;;=4^M45.9
- ;;^UTILITY(U,$J,358.3,37075,2)
- ;;=^5011969
- ;;^UTILITY(U,$J,358.3,37076,0)
- ;;=M45.0^^140^1787^42
- ;;^UTILITY(U,$J,358.3,37076,1,0)
+ ;;^UTILITY(U,$J,358.3,34902,1,3,0)
+ ;;=3^Symptoms/Signs Involving Cognitive Functions,Other
+ ;;^UTILITY(U,$J,358.3,34902,1,4,0)
+ ;;=4^I69.918
+ ;;^UTILITY(U,$J,358.3,34902,2)
+ ;;=^5138666
+ ;;^UTILITY(U,$J,358.3,34903,0)
+ ;;=I69.921^^137^1788^8
+ ;;^UTILITY(U,$J,358.3,34903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37076,1,3,0)
- ;;=3^Ankylosing spondylitis mltpl sites in spine
- ;;^UTILITY(U,$J,358.3,37076,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,37076,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,37077,0)
- ;;=M45.1^^140^1787^43
- ;;^UTILITY(U,$J,358.3,37077,1,0)
+ ;;^UTILITY(U,$J,358.3,34903,1,3,0)
+ ;;=3^Dysphasia
+ ;;^UTILITY(U,$J,358.3,34903,1,4,0)
+ ;;=4^I69.921
+ ;;^UTILITY(U,$J,358.3,34903,2)
+ ;;=^5007554
+ ;;^UTILITY(U,$J,358.3,34904,0)
+ ;;=I69.922^^137^1788^6
+ ;;^UTILITY(U,$J,358.3,34904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37077,1,3,0)
- ;;=3^Ankylosing spondylitis occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,37077,1,4,0)
- ;;=4^M45.1
- ;;^UTILITY(U,$J,358.3,37077,2)
- ;;=^5011961
- ;;^UTILITY(U,$J,358.3,37078,0)
- ;;=M45.2^^140^1787^38
- ;;^UTILITY(U,$J,358.3,37078,1,0)
+ ;;^UTILITY(U,$J,358.3,34904,1,3,0)
+ ;;=3^Dysarthria
+ ;;^UTILITY(U,$J,358.3,34904,1,4,0)
+ ;;=4^I69.922
+ ;;^UTILITY(U,$J,358.3,34904,2)
+ ;;=^5007555
+ ;;^UTILITY(U,$J,358.3,34905,0)
+ ;;=I69.923^^137^1788^10
+ ;;^UTILITY(U,$J,358.3,34905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37078,1,3,0)
- ;;=3^Ankylosing spondylitis cervical region
- ;;^UTILITY(U,$J,358.3,37078,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,37078,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,37079,0)
- ;;=M45.3^^140^1787^39
- ;;^UTILITY(U,$J,358.3,37079,1,0)
+ ;;^UTILITY(U,$J,358.3,34905,1,3,0)
+ ;;=3^Fluency Disorder
+ ;;^UTILITY(U,$J,358.3,34905,1,4,0)
+ ;;=4^I69.923
+ ;;^UTILITY(U,$J,358.3,34905,2)
+ ;;=^5007556
+ ;;^UTILITY(U,$J,358.3,34906,0)
+ ;;=I69.928^^137^1788^28
+ ;;^UTILITY(U,$J,358.3,34906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37079,1,3,0)
- ;;=3^Ankylosing spondylitis crvicothrcic region
- ;;^UTILITY(U,$J,358.3,37079,1,4,0)
- ;;=4^M45.3
- ;;^UTILITY(U,$J,358.3,37079,2)
- ;;=^5011963
- ;;^UTILITY(U,$J,358.3,37080,0)
- ;;=M45.4^^140^1787^45
- ;;^UTILITY(U,$J,358.3,37080,1,0)
+ ;;^UTILITY(U,$J,358.3,34906,1,3,0)
+ ;;=3^Speech/Language Deficits,Other
+ ;;^UTILITY(U,$J,358.3,34906,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,34906,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,34907,0)
+ ;;=I69.961^^137^1788^25
+ ;;^UTILITY(U,$J,358.3,34907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37080,1,3,0)
- ;;=3^Ankylosing spondylitis thoracic region
- ;;^UTILITY(U,$J,358.3,37080,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,37080,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,37081,0)
- ;;=M45.5^^140^1787^46
- ;;^UTILITY(U,$J,358.3,37081,1,0)
+ ;;^UTILITY(U,$J,358.3,34907,1,3,0)
+ ;;=3^Paralytic Syndrome,Right Dominant Side
+ ;;^UTILITY(U,$J,358.3,34907,1,4,0)
+ ;;=4^I69.961
+ ;;^UTILITY(U,$J,358.3,34907,2)
+ ;;=^5007564
+ ;;^UTILITY(U,$J,358.3,34908,0)
+ ;;=I69.962^^137^1788^23
+ ;;^UTILITY(U,$J,358.3,34908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37081,1,3,0)
- ;;=3^Ankylosing spondylitis thoracolumbar regn
- ;;^UTILITY(U,$J,358.3,37081,1,4,0)
- ;;=4^M45.5
- ;;^UTILITY(U,$J,358.3,37081,2)
- ;;=^5011965
- ;;^UTILITY(U,$J,358.3,37082,0)
- ;;=M45.6^^140^1787^40
- ;;^UTILITY(U,$J,358.3,37082,1,0)
+ ;;^UTILITY(U,$J,358.3,34908,1,3,0)
+ ;;=3^Paralytic Syndrome,Left Dominant Side
+ ;;^UTILITY(U,$J,358.3,34908,1,4,0)
+ ;;=4^I69.962
+ ;;^UTILITY(U,$J,358.3,34908,2)
+ ;;=^5133588
+ ;;^UTILITY(U,$J,358.3,34909,0)
+ ;;=I69.963^^137^1788^26
+ ;;^UTILITY(U,$J,358.3,34909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37082,1,3,0)
- ;;=3^Ankylosing spondylitis lumbar region
- ;;^UTILITY(U,$J,358.3,37082,1,4,0)
- ;;=4^M45.6
+ ;;^UTILITY(U,$J,358.3,34909,1,3,0)
+ ;;=3^Paralytic Syndrome,Right Non-Dominant Side

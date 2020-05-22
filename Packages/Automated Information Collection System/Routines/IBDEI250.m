@@ -1,134 +1,124 @@
-IBDEI250 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI250 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36261,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,36261,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,36262,0)
- ;;=C34.12^^137^1755^50
- ;;^UTILITY(U,$J,358.3,36262,1,0)
+ ;;^UTILITY(U,$J,358.3,34134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36262,1,3,0)
- ;;=3^Malig Neop Upper Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36262,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,36262,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,36263,0)
- ;;=C34.2^^137^1755^44
- ;;^UTILITY(U,$J,358.3,36263,1,0)
+ ;;^UTILITY(U,$J,358.3,34134,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,34134,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,34134,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,34135,0)
+ ;;=F03.90^^134^1724^18
+ ;;^UTILITY(U,$J,358.3,34135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36263,1,3,0)
- ;;=3^Malig Neop Middle Lobe,Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36263,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,36263,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,36264,0)
- ;;=C34.31^^137^1755^42
- ;;^UTILITY(U,$J,358.3,36264,1,0)
+ ;;^UTILITY(U,$J,358.3,34135,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,34135,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,34135,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,34136,0)
+ ;;=G31.84^^134^1724^23
+ ;;^UTILITY(U,$J,358.3,34136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36264,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36264,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,36264,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,36265,0)
- ;;=C34.32^^137^1755^41
- ;;^UTILITY(U,$J,358.3,36265,1,0)
+ ;;^UTILITY(U,$J,358.3,34136,1,3,0)
+ ;;=3^Mild Cognitive Impairment,So Stated
+ ;;^UTILITY(U,$J,358.3,34136,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,34136,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,34137,0)
+ ;;=F02.81^^134^1724^14
+ ;;^UTILITY(U,$J,358.3,34137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36265,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36265,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,36265,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,36266,0)
- ;;=C34.81^^137^1755^46
- ;;^UTILITY(U,$J,358.3,36266,1,0)
+ ;;^UTILITY(U,$J,358.3,34137,1,3,0)
+ ;;=3^Dementia in Other Dis Class Elsewhere w/ Behav Dist
+ ;;^UTILITY(U,$J,358.3,34137,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,34137,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,34138,0)
+ ;;=F02.80^^134^1724^15
+ ;;^UTILITY(U,$J,358.3,34138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36266,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36266,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,36266,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,36267,0)
- ;;=C34.82^^137^1755^45
- ;;^UTILITY(U,$J,358.3,36267,1,0)
+ ;;^UTILITY(U,$J,358.3,34138,1,3,0)
+ ;;=3^Dementia in Other Dis Class Elsewhere w/o Behav Dist
+ ;;^UTILITY(U,$J,358.3,34138,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,34138,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,34139,0)
+ ;;=A81.01^^134^1724^9
+ ;;^UTILITY(U,$J,358.3,34139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36267,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36267,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,36267,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,36268,0)
- ;;=C34.91^^137^1755^49
- ;;^UTILITY(U,$J,358.3,36268,1,0)
+ ;;^UTILITY(U,$J,358.3,34139,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,34139,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,34139,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,34140,0)
+ ;;=F05.^^134^1724^13
+ ;;^UTILITY(U,$J,358.3,34140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36268,1,3,0)
- ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36268,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,36268,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,36269,0)
- ;;=C34.92^^137^1755^48
- ;;^UTILITY(U,$J,358.3,36269,1,0)
+ ;;^UTILITY(U,$J,358.3,34140,1,3,0)
+ ;;=3^Delirium d/t Physiological Cond
+ ;;^UTILITY(U,$J,358.3,34140,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,34140,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,34141,0)
+ ;;=R41.0^^134^1724^19
+ ;;^UTILITY(U,$J,358.3,34141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36269,1,3,0)
- ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,36269,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,36269,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,36270,0)
- ;;=C38.4^^137^1755^47
- ;;^UTILITY(U,$J,358.3,36270,1,0)
+ ;;^UTILITY(U,$J,358.3,34141,1,3,0)
+ ;;=3^Disorientation,Unspec
+ ;;^UTILITY(U,$J,358.3,34141,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,34141,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,34142,0)
+ ;;=G31.09^^134^1724^20
+ ;;^UTILITY(U,$J,358.3,34142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36270,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,36270,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,36270,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,36271,0)
- ;;=C39.9^^137^1755^43
- ;;^UTILITY(U,$J,358.3,36271,1,0)
+ ;;^UTILITY(U,$J,358.3,34142,1,3,0)
+ ;;=3^Frontotemporal Disease
+ ;;^UTILITY(U,$J,358.3,34142,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,34142,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,34143,0)
+ ;;=G90.3^^134^1724^24
+ ;;^UTILITY(U,$J,358.3,34143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36271,1,3,0)
- ;;=3^Malig Neop Lower Respiratory Tract
- ;;^UTILITY(U,$J,358.3,36271,1,4,0)
- ;;=4^C39.9
- ;;^UTILITY(U,$J,358.3,36271,2)
- ;;=^5000972
- ;;^UTILITY(U,$J,358.3,36272,0)
- ;;=R76.11^^137^1755^87
- ;;^UTILITY(U,$J,358.3,36272,1,0)
+ ;;^UTILITY(U,$J,358.3,34143,1,3,0)
+ ;;=3^Multi-System Degeneration of Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,34143,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,34143,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,34144,0)
+ ;;=A81.9^^134^1724^28
+ ;;^UTILITY(U,$J,358.3,34144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36272,1,3,0)
- ;;=3^Reaction to Skin Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,36272,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,36272,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,36273,0)
- ;;=E66.9^^137^1755^65
- ;;^UTILITY(U,$J,358.3,36273,1,0)
+ ;;^UTILITY(U,$J,358.3,34144,1,3,0)
+ ;;=3^Prion Disease
+ ;;^UTILITY(U,$J,358.3,34144,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,34144,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,34145,0)
+ ;;=S06.2X9S^^134^1724^31
+ ;;^UTILITY(U,$J,358.3,34145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36273,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,36273,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,36273,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,36274,0)
- ;;=I26.99^^137^1755^79
- ;;^UTILITY(U,$J,358.3,36274,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36274,1,3,0)
- ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,34145,1,3,0)
+ ;;=3^TBI,Diffuse w/ Unspec Duration of LOC,Sequela
+ ;;^UTILITY(U,$J,358.3,34145,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,34145,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,34146,0)
+ ;;=R41.9^^134^1724^25

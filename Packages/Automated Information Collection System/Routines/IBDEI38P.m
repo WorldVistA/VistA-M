@@ -1,122 +1,120 @@
-IBDEI38P ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54453,1,0)
+ ;;^UTILITY(U,$J,358.3,51722,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,51722,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,51722,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,51723,0)
+ ;;=F14.250^^193^2511^12
+ ;;^UTILITY(U,$J,358.3,51723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54453,1,3,0)
- ;;=3^Erythema Elevatum Diutinum
- ;;^UTILITY(U,$J,358.3,54453,1,4,0)
- ;;=4^L95.1
- ;;^UTILITY(U,$J,358.3,54453,2)
- ;;=^5009477
- ;;^UTILITY(U,$J,358.3,54454,0)
- ;;=L97.111^^256^2764^226
- ;;^UTILITY(U,$J,358.3,54454,1,0)
+ ;;^UTILITY(U,$J,358.3,51723,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,51723,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,51723,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,51724,0)
+ ;;=F14.24^^193^2511^16
+ ;;^UTILITY(U,$J,358.3,51724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54454,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,54454,1,4,0)
- ;;=4^L97.111
- ;;^UTILITY(U,$J,358.3,54454,2)
- ;;=^5009485
- ;;^UTILITY(U,$J,358.3,54455,0)
- ;;=L97.112^^256^2764^227
- ;;^UTILITY(U,$J,358.3,54455,1,0)
+ ;;^UTILITY(U,$J,358.3,51724,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,51724,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,51724,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,51725,0)
+ ;;=F14.23^^193^2511^25
+ ;;^UTILITY(U,$J,358.3,51725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54455,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,54455,1,4,0)
- ;;=4^L97.112
- ;;^UTILITY(U,$J,358.3,54455,2)
- ;;=^5009486
- ;;^UTILITY(U,$J,358.3,54456,0)
- ;;=L97.113^^256^2764^228
- ;;^UTILITY(U,$J,358.3,54456,1,0)
+ ;;^UTILITY(U,$J,358.3,51725,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,51725,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,51725,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,51726,0)
+ ;;=F14.229^^193^2511^22
+ ;;^UTILITY(U,$J,358.3,51726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54456,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,54456,1,4,0)
- ;;=4^L97.113
- ;;^UTILITY(U,$J,358.3,54456,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,54457,0)
- ;;=L97.114^^256^2764^229
- ;;^UTILITY(U,$J,358.3,54457,1,0)
+ ;;^UTILITY(U,$J,358.3,51726,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,51726,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,51726,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,51727,0)
+ ;;=F14.222^^193^2511^20
+ ;;^UTILITY(U,$J,358.3,51727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54457,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,54457,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,54457,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,54458,0)
- ;;=L97.119^^256^2764^230
- ;;^UTILITY(U,$J,358.3,54458,1,0)
+ ;;^UTILITY(U,$J,358.3,51727,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,51727,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,51727,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,51728,0)
+ ;;=F14.221^^193^2511^19
+ ;;^UTILITY(U,$J,358.3,51728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54458,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,54458,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,54458,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,54459,0)
- ;;=L97.121^^256^2764^196
- ;;^UTILITY(U,$J,358.3,54459,1,0)
+ ;;^UTILITY(U,$J,358.3,51728,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,51728,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,51728,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,51729,0)
+ ;;=F14.220^^193^2511^21
+ ;;^UTILITY(U,$J,358.3,51729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54459,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,54459,1,4,0)
- ;;=4^L97.121
- ;;^UTILITY(U,$J,358.3,54459,2)
- ;;=^5009490
- ;;^UTILITY(U,$J,358.3,54460,0)
- ;;=L97.122^^256^2764^197
- ;;^UTILITY(U,$J,358.3,54460,1,0)
+ ;;^UTILITY(U,$J,358.3,51729,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,51729,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,51729,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,51730,0)
+ ;;=F14.20^^193^2511^26
+ ;;^UTILITY(U,$J,358.3,51730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54460,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,54460,1,4,0)
- ;;=4^L97.122
- ;;^UTILITY(U,$J,358.3,54460,2)
- ;;=^5009491
- ;;^UTILITY(U,$J,358.3,54461,0)
- ;;=L97.123^^256^2764^198
- ;;^UTILITY(U,$J,358.3,54461,1,0)
+ ;;^UTILITY(U,$J,358.3,51730,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,51730,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,51730,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,51731,0)
+ ;;=F10.120^^193^2511^1
+ ;;^UTILITY(U,$J,358.3,51731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54461,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,54461,1,4,0)
- ;;=4^L97.123
- ;;^UTILITY(U,$J,358.3,54461,2)
- ;;=^5009492
- ;;^UTILITY(U,$J,358.3,54462,0)
- ;;=L97.124^^256^2764^199
- ;;^UTILITY(U,$J,358.3,54462,1,0)
+ ;;^UTILITY(U,$J,358.3,51731,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,51731,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,51731,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,51732,0)
+ ;;=F10.10^^193^2511^3
+ ;;^UTILITY(U,$J,358.3,51732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54462,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,54462,1,4,0)
- ;;=4^L97.124
- ;;^UTILITY(U,$J,358.3,54462,2)
- ;;=^5009493
- ;;^UTILITY(U,$J,358.3,54463,0)
- ;;=L97.129^^256^2764^200
- ;;^UTILITY(U,$J,358.3,54463,1,0)
+ ;;^UTILITY(U,$J,358.3,51732,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,51732,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,51732,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,51733,0)
+ ;;=F17.201^^193^2511^31
+ ;;^UTILITY(U,$J,358.3,51733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54463,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,54463,1,4,0)
- ;;=4^L97.129
- ;;^UTILITY(U,$J,358.3,54463,2)
- ;;=^5009494
- ;;^UTILITY(U,$J,358.3,54464,0)
- ;;=L97.211^^256^2764^206
- ;;^UTILITY(U,$J,358.3,54464,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54464,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,54464,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,54464,2)
- ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,51733,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,51733,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,51733,2)
+ ;;=^5003361

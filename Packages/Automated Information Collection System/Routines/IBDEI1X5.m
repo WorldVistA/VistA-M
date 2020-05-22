@@ -1,126 +1,124 @@
-IBDEI1X5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1X5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32552,1,3,0)
- ;;=3^Subluxation tarsometatarsal jt lft ft, init
- ;;^UTILITY(U,$J,358.3,32552,1,4,0)
- ;;=4^S93.322A
- ;;^UTILITY(U,$J,358.3,32552,2)
- ;;=^5045753
- ;;^UTILITY(U,$J,358.3,32553,0)
- ;;=S93.321A^^126^1619^45
- ;;^UTILITY(U,$J,358.3,32553,1,0)
+ ;;^UTILITY(U,$J,358.3,30649,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,30650,0)
+ ;;=D63.1^^123^1580^1
+ ;;^UTILITY(U,$J,358.3,30650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32553,1,3,0)
- ;;=3^Subluxation tarsometatarsal jt rt ft, init
- ;;^UTILITY(U,$J,358.3,32553,1,4,0)
- ;;=4^S93.321A
- ;;^UTILITY(U,$J,358.3,32553,2)
- ;;=^5045750
- ;;^UTILITY(U,$J,358.3,32554,0)
- ;;=S93.331A^^126^1619^39
- ;;^UTILITY(U,$J,358.3,32554,1,0)
+ ;;^UTILITY(U,$J,358.3,30650,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,30650,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,30650,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,30651,0)
+ ;;=G60.9^^123^1580^31
+ ;;^UTILITY(U,$J,358.3,30651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32554,1,3,0)
- ;;=3^Subluxation rt ft, oth, init enc
- ;;^UTILITY(U,$J,358.3,32554,1,4,0)
- ;;=4^S93.331A
- ;;^UTILITY(U,$J,358.3,32554,2)
- ;;=^5045768
- ;;^UTILITY(U,$J,358.3,32555,0)
- ;;=S93.332A^^126^1619^28
- ;;^UTILITY(U,$J,358.3,32555,1,0)
+ ;;^UTILITY(U,$J,358.3,30651,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,30651,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,30651,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,30652,0)
+ ;;=I73.9^^123^1580^34
+ ;;^UTILITY(U,$J,358.3,30652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32555,1,3,0)
- ;;=3^Subluxation lft ft, oth, init enc
- ;;^UTILITY(U,$J,358.3,32555,1,4,0)
- ;;=4^S93.332A
- ;;^UTILITY(U,$J,358.3,32555,2)
- ;;=^5137660
- ;;^UTILITY(U,$J,358.3,32556,0)
- ;;=S93.142A^^126^1619^31
- ;;^UTILITY(U,$J,358.3,32556,1,0)
+ ;;^UTILITY(U,$J,358.3,30652,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,30652,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,30652,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,30653,0)
+ ;;=N04.9^^123^1580^30
+ ;;^UTILITY(U,$J,358.3,30653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32556,1,3,0)
- ;;=3^Subluxation of MTP jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,32556,1,4,0)
- ;;=4^S93.142A
- ;;^UTILITY(U,$J,358.3,32556,2)
- ;;=^5045702
- ;;^UTILITY(U,$J,358.3,32557,0)
- ;;=S93.141A^^126^1619^33
- ;;^UTILITY(U,$J,358.3,32557,1,0)
+ ;;^UTILITY(U,$J,358.3,30653,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,30653,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,30653,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,30654,0)
+ ;;=N25.0^^123^1580^35
+ ;;^UTILITY(U,$J,358.3,30654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32557,1,3,0)
- ;;=3^Subluxation of MTP jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,32557,1,4,0)
- ;;=4^S93.141A
- ;;^UTILITY(U,$J,358.3,32557,2)
- ;;=^5045699
- ;;^UTILITY(U,$J,358.3,32558,0)
- ;;=S93.145A^^126^1619^32
- ;;^UTILITY(U,$J,358.3,32558,1,0)
+ ;;^UTILITY(U,$J,358.3,30654,1,3,0)
+ ;;=3^Renal Osteodystrophy
+ ;;^UTILITY(U,$J,358.3,30654,1,4,0)
+ ;;=4^N25.0
+ ;;^UTILITY(U,$J,358.3,30654,2)
+ ;;=^104747
+ ;;^UTILITY(U,$J,358.3,30655,0)
+ ;;=T80.211A^^123^1580^3
+ ;;^UTILITY(U,$J,358.3,30655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32558,1,3,0)
- ;;=3^Subluxation of MTP jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,32558,1,4,0)
- ;;=4^S93.145A
- ;;^UTILITY(U,$J,358.3,32558,2)
- ;;=^5045711
- ;;^UTILITY(U,$J,358.3,32559,0)
- ;;=S93.144A^^126^1619^34
- ;;^UTILITY(U,$J,358.3,32559,1,0)
+ ;;^UTILITY(U,$J,358.3,30655,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30655,1,4,0)
+ ;;=4^T80.211A
+ ;;^UTILITY(U,$J,358.3,30655,2)
+ ;;=^5054350
+ ;;^UTILITY(U,$J,358.3,30656,0)
+ ;;=T80.211D^^123^1580^4
+ ;;^UTILITY(U,$J,358.3,30656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32559,1,3,0)
- ;;=3^Subluxation of MTP jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,32559,1,4,0)
- ;;=4^S93.144A
- ;;^UTILITY(U,$J,358.3,32559,2)
- ;;=^5045708
- ;;^UTILITY(U,$J,358.3,32560,0)
- ;;=S93.131A^^126^1619^37
- ;;^UTILITY(U,$J,358.3,32560,1,0)
+ ;;^UTILITY(U,$J,358.3,30656,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30656,1,4,0)
+ ;;=4^T80.211D
+ ;;^UTILITY(U,$J,358.3,30656,2)
+ ;;=^5054351
+ ;;^UTILITY(U,$J,358.3,30657,0)
+ ;;=E83.59^^123^1580^5
+ ;;^UTILITY(U,$J,358.3,30657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32560,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,32560,1,4,0)
- ;;=4^S93.131A
- ;;^UTILITY(U,$J,358.3,32560,2)
- ;;=^5045678
- ;;^UTILITY(U,$J,358.3,32561,0)
- ;;=S93.132A^^126^1619^35
- ;;^UTILITY(U,$J,358.3,32561,1,0)
+ ;;^UTILITY(U,$J,358.3,30657,1,3,0)
+ ;;=3^Calciphylaxis
+ ;;^UTILITY(U,$J,358.3,30657,1,4,0)
+ ;;=4^E83.59
+ ;;^UTILITY(U,$J,358.3,30657,2)
+ ;;=^5003006
+ ;;^UTILITY(U,$J,358.3,30658,0)
+ ;;=T85.621A^^123^1580^8
+ ;;^UTILITY(U,$J,358.3,30658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32561,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,32561,1,4,0)
- ;;=4^S93.132A
- ;;^UTILITY(U,$J,358.3,32561,2)
- ;;=^5045681
- ;;^UTILITY(U,$J,358.3,32562,0)
- ;;=S93.134A^^126^1619^38
- ;;^UTILITY(U,$J,358.3,32562,1,0)
+ ;;^UTILITY(U,$J,358.3,30658,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30658,1,4,0)
+ ;;=4^T85.621A
+ ;;^UTILITY(U,$J,358.3,30658,2)
+ ;;=^5055625
+ ;;^UTILITY(U,$J,358.3,30659,0)
+ ;;=T85.621D^^123^1580^9
+ ;;^UTILITY(U,$J,358.3,30659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32562,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,32562,1,4,0)
- ;;=4^S93.134A
- ;;^UTILITY(U,$J,358.3,32562,2)
- ;;=^5045687
- ;;^UTILITY(U,$J,358.3,32563,0)
- ;;=S93.135A^^126^1619^36
- ;;^UTILITY(U,$J,358.3,32563,1,0)
+ ;;^UTILITY(U,$J,358.3,30659,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30659,1,4,0)
+ ;;=4^T85.621D
+ ;;^UTILITY(U,$J,358.3,30659,2)
+ ;;=^5055626
+ ;;^UTILITY(U,$J,358.3,30660,0)
+ ;;=K65.0^^123^1580^10
+ ;;^UTILITY(U,$J,358.3,30660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32563,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,32563,1,4,0)
- ;;=4^S93.135A
- ;;^UTILITY(U,$J,358.3,32563,2)
- ;;=^5045690
- ;;^UTILITY(U,$J,358.3,32564,0)
- ;;=S93.101A^^126^1619^41
- ;;^UTILITY(U,$J,358.3,32564,1,0)
+ ;;^UTILITY(U,$J,358.3,30660,1,3,0)
+ ;;=3^Generalized (acute) Peritonitis
+ ;;^UTILITY(U,$J,358.3,30660,1,4,0)
+ ;;=4^K65.0
+ ;;^UTILITY(U,$J,358.3,30660,2)
+ ;;=^332799
+ ;;^UTILITY(U,$J,358.3,30661,0)
+ ;;=G60.9^^123^1580^14
+ ;;^UTILITY(U,$J,358.3,30661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32564,1,3,0)
- ;;=3^Subluxation rt toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,30661,1,3,0)
+ ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,30661,1,4,0)
+ ;;=4^G60.9

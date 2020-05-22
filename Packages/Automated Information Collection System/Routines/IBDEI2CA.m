@@ -1,132 +1,126 @@
-IBDEI2CA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39666,1,4,0)
- ;;=4^H02.114
- ;;^UTILITY(U,$J,358.3,39666,2)
- ;;=^5004310
- ;;^UTILITY(U,$J,358.3,39667,0)
- ;;=H02.112^^153^1928^19
- ;;^UTILITY(U,$J,358.3,39667,1,0)
+ ;;^UTILITY(U,$J,358.3,37370,0)
+ ;;=M24.872^^146^1915^47
+ ;;^UTILITY(U,$J,358.3,37370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39667,1,3,0)
- ;;=3^Cicatricial Ectropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39667,1,4,0)
- ;;=4^H02.112
- ;;^UTILITY(U,$J,358.3,39667,2)
- ;;=^5004308
- ;;^UTILITY(U,$J,358.3,39668,0)
- ;;=H02.111^^153^1928^20
- ;;^UTILITY(U,$J,358.3,39668,1,0)
+ ;;^UTILITY(U,$J,358.3,37370,1,3,0)
+ ;;=3^Derangement,Left Ankle Joint NEC
+ ;;^UTILITY(U,$J,358.3,37370,1,4,0)
+ ;;=4^M24.872
+ ;;^UTILITY(U,$J,358.3,37370,2)
+ ;;=^5011469
+ ;;^UTILITY(U,$J,358.3,37371,0)
+ ;;=L30.1^^146^1915^74
+ ;;^UTILITY(U,$J,358.3,37371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39668,1,3,0)
- ;;=3^Cicatricial Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39668,1,4,0)
- ;;=4^H02.111
- ;;^UTILITY(U,$J,358.3,39668,2)
- ;;=^5004307
- ;;^UTILITY(U,$J,358.3,39669,0)
- ;;=H02.015^^153^1928^21
- ;;^UTILITY(U,$J,358.3,39669,1,0)
+ ;;^UTILITY(U,$J,358.3,37371,1,3,0)
+ ;;=3^Dyshidrosis [pompholyx]
+ ;;^UTILITY(U,$J,358.3,37371,1,4,0)
+ ;;=4^L30.1
+ ;;^UTILITY(U,$J,358.3,37371,2)
+ ;;=^5009154
+ ;;^UTILITY(U,$J,358.3,37372,0)
+ ;;=L98.9^^146^1915^73
+ ;;^UTILITY(U,$J,358.3,37372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39669,1,3,0)
- ;;=3^Cicatricial Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39669,1,4,0)
- ;;=4^H02.015
- ;;^UTILITY(U,$J,358.3,39669,2)
- ;;=^5133397
- ;;^UTILITY(U,$J,358.3,39670,0)
- ;;=H02.014^^153^1928^22
- ;;^UTILITY(U,$J,358.3,39670,1,0)
+ ;;^UTILITY(U,$J,358.3,37372,1,3,0)
+ ;;=3^Disorder of skin and subcut tissue, unspec
+ ;;^UTILITY(U,$J,358.3,37372,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,37372,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,37373,0)
+ ;;=Q72.891^^146^1915^37
+ ;;^UTILITY(U,$J,358.3,37373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39670,1,3,0)
- ;;=3^Cicatricial Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39670,1,4,0)
- ;;=4^H02.014
- ;;^UTILITY(U,$J,358.3,39670,2)
- ;;=^5004281
- ;;^UTILITY(U,$J,358.3,39671,0)
- ;;=H02.012^^153^1928^23
- ;;^UTILITY(U,$J,358.3,39671,1,0)
+ ;;^UTILITY(U,$J,358.3,37373,1,3,0)
+ ;;=3^Defects,Reduction Right Lower Limb NEC
+ ;;^UTILITY(U,$J,358.3,37373,1,4,0)
+ ;;=4^Q72.891
+ ;;^UTILITY(U,$J,358.3,37373,2)
+ ;;=^5018985
+ ;;^UTILITY(U,$J,358.3,37374,0)
+ ;;=Q72.892^^146^1915^36
+ ;;^UTILITY(U,$J,358.3,37374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39671,1,3,0)
- ;;=3^Cicatricial Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39671,1,4,0)
- ;;=4^H02.012
- ;;^UTILITY(U,$J,358.3,39671,2)
- ;;=^5004279
- ;;^UTILITY(U,$J,358.3,39672,0)
- ;;=H02.011^^153^1928^24
- ;;^UTILITY(U,$J,358.3,39672,1,0)
+ ;;^UTILITY(U,$J,358.3,37374,1,3,0)
+ ;;=3^Defects,Reduction Left Lower Limb NEC
+ ;;^UTILITY(U,$J,358.3,37374,1,4,0)
+ ;;=4^Q72.892
+ ;;^UTILITY(U,$J,358.3,37374,2)
+ ;;=^5134172
+ ;;^UTILITY(U,$J,358.3,37375,0)
+ ;;=Q72.893^^146^1915^35
+ ;;^UTILITY(U,$J,358.3,37375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39672,1,3,0)
- ;;=3^Cicatricial Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39672,1,4,0)
- ;;=4^H02.011
- ;;^UTILITY(U,$J,358.3,39672,2)
- ;;=^5004278
- ;;^UTILITY(U,$J,358.3,39673,0)
- ;;=S00.12XA^^153^1928^25
- ;;^UTILITY(U,$J,358.3,39673,1,0)
+ ;;^UTILITY(U,$J,358.3,37375,1,3,0)
+ ;;=3^Defects,Reduction Bilateral Lower Limb NEC
+ ;;^UTILITY(U,$J,358.3,37375,1,4,0)
+ ;;=4^Q72.893
+ ;;^UTILITY(U,$J,358.3,37375,2)
+ ;;=^5018986
+ ;;^UTILITY(U,$J,358.3,37376,0)
+ ;;=M21.962^^146^1915^43
+ ;;^UTILITY(U,$J,358.3,37376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39673,1,3,0)
- ;;=3^Contusion Left Eyelid/Pericocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,39673,1,4,0)
- ;;=4^S00.12XA
- ;;^UTILITY(U,$J,358.3,39673,2)
- ;;=^5019781
- ;;^UTILITY(U,$J,358.3,39674,0)
- ;;=S00.11XA^^153^1928^26
- ;;^UTILITY(U,$J,358.3,39674,1,0)
+ ;;^UTILITY(U,$J,358.3,37376,1,3,0)
+ ;;=3^Deformity,Left Lower Leg,Acquired
+ ;;^UTILITY(U,$J,358.3,37376,1,4,0)
+ ;;=4^M21.962
+ ;;^UTILITY(U,$J,358.3,37376,2)
+ ;;=^5011172
+ ;;^UTILITY(U,$J,358.3,37377,0)
+ ;;=M21.961^^146^1915^44
+ ;;^UTILITY(U,$J,358.3,37377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39674,1,3,0)
- ;;=3^Contusion Right Eyelid/Pericocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,39674,1,4,0)
- ;;=4^S00.11XA
- ;;^UTILITY(U,$J,358.3,39674,2)
- ;;=^5019778
- ;;^UTILITY(U,$J,358.3,39675,0)
- ;;=H02.825^^153^1928^27
- ;;^UTILITY(U,$J,358.3,39675,1,0)
+ ;;^UTILITY(U,$J,358.3,37377,1,3,0)
+ ;;=3^Deformity,Right Lower Leg,Acquired
+ ;;^UTILITY(U,$J,358.3,37377,1,4,0)
+ ;;=4^M21.961
+ ;;^UTILITY(U,$J,358.3,37377,2)
+ ;;=^5011171
+ ;;^UTILITY(U,$J,358.3,37378,0)
+ ;;=M21.072^^146^1915^45
+ ;;^UTILITY(U,$J,358.3,37378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39675,1,3,0)
- ;;=3^Cysts Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39675,1,4,0)
- ;;=4^H02.825
- ;;^UTILITY(U,$J,358.3,39675,2)
- ;;=^5133441
- ;;^UTILITY(U,$J,358.3,39676,0)
- ;;=H02.824^^153^1928^28
- ;;^UTILITY(U,$J,358.3,39676,1,0)
+ ;;^UTILITY(U,$J,358.3,37378,1,3,0)
+ ;;=3^Deformity,Valgus Left Ankle NEC
+ ;;^UTILITY(U,$J,358.3,37378,1,4,0)
+ ;;=4^M21.072
+ ;;^UTILITY(U,$J,358.3,37378,2)
+ ;;=^5011070
+ ;;^UTILITY(U,$J,358.3,37379,0)
+ ;;=M21.071^^146^1915^46
+ ;;^UTILITY(U,$J,358.3,37379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39676,1,3,0)
- ;;=3^Cysts Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39676,1,4,0)
- ;;=4^H02.824
- ;;^UTILITY(U,$J,358.3,39676,2)
- ;;=^5004416
- ;;^UTILITY(U,$J,358.3,39677,0)
- ;;=H02.822^^153^1928^29
- ;;^UTILITY(U,$J,358.3,39677,1,0)
+ ;;^UTILITY(U,$J,358.3,37379,1,3,0)
+ ;;=3^Deformity,Valgus Right Ankle NEC
+ ;;^UTILITY(U,$J,358.3,37379,1,4,0)
+ ;;=4^M21.071
+ ;;^UTILITY(U,$J,358.3,37379,2)
+ ;;=^5011069
+ ;;^UTILITY(U,$J,358.3,37380,0)
+ ;;=Q66.89^^146^1915^38
+ ;;^UTILITY(U,$J,358.3,37380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39677,1,3,0)
- ;;=3^Cysts Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,39677,1,4,0)
- ;;=4^H02.822
- ;;^UTILITY(U,$J,358.3,39677,2)
- ;;=^5004414
- ;;^UTILITY(U,$J,358.3,39678,0)
- ;;=H02.821^^153^1928^30
- ;;^UTILITY(U,$J,358.3,39678,1,0)
+ ;;^UTILITY(U,$J,358.3,37380,1,3,0)
+ ;;=3^Deformitis of Feet,Congenital NEC
+ ;;^UTILITY(U,$J,358.3,37380,1,4,0)
+ ;;=4^Q66.89
+ ;;^UTILITY(U,$J,358.3,37380,2)
+ ;;=^5018874
+ ;;^UTILITY(U,$J,358.3,37381,0)
+ ;;=E11.40^^146^1915^28
+ ;;^UTILITY(U,$J,358.3,37381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39678,1,3,0)
- ;;=3^Cysts Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,39678,1,4,0)
- ;;=4^H02.821
- ;;^UTILITY(U,$J,358.3,39678,2)
- ;;=^5004413
- ;;^UTILITY(U,$J,358.3,39679,0)
- ;;=H02.835^^153^1928^31
- ;;^UTILITY(U,$J,358.3,39679,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37381,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,37381,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,37381,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,37382,0)
+ ;;=E11.41^^146^1915^25

@@ -1,134 +1,122 @@
-IBDEI1M6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1M6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27385,1,0)
+ ;;^UTILITY(U,$J,358.3,25791,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,25791,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,25792,0)
+ ;;=S56.416A^^107^1224^34
+ ;;^UTILITY(U,$J,358.3,25792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27385,1,3,0)
- ;;=3^Proteinuria,Unspec
- ;;^UTILITY(U,$J,358.3,27385,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,27385,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,27386,0)
- ;;=D51.8^^106^1352^2
- ;;^UTILITY(U,$J,358.3,27386,1,0)
+ ;;^UTILITY(U,$J,358.3,25792,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25792,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,25792,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,25793,0)
+ ;;=S66.912A^^107^1224^22
+ ;;^UTILITY(U,$J,358.3,25793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27386,1,3,0)
- ;;=3^Anemia,Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,27386,1,4,0)
- ;;=4^D51.8
- ;;^UTILITY(U,$J,358.3,27386,2)
- ;;=^5002288
- ;;^UTILITY(U,$J,358.3,27387,0)
- ;;=D52.9^^106^1352^1
- ;;^UTILITY(U,$J,358.3,27387,1,0)
+ ;;^UTILITY(U,$J,358.3,25793,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,25793,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,25793,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,25794,0)
+ ;;=S66.911A^^107^1224^42
+ ;;^UTILITY(U,$J,358.3,25794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27387,1,3,0)
- ;;=3^Anemia,Folate Deficiency
- ;;^UTILITY(U,$J,358.3,27387,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,27387,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,27388,0)
- ;;=I10.^^106^1353^12
- ;;^UTILITY(U,$J,358.3,27388,1,0)
+ ;;^UTILITY(U,$J,358.3,25794,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,25794,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,25794,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,25795,0)
+ ;;=S63.501A^^107^1224^18
+ ;;^UTILITY(U,$J,358.3,25795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27388,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,27388,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,27388,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,27389,0)
- ;;=I15.0^^106^1353^13
- ;;^UTILITY(U,$J,358.3,27389,1,0)
+ ;;^UTILITY(U,$J,358.3,25795,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,25795,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,25795,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,25796,0)
+ ;;=S63.502A^^107^1224^7
+ ;;^UTILITY(U,$J,358.3,25796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27389,1,3,0)
- ;;=3^Hypertension,Renovascular
- ;;^UTILITY(U,$J,358.3,27389,1,4,0)
- ;;=4^I15.0
- ;;^UTILITY(U,$J,358.3,27389,2)
- ;;=^5007071
- ;;^UTILITY(U,$J,358.3,27390,0)
- ;;=I13.11^^106^1353^8
- ;;^UTILITY(U,$J,358.3,27390,1,0)
+ ;;^UTILITY(U,$J,358.3,25796,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,25796,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,25796,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,25797,0)
+ ;;=S83.8X1A^^107^1224^16
+ ;;^UTILITY(U,$J,358.3,25797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27390,1,3,0)
- ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 5 Chr Kidney/ESRD
- ;;^UTILITY(U,$J,358.3,27390,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,27390,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,27391,0)
- ;;=I13.2^^106^1353^7
- ;;^UTILITY(U,$J,358.3,27391,1,0)
+ ;;^UTILITY(U,$J,358.3,25797,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,25797,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,25797,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,25798,0)
+ ;;=S83.8X2A^^107^1224^5
+ ;;^UTILITY(U,$J,358.3,25798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27391,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
- ;;^UTILITY(U,$J,358.3,27391,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,27391,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,27392,0)
- ;;=I70.1^^106^1353^3
- ;;^UTILITY(U,$J,358.3,27392,1,0)
+ ;;^UTILITY(U,$J,358.3,25798,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,25798,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,25798,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,25799,0)
+ ;;=S86.211A^^107^1224^47
+ ;;^UTILITY(U,$J,358.3,25799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27392,1,3,0)
- ;;=3^Atherosclerosis of Renal Artery
- ;;^UTILITY(U,$J,358.3,27392,1,4,0)
- ;;=4^I70.1
- ;;^UTILITY(U,$J,358.3,27392,2)
- ;;=^269760
- ;;^UTILITY(U,$J,358.3,27393,0)
- ;;=I77.3^^106^1353^2
- ;;^UTILITY(U,$J,358.3,27393,1,0)
+ ;;^UTILITY(U,$J,358.3,25799,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,25799,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,25799,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,25800,0)
+ ;;=S86.212A^^107^1224^27
+ ;;^UTILITY(U,$J,358.3,25800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27393,1,3,0)
- ;;=3^Arterial Fibromuscular Dysplasia
- ;;^UTILITY(U,$J,358.3,27393,1,4,0)
- ;;=4^I77.3
- ;;^UTILITY(U,$J,358.3,27393,2)
- ;;=^5007812
- ;;^UTILITY(U,$J,358.3,27394,0)
- ;;=E26.02^^106^1353^5
- ;;^UTILITY(U,$J,358.3,27394,1,0)
+ ;;^UTILITY(U,$J,358.3,25800,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,25800,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,25800,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,25801,0)
+ ;;=S86.311A^^107^1224^49
+ ;;^UTILITY(U,$J,358.3,25801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27394,1,3,0)
- ;;=3^Glucocorticoid-Remediable Aldosteronism
- ;;^UTILITY(U,$J,358.3,27394,1,4,0)
- ;;=4^E26.02
- ;;^UTILITY(U,$J,358.3,27394,2)
- ;;=^329904
- ;;^UTILITY(U,$J,358.3,27395,0)
- ;;=I12.9^^106^1353^14
- ;;^UTILITY(U,$J,358.3,27395,1,0)
+ ;;^UTILITY(U,$J,358.3,25801,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,25801,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,25801,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,25802,0)
+ ;;=S86.312A^^107^1224^29
+ ;;^UTILITY(U,$J,358.3,25802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27395,1,3,0)
- ;;=3^Hypertensive CKD Stage 1-4
- ;;^UTILITY(U,$J,358.3,27395,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,27395,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,27396,0)
- ;;=I12.0^^106^1353^15
- ;;^UTILITY(U,$J,358.3,27396,1,0)
+ ;;^UTILITY(U,$J,358.3,25802,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,25802,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,25802,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,25803,0)
+ ;;=S86.811A^^107^1224^48
+ ;;^UTILITY(U,$J,358.3,25803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27396,1,3,0)
- ;;=3^Hypertensive CKD Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,27396,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,27396,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,27397,0)
- ;;=I13.0^^106^1353^6
- ;;^UTILITY(U,$J,358.3,27397,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27397,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
- ;;^UTILITY(U,$J,358.3,27397,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,27397,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,27398,0)
- ;;=I13.10^^106^1353^9

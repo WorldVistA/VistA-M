@@ -1,130 +1,122 @@
-IBDEI2JO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43165,1,0)
+ ;;^UTILITY(U,$J,358.3,40627,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,40627,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,40628,0)
+ ;;=S86.811A^^152^2013^48
+ ;;^UTILITY(U,$J,358.3,40628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43165,1,3,0)
- ;;=3^Circulatory System Surgery Aftercare
- ;;^UTILITY(U,$J,358.3,43165,1,4,0)
- ;;=4^Z48.812
- ;;^UTILITY(U,$J,358.3,43165,2)
- ;;=^5063049
- ;;^UTILITY(U,$J,358.3,43166,0)
- ;;=Z09.^^164^2062^2
- ;;^UTILITY(U,$J,358.3,43166,1,0)
+ ;;^UTILITY(U,$J,358.3,40628,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,40628,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,40628,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,40629,0)
+ ;;=S86.812A^^152^2013^28
+ ;;^UTILITY(U,$J,358.3,40629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43166,1,3,0)
- ;;=3^F/U Exam Aftr Tx for Cond Oth Than Malig Neop
- ;;^UTILITY(U,$J,358.3,43166,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,43166,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,43167,0)
- ;;=I25.10^^164^2063^2
- ;;^UTILITY(U,$J,358.3,43167,1,0)
+ ;;^UTILITY(U,$J,358.3,40629,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,40629,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,40629,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,40630,0)
+ ;;=S86.111A^^152^2013^50
+ ;;^UTILITY(U,$J,358.3,40630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43167,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43167,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,43167,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,43168,0)
- ;;=I25.110^^164^2063^3
- ;;^UTILITY(U,$J,358.3,43168,1,0)
+ ;;^UTILITY(U,$J,358.3,40630,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,40630,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,40630,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,40631,0)
+ ;;=S86.112A^^152^2013^30
+ ;;^UTILITY(U,$J,358.3,40631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43168,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43168,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,43168,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,43169,0)
- ;;=I25.111^^164^2063^4
- ;;^UTILITY(U,$J,358.3,43169,1,0)
+ ;;^UTILITY(U,$J,358.3,40631,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,40631,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,40631,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,40632,0)
+ ;;=S83.401A^^152^2013^15
+ ;;^UTILITY(U,$J,358.3,40632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43169,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Ang Pctrs w/ Spasm
- ;;^UTILITY(U,$J,358.3,43169,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,43169,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,43170,0)
- ;;=I25.118^^164^2063^5
- ;;^UTILITY(U,$J,358.3,43170,1,0)
+ ;;^UTILITY(U,$J,358.3,40632,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,40632,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,40632,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,40633,0)
+ ;;=S83.402A^^152^2013^4
+ ;;^UTILITY(U,$J,358.3,40633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43170,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43170,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,43170,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,43171,0)
- ;;=I25.119^^164^2063^6
- ;;^UTILITY(U,$J,358.3,43171,1,0)
+ ;;^UTILITY(U,$J,358.3,40633,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,40633,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,40633,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,40634,0)
+ ;;=S93.402A^^152^2013^2
+ ;;^UTILITY(U,$J,358.3,40634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43171,1,3,0)
- ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,43171,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,43171,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,43172,0)
- ;;=I50.9^^164^2063^12
- ;;^UTILITY(U,$J,358.3,43172,1,0)
+ ;;^UTILITY(U,$J,358.3,40634,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,40634,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,40634,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,40635,0)
+ ;;=S93.401A^^152^2013^13
+ ;;^UTILITY(U,$J,358.3,40635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43172,1,3,0)
- ;;=3^Heart Failure,Comp/Uncomp
- ;;^UTILITY(U,$J,358.3,43172,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,43172,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,43173,0)
- ;;=I65.21^^164^2063^16
- ;;^UTILITY(U,$J,358.3,43173,1,0)
+ ;;^UTILITY(U,$J,358.3,40635,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,40635,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,40635,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,40636,0)
+ ;;=S56.511A^^152^2013^39
+ ;;^UTILITY(U,$J,358.3,40636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43173,1,3,0)
- ;;=3^Occl & Sten,Rt Carotid Artery
- ;;^UTILITY(U,$J,358.3,43173,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,43173,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,43174,0)
- ;;=I65.22^^164^2063^14
- ;;^UTILITY(U,$J,358.3,43174,1,0)
+ ;;^UTILITY(U,$J,358.3,40636,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,40636,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,40636,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,40637,0)
+ ;;=S56.512A^^152^2013^19
+ ;;^UTILITY(U,$J,358.3,40637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43174,1,3,0)
- ;;=3^Occl & Sten,Lt Carotid Artery
- ;;^UTILITY(U,$J,358.3,43174,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,43174,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,43175,0)
- ;;=I65.23^^164^2063^13
- ;;^UTILITY(U,$J,358.3,43175,1,0)
+ ;;^UTILITY(U,$J,358.3,40637,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,40637,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,40637,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,40638,0)
+ ;;=S13.8XXA^^152^2013^10
+ ;;^UTILITY(U,$J,358.3,40638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43175,1,3,0)
- ;;=3^Occl & Sten,Bil Carotid Arteries
- ;;^UTILITY(U,$J,358.3,43175,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,43175,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,43176,0)
- ;;=I65.8^^164^2063^15
- ;;^UTILITY(U,$J,358.3,43176,1,0)
+ ;;^UTILITY(U,$J,358.3,40638,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40638,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,40638,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,40639,0)
+ ;;=S16.1XXA^^152^2013^37
+ ;;^UTILITY(U,$J,358.3,40639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43176,1,3,0)
- ;;=3^Occl & Sten,Precerb Arteries
- ;;^UTILITY(U,$J,358.3,43176,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,43176,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,43177,0)
- ;;=I70.211^^164^2063^9
- ;;^UTILITY(U,$J,358.3,43177,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43177,1,3,0)
- ;;=3^Athscl Ntv Art,Rt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,43177,1,4,0)
- ;;=4^I70.211

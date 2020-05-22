@@ -1,136 +1,122 @@
-IBDEI25J ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25J ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36506,1,0)
+ ;;^UTILITY(U,$J,358.3,34367,2)
+ ;;=^5003113
+ ;;^UTILITY(U,$J,358.3,34368,0)
+ ;;=F10.159^^134^1744^13
+ ;;^UTILITY(U,$J,358.3,34368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36506,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,36506,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,36506,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,36507,0)
- ;;=R59.0^^137^1765^3
- ;;^UTILITY(U,$J,358.3,36507,1,0)
+ ;;^UTILITY(U,$J,358.3,34368,1,3,0)
+ ;;=3^Alcohol Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34368,1,4,0)
+ ;;=4^F10.159
+ ;;^UTILITY(U,$J,358.3,34368,2)
+ ;;=^5003075
+ ;;^UTILITY(U,$J,358.3,34369,0)
+ ;;=F10.259^^134^1744^14
+ ;;^UTILITY(U,$J,358.3,34369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36507,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,36507,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,36507,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,36508,0)
- ;;=D64.9^^137^1765^1
- ;;^UTILITY(U,$J,358.3,36508,1,0)
+ ;;^UTILITY(U,$J,358.3,34369,1,3,0)
+ ;;=3^Alcohol Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34369,1,4,0)
+ ;;=4^F10.259
+ ;;^UTILITY(U,$J,358.3,34369,2)
+ ;;=^5003093
+ ;;^UTILITY(U,$J,358.3,34370,0)
+ ;;=F10.959^^134^1744^15
+ ;;^UTILITY(U,$J,358.3,34370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36508,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,36508,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,36508,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,36509,0)
- ;;=R79.9^^137^1766^1
- ;;^UTILITY(U,$J,358.3,36509,1,0)
+ ;;^UTILITY(U,$J,358.3,34370,1,3,0)
+ ;;=3^Alcohol Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34370,1,4,0)
+ ;;=4^F10.959
+ ;;^UTILITY(U,$J,358.3,34370,2)
+ ;;=^5003107
+ ;;^UTILITY(U,$J,358.3,34371,0)
+ ;;=F10.181^^134^1744^16
+ ;;^UTILITY(U,$J,358.3,34371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36509,1,3,0)
- ;;=3^Abnormal Finding of Blood Chemistry,Unspec
- ;;^UTILITY(U,$J,358.3,36509,1,4,0)
- ;;=4^R79.9
- ;;^UTILITY(U,$J,358.3,36509,2)
- ;;=^5019594
- ;;^UTILITY(U,$J,358.3,36510,0)
- ;;=R78.71^^137^1766^2
- ;;^UTILITY(U,$J,358.3,36510,1,0)
+ ;;^UTILITY(U,$J,358.3,34371,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34371,1,4,0)
+ ;;=4^F10.181
+ ;;^UTILITY(U,$J,358.3,34371,2)
+ ;;=^5003077
+ ;;^UTILITY(U,$J,358.3,34372,0)
+ ;;=F10.282^^134^1744^20
+ ;;^UTILITY(U,$J,358.3,34372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36510,1,3,0)
- ;;=3^Abnormal Lead Level in Blood
- ;;^UTILITY(U,$J,358.3,36510,1,4,0)
- ;;=4^R78.71
- ;;^UTILITY(U,$J,358.3,36510,2)
- ;;=^5019586
- ;;^UTILITY(U,$J,358.3,36511,0)
- ;;=R79.0^^137^1766^3
- ;;^UTILITY(U,$J,358.3,36511,1,0)
+ ;;^UTILITY(U,$J,358.3,34372,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34372,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,34372,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,34373,0)
+ ;;=F10.982^^134^1744^21
+ ;;^UTILITY(U,$J,358.3,34373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36511,1,3,0)
- ;;=3^Abnormal Level of Blood Mineral
- ;;^UTILITY(U,$J,358.3,36511,1,4,0)
- ;;=4^R79.0
- ;;^UTILITY(U,$J,358.3,36511,2)
- ;;=^5019590
- ;;^UTILITY(U,$J,358.3,36512,0)
- ;;=R78.79^^137^1766^4
- ;;^UTILITY(U,$J,358.3,36512,1,0)
+ ;;^UTILITY(U,$J,358.3,34373,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34373,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,34373,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,34374,0)
+ ;;=F10.281^^134^1744^17
+ ;;^UTILITY(U,$J,358.3,34374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36512,1,3,0)
- ;;=3^Abnormal Level of Heavy Metals in Blood
- ;;^UTILITY(U,$J,358.3,36512,1,4,0)
- ;;=4^R78.79
- ;;^UTILITY(U,$J,358.3,36512,2)
- ;;=^5019587
- ;;^UTILITY(U,$J,358.3,36513,0)
- ;;=K74.0^^137^1766^7
- ;;^UTILITY(U,$J,358.3,36513,1,0)
+ ;;^UTILITY(U,$J,358.3,34374,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34374,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,34374,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,34375,0)
+ ;;=F10.981^^134^1744^18
+ ;;^UTILITY(U,$J,358.3,34375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36513,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,36513,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,36513,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,36514,0)
- ;;=E79.0^^137^1766^8
- ;;^UTILITY(U,$J,358.3,36514,1,0)
+ ;;^UTILITY(U,$J,358.3,34375,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34375,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,34375,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,34376,0)
+ ;;=F10.182^^134^1744^19
+ ;;^UTILITY(U,$J,358.3,34376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36514,1,3,0)
- ;;=3^Hyperuricemia w/o Signs of Inflam Arthrit/Tophaceous Disease
- ;;^UTILITY(U,$J,358.3,36514,1,4,0)
- ;;=4^E79.0
- ;;^UTILITY(U,$J,358.3,36514,2)
- ;;=^5002978
- ;;^UTILITY(U,$J,358.3,36515,0)
- ;;=K74.69^^137^1766^5
- ;;^UTILITY(U,$J,358.3,36515,1,0)
+ ;;^UTILITY(U,$J,358.3,34376,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34376,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,34376,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,34377,0)
+ ;;=F10.121^^134^1744^22
+ ;;^UTILITY(U,$J,358.3,34377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36515,1,3,0)
- ;;=3^Cirrhosis of Liver NEC
- ;;^UTILITY(U,$J,358.3,36515,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,36515,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,36516,0)
- ;;=K74.60^^137^1766^6
- ;;^UTILITY(U,$J,358.3,36516,1,0)
+ ;;^UTILITY(U,$J,358.3,34377,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34377,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,34377,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,34378,0)
+ ;;=F10.221^^134^1744^23
+ ;;^UTILITY(U,$J,358.3,34378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36516,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,36516,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,36516,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,36517,0)
- ;;=J85.1^^137^1767^41
- ;;^UTILITY(U,$J,358.3,36517,1,0)
+ ;;^UTILITY(U,$J,358.3,34378,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34378,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,34378,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,34379,0)
+ ;;=F10.921^^134^1744^24
+ ;;^UTILITY(U,$J,358.3,34379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36517,1,3,0)
- ;;=3^Abscess of Lung w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,36517,1,4,0)
- ;;=4^J85.1
- ;;^UTILITY(U,$J,358.3,36517,2)
- ;;=^5008306
- ;;^UTILITY(U,$J,358.3,36518,0)
- ;;=J85.2^^137^1767^42
- ;;^UTILITY(U,$J,358.3,36518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36518,1,3,0)
- ;;=3^Abscess of Lung w/o Pneumonia
- ;;^UTILITY(U,$J,358.3,36518,1,4,0)
- ;;=4^J85.2
- ;;^UTILITY(U,$J,358.3,36518,2)
- ;;=^5008307
- ;;^UTILITY(U,$J,358.3,36519,0)
- ;;=H60.513^^137^1767^1
- ;;^UTILITY(U,$J,358.3,36519,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34379,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use D/O

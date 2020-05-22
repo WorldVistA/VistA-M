@@ -1,134 +1,126 @@
-IBDEI27C ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37350,1,0)
+ ;;^UTILITY(U,$J,358.3,35164,1,3,0)
+ ;;=3^Fx,Alveolus of maxilla, sequela
+ ;;^UTILITY(U,$J,358.3,35164,1,4,0)
+ ;;=4^S02.42XS
+ ;;^UTILITY(U,$J,358.3,35164,2)
+ ;;=^5020359
+ ;;^UTILITY(U,$J,358.3,35165,0)
+ ;;=S02.19XS^^137^1797^2
+ ;;^UTILITY(U,$J,358.3,35165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37350,1,3,0)
- ;;=3^Polymyalgia rheumatica
- ;;^UTILITY(U,$J,358.3,37350,1,4,0)
- ;;=4^M35.3
- ;;^UTILITY(U,$J,358.3,37350,2)
- ;;=^96292
- ;;^UTILITY(U,$J,358.3,37351,0)
- ;;=M33.20^^140^1787^204
- ;;^UTILITY(U,$J,358.3,37351,1,0)
+ ;;^UTILITY(U,$J,358.3,35165,1,3,0)
+ ;;=3^Fx,Base of skull NEC, sequela
+ ;;^UTILITY(U,$J,358.3,35165,1,4,0)
+ ;;=4^S02.19XS
+ ;;^UTILITY(U,$J,358.3,35165,2)
+ ;;=^5020305
+ ;;^UTILITY(U,$J,358.3,35166,0)
+ ;;=S02.92XS^^137^1797^4
+ ;;^UTILITY(U,$J,358.3,35166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37351,1,3,0)
- ;;=3^Polymyositis, organ involvement unspec
- ;;^UTILITY(U,$J,358.3,37351,1,4,0)
- ;;=4^M33.20
- ;;^UTILITY(U,$J,358.3,37351,2)
- ;;=^5011770
- ;;^UTILITY(U,$J,358.3,37352,0)
- ;;=M34.0^^140^1787^207
- ;;^UTILITY(U,$J,358.3,37352,1,0)
+ ;;^UTILITY(U,$J,358.3,35166,1,3,0)
+ ;;=3^Fx,Facial bones unspec, sequela
+ ;;^UTILITY(U,$J,358.3,35166,1,4,0)
+ ;;=4^S02.92XS
+ ;;^UTILITY(U,$J,358.3,35166,2)
+ ;;=^5020443
+ ;;^UTILITY(U,$J,358.3,35167,0)
+ ;;=S02.609S^^137^1797^15
+ ;;^UTILITY(U,$J,358.3,35167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37352,1,3,0)
- ;;=3^Progressive systemic sclerosis
- ;;^UTILITY(U,$J,358.3,37352,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,37352,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,37353,0)
- ;;=E20.1^^140^1787^208
- ;;^UTILITY(U,$J,358.3,37353,1,0)
+ ;;^UTILITY(U,$J,358.3,35167,1,3,0)
+ ;;=3^Fx,Mandible, unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,35167,1,4,0)
+ ;;=4^S02.609S
+ ;;^UTILITY(U,$J,358.3,35167,2)
+ ;;=^5020377
+ ;;^UTILITY(U,$J,358.3,35168,0)
+ ;;=S02.2XXS^^137^1797^17
+ ;;^UTILITY(U,$J,358.3,35168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37353,1,3,0)
- ;;=3^Pseudohypoparathyroidism
- ;;^UTILITY(U,$J,358.3,37353,1,4,0)
- ;;=4^E20.1
- ;;^UTILITY(U,$J,358.3,37353,2)
- ;;=^100160
- ;;^UTILITY(U,$J,358.3,37354,0)
- ;;=L40.54^^140^1787^210
- ;;^UTILITY(U,$J,358.3,37354,1,0)
+ ;;^UTILITY(U,$J,358.3,35168,1,3,0)
+ ;;=3^Fx,Nasal bones, sequela
+ ;;^UTILITY(U,$J,358.3,35168,1,4,0)
+ ;;=4^S02.2XXS
+ ;;^UTILITY(U,$J,358.3,35168,2)
+ ;;=^5020311
+ ;;^UTILITY(U,$J,358.3,35169,0)
+ ;;=S02.118S^^137^1797^20
+ ;;^UTILITY(U,$J,358.3,35169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37354,1,3,0)
- ;;=3^Psoriatic juvenile arthropathy
- ;;^UTILITY(U,$J,358.3,37354,1,4,0)
- ;;=4^L40.54
- ;;^UTILITY(U,$J,358.3,37354,2)
- ;;=^5009169
- ;;^UTILITY(U,$J,358.3,37355,0)
- ;;=I73.00^^140^1787^214
- ;;^UTILITY(U,$J,358.3,37355,1,0)
+ ;;^UTILITY(U,$J,358.3,35169,1,3,0)
+ ;;=3^Fx,Occiput NEC, sequela
+ ;;^UTILITY(U,$J,358.3,35169,1,4,0)
+ ;;=4^S02.118S
+ ;;^UTILITY(U,$J,358.3,35169,2)
+ ;;=^5020293
+ ;;^UTILITY(U,$J,358.3,35170,0)
+ ;;=S02.119S^^137^1797^21
+ ;;^UTILITY(U,$J,358.3,35170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37355,1,3,0)
- ;;=3^Raynaud's syndrome w/o gangrene
- ;;^UTILITY(U,$J,358.3,37355,1,4,0)
- ;;=4^I73.00
- ;;^UTILITY(U,$J,358.3,37355,2)
- ;;=^5007796
- ;;^UTILITY(U,$J,358.3,37356,0)
- ;;=N13.5^^140^1787^99
- ;;^UTILITY(U,$J,358.3,37356,1,0)
+ ;;^UTILITY(U,$J,358.3,35170,1,3,0)
+ ;;=3^Fx,Occiput unspec, sequela
+ ;;^UTILITY(U,$J,358.3,35170,1,4,0)
+ ;;=4^S02.119S
+ ;;^UTILITY(U,$J,358.3,35170,2)
+ ;;=^5020299
+ ;;^UTILITY(U,$J,358.3,35171,0)
+ ;;=S02.66XS^^137^1797^32
+ ;;^UTILITY(U,$J,358.3,35171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37356,1,3,0)
- ;;=3^Crosng vessel & strict of ureter w/o hydronephr
- ;;^UTILITY(U,$J,358.3,37356,1,4,0)
- ;;=4^N13.5
- ;;^UTILITY(U,$J,358.3,37356,2)
- ;;=^5015580
- ;;^UTILITY(U,$J,358.3,37357,0)
- ;;=N13.6^^140^1787^211
- ;;^UTILITY(U,$J,358.3,37357,1,0)
+ ;;^UTILITY(U,$J,358.3,35171,1,3,0)
+ ;;=3^Fx,Symphysis of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,35171,1,4,0)
+ ;;=4^S02.66XS
+ ;;^UTILITY(U,$J,358.3,35171,2)
+ ;;=^5020413
+ ;;^UTILITY(U,$J,358.3,35172,0)
+ ;;=S02.600S^^137^1797^16
+ ;;^UTILITY(U,$J,358.3,35172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37357,1,3,0)
- ;;=3^Pyonephrosis
- ;;^UTILITY(U,$J,358.3,37357,1,4,0)
- ;;=4^N13.6
- ;;^UTILITY(U,$J,358.3,37357,2)
- ;;=^101552
- ;;^UTILITY(U,$J,358.3,37358,0)
- ;;=M06.9^^140^1787^215
- ;;^UTILITY(U,$J,358.3,37358,1,0)
+ ;;^UTILITY(U,$J,358.3,35172,1,3,0)
+ ;;=3^Fx,Mandible,Unspec Part,Sequela
+ ;;^UTILITY(U,$J,358.3,35172,1,4,0)
+ ;;=4^S02.600S
+ ;;^UTILITY(U,$J,358.3,35172,2)
+ ;;=^5020371
+ ;;^UTILITY(U,$J,358.3,35173,0)
+ ;;=S02.0XXS^^137^1797^35
+ ;;^UTILITY(U,$J,358.3,35173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37358,1,3,0)
- ;;=3^Rheumatoid arthritis, unspec
- ;;^UTILITY(U,$J,358.3,37358,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,37358,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,37359,0)
- ;;=M35.01^^140^1787^226
- ;;^UTILITY(U,$J,358.3,37359,1,0)
+ ;;^UTILITY(U,$J,358.3,35173,1,3,0)
+ ;;=3^Fx,Vault of skull, sequela
+ ;;^UTILITY(U,$J,358.3,35173,1,4,0)
+ ;;=4^S02.0XXS
+ ;;^UTILITY(U,$J,358.3,35173,2)
+ ;;=^5020257
+ ;;^UTILITY(U,$J,358.3,35174,0)
+ ;;=S02.411S^^137^1797^36
+ ;;^UTILITY(U,$J,358.3,35174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37359,1,3,0)
- ;;=3^Sicca syndrome w/ keratoconjunctivitis
- ;;^UTILITY(U,$J,358.3,37359,1,4,0)
- ;;=4^M35.01
- ;;^UTILITY(U,$J,358.3,37359,2)
- ;;=^5011787
- ;;^UTILITY(U,$J,358.3,37360,0)
- ;;=M35.00^^140^1787^227
- ;;^UTILITY(U,$J,358.3,37360,1,0)
+ ;;^UTILITY(U,$J,358.3,35174,1,3,0)
+ ;;=3^LeFort I fracture, sequela
+ ;;^UTILITY(U,$J,358.3,35174,1,4,0)
+ ;;=4^S02.411S
+ ;;^UTILITY(U,$J,358.3,35174,2)
+ ;;=^5020341
+ ;;^UTILITY(U,$J,358.3,35175,0)
+ ;;=S02.412S^^137^1797^37
+ ;;^UTILITY(U,$J,358.3,35175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37360,1,3,0)
- ;;=3^Sicca syndrome, unspec
- ;;^UTILITY(U,$J,358.3,37360,1,4,0)
- ;;=4^M35.00
- ;;^UTILITY(U,$J,358.3,37360,2)
- ;;=^5011786
- ;;^UTILITY(U,$J,358.3,37361,0)
- ;;=M35.9^^140^1787^281
- ;;^UTILITY(U,$J,358.3,37361,1,0)
+ ;;^UTILITY(U,$J,358.3,35175,1,3,0)
+ ;;=3^LeFort II fracture, sequela
+ ;;^UTILITY(U,$J,358.3,35175,1,4,0)
+ ;;=4^S02.412S
+ ;;^UTILITY(U,$J,358.3,35175,2)
+ ;;=^5020347
+ ;;^UTILITY(U,$J,358.3,35176,0)
+ ;;=S02.413S^^137^1797^38
+ ;;^UTILITY(U,$J,358.3,35176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37361,1,3,0)
- ;;=3^Systemic invlmnt of conn tiss, unspec
- ;;^UTILITY(U,$J,358.3,37361,1,4,0)
- ;;=4^M35.9
- ;;^UTILITY(U,$J,358.3,37361,2)
- ;;=^5011797
- ;;^UTILITY(U,$J,358.3,37362,0)
- ;;=M32.10^^140^1787^283
- ;;^UTILITY(U,$J,358.3,37362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37362,1,3,0)
- ;;=3^Systemic lupus erythem, organ/syst involv, unspec
- ;;^UTILITY(U,$J,358.3,37362,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,37362,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,37363,0)
- ;;=M34.9^^140^1787^284
+ ;;^UTILITY(U,$J,358.3,35176,1,3,0)
+ ;;=3^LeFort III fracture, sequela

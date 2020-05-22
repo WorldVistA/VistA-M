@@ -1,132 +1,126 @@
-IBDEI36H ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI36H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53362,1,4,0)
- ;;=4^L40.8
- ;;^UTILITY(U,$J,358.3,53362,2)
- ;;=^271917
- ;;^UTILITY(U,$J,358.3,53363,0)
- ;;=L72.3^^245^2683^15
- ;;^UTILITY(U,$J,358.3,53363,1,0)
+ ;;^UTILITY(U,$J,358.3,50745,1,4,0)
+ ;;=4^D47.9
+ ;;^UTILITY(U,$J,358.3,50745,2)
+ ;;=^5002260
+ ;;^UTILITY(U,$J,358.3,50746,0)
+ ;;=D53.9^^193^2497^181
+ ;;^UTILITY(U,$J,358.3,50746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53363,1,3,0)
- ;;=3^Sebaceous cyst
- ;;^UTILITY(U,$J,358.3,53363,1,4,0)
- ;;=4^L72.3
- ;;^UTILITY(U,$J,358.3,53363,2)
- ;;=^5009281
- ;;^UTILITY(U,$J,358.3,53364,0)
- ;;=L97.919^^245^2683^8
- ;;^UTILITY(U,$J,358.3,53364,1,0)
+ ;;^UTILITY(U,$J,358.3,50746,1,3,0)
+ ;;=3^Nutritional Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,50746,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,50746,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,50747,0)
+ ;;=D47.4^^193^2497^182
+ ;;^UTILITY(U,$J,358.3,50747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53364,1,3,0)
- ;;=3^Non-pressure chr ulcer unspec part right lower leg
- ;;^UTILITY(U,$J,358.3,53364,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,53364,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,53365,0)
- ;;=L97.929^^245^2683^7
- ;;^UTILITY(U,$J,358.3,53365,1,0)
+ ;;^UTILITY(U,$J,358.3,50747,1,3,0)
+ ;;=3^Osteomyelofibrosis
+ ;;^UTILITY(U,$J,358.3,50747,1,4,0)
+ ;;=4^D47.4
+ ;;^UTILITY(U,$J,358.3,50747,2)
+ ;;=^5002259
+ ;;^UTILITY(U,$J,358.3,50748,0)
+ ;;=D59.1^^193^2497^29
+ ;;^UTILITY(U,$J,358.3,50748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53365,1,3,0)
- ;;=3^Non-pressure chr ulcer unspec part left lower leg
- ;;^UTILITY(U,$J,358.3,53365,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,53365,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,53366,0)
- ;;=L98.499^^245^2683^6
- ;;^UTILITY(U,$J,358.3,53366,1,0)
+ ;;^UTILITY(U,$J,358.3,50748,1,3,0)
+ ;;=3^Autoimmune Hemolytic Anemia,Other
+ ;;^UTILITY(U,$J,358.3,50748,1,4,0)
+ ;;=4^D59.1
+ ;;^UTILITY(U,$J,358.3,50748,2)
+ ;;=^5002324
+ ;;^UTILITY(U,$J,358.3,50749,0)
+ ;;=D51.3^^193^2497^196
+ ;;^UTILITY(U,$J,358.3,50749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53366,1,3,0)
- ;;=3^Non-pressure chr skin ulcer
- ;;^UTILITY(U,$J,358.3,53366,1,4,0)
- ;;=4^L98.499
- ;;^UTILITY(U,$J,358.3,53366,2)
- ;;=^5009591
- ;;^UTILITY(U,$J,358.3,53367,0)
- ;;=L98.9^^245^2683^17
- ;;^UTILITY(U,$J,358.3,53367,1,0)
+ ;;^UTILITY(U,$J,358.3,50749,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Other
+ ;;^UTILITY(U,$J,358.3,50749,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,50749,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,50750,0)
+ ;;=D77.^^193^2497^58
+ ;;^UTILITY(U,$J,358.3,50750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53367,1,3,0)
- ;;=3^Skin/Subcutaneous tissue disorder, unspec
- ;;^UTILITY(U,$J,358.3,53367,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,53367,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,53368,0)
- ;;=H60.311^^245^2684^15
- ;;^UTILITY(U,$J,358.3,53368,1,0)
+ ;;^UTILITY(U,$J,358.3,50750,1,3,0)
+ ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
+ ;;^UTILITY(U,$J,358.3,50750,1,4,0)
+ ;;=4^D77.
+ ;;^UTILITY(U,$J,358.3,50750,2)
+ ;;=^5002396
+ ;;^UTILITY(U,$J,358.3,50751,0)
+ ;;=D58.2^^193^2497^84
+ ;;^UTILITY(U,$J,358.3,50751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53368,1,3,0)
- ;;=3^Otitis Externa Diffused,Right Ear
- ;;^UTILITY(U,$J,358.3,53368,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,53368,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,53369,0)
- ;;=H60.312^^245^2684^14
- ;;^UTILITY(U,$J,358.3,53369,1,0)
+ ;;^UTILITY(U,$J,358.3,50751,1,3,0)
+ ;;=3^Hemoglobinopathies,Other
+ ;;^UTILITY(U,$J,358.3,50751,1,4,0)
+ ;;=4^D58.2
+ ;;^UTILITY(U,$J,358.3,50751,2)
+ ;;=^87629
+ ;;^UTILITY(U,$J,358.3,50752,0)
+ ;;=C88.8^^193^2497^106
+ ;;^UTILITY(U,$J,358.3,50752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53369,1,3,0)
- ;;=3^Otitis Externa Diffused,Left Ear
- ;;^UTILITY(U,$J,358.3,53369,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,53369,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,53370,0)
- ;;=H60.313^^245^2684^13
- ;;^UTILITY(U,$J,358.3,53370,1,0)
+ ;;^UTILITY(U,$J,358.3,50752,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases,Other
+ ;;^UTILITY(U,$J,358.3,50752,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,50752,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,50753,0)
+ ;;=D70.8^^193^2497^179
+ ;;^UTILITY(U,$J,358.3,50753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53370,1,3,0)
- ;;=3^Otitis Externa Diffused,Bilateral
- ;;^UTILITY(U,$J,358.3,53370,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,53370,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,53371,0)
- ;;=H60.321^^245^2684^18
- ;;^UTILITY(U,$J,358.3,53371,1,0)
+ ;;^UTILITY(U,$J,358.3,50753,1,3,0)
+ ;;=3^Neutropenia,Other
+ ;;^UTILITY(U,$J,358.3,50753,1,4,0)
+ ;;=4^D70.8
+ ;;^UTILITY(U,$J,358.3,50753,2)
+ ;;=^334042
+ ;;^UTILITY(U,$J,358.3,50754,0)
+ ;;=D59.4^^193^2497^180
+ ;;^UTILITY(U,$J,358.3,50754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53371,1,3,0)
- ;;=3^Otitis Externa Hemorrhagic,Right Ear
- ;;^UTILITY(U,$J,358.3,53371,1,4,0)
- ;;=4^H60.321
- ;;^UTILITY(U,$J,358.3,53371,2)
- ;;=^5006451
- ;;^UTILITY(U,$J,358.3,53372,0)
- ;;=H60.322^^245^2684^17
- ;;^UTILITY(U,$J,358.3,53372,1,0)
+ ;;^UTILITY(U,$J,358.3,50754,1,3,0)
+ ;;=3^Nonautoimmune Hemolytic Anemias,Other
+ ;;^UTILITY(U,$J,358.3,50754,1,4,0)
+ ;;=4^D59.4
+ ;;^UTILITY(U,$J,358.3,50754,2)
+ ;;=^5002326
+ ;;^UTILITY(U,$J,358.3,50755,0)
+ ;;=D69.59^^193^2497^186
+ ;;^UTILITY(U,$J,358.3,50755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53372,1,3,0)
- ;;=3^Otitis Externa Hemorrhagic,Left Ear
- ;;^UTILITY(U,$J,358.3,53372,1,4,0)
- ;;=4^H60.322
- ;;^UTILITY(U,$J,358.3,53372,2)
- ;;=^5006452
- ;;^UTILITY(U,$J,358.3,53373,0)
- ;;=H60.323^^245^2684^16
- ;;^UTILITY(U,$J,358.3,53373,1,0)
+ ;;^UTILITY(U,$J,358.3,50755,1,3,0)
+ ;;=3^Secondary Thrombocytopenia,Other
+ ;;^UTILITY(U,$J,358.3,50755,1,4,0)
+ ;;=4^D69.59
+ ;;^UTILITY(U,$J,358.3,50755,2)
+ ;;=^5002369
+ ;;^UTILITY(U,$J,358.3,50756,0)
+ ;;=C22.7^^193^2497^47
+ ;;^UTILITY(U,$J,358.3,50756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53373,1,3,0)
- ;;=3^Otitis Externa Hemorrhagic,Bilateral
- ;;^UTILITY(U,$J,358.3,53373,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,53373,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,53374,0)
- ;;=H60.391^^245^2684^21
- ;;^UTILITY(U,$J,358.3,53374,1,0)
+ ;;^UTILITY(U,$J,358.3,50756,1,3,0)
+ ;;=3^Carcinomas of Liver,Other Spec
+ ;;^UTILITY(U,$J,358.3,50756,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,50756,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,50757,0)
+ ;;=D75.89^^193^2497^57
+ ;;^UTILITY(U,$J,358.3,50757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53374,1,3,0)
- ;;=3^Otitis Externa Infective,Right Ear
- ;;^UTILITY(U,$J,358.3,53374,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,53374,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,53375,0)
- ;;=H60.392^^245^2684^20
- ;;^UTILITY(U,$J,358.3,53375,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,50757,1,3,0)
+ ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec
+ ;;^UTILITY(U,$J,358.3,50757,1,4,0)
+ ;;=4^D75.89

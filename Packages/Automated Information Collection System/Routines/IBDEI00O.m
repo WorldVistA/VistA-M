@@ -1,386 +1,674 @@
-IBDEI00O ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI00O ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,311,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,311,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,311,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,312,0)
- ;;=F50.01^^3^29^2
- ;;^UTILITY(U,$J,358.3,312,1,0)
+ ;;^UTILITY(U,$J,358.3,1049,1,3,0)
+ ;;=3^Burn Tx,Local,1st Degree,Init Tx
+ ;;^UTILITY(U,$J,358.3,1050,0)
+ ;;=29075^^14^103^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1050,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1050,1,2,0)
+ ;;=2^29075
+ ;;^UTILITY(U,$J,358.3,1050,1,3,0)
+ ;;=3^Splinting Arm,Elbow to Finger
+ ;;^UTILITY(U,$J,358.3,1051,0)
+ ;;=29085^^14^103^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1051,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1051,1,2,0)
+ ;;=2^29085
+ ;;^UTILITY(U,$J,358.3,1051,1,3,0)
+ ;;=3^Splinting Arm,Hand & Lower Forearm
+ ;;^UTILITY(U,$J,358.3,1052,0)
+ ;;=69210^^14^103^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1052,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1052,1,2,0)
+ ;;=2^69210
+ ;;^UTILITY(U,$J,358.3,1052,1,3,0)
+ ;;=3^Remove Impacted Ear Wax w/ Instruments,Unilat
+ ;;^UTILITY(U,$J,358.3,1053,0)
+ ;;=69209^^14^103^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1053,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1053,1,2,0)
+ ;;=2^69209
+ ;;^UTILITY(U,$J,358.3,1053,1,3,0)
+ ;;=3^Remove Impacted Ear Wax w/ Lavage,Unilat
+ ;;^UTILITY(U,$J,358.3,1054,0)
+ ;;=J0800^^14^103^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1054,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1054,1,2,0)
+ ;;=2^J0800
+ ;;^UTILITY(U,$J,358.3,1054,1,3,0)
+ ;;=3^Corticotropin,up to 40 Units
+ ;;^UTILITY(U,$J,358.3,1055,0)
+ ;;=J3420^^14^103^10^^^^1
+ ;;^UTILITY(U,$J,358.3,1055,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1055,1,2,0)
+ ;;=2^J3420
+ ;;^UTILITY(U,$J,358.3,1055,1,3,0)
+ ;;=3^Vit B12 Cyanocobalamin,up to 1000 mcg
+ ;;^UTILITY(U,$J,358.3,1056,0)
+ ;;=10120^^14^104^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1056,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1056,1,2,0)
+ ;;=2^10120
+ ;;^UTILITY(U,$J,358.3,1056,1,3,0)
+ ;;=3^Remove FB,SQ Tissue,Simp
+ ;;^UTILITY(U,$J,358.3,1057,0)
+ ;;=10121^^14^104^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1057,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1057,1,2,0)
+ ;;=2^10121
+ ;;^UTILITY(U,$J,358.3,1057,1,3,0)
+ ;;=3^Remove FB,SQ Tissue,Compl
+ ;;^UTILITY(U,$J,358.3,1058,0)
+ ;;=65205^^14^104^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1058,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1058,1,2,0)
+ ;;=2^65205
+ ;;^UTILITY(U,$J,358.3,1058,1,3,0)
+ ;;=3^Remove FB,Conjunc,External Eye
+ ;;^UTILITY(U,$J,358.3,1059,0)
+ ;;=65210^^14^104^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1059,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1059,1,2,0)
+ ;;=2^65210
+ ;;^UTILITY(U,$J,358.3,1059,1,3,0)
+ ;;=3^Remove FB,Conjunc,Embed,External Eye
+ ;;^UTILITY(U,$J,358.3,1060,0)
+ ;;=65220^^14^104^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1060,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1060,1,2,0)
+ ;;=2^65220
+ ;;^UTILITY(U,$J,358.3,1060,1,3,0)
+ ;;=3^Remove FB,Cornea w/o Slit Lamp
+ ;;^UTILITY(U,$J,358.3,1061,0)
+ ;;=65222^^14^104^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1061,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1061,1,2,0)
+ ;;=2^65222
+ ;;^UTILITY(U,$J,358.3,1061,1,3,0)
+ ;;=3^Remove FB,Cornea,w/Slit Lamp
+ ;;^UTILITY(U,$J,358.3,1062,0)
+ ;;=99395^^14^105^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1062,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1062,1,2,0)
+ ;;=2^99395
+ ;;^UTILITY(U,$J,358.3,1062,1,3,0)
+ ;;=3^Preventive Med-Est Pt 18-39
+ ;;^UTILITY(U,$J,358.3,1063,0)
+ ;;=99396^^14^105^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1063,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1063,1,2,0)
+ ;;=2^99396
+ ;;^UTILITY(U,$J,358.3,1063,1,3,0)
+ ;;=3^Preventive Med-Est Pt 40-64
+ ;;^UTILITY(U,$J,358.3,1064,0)
+ ;;=99397^^14^105^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1064,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1064,1,2,0)
+ ;;=2^99397
+ ;;^UTILITY(U,$J,358.3,1064,1,3,0)
+ ;;=3^Preventive Med-Est Pt > 64
+ ;;^UTILITY(U,$J,358.3,1065,0)
+ ;;=99385^^14^106^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1065,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1065,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,1065,1,3,0)
+ ;;=3^Preventive Med-New Pt 18-39
+ ;;^UTILITY(U,$J,358.3,1066,0)
+ ;;=99386^^14^106^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1066,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1066,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,1066,1,3,0)
+ ;;=3^Preventive Med-New Pt 40-64
+ ;;^UTILITY(U,$J,358.3,1067,0)
+ ;;=99387^^14^106^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1067,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1067,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,1067,1,3,0)
+ ;;=3^Preventive Med-New Pt > 64
+ ;;^UTILITY(U,$J,358.3,1068,0)
+ ;;=3510F^^14^107^10^^^^1
+ ;;^UTILITY(U,$J,358.3,1068,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1068,1,2,0)
+ ;;=2^3510F
+ ;;^UTILITY(U,$J,358.3,1068,1,3,0)
+ ;;=3^TB Screening/Results Interpd
+ ;;^UTILITY(U,$J,358.3,1069,0)
+ ;;=92283^^14^107^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1069,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1069,1,2,0)
+ ;;=2^92283
+ ;;^UTILITY(U,$J,358.3,1069,1,3,0)
+ ;;=3^Color Vision Exam
+ ;;^UTILITY(U,$J,358.3,1070,0)
+ ;;=93000^^14^107^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1070,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1070,1,2,0)
+ ;;=2^93000
+ ;;^UTILITY(U,$J,358.3,1070,1,3,0)
+ ;;=3^EKG,Complete
+ ;;^UTILITY(U,$J,358.3,1071,0)
+ ;;=93005^^14^107^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1071,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1071,1,2,0)
+ ;;=2^93005
+ ;;^UTILITY(U,$J,358.3,1071,1,3,0)
+ ;;=3^EKG,Tracing Only
+ ;;^UTILITY(U,$J,358.3,1072,0)
+ ;;=82948^^14^107^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1072,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1072,1,2,0)
+ ;;=2^82948
+ ;;^UTILITY(U,$J,358.3,1072,1,3,0)
+ ;;=3^Fingerstick,Glucose
+ ;;^UTILITY(U,$J,358.3,1073,0)
+ ;;=82075^^14^107^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1073,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1073,1,2,0)
+ ;;=2^82075
+ ;;^UTILITY(U,$J,358.3,1073,1,3,0)
+ ;;=3^Alcohol,Breathalyzer
+ ;;^UTILITY(U,$J,358.3,1074,0)
+ ;;=94150^^14^107^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1074,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1074,1,2,0)
+ ;;=2^94150
+ ;;^UTILITY(U,$J,358.3,1074,1,3,0)
+ ;;=3^PFT Test
+ ;;^UTILITY(U,$J,358.3,1075,0)
+ ;;=94760^^14^107^9^^^^1
+ ;;^UTILITY(U,$J,358.3,1075,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1075,1,2,0)
+ ;;=2^94760
+ ;;^UTILITY(U,$J,358.3,1075,1,3,0)
+ ;;=3^Pulse Oximetry
+ ;;^UTILITY(U,$J,358.3,1076,0)
+ ;;=36600^^14^107^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1076,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1076,1,2,0)
+ ;;=2^36600
+ ;;^UTILITY(U,$J,358.3,1076,1,3,0)
+ ;;=3^Arterial Puncture
+ ;;^UTILITY(U,$J,358.3,1077,0)
+ ;;=36415^^14^107^11^^^^1
+ ;;^UTILITY(U,$J,358.3,1077,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1077,1,2,0)
+ ;;=2^36415
+ ;;^UTILITY(U,$J,358.3,1077,1,3,0)
+ ;;=3^Venipuncture
+ ;;^UTILITY(U,$J,358.3,1078,0)
+ ;;=93770^^14^107^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1078,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1078,1,2,0)
+ ;;=2^93770
+ ;;^UTILITY(U,$J,358.3,1078,1,3,0)
+ ;;=3^BP/Venous Pressure
+ ;;^UTILITY(U,$J,358.3,1079,0)
+ ;;=99415^^14^108^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1079,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1079,1,2,0)
+ ;;=2^99415
+ ;;^UTILITY(U,$J,358.3,1079,1,3,0)
+ ;;=3^Prolong Clin Staff Svc,1st hr
+ ;;^UTILITY(U,$J,358.3,1080,0)
+ ;;=99416^^14^108^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1080,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1080,1,2,0)
+ ;;=2^99416
+ ;;^UTILITY(U,$J,358.3,1080,1,3,0)
+ ;;=3^Prolong Clin Staff Svc,Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,1081,0)
+ ;;=90471^^14^109^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1081,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1081,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,1081,1,3,0)
+ ;;=3^Immunization Admin
+ ;;^UTILITY(U,$J,358.3,1082,0)
+ ;;=90472^^14^109^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1082,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1082,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,1082,1,3,0)
+ ;;=3^Immunization Admin,Ea Addl
+ ;;^UTILITY(U,$J,358.3,1083,0)
+ ;;=S90.511A^^15^110^16
+ ;;^UTILITY(U,$J,358.3,1083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,312,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,312,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,312,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,313,0)
- ;;=F50.9^^3^29^7
- ;;^UTILITY(U,$J,358.3,313,1,0)
+ ;;^UTILITY(U,$J,358.3,1083,1,3,0)
+ ;;=3^Abrasion,Right ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,1083,1,4,0)
+ ;;=4^S90.511A
+ ;;^UTILITY(U,$J,358.3,1083,2)
+ ;;=^5043997
+ ;;^UTILITY(U,$J,358.3,1084,0)
+ ;;=S90.512A^^15^110^1
+ ;;^UTILITY(U,$J,358.3,1084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,313,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,313,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,313,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,314,0)
- ;;=F50.8^^3^29^6
- ;;^UTILITY(U,$J,358.3,314,1,0)
+ ;;^UTILITY(U,$J,358.3,1084,1,3,0)
+ ;;=3^Abrasion,Left ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,1084,1,4,0)
+ ;;=4^S90.512A
+ ;;^UTILITY(U,$J,358.3,1084,2)
+ ;;=^5044000
+ ;;^UTILITY(U,$J,358.3,1085,0)
+ ;;=S40.811A^^15^110^28
+ ;;^UTILITY(U,$J,358.3,1085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,314,1,3,0)
- ;;=3^Feeding/Eating Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,314,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,314,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,315,0)
- ;;=F50.8^^3^29^3
- ;;^UTILITY(U,$J,358.3,315,1,0)
+ ;;^UTILITY(U,$J,358.3,1085,1,3,0)
+ ;;=3^Abrasion,Right upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1085,1,4,0)
+ ;;=4^S40.811A
+ ;;^UTILITY(U,$J,358.3,1085,2)
+ ;;=^5026225
+ ;;^UTILITY(U,$J,358.3,1086,0)
+ ;;=S40.812A^^15^110^13
+ ;;^UTILITY(U,$J,358.3,1086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,315,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,315,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,315,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,316,0)
- ;;=F50.8^^3^29^4
- ;;^UTILITY(U,$J,358.3,316,1,0)
+ ;;^UTILITY(U,$J,358.3,1086,1,3,0)
+ ;;=3^Abrasion,Left upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1086,1,4,0)
+ ;;=4^S40.812A
+ ;;^UTILITY(U,$J,358.3,1086,2)
+ ;;=^5026228
+ ;;^UTILITY(U,$J,358.3,1087,0)
+ ;;=S05.01XA^^15^110^46
+ ;;^UTILITY(U,$J,358.3,1087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,316,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,316,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,316,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,317,0)
- ;;=F50.2^^3^29^5
- ;;^UTILITY(U,$J,358.3,317,1,0)
+ ;;^UTILITY(U,$J,358.3,1087,1,3,0)
+ ;;=3^Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init Enctr
+ ;;^UTILITY(U,$J,358.3,1087,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,1087,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,1088,0)
+ ;;=S05.02XA^^15^110^45
+ ;;^UTILITY(U,$J,358.3,1088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,317,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,317,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,317,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,318,0)
- ;;=F50.8^^3^29^8
- ;;^UTILITY(U,$J,358.3,318,1,0)
+ ;;^UTILITY(U,$J,358.3,1088,1,3,0)
+ ;;=3^Conjuctiva/Corneal Abrasion w/o FB,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1088,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,1088,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,1089,0)
+ ;;=S50.311A^^15^110^17
+ ;;^UTILITY(U,$J,358.3,1089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,318,1,3,0)
- ;;=3^Pica in Adults
- ;;^UTILITY(U,$J,358.3,318,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,318,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,319,0)
- ;;=F98.21^^3^29^9
- ;;^UTILITY(U,$J,358.3,319,1,0)
+ ;;^UTILITY(U,$J,358.3,1089,1,3,0)
+ ;;=3^Abrasion,Right elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,1089,1,4,0)
+ ;;=4^S50.311A
+ ;;^UTILITY(U,$J,358.3,1089,2)
+ ;;=^5028500
+ ;;^UTILITY(U,$J,358.3,1090,0)
+ ;;=S50.312A^^15^110^2
+ ;;^UTILITY(U,$J,358.3,1090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,319,1,3,0)
- ;;=3^Rumination Disorder
- ;;^UTILITY(U,$J,358.3,319,1,4,0)
- ;;=4^F98.21
- ;;^UTILITY(U,$J,358.3,319,2)
- ;;=^5003713
- ;;^UTILITY(U,$J,358.3,320,0)
- ;;=Z55.9^^3^30^1
- ;;^UTILITY(U,$J,358.3,320,1,0)
+ ;;^UTILITY(U,$J,358.3,1090,1,3,0)
+ ;;=3^Abrasion,Left elbow, initial encounter
+ ;;^UTILITY(U,$J,358.3,1090,1,4,0)
+ ;;=4^S50.312A
+ ;;^UTILITY(U,$J,358.3,1090,2)
+ ;;=^5028503
+ ;;^UTILITY(U,$J,358.3,1091,0)
+ ;;=S00.81XA^^15^110^15
+ ;;^UTILITY(U,$J,358.3,1091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,320,1,3,0)
- ;;=3^Academic/Educational Problem
- ;;^UTILITY(U,$J,358.3,320,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,320,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,321,0)
- ;;=Z56.82^^3^30^5
- ;;^UTILITY(U,$J,358.3,321,1,0)
+ ;;^UTILITY(U,$J,358.3,1091,1,3,0)
+ ;;=3^Abrasion,Other part of head, initial encounter
+ ;;^UTILITY(U,$J,358.3,1091,1,4,0)
+ ;;=4^S00.81XA
+ ;;^UTILITY(U,$J,358.3,1091,2)
+ ;;=^5019988
+ ;;^UTILITY(U,$J,358.3,1092,0)
+ ;;=S90.811A^^15^110^18
+ ;;^UTILITY(U,$J,358.3,1092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,321,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,321,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,321,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,322,0)
- ;;=Z56.0^^3^30^10
- ;;^UTILITY(U,$J,358.3,322,1,0)
+ ;;^UTILITY(U,$J,358.3,1092,1,3,0)
+ ;;=3^Abrasion,Right foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,1092,1,4,0)
+ ;;=4^S90.811A
+ ;;^UTILITY(U,$J,358.3,1092,2)
+ ;;=^5044051
+ ;;^UTILITY(U,$J,358.3,1093,0)
+ ;;=S90.812A^^15^110^3
+ ;;^UTILITY(U,$J,358.3,1093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,322,1,3,0)
- ;;=3^Unemployment,Unspec
- ;;^UTILITY(U,$J,358.3,322,1,4,0)
- ;;=4^Z56.0
- ;;^UTILITY(U,$J,358.3,322,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,323,0)
- ;;=Z56.1^^3^30^2
- ;;^UTILITY(U,$J,358.3,323,1,0)
+ ;;^UTILITY(U,$J,358.3,1093,1,3,0)
+ ;;=3^Abrasion,Left foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,1093,1,4,0)
+ ;;=4^S90.812A
+ ;;^UTILITY(U,$J,358.3,1093,2)
+ ;;=^5044054
+ ;;^UTILITY(U,$J,358.3,1094,0)
+ ;;=S90.411A^^15^110^20
+ ;;^UTILITY(U,$J,358.3,1094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,323,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,323,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,323,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,324,0)
- ;;=Z56.2^^3^30^8
- ;;^UTILITY(U,$J,358.3,324,1,0)
+ ;;^UTILITY(U,$J,358.3,1094,1,3,0)
+ ;;=3^Abrasion,Right great toe, initial encounter
+ ;;^UTILITY(U,$J,358.3,1094,1,4,0)
+ ;;=4^S90.411A
+ ;;^UTILITY(U,$J,358.3,1094,2)
+ ;;=^5043889
+ ;;^UTILITY(U,$J,358.3,1095,0)
+ ;;=S90.412A^^15^110^5
+ ;;^UTILITY(U,$J,358.3,1095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,324,1,3,0)
- ;;=3^Threat of Job Loss
- ;;^UTILITY(U,$J,358.3,324,1,4,0)
- ;;=4^Z56.2
- ;;^UTILITY(U,$J,358.3,324,2)
- ;;=^5063109
- ;;^UTILITY(U,$J,358.3,325,0)
- ;;=Z56.3^^3^30^7
- ;;^UTILITY(U,$J,358.3,325,1,0)
+ ;;^UTILITY(U,$J,358.3,1095,1,3,0)
+ ;;=3^Abrasion,Left great toe, initial encounter
+ ;;^UTILITY(U,$J,358.3,1095,1,4,0)
+ ;;=4^S90.412A
+ ;;^UTILITY(U,$J,358.3,1095,2)
+ ;;=^5043892
+ ;;^UTILITY(U,$J,358.3,1096,0)
+ ;;=S90.414A^^15^110^23
+ ;;^UTILITY(U,$J,358.3,1096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,325,1,3,0)
- ;;=3^Stressful Work Schedule
- ;;^UTILITY(U,$J,358.3,325,1,4,0)
- ;;=4^Z56.3
- ;;^UTILITY(U,$J,358.3,325,2)
- ;;=^5063110
- ;;^UTILITY(U,$J,358.3,326,0)
- ;;=Z56.4^^3^30^3
- ;;^UTILITY(U,$J,358.3,326,1,0)
+ ;;^UTILITY(U,$J,358.3,1096,1,3,0)
+ ;;=3^Abrasion,Right lesser toe(s), initial encounter
+ ;;^UTILITY(U,$J,358.3,1096,1,4,0)
+ ;;=4^S90.414A
+ ;;^UTILITY(U,$J,358.3,1096,2)
+ ;;=^5043898
+ ;;^UTILITY(U,$J,358.3,1097,0)
+ ;;=S90.415A^^15^110^8
+ ;;^UTILITY(U,$J,358.3,1097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,326,1,3,0)
- ;;=3^Discord w/ Boss and Workmates
- ;;^UTILITY(U,$J,358.3,326,1,4,0)
- ;;=4^Z56.4
- ;;^UTILITY(U,$J,358.3,326,2)
- ;;=^5063111
- ;;^UTILITY(U,$J,358.3,327,0)
- ;;=Z56.5^^3^30^9
- ;;^UTILITY(U,$J,358.3,327,1,0)
+ ;;^UTILITY(U,$J,358.3,1097,1,3,0)
+ ;;=3^Abrasion,Left lesser toe(s), initial encounter
+ ;;^UTILITY(U,$J,358.3,1097,1,4,0)
+ ;;=4^S90.415A
+ ;;^UTILITY(U,$J,358.3,1097,2)
+ ;;=^5043901
+ ;;^UTILITY(U,$J,358.3,1098,0)
+ ;;=S50.811A^^15^110^19
+ ;;^UTILITY(U,$J,358.3,1098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,327,1,3,0)
- ;;=3^Uncongenial Work Environment
- ;;^UTILITY(U,$J,358.3,327,1,4,0)
- ;;=4^Z56.5
- ;;^UTILITY(U,$J,358.3,327,2)
- ;;=^5063112
- ;;^UTILITY(U,$J,358.3,328,0)
- ;;=Z56.6^^3^30^4
- ;;^UTILITY(U,$J,358.3,328,1,0)
+ ;;^UTILITY(U,$J,358.3,1098,1,3,0)
+ ;;=3^Abrasion,Right forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1098,1,4,0)
+ ;;=4^S50.811A
+ ;;^UTILITY(U,$J,358.3,1098,2)
+ ;;=^5028554
+ ;;^UTILITY(U,$J,358.3,1099,0)
+ ;;=S50.812A^^15^110^4
+ ;;^UTILITY(U,$J,358.3,1099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,328,1,3,0)
- ;;=3^Physical & Mental Strain Related to Work,Other
- ;;^UTILITY(U,$J,358.3,328,1,4,0)
- ;;=4^Z56.6
- ;;^UTILITY(U,$J,358.3,328,2)
- ;;=^5063113
- ;;^UTILITY(U,$J,358.3,329,0)
- ;;=Z56.89^^3^30^6
- ;;^UTILITY(U,$J,358.3,329,1,0)
+ ;;^UTILITY(U,$J,358.3,1099,1,3,0)
+ ;;=3^Abrasion,Left forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1099,1,4,0)
+ ;;=4^S50.812A
+ ;;^UTILITY(U,$J,358.3,1099,2)
+ ;;=^5028557
+ ;;^UTILITY(U,$J,358.3,1100,0)
+ ;;=S60.511A^^15^110^21
+ ;;^UTILITY(U,$J,358.3,1100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,329,1,3,0)
- ;;=3^Problems Related to Employment,Other
- ;;^UTILITY(U,$J,358.3,329,1,4,0)
- ;;=4^Z56.89
- ;;^UTILITY(U,$J,358.3,329,2)
- ;;=^5063116
- ;;^UTILITY(U,$J,358.3,330,0)
- ;;=F64.1^^3^31^1
- ;;^UTILITY(U,$J,358.3,330,1,0)
+ ;;^UTILITY(U,$J,358.3,1100,1,3,0)
+ ;;=3^Abrasion,Right hand, initial encounter
+ ;;^UTILITY(U,$J,358.3,1100,1,4,0)
+ ;;=4^S60.511A
+ ;;^UTILITY(U,$J,358.3,1100,2)
+ ;;=^5032528
+ ;;^UTILITY(U,$J,358.3,1101,0)
+ ;;=S60.512A^^15^110^6
+ ;;^UTILITY(U,$J,358.3,1101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,330,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,330,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,330,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,331,0)
- ;;=F64.8^^3^31^2
- ;;^UTILITY(U,$J,358.3,331,1,0)
+ ;;^UTILITY(U,$J,358.3,1101,1,3,0)
+ ;;=3^Abrasion,Left hand, initial encounter
+ ;;^UTILITY(U,$J,358.3,1101,1,4,0)
+ ;;=4^S60.512A
+ ;;^UTILITY(U,$J,358.3,1101,2)
+ ;;=^5032531
+ ;;^UTILITY(U,$J,358.3,1102,0)
+ ;;=S80.211A^^15^110^22
+ ;;^UTILITY(U,$J,358.3,1102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,331,1,3,0)
- ;;=3^Gender Dysphoria,Other Specified
- ;;^UTILITY(U,$J,358.3,331,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,331,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,332,0)
- ;;=F64.9^^3^31^3
- ;;^UTILITY(U,$J,358.3,332,1,0)
+ ;;^UTILITY(U,$J,358.3,1102,1,3,0)
+ ;;=3^Abrasion,Right knee, initial encounter
+ ;;^UTILITY(U,$J,358.3,1102,1,4,0)
+ ;;=4^S80.211A
+ ;;^UTILITY(U,$J,358.3,1102,2)
+ ;;=^5039906
+ ;;^UTILITY(U,$J,358.3,1103,0)
+ ;;=S80.212A^^15^110^7
+ ;;^UTILITY(U,$J,358.3,1103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,332,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,332,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,332,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,333,0)
- ;;=Z59.2^^3^32^1
- ;;^UTILITY(U,$J,358.3,333,1,0)
+ ;;^UTILITY(U,$J,358.3,1103,1,3,0)
+ ;;=3^Abrasion,Left knee, initial encounter
+ ;;^UTILITY(U,$J,358.3,1103,1,4,0)
+ ;;=4^S80.212A
+ ;;^UTILITY(U,$J,358.3,1103,2)
+ ;;=^5039909
+ ;;^UTILITY(U,$J,358.3,1104,0)
+ ;;=S80.811A^^15^110^24
+ ;;^UTILITY(U,$J,358.3,1104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,333,1,3,0)
- ;;=3^Discord w/ Neighbor,Lodger or Landlord
- ;;^UTILITY(U,$J,358.3,333,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,333,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,334,0)
- ;;=Z59.0^^3^32^3
- ;;^UTILITY(U,$J,358.3,334,1,0)
+ ;;^UTILITY(U,$J,358.3,1104,1,3,0)
+ ;;=3^Abrasion,Right lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,1104,1,4,0)
+ ;;=4^S80.811A
+ ;;^UTILITY(U,$J,358.3,1104,2)
+ ;;=^5039960
+ ;;^UTILITY(U,$J,358.3,1105,0)
+ ;;=S80.812A^^15^110^9
+ ;;^UTILITY(U,$J,358.3,1105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,334,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,334,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,334,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,335,0)
- ;;=Z59.1^^3^32^5
- ;;^UTILITY(U,$J,358.3,335,1,0)
+ ;;^UTILITY(U,$J,358.3,1105,1,3,0)
+ ;;=3^Abrasion,Left lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,1105,1,4,0)
+ ;;=4^S80.812A
+ ;;^UTILITY(U,$J,358.3,1105,2)
+ ;;=^5039963
+ ;;^UTILITY(U,$J,358.3,1106,0)
+ ;;=S40.211A^^15^110^25
+ ;;^UTILITY(U,$J,358.3,1106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,335,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,335,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,335,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,336,0)
- ;;=Z59.3^^3^32^9
- ;;^UTILITY(U,$J,358.3,336,1,0)
+ ;;^UTILITY(U,$J,358.3,1106,1,3,0)
+ ;;=3^Abrasion,Right shoulder, initial encounter
+ ;;^UTILITY(U,$J,358.3,1106,1,4,0)
+ ;;=4^S40.211A
+ ;;^UTILITY(U,$J,358.3,1106,2)
+ ;;=^5026171
+ ;;^UTILITY(U,$J,358.3,1107,0)
+ ;;=S40.212A^^15^110^10
+ ;;^UTILITY(U,$J,358.3,1107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,336,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,336,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,336,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,337,0)
- ;;=Z59.4^^3^32^7
- ;;^UTILITY(U,$J,358.3,337,1,0)
+ ;;^UTILITY(U,$J,358.3,1107,1,3,0)
+ ;;=3^Abrasion,Left shoulder, initial encounter
+ ;;^UTILITY(U,$J,358.3,1107,1,4,0)
+ ;;=4^S40.212A
+ ;;^UTILITY(U,$J,358.3,1107,2)
+ ;;=^5026174
+ ;;^UTILITY(U,$J,358.3,1108,0)
+ ;;=S70.311A^^15^110^26
+ ;;^UTILITY(U,$J,358.3,1108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,337,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,337,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,337,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,338,0)
- ;;=Z59.5^^3^32^2
- ;;^UTILITY(U,$J,358.3,338,1,0)
+ ;;^UTILITY(U,$J,358.3,1108,1,3,0)
+ ;;=3^Abrasion,Right thigh, initial encounter
+ ;;^UTILITY(U,$J,358.3,1108,1,4,0)
+ ;;=4^S70.311A
+ ;;^UTILITY(U,$J,358.3,1108,2)
+ ;;=^5036903
+ ;;^UTILITY(U,$J,358.3,1109,0)
+ ;;=S70.312A^^15^110^11
+ ;;^UTILITY(U,$J,358.3,1109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,338,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,338,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,338,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,339,0)
- ;;=Z59.6^^3^32^8
- ;;^UTILITY(U,$J,358.3,339,1,0)
+ ;;^UTILITY(U,$J,358.3,1109,1,3,0)
+ ;;=3^Abrasion,Left thigh, initial encounter
+ ;;^UTILITY(U,$J,358.3,1109,1,4,0)
+ ;;=4^S70.312A
+ ;;^UTILITY(U,$J,358.3,1109,2)
+ ;;=^5036906
+ ;;^UTILITY(U,$J,358.3,1110,0)
+ ;;=S60.311A^^15^110^27
+ ;;^UTILITY(U,$J,358.3,1110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,339,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,339,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,339,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,340,0)
- ;;=Z59.7^^3^32^6
- ;;^UTILITY(U,$J,358.3,340,1,0)
+ ;;^UTILITY(U,$J,358.3,1110,1,3,0)
+ ;;=3^Abrasion,Right thumb, initial encounter
+ ;;^UTILITY(U,$J,358.3,1110,1,4,0)
+ ;;=4^S60.311A
+ ;;^UTILITY(U,$J,358.3,1110,2)
+ ;;=^5032285
+ ;;^UTILITY(U,$J,358.3,1111,0)
+ ;;=S60.312A^^15^110^12
+ ;;^UTILITY(U,$J,358.3,1111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,340,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,340,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,340,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,341,0)
- ;;=Z59.9^^3^32^4
- ;;^UTILITY(U,$J,358.3,341,1,0)
+ ;;^UTILITY(U,$J,358.3,1111,1,3,0)
+ ;;=3^Abrasion,Left thumb, initial encounter
+ ;;^UTILITY(U,$J,358.3,1111,1,4,0)
+ ;;=4^S60.312A
+ ;;^UTILITY(U,$J,358.3,1111,2)
+ ;;=^5032288
+ ;;^UTILITY(U,$J,358.3,1112,0)
+ ;;=S60.811A^^15^110^29
+ ;;^UTILITY(U,$J,358.3,1112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,341,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,341,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,341,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,342,0)
- ;;=G21.19^^3^33^10
- ;;^UTILITY(U,$J,358.3,342,1,0)
+ ;;^UTILITY(U,$J,358.3,1112,1,3,0)
+ ;;=3^Abrasion,Right wrist, initial encounter
+ ;;^UTILITY(U,$J,358.3,1112,1,4,0)
+ ;;=4^S60.811A
+ ;;^UTILITY(U,$J,358.3,1112,2)
+ ;;=^5032582
+ ;;^UTILITY(U,$J,358.3,1113,0)
+ ;;=S60.812A^^15^110^14
+ ;;^UTILITY(U,$J,358.3,1113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,342,1,3,0)
- ;;=3^Medication-Induced Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,342,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,342,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,343,0)
- ;;=G21.11^^3^33^13
- ;;^UTILITY(U,$J,358.3,343,1,0)
+ ;;^UTILITY(U,$J,358.3,1113,1,3,0)
+ ;;=3^Abrasion,Left wrist, initial encounter
+ ;;^UTILITY(U,$J,358.3,1113,1,4,0)
+ ;;=4^S60.812A
+ ;;^UTILITY(U,$J,358.3,1113,2)
+ ;;=^5032585
+ ;;^UTILITY(U,$J,358.3,1114,0)
+ ;;=T78.3XXA^^15^110^30
+ ;;^UTILITY(U,$J,358.3,1114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,343,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,343,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,343,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,344,0)
- ;;=G24.01^^3^33^15
- ;;^UTILITY(U,$J,358.3,344,1,0)
+ ;;^UTILITY(U,$J,358.3,1114,1,3,0)
+ ;;=3^Angioneurotic edema, initial encounter
+ ;;^UTILITY(U,$J,358.3,1114,1,4,0)
+ ;;=4^T78.3XXA
+ ;;^UTILITY(U,$J,358.3,1114,2)
+ ;;=^5054281
+ ;;^UTILITY(U,$J,358.3,1115,0)
+ ;;=T63.441A^^15^110^246
+ ;;^UTILITY(U,$J,358.3,1115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,344,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,344,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,344,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,345,0)
- ;;=G24.09^^3^33^16
- ;;^UTILITY(U,$J,358.3,345,1,0)
+ ;;^UTILITY(U,$J,358.3,1115,1,3,0)
+ ;;=3^Toxic effect of venom of bees, accidental, init
+ ;;^UTILITY(U,$J,358.3,1115,1,4,0)
+ ;;=4^T63.441A
+ ;;^UTILITY(U,$J,358.3,1115,2)
+ ;;=^5053522
+ ;;^UTILITY(U,$J,358.3,1116,0)
+ ;;=S91.051A^^15^110^147
+ ;;^UTILITY(U,$J,358.3,1116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,345,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,345,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,345,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,346,0)
- ;;=G25.1^^3^33^11
- ;;^UTILITY(U,$J,358.3,346,1,0)
+ ;;^UTILITY(U,$J,358.3,1116,1,3,0)
+ ;;=3^Open bite, right ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,1116,1,4,0)
+ ;;=4^S91.051A
+ ;;^UTILITY(U,$J,358.3,1116,2)
+ ;;=^5044159
+ ;;^UTILITY(U,$J,358.3,1117,0)
+ ;;=S91.052A^^15^110^139
+ ;;^UTILITY(U,$J,358.3,1117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,346,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,346,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,346,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,347,0)
- ;;=G25.71^^3^33^14
- ;;^UTILITY(U,$J,358.3,347,1,0)
+ ;;^UTILITY(U,$J,358.3,1117,1,3,0)
+ ;;=3^Open bite, left ankle, initial encounter
+ ;;^UTILITY(U,$J,358.3,1117,1,4,0)
+ ;;=4^S91.052A
+ ;;^UTILITY(U,$J,358.3,1117,2)
+ ;;=^5044162
+ ;;^UTILITY(U,$J,358.3,1118,0)
+ ;;=S41.151A^^15^110^154
+ ;;^UTILITY(U,$J,358.3,1118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,347,1,3,0)
- ;;=3^Tardive Akathisia
- ;;^UTILITY(U,$J,358.3,347,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,347,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,348,0)
- ;;=G25.79^^3^33^9
- ;;^UTILITY(U,$J,358.3,348,1,0)
+ ;;^UTILITY(U,$J,358.3,1118,1,3,0)
+ ;;=3^Open bite, right upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1118,1,4,0)
+ ;;=4^S41.151A
+ ;;^UTILITY(U,$J,358.3,1118,2)
+ ;;=^5026360
+ ;;^UTILITY(U,$J,358.3,1119,0)
+ ;;=S41.152A^^15^110^146
+ ;;^UTILITY(U,$J,358.3,1119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,348,1,3,0)
- ;;=3^Medication-Induced Movement Disorder,Other
- ;;^UTILITY(U,$J,358.3,348,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,348,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,349,0)
- ;;=T43.205A^^3^33^4
- ;;^UTILITY(U,$J,358.3,349,1,0)
+ ;;^UTILITY(U,$J,358.3,1119,1,3,0)
+ ;;=3^Open bite, left upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1119,1,4,0)
+ ;;=4^S41.152A
+ ;;^UTILITY(U,$J,358.3,1119,2)
+ ;;=^5026363
+ ;;^UTILITY(U,$J,358.3,1120,0)
+ ;;=S51.851A^^15^110^149
+ ;;^UTILITY(U,$J,358.3,1120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,349,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1120,1,3,0)
+ ;;=3^Open bite, right forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1120,1,4,0)
+ ;;=4^S51.851A
+ ;;^UTILITY(U,$J,358.3,1120,2)
+ ;;=^5028689
+ ;;^UTILITY(U,$J,358.3,1121,0)
+ ;;=S51.852A^^15^110^141
+ ;;^UTILITY(U,$J,358.3,1121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1121,1,3,0)
+ ;;=3^Open bite, left forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,1121,1,4,0)
+ ;;=4^S51.852A
+ ;;^UTILITY(U,$J,358.3,1121,2)
+ ;;=^5028692
+ ;;^UTILITY(U,$J,358.3,1122,0)
+ ;;=S40.861A^^15^110^111
+ ;;^UTILITY(U,$J,358.3,1122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1122,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of right upper arm, init encntr
+ ;;^UTILITY(U,$J,358.3,1122,1,4,0)
+ ;;=4^S40.861A
+ ;;^UTILITY(U,$J,358.3,1122,2)
+ ;;=^5026261
+ ;;^UTILITY(U,$J,358.3,1123,0)
+ ;;=S40.862A^^15^110^109
+ ;;^UTILITY(U,$J,358.3,1123,1,0)
+ ;;=^358.31IA^4^2

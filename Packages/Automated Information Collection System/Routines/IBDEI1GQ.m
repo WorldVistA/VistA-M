@@ -1,124 +1,124 @@
-IBDEI1GQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24849,1,0)
+ ;;^UTILITY(U,$J,358.3,23393,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,23393,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,23394,0)
+ ;;=Z85.048^^105^1173^86
+ ;;^UTILITY(U,$J,358.3,23394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24849,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
- ;;^UTILITY(U,$J,358.3,24849,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,24849,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,24850,0)
- ;;=G47.35^^93^1115^25
- ;;^UTILITY(U,$J,358.3,24850,1,0)
+ ;;^UTILITY(U,$J,358.3,23394,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Rectum/Rectosig Junct/Anus
+ ;;^UTILITY(U,$J,358.3,23394,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,23394,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,23395,0)
+ ;;=Z85.118^^105^1173^76
+ ;;^UTILITY(U,$J,358.3,23395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24850,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,24850,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,24850,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,24851,0)
- ;;=G47.34^^93^1115^26
- ;;^UTILITY(U,$J,358.3,24851,1,0)
+ ;;^UTILITY(U,$J,358.3,23395,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,23395,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,23395,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,23396,0)
+ ;;=Z85.21^^105^1173^81
+ ;;^UTILITY(U,$J,358.3,23396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24851,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
- ;;^UTILITY(U,$J,358.3,24851,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,24851,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,24852,0)
- ;;=G47.9^^93^1115^28
- ;;^UTILITY(U,$J,358.3,24852,1,0)
+ ;;^UTILITY(U,$J,358.3,23396,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Larynx
+ ;;^UTILITY(U,$J,358.3,23396,1,4,0)
+ ;;=4^Z85.21
+ ;;^UTILITY(U,$J,358.3,23396,2)
+ ;;=^5063411
+ ;;^UTILITY(U,$J,358.3,23397,0)
+ ;;=Z85.3^^105^1173^75
+ ;;^UTILITY(U,$J,358.3,23397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24852,1,3,0)
- ;;=3^Sleep-Wake Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24852,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,24852,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,24853,0)
- ;;=F10.10^^93^1116^27
- ;;^UTILITY(U,$J,358.3,24853,1,0)
+ ;;^UTILITY(U,$J,358.3,23397,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,23397,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,23397,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,23398,0)
+ ;;=Z85.41^^105^1173^77
+ ;;^UTILITY(U,$J,358.3,23398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24853,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24853,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,24853,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,24854,0)
- ;;=F10.14^^93^1116^34
- ;;^UTILITY(U,$J,358.3,24854,1,0)
+ ;;^UTILITY(U,$J,358.3,23398,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,23398,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,23398,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,23399,0)
+ ;;=Z85.43^^105^1173^84
+ ;;^UTILITY(U,$J,358.3,23399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24854,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24854,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,24854,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,24855,0)
- ;;=F10.182^^93^1116^36
- ;;^UTILITY(U,$J,358.3,24855,1,0)
+ ;;^UTILITY(U,$J,358.3,23399,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,23399,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,23399,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,23400,0)
+ ;;=Z85.46^^105^1173^85
+ ;;^UTILITY(U,$J,358.3,23400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24855,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24855,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,24855,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,24856,0)
- ;;=F10.20^^93^1116^28
- ;;^UTILITY(U,$J,358.3,24856,1,0)
+ ;;^UTILITY(U,$J,358.3,23400,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,23400,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,23400,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,23401,0)
+ ;;=Z85.47^^105^1173^89
+ ;;^UTILITY(U,$J,358.3,23401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24856,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,24856,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,24856,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,24857,0)
- ;;=F10.21^^93^1116^29
- ;;^UTILITY(U,$J,358.3,24857,1,0)
+ ;;^UTILITY(U,$J,358.3,23401,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,23401,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,23401,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,23402,0)
+ ;;=Z85.51^^105^1173^74
+ ;;^UTILITY(U,$J,358.3,23402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24857,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,24857,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,24857,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,24858,0)
- ;;=F10.230^^93^1116^30
- ;;^UTILITY(U,$J,358.3,24858,1,0)
+ ;;^UTILITY(U,$J,358.3,23402,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,23402,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,23402,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,23403,0)
+ ;;=Z85.528^^105^1173^79
+ ;;^UTILITY(U,$J,358.3,23403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24858,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,24858,1,4,0)
- ;;=4^F10.230
- ;;^UTILITY(U,$J,358.3,24858,2)
- ;;=^5003086
- ;;^UTILITY(U,$J,358.3,24859,0)
- ;;=F10.231^^93^1116^31
- ;;^UTILITY(U,$J,358.3,24859,1,0)
+ ;;^UTILITY(U,$J,358.3,23403,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,23403,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,23403,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,23404,0)
+ ;;=Z85.6^^105^1173^72
+ ;;^UTILITY(U,$J,358.3,23404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24859,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,24859,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,24859,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,24860,0)
- ;;=F10.232^^93^1116^32
- ;;^UTILITY(U,$J,358.3,24860,1,0)
+ ;;^UTILITY(U,$J,358.3,23404,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,23404,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,23404,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,23405,0)
+ ;;=Z85.79^^105^1173^83
+ ;;^UTILITY(U,$J,358.3,23405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24860,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,24860,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,24860,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,24861,0)
- ;;=F10.239^^93^1116^33
+ ;;^UTILITY(U,$J,358.3,23405,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lymphoid/Hematpoetc/Related Tissues

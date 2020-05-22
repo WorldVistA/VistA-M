@@ -1,128 +1,126 @@
-IBDEI1Q9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29315,1,4,0)
- ;;=4^O09.41
- ;;^UTILITY(U,$J,358.3,29315,2)
- ;;=^5016069
- ;;^UTILITY(U,$J,358.3,29316,0)
- ;;=O09.42^^115^1456^92
- ;;^UTILITY(U,$J,358.3,29316,1,0)
+ ;;^UTILITY(U,$J,358.3,27609,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,27609,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,27609,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,27610,0)
+ ;;=F33.2^^113^1341^12
+ ;;^UTILITY(U,$J,358.3,27610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29316,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, second trimester
- ;;^UTILITY(U,$J,358.3,29316,1,4,0)
- ;;=4^O09.42
- ;;^UTILITY(U,$J,358.3,29316,2)
- ;;=^5016070
- ;;^UTILITY(U,$J,358.3,29317,0)
- ;;=O09.43^^115^1456^93
- ;;^UTILITY(U,$J,358.3,29317,1,0)
+ ;;^UTILITY(U,$J,358.3,27610,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,27610,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,27610,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,27611,0)
+ ;;=F33.3^^113^1341^7
+ ;;^UTILITY(U,$J,358.3,27611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29317,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, third trimester
- ;;^UTILITY(U,$J,358.3,29317,1,4,0)
- ;;=4^O09.43
- ;;^UTILITY(U,$J,358.3,29317,2)
- ;;=^5016071
- ;;^UTILITY(U,$J,358.3,29318,0)
- ;;=O09.511^^115^1456^88
- ;;^UTILITY(U,$J,358.3,29318,1,0)
+ ;;^UTILITY(U,$J,358.3,27611,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,27611,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,27611,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,27612,0)
+ ;;=F33.41^^113^1341^9
+ ;;^UTILITY(U,$J,358.3,27612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29318,1,3,0)
- ;;=3^Supervision of elderly primigravida, first trimester
- ;;^UTILITY(U,$J,358.3,29318,1,4,0)
- ;;=4^O09.511
- ;;^UTILITY(U,$J,358.3,29318,2)
- ;;=^5016072
- ;;^UTILITY(U,$J,358.3,29319,0)
- ;;=O09.512^^115^1456^89
- ;;^UTILITY(U,$J,358.3,29319,1,0)
+ ;;^UTILITY(U,$J,358.3,27612,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,27612,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,27612,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,27613,0)
+ ;;=F33.42^^113^1341^8
+ ;;^UTILITY(U,$J,358.3,27613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29319,1,3,0)
- ;;=3^Supervision of elderly primigravida, second trimester
- ;;^UTILITY(U,$J,358.3,29319,1,4,0)
- ;;=4^O09.512
- ;;^UTILITY(U,$J,358.3,29319,2)
- ;;=^5016073
- ;;^UTILITY(U,$J,358.3,29320,0)
- ;;=O09.513^^115^1456^90
- ;;^UTILITY(U,$J,358.3,29320,1,0)
+ ;;^UTILITY(U,$J,358.3,27613,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,27613,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,27613,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,27614,0)
+ ;;=F34.1^^113^1341^20
+ ;;^UTILITY(U,$J,358.3,27614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29320,1,3,0)
- ;;=3^Supervision of elderly primigravida, third trimester
- ;;^UTILITY(U,$J,358.3,29320,1,4,0)
- ;;=4^O09.513
- ;;^UTILITY(U,$J,358.3,29320,2)
- ;;=^5016074
- ;;^UTILITY(U,$J,358.3,29321,0)
- ;;=O09.521^^115^1456^85
- ;;^UTILITY(U,$J,358.3,29321,1,0)
+ ;;^UTILITY(U,$J,358.3,27614,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)
+ ;;^UTILITY(U,$J,358.3,27614,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,27614,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,27615,0)
+ ;;=F06.34^^113^1341^3
+ ;;^UTILITY(U,$J,358.3,27615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29321,1,3,0)
- ;;=3^Supervision of elderly multigravida, first trimester
- ;;^UTILITY(U,$J,358.3,29321,1,4,0)
- ;;=4^O09.521
- ;;^UTILITY(U,$J,358.3,29321,2)
- ;;=^5016076
- ;;^UTILITY(U,$J,358.3,29322,0)
- ;;=O09.522^^115^1456^86
- ;;^UTILITY(U,$J,358.3,29322,1,0)
+ ;;^UTILITY(U,$J,358.3,27615,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Mixed Feat
+ ;;^UTILITY(U,$J,358.3,27615,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,27615,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,27616,0)
+ ;;=F32.9^^113^1341^5
+ ;;^UTILITY(U,$J,358.3,27616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29322,1,3,0)
- ;;=3^Supervision of elderly multigravida, second trimester
- ;;^UTILITY(U,$J,358.3,29322,1,4,0)
- ;;=4^O09.522
- ;;^UTILITY(U,$J,358.3,29322,2)
- ;;=^5016077
- ;;^UTILITY(U,$J,358.3,29323,0)
- ;;=O09.523^^115^1456^87
- ;;^UTILITY(U,$J,358.3,29323,1,0)
+ ;;^UTILITY(U,$J,358.3,27616,1,3,0)
+ ;;=3^Depressive D/O,Unsp
+ ;;^UTILITY(U,$J,358.3,27616,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,27616,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,27617,0)
+ ;;=F32.89^^113^1341^4
+ ;;^UTILITY(U,$J,358.3,27617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29323,1,3,0)
- ;;=3^Supervision of elderly multigravida, third trimester
- ;;^UTILITY(U,$J,358.3,29323,1,4,0)
- ;;=4^O09.523
- ;;^UTILITY(U,$J,358.3,29323,2)
- ;;=^5016078
- ;;^UTILITY(U,$J,358.3,29324,0)
- ;;=O76.^^115^1456^1
- ;;^UTILITY(U,$J,358.3,29324,1,0)
+ ;;^UTILITY(U,$J,358.3,27617,1,3,0)
+ ;;=3^Depressive D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,27617,1,4,0)
+ ;;=4^F32.89
+ ;;^UTILITY(U,$J,358.3,27617,2)
+ ;;=^5138442
+ ;;^UTILITY(U,$J,358.3,27618,0)
+ ;;=F34.81^^113^1341^6
+ ;;^UTILITY(U,$J,358.3,27618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29324,1,3,0)
- ;;=3^Abnlt in fetal heart rate and rhythm comp labor and delivery
- ;;^UTILITY(U,$J,358.3,29324,1,4,0)
- ;;=4^O76.
- ;;^UTILITY(U,$J,358.3,29324,2)
- ;;=^5017746
- ;;^UTILITY(U,$J,358.3,29325,0)
- ;;=O86.89^^115^1457^2
- ;;^UTILITY(U,$J,358.3,29325,1,0)
+ ;;^UTILITY(U,$J,358.3,27618,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,27618,1,4,0)
+ ;;=4^F34.81
+ ;;^UTILITY(U,$J,358.3,27618,2)
+ ;;=^8313905
+ ;;^UTILITY(U,$J,358.3,27619,0)
+ ;;=F32.81^^113^1341^21
+ ;;^UTILITY(U,$J,358.3,27619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29325,1,3,0)
- ;;=3^Puerperal infections NEC
- ;;^UTILITY(U,$J,358.3,29325,1,4,0)
- ;;=4^O86.89
- ;;^UTILITY(U,$J,358.3,29325,2)
- ;;=^5017765
- ;;^UTILITY(U,$J,358.3,29326,0)
- ;;=O86.12^^115^1457^1
- ;;^UTILITY(U,$J,358.3,29326,1,0)
+ ;;^UTILITY(U,$J,358.3,27619,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,27619,1,4,0)
+ ;;=4^F32.81
+ ;;^UTILITY(U,$J,358.3,27619,2)
+ ;;=^7000885
+ ;;^UTILITY(U,$J,358.3,27620,0)
+ ;;=F44.81^^113^1342^6
+ ;;^UTILITY(U,$J,358.3,27620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29326,1,3,0)
- ;;=3^Endometritis following delivery
- ;;^UTILITY(U,$J,358.3,29326,1,4,0)
- ;;=4^O86.12
- ;;^UTILITY(U,$J,358.3,29326,2)
- ;;=^5017756
- ;;^UTILITY(U,$J,358.3,29327,0)
- ;;=O85.^^115^1457^3
- ;;^UTILITY(U,$J,358.3,29327,1,0)
+ ;;^UTILITY(U,$J,358.3,27620,1,3,0)
+ ;;=3^Dissociative Identity D/O
+ ;;^UTILITY(U,$J,358.3,27620,1,4,0)
+ ;;=4^F44.81
+ ;;^UTILITY(U,$J,358.3,27620,2)
+ ;;=^331909
+ ;;^UTILITY(U,$J,358.3,27621,0)
+ ;;=F44.9^^113^1342^5
+ ;;^UTILITY(U,$J,358.3,27621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29327,1,3,0)
- ;;=3^Puerperal sepsis
- ;;^UTILITY(U,$J,358.3,29327,1,4,0)
- ;;=4^O85.
- ;;^UTILITY(U,$J,358.3,29327,2)
- ;;=^5017753
+ ;;^UTILITY(U,$J,358.3,27621,1,3,0)
+ ;;=3^Dissociative D/O,Unspec

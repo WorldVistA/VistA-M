@@ -1,132 +1,128 @@
-IBDEI33H ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51935,1,0)
+ ;;^UTILITY(U,$J,358.3,49415,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,49415,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,49416,0)
+ ;;=K70.31^^187^2448^1
+ ;;^UTILITY(U,$J,358.3,49416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51935,1,3,0)
- ;;=3^Written Expression Disorder
- ;;^UTILITY(U,$J,358.3,51935,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,51935,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,51936,0)
- ;;=F80.1^^233^2547^2
- ;;^UTILITY(U,$J,358.3,51936,1,0)
+ ;;^UTILITY(U,$J,358.3,49416,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,49416,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,49416,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,49417,0)
+ ;;=K74.60^^187^2448^20
+ ;;^UTILITY(U,$J,358.3,49417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51936,1,3,0)
- ;;=3^Expressive language disorder
- ;;^UTILITY(U,$J,358.3,51936,1,4,0)
- ;;=4^F80.1
- ;;^UTILITY(U,$J,358.3,51936,2)
- ;;=^331958
- ;;^UTILITY(U,$J,358.3,51937,0)
- ;;=F81.2^^233^2547^3
- ;;^UTILITY(U,$J,358.3,51937,1,0)
+ ;;^UTILITY(U,$J,358.3,49417,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,49417,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,49417,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,49418,0)
+ ;;=A40.0^^187^2449^1
+ ;;^UTILITY(U,$J,358.3,49418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51937,1,3,0)
- ;;=3^Mathematics disorder
- ;;^UTILITY(U,$J,358.3,51937,1,4,0)
- ;;=4^F81.2
- ;;^UTILITY(U,$J,358.3,51937,2)
- ;;=^331957
- ;;^UTILITY(U,$J,358.3,51938,0)
- ;;=F80.2^^233^2547^4
- ;;^UTILITY(U,$J,358.3,51938,1,0)
+ ;;^UTILITY(U,$J,358.3,49418,1,3,0)
+ ;;=3^Sepsis d/t Streptococcus,Group A
+ ;;^UTILITY(U,$J,358.3,49418,1,4,0)
+ ;;=4^A40.0
+ ;;^UTILITY(U,$J,358.3,49418,2)
+ ;;=^5000196
+ ;;^UTILITY(U,$J,358.3,49419,0)
+ ;;=A40.1^^187^2449^2
+ ;;^UTILITY(U,$J,358.3,49419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51938,1,3,0)
- ;;=3^Mixed receptive-expressive language disorder
- ;;^UTILITY(U,$J,358.3,51938,1,4,0)
- ;;=4^F80.2
- ;;^UTILITY(U,$J,358.3,51938,2)
- ;;=^331959
- ;;^UTILITY(U,$J,358.3,51939,0)
- ;;=F88.^^233^2547^8
- ;;^UTILITY(U,$J,358.3,51939,1,0)
+ ;;^UTILITY(U,$J,358.3,49419,1,3,0)
+ ;;=3^Sepsis d/t Streptococcus,Group B
+ ;;^UTILITY(U,$J,358.3,49419,1,4,0)
+ ;;=4^A40.1
+ ;;^UTILITY(U,$J,358.3,49419,2)
+ ;;=^5000197
+ ;;^UTILITY(U,$J,358.3,49420,0)
+ ;;=A40.3^^187^2449^3
+ ;;^UTILITY(U,$J,358.3,49420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51939,1,3,0)
- ;;=3^Psychological Development Disorder NEC
- ;;^UTILITY(U,$J,358.3,51939,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,51939,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,51940,0)
- ;;=F07.0^^233^2547^6
- ;;^UTILITY(U,$J,358.3,51940,1,0)
+ ;;^UTILITY(U,$J,358.3,49420,1,3,0)
+ ;;=3^Sepsis d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,49420,1,4,0)
+ ;;=4^A40.3
+ ;;^UTILITY(U,$J,358.3,49420,2)
+ ;;=^5000198
+ ;;^UTILITY(U,$J,358.3,49421,0)
+ ;;=A40.8^^187^2449^4
+ ;;^UTILITY(U,$J,358.3,49421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51940,1,3,0)
- ;;=3^Personality change due to known physiological condition
- ;;^UTILITY(U,$J,358.3,51940,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,51940,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,51941,0)
- ;;=F80.0^^233^2547^7
- ;;^UTILITY(U,$J,358.3,51941,1,0)
+ ;;^UTILITY(U,$J,358.3,49421,1,3,0)
+ ;;=3^Streptococcal Sepsis,Other
+ ;;^UTILITY(U,$J,358.3,49421,1,4,0)
+ ;;=4^A40.8
+ ;;^UTILITY(U,$J,358.3,49421,2)
+ ;;=^5000199
+ ;;^UTILITY(U,$J,358.3,49422,0)
+ ;;=A40.9^^187^2449^5
+ ;;^UTILITY(U,$J,358.3,49422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51941,1,3,0)
- ;;=3^Phonological disorder
- ;;^UTILITY(U,$J,358.3,51941,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,51941,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,51942,0)
- ;;=F82.^^233^2547^5
- ;;^UTILITY(U,$J,358.3,51942,1,0)
+ ;;^UTILITY(U,$J,358.3,49422,1,3,0)
+ ;;=3^Streptococcal Sepsis,Unspec
+ ;;^UTILITY(U,$J,358.3,49422,1,4,0)
+ ;;=4^A40.9
+ ;;^UTILITY(U,$J,358.3,49422,2)
+ ;;=^5000200
+ ;;^UTILITY(U,$J,358.3,49423,0)
+ ;;=A41.01^^187^2449^6
+ ;;^UTILITY(U,$J,358.3,49423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51942,1,3,0)
- ;;=3^Motor Function Development Disorder NEC
- ;;^UTILITY(U,$J,358.3,51942,1,4,0)
- ;;=4^F82.
- ;;^UTILITY(U,$J,358.3,51942,2)
- ;;=^5003683
- ;;^UTILITY(U,$J,358.3,51943,0)
- ;;=F81.0^^233^2547^9
- ;;^UTILITY(U,$J,358.3,51943,1,0)
+ ;;^UTILITY(U,$J,358.3,49423,1,3,0)
+ ;;=3^Sepsis d/t Methicillin Susceptible
+ ;;^UTILITY(U,$J,358.3,49423,1,4,0)
+ ;;=4^A41.01
+ ;;^UTILITY(U,$J,358.3,49423,2)
+ ;;=^5000201
+ ;;^UTILITY(U,$J,358.3,49424,0)
+ ;;=A41.02^^187^2449^7
+ ;;^UTILITY(U,$J,358.3,49424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51943,1,3,0)
- ;;=3^Reading Disorder NEC
- ;;^UTILITY(U,$J,358.3,51943,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,51943,2)
- ;;=^5003679
- ;;^UTILITY(U,$J,358.3,51944,0)
- ;;=F80.4^^233^2547^10
- ;;^UTILITY(U,$J,358.3,51944,1,0)
+ ;;^UTILITY(U,$J,358.3,49424,1,3,0)
+ ;;=3^Sepsis d/t Methicillin Resistant
+ ;;^UTILITY(U,$J,358.3,49424,1,4,0)
+ ;;=4^A41.02
+ ;;^UTILITY(U,$J,358.3,49424,2)
+ ;;=^5000202
+ ;;^UTILITY(U,$J,358.3,49425,0)
+ ;;=A41.1^^187^2449^8
+ ;;^UTILITY(U,$J,358.3,49425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51944,1,3,0)
- ;;=3^Speech and language development delay due to hearing loss
- ;;^UTILITY(U,$J,358.3,51944,1,4,0)
- ;;=4^F80.4
- ;;^UTILITY(U,$J,358.3,51944,2)
- ;;=^5003675
- ;;^UTILITY(U,$J,358.3,51945,0)
- ;;=I69.020^^233^2548^3
- ;;^UTILITY(U,$J,358.3,51945,1,0)
+ ;;^UTILITY(U,$J,358.3,49425,1,3,0)
+ ;;=3^Sepsis d/t  Staphylococcus,Oth Spec
+ ;;^UTILITY(U,$J,358.3,49425,1,4,0)
+ ;;=4^A41.1
+ ;;^UTILITY(U,$J,358.3,49425,2)
+ ;;=^5000203
+ ;;^UTILITY(U,$J,358.3,49426,0)
+ ;;=A41.2^^187^2449^9
+ ;;^UTILITY(U,$J,358.3,49426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51945,1,3,0)
- ;;=3^Aphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,51945,1,4,0)
- ;;=4^I69.020
- ;;^UTILITY(U,$J,358.3,51945,2)
- ;;=^5007395
- ;;^UTILITY(U,$J,358.3,51946,0)
- ;;=I69.320^^233^2548^1
- ;;^UTILITY(U,$J,358.3,51946,1,0)
+ ;;^UTILITY(U,$J,358.3,49426,1,3,0)
+ ;;=3^Sepsis d/t Staphylococcus,Unspec
+ ;;^UTILITY(U,$J,358.3,49426,1,4,0)
+ ;;=4^A41.2
+ ;;^UTILITY(U,$J,358.3,49426,2)
+ ;;=^5000204
+ ;;^UTILITY(U,$J,358.3,49427,0)
+ ;;=A41.3^^187^2449^10
+ ;;^UTILITY(U,$J,358.3,49427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51946,1,3,0)
- ;;=3^Aphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,51946,1,4,0)
- ;;=4^I69.320
- ;;^UTILITY(U,$J,358.3,51946,2)
- ;;=^5007491
- ;;^UTILITY(U,$J,358.3,51947,0)
- ;;=I69.120^^233^2548^2
- ;;^UTILITY(U,$J,358.3,51947,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51947,1,3,0)
- ;;=3^Aphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,51947,1,4,0)
- ;;=4^I69.120
- ;;^UTILITY(U,$J,358.3,51947,2)
- ;;=^5007427
+ ;;^UTILITY(U,$J,358.3,49427,1,3,0)
+ ;;=3^Sepsis d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,49427,1,4,0)
+ ;;=4^A41.3
+ ;;^UTILITY(U,$J,358.3,49427,2)
+ ;;=^5000205

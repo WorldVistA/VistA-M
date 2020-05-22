@@ -1,132 +1,124 @@
-IBDEI2KR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43687,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,43687,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,43688,0)
- ;;=T33.521A^^167^2085^31
- ;;^UTILITY(U,$J,358.3,43688,1,0)
+ ;;^UTILITY(U,$J,358.3,41092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43688,1,3,0)
- ;;=3^Frostbite Rt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,43688,1,4,0)
- ;;=4^T33.521A
- ;;^UTILITY(U,$J,358.3,43688,2)
- ;;=^5049076
- ;;^UTILITY(U,$J,358.3,43689,0)
- ;;=T33.522A^^167^2085^29
- ;;^UTILITY(U,$J,358.3,43689,1,0)
+ ;;^UTILITY(U,$J,358.3,41092,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Partial
+ ;;^UTILITY(U,$J,358.3,41092,1,4,0)
+ ;;=4^Z90.411
+ ;;^UTILITY(U,$J,358.3,41092,2)
+ ;;=^5063588
+ ;;^UTILITY(U,$J,358.3,41093,0)
+ ;;=Z90.410^^152^2022^30
+ ;;^UTILITY(U,$J,358.3,41093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43689,1,3,0)
- ;;=3^Frostbite Lt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,43689,1,4,0)
- ;;=4^T33.522A
- ;;^UTILITY(U,$J,358.3,43689,2)
- ;;=^5049079
- ;;^UTILITY(U,$J,358.3,43690,0)
- ;;=T34.521A^^167^2085^35
- ;;^UTILITY(U,$J,358.3,43690,1,0)
+ ;;^UTILITY(U,$J,358.3,41093,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Total
+ ;;^UTILITY(U,$J,358.3,41093,1,4,0)
+ ;;=4^Z90.410
+ ;;^UTILITY(U,$J,358.3,41093,2)
+ ;;=^5063587
+ ;;^UTILITY(U,$J,358.3,41094,0)
+ ;;=Z89.441^^152^2022^2
+ ;;^UTILITY(U,$J,358.3,41094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43690,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Rt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,43690,1,4,0)
- ;;=4^T34.521A
- ;;^UTILITY(U,$J,358.3,43690,2)
- ;;=^5049187
- ;;^UTILITY(U,$J,358.3,43691,0)
- ;;=T34.522A^^167^2085^33
- ;;^UTILITY(U,$J,358.3,43691,1,0)
+ ;;^UTILITY(U,$J,358.3,41094,1,3,0)
+ ;;=3^Acquired Absence of Ankle,Right
+ ;;^UTILITY(U,$J,358.3,41094,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,41094,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,41095,0)
+ ;;=Z90.11^^152^2022^4
+ ;;^UTILITY(U,$J,358.3,41095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43691,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Lt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,43691,1,4,0)
- ;;=4^T34.522A
- ;;^UTILITY(U,$J,358.3,43691,2)
- ;;=^5049190
- ;;^UTILITY(U,$J,358.3,43692,0)
- ;;=T33.821A^^167^2085^30
- ;;^UTILITY(U,$J,358.3,43692,1,0)
+ ;;^UTILITY(U,$J,358.3,41095,1,3,0)
+ ;;=3^Acquired Absence of Breast & Nipple,Right
+ ;;^UTILITY(U,$J,358.3,41095,1,4,0)
+ ;;=4^Z90.11
+ ;;^UTILITY(U,$J,358.3,41095,2)
+ ;;=^5063582
+ ;;^UTILITY(U,$J,358.3,41096,0)
+ ;;=Z89.021^^152^2022^9
+ ;;^UTILITY(U,$J,358.3,41096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43692,1,3,0)
- ;;=3^Frostbite Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43692,1,4,0)
- ;;=4^T33.821A
- ;;^UTILITY(U,$J,358.3,43692,2)
- ;;=^5049121
- ;;^UTILITY(U,$J,358.3,43693,0)
- ;;=T33.822A^^167^2085^28
- ;;^UTILITY(U,$J,358.3,43693,1,0)
+ ;;^UTILITY(U,$J,358.3,41096,1,3,0)
+ ;;=3^Acquired Absence of Finger(s),Right
+ ;;^UTILITY(U,$J,358.3,41096,1,4,0)
+ ;;=4^Z89.021
+ ;;^UTILITY(U,$J,358.3,41096,2)
+ ;;=^5063534
+ ;;^UTILITY(U,$J,358.3,41097,0)
+ ;;=Z89.431^^152^2022^11
+ ;;^UTILITY(U,$J,358.3,41097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43693,1,3,0)
- ;;=3^Frostbite Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43693,1,4,0)
- ;;=4^T33.822A
- ;;^UTILITY(U,$J,358.3,43693,2)
- ;;=^5049124
- ;;^UTILITY(U,$J,358.3,43694,0)
- ;;=T34.821A^^167^2085^34
- ;;^UTILITY(U,$J,358.3,43694,1,0)
+ ;;^UTILITY(U,$J,358.3,41097,1,3,0)
+ ;;=3^Acquired Absence of Foot,Right
+ ;;^UTILITY(U,$J,358.3,41097,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,41097,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,41098,0)
+ ;;=Z89.411^^152^2022^13
+ ;;^UTILITY(U,$J,358.3,41098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43694,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43694,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,43694,2)
- ;;=^5049232
- ;;^UTILITY(U,$J,358.3,43695,0)
- ;;=T34.822A^^167^2085^32
- ;;^UTILITY(U,$J,358.3,43695,1,0)
+ ;;^UTILITY(U,$J,358.3,41098,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Right
+ ;;^UTILITY(U,$J,358.3,41098,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,41098,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,41099,0)
+ ;;=Z89.111^^152^2022^15
+ ;;^UTILITY(U,$J,358.3,41099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43695,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43695,1,4,0)
- ;;=4^T34.822A
- ;;^UTILITY(U,$J,358.3,43695,2)
- ;;=^5049235
- ;;^UTILITY(U,$J,358.3,43696,0)
- ;;=T69.021A^^167^2085^46
- ;;^UTILITY(U,$J,358.3,43696,1,0)
+ ;;^UTILITY(U,$J,358.3,41099,1,3,0)
+ ;;=3^Acquired Absence of Hand,Right
+ ;;^UTILITY(U,$J,358.3,41099,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,41099,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,41100,0)
+ ;;=Z89.621^^152^2022^17
+ ;;^UTILITY(U,$J,358.3,41100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43696,1,3,0)
- ;;=3^Immersion Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43696,1,4,0)
- ;;=4^T69.021A
- ;;^UTILITY(U,$J,358.3,43696,2)
- ;;=^5053963
- ;;^UTILITY(U,$J,358.3,43697,0)
- ;;=T69.022A^^167^2085^45
- ;;^UTILITY(U,$J,358.3,43697,1,0)
+ ;;^UTILITY(U,$J,358.3,41100,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Right
+ ;;^UTILITY(U,$J,358.3,41100,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,41100,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,41101,0)
+ ;;=Z89.611^^152^2022^21
+ ;;^UTILITY(U,$J,358.3,41101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43697,1,3,0)
- ;;=3^Immersion Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43697,1,4,0)
- ;;=4^T69.022A
- ;;^UTILITY(U,$J,358.3,43697,2)
- ;;=^5053966
- ;;^UTILITY(U,$J,358.3,43698,0)
- ;;=Z02.3^^167^2085^26
- ;;^UTILITY(U,$J,358.3,43698,1,0)
+ ;;^UTILITY(U,$J,358.3,41101,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Right
+ ;;^UTILITY(U,$J,358.3,41101,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,41101,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,41102,0)
+ ;;=Z89.511^^152^2022^23
+ ;;^UTILITY(U,$J,358.3,41102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43698,1,3,0)
- ;;=3^Exam for Recruitment to Armed Forces
- ;;^UTILITY(U,$J,358.3,43698,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,43698,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,43699,0)
- ;;=Z02.1^^167^2085^25
- ;;^UTILITY(U,$J,358.3,43699,1,0)
+ ;;^UTILITY(U,$J,358.3,41102,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Right
+ ;;^UTILITY(U,$J,358.3,41102,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,41102,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,41103,0)
+ ;;=Z89.231^^152^2022^33
+ ;;^UTILITY(U,$J,358.3,41103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43699,1,3,0)
- ;;=3^Exam for Pre-Employment
- ;;^UTILITY(U,$J,358.3,43699,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,43699,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,43700,0)
- ;;=Z02.89^^167^2085^24
- ;;^UTILITY(U,$J,358.3,43700,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41103,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,41103,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,41103,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,41104,0)
+ ;;=Z89.011^^152^2022^37

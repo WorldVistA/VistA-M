@@ -1,128 +1,126 @@
-IBDEI275 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI275 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37260,1,3,0)
- ;;=3^Disorders of tendon, lft wrist, oth, spec
- ;;^UTILITY(U,$J,358.3,37260,1,4,0)
- ;;=4^M67.834
- ;;^UTILITY(U,$J,358.3,37260,2)
- ;;=^5012997
- ;;^UTILITY(U,$J,358.3,37261,0)
- ;;=M67.841^^140^1787^115
- ;;^UTILITY(U,$J,358.3,37261,1,0)
+ ;;^UTILITY(U,$J,358.3,35078,2)
+ ;;=^5134070
+ ;;^UTILITY(U,$J,358.3,35079,0)
+ ;;=M86.632^^137^1796^5
+ ;;^UTILITY(U,$J,358.3,35079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37261,1,3,0)
- ;;=3^Disorders of synovium, rt hand, oth, spec
- ;;^UTILITY(U,$J,358.3,37261,1,4,0)
- ;;=4^M67.841
- ;;^UTILITY(U,$J,358.3,37261,2)
- ;;=^5012999
- ;;^UTILITY(U,$J,358.3,37262,0)
- ;;=M67.842^^140^1787^108
- ;;^UTILITY(U,$J,358.3,37262,1,0)
+ ;;^UTILITY(U,$J,358.3,35079,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Radius/Ulna NEC
+ ;;^UTILITY(U,$J,358.3,35079,1,4,0)
+ ;;=4^M86.632
+ ;;^UTILITY(U,$J,358.3,35079,2)
+ ;;=^5134072
+ ;;^UTILITY(U,$J,358.3,35080,0)
+ ;;=M86.612^^137^1796^6
+ ;;^UTILITY(U,$J,358.3,35080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37262,1,3,0)
- ;;=3^Disorders of synovium, lft hand, oth, spec
- ;;^UTILITY(U,$J,358.3,37262,1,4,0)
- ;;=4^M67.842
- ;;^UTILITY(U,$J,358.3,37262,2)
- ;;=^5013000
- ;;^UTILITY(U,$J,358.3,37263,0)
- ;;=M67.843^^140^1787^129
- ;;^UTILITY(U,$J,358.3,37263,1,0)
+ ;;^UTILITY(U,$J,358.3,35080,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Shoulder NEC
+ ;;^UTILITY(U,$J,358.3,35080,1,4,0)
+ ;;=4^M86.612
+ ;;^UTILITY(U,$J,358.3,35080,2)
+ ;;=^5014632
+ ;;^UTILITY(U,$J,358.3,35081,0)
+ ;;=M86.652^^137^1796^7
+ ;;^UTILITY(U,$J,358.3,35081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37263,1,3,0)
- ;;=3^Disorders of tendon, rt hand, oth, spec
- ;;^UTILITY(U,$J,358.3,37263,1,4,0)
- ;;=4^M67.843
- ;;^UTILITY(U,$J,358.3,37263,2)
- ;;=^5013001
- ;;^UTILITY(U,$J,358.3,37264,0)
- ;;=M67.844^^140^1787^122
- ;;^UTILITY(U,$J,358.3,37264,1,0)
+ ;;^UTILITY(U,$J,358.3,35081,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Thigh NEC
+ ;;^UTILITY(U,$J,358.3,35081,1,4,0)
+ ;;=4^M86.652
+ ;;^UTILITY(U,$J,358.3,35081,2)
+ ;;=^5014638
+ ;;^UTILITY(U,$J,358.3,35082,0)
+ ;;=M86.662^^137^1796^8
+ ;;^UTILITY(U,$J,358.3,35082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37264,1,3,0)
- ;;=3^Disorders of tendon, lft hand, oth, spec
- ;;^UTILITY(U,$J,358.3,37264,1,4,0)
- ;;=4^M67.844
- ;;^UTILITY(U,$J,358.3,37264,2)
- ;;=^5013002
- ;;^UTILITY(U,$J,358.3,37265,0)
- ;;=M67.851^^140^1787^116
- ;;^UTILITY(U,$J,358.3,37265,1,0)
+ ;;^UTILITY(U,$J,358.3,35082,1,3,0)
+ ;;=3^Chr Osteomyelitis,Lt Tibia/Fibula NEC
+ ;;^UTILITY(U,$J,358.3,35082,1,4,0)
+ ;;=4^M86.662
+ ;;^UTILITY(U,$J,358.3,35082,2)
+ ;;=^5134076
+ ;;^UTILITY(U,$J,358.3,35083,0)
+ ;;=M86.671^^137^1796^9
+ ;;^UTILITY(U,$J,358.3,35083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37265,1,3,0)
- ;;=3^Disorders of synovium, rt hip, oth, spec
- ;;^UTILITY(U,$J,358.3,37265,1,4,0)
- ;;=4^M67.851
- ;;^UTILITY(U,$J,358.3,37265,2)
- ;;=^5013004
- ;;^UTILITY(U,$J,358.3,37266,0)
- ;;=M67.852^^140^1787^109
- ;;^UTILITY(U,$J,358.3,37266,1,0)
+ ;;^UTILITY(U,$J,358.3,35083,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Ankle/Foot NEC
+ ;;^UTILITY(U,$J,358.3,35083,1,4,0)
+ ;;=4^M86.671
+ ;;^UTILITY(U,$J,358.3,35083,2)
+ ;;=^5014641
+ ;;^UTILITY(U,$J,358.3,35084,0)
+ ;;=M86.641^^137^1796^10
+ ;;^UTILITY(U,$J,358.3,35084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37266,1,3,0)
- ;;=3^Disorders of synovium, lft hip, oth, spec
- ;;^UTILITY(U,$J,358.3,37266,1,4,0)
- ;;=4^M67.852
- ;;^UTILITY(U,$J,358.3,37266,2)
- ;;=^5013005
- ;;^UTILITY(U,$J,358.3,37267,0)
- ;;=M67.853^^140^1787^130
- ;;^UTILITY(U,$J,358.3,37267,1,0)
+ ;;^UTILITY(U,$J,358.3,35084,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Hand
+ ;;^UTILITY(U,$J,358.3,35084,1,4,0)
+ ;;=4^M86.641
+ ;;^UTILITY(U,$J,358.3,35084,2)
+ ;;=^5014636
+ ;;^UTILITY(U,$J,358.3,35085,0)
+ ;;=M86.621^^137^1796^11
+ ;;^UTILITY(U,$J,358.3,35085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37267,1,3,0)
- ;;=3^Disorders of tendon, rt hip, oth, spec
- ;;^UTILITY(U,$J,358.3,37267,1,4,0)
- ;;=4^M67.853
- ;;^UTILITY(U,$J,358.3,37267,2)
- ;;=^5013006
- ;;^UTILITY(U,$J,358.3,37268,0)
- ;;=M67.854^^140^1787^123
- ;;^UTILITY(U,$J,358.3,37268,1,0)
+ ;;^UTILITY(U,$J,358.3,35085,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Humerus NEC
+ ;;^UTILITY(U,$J,358.3,35085,1,4,0)
+ ;;=4^M86.621
+ ;;^UTILITY(U,$J,358.3,35085,2)
+ ;;=^5014634
+ ;;^UTILITY(U,$J,358.3,35086,0)
+ ;;=M86.631^^137^1796^12
+ ;;^UTILITY(U,$J,358.3,35086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37268,1,3,0)
- ;;=3^Disorders of tendon, lft hip, oth, spec
- ;;^UTILITY(U,$J,358.3,37268,1,4,0)
- ;;=4^M67.854
- ;;^UTILITY(U,$J,358.3,37268,2)
- ;;=^5013007
- ;;^UTILITY(U,$J,358.3,37269,0)
- ;;=M67.861^^140^1787^117
- ;;^UTILITY(U,$J,358.3,37269,1,0)
+ ;;^UTILITY(U,$J,358.3,35086,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Radius/Ulna NEC
+ ;;^UTILITY(U,$J,358.3,35086,1,4,0)
+ ;;=4^M86.631
+ ;;^UTILITY(U,$J,358.3,35086,2)
+ ;;=^5014635
+ ;;^UTILITY(U,$J,358.3,35087,0)
+ ;;=M86.611^^137^1796^13
+ ;;^UTILITY(U,$J,358.3,35087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37269,1,3,0)
- ;;=3^Disorders of synovium, rt knee, oth, spec
- ;;^UTILITY(U,$J,358.3,37269,1,4,0)
- ;;=4^M67.861
- ;;^UTILITY(U,$J,358.3,37269,2)
- ;;=^5013009
- ;;^UTILITY(U,$J,358.3,37270,0)
- ;;=M67.862^^140^1787^110
- ;;^UTILITY(U,$J,358.3,37270,1,0)
+ ;;^UTILITY(U,$J,358.3,35087,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Shoulder NEC
+ ;;^UTILITY(U,$J,358.3,35087,1,4,0)
+ ;;=4^M86.611
+ ;;^UTILITY(U,$J,358.3,35087,2)
+ ;;=^5014631
+ ;;^UTILITY(U,$J,358.3,35088,0)
+ ;;=M86.651^^137^1796^14
+ ;;^UTILITY(U,$J,358.3,35088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37270,1,3,0)
- ;;=3^Disorders of synovium, lft knee
- ;;^UTILITY(U,$J,358.3,37270,1,4,0)
- ;;=4^M67.862
- ;;^UTILITY(U,$J,358.3,37270,2)
- ;;=^5013010
- ;;^UTILITY(U,$J,358.3,37271,0)
- ;;=M67.863^^140^1787^131
- ;;^UTILITY(U,$J,358.3,37271,1,0)
+ ;;^UTILITY(U,$J,358.3,35088,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Thigh NEC
+ ;;^UTILITY(U,$J,358.3,35088,1,4,0)
+ ;;=4^M86.651
+ ;;^UTILITY(U,$J,358.3,35088,2)
+ ;;=^5014637
+ ;;^UTILITY(U,$J,358.3,35089,0)
+ ;;=M86.661^^137^1796^15
+ ;;^UTILITY(U,$J,358.3,35089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37271,1,3,0)
- ;;=3^Disorders of tendon, rt knee, oth, spec
- ;;^UTILITY(U,$J,358.3,37271,1,4,0)
- ;;=4^M67.863
- ;;^UTILITY(U,$J,358.3,37271,2)
- ;;=^5013011
- ;;^UTILITY(U,$J,358.3,37272,0)
- ;;=M67.864^^140^1787^124
- ;;^UTILITY(U,$J,358.3,37272,1,0)
+ ;;^UTILITY(U,$J,358.3,35089,1,3,0)
+ ;;=3^Chr Osteomyelitis,Rt Tibia/Fibula NEC
+ ;;^UTILITY(U,$J,358.3,35089,1,4,0)
+ ;;=4^M86.661
+ ;;^UTILITY(U,$J,358.3,35089,2)
+ ;;=^5014640
+ ;;^UTILITY(U,$J,358.3,35090,0)
+ ;;=M25.672^^137^1796^32
+ ;;^UTILITY(U,$J,358.3,35090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37272,1,3,0)
- ;;=3^Disorders of tendon, lft knee, oth, spec
- ;;^UTILITY(U,$J,358.3,37272,1,4,0)
- ;;=4^M67.864
+ ;;^UTILITY(U,$J,358.3,35090,1,3,0)
+ ;;=3^Stiffness,Lt Ankle NEC
+ ;;^UTILITY(U,$J,358.3,35090,1,4,0)
+ ;;=4^M25.672
+ ;;^UTILITY(U,$J,358.3,35090,2)
+ ;;=^5011640

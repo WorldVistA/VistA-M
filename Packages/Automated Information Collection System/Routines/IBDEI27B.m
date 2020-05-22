@@ -1,134 +1,124 @@
-IBDEI27B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37337,1,0)
+ ;;^UTILITY(U,$J,358.3,35152,1,3,0)
+ ;;=3^Fx,Right forearm, sequela
+ ;;^UTILITY(U,$J,358.3,35152,1,4,0)
+ ;;=4^S52.91XS
+ ;;^UTILITY(U,$J,358.3,35152,2)
+ ;;=^5031173
+ ;;^UTILITY(U,$J,358.3,35153,0)
+ ;;=S82.91XS^^137^1797^25
+ ;;^UTILITY(U,$J,358.3,35153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37337,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,37337,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,37337,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,37338,0)
- ;;=M06.4^^140^1787^164
- ;;^UTILITY(U,$J,358.3,37338,1,0)
+ ;;^UTILITY(U,$J,358.3,35153,1,3,0)
+ ;;=3^Fx,Right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,35153,1,4,0)
+ ;;=4^S82.91XS
+ ;;^UTILITY(U,$J,358.3,35153,2)
+ ;;=^5136991
+ ;;^UTILITY(U,$J,358.3,35154,0)
+ ;;=S82.001S^^137^1797^26
+ ;;^UTILITY(U,$J,358.3,35154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37338,1,3,0)
- ;;=3^Inflammatory polyarthropathy
- ;;^UTILITY(U,$J,358.3,37338,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,37338,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,37339,0)
- ;;=M54.5^^140^1787^191
- ;;^UTILITY(U,$J,358.3,37339,1,0)
+ ;;^UTILITY(U,$J,358.3,35154,1,3,0)
+ ;;=3^Fx,Right patella, sequela
+ ;;^UTILITY(U,$J,358.3,35154,1,4,0)
+ ;;=4^S82.001S
+ ;;^UTILITY(U,$J,358.3,35154,2)
+ ;;=^5040119
+ ;;^UTILITY(U,$J,358.3,35155,0)
+ ;;=S92.911S^^137^1797^28
+ ;;^UTILITY(U,$J,358.3,35155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37339,1,3,0)
- ;;=3^Low back pain
- ;;^UTILITY(U,$J,358.3,37339,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,37339,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,37340,0)
- ;;=M35.5^^140^1787^195
- ;;^UTILITY(U,$J,358.3,37340,1,0)
+ ;;^UTILITY(U,$J,358.3,35155,1,3,0)
+ ;;=3^Fx,Right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,35155,1,4,0)
+ ;;=4^S92.911S
+ ;;^UTILITY(U,$J,358.3,35155,2)
+ ;;=^5045598
+ ;;^UTILITY(U,$J,358.3,35156,0)
+ ;;=S62.91XS^^137^1797^29
+ ;;^UTILITY(U,$J,358.3,35156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37340,1,3,0)
- ;;=3^Multifocal fibrosclerosis
- ;;^UTILITY(U,$J,358.3,37340,1,4,0)
- ;;=4^M35.5
- ;;^UTILITY(U,$J,358.3,37340,2)
- ;;=^5011794
- ;;^UTILITY(U,$J,358.3,37341,0)
- ;;=M79.1^^140^1787^196
- ;;^UTILITY(U,$J,358.3,37341,1,0)
+ ;;^UTILITY(U,$J,358.3,35156,1,3,0)
+ ;;=3^Fx,Right wrist and hand, sequela
+ ;;^UTILITY(U,$J,358.3,35156,1,4,0)
+ ;;=4^S62.91XS
+ ;;^UTILITY(U,$J,358.3,35156,2)
+ ;;=^5034885
+ ;;^UTILITY(U,$J,358.3,35157,0)
+ ;;=S42.302S^^137^1797^30
+ ;;^UTILITY(U,$J,358.3,35157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37341,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,37341,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,37341,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,37342,0)
- ;;=G73.7^^140^1787^197
- ;;^UTILITY(U,$J,358.3,37342,1,0)
+ ;;^UTILITY(U,$J,358.3,35157,1,3,0)
+ ;;=3^Fx,Shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,35157,1,4,0)
+ ;;=4^S42.302S
+ ;;^UTILITY(U,$J,358.3,35157,2)
+ ;;=^5027044
+ ;;^UTILITY(U,$J,358.3,35158,0)
+ ;;=S42.301S^^137^1797^31
+ ;;^UTILITY(U,$J,358.3,35158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37342,1,3,0)
- ;;=3^Myopathy in diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,37342,1,4,0)
- ;;=4^G73.7
- ;;^UTILITY(U,$J,358.3,37342,2)
- ;;=^5004103
- ;;^UTILITY(U,$J,358.3,37343,0)
- ;;=M71.50^^140^1787^66
- ;;^UTILITY(U,$J,358.3,37343,1,0)
+ ;;^UTILITY(U,$J,358.3,35158,1,3,0)
+ ;;=3^Fx,Shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,35158,1,4,0)
+ ;;=4^S42.301S
+ ;;^UTILITY(U,$J,358.3,35158,2)
+ ;;=^5027037
+ ;;^UTILITY(U,$J,358.3,35159,0)
+ ;;=S42.202S^^137^1797^33
+ ;;^UTILITY(U,$J,358.3,35159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37343,1,3,0)
- ;;=3^Bursitis, NEC, unspec site, oth
- ;;^UTILITY(U,$J,358.3,37343,1,4,0)
- ;;=4^M71.50
- ;;^UTILITY(U,$J,358.3,37343,2)
- ;;=^5013190
- ;;^UTILITY(U,$J,358.3,37344,0)
- ;;=E83.59^^140^1787^104
- ;;^UTILITY(U,$J,358.3,37344,1,0)
+ ;;^UTILITY(U,$J,358.3,35159,1,3,0)
+ ;;=3^Fx,Upper end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,35159,1,4,0)
+ ;;=4^S42.202S
+ ;;^UTILITY(U,$J,358.3,35159,2)
+ ;;=^5026774
+ ;;^UTILITY(U,$J,358.3,35160,0)
+ ;;=S42.201S^^137^1797^34
+ ;;^UTILITY(U,$J,358.3,35160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37344,1,3,0)
- ;;=3^Disorders of calcium metabolism, oth
- ;;^UTILITY(U,$J,358.3,37344,1,4,0)
- ;;=4^E83.59
- ;;^UTILITY(U,$J,358.3,37344,2)
- ;;=^5003006
- ;;^UTILITY(U,$J,358.3,37345,0)
- ;;=L93.2^^140^1787^187
- ;;^UTILITY(U,$J,358.3,37345,1,0)
+ ;;^UTILITY(U,$J,358.3,35160,1,3,0)
+ ;;=3^Fx,Upper end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,35160,1,4,0)
+ ;;=4^S42.201S
+ ;;^UTILITY(U,$J,358.3,35160,2)
+ ;;=^5026767
+ ;;^UTILITY(U,$J,358.3,35161,0)
+ ;;=S79.002S^^137^1797^42
+ ;;^UTILITY(U,$J,358.3,35161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37345,1,3,0)
- ;;=3^Local lupus erythematosus, oth
- ;;^UTILITY(U,$J,358.3,37345,1,4,0)
- ;;=4^L93.2
- ;;^UTILITY(U,$J,358.3,37345,2)
- ;;=^5009469
- ;;^UTILITY(U,$J,358.3,37346,0)
- ;;=L40.59^^140^1787^209
- ;;^UTILITY(U,$J,358.3,37346,1,0)
+ ;;^UTILITY(U,$J,358.3,35161,1,3,0)
+ ;;=3^Physeal fracture of upper end of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,35161,1,4,0)
+ ;;=4^S79.002S
+ ;;^UTILITY(U,$J,358.3,35161,2)
+ ;;=^5039767
+ ;;^UTILITY(U,$J,358.3,35162,0)
+ ;;=S79.001S^^137^1797^43
+ ;;^UTILITY(U,$J,358.3,35162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37346,1,3,0)
- ;;=3^Psoriatic arthropathy, oth
- ;;^UTILITY(U,$J,358.3,37346,1,4,0)
- ;;=4^L40.59
- ;;^UTILITY(U,$J,358.3,37346,2)
- ;;=^5009170
- ;;^UTILITY(U,$J,358.3,37347,0)
- ;;=M1A.40X1^^140^1787^155
- ;;^UTILITY(U,$J,358.3,37347,1,0)
+ ;;^UTILITY(U,$J,358.3,35162,1,3,0)
+ ;;=3^Physeal fracture of upper end of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,35162,1,4,0)
+ ;;=4^S79.001S
+ ;;^UTILITY(U,$J,358.3,35162,2)
+ ;;=^5039761
+ ;;^UTILITY(U,$J,358.3,35163,0)
+ ;;=Z87.81^^137^1797^41
+ ;;^UTILITY(U,$J,358.3,35163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37347,1,3,0)
- ;;=3^Gout, chron, secndry, unspec site, w/ tophus, oth
- ;;^UTILITY(U,$J,358.3,37347,1,4,0)
- ;;=4^M1A.40X1
- ;;^UTILITY(U,$J,358.3,37347,2)
- ;;=^5010994
- ;;^UTILITY(U,$J,358.3,37348,0)
- ;;=D89.89^^140^1787^103
- ;;^UTILITY(U,$J,358.3,37348,1,0)
+ ;;^UTILITY(U,$J,358.3,35163,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx
+ ;;^UTILITY(U,$J,358.3,35163,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,35163,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,35164,0)
+ ;;=S02.42XS^^137^1797^1
+ ;;^UTILITY(U,$J,358.3,35164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37348,1,3,0)
- ;;=3^Disorders invlvng immune mechanism, NEC, oth, spec
- ;;^UTILITY(U,$J,358.3,37348,1,4,0)
- ;;=4^D89.89
- ;;^UTILITY(U,$J,358.3,37348,2)
- ;;=^5002458
- ;;^UTILITY(U,$J,358.3,37349,0)
- ;;=M12.30^^140^1787^199
- ;;^UTILITY(U,$J,358.3,37349,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37349,1,3,0)
- ;;=3^Palindromic rheumatism, unspec site
- ;;^UTILITY(U,$J,358.3,37349,1,4,0)
- ;;=4^M12.30
- ;;^UTILITY(U,$J,358.3,37349,2)
- ;;=^5010570
- ;;^UTILITY(U,$J,358.3,37350,0)
- ;;=M35.3^^140^1787^203

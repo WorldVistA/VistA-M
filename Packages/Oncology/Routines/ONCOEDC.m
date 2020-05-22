@@ -1,5 +1,5 @@
 ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;10/19/11
- ;;2.2;ONCOLOGY;**1,5,6**;Jul 31, 2013;Build 10
+ ;;2.2;ONCOLOGY;**1,5,6,10**;Jul 31, 2013;Build 20
  ;
 CHECK ;Required field check
  ;CLASS OF CASE   = 00-22
@@ -17,6 +17,7 @@ CHECK ;Required field check
  S (COC,CC)=$E($$GET1^DIQ(165.5,D0,.04),1,2)
  S SQN=$P(NODE0,U,6),DTDX=$P(NODE0,U,16)
  S ABSTAT=$P($G(^ONCO(165.5,D0,7)),U,2)
+ I DTDX>3171231 D OBS2018^ONCOEDC2
  I CC="" D  S ONCTYP="" K X Q
  .W !
  .W !?5,"CLASS OF CLASS is blank."

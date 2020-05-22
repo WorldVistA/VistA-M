@@ -1,128 +1,124 @@
-IBDEI1G7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1G7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24602,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,24603,0)
- ;;=F10.921^^93^1093^1
- ;;^UTILITY(U,$J,358.3,24603,1,0)
+ ;;^UTILITY(U,$J,358.3,23159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24603,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24603,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,24603,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,24604,0)
- ;;=F05.^^93^1093^4
- ;;^UTILITY(U,$J,358.3,24604,1,0)
+ ;;^UTILITY(U,$J,358.3,23159,1,3,0)
+ ;;=3^Postprocedural Respiratory Failure,Acute
+ ;;^UTILITY(U,$J,358.3,23159,1,4,0)
+ ;;=4^J95.821
+ ;;^UTILITY(U,$J,358.3,23159,2)
+ ;;=^5008338
+ ;;^UTILITY(U,$J,358.3,23160,0)
+ ;;=J95.822^^105^1168^26
+ ;;^UTILITY(U,$J,358.3,23160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24604,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,24604,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,24604,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,24605,0)
- ;;=F05.^^93^1093^5
- ;;^UTILITY(U,$J,358.3,24605,1,0)
+ ;;^UTILITY(U,$J,358.3,23160,1,3,0)
+ ;;=3^Postprocedural Respiratory Failure,Acute and Chronic
+ ;;^UTILITY(U,$J,358.3,23160,1,4,0)
+ ;;=4^J95.822
+ ;;^UTILITY(U,$J,358.3,23160,2)
+ ;;=^5008339
+ ;;^UTILITY(U,$J,358.3,23161,0)
+ ;;=J44.0^^105^1168^12
+ ;;^UTILITY(U,$J,358.3,23161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24605,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,24605,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,24605,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,24606,0)
- ;;=A81.00^^93^1094^9
- ;;^UTILITY(U,$J,358.3,24606,1,0)
+ ;;^UTILITY(U,$J,358.3,23161,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,23161,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,23161,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,23162,0)
+ ;;=J44.1^^105^1168^11
+ ;;^UTILITY(U,$J,358.3,23162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24606,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,24606,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,24606,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,24607,0)
- ;;=A81.01^^93^1094^38
- ;;^UTILITY(U,$J,358.3,24607,1,0)
+ ;;^UTILITY(U,$J,358.3,23162,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,23162,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,23162,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,23163,0)
+ ;;=J96.02^^105^1168^30
+ ;;^UTILITY(U,$J,358.3,23163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24607,1,3,0)
- ;;=3^Variant Creutzfeldt-Jakob Disease
- ;;^UTILITY(U,$J,358.3,24607,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,24607,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,24608,0)
- ;;=A81.09^^93^1094^8
- ;;^UTILITY(U,$J,358.3,24608,1,0)
+ ;;^UTILITY(U,$J,358.3,23163,1,3,0)
+ ;;=3^Respiratory Failure,Hypercapnia,Acute
+ ;;^UTILITY(U,$J,358.3,23163,1,4,0)
+ ;;=4^J96.02
+ ;;^UTILITY(U,$J,358.3,23163,2)
+ ;;=^5008349
+ ;;^UTILITY(U,$J,358.3,23164,0)
+ ;;=J96.22^^105^1168^29
+ ;;^UTILITY(U,$J,358.3,23164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24608,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,24608,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,24608,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,24609,0)
- ;;=A81.2^^93^1094^33
- ;;^UTILITY(U,$J,358.3,24609,1,0)
+ ;;^UTILITY(U,$J,358.3,23164,1,3,0)
+ ;;=3^Respiratory Failure,Hypercapneic,Acute and Chronic
+ ;;^UTILITY(U,$J,358.3,23164,1,4,0)
+ ;;=4^J96.22
+ ;;^UTILITY(U,$J,358.3,23164,2)
+ ;;=^5008355
+ ;;^UTILITY(U,$J,358.3,23165,0)
+ ;;=J96.12^^105^1168^31
+ ;;^UTILITY(U,$J,358.3,23165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24609,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,24609,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,24609,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,24610,0)
- ;;=F01.50^^93^1094^31
- ;;^UTILITY(U,$J,358.3,24610,1,0)
+ ;;^UTILITY(U,$J,358.3,23165,1,3,0)
+ ;;=3^Respiratory Failure,Hypercapnia,Chronic
+ ;;^UTILITY(U,$J,358.3,23165,1,4,0)
+ ;;=4^J96.12
+ ;;^UTILITY(U,$J,358.3,23165,2)
+ ;;=^5008352
+ ;;^UTILITY(U,$J,358.3,23166,0)
+ ;;=J96.01^^105^1168^32
+ ;;^UTILITY(U,$J,358.3,23166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24610,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,24610,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,24610,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,24611,0)
- ;;=F01.51^^93^1094^32
- ;;^UTILITY(U,$J,358.3,24611,1,0)
+ ;;^UTILITY(U,$J,358.3,23166,1,3,0)
+ ;;=3^Respiratory Failure,Hypoxic,Acute
+ ;;^UTILITY(U,$J,358.3,23166,1,4,0)
+ ;;=4^J96.01
+ ;;^UTILITY(U,$J,358.3,23166,2)
+ ;;=^5008348
+ ;;^UTILITY(U,$J,358.3,23167,0)
+ ;;=J96.21^^105^1168^33
+ ;;^UTILITY(U,$J,358.3,23167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24611,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,24611,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,24611,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,24612,0)
- ;;=F10.27^^93^1094^1
- ;;^UTILITY(U,$J,358.3,24612,1,0)
+ ;;^UTILITY(U,$J,358.3,23167,1,3,0)
+ ;;=3^Respiratory Failure,Hypoxic,Acute and Chronic
+ ;;^UTILITY(U,$J,358.3,23167,1,4,0)
+ ;;=4^J96.21
+ ;;^UTILITY(U,$J,358.3,23167,2)
+ ;;=^5008354
+ ;;^UTILITY(U,$J,358.3,23168,0)
+ ;;=J96.11^^105^1168^34
+ ;;^UTILITY(U,$J,358.3,23168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24612,1,3,0)
- ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
- ;;^UTILITY(U,$J,358.3,24612,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,24612,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,24613,0)
- ;;=F19.97^^93^1094^37
- ;;^UTILITY(U,$J,358.3,24613,1,0)
+ ;;^UTILITY(U,$J,358.3,23168,1,3,0)
+ ;;=3^Respiratory Failure,Hypoxic,Chronic
+ ;;^UTILITY(U,$J,358.3,23168,1,4,0)
+ ;;=4^J96.11
+ ;;^UTILITY(U,$J,358.3,23168,2)
+ ;;=^5008351
+ ;;^UTILITY(U,$J,358.3,23169,0)
+ ;;=J95.821^^105^1168^35
+ ;;^UTILITY(U,$J,358.3,23169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24613,1,3,0)
- ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
- ;;^UTILITY(U,$J,358.3,24613,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,24613,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,24614,0)
- ;;=F02.80^^93^1094^13
- ;;^UTILITY(U,$J,358.3,24614,1,0)
+ ;;^UTILITY(U,$J,358.3,23169,1,3,0)
+ ;;=3^Respiratory Failure,Post Procedural,Acute
+ ;;^UTILITY(U,$J,358.3,23169,1,4,0)
+ ;;=4^J95.821
+ ;;^UTILITY(U,$J,358.3,23169,2)
+ ;;=^5008338
+ ;;^UTILITY(U,$J,358.3,23170,0)
+ ;;=K20.9^^105^1169^12
+ ;;^UTILITY(U,$J,358.3,23170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24614,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
- ;;^UTILITY(U,$J,358.3,24614,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,24614,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,24615,0)
- ;;=F02.81^^93^1094^14
+ ;;^UTILITY(U,$J,358.3,23170,1,3,0)
+ ;;=3^Esophagitis,Unspec
+ ;;^UTILITY(U,$J,358.3,23170,1,4,0)
+ ;;=4^K20.9
+ ;;^UTILITY(U,$J,358.3,23170,2)
+ ;;=^295809
+ ;;^UTILITY(U,$J,358.3,23171,0)
+ ;;=K25.9^^105^1169^15

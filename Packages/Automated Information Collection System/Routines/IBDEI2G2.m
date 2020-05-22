@@ -1,134 +1,128 @@
-IBDEI2G2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2G2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41456,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,41456,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,41457,0)
- ;;=Z80.41^^159^2005^38
- ;;^UTILITY(U,$J,358.3,41457,1,0)
+ ;;^UTILITY(U,$J,358.3,39045,2)
+ ;;=^303311
+ ;;^UTILITY(U,$J,358.3,39046,0)
+ ;;=L82.1^^152^1990^304
+ ;;^UTILITY(U,$J,358.3,39046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41457,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,41457,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,41457,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,41458,0)
- ;;=Z80.42^^159^2005^39
- ;;^UTILITY(U,$J,358.3,41458,1,0)
+ ;;^UTILITY(U,$J,358.3,39046,1,3,0)
+ ;;=3^Seborrheic Keratosis NEC
+ ;;^UTILITY(U,$J,358.3,39046,1,4,0)
+ ;;=4^L82.1
+ ;;^UTILITY(U,$J,358.3,39046,2)
+ ;;=^303312
+ ;;^UTILITY(U,$J,358.3,39047,0)
+ ;;=L84.^^152^1990^118
+ ;;^UTILITY(U,$J,358.3,39047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41458,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,41458,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,41458,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,41459,0)
- ;;=Z80.43^^159^2005^40
- ;;^UTILITY(U,$J,358.3,41459,1,0)
+ ;;^UTILITY(U,$J,358.3,39047,1,3,0)
+ ;;=3^Corns and Callosities
+ ;;^UTILITY(U,$J,358.3,39047,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,39047,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,39048,0)
+ ;;=L85.0^^152^1990^9
+ ;;^UTILITY(U,$J,358.3,39048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41459,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,41459,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,41459,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,41460,0)
- ;;=Z80.6^^159^2005^32
- ;;^UTILITY(U,$J,358.3,41460,1,0)
+ ;;^UTILITY(U,$J,358.3,39048,1,3,0)
+ ;;=3^Acquired Ichthyosis
+ ;;^UTILITY(U,$J,358.3,39048,1,4,0)
+ ;;=4^L85.0
+ ;;^UTILITY(U,$J,358.3,39048,2)
+ ;;=^5009320
+ ;;^UTILITY(U,$J,358.3,39049,0)
+ ;;=L85.1^^152^1990^11
+ ;;^UTILITY(U,$J,358.3,39049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41460,1,3,0)
- ;;=3^Family Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,41460,1,4,0)
- ;;=4^Z80.6
- ;;^UTILITY(U,$J,358.3,41460,2)
- ;;=^5063354
- ;;^UTILITY(U,$J,358.3,41461,0)
- ;;=Z80.8^^159^2005^37
- ;;^UTILITY(U,$J,358.3,41461,1,0)
+ ;;^UTILITY(U,$J,358.3,39049,1,3,0)
+ ;;=3^Acquired Keratosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,39049,1,4,0)
+ ;;=4^L85.1
+ ;;^UTILITY(U,$J,358.3,39049,2)
+ ;;=^5009321
+ ;;^UTILITY(U,$J,358.3,39050,0)
+ ;;=L85.2^^152^1990^169
+ ;;^UTILITY(U,$J,358.3,39050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41461,1,3,0)
- ;;=3^Family Hx of Malig Neop of Organs/Systems
- ;;^UTILITY(U,$J,358.3,41461,1,4,0)
- ;;=4^Z80.8
- ;;^UTILITY(U,$J,358.3,41461,2)
- ;;=^5063356
- ;;^UTILITY(U,$J,358.3,41462,0)
- ;;=Z81.8^^159^2005^42
- ;;^UTILITY(U,$J,358.3,41462,1,0)
+ ;;^UTILITY(U,$J,358.3,39050,1,3,0)
+ ;;=3^Keratosis Punctata
+ ;;^UTILITY(U,$J,358.3,39050,1,4,0)
+ ;;=4^L85.2
+ ;;^UTILITY(U,$J,358.3,39050,2)
+ ;;=^5009322
+ ;;^UTILITY(U,$J,358.3,39051,0)
+ ;;=L85.3^^152^1990^329
+ ;;^UTILITY(U,$J,358.3,39051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41462,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,41462,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,41462,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,41463,0)
- ;;=Z82.3^^159^2005^49
- ;;^UTILITY(U,$J,358.3,41463,1,0)
+ ;;^UTILITY(U,$J,358.3,39051,1,3,0)
+ ;;=3^Xerosis Cutis
+ ;;^UTILITY(U,$J,358.3,39051,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,39051,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,39052,0)
+ ;;=L86.^^152^1990^167
+ ;;^UTILITY(U,$J,358.3,39052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41463,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,41463,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,41463,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,41464,0)
- ;;=Z82.49^^159^2005^31
- ;;^UTILITY(U,$J,358.3,41464,1,0)
+ ;;^UTILITY(U,$J,358.3,39052,1,3,0)
+ ;;=3^Keratoderma in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,39052,1,4,0)
+ ;;=4^L86.
+ ;;^UTILITY(U,$J,358.3,39052,2)
+ ;;=^5009326
+ ;;^UTILITY(U,$J,358.3,39053,0)
+ ;;=L87.0^^152^1990^168
+ ;;^UTILITY(U,$J,358.3,39053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41464,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,41464,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,41464,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,41465,0)
- ;;=Z82.5^^159^2005^22
- ;;^UTILITY(U,$J,358.3,41465,1,0)
+ ;;^UTILITY(U,$J,358.3,39053,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,39053,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,39053,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,39054,0)
+ ;;=L87.2^^152^1990^144
+ ;;^UTILITY(U,$J,358.3,39054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41465,1,3,0)
- ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
- ;;^UTILITY(U,$J,358.3,41465,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,41465,2)
- ;;=^5063370
- ;;^UTILITY(U,$J,358.3,41466,0)
- ;;=Z82.61^^159^2005^21
- ;;^UTILITY(U,$J,358.3,41466,1,0)
+ ;;^UTILITY(U,$J,358.3,39054,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,39054,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,39054,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,39055,0)
+ ;;=L89.300^^152^1990^282
+ ;;^UTILITY(U,$J,358.3,39055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41466,1,3,0)
- ;;=3^Family Hx of Arthritis
- ;;^UTILITY(U,$J,358.3,41466,1,4,0)
- ;;=4^Z82.61
- ;;^UTILITY(U,$J,358.3,41466,2)
- ;;=^5063371
- ;;^UTILITY(U,$J,358.3,41467,0)
- ;;=Z82.69^^159^2005^44
- ;;^UTILITY(U,$J,358.3,41467,1,0)
+ ;;^UTILITY(U,$J,358.3,39055,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,39055,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,39055,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,39056,0)
+ ;;=L89.301^^152^1990^277
+ ;;^UTILITY(U,$J,358.3,39056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41467,1,3,0)
- ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
- ;;^UTILITY(U,$J,358.3,41467,1,4,0)
- ;;=4^Z82.69
- ;;^UTILITY(U,$J,358.3,41467,2)
- ;;=^5063373
- ;;^UTILITY(U,$J,358.3,41468,0)
- ;;=Z83.3^^159^2005^28
- ;;^UTILITY(U,$J,358.3,41468,1,0)
+ ;;^UTILITY(U,$J,358.3,39056,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,39056,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,39056,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,39057,0)
+ ;;=L89.302^^152^1990^278
+ ;;^UTILITY(U,$J,358.3,39057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41468,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,41468,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,41468,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,41469,0)
- ;;=Z83.2^^159^2005^24
- ;;^UTILITY(U,$J,358.3,41469,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41469,1,3,0)
- ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,39057,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,39057,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,39057,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,39058,0)
+ ;;=L89.303^^152^1990^279

@@ -1,336 +1,122 @@
-IBDEI0NY ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0NY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30367,2)
- ;;=^5011603
- ;;^UTILITY(U,$J,358.3,30368,0)
- ;;=M25.511^^86^1306^34
- ;;^UTILITY(U,$J,358.3,30368,1,0)
+ ;;^UTILITY(U,$J,358.3,10657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30368,1,3,0)
- ;;=3^Pain in right shoulder
- ;;^UTILITY(U,$J,358.3,30368,1,4,0)
- ;;=4^M25.511
- ;;^UTILITY(U,$J,358.3,30368,2)
- ;;=^5011602
- ;;^UTILITY(U,$J,358.3,30369,0)
- ;;=S43.025A^^86^1306^37
- ;;^UTILITY(U,$J,358.3,30369,1,0)
+ ;;^UTILITY(U,$J,358.3,10657,1,3,0)
+ ;;=3^Exudative ARMD,Right Eye (Unspec Stage)
+ ;;^UTILITY(U,$J,358.3,10657,1,4,0)
+ ;;=4^H35.3210
+ ;;^UTILITY(U,$J,358.3,10657,2)
+ ;;=^5138520
+ ;;^UTILITY(U,$J,358.3,10658,0)
+ ;;=H35.3220^^74^687^8
+ ;;^UTILITY(U,$J,358.3,10658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30369,1,3,0)
- ;;=3^Posterior dislocation of left humerus, initial encounter
- ;;^UTILITY(U,$J,358.3,30369,1,4,0)
- ;;=4^S43.025A
- ;;^UTILITY(U,$J,358.3,30369,2)
- ;;=^5027699
- ;;^UTILITY(U,$J,358.3,30370,0)
- ;;=S43.024A^^86^1306^39
- ;;^UTILITY(U,$J,358.3,30370,1,0)
+ ;;^UTILITY(U,$J,358.3,10658,1,3,0)
+ ;;=3^Exudative ARMD,Left Eye (Unspec Stage)
+ ;;^UTILITY(U,$J,358.3,10658,1,4,0)
+ ;;=4^H35.3220
+ ;;^UTILITY(U,$J,358.3,10658,2)
+ ;;=^5138524
+ ;;^UTILITY(U,$J,358.3,10659,0)
+ ;;=H35.3131^^74^687^4
+ ;;^UTILITY(U,$J,358.3,10659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30370,1,3,0)
- ;;=3^Posterior dislocation of right humerus, initial encounter
- ;;^UTILITY(U,$J,358.3,30370,1,4,0)
- ;;=4^S43.024A
- ;;^UTILITY(U,$J,358.3,30370,2)
- ;;=^5027696
- ;;^UTILITY(U,$J,358.3,30371,0)
- ;;=M19.012^^86^1306^41
- ;;^UTILITY(U,$J,358.3,30371,1,0)
+ ;;^UTILITY(U,$J,358.3,10659,1,3,0)
+ ;;=3^Non-Exudative ARMD,Early Dry Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,10659,1,4,0)
+ ;;=4^H35.3131
+ ;;^UTILITY(U,$J,358.3,10659,2)
+ ;;=^5138511
+ ;;^UTILITY(U,$J,358.3,10660,0)
+ ;;=H35.3130^^74^687^3
+ ;;^UTILITY(U,$J,358.3,10660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30371,1,3,0)
- ;;=3^Primary osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,30371,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,30371,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,30372,0)
- ;;=M19.011^^86^1306^42
- ;;^UTILITY(U,$J,358.3,30372,1,0)
+ ;;^UTILITY(U,$J,358.3,10660,1,3,0)
+ ;;=3^Non-Exudative ARMD,Bilateral (Unspec Stage)
+ ;;^UTILITY(U,$J,358.3,10660,1,4,0)
+ ;;=4^H35.3130
+ ;;^UTILITY(U,$J,358.3,10660,2)
+ ;;=^5138510
+ ;;^UTILITY(U,$J,358.3,10661,0)
+ ;;=H44.2A1^^74^687^37
+ ;;^UTILITY(U,$J,358.3,10661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30372,1,3,0)
- ;;=3^Primary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,30372,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,30372,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,30373,0)
- ;;=M24.412^^86^1306^43
- ;;^UTILITY(U,$J,358.3,30373,1,0)
+ ;;^UTILITY(U,$J,358.3,10661,1,3,0)
+ ;;=3^Degenerative Myopia w/ CNV,Right Eye
+ ;;^UTILITY(U,$J,358.3,10661,1,4,0)
+ ;;=4^H44.2A1
+ ;;^UTILITY(U,$J,358.3,10661,2)
+ ;;=^5151318
+ ;;^UTILITY(U,$J,358.3,10662,0)
+ ;;=H44.2A2^^74^687^38
+ ;;^UTILITY(U,$J,358.3,10662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30373,1,3,0)
- ;;=3^Recurrent dislocation, left shoulder
- ;;^UTILITY(U,$J,358.3,30373,1,4,0)
- ;;=4^M24.412
- ;;^UTILITY(U,$J,358.3,30373,2)
- ;;=^5011372
- ;;^UTILITY(U,$J,358.3,30374,0)
- ;;=M24.411^^86^1306^44
- ;;^UTILITY(U,$J,358.3,30374,1,0)
+ ;;^UTILITY(U,$J,358.3,10662,1,3,0)
+ ;;=3^Degenerative Myopia w/ CNV,Left Eye
+ ;;^UTILITY(U,$J,358.3,10662,1,4,0)
+ ;;=4^H44.2A2
+ ;;^UTILITY(U,$J,358.3,10662,2)
+ ;;=^5151319
+ ;;^UTILITY(U,$J,358.3,10663,0)
+ ;;=H44.2A3^^74^687^39
+ ;;^UTILITY(U,$J,358.3,10663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30374,1,3,0)
- ;;=3^Recurrent dislocation, right shoulder
- ;;^UTILITY(U,$J,358.3,30374,1,4,0)
- ;;=4^M24.411
- ;;^UTILITY(U,$J,358.3,30374,2)
- ;;=^5011371
- ;;^UTILITY(U,$J,358.3,30375,0)
- ;;=M75.122^^86^1306^45
- ;;^UTILITY(U,$J,358.3,30375,1,0)
+ ;;^UTILITY(U,$J,358.3,10663,1,3,0)
+ ;;=3^Degenerative Myopia w/ CNV,Bilateral
+ ;;^UTILITY(U,$J,358.3,10663,1,4,0)
+ ;;=4^H44.2A3
+ ;;^UTILITY(U,$J,358.3,10663,2)
+ ;;=^5151320
+ ;;^UTILITY(U,$J,358.3,10664,0)
+ ;;=H44.2B1^^74^687^40
+ ;;^UTILITY(U,$J,358.3,10664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30375,1,3,0)
- ;;=3^Rotatr-cuff tear/ruptr of left shoulder, not trauma, complete
- ;;^UTILITY(U,$J,358.3,30375,1,4,0)
- ;;=4^M75.122
- ;;^UTILITY(U,$J,358.3,30375,2)
- ;;=^5013249
- ;;^UTILITY(U,$J,358.3,30376,0)
- ;;=M75.121^^86^1306^46
- ;;^UTILITY(U,$J,358.3,30376,1,0)
+ ;;^UTILITY(U,$J,358.3,10664,1,3,0)
+ ;;=3^Degenerative Myopia w/ Mac Hole,Right Eye
+ ;;^UTILITY(U,$J,358.3,10664,1,4,0)
+ ;;=4^H44.2B1
+ ;;^UTILITY(U,$J,358.3,10664,2)
+ ;;=^5151322
+ ;;^UTILITY(U,$J,358.3,10665,0)
+ ;;=H44.2B2^^74^687^41
+ ;;^UTILITY(U,$J,358.3,10665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30376,1,3,0)
- ;;=3^Rotatr-cuff tear/ruptr of r shoulder, not trauma, complete
- ;;^UTILITY(U,$J,358.3,30376,1,4,0)
- ;;=4^M75.121
- ;;^UTILITY(U,$J,358.3,30376,2)
- ;;=^5013248
- ;;^UTILITY(U,$J,358.3,30377,0)
- ;;=M12.512^^86^1306^49
- ;;^UTILITY(U,$J,358.3,30377,1,0)
+ ;;^UTILITY(U,$J,358.3,10665,1,3,0)
+ ;;=3^Degenerative Myopia w/ Mac Hole,Left Eye
+ ;;^UTILITY(U,$J,358.3,10665,1,4,0)
+ ;;=4^H44.2B2
+ ;;^UTILITY(U,$J,358.3,10665,2)
+ ;;=^5151323
+ ;;^UTILITY(U,$J,358.3,10666,0)
+ ;;=H35.3133^^74^687^6
+ ;;^UTILITY(U,$J,358.3,10666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30377,1,3,0)
- ;;=3^Traumatic arthropathy, left shoulder
- ;;^UTILITY(U,$J,358.3,30377,1,4,0)
- ;;=4^M12.512
- ;;^UTILITY(U,$J,358.3,30377,2)
- ;;=^5010620
- ;;^UTILITY(U,$J,358.3,30378,0)
- ;;=M12.511^^86^1306^50
- ;;^UTILITY(U,$J,358.3,30378,1,0)
+ ;;^UTILITY(U,$J,358.3,10666,1,3,0)
+ ;;=3^Non-Exudative ARMD, Advanced Atrophic w/o SF, Bilateral
+ ;;^UTILITY(U,$J,358.3,10666,1,4,0)
+ ;;=4^H35.3133
+ ;;^UTILITY(U,$J,358.3,10666,2)
+ ;;=^5138513
+ ;;^UTILITY(U,$J,358.3,10667,0)
+ ;;=H35.3132^^74^687^5
+ ;;^UTILITY(U,$J,358.3,10667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30378,1,3,0)
- ;;=3^Traumatic arthropathy, right shoulder
- ;;^UTILITY(U,$J,358.3,30378,1,4,0)
- ;;=4^M12.511
- ;;^UTILITY(U,$J,358.3,30378,2)
- ;;=^5010619
- ;;^UTILITY(U,$J,358.3,30379,0)
- ;;=S43.102A^^86^1306^17
- ;;^UTILITY(U,$J,358.3,30379,1,0)
+ ;;^UTILITY(U,$J,358.3,10667,1,3,0)
+ ;;=3^Non-Exudative ARMD, Intermediate Dry Stage, Bilateral
+ ;;^UTILITY(U,$J,358.3,10667,1,4,0)
+ ;;=4^H35.3132
+ ;;^UTILITY(U,$J,358.3,10667,2)
+ ;;=^5138512
+ ;;^UTILITY(U,$J,358.3,10668,0)
+ ;;=H35.3291^^74^687^9
+ ;;^UTILITY(U,$J,358.3,10668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30379,1,3,0)
- ;;=3^Dislocation of left acromioclavicular joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,30379,1,4,0)
- ;;=4^S43.102A
- ;;^UTILITY(U,$J,358.3,30379,2)
- ;;=^5027732
- ;;^UTILITY(U,$J,358.3,30380,0)
- ;;=S43.005A^^86^1306^19
- ;;^UTILITY(U,$J,358.3,30380,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30380,1,3,0)
- ;;=3^Dislocation of left shoulder joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,30380,1,4,0)
- ;;=4^S43.005A
- ;;^UTILITY(U,$J,358.3,30380,2)
- ;;=^5027666
- ;;^UTILITY(U,$J,358.3,30381,0)
- ;;=S43.101A^^86^1306^21
- ;;^UTILITY(U,$J,358.3,30381,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30381,1,3,0)
- ;;=3^Dislocation of right acromioclavicular joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,30381,1,4,0)
- ;;=4^S43.101A
- ;;^UTILITY(U,$J,358.3,30381,2)
- ;;=^5027729
- ;;^UTILITY(U,$J,358.3,30382,0)
- ;;=S43.004A^^86^1306^23
- ;;^UTILITY(U,$J,358.3,30382,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30382,1,3,0)
- ;;=3^Dislocation of right shoulder joint, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,30382,1,4,0)
- ;;=4^S43.004A
- ;;^UTILITY(U,$J,358.3,30382,2)
- ;;=^5027663
- ;;^UTILITY(U,$J,358.3,30383,0)
- ;;=S40.012D^^86^1306^14
- ;;^UTILITY(U,$J,358.3,30383,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30383,1,3,0)
- ;;=3^Contusion of left shoulder, subsequent encounter
- ;;^UTILITY(U,$J,358.3,30383,1,4,0)
- ;;=4^S40.012D
- ;;^UTILITY(U,$J,358.3,30383,2)
- ;;=^5026157
- ;;^UTILITY(U,$J,358.3,30384,0)
- ;;=S40.011D^^86^1306^16
- ;;^UTILITY(U,$J,358.3,30384,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30384,1,3,0)
- ;;=3^Contusion of right shoulder, subsequent encounter
- ;;^UTILITY(U,$J,358.3,30384,1,4,0)
- ;;=4^S40.011D
- ;;^UTILITY(U,$J,358.3,30384,2)
- ;;=^5026154
- ;;^UTILITY(U,$J,358.3,30385,0)
- ;;=S43.102D^^86^1306^18
- ;;^UTILITY(U,$J,358.3,30385,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30385,1,3,0)
- ;;=3^Dislocation of left acromioclavicular joint, subs
- ;;^UTILITY(U,$J,358.3,30385,1,4,0)
- ;;=4^S43.102D
- ;;^UTILITY(U,$J,358.3,30385,2)
- ;;=^5027733
- ;;^UTILITY(U,$J,358.3,30386,0)
- ;;=S43.101D^^86^1306^22
- ;;^UTILITY(U,$J,358.3,30386,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30386,1,3,0)
- ;;=3^Dislocation of right acromioclavicular joint, subs
- ;;^UTILITY(U,$J,358.3,30386,1,4,0)
- ;;=4^S43.101D
- ;;^UTILITY(U,$J,358.3,30386,2)
- ;;=^5027730
- ;;^UTILITY(U,$J,358.3,30387,0)
- ;;=S43.004D^^86^1306^24
- ;;^UTILITY(U,$J,358.3,30387,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30387,1,3,0)
- ;;=3^Dislocation of right shoulder joint, subs encntr
- ;;^UTILITY(U,$J,358.3,30387,1,4,0)
- ;;=4^S43.004D
- ;;^UTILITY(U,$J,358.3,30387,2)
- ;;=^5027664
- ;;^UTILITY(U,$J,358.3,30388,0)
- ;;=S42.002D^^86^1306^27
- ;;^UTILITY(U,$J,358.3,30388,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30388,1,3,0)
- ;;=3^Fx unsp part of l clavicle, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,30388,1,4,0)
- ;;=4^S42.002D
- ;;^UTILITY(U,$J,358.3,30388,2)
- ;;=^5026378
- ;;^UTILITY(U,$J,358.3,30389,0)
- ;;=S42.001D^^86^1306^28
- ;;^UTILITY(U,$J,358.3,30389,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30389,1,3,0)
- ;;=3^Fx unsp part of r clavicle, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,30389,1,4,0)
- ;;=4^S42.001D
- ;;^UTILITY(U,$J,358.3,30389,2)
- ;;=^5026371
- ;;^UTILITY(U,$J,358.3,30390,0)
- ;;=S43.025D^^86^1306^38
- ;;^UTILITY(U,$J,358.3,30390,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30390,1,3,0)
- ;;=3^Posterior dislocation of left humerus, subsequent encounter
- ;;^UTILITY(U,$J,358.3,30390,1,4,0)
- ;;=4^S43.025D
- ;;^UTILITY(U,$J,358.3,30390,2)
- ;;=^5027700
- ;;^UTILITY(U,$J,358.3,30391,0)
- ;;=S43.024D^^86^1306^40
- ;;^UTILITY(U,$J,358.3,30391,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30391,1,3,0)
- ;;=3^Posterior dislocation of right humerus, subsequent encounter
- ;;^UTILITY(U,$J,358.3,30391,1,4,0)
- ;;=4^S43.024D
- ;;^UTILITY(U,$J,358.3,30391,2)
- ;;=^5027697
- ;;^UTILITY(U,$J,358.3,30392,0)
- ;;=M19.111^^86^1306^36
- ;;^UTILITY(U,$J,358.3,30392,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30392,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,30392,1,4,0)
- ;;=4^M19.111
- ;;^UTILITY(U,$J,358.3,30392,2)
- ;;=^5010823
- ;;^UTILITY(U,$J,358.3,30393,0)
- ;;=M19.112^^86^1306^35
- ;;^UTILITY(U,$J,358.3,30393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30393,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,30393,1,4,0)
- ;;=4^M19.112
- ;;^UTILITY(U,$J,358.3,30393,2)
- ;;=^5010824
- ;;^UTILITY(U,$J,358.3,30394,0)
- ;;=M19.211^^86^1306^48
- ;;^UTILITY(U,$J,358.3,30394,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30394,1,3,0)
- ;;=3^Secondary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,30394,1,4,0)
- ;;=4^M19.211
- ;;^UTILITY(U,$J,358.3,30394,2)
- ;;=^5010838
- ;;^UTILITY(U,$J,358.3,30395,0)
- ;;=M19.212^^86^1306^47
- ;;^UTILITY(U,$J,358.3,30395,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30395,1,3,0)
- ;;=3^Secondary osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,30395,1,4,0)
- ;;=4^M19.212
- ;;^UTILITY(U,$J,358.3,30395,2)
- ;;=^5010839
- ;;^UTILITY(U,$J,358.3,30396,0)
- ;;=S43.005D^^86^1306^20
- ;;^UTILITY(U,$J,358.3,30396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30396,1,3,0)
- ;;=3^Dislocation of left shoulder joint, subs encntr
- ;;^UTILITY(U,$J,358.3,30396,1,4,0)
- ;;=4^S43.005D
- ;;^UTILITY(U,$J,358.3,30396,2)
- ;;=^5027667
- ;;^UTILITY(U,$J,358.3,30397,0)
- ;;=M80.072A^^86^1307^3
- ;;^UTILITY(U,$J,358.3,30397,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30397,1,3,0)
- ;;=3^Age-rel osteopor w current path fracture, left ank/ft, init
- ;;^UTILITY(U,$J,358.3,30397,1,4,0)
- ;;=4^M80.072A
- ;;^UTILITY(U,$J,358.3,30397,2)
- ;;=^5013483
- ;;^UTILITY(U,$J,358.3,30398,0)
- ;;=M80.071A^^86^1307^4
- ;;^UTILITY(U,$J,358.3,30398,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30398,1,3,0)
- ;;=3^Age-rel osteopor w current path fracture, right ank/ft, init
- ;;^UTILITY(U,$J,358.3,30398,1,4,0)
- ;;=4^M80.071A
- ;;^UTILITY(U,$J,358.3,30398,2)
- ;;=^5013477
- ;;^UTILITY(U,$J,358.3,30399,0)
- ;;=S80.12XA^^86^1307^5
- ;;^UTILITY(U,$J,358.3,30399,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30399,1,3,0)
- ;;=3^Contusion of left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,30399,1,4,0)
- ;;=4^S80.12XA
- ;;^UTILITY(U,$J,358.3,30399,2)
- ;;=^5039903
- ;;^UTILITY(U,$J,358.3,30400,0)
- ;;=S80.11XA^^86^1307^7
- ;;^UTILITY(U,$J,358.3,30400,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30400,1,3,0)
- ;;=3^Contusion of right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,30400,1,4,0)
- ;;=4^S80.11XA
- ;;^UTILITY(U,$J,358.3,30400,2)
- ;;=^5039900
+ ;;^UTILITY(U,$J,358.3,10668,1,3,0)
+ ;;=3^Exudative ARMD, w/ Active CNVM, Unspec Eye
+ ;;^UTILITY(U,$J,358.3,10668,1,4,0)
+ ;;=4^H35.3291
+ ;;^UTILITY(U,$J,358.3,10668,2)
+ ;;=^5138533

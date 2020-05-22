@@ -1,134 +1,124 @@
-IBDEI32U ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32U ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51608,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,51609,0)
- ;;=M54.13^^225^2501^13
- ;;^UTILITY(U,$J,358.3,51609,1,0)
+ ;;^UTILITY(U,$J,358.3,49130,0)
+ ;;=W10.9XXD^^185^2430^20
+ ;;^UTILITY(U,$J,358.3,49130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51609,1,3,0)
- ;;=3^Radiculopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,51609,1,4,0)
- ;;=4^M54.13
- ;;^UTILITY(U,$J,358.3,51609,2)
- ;;=^5012298
- ;;^UTILITY(U,$J,358.3,51610,0)
- ;;=B18.2^^225^2502^1
- ;;^UTILITY(U,$J,358.3,51610,1,0)
+ ;;^UTILITY(U,$J,358.3,49130,1,3,0)
+ ;;=3^Fall from Stairs/Steps,Subsequent
+ ;;^UTILITY(U,$J,358.3,49130,1,4,0)
+ ;;=4^W10.9XXD
+ ;;^UTILITY(U,$J,358.3,49130,2)
+ ;;=^5059593
+ ;;^UTILITY(U,$J,358.3,49131,0)
+ ;;=W10.0XXD^^185^2430^11
+ ;;^UTILITY(U,$J,358.3,49131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51610,1,3,0)
- ;;=3^Hepatitis C,Viral,Chronic
- ;;^UTILITY(U,$J,358.3,51610,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,51610,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,51611,0)
- ;;=K92.1^^225^2502^2
- ;;^UTILITY(U,$J,358.3,51611,1,0)
+ ;;^UTILITY(U,$J,358.3,49131,1,3,0)
+ ;;=3^Fall from Escalator,Subsequent
+ ;;^UTILITY(U,$J,358.3,49131,1,4,0)
+ ;;=4^W10.0XXD
+ ;;^UTILITY(U,$J,358.3,49131,2)
+ ;;=^5059581
+ ;;^UTILITY(U,$J,358.3,49132,0)
+ ;;=W10.2XXD^^185^2430^13
+ ;;^UTILITY(U,$J,358.3,49132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51611,1,3,0)
- ;;=3^Melena
- ;;^UTILITY(U,$J,358.3,51611,1,4,0)
- ;;=4^K92.1
- ;;^UTILITY(U,$J,358.3,51611,2)
- ;;=^5008914
- ;;^UTILITY(U,$J,358.3,51612,0)
- ;;=N39.0^^225^2502^3
- ;;^UTILITY(U,$J,358.3,51612,1,0)
+ ;;^UTILITY(U,$J,358.3,49132,1,3,0)
+ ;;=3^Fall from Incline,Subsequent
+ ;;^UTILITY(U,$J,358.3,49132,1,4,0)
+ ;;=4^W10.2XXD
+ ;;^UTILITY(U,$J,358.3,49132,2)
+ ;;=^5059587
+ ;;^UTILITY(U,$J,358.3,49133,0)
+ ;;=W10.1XXD^^185^2430^19
+ ;;^UTILITY(U,$J,358.3,49133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51612,1,3,0)
- ;;=3^UTI,Site Unspec
- ;;^UTILITY(U,$J,358.3,51612,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,51612,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,51613,0)
- ;;=G82.20^^225^2503^5
- ;;^UTILITY(U,$J,358.3,51613,1,0)
+ ;;^UTILITY(U,$J,358.3,49133,1,3,0)
+ ;;=3^Fall from Sidewalk/Curb,Subsequent
+ ;;^UTILITY(U,$J,358.3,49133,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,49133,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,49134,0)
+ ;;=W06.XXXD^^185^2430^9
+ ;;^UTILITY(U,$J,358.3,49134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51613,1,3,0)
- ;;=3^Paraplegia,Unspec
- ;;^UTILITY(U,$J,358.3,51613,1,4,0)
- ;;=4^G82.20
- ;;^UTILITY(U,$J,358.3,51613,2)
- ;;=^5004125
- ;;^UTILITY(U,$J,358.3,51614,0)
- ;;=S14.109S^^225^2503^1
- ;;^UTILITY(U,$J,358.3,51614,1,0)
+ ;;^UTILITY(U,$J,358.3,49134,1,3,0)
+ ;;=3^Fall from Bed,Subsequent
+ ;;^UTILITY(U,$J,358.3,49134,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,49134,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,49135,0)
+ ;;=W07.XXXD^^185^2430^10
+ ;;^UTILITY(U,$J,358.3,49135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51614,1,3,0)
- ;;=3^Injury of Cervical Spinal Cord,Unspec Level,Sequela
- ;;^UTILITY(U,$J,358.3,51614,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,51614,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,51615,0)
- ;;=S24.109S^^225^2503^2
- ;;^UTILITY(U,$J,358.3,51615,1,0)
+ ;;^UTILITY(U,$J,358.3,49135,1,3,0)
+ ;;=3^Fall from Chair,Subsequent
+ ;;^UTILITY(U,$J,358.3,49135,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,49135,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,49136,0)
+ ;;=W05.2XXD^^185^2430^15
+ ;;^UTILITY(U,$J,358.3,49136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51615,1,3,0)
- ;;=3^Injury of Thoracic Spinal Cord,Unspec Level,Sequela
- ;;^UTILITY(U,$J,358.3,51615,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,51615,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,51616,0)
- ;;=S34.109S^^225^2503^3
- ;;^UTILITY(U,$J,358.3,51616,1,0)
+ ;;^UTILITY(U,$J,358.3,49136,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,49136,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,49136,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,49137,0)
+ ;;=W05.1XXD^^185^2430^16
+ ;;^UTILITY(U,$J,358.3,49137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51616,1,3,0)
- ;;=3^Injury to Lumbar Spinal Cord,Unspec Level,Sequela
- ;;^UTILITY(U,$J,358.3,51616,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,51616,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,51617,0)
- ;;=S34.139S^^225^2503^4
- ;;^UTILITY(U,$J,358.3,51617,1,0)
+ ;;^UTILITY(U,$J,358.3,49137,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,49137,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,49137,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,49138,0)
+ ;;=W05.0XXD^^185^2430^17
+ ;;^UTILITY(U,$J,358.3,49138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51617,1,3,0)
- ;;=3^Injury to Sacral Spinal Cord,Sequela
- ;;^UTILITY(U,$J,358.3,51617,1,4,0)
- ;;=4^S34.139S
- ;;^UTILITY(U,$J,358.3,51617,2)
- ;;=^5025249
- ;;^UTILITY(U,$J,358.3,51618,0)
- ;;=G82.51^^225^2504^1
- ;;^UTILITY(U,$J,358.3,51618,1,0)
+ ;;^UTILITY(U,$J,358.3,49138,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subsequent
+ ;;^UTILITY(U,$J,358.3,49138,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,49138,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,49139,0)
+ ;;=W18.12XD^^185^2430^21
+ ;;^UTILITY(U,$J,358.3,49139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51618,1,3,0)
- ;;=3^Quadriplegia,C1-C4,Complete
- ;;^UTILITY(U,$J,358.3,51618,1,4,0)
- ;;=4^G82.51
- ;;^UTILITY(U,$J,358.3,51618,2)
- ;;=^5004129
- ;;^UTILITY(U,$J,358.3,51619,0)
- ;;=G82.52^^225^2504^2
- ;;^UTILITY(U,$J,358.3,51619,1,0)
+ ;;^UTILITY(U,$J,358.3,49139,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,49139,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,49139,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,49140,0)
+ ;;=W18.11XD^^185^2430^22
+ ;;^UTILITY(U,$J,358.3,49140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51619,1,3,0)
- ;;=3^Quadriplegia,C1-C4,Incomplete
- ;;^UTILITY(U,$J,358.3,51619,1,4,0)
- ;;=4^G82.52
- ;;^UTILITY(U,$J,358.3,51619,2)
- ;;=^5004130
- ;;^UTILITY(U,$J,358.3,51620,0)
- ;;=G82.53^^225^2504^3
- ;;^UTILITY(U,$J,358.3,51620,1,0)
+ ;;^UTILITY(U,$J,358.3,49140,1,3,0)
+ ;;=3^Fall from Toilet,Subsequent
+ ;;^UTILITY(U,$J,358.3,49140,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,49140,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,49141,0)
+ ;;=W08.XXXD^^185^2430^12
+ ;;^UTILITY(U,$J,358.3,49141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51620,1,3,0)
- ;;=3^Quadriplegia,C5-C7,Complete
- ;;^UTILITY(U,$J,358.3,51620,1,4,0)
- ;;=4^G82.53
- ;;^UTILITY(U,$J,358.3,51620,2)
- ;;=^5004131
- ;;^UTILITY(U,$J,358.3,51621,0)
- ;;=G82.54^^225^2504^4
- ;;^UTILITY(U,$J,358.3,51621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51621,1,3,0)
- ;;=3^Quadriplegia,C5-C7,Incomplete
- ;;^UTILITY(U,$J,358.3,51621,1,4,0)
- ;;=4^G82.54
+ ;;^UTILITY(U,$J,358.3,49141,1,3,0)
+ ;;=3^Fall from Furniture,Subsequent
+ ;;^UTILITY(U,$J,358.3,49141,1,4,0)
+ ;;=4^W08.XXXD
+ ;;^UTILITY(U,$J,358.3,49141,2)
+ ;;=^5059566

@@ -1,272 +1,120 @@
-IBDEI125 ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI125 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38413,1,3,0)
- ;;=3^Dermatophytoses,Other
- ;;^UTILITY(U,$J,358.3,38413,1,4,0)
- ;;=4^B35.8
- ;;^UTILITY(U,$J,358.3,38413,2)
- ;;=^5000606
- ;;^UTILITY(U,$J,358.3,38414,0)
- ;;=B36.9^^148^1936^272
- ;;^UTILITY(U,$J,358.3,38414,1,0)
+ ;;^UTILITY(U,$J,358.3,17001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38414,1,3,0)
- ;;=3^Superficial Mycosis,Unspec
- ;;^UTILITY(U,$J,358.3,38414,1,4,0)
- ;;=4^B36.9
- ;;^UTILITY(U,$J,358.3,38414,2)
- ;;=^5000611
- ;;^UTILITY(U,$J,358.3,38415,0)
- ;;=D69.0^^148^1936^32
- ;;^UTILITY(U,$J,358.3,38415,1,0)
+ ;;^UTILITY(U,$J,358.3,17001,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Cervical Region
+ ;;^UTILITY(U,$J,358.3,17001,1,4,0)
+ ;;=4^M45.2
+ ;;^UTILITY(U,$J,358.3,17001,2)
+ ;;=^5011962
+ ;;^UTILITY(U,$J,358.3,17002,0)
+ ;;=M45.4^^88^885^7
+ ;;^UTILITY(U,$J,358.3,17002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38415,1,3,0)
- ;;=3^Allergic Purpura
- ;;^UTILITY(U,$J,358.3,38415,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,38415,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,38416,0)
- ;;=B00.9^^148^1936^158
- ;;^UTILITY(U,$J,358.3,38416,1,0)
+ ;;^UTILITY(U,$J,358.3,17002,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Thoracic Region
+ ;;^UTILITY(U,$J,358.3,17002,1,4,0)
+ ;;=4^M45.4
+ ;;^UTILITY(U,$J,358.3,17002,2)
+ ;;=^5011964
+ ;;^UTILITY(U,$J,358.3,17003,0)
+ ;;=M45.7^^88^885^4
+ ;;^UTILITY(U,$J,358.3,17003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38416,1,3,0)
- ;;=3^Herpesviral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,38416,1,4,0)
- ;;=4^B00.9
- ;;^UTILITY(U,$J,358.3,38416,2)
- ;;=^5000480
- ;;^UTILITY(U,$J,358.3,38417,0)
- ;;=B02.9^^148^1936^291
- ;;^UTILITY(U,$J,358.3,38417,1,0)
+ ;;^UTILITY(U,$J,358.3,17003,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,17003,1,4,0)
+ ;;=4^M45.7
+ ;;^UTILITY(U,$J,358.3,17003,2)
+ ;;=^5011967
+ ;;^UTILITY(U,$J,358.3,17004,0)
+ ;;=M45.8^^88^885^5
+ ;;^UTILITY(U,$J,358.3,17004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38417,1,3,0)
- ;;=3^Zoster w/o Complications
- ;;^UTILITY(U,$J,358.3,38417,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,38417,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,38418,0)
- ;;=D17.9^^148^1936^89
- ;;^UTILITY(U,$J,358.3,38418,1,0)
+ ;;^UTILITY(U,$J,358.3,17004,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,17004,1,4,0)
+ ;;=4^M45.8
+ ;;^UTILITY(U,$J,358.3,17004,2)
+ ;;=^5011968
+ ;;^UTILITY(U,$J,358.3,17005,0)
+ ;;=M47.22^^88^885^180
+ ;;^UTILITY(U,$J,358.3,17005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38418,1,3,0)
- ;;=3^Benign Lipomatous Neop,Unspec
- ;;^UTILITY(U,$J,358.3,38418,1,4,0)
- ;;=4^D17.9
- ;;^UTILITY(U,$J,358.3,38418,2)
- ;;=^5002020
- ;;^UTILITY(U,$J,358.3,38419,0)
- ;;=E08.621^^148^1936^134
- ;;^UTILITY(U,$J,358.3,38419,1,0)
+ ;;^UTILITY(U,$J,358.3,17005,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
+ ;;^UTILITY(U,$J,358.3,17005,1,4,0)
+ ;;=4^M47.22
+ ;;^UTILITY(U,$J,358.3,17005,2)
+ ;;=^5012061
+ ;;^UTILITY(U,$J,358.3,17006,0)
+ ;;=M47.24^^88^885^182
+ ;;^UTILITY(U,$J,358.3,17006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38419,1,3,0)
- ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,38419,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,38419,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,38420,0)
- ;;=E09.621^^148^1936^133
- ;;^UTILITY(U,$J,358.3,38420,1,0)
+ ;;^UTILITY(U,$J,358.3,17006,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
+ ;;^UTILITY(U,$J,358.3,17006,1,4,0)
+ ;;=4^M47.24
+ ;;^UTILITY(U,$J,358.3,17006,2)
+ ;;=^5012063
+ ;;^UTILITY(U,$J,358.3,17007,0)
+ ;;=M47.27^^88^885^181
+ ;;^UTILITY(U,$J,358.3,17007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38420,1,3,0)
- ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,38420,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,38420,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,38421,0)
- ;;=H05.011^^148^1936^110
- ;;^UTILITY(U,$J,358.3,38421,1,0)
+ ;;^UTILITY(U,$J,358.3,17007,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
+ ;;^UTILITY(U,$J,358.3,17007,1,4,0)
+ ;;=4^M47.27
+ ;;^UTILITY(U,$J,358.3,17007,2)
+ ;;=^5012066
+ ;;^UTILITY(U,$J,358.3,17008,0)
+ ;;=M47.812^^88^885^177
+ ;;^UTILITY(U,$J,358.3,17008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38421,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,38421,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,38421,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,38422,0)
- ;;=H05.012^^148^1936^103
- ;;^UTILITY(U,$J,358.3,38422,1,0)
+ ;;^UTILITY(U,$J,358.3,17008,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,17008,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,17008,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,17009,0)
+ ;;=M47.814^^88^885^178
+ ;;^UTILITY(U,$J,358.3,17009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38422,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,38422,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,38422,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,38423,0)
- ;;=H05.013^^148^1936^97
- ;;^UTILITY(U,$J,358.3,38423,1,0)
+ ;;^UTILITY(U,$J,358.3,17009,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,17009,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,17009,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,17010,0)
+ ;;=M47.817^^88^885^179
+ ;;^UTILITY(U,$J,358.3,17010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38423,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,38423,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,38423,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,38424,0)
- ;;=I70.331^^148^1936^50
- ;;^UTILITY(U,$J,358.3,38424,1,0)
+ ;;^UTILITY(U,$J,358.3,17010,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,17010,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,17010,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,17011,0)
+ ;;=M48.50XA^^88^885^22
+ ;;^UTILITY(U,$J,358.3,17011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38424,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,38424,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,38424,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,38425,0)
- ;;=I70.332^^148^1936^51
- ;;^UTILITY(U,$J,358.3,38425,1,0)
+ ;;^UTILITY(U,$J,358.3,17011,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17011,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,17011,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,17012,0)
+ ;;=M48.50XD^^88^885^23
+ ;;^UTILITY(U,$J,358.3,17012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38425,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,38425,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,38425,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,38426,0)
- ;;=I70.333^^148^1936^52
- ;;^UTILITY(U,$J,358.3,38426,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38426,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,38426,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,38426,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,38427,0)
- ;;=I70.334^^148^1936^53
- ;;^UTILITY(U,$J,358.3,38427,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38427,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,38427,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,38427,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,38428,0)
- ;;=I70.335^^148^1936^54
- ;;^UTILITY(U,$J,358.3,38428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38428,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,38428,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,38428,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,38429,0)
- ;;=I70.341^^148^1936^49
- ;;^UTILITY(U,$J,358.3,38429,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38429,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,38429,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,38429,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,38430,0)
- ;;=I70.342^^148^1936^46
- ;;^UTILITY(U,$J,358.3,38430,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38430,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,38430,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,38430,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,38431,0)
- ;;=I70.343^^148^1936^45
- ;;^UTILITY(U,$J,358.3,38431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38431,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,38431,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,38431,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,38432,0)
- ;;=I70.344^^148^1936^47
- ;;^UTILITY(U,$J,358.3,38432,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38432,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,38432,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,38432,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,38433,0)
- ;;=I70.345^^148^1936^48
- ;;^UTILITY(U,$J,358.3,38433,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38433,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,38433,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,38433,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,38434,0)
- ;;=I70.431^^148^1936^40
- ;;^UTILITY(U,$J,358.3,38434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38434,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,38434,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,38434,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,38435,0)
- ;;=I70.432^^148^1936^41
- ;;^UTILITY(U,$J,358.3,38435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38435,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,38435,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,38435,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,38436,0)
- ;;=I70.433^^148^1936^42
- ;;^UTILITY(U,$J,358.3,38436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38436,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,38436,1,4,0)
- ;;=4^I70.433
- ;;^UTILITY(U,$J,358.3,38436,2)
- ;;=^5007666
- ;;^UTILITY(U,$J,358.3,38437,0)
- ;;=I70.434^^148^1936^43
- ;;^UTILITY(U,$J,358.3,38437,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38437,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,38437,1,4,0)
- ;;=4^I70.434
- ;;^UTILITY(U,$J,358.3,38437,2)
- ;;=^5007667
- ;;^UTILITY(U,$J,358.3,38438,0)
- ;;=I70.435^^148^1936^44
- ;;^UTILITY(U,$J,358.3,38438,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38438,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,38438,1,4,0)
- ;;=4^I70.435
- ;;^UTILITY(U,$J,358.3,38438,2)
- ;;=^5007668
- ;;^UTILITY(U,$J,358.3,38439,0)
- ;;=I70.441^^148^1936^35
- ;;^UTILITY(U,$J,358.3,38439,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38439,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,38439,1,4,0)
- ;;=4^I70.441
- ;;^UTILITY(U,$J,358.3,38439,2)
- ;;=^5007671
- ;;^UTILITY(U,$J,358.3,38440,0)
- ;;=I70.442^^148^1936^36
+ ;;^UTILITY(U,$J,358.3,17012,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17012,1,4,0)
+ ;;=4^M48.50XD

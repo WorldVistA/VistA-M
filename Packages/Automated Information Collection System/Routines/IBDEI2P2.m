@@ -1,140 +1,118 @@
-IBDEI2P2 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2P2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45219,1,0)
+ ;;^UTILITY(U,$J,358.3,42931,2)
+ ;;=^5028832
+ ;;^UTILITY(U,$J,358.3,42932,0)
+ ;;=S52.024S^^155^2074^104
+ ;;^UTILITY(U,$J,358.3,42932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45219,1,3,0)
- ;;=3^Age-Related Cognitive Decline
- ;;^UTILITY(U,$J,358.3,45219,1,4,0)
- ;;=4^R41.81
- ;;^UTILITY(U,$J,358.3,45219,2)
- ;;=^5019440
- ;;^UTILITY(U,$J,358.3,45220,0)
- ;;=R41.0^^200^2240^61
- ;;^UTILITY(U,$J,358.3,45220,1,0)
+ ;;^UTILITY(U,$J,358.3,42932,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
+ ;;^UTILITY(U,$J,358.3,42932,1,4,0)
+ ;;=4^S52.024S
+ ;;^UTILITY(U,$J,358.3,42932,2)
+ ;;=^5028816
+ ;;^UTILITY(U,$J,358.3,42933,0)
+ ;;=S52.614S^^155^2074^110
+ ;;^UTILITY(U,$J,358.3,42933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45220,1,3,0)
- ;;=3^Disorientation/Confusion/Delrium,Unspec
- ;;^UTILITY(U,$J,358.3,45220,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,45220,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,45221,0)
- ;;=R41.82^^200^2240^34
- ;;^UTILITY(U,$J,358.3,45221,1,0)
+ ;;^UTILITY(U,$J,358.3,42933,1,3,0)
+ ;;=3^Nondisp fx of right ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,42933,1,4,0)
+ ;;=4^S52.614S
+ ;;^UTILITY(U,$J,358.3,42933,2)
+ ;;=^5031098
+ ;;^UTILITY(U,$J,358.3,42934,0)
+ ;;=S52.235S^^155^2074^98
+ ;;^UTILITY(U,$J,358.3,42934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45221,1,3,0)
- ;;=3^Altered Mental Status,Unspec
- ;;^UTILITY(U,$J,358.3,45221,1,4,0)
- ;;=4^R41.82
- ;;^UTILITY(U,$J,358.3,45221,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,45222,0)
- ;;=R43.0^^200^2240^37
- ;;^UTILITY(U,$J,358.3,45222,1,0)
+ ;;^UTILITY(U,$J,358.3,42934,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42934,1,4,0)
+ ;;=4^S52.235S
+ ;;^UTILITY(U,$J,358.3,42934,2)
+ ;;=^5029490
+ ;;^UTILITY(U,$J,358.3,42935,0)
+ ;;=S52.234S^^155^2074^100
+ ;;^UTILITY(U,$J,358.3,42935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45222,1,3,0)
- ;;=3^Anosmia
- ;;^UTILITY(U,$J,358.3,45222,1,4,0)
- ;;=4^R43.0
- ;;^UTILITY(U,$J,358.3,45222,2)
- ;;=^7949
- ;;^UTILITY(U,$J,358.3,45223,0)
- ;;=R43.1^^200^2240^132
- ;;^UTILITY(U,$J,358.3,45223,1,0)
+ ;;^UTILITY(U,$J,358.3,42935,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42935,1,4,0)
+ ;;=4^S52.234S
+ ;;^UTILITY(U,$J,358.3,42935,2)
+ ;;=^5029474
+ ;;^UTILITY(U,$J,358.3,42936,0)
+ ;;=S52.265S^^155^2074^113
+ ;;^UTILITY(U,$J,358.3,42936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45223,1,3,0)
- ;;=3^Parosmia
- ;;^UTILITY(U,$J,358.3,45223,1,4,0)
- ;;=4^R43.1
- ;;^UTILITY(U,$J,358.3,45223,2)
- ;;=^5019451
- ;;^UTILITY(U,$J,358.3,45224,0)
- ;;=R43.2^^200^2240^129
- ;;^UTILITY(U,$J,358.3,45224,1,0)
+ ;;^UTILITY(U,$J,358.3,42936,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42936,1,4,0)
+ ;;=4^S52.265S
+ ;;^UTILITY(U,$J,358.3,42936,2)
+ ;;=^5029778
+ ;;^UTILITY(U,$J,358.3,42937,0)
+ ;;=S52.264S^^155^2074^114
+ ;;^UTILITY(U,$J,358.3,42937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45224,1,3,0)
- ;;=3^Parageusia
- ;;^UTILITY(U,$J,358.3,45224,1,4,0)
- ;;=4^R43.2
- ;;^UTILITY(U,$J,358.3,45224,2)
- ;;=^5019452
- ;;^UTILITY(U,$J,358.3,45225,0)
- ;;=R43.9^^200^2240^148
- ;;^UTILITY(U,$J,358.3,45225,1,0)
+ ;;^UTILITY(U,$J,358.3,42937,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42937,1,4,0)
+ ;;=4^S52.264S
+ ;;^UTILITY(U,$J,358.3,42937,2)
+ ;;=^5029762
+ ;;^UTILITY(U,$J,358.3,42938,0)
+ ;;=S52.245S^^155^2074^117
+ ;;^UTILITY(U,$J,358.3,42938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45225,1,3,0)
- ;;=3^Smell and Taste Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,45225,1,4,0)
- ;;=4^R43.9
- ;;^UTILITY(U,$J,358.3,45225,2)
- ;;=^5019454
- ;;^UTILITY(U,$J,358.3,45226,0)
- ;;=R44.0^^200^2240^44
- ;;^UTILITY(U,$J,358.3,45226,1,0)
+ ;;^UTILITY(U,$J,358.3,42938,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42938,1,4,0)
+ ;;=4^S52.245S
+ ;;^UTILITY(U,$J,358.3,42938,2)
+ ;;=^5029586
+ ;;^UTILITY(U,$J,358.3,42939,0)
+ ;;=S52.244S^^155^2074^118
+ ;;^UTILITY(U,$J,358.3,42939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45226,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,45226,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,45226,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,45227,0)
- ;;=R44.2^^200^2240^78
- ;;^UTILITY(U,$J,358.3,45227,1,0)
+ ;;^UTILITY(U,$J,358.3,42939,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42939,1,4,0)
+ ;;=4^S52.244S
+ ;;^UTILITY(U,$J,358.3,42939,2)
+ ;;=^5029570
+ ;;^UTILITY(U,$J,358.3,42940,0)
+ ;;=S52.225S^^155^2074^120
+ ;;^UTILITY(U,$J,358.3,42940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45227,1,3,0)
- ;;=3^Hallucinations NEC
- ;;^UTILITY(U,$J,358.3,45227,1,4,0)
- ;;=4^R44.2
- ;;^UTILITY(U,$J,358.3,45227,2)
- ;;=^5019457
- ;;^UTILITY(U,$J,358.3,45228,0)
- ;;=R44.3^^200^2240^79
- ;;^UTILITY(U,$J,358.3,45228,1,0)
+ ;;^UTILITY(U,$J,358.3,42940,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42940,1,4,0)
+ ;;=4^S52.225S
+ ;;^UTILITY(U,$J,358.3,42940,2)
+ ;;=^5029394
+ ;;^UTILITY(U,$J,358.3,42941,0)
+ ;;=S52.224S^^155^2074^122
+ ;;^UTILITY(U,$J,358.3,42941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45228,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,45228,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,45228,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,45229,0)
- ;;=R45.0^^200^2240^121
- ;;^UTILITY(U,$J,358.3,45229,1,0)
+ ;;^UTILITY(U,$J,358.3,42941,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42941,1,4,0)
+ ;;=4^S52.224S
+ ;;^UTILITY(U,$J,358.3,42941,2)
+ ;;=^5029378
+ ;;^UTILITY(U,$J,358.3,42942,0)
+ ;;=M84.432S^^155^2074^130
+ ;;^UTILITY(U,$J,358.3,42942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45229,1,3,0)
- ;;=3^Nervousness
- ;;^UTILITY(U,$J,358.3,45229,1,4,0)
- ;;=4^R45.0
- ;;^UTILITY(U,$J,358.3,45229,2)
- ;;=^5019461
- ;;^UTILITY(U,$J,358.3,45230,0)
- ;;=R47.01^^200^2240^40
- ;;^UTILITY(U,$J,358.3,45230,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45230,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,45230,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,45230,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,45231,0)
- ;;=R47.9^^200^2240^150
- ;;^UTILITY(U,$J,358.3,45231,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45231,1,3,0)
- ;;=3^Speech Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,45231,1,4,0)
- ;;=4^R47.9
- ;;^UTILITY(U,$J,358.3,45231,2)
- ;;=^5019494
- ;;^UTILITY(U,$J,358.3,45232,0)
- ;;=R49.8^^200^2240^162
- ;;^UTILITY(U,$J,358.3,45232,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45232,1,3,0)
- ;;=3^Voice and Resonance Disorders NEC
- ;;^UTILITY(U,$J,358.3,45232,1,4,0)
- ;;=4^R49.8
+ ;;^UTILITY(U,$J,358.3,42942,1,3,0)
+ ;;=3^Pathological fracture, left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,42942,1,4,0)
+ ;;=4^M84.432S
+ ;;^UTILITY(U,$J,358.3,42942,2)
+ ;;=^5013847
+ ;;^UTILITY(U,$J,358.3,42943,0)
+ ;;=M84.431S^^155^2074^132

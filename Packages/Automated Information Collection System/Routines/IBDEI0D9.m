@@ -1,330 +1,250 @@
-IBDEI0D9 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0D9 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16728,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,16728,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,16729,0)
- ;;=M48.51XS^^47^715^5
- ;;^UTILITY(U,$J,358.3,16729,1,0)
+ ;;^UTILITY(U,$J,358.3,32442,1,2,0)
+ ;;=2^99397
+ ;;^UTILITY(U,$J,358.3,32443,0)
+ ;;=99385^^97^1263^1
+ ;;^UTILITY(U,$J,358.3,32443,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,32443,1,1,0)
+ ;;=1^Preventive Med,New Pt,18-39
+ ;;^UTILITY(U,$J,358.3,32443,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,32444,0)
+ ;;=99386^^97^1263^2
+ ;;^UTILITY(U,$J,358.3,32444,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,32444,1,1,0)
+ ;;=1^Preventive Med,New Pt,40-64
+ ;;^UTILITY(U,$J,358.3,32444,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,32445,0)
+ ;;=99387^^97^1263^3
+ ;;^UTILITY(U,$J,358.3,32445,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,32445,1,1,0)
+ ;;=1^Preventive Med,New Pt > 64
+ ;;^UTILITY(U,$J,358.3,32445,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,32446,0)
+ ;;=Z77.010^^98^1264^3
+ ;;^UTILITY(U,$J,358.3,32446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16729,1,3,0)
- ;;=3^Collapsed vertebra, NEC, occipt-atlan-ax region, sqla
- ;;^UTILITY(U,$J,358.3,16729,1,4,0)
- ;;=4^M48.51XS
- ;;^UTILITY(U,$J,358.3,16729,2)
- ;;=^5012166
- ;;^UTILITY(U,$J,358.3,16730,0)
- ;;=M48.58XS^^47^715^6
- ;;^UTILITY(U,$J,358.3,16730,1,0)
+ ;;^UTILITY(U,$J,358.3,32446,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Arsenic
+ ;;^UTILITY(U,$J,358.3,32446,1,4,0)
+ ;;=4^Z77.010
+ ;;^UTILITY(U,$J,358.3,32446,2)
+ ;;=^5063305
+ ;;^UTILITY(U,$J,358.3,32447,0)
+ ;;=Z77.011^^98^1264^10
+ ;;^UTILITY(U,$J,358.3,32447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16730,1,3,0)
- ;;=3^Collapsed vertebra, NEC, sacr/sacrocygl region, sqla
- ;;^UTILITY(U,$J,358.3,16730,1,4,0)
- ;;=4^M48.58XS
- ;;^UTILITY(U,$J,358.3,16730,2)
- ;;=^5012194
- ;;^UTILITY(U,$J,358.3,16731,0)
- ;;=M48.54XS^^47^715^7
- ;;^UTILITY(U,$J,358.3,16731,1,0)
+ ;;^UTILITY(U,$J,358.3,32447,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Lead
+ ;;^UTILITY(U,$J,358.3,32447,1,4,0)
+ ;;=4^Z77.011
+ ;;^UTILITY(U,$J,358.3,32447,2)
+ ;;=^5063306
+ ;;^UTILITY(U,$J,358.3,32448,0)
+ ;;=Z77.012^^98^1264^21
+ ;;^UTILITY(U,$J,358.3,32448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16731,1,3,0)
- ;;=3^Collapsed vertebra, NEC, thoracic region, sqla
- ;;^UTILITY(U,$J,358.3,16731,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,16731,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,16732,0)
- ;;=M48.55XS^^47^715^8
- ;;^UTILITY(U,$J,358.3,16732,1,0)
+ ;;^UTILITY(U,$J,358.3,32448,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Uranium
+ ;;^UTILITY(U,$J,358.3,32448,1,4,0)
+ ;;=4^Z77.012
+ ;;^UTILITY(U,$J,358.3,32448,2)
+ ;;=^5063307
+ ;;^UTILITY(U,$J,358.3,32449,0)
+ ;;=Z77.018^^98^1264^8
+ ;;^UTILITY(U,$J,358.3,32449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16732,1,3,0)
- ;;=3^Collapsed vertebra, NEC, thoracolumbar region, sqla
- ;;^UTILITY(U,$J,358.3,16732,1,4,0)
- ;;=4^M48.55XS
- ;;^UTILITY(U,$J,358.3,16732,2)
- ;;=^5012182
- ;;^UTILITY(U,$J,358.3,16733,0)
- ;;=S12.040S^^47^715^9
- ;;^UTILITY(U,$J,358.3,16733,1,0)
+ ;;^UTILITY(U,$J,358.3,32449,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Hazardous Materials
+ ;;^UTILITY(U,$J,358.3,32449,1,4,0)
+ ;;=4^Z77.018
+ ;;^UTILITY(U,$J,358.3,32449,2)
+ ;;=^5063308
+ ;;^UTILITY(U,$J,358.3,32450,0)
+ ;;=Z77.020^^98^1264^2
+ ;;^UTILITY(U,$J,358.3,32450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16733,1,3,0)
- ;;=3^Displaced lateral mass fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16733,1,4,0)
- ;;=4^S12.040S
- ;;^UTILITY(U,$J,358.3,16733,2)
- ;;=^5021586
- ;;^UTILITY(U,$J,358.3,16734,0)
- ;;=S12.030S^^47^715^10
- ;;^UTILITY(U,$J,358.3,16734,1,0)
+ ;;^UTILITY(U,$J,358.3,32450,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Aromatic Amines
+ ;;^UTILITY(U,$J,358.3,32450,1,4,0)
+ ;;=4^Z77.020
+ ;;^UTILITY(U,$J,358.3,32450,2)
+ ;;=^5063309
+ ;;^UTILITY(U,$J,358.3,32451,0)
+ ;;=Z77.021^^98^1264^5
+ ;;^UTILITY(U,$J,358.3,32451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16734,1,3,0)
- ;;=3^Displaced posterior arch fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16734,1,4,0)
- ;;=4^S12.030S
- ;;^UTILITY(U,$J,358.3,16734,2)
- ;;=^5021574
- ;;^UTILITY(U,$J,358.3,16735,0)
- ;;=M48.42XS^^47^715^11
- ;;^UTILITY(U,$J,358.3,16735,1,0)
+ ;;^UTILITY(U,$J,358.3,32451,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Benzene
+ ;;^UTILITY(U,$J,358.3,32451,1,4,0)
+ ;;=4^Z77.021
+ ;;^UTILITY(U,$J,358.3,32451,2)
+ ;;=^5063310
+ ;;^UTILITY(U,$J,358.3,32452,0)
+ ;;=Z77.028^^98^1264^14
+ ;;^UTILITY(U,$J,358.3,32452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16735,1,3,0)
- ;;=3^Fatigue fracture of vertebra, cervical region, sqla
- ;;^UTILITY(U,$J,358.3,16735,1,4,0)
- ;;=4^M48.42XS
- ;;^UTILITY(U,$J,358.3,16735,2)
- ;;=^5012134
- ;;^UTILITY(U,$J,358.3,16736,0)
- ;;=M48.43XS^^47^715^12
- ;;^UTILITY(U,$J,358.3,16736,1,0)
+ ;;^UTILITY(U,$J,358.3,32452,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Oth Hazardous Aromatics
+ ;;^UTILITY(U,$J,358.3,32452,1,4,0)
+ ;;=4^Z77.028
+ ;;^UTILITY(U,$J,358.3,32452,2)
+ ;;=^5063311
+ ;;^UTILITY(U,$J,358.3,32453,0)
+ ;;=Z77.090^^98^1264^4
+ ;;^UTILITY(U,$J,358.3,32453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16736,1,3,0)
- ;;=3^Fatigue fracture of vertebra, cervicothoracic region, sqla
- ;;^UTILITY(U,$J,358.3,16736,1,4,0)
- ;;=4^M48.43XS
- ;;^UTILITY(U,$J,358.3,16736,2)
- ;;=^5012138
- ;;^UTILITY(U,$J,358.3,16737,0)
- ;;=M48.46XS^^47^715^13
- ;;^UTILITY(U,$J,358.3,16737,1,0)
+ ;;^UTILITY(U,$J,358.3,32453,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Asbestos
+ ;;^UTILITY(U,$J,358.3,32453,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,32453,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,32454,0)
+ ;;=Z77.098^^98^1264^15
+ ;;^UTILITY(U,$J,358.3,32454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16737,1,3,0)
- ;;=3^Fatigue fracture of vertebra, lumbar region, sqla
- ;;^UTILITY(U,$J,358.3,16737,1,4,0)
- ;;=4^M48.46XS
- ;;^UTILITY(U,$J,358.3,16737,2)
- ;;=^5012150
- ;;^UTILITY(U,$J,358.3,16738,0)
- ;;=M48.47XS^^47^715^14
- ;;^UTILITY(U,$J,358.3,16738,1,0)
+ ;;^UTILITY(U,$J,358.3,32454,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Oth Hazardous Chemicals
+ ;;^UTILITY(U,$J,358.3,32454,1,4,0)
+ ;;=4^Z77.098
+ ;;^UTILITY(U,$J,358.3,32454,2)
+ ;;=^5063313
+ ;;^UTILITY(U,$J,358.3,32455,0)
+ ;;=Z77.110^^98^1264^1
+ ;;^UTILITY(U,$J,358.3,32455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16738,1,3,0)
- ;;=3^Fatigue fracture of vertebra, lumbosacral region, sqla
- ;;^UTILITY(U,$J,358.3,16738,1,4,0)
- ;;=4^M48.47XS
- ;;^UTILITY(U,$J,358.3,16738,2)
- ;;=^5012154
- ;;^UTILITY(U,$J,358.3,16739,0)
- ;;=M48.41XS^^47^715^15
- ;;^UTILITY(U,$J,358.3,16739,1,0)
+ ;;^UTILITY(U,$J,358.3,32455,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Air Pollution
+ ;;^UTILITY(U,$J,358.3,32455,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,32455,2)
+ ;;=^5063314
+ ;;^UTILITY(U,$J,358.3,32456,0)
+ ;;=Z77.111^^98^1264^22
+ ;;^UTILITY(U,$J,358.3,32456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16739,1,3,0)
- ;;=3^Fatigue fracture of vertebra, occipt-atlan-ax region, sqla
- ;;^UTILITY(U,$J,358.3,16739,1,4,0)
- ;;=4^M48.41XS
- ;;^UTILITY(U,$J,358.3,16739,2)
- ;;=^5012130
- ;;^UTILITY(U,$J,358.3,16740,0)
- ;;=M48.48XS^^47^715^16
- ;;^UTILITY(U,$J,358.3,16740,1,0)
+ ;;^UTILITY(U,$J,358.3,32456,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Water Pollution
+ ;;^UTILITY(U,$J,358.3,32456,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,32456,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,32457,0)
+ ;;=Z77.112^^98^1264^20
+ ;;^UTILITY(U,$J,358.3,32457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16740,1,3,0)
- ;;=3^Fatigue fracture of vertebra, sacr/sacrocygl region, sqla
- ;;^UTILITY(U,$J,358.3,16740,1,4,0)
- ;;=4^M48.48XS
- ;;^UTILITY(U,$J,358.3,16740,2)
- ;;=^5012158
- ;;^UTILITY(U,$J,358.3,16741,0)
- ;;=M48.44XS^^47^715^17
- ;;^UTILITY(U,$J,358.3,16741,1,0)
+ ;;^UTILITY(U,$J,358.3,32457,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Soil Pollution
+ ;;^UTILITY(U,$J,358.3,32457,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,32457,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,32458,0)
+ ;;=Z77.118^^98^1264^13
+ ;;^UTILITY(U,$J,358.3,32458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16741,1,3,0)
- ;;=3^Fatigue fracture of vertebra, thoracic region, sqla
- ;;^UTILITY(U,$J,358.3,16741,1,4,0)
- ;;=4^M48.44XS
- ;;^UTILITY(U,$J,358.3,16741,2)
- ;;=^5012142
- ;;^UTILITY(U,$J,358.3,16742,0)
- ;;=M48.45XS^^47^715^18
- ;;^UTILITY(U,$J,358.3,16742,1,0)
+ ;;^UTILITY(U,$J,358.3,32458,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Oth Environmental Pollution
+ ;;^UTILITY(U,$J,358.3,32458,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,32458,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,32459,0)
+ ;;=Z77.120^^98^1264^11
+ ;;^UTILITY(U,$J,358.3,32459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16742,1,3,0)
- ;;=3^Fatigue fracture of vertebra, thoracolumbar region, sqla
- ;;^UTILITY(U,$J,358.3,16742,1,4,0)
- ;;=4^M48.45XS
- ;;^UTILITY(U,$J,358.3,16742,2)
- ;;=^5012146
- ;;^UTILITY(U,$J,358.3,16743,0)
- ;;=S12.041S^^47^715^27
- ;;^UTILITY(U,$J,358.3,16743,1,0)
+ ;;^UTILITY(U,$J,358.3,32459,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Mold (Toxic)
+ ;;^UTILITY(U,$J,358.3,32459,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,32459,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,32460,0)
+ ;;=Z77.121^^98^1264^7
+ ;;^UTILITY(U,$J,358.3,32460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16743,1,3,0)
- ;;=3^Nondisp lateral mass fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16743,1,4,0)
- ;;=4^S12.041S
- ;;^UTILITY(U,$J,358.3,16743,2)
- ;;=^5021592
- ;;^UTILITY(U,$J,358.3,16744,0)
- ;;=S12.031S^^47^715^28
- ;;^UTILITY(U,$J,358.3,16744,1,0)
+ ;;^UTILITY(U,$J,358.3,32460,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Harmful Algae/Algae Toxins
+ ;;^UTILITY(U,$J,358.3,32460,1,4,0)
+ ;;=4^Z77.121
+ ;;^UTILITY(U,$J,358.3,32460,2)
+ ;;=^5063319
+ ;;^UTILITY(U,$J,358.3,32461,0)
+ ;;=Z77.123^^98^1264^19
+ ;;^UTILITY(U,$J,358.3,32461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16744,1,3,0)
- ;;=3^Nondisp posterior arch fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16744,1,4,0)
- ;;=4^S12.031S
- ;;^UTILITY(U,$J,358.3,16744,2)
- ;;=^5021580
- ;;^UTILITY(U,$J,358.3,16745,0)
- ;;=S32.051S^^47^715^37
- ;;^UTILITY(U,$J,358.3,16745,1,0)
+ ;;^UTILITY(U,$J,358.3,32461,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Radon/Natual Radiation
+ ;;^UTILITY(U,$J,358.3,32461,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,32461,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,32462,0)
+ ;;=Z77.122^^98^1264^12
+ ;;^UTILITY(U,$J,358.3,32462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16745,1,3,0)
- ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16745,1,4,0)
- ;;=4^S32.051S
- ;;^UTILITY(U,$J,358.3,16745,2)
- ;;=^5024502
- ;;^UTILITY(U,$J,358.3,16746,0)
- ;;=S12.01XS^^47^715^38
- ;;^UTILITY(U,$J,358.3,16746,1,0)
+ ;;^UTILITY(U,$J,358.3,32462,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Noise
+ ;;^UTILITY(U,$J,358.3,32462,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,32462,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,32463,0)
+ ;;=Z77.128^^98^1264^16
+ ;;^UTILITY(U,$J,358.3,32463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16746,1,3,0)
- ;;=3^Stable burst fracture of first cervical vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16746,1,4,0)
- ;;=4^S12.01XS
- ;;^UTILITY(U,$J,358.3,16746,2)
- ;;=^5021562
- ;;^UTILITY(U,$J,358.3,16747,0)
- ;;=S32.011S^^47^715^39
- ;;^UTILITY(U,$J,358.3,16747,1,0)
+ ;;^UTILITY(U,$J,358.3,32463,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Oth Hazards in Physcl Environment
+ ;;^UTILITY(U,$J,358.3,32463,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,32463,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,32464,0)
+ ;;=Z77.21^^98^1264^9
+ ;;^UTILITY(U,$J,358.3,32464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16747,1,3,0)
- ;;=3^Stable burst fracture of first lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16747,1,4,0)
- ;;=4^S32.011S
- ;;^UTILITY(U,$J,358.3,16747,2)
- ;;=^5024382
- ;;^UTILITY(U,$J,358.3,16748,0)
- ;;=S22.011S^^47^715^40
- ;;^UTILITY(U,$J,358.3,16748,1,0)
+ ;;^UTILITY(U,$J,358.3,32464,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Hazardous Body Fluids
+ ;;^UTILITY(U,$J,358.3,32464,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,32464,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,32465,0)
+ ;;=Z77.22^^98^1264^6
+ ;;^UTILITY(U,$J,358.3,32465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16748,1,3,0)
- ;;=3^Stable burst fracture of first thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16748,1,4,0)
- ;;=4^S22.011S
- ;;^UTILITY(U,$J,358.3,16748,2)
- ;;=^5022846
- ;;^UTILITY(U,$J,358.3,16749,0)
- ;;=S32.041S^^47^715^41
- ;;^UTILITY(U,$J,358.3,16749,1,0)
+ ;;^UTILITY(U,$J,358.3,32465,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Environ Tobacco Smoke
+ ;;^UTILITY(U,$J,358.3,32465,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,32465,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,32466,0)
+ ;;=Z77.29^^98^1264^17
+ ;;^UTILITY(U,$J,358.3,32466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16749,1,3,0)
- ;;=3^Stable burst fracture of fourth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16749,1,4,0)
- ;;=4^S32.041S
- ;;^UTILITY(U,$J,358.3,16749,2)
- ;;=^5024472
- ;;^UTILITY(U,$J,358.3,16750,0)
- ;;=S22.041S^^47^715^42
- ;;^UTILITY(U,$J,358.3,16750,1,0)
+ ;;^UTILITY(U,$J,358.3,32466,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Oth Hazardous Substances
+ ;;^UTILITY(U,$J,358.3,32466,1,4,0)
+ ;;=4^Z77.29
+ ;;^UTILITY(U,$J,358.3,32466,2)
+ ;;=^5063325
+ ;;^UTILITY(U,$J,358.3,32467,0)
+ ;;=Z77.9^^98^1264^18
+ ;;^UTILITY(U,$J,358.3,32467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16750,1,3,0)
- ;;=3^Stable burst fracture of fourth thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16750,1,4,0)
- ;;=4^S22.041S
- ;;^UTILITY(U,$J,358.3,16750,2)
- ;;=^5022936
- ;;^UTILITY(U,$J,358.3,16751,0)
- ;;=S32.021S^^47^715^43
- ;;^UTILITY(U,$J,358.3,16751,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16751,1,3,0)
- ;;=3^Stable burst fracture of second lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16751,1,4,0)
- ;;=4^S32.021S
- ;;^UTILITY(U,$J,358.3,16751,2)
- ;;=^5024412
- ;;^UTILITY(U,$J,358.3,16752,0)
- ;;=S22.021S^^47^715^44
- ;;^UTILITY(U,$J,358.3,16752,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16752,1,3,0)
- ;;=3^Stable burst fracture of second thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16752,1,4,0)
- ;;=4^S22.021S
- ;;^UTILITY(U,$J,358.3,16752,2)
- ;;=^5022876
- ;;^UTILITY(U,$J,358.3,16753,0)
- ;;=S22.081S^^47^715^33
- ;;^UTILITY(U,$J,358.3,16753,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16753,1,3,0)
- ;;=3^Stable burst fracture of T11-T12 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16753,1,4,0)
- ;;=4^S22.081S
- ;;^UTILITY(U,$J,358.3,16753,2)
- ;;=^5023056
- ;;^UTILITY(U,$J,358.3,16754,0)
- ;;=S22.051S^^47^715^34
- ;;^UTILITY(U,$J,358.3,16754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16754,1,3,0)
- ;;=3^Stable burst fracture of T5-T6 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16754,1,4,0)
- ;;=4^S22.051S
- ;;^UTILITY(U,$J,358.3,16754,2)
- ;;=^5022966
- ;;^UTILITY(U,$J,358.3,16755,0)
- ;;=S22.061S^^47^715^35
- ;;^UTILITY(U,$J,358.3,16755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16755,1,3,0)
- ;;=3^Stable burst fracture of T7-T8 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16755,1,4,0)
- ;;=4^S22.061S
- ;;^UTILITY(U,$J,358.3,16755,2)
- ;;=^5022996
- ;;^UTILITY(U,$J,358.3,16756,0)
- ;;=S22.071S^^47^715^36
- ;;^UTILITY(U,$J,358.3,16756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16756,1,3,0)
- ;;=3^Stable burst fracture of T9-T10 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16756,1,4,0)
- ;;=4^S22.071S
- ;;^UTILITY(U,$J,358.3,16756,2)
- ;;=^5023026
- ;;^UTILITY(U,$J,358.3,16757,0)
- ;;=S32.031S^^47^715^45
- ;;^UTILITY(U,$J,358.3,16757,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16757,1,3,0)
- ;;=3^Stable burst fracture of third lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16757,1,4,0)
- ;;=4^S32.031S
- ;;^UTILITY(U,$J,358.3,16757,2)
- ;;=^5024442
- ;;^UTILITY(U,$J,358.3,16758,0)
- ;;=S22.031S^^47^715^46
- ;;^UTILITY(U,$J,358.3,16758,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16758,1,3,0)
- ;;=3^Stable burst fracture of third thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,16758,1,4,0)
- ;;=4^S22.031S
- ;;^UTILITY(U,$J,358.3,16758,2)
- ;;=^5022906
- ;;^UTILITY(U,$J,358.3,16759,0)
- ;;=S32.111S^^47^715^20
- ;;^UTILITY(U,$J,358.3,16759,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16759,1,3,0)
- ;;=3^Minimally displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,16759,1,4,0)
- ;;=4^S32.111S
- ;;^UTILITY(U,$J,358.3,16759,2)
- ;;=^5024538
- ;;^UTILITY(U,$J,358.3,16760,0)
- ;;=S32.121S^^47^715^21
- ;;^UTILITY(U,$J,358.3,16760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16760,1,3,0)
- ;;=3^Minimally displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,16760,1,4,0)
- ;;=4^S32.121S
- ;;^UTILITY(U,$J,358.3,16760,2)
- ;;=^5024562
- ;;^UTILITY(U,$J,358.3,16761,0)
- ;;=S32.131S^^47^715^22
+ ;;^UTILITY(U,$J,358.3,32467,1,3,0)
+ ;;=3^Contact/Suspected Exposure to Oth Hazards to Health
+ ;;^UTILITY(U,$J,358.3,32467,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,32467,2)
+ ;;=^5063326

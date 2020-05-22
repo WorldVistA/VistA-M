@@ -1,128 +1,124 @@
-IBDEI23F ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35505,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,35505,1,4,0)
- ;;=4^I25.738
- ;;^UTILITY(U,$J,358.3,35505,2)
- ;;=^5007129
- ;;^UTILITY(U,$J,358.3,35506,0)
- ;;=I25.739^^134^1722^40
- ;;^UTILITY(U,$J,358.3,35506,1,0)
+ ;;^UTILITY(U,$J,358.3,33461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35506,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,35506,1,4,0)
- ;;=4^I25.739
- ;;^UTILITY(U,$J,358.3,35506,2)
- ;;=^5007130
- ;;^UTILITY(U,$J,358.3,35507,0)
- ;;=I25.730^^134^1722^41
- ;;^UTILITY(U,$J,358.3,35507,1,0)
+ ;;^UTILITY(U,$J,358.3,33461,1,3,0)
+ ;;=3^Nondisp fx of head of left radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33461,1,4,0)
+ ;;=4^S52.125A
+ ;;^UTILITY(U,$J,358.3,33461,2)
+ ;;=^5029111
+ ;;^UTILITY(U,$J,358.3,33462,0)
+ ;;=S52.124A^^132^1702^31
+ ;;^UTILITY(U,$J,358.3,33462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35507,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,35507,1,4,0)
- ;;=4^I25.730
- ;;^UTILITY(U,$J,358.3,35507,2)
- ;;=^5007127
- ;;^UTILITY(U,$J,358.3,35508,0)
- ;;=I25.791^^134^1722^24
- ;;^UTILITY(U,$J,358.3,35508,1,0)
+ ;;^UTILITY(U,$J,358.3,33462,1,3,0)
+ ;;=3^Nondisp fx of head of right radius, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33462,1,4,0)
+ ;;=4^S52.124A
+ ;;^UTILITY(U,$J,358.3,33462,2)
+ ;;=^5029095
+ ;;^UTILITY(U,$J,358.3,33463,0)
+ ;;=M70.22^^132^1702^33
+ ;;^UTILITY(U,$J,358.3,33463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35508,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,35508,1,4,0)
- ;;=4^I25.791
- ;;^UTILITY(U,$J,358.3,35508,2)
- ;;=^5007140
- ;;^UTILITY(U,$J,358.3,35509,0)
- ;;=I25.798^^134^1722^22
- ;;^UTILITY(U,$J,358.3,35509,1,0)
+ ;;^UTILITY(U,$J,358.3,33463,1,3,0)
+ ;;=3^Olecranon bursitis, left elbow
+ ;;^UTILITY(U,$J,358.3,33463,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,33463,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,33464,0)
+ ;;=M70.21^^132^1702^34
+ ;;^UTILITY(U,$J,358.3,33464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35509,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,35509,1,4,0)
- ;;=4^I25.798
- ;;^UTILITY(U,$J,358.3,35509,2)
- ;;=^5133558
- ;;^UTILITY(U,$J,358.3,35510,0)
- ;;=I25.799^^134^1722^26
- ;;^UTILITY(U,$J,358.3,35510,1,0)
+ ;;^UTILITY(U,$J,358.3,33464,1,3,0)
+ ;;=3^Olecranon bursitis, right elbow
+ ;;^UTILITY(U,$J,358.3,33464,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,33464,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,33465,0)
+ ;;=M25.522^^132^1702^35
+ ;;^UTILITY(U,$J,358.3,33465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35510,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,35510,1,4,0)
- ;;=4^I25.799
- ;;^UTILITY(U,$J,358.3,35510,2)
- ;;=^5133559
- ;;^UTILITY(U,$J,358.3,35511,0)
- ;;=I25.790^^134^1722^28
- ;;^UTILITY(U,$J,358.3,35511,1,0)
+ ;;^UTILITY(U,$J,358.3,33465,1,3,0)
+ ;;=3^Pain in left elbow
+ ;;^UTILITY(U,$J,358.3,33465,1,4,0)
+ ;;=4^M25.522
+ ;;^UTILITY(U,$J,358.3,33465,2)
+ ;;=^5011606
+ ;;^UTILITY(U,$J,358.3,33466,0)
+ ;;=M25.521^^132^1702^36
+ ;;^UTILITY(U,$J,358.3,33466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35511,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,35511,1,4,0)
- ;;=4^I25.790
- ;;^UTILITY(U,$J,358.3,35511,2)
- ;;=^5007139
- ;;^UTILITY(U,$J,358.3,35512,0)
- ;;=I25.111^^134^1722^29
- ;;^UTILITY(U,$J,358.3,35512,1,0)
+ ;;^UTILITY(U,$J,358.3,33466,1,3,0)
+ ;;=3^Pain in right elbow
+ ;;^UTILITY(U,$J,358.3,33466,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,33466,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,33467,0)
+ ;;=M19.022^^132^1702^39
+ ;;^UTILITY(U,$J,358.3,33467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35512,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,35512,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,35512,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,35513,0)
- ;;=I25.118^^134^1722^30
- ;;^UTILITY(U,$J,358.3,35513,1,0)
+ ;;^UTILITY(U,$J,358.3,33467,1,3,0)
+ ;;=3^Primary osteoarthritis, left elbow
+ ;;^UTILITY(U,$J,358.3,33467,1,4,0)
+ ;;=4^M19.022
+ ;;^UTILITY(U,$J,358.3,33467,2)
+ ;;=^5010812
+ ;;^UTILITY(U,$J,358.3,33468,0)
+ ;;=M19.021^^132^1702^40
+ ;;^UTILITY(U,$J,358.3,33468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35513,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,35513,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,35513,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,35514,0)
- ;;=I25.119^^134^1722^31
- ;;^UTILITY(U,$J,358.3,35514,1,0)
+ ;;^UTILITY(U,$J,358.3,33468,1,3,0)
+ ;;=3^Primary osteoarthritis, right elbow
+ ;;^UTILITY(U,$J,358.3,33468,1,4,0)
+ ;;=4^M19.021
+ ;;^UTILITY(U,$J,358.3,33468,2)
+ ;;=^5010811
+ ;;^UTILITY(U,$J,358.3,33469,0)
+ ;;=M12.522^^132^1702^45
+ ;;^UTILITY(U,$J,358.3,33469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35514,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,35514,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,35514,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,35515,0)
- ;;=I25.110^^134^1722^32
- ;;^UTILITY(U,$J,358.3,35515,1,0)
+ ;;^UTILITY(U,$J,358.3,33469,1,3,0)
+ ;;=3^Traumatic arthropathy, left elbow
+ ;;^UTILITY(U,$J,358.3,33469,1,4,0)
+ ;;=4^M12.522
+ ;;^UTILITY(U,$J,358.3,33469,2)
+ ;;=^5010623
+ ;;^UTILITY(U,$J,358.3,33470,0)
+ ;;=M12.521^^132^1702^46
+ ;;^UTILITY(U,$J,358.3,33470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35515,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,35515,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,35515,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,35516,0)
- ;;=I25.10^^134^1722^33
- ;;^UTILITY(U,$J,358.3,35516,1,0)
+ ;;^UTILITY(U,$J,358.3,33470,1,3,0)
+ ;;=3^Traumatic arthropathy, right elbow
+ ;;^UTILITY(U,$J,358.3,33470,1,4,0)
+ ;;=4^M12.521
+ ;;^UTILITY(U,$J,358.3,33470,2)
+ ;;=^5010622
+ ;;^UTILITY(U,$J,358.3,33471,0)
+ ;;=S42.402A^^132^1702^19
+ ;;^UTILITY(U,$J,358.3,33471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35516,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,35516,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,35516,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,35517,0)
- ;;=I48.0^^134^1722^42
- ;;^UTILITY(U,$J,358.3,35517,1,0)
+ ;;^UTILITY(U,$J,358.3,33471,1,3,0)
+ ;;=3^Fracture of lower end of left humerus, init for clos fx,Unspec
+ ;;^UTILITY(U,$J,358.3,33471,1,4,0)
+ ;;=4^S42.402A
+ ;;^UTILITY(U,$J,358.3,33471,2)
+ ;;=^5134713
+ ;;^UTILITY(U,$J,358.3,33472,0)
+ ;;=S42.401A^^132^1702^20
+ ;;^UTILITY(U,$J,358.3,33472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35517,1,3,0)
- ;;=3^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,35517,1,4,0)
- ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,33472,1,3,0)
+ ;;=3^Fracture of lower end of right humerus, init,Unspec
+ ;;^UTILITY(U,$J,358.3,33472,1,4,0)
+ ;;=4^S42.401A
+ ;;^UTILITY(U,$J,358.3,33472,2)
+ ;;=^5027294
+ ;;^UTILITY(U,$J,358.3,33473,0)
+ ;;=S53.402A^^132^1702^41

@@ -1,5 +1,5 @@
-RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;23 Mar 2018 11:06 AM
- ;;5.0;Radiology/Nuclear Medicine;**113,124**;Mar 16, 1998;Build 4
+RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;07 Aug 2019 12:26 PM
+ ;;5.0;Radiology/Nuclear Medicine;**113,124,162**;Mar 16, 1998;Build 2
  ;
  ;The variables RADFN, RADTI and RACNI must be defined. The variable
  ;RADELFLG is set when the exam is being deleted.  This routine is
@@ -71,7 +71,16 @@ ASKCAN ;logic to determine whether studies tied to the order meet the criteria
  . S DIE="^RADPT("_RADFN_",""DT"",",DA(1)=RADFN,DA=RADTI,DR="5///@"
  . D ^DIE
  . Q
- I RAOSTS=3 S (DIE,DIC)="^RAO(75.1,",DIC(0)="AEQM",DA=RAOIFN,DR="25" W ! D ^DIE K DIE,DIC,DA,DR
+ ;// new w/P162 keep the default reason (order) //
+ ;// unless the user selects another reason    //
+ I RAOSTS=1 D
+ .N RAS S RAS=$$REASON(RAOSTS) S:+RAS>0 RAOREA=+RAS
+ .Q
+ I RAOSTS=3 D
+ .N RAS S RAS=$$REASON(RAOSTS) S:+RAS>0 RAOREA=+RAS
+ .S (DIE,DIC)="^RAO(75.1,",DIC(0)="AEQM",DA=RAOIFN,DR="25" W ! D ^DIE K DIE,DIC,DA,DR
+ .Q
+ ;// end P162 mods //
  D ^RAORDU W !?10,"...request status updated to ",$S(RAOSTS=1:"discontinued",1:"hold"),"."
  Q
  ;
@@ -98,4 +107,19 @@ YNCAN() ;ask if the order is to be canceled
  ;Yes/No: Y=1 for yes/cancel; else Y=0 for no/hold
  ;
  Q $S(Y=1:1,Y=0:3,1:-1)
+ ;
+REASON(RAOSTS) ;cancel/hold reason using DIR
+ ; RAOSTS - the request status selected by the user.
+ ; 1 = discontinued/cancel; 3 = hold
+ ; return: IEN^.01 of IEN
+ ;         -1^ (if nothing selected, timeout or up arrow)
+ N %,DIR,DIRUT,DTOUT,DUOUT,RAREAY,X,Y
+ S DIR(0)="POA^75.2:EZ"
+ S DIR("A")="Select the '"_$S(RAOSTS=1:"cancel",1:"hold")_"' reason for this order: "
+ S DIR("S")="I $P(^(0),U,2)=RAOSTS" W ! D ^DIR
+ I $D(DIRUT)#2 D  Q RAREAY
+ .S RAREAY="-1^"
+ .Q
+ E  S RAREAY=Y
+ Q RAREAY
  ;

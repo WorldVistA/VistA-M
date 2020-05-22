@@ -1,134 +1,130 @@
-IBDEI34J ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34J ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52434,1,0)
+ ;;^UTILITY(U,$J,358.3,49897,0)
+ ;;=I48.91^^193^2486^6
+ ;;^UTILITY(U,$J,358.3,49897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52434,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,52434,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,52434,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,52435,0)
- ;;=F06.1^^237^2601^2
- ;;^UTILITY(U,$J,358.3,52435,1,0)
+ ;;^UTILITY(U,$J,358.3,49897,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,49897,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,49897,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,49898,0)
+ ;;=I48.92^^193^2486^7
+ ;;^UTILITY(U,$J,358.3,49898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52435,1,3,0)
- ;;=3^Catatonia Associated w/ Schizophrenia
- ;;^UTILITY(U,$J,358.3,52435,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,52435,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,52436,0)
- ;;=R41.9^^237^2601^3
- ;;^UTILITY(U,$J,358.3,52436,1,0)
+ ;;^UTILITY(U,$J,358.3,49898,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,49898,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,49898,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,49899,0)
+ ;;=I16.1^^193^2486^17
+ ;;^UTILITY(U,$J,358.3,49899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52436,1,3,0)
- ;;=3^Neurocognitive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52436,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,52436,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,52437,0)
- ;;=F29.^^237^2601^7
- ;;^UTILITY(U,$J,358.3,52437,1,0)
+ ;;^UTILITY(U,$J,358.3,49899,1,3,0)
+ ;;=3^Hypertensive Emergency
+ ;;^UTILITY(U,$J,358.3,49899,1,4,0)
+ ;;=4^I16.1
+ ;;^UTILITY(U,$J,358.3,49899,2)
+ ;;=^8204721
+ ;;^UTILITY(U,$J,358.3,49900,0)
+ ;;=I16.0^^193^2486^20
+ ;;^UTILITY(U,$J,358.3,49900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52437,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52437,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,52437,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,52438,0)
- ;;=F07.0^^237^2601^4
- ;;^UTILITY(U,$J,358.3,52438,1,0)
+ ;;^UTILITY(U,$J,358.3,49900,1,3,0)
+ ;;=3^Hypertensive Urgency
+ ;;^UTILITY(U,$J,358.3,49900,1,4,0)
+ ;;=4^I16.0
+ ;;^UTILITY(U,$J,358.3,49900,2)
+ ;;=^8133013
+ ;;^UTILITY(U,$J,358.3,49901,0)
+ ;;=I16.9^^193^2486^16
+ ;;^UTILITY(U,$J,358.3,49901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52438,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,52438,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,52438,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,52439,0)
- ;;=Z91.49^^237^2602^9
- ;;^UTILITY(U,$J,358.3,52439,1,0)
+ ;;^UTILITY(U,$J,358.3,49901,1,3,0)
+ ;;=3^Hypertensive Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,49901,1,4,0)
+ ;;=4^I16.9
+ ;;^UTILITY(U,$J,358.3,49901,2)
+ ;;=^5138600
+ ;;^UTILITY(U,$J,358.3,49902,0)
+ ;;=E78.01^^193^2486^10
+ ;;^UTILITY(U,$J,358.3,49902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52439,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,52439,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,52439,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,52440,0)
- ;;=Z91.5^^237^2602^10
- ;;^UTILITY(U,$J,358.3,52440,1,0)
+ ;;^UTILITY(U,$J,358.3,49902,1,3,0)
+ ;;=3^Familial Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,49902,1,4,0)
+ ;;=4^E78.01
+ ;;^UTILITY(U,$J,358.3,49902,2)
+ ;;=^7570555
+ ;;^UTILITY(U,$J,358.3,49903,0)
+ ;;=E78.00^^193^2486^22
+ ;;^UTILITY(U,$J,358.3,49903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52440,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,52440,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,52440,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,52441,0)
- ;;=Z91.82^^237^2602^8
- ;;^UTILITY(U,$J,358.3,52441,1,0)
+ ;;^UTILITY(U,$J,358.3,49903,1,3,0)
+ ;;=3^Pure Hypercholesterolemia,Unspec
+ ;;^UTILITY(U,$J,358.3,49903,1,4,0)
+ ;;=4^E78.00
+ ;;^UTILITY(U,$J,358.3,49903,2)
+ ;;=^5138435
+ ;;^UTILITY(U,$J,358.3,49904,0)
+ ;;=I47.2^^193^2486^24
+ ;;^UTILITY(U,$J,358.3,49904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52441,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,52441,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,52441,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,52442,0)
- ;;=Z91.89^^237^2602^11
- ;;^UTILITY(U,$J,358.3,52442,1,0)
+ ;;^UTILITY(U,$J,358.3,49904,1,3,0)
+ ;;=3^Ventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,49904,1,4,0)
+ ;;=4^I47.2
+ ;;^UTILITY(U,$J,358.3,49904,2)
+ ;;=^125976
+ ;;^UTILITY(U,$J,358.3,49905,0)
+ ;;=I42.6^^193^2486^1
+ ;;^UTILITY(U,$J,358.3,49905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52442,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,52442,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,52442,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,52443,0)
- ;;=Z72.9^^237^2602^12
- ;;^UTILITY(U,$J,358.3,52443,1,0)
+ ;;^UTILITY(U,$J,358.3,49905,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,49905,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,49905,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,49906,0)
+ ;;=I51.7^^193^2486^8
+ ;;^UTILITY(U,$J,358.3,49906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52443,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,52443,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,52443,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,52444,0)
- ;;=Z72.811^^237^2602^1
- ;;^UTILITY(U,$J,358.3,52444,1,0)
+ ;;^UTILITY(U,$J,358.3,49906,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,49906,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,49906,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,49907,0)
+ ;;=I48.20^^193^2486^2
+ ;;^UTILITY(U,$J,358.3,49907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52444,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,52444,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,52444,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,52445,0)
- ;;=Z91.19^^237^2602^5
- ;;^UTILITY(U,$J,358.3,52445,1,0)
+ ;;^UTILITY(U,$J,358.3,49907,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,49907,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,49907,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,49908,0)
+ ;;=I48.11^^193^2486^3
+ ;;^UTILITY(U,$J,358.3,49908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52445,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
- ;;^UTILITY(U,$J,358.3,52445,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,52445,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,52446,0)
- ;;=E66.9^^237^2602^6
- ;;^UTILITY(U,$J,358.3,52446,1,0)
+ ;;^UTILITY(U,$J,358.3,49908,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,49908,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,49908,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,49909,0)
+ ;;=I48.19^^193^2486^4
+ ;;^UTILITY(U,$J,358.3,49909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52446,1,3,0)
- ;;=3^Obesity
- ;;^UTILITY(U,$J,358.3,52446,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,52446,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,52447,0)
- ;;=Z76.5^^237^2602^3
+ ;;^UTILITY(U,$J,358.3,49909,1,3,0)
+ ;;=3^Atrial Fibrillation,Other Persistent

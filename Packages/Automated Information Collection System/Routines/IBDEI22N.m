@@ -1,120 +1,128 @@
-IBDEI22N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI22N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35129,0)
- ;;=W18.40XA^^131^1699^105
- ;;^UTILITY(U,$J,358.3,35129,1,0)
+ ;;^UTILITY(U,$J,358.3,33066,0)
+ ;;=H53.143^^128^1675^56
+ ;;^UTILITY(U,$J,358.3,33066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35129,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,35129,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,35129,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,35130,0)
- ;;=W18.40XD^^131^1699^106
- ;;^UTILITY(U,$J,358.3,35130,1,0)
+ ;;^UTILITY(U,$J,358.3,33066,1,3,0)
+ ;;=3^Visual Discomfort,Bilateral
+ ;;^UTILITY(U,$J,358.3,33066,1,4,0)
+ ;;=4^H53.143
+ ;;^UTILITY(U,$J,358.3,33066,2)
+ ;;=^5006319
+ ;;^UTILITY(U,$J,358.3,33067,0)
+ ;;=H53.141^^128^1675^58
+ ;;^UTILITY(U,$J,358.3,33067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35130,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35130,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,35130,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,35131,0)
- ;;=W18.41XA^^131^1699^107
- ;;^UTILITY(U,$J,358.3,35131,1,0)
+ ;;^UTILITY(U,$J,358.3,33067,1,3,0)
+ ;;=3^Visual Discomfort,Right Eye
+ ;;^UTILITY(U,$J,358.3,33067,1,4,0)
+ ;;=4^H53.141
+ ;;^UTILITY(U,$J,358.3,33067,2)
+ ;;=^5006317
+ ;;^UTILITY(U,$J,358.3,33068,0)
+ ;;=H53.142^^128^1675^57
+ ;;^UTILITY(U,$J,358.3,33068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35131,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,35131,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,35131,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,35132,0)
- ;;=W18.41XD^^131^1699^108
- ;;^UTILITY(U,$J,358.3,35132,1,0)
+ ;;^UTILITY(U,$J,358.3,33068,1,3,0)
+ ;;=3^Visual Discomfort,Left Eye
+ ;;^UTILITY(U,$J,358.3,33068,1,4,0)
+ ;;=4^H53.142
+ ;;^UTILITY(U,$J,358.3,33068,2)
+ ;;=^5006318
+ ;;^UTILITY(U,$J,358.3,33069,0)
+ ;;=H53.40^^128^1675^59
+ ;;^UTILITY(U,$J,358.3,33069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35132,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35132,1,4,0)
- ;;=4^W18.41XD
- ;;^UTILITY(U,$J,358.3,35132,2)
- ;;=^5059822
- ;;^UTILITY(U,$J,358.3,35133,0)
- ;;=W18.42XA^^131^1699^109
- ;;^UTILITY(U,$J,358.3,35133,1,0)
+ ;;^UTILITY(U,$J,358.3,33069,1,3,0)
+ ;;=3^Visual Field Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,33069,1,4,0)
+ ;;=4^H53.40
+ ;;^UTILITY(U,$J,358.3,33069,2)
+ ;;=^5006324
+ ;;^UTILITY(U,$J,358.3,33070,0)
+ ;;=H47.9^^128^1675^60
+ ;;^UTILITY(U,$J,358.3,33070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35133,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,35133,1,4,0)
- ;;=4^W18.42XA
- ;;^UTILITY(U,$J,358.3,35133,2)
- ;;=^5059824
- ;;^UTILITY(U,$J,358.3,35134,0)
- ;;=W18.42XD^^131^1699^110
- ;;^UTILITY(U,$J,358.3,35134,1,0)
+ ;;^UTILITY(U,$J,358.3,33070,1,3,0)
+ ;;=3^Visual Pathways Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,33070,1,4,0)
+ ;;=4^H47.9
+ ;;^UTILITY(U,$J,358.3,33070,2)
+ ;;=^5006178
+ ;;^UTILITY(U,$J,358.3,33071,0)
+ ;;=H50.52^^128^1675^62
+ ;;^UTILITY(U,$J,358.3,33071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35134,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35134,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,35134,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,35135,0)
- ;;=W18.43XA^^131^1699^103
- ;;^UTILITY(U,$J,358.3,35135,1,0)
+ ;;^UTILITY(U,$J,358.3,33071,1,3,0)
+ ;;=3^XP Exophoria
+ ;;^UTILITY(U,$J,358.3,33071,1,4,0)
+ ;;=4^H50.52
+ ;;^UTILITY(U,$J,358.3,33071,2)
+ ;;=^265436
+ ;;^UTILITY(U,$J,358.3,33072,0)
+ ;;=H50.10^^128^1675^63
+ ;;^UTILITY(U,$J,358.3,33072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35135,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,35135,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,35135,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,35136,0)
- ;;=W18.43XD^^131^1699^104
- ;;^UTILITY(U,$J,358.3,35136,1,0)
+ ;;^UTILITY(U,$J,358.3,33072,1,3,0)
+ ;;=3^XT Exotropia,Unspec
+ ;;^UTILITY(U,$J,358.3,33072,1,4,0)
+ ;;=4^H50.10
+ ;;^UTILITY(U,$J,358.3,33072,2)
+ ;;=^5006218
+ ;;^UTILITY(U,$J,358.3,33073,0)
+ ;;=R41.4^^128^1675^42
+ ;;^UTILITY(U,$J,358.3,33073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35136,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35136,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,35136,2)
- ;;=^5059828
- ;;^UTILITY(U,$J,358.3,35137,0)
- ;;=W18.49XA^^131^1699^111
- ;;^UTILITY(U,$J,358.3,35137,1,0)
+ ;;^UTILITY(U,$J,358.3,33073,1,3,0)
+ ;;=3^Neurological Neglect (Hemispatial),OU
+ ;;^UTILITY(U,$J,358.3,33073,1,4,0)
+ ;;=4^R41.4
+ ;;^UTILITY(U,$J,358.3,33073,2)
+ ;;=^303316
+ ;;^UTILITY(U,$J,358.3,33074,0)
+ ;;=R41.842^^128^1675^61
+ ;;^UTILITY(U,$J,358.3,33074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35137,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,35137,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,35137,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,35138,0)
- ;;=W18.49XD^^131^1699^112
- ;;^UTILITY(U,$J,358.3,35138,1,0)
+ ;;^UTILITY(U,$J,358.3,33074,1,3,0)
+ ;;=3^Visuospatial Deficit (Cognitive),OU
+ ;;^UTILITY(U,$J,358.3,33074,1,4,0)
+ ;;=4^R41.842
+ ;;^UTILITY(U,$J,358.3,33074,2)
+ ;;=^5019445
+ ;;^UTILITY(U,$J,358.3,33075,0)
+ ;;=G71.00^^128^1675^40
+ ;;^UTILITY(U,$J,358.3,33075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35138,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,35138,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,35138,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,35139,0)
- ;;=W19.XXXA^^131^1699^89
- ;;^UTILITY(U,$J,358.3,35139,1,0)
+ ;;^UTILITY(U,$J,358.3,33075,1,3,0)
+ ;;=3^Muscular Dystrophy,Unspec
+ ;;^UTILITY(U,$J,358.3,33075,1,4,0)
+ ;;=4^G71.00
+ ;;^UTILITY(U,$J,358.3,33075,2)
+ ;;=^5157314
+ ;;^UTILITY(U,$J,358.3,33076,0)
+ ;;=G71.01^^128^1675^38
+ ;;^UTILITY(U,$J,358.3,33076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35139,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,35139,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,35139,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,35140,0)
- ;;=W19.XXXD^^131^1699^90
- ;;^UTILITY(U,$J,358.3,35140,1,0)
+ ;;^UTILITY(U,$J,358.3,33076,1,3,0)
+ ;;=3^Muscular Dystrophy,Duchenne/Becker
+ ;;^UTILITY(U,$J,358.3,33076,1,4,0)
+ ;;=4^G71.01
+ ;;^UTILITY(U,$J,358.3,33076,2)
+ ;;=^5157315
+ ;;^UTILITY(U,$J,358.3,33077,0)
+ ;;=G71.02^^128^1675^39
+ ;;^UTILITY(U,$J,358.3,33077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35140,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33077,1,3,0)
+ ;;=3^Muscular Dystrophy,Facioscapulohumeral
+ ;;^UTILITY(U,$J,358.3,33077,1,4,0)
+ ;;=4^G71.02
+ ;;^UTILITY(U,$J,358.3,33077,2)
+ ;;=^5157316
+ ;;^UTILITY(U,$J,358.3,33078,0)
+ ;;=G71.09^^128^1675^37
+ ;;^UTILITY(U,$J,358.3,33078,1,0)
+ ;;=^358.31IA^4^2

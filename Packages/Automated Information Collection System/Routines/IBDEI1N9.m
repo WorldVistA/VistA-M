@@ -1,138 +1,124 @@
-IBDEI1N9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1N9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27904,2)
- ;;=^5004069
- ;;^UTILITY(U,$J,358.3,27905,0)
- ;;=G62.0^^109^1392^7
- ;;^UTILITY(U,$J,358.3,27905,1,0)
+ ;;^UTILITY(U,$J,358.3,26256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27905,1,3,0)
- ;;=3^Drug-Induced Polyneuropathy
- ;;^UTILITY(U,$J,358.3,27905,1,4,0)
- ;;=4^G62.0
- ;;^UTILITY(U,$J,358.3,27905,2)
- ;;=^5004075
- ;;^UTILITY(U,$J,358.3,27906,0)
- ;;=G62.1^^109^1392^1
- ;;^UTILITY(U,$J,358.3,27906,1,0)
+ ;;^UTILITY(U,$J,358.3,26256,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Left
+ ;;^UTILITY(U,$J,358.3,26256,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,26256,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,26257,0)
+ ;;=Z89.232^^107^1233^32
+ ;;^UTILITY(U,$J,358.3,26257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27906,1,3,0)
- ;;=3^Alcoholic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,27906,1,4,0)
- ;;=4^G62.1
- ;;^UTILITY(U,$J,358.3,27906,2)
- ;;=^5004076
- ;;^UTILITY(U,$J,358.3,27907,0)
- ;;=G63.^^109^1392^21
- ;;^UTILITY(U,$J,358.3,27907,1,0)
+ ;;^UTILITY(U,$J,358.3,26257,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Left
+ ;;^UTILITY(U,$J,358.3,26257,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,26257,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,26258,0)
+ ;;=Z89.012^^107^1233^36
+ ;;^UTILITY(U,$J,358.3,26258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27907,1,3,0)
- ;;=3^Polyneuropathy in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,27907,1,4,0)
- ;;=4^G63.
- ;;^UTILITY(U,$J,358.3,27907,2)
- ;;=^5004080
- ;;^UTILITY(U,$J,358.3,27908,0)
- ;;=G70.00^^109^1392^20
- ;;^UTILITY(U,$J,358.3,27908,1,0)
+ ;;^UTILITY(U,$J,358.3,26258,1,3,0)
+ ;;=3^Acquired Absence of Thumb,Left
+ ;;^UTILITY(U,$J,358.3,26258,1,4,0)
+ ;;=4^Z89.012
+ ;;^UTILITY(U,$J,358.3,26258,2)
+ ;;=^5063532
+ ;;^UTILITY(U,$J,358.3,26259,0)
+ ;;=Z89.422^^107^1233^25
+ ;;^UTILITY(U,$J,358.3,26259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27908,1,3,0)
- ;;=3^Myasthenia Gravis w/o Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,27908,1,4,0)
- ;;=4^G70.00
- ;;^UTILITY(U,$J,358.3,27908,2)
- ;;=^329920
- ;;^UTILITY(U,$J,358.3,27909,0)
- ;;=G70.01^^109^1392^19
- ;;^UTILITY(U,$J,358.3,27909,1,0)
+ ;;^UTILITY(U,$J,358.3,26259,1,3,0)
+ ;;=3^Acquired Absence of Oth Toe(s),Left
+ ;;^UTILITY(U,$J,358.3,26259,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,26259,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,26260,0)
+ ;;=Z89.222^^107^1233^38
+ ;;^UTILITY(U,$J,358.3,26260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27909,1,3,0)
- ;;=3^Myasthenia Gravis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,27909,1,4,0)
- ;;=4^G70.01
- ;;^UTILITY(U,$J,358.3,27909,2)
- ;;=^329921
- ;;^UTILITY(U,$J,358.3,27910,0)
- ;;=G70.80^^109^1392^12
- ;;^UTILITY(U,$J,358.3,27910,1,0)
+ ;;^UTILITY(U,$J,358.3,26260,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Above Elbow,Left
+ ;;^UTILITY(U,$J,358.3,26260,1,4,0)
+ ;;=4^Z89.222
+ ;;^UTILITY(U,$J,358.3,26260,2)
+ ;;=^5063549
+ ;;^UTILITY(U,$J,358.3,26261,0)
+ ;;=Z89.212^^107^1233^40
+ ;;^UTILITY(U,$J,358.3,26261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27910,1,3,0)
- ;;=3^Lambert-Eaton Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,27910,1,4,0)
- ;;=4^G70.80
- ;;^UTILITY(U,$J,358.3,27910,2)
- ;;=^340608
- ;;^UTILITY(U,$J,358.3,27911,0)
- ;;=G72.0^^109^1392^6
- ;;^UTILITY(U,$J,358.3,27911,1,0)
+ ;;^UTILITY(U,$J,358.3,26261,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow,Left
+ ;;^UTILITY(U,$J,358.3,26261,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,26261,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,26262,0)
+ ;;=Z89.122^^107^1233^43
+ ;;^UTILITY(U,$J,358.3,26262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27911,1,3,0)
- ;;=3^Drug-Induced Myopathy
- ;;^UTILITY(U,$J,358.3,27911,1,4,0)
- ;;=4^G72.0
- ;;^UTILITY(U,$J,358.3,27911,2)
- ;;=^5004095
- ;;^UTILITY(U,$J,358.3,27912,0)
- ;;=G72.41^^109^1392^10
- ;;^UTILITY(U,$J,358.3,27912,1,0)
+ ;;^UTILITY(U,$J,358.3,26262,1,3,0)
+ ;;=3^Acquired Absence of Wrist,Left
+ ;;^UTILITY(U,$J,358.3,26262,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,26262,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,26263,0)
+ ;;=Z90.2^^107^1233^24
+ ;;^UTILITY(U,$J,358.3,26263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27912,1,3,0)
- ;;=3^Inclusion Body Myositis
- ;;^UTILITY(U,$J,358.3,27912,1,4,0)
- ;;=4^G72.41
- ;;^UTILITY(U,$J,358.3,27912,2)
- ;;=^5004098
- ;;^UTILITY(U,$J,358.3,27913,0)
- ;;=G72.49^^109^1392^11
- ;;^UTILITY(U,$J,358.3,27913,1,0)
+ ;;^UTILITY(U,$J,358.3,26263,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,26263,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,26263,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,26264,0)
+ ;;=Z90.79^^107^1233^31
+ ;;^UTILITY(U,$J,358.3,26264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27913,1,3,0)
- ;;=3^Inflammatory & Immune Myopathies NEC
- ;;^UTILITY(U,$J,358.3,27913,1,4,0)
- ;;=4^G72.49
- ;;^UTILITY(U,$J,358.3,27913,2)
- ;;=^5004099
- ;;^UTILITY(U,$J,358.3,27914,0)
- ;;=E11.40^^109^1392^5
- ;;^UTILITY(U,$J,358.3,27914,1,0)
+ ;;^UTILITY(U,$J,358.3,26264,1,3,0)
+ ;;=3^Acquired Absence of Prostate
+ ;;^UTILITY(U,$J,358.3,26264,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,26264,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,26265,0)
+ ;;=Z90.722^^107^1233^27
+ ;;^UTILITY(U,$J,358.3,26265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27914,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy
- ;;^UTILITY(U,$J,358.3,27914,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,27914,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,27915,0)
- ;;=M54.2^^109^1393^1
- ;;^UTILITY(U,$J,358.3,27915,1,0)
+ ;;^UTILITY(U,$J,358.3,26265,1,3,0)
+ ;;=3^Acquired Absence of Ovaries,Bilateral
+ ;;^UTILITY(U,$J,358.3,26265,1,4,0)
+ ;;=4^Z90.722
+ ;;^UTILITY(U,$J,358.3,26265,2)
+ ;;=^5063595
+ ;;^UTILITY(U,$J,358.3,26266,0)
+ ;;=Z90.721^^107^1233^28
+ ;;^UTILITY(U,$J,358.3,26266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27915,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,27915,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,27915,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,27916,0)
- ;;=M54.5^^109^1393^3
- ;;^UTILITY(U,$J,358.3,27916,1,0)
+ ;;^UTILITY(U,$J,358.3,26266,1,3,0)
+ ;;=3^Acquired Absence of Ovaries,Unilateral
+ ;;^UTILITY(U,$J,358.3,26266,1,4,0)
+ ;;=4^Z90.721
+ ;;^UTILITY(U,$J,358.3,26266,2)
+ ;;=^5063594
+ ;;^UTILITY(U,$J,358.3,26267,0)
+ ;;=Z90.411^^107^1233^29
+ ;;^UTILITY(U,$J,358.3,26267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27916,1,3,0)
- ;;=3^Low Back Pain
- ;;^UTILITY(U,$J,358.3,27916,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,27916,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,27917,0)
- ;;=M54.9^^109^1393^2
- ;;^UTILITY(U,$J,358.3,27917,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27917,1,3,0)
- ;;=3^Dorsalgia,Unspec
- ;;^UTILITY(U,$J,358.3,27917,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,27917,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,27918,0)
- ;;=M54.10^^109^1393^19
+ ;;^UTILITY(U,$J,358.3,26267,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Partial
+ ;;^UTILITY(U,$J,358.3,26267,1,4,0)
+ ;;=4^Z90.411
+ ;;^UTILITY(U,$J,358.3,26267,2)
+ ;;=^5063588
+ ;;^UTILITY(U,$J,358.3,26268,0)
+ ;;=Z90.410^^107^1233^30

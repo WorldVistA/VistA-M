@@ -1,134 +1,116 @@
-IBDEI2DB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DB ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40152,1,0)
+ ;;^UTILITY(U,$J,358.3,37798,0)
+ ;;=S82.54XM^^146^1917^281
+ ;;^UTILITY(U,$J,358.3,37798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40152,1,3,0)
- ;;=3^Malignant neoplasm of descended right testis
- ;;^UTILITY(U,$J,358.3,40152,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,40152,2)
- ;;=^5001234
- ;;^UTILITY(U,$J,358.3,40153,0)
- ;;=C62.12^^156^1953^1
- ;;^UTILITY(U,$J,358.3,40153,1,0)
+ ;;^UTILITY(U,$J,358.3,37798,1,3,0)
+ ;;=3^Nondisp fx med mall rt tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37798,1,4,0)
+ ;;=4^S82.54XM
+ ;;^UTILITY(U,$J,358.3,37798,2)
+ ;;=^5042273
+ ;;^UTILITY(U,$J,358.3,37799,0)
+ ;;=S82.54XK^^146^1917^279
+ ;;^UTILITY(U,$J,358.3,37799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40153,1,3,0)
- ;;=3^Malignant neoplasm of descended left testis
- ;;^UTILITY(U,$J,358.3,40153,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,40153,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,40154,0)
- ;;=M81.0^^156^1954^1
- ;;^UTILITY(U,$J,358.3,40154,1,0)
+ ;;^UTILITY(U,$J,358.3,37799,1,3,0)
+ ;;=3^Nondisp fx med mall rt tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37799,1,4,0)
+ ;;=4^S82.54XK
+ ;;^UTILITY(U,$J,358.3,37799,2)
+ ;;=^5042272
+ ;;^UTILITY(U,$J,358.3,37800,0)
+ ;;=S82.52XN^^146^1917^50
+ ;;^UTILITY(U,$J,358.3,37800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40154,1,3,0)
- ;;=3^Age-related osteoporosis w/o current pathological fracture
- ;;^UTILITY(U,$J,358.3,40154,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,40154,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,40155,0)
- ;;=E10.9^^156^1954^2
- ;;^UTILITY(U,$J,358.3,40155,1,0)
+ ;;^UTILITY(U,$J,358.3,37800,1,3,0)
+ ;;=3^Disp fx med mal lft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37800,1,4,0)
+ ;;=4^S82.52XN
+ ;;^UTILITY(U,$J,358.3,37800,2)
+ ;;=^5042242
+ ;;^UTILITY(U,$J,358.3,37801,0)
+ ;;=S82.52XM^^146^1917^54
+ ;;^UTILITY(U,$J,358.3,37801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40155,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,40155,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,40155,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,40156,0)
- ;;=E11.9^^156^1954^3
- ;;^UTILITY(U,$J,358.3,40156,1,0)
+ ;;^UTILITY(U,$J,358.3,37801,1,3,0)
+ ;;=3^Disp fx med mallft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37801,1,4,0)
+ ;;=4^S82.52XM
+ ;;^UTILITY(U,$J,358.3,37801,2)
+ ;;=^5042241
+ ;;^UTILITY(U,$J,358.3,37802,0)
+ ;;=S82.52XK^^146^1917^51
+ ;;^UTILITY(U,$J,358.3,37802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40156,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,40156,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,40156,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,40157,0)
- ;;=R10.9^^156^1955^2
- ;;^UTILITY(U,$J,358.3,40157,1,0)
+ ;;^UTILITY(U,$J,358.3,37802,1,3,0)
+ ;;=3^Disp fx med mall lft tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37802,1,4,0)
+ ;;=4^S82.52XK
+ ;;^UTILITY(U,$J,358.3,37802,2)
+ ;;=^5042240
+ ;;^UTILITY(U,$J,358.3,37803,0)
+ ;;=S82.51XN^^146^1917^52
+ ;;^UTILITY(U,$J,358.3,37803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40157,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,40157,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,40157,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,40158,0)
- ;;=R10.11^^156^1955^42
- ;;^UTILITY(U,$J,358.3,40158,1,0)
+ ;;^UTILITY(U,$J,358.3,37803,1,3,0)
+ ;;=3^Disp fx med mall rt tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37803,1,4,0)
+ ;;=4^S82.51XN
+ ;;^UTILITY(U,$J,358.3,37803,2)
+ ;;=^5042226
+ ;;^UTILITY(U,$J,358.3,37804,0)
+ ;;=S82.51XM^^146^1917^53
+ ;;^UTILITY(U,$J,358.3,37804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40158,1,3,0)
- ;;=3^Right upper quadrant pain
- ;;^UTILITY(U,$J,358.3,40158,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,40158,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,40159,0)
- ;;=R10.31^^156^1955^41
- ;;^UTILITY(U,$J,358.3,40159,1,0)
+ ;;^UTILITY(U,$J,358.3,37804,1,3,0)
+ ;;=3^Disp fx med mall rt tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37804,1,4,0)
+ ;;=4^S82.51XM
+ ;;^UTILITY(U,$J,358.3,37804,2)
+ ;;=^5042225
+ ;;^UTILITY(U,$J,358.3,37805,0)
+ ;;=S82.51XK^^146^1917^103
+ ;;^UTILITY(U,$J,358.3,37805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40159,1,3,0)
- ;;=3^Right lower quadrant pain
- ;;^UTILITY(U,$J,358.3,40159,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,40159,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,40160,0)
- ;;=R10.84^^156^1955^1
- ;;^UTILITY(U,$J,358.3,40160,1,0)
+ ;;^UTILITY(U,$J,358.3,37805,1,3,0)
+ ;;=3^Disp fx of med mall rt tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37805,1,4,0)
+ ;;=4^S82.51XK
+ ;;^UTILITY(U,$J,358.3,37805,2)
+ ;;=^5042224
+ ;;^UTILITY(U,$J,358.3,37806,0)
+ ;;=M84.378K^^146^1917^446
+ ;;^UTILITY(U,$J,358.3,37806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40160,1,3,0)
- ;;=3^Abdominal Pain,Generalized
- ;;^UTILITY(U,$J,358.3,40160,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,40160,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,40161,0)
- ;;=R10.10^^156^1955^44
- ;;^UTILITY(U,$J,358.3,40161,1,0)
+ ;;^UTILITY(U,$J,358.3,37806,1,3,0)
+ ;;=3^Stress fx lft toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37806,1,4,0)
+ ;;=4^M84.378K
+ ;;^UTILITY(U,$J,358.3,37806,2)
+ ;;=^5013779
+ ;;^UTILITY(U,$J,358.3,37807,0)
+ ;;=M84.377K^^146^1917^448
+ ;;^UTILITY(U,$J,358.3,37807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40161,1,3,0)
- ;;=3^Upper abdominal pain, unspecified
- ;;^UTILITY(U,$J,358.3,40161,1,4,0)
- ;;=4^R10.10
- ;;^UTILITY(U,$J,358.3,40161,2)
- ;;=^5019205
- ;;^UTILITY(U,$J,358.3,40162,0)
- ;;=R10.30^^156^1955^28
- ;;^UTILITY(U,$J,358.3,40162,1,0)
+ ;;^UTILITY(U,$J,358.3,37807,1,3,0)
+ ;;=3^Stress fx rt toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37807,1,4,0)
+ ;;=4^M84.377K
+ ;;^UTILITY(U,$J,358.3,37807,2)
+ ;;=^5013773
+ ;;^UTILITY(U,$J,358.3,37808,0)
+ ;;=M84.375K^^146^1917^445
+ ;;^UTILITY(U,$J,358.3,37808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40162,1,3,0)
- ;;=3^Lower abdominal pain, unspecified
- ;;^UTILITY(U,$J,358.3,40162,1,4,0)
- ;;=4^R10.30
- ;;^UTILITY(U,$J,358.3,40162,2)
- ;;=^5019210
- ;;^UTILITY(U,$J,358.3,40163,0)
- ;;=R10.2^^156^1955^35
- ;;^UTILITY(U,$J,358.3,40163,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40163,1,3,0)
- ;;=3^Pelvic and perineal pain
- ;;^UTILITY(U,$J,358.3,40163,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,40163,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,40164,0)
- ;;=R18.8^^156^1955^9
- ;;^UTILITY(U,$J,358.3,40164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40164,1,3,0)
- ;;=3^Ascites NEC
- ;;^UTILITY(U,$J,358.3,40164,1,4,0)
- ;;=4^R18.8
- ;;^UTILITY(U,$J,358.3,40164,2)
- ;;=^5019253
- ;;^UTILITY(U,$J,358.3,40165,0)
- ;;=R19.7^^156^1955^16
+ ;;^UTILITY(U,$J,358.3,37808,1,3,0)
+ ;;=3^Stress fx lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37808,1,4,0)
+ ;;=4^M84.375K
+ ;;^UTILITY(U,$J,358.3,37808,2)
+ ;;=^5013761
+ ;;^UTILITY(U,$J,358.3,37809,0)
+ ;;=M84.374K^^146^1917^447

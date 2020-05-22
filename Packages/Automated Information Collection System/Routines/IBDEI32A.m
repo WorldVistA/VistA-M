@@ -1,130 +1,128 @@
-IBDEI32A ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI32A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51326,1,0)
+ ;;^UTILITY(U,$J,358.3,48886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51326,1,3,0)
- ;;=3^Streptococcal arthritis, vertebrae, oth
- ;;^UTILITY(U,$J,358.3,51326,1,4,0)
- ;;=4^M00.28
- ;;^UTILITY(U,$J,358.3,51326,2)
- ;;=^5009667
- ;;^UTILITY(U,$J,358.3,51327,0)
- ;;=M00.88^^222^2474^15
- ;;^UTILITY(U,$J,358.3,51327,1,0)
+ ;;^UTILITY(U,$J,358.3,48886,1,3,0)
+ ;;=3^Pneumonia,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,48886,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,48886,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,48887,0)
+ ;;=J93.9^^185^2426^53
+ ;;^UTILITY(U,$J,358.3,48887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51327,1,3,0)
- ;;=3^Arthritis d/t other bacteria, vertebrae
- ;;^UTILITY(U,$J,358.3,51327,1,4,0)
- ;;=4^M00.88
- ;;^UTILITY(U,$J,358.3,51327,2)
- ;;=^5009691
- ;;^UTILITY(U,$J,358.3,51328,0)
- ;;=M00.09^^222^2474^50
- ;;^UTILITY(U,$J,358.3,51328,1,0)
+ ;;^UTILITY(U,$J,358.3,48887,1,3,0)
+ ;;=3^Pneumothorax,Unspec
+ ;;^UTILITY(U,$J,358.3,48887,1,4,0)
+ ;;=4^J93.9
+ ;;^UTILITY(U,$J,358.3,48887,2)
+ ;;=^5008315
+ ;;^UTILITY(U,$J,358.3,48888,0)
+ ;;=J33.9^^185^2426^54
+ ;;^UTILITY(U,$J,358.3,48888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51328,1,3,0)
- ;;=3^Staphylococcal polyarthritis
- ;;^UTILITY(U,$J,358.3,51328,1,4,0)
- ;;=4^M00.09
- ;;^UTILITY(U,$J,358.3,51328,2)
- ;;=^5009620
- ;;^UTILITY(U,$J,358.3,51329,0)
- ;;=M00.19^^222^2474^32
- ;;^UTILITY(U,$J,358.3,51329,1,0)
+ ;;^UTILITY(U,$J,358.3,48888,1,3,0)
+ ;;=3^Polyp,Nasal,Unspec
+ ;;^UTILITY(U,$J,358.3,48888,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,48888,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,48889,0)
+ ;;=R09.82^^185^2426^55
+ ;;^UTILITY(U,$J,358.3,48889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51329,1,3,0)
- ;;=3^Pneumococcal polyarthritis
- ;;^UTILITY(U,$J,358.3,51329,1,4,0)
- ;;=4^M00.19
- ;;^UTILITY(U,$J,358.3,51329,2)
- ;;=^5009644
- ;;^UTILITY(U,$J,358.3,51330,0)
- ;;=M00.29^^222^2474^65
- ;;^UTILITY(U,$J,358.3,51330,1,0)
+ ;;^UTILITY(U,$J,358.3,48889,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,48889,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,48889,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,48890,0)
+ ;;=J84.9^^185^2426^56
+ ;;^UTILITY(U,$J,358.3,48890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51330,1,3,0)
- ;;=3^Streptococcal polyarthritis, oth
- ;;^UTILITY(U,$J,358.3,51330,1,4,0)
- ;;=4^M00.29
- ;;^UTILITY(U,$J,358.3,51330,2)
- ;;=^5009668
- ;;^UTILITY(U,$J,358.3,51331,0)
- ;;=M00.89^^222^2474^33
- ;;^UTILITY(U,$J,358.3,51331,1,0)
+ ;;^UTILITY(U,$J,358.3,48890,1,3,0)
+ ;;=3^Pulmonary Disease,Interstitial,Unspec
+ ;;^UTILITY(U,$J,358.3,48890,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,48890,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,48891,0)
+ ;;=J81.0^^185^2426^57
+ ;;^UTILITY(U,$J,358.3,48891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51331,1,3,0)
- ;;=3^Polyarthritis d/t other bacteria
- ;;^UTILITY(U,$J,358.3,51331,1,4,0)
- ;;=4^M00.89
- ;;^UTILITY(U,$J,358.3,51331,2)
- ;;=^5009692
- ;;^UTILITY(U,$J,358.3,51332,0)
- ;;=M45.9^^222^2475^1
- ;;^UTILITY(U,$J,358.3,51332,1,0)
+ ;;^UTILITY(U,$J,358.3,48891,1,3,0)
+ ;;=3^Pulmonary Edema,Acute
+ ;;^UTILITY(U,$J,358.3,48891,1,4,0)
+ ;;=4^J81.0
+ ;;^UTILITY(U,$J,358.3,48891,2)
+ ;;=^5008295
+ ;;^UTILITY(U,$J,358.3,48892,0)
+ ;;=J81.1^^185^2426^58
+ ;;^UTILITY(U,$J,358.3,48892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51332,1,3,0)
- ;;=3^Ankylsng spndylsis of unspec sites in spine
- ;;^UTILITY(U,$J,358.3,51332,1,4,0)
- ;;=4^M45.9
- ;;^UTILITY(U,$J,358.3,51332,2)
- ;;=^5011969
- ;;^UTILITY(U,$J,358.3,51333,0)
- ;;=M46.90^^222^2475^4
- ;;^UTILITY(U,$J,358.3,51333,1,0)
+ ;;^UTILITY(U,$J,358.3,48892,1,3,0)
+ ;;=3^Pulmonary Edema,Chronic
+ ;;^UTILITY(U,$J,358.3,48892,1,4,0)
+ ;;=4^J81.1
+ ;;^UTILITY(U,$J,358.3,48892,2)
+ ;;=^5008296
+ ;;^UTILITY(U,$J,358.3,48893,0)
+ ;;=J82.^^185^2426^59
+ ;;^UTILITY(U,$J,358.3,48893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51333,1,3,0)
- ;;=3^Inflammatory spondylopathy, site unspec, unspec
- ;;^UTILITY(U,$J,358.3,51333,1,4,0)
- ;;=4^M46.90
- ;;^UTILITY(U,$J,358.3,51333,2)
- ;;=^5012030
- ;;^UTILITY(U,$J,358.3,51334,0)
- ;;=M47.817^^222^2475^18
- ;;^UTILITY(U,$J,358.3,51334,1,0)
+ ;;^UTILITY(U,$J,358.3,48893,1,3,0)
+ ;;=3^Pulmonary Eosinophilia NEC
+ ;;^UTILITY(U,$J,358.3,48893,1,4,0)
+ ;;=4^J82.
+ ;;^UTILITY(U,$J,358.3,48893,2)
+ ;;=^5008297
+ ;;^UTILITY(U,$J,358.3,48894,0)
+ ;;=J70.9^^185^2426^60
+ ;;^UTILITY(U,$J,358.3,48894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51334,1,3,0)
- ;;=3^Spndylsis w/o mylopthy or radclpthy, lumboscrl regn
- ;;^UTILITY(U,$J,358.3,51334,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,51334,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,51335,0)
- ;;=M51.34^^222^2475^7
- ;;^UTILITY(U,$J,358.3,51335,1,0)
+ ;;^UTILITY(U,$J,358.3,48894,1,3,0)
+ ;;=3^Respiratory Conditions d/t Unspec External Agent
+ ;;^UTILITY(U,$J,358.3,48894,1,4,0)
+ ;;=4^J70.9
+ ;;^UTILITY(U,$J,358.3,48894,2)
+ ;;=^269985
+ ;;^UTILITY(U,$J,358.3,48895,0)
+ ;;=J98.9^^185^2426^61
+ ;;^UTILITY(U,$J,358.3,48895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51335,1,3,0)
- ;;=3^Intrvrtbrl disc degen, thor regn, oth
- ;;^UTILITY(U,$J,358.3,51335,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,51335,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,51336,0)
- ;;=M51.35^^222^2475^8
- ;;^UTILITY(U,$J,358.3,51336,1,0)
+ ;;^UTILITY(U,$J,358.3,48895,1,3,0)
+ ;;=3^Respiratory Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,48895,1,4,0)
+ ;;=4^J98.9
+ ;;^UTILITY(U,$J,358.3,48895,2)
+ ;;=^5008366
+ ;;^UTILITY(U,$J,358.3,48896,0)
+ ;;=J06.9^^185^2426^62
+ ;;^UTILITY(U,$J,358.3,48896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51336,1,3,0)
- ;;=3^Intrvrtbrl disc degen, thorclmbr regn, oth
- ;;^UTILITY(U,$J,358.3,51336,1,4,0)
- ;;=4^M51.35
- ;;^UTILITY(U,$J,358.3,51336,2)
- ;;=^5012252
- ;;^UTILITY(U,$J,358.3,51337,0)
- ;;=M51.36^^222^2475^6
- ;;^UTILITY(U,$J,358.3,51337,1,0)
+ ;;^UTILITY(U,$J,358.3,48896,1,3,0)
+ ;;=3^Respiratory Infection,Upper,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,48896,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,48896,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,48897,0)
+ ;;=J39.9^^185^2426^63
+ ;;^UTILITY(U,$J,358.3,48897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51337,1,3,0)
- ;;=3^Intrvrtbrl disc degen, lumb regn, oth
- ;;^UTILITY(U,$J,358.3,51337,1,4,0)
- ;;=4^M51.36
- ;;^UTILITY(U,$J,358.3,51337,2)
- ;;=^5012253
- ;;^UTILITY(U,$J,358.3,51338,0)
- ;;=M51.37^^222^2475^5
- ;;^UTILITY(U,$J,358.3,51338,1,0)
+ ;;^UTILITY(U,$J,358.3,48897,1,3,0)
+ ;;=3^Respiratory Tract Disease,Upper,Unspec
+ ;;^UTILITY(U,$J,358.3,48897,1,4,0)
+ ;;=4^J39.9
+ ;;^UTILITY(U,$J,358.3,48897,2)
+ ;;=^5008232
+ ;;^UTILITY(U,$J,358.3,48898,0)
+ ;;=J30.9^^185^2426^64
+ ;;^UTILITY(U,$J,358.3,48898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51338,1,3,0)
- ;;=3^Intrvrtbrl disc degen, lmboscrl regn, oth
- ;;^UTILITY(U,$J,358.3,51338,1,4,0)
- ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,48898,1,3,0)
+ ;;=3^Rhinitis,Allgeric,Unspec

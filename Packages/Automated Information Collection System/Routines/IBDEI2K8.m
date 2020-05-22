@@ -1,134 +1,120 @@
-IBDEI2K8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2K8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43438,1,4,0)
- ;;=4^I72.4
- ;;^UTILITY(U,$J,358.3,43438,2)
- ;;=^269777
- ;;^UTILITY(U,$J,358.3,43439,0)
- ;;=I72.0^^167^2078^35
- ;;^UTILITY(U,$J,358.3,43439,1,0)
+ ;;^UTILITY(U,$J,358.3,40869,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,40870,0)
+ ;;=R40.2340^^152^2018^10
+ ;;^UTILITY(U,$J,358.3,40870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43439,1,3,0)
- ;;=3^Aneurysm of Carotid Artery
- ;;^UTILITY(U,$J,358.3,43439,1,4,0)
- ;;=4^I72.0
- ;;^UTILITY(U,$J,358.3,43439,2)
- ;;=^5007793
- ;;^UTILITY(U,$J,358.3,43440,0)
- ;;=I73.00^^167^2078^141
- ;;^UTILITY(U,$J,358.3,43440,1,0)
+ ;;^UTILITY(U,$J,358.3,40870,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,40870,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,40870,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,40871,0)
+ ;;=R40.2324^^152^2018^1
+ ;;^UTILITY(U,$J,358.3,40871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43440,1,3,0)
- ;;=3^Raynaud's Syndrome w/o Gangrene
- ;;^UTILITY(U,$J,358.3,43440,1,4,0)
- ;;=4^I73.00
- ;;^UTILITY(U,$J,358.3,43440,2)
- ;;=^5007796
- ;;^UTILITY(U,$J,358.3,43441,0)
- ;;=I73.9^^167^2078^131
- ;;^UTILITY(U,$J,358.3,43441,1,0)
+ ;;^UTILITY(U,$J,358.3,40871,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,40871,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,40871,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,40872,0)
+ ;;=R40.2323^^152^2018^4
+ ;;^UTILITY(U,$J,358.3,40872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43441,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43441,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,43441,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,43442,0)
- ;;=I74.2^^167^2078^106
- ;;^UTILITY(U,$J,358.3,43442,1,0)
+ ;;^UTILITY(U,$J,358.3,40872,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,40872,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,40872,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,40873,0)
+ ;;=R40.2322^^152^2018^2
+ ;;^UTILITY(U,$J,358.3,40873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43442,1,3,0)
- ;;=3^Embolism & Thrombosis UE Arteries
- ;;^UTILITY(U,$J,358.3,43442,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,43442,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,43443,0)
- ;;=I74.3^^167^2078^105
- ;;^UTILITY(U,$J,358.3,43443,1,0)
+ ;;^UTILITY(U,$J,358.3,40873,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,40873,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,40873,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,40874,0)
+ ;;=R40.2321^^152^2018^5
+ ;;^UTILITY(U,$J,358.3,40874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43443,1,3,0)
- ;;=3^Embolism & Thrombosis LE Arteries
- ;;^UTILITY(U,$J,358.3,43443,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,43443,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,43444,0)
- ;;=I80.11^^167^2078^138
- ;;^UTILITY(U,$J,358.3,43444,1,0)
+ ;;^UTILITY(U,$J,358.3,40874,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,40874,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,40874,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,40875,0)
+ ;;=R40.2320^^152^2018^3
+ ;;^UTILITY(U,$J,358.3,40875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43444,1,3,0)
- ;;=3^Phleb & Thrombphleb Rt Femoral Vein
- ;;^UTILITY(U,$J,358.3,43444,1,4,0)
- ;;=4^I80.11
- ;;^UTILITY(U,$J,358.3,43444,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,43445,0)
- ;;=I80.211^^167^2078^139
- ;;^UTILITY(U,$J,358.3,43445,1,0)
+ ;;^UTILITY(U,$J,358.3,40875,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,40875,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,40875,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,40876,0)
+ ;;=R40.2314^^152^2018^11
+ ;;^UTILITY(U,$J,358.3,40876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43445,1,3,0)
- ;;=3^Phleb & Thrombphleb Rt Iliac Vein
- ;;^UTILITY(U,$J,358.3,43445,1,4,0)
- ;;=4^I80.211
- ;;^UTILITY(U,$J,358.3,43445,2)
- ;;=^5007831
- ;;^UTILITY(U,$J,358.3,43446,0)
- ;;=I80.12^^167^2078^135
- ;;^UTILITY(U,$J,358.3,43446,1,0)
+ ;;^UTILITY(U,$J,358.3,40876,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,40876,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,40876,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,40877,0)
+ ;;=R40.2313^^152^2018^14
+ ;;^UTILITY(U,$J,358.3,40877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43446,1,3,0)
- ;;=3^Phleb & Thrombphleb Lt Femoral Vein
- ;;^UTILITY(U,$J,358.3,43446,1,4,0)
- ;;=4^I80.12
- ;;^UTILITY(U,$J,358.3,43446,2)
- ;;=^5007826
- ;;^UTILITY(U,$J,358.3,43447,0)
- ;;=I80.13^^167^2078^132
- ;;^UTILITY(U,$J,358.3,43447,1,0)
+ ;;^UTILITY(U,$J,358.3,40877,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,40877,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,40877,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,40878,0)
+ ;;=R40.2312^^152^2018^12
+ ;;^UTILITY(U,$J,358.3,40878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43447,1,3,0)
- ;;=3^Phleb & Thrombphleb Bil Femoral Vein
- ;;^UTILITY(U,$J,358.3,43447,1,4,0)
- ;;=4^I80.13
- ;;^UTILITY(U,$J,358.3,43447,2)
- ;;=^5007827
- ;;^UTILITY(U,$J,358.3,43448,0)
- ;;=I80.202^^167^2078^137
- ;;^UTILITY(U,$J,358.3,43448,1,0)
+ ;;^UTILITY(U,$J,358.3,40878,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,40878,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,40878,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,40879,0)
+ ;;=R40.2311^^152^2018^15
+ ;;^UTILITY(U,$J,358.3,40879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43448,1,3,0)
- ;;=3^Phleb & Thrombphleb Lt LE Deep Vessels
- ;;^UTILITY(U,$J,358.3,43448,1,4,0)
- ;;=4^I80.202
- ;;^UTILITY(U,$J,358.3,43448,2)
- ;;=^5007829
- ;;^UTILITY(U,$J,358.3,43449,0)
- ;;=I80.201^^167^2078^140
- ;;^UTILITY(U,$J,358.3,43449,1,0)
+ ;;^UTILITY(U,$J,358.3,40879,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,40879,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,40879,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,40880,0)
+ ;;=R40.2310^^152^2018^13
+ ;;^UTILITY(U,$J,358.3,40880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43449,1,3,0)
- ;;=3^Phleb & Thrombphleb Rt LE Deep Vessels
- ;;^UTILITY(U,$J,358.3,43449,1,4,0)
- ;;=4^I80.201
- ;;^UTILITY(U,$J,358.3,43449,2)
- ;;=^5007828
- ;;^UTILITY(U,$J,358.3,43450,0)
- ;;=I80.203^^167^2078^134
- ;;^UTILITY(U,$J,358.3,43450,1,0)
+ ;;^UTILITY(U,$J,358.3,40880,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,40880,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,40880,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,40881,0)
+ ;;=R40.4^^152^2018^38
+ ;;^UTILITY(U,$J,358.3,40881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43450,1,3,0)
- ;;=3^Phleb & Thrombphleb Bil LE Deep Vessels
- ;;^UTILITY(U,$J,358.3,43450,1,4,0)
- ;;=4^I80.203
- ;;^UTILITY(U,$J,358.3,43450,2)
- ;;=^5007830
- ;;^UTILITY(U,$J,358.3,43451,0)
- ;;=I80.212^^167^2078^136
- ;;^UTILITY(U,$J,358.3,43451,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43451,1,3,0)
- ;;=3^Phleb & Thrombphleb Lt Iliac Vein

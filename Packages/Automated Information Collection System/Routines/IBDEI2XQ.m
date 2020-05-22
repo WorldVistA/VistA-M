@@ -1,124 +1,130 @@
-IBDEI2XQ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49235,1,4,0)
- ;;=4^S62.645S
- ;;^UTILITY(U,$J,358.3,49235,2)
- ;;=^5034703
- ;;^UTILITY(U,$J,358.3,49236,0)
- ;;=S62.640S^^216^2415^102
- ;;^UTILITY(U,$J,358.3,49236,1,0)
+ ;;^UTILITY(U,$J,358.3,46840,0)
+ ;;=N48.33^^179^2337^26
+ ;;^UTILITY(U,$J,358.3,46840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49236,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
- ;;^UTILITY(U,$J,358.3,49236,1,4,0)
- ;;=4^S62.640S
- ;;^UTILITY(U,$J,358.3,49236,2)
- ;;=^5034668
- ;;^UTILITY(U,$J,358.3,49237,0)
- ;;=S62.646S^^216^2415^103
- ;;^UTILITY(U,$J,358.3,49237,1,0)
+ ;;^UTILITY(U,$J,358.3,46840,1,3,0)
+ ;;=3^Priapism, drug-induced
+ ;;^UTILITY(U,$J,358.3,46840,1,4,0)
+ ;;=4^N48.33
+ ;;^UTILITY(U,$J,358.3,46840,2)
+ ;;=^5015736
+ ;;^UTILITY(U,$J,358.3,46841,0)
+ ;;=N48.39^^179^2337^24
+ ;;^UTILITY(U,$J,358.3,46841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49237,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
- ;;^UTILITY(U,$J,358.3,49237,1,4,0)
- ;;=4^S62.646S
- ;;^UTILITY(U,$J,358.3,49237,2)
- ;;=^5034710
- ;;^UTILITY(U,$J,358.3,49238,0)
- ;;=S62.642S^^216^2415^104
- ;;^UTILITY(U,$J,358.3,49238,1,0)
+ ;;^UTILITY(U,$J,358.3,46841,1,3,0)
+ ;;=3^Priapism, Other
+ ;;^UTILITY(U,$J,358.3,46841,1,4,0)
+ ;;=4^N48.39
+ ;;^UTILITY(U,$J,358.3,46841,2)
+ ;;=^5015737
+ ;;^UTILITY(U,$J,358.3,46842,0)
+ ;;=N50.1^^179^2337^31
+ ;;^UTILITY(U,$J,358.3,46842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49238,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela
- ;;^UTILITY(U,$J,358.3,49238,1,4,0)
- ;;=4^S62.642S
- ;;^UTILITY(U,$J,358.3,49238,2)
- ;;=^5034682
- ;;^UTILITY(U,$J,358.3,49239,0)
- ;;=S62.644S^^216^2415^105
- ;;^UTILITY(U,$J,358.3,49239,1,0)
+ ;;^UTILITY(U,$J,358.3,46842,1,3,0)
+ ;;=3^Vascular disorders male genital organs
+ ;;^UTILITY(U,$J,358.3,46842,1,4,0)
+ ;;=4^N50.1
+ ;;^UTILITY(U,$J,358.3,46842,2)
+ ;;=^125508
+ ;;^UTILITY(U,$J,358.3,46843,0)
+ ;;=N52.9^^179^2337^12
+ ;;^UTILITY(U,$J,358.3,46843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49239,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,49239,1,4,0)
- ;;=4^S62.644S
- ;;^UTILITY(U,$J,358.3,49239,2)
- ;;=^5034696
- ;;^UTILITY(U,$J,358.3,49240,0)
- ;;=M84.445S^^216^2415^119
- ;;^UTILITY(U,$J,358.3,49240,1,0)
+ ;;^UTILITY(U,$J,358.3,46843,1,3,0)
+ ;;=3^Male erectile dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,46843,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,46843,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,46844,0)
+ ;;=N52.39^^179^2337^20
+ ;;^UTILITY(U,$J,358.3,46844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49240,1,3,0)
- ;;=3^Pathological fracture, left finger(s), sequela
- ;;^UTILITY(U,$J,358.3,49240,1,4,0)
- ;;=4^M84.445S
- ;;^UTILITY(U,$J,358.3,49240,2)
- ;;=^5013895
- ;;^UTILITY(U,$J,358.3,49241,0)
- ;;=M84.444S^^216^2415^121
- ;;^UTILITY(U,$J,358.3,49241,1,0)
+ ;;^UTILITY(U,$J,358.3,46844,1,3,0)
+ ;;=3^Post-surg erectile dysfunction,Other
+ ;;^UTILITY(U,$J,358.3,46844,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,46844,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,46845,0)
+ ;;=N53.9^^179^2337^14
+ ;;^UTILITY(U,$J,358.3,46845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49241,1,3,0)
- ;;=3^Pathological fracture, right finger(s), sequela
- ;;^UTILITY(U,$J,358.3,49241,1,4,0)
- ;;=4^M84.444S
- ;;^UTILITY(U,$J,358.3,49241,2)
- ;;=^5013889
- ;;^UTILITY(U,$J,358.3,49242,0)
- ;;=M84.345S^^216^2415^123
- ;;^UTILITY(U,$J,358.3,49242,1,0)
+ ;;^UTILITY(U,$J,358.3,46845,1,3,0)
+ ;;=3^Male sexual dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,46845,1,4,0)
+ ;;=4^N53.9
+ ;;^UTILITY(U,$J,358.3,46845,2)
+ ;;=^5015769
+ ;;^UTILITY(U,$J,358.3,46846,0)
+ ;;=N53.12^^179^2337^16
+ ;;^UTILITY(U,$J,358.3,46846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49242,1,3,0)
- ;;=3^Stress fracture, left finger(s), sequela
- ;;^UTILITY(U,$J,358.3,49242,1,4,0)
- ;;=4^M84.345S
- ;;^UTILITY(U,$J,358.3,49242,2)
- ;;=^5013667
- ;;^UTILITY(U,$J,358.3,49243,0)
- ;;=M84.344S^^216^2415^125
- ;;^UTILITY(U,$J,358.3,49243,1,0)
+ ;;^UTILITY(U,$J,358.3,46846,1,3,0)
+ ;;=3^Painful ejaculation
+ ;;^UTILITY(U,$J,358.3,46846,1,4,0)
+ ;;=4^N53.12
+ ;;^UTILITY(U,$J,358.3,46846,2)
+ ;;=^5015765
+ ;;^UTILITY(U,$J,358.3,46847,0)
+ ;;=N53.8^^179^2337^13
+ ;;^UTILITY(U,$J,358.3,46847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49243,1,3,0)
- ;;=3^Stress fracture, right finger(s), sequela
- ;;^UTILITY(U,$J,358.3,49243,1,4,0)
- ;;=4^M84.344S
- ;;^UTILITY(U,$J,358.3,49243,2)
- ;;=^5013661
- ;;^UTILITY(U,$J,358.3,49244,0)
- ;;=S62.522S^^216^2415^15
- ;;^UTILITY(U,$J,358.3,49244,1,0)
+ ;;^UTILITY(U,$J,358.3,46847,1,3,0)
+ ;;=3^Male sexual dysfunction,Other
+ ;;^UTILITY(U,$J,358.3,46847,1,4,0)
+ ;;=4^N53.8
+ ;;^UTILITY(U,$J,358.3,46847,2)
+ ;;=^5015768
+ ;;^UTILITY(U,$J,358.3,46848,0)
+ ;;=N44.1^^179^2337^6
+ ;;^UTILITY(U,$J,358.3,46848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49244,1,3,0)
- ;;=3^Disp fx of distal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,49244,1,4,0)
- ;;=4^S62.522S
- ;;^UTILITY(U,$J,358.3,49244,2)
- ;;=^5034353
- ;;^UTILITY(U,$J,358.3,49245,0)
- ;;=S62.521S^^216^2415^20
- ;;^UTILITY(U,$J,358.3,49245,1,0)
+ ;;^UTILITY(U,$J,358.3,46848,1,3,0)
+ ;;=3^Cyst tunica albuginea testis
+ ;;^UTILITY(U,$J,358.3,46848,1,4,0)
+ ;;=4^N44.1
+ ;;^UTILITY(U,$J,358.3,46848,2)
+ ;;=^5015704
+ ;;^UTILITY(U,$J,358.3,46849,0)
+ ;;=N44.2^^179^2337^5
+ ;;^UTILITY(U,$J,358.3,46849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49245,1,3,0)
- ;;=3^Disp fx of distal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,49245,1,4,0)
- ;;=4^S62.521S
- ;;^UTILITY(U,$J,358.3,49245,2)
- ;;=^5034346
- ;;^UTILITY(U,$J,358.3,49246,0)
- ;;=S62.512S^^216^2415^43
- ;;^UTILITY(U,$J,358.3,49246,1,0)
+ ;;^UTILITY(U,$J,358.3,46849,1,3,0)
+ ;;=3^Benign cyst testis
+ ;;^UTILITY(U,$J,358.3,46849,1,4,0)
+ ;;=4^N44.2
+ ;;^UTILITY(U,$J,358.3,46849,2)
+ ;;=^5015705
+ ;;^UTILITY(U,$J,358.3,46850,0)
+ ;;=N44.8^^179^2337^15
+ ;;^UTILITY(U,$J,358.3,46850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49246,1,3,0)
- ;;=3^Disp fx of proximal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,49246,1,4,0)
- ;;=4^S62.512S
- ;;^UTILITY(U,$J,358.3,49246,2)
- ;;=^5034311
- ;;^UTILITY(U,$J,358.3,49247,0)
- ;;=S62.511S^^216^2415^48
- ;;^UTILITY(U,$J,358.3,49247,1,0)
+ ;;^UTILITY(U,$J,358.3,46850,1,3,0)
+ ;;=3^Noninflammatory disorders testis,Other
+ ;;^UTILITY(U,$J,358.3,46850,1,4,0)
+ ;;=4^N44.8
+ ;;^UTILITY(U,$J,358.3,46850,2)
+ ;;=^5015706
+ ;;^UTILITY(U,$J,358.3,46851,0)
+ ;;=N53.19^^179^2337^7
+ ;;^UTILITY(U,$J,358.3,46851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49247,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,46851,1,3,0)
+ ;;=3^Ejaculatory dysfunction,Other
+ ;;^UTILITY(U,$J,358.3,46851,1,4,0)
+ ;;=4^N53.19
+ ;;^UTILITY(U,$J,358.3,46851,2)
+ ;;=^5015767
+ ;;^UTILITY(U,$J,358.3,46852,0)
+ ;;=N48.6^^179^2337^18
+ ;;^UTILITY(U,$J,358.3,46852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46852,1,3,0)
+ ;;=3^Peyronie's (Induration Penis Plastica)

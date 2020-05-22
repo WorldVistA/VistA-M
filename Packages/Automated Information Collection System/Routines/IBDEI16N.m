@@ -1,52 +1,118 @@
-IBDEI16N ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.93)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.93,0,"GL")
- ;;=^IBE(358.93,
- ;;^DIC("B","IMP/EXP MULTIPLE CHOICE FIELD",358.93)
- ;;=
- ;;^DIC(358.93,"%D",0)
- ;;=^^2^2^2951024^^^
- ;;^DIC(358.93,"%D",1,0)
- ;;=This file is used as a work space for the import/export utility of the
- ;;^DIC(358.93,"%D",2,0)
- ;;=encounter form utilities.
- ;;^DD(358.93,0)
- ;;=FIELD^^1^9
- ;;^DD(358.93,0,"DDA")
- ;;=N
- ;;^DD(358.93,0,"DT")
- ;;=2960119
- ;;^DD(358.93,0,"IX","A",358.931,.01)
- ;;=
- ;;^DD(358.93,0,"IX","A1",358.931,.02)
- ;;=
- ;;^DD(358.93,0,"IX","B",358.93,.01)
- ;;=
- ;;^DD(358.93,0,"IX","C",358.93,.08)
- ;;=
- ;;^DD(358.93,0,"NM","IMP/EXP MULTIPLE CHOICE FIELD")
- ;;=
- ;;^DD(358.93,0,"VRPK")
- ;;=IBD
- ;;^DD(358.93,.01,0)
- ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.93,.01,1,0)
- ;;=^.1
- ;;^DD(358.93,.01,1,1,0)
- ;;=358.93^B
- ;;^DD(358.93,.01,1,1,1)
- ;;=S ^IBE(358.93,"B",$E(X,1,30),DA)=""
- ;;^DD(358.93,.01,1,1,2)
- ;;=K ^IBE(358.93,"B",$E(X,1,30),DA)
- ;;^DD(358.93,.01,3)
- ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
- ;;^DD(358.93,.01,21,0)
- ;;=^^2^2^2930623^^^^
- ;;^DD(358.93,.01,21,1,0)
- ;;= 
- ;;^DD(358.93,.01,21,2,0)
- ;;=The division the setup is for.
- ;;^DD(358.93,.01,"DT")
- ;;=2930518
+ ;;^UTILITY(U,$J,358.3,19004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19004,1,3,0)
+ ;;=3^Oth Stimulant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19004,1,4,0)
+ ;;=4^F15.959
+ ;;^UTILITY(U,$J,358.3,19004,2)
+ ;;=^5003319
+ ;;^UTILITY(U,$J,358.3,19005,0)
+ ;;=F15.181^^91^976^48
+ ;;^UTILITY(U,$J,358.3,19005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19005,1,3,0)
+ ;;=3^Oth Stimulant Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19005,1,4,0)
+ ;;=4^F15.181
+ ;;^UTILITY(U,$J,358.3,19005,2)
+ ;;=^5003292
+ ;;^UTILITY(U,$J,358.3,19006,0)
+ ;;=F15.281^^91^976^49
+ ;;^UTILITY(U,$J,358.3,19006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19006,1,3,0)
+ ;;=3^Oth Stimulant Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19006,1,4,0)
+ ;;=4^F15.281
+ ;;^UTILITY(U,$J,358.3,19006,2)
+ ;;=^5003307
+ ;;^UTILITY(U,$J,358.3,19007,0)
+ ;;=F15.981^^91^976^50
+ ;;^UTILITY(U,$J,358.3,19007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19007,1,3,0)
+ ;;=3^Oth Stimulant Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19007,1,4,0)
+ ;;=4^F15.981
+ ;;^UTILITY(U,$J,358.3,19007,2)
+ ;;=^5003321
+ ;;^UTILITY(U,$J,358.3,19008,0)
+ ;;=F15.182^^91^976^51
+ ;;^UTILITY(U,$J,358.3,19008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19008,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19008,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,19008,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,19009,0)
+ ;;=F15.282^^91^976^52
+ ;;^UTILITY(U,$J,358.3,19009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19009,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19009,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,19009,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,19010,0)
+ ;;=F15.982^^91^976^53
+ ;;^UTILITY(U,$J,358.3,19010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19010,1,3,0)
+ ;;=3^Oth Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19010,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,19010,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,19011,0)
+ ;;=F15.122^^91^976^57
+ ;;^UTILITY(U,$J,358.3,19011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19011,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19011,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,19011,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,19012,0)
+ ;;=F15.222^^91^976^58
+ ;;^UTILITY(U,$J,358.3,19012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19012,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,19012,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,19012,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,19013,0)
+ ;;=F15.922^^91^976^59
+ ;;^UTILITY(U,$J,358.3,19013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19013,1,3,0)
+ ;;=3^Oth Stimulant Intox w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,19013,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,19013,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,19014,0)
+ ;;=F15.129^^91^976^60
+ ;;^UTILITY(U,$J,358.3,19014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19014,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,19014,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,19014,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,19015,0)
+ ;;=F15.229^^91^976^61
+ ;;^UTILITY(U,$J,358.3,19015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19015,1,3,0)
+ ;;=3^Oth Stimulant Intox w/o Percept Disturb w/ Mod/Sev Use D/O

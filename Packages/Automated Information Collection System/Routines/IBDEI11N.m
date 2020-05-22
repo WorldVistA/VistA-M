@@ -1,8 +1,130 @@
-IBDEI11N ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.93)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI11N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.93)
- ;;=^IBE(358.93,
- ;;^UTILITY(U,$J,358.93,0)
- ;;=IMP/EXP MULTIPLE CHOICE FIELD^358.93^0^0
+ ;;^UTILITY(U,$J,358.3,16778,1,4,0)
+ ;;=4^Z96.621
+ ;;^UTILITY(U,$J,358.3,16778,2)
+ ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,16779,0)
+ ;;=Z96.631^^88^880^123
+ ;;^UTILITY(U,$J,358.3,16779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16779,1,3,0)
+ ;;=3^Presence of Artificial Wrist Joint,Right
+ ;;^UTILITY(U,$J,358.3,16779,1,4,0)
+ ;;=4^Z96.631
+ ;;^UTILITY(U,$J,358.3,16779,2)
+ ;;=^5063698
+ ;;^UTILITY(U,$J,358.3,16780,0)
+ ;;=Z93.6^^88^880^154
+ ;;^UTILITY(U,$J,358.3,16780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16780,1,3,0)
+ ;;=3^Urostomy Status
+ ;;^UTILITY(U,$J,358.3,16780,1,4,0)
+ ;;=4^Z93.6
+ ;;^UTILITY(U,$J,358.3,16780,2)
+ ;;=^5063651
+ ;;^UTILITY(U,$J,358.3,16781,0)
+ ;;=Z95.820^^88^880^67
+ ;;^UTILITY(U,$J,358.3,16781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16781,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status w/ Graft
+ ;;^UTILITY(U,$J,358.3,16781,1,4,0)
+ ;;=4^Z95.820
+ ;;^UTILITY(U,$J,358.3,16781,2)
+ ;;=^5063678
+ ;;^UTILITY(U,$J,358.3,16782,0)
+ ;;=Z95.0^^88^880^126
+ ;;^UTILITY(U,$J,358.3,16782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16782,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,16782,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,16782,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,16783,0)
+ ;;=Z95.810^^88^880^124
+ ;;^UTILITY(U,$J,358.3,16783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16783,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Debribrillator
+ ;;^UTILITY(U,$J,358.3,16783,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,16783,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,16784,0)
+ ;;=A15.0^^88^881^84
+ ;;^UTILITY(U,$J,358.3,16784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16784,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,16784,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,16784,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,16785,0)
+ ;;=B20.^^88^881^31
+ ;;^UTILITY(U,$J,358.3,16785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16785,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,16785,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,16785,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,16786,0)
+ ;;=B02.9^^88^881^93
+ ;;^UTILITY(U,$J,358.3,16786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16786,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,16786,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,16786,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,16787,0)
+ ;;=A60.9^^88^881^2
+ ;;^UTILITY(U,$J,358.3,16787,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16787,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,16787,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,16787,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,16788,0)
+ ;;=A60.04^^88^881^34
+ ;;^UTILITY(U,$J,358.3,16788,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16788,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,16788,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,16788,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,16789,0)
+ ;;=A60.01^^88^881^32
+ ;;^UTILITY(U,$J,358.3,16789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16789,1,3,0)
+ ;;=3^Herpesviral Infection of Penis
+ ;;^UTILITY(U,$J,358.3,16789,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,16789,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,16790,0)
+ ;;=B00.1^^88^881^33
+ ;;^UTILITY(U,$J,358.3,16790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16790,1,3,0)
+ ;;=3^Herpesviral Vesicular Dermatitis
+ ;;^UTILITY(U,$J,358.3,16790,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,16790,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,16791,0)
+ ;;=B97.89^^88^881^89

@@ -1,98 +1,124 @@
-IBDEI1UV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31523,1,3,0)
- ;;=3^27792
- ;;^UTILITY(U,$J,358.3,31524,0)
- ;;=27808^^125^1595^1^^^^1
- ;;^UTILITY(U,$J,358.3,31524,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31524,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); without manipulation
- ;;^UTILITY(U,$J,358.3,31524,1,3,0)
- ;;=3^27808
- ;;^UTILITY(U,$J,358.3,31525,0)
- ;;=27810^^125^1595^2^^^^1
- ;;^UTILITY(U,$J,358.3,31525,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31525,1,2,0)
- ;;=2^Closed TX of bimalleolar ankle fracture, (including Potts); with manipulation
- ;;^UTILITY(U,$J,358.3,31525,1,3,0)
- ;;=3^27810
- ;;^UTILITY(U,$J,358.3,31526,0)
- ;;=27814^^125^1595^33^^^^1
- ;;^UTILITY(U,$J,358.3,31526,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31526,1,2,0)
- ;;=2^Open TX of bimalleolar ankle fracture, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,31526,1,3,0)
- ;;=3^27814
- ;;^UTILITY(U,$J,358.3,31527,0)
- ;;=27816^^125^1595^18^^^^1
- ;;^UTILITY(U,$J,358.3,31527,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31527,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; without manipulation
- ;;^UTILITY(U,$J,358.3,31527,1,3,0)
- ;;=3^27816
- ;;^UTILITY(U,$J,358.3,31528,0)
- ;;=27818^^125^1595^19^^^^1
- ;;^UTILITY(U,$J,358.3,31528,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31528,1,2,0)
- ;;=2^Closed TX of trimalleolar ankle fracture; with manipulation
- ;;^UTILITY(U,$J,358.3,31528,1,3,0)
- ;;=3^27818
- ;;^UTILITY(U,$J,358.3,31529,0)
- ;;=27822^^125^1595^51^^^^1
- ;;^UTILITY(U,$J,358.3,31529,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31529,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation of, medial and/or lateral malleolus; w/o fixation of posterior lip
- ;;^UTILITY(U,$J,358.3,31529,1,3,0)
- ;;=3^27822
- ;;^UTILITY(U,$J,358.3,31530,0)
- ;;=27823^^125^1595^52^^^^1
- ;;^UTILITY(U,$J,358.3,31530,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31530,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation, medial and/or lateral malleolus; with fixation of posterior lip  
- ;;^UTILITY(U,$J,358.3,31530,1,3,0)
- ;;=3^27823
- ;;^UTILITY(U,$J,358.3,31531,0)
- ;;=27824^^125^1595^22^^^^1
- ;;^UTILITY(U,$J,358.3,31531,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31531,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; w/o manipulation 
- ;;^UTILITY(U,$J,358.3,31531,1,3,0)
- ;;=3^27824
- ;;^UTILITY(U,$J,358.3,31532,0)
- ;;=27825^^125^1595^23^^^^1
- ;;^UTILITY(U,$J,358.3,31532,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31532,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; with skeletal traction &/or requiring manipulation
- ;;^UTILITY(U,$J,358.3,31532,1,3,0)
- ;;=3^27825
- ;;^UTILITY(U,$J,358.3,31533,0)
- ;;=27826^^125^1595^44^^^^1
- ;;^UTILITY(U,$J,358.3,31533,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31533,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of fibula only
- ;;^UTILITY(U,$J,358.3,31533,1,3,0)
- ;;=3^27826
- ;;^UTILITY(U,$J,358.3,31534,0)
- ;;=27827^^125^1595^45^^^^1
- ;;^UTILITY(U,$J,358.3,31534,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31534,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of tibia only
- ;;^UTILITY(U,$J,358.3,31534,1,3,0)
- ;;=3^27827
- ;;^UTILITY(U,$J,358.3,31535,0)
- ;;=27828^^125^1595^46^^^^1
- ;;^UTILITY(U,$J,358.3,31535,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,29637,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,29637,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,29638,0)
+ ;;=F15.282^^118^1499^5
+ ;;^UTILITY(U,$J,358.3,29638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29638,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29638,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,29638,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,29639,0)
+ ;;=F15.982^^118^1499^6
+ ;;^UTILITY(U,$J,358.3,29639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29639,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29639,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,29639,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,29640,0)
+ ;;=F15.99^^118^1499^8
+ ;;^UTILITY(U,$J,358.3,29640,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29640,1,3,0)
+ ;;=3^Caffeine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,29640,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,29640,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,29641,0)
+ ;;=R45.851^^118^1500^2
+ ;;^UTILITY(U,$J,358.3,29641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29641,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,29641,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,29641,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,29642,0)
+ ;;=Z91.5^^118^1500^1
+ ;;^UTILITY(U,$J,358.3,29642,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29642,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,29642,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,29642,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,29643,0)
+ ;;=T14.91XA^^118^1500^3
+ ;;^UTILITY(U,$J,358.3,29643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29643,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,29643,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,29643,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,29644,0)
+ ;;=T14.91XD^^118^1500^4
+ ;;^UTILITY(U,$J,358.3,29644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29644,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,29644,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,29644,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,29645,0)
+ ;;=T14.91XS^^118^1500^5
+ ;;^UTILITY(U,$J,358.3,29645,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29645,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,29645,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,29645,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,29646,0)
+ ;;=F19.14^^118^1501^1
+ ;;^UTILITY(U,$J,358.3,29646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29646,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29646,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,29646,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,29647,0)
+ ;;=F19.24^^118^1501^2
+ ;;^UTILITY(U,$J,358.3,29647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29647,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29647,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,29647,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,29648,0)
+ ;;=F19.94^^118^1501^3
+ ;;^UTILITY(U,$J,358.3,29648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29648,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29648,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,29648,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,29649,0)
+ ;;=F19.17^^118^1501^4
+ ;;^UTILITY(U,$J,358.3,29649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29649,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mild Use D/O

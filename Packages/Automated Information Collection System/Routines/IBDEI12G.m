@@ -1,288 +1,124 @@
-IBDEI12G ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI12G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38713,1,0)
+ ;;^UTILITY(U,$J,358.3,17135,1,4,0)
+ ;;=4^M48.062
+ ;;^UTILITY(U,$J,358.3,17135,2)
+ ;;=^5151514
+ ;;^UTILITY(U,$J,358.3,17136,0)
+ ;;=M79.10^^88^885^65
+ ;;^UTILITY(U,$J,358.3,17136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38713,1,3,0)
- ;;=3^Hearing Loss,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,38713,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,38713,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,38714,0)
- ;;=H91.93^^148^1937^21
- ;;^UTILITY(U,$J,358.3,38714,1,0)
+ ;;^UTILITY(U,$J,358.3,17136,1,3,0)
+ ;;=3^Myalgia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,17136,1,4,0)
+ ;;=4^M79.10
+ ;;^UTILITY(U,$J,358.3,17136,2)
+ ;;=^5157394
+ ;;^UTILITY(U,$J,358.3,17137,0)
+ ;;=B02.0^^88^886^47
+ ;;^UTILITY(U,$J,358.3,17137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38714,1,3,0)
- ;;=3^Hearing Loss,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,38714,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,38714,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,38715,0)
- ;;=H91.91^^148^1937^23
- ;;^UTILITY(U,$J,358.3,38715,1,0)
+ ;;^UTILITY(U,$J,358.3,17137,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,17137,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,17137,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,17138,0)
+ ;;=B02.29^^88^886^37
+ ;;^UTILITY(U,$J,358.3,17138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38715,1,3,0)
- ;;=3^Hearing Loss,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,38715,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,38715,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,38716,0)
- ;;=H65.02^^148^1937^4
- ;;^UTILITY(U,$J,358.3,38716,1,0)
+ ;;^UTILITY(U,$J,358.3,17138,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,17138,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,17138,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,17139,0)
+ ;;=F03.90^^88^886^11
+ ;;^UTILITY(U,$J,358.3,17139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38716,1,3,0)
- ;;=3^Acute Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,38716,1,4,0)
- ;;=4^H65.02
- ;;^UTILITY(U,$J,358.3,38716,2)
- ;;=^5006571
- ;;^UTILITY(U,$J,358.3,38717,0)
- ;;=H60.312^^148^1937^19
- ;;^UTILITY(U,$J,358.3,38717,1,0)
+ ;;^UTILITY(U,$J,358.3,17139,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,17139,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,17139,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,17140,0)
+ ;;=F03.91^^88^886^10
+ ;;^UTILITY(U,$J,358.3,17140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38717,1,3,0)
- ;;=3^Diffuse Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,38717,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,38717,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,38718,0)
- ;;=H60.311^^148^1937^20
- ;;^UTILITY(U,$J,358.3,38718,1,0)
+ ;;^UTILITY(U,$J,358.3,17140,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,17140,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,17140,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,17141,0)
+ ;;=F01.50^^88^886^13
+ ;;^UTILITY(U,$J,358.3,17141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38718,1,3,0)
- ;;=3^Diffuse Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,38718,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,38718,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,38719,0)
- ;;=H55.09^^148^1937^30
- ;;^UTILITY(U,$J,358.3,38719,1,0)
+ ;;^UTILITY(U,$J,358.3,17141,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,17141,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,17141,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,17142,0)
+ ;;=F10.27^^88^886^12
+ ;;^UTILITY(U,$J,358.3,17142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38719,1,3,0)
- ;;=3^Nystagmus NEC
- ;;^UTILITY(U,$J,358.3,38719,1,4,0)
- ;;=4^H55.09
- ;;^UTILITY(U,$J,358.3,38719,2)
- ;;=^87599
- ;;^UTILITY(U,$J,358.3,38720,0)
- ;;=H60.01^^148^1937^2
- ;;^UTILITY(U,$J,358.3,38720,1,0)
+ ;;^UTILITY(U,$J,358.3,17142,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,17142,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,17142,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,17143,0)
+ ;;=F06.1^^88^886^7
+ ;;^UTILITY(U,$J,358.3,17143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38720,1,3,0)
- ;;=3^Abscess External Ear,Right
- ;;^UTILITY(U,$J,358.3,38720,1,4,0)
- ;;=4^H60.01
- ;;^UTILITY(U,$J,358.3,38720,2)
- ;;=^5006436
- ;;^UTILITY(U,$J,358.3,38721,0)
- ;;=H60.02^^148^1937^1
- ;;^UTILITY(U,$J,358.3,38721,1,0)
+ ;;^UTILITY(U,$J,358.3,17143,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,17143,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,17143,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,17144,0)
+ ;;=F06.8^^88^886^22
+ ;;^UTILITY(U,$J,358.3,17144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38721,1,3,0)
- ;;=3^Abscess External Ear,Left
- ;;^UTILITY(U,$J,358.3,38721,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,38721,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,38722,0)
- ;;=H60.12^^148^1937^13
- ;;^UTILITY(U,$J,358.3,38722,1,0)
+ ;;^UTILITY(U,$J,358.3,17144,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,17144,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,17144,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,17145,0)
+ ;;=F06.0^^88^886^38
+ ;;^UTILITY(U,$J,358.3,17145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38722,1,3,0)
- ;;=3^Cellulitis External Ear,Left
- ;;^UTILITY(U,$J,358.3,38722,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,38722,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,38723,0)
- ;;=H60.11^^148^1937^14
- ;;^UTILITY(U,$J,358.3,38723,1,0)
+ ;;^UTILITY(U,$J,358.3,17145,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,17145,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,17145,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,17146,0)
+ ;;=G44.209^^88^886^43
+ ;;^UTILITY(U,$J,358.3,17146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38723,1,3,0)
- ;;=3^Cellulitis External Ear,Right
- ;;^UTILITY(U,$J,358.3,38723,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,38723,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,38724,0)
- ;;=H61.21^^148^1937^26
- ;;^UTILITY(U,$J,358.3,38724,1,0)
+ ;;^UTILITY(U,$J,358.3,17146,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,17146,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,17146,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,17147,0)
+ ;;=F09.^^88^886^21
+ ;;^UTILITY(U,$J,358.3,17147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38724,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,38724,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,38724,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,38725,0)
- ;;=H61.22^^148^1937^25
- ;;^UTILITY(U,$J,358.3,38725,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38725,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,38725,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,38725,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,38726,0)
- ;;=H61.23^^148^1937^24
- ;;^UTILITY(U,$J,358.3,38726,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38726,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral 
- ;;^UTILITY(U,$J,358.3,38726,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,38726,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,38727,0)
- ;;=H81.01^^148^1937^29
- ;;^UTILITY(U,$J,358.3,38727,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38727,1,3,0)
- ;;=3^Meniere's Disease,Right Ear
- ;;^UTILITY(U,$J,358.3,38727,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,38727,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,38728,0)
- ;;=H81.02^^148^1937^28
- ;;^UTILITY(U,$J,358.3,38728,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38728,1,3,0)
- ;;=3^Meniere's Disease,Left Ear
- ;;^UTILITY(U,$J,358.3,38728,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,38728,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,38729,0)
- ;;=H81.03^^148^1937^27
- ;;^UTILITY(U,$J,358.3,38729,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38729,1,3,0)
- ;;=3^Meniere's Disease,Bilateral
- ;;^UTILITY(U,$J,358.3,38729,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,38729,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,38730,0)
- ;;=H81.12^^148^1937^9
- ;;^UTILITY(U,$J,358.3,38730,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38730,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,38730,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,38730,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,38731,0)
- ;;=H81.11^^148^1937^10
- ;;^UTILITY(U,$J,358.3,38731,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38731,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,38731,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,38731,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,38732,0)
- ;;=H81.13^^148^1937^8
- ;;^UTILITY(U,$J,358.3,38732,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38732,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,38732,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,38732,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,38733,0)
- ;;=H81.10^^148^1937^11
- ;;^UTILITY(U,$J,358.3,38733,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38733,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,38733,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,38733,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,38734,0)
- ;;=B37.84^^148^1937^12
- ;;^UTILITY(U,$J,358.3,38734,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38734,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,38734,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,38734,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,38735,0)
- ;;=H60.313^^148^1937^18
- ;;^UTILITY(U,$J,358.3,38735,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38735,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,38735,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,38735,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,38736,0)
- ;;=B37.0^^148^1938^13
- ;;^UTILITY(U,$J,358.3,38736,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38736,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,38736,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,38736,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,38737,0)
- ;;=B37.83^^148^1938^12
- ;;^UTILITY(U,$J,358.3,38737,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38737,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,38737,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,38737,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,38738,0)
- ;;=J00.^^148^1938^6
- ;;^UTILITY(U,$J,358.3,38738,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38738,1,3,0)
- ;;=3^Acute Nasopharyngitis 
- ;;^UTILITY(U,$J,358.3,38738,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,38738,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,38739,0)
- ;;=J01.00^^148^1938^5
- ;;^UTILITY(U,$J,358.3,38739,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38739,1,3,0)
- ;;=3^Acute Maxillary Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,38739,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,38739,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,38740,0)
- ;;=J01.10^^148^1938^1
- ;;^UTILITY(U,$J,358.3,38740,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38740,1,3,0)
- ;;=3^Acute Frontal Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,38740,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,38740,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,38741,0)
- ;;=J02.9^^148^1938^7
- ;;^UTILITY(U,$J,358.3,38741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38741,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,17147,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec

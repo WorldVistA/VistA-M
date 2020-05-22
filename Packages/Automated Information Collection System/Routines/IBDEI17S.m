@@ -1,132 +1,124 @@
-IBDEI17S ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20644,1,3,0)
- ;;=3^Pain in Right Leg
- ;;^UTILITY(U,$J,358.3,20644,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,20644,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,20645,0)
- ;;=M79.605^^84^935^104
- ;;^UTILITY(U,$J,358.3,20645,1,0)
+ ;;^UTILITY(U,$J,358.3,19499,1,3,0)
+ ;;=3^Ortho aftercare following surgical amp
+ ;;^UTILITY(U,$J,358.3,19499,1,4,0)
+ ;;=4^Z47.81
+ ;;^UTILITY(U,$J,358.3,19499,2)
+ ;;=^5063030
+ ;;^UTILITY(U,$J,358.3,19500,0)
+ ;;=Z47.82^^93^993^15
+ ;;^UTILITY(U,$J,358.3,19500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20645,1,3,0)
- ;;=3^Pain in Left Leg
- ;;^UTILITY(U,$J,358.3,20645,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,20645,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,20646,0)
- ;;=M79.641^^84^935^111
- ;;^UTILITY(U,$J,358.3,20646,1,0)
+ ;;^UTILITY(U,$J,358.3,19500,1,3,0)
+ ;;=3^Ortho aftercare following scoliosis surgery
+ ;;^UTILITY(U,$J,358.3,19500,1,4,0)
+ ;;=4^Z47.82
+ ;;^UTILITY(U,$J,358.3,19500,2)
+ ;;=^5063031
+ ;;^UTILITY(U,$J,358.3,19501,0)
+ ;;=Z47.89^^93^993^14
+ ;;^UTILITY(U,$J,358.3,19501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20646,1,3,0)
- ;;=3^Pain in Right Hand
- ;;^UTILITY(U,$J,358.3,20646,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,20646,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,20647,0)
- ;;=M79.642^^84^935^101
- ;;^UTILITY(U,$J,358.3,20647,1,0)
+ ;;^UTILITY(U,$J,358.3,19501,1,3,0)
+ ;;=3^Ortho Aftercare NEC
+ ;;^UTILITY(U,$J,358.3,19501,1,4,0)
+ ;;=4^Z47.89
+ ;;^UTILITY(U,$J,358.3,19501,2)
+ ;;=^5063032
+ ;;^UTILITY(U,$J,358.3,19502,0)
+ ;;=Z51.89^^93^993^2
+ ;;^UTILITY(U,$J,358.3,19502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20647,1,3,0)
- ;;=3^Pain in Left Hand
- ;;^UTILITY(U,$J,358.3,20647,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,20647,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,20648,0)
- ;;=M79.671^^84^935^110
- ;;^UTILITY(U,$J,358.3,20648,1,0)
+ ;;^UTILITY(U,$J,358.3,19502,1,3,0)
+ ;;=3^Encounter for Other Specified Aftercare
+ ;;^UTILITY(U,$J,358.3,19502,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,19502,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,19503,0)
+ ;;=Z02.89^^93^993^1
+ ;;^UTILITY(U,$J,358.3,19503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20648,1,3,0)
- ;;=3^Pain in Right Foot
- ;;^UTILITY(U,$J,358.3,20648,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,20648,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,20649,0)
- ;;=M79.672^^84^935^100
- ;;^UTILITY(U,$J,358.3,20649,1,0)
+ ;;^UTILITY(U,$J,358.3,19503,1,3,0)
+ ;;=3^Administrative Exams
+ ;;^UTILITY(U,$J,358.3,19503,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,19503,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,19504,0)
+ ;;=Z02.5^^93^993^3
+ ;;^UTILITY(U,$J,358.3,19504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20649,1,3,0)
- ;;=3^Pain in Left Foot
- ;;^UTILITY(U,$J,358.3,20649,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,20649,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,20650,0)
- ;;=M54.9^^84^935^8
- ;;^UTILITY(U,$J,358.3,20650,1,0)
+ ;;^UTILITY(U,$J,358.3,19504,1,3,0)
+ ;;=3^Exam for Sport Participation
+ ;;^UTILITY(U,$J,358.3,19504,1,4,0)
+ ;;=4^Z02.5
+ ;;^UTILITY(U,$J,358.3,19504,2)
+ ;;=^5062638
+ ;;^UTILITY(U,$J,358.3,19505,0)
+ ;;=S06.0X1S^^93^994^1
+ ;;^UTILITY(U,$J,358.3,19505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20650,1,3,0)
- ;;=3^Backache/Dorsalgia
- ;;^UTILITY(U,$J,358.3,20650,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,20650,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,20651,0)
- ;;=M48.52XG^^84^935^19
- ;;^UTILITY(U,$J,358.3,20651,1,0)
+ ;;^UTILITY(U,$J,358.3,19505,1,3,0)
+ ;;=3^Concussion w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19505,1,4,0)
+ ;;=4^S06.0X1S
+ ;;^UTILITY(U,$J,358.3,19505,2)
+ ;;=^5020671
+ ;;^UTILITY(U,$J,358.3,19506,0)
+ ;;=S06.0X9S^^93^994^2
+ ;;^UTILITY(U,$J,358.3,19506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20651,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,20651,1,4,0)
- ;;=4^M48.52XG
- ;;^UTILITY(U,$J,358.3,20651,2)
- ;;=^5012169
- ;;^UTILITY(U,$J,358.3,20652,0)
- ;;=M48.52XS^^84^935^20
- ;;^UTILITY(U,$J,358.3,20652,1,0)
+ ;;^UTILITY(U,$J,358.3,19506,1,3,0)
+ ;;=3^Concussion w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19506,1,4,0)
+ ;;=4^S06.0X9S
+ ;;^UTILITY(U,$J,358.3,19506,2)
+ ;;=^5020695
+ ;;^UTILITY(U,$J,358.3,19507,0)
+ ;;=S06.0X0S^^93^994^3
+ ;;^UTILITY(U,$J,358.3,19507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20652,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,20652,1,4,0)
- ;;=4^M48.52XS
- ;;^UTILITY(U,$J,358.3,20652,2)
- ;;=^5012170
- ;;^UTILITY(U,$J,358.3,20653,0)
- ;;=M48.57XG^^84^935^27
- ;;^UTILITY(U,$J,358.3,20653,1,0)
+ ;;^UTILITY(U,$J,358.3,19507,1,3,0)
+ ;;=3^Concussion w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19507,1,4,0)
+ ;;=4^S06.0X0S
+ ;;^UTILITY(U,$J,358.3,19507,2)
+ ;;=^5020668
+ ;;^UTILITY(U,$J,358.3,19508,0)
+ ;;=S06.335S^^93^994^4
+ ;;^UTILITY(U,$J,358.3,19508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20653,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,20653,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,20653,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,20654,0)
- ;;=M48.57XS^^84^935^28
- ;;^UTILITY(U,$J,358.3,20654,1,0)
+ ;;^UTILITY(U,$J,358.3,19508,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19508,1,4,0)
+ ;;=4^S06.335S
+ ;;^UTILITY(U,$J,358.3,19508,2)
+ ;;=^5020863
+ ;;^UTILITY(U,$J,358.3,19509,0)
+ ;;=S06.336S^^93^994^5
+ ;;^UTILITY(U,$J,358.3,19509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20654,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,20654,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,20654,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,20655,0)
- ;;=M48.54XD^^84^935^29
- ;;^UTILITY(U,$J,358.3,20655,1,0)
+ ;;^UTILITY(U,$J,358.3,19509,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,19509,1,4,0)
+ ;;=4^S06.336S
+ ;;^UTILITY(U,$J,358.3,19509,2)
+ ;;=^5020866
+ ;;^UTILITY(U,$J,358.3,19510,0)
+ ;;=S06.333S^^93^994^6
+ ;;^UTILITY(U,$J,358.3,19510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20655,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,20655,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,20655,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,20656,0)
- ;;=M48.57XG^^84^935^30
- ;;^UTILITY(U,$J,358.3,20656,1,0)
+ ;;^UTILITY(U,$J,358.3,19510,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19510,1,4,0)
+ ;;=4^S06.333S
+ ;;^UTILITY(U,$J,358.3,19510,2)
+ ;;=^5020857
+ ;;^UTILITY(U,$J,358.3,19511,0)
+ ;;=S06.331S^^93^994^7
+ ;;^UTILITY(U,$J,358.3,19511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20656,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,20656,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,20656,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,20657,0)
- ;;=M48.54XS^^84^935^31

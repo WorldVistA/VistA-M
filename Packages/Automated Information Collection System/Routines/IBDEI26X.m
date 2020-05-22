@@ -1,132 +1,128 @@
-IBDEI26X ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26X ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37158,1,4,0)
- ;;=4^M75.22
- ;;^UTILITY(U,$J,358.3,37158,2)
- ;;=^5013252
- ;;^UTILITY(U,$J,358.3,37159,0)
- ;;=M75.111^^140^1787^163
- ;;^UTILITY(U,$J,358.3,37159,1,0)
+ ;;^UTILITY(U,$J,358.3,34983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37159,1,3,0)
- ;;=3^Incmpl rotatr-cuff tear/rptr of rt shldr, not trauma
- ;;^UTILITY(U,$J,358.3,37159,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,37159,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,37160,0)
- ;;=M75.112^^140^1787^162
- ;;^UTILITY(U,$J,358.3,37160,1,0)
+ ;;^UTILITY(U,$J,358.3,34983,1,3,0)
+ ;;=3^Kissing Spine,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,34983,1,4,0)
+ ;;=4^M48.27
+ ;;^UTILITY(U,$J,358.3,34983,2)
+ ;;=^5012113
+ ;;^UTILITY(U,$J,358.3,34984,0)
+ ;;=M48.21^^137^1791^27
+ ;;^UTILITY(U,$J,358.3,34984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37160,1,3,0)
- ;;=3^Incmpl rotatr-cuff tear/rptr of lft shlder, not trauma
- ;;^UTILITY(U,$J,358.3,37160,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,37160,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,37161,0)
- ;;=M75.81^^140^1787^225
- ;;^UTILITY(U,$J,358.3,37161,1,0)
+ ;;^UTILITY(U,$J,358.3,34984,1,3,0)
+ ;;=3^Kissing Spine,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,34984,1,4,0)
+ ;;=4^M48.21
+ ;;^UTILITY(U,$J,358.3,34984,2)
+ ;;=^5012107
+ ;;^UTILITY(U,$J,358.3,34985,0)
+ ;;=M48.25^^137^1791^29
+ ;;^UTILITY(U,$J,358.3,34985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37161,1,3,0)
- ;;=3^Shoulder lesions, rt shldr, oth
- ;;^UTILITY(U,$J,358.3,37161,1,4,0)
- ;;=4^M75.81
- ;;^UTILITY(U,$J,358.3,37161,2)
- ;;=^5013261
- ;;^UTILITY(U,$J,358.3,37162,0)
- ;;=M75.82^^140^1787^224
- ;;^UTILITY(U,$J,358.3,37162,1,0)
+ ;;^UTILITY(U,$J,358.3,34985,1,3,0)
+ ;;=3^Kissing Spine,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,34985,1,4,0)
+ ;;=4^M48.25
+ ;;^UTILITY(U,$J,358.3,34985,2)
+ ;;=^5012111
+ ;;^UTILITY(U,$J,358.3,34986,0)
+ ;;=M48.24^^137^1791^28
+ ;;^UTILITY(U,$J,358.3,34986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37162,1,3,0)
- ;;=3^Shoulder lesions, lft shldr, oth
- ;;^UTILITY(U,$J,358.3,37162,1,4,0)
- ;;=4^M75.82
- ;;^UTILITY(U,$J,358.3,37162,2)
- ;;=^5013262
- ;;^UTILITY(U,$J,358.3,37163,0)
- ;;=M65.9^^140^1787^279
- ;;^UTILITY(U,$J,358.3,37163,1,0)
+ ;;^UTILITY(U,$J,358.3,34986,1,3,0)
+ ;;=3^Kissing Spine,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,34986,1,4,0)
+ ;;=4^M48.24
+ ;;^UTILITY(U,$J,358.3,34986,2)
+ ;;=^5012110
+ ;;^UTILITY(U,$J,358.3,34987,0)
+ ;;=M54.5^^137^1791^30
+ ;;^UTILITY(U,$J,358.3,34987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37163,1,3,0)
- ;;=3^Synovitis & tenosynovitis, unspec
- ;;^UTILITY(U,$J,358.3,37163,1,4,0)
- ;;=4^M65.9
- ;;^UTILITY(U,$J,358.3,37163,2)
- ;;=^5012816
- ;;^UTILITY(U,$J,358.3,37164,0)
- ;;=D48.1^^140^1787^198
- ;;^UTILITY(U,$J,358.3,37164,1,0)
+ ;;^UTILITY(U,$J,358.3,34987,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,34987,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,34987,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,34988,0)
+ ;;=M54.6^^137^1791^31
+ ;;^UTILITY(U,$J,358.3,34988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37164,1,3,0)
- ;;=3^Neoplasm of uncertn bhvior of connctv/soft tiss
- ;;^UTILITY(U,$J,358.3,37164,1,4,0)
- ;;=4^D48.1
- ;;^UTILITY(U,$J,358.3,37164,2)
- ;;=^267776
- ;;^UTILITY(U,$J,358.3,37165,0)
- ;;=M65.311^^140^1787^303
- ;;^UTILITY(U,$J,358.3,37165,1,0)
+ ;;^UTILITY(U,$J,358.3,34988,1,3,0)
+ ;;=3^Pain,Thoracic Spine
+ ;;^UTILITY(U,$J,358.3,34988,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,34988,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,34989,0)
+ ;;=M96.1^^137^1791^32
+ ;;^UTILITY(U,$J,358.3,34989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37165,1,3,0)
- ;;=3^Trigger finger, rt thumb
- ;;^UTILITY(U,$J,358.3,37165,1,4,0)
- ;;=4^M65.311
- ;;^UTILITY(U,$J,358.3,37165,2)
- ;;=^5012777
- ;;^UTILITY(U,$J,358.3,37166,0)
- ;;=M65.312^^140^1787^298
- ;;^UTILITY(U,$J,358.3,37166,1,0)
+ ;;^UTILITY(U,$J,358.3,34989,1,3,0)
+ ;;=3^Postlaminectomy Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,34989,1,4,0)
+ ;;=4^M96.1
+ ;;^UTILITY(U,$J,358.3,34989,2)
+ ;;=^5015374
+ ;;^UTILITY(U,$J,358.3,34990,0)
+ ;;=M54.16^^137^1791^33
+ ;;^UTILITY(U,$J,358.3,34990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37166,1,3,0)
- ;;=3^Trigger finger, lft thumb
- ;;^UTILITY(U,$J,358.3,37166,1,4,0)
- ;;=4^M65.312
- ;;^UTILITY(U,$J,358.3,37166,2)
- ;;=^5012778
- ;;^UTILITY(U,$J,358.3,37167,0)
- ;;=M65.321^^140^1787^299
- ;;^UTILITY(U,$J,358.3,37167,1,0)
+ ;;^UTILITY(U,$J,358.3,34990,1,3,0)
+ ;;=3^Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,34990,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,34990,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,34991,0)
+ ;;=M54.17^^137^1791^34
+ ;;^UTILITY(U,$J,358.3,34991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37167,1,3,0)
- ;;=3^Trigger finger, rt index finger
- ;;^UTILITY(U,$J,358.3,37167,1,4,0)
- ;;=4^M65.321
- ;;^UTILITY(U,$J,358.3,37167,2)
- ;;=^5012780
- ;;^UTILITY(U,$J,358.3,37168,0)
- ;;=M65.322^^140^1787^294
- ;;^UTILITY(U,$J,358.3,37168,1,0)
+ ;;^UTILITY(U,$J,358.3,34991,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,34991,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,34991,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,34992,0)
+ ;;=M54.14^^137^1791^35
+ ;;^UTILITY(U,$J,358.3,34992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37168,1,3,0)
- ;;=3^Trigger finger, lft index finger
- ;;^UTILITY(U,$J,358.3,37168,1,4,0)
- ;;=4^M65.322
- ;;^UTILITY(U,$J,358.3,37168,2)
- ;;=^5012781
- ;;^UTILITY(U,$J,358.3,37169,0)
- ;;=M65.331^^140^1787^301
- ;;^UTILITY(U,$J,358.3,37169,1,0)
+ ;;^UTILITY(U,$J,358.3,34992,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,34992,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,34992,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,34993,0)
+ ;;=M54.15^^137^1791^36
+ ;;^UTILITY(U,$J,358.3,34993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37169,1,3,0)
- ;;=3^Trigger finger, rt middle finger
- ;;^UTILITY(U,$J,358.3,37169,1,4,0)
- ;;=4^M65.331
- ;;^UTILITY(U,$J,358.3,37169,2)
- ;;=^5012783
- ;;^UTILITY(U,$J,358.3,37170,0)
- ;;=M65.332^^140^1787^296
- ;;^UTILITY(U,$J,358.3,37170,1,0)
+ ;;^UTILITY(U,$J,358.3,34993,1,3,0)
+ ;;=3^Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,34993,1,4,0)
+ ;;=4^M54.15
+ ;;^UTILITY(U,$J,358.3,34993,2)
+ ;;=^5012300
+ ;;^UTILITY(U,$J,358.3,34994,0)
+ ;;=M46.1^^137^1791^37
+ ;;^UTILITY(U,$J,358.3,34994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37170,1,3,0)
- ;;=3^Trigger finger, lft middle finger
- ;;^UTILITY(U,$J,358.3,37170,1,4,0)
- ;;=4^M65.332
- ;;^UTILITY(U,$J,358.3,37170,2)
- ;;=^5012784
- ;;^UTILITY(U,$J,358.3,37171,0)
- ;;=M65.341^^140^1787^302
- ;;^UTILITY(U,$J,358.3,37171,1,0)
+ ;;^UTILITY(U,$J,358.3,34994,1,3,0)
+ ;;=3^Sacroiliitis NEC
+ ;;^UTILITY(U,$J,358.3,34994,1,4,0)
+ ;;=4^M46.1
+ ;;^UTILITY(U,$J,358.3,34994,2)
+ ;;=^5011980
+ ;;^UTILITY(U,$J,358.3,34995,0)
+ ;;=M46.02^^137^1791^39
+ ;;^UTILITY(U,$J,358.3,34995,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34995,1,3,0)
+ ;;=3^Spinal Enthesopathy,Cervical Region

@@ -1,348 +1,132 @@
-IBDEI0YW ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0YW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45771,1,0)
+ ;;^UTILITY(U,$J,358.3,15570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45771,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,45771,1,4,0)
- ;;=4^M84.50XA
- ;;^UTILITY(U,$J,358.3,45771,2)
- ;;=^5014022
- ;;^UTILITY(U,$J,358.3,45772,0)
- ;;=M84.50XD^^136^1941^39
- ;;^UTILITY(U,$J,358.3,45772,1,0)
+ ;;^UTILITY(U,$J,358.3,15570,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,15570,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,15570,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,15571,0)
+ ;;=F17.200^^88^864^50
+ ;;^UTILITY(U,$J,358.3,15571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45772,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,45772,1,4,0)
- ;;=4^M84.50XD
- ;;^UTILITY(U,$J,358.3,45772,2)
- ;;=^5014023
- ;;^UTILITY(U,$J,358.3,45773,0)
- ;;=M84.50XS^^136^1941^40
- ;;^UTILITY(U,$J,358.3,45773,1,0)
+ ;;^UTILITY(U,$J,358.3,15571,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec
+ ;;^UTILITY(U,$J,358.3,15571,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,15571,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,15572,0)
+ ;;=G43.909^^88^864^48
+ ;;^UTILITY(U,$J,358.3,15572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45773,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,45773,1,4,0)
- ;;=4^M84.50XS
- ;;^UTILITY(U,$J,358.3,45773,2)
- ;;=^5014027
- ;;^UTILITY(U,$J,358.3,45774,0)
- ;;=M84.50XG^^136^1941^35
- ;;^UTILITY(U,$J,358.3,45774,1,0)
+ ;;^UTILITY(U,$J,358.3,15572,1,3,0)
+ ;;=3^Migraine,Unspec
+ ;;^UTILITY(U,$J,358.3,15572,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,15572,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,15573,0)
+ ;;=H91.93^^88^864^34
+ ;;^UTILITY(U,$J,358.3,15573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45774,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,45774,1,4,0)
- ;;=4^M84.50XG
- ;;^UTILITY(U,$J,358.3,45774,2)
- ;;=^5014024
- ;;^UTILITY(U,$J,358.3,45775,0)
- ;;=M84.50XK^^136^1941^38
- ;;^UTILITY(U,$J,358.3,45775,1,0)
+ ;;^UTILITY(U,$J,358.3,15573,1,3,0)
+ ;;=3^Hearing Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,15573,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,15573,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,15574,0)
+ ;;=I10.^^88^864^41
+ ;;^UTILITY(U,$J,358.3,15574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45775,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,45775,1,4,0)
- ;;=4^M84.50XK
- ;;^UTILITY(U,$J,358.3,45775,2)
- ;;=^5014025
- ;;^UTILITY(U,$J,358.3,45776,0)
- ;;=M84.50XP^^136^1941^37
- ;;^UTILITY(U,$J,358.3,45776,1,0)
+ ;;^UTILITY(U,$J,358.3,15574,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,15574,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,15574,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,15575,0)
+ ;;=I50.9^^88^864^17
+ ;;^UTILITY(U,$J,358.3,15575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45776,1,3,0)
- ;;=3^Fx in Neoplastic Disease,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,45776,1,4,0)
- ;;=4^M84.50XP
- ;;^UTILITY(U,$J,358.3,45776,2)
- ;;=^5014026
- ;;^UTILITY(U,$J,358.3,45777,0)
- ;;=M84.60XA^^136^1941^42
- ;;^UTILITY(U,$J,358.3,45777,1,0)
+ ;;^UTILITY(U,$J,358.3,15575,1,3,0)
+ ;;=3^Congestive Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,15575,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,15575,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,15576,0)
+ ;;=I67.89^^88^864^16
+ ;;^UTILITY(U,$J,358.3,15576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45777,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,45777,1,4,0)
- ;;=4^M84.60XA
- ;;^UTILITY(U,$J,358.3,45777,2)
- ;;=^5014214
- ;;^UTILITY(U,$J,358.3,45778,0)
- ;;=M84.60XD^^136^1941^45
- ;;^UTILITY(U,$J,358.3,45778,1,0)
+ ;;^UTILITY(U,$J,358.3,15576,1,3,0)
+ ;;=3^Cerebrovascular Disease,Oth
+ ;;^UTILITY(U,$J,358.3,15576,1,4,0)
+ ;;=4^I67.89
+ ;;^UTILITY(U,$J,358.3,15576,2)
+ ;;=^5007388
+ ;;^UTILITY(U,$J,358.3,15577,0)
+ ;;=J45.909^^88^864^4
+ ;;^UTILITY(U,$J,358.3,15577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45778,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Rountine Healing
- ;;^UTILITY(U,$J,358.3,45778,1,4,0)
- ;;=4^M84.60XD
- ;;^UTILITY(U,$J,358.3,45778,2)
- ;;=^5014215
- ;;^UTILITY(U,$J,358.3,45779,0)
- ;;=M84.60XS^^136^1941^46
- ;;^UTILITY(U,$J,358.3,45779,1,0)
+ ;;^UTILITY(U,$J,358.3,15577,1,3,0)
+ ;;=3^Asthma,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15577,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,15577,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,15578,0)
+ ;;=J44.9^^88^864^14
+ ;;^UTILITY(U,$J,358.3,15578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45779,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,45779,1,4,0)
- ;;=4^M84.60XS
- ;;^UTILITY(U,$J,358.3,45779,2)
- ;;=^5014219
- ;;^UTILITY(U,$J,358.3,45780,0)
- ;;=M84.60XG^^136^1941^41
- ;;^UTILITY(U,$J,358.3,45780,1,0)
+ ;;^UTILITY(U,$J,358.3,15578,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,15578,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,15578,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,15579,0)
+ ;;=K21.9^^88^864^29
+ ;;^UTILITY(U,$J,358.3,15579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45780,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,45780,1,4,0)
- ;;=4^M84.60XG
- ;;^UTILITY(U,$J,358.3,45780,2)
- ;;=^5014216
- ;;^UTILITY(U,$J,358.3,45781,0)
- ;;=M84.60XK^^136^1941^44
- ;;^UTILITY(U,$J,358.3,45781,1,0)
+ ;;^UTILITY(U,$J,358.3,15579,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,15579,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,15579,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,15580,0)
+ ;;=N40.1^^88^864^27
+ ;;^UTILITY(U,$J,358.3,15580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45781,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,45781,1,4,0)
- ;;=4^M84.60XK
- ;;^UTILITY(U,$J,358.3,45781,2)
- ;;=^5014217
- ;;^UTILITY(U,$J,358.3,45782,0)
- ;;=M84.60XP^^136^1941^43
- ;;^UTILITY(U,$J,358.3,45782,1,0)
+ ;;^UTILITY(U,$J,358.3,15580,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,15580,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,15580,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,15581,0)
+ ;;=L03.818^^88^864^15
+ ;;^UTILITY(U,$J,358.3,15581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45782,1,3,0)
- ;;=3^Fx in Oth Disease,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,45782,1,4,0)
- ;;=4^M84.60XP
- ;;^UTILITY(U,$J,358.3,45782,2)
- ;;=^5014218
- ;;^UTILITY(U,$J,358.3,45783,0)
- ;;=M84.40XA^^136^1941^56
- ;;^UTILITY(U,$J,358.3,45783,1,0)
+ ;;^UTILITY(U,$J,358.3,15581,1,3,0)
+ ;;=3^Cellulitis,Oth Sites
+ ;;^UTILITY(U,$J,358.3,15581,1,4,0)
+ ;;=4^L03.818
+ ;;^UTILITY(U,$J,358.3,15581,2)
+ ;;=^5009064
+ ;;^UTILITY(U,$J,358.3,15582,0)
+ ;;=G47.33^^88^864^75
+ ;;^UTILITY(U,$J,358.3,15582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45783,1,3,0)
- ;;=3^Fx,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,45783,1,4,0)
- ;;=4^M84.40XA
- ;;^UTILITY(U,$J,358.3,45783,2)
- ;;=^5013794
- ;;^UTILITY(U,$J,358.3,45784,0)
- ;;=M84.40XD^^136^1941^59
- ;;^UTILITY(U,$J,358.3,45784,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45784,1,3,0)
- ;;=3^Fx,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,45784,1,4,0)
- ;;=4^M84.40XD
- ;;^UTILITY(U,$J,358.3,45784,2)
- ;;=^5013795
- ;;^UTILITY(U,$J,358.3,45785,0)
- ;;=M84.40XS^^136^1941^60
- ;;^UTILITY(U,$J,358.3,45785,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45785,1,3,0)
- ;;=3^Fx,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,45785,1,4,0)
- ;;=4^M84.40XS
- ;;^UTILITY(U,$J,358.3,45785,2)
- ;;=^5013799
- ;;^UTILITY(U,$J,358.3,45786,0)
- ;;=M84.40XG^^136^1941^55
- ;;^UTILITY(U,$J,358.3,45786,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45786,1,3,0)
- ;;=3^Fx,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,45786,1,4,0)
- ;;=4^M84.40XG
- ;;^UTILITY(U,$J,358.3,45786,2)
- ;;=^5013796
- ;;^UTILITY(U,$J,358.3,45787,0)
- ;;=M84.40XK^^136^1941^58
- ;;^UTILITY(U,$J,358.3,45787,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45787,1,3,0)
- ;;=3^Fx,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,45787,1,4,0)
- ;;=4^M84.40XK
- ;;^UTILITY(U,$J,358.3,45787,2)
- ;;=^5013797
- ;;^UTILITY(U,$J,358.3,45788,0)
- ;;=M84.40XP^^136^1941^57
- ;;^UTILITY(U,$J,358.3,45788,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45788,1,3,0)
- ;;=3^Fx,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,45788,1,4,0)
- ;;=4^M84.40XP
- ;;^UTILITY(U,$J,358.3,45788,2)
- ;;=^5013798
- ;;^UTILITY(U,$J,358.3,45789,0)
- ;;=M84.30XA^^136^1941^50
- ;;^UTILITY(U,$J,358.3,45789,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45789,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,45789,1,4,0)
- ;;=4^M84.30XA
- ;;^UTILITY(U,$J,358.3,45789,2)
- ;;=^5013566
- ;;^UTILITY(U,$J,358.3,45790,0)
- ;;=M84.30XD^^136^1941^53
- ;;^UTILITY(U,$J,358.3,45790,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45790,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Routine Healing
- ;;^UTILITY(U,$J,358.3,45790,1,4,0)
- ;;=4^M84.30XD
- ;;^UTILITY(U,$J,358.3,45790,2)
- ;;=^5013567
- ;;^UTILITY(U,$J,358.3,45791,0)
- ;;=M84.30XS^^136^1941^54
- ;;^UTILITY(U,$J,358.3,45791,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45791,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Sequela
- ;;^UTILITY(U,$J,358.3,45791,1,4,0)
- ;;=4^M84.30XS
- ;;^UTILITY(U,$J,358.3,45791,2)
- ;;=^5013571
- ;;^UTILITY(U,$J,358.3,45792,0)
- ;;=M84.30XG^^136^1941^49
- ;;^UTILITY(U,$J,358.3,45792,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45792,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Delayed Healing
- ;;^UTILITY(U,$J,358.3,45792,1,4,0)
- ;;=4^M84.30XG
- ;;^UTILITY(U,$J,358.3,45792,2)
- ;;=^5013568
- ;;^UTILITY(U,$J,358.3,45793,0)
- ;;=M84.30XK^^136^1941^52
- ;;^UTILITY(U,$J,358.3,45793,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45793,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Nonunion
- ;;^UTILITY(U,$J,358.3,45793,1,4,0)
- ;;=4^M84.30XK
- ;;^UTILITY(U,$J,358.3,45793,2)
- ;;=^5013569
- ;;^UTILITY(U,$J,358.3,45794,0)
- ;;=M84.30XP^^136^1941^51
- ;;^UTILITY(U,$J,358.3,45794,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45794,1,3,0)
- ;;=3^Fx,Stress,Unspec Site,Malunion
- ;;^UTILITY(U,$J,358.3,45794,1,4,0)
- ;;=4^M84.30XP
- ;;^UTILITY(U,$J,358.3,45794,2)
- ;;=^5013570
- ;;^UTILITY(U,$J,358.3,45795,0)
- ;;=M84.9^^136^1941^47
- ;;^UTILITY(U,$J,358.3,45795,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45795,1,3,0)
- ;;=3^Fx,Disorder of Continuity of Bone,Unspec
- ;;^UTILITY(U,$J,358.3,45795,1,4,0)
- ;;=4^M84.9
- ;;^UTILITY(U,$J,358.3,45795,2)
- ;;=^5014330
- ;;^UTILITY(U,$J,358.3,45796,0)
- ;;=M84.80^^136^1941^48
- ;;^UTILITY(U,$J,358.3,45796,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45796,1,3,0)
- ;;=3^Fx,Disorder of Continuity of Bone,Unspec Site
- ;;^UTILITY(U,$J,358.3,45796,1,4,0)
- ;;=4^M84.80
- ;;^UTILITY(U,$J,358.3,45796,2)
- ;;=^5014304
- ;;^UTILITY(U,$J,358.3,45797,0)
- ;;=M10.00^^136^1941^67
- ;;^UTILITY(U,$J,358.3,45797,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45797,1,3,0)
- ;;=3^Gout,Idiopathic,Unspec Site
- ;;^UTILITY(U,$J,358.3,45797,1,4,0)
- ;;=4^M10.00
- ;;^UTILITY(U,$J,358.3,45797,2)
- ;;=^5010284
- ;;^UTILITY(U,$J,358.3,45798,0)
- ;;=M10.9^^136^1941^68
- ;;^UTILITY(U,$J,358.3,45798,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45798,1,3,0)
- ;;=3^Gout,Unspec
- ;;^UTILITY(U,$J,358.3,45798,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,45798,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,45799,0)
- ;;=M1A.00X1^^136^1941^61
- ;;^UTILITY(U,$J,358.3,45799,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45799,1,3,0)
- ;;=3^Gout,Chr Idiopathic w/ Tophus,Unspec Site
- ;;^UTILITY(U,$J,358.3,45799,1,4,0)
- ;;=4^M1A.00X1
- ;;^UTILITY(U,$J,358.3,45799,2)
- ;;=^5010858
- ;;^UTILITY(U,$J,358.3,45800,0)
- ;;=M1A.00X0^^136^1941^62
- ;;^UTILITY(U,$J,358.3,45800,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45800,1,3,0)
- ;;=3^Gout,Chr Idiopathic w/o Tophus,Unspec Site
- ;;^UTILITY(U,$J,358.3,45800,1,4,0)
- ;;=4^M1A.00X0
- ;;^UTILITY(U,$J,358.3,45800,2)
- ;;=^5010857
- ;;^UTILITY(U,$J,358.3,45801,0)
- ;;=M1A.40X1^^136^1941^63
- ;;^UTILITY(U,$J,358.3,45801,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45801,1,3,0)
- ;;=3^Gout,Chr Secondary w/ Tophus,Unspec Site
- ;;^UTILITY(U,$J,358.3,45801,1,4,0)
- ;;=4^M1A.40X1
- ;;^UTILITY(U,$J,358.3,45801,2)
- ;;=^5010994
- ;;^UTILITY(U,$J,358.3,45802,0)
- ;;=M1A.40X0^^136^1941^64
- ;;^UTILITY(U,$J,358.3,45802,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45802,1,3,0)
- ;;=3^Gout,Chr Secondary w/o Tophus,Unspec Site
- ;;^UTILITY(U,$J,358.3,45802,1,4,0)
- ;;=4^M1A.40X0
- ;;^UTILITY(U,$J,358.3,45802,2)
- ;;=^5010993
- ;;^UTILITY(U,$J,358.3,45803,0)
- ;;=M1A.9XX1^^136^1941^65
- ;;^UTILITY(U,$J,358.3,45803,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45803,1,3,0)
- ;;=3^Gout,Chr w/ Tophus,Unspec
- ;;^UTILITY(U,$J,358.3,45803,1,4,0)
- ;;=4^M1A.9XX1
- ;;^UTILITY(U,$J,358.3,45803,2)
- ;;=^5133773
- ;;^UTILITY(U,$J,358.3,45804,0)
- ;;=M1A.9XX0^^136^1941^66
- ;;^UTILITY(U,$J,358.3,45804,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45804,1,3,0)
- ;;=3^Gout,Chr w/o Tophus,Unspec
- ;;^UTILITY(U,$J,358.3,45804,1,4,0)
- ;;=4^M1A.9XX0
- ;;^UTILITY(U,$J,358.3,45804,2)
- ;;=^5011027
- ;;^UTILITY(U,$J,358.3,45805,0)
- ;;=M15.1^^136^1941^69
- ;;^UTILITY(U,$J,358.3,45805,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45805,1,3,0)
- ;;=3^Heberden's Nodes w/ Arthropathy
+ ;;^UTILITY(U,$J,358.3,15582,1,3,0)
+ ;;=3^Sleep Apnea,Obstructive
+ ;;^UTILITY(U,$J,358.3,15582,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,15582,2)
+ ;;=^332763

@@ -1,140 +1,124 @@
-IBDEI1YE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33160,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,33160,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,33161,0)
- ;;=I13.2^^131^1668^5
- ;;^UTILITY(U,$J,358.3,33161,1,0)
+ ;;^UTILITY(U,$J,358.3,31216,1,4,0)
+ ;;=4^O14.15
+ ;;^UTILITY(U,$J,358.3,31216,2)
+ ;;=^5139017
+ ;;^UTILITY(U,$J,358.3,31217,0)
+ ;;=O11.5^^126^1620^30
+ ;;^UTILITY(U,$J,358.3,31217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33161,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
- ;;^UTILITY(U,$J,358.3,33161,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,33161,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,33162,0)
- ;;=I48.91^^131^1668^1
- ;;^UTILITY(U,$J,358.3,33162,1,0)
+ ;;^UTILITY(U,$J,358.3,31217,1,3,0)
+ ;;=3^Pre-existing HTN w/ Pre-Eclampsia Comp the Puerperium
+ ;;^UTILITY(U,$J,358.3,31217,1,4,0)
+ ;;=4^O11.5
+ ;;^UTILITY(U,$J,358.3,31217,2)
+ ;;=^5139005
+ ;;^UTILITY(U,$J,358.3,31218,0)
+ ;;=O14.95^^126^1620^19
+ ;;^UTILITY(U,$J,358.3,31218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33162,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,33162,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,33162,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,33163,0)
- ;;=I48.92^^131^1668^2
- ;;^UTILITY(U,$J,358.3,33163,1,0)
+ ;;^UTILITY(U,$J,358.3,31218,1,3,0)
+ ;;=3^Pre-Eclampsia Complicating the Puerperium
+ ;;^UTILITY(U,$J,358.3,31218,1,4,0)
+ ;;=4^O14.95
+ ;;^UTILITY(U,$J,358.3,31218,2)
+ ;;=^5139021
+ ;;^UTILITY(U,$J,358.3,31219,0)
+ ;;=O14.05^^126^1620^16
+ ;;^UTILITY(U,$J,358.3,31219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33163,1,3,0)
- ;;=3^Atrial Flutter,Unspec
- ;;^UTILITY(U,$J,358.3,33163,1,4,0)
- ;;=4^I48.92
- ;;^UTILITY(U,$J,358.3,33163,2)
- ;;=^5007230
- ;;^UTILITY(U,$J,358.3,33164,0)
- ;;=B07.9^^131^1669^288
- ;;^UTILITY(U,$J,358.3,33164,1,0)
+ ;;^UTILITY(U,$J,358.3,31219,1,3,0)
+ ;;=3^Mild to Moderate Pre-Eclampsia Complicating the Puerperium
+ ;;^UTILITY(U,$J,358.3,31219,1,4,0)
+ ;;=4^O14.05
+ ;;^UTILITY(U,$J,358.3,31219,2)
+ ;;=^5139015
+ ;;^UTILITY(U,$J,358.3,31220,0)
+ ;;=O16.5^^126^1620^12
+ ;;^UTILITY(U,$J,358.3,31220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33164,1,3,0)
- ;;=3^Viral Wart,Unspec
- ;;^UTILITY(U,$J,358.3,33164,1,4,0)
- ;;=4^B07.9
- ;;^UTILITY(U,$J,358.3,33164,2)
- ;;=^5000519
- ;;^UTILITY(U,$J,358.3,33165,0)
- ;;=A63.0^^131^1669^34
- ;;^UTILITY(U,$J,358.3,33165,1,0)
+ ;;^UTILITY(U,$J,358.3,31220,1,3,0)
+ ;;=3^Maternal HTN Complicating the Puerperium
+ ;;^UTILITY(U,$J,358.3,31220,1,4,0)
+ ;;=4^O16.5
+ ;;^UTILITY(U,$J,358.3,31220,2)
+ ;;=^5139028
+ ;;^UTILITY(U,$J,358.3,31221,0)
+ ;;=O14.25^^126^1620^9
+ ;;^UTILITY(U,$J,358.3,31221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33165,1,3,0)
- ;;=3^Anogenital (Venereal) Warts
- ;;^UTILITY(U,$J,358.3,33165,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,33165,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,33166,0)
- ;;=B35.0^^131^1669^279
- ;;^UTILITY(U,$J,358.3,33166,1,0)
+ ;;^UTILITY(U,$J,358.3,31221,1,3,0)
+ ;;=3^HELLP Syndrome Complicating the Puerperium
+ ;;^UTILITY(U,$J,358.3,31221,1,4,0)
+ ;;=4^O14.25
+ ;;^UTILITY(U,$J,358.3,31221,2)
+ ;;=^5139019
+ ;;^UTILITY(U,$J,358.3,31222,0)
+ ;;=O13.5^^126^1620^4
+ ;;^UTILITY(U,$J,358.3,31222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33166,1,3,0)
- ;;=3^Tinea Barbae and Tinea Capitis
- ;;^UTILITY(U,$J,358.3,33166,1,4,0)
- ;;=4^B35.0
- ;;^UTILITY(U,$J,358.3,33166,2)
- ;;=^5000604
- ;;^UTILITY(U,$J,358.3,33167,0)
- ;;=B35.1^^131^1669^284
- ;;^UTILITY(U,$J,358.3,33167,1,0)
+ ;;^UTILITY(U,$J,358.3,31222,1,3,0)
+ ;;=3^Gestational HTN w/o Significant Protein Comp the Puerperium
+ ;;^UTILITY(U,$J,358.3,31222,1,4,0)
+ ;;=4^O13.5
+ ;;^UTILITY(U,$J,358.3,31222,2)
+ ;;=^5139013
+ ;;^UTILITY(U,$J,358.3,31223,0)
+ ;;=O21.0^^126^1621^3
+ ;;^UTILITY(U,$J,358.3,31223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33167,1,3,0)
- ;;=3^Tinea Unguium
- ;;^UTILITY(U,$J,358.3,33167,1,4,0)
- ;;=4^B35.1
- ;;^UTILITY(U,$J,358.3,33167,2)
- ;;=^119748
- ;;^UTILITY(U,$J,358.3,33168,0)
- ;;=B35.6^^131^1669^281
- ;;^UTILITY(U,$J,358.3,33168,1,0)
+ ;;^UTILITY(U,$J,358.3,31223,1,3,0)
+ ;;=3^Mild hyperemesis gravidarum
+ ;;^UTILITY(U,$J,358.3,31223,1,4,0)
+ ;;=4^O21.0
+ ;;^UTILITY(U,$J,358.3,31223,2)
+ ;;=^5016185
+ ;;^UTILITY(U,$J,358.3,31224,0)
+ ;;=O21.1^^126^1621^1
+ ;;^UTILITY(U,$J,358.3,31224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33168,1,3,0)
- ;;=3^Tinea Cruris
- ;;^UTILITY(U,$J,358.3,33168,1,4,0)
- ;;=4^B35.6
- ;;^UTILITY(U,$J,358.3,33168,2)
- ;;=^119711
- ;;^UTILITY(U,$J,358.3,33169,0)
- ;;=B35.3^^131^1669^283
- ;;^UTILITY(U,$J,358.3,33169,1,0)
+ ;;^UTILITY(U,$J,358.3,31224,1,3,0)
+ ;;=3^Hyperemesis gravidarum with metabolic disturbance
+ ;;^UTILITY(U,$J,358.3,31224,1,4,0)
+ ;;=4^O21.1
+ ;;^UTILITY(U,$J,358.3,31224,2)
+ ;;=^270869
+ ;;^UTILITY(U,$J,358.3,31225,0)
+ ;;=O21.2^^126^1621^2
+ ;;^UTILITY(U,$J,358.3,31225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33169,1,3,0)
- ;;=3^Tinea Pedis
- ;;^UTILITY(U,$J,358.3,33169,1,4,0)
- ;;=4^B35.3
- ;;^UTILITY(U,$J,358.3,33169,2)
- ;;=^119732
- ;;^UTILITY(U,$J,358.3,33170,0)
- ;;=B35.5^^131^1669^282
- ;;^UTILITY(U,$J,358.3,33170,1,0)
+ ;;^UTILITY(U,$J,358.3,31225,1,3,0)
+ ;;=3^Late vomiting of pregnancy
+ ;;^UTILITY(U,$J,358.3,31225,1,4,0)
+ ;;=4^O21.2
+ ;;^UTILITY(U,$J,358.3,31225,2)
+ ;;=^270873
+ ;;^UTILITY(U,$J,358.3,31226,0)
+ ;;=O48.0^^126^1622^1
+ ;;^UTILITY(U,$J,358.3,31226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33170,1,3,0)
- ;;=3^Tinea Imbricata
- ;;^UTILITY(U,$J,358.3,33170,1,4,0)
- ;;=4^B35.5
- ;;^UTILITY(U,$J,358.3,33170,2)
- ;;=^119725
- ;;^UTILITY(U,$J,358.3,33171,0)
- ;;=B35.4^^131^1669^280
- ;;^UTILITY(U,$J,358.3,33171,1,0)
+ ;;^UTILITY(U,$J,358.3,31226,1,3,0)
+ ;;=3^Post-term pregnancy
+ ;;^UTILITY(U,$J,358.3,31226,1,4,0)
+ ;;=4^O48.0
+ ;;^UTILITY(U,$J,358.3,31226,2)
+ ;;=^5017495
+ ;;^UTILITY(U,$J,358.3,31227,0)
+ ;;=O48.1^^126^1622^2
+ ;;^UTILITY(U,$J,358.3,31227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33171,1,3,0)
- ;;=3^Tinea Corporis
- ;;^UTILITY(U,$J,358.3,33171,1,4,0)
- ;;=4^B35.4
- ;;^UTILITY(U,$J,358.3,33171,2)
- ;;=^119704
- ;;^UTILITY(U,$J,358.3,33172,0)
- ;;=B35.8^^131^1669^137
- ;;^UTILITY(U,$J,358.3,33172,1,0)
+ ;;^UTILITY(U,$J,358.3,31227,1,3,0)
+ ;;=3^Prolonged pregnancy
+ ;;^UTILITY(U,$J,358.3,31227,1,4,0)
+ ;;=4^O48.1
+ ;;^UTILITY(U,$J,358.3,31227,2)
+ ;;=^5017496
+ ;;^UTILITY(U,$J,358.3,31228,0)
+ ;;=O31.03X0^^126^1623^62
+ ;;^UTILITY(U,$J,358.3,31228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33172,1,3,0)
- ;;=3^Dermatophytoses,Other
- ;;^UTILITY(U,$J,358.3,33172,1,4,0)
- ;;=4^B35.8
- ;;^UTILITY(U,$J,358.3,33172,2)
- ;;=^5000606
- ;;^UTILITY(U,$J,358.3,33173,0)
- ;;=B36.9^^131^1669^272
- ;;^UTILITY(U,$J,358.3,33173,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33173,1,3,0)
- ;;=3^Superficial Mycosis,Unspec
- ;;^UTILITY(U,$J,358.3,33173,1,4,0)
- ;;=4^B36.9
- ;;^UTILITY(U,$J,358.3,33173,2)
- ;;=^5000611
- ;;^UTILITY(U,$J,358.3,33174,0)
- ;;=D69.0^^131^1669^32
+ ;;^UTILITY(U,$J,358.3,31228,1,3,0)
+ ;;=3^Papyraceous fetus, third trimester, not applicable or unsp

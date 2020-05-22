@@ -1,124 +1,122 @@
-IBDEI1I1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1I1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25442,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,25442,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,25442,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,25443,0)
- ;;=F10.14^^95^1165^34
- ;;^UTILITY(U,$J,358.3,25443,1,0)
+ ;;^UTILITY(U,$J,358.3,23978,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,23978,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,23979,0)
+ ;;=I70.269^^107^1199^13
+ ;;^UTILITY(U,$J,358.3,23979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25443,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25443,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,25443,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,25444,0)
- ;;=F10.182^^95^1165^36
- ;;^UTILITY(U,$J,358.3,25444,1,0)
+ ;;^UTILITY(U,$J,358.3,23979,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,23979,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,23979,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,23980,0)
+ ;;=I70.263^^107^1199^14
+ ;;^UTILITY(U,$J,358.3,23980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25444,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25444,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,25444,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,25445,0)
- ;;=F10.20^^95^1165^28
- ;;^UTILITY(U,$J,358.3,25445,1,0)
+ ;;^UTILITY(U,$J,358.3,23980,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,23980,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,23980,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,23981,0)
+ ;;=I70.262^^107^1199^15
+ ;;^UTILITY(U,$J,358.3,23981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25445,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,25445,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,25445,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,25446,0)
- ;;=F10.21^^95^1165^29
- ;;^UTILITY(U,$J,358.3,25446,1,0)
+ ;;^UTILITY(U,$J,358.3,23981,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
+ ;;^UTILITY(U,$J,358.3,23981,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,23981,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,23982,0)
+ ;;=I70.261^^107^1199^16
+ ;;^UTILITY(U,$J,358.3,23982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25446,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,25446,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,25446,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,25447,0)
- ;;=F10.230^^95^1165^30
- ;;^UTILITY(U,$J,358.3,25447,1,0)
+ ;;^UTILITY(U,$J,358.3,23982,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
+ ;;^UTILITY(U,$J,358.3,23982,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,23982,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,23983,0)
+ ;;=I71.2^^107^1199^34
+ ;;^UTILITY(U,$J,358.3,23983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25447,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,25447,1,4,0)
- ;;=4^F10.230
- ;;^UTILITY(U,$J,358.3,25447,2)
- ;;=^5003086
- ;;^UTILITY(U,$J,358.3,25448,0)
- ;;=F10.231^^95^1165^31
- ;;^UTILITY(U,$J,358.3,25448,1,0)
+ ;;^UTILITY(U,$J,358.3,23983,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,23983,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,23983,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,23984,0)
+ ;;=I71.4^^107^1199^1
+ ;;^UTILITY(U,$J,358.3,23984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25448,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,25448,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,25448,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,25449,0)
- ;;=F10.232^^95^1165^32
- ;;^UTILITY(U,$J,358.3,25449,1,0)
+ ;;^UTILITY(U,$J,358.3,23984,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,23984,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,23984,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,23985,0)
+ ;;=I73.9^^107^1199^32
+ ;;^UTILITY(U,$J,358.3,23985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25449,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,25449,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,25449,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,25450,0)
- ;;=F10.239^^95^1165^33
- ;;^UTILITY(U,$J,358.3,25450,1,0)
+ ;;^UTILITY(U,$J,358.3,23985,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,23985,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,23985,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,23986,0)
+ ;;=I82.891^^107^1199^23
+ ;;^UTILITY(U,$J,358.3,23986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25450,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,25450,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,25450,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,25451,0)
- ;;=F10.24^^95^1165^35
- ;;^UTILITY(U,$J,358.3,25451,1,0)
+ ;;^UTILITY(U,$J,358.3,23986,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,23986,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,23986,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,23987,0)
+ ;;=I82.890^^107^1199^22
+ ;;^UTILITY(U,$J,358.3,23987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25451,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25451,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,25451,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,25452,0)
- ;;=F10.29^^95^1165^37
- ;;^UTILITY(U,$J,358.3,25452,1,0)
+ ;;^UTILITY(U,$J,358.3,23987,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,23987,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,23987,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,23988,0)
+ ;;=I25.729^^107^1199^2
+ ;;^UTILITY(U,$J,358.3,23988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25452,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25452,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,25452,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,25453,0)
- ;;=F10.180^^95^1165^1
- ;;^UTILITY(U,$J,358.3,25453,1,0)
+ ;;^UTILITY(U,$J,358.3,23988,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,23988,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,23988,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,23989,0)
+ ;;=I25.119^^107^1199^3
+ ;;^UTILITY(U,$J,358.3,23989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25453,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25453,1,4,0)
- ;;=4^F10.180
- ;;^UTILITY(U,$J,358.3,25453,2)
- ;;=^5003076
- ;;^UTILITY(U,$J,358.3,25454,0)
- ;;=F10.280^^95^1165^2
- ;;^UTILITY(U,$J,358.3,25454,1,0)
+ ;;^UTILITY(U,$J,358.3,23989,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,23989,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,23989,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,23990,0)
+ ;;=I25.10^^107^1199^4
+ ;;^UTILITY(U,$J,358.3,23990,1,0)
  ;;=^358.31IA^4^2

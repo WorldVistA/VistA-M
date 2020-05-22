@@ -1,138 +1,116 @@
-IBDEI24B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35917,1,4,0)
- ;;=4^J63.2
- ;;^UTILITY(U,$J,358.3,35917,2)
- ;;=^13594
- ;;^UTILITY(U,$J,358.3,35918,0)
- ;;=J60.^^134^1734^5
- ;;^UTILITY(U,$J,358.3,35918,1,0)
+ ;;^UTILITY(U,$J,358.3,33837,1,3,0)
+ ;;=3^Traumatic arthropathy, left shoulder
+ ;;^UTILITY(U,$J,358.3,33837,1,4,0)
+ ;;=4^M12.512
+ ;;^UTILITY(U,$J,358.3,33837,2)
+ ;;=^5010620
+ ;;^UTILITY(U,$J,358.3,33838,0)
+ ;;=M12.511^^132^1712^50
+ ;;^UTILITY(U,$J,358.3,33838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35918,1,3,0)
- ;;=3^Coalworker's Pneumoconiosis
- ;;^UTILITY(U,$J,358.3,35918,1,4,0)
- ;;=4^J60.
- ;;^UTILITY(U,$J,358.3,35918,2)
- ;;=^5008261
- ;;^UTILITY(U,$J,358.3,35919,0)
- ;;=J63.3^^134^1734^6
- ;;^UTILITY(U,$J,358.3,35919,1,0)
+ ;;^UTILITY(U,$J,358.3,33838,1,3,0)
+ ;;=3^Traumatic arthropathy, right shoulder
+ ;;^UTILITY(U,$J,358.3,33838,1,4,0)
+ ;;=4^M12.511
+ ;;^UTILITY(U,$J,358.3,33838,2)
+ ;;=^5010619
+ ;;^UTILITY(U,$J,358.3,33839,0)
+ ;;=S43.102A^^132^1712^17
+ ;;^UTILITY(U,$J,358.3,33839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35919,1,3,0)
- ;;=3^Graphite Fibrosis of Lung
- ;;^UTILITY(U,$J,358.3,35919,1,4,0)
- ;;=4^J63.3
- ;;^UTILITY(U,$J,358.3,35919,2)
- ;;=^5008267
- ;;^UTILITY(U,$J,358.3,35920,0)
- ;;=J65.^^134^1734^7
- ;;^UTILITY(U,$J,358.3,35920,1,0)
+ ;;^UTILITY(U,$J,358.3,33839,1,3,0)
+ ;;=3^Dislocation of left acromioclavicular joint, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,33839,1,4,0)
+ ;;=4^S43.102A
+ ;;^UTILITY(U,$J,358.3,33839,2)
+ ;;=^5027732
+ ;;^UTILITY(U,$J,358.3,33840,0)
+ ;;=S43.005A^^132^1712^19
+ ;;^UTILITY(U,$J,358.3,33840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35920,1,3,0)
- ;;=3^Pneumoconiosis Associated w/ Tuberculosis
- ;;^UTILITY(U,$J,358.3,35920,1,4,0)
- ;;=4^J65.
- ;;^UTILITY(U,$J,358.3,35920,2)
- ;;=^5008272
- ;;^UTILITY(U,$J,358.3,35921,0)
- ;;=J61.^^134^1734^8
- ;;^UTILITY(U,$J,358.3,35921,1,0)
+ ;;^UTILITY(U,$J,358.3,33840,1,3,0)
+ ;;=3^Dislocation of left shoulder joint, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,33840,1,4,0)
+ ;;=4^S43.005A
+ ;;^UTILITY(U,$J,358.3,33840,2)
+ ;;=^5027666
+ ;;^UTILITY(U,$J,358.3,33841,0)
+ ;;=S43.101A^^132^1712^21
+ ;;^UTILITY(U,$J,358.3,33841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35921,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,35921,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,35921,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,35922,0)
- ;;=J62.8^^134^1734^9
- ;;^UTILITY(U,$J,358.3,35922,1,0)
+ ;;^UTILITY(U,$J,358.3,33841,1,3,0)
+ ;;=3^Dislocation of right acromioclavicular joint, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,33841,1,4,0)
+ ;;=4^S43.101A
+ ;;^UTILITY(U,$J,358.3,33841,2)
+ ;;=^5027729
+ ;;^UTILITY(U,$J,358.3,33842,0)
+ ;;=S43.004A^^132^1712^23
+ ;;^UTILITY(U,$J,358.3,33842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35922,1,3,0)
- ;;=3^Pneumoconiosis d/t Dust Containing Silica
- ;;^UTILITY(U,$J,358.3,35922,1,4,0)
- ;;=4^J62.8
- ;;^UTILITY(U,$J,358.3,35922,2)
- ;;=^5008264
- ;;^UTILITY(U,$J,358.3,35923,0)
- ;;=J62.0^^134^1734^10
- ;;^UTILITY(U,$J,358.3,35923,1,0)
+ ;;^UTILITY(U,$J,358.3,33842,1,3,0)
+ ;;=3^Dislocation of right shoulder joint, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,33842,1,4,0)
+ ;;=4^S43.004A
+ ;;^UTILITY(U,$J,358.3,33842,2)
+ ;;=^5027663
+ ;;^UTILITY(U,$J,358.3,33843,0)
+ ;;=S40.012D^^132^1712^14
+ ;;^UTILITY(U,$J,358.3,33843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35923,1,3,0)
- ;;=3^Pneumoconiosis d/t Talc Dust
- ;;^UTILITY(U,$J,358.3,35923,1,4,0)
- ;;=4^J62.0
- ;;^UTILITY(U,$J,358.3,35923,2)
- ;;=^5008263
- ;;^UTILITY(U,$J,358.3,35924,0)
- ;;=J82.^^134^1734^12
- ;;^UTILITY(U,$J,358.3,35924,1,0)
+ ;;^UTILITY(U,$J,358.3,33843,1,3,0)
+ ;;=3^Contusion of left shoulder, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33843,1,4,0)
+ ;;=4^S40.012D
+ ;;^UTILITY(U,$J,358.3,33843,2)
+ ;;=^5026157
+ ;;^UTILITY(U,$J,358.3,33844,0)
+ ;;=S40.011D^^132^1712^16
+ ;;^UTILITY(U,$J,358.3,33844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35924,1,3,0)
- ;;=3^Pulmonary Eosinophilia NEC
- ;;^UTILITY(U,$J,358.3,35924,1,4,0)
- ;;=4^J82.
- ;;^UTILITY(U,$J,358.3,35924,2)
- ;;=^5008297
- ;;^UTILITY(U,$J,358.3,35925,0)
- ;;=J63.4^^134^1734^13
- ;;^UTILITY(U,$J,358.3,35925,1,0)
+ ;;^UTILITY(U,$J,358.3,33844,1,3,0)
+ ;;=3^Contusion of right shoulder, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33844,1,4,0)
+ ;;=4^S40.011D
+ ;;^UTILITY(U,$J,358.3,33844,2)
+ ;;=^5026154
+ ;;^UTILITY(U,$J,358.3,33845,0)
+ ;;=S43.102D^^132^1712^18
+ ;;^UTILITY(U,$J,358.3,33845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35925,1,3,0)
- ;;=3^Siderosis
- ;;^UTILITY(U,$J,358.3,35925,1,4,0)
- ;;=4^J63.4
- ;;^UTILITY(U,$J,358.3,35925,2)
- ;;=^5008268
- ;;^UTILITY(U,$J,358.3,35926,0)
- ;;=J63.5^^134^1734^14
- ;;^UTILITY(U,$J,358.3,35926,1,0)
+ ;;^UTILITY(U,$J,358.3,33845,1,3,0)
+ ;;=3^Dislocation of left acromioclavicular joint, subs
+ ;;^UTILITY(U,$J,358.3,33845,1,4,0)
+ ;;=4^S43.102D
+ ;;^UTILITY(U,$J,358.3,33845,2)
+ ;;=^5027733
+ ;;^UTILITY(U,$J,358.3,33846,0)
+ ;;=S43.101D^^132^1712^22
+ ;;^UTILITY(U,$J,358.3,33846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35926,1,3,0)
- ;;=3^Stannosis
- ;;^UTILITY(U,$J,358.3,35926,1,4,0)
- ;;=4^J63.5
- ;;^UTILITY(U,$J,358.3,35926,2)
- ;;=^5008269
- ;;^UTILITY(U,$J,358.3,35927,0)
- ;;=J64.^^134^1734^11
- ;;^UTILITY(U,$J,358.3,35927,1,0)
+ ;;^UTILITY(U,$J,358.3,33846,1,3,0)
+ ;;=3^Dislocation of right acromioclavicular joint, subs
+ ;;^UTILITY(U,$J,358.3,33846,1,4,0)
+ ;;=4^S43.101D
+ ;;^UTILITY(U,$J,358.3,33846,2)
+ ;;=^5027730
+ ;;^UTILITY(U,$J,358.3,33847,0)
+ ;;=S43.004D^^132^1712^24
+ ;;^UTILITY(U,$J,358.3,33847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35927,1,3,0)
- ;;=3^Pneumoconiosis,Unspec
- ;;^UTILITY(U,$J,358.3,35927,1,4,0)
- ;;=4^J64.
- ;;^UTILITY(U,$J,358.3,35927,2)
- ;;=^5008271
- ;;^UTILITY(U,$J,358.3,35928,0)
- ;;=G89.22^^134^1735^2
- ;;^UTILITY(U,$J,358.3,35928,1,0)
+ ;;^UTILITY(U,$J,358.3,33847,1,3,0)
+ ;;=3^Dislocation of right shoulder joint, subs encntr
+ ;;^UTILITY(U,$J,358.3,33847,1,4,0)
+ ;;=4^S43.004D
+ ;;^UTILITY(U,$J,358.3,33847,2)
+ ;;=^5027664
+ ;;^UTILITY(U,$J,358.3,33848,0)
+ ;;=S42.002D^^132^1712^27
+ ;;^UTILITY(U,$J,358.3,33848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35928,1,3,0)
- ;;=3^Chr Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,35928,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,35928,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,35929,0)
- ;;=G89.3^^134^1735^3
- ;;^UTILITY(U,$J,358.3,35929,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35929,1,3,0)
- ;;=3^Neoplasm Related Pain
- ;;^UTILITY(U,$J,358.3,35929,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,35929,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,35930,0)
- ;;=G89.18^^134^1735^1
- ;;^UTILITY(U,$J,358.3,35930,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35930,1,3,0)
- ;;=3^Acute Postprocedural Pain
- ;;^UTILITY(U,$J,358.3,35930,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,35930,2)
- ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,33848,1,3,0)
+ ;;=3^Fx unsp part of l clavicle, subs for fx w routn heal

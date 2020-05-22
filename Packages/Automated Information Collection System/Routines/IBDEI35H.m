@@ -1,134 +1,126 @@
-IBDEI35H ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI35H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52887,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,52888,0)
- ;;=L20.84^^243^2651^4
- ;;^UTILITY(U,$J,358.3,52888,1,0)
+ ;;^UTILITY(U,$J,358.3,50304,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,50304,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,50304,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,50305,0)
+ ;;=J30.1^^193^2489^10
+ ;;^UTILITY(U,$J,358.3,50305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52888,1,3,0)
- ;;=3^Eczema,Intrinsic
- ;;^UTILITY(U,$J,358.3,52888,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,52888,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,52889,0)
- ;;=L51.8^^243^2651^10
- ;;^UTILITY(U,$J,358.3,52889,1,0)
+ ;;^UTILITY(U,$J,358.3,50305,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,50305,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,50305,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,50306,0)
+ ;;=R09.81^^193^2489^18
+ ;;^UTILITY(U,$J,358.3,50306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52889,1,3,0)
- ;;=3^Erythema Multiforme,Other
- ;;^UTILITY(U,$J,358.3,52889,1,4,0)
- ;;=4^L51.8
- ;;^UTILITY(U,$J,358.3,52889,2)
- ;;=^336639
- ;;^UTILITY(U,$J,358.3,52890,0)
- ;;=R23.4^^243^2651^14
- ;;^UTILITY(U,$J,358.3,52890,1,0)
+ ;;^UTILITY(U,$J,358.3,50306,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,50306,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,50306,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,50307,0)
+ ;;=I69.928^^193^2489^22
+ ;;^UTILITY(U,$J,358.3,50307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52890,1,3,0)
- ;;=3^Eschar/Desquamination of Skin
- ;;^UTILITY(U,$J,358.3,52890,1,4,0)
- ;;=4^R23.4
- ;;^UTILITY(U,$J,358.3,52890,2)
- ;;=^5019296
- ;;^UTILITY(U,$J,358.3,52891,0)
- ;;=L49.9^^243^2651^23
- ;;^UTILITY(U,$J,358.3,52891,1,0)
+ ;;^UTILITY(U,$J,358.3,50307,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,50307,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,50307,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,50308,0)
+ ;;=I69.328^^193^2489^23
+ ;;^UTILITY(U,$J,358.3,50308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52891,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
- ;;^UTILITY(U,$J,358.3,52891,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,52891,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,52892,0)
- ;;=L74.9^^243^2651^1
- ;;^UTILITY(U,$J,358.3,52892,1,0)
+ ;;^UTILITY(U,$J,358.3,50308,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,50308,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,50308,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,50309,0)
+ ;;=H81.4^^193^2489^25
+ ;;^UTILITY(U,$J,358.3,50309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52892,1,3,0)
- ;;=3^Eccrine Sweat Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52892,1,4,0)
- ;;=4^L74.9
- ;;^UTILITY(U,$J,358.3,52892,2)
- ;;=^5009296
- ;;^UTILITY(U,$J,358.3,52893,0)
- ;;=L92.3^^243^2652^1
- ;;^UTILITY(U,$J,358.3,52893,1,0)
+ ;;^UTILITY(U,$J,358.3,50309,1,3,0)
+ ;;=3^Vertigo of Central Origin
+ ;;^UTILITY(U,$J,358.3,50309,1,4,0)
+ ;;=4^H81.4
+ ;;^UTILITY(U,$J,358.3,50309,2)
+ ;;=^269484
+ ;;^UTILITY(U,$J,358.3,50310,0)
+ ;;=E04.0^^193^2490^21
+ ;;^UTILITY(U,$J,358.3,50310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52893,1,3,0)
- ;;=3^FB Granuloma Skin/Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,52893,1,4,0)
- ;;=4^L92.3
- ;;^UTILITY(U,$J,358.3,52893,2)
- ;;=^5009464
- ;;^UTILITY(U,$J,358.3,52894,0)
- ;;=L66.2^^243^2652^2
- ;;^UTILITY(U,$J,358.3,52894,1,0)
+ ;;^UTILITY(U,$J,358.3,50310,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,50310,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,50310,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,50311,0)
+ ;;=E04.1^^193^2490^23
+ ;;^UTILITY(U,$J,358.3,50311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52894,1,3,0)
- ;;=3^Folliculitis Decalvans
- ;;^UTILITY(U,$J,358.3,52894,1,4,0)
- ;;=4^L66.2
- ;;^UTILITY(U,$J,358.3,52894,2)
- ;;=^5009254
- ;;^UTILITY(U,$J,358.3,52895,0)
- ;;=L73.9^^243^2652^3
- ;;^UTILITY(U,$J,358.3,52895,1,0)
+ ;;^UTILITY(U,$J,358.3,50311,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,50311,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,50311,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,50312,0)
+ ;;=E04.2^^193^2490^22
+ ;;^UTILITY(U,$J,358.3,50312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52895,1,3,0)
- ;;=3^Folliculitis,Unspec
- ;;^UTILITY(U,$J,358.3,52895,1,4,0)
- ;;=4^L73.9
- ;;^UTILITY(U,$J,358.3,52895,2)
- ;;=^5009286
- ;;^UTILITY(U,$J,358.3,52896,0)
- ;;=B09.^^243^2653^4
- ;;^UTILITY(U,$J,358.3,52896,1,0)
+ ;;^UTILITY(U,$J,358.3,50312,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,50312,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,50312,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,50313,0)
+ ;;=E01.1^^193^2490^17
+ ;;^UTILITY(U,$J,358.3,50313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52896,1,3,0)
- ;;=3^Infection,Viral w/ Skin/Mucous Membrane Lesions
- ;;^UTILITY(U,$J,358.3,52896,1,4,0)
- ;;=4^B09.
- ;;^UTILITY(U,$J,358.3,52896,2)
- ;;=^5000534
- ;;^UTILITY(U,$J,358.3,52897,0)
- ;;=L08.9^^243^2653^3
- ;;^UTILITY(U,$J,358.3,52897,1,0)
+ ;;^UTILITY(U,$J,358.3,50313,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,50313,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,50313,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,50314,0)
+ ;;=E05.00^^193^2490^39
+ ;;^UTILITY(U,$J,358.3,50314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52897,1,3,0)
- ;;=3^Infection Local of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,52897,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,52897,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,52898,0)
- ;;=Q80.0^^243^2653^1
- ;;^UTILITY(U,$J,358.3,52898,1,0)
+ ;;^UTILITY(U,$J,358.3,50314,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,50314,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,50314,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,50315,0)
+ ;;=E05.01^^193^2490^38
+ ;;^UTILITY(U,$J,358.3,50315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52898,1,3,0)
- ;;=3^Ichthyosis Vulgaris
- ;;^UTILITY(U,$J,358.3,52898,1,4,0)
- ;;=4^Q80.0
- ;;^UTILITY(U,$J,358.3,52898,2)
- ;;=^175407
- ;;^UTILITY(U,$J,358.3,52899,0)
- ;;=Q80.1^^243^2653^2
- ;;^UTILITY(U,$J,358.3,52899,1,0)
+ ;;^UTILITY(U,$J,358.3,50315,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,50315,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,50315,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,50316,0)
+ ;;=E05.90^^193^2490^41
+ ;;^UTILITY(U,$J,358.3,50316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52899,1,3,0)
- ;;=3^Ichthyosis,X-Linked
- ;;^UTILITY(U,$J,358.3,52899,1,4,0)
- ;;=4^Q80.1
- ;;^UTILITY(U,$J,358.3,52899,2)
- ;;=^5019041
- ;;^UTILITY(U,$J,358.3,52900,0)
- ;;=L76.01^^243^2653^6
- ;;^UTILITY(U,$J,358.3,52900,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52900,1,3,0)
- ;;=3^Intraop Hemor/Hemtom Skin/SQ Tissue,Comp Derm Procedure
- ;;^UTILITY(U,$J,358.3,52900,1,4,0)
- ;;=4^L76.01
+ ;;^UTILITY(U,$J,358.3,50316,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm

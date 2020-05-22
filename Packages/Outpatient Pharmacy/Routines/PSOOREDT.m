@@ -1,5 +1,5 @@
 PSOOREDT ;BIR/SAB - Edit orders from backdoor ;5/8/08 3:27pm
- ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427,411,505,517**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427,411,505,517,574**;DEC 1997;Build 53
  ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to L^PSSLOCK supported by DBIA 2789
  ;External reference to UL^PSSLOCK supported by DBIA 2789
@@ -80,6 +80,9 @@ EDT ; Rx Edit (Backdoor)
  .I $$CSDRG^PSOORNEW(DRGIEN)!($$NDF^PSOORNEW(DRGIEN)),",1,3,12,17,"[FLNCHK Q
  .; Allow edit of the NDC when the EDIT DRUG setting is off
  .; Other checks regarding if the NDC may be edited are found in NDC^PSODRG - PSO*7*427
+ .;
+ .; If clozpaine drug set clozapine edit variable to control exprire date calculation PSO*7*574  
+ .I $$ISCLOZ^PSJCLOZ(,,,,$G(PSODRUG("IEN"))) S PSORXED("CLOZ EDIT")=1
  .I FLN=2,'$P(PSOPAR,"^",3) D  Q
  ..N NDC D NDC^PSODRG(RXN,0,,.NDC) I $G(NDC)="^"!($G(NDC)="") Q
  ..S (PSODRUG("NDC"),PSORXED("FLD",27))=NDC

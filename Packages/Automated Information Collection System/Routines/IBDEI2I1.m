@@ -1,132 +1,128 @@
-IBDEI2I1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2I1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42376,2)
- ;;=^5046377
- ;;^UTILITY(U,$J,358.3,42377,0)
- ;;=L08.89^^159^2021^3
- ;;^UTILITY(U,$J,358.3,42377,1,0)
+ ;;^UTILITY(U,$J,358.3,39904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42377,1,3,0)
- ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
- ;;^UTILITY(U,$J,358.3,42377,1,4,0)
- ;;=4^L08.89
- ;;^UTILITY(U,$J,358.3,42377,2)
- ;;=^5009081
- ;;^UTILITY(U,$J,358.3,42378,0)
- ;;=T14.90^^159^2021^1
- ;;^UTILITY(U,$J,358.3,42378,1,0)
+ ;;^UTILITY(U,$J,358.3,39904,1,3,0)
+ ;;=3^Presence of Artificial Wrist Joint,Left
+ ;;^UTILITY(U,$J,358.3,39904,1,4,0)
+ ;;=4^Z96.632
+ ;;^UTILITY(U,$J,358.3,39904,2)
+ ;;=^5063699
+ ;;^UTILITY(U,$J,358.3,39905,0)
+ ;;=Z96.621^^152^2001^118
+ ;;^UTILITY(U,$J,358.3,39905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42378,1,3,0)
- ;;=3^Injury,Unspec
- ;;^UTILITY(U,$J,358.3,42378,1,4,0)
- ;;=4^T14.90
- ;;^UTILITY(U,$J,358.3,42378,2)
- ;;=^5046379
- ;;^UTILITY(U,$J,358.3,42379,0)
- ;;=S91.002A^^159^2021^6
- ;;^UTILITY(U,$J,358.3,42379,1,0)
+ ;;^UTILITY(U,$J,358.3,39905,1,3,0)
+ ;;=3^Presence of Artificial Elbow Joint,Right
+ ;;^UTILITY(U,$J,358.3,39905,1,4,0)
+ ;;=4^Z96.621
+ ;;^UTILITY(U,$J,358.3,39905,2)
+ ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,39906,0)
+ ;;=Z96.631^^152^2001^123
+ ;;^UTILITY(U,$J,358.3,39906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42379,1,3,0)
- ;;=3^Open Wound,Left Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,42379,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,42379,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,42380,0)
- ;;=S91.302A^^159^2021^7
- ;;^UTILITY(U,$J,358.3,42380,1,0)
+ ;;^UTILITY(U,$J,358.3,39906,1,3,0)
+ ;;=3^Presence of Artificial Wrist Joint,Right
+ ;;^UTILITY(U,$J,358.3,39906,1,4,0)
+ ;;=4^Z96.631
+ ;;^UTILITY(U,$J,358.3,39906,2)
+ ;;=^5063698
+ ;;^UTILITY(U,$J,358.3,39907,0)
+ ;;=Z93.6^^152^2001^154
+ ;;^UTILITY(U,$J,358.3,39907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42380,1,3,0)
- ;;=3^Open Wound,Left Foot,Unspec
- ;;^UTILITY(U,$J,358.3,42380,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,42380,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,42381,0)
- ;;=S51.802A^^159^2021^8
- ;;^UTILITY(U,$J,358.3,42381,1,0)
+ ;;^UTILITY(U,$J,358.3,39907,1,3,0)
+ ;;=3^Urostomy Status
+ ;;^UTILITY(U,$J,358.3,39907,1,4,0)
+ ;;=4^Z93.6
+ ;;^UTILITY(U,$J,358.3,39907,2)
+ ;;=^5063651
+ ;;^UTILITY(U,$J,358.3,39908,0)
+ ;;=Z95.820^^152^2001^67
+ ;;^UTILITY(U,$J,358.3,39908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42381,1,3,0)
- ;;=3^Open Wound,Left Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,42381,1,4,0)
- ;;=4^S51.802A
- ;;^UTILITY(U,$J,358.3,42381,2)
- ;;=^5028662
- ;;^UTILITY(U,$J,358.3,42382,0)
- ;;=S91.102A^^159^2021^9
- ;;^UTILITY(U,$J,358.3,42382,1,0)
+ ;;^UTILITY(U,$J,358.3,39908,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status w/ Graft
+ ;;^UTILITY(U,$J,358.3,39908,1,4,0)
+ ;;=4^Z95.820
+ ;;^UTILITY(U,$J,358.3,39908,2)
+ ;;=^5063678
+ ;;^UTILITY(U,$J,358.3,39909,0)
+ ;;=Z95.0^^152^2001^126
+ ;;^UTILITY(U,$J,358.3,39909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42382,1,3,0)
- ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,42382,1,4,0)
- ;;=4^S91.102A
- ;;^UTILITY(U,$J,358.3,42382,2)
- ;;=^5044171
- ;;^UTILITY(U,$J,358.3,42383,0)
- ;;=S61.402A^^159^2021^10
- ;;^UTILITY(U,$J,358.3,42383,1,0)
+ ;;^UTILITY(U,$J,358.3,39909,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,39909,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,39909,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,39910,0)
+ ;;=Z95.810^^152^2001^124
+ ;;^UTILITY(U,$J,358.3,39910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42383,1,3,0)
- ;;=3^Open Wound,Left Hand,Unspec
- ;;^UTILITY(U,$J,358.3,42383,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,42383,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,42384,0)
- ;;=S71.002A^^159^2021^11
- ;;^UTILITY(U,$J,358.3,42384,1,0)
+ ;;^UTILITY(U,$J,358.3,39910,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Debribrillator
+ ;;^UTILITY(U,$J,358.3,39910,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,39910,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,39911,0)
+ ;;=A15.0^^152^2002^84
+ ;;^UTILITY(U,$J,358.3,39911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42384,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
- ;;^UTILITY(U,$J,358.3,42384,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,42384,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,42385,0)
- ;;=S91.104A^^159^2021^22
- ;;^UTILITY(U,$J,358.3,42385,1,0)
+ ;;^UTILITY(U,$J,358.3,39911,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,39911,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,39911,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,39912,0)
+ ;;=B20.^^152^2002^31
+ ;;^UTILITY(U,$J,358.3,39912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42385,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
- ;;^UTILITY(U,$J,358.3,42385,1,4,0)
- ;;=4^S91.104A
- ;;^UTILITY(U,$J,358.3,42385,2)
- ;;=^5044174
- ;;^UTILITY(U,$J,358.3,42386,0)
- ;;=S81.802A^^159^2021^13
- ;;^UTILITY(U,$J,358.3,42386,1,0)
+ ;;^UTILITY(U,$J,358.3,39912,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,39912,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,39912,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,39913,0)
+ ;;=B02.9^^152^2002^93
+ ;;^UTILITY(U,$J,358.3,39913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42386,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,42386,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,42386,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,42387,0)
- ;;=S41.102A^^159^2021^15
- ;;^UTILITY(U,$J,358.3,42387,1,0)
+ ;;^UTILITY(U,$J,358.3,39913,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,39913,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,39913,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,39914,0)
+ ;;=A60.9^^152^2002^2
+ ;;^UTILITY(U,$J,358.3,39914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42387,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,42387,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,42387,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,42388,0)
- ;;=S91.001A^^159^2021^16
- ;;^UTILITY(U,$J,358.3,42388,1,0)
+ ;;^UTILITY(U,$J,358.3,39914,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,39914,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,39914,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,39915,0)
+ ;;=A60.04^^152^2002^34
+ ;;^UTILITY(U,$J,358.3,39915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42388,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,42388,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,42388,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,42389,0)
- ;;=S91.301A^^159^2021^17
- ;;^UTILITY(U,$J,358.3,42389,1,0)
+ ;;^UTILITY(U,$J,358.3,39915,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,39915,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,39915,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,39916,0)
+ ;;=A60.01^^152^2002^32
+ ;;^UTILITY(U,$J,358.3,39916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42389,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,39916,1,3,0)
+ ;;=3^Herpesviral Infection of Penis

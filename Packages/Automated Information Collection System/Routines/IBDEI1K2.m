@@ -1,136 +1,124 @@
-IBDEI1K2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1K2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26380,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,26381,0)
- ;;=F63.0^^98^1251^1
- ;;^UTILITY(U,$J,358.3,26381,1,0)
+ ;;^UTILITY(U,$J,358.3,24862,0)
+ ;;=D47.4^^107^1211^182
+ ;;^UTILITY(U,$J,358.3,24862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26381,1,3,0)
- ;;=3^Gambling Disorder
- ;;^UTILITY(U,$J,358.3,26381,1,4,0)
- ;;=4^F63.0
- ;;^UTILITY(U,$J,358.3,26381,2)
- ;;=^5003640
- ;;^UTILITY(U,$J,358.3,26382,0)
- ;;=F99.^^98^1252^1
- ;;^UTILITY(U,$J,358.3,26382,1,0)
+ ;;^UTILITY(U,$J,358.3,24862,1,3,0)
+ ;;=3^Osteomyelofibrosis
+ ;;^UTILITY(U,$J,358.3,24862,1,4,0)
+ ;;=4^D47.4
+ ;;^UTILITY(U,$J,358.3,24862,2)
+ ;;=^5002259
+ ;;^UTILITY(U,$J,358.3,24863,0)
+ ;;=D59.1^^107^1211^29
+ ;;^UTILITY(U,$J,358.3,24863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26382,1,3,0)
- ;;=3^Mental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,26382,1,4,0)
- ;;=4^F99.
- ;;^UTILITY(U,$J,358.3,26382,2)
- ;;=^5003720
- ;;^UTILITY(U,$J,358.3,26383,0)
- ;;=F06.8^^98^1252^2
- ;;^UTILITY(U,$J,358.3,26383,1,0)
+ ;;^UTILITY(U,$J,358.3,24863,1,3,0)
+ ;;=3^Autoimmune Hemolytic Anemia,Other
+ ;;^UTILITY(U,$J,358.3,24863,1,4,0)
+ ;;=4^D59.1
+ ;;^UTILITY(U,$J,358.3,24863,2)
+ ;;=^5002324
+ ;;^UTILITY(U,$J,358.3,24864,0)
+ ;;=D51.3^^107^1211^196
+ ;;^UTILITY(U,$J,358.3,24864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26383,1,3,0)
- ;;=3^Mental Disorders,Oth Specified,d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,26383,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,26383,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,26384,0)
- ;;=F09.^^98^1252^3
- ;;^UTILITY(U,$J,358.3,26384,1,0)
+ ;;^UTILITY(U,$J,358.3,24864,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Other
+ ;;^UTILITY(U,$J,358.3,24864,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,24864,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,24865,0)
+ ;;=D77.^^107^1211^58
+ ;;^UTILITY(U,$J,358.3,24865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26384,1,3,0)
- ;;=3^Mental Disorders,Unspec,d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,26384,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,26384,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,26385,0)
- ;;=R45.851^^98^1252^4
- ;;^UTILITY(U,$J,358.3,26385,1,0)
+ ;;^UTILITY(U,$J,358.3,24865,1,3,0)
+ ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
+ ;;^UTILITY(U,$J,358.3,24865,1,4,0)
+ ;;=4^D77.
+ ;;^UTILITY(U,$J,358.3,24865,2)
+ ;;=^5002396
+ ;;^UTILITY(U,$J,358.3,24866,0)
+ ;;=D58.2^^107^1211^84
+ ;;^UTILITY(U,$J,358.3,24866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26385,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,26385,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,26385,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,26386,0)
- ;;=F84.0^^98^1253^1
- ;;^UTILITY(U,$J,358.3,26386,1,0)
+ ;;^UTILITY(U,$J,358.3,24866,1,3,0)
+ ;;=3^Hemoglobinopathies,Other
+ ;;^UTILITY(U,$J,358.3,24866,1,4,0)
+ ;;=4^D58.2
+ ;;^UTILITY(U,$J,358.3,24866,2)
+ ;;=^87629
+ ;;^UTILITY(U,$J,358.3,24867,0)
+ ;;=C88.8^^107^1211^106
+ ;;^UTILITY(U,$J,358.3,24867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26386,1,3,0)
- ;;=3^Autistic Disorder
- ;;^UTILITY(U,$J,358.3,26386,1,4,0)
- ;;=4^F84.0
- ;;^UTILITY(U,$J,358.3,26386,2)
- ;;=^5003684
- ;;^UTILITY(U,$J,358.3,26387,0)
- ;;=F80.9^^98^1253^2
- ;;^UTILITY(U,$J,358.3,26387,1,0)
+ ;;^UTILITY(U,$J,358.3,24867,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases,Other
+ ;;^UTILITY(U,$J,358.3,24867,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,24867,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,24868,0)
+ ;;=D70.8^^107^1211^179
+ ;;^UTILITY(U,$J,358.3,24868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26387,1,3,0)
- ;;=3^Communication Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26387,1,4,0)
- ;;=4^F80.9
- ;;^UTILITY(U,$J,358.3,26387,2)
- ;;=^5003678
- ;;^UTILITY(U,$J,358.3,26388,0)
- ;;=F82.^^98^1253^3
- ;;^UTILITY(U,$J,358.3,26388,1,0)
+ ;;^UTILITY(U,$J,358.3,24868,1,3,0)
+ ;;=3^Neutropenia,Other
+ ;;^UTILITY(U,$J,358.3,24868,1,4,0)
+ ;;=4^D70.8
+ ;;^UTILITY(U,$J,358.3,24868,2)
+ ;;=^334042
+ ;;^UTILITY(U,$J,358.3,24869,0)
+ ;;=D59.4^^107^1211^180
+ ;;^UTILITY(U,$J,358.3,24869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26388,1,3,0)
- ;;=3^Developmental Coordination Disorder
- ;;^UTILITY(U,$J,358.3,26388,1,4,0)
- ;;=4^F82.
- ;;^UTILITY(U,$J,358.3,26388,2)
- ;;=^5003683
- ;;^UTILITY(U,$J,358.3,26389,0)
- ;;=F98.5^^98^1253^4
- ;;^UTILITY(U,$J,358.3,26389,1,0)
+ ;;^UTILITY(U,$J,358.3,24869,1,3,0)
+ ;;=3^Nonautoimmune Hemolytic Anemias,Other
+ ;;^UTILITY(U,$J,358.3,24869,1,4,0)
+ ;;=4^D59.4
+ ;;^UTILITY(U,$J,358.3,24869,2)
+ ;;=^5002326
+ ;;^UTILITY(U,$J,358.3,24870,0)
+ ;;=D69.59^^107^1211^186
+ ;;^UTILITY(U,$J,358.3,24870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26389,1,3,0)
- ;;=3^Fluency Disorder,Adult-Onset
- ;;^UTILITY(U,$J,358.3,26389,1,4,0)
- ;;=4^F98.5
- ;;^UTILITY(U,$J,358.3,26389,2)
- ;;=^5003717
- ;;^UTILITY(U,$J,358.3,26390,0)
- ;;=F88.^^98^1253^5
- ;;^UTILITY(U,$J,358.3,26390,1,0)
+ ;;^UTILITY(U,$J,358.3,24870,1,3,0)
+ ;;=3^Secondary Thrombocytopenia,Other
+ ;;^UTILITY(U,$J,358.3,24870,1,4,0)
+ ;;=4^D69.59
+ ;;^UTILITY(U,$J,358.3,24870,2)
+ ;;=^5002369
+ ;;^UTILITY(U,$J,358.3,24871,0)
+ ;;=C22.7^^107^1211^47
+ ;;^UTILITY(U,$J,358.3,24871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26390,1,3,0)
- ;;=3^Global Developmental Delay
- ;;^UTILITY(U,$J,358.3,26390,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,26390,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,26391,0)
- ;;=F80.2^^98^1253^6
- ;;^UTILITY(U,$J,358.3,26391,1,0)
+ ;;^UTILITY(U,$J,358.3,24871,1,3,0)
+ ;;=3^Carcinomas of Liver,Other Spec
+ ;;^UTILITY(U,$J,358.3,24871,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,24871,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,24872,0)
+ ;;=D75.89^^107^1211^57
+ ;;^UTILITY(U,$J,358.3,24872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26391,1,3,0)
- ;;=3^Language Disorder
- ;;^UTILITY(U,$J,358.3,26391,1,4,0)
- ;;=4^F80.2
- ;;^UTILITY(U,$J,358.3,26391,2)
- ;;=^331959
- ;;^UTILITY(U,$J,358.3,26392,0)
- ;;=F81.2^^98^1253^7
- ;;^UTILITY(U,$J,358.3,26392,1,0)
+ ;;^UTILITY(U,$J,358.3,24872,1,3,0)
+ ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec
+ ;;^UTILITY(U,$J,358.3,24872,1,4,0)
+ ;;=4^D75.89
+ ;;^UTILITY(U,$J,358.3,24872,2)
+ ;;=^5002392
+ ;;^UTILITY(U,$J,358.3,24873,0)
+ ;;=D47.Z9^^107^1211^178
+ ;;^UTILITY(U,$J,358.3,24873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26392,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Mathematics
- ;;^UTILITY(U,$J,358.3,26392,1,4,0)
- ;;=4^F81.2
- ;;^UTILITY(U,$J,358.3,26392,2)
- ;;=^331957
- ;;^UTILITY(U,$J,358.3,26393,0)
- ;;=F81.0^^98^1253^8
- ;;^UTILITY(U,$J,358.3,26393,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26393,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Reading
- ;;^UTILITY(U,$J,358.3,26393,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,26393,2)
- ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,24873,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
+ ;;^UTILITY(U,$J,358.3,24873,1,4,0)
+ ;;=4^D47.Z9
+ ;;^UTILITY(U,$J,358.3,24873,2)
+ ;;=^5002262

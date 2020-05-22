@@ -1,134 +1,124 @@
-IBDEI39W ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39W ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55003,0)
- ;;=C47.9^^256^2775^144
- ;;^UTILITY(U,$J,358.3,55003,1,0)
+ ;;^UTILITY(U,$J,358.3,52238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55003,1,3,0)
- ;;=3^Malig Neop Peripheral Nerves/Autonomic Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,55003,1,4,0)
- ;;=4^C47.9
- ;;^UTILITY(U,$J,358.3,55003,2)
- ;;=^5001121
- ;;^UTILITY(U,$J,358.3,55004,0)
- ;;=C38.4^^256^2775^145
- ;;^UTILITY(U,$J,358.3,55004,1,0)
+ ;;^UTILITY(U,$J,358.3,52238,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,52238,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,52238,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,52239,0)
+ ;;=E10.22^^193^2526^3
+ ;;^UTILITY(U,$J,358.3,52239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55004,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,55004,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,55004,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,55005,0)
- ;;=C61.^^256^2775^146
- ;;^UTILITY(U,$J,358.3,55005,1,0)
+ ;;^UTILITY(U,$J,358.3,52239,1,3,0)
+ ;;=3^DM Type 1 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,52239,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,52239,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,52240,0)
+ ;;=E10.29^^193^2526^24
+ ;;^UTILITY(U,$J,358.3,52240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55005,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,55005,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,55005,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,55006,0)
- ;;=C20.^^256^2775^147
- ;;^UTILITY(U,$J,358.3,55006,1,0)
+ ;;^UTILITY(U,$J,358.3,52240,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Kidney Compl
+ ;;^UTILITY(U,$J,358.3,52240,1,4,0)
+ ;;=4^E10.29
+ ;;^UTILITY(U,$J,358.3,52240,2)
+ ;;=^5002591
+ ;;^UTILITY(U,$J,358.3,52241,0)
+ ;;=E10.311^^193^2526^12
+ ;;^UTILITY(U,$J,358.3,52241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55006,1,3,0)
- ;;=3^Malig Neop Rectum
- ;;^UTILITY(U,$J,358.3,55006,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,55006,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,55007,0)
- ;;=C64.1^^256^2775^152
- ;;^UTILITY(U,$J,358.3,55007,1,0)
+ ;;^UTILITY(U,$J,358.3,52241,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,52241,1,4,0)
+ ;;=4^E10.311
+ ;;^UTILITY(U,$J,358.3,52241,2)
+ ;;=^5002592
+ ;;^UTILITY(U,$J,358.3,52242,0)
+ ;;=E10.319^^193^2526^13
+ ;;^UTILITY(U,$J,358.3,52242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55007,1,3,0)
- ;;=3^Malig Neop Right Kidney,Except Renal pelvis
- ;;^UTILITY(U,$J,358.3,55007,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,55007,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,55008,0)
- ;;=C65.1^^256^2775^155
- ;;^UTILITY(U,$J,358.3,55008,1,0)
+ ;;^UTILITY(U,$J,358.3,52242,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,52242,1,4,0)
+ ;;=4^E10.319
+ ;;^UTILITY(U,$J,358.3,52242,2)
+ ;;=^5002593
+ ;;^UTILITY(U,$J,358.3,52243,0)
+ ;;=E10.3211^^193^2526^19
+ ;;^UTILITY(U,$J,358.3,52243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55008,1,3,0)
- ;;=3^Malig Neop Right Renal Pelvis
- ;;^UTILITY(U,$J,358.3,55008,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,55008,2)
- ;;=^5001251
- ;;^UTILITY(U,$J,358.3,55009,0)
- ;;=C62.91^^256^2775^156
- ;;^UTILITY(U,$J,358.3,55009,1,0)
+ ;;^UTILITY(U,$J,358.3,52243,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,52243,1,4,0)
+ ;;=4^E10.3211
+ ;;^UTILITY(U,$J,358.3,52243,2)
+ ;;=^5138279
+ ;;^UTILITY(U,$J,358.3,52244,0)
+ ;;=E10.3212^^193^2526^20
+ ;;^UTILITY(U,$J,358.3,52244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55009,1,3,0)
- ;;=3^Malig Neop Right Testis
- ;;^UTILITY(U,$J,358.3,55009,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,55009,2)
- ;;=^5001237
- ;;^UTILITY(U,$J,358.3,55010,0)
- ;;=C17.9^^256^2775^157
- ;;^UTILITY(U,$J,358.3,55010,1,0)
+ ;;^UTILITY(U,$J,358.3,52244,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,52244,1,4,0)
+ ;;=4^E10.3212
+ ;;^UTILITY(U,$J,358.3,52244,2)
+ ;;=^5138280
+ ;;^UTILITY(U,$J,358.3,52245,0)
+ ;;=E10.3213^^193^2526^21
+ ;;^UTILITY(U,$J,358.3,52245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55010,1,3,0)
- ;;=3^Malig Neop Small Intestine,Unspec
- ;;^UTILITY(U,$J,358.3,55010,1,4,0)
- ;;=4^C17.9
- ;;^UTILITY(U,$J,358.3,55010,2)
- ;;=^5000926
- ;;^UTILITY(U,$J,358.3,55011,0)
- ;;=C16.9^^256^2775^158
- ;;^UTILITY(U,$J,358.3,55011,1,0)
+ ;;^UTILITY(U,$J,358.3,52245,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,52245,1,4,0)
+ ;;=4^E10.3213
+ ;;^UTILITY(U,$J,358.3,52245,2)
+ ;;=^5138281
+ ;;^UTILITY(U,$J,358.3,52246,0)
+ ;;=E10.39^^193^2526^26
+ ;;^UTILITY(U,$J,358.3,52246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55011,1,3,0)
- ;;=3^Malig Neop Stomach,Unspec
- ;;^UTILITY(U,$J,358.3,55011,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,55011,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,55012,0)
- ;;=C02.9^^256^2775^160
- ;;^UTILITY(U,$J,358.3,55012,1,0)
+ ;;^UTILITY(U,$J,358.3,52246,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Ophth Compl
+ ;;^UTILITY(U,$J,358.3,52246,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,52246,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,52247,0)
+ ;;=E10.40^^193^2526^10
+ ;;^UTILITY(U,$J,358.3,52247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55012,1,3,0)
- ;;=3^Malig Neop Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,55012,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,55012,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,55013,0)
- ;;=C64.9^^256^2775^125
- ;;^UTILITY(U,$J,358.3,55013,1,0)
+ ;;^UTILITY(U,$J,358.3,52247,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,52247,1,4,0)
+ ;;=4^E10.40
+ ;;^UTILITY(U,$J,358.3,52247,2)
+ ;;=^5002604
+ ;;^UTILITY(U,$J,358.3,52248,0)
+ ;;=E10.41^^193^2526^7
+ ;;^UTILITY(U,$J,358.3,52248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55013,1,3,0)
- ;;=3^Malig Neop Kidney,Except Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,55013,1,4,0)
- ;;=4^C64.9
- ;;^UTILITY(U,$J,358.3,55013,2)
- ;;=^5001250
- ;;^UTILITY(U,$J,358.3,55014,0)
- ;;=C34.92^^256^2775^128
- ;;^UTILITY(U,$J,358.3,55014,1,0)
+ ;;^UTILITY(U,$J,358.3,52248,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,52248,1,4,0)
+ ;;=4^E10.41
+ ;;^UTILITY(U,$J,358.3,52248,2)
+ ;;=^5002605
+ ;;^UTILITY(U,$J,358.3,52249,0)
+ ;;=E10.42^^193^2526^11
+ ;;^UTILITY(U,$J,358.3,52249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55014,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,55014,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,55014,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,55015,0)
- ;;=C34.90^^256^2775^114
- ;;^UTILITY(U,$J,358.3,55015,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55015,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,55015,1,4,0)
- ;;=4^C34.90
- ;;^UTILITY(U,$J,358.3,55015,2)
- ;;=^5000966
+ ;;^UTILITY(U,$J,358.3,52249,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,52249,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,52249,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,52250,0)
+ ;;=E10.43^^193^2526^2

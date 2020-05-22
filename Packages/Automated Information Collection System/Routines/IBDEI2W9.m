@@ -1,132 +1,124 @@
-IBDEI2W9 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48592,1,0)
+ ;;^UTILITY(U,$J,358.3,46163,2)
+ ;;=^5138344
+ ;;^UTILITY(U,$J,358.3,46164,0)
+ ;;=H35.3230^^176^2300^24
+ ;;^UTILITY(U,$J,358.3,46164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48592,1,3,0)
- ;;=3^Bicipital tendinitis, right shoulder
- ;;^UTILITY(U,$J,358.3,48592,1,4,0)
- ;;=4^M75.21
- ;;^UTILITY(U,$J,358.3,48592,2)
- ;;=^5013251
- ;;^UTILITY(U,$J,358.3,48593,0)
- ;;=M17.0^^216^2410^8
- ;;^UTILITY(U,$J,358.3,48593,1,0)
+ ;;^UTILITY(U,$J,358.3,46164,1,3,0)
+ ;;=3^Exudative ARMD,Bilateral
+ ;;^UTILITY(U,$J,358.3,46164,1,4,0)
+ ;;=4^H35.3230
+ ;;^UTILITY(U,$J,358.3,46164,2)
+ ;;=^5138528
+ ;;^UTILITY(U,$J,358.3,46165,0)
+ ;;=H35.3130^^176^2300^37
+ ;;^UTILITY(U,$J,358.3,46165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48593,1,3,0)
- ;;=3^Bilateral primary osteoarthritis of knee
- ;;^UTILITY(U,$J,358.3,48593,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,48593,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,48594,0)
- ;;=M75.52^^216^2410^9
- ;;^UTILITY(U,$J,358.3,48594,1,0)
+ ;;^UTILITY(U,$J,358.3,46165,1,3,0)
+ ;;=3^Nonexudative ARMD,Bilateral
+ ;;^UTILITY(U,$J,358.3,46165,1,4,0)
+ ;;=4^H35.3130
+ ;;^UTILITY(U,$J,358.3,46165,2)
+ ;;=^5138510
+ ;;^UTILITY(U,$J,358.3,46166,0)
+ ;;=Z13.5^^176^2300^52
+ ;;^UTILITY(U,$J,358.3,46166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48594,1,3,0)
- ;;=3^Bursitis of left shoulder
- ;;^UTILITY(U,$J,358.3,48594,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,48594,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,48595,0)
- ;;=M75.51^^216^2410^10
- ;;^UTILITY(U,$J,358.3,48595,1,0)
+ ;;^UTILITY(U,$J,358.3,46166,1,3,0)
+ ;;=3^Screening for Eye and Ear Disorders
+ ;;^UTILITY(U,$J,358.3,46166,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,46166,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,46167,0)
+ ;;=Z48.02^^176^2300^51
+ ;;^UTILITY(U,$J,358.3,46167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48595,1,3,0)
- ;;=3^Bursitis of right shoulder
- ;;^UTILITY(U,$J,358.3,48595,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,48595,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,48596,0)
- ;;=M75.32^^216^2410^11
- ;;^UTILITY(U,$J,358.3,48596,1,0)
+ ;;^UTILITY(U,$J,358.3,46167,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,46167,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,46167,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,46168,0)
+ ;;=Z48.810^^176^2300^1
+ ;;^UTILITY(U,$J,358.3,46168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48596,1,3,0)
- ;;=3^Calcific tendinitis of left shoulder
- ;;^UTILITY(U,$J,358.3,48596,1,4,0)
- ;;=4^M75.32
- ;;^UTILITY(U,$J,358.3,48596,2)
- ;;=^5013255
- ;;^UTILITY(U,$J,358.3,48597,0)
- ;;=M75.31^^216^2410^12
- ;;^UTILITY(U,$J,358.3,48597,1,0)
+ ;;^UTILITY(U,$J,358.3,46168,1,3,0)
+ ;;=3^Aftercare Following EYE Surgery
+ ;;^UTILITY(U,$J,358.3,46168,1,4,0)
+ ;;=4^Z48.810
+ ;;^UTILITY(U,$J,358.3,46168,2)
+ ;;=^5063047
+ ;;^UTILITY(U,$J,358.3,46169,0)
+ ;;=H35.3131^^176^2300^40
+ ;;^UTILITY(U,$J,358.3,46169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48597,1,3,0)
- ;;=3^Calcific tendinitis of right shoulder
- ;;^UTILITY(U,$J,358.3,48597,1,4,0)
- ;;=4^M75.31
- ;;^UTILITY(U,$J,358.3,48597,2)
- ;;=^5013254
- ;;^UTILITY(U,$J,358.3,48598,0)
- ;;=M22.42^^216^2410^13
- ;;^UTILITY(U,$J,358.3,48598,1,0)
+ ;;^UTILITY(U,$J,358.3,46169,1,3,0)
+ ;;=3^Nonexudative Age-Related Macular Degn,Early Dry Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,46169,1,4,0)
+ ;;=4^H35.3131
+ ;;^UTILITY(U,$J,358.3,46169,2)
+ ;;=^5138511
+ ;;^UTILITY(U,$J,358.3,46170,0)
+ ;;=H35.3132^^176^2300^41
+ ;;^UTILITY(U,$J,358.3,46170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48598,1,3,0)
- ;;=3^Chondromalacia patellae, left knee
- ;;^UTILITY(U,$J,358.3,48598,1,4,0)
- ;;=4^M22.42
- ;;^UTILITY(U,$J,358.3,48598,2)
- ;;=^5011187
- ;;^UTILITY(U,$J,358.3,48599,0)
- ;;=M22.41^^216^2410^14
- ;;^UTILITY(U,$J,358.3,48599,1,0)
+ ;;^UTILITY(U,$J,358.3,46170,1,3,0)
+ ;;=3^Nonexudative Age-Related Macular Degn,Intermed Dry Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,46170,1,4,0)
+ ;;=4^H35.3132
+ ;;^UTILITY(U,$J,358.3,46170,2)
+ ;;=^5138512
+ ;;^UTILITY(U,$J,358.3,46171,0)
+ ;;=H02.889^^176^2300^35
+ ;;^UTILITY(U,$J,358.3,46171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48599,1,3,0)
- ;;=3^Chondromalacia patellae, right knee
- ;;^UTILITY(U,$J,358.3,48599,1,4,0)
- ;;=4^M22.41
- ;;^UTILITY(U,$J,358.3,48599,2)
- ;;=^5011186
- ;;^UTILITY(U,$J,358.3,48600,0)
- ;;=M62.472^^216^2410^15
- ;;^UTILITY(U,$J,358.3,48600,1,0)
+ ;;^UTILITY(U,$J,358.3,46171,1,3,0)
+ ;;=3^Meibomian Gland Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,46171,1,4,0)
+ ;;=4^H02.889
+ ;;^UTILITY(U,$J,358.3,46171,2)
+ ;;=^5157349
+ ;;^UTILITY(U,$J,358.3,46172,0)
+ ;;=Z96.1^^176^2300^46
+ ;;^UTILITY(U,$J,358.3,46172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48600,1,3,0)
- ;;=3^Contracture of muscle, left ankle and foot
- ;;^UTILITY(U,$J,358.3,48600,1,4,0)
- ;;=4^M62.472
- ;;^UTILITY(U,$J,358.3,48600,2)
- ;;=^5012651
- ;;^UTILITY(U,$J,358.3,48601,0)
- ;;=M62.432^^216^2410^16
- ;;^UTILITY(U,$J,358.3,48601,1,0)
+ ;;^UTILITY(U,$J,358.3,46172,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,46172,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,46172,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,46173,0)
+ ;;=H43.813^^176^2300^53
+ ;;^UTILITY(U,$J,358.3,46173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48601,1,3,0)
- ;;=3^Contracture of muscle, left forearm
- ;;^UTILITY(U,$J,358.3,48601,1,4,0)
- ;;=4^M62.432
- ;;^UTILITY(U,$J,358.3,48601,2)
- ;;=^5012639
- ;;^UTILITY(U,$J,358.3,48602,0)
- ;;=M62.442^^216^2410^17
- ;;^UTILITY(U,$J,358.3,48602,1,0)
+ ;;^UTILITY(U,$J,358.3,46173,1,3,0)
+ ;;=3^Vitreous Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,46173,1,4,0)
+ ;;=4^H43.813
+ ;;^UTILITY(U,$J,358.3,46173,2)
+ ;;=^5005955
+ ;;^UTILITY(U,$J,358.3,46174,0)
+ ;;=H26.491^^176^2300^44
+ ;;^UTILITY(U,$J,358.3,46174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48602,1,3,0)
- ;;=3^Contracture of muscle, left hand
- ;;^UTILITY(U,$J,358.3,48602,1,4,0)
- ;;=4^M62.442
- ;;^UTILITY(U,$J,358.3,48602,2)
- ;;=^5012642
- ;;^UTILITY(U,$J,358.3,48603,0)
- ;;=M62.462^^216^2410^18
- ;;^UTILITY(U,$J,358.3,48603,1,0)
+ ;;^UTILITY(U,$J,358.3,46174,1,3,0)
+ ;;=3^PCO/Secondary Cataract,Right Eye
+ ;;^UTILITY(U,$J,358.3,46174,1,4,0)
+ ;;=4^H26.491
+ ;;^UTILITY(U,$J,358.3,46174,2)
+ ;;=^5005358
+ ;;^UTILITY(U,$J,358.3,46175,0)
+ ;;=H26.492^^176^2300^43
+ ;;^UTILITY(U,$J,358.3,46175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48603,1,3,0)
- ;;=3^Contracture of muscle, left lower leg
- ;;^UTILITY(U,$J,358.3,48603,1,4,0)
- ;;=4^M62.462
- ;;^UTILITY(U,$J,358.3,48603,2)
- ;;=^5012648
- ;;^UTILITY(U,$J,358.3,48604,0)
- ;;=M62.412^^216^2410^19
- ;;^UTILITY(U,$J,358.3,48604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48604,1,3,0)
- ;;=3^Contracture of muscle, left shoulder
- ;;^UTILITY(U,$J,358.3,48604,1,4,0)
- ;;=4^M62.412
- ;;^UTILITY(U,$J,358.3,48604,2)
- ;;=^5012633
+ ;;^UTILITY(U,$J,358.3,46175,1,3,0)
+ ;;=3^PCO/Secondary Cataract,Left Eye
+ ;;^UTILITY(U,$J,358.3,46175,1,4,0)
+ ;;=4^H26.492

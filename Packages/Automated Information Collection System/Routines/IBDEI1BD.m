@@ -1,136 +1,124 @@
-IBDEI1BD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22338,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,22338,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,22339,0)
- ;;=D63.8^^87^981^22
- ;;^UTILITY(U,$J,358.3,22339,1,0)
+ ;;^UTILITY(U,$J,358.3,21005,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,21005,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,21006,0)
+ ;;=G47.35^^95^1042^28
+ ;;^UTILITY(U,$J,358.3,21006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22339,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,22339,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,22339,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,22340,0)
- ;;=C22.3^^87^981^26
- ;;^UTILITY(U,$J,358.3,22340,1,0)
+ ;;^UTILITY(U,$J,358.3,21006,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,21006,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,21006,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,21007,0)
+ ;;=G47.34^^95^1042^29
+ ;;^UTILITY(U,$J,358.3,21007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22340,1,3,0)
- ;;=3^Angiosarcoma of Liver
- ;;^UTILITY(U,$J,358.3,22340,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,22340,2)
- ;;=^5000936
- ;;^UTILITY(U,$J,358.3,22341,0)
- ;;=D61.9^^87^981^27
- ;;^UTILITY(U,$J,358.3,22341,1,0)
+ ;;^UTILITY(U,$J,358.3,21007,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic
+ ;;^UTILITY(U,$J,358.3,21007,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,21007,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,21008,0)
+ ;;=G47.9^^95^1042^31
+ ;;^UTILITY(U,$J,358.3,21008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22341,1,3,0)
- ;;=3^Aplastic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,22341,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,22341,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,22342,0)
- ;;=D56.1^^87^981^29
- ;;^UTILITY(U,$J,358.3,22342,1,0)
+ ;;^UTILITY(U,$J,358.3,21008,1,3,0)
+ ;;=3^Sleep-Wake Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21008,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,21008,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,21009,0)
+ ;;=G47.419^^95^1042^1
+ ;;^UTILITY(U,$J,358.3,21009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22342,1,3,0)
- ;;=3^Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,22342,1,4,0)
- ;;=4^D56.1
- ;;^UTILITY(U,$J,358.3,22342,2)
- ;;=^340495
- ;;^UTILITY(U,$J,358.3,22343,0)
- ;;=C83.79^^87^981^31
- ;;^UTILITY(U,$J,358.3,22343,1,0)
+ ;;^UTILITY(U,$J,358.3,21009,1,3,0)
+ ;;=3^Autosomal Dominant Cerebella Ataxia,Deafness,and Narcolepsy
+ ;;^UTILITY(U,$J,358.3,21009,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,21009,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,21010,0)
+ ;;=G47.419^^95^1042^2
+ ;;^UTILITY(U,$J,358.3,21010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22343,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,22343,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,22343,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,22344,0)
- ;;=C83.70^^87^981^32
- ;;^UTILITY(U,$J,358.3,22344,1,0)
+ ;;^UTILITY(U,$J,358.3,21010,1,3,0)
+ ;;=3^Autosomal Dominant Narcolepsy,Obesity,and Type 2 Diabetes
+ ;;^UTILITY(U,$J,358.3,21010,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,21010,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,21011,0)
+ ;;=R06.3^^95^1042^5
+ ;;^UTILITY(U,$J,358.3,21011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22344,1,3,0)
- ;;=3^Burkitt Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,22344,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,22344,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,22345,0)
- ;;=D09.0^^87^981^39
- ;;^UTILITY(U,$J,358.3,22345,1,0)
+ ;;^UTILITY(U,$J,358.3,21011,1,3,0)
+ ;;=3^Cheyne-Stokes Breathing
+ ;;^UTILITY(U,$J,358.3,21011,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,21011,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,21012,0)
+ ;;=G47.429^^95^1042^18
+ ;;^UTILITY(U,$J,358.3,21012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22345,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,22345,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,22345,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,22346,0)
- ;;=D06.9^^87^981^40
- ;;^UTILITY(U,$J,358.3,22346,1,0)
+ ;;^UTILITY(U,$J,358.3,21012,1,3,0)
+ ;;=3^Narcolepsy Secondary to Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,21012,1,4,0)
+ ;;=4^G47.429
+ ;;^UTILITY(U,$J,358.3,21012,2)
+ ;;=^5003984
+ ;;^UTILITY(U,$J,358.3,21013,0)
+ ;;=F10.10^^95^1043^30
+ ;;^UTILITY(U,$J,358.3,21013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22346,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix
- ;;^UTILITY(U,$J,358.3,22346,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,22346,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,22347,0)
- ;;=D06.0^^87^981^42
- ;;^UTILITY(U,$J,358.3,22347,1,0)
+ ;;^UTILITY(U,$J,358.3,21013,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,21013,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,21013,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,21014,0)
+ ;;=F10.20^^95^1043^3
+ ;;^UTILITY(U,$J,358.3,21014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22347,1,3,0)
- ;;=3^Carcinoma in Situ of Endocervix
- ;;^UTILITY(U,$J,358.3,22347,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,22347,2)
- ;;=^5001938
- ;;^UTILITY(U,$J,358.3,22348,0)
- ;;=D06.1^^87^981^43
- ;;^UTILITY(U,$J,358.3,22348,1,0)
+ ;;^UTILITY(U,$J,358.3,21014,1,3,0)
+ ;;=3^Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,21014,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,21014,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,21015,0)
+ ;;=F10.239^^95^1043^34
+ ;;^UTILITY(U,$J,358.3,21015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22348,1,3,0)
- ;;=3^Carcinoma in Situ of Exocervix
- ;;^UTILITY(U,$J,358.3,22348,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,22348,2)
- ;;=^5001939
- ;;^UTILITY(U,$J,358.3,22349,0)
- ;;=D06.7^^87^981^41
- ;;^UTILITY(U,$J,358.3,22349,1,0)
+ ;;^UTILITY(U,$J,358.3,21015,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,21015,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,21015,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,21016,0)
+ ;;=F10.180^^95^1043^5
+ ;;^UTILITY(U,$J,358.3,21016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22349,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix,Other Parts
- ;;^UTILITY(U,$J,358.3,22349,1,4,0)
- ;;=4^D06.7
- ;;^UTILITY(U,$J,358.3,22349,2)
- ;;=^5001940
- ;;^UTILITY(U,$J,358.3,22350,0)
- ;;=D04.9^^87^981^44
- ;;^UTILITY(U,$J,358.3,22350,1,0)
+ ;;^UTILITY(U,$J,358.3,21016,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21016,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,21016,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,21017,0)
+ ;;=F10.280^^95^1043^6
+ ;;^UTILITY(U,$J,358.3,21017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22350,1,3,0)
- ;;=3^Carcinoma in Situ of Skin
- ;;^UTILITY(U,$J,358.3,22350,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,22350,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,22351,0)
- ;;=C91.11^^87^981^47
- ;;^UTILITY(U,$J,358.3,22351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22351,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,22351,1,4,0)
- ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,21017,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Moderate/Severe Use Disorder

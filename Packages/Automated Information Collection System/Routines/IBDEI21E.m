@@ -1,132 +1,126 @@
-IBDEI21E ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI21E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34551,1,3,0)
- ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
- ;;^UTILITY(U,$J,358.3,34551,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,34551,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,34552,0)
- ;;=I69.959^^131^1687^18
- ;;^UTILITY(U,$J,358.3,34552,1,0)
+ ;;^UTILITY(U,$J,358.3,32510,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,32510,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,32511,0)
+ ;;=H53.462^^128^1662^27
+ ;;^UTILITY(U,$J,358.3,32511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34552,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,34552,1,4,0)
- ;;=4^I69.959
- ;;^UTILITY(U,$J,358.3,34552,2)
- ;;=^5007563
- ;;^UTILITY(U,$J,358.3,34553,0)
- ;;=I69.359^^131^1687^19
- ;;^UTILITY(U,$J,358.3,34553,1,0)
+ ;;^UTILITY(U,$J,358.3,32511,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Lt Side
+ ;;^UTILITY(U,$J,358.3,32511,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,32511,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,32512,0)
+ ;;=H53.461^^128^1662^26
+ ;;^UTILITY(U,$J,358.3,32512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34553,1,3,0)
- ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
- ;;^UTILITY(U,$J,358.3,34553,1,4,0)
- ;;=4^I69.359
- ;;^UTILITY(U,$J,358.3,34553,2)
- ;;=^5007508
- ;;^UTILITY(U,$J,358.3,34554,0)
- ;;=S14.109S^^131^1687^39
- ;;^UTILITY(U,$J,358.3,34554,1,0)
+ ;;^UTILITY(U,$J,358.3,32512,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Rt Side
+ ;;^UTILITY(U,$J,358.3,32512,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,32512,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,32513,0)
+ ;;=H53.72^^128^1662^12
+ ;;^UTILITY(U,$J,358.3,32513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34554,1,3,0)
- ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
- ;;^UTILITY(U,$J,358.3,34554,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,34554,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,34555,0)
- ;;=S34.109S^^131^1687^40
- ;;^UTILITY(U,$J,358.3,34555,1,0)
+ ;;^UTILITY(U,$J,358.3,32513,1,3,0)
+ ;;=3^Impaired Contrast Sensitivity
+ ;;^UTILITY(U,$J,358.3,32513,1,4,0)
+ ;;=4^H53.72
+ ;;^UTILITY(U,$J,358.3,32513,2)
+ ;;=^5006355
+ ;;^UTILITY(U,$J,358.3,32514,0)
+ ;;=H53.413^^128^1662^22
+ ;;^UTILITY(U,$J,358.3,32514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34555,1,3,0)
- ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord
- ;;^UTILITY(U,$J,358.3,34555,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,34555,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,34556,0)
- ;;=S24.109S^^131^1687^41
- ;;^UTILITY(U,$J,358.3,34556,1,0)
+ ;;^UTILITY(U,$J,358.3,32514,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Bilateral
+ ;;^UTILITY(U,$J,358.3,32514,1,4,0)
+ ;;=4^H53.413
+ ;;^UTILITY(U,$J,358.3,32514,2)
+ ;;=^5006327
+ ;;^UTILITY(U,$J,358.3,32515,0)
+ ;;=H53.411^^128^1662^20
+ ;;^UTILITY(U,$J,358.3,32515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34556,1,3,0)
- ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
- ;;^UTILITY(U,$J,358.3,34556,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,34556,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,34557,0)
- ;;=G89.0^^131^1688^1
- ;;^UTILITY(U,$J,358.3,34557,1,0)
+ ;;^UTILITY(U,$J,358.3,32515,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32515,1,4,0)
+ ;;=4^H53.411
+ ;;^UTILITY(U,$J,358.3,32515,2)
+ ;;=^5006325
+ ;;^UTILITY(U,$J,358.3,32516,0)
+ ;;=H53.412^^128^1662^21
+ ;;^UTILITY(U,$J,358.3,32516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34557,1,3,0)
- ;;=3^Central Pain Syndrome
- ;;^UTILITY(U,$J,358.3,34557,1,4,0)
- ;;=4^G89.0
- ;;^UTILITY(U,$J,358.3,34557,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,34558,0)
- ;;=G89.11^^131^1688^10
- ;;^UTILITY(U,$J,358.3,34558,1,0)
+ ;;^UTILITY(U,$J,358.3,32516,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32516,1,4,0)
+ ;;=4^H53.412
+ ;;^UTILITY(U,$J,358.3,32516,2)
+ ;;=^5006326
+ ;;^UTILITY(U,$J,358.3,32517,0)
+ ;;=H53.40^^128^1662^30
+ ;;^UTILITY(U,$J,358.3,32517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34558,1,3,0)
- ;;=3^Pain d/t Trauma,Acute
- ;;^UTILITY(U,$J,358.3,34558,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,34558,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,34559,0)
- ;;=G89.12^^131^1688^14
- ;;^UTILITY(U,$J,358.3,34559,1,0)
+ ;;^UTILITY(U,$J,358.3,32517,1,3,0)
+ ;;=3^Visual Field Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,32517,1,4,0)
+ ;;=4^H53.40
+ ;;^UTILITY(U,$J,358.3,32517,2)
+ ;;=^5006324
+ ;;^UTILITY(U,$J,358.3,32518,0)
+ ;;=H54.7^^128^1662^32
+ ;;^UTILITY(U,$J,358.3,32518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34559,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Acute
- ;;^UTILITY(U,$J,358.3,34559,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,34559,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,34560,0)
- ;;=G89.18^^131^1688^16
- ;;^UTILITY(U,$J,358.3,34560,1,0)
+ ;;^UTILITY(U,$J,358.3,32518,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,32518,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,32518,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,32519,0)
+ ;;=H47.9^^128^1662^31
+ ;;^UTILITY(U,$J,358.3,32519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34560,1,3,0)
- ;;=3^Postprocedural Pain,Oth Acute
- ;;^UTILITY(U,$J,358.3,34560,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,34560,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,34561,0)
- ;;=R52.^^131^1688^12
- ;;^UTILITY(U,$J,358.3,34561,1,0)
+ ;;^UTILITY(U,$J,358.3,32519,1,3,0)
+ ;;=3^Visual Pathways Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,32519,1,4,0)
+ ;;=4^H47.9
+ ;;^UTILITY(U,$J,358.3,32519,2)
+ ;;=^5006178
+ ;;^UTILITY(U,$J,358.3,32520,0)
+ ;;=H53.469^^128^1662^28
+ ;;^UTILITY(U,$J,358.3,32520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34561,1,3,0)
- ;;=3^Pain,Unspec
- ;;^UTILITY(U,$J,358.3,34561,1,4,0)
- ;;=4^R52.
- ;;^UTILITY(U,$J,358.3,34561,2)
- ;;=^5019514
- ;;^UTILITY(U,$J,358.3,34562,0)
- ;;=G89.21^^131^1688^11
- ;;^UTILITY(U,$J,358.3,34562,1,0)
+ ;;^UTILITY(U,$J,358.3,32520,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Unspec Side
+ ;;^UTILITY(U,$J,358.3,32520,1,4,0)
+ ;;=4^H53.469
+ ;;^UTILITY(U,$J,358.3,32520,2)
+ ;;=^5006343
+ ;;^UTILITY(U,$J,358.3,32521,0)
+ ;;=H54.3^^128^1663^40
+ ;;^UTILITY(U,$J,358.3,32521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34562,1,3,0)
- ;;=3^Pain d/t Trauma,Chronic
- ;;^UTILITY(U,$J,358.3,34562,1,4,0)
- ;;=4^G89.21
- ;;^UTILITY(U,$J,358.3,34562,2)
- ;;=^5004155
- ;;^UTILITY(U,$J,358.3,34563,0)
- ;;=G89.22^^131^1688^15
- ;;^UTILITY(U,$J,358.3,34563,1,0)
+ ;;^UTILITY(U,$J,358.3,32521,1,3,0)
+ ;;=3^OU Unqualified Visual Loss Cat 9
+ ;;^UTILITY(U,$J,358.3,32521,1,4,0)
+ ;;=4^H54.3
+ ;;^UTILITY(U,$J,358.3,32521,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,32522,0)
+ ;;=H54.61^^128^1663^39
+ ;;^UTILITY(U,$J,358.3,32522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34563,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Chronic
- ;;^UTILITY(U,$J,358.3,34563,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,34563,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,34564,0)
- ;;=G89.28^^131^1688^17
+ ;;^UTILITY(U,$J,358.3,32522,1,3,0)
+ ;;=3^OD Unqualified Visual Loss Cat 9/OS Normal
+ ;;^UTILITY(U,$J,358.3,32522,1,4,0)
+ ;;=4^H54.61

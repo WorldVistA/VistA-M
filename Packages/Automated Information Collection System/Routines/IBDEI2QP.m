@@ -1,132 +1,128 @@
-IBDEI2QP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45977,1,3,0)
- ;;=3^Subluxation,Left Knee,Sequela
- ;;^UTILITY(U,$J,358.3,45977,1,4,0)
- ;;=4^S83.092S
- ;;^UTILITY(U,$J,358.3,45977,2)
- ;;=^5137018
- ;;^UTILITY(U,$J,358.3,45978,0)
- ;;=S73.005S^^203^2269^4
- ;;^UTILITY(U,$J,358.3,45978,1,0)
+ ;;^UTILITY(U,$J,358.3,43693,0)
+ ;;=Z59.0^^162^2139^4
+ ;;^UTILITY(U,$J,358.3,43693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45978,1,3,0)
- ;;=3^Dislocation,Left Hip,Sequela
- ;;^UTILITY(U,$J,358.3,45978,1,4,0)
- ;;=4^S73.005S
- ;;^UTILITY(U,$J,358.3,45978,2)
- ;;=^5039236
- ;;^UTILITY(U,$J,358.3,45979,0)
- ;;=S73.004S^^203^2269^10
- ;;^UTILITY(U,$J,358.3,45979,1,0)
+ ;;^UTILITY(U,$J,358.3,43693,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,43693,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,43693,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,43694,0)
+ ;;=Z59.1^^162^2139^6
+ ;;^UTILITY(U,$J,358.3,43694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45979,1,3,0)
- ;;=3^Dislocation,Right Hip,Sequela
- ;;^UTILITY(U,$J,358.3,45979,1,4,0)
- ;;=4^S73.004S
- ;;^UTILITY(U,$J,358.3,45979,2)
- ;;=^5039233
- ;;^UTILITY(U,$J,358.3,45980,0)
- ;;=S73.002S^^203^2269^14
- ;;^UTILITY(U,$J,358.3,45980,1,0)
+ ;;^UTILITY(U,$J,358.3,43694,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,43694,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,43694,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,43695,0)
+ ;;=Z59.5^^162^2139^2
+ ;;^UTILITY(U,$J,358.3,43695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45980,1,3,0)
- ;;=3^Subluxation,Left Hip,Sequela
- ;;^UTILITY(U,$J,358.3,45980,1,4,0)
- ;;=4^S73.002S
- ;;^UTILITY(U,$J,358.3,45980,2)
- ;;=^5039230
- ;;^UTILITY(U,$J,358.3,45981,0)
- ;;=S73.001S^^203^2269^18
- ;;^UTILITY(U,$J,358.3,45981,1,0)
+ ;;^UTILITY(U,$J,358.3,43695,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,43695,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,43695,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,43696,0)
+ ;;=Z60.2^^162^2139^8
+ ;;^UTILITY(U,$J,358.3,43696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45981,1,3,0)
- ;;=3^Subluxation,Right Hip,Sequela
- ;;^UTILITY(U,$J,358.3,45981,1,4,0)
- ;;=4^S73.001S
- ;;^UTILITY(U,$J,358.3,45981,2)
- ;;=^5039227
- ;;^UTILITY(U,$J,358.3,45982,0)
- ;;=S12.9XXS^^203^2270^27
- ;;^UTILITY(U,$J,358.3,45982,1,0)
+ ;;^UTILITY(U,$J,358.3,43696,1,3,0)
+ ;;=3^Problems Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,43696,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,43696,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,43697,0)
+ ;;=Z74.2^^162^2139^1
+ ;;^UTILITY(U,$J,358.3,43697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45982,1,3,0)
- ;;=3^Fx of Neck,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,45982,1,4,0)
- ;;=4^S12.9XXS
- ;;^UTILITY(U,$J,358.3,45982,2)
- ;;=^5021964
- ;;^UTILITY(U,$J,358.3,45983,0)
- ;;=S22.9XXS^^203^2270^5
- ;;^UTILITY(U,$J,358.3,45983,1,0)
+ ;;^UTILITY(U,$J,358.3,43697,1,3,0)
+ ;;=3^Assistance at Home Needed
+ ;;^UTILITY(U,$J,358.3,43697,1,4,0)
+ ;;=4^Z74.2
+ ;;^UTILITY(U,$J,358.3,43697,2)
+ ;;=^5063285
+ ;;^UTILITY(U,$J,358.3,43698,0)
+ ;;=Z75.5^^162^2139^3
+ ;;^UTILITY(U,$J,358.3,43698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45983,1,3,0)
- ;;=3^Fx of Bony Thorax,Sequela
- ;;^UTILITY(U,$J,358.3,45983,1,4,0)
- ;;=4^S22.9XXS
- ;;^UTILITY(U,$J,358.3,45983,2)
- ;;=^5023158
- ;;^UTILITY(U,$J,358.3,45984,0)
- ;;=S22.41XS^^203^2270^34
- ;;^UTILITY(U,$J,358.3,45984,1,0)
+ ;;^UTILITY(U,$J,358.3,43698,1,3,0)
+ ;;=3^Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,43698,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,43698,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,43699,0)
+ ;;=Z59.3^^162^2139^9
+ ;;^UTILITY(U,$J,358.3,43699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45984,1,3,0)
- ;;=3^Fx of Ribs,Right Side,Sequela
- ;;^UTILITY(U,$J,358.3,45984,1,4,0)
- ;;=4^S22.41XS
- ;;^UTILITY(U,$J,358.3,45984,2)
- ;;=^5023128
- ;;^UTILITY(U,$J,358.3,45985,0)
- ;;=S22.42XS^^203^2270^33
- ;;^UTILITY(U,$J,358.3,45985,1,0)
+ ;;^UTILITY(U,$J,358.3,43699,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,43699,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,43699,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,43700,0)
+ ;;=Z63.8^^162^2139^7
+ ;;^UTILITY(U,$J,358.3,43700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45985,1,3,0)
- ;;=3^Fx of Ribs,Left Side,Sequela
- ;;^UTILITY(U,$J,358.3,45985,1,4,0)
- ;;=4^S22.42XS
- ;;^UTILITY(U,$J,358.3,45985,2)
- ;;=^5023134
- ;;^UTILITY(U,$J,358.3,45986,0)
- ;;=S22.43XS^^203^2270^32
- ;;^UTILITY(U,$J,358.3,45986,1,0)
+ ;;^UTILITY(U,$J,358.3,43700,1,3,0)
+ ;;=3^Primary Support Group Problems
+ ;;^UTILITY(U,$J,358.3,43700,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,43700,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,43701,0)
+ ;;=Z59.8^^162^2139^5
+ ;;^UTILITY(U,$J,358.3,43701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45986,1,3,0)
- ;;=3^Fx of Ribs,Bilateral,Sequela
- ;;^UTILITY(U,$J,358.3,45986,1,4,0)
- ;;=4^S22.43XS
- ;;^UTILITY(U,$J,358.3,45986,2)
- ;;=^5023140
- ;;^UTILITY(U,$J,358.3,45987,0)
- ;;=S22.008S^^203^2270^43
- ;;^UTILITY(U,$J,358.3,45987,1,0)
+ ;;^UTILITY(U,$J,358.3,43701,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,43701,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,43701,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,43702,0)
+ ;;=F81.9^^162^2140^2
+ ;;^UTILITY(U,$J,358.3,43702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45987,1,3,0)
- ;;=3^Fx of Thoracic Vertebra,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,45987,1,4,0)
- ;;=4^S22.008S
- ;;^UTILITY(U,$J,358.3,45987,2)
- ;;=^5022828
- ;;^UTILITY(U,$J,358.3,45988,0)
- ;;=S32.9XXS^^203^2270^24
- ;;^UTILITY(U,$J,358.3,45988,1,0)
+ ;;^UTILITY(U,$J,358.3,43702,1,3,0)
+ ;;=3^Developmental Disorder of Scholastic Skills,Unspec
+ ;;^UTILITY(U,$J,358.3,43702,1,4,0)
+ ;;=4^F81.9
+ ;;^UTILITY(U,$J,358.3,43702,2)
+ ;;=^5003682
+ ;;^UTILITY(U,$J,358.3,43703,0)
+ ;;=Z86.59^^162^2140^4
+ ;;^UTILITY(U,$J,358.3,43703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45988,1,3,0)
- ;;=3^Fx of Lumbosacral Spine & Pelvis,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,45988,1,4,0)
- ;;=4^S32.9XXS
- ;;^UTILITY(U,$J,358.3,45988,2)
- ;;=^5025126
- ;;^UTILITY(U,$J,358.3,45989,0)
- ;;=S42.001S^^203^2270^11
- ;;^UTILITY(U,$J,358.3,45989,1,0)
+ ;;^UTILITY(U,$J,358.3,43703,1,3,0)
+ ;;=3^Personal Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,43703,1,4,0)
+ ;;=4^Z86.59
+ ;;^UTILITY(U,$J,358.3,43703,2)
+ ;;=^5063471
+ ;;^UTILITY(U,$J,358.3,43704,0)
+ ;;=F48.9^^162^2140^3
+ ;;^UTILITY(U,$J,358.3,43704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45989,1,3,0)
- ;;=3^Fx of Clavicle,Right,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,45989,1,4,0)
- ;;=4^S42.001S
- ;;^UTILITY(U,$J,358.3,45989,2)
- ;;=^5026375
- ;;^UTILITY(U,$J,358.3,45990,0)
- ;;=S42.002S^^203^2270^10
+ ;;^UTILITY(U,$J,358.3,43704,1,3,0)
+ ;;=3^Nonpsychotic Mental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,43704,1,4,0)
+ ;;=4^F48.9
+ ;;^UTILITY(U,$J,358.3,43704,2)
+ ;;=^5003596
+ ;;^UTILITY(U,$J,358.3,43705,0)
+ ;;=Z91.83^^162^2140^5
+ ;;^UTILITY(U,$J,358.3,43705,1,0)
+ ;;=^358.31IA^4^2

@@ -1,122 +1,124 @@
-IBDEI2PW ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45597,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,45597,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,45598,0)
- ;;=W18.11XD^^200^2247^64
- ;;^UTILITY(U,$J,358.3,45598,1,0)
+ ;;^UTILITY(U,$J,358.3,43320,1,4,0)
+ ;;=4^L89.324
+ ;;^UTILITY(U,$J,358.3,43320,2)
+ ;;=^5009403
+ ;;^UTILITY(U,$J,358.3,43321,0)
+ ;;=L89.510^^158^2105^48
+ ;;^UTILITY(U,$J,358.3,43321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45598,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45598,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,45598,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,45599,0)
- ;;=W18.12XA^^200^2247^61
- ;;^UTILITY(U,$J,358.3,45599,1,0)
+ ;;^UTILITY(U,$J,358.3,43321,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Unstageable
+ ;;^UTILITY(U,$J,358.3,43321,1,4,0)
+ ;;=4^L89.510
+ ;;^UTILITY(U,$J,358.3,43321,2)
+ ;;=^5009415
+ ;;^UTILITY(U,$J,358.3,43322,0)
+ ;;=L89.519^^158^2105^47
+ ;;^UTILITY(U,$J,358.3,43322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45599,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,45599,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,45599,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,45600,0)
- ;;=W18.12XD^^200^2247^62
- ;;^UTILITY(U,$J,358.3,45600,1,0)
+ ;;^UTILITY(U,$J,358.3,43322,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43322,1,4,0)
+ ;;=4^L89.519
+ ;;^UTILITY(U,$J,358.3,43322,2)
+ ;;=^5133673
+ ;;^UTILITY(U,$J,358.3,43323,0)
+ ;;=L89.511^^158^2105^43
+ ;;^UTILITY(U,$J,358.3,43323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45600,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45600,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,45600,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,45601,0)
- ;;=W18.2XXA^^200^2247^73
- ;;^UTILITY(U,$J,358.3,45601,1,0)
+ ;;^UTILITY(U,$J,358.3,43323,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 1
+ ;;^UTILITY(U,$J,358.3,43323,1,4,0)
+ ;;=4^L89.511
+ ;;^UTILITY(U,$J,358.3,43323,2)
+ ;;=^5009416
+ ;;^UTILITY(U,$J,358.3,43324,0)
+ ;;=L89.512^^158^2105^44
+ ;;^UTILITY(U,$J,358.3,43324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45601,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,45601,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,45601,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,45602,0)
- ;;=W18.2XXD^^200^2247^74
- ;;^UTILITY(U,$J,358.3,45602,1,0)
+ ;;^UTILITY(U,$J,358.3,43324,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 2
+ ;;^UTILITY(U,$J,358.3,43324,1,4,0)
+ ;;=4^L89.512
+ ;;^UTILITY(U,$J,358.3,43324,2)
+ ;;=^5009417
+ ;;^UTILITY(U,$J,358.3,43325,0)
+ ;;=L89.513^^158^2105^45
+ ;;^UTILITY(U,$J,358.3,43325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45602,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45602,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,45602,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,45603,0)
- ;;=W18.40XA^^200^2247^105
- ;;^UTILITY(U,$J,358.3,45603,1,0)
+ ;;^UTILITY(U,$J,358.3,43325,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 3
+ ;;^UTILITY(U,$J,358.3,43325,1,4,0)
+ ;;=4^L89.513
+ ;;^UTILITY(U,$J,358.3,43325,2)
+ ;;=^5009418
+ ;;^UTILITY(U,$J,358.3,43326,0)
+ ;;=L89.514^^158^2105^46
+ ;;^UTILITY(U,$J,358.3,43326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45603,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,45603,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,45603,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,45604,0)
- ;;=W18.40XD^^200^2247^106
- ;;^UTILITY(U,$J,358.3,45604,1,0)
+ ;;^UTILITY(U,$J,358.3,43326,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 4
+ ;;^UTILITY(U,$J,358.3,43326,1,4,0)
+ ;;=4^L89.514
+ ;;^UTILITY(U,$J,358.3,43326,2)
+ ;;=^5009419
+ ;;^UTILITY(U,$J,358.3,43327,0)
+ ;;=L89.520^^158^2105^6
+ ;;^UTILITY(U,$J,358.3,43327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45604,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45604,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,45604,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,45605,0)
- ;;=W18.41XA^^200^2247^107
- ;;^UTILITY(U,$J,358.3,45605,1,0)
+ ;;^UTILITY(U,$J,358.3,43327,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Unstageable
+ ;;^UTILITY(U,$J,358.3,43327,1,4,0)
+ ;;=4^L89.520
+ ;;^UTILITY(U,$J,358.3,43327,2)
+ ;;=^5009420
+ ;;^UTILITY(U,$J,358.3,43328,0)
+ ;;=L89.529^^158^2105^5
+ ;;^UTILITY(U,$J,358.3,43328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45605,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,45605,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,45605,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,45606,0)
- ;;=W18.41XD^^200^2247^108
- ;;^UTILITY(U,$J,358.3,45606,1,0)
+ ;;^UTILITY(U,$J,358.3,43328,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43328,1,4,0)
+ ;;=4^L89.529
+ ;;^UTILITY(U,$J,358.3,43328,2)
+ ;;=^5133674
+ ;;^UTILITY(U,$J,358.3,43329,0)
+ ;;=L89.521^^158^2105^1
+ ;;^UTILITY(U,$J,358.3,43329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45606,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45606,1,4,0)
- ;;=4^W18.41XD
- ;;^UTILITY(U,$J,358.3,45606,2)
- ;;=^5059822
- ;;^UTILITY(U,$J,358.3,45607,0)
- ;;=W18.42XA^^200^2247^109
- ;;^UTILITY(U,$J,358.3,45607,1,0)
+ ;;^UTILITY(U,$J,358.3,43329,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 1
+ ;;^UTILITY(U,$J,358.3,43329,1,4,0)
+ ;;=4^L89.521
+ ;;^UTILITY(U,$J,358.3,43329,2)
+ ;;=^5009421
+ ;;^UTILITY(U,$J,358.3,43330,0)
+ ;;=L89.522^^158^2105^2
+ ;;^UTILITY(U,$J,358.3,43330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45607,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,45607,1,4,0)
- ;;=4^W18.42XA
- ;;^UTILITY(U,$J,358.3,45607,2)
- ;;=^5059824
- ;;^UTILITY(U,$J,358.3,45608,0)
- ;;=W18.42XD^^200^2247^110
- ;;^UTILITY(U,$J,358.3,45608,1,0)
+ ;;^UTILITY(U,$J,358.3,43330,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 2
+ ;;^UTILITY(U,$J,358.3,43330,1,4,0)
+ ;;=4^L89.522
+ ;;^UTILITY(U,$J,358.3,43330,2)
+ ;;=^5009422
+ ;;^UTILITY(U,$J,358.3,43331,0)
+ ;;=L89.523^^158^2105^3
+ ;;^UTILITY(U,$J,358.3,43331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45608,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45608,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,45608,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,45609,0)
- ;;=W18.43XA^^200^2247^103
- ;;^UTILITY(U,$J,358.3,45609,1,0)
+ ;;^UTILITY(U,$J,358.3,43331,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 3
+ ;;^UTILITY(U,$J,358.3,43331,1,4,0)
+ ;;=4^L89.523
+ ;;^UTILITY(U,$J,358.3,43331,2)
+ ;;=^5009423
+ ;;^UTILITY(U,$J,358.3,43332,0)
+ ;;=L89.524^^158^2105^4
+ ;;^UTILITY(U,$J,358.3,43332,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43332,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 4

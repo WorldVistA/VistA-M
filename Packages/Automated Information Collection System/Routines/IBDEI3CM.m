@@ -1,138 +1,98 @@
-IBDEI3CM ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3CM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56257,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,56257,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,56257,2)
- ;;=^5003770^F02.81
- ;;^UTILITY(U,$J,358.3,56258,0)
- ;;=G20.^^256^2795^25
- ;;^UTILITY(U,$J,358.3,56258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56258,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,56258,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,56258,2)
- ;;=^5003770^F02.80
- ;;^UTILITY(U,$J,358.3,56259,0)
- ;;=G31.01^^256^2795^26
- ;;^UTILITY(U,$J,358.3,56259,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56259,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,56259,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,56259,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,56260,0)
- ;;=G23.1^^256^2795^28
- ;;^UTILITY(U,$J,358.3,56260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56260,1,3,0)
- ;;=3^Progressive Supranuclear Ophthalmoplegia
- ;;^UTILITY(U,$J,358.3,56260,1,4,0)
- ;;=4^G23.1
- ;;^UTILITY(U,$J,358.3,56260,2)
- ;;=^5003780
- ;;^UTILITY(U,$J,358.3,56261,0)
- ;;=Z79.2^^256^2796^1
- ;;^UTILITY(U,$J,358.3,56261,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56261,1,3,0)
- ;;=3^Antibiotics
- ;;^UTILITY(U,$J,358.3,56261,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,56261,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,56262,0)
- ;;=Z79.01^^256^2796^2
- ;;^UTILITY(U,$J,358.3,56262,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56262,1,3,0)
- ;;=3^Anticoagulants
- ;;^UTILITY(U,$J,358.3,56262,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,56262,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,56263,0)
- ;;=Z79.02^^256^2796^3
- ;;^UTILITY(U,$J,358.3,56263,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56263,1,3,0)
- ;;=3^Antiplatelets/Antithrombotics
- ;;^UTILITY(U,$J,358.3,56263,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,56263,2)
- ;;=^5063331
- ;;^UTILITY(U,$J,358.3,56264,0)
- ;;=Z79.82^^256^2796^4
- ;;^UTILITY(U,$J,358.3,56264,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56264,1,3,0)
- ;;=3^Aspirin
- ;;^UTILITY(U,$J,358.3,56264,1,4,0)
- ;;=4^Z79.82
- ;;^UTILITY(U,$J,358.3,56264,2)
- ;;=^5063340
- ;;^UTILITY(U,$J,358.3,56265,0)
- ;;=Z79.4^^256^2796^5
- ;;^UTILITY(U,$J,358.3,56265,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56265,1,3,0)
- ;;=3^Insulin
- ;;^UTILITY(U,$J,358.3,56265,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,56265,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,56266,0)
- ;;=Z79.1^^256^2796^7
- ;;^UTILITY(U,$J,358.3,56266,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56266,1,3,0)
- ;;=3^NSAID
- ;;^UTILITY(U,$J,358.3,56266,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,56266,2)
- ;;=^5063332
- ;;^UTILITY(U,$J,358.3,56267,0)
- ;;=Z79.891^^256^2796^8
- ;;^UTILITY(U,$J,358.3,56267,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56267,1,3,0)
- ;;=3^Opiate Analgesic
- ;;^UTILITY(U,$J,358.3,56267,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,56267,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,56268,0)
- ;;=Z79.51^^256^2796^9
- ;;^UTILITY(U,$J,358.3,56268,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56268,1,3,0)
- ;;=3^Steroids-Inhaled
- ;;^UTILITY(U,$J,358.3,56268,1,4,0)
- ;;=4^Z79.51
- ;;^UTILITY(U,$J,358.3,56268,2)
- ;;=^5063335
- ;;^UTILITY(U,$J,358.3,56269,0)
- ;;=Z79.52^^256^2796^10
- ;;^UTILITY(U,$J,358.3,56269,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56269,1,3,0)
- ;;=3^Steroids-Systemic
- ;;^UTILITY(U,$J,358.3,56269,1,4,0)
- ;;=4^Z79.52
- ;;^UTILITY(U,$J,358.3,56269,2)
- ;;=^5063336
- ;;^UTILITY(U,$J,358.3,56270,0)
- ;;=Z79.899^^256^2796^6
- ;;^UTILITY(U,$J,358.3,56270,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56270,1,3,0)
- ;;=3^Long Term Current Drug Therapy NEC
- ;;^UTILITY(U,$J,358.3,56270,1,4,0)
- ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.6,8,15,0)
+ ;;=^357.615I^4^3
+ ;;^UTILITY(U,$J,358.6,8,15,2,0)
+ ;;=RECOMMENDED TEXT-SHORT NAME^40^2
+ ;;^UTILITY(U,$J,358.6,8,15,3,0)
+ ;;=RECOMMENDED HEADER^30^3
+ ;;^UTILITY(U,$J,358.6,8,15,4,0)
+ ;;=SHORT NAME FROM CPT FILE^28^4
+ ;;^UTILITY(U,$J,358.6,9,0)
+ ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,9,1,0)
+ ;;=^^1^1^2951023^
+ ;;^UTILITY(U,$J,358.6,9,1,1,0)
+ ;;=Used for inputting the visit type that applies to the visit.
+ ;;^UTILITY(U,$J,358.6,9,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,9,3)
+ ;;=VISIT TYPE OF VISIT
+ ;;^UTILITY(U,$J,358.6,9,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,9,10)
+ ;;=Enter an active Visit Type code.
+ ;;^UTILITY(U,$J,358.6,9,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,9,12)
+ ;;=ENCOUNTER^5
+ ;;^UTILITY(U,$J,358.6,9,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,9,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,9,17)
+ ;;=D SLCTVST^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,9,18)
+ ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
+ ;;^UTILITY(U,$J,358.6,9,19)
+ ;;=D VST^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,10,0)
+ ;;=PX SELECT HEALTH FACTORS^HF^IBDFN10^PATIENT CARE ENCOUNTER^^3^2^^1^^^1^11
+ ;;^UTILITY(U,$J,358.6,10,1,0)
+ ;;=^^1^1^2951208^^^
+ ;;^UTILITY(U,$J,358.6,10,1,1,0)
+ ;;=Allows health factors from the HEALTH FACTORS file to be selected.
+ ;;^UTILITY(U,$J,358.6,10,2)
+ ;;=Internal Number^9^^^^^^^^^^^^^^^0^0
+ ;;^UTILITY(U,$J,358.6,10,3)
+ ;;=PATIENT HEALTH FACTORS
+ ;;^UTILITY(U,$J,358.6,10,11)
+ ;;=D TESTHF^PXAPIIB
+ ;;^UTILITY(U,$J,358.6,10,15,0)
+ ;;=^357.615I^4^4
+ ;;^UTILITY(U,$J,358.6,10,15,1,0)
+ ;;=Health Factor Name^30^2^^HEALTH FACTOR
+ ;;^UTILITY(U,$J,358.6,10,15,2,0)
+ ;;=Code^5^3
+ ;;^UTILITY(U,$J,358.6,10,15,3,0)
+ ;;=Short Name^10^5
+ ;;^UTILITY(U,$J,358.6,10,15,4,0)
+ ;;=Sex Specific^6^6^^FOR
+ ;;^UTILITY(U,$J,358.6,10,16)
+ ;;=n^^^^n
+ ;;^UTILITY(U,$J,358.6,11,0)
+ ;;=PX INPUT HEALTH FACTORS^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,11,1,0)
+ ;;=^^1^1^2951208^^^
+ ;;^UTILITY(U,$J,358.6,11,1,1,0)
+ ;;=Used for inputting health factors determined to apply to the patient.
+ ;;^UTILITY(U,$J,358.6,11,2)
+ ;;=^^^^^^^^^^^^^^^^^0
+ ;;^UTILITY(U,$J,358.6,11,3)
+ ;;=HEALTH FACTORS
+ ;;^UTILITY(U,$J,358.6,11,10)
+ ;;=Enter a Patient Health Factor.
+ ;;^UTILITY(U,$J,358.6,11,11)
+ ;;=D TESTHF^PXAPIIB
+ ;;^UTILITY(U,$J,358.6,11,12)
+ ;;=HEALTH FACTORS^1^^^2
+ ;;^UTILITY(U,$J,358.6,11,13,0)
+ ;;=^358.613V^3^3
+ ;;^UTILITY(U,$J,358.6,11,13,1,0)
+ ;;=10;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,13,2,0)
+ ;;=11;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,13,3,0)
+ ;;=12;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,14)
+ ;;=S Y=$$DSPLYHF^PXAPIIB(Y)
+ ;;^UTILITY(U,$J,358.6,11,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,11,17)
+ ;;=D SLCTHF^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,11,18)
+ ;;=S IBDF("OTHER")="9999999.64^I '$P(^(0),U,10),$P(^(0),U,10)=""F"",'$P(^(0),U,11)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Health Factors")
+ ;;^UTILITY(U,$J,358.6,11,19)
+ ;;=D HF^IBDFN14(X)

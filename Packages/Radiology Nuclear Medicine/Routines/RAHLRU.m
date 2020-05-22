@@ -1,5 +1,5 @@
-RAHLRU ;HISC/GJC - utilities for HL7 messaging ;03/16/98  11:03
- ;;5.0;Radiology/Nuclear Medicine;**10,25,81,103,47,125**;Mar 16, 1998;Build 1
+RAHLRU ;HISC/GJC - utilities for HL7 messaging ;10 Sep 2019 3:57 PM
+ ;;5.0;Radiology/Nuclear Medicine;**10,25,81,103,47,125,162**;Mar 16, 1998;Build 2
  ;
  ; 08/13/2010 BP/KAM RA*5*103 Outside Report Status Code needs 'F'
  ;Integration Agreements
@@ -198,6 +198,11 @@ GENERATE ;Broadcast the HL7 message (courtesy of the VistA HL7 application)
  ;
  ;Note: Events 1 & 2 are independent of one another. They will never
  ;      set the HLP array in the same process.
+ ;
+ ;//RA5P162 update //
+ ;3 - exclude subscribers that are not teleradiology (file: 79.7)
+ D:$D(RASSSX1(HLEID)) GETHLP^RAHLRS1(HLEID,.HLP,"RASSSX1")
+ ;//RA5P162 update end //
  ;
  D GENERATE^HLMA(RAEID,HLARYTYP,HLFORMAT,.HLRESLT,HLMTIEN,.HLP)
  D GSTATUS^RAHLACK(.HLRESLT,RAEID) K HLRESLT

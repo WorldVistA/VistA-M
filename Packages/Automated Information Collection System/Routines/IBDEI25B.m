@@ -1,128 +1,130 @@
-IBDEI25B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25B ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36403,2)
- ;;=^5007133
- ;;^UTILITY(U,$J,358.3,36404,0)
- ;;=I25.759^^137^1760^36
- ;;^UTILITY(U,$J,358.3,36404,1,0)
+ ;;^UTILITY(U,$J,358.3,34270,1,3,0)
+ ;;=3^Paraphilic D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34270,1,4,0)
+ ;;=4^F65.9
+ ;;^UTILITY(U,$J,358.3,34270,2)
+ ;;=^5003661
+ ;;^UTILITY(U,$J,358.3,34271,0)
+ ;;=F60.0^^134^1737^8
+ ;;^UTILITY(U,$J,358.3,34271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36404,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36404,1,4,0)
- ;;=4^I25.759
- ;;^UTILITY(U,$J,358.3,36404,2)
- ;;=^5007134
- ;;^UTILITY(U,$J,358.3,36405,0)
- ;;=I25.750^^137^1760^37
- ;;^UTILITY(U,$J,358.3,36405,1,0)
+ ;;^UTILITY(U,$J,358.3,34271,1,3,0)
+ ;;=3^Paranoid Personality D/O
+ ;;^UTILITY(U,$J,358.3,34271,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,34271,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,34272,0)
+ ;;=F60.1^^134^1737^12
+ ;;^UTILITY(U,$J,358.3,34272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36405,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36405,1,4,0)
- ;;=4^I25.750
- ;;^UTILITY(U,$J,358.3,36405,2)
- ;;=^5007131
- ;;^UTILITY(U,$J,358.3,36406,0)
- ;;=I25.731^^137^1760^39
- ;;^UTILITY(U,$J,358.3,36406,1,0)
+ ;;^UTILITY(U,$J,358.3,34272,1,3,0)
+ ;;=3^Schizoid Personality D/O
+ ;;^UTILITY(U,$J,358.3,34272,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,34272,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,34273,0)
+ ;;=F21.^^134^1737^13
+ ;;^UTILITY(U,$J,358.3,34273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36406,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36406,1,4,0)
- ;;=4^I25.731
- ;;^UTILITY(U,$J,358.3,36406,2)
- ;;=^5007128
- ;;^UTILITY(U,$J,358.3,36407,0)
- ;;=I25.738^^137^1760^38
- ;;^UTILITY(U,$J,358.3,36407,1,0)
+ ;;^UTILITY(U,$J,358.3,34273,1,3,0)
+ ;;=3^Schizotypal Personality D/O
+ ;;^UTILITY(U,$J,358.3,34273,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,34273,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,34274,0)
+ ;;=F60.5^^134^1737^7
+ ;;^UTILITY(U,$J,358.3,34274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36407,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36407,1,4,0)
- ;;=4^I25.738
- ;;^UTILITY(U,$J,358.3,36407,2)
- ;;=^5007129
- ;;^UTILITY(U,$J,358.3,36408,0)
- ;;=I25.739^^137^1760^40
- ;;^UTILITY(U,$J,358.3,36408,1,0)
+ ;;^UTILITY(U,$J,358.3,34274,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality D/O
+ ;;^UTILITY(U,$J,358.3,34274,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,34274,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,34275,0)
+ ;;=F60.4^^134^1737^5
+ ;;^UTILITY(U,$J,358.3,34275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36408,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36408,1,4,0)
- ;;=4^I25.739
- ;;^UTILITY(U,$J,358.3,36408,2)
- ;;=^5007130
- ;;^UTILITY(U,$J,358.3,36409,0)
- ;;=I25.730^^137^1760^41
- ;;^UTILITY(U,$J,358.3,36409,1,0)
+ ;;^UTILITY(U,$J,358.3,34275,1,3,0)
+ ;;=3^Histrionic Personality D/O
+ ;;^UTILITY(U,$J,358.3,34275,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,34275,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,34276,0)
+ ;;=F60.7^^134^1737^4
+ ;;^UTILITY(U,$J,358.3,34276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36409,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36409,1,4,0)
- ;;=4^I25.730
- ;;^UTILITY(U,$J,358.3,36409,2)
- ;;=^5007127
- ;;^UTILITY(U,$J,358.3,36410,0)
- ;;=I25.791^^137^1760^24
- ;;^UTILITY(U,$J,358.3,36410,1,0)
+ ;;^UTILITY(U,$J,358.3,34276,1,3,0)
+ ;;=3^Dependent Personality D/O
+ ;;^UTILITY(U,$J,358.3,34276,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,34276,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,34277,0)
+ ;;=F60.2^^134^1737^1
+ ;;^UTILITY(U,$J,358.3,34277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36410,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36410,1,4,0)
- ;;=4^I25.791
- ;;^UTILITY(U,$J,358.3,36410,2)
- ;;=^5007140
- ;;^UTILITY(U,$J,358.3,36411,0)
- ;;=I25.798^^137^1760^22
- ;;^UTILITY(U,$J,358.3,36411,1,0)
+ ;;^UTILITY(U,$J,358.3,34277,1,3,0)
+ ;;=3^Antisocial Personality D/O
+ ;;^UTILITY(U,$J,358.3,34277,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,34277,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,34278,0)
+ ;;=F60.81^^134^1737^6
+ ;;^UTILITY(U,$J,358.3,34278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36411,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36411,1,4,0)
- ;;=4^I25.798
- ;;^UTILITY(U,$J,358.3,36411,2)
- ;;=^5133558
- ;;^UTILITY(U,$J,358.3,36412,0)
- ;;=I25.799^^137^1760^26
- ;;^UTILITY(U,$J,358.3,36412,1,0)
+ ;;^UTILITY(U,$J,358.3,34278,1,3,0)
+ ;;=3^Narcissistic Personality D/O
+ ;;^UTILITY(U,$J,358.3,34278,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,34278,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,34279,0)
+ ;;=F60.6^^134^1737^2
+ ;;^UTILITY(U,$J,358.3,34279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36412,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36412,1,4,0)
- ;;=4^I25.799
- ;;^UTILITY(U,$J,358.3,36412,2)
- ;;=^5133559
- ;;^UTILITY(U,$J,358.3,36413,0)
- ;;=I25.790^^137^1760^28
- ;;^UTILITY(U,$J,358.3,36413,1,0)
+ ;;^UTILITY(U,$J,358.3,34279,1,3,0)
+ ;;=3^Avoidant Personality D/O
+ ;;^UTILITY(U,$J,358.3,34279,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,34279,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,34280,0)
+ ;;=F60.3^^134^1737^3
+ ;;^UTILITY(U,$J,358.3,34280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36413,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36413,1,4,0)
- ;;=4^I25.790
- ;;^UTILITY(U,$J,358.3,36413,2)
- ;;=^5007139
- ;;^UTILITY(U,$J,358.3,36414,0)
- ;;=I25.111^^137^1760^29
- ;;^UTILITY(U,$J,358.3,36414,1,0)
+ ;;^UTILITY(U,$J,358.3,34280,1,3,0)
+ ;;=3^Borderline Personality D/O
+ ;;^UTILITY(U,$J,358.3,34280,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,34280,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,34281,0)
+ ;;=F60.89^^134^1737^10
+ ;;^UTILITY(U,$J,358.3,34281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36414,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,36414,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,36414,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,36415,0)
- ;;=I25.118^^137^1760^30
- ;;^UTILITY(U,$J,358.3,36415,1,0)
+ ;;^UTILITY(U,$J,358.3,34281,1,3,0)
+ ;;=3^Personality D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,34281,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,34281,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,34282,0)
+ ;;=F60.9^^134^1737^11
+ ;;^UTILITY(U,$J,358.3,34282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36415,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,36415,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,36415,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,36416,0)
- ;;=I25.119^^137^1760^31
+ ;;^UTILITY(U,$J,358.3,34282,1,3,0)
+ ;;=3^Personality D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,34282,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,34282,2)
+ ;;=^5003639

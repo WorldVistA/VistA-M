@@ -1,356 +1,130 @@
-IBDEI0YK ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0YK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45341,1,4,0)
- ;;=4^I78.1
- ;;^UTILITY(U,$J,358.3,45341,2)
- ;;=^269807
- ;;^UTILITY(U,$J,358.3,45342,0)
- ;;=Z95.0^^136^1932^61
- ;;^UTILITY(U,$J,358.3,45342,1,0)
+ ;;^UTILITY(U,$J,358.3,15397,0)
+ ;;=C7A.024^^85^847^23
+ ;;^UTILITY(U,$J,358.3,15397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45342,1,3,0)
- ;;=3^Presence of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,45342,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,45342,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,45343,0)
- ;;=I73.9^^136^1932^55
- ;;^UTILITY(U,$J,358.3,45343,1,0)
+ ;;^UTILITY(U,$J,358.3,15397,1,3,0)
+ ;;=3^Carcinoid,Malignant,Descending
+ ;;^UTILITY(U,$J,358.3,15397,1,4,0)
+ ;;=4^C7A.024
+ ;;^UTILITY(U,$J,358.3,15397,2)
+ ;;=^5001367
+ ;;^UTILITY(U,$J,358.3,15398,0)
+ ;;=C7A.025^^85^847^28
+ ;;^UTILITY(U,$J,358.3,15398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45343,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,45343,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,45343,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,45344,0)
- ;;=I80.9^^136^1932^56
- ;;^UTILITY(U,$J,358.3,45344,1,0)
+ ;;^UTILITY(U,$J,358.3,15398,1,3,0)
+ ;;=3^Carcinoid,Malignant,Sigmoid
+ ;;^UTILITY(U,$J,358.3,15398,1,4,0)
+ ;;=4^C7A.025
+ ;;^UTILITY(U,$J,358.3,15398,2)
+ ;;=^5001368
+ ;;^UTILITY(U,$J,358.3,15399,0)
+ ;;=C7A.026^^85^847^27
+ ;;^UTILITY(U,$J,358.3,15399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45344,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,45344,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,45344,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,45345,0)
- ;;=Z98.61^^136^1932^57
- ;;^UTILITY(U,$J,358.3,45345,1,0)
+ ;;^UTILITY(U,$J,358.3,15399,1,3,0)
+ ;;=3^Carcinoid,Malignant,Rectum
+ ;;^UTILITY(U,$J,358.3,15399,1,4,0)
+ ;;=4^C7A.026
+ ;;^UTILITY(U,$J,358.3,15399,2)
+ ;;=^5001369
+ ;;^UTILITY(U,$J,358.3,15400,0)
+ ;;=C7A.029^^85^847^31
+ ;;^UTILITY(U,$J,358.3,15400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45345,1,3,0)
- ;;=3^Postprocedural State,Coronary Angioplasty
- ;;^UTILITY(U,$J,358.3,45345,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,45345,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,45346,0)
- ;;=Z98.62^^136^1932^58
- ;;^UTILITY(U,$J,358.3,45346,1,0)
+ ;;^UTILITY(U,$J,358.3,15400,1,3,0)
+ ;;=3^Carcinoid,Malignant,Unspec Colon
+ ;;^UTILITY(U,$J,358.3,15400,1,4,0)
+ ;;=4^C7A.029
+ ;;^UTILITY(U,$J,358.3,15400,2)
+ ;;=^5001370
+ ;;^UTILITY(U,$J,358.3,15401,0)
+ ;;=C7B.02^^85^847^5
+ ;;^UTILITY(U,$J,358.3,15401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45346,1,3,0)
- ;;=3^Postprocedural State,Peripheral Vascular Angioplasty
- ;;^UTILITY(U,$J,358.3,45346,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,45346,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,45347,0)
- ;;=Z95.810^^136^1932^59
- ;;^UTILITY(U,$J,358.3,45347,1,0)
+ ;;^UTILITY(U,$J,358.3,15401,1,3,0)
+ ;;=3^Carcinoid of Liver
+ ;;^UTILITY(U,$J,358.3,15401,1,4,0)
+ ;;=4^C7B.02
+ ;;^UTILITY(U,$J,358.3,15401,2)
+ ;;=^5001383
+ ;;^UTILITY(U,$J,358.3,15402,0)
+ ;;=E34.0^^85^847^6
+ ;;^UTILITY(U,$J,358.3,15402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45347,1,3,0)
- ;;=3^Presence of Automatic Cardiac Defibrillator
- ;;^UTILITY(U,$J,358.3,45347,1,4,0)
- ;;=4^Z95.810
- ;;^UTILITY(U,$J,358.3,45347,2)
- ;;=^5063674
- ;;^UTILITY(U,$J,358.3,45348,0)
- ;;=Z95.5^^136^1932^62
- ;;^UTILITY(U,$J,358.3,45348,1,0)
+ ;;^UTILITY(U,$J,358.3,15402,1,3,0)
+ ;;=3^Carcinoid syndrome
+ ;;^UTILITY(U,$J,358.3,15402,1,4,0)
+ ;;=4^E34.0
+ ;;^UTILITY(U,$J,358.3,15402,2)
+ ;;=^19261
+ ;;^UTILITY(U,$J,358.3,15403,0)
+ ;;=C83.79^^85^847^33
+ ;;^UTILITY(U,$J,358.3,15403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45348,1,3,0)
- ;;=3^Presence of Coronary Angioplasty Implant & Graft
- ;;^UTILITY(U,$J,358.3,45348,1,4,0)
- ;;=4^Z95.5
- ;;^UTILITY(U,$J,358.3,45348,2)
- ;;=^5063673
- ;;^UTILITY(U,$J,358.3,45349,0)
- ;;=Z95.811^^136^1932^64
- ;;^UTILITY(U,$J,358.3,45349,1,0)
+ ;;^UTILITY(U,$J,358.3,15403,1,3,0)
+ ;;=3^Lymphoma,Burkitt,Extranodal
+ ;;^UTILITY(U,$J,358.3,15403,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,15403,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,15404,0)
+ ;;=C83.39^^85^847^34
+ ;;^UTILITY(U,$J,358.3,15404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45349,1,3,0)
- ;;=3^Presence of Heart Assist Device
- ;;^UTILITY(U,$J,358.3,45349,1,4,0)
- ;;=4^Z95.811
- ;;^UTILITY(U,$J,358.3,45349,2)
- ;;=^5063675
- ;;^UTILITY(U,$J,358.3,45350,0)
- ;;=Z95.812^^136^1932^63
- ;;^UTILITY(U,$J,358.3,45350,1,0)
+ ;;^UTILITY(U,$J,358.3,15404,1,3,0)
+ ;;=3^Lymphoma,Diffuse large B-Cell,Extranodal
+ ;;^UTILITY(U,$J,358.3,15404,1,4,0)
+ ;;=4^C83.39
+ ;;^UTILITY(U,$J,358.3,15404,2)
+ ;;=^5001580
+ ;;^UTILITY(U,$J,358.3,15405,0)
+ ;;=C86.2^^85^847^35
+ ;;^UTILITY(U,$J,358.3,15405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45350,1,3,0)
- ;;=3^Presence of Fully Implantable Artificial Heart
- ;;^UTILITY(U,$J,358.3,45350,1,4,0)
- ;;=4^Z95.812
- ;;^UTILITY(U,$J,358.3,45350,2)
- ;;=^5063676
- ;;^UTILITY(U,$J,358.3,45351,0)
- ;;=Z95.818^^136^1932^60
- ;;^UTILITY(U,$J,358.3,45351,1,0)
+ ;;^UTILITY(U,$J,358.3,15405,1,3,0)
+ ;;=3^Lymphoma,Enteropathy T-cell type
+ ;;^UTILITY(U,$J,358.3,15405,1,4,0)
+ ;;=4^C86.2
+ ;;^UTILITY(U,$J,358.3,15405,2)
+ ;;=^5001743
+ ;;^UTILITY(U,$J,358.3,15406,0)
+ ;;=C82.59^^85^847^36
+ ;;^UTILITY(U,$J,358.3,15406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45351,1,3,0)
- ;;=3^Presence of Cardiac Implants & Grafts,Other
- ;;^UTILITY(U,$J,358.3,45351,1,4,0)
- ;;=4^Z95.818
- ;;^UTILITY(U,$J,358.3,45351,2)
- ;;=^5063677
- ;;^UTILITY(U,$J,358.3,45352,0)
- ;;=Z95.820^^136^1932^65
- ;;^UTILITY(U,$J,358.3,45352,1,0)
+ ;;^UTILITY(U,$J,358.3,15406,1,3,0)
+ ;;=3^Lymphoma,Follicular Diffuse,Extranodal
+ ;;^UTILITY(U,$J,358.3,15406,1,4,0)
+ ;;=4^C82.59
+ ;;^UTILITY(U,$J,358.3,15406,2)
+ ;;=^5001520
+ ;;^UTILITY(U,$J,358.3,15407,0)
+ ;;=C88.4^^85^847^37
+ ;;^UTILITY(U,$J,358.3,15407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45352,1,3,0)
- ;;=3^Presence of Peripheral Vasc Angioplasty w/ Implants & Grafts
- ;;^UTILITY(U,$J,358.3,45352,1,4,0)
- ;;=4^Z95.820
- ;;^UTILITY(U,$J,358.3,45352,2)
- ;;=^5063678
- ;;^UTILITY(U,$J,358.3,45353,0)
- ;;=Z95.828^^136^1932^67
- ;;^UTILITY(U,$J,358.3,45353,1,0)
+ ;;^UTILITY(U,$J,358.3,15407,1,3,0)
+ ;;=3^Lymphoma,MALT Type
+ ;;^UTILITY(U,$J,358.3,15407,1,4,0)
+ ;;=4^C88.4
+ ;;^UTILITY(U,$J,358.3,15407,2)
+ ;;=^5001749
+ ;;^UTILITY(U,$J,358.3,15408,0)
+ ;;=C83.19^^85^847^38
+ ;;^UTILITY(U,$J,358.3,15408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45353,1,3,0)
- ;;=3^Presence of Vascular Implants & Grafts,Other
- ;;^UTILITY(U,$J,358.3,45353,1,4,0)
- ;;=4^Z95.828
- ;;^UTILITY(U,$J,358.3,45353,2)
- ;;=^5063679
- ;;^UTILITY(U,$J,358.3,45354,0)
- ;;=Z95.2^^136^1932^66
- ;;^UTILITY(U,$J,358.3,45354,1,0)
+ ;;^UTILITY(U,$J,358.3,15408,1,3,0)
+ ;;=3^Lymphoma,Mantle cell,Extranodal
+ ;;^UTILITY(U,$J,358.3,15408,1,4,0)
+ ;;=4^C83.19
+ ;;^UTILITY(U,$J,358.3,15408,2)
+ ;;=^5001570
+ ;;^UTILITY(U,$J,358.3,15409,0)
+ ;;=C78.6^^85^847^39
+ ;;^UTILITY(U,$J,358.3,15409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45354,1,3,0)
- ;;=3^Presence of Prostetic Heart Valve
- ;;^UTILITY(U,$J,358.3,45354,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,45354,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,45355,0)
- ;;=Z95.3^^136^1932^68
- ;;^UTILITY(U,$J,358.3,45355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45355,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
- ;;^UTILITY(U,$J,358.3,45355,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,45355,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,45356,0)
- ;;=I27.9^^136^1932^69
- ;;^UTILITY(U,$J,358.3,45356,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45356,1,3,0)
- ;;=3^Pulmonary Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,45356,1,4,0)
- ;;=4^I27.9
- ;;^UTILITY(U,$J,358.3,45356,2)
- ;;=^5007154
- ;;^UTILITY(U,$J,358.3,45357,0)
- ;;=I27.0^^136^1932^70
- ;;^UTILITY(U,$J,358.3,45357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45357,1,3,0)
- ;;=3^Pulmonary Hypertension,Primary
- ;;^UTILITY(U,$J,358.3,45357,1,4,0)
- ;;=4^I27.0
- ;;^UTILITY(U,$J,358.3,45357,2)
- ;;=^265310
- ;;^UTILITY(U,$J,358.3,45358,0)
- ;;=I73.00^^136^1932^71
- ;;^UTILITY(U,$J,358.3,45358,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45358,1,3,0)
- ;;=3^Raynaud's Syndrome w/o Gangrene
- ;;^UTILITY(U,$J,358.3,45358,1,4,0)
- ;;=4^I73.00
- ;;^UTILITY(U,$J,358.3,45358,2)
- ;;=^5007796
- ;;^UTILITY(U,$J,358.3,45359,0)
- ;;=R57.0^^136^1932^72
- ;;^UTILITY(U,$J,358.3,45359,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45359,1,3,0)
- ;;=3^Shock,Cardiogenic
- ;;^UTILITY(U,$J,358.3,45359,1,4,0)
- ;;=4^R57.0
- ;;^UTILITY(U,$J,358.3,45359,2)
- ;;=^5019525
- ;;^UTILITY(U,$J,358.3,45360,0)
- ;;=R57.1^^136^1932^73
- ;;^UTILITY(U,$J,358.3,45360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45360,1,3,0)
- ;;=3^Shock,Hypovolemic
- ;;^UTILITY(U,$J,358.3,45360,1,4,0)
- ;;=4^R57.1
- ;;^UTILITY(U,$J,358.3,45360,2)
- ;;=^60845
- ;;^UTILITY(U,$J,358.3,45361,0)
- ;;=R57.9^^136^1932^74
- ;;^UTILITY(U,$J,358.3,45361,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45361,1,3,0)
- ;;=3^Shock,Unspec
- ;;^UTILITY(U,$J,358.3,45361,1,4,0)
- ;;=4^R57.9
- ;;^UTILITY(U,$J,358.3,45361,2)
- ;;=^5019527
- ;;^UTILITY(U,$J,358.3,45362,0)
- ;;=R55.^^136^1932^75
- ;;^UTILITY(U,$J,358.3,45362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45362,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,45362,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,45362,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,45363,0)
- ;;=I78.0^^136^1932^76
- ;;^UTILITY(U,$J,358.3,45363,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45363,1,3,0)
- ;;=3^Telangiectasia,Hereditary Hemorrhagic
- ;;^UTILITY(U,$J,358.3,45363,1,4,0)
- ;;=4^I78.0
- ;;^UTILITY(U,$J,358.3,45363,2)
- ;;=^117566
- ;;^UTILITY(U,$J,358.3,45364,0)
- ;;=I73.1^^136^1932^20
- ;;^UTILITY(U,$J,358.3,45364,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45364,1,3,0)
- ;;=3^Buerger's Disease
- ;;^UTILITY(U,$J,358.3,45364,1,4,0)
- ;;=4^I73.1
- ;;^UTILITY(U,$J,358.3,45364,2)
- ;;=^5007798
- ;;^UTILITY(U,$J,358.3,45365,0)
- ;;=G45.9^^136^1932^77
- ;;^UTILITY(U,$J,358.3,45365,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45365,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,45365,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,45365,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,45366,0)
- ;;=G45.8^^136^1932^78
- ;;^UTILITY(U,$J,358.3,45366,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45366,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attacks & Related Syndromes
- ;;^UTILITY(U,$J,358.3,45366,1,4,0)
- ;;=4^G45.8
- ;;^UTILITY(U,$J,358.3,45366,2)
- ;;=^5003958
- ;;^UTILITY(U,$J,358.3,45367,0)
- ;;=I83.019^^136^1932^81
- ;;^UTILITY(U,$J,358.3,45367,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45367,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,45367,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,45367,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,45368,0)
- ;;=I83.899^^136^1932^79
- ;;^UTILITY(U,$J,358.3,45368,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45368,1,3,0)
- ;;=3^Varicose Veins Lower Extrem w/ Other Complications
- ;;^UTILITY(U,$J,358.3,45368,1,4,0)
- ;;=4^I83.899
- ;;^UTILITY(U,$J,358.3,45368,2)
- ;;=^5008018
- ;;^UTILITY(U,$J,358.3,45369,0)
- ;;=I83.90^^136^1932^80
- ;;^UTILITY(U,$J,358.3,45369,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45369,1,3,0)
- ;;=3^Varicose Veins Lower Extrem,Asymptomatic
- ;;^UTILITY(U,$J,358.3,45369,1,4,0)
- ;;=4^I83.90
- ;;^UTILITY(U,$J,358.3,45369,2)
- ;;=^5008019
- ;;^UTILITY(U,$J,358.3,45370,0)
- ;;=I87.2^^136^1932^82
- ;;^UTILITY(U,$J,358.3,45370,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45370,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,45370,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,45370,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,45371,0)
- ;;=H61.23^^136^1933^1
- ;;^UTILITY(U,$J,358.3,45371,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45371,1,3,0)
- ;;=3^Cerumen Impaction,Bilateral
- ;;^UTILITY(U,$J,358.3,45371,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,45371,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,45372,0)
- ;;=H61.22^^136^1933^2
- ;;^UTILITY(U,$J,358.3,45372,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45372,1,3,0)
- ;;=3^Cerumen Impaction,Left Ear
- ;;^UTILITY(U,$J,358.3,45372,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,45372,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,45373,0)
- ;;=H61.21^^136^1933^3
- ;;^UTILITY(U,$J,358.3,45373,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45373,1,3,0)
- ;;=3^Cerumen Impaction,Right Ear
- ;;^UTILITY(U,$J,358.3,45373,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,45373,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,45374,0)
- ;;=Z97.4^^136^1933^10
- ;;^UTILITY(U,$J,358.3,45374,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45374,1,3,0)
- ;;=3^Hearing-aid,External
- ;;^UTILITY(U,$J,358.3,45374,1,4,0)
- ;;=4^Z97.4
- ;;^UTILITY(U,$J,358.3,45374,2)
- ;;=^5063730
- ;;^UTILITY(U,$J,358.3,45375,0)
- ;;=H90.2^^136^1933^5
- ;;^UTILITY(U,$J,358.3,45375,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45375,1,3,0)
- ;;=3^Hearing Loss,Conductive,Unspec
- ;;^UTILITY(U,$J,358.3,45375,1,4,0)
- ;;=4^H90.2
- ;;^UTILITY(U,$J,358.3,45375,2)
- ;;=^5006920
- ;;^UTILITY(U,$J,358.3,45376,0)
- ;;=H90.8^^136^1933^7
- ;;^UTILITY(U,$J,358.3,45376,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45376,1,3,0)
- ;;=3^Hearing Loss,Mixed Conductive & Sensorineural,Unspec
- ;;^UTILITY(U,$J,358.3,45376,1,4,0)
- ;;=4^H90.8
+ ;;^UTILITY(U,$J,358.3,15409,1,3,0)
+ ;;=3^Peritoneal carinomatosis

@@ -1,134 +1,98 @@
-IBDEI3DH ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3DH ; ; 05-NOV-2019
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;NOV 05, 2019
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56695,2)
- ;;=^5007788
- ;;^UTILITY(U,$J,358.3,56696,0)
- ;;=I71.4^^261^2831^34
- ;;^UTILITY(U,$J,358.3,56696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56696,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,56696,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,56696,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,56697,0)
- ;;=I71.5^^261^2831^138
- ;;^UTILITY(U,$J,358.3,56697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56697,1,3,0)
- ;;=3^Thoracoabd Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,56697,1,4,0)
- ;;=4^I71.5
- ;;^UTILITY(U,$J,358.3,56697,2)
- ;;=^5007790
- ;;^UTILITY(U,$J,358.3,56698,0)
- ;;=I71.6^^261^2831^139
- ;;^UTILITY(U,$J,358.3,56698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56698,1,3,0)
- ;;=3^Thoracoabd Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,56698,1,4,0)
- ;;=4^I71.6
- ;;^UTILITY(U,$J,358.3,56698,2)
- ;;=^5007791
- ;;^UTILITY(U,$J,358.3,56699,0)
- ;;=I72.2^^261^2831^38
- ;;^UTILITY(U,$J,358.3,56699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56699,1,3,0)
- ;;=3^Aneurysm of Renal Artery
- ;;^UTILITY(U,$J,358.3,56699,1,4,0)
- ;;=4^I72.2
- ;;^UTILITY(U,$J,358.3,56699,2)
- ;;=^269773
- ;;^UTILITY(U,$J,358.3,56700,0)
- ;;=I72.3^^261^2831^36
- ;;^UTILITY(U,$J,358.3,56700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56700,1,3,0)
- ;;=3^Aneurysm of Iliac Artery
- ;;^UTILITY(U,$J,358.3,56700,1,4,0)
- ;;=4^I72.3
- ;;^UTILITY(U,$J,358.3,56700,2)
- ;;=^269775
- ;;^UTILITY(U,$J,358.3,56701,0)
- ;;=I72.4^^261^2831^37
- ;;^UTILITY(U,$J,358.3,56701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56701,1,3,0)
- ;;=3^Aneurysm of Lower Extremity Artery
- ;;^UTILITY(U,$J,358.3,56701,1,4,0)
- ;;=4^I72.4
- ;;^UTILITY(U,$J,358.3,56701,2)
- ;;=^269777
- ;;^UTILITY(U,$J,358.3,56702,0)
- ;;=I72.0^^261^2831^35
- ;;^UTILITY(U,$J,358.3,56702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56702,1,3,0)
- ;;=3^Aneurysm of Carotid Artery
- ;;^UTILITY(U,$J,358.3,56702,1,4,0)
- ;;=4^I72.0
- ;;^UTILITY(U,$J,358.3,56702,2)
- ;;=^5007793
- ;;^UTILITY(U,$J,358.3,56703,0)
- ;;=I73.00^^261^2831^135
- ;;^UTILITY(U,$J,358.3,56703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56703,1,3,0)
- ;;=3^Raynaud's Syndrome w/o Gangrene
- ;;^UTILITY(U,$J,358.3,56703,1,4,0)
- ;;=4^I73.00
- ;;^UTILITY(U,$J,358.3,56703,2)
- ;;=^5007796
- ;;^UTILITY(U,$J,358.3,56704,0)
- ;;=I73.9^^261^2831^125
- ;;^UTILITY(U,$J,358.3,56704,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56704,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,56704,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,56704,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,56705,0)
- ;;=I74.2^^261^2831^101
- ;;^UTILITY(U,$J,358.3,56705,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56705,1,3,0)
- ;;=3^Embolism & Thrombosis UE Arteries
- ;;^UTILITY(U,$J,358.3,56705,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,56705,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,56706,0)
- ;;=I74.3^^261^2831^100
- ;;^UTILITY(U,$J,358.3,56706,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56706,1,3,0)
- ;;=3^Embolism & Thrombosis LE Arteries
- ;;^UTILITY(U,$J,358.3,56706,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,56706,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,56707,0)
- ;;=I80.11^^261^2831^132
- ;;^UTILITY(U,$J,358.3,56707,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56707,1,3,0)
- ;;=3^Phleb & Thrombphleb Rt Femoral Vein
- ;;^UTILITY(U,$J,358.3,56707,1,4,0)
- ;;=4^I80.11
- ;;^UTILITY(U,$J,358.3,56707,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,56708,0)
- ;;=I80.211^^261^2831^133
- ;;^UTILITY(U,$J,358.3,56708,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56708,1,3,0)
- ;;=3^Phleb & Thrombphleb Rt Iliac Vein
- ;;^UTILITY(U,$J,358.3,56708,1,4,0)
- ;;=4^I80.211
+ ;;^UTILITY(U,$J,358.6,9,11)
+ ;;=D TESTICD0^IBDFN7
+ ;;^UTILITY(U,$J,358.6,9,12)
+ ;;=DIAGNOSIS/PROBLEM^1^13^14^2^
+ ;;^UTILITY(U,$J,358.6,9,13,0)
+ ;;=^357.613V^10^10
+ ;;^UTILITY(U,$J,358.6,9,13,1,0)
+ ;;=1;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,9,13,2,0)
+ ;;=2;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,9,13,3,0)
+ ;;=3;IBD(358.98,^^1^^^^^9
+ ;;^UTILITY(U,$J,358.6,9,13,4,0)
+ ;;=3;IBE(358.99,^^0^^^^^
+ ;;^UTILITY(U,$J,358.6,9,13,5,0)
+ ;;=4;IBD(358.98,^^1^^^^^10
+ ;;^UTILITY(U,$J,358.6,9,13,6,0)
+ ;;=5;IBD(358.98,^^1^^^^^11
+ ;;^UTILITY(U,$J,358.6,9,13,7,0)
+ ;;=6;IBD(358.98,^^1^^^^^12
+ ;;^UTILITY(U,$J,358.6,9,13,8,0)
+ ;;=7;IBD(358.98,^^1^^^^^5
+ ;;^UTILITY(U,$J,358.6,9,13,9,0)
+ ;;=8;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,9,13,10,0)
+ ;;=9;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,9,14)
+ ;;=S Y=$$DSPICD10^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,9,16)
+ ;;=^^^^^^^^
+ ;;^UTILITY(U,$J,358.6,9,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,9,18)
+ ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
+ ;;^UTILITY(U,$J,358.6,9,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,10,0)
+ ;;=PX SELECT HEALTH FACTORS^HF^IBDFN10^PATIENT CARE ENCOUNTER^^3^2^^1^^^1^11
+ ;;^UTILITY(U,$J,358.6,10,1,0)
+ ;;=^^1^1^2951208^^^
+ ;;^UTILITY(U,$J,358.6,10,1,1,0)
+ ;;=Allows health factors from the HEALTH FACTORS file to be selected.
+ ;;^UTILITY(U,$J,358.6,10,2)
+ ;;=Internal Number^9^^^^^^^^^^^^^^^0^0
+ ;;^UTILITY(U,$J,358.6,10,3)
+ ;;=PATIENT HEALTH FACTORS
+ ;;^UTILITY(U,$J,358.6,10,11)
+ ;;=D TESTHF^PXAPIIB
+ ;;^UTILITY(U,$J,358.6,10,15,0)
+ ;;=^357.615I^4^4
+ ;;^UTILITY(U,$J,358.6,10,15,1,0)
+ ;;=Health Factor Name^30^2^^HEALTH FACTOR
+ ;;^UTILITY(U,$J,358.6,10,15,2,0)
+ ;;=Code^5^3
+ ;;^UTILITY(U,$J,358.6,10,15,3,0)
+ ;;=Short Name^10^5
+ ;;^UTILITY(U,$J,358.6,10,15,4,0)
+ ;;=Sex Specific^6^6^^FOR
+ ;;^UTILITY(U,$J,358.6,10,16)
+ ;;=n^^^^n
+ ;;^UTILITY(U,$J,358.6,11,0)
+ ;;=PX INPUT HEALTH FACTORS^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,11,1,0)
+ ;;=^^1^1^2951208^^^
+ ;;^UTILITY(U,$J,358.6,11,1,1,0)
+ ;;=Used for inputting health factors determined to apply to the patient.
+ ;;^UTILITY(U,$J,358.6,11,2)
+ ;;=^^^^^^^^^^^^^^^^^0
+ ;;^UTILITY(U,$J,358.6,11,3)
+ ;;=HEALTH FACTORS
+ ;;^UTILITY(U,$J,358.6,11,10)
+ ;;=Enter a Patient Health Factor.
+ ;;^UTILITY(U,$J,358.6,11,11)
+ ;;=D TESTHF^PXAPIIB
+ ;;^UTILITY(U,$J,358.6,11,12)
+ ;;=HEALTH FACTORS^1^^^2
+ ;;^UTILITY(U,$J,358.6,11,13,0)
+ ;;=^358.613V^3^3
+ ;;^UTILITY(U,$J,358.6,11,13,1,0)
+ ;;=10;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,13,2,0)
+ ;;=11;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,13,3,0)
+ ;;=12;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,14)
+ ;;=S Y=$$DSPLYHF^PXAPIIB(Y)
+ ;;^UTILITY(U,$J,358.6,11,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,11,17)
+ ;;=D SLCTHF^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,11,18)
+ ;;=S IBDF("OTHER")="9999999.64^I '$P(^(0),U,10),$P(^(0),U,10)=""F"",'$P(^(0),U,11)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Health Factors")
+ ;;^UTILITY(U,$J,358.6,11,19)
+ ;;=D HF^IBDFN14(X)

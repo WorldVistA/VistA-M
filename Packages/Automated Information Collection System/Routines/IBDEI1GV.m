@@ -1,126 +1,128 @@
-IBDEI1GV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24909,1,3,0)
- ;;=3^Cannabis Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,24909,1,4,0)
- ;;=4^F12.129
- ;;^UTILITY(U,$J,358.3,24909,2)
- ;;=^5003159
- ;;^UTILITY(U,$J,358.3,24910,0)
- ;;=F12.922^^93^1118^11
- ;;^UTILITY(U,$J,358.3,24910,1,0)
+ ;;^UTILITY(U,$J,358.3,23456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24910,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24910,1,4,0)
- ;;=4^F12.922
- ;;^UTILITY(U,$J,358.3,24910,2)
- ;;=^5003181
- ;;^UTILITY(U,$J,358.3,24911,0)
- ;;=F12.980^^93^1118^1
- ;;^UTILITY(U,$J,358.3,24911,1,0)
+ ;;^UTILITY(U,$J,358.3,23456,1,3,0)
+ ;;=3^Pelvic Inflammatory Disease
+ ;;^UTILITY(U,$J,358.3,23456,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,23456,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,23457,0)
+ ;;=K65.2^^105^1174^109
+ ;;^UTILITY(U,$J,358.3,23457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24911,1,3,0)
- ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24911,1,4,0)
- ;;=4^F12.980
- ;;^UTILITY(U,$J,358.3,24911,2)
- ;;=^5003186
- ;;^UTILITY(U,$J,358.3,24912,0)
- ;;=F12.159^^93^1118^2
- ;;^UTILITY(U,$J,358.3,24912,1,0)
+ ;;^UTILITY(U,$J,358.3,23457,1,3,0)
+ ;;=3^Peritonitis, bacterial
+ ;;^UTILITY(U,$J,358.3,23457,1,4,0)
+ ;;=4^K65.2
+ ;;^UTILITY(U,$J,358.3,23457,2)
+ ;;=^332801
+ ;;^UTILITY(U,$J,358.3,23458,0)
+ ;;=J18.9^^105^1174^116
+ ;;^UTILITY(U,$J,358.3,23458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24912,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24912,1,4,0)
- ;;=4^F12.159
- ;;^UTILITY(U,$J,358.3,24912,2)
- ;;=^5003162
- ;;^UTILITY(U,$J,358.3,24913,0)
- ;;=F12.259^^93^1118^3
- ;;^UTILITY(U,$J,358.3,24913,1,0)
+ ;;^UTILITY(U,$J,358.3,23458,1,3,0)
+ ;;=3^Pneumonia, NOS
+ ;;^UTILITY(U,$J,358.3,23458,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,23458,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,23459,0)
+ ;;=J13.^^105^1174^117
+ ;;^UTILITY(U,$J,358.3,23459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24913,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24913,1,4,0)
- ;;=4^F12.259
- ;;^UTILITY(U,$J,358.3,24913,2)
- ;;=^5003174
- ;;^UTILITY(U,$J,358.3,24914,0)
- ;;=F12.959^^93^1118^4
- ;;^UTILITY(U,$J,358.3,24914,1,0)
+ ;;^UTILITY(U,$J,358.3,23459,1,3,0)
+ ;;=3^Pneumonia, Streptococcus pneumoniae
+ ;;^UTILITY(U,$J,358.3,23459,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,23459,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,23460,0)
+ ;;=J15.7^^105^1174^115
+ ;;^UTILITY(U,$J,358.3,23460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24914,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24914,1,4,0)
- ;;=4^F12.959
- ;;^UTILITY(U,$J,358.3,24914,2)
- ;;=^5003185
- ;;^UTILITY(U,$J,358.3,24915,0)
- ;;=F12.988^^93^1118^5
- ;;^UTILITY(U,$J,358.3,24915,1,0)
+ ;;^UTILITY(U,$J,358.3,23460,1,3,0)
+ ;;=3^Pneumonia, Mycoplasma
+ ;;^UTILITY(U,$J,358.3,23460,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,23460,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,23461,0)
+ ;;=J16.0^^105^1174^114
+ ;;^UTILITY(U,$J,358.3,23461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24915,1,3,0)
- ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24915,1,4,0)
- ;;=4^F12.988
- ;;^UTILITY(U,$J,358.3,24915,2)
- ;;=^5003187
- ;;^UTILITY(U,$J,358.3,24916,0)
- ;;=F12.929^^93^1118^13
- ;;^UTILITY(U,$J,358.3,24916,1,0)
+ ;;^UTILITY(U,$J,358.3,23461,1,3,0)
+ ;;=3^Pneumonia, Chlamydia/Chlamydophila
+ ;;^UTILITY(U,$J,358.3,23461,1,4,0)
+ ;;=4^J16.0
+ ;;^UTILITY(U,$J,358.3,23461,2)
+ ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,23462,0)
+ ;;=R76.11^^105^1174^122
+ ;;^UTILITY(U,$J,358.3,23462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24916,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24916,1,4,0)
- ;;=4^F12.929
- ;;^UTILITY(U,$J,358.3,24916,2)
- ;;=^5003182
- ;;^UTILITY(U,$J,358.3,24917,0)
- ;;=F12.99^^93^1118^15
- ;;^UTILITY(U,$J,358.3,24917,1,0)
+ ;;^UTILITY(U,$J,358.3,23462,1,3,0)
+ ;;=3^Positive PPD/Tuberculin skin test
+ ;;^UTILITY(U,$J,358.3,23462,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,23462,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,23463,0)
+ ;;=R76.12^^105^1174^121
+ ;;^UTILITY(U,$J,358.3,23463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24917,1,3,0)
- ;;=3^Cannabis Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24917,1,4,0)
- ;;=4^F12.99
- ;;^UTILITY(U,$J,358.3,24917,2)
- ;;=^5003188
- ;;^UTILITY(U,$J,358.3,24918,0)
- ;;=F16.10^^93^1119^17
- ;;^UTILITY(U,$J,358.3,24918,1,0)
+ ;;^UTILITY(U,$J,358.3,23463,1,3,0)
+ ;;=3^Positive IGRA test for tuberculosis
+ ;;^UTILITY(U,$J,358.3,23463,1,4,0)
+ ;;=4^R76.12
+ ;;^UTILITY(U,$J,358.3,23463,2)
+ ;;=^5019571
+ ;;^UTILITY(U,$J,358.3,23464,0)
+ ;;=R76.8^^105^1174^123
+ ;;^UTILITY(U,$J,358.3,23464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24918,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24918,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,24918,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,24919,0)
- ;;=F16.20^^93^1119^18
- ;;^UTILITY(U,$J,358.3,24919,1,0)
+ ;;^UTILITY(U,$J,358.3,23464,1,3,0)
+ ;;=3^Positive RPR
+ ;;^UTILITY(U,$J,358.3,23464,1,4,0)
+ ;;=4^R76.8
+ ;;^UTILITY(U,$J,358.3,23464,2)
+ ;;=^5019572
+ ;;^UTILITY(U,$J,358.3,23465,0)
+ ;;=T84.53XA^^105^1174^124
+ ;;^UTILITY(U,$J,358.3,23465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24919,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,24919,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,24919,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,24920,0)
- ;;=F16.21^^93^1119^19
- ;;^UTILITY(U,$J,358.3,24920,1,0)
+ ;;^UTILITY(U,$J,358.3,23465,1,3,0)
+ ;;=3^Prosthetic Right Knee Joint Infection,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23465,1,4,0)
+ ;;=4^T84.53XA
+ ;;^UTILITY(U,$J,358.3,23465,2)
+ ;;=^5055391
+ ;;^UTILITY(U,$J,358.3,23466,0)
+ ;;=T84.59XA^^105^1174^125
+ ;;^UTILITY(U,$J,358.3,23466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24920,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,24920,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,24920,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,24921,0)
- ;;=F16.983^^93^1119^16
- ;;^UTILITY(U,$J,358.3,24921,1,0)
+ ;;^UTILITY(U,$J,358.3,23466,1,3,0)
+ ;;=3^Prosthetic Shoulder Joint Infection,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23466,1,4,0)
+ ;;=4^T84.59XA
+ ;;^UTILITY(U,$J,358.3,23466,2)
+ ;;=^5055397
+ ;;^UTILITY(U,$J,358.3,23467,0)
+ ;;=N12.^^105^1174^128
+ ;;^UTILITY(U,$J,358.3,23467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24921,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
+ ;;^UTILITY(U,$J,358.3,23467,1,3,0)
+ ;;=3^Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,23467,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,23467,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,23468,0)
+ ;;=J30.9^^105^1174^129
+ ;;^UTILITY(U,$J,358.3,23468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23468,1,3,0)
+ ;;=3^Rhinitis, allergic

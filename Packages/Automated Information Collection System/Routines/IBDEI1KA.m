@@ -1,122 +1,126 @@
-IBDEI1KA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26495,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,26495,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,26495,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,26496,0)
- ;;=Z69.12^^100^1265^26
- ;;^UTILITY(U,$J,358.3,26496,1,0)
+ ;;^UTILITY(U,$J,358.3,24958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26496,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,26496,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,26496,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,26497,0)
- ;;=T74.21XA^^100^1265^13
- ;;^UTILITY(U,$J,358.3,26497,1,0)
+ ;;^UTILITY(U,$J,358.3,24958,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,24958,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,24958,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,24959,0)
+ ;;=Z91.11^^107^1212^62
+ ;;^UTILITY(U,$J,358.3,24959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26497,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,26497,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,26497,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,26498,0)
- ;;=T74.21XD^^100^1265^14
- ;;^UTILITY(U,$J,358.3,26498,1,0)
+ ;;^UTILITY(U,$J,358.3,24959,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,24959,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,24959,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,24960,0)
+ ;;=Z87.891^^107^1212^97
+ ;;^UTILITY(U,$J,358.3,24960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26498,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,26498,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,26498,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,26499,0)
- ;;=T76.21XA^^100^1265^15
- ;;^UTILITY(U,$J,358.3,26499,1,0)
+ ;;^UTILITY(U,$J,358.3,24960,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,24960,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,24960,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,24961,0)
+ ;;=Z77.090^^107^1212^3
+ ;;^UTILITY(U,$J,358.3,24961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26499,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,26499,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,26499,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,26500,0)
- ;;=T76.21XD^^100^1265^16
- ;;^UTILITY(U,$J,358.3,26500,1,0)
+ ;;^UTILITY(U,$J,358.3,24961,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,24961,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,24961,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,24962,0)
+ ;;=Z57.8^^107^1212^65
+ ;;^UTILITY(U,$J,358.3,24962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26500,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,26500,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,26500,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,26501,0)
- ;;=Z69.81^^100^1265^27
- ;;^UTILITY(U,$J,358.3,26501,1,0)
+ ;;^UTILITY(U,$J,358.3,24962,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,24962,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,24962,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,24963,0)
+ ;;=Z77.21^^107^1212^46
+ ;;^UTILITY(U,$J,358.3,24963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26501,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,26501,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,26501,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,26502,0)
- ;;=Z69.82^^100^1265^21
- ;;^UTILITY(U,$J,358.3,26502,1,0)
+ ;;^UTILITY(U,$J,358.3,24963,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,24963,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,24963,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,24964,0)
+ ;;=Z91.81^^107^1212^50
+ ;;^UTILITY(U,$J,358.3,24964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26502,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,26502,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,26502,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,26503,0)
- ;;=T74.01XA^^100^1265^1
- ;;^UTILITY(U,$J,358.3,26503,1,0)
+ ;;^UTILITY(U,$J,358.3,24964,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,24964,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,24964,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,24965,0)
+ ;;=Z91.89^^107^1212^112
+ ;;^UTILITY(U,$J,358.3,24965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26503,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,26503,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,26503,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,26504,0)
- ;;=T74.01XD^^100^1265^2
- ;;^UTILITY(U,$J,358.3,26504,1,0)
+ ;;^UTILITY(U,$J,358.3,24965,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,24965,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,24965,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,24966,0)
+ ;;=Z92.89^^107^1212^100
+ ;;^UTILITY(U,$J,358.3,24966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26504,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,26504,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,26504,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,26505,0)
- ;;=T76.01XA^^100^1265^3
- ;;^UTILITY(U,$J,358.3,26505,1,0)
+ ;;^UTILITY(U,$J,358.3,24966,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,24966,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,24966,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,24967,0)
+ ;;=Z77.110^^107^1212^1
+ ;;^UTILITY(U,$J,358.3,24967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26505,1,3,0)
- ;;=3^Adult Neglect,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,26505,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,26505,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,26506,0)
- ;;=T76.01XD^^100^1265^4
- ;;^UTILITY(U,$J,358.3,26506,1,0)
+ ;;^UTILITY(U,$J,358.3,24967,1,3,0)
+ ;;=3^Air Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,24967,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,24967,2)
+ ;;=^5063314
+ ;;^UTILITY(U,$J,358.3,24968,0)
+ ;;=Z77.112^^107^1212^148
+ ;;^UTILITY(U,$J,358.3,24968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26506,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,26506,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,26506,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,26507,0)
- ;;=Z91.412^^100^1265^31
+ ;;^UTILITY(U,$J,358.3,24968,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,24968,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,24968,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,24969,0)
+ ;;=Z77.111^^107^1212^155
+ ;;^UTILITY(U,$J,358.3,24969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24969,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,24969,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,24969,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,24970,0)
+ ;;=Z77.128^^107^1212^113
+ ;;^UTILITY(U,$J,358.3,24970,1,0)
+ ;;=^358.31IA^4^2

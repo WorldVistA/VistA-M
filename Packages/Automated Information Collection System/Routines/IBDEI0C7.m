@@ -1,322 +1,696 @@
-IBDEI0C7 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0C7 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15463,1,4,0)
- ;;=4^F15.280
- ;;^UTILITY(U,$J,358.3,15463,2)
- ;;=^5003306
- ;;^UTILITY(U,$J,358.3,15464,0)
- ;;=F15.980^^45^695^6
- ;;^UTILITY(U,$J,358.3,15464,1,0)
+ ;;^UTILITY(U,$J,358.3,29875,0)
+ ;;=L02.612^^92^1195^124
+ ;;^UTILITY(U,$J,358.3,29875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15464,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15464,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,15464,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,15465,0)
- ;;=F15.14^^45^695^7
- ;;^UTILITY(U,$J,358.3,15465,1,0)
+ ;;^UTILITY(U,$J,358.3,29875,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Foot
+ ;;^UTILITY(U,$J,358.3,29875,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,29875,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,29876,0)
+ ;;=L02.92^^92^1195^158
+ ;;^UTILITY(U,$J,358.3,29876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15465,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15465,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,15465,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,15466,0)
- ;;=F15.24^^45^695^8
- ;;^UTILITY(U,$J,358.3,15466,1,0)
+ ;;^UTILITY(U,$J,358.3,29876,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,29876,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,29876,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,29877,0)
+ ;;=L02.93^^92^1195^94
+ ;;^UTILITY(U,$J,358.3,29877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15466,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15466,1,4,0)
- ;;=4^F15.24
- ;;^UTILITY(U,$J,358.3,15466,2)
- ;;=^5003302
- ;;^UTILITY(U,$J,358.3,15467,0)
- ;;=F15.94^^45^695^9
- ;;^UTILITY(U,$J,358.3,15467,1,0)
+ ;;^UTILITY(U,$J,358.3,29877,1,3,0)
+ ;;=3^Carbuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,29877,1,4,0)
+ ;;=4^L02.93
+ ;;^UTILITY(U,$J,358.3,29877,2)
+ ;;=^5009018
+ ;;^UTILITY(U,$J,358.3,29878,0)
+ ;;=L03.011^^92^1195^110
+ ;;^UTILITY(U,$J,358.3,29878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15467,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15467,1,4,0)
- ;;=4^F15.94
- ;;^UTILITY(U,$J,358.3,15467,2)
- ;;=^5003316
- ;;^UTILITY(U,$J,358.3,15468,0)
- ;;=F15.921^^45^695^10
- ;;^UTILITY(U,$J,358.3,15468,1,0)
+ ;;^UTILITY(U,$J,358.3,29878,1,3,0)
+ ;;=3^Cellulitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,29878,1,4,0)
+ ;;=4^L03.011
+ ;;^UTILITY(U,$J,358.3,29878,2)
+ ;;=^5009019
+ ;;^UTILITY(U,$J,358.3,29879,0)
+ ;;=L03.012^^92^1195^103
+ ;;^UTILITY(U,$J,358.3,29879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15468,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Delirium
- ;;^UTILITY(U,$J,358.3,15468,1,4,0)
- ;;=4^F15.921
- ;;^UTILITY(U,$J,358.3,15468,2)
- ;;=^5003312
- ;;^UTILITY(U,$J,358.3,15469,0)
- ;;=F15.14^^45^695^11
- ;;^UTILITY(U,$J,358.3,15469,1,0)
+ ;;^UTILITY(U,$J,358.3,29879,1,3,0)
+ ;;=3^Cellulitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,29879,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,29879,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,29880,0)
+ ;;=L03.021^^92^1195^25
+ ;;^UTILITY(U,$J,358.3,29880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15469,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15469,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,15469,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,15470,0)
- ;;=F15.24^^45^695^12
- ;;^UTILITY(U,$J,358.3,15470,1,0)
+ ;;^UTILITY(U,$J,358.3,29880,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,29880,1,4,0)
+ ;;=4^L03.021
+ ;;^UTILITY(U,$J,358.3,29880,2)
+ ;;=^5009022
+ ;;^UTILITY(U,$J,358.3,29881,0)
+ ;;=L03.022^^92^1195^19
+ ;;^UTILITY(U,$J,358.3,29881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15470,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15470,1,4,0)
- ;;=4^F15.24
- ;;^UTILITY(U,$J,358.3,15470,2)
- ;;=^5003302
- ;;^UTILITY(U,$J,358.3,15471,0)
- ;;=F15.94^^45^695^13
- ;;^UTILITY(U,$J,358.3,15471,1,0)
+ ;;^UTILITY(U,$J,358.3,29881,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,29881,1,4,0)
+ ;;=4^L03.022
+ ;;^UTILITY(U,$J,358.3,29881,2)
+ ;;=^5009023
+ ;;^UTILITY(U,$J,358.3,29882,0)
+ ;;=L03.031^^92^1195^113
+ ;;^UTILITY(U,$J,358.3,29882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15471,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15471,1,4,0)
- ;;=4^F15.94
- ;;^UTILITY(U,$J,358.3,15471,2)
- ;;=^5003316
- ;;^UTILITY(U,$J,358.3,15472,0)
- ;;=F15.188^^45^695^14
- ;;^UTILITY(U,$J,358.3,15472,1,0)
+ ;;^UTILITY(U,$J,358.3,29882,1,3,0)
+ ;;=3^Cellulitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,29882,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,29882,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,29883,0)
+ ;;=L03.032^^92^1195^106
+ ;;^UTILITY(U,$J,358.3,29883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15472,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15472,1,4,0)
- ;;=4^F15.188
- ;;^UTILITY(U,$J,358.3,15472,2)
- ;;=^5133355
- ;;^UTILITY(U,$J,358.3,15473,0)
- ;;=F15.288^^45^695^15
- ;;^UTILITY(U,$J,358.3,15473,1,0)
+ ;;^UTILITY(U,$J,358.3,29883,1,3,0)
+ ;;=3^Cellulitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,29883,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,29883,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,29884,0)
+ ;;=L03.041^^92^1195^27
+ ;;^UTILITY(U,$J,358.3,29884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15473,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15473,1,4,0)
- ;;=4^F15.288
- ;;^UTILITY(U,$J,358.3,15473,2)
- ;;=^5133356
- ;;^UTILITY(U,$J,358.3,15474,0)
- ;;=F15.988^^45^695^16
- ;;^UTILITY(U,$J,358.3,15474,1,0)
+ ;;^UTILITY(U,$J,358.3,29884,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,29884,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,29884,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,29885,0)
+ ;;=L03.042^^92^1195^21
+ ;;^UTILITY(U,$J,358.3,29885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15474,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15474,1,4,0)
- ;;=4^F15.988
- ;;^UTILITY(U,$J,358.3,15474,2)
- ;;=^5133357
- ;;^UTILITY(U,$J,358.3,15475,0)
- ;;=F15.159^^45^695^17
- ;;^UTILITY(U,$J,358.3,15475,1,0)
+ ;;^UTILITY(U,$J,358.3,29885,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,29885,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,29885,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,29886,0)
+ ;;=M34.0^^92^1195^289
+ ;;^UTILITY(U,$J,358.3,29886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15475,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15475,1,4,0)
- ;;=4^F15.159
- ;;^UTILITY(U,$J,358.3,15475,2)
- ;;=^5003290
- ;;^UTILITY(U,$J,358.3,15476,0)
- ;;=F15.259^^45^695^18
- ;;^UTILITY(U,$J,358.3,15476,1,0)
+ ;;^UTILITY(U,$J,358.3,29886,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,29886,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,29886,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,29887,0)
+ ;;=M34.1^^92^1195^92
+ ;;^UTILITY(U,$J,358.3,29887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15476,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15476,1,4,0)
- ;;=4^F15.259
- ;;^UTILITY(U,$J,358.3,15476,2)
- ;;=^5003305
- ;;^UTILITY(U,$J,358.3,15477,0)
- ;;=F15.959^^45^695^19
- ;;^UTILITY(U,$J,358.3,15477,1,0)
+ ;;^UTILITY(U,$J,358.3,29887,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,29887,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,29887,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,29888,0)
+ ;;=M34.2^^92^1195^313
+ ;;^UTILITY(U,$J,358.3,29888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15477,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15477,1,4,0)
- ;;=4^F15.959
- ;;^UTILITY(U,$J,358.3,15477,2)
- ;;=^5003319
- ;;^UTILITY(U,$J,358.3,15478,0)
- ;;=F15.181^^45^695^20
- ;;^UTILITY(U,$J,358.3,15478,1,0)
+ ;;^UTILITY(U,$J,358.3,29888,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,29888,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,29888,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,29889,0)
+ ;;=M34.81^^92^1195^315
+ ;;^UTILITY(U,$J,358.3,29889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15478,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15478,1,4,0)
- ;;=4^F15.181
- ;;^UTILITY(U,$J,358.3,15478,2)
- ;;=^5003292
- ;;^UTILITY(U,$J,358.3,15479,0)
- ;;=F15.281^^45^695^21
- ;;^UTILITY(U,$J,358.3,15479,1,0)
+ ;;^UTILITY(U,$J,358.3,29889,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,29889,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,29889,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,29890,0)
+ ;;=M34.82^^92^1195^316
+ ;;^UTILITY(U,$J,358.3,29890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15479,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15479,1,4,0)
- ;;=4^F15.281
- ;;^UTILITY(U,$J,358.3,15479,2)
- ;;=^5003307
- ;;^UTILITY(U,$J,358.3,15480,0)
- ;;=F15.981^^45^695^22
- ;;^UTILITY(U,$J,358.3,15480,1,0)
+ ;;^UTILITY(U,$J,358.3,29890,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,29890,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,29890,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,29891,0)
+ ;;=M34.83^^92^1195^317
+ ;;^UTILITY(U,$J,358.3,29891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15480,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15480,1,4,0)
- ;;=4^F15.981
- ;;^UTILITY(U,$J,358.3,15480,2)
- ;;=^5003321
- ;;^UTILITY(U,$J,358.3,15481,0)
- ;;=F15.182^^45^695^23
- ;;^UTILITY(U,$J,358.3,15481,1,0)
+ ;;^UTILITY(U,$J,358.3,29891,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,29891,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,29891,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,29892,0)
+ ;;=M34.89^^92^1195^314
+ ;;^UTILITY(U,$J,358.3,29892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15481,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15481,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,15481,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,15482,0)
- ;;=F15.282^^45^695^24
- ;;^UTILITY(U,$J,358.3,15482,1,0)
+ ;;^UTILITY(U,$J,358.3,29892,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,29892,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,29892,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,29893,0)
+ ;;=M34.9^^92^1195^318
+ ;;^UTILITY(U,$J,358.3,29893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15482,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15482,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,15482,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,15483,0)
- ;;=F15.982^^45^695^25
- ;;^UTILITY(U,$J,358.3,15483,1,0)
+ ;;^UTILITY(U,$J,358.3,29893,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,29893,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,29893,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,29894,0)
+ ;;=R21.^^92^1195^297
+ ;;^UTILITY(U,$J,358.3,29894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15483,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15483,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,15483,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,15484,0)
- ;;=F15.122^^45^695^29
- ;;^UTILITY(U,$J,358.3,15484,1,0)
+ ;;^UTILITY(U,$J,358.3,29894,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,29894,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,29894,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,29895,0)
+ ;;=R23.3^^92^1195^309
+ ;;^UTILITY(U,$J,358.3,29895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15484,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15484,1,4,0)
- ;;=4^F15.122
- ;;^UTILITY(U,$J,358.3,15484,2)
- ;;=^5003285
- ;;^UTILITY(U,$J,358.3,15485,0)
- ;;=F15.222^^45^695^30
- ;;^UTILITY(U,$J,358.3,15485,1,0)
+ ;;^UTILITY(U,$J,358.3,29895,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,29895,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,29895,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,29896,0)
+ ;;=L03.113^^92^1195^114
+ ;;^UTILITY(U,$J,358.3,29896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15485,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15485,1,4,0)
- ;;=4^F15.222
- ;;^UTILITY(U,$J,358.3,15485,2)
- ;;=^5003299
- ;;^UTILITY(U,$J,358.3,15486,0)
- ;;=F15.922^^45^695^31
- ;;^UTILITY(U,$J,358.3,15486,1,0)
+ ;;^UTILITY(U,$J,358.3,29896,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,29896,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,29896,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,29897,0)
+ ;;=L03.114^^92^1195^107
+ ;;^UTILITY(U,$J,358.3,29897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15486,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15486,1,4,0)
- ;;=4^F15.922
- ;;^UTILITY(U,$J,358.3,15486,2)
- ;;=^5003313
- ;;^UTILITY(U,$J,358.3,15487,0)
- ;;=F15.129^^45^695^32
- ;;^UTILITY(U,$J,358.3,15487,1,0)
+ ;;^UTILITY(U,$J,358.3,29897,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,29897,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,29897,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,29898,0)
+ ;;=L03.115^^92^1195^111
+ ;;^UTILITY(U,$J,358.3,29898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15487,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15487,1,4,0)
- ;;=4^F15.129
- ;;^UTILITY(U,$J,358.3,15487,2)
- ;;=^5003286
- ;;^UTILITY(U,$J,358.3,15488,0)
- ;;=F15.229^^45^695^33
- ;;^UTILITY(U,$J,358.3,15488,1,0)
+ ;;^UTILITY(U,$J,358.3,29898,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,29898,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,29898,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,29899,0)
+ ;;=L03.116^^92^1195^104
+ ;;^UTILITY(U,$J,358.3,29899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15488,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15488,1,4,0)
- ;;=4^F15.229
- ;;^UTILITY(U,$J,358.3,15488,2)
- ;;=^5003300
- ;;^UTILITY(U,$J,358.3,15489,0)
- ;;=F15.929^^45^695^34
- ;;^UTILITY(U,$J,358.3,15489,1,0)
+ ;;^UTILITY(U,$J,358.3,29899,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,29899,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,29899,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,29900,0)
+ ;;=L03.123^^92^1195^28
+ ;;^UTILITY(U,$J,358.3,29900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15489,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/o Percept Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15489,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,15489,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,15490,0)
- ;;=F15.121^^45^695^26
- ;;^UTILITY(U,$J,358.3,15490,1,0)
+ ;;^UTILITY(U,$J,358.3,29900,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,29900,1,4,0)
+ ;;=4^L03.123
+ ;;^UTILITY(U,$J,358.3,29900,2)
+ ;;=^5009039
+ ;;^UTILITY(U,$J,358.3,29901,0)
+ ;;=L03.124^^92^1195^22
+ ;;^UTILITY(U,$J,358.3,29901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15490,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,15490,1,4,0)
- ;;=4^F15.121
- ;;^UTILITY(U,$J,358.3,15490,2)
- ;;=^5003284
- ;;^UTILITY(U,$J,358.3,15491,0)
- ;;=F15.221^^45^695^27
- ;;^UTILITY(U,$J,358.3,15491,1,0)
+ ;;^UTILITY(U,$J,358.3,29901,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,29901,1,4,0)
+ ;;=4^L03.124
+ ;;^UTILITY(U,$J,358.3,29901,2)
+ ;;=^5009040
+ ;;^UTILITY(U,$J,358.3,29902,0)
+ ;;=L03.125^^92^1195^26
+ ;;^UTILITY(U,$J,358.3,29902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15491,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,15491,1,4,0)
- ;;=4^F15.221
- ;;^UTILITY(U,$J,358.3,15491,2)
- ;;=^5003298
- ;;^UTILITY(U,$J,358.3,15492,0)
- ;;=F15.921^^45^695^28
- ;;^UTILITY(U,$J,358.3,15492,1,0)
+ ;;^UTILITY(U,$J,358.3,29902,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,29902,1,4,0)
+ ;;=4^L03.125
+ ;;^UTILITY(U,$J,358.3,29902,2)
+ ;;=^5009041
+ ;;^UTILITY(U,$J,358.3,29903,0)
+ ;;=L03.126^^92^1195^20
+ ;;^UTILITY(U,$J,358.3,29903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15492,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intox Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,15492,1,4,0)
- ;;=4^F15.921
- ;;^UTILITY(U,$J,358.3,15492,2)
- ;;=^5003312
- ;;^UTILITY(U,$J,358.3,15493,0)
- ;;=F15.23^^45^695^36
- ;;^UTILITY(U,$J,358.3,15493,1,0)
+ ;;^UTILITY(U,$J,358.3,29903,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,29903,1,4,0)
+ ;;=4^L03.126
+ ;;^UTILITY(U,$J,358.3,29903,2)
+ ;;=^5133646
+ ;;^UTILITY(U,$J,358.3,29904,0)
+ ;;=L03.211^^92^1195^101
+ ;;^UTILITY(U,$J,358.3,29904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15493,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,15493,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,15493,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,15494,0)
- ;;=F15.10^^45^695^1
- ;;^UTILITY(U,$J,358.3,15494,1,0)
+ ;;^UTILITY(U,$J,358.3,29904,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,29904,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,29904,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,29905,0)
+ ;;=L03.212^^92^1195^17
+ ;;^UTILITY(U,$J,358.3,29905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15494,1,3,0)
- ;;=3^Amphetamine Type Substance Use D/O, Mild
- ;;^UTILITY(U,$J,358.3,15494,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,15494,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,15495,0)
- ;;=F15.20^^45^695^2
- ;;^UTILITY(U,$J,358.3,15495,1,0)
+ ;;^UTILITY(U,$J,358.3,29905,1,3,0)
+ ;;=3^Acute Lymphangitis of Face
+ ;;^UTILITY(U,$J,358.3,29905,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,29905,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,29906,0)
+ ;;=L03.221^^92^1195^108
+ ;;^UTILITY(U,$J,358.3,29906,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29906,1,3,0)
+ ;;=3^Cellulitis of Neck
+ ;;^UTILITY(U,$J,358.3,29906,1,4,0)
+ ;;=4^L03.221
+ ;;^UTILITY(U,$J,358.3,29906,2)
+ ;;=^5009045
+ ;;^UTILITY(U,$J,358.3,29907,0)
+ ;;=L03.222^^92^1195^23
+ ;;^UTILITY(U,$J,358.3,29907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29907,1,3,0)
+ ;;=3^Acute Lymphangitis of Neck
+ ;;^UTILITY(U,$J,358.3,29907,1,4,0)
+ ;;=4^L03.222
+ ;;^UTILITY(U,$J,358.3,29907,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,29908,0)
+ ;;=L03.311^^92^1195^97
+ ;;^UTILITY(U,$J,358.3,29908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29908,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,29908,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,29908,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,29909,0)
+ ;;=L03.312^^92^1195^98
+ ;;^UTILITY(U,$J,358.3,29909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29909,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,29909,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,29909,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,29910,0)
+ ;;=L03.313^^92^1195^100
+ ;;^UTILITY(U,$J,358.3,29910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29910,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,29910,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,29910,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,29911,0)
+ ;;=L03.314^^92^1195^102
+ ;;^UTILITY(U,$J,358.3,29911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29911,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,29911,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,29911,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,29912,0)
+ ;;=L03.315^^92^1195^109
+ ;;^UTILITY(U,$J,358.3,29912,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29912,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,29912,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,29912,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,29913,0)
+ ;;=L03.316^^92^1195^116
+ ;;^UTILITY(U,$J,358.3,29913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29913,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,29913,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,29913,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,29914,0)
+ ;;=L03.319^^92^1195^115
+ ;;^UTILITY(U,$J,358.3,29914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29914,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,29914,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,29914,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,29915,0)
+ ;;=L03.321^^92^1195^14
+ ;;^UTILITY(U,$J,358.3,29915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29915,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,29915,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,29915,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,29916,0)
+ ;;=L03.322^^92^1195^15
+ ;;^UTILITY(U,$J,358.3,29916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29916,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,29916,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,29916,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,29917,0)
+ ;;=L03.323^^92^1195^16
+ ;;^UTILITY(U,$J,358.3,29917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29917,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,29917,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,29917,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,29918,0)
+ ;;=L03.324^^92^1195^18
+ ;;^UTILITY(U,$J,358.3,29918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29918,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,29918,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,29918,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,29919,0)
+ ;;=L03.325^^92^1195^24
+ ;;^UTILITY(U,$J,358.3,29919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29919,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,29919,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,29919,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,29920,0)
+ ;;=L03.326^^92^1195^30
+ ;;^UTILITY(U,$J,358.3,29920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29920,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,29920,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,29920,2)
+ ;;=^5009060
+ ;;^UTILITY(U,$J,358.3,29921,0)
+ ;;=L03.329^^92^1195^29
+ ;;^UTILITY(U,$J,358.3,29921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29921,1,3,0)
+ ;;=3^Acute Lymphangitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,29921,1,4,0)
+ ;;=4^L03.329
+ ;;^UTILITY(U,$J,358.3,29921,2)
+ ;;=^5009062
+ ;;^UTILITY(U,$J,358.3,29922,0)
+ ;;=L08.9^^92^1195^171
+ ;;^UTILITY(U,$J,358.3,29922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29922,1,3,0)
+ ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,29922,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,29922,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,29923,0)
+ ;;=L11.0^^92^1195^10
+ ;;^UTILITY(U,$J,358.3,29923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29923,1,3,0)
+ ;;=3^Acquired Keratosis Follicularis
+ ;;^UTILITY(U,$J,358.3,29923,1,4,0)
+ ;;=4^L11.0
+ ;;^UTILITY(U,$J,358.3,29923,2)
+ ;;=^5009091
+ ;;^UTILITY(U,$J,358.3,29924,0)
+ ;;=L20.0^^92^1195^91
+ ;;^UTILITY(U,$J,358.3,29924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29924,1,3,0)
+ ;;=3^Besnier's Prurigo
+ ;;^UTILITY(U,$J,358.3,29924,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,29924,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,29925,0)
+ ;;=L20.81^^92^1195^88
+ ;;^UTILITY(U,$J,358.3,29925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29925,1,3,0)
+ ;;=3^Atopic Neurodermatitis
+ ;;^UTILITY(U,$J,358.3,29925,1,4,0)
+ ;;=4^L20.81
+ ;;^UTILITY(U,$J,358.3,29925,2)
+ ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,29926,0)
+ ;;=L20.82^^92^1195^153
+ ;;^UTILITY(U,$J,358.3,29926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29926,1,3,0)
+ ;;=3^Flexural Eczema
+ ;;^UTILITY(U,$J,358.3,29926,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,29926,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,29927,0)
+ ;;=L20.84^^92^1195^165
+ ;;^UTILITY(U,$J,358.3,29927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29927,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,29927,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,29927,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,29928,0)
+ ;;=L20.89^^92^1195^86
+ ;;^UTILITY(U,$J,358.3,29928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29928,1,3,0)
+ ;;=3^Atopic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,29928,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,29928,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,29929,0)
+ ;;=L20.9^^92^1195^87
+ ;;^UTILITY(U,$J,358.3,29929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29929,1,3,0)
+ ;;=3^Atopic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29929,1,4,0)
+ ;;=4^L20.9
+ ;;^UTILITY(U,$J,358.3,29929,2)
+ ;;=^5009113
+ ;;^UTILITY(U,$J,358.3,29930,0)
+ ;;=L21.8^^92^1195^302
+ ;;^UTILITY(U,$J,358.3,29930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29930,1,3,0)
+ ;;=3^Seborrheic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,29930,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,29930,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,29931,0)
+ ;;=L21.9^^92^1195^303
+ ;;^UTILITY(U,$J,358.3,29931,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29931,1,3,0)
+ ;;=3^Seborrheic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29931,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,29931,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,29932,0)
+ ;;=L23.7^^92^1195^31
+ ;;^UTILITY(U,$J,358.3,29932,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29932,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,29932,1,4,0)
+ ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,29932,2)
+ ;;=^5009122
+ ;;^UTILITY(U,$J,358.3,29933,0)
+ ;;=L23.9^^92^1195^32
+ ;;^UTILITY(U,$J,358.3,29933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29933,1,3,0)
+ ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29933,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,29933,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,29934,0)
+ ;;=L24.9^^92^1195^166
+ ;;^UTILITY(U,$J,358.3,29934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29934,1,3,0)
+ ;;=3^Irritant Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29934,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,29934,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,29935,0)
+ ;;=L25.9^^92^1195^117
+ ;;^UTILITY(U,$J,358.3,29935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29935,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,29935,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,29935,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,29936,0)
+ ;;=L26.^^92^1195^151
+ ;;^UTILITY(U,$J,358.3,29936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29936,1,3,0)
+ ;;=3^Exfoliative Dermatitis
+ ;;^UTILITY(U,$J,358.3,29936,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,29936,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,29937,0)
+ ;;=L27.0^^92^1195^305
+ ;;^UTILITY(U,$J,358.3,29937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29937,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,29937,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,29937,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,29938,0)
+ ;;=L27.1^^92^1195^306
+ ;;^UTILITY(U,$J,358.3,29938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29938,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;^UTILITY(U,$J,358.3,29938,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,29938,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,29939,0)
+ ;;=L29.0^^92^1195^290
+ ;;^UTILITY(U,$J,358.3,29939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29939,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,29939,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,29939,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,29940,0)
+ ;;=L29.9^^92^1195^291
+ ;;^UTILITY(U,$J,358.3,29940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29940,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,29940,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,29940,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,29941,0)
+ ;;=L30.0^^92^1195^270
+ ;;^UTILITY(U,$J,358.3,29941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29941,1,3,0)
+ ;;=3^Nummular Dermatitis
+ ;;^UTILITY(U,$J,358.3,29941,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,29941,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,29942,0)
+ ;;=L30.1^^92^1195^143
+ ;;^UTILITY(U,$J,358.3,29942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29942,1,3,0)
+ ;;=3^Dyshidrosis
+ ;;^UTILITY(U,$J,358.3,29942,1,4,0)
+ ;;=4^L30.1
+ ;;^UTILITY(U,$J,358.3,29942,2)
+ ;;=^5009154
+ ;;^UTILITY(U,$J,358.3,29943,0)
+ ;;=L30.2^^92^1195^135
+ ;;^UTILITY(U,$J,358.3,29943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29943,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,29943,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,29943,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,29944,0)
+ ;;=L30.4^^92^1195^147

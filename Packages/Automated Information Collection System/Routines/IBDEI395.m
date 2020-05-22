@@ -1,128 +1,116 @@
-IBDEI395 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI395 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54655,0)
- ;;=H01.005^^256^2768^1
- ;;^UTILITY(U,$J,358.3,54655,1,0)
+ ;;^UTILITY(U,$J,358.3,51918,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,51918,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,51919,0)
+ ;;=R40.2223^^193^2515^19
+ ;;^UTILITY(U,$J,358.3,51919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54655,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,54655,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,54655,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,54656,0)
- ;;=H01.001^^256^2768^4
- ;;^UTILITY(U,$J,358.3,54656,1,0)
+ ;;^UTILITY(U,$J,358.3,51919,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,51919,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,51919,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,51920,0)
+ ;;=R40.2222^^193^2515^20
+ ;;^UTILITY(U,$J,358.3,51920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54656,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,54656,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,54656,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,54657,0)
- ;;=H57.13^^256^2768^10
- ;;^UTILITY(U,$J,358.3,54657,1,0)
+ ;;^UTILITY(U,$J,358.3,51920,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,51920,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,51920,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,51921,0)
+ ;;=R40.2221^^193^2515^21
+ ;;^UTILITY(U,$J,358.3,51921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54657,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,54657,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,54657,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,54658,0)
- ;;=H57.12^^256^2768^11
- ;;^UTILITY(U,$J,358.3,54658,1,0)
+ ;;^UTILITY(U,$J,358.3,51921,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,51921,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,51921,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,51922,0)
+ ;;=R40.2220^^193^2515^22
+ ;;^UTILITY(U,$J,358.3,51922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54658,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,54658,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,54658,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,54659,0)
- ;;=H57.11^^256^2768^12
- ;;^UTILITY(U,$J,358.3,54659,1,0)
+ ;;^UTILITY(U,$J,358.3,51922,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,51922,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,51922,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,51923,0)
+ ;;=R40.2214^^193^2515^23
+ ;;^UTILITY(U,$J,358.3,51923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54659,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,54659,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,54659,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,54660,0)
- ;;=S05.02XA^^256^2769^3
- ;;^UTILITY(U,$J,358.3,54660,1,0)
+ ;;^UTILITY(U,$J,358.3,51923,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,51923,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,51923,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,51924,0)
+ ;;=R40.2213^^193^2515^25
+ ;;^UTILITY(U,$J,358.3,51924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54660,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,54660,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,54660,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,54661,0)
- ;;=S05.01XA^^256^2769^4
- ;;^UTILITY(U,$J,358.3,54661,1,0)
+ ;;^UTILITY(U,$J,358.3,51924,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,51924,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,51924,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,51925,0)
+ ;;=R40.2212^^193^2515^24
+ ;;^UTILITY(U,$J,358.3,51925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54661,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,54661,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,54661,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,54662,0)
- ;;=T15.02XA^^256^2769^1
- ;;^UTILITY(U,$J,358.3,54662,1,0)
+ ;;^UTILITY(U,$J,358.3,51925,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,51925,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,51925,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,51926,0)
+ ;;=R40.2344^^193^2515^6
+ ;;^UTILITY(U,$J,358.3,51926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54662,1,3,0)
- ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,54662,1,4,0)
- ;;=4^T15.02XA
- ;;^UTILITY(U,$J,358.3,54662,2)
- ;;=^5046387
- ;;^UTILITY(U,$J,358.3,54663,0)
- ;;=T15.01XA^^256^2769^2
- ;;^UTILITY(U,$J,358.3,54663,1,0)
+ ;;^UTILITY(U,$J,358.3,51926,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,51926,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,51926,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,51927,0)
+ ;;=R40.2343^^193^2515^7
+ ;;^UTILITY(U,$J,358.3,51927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54663,1,3,0)
- ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,54663,1,4,0)
- ;;=4^T15.01XA
- ;;^UTILITY(U,$J,358.3,54663,2)
- ;;=^5046384
- ;;^UTILITY(U,$J,358.3,54664,0)
- ;;=S00.252A^^256^2769^5
- ;;^UTILITY(U,$J,358.3,54664,1,0)
+ ;;^UTILITY(U,$J,358.3,51927,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,51927,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,51927,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,51928,0)
+ ;;=R40.2342^^193^2515^8
+ ;;^UTILITY(U,$J,358.3,51928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54664,1,3,0)
- ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,54664,1,4,0)
- ;;=4^S00.252A
- ;;^UTILITY(U,$J,358.3,54664,2)
- ;;=^5019820
- ;;^UTILITY(U,$J,358.3,54665,0)
- ;;=S00.251A^^256^2769^6
- ;;^UTILITY(U,$J,358.3,54665,1,0)
+ ;;^UTILITY(U,$J,358.3,51928,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,51928,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,51928,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,51929,0)
+ ;;=R40.2341^^193^2515^9
+ ;;^UTILITY(U,$J,358.3,51929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54665,1,3,0)
- ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,54665,1,4,0)
- ;;=4^S00.251A
- ;;^UTILITY(U,$J,358.3,54665,2)
- ;;=^5019817
- ;;^UTILITY(U,$J,358.3,54666,0)
- ;;=B96.81^^256^2770^56
- ;;^UTILITY(U,$J,358.3,54666,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54666,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,54666,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,54666,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,54667,0)
- ;;=B15.9^^256^2770^58
- ;;^UTILITY(U,$J,358.3,54667,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51929,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,51929,1,4,0)
+ ;;=4^R40.2341

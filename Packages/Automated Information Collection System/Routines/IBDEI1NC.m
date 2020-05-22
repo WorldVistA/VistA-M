@@ -1,134 +1,128 @@
-IBDEI1NC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1NC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27945,1,0)
+ ;;^UTILITY(U,$J,358.3,26292,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Acute Cortical Necrosis
+ ;;^UTILITY(U,$J,358.3,26292,1,4,0)
+ ;;=4^N17.1
+ ;;^UTILITY(U,$J,358.3,26292,2)
+ ;;=^5015599
+ ;;^UTILITY(U,$J,358.3,26293,0)
+ ;;=N17.2^^107^1235^2
+ ;;^UTILITY(U,$J,358.3,26293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27945,1,3,0)
- ;;=3^Spinal Stenosis,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,27945,1,4,0)
- ;;=4^M48.07
- ;;^UTILITY(U,$J,358.3,27945,2)
- ;;=^5012094
- ;;^UTILITY(U,$J,358.3,27946,0)
- ;;=M54.10^^109^1394^10
- ;;^UTILITY(U,$J,358.3,27946,1,0)
+ ;;^UTILITY(U,$J,358.3,26293,1,3,0)
+ ;;=3^Acute Kidney Failure w/ Medullary Necrosis
+ ;;^UTILITY(U,$J,358.3,26293,1,4,0)
+ ;;=4^N17.2
+ ;;^UTILITY(U,$J,358.3,26293,2)
+ ;;=^5015600
+ ;;^UTILITY(U,$J,358.3,26294,0)
+ ;;=N17.8^^107^1235^4
+ ;;^UTILITY(U,$J,358.3,26294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27946,1,3,0)
- ;;=3^Radiculopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,27946,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,27946,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,27947,0)
- ;;=M54.12^^109^1394^6
- ;;^UTILITY(U,$J,358.3,27947,1,0)
+ ;;^UTILITY(U,$J,358.3,26294,1,3,0)
+ ;;=3^Acute Kidney Failure,Other
+ ;;^UTILITY(U,$J,358.3,26294,1,4,0)
+ ;;=4^N17.8
+ ;;^UTILITY(U,$J,358.3,26294,2)
+ ;;=^5015601
+ ;;^UTILITY(U,$J,358.3,26295,0)
+ ;;=N17.9^^107^1235^5
+ ;;^UTILITY(U,$J,358.3,26295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27947,1,3,0)
- ;;=3^Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,27947,1,4,0)
- ;;=4^M54.12
- ;;^UTILITY(U,$J,358.3,27947,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,27948,0)
- ;;=M54.14^^109^1394^11
- ;;^UTILITY(U,$J,358.3,27948,1,0)
+ ;;^UTILITY(U,$J,358.3,26295,1,3,0)
+ ;;=3^Acute Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,26295,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,26295,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,26296,0)
+ ;;=I20.0^^107^1236^4
+ ;;^UTILITY(U,$J,358.3,26296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27948,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,27948,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,27948,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,27949,0)
- ;;=M54.16^^109^1394^8
- ;;^UTILITY(U,$J,358.3,27949,1,0)
+ ;;^UTILITY(U,$J,358.3,26296,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,26296,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,26296,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,26297,0)
+ ;;=I20.1^^107^1236^1
+ ;;^UTILITY(U,$J,358.3,26297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27949,1,3,0)
- ;;=3^Radiculopathy,Lumbar Region
- ;;^UTILITY(U,$J,358.3,27949,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,27949,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,27950,0)
- ;;=M54.17^^109^1394^9
- ;;^UTILITY(U,$J,358.3,27950,1,0)
+ ;;^UTILITY(U,$J,358.3,26297,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,26297,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,26297,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,26298,0)
+ ;;=I20.8^^107^1236^2
+ ;;^UTILITY(U,$J,358.3,26298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27950,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,27950,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,27950,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,27951,0)
- ;;=M54.13^^109^1394^7
- ;;^UTILITY(U,$J,358.3,27951,1,0)
+ ;;^UTILITY(U,$J,358.3,26298,1,3,0)
+ ;;=3^Angina Pectoris,Other Forms
+ ;;^UTILITY(U,$J,358.3,26298,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,26298,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,26299,0)
+ ;;=I20.9^^107^1236^3
+ ;;^UTILITY(U,$J,358.3,26299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27951,1,3,0)
- ;;=3^Radiculopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,27951,1,4,0)
- ;;=4^M54.13
- ;;^UTILITY(U,$J,358.3,27951,2)
- ;;=^5012298
- ;;^UTILITY(U,$J,358.3,27952,0)
- ;;=M54.15^^109^1394^12
- ;;^UTILITY(U,$J,358.3,27952,1,0)
+ ;;^UTILITY(U,$J,358.3,26299,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,26299,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,26299,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,26300,0)
+ ;;=J40.^^107^1237^17
+ ;;^UTILITY(U,$J,358.3,26300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27952,1,3,0)
- ;;=3^Radiculopathy,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,27952,1,4,0)
- ;;=4^M54.15
- ;;^UTILITY(U,$J,358.3,27952,2)
- ;;=^5012300
- ;;^UTILITY(U,$J,358.3,27953,0)
- ;;=M54.31^^109^1394^14
- ;;^UTILITY(U,$J,358.3,27953,1,0)
+ ;;^UTILITY(U,$J,358.3,26300,1,3,0)
+ ;;=3^Bronchitis
+ ;;^UTILITY(U,$J,358.3,26300,1,4,0)
+ ;;=4^J40.
+ ;;^UTILITY(U,$J,358.3,26300,2)
+ ;;=^17164
+ ;;^UTILITY(U,$J,358.3,26301,0)
+ ;;=J41.0^^107^1237^20
+ ;;^UTILITY(U,$J,358.3,26301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27953,1,3,0)
- ;;=3^Sciatica,Right Side
- ;;^UTILITY(U,$J,358.3,27953,1,4,0)
- ;;=4^M54.31
- ;;^UTILITY(U,$J,358.3,27953,2)
- ;;=^5012306
- ;;^UTILITY(U,$J,358.3,27954,0)
- ;;=M54.32^^109^1394^13
- ;;^UTILITY(U,$J,358.3,27954,1,0)
+ ;;^UTILITY(U,$J,358.3,26301,1,3,0)
+ ;;=3^Bronchitis,Simple Chronic
+ ;;^UTILITY(U,$J,358.3,26301,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,26301,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,26302,0)
+ ;;=J41.1^^107^1237^19
+ ;;^UTILITY(U,$J,358.3,26302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27954,1,3,0)
- ;;=3^Sciatica,Left Side
- ;;^UTILITY(U,$J,358.3,27954,1,4,0)
- ;;=4^M54.32
- ;;^UTILITY(U,$J,358.3,27954,2)
- ;;=^5012307
- ;;^UTILITY(U,$J,358.3,27955,0)
- ;;=M48.03^^109^1394^16
- ;;^UTILITY(U,$J,358.3,27955,1,0)
+ ;;^UTILITY(U,$J,358.3,26302,1,3,0)
+ ;;=3^Bronchitis,Mucopurulent Chronic
+ ;;^UTILITY(U,$J,358.3,26302,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,26302,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,26303,0)
+ ;;=J41.8^^107^1237^18
+ ;;^UTILITY(U,$J,358.3,26303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27955,1,3,0)
- ;;=3^Spinal Stenosis,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,27955,1,4,0)
- ;;=4^M48.03
- ;;^UTILITY(U,$J,358.3,27955,2)
- ;;=^5012090
- ;;^UTILITY(U,$J,358.3,27956,0)
- ;;=M48.06^^109^1394^17
- ;;^UTILITY(U,$J,358.3,27956,1,0)
+ ;;^UTILITY(U,$J,358.3,26303,1,3,0)
+ ;;=3^Bronchitis,Mixed Simple & Mucopurulent Chronic
+ ;;^UTILITY(U,$J,358.3,26303,1,4,0)
+ ;;=4^J41.8
+ ;;^UTILITY(U,$J,358.3,26303,2)
+ ;;=^5008233
+ ;;^UTILITY(U,$J,358.3,26304,0)
+ ;;=J42.^^107^1237^21
+ ;;^UTILITY(U,$J,358.3,26304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27956,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region
- ;;^UTILITY(U,$J,358.3,27956,1,4,0)
- ;;=4^M48.06
- ;;^UTILITY(U,$J,358.3,27956,2)
- ;;=^5012093
- ;;^UTILITY(U,$J,358.3,27957,0)
- ;;=M48.05^^109^1394^20
- ;;^UTILITY(U,$J,358.3,27957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27957,1,3,0)
- ;;=3^Spinal Stenosis,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,27957,1,4,0)
- ;;=4^M48.05
- ;;^UTILITY(U,$J,358.3,27957,2)
- ;;=^5012092
- ;;^UTILITY(U,$J,358.3,27958,0)
- ;;=M47.20^^109^1394^31
+ ;;^UTILITY(U,$J,358.3,26304,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,26304,1,4,0)
+ ;;=4^J42.

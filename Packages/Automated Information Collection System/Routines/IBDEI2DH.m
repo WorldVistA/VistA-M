@@ -1,134 +1,126 @@
-IBDEI2DH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40230,0)
- ;;=T86.13^^156^1956^39
- ;;^UTILITY(U,$J,358.3,40230,1,0)
+ ;;^UTILITY(U,$J,358.3,37867,1,4,0)
+ ;;=4^R20.1
+ ;;^UTILITY(U,$J,358.3,37867,2)
+ ;;=^5019279
+ ;;^UTILITY(U,$J,358.3,37868,0)
+ ;;=R20.3^^146^1919^9
+ ;;^UTILITY(U,$J,358.3,37868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40230,1,3,0)
- ;;=3^Kidney transplant infection
- ;;^UTILITY(U,$J,358.3,40230,1,4,0)
- ;;=4^T86.13
- ;;^UTILITY(U,$J,358.3,40230,2)
- ;;=^5055711
- ;;^UTILITY(U,$J,358.3,40231,0)
- ;;=T86.19^^156^1956^37
- ;;^UTILITY(U,$J,358.3,40231,1,0)
+ ;;^UTILITY(U,$J,358.3,37868,1,3,0)
+ ;;=3^Hyperesthesia
+ ;;^UTILITY(U,$J,358.3,37868,1,4,0)
+ ;;=4^R20.3
+ ;;^UTILITY(U,$J,358.3,37868,2)
+ ;;=^60011
+ ;;^UTILITY(U,$J,358.3,37869,0)
+ ;;=M20.12^^146^1919^3
+ ;;^UTILITY(U,$J,358.3,37869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40231,1,3,0)
- ;;=3^Kidney transplant complication, other
- ;;^UTILITY(U,$J,358.3,40231,1,4,0)
- ;;=4^T86.19
- ;;^UTILITY(U,$J,358.3,40231,2)
- ;;=^5055712
- ;;^UTILITY(U,$J,358.3,40232,0)
- ;;=T86.21^^156^1956^31
- ;;^UTILITY(U,$J,358.3,40232,1,0)
+ ;;^UTILITY(U,$J,358.3,37869,1,3,0)
+ ;;=3^Hallux valgus (acquired), left foot
+ ;;^UTILITY(U,$J,358.3,37869,1,4,0)
+ ;;=4^M20.12
+ ;;^UTILITY(U,$J,358.3,37869,2)
+ ;;=^5011043
+ ;;^UTILITY(U,$J,358.3,37870,0)
+ ;;=M20.11^^146^1919^4
+ ;;^UTILITY(U,$J,358.3,37870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40232,1,3,0)
- ;;=3^Heart transplant rejection
- ;;^UTILITY(U,$J,358.3,40232,1,4,0)
- ;;=4^T86.21
- ;;^UTILITY(U,$J,358.3,40232,2)
- ;;=^5055714
- ;;^UTILITY(U,$J,358.3,40233,0)
- ;;=T86.22^^156^1956^29
- ;;^UTILITY(U,$J,358.3,40233,1,0)
+ ;;^UTILITY(U,$J,358.3,37870,1,3,0)
+ ;;=3^Hallux valgus (acquired), right foot
+ ;;^UTILITY(U,$J,358.3,37870,1,4,0)
+ ;;=4^M20.11
+ ;;^UTILITY(U,$J,358.3,37870,2)
+ ;;=^5011042
+ ;;^UTILITY(U,$J,358.3,37871,0)
+ ;;=M20.31^^146^1919^6
+ ;;^UTILITY(U,$J,358.3,37871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40233,1,3,0)
- ;;=3^Heart transplant failure
- ;;^UTILITY(U,$J,358.3,40233,1,4,0)
- ;;=4^T86.22
- ;;^UTILITY(U,$J,358.3,40233,2)
- ;;=^5055715
- ;;^UTILITY(U,$J,358.3,40234,0)
- ;;=T86.23^^156^1956^30
- ;;^UTILITY(U,$J,358.3,40234,1,0)
+ ;;^UTILITY(U,$J,358.3,37871,1,3,0)
+ ;;=3^Hallux varus (acquired), right foot
+ ;;^UTILITY(U,$J,358.3,37871,1,4,0)
+ ;;=4^M20.31
+ ;;^UTILITY(U,$J,358.3,37871,2)
+ ;;=^5011048
+ ;;^UTILITY(U,$J,358.3,37872,0)
+ ;;=M20.32^^146^1919^5
+ ;;^UTILITY(U,$J,358.3,37872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40234,1,3,0)
- ;;=3^Heart transplant infection
- ;;^UTILITY(U,$J,358.3,40234,1,4,0)
- ;;=4^T86.23
- ;;^UTILITY(U,$J,358.3,40234,2)
- ;;=^5055716
- ;;^UTILITY(U,$J,358.3,40235,0)
- ;;=T86.290^^156^1956^12
- ;;^UTILITY(U,$J,358.3,40235,1,0)
+ ;;^UTILITY(U,$J,358.3,37872,1,3,0)
+ ;;=3^Hallux varus (acquired), left foot
+ ;;^UTILITY(U,$J,358.3,37872,1,4,0)
+ ;;=4^M20.32
+ ;;^UTILITY(U,$J,358.3,37872,2)
+ ;;=^5011049
+ ;;^UTILITY(U,$J,358.3,37873,0)
+ ;;=M20.22^^146^1919^1
+ ;;^UTILITY(U,$J,358.3,37873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40235,1,3,0)
- ;;=3^Cardiac allograft vasculopathy
- ;;^UTILITY(U,$J,358.3,40235,1,4,0)
- ;;=4^T86.290
- ;;^UTILITY(U,$J,358.3,40235,2)
- ;;=^5055717
- ;;^UTILITY(U,$J,358.3,40236,0)
- ;;=T86.298^^156^1956^28
- ;;^UTILITY(U,$J,358.3,40236,1,0)
+ ;;^UTILITY(U,$J,358.3,37873,1,3,0)
+ ;;=3^Hallux rigidus, left foot
+ ;;^UTILITY(U,$J,358.3,37873,1,4,0)
+ ;;=4^M20.22
+ ;;^UTILITY(U,$J,358.3,37873,2)
+ ;;=^5011046
+ ;;^UTILITY(U,$J,358.3,37874,0)
+ ;;=M20.21^^146^1919^2
+ ;;^UTILITY(U,$J,358.3,37874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40236,1,3,0)
- ;;=3^Heart transplant complications, other
- ;;^UTILITY(U,$J,358.3,40236,1,4,0)
- ;;=4^T86.298
- ;;^UTILITY(U,$J,358.3,40236,2)
- ;;=^5055718
- ;;^UTILITY(U,$J,358.3,40237,0)
- ;;=T86.31^^156^1956^35
- ;;^UTILITY(U,$J,358.3,40237,1,0)
+ ;;^UTILITY(U,$J,358.3,37874,1,3,0)
+ ;;=3^Hallux rigidus, right foot
+ ;;^UTILITY(U,$J,358.3,37874,1,4,0)
+ ;;=4^M20.21
+ ;;^UTILITY(U,$J,358.3,37874,2)
+ ;;=^5011045
+ ;;^UTILITY(U,$J,358.3,37875,0)
+ ;;=M20.42^^146^1919^7
+ ;;^UTILITY(U,$J,358.3,37875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40237,1,3,0)
- ;;=3^Heart-lung transplant rejection
- ;;^UTILITY(U,$J,358.3,40237,1,4,0)
- ;;=4^T86.31
- ;;^UTILITY(U,$J,358.3,40237,2)
- ;;=^5055720
- ;;^UTILITY(U,$J,358.3,40238,0)
- ;;=T86.32^^156^1956^33
- ;;^UTILITY(U,$J,358.3,40238,1,0)
+ ;;^UTILITY(U,$J,358.3,37875,1,3,0)
+ ;;=3^Hammer toe(s) (acquired), left foot, oth
+ ;;^UTILITY(U,$J,358.3,37875,1,4,0)
+ ;;=4^M20.42
+ ;;^UTILITY(U,$J,358.3,37875,2)
+ ;;=^5011052
+ ;;^UTILITY(U,$J,358.3,37876,0)
+ ;;=M20.41^^146^1919^8
+ ;;^UTILITY(U,$J,358.3,37876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40238,1,3,0)
- ;;=3^Heart-lung transplant failure
- ;;^UTILITY(U,$J,358.3,40238,1,4,0)
- ;;=4^T86.32
- ;;^UTILITY(U,$J,358.3,40238,2)
- ;;=^5055721
- ;;^UTILITY(U,$J,358.3,40239,0)
- ;;=T86.33^^156^1956^34
- ;;^UTILITY(U,$J,358.3,40239,1,0)
+ ;;^UTILITY(U,$J,358.3,37876,1,3,0)
+ ;;=3^Hammer toe(s) (acquired), right foot, oth
+ ;;^UTILITY(U,$J,358.3,37876,1,4,0)
+ ;;=4^M20.41
+ ;;^UTILITY(U,$J,358.3,37876,2)
+ ;;=^5011051
+ ;;^UTILITY(U,$J,358.3,37877,0)
+ ;;=L85.9^^146^1919^10
+ ;;^UTILITY(U,$J,358.3,37877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40239,1,3,0)
- ;;=3^Heart-lung transplant infection
- ;;^UTILITY(U,$J,358.3,40239,1,4,0)
- ;;=4^T86.33
- ;;^UTILITY(U,$J,358.3,40239,2)
- ;;=^5055722
- ;;^UTILITY(U,$J,358.3,40240,0)
- ;;=T86.39^^156^1956^32
- ;;^UTILITY(U,$J,358.3,40240,1,0)
+ ;;^UTILITY(U,$J,358.3,37877,1,3,0)
+ ;;=3^Hyperkeratosis
+ ;;^UTILITY(U,$J,358.3,37877,1,4,0)
+ ;;=4^L85.9
+ ;;^UTILITY(U,$J,358.3,37877,2)
+ ;;=^5009325
+ ;;^UTILITY(U,$J,358.3,37878,0)
+ ;;=T84.7XXA^^146^1920^13
+ ;;^UTILITY(U,$J,358.3,37878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40240,1,3,0)
- ;;=3^Heart-lung transplant complications, other
- ;;^UTILITY(U,$J,358.3,40240,1,4,0)
- ;;=4^T86.39
- ;;^UTILITY(U,$J,358.3,40240,2)
- ;;=^5055723
- ;;^UTILITY(U,$J,358.3,40241,0)
- ;;=T86.41^^156^1956^44
- ;;^UTILITY(U,$J,358.3,40241,1,0)
+ ;;^UTILITY(U,$J,358.3,37878,1,3,0)
+ ;;=3^Infect/inflm react d/t int orth pros dev/graft, init
+ ;;^UTILITY(U,$J,358.3,37878,1,4,0)
+ ;;=4^T84.7XXA
+ ;;^UTILITY(U,$J,358.3,37878,2)
+ ;;=^5055451
+ ;;^UTILITY(U,$J,358.3,37879,0)
+ ;;=T84.69XA^^146^1920^8
+ ;;^UTILITY(U,$J,358.3,37879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40241,1,3,0)
- ;;=3^Liver transplant rejection
- ;;^UTILITY(U,$J,358.3,40241,1,4,0)
- ;;=4^T86.41
- ;;^UTILITY(U,$J,358.3,40241,2)
- ;;=^5055725
- ;;^UTILITY(U,$J,358.3,40242,0)
- ;;=T86.42^^156^1956^42
- ;;^UTILITY(U,$J,358.3,40242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40242,1,3,0)
- ;;=3^Liver transplant failure
- ;;^UTILITY(U,$J,358.3,40242,1,4,0)
- ;;=4^T86.42
- ;;^UTILITY(U,$J,358.3,40242,2)
- ;;=^5055726
+ ;;^UTILITY(U,$J,358.3,37879,1,3,0)
+ ;;=3^Infect/inflm react d/t int fix of oth site, init
+ ;;^UTILITY(U,$J,358.3,37879,1,4,0)
+ ;;=4^T84.69XA

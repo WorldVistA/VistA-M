@@ -1,136 +1,118 @@
-IBDEI2NS ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44619,0)
- ;;=Z93.2^^200^2229^58
- ;;^UTILITY(U,$J,358.3,44619,1,0)
+ ;;^UTILITY(U,$J,358.3,42412,0)
+ ;;=S62.522S^^155^2069^15
+ ;;^UTILITY(U,$J,358.3,42412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44619,1,3,0)
- ;;=3^Ileostomy Status
- ;;^UTILITY(U,$J,358.3,44619,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,44619,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,44620,0)
- ;;=Z93.3^^200^2229^15
- ;;^UTILITY(U,$J,358.3,44620,1,0)
+ ;;^UTILITY(U,$J,358.3,42412,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42412,1,4,0)
+ ;;=4^S62.522S
+ ;;^UTILITY(U,$J,358.3,42412,2)
+ ;;=^5034353
+ ;;^UTILITY(U,$J,358.3,42413,0)
+ ;;=S62.521S^^155^2069^20
+ ;;^UTILITY(U,$J,358.3,42413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44620,1,3,0)
- ;;=3^Colostomy Status
- ;;^UTILITY(U,$J,358.3,44620,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,44620,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,44621,0)
- ;;=Z94.0^^200^2229^63
- ;;^UTILITY(U,$J,358.3,44621,1,0)
+ ;;^UTILITY(U,$J,358.3,42413,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42413,1,4,0)
+ ;;=4^S62.521S
+ ;;^UTILITY(U,$J,358.3,42413,2)
+ ;;=^5034346
+ ;;^UTILITY(U,$J,358.3,42414,0)
+ ;;=S62.512S^^155^2069^43
+ ;;^UTILITY(U,$J,358.3,42414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44621,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,44621,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,44621,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,44622,0)
- ;;=Z94.1^^200^2229^56
- ;;^UTILITY(U,$J,358.3,44622,1,0)
+ ;;^UTILITY(U,$J,358.3,42414,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42414,1,4,0)
+ ;;=4^S62.512S
+ ;;^UTILITY(U,$J,358.3,42414,2)
+ ;;=^5034311
+ ;;^UTILITY(U,$J,358.3,42415,0)
+ ;;=S62.511S^^155^2069^48
+ ;;^UTILITY(U,$J,358.3,42415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44622,1,3,0)
- ;;=3^Heart Transplant Status
- ;;^UTILITY(U,$J,358.3,44622,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,44622,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,44623,0)
- ;;=Z94.2^^200^2229^66
- ;;^UTILITY(U,$J,358.3,44623,1,0)
+ ;;^UTILITY(U,$J,358.3,42415,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42415,1,4,0)
+ ;;=4^S62.511S
+ ;;^UTILITY(U,$J,358.3,42415,2)
+ ;;=^5034304
+ ;;^UTILITY(U,$J,358.3,42416,0)
+ ;;=S62.525S^^155^2069^73
+ ;;^UTILITY(U,$J,358.3,42416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44623,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,44623,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,44623,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,44624,0)
- ;;=Z94.3^^200^2229^55
- ;;^UTILITY(U,$J,358.3,44624,1,0)
+ ;;^UTILITY(U,$J,358.3,42416,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42416,1,4,0)
+ ;;=4^S62.525S
+ ;;^UTILITY(U,$J,358.3,42416,2)
+ ;;=^5034374
+ ;;^UTILITY(U,$J,358.3,42417,0)
+ ;;=S62.524S^^155^2069^78
+ ;;^UTILITY(U,$J,358.3,42417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44624,1,3,0)
- ;;=3^Heart & Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,44624,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,44624,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,44625,0)
- ;;=Z94.4^^200^2229^65
- ;;^UTILITY(U,$J,358.3,44625,1,0)
+ ;;^UTILITY(U,$J,358.3,42417,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42417,1,4,0)
+ ;;=4^S62.524S
+ ;;^UTILITY(U,$J,358.3,42417,2)
+ ;;=^5034367
+ ;;^UTILITY(U,$J,358.3,42418,0)
+ ;;=S62.515S^^155^2069^101
+ ;;^UTILITY(U,$J,358.3,42418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44625,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,44625,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,44625,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,44626,0)
- ;;=Z94.84^^200^2229^143
- ;;^UTILITY(U,$J,358.3,44626,1,0)
+ ;;^UTILITY(U,$J,358.3,42418,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42418,1,4,0)
+ ;;=4^S62.515S
+ ;;^UTILITY(U,$J,358.3,42418,2)
+ ;;=^5034332
+ ;;^UTILITY(U,$J,358.3,42419,0)
+ ;;=S62.514S^^155^2069^106
+ ;;^UTILITY(U,$J,358.3,42419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44626,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,44626,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,44626,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,44627,0)
- ;;=Z96.21^^200^2229^14
- ;;^UTILITY(U,$J,358.3,44627,1,0)
+ ;;^UTILITY(U,$J,358.3,42419,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,42419,1,4,0)
+ ;;=4^S62.514S
+ ;;^UTILITY(U,$J,358.3,42419,2)
+ ;;=^5034325
+ ;;^UTILITY(U,$J,358.3,42420,0)
+ ;;=S32.462S^^155^2070^5
+ ;;^UTILITY(U,$J,358.3,42420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44627,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,44627,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,44627,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,44628,0)
- ;;=Z96.41^^200^2229^126
- ;;^UTILITY(U,$J,358.3,44628,1,0)
+ ;;^UTILITY(U,$J,358.3,42420,1,3,0)
+ ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,42420,1,4,0)
+ ;;=4^S32.462S
+ ;;^UTILITY(U,$J,358.3,42420,2)
+ ;;=^5024892
+ ;;^UTILITY(U,$J,358.3,42421,0)
+ ;;=S32.461S^^155^2070^6
+ ;;^UTILITY(U,$J,358.3,42421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44628,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,44628,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,44628,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,44629,0)
- ;;=Z96.641^^200^2229^134
- ;;^UTILITY(U,$J,358.3,44629,1,0)
+ ;;^UTILITY(U,$J,358.3,42421,1,3,0)
+ ;;=3^Disp fx of associated transv/post of right acetab, sequela
+ ;;^UTILITY(U,$J,358.3,42421,1,4,0)
+ ;;=4^S32.461S
+ ;;^UTILITY(U,$J,358.3,42421,2)
+ ;;=^5024886
+ ;;^UTILITY(U,$J,358.3,42422,0)
+ ;;=S32.312S^^155^2070^7
+ ;;^UTILITY(U,$J,358.3,42422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44629,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,44629,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,44629,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,44630,0)
- ;;=Z96.642^^200^2229^129
- ;;^UTILITY(U,$J,358.3,44630,1,0)
+ ;;^UTILITY(U,$J,358.3,42422,1,3,0)
+ ;;=3^Disp fx of avulsion of left ilium, sequela
+ ;;^UTILITY(U,$J,358.3,42422,1,4,0)
+ ;;=4^S32.312S
+ ;;^UTILITY(U,$J,358.3,42422,2)
+ ;;=^5024658
+ ;;^UTILITY(U,$J,358.3,42423,0)
+ ;;=S32.311S^^155^2070^9
+ ;;^UTILITY(U,$J,358.3,42423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44630,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,44630,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,44630,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,44631,0)
- ;;=Z96.643^^200^2229^121
- ;;^UTILITY(U,$J,358.3,44631,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44631,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,44631,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,44631,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,44632,0)
- ;;=Z96.651^^200^2229^135

@@ -1,138 +1,126 @@
-IBDEI2RC ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46294,1,0)
+ ;;^UTILITY(U,$J,358.3,43981,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,43981,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,43981,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,43982,0)
+ ;;=F32.2^^164^2170^19
+ ;;^UTILITY(U,$J,358.3,43982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46294,1,3,0)
- ;;=3^Respiratory Disorders
- ;;^UTILITY(U,$J,358.3,46294,1,4,0)
- ;;=4^J98.8
- ;;^UTILITY(U,$J,358.3,46294,2)
- ;;=^5008365
- ;;^UTILITY(U,$J,358.3,46295,0)
- ;;=R09.2^^206^2292^94
- ;;^UTILITY(U,$J,358.3,46295,1,0)
+ ;;^UTILITY(U,$J,358.3,43982,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,43982,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,43982,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,43983,0)
+ ;;=F32.3^^164^2170^14
+ ;;^UTILITY(U,$J,358.3,43983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46295,1,3,0)
- ;;=3^Repiratory Arrest
- ;;^UTILITY(U,$J,358.3,46295,1,4,0)
- ;;=4^R09.2
- ;;^UTILITY(U,$J,358.3,46295,2)
- ;;=^276886
- ;;^UTILITY(U,$J,358.3,46296,0)
- ;;=J96.00^^206^2292^6
- ;;^UTILITY(U,$J,358.3,46296,1,0)
+ ;;^UTILITY(U,$J,358.3,43983,1,3,0)
+ ;;=3^MDD,Single Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,43983,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,43983,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,43984,0)
+ ;;=F32.4^^164^2170^16
+ ;;^UTILITY(U,$J,358.3,43984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46296,1,3,0)
- ;;=3^Acute Respiratory Failure,Unspec
- ;;^UTILITY(U,$J,358.3,46296,1,4,0)
- ;;=4^J96.00
- ;;^UTILITY(U,$J,358.3,46296,2)
- ;;=^5008347
- ;;^UTILITY(U,$J,358.3,46297,0)
- ;;=D49.1^^206^2292^59
- ;;^UTILITY(U,$J,358.3,46297,1,0)
+ ;;^UTILITY(U,$J,358.3,43984,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,43984,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,43984,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,43985,0)
+ ;;=F32.5^^164^2170^15
+ ;;^UTILITY(U,$J,358.3,43985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46297,1,3,0)
- ;;=3^Neop Respiratory System,Unspec Behavior
- ;;^UTILITY(U,$J,358.3,46297,1,4,0)
- ;;=4^D49.1
- ;;^UTILITY(U,$J,358.3,46297,2)
- ;;=^5002271
- ;;^UTILITY(U,$J,358.3,46298,0)
- ;;=J30.0^^206^2292^99
- ;;^UTILITY(U,$J,358.3,46298,1,0)
+ ;;^UTILITY(U,$J,358.3,43985,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,43985,1,4,0)
+ ;;=4^F32.5
+ ;;^UTILITY(U,$J,358.3,43985,2)
+ ;;=^5003526
+ ;;^UTILITY(U,$J,358.3,43986,0)
+ ;;=F33.9^^164^2170^13
+ ;;^UTILITY(U,$J,358.3,43986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46298,1,3,0)
- ;;=3^Rhinitis,Vasomotor
- ;;^UTILITY(U,$J,358.3,46298,1,4,0)
- ;;=4^J30.0
- ;;^UTILITY(U,$J,358.3,46298,2)
- ;;=^5008201
- ;;^UTILITY(U,$J,358.3,46299,0)
- ;;=J30.9^^206^2292^98
- ;;^UTILITY(U,$J,358.3,46299,1,0)
+ ;;^UTILITY(U,$J,358.3,43986,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,43986,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,43986,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,43987,0)
+ ;;=F33.0^^164^2170^10
+ ;;^UTILITY(U,$J,358.3,43987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46299,1,3,0)
- ;;=3^Rhinitis,Allergic,Unspec
- ;;^UTILITY(U,$J,358.3,46299,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,46299,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,46300,0)
- ;;=D86.9^^206^2292^101
- ;;^UTILITY(U,$J,358.3,46300,1,0)
+ ;;^UTILITY(U,$J,358.3,43987,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,43987,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,43987,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,43988,0)
+ ;;=F33.1^^164^2170^11
+ ;;^UTILITY(U,$J,358.3,43988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46300,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,46300,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,46300,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,46301,0)
- ;;=R06.02^^206^2292^104
- ;;^UTILITY(U,$J,358.3,46301,1,0)
+ ;;^UTILITY(U,$J,358.3,43988,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,43988,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,43988,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,43989,0)
+ ;;=F33.2^^164^2170^12
+ ;;^UTILITY(U,$J,358.3,43989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46301,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,46301,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,46301,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,46302,0)
- ;;=J01.90^^206^2292^105
- ;;^UTILITY(U,$J,358.3,46302,1,0)
+ ;;^UTILITY(U,$J,358.3,43989,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,43989,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,43989,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,43990,0)
+ ;;=F33.3^^164^2170^7
+ ;;^UTILITY(U,$J,358.3,43990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46302,1,3,0)
- ;;=3^Sinusitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,46302,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,46302,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,46303,0)
- ;;=J32.9^^206^2292^106
- ;;^UTILITY(U,$J,358.3,46303,1,0)
+ ;;^UTILITY(U,$J,358.3,43990,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,43990,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,43990,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,43991,0)
+ ;;=F33.41^^164^2170^9
+ ;;^UTILITY(U,$J,358.3,43991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46303,1,3,0)
- ;;=3^Sinusitis,Chr,Unspec
- ;;^UTILITY(U,$J,358.3,46303,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,46303,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,46304,0)
- ;;=G47.9^^206^2292^107
- ;;^UTILITY(U,$J,358.3,46304,1,0)
+ ;;^UTILITY(U,$J,358.3,43991,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,43991,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,43991,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,43992,0)
+ ;;=F33.42^^164^2170^8
+ ;;^UTILITY(U,$J,358.3,43992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46304,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,46304,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,46304,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,46305,0)
- ;;=F17.200^^206^2292^68
- ;;^UTILITY(U,$J,358.3,46305,1,0)
+ ;;^UTILITY(U,$J,358.3,43992,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,43992,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,43992,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,43993,0)
+ ;;=F34.1^^164^2170^20
+ ;;^UTILITY(U,$J,358.3,43993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46305,1,3,0)
- ;;=3^Nicotine Dependence,Unspec
- ;;^UTILITY(U,$J,358.3,46305,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,46305,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,46306,0)
- ;;=F17.201^^206^2292^60
- ;;^UTILITY(U,$J,358.3,46306,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46306,1,3,0)
- ;;=3^Nicotine Dependence In Remission
- ;;^UTILITY(U,$J,358.3,46306,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,46306,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,46307,0)
- ;;=F17.203^^206^2292^62
- ;;^UTILITY(U,$J,358.3,46307,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46307,1,3,0)
- ;;=3^Nicotine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,43993,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)

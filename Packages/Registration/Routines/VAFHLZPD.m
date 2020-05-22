@@ -1,5 +1,5 @@
 VAFHLZPD ;ALB/KCL/PHH,TDM - Create generic HL7 ZPD segment ; 8/15/08 11:42am
- ;;5.3;Registration;**94,122,160,220,247,545,564,568,677,653,688**;Aug 13, 1993;Build 29
+ ;;5.3;Registration;**94,122,160,220,247,545,564,568,677,653,688,1002**;Aug 13, 1993;Build 10
  ;
  ;
 EN(DFN,VAFSTR) ; This generic extrinsic function was designed to return
@@ -149,7 +149,8 @@ GETDATA(DFN,VAFSTR,ARRAY) ;Get info needed to build segment
  ;Sequence 15 - Religious Preference
  I VAFSTR[15 S X=$P(VAFNODE,"^",8) S X1=$P($G(^DIC(13,+X,0)),"^",4),@ARRAY@(15)=$S(X1]"":X1,1:HLQ)
  ;Sequence 16 - Homeless Indicator
- I VAFSTR[16 S X=$T(HOMELESS^SOWKHIRM) S @ARRAY@(16)=$S(X]"":$$HOMELESS^SOWKHIRM(DFN),1:HLQ)
+ ;I VAFSTR[16 S X=$T(HOMELESS^SOWKHIRM) S @ARRAY@(16)=$S(X]"":$$HOMELESS^SOWKHIRM(DFN),1:HLQ)   ;Social Work being decommissioned, API call will no longer be active
+ I VAFSTR[16 S @ARRAY@(16)=$S($$BADADR^DGUTL3(DFN)=2:1,1:0)    ;DG 1002 uses different API call for Homeless Indicator
  ;Sequences 17 & 20
  I ((VAFSTR[17)!(VAFSTR[20)) D
  . ;POW Status & Location

@@ -1,130 +1,122 @@
-IBDEI18F ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18F ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20951,1,0)
+ ;;^UTILITY(U,$J,358.3,19762,1,4,0)
+ ;;=4^S92.342S
+ ;;^UTILITY(U,$J,358.3,19762,2)
+ ;;=^5045199
+ ;;^UTILITY(U,$J,358.3,19763,0)
+ ;;=S92.341S^^93^996^8
+ ;;^UTILITY(U,$J,358.3,19763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20951,1,3,0)
- ;;=3^Abnormal Urine Microbiological Findings
- ;;^UTILITY(U,$J,358.3,20951,1,4,0)
- ;;=4^R82.7
- ;;^UTILITY(U,$J,358.3,20951,2)
- ;;=^5019607
- ;;^UTILITY(U,$J,358.3,20952,0)
- ;;=R82.8^^84^941^23
- ;;^UTILITY(U,$J,358.3,20952,1,0)
+ ;;^UTILITY(U,$J,358.3,19763,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,19763,1,4,0)
+ ;;=4^S92.341S
+ ;;^UTILITY(U,$J,358.3,19763,2)
+ ;;=^5045192
+ ;;^UTILITY(U,$J,358.3,19764,0)
+ ;;=S92.232S^^93^996^31
+ ;;^UTILITY(U,$J,358.3,19764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20952,1,3,0)
- ;;=3^Abnormal Urine Cytology/Histology Findings
- ;;^UTILITY(U,$J,358.3,20952,1,4,0)
- ;;=4^R82.8
- ;;^UTILITY(U,$J,358.3,20952,2)
- ;;=^5019608
- ;;^UTILITY(U,$J,358.3,20953,0)
- ;;=R82.90^^84^941^25
- ;;^UTILITY(U,$J,358.3,20953,1,0)
+ ;;^UTILITY(U,$J,358.3,19764,1,3,0)
+ ;;=3^Disp intermed cuneiform fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,19764,1,4,0)
+ ;;=4^S92.232S
+ ;;^UTILITY(U,$J,358.3,19764,2)
+ ;;=^5044933
+ ;;^UTILITY(U,$J,358.3,19765,0)
+ ;;=S92.231S^^93^996^32
+ ;;^UTILITY(U,$J,358.3,19765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20953,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
- ;;^UTILITY(U,$J,358.3,20953,1,4,0)
- ;;=4^R82.90
- ;;^UTILITY(U,$J,358.3,20953,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,20954,0)
- ;;=R82.91^^84^941^49
- ;;^UTILITY(U,$J,358.3,20954,1,0)
+ ;;^UTILITY(U,$J,358.3,19765,1,3,0)
+ ;;=3^Disp intermed cuneiform fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,19765,1,4,0)
+ ;;=4^S92.231S
+ ;;^UTILITY(U,$J,358.3,19765,2)
+ ;;=^5044926
+ ;;^UTILITY(U,$J,358.3,19766,0)
+ ;;=S92.222S^^93^996^35
+ ;;^UTILITY(U,$J,358.3,19766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20954,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,20954,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,20954,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,20955,0)
- ;;=R82.99^^84^941^24
- ;;^UTILITY(U,$J,358.3,20955,1,0)
+ ;;^UTILITY(U,$J,358.3,19766,1,3,0)
+ ;;=3^Disp lateral cuneiform fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,19766,1,4,0)
+ ;;=4^S92.222S
+ ;;^UTILITY(U,$J,358.3,19766,2)
+ ;;=^5044891
+ ;;^UTILITY(U,$J,358.3,19767,0)
+ ;;=S92.221S^^93^996^36
+ ;;^UTILITY(U,$J,358.3,19767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20955,1,3,0)
- ;;=3^Abnormal Urine Findings NEC
- ;;^UTILITY(U,$J,358.3,20955,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,20955,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,20956,0)
- ;;=R89.9^^84^941^19
- ;;^UTILITY(U,$J,358.3,20956,1,0)
+ ;;^UTILITY(U,$J,358.3,19767,1,3,0)
+ ;;=3^Disp lateral cuneiform fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,19767,1,4,0)
+ ;;=4^S92.221S
+ ;;^UTILITY(U,$J,358.3,19767,2)
+ ;;=^5044884
+ ;;^UTILITY(U,$J,358.3,19768,0)
+ ;;=S92.242S^^93^996^39
+ ;;^UTILITY(U,$J,358.3,19768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20956,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,20956,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,20956,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,20957,0)
- ;;=R90.0^^84^941^98
- ;;^UTILITY(U,$J,358.3,20957,1,0)
+ ;;^UTILITY(U,$J,358.3,19768,1,3,0)
+ ;;=3^Disp medial cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19768,1,4,0)
+ ;;=4^S92.242S
+ ;;^UTILITY(U,$J,358.3,19768,2)
+ ;;=^5044975
+ ;;^UTILITY(U,$J,358.3,19769,0)
+ ;;=S92.241S^^93^996^41
+ ;;^UTILITY(U,$J,358.3,19769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20957,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,20957,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,20957,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,20958,0)
- ;;=R90.89^^84^941^13
- ;;^UTILITY(U,$J,358.3,20958,1,0)
+ ;;^UTILITY(U,$J,358.3,19769,1,3,0)
+ ;;=3^Disp medial cuneiform fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,19769,1,4,0)
+ ;;=4^S92.241S
+ ;;^UTILITY(U,$J,358.3,19769,2)
+ ;;=^5044968
+ ;;^UTILITY(U,$J,358.3,19770,0)
+ ;;=S92.252S^^93^996^44
+ ;;^UTILITY(U,$J,358.3,19770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20958,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,20958,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,20958,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,20959,0)
- ;;=R91.8^^84^941^18
- ;;^UTILITY(U,$J,358.3,20959,1,0)
+ ;;^UTILITY(U,$J,358.3,19770,1,3,0)
+ ;;=3^Disp navicular fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19770,1,4,0)
+ ;;=4^S92.252S
+ ;;^UTILITY(U,$J,358.3,19770,2)
+ ;;=^5045017
+ ;;^UTILITY(U,$J,358.3,19771,0)
+ ;;=S92.251S^^93^996^45
+ ;;^UTILITY(U,$J,358.3,19771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20959,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,20959,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,20959,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,20960,0)
- ;;=R92.0^^84^941^117
- ;;^UTILITY(U,$J,358.3,20960,1,0)
+ ;;^UTILITY(U,$J,358.3,19771,1,3,0)
+ ;;=3^Disp navicular fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19771,1,4,0)
+ ;;=4^S92.251S
+ ;;^UTILITY(U,$J,358.3,19771,2)
+ ;;=^5045010
+ ;;^UTILITY(U,$J,358.3,19772,0)
+ ;;=S92.322S^^93^996^3
+ ;;^UTILITY(U,$J,358.3,19772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20960,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,20960,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,20960,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,20961,0)
- ;;=R92.1^^84^941^116
- ;;^UTILITY(U,$J,358.3,20961,1,0)
+ ;;^UTILITY(U,$J,358.3,19772,1,3,0)
+ ;;=3^Disp 2nd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19772,1,4,0)
+ ;;=4^S92.322S
+ ;;^UTILITY(U,$J,358.3,19772,2)
+ ;;=^5045115
+ ;;^UTILITY(U,$J,358.3,19773,0)
+ ;;=S92.321S^^93^996^4
+ ;;^UTILITY(U,$J,358.3,19773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20961,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,20961,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,20961,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,20962,0)
- ;;=R92.2^^84^941^91
- ;;^UTILITY(U,$J,358.3,20962,1,0)
+ ;;^UTILITY(U,$J,358.3,19773,1,3,0)
+ ;;=3^Disp 2nd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19773,1,4,0)
+ ;;=4^S92.321S
+ ;;^UTILITY(U,$J,358.3,19773,2)
+ ;;=^5045108
+ ;;^UTILITY(U,$J,358.3,19774,0)
+ ;;=S92.332S^^93^996^5
+ ;;^UTILITY(U,$J,358.3,19774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20962,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,20962,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,20962,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,20963,0)
- ;;=R93.0^^84^941^10
- ;;^UTILITY(U,$J,358.3,20963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20963,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,20963,1,4,0)
- ;;=4^R93.0

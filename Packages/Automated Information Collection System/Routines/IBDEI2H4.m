@@ -1,138 +1,126 @@
-IBDEI2H4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2H4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41948,1,0)
+ ;;^UTILITY(U,$J,358.3,39502,1,3,0)
+ ;;=3^Polycystic Kidney,Adult Type
+ ;;^UTILITY(U,$J,358.3,39502,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,39502,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,39503,0)
+ ;;=N41.1^^152^1997^90
+ ;;^UTILITY(U,$J,358.3,39503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41948,1,3,0)
- ;;=3^Postprocedural Pain,Oth Chronic
- ;;^UTILITY(U,$J,358.3,41948,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,41948,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,41949,0)
- ;;=G89.3^^159^2012^9
- ;;^UTILITY(U,$J,358.3,41949,1,0)
+ ;;^UTILITY(U,$J,358.3,39503,1,3,0)
+ ;;=3^Prostatitis,Chronic
+ ;;^UTILITY(U,$J,358.3,39503,1,4,0)
+ ;;=4^N41.1
+ ;;^UTILITY(U,$J,358.3,39503,2)
+ ;;=^186931
+ ;;^UTILITY(U,$J,358.3,39504,0)
+ ;;=N11.9^^152^1997^98
+ ;;^UTILITY(U,$J,358.3,39504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41949,1,3,0)
- ;;=3^Neoplasm Related Pain,Acute/Chronic
- ;;^UTILITY(U,$J,358.3,41949,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,41949,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,41950,0)
- ;;=G89.4^^159^2012^2
- ;;^UTILITY(U,$J,358.3,41950,1,0)
+ ;;^UTILITY(U,$J,358.3,39504,1,3,0)
+ ;;=3^Pyelonephritis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,39504,1,4,0)
+ ;;=4^N11.9
+ ;;^UTILITY(U,$J,358.3,39504,2)
+ ;;=^5015574
+ ;;^UTILITY(U,$J,358.3,39505,0)
+ ;;=N20.9^^152^1997^116
+ ;;^UTILITY(U,$J,358.3,39505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41950,1,3,0)
- ;;=3^Chronic Pain Syndrome
- ;;^UTILITY(U,$J,358.3,41950,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,41950,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,41951,0)
- ;;=M27.0^^159^2012^3
- ;;^UTILITY(U,$J,358.3,41951,1,0)
+ ;;^UTILITY(U,$J,358.3,39505,1,3,0)
+ ;;=3^Urinary Calculus,Unspec
+ ;;^UTILITY(U,$J,358.3,39505,1,4,0)
+ ;;=4^N20.9
+ ;;^UTILITY(U,$J,358.3,39505,2)
+ ;;=^5015610
+ ;;^UTILITY(U,$J,358.3,39506,0)
+ ;;=R97.20^^152^1997^29
+ ;;^UTILITY(U,$J,358.3,39506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41951,1,3,0)
- ;;=3^Developmental Disorder of Jaws
- ;;^UTILITY(U,$J,358.3,41951,1,4,0)
- ;;=4^M27.0
- ;;^UTILITY(U,$J,358.3,41951,2)
- ;;=^5011722
- ;;^UTILITY(U,$J,358.3,41952,0)
- ;;=M27.9^^159^2012^4
- ;;^UTILITY(U,$J,358.3,41952,1,0)
+ ;;^UTILITY(U,$J,358.3,39506,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,39506,1,4,0)
+ ;;=4^R97.20
+ ;;^UTILITY(U,$J,358.3,39506,2)
+ ;;=^334262
+ ;;^UTILITY(U,$J,358.3,39507,0)
+ ;;=N52.36^^152^1997^34
+ ;;^UTILITY(U,$J,358.3,39507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41952,1,3,0)
- ;;=3^Disease of Jaws,Unspec
- ;;^UTILITY(U,$J,358.3,41952,1,4,0)
- ;;=4^M27.9
- ;;^UTILITY(U,$J,358.3,41952,2)
- ;;=^5011737
- ;;^UTILITY(U,$J,358.3,41953,0)
- ;;=R68.84^^159^2012^8
- ;;^UTILITY(U,$J,358.3,41953,1,0)
+ ;;^UTILITY(U,$J,358.3,39507,1,3,0)
+ ;;=3^Erectile Dysfunction After Interstitial Seed Therapy
+ ;;^UTILITY(U,$J,358.3,39507,1,4,0)
+ ;;=4^N52.36
+ ;;^UTILITY(U,$J,358.3,39507,2)
+ ;;=^5138933
+ ;;^UTILITY(U,$J,358.3,39508,0)
+ ;;=N52.37^^152^1997^35
+ ;;^UTILITY(U,$J,358.3,39508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41953,1,3,0)
- ;;=3^Jaw Pain
- ;;^UTILITY(U,$J,358.3,41953,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,41953,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,41954,0)
- ;;=N48.9^^159^2012^6
- ;;^UTILITY(U,$J,358.3,41954,1,0)
+ ;;^UTILITY(U,$J,358.3,39508,1,3,0)
+ ;;=3^Erectile Dysfunction After Prostate Ablative Therapy
+ ;;^UTILITY(U,$J,358.3,39508,1,4,0)
+ ;;=4^N52.37
+ ;;^UTILITY(U,$J,358.3,39508,2)
+ ;;=^5138934
+ ;;^UTILITY(U,$J,358.3,39509,0)
+ ;;=N52.35^^152^1997^36
+ ;;^UTILITY(U,$J,358.3,39509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41954,1,3,0)
- ;;=3^Disorder of Penis,Unspec
- ;;^UTILITY(U,$J,358.3,41954,1,4,0)
- ;;=4^N48.9
- ;;^UTILITY(U,$J,358.3,41954,2)
- ;;=^5015743
- ;;^UTILITY(U,$J,358.3,41955,0)
- ;;=N50.9^^159^2012^5
- ;;^UTILITY(U,$J,358.3,41955,1,0)
+ ;;^UTILITY(U,$J,358.3,39509,1,3,0)
+ ;;=3^Erectile Dysfunction After Radiation Therapy
+ ;;^UTILITY(U,$J,358.3,39509,1,4,0)
+ ;;=4^N52.35
+ ;;^UTILITY(U,$J,358.3,39509,2)
+ ;;=^5138932
+ ;;^UTILITY(U,$J,358.3,39510,0)
+ ;;=R31.21^^152^1997^56
+ ;;^UTILITY(U,$J,358.3,39510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41955,1,3,0)
- ;;=3^Disorder of Male Genital Organs,Unspec
- ;;^UTILITY(U,$J,358.3,41955,1,4,0)
- ;;=4^N50.9
- ;;^UTILITY(U,$J,358.3,41955,2)
- ;;=^5015751
- ;;^UTILITY(U,$J,358.3,41956,0)
- ;;=R10.2^^159^2012^13
- ;;^UTILITY(U,$J,358.3,41956,1,0)
+ ;;^UTILITY(U,$J,358.3,39510,1,3,0)
+ ;;=3^Hematuria,Microscopic,Asymptomatic
+ ;;^UTILITY(U,$J,358.3,39510,1,4,0)
+ ;;=4^R31.21
+ ;;^UTILITY(U,$J,358.3,39510,2)
+ ;;=^5139198
+ ;;^UTILITY(U,$J,358.3,39511,0)
+ ;;=R31.29^^152^1997^57
+ ;;^UTILITY(U,$J,358.3,39511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41956,1,3,0)
- ;;=3^Pelvic/Perineal Pain
- ;;^UTILITY(U,$J,358.3,41956,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,41956,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,41957,0)
- ;;=N94.89^^159^2012^7
- ;;^UTILITY(U,$J,358.3,41957,1,0)
+ ;;^UTILITY(U,$J,358.3,39511,1,3,0)
+ ;;=3^Hematuria,Microscopic,Other
+ ;;^UTILITY(U,$J,358.3,39511,1,4,0)
+ ;;=4^R31.29
+ ;;^UTILITY(U,$J,358.3,39511,2)
+ ;;=^5019327
+ ;;^UTILITY(U,$J,358.3,39512,0)
+ ;;=R39.198^^152^1997^70
+ ;;^UTILITY(U,$J,358.3,39512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41957,1,3,0)
- ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
- ;;^UTILITY(U,$J,358.3,41957,1,4,0)
- ;;=4^N94.89
- ;;^UTILITY(U,$J,358.3,41957,2)
- ;;=^5015925
- ;;^UTILITY(U,$J,358.3,41958,0)
- ;;=N23.^^159^2012^18
- ;;^UTILITY(U,$J,358.3,41958,1,0)
+ ;;^UTILITY(U,$J,358.3,39512,1,3,0)
+ ;;=3^Micturition,Oth Difficulties
+ ;;^UTILITY(U,$J,358.3,39512,1,4,0)
+ ;;=4^R39.198
+ ;;^UTILITY(U,$J,358.3,39512,2)
+ ;;=^5019347
+ ;;^UTILITY(U,$J,358.3,39513,0)
+ ;;=R39.191^^152^1997^72
+ ;;^UTILITY(U,$J,358.3,39513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41958,1,3,0)
- ;;=3^Renal Colic,Unspec
- ;;^UTILITY(U,$J,358.3,41958,1,4,0)
- ;;=4^N23.
- ;;^UTILITY(U,$J,358.3,41958,2)
- ;;=^5015615
- ;;^UTILITY(U,$J,358.3,41959,0)
- ;;=Z71.89^^159^2013^1
- ;;^UTILITY(U,$J,358.3,41959,1,0)
+ ;;^UTILITY(U,$J,358.3,39513,1,3,0)
+ ;;=3^Need to Immediately Re-Void
+ ;;^UTILITY(U,$J,358.3,39513,1,4,0)
+ ;;=4^R39.191
+ ;;^UTILITY(U,$J,358.3,39513,2)
+ ;;=^5139199
+ ;;^UTILITY(U,$J,358.3,39514,0)
+ ;;=R39.192^^152^1997^71
+ ;;^UTILITY(U,$J,358.3,39514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41959,1,3,0)
- ;;=3^Activity/Exercise Counseling
- ;;^UTILITY(U,$J,358.3,41959,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,41959,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,41960,0)
- ;;=Z13.89^^159^2013^2
- ;;^UTILITY(U,$J,358.3,41960,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41960,1,3,0)
- ;;=3^Alcohol Use Screen
- ;;^UTILITY(U,$J,358.3,41960,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,41960,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,41961,0)
- ;;=Z12.39^^159^2013^3
- ;;^UTILITY(U,$J,358.3,41961,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41961,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,39514,1,3,0)
+ ;;=3^Micturition,Position Dependent

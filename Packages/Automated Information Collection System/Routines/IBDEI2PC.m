@@ -1,126 +1,124 @@
-IBDEI2PC ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45346,1,0)
+ ;;^UTILITY(U,$J,358.3,43052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45346,1,3,0)
- ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,45346,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,45346,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,45347,0)
- ;;=F10.20^^200^2242^4
- ;;^UTILITY(U,$J,358.3,45347,1,0)
+ ;;^UTILITY(U,$J,358.3,43052,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,43052,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,43052,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,43053,0)
+ ;;=G56.03^^155^2080^1
+ ;;^UTILITY(U,$J,358.3,43053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45347,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,45347,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,45347,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,45348,0)
- ;;=F11.29^^200^2242^46
- ;;^UTILITY(U,$J,358.3,45348,1,0)
+ ;;^UTILITY(U,$J,358.3,43053,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Bilateral Upper Limbs
+ ;;^UTILITY(U,$J,358.3,43053,1,4,0)
+ ;;=4^G56.03
+ ;;^UTILITY(U,$J,358.3,43053,2)
+ ;;=^5138452
+ ;;^UTILITY(U,$J,358.3,43054,0)
+ ;;=G56.21^^155^2080^6
+ ;;^UTILITY(U,$J,358.3,43054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45348,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,45348,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,45348,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,45349,0)
- ;;=F11.288^^200^2242^45
- ;;^UTILITY(U,$J,358.3,45349,1,0)
+ ;;^UTILITY(U,$J,358.3,43054,1,3,0)
+ ;;=3^Ulnar Nerve Lesion,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,43054,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,43054,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,43055,0)
+ ;;=G56.22^^155^2080^5
+ ;;^UTILITY(U,$J,358.3,43055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45349,1,3,0)
- ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,45349,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,45349,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,45350,0)
- ;;=F11.282^^200^2242^44
- ;;^UTILITY(U,$J,358.3,45350,1,0)
+ ;;^UTILITY(U,$J,358.3,43055,1,3,0)
+ ;;=3^Ulnar Nerve Lesion,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,43055,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,43055,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,43056,0)
+ ;;=G56.23^^155^2080^4
+ ;;^UTILITY(U,$J,358.3,43056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45350,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,45350,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,45350,2)
- ;;=^5003139
- ;;^UTILITY(U,$J,358.3,45351,0)
- ;;=F11.281^^200^2242^43
- ;;^UTILITY(U,$J,358.3,45351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45351,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,45351,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,45351,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,45352,0)
- ;;=F11.259^^200^2242^42
- ;;^UTILITY(U,$J,358.3,45352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45352,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,45352,1,4,0)
- ;;=4^F11.259
- ;;^UTILITY(U,$J,358.3,45352,2)
- ;;=^5003137
- ;;^UTILITY(U,$J,358.3,45353,0)
- ;;=F11.251^^200^2242^35
- ;;^UTILITY(U,$J,358.3,45353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45353,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,45353,1,4,0)
- ;;=4^F11.251
- ;;^UTILITY(U,$J,358.3,45353,2)
- ;;=^5003136
- ;;^UTILITY(U,$J,358.3,45354,0)
- ;;=F11.250^^200^2242^36
- ;;^UTILITY(U,$J,358.3,45354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45354,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,45354,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,45354,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,45355,0)
- ;;=F11.24^^200^2242^41
- ;;^UTILITY(U,$J,358.3,45355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45355,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,45355,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,45355,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,45356,0)
- ;;=F11.23^^200^2242^47
- ;;^UTILITY(U,$J,358.3,45356,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45356,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,45356,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,45356,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,45357,0)
- ;;=F11.20^^200^2242^48
- ;;^UTILITY(U,$J,358.3,45357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45357,1,3,0)
- ;;=3^Opioid Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,45357,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,45357,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,45358,0)
- ;;=F11.229^^200^2242^40
- ;;^UTILITY(U,$J,358.3,45358,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43056,1,3,0)
+ ;;=3^Ulnar Nerve Lesion,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,43056,1,4,0)
+ ;;=4^G56.23
+ ;;^UTILITY(U,$J,358.3,43056,2)
+ ;;=^5138454
+ ;;^UTILITY(U,$J,358.3,43057,0)
+ ;;=90471^^156^2081^1^^^^1
+ ;;^UTILITY(U,$J,358.3,43057,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43057,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,43057,1,3,0)
+ ;;=3^Immunization Admin (use w/ Vaccs)
+ ;;^UTILITY(U,$J,358.3,43058,0)
+ ;;=90472^^156^2081^2^^^^1
+ ;;^UTILITY(U,$J,358.3,43058,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43058,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,43058,1,3,0)
+ ;;=3^Immunization Admin, ea add
+ ;;^UTILITY(U,$J,358.3,43059,0)
+ ;;=90632^^156^2081^6^^^^1
+ ;;^UTILITY(U,$J,358.3,43059,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43059,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,43059,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,43060,0)
+ ;;=90746^^156^2081^7^^^^1
+ ;;^UTILITY(U,$J,358.3,43060,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43060,1,2,0)
+ ;;=2^90746
+ ;;^UTILITY(U,$J,358.3,43060,1,3,0)
+ ;;=3^Hepatitis B Vaccine (3 Doses)
+ ;;^UTILITY(U,$J,358.3,43061,0)
+ ;;=90636^^156^2081^8^^^^1
+ ;;^UTILITY(U,$J,358.3,43061,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43061,1,2,0)
+ ;;=2^90636
+ ;;^UTILITY(U,$J,358.3,43061,1,3,0)
+ ;;=3^Hepatitis A&B Vaccine
+ ;;^UTILITY(U,$J,358.3,43062,0)
+ ;;=90707^^156^2081^9^^^^1
+ ;;^UTILITY(U,$J,358.3,43062,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43062,1,2,0)
+ ;;=2^90707
+ ;;^UTILITY(U,$J,358.3,43062,1,3,0)
+ ;;=3^MMR Virus
+ ;;^UTILITY(U,$J,358.3,43063,0)
+ ;;=90658^^156^2081^3^^^^1
+ ;;^UTILITY(U,$J,358.3,43063,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43063,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,43063,1,3,0)
+ ;;=3^Flu Vaccine IM (Flulaval)
+ ;;^UTILITY(U,$J,358.3,43064,0)
+ ;;=90732^^156^2081^10^^^^1
+ ;;^UTILITY(U,$J,358.3,43064,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43064,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,43064,1,3,0)
+ ;;=3^Pneumovax 23 (Pneumococcal Vaccine)
+ ;;^UTILITY(U,$J,358.3,43065,0)
+ ;;=90715^^156^2081^13^^^^1
+ ;;^UTILITY(U,$J,358.3,43065,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,43065,1,2,0)
+ ;;=2^90715
+ ;;^UTILITY(U,$J,358.3,43065,1,3,0)
+ ;;=3^TDaP Vaccine

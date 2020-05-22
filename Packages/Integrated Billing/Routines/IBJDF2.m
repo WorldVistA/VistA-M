@@ -1,5 +1,5 @@
 IBJDF2 ;ALB/CPM - THIRD PARTY FOLLOW-UP SUMMARY REPORT ;Feb 09, 2018@10:11:43
- ;;2.0;INTEGRATED BILLING;**69,91,100,118,133,205,554,597,568,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**69,91,100,118,133,205,554,597,568,618,663**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
@@ -25,20 +25,14 @@ DATE ; - Choose date to use for calculation
  ;
 TYP ; - Select type of summaries to print.
  ; IB*2.0*554 DRF 10/19/2015 Add Non-VA care
- ;IB*2.0*618 expanded Non-VA care to list the different programs.
  W !!,"Choose which type of summaries to print:",!
- S DIR(0)="LO^1:10^K:+$P(X,""-"",2)>10 X"
- S DIR("A",1)="       1 - INPATIENT"
- S DIR("A",2)="       2 - OUTPATIENT"
- S DIR("A",3)="       3 - PHARMACY REFILL"
- S DIR("A",4)="       4 - ALL COMMUNITY CARE AND FEE RECEIVABLES"
- S DIR("A",5)="       5 - FEE REIMB INS"
- S DIR("A",6)="       6 - COMMUNITY CARE"
- S DIR("A",7)="       7 - COMMUNITY CARE CHOICE"
- S DIR("A",8)="       8 - COMMUNITY CARE NETWORK"
- S DIR("A",9)="       9 - COMMUNITY CARE MTF"
- S DIR("A",10)="      10 - ALL RECEIVABLES"
- S DIR("A",11)="",DIR("A")="Select",DIR("B")=10
+ S DIR(0)="LO^1:5^K:+$P(X,""-"",2)>5 X"
+ S DIR("A",1)="     1 - INPATIENT RECEIVABLES"
+ S DIR("A",2)="     2 - OUTPATIENT RECEIVABLES"
+ S DIR("A",3)="     3 - PHARMACY REFILL RECEIVABLES"
+ S DIR("A",4)="     4 - COMMUNITY CARE RECEIVABLES"
+ S DIR("A",5)="     5 - ALL RECEIVABLES"
+ S DIR("A",6)="",DIR("A")="Select",DIR("B")=5
  D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) G ENQ
  S IBSEL=Y K DIROUT,DTOUT,DUOUT,DIRUT
  ;
@@ -60,12 +54,8 @@ TYP ; - Select type of summaries to print.
 DQ ; - Tasked entry point.
  ;
  I $G(IBXTRACT) D E^IBJDE(9,1) ; Change extract status.
- ;
- ; Set IBTYP array
- K IBTYPE F IBLP=1:1:($L(IBSEL,",")-1) S IBTYPE($P(IBSEL,",",IBLP))=$P(IBSEL,",",IBLP)
  ; 
- ;**IB*2.0*618 - expanded loop to account for new options
- K IB F I=1:1:10 I $G(IBTYPE(I)) D
+ K IB F I=1,2,3,4,5 I IBSEL[I D
  .I 'IBSORT D  Q
  ..F J=1:1:9 S IB(0,I,J)=""
  .I 'VAUTD D  Q
@@ -95,26 +85,21 @@ DQ ; - Tasked entry point.
  .; - Determine whether bill is inpatient, outpatient, or RX refill.
  .S IBTYP=$P($G(^DGCR(399,IBA,0)),U,5),IBTYP=$S(IBTYP>2:2,1:1)
  .S:$D(^IBA(362.4,"C",IBA)) IBTYP=3
- .I $P(IBAR,U,2)=45 S IBTYP=5  ;IB*2*554/DRF Look for Non-VA/IB*2.0*618/Moved FEE to option 5
- .S IBTYP=$S(IBARNUM=50:7,IBARNUM=51:6,IBARNUM=52:8,IBARNUM=53:9,1:IBTYP)  ;CC types
- .;CC summary flag in case doing all CC types.
- .S IBCCFLG=0 I (IBTYP>4),(IBTYP<10) S IBCCFLG=1
- .;Quit if type doesnt match, didn't select all or not the summary
- .I $G(IBTYPE(IBTYP))="",(IBSEL'[10),((IBSEL[4)&(IBCCFLG=0)) Q
+ .I $P(IBAR,U,2)=45 S IBTYP=4  ;IB*2*554/DRF Look for Non-VA
+ .S IBTYP=$S(IBARNUM=50:4,IBARNUM=51:4,IBARNUM=52:4,IBARNUM=53:4,1:IBTYP)  ;CC types
+ .I IBSEL'[IBTYP,IBSEL'[5 Q
  .;
  .; - Handle claims referred to Regional Counsel.
  .S IBOUT=+$G(^PRCA(430,IBA,7))
  .I $P($G(^PRCA(430,IBA,6)),U,4) D  Q
- ..;**IB*2.0*618 - Add Non-VA summary
- ..F I=IBTYP,4,10 I $G(IBTYPE(I)) D
+ ..F I=IBTYP,5 I IBSEL[I D
  ...S $P(IB(IBDIV,I,8),U)=+IB(IBDIV,I,8)+1
  ...S $P(IB(IBDIV,I,8),U,2)=$P(IB(IBDIV,I,8),U,2)+IBOUT
  .;
  .; - Determine age and outstanding balance.
  .S IBAGE=$$FMDIFF^XLFDT(DT,IBARD),IBCAT=$$CAT(IBAGE)
  .;
- .;**IB*2.0*618 - Add Non-VA summary
- .F I=IBTYP,4,10 I $G(IBTYPE(I)) D
+ .F I=IBTYP,5 I IBSEL[I D
  ..S $P(IB(IBDIV,I,IBCAT),U)=+IB(IBDIV,I,IBCAT)+1
  ..S $P(IB(IBDIV,I,IBCAT),U,2)=$P(IB(IBDIV,I,IBCAT),U,2)+IBOUT
  ;
@@ -122,12 +107,11 @@ DQ ; - Tasked entry point.
  ;
  ; - Extract summary data.
  ; *597 fix array subscripts for all types
- ;IB*2.0*618 - update array subscripts for all types
  I $G(IBXTRACT) D  G ENQ
  .F I=1:1:8 D
- ..F J=1,2 S $P(IB(0,10,9),U,J)=$P(IB(0,10,9),U,J)+$P(IB(0,10,I),U,J)
+ ..F J=1,2 S $P(IB(0,5,9),U,J)=$P(IB(0,5,9),U,J)+$P(IB(0,5,I),U,J)
  .S I=0 F J=1:1:9 D
- ..S I=I+1,IB(I)=+IB(0,10,J),I=I+1,IB(I)=$J(+$P(IB(0,10,J),U,2),0,2)
+ ..S I=I+1,IB(I)=+IB(0,5,J),I=I+1,IB(I)=$J(+$P(IB(0,5,J),U,2),0,2)
  .D E^IBJDE(9,0)
  ;
  ; - Print the reports.
@@ -140,8 +124,7 @@ ENQ I $D(ZTQUEUED) S ZTREQ="@" G ENQ1
  ;
  D ^%ZISC
 ENQ1 K IB,IBOFF,IBQ,IBSDATE,IBSEL,IBSORT,IBTEXT,IBA,IBAR,IBARD,IBDIV,IBAGE,IBOUT,IBCAT,IBPAG,IBRUN
- K IBDH,IBTYP,IBTYPH,%,%ZIS,DFN,I,J,K,POP,VAUTD,X,Y,Z,ZTDESC,ZTRTN,ZTSAVE
- K IBCCFLG,IBARNUM,IBLP,IBTYPE
+ K IBDH,IBTYP,IBTYPH,%,%ZIS,DFN,I,J,K,POP,VAUTD,X,Y,Z,ZTDESC,ZTRTN,ZTSAVE,IBARNUM
  K DIROUT,DTOUT,DUOUT,DIRUT
  Q
  ;
@@ -150,9 +133,9 @@ SUM(IBDIV) ; - Print the report.
  ;
  S IBTYP=0 F  S IBTYP=$O(IB(IBDIV,IBTYP)) Q:'IBTYP  D  Q:IBQ
  .I $E(IOST,1,2)="C-"!(IBPAG) W @IOF,*13
- .S IBPAG=IBPAG+1 W !?68,"Page: ",IBPAG
+ .S IBPAG=IBPAG+1 I $E(IOST,1,2)'="C-" W !?68,"Page: ",IBPAG
  .W !!?22,"THIRD PARTY FOLLOW-UP SUMMARY REPORT"
- .S IBTYPH=$$GETHDR^IBJDF12(IBTYP_",",1)_"RECEIVABLES"_$S(IBSDATE="D":" ( date of care )",1:" ( days in AR )")
+ .S IBTYPH=$S(IBTYP=1:"INPATIENT",IBTYP=2:"OUTPATIENT",IBTYP=3:"RX REFILL",IBTYP=4:"NON-VA",1:"ALL REIMBURSABLE")_" RECEIVABLES"_$S(IBSDATE="D":" ( date of care )",1:" ( days in AR )")
  .W !?(80-$L(IBTYPH))\2,IBTYPH
  .I IBDIV S IBDH="Division: "_$P($G(^DG(40.8,IBDIV,0)),U) W !?(80-$L(IBDH)\2),IBDH
  .W !!?24,"Run Date: ",IBRUN,!?24,$$DASH(31),!!

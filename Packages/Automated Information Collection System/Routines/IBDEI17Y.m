@@ -1,138 +1,116 @@
-IBDEI17Y ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17Y ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20721,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,20721,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,20722,0)
- ;;=S24.109S^^84^936^41
- ;;^UTILITY(U,$J,358.3,20722,1,0)
+ ;;^UTILITY(U,$J,358.3,19568,0)
+ ;;=S06.815S^^93^994^64
+ ;;^UTILITY(U,$J,358.3,19568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20722,1,3,0)
- ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
- ;;^UTILITY(U,$J,358.3,20722,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,20722,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,20723,0)
- ;;=G89.0^^84^937^1
- ;;^UTILITY(U,$J,358.3,20723,1,0)
+ ;;^UTILITY(U,$J,358.3,19568,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19568,1,4,0)
+ ;;=4^S06.815S
+ ;;^UTILITY(U,$J,358.3,19568,2)
+ ;;=^5021133
+ ;;^UTILITY(U,$J,358.3,19569,0)
+ ;;=S06.816S^^93^994^65
+ ;;^UTILITY(U,$J,358.3,19569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20723,1,3,0)
- ;;=3^Central Pain Syndrome
- ;;^UTILITY(U,$J,358.3,20723,1,4,0)
- ;;=4^G89.0
- ;;^UTILITY(U,$J,358.3,20723,2)
- ;;=^334189
- ;;^UTILITY(U,$J,358.3,20724,0)
- ;;=G89.11^^84^937^10
- ;;^UTILITY(U,$J,358.3,20724,1,0)
+ ;;^UTILITY(U,$J,358.3,19569,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,19569,1,4,0)
+ ;;=4^S06.816S
+ ;;^UTILITY(U,$J,358.3,19569,2)
+ ;;=^5021136
+ ;;^UTILITY(U,$J,358.3,19570,0)
+ ;;=S06.813S^^93^994^66
+ ;;^UTILITY(U,$J,358.3,19570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20724,1,3,0)
- ;;=3^Pain d/t Trauma,Acute
- ;;^UTILITY(U,$J,358.3,20724,1,4,0)
- ;;=4^G89.11
- ;;^UTILITY(U,$J,358.3,20724,2)
- ;;=^5004152
- ;;^UTILITY(U,$J,358.3,20725,0)
- ;;=G89.12^^84^937^14
- ;;^UTILITY(U,$J,358.3,20725,1,0)
+ ;;^UTILITY(U,$J,358.3,19570,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19570,1,4,0)
+ ;;=4^S06.813S
+ ;;^UTILITY(U,$J,358.3,19570,2)
+ ;;=^5021127
+ ;;^UTILITY(U,$J,358.3,19571,0)
+ ;;=S06.811S^^93^994^67
+ ;;^UTILITY(U,$J,358.3,19571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20725,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Acute
- ;;^UTILITY(U,$J,358.3,20725,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,20725,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,20726,0)
- ;;=G89.18^^84^937^16
- ;;^UTILITY(U,$J,358.3,20726,1,0)
+ ;;^UTILITY(U,$J,358.3,19571,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19571,1,4,0)
+ ;;=4^S06.811S
+ ;;^UTILITY(U,$J,358.3,19571,2)
+ ;;=^5021121
+ ;;^UTILITY(U,$J,358.3,19572,0)
+ ;;=S06.812S^^93^994^68
+ ;;^UTILITY(U,$J,358.3,19572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20726,1,3,0)
- ;;=3^Postprocedural Pain,Oth Acute
- ;;^UTILITY(U,$J,358.3,20726,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,20726,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,20727,0)
- ;;=R52.^^84^937^12
- ;;^UTILITY(U,$J,358.3,20727,1,0)
+ ;;^UTILITY(U,$J,358.3,19572,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19572,1,4,0)
+ ;;=4^S06.812S
+ ;;^UTILITY(U,$J,358.3,19572,2)
+ ;;=^5021124
+ ;;^UTILITY(U,$J,358.3,19573,0)
+ ;;=S06.814S^^93^994^69
+ ;;^UTILITY(U,$J,358.3,19573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20727,1,3,0)
- ;;=3^Pain,Unspec
- ;;^UTILITY(U,$J,358.3,20727,1,4,0)
- ;;=4^R52.
- ;;^UTILITY(U,$J,358.3,20727,2)
- ;;=^5019514
- ;;^UTILITY(U,$J,358.3,20728,0)
- ;;=G89.21^^84^937^11
- ;;^UTILITY(U,$J,358.3,20728,1,0)
+ ;;^UTILITY(U,$J,358.3,19573,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,19573,1,4,0)
+ ;;=4^S06.814S
+ ;;^UTILITY(U,$J,358.3,19573,2)
+ ;;=^5021130
+ ;;^UTILITY(U,$J,358.3,19574,0)
+ ;;=S06.819S^^93^994^70
+ ;;^UTILITY(U,$J,358.3,19574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20728,1,3,0)
- ;;=3^Pain d/t Trauma,Chronic
- ;;^UTILITY(U,$J,358.3,20728,1,4,0)
- ;;=4^G89.21
- ;;^UTILITY(U,$J,358.3,20728,2)
- ;;=^5004155
- ;;^UTILITY(U,$J,358.3,20729,0)
- ;;=G89.22^^84^937^15
- ;;^UTILITY(U,$J,358.3,20729,1,0)
+ ;;^UTILITY(U,$J,358.3,19574,1,3,0)
+ ;;=3^Inj right int carotid, intcr w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19574,1,4,0)
+ ;;=4^S06.819S
+ ;;^UTILITY(U,$J,358.3,19574,2)
+ ;;=^5021145
+ ;;^UTILITY(U,$J,358.3,19575,0)
+ ;;=S06.810S^^93^994^71
+ ;;^UTILITY(U,$J,358.3,19575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20729,1,3,0)
- ;;=3^Post-Thoracotomy Pain,Chronic
- ;;^UTILITY(U,$J,358.3,20729,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,20729,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,20730,0)
- ;;=G89.28^^84^937^17
- ;;^UTILITY(U,$J,358.3,20730,1,0)
+ ;;^UTILITY(U,$J,358.3,19575,1,3,0)
+ ;;=3^Inj right int carotid, intcr w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19575,1,4,0)
+ ;;=4^S06.810S
+ ;;^UTILITY(U,$J,358.3,19575,2)
+ ;;=^5021118
+ ;;^UTILITY(U,$J,358.3,19576,0)
+ ;;=S06.1X5S^^93^994^72
+ ;;^UTILITY(U,$J,358.3,19576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20730,1,3,0)
- ;;=3^Postprocedural Pain,Oth Chronic
- ;;^UTILITY(U,$J,358.3,20730,1,4,0)
- ;;=4^G89.28
- ;;^UTILITY(U,$J,358.3,20730,2)
- ;;=^5004157
- ;;^UTILITY(U,$J,358.3,20731,0)
- ;;=G89.3^^84^937^9
- ;;^UTILITY(U,$J,358.3,20731,1,0)
+ ;;^UTILITY(U,$J,358.3,19576,1,3,0)
+ ;;=3^Traum cerebral edema w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19576,1,4,0)
+ ;;=4^S06.1X5S
+ ;;^UTILITY(U,$J,358.3,19576,2)
+ ;;=^5020713
+ ;;^UTILITY(U,$J,358.3,19577,0)
+ ;;=S06.1X6S^^93^994^73
+ ;;^UTILITY(U,$J,358.3,19577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20731,1,3,0)
- ;;=3^Neoplasm Related Pain,Acute/Chronic
- ;;^UTILITY(U,$J,358.3,20731,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,20731,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,20732,0)
- ;;=G89.4^^84^937^2
- ;;^UTILITY(U,$J,358.3,20732,1,0)
+ ;;^UTILITY(U,$J,358.3,19577,1,3,0)
+ ;;=3^Traum cerebral edema w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,19577,1,4,0)
+ ;;=4^S06.1X6S
+ ;;^UTILITY(U,$J,358.3,19577,2)
+ ;;=^5020716
+ ;;^UTILITY(U,$J,358.3,19578,0)
+ ;;=S06.1X3S^^93^994^107
+ ;;^UTILITY(U,$J,358.3,19578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20732,1,3,0)
- ;;=3^Chronic Pain Syndrome
- ;;^UTILITY(U,$J,358.3,20732,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,20732,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,20733,0)
- ;;=M27.0^^84^937^3
- ;;^UTILITY(U,$J,358.3,20733,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20733,1,3,0)
- ;;=3^Developmental Disorder of Jaws
- ;;^UTILITY(U,$J,358.3,20733,1,4,0)
- ;;=4^M27.0
- ;;^UTILITY(U,$J,358.3,20733,2)
- ;;=^5011722
- ;;^UTILITY(U,$J,358.3,20734,0)
- ;;=M27.9^^84^937^4
- ;;^UTILITY(U,$J,358.3,20734,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20734,1,3,0)
- ;;=3^Disease of Jaws,Unspec
- ;;^UTILITY(U,$J,358.3,20734,1,4,0)
- ;;=4^M27.9
- ;;^UTILITY(U,$J,358.3,20734,2)
- ;;=^5011737
+ ;;^UTILITY(U,$J,358.3,19578,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19578,1,4,0)
+ ;;=4^S06.1X3S
+ ;;^UTILITY(U,$J,358.3,19578,2)
+ ;;=^5020707
+ ;;^UTILITY(U,$J,358.3,19579,0)
+ ;;=S06.1X1S^^93^994^74

@@ -1,364 +1,126 @@
-IBDEI0EP ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0EP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18576,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,18576,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,18577,0)
- ;;=L02.33^^55^777^92
- ;;^UTILITY(U,$J,358.3,18577,1,0)
+ ;;^UTILITY(U,$J,358.3,6323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18577,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,18577,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,18577,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,18578,0)
- ;;=L02.415^^55^777^129
- ;;^UTILITY(U,$J,358.3,18578,1,0)
+ ;;^UTILITY(U,$J,358.3,6323,1,3,0)
+ ;;=3^Postprocedural Heart Failure Following Oth Surgery
+ ;;^UTILITY(U,$J,358.3,6323,1,4,0)
+ ;;=4^I97.131
+ ;;^UTILITY(U,$J,358.3,6323,2)
+ ;;=^5008088
+ ;;^UTILITY(U,$J,358.3,6324,0)
+ ;;=I97.190^^53^406^55
+ ;;^UTILITY(U,$J,358.3,6324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18578,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,18578,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,18578,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,18579,0)
- ;;=L02.416^^55^777^124
- ;;^UTILITY(U,$J,358.3,18579,1,0)
+ ;;^UTILITY(U,$J,358.3,6324,1,3,0)
+ ;;=3^Postprocedural Cardiac Function Disturbance Following Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,6324,1,4,0)
+ ;;=4^I97.190
+ ;;^UTILITY(U,$J,358.3,6324,2)
+ ;;=^5008089
+ ;;^UTILITY(U,$J,358.3,6325,0)
+ ;;=I97.191^^53^406^56
+ ;;^UTILITY(U,$J,358.3,6325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18579,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,18579,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,18579,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,18580,0)
- ;;=L02.511^^55^777^128
- ;;^UTILITY(U,$J,358.3,18580,1,0)
+ ;;^UTILITY(U,$J,358.3,6325,1,3,0)
+ ;;=3^Postprocedural Cardiac Function Disturbance Following Oth Surgery
+ ;;^UTILITY(U,$J,358.3,6325,1,4,0)
+ ;;=4^I97.191
+ ;;^UTILITY(U,$J,358.3,6325,2)
+ ;;=^5008090
+ ;;^UTILITY(U,$J,358.3,6326,0)
+ ;;=I97.0^^53^406^52
+ ;;^UTILITY(U,$J,358.3,6326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18580,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,18580,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,18580,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,18581,0)
- ;;=L02.512^^55^777^123
- ;;^UTILITY(U,$J,358.3,18581,1,0)
+ ;;^UTILITY(U,$J,358.3,6326,1,3,0)
+ ;;=3^Postcardiotomy Syndrome
+ ;;^UTILITY(U,$J,358.3,6326,1,4,0)
+ ;;=4^I97.0
+ ;;^UTILITY(U,$J,358.3,6326,2)
+ ;;=^5008082
+ ;;^UTILITY(U,$J,358.3,6327,0)
+ ;;=I97.110^^53^406^58
+ ;;^UTILITY(U,$J,358.3,6327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18581,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,18581,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,18581,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,18582,0)
- ;;=L02.611^^55^777^127
- ;;^UTILITY(U,$J,358.3,18582,1,0)
+ ;;^UTILITY(U,$J,358.3,6327,1,3,0)
+ ;;=3^Postprocedural Cardiac Insufficiency Following Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,6327,1,4,0)
+ ;;=4^I97.110
+ ;;^UTILITY(U,$J,358.3,6327,2)
+ ;;=^5008083
+ ;;^UTILITY(U,$J,358.3,6328,0)
+ ;;=T86.20^^53^406^22
+ ;;^UTILITY(U,$J,358.3,6328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18582,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,18582,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,18582,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,18583,0)
- ;;=L02.612^^55^777^122
- ;;^UTILITY(U,$J,358.3,18583,1,0)
+ ;;^UTILITY(U,$J,358.3,6328,1,3,0)
+ ;;=3^Complication of Heart Transplant,Unspec
+ ;;^UTILITY(U,$J,358.3,6328,1,4,0)
+ ;;=4^T86.20
+ ;;^UTILITY(U,$J,358.3,6328,2)
+ ;;=^5055713
+ ;;^UTILITY(U,$J,358.3,6329,0)
+ ;;=T86.21^^53^406^38
+ ;;^UTILITY(U,$J,358.3,6329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18583,1,3,0)
- ;;=3^Cutaneous Abscess of Left Foot
- ;;^UTILITY(U,$J,358.3,18583,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,18583,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,18584,0)
- ;;=L02.92^^55^777^155
- ;;^UTILITY(U,$J,358.3,18584,1,0)
+ ;;^UTILITY(U,$J,358.3,6329,1,3,0)
+ ;;=3^Heart Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,6329,1,4,0)
+ ;;=4^T86.21
+ ;;^UTILITY(U,$J,358.3,6329,2)
+ ;;=^5055714
+ ;;^UTILITY(U,$J,358.3,6330,0)
+ ;;=T86.22^^53^406^36
+ ;;^UTILITY(U,$J,358.3,6330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18584,1,3,0)
- ;;=3^Furuncle,Unspec
- ;;^UTILITY(U,$J,358.3,18584,1,4,0)
- ;;=4^L02.92
- ;;^UTILITY(U,$J,358.3,18584,2)
- ;;=^5009017
- ;;^UTILITY(U,$J,358.3,18585,0)
- ;;=L02.93^^55^777^93
- ;;^UTILITY(U,$J,358.3,18585,1,0)
+ ;;^UTILITY(U,$J,358.3,6330,1,3,0)
+ ;;=3^Heart Transplant Failure
+ ;;^UTILITY(U,$J,358.3,6330,1,4,0)
+ ;;=4^T86.22
+ ;;^UTILITY(U,$J,358.3,6330,2)
+ ;;=^5055715
+ ;;^UTILITY(U,$J,358.3,6331,0)
+ ;;=T86.23^^53^406^37
+ ;;^UTILITY(U,$J,358.3,6331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18585,1,3,0)
- ;;=3^Carbuncle,Unspec
- ;;^UTILITY(U,$J,358.3,18585,1,4,0)
- ;;=4^L02.93
- ;;^UTILITY(U,$J,358.3,18585,2)
- ;;=^5009018
- ;;^UTILITY(U,$J,358.3,18586,0)
- ;;=L03.011^^55^777^108
- ;;^UTILITY(U,$J,358.3,18586,1,0)
+ ;;^UTILITY(U,$J,358.3,6331,1,3,0)
+ ;;=3^Heart Transplant Infection
+ ;;^UTILITY(U,$J,358.3,6331,1,4,0)
+ ;;=4^T86.23
+ ;;^UTILITY(U,$J,358.3,6331,2)
+ ;;=^5055716
+ ;;^UTILITY(U,$J,358.3,6332,0)
+ ;;=T86.290^^53^406^13
+ ;;^UTILITY(U,$J,358.3,6332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18586,1,3,0)
- ;;=3^Cellulitis of Right Finger
- ;;^UTILITY(U,$J,358.3,18586,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,18586,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,18587,0)
- ;;=L03.012^^55^777^101
- ;;^UTILITY(U,$J,358.3,18587,1,0)
+ ;;^UTILITY(U,$J,358.3,6332,1,3,0)
+ ;;=3^Cardiac Allograft Vasculopathy
+ ;;^UTILITY(U,$J,358.3,6332,1,4,0)
+ ;;=4^T86.290
+ ;;^UTILITY(U,$J,358.3,6332,2)
+ ;;=^5055717
+ ;;^UTILITY(U,$J,358.3,6333,0)
+ ;;=T86.298^^53^406^27
+ ;;^UTILITY(U,$J,358.3,6333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18587,1,3,0)
- ;;=3^Cellulitis of Left Finger
- ;;^UTILITY(U,$J,358.3,18587,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,18587,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,18588,0)
- ;;=L03.021^^55^777^24
- ;;^UTILITY(U,$J,358.3,18588,1,0)
+ ;;^UTILITY(U,$J,358.3,6333,1,3,0)
+ ;;=3^Complications of Heart Transplant NEC
+ ;;^UTILITY(U,$J,358.3,6333,1,4,0)
+ ;;=4^T86.298
+ ;;^UTILITY(U,$J,358.3,6333,2)
+ ;;=^5055718
+ ;;^UTILITY(U,$J,358.3,6334,0)
+ ;;=T86.30^^53^406^23
+ ;;^UTILITY(U,$J,358.3,6334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18588,1,3,0)
- ;;=3^Acute Lymphangitis of Right Finger
- ;;^UTILITY(U,$J,358.3,18588,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,18588,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,18589,0)
- ;;=L03.022^^55^777^18
- ;;^UTILITY(U,$J,358.3,18589,1,0)
+ ;;^UTILITY(U,$J,358.3,6334,1,3,0)
+ ;;=3^Complication of Heart-Lung Transplant,Unspec
+ ;;^UTILITY(U,$J,358.3,6334,1,4,0)
+ ;;=4^T86.30
+ ;;^UTILITY(U,$J,358.3,6334,2)
+ ;;=^5055719
+ ;;^UTILITY(U,$J,358.3,6335,0)
+ ;;=T86.39^^53^406^28
+ ;;^UTILITY(U,$J,358.3,6335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18589,1,3,0)
- ;;=3^Acute Lymphangitis of Left Finger
- ;;^UTILITY(U,$J,358.3,18589,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,18589,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,18590,0)
- ;;=L03.031^^55^777^111
- ;;^UTILITY(U,$J,358.3,18590,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18590,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,18590,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,18590,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,18591,0)
- ;;=L03.032^^55^777^104
- ;;^UTILITY(U,$J,358.3,18591,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18591,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,18591,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,18591,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,18592,0)
- ;;=L03.041^^55^777^26
- ;;^UTILITY(U,$J,358.3,18592,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18592,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,18592,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,18592,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,18593,0)
- ;;=L03.042^^55^777^20
- ;;^UTILITY(U,$J,358.3,18593,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18593,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,18593,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,18593,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,18594,0)
- ;;=M34.0^^55^777^249
- ;;^UTILITY(U,$J,358.3,18594,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18594,1,3,0)
- ;;=3^Progressive Systemic Sclerosis
- ;;^UTILITY(U,$J,358.3,18594,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,18594,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,18595,0)
- ;;=M34.1^^55^777^91
- ;;^UTILITY(U,$J,358.3,18595,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18595,1,3,0)
- ;;=3^CR(E)ST Syndrome
- ;;^UTILITY(U,$J,358.3,18595,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,18595,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,18596,0)
- ;;=M34.2^^55^777^273
- ;;^UTILITY(U,$J,358.3,18596,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18596,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,18596,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,18596,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,18597,0)
- ;;=M34.81^^55^777^275
- ;;^UTILITY(U,$J,358.3,18597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18597,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,18597,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,18597,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,18598,0)
- ;;=M34.82^^55^777^276
- ;;^UTILITY(U,$J,358.3,18598,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18598,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,18598,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,18598,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,18599,0)
- ;;=M34.83^^55^777^277
- ;;^UTILITY(U,$J,358.3,18599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18599,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,18599,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,18599,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,18600,0)
- ;;=M34.89^^55^777^274
- ;;^UTILITY(U,$J,358.3,18600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18600,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,18600,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,18600,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,18601,0)
- ;;=M34.9^^55^777^278
- ;;^UTILITY(U,$J,358.3,18601,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18601,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,18601,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,18601,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,18602,0)
- ;;=R21.^^55^777^257
- ;;^UTILITY(U,$J,358.3,18602,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18602,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,18602,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,18602,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,18603,0)
- ;;=R23.3^^55^777^269
- ;;^UTILITY(U,$J,358.3,18603,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18603,1,3,0)
- ;;=3^Spontaneous Ecchymoses
- ;;^UTILITY(U,$J,358.3,18603,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,18603,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,18604,0)
- ;;=L03.113^^55^777^112
- ;;^UTILITY(U,$J,358.3,18604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18604,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,18604,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,18604,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,18605,0)
- ;;=L03.114^^55^777^105
- ;;^UTILITY(U,$J,358.3,18605,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18605,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,18605,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,18605,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,18606,0)
- ;;=L03.115^^55^777^109
- ;;^UTILITY(U,$J,358.3,18606,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18606,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,18606,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,18606,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,18607,0)
- ;;=L03.116^^55^777^102
- ;;^UTILITY(U,$J,358.3,18607,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18607,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,18607,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,18607,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,18608,0)
- ;;=L03.123^^55^777^27
- ;;^UTILITY(U,$J,358.3,18608,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18608,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,18608,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,18608,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,18609,0)
- ;;=L03.124^^55^777^21
- ;;^UTILITY(U,$J,358.3,18609,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18609,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,18609,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,18609,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,18610,0)
- ;;=L03.125^^55^777^25
- ;;^UTILITY(U,$J,358.3,18610,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18610,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,18610,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,18610,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,18611,0)
- ;;=L03.126^^55^777^19
- ;;^UTILITY(U,$J,358.3,18611,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18611,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,18611,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,18611,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,18612,0)
- ;;=L03.211^^55^777^99
- ;;^UTILITY(U,$J,358.3,18612,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18612,1,3,0)
- ;;=3^Cellulitis of Face

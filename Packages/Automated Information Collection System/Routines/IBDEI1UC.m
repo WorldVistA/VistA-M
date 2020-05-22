@@ -1,134 +1,122 @@
-IBDEI1UC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31256,2)
- ;;=^5003306
- ;;^UTILITY(U,$J,358.3,31257,0)
- ;;=F15.980^^123^1574^3
- ;;^UTILITY(U,$J,358.3,31257,1,0)
+ ;;^UTILITY(U,$J,358.3,29410,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,29411,0)
+ ;;=F12.20^^118^1485^22
+ ;;^UTILITY(U,$J,358.3,29411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31257,1,3,0)
- ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31257,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,31257,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,31258,0)
- ;;=F15.182^^123^1574^4
- ;;^UTILITY(U,$J,358.3,31258,1,0)
+ ;;^UTILITY(U,$J,358.3,29411,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev
+ ;;^UTILITY(U,$J,358.3,29411,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,29411,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,29412,0)
+ ;;=F12.288^^118^1485^25
+ ;;^UTILITY(U,$J,358.3,29412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31258,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31258,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,31258,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,31259,0)
- ;;=F15.282^^123^1574^5
- ;;^UTILITY(U,$J,358.3,31259,1,0)
+ ;;^UTILITY(U,$J,358.3,29412,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,29412,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,29412,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,29413,0)
+ ;;=F12.121^^118^1485^10
+ ;;^UTILITY(U,$J,358.3,29413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31259,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31259,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,31259,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,31260,0)
- ;;=F15.982^^123^1574^6
- ;;^UTILITY(U,$J,358.3,31260,1,0)
+ ;;^UTILITY(U,$J,358.3,29413,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29413,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,29413,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,29414,0)
+ ;;=F12.221^^118^1485^11
+ ;;^UTILITY(U,$J,358.3,29414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31260,1,3,0)
- ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31260,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,31260,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,31261,0)
- ;;=F15.99^^123^1574^9
- ;;^UTILITY(U,$J,358.3,31261,1,0)
+ ;;^UTILITY(U,$J,358.3,29414,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29414,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,29414,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,29415,0)
+ ;;=F12.921^^118^1485^12
+ ;;^UTILITY(U,$J,358.3,29415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31261,1,3,0)
- ;;=3^Caffeinie Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31261,1,4,0)
- ;;=4^F15.99
- ;;^UTILITY(U,$J,358.3,31261,2)
- ;;=^5133358
- ;;^UTILITY(U,$J,358.3,31262,0)
- ;;=99201^^124^1575^1
- ;;^UTILITY(U,$J,358.3,31262,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31262,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,31262,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,31263,0)
- ;;=99202^^124^1575^2
- ;;^UTILITY(U,$J,358.3,31263,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31263,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,31263,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,31264,0)
- ;;=99203^^124^1575^3
- ;;^UTILITY(U,$J,358.3,31264,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31264,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,31264,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,31265,0)
- ;;=99204^^124^1575^4
- ;;^UTILITY(U,$J,358.3,31265,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31265,1,1,0)
- ;;=1^Comprehensive, Mod Complex
- ;;^UTILITY(U,$J,358.3,31265,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,31266,0)
- ;;=99205^^124^1575^5
- ;;^UTILITY(U,$J,358.3,31266,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31266,1,1,0)
- ;;=1^Comprehensive, High Complex
- ;;^UTILITY(U,$J,358.3,31266,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,31267,0)
- ;;=99211^^124^1576^2
- ;;^UTILITY(U,$J,358.3,31267,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31267,1,1,0)
- ;;=1^Brief (RN/LPN/Pharmacist)
- ;;^UTILITY(U,$J,358.3,31267,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,31268,0)
- ;;=99212^^124^1576^3
- ;;^UTILITY(U,$J,358.3,31268,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31268,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,31268,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,31269,0)
- ;;=99213^^124^1576^4
- ;;^UTILITY(U,$J,358.3,31269,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31269,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,31269,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,31270,0)
- ;;=99214^^124^1576^5
- ;;^UTILITY(U,$J,358.3,31270,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31270,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,31270,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,31271,0)
- ;;=99215^^124^1576^6
- ;;^UTILITY(U,$J,358.3,31271,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,31271,1,1,0)
- ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,29415,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29415,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,29415,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,29416,0)
+ ;;=F12.229^^118^1485^16
+ ;;^UTILITY(U,$J,358.3,29416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29416,1,3,0)
+ ;;=3^Cannabis Intox w/o Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29416,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,29416,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,29417,0)
+ ;;=F12.122^^118^1485^13
+ ;;^UTILITY(U,$J,358.3,29417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29417,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29417,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,29417,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,29418,0)
+ ;;=F12.222^^118^1485^14
+ ;;^UTILITY(U,$J,358.3,29418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29418,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29418,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,29418,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,29419,0)
+ ;;=F12.922^^118^1485^15
+ ;;^UTILITY(U,$J,358.3,29419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29419,1,3,0)
+ ;;=3^Cannabis Intox w/ Percep Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29419,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,29419,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,29420,0)
+ ;;=F12.980^^118^1485^3
+ ;;^UTILITY(U,$J,358.3,29420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29420,1,3,0)
+ ;;=3^Cannabis Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29420,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,29420,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,29421,0)
+ ;;=F12.159^^118^1485^4
+ ;;^UTILITY(U,$J,358.3,29421,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29421,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29421,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,29421,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,29422,0)
+ ;;=F12.259^^118^1485^5
+ ;;^UTILITY(U,$J,358.3,29422,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29422,1,3,0)
+ ;;=3^Cannabis Induced Psychotic D/O w/ Mod/Sev Use D/O

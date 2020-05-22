@@ -1,5 +1,6 @@
 IBOHRL ;ALB/EMG-AUTO-RELEASE CHARGES ON HOLD > 90 DAYS ;APR 11 1997
- ;;2.0;INTEGRATED BILLING;**70,215,464**;21-MAR-94;Build 16
+ ;;2.0;INTEGRATED BILLING;**70,215,464,663**;21-MAR-94;Build 27
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; 
 EN ;
@@ -36,6 +37,7 @@ REL ; release charges to AR
  .S IBNOS=IBNUM
  .S IBDUZ=$P($G(^IB(IBNOS,1)),U) I IBDUZ="" S IBDUZ=DUZ
  .D ^IBR
+ .D UPDUCDB^IBRREL(IBNUM)  ;IB*2.0*663 allow for update of UC Visit DB 
  .I $P($G(^IB(IBNUM,0)),"^",5)=3 D
  ..S IBRCOUNT=IBRCOUNT+1
  ..I $G(IBR60) S IBNDE=^IB(IBNUM,0) D IVM^IBAMTV32(IBNDE) K IBNDE
@@ -65,4 +67,3 @@ MAIL ; send bulletin when job is complete
  I $G(DIFROM) S IBDIFROM=DIFROM K DIFROM
  D ^XMD
  I $G(IBDIFROM) S DIFROM=IBDIFROM
- Q

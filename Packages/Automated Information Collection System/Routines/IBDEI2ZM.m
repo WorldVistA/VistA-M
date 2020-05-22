@@ -1,128 +1,124 @@
-IBDEI2ZM ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50083,0)
- ;;=I25.731^^219^2439^39
- ;;^UTILITY(U,$J,358.3,50083,1,0)
+ ;;^UTILITY(U,$J,358.3,47705,1,4,0)
+ ;;=4^K45.8
+ ;;^UTILITY(U,$J,358.3,47705,2)
+ ;;=^5008620
+ ;;^UTILITY(U,$J,358.3,47706,0)
+ ;;=K45.0^^185^2410^51
+ ;;^UTILITY(U,$J,358.3,47706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50083,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,50083,1,4,0)
- ;;=4^I25.731
- ;;^UTILITY(U,$J,358.3,50083,2)
- ;;=^5007128
- ;;^UTILITY(U,$J,358.3,50084,0)
- ;;=I25.738^^219^2439^38
- ;;^UTILITY(U,$J,358.3,50084,1,0)
+ ;;^UTILITY(U,$J,358.3,47706,1,3,0)
+ ;;=3^Hernia,Abdominal w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,47706,1,4,0)
+ ;;=4^K45.0
+ ;;^UTILITY(U,$J,358.3,47706,2)
+ ;;=^5008618
+ ;;^UTILITY(U,$J,358.3,47707,0)
+ ;;=K41.00^^185^2410^53
+ ;;^UTILITY(U,$J,358.3,47707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50084,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,50084,1,4,0)
- ;;=4^I25.738
- ;;^UTILITY(U,$J,358.3,50084,2)
- ;;=^5007129
- ;;^UTILITY(U,$J,358.3,50085,0)
- ;;=I25.739^^219^2439^40
- ;;^UTILITY(U,$J,358.3,50085,1,0)
+ ;;^UTILITY(U,$J,358.3,47707,1,3,0)
+ ;;=3^Hernia,Bilat Femoral w/ Obstructions w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,47707,1,4,0)
+ ;;=4^K41.00
+ ;;^UTILITY(U,$J,358.3,47707,2)
+ ;;=^5008593
+ ;;^UTILITY(U,$J,358.3,47708,0)
+ ;;=K40.20^^185^2410^54
+ ;;^UTILITY(U,$J,358.3,47708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50085,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,50085,1,4,0)
- ;;=4^I25.739
- ;;^UTILITY(U,$J,358.3,50085,2)
- ;;=^5007130
- ;;^UTILITY(U,$J,358.3,50086,0)
- ;;=I25.730^^219^2439^41
- ;;^UTILITY(U,$J,358.3,50086,1,0)
+ ;;^UTILITY(U,$J,358.3,47708,1,3,0)
+ ;;=3^Hernia,Bilat Femoral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,47708,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,47708,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,47709,0)
+ ;;=K42.0^^185^2410^55
+ ;;^UTILITY(U,$J,358.3,47709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50086,1,3,0)
- ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,50086,1,4,0)
- ;;=4^I25.730
- ;;^UTILITY(U,$J,358.3,50086,2)
- ;;=^5007127
- ;;^UTILITY(U,$J,358.3,50087,0)
- ;;=I25.791^^219^2439^24
- ;;^UTILITY(U,$J,358.3,50087,1,0)
+ ;;^UTILITY(U,$J,358.3,47709,1,3,0)
+ ;;=3^Hernia,Umbilical w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,47709,1,4,0)
+ ;;=4^K42.0
+ ;;^UTILITY(U,$J,358.3,47709,2)
+ ;;=^5008605
+ ;;^UTILITY(U,$J,358.3,47710,0)
+ ;;=K42.9^^185^2410^56
+ ;;^UTILITY(U,$J,358.3,47710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50087,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,50087,1,4,0)
- ;;=4^I25.791
- ;;^UTILITY(U,$J,358.3,50087,2)
- ;;=^5007140
- ;;^UTILITY(U,$J,358.3,50088,0)
- ;;=I25.798^^219^2439^22
- ;;^UTILITY(U,$J,358.3,50088,1,0)
+ ;;^UTILITY(U,$J,358.3,47710,1,3,0)
+ ;;=3^Hernia,Umbilical w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,47710,1,4,0)
+ ;;=4^K42.9
+ ;;^UTILITY(U,$J,358.3,47710,2)
+ ;;=^5008606
+ ;;^UTILITY(U,$J,358.3,47711,0)
+ ;;=K41.30^^185^2410^57
+ ;;^UTILITY(U,$J,358.3,47711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50088,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,50088,1,4,0)
- ;;=4^I25.798
- ;;^UTILITY(U,$J,358.3,50088,2)
- ;;=^5133558
- ;;^UTILITY(U,$J,358.3,50089,0)
- ;;=I25.799^^219^2439^26
- ;;^UTILITY(U,$J,358.3,50089,1,0)
+ ;;^UTILITY(U,$J,358.3,47711,1,3,0)
+ ;;=3^Hernia,Unil Femoral w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,47711,1,4,0)
+ ;;=4^K41.30
+ ;;^UTILITY(U,$J,358.3,47711,2)
+ ;;=^5008599
+ ;;^UTILITY(U,$J,358.3,47712,0)
+ ;;=K41.90^^185^2410^58
+ ;;^UTILITY(U,$J,358.3,47712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50089,1,3,0)
- ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,50089,1,4,0)
- ;;=4^I25.799
- ;;^UTILITY(U,$J,358.3,50089,2)
- ;;=^5133559
- ;;^UTILITY(U,$J,358.3,50090,0)
- ;;=I25.790^^219^2439^28
- ;;^UTILITY(U,$J,358.3,50090,1,0)
+ ;;^UTILITY(U,$J,358.3,47712,1,3,0)
+ ;;=3^Hernia,Unil Femoral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,47712,1,4,0)
+ ;;=4^K41.90
+ ;;^UTILITY(U,$J,358.3,47712,2)
+ ;;=^5008603
+ ;;^UTILITY(U,$J,358.3,47713,0)
+ ;;=K40.30^^185^2410^59
+ ;;^UTILITY(U,$J,358.3,47713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50090,1,3,0)
- ;;=3^Athscl CABG w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,50090,1,4,0)
- ;;=4^I25.790
- ;;^UTILITY(U,$J,358.3,50090,2)
- ;;=^5007139
- ;;^UTILITY(U,$J,358.3,50091,0)
- ;;=I25.111^^219^2439^29
- ;;^UTILITY(U,$J,358.3,50091,1,0)
+ ;;^UTILITY(U,$J,358.3,47713,1,3,0)
+ ;;=3^Hernia,Unil Inguinal w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,47713,1,4,0)
+ ;;=4^K40.30
+ ;;^UTILITY(U,$J,358.3,47713,2)
+ ;;=^5008587
+ ;;^UTILITY(U,$J,358.3,47714,0)
+ ;;=K40.90^^185^2410^60
+ ;;^UTILITY(U,$J,358.3,47714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50091,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,50091,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,50091,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,50092,0)
- ;;=I25.118^^219^2439^30
- ;;^UTILITY(U,$J,358.3,50092,1,0)
+ ;;^UTILITY(U,$J,358.3,47714,1,3,0)
+ ;;=3^Hernia,Unil Inguinal w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,47714,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,47714,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,47715,0)
+ ;;=K43.9^^185^2410^61
+ ;;^UTILITY(U,$J,358.3,47715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50092,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,50092,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,50092,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,50093,0)
- ;;=I25.119^^219^2439^31
- ;;^UTILITY(U,$J,358.3,50093,1,0)
+ ;;^UTILITY(U,$J,358.3,47715,1,3,0)
+ ;;=3^Hernia,Ventral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,47715,1,4,0)
+ ;;=4^K43.9
+ ;;^UTILITY(U,$J,358.3,47715,2)
+ ;;=^5008615
+ ;;^UTILITY(U,$J,358.3,47716,0)
+ ;;=K59.9^^185^2410^65
+ ;;^UTILITY(U,$J,358.3,47716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50093,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,50093,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,50093,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,50094,0)
- ;;=I25.110^^219^2439^32
- ;;^UTILITY(U,$J,358.3,50094,1,0)
+ ;;^UTILITY(U,$J,358.3,47716,1,3,0)
+ ;;=3^Intestinal Disorder,Functional,Unspec
+ ;;^UTILITY(U,$J,358.3,47716,1,4,0)
+ ;;=4^K59.9
+ ;;^UTILITY(U,$J,358.3,47716,2)
+ ;;=^5008744
+ ;;^UTILITY(U,$J,358.3,47717,0)
+ ;;=K63.9^^185^2410^64
+ ;;^UTILITY(U,$J,358.3,47717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50094,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,50094,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,50094,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,50095,0)
- ;;=I25.10^^219^2439^33
- ;;^UTILITY(U,$J,358.3,50095,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47717,1,3,0)
+ ;;=3^Intestinal Disease,Unspec

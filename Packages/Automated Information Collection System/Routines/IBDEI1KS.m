@@ -1,134 +1,128 @@
-IBDEI1KS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26723,1,0)
+ ;;^UTILITY(U,$J,358.3,25178,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,25179,0)
+ ;;=K70.0^^107^1214^3
+ ;;^UTILITY(U,$J,358.3,25179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26723,1,3,0)
- ;;=3^Counseling/Consultation NEC
- ;;^UTILITY(U,$J,358.3,26723,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,26723,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,26724,0)
- ;;=Z51.81^^100^1281^5
- ;;^UTILITY(U,$J,358.3,26724,1,0)
+ ;;^UTILITY(U,$J,358.3,25179,1,3,0)
+ ;;=3^Alcoholic Fatty Liver
+ ;;^UTILITY(U,$J,358.3,25179,1,4,0)
+ ;;=4^K70.0
+ ;;^UTILITY(U,$J,358.3,25179,2)
+ ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,25180,0)
+ ;;=K70.11^^107^1214^7
+ ;;^UTILITY(U,$J,358.3,25180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26724,1,3,0)
- ;;=3^Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,26724,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,26724,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,26725,0)
- ;;=Z69.12^^100^1281^2
- ;;^UTILITY(U,$J,358.3,26725,1,0)
+ ;;^UTILITY(U,$J,358.3,25180,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,25180,1,4,0)
+ ;;=4^K70.11
+ ;;^UTILITY(U,$J,358.3,25180,2)
+ ;;=^5008786
+ ;;^UTILITY(U,$J,358.3,25181,0)
+ ;;=K70.10^^107^1214^8
+ ;;^UTILITY(U,$J,358.3,25181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26725,1,3,0)
- ;;=3^Mental Health Svcs for Perpetrator of Spousal/Partner Abuse
- ;;^UTILITY(U,$J,358.3,26725,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,26725,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,26726,0)
- ;;=Z69.11^^100^1281^3
- ;;^UTILITY(U,$J,358.3,26726,1,0)
+ ;;^UTILITY(U,$J,358.3,25181,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,25181,1,4,0)
+ ;;=4^K70.10
+ ;;^UTILITY(U,$J,358.3,25181,2)
+ ;;=^5008785
+ ;;^UTILITY(U,$J,358.3,25182,0)
+ ;;=K70.2^^107^1214^4
+ ;;^UTILITY(U,$J,358.3,25182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26726,1,3,0)
- ;;=3^Mental Health Svcs for Victim of Spousal/Partner Abuse
- ;;^UTILITY(U,$J,358.3,26726,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,26726,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,26727,0)
- ;;=Z60.0^^100^1282^2
- ;;^UTILITY(U,$J,358.3,26727,1,0)
+ ;;^UTILITY(U,$J,358.3,25182,1,3,0)
+ ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
+ ;;^UTILITY(U,$J,358.3,25182,1,4,0)
+ ;;=4^K70.2
+ ;;^UTILITY(U,$J,358.3,25182,2)
+ ;;=^5008787
+ ;;^UTILITY(U,$J,358.3,25183,0)
+ ;;=K70.30^^107^1214^2
+ ;;^UTILITY(U,$J,358.3,25183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26727,1,3,0)
- ;;=3^Phase of Life Problem
- ;;^UTILITY(U,$J,358.3,26727,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,26727,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,26728,0)
- ;;=Z60.2^^100^1282^3
- ;;^UTILITY(U,$J,358.3,26728,1,0)
+ ;;^UTILITY(U,$J,358.3,25183,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,25183,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,25183,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,25184,0)
+ ;;=K70.31^^107^1214^1
+ ;;^UTILITY(U,$J,358.3,25184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26728,1,3,0)
- ;;=3^Problem Related to Living Alone
- ;;^UTILITY(U,$J,358.3,26728,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,26728,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,26729,0)
- ;;=Z60.3^^100^1282^1
- ;;^UTILITY(U,$J,358.3,26729,1,0)
+ ;;^UTILITY(U,$J,358.3,25184,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,25184,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,25184,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,25185,0)
+ ;;=K70.9^^107^1214^9
+ ;;^UTILITY(U,$J,358.3,25185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26729,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,26729,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,26729,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,26730,0)
- ;;=Z60.4^^100^1282^5
- ;;^UTILITY(U,$J,358.3,26730,1,0)
+ ;;^UTILITY(U,$J,358.3,25185,1,3,0)
+ ;;=3^Alcoholic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,25185,1,4,0)
+ ;;=4^K70.9
+ ;;^UTILITY(U,$J,358.3,25185,2)
+ ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,25186,0)
+ ;;=K70.40^^107^1214^6
+ ;;^UTILITY(U,$J,358.3,25186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26730,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,26730,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,26730,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,26731,0)
- ;;=Z60.5^^100^1282^6
- ;;^UTILITY(U,$J,358.3,26731,1,0)
+ ;;^UTILITY(U,$J,358.3,25186,1,3,0)
+ ;;=3^Alcoholic Hepatic Failure w/o Coma
+ ;;^UTILITY(U,$J,358.3,25186,1,4,0)
+ ;;=4^K70.40
+ ;;^UTILITY(U,$J,358.3,25186,2)
+ ;;=^5008790
+ ;;^UTILITY(U,$J,358.3,25187,0)
+ ;;=K70.41^^107^1214^5
+ ;;^UTILITY(U,$J,358.3,25187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26731,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,26731,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,26731,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,26732,0)
- ;;=Z60.9^^100^1282^4
- ;;^UTILITY(U,$J,358.3,26732,1,0)
+ ;;^UTILITY(U,$J,358.3,25187,1,3,0)
+ ;;=3^Alcoholic Hepatic Failure w/ Coma
+ ;;^UTILITY(U,$J,358.3,25187,1,4,0)
+ ;;=4^K70.41
+ ;;^UTILITY(U,$J,358.3,25187,2)
+ ;;=^5008791
+ ;;^UTILITY(U,$J,358.3,25188,0)
+ ;;=K73.0^^107^1214^15
+ ;;^UTILITY(U,$J,358.3,25188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26732,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,26732,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,26732,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,26733,0)
- ;;=F65.4^^100^1283^6
- ;;^UTILITY(U,$J,358.3,26733,1,0)
+ ;;^UTILITY(U,$J,358.3,25188,1,3,0)
+ ;;=3^Hepatitis, Chronic Persistent NEC
+ ;;^UTILITY(U,$J,358.3,25188,1,4,0)
+ ;;=4^K73.0
+ ;;^UTILITY(U,$J,358.3,25188,2)
+ ;;=^5008811
+ ;;^UTILITY(U,$J,358.3,25189,0)
+ ;;=K74.0^^107^1214^14
+ ;;^UTILITY(U,$J,358.3,25189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26733,1,3,0)
- ;;=3^Pedophilia Disorder
- ;;^UTILITY(U,$J,358.3,26733,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,26733,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,26734,0)
- ;;=F65.2^^100^1283^1
- ;;^UTILITY(U,$J,358.3,26734,1,0)
+ ;;^UTILITY(U,$J,358.3,25189,1,3,0)
+ ;;=3^Hepatic Fibrosis
+ ;;^UTILITY(U,$J,358.3,25189,1,4,0)
+ ;;=4^K74.0
+ ;;^UTILITY(U,$J,358.3,25189,2)
+ ;;=^5008816
+ ;;^UTILITY(U,$J,358.3,25190,0)
+ ;;=K74.69^^107^1214^10
+ ;;^UTILITY(U,$J,358.3,25190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26734,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,26734,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,26734,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,26735,0)
- ;;=F65.3^^100^1283^10
- ;;^UTILITY(U,$J,358.3,26735,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26735,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,26735,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,26735,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,26736,0)
- ;;=F65.81^^100^1283^3
+ ;;^UTILITY(U,$J,358.3,25190,1,3,0)
+ ;;=3^Cirrhosis of Liver,Oth
+ ;;^UTILITY(U,$J,358.3,25190,1,4,0)
+ ;;=4^K74.69
+ ;;^UTILITY(U,$J,358.3,25190,2)
+ ;;=^5008823
+ ;;^UTILITY(U,$J,358.3,25191,0)
+ ;;=K74.60^^107^1214^11

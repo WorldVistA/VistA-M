@@ -1,278 +1,126 @@
-IBDEI13R ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI13R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40029,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,40030,0)
- ;;=R82.91^^148^1959^49
- ;;^UTILITY(U,$J,358.3,40030,1,0)
+ ;;^UTILITY(U,$J,358.3,17715,0)
+ ;;=S71.101A^^88^896^22
+ ;;^UTILITY(U,$J,358.3,17715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40030,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,40030,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,40030,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,40031,0)
- ;;=R82.99^^148^1959^24
- ;;^UTILITY(U,$J,358.3,40031,1,0)
+ ;;^UTILITY(U,$J,358.3,17715,1,3,0)
+ ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,17715,1,4,0)
+ ;;=4^S71.101A
+ ;;^UTILITY(U,$J,358.3,17715,2)
+ ;;=^5037008
+ ;;^UTILITY(U,$J,358.3,17716,0)
+ ;;=S41.101A^^88^896^23
+ ;;^UTILITY(U,$J,358.3,17716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40031,1,3,0)
- ;;=3^Abnormal Urine Findings NEC
- ;;^UTILITY(U,$J,358.3,40031,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,40031,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,40032,0)
- ;;=R89.9^^148^1959^19
- ;;^UTILITY(U,$J,358.3,40032,1,0)
+ ;;^UTILITY(U,$J,358.3,17716,1,3,0)
+ ;;=3^Open Wound,Right Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,17716,1,4,0)
+ ;;=4^S41.101A
+ ;;^UTILITY(U,$J,358.3,17716,2)
+ ;;=^5026330
+ ;;^UTILITY(U,$J,358.3,17717,0)
+ ;;=E03.5^^88^897^37
+ ;;^UTILITY(U,$J,358.3,17717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40032,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,40032,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,40032,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,40033,0)
- ;;=R90.0^^148^1959^98
- ;;^UTILITY(U,$J,358.3,40033,1,0)
+ ;;^UTILITY(U,$J,358.3,17717,1,3,0)
+ ;;=3^Myxedema Coma
+ ;;^UTILITY(U,$J,358.3,17717,1,4,0)
+ ;;=4^E03.5
+ ;;^UTILITY(U,$J,358.3,17717,2)
+ ;;=^5002474
+ ;;^UTILITY(U,$J,358.3,17718,0)
+ ;;=R40.2121^^88^897^33
+ ;;^UTILITY(U,$J,358.3,17718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40033,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,40033,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,40033,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,40034,0)
- ;;=R90.89^^148^1959^13
- ;;^UTILITY(U,$J,358.3,40034,1,0)
+ ;;^UTILITY(U,$J,358.3,17718,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
+ ;;^UTILITY(U,$J,358.3,17718,1,4,0)
+ ;;=4^R40.2121
+ ;;^UTILITY(U,$J,358.3,17718,2)
+ ;;=^5019361
+ ;;^UTILITY(U,$J,358.3,17719,0)
+ ;;=R40.2120^^88^897^34
+ ;;^UTILITY(U,$J,358.3,17719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40034,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,40034,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,40034,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,40035,0)
- ;;=R91.8^^148^1959^18
- ;;^UTILITY(U,$J,358.3,40035,1,0)
+ ;;^UTILITY(U,$J,358.3,17719,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
+ ;;^UTILITY(U,$J,358.3,17719,1,4,0)
+ ;;=4^R40.2120
+ ;;^UTILITY(U,$J,358.3,17719,2)
+ ;;=^5019360
+ ;;^UTILITY(U,$J,358.3,17720,0)
+ ;;=R40.2114^^88^897^26
+ ;;^UTILITY(U,$J,358.3,17720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40035,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,40035,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,40035,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,40036,0)
- ;;=R92.0^^148^1959^117
- ;;^UTILITY(U,$J,358.3,40036,1,0)
+ ;;^UTILITY(U,$J,358.3,17720,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
+ ;;^UTILITY(U,$J,358.3,17720,1,4,0)
+ ;;=4^R40.2114
+ ;;^UTILITY(U,$J,358.3,17720,2)
+ ;;=^5019359
+ ;;^UTILITY(U,$J,358.3,17721,0)
+ ;;=R40.2113^^88^897^30
+ ;;^UTILITY(U,$J,358.3,17721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40036,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,40036,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,40036,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,40037,0)
- ;;=R92.1^^148^1959^116
- ;;^UTILITY(U,$J,358.3,40037,1,0)
+ ;;^UTILITY(U,$J,358.3,17721,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,17721,1,4,0)
+ ;;=4^R40.2113
+ ;;^UTILITY(U,$J,358.3,17721,2)
+ ;;=^5019358
+ ;;^UTILITY(U,$J,358.3,17722,0)
+ ;;=R40.2112^^88^897^27
+ ;;^UTILITY(U,$J,358.3,17722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40037,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,40037,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,40037,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,40038,0)
- ;;=R92.2^^148^1959^91
- ;;^UTILITY(U,$J,358.3,40038,1,0)
+ ;;^UTILITY(U,$J,358.3,17722,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,17722,1,4,0)
+ ;;=4^R40.2112
+ ;;^UTILITY(U,$J,358.3,17722,2)
+ ;;=^5019357
+ ;;^UTILITY(U,$J,358.3,17723,0)
+ ;;=R40.2111^^88^897^28
+ ;;^UTILITY(U,$J,358.3,17723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40038,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,40038,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,40038,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,40039,0)
- ;;=R93.0^^148^1959^10
- ;;^UTILITY(U,$J,358.3,40039,1,0)
+ ;;^UTILITY(U,$J,358.3,17723,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,In the Field
+ ;;^UTILITY(U,$J,358.3,17723,1,4,0)
+ ;;=4^R40.2111
+ ;;^UTILITY(U,$J,358.3,17723,2)
+ ;;=^5019356
+ ;;^UTILITY(U,$J,358.3,17724,0)
+ ;;=R40.2110^^88^897^29
+ ;;^UTILITY(U,$J,358.3,17724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40039,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,40039,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,40039,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,40040,0)
- ;;=R93.2^^148^1959^9
- ;;^UTILITY(U,$J,358.3,40040,1,0)
+ ;;^UTILITY(U,$J,358.3,17724,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
+ ;;^UTILITY(U,$J,358.3,17724,1,4,0)
+ ;;=4^R40.2110
+ ;;^UTILITY(U,$J,358.3,17724,2)
+ ;;=^5019355
+ ;;^UTILITY(U,$J,358.3,17725,0)
+ ;;=R40.20^^88^897^36
+ ;;^UTILITY(U,$J,358.3,17725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40040,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,40040,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,40040,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,40041,0)
- ;;=R93.3^^148^1959^7
- ;;^UTILITY(U,$J,358.3,40041,1,0)
+ ;;^UTILITY(U,$J,358.3,17725,1,3,0)
+ ;;=3^Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,17725,1,4,0)
+ ;;=4^R40.20
+ ;;^UTILITY(U,$J,358.3,17725,2)
+ ;;=^5019354
+ ;;^UTILITY(U,$J,358.3,17726,0)
+ ;;=R40.2123^^88^897^35
+ ;;^UTILITY(U,$J,358.3,17726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40041,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,40041,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,40041,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,40042,0)
- ;;=R93.4^^148^1959^11
- ;;^UTILITY(U,$J,358.3,40042,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40042,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,40042,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,40042,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,40043,0)
- ;;=R93.5^^148^1959^6
- ;;^UTILITY(U,$J,358.3,40043,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40043,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,40043,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,40043,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,40044,0)
- ;;=R93.6^^148^1959^8
- ;;^UTILITY(U,$J,358.3,40044,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40044,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,40044,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,40044,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,40045,0)
- ;;=R94.4^^148^1959^16
- ;;^UTILITY(U,$J,358.3,40045,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40045,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,40045,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,40045,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,40046,0)
- ;;=R94.5^^148^1959^17
- ;;^UTILITY(U,$J,358.3,40046,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40046,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,40046,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,40046,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,40047,0)
- ;;=R94.6^^148^1959^21
- ;;^UTILITY(U,$J,358.3,40047,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40047,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,40047,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,40047,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,40048,0)
- ;;=R94.7^^148^1959^5
- ;;^UTILITY(U,$J,358.3,40048,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40048,1,3,0)
- ;;=3^Abnormal Endocrine Function Sutdies NEC
- ;;^UTILITY(U,$J,358.3,40048,1,4,0)
- ;;=4^R94.7
- ;;^UTILITY(U,$J,358.3,40048,2)
- ;;=^5019744
- ;;^UTILITY(U,$J,358.3,40049,0)
- ;;=R94.31^^148^1959^4
- ;;^UTILITY(U,$J,358.3,40049,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40049,1,3,0)
- ;;=3^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,40049,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,40049,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,40050,0)
- ;;=R97.0^^148^1959^67
- ;;^UTILITY(U,$J,358.3,40050,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40050,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen 
- ;;^UTILITY(U,$J,358.3,40050,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,40050,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,40051,0)
- ;;=R97.1^^148^1959^66
- ;;^UTILITY(U,$J,358.3,40051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40051,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,40051,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,40051,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,40052,0)
- ;;=R97.2^^148^1959^68
- ;;^UTILITY(U,$J,358.3,40052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40052,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,40052,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,40052,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,40053,0)
- ;;=R97.8^^148^1959^22
- ;;^UTILITY(U,$J,358.3,40053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40053,1,3,0)
- ;;=3^Abnormal Tumor Markers NEC
- ;;^UTILITY(U,$J,358.3,40053,1,4,0)
- ;;=4^R97.8
- ;;^UTILITY(U,$J,358.3,40053,2)
- ;;=^5019749
- ;;^UTILITY(U,$J,358.3,40054,0)
- ;;=R93.8^^148^1959^12
- ;;^UTILITY(U,$J,358.3,40054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40054,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Body Structures
- ;;^UTILITY(U,$J,358.3,40054,1,4,0)
- ;;=4^R93.8
- ;;^UTILITY(U,$J,358.3,40054,2)
- ;;=^5019721
- ;;^UTILITY(U,$J,358.3,40055,0)
- ;;=R93.1^^148^1959^14
- ;;^UTILITY(U,$J,358.3,40055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40055,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
- ;;^UTILITY(U,$J,358.3,40055,1,4,0)
- ;;=4^R93.1
- ;;^UTILITY(U,$J,358.3,40055,2)
- ;;=^5019714
- ;;^UTILITY(U,$J,358.3,40056,0)
- ;;=R68.83^^148^1959^48
- ;;^UTILITY(U,$J,358.3,40056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40056,1,3,0)
- ;;=3^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,40056,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,40056,2)
- ;;=^5019555
- ;;^UTILITY(U,$J,358.3,40057,0)
- ;;=R68.2^^148^1959^62
+ ;;^UTILITY(U,$J,358.3,17726,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,17726,1,4,0)
+ ;;=4^R40.2123
+ ;;^UTILITY(U,$J,358.3,17726,2)
+ ;;=^5019363
+ ;;^UTILITY(U,$J,358.3,17727,0)
+ ;;=R40.2122^^88^897^32

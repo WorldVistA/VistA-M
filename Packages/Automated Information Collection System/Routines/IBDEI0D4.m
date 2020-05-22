@@ -1,334 +1,684 @@
-IBDEI0D4 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0D4 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16565,1,0)
+ ;;^UTILITY(U,$J,358.3,32104,0)
+ ;;=I50.20^^92^1232^12
+ ;;^UTILITY(U,$J,358.3,32104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16565,1,3,0)
- ;;=3^Disp fx of anterior sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16565,1,4,0)
- ;;=4^S42.012S
- ;;^UTILITY(U,$J,358.3,16565,2)
- ;;=^5026396
- ;;^UTILITY(U,$J,358.3,16566,0)
- ;;=S42.011S^^47^713^11
- ;;^UTILITY(U,$J,358.3,16566,1,0)
+ ;;^UTILITY(U,$J,358.3,32104,1,3,0)
+ ;;=3^Heart Failure,Systolic,Unspec
+ ;;^UTILITY(U,$J,358.3,32104,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,32104,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,32105,0)
+ ;;=I50.21^^92^1232^9
+ ;;^UTILITY(U,$J,358.3,32105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16566,1,3,0)
- ;;=3^Disp fx of anterior sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16566,1,4,0)
- ;;=4^S42.011S
- ;;^UTILITY(U,$J,358.3,16566,2)
- ;;=^5026389
- ;;^UTILITY(U,$J,358.3,16567,0)
- ;;=S42.032S^^47^713^26
- ;;^UTILITY(U,$J,358.3,16567,1,0)
+ ;;^UTILITY(U,$J,358.3,32105,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute
+ ;;^UTILITY(U,$J,358.3,32105,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,32105,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,32106,0)
+ ;;=I50.22^^92^1232^11
+ ;;^UTILITY(U,$J,358.3,32106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16567,1,3,0)
- ;;=3^Disp fx of lateral end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16567,1,4,0)
- ;;=4^S42.032S
- ;;^UTILITY(U,$J,358.3,16567,2)
- ;;=^5026501
- ;;^UTILITY(U,$J,358.3,16568,0)
- ;;=S42.031S^^47^713^27
- ;;^UTILITY(U,$J,358.3,16568,1,0)
+ ;;^UTILITY(U,$J,358.3,32106,1,3,0)
+ ;;=3^Heart Failure,Systolic,Chronic
+ ;;^UTILITY(U,$J,358.3,32106,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,32106,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,32107,0)
+ ;;=I50.23^^92^1232^10
+ ;;^UTILITY(U,$J,358.3,32107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16568,1,3,0)
- ;;=3^Disp fx of lateral end of right clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,16568,1,4,0)
- ;;=4^S42.031S
- ;;^UTILITY(U,$J,358.3,16568,2)
- ;;=^5026494
- ;;^UTILITY(U,$J,358.3,16569,0)
- ;;=S42.022S^^47^713^43
- ;;^UTILITY(U,$J,358.3,16569,1,0)
+ ;;^UTILITY(U,$J,358.3,32107,1,3,0)
+ ;;=3^Heart Failure,Systolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,32107,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,32107,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,32108,0)
+ ;;=I50.30^^92^1232^4
+ ;;^UTILITY(U,$J,358.3,32108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16569,1,3,0)
- ;;=3^Disp fx of shaft of left clavicle, sequela    
- ;;^UTILITY(U,$J,358.3,16569,1,4,0)
- ;;=4^S42.022S
- ;;^UTILITY(U,$J,358.3,16569,2)
- ;;=^5026459
- ;;^UTILITY(U,$J,358.3,16570,0)
- ;;=S42.021S^^47^713^44
- ;;^UTILITY(U,$J,358.3,16570,1,0)
+ ;;^UTILITY(U,$J,358.3,32108,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,32108,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,32108,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,32109,0)
+ ;;=I50.31^^92^1232^1
+ ;;^UTILITY(U,$J,358.3,32109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16570,1,3,0)
- ;;=3^Disp fx of shaft of right clavicle, sequela   
- ;;^UTILITY(U,$J,358.3,16570,1,4,0)
- ;;=4^S42.021S
- ;;^UTILITY(U,$J,358.3,16570,2)
- ;;=^5026452
- ;;^UTILITY(U,$J,358.3,16571,0)
- ;;=S42.035S^^47^713^72
- ;;^UTILITY(U,$J,358.3,16571,1,0)
+ ;;^UTILITY(U,$J,358.3,32109,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute
+ ;;^UTILITY(U,$J,358.3,32109,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,32109,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,32110,0)
+ ;;=I50.32^^92^1232^3
+ ;;^UTILITY(U,$J,358.3,32110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16571,1,3,0)
- ;;=3^Nondisp fx of lateral end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16571,1,4,0)
- ;;=4^S42.035S
- ;;^UTILITY(U,$J,358.3,16571,2)
- ;;=^5026522
- ;;^UTILITY(U,$J,358.3,16572,0)
- ;;=S42.034S^^47^713^73
- ;;^UTILITY(U,$J,358.3,16572,1,0)
+ ;;^UTILITY(U,$J,358.3,32110,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,32110,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,32110,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,32111,0)
+ ;;=I50.33^^92^1232^2
+ ;;^UTILITY(U,$J,358.3,32111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16572,1,3,0)
- ;;=3^Nondisp fx of lateral end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16572,1,4,0)
- ;;=4^S42.034S
- ;;^UTILITY(U,$J,358.3,16572,2)
- ;;=^5026515
- ;;^UTILITY(U,$J,358.3,16573,0)
- ;;=S42.025S^^47^713^89
- ;;^UTILITY(U,$J,358.3,16573,1,0)
+ ;;^UTILITY(U,$J,358.3,32111,1,3,0)
+ ;;=3^Heart Failure,Diastolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,32111,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,32111,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,32112,0)
+ ;;=I50.40^^92^1232^8
+ ;;^UTILITY(U,$J,358.3,32112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16573,1,3,0)
- ;;=3^Nondisp fx of shaft of left clavicle, sequela 
- ;;^UTILITY(U,$J,358.3,16573,1,4,0)
- ;;=4^S42.025S
- ;;^UTILITY(U,$J,358.3,16573,2)
- ;;=^5026480
- ;;^UTILITY(U,$J,358.3,16574,0)
- ;;=S42.024S^^47^713^90
- ;;^UTILITY(U,$J,358.3,16574,1,0)
+ ;;^UTILITY(U,$J,358.3,32112,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Unspec
+ ;;^UTILITY(U,$J,358.3,32112,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,32112,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,32113,0)
+ ;;=I50.41^^92^1232^5
+ ;;^UTILITY(U,$J,358.3,32113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16574,1,3,0)
- ;;=3^Nondisp fx of shaft of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16574,1,4,0)
- ;;=4^S42.024S
- ;;^UTILITY(U,$J,358.3,16574,2)
- ;;=^5026473
- ;;^UTILITY(U,$J,358.3,16575,0)
- ;;=S42.018S^^47^713^95
- ;;^UTILITY(U,$J,358.3,16575,1,0)
+ ;;^UTILITY(U,$J,358.3,32113,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute
+ ;;^UTILITY(U,$J,358.3,32113,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,32113,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,32114,0)
+ ;;=I50.42^^92^1232^7
+ ;;^UTILITY(U,$J,358.3,32114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16575,1,3,0)
- ;;=3^Nondisp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16575,1,4,0)
- ;;=4^S42.018S
- ;;^UTILITY(U,$J,358.3,16575,2)
- ;;=^5026438
- ;;^UTILITY(U,$J,358.3,16576,0)
- ;;=S42.017S^^47^713^96
- ;;^UTILITY(U,$J,358.3,16576,1,0)
+ ;;^UTILITY(U,$J,358.3,32114,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Chronic
+ ;;^UTILITY(U,$J,358.3,32114,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,32114,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,32115,0)
+ ;;=I50.43^^92^1232^6
+ ;;^UTILITY(U,$J,358.3,32115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16576,1,3,0)
- ;;=3^Nondisp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16576,1,4,0)
- ;;=4^S42.017S
- ;;^UTILITY(U,$J,358.3,16576,2)
- ;;=^5026431
- ;;^UTILITY(U,$J,358.3,16577,0)
- ;;=S42.015S^^47^713^105
- ;;^UTILITY(U,$J,358.3,16577,1,0)
+ ;;^UTILITY(U,$J,358.3,32115,1,3,0)
+ ;;=3^Heart Failure,Systolic & Diastolic,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,32115,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,32115,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,32116,0)
+ ;;=I50.9^^92^1232^13
+ ;;^UTILITY(U,$J,358.3,32116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16577,1,3,0)
- ;;=3^Posterior disp fx of sternal end of left clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16577,1,4,0)
- ;;=4^S42.015S
- ;;^UTILITY(U,$J,358.3,16577,2)
- ;;=^5026417
- ;;^UTILITY(U,$J,358.3,16578,0)
- ;;=S42.014S^^47^713^106
- ;;^UTILITY(U,$J,358.3,16578,1,0)
+ ;;^UTILITY(U,$J,358.3,32116,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,32116,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,32116,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,32117,0)
+ ;;=I09.81^^92^1232^15
+ ;;^UTILITY(U,$J,358.3,32117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16578,1,3,0)
- ;;=3^Posterior disp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,16578,1,4,0)
- ;;=4^S42.014S
- ;;^UTILITY(U,$J,358.3,16578,2)
- ;;=^5026410
- ;;^UTILITY(U,$J,358.3,16579,0)
- ;;=S82.142S^^47^714^1
- ;;^UTILITY(U,$J,358.3,16579,1,0)
+ ;;^UTILITY(U,$J,358.3,32117,1,3,0)
+ ;;=3^Rheumatic Heart Failure
+ ;;^UTILITY(U,$J,358.3,32117,1,4,0)
+ ;;=4^I09.81
+ ;;^UTILITY(U,$J,358.3,32117,2)
+ ;;=^5007059
+ ;;^UTILITY(U,$J,358.3,32118,0)
+ ;;=E86.0^^92^1233^1
+ ;;^UTILITY(U,$J,358.3,32118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16579,1,3,0)
- ;;=3^Disp fx of bicondylar left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,16579,1,4,0)
- ;;=4^S82.142S
- ;;^UTILITY(U,$J,358.3,16579,2)
- ;;=^5040902
- ;;^UTILITY(U,$J,358.3,16580,0)
- ;;=S82.141S^^47^714^2
- ;;^UTILITY(U,$J,358.3,16580,1,0)
+ ;;^UTILITY(U,$J,358.3,32118,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,32118,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,32118,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,32119,0)
+ ;;=E86.1^^92^1233^4
+ ;;^UTILITY(U,$J,358.3,32119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16580,1,3,0)
- ;;=3^Disp fx of bicondylar right tibia, sequela
- ;;^UTILITY(U,$J,358.3,16580,1,4,0)
- ;;=4^S82.141S
- ;;^UTILITY(U,$J,358.3,16580,2)
- ;;=^5040886
- ;;^UTILITY(U,$J,358.3,16581,0)
- ;;=S82.252S^^47^714^4
- ;;^UTILITY(U,$J,358.3,16581,1,0)
+ ;;^UTILITY(U,$J,358.3,32119,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,32119,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,32119,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,32120,0)
+ ;;=E86.9^^92^1233^5
+ ;;^UTILITY(U,$J,358.3,32120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16581,1,3,0)
- ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
- ;;^UTILITY(U,$J,358.3,16581,1,4,0)
- ;;=4^S82.252S
- ;;^UTILITY(U,$J,358.3,16581,2)
- ;;=^5041458
- ;;^UTILITY(U,$J,358.3,16582,0)
- ;;=S82.251S^^47^714^6
- ;;^UTILITY(U,$J,358.3,16582,1,0)
+ ;;^UTILITY(U,$J,358.3,32120,1,3,0)
+ ;;=3^Volume Depletion,Unspec
+ ;;^UTILITY(U,$J,358.3,32120,1,4,0)
+ ;;=4^E86.9
+ ;;^UTILITY(U,$J,358.3,32120,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,32121,0)
+ ;;=E87.0^^92^1233^2
+ ;;^UTILITY(U,$J,358.3,32121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16582,1,3,0)
- ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
- ;;^UTILITY(U,$J,358.3,16582,1,4,0)
- ;;=4^S82.251S
- ;;^UTILITY(U,$J,358.3,16582,2)
- ;;=^5041442
- ;;^UTILITY(U,$J,358.3,16583,0)
- ;;=S82.122S^^47^714^7
- ;;^UTILITY(U,$J,358.3,16583,1,0)
+ ;;^UTILITY(U,$J,358.3,32121,1,3,0)
+ ;;=3^Hyperosmolality & Hpernatremia
+ ;;^UTILITY(U,$J,358.3,32121,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,32121,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,32122,0)
+ ;;=E87.1^^92^1233^3
+ ;;^UTILITY(U,$J,358.3,32122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16583,1,3,0)
- ;;=3^Disp fx of lateral condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,16583,1,4,0)
- ;;=4^S82.122S
- ;;^UTILITY(U,$J,358.3,16583,2)
- ;;=^5040710
- ;;^UTILITY(U,$J,358.3,16584,0)
- ;;=S82.112S^^47^714^11
- ;;^UTILITY(U,$J,358.3,16584,1,0)
+ ;;^UTILITY(U,$J,358.3,32122,1,3,0)
+ ;;=3^Hypo-osmolality & Hyponatremia
+ ;;^UTILITY(U,$J,358.3,32122,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,32122,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,32123,0)
+ ;;=E10.10^^92^1234^18
+ ;;^UTILITY(U,$J,358.3,32123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16584,1,3,0)
- ;;=3^Disp fx of left tibial spine, sequela        
- ;;^UTILITY(U,$J,358.3,16584,1,4,0)
- ;;=4^S82.112S
- ;;^UTILITY(U,$J,358.3,16584,2)
- ;;=^5040614
- ;;^UTILITY(U,$J,358.3,16585,0)
- ;;=S82.121S^^47^714^8
- ;;^UTILITY(U,$J,358.3,16585,1,0)
+ ;;^UTILITY(U,$J,358.3,32123,1,3,0)
+ ;;=3^DM Type 1 w/ Ketoacidosis w/o Coma
+ ;;^UTILITY(U,$J,358.3,32123,1,4,0)
+ ;;=4^E10.10
+ ;;^UTILITY(U,$J,358.3,32123,2)
+ ;;=^5002587
+ ;;^UTILITY(U,$J,358.3,32124,0)
+ ;;=E10.11^^92^1234^17
+ ;;^UTILITY(U,$J,358.3,32124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16585,1,3,0)
- ;;=3^Disp fx of lateral condyle of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,16585,1,4,0)
- ;;=4^S82.121S
- ;;^UTILITY(U,$J,358.3,16585,2)
- ;;=^5040694
- ;;^UTILITY(U,$J,358.3,16586,0)
- ;;=S82.152S^^47^714^12
- ;;^UTILITY(U,$J,358.3,16586,1,0)
+ ;;^UTILITY(U,$J,358.3,32124,1,3,0)
+ ;;=3^DM Type 1 w/ Ketoacidosis w/ Coma
+ ;;^UTILITY(U,$J,358.3,32124,1,4,0)
+ ;;=4^E10.11
+ ;;^UTILITY(U,$J,358.3,32124,2)
+ ;;=^5002588
+ ;;^UTILITY(U,$J,358.3,32125,0)
+ ;;=E10.21^^92^1234^8
+ ;;^UTILITY(U,$J,358.3,32125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16586,1,3,0)
- ;;=3^Disp fx of left tibial tuberosity, sequela   
- ;;^UTILITY(U,$J,358.3,16586,1,4,0)
- ;;=4^S82.152S
- ;;^UTILITY(U,$J,358.3,16586,2)
- ;;=^5040998
- ;;^UTILITY(U,$J,358.3,16587,0)
- ;;=S82.132S^^47^714^13
- ;;^UTILITY(U,$J,358.3,16587,1,0)
+ ;;^UTILITY(U,$J,358.3,32125,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,32125,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,32125,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,32126,0)
+ ;;=E10.22^^92^1234^3
+ ;;^UTILITY(U,$J,358.3,32126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16587,1,3,0)
- ;;=3^Disp fx of medial condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,16587,1,4,0)
- ;;=4^S82.132S
- ;;^UTILITY(U,$J,358.3,16587,2)
- ;;=^5040806
- ;;^UTILITY(U,$J,358.3,16588,0)
- ;;=S82.131S^^47^714^14
- ;;^UTILITY(U,$J,358.3,16588,1,0)
+ ;;^UTILITY(U,$J,358.3,32126,1,3,0)
+ ;;=3^DM Type 1 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,32126,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,32126,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,32127,0)
+ ;;=E10.29^^92^1234^24
+ ;;^UTILITY(U,$J,358.3,32127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16588,1,3,0)
- ;;=3^Disp fx of medial condyle of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,16588,1,4,0)
- ;;=4^S82.131S
- ;;^UTILITY(U,$J,358.3,16588,2)
- ;;=^5040790
- ;;^UTILITY(U,$J,358.3,16589,0)
- ;;=S82.52XS^^47^714^15
- ;;^UTILITY(U,$J,358.3,16589,1,0)
+ ;;^UTILITY(U,$J,358.3,32127,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Kidney Compl
+ ;;^UTILITY(U,$J,358.3,32127,1,4,0)
+ ;;=4^E10.29
+ ;;^UTILITY(U,$J,358.3,32127,2)
+ ;;=^5002591
+ ;;^UTILITY(U,$J,358.3,32128,0)
+ ;;=E10.311^^92^1234^12
+ ;;^UTILITY(U,$J,358.3,32128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16589,1,3,0)
- ;;=3^Disp fx of medial malleolus of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,16589,1,4,0)
- ;;=4^S82.52XS
- ;;^UTILITY(U,$J,358.3,16589,2)
- ;;=^5042246
- ;;^UTILITY(U,$J,358.3,16590,0)
- ;;=S82.51XS^^47^714^16
- ;;^UTILITY(U,$J,358.3,16590,1,0)
+ ;;^UTILITY(U,$J,358.3,32128,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,32128,1,4,0)
+ ;;=4^E10.311
+ ;;^UTILITY(U,$J,358.3,32128,2)
+ ;;=^5002592
+ ;;^UTILITY(U,$J,358.3,32129,0)
+ ;;=E10.319^^92^1234^13
+ ;;^UTILITY(U,$J,358.3,32129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16590,1,3,0)
- ;;=3^Disp fx of medial malleolus of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,16590,1,4,0)
- ;;=4^S82.51XS
- ;;^UTILITY(U,$J,358.3,16590,2)
- ;;=^5042230
- ;;^UTILITY(U,$J,358.3,16591,0)
- ;;=S82.111S^^47^714^23
- ;;^UTILITY(U,$J,358.3,16591,1,0)
+ ;;^UTILITY(U,$J,358.3,32129,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,32129,1,4,0)
+ ;;=4^E10.319
+ ;;^UTILITY(U,$J,358.3,32129,2)
+ ;;=^5002593
+ ;;^UTILITY(U,$J,358.3,32130,0)
+ ;;=E10.3211^^92^1234^19
+ ;;^UTILITY(U,$J,358.3,32130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16591,1,3,0)
- ;;=3^Disp fx of right tibial spine, sequela       
- ;;^UTILITY(U,$J,358.3,16591,1,4,0)
- ;;=4^S82.111S
- ;;^UTILITY(U,$J,358.3,16591,2)
- ;;=^5040598
- ;;^UTILITY(U,$J,358.3,16592,0)
- ;;=S82.151S^^47^714^24
- ;;^UTILITY(U,$J,358.3,16592,1,0)
+ ;;^UTILITY(U,$J,358.3,32130,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32130,1,4,0)
+ ;;=4^E10.3211
+ ;;^UTILITY(U,$J,358.3,32130,2)
+ ;;=^5138279
+ ;;^UTILITY(U,$J,358.3,32131,0)
+ ;;=E10.3212^^92^1234^20
+ ;;^UTILITY(U,$J,358.3,32131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16592,1,3,0)
- ;;=3^Disp fx of right tibial tuberosity, sequela  
- ;;^UTILITY(U,$J,358.3,16592,1,4,0)
- ;;=4^S82.151S
- ;;^UTILITY(U,$J,358.3,16592,2)
- ;;=^5040982
- ;;^UTILITY(U,$J,358.3,16593,0)
- ;;=S82.232S^^47^714^18
- ;;^UTILITY(U,$J,358.3,16593,1,0)
+ ;;^UTILITY(U,$J,358.3,32131,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Lt Eye
+ ;;^UTILITY(U,$J,358.3,32131,1,4,0)
+ ;;=4^E10.3212
+ ;;^UTILITY(U,$J,358.3,32131,2)
+ ;;=^5138280
+ ;;^UTILITY(U,$J,358.3,32132,0)
+ ;;=E10.3213^^92^1234^21
+ ;;^UTILITY(U,$J,358.3,32132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16593,1,3,0)
- ;;=3^Disp fx of oblique shaft of left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,16593,1,4,0)
- ;;=4^S82.232S
- ;;^UTILITY(U,$J,358.3,16593,2)
- ;;=^5041266
- ;;^UTILITY(U,$J,358.3,16594,0)
- ;;=S82.231S^^47^714^20
- ;;^UTILITY(U,$J,358.3,16594,1,0)
+ ;;^UTILITY(U,$J,358.3,32132,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonp Rtnop w/ Macular Edema,Bilat
+ ;;^UTILITY(U,$J,358.3,32132,1,4,0)
+ ;;=4^E10.3213
+ ;;^UTILITY(U,$J,358.3,32132,2)
+ ;;=^5138281
+ ;;^UTILITY(U,$J,358.3,32133,0)
+ ;;=E10.39^^92^1234^26
+ ;;^UTILITY(U,$J,358.3,32133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16594,1,3,0)
- ;;=3^Disp fx of oblique shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,16594,1,4,0)
- ;;=4^S82.231S
- ;;^UTILITY(U,$J,358.3,16594,2)
- ;;=^5041250
- ;;^UTILITY(U,$J,358.3,16595,0)
- ;;=S82.872S^^47^714^21
- ;;^UTILITY(U,$J,358.3,16595,1,0)
+ ;;^UTILITY(U,$J,358.3,32133,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Ophth Compl
+ ;;^UTILITY(U,$J,358.3,32133,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,32133,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,32134,0)
+ ;;=E10.40^^92^1234^10
+ ;;^UTILITY(U,$J,358.3,32134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16595,1,3,0)
- ;;=3^Disp fx of pilon of left tibia, sequela          
- ;;^UTILITY(U,$J,358.3,16595,1,4,0)
- ;;=4^S82.872S
- ;;^UTILITY(U,$J,358.3,16595,2)
- ;;=^5042798
- ;;^UTILITY(U,$J,358.3,16596,0)
- ;;=S82.871S^^47^714^22
- ;;^UTILITY(U,$J,358.3,16596,1,0)
+ ;;^UTILITY(U,$J,358.3,32134,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,32134,1,4,0)
+ ;;=4^E10.40
+ ;;^UTILITY(U,$J,358.3,32134,2)
+ ;;=^5002604
+ ;;^UTILITY(U,$J,358.3,32135,0)
+ ;;=E10.41^^92^1234^7
+ ;;^UTILITY(U,$J,358.3,32135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16596,1,3,0)
- ;;=3^Disp fx of pilon of right tibia, sequela         
- ;;^UTILITY(U,$J,358.3,16596,1,4,0)
- ;;=4^S82.871S
- ;;^UTILITY(U,$J,358.3,16596,2)
- ;;=^5042782
- ;;^UTILITY(U,$J,358.3,16597,0)
- ;;=S82.262S^^47^714^26
- ;;^UTILITY(U,$J,358.3,16597,1,0)
+ ;;^UTILITY(U,$J,358.3,32135,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,32135,1,4,0)
+ ;;=4^E10.41
+ ;;^UTILITY(U,$J,358.3,32135,2)
+ ;;=^5002605
+ ;;^UTILITY(U,$J,358.3,32136,0)
+ ;;=E10.42^^92^1234^11
+ ;;^UTILITY(U,$J,358.3,32136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16597,1,3,0)
- ;;=3^Disp fx of segmental shaft of left tibia, sequela  
- ;;^UTILITY(U,$J,358.3,16597,1,4,0)
- ;;=4^S82.262S
- ;;^UTILITY(U,$J,358.3,16597,2)
- ;;=^5041554
- ;;^UTILITY(U,$J,358.3,16598,0)
- ;;=S82.261S^^47^714^28
+ ;;^UTILITY(U,$J,358.3,32136,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,32136,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,32136,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,32137,0)
+ ;;=E10.43^^92^1234^2
+ ;;^UTILITY(U,$J,358.3,32137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32137,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,32137,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,32137,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,32138,0)
+ ;;=E10.44^^92^1234^1
+ ;;^UTILITY(U,$J,358.3,32138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32138,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Amyotrophy
+ ;;^UTILITY(U,$J,358.3,32138,1,4,0)
+ ;;=4^E10.44
+ ;;^UTILITY(U,$J,358.3,32138,2)
+ ;;=^5002608
+ ;;^UTILITY(U,$J,358.3,32139,0)
+ ;;=E10.49^^92^1234^25
+ ;;^UTILITY(U,$J,358.3,32139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32139,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Neurological Compl
+ ;;^UTILITY(U,$J,358.3,32139,1,4,0)
+ ;;=4^E10.49
+ ;;^UTILITY(U,$J,358.3,32139,2)
+ ;;=^5002609
+ ;;^UTILITY(U,$J,358.3,32140,0)
+ ;;=E10.59^^92^1234^22
+ ;;^UTILITY(U,$J,358.3,32140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32140,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Circulatory Compl
+ ;;^UTILITY(U,$J,358.3,32140,1,4,0)
+ ;;=4^E10.59
+ ;;^UTILITY(U,$J,358.3,32140,2)
+ ;;=^5002612
+ ;;^UTILITY(U,$J,358.3,32141,0)
+ ;;=E10.610^^92^1234^9
+ ;;^UTILITY(U,$J,358.3,32141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32141,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,32141,1,4,0)
+ ;;=4^E10.610
+ ;;^UTILITY(U,$J,358.3,32141,2)
+ ;;=^5002613
+ ;;^UTILITY(U,$J,358.3,32142,0)
+ ;;=E10.618^^92^1234^23
+ ;;^UTILITY(U,$J,358.3,32142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32142,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Diab Arthropathy
+ ;;^UTILITY(U,$J,358.3,32142,1,4,0)
+ ;;=4^E10.618
+ ;;^UTILITY(U,$J,358.3,32142,2)
+ ;;=^5002614
+ ;;^UTILITY(U,$J,358.3,32143,0)
+ ;;=E10.630^^92^1234^30
+ ;;^UTILITY(U,$J,358.3,32143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32143,1,3,0)
+ ;;=3^DM Type 1 w/ Peridontal Disease
+ ;;^UTILITY(U,$J,358.3,32143,1,4,0)
+ ;;=4^E10.630
+ ;;^UTILITY(U,$J,358.3,32143,2)
+ ;;=^5002619
+ ;;^UTILITY(U,$J,358.3,32144,0)
+ ;;=E10.638^^92^1234^27
+ ;;^UTILITY(U,$J,358.3,32144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32144,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Oral Compl
+ ;;^UTILITY(U,$J,358.3,32144,1,4,0)
+ ;;=4^E10.638
+ ;;^UTILITY(U,$J,358.3,32144,2)
+ ;;=^5002620
+ ;;^UTILITY(U,$J,358.3,32145,0)
+ ;;=E10.641^^92^1234^15
+ ;;^UTILITY(U,$J,358.3,32145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32145,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,32145,1,4,0)
+ ;;=4^E10.641
+ ;;^UTILITY(U,$J,358.3,32145,2)
+ ;;=^5002621
+ ;;^UTILITY(U,$J,358.3,32146,0)
+ ;;=E10.649^^92^1234^16
+ ;;^UTILITY(U,$J,358.3,32146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32146,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,32146,1,4,0)
+ ;;=4^E10.649
+ ;;^UTILITY(U,$J,358.3,32146,2)
+ ;;=^5002622
+ ;;^UTILITY(U,$J,358.3,32147,0)
+ ;;=E10.65^^92^1234^14
+ ;;^UTILITY(U,$J,358.3,32147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32147,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,32147,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,32147,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,32148,0)
+ ;;=E10.69^^92^1234^29
+ ;;^UTILITY(U,$J,358.3,32148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32148,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Spec Compl
+ ;;^UTILITY(U,$J,358.3,32148,1,4,0)
+ ;;=4^E10.69
+ ;;^UTILITY(U,$J,358.3,32148,2)
+ ;;=^5002624
+ ;;^UTILITY(U,$J,358.3,32149,0)
+ ;;=E10.8^^92^1234^33
+ ;;^UTILITY(U,$J,358.3,32149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32149,1,3,0)
+ ;;=3^DM Type 1 w/ Unspec Compl
+ ;;^UTILITY(U,$J,358.3,32149,1,4,0)
+ ;;=4^E10.8
+ ;;^UTILITY(U,$J,358.3,32149,2)
+ ;;=^5002625
+ ;;^UTILITY(U,$J,358.3,32150,0)
+ ;;=E10.9^^92^1234^34
+ ;;^UTILITY(U,$J,358.3,32150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32150,1,3,0)
+ ;;=3^DM Type 1 w/o Compl
+ ;;^UTILITY(U,$J,358.3,32150,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,32150,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,32151,0)
+ ;;=E10.620^^92^1234^5
+ ;;^UTILITY(U,$J,358.3,32151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32151,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Dermatitis
+ ;;^UTILITY(U,$J,358.3,32151,1,4,0)
+ ;;=4^E10.620
+ ;;^UTILITY(U,$J,358.3,32151,2)
+ ;;=^5002615
+ ;;^UTILITY(U,$J,358.3,32152,0)
+ ;;=E10.36^^92^1234^4
+ ;;^UTILITY(U,$J,358.3,32152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32152,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Cataract
+ ;;^UTILITY(U,$J,358.3,32152,1,4,0)
+ ;;=4^E10.36
+ ;;^UTILITY(U,$J,358.3,32152,2)
+ ;;=^5002602
+ ;;^UTILITY(U,$J,358.3,32153,0)
+ ;;=E10.621^^92^1234^6
+ ;;^UTILITY(U,$J,358.3,32153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32153,1,3,0)
+ ;;=3^DM Type 1 w/ Diab Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,32153,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,32153,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,32154,0)
+ ;;=E10.622^^92^1234^28
+ ;;^UTILITY(U,$J,358.3,32154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32154,1,3,0)
+ ;;=3^DM Type 1 w/ Oth Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,32154,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,32154,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,32155,0)
+ ;;=E10.51^^92^1234^32
+ ;;^UTILITY(U,$J,358.3,32155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32155,1,3,0)
+ ;;=3^DM Type 1 w/ Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,32155,1,4,0)
+ ;;=4^E10.51
+ ;;^UTILITY(U,$J,358.3,32155,2)
+ ;;=^5002610
+ ;;^UTILITY(U,$J,358.3,32156,0)
+ ;;=E10.52^^92^1234^31
+ ;;^UTILITY(U,$J,358.3,32156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32156,1,3,0)
+ ;;=3^DM Type 1 w/ Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,32156,1,4,0)
+ ;;=4^E10.52
+ ;;^UTILITY(U,$J,358.3,32156,2)
+ ;;=^5002611
+ ;;^UTILITY(U,$J,358.3,32157,0)
+ ;;=E11.00^^92^1235^19
+ ;;^UTILITY(U,$J,358.3,32157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32157,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperosmolarity w/o NKHHC
+ ;;^UTILITY(U,$J,358.3,32157,1,4,0)
+ ;;=4^E11.00
+ ;;^UTILITY(U,$J,358.3,32157,2)
+ ;;=^5002627
+ ;;^UTILITY(U,$J,358.3,32158,0)
+ ;;=E11.01^^92^1235^18
+ ;;^UTILITY(U,$J,358.3,32158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32158,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperosmolarity w/ Coma
+ ;;^UTILITY(U,$J,358.3,32158,1,4,0)
+ ;;=4^E11.01
+ ;;^UTILITY(U,$J,358.3,32158,2)
+ ;;=^5002628
+ ;;^UTILITY(U,$J,358.3,32159,0)
+ ;;=E11.21^^92^1235^7
+ ;;^UTILITY(U,$J,358.3,32159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32159,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,32159,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,32159,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,32160,0)
+ ;;=E11.22^^92^1235^3
+ ;;^UTILITY(U,$J,358.3,32160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32160,1,3,0)
+ ;;=3^DM Type 2 w/ Diab CKD
+ ;;^UTILITY(U,$J,358.3,32160,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,32160,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,32161,0)
+ ;;=E11.39^^92^1235^28
+ ;;^UTILITY(U,$J,358.3,32161,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32161,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Ophth Compl
+ ;;^UTILITY(U,$J,358.3,32161,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,32161,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,32162,0)
+ ;;=E11.41^^92^1235^6
+ ;;^UTILITY(U,$J,358.3,32162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32162,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,32162,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,32162,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,32163,0)
+ ;;=E11.42^^92^1235^13
+ ;;^UTILITY(U,$J,358.3,32163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32163,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,32163,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,32163,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,32164,0)
+ ;;=E11.43^^92^1235^2
+ ;;^UTILITY(U,$J,358.3,32164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32164,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,32164,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,32164,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,32165,0)
+ ;;=E11.44^^92^1235^1
+ ;;^UTILITY(U,$J,358.3,32165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32165,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Amyotrophy
+ ;;^UTILITY(U,$J,358.3,32165,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,32165,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,32166,0)
+ ;;=E11.49^^92^1235^8
+ ;;^UTILITY(U,$J,358.3,32166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32166,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neurological Compl
+ ;;^UTILITY(U,$J,358.3,32166,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,32166,2)
+ ;;=^5002649
+ ;;^UTILITY(U,$J,358.3,32167,0)
+ ;;=E11.59^^92^1235^25
+ ;;^UTILITY(U,$J,358.3,32167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32167,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Circulatory Compl
+ ;;^UTILITY(U,$J,358.3,32167,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,32167,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,32168,0)
+ ;;=E11.610^^92^1235^9
+ ;;^UTILITY(U,$J,358.3,32168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32168,1,3,0)
+ ;;=3^DM Type 2 w/ Diab Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,32168,1,4,0)
+ ;;=4^E11.610
+ ;;^UTILITY(U,$J,358.3,32168,2)
+ ;;=^5002653
+ ;;^UTILITY(U,$J,358.3,32169,0)
+ ;;=E11.618^^92^1235^26
+ ;;^UTILITY(U,$J,358.3,32169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32169,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diab Arthropathy
+ ;;^UTILITY(U,$J,358.3,32169,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,32169,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,32170,0)
+ ;;=E11.621^^92^1235^16
+ ;;^UTILITY(U,$J,358.3,32170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32170,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,32170,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,32170,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,32171,0)
+ ;;=E11.622^^92^1235^31
+ ;;^UTILITY(U,$J,358.3,32171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32171,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,32171,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,32171,2)
+ ;;=^5002657

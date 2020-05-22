@@ -1,130 +1,48 @@
-IBDEI3CQ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3CQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56319,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56319,1,2,0)
- ;;=2^53600
- ;;^UTILITY(U,$J,358.3,56319,1,3,0)
- ;;=3^Urethral Dil Sound/Dilator (Male)
- ;;^UTILITY(U,$J,358.3,56320,0)
- ;;=53620^^258^2802^18^^^^1
- ;;^UTILITY(U,$J,358.3,56320,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56320,1,2,0)
- ;;=2^53620
- ;;^UTILITY(U,$J,358.3,56320,1,3,0)
- ;;=3^Urethral Dil Fil/Fol (Male)
- ;;^UTILITY(U,$J,358.3,56321,0)
- ;;=74425^^258^2802^2^^^^1
- ;;^UTILITY(U,$J,358.3,56321,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56321,1,2,0)
- ;;=2^74425
- ;;^UTILITY(U,$J,358.3,56321,1,3,0)
- ;;=3^Antgrd Urolgraphy,Rad Supvsn & Interp
- ;;^UTILITY(U,$J,358.3,56322,0)
- ;;=74430^^258^2802^9^^^^1
- ;;^UTILITY(U,$J,358.3,56322,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56322,1,2,0)
- ;;=2^74430
- ;;^UTILITY(U,$J,358.3,56322,1,3,0)
- ;;=3^Cystogram,Rad Supv & Interp
- ;;^UTILITY(U,$J,358.3,56323,0)
- ;;=76942^^258^2802^17^^^^1
- ;;^UTILITY(U,$J,358.3,56323,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56323,1,2,0)
- ;;=2^76942
- ;;^UTILITY(U,$J,358.3,56323,1,3,0)
- ;;=3^US Guidance for Needle (SPT) Placement
- ;;^UTILITY(U,$J,358.3,56324,0)
- ;;=77002^^258^2802^11^^^^1
- ;;^UTILITY(U,$J,358.3,56324,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56324,1,2,0)
- ;;=2^77002
- ;;^UTILITY(U,$J,358.3,56324,1,3,0)
- ;;=3^Fluoro Guide for Needle (SPT) Placement
- ;;^UTILITY(U,$J,358.3,56325,0)
- ;;=51705^^258^2802^6^^^^1
- ;;^UTILITY(U,$J,358.3,56325,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56325,1,2,0)
- ;;=2^51705
- ;;^UTILITY(U,$J,358.3,56325,1,3,0)
- ;;=3^Change of Bladder Tube
- ;;^UTILITY(U,$J,358.3,56326,0)
- ;;=51715^^258^2802^10^^^^1
- ;;^UTILITY(U,$J,358.3,56326,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56326,1,2,0)
- ;;=2^51715
- ;;^UTILITY(U,$J,358.3,56326,1,3,0)
- ;;=3^Endoscopic Inj w/ Implant
- ;;^UTILITY(U,$J,358.3,56327,0)
- ;;=53601^^258^2802^21^^^^1
- ;;^UTILITY(U,$J,358.3,56327,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56327,1,2,0)
- ;;=2^53601
- ;;^UTILITY(U,$J,358.3,56327,1,3,0)
- ;;=3^Urethral Dil,Subsequent
- ;;^UTILITY(U,$J,358.3,56328,0)
- ;;=53621^^258^2802^20^^^^1
- ;;^UTILITY(U,$J,358.3,56328,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56328,1,2,0)
- ;;=2^53621
- ;;^UTILITY(U,$J,358.3,56328,1,3,0)
- ;;=3^Urethral Dil,Stricture
- ;;^UTILITY(U,$J,358.3,56329,0)
- ;;=51725^^258^2803^5^^^^1
- ;;^UTILITY(U,$J,358.3,56329,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56329,1,2,0)
- ;;=2^51725
- ;;^UTILITY(U,$J,358.3,56329,1,3,0)
- ;;=3^CMG,Simple
- ;;^UTILITY(U,$J,358.3,56330,0)
- ;;=51726^^258^2803^4^^^^1
- ;;^UTILITY(U,$J,358.3,56330,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56330,1,2,0)
- ;;=2^51726
- ;;^UTILITY(U,$J,358.3,56330,1,3,0)
- ;;=3^CMG,Complex
- ;;^UTILITY(U,$J,358.3,56331,0)
- ;;=51797^^258^2803^8^^^^1
- ;;^UTILITY(U,$J,358.3,56331,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56331,1,2,0)
- ;;=2^51797
- ;;^UTILITY(U,$J,358.3,56331,1,3,0)
- ;;=3^Intra-Abdominal VP (Rectal)
- ;;^UTILITY(U,$J,358.3,56332,0)
- ;;=51785^^258^2803^6^^^^1
- ;;^UTILITY(U,$J,358.3,56332,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56332,1,2,0)
- ;;=2^51785
- ;;^UTILITY(U,$J,358.3,56332,1,3,0)
- ;;=3^EMG Needle
- ;;^UTILITY(U,$J,358.3,56333,0)
- ;;=51741^^258^2803^11^^^^1
- ;;^UTILITY(U,$J,358.3,56333,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56333,1,2,0)
- ;;=2^51741
- ;;^UTILITY(U,$J,358.3,56333,1,3,0)
- ;;=3^Uroflow,Complex
- ;;^UTILITY(U,$J,358.3,56334,0)
- ;;=51792^^258^2803^9^^^^1
- ;;^UTILITY(U,$J,358.3,56334,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,56334,1,2,0)
- ;;=2^51792
- ;;^UTILITY(U,$J,358.3,56334,1,3,0)
- ;;=3^Stim Evoked Response (Bulbocavernous Reflex Latency Time)
+ ;;^DIC(358.91,0,"GL")
+ ;;=^IBE(358.91,
+ ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
+ ;;=
+ ;;^DIC(358.91,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.91,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.91,"%D",2,0)
+ ;;=This file is nearly identical to file #357.91. It is used by the
+ ;;^DIC(358.91,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.91,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.91,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.91,0,"DDA")
+ ;;=N
+ ;;^DD(358.91,0,"DT")
+ ;;=2960123
+ ;;^DD(358.91,0,"IX","B",358.91,.01)
+ ;;=
+ ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
+ ;;=
+ ;;^DD(358.91,0,"PT",358.22,.06)
+ ;;=
+ ;;^DD(358.91,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.91,.01,0)
+ ;;=NAME^RFX^^0;1^K:$L(X)>30 X
+ ;;^DD(358.91,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.91,.01,1,1,0)
+ ;;=358.91^B
+ ;;^DD(358.91,.01,1,1,1)
+ ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.91,.01,1,1,2)
+ ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
+ ;;^DD(358.91,.01,3)
+ ;;=NAME MUST BE UNDER 31 CHARACTERS
+ ;;^DD(358.91,.01,21,0)
+ ;;=^^1^1^2930608^
+ ;;^DD(358.91,.01,21,1,0)
+ ;;=The name should describe the appearance of the marking area on the form.

@@ -1,122 +1,126 @@
-IBDEI2YP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49653,1,0)
+ ;;^UTILITY(U,$J,358.3,47273,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,47273,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,47274,0)
+ ;;=M25.551^^181^2360^30
+ ;;^UTILITY(U,$J,358.3,47274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49653,1,3,0)
- ;;=3^Nondisp fx of neck of right radius, sequela
- ;;^UTILITY(U,$J,358.3,49653,1,4,0)
- ;;=4^S52.134S
- ;;^UTILITY(U,$J,358.3,49653,2)
- ;;=^5029206
- ;;^UTILITY(U,$J,358.3,49654,0)
- ;;=S52.335S^^216^2420^97
- ;;^UTILITY(U,$J,358.3,49654,1,0)
+ ;;^UTILITY(U,$J,358.3,47274,1,3,0)
+ ;;=3^Pain,Right Hip
+ ;;^UTILITY(U,$J,358.3,47274,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,47274,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,47275,0)
+ ;;=M25.552^^181^2360^17
+ ;;^UTILITY(U,$J,358.3,47275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49654,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,49654,1,4,0)
- ;;=4^S52.335S
- ;;^UTILITY(U,$J,358.3,49654,2)
- ;;=^5030142
- ;;^UTILITY(U,$J,358.3,49655,0)
- ;;=S52.334S^^216^2420^99
- ;;^UTILITY(U,$J,358.3,49655,1,0)
+ ;;^UTILITY(U,$J,358.3,47275,1,3,0)
+ ;;=3^Pain,Left Hip
+ ;;^UTILITY(U,$J,358.3,47275,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,47275,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,47276,0)
+ ;;=M25.561^^181^2360^31
+ ;;^UTILITY(U,$J,358.3,47276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49655,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right radius, sequela
- ;;^UTILITY(U,$J,358.3,49655,1,4,0)
- ;;=4^S52.334S
- ;;^UTILITY(U,$J,358.3,49655,2)
- ;;=^5030126
- ;;^UTILITY(U,$J,358.3,49656,0)
- ;;=S52.365S^^216^2420^111
- ;;^UTILITY(U,$J,358.3,49656,1,0)
+ ;;^UTILITY(U,$J,358.3,47276,1,3,0)
+ ;;=3^Pain,Right Knee
+ ;;^UTILITY(U,$J,358.3,47276,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,47276,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,47277,0)
+ ;;=M25.562^^181^2360^18
+ ;;^UTILITY(U,$J,358.3,47277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49656,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of radius, left arm, sequela
- ;;^UTILITY(U,$J,358.3,49656,1,4,0)
- ;;=4^S52.365S
- ;;^UTILITY(U,$J,358.3,49656,2)
- ;;=^5030430
- ;;^UTILITY(U,$J,358.3,49657,0)
- ;;=S52.364S^^216^2420^112
- ;;^UTILITY(U,$J,358.3,49657,1,0)
+ ;;^UTILITY(U,$J,358.3,47277,1,3,0)
+ ;;=3^Pain,Left Knee
+ ;;^UTILITY(U,$J,358.3,47277,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,47277,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,47278,0)
+ ;;=M25.571^^181^2360^24
+ ;;^UTILITY(U,$J,358.3,47278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49657,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,49657,1,4,0)
- ;;=4^S52.364S
- ;;^UTILITY(U,$J,358.3,49657,2)
- ;;=^5030414
- ;;^UTILITY(U,$J,358.3,49658,0)
- ;;=S52.345S^^216^2420^115
- ;;^UTILITY(U,$J,358.3,49658,1,0)
+ ;;^UTILITY(U,$J,358.3,47278,1,3,0)
+ ;;=3^Pain,Right Ankle & Joints Right Foot
+ ;;^UTILITY(U,$J,358.3,47278,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,47278,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,47279,0)
+ ;;=M25.572^^181^2360^12
+ ;;^UTILITY(U,$J,358.3,47279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49658,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of radius, left arm, sequela
- ;;^UTILITY(U,$J,358.3,49658,1,4,0)
- ;;=4^S52.345S
- ;;^UTILITY(U,$J,358.3,49658,2)
- ;;=^5030238
- ;;^UTILITY(U,$J,358.3,49659,0)
- ;;=S52.344S^^216^2420^116
- ;;^UTILITY(U,$J,358.3,49659,1,0)
+ ;;^UTILITY(U,$J,358.3,47279,1,3,0)
+ ;;=3^Pain,Left Ankle & Joints Left Foot
+ ;;^UTILITY(U,$J,358.3,47279,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,47279,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,47280,0)
+ ;;=R10.2^^181^2360^23
+ ;;^UTILITY(U,$J,358.3,47280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49659,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of radius, right arm, sequela
- ;;^UTILITY(U,$J,358.3,49659,1,4,0)
- ;;=4^S52.344S
- ;;^UTILITY(U,$J,358.3,49659,2)
- ;;=^5030222
- ;;^UTILITY(U,$J,358.3,49660,0)
- ;;=S52.325S^^216^2420^119
- ;;^UTILITY(U,$J,358.3,49660,1,0)
+ ;;^UTILITY(U,$J,358.3,47280,1,3,0)
+ ;;=3^Pain,Pelvic & Perineal
+ ;;^UTILITY(U,$J,358.3,47280,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,47280,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,47281,0)
+ ;;=Z51.5^^181^2360^35
+ ;;^UTILITY(U,$J,358.3,47281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49660,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left radius, sequela
- ;;^UTILITY(U,$J,358.3,49660,1,4,0)
- ;;=4^S52.325S
- ;;^UTILITY(U,$J,358.3,49660,2)
- ;;=^5030046
- ;;^UTILITY(U,$J,358.3,49661,0)
- ;;=S52.324S^^216^2420^121
- ;;^UTILITY(U,$J,358.3,49661,1,0)
+ ;;^UTILITY(U,$J,358.3,47281,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,47281,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,47281,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,47282,0)
+ ;;=Z95.3^^181^2360^54
+ ;;^UTILITY(U,$J,358.3,47282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49661,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of r radius, sequela
- ;;^UTILITY(U,$J,358.3,49661,1,4,0)
- ;;=4^S52.324S
- ;;^UTILITY(U,$J,358.3,49661,2)
- ;;=^5030030
- ;;^UTILITY(U,$J,358.3,49662,0)
- ;;=M84.434S^^216^2420^129
- ;;^UTILITY(U,$J,358.3,49662,1,0)
+ ;;^UTILITY(U,$J,358.3,47282,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,47282,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,47282,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,47283,0)
+ ;;=Z95.1^^181^2360^53
+ ;;^UTILITY(U,$J,358.3,47283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49662,1,3,0)
- ;;=3^Pathological fracture, left radius, sequela
- ;;^UTILITY(U,$J,358.3,49662,1,4,0)
- ;;=4^M84.434S
- ;;^UTILITY(U,$J,358.3,49662,2)
- ;;=^5013859
- ;;^UTILITY(U,$J,358.3,49663,0)
- ;;=M84.433S^^216^2420^131
- ;;^UTILITY(U,$J,358.3,49663,1,0)
+ ;;^UTILITY(U,$J,358.3,47283,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass Graft
+ ;;^UTILITY(U,$J,358.3,47283,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,47283,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,47284,0)
+ ;;=I80.201^^181^2360^43
+ ;;^UTILITY(U,$J,358.3,47284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49663,1,3,0)
- ;;=3^Pathological fracture, right radius, sequela
- ;;^UTILITY(U,$J,358.3,49663,1,4,0)
- ;;=4^M84.433S
- ;;^UTILITY(U,$J,358.3,49663,2)
- ;;=^5013853
- ;;^UTILITY(U,$J,358.3,49664,0)
- ;;=S59.212S^^216^2420^134
- ;;^UTILITY(U,$J,358.3,49664,1,0)
+ ;;^UTILITY(U,$J,358.3,47284,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,47284,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,47284,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,47285,0)
+ ;;=I80.202^^181^2360^44
+ ;;^UTILITY(U,$J,358.3,47285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49664,1,3,0)
- ;;=3^Sltr-haris Type I physl fx lower end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,49664,1,4,0)
- ;;=4^S59.212S
- ;;^UTILITY(U,$J,358.3,49664,2)
- ;;=^5135626
+ ;;^UTILITY(U,$J,358.3,47285,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,47285,1,4,0)
+ ;;=4^I80.202

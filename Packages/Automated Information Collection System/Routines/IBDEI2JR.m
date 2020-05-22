@@ -1,136 +1,120 @@
-IBDEI2JR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43204,0)
- ;;=C79.01^^164^2064^23
- ;;^UTILITY(U,$J,358.3,43204,1,0)
+ ;;^UTILITY(U,$J,358.3,40662,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,40662,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,40662,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,40663,0)
+ ;;=F14.250^^152^2014^12
+ ;;^UTILITY(U,$J,358.3,40663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43204,1,3,0)
- ;;=3^Met Malig Neop Rt Kidney & Renal Pelvis
- ;;^UTILITY(U,$J,358.3,43204,1,4,0)
- ;;=4^C79.01
- ;;^UTILITY(U,$J,358.3,43204,2)
- ;;=^5001343
- ;;^UTILITY(U,$J,358.3,43205,0)
- ;;=C79.02^^164^2064^16
- ;;^UTILITY(U,$J,358.3,43205,1,0)
+ ;;^UTILITY(U,$J,358.3,40663,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,40663,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,40663,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,40664,0)
+ ;;=F14.24^^152^2014^16
+ ;;^UTILITY(U,$J,358.3,40664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43205,1,3,0)
- ;;=3^Met Malig Neop Lt Kidney & Renal Pelvis
- ;;^UTILITY(U,$J,358.3,43205,1,4,0)
- ;;=4^C79.02
- ;;^UTILITY(U,$J,358.3,43205,2)
- ;;=^5001344
- ;;^UTILITY(U,$J,358.3,43206,0)
- ;;=C79.11^^164^2064^2
- ;;^UTILITY(U,$J,358.3,43206,1,0)
+ ;;^UTILITY(U,$J,358.3,40664,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,40664,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,40664,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,40665,0)
+ ;;=F14.23^^152^2014^25
+ ;;^UTILITY(U,$J,358.3,40665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43206,1,3,0)
- ;;=3^Met Malig Neop Bladder
- ;;^UTILITY(U,$J,358.3,43206,1,4,0)
- ;;=4^C79.11
- ;;^UTILITY(U,$J,358.3,43206,2)
- ;;=^5001346
- ;;^UTILITY(U,$J,358.3,43207,0)
- ;;=C79.19^^164^2064^28
- ;;^UTILITY(U,$J,358.3,43207,1,0)
+ ;;^UTILITY(U,$J,358.3,40665,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,40665,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,40665,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,40666,0)
+ ;;=F14.229^^152^2014^22
+ ;;^UTILITY(U,$J,358.3,40666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43207,1,3,0)
- ;;=3^Met Malig Neop Urinary Organs
- ;;^UTILITY(U,$J,358.3,43207,1,4,0)
- ;;=4^C79.19
- ;;^UTILITY(U,$J,358.3,43207,2)
- ;;=^267332
- ;;^UTILITY(U,$J,358.3,43208,0)
- ;;=C79.2^^164^2064^26
- ;;^UTILITY(U,$J,358.3,43208,1,0)
+ ;;^UTILITY(U,$J,358.3,40666,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,40666,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,40666,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,40667,0)
+ ;;=F14.222^^152^2014^20
+ ;;^UTILITY(U,$J,358.3,40667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43208,1,3,0)
- ;;=3^Met Malig Neop Skin
- ;;^UTILITY(U,$J,358.3,43208,1,4,0)
- ;;=4^C79.2
- ;;^UTILITY(U,$J,358.3,43208,2)
- ;;=^267333
- ;;^UTILITY(U,$J,358.3,43209,0)
- ;;=C79.31^^164^2064^5
- ;;^UTILITY(U,$J,358.3,43209,1,0)
+ ;;^UTILITY(U,$J,358.3,40667,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,40667,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,40667,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,40668,0)
+ ;;=F14.221^^152^2014^19
+ ;;^UTILITY(U,$J,358.3,40668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43209,1,3,0)
- ;;=3^Met Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,43209,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,43209,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,43210,0)
- ;;=C79.51^^164^2064^3
- ;;^UTILITY(U,$J,358.3,43210,1,0)
+ ;;^UTILITY(U,$J,358.3,40668,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,40668,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,40668,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,40669,0)
+ ;;=F14.220^^152^2014^21
+ ;;^UTILITY(U,$J,358.3,40669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43210,1,3,0)
- ;;=3^Met Malig Neop Bone
- ;;^UTILITY(U,$J,358.3,43210,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,43210,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,43211,0)
- ;;=C79.52^^164^2064^4
- ;;^UTILITY(U,$J,358.3,43211,1,0)
+ ;;^UTILITY(U,$J,358.3,40669,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40669,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,40669,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,40670,0)
+ ;;=F14.20^^152^2014^26
+ ;;^UTILITY(U,$J,358.3,40670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43211,1,3,0)
- ;;=3^Met Malig Neop Bone Marrow
- ;;^UTILITY(U,$J,358.3,43211,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,43211,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,43212,0)
- ;;=C79.61^^164^2064^25
- ;;^UTILITY(U,$J,358.3,43212,1,0)
+ ;;^UTILITY(U,$J,358.3,40670,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,40670,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,40670,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,40671,0)
+ ;;=F10.120^^152^2014^1
+ ;;^UTILITY(U,$J,358.3,40671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43212,1,3,0)
- ;;=3^Met Malig Neop Rt Ovary
- ;;^UTILITY(U,$J,358.3,43212,1,4,0)
- ;;=4^C79.61
- ;;^UTILITY(U,$J,358.3,43212,2)
- ;;=^5001353
- ;;^UTILITY(U,$J,358.3,43213,0)
- ;;=C79.62^^164^2064^18
- ;;^UTILITY(U,$J,358.3,43213,1,0)
+ ;;^UTILITY(U,$J,358.3,40671,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40671,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,40671,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,40672,0)
+ ;;=F10.10^^152^2014^3
+ ;;^UTILITY(U,$J,358.3,40672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43213,1,3,0)
- ;;=3^Met Malig Neop Lt Ovary
- ;;^UTILITY(U,$J,358.3,43213,1,4,0)
- ;;=4^C79.62
- ;;^UTILITY(U,$J,358.3,43213,2)
- ;;=^5001354
- ;;^UTILITY(U,$J,358.3,43214,0)
- ;;=C79.71^^164^2064^22
- ;;^UTILITY(U,$J,358.3,43214,1,0)
+ ;;^UTILITY(U,$J,358.3,40672,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40672,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,40672,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,40673,0)
+ ;;=F17.201^^152^2014^31
+ ;;^UTILITY(U,$J,358.3,40673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43214,1,3,0)
- ;;=3^Met Malig Neop Rt Adrenal Gland
- ;;^UTILITY(U,$J,358.3,43214,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,43214,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,43215,0)
- ;;=C79.72^^164^2064^15
- ;;^UTILITY(U,$J,358.3,43215,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43215,1,3,0)
- ;;=3^Met Malig Neop Lt Adrenal Gland
- ;;^UTILITY(U,$J,358.3,43215,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,43215,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,43216,0)
- ;;=K91.3^^164^2065^6
- ;;^UTILITY(U,$J,358.3,43216,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43216,1,3,0)
- ;;=3^Postprocedural Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,43216,1,4,0)
- ;;=4^K91.3
- ;;^UTILITY(U,$J,358.3,43216,2)
- ;;=^5008902
- ;;^UTILITY(U,$J,358.3,43217,0)
- ;;=T88.8XXA^^164^2065^2
+ ;;^UTILITY(U,$J,358.3,40673,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,40673,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,40673,2)
+ ;;=^5003361

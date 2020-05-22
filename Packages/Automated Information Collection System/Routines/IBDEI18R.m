@@ -1,138 +1,118 @@
-IBDEI18R ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21100,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
- ;;^UTILITY(U,$J,358.3,21100,1,4,0)
- ;;=4^N60.19
- ;;^UTILITY(U,$J,358.3,21100,2)
- ;;=^5015775
- ;;^UTILITY(U,$J,358.3,21101,0)
- ;;=N64.4^^84^945^34
- ;;^UTILITY(U,$J,358.3,21101,1,0)
+ ;;^UTILITY(U,$J,358.3,19901,1,4,0)
+ ;;=4^S62.357S
+ ;;^UTILITY(U,$J,358.3,19901,2)
+ ;;=^5034164
+ ;;^UTILITY(U,$J,358.3,19902,0)
+ ;;=S62.356S^^93^997^116
+ ;;^UTILITY(U,$J,358.3,19902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21101,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,21101,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,21101,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,21102,0)
- ;;=N63.^^84^945^33
- ;;^UTILITY(U,$J,358.3,21102,1,0)
+ ;;^UTILITY(U,$J,358.3,19902,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19902,1,4,0)
+ ;;=4^S62.356S
+ ;;^UTILITY(U,$J,358.3,19902,2)
+ ;;=^5034157
+ ;;^UTILITY(U,$J,358.3,19903,0)
+ ;;=S62.245S^^93^997^107
+ ;;^UTILITY(U,$J,358.3,19903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21102,1,3,0)
- ;;=3^Lump in Breast,Unspec
- ;;^UTILITY(U,$J,358.3,21102,1,4,0)
- ;;=4^N63.
- ;;^UTILITY(U,$J,358.3,21102,2)
- ;;=^5015791
- ;;^UTILITY(U,$J,358.3,21103,0)
- ;;=N64.51^^84^945^28
- ;;^UTILITY(U,$J,358.3,21103,1,0)
+ ;;^UTILITY(U,$J,358.3,19903,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19903,1,4,0)
+ ;;=4^S62.245S
+ ;;^UTILITY(U,$J,358.3,19903,2)
+ ;;=^5033702
+ ;;^UTILITY(U,$J,358.3,19904,0)
+ ;;=S62.244S^^93^997^108
+ ;;^UTILITY(U,$J,358.3,19904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21103,1,3,0)
- ;;=3^Induration of Breast
- ;;^UTILITY(U,$J,358.3,21103,1,4,0)
- ;;=4^N64.51
- ;;^UTILITY(U,$J,358.3,21103,2)
- ;;=^5015795
- ;;^UTILITY(U,$J,358.3,21104,0)
- ;;=N64.59^^84^945^57
- ;;^UTILITY(U,$J,358.3,21104,1,0)
+ ;;^UTILITY(U,$J,358.3,19904,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19904,1,4,0)
+ ;;=4^S62.244S
+ ;;^UTILITY(U,$J,358.3,19904,2)
+ ;;=^5033695
+ ;;^UTILITY(U,$J,358.3,19905,0)
+ ;;=S62.355S^^93^997^113
+ ;;^UTILITY(U,$J,358.3,19905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21104,1,3,0)
- ;;=3^Signs and Symptoms in Breast,Other
- ;;^UTILITY(U,$J,358.3,21104,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,21104,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,21105,0)
- ;;=N64.52^^84^945^37
- ;;^UTILITY(U,$J,358.3,21105,1,0)
+ ;;^UTILITY(U,$J,358.3,19905,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19905,1,4,0)
+ ;;=4^S62.355S
+ ;;^UTILITY(U,$J,358.3,19905,2)
+ ;;=^5034150
+ ;;^UTILITY(U,$J,358.3,19906,0)
+ ;;=S62.354S^^93^997^114
+ ;;^UTILITY(U,$J,358.3,19906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21105,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,21105,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,21105,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,21106,0)
- ;;=N64.53^^84^945^54
- ;;^UTILITY(U,$J,358.3,21106,1,0)
+ ;;^UTILITY(U,$J,358.3,19906,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19906,1,4,0)
+ ;;=4^S62.354S
+ ;;^UTILITY(U,$J,358.3,19906,2)
+ ;;=^5034143
+ ;;^UTILITY(U,$J,358.3,19907,0)
+ ;;=S62.351S^^93^997^109
+ ;;^UTILITY(U,$J,358.3,19907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21106,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,21106,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,21106,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,21107,0)
- ;;=N75.1^^84^945^5
- ;;^UTILITY(U,$J,358.3,21107,1,0)
+ ;;^UTILITY(U,$J,358.3,19907,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19907,1,4,0)
+ ;;=4^S62.351S
+ ;;^UTILITY(U,$J,358.3,19907,2)
+ ;;=^5034122
+ ;;^UTILITY(U,$J,358.3,19908,0)
+ ;;=S62.350S^^93^997^110
+ ;;^UTILITY(U,$J,358.3,19908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21107,1,3,0)
- ;;=3^Abscess of Bartholin's Gland
- ;;^UTILITY(U,$J,358.3,21107,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,21107,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,21108,0)
- ;;=N80.9^^84^945^18
- ;;^UTILITY(U,$J,358.3,21108,1,0)
+ ;;^UTILITY(U,$J,358.3,19908,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19908,1,4,0)
+ ;;=4^S62.350S
+ ;;^UTILITY(U,$J,358.3,19908,2)
+ ;;=^5034115
+ ;;^UTILITY(U,$J,358.3,19909,0)
+ ;;=S62.353S^^93^997^111
+ ;;^UTILITY(U,$J,358.3,19909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21108,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,21108,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,21108,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,21109,0)
- ;;=N81.4^^84^945^61
- ;;^UTILITY(U,$J,358.3,21109,1,0)
+ ;;^UTILITY(U,$J,358.3,19909,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19909,1,4,0)
+ ;;=4^S62.353S
+ ;;^UTILITY(U,$J,358.3,19909,2)
+ ;;=^5034136
+ ;;^UTILITY(U,$J,358.3,19910,0)
+ ;;=S62.352S^^93^997^112
+ ;;^UTILITY(U,$J,358.3,19910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21109,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,21109,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,21109,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,21110,0)
- ;;=N83.20^^84^945^42
- ;;^UTILITY(U,$J,358.3,21110,1,0)
+ ;;^UTILITY(U,$J,358.3,19910,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19910,1,4,0)
+ ;;=4^S62.352S
+ ;;^UTILITY(U,$J,358.3,19910,2)
+ ;;=^5034129
+ ;;^UTILITY(U,$J,358.3,19911,0)
+ ;;=S62.225S^^93^997^117
+ ;;^UTILITY(U,$J,358.3,19911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21110,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,21110,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,21110,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,21111,0)
- ;;=N83.29^^84^945^41
- ;;^UTILITY(U,$J,358.3,21111,1,0)
+ ;;^UTILITY(U,$J,358.3,19911,1,3,0)
+ ;;=3^Nondisp rolando's fx, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19911,1,4,0)
+ ;;=4^S62.225S
+ ;;^UTILITY(U,$J,358.3,19911,2)
+ ;;=^5033618
+ ;;^UTILITY(U,$J,358.3,19912,0)
+ ;;=S62.224S^^93^997^118
+ ;;^UTILITY(U,$J,358.3,19912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21111,1,3,0)
- ;;=3^Ovarian Cysts,Other
- ;;^UTILITY(U,$J,358.3,21111,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,21111,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,21112,0)
- ;;=N84.8^^84^945^47
- ;;^UTILITY(U,$J,358.3,21112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21112,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,21112,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,21112,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,21113,0)
- ;;=N84.0^^84^945^45
- ;;^UTILITY(U,$J,358.3,21113,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21113,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,21113,1,4,0)
- ;;=4^N84.0
+ ;;^UTILITY(U,$J,358.3,19912,1,3,0)
+ ;;=3^Nondisp rolando's fx, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19912,1,4,0)
+ ;;=4^S62.224S
+ ;;^UTILITY(U,$J,358.3,19912,2)
+ ;;=^5033611

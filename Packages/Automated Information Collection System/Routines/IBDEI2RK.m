@@ -1,124 +1,128 @@
-IBDEI2RK ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46398,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,46398,1,4,0)
- ;;=4^I25.721
- ;;^UTILITY(U,$J,358.3,46398,2)
- ;;=^5007126
- ;;^UTILITY(U,$J,358.3,46399,0)
- ;;=I25.728^^206^2297^10
- ;;^UTILITY(U,$J,358.3,46399,1,0)
+ ;;^UTILITY(U,$J,358.3,44080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46399,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,46399,1,4,0)
- ;;=4^I25.728
- ;;^UTILITY(U,$J,358.3,46399,2)
- ;;=^5133560
- ;;^UTILITY(U,$J,358.3,46400,0)
- ;;=I25.729^^206^2297^11
- ;;^UTILITY(U,$J,358.3,46400,1,0)
+ ;;^UTILITY(U,$J,358.3,44080,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation in Childhood
+ ;;^UTILITY(U,$J,358.3,44080,1,4,0)
+ ;;=4^Z62.813
+ ;;^UTILITY(U,$J,358.3,44080,2)
+ ;;=^5157627
+ ;;^UTILITY(U,$J,358.3,44081,0)
+ ;;=Z91.42^^164^2178^14
+ ;;^UTILITY(U,$J,358.3,44081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46400,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,46400,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,46400,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,46401,0)
- ;;=I25.720^^206^2297^12
- ;;^UTILITY(U,$J,358.3,46401,1,0)
+ ;;^UTILITY(U,$J,358.3,44081,1,3,0)
+ ;;=3^Personal Hx of Forced Labor/Sexual Exploitation
+ ;;^UTILITY(U,$J,358.3,44081,1,4,0)
+ ;;=4^Z91.42
+ ;;^UTILITY(U,$J,358.3,44081,2)
+ ;;=^5157633
+ ;;^UTILITY(U,$J,358.3,44082,0)
+ ;;=Z02.89^^164^2178^1
+ ;;^UTILITY(U,$J,358.3,44082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46401,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,46401,1,4,0)
- ;;=4^I25.720
- ;;^UTILITY(U,$J,358.3,46401,2)
- ;;=^5007125
- ;;^UTILITY(U,$J,358.3,46402,0)
- ;;=I25.711^^206^2297^13
- ;;^UTILITY(U,$J,358.3,46402,1,0)
+ ;;^UTILITY(U,$J,358.3,44082,1,3,0)
+ ;;=3^Administrative Exams,Other
+ ;;^UTILITY(U,$J,358.3,44082,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,44082,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,44083,0)
+ ;;=Z70.9^^164^2179^2
+ ;;^UTILITY(U,$J,358.3,44083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46402,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,46402,1,4,0)
- ;;=4^I25.711
- ;;^UTILITY(U,$J,358.3,46402,2)
- ;;=^5007122
- ;;^UTILITY(U,$J,358.3,46403,0)
- ;;=I25.718^^206^2297^14
- ;;^UTILITY(U,$J,358.3,46403,1,0)
+ ;;^UTILITY(U,$J,358.3,44083,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,44083,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,44083,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,44084,0)
+ ;;=Z71.9^^164^2179^1
+ ;;^UTILITY(U,$J,358.3,44084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46403,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,46403,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,46403,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,46404,0)
- ;;=I25.719^^206^2297^15
- ;;^UTILITY(U,$J,358.3,46404,1,0)
+ ;;^UTILITY(U,$J,358.3,44084,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,44084,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,44084,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,44085,0)
+ ;;=Z60.0^^164^2180^2
+ ;;^UTILITY(U,$J,358.3,44085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46404,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,46404,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,46404,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,46405,0)
- ;;=I25.710^^206^2297^16
- ;;^UTILITY(U,$J,358.3,46405,1,0)
+ ;;^UTILITY(U,$J,358.3,44085,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,44085,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,44085,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,44086,0)
+ ;;=Z60.2^^164^2180^3
+ ;;^UTILITY(U,$J,358.3,44086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46405,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,46405,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,46405,2)
- ;;=^5007121
- ;;^UTILITY(U,$J,358.3,46406,0)
- ;;=I25.761^^206^2297^17
- ;;^UTILITY(U,$J,358.3,46406,1,0)
+ ;;^UTILITY(U,$J,358.3,44086,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,44086,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,44086,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,44087,0)
+ ;;=Z60.3^^164^2180^1
+ ;;^UTILITY(U,$J,358.3,44087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46406,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,46406,1,4,0)
- ;;=4^I25.761
- ;;^UTILITY(U,$J,358.3,46406,2)
- ;;=^5007136
- ;;^UTILITY(U,$J,358.3,46407,0)
- ;;=I25.768^^206^2297^18
- ;;^UTILITY(U,$J,358.3,46407,1,0)
+ ;;^UTILITY(U,$J,358.3,44087,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,44087,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,44087,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,44088,0)
+ ;;=Z60.4^^164^2180^5
+ ;;^UTILITY(U,$J,358.3,44088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46407,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,46407,1,4,0)
- ;;=4^I25.768
- ;;^UTILITY(U,$J,358.3,46407,2)
- ;;=^5007137
- ;;^UTILITY(U,$J,358.3,46408,0)
- ;;=I25.769^^206^2297^19
- ;;^UTILITY(U,$J,358.3,46408,1,0)
+ ;;^UTILITY(U,$J,358.3,44088,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,44088,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,44088,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,44089,0)
+ ;;=Z60.5^^164^2180^6
+ ;;^UTILITY(U,$J,358.3,44089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46408,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,46408,1,4,0)
- ;;=4^I25.769
- ;;^UTILITY(U,$J,358.3,46408,2)
- ;;=^5007138
- ;;^UTILITY(U,$J,358.3,46409,0)
- ;;=I25.760^^206^2297^20
- ;;^UTILITY(U,$J,358.3,46409,1,0)
+ ;;^UTILITY(U,$J,358.3,44089,1,3,0)
+ ;;=3^Target (Perceived) Adverse Discrimination/Persecution
+ ;;^UTILITY(U,$J,358.3,44089,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,44089,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,44090,0)
+ ;;=Z60.9^^164^2180^4
+ ;;^UTILITY(U,$J,358.3,44090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46409,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,46409,1,4,0)
- ;;=4^I25.760
- ;;^UTILITY(U,$J,358.3,46409,2)
- ;;=^5007135
- ;;^UTILITY(U,$J,358.3,46410,0)
- ;;=I25.701^^206^2297^23
- ;;^UTILITY(U,$J,358.3,46410,1,0)
+ ;;^UTILITY(U,$J,358.3,44090,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,44090,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,44090,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,44091,0)
+ ;;=F65.4^^164^2181^6
+ ;;^UTILITY(U,$J,358.3,44091,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44091,1,3,0)
+ ;;=3^Pedophilic D/O
+ ;;^UTILITY(U,$J,358.3,44091,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,44091,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,44092,0)
+ ;;=F65.2^^164^2181^1
+ ;;^UTILITY(U,$J,358.3,44092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44092,1,3,0)
+ ;;=3^Exhibitionistic D/O

@@ -1,138 +1,120 @@
-IBDEI2QE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45832,1,0)
+ ;;^UTILITY(U,$J,358.3,43552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45832,1,3,0)
- ;;=3^Tendonitis/Tenosynovitis,Unspec
- ;;^UTILITY(U,$J,358.3,45832,1,4,0)
- ;;=4^M77.9
- ;;^UTILITY(U,$J,358.3,45832,2)
- ;;=^5013319
- ;;^UTILITY(U,$J,358.3,45833,0)
- ;;=M79.672^^203^2259^8
- ;;^UTILITY(U,$J,358.3,45833,1,0)
+ ;;^UTILITY(U,$J,358.3,43552,1,3,0)
+ ;;=3^Hemiplegia Affecting Lt Non-Dominant Side
+ ;;^UTILITY(U,$J,358.3,43552,1,4,0)
+ ;;=4^I69.954
+ ;;^UTILITY(U,$J,358.3,43552,2)
+ ;;=^5133587
+ ;;^UTILITY(U,$J,358.3,43553,0)
+ ;;=I69.941^^160^2124^39
+ ;;^UTILITY(U,$J,358.3,43553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45833,1,3,0)
- ;;=3^Left Foot Pain
- ;;^UTILITY(U,$J,358.3,45833,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,45833,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,45834,0)
- ;;=M79.671^^203^2259^16
- ;;^UTILITY(U,$J,358.3,45834,1,0)
+ ;;^UTILITY(U,$J,358.3,43553,1,3,0)
+ ;;=3^Monoplegia of Lower Limb Affecting Rt Dominant Side
+ ;;^UTILITY(U,$J,358.3,43553,1,4,0)
+ ;;=4^I69.941
+ ;;^UTILITY(U,$J,358.3,43553,2)
+ ;;=^5133581
+ ;;^UTILITY(U,$J,358.3,43554,0)
+ ;;=I69.942^^160^2124^37
+ ;;^UTILITY(U,$J,358.3,43554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45834,1,3,0)
- ;;=3^Right Foot Pain
- ;;^UTILITY(U,$J,358.3,45834,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,45834,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,45835,0)
- ;;=M25.552^^203^2259^9
- ;;^UTILITY(U,$J,358.3,45835,1,0)
+ ;;^UTILITY(U,$J,358.3,43554,1,3,0)
+ ;;=3^Monoplegia of Lower Limb Affecting Lt Dominant Side
+ ;;^UTILITY(U,$J,358.3,43554,1,4,0)
+ ;;=4^I69.942
+ ;;^UTILITY(U,$J,358.3,43554,2)
+ ;;=^5133582
+ ;;^UTILITY(U,$J,358.3,43555,0)
+ ;;=I69.943^^160^2124^40
+ ;;^UTILITY(U,$J,358.3,43555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45835,1,3,0)
- ;;=3^Left Hip Pain
- ;;^UTILITY(U,$J,358.3,45835,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,45835,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,45836,0)
- ;;=M25.551^^203^2259^17
- ;;^UTILITY(U,$J,358.3,45836,1,0)
+ ;;^UTILITY(U,$J,358.3,43555,1,3,0)
+ ;;=3^Monoplegia of Lower Limb Affecting Rt Non-Dominant Side
+ ;;^UTILITY(U,$J,358.3,43555,1,4,0)
+ ;;=4^I69.943
+ ;;^UTILITY(U,$J,358.3,43555,2)
+ ;;=^5133584
+ ;;^UTILITY(U,$J,358.3,43556,0)
+ ;;=I69.944^^160^2124^38
+ ;;^UTILITY(U,$J,358.3,43556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45836,1,3,0)
- ;;=3^Right Hip Pain
- ;;^UTILITY(U,$J,358.3,45836,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,45836,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,45837,0)
- ;;=M25.562^^203^2259^10
- ;;^UTILITY(U,$J,358.3,45837,1,0)
+ ;;^UTILITY(U,$J,358.3,43556,1,3,0)
+ ;;=3^Monoplegia of Lower Limb Affecting Lt Non-Dominant Side
+ ;;^UTILITY(U,$J,358.3,43556,1,4,0)
+ ;;=4^I69.944
+ ;;^UTILITY(U,$J,358.3,43556,2)
+ ;;=^5133585
+ ;;^UTILITY(U,$J,358.3,43557,0)
+ ;;=I69.928^^160^2124^47
+ ;;^UTILITY(U,$J,358.3,43557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45837,1,3,0)
- ;;=3^Left Knee Pain
- ;;^UTILITY(U,$J,358.3,45837,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,45837,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,45838,0)
- ;;=M25.561^^203^2259^18
- ;;^UTILITY(U,$J,358.3,45838,1,0)
+ ;;^UTILITY(U,$J,358.3,43557,1,3,0)
+ ;;=3^Speech/Lang Deficits s/p Unspec Cerebrov Dis
+ ;;^UTILITY(U,$J,358.3,43557,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,43557,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,43558,0)
+ ;;=I69.961^^160^2124^43
+ ;;^UTILITY(U,$J,358.3,43558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45838,1,3,0)
- ;;=3^Right Knee Pain
- ;;^UTILITY(U,$J,358.3,45838,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,45838,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,45839,0)
- ;;=M21.051^^203^2260^4
- ;;^UTILITY(U,$J,358.3,45839,1,0)
+ ;;^UTILITY(U,$J,358.3,43558,1,3,0)
+ ;;=3^Paralytic Syndrome Affecting Rt Dominant Side
+ ;;^UTILITY(U,$J,358.3,43558,1,4,0)
+ ;;=4^I69.961
+ ;;^UTILITY(U,$J,358.3,43558,2)
+ ;;=^5007564
+ ;;^UTILITY(U,$J,358.3,43559,0)
+ ;;=I69.962^^160^2124^41
+ ;;^UTILITY(U,$J,358.3,43559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45839,1,3,0)
- ;;=3^Coxa Vulga,Right Hip
- ;;^UTILITY(U,$J,358.3,45839,1,4,0)
- ;;=4^M21.051
- ;;^UTILITY(U,$J,358.3,45839,2)
- ;;=^5011063
- ;;^UTILITY(U,$J,358.3,45840,0)
- ;;=M21.052^^203^2260^3
- ;;^UTILITY(U,$J,358.3,45840,1,0)
+ ;;^UTILITY(U,$J,358.3,43559,1,3,0)
+ ;;=3^Paralytic Syndrome Affecting Lt Dominant Side
+ ;;^UTILITY(U,$J,358.3,43559,1,4,0)
+ ;;=4^I69.962
+ ;;^UTILITY(U,$J,358.3,43559,2)
+ ;;=^5133588
+ ;;^UTILITY(U,$J,358.3,43560,0)
+ ;;=I69.963^^160^2124^44
+ ;;^UTILITY(U,$J,358.3,43560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45840,1,3,0)
- ;;=3^Coxa Vulga,Left Hip
- ;;^UTILITY(U,$J,358.3,45840,1,4,0)
- ;;=4^M21.052
- ;;^UTILITY(U,$J,358.3,45840,2)
- ;;=^5011064
- ;;^UTILITY(U,$J,358.3,45841,0)
- ;;=M21.151^^203^2260^2
- ;;^UTILITY(U,$J,358.3,45841,1,0)
+ ;;^UTILITY(U,$J,358.3,43560,1,3,0)
+ ;;=3^Paralytic Syndrome Affecting Rt Non-Dominant Side
+ ;;^UTILITY(U,$J,358.3,43560,1,4,0)
+ ;;=4^I69.963
+ ;;^UTILITY(U,$J,358.3,43560,2)
+ ;;=^5007565
+ ;;^UTILITY(U,$J,358.3,43561,0)
+ ;;=I69.964^^160^2124^42
+ ;;^UTILITY(U,$J,358.3,43561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45841,1,3,0)
- ;;=3^Coxa Vara,Right Hip
- ;;^UTILITY(U,$J,358.3,45841,1,4,0)
- ;;=4^M21.151
- ;;^UTILITY(U,$J,358.3,45841,2)
- ;;=^5011076
- ;;^UTILITY(U,$J,358.3,45842,0)
- ;;=M21.152^^203^2260^1
- ;;^UTILITY(U,$J,358.3,45842,1,0)
+ ;;^UTILITY(U,$J,358.3,43561,1,3,0)
+ ;;=3^Paralytic Syndrome Affecting Lt Non-Dominant Side
+ ;;^UTILITY(U,$J,358.3,43561,1,4,0)
+ ;;=4^I69.964
+ ;;^UTILITY(U,$J,358.3,43561,2)
+ ;;=^5133589
+ ;;^UTILITY(U,$J,358.3,43562,0)
+ ;;=I69.965^^160^2124^45
+ ;;^UTILITY(U,$J,358.3,43562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45842,1,3,0)
- ;;=3^Coxa Vara,Left Hip
- ;;^UTILITY(U,$J,358.3,45842,1,4,0)
- ;;=4^M21.152
- ;;^UTILITY(U,$J,358.3,45842,2)
- ;;=^5011077
- ;;^UTILITY(U,$J,358.3,45843,0)
- ;;=Z89.442^^203^2261^1
- ;;^UTILITY(U,$J,358.3,45843,1,0)
+ ;;^UTILITY(U,$J,358.3,43562,1,3,0)
+ ;;=3^Paralytic Syndrome,Bilateral
+ ;;^UTILITY(U,$J,358.3,43562,1,4,0)
+ ;;=4^I69.965
+ ;;^UTILITY(U,$J,358.3,43562,2)
+ ;;=^5007566
+ ;;^UTILITY(U,$J,358.3,43563,0)
+ ;;=I69.90^^160^2124^51
+ ;;^UTILITY(U,$J,358.3,43563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45843,1,3,0)
- ;;=3^Acquired absence of left ankle
- ;;^UTILITY(U,$J,358.3,45843,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,45843,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,45844,0)
- ;;=Z89.432^^203^2261^2
- ;;^UTILITY(U,$J,358.3,45844,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45844,1,3,0)
- ;;=3^Acquired absence of left foot
- ;;^UTILITY(U,$J,358.3,45844,1,4,0)
- ;;=4^Z89.432
- ;;^UTILITY(U,$J,358.3,45844,2)
- ;;=^5063561
- ;;^UTILITY(U,$J,358.3,45845,0)
- ;;=Z89.412^^203^2261^3
- ;;^UTILITY(U,$J,358.3,45845,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45845,1,3,0)
- ;;=3^Acquired absence of left great toe
+ ;;^UTILITY(U,$J,358.3,43563,1,3,0)
+ ;;=3^Unspec Sequelae of Unspec Cerebrov Dis
+ ;;^UTILITY(U,$J,358.3,43563,1,4,0)
+ ;;=4^I69.90

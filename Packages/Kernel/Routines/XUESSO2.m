@@ -1,5 +1,5 @@
-XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;04/28/17  11:49
- ;;8.0;KERNEL;**655,659,630**;Jul 10, 1995;Build 13
+XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;11/21/2019  09:45
+ ;;8.0;KERNEL;**655,659,630,701**;Jul 10, 1995;Build 11
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This utility will identify a VistA user for auditing and HIPAA requirements.
@@ -44,9 +44,10 @@ FINDUSER(XATR) ;Function. Find user using minimum attributes for user identifica
  S XATR(1)=$$TITLE^XLFSTR($E($G(XATR(1)),1,50))                      ;Subject Organization
  S XATR(2)=$$LOW^XLFSTR($E($G(XATR(2)),1,50))                        ;Subject Organization ID
  S XATR(3)=$TR($$LOW^XLFSTR($E($G(XATR(3)),1,40)),"^","%")           ;Unique User ID
- I $G(XATR(4))'="" D  Q:ERRMSG'="" ERRMSG
- . S XUNAME=XATR(4) S XATR(4)=$$FORMAT^XLFNAME7(.XUNAME,3,35,,0,,,2) ;Subject ID converted to standard format
- . I $G(XATR(4))'?1U.E1","1U.E S ERRMSG="-1^Subject ID could not be converted to 'LAST,FIRST MIDDLE SUFFIX' VistA standard format"
+ ;p701
+ ;I $G(XATR(4))'="" D  Q:ERRMSG'="" ERRMSG
+ ;. S XUNAME=XATR(4) S XATR(4)=$$FORMAT^XLFNAME7(.XUNAME,3,35,,0,,,2) ;Subject ID converted to standard format
+ ;. I $G(XATR(4))'?1U.E1","1U.E S ERRMSG="-1^Subject ID could not be converted to 'LAST,FIRST MIDDLE SUFFIX' VistA standard format"
  S XATR(6)=$$UP^XLFSTR($E($G(XATR(6)),1,50))                         ;AD Network Username
  S XATR(7)=$TR($E($G(XATR(7)),1,40),"^","%")                         ;SecID
  Q $$TALL(.XATR)
@@ -128,9 +129,9 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  S XATR(1)=$$TITLE^XLFSTR($E($G(XATR(1)),1,50))                      ;Subject Organization
  S XATR(2)=$$LOW^XLFSTR($E($G(XATR(2)),1,50))                        ;Subject Organization ID
  S XATR(3)=$TR($$LOW^XLFSTR($E($G(XATR(3)),1,40)),"^","%")           ;Unique User ID
- I $G(XATR(4))'="" D  Q:ERRMSG'="" ERRMSG
+ I $G(XATR(4))'="" D  Q:ERRMSG'="" ERRMSG ;
  . S SID=XATR(4) S XATR(4)=$$FORMAT^XLFNAME7(.SID,3,35,,0,,,2) ; Subject ID converted to standard format
- . I $G(XATR(4))'?1U.E1","1U.E S ERRMSG="-1^Subject ID could not be converted to 'LAST,FIRST MIDDLE SUFFIX' VistA standard format"
+ . I $G(XATR(4))'?1U.E1","1U.E S ERRMSG="-1^Subject ID could not be converted to VistA standard format"
  S XATR(6)=$$UP^XLFSTR($E($G(XATR(6)),1,15))                         ;AD Network Username
  S XATR(7)=$TR($E($G(XATR(7)),1,40),"^","%")                         ;SecID
  S NEWDUZ=$$ADDU(XATR(4)) ;Put the name in the .01 field first
@@ -170,6 +171,21 @@ AOIUID(OID,UID) ;Function. Find match for OID+UID cross-reference.
  . . I (OID=$P($G(^VA(200,Y,205)),U,3))&(UID=$P($G(^VA(200,Y,205)),U,4)) S Z=Y,Y=""
  Q Z
  ;
+NETMAIL(NETNAME,MAIL) ;Function. Find match for NETWORK USERNAME and EMAIL ADDRESS
+ N L1,L2,N,Y,Z
+ S NETNAME=$G(NETNAME),MAIL=$G(MAIL)
+ S L1=$L(NETNAME),L2=$L(MAIL)
+ Q:(L1=0)&(L2=0) 0
+ S Y=0,Z=0,N=0
+ F  D  Q:Y=""
+ . S Y=$O(^VA(200,Y))
+ . S N=N+1
+ . I (N#10000)=0 H 1
+ . I Y>0 D
+ . . I L1,NETNAME=$P($G(^VA(200,Y,501)),U,1) S Z=Y,Y="" Q
+ . . I L2,MAIL=$P($G(^VA(200,Y,.15)),U,1) S Z=Y,Y="" Q
+ Q Z
+ ;
 ADDU(XUNAME) ;Function. Add a new name to the NPF
  N DD,DO,DIC,DA,X,Y,DUZZERO
  K ^TMP("DIERR",$J)
@@ -187,20 +203,16 @@ UPDU(XATR,NEWDUZ) ;Function. Update user in the NPF
  K ^TMP("DIERR",$J)
  S DIC(0)="",ERRMSG=""
  S IEN=NEWDUZ_","
- I ($G(XATR(1))'="")&($P($G(^VA(200,NEWDUZ,205)),U,2)="") S FDR(200,IEN,205.2)=$$TITLE^XLFSTR($E($G(XATR(1)),1,50))  ;Add SORG if missing
- I ($G(XATR(2))'="")&($P($G(^VA(200,NEWDUZ,205)),U,3)="") S FDR(200,IEN,205.3)=$$LOW^XLFSTR($E($G(XATR(2)),1,50))    ;Add OID if missing
- I ($G(XATR(3))'="")&($P($G(^VA(200,NEWDUZ,205)),U,4)="") S FDR(200,IEN,205.4)=$TR($$LOW^XLFSTR($E($G(XATR(3)),1,40)),"^","%") ;Add UID if missing
- I ($G(XATR(6))'="")&($P($G(^VA(200,NEWDUZ,501)),U,1)="") S FDR(200,IEN,501.1)=$$UP^XLFSTR($E($G(XATR(6)),1,15))     ;Add NETWORK USERNAME if missing
- I ($G(XATR(7))'="")&($P($G(^VA(200,NEWDUZ,205)),U,1)="") S FDR(200,IEN,205.1)=$TR($E($G(XATR(7)),1,40),"^","%")     ;Add SecID if missing
- I ($G(XATR(8))'="")&($P($G(^VA(200,NEWDUZ,"NPI")),U,1)="") S FDR(200,IEN,41.99)=$G(XATR(8))                         ;Add NPI if missing
- I ($G(XATR(9))'="")&($P($G(^VA(200,NEWDUZ,1)),U,9)="") D  Q:ERRMSG'="" ERRMSG                                       ;Add SSN if missing
- . S ERRMSG=$$ADDS(.FDR,NEWDUZ,$G(XATR(9)))
- . I ERRMSG'="" Q
- I ($G(XATR(10))'="")&($P($G(^VA(200,NEWDUZ,205)),U,5)="") S FDR(200,IEN,205.5)=$$LOW^XLFSTR($G(XATR(10)))           ;Add ADUPN if missing
- I ($G(XATR(11))'="")&($P($G(^VA(200,NEWDUZ,.15)),U,1)="") S FDR(200,IEN,.151)=$$LOW^XLFSTR($G(XATR(11)))            ;Add e-mail if missing
- I $G(XATR(5))'="" D  Q:ERRMSG'="" ERRMSG  ;Assign Context Option
- . S ERRMSG=$$SETCNTXT(NEWDUZ,$G(XATR(5)))
- . I ERRMSG'="" Q
+ I ($G(XATR(1))'=""),(XATR(1)'=$P($G(^VA(200,NEWDUZ,205)),U,2)) S FDR(200,IEN,205.2)=$$TITLE^XLFSTR($E($G(XATR(1)),1,50)) ;SORG
+ I ($G(XATR(2))'=""),(XATR(2)'=$P($G(^VA(200,NEWDUZ,205)),U,3)) S FDR(200,IEN,205.3)=$$LOW^XLFSTR($E($G(XATR(2)),1,50)) ;OID
+ I ($G(XATR(3))'=""),(XATR(3)'=$P($G(^VA(200,NEWDUZ,205)),U,4)) S FDR(200,IEN,205.4)=$TR($$LOW^XLFSTR($E($G(XATR(3)),1,40)),"^","%") ;UID
+ I ($G(XATR(6))'=""),(XATR(6)'=$P($G(^VA(200,NEWDUZ,501)),U,1)) S FDR(200,IEN,501.1)=$$UP^XLFSTR($E($G(XATR(6)),1,15)) ;NETWORK USERNAME
+ I ($G(XATR(7))'=""),(XATR(7)'=$P($G(^VA(200,NEWDUZ,205)),U,1)) S FDR(200,IEN,205.1)=$TR($E($G(XATR(7)),1,40),"^","%") ;SecID
+ I ($G(XATR(8))'=""),(XATR(8)'=$P($G(^VA(200,NEWDUZ,"NPI")),U,1)) S FDR(200,IEN,41.99)=$G(XATR(8)) ;NPI
+ I ($G(XATR(9))'=""),(XATR(9)'=$P($G(^VA(200,NEWDUZ,1)),U,9)) S ERRMSG=$$ADDS(.FDR,NEWDUZ,$G(XATR(9))) I ERRMSG'="" Q ERRMSG ;SSN
+ I ($G(XATR(10))'=""),(XATR(10)'=$P($G(^VA(200,NEWDUZ,205)),U,5)) S FDR(200,IEN,205.5)=$$LOW^XLFSTR($G(XATR(10))) ;ADUPN
+ I ($G(XATR(11))'=""),(XATR(11)'=$P($G(^VA(200,NEWDUZ,.15)),U,1)) S FDR(200,IEN,.151)=$$LOW^XLFSTR($G(XATR(11))) ;e-mail
+ I $G(XATR(5))'="" S ERRMSG=$$SETCNTXT(NEWDUZ,$G(XATR(5))) I ERRMSG'="" Q ERRMSG ;Assign Context Option
  ; Apply all the changes
  S DUZZERO=DUZ(0),DUZ(0)="@" ;Make sure we can update the entry
  I $D(FDR) K IEN D UPDATE^DIE("E","FDR","IEN") ;File all the data

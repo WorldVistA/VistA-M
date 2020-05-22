@@ -1,128 +1,120 @@
-IBDEI19C ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21364,1,0)
+ ;;^UTILITY(U,$J,358.3,20139,0)
+ ;;=S42.011S^^93^999^11
+ ;;^UTILITY(U,$J,358.3,20139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21364,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,21364,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,21364,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,21365,0)
- ;;=B20.^^84^949^17
- ;;^UTILITY(U,$J,358.3,21365,1,0)
+ ;;^UTILITY(U,$J,358.3,20139,1,3,0)
+ ;;=3^Disp fx of anterior sternal end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20139,1,4,0)
+ ;;=4^S42.011S
+ ;;^UTILITY(U,$J,358.3,20139,2)
+ ;;=^5026389
+ ;;^UTILITY(U,$J,358.3,20140,0)
+ ;;=S42.032S^^93^999^26
+ ;;^UTILITY(U,$J,358.3,20140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21365,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,21365,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,21365,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,21366,0)
- ;;=B20.^^84^949^18
- ;;^UTILITY(U,$J,358.3,21366,1,0)
+ ;;^UTILITY(U,$J,358.3,20140,1,3,0)
+ ;;=3^Disp fx of lateral end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20140,1,4,0)
+ ;;=4^S42.032S
+ ;;^UTILITY(U,$J,358.3,20140,2)
+ ;;=^5026501
+ ;;^UTILITY(U,$J,358.3,20141,0)
+ ;;=S42.031S^^93^999^27
+ ;;^UTILITY(U,$J,358.3,20141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21366,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,21366,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,21366,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,21367,0)
- ;;=F10.27^^84^949^1
- ;;^UTILITY(U,$J,358.3,21367,1,0)
+ ;;^UTILITY(U,$J,358.3,20141,1,3,0)
+ ;;=3^Disp fx of lateral end of right clavicle, sequela 
+ ;;^UTILITY(U,$J,358.3,20141,1,4,0)
+ ;;=4^S42.031S
+ ;;^UTILITY(U,$J,358.3,20141,2)
+ ;;=^5026494
+ ;;^UTILITY(U,$J,358.3,20142,0)
+ ;;=S42.022S^^93^999^43
+ ;;^UTILITY(U,$J,358.3,20142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21367,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,21367,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,21367,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,21368,0)
- ;;=F19.97^^84^949^29
- ;;^UTILITY(U,$J,358.3,21368,1,0)
+ ;;^UTILITY(U,$J,358.3,20142,1,3,0)
+ ;;=3^Disp fx of shaft of left clavicle, sequela    
+ ;;^UTILITY(U,$J,358.3,20142,1,4,0)
+ ;;=4^S42.022S
+ ;;^UTILITY(U,$J,358.3,20142,2)
+ ;;=^5026459
+ ;;^UTILITY(U,$J,358.3,20143,0)
+ ;;=S42.021S^^93^999^44
+ ;;^UTILITY(U,$J,358.3,20143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21368,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,21368,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,21368,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,21369,0)
- ;;=F03.90^^84^949^15
- ;;^UTILITY(U,$J,358.3,21369,1,0)
+ ;;^UTILITY(U,$J,358.3,20143,1,3,0)
+ ;;=3^Disp fx of shaft of right clavicle, sequela   
+ ;;^UTILITY(U,$J,358.3,20143,1,4,0)
+ ;;=4^S42.021S
+ ;;^UTILITY(U,$J,358.3,20143,2)
+ ;;=^5026452
+ ;;^UTILITY(U,$J,358.3,20144,0)
+ ;;=S42.035S^^93^999^72
+ ;;^UTILITY(U,$J,358.3,20144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21369,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,21369,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,21369,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,21370,0)
- ;;=G30.0^^84^949^2
- ;;^UTILITY(U,$J,358.3,21370,1,0)
+ ;;^UTILITY(U,$J,358.3,20144,1,3,0)
+ ;;=3^Nondisp fx of lateral end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20144,1,4,0)
+ ;;=4^S42.035S
+ ;;^UTILITY(U,$J,358.3,20144,2)
+ ;;=^5026522
+ ;;^UTILITY(U,$J,358.3,20145,0)
+ ;;=S42.034S^^93^999^73
+ ;;^UTILITY(U,$J,358.3,20145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21370,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,21370,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,21370,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,21371,0)
- ;;=G30.1^^84^949^3
- ;;^UTILITY(U,$J,358.3,21371,1,0)
+ ;;^UTILITY(U,$J,358.3,20145,1,3,0)
+ ;;=3^Nondisp fx of lateral end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20145,1,4,0)
+ ;;=4^S42.034S
+ ;;^UTILITY(U,$J,358.3,20145,2)
+ ;;=^5026515
+ ;;^UTILITY(U,$J,358.3,20146,0)
+ ;;=S42.025S^^93^999^89
+ ;;^UTILITY(U,$J,358.3,20146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21371,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,21371,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,21371,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,21372,0)
- ;;=G30.9^^84^949^4
- ;;^UTILITY(U,$J,358.3,21372,1,0)
+ ;;^UTILITY(U,$J,358.3,20146,1,3,0)
+ ;;=3^Nondisp fx of shaft of left clavicle, sequela 
+ ;;^UTILITY(U,$J,358.3,20146,1,4,0)
+ ;;=4^S42.025S
+ ;;^UTILITY(U,$J,358.3,20146,2)
+ ;;=^5026480
+ ;;^UTILITY(U,$J,358.3,20147,0)
+ ;;=S42.024S^^93^999^90
+ ;;^UTILITY(U,$J,358.3,20147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21372,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,21372,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,21372,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,21373,0)
- ;;=G10.^^84^949^19
- ;;^UTILITY(U,$J,358.3,21373,1,0)
+ ;;^UTILITY(U,$J,358.3,20147,1,3,0)
+ ;;=3^Nondisp fx of shaft of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20147,1,4,0)
+ ;;=4^S42.024S
+ ;;^UTILITY(U,$J,358.3,20147,2)
+ ;;=^5026473
+ ;;^UTILITY(U,$J,358.3,20148,0)
+ ;;=S42.018S^^93^999^95
+ ;;^UTILITY(U,$J,358.3,20148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21373,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,21373,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,21373,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,21374,0)
- ;;=G10.^^84^949^20
- ;;^UTILITY(U,$J,358.3,21374,1,0)
+ ;;^UTILITY(U,$J,358.3,20148,1,3,0)
+ ;;=3^Nondisp fx of sternal end of left clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20148,1,4,0)
+ ;;=4^S42.018S
+ ;;^UTILITY(U,$J,358.3,20148,2)
+ ;;=^5026438
+ ;;^UTILITY(U,$J,358.3,20149,0)
+ ;;=S42.017S^^93^999^96
+ ;;^UTILITY(U,$J,358.3,20149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21374,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,21374,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,21374,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,21375,0)
- ;;=G90.3^^84^949^21
- ;;^UTILITY(U,$J,358.3,21375,1,0)
+ ;;^UTILITY(U,$J,358.3,20149,1,3,0)
+ ;;=3^Nondisp fx of sternal end of right clavicle, sequela
+ ;;^UTILITY(U,$J,358.3,20149,1,4,0)
+ ;;=4^S42.017S
+ ;;^UTILITY(U,$J,358.3,20149,2)
+ ;;=^5026431
+ ;;^UTILITY(U,$J,358.3,20150,0)
+ ;;=S42.015S^^93^999^105
+ ;;^UTILITY(U,$J,358.3,20150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21375,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,21375,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,21375,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,21376,0)
- ;;=G91.2^^84^949^22
- ;;^UTILITY(U,$J,358.3,21376,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21376,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,20150,1,3,0)
+ ;;=3^Posterior disp fx of sternal end of left clavicle, sequela

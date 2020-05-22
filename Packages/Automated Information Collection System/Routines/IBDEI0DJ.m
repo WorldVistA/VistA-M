@@ -1,372 +1,312 @@
-IBDEI0DJ ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0DJ ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17074,0)
- ;;=99354^^49^727^1^^^^1
- ;;^UTILITY(U,$J,358.3,17074,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17074,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,17074,1,3,0)
- ;;=3^Prolonged Svc w/ Pt,1st Hr
- ;;^UTILITY(U,$J,358.3,17075,0)
- ;;=99355^^49^727^2^^^^1
- ;;^UTILITY(U,$J,358.3,17075,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17075,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,17075,1,3,0)
- ;;=3^Prolonged Svc w/ Pt,Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,17076,0)
- ;;=99358^^49^727^3^^^^1
- ;;^UTILITY(U,$J,358.3,17076,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17076,1,2,0)
- ;;=2^99358
- ;;^UTILITY(U,$J,358.3,17076,1,3,0)
- ;;=3^Prolonged Svc w/o Pt,1st Hr
- ;;^UTILITY(U,$J,358.3,17077,0)
- ;;=99359^^49^727^4^^^^1
- ;;^UTILITY(U,$J,358.3,17077,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17077,1,2,0)
- ;;=2^99359
- ;;^UTILITY(U,$J,358.3,17077,1,3,0)
- ;;=3^Prolonged Svc w/o Pt,Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,17078,0)
- ;;=J85.2^^50^728^8
- ;;^UTILITY(U,$J,358.3,17078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17078,1,3,0)
- ;;=3^Abscess, lung without pneumonia
- ;;^UTILITY(U,$J,358.3,17078,1,4,0)
- ;;=4^J85.2
- ;;^UTILITY(U,$J,358.3,17078,2)
- ;;=^5008307
- ;;^UTILITY(U,$J,358.3,17079,0)
- ;;=K75.0^^50^728^7
- ;;^UTILITY(U,$J,358.3,17079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17079,1,3,0)
- ;;=3^Abscess, liver
- ;;^UTILITY(U,$J,358.3,17079,1,4,0)
- ;;=4^K75.0
- ;;^UTILITY(U,$J,358.3,17079,2)
- ;;=^5008824
- ;;^UTILITY(U,$J,358.3,17080,0)
- ;;=K61.1^^50^728^10
- ;;^UTILITY(U,$J,358.3,17080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17080,1,3,0)
- ;;=3^Abscess, rectal
- ;;^UTILITY(U,$J,358.3,17080,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,17080,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,17081,0)
- ;;=N15.1^^50^728^9
- ;;^UTILITY(U,$J,358.3,17081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17081,1,3,0)
- ;;=3^Abscess, perinephric and renal
- ;;^UTILITY(U,$J,358.3,17081,1,4,0)
- ;;=4^N15.1
- ;;^UTILITY(U,$J,358.3,17081,2)
- ;;=^270371
- ;;^UTILITY(U,$J,358.3,17082,0)
- ;;=G06.0^^50^728^6
- ;;^UTILITY(U,$J,358.3,17082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17082,1,3,0)
- ;;=3^Abscess, intracranial with granuloma
- ;;^UTILITY(U,$J,358.3,17082,1,4,0)
- ;;=4^G06.0
- ;;^UTILITY(U,$J,358.3,17082,2)
- ;;=^5003745
- ;;^UTILITY(U,$J,358.3,17083,0)
- ;;=L02.91^^50^728^11
- ;;^UTILITY(U,$J,358.3,17083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17083,1,3,0)
- ;;=3^Abscess, skin and soft tissue
- ;;^UTILITY(U,$J,358.3,17083,1,4,0)
- ;;=4^L02.91
- ;;^UTILITY(U,$J,358.3,17083,2)
- ;;=^5009016
- ;;^UTILITY(U,$J,358.3,17084,0)
- ;;=L02.818^^50^728^5
- ;;^UTILITY(U,$J,358.3,17084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17084,1,3,0)
- ;;=3^Abscess, cutaneous of other sites
- ;;^UTILITY(U,$J,358.3,17084,1,4,0)
- ;;=4^L02.818
- ;;^UTILITY(U,$J,358.3,17084,2)
- ;;=^5009011
- ;;^UTILITY(U,$J,358.3,17085,0)
- ;;=B20.^^50^728^14
- ;;^UTILITY(U,$J,358.3,17085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17085,1,3,0)
- ;;=3^Acquired Immunodeficiency Syndrome (AIDS)
- ;;^UTILITY(U,$J,358.3,17085,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,17085,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,17086,0)
- ;;=B44.1^^50^728^20
- ;;^UTILITY(U,$J,358.3,17086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17086,1,3,0)
- ;;=3^Aspergillosis,Pulmonary
- ;;^UTILITY(U,$J,358.3,17086,1,4,0)
- ;;=4^B44.1
- ;;^UTILITY(U,$J,358.3,17086,2)
- ;;=^5000664
- ;;^UTILITY(U,$J,358.3,17087,0)
- ;;=B44.89^^50^728^19
- ;;^UTILITY(U,$J,358.3,17087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17087,1,3,0)
- ;;=3^Aspergillosis NEC
- ;;^UTILITY(U,$J,358.3,17087,1,4,0)
- ;;=4^B44.89
- ;;^UTILITY(U,$J,358.3,17087,2)
- ;;=^5000667
- ;;^UTILITY(U,$J,358.3,17088,0)
- ;;=R78.81^^50^728^23
- ;;^UTILITY(U,$J,358.3,17088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17088,1,3,0)
- ;;=3^Bacteremia
- ;;^UTILITY(U,$J,358.3,17088,1,4,0)
- ;;=4^R78.81
- ;;^UTILITY(U,$J,358.3,17088,2)
- ;;=^12280
- ;;^UTILITY(U,$J,358.3,17089,0)
- ;;=T80.219A^^50^728^24
- ;;^UTILITY(U,$J,358.3,17089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17089,1,3,0)
- ;;=3^Bacteremia, associated w/ central venous cath, init encntr
- ;;^UTILITY(U,$J,358.3,17089,1,4,0)
- ;;=4^T80.219A
- ;;^UTILITY(U,$J,358.3,17089,2)
- ;;=^5054359
- ;;^UTILITY(U,$J,358.3,17090,0)
- ;;=B40.2^^50^728^26
- ;;^UTILITY(U,$J,358.3,17090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17090,1,3,0)
- ;;=3^Blastomycosis,Pulmonary
- ;;^UTILITY(U,$J,358.3,17090,1,4,0)
- ;;=4^B40.2
- ;;^UTILITY(U,$J,358.3,17090,2)
- ;;=^5000641
- ;;^UTILITY(U,$J,358.3,17091,0)
- ;;=B40.3^^50^728^27
- ;;^UTILITY(U,$J,358.3,17091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17091,1,3,0)
- ;;=3^Blastomycosis,Skin and soft tissue
- ;;^UTILITY(U,$J,358.3,17091,1,4,0)
- ;;=4^B40.3
- ;;^UTILITY(U,$J,358.3,17091,2)
- ;;=^5000642
- ;;^UTILITY(U,$J,358.3,17092,0)
- ;;=B40.89^^50^728^25
- ;;^UTILITY(U,$J,358.3,17092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17092,1,3,0)
- ;;=3^Blastomycosis NEC
- ;;^UTILITY(U,$J,358.3,17092,1,4,0)
- ;;=4^B40.89
- ;;^UTILITY(U,$J,358.3,17092,2)
- ;;=^5000645
- ;;^UTILITY(U,$J,358.3,17093,0)
- ;;=J20.9^^50^728^29
- ;;^UTILITY(U,$J,358.3,17093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17093,1,3,0)
- ;;=3^Bronchitis, Acute
- ;;^UTILITY(U,$J,358.3,17093,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,17093,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,17094,0)
- ;;=B37.42^^50^728^31
- ;;^UTILITY(U,$J,358.3,17094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17094,1,3,0)
- ;;=3^Candidal Balanitis
- ;;^UTILITY(U,$J,358.3,17094,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,17094,2)
- ;;=^5000617
- ;;^UTILITY(U,$J,358.3,17095,0)
- ;;=B37.3^^50^728^38
- ;;^UTILITY(U,$J,358.3,17095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17095,1,3,0)
- ;;=3^Candidiasis,Vulvovaginal
- ;;^UTILITY(U,$J,358.3,17095,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,17095,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,17096,0)
- ;;=B37.2^^50^728^35
- ;;^UTILITY(U,$J,358.3,17096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17096,1,3,0)
- ;;=3^Candidiasis,Intertriginal
- ;;^UTILITY(U,$J,358.3,17096,1,4,0)
- ;;=4^B37.2
- ;;^UTILITY(U,$J,358.3,17096,2)
- ;;=^5000614
- ;;^UTILITY(U,$J,358.3,17097,0)
- ;;=B37.81^^50^728^34
- ;;^UTILITY(U,$J,358.3,17097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17097,1,3,0)
- ;;=3^Candidiasis,Esophageal
- ;;^UTILITY(U,$J,358.3,17097,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,17097,2)
- ;;=b377^5000620
- ;;^UTILITY(U,$J,358.3,17098,0)
- ;;=B37.7^^50^728^32
- ;;^UTILITY(U,$J,358.3,17098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17098,1,3,0)
- ;;=3^Candidal Sepsis
- ;;^UTILITY(U,$J,358.3,17098,1,4,0)
- ;;=4^B37.7
- ;;^UTILITY(U,$J,358.3,17098,2)
- ;;=^5000619
- ;;^UTILITY(U,$J,358.3,17099,0)
- ;;=B37.0^^50^728^36
- ;;^UTILITY(U,$J,358.3,17099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17099,1,3,0)
- ;;=3^Candidiasis,Oral
- ;;^UTILITY(U,$J,358.3,17099,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,17099,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,17100,0)
- ;;=B37.89^^50^728^33
- ;;^UTILITY(U,$J,358.3,17100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17100,1,3,0)
- ;;=3^Candidiasis NEC
- ;;^UTILITY(U,$J,358.3,17100,1,4,0)
- ;;=4^B37.89
- ;;^UTILITY(U,$J,358.3,17100,2)
- ;;=^5000623
- ;;^UTILITY(U,$J,358.3,17101,0)
- ;;=L03.90^^50^728^39
- ;;^UTILITY(U,$J,358.3,17101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17101,1,3,0)
- ;;=3^Cellulitis, unspecified
- ;;^UTILITY(U,$J,358.3,17101,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,17101,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,17102,0)
- ;;=N72.^^50^728^40
- ;;^UTILITY(U,$J,358.3,17102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17102,1,3,0)
- ;;=3^Cervicitis
- ;;^UTILITY(U,$J,358.3,17102,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,17102,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,17103,0)
- ;;=N81.9^^50^728^1
- ;;^UTILITY(U,$J,358.3,17103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17103,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,17103,1,4,0)
- ;;=4^N81.9
- ;;^UTILITY(U,$J,358.3,17103,2)
- ;;=^5015845
- ;;^UTILITY(U,$J,358.3,17104,0)
- ;;=K81.0^^50^728^15
- ;;^UTILITY(U,$J,358.3,17104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17104,1,3,0)
- ;;=3^Acute cholecystitis
- ;;^UTILITY(U,$J,358.3,17104,1,4,0)
- ;;=4^K81.0
- ;;^UTILITY(U,$J,358.3,17104,2)
- ;;=^259097
- ;;^UTILITY(U,$J,358.3,17105,0)
- ;;=A04.7^^50^728^42
- ;;^UTILITY(U,$J,358.3,17105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17105,1,3,0)
- ;;=3^Clostridium difficile colitis
- ;;^UTILITY(U,$J,358.3,17105,1,4,0)
- ;;=4^A04.7
- ;;^UTILITY(U,$J,358.3,17105,2)
- ;;=^5000029
- ;;^UTILITY(U,$J,358.3,17106,0)
- ;;=B38.2^^50^728^45
- ;;^UTILITY(U,$J,358.3,17106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17106,1,3,0)
- ;;=3^Coccidioides,Pulmonary
- ;;^UTILITY(U,$J,358.3,17106,1,4,0)
- ;;=4^B38.2
- ;;^UTILITY(U,$J,358.3,17106,2)
- ;;=^295703
- ;;^UTILITY(U,$J,358.3,17107,0)
- ;;=B38.4^^50^728^44
- ;;^UTILITY(U,$J,358.3,17107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17107,1,3,0)
- ;;=3^Coccidioides,Meningitis/CNS
- ;;^UTILITY(U,$J,358.3,17107,1,4,0)
- ;;=4^B38.4
- ;;^UTILITY(U,$J,358.3,17107,2)
- ;;=^5000627
- ;;^UTILITY(U,$J,358.3,17108,0)
- ;;=B38.89^^50^728^43
- ;;^UTILITY(U,$J,358.3,17108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17108,1,3,0)
- ;;=3^Coccidioides NEC
- ;;^UTILITY(U,$J,358.3,17108,1,4,0)
- ;;=4^B38.89
- ;;^UTILITY(U,$J,358.3,17108,2)
- ;;=^5000630
- ;;^UTILITY(U,$J,358.3,17109,0)
- ;;=H10.9^^50^728^47
- ;;^UTILITY(U,$J,358.3,17109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17109,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,17109,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,17109,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,17110,0)
- ;;=B45.1^^50^728^51
- ;;^UTILITY(U,$J,358.3,17110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17110,1,3,0)
- ;;=3^Cryptococcosis,Meningitis/CNS
- ;;^UTILITY(U,$J,358.3,17110,1,4,0)
- ;;=4^B45.1
- ;;^UTILITY(U,$J,358.3,17110,2)
- ;;=^5000670
- ;;^UTILITY(U,$J,358.3,17111,0)
- ;;=B45.8^^50^728^50
- ;;^UTILITY(U,$J,358.3,17111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17111,1,3,0)
- ;;=3^Cryptococcosis NEC
+ ;;^UTILITY(U,$J,358.6)
+ ;;=^IBE(358.6,
+ ;;^UTILITY(U,$J,358.6,0)
+ ;;=IMP/EXP PACKAGE INTERFACE^358.6I^11^11
+ ;;^UTILITY(U,$J,358.6,1,0)
+ ;;=DPT PATIENT'S NAME^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,1,1,0)
+ ;;=^^2^2^2930212^^^^
+ ;;^UTILITY(U,$J,358.6,1,1,1,0)
+ ;;= 
+ ;;^UTILITY(U,$J,358.6,1,1,2,0)
+ ;;=Patient's Name
+ ;;^UTILITY(U,$J,358.6,1,2)
+ ;;=Patient's Name^30^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,1,3)
+ ;;=PATIENT NAME
+ ;;^UTILITY(U,$J,358.6,1,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,1,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,1,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,2,0)
+ ;;=DPT PATIENT'S PID^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,2,1,0)
+ ;;=^^1^1^2931015^^
+ ;;^UTILITY(U,$J,358.6,2,1,1,0)
+ ;;=Used to display the patient identifier.
+ ;;^UTILITY(U,$J,358.6,2,2)
+ ;;=PATIENT IDENTIFIER^15^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,2,3)
+ ;;=PATIENT IDENTIFIER PID
+ ;;^UTILITY(U,$J,358.6,2,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,2,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,2,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,3,0)
+ ;;=DPT PATIENT'S DOB/AGE^VADPT^IBDFN^REGISTRATION^1^2^2^^1^^^1
+ ;;^UTILITY(U,$J,358.6,3,1,0)
+ ;;=^^2^2^2951023^
+ ;;^UTILITY(U,$J,358.6,3,1,1,0)
+ ;;=Patient's DOB in MM DD, YYYY format
+ ;;^UTILITY(U,$J,358.6,3,1,2,0)
+ ;;=Patient's age in years.
+ ;;^UTILITY(U,$J,358.6,3,2)
+ ;;=Patient's DOB^12^Patient's Age^3^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,3,3)
+ ;;=PATIENT DOB AGE PIMS
+ ;;^UTILITY(U,$J,358.6,3,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,3,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,3,15,0)
+ ;;=^357.615I^1^1
+ ;;^UTILITY(U,$J,358.6,3,15,1,0)
+ ;;=Patient's Age^3^2^
+ ;;^UTILITY(U,$J,358.6,4,0)
+ ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^5^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,4,1,0)
+ ;;=^^1^1^2941116^^^^
+ ;;^UTILITY(U,$J,358.6,4,1,1,0)
+ ;;=Allows for select of just Visit type CPT codes from the CPT file.
+ ;;^UTILITY(U,$J,358.6,4,2)
+ ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,4,3)
+ ;;=SELECT TYPE OF VISIT CPT
+ ;;^UTILITY(U,$J,358.6,4,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,4,15,0)
+ ;;=^357.615I^4^3
+ ;;^UTILITY(U,$J,358.6,4,15,2,0)
+ ;;=RECOMMENDED TEXT-SHORT NAME^40^2
+ ;;^UTILITY(U,$J,358.6,4,15,3,0)
+ ;;=RECOMMENDED HEADER^30^3
+ ;;^UTILITY(U,$J,358.6,4,15,4,0)
+ ;;=SHORT NAME FROM CPT FILE^28^4
+ ;;^UTILITY(U,$J,358.6,5,0)
+ ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,5,1,0)
+ ;;=^^1^1^2951023^
+ ;;^UTILITY(U,$J,358.6,5,1,1,0)
+ ;;=Used for inputting the visit type that applies to the visit.
+ ;;^UTILITY(U,$J,358.6,5,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,5,3)
+ ;;=VISIT TYPE OF VISIT
+ ;;^UTILITY(U,$J,358.6,5,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,5,10)
+ ;;=Enter an active Visit Type code.
+ ;;^UTILITY(U,$J,358.6,5,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,5,12)
+ ;;=ENCOUNTER^5
+ ;;^UTILITY(U,$J,358.6,5,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,5,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,5,17)
+ ;;=D SLCTVST^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,5,18)
+ ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
+ ;;^UTILITY(U,$J,358.6,5,19)
+ ;;=D VST^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,6,0)
+ ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,6,1,0)
+ ;;=^^2^2^2961007^^^^
+ ;;^UTILITY(U,$J,358.6,6,1,1,0)
+ ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
+ ;;^UTILITY(U,$J,358.6,6,1,2,0)
+ ;;=are allowed.
+ ;;^UTILITY(U,$J,358.6,6,2)
+ ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
+ ;;^UTILITY(U,$J,358.6,6,3)
+ ;;=SELECT CPT PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,6,9)
+ ;;=S X=$$CPT^IBDFN12(X)
+ ;;^UTILITY(U,$J,358.6,6,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,6,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,6,15,1,0)
+ ;;=SHORT NAME^28^2^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,6,15,2,0)
+ ;;=DESCRIPTION^161^3^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,6,16)
+ ;;=o^1^Procedure Narrative^^r^2^CPT CODE^1
+ ;;^UTILITY(U,$J,358.6,7,0)
+ ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,7,1,0)
+ ;;=^^1^1^2960205^^^^
+ ;;^UTILITY(U,$J,358.6,7,1,1,0)
+ ;;=Used for inputting CPT coded procedures performed on the patient.
+ ;;^UTILITY(U,$J,358.6,7,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,7,3)
+ ;;=CPT4 PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,7,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,7,10)
+ ;;=Enter an active CPT procedure code.
+ ;;^UTILITY(U,$J,358.6,7,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,7,12)
+ ;;=PROCEDURE^1^6^7^3^2
+ ;;^UTILITY(U,$J,358.6,7,13,0)
+ ;;=^358.613V^2^2
+ ;;^UTILITY(U,$J,358.6,7,13,1,0)
+ ;;=1;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,7,13,2,0)
+ ;;=2;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,7,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,7,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,7,17)
+ ;;=D SLCTCPT^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,7,18)
+ ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
+ ;;^UTILITY(U,$J,358.6,7,19)
+ ;;=D CPT^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,8,0)
+ ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^9^^^^1^1^^^^30
+ ;;^UTILITY(U,$J,358.6,8,1,0)
+ ;;=^^2^2^3140327
+ ;;^UTILITY(U,$J,358.6,8,1,1,0)
+ ;;=Allows the user to select ICD-10 diagnosis codes from the ICD Diagnosis
+ ;;^UTILITY(U,$J,358.6,8,1,2,0)
+ ;;=file. Allows only active codes to be selected.
+ ;;^UTILITY(U,$J,358.6,8,2)
+ ;;=CODE^8^^^^^^^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,8,3)
+ ;;=SELECT ICD10 ICD-10 CODES DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,8,9)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,8,11)
+ ;;=D TESTICD0^IBDFN7
+ ;;^UTILITY(U,$J,358.6,8,12)
+ ;;=^^^^^
+ ;;^UTILITY(U,$J,358.6,8,13,0)
+ ;;=^357.613V^2^2
+ ;;^UTILITY(U,$J,358.6,8,13,1,0)
+ ;;=1;IBD(358.98,^^^^^^^
+ ;;^UTILITY(U,$J,358.6,8,13,2,0)
+ ;;=2;IBD(358.98,^^^^^^^
+ ;;^UTILITY(U,$J,358.6,8,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,8,15,1,0)
+ ;;=DIAGNOSIS^60^2^^DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,8,15,2,0)
+ ;;=DESCRIPTION^200^3^^DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,8,16)
+ ;;=o^4^Diagnosis^^r^5^ICD-10 Code^^1
+ ;;^UTILITY(U,$J,358.6,8,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,8,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,9,0)
+ ;;=INPUT DIAGNOSIS CODE (ICD10)^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP^^^1^^^
+ ;;^UTILITY(U,$J,358.6,9,1,0)
+ ;;=^^1^1^3140327
+ ;;^UTILITY(U,$J,358.6,9,1,1,0)
+ ;;=Used for inputting ICD10 diagnosis codes.
+ ;;^UTILITY(U,$J,358.6,9,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,9,3)
+ ;;=INPUT ICD10 ICD-10 DIAGNOSIS CODES
+ ;;^UTILITY(U,$J,358.6,9,9)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,9,10)
+ ;;=Enter at least two characters of an active ICD10 diagnosis code.
+ ;;^UTILITY(U,$J,358.6,9,11)
+ ;;=D TESTICD0^IBDFN7
+ ;;^UTILITY(U,$J,358.6,9,12)
+ ;;=DIAGNOSIS/PROBLEM^1^13^14^2^
+ ;;^UTILITY(U,$J,358.6,9,13,0)
+ ;;=^357.613V^10^10
+ ;;^UTILITY(U,$J,358.6,9,13,1,0)
+ ;;=1;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,9,13,2,0)
+ ;;=2;IBD(358.98,^^1^^^^^2
+ ;;^UTILITY(U,$J,358.6,9,13,3,0)
+ ;;=3;IBD(358.98,^^1^^^^^9
+ ;;^UTILITY(U,$J,358.6,9,13,4,0)
+ ;;=3;IBE(358.99,^^0^^^^^
+ ;;^UTILITY(U,$J,358.6,9,13,5,0)
+ ;;=4;IBD(358.98,^^1^^^^^10
+ ;;^UTILITY(U,$J,358.6,9,13,6,0)
+ ;;=5;IBD(358.98,^^1^^^^^11
+ ;;^UTILITY(U,$J,358.6,9,13,7,0)
+ ;;=6;IBD(358.98,^^1^^^^^12
+ ;;^UTILITY(U,$J,358.6,9,13,8,0)
+ ;;=7;IBD(358.98,^^1^^^^^5
+ ;;^UTILITY(U,$J,358.6,9,13,9,0)
+ ;;=8;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,9,13,10,0)
+ ;;=9;IBD(358.98,^^1^^^^^6
+ ;;^UTILITY(U,$J,358.6,9,14)
+ ;;=S Y=$$DSPICD10^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,9,16)
+ ;;=^^^^^^^^
+ ;;^UTILITY(U,$J,358.6,9,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,9,18)
+ ;;=S IBDF("OTHER")="80^I '$P(^(0),U,9)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"ICD-10 Diagnosis Code")
+ ;;^UTILITY(U,$J,358.6,9,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,10,0)
+ ;;=PX SELECT HEALTH FACTORS^HF^IBDFN10^PATIENT CARE ENCOUNTER^^3^2^^1^^^1^11
+ ;;^UTILITY(U,$J,358.6,10,1,0)
+ ;;=^^1^1^2951208^^^
+ ;;^UTILITY(U,$J,358.6,10,1,1,0)
+ ;;=Allows health factors from the HEALTH FACTORS file to be selected.
+ ;;^UTILITY(U,$J,358.6,10,2)
+ ;;=Internal Number^9^^^^^^^^^^^^^^^0^0
+ ;;^UTILITY(U,$J,358.6,10,3)
+ ;;=PATIENT HEALTH FACTORS
+ ;;^UTILITY(U,$J,358.6,10,11)
+ ;;=D TESTHF^PXAPIIB
+ ;;^UTILITY(U,$J,358.6,10,15,0)
+ ;;=^357.615I^4^4
+ ;;^UTILITY(U,$J,358.6,10,15,1,0)
+ ;;=Health Factor Name^30^2^^HEALTH FACTOR
+ ;;^UTILITY(U,$J,358.6,10,15,2,0)
+ ;;=Code^5^3
+ ;;^UTILITY(U,$J,358.6,10,15,3,0)
+ ;;=Short Name^10^5
+ ;;^UTILITY(U,$J,358.6,10,15,4,0)
+ ;;=Sex Specific^6^6^^FOR
+ ;;^UTILITY(U,$J,358.6,10,16)
+ ;;=n^^^^n
+ ;;^UTILITY(U,$J,358.6,11,0)
+ ;;=PX INPUT HEALTH FACTORS^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,11,1,0)
+ ;;=^^1^1^2951208^^^
+ ;;^UTILITY(U,$J,358.6,11,1,1,0)
+ ;;=Used for inputting health factors determined to apply to the patient.
+ ;;^UTILITY(U,$J,358.6,11,2)
+ ;;=^^^^^^^^^^^^^^^^^0
+ ;;^UTILITY(U,$J,358.6,11,3)
+ ;;=HEALTH FACTORS
+ ;;^UTILITY(U,$J,358.6,11,10)
+ ;;=Enter a Patient Health Factor.
+ ;;^UTILITY(U,$J,358.6,11,11)
+ ;;=D TESTHF^PXAPIIB
+ ;;^UTILITY(U,$J,358.6,11,12)
+ ;;=HEALTH FACTORS^1^^^2
+ ;;^UTILITY(U,$J,358.6,11,13,0)
+ ;;=^358.613V^3^3
+ ;;^UTILITY(U,$J,358.6,11,13,1,0)
+ ;;=10;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,13,2,0)
+ ;;=11;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,13,3,0)
+ ;;=12;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,11,14)
+ ;;=S Y=$$DSPLYHF^PXAPIIB(Y)
+ ;;^UTILITY(U,$J,358.6,11,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,11,17)
+ ;;=D SLCTHF^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,11,18)
+ ;;=S IBDF("OTHER")="9999999.64^I '$P(^(0),U,10),$P(^(0),U,10)=""F"",'$P(^(0),U,11)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Health Factors")
+ ;;^UTILITY(U,$J,358.6,11,19)
+ ;;=D HF^IBDFN14(X)

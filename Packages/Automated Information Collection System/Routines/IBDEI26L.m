@@ -1,134 +1,122 @@
-IBDEI26L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36997,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,36997,1,4,0)
- ;;=4^R22.41
- ;;^UTILITY(U,$J,358.3,36997,2)
- ;;=^5134178
- ;;^UTILITY(U,$J,358.3,36998,0)
- ;;=R22.31^^137^1780^46
- ;;^UTILITY(U,$J,358.3,36998,1,0)
+ ;;^UTILITY(U,$J,358.3,34838,1,3,0)
+ ;;=3^76882
+ ;;^UTILITY(U,$J,358.3,34839,0)
+ ;;=76942^^136^1784^3^^^^1
+ ;;^UTILITY(U,$J,358.3,34839,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34839,1,2,0)
+ ;;=2^US Guided w/o Image
+ ;;^UTILITY(U,$J,358.3,34839,1,3,0)
+ ;;=3^76942
+ ;;^UTILITY(U,$J,358.3,34840,0)
+ ;;=99358^^136^1785^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34840,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34840,1,2,0)
+ ;;=2^Prolonged Service w/o Patient,1st hr
+ ;;^UTILITY(U,$J,358.3,34840,1,3,0)
+ ;;=3^99358
+ ;;^UTILITY(U,$J,358.3,34841,0)
+ ;;=99359^^136^1785^2^^^^1
+ ;;^UTILITY(U,$J,358.3,34841,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34841,1,2,0)
+ ;;=2^Prolonged Service w/o Pt,Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,34841,1,3,0)
+ ;;=3^99359
+ ;;^UTILITY(U,$J,358.3,34842,0)
+ ;;=S06.0X1A^^137^1786^1
+ ;;^UTILITY(U,$J,358.3,34842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36998,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,36998,1,4,0)
- ;;=4^R22.31
- ;;^UTILITY(U,$J,358.3,36998,2)
- ;;=^5019288
- ;;^UTILITY(U,$J,358.3,36999,0)
- ;;=R22.9^^137^1780^47
- ;;^UTILITY(U,$J,358.3,36999,1,0)
+ ;;^UTILITY(U,$J,358.3,34842,1,3,0)
+ ;;=3^Concussion w LOC of 30 minutes or less, init
+ ;;^UTILITY(U,$J,358.3,34842,1,4,0)
+ ;;=4^S06.0X1A
+ ;;^UTILITY(U,$J,358.3,34842,2)
+ ;;=^5020669
+ ;;^UTILITY(U,$J,358.3,34843,0)
+ ;;=S06.0X9A^^137^1786^2
+ ;;^UTILITY(U,$J,358.3,34843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36999,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Unspec
- ;;^UTILITY(U,$J,358.3,36999,1,4,0)
- ;;=4^R22.9
- ;;^UTILITY(U,$J,358.3,36999,2)
- ;;=^5019292
- ;;^UTILITY(U,$J,358.3,37000,0)
- ;;=R22.33^^137^1780^40
- ;;^UTILITY(U,$J,358.3,37000,1,0)
+ ;;^UTILITY(U,$J,358.3,34843,1,3,0)
+ ;;=3^Concussion w LOC of unsp duration, init
+ ;;^UTILITY(U,$J,358.3,34843,1,4,0)
+ ;;=4^S06.0X9A
+ ;;^UTILITY(U,$J,358.3,34843,2)
+ ;;=^5020693
+ ;;^UTILITY(U,$J,358.3,34844,0)
+ ;;=S06.0X0A^^137^1786^3
+ ;;^UTILITY(U,$J,358.3,34844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37000,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
- ;;^UTILITY(U,$J,358.3,37000,1,4,0)
- ;;=4^R22.33
- ;;^UTILITY(U,$J,358.3,37000,2)
- ;;=^5019290
- ;;^UTILITY(U,$J,358.3,37001,0)
- ;;=R11.2^^137^1780^50
- ;;^UTILITY(U,$J,358.3,37001,1,0)
+ ;;^UTILITY(U,$J,358.3,34844,1,3,0)
+ ;;=3^Concussion w/o LOC, initial encounter
+ ;;^UTILITY(U,$J,358.3,34844,1,4,0)
+ ;;=4^S06.0X0A
+ ;;^UTILITY(U,$J,358.3,34844,2)
+ ;;=^5020666
+ ;;^UTILITY(U,$J,358.3,34845,0)
+ ;;=Z13.850^^137^1786^14
+ ;;^UTILITY(U,$J,358.3,34845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37001,1,3,0)
- ;;=3^Nausea w/ Vomitin,Unspec
- ;;^UTILITY(U,$J,358.3,37001,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,37001,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,37002,0)
- ;;=R53.0^^137^1780^51
- ;;^UTILITY(U,$J,358.3,37002,1,0)
+ ;;^UTILITY(U,$J,358.3,34845,1,3,0)
+ ;;=3^TBI Screening
+ ;;^UTILITY(U,$J,358.3,34845,1,4,0)
+ ;;=4^Z13.850
+ ;;^UTILITY(U,$J,358.3,34845,2)
+ ;;=^5062717
+ ;;^UTILITY(U,$J,358.3,34846,0)
+ ;;=Z87.820^^137^1786^13
+ ;;^UTILITY(U,$J,358.3,34846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37002,1,3,0)
- ;;=3^Neoplastic Related Fatigue
- ;;^UTILITY(U,$J,358.3,37002,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,37002,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,37003,0)
- ;;=E66.9^^137^1780^53
- ;;^UTILITY(U,$J,358.3,37003,1,0)
+ ;;^UTILITY(U,$J,358.3,34846,1,3,0)
+ ;;=3^Personal history of traumatic brain injury
+ ;;^UTILITY(U,$J,358.3,34846,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,34846,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,34847,0)
+ ;;=S06.890A^^137^1786^11
+ ;;^UTILITY(U,$J,358.3,34847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37003,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,37003,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,37003,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,37004,0)
- ;;=M87.10^^137^1780^54
- ;;^UTILITY(U,$J,358.3,37004,1,0)
+ ;;^UTILITY(U,$J,358.3,34847,1,3,0)
+ ;;=3^Intcrn inj w/o LOC, init encntr
+ ;;^UTILITY(U,$J,358.3,34847,1,4,0)
+ ;;=4^S06.890A
+ ;;^UTILITY(U,$J,358.3,34847,2)
+ ;;=^5021176
+ ;;^UTILITY(U,$J,358.3,34848,0)
+ ;;=S06.1X5A^^137^1786^15
+ ;;^UTILITY(U,$J,358.3,34848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37004,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Unspec Bone
- ;;^UTILITY(U,$J,358.3,37004,1,4,0)
- ;;=4^M87.10
- ;;^UTILITY(U,$J,358.3,37004,2)
- ;;=^5014700
- ;;^UTILITY(U,$J,358.3,37005,0)
- ;;=M87.20^^137^1780^55
- ;;^UTILITY(U,$J,358.3,37005,1,0)
+ ;;^UTILITY(U,$J,358.3,34848,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC >24 hr w ret consc lev, init
+ ;;^UTILITY(U,$J,358.3,34848,1,4,0)
+ ;;=4^S06.1X5A
+ ;;^UTILITY(U,$J,358.3,34848,2)
+ ;;=^5020711
+ ;;^UTILITY(U,$J,358.3,34849,0)
+ ;;=S06.1X6A^^137^1786^16
+ ;;^UTILITY(U,$J,358.3,34849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37005,1,3,0)
- ;;=3^Osteonecrosis d/t Previous Trauma,Unspec Bone
- ;;^UTILITY(U,$J,358.3,37005,1,4,0)
- ;;=4^M87.20
- ;;^UTILITY(U,$J,358.3,37005,2)
- ;;=^5014744
- ;;^UTILITY(U,$J,358.3,37006,0)
- ;;=M90.50^^137^1780^56
- ;;^UTILITY(U,$J,358.3,37006,1,0)
+ ;;^UTILITY(U,$J,358.3,34849,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC >24 hr w/o ret consc w surv, init
+ ;;^UTILITY(U,$J,358.3,34849,1,4,0)
+ ;;=4^S06.1X6A
+ ;;^UTILITY(U,$J,358.3,34849,2)
+ ;;=^5020714
+ ;;^UTILITY(U,$J,358.3,34850,0)
+ ;;=S06.1X3A^^137^1786^17
+ ;;^UTILITY(U,$J,358.3,34850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37006,1,3,0)
- ;;=3^Osteonecrosis in Diseases Classified Elsewhere,Unspec Site
- ;;^UTILITY(U,$J,358.3,37006,1,4,0)
- ;;=4^M90.50
- ;;^UTILITY(U,$J,358.3,37006,2)
- ;;=^5015120
- ;;^UTILITY(U,$J,358.3,37007,0)
- ;;=M87.9^^137^1780^57
- ;;^UTILITY(U,$J,358.3,37007,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37007,1,3,0)
- ;;=3^Osteonecrosis,Unspec
- ;;^UTILITY(U,$J,358.3,37007,1,4,0)
- ;;=4^M87.9
- ;;^UTILITY(U,$J,358.3,37007,2)
- ;;=^5014873
- ;;^UTILITY(U,$J,358.3,37008,0)
- ;;=R06.89^^137^1780^10
- ;;^UTILITY(U,$J,358.3,37008,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37008,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,37008,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,37008,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,37009,0)
- ;;=R53.83^^137^1780^34
- ;;^UTILITY(U,$J,358.3,37009,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37009,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,37009,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,37009,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,37010,0)
- ;;=R06.09^^137^1780^28
- ;;^UTILITY(U,$J,358.3,37010,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34850,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 1-5 hrs 59 min, init
+ ;;^UTILITY(U,$J,358.3,34850,1,4,0)
+ ;;=4^S06.1X3A
+ ;;^UTILITY(U,$J,358.3,34850,2)
+ ;;=^5020705
+ ;;^UTILITY(U,$J,358.3,34851,0)
+ ;;=S06.1X1A^^137^1786^18

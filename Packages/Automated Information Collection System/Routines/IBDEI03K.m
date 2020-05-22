@@ -1,362 +1,694 @@
-IBDEI03K ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI03K ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4226,1,0)
+ ;;^UTILITY(U,$J,358.3,8467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4226,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,4226,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,4226,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,4227,0)
- ;;=J84.17^^20^279^19
- ;;^UTILITY(U,$J,358.3,4227,1,0)
+ ;;^UTILITY(U,$J,358.3,8467,1,3,0)
+ ;;=3^Carcinoid,Benign,Ascending
+ ;;^UTILITY(U,$J,358.3,8467,1,4,0)
+ ;;=4^D3A.022
+ ;;^UTILITY(U,$J,358.3,8467,2)
+ ;;=^5002193
+ ;;^UTILITY(U,$J,358.3,8468,0)
+ ;;=D3A.023^^45^456^17
+ ;;^UTILITY(U,$J,358.3,8468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4227,1,3,0)
- ;;=3^Interstitial Pulmonary Disease w/ Fibrosis NEC
- ;;^UTILITY(U,$J,358.3,4227,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,4227,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,4228,0)
- ;;=J98.4^^20^279^20
- ;;^UTILITY(U,$J,358.3,4228,1,0)
+ ;;^UTILITY(U,$J,358.3,8468,1,3,0)
+ ;;=3^Carcinoid,Benign,Transverse
+ ;;^UTILITY(U,$J,358.3,8468,1,4,0)
+ ;;=4^D3A.023
+ ;;^UTILITY(U,$J,358.3,8468,2)
+ ;;=^5002194
+ ;;^UTILITY(U,$J,358.3,8469,0)
+ ;;=D3A.024^^45^456^10
+ ;;^UTILITY(U,$J,358.3,8469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4228,1,3,0)
- ;;=3^Lung Disorders NEC
- ;;^UTILITY(U,$J,358.3,4228,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,4228,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,4229,0)
- ;;=G47.30^^20^279^26
- ;;^UTILITY(U,$J,358.3,4229,1,0)
+ ;;^UTILITY(U,$J,358.3,8469,1,3,0)
+ ;;=3^Carcinoid,Benign,Descending
+ ;;^UTILITY(U,$J,358.3,8469,1,4,0)
+ ;;=4^D3A.024
+ ;;^UTILITY(U,$J,358.3,8469,2)
+ ;;=^5002195
+ ;;^UTILITY(U,$J,358.3,8470,0)
+ ;;=D3A.025^^45^456^15
+ ;;^UTILITY(U,$J,358.3,8470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4229,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,4229,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,4229,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,4230,0)
- ;;=R06.02^^20^279^25
- ;;^UTILITY(U,$J,358.3,4230,1,0)
+ ;;^UTILITY(U,$J,358.3,8470,1,3,0)
+ ;;=3^Carcinoid,Benign,Sigmoid
+ ;;^UTILITY(U,$J,358.3,8470,1,4,0)
+ ;;=4^D3A.025
+ ;;^UTILITY(U,$J,358.3,8470,2)
+ ;;=^5002196
+ ;;^UTILITY(U,$J,358.3,8471,0)
+ ;;=D3A.026^^45^456^14
+ ;;^UTILITY(U,$J,358.3,8471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4230,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,4230,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,4230,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,4231,0)
- ;;=R06.83^^20^279^27
- ;;^UTILITY(U,$J,358.3,4231,1,0)
+ ;;^UTILITY(U,$J,358.3,8471,1,3,0)
+ ;;=3^Carcinoid,Benign,Rectum
+ ;;^UTILITY(U,$J,358.3,8471,1,4,0)
+ ;;=4^D3A.026
+ ;;^UTILITY(U,$J,358.3,8471,2)
+ ;;=^5002197
+ ;;^UTILITY(U,$J,358.3,8472,0)
+ ;;=D3A.029^^45^456^19
+ ;;^UTILITY(U,$J,358.3,8472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4231,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,4231,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,4231,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,4232,0)
- ;;=R06.00^^20^279^18
- ;;^UTILITY(U,$J,358.3,4232,1,0)
+ ;;^UTILITY(U,$J,358.3,8472,1,3,0)
+ ;;=3^Carcinoid,Benign,Unspec Colon
+ ;;^UTILITY(U,$J,358.3,8472,1,4,0)
+ ;;=4^D3A.029
+ ;;^UTILITY(U,$J,358.3,8472,2)
+ ;;=^5002198
+ ;;^UTILITY(U,$J,358.3,8473,0)
+ ;;=C7A.092^^45^456^29
+ ;;^UTILITY(U,$J,358.3,8473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4232,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,4232,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,4232,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,4233,0)
- ;;=R06.09^^20^279^17
- ;;^UTILITY(U,$J,358.3,4233,1,0)
+ ;;^UTILITY(U,$J,358.3,8473,1,3,0)
+ ;;=3^Carcinoid,Malignant,Stomach
+ ;;^UTILITY(U,$J,358.3,8473,1,4,0)
+ ;;=4^C7A.092
+ ;;^UTILITY(U,$J,358.3,8473,2)
+ ;;=^5001373
+ ;;^UTILITY(U,$J,358.3,8474,0)
+ ;;=C7A.010^^45^456^24
+ ;;^UTILITY(U,$J,358.3,8474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4233,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,4233,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,4233,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,4234,0)
- ;;=R06.89^^20^279^14
- ;;^UTILITY(U,$J,358.3,4234,1,0)
+ ;;^UTILITY(U,$J,358.3,8474,1,3,0)
+ ;;=3^Carcinoid,Malignant,Duodenum
+ ;;^UTILITY(U,$J,358.3,8474,1,4,0)
+ ;;=4^C7A.010
+ ;;^UTILITY(U,$J,358.3,8474,2)
+ ;;=^5001359
+ ;;^UTILITY(U,$J,358.3,8475,0)
+ ;;=C7A.011^^45^456^26
+ ;;^UTILITY(U,$J,358.3,8475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4234,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,4234,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,4234,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,4235,0)
- ;;=R22.2^^20^279^29
- ;;^UTILITY(U,$J,358.3,4235,1,0)
+ ;;^UTILITY(U,$J,358.3,8475,1,3,0)
+ ;;=3^Carcinoid,Malignant,Jejunum
+ ;;^UTILITY(U,$J,358.3,8475,1,4,0)
+ ;;=4^C7A.011
+ ;;^UTILITY(U,$J,358.3,8475,2)
+ ;;=^5001360
+ ;;^UTILITY(U,$J,358.3,8476,0)
+ ;;=C7A.012^^45^456^25
+ ;;^UTILITY(U,$J,358.3,8476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4235,1,3,0)
- ;;=3^Swelling/Mass/Lump,Trunk,Localized
- ;;^UTILITY(U,$J,358.3,4235,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,4235,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,4236,0)
- ;;=R91.8^^20^279^1
- ;;^UTILITY(U,$J,358.3,4236,1,0)
+ ;;^UTILITY(U,$J,358.3,8476,1,3,0)
+ ;;=3^Carcinoid,Malignant,Ileum
+ ;;^UTILITY(U,$J,358.3,8476,1,4,0)
+ ;;=4^C7A.012
+ ;;^UTILITY(U,$J,358.3,8476,2)
+ ;;=^5001361
+ ;;^UTILITY(U,$J,358.3,8477,0)
+ ;;=C7A.019^^45^456^32
+ ;;^UTILITY(U,$J,358.3,8477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4236,1,3,0)
- ;;=3^Abnormal Finding of Lung Field
- ;;^UTILITY(U,$J,358.3,4236,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,4236,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,4237,0)
- ;;=R91.1^^20^279^28
- ;;^UTILITY(U,$J,358.3,4237,1,0)
+ ;;^UTILITY(U,$J,358.3,8477,1,3,0)
+ ;;=3^Carcinoid,Malignant,Unspec Small Intestine
+ ;;^UTILITY(U,$J,358.3,8477,1,4,0)
+ ;;=4^C7A.019
+ ;;^UTILITY(U,$J,358.3,8477,2)
+ ;;=^5001362
+ ;;^UTILITY(U,$J,358.3,8478,0)
+ ;;=C7A.020^^45^456^20
+ ;;^UTILITY(U,$J,358.3,8478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4237,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,4237,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,4237,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,4238,0)
- ;;=L98.9^^20^280^1
- ;;^UTILITY(U,$J,358.3,4238,1,0)
+ ;;^UTILITY(U,$J,358.3,8478,1,3,0)
+ ;;=3^Carcinoid,Malignant,Appendix
+ ;;^UTILITY(U,$J,358.3,8478,1,4,0)
+ ;;=4^C7A.020
+ ;;^UTILITY(U,$J,358.3,8478,2)
+ ;;=^5001363
+ ;;^UTILITY(U,$J,358.3,8479,0)
+ ;;=C7A.021^^45^456^22
+ ;;^UTILITY(U,$J,358.3,8479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4238,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4238,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,4238,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,4239,0)
- ;;=M65.351^^20^280^8
- ;;^UTILITY(U,$J,358.3,4239,1,0)
+ ;;^UTILITY(U,$J,358.3,8479,1,3,0)
+ ;;=3^Carcinoid,Malignant,Cecum
+ ;;^UTILITY(U,$J,358.3,8479,1,4,0)
+ ;;=4^C7A.021
+ ;;^UTILITY(U,$J,358.3,8479,2)
+ ;;=^5001364
+ ;;^UTILITY(U,$J,358.3,8480,0)
+ ;;=C7A.022^^45^456^21
+ ;;^UTILITY(U,$J,358.3,8480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4239,1,3,0)
- ;;=3^Trigger Finger,Right Little Finger
- ;;^UTILITY(U,$J,358.3,4239,1,4,0)
- ;;=4^M65.351
- ;;^UTILITY(U,$J,358.3,4239,2)
- ;;=^5012789
- ;;^UTILITY(U,$J,358.3,4240,0)
- ;;=M65.352^^20^280^3
- ;;^UTILITY(U,$J,358.3,4240,1,0)
+ ;;^UTILITY(U,$J,358.3,8480,1,3,0)
+ ;;=3^Carcinoid,Malignant,Ascending
+ ;;^UTILITY(U,$J,358.3,8480,1,4,0)
+ ;;=4^C7A.022
+ ;;^UTILITY(U,$J,358.3,8480,2)
+ ;;=^5001365
+ ;;^UTILITY(U,$J,358.3,8481,0)
+ ;;=C7A.023^^45^456^30
+ ;;^UTILITY(U,$J,358.3,8481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4240,1,3,0)
- ;;=3^Trigger Finger,Left Little Finger
- ;;^UTILITY(U,$J,358.3,4240,1,4,0)
- ;;=4^M65.352
- ;;^UTILITY(U,$J,358.3,4240,2)
- ;;=^5012790
- ;;^UTILITY(U,$J,358.3,4241,0)
- ;;=M65.341^^20^280^10
- ;;^UTILITY(U,$J,358.3,4241,1,0)
+ ;;^UTILITY(U,$J,358.3,8481,1,3,0)
+ ;;=3^Carcinoid,Malignant,Transverse
+ ;;^UTILITY(U,$J,358.3,8481,1,4,0)
+ ;;=4^C7A.023
+ ;;^UTILITY(U,$J,358.3,8481,2)
+ ;;=^5001366
+ ;;^UTILITY(U,$J,358.3,8482,0)
+ ;;=C7A.024^^45^456^23
+ ;;^UTILITY(U,$J,358.3,8482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4241,1,3,0)
- ;;=3^Trigger Finger,Right Ring Finger
- ;;^UTILITY(U,$J,358.3,4241,1,4,0)
- ;;=4^M65.341
- ;;^UTILITY(U,$J,358.3,4241,2)
- ;;=^5012786
- ;;^UTILITY(U,$J,358.3,4242,0)
- ;;=M65.342^^20^280^5
- ;;^UTILITY(U,$J,358.3,4242,1,0)
+ ;;^UTILITY(U,$J,358.3,8482,1,3,0)
+ ;;=3^Carcinoid,Malignant,Descending
+ ;;^UTILITY(U,$J,358.3,8482,1,4,0)
+ ;;=4^C7A.024
+ ;;^UTILITY(U,$J,358.3,8482,2)
+ ;;=^5001367
+ ;;^UTILITY(U,$J,358.3,8483,0)
+ ;;=C7A.025^^45^456^28
+ ;;^UTILITY(U,$J,358.3,8483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4242,1,3,0)
- ;;=3^Trigger Finger,Left Ring Finger
- ;;^UTILITY(U,$J,358.3,4242,1,4,0)
- ;;=4^M65.342
- ;;^UTILITY(U,$J,358.3,4242,2)
- ;;=^5012787
- ;;^UTILITY(U,$J,358.3,4243,0)
- ;;=M65.332^^20^280^4
- ;;^UTILITY(U,$J,358.3,4243,1,0)
+ ;;^UTILITY(U,$J,358.3,8483,1,3,0)
+ ;;=3^Carcinoid,Malignant,Sigmoid
+ ;;^UTILITY(U,$J,358.3,8483,1,4,0)
+ ;;=4^C7A.025
+ ;;^UTILITY(U,$J,358.3,8483,2)
+ ;;=^5001368
+ ;;^UTILITY(U,$J,358.3,8484,0)
+ ;;=C7A.026^^45^456^27
+ ;;^UTILITY(U,$J,358.3,8484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4243,1,3,0)
- ;;=3^Trigger Finger,Left Middle Finger
- ;;^UTILITY(U,$J,358.3,4243,1,4,0)
- ;;=4^M65.332
- ;;^UTILITY(U,$J,358.3,4243,2)
- ;;=^5012784
- ;;^UTILITY(U,$J,358.3,4244,0)
- ;;=M65.322^^20^280^2
- ;;^UTILITY(U,$J,358.3,4244,1,0)
+ ;;^UTILITY(U,$J,358.3,8484,1,3,0)
+ ;;=3^Carcinoid,Malignant,Rectum
+ ;;^UTILITY(U,$J,358.3,8484,1,4,0)
+ ;;=4^C7A.026
+ ;;^UTILITY(U,$J,358.3,8484,2)
+ ;;=^5001369
+ ;;^UTILITY(U,$J,358.3,8485,0)
+ ;;=C7A.029^^45^456^31
+ ;;^UTILITY(U,$J,358.3,8485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4244,1,3,0)
- ;;=3^Trigger Finger,Left Index Finger
- ;;^UTILITY(U,$J,358.3,4244,1,4,0)
- ;;=4^M65.322
- ;;^UTILITY(U,$J,358.3,4244,2)
- ;;=^5012781
- ;;^UTILITY(U,$J,358.3,4245,0)
- ;;=M65.331^^20^280^9
- ;;^UTILITY(U,$J,358.3,4245,1,0)
+ ;;^UTILITY(U,$J,358.3,8485,1,3,0)
+ ;;=3^Carcinoid,Malignant,Unspec Colon
+ ;;^UTILITY(U,$J,358.3,8485,1,4,0)
+ ;;=4^C7A.029
+ ;;^UTILITY(U,$J,358.3,8485,2)
+ ;;=^5001370
+ ;;^UTILITY(U,$J,358.3,8486,0)
+ ;;=C7B.02^^45^456^5
+ ;;^UTILITY(U,$J,358.3,8486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4245,1,3,0)
- ;;=3^Trigger Finger,Right Middle Finger
- ;;^UTILITY(U,$J,358.3,4245,1,4,0)
- ;;=4^M65.331
- ;;^UTILITY(U,$J,358.3,4245,2)
- ;;=^5012783
- ;;^UTILITY(U,$J,358.3,4246,0)
- ;;=M65.321^^20^280^7
- ;;^UTILITY(U,$J,358.3,4246,1,0)
+ ;;^UTILITY(U,$J,358.3,8486,1,3,0)
+ ;;=3^Carcinoid of Liver
+ ;;^UTILITY(U,$J,358.3,8486,1,4,0)
+ ;;=4^C7B.02
+ ;;^UTILITY(U,$J,358.3,8486,2)
+ ;;=^5001383
+ ;;^UTILITY(U,$J,358.3,8487,0)
+ ;;=E34.0^^45^456^6
+ ;;^UTILITY(U,$J,358.3,8487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4246,1,3,0)
- ;;=3^Trigger Finger,Right Index Finger
- ;;^UTILITY(U,$J,358.3,4246,1,4,0)
- ;;=4^M65.321
- ;;^UTILITY(U,$J,358.3,4246,2)
- ;;=^5012780
- ;;^UTILITY(U,$J,358.3,4247,0)
- ;;=M65.312^^20^280^6
- ;;^UTILITY(U,$J,358.3,4247,1,0)
+ ;;^UTILITY(U,$J,358.3,8487,1,3,0)
+ ;;=3^Carcinoid syndrome
+ ;;^UTILITY(U,$J,358.3,8487,1,4,0)
+ ;;=4^E34.0
+ ;;^UTILITY(U,$J,358.3,8487,2)
+ ;;=^19261
+ ;;^UTILITY(U,$J,358.3,8488,0)
+ ;;=C83.79^^45^456^33
+ ;;^UTILITY(U,$J,358.3,8488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4247,1,3,0)
- ;;=3^Trigger Finger,Left Thumb
- ;;^UTILITY(U,$J,358.3,4247,1,4,0)
- ;;=4^M65.312
- ;;^UTILITY(U,$J,358.3,4247,2)
- ;;=^5012778
- ;;^UTILITY(U,$J,358.3,4248,0)
- ;;=M65.311^^20^280^11
- ;;^UTILITY(U,$J,358.3,4248,1,0)
+ ;;^UTILITY(U,$J,358.3,8488,1,3,0)
+ ;;=3^Lymphoma,Burkitt,Extranodal
+ ;;^UTILITY(U,$J,358.3,8488,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,8488,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,8489,0)
+ ;;=C83.39^^45^456^34
+ ;;^UTILITY(U,$J,358.3,8489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4248,1,3,0)
- ;;=3^Trigger Finger,Right Thumb
- ;;^UTILITY(U,$J,358.3,4248,1,4,0)
- ;;=4^M65.311
- ;;^UTILITY(U,$J,358.3,4248,2)
- ;;=^5012777
- ;;^UTILITY(U,$J,358.3,4249,0)
- ;;=E08.621^^20^281^86
- ;;^UTILITY(U,$J,358.3,4249,1,0)
+ ;;^UTILITY(U,$J,358.3,8489,1,3,0)
+ ;;=3^Lymphoma,Diffuse large B-Cell,Extranodal
+ ;;^UTILITY(U,$J,358.3,8489,1,4,0)
+ ;;=4^C83.39
+ ;;^UTILITY(U,$J,358.3,8489,2)
+ ;;=^5001580
+ ;;^UTILITY(U,$J,358.3,8490,0)
+ ;;=C86.2^^45^456^35
+ ;;^UTILITY(U,$J,358.3,8490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4249,1,3,0)
- ;;=3^Diabetes d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,4249,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,4249,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,4250,0)
- ;;=E09.621^^20^281^85
- ;;^UTILITY(U,$J,358.3,4250,1,0)
+ ;;^UTILITY(U,$J,358.3,8490,1,3,0)
+ ;;=3^Lymphoma,Enteropathy T-cell type
+ ;;^UTILITY(U,$J,358.3,8490,1,4,0)
+ ;;=4^C86.2
+ ;;^UTILITY(U,$J,358.3,8490,2)
+ ;;=^5001743
+ ;;^UTILITY(U,$J,358.3,8491,0)
+ ;;=C82.59^^45^456^36
+ ;;^UTILITY(U,$J,358.3,8491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4250,1,3,0)
- ;;=3^Diabetes d/t Drug/Chemical Induced w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,4250,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,4250,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,4251,0)
- ;;=I70.231^^20^281^22
- ;;^UTILITY(U,$J,358.3,4251,1,0)
+ ;;^UTILITY(U,$J,358.3,8491,1,3,0)
+ ;;=3^Lymphoma,Follicular Diffuse,Extranodal
+ ;;^UTILITY(U,$J,358.3,8491,1,4,0)
+ ;;=4^C82.59
+ ;;^UTILITY(U,$J,358.3,8491,2)
+ ;;=^5001520
+ ;;^UTILITY(U,$J,358.3,8492,0)
+ ;;=C88.4^^45^456^37
+ ;;^UTILITY(U,$J,358.3,8492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4251,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,4251,1,4,0)
- ;;=4^I70.231
- ;;^UTILITY(U,$J,358.3,4251,2)
- ;;=^5007588
- ;;^UTILITY(U,$J,358.3,4252,0)
- ;;=I70.232^^20^281^23
- ;;^UTILITY(U,$J,358.3,4252,1,0)
+ ;;^UTILITY(U,$J,358.3,8492,1,3,0)
+ ;;=3^Lymphoma,MALT Type
+ ;;^UTILITY(U,$J,358.3,8492,1,4,0)
+ ;;=4^C88.4
+ ;;^UTILITY(U,$J,358.3,8492,2)
+ ;;=^5001749
+ ;;^UTILITY(U,$J,358.3,8493,0)
+ ;;=C83.19^^45^456^38
+ ;;^UTILITY(U,$J,358.3,8493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4252,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,4252,1,4,0)
- ;;=4^I70.232
- ;;^UTILITY(U,$J,358.3,4252,2)
- ;;=^5007589
- ;;^UTILITY(U,$J,358.3,4253,0)
- ;;=I70.233^^20^281^24
- ;;^UTILITY(U,$J,358.3,4253,1,0)
+ ;;^UTILITY(U,$J,358.3,8493,1,3,0)
+ ;;=3^Lymphoma,Mantle cell,Extranodal
+ ;;^UTILITY(U,$J,358.3,8493,1,4,0)
+ ;;=4^C83.19
+ ;;^UTILITY(U,$J,358.3,8493,2)
+ ;;=^5001570
+ ;;^UTILITY(U,$J,358.3,8494,0)
+ ;;=C78.6^^45^456^39
+ ;;^UTILITY(U,$J,358.3,8494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4253,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,4253,1,4,0)
- ;;=4^I70.233
- ;;^UTILITY(U,$J,358.3,4253,2)
- ;;=^5007590
- ;;^UTILITY(U,$J,358.3,4254,0)
- ;;=I70.234^^20^281^25
- ;;^UTILITY(U,$J,358.3,4254,1,0)
+ ;;^UTILITY(U,$J,358.3,8494,1,3,0)
+ ;;=3^Peritoneal carinomatosis
+ ;;^UTILITY(U,$J,358.3,8494,1,4,0)
+ ;;=4^C78.6
+ ;;^UTILITY(U,$J,358.3,8494,2)
+ ;;=^108899
+ ;;^UTILITY(U,$J,358.3,8495,0)
+ ;;=E85.89^^45^456^3
+ ;;^UTILITY(U,$J,358.3,8495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4254,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,4254,1,4,0)
- ;;=4^I70.234
- ;;^UTILITY(U,$J,358.3,4254,2)
- ;;=^5007591
- ;;^UTILITY(U,$J,358.3,4255,0)
- ;;=I70.235^^20^281^26
- ;;^UTILITY(U,$J,358.3,4255,1,0)
+ ;;^UTILITY(U,$J,358.3,8495,1,3,0)
+ ;;=3^Amyloidosis,Systemic
+ ;;^UTILITY(U,$J,358.3,8495,1,4,0)
+ ;;=4^E85.89
+ ;;^UTILITY(U,$J,358.3,8495,2)
+ ;;=^334034
+ ;;^UTILITY(U,$J,358.3,8496,0)
+ ;;=E85.81^^45^456^1
+ ;;^UTILITY(U,$J,358.3,8496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4255,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,4255,1,4,0)
- ;;=4^I70.235
- ;;^UTILITY(U,$J,358.3,4255,2)
- ;;=^5007592
- ;;^UTILITY(U,$J,358.3,4256,0)
- ;;=I70.238^^20^281^27
- ;;^UTILITY(U,$J,358.3,4256,1,0)
+ ;;^UTILITY(U,$J,358.3,8496,1,3,0)
+ ;;=3^Amyloidosis,Light Chain (AL)
+ ;;^UTILITY(U,$J,358.3,8496,1,4,0)
+ ;;=4^E85.81
+ ;;^UTILITY(U,$J,358.3,8496,2)
+ ;;=^5151302
+ ;;^UTILITY(U,$J,358.3,8497,0)
+ ;;=E85.82^^45^456^4
+ ;;^UTILITY(U,$J,358.3,8497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4256,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,4256,1,4,0)
- ;;=4^I70.238
- ;;^UTILITY(U,$J,358.3,4256,2)
- ;;=^5007593
- ;;^UTILITY(U,$J,358.3,4257,0)
- ;;=I70.239^^20^281^28
- ;;^UTILITY(U,$J,358.3,4257,1,0)
+ ;;^UTILITY(U,$J,358.3,8497,1,3,0)
+ ;;=3^Amyloidosis,Wild-type Transthyretin-related (ATTR)
+ ;;^UTILITY(U,$J,358.3,8497,1,4,0)
+ ;;=4^E85.82
+ ;;^UTILITY(U,$J,358.3,8497,2)
+ ;;=^5151303
+ ;;^UTILITY(U,$J,358.3,8498,0)
+ ;;=Z91.5^^45^457^1
+ ;;^UTILITY(U,$J,358.3,8498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4257,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,4257,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,4257,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,4258,0)
- ;;=I70.241^^20^281^20
- ;;^UTILITY(U,$J,358.3,4258,1,0)
+ ;;^UTILITY(U,$J,358.3,8498,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,8498,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,8498,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,8499,0)
+ ;;=R45.851^^45^457^2
+ ;;^UTILITY(U,$J,358.3,8499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4258,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,4258,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,4258,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,4259,0)
- ;;=I70.242^^20^281^16
- ;;^UTILITY(U,$J,358.3,4259,1,0)
+ ;;^UTILITY(U,$J,358.3,8499,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,8499,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,8499,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,8500,0)
+ ;;=T14.91XA^^45^457^3
+ ;;^UTILITY(U,$J,358.3,8500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4259,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,4259,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,4259,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,4260,0)
- ;;=I70.243^^20^281^15
- ;;^UTILITY(U,$J,358.3,4260,1,0)
+ ;;^UTILITY(U,$J,358.3,8500,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,8500,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,8500,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,8501,0)
+ ;;=T14.91XD^^45^457^4
+ ;;^UTILITY(U,$J,358.3,8501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4260,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,4260,1,4,0)
- ;;=4^I70.243
- ;;^UTILITY(U,$J,358.3,4260,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,4261,0)
- ;;=I70.244^^20^281^18
- ;;^UTILITY(U,$J,358.3,4261,1,0)
+ ;;^UTILITY(U,$J,358.3,8501,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,8501,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,8501,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,8502,0)
+ ;;=T14.91XS^^45^457^5
+ ;;^UTILITY(U,$J,358.3,8502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4261,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,4261,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,4261,2)
- ;;=^5007598
+ ;;^UTILITY(U,$J,358.3,8502,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,8502,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,8502,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,8503,0)
+ ;;=43235^^46^458^21^^^^1
+ ;;^UTILITY(U,$J,358.3,8503,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8503,1,2,0)
+ ;;=2^43235
+ ;;^UTILITY(U,$J,358.3,8503,1,3,0)
+ ;;=3^EGD, Diagnostic
+ ;;^UTILITY(U,$J,358.3,8504,0)
+ ;;=43239^^46^458^4^^^^1
+ ;;^UTILITY(U,$J,358.3,8504,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8504,1,2,0)
+ ;;=2^43239
+ ;;^UTILITY(U,$J,358.3,8504,1,3,0)
+ ;;=3^EGD w/ Biopsy
+ ;;^UTILITY(U,$J,358.3,8505,0)
+ ;;=43250^^46^458^13^^^^1
+ ;;^UTILITY(U,$J,358.3,8505,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8505,1,2,0)
+ ;;=2^43250
+ ;;^UTILITY(U,$J,358.3,8505,1,3,0)
+ ;;=3^EGD w/ Hot Forceps
+ ;;^UTILITY(U,$J,358.3,8506,0)
+ ;;=43251^^46^458^17^^^^1
+ ;;^UTILITY(U,$J,358.3,8506,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8506,1,2,0)
+ ;;=2^43251
+ ;;^UTILITY(U,$J,358.3,8506,1,3,0)
+ ;;=3^EGD w/ Snare
+ ;;^UTILITY(U,$J,358.3,8507,0)
+ ;;=43247^^46^458^12^^^^1
+ ;;^UTILITY(U,$J,358.3,8507,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8507,1,2,0)
+ ;;=2^43247
+ ;;^UTILITY(U,$J,358.3,8507,1,3,0)
+ ;;=3^EGD w/ Foreign Body Removal
+ ;;^UTILITY(U,$J,358.3,8508,0)
+ ;;=43255^^46^458^5^^^^1
+ ;;^UTILITY(U,$J,358.3,8508,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8508,1,2,0)
+ ;;=2^43255
+ ;;^UTILITY(U,$J,358.3,8508,1,3,0)
+ ;;=3^EGD w/ Control of Bleeding
+ ;;^UTILITY(U,$J,358.3,8509,0)
+ ;;=43245^^46^458^9^^^^1
+ ;;^UTILITY(U,$J,358.3,8509,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8509,1,2,0)
+ ;;=2^43245
+ ;;^UTILITY(U,$J,358.3,8509,1,3,0)
+ ;;=3^EGD w/ Dilation Stomach or Duodenum
+ ;;^UTILITY(U,$J,358.3,8510,0)
+ ;;=43248^^46^458^8^^^^1
+ ;;^UTILITY(U,$J,358.3,8510,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8510,1,2,0)
+ ;;=2^43248
+ ;;^UTILITY(U,$J,358.3,8510,1,3,0)
+ ;;=3^EGD w/ Dilation Esophagus Guidewire
+ ;;^UTILITY(U,$J,358.3,8511,0)
+ ;;=43249^^46^458^6^^^^1
+ ;;^UTILITY(U,$J,358.3,8511,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8511,1,2,0)
+ ;;=2^43249
+ ;;^UTILITY(U,$J,358.3,8511,1,3,0)
+ ;;=3^EGD w/ Dilation Esophagus Balloon <30mm
+ ;;^UTILITY(U,$J,358.3,8512,0)
+ ;;=43244^^46^458^3^^^^1
+ ;;^UTILITY(U,$J,358.3,8512,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8512,1,2,0)
+ ;;=2^43244
+ ;;^UTILITY(U,$J,358.3,8512,1,3,0)
+ ;;=3^EGD w/ Band Ligation
+ ;;^UTILITY(U,$J,358.3,8513,0)
+ ;;=43243^^46^458^16^^^^1
+ ;;^UTILITY(U,$J,358.3,8513,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8513,1,2,0)
+ ;;=2^43243
+ ;;^UTILITY(U,$J,358.3,8513,1,3,0)
+ ;;=3^EGD w/ Sclerosant Injection of Varices
+ ;;^UTILITY(U,$J,358.3,8514,0)
+ ;;=43236^^46^458^19^^^^1
+ ;;^UTILITY(U,$J,358.3,8514,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8514,1,2,0)
+ ;;=2^43236
+ ;;^UTILITY(U,$J,358.3,8514,1,3,0)
+ ;;=3^EGD w/ Submucosal Injection
+ ;;^UTILITY(U,$J,358.3,8514,3,0)
+ ;;=^357.33
+ ;;^UTILITY(U,$J,358.3,8515,0)
+ ;;=43257^^46^458^2^^^^1
+ ;;^UTILITY(U,$J,358.3,8515,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8515,1,2,0)
+ ;;=2^43257
+ ;;^UTILITY(U,$J,358.3,8515,1,3,0)
+ ;;=3^EGD w/ Ablation of Barrett's Esophagus
+ ;;^UTILITY(U,$J,358.3,8516,0)
+ ;;=43241^^46^458^14^^^^1
+ ;;^UTILITY(U,$J,358.3,8516,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8516,1,2,0)
+ ;;=2^43241
+ ;;^UTILITY(U,$J,358.3,8516,1,3,0)
+ ;;=3^EGD w/ Intraluminal Tube Placement
+ ;;^UTILITY(U,$J,358.3,8517,0)
+ ;;=43252^^46^458^11^^^^1
+ ;;^UTILITY(U,$J,358.3,8517,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8517,1,2,0)
+ ;;=2^43252
+ ;;^UTILITY(U,$J,358.3,8517,1,3,0)
+ ;;=3^EGD w/ Endomicroscopy/Optical Coherence Tomography
+ ;;^UTILITY(U,$J,358.3,8518,0)
+ ;;=43233^^46^458^7^^^^1
+ ;;^UTILITY(U,$J,358.3,8518,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8518,1,2,0)
+ ;;=2^43233
+ ;;^UTILITY(U,$J,358.3,8518,1,3,0)
+ ;;=3^EGD w/ Dilation Esophagus Balloon >30mm
+ ;;^UTILITY(U,$J,358.3,8519,0)
+ ;;=43266^^46^458^18^^^^1
+ ;;^UTILITY(U,$J,358.3,8519,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8519,1,2,0)
+ ;;=2^43266
+ ;;^UTILITY(U,$J,358.3,8519,1,3,0)
+ ;;=3^EGD w/ Stent
+ ;;^UTILITY(U,$J,358.3,8520,0)
+ ;;=43270^^46^458^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8520,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8520,1,2,0)
+ ;;=2^43270
+ ;;^UTILITY(U,$J,358.3,8520,1,3,0)
+ ;;=3^EGD w/ Ablation
+ ;;^UTILITY(U,$J,358.3,8521,0)
+ ;;=43254^^46^458^10^^^^1
+ ;;^UTILITY(U,$J,358.3,8521,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8521,1,2,0)
+ ;;=2^43254
+ ;;^UTILITY(U,$J,358.3,8521,1,3,0)
+ ;;=3^EGD w/ EMR
+ ;;^UTILITY(U,$J,358.3,8522,0)
+ ;;=43246^^46^458^15^^^^1
+ ;;^UTILITY(U,$J,358.3,8522,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8522,1,2,0)
+ ;;=2^43246
+ ;;^UTILITY(U,$J,358.3,8522,1,3,0)
+ ;;=3^EGD w/ Percutaneous Gastrostomy Tube Placement
+ ;;^UTILITY(U,$J,358.3,8523,0)
+ ;;=91035^^46^458^20^^^^1
+ ;;^UTILITY(U,$J,358.3,8523,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8523,1,2,0)
+ ;;=2^91035
+ ;;^UTILITY(U,$J,358.3,8523,1,3,0)
+ ;;=3^EGD w/ Wireless pH Probe Placement & Study
+ ;;^UTILITY(U,$J,358.3,8524,0)
+ ;;=44360^^46^459^10^^^^1
+ ;;^UTILITY(U,$J,358.3,8524,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8524,1,2,0)
+ ;;=2^44360
+ ;;^UTILITY(U,$J,358.3,8524,1,3,0)
+ ;;=3^Enteroscopy,Diagnostic
+ ;;^UTILITY(U,$J,358.3,8525,0)
+ ;;=44361^^46^459^2^^^^1
+ ;;^UTILITY(U,$J,358.3,8525,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8525,1,2,0)
+ ;;=2^44361
+ ;;^UTILITY(U,$J,358.3,8525,1,3,0)
+ ;;=3^Enteroscopy w/ Biopsy
+ ;;^UTILITY(U,$J,358.3,8526,0)
+ ;;=44365^^46^459^6^^^^1
+ ;;^UTILITY(U,$J,358.3,8526,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8526,1,2,0)
+ ;;=2^44365
+ ;;^UTILITY(U,$J,358.3,8526,1,3,0)
+ ;;=3^Enteroscopy w/ Hot Forceps
+ ;;^UTILITY(U,$J,358.3,8527,0)
+ ;;=44364^^46^459^8^^^^1
+ ;;^UTILITY(U,$J,358.3,8527,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8527,1,2,0)
+ ;;=2^44364
+ ;;^UTILITY(U,$J,358.3,8527,1,3,0)
+ ;;=3^Enteroscopy w/ Snare
+ ;;^UTILITY(U,$J,358.3,8528,0)
+ ;;=44363^^46^459^5^^^^1
+ ;;^UTILITY(U,$J,358.3,8528,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8528,1,2,0)
+ ;;=2^44363
+ ;;^UTILITY(U,$J,358.3,8528,1,3,0)
+ ;;=3^Enteroscopy w/ Foreign Body Removal
+ ;;^UTILITY(U,$J,358.3,8529,0)
+ ;;=44369^^46^459^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8529,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8529,1,2,0)
+ ;;=2^44369
+ ;;^UTILITY(U,$J,358.3,8529,1,3,0)
+ ;;=3^Enteroscopy w/ Ablation
+ ;;^UTILITY(U,$J,358.3,8530,0)
+ ;;=44366^^46^459^3^^^^1
+ ;;^UTILITY(U,$J,358.3,8530,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8530,1,2,0)
+ ;;=2^44366
+ ;;^UTILITY(U,$J,358.3,8530,1,3,0)
+ ;;=3^Enteroscopy w/ Control of Bleeding
+ ;;^UTILITY(U,$J,358.3,8531,0)
+ ;;=44370^^46^459^9^^^^1
+ ;;^UTILITY(U,$J,358.3,8531,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8531,1,2,0)
+ ;;=2^44370
+ ;;^UTILITY(U,$J,358.3,8531,1,3,0)
+ ;;=3^Enteroscopy w/ Stent Placement
+ ;;^UTILITY(U,$J,358.3,8532,0)
+ ;;=44372^^46^459^7^^^^1
+ ;;^UTILITY(U,$J,358.3,8532,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8532,1,2,0)
+ ;;=2^44372
+ ;;^UTILITY(U,$J,358.3,8532,1,3,0)
+ ;;=3^Enteroscopy w/ J-Tube Placement
+ ;;^UTILITY(U,$J,358.3,8533,0)
+ ;;=44373^^46^459^4^^^^1
+ ;;^UTILITY(U,$J,358.3,8533,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8533,1,2,0)
+ ;;=2^44373
+ ;;^UTILITY(U,$J,358.3,8533,1,3,0)
+ ;;=3^Enteroscopy w/ Conversion of G-Tube to J-Tube
+ ;;^UTILITY(U,$J,358.3,8534,0)
+ ;;=45330^^46^460^13^^^^1
+ ;;^UTILITY(U,$J,358.3,8534,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8534,1,2,0)
+ ;;=2^45330
+ ;;^UTILITY(U,$J,358.3,8534,1,3,0)
+ ;;=3^Flex Sig,Diagnostic
+ ;;^UTILITY(U,$J,358.3,8535,0)
+ ;;=45331^^46^460^3^^^^1
+ ;;^UTILITY(U,$J,358.3,8535,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8535,1,2,0)
+ ;;=2^45331
+ ;;^UTILITY(U,$J,358.3,8535,1,3,0)
+ ;;=3^Flex Sig w/ Biopsy
+ ;;^UTILITY(U,$J,358.3,8536,0)
+ ;;=45333^^46^460^9^^^^1
+ ;;^UTILITY(U,$J,358.3,8536,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8536,1,2,0)
+ ;;=2^45333
+ ;;^UTILITY(U,$J,358.3,8536,1,3,0)
+ ;;=3^Flex Sig w/ Hot Forceps
+ ;;^UTILITY(U,$J,358.3,8537,0)
+ ;;=45332^^46^460^8^^^^1
+ ;;^UTILITY(U,$J,358.3,8537,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8537,1,2,0)
+ ;;=2^45332
+ ;;^UTILITY(U,$J,358.3,8537,1,3,0)
+ ;;=3^Flex Sig w/ Foreign Body Removal
+ ;;^UTILITY(U,$J,358.3,8538,0)
+ ;;=45334^^46^460^4^^^^1
+ ;;^UTILITY(U,$J,358.3,8538,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8538,1,2,0)
+ ;;=2^45334
+ ;;^UTILITY(U,$J,358.3,8538,1,3,0)
+ ;;=3^Flex Sig w/ Control of Bleeding
+ ;;^UTILITY(U,$J,358.3,8539,0)
+ ;;=45335^^46^460^12^^^^1
+ ;;^UTILITY(U,$J,358.3,8539,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8539,1,2,0)
+ ;;=2^45335
+ ;;^UTILITY(U,$J,358.3,8539,1,3,0)
+ ;;=3^Flex Sig w/ Submucosal Injection
+ ;;^UTILITY(U,$J,358.3,8540,0)
+ ;;=45337^^46^460^5^^^^1
+ ;;^UTILITY(U,$J,358.3,8540,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8540,1,2,0)
+ ;;=2^45337
+ ;;^UTILITY(U,$J,358.3,8540,1,3,0)
+ ;;=3^Flex Sig w/ Decompression 
+ ;;^UTILITY(U,$J,358.3,8541,0)
+ ;;=45346^^46^460^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8541,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8541,1,2,0)
+ ;;=2^45346
+ ;;^UTILITY(U,$J,358.3,8541,1,3,0)
+ ;;=3^Flex Sig w/ Ablation
+ ;;^UTILITY(U,$J,358.3,8542,0)
+ ;;=45350^^46^460^2^^^^1
+ ;;^UTILITY(U,$J,358.3,8542,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8542,1,2,0)
+ ;;=2^45350
+ ;;^UTILITY(U,$J,358.3,8542,1,3,0)
+ ;;=3^Flex Sig w/ Band Ligation
+ ;;^UTILITY(U,$J,358.3,8543,0)
+ ;;=45340^^46^460^6^^^^1
+ ;;^UTILITY(U,$J,358.3,8543,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8543,1,2,0)
+ ;;=2^45340
+ ;;^UTILITY(U,$J,358.3,8543,1,3,0)
+ ;;=3^Flex Sig w/ Dilation
+ ;;^UTILITY(U,$J,358.3,8544,0)
+ ;;=45349^^46^460^7^^^^1

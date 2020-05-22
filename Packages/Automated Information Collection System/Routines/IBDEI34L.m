@@ -1,136 +1,124 @@
-IBDEI34L ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52460,1,3,0)
- ;;=3^Problem Related to Living Alone
- ;;^UTILITY(U,$J,358.3,52460,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,52460,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,52461,0)
- ;;=Z60.3^^237^2605^1
- ;;^UTILITY(U,$J,358.3,52461,1,0)
+ ;;^UTILITY(U,$J,358.3,49922,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,49922,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,49923,0)
+ ;;=B02.9^^193^2487^331
+ ;;^UTILITY(U,$J,358.3,49923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52461,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,52461,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,52461,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,52462,0)
- ;;=Z60.4^^237^2605^5
- ;;^UTILITY(U,$J,358.3,52462,1,0)
+ ;;^UTILITY(U,$J,358.3,49923,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,49923,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,49923,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,49924,0)
+ ;;=D17.9^^193^2487^90
+ ;;^UTILITY(U,$J,358.3,49924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52462,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,52462,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,52462,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,52463,0)
- ;;=Z60.5^^237^2605^6
- ;;^UTILITY(U,$J,358.3,52463,1,0)
+ ;;^UTILITY(U,$J,358.3,49924,1,3,0)
+ ;;=3^Benign Lipomatous Neop,Unspec
+ ;;^UTILITY(U,$J,358.3,49924,1,4,0)
+ ;;=4^D17.9
+ ;;^UTILITY(U,$J,358.3,49924,2)
+ ;;=^5002020
+ ;;^UTILITY(U,$J,358.3,49925,0)
+ ;;=E08.621^^193^2487^137
+ ;;^UTILITY(U,$J,358.3,49925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52463,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,52463,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,52463,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,52464,0)
- ;;=Z60.9^^237^2605^4
- ;;^UTILITY(U,$J,358.3,52464,1,0)
+ ;;^UTILITY(U,$J,358.3,49925,1,3,0)
+ ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,49925,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,49925,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,49926,0)
+ ;;=E09.621^^193^2487^136
+ ;;^UTILITY(U,$J,358.3,49926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52464,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,52464,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,52464,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,52465,0)
- ;;=F65.4^^237^2606^6
- ;;^UTILITY(U,$J,358.3,52465,1,0)
+ ;;^UTILITY(U,$J,358.3,49926,1,3,0)
+ ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,49926,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,49926,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,49927,0)
+ ;;=H05.011^^193^2487^112
+ ;;^UTILITY(U,$J,358.3,49927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52465,1,3,0)
- ;;=3^Pedophilia Disorder
- ;;^UTILITY(U,$J,358.3,52465,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,52465,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,52466,0)
- ;;=F65.2^^237^2606^1
- ;;^UTILITY(U,$J,358.3,52466,1,0)
+ ;;^UTILITY(U,$J,358.3,49927,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,49927,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,49927,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,49928,0)
+ ;;=H05.012^^193^2487^105
+ ;;^UTILITY(U,$J,358.3,49928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52466,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,52466,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,52466,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,52467,0)
- ;;=F65.3^^237^2606^10
- ;;^UTILITY(U,$J,358.3,52467,1,0)
+ ;;^UTILITY(U,$J,358.3,49928,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,49928,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,49928,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,49929,0)
+ ;;=H05.013^^193^2487^99
+ ;;^UTILITY(U,$J,358.3,49929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52467,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,52467,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,52467,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,52468,0)
- ;;=F65.81^^237^2606^3
- ;;^UTILITY(U,$J,358.3,52468,1,0)
+ ;;^UTILITY(U,$J,358.3,49929,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,49929,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,49929,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,49930,0)
+ ;;=I70.331^^193^2487^51
+ ;;^UTILITY(U,$J,358.3,49930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52468,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,52468,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,52468,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,52469,0)
- ;;=F65.51^^237^2606^7
- ;;^UTILITY(U,$J,358.3,52469,1,0)
+ ;;^UTILITY(U,$J,358.3,49930,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,49930,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,49930,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,49931,0)
+ ;;=I70.332^^193^2487^52
+ ;;^UTILITY(U,$J,358.3,49931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52469,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,52469,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,52469,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,52470,0)
- ;;=F65.52^^237^2606^8
- ;;^UTILITY(U,$J,358.3,52470,1,0)
+ ;;^UTILITY(U,$J,358.3,49931,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,49931,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,49931,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,49932,0)
+ ;;=I70.333^^193^2487^53
+ ;;^UTILITY(U,$J,358.3,49932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52470,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,52470,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,52470,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,52471,0)
- ;;=F65.0^^237^2606^2
- ;;^UTILITY(U,$J,358.3,52471,1,0)
+ ;;^UTILITY(U,$J,358.3,49932,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,49932,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,49932,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,49933,0)
+ ;;=I70.334^^193^2487^54
+ ;;^UTILITY(U,$J,358.3,49933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52471,1,3,0)
- ;;=3^Fetishistic Disorder
- ;;^UTILITY(U,$J,358.3,52471,1,4,0)
- ;;=4^F65.0
- ;;^UTILITY(U,$J,358.3,52471,2)
- ;;=^5003651
- ;;^UTILITY(U,$J,358.3,52472,0)
- ;;=F65.1^^237^2606^9
- ;;^UTILITY(U,$J,358.3,52472,1,0)
+ ;;^UTILITY(U,$J,358.3,49933,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,49933,1,4,0)
+ ;;=4^I70.334
+ ;;^UTILITY(U,$J,358.3,49933,2)
+ ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,49934,0)
+ ;;=I70.335^^193^2487^55
+ ;;^UTILITY(U,$J,358.3,49934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52472,1,3,0)
- ;;=3^Transvestic Disorder
- ;;^UTILITY(U,$J,358.3,52472,1,4,0)
- ;;=4^F65.1
- ;;^UTILITY(U,$J,358.3,52472,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,52473,0)
- ;;=F65.89^^237^2606^4
- ;;^UTILITY(U,$J,358.3,52473,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52473,1,3,0)
- ;;=3^Paraphilic Disorder NEC
+ ;;^UTILITY(U,$J,358.3,49934,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot

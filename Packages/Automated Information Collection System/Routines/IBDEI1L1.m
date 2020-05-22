@@ -1,122 +1,122 @@
-IBDEI1L1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1L1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26837,0)
- ;;=F10.159^^100^1291^11
- ;;^UTILITY(U,$J,358.3,26837,1,0)
+ ;;^UTILITY(U,$J,358.3,25289,0)
+ ;;=M17.11^^107^1217^140
+ ;;^UTILITY(U,$J,358.3,25289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26837,1,3,0)
- ;;=3^Alcohol Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26837,1,4,0)
- ;;=4^F10.159
- ;;^UTILITY(U,$J,358.3,26837,2)
- ;;=^5003075
- ;;^UTILITY(U,$J,358.3,26838,0)
- ;;=F10.259^^100^1291^12
- ;;^UTILITY(U,$J,358.3,26838,1,0)
+ ;;^UTILITY(U,$J,358.3,25289,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,25289,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,25289,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,25290,0)
+ ;;=M17.12^^107^1217^134
+ ;;^UTILITY(U,$J,358.3,25290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26838,1,3,0)
- ;;=3^Alcohol Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26838,1,4,0)
- ;;=4^F10.259
- ;;^UTILITY(U,$J,358.3,26838,2)
- ;;=^5003093
- ;;^UTILITY(U,$J,358.3,26839,0)
- ;;=F10.959^^100^1291^13
- ;;^UTILITY(U,$J,358.3,26839,1,0)
+ ;;^UTILITY(U,$J,358.3,25290,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,25290,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,25290,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,25291,0)
+ ;;=M18.0^^107^1217^128
+ ;;^UTILITY(U,$J,358.3,25291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26839,1,3,0)
- ;;=3^Alcohol Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26839,1,4,0)
- ;;=4^F10.959
- ;;^UTILITY(U,$J,358.3,26839,2)
- ;;=^5003107
- ;;^UTILITY(U,$J,358.3,26840,0)
- ;;=F10.181^^100^1291^14
- ;;^UTILITY(U,$J,358.3,26840,1,0)
+ ;;^UTILITY(U,$J,358.3,25291,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,25291,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,25291,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,25292,0)
+ ;;=M18.11^^107^1217^138
+ ;;^UTILITY(U,$J,358.3,25292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26840,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26840,1,4,0)
- ;;=4^F10.181
- ;;^UTILITY(U,$J,358.3,26840,2)
- ;;=^5003077
- ;;^UTILITY(U,$J,358.3,26841,0)
- ;;=F10.282^^100^1291^18
- ;;^UTILITY(U,$J,358.3,26841,1,0)
+ ;;^UTILITY(U,$J,358.3,25292,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,25292,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,25292,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,25293,0)
+ ;;=M18.12^^107^1217^132
+ ;;^UTILITY(U,$J,358.3,25293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26841,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26841,1,4,0)
- ;;=4^F10.282
- ;;^UTILITY(U,$J,358.3,26841,2)
- ;;=^5003098
- ;;^UTILITY(U,$J,358.3,26842,0)
- ;;=F10.982^^100^1291^19
- ;;^UTILITY(U,$J,358.3,26842,1,0)
+ ;;^UTILITY(U,$J,358.3,25293,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,25293,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,25293,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,25294,0)
+ ;;=M19.011^^107^1217^141
+ ;;^UTILITY(U,$J,358.3,25294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26842,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26842,1,4,0)
- ;;=4^F10.982
- ;;^UTILITY(U,$J,358.3,26842,2)
- ;;=^5003112
- ;;^UTILITY(U,$J,358.3,26843,0)
- ;;=F10.281^^100^1291^15
- ;;^UTILITY(U,$J,358.3,26843,1,0)
+ ;;^UTILITY(U,$J,358.3,25294,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,25294,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,25294,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,25295,0)
+ ;;=M19.012^^107^1217^135
+ ;;^UTILITY(U,$J,358.3,25295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26843,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26843,1,4,0)
- ;;=4^F10.281
- ;;^UTILITY(U,$J,358.3,26843,2)
- ;;=^5003097
- ;;^UTILITY(U,$J,358.3,26844,0)
- ;;=F10.981^^100^1291^16
- ;;^UTILITY(U,$J,358.3,26844,1,0)
+ ;;^UTILITY(U,$J,358.3,25295,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,25295,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,25295,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,25296,0)
+ ;;=M19.031^^107^1217^142
+ ;;^UTILITY(U,$J,358.3,25296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26844,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26844,1,4,0)
- ;;=4^F10.981
- ;;^UTILITY(U,$J,358.3,26844,2)
- ;;=^5003111
- ;;^UTILITY(U,$J,358.3,26845,0)
- ;;=F10.182^^100^1291^17
- ;;^UTILITY(U,$J,358.3,26845,1,0)
+ ;;^UTILITY(U,$J,358.3,25296,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,25296,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,25296,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,25297,0)
+ ;;=M19.032^^107^1217^136
+ ;;^UTILITY(U,$J,358.3,25297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26845,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26845,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,26845,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,26846,0)
- ;;=F10.121^^100^1291^20
- ;;^UTILITY(U,$J,358.3,26846,1,0)
+ ;;^UTILITY(U,$J,358.3,25297,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,25297,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,25297,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,25298,0)
+ ;;=M19.041^^107^1217^137
+ ;;^UTILITY(U,$J,358.3,25298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26846,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26846,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,26846,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,26847,0)
- ;;=F10.221^^100^1291^21
- ;;^UTILITY(U,$J,358.3,26847,1,0)
+ ;;^UTILITY(U,$J,358.3,25298,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,25298,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,25298,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,25299,0)
+ ;;=M19.042^^107^1217^131
+ ;;^UTILITY(U,$J,358.3,25299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26847,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26847,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,26847,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,26848,0)
- ;;=F10.921^^100^1291^22
- ;;^UTILITY(U,$J,358.3,26848,1,0)
+ ;;^UTILITY(U,$J,358.3,25299,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,25299,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,25299,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,25300,0)
+ ;;=M19.90^^107^1217^72
+ ;;^UTILITY(U,$J,358.3,25300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26848,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26848,1,4,0)
- ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,25300,1,3,0)
+ ;;=3^Osteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,25300,1,4,0)
+ ;;=4^M19.90

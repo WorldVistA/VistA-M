@@ -1,5 +1,5 @@
 DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC,TDM,JLS,HM - Patient Eligibility API ;3/3/11 3:40pm
- ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841,909,972**;Aug 13,1993;Build 80
+ ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841,909,972,952**;Aug 13,1993;Build 160
  ;
 GET(DFN,DGELG) ;
  ;Description: Used to obtain the patient eligibility data.
@@ -65,6 +65,7 @@ GET(DFN,DGELG) ;
  ;"CLEDT"              CAMP LEJEUNE DATE
  ;"CLEST"              CAMP LEJEUNE CHANGE SITE
  ;"CLESOR"             CAMP LEJEUNE SOURCE
+ ;"OTHTYPE"           EXPANDED MH CARE TYPE (OTH)
  ;
  K DGELG
  S DGELG=""
@@ -148,6 +149,10 @@ GET(DFN,DGELG) ;
  S DGELG("CLEDT")=$P(NODE,"^",2)
  S DGELG("CLEST")=$P(NODE,"^",3)
  S DGELG("CLESOR")=$P(NODE,"^",4)
+ ;
+ ; Expanded MH care type for OTH patients DG*5.3*952
+ S NODE=$G(^DPT(DFN,.55))
+ S DGELG("OTHTYPE")=$P(NODE,U)
  ;
  ;means test category
  S DGELG("MTSTA")=""

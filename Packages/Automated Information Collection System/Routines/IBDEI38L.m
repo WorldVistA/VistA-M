@@ -1,140 +1,120 @@
-IBDEI38L ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54400,0)
- ;;=L56.3^^256^2764^268
- ;;^UTILITY(U,$J,358.3,54400,1,0)
+ ;;^UTILITY(U,$J,358.3,51676,0)
+ ;;=S56.415A^^193^2510^54
+ ;;^UTILITY(U,$J,358.3,51676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54400,1,3,0)
- ;;=3^Solar Urticaria
- ;;^UTILITY(U,$J,358.3,54400,1,4,0)
- ;;=4^L56.3
- ;;^UTILITY(U,$J,358.3,54400,2)
- ;;=^5009217
- ;;^UTILITY(U,$J,358.3,54401,0)
- ;;=L57.0^^256^2764^12
- ;;^UTILITY(U,$J,358.3,54401,1,0)
+ ;;^UTILITY(U,$J,358.3,51676,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51676,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,51676,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,51677,0)
+ ;;=S56.416A^^193^2510^34
+ ;;^UTILITY(U,$J,358.3,51677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54401,1,3,0)
- ;;=3^Actinic Keratosis
- ;;^UTILITY(U,$J,358.3,54401,1,4,0)
- ;;=4^L57.0
- ;;^UTILITY(U,$J,358.3,54401,2)
- ;;=^66900
- ;;^UTILITY(U,$J,358.3,54402,0)
- ;;=L60.0^^256^2764^161
- ;;^UTILITY(U,$J,358.3,54402,1,0)
+ ;;^UTILITY(U,$J,358.3,51677,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,51677,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,51677,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,51678,0)
+ ;;=S66.912A^^193^2510^22
+ ;;^UTILITY(U,$J,358.3,51678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54402,1,3,0)
- ;;=3^Ingrowing Nail
- ;;^UTILITY(U,$J,358.3,54402,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,54402,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,54403,0)
- ;;=L60.1^^256^2764^234
- ;;^UTILITY(U,$J,358.3,54403,1,0)
+ ;;^UTILITY(U,$J,358.3,51678,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,51678,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,51678,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,51679,0)
+ ;;=S66.911A^^193^2510^42
+ ;;^UTILITY(U,$J,358.3,51679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54403,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,54403,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,54403,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,54404,0)
- ;;=L60.2^^256^2764^233
- ;;^UTILITY(U,$J,358.3,54404,1,0)
+ ;;^UTILITY(U,$J,358.3,51679,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,51679,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,51679,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,51680,0)
+ ;;=S63.501A^^193^2510^18
+ ;;^UTILITY(U,$J,358.3,51680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54404,1,3,0)
- ;;=3^Onychogryphosis
- ;;^UTILITY(U,$J,358.3,54404,1,4,0)
- ;;=4^L60.2
- ;;^UTILITY(U,$J,358.3,54404,2)
- ;;=^5009235
- ;;^UTILITY(U,$J,358.3,54405,0)
- ;;=L60.3^^256^2764^170
- ;;^UTILITY(U,$J,358.3,54405,1,0)
+ ;;^UTILITY(U,$J,358.3,51680,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,51680,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,51680,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,51681,0)
+ ;;=S63.502A^^193^2510^7
+ ;;^UTILITY(U,$J,358.3,51681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54405,1,3,0)
- ;;=3^Nail Dystrophy
- ;;^UTILITY(U,$J,358.3,54405,1,4,0)
- ;;=4^L60.3
- ;;^UTILITY(U,$J,358.3,54405,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,54406,0)
- ;;=L60.4^^256^2764^88
- ;;^UTILITY(U,$J,358.3,54406,1,0)
+ ;;^UTILITY(U,$J,358.3,51681,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,51681,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,51681,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,51682,0)
+ ;;=S83.8X1A^^193^2510^16
+ ;;^UTILITY(U,$J,358.3,51682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54406,1,3,0)
- ;;=3^Beau's Lines
- ;;^UTILITY(U,$J,358.3,54406,1,4,0)
- ;;=4^L60.4
- ;;^UTILITY(U,$J,358.3,54406,2)
- ;;=^5009237
- ;;^UTILITY(U,$J,358.3,54407,0)
- ;;=L60.5^^256^2764^290
- ;;^UTILITY(U,$J,358.3,54407,1,0)
+ ;;^UTILITY(U,$J,358.3,51682,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,51682,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,51682,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,51683,0)
+ ;;=S83.8X2A^^193^2510^5
+ ;;^UTILITY(U,$J,358.3,51683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54407,1,3,0)
- ;;=3^Yellow Nail Syndrome
- ;;^UTILITY(U,$J,358.3,54407,1,4,0)
- ;;=4^L60.5
- ;;^UTILITY(U,$J,358.3,54407,2)
- ;;=^5009238
- ;;^UTILITY(U,$J,358.3,54408,0)
- ;;=L60.8^^256^2764^168
- ;;^UTILITY(U,$J,358.3,54408,1,0)
+ ;;^UTILITY(U,$J,358.3,51683,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,51683,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,51683,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,51684,0)
+ ;;=S86.211A^^193^2510^47
+ ;;^UTILITY(U,$J,358.3,51684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54408,1,3,0)
- ;;=3^Nail Disorders NEC
- ;;^UTILITY(U,$J,358.3,54408,1,4,0)
- ;;=4^L60.8
- ;;^UTILITY(U,$J,358.3,54408,2)
- ;;=^5009239
- ;;^UTILITY(U,$J,358.3,54409,0)
- ;;=L62.^^256^2764^169
- ;;^UTILITY(U,$J,358.3,54409,1,0)
+ ;;^UTILITY(U,$J,358.3,51684,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,51684,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,51684,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,51685,0)
+ ;;=S86.212A^^193^2510^27
+ ;;^UTILITY(U,$J,358.3,51685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54409,1,3,0)
- ;;=3^Nail Disorders in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,54409,1,4,0)
- ;;=4^L62.
- ;;^UTILITY(U,$J,358.3,54409,2)
- ;;=^5009241
- ;;^UTILITY(U,$J,358.3,54410,0)
- ;;=L64.9^^256^2764^33
- ;;^UTILITY(U,$J,358.3,54410,1,0)
+ ;;^UTILITY(U,$J,358.3,51685,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,51685,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,51685,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,51686,0)
+ ;;=S86.311A^^193^2510^49
+ ;;^UTILITY(U,$J,358.3,51686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54410,1,3,0)
- ;;=3^Androgenic Alopecia,Unspec
- ;;^UTILITY(U,$J,358.3,54410,1,4,0)
- ;;=4^L64.9
- ;;^UTILITY(U,$J,358.3,54410,2)
- ;;=^5009249
- ;;^UTILITY(U,$J,358.3,54411,0)
- ;;=L65.9^^256^2764^231
- ;;^UTILITY(U,$J,358.3,54411,1,0)
+ ;;^UTILITY(U,$J,358.3,51686,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,51686,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,51686,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,51687,0)
+ ;;=S86.312A^^193^2510^29
+ ;;^UTILITY(U,$J,358.3,51687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54411,1,3,0)
- ;;=3^Nonscarring Hair Loss,Unspec
- ;;^UTILITY(U,$J,358.3,54411,1,4,0)
- ;;=4^L65.9
- ;;^UTILITY(U,$J,358.3,54411,2)
- ;;=^5009252
- ;;^UTILITY(U,$J,358.3,54412,0)
- ;;=L70.0^^256^2764^6
- ;;^UTILITY(U,$J,358.3,54412,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54412,1,3,0)
- ;;=3^Acne Vulgaris
- ;;^UTILITY(U,$J,358.3,54412,1,4,0)
- ;;=4^L70.0
- ;;^UTILITY(U,$J,358.3,54412,2)
- ;;=^5009268
- ;;^UTILITY(U,$J,358.3,54413,0)
- ;;=L70.1^^256^2764^1
- ;;^UTILITY(U,$J,358.3,54413,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54413,1,3,0)
- ;;=3^Acne Conglobata
+ ;;^UTILITY(U,$J,358.3,51687,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon

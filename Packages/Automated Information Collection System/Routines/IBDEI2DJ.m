@@ -1,132 +1,124 @@
-IBDEI2DJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40255,2)
- ;;=^336540
- ;;^UTILITY(U,$J,358.3,40256,0)
- ;;=D89.812^^156^1956^2
- ;;^UTILITY(U,$J,358.3,40256,1,0)
+ ;;^UTILITY(U,$J,358.3,37891,1,3,0)
+ ;;=3^Instability, rt ft, oth
+ ;;^UTILITY(U,$J,358.3,37891,1,4,0)
+ ;;=4^M25.374
+ ;;^UTILITY(U,$J,358.3,37891,2)
+ ;;=^5011572
+ ;;^UTILITY(U,$J,358.3,37892,0)
+ ;;=M25.375^^146^1920^21
+ ;;^UTILITY(U,$J,358.3,37892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40256,1,3,0)
- ;;=3^Acute on chronic graft-versus-host disease
- ;;^UTILITY(U,$J,358.3,40256,1,4,0)
- ;;=4^D89.812
- ;;^UTILITY(U,$J,358.3,40256,2)
- ;;=^336541
- ;;^UTILITY(U,$J,358.3,40257,0)
- ;;=C80.2^^156^1956^49
- ;;^UTILITY(U,$J,358.3,40257,1,0)
+ ;;^UTILITY(U,$J,358.3,37892,1,3,0)
+ ;;=3^Instability, lft ft, oth
+ ;;^UTILITY(U,$J,358.3,37892,1,4,0)
+ ;;=4^M25.375
+ ;;^UTILITY(U,$J,358.3,37892,2)
+ ;;=^5011573
+ ;;^UTILITY(U,$J,358.3,37893,0)
+ ;;=L60.0^^146^1920^14
+ ;;^UTILITY(U,$J,358.3,37893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40257,1,3,0)
- ;;=3^Malignant neoplasm associated with transplanted organ
- ;;^UTILITY(U,$J,358.3,40257,1,4,0)
- ;;=4^C80.2
- ;;^UTILITY(U,$J,358.3,40257,2)
- ;;=^5001390
- ;;^UTILITY(U,$J,358.3,40258,0)
- ;;=Z91.11^^156^1956^51
- ;;^UTILITY(U,$J,358.3,40258,1,0)
+ ;;^UTILITY(U,$J,358.3,37893,1,3,0)
+ ;;=3^Ingrowing nail
+ ;;^UTILITY(U,$J,358.3,37893,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,37893,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,37894,0)
+ ;;=S90.931A^^146^1920^19
+ ;;^UTILITY(U,$J,358.3,37894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40258,1,3,0)
- ;;=3^Patient's noncompliance with dietary regimen
- ;;^UTILITY(U,$J,358.3,40258,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,40258,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,40259,0)
- ;;=Z91.15^^156^1956^52
- ;;^UTILITY(U,$J,358.3,40259,1,0)
+ ;;^UTILITY(U,$J,358.3,37894,1,3,0)
+ ;;=3^Injury,Rt Grt Toe,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37894,1,4,0)
+ ;;=4^S90.931A
+ ;;^UTILITY(U,$J,358.3,37894,2)
+ ;;=^5044117
+ ;;^UTILITY(U,$J,358.3,37895,0)
+ ;;=S90.922A^^146^1920^15
+ ;;^UTILITY(U,$J,358.3,37895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40259,1,3,0)
- ;;=3^Patient's noncompliance with renal dialysis
- ;;^UTILITY(U,$J,358.3,40259,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,40259,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,40260,0)
- ;;=Z91.14^^156^1956^53
- ;;^UTILITY(U,$J,358.3,40260,1,0)
+ ;;^UTILITY(U,$J,358.3,37895,1,3,0)
+ ;;=3^Injury,Lft Foot,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37895,1,4,0)
+ ;;=4^S90.922A
+ ;;^UTILITY(U,$J,358.3,37895,2)
+ ;;=^5044114
+ ;;^UTILITY(U,$J,358.3,37896,0)
+ ;;=S90.932A^^146^1920^16
+ ;;^UTILITY(U,$J,358.3,37896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40260,1,3,0)
- ;;=3^Patient's other noncompliance with medication regimen
- ;;^UTILITY(U,$J,358.3,40260,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,40260,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,40261,0)
- ;;=Z52.011^^156^1957^1
- ;;^UTILITY(U,$J,358.3,40261,1,0)
+ ;;^UTILITY(U,$J,358.3,37896,1,3,0)
+ ;;=3^Injury,Lft Grt Toe,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37896,1,4,0)
+ ;;=4^S90.932A
+ ;;^UTILITY(U,$J,358.3,37896,2)
+ ;;=^5044120
+ ;;^UTILITY(U,$J,358.3,37897,0)
+ ;;=S90.934A^^146^1920^20
+ ;;^UTILITY(U,$J,358.3,37897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40261,1,3,0)
- ;;=3^Autologous donor, stem cells
- ;;^UTILITY(U,$J,358.3,40261,1,4,0)
- ;;=4^Z52.011
- ;;^UTILITY(U,$J,358.3,40261,2)
- ;;=^5063070
- ;;^UTILITY(U,$J,358.3,40262,0)
- ;;=Z52.091^^156^1957^2
- ;;^UTILITY(U,$J,358.3,40262,1,0)
+ ;;^UTILITY(U,$J,358.3,37897,1,3,0)
+ ;;=3^Injury,Rt Lsr Toe(s),Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37897,1,4,0)
+ ;;=4^S90.934A
+ ;;^UTILITY(U,$J,358.3,37897,2)
+ ;;=^5044123
+ ;;^UTILITY(U,$J,358.3,37898,0)
+ ;;=S90.935A^^146^1920^17
+ ;;^UTILITY(U,$J,358.3,37898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40262,1,3,0)
- ;;=3^Blood donor, stem cells
- ;;^UTILITY(U,$J,358.3,40262,1,4,0)
- ;;=4^Z52.091
- ;;^UTILITY(U,$J,358.3,40262,2)
- ;;=^5063073
- ;;^UTILITY(U,$J,358.3,40263,0)
- ;;=Z52.3^^156^1957^3
- ;;^UTILITY(U,$J,358.3,40263,1,0)
+ ;;^UTILITY(U,$J,358.3,37898,1,3,0)
+ ;;=3^Injury,Lft Lsr Toe(s),Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37898,1,4,0)
+ ;;=4^S90.935A
+ ;;^UTILITY(U,$J,358.3,37898,2)
+ ;;=^5044126
+ ;;^UTILITY(U,$J,358.3,37899,0)
+ ;;=S90.921A^^146^1920^18
+ ;;^UTILITY(U,$J,358.3,37899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40263,1,3,0)
- ;;=3^Bone marrow donor
- ;;^UTILITY(U,$J,358.3,40263,1,4,0)
- ;;=4^Z52.3
- ;;^UTILITY(U,$J,358.3,40263,2)
- ;;=^5063081
- ;;^UTILITY(U,$J,358.3,40264,0)
- ;;=Z94.81^^156^1957^4
- ;;^UTILITY(U,$J,358.3,40264,1,0)
+ ;;^UTILITY(U,$J,358.3,37899,1,3,0)
+ ;;=3^Injury,Rt Foot,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37899,1,4,0)
+ ;;=4^S90.921A
+ ;;^UTILITY(U,$J,358.3,37899,2)
+ ;;=^5044111
+ ;;^UTILITY(U,$J,358.3,37900,0)
+ ;;=S91.012A^^146^1921^16
+ ;;^UTILITY(U,$J,358.3,37900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40264,1,3,0)
- ;;=3^Bone marrow transplant status
- ;;^UTILITY(U,$J,358.3,40264,1,4,0)
- ;;=4^Z94.81
- ;;^UTILITY(U,$J,358.3,40264,2)
- ;;=^5063662
- ;;^UTILITY(U,$J,358.3,40265,0)
- ;;=Z94.84^^156^1957^6
- ;;^UTILITY(U,$J,358.3,40265,1,0)
+ ;;^UTILITY(U,$J,358.3,37900,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft ankl, init
+ ;;^UTILITY(U,$J,358.3,37900,1,4,0)
+ ;;=4^S91.012A
+ ;;^UTILITY(U,$J,358.3,37900,2)
+ ;;=^5044138
+ ;;^UTILITY(U,$J,358.3,37901,0)
+ ;;=S91.011A^^146^1921^23
+ ;;^UTILITY(U,$J,358.3,37901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40265,1,3,0)
- ;;=3^Stem cells transplant status
- ;;^UTILITY(U,$J,358.3,40265,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,40265,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,40266,0)
- ;;=Z52.89^^156^1957^5
- ;;^UTILITY(U,$J,358.3,40266,1,0)
+ ;;^UTILITY(U,$J,358.3,37901,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt ankl, init
+ ;;^UTILITY(U,$J,358.3,37901,1,4,0)
+ ;;=4^S91.011A
+ ;;^UTILITY(U,$J,358.3,37901,2)
+ ;;=^5044135
+ ;;^UTILITY(U,$J,358.3,37902,0)
+ ;;=S91.312A^^146^1921^17
+ ;;^UTILITY(U,$J,358.3,37902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40266,1,3,0)
- ;;=3^Donor of other specified organs or tissues
- ;;^UTILITY(U,$J,358.3,40266,1,4,0)
- ;;=4^Z52.89
- ;;^UTILITY(U,$J,358.3,40266,2)
- ;;=^5063090
- ;;^UTILITY(U,$J,358.3,40267,0)
- ;;=99201^^157^1958^1
- ;;^UTILITY(U,$J,358.3,40267,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,40267,1,1,0)
- ;;=1^PROBLEM FOCUSED VISIT
- ;;^UTILITY(U,$J,358.3,40267,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,40268,0)
- ;;=99202^^157^1958^2
- ;;^UTILITY(U,$J,358.3,40268,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,40268,1,1,0)
- ;;=1^EXPANDED PROBLEM FOCUSED VISIT
- ;;^UTILITY(U,$J,358.3,40268,1,2,0)
- ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,37902,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft ft, init
+ ;;^UTILITY(U,$J,358.3,37902,1,4,0)
+ ;;=4^S91.312A
+ ;;^UTILITY(U,$J,358.3,37902,2)
+ ;;=^5044323
+ ;;^UTILITY(U,$J,358.3,37903,0)
+ ;;=S91.115A^^146^1921^20
+ ;;^UTILITY(U,$J,358.3,37903,1,0)
+ ;;=^358.31IA^4^2

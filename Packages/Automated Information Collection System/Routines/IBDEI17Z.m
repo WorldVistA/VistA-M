@@ -1,140 +1,116 @@
-IBDEI17Z ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20735,0)
- ;;=R68.84^^84^937^8
- ;;^UTILITY(U,$J,358.3,20735,1,0)
+ ;;^UTILITY(U,$J,358.3,19579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20735,1,3,0)
- ;;=3^Jaw Pain
- ;;^UTILITY(U,$J,358.3,20735,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,20735,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,20736,0)
- ;;=N48.9^^84^937^6
- ;;^UTILITY(U,$J,358.3,20736,1,0)
+ ;;^UTILITY(U,$J,358.3,19579,1,3,0)
+ ;;=3^Traum cerebral edema w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19579,1,4,0)
+ ;;=4^S06.1X1S
+ ;;^UTILITY(U,$J,358.3,19579,2)
+ ;;=^5020701
+ ;;^UTILITY(U,$J,358.3,19580,0)
+ ;;=S06.1X2S^^93^994^108
+ ;;^UTILITY(U,$J,358.3,19580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20736,1,3,0)
- ;;=3^Disorder of Penis,Unspec
- ;;^UTILITY(U,$J,358.3,20736,1,4,0)
- ;;=4^N48.9
- ;;^UTILITY(U,$J,358.3,20736,2)
- ;;=^5015743
- ;;^UTILITY(U,$J,358.3,20737,0)
- ;;=N50.9^^84^937^5
- ;;^UTILITY(U,$J,358.3,20737,1,0)
+ ;;^UTILITY(U,$J,358.3,19580,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19580,1,4,0)
+ ;;=4^S06.1X2S
+ ;;^UTILITY(U,$J,358.3,19580,2)
+ ;;=^5020704
+ ;;^UTILITY(U,$J,358.3,19581,0)
+ ;;=S06.1X4S^^93^994^109
+ ;;^UTILITY(U,$J,358.3,19581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20737,1,3,0)
- ;;=3^Disorder of Male Genital Organs,Unspec
- ;;^UTILITY(U,$J,358.3,20737,1,4,0)
- ;;=4^N50.9
- ;;^UTILITY(U,$J,358.3,20737,2)
- ;;=^5015751
- ;;^UTILITY(U,$J,358.3,20738,0)
- ;;=R10.2^^84^937^13
- ;;^UTILITY(U,$J,358.3,20738,1,0)
+ ;;^UTILITY(U,$J,358.3,19581,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,19581,1,4,0)
+ ;;=4^S06.1X4S
+ ;;^UTILITY(U,$J,358.3,19581,2)
+ ;;=^5020710
+ ;;^UTILITY(U,$J,358.3,19582,0)
+ ;;=S06.1X9S^^93^994^110
+ ;;^UTILITY(U,$J,358.3,19582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20738,1,3,0)
- ;;=3^Pelvic/Perineal Pain
- ;;^UTILITY(U,$J,358.3,20738,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,20738,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,20739,0)
- ;;=N94.89^^84^937^7
- ;;^UTILITY(U,$J,358.3,20739,1,0)
+ ;;^UTILITY(U,$J,358.3,19582,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19582,1,4,0)
+ ;;=4^S06.1X9S
+ ;;^UTILITY(U,$J,358.3,19582,2)
+ ;;=^5020725
+ ;;^UTILITY(U,$J,358.3,19583,0)
+ ;;=S06.1X0S^^93^994^111
+ ;;^UTILITY(U,$J,358.3,19583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20739,1,3,0)
- ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
- ;;^UTILITY(U,$J,358.3,20739,1,4,0)
- ;;=4^N94.89
- ;;^UTILITY(U,$J,358.3,20739,2)
- ;;=^5015925
- ;;^UTILITY(U,$J,358.3,20740,0)
- ;;=N23.^^84^937^18
- ;;^UTILITY(U,$J,358.3,20740,1,0)
+ ;;^UTILITY(U,$J,358.3,19583,1,3,0)
+ ;;=3^Traumatic cerebral edema w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19583,1,4,0)
+ ;;=4^S06.1X0S
+ ;;^UTILITY(U,$J,358.3,19583,2)
+ ;;=^5020698
+ ;;^UTILITY(U,$J,358.3,19584,0)
+ ;;=S06.355S^^93^994^75
+ ;;^UTILITY(U,$J,358.3,19584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20740,1,3,0)
- ;;=3^Renal Colic,Unspec
- ;;^UTILITY(U,$J,358.3,20740,1,4,0)
- ;;=4^N23.
- ;;^UTILITY(U,$J,358.3,20740,2)
- ;;=^5015615
- ;;^UTILITY(U,$J,358.3,20741,0)
- ;;=Z71.89^^84^938^1
- ;;^UTILITY(U,$J,358.3,20741,1,0)
+ ;;^UTILITY(U,$J,358.3,19584,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,19584,1,4,0)
+ ;;=4^S06.355S
+ ;;^UTILITY(U,$J,358.3,19584,2)
+ ;;=^5020923
+ ;;^UTILITY(U,$J,358.3,19585,0)
+ ;;=S06.356S^^93^994^76
+ ;;^UTILITY(U,$J,358.3,19585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20741,1,3,0)
- ;;=3^Activity/Exercise Counseling
- ;;^UTILITY(U,$J,358.3,20741,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,20741,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,20742,0)
- ;;=Z13.89^^84^938^2
- ;;^UTILITY(U,$J,358.3,20742,1,0)
+ ;;^UTILITY(U,$J,358.3,19585,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,19585,1,4,0)
+ ;;=4^S06.356S
+ ;;^UTILITY(U,$J,358.3,19585,2)
+ ;;=^5020926
+ ;;^UTILITY(U,$J,358.3,19586,0)
+ ;;=S06.353S^^93^994^77
+ ;;^UTILITY(U,$J,358.3,19586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20742,1,3,0)
- ;;=3^Alcohol Use Screen
- ;;^UTILITY(U,$J,358.3,20742,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,20742,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,20743,0)
- ;;=Z12.39^^84^938^3
- ;;^UTILITY(U,$J,358.3,20743,1,0)
+ ;;^UTILITY(U,$J,358.3,19586,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 1-5 hrs 59 minutes, sequela
+ ;;^UTILITY(U,$J,358.3,19586,1,4,0)
+ ;;=4^S06.353S
+ ;;^UTILITY(U,$J,358.3,19586,2)
+ ;;=^5020917
+ ;;^UTILITY(U,$J,358.3,19587,0)
+ ;;=S06.351S^^93^994^78
+ ;;^UTILITY(U,$J,358.3,19587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20743,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,20743,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,20743,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,20744,0)
- ;;=Z12.4^^84^938^5
- ;;^UTILITY(U,$J,358.3,20744,1,0)
+ ;;^UTILITY(U,$J,358.3,19587,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,19587,1,4,0)
+ ;;=4^S06.351S
+ ;;^UTILITY(U,$J,358.3,19587,2)
+ ;;=^5020911
+ ;;^UTILITY(U,$J,358.3,19588,0)
+ ;;=S06.352S^^93^994^79
+ ;;^UTILITY(U,$J,358.3,19588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20744,1,3,0)
- ;;=3^Cervix Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,20744,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,20744,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,20745,0)
- ;;=Z13.5^^84^938^8
- ;;^UTILITY(U,$J,358.3,20745,1,0)
+ ;;^UTILITY(U,$J,358.3,19588,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,19588,1,4,0)
+ ;;=4^S06.352S
+ ;;^UTILITY(U,$J,358.3,19588,2)
+ ;;=^5020914
+ ;;^UTILITY(U,$J,358.3,19589,0)
+ ;;=S06.354S^^93^994^80
+ ;;^UTILITY(U,$J,358.3,19589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20745,1,3,0)
- ;;=3^Eye and Ear Disorder Screen
- ;;^UTILITY(U,$J,358.3,20745,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,20745,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,20746,0)
- ;;=Z01.89^^84^938^6
- ;;^UTILITY(U,$J,358.3,20746,1,0)
+ ;;^UTILITY(U,$J,358.3,19589,1,3,0)
+ ;;=3^Traum hemor left cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,19589,1,4,0)
+ ;;=4^S06.354S
+ ;;^UTILITY(U,$J,358.3,19589,2)
+ ;;=^5020920
+ ;;^UTILITY(U,$J,358.3,19590,0)
+ ;;=S06.359S^^93^994^81
+ ;;^UTILITY(U,$J,358.3,19590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20746,1,3,0)
- ;;=3^Diabetic Foot Exam
- ;;^UTILITY(U,$J,358.3,20746,1,4,0)
- ;;=4^Z01.89
- ;;^UTILITY(U,$J,358.3,20746,2)
- ;;=^5062632
- ;;^UTILITY(U,$J,358.3,20747,0)
- ;;=Z11.59^^84^938^16
- ;;^UTILITY(U,$J,358.3,20747,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20747,1,3,0)
- ;;=3^Viral Diseases Screen
- ;;^UTILITY(U,$J,358.3,20747,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,20747,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,20748,0)
- ;;=Z13.6^^84^938^4
- ;;^UTILITY(U,$J,358.3,20748,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20748,1,3,0)
- ;;=3^Cardiovascular Disorder Screen

@@ -1,368 +1,120 @@
-IBDEI0RW ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36841,1,0)
+ ;;^UTILITY(U,$J,358.3,12441,1,4,0)
+ ;;=4^M47.816
+ ;;^UTILITY(U,$J,358.3,12441,2)
+ ;;=^5012073
+ ;;^UTILITY(U,$J,358.3,12442,0)
+ ;;=M47.817^^80^779^31
+ ;;^UTILITY(U,$J,358.3,12442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36841,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Wrist
- ;;^UTILITY(U,$J,358.3,36841,1,4,0)
- ;;=4^M05.531
- ;;^UTILITY(U,$J,358.3,36841,2)
- ;;=^5009961
- ;;^UTILITY(U,$J,358.3,36842,0)
- ;;=M05.50^^103^1558^89
- ;;^UTILITY(U,$J,358.3,36842,1,0)
+ ;;^UTILITY(U,$J,358.3,12442,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,12442,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,12442,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,12443,0)
+ ;;=M47.811^^80^779^32
+ ;;^UTILITY(U,$J,358.3,12443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36842,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Unspec Site
- ;;^UTILITY(U,$J,358.3,36842,1,4,0)
- ;;=4^M05.50
- ;;^UTILITY(U,$J,358.3,36842,2)
- ;;=^5009954
- ;;^UTILITY(U,$J,358.3,36843,0)
- ;;=G04.1^^103^1558^140
- ;;^UTILITY(U,$J,358.3,36843,1,0)
+ ;;^UTILITY(U,$J,358.3,12443,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Occipito/Atlanto/Axial Region
+ ;;^UTILITY(U,$J,358.3,12443,1,4,0)
+ ;;=4^M47.811
+ ;;^UTILITY(U,$J,358.3,12443,2)
+ ;;=^5012068
+ ;;^UTILITY(U,$J,358.3,12444,0)
+ ;;=M47.818^^80^779^33
+ ;;^UTILITY(U,$J,358.3,12444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36843,1,3,0)
- ;;=3^Tropical Spastic Paraplegia
- ;;^UTILITY(U,$J,358.3,36843,1,4,0)
- ;;=4^G04.1
- ;;^UTILITY(U,$J,358.3,36843,2)
- ;;=^5003733
- ;;^UTILITY(U,$J,358.3,36844,0)
- ;;=M19.90^^103^1558^17
- ;;^UTILITY(U,$J,358.3,36844,1,0)
+ ;;^UTILITY(U,$J,358.3,12444,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,12444,1,4,0)
+ ;;=4^M47.818
+ ;;^UTILITY(U,$J,358.3,12444,2)
+ ;;=^5012075
+ ;;^UTILITY(U,$J,358.3,12445,0)
+ ;;=M47.814^^80^779^34
+ ;;^UTILITY(U,$J,358.3,12445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36844,1,3,0)
- ;;=3^Osteoarthritis Unspec Site
- ;;^UTILITY(U,$J,358.3,36844,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,36844,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,36845,0)
- ;;=Z48.02^^103^1559^1
- ;;^UTILITY(U,$J,358.3,36845,1,0)
+ ;;^UTILITY(U,$J,358.3,12445,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,12445,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,12445,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,12446,0)
+ ;;=M47.815^^80^779^35
+ ;;^UTILITY(U,$J,358.3,12446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36845,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,36845,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,36845,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,36846,0)
- ;;=J70.1^^103^1560^1
- ;;^UTILITY(U,$J,358.3,36846,1,0)
+ ;;^UTILITY(U,$J,358.3,12446,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,12446,1,4,0)
+ ;;=4^M47.815
+ ;;^UTILITY(U,$J,358.3,12446,2)
+ ;;=^5012072
+ ;;^UTILITY(U,$J,358.3,12447,0)
+ ;;=S08.111A^^80^780^3
+ ;;^UTILITY(U,$J,358.3,12447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36846,1,3,0)
- ;;=3^Chr Pulmonary Manifestations d/t Radiation
- ;;^UTILITY(U,$J,358.3,36846,1,4,0)
- ;;=4^J70.1
- ;;^UTILITY(U,$J,358.3,36846,2)
- ;;=^269983
- ;;^UTILITY(U,$J,358.3,36847,0)
- ;;=J70.0^^103^1561^1
- ;;^UTILITY(U,$J,358.3,36847,1,0)
+ ;;^UTILITY(U,$J,358.3,12447,1,3,0)
+ ;;=3^Complete Traumatic Amputation of Right Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12447,1,4,0)
+ ;;=4^S08.111A
+ ;;^UTILITY(U,$J,358.3,12447,2)
+ ;;=^5021251
+ ;;^UTILITY(U,$J,358.3,12448,0)
+ ;;=S08.112A^^80^780^2
+ ;;^UTILITY(U,$J,358.3,12448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36847,1,3,0)
- ;;=3^Acute Pulmonary Manifestations d/t Radiation
- ;;^UTILITY(U,$J,358.3,36847,1,4,0)
- ;;=4^J70.0
- ;;^UTILITY(U,$J,358.3,36847,2)
- ;;=^269982
- ;;^UTILITY(U,$J,358.3,36848,0)
- ;;=J63.0^^103^1561^2
- ;;^UTILITY(U,$J,358.3,36848,1,0)
+ ;;^UTILITY(U,$J,358.3,12448,1,3,0)
+ ;;=3^Complete Traumatic Amputation of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12448,1,4,0)
+ ;;=4^S08.112A
+ ;;^UTILITY(U,$J,358.3,12448,2)
+ ;;=^5021254
+ ;;^UTILITY(U,$J,358.3,12449,0)
+ ;;=S08.0XXA^^80^780^1
+ ;;^UTILITY(U,$J,358.3,12449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36848,1,3,0)
- ;;=3^Aluminosis of Lung
- ;;^UTILITY(U,$J,358.3,36848,1,4,0)
- ;;=4^J63.0
- ;;^UTILITY(U,$J,358.3,36848,2)
- ;;=^5008265
- ;;^UTILITY(U,$J,358.3,36849,0)
- ;;=J63.1^^103^1561^3
- ;;^UTILITY(U,$J,358.3,36849,1,0)
+ ;;^UTILITY(U,$J,358.3,12449,1,3,0)
+ ;;=3^Avulsion of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12449,1,4,0)
+ ;;=4^S08.0XXA
+ ;;^UTILITY(U,$J,358.3,12449,2)
+ ;;=^5021248
+ ;;^UTILITY(U,$J,358.3,12450,0)
+ ;;=S09.90XA^^80^780^6
+ ;;^UTILITY(U,$J,358.3,12450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36849,1,3,0)
- ;;=3^Bauxite Fibrosis of Lung
- ;;^UTILITY(U,$J,358.3,36849,1,4,0)
- ;;=4^J63.1
- ;;^UTILITY(U,$J,358.3,36849,2)
- ;;=^5008266
- ;;^UTILITY(U,$J,358.3,36850,0)
- ;;=J63.2^^103^1561^4
- ;;^UTILITY(U,$J,358.3,36850,1,0)
+ ;;^UTILITY(U,$J,358.3,12450,1,3,0)
+ ;;=3^Injury of Head,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12450,1,4,0)
+ ;;=4^S09.90XA
+ ;;^UTILITY(U,$J,358.3,12450,2)
+ ;;=^5021332
+ ;;^UTILITY(U,$J,358.3,12451,0)
+ ;;=S09.8XXA^^80^780^5
+ ;;^UTILITY(U,$J,358.3,12451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36850,1,3,0)
- ;;=3^Berylliosis
- ;;^UTILITY(U,$J,358.3,36850,1,4,0)
- ;;=4^J63.2
- ;;^UTILITY(U,$J,358.3,36850,2)
- ;;=^13594
- ;;^UTILITY(U,$J,358.3,36851,0)
- ;;=J60.^^103^1561^5
- ;;^UTILITY(U,$J,358.3,36851,1,0)
+ ;;^UTILITY(U,$J,358.3,12451,1,3,0)
+ ;;=3^Injury of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12451,1,4,0)
+ ;;=4^S09.8XXA
+ ;;^UTILITY(U,$J,358.3,12451,2)
+ ;;=^5021329
+ ;;^UTILITY(U,$J,358.3,12452,0)
+ ;;=S08.89XA^^80^780^7
+ ;;^UTILITY(U,$J,358.3,12452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36851,1,3,0)
- ;;=3^Coalworker's Pneumoconiosis
- ;;^UTILITY(U,$J,358.3,36851,1,4,0)
- ;;=4^J60.
- ;;^UTILITY(U,$J,358.3,36851,2)
- ;;=^5008261
- ;;^UTILITY(U,$J,358.3,36852,0)
- ;;=J63.3^^103^1561^6
- ;;^UTILITY(U,$J,358.3,36852,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36852,1,3,0)
- ;;=3^Graphite Fibrosis of Lung
- ;;^UTILITY(U,$J,358.3,36852,1,4,0)
- ;;=4^J63.3
- ;;^UTILITY(U,$J,358.3,36852,2)
- ;;=^5008267
- ;;^UTILITY(U,$J,358.3,36853,0)
- ;;=J65.^^103^1561^7
- ;;^UTILITY(U,$J,358.3,36853,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36853,1,3,0)
- ;;=3^Pneumoconiosis Associated w/ Tuberculosis
- ;;^UTILITY(U,$J,358.3,36853,1,4,0)
- ;;=4^J65.
- ;;^UTILITY(U,$J,358.3,36853,2)
- ;;=^5008272
- ;;^UTILITY(U,$J,358.3,36854,0)
- ;;=J61.^^103^1561^8
- ;;^UTILITY(U,$J,358.3,36854,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36854,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,36854,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,36854,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,36855,0)
- ;;=J62.8^^103^1561^9
- ;;^UTILITY(U,$J,358.3,36855,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36855,1,3,0)
- ;;=3^Pneumoconiosis d/t Dust Containing Silica
- ;;^UTILITY(U,$J,358.3,36855,1,4,0)
- ;;=4^J62.8
- ;;^UTILITY(U,$J,358.3,36855,2)
- ;;=^5008264
- ;;^UTILITY(U,$J,358.3,36856,0)
- ;;=J62.0^^103^1561^10
- ;;^UTILITY(U,$J,358.3,36856,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36856,1,3,0)
- ;;=3^Pneumoconiosis d/t Talc Dust
- ;;^UTILITY(U,$J,358.3,36856,1,4,0)
- ;;=4^J62.0
- ;;^UTILITY(U,$J,358.3,36856,2)
- ;;=^5008263
- ;;^UTILITY(U,$J,358.3,36857,0)
- ;;=J82.^^103^1561^12
- ;;^UTILITY(U,$J,358.3,36857,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36857,1,3,0)
- ;;=3^Pulmonary Eosinophilia NEC
- ;;^UTILITY(U,$J,358.3,36857,1,4,0)
- ;;=4^J82.
- ;;^UTILITY(U,$J,358.3,36857,2)
- ;;=^5008297
- ;;^UTILITY(U,$J,358.3,36858,0)
- ;;=J63.4^^103^1561^13
- ;;^UTILITY(U,$J,358.3,36858,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36858,1,3,0)
- ;;=3^Siderosis
- ;;^UTILITY(U,$J,358.3,36858,1,4,0)
- ;;=4^J63.4
- ;;^UTILITY(U,$J,358.3,36858,2)
- ;;=^5008268
- ;;^UTILITY(U,$J,358.3,36859,0)
- ;;=J63.5^^103^1561^14
- ;;^UTILITY(U,$J,358.3,36859,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36859,1,3,0)
- ;;=3^Stannosis
- ;;^UTILITY(U,$J,358.3,36859,1,4,0)
- ;;=4^J63.5
- ;;^UTILITY(U,$J,358.3,36859,2)
- ;;=^5008269
- ;;^UTILITY(U,$J,358.3,36860,0)
- ;;=J64.^^103^1561^11
- ;;^UTILITY(U,$J,358.3,36860,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36860,1,3,0)
- ;;=3^Pneumoconiosis,Unspec
- ;;^UTILITY(U,$J,358.3,36860,1,4,0)
- ;;=4^J64.
- ;;^UTILITY(U,$J,358.3,36860,2)
- ;;=^5008271
- ;;^UTILITY(U,$J,358.3,36861,0)
- ;;=G89.22^^103^1562^2
- ;;^UTILITY(U,$J,358.3,36861,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36861,1,3,0)
- ;;=3^Chr Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,36861,1,4,0)
- ;;=4^G89.22
- ;;^UTILITY(U,$J,358.3,36861,2)
- ;;=^5004156
- ;;^UTILITY(U,$J,358.3,36862,0)
- ;;=G89.3^^103^1562^3
- ;;^UTILITY(U,$J,358.3,36862,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36862,1,3,0)
- ;;=3^Neoplasm Related Pain
- ;;^UTILITY(U,$J,358.3,36862,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,36862,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,36863,0)
- ;;=G89.18^^103^1562^1
- ;;^UTILITY(U,$J,358.3,36863,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36863,1,3,0)
- ;;=3^Acute Postprocedural Pain
- ;;^UTILITY(U,$J,358.3,36863,1,4,0)
- ;;=4^G89.18
- ;;^UTILITY(U,$J,358.3,36863,2)
- ;;=^5004154
- ;;^UTILITY(U,$J,358.3,36864,0)
- ;;=J94.1^^103^1563^1
- ;;^UTILITY(U,$J,358.3,36864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36864,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,36864,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,36864,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,36865,0)
- ;;=C45.0^^103^1563^2
- ;;^UTILITY(U,$J,358.3,36865,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36865,1,3,0)
- ;;=3^Pleura Mesothelioma
- ;;^UTILITY(U,$J,358.3,36865,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,36865,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,36866,0)
- ;;=J94.8^^103^1563^4
- ;;^UTILITY(U,$J,358.3,36866,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36866,1,3,0)
- ;;=3^Pleural Conditions NEC
- ;;^UTILITY(U,$J,358.3,36866,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,36866,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,36867,0)
- ;;=J94.9^^103^1563^3
- ;;^UTILITY(U,$J,358.3,36867,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36867,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,36867,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,36867,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,36868,0)
- ;;=J91.8^^103^1563^6
- ;;^UTILITY(U,$J,358.3,36868,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36868,1,3,0)
- ;;=3^Pleural Effusion in Conditions Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,36868,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,36868,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,36869,0)
- ;;=J90.^^103^1563^5
- ;;^UTILITY(U,$J,358.3,36869,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36869,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,36869,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,36869,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,36870,0)
- ;;=J92.0^^103^1563^7
- ;;^UTILITY(U,$J,358.3,36870,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36870,1,3,0)
- ;;=3^Pleural Plaque w/ Presence of Asbestos
- ;;^UTILITY(U,$J,358.3,36870,1,4,0)
- ;;=4^J92.0
- ;;^UTILITY(U,$J,358.3,36870,2)
- ;;=^5008312
- ;;^UTILITY(U,$J,358.3,36871,0)
- ;;=J92.9^^103^1563^8
- ;;^UTILITY(U,$J,358.3,36871,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36871,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,36871,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,36871,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,36872,0)
- ;;=R09.1^^103^1563^9
- ;;^UTILITY(U,$J,358.3,36872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36872,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,36872,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,36872,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,36873,0)
- ;;=J86.0^^103^1563^10
- ;;^UTILITY(U,$J,358.3,36873,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36873,1,3,0)
- ;;=3^Pyothorax w/ Fistula
- ;;^UTILITY(U,$J,358.3,36873,1,4,0)
- ;;=4^J86.0
- ;;^UTILITY(U,$J,358.3,36873,2)
- ;;=^5008308
- ;;^UTILITY(U,$J,358.3,36874,0)
- ;;=J86.9^^103^1563^11
- ;;^UTILITY(U,$J,358.3,36874,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36874,1,3,0)
- ;;=3^Pyothorax w/o Fistula
- ;;^UTILITY(U,$J,358.3,36874,1,4,0)
- ;;=4^J86.9
- ;;^UTILITY(U,$J,358.3,36874,2)
- ;;=^5008309
- ;;^UTILITY(U,$J,358.3,36875,0)
- ;;=F41.9^^103^1564^2
- ;;^UTILITY(U,$J,358.3,36875,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36875,1,3,0)
- ;;=3^Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,36875,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,36875,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,36876,0)
- ;;=F10.20^^103^1564^1
- ;;^UTILITY(U,$J,358.3,36876,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36876,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,36876,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,36876,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,36877,0)
- ;;=F32.9^^103^1564^4
- ;;^UTILITY(U,$J,358.3,36877,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36877,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episoide,Unspec
+ ;;^UTILITY(U,$J,358.3,12452,1,3,0)
+ ;;=3^Traumatic Amputation of Parts of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12452,1,4,0)
+ ;;=4^S08.89XA
+ ;;^UTILITY(U,$J,358.3,12452,2)
+ ;;=^5021275
+ ;;^UTILITY(U,$J,358.3,12453,0)
+ ;;=S09.93XA^^80^780^4

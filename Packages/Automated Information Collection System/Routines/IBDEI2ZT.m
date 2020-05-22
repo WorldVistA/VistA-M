@@ -1,130 +1,132 @@
-IBDEI2ZT ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50172,2)
- ;;=^5015591
- ;;^UTILITY(U,$J,358.3,50173,0)
- ;;=N29.^^219^2443^16
- ;;^UTILITY(U,$J,358.3,50173,1,0)
+ ;;^UTILITY(U,$J,358.3,47792,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,47792,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,47793,0)
+ ;;=L25.9^^185^2412^33
+ ;;^UTILITY(U,$J,358.3,47793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50173,1,3,0)
- ;;=3^Kidney and Ureter Disorders in Diseases Classd Elsewhr
- ;;^UTILITY(U,$J,358.3,50173,1,4,0)
- ;;=4^N29.
- ;;^UTILITY(U,$J,358.3,50173,2)
- ;;=^5015631
- ;;^UTILITY(U,$J,358.3,50174,0)
- ;;=N15.8^^219^2443^25
- ;;^UTILITY(U,$J,358.3,50174,1,0)
+ ;;^UTILITY(U,$J,358.3,47793,1,3,0)
+ ;;=3^Dermatitis,Unspec Contact,Unspec Cause
+ ;;^UTILITY(U,$J,358.3,47793,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,47793,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,47794,0)
+ ;;=L21.9^^185^2412^31
+ ;;^UTILITY(U,$J,358.3,47794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50174,1,3,0)
- ;;=3^Renal Tubulo-Interstitial Diseases
- ;;^UTILITY(U,$J,358.3,50174,1,4,0)
- ;;=4^N15.8
- ;;^UTILITY(U,$J,358.3,50174,2)
- ;;=^5015595
- ;;^UTILITY(U,$J,358.3,50175,0)
- ;;=N14.4^^219^2443^26
- ;;^UTILITY(U,$J,358.3,50175,1,0)
+ ;;^UTILITY(U,$J,358.3,47794,1,3,0)
+ ;;=3^Dermatitis,Seborrheic,Unspec
+ ;;^UTILITY(U,$J,358.3,47794,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,47794,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,47795,0)
+ ;;=L30.9^^185^2412^32
+ ;;^UTILITY(U,$J,358.3,47795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50175,1,3,0)
- ;;=3^Toxic Nephropathy NEC
- ;;^UTILITY(U,$J,358.3,50175,1,4,0)
- ;;=4^N14.4
- ;;^UTILITY(U,$J,358.3,50175,2)
- ;;=^5015594
- ;;^UTILITY(U,$J,358.3,50176,0)
- ;;=N05.6^^219^2443^18
- ;;^UTILITY(U,$J,358.3,50176,1,0)
+ ;;^UTILITY(U,$J,358.3,47795,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,47795,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,47795,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,47796,0)
+ ;;=R60.1^^185^2412^34
+ ;;^UTILITY(U,$J,358.3,47796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50176,1,3,0)
- ;;=3^Nephritic Syndrome w/ Dense Deposit Disease,Unspec
- ;;^UTILITY(U,$J,358.3,50176,1,4,0)
- ;;=4^N05.6
- ;;^UTILITY(U,$J,358.3,50176,2)
- ;;=^5015547
- ;;^UTILITY(U,$J,358.3,50177,0)
- ;;=N05.7^^219^2443^19
- ;;^UTILITY(U,$J,358.3,50177,1,0)
+ ;;^UTILITY(U,$J,358.3,47796,1,3,0)
+ ;;=3^Edema,Generalized
+ ;;^UTILITY(U,$J,358.3,47796,1,4,0)
+ ;;=4^R60.1
+ ;;^UTILITY(U,$J,358.3,47796,2)
+ ;;=^5019533
+ ;;^UTILITY(U,$J,358.3,47797,0)
+ ;;=R60.0^^185^2412^35
+ ;;^UTILITY(U,$J,358.3,47797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50177,1,3,0)
- ;;=3^Nephritic Syndrome w/ Diffuse Crescentic Glomerulonephritis,Unspec
- ;;^UTILITY(U,$J,358.3,50177,1,4,0)
- ;;=4^N05.7
- ;;^UTILITY(U,$J,358.3,50177,2)
- ;;=^5015548
- ;;^UTILITY(U,$J,358.3,50178,0)
- ;;=N05.1^^219^2443^20
- ;;^UTILITY(U,$J,358.3,50178,1,0)
+ ;;^UTILITY(U,$J,358.3,47797,1,3,0)
+ ;;=3^Edema,Localized
+ ;;^UTILITY(U,$J,358.3,47797,1,4,0)
+ ;;=4^R60.0
+ ;;^UTILITY(U,$J,358.3,47797,2)
+ ;;=^5019532
+ ;;^UTILITY(U,$J,358.3,47798,0)
+ ;;=R60.9^^185^2412^36
+ ;;^UTILITY(U,$J,358.3,47798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50178,1,3,0)
- ;;=3^Nephritic Syndrome w/ Focal/Segmental Glomerular Lesions,Unspec
- ;;^UTILITY(U,$J,358.3,50178,1,4,0)
- ;;=4^N05.1
- ;;^UTILITY(U,$J,358.3,50178,2)
- ;;=^5015542
- ;;^UTILITY(U,$J,358.3,50179,0)
- ;;=N05.0^^219^2443^21
- ;;^UTILITY(U,$J,358.3,50179,1,0)
+ ;;^UTILITY(U,$J,358.3,47798,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,47798,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,47798,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,47799,0)
+ ;;=L85.9^^185^2412^37
+ ;;^UTILITY(U,$J,358.3,47799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50179,1,3,0)
- ;;=3^Nephritic Syndrome w/ Minor Glomerular Abnormality,Unspec
- ;;^UTILITY(U,$J,358.3,50179,1,4,0)
- ;;=4^N05.0
- ;;^UTILITY(U,$J,358.3,50179,2)
- ;;=^5015541
- ;;^UTILITY(U,$J,358.3,50180,0)
- ;;=N05.8^^219^2443^22
- ;;^UTILITY(U,$J,358.3,50180,1,0)
+ ;;^UTILITY(U,$J,358.3,47799,1,3,0)
+ ;;=3^Epidermal Thickening,Unspec
+ ;;^UTILITY(U,$J,358.3,47799,1,4,0)
+ ;;=4^L85.9
+ ;;^UTILITY(U,$J,358.3,47799,2)
+ ;;=^5009325
+ ;;^UTILITY(U,$J,358.3,47800,0)
+ ;;=L51.9^^185^2412^38
+ ;;^UTILITY(U,$J,358.3,47800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50180,1,3,0)
- ;;=3^Nephritic Syndrome w/ Morphologic Changes,Unspec
- ;;^UTILITY(U,$J,358.3,50180,1,4,0)
- ;;=4^N05.8
- ;;^UTILITY(U,$J,358.3,50180,2)
- ;;=^5134085
- ;;^UTILITY(U,$J,358.3,50181,0)
- ;;=R59.9^^219^2444^4
- ;;^UTILITY(U,$J,358.3,50181,1,0)
+ ;;^UTILITY(U,$J,358.3,47800,1,3,0)
+ ;;=3^Erythema Multiforme,Unspec
+ ;;^UTILITY(U,$J,358.3,47800,1,4,0)
+ ;;=4^L51.9
+ ;;^UTILITY(U,$J,358.3,47800,2)
+ ;;=^336759
+ ;;^UTILITY(U,$J,358.3,47801,0)
+ ;;=L52.^^185^2412^39
+ ;;^UTILITY(U,$J,358.3,47801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50181,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,50181,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,50181,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,50182,0)
- ;;=R59.1^^219^2444^2
- ;;^UTILITY(U,$J,358.3,50182,1,0)
+ ;;^UTILITY(U,$J,358.3,47801,1,3,0)
+ ;;=3^Erythema Nodosum
+ ;;^UTILITY(U,$J,358.3,47801,1,4,0)
+ ;;=4^L52.
+ ;;^UTILITY(U,$J,358.3,47801,2)
+ ;;=^42065
+ ;;^UTILITY(U,$J,358.3,47802,0)
+ ;;=L72.9^^185^2412^40
+ ;;^UTILITY(U,$J,358.3,47802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50182,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,50182,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,50182,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,50183,0)
- ;;=R59.0^^219^2444^3
- ;;^UTILITY(U,$J,358.3,50183,1,0)
+ ;;^UTILITY(U,$J,358.3,47802,1,3,0)
+ ;;=3^Follicular Cyst,Skin & SQ Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,47802,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,47802,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,47803,0)
+ ;;=L02.92^^185^2412^41
+ ;;^UTILITY(U,$J,358.3,47803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50183,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,50183,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,50183,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,50184,0)
- ;;=Z79.01^^219^2444^5
- ;;^UTILITY(U,$J,358.3,50184,1,0)
+ ;;^UTILITY(U,$J,358.3,47803,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,47803,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,47803,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,47804,0)
+ ;;=L68.9^^185^2412^45
+ ;;^UTILITY(U,$J,358.3,47804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50184,1,3,0)
- ;;=3^Long Term Use of Anticoagulants
- ;;^UTILITY(U,$J,358.3,50184,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,50184,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,50185,0)
- ;;=D64.9^^219^2444^1
- ;;^UTILITY(U,$J,358.3,50185,1,0)
+ ;;^UTILITY(U,$J,358.3,47804,1,3,0)
+ ;;=3^Hypertrichosis,Unspec
+ ;;^UTILITY(U,$J,358.3,47804,1,4,0)
+ ;;=4^L68.9
+ ;;^UTILITY(U,$J,358.3,47804,2)
+ ;;=^5009267
+ ;;^UTILITY(U,$J,358.3,47805,0)
+ ;;=L63.9^^185^2412^8
+ ;;^UTILITY(U,$J,358.3,47805,1,0)
  ;;=^358.31IA^4^2

@@ -1,134 +1,124 @@
-IBDEI25C ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36416,1,0)
+ ;;^UTILITY(U,$J,358.3,34283,0)
+ ;;=F07.0^^134^1737^9
+ ;;^UTILITY(U,$J,358.3,34283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36416,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,36416,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,36416,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,36417,0)
- ;;=I25.110^^137^1760^32
- ;;^UTILITY(U,$J,358.3,36417,1,0)
+ ;;^UTILITY(U,$J,358.3,34283,1,3,0)
+ ;;=3^Personality Change d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,34283,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,34283,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,34284,0)
+ ;;=Z65.4^^134^1738^5
+ ;;^UTILITY(U,$J,358.3,34284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36417,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,36417,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,36417,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,36418,0)
- ;;=I25.10^^137^1760^33
- ;;^UTILITY(U,$J,358.3,36418,1,0)
+ ;;^UTILITY(U,$J,358.3,34284,1,3,0)
+ ;;=3^Victim of Crime
+ ;;^UTILITY(U,$J,358.3,34284,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,34284,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,34285,0)
+ ;;=Z65.0^^134^1738^1
+ ;;^UTILITY(U,$J,358.3,34285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36418,1,3,0)
- ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,36418,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,36418,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,36419,0)
- ;;=I48.0^^137^1760^42
- ;;^UTILITY(U,$J,358.3,36419,1,0)
+ ;;^UTILITY(U,$J,358.3,34285,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,34285,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,34285,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,34286,0)
+ ;;=Z65.2^^134^1738^4
+ ;;^UTILITY(U,$J,358.3,34286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36419,1,3,0)
- ;;=3^Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,36419,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,36419,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,36420,0)
- ;;=I49.9^^137^1760^44
- ;;^UTILITY(U,$J,358.3,36420,1,0)
+ ;;^UTILITY(U,$J,358.3,34286,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,34286,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,34286,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,34287,0)
+ ;;=Z65.3^^134^1738^3
+ ;;^UTILITY(U,$J,358.3,34287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36420,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,36420,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,36420,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,36421,0)
- ;;=I42.9^^137^1760^45
- ;;^UTILITY(U,$J,358.3,36421,1,0)
+ ;;^UTILITY(U,$J,358.3,34287,1,3,0)
+ ;;=3^Problems Related to Other Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,34287,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,34287,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,34288,0)
+ ;;=Z65.1^^134^1738^2
+ ;;^UTILITY(U,$J,358.3,34288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36421,1,3,0)
- ;;=3^Cardiomyopathy,Unspec
- ;;^UTILITY(U,$J,358.3,36421,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,36421,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,36422,0)
- ;;=I50.42^^137^1760^47
- ;;^UTILITY(U,$J,358.3,36422,1,0)
+ ;;^UTILITY(U,$J,358.3,34288,1,3,0)
+ ;;=3^Imprisonment or Other Incarceration
+ ;;^UTILITY(U,$J,358.3,34288,1,4,0)
+ ;;=4^Z65.1
+ ;;^UTILITY(U,$J,358.3,34288,2)
+ ;;=^5063180
+ ;;^UTILITY(U,$J,358.3,34289,0)
+ ;;=Z64.0^^134^1739^6
+ ;;^UTILITY(U,$J,358.3,34289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36422,1,3,0)
- ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,36422,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,36422,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,36423,0)
- ;;=I50.32^^137^1760^48
- ;;^UTILITY(U,$J,358.3,36423,1,0)
+ ;;^UTILITY(U,$J,358.3,34289,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,34289,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,34289,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,34290,0)
+ ;;=Z64.1^^134^1739^3
+ ;;^UTILITY(U,$J,358.3,34290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36423,1,3,0)
- ;;=3^Chr Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,36423,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,36423,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,36424,0)
- ;;=I27.82^^137^1760^49
- ;;^UTILITY(U,$J,358.3,36424,1,0)
+ ;;^UTILITY(U,$J,358.3,34290,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,34290,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,34290,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,34291,0)
+ ;;=Z64.4^^134^1739^1
+ ;;^UTILITY(U,$J,358.3,34291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36424,1,3,0)
- ;;=3^Chr Pulmonary Embolism
- ;;^UTILITY(U,$J,358.3,36424,1,4,0)
- ;;=4^I27.82
- ;;^UTILITY(U,$J,358.3,36424,2)
- ;;=^338238
- ;;^UTILITY(U,$J,358.3,36425,0)
- ;;=I50.22^^137^1760^50
- ;;^UTILITY(U,$J,358.3,36425,1,0)
+ ;;^UTILITY(U,$J,358.3,34291,1,3,0)
+ ;;=3^Discord w/ Counselors
+ ;;^UTILITY(U,$J,358.3,34291,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,34291,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,34292,0)
+ ;;=Z65.5^^134^1739^2
+ ;;^UTILITY(U,$J,358.3,34292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36425,1,3,0)
- ;;=3^Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,36425,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,36425,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,36426,0)
- ;;=I42.0^^137^1760^53
- ;;^UTILITY(U,$J,358.3,36426,1,0)
+ ;;^UTILITY(U,$J,358.3,34292,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,34292,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,34292,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,34293,0)
+ ;;=Z65.8^^134^1739^4
+ ;;^UTILITY(U,$J,358.3,34293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36426,1,3,0)
- ;;=3^Dilated Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,36426,1,4,0)
- ;;=4^I42.0
- ;;^UTILITY(U,$J,358.3,36426,2)
- ;;=^5007194
- ;;^UTILITY(U,$J,358.3,36427,0)
- ;;=I10.^^137^1760^54
- ;;^UTILITY(U,$J,358.3,36427,1,0)
+ ;;^UTILITY(U,$J,358.3,34293,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Other
+ ;;^UTILITY(U,$J,358.3,34293,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,34293,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,34294,0)
+ ;;=Z65.9^^134^1739^5
+ ;;^UTILITY(U,$J,358.3,34294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36427,1,3,0)
- ;;=3^Essential Hypertension
- ;;^UTILITY(U,$J,358.3,36427,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,36427,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,36428,0)
- ;;=I50.9^^137^1760^55
- ;;^UTILITY(U,$J,358.3,36428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36428,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,36428,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,36428,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,36429,0)
- ;;=I35.1^^137^1760^60
+ ;;^UTILITY(U,$J,358.3,34294,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Unspec
+ ;;^UTILITY(U,$J,358.3,34294,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,34294,2)
+ ;;=^5063186

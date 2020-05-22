@@ -1,128 +1,128 @@
-IBDEI1TZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1TZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31094,1,0)
+ ;;^UTILITY(U,$J,358.3,29251,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,29252,0)
+ ;;=Z91.5^^118^1473^17
+ ;;^UTILITY(U,$J,358.3,29252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31094,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31094,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,31094,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,31095,0)
- ;;=F11.20^^123^1559^24
- ;;^UTILITY(U,$J,358.3,31095,1,0)
+ ;;^UTILITY(U,$J,358.3,29252,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,29252,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,29252,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,29253,0)
+ ;;=Z91.82^^118^1473^15
+ ;;^UTILITY(U,$J,358.3,29253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31095,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,31095,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,31095,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,31096,0)
- ;;=F11.21^^123^1559^25
- ;;^UTILITY(U,$J,358.3,31096,1,0)
+ ;;^UTILITY(U,$J,358.3,29253,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,29253,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,29253,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,29254,0)
+ ;;=Z91.89^^118^1473^18
+ ;;^UTILITY(U,$J,358.3,29254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31096,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,31096,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,31096,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,31097,0)
- ;;=F11.23^^123^1559^26
- ;;^UTILITY(U,$J,358.3,31097,1,0)
+ ;;^UTILITY(U,$J,358.3,29254,1,3,0)
+ ;;=3^Personal Risk Factors,Other
+ ;;^UTILITY(U,$J,358.3,29254,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,29254,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,29255,0)
+ ;;=Z72.9^^118^1473^19
+ ;;^UTILITY(U,$J,358.3,29255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31097,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,31097,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,31097,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,31098,0)
- ;;=F11.24^^123^1559^28
- ;;^UTILITY(U,$J,358.3,31098,1,0)
+ ;;^UTILITY(U,$J,358.3,29255,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,29255,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,29255,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,29256,0)
+ ;;=Z91.19^^118^1473^5
+ ;;^UTILITY(U,$J,358.3,29256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31098,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31098,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,31098,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,31099,0)
- ;;=F11.29^^123^1559^2
- ;;^UTILITY(U,$J,358.3,31099,1,0)
+ ;;^UTILITY(U,$J,358.3,29256,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,29256,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,29256,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,29257,0)
+ ;;=E66.9^^118^1473^6
+ ;;^UTILITY(U,$J,358.3,29257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31099,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,31099,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,31099,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,31100,0)
- ;;=F11.220^^123^1559^1
- ;;^UTILITY(U,$J,358.3,31100,1,0)
+ ;;^UTILITY(U,$J,358.3,29257,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,29257,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,29257,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,29258,0)
+ ;;=Z76.5^^118^1473^3
+ ;;^UTILITY(U,$J,358.3,29258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31100,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,31100,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,31100,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,31101,0)
- ;;=F11.188^^123^1559^3
- ;;^UTILITY(U,$J,358.3,31101,1,0)
+ ;;^UTILITY(U,$J,358.3,29258,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,29258,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,29258,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,29259,0)
+ ;;=R41.83^^118^1473^2
+ ;;^UTILITY(U,$J,358.3,29259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31101,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31101,1,4,0)
- ;;=4^F11.188
- ;;^UTILITY(U,$J,358.3,31101,2)
- ;;=^5003125
- ;;^UTILITY(U,$J,358.3,31102,0)
- ;;=F11.288^^123^1559^4
- ;;^UTILITY(U,$J,358.3,31102,1,0)
+ ;;^UTILITY(U,$J,358.3,29259,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,29259,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,29259,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,29260,0)
+ ;;=Z56.82^^118^1473^4
+ ;;^UTILITY(U,$J,358.3,29260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31102,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31102,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,31102,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,31103,0)
- ;;=F11.988^^123^1559^5
- ;;^UTILITY(U,$J,358.3,31103,1,0)
+ ;;^UTILITY(U,$J,358.3,29260,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,29260,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,29260,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,29261,0)
+ ;;=Z62.811^^118^1473^12
+ ;;^UTILITY(U,$J,358.3,29261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31103,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31103,1,4,0)
- ;;=4^F11.988
- ;;^UTILITY(U,$J,358.3,31103,2)
- ;;=^5003154
- ;;^UTILITY(U,$J,358.3,31104,0)
- ;;=F11.921^^123^1559^6
- ;;^UTILITY(U,$J,358.3,31104,1,0)
+ ;;^UTILITY(U,$J,358.3,29261,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,29261,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,29261,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,29262,0)
+ ;;=Z62.812^^118^1473^10
+ ;;^UTILITY(U,$J,358.3,29262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31104,1,3,0)
- ;;=3^Opioid Induced Delirium
- ;;^UTILITY(U,$J,358.3,31104,1,4,0)
- ;;=4^F11.921
- ;;^UTILITY(U,$J,358.3,31104,2)
- ;;=^5003144
- ;;^UTILITY(U,$J,358.3,31105,0)
- ;;=F11.94^^123^1559^7
- ;;^UTILITY(U,$J,358.3,31105,1,0)
+ ;;^UTILITY(U,$J,358.3,29262,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,29262,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,29262,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,29263,0)
+ ;;=Z62.810^^118^1473^11
+ ;;^UTILITY(U,$J,358.3,29263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31105,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31105,1,4,0)
- ;;=4^F11.94
- ;;^UTILITY(U,$J,358.3,31105,2)
- ;;=^5003148
- ;;^UTILITY(U,$J,358.3,31106,0)
- ;;=F11.181^^123^1559^8
- ;;^UTILITY(U,$J,358.3,31106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31106,1,3,0)
- ;;=3^Opioid Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,29263,1,3,0)
+ ;;=3^Personal Hx of Childhood Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,29263,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,29263,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,29264,0)
+ ;;=Z91.83^^118^1473^22

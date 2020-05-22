@@ -1,134 +1,116 @@
-IBDEI18V ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18V ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21153,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,21154,0)
- ;;=R92.2^^84^945^27
- ;;^UTILITY(U,$J,358.3,21154,1,0)
+ ;;^UTILITY(U,$J,358.3,19946,2)
+ ;;=^5034850
+ ;;^UTILITY(U,$J,358.3,19947,0)
+ ;;=S62.662S^^93^997^76
+ ;;^UTILITY(U,$J,358.3,19947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21154,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,21154,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,21154,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,21155,0)
- ;;=Z30.432^^84^945^53
- ;;^UTILITY(U,$J,358.3,21155,1,0)
+ ;;^UTILITY(U,$J,358.3,19947,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19947,1,4,0)
+ ;;=4^S62.662S
+ ;;^UTILITY(U,$J,358.3,19947,2)
+ ;;=^5034822
+ ;;^UTILITY(U,$J,358.3,19948,0)
+ ;;=S62.664S^^93^997^77
+ ;;^UTILITY(U,$J,358.3,19948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21155,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,21155,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,21155,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,21156,0)
- ;;=S31.000A^^84^946^5
- ;;^UTILITY(U,$J,358.3,21156,1,0)
+ ;;^UTILITY(U,$J,358.3,19948,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19948,1,4,0)
+ ;;=4^S62.664S
+ ;;^UTILITY(U,$J,358.3,19948,2)
+ ;;=^5034836
+ ;;^UTILITY(U,$J,358.3,19949,0)
+ ;;=S62.651S^^93^997^79
+ ;;^UTILITY(U,$J,358.3,19949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21156,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,21156,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,21156,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,21157,0)
- ;;=S31.010A^^84^946^2
- ;;^UTILITY(U,$J,358.3,21157,1,0)
+ ;;^UTILITY(U,$J,358.3,19949,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19949,1,4,0)
+ ;;=4^S62.651S
+ ;;^UTILITY(U,$J,358.3,19949,2)
+ ;;=^5034745
+ ;;^UTILITY(U,$J,358.3,19950,0)
+ ;;=S62.657S^^93^997^80
+ ;;^UTILITY(U,$J,358.3,19950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21157,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,21157,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,21157,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,21158,0)
- ;;=T07.^^84^946^4
- ;;^UTILITY(U,$J,358.3,21158,1,0)
+ ;;^UTILITY(U,$J,358.3,19950,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19950,1,4,0)
+ ;;=4^S62.657S
+ ;;^UTILITY(U,$J,358.3,19950,2)
+ ;;=^5034787
+ ;;^UTILITY(U,$J,358.3,19951,0)
+ ;;=S62.653S^^93^997^81
+ ;;^UTILITY(U,$J,358.3,19951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21158,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,21158,1,4,0)
- ;;=4^T07.
- ;;^UTILITY(U,$J,358.3,21158,2)
- ;;=^5046377
- ;;^UTILITY(U,$J,358.3,21159,0)
- ;;=L08.89^^84^946^3
- ;;^UTILITY(U,$J,358.3,21159,1,0)
+ ;;^UTILITY(U,$J,358.3,19951,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19951,1,4,0)
+ ;;=4^S62.653S
+ ;;^UTILITY(U,$J,358.3,19951,2)
+ ;;=^5034759
+ ;;^UTILITY(U,$J,358.3,19952,0)
+ ;;=S62.655S^^93^997^82
+ ;;^UTILITY(U,$J,358.3,19952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21159,1,3,0)
- ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
- ;;^UTILITY(U,$J,358.3,21159,1,4,0)
- ;;=4^L08.89
- ;;^UTILITY(U,$J,358.3,21159,2)
- ;;=^5009081
- ;;^UTILITY(U,$J,358.3,21160,0)
- ;;=T14.90^^84^946^1
- ;;^UTILITY(U,$J,358.3,21160,1,0)
+ ;;^UTILITY(U,$J,358.3,19952,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19952,1,4,0)
+ ;;=4^S62.655S
+ ;;^UTILITY(U,$J,358.3,19952,2)
+ ;;=^5034773
+ ;;^UTILITY(U,$J,358.3,19953,0)
+ ;;=S62.650S^^93^997^83
+ ;;^UTILITY(U,$J,358.3,19953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21160,1,3,0)
- ;;=3^Injury,Unspec
- ;;^UTILITY(U,$J,358.3,21160,1,4,0)
- ;;=4^T14.90
- ;;^UTILITY(U,$J,358.3,21160,2)
- ;;=^5046379
- ;;^UTILITY(U,$J,358.3,21161,0)
- ;;=S91.002A^^84^946^6
- ;;^UTILITY(U,$J,358.3,21161,1,0)
+ ;;^UTILITY(U,$J,358.3,19953,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19953,1,4,0)
+ ;;=4^S62.650S
+ ;;^UTILITY(U,$J,358.3,19953,2)
+ ;;=^5034738
+ ;;^UTILITY(U,$J,358.3,19954,0)
+ ;;=S62.656S^^93^997^84
+ ;;^UTILITY(U,$J,358.3,19954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21161,1,3,0)
- ;;=3^Open Wound,Left Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,21161,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,21161,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,21162,0)
- ;;=S91.302A^^84^946^7
- ;;^UTILITY(U,$J,358.3,21162,1,0)
+ ;;^UTILITY(U,$J,358.3,19954,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,19954,1,4,0)
+ ;;=4^S62.656S
+ ;;^UTILITY(U,$J,358.3,19954,2)
+ ;;=^5034780
+ ;;^UTILITY(U,$J,358.3,19955,0)
+ ;;=S62.652S^^93^997^85
+ ;;^UTILITY(U,$J,358.3,19955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21162,1,3,0)
- ;;=3^Open Wound,Left Foot,Unspec
- ;;^UTILITY(U,$J,358.3,21162,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,21162,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,21163,0)
- ;;=S51.802A^^84^946^8
- ;;^UTILITY(U,$J,358.3,21163,1,0)
+ ;;^UTILITY(U,$J,358.3,19955,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,19955,1,4,0)
+ ;;=4^S62.652S
+ ;;^UTILITY(U,$J,358.3,19955,2)
+ ;;=^5034752
+ ;;^UTILITY(U,$J,358.3,19956,0)
+ ;;=S62.654S^^93^997^86
+ ;;^UTILITY(U,$J,358.3,19956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21163,1,3,0)
- ;;=3^Open Wound,Left Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,21163,1,4,0)
- ;;=4^S51.802A
- ;;^UTILITY(U,$J,358.3,21163,2)
- ;;=^5028662
- ;;^UTILITY(U,$J,358.3,21164,0)
- ;;=S91.102A^^84^946^9
- ;;^UTILITY(U,$J,358.3,21164,1,0)
+ ;;^UTILITY(U,$J,358.3,19956,1,3,0)
+ ;;=3^Nondisp fx of medial phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,19956,1,4,0)
+ ;;=4^S62.654S
+ ;;^UTILITY(U,$J,358.3,19956,2)
+ ;;=^5034766
+ ;;^UTILITY(U,$J,358.3,19957,0)
+ ;;=S62.641S^^93^997^99
+ ;;^UTILITY(U,$J,358.3,19957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21164,1,3,0)
- ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,21164,1,4,0)
- ;;=4^S91.102A
- ;;^UTILITY(U,$J,358.3,21164,2)
- ;;=^5044171
- ;;^UTILITY(U,$J,358.3,21165,0)
- ;;=S61.402A^^84^946^10
- ;;^UTILITY(U,$J,358.3,21165,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21165,1,3,0)
- ;;=3^Open Wound,Left Hand,Unspec
- ;;^UTILITY(U,$J,358.3,21165,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,21165,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,21166,0)
- ;;=S71.002A^^84^946^11
- ;;^UTILITY(U,$J,358.3,21166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21166,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
- ;;^UTILITY(U,$J,358.3,21166,1,4,0)
- ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,19957,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,19957,1,4,0)
+ ;;=4^S62.641S
+ ;;^UTILITY(U,$J,358.3,19957,2)
+ ;;=^5034675

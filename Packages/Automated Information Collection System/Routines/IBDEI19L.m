@@ -1,130 +1,118 @@
-IBDEI19L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21503,0)
- ;;=20604^^86^958^5^^^^1
- ;;^UTILITY(U,$J,358.3,21503,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21503,1,2,0)
- ;;=2^20604
- ;;^UTILITY(U,$J,358.3,21503,1,3,0)
- ;;=3^Arthrocentesis,Small Jt w/ US Guidance
- ;;^UTILITY(U,$J,358.3,21504,0)
- ;;=20611^^86^958^3^^^^1
- ;;^UTILITY(U,$J,358.3,21504,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21504,1,2,0)
- ;;=2^20611
- ;;^UTILITY(U,$J,358.3,21504,1,3,0)
- ;;=3^Arthrocentesis,Major Jt w/ US Guidance
- ;;^UTILITY(U,$J,358.3,21505,0)
- ;;=20606^^86^958^1^^^^1
- ;;^UTILITY(U,$J,358.3,21505,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21505,1,2,0)
- ;;=2^20606
- ;;^UTILITY(U,$J,358.3,21505,1,3,0)
- ;;=3^Arthrocentesis,Intermediate Jt w/ US Guidance
- ;;^UTILITY(U,$J,358.3,21506,0)
- ;;=78740^^86^958^28^^^^1
- ;;^UTILITY(U,$J,358.3,21506,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21506,1,2,0)
- ;;=2^78740
- ;;^UTILITY(U,$J,358.3,21506,1,3,0)
- ;;=3^Urethral Reflux Study
- ;;^UTILITY(U,$J,358.3,21507,0)
- ;;=69210^^86^958^15^^^^1
- ;;^UTILITY(U,$J,358.3,21507,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21507,1,2,0)
- ;;=2^69210
- ;;^UTILITY(U,$J,358.3,21507,1,3,0)
- ;;=3^Ear Cleaning/Req Instrumentation (MD Only)
- ;;^UTILITY(U,$J,358.3,21508,0)
- ;;=93000^^86^958^13^^^^1
- ;;^UTILITY(U,$J,358.3,21508,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21508,1,2,0)
- ;;=2^93000
- ;;^UTILITY(U,$J,358.3,21508,1,3,0)
- ;;=3^EKG,Complete
- ;;^UTILITY(U,$J,358.3,21509,0)
- ;;=69209^^86^958^14^^^^1
- ;;^UTILITY(U,$J,358.3,21509,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21509,1,2,0)
- ;;=2^69209
- ;;^UTILITY(U,$J,358.3,21509,1,3,0)
- ;;=3^Ear Cleaning/Lavage/Irrigation (MD Only)
- ;;^UTILITY(U,$J,358.3,21510,0)
- ;;=29105^^86^959^2^^^^1
- ;;^UTILITY(U,$J,358.3,21510,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21510,1,2,0)
- ;;=2^29105
- ;;^UTILITY(U,$J,358.3,21510,1,3,0)
- ;;=3^Long Arm Splint
- ;;^UTILITY(U,$J,358.3,21511,0)
- ;;=29125^^86^959^4^^^^1
- ;;^UTILITY(U,$J,358.3,21511,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21511,1,2,0)
- ;;=2^29125
- ;;^UTILITY(U,$J,358.3,21511,1,3,0)
- ;;=3^Short Arm Splint; Static
- ;;^UTILITY(U,$J,358.3,21512,0)
- ;;=29126^^86^959^3^^^^1
- ;;^UTILITY(U,$J,358.3,21512,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21512,1,2,0)
- ;;=2^29126
- ;;^UTILITY(U,$J,358.3,21512,1,3,0)
- ;;=3^Short Arm Splint; Dynamic
- ;;^UTILITY(U,$J,358.3,21513,0)
- ;;=29130^^86^959^1^^^^1
- ;;^UTILITY(U,$J,358.3,21513,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21513,1,2,0)
- ;;=2^29130
- ;;^UTILITY(U,$J,358.3,21513,1,3,0)
- ;;=3^Finger Splint
- ;;^UTILITY(U,$J,358.3,21514,0)
- ;;=12001^^86^960^1^^^^1
- ;;^UTILITY(U,$J,358.3,21514,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21514,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,21514,1,3,0)
- ;;=3^Simple repair; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,21515,0)
- ;;=12002^^86^960^2^^^^1
- ;;^UTILITY(U,$J,358.3,21515,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21515,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,21515,1,3,0)
- ;;=3^Simple repair; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,21516,0)
- ;;=12004^^86^960^3^^^^1
- ;;^UTILITY(U,$J,358.3,21516,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21516,1,2,0)
- ;;=2^12004
- ;;^UTILITY(U,$J,358.3,21516,1,3,0)
- ;;=3^Simple repair; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,21517,0)
- ;;=12005^^86^960^4^^^^1
- ;;^UTILITY(U,$J,358.3,21517,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21517,1,2,0)
- ;;=2^12005
- ;;^UTILITY(U,$J,358.3,21517,1,3,0)
- ;;=3^Simple repair; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,21518,0)
- ;;=12006^^86^960^5^^^^1
- ;;^UTILITY(U,$J,358.3,21518,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,21518,1,2,0)
- ;;=2^12006
+ ;;^UTILITY(U,$J,358.3,20241,1,4,0)
+ ;;=4^S82.434S
+ ;;^UTILITY(U,$J,358.3,20241,2)
+ ;;=^5041873
+ ;;^UTILITY(U,$J,358.3,20242,0)
+ ;;=S82.465S^^93^1000^63
+ ;;^UTILITY(U,$J,358.3,20242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20242,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20242,1,4,0)
+ ;;=4^S82.465S
+ ;;^UTILITY(U,$J,358.3,20242,2)
+ ;;=^5042177
+ ;;^UTILITY(U,$J,358.3,20243,0)
+ ;;=S82.464S^^93^1000^66
+ ;;^UTILITY(U,$J,358.3,20243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20243,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20243,1,4,0)
+ ;;=4^S82.464S
+ ;;^UTILITY(U,$J,358.3,20243,2)
+ ;;=^5042161
+ ;;^UTILITY(U,$J,358.3,20244,0)
+ ;;=S82.445S^^93^1000^67
+ ;;^UTILITY(U,$J,358.3,20244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20244,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,20244,1,4,0)
+ ;;=4^S82.445S
+ ;;^UTILITY(U,$J,358.3,20244,2)
+ ;;=^5041985
+ ;;^UTILITY(U,$J,358.3,20245,0)
+ ;;=S82.444S^^93^1000^69
+ ;;^UTILITY(U,$J,358.3,20245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20245,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,20245,1,4,0)
+ ;;=4^S82.444S
+ ;;^UTILITY(U,$J,358.3,20245,2)
+ ;;=^5041969
+ ;;^UTILITY(U,$J,358.3,20246,0)
+ ;;=S82.425S^^93^1000^72
+ ;;^UTILITY(U,$J,358.3,20246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20246,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20246,1,4,0)
+ ;;=4^S82.425S
+ ;;^UTILITY(U,$J,358.3,20246,2)
+ ;;=^5041793
+ ;;^UTILITY(U,$J,358.3,20247,0)
+ ;;=S82.424S^^93^1000^74
+ ;;^UTILITY(U,$J,358.3,20247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20247,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,20247,1,4,0)
+ ;;=4^S82.424S
+ ;;^UTILITY(U,$J,358.3,20247,2)
+ ;;=^5041777
+ ;;^UTILITY(U,$J,358.3,20248,0)
+ ;;=M84.464S^^93^1000^75
+ ;;^UTILITY(U,$J,358.3,20248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20248,1,3,0)
+ ;;=3^Pathological fracture, left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20248,1,4,0)
+ ;;=4^M84.464S
+ ;;^UTILITY(U,$J,358.3,20248,2)
+ ;;=^5013955
+ ;;^UTILITY(U,$J,358.3,20249,0)
+ ;;=M84.463S^^93^1000^77
+ ;;^UTILITY(U,$J,358.3,20249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20249,1,3,0)
+ ;;=3^Pathological fracture, right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20249,1,4,0)
+ ;;=4^M84.463S
+ ;;^UTILITY(U,$J,358.3,20249,2)
+ ;;=^5013949
+ ;;^UTILITY(U,$J,358.3,20250,0)
+ ;;=S89.312S^^93^1000^81
+ ;;^UTILITY(U,$J,358.3,20250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20250,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20250,1,4,0)
+ ;;=4^S89.312S
+ ;;^UTILITY(U,$J,358.3,20250,2)
+ ;;=^5137372
+ ;;^UTILITY(U,$J,358.3,20251,0)
+ ;;=S89.311S^^93^1000^82
+ ;;^UTILITY(U,$J,358.3,20251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20251,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20251,1,4,0)
+ ;;=4^S89.311S
+ ;;^UTILITY(U,$J,358.3,20251,2)
+ ;;=^5043822
+ ;;^UTILITY(U,$J,358.3,20252,0)
+ ;;=S89.212S^^93^1000^85
+ ;;^UTILITY(U,$J,358.3,20252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20252,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,20252,1,4,0)
+ ;;=4^S89.212S
+ ;;^UTILITY(U,$J,358.3,20252,2)
+ ;;=^5043780

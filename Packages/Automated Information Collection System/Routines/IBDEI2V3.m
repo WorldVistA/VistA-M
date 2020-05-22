@@ -1,136 +1,124 @@
-IBDEI2V3 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2V3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48021,1,4,0)
- ;;=4^C44.212
- ;;^UTILITY(U,$J,358.3,48021,2)
- ;;=^5001032
- ;;^UTILITY(U,$J,358.3,48022,0)
- ;;=C44.219^^209^2372^1
- ;;^UTILITY(U,$J,358.3,48022,1,0)
+ ;;^UTILITY(U,$J,358.3,45652,1,3,0)
+ ;;=3^Chronic Embolism/Thrombosis Unspec Vein
+ ;;^UTILITY(U,$J,358.3,45652,1,4,0)
+ ;;=4^I82.91
+ ;;^UTILITY(U,$J,358.3,45652,2)
+ ;;=^5007941
+ ;;^UTILITY(U,$J,358.3,45653,0)
+ ;;=I25.9^^172^2275^8
+ ;;^UTILITY(U,$J,358.3,45653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48022,1,3,0)
- ;;=3^BCC of Skin of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,48022,1,4,0)
- ;;=4^C44.219
- ;;^UTILITY(U,$J,358.3,48022,2)
- ;;=^5001033
- ;;^UTILITY(U,$J,358.3,48023,0)
- ;;=C44.122^^209^2372^28
- ;;^UTILITY(U,$J,358.3,48023,1,0)
+ ;;^UTILITY(U,$J,358.3,45653,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45653,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,45653,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,45654,0)
+ ;;=D68.9^^172^2275^9
+ ;;^UTILITY(U,$J,358.3,45654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48023,1,3,0)
- ;;=3^SCC of Skin of Right Eyelid
- ;;^UTILITY(U,$J,358.3,48023,1,4,0)
- ;;=4^C44.122
- ;;^UTILITY(U,$J,358.3,48023,2)
- ;;=^5001023
- ;;^UTILITY(U,$J,358.3,48024,0)
- ;;=C44.129^^209^2372^26
- ;;^UTILITY(U,$J,358.3,48024,1,0)
+ ;;^UTILITY(U,$J,358.3,45654,1,3,0)
+ ;;=3^Coagulation Defect,Unspec
+ ;;^UTILITY(U,$J,358.3,45654,1,4,0)
+ ;;=4^D68.9
+ ;;^UTILITY(U,$J,358.3,45654,2)
+ ;;=^5002364
+ ;;^UTILITY(U,$J,358.3,45655,0)
+ ;;=D68.8^^172^2275^10
+ ;;^UTILITY(U,$J,358.3,45655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48024,1,3,0)
- ;;=3^SCC of Skin of Left Eyelid
- ;;^UTILITY(U,$J,358.3,48024,1,4,0)
- ;;=4^C44.129
- ;;^UTILITY(U,$J,358.3,48024,2)
- ;;=^5001024
- ;;^UTILITY(U,$J,358.3,48025,0)
- ;;=C44.222^^209^2372^27
- ;;^UTILITY(U,$J,358.3,48025,1,0)
+ ;;^UTILITY(U,$J,358.3,45655,1,3,0)
+ ;;=3^Coagulation Defects,Other Spec
+ ;;^UTILITY(U,$J,358.3,45655,1,4,0)
+ ;;=4^D68.8
+ ;;^UTILITY(U,$J,358.3,45655,2)
+ ;;=^5002363
+ ;;^UTILITY(U,$J,358.3,45656,0)
+ ;;=D68.318^^172^2275^11
+ ;;^UTILITY(U,$J,358.3,45656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48025,1,3,0)
- ;;=3^SCC of Skin of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,48025,1,4,0)
- ;;=4^C44.222
- ;;^UTILITY(U,$J,358.3,48025,2)
- ;;=^5001035
- ;;^UTILITY(U,$J,358.3,48026,0)
- ;;=C44.229^^209^2372^25
- ;;^UTILITY(U,$J,358.3,48026,1,0)
+ ;;^UTILITY(U,$J,358.3,45656,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Intrinsic Circ Anticoagulants
+ ;;^UTILITY(U,$J,358.3,45656,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,45656,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,45657,0)
+ ;;=Z79.01^^172^2275^12
+ ;;^UTILITY(U,$J,358.3,45657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48026,1,3,0)
- ;;=3^SCC of Skin of Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,48026,1,4,0)
- ;;=4^C44.229
- ;;^UTILITY(U,$J,358.3,48026,2)
- ;;=^5001036
- ;;^UTILITY(U,$J,358.3,48027,0)
- ;;=C44.42^^209^2372^29
- ;;^UTILITY(U,$J,358.3,48027,1,0)
+ ;;^UTILITY(U,$J,358.3,45657,1,3,0)
+ ;;=3^Long Term (Current) Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,45657,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,45657,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,45658,0)
+ ;;=Z79.02^^172^2275^13
+ ;;^UTILITY(U,$J,358.3,45658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48027,1,3,0)
- ;;=3^SCC of Skin of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,48027,1,4,0)
- ;;=4^C44.42
- ;;^UTILITY(U,$J,358.3,48027,2)
- ;;=^340477
- ;;^UTILITY(U,$J,358.3,48028,0)
- ;;=C45.0^^209^2373^22
- ;;^UTILITY(U,$J,358.3,48028,1,0)
+ ;;^UTILITY(U,$J,358.3,45658,1,3,0)
+ ;;=3^Long Term (Current) use of Antithrombotics/Antiplatelets
+ ;;^UTILITY(U,$J,358.3,45658,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,45658,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,45659,0)
+ ;;=D68.62^^172^2275^14
+ ;;^UTILITY(U,$J,358.3,45659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48028,1,3,0)
- ;;=3^Mesothelioma of Pleura
- ;;^UTILITY(U,$J,358.3,48028,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,48028,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,48029,0)
- ;;=C45.1^^209^2373^21
- ;;^UTILITY(U,$J,358.3,48029,1,0)
+ ;;^UTILITY(U,$J,358.3,45659,1,3,0)
+ ;;=3^Lupus Anticoagulant Syndrome
+ ;;^UTILITY(U,$J,358.3,45659,1,4,0)
+ ;;=4^D68.62
+ ;;^UTILITY(U,$J,358.3,45659,2)
+ ;;=^5002361
+ ;;^UTILITY(U,$J,358.3,45660,0)
+ ;;=I73.9^^172^2275^15
+ ;;^UTILITY(U,$J,358.3,45660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48029,1,3,0)
- ;;=3^Mesothelioma of Peritoneum
- ;;^UTILITY(U,$J,358.3,48029,1,4,0)
- ;;=4^C45.1
- ;;^UTILITY(U,$J,358.3,48029,2)
- ;;=^5001096
- ;;^UTILITY(U,$J,358.3,48030,0)
- ;;=C45.2^^209^2373^20
- ;;^UTILITY(U,$J,358.3,48030,1,0)
+ ;;^UTILITY(U,$J,358.3,45660,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45660,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,45660,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,45661,0)
+ ;;=Z86.79^^172^2275^16
+ ;;^UTILITY(U,$J,358.3,45661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48030,1,3,0)
- ;;=3^Mesothelioma of Pericardium
- ;;^UTILITY(U,$J,358.3,48030,1,4,0)
- ;;=4^C45.2
- ;;^UTILITY(U,$J,358.3,48030,2)
- ;;=^5001097
- ;;^UTILITY(U,$J,358.3,48031,0)
- ;;=C45.7^^209^2373^19
- ;;^UTILITY(U,$J,358.3,48031,1,0)
+ ;;^UTILITY(U,$J,358.3,45661,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,45661,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,45661,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,45662,0)
+ ;;=Z86.711^^172^2275^17
+ ;;^UTILITY(U,$J,358.3,45662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48031,1,3,0)
- ;;=3^Mesothelioma of Other Sites
- ;;^UTILITY(U,$J,358.3,48031,1,4,0)
- ;;=4^C45.7
- ;;^UTILITY(U,$J,358.3,48031,2)
- ;;=^5001098
- ;;^UTILITY(U,$J,358.3,48032,0)
- ;;=C45.9^^209^2373^23
- ;;^UTILITY(U,$J,358.3,48032,1,0)
+ ;;^UTILITY(U,$J,358.3,45662,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,45662,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,45662,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,45663,0)
+ ;;=Z86.718^^172^2275^18
+ ;;^UTILITY(U,$J,358.3,45663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48032,1,3,0)
- ;;=3^Mesothelioma,Unspec
- ;;^UTILITY(U,$J,358.3,48032,1,4,0)
- ;;=4^C45.9
- ;;^UTILITY(U,$J,358.3,48032,2)
- ;;=^5001099
- ;;^UTILITY(U,$J,358.3,48033,0)
- ;;=C46.0^^209^2373^7
- ;;^UTILITY(U,$J,358.3,48033,1,0)
+ ;;^UTILITY(U,$J,358.3,45663,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism
+ ;;^UTILITY(U,$J,358.3,45663,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,45663,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,45664,0)
+ ;;=Z95.2^^172^2275^19
+ ;;^UTILITY(U,$J,358.3,45664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48033,1,3,0)
- ;;=3^Kaposi's Sarcoma of Skin
- ;;^UTILITY(U,$J,358.3,48033,1,4,0)
- ;;=4^C46.0
- ;;^UTILITY(U,$J,358.3,48033,2)
- ;;=^5001100
- ;;^UTILITY(U,$J,358.3,48034,0)
- ;;=C46.1^^209^2373^8
- ;;^UTILITY(U,$J,358.3,48034,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48034,1,3,0)
- ;;=3^Kaposi's Sarcoma of Soft Tissue
- ;;^UTILITY(U,$J,358.3,48034,1,4,0)
- ;;=4^C46.1

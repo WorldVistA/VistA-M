@@ -1,134 +1,120 @@
-IBDEI1AJ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1AJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21946,1,0)
+ ;;^UTILITY(U,$J,358.3,20643,0)
+ ;;=99354^^94^1016^1^^^^1
+ ;;^UTILITY(U,$J,358.3,20643,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20643,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,20643,1,3,0)
+ ;;=3^Prolonged Svc Office/Outpt;1st hr
+ ;;^UTILITY(U,$J,358.3,20644,0)
+ ;;=99355^^94^1016^2^^^^1
+ ;;^UTILITY(U,$J,358.3,20644,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20644,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,20644,1,3,0)
+ ;;=3^Prolonged Svc Office/Outpt;Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,20645,0)
+ ;;=99356^^94^1016^3^^^^1
+ ;;^UTILITY(U,$J,358.3,20645,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20645,1,2,0)
+ ;;=2^99356
+ ;;^UTILITY(U,$J,358.3,20645,1,3,0)
+ ;;=3^Prolonged Svc,INPT/OBS,1st Hr
+ ;;^UTILITY(U,$J,358.3,20646,0)
+ ;;=99357^^94^1016^4^^^^1
+ ;;^UTILITY(U,$J,358.3,20646,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20646,1,2,0)
+ ;;=2^99357
+ ;;^UTILITY(U,$J,358.3,20646,1,3,0)
+ ;;=3^Prolonged Svc,INPT/OBS,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,20647,0)
+ ;;=90847^^94^1017^1^^^^1
+ ;;^UTILITY(U,$J,358.3,20647,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20647,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,20647,1,3,0)
+ ;;=3^Family Psychotherapy w/ Patient
+ ;;^UTILITY(U,$J,358.3,20648,0)
+ ;;=90853^^94^1017^3^^^^1
+ ;;^UTILITY(U,$J,358.3,20648,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20648,1,2,0)
+ ;;=2^90853
+ ;;^UTILITY(U,$J,358.3,20648,1,3,0)
+ ;;=3^Group Psychotherapy
+ ;;^UTILITY(U,$J,358.3,20649,0)
+ ;;=S9446^^94^1017^4^^^^1
+ ;;^UTILITY(U,$J,358.3,20649,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20649,1,2,0)
+ ;;=2^S9446
+ ;;^UTILITY(U,$J,358.3,20649,1,3,0)
+ ;;=3^Patient Educ NOC Non-Phy Grp Session
+ ;;^UTILITY(U,$J,358.3,20650,0)
+ ;;=H0005^^94^1017^2^^^^1
+ ;;^UTILITY(U,$J,358.3,20650,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20650,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,20650,1,3,0)
+ ;;=3^Group Counseling w/ Alcohol and Drug Tx Focus
+ ;;^UTILITY(U,$J,358.3,20651,0)
+ ;;=99368^^94^1018^1^^^^1
+ ;;^UTILITY(U,$J,358.3,20651,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20651,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,20651,1,3,0)
+ ;;=3^Non-Phy Team Conf w/o Pt &/or Fam;30 min+
+ ;;^UTILITY(U,$J,358.3,20652,0)
+ ;;=H0038^^94^1019^1^^^^1
+ ;;^UTILITY(U,$J,358.3,20652,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,20652,1,2,0)
+ ;;=2^H0038
+ ;;^UTILITY(U,$J,358.3,20652,1,3,0)
+ ;;=3^Peer Support,per 15 min
+ ;;^UTILITY(U,$J,358.3,20653,0)
+ ;;=T74.11XA^^95^1020^5
+ ;;^UTILITY(U,$J,358.3,20653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21946,1,3,0)
- ;;=3^Acute Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,21946,1,4,0)
- ;;=4^H65.01
- ;;^UTILITY(U,$J,358.3,21946,2)
- ;;=^5006570
- ;;^UTILITY(U,$J,358.3,21947,0)
- ;;=H65.23^^87^971^15
- ;;^UTILITY(U,$J,358.3,21947,1,0)
+ ;;^UTILITY(U,$J,358.3,20653,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,20653,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,20653,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,20654,0)
+ ;;=T74.11XD^^95^1020^6
+ ;;^UTILITY(U,$J,358.3,20654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21947,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,21947,1,4,0)
- ;;=4^H65.23
- ;;^UTILITY(U,$J,358.3,21947,2)
- ;;=^5006596
- ;;^UTILITY(U,$J,358.3,21948,0)
- ;;=H65.22^^87^971^16
- ;;^UTILITY(U,$J,358.3,21948,1,0)
+ ;;^UTILITY(U,$J,358.3,20654,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,20654,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,20654,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,20655,0)
+ ;;=T76.11XA^^95^1020^7
+ ;;^UTILITY(U,$J,358.3,20655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21948,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,21948,1,4,0)
- ;;=4^H65.22
- ;;^UTILITY(U,$J,358.3,21948,2)
- ;;=^5006595
- ;;^UTILITY(U,$J,358.3,21949,0)
- ;;=H65.21^^87^971^17
- ;;^UTILITY(U,$J,358.3,21949,1,0)
+ ;;^UTILITY(U,$J,358.3,20655,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,20655,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,20655,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,20656,0)
+ ;;=T76.11XD^^95^1020^8
+ ;;^UTILITY(U,$J,358.3,20656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21949,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,21949,1,4,0)
- ;;=4^H65.21
- ;;^UTILITY(U,$J,358.3,21949,2)
- ;;=^5006594
- ;;^UTILITY(U,$J,358.3,21950,0)
- ;;=H66.012^^87^971^6
- ;;^UTILITY(U,$J,358.3,21950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21950,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
- ;;^UTILITY(U,$J,358.3,21950,1,4,0)
- ;;=4^H66.012
- ;;^UTILITY(U,$J,358.3,21950,2)
- ;;=^5133534
- ;;^UTILITY(U,$J,358.3,21951,0)
- ;;=H66.011^^87^971^7
- ;;^UTILITY(U,$J,358.3,21951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21951,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
- ;;^UTILITY(U,$J,358.3,21951,1,4,0)
- ;;=4^H66.011
- ;;^UTILITY(U,$J,358.3,21951,2)
- ;;=^5006621
- ;;^UTILITY(U,$J,358.3,21952,0)
- ;;=H66.91^^87^971^36
- ;;^UTILITY(U,$J,358.3,21952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21952,1,3,0)
- ;;=3^Otitis Media,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,21952,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,21952,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,21953,0)
- ;;=H66.92^^87^971^35
- ;;^UTILITY(U,$J,358.3,21953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21953,1,3,0)
- ;;=3^Otitis Media,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,21953,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,21953,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,21954,0)
- ;;=H66.93^^87^971^34
- ;;^UTILITY(U,$J,358.3,21954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21954,1,3,0)
- ;;=3^Otitis Media,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,21954,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,21954,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,21955,0)
- ;;=H81.10^^87^971^37
- ;;^UTILITY(U,$J,358.3,21955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21955,1,3,0)
- ;;=3^Paroxysmal Veritgo,Benign,Unspec Ear
- ;;^UTILITY(U,$J,358.3,21955,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,21955,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,21956,0)
- ;;=H93.13^^87^971^38
- ;;^UTILITY(U,$J,358.3,21956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21956,1,3,0)
- ;;=3^Tinnitus,Bilateral
- ;;^UTILITY(U,$J,358.3,21956,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,21956,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,21957,0)
- ;;=H93.12^^87^971^39
- ;;^UTILITY(U,$J,358.3,21957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21957,1,3,0)
- ;;=3^Tinnitus,Left Ear
- ;;^UTILITY(U,$J,358.3,21957,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,21957,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,21958,0)
- ;;=H93.11^^87^971^40
- ;;^UTILITY(U,$J,358.3,21958,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21958,1,3,0)
- ;;=3^Tinnitus,Right Ear
- ;;^UTILITY(U,$J,358.3,21958,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,21958,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,21959,0)
- ;;=H92.01^^87^971^33
+ ;;^UTILITY(U,$J,358.3,20656,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  

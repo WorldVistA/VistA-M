@@ -1,130 +1,128 @@
-IBDEI1VY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32025,0)
- ;;=S92.152A^^126^1609^7
- ;;^UTILITY(U,$J,358.3,32025,1,0)
+ ;;^UTILITY(U,$J,358.3,30121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32025,1,3,0)
- ;;=3^Disp avulsion fx (chip) of lft talus, init
- ;;^UTILITY(U,$J,358.3,32025,1,4,0)
- ;;=4^S92.152A
- ;;^UTILITY(U,$J,358.3,32025,2)
- ;;=^5044780
- ;;^UTILITY(U,$J,358.3,32026,0)
- ;;=S92.135A^^126^1609^341
- ;;^UTILITY(U,$J,358.3,32026,1,0)
+ ;;^UTILITY(U,$J,358.3,30121,1,3,0)
+ ;;=3^Female Orgasmic D/O
+ ;;^UTILITY(U,$J,358.3,30121,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,30121,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,30122,0)
+ ;;=F52.22^^120^1536^4
+ ;;^UTILITY(U,$J,358.3,30122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32026,1,3,0)
- ;;=3^Nondisp fx of posterior process of lft talus, init
- ;;^UTILITY(U,$J,358.3,32026,1,4,0)
- ;;=4^S92.135A
- ;;^UTILITY(U,$J,358.3,32026,2)
- ;;=^5044717
- ;;^UTILITY(U,$J,358.3,32027,0)
- ;;=S92.151A^^126^1609^8
- ;;^UTILITY(U,$J,358.3,32027,1,0)
+ ;;^UTILITY(U,$J,358.3,30122,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal D/O
+ ;;^UTILITY(U,$J,358.3,30122,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,30122,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,30123,0)
+ ;;=F52.6^^120^1536^5
+ ;;^UTILITY(U,$J,358.3,30123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32027,1,3,0)
- ;;=3^Disp avulsion fx (chip) of rt talus, init
- ;;^UTILITY(U,$J,358.3,32027,1,4,0)
- ;;=4^S92.151A
- ;;^UTILITY(U,$J,358.3,32027,2)
- ;;=^5044773
- ;;^UTILITY(U,$J,358.3,32028,0)
- ;;=S92.145A^^126^1609^245
- ;;^UTILITY(U,$J,358.3,32028,1,0)
+ ;;^UTILITY(U,$J,358.3,30123,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration D/O
+ ;;^UTILITY(U,$J,358.3,30123,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,30123,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,30124,0)
+ ;;=F52.0^^120^1536^6
+ ;;^UTILITY(U,$J,358.3,30124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32028,1,3,0)
- ;;=3^Nondisp dome fx of lft talus, init
- ;;^UTILITY(U,$J,358.3,32028,1,4,0)
- ;;=4^S92.145A
- ;;^UTILITY(U,$J,358.3,32028,2)
- ;;=^5044759
- ;;^UTILITY(U,$J,358.3,32029,0)
- ;;=S92.144A^^126^1609^247
- ;;^UTILITY(U,$J,358.3,32029,1,0)
+ ;;^UTILITY(U,$J,358.3,30124,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire D/O
+ ;;^UTILITY(U,$J,358.3,30124,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,30124,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,30125,0)
+ ;;=F52.4^^120^1536^7
+ ;;^UTILITY(U,$J,358.3,30125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32029,1,3,0)
- ;;=3^Nondisp dome fx of rt talus, init
- ;;^UTILITY(U,$J,358.3,32029,1,4,0)
- ;;=4^S92.144A
- ;;^UTILITY(U,$J,358.3,32029,2)
- ;;=^5044752
- ;;^UTILITY(U,$J,358.3,32030,0)
- ;;=S92.142A^^126^1609^21
- ;;^UTILITY(U,$J,358.3,32030,1,0)
+ ;;^UTILITY(U,$J,358.3,30125,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,30125,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,30125,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,30126,0)
+ ;;=F52.8^^120^1536^8
+ ;;^UTILITY(U,$J,358.3,30126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32030,1,3,0)
- ;;=3^Disp dome fx of lft talus, init
- ;;^UTILITY(U,$J,358.3,32030,1,4,0)
- ;;=4^S92.142A
- ;;^UTILITY(U,$J,358.3,32030,2)
- ;;=^5044738
- ;;^UTILITY(U,$J,358.3,32031,0)
- ;;=S92.141A^^126^1609^22
- ;;^UTILITY(U,$J,358.3,32031,1,0)
+ ;;^UTILITY(U,$J,358.3,30126,1,3,0)
+ ;;=3^Sexual Dysfunction,Oth Spec
+ ;;^UTILITY(U,$J,358.3,30126,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,30126,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,30127,0)
+ ;;=F52.9^^120^1536^9
+ ;;^UTILITY(U,$J,358.3,30127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32031,1,3,0)
- ;;=3^Disp dome fx of rt talus, init
- ;;^UTILITY(U,$J,358.3,32031,1,4,0)
- ;;=4^S92.141A
- ;;^UTILITY(U,$J,358.3,32031,2)
- ;;=^5044731
- ;;^UTILITY(U,$J,358.3,32032,0)
- ;;=S92.101A^^126^1609^219
- ;;^UTILITY(U,$J,358.3,32032,1,0)
+ ;;^UTILITY(U,$J,358.3,30127,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,30127,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,30127,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,30128,0)
+ ;;=G47.09^^120^1537^14
+ ;;^UTILITY(U,$J,358.3,30128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32032,1,3,0)
- ;;=3^Fx of rt talus, unspec, init
- ;;^UTILITY(U,$J,358.3,32032,1,4,0)
- ;;=4^S92.101A
- ;;^UTILITY(U,$J,358.3,32032,2)
- ;;=^5044591
- ;;^UTILITY(U,$J,358.3,32033,0)
- ;;=S92.111A^^126^1609^115
- ;;^UTILITY(U,$J,358.3,32033,1,0)
+ ;;^UTILITY(U,$J,358.3,30128,1,3,0)
+ ;;=3^Insomnia D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,30128,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,30128,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,30129,0)
+ ;;=G47.00^^120^1537^15
+ ;;^UTILITY(U,$J,358.3,30129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32033,1,3,0)
- ;;=3^Disp fx of neck of rt talus, init
- ;;^UTILITY(U,$J,358.3,32033,1,4,0)
- ;;=4^S92.111A
- ;;^UTILITY(U,$J,358.3,32033,2)
- ;;=^5044605
- ;;^UTILITY(U,$J,358.3,32034,0)
- ;;=S92.102A^^126^1609^202
- ;;^UTILITY(U,$J,358.3,32034,1,0)
+ ;;^UTILITY(U,$J,358.3,30129,1,3,0)
+ ;;=3^Insomnia D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30129,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,30129,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,30130,0)
+ ;;=G47.10^^120^1537^12
+ ;;^UTILITY(U,$J,358.3,30130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32034,1,3,0)
- ;;=3^Fx of lft talus, unspec, init
- ;;^UTILITY(U,$J,358.3,32034,1,4,0)
- ;;=4^S92.102A
- ;;^UTILITY(U,$J,358.3,32034,2)
- ;;=^5044598
- ;;^UTILITY(U,$J,358.3,32035,0)
- ;;=S92.134A^^126^1609^342
- ;;^UTILITY(U,$J,358.3,32035,1,0)
+ ;;^UTILITY(U,$J,358.3,30130,1,3,0)
+ ;;=3^Hypersomnolence D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30130,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,30130,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,30131,0)
+ ;;=G47.33^^120^1537^22
+ ;;^UTILITY(U,$J,358.3,30131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32035,1,3,0)
- ;;=3^Nondisp fx of posterior process of rt talus, init
- ;;^UTILITY(U,$J,358.3,32035,1,4,0)
- ;;=4^S92.134A
- ;;^UTILITY(U,$J,358.3,32035,2)
- ;;=^5044710
- ;;^UTILITY(U,$J,358.3,32036,0)
- ;;=S92.132A^^126^1609^116
- ;;^UTILITY(U,$J,358.3,32036,1,0)
+ ;;^UTILITY(U,$J,358.3,30131,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,30131,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,30131,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,30132,0)
+ ;;=G47.31^^120^1537^2
+ ;;^UTILITY(U,$J,358.3,30132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32036,1,3,0)
- ;;=3^Disp fx of posterior process of lft talus, init
- ;;^UTILITY(U,$J,358.3,32036,1,4,0)
- ;;=4^S92.132A
- ;;^UTILITY(U,$J,358.3,32036,2)
- ;;=^5044696
- ;;^UTILITY(U,$J,358.3,32037,0)
- ;;=S92.131A^^126^1609^117
- ;;^UTILITY(U,$J,358.3,32037,1,0)
+ ;;^UTILITY(U,$J,358.3,30132,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic
+ ;;^UTILITY(U,$J,358.3,30132,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,30132,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,30133,0)
+ ;;=G47.21^^120^1537^5
+ ;;^UTILITY(U,$J,358.3,30133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32037,1,3,0)
- ;;=3^Disp fx of posterior process of rt talus, init
+ ;;^UTILITY(U,$J,358.3,30133,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type

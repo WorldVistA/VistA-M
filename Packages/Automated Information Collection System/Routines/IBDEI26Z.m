@@ -1,138 +1,120 @@
-IBDEI26Z ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26Z ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37184,0)
- ;;=M70.31^^140^1787^69
- ;;^UTILITY(U,$J,358.3,37184,1,0)
+ ;;^UTILITY(U,$J,358.3,35007,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Sacral/Sacrocycgl Region
+ ;;^UTILITY(U,$J,358.3,35007,1,4,0)
+ ;;=4^M47.818
+ ;;^UTILITY(U,$J,358.3,35007,2)
+ ;;=^5012075
+ ;;^UTILITY(U,$J,358.3,35008,0)
+ ;;=M47.814^^137^1791^55
+ ;;^UTILITY(U,$J,358.3,35008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37184,1,3,0)
- ;;=3^Bursitis, rt elbow
- ;;^UTILITY(U,$J,358.3,37184,1,4,0)
- ;;=4^M70.31
- ;;^UTILITY(U,$J,358.3,37184,2)
- ;;=^5013050
- ;;^UTILITY(U,$J,358.3,37185,0)
- ;;=M70.32^^140^1787^67
- ;;^UTILITY(U,$J,358.3,37185,1,0)
+ ;;^UTILITY(U,$J,358.3,35008,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,35008,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,35008,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,35009,0)
+ ;;=M47.815^^137^1791^56
+ ;;^UTILITY(U,$J,358.3,35009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37185,1,3,0)
- ;;=3^Bursitis, lft elbow
- ;;^UTILITY(U,$J,358.3,37185,1,4,0)
- ;;=4^M70.32
- ;;^UTILITY(U,$J,358.3,37185,2)
- ;;=^5013051
- ;;^UTILITY(U,$J,358.3,37186,0)
- ;;=M70.41^^140^1787^206
- ;;^UTILITY(U,$J,358.3,37186,1,0)
+ ;;^UTILITY(U,$J,358.3,35009,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Thoracolumb Region
+ ;;^UTILITY(U,$J,358.3,35009,1,4,0)
+ ;;=4^M47.815
+ ;;^UTILITY(U,$J,358.3,35009,2)
+ ;;=^5012072
+ ;;^UTILITY(U,$J,358.3,35010,0)
+ ;;=M47.813^^137^1791^50
+ ;;^UTILITY(U,$J,358.3,35010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37186,1,3,0)
- ;;=3^Prepatellar bursitis, rt knee
- ;;^UTILITY(U,$J,358.3,37186,1,4,0)
- ;;=4^M70.41
- ;;^UTILITY(U,$J,358.3,37186,2)
- ;;=^5013053
- ;;^UTILITY(U,$J,358.3,37187,0)
- ;;=M70.42^^140^1787^205
- ;;^UTILITY(U,$J,358.3,37187,1,0)
+ ;;^UTILITY(U,$J,358.3,35010,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Cervicothor Region
+ ;;^UTILITY(U,$J,358.3,35010,1,4,0)
+ ;;=4^M47.813
+ ;;^UTILITY(U,$J,358.3,35010,2)
+ ;;=^5012070
+ ;;^UTILITY(U,$J,358.3,35011,0)
+ ;;=M48.32^^137^1791^57
+ ;;^UTILITY(U,$J,358.3,35011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37187,1,3,0)
- ;;=3^Prepatellar bursitis, lft knee
- ;;^UTILITY(U,$J,358.3,37187,1,4,0)
- ;;=4^M70.42
- ;;^UTILITY(U,$J,358.3,37187,2)
- ;;=^5013054
- ;;^UTILITY(U,$J,358.3,37188,0)
- ;;=M67.411^^140^1787^149
- ;;^UTILITY(U,$J,358.3,37188,1,0)
+ ;;^UTILITY(U,$J,358.3,35011,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,35011,1,4,0)
+ ;;=4^M48.32
+ ;;^UTILITY(U,$J,358.3,35011,2)
+ ;;=^5012116
+ ;;^UTILITY(U,$J,358.3,35012,0)
+ ;;=M48.36^^137^1791^59
+ ;;^UTILITY(U,$J,358.3,35012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37188,1,3,0)
- ;;=3^Ganglion, rt shoulder
- ;;^UTILITY(U,$J,358.3,37188,1,4,0)
- ;;=4^M67.411
- ;;^UTILITY(U,$J,358.3,37188,2)
- ;;=^5012957
- ;;^UTILITY(U,$J,358.3,37189,0)
- ;;=M67.412^^140^1787^141
- ;;^UTILITY(U,$J,358.3,37189,1,0)
+ ;;^UTILITY(U,$J,358.3,35012,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,35012,1,4,0)
+ ;;=4^M48.36
+ ;;^UTILITY(U,$J,358.3,35012,2)
+ ;;=^5012120
+ ;;^UTILITY(U,$J,358.3,35013,0)
+ ;;=M48.37^^137^1791^60
+ ;;^UTILITY(U,$J,358.3,35013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37189,1,3,0)
- ;;=3^Ganglion, lft shoulder
- ;;^UTILITY(U,$J,358.3,37189,1,4,0)
- ;;=4^M67.412
- ;;^UTILITY(U,$J,358.3,37189,2)
- ;;=^5012958
- ;;^UTILITY(U,$J,358.3,37190,0)
- ;;=M67.421^^140^1787^144
- ;;^UTILITY(U,$J,358.3,37190,1,0)
+ ;;^UTILITY(U,$J,358.3,35013,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,35013,1,4,0)
+ ;;=4^M48.37
+ ;;^UTILITY(U,$J,358.3,35013,2)
+ ;;=^5012121
+ ;;^UTILITY(U,$J,358.3,35014,0)
+ ;;=M48.31^^137^1791^61
+ ;;^UTILITY(U,$J,358.3,35014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37190,1,3,0)
- ;;=3^Ganglion, rt elbow
- ;;^UTILITY(U,$J,358.3,37190,1,4,0)
- ;;=4^M67.421
- ;;^UTILITY(U,$J,358.3,37190,2)
- ;;=^5012960
- ;;^UTILITY(U,$J,358.3,37191,0)
- ;;=M67.422^^140^1787^138
- ;;^UTILITY(U,$J,358.3,37191,1,0)
+ ;;^UTILITY(U,$J,358.3,35014,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,35014,1,4,0)
+ ;;=4^M48.31
+ ;;^UTILITY(U,$J,358.3,35014,2)
+ ;;=^5012115
+ ;;^UTILITY(U,$J,358.3,35015,0)
+ ;;=M48.38^^137^1791^62
+ ;;^UTILITY(U,$J,358.3,35015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37191,1,3,0)
- ;;=3^Ganglion, lft elbow
- ;;^UTILITY(U,$J,358.3,37191,1,4,0)
- ;;=4^M67.422
- ;;^UTILITY(U,$J,358.3,37191,2)
- ;;=^5012961
- ;;^UTILITY(U,$J,358.3,37192,0)
- ;;=M67.431^^140^1787^150
- ;;^UTILITY(U,$J,358.3,37192,1,0)
+ ;;^UTILITY(U,$J,358.3,35015,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,35015,1,4,0)
+ ;;=4^M48.38
+ ;;^UTILITY(U,$J,358.3,35015,2)
+ ;;=^5012122
+ ;;^UTILITY(U,$J,358.3,35016,0)
+ ;;=M48.35^^137^1791^64
+ ;;^UTILITY(U,$J,358.3,35016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37192,1,3,0)
- ;;=3^Ganglion, rt wrist
- ;;^UTILITY(U,$J,358.3,37192,1,4,0)
- ;;=4^M67.431
- ;;^UTILITY(U,$J,358.3,37192,2)
- ;;=^5012963
- ;;^UTILITY(U,$J,358.3,37193,0)
- ;;=M67.432^^140^1787^142
- ;;^UTILITY(U,$J,358.3,37193,1,0)
+ ;;^UTILITY(U,$J,358.3,35016,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,35016,1,4,0)
+ ;;=4^M48.35
+ ;;^UTILITY(U,$J,358.3,35016,2)
+ ;;=^5012119
+ ;;^UTILITY(U,$J,358.3,35017,0)
+ ;;=M48.33^^137^1791^58
+ ;;^UTILITY(U,$J,358.3,35017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37193,1,3,0)
- ;;=3^Ganglion, lft wrist
- ;;^UTILITY(U,$J,358.3,37193,1,4,0)
- ;;=4^M67.432
- ;;^UTILITY(U,$J,358.3,37193,2)
- ;;=^5012964
- ;;^UTILITY(U,$J,358.3,37194,0)
- ;;=M67.441^^140^1787^145
- ;;^UTILITY(U,$J,358.3,37194,1,0)
+ ;;^UTILITY(U,$J,358.3,35017,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,35017,1,4,0)
+ ;;=4^M48.33
+ ;;^UTILITY(U,$J,358.3,35017,2)
+ ;;=^5012117
+ ;;^UTILITY(U,$J,358.3,35018,0)
+ ;;=M48.34^^137^1791^63
+ ;;^UTILITY(U,$J,358.3,35018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37194,1,3,0)
- ;;=3^Ganglion, rt hand
- ;;^UTILITY(U,$J,358.3,37194,1,4,0)
- ;;=4^M67.441
- ;;^UTILITY(U,$J,358.3,37194,2)
- ;;=^5012966
- ;;^UTILITY(U,$J,358.3,37195,0)
- ;;=M67.442^^140^1787^139
- ;;^UTILITY(U,$J,358.3,37195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37195,1,3,0)
- ;;=3^Ganglion, lft hand
- ;;^UTILITY(U,$J,358.3,37195,1,4,0)
- ;;=4^M67.442
- ;;^UTILITY(U,$J,358.3,37195,2)
- ;;=lft^5012967
- ;;^UTILITY(U,$J,358.3,37196,0)
- ;;=M67.451^^140^1787^146
- ;;^UTILITY(U,$J,358.3,37196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37196,1,3,0)
- ;;=3^Ganglion, rt hip
- ;;^UTILITY(U,$J,358.3,37196,1,4,0)
- ;;=4^M67.451
- ;;^UTILITY(U,$J,358.3,37196,2)
- ;;=^5012969
- ;;^UTILITY(U,$J,358.3,37197,0)
- ;;=M67.452^^140^1787^147
- ;;^UTILITY(U,$J,358.3,37197,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35018,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,35018,1,4,0)
+ ;;=4^M48.34
+ ;;^UTILITY(U,$J,358.3,35018,2)
+ ;;=^5012118

@@ -1,354 +1,124 @@
-IBDEI0NR ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0NR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30131,1,4,0)
- ;;=4^M84.421D
- ;;^UTILITY(U,$J,358.3,30131,2)
- ;;=^5013819
- ;;^UTILITY(U,$J,358.3,30132,0)
- ;;=M00.862^^86^1302^3
- ;;^UTILITY(U,$J,358.3,30132,1,0)
+ ;;^UTILITY(U,$J,358.3,10571,2)
+ ;;=^5005737
+ ;;^UTILITY(U,$J,358.3,10572,0)
+ ;;=H40.043^^74^684^15
+ ;;^UTILITY(U,$J,358.3,10572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30132,1,3,0)
- ;;=3^Arthritis d/t other bacteria, left knee
- ;;^UTILITY(U,$J,358.3,30132,1,4,0)
- ;;=4^M00.862
- ;;^UTILITY(U,$J,358.3,30132,2)
- ;;=^5009686
- ;;^UTILITY(U,$J,358.3,30133,0)
- ;;=M00.861^^86^1302^4
- ;;^UTILITY(U,$J,358.3,30133,1,0)
+ ;;^UTILITY(U,$J,358.3,10572,1,3,0)
+ ;;=3^Steroid Responsive Glauc,Bilateral
+ ;;^UTILITY(U,$J,358.3,10572,1,4,0)
+ ;;=4^H40.043
+ ;;^UTILITY(U,$J,358.3,10572,2)
+ ;;=^5005738
+ ;;^UTILITY(U,$J,358.3,10573,0)
+ ;;=H40.31X1^^74^684^16
+ ;;^UTILITY(U,$J,358.3,10573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30133,1,3,0)
- ;;=3^Arthritis d/t other bacteria, right knee
- ;;^UTILITY(U,$J,358.3,30133,1,4,0)
- ;;=4^M00.861
- ;;^UTILITY(U,$J,358.3,30133,2)
- ;;=^5009685
- ;;^UTILITY(U,$J,358.3,30134,0)
- ;;=M22.42^^86^1302^10
- ;;^UTILITY(U,$J,358.3,30134,1,0)
+ ;;^UTILITY(U,$J,358.3,10573,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Mild,Right Eye
+ ;;^UTILITY(U,$J,358.3,10573,1,4,0)
+ ;;=4^H40.31X1
+ ;;^UTILITY(U,$J,358.3,10573,2)
+ ;;=^5005853
+ ;;^UTILITY(U,$J,358.3,10574,0)
+ ;;=H40.32X1^^74^684^17
+ ;;^UTILITY(U,$J,358.3,10574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30134,1,3,0)
- ;;=3^Chondromalacia patellae, left knee
- ;;^UTILITY(U,$J,358.3,30134,1,4,0)
- ;;=4^M22.42
- ;;^UTILITY(U,$J,358.3,30134,2)
- ;;=^5011187
- ;;^UTILITY(U,$J,358.3,30135,0)
- ;;=M22.41^^86^1302^11
- ;;^UTILITY(U,$J,358.3,30135,1,0)
+ ;;^UTILITY(U,$J,358.3,10574,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Mild,Left Eye
+ ;;^UTILITY(U,$J,358.3,10574,1,4,0)
+ ;;=4^H40.32X1
+ ;;^UTILITY(U,$J,358.3,10574,2)
+ ;;=^5005857
+ ;;^UTILITY(U,$J,358.3,10575,0)
+ ;;=H40.33X1^^74^684^18
+ ;;^UTILITY(U,$J,358.3,10575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30135,1,3,0)
- ;;=3^Chondromalacia patellae, right knee
- ;;^UTILITY(U,$J,358.3,30135,1,4,0)
- ;;=4^M22.41
- ;;^UTILITY(U,$J,358.3,30135,2)
- ;;=^5011186
- ;;^UTILITY(U,$J,358.3,30136,0)
- ;;=M94.262^^86^1302^12
- ;;^UTILITY(U,$J,358.3,30136,1,0)
+ ;;^UTILITY(U,$J,358.3,10575,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Mild,Bilateral
+ ;;^UTILITY(U,$J,358.3,10575,1,4,0)
+ ;;=4^H40.33X1
+ ;;^UTILITY(U,$J,358.3,10575,2)
+ ;;=^5005861
+ ;;^UTILITY(U,$J,358.3,10576,0)
+ ;;=H40.31X3^^74^684^19
+ ;;^UTILITY(U,$J,358.3,10576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30136,1,3,0)
- ;;=3^Chondromalacia, left knee
- ;;^UTILITY(U,$J,358.3,30136,1,4,0)
- ;;=4^M94.262
- ;;^UTILITY(U,$J,358.3,30136,2)
- ;;=^5015346
- ;;^UTILITY(U,$J,358.3,30137,0)
- ;;=M94.261^^86^1302^13
- ;;^UTILITY(U,$J,358.3,30137,1,0)
+ ;;^UTILITY(U,$J,358.3,10576,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Severe,Right Eye
+ ;;^UTILITY(U,$J,358.3,10576,1,4,0)
+ ;;=4^H40.31X3
+ ;;^UTILITY(U,$J,358.3,10576,2)
+ ;;=^5133503
+ ;;^UTILITY(U,$J,358.3,10577,0)
+ ;;=H40.32X3^^74^684^20
+ ;;^UTILITY(U,$J,358.3,10577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30137,1,3,0)
- ;;=3^Chondromalacia, right knee
- ;;^UTILITY(U,$J,358.3,30137,1,4,0)
- ;;=4^M94.261
- ;;^UTILITY(U,$J,358.3,30137,2)
- ;;=^5015345
- ;;^UTILITY(U,$J,358.3,30138,0)
- ;;=M24.562^^86^1302^17
- ;;^UTILITY(U,$J,358.3,30138,1,0)
+ ;;^UTILITY(U,$J,358.3,10577,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Severe,Left Eye
+ ;;^UTILITY(U,$J,358.3,10577,1,4,0)
+ ;;=4^H40.32X3
+ ;;^UTILITY(U,$J,358.3,10577,2)
+ ;;=^5133504
+ ;;^UTILITY(U,$J,358.3,10578,0)
+ ;;=H40.33X3^^74^684^21
+ ;;^UTILITY(U,$J,358.3,10578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30138,1,3,0)
- ;;=3^Contracture, left knee
- ;;^UTILITY(U,$J,358.3,30138,1,4,0)
- ;;=4^M24.562
- ;;^UTILITY(U,$J,358.3,30138,2)
- ;;=^5011418
- ;;^UTILITY(U,$J,358.3,30139,0)
- ;;=M24.561^^86^1302^18
- ;;^UTILITY(U,$J,358.3,30139,1,0)
+ ;;^UTILITY(U,$J,358.3,10578,1,3,0)
+ ;;=3^Glaucoma d/t Trauma,Severe,Bilateral
+ ;;^UTILITY(U,$J,358.3,10578,1,4,0)
+ ;;=4^H40.33X3
+ ;;^UTILITY(U,$J,358.3,10578,2)
+ ;;=^5005863
+ ;;^UTILITY(U,$J,358.3,10579,0)
+ ;;=H40.41X1^^74^684^22
+ ;;^UTILITY(U,$J,358.3,10579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30139,1,3,0)
- ;;=3^Contracture, right knee
- ;;^UTILITY(U,$J,358.3,30139,1,4,0)
- ;;=4^M24.561
- ;;^UTILITY(U,$J,358.3,30139,2)
- ;;=^5011417
- ;;^UTILITY(U,$J,358.3,30140,0)
- ;;=M23.201^^86^1302^33
- ;;^UTILITY(U,$J,358.3,30140,1,0)
+ ;;^UTILITY(U,$J,358.3,10579,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Mild,Right Eye
+ ;;^UTILITY(U,$J,358.3,10579,1,4,0)
+ ;;=4^H40.41X1
+ ;;^UTILITY(U,$J,358.3,10579,2)
+ ;;=^5005871
+ ;;^UTILITY(U,$J,358.3,10580,0)
+ ;;=H40.42X1^^74^684^23
+ ;;^UTILITY(U,$J,358.3,10580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30140,1,3,0)
- ;;=3^Derang Unsp Lateral Mensc d/t Old Tear/Inj,Left Knee
- ;;^UTILITY(U,$J,358.3,30140,1,4,0)
- ;;=4^M23.201
- ;;^UTILITY(U,$J,358.3,30140,2)
- ;;=^5011213
- ;;^UTILITY(U,$J,358.3,30141,0)
- ;;=M23.200^^86^1302^34
- ;;^UTILITY(U,$J,358.3,30141,1,0)
+ ;;^UTILITY(U,$J,358.3,10580,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Mild,Left Eye
+ ;;^UTILITY(U,$J,358.3,10580,1,4,0)
+ ;;=4^H40.42X1
+ ;;^UTILITY(U,$J,358.3,10580,2)
+ ;;=^5005875
+ ;;^UTILITY(U,$J,358.3,10581,0)
+ ;;=H40.43X1^^74^684^24
+ ;;^UTILITY(U,$J,358.3,10581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30141,1,3,0)
- ;;=3^Derang Unsp Lateral Mensc d/t Old Tear/Inj,Right Knee
- ;;^UTILITY(U,$J,358.3,30141,1,4,0)
- ;;=4^M23.200
- ;;^UTILITY(U,$J,358.3,30141,2)
- ;;=^5011212
- ;;^UTILITY(U,$J,358.3,30142,0)
- ;;=M23.204^^86^1302^35
- ;;^UTILITY(U,$J,358.3,30142,1,0)
+ ;;^UTILITY(U,$J,358.3,10581,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Mild,Bilateral
+ ;;^UTILITY(U,$J,358.3,10581,1,4,0)
+ ;;=4^H40.43X1
+ ;;^UTILITY(U,$J,358.3,10581,2)
+ ;;=^5005879
+ ;;^UTILITY(U,$J,358.3,10582,0)
+ ;;=H40.41X3^^74^684^25
+ ;;^UTILITY(U,$J,358.3,10582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30142,1,3,0)
- ;;=3^Derang Unsp Medial Menisc d/t Old Tear/Inj,Left Knee
- ;;^UTILITY(U,$J,358.3,30142,1,4,0)
- ;;=4^M23.204
- ;;^UTILITY(U,$J,358.3,30142,2)
- ;;=^5011215
- ;;^UTILITY(U,$J,358.3,30143,0)
- ;;=M23.203^^86^1302^36
- ;;^UTILITY(U,$J,358.3,30143,1,0)
+ ;;^UTILITY(U,$J,358.3,10582,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Severe,Right Eye
+ ;;^UTILITY(U,$J,358.3,10582,1,4,0)
+ ;;=4^H40.41X3
+ ;;^UTILITY(U,$J,358.3,10582,2)
+ ;;=^5133505
+ ;;^UTILITY(U,$J,358.3,10583,0)
+ ;;=H40.42X3^^74^684^26
+ ;;^UTILITY(U,$J,358.3,10583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30143,1,3,0)
- ;;=3^Derang Unsp Medial Menisc d/t Old Tear/Inj,Right Knee
- ;;^UTILITY(U,$J,358.3,30143,1,4,0)
- ;;=4^M23.203
- ;;^UTILITY(U,$J,358.3,30143,2)
- ;;=^5011214
- ;;^UTILITY(U,$J,358.3,30144,0)
- ;;=M25.462^^86^1302^57
- ;;^UTILITY(U,$J,358.3,30144,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30144,1,3,0)
- ;;=3^Effusion, left knee
- ;;^UTILITY(U,$J,358.3,30144,1,4,0)
- ;;=4^M25.462
- ;;^UTILITY(U,$J,358.3,30144,2)
- ;;=^5011592
- ;;^UTILITY(U,$J,358.3,30145,0)
- ;;=M25.461^^86^1302^58
- ;;^UTILITY(U,$J,358.3,30145,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30145,1,3,0)
- ;;=3^Effusion, right knee
- ;;^UTILITY(U,$J,358.3,30145,1,4,0)
- ;;=4^M25.461
- ;;^UTILITY(U,$J,358.3,30145,2)
- ;;=^5011591
- ;;^UTILITY(U,$J,358.3,30146,0)
- ;;=M76.32^^86^1302^59
- ;;^UTILITY(U,$J,358.3,30146,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30146,1,3,0)
- ;;=3^Iliotibial band syndrome, left leg
- ;;^UTILITY(U,$J,358.3,30146,1,4,0)
- ;;=4^M76.32
- ;;^UTILITY(U,$J,358.3,30146,2)
- ;;=^5013277
- ;;^UTILITY(U,$J,358.3,30147,0)
- ;;=M76.31^^86^1302^60
- ;;^UTILITY(U,$J,358.3,30147,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30147,1,3,0)
- ;;=3^Iliotibial band syndrome, right leg
- ;;^UTILITY(U,$J,358.3,30147,1,4,0)
- ;;=4^M76.31
- ;;^UTILITY(U,$J,358.3,30147,2)
- ;;=^5013276
- ;;^UTILITY(U,$J,358.3,30148,0)
- ;;=M23.42^^86^1302^63
- ;;^UTILITY(U,$J,358.3,30148,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30148,1,3,0)
- ;;=3^Loose body in knee, left knee
- ;;^UTILITY(U,$J,358.3,30148,1,4,0)
- ;;=4^M23.42
- ;;^UTILITY(U,$J,358.3,30148,2)
- ;;=^5011252
- ;;^UTILITY(U,$J,358.3,30149,0)
- ;;=M23.41^^86^1302^64
- ;;^UTILITY(U,$J,358.3,30149,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30149,1,3,0)
- ;;=3^Loose body in knee, right knee
- ;;^UTILITY(U,$J,358.3,30149,1,4,0)
- ;;=4^M23.41
- ;;^UTILITY(U,$J,358.3,30149,2)
- ;;=^5011251
- ;;^UTILITY(U,$J,358.3,30150,0)
- ;;=M93.262^^86^1302^65
- ;;^UTILITY(U,$J,358.3,30150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30150,1,3,0)
- ;;=3^Osteochondritis dissecans, left knee
- ;;^UTILITY(U,$J,358.3,30150,1,4,0)
- ;;=4^M93.262
- ;;^UTILITY(U,$J,358.3,30150,2)
- ;;=^5015272
- ;;^UTILITY(U,$J,358.3,30151,0)
- ;;=M93.261^^86^1302^66
- ;;^UTILITY(U,$J,358.3,30151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30151,1,3,0)
- ;;=3^Osteochondritis dissecans, right knee
- ;;^UTILITY(U,$J,358.3,30151,1,4,0)
- ;;=4^M93.261
- ;;^UTILITY(U,$J,358.3,30151,2)
- ;;=^5015271
- ;;^UTILITY(U,$J,358.3,30152,0)
- ;;=M70.52^^86^1302^8
- ;;^UTILITY(U,$J,358.3,30152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30152,1,3,0)
- ;;=3^Bursitis of Left Knee NEC
- ;;^UTILITY(U,$J,358.3,30152,1,4,0)
- ;;=4^M70.52
- ;;^UTILITY(U,$J,358.3,30152,2)
- ;;=^5013057
- ;;^UTILITY(U,$J,358.3,30153,0)
- ;;=M70.51^^86^1302^9
- ;;^UTILITY(U,$J,358.3,30153,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30153,1,3,0)
- ;;=3^Bursitis of Right Knee NEC
- ;;^UTILITY(U,$J,358.3,30153,1,4,0)
- ;;=4^M70.51
- ;;^UTILITY(U,$J,358.3,30153,2)
- ;;=^5013056
- ;;^UTILITY(U,$J,358.3,30154,0)
- ;;=S83.095A^^86^1302^45
- ;;^UTILITY(U,$J,358.3,30154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30154,1,3,0)
- ;;=3^Dislocation Left Patella, init encntr NEC
- ;;^UTILITY(U,$J,358.3,30154,1,4,0)
- ;;=4^S83.095A
- ;;^UTILITY(U,$J,358.3,30154,2)
- ;;=^5137019
- ;;^UTILITY(U,$J,358.3,30155,0)
- ;;=S83.094A^^86^1302^55
- ;;^UTILITY(U,$J,358.3,30155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30155,1,3,0)
- ;;=3^Dislocation Right Patella, init encntr NEC
- ;;^UTILITY(U,$J,358.3,30155,1,4,0)
- ;;=4^S83.094A
- ;;^UTILITY(U,$J,358.3,30155,2)
- ;;=^5042932
- ;;^UTILITY(U,$J,358.3,30156,0)
- ;;=M25.362^^86^1302^61
- ;;^UTILITY(U,$J,358.3,30156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30156,1,3,0)
- ;;=3^Instability, left knee NEC
- ;;^UTILITY(U,$J,358.3,30156,1,4,0)
- ;;=4^M25.362
- ;;^UTILITY(U,$J,358.3,30156,2)
- ;;=^5011567
- ;;^UTILITY(U,$J,358.3,30157,0)
- ;;=S83.282A^^86^1302^75
- ;;^UTILITY(U,$J,358.3,30157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30157,1,3,0)
- ;;=3^Tear of Left Knee Lat Mensc,Current Injury,Init Encntr NEC
- ;;^UTILITY(U,$J,358.3,30157,1,4,0)
- ;;=4^S83.282A
- ;;^UTILITY(U,$J,358.3,30157,2)
- ;;=^5137064
- ;;^UTILITY(U,$J,358.3,30158,0)
- ;;=S83.281A^^86^1302^77
- ;;^UTILITY(U,$J,358.3,30158,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30158,1,3,0)
- ;;=3^Tear of Right Knee Lat Mensc,Current Injury,Init Encntr NEC
- ;;^UTILITY(U,$J,358.3,30158,1,4,0)
- ;;=4^S83.281A
- ;;^UTILITY(U,$J,358.3,30158,2)
- ;;=^5043091
- ;;^UTILITY(U,$J,358.3,30159,0)
- ;;=S83.242A^^86^1302^76
- ;;^UTILITY(U,$J,358.3,30159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30159,1,3,0)
- ;;=3^Tear of Left Knee Medial Meniscus,Current Injury,Init Encntr NEC
- ;;^UTILITY(U,$J,358.3,30159,1,4,0)
- ;;=4^S83.242A
- ;;^UTILITY(U,$J,358.3,30159,2)
- ;;=^5137058
- ;;^UTILITY(U,$J,358.3,30160,0)
- ;;=S83.241A^^86^1302^78
- ;;^UTILITY(U,$J,358.3,30160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30160,1,3,0)
- ;;=3^Tear of Right Knee Medial Meniscus,Current Injry,Init Encntr NEC
- ;;^UTILITY(U,$J,358.3,30160,1,4,0)
- ;;=4^S83.241A
- ;;^UTILITY(U,$J,358.3,30160,2)
- ;;=^5043061
- ;;^UTILITY(U,$J,358.3,30161,0)
- ;;=M25.562^^86^1302^67
- ;;^UTILITY(U,$J,358.3,30161,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30161,1,3,0)
- ;;=3^Pain in left knee
- ;;^UTILITY(U,$J,358.3,30161,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,30161,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,30162,0)
- ;;=M25.561^^86^1302^68
- ;;^UTILITY(U,$J,358.3,30162,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30162,1,3,0)
- ;;=3^Pain in right knee
- ;;^UTILITY(U,$J,358.3,30162,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,30162,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,30163,0)
- ;;=M76.52^^86^1302^69
- ;;^UTILITY(U,$J,358.3,30163,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30163,1,3,0)
- ;;=3^Patellar tendinitis, left knee
- ;;^UTILITY(U,$J,358.3,30163,1,4,0)
- ;;=4^M76.52
- ;;^UTILITY(U,$J,358.3,30163,2)
- ;;=^5013283
- ;;^UTILITY(U,$J,358.3,30164,0)
- ;;=M76.51^^86^1302^70
- ;;^UTILITY(U,$J,358.3,30164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30164,1,3,0)
- ;;=3^Patellar tendinitis, right knee
- ;;^UTILITY(U,$J,358.3,30164,1,4,0)
- ;;=4^M76.51
- ;;^UTILITY(U,$J,358.3,30164,2)
- ;;=^5013282
- ;;^UTILITY(U,$J,358.3,30165,0)
- ;;=M67.52^^86^1302^71
- ;;^UTILITY(U,$J,358.3,30165,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30165,1,3,0)
- ;;=3^Plica syndrome, left knee
- ;;^UTILITY(U,$J,358.3,30165,1,4,0)
- ;;=4^M67.52
- ;;^UTILITY(U,$J,358.3,30165,2)
- ;;=^5012982
- ;;^UTILITY(U,$J,358.3,30166,0)
- ;;=M67.51^^86^1302^72
- ;;^UTILITY(U,$J,358.3,30166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30166,1,3,0)
- ;;=3^Plica syndrome, right knee
+ ;;^UTILITY(U,$J,358.3,10583,1,3,0)
+ ;;=3^Glaucoma d/t Uveitis,Severe,Left Eye
+ ;;^UTILITY(U,$J,358.3,10583,1,4,0)
+ ;;=4^H40.42X3

@@ -1,124 +1,118 @@
-IBDEI2D7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2D7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40102,1,4,0)
- ;;=4^C83.58
- ;;^UTILITY(U,$J,358.3,40102,2)
- ;;=^5001589
- ;;^UTILITY(U,$J,358.3,40103,0)
- ;;=C83.78^^156^1952^15
- ;;^UTILITY(U,$J,358.3,40103,1,0)
+ ;;^UTILITY(U,$J,358.3,37753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40103,1,3,0)
- ;;=3^Burkitt lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,40103,1,4,0)
- ;;=4^C83.78
- ;;^UTILITY(U,$J,358.3,40103,2)
- ;;=^5001599
- ;;^UTILITY(U,$J,358.3,40104,0)
- ;;=C83.18^^156^1952^35
- ;;^UTILITY(U,$J,358.3,40104,1,0)
+ ;;^UTILITY(U,$J,358.3,37753,1,3,0)
+ ;;=3^Nondisp fx dist phalanx rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37753,1,4,0)
+ ;;=4^S92.534K
+ ;;^UTILITY(U,$J,358.3,37753,2)
+ ;;=^5045540
+ ;;^UTILITY(U,$J,358.3,37754,0)
+ ;;=S92.535K^^146^1917^261
+ ;;^UTILITY(U,$J,358.3,37754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40104,1,3,0)
- ;;=3^Mantle cell lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,40104,1,4,0)
- ;;=4^C83.18
- ;;^UTILITY(U,$J,358.3,40104,2)
- ;;=^5001569
- ;;^UTILITY(U,$J,358.3,40105,0)
- ;;=C83.38^^156^1952^23
- ;;^UTILITY(U,$J,358.3,40105,1,0)
+ ;;^UTILITY(U,$J,358.3,37754,1,3,0)
+ ;;=3^Nondisp fx dist phalanx lft lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37754,1,4,0)
+ ;;=4^S92.535K
+ ;;^UTILITY(U,$J,358.3,37754,2)
+ ;;=^5045547
+ ;;^UTILITY(U,$J,358.3,37755,0)
+ ;;=S92.215K^^146^1917^259
+ ;;^UTILITY(U,$J,358.3,37755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40105,1,3,0)
- ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,40105,1,4,0)
- ;;=4^C83.38
- ;;^UTILITY(U,$J,358.3,40105,2)
- ;;=^5001579
- ;;^UTILITY(U,$J,358.3,40106,0)
- ;;=C84.68^^156^1952^12
- ;;^UTILITY(U,$J,358.3,40106,1,0)
+ ;;^UTILITY(U,$J,358.3,37755,1,3,0)
+ ;;=3^Nondisp fx cuboid bone lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37755,1,4,0)
+ ;;=4^S92.215K
+ ;;^UTILITY(U,$J,358.3,37755,2)
+ ;;=^5044868
+ ;;^UTILITY(U,$J,358.3,37756,0)
+ ;;=S92.214K^^146^1917^260
+ ;;^UTILITY(U,$J,358.3,37756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40106,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-pos, nodes mult site
- ;;^UTILITY(U,$J,358.3,40106,1,4,0)
- ;;=4^C84.68
- ;;^UTILITY(U,$J,358.3,40106,2)
- ;;=^5001659
- ;;^UTILITY(U,$J,358.3,40107,0)
- ;;=C84.78^^156^1952^11
- ;;^UTILITY(U,$J,358.3,40107,1,0)
+ ;;^UTILITY(U,$J,358.3,37756,1,3,0)
+ ;;=3^Nondisp fx cuboid bone rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37756,1,4,0)
+ ;;=4^S92.214K
+ ;;^UTILITY(U,$J,358.3,37756,2)
+ ;;=^5044861
+ ;;^UTILITY(U,$J,358.3,37757,0)
+ ;;=S92.212K^^146^1917^34
+ ;;^UTILITY(U,$J,358.3,37757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40107,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-neg, nodes mult site
- ;;^UTILITY(U,$J,358.3,40107,1,4,0)
- ;;=4^C84.78
- ;;^UTILITY(U,$J,358.3,40107,2)
- ;;=^5001669
- ;;^UTILITY(U,$J,358.3,40108,0)
- ;;=C81.08^^156^1952^43
- ;;^UTILITY(U,$J,358.3,40108,1,0)
+ ;;^UTILITY(U,$J,358.3,37757,1,3,0)
+ ;;=3^Disp fx cuboid bone lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37757,1,4,0)
+ ;;=4^S92.212K
+ ;;^UTILITY(U,$J,358.3,37757,2)
+ ;;=^5044847
+ ;;^UTILITY(U,$J,358.3,37758,0)
+ ;;=S92.211K^^146^1917^35
+ ;;^UTILITY(U,$J,358.3,37758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40108,1,3,0)
- ;;=3^Nodular lymphocyte predom Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,40108,1,4,0)
- ;;=4^C81.08
- ;;^UTILITY(U,$J,358.3,40108,2)
- ;;=^5001399
- ;;^UTILITY(U,$J,358.3,40109,0)
- ;;=C81.48^^156^1952^28
- ;;^UTILITY(U,$J,358.3,40109,1,0)
+ ;;^UTILITY(U,$J,358.3,37758,1,3,0)
+ ;;=3^Disp fx cuboid bone rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37758,1,4,0)
+ ;;=4^S92.211K
+ ;;^UTILITY(U,$J,358.3,37758,2)
+ ;;=^5044840
+ ;;^UTILITY(U,$J,358.3,37759,0)
+ ;;=S92.202K^^146^1917^222
+ ;;^UTILITY(U,$J,358.3,37759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40109,1,3,0)
- ;;=3^Lymp-rich classical Hodgkin lymphoma, lymph nodes mult site
- ;;^UTILITY(U,$J,358.3,40109,1,4,0)
- ;;=4^C81.48
- ;;^UTILITY(U,$J,358.3,40109,2)
- ;;=^5001439
- ;;^UTILITY(U,$J,358.3,40110,0)
- ;;=C81.18^^156^1952^44
- ;;^UTILITY(U,$J,358.3,40110,1,0)
+ ;;^UTILITY(U,$J,358.3,37759,1,3,0)
+ ;;=3^Fx of tarsal bone(s) lft ft, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37759,1,4,0)
+ ;;=4^S92.202K
+ ;;^UTILITY(U,$J,358.3,37759,2)
+ ;;=^5044833
+ ;;^UTILITY(U,$J,358.3,37760,0)
+ ;;=S92.201K^^146^1917^225
+ ;;^UTILITY(U,$J,358.3,37760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40110,1,3,0)
- ;;=3^Nodular sclerosis class Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,40110,1,4,0)
- ;;=4^C81.18
- ;;^UTILITY(U,$J,358.3,40110,2)
- ;;=^5001409
- ;;^UTILITY(U,$J,358.3,40111,0)
- ;;=C81.28^^156^1952^36
- ;;^UTILITY(U,$J,358.3,40111,1,0)
+ ;;^UTILITY(U,$J,358.3,37760,1,3,0)
+ ;;=3^Fx of tarsal bone(s) rt ft, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37760,1,4,0)
+ ;;=4^S92.201K
+ ;;^UTILITY(U,$J,358.3,37760,2)
+ ;;=^5044826
+ ;;^UTILITY(U,$J,358.3,37761,0)
+ ;;=S92.192K^^146^1917^200
+ ;;^UTILITY(U,$J,358.3,37761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40111,1,3,0)
- ;;=3^Mixed cellular classical Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,40111,1,4,0)
- ;;=4^C81.28
- ;;^UTILITY(U,$J,358.3,40111,2)
- ;;=^5001419
- ;;^UTILITY(U,$J,358.3,40112,0)
- ;;=C81.38^^156^1952^30
- ;;^UTILITY(U,$J,358.3,40112,1,0)
+ ;;^UTILITY(U,$J,358.3,37761,1,3,0)
+ ;;=3^Fx of lft talus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,37761,1,4,0)
+ ;;=4^S92.192K
+ ;;^UTILITY(U,$J,358.3,37761,2)
+ ;;=^5137589
+ ;;^UTILITY(U,$J,358.3,37762,0)
+ ;;=S92.191K^^146^1917^217
+ ;;^UTILITY(U,$J,358.3,37762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40112,1,3,0)
- ;;=3^Lymphocy depleted class Hodgkin lymphoma, nodes mult site
- ;;^UTILITY(U,$J,358.3,40112,1,4,0)
- ;;=4^C81.38
- ;;^UTILITY(U,$J,358.3,40112,2)
- ;;=^5001429
- ;;^UTILITY(U,$J,358.3,40113,0)
- ;;=C82.98^^156^1952^26
- ;;^UTILITY(U,$J,358.3,40113,1,0)
+ ;;^UTILITY(U,$J,358.3,37762,1,3,0)
+ ;;=3^Fx of rt talus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,37762,1,4,0)
+ ;;=4^S92.191K
+ ;;^UTILITY(U,$J,358.3,37762,2)
+ ;;=^5044819
+ ;;^UTILITY(U,$J,358.3,37763,0)
+ ;;=S92.155K^^146^1917^226
+ ;;^UTILITY(U,$J,358.3,37763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40113,1,3,0)
- ;;=3^Follicular lymphoma, unsp, lymph nodes of multiple sites
- ;;^UTILITY(U,$J,358.3,40113,1,4,0)
- ;;=4^C82.98
- ;;^UTILITY(U,$J,358.3,40113,2)
- ;;=^5001549
- ;;^UTILITY(U,$J,358.3,40114,0)
- ;;=C84.08^^156^1952^42
- ;;^UTILITY(U,$J,358.3,40114,1,0)
+ ;;^UTILITY(U,$J,358.3,37763,1,3,0)
+ ;;=3^Nondisp avuls fx (chip) lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37763,1,4,0)
+ ;;=4^S92.155K
+ ;;^UTILITY(U,$J,358.3,37763,2)
+ ;;=^5044805
+ ;;^UTILITY(U,$J,358.3,37764,0)
+ ;;=S92.154K^^146^1917^227
+ ;;^UTILITY(U,$J,358.3,37764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40114,1,3,0)
- ;;=3^Mycosis fungoides, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,37764,1,3,0)
+ ;;=3^Nondisp avuls fx (chip) rt talus, subs w/ nonunion

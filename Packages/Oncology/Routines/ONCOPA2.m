@@ -1,5 +1,5 @@
 ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
- ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,5,10**;Jul 31, 2013;Build 20
  ;
  N TX
  S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
@@ -47,12 +47,35 @@ ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
  W !,"   Radiation:                      ",ONCAB(165.5,IEN,51.2) D P Q:EX=U
  W !,"   Date Radiation Started:         ",ONCAB(165.5,IEN,51) D P Q:EX=U
  W !,"   Location of Radiation Tx:       ",ONCAB(165.5,IEN,126) D P Q:EX=U
- W !,"   Radiation Treatment Volume:     ",ONCAB(165.5,IEN,125) D P Q:EX=U
- W !,"   Regional Treatment Modality:    ",ONCAB(165.5,IEN,363) D P Q:EX=U
- W !,"   Regional Dose: cGy:             ",ONCAB(165.5,IEN,442) D P Q:EX=U
- W !,"   Boost Treatment Modality:       ",ONCAB(165.5,IEN,363.1) D P Q:EX=U
- W !,"   Boost Dose: cGy:                ",ONCAB(165.5,IEN,443) D P Q:EX=U
- W !,"   Number of Txs to this Volume:   ",ONCAB(165.5,IEN,56) D P Q:EX=U
+ I DATEDX<3180101 D
+ .W !,"   Radiation treatment volume...: ",ONCAB(165.5,IEN,125) D P Q:EX=U
+ .W !,"   Regional treatment modality..: ",ONCAB(165.5,IEN,363) D P Q:EX=U
+ .W !,"   Regional dose:cGy............: ",ONCAB(165.5,IEN,442) D P Q:EX=U
+ .W !,"   Boost treatment modality.....: ",ONCAB(165.5,IEN,363.1) D P Q:EX=U
+ .W !,"   Boost dose:cGy...............: ",ONCAB(165.5,IEN,443) D P Q:EX=U
+ .W !,"   Number of txs to this volume.: ",ONCAB(165.5,IEN,56) D P Q:EX=U
+ I DATEDX>3171231 D
+ .W !,"   Phase I rad treatment volume...........: ",ONCAB(165.5,IEN,5504) D P Q:EX=U
+ .W !,"   Phase I rad to draining lymph nodes....: ",ONCAB(165.5,IEN,5505) D P Q:EX=U
+ .W !,"   Phase I treatment modality.............: ",ONCAB(165.5,IEN,5506) D P Q:EX=U
+ .W !,"   Phase I rad external beam planning.....: ",ONCAB(165.5,IEN,5502) D P Q:EX=U
+ .W !,"   Phase I dose per fraction..............: ",ONCAB(165.5,IEN,5501) D P Q:EX=U
+ .W !,"   Phase I number of fractions............: ",ONCAB(165.5,IEN,5503) D P Q:EX=U
+ .W !,"   Phase I total dose.....................: ",ONCAB(165.5,IEN,5507) D P Q:EX=U
+ .W !,"   Phase II rad treatment volume..........: ",ONCAB(165.5,IEN,5514) D P Q:EX=U
+ .W !,"   Phase II rad to draining lymph nodes...: ",ONCAB(165.5,IEN,5515) D P Q:EX=U
+ .W !,"   Phase II treatment modality............: ",ONCAB(165.5,IEN,5516) D P Q:EX=U
+ .W !,"   Phase II rad external beam planning....: ",ONCAB(165.5,IEN,5512) D P Q:EX=U
+ .W !,"   Phase II dose per fraction.............: ",ONCAB(165.5,IEN,5511) D P Q:EX=U
+ .W !,"   Phase II number of fractions...........: ",ONCAB(165.5,IEN,5513) D P Q:EX=U
+ .W !,"   Phase II total dose....................: ",ONCAB(165.5,IEN,5517) D P Q:EX=U
+ .W !,"   Phase III rad treatment volume.........: ",ONCAB(165.5,IEN,5524) D P Q:EX=U
+ .W !,"   Phase III rad to draining lymph nodes..: ",ONCAB(165.5,IEN,5525) D P Q:EX=U
+ .W !,"   Phase III treatment modality...........: ",ONCAB(165.5,IEN,5526) D P Q:EX=U
+ .W !,"   Phase III rad external beam planning...: ",ONCAB(165.5,IEN,5522) D P Q:EX=U
+ .W !,"   Phase III dose per fraction............: ",ONCAB(165.5,IEN,5521) D P Q:EX=U
+ .W !,"   Phase III number of fractions..........: ",ONCAB(165.5,IEN,5523) D P Q:EX=U
+ .W !,"   Phase III total dose...................: ",ONCAB(165.5,IEN,5527) D P Q:EX=U
  W !,"   Date Radiation Ended:           ",ONCAB(165.5,IEN,361) D P Q:EX=U
  W !,"   Radiation @Fac:                 ",ONCAB(165.5,IEN,51.4) D P Q:EX=U
  W !,"   Radiation @Fac Date:            ",ONCAB(165.5,IEN,51.5) D P Q:EX=U

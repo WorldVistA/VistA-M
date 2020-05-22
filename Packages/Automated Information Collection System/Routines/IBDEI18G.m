@@ -1,134 +1,118 @@
-IBDEI18G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20963,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,20964,0)
- ;;=R93.2^^84^941^9
- ;;^UTILITY(U,$J,358.3,20964,1,0)
+ ;;^UTILITY(U,$J,358.3,19774,1,3,0)
+ ;;=3^Disp 3rd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19774,1,4,0)
+ ;;=4^S92.332S
+ ;;^UTILITY(U,$J,358.3,19774,2)
+ ;;=^5045157
+ ;;^UTILITY(U,$J,358.3,19775,0)
+ ;;=S92.331S^^93^996^6
+ ;;^UTILITY(U,$J,358.3,19775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20964,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,20964,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,20964,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,20965,0)
- ;;=R93.3^^84^941^7
- ;;^UTILITY(U,$J,358.3,20965,1,0)
+ ;;^UTILITY(U,$J,358.3,19775,1,3,0)
+ ;;=3^Disp 3rd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19775,1,4,0)
+ ;;=4^S92.331S
+ ;;^UTILITY(U,$J,358.3,19775,2)
+ ;;=^5045150
+ ;;^UTILITY(U,$J,358.3,19776,0)
+ ;;=S92.215S^^93^996^78
+ ;;^UTILITY(U,$J,358.3,19776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20965,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,20965,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,20965,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,20966,0)
- ;;=R93.4^^84^941^11
- ;;^UTILITY(U,$J,358.3,20966,1,0)
+ ;;^UTILITY(U,$J,358.3,19776,1,3,0)
+ ;;=3^Nondisp cuboid bone fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19776,1,4,0)
+ ;;=4^S92.215S
+ ;;^UTILITY(U,$J,358.3,19776,2)
+ ;;=^5044870
+ ;;^UTILITY(U,$J,358.3,19777,0)
+ ;;=S92.214S^^93^996^79
+ ;;^UTILITY(U,$J,358.3,19777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20966,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,20966,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,20966,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,20967,0)
- ;;=R93.5^^84^941^6
- ;;^UTILITY(U,$J,358.3,20967,1,0)
+ ;;^UTILITY(U,$J,358.3,19777,1,3,0)
+ ;;=3^Nondisp cuboid bone fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19777,1,4,0)
+ ;;=4^S92.214S
+ ;;^UTILITY(U,$J,358.3,19777,2)
+ ;;=^5044863
+ ;;^UTILITY(U,$J,358.3,19778,0)
+ ;;=S92.355S^^93^996^64
+ ;;^UTILITY(U,$J,358.3,19778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20967,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,20967,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,20967,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,20968,0)
- ;;=R93.6^^84^941^8
- ;;^UTILITY(U,$J,358.3,20968,1,0)
+ ;;^UTILITY(U,$J,358.3,19778,1,3,0)
+ ;;=3^Nondisp 5th metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19778,1,4,0)
+ ;;=4^S92.355S
+ ;;^UTILITY(U,$J,358.3,19778,2)
+ ;;=^5045262
+ ;;^UTILITY(U,$J,358.3,19779,0)
+ ;;=S92.354S^^93^996^65
+ ;;^UTILITY(U,$J,358.3,19779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20968,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,20968,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,20968,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,20969,0)
- ;;=R94.4^^84^941^16
- ;;^UTILITY(U,$J,358.3,20969,1,0)
+ ;;^UTILITY(U,$J,358.3,19779,1,3,0)
+ ;;=3^Nondisp 5th metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19779,1,4,0)
+ ;;=4^S92.354S
+ ;;^UTILITY(U,$J,358.3,19779,2)
+ ;;=^5045255
+ ;;^UTILITY(U,$J,358.3,19780,0)
+ ;;=S92.315S^^93^996^56
+ ;;^UTILITY(U,$J,358.3,19780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20969,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,20969,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,20969,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,20970,0)
- ;;=R94.5^^84^941^17
- ;;^UTILITY(U,$J,358.3,20970,1,0)
+ ;;^UTILITY(U,$J,358.3,19780,1,3,0)
+ ;;=3^Nondisp 1st metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19780,1,4,0)
+ ;;=4^S92.315S
+ ;;^UTILITY(U,$J,358.3,19780,2)
+ ;;=^5045094
+ ;;^UTILITY(U,$J,358.3,19781,0)
+ ;;=S92.314S^^93^996^57
+ ;;^UTILITY(U,$J,358.3,19781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20970,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,20970,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,20970,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,20971,0)
- ;;=R94.6^^84^941^21
- ;;^UTILITY(U,$J,358.3,20971,1,0)
+ ;;^UTILITY(U,$J,358.3,19781,1,3,0)
+ ;;=3^Nondisp 1st metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19781,1,4,0)
+ ;;=4^S92.314S
+ ;;^UTILITY(U,$J,358.3,19781,2)
+ ;;=^5045087
+ ;;^UTILITY(U,$J,358.3,19782,0)
+ ;;=S92.345S^^93^996^62
+ ;;^UTILITY(U,$J,358.3,19782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20971,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,20971,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,20971,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,20972,0)
- ;;=R94.7^^84^941^5
- ;;^UTILITY(U,$J,358.3,20972,1,0)
+ ;;^UTILITY(U,$J,358.3,19782,1,3,0)
+ ;;=3^Nondisp 4th metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19782,1,4,0)
+ ;;=4^S92.345S
+ ;;^UTILITY(U,$J,358.3,19782,2)
+ ;;=^5045220
+ ;;^UTILITY(U,$J,358.3,19783,0)
+ ;;=S92.344S^^93^996^63
+ ;;^UTILITY(U,$J,358.3,19783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20972,1,3,0)
- ;;=3^Abnormal Endocrine Function Sutdies NEC
- ;;^UTILITY(U,$J,358.3,20972,1,4,0)
- ;;=4^R94.7
- ;;^UTILITY(U,$J,358.3,20972,2)
- ;;=^5019744
- ;;^UTILITY(U,$J,358.3,20973,0)
- ;;=R94.31^^84^941^4
- ;;^UTILITY(U,$J,358.3,20973,1,0)
+ ;;^UTILITY(U,$J,358.3,19783,1,3,0)
+ ;;=3^Nondisp 4th metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19783,1,4,0)
+ ;;=4^S92.344S
+ ;;^UTILITY(U,$J,358.3,19783,2)
+ ;;=^5045213
+ ;;^UTILITY(U,$J,358.3,19784,0)
+ ;;=S92.235S^^93^996^86
+ ;;^UTILITY(U,$J,358.3,19784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20973,1,3,0)
- ;;=3^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,20973,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,20973,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,20974,0)
- ;;=R97.0^^84^941^67
- ;;^UTILITY(U,$J,358.3,20974,1,0)
+ ;;^UTILITY(U,$J,358.3,19784,1,3,0)
+ ;;=3^Nondisp intermed cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19784,1,4,0)
+ ;;=4^S92.235S
+ ;;^UTILITY(U,$J,358.3,19784,2)
+ ;;=^5044954
+ ;;^UTILITY(U,$J,358.3,19785,0)
+ ;;=S92.234S^^93^996^87
+ ;;^UTILITY(U,$J,358.3,19785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20974,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen 
- ;;^UTILITY(U,$J,358.3,20974,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,20974,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,20975,0)
- ;;=R97.1^^84^941^66
- ;;^UTILITY(U,$J,358.3,20975,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20975,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,20975,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,20975,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,20976,0)
- ;;=R97.2^^84^941^68
- ;;^UTILITY(U,$J,358.3,20976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20976,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,20976,1,4,0)
- ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,19785,1,3,0)
+ ;;=3^Nondisp intermed cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19785,1,4,0)
+ ;;=4^S92.234S

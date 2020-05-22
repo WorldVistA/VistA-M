@@ -1,126 +1,126 @@
-IBDEI1W0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1W0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32050,1,0)
+ ;;^UTILITY(U,$J,358.3,30145,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,30145,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,30146,0)
+ ;;=G47.411^^120^1537^17
+ ;;^UTILITY(U,$J,358.3,30146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32050,1,3,0)
- ;;=3^Disp fx of cuboid bone of lft ft, init
- ;;^UTILITY(U,$J,358.3,32050,1,4,0)
- ;;=4^S92.212A
- ;;^UTILITY(U,$J,358.3,32050,2)
- ;;=^5044843
- ;;^UTILITY(U,$J,358.3,32051,0)
- ;;=S92.214A^^126^1609^311
- ;;^UTILITY(U,$J,358.3,32051,1,0)
+ ;;^UTILITY(U,$J,358.3,30146,1,3,0)
+ ;;=3^Narcolepsy w/ Cataplexy 
+ ;;^UTILITY(U,$J,358.3,30146,1,4,0)
+ ;;=4^G47.411
+ ;;^UTILITY(U,$J,358.3,30146,2)
+ ;;=^5003981
+ ;;^UTILITY(U,$J,358.3,30147,0)
+ ;;=G47.37^^120^1537^1
+ ;;^UTILITY(U,$J,358.3,30147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32051,1,3,0)
- ;;=3^Nondisp fx of cuboid bone of rt ft, init
- ;;^UTILITY(U,$J,358.3,32051,1,4,0)
- ;;=4^S92.214A
- ;;^UTILITY(U,$J,358.3,32051,2)
- ;;=^5044857
- ;;^UTILITY(U,$J,358.3,32052,0)
- ;;=S92.215A^^126^1609^310
- ;;^UTILITY(U,$J,358.3,32052,1,0)
+ ;;^UTILITY(U,$J,358.3,30147,1,3,0)
+ ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
+ ;;^UTILITY(U,$J,358.3,30147,1,4,0)
+ ;;=4^G47.37
+ ;;^UTILITY(U,$J,358.3,30147,2)
+ ;;=^332767
+ ;;^UTILITY(U,$J,358.3,30148,0)
+ ;;=F51.11^^120^1537^10
+ ;;^UTILITY(U,$J,358.3,30148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32052,1,3,0)
- ;;=3^Nondisp fx of cuboid bone of lft ft, init
- ;;^UTILITY(U,$J,358.3,32052,1,4,0)
- ;;=4^S92.215A
- ;;^UTILITY(U,$J,358.3,32052,2)
- ;;=^5044864
- ;;^UTILITY(U,$J,358.3,32053,0)
- ;;=S92.244A^^126^1609^335
- ;;^UTILITY(U,$J,358.3,32053,1,0)
+ ;;^UTILITY(U,$J,358.3,30148,1,3,0)
+ ;;=3^Hypersomnolence D/O
+ ;;^UTILITY(U,$J,358.3,30148,1,4,0)
+ ;;=4^F51.11
+ ;;^UTILITY(U,$J,358.3,30148,2)
+ ;;=^5003609
+ ;;^UTILITY(U,$J,358.3,30149,0)
+ ;;=F51.01^^120^1537^13
+ ;;^UTILITY(U,$J,358.3,30149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32053,1,3,0)
- ;;=3^Nondisp fx of medial cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,32053,1,4,0)
- ;;=4^S92.244A
- ;;^UTILITY(U,$J,358.3,32053,2)
- ;;=^5044983
- ;;^UTILITY(U,$J,358.3,32054,0)
- ;;=S92.245A^^126^1609^334
- ;;^UTILITY(U,$J,358.3,32054,1,0)
+ ;;^UTILITY(U,$J,358.3,30149,1,3,0)
+ ;;=3^Insomnia D/O
+ ;;^UTILITY(U,$J,358.3,30149,1,4,0)
+ ;;=4^F51.01
+ ;;^UTILITY(U,$J,358.3,30149,2)
+ ;;=^5003603
+ ;;^UTILITY(U,$J,358.3,30150,0)
+ ;;=G47.36^^120^1537^25
+ ;;^UTILITY(U,$J,358.3,30150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32054,1,3,0)
- ;;=3^Nondisp fx of medial cuneiform of lft ft, init
- ;;^UTILITY(U,$J,358.3,32054,1,4,0)
- ;;=4^S92.245A
- ;;^UTILITY(U,$J,358.3,32054,2)
- ;;=^5044990
- ;;^UTILITY(U,$J,358.3,32055,0)
- ;;=S92.221A^^126^1609^100
- ;;^UTILITY(U,$J,358.3,32055,1,0)
+ ;;^UTILITY(U,$J,358.3,30150,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation Cond Class Elsewhere
+ ;;^UTILITY(U,$J,358.3,30150,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,30150,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,30151,0)
+ ;;=G47.35^^120^1537^26
+ ;;^UTILITY(U,$J,358.3,30151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32055,1,3,0)
- ;;=3^Disp fx of ltrl cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,32055,1,4,0)
- ;;=4^S92.221A
- ;;^UTILITY(U,$J,358.3,32055,2)
- ;;=^5044878
- ;;^UTILITY(U,$J,358.3,32056,0)
- ;;=S92.222A^^126^1609^99
- ;;^UTILITY(U,$J,358.3,32056,1,0)
+ ;;^UTILITY(U,$J,358.3,30151,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congen Central Alveolar
+ ;;^UTILITY(U,$J,358.3,30151,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,30151,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,30152,0)
+ ;;=G47.34^^120^1537^27
+ ;;^UTILITY(U,$J,358.3,30152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32056,1,3,0)
- ;;=3^Disp fx of ltrl cuneiform of lft ft, init
- ;;^UTILITY(U,$J,358.3,32056,1,4,0)
- ;;=4^S92.222A
- ;;^UTILITY(U,$J,358.3,32056,2)
- ;;=^5044885
- ;;^UTILITY(U,$J,358.3,32057,0)
- ;;=S92.224A^^126^1609^325
- ;;^UTILITY(U,$J,358.3,32057,1,0)
+ ;;^UTILITY(U,$J,358.3,30152,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic
+ ;;^UTILITY(U,$J,358.3,30152,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,30152,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,30153,0)
+ ;;=G47.9^^120^1537^29
+ ;;^UTILITY(U,$J,358.3,30153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32057,1,3,0)
- ;;=3^Nondisp fx of ltrl cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,32057,1,4,0)
- ;;=4^S92.224A
- ;;^UTILITY(U,$J,358.3,32057,2)
- ;;=^5044899
- ;;^UTILITY(U,$J,358.3,32058,0)
- ;;=S92.225A^^126^1609^324
- ;;^UTILITY(U,$J,358.3,32058,1,0)
+ ;;^UTILITY(U,$J,358.3,30153,1,3,0)
+ ;;=3^Sleep-Wake D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30153,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,30153,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,30154,0)
+ ;;=G47.419^^120^1537^18
+ ;;^UTILITY(U,$J,358.3,30154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32058,1,3,0)
- ;;=3^Nondisp fx of ltrl cuneiform of lft ft, init
- ;;^UTILITY(U,$J,358.3,32058,1,4,0)
- ;;=4^S92.225A
- ;;^UTILITY(U,$J,358.3,32058,2)
- ;;=^5044906
- ;;^UTILITY(U,$J,358.3,32059,0)
- ;;=S92.231A^^126^1609^96
- ;;^UTILITY(U,$J,358.3,32059,1,0)
+ ;;^UTILITY(U,$J,358.3,30154,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy
+ ;;^UTILITY(U,$J,358.3,30154,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,30154,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,30155,0)
+ ;;=R06.3^^120^1537^3
+ ;;^UTILITY(U,$J,358.3,30155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32059,1,3,0)
- ;;=3^Disp fx of intermed cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,32059,1,4,0)
- ;;=4^S92.231A
- ;;^UTILITY(U,$J,358.3,32059,2)
- ;;=^5044920
- ;;^UTILITY(U,$J,358.3,32060,0)
- ;;=S92.232A^^126^1609^95
- ;;^UTILITY(U,$J,358.3,32060,1,0)
+ ;;^UTILITY(U,$J,358.3,30155,1,3,0)
+ ;;=3^Cheyne-Stokes Breathing
+ ;;^UTILITY(U,$J,358.3,30155,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,30155,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,30156,0)
+ ;;=G47.429^^120^1537^16
+ ;;^UTILITY(U,$J,358.3,30156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32060,1,3,0)
- ;;=3^Disp fx of intermed cuneiform of lft ft, init
- ;;^UTILITY(U,$J,358.3,32060,1,4,0)
- ;;=4^S92.232A
- ;;^UTILITY(U,$J,358.3,32060,2)
- ;;=^5044927
- ;;^UTILITY(U,$J,358.3,32061,0)
- ;;=S92.234A^^126^1609^319
- ;;^UTILITY(U,$J,358.3,32061,1,0)
+ ;;^UTILITY(U,$J,358.3,30156,1,3,0)
+ ;;=3^Narcolepsy Secondary to Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,30156,1,4,0)
+ ;;=4^G47.429
+ ;;^UTILITY(U,$J,358.3,30156,2)
+ ;;=^5003984
+ ;;^UTILITY(U,$J,358.3,30157,0)
+ ;;=F10.10^^120^1538^29
+ ;;^UTILITY(U,$J,358.3,30157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32061,1,3,0)
- ;;=3^Nondisp fx of intermed cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,32061,1,4,0)
- ;;=4^S92.234A
- ;;^UTILITY(U,$J,358.3,32061,2)
- ;;=^5044941
- ;;^UTILITY(U,$J,358.3,32062,0)
- ;;=S92.235A^^126^1609^318
- ;;^UTILITY(U,$J,358.3,32062,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30157,1,3,0)
+ ;;=3^Alcohol Use DO (Mild),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30157,1,4,0)
+ ;;=4^F10.10

@@ -1,5 +1,5 @@
 IBCNEDST ;ALB/YMG - HL7 Registration Message Statistics ;07-MAR-2013
- ;;2.0;INTEGRATED BILLING;**497,506,549,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**497,506,549,595,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -14,6 +14,7 @@ GETSTAT2() ;EP
  ;            A3 - 350.9, 51.15     - HL7 MAXIMUM NUMBER
  ;            A4 - 350.9002, .05    - MAXIMUM EXTRACT NUMBER (appt)
  ;            A5 - 350.9002, .05    - MAXIMUM EXTRACT NUMBER (buffer)
+ ;            A6 - 350.9, 51.32     - MEDICARE FRESHNESS DAYS   ;/vd - IB*2*659
  ;
  N DATA,XX
  S DATA=$$GET1^DIQ(350.9,"1,",51.27,"I")            ; 270 Master Switch Realtime
@@ -25,6 +26,7 @@ GETSTAT2() ;EP
  S XX=$O(^IBE(350.9,1,51.17,"B",1,""))              ; Find Buffer multiple
  S XX=$$GET1^DIQ(350.9002,XX_",1,",.05,"I")         ; Maximum Buffer Extract
  S $P(DATA,"^",5)=XX
+ S $P(DATA,"^",6)=$$GET1^DIQ(350.9,"1,",51.32,"I") ; MEDICARE Freshness Days  ;/vd - IB*2*659
  Q DATA
  ;
 GETSTAT() ; get statistical data

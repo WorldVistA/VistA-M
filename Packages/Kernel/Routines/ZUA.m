@@ -1,13 +1,17 @@
-ZUA ;SF/LJP - AUDIT ACCESS ;11/17/94  15:07
- ;;8.0;KERNEL;;Jul 10, 1995
+ZUA ;SF/LJP - AUDIT ACCESS ;01/27/20  15:05
+ ;;8.0;KERNEL;**701**;Jul 10, 1995;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
 FAA ;Return failed access attempts
  K X S X(0)=0 F I=1:1 S X(I)=$O(^%ZUA(3.05,"U",XUF,X(I-1))) Q:X(I)'>0  S %H=$P($H,",",2),$P(^%ZUA(3.05,X(I),0),U,7)=DT_(%H\60#60/100+(%H\3600)+(%H#60/10000)/100)
  Q
 FAAL ;Record failed access attempts
- S Z1=XUNOW
-F1 L +^%ZUA(3.05,0) I $D(^%ZUA(3.05,Z1,0)) S Z1=Z1+.000001 G F1
+ ;P701 reduce lock contention
+ S Z1=$$NOW^XLFDT
+F1 L +^%ZUA(3.05,0):$G(DILOCKTM,5) I $D(^%ZUA(3.05,Z1,0)) S Z1=Z1+.000001 L -^%ZUA(3.05,0) G F1
  S $P(^(0),"^",3,4)=Z1_"^"_($P(^%ZUA(3.05,0),"^",4)+1)
- S ^%ZUA(3.05,Z1,0)=IOS_U_$P(XUVOL,U,1)_U_XUF(.1)_U_XUT_U_$P(XUCI,",",1)_U_XUF(.3)_U_$S($D(IO("ZIO")):IO("ZIO"),1:"") L -^%ZUA(3.05,0)
+ ;p701 use XUF(.2) instead of XUT
+ S XUF(.3)=$G(XUF(.3))
+ S ^%ZUA(3.05,Z1,0)=IOS_U_$P(XUVOL,U,1)_U_XUF(.1)_U_XUF(.2)_U_$P(XUCI,",",1)_U_XUF(.3)_U_$S($D(IO("ZIO")):IO("ZIO"),1:"") L -^%ZUA(3.05,0)
  I XUF=2 F I=1:1:XUF(.2) S ^%ZUA(3.05,Z1,1,I,0)=XUF(I)
  ;I XUF(.3) S ^%ZUA(3.05,"U",$P(XUVOL,U,1)_","_$P(XUCI,",",1)_","_XUF(.3),Z1)=""
  K Z1 Q

@@ -1,130 +1,130 @@
-IBDEI2UE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2UE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47699,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
- ;;^UTILITY(U,$J,358.3,47699,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,47699,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,47700,0)
- ;;=C94.42^^209^2346^29
- ;;^UTILITY(U,$J,358.3,47700,1,0)
+ ;;^UTILITY(U,$J,358.3,45340,1,4,0)
+ ;;=4^K22.10
+ ;;^UTILITY(U,$J,358.3,45340,2)
+ ;;=^329929
+ ;;^UTILITY(U,$J,358.3,45341,0)
+ ;;=K22.11^^172^2265^11
+ ;;^UTILITY(U,$J,358.3,45341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47700,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
- ;;^UTILITY(U,$J,358.3,47700,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,47700,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,47701,0)
- ;;=C94.6^^209^2346^362
- ;;^UTILITY(U,$J,358.3,47701,1,0)
+ ;;^UTILITY(U,$J,358.3,45341,1,3,0)
+ ;;=3^Esophagus ulcer w/ bleeding
+ ;;^UTILITY(U,$J,358.3,45341,1,4,0)
+ ;;=4^K22.11
+ ;;^UTILITY(U,$J,358.3,45341,2)
+ ;;=^329930
+ ;;^UTILITY(U,$J,358.3,45342,0)
+ ;;=K22.2^^172^2265^9
+ ;;^UTILITY(U,$J,358.3,45342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47701,1,3,0)
- ;;=3^Myelodysplastic Disease NEC
- ;;^UTILITY(U,$J,358.3,47701,1,4,0)
- ;;=4^C94.6
- ;;^UTILITY(U,$J,358.3,47701,2)
- ;;=^5001846
- ;;^UTILITY(U,$J,358.3,47702,0)
- ;;=C94.80^^209^2346^244
- ;;^UTILITY(U,$J,358.3,47702,1,0)
+ ;;^UTILITY(U,$J,358.3,45342,1,3,0)
+ ;;=3^Esophageal obstruction
+ ;;^UTILITY(U,$J,358.3,45342,1,4,0)
+ ;;=4^K22.2
+ ;;^UTILITY(U,$J,358.3,45342,2)
+ ;;=^5008507
+ ;;^UTILITY(U,$J,358.3,45343,0)
+ ;;=K26.9^^172^2265^5
+ ;;^UTILITY(U,$J,358.3,45343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47702,1,3,0)
- ;;=3^Leukemias NEC,Not in Remission
- ;;^UTILITY(U,$J,358.3,47702,1,4,0)
- ;;=4^C94.80
- ;;^UTILITY(U,$J,358.3,47702,2)
- ;;=^5001847
- ;;^UTILITY(U,$J,358.3,47703,0)
- ;;=C94.81^^209^2346^243
- ;;^UTILITY(U,$J,358.3,47703,1,0)
+ ;;^UTILITY(U,$J,358.3,45343,1,3,0)
+ ;;=3^Duodenal ulcer w/o hemorrhage/perforation
+ ;;^UTILITY(U,$J,358.3,45343,1,4,0)
+ ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,45343,2)
+ ;;=^5008527
+ ;;^UTILITY(U,$J,358.3,45344,0)
+ ;;=K27.9^^172^2265^30
+ ;;^UTILITY(U,$J,358.3,45344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47703,1,3,0)
- ;;=3^Leukemias NEC,In Remission
- ;;^UTILITY(U,$J,358.3,47703,1,4,0)
- ;;=4^C94.81
- ;;^UTILITY(U,$J,358.3,47703,2)
- ;;=^5001848
- ;;^UTILITY(U,$J,358.3,47704,0)
- ;;=C94.82^^209^2346^242
- ;;^UTILITY(U,$J,358.3,47704,1,0)
+ ;;^UTILITY(U,$J,358.3,45344,1,3,0)
+ ;;=3^Peptic ulcer w/o hemorrhage/perforation
+ ;;^UTILITY(U,$J,358.3,45344,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,45344,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,45345,0)
+ ;;=K57.30^^172^2265^4
+ ;;^UTILITY(U,$J,358.3,45345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47704,1,3,0)
- ;;=3^Leukemias NEC,In Relapse
- ;;^UTILITY(U,$J,358.3,47704,1,4,0)
- ;;=4^C94.82
- ;;^UTILITY(U,$J,358.3,47704,2)
- ;;=^5001849
- ;;^UTILITY(U,$J,358.3,47705,0)
- ;;=C95.00^^209^2346^6
- ;;^UTILITY(U,$J,358.3,47705,1,0)
+ ;;^UTILITY(U,$J,358.3,45345,1,3,0)
+ ;;=3^Diverticulosis lg intest w/o perforation/abscess w/o bleeding
+ ;;^UTILITY(U,$J,358.3,45345,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,45345,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,45346,0)
+ ;;=K58.9^^172^2265^25
+ ;;^UTILITY(U,$J,358.3,45346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47705,1,3,0)
- ;;=3^Acute Leukemia,Unspec Cell Type,Not in Remission
- ;;^UTILITY(U,$J,358.3,47705,1,4,0)
- ;;=4^C95.00
- ;;^UTILITY(U,$J,358.3,47705,2)
- ;;=^5001850
- ;;^UTILITY(U,$J,358.3,47706,0)
- ;;=C95.01^^209^2346^5
- ;;^UTILITY(U,$J,358.3,47706,1,0)
+ ;;^UTILITY(U,$J,358.3,45346,1,3,0)
+ ;;=3^IBS w/o diarrhea
+ ;;^UTILITY(U,$J,358.3,45346,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,45346,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,45347,0)
+ ;;=K59.09^^172^2265^3
+ ;;^UTILITY(U,$J,358.3,45347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47706,1,3,0)
- ;;=3^Acute Leukemia,Unspec Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,47706,1,4,0)
- ;;=4^C95.01
- ;;^UTILITY(U,$J,358.3,47706,2)
- ;;=^5001851
- ;;^UTILITY(U,$J,358.3,47707,0)
- ;;=C95.02^^209^2346^4
- ;;^UTILITY(U,$J,358.3,47707,1,0)
+ ;;^UTILITY(U,$J,358.3,45347,1,3,0)
+ ;;=3^Constipation, other
+ ;;^UTILITY(U,$J,358.3,45347,1,4,0)
+ ;;=4^K59.09
+ ;;^UTILITY(U,$J,358.3,45347,2)
+ ;;=^323540
+ ;;^UTILITY(U,$J,358.3,45348,0)
+ ;;=K62.5^^172^2265^21
+ ;;^UTILITY(U,$J,358.3,45348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47707,1,3,0)
- ;;=3^Acute Leukemia,Unspec Cell Type,In Relapse
- ;;^UTILITY(U,$J,358.3,47707,1,4,0)
- ;;=4^C95.02
- ;;^UTILITY(U,$J,358.3,47707,2)
- ;;=^5001852
- ;;^UTILITY(U,$J,358.3,47708,0)
- ;;=C95.10^^209^2346^81
- ;;^UTILITY(U,$J,358.3,47708,1,0)
+ ;;^UTILITY(U,$J,358.3,45348,1,3,0)
+ ;;=3^Hemorrhage of anus & rectum
+ ;;^UTILITY(U,$J,358.3,45348,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,45348,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,45349,0)
+ ;;=K63.5^^172^2265^2
+ ;;^UTILITY(U,$J,358.3,45349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47708,1,3,0)
- ;;=3^Chronic Leukemia,Unspec Cell Type,Not in Remission
- ;;^UTILITY(U,$J,358.3,47708,1,4,0)
- ;;=4^C95.10
- ;;^UTILITY(U,$J,358.3,47708,2)
- ;;=^5001853
- ;;^UTILITY(U,$J,358.3,47709,0)
- ;;=C95.11^^209^2346^79
- ;;^UTILITY(U,$J,358.3,47709,1,0)
+ ;;^UTILITY(U,$J,358.3,45349,1,3,0)
+ ;;=3^Colon polyp
+ ;;^UTILITY(U,$J,358.3,45349,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,45349,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,45350,0)
+ ;;=K64.4^^172^2265^22
+ ;;^UTILITY(U,$J,358.3,45350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47709,1,3,0)
- ;;=3^Chronic Leukemia,Unspec Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,47709,1,4,0)
- ;;=4^C95.11
- ;;^UTILITY(U,$J,358.3,47709,2)
- ;;=^5001854
- ;;^UTILITY(U,$J,358.3,47710,0)
- ;;=C95.12^^209^2346^80
- ;;^UTILITY(U,$J,358.3,47710,1,0)
+ ;;^UTILITY(U,$J,358.3,45350,1,3,0)
+ ;;=3^Hemorrhoidal skin tags, residual
+ ;;^UTILITY(U,$J,358.3,45350,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,45350,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,45351,0)
+ ;;=K64.8^^172^2265^23
+ ;;^UTILITY(U,$J,358.3,45351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47710,1,3,0)
- ;;=3^Chronic Leukemia,Unspec Cell Type,In Relapse
- ;;^UTILITY(U,$J,358.3,47710,1,4,0)
- ;;=4^C95.12
- ;;^UTILITY(U,$J,358.3,47710,2)
- ;;=^5001855
- ;;^UTILITY(U,$J,358.3,47711,0)
- ;;=C95.90^^209^2346^241
- ;;^UTILITY(U,$J,358.3,47711,1,0)
+ ;;^UTILITY(U,$J,358.3,45351,1,3,0)
+ ;;=3^Hemorrhoids, other
+ ;;^UTILITY(U,$J,358.3,45351,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,45351,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,45352,0)
+ ;;=K73.9^^172^2265^24
+ ;;^UTILITY(U,$J,358.3,45352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47711,1,3,0)
- ;;=3^Leukemia,Unspec,Not in Remission
- ;;^UTILITY(U,$J,358.3,47711,1,4,0)
- ;;=4^C95.90
- ;;^UTILITY(U,$J,358.3,47711,2)
- ;;=^5001856
+ ;;^UTILITY(U,$J,358.3,45352,1,3,0)
+ ;;=3^Hepatitis, chronic, unspec
+ ;;^UTILITY(U,$J,358.3,45352,1,4,0)
+ ;;=4^K73.9
+ ;;^UTILITY(U,$J,358.3,45352,2)
+ ;;=^5008815
+ ;;^UTILITY(U,$J,358.3,45353,0)
+ ;;=K74.60^^172^2265^1

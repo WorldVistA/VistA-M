@@ -1,136 +1,120 @@
-IBDEI23Q ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35646,2)
- ;;=^5006487
- ;;^UTILITY(U,$J,358.3,35647,0)
- ;;=H60.551^^134^1729^34
- ;;^UTILITY(U,$J,358.3,35647,1,0)
+ ;;^UTILITY(U,$J,358.3,33592,0)
+ ;;=M65.311^^132^1706^37
+ ;;^UTILITY(U,$J,358.3,33592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35647,1,3,0)
- ;;=3^AC Reactive Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,35647,1,4,0)
- ;;=4^H60.551
- ;;^UTILITY(U,$J,358.3,35647,2)
- ;;=^5006486
- ;;^UTILITY(U,$J,358.3,35648,0)
- ;;=J01.91^^134^1729^35
- ;;^UTILITY(U,$J,358.3,35648,1,0)
+ ;;^UTILITY(U,$J,358.3,33592,1,3,0)
+ ;;=3^Trigger thumb, right thumb
+ ;;^UTILITY(U,$J,358.3,33592,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,33592,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,33593,0)
+ ;;=S60.222D^^132^1706^6
+ ;;^UTILITY(U,$J,358.3,33593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35648,1,3,0)
- ;;=3^AC Recurrent Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,35648,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,35648,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,35649,0)
- ;;=J03.81^^134^1729^36
- ;;^UTILITY(U,$J,358.3,35649,1,0)
+ ;;^UTILITY(U,$J,358.3,33593,1,3,0)
+ ;;=3^Contusion of left hand, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33593,1,4,0)
+ ;;=4^S60.222D
+ ;;^UTILITY(U,$J,358.3,33593,2)
+ ;;=^5032280
+ ;;^UTILITY(U,$J,358.3,33594,0)
+ ;;=S60.221D^^132^1706^8
+ ;;^UTILITY(U,$J,358.3,33594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35649,1,3,0)
- ;;=3^AC Recurrent Tonsillitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,35649,1,4,0)
- ;;=4^J03.81
- ;;^UTILITY(U,$J,358.3,35649,2)
- ;;=^5008134
- ;;^UTILITY(U,$J,358.3,35650,0)
- ;;=J03.91^^134^1729^37
- ;;^UTILITY(U,$J,358.3,35650,1,0)
+ ;;^UTILITY(U,$J,358.3,33594,1,3,0)
+ ;;=3^Contusion of right hand, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33594,1,4,0)
+ ;;=4^S60.221D
+ ;;^UTILITY(U,$J,358.3,33594,2)
+ ;;=^5032277
+ ;;^UTILITY(U,$J,358.3,33595,0)
+ ;;=M19.141^^132^1706^21
+ ;;^UTILITY(U,$J,358.3,33595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35650,1,3,0)
- ;;=3^AC Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,35650,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,35650,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,35651,0)
- ;;=J01.90^^134^1729^38
- ;;^UTILITY(U,$J,358.3,35651,1,0)
+ ;;^UTILITY(U,$J,358.3,33595,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, right hand
+ ;;^UTILITY(U,$J,358.3,33595,1,4,0)
+ ;;=4^M19.141
+ ;;^UTILITY(U,$J,358.3,33595,2)
+ ;;=^5010832
+ ;;^UTILITY(U,$J,358.3,33596,0)
+ ;;=M19.142^^132^1706^20
+ ;;^UTILITY(U,$J,358.3,33596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35651,1,3,0)
- ;;=3^AC Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,35651,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,35651,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,35652,0)
- ;;=J03.80^^134^1729^39
- ;;^UTILITY(U,$J,358.3,35652,1,0)
+ ;;^UTILITY(U,$J,358.3,33596,1,3,0)
+ ;;=3^Post-traumatic osteoarthritis, left hand
+ ;;^UTILITY(U,$J,358.3,33596,1,4,0)
+ ;;=4^M19.142
+ ;;^UTILITY(U,$J,358.3,33596,2)
+ ;;=^5010833
+ ;;^UTILITY(U,$J,358.3,33597,0)
+ ;;=M19.231^^132^1706^25
+ ;;^UTILITY(U,$J,358.3,33597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35652,1,3,0)
- ;;=3^AC Tonsillitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,35652,1,4,0)
- ;;=4^J03.80
- ;;^UTILITY(U,$J,358.3,35652,2)
- ;;=^5008133
- ;;^UTILITY(U,$J,358.3,35653,0)
- ;;=J03.90^^134^1729^40
- ;;^UTILITY(U,$J,358.3,35653,1,0)
+ ;;^UTILITY(U,$J,358.3,33597,1,3,0)
+ ;;=3^Secondary osteoarthritis, right wrist
+ ;;^UTILITY(U,$J,358.3,33597,1,4,0)
+ ;;=4^M19.231
+ ;;^UTILITY(U,$J,358.3,33597,2)
+ ;;=^5010844
+ ;;^UTILITY(U,$J,358.3,33598,0)
+ ;;=M19.232^^132^1706^24
+ ;;^UTILITY(U,$J,358.3,33598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35653,1,3,0)
- ;;=3^AC Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,35653,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,35653,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,35654,0)
- ;;=B44.81^^134^1729^43
- ;;^UTILITY(U,$J,358.3,35654,1,0)
+ ;;^UTILITY(U,$J,358.3,33598,1,3,0)
+ ;;=3^Secondary osteoarthritis, left wrist
+ ;;^UTILITY(U,$J,358.3,33598,1,4,0)
+ ;;=4^M19.232
+ ;;^UTILITY(U,$J,358.3,33598,2)
+ ;;=^5010845
+ ;;^UTILITY(U,$J,358.3,33599,0)
+ ;;=S40.022A^^132^1707^1
+ ;;^UTILITY(U,$J,358.3,33599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35654,1,3,0)
- ;;=3^Allergic Bronchopulmonary Aspergillosis
- ;;^UTILITY(U,$J,358.3,35654,1,4,0)
- ;;=4^B44.81
- ;;^UTILITY(U,$J,358.3,35654,2)
- ;;=^10945
- ;;^UTILITY(U,$J,358.3,35655,0)
- ;;=B44.9^^134^1729^45
- ;;^UTILITY(U,$J,358.3,35655,1,0)
+ ;;^UTILITY(U,$J,358.3,33599,1,3,0)
+ ;;=3^Contusion of left upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,33599,1,4,0)
+ ;;=4^S40.022A
+ ;;^UTILITY(U,$J,358.3,33599,2)
+ ;;=^5026165
+ ;;^UTILITY(U,$J,358.3,33600,0)
+ ;;=S40.021A^^132^1707^3
+ ;;^UTILITY(U,$J,358.3,33600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35655,1,3,0)
- ;;=3^Aspergillosis,Unspec
- ;;^UTILITY(U,$J,358.3,35655,1,4,0)
- ;;=4^B44.9
- ;;^UTILITY(U,$J,358.3,35655,2)
- ;;=^5000668
- ;;^UTILITY(U,$J,358.3,35656,0)
- ;;=B40.9^^134^1729^47
- ;;^UTILITY(U,$J,358.3,35656,1,0)
+ ;;^UTILITY(U,$J,358.3,33600,1,3,0)
+ ;;=3^Contusion of right upper arm, initial encounter
+ ;;^UTILITY(U,$J,358.3,33600,1,4,0)
+ ;;=4^S40.021A
+ ;;^UTILITY(U,$J,358.3,33600,2)
+ ;;=^5026162
+ ;;^UTILITY(U,$J,358.3,33601,0)
+ ;;=M84.422A^^132^1707^9
+ ;;^UTILITY(U,$J,358.3,33601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35656,1,3,0)
- ;;=3^Blastomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,35656,1,4,0)
- ;;=4^B40.9
- ;;^UTILITY(U,$J,358.3,35656,2)
- ;;=^5000646
- ;;^UTILITY(U,$J,358.3,35657,0)
- ;;=J18.0^^134^1729^48
- ;;^UTILITY(U,$J,358.3,35657,1,0)
+ ;;^UTILITY(U,$J,358.3,33601,1,3,0)
+ ;;=3^Pathological fracture, left humerus, init for fx
+ ;;^UTILITY(U,$J,358.3,33601,1,4,0)
+ ;;=4^M84.422A
+ ;;^UTILITY(U,$J,358.3,33601,2)
+ ;;=^5013824
+ ;;^UTILITY(U,$J,358.3,33602,0)
+ ;;=M84.421A^^132^1707^11
+ ;;^UTILITY(U,$J,358.3,33602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35657,1,3,0)
- ;;=3^Bronchopneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,35657,1,4,0)
- ;;=4^J18.0
- ;;^UTILITY(U,$J,358.3,35657,2)
- ;;=^5008182
- ;;^UTILITY(U,$J,358.3,35658,0)
- ;;=B45.1^^134^1729^49
- ;;^UTILITY(U,$J,358.3,35658,1,0)
+ ;;^UTILITY(U,$J,358.3,33602,1,3,0)
+ ;;=3^Pathological fracture, right humerus, init for fx
+ ;;^UTILITY(U,$J,358.3,33602,1,4,0)
+ ;;=4^M84.421A
+ ;;^UTILITY(U,$J,358.3,33602,2)
+ ;;=^5013818
+ ;;^UTILITY(U,$J,358.3,33603,0)
+ ;;=S42.202A^^132^1707^5
+ ;;^UTILITY(U,$J,358.3,33603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35658,1,3,0)
- ;;=3^Cerebral Cryptococcosis
- ;;^UTILITY(U,$J,358.3,35658,1,4,0)
- ;;=4^B45.1
- ;;^UTILITY(U,$J,358.3,35658,2)
- ;;=^5000670
- ;;^UTILITY(U,$J,358.3,35659,0)
- ;;=J16.0^^134^1729^50
- ;;^UTILITY(U,$J,358.3,35659,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35659,1,3,0)
- ;;=3^Chlamydial Pneumonia
- ;;^UTILITY(U,$J,358.3,35659,1,4,0)
- ;;=4^J16.0
- ;;^UTILITY(U,$J,358.3,35659,2)
- ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,33603,1,3,0)
+ ;;=3^Fracture of upper end of left humerus, init for clos fx,Unspec

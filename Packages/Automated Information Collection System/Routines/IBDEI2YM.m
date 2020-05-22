@@ -1,130 +1,130 @@
-IBDEI2YM ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2YM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49616,1,4,0)
- ;;=4^S32.14XS
- ;;^UTILITY(U,$J,358.3,49616,2)
- ;;=^5024604
- ;;^UTILITY(U,$J,358.3,49617,0)
- ;;=S32.15XS^^216^2419^48
- ;;^UTILITY(U,$J,358.3,49617,1,0)
+ ;;^UTILITY(U,$J,358.3,47235,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,47235,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,47236,0)
+ ;;=H57.11^^181^2359^16
+ ;;^UTILITY(U,$J,358.3,47236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49617,1,3,0)
- ;;=3^Type 2 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49617,1,4,0)
- ;;=4^S32.15XS
- ;;^UTILITY(U,$J,358.3,49617,2)
- ;;=^5024610
- ;;^UTILITY(U,$J,358.3,49618,0)
- ;;=S32.16XS^^216^2419^49
- ;;^UTILITY(U,$J,358.3,49618,1,0)
+ ;;^UTILITY(U,$J,358.3,47236,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,47236,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,47236,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,47237,0)
+ ;;=H57.12^^181^2359^15
+ ;;^UTILITY(U,$J,358.3,47237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49618,1,3,0)
- ;;=3^Type 3 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49618,1,4,0)
- ;;=4^S32.16XS
- ;;^UTILITY(U,$J,358.3,49618,2)
- ;;=^5024616
- ;;^UTILITY(U,$J,358.3,49619,0)
- ;;=S32.17XS^^216^2419^56
- ;;^UTILITY(U,$J,358.3,49619,1,0)
+ ;;^UTILITY(U,$J,358.3,47237,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,47237,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,47237,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,47238,0)
+ ;;=H92.01^^181^2359^25
+ ;;^UTILITY(U,$J,358.3,47238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49619,1,3,0)
- ;;=3^Type 4 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,49619,1,4,0)
- ;;=4^S32.17XS
- ;;^UTILITY(U,$J,358.3,49619,2)
- ;;=^5024622
- ;;^UTILITY(U,$J,358.3,49620,0)
- ;;=S32.2XXS^^216^2419^19
- ;;^UTILITY(U,$J,358.3,49620,1,0)
+ ;;^UTILITY(U,$J,358.3,47238,1,3,0)
+ ;;=3^Otalgia,Right Ear
+ ;;^UTILITY(U,$J,358.3,47238,1,4,0)
+ ;;=4^H92.01
+ ;;^UTILITY(U,$J,358.3,47238,2)
+ ;;=^5006945
+ ;;^UTILITY(U,$J,358.3,47239,0)
+ ;;=H92.02^^181^2359^24
+ ;;^UTILITY(U,$J,358.3,47239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49620,1,3,0)
- ;;=3^Fracture of coccyx, sequela
- ;;^UTILITY(U,$J,358.3,49620,1,4,0)
- ;;=4^S32.2XXS
- ;;^UTILITY(U,$J,358.3,49620,2)
- ;;=^5024634
- ;;^UTILITY(U,$J,358.3,49621,0)
- ;;=S12.110S^^216^2419^1
- ;;^UTILITY(U,$J,358.3,49621,1,0)
+ ;;^UTILITY(U,$J,358.3,47239,1,3,0)
+ ;;=3^Otalgia,Left Ear
+ ;;^UTILITY(U,$J,358.3,47239,1,4,0)
+ ;;=4^H92.02
+ ;;^UTILITY(U,$J,358.3,47239,2)
+ ;;=^5006946
+ ;;^UTILITY(U,$J,358.3,47240,0)
+ ;;=H92.03^^181^2359^23
+ ;;^UTILITY(U,$J,358.3,47240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49621,1,3,0)
- ;;=3^Anterior displaced Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,49621,1,4,0)
- ;;=4^S12.110S
- ;;^UTILITY(U,$J,358.3,49621,2)
- ;;=^5021622
- ;;^UTILITY(U,$J,358.3,49622,0)
- ;;=S12.112S^^216^2419^23
- ;;^UTILITY(U,$J,358.3,49622,1,0)
+ ;;^UTILITY(U,$J,358.3,47240,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,47240,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,47240,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,47241,0)
+ ;;=J00.^^181^2359^2
+ ;;^UTILITY(U,$J,358.3,47241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49622,1,3,0)
- ;;=3^Nondisp Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,49622,1,4,0)
- ;;=4^S12.112S
- ;;^UTILITY(U,$J,358.3,49622,2)
- ;;=^5021634
- ;;^UTILITY(U,$J,358.3,49623,0)
- ;;=S12.111S^^216^2419^29
- ;;^UTILITY(U,$J,358.3,49623,1,0)
+ ;;^UTILITY(U,$J,358.3,47241,1,3,0)
+ ;;=3^Nasopharyngitis,Acute
+ ;;^UTILITY(U,$J,358.3,47241,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,47241,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,47242,0)
+ ;;=F17.200^^181^2359^5
+ ;;^UTILITY(U,$J,358.3,47242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49623,1,3,0)
- ;;=3^Posterior displaced Type II dens fracture, sequela
- ;;^UTILITY(U,$J,358.3,49623,1,4,0)
- ;;=4^S12.111S
- ;;^UTILITY(U,$J,358.3,49623,2)
- ;;=^5021628
- ;;^UTILITY(U,$J,358.3,49624,0)
- ;;=S52.562S^^216^2420^1
- ;;^UTILITY(U,$J,358.3,49624,1,0)
+ ;;^UTILITY(U,$J,358.3,47242,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec
+ ;;^UTILITY(U,$J,358.3,47242,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,47242,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,47243,0)
+ ;;=L97.919^^181^2359^8
+ ;;^UTILITY(U,$J,358.3,47243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49624,1,3,0)
- ;;=3^Barton's fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,49624,1,4,0)
- ;;=4^S52.562S
- ;;^UTILITY(U,$J,358.3,49624,2)
- ;;=^5030896
- ;;^UTILITY(U,$J,358.3,49625,0)
- ;;=S52.561S^^216^2420^2
- ;;^UTILITY(U,$J,358.3,49625,1,0)
+ ;;^UTILITY(U,$J,358.3,47243,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Unspec Part Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,47243,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,47243,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,47244,0)
+ ;;=L97.929^^181^2359^7
+ ;;^UTILITY(U,$J,358.3,47244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49625,1,3,0)
- ;;=3^Barton's fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,49625,1,4,0)
- ;;=4^S52.561S
- ;;^UTILITY(U,$J,358.3,49625,2)
- ;;=^5030880
- ;;^UTILITY(U,$J,358.3,49626,0)
- ;;=S52.382S^^216^2420^3
- ;;^UTILITY(U,$J,358.3,49626,1,0)
+ ;;^UTILITY(U,$J,358.3,47244,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Unspec Part Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,47244,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,47244,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,47245,0)
+ ;;=L98.499^^181^2359^6
+ ;;^UTILITY(U,$J,358.3,47245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49626,1,3,0)
- ;;=3^Bent bone of left radius, sequela
- ;;^UTILITY(U,$J,358.3,49626,1,4,0)
- ;;=4^S52.382S
- ;;^UTILITY(U,$J,358.3,49626,2)
- ;;=^5030526
- ;;^UTILITY(U,$J,358.3,49627,0)
- ;;=S52.381S^^216^2420^5
- ;;^UTILITY(U,$J,358.3,49627,1,0)
+ ;;^UTILITY(U,$J,358.3,47245,1,3,0)
+ ;;=3^Non-Pressure Chr Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,47245,1,4,0)
+ ;;=4^L98.499
+ ;;^UTILITY(U,$J,358.3,47245,2)
+ ;;=^5009591
+ ;;^UTILITY(U,$J,358.3,47246,0)
+ ;;=F11.10^^181^2359^17
+ ;;^UTILITY(U,$J,358.3,47246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49627,1,3,0)
- ;;=3^Bent bone of right radius, sequela
- ;;^UTILITY(U,$J,358.3,49627,1,4,0)
- ;;=4^S52.381S
- ;;^UTILITY(U,$J,358.3,49627,2)
- ;;=^5030510
- ;;^UTILITY(U,$J,358.3,49628,0)
- ;;=S52.532S^^216^2420^7
- ;;^UTILITY(U,$J,358.3,49628,1,0)
+ ;;^UTILITY(U,$J,358.3,47246,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,47246,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,47246,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,47247,0)
+ ;;=F11.20^^181^2359^18
+ ;;^UTILITY(U,$J,358.3,47247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49628,1,3,0)
- ;;=3^Colles' fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,49628,1,4,0)
- ;;=4^S52.532S
- ;;^UTILITY(U,$J,358.3,49628,2)
- ;;=^5030752
- ;;^UTILITY(U,$J,358.3,49629,0)
- ;;=S52.531S^^216^2420^8
+ ;;^UTILITY(U,$J,358.3,47247,1,3,0)
+ ;;=3^Opioid Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,47247,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,47247,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,47248,0)
+ ;;=F11.90^^181^2359^19

@@ -1,128 +1,126 @@
-IBDEI1S2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1S2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30209,0)
- ;;=C94.41^^118^1502^6
- ;;^UTILITY(U,$J,358.3,30209,1,0)
+ ;;^UTILITY(U,$J,358.3,28394,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,28395,0)
+ ;;=Z91.19^^115^1395^5
+ ;;^UTILITY(U,$J,358.3,28395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30209,1,3,0)
- ;;=3^Acute panmyelosis with myelofibrosis, in remission
- ;;^UTILITY(U,$J,358.3,30209,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,30209,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,30210,0)
- ;;=C94.40^^118^1502^4
- ;;^UTILITY(U,$J,358.3,30210,1,0)
+ ;;^UTILITY(U,$J,358.3,28395,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,28395,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,28395,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,28396,0)
+ ;;=E66.9^^115^1395^6
+ ;;^UTILITY(U,$J,358.3,28396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30210,1,3,0)
- ;;=3^Acute panmyelosis w myelofibrosis not achieve remission
- ;;^UTILITY(U,$J,358.3,30210,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,30210,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,30211,0)
- ;;=D47.2^^118^1502^55
- ;;^UTILITY(U,$J,358.3,30211,1,0)
+ ;;^UTILITY(U,$J,358.3,28396,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,28396,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,28396,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,28397,0)
+ ;;=Z76.5^^115^1395^3
+ ;;^UTILITY(U,$J,358.3,28397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30211,1,3,0)
- ;;=3^Monoclonal gammopathy
- ;;^UTILITY(U,$J,358.3,30211,1,4,0)
- ;;=4^D47.2
- ;;^UTILITY(U,$J,358.3,30211,2)
- ;;=^5002257
- ;;^UTILITY(U,$J,358.3,30212,0)
- ;;=C88.0^^118^1502^76
- ;;^UTILITY(U,$J,358.3,30212,1,0)
+ ;;^UTILITY(U,$J,358.3,28397,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,28397,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,28397,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,28398,0)
+ ;;=R41.83^^115^1395^2
+ ;;^UTILITY(U,$J,358.3,28398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30212,1,3,0)
- ;;=3^Waldenstrom macroglobulinemia
- ;;^UTILITY(U,$J,358.3,30212,1,4,0)
- ;;=4^C88.0
- ;;^UTILITY(U,$J,358.3,30212,2)
- ;;=^5001748
- ;;^UTILITY(U,$J,358.3,30213,0)
- ;;=C81.70^^118^1502^41
- ;;^UTILITY(U,$J,358.3,30213,1,0)
+ ;;^UTILITY(U,$J,358.3,28398,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,28398,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,28398,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,28399,0)
+ ;;=Z56.82^^115^1395^4
+ ;;^UTILITY(U,$J,358.3,28399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30213,1,3,0)
- ;;=3^Hodgkin Lymphoma,Classical,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,30213,1,4,0)
- ;;=4^C81.70
- ;;^UTILITY(U,$J,358.3,30213,2)
- ;;=^5001441
- ;;^UTILITY(U,$J,358.3,30214,0)
- ;;=C81.79^^118^1502^40
- ;;^UTILITY(U,$J,358.3,30214,1,0)
+ ;;^UTILITY(U,$J,358.3,28399,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,28399,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,28399,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,28400,0)
+ ;;=Z62.811^^115^1395^12
+ ;;^UTILITY(U,$J,358.3,28400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30214,1,3,0)
- ;;=3^Hodgkin Lymphoma,Classical,Extrnod/Solid Organ Sites NEC
- ;;^UTILITY(U,$J,358.3,30214,1,4,0)
- ;;=4^C81.79
- ;;^UTILITY(U,$J,358.3,30214,2)
- ;;=^5001450
- ;;^UTILITY(U,$J,358.3,30215,0)
- ;;=C82.50^^118^1502^20
- ;;^UTILITY(U,$J,358.3,30215,1,0)
+ ;;^UTILITY(U,$J,358.3,28400,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,28400,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,28400,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,28401,0)
+ ;;=Z62.812^^115^1395^10
+ ;;^UTILITY(U,$J,358.3,28401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30215,1,3,0)
- ;;=3^Diffuse Follicle Center Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,30215,1,4,0)
- ;;=4^C82.50
- ;;^UTILITY(U,$J,358.3,30215,2)
- ;;=^5001511
- ;;^UTILITY(U,$J,358.3,30216,0)
- ;;=C82.59^^118^1502^19
- ;;^UTILITY(U,$J,358.3,30216,1,0)
+ ;;^UTILITY(U,$J,358.3,28401,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,28401,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,28401,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,28402,0)
+ ;;=Z62.810^^115^1395^11
+ ;;^UTILITY(U,$J,358.3,28402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30216,1,3,0)
- ;;=3^Diffuse Follicle Center Lymphoma,Extrnod/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,30216,1,4,0)
- ;;=4^C82.59
- ;;^UTILITY(U,$J,358.3,30216,2)
- ;;=^5001520
- ;;^UTILITY(U,$J,358.3,30217,0)
- ;;=C82.80^^118^1502^24
- ;;^UTILITY(U,$J,358.3,30217,1,0)
+ ;;^UTILITY(U,$J,358.3,28402,1,3,0)
+ ;;=3^Personal Hx of Childhood Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,28402,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,28402,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,28403,0)
+ ;;=Z91.83^^115^1395^22
+ ;;^UTILITY(U,$J,358.3,28403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30217,1,3,0)
- ;;=3^Follicular Lymphoma,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,30217,1,4,0)
- ;;=4^C82.80
- ;;^UTILITY(U,$J,358.3,30217,2)
- ;;=^5001531
- ;;^UTILITY(U,$J,358.3,30218,0)
- ;;=C82.89^^118^1502^23
- ;;^UTILITY(U,$J,358.3,30218,1,0)
+ ;;^UTILITY(U,$J,358.3,28403,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,28403,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,28403,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,28404,0)
+ ;;=Z91.412^^115^1395^7
+ ;;^UTILITY(U,$J,358.3,28404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30218,1,3,0)
- ;;=3^Follicular Lymphoma,Extrnod/Solid Organ Sites NEC
- ;;^UTILITY(U,$J,358.3,30218,1,4,0)
- ;;=4^C82.89
- ;;^UTILITY(U,$J,358.3,30218,2)
- ;;=^5001540
- ;;^UTILITY(U,$J,358.3,30219,0)
- ;;=C83.00^^118^1502^75
- ;;^UTILITY(U,$J,358.3,30219,1,0)
+ ;;^UTILITY(U,$J,358.3,28404,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,28404,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,28404,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,28405,0)
+ ;;=Z91.411^^115^1395^9
+ ;;^UTILITY(U,$J,358.3,28405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30219,1,3,0)
- ;;=3^Small Cell B-Cell Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,30219,1,4,0)
- ;;=4^C83.00
- ;;^UTILITY(U,$J,358.3,30219,2)
- ;;=^5001551
- ;;^UTILITY(U,$J,358.3,30220,0)
- ;;=C83.09^^118^1502^74
- ;;^UTILITY(U,$J,358.3,30220,1,0)
+ ;;^UTILITY(U,$J,358.3,28405,1,3,0)
+ ;;=3^Personal Hx of Adult Psych Abuse
+ ;;^UTILITY(U,$J,358.3,28405,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,28405,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,28406,0)
+ ;;=Z91.410^^115^1395^8
+ ;;^UTILITY(U,$J,358.3,28406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30220,1,3,0)
- ;;=3^Small Cell B-Cell Lymphoma,Extrnod/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,30220,1,4,0)
- ;;=4^C83.09
- ;;^UTILITY(U,$J,358.3,30220,2)
- ;;=^5001560
- ;;^UTILITY(U,$J,358.3,30221,0)
- ;;=C83.30^^118^1502^21
- ;;^UTILITY(U,$J,358.3,30221,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28406,1,3,0)
+ ;;=3^Personal Hx of Adult Phys/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,28406,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,28406,2)
+ ;;=^5063619

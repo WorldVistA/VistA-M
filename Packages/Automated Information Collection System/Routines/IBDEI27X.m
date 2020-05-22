@@ -1,132 +1,120 @@
-IBDEI27X ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27X ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37620,2)
- ;;=^5009610
- ;;^UTILITY(U,$J,358.3,37621,0)
- ;;=M00.052^^140^1795^38
- ;;^UTILITY(U,$J,358.3,37621,1,0)
+ ;;^UTILITY(U,$J,358.3,35422,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,35422,1,4,0)
+ ;;=4^M05.412
+ ;;^UTILITY(U,$J,358.3,35422,2)
+ ;;=^5009933
+ ;;^UTILITY(U,$J,358.3,35423,0)
+ ;;=M05.432^^137^1802^56
+ ;;^UTILITY(U,$J,358.3,35423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37621,1,3,0)
- ;;=3^Staphylococcal arthritis, lft hip
- ;;^UTILITY(U,$J,358.3,37621,1,4,0)
- ;;=4^M00.052
- ;;^UTILITY(U,$J,358.3,37621,2)
- ;;=^5009611
- ;;^UTILITY(U,$J,358.3,37622,0)
- ;;=M00.151^^140^1795^27
- ;;^UTILITY(U,$J,358.3,37622,1,0)
+ ;;^UTILITY(U,$J,358.3,35423,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,35423,1,4,0)
+ ;;=4^M05.432
+ ;;^UTILITY(U,$J,358.3,35423,2)
+ ;;=^5009939
+ ;;^UTILITY(U,$J,358.3,35424,0)
+ ;;=M05.49^^137^1802^57
+ ;;^UTILITY(U,$J,358.3,35424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37622,1,3,0)
- ;;=3^Pneumococcal arthritis, rt hip
- ;;^UTILITY(U,$J,358.3,37622,1,4,0)
- ;;=4^M00.151
- ;;^UTILITY(U,$J,358.3,37622,2)
- ;;=^5009634
- ;;^UTILITY(U,$J,358.3,37623,0)
- ;;=M00.152^^140^1795^20
- ;;^UTILITY(U,$J,358.3,37623,1,0)
+ ;;^UTILITY(U,$J,358.3,35424,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Mult Sites
+ ;;^UTILITY(U,$J,358.3,35424,1,4,0)
+ ;;=4^M05.49
+ ;;^UTILITY(U,$J,358.3,35424,2)
+ ;;=^5009953
+ ;;^UTILITY(U,$J,358.3,35425,0)
+ ;;=M05.471^^137^1802^58
+ ;;^UTILITY(U,$J,358.3,35425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37623,1,3,0)
- ;;=3^Pneumococcal arthritis, lft hip
- ;;^UTILITY(U,$J,358.3,37623,1,4,0)
- ;;=4^M00.152
- ;;^UTILITY(U,$J,358.3,37623,2)
- ;;=^5009635
- ;;^UTILITY(U,$J,358.3,37624,0)
- ;;=M00.251^^140^1795^60
- ;;^UTILITY(U,$J,358.3,37624,1,0)
+ ;;^UTILITY(U,$J,358.3,35425,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35425,1,4,0)
+ ;;=4^M05.471
+ ;;^UTILITY(U,$J,358.3,35425,2)
+ ;;=^5009950
+ ;;^UTILITY(U,$J,358.3,35426,0)
+ ;;=M05.421^^137^1802^59
+ ;;^UTILITY(U,$J,358.3,35426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37624,1,3,0)
- ;;=3^Streptococcal arthritis, rt hip, oth
- ;;^UTILITY(U,$J,358.3,37624,1,4,0)
- ;;=4^M00.251
- ;;^UTILITY(U,$J,358.3,37624,2)
- ;;=^5009658
- ;;^UTILITY(U,$J,358.3,37625,0)
- ;;=M00.252^^140^1795^54
- ;;^UTILITY(U,$J,358.3,37625,1,0)
+ ;;^UTILITY(U,$J,358.3,35426,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,35426,1,4,0)
+ ;;=4^M05.421
+ ;;^UTILITY(U,$J,358.3,35426,2)
+ ;;=^5009935
+ ;;^UTILITY(U,$J,358.3,35427,0)
+ ;;=M05.441^^137^1802^60
+ ;;^UTILITY(U,$J,358.3,35427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37625,1,3,0)
- ;;=3^Streptococcal arthritis, lft hip, oth
- ;;^UTILITY(U,$J,358.3,37625,1,4,0)
- ;;=4^M00.252
- ;;^UTILITY(U,$J,358.3,37625,2)
- ;;=^5009659
- ;;^UTILITY(U,$J,358.3,37626,0)
- ;;=M00.851^^140^1795^12
- ;;^UTILITY(U,$J,358.3,37626,1,0)
+ ;;^UTILITY(U,$J,358.3,35427,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Hand
+ ;;^UTILITY(U,$J,358.3,35427,1,4,0)
+ ;;=4^M05.441
+ ;;^UTILITY(U,$J,358.3,35427,2)
+ ;;=^5009941
+ ;;^UTILITY(U,$J,358.3,35428,0)
+ ;;=M05.451^^137^1802^61
+ ;;^UTILITY(U,$J,358.3,35428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37626,1,3,0)
- ;;=3^Arthritis d/t other bacteria, rt hip
- ;;^UTILITY(U,$J,358.3,37626,1,4,0)
- ;;=4^M00.851
- ;;^UTILITY(U,$J,358.3,37626,2)
- ;;=^5009682
- ;;^UTILITY(U,$J,358.3,37627,0)
- ;;=M00.852^^140^1795^6
- ;;^UTILITY(U,$J,358.3,37627,1,0)
+ ;;^UTILITY(U,$J,358.3,35428,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Hip
+ ;;^UTILITY(U,$J,358.3,35428,1,4,0)
+ ;;=4^M05.451
+ ;;^UTILITY(U,$J,358.3,35428,2)
+ ;;=^5009944
+ ;;^UTILITY(U,$J,358.3,35429,0)
+ ;;=M05.461^^137^1802^62
+ ;;^UTILITY(U,$J,358.3,35429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37627,1,3,0)
- ;;=3^Arthritis d/t other bacteria, lft hip
- ;;^UTILITY(U,$J,358.3,37627,1,4,0)
- ;;=4^M00.852
- ;;^UTILITY(U,$J,358.3,37627,2)
- ;;=^5009683
- ;;^UTILITY(U,$J,358.3,37628,0)
- ;;=M00.061^^140^1795^46
- ;;^UTILITY(U,$J,358.3,37628,1,0)
+ ;;^UTILITY(U,$J,358.3,35429,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Knee
+ ;;^UTILITY(U,$J,358.3,35429,1,4,0)
+ ;;=4^M05.461
+ ;;^UTILITY(U,$J,358.3,35429,2)
+ ;;=^5009947
+ ;;^UTILITY(U,$J,358.3,35430,0)
+ ;;=M05.411^^137^1802^63
+ ;;^UTILITY(U,$J,358.3,35430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37628,1,3,0)
- ;;=3^Staphylococcal arthritis, rt knee
- ;;^UTILITY(U,$J,358.3,37628,1,4,0)
- ;;=4^M00.061
- ;;^UTILITY(U,$J,358.3,37628,2)
- ;;=^5009613
- ;;^UTILITY(U,$J,358.3,37629,0)
- ;;=M00.062^^140^1795^39
- ;;^UTILITY(U,$J,358.3,37629,1,0)
+ ;;^UTILITY(U,$J,358.3,35430,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,35430,1,4,0)
+ ;;=4^M05.411
+ ;;^UTILITY(U,$J,358.3,35430,2)
+ ;;=^5009932
+ ;;^UTILITY(U,$J,358.3,35431,0)
+ ;;=M05.431^^137^1802^64
+ ;;^UTILITY(U,$J,358.3,35431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37629,1,3,0)
- ;;=3^Staphylococcal arthritis, lft knee
- ;;^UTILITY(U,$J,358.3,37629,1,4,0)
- ;;=4^M00.062
- ;;^UTILITY(U,$J,358.3,37629,2)
- ;;=^5009614
- ;;^UTILITY(U,$J,358.3,37630,0)
- ;;=M00.161^^140^1795^28
- ;;^UTILITY(U,$J,358.3,37630,1,0)
+ ;;^UTILITY(U,$J,358.3,35431,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,35431,1,4,0)
+ ;;=4^M05.431
+ ;;^UTILITY(U,$J,358.3,35431,2)
+ ;;=^5009938
+ ;;^UTILITY(U,$J,358.3,35432,0)
+ ;;=M06.372^^137^1802^65
+ ;;^UTILITY(U,$J,358.3,35432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37630,1,3,0)
- ;;=3^Pneumococcal arthritis, rt knee
- ;;^UTILITY(U,$J,358.3,37630,1,4,0)
- ;;=4^M00.161
- ;;^UTILITY(U,$J,358.3,37630,2)
- ;;=^5009637
- ;;^UTILITY(U,$J,358.3,37631,0)
- ;;=M00.162^^140^1795^21
- ;;^UTILITY(U,$J,358.3,37631,1,0)
+ ;;^UTILITY(U,$J,358.3,35432,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35432,1,4,0)
+ ;;=4^M06.372
+ ;;^UTILITY(U,$J,358.3,35432,2)
+ ;;=^5010116
+ ;;^UTILITY(U,$J,358.3,35433,0)
+ ;;=M06.322^^137^1802^66
+ ;;^UTILITY(U,$J,358.3,35433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37631,1,3,0)
- ;;=3^Pneumococcal arthritis, lft knee
- ;;^UTILITY(U,$J,358.3,37631,1,4,0)
- ;;=4^M00.162
- ;;^UTILITY(U,$J,358.3,37631,2)
- ;;=^5009638
- ;;^UTILITY(U,$J,358.3,37632,0)
- ;;=M00.261^^140^1795^61
- ;;^UTILITY(U,$J,358.3,37632,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37632,1,3,0)
- ;;=3^Streptococcal arthritis, rt knee, oth
- ;;^UTILITY(U,$J,358.3,37632,1,4,0)
- ;;=4^M00.261
- ;;^UTILITY(U,$J,358.3,37632,2)
- ;;=^5009661
- ;;^UTILITY(U,$J,358.3,37633,0)
- ;;=M00.262^^140^1795^55
- ;;^UTILITY(U,$J,358.3,37633,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37633,1,3,0)
- ;;=3^Streptococcal arthritis, lft knee, oth
+ ;;^UTILITY(U,$J,358.3,35433,1,3,0)
+ ;;=3^Rheumatoid Nodule,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,35433,1,4,0)
+ ;;=4^M06.322
+ ;;^UTILITY(U,$J,358.3,35433,2)
+ ;;=^5010101

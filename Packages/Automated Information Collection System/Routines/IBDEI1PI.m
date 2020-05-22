@@ -1,122 +1,126 @@
-IBDEI1PI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28995,1,4,0)
- ;;=4^O31.32X0
- ;;^UTILITY(U,$J,358.3,28995,2)
- ;;=^5016600
- ;;^UTILITY(U,$J,358.3,28996,0)
- ;;=O31.33X0^^115^1454^6
- ;;^UTILITY(U,$J,358.3,28996,1,0)
+ ;;^UTILITY(U,$J,358.3,27271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28996,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, unsp
- ;;^UTILITY(U,$J,358.3,28996,1,4,0)
- ;;=4^O31.33X0
- ;;^UTILITY(U,$J,358.3,28996,2)
- ;;=^5016607
- ;;^UTILITY(U,$J,358.3,28997,0)
- ;;=O31.31X1^^115^1454^7
- ;;^UTILITY(U,$J,358.3,28997,1,0)
+ ;;^UTILITY(U,$J,358.3,27271,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,27271,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,27271,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,27272,0)
+ ;;=F15.93^^110^1321^9
+ ;;^UTILITY(U,$J,358.3,27272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28997,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts1
- ;;^UTILITY(U,$J,358.3,28997,1,4,0)
- ;;=4^O31.31X1
- ;;^UTILITY(U,$J,358.3,28997,2)
- ;;=^5016594
- ;;^UTILITY(U,$J,358.3,28998,0)
- ;;=O31.32X1^^115^1454^8
- ;;^UTILITY(U,$J,358.3,28998,1,0)
+ ;;^UTILITY(U,$J,358.3,27272,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,27272,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,27272,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,27273,0)
+ ;;=F15.180^^110^1321^1
+ ;;^UTILITY(U,$J,358.3,27273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28998,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts1
- ;;^UTILITY(U,$J,358.3,28998,1,4,0)
- ;;=4^O31.32X1
- ;;^UTILITY(U,$J,358.3,28998,2)
- ;;=^5016601
- ;;^UTILITY(U,$J,358.3,28999,0)
- ;;=O31.33X1^^115^1454^9
- ;;^UTILITY(U,$J,358.3,28999,1,0)
+ ;;^UTILITY(U,$J,358.3,27273,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27273,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,27273,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,27274,0)
+ ;;=F15.280^^110^1321^2
+ ;;^UTILITY(U,$J,358.3,27274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28999,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts1
- ;;^UTILITY(U,$J,358.3,28999,1,4,0)
- ;;=4^O31.33X1
- ;;^UTILITY(U,$J,358.3,28999,2)
- ;;=^5016608
- ;;^UTILITY(U,$J,358.3,29000,0)
- ;;=O31.31X2^^115^1454^10
- ;;^UTILITY(U,$J,358.3,29000,1,0)
+ ;;^UTILITY(U,$J,358.3,27274,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27274,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,27274,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,27275,0)
+ ;;=F15.980^^110^1321^3
+ ;;^UTILITY(U,$J,358.3,27275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29000,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts2
- ;;^UTILITY(U,$J,358.3,29000,1,4,0)
- ;;=4^O31.31X2
- ;;^UTILITY(U,$J,358.3,29000,2)
- ;;=^5016595
- ;;^UTILITY(U,$J,358.3,29001,0)
- ;;=O31.32X2^^115^1454^11
- ;;^UTILITY(U,$J,358.3,29001,1,0)
+ ;;^UTILITY(U,$J,358.3,27275,1,3,0)
+ ;;=3^Caffeine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27275,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,27275,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,27276,0)
+ ;;=F15.182^^110^1321^4
+ ;;^UTILITY(U,$J,358.3,27276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29001,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts2
- ;;^UTILITY(U,$J,358.3,29001,1,4,0)
- ;;=4^O31.32X2
- ;;^UTILITY(U,$J,358.3,29001,2)
- ;;=^5016602
- ;;^UTILITY(U,$J,358.3,29002,0)
- ;;=O31.33X2^^115^1454^12
- ;;^UTILITY(U,$J,358.3,29002,1,0)
+ ;;^UTILITY(U,$J,358.3,27276,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27276,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,27276,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,27277,0)
+ ;;=F15.282^^110^1321^5
+ ;;^UTILITY(U,$J,358.3,27277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29002,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts2
- ;;^UTILITY(U,$J,358.3,29002,1,4,0)
- ;;=4^O31.33X2
- ;;^UTILITY(U,$J,358.3,29002,2)
- ;;=^5016609
- ;;^UTILITY(U,$J,358.3,29003,0)
- ;;=O31.31X3^^115^1454^13
- ;;^UTILITY(U,$J,358.3,29003,1,0)
+ ;;^UTILITY(U,$J,358.3,27277,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27277,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,27277,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,27278,0)
+ ;;=F15.982^^110^1321^6
+ ;;^UTILITY(U,$J,358.3,27278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29003,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts3
- ;;^UTILITY(U,$J,358.3,29003,1,4,0)
- ;;=4^O31.31X3
- ;;^UTILITY(U,$J,358.3,29003,2)
- ;;=^5016596
- ;;^UTILITY(U,$J,358.3,29004,0)
- ;;=O31.32X3^^115^1454^14
- ;;^UTILITY(U,$J,358.3,29004,1,0)
+ ;;^UTILITY(U,$J,358.3,27278,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27278,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,27278,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,27279,0)
+ ;;=F15.99^^110^1321^8
+ ;;^UTILITY(U,$J,358.3,27279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29004,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts3
- ;;^UTILITY(U,$J,358.3,29004,1,4,0)
- ;;=4^O31.32X3
- ;;^UTILITY(U,$J,358.3,29004,2)
- ;;=^5016603
- ;;^UTILITY(U,$J,358.3,29005,0)
- ;;=O31.33X3^^115^1454^15
- ;;^UTILITY(U,$J,358.3,29005,1,0)
+ ;;^UTILITY(U,$J,358.3,27279,1,3,0)
+ ;;=3^Caffeine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27279,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,27279,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,27280,0)
+ ;;=R45.851^^110^1322^2
+ ;;^UTILITY(U,$J,358.3,27280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29005,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts3
- ;;^UTILITY(U,$J,358.3,29005,1,4,0)
- ;;=4^O31.33X3
- ;;^UTILITY(U,$J,358.3,29005,2)
- ;;=^5016610
- ;;^UTILITY(U,$J,358.3,29006,0)
- ;;=O31.31X4^^115^1454^16
- ;;^UTILITY(U,$J,358.3,29006,1,0)
+ ;;^UTILITY(U,$J,358.3,27280,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,27280,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,27280,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,27281,0)
+ ;;=Z91.5^^110^1322^1
+ ;;^UTILITY(U,$J,358.3,27281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29006,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts4
- ;;^UTILITY(U,$J,358.3,29006,1,4,0)
- ;;=4^O31.31X4
- ;;^UTILITY(U,$J,358.3,29006,2)
- ;;=^5016597
- ;;^UTILITY(U,$J,358.3,29007,0)
- ;;=O31.32X4^^115^1454^17
- ;;^UTILITY(U,$J,358.3,29007,1,0)
+ ;;^UTILITY(U,$J,358.3,27281,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,27281,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,27281,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,27282,0)
+ ;;=T14.91XA^^110^1322^3
+ ;;^UTILITY(U,$J,358.3,27282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27282,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,27282,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,27282,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,27283,0)
+ ;;=T14.91XD^^110^1322^4
+ ;;^UTILITY(U,$J,358.3,27283,1,0)
  ;;=^358.31IA^4^2

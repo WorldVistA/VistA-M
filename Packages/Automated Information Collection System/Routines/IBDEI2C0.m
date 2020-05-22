@@ -1,126 +1,124 @@
-IBDEI2C0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2C0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39537,1,3,0)
- ;;=3^Central Retinal Vein Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,39537,1,4,0)
- ;;=4^H34.811
- ;;^UTILITY(U,$J,358.3,39537,2)
- ;;=^5005568
- ;;^UTILITY(U,$J,358.3,39538,0)
- ;;=E11.321^^153^1926^66
- ;;^UTILITY(U,$J,358.3,39538,1,0)
+ ;;^UTILITY(U,$J,358.3,37251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39538,1,3,0)
- ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39538,1,4,0)
- ;;=4^E11.321
- ;;^UTILITY(U,$J,358.3,39538,2)
- ;;=^5002634
- ;;^UTILITY(U,$J,358.3,39539,0)
- ;;=E11.329^^153^1926^67
- ;;^UTILITY(U,$J,358.3,39539,1,0)
+ ;;^UTILITY(U,$J,358.3,37251,1,3,0)
+ ;;=3^Contracture, left ankle
+ ;;^UTILITY(U,$J,358.3,37251,1,4,0)
+ ;;=4^M24.572
+ ;;^UTILITY(U,$J,358.3,37251,2)
+ ;;=^5011421
+ ;;^UTILITY(U,$J,358.3,37252,0)
+ ;;=M24.574^^146^1914^24
+ ;;^UTILITY(U,$J,358.3,37252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39539,1,3,0)
- ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39539,1,4,0)
- ;;=4^E11.329
- ;;^UTILITY(U,$J,358.3,39539,2)
- ;;=^5002635
- ;;^UTILITY(U,$J,358.3,39540,0)
- ;;=E11.331^^153^1926^68
- ;;^UTILITY(U,$J,358.3,39540,1,0)
+ ;;^UTILITY(U,$J,358.3,37252,1,3,0)
+ ;;=3^Contracture, right foot
+ ;;^UTILITY(U,$J,358.3,37252,1,4,0)
+ ;;=4^M24.574
+ ;;^UTILITY(U,$J,358.3,37252,2)
+ ;;=^5011423
+ ;;^UTILITY(U,$J,358.3,37253,0)
+ ;;=M24.575^^146^1914^22
+ ;;^UTILITY(U,$J,358.3,37253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39540,1,3,0)
- ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39540,1,4,0)
- ;;=4^E11.331
- ;;^UTILITY(U,$J,358.3,39540,2)
- ;;=^5002636
- ;;^UTILITY(U,$J,358.3,39541,0)
- ;;=E11.339^^153^1926^69
- ;;^UTILITY(U,$J,358.3,39541,1,0)
+ ;;^UTILITY(U,$J,358.3,37253,1,3,0)
+ ;;=3^Contracture, left foot
+ ;;^UTILITY(U,$J,358.3,37253,1,4,0)
+ ;;=4^M24.575
+ ;;^UTILITY(U,$J,358.3,37253,2)
+ ;;=^5011424
+ ;;^UTILITY(U,$J,358.3,37254,0)
+ ;;=L75.1^^146^1914^9
+ ;;^UTILITY(U,$J,358.3,37254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39541,1,3,0)
- ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39541,1,4,0)
- ;;=4^E11.339
- ;;^UTILITY(U,$J,358.3,39541,2)
- ;;=^5002637
- ;;^UTILITY(U,$J,358.3,39542,0)
- ;;=E11.351^^153^1926^70
- ;;^UTILITY(U,$J,358.3,39542,1,0)
+ ;;^UTILITY(U,$J,358.3,37254,1,3,0)
+ ;;=3^Chromhidrosis
+ ;;^UTILITY(U,$J,358.3,37254,1,4,0)
+ ;;=4^L75.1
+ ;;^UTILITY(U,$J,358.3,37254,2)
+ ;;=^5009298
+ ;;^UTILITY(U,$J,358.3,37255,0)
+ ;;=T25.431A^^146^1914^70
+ ;;^UTILITY(U,$J,358.3,37255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39542,1,3,0)
- ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39542,1,4,0)
- ;;=4^E11.351
- ;;^UTILITY(U,$J,358.3,39542,2)
- ;;=^5002640
- ;;^UTILITY(U,$J,358.3,39543,0)
- ;;=E11.359^^153^1926^71
- ;;^UTILITY(U,$J,358.3,39543,1,0)
+ ;;^UTILITY(U,$J,358.3,37255,1,3,0)
+ ;;=3^Corrosion of rt toe(s), unsp degree, init enc
+ ;;^UTILITY(U,$J,358.3,37255,1,4,0)
+ ;;=4^T25.431A
+ ;;^UTILITY(U,$J,358.3,37255,2)
+ ;;=^5048634
+ ;;^UTILITY(U,$J,358.3,37256,0)
+ ;;=T25.432A^^146^1914^55
+ ;;^UTILITY(U,$J,358.3,37256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39543,1,3,0)
- ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39543,1,4,0)
- ;;=4^E11.359
- ;;^UTILITY(U,$J,358.3,39543,2)
- ;;=^5002641
- ;;^UTILITY(U,$J,358.3,39544,0)
- ;;=E11.341^^153^1926^72
- ;;^UTILITY(U,$J,358.3,39544,1,0)
+ ;;^UTILITY(U,$J,358.3,37256,1,3,0)
+ ;;=3^Corrosion of lft toe(s), unsp degree, init enc
+ ;;^UTILITY(U,$J,358.3,37256,1,4,0)
+ ;;=4^T25.432A
+ ;;^UTILITY(U,$J,358.3,37256,2)
+ ;;=^5048637
+ ;;^UTILITY(U,$J,358.3,37257,0)
+ ;;=T25.421A^^146^1914^62
+ ;;^UTILITY(U,$J,358.3,37257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39544,1,3,0)
- ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,39544,1,4,0)
- ;;=4^E11.341
- ;;^UTILITY(U,$J,358.3,39544,2)
- ;;=^5002638
- ;;^UTILITY(U,$J,358.3,39545,0)
- ;;=E11.349^^153^1926^73
- ;;^UTILITY(U,$J,358.3,39545,1,0)
+ ;;^UTILITY(U,$J,358.3,37257,1,3,0)
+ ;;=3^Corrosion of rt ft, unspec degree, init enc
+ ;;^UTILITY(U,$J,358.3,37257,1,4,0)
+ ;;=4^T25.421A
+ ;;^UTILITY(U,$J,358.3,37257,2)
+ ;;=^5048628
+ ;;^UTILITY(U,$J,358.3,37258,0)
+ ;;=T25.422A^^146^1914^47
+ ;;^UTILITY(U,$J,358.3,37258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39545,1,3,0)
- ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,39545,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,39545,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,39546,0)
- ;;=E11.9^^153^1926^74
- ;;^UTILITY(U,$J,358.3,39546,1,0)
+ ;;^UTILITY(U,$J,358.3,37258,1,3,0)
+ ;;=3^Corrosion of lft ft, unspec degree, init enc
+ ;;^UTILITY(U,$J,358.3,37258,1,4,0)
+ ;;=4^T25.422A
+ ;;^UTILITY(U,$J,358.3,37258,2)
+ ;;=^5048631
+ ;;^UTILITY(U,$J,358.3,37259,0)
+ ;;=T24.431A^^146^1914^66
+ ;;^UTILITY(U,$J,358.3,37259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39546,1,3,0)
- ;;=3^Type 2 DM w/o Complications
- ;;^UTILITY(U,$J,358.3,39546,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,39546,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,39547,0)
- ;;=H35.363^^153^1926^18
- ;;^UTILITY(U,$J,358.3,39547,1,0)
+ ;;^UTILITY(U,$J,358.3,37259,1,3,0)
+ ;;=3^Corrosion of rt lwr leg, unsp degree, init enc
+ ;;^UTILITY(U,$J,358.3,37259,1,4,0)
+ ;;=4^T24.431A
+ ;;^UTILITY(U,$J,358.3,37259,2)
+ ;;=^5048352
+ ;;^UTILITY(U,$J,358.3,37260,0)
+ ;;=T24.432A^^146^1914^51
+ ;;^UTILITY(U,$J,358.3,37260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39547,1,3,0)
- ;;=3^Drusen of Macular,Bilateral
- ;;^UTILITY(U,$J,358.3,39547,1,4,0)
- ;;=4^H35.363
- ;;^UTILITY(U,$J,358.3,39547,2)
- ;;=^5005660
- ;;^UTILITY(U,$J,358.3,39548,0)
- ;;=H35.362^^153^1926^19
- ;;^UTILITY(U,$J,358.3,39548,1,0)
+ ;;^UTILITY(U,$J,358.3,37260,1,3,0)
+ ;;=3^Corrosion of lft lwr leg, unsp degree, init enc
+ ;;^UTILITY(U,$J,358.3,37260,1,4,0)
+ ;;=4^T24.432A
+ ;;^UTILITY(U,$J,358.3,37260,2)
+ ;;=^5048355
+ ;;^UTILITY(U,$J,358.3,37261,0)
+ ;;=T25.531A^^146^1914^67
+ ;;^UTILITY(U,$J,358.3,37261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39548,1,3,0)
- ;;=3^Drusen of Macular,Left Eye
- ;;^UTILITY(U,$J,358.3,39548,1,4,0)
- ;;=4^H35.362
- ;;^UTILITY(U,$J,358.3,39548,2)
- ;;=^5005659
- ;;^UTILITY(U,$J,358.3,39549,0)
- ;;=H35.361^^153^1926^20
- ;;^UTILITY(U,$J,358.3,39549,1,0)
+ ;;^UTILITY(U,$J,358.3,37261,1,3,0)
+ ;;=3^Corrosion of rt toe(s), first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37261,1,4,0)
+ ;;=4^T25.531A
+ ;;^UTILITY(U,$J,358.3,37261,2)
+ ;;=^5048664
+ ;;^UTILITY(U,$J,358.3,37262,0)
+ ;;=T25.532A^^146^1914^52
+ ;;^UTILITY(U,$J,358.3,37262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39549,1,3,0)
- ;;=3^Drusen of Macular,Right Eye
+ ;;^UTILITY(U,$J,358.3,37262,1,3,0)
+ ;;=3^Corrosion of lft toe(s), first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37262,1,4,0)
+ ;;=4^T25.532A
+ ;;^UTILITY(U,$J,358.3,37262,2)
+ ;;=^5048667
+ ;;^UTILITY(U,$J,358.3,37263,0)
+ ;;=T25.521A^^146^1914^59

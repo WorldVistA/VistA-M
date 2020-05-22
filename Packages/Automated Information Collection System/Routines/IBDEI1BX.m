@@ -1,134 +1,126 @@
-IBDEI1BX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22596,1,4,0)
- ;;=4^Z87.39
- ;;^UTILITY(U,$J,358.3,22596,2)
- ;;=^5063488
- ;;^UTILITY(U,$J,358.3,22597,0)
- ;;=Z87.820^^87^982^111
- ;;^UTILITY(U,$J,358.3,22597,1,0)
+ ;;^UTILITY(U,$J,358.3,21239,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,21239,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,21240,0)
+ ;;=F95.8^^95^1057^32
+ ;;^UTILITY(U,$J,358.3,21240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22597,1,3,0)
- ;;=3^Personal Hx of TBI
- ;;^UTILITY(U,$J,358.3,22597,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,22597,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,22598,0)
- ;;=Z89.511^^87^982^8
- ;;^UTILITY(U,$J,358.3,22598,1,0)
+ ;;^UTILITY(U,$J,358.3,21240,1,3,0)
+ ;;=3^Tic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,21240,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,21240,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,21241,0)
+ ;;=F95.9^^95^1057^33
+ ;;^UTILITY(U,$J,358.3,21241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22598,1,3,0)
- ;;=3^Acquired Absence of Right Leg Below Knee
- ;;^UTILITY(U,$J,358.3,22598,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,22598,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,22599,0)
- ;;=Z91.82^^87^982^101
- ;;^UTILITY(U,$J,358.3,22599,1,0)
+ ;;^UTILITY(U,$J,358.3,21241,1,3,0)
+ ;;=3^Tic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21241,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,21241,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,21242,0)
+ ;;=F95.2^^95^1057^34
+ ;;^UTILITY(U,$J,358.3,21242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22599,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,22599,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,22599,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,22600,0)
- ;;=Z91.5^^87^982^108
- ;;^UTILITY(U,$J,358.3,22600,1,0)
+ ;;^UTILITY(U,$J,358.3,21242,1,3,0)
+ ;;=3^Tourette's Disorder
+ ;;^UTILITY(U,$J,358.3,21242,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,21242,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,21243,0)
+ ;;=F98.5^^95^1057^1
+ ;;^UTILITY(U,$J,358.3,21243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22600,1,3,0)
- ;;=3^Personal Hx of Self-Harm/Suicide Attempt
- ;;^UTILITY(U,$J,358.3,22600,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,22600,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,22601,0)
- ;;=Z89.512^^87^982^5
- ;;^UTILITY(U,$J,358.3,22601,1,0)
+ ;;^UTILITY(U,$J,358.3,21243,1,3,0)
+ ;;=3^Adult-Onset Fluency Disorder
+ ;;^UTILITY(U,$J,358.3,21243,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,21243,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,21244,0)
+ ;;=F90.2^^95^1057^2
+ ;;^UTILITY(U,$J,358.3,21244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22601,1,3,0)
- ;;=3^Acquired Absence of Left Leg Below Knee
- ;;^UTILITY(U,$J,358.3,22601,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,22601,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,22602,0)
- ;;=Z89.611^^87^982^7
- ;;^UTILITY(U,$J,358.3,22602,1,0)
+ ;;^UTILITY(U,$J,358.3,21244,1,3,0)
+ ;;=3^Attention Deficit Disorder,Combined Presentation
+ ;;^UTILITY(U,$J,358.3,21244,1,4,0)
+ ;;=4^F90.2
+ ;;^UTILITY(U,$J,358.3,21244,2)
+ ;;=^5003694
+ ;;^UTILITY(U,$J,358.3,21245,0)
+ ;;=F90.1^^95^1057^3
+ ;;^UTILITY(U,$J,358.3,21245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22602,1,3,0)
- ;;=3^Acquired Absence of Right Leg Above Knee
- ;;^UTILITY(U,$J,358.3,22602,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,22602,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,22603,0)
- ;;=Z89.612^^87^982^4
- ;;^UTILITY(U,$J,358.3,22603,1,0)
+ ;;^UTILITY(U,$J,358.3,21245,1,3,0)
+ ;;=3^Attention Deficit Disorder,Hyperactive/Impulsive Presentation
+ ;;^UTILITY(U,$J,358.3,21245,1,4,0)
+ ;;=4^F90.1
+ ;;^UTILITY(U,$J,358.3,21245,2)
+ ;;=^5003693
+ ;;^UTILITY(U,$J,358.3,21246,0)
+ ;;=F90.0^^95^1057^4
+ ;;^UTILITY(U,$J,358.3,21246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22603,1,3,0)
- ;;=3^Acquired Absence of Left Leg Above Knee
- ;;^UTILITY(U,$J,358.3,22603,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,22603,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,22604,0)
- ;;=Z90.710^^87^982^1
- ;;^UTILITY(U,$J,358.3,22604,1,0)
+ ;;^UTILITY(U,$J,358.3,21246,1,3,0)
+ ;;=3^Attention Deficit Disorder,Predominantly Inattentive Presentation
+ ;;^UTILITY(U,$J,358.3,21246,1,4,0)
+ ;;=4^F90.0
+ ;;^UTILITY(U,$J,358.3,21246,2)
+ ;;=^5003692
+ ;;^UTILITY(U,$J,358.3,21247,0)
+ ;;=F06.1^^95^1057^8
+ ;;^UTILITY(U,$J,358.3,21247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22604,1,3,0)
- ;;=3^Acquired Absence of Cervix & Uterus
- ;;^UTILITY(U,$J,358.3,22604,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,22604,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,22605,0)
- ;;=Z91.030^^87^982^13
- ;;^UTILITY(U,$J,358.3,22605,1,0)
+ ;;^UTILITY(U,$J,358.3,21247,1,3,0)
+ ;;=3^Catatonia Associated w/ Another Mental Disorder
+ ;;^UTILITY(U,$J,358.3,21247,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,21247,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,21248,0)
+ ;;=F80.81^^95^1057^9
+ ;;^UTILITY(U,$J,358.3,21248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22605,1,3,0)
- ;;=3^Bee Allergy
- ;;^UTILITY(U,$J,358.3,22605,1,4,0)
- ;;=4^Z91.030
- ;;^UTILITY(U,$J,358.3,22605,2)
- ;;=^5063605
- ;;^UTILITY(U,$J,358.3,22606,0)
- ;;=Z91.038^^87^982^59
- ;;^UTILITY(U,$J,358.3,22606,1,0)
+ ;;^UTILITY(U,$J,358.3,21248,1,3,0)
+ ;;=3^Child-Onset Fluency Disorder (Stuttering)
+ ;;^UTILITY(U,$J,358.3,21248,1,4,0)
+ ;;=4^F80.81
+ ;;^UTILITY(U,$J,358.3,21248,2)
+ ;;=^5003676
+ ;;^UTILITY(U,$J,358.3,21249,0)
+ ;;=F70.^^95^1057^13
+ ;;^UTILITY(U,$J,358.3,21249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22606,1,3,0)
- ;;=3^Insect Allergy NEC
- ;;^UTILITY(U,$J,358.3,22606,1,4,0)
- ;;=4^Z91.038
- ;;^UTILITY(U,$J,358.3,22606,2)
- ;;=^5063606
- ;;^UTILITY(U,$J,358.3,22607,0)
- ;;=Z91.041^^87^982^139
- ;;^UTILITY(U,$J,358.3,22607,1,0)
+ ;;^UTILITY(U,$J,358.3,21249,1,3,0)
+ ;;=3^Intellectual Disability,Mild
+ ;;^UTILITY(U,$J,358.3,21249,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,21249,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,21250,0)
+ ;;=F71.^^95^1057^14
+ ;;^UTILITY(U,$J,358.3,21250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22607,1,3,0)
- ;;=3^Radiographic Dye Allergy
- ;;^UTILITY(U,$J,358.3,22607,1,4,0)
- ;;=4^Z91.041
- ;;^UTILITY(U,$J,358.3,22607,2)
- ;;=^5063608
- ;;^UTILITY(U,$J,358.3,22608,0)
- ;;=Z91.130^^87^982^146
- ;;^UTILITY(U,$J,358.3,22608,1,0)
+ ;;^UTILITY(U,$J,358.3,21250,1,3,0)
+ ;;=3^Intellectual Disability,Moderate
+ ;;^UTILITY(U,$J,358.3,21250,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,21250,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,21251,0)
+ ;;=F73.^^95^1057^15
+ ;;^UTILITY(U,$J,358.3,21251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22608,1,3,0)
- ;;=3^Underdose of Med Regiment d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,22608,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,22608,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,22609,0)
- ;;=Z91.138^^87^982^147
- ;;^UTILITY(U,$J,358.3,22609,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22609,1,3,0)
- ;;=3^Underdose of Med Regiment for Other Reason
+ ;;^UTILITY(U,$J,358.3,21251,1,3,0)
+ ;;=3^Intellectual Disability,Profound
+ ;;^UTILITY(U,$J,358.3,21251,1,4,0)
+ ;;=4^F73.

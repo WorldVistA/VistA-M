@@ -1,136 +1,124 @@
-IBDEI24P ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36099,0)
- ;;=R11.2^^134^1742^50
- ;;^UTILITY(U,$J,358.3,36099,1,0)
+ ;;^UTILITY(U,$J,358.3,34002,0)
+ ;;=M41.55^^132^1718^43
+ ;;^UTILITY(U,$J,358.3,34002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36099,1,3,0)
- ;;=3^Nausea w/ Vomitin,Unspec
- ;;^UTILITY(U,$J,358.3,36099,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,36099,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,36100,0)
- ;;=R53.0^^134^1742^51
- ;;^UTILITY(U,$J,358.3,36100,1,0)
+ ;;^UTILITY(U,$J,358.3,34002,1,3,0)
+ ;;=3^Secondary Scoliosis,Other,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,34002,1,4,0)
+ ;;=4^M41.55
+ ;;^UTILITY(U,$J,358.3,34002,2)
+ ;;=^5011879
+ ;;^UTILITY(U,$J,358.3,34003,0)
+ ;;=M41.56^^132^1718^40
+ ;;^UTILITY(U,$J,358.3,34003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36100,1,3,0)
- ;;=3^Neoplastic Related Fatigue
- ;;^UTILITY(U,$J,358.3,36100,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,36100,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,36101,0)
- ;;=E66.9^^134^1742^53
- ;;^UTILITY(U,$J,358.3,36101,1,0)
+ ;;^UTILITY(U,$J,358.3,34003,1,3,0)
+ ;;=3^Secondary Scoliosis,Other,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,34003,1,4,0)
+ ;;=4^M41.56
+ ;;^UTILITY(U,$J,358.3,34003,2)
+ ;;=^5011880
+ ;;^UTILITY(U,$J,358.3,34004,0)
+ ;;=M41.57^^132^1718^41
+ ;;^UTILITY(U,$J,358.3,34004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36101,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,36101,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,36101,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,36102,0)
- ;;=M87.10^^134^1742^54
- ;;^UTILITY(U,$J,358.3,36102,1,0)
+ ;;^UTILITY(U,$J,358.3,34004,1,3,0)
+ ;;=3^Secondary Scoliosis,Other,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,34004,1,4,0)
+ ;;=4^M41.57
+ ;;^UTILITY(U,$J,358.3,34004,2)
+ ;;=^5011881
+ ;;^UTILITY(U,$J,358.3,34005,0)
+ ;;=M41.82^^132^1718^32
+ ;;^UTILITY(U,$J,358.3,34005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36102,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Unspec Bone
- ;;^UTILITY(U,$J,358.3,36102,1,4,0)
- ;;=4^M87.10
- ;;^UTILITY(U,$J,358.3,36102,2)
- ;;=^5014700
- ;;^UTILITY(U,$J,358.3,36103,0)
- ;;=M87.20^^134^1742^55
- ;;^UTILITY(U,$J,358.3,36103,1,0)
+ ;;^UTILITY(U,$J,358.3,34005,1,3,0)
+ ;;=3^Scoliosis,Other Form,Cervical Region
+ ;;^UTILITY(U,$J,358.3,34005,1,4,0)
+ ;;=4^M41.82
+ ;;^UTILITY(U,$J,358.3,34005,2)
+ ;;=^5011883
+ ;;^UTILITY(U,$J,358.3,34006,0)
+ ;;=M41.83^^132^1718^33
+ ;;^UTILITY(U,$J,358.3,34006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36103,1,3,0)
- ;;=3^Osteonecrosis d/t Previous Trauma,Unspec Bone
- ;;^UTILITY(U,$J,358.3,36103,1,4,0)
- ;;=4^M87.20
- ;;^UTILITY(U,$J,358.3,36103,2)
- ;;=^5014744
- ;;^UTILITY(U,$J,358.3,36104,0)
- ;;=M90.50^^134^1742^56
- ;;^UTILITY(U,$J,358.3,36104,1,0)
+ ;;^UTILITY(U,$J,358.3,34006,1,3,0)
+ ;;=3^Scoliosis,Other Form,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,34006,1,4,0)
+ ;;=4^M41.83
+ ;;^UTILITY(U,$J,358.3,34006,2)
+ ;;=^5011884
+ ;;^UTILITY(U,$J,358.3,34007,0)
+ ;;=M41.84^^132^1718^36
+ ;;^UTILITY(U,$J,358.3,34007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36104,1,3,0)
- ;;=3^Osteonecrosis in Diseases Classified Elsewhere,Unspec Site
- ;;^UTILITY(U,$J,358.3,36104,1,4,0)
- ;;=4^M90.50
- ;;^UTILITY(U,$J,358.3,36104,2)
- ;;=^5015120
- ;;^UTILITY(U,$J,358.3,36105,0)
- ;;=M87.9^^134^1742^57
- ;;^UTILITY(U,$J,358.3,36105,1,0)
+ ;;^UTILITY(U,$J,358.3,34007,1,3,0)
+ ;;=3^Scoliosis,Other Form,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,34007,1,4,0)
+ ;;=4^M41.84
+ ;;^UTILITY(U,$J,358.3,34007,2)
+ ;;=^5011885
+ ;;^UTILITY(U,$J,358.3,34008,0)
+ ;;=M41.85^^132^1718^37
+ ;;^UTILITY(U,$J,358.3,34008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36105,1,3,0)
- ;;=3^Osteonecrosis,Unspec
- ;;^UTILITY(U,$J,358.3,36105,1,4,0)
- ;;=4^M87.9
- ;;^UTILITY(U,$J,358.3,36105,2)
- ;;=^5014873
- ;;^UTILITY(U,$J,358.3,36106,0)
- ;;=R06.89^^134^1742^10
- ;;^UTILITY(U,$J,358.3,36106,1,0)
+ ;;^UTILITY(U,$J,358.3,34008,1,3,0)
+ ;;=3^Scoliosis,Other Form,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,34008,1,4,0)
+ ;;=4^M41.85
+ ;;^UTILITY(U,$J,358.3,34008,2)
+ ;;=^5011886
+ ;;^UTILITY(U,$J,358.3,34009,0)
+ ;;=M41.86^^132^1718^34
+ ;;^UTILITY(U,$J,358.3,34009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36106,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,36106,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,36106,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,36107,0)
- ;;=R53.83^^134^1742^34
- ;;^UTILITY(U,$J,358.3,36107,1,0)
+ ;;^UTILITY(U,$J,358.3,34009,1,3,0)
+ ;;=3^Scoliosis,Other Form,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,34009,1,4,0)
+ ;;=4^M41.86
+ ;;^UTILITY(U,$J,358.3,34009,2)
+ ;;=^5011887
+ ;;^UTILITY(U,$J,358.3,34010,0)
+ ;;=M41.87^^132^1718^35
+ ;;^UTILITY(U,$J,358.3,34010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36107,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,36107,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,36107,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,36108,0)
- ;;=R06.09^^134^1742^28
- ;;^UTILITY(U,$J,358.3,36108,1,0)
+ ;;^UTILITY(U,$J,358.3,34010,1,3,0)
+ ;;=3^Scoliosis,Other Form,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,34010,1,4,0)
+ ;;=4^M41.87
+ ;;^UTILITY(U,$J,358.3,34010,2)
+ ;;=^5011888
+ ;;^UTILITY(U,$J,358.3,34011,0)
+ ;;=M48.02^^132^1718^45
+ ;;^UTILITY(U,$J,358.3,34011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36108,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,36108,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,36108,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,36109,0)
- ;;=R53.81^^134^1742^48
- ;;^UTILITY(U,$J,358.3,36109,1,0)
+ ;;^UTILITY(U,$J,358.3,34011,1,3,0)
+ ;;=3^Spinal Stenosis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,34011,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,34011,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,34012,0)
+ ;;=M48.03^^132^1718^46
+ ;;^UTILITY(U,$J,358.3,34012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36109,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,36109,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,36109,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,36110,0)
- ;;=M87.30^^134^1742^66
- ;;^UTILITY(U,$J,358.3,36110,1,0)
+ ;;^UTILITY(U,$J,358.3,34012,1,3,0)
+ ;;=3^Spinal Stenosis,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,34012,1,4,0)
+ ;;=4^M48.03
+ ;;^UTILITY(U,$J,358.3,34012,2)
+ ;;=^5012090
+ ;;^UTILITY(U,$J,358.3,34013,0)
+ ;;=M48.04^^132^1718^51
+ ;;^UTILITY(U,$J,358.3,34013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36110,1,3,0)
- ;;=3^Secondary Osteonecrosis,Unspec Bone
- ;;^UTILITY(U,$J,358.3,36110,1,4,0)
- ;;=4^M87.30
- ;;^UTILITY(U,$J,358.3,36110,2)
- ;;=^5014787
- ;;^UTILITY(U,$J,358.3,36111,0)
- ;;=M85.80^^134^1742^8
- ;;^UTILITY(U,$J,358.3,36111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36111,1,3,0)
- ;;=3^Bone Density/Structure Disorder,Unspec Site
- ;;^UTILITY(U,$J,358.3,36111,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,36111,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,36112,0)
- ;;=K52.89^^134^1742^52
+ ;;^UTILITY(U,$J,358.3,34013,1,3,0)
+ ;;=3^Spinal Stenosis,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,34013,1,4,0)
+ ;;=4^M48.04
+ ;;^UTILITY(U,$J,358.3,34013,2)
+ ;;=^5012091

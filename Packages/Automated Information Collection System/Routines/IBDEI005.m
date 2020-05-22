@@ -1,190 +1,76 @@
-IBDEI005 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI005 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQ(358.2)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.1)
- ;;=^IBE(358.1,
- ;;^UTILITY(U,$J,358.1,0)
- ;;=IMP/EXP ENCOUNTER FORM BLOCK^358.1I^244^239
- ;;^UTILITY(U,$J,358.1,1,0)
- ;;=CPT CODES (3 COL)^1^^51^0^132^39^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,2,0)
- ;;=PATIENT INFORMATION^1^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,3,0)
- ;;=HEADER^1^^1^57^18^1^^^2
- ;;^UTILITY(U,$J,358.1,4,0)
- ;;=TYPE OF VISIT - 1994 CODES^1^^6^0^132^44^^^1^^^Selection list - visit types with their CPT codes^0
- ;;^UTILITY(U,$J,358.1,5,0)
- ;;=MENTAL HEALTH ICD-10^1^^91^0^132^829^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,6,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^2^^6^0^132^6^^^1^^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,7,0)
- ;;=CPT CODES^2^^13^0^132^77^^^1^MARK PROCEDURE(S) PERFORMED THIS VISIT^RC^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,8,0)
- ;;=HEADER^2^^1^54^19^1^^^2
- ;;^UTILITY(U,$J,358.1,9,0)
- ;;=PATIENT INFORMATION^2^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,10,0)
- ;;=ANESTHESIA ICD-10^2^^91^0^132^349^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,11,0)
- ;;=HEADER^3^^1^49^19^1^^^2
- ;;^UTILITY(U,$J,358.1,12,0)
- ;;=PATIENT INFORMATION^3^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,13,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^3^^7^0^132^9^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,14,0)
- ;;=CARDIOLOGY/CARDIAC CATH ICD-10^3^^251^0^132^384^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,15,0)
- ;;=CARDIOLOGY PROCEDURES^3^^17^0^132^233^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^CR^EPS PROCEDURES^0
- ;;^UTILITY(U,$J,358.1,16,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^4^^6^0^132^9^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,17,0)
- ;;=HEADER^4^^1^56^21^1^^^2
- ;;^UTILITY(U,$J,358.1,18,0)
- ;;=PATIENT INFORMATION^4^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,19,0)
- ;;=PROCEDURES (V2.1)^4^^15^0^133^25^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,20,0)
- ;;=CHIROPRACTIC ICD-10^4^^41^0^132^219^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,21,0)
- ;;=HEADER^5^^1^49^46^1^^^2
- ;;^UTILITY(U,$J,358.1,22,0)
- ;;=PATIENT INFORMATION^5^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,23,0)
- ;;=PROCEDURES (V2.1)^5^^7^0^133^33^^^1^MARK ALL PROCEDURES PERFORMED^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,24,0)
- ;;=CIH ICD-10^5^^41^0^132^429^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,25,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^6^^6^0^132^14^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,26,0)
- ;;=HEADER^6^^1^56^22^1^^^2
- ;;^UTILITY(U,$J,358.1,27,0)
- ;;=PATIENT INFORMATION^6^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,28,0)
- ;;=PROCEDURES (V2.1)^6^^21^0^133^49^^^1^MARK ALL PROCEDURES PERFORMED^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,29,0)
- ;;=INTENSIVE/CRITICAL CARE ICD-10^6^^71^0^132^249^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,30,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^7^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,31,0)
- ;;=HEADER^7^^1^55^22^1^^^2
- ;;^UTILITY(U,$J,358.1,32,0)
- ;;=PATIENT INFORMATION^7^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,33,0)
- ;;=CPT CODES^7^^16^0^132^109^^^1^^RC^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,34,0)
- ;;=DAY/GENERAL SURG ICD-10^7^^126^0^132^1364^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,35,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^8^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,36,0)
- ;;=HEADER^8^^1^49^24^1^^^2
- ;;^UTILITY(U,$J,358.1,37,0)
- ;;=PATIENT INFORMATION^8^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,38,0)
- ;;=DERM/TELEDERM ICD-10^8^^271^0^132^469^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,39,0)
- ;;=CPT CODES (3 COL)^8^^17^0^132^253^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^
- ;;^UTILITY(U,$J,358.1,40,0)
- ;;=PROCEDURES (V2.1)^9^^16^0^133^164^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,41,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^9^^6^0^132^9^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,42,0)
- ;;=HEADER^9^^1^56^29^1^^^2
- ;;^UTILITY(U,$J,358.1,43,0)
- ;;=PATIENT INFORMATION^9^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,44,0)
- ;;=EMERGENCY DEPT ICD-10^9^^181^0^132^2279^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,45,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^10^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,46,0)
- ;;=HEADER^10^^1^56^24^1^^^2
- ;;^UTILITY(U,$J,358.1,47,0)
- ;;=PATIENT INFORMATION^10^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,48,0)
- ;;=PROCEDURES (V2.1)^10^^17^0^133^33^^^1^MARK ALL PROCEDURES PERFORMED^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,49,0)
- ;;=ICD-10 DIAGNOSES (V1.0)^10^^51^0^132^324^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,50,0)
- ;;=HEADER^11^^1^54^23^1^^^2
- ;;^UTILITY(U,$J,358.1,51,0)
- ;;=PATIENT INFORMATION^11^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,52,0)
- ;;=PROCEDURES (V2.1)^11^^7^0^133^38^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,53,0)
- ;;=EYE/TELERETINAL ICD-10^11^^46^0^132^519^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
- ;;^UTILITY(U,$J,358.1,54,0)
- ;;=PROCEDURES (V2.1)^12^^41^0^133^84^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,55,0)
- ;;=HEADER^12^^1^60^12^1^^^2
- ;;^UTILITY(U,$J,358.1,56,0)
- ;;=PATIENT INFORMATION^12^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,57,0)
- ;;=EYE/TELERETINAL ICD-10^12^^126^0^132^519^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,58,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^12^^6^0^132^34^^^1^^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,59,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^13^^6^0^132^9^^^1^^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,60,0)
- ;;=CPT CODES^13^^15^0^132^30^^^1^MARK PROCEDURE(S) PERFORMED THIS VISIT^RC^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,61,0)
- ;;=HEADER^13^^1^54^24^1^^^2
- ;;^UTILITY(U,$J,358.1,62,0)
- ;;=PATIENT INFORMATION^13^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,63,0)
- ;;=DAY/GENERAL SURG ICD-10^13^^46^0^132^1364^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
- ;;^UTILITY(U,$J,358.1,64,0)
- ;;=HEADER^14^^1^51^23^1^^^2
- ;;^UTILITY(U,$J,358.1,65,0)
- ;;=E&M CODES^14^^6^0^132^11^^^1^EXAM CODES FOR OUTPATIENT EVALUATION & MANAGMENT^CR^1997 OUTPATIENT E&M TYPES W CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,66,0)
- ;;=PATIENT INFORMATION^14^^4^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,67,0)
- ;;=PROCEDURES (V2.1)^14^^18^0^132^19^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,68,0)
- ;;=GERIATRICS ICD-10^14^^38^0^132^1548^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses
- ;;^UTILITY(U,$J,358.1,69,0)
- ;;=HEADER^15^^1^58^23^1^^^2
- ;;^UTILITY(U,$J,358.1,70,0)
- ;;=PATIENT INFORMATION^15^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,71,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^15^^6^0^132^8^^^1^TYPE OF HOME VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,72,0)
- ;;=PROCEDURES (V2.1)^15^^15^0^133^39^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,73,0)
- ;;=PRIMARY CARE ICD-10^15^^55^0^132^2295^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,74,0)
- ;;=HEADER^16^^1^49^37^1^^^2
- ;;^UTILITY(U,$J,358.1,75,0)
- ;;=PATIENT INFORMATION^16^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,76,0)
- ;;=CPT CODES (3 COL)^16^^7^0^132^43^^^1^PLEASE CHECK OFF PROCEDURES PERFORMED THIS VISIT^BCU^Selection list - CPT codes^0
- ;;^UTILITY(U,$J,358.1,77,0)
- ;;=MENTAL HEALTH ICD-10^16^^51^0^132^829^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
- ;;^UTILITY(U,$J,358.1,78,0)
- ;;=PROCEDURES (V2.1)^17^^6^0^133^19^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,79,0)
- ;;=HEADER^17^^1^49^29^1^^^2
- ;;^UTILITY(U,$J,358.1,80,0)
- ;;=PATIENT INFORMATION^17^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,81,0)
- ;;=REHAB ICD-10 CODES^17^^26^0^132^1499^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^
- ;;^UTILITY(U,$J,358.1,82,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^18^^6^0^132^10^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,83,0)
- ;;=HEADER^18^^1^56^27^1^^^2
- ;;^UTILITY(U,$J,358.1,84,0)
- ;;=PATIENT INFORMATION^18^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,85,0)
- ;;=PROCEDURES (V2.1)^18^^17^0^133^18^^^1^MARK ALL PROCEDURES PERFORMED^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,86,0)
- ;;=ICD-10 DIAGNOSES (V1.0)^18^^36^0^132^369^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
- ;;^UTILITY(U,$J,358.1,87,0)
- ;;=1995 VISIT TYPE CODES (V2.1)^19^^6^0^132^19^^^1^TYPE OF VISIT^CR^1995 visit types WITH CODES SHOWN^0
- ;;^UTILITY(U,$J,358.1,88,0)
- ;;=HEADER^19^^1^57^18^1^^^2
- ;;^UTILITY(U,$J,358.1,89,0)
- ;;=PATIENT INFORMATION^19^^3^0^132^3^^^2^^^Patient information-name/ssn/age
- ;;^UTILITY(U,$J,358.1,90,0)
- ;;=PROCEDURES (V2.1)^19^^26^0^133^14^^^1^PROCEDURES^CR^Common CPT-4 procedures^0
- ;;^UTILITY(U,$J,358.1,91,0)
- ;;=INPATIENT ICD-10^19^^41^0^132^889^^^1^DIAGNOSIS^CR^Common ICD-10 diagnoses^0
+ ;;^DIC(358.2,0,"GL")
+ ;;=^IBE(358.2,
+ ;;^DIC("B","IMP/EXP SELECTION LIST",358.2)
+ ;;=
+ ;;^DIC(358.2,"%D",0)
+ ;;=^^1^1^2940829^^^^
+ ;;^DIC(358.2,"%D",1,0)
+ ;;=Used by the import/export utility as a workspace.
+ ;;^DIC(358.2,"%D",2,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",3,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",4,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",5,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",6,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",7,0)
+ ;;= 
+ ;;^DIC(358.2,"%D",8,0)
+ ;;=This file is nearly identical to file #357.2 . It is used by the
+ ;;^DIC(358.2,"%D",9,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.2,"%D",10,0)
+ ;;=that is being imported or exported.
+ ;;^DIC(358.2,"%D",11,0)
+ ;;=provisions have been made to specify up to 4 columns per list.
+ ;;^DD(358.2,0)
+ ;;=FIELD^^2^19
+ ;;^DD(358.2,0,"DDA")
+ ;;=N
+ ;;^DD(358.2,0,"DT")
+ ;;=2960123
+ ;;^DD(358.2,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.2,0,"ID",.11)
+ ;;=W ""
+ ;;^DD(358.2,0,"IX","B",358.2,.01)
+ ;;=
+ ;;^DD(358.2,0,"IX","C",358.2,.02)
+ ;;=
+ ;;^DD(358.2,0,"NM","IMP/EXP SELECTION LIST")
+ ;;=
+ ;;^DD(358.2,0,"PT",358.3,.03)
+ ;;=
+ ;;^DD(358.2,0,"PT",358.4,.03)
+ ;;=
+ ;;^DD(358.2,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.2,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.2,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.2,.01,1,1,0)
+ ;;=358.2^B
+ ;;^DD(358.2,.01,1,1,1)
+ ;;=S ^IBE(358.2,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.2,.01,1,1,2)
+ ;;=K ^IBE(358.2,"B",$E(X,1,30),DA)
+ ;;^DD(358.2,.01,3)
+ ;;=Answer must be 3-30 characters in length.
+ ;;^DD(358.2,.01,21,0)
+ ;;=^^2^2^2930527^
+ ;;^DD(358.2,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.2,.01,21,2,0)
+ ;;=The name of the list.
+ ;;^DD(358.2,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Selection Lists can only be deleted through the Encounter Form Utilities!"
+ ;;^DD(358.2,.01,"DT")
+ ;;=2921119

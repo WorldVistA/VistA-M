@@ -1,128 +1,120 @@
-IBDEI28M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37964,1,3,0)
- ;;=3^Acrophobia
- ;;^UTILITY(U,$J,358.3,37964,1,4,0)
- ;;=4^F40.241
- ;;^UTILITY(U,$J,358.3,37964,2)
- ;;=^5003555
- ;;^UTILITY(U,$J,358.3,37965,0)
- ;;=F40.248^^145^1829^18
- ;;^UTILITY(U,$J,358.3,37965,1,0)
+ ;;^UTILITY(U,$J,358.3,35727,2)
+ ;;=^5012075
+ ;;^UTILITY(U,$J,358.3,35728,0)
+ ;;=M47.814^^139^1821^55
+ ;;^UTILITY(U,$J,358.3,35728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37965,1,3,0)
- ;;=3^Situational Type Phobia NEC
- ;;^UTILITY(U,$J,358.3,37965,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,37965,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,37966,0)
- ;;=F40.01^^145^1829^3
- ;;^UTILITY(U,$J,358.3,37966,1,0)
+ ;;^UTILITY(U,$J,358.3,35728,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,35728,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,35728,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,35729,0)
+ ;;=M47.815^^139^1821^56
+ ;;^UTILITY(U,$J,358.3,35729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37966,1,3,0)
- ;;=3^Agoraphobia w/ Panic Disorder
- ;;^UTILITY(U,$J,358.3,37966,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,37966,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,37967,0)
- ;;=F40.298^^145^1829^16
- ;;^UTILITY(U,$J,358.3,37967,1,0)
+ ;;^UTILITY(U,$J,358.3,35729,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Thoracolumb Region
+ ;;^UTILITY(U,$J,358.3,35729,1,4,0)
+ ;;=4^M47.815
+ ;;^UTILITY(U,$J,358.3,35729,2)
+ ;;=^5012072
+ ;;^UTILITY(U,$J,358.3,35730,0)
+ ;;=M47.813^^139^1821^50
+ ;;^UTILITY(U,$J,358.3,35730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37967,1,3,0)
- ;;=3^Phobia,Oth Specified
- ;;^UTILITY(U,$J,358.3,37967,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,37967,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,37968,0)
- ;;=F93.0^^145^1829^17
- ;;^UTILITY(U,$J,358.3,37968,1,0)
+ ;;^UTILITY(U,$J,358.3,35730,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Cervicothor Region
+ ;;^UTILITY(U,$J,358.3,35730,1,4,0)
+ ;;=4^M47.813
+ ;;^UTILITY(U,$J,358.3,35730,2)
+ ;;=^5012070
+ ;;^UTILITY(U,$J,358.3,35731,0)
+ ;;=M48.32^^139^1821^57
+ ;;^UTILITY(U,$J,358.3,35731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37968,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,37968,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,37968,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,37969,0)
- ;;=F41.8^^145^1829^7
- ;;^UTILITY(U,$J,358.3,37969,1,0)
+ ;;^UTILITY(U,$J,358.3,35731,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,35731,1,4,0)
+ ;;=4^M48.32
+ ;;^UTILITY(U,$J,358.3,35731,2)
+ ;;=^5012116
+ ;;^UTILITY(U,$J,358.3,35732,0)
+ ;;=M48.36^^139^1821^59
+ ;;^UTILITY(U,$J,358.3,35732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37969,1,3,0)
- ;;=3^Anxiety Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,37969,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,37969,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,37970,0)
- ;;=F06.33^^145^1830^1
- ;;^UTILITY(U,$J,358.3,37970,1,0)
+ ;;^UTILITY(U,$J,358.3,35732,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,35732,1,4,0)
+ ;;=4^M48.36
+ ;;^UTILITY(U,$J,358.3,35732,2)
+ ;;=^5012120
+ ;;^UTILITY(U,$J,358.3,35733,0)
+ ;;=M48.37^^139^1821^60
+ ;;^UTILITY(U,$J,358.3,35733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37970,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,37970,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,37970,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,37971,0)
- ;;=F06.34^^145^1830^2
- ;;^UTILITY(U,$J,358.3,37971,1,0)
+ ;;^UTILITY(U,$J,358.3,35733,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,35733,1,4,0)
+ ;;=4^M48.37
+ ;;^UTILITY(U,$J,358.3,35733,2)
+ ;;=^5012121
+ ;;^UTILITY(U,$J,358.3,35734,0)
+ ;;=M48.31^^139^1821^61
+ ;;^UTILITY(U,$J,358.3,35734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37971,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,37971,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,37971,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,37972,0)
- ;;=F31.11^^145^1830^6
- ;;^UTILITY(U,$J,358.3,37972,1,0)
+ ;;^UTILITY(U,$J,358.3,35734,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,35734,1,4,0)
+ ;;=4^M48.31
+ ;;^UTILITY(U,$J,358.3,35734,2)
+ ;;=^5012115
+ ;;^UTILITY(U,$J,358.3,35735,0)
+ ;;=M48.38^^139^1821^62
+ ;;^UTILITY(U,$J,358.3,35735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37972,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,37972,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,37972,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,37973,0)
- ;;=F31.12^^145^1830^7
- ;;^UTILITY(U,$J,358.3,37973,1,0)
+ ;;^UTILITY(U,$J,358.3,35735,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Sacral/Sacrococcygeal Region
+ ;;^UTILITY(U,$J,358.3,35735,1,4,0)
+ ;;=4^M48.38
+ ;;^UTILITY(U,$J,358.3,35735,2)
+ ;;=^5012122
+ ;;^UTILITY(U,$J,358.3,35736,0)
+ ;;=M48.35^^139^1821^64
+ ;;^UTILITY(U,$J,358.3,35736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37973,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,37973,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,37973,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,37974,0)
- ;;=F31.13^^145^1830^8
- ;;^UTILITY(U,$J,358.3,37974,1,0)
+ ;;^UTILITY(U,$J,358.3,35736,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,35736,1,4,0)
+ ;;=4^M48.35
+ ;;^UTILITY(U,$J,358.3,35736,2)
+ ;;=^5012119
+ ;;^UTILITY(U,$J,358.3,35737,0)
+ ;;=M48.33^^139^1821^58
+ ;;^UTILITY(U,$J,358.3,35737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37974,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,37974,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,37974,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,37975,0)
- ;;=F31.2^^145^1830^9
- ;;^UTILITY(U,$J,358.3,37975,1,0)
+ ;;^UTILITY(U,$J,358.3,35737,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,35737,1,4,0)
+ ;;=4^M48.33
+ ;;^UTILITY(U,$J,358.3,35737,2)
+ ;;=^5012117
+ ;;^UTILITY(U,$J,358.3,35738,0)
+ ;;=M48.34^^139^1821^63
+ ;;^UTILITY(U,$J,358.3,35738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37975,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,37975,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,37975,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,37976,0)
- ;;=F31.73^^145^1830^10
- ;;^UTILITY(U,$J,358.3,37976,1,0)
+ ;;^UTILITY(U,$J,358.3,35738,1,3,0)
+ ;;=3^Traumatic Spondylopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,35738,1,4,0)
+ ;;=4^M48.34
+ ;;^UTILITY(U,$J,358.3,35738,2)
+ ;;=^5012118
+ ;;^UTILITY(U,$J,358.3,35739,0)
+ ;;=M48.061^^139^1821^47
+ ;;^UTILITY(U,$J,358.3,35739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37976,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,37976,1,4,0)
- ;;=4^F31.73

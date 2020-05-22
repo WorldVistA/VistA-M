@@ -1,144 +1,116 @@
-IBDEI188 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI188 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20855,1,0)
+ ;;^UTILITY(U,$J,358.3,19682,1,4,0)
+ ;;=4^S72.435S
+ ;;^UTILITY(U,$J,358.3,19682,2)
+ ;;=^5038931
+ ;;^UTILITY(U,$J,358.3,19683,0)
+ ;;=S72.441S^^93^995^29
+ ;;^UTILITY(U,$J,358.3,19683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20855,1,3,0)
- ;;=3^Incontinence w/o Sensory Awareness
- ;;^UTILITY(U,$J,358.3,20855,1,4,0)
- ;;=4^N39.42
- ;;^UTILITY(U,$J,358.3,20855,2)
- ;;=^5015681
- ;;^UTILITY(U,$J,358.3,20856,0)
- ;;=N39.43^^84^941^143
- ;;^UTILITY(U,$J,358.3,20856,1,0)
+ ;;^UTILITY(U,$J,358.3,19683,1,3,0)
+ ;;=3^Displaced lower epiphysis fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19683,1,4,0)
+ ;;=4^S72.441S
+ ;;^UTILITY(U,$J,358.3,19683,2)
+ ;;=^5038963
+ ;;^UTILITY(U,$J,358.3,19684,0)
+ ;;=S72.442S^^93^995^28
+ ;;^UTILITY(U,$J,358.3,19684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20856,1,3,0)
- ;;=3^Post-Void Dribbling
- ;;^UTILITY(U,$J,358.3,20856,1,4,0)
- ;;=4^N39.43
- ;;^UTILITY(U,$J,358.3,20856,2)
- ;;=^5015682
- ;;^UTILITY(U,$J,358.3,20857,0)
- ;;=N39.44^^84^941^123
- ;;^UTILITY(U,$J,358.3,20857,1,0)
+ ;;^UTILITY(U,$J,358.3,19684,1,3,0)
+ ;;=3^Displaced lower epiphysis fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19684,1,4,0)
+ ;;=4^S72.442S
+ ;;^UTILITY(U,$J,358.3,19684,2)
+ ;;=^5136242
+ ;;^UTILITY(U,$J,358.3,19685,0)
+ ;;=S72.444S^^93^995^77
+ ;;^UTILITY(U,$J,358.3,19685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20857,1,3,0)
- ;;=3^Nocturnal Enuresis
- ;;^UTILITY(U,$J,358.3,20857,1,4,0)
- ;;=4^N39.44
- ;;^UTILITY(U,$J,358.3,20857,2)
- ;;=^5015683
- ;;^UTILITY(U,$J,358.3,20858,0)
- ;;=N39.46^^84^941^119
- ;;^UTILITY(U,$J,358.3,20858,1,0)
+ ;;^UTILITY(U,$J,358.3,19685,1,3,0)
+ ;;=3^Nondisp lower epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19685,1,4,0)
+ ;;=4^S72.444S
+ ;;^UTILITY(U,$J,358.3,19685,2)
+ ;;=^5038984
+ ;;^UTILITY(U,$J,358.3,19686,0)
+ ;;=S72.445S^^93^995^76
+ ;;^UTILITY(U,$J,358.3,19686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20858,1,3,0)
- ;;=3^Mixed Incontinence
- ;;^UTILITY(U,$J,358.3,20858,1,4,0)
- ;;=4^N39.46
- ;;^UTILITY(U,$J,358.3,20858,2)
- ;;=^5015685
- ;;^UTILITY(U,$J,358.3,20859,0)
- ;;=R06.01^^84^941^127
- ;;^UTILITY(U,$J,358.3,20859,1,0)
+ ;;^UTILITY(U,$J,358.3,19686,1,3,0)
+ ;;=3^Nondisp lower epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19686,1,4,0)
+ ;;=4^S72.445S
+ ;;^UTILITY(U,$J,358.3,19686,2)
+ ;;=^5136269
+ ;;^UTILITY(U,$J,358.3,19687,0)
+ ;;=S72.451S^^93^995^46
+ ;;^UTILITY(U,$J,358.3,19687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20859,1,3,0)
- ;;=3^Orthopnea
- ;;^UTILITY(U,$J,358.3,20859,1,4,0)
- ;;=4^R06.01
- ;;^UTILITY(U,$J,358.3,20859,2)
- ;;=^186737
- ;;^UTILITY(U,$J,358.3,20860,0)
- ;;=R06.4^^84^941^86
- ;;^UTILITY(U,$J,358.3,20860,1,0)
+ ;;^UTILITY(U,$J,358.3,19687,1,3,0)
+ ;;=3^Displaced suprcndl fx w/o intrcndl extn lower end r femur, sqla
+ ;;^UTILITY(U,$J,358.3,19687,1,4,0)
+ ;;=4^S72.451S
+ ;;^UTILITY(U,$J,358.3,19687,2)
+ ;;=^5039005
+ ;;^UTILITY(U,$J,358.3,19688,0)
+ ;;=S72.452S^^93^995^47
+ ;;^UTILITY(U,$J,358.3,19688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20860,1,3,0)
- ;;=3^Hyperventilation
- ;;^UTILITY(U,$J,358.3,20860,1,4,0)
- ;;=4^R06.4
- ;;^UTILITY(U,$J,358.3,20860,2)
- ;;=^5019186
- ;;^UTILITY(U,$J,358.3,20861,0)
- ;;=R06.6^^84^941^82
- ;;^UTILITY(U,$J,358.3,20861,1,0)
+ ;;^UTILITY(U,$J,358.3,19688,1,3,0)
+ ;;=3^Displaced suprcndl fx w/o intrcndl extn lower end l femur, sqla
+ ;;^UTILITY(U,$J,358.3,19688,1,4,0)
+ ;;=4^S72.452S
+ ;;^UTILITY(U,$J,358.3,19688,2)
+ ;;=^5039021
+ ;;^UTILITY(U,$J,358.3,19689,0)
+ ;;=S72.454S^^93^995^95
+ ;;^UTILITY(U,$J,358.3,19689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20861,1,3,0)
- ;;=3^Hiccough
- ;;^UTILITY(U,$J,358.3,20861,1,4,0)
- ;;=4^R06.6
- ;;^UTILITY(U,$J,358.3,20861,2)
- ;;=^5019188
- ;;^UTILITY(U,$J,358.3,20862,0)
- ;;=R07.0^^84^941^149
- ;;^UTILITY(U,$J,358.3,20862,1,0)
+ ;;^UTILITY(U,$J,358.3,19689,1,3,0)
+ ;;=3^Nondisp suprcndl fx w/o intrcndl extn lower end r femr, sqla
+ ;;^UTILITY(U,$J,358.3,19689,1,4,0)
+ ;;=4^S72.454S
+ ;;^UTILITY(U,$J,358.3,19689,2)
+ ;;=^5039053
+ ;;^UTILITY(U,$J,358.3,19690,0)
+ ;;=S72.455S^^93^995^96
+ ;;^UTILITY(U,$J,358.3,19690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20862,1,3,0)
- ;;=3^Sore Throat
- ;;^UTILITY(U,$J,358.3,20862,1,4,0)
- ;;=4^R07.0
- ;;^UTILITY(U,$J,358.3,20862,2)
- ;;=^5019195
- ;;^UTILITY(U,$J,358.3,20863,0)
- ;;=R07.9^^84^941^47
- ;;^UTILITY(U,$J,358.3,20863,1,0)
+ ;;^UTILITY(U,$J,358.3,19690,1,3,0)
+ ;;=3^Nondisp suprcndl fx w/o intrcndl extn lower end l femr, sqla
+ ;;^UTILITY(U,$J,358.3,19690,1,4,0)
+ ;;=4^S72.455S
+ ;;^UTILITY(U,$J,358.3,19690,2)
+ ;;=^5039069
+ ;;^UTILITY(U,$J,358.3,19691,0)
+ ;;=S72.461S^^93^995^44
+ ;;^UTILITY(U,$J,358.3,19691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20863,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,20863,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,20863,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,20864,0)
- ;;=R09.01^^84^941^41
- ;;^UTILITY(U,$J,358.3,20864,1,0)
+ ;;^UTILITY(U,$J,358.3,19691,1,3,0)
+ ;;=3^Displaced suprcndl fx w intrcndl extn lower end of r femur, sqla
+ ;;^UTILITY(U,$J,358.3,19691,1,4,0)
+ ;;=4^S72.461S
+ ;;^UTILITY(U,$J,358.3,19691,2)
+ ;;=^5039093
+ ;;^UTILITY(U,$J,358.3,19692,0)
+ ;;=S72.462S^^93^995^45
+ ;;^UTILITY(U,$J,358.3,19692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20864,1,3,0)
- ;;=3^Asphyxia
- ;;^UTILITY(U,$J,358.3,20864,1,4,0)
- ;;=4^R09.01
- ;;^UTILITY(U,$J,358.3,20864,2)
- ;;=^11005
- ;;^UTILITY(U,$J,358.3,20865,0)
- ;;=R09.3^^84^941^20
- ;;^UTILITY(U,$J,358.3,20865,1,0)
+ ;;^UTILITY(U,$J,358.3,19692,1,3,0)
+ ;;=3^Displaced suprcndl fx w intrcndl extn lower end of l femur, sqla
+ ;;^UTILITY(U,$J,358.3,19692,1,4,0)
+ ;;=4^S72.462S
+ ;;^UTILITY(U,$J,358.3,19692,2)
+ ;;=^5136422
+ ;;^UTILITY(U,$J,358.3,19693,0)
+ ;;=S72.464S^^93^995^93
+ ;;^UTILITY(U,$J,358.3,19693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20865,1,3,0)
- ;;=3^Abnormal Sputum
- ;;^UTILITY(U,$J,358.3,20865,1,4,0)
- ;;=4^R09.3
- ;;^UTILITY(U,$J,358.3,20865,2)
- ;;=^5019202
- ;;^UTILITY(U,$J,358.3,20866,0)
- ;;=R12.^^84^941^80
- ;;^UTILITY(U,$J,358.3,20866,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20866,1,3,0)
- ;;=3^Heartburn
- ;;^UTILITY(U,$J,358.3,20866,1,4,0)
- ;;=4^R12.
- ;;^UTILITY(U,$J,358.3,20866,2)
- ;;=^5019238
- ;;^UTILITY(U,$J,358.3,20867,0)
- ;;=R14.0^^84^941^1
- ;;^UTILITY(U,$J,358.3,20867,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20867,1,3,0)
- ;;=3^Abdominal Distension
- ;;^UTILITY(U,$J,358.3,20867,1,4,0)
- ;;=4^R14.0
- ;;^UTILITY(U,$J,358.3,20867,2)
- ;;=^5019240
- ;;^UTILITY(U,$J,358.3,20868,0)
- ;;=R14.1^^84^941^77
- ;;^UTILITY(U,$J,358.3,20868,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20868,1,3,0)
- ;;=3^Gas Pain
- ;;^UTILITY(U,$J,358.3,20868,1,4,0)
- ;;=4^R14.1
- ;;^UTILITY(U,$J,358.3,20868,2)
- ;;=^5019241
- ;;^UTILITY(U,$J,358.3,20869,0)
- ;;=R14.2^^84^941^70
+ ;;^UTILITY(U,$J,358.3,19693,1,3,0)
+ ;;=3^Nondisp suprcndl fx w intrcndl extn lower end r femur, sqla
+ ;;^UTILITY(U,$J,358.3,19693,1,4,0)
+ ;;=4^S72.464S

@@ -1,5 +1,5 @@
-RAUTL1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ;10/22/97  13:54
- ;;5.0;Radiology/Nuclear Medicine;**5,9,18,71,82,84,94,47**;Mar 16, 1998;Build 21
+RAUTL1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Utility Routine ; Nov 26, 2019@16:15:02
+ ;;5.0;Radiology/Nuclear Medicine;**5,9,18,71,82,84,94,47,162**;Mar 16, 1998;Build 2
  ;last modification by SS for P18 June 19,00
  ;07/28/2008 BAY/KAM RA*5*94 Remove patch 81 from 2nd line of routine
  ;02/10/2006 BAY/KAM RA*5*71 Add ability to update exam data to V/R
@@ -100,7 +100,10 @@ UP2 ;Remedy Call 124379 Patch *71 BAY/KAM Added next line
  ; user duz could be in RADUZ, if session is from the Voice recognition
  ;S DR(2,70.05)=$S($P(RAMDV,"^",11)&('$D(ZTQUEUED)):".01;",1:"")_"2////"_RASTI_";3////"_$S($G(RADUZ):RADUZ,1:DUZ)
  ;D ^DIE
+ ;*** P162 mod on timeout INC7406782 use DILOCKTM
+ ;*** else default to three
  L +^RADPT(RADFN,"DT",RADTI,"P",RACNI):$G(DILOCKTM,3)
+ ;*** P162 end
  N RAIEN
  S RAIENS=RACNI_","_RADTI_","_RADFN_","
  S RAFDA(70.03,RAIENS,3)=RASTI

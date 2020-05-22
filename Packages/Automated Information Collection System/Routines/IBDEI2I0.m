@@ -1,130 +1,124 @@
-IBDEI2I0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2I0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42364,1,0)
+ ;;^UTILITY(U,$J,358.3,39892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42364,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,42364,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,42364,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,42365,0)
- ;;=R87.619^^159^2020^1
- ;;^UTILITY(U,$J,358.3,42365,1,0)
+ ;;^UTILITY(U,$J,358.3,39892,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,39892,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,39892,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,39893,0)
+ ;;=Z93.0^^152^2001^151
+ ;;^UTILITY(U,$J,358.3,39893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42365,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,42365,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,42365,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,42366,0)
- ;;=Z79.890^^159^2020^26
- ;;^UTILITY(U,$J,358.3,42366,1,0)
+ ;;^UTILITY(U,$J,358.3,39893,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,39893,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,39893,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,39894,0)
+ ;;=Z99.3^^152^2001^156
+ ;;^UTILITY(U,$J,358.3,39894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42366,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,42366,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,42366,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,42367,0)
- ;;=Z33.1^^159^2020^50
- ;;^UTILITY(U,$J,358.3,42367,1,0)
+ ;;^UTILITY(U,$J,358.3,39894,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,39894,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,39894,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,39895,0)
+ ;;=Z83.42^^152^2001^21
+ ;;^UTILITY(U,$J,358.3,39895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42367,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,42367,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,42367,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,42368,0)
- ;;=Z39.2^^159^2020^49
- ;;^UTILITY(U,$J,358.3,42368,1,0)
+ ;;^UTILITY(U,$J,358.3,39895,1,3,0)
+ ;;=3^Family Hx of Familial Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,39895,1,4,0)
+ ;;=4^Z83.42
+ ;;^UTILITY(U,$J,358.3,39895,2)
+ ;;=^8132985
+ ;;^UTILITY(U,$J,358.3,39896,0)
+ ;;=Z98.890^^152^2001^114
+ ;;^UTILITY(U,$J,358.3,39896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42368,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,42368,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,42368,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,42369,0)
- ;;=Z30.09^^159^2020^10
- ;;^UTILITY(U,$J,358.3,42369,1,0)
+ ;;^UTILITY(U,$J,358.3,39896,1,3,0)
+ ;;=3^Postprocedural States/HX of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,39896,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,39896,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,39897,0)
+ ;;=Z95.1^^152^2001^115
+ ;;^UTILITY(U,$J,358.3,39897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42369,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,42369,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,42369,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,42370,0)
- ;;=Z30.9^^159^2020^9
- ;;^UTILITY(U,$J,358.3,42370,1,0)
+ ;;^UTILITY(U,$J,358.3,39897,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass
+ ;;^UTILITY(U,$J,358.3,39897,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,39897,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,39898,0)
+ ;;=Z98.2^^152^2001^127
+ ;;^UTILITY(U,$J,358.3,39898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42370,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,42370,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,42370,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,42371,0)
- ;;=N64.3^^159^2020^23
- ;;^UTILITY(U,$J,358.3,42371,1,0)
+ ;;^UTILITY(U,$J,358.3,39898,1,3,0)
+ ;;=3^Presence of Cerebrospinal Fluid Drainage Device
+ ;;^UTILITY(U,$J,358.3,39898,1,4,0)
+ ;;=4^Z98.2
+ ;;^UTILITY(U,$J,358.3,39898,2)
+ ;;=^5063735
+ ;;^UTILITY(U,$J,358.3,39899,0)
+ ;;=Z97.5^^152^2001^128
+ ;;^UTILITY(U,$J,358.3,39899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42371,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,42371,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,42371,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,42372,0)
- ;;=R92.2^^159^2020^27
- ;;^UTILITY(U,$J,358.3,42372,1,0)
+ ;;^UTILITY(U,$J,358.3,39899,1,3,0)
+ ;;=3^Presence of Contraceptive (Intrauterine) Device
+ ;;^UTILITY(U,$J,358.3,39899,1,4,0)
+ ;;=4^Z97.5
+ ;;^UTILITY(U,$J,358.3,39899,2)
+ ;;=^5063731
+ ;;^UTILITY(U,$J,358.3,39900,0)
+ ;;=Z95.5^^152^2001^129
+ ;;^UTILITY(U,$J,358.3,39900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42372,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,42372,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,42372,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,42373,0)
- ;;=Z30.432^^159^2020^53
- ;;^UTILITY(U,$J,358.3,42373,1,0)
+ ;;^UTILITY(U,$J,358.3,39900,1,3,0)
+ ;;=3^Presence of Coronary Angioplasty Implant/Graft
+ ;;^UTILITY(U,$J,358.3,39900,1,4,0)
+ ;;=4^Z95.5
+ ;;^UTILITY(U,$J,358.3,39900,2)
+ ;;=^5063673
+ ;;^UTILITY(U,$J,358.3,39901,0)
+ ;;=Z97.2^^152^2001^130
+ ;;^UTILITY(U,$J,358.3,39901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42373,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,42373,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,42373,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,42374,0)
- ;;=S31.000A^^159^2021^5
- ;;^UTILITY(U,$J,358.3,42374,1,0)
+ ;;^UTILITY(U,$J,358.3,39901,1,3,0)
+ ;;=3^Presence of Dental Prosthetic Device
+ ;;^UTILITY(U,$J,358.3,39901,1,4,0)
+ ;;=4^Z97.2
+ ;;^UTILITY(U,$J,358.3,39901,2)
+ ;;=^5063728
+ ;;^UTILITY(U,$J,358.3,39902,0)
+ ;;=Z97.4^^152^2001^131
+ ;;^UTILITY(U,$J,358.3,39902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42374,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,42374,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,42374,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,42375,0)
- ;;=S31.010A^^159^2021^2
- ;;^UTILITY(U,$J,358.3,42375,1,0)
+ ;;^UTILITY(U,$J,358.3,39902,1,3,0)
+ ;;=3^Presence of External Hearing Aid
+ ;;^UTILITY(U,$J,358.3,39902,1,4,0)
+ ;;=4^Z97.4
+ ;;^UTILITY(U,$J,358.3,39902,2)
+ ;;=^5063730
+ ;;^UTILITY(U,$J,358.3,39903,0)
+ ;;=Z96.622^^152^2001^117
+ ;;^UTILITY(U,$J,358.3,39903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42375,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,42375,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,42375,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,42376,0)
- ;;=T07.^^159^2021^4
- ;;^UTILITY(U,$J,358.3,42376,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42376,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,42376,1,4,0)
- ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,39903,1,3,0)
+ ;;=3^Presence of Artificial Elbow Joint,Left
+ ;;^UTILITY(U,$J,358.3,39903,1,4,0)
+ ;;=4^Z96.622
+ ;;^UTILITY(U,$J,358.3,39903,2)
+ ;;=^5063696
+ ;;^UTILITY(U,$J,358.3,39904,0)
+ ;;=Z96.632^^152^2001^122

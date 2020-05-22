@@ -1,124 +1,122 @@
-IBDEI2X0 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2X0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48923,1,4,0)
- ;;=4^S72.124S
- ;;^UTILITY(U,$J,358.3,48923,2)
- ;;=^5037786
- ;;^UTILITY(U,$J,358.3,48924,0)
- ;;=S72.125S^^216^2413^65
- ;;^UTILITY(U,$J,358.3,48924,1,0)
+ ;;^UTILITY(U,$J,358.3,46491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48924,1,3,0)
- ;;=3^Nondisp lesser trochanter fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48924,1,4,0)
- ;;=4^S72.125S
- ;;^UTILITY(U,$J,358.3,48924,2)
- ;;=^5037802
- ;;^UTILITY(U,$J,358.3,48925,0)
- ;;=S72.131S^^216^2413^2
- ;;^UTILITY(U,$J,358.3,48925,1,0)
+ ;;^UTILITY(U,$J,358.3,46491,1,3,0)
+ ;;=3^DM Type 2 Sev NPDR w/ CME,RIGHT eye     
+ ;;^UTILITY(U,$J,358.3,46491,1,4,0)
+ ;;=4^E11.3411
+ ;;^UTILITY(U,$J,358.3,46491,2)
+ ;;=^5138347
+ ;;^UTILITY(U,$J,358.3,46492,0)
+ ;;=E11.3412^^176^2313^11
+ ;;^UTILITY(U,$J,358.3,46492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48925,1,3,0)
- ;;=3^Displaced apophyseal fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48925,1,4,0)
- ;;=4^S72.131S
- ;;^UTILITY(U,$J,358.3,48925,2)
- ;;=^5037834
- ;;^UTILITY(U,$J,358.3,48926,0)
- ;;=S72.132S^^216^2413^1
- ;;^UTILITY(U,$J,358.3,48926,1,0)
+ ;;^UTILITY(U,$J,358.3,46492,1,3,0)
+ ;;=3^DM Type 2 Sev NPDR w/ CME,LEFT eye      
+ ;;^UTILITY(U,$J,358.3,46492,1,4,0)
+ ;;=4^E11.3412
+ ;;^UTILITY(U,$J,358.3,46492,2)
+ ;;=^5138348
+ ;;^UTILITY(U,$J,358.3,46493,0)
+ ;;=E11.3511^^176^2313^12
+ ;;^UTILITY(U,$J,358.3,46493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48926,1,3,0)
- ;;=3^Displaced apophyseal fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48926,1,4,0)
- ;;=4^S72.132S
- ;;^UTILITY(U,$J,358.3,48926,2)
- ;;=^5037850
- ;;^UTILITY(U,$J,358.3,48927,0)
- ;;=S72.134S^^216^2413^48
- ;;^UTILITY(U,$J,358.3,48927,1,0)
+ ;;^UTILITY(U,$J,358.3,46493,1,3,0)
+ ;;=3^DM Type 2 PDR w/ CME,RIGHT eye          
+ ;;^UTILITY(U,$J,358.3,46493,1,4,0)
+ ;;=4^E11.3511
+ ;;^UTILITY(U,$J,358.3,46493,2)
+ ;;=^5138355
+ ;;^UTILITY(U,$J,358.3,46494,0)
+ ;;=E11.3512^^176^2313^13
+ ;;^UTILITY(U,$J,358.3,46494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48927,1,3,0)
- ;;=3^Nondisp apophyseal fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48927,1,4,0)
- ;;=4^S72.134S
- ;;^UTILITY(U,$J,358.3,48927,2)
- ;;=^5037882
- ;;^UTILITY(U,$J,358.3,48928,0)
- ;;=S72.135S^^216^2413^47
- ;;^UTILITY(U,$J,358.3,48928,1,0)
+ ;;^UTILITY(U,$J,358.3,46494,1,3,0)
+ ;;=3^DM Type 2 PDR w/ CME,LEFT eye           
+ ;;^UTILITY(U,$J,358.3,46494,1,4,0)
+ ;;=4^E11.3512
+ ;;^UTILITY(U,$J,358.3,46494,2)
+ ;;=^5138356
+ ;;^UTILITY(U,$J,358.3,46495,0)
+ ;;=H59.031^^176^2313^14
+ ;;^UTILITY(U,$J,358.3,46495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48928,1,3,0)
- ;;=3^Nondisp apophyseal fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48928,1,4,0)
- ;;=4^S72.135S
- ;;^UTILITY(U,$J,358.3,48928,2)
- ;;=^5037898
- ;;^UTILITY(U,$J,358.3,48929,0)
- ;;=S72.141S^^216^2413^16
- ;;^UTILITY(U,$J,358.3,48929,1,0)
+ ;;^UTILITY(U,$J,358.3,46495,1,3,0)
+ ;;=3^CME s/p Surgery,RIGHT eye         
+ ;;^UTILITY(U,$J,358.3,46495,1,4,0)
+ ;;=4^H59.031
+ ;;^UTILITY(U,$J,358.3,46495,2)
+ ;;=^5006393
+ ;;^UTILITY(U,$J,358.3,46496,0)
+ ;;=H59.032^^176^2313^15
+ ;;^UTILITY(U,$J,358.3,46496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48929,1,3,0)
- ;;=3^Displaced intertrochanteric fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48929,1,4,0)
- ;;=4^S72.141S
- ;;^UTILITY(U,$J,358.3,48929,2)
- ;;=^5037930
- ;;^UTILITY(U,$J,358.3,48930,0)
- ;;=S72.142S^^216^2413^15
- ;;^UTILITY(U,$J,358.3,48930,1,0)
+ ;;^UTILITY(U,$J,358.3,46496,1,3,0)
+ ;;=3^CME s/p Surgery,LEFT eye            
+ ;;^UTILITY(U,$J,358.3,46496,1,4,0)
+ ;;=4^H59.032
+ ;;^UTILITY(U,$J,358.3,46496,2)
+ ;;=^5006394
+ ;;^UTILITY(U,$J,358.3,46497,0)
+ ;;=H34.8310^^176^2313^16
+ ;;^UTILITY(U,$J,358.3,46497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48930,1,3,0)
- ;;=3^Displaced intertrochanteric fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48930,1,4,0)
- ;;=4^S72.142S
- ;;^UTILITY(U,$J,358.3,48930,2)
- ;;=^5037946
- ;;^UTILITY(U,$J,358.3,48931,0)
- ;;=S72.144S^^216^2413^62
- ;;^UTILITY(U,$J,358.3,48931,1,0)
+ ;;^UTILITY(U,$J,358.3,46497,1,3,0)
+ ;;=3^BRVO w/ CME,RIGHT eye               
+ ;;^UTILITY(U,$J,358.3,46497,1,4,0)
+ ;;=4^H34.8310
+ ;;^UTILITY(U,$J,358.3,46497,2)
+ ;;=^5138488
+ ;;^UTILITY(U,$J,358.3,46498,0)
+ ;;=H34.8320^^176^2313^17
+ ;;^UTILITY(U,$J,358.3,46498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48931,1,3,0)
- ;;=3^Nondisp intertroch fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48931,1,4,0)
- ;;=4^S72.144S
- ;;^UTILITY(U,$J,358.3,48931,2)
- ;;=^5037978
- ;;^UTILITY(U,$J,358.3,48932,0)
- ;;=S72.145S^^216^2413^61
- ;;^UTILITY(U,$J,358.3,48932,1,0)
+ ;;^UTILITY(U,$J,358.3,46498,1,3,0)
+ ;;=3^BRVO w/ CME,LEFT eye                
+ ;;^UTILITY(U,$J,358.3,46498,1,4,0)
+ ;;=4^H34.8320
+ ;;^UTILITY(U,$J,358.3,46498,2)
+ ;;=^5138491
+ ;;^UTILITY(U,$J,358.3,46499,0)
+ ;;=H34.8311^^176^2313^18
+ ;;^UTILITY(U,$J,358.3,46499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48932,1,3,0)
- ;;=3^Nondisp intertroch fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48932,1,4,0)
- ;;=4^S72.145S
- ;;^UTILITY(U,$J,358.3,48932,2)
- ;;=^5037994
- ;;^UTILITY(U,$J,358.3,48933,0)
- ;;=S72.21XS^^216^2413^38
- ;;^UTILITY(U,$J,358.3,48933,1,0)
+ ;;^UTILITY(U,$J,358.3,46499,1,3,0)
+ ;;=3^BRVO w/ NV,RIGHT eye                
+ ;;^UTILITY(U,$J,358.3,46499,1,4,0)
+ ;;=4^H34.8311
+ ;;^UTILITY(U,$J,358.3,46499,2)
+ ;;=^5138489
+ ;;^UTILITY(U,$J,358.3,46500,0)
+ ;;=H34.8321^^176^2313^19
+ ;;^UTILITY(U,$J,358.3,46500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48933,1,3,0)
- ;;=3^Displaced subtrochanteric fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48933,1,4,0)
- ;;=4^S72.21XS
- ;;^UTILITY(U,$J,358.3,48933,2)
- ;;=^5038026
- ;;^UTILITY(U,$J,358.3,48934,0)
- ;;=S72.22XS^^216^2413^37
- ;;^UTILITY(U,$J,358.3,48934,1,0)
+ ;;^UTILITY(U,$J,358.3,46500,1,3,0)
+ ;;=3^BRVO w/ NV,LEFT eye                 
+ ;;^UTILITY(U,$J,358.3,46500,1,4,0)
+ ;;=4^H34.8321
+ ;;^UTILITY(U,$J,358.3,46500,2)
+ ;;=^5138492
+ ;;^UTILITY(U,$J,358.3,46501,0)
+ ;;=H34.8111^^176^2313^20
+ ;;^UTILITY(U,$J,358.3,46501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48934,1,3,0)
- ;;=3^Displaced subtrochanteric fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48934,1,4,0)
- ;;=4^S72.22XS
- ;;^UTILITY(U,$J,358.3,48934,2)
- ;;=^5038042
- ;;^UTILITY(U,$J,358.3,48935,0)
- ;;=S72.24XS^^216^2413^85
- ;;^UTILITY(U,$J,358.3,48935,1,0)
+ ;;^UTILITY(U,$J,358.3,46501,1,3,0)
+ ;;=3^CRVO w/ NV,RIGHT eye                
+ ;;^UTILITY(U,$J,358.3,46501,1,4,0)
+ ;;=4^H34.8111
+ ;;^UTILITY(U,$J,358.3,46501,2)
+ ;;=^5138477
+ ;;^UTILITY(U,$J,358.3,46502,0)
+ ;;=H34.8121^^176^2313^21
+ ;;^UTILITY(U,$J,358.3,46502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48935,1,3,0)
- ;;=3^Nondisp subtrochanteric fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,46502,1,3,0)
+ ;;=3^CRVO w/ NV,LEFT eye                 
+ ;;^UTILITY(U,$J,358.3,46502,1,4,0)
+ ;;=4^H34.8121
+ ;;^UTILITY(U,$J,358.3,46502,2)
+ ;;=^5138480

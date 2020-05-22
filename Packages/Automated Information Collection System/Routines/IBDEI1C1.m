@@ -1,132 +1,118 @@
-IBDEI1C1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1C1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22649,1,0)
+ ;;^UTILITY(U,$J,358.3,21286,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,21287,0)
+ ;;=F19.981^^95^1060^12
+ ;;^UTILITY(U,$J,358.3,21287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22649,1,3,0)
- ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
- ;;^UTILITY(U,$J,358.3,22649,1,4,0)
- ;;=4^Z83.41
- ;;^UTILITY(U,$J,358.3,22649,2)
- ;;=^5063380
- ;;^UTILITY(U,$J,358.3,22650,0)
- ;;=Z81.8^^87^982^50
- ;;^UTILITY(U,$J,358.3,22650,1,0)
+ ;;^UTILITY(U,$J,358.3,21287,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,21287,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,21287,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,21288,0)
+ ;;=F19.182^^95^1060^13
+ ;;^UTILITY(U,$J,358.3,21288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22650,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
- ;;^UTILITY(U,$J,358.3,22650,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,22650,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,22651,0)
- ;;=Z81.4^^87^982^51
- ;;^UTILITY(U,$J,358.3,22651,1,0)
+ ;;^UTILITY(U,$J,358.3,21288,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21288,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,21288,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,21289,0)
+ ;;=F19.282^^95^1060^14
+ ;;^UTILITY(U,$J,358.3,21289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22651,1,3,0)
- ;;=3^Family Hx of Substance Abuse/Dependence NEC
- ;;^UTILITY(U,$J,358.3,22651,1,4,0)
- ;;=4^Z81.4
- ;;^UTILITY(U,$J,358.3,22651,2)
- ;;=^5063362
- ;;^UTILITY(U,$J,358.3,22652,0)
- ;;=Z98.0^^87^982^62
- ;;^UTILITY(U,$J,358.3,22652,1,0)
+ ;;^UTILITY(U,$J,358.3,21289,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21289,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,21289,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,21290,0)
+ ;;=F19.982^^95^1060^15
+ ;;^UTILITY(U,$J,358.3,21290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22652,1,3,0)
- ;;=3^Intestinal Bypass/Anastomosis Status
- ;;^UTILITY(U,$J,358.3,22652,1,4,0)
- ;;=4^Z98.0
- ;;^UTILITY(U,$J,358.3,22652,2)
- ;;=^5063733
- ;;^UTILITY(U,$J,358.3,22653,0)
- ;;=Z91.128^^87^982^61
- ;;^UTILITY(U,$J,358.3,22653,1,0)
+ ;;^UTILITY(U,$J,358.3,21290,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21290,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,21290,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,21291,0)
+ ;;=F19.129^^95^1060^19
+ ;;^UTILITY(U,$J,358.3,21291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22653,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,22653,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,22653,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,22654,0)
- ;;=Z77.120^^87^982^67
- ;;^UTILITY(U,$J,358.3,22654,1,0)
+ ;;^UTILITY(U,$J,358.3,21291,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21291,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,21291,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,21292,0)
+ ;;=F19.229^^95^1060^20
+ ;;^UTILITY(U,$J,358.3,21292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22654,1,3,0)
- ;;=3^Mold (Toxic) Contact/Exposure
- ;;^UTILITY(U,$J,358.3,22654,1,4,0)
- ;;=4^Z77.120
- ;;^UTILITY(U,$J,358.3,22654,2)
- ;;=^5063318
- ;;^UTILITY(U,$J,358.3,22655,0)
- ;;=Z86.74^^87^982^110
- ;;^UTILITY(U,$J,358.3,22655,1,0)
+ ;;^UTILITY(U,$J,358.3,21292,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21292,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,21292,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,21293,0)
+ ;;=F19.929^^95^1060^21
+ ;;^UTILITY(U,$J,358.3,21293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22655,1,3,0)
- ;;=3^Personal Hx of Sudden Cardiac Arrest 
- ;;^UTILITY(U,$J,358.3,22655,1,4,0)
- ;;=4^Z86.74
- ;;^UTILITY(U,$J,358.3,22655,2)
- ;;=^5063478
- ;;^UTILITY(U,$J,358.3,22656,0)
- ;;=Z86.718^^87^982^117
- ;;^UTILITY(U,$J,358.3,22656,1,0)
+ ;;^UTILITY(U,$J,358.3,21293,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21293,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,21293,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,21294,0)
+ ;;=F19.121^^95^1060^16
+ ;;^UTILITY(U,$J,358.3,21294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22656,1,3,0)
- ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
- ;;^UTILITY(U,$J,358.3,22656,1,4,0)
- ;;=4^Z86.718
- ;;^UTILITY(U,$J,358.3,22656,2)
- ;;=^5063475
- ;;^UTILITY(U,$J,358.3,22657,0)
- ;;=Z96.1^^87^982^127
- ;;^UTILITY(U,$J,358.3,22657,1,0)
+ ;;^UTILITY(U,$J,358.3,21294,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21294,1,4,0)
+ ;;=4^F19.121
+ ;;^UTILITY(U,$J,358.3,21294,2)
+ ;;=^5003418
+ ;;^UTILITY(U,$J,358.3,21295,0)
+ ;;=F19.221^^95^1060^17
+ ;;^UTILITY(U,$J,358.3,21295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22657,1,3,0)
- ;;=3^Presence of Intraocular Lens
- ;;^UTILITY(U,$J,358.3,22657,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,22657,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,22658,0)
- ;;=Z96.612^^87^982^132
- ;;^UTILITY(U,$J,358.3,22658,1,0)
+ ;;^UTILITY(U,$J,358.3,21295,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,21295,1,4,0)
+ ;;=4^F19.221
+ ;;^UTILITY(U,$J,358.3,21295,2)
+ ;;=^5003434
+ ;;^UTILITY(U,$J,358.3,21296,0)
+ ;;=F19.921^^95^1060^18
+ ;;^UTILITY(U,$J,358.3,21296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22658,1,3,0)
- ;;=3^Presence of Left Artificial Shoulder Joint
- ;;^UTILITY(U,$J,358.3,22658,1,4,0)
- ;;=4^Z96.612
- ;;^UTILITY(U,$J,358.3,22658,2)
- ;;=^5063693
- ;;^UTILITY(U,$J,358.3,22659,0)
- ;;=Z96.611^^87^982^137
- ;;^UTILITY(U,$J,358.3,22659,1,0)
+ ;;^UTILITY(U,$J,358.3,21296,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,21296,1,4,0)
+ ;;=4^F19.921
+ ;;^UTILITY(U,$J,358.3,21296,2)
+ ;;=^5003453
+ ;;^UTILITY(U,$J,358.3,21297,0)
+ ;;=F19.10^^95^1060^23
+ ;;^UTILITY(U,$J,358.3,21297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22659,1,3,0)
- ;;=3^Presence of Right Artificial Shoulder Joint
- ;;^UTILITY(U,$J,358.3,22659,1,4,0)
- ;;=4^Z96.611
- ;;^UTILITY(U,$J,358.3,22659,2)
- ;;=^5063692
- ;;^UTILITY(U,$J,358.3,22660,0)
- ;;=Z93.0^^87^982^145
- ;;^UTILITY(U,$J,358.3,22660,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22660,1,3,0)
- ;;=3^Tracheostomy Status
- ;;^UTILITY(U,$J,358.3,22660,1,4,0)
- ;;=4^Z93.0
- ;;^UTILITY(U,$J,358.3,22660,2)
- ;;=^5063642
- ;;^UTILITY(U,$J,358.3,22661,0)
- ;;=Z99.3^^87^982^149
- ;;^UTILITY(U,$J,358.3,22661,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22661,1,3,0)
- ;;=3^Wheelchair Dependence
- ;;^UTILITY(U,$J,358.3,22661,1,4,0)
- ;;=4^Z99.3
- ;;^UTILITY(U,$J,358.3,22661,2)
- ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,21297,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,21297,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,21297,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,21298,0)
+ ;;=F19.20^^95^1060^24

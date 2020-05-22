@@ -1,282 +1,126 @@
-IBDEI14G ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI14G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40741,2)
- ;;=^5001346
- ;;^UTILITY(U,$J,358.3,40742,0)
- ;;=C79.10^^151^1986^36
- ;;^UTILITY(U,$J,358.3,40742,1,0)
+ ;;^UTILITY(U,$J,358.3,18012,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18012,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,18012,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,18013,0)
+ ;;=J45.32^^88^905^7
+ ;;^UTILITY(U,$J,358.3,18013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40742,1,3,0)
- ;;=3^Secondary Malig Neop Unspec Urinary Organs
- ;;^UTILITY(U,$J,358.3,40742,1,4,0)
- ;;=4^C79.10
- ;;^UTILITY(U,$J,358.3,40742,2)
- ;;=^5001345
- ;;^UTILITY(U,$J,358.3,40743,0)
- ;;=C79.82^^151^1986^33
- ;;^UTILITY(U,$J,358.3,40743,1,0)
+ ;;^UTILITY(U,$J,358.3,18013,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,18013,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,18013,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,18014,0)
+ ;;=J45.40^^88^905^10
+ ;;^UTILITY(U,$J,358.3,18014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40743,1,3,0)
- ;;=3^Secondary Malig Neop Genital Organs
- ;;^UTILITY(U,$J,358.3,40743,1,4,0)
- ;;=4^C79.82
- ;;^UTILITY(U,$J,358.3,40743,2)
- ;;=^267339
- ;;^UTILITY(U,$J,358.3,40744,0)
- ;;=C67.9^^151^1986^7
- ;;^UTILITY(U,$J,358.3,40744,1,0)
+ ;;^UTILITY(U,$J,358.3,18014,1,3,0)
+ ;;=3^Asthma,Moderate Persistent,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,18014,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,18014,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,18015,0)
+ ;;=J44.9^^88^905^24
+ ;;^UTILITY(U,$J,358.3,18015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40744,1,3,0)
- ;;=3^Malig Neop Bladder,Site Unspec
- ;;^UTILITY(U,$J,358.3,40744,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,40744,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,40745,0)
- ;;=C67.0^^151^1986^8
- ;;^UTILITY(U,$J,358.3,40745,1,0)
+ ;;^UTILITY(U,$J,358.3,18015,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,18015,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,18015,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,18016,0)
+ ;;=J44.1^^88^905^22
+ ;;^UTILITY(U,$J,358.3,18016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40745,1,3,0)
- ;;=3^Malig Neop Bladder,Trigone
- ;;^UTILITY(U,$J,358.3,40745,1,4,0)
- ;;=4^C67.0
- ;;^UTILITY(U,$J,358.3,40745,2)
- ;;=^5001257
- ;;^UTILITY(U,$J,358.3,40746,0)
- ;;=C67.1^^151^1986^2
- ;;^UTILITY(U,$J,358.3,40746,1,0)
+ ;;^UTILITY(U,$J,358.3,18016,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18016,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,18016,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,18017,0)
+ ;;=J47.0^^88^905^15
+ ;;^UTILITY(U,$J,358.3,18017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40746,1,3,0)
- ;;=3^Malig Neop Bladder,Dome
- ;;^UTILITY(U,$J,358.3,40746,1,4,0)
- ;;=4^C67.1
- ;;^UTILITY(U,$J,358.3,40746,2)
- ;;=^5001258
- ;;^UTILITY(U,$J,358.3,40747,0)
- ;;=C67.2^^151^1986^3
- ;;^UTILITY(U,$J,358.3,40747,1,0)
+ ;;^UTILITY(U,$J,358.3,18017,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,18017,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,18017,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,18018,0)
+ ;;=J47.1^^88^905^14
+ ;;^UTILITY(U,$J,358.3,18018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40747,1,3,0)
- ;;=3^Malig Neop Bladder,Lateral Wall
- ;;^UTILITY(U,$J,358.3,40747,1,4,0)
- ;;=4^C67.2
- ;;^UTILITY(U,$J,358.3,40747,2)
- ;;=^5001259
- ;;^UTILITY(U,$J,358.3,40748,0)
- ;;=C67.3^^151^1986^1
- ;;^UTILITY(U,$J,358.3,40748,1,0)
+ ;;^UTILITY(U,$J,358.3,18018,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18018,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,18018,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,18019,0)
+ ;;=J47.9^^88^905^16
+ ;;^UTILITY(U,$J,358.3,18019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40748,1,3,0)
- ;;=3^Malig Neop Bladder,Anterior Wall
- ;;^UTILITY(U,$J,358.3,40748,1,4,0)
- ;;=4^C67.3
- ;;^UTILITY(U,$J,358.3,40748,2)
- ;;=^5001260
- ;;^UTILITY(U,$J,358.3,40749,0)
- ;;=C67.4^^151^1986^6
- ;;^UTILITY(U,$J,358.3,40749,1,0)
+ ;;^UTILITY(U,$J,358.3,18019,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,18019,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,18019,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,18020,0)
+ ;;=J45.41^^88^905^8
+ ;;^UTILITY(U,$J,358.3,18020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40749,1,3,0)
- ;;=3^Malig Neop Bladder,Posterior Wall
- ;;^UTILITY(U,$J,358.3,40749,1,4,0)
- ;;=4^C67.4
- ;;^UTILITY(U,$J,358.3,40749,2)
- ;;=^5001261
- ;;^UTILITY(U,$J,358.3,40750,0)
- ;;=C67.5^^151^1986^4
- ;;^UTILITY(U,$J,358.3,40750,1,0)
+ ;;^UTILITY(U,$J,358.3,18020,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18020,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,18020,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,18021,0)
+ ;;=J45.42^^88^905^9
+ ;;^UTILITY(U,$J,358.3,18021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40750,1,3,0)
- ;;=3^Malig Neop Bladder,Neck
- ;;^UTILITY(U,$J,358.3,40750,1,4,0)
- ;;=4^C67.5
- ;;^UTILITY(U,$J,358.3,40750,2)
- ;;=^267259
- ;;^UTILITY(U,$J,358.3,40751,0)
- ;;=C67.6^^151^1986^29
- ;;^UTILITY(U,$J,358.3,40751,1,0)
+ ;;^UTILITY(U,$J,358.3,18021,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,18021,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,18021,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,18022,0)
+ ;;=J45.51^^88^905^12
+ ;;^UTILITY(U,$J,358.3,18022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40751,1,3,0)
- ;;=3^Malig Neop Ureteric Orifice
- ;;^UTILITY(U,$J,358.3,40751,1,4,0)
- ;;=4^C67.6
- ;;^UTILITY(U,$J,358.3,40751,2)
- ;;=^267260
- ;;^UTILITY(U,$J,358.3,40752,0)
- ;;=C67.7^^151^1986^28
- ;;^UTILITY(U,$J,358.3,40752,1,0)
+ ;;^UTILITY(U,$J,358.3,18022,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,18022,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,18022,2)
+ ;;=^5008252
+ ;;^UTILITY(U,$J,358.3,18023,0)
+ ;;=J45.52^^88^905^13
+ ;;^UTILITY(U,$J,358.3,18023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40752,1,3,0)
- ;;=3^Malig Neop Urachus
- ;;^UTILITY(U,$J,358.3,40752,1,4,0)
- ;;=4^C67.7
- ;;^UTILITY(U,$J,358.3,40752,2)
- ;;=^267261
- ;;^UTILITY(U,$J,358.3,40753,0)
- ;;=C67.8^^151^1986^5
- ;;^UTILITY(U,$J,358.3,40753,1,0)
+ ;;^UTILITY(U,$J,358.3,18023,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,18023,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,18023,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,18024,0)
+ ;;=J45.901^^88^905^1
+ ;;^UTILITY(U,$J,358.3,18024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40753,1,3,0)
- ;;=3^Malig Neop Bladder,Overlapping Sites
- ;;^UTILITY(U,$J,358.3,40753,1,4,0)
- ;;=4^C67.8
- ;;^UTILITY(U,$J,358.3,40753,2)
- ;;=^5001262
- ;;^UTILITY(U,$J,358.3,40754,0)
- ;;=Z85.51^^151^1986^31
- ;;^UTILITY(U,$J,358.3,40754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40754,1,3,0)
- ;;=3^Personal Hx of Malig Neop Bladder
- ;;^UTILITY(U,$J,358.3,40754,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,40754,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,40755,0)
- ;;=T83.51XA^^151^1987^7
- ;;^UTILITY(U,$J,358.3,40755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40755,1,3,0)
- ;;=3^Infectn/Inflam d/t Indwell Urinary Cath,Init Encntr
- ;;^UTILITY(U,$J,358.3,40755,1,4,0)
- ;;=4^T83.51XA
- ;;^UTILITY(U,$J,358.3,40755,2)
- ;;=^5055058
- ;;^UTILITY(U,$J,358.3,40756,0)
- ;;=T83.59XA^^151^1987^8
- ;;^UTILITY(U,$J,358.3,40756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40756,1,3,0)
- ;;=3^Infectn/Inflam d/t dvc/implnt/grft GU Syst,Init Encntr
- ;;^UTILITY(U,$J,358.3,40756,1,4,0)
- ;;=4^T83.59XA
- ;;^UTILITY(U,$J,358.3,40756,2)
- ;;=^5055061
- ;;^UTILITY(U,$J,358.3,40757,0)
- ;;=T83.9XXA^^151^1987^2
- ;;^UTILITY(U,$J,358.3,40757,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40757,1,3,0)
- ;;=3^Complic GU dvc/implnt/grft,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,40757,1,4,0)
- ;;=4^T83.9XXA
- ;;^UTILITY(U,$J,358.3,40757,2)
- ;;=^5055100
- ;;^UTILITY(U,$J,358.3,40758,0)
- ;;=T83.89XA^^151^1987^1
- ;;^UTILITY(U,$J,358.3,40758,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40758,1,3,0)
- ;;=3^Complic GU dvc/implt/grft,Oth,Init Encntr
- ;;^UTILITY(U,$J,358.3,40758,1,4,0)
- ;;=4^T83.89XA
- ;;^UTILITY(U,$J,358.3,40758,2)
- ;;=^5055097
- ;;^UTILITY(U,$J,358.3,40759,0)
- ;;=T83.86XA^^151^1987^11
- ;;^UTILITY(U,$J,358.3,40759,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40759,1,3,0)
- ;;=3^Thrombosis GU dvc/implnt/grft,Init Encntr
- ;;^UTILITY(U,$J,358.3,40759,1,4,0)
- ;;=4^T83.86XA
- ;;^UTILITY(U,$J,358.3,40759,2)
- ;;=^5055094
- ;;^UTILITY(U,$J,358.3,40760,0)
- ;;=T83.85XA^^151^1987^10
- ;;^UTILITY(U,$J,358.3,40760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40760,1,3,0)
- ;;=3^Stenoisis GU dvc/implnt/grft,Init Encntr
- ;;^UTILITY(U,$J,358.3,40760,1,4,0)
- ;;=4^T83.85XA
- ;;^UTILITY(U,$J,358.3,40760,2)
- ;;=^5055091
- ;;^UTILITY(U,$J,358.3,40761,0)
- ;;=T83.84XA^^151^1987^9
- ;;^UTILITY(U,$J,358.3,40761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40761,1,3,0)
- ;;=3^Pain GU dvc/implnt/grft,Init Encntr
- ;;^UTILITY(U,$J,358.3,40761,1,4,0)
- ;;=4^T83.84XA
- ;;^UTILITY(U,$J,358.3,40761,2)
- ;;=^5055088
- ;;^UTILITY(U,$J,358.3,40762,0)
- ;;=T83.83XA^^151^1987^6
- ;;^UTILITY(U,$J,358.3,40762,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40762,1,3,0)
- ;;=3^Hemorrhage GU dvc/implnt/grft,Init Encntr
- ;;^UTILITY(U,$J,358.3,40762,1,4,0)
- ;;=4^T83.83XA
- ;;^UTILITY(U,$J,358.3,40762,2)
- ;;=^5055085
- ;;^UTILITY(U,$J,358.3,40763,0)
- ;;=T83.82XA^^151^1987^4
- ;;^UTILITY(U,$J,358.3,40763,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40763,1,3,0)
- ;;=3^Fibrosis GU dvc/implnt/grft,Init Encntr
- ;;^UTILITY(U,$J,358.3,40763,1,4,0)
- ;;=4^T83.82XA
- ;;^UTILITY(U,$J,358.3,40763,2)
- ;;=^5055082
- ;;^UTILITY(U,$J,358.3,40764,0)
- ;;=T83.81XA^^151^1987^3
- ;;^UTILITY(U,$J,358.3,40764,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40764,1,3,0)
- ;;=3^Embolism GU dvc/implnt/grft,Init Encntr
- ;;^UTILITY(U,$J,358.3,40764,1,4,0)
- ;;=4^T83.81XA
- ;;^UTILITY(U,$J,358.3,40764,2)
- ;;=^5055079
- ;;^UTILITY(U,$J,358.3,40765,0)
- ;;=Z46.6^^151^1987^5
- ;;^UTILITY(U,$J,358.3,40765,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40765,1,3,0)
- ;;=3^Fitting/Adjustment of Urinary Device
- ;;^UTILITY(U,$J,358.3,40765,1,4,0)
- ;;=4^Z46.6
- ;;^UTILITY(U,$J,358.3,40765,2)
- ;;=^5063020
- ;;^UTILITY(U,$J,358.3,40766,0)
- ;;=G37.3^^151^1988^1
- ;;^UTILITY(U,$J,358.3,40766,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40766,1,3,0)
- ;;=3^Acute trnsvrs myelitis in demyelinating dz of CNS
- ;;^UTILITY(U,$J,358.3,40766,1,4,0)
- ;;=4^G37.3
- ;;^UTILITY(U,$J,358.3,40766,2)
- ;;=^5003824
- ;;^UTILITY(U,$J,358.3,40767,0)
- ;;=G82.50^^151^1988^7
- ;;^UTILITY(U,$J,358.3,40767,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40767,1,3,0)
- ;;=3^Quadriplegia, Unspec
- ;;^UTILITY(U,$J,358.3,40767,1,4,0)
- ;;=4^G82.50
- ;;^UTILITY(U,$J,358.3,40767,2)
- ;;=^5004128
- ;;^UTILITY(U,$J,358.3,40768,0)
- ;;=G83.4^^151^1988^2
- ;;^UTILITY(U,$J,358.3,40768,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40768,1,3,0)
- ;;=3^Cauda Equina Syndrome
- ;;^UTILITY(U,$J,358.3,40768,1,4,0)
- ;;=4^G83.4
- ;;^UTILITY(U,$J,358.3,40768,2)
- ;;=^265172
- ;;^UTILITY(U,$J,358.3,40769,0)
- ;;=G82.20^^151^1988^4
- ;;^UTILITY(U,$J,358.3,40769,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40769,1,3,0)
- ;;=3^Paraplegia, Unspec
+ ;;^UTILITY(U,$J,358.3,18024,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec

@@ -1,128 +1,118 @@
-IBDEI1MT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27697,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27697,1,2,0)
- ;;=2^61796
- ;;^UTILITY(U,$J,358.3,27697,1,3,0)
- ;;=3^SRS Cranial Lesion,Simple
- ;;^UTILITY(U,$J,358.3,27698,0)
- ;;=61797^^108^1378^2^^^^1
- ;;^UTILITY(U,$J,358.3,27698,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27698,1,2,0)
- ;;=2^61797
- ;;^UTILITY(U,$J,358.3,27698,1,3,0)
- ;;=3^SRS Cranial Lesion,Simple,Addl Lesion
- ;;^UTILITY(U,$J,358.3,27699,0)
- ;;=61800^^108^1378^3^^^^1
- ;;^UTILITY(U,$J,358.3,27699,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27699,1,2,0)
- ;;=2^61800
- ;;^UTILITY(U,$J,358.3,27699,1,3,0)
- ;;=3^Apply SRS Headframe,Add-On
- ;;^UTILITY(U,$J,358.3,27700,0)
- ;;=98960^^108^1379^1^^^^1
- ;;^UTILITY(U,$J,358.3,27700,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27700,1,2,0)
- ;;=2^98960
- ;;^UTILITY(U,$J,358.3,27700,1,3,0)
- ;;=3^Self-Mgmt Ed/Train,1 Pt
- ;;^UTILITY(U,$J,358.3,27701,0)
- ;;=98961^^108^1379^2^^^^1
- ;;^UTILITY(U,$J,358.3,27701,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27701,1,2,0)
- ;;=2^98961
- ;;^UTILITY(U,$J,358.3,27701,1,3,0)
- ;;=3^Self-Mgmt Ed/Train,2-4 Pts
- ;;^UTILITY(U,$J,358.3,27702,0)
- ;;=98962^^108^1379^3^^^^1
- ;;^UTILITY(U,$J,358.3,27702,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27702,1,2,0)
- ;;=2^98962
- ;;^UTILITY(U,$J,358.3,27702,1,3,0)
- ;;=3^Self-Mgmt Ed/Train,5-8 Pts
- ;;^UTILITY(U,$J,358.3,27703,0)
- ;;=95971^^108^1380^2^^^^1
- ;;^UTILITY(U,$J,358.3,27703,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27703,1,2,0)
- ;;=2^95971
- ;;^UTILITY(U,$J,358.3,27703,1,3,0)
- ;;=3^Analyze Neurostim,Simple
- ;;^UTILITY(U,$J,358.3,27704,0)
- ;;=95972^^108^1380^1^^^^1
- ;;^UTILITY(U,$J,358.3,27704,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27704,1,2,0)
- ;;=2^95972
- ;;^UTILITY(U,$J,358.3,27704,1,3,0)
- ;;=3^Analyze Neurostim,Complex,up to 1hr
- ;;^UTILITY(U,$J,358.3,27705,0)
- ;;=95974^^108^1380^3^^^^1
- ;;^UTILITY(U,$J,358.3,27705,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27705,1,2,0)
- ;;=2^95974
- ;;^UTILITY(U,$J,358.3,27705,1,3,0)
- ;;=3^Cranial Neurostim,Complex,1st Hr
- ;;^UTILITY(U,$J,358.3,27706,0)
- ;;=95975^^108^1380^4^^^^1
- ;;^UTILITY(U,$J,358.3,27706,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27706,1,2,0)
- ;;=2^95975
- ;;^UTILITY(U,$J,358.3,27706,1,3,0)
- ;;=3^Cranial Neurostim,Complex,Ea Addl 30 Min
- ;;^UTILITY(U,$J,358.3,27707,0)
- ;;=G40.A01^^109^1381^3
- ;;^UTILITY(U,$J,358.3,27707,1,0)
+ ;;^UTILITY(U,$J,358.3,26068,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,26068,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,26069,0)
+ ;;=V00.891A^^107^1230^62
+ ;;^UTILITY(U,$J,358.3,26069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27707,1,3,0)
- ;;=3^Absence Seizures Not Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27707,1,4,0)
- ;;=4^G40.A01
- ;;^UTILITY(U,$J,358.3,27707,2)
- ;;=^5003868
- ;;^UTILITY(U,$J,358.3,27708,0)
- ;;=G40.A09^^109^1381^4
- ;;^UTILITY(U,$J,358.3,27708,1,0)
+ ;;^UTILITY(U,$J,358.3,26069,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26069,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,26069,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,26070,0)
+ ;;=V00.891D^^107^1230^63
+ ;;^UTILITY(U,$J,358.3,26070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27708,1,3,0)
- ;;=3^Absence Seizures Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27708,1,4,0)
- ;;=4^G40.A09
- ;;^UTILITY(U,$J,358.3,27708,2)
- ;;=^5003869
- ;;^UTILITY(U,$J,358.3,27709,0)
- ;;=G40.A11^^109^1381^1
- ;;^UTILITY(U,$J,358.3,27709,1,0)
+ ;;^UTILITY(U,$J,358.3,26070,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26070,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,26070,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,26071,0)
+ ;;=V00.892A^^107^1230^108
+ ;;^UTILITY(U,$J,358.3,26071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27709,1,3,0)
- ;;=3^Absence Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27709,1,4,0)
- ;;=4^G40.A11
- ;;^UTILITY(U,$J,358.3,27709,2)
- ;;=^5003870
- ;;^UTILITY(U,$J,358.3,27710,0)
- ;;=G40.A19^^109^1381^2
- ;;^UTILITY(U,$J,358.3,27710,1,0)
+ ;;^UTILITY(U,$J,358.3,26071,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26071,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,26071,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,26072,0)
+ ;;=V00.892D^^107^1230^109
+ ;;^UTILITY(U,$J,358.3,26072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27710,1,3,0)
- ;;=3^Absence Seizures Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27710,1,4,0)
- ;;=4^G40.A19
- ;;^UTILITY(U,$J,358.3,27710,2)
- ;;=^5003871
- ;;^UTILITY(U,$J,358.3,27711,0)
- ;;=G40.309^^109^1381^17
- ;;^UTILITY(U,$J,358.3,27711,1,0)
+ ;;^UTILITY(U,$J,358.3,26072,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26072,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,26072,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,26073,0)
+ ;;=V00.898A^^107^1230^106
+ ;;^UTILITY(U,$J,358.3,26073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27711,1,3,0)
- ;;=3^Generalized Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,26073,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26073,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,26073,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,26074,0)
+ ;;=V00.898D^^107^1230^107
+ ;;^UTILITY(U,$J,358.3,26074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26074,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26074,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,26074,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,26075,0)
+ ;;=W00.0XXA^^107^1230^84
+ ;;^UTILITY(U,$J,358.3,26075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26075,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26075,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,26075,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,26076,0)
+ ;;=W00.0XXD^^107^1230^85
+ ;;^UTILITY(U,$J,358.3,26076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26076,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26076,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,26076,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,26077,0)
+ ;;=W00.1XXA^^107^1230^64
+ ;;^UTILITY(U,$J,358.3,26077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26077,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26077,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,26077,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,26078,0)
+ ;;=W00.1XXD^^107^1230^65
+ ;;^UTILITY(U,$J,358.3,26078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26078,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26078,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,26078,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,26079,0)
+ ;;=W00.2XXA^^107^1230^58
+ ;;^UTILITY(U,$J,358.3,26079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26079,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26079,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,26079,2)
+ ;;=^5059516

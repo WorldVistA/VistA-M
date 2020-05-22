@@ -1,130 +1,118 @@
-IBDEI2C1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2C1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39549,1,4,0)
- ;;=4^H35.361
- ;;^UTILITY(U,$J,358.3,39549,2)
- ;;=^5005658
- ;;^UTILITY(U,$J,358.3,39550,0)
- ;;=H04.123^^153^1926^21
- ;;^UTILITY(U,$J,358.3,39550,1,0)
+ ;;^UTILITY(U,$J,358.3,37263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39550,1,3,0)
- ;;=3^Dry Eye Syndrome,Bilateral Lacrimal Glands
- ;;^UTILITY(U,$J,358.3,39550,1,4,0)
- ;;=4^H04.123
- ;;^UTILITY(U,$J,358.3,39550,2)
- ;;=^5004465
- ;;^UTILITY(U,$J,358.3,39551,0)
- ;;=H35.32^^153^1926^28
- ;;^UTILITY(U,$J,358.3,39551,1,0)
+ ;;^UTILITY(U,$J,358.3,37263,1,3,0)
+ ;;=3^Corrosion of rt ft, first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37263,1,4,0)
+ ;;=4^T25.521A
+ ;;^UTILITY(U,$J,358.3,37263,2)
+ ;;=^5048655
+ ;;^UTILITY(U,$J,358.3,37264,0)
+ ;;=T25.522A^^146^1914^44
+ ;;^UTILITY(U,$J,358.3,37264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39551,1,3,0)
- ;;=3^Exudative Age-Related Macular Degeneration
- ;;^UTILITY(U,$J,358.3,39551,1,4,0)
- ;;=4^H35.32
- ;;^UTILITY(U,$J,358.3,39551,2)
- ;;=^5005648
- ;;^UTILITY(U,$J,358.3,39552,0)
- ;;=H35.023^^153^1926^29
- ;;^UTILITY(U,$J,358.3,39552,1,0)
+ ;;^UTILITY(U,$J,358.3,37264,1,3,0)
+ ;;=3^Corrosion of lft ft, first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37264,1,4,0)
+ ;;=4^T25.522A
+ ;;^UTILITY(U,$J,358.3,37264,2)
+ ;;=^5048658
+ ;;^UTILITY(U,$J,358.3,37265,0)
+ ;;=T25.511A^^146^1914^57
+ ;;^UTILITY(U,$J,358.3,37265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39552,1,3,0)
- ;;=3^Exudative Retinopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,39552,1,4,0)
- ;;=4^H35.023
- ;;^UTILITY(U,$J,358.3,39552,2)
- ;;=^5005588
- ;;^UTILITY(U,$J,358.3,39553,0)
- ;;=H35.022^^153^1926^30
- ;;^UTILITY(U,$J,358.3,39553,1,0)
+ ;;^UTILITY(U,$J,358.3,37265,1,3,0)
+ ;;=3^Corrosion of rt ankl, first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37265,1,4,0)
+ ;;=4^T25.511A
+ ;;^UTILITY(U,$J,358.3,37265,2)
+ ;;=^5048646
+ ;;^UTILITY(U,$J,358.3,37266,0)
+ ;;=T25.512A^^146^1914^42
+ ;;^UTILITY(U,$J,358.3,37266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39553,1,3,0)
- ;;=3^Exudative Retinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,39553,1,4,0)
- ;;=4^H35.022
- ;;^UTILITY(U,$J,358.3,39553,2)
- ;;=^5005587
- ;;^UTILITY(U,$J,358.3,39554,0)
- ;;=H35.021^^153^1926^31
- ;;^UTILITY(U,$J,358.3,39554,1,0)
+ ;;^UTILITY(U,$J,358.3,37266,1,3,0)
+ ;;=3^Corrosion of lft ankl, first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37266,1,4,0)
+ ;;=4^T25.512A
+ ;;^UTILITY(U,$J,358.3,37266,2)
+ ;;=^5048649
+ ;;^UTILITY(U,$J,358.3,37267,0)
+ ;;=T24.531A^^146^1914^63
+ ;;^UTILITY(U,$J,358.3,37267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39554,1,3,0)
- ;;=3^Exudative Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,39554,1,4,0)
- ;;=4^H35.021
- ;;^UTILITY(U,$J,358.3,39554,2)
- ;;=^5005586
- ;;^UTILITY(U,$J,358.3,39555,0)
- ;;=H40.013^^153^1926^32
- ;;^UTILITY(U,$J,358.3,39555,1,0)
+ ;;^UTILITY(U,$J,358.3,37267,1,3,0)
+ ;;=3^Corrosion of rt lwr leg, first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37267,1,4,0)
+ ;;=4^T24.531A
+ ;;^UTILITY(U,$J,358.3,37267,2)
+ ;;=^5048388
+ ;;^UTILITY(U,$J,358.3,37268,0)
+ ;;=T24.532A^^146^1914^48
+ ;;^UTILITY(U,$J,358.3,37268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39555,1,3,0)
- ;;=3^Glaucoma Suspect,Open Angle w/ Borderline Findings,Low Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,39555,1,4,0)
- ;;=4^H40.013
- ;;^UTILITY(U,$J,358.3,39555,2)
- ;;=^5005726
- ;;^UTILITY(U,$J,358.3,39556,0)
- ;;=H40.012^^153^1926^33
- ;;^UTILITY(U,$J,358.3,39556,1,0)
+ ;;^UTILITY(U,$J,358.3,37268,1,3,0)
+ ;;=3^Corrosion of lft lwr leg, first degree, init enc
+ ;;^UTILITY(U,$J,358.3,37268,1,4,0)
+ ;;=4^T24.532A
+ ;;^UTILITY(U,$J,358.3,37268,2)
+ ;;=^5048391
+ ;;^UTILITY(U,$J,358.3,37269,0)
+ ;;=T25.631A^^146^1914^68
+ ;;^UTILITY(U,$J,358.3,37269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39556,1,3,0)
- ;;=3^Glaucoma Suspect,Open Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,39556,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,39556,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,39557,0)
- ;;=H40.011^^153^1926^34
- ;;^UTILITY(U,$J,358.3,39557,1,0)
+ ;;^UTILITY(U,$J,358.3,37269,1,3,0)
+ ;;=3^Corrosion of rt toe(s), second degree, init enc
+ ;;^UTILITY(U,$J,358.3,37269,1,4,0)
+ ;;=4^T25.631A
+ ;;^UTILITY(U,$J,358.3,37269,2)
+ ;;=^5048700
+ ;;^UTILITY(U,$J,358.3,37270,0)
+ ;;=T25.632A^^146^1914^53
+ ;;^UTILITY(U,$J,358.3,37270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39557,1,3,0)
- ;;=3^Glaucoma Suspect,Open Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,39557,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,39557,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,39558,0)
- ;;=H52.03^^153^1926^41
- ;;^UTILITY(U,$J,358.3,39558,1,0)
+ ;;^UTILITY(U,$J,358.3,37270,1,3,0)
+ ;;=3^Corrosion of lft toe(s), second degree, init enc
+ ;;^UTILITY(U,$J,358.3,37270,1,4,0)
+ ;;=4^T25.632A
+ ;;^UTILITY(U,$J,358.3,37270,2)
+ ;;=^5048703
+ ;;^UTILITY(U,$J,358.3,37271,0)
+ ;;=T25.621A^^146^1914^60
+ ;;^UTILITY(U,$J,358.3,37271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39558,1,3,0)
- ;;=3^Hypermetropia,Bilateral
- ;;^UTILITY(U,$J,358.3,39558,1,4,0)
- ;;=4^H52.03
- ;;^UTILITY(U,$J,358.3,39558,2)
- ;;=^5006262
- ;;^UTILITY(U,$J,358.3,39559,0)
- ;;=H52.02^^153^1926^42
- ;;^UTILITY(U,$J,358.3,39559,1,0)
+ ;;^UTILITY(U,$J,358.3,37271,1,3,0)
+ ;;=3^Corrosion of rt ft, second degree, init enc
+ ;;^UTILITY(U,$J,358.3,37271,1,4,0)
+ ;;=4^T25.621A
+ ;;^UTILITY(U,$J,358.3,37271,2)
+ ;;=^5048691
+ ;;^UTILITY(U,$J,358.3,37272,0)
+ ;;=T25.622A^^146^1914^45
+ ;;^UTILITY(U,$J,358.3,37272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39559,1,3,0)
- ;;=3^Hypermetropia,Left Eye
- ;;^UTILITY(U,$J,358.3,39559,1,4,0)
- ;;=4^H52.02
- ;;^UTILITY(U,$J,358.3,39559,2)
- ;;=^5006261
- ;;^UTILITY(U,$J,358.3,39560,0)
- ;;=H52.01^^153^1926^43
- ;;^UTILITY(U,$J,358.3,39560,1,0)
+ ;;^UTILITY(U,$J,358.3,37272,1,3,0)
+ ;;=3^Corrosion of lft ft, second degree, init enc
+ ;;^UTILITY(U,$J,358.3,37272,1,4,0)
+ ;;=4^T25.622A
+ ;;^UTILITY(U,$J,358.3,37272,2)
+ ;;=^5048694
+ ;;^UTILITY(U,$J,358.3,37273,0)
+ ;;=T25.611A^^146^1914^58
+ ;;^UTILITY(U,$J,358.3,37273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39560,1,3,0)
- ;;=3^Hypermetropia,Right Eye
- ;;^UTILITY(U,$J,358.3,39560,1,4,0)
- ;;=4^H52.01
- ;;^UTILITY(U,$J,358.3,39560,2)
- ;;=^5006260
- ;;^UTILITY(U,$J,358.3,39561,0)
- ;;=H59.41^^153^1926^44
- ;;^UTILITY(U,$J,358.3,39561,1,0)
+ ;;^UTILITY(U,$J,358.3,37273,1,3,0)
+ ;;=3^Corrosion of rt ankl, second degree, init enc
+ ;;^UTILITY(U,$J,358.3,37273,1,4,0)
+ ;;=4^T25.611A
+ ;;^UTILITY(U,$J,358.3,37273,2)
+ ;;=^5048682
+ ;;^UTILITY(U,$J,358.3,37274,0)
+ ;;=T25.612A^^146^1914^41
+ ;;^UTILITY(U,$J,358.3,37274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39561,1,3,0)
- ;;=3^Inflammation of Postprocedural Bleb,Stage 1
- ;;^UTILITY(U,$J,358.3,39561,1,4,0)
- ;;=4^H59.41
- ;;^UTILITY(U,$J,358.3,39561,2)
- ;;=^5006426
- ;;^UTILITY(U,$J,358.3,39562,0)
- ;;=H59.42^^153^1926^45
+ ;;^UTILITY(U,$J,358.3,37274,1,3,0)
+ ;;=3^Corrosion of lft ank, second degree, init enc

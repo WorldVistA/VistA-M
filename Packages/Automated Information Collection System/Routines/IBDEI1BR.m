@@ -1,132 +1,118 @@
-IBDEI1BR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22519,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,22519,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,22519,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,22520,0)
- ;;=Z85.21^^87^982^91
- ;;^UTILITY(U,$J,358.3,22520,1,0)
+ ;;^UTILITY(U,$J,358.3,21168,0)
+ ;;=F18.221^^95^1050^19
+ ;;^UTILITY(U,$J,358.3,21168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22520,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,22520,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,22520,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,22521,0)
- ;;=Z85.3^^87^982^85
- ;;^UTILITY(U,$J,358.3,22521,1,0)
+ ;;^UTILITY(U,$J,358.3,21168,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21168,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,21168,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,21169,0)
+ ;;=F18.921^^95^1050^20
+ ;;^UTILITY(U,$J,358.3,21169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22521,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,22521,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,22521,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,22522,0)
- ;;=Z85.41^^87^982^87
- ;;^UTILITY(U,$J,358.3,22522,1,0)
+ ;;^UTILITY(U,$J,358.3,21169,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21169,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,21169,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,21170,0)
+ ;;=F18.129^^95^1050^21
+ ;;^UTILITY(U,$J,358.3,21170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22522,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,22522,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,22522,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,22523,0)
- ;;=Z85.43^^87^982^95
- ;;^UTILITY(U,$J,358.3,22523,1,0)
+ ;;^UTILITY(U,$J,358.3,21170,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21170,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,21170,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,21171,0)
+ ;;=F18.229^^95^1050^22
+ ;;^UTILITY(U,$J,358.3,21171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22523,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,22523,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,22523,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,22524,0)
- ;;=Z85.46^^87^982^96
- ;;^UTILITY(U,$J,358.3,22524,1,0)
+ ;;^UTILITY(U,$J,358.3,21171,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21171,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,21171,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,21172,0)
+ ;;=F18.929^^95^1050^23
+ ;;^UTILITY(U,$J,358.3,21172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22524,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,22524,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,22524,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,22525,0)
- ;;=Z85.47^^87^982^100
- ;;^UTILITY(U,$J,358.3,22525,1,0)
+ ;;^UTILITY(U,$J,358.3,21172,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21172,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,21172,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,21173,0)
+ ;;=F18.180^^95^1050^3
+ ;;^UTILITY(U,$J,358.3,21173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22525,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,22525,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,22525,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,22526,0)
- ;;=Z85.51^^87^982^84
- ;;^UTILITY(U,$J,358.3,22526,1,0)
+ ;;^UTILITY(U,$J,358.3,21173,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21173,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,21173,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,21174,0)
+ ;;=F18.280^^95^1050^4
+ ;;^UTILITY(U,$J,358.3,21174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22526,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,22526,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,22526,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,22527,0)
- ;;=Z85.528^^87^982^89
- ;;^UTILITY(U,$J,358.3,22527,1,0)
+ ;;^UTILITY(U,$J,358.3,21174,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21174,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,21174,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,21175,0)
+ ;;=F18.980^^95^1050^5
+ ;;^UTILITY(U,$J,358.3,21175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22527,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,22527,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,22527,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,22528,0)
- ;;=Z85.6^^87^982^80
- ;;^UTILITY(U,$J,358.3,22528,1,0)
+ ;;^UTILITY(U,$J,358.3,21175,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21175,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,21175,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,21176,0)
+ ;;=F18.94^^95^1050^8
+ ;;^UTILITY(U,$J,358.3,21176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22528,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,22528,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,22528,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,22529,0)
- ;;=Z85.72^^87^982^104
- ;;^UTILITY(U,$J,358.3,22529,1,0)
+ ;;^UTILITY(U,$J,358.3,21176,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21176,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,21176,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,21177,0)
+ ;;=F18.17^^95^1050^9
+ ;;^UTILITY(U,$J,358.3,21177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22529,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,22529,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,22529,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,22530,0)
- ;;=Z85.79^^87^982^94
- ;;^UTILITY(U,$J,358.3,22530,1,0)
+ ;;^UTILITY(U,$J,358.3,21177,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21177,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,21177,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,21178,0)
+ ;;=F18.27^^95^1050^10
+ ;;^UTILITY(U,$J,358.3,21178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22530,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,22530,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,22530,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,22531,0)
- ;;=Z85.820^^87^982^83
- ;;^UTILITY(U,$J,358.3,22531,1,0)
+ ;;^UTILITY(U,$J,358.3,21178,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21178,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,21178,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,21179,0)
+ ;;=F18.97^^95^1050^11
+ ;;^UTILITY(U,$J,358.3,21179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22531,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,22531,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,22531,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,22532,0)
- ;;=Z85.828^^87^982^98

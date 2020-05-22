@@ -1,13 +1,13 @@
-PRCHEA1 ;SF-ISC/TKW/DST/AS-MORE EDIT ROUTINES FOR SUPPLY SYSTEM ;3/8/05
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCHEA1 ;SF-ISC/TKW/DST/AS-MORE EDIT ROUTINES FOR SUPPLY SYSTEM ;3/17/17  18:48
+V ;;5.1;IFCAP;**81,198**;Oct 20, 2000;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN0 ;REACTIVATE VENDOR
  ;
  S PRCHREAV="I $D(^(10)),$P(^(10),U,5)"
  S DIC="^PRC(440,"
  S DIE=DIC
- S DIC(0)="AEMQZ"
+ S DIC(0)="AEMQZ",DIC("S")="I (+Y<950000)!$D(^XUSEC(""PRCHVEN"",DUZ))"
  D ^DIC
  G Q:Y<0
  S DA=+Y
@@ -46,7 +46,7 @@ EN1 ;INACTIVATE VENDOR
  .  Q
  N DIC
  S DIC="^PRC(440,"
- S DIC(0)="AEMQZ"
+ S DIC(0)="AEMQZ",DIC("S")="I (+Y<950000)!$D(^XUSEC(""PRCHVEN"",DUZ))"
  D ^DIC
  G Q:Y<0
  I $D(^PRC(440,+Y,10)),$P(^(10),U,5)=1 W $C(7),!,"Please choose another vendor that is not inactivated." G EN1
@@ -97,7 +97,7 @@ EN2 ;INACTIVATE ITEM
  .  Q
  K DIC
  S DIC="^PRC(441,"
- S DIC(0)="AEMQZ"
+ S DIC(0)="AEMQZ",DIC("S")="I (+Y<20000000)!$D(^XUSEC(""PRCHITEM SUPER"",DUZ))"
  D ^DIC
  G Q:Y<0
  I $P(Y(0),"^",2)["*" W $C(7),!,"                ITEM ALREADY INACTIVE" G EN2
@@ -139,7 +139,7 @@ EN3 ;REACTIVATE ITEM
  S PRCHREAV="I $D(^(3)),+^(3)"
  S DIC="^PRC(441,"
  S DIE=DIC
- S DIC(0)="AEMQZ"
+ S DIC(0)="AEMQZ",DIC("S")="I (+Y<20000000)!$D(^XUSEC(""PRCHITEM SUPER"",DUZ))"
  D ^DIC
  G Q:Y<0
  S DA=+Y

@@ -1,124 +1,128 @@
-IBDEI2I8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2I8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42463,0)
- ;;=W01.0XXA^^159^2023^87
- ;;^UTILITY(U,$J,358.3,42463,1,0)
+ ;;^UTILITY(U,$J,358.3,39990,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,39990,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,39991,0)
+ ;;=M86.40^^152^2002^56
+ ;;^UTILITY(U,$J,358.3,39991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42463,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,42463,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,42463,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,42464,0)
- ;;=W01.0XXD^^159^2023^88
- ;;^UTILITY(U,$J,358.3,42464,1,0)
+ ;;^UTILITY(U,$J,358.3,39991,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39991,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,39991,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,39992,0)
+ ;;=R50.2^^152^2002^23
+ ;;^UTILITY(U,$J,358.3,39992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42464,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42464,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,42464,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,42465,0)
- ;;=W03.XXXA^^159^2023^85
- ;;^UTILITY(U,$J,358.3,42465,1,0)
+ ;;^UTILITY(U,$J,358.3,39992,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,39992,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,39992,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,39993,0)
+ ;;=R50.9^^152^2002^27
+ ;;^UTILITY(U,$J,358.3,39993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42465,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,42465,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,42465,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,42466,0)
- ;;=W03.XXXD^^159^2023^86
- ;;^UTILITY(U,$J,358.3,42466,1,0)
+ ;;^UTILITY(U,$J,358.3,39993,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,39993,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,39993,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,39994,0)
+ ;;=R76.11^^152^2002^1
+ ;;^UTILITY(U,$J,358.3,39994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42466,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42466,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,42466,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,42467,0)
- ;;=W05.0XXA^^159^2023^51
- ;;^UTILITY(U,$J,358.3,42467,1,0)
+ ;;^UTILITY(U,$J,358.3,39994,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,39994,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,39994,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,39995,0)
+ ;;=Z21.^^152^2002^30
+ ;;^UTILITY(U,$J,358.3,39995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42467,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,42467,1,4,0)
- ;;=4^W05.0XXA
- ;;^UTILITY(U,$J,358.3,42467,2)
- ;;=^5059550
- ;;^UTILITY(U,$J,358.3,42468,0)
- ;;=W05.0XXD^^159^2023^52
- ;;^UTILITY(U,$J,358.3,42468,1,0)
+ ;;^UTILITY(U,$J,358.3,39995,1,3,0)
+ ;;=3^HIV Asymptomatic,Infection Status
+ ;;^UTILITY(U,$J,358.3,39995,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,39995,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,39996,0)
+ ;;=B37.0^^152^2002^16
+ ;;^UTILITY(U,$J,358.3,39996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42468,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42468,1,4,0)
- ;;=4^W05.0XXD
- ;;^UTILITY(U,$J,358.3,42468,2)
- ;;=^5059551
- ;;^UTILITY(U,$J,358.3,42469,0)
- ;;=W05.1XXA^^159^2023^49
- ;;^UTILITY(U,$J,358.3,42469,1,0)
+ ;;^UTILITY(U,$J,358.3,39996,1,3,0)
+ ;;=3^Candidal Stomatitis (Oral Thrush)
+ ;;^UTILITY(U,$J,358.3,39996,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,39996,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,39997,0)
+ ;;=B97.10^^152^2002^22
+ ;;^UTILITY(U,$J,358.3,39997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42469,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,42469,1,4,0)
- ;;=4^W05.1XXA
- ;;^UTILITY(U,$J,358.3,42469,2)
- ;;=^5059553
- ;;^UTILITY(U,$J,358.3,42470,0)
- ;;=W05.1XXD^^159^2023^50
- ;;^UTILITY(U,$J,358.3,42470,1,0)
+ ;;^UTILITY(U,$J,358.3,39997,1,3,0)
+ ;;=3^Enterovirus,Unspec,as Cause of Disease
+ ;;^UTILITY(U,$J,358.3,39997,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,39997,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,39998,0)
+ ;;=R50.82^^152^2002^24
+ ;;^UTILITY(U,$J,358.3,39998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42470,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42470,1,4,0)
- ;;=4^W05.1XXD
- ;;^UTILITY(U,$J,358.3,42470,2)
- ;;=^5059554
- ;;^UTILITY(U,$J,358.3,42471,0)
- ;;=W05.2XXA^^159^2023^47
- ;;^UTILITY(U,$J,358.3,42471,1,0)
+ ;;^UTILITY(U,$J,358.3,39998,1,3,0)
+ ;;=3^Fever,Postprocedural
+ ;;^UTILITY(U,$J,358.3,39998,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,39998,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,39999,0)
+ ;;=R50.83^^152^2002^26
+ ;;^UTILITY(U,$J,358.3,39999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42471,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,42471,1,4,0)
- ;;=4^W05.2XXA
- ;;^UTILITY(U,$J,358.3,42471,2)
- ;;=^5059556
- ;;^UTILITY(U,$J,358.3,42472,0)
- ;;=W05.2XXD^^159^2023^48
- ;;^UTILITY(U,$J,358.3,42472,1,0)
+ ;;^UTILITY(U,$J,358.3,39999,1,3,0)
+ ;;=3^Fever,Postvaccination
+ ;;^UTILITY(U,$J,358.3,39999,1,4,0)
+ ;;=4^R50.83
+ ;;^UTILITY(U,$J,358.3,39999,2)
+ ;;=^5019510
+ ;;^UTILITY(U,$J,358.3,40000,0)
+ ;;=R50.84^^152^2002^25
+ ;;^UTILITY(U,$J,358.3,40000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42472,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42472,1,4,0)
- ;;=4^W05.2XXD
- ;;^UTILITY(U,$J,358.3,42472,2)
- ;;=^5059557
- ;;^UTILITY(U,$J,358.3,42473,0)
- ;;=W06.XXXA^^159^2023^29
- ;;^UTILITY(U,$J,358.3,42473,1,0)
+ ;;^UTILITY(U,$J,358.3,40000,1,3,0)
+ ;;=3^Fever,Posttransfusion
+ ;;^UTILITY(U,$J,358.3,40000,1,4,0)
+ ;;=4^R50.84
+ ;;^UTILITY(U,$J,358.3,40000,2)
+ ;;=^5019511
+ ;;^UTILITY(U,$J,358.3,40001,0)
+ ;;=B02.23^^152^2002^70
+ ;;^UTILITY(U,$J,358.3,40001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42473,1,3,0)
- ;;=3^Fall from Bed,Init Encntr
- ;;^UTILITY(U,$J,358.3,42473,1,4,0)
- ;;=4^W06.XXXA
- ;;^UTILITY(U,$J,358.3,42473,2)
- ;;=^5059559
- ;;^UTILITY(U,$J,358.3,42474,0)
- ;;=W06.XXXD^^159^2023^30
- ;;^UTILITY(U,$J,358.3,42474,1,0)
+ ;;^UTILITY(U,$J,358.3,40001,1,3,0)
+ ;;=3^Postherpetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,40001,1,4,0)
+ ;;=4^B02.23
+ ;;^UTILITY(U,$J,358.3,40001,2)
+ ;;=^266550
+ ;;^UTILITY(U,$J,358.3,40002,0)
+ ;;=B02.22^^152^2002^71
+ ;;^UTILITY(U,$J,358.3,40002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42474,1,3,0)
- ;;=3^Fall from Bed,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42474,1,4,0)
- ;;=4^W06.XXXD
- ;;^UTILITY(U,$J,358.3,42474,2)
- ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,40002,1,3,0)
+ ;;=3^Postherpetic Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,40002,1,4,0)
+ ;;=4^B02.22
+ ;;^UTILITY(U,$J,358.3,40002,2)
+ ;;=^266546

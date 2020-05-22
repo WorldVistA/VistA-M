@@ -1,126 +1,122 @@
-IBDEI30S ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI30S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50625,1,4,0)
- ;;=4^I80.293
- ;;^UTILITY(U,$J,358.3,50625,2)
- ;;=^5007844
- ;;^UTILITY(U,$J,358.3,50626,0)
- ;;=I80.292^^219^2458^11
- ;;^UTILITY(U,$J,358.3,50626,1,0)
+ ;;^UTILITY(U,$J,358.3,48222,1,3,0)
+ ;;=3^Fall,Sidewalk/Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48222,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,48222,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,48223,0)
+ ;;=W06.XXXA^^185^2419^7
+ ;;^UTILITY(U,$J,358.3,48223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50626,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,50626,1,4,0)
- ;;=4^I80.292
- ;;^UTILITY(U,$J,358.3,50626,2)
- ;;=^5133623
- ;;^UTILITY(U,$J,358.3,50627,0)
- ;;=I80.291^^219^2458^17
- ;;^UTILITY(U,$J,358.3,50627,1,0)
+ ;;^UTILITY(U,$J,358.3,48223,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48223,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,48223,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,48224,0)
+ ;;=W07.XXXA^^185^2419^8
+ ;;^UTILITY(U,$J,358.3,48224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50627,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,50627,1,4,0)
- ;;=4^I80.291
- ;;^UTILITY(U,$J,358.3,50627,2)
- ;;=^5007843
- ;;^UTILITY(U,$J,358.3,50628,0)
- ;;=I80.8^^219^2458^22
- ;;^UTILITY(U,$J,358.3,50628,1,0)
+ ;;^UTILITY(U,$J,358.3,48224,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48224,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,48224,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,48225,0)
+ ;;=W05.2XXA^^185^2419^11
+ ;;^UTILITY(U,$J,358.3,48225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50628,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis of Other Sites
- ;;^UTILITY(U,$J,358.3,50628,1,4,0)
- ;;=4^I80.8
- ;;^UTILITY(U,$J,358.3,50628,2)
- ;;=^176957
- ;;^UTILITY(U,$J,358.3,50629,0)
- ;;=I80.11^^219^2458^15
- ;;^UTILITY(U,$J,358.3,50629,1,0)
+ ;;^UTILITY(U,$J,358.3,48225,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48225,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,48225,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,48226,0)
+ ;;=W05.1XXA^^185^2419^12
+ ;;^UTILITY(U,$J,358.3,48226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50629,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,50629,1,4,0)
- ;;=4^I80.11
- ;;^UTILITY(U,$J,358.3,50629,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,50630,0)
- ;;=I80.211^^219^2458^16
- ;;^UTILITY(U,$J,358.3,50630,1,0)
+ ;;^UTILITY(U,$J,358.3,48226,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48226,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,48226,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,48227,0)
+ ;;=W05.0XXA^^185^2419^13
+ ;;^UTILITY(U,$J,358.3,48227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50630,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Iliac Vein
- ;;^UTILITY(U,$J,358.3,50630,1,4,0)
- ;;=4^I80.211
- ;;^UTILITY(U,$J,358.3,50630,2)
- ;;=^5007831
- ;;^UTILITY(U,$J,358.3,50631,0)
- ;;=I80.221^^219^2458^19
- ;;^UTILITY(U,$J,358.3,50631,1,0)
+ ;;^UTILITY(U,$J,358.3,48227,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48227,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,48227,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,48228,0)
+ ;;=W18.12XA^^185^2419^15
+ ;;^UTILITY(U,$J,358.3,48228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50631,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Popliteal Vein
- ;;^UTILITY(U,$J,358.3,50631,1,4,0)
- ;;=4^I80.221
- ;;^UTILITY(U,$J,358.3,50631,2)
- ;;=^5007835
- ;;^UTILITY(U,$J,358.3,50632,0)
- ;;=I80.231^^219^2458^20
- ;;^UTILITY(U,$J,358.3,50632,1,0)
+ ;;^UTILITY(U,$J,358.3,48228,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48228,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,48228,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,48229,0)
+ ;;=W18.11XA^^185^2419^16
+ ;;^UTILITY(U,$J,358.3,48229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50632,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Tibial Vein
- ;;^UTILITY(U,$J,358.3,50632,1,4,0)
- ;;=4^I80.231
- ;;^UTILITY(U,$J,358.3,50632,2)
- ;;=^5007839
- ;;^UTILITY(U,$J,358.3,50633,0)
- ;;=I80.03^^219^2458^6
- ;;^UTILITY(U,$J,358.3,50633,1,0)
+ ;;^UTILITY(U,$J,358.3,48229,1,3,0)
+ ;;=3^Fall from Toilet,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48229,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,48229,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,48230,0)
+ ;;=W08.XXXA^^185^2419^9
+ ;;^UTILITY(U,$J,358.3,48230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50633,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Superfic Vessels
- ;;^UTILITY(U,$J,358.3,50633,1,4,0)
- ;;=4^I80.03
- ;;^UTILITY(U,$J,358.3,50633,2)
- ;;=^5007823
- ;;^UTILITY(U,$J,358.3,50634,0)
- ;;=I80.02^^219^2458^12
- ;;^UTILITY(U,$J,358.3,50634,1,0)
+ ;;^UTILITY(U,$J,358.3,48230,1,3,0)
+ ;;=3^Fall from Furniture,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48230,1,4,0)
+ ;;=4^W08.XXXA
+ ;;^UTILITY(U,$J,358.3,48230,2)
+ ;;=^5059565
+ ;;^UTILITY(U,$J,358.3,48231,0)
+ ;;=W18.2XXA^^185^2419^17
+ ;;^UTILITY(U,$J,358.3,48231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50634,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Superfic Vessels
- ;;^UTILITY(U,$J,358.3,50634,1,4,0)
- ;;=4^I80.02
- ;;^UTILITY(U,$J,358.3,50634,2)
- ;;=^5007822
- ;;^UTILITY(U,$J,358.3,50635,0)
- ;;=I80.01^^219^2458^18
- ;;^UTILITY(U,$J,358.3,50635,1,0)
+ ;;^UTILITY(U,$J,358.3,48231,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48231,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,48231,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,48232,0)
+ ;;=W11.XXXA^^185^2419^10
+ ;;^UTILITY(U,$J,358.3,48232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50635,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Superfic Vessels
- ;;^UTILITY(U,$J,358.3,50635,1,4,0)
- ;;=4^I80.01
- ;;^UTILITY(U,$J,358.3,50635,2)
- ;;=^5007821
- ;;^UTILITY(U,$J,358.3,50636,0)
- ;;=I80.9^^219^2458^21
- ;;^UTILITY(U,$J,358.3,50636,1,0)
+ ;;^UTILITY(U,$J,358.3,48232,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48232,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,48232,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,48233,0)
+ ;;=W01.10XA^^185^2419^2
+ ;;^UTILITY(U,$J,358.3,48233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50636,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Unspec Site
- ;;^UTILITY(U,$J,358.3,50636,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,50636,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,50637,0)
- ;;=R91.8^^219^2459^2
- ;;^UTILITY(U,$J,358.3,50637,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50637,1,3,0)
- ;;=3^Abnormal Lung Field Findings
- ;;^UTILITY(U,$J,358.3,50637,1,4,0)
- ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,48233,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,48233,1,4,0)
+ ;;=4^W01.10XA
+ ;;^UTILITY(U,$J,358.3,48233,2)
+ ;;=^5059525
+ ;;^UTILITY(U,$J,358.3,48234,0)
+ ;;=W01.0XXA^^185^2419^3

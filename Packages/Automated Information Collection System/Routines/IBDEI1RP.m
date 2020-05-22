@@ -1,132 +1,132 @@
-IBDEI1RP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30044,1,3,0)
- ;;=3^Carcinoma in situ of other parts of cervix
- ;;^UTILITY(U,$J,358.3,30044,1,4,0)
- ;;=4^D06.7
- ;;^UTILITY(U,$J,358.3,30044,2)
- ;;=^5001940
- ;;^UTILITY(U,$J,358.3,30045,0)
- ;;=D66.^^118^1496^16
- ;;^UTILITY(U,$J,358.3,30045,1,0)
+ ;;^UTILITY(U,$J,358.3,28235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30045,1,3,0)
- ;;=3^Hereditary factor VIII deficiency
- ;;^UTILITY(U,$J,358.3,30045,1,4,0)
- ;;=4^D66.
- ;;^UTILITY(U,$J,358.3,30045,2)
- ;;=^5002353
- ;;^UTILITY(U,$J,358.3,30046,0)
- ;;=D67.^^118^1496^15
- ;;^UTILITY(U,$J,358.3,30046,1,0)
+ ;;^UTILITY(U,$J,358.3,28235,1,3,0)
+ ;;=3^Animal Phobia
+ ;;^UTILITY(U,$J,358.3,28235,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,28235,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,28236,0)
+ ;;=F40.228^^115^1384^11
+ ;;^UTILITY(U,$J,358.3,28236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30046,1,3,0)
- ;;=3^Hereditary factor IX deficiency
- ;;^UTILITY(U,$J,358.3,30046,1,4,0)
- ;;=4^D67.
- ;;^UTILITY(U,$J,358.3,30046,2)
- ;;=^5002354
- ;;^UTILITY(U,$J,358.3,30047,0)
- ;;=D68.1^^118^1496^17
- ;;^UTILITY(U,$J,358.3,30047,1,0)
+ ;;^UTILITY(U,$J,358.3,28236,1,3,0)
+ ;;=3^Natural Environment Phobia
+ ;;^UTILITY(U,$J,358.3,28236,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,28236,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,28237,0)
+ ;;=F40.230^^115^1384^6
+ ;;^UTILITY(U,$J,358.3,28237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30047,1,3,0)
- ;;=3^Hereditary factor XI deficiency
- ;;^UTILITY(U,$J,358.3,30047,1,4,0)
- ;;=4^D68.1
- ;;^UTILITY(U,$J,358.3,30047,2)
- ;;=^5002355
- ;;^UTILITY(U,$J,358.3,30048,0)
- ;;=D68.2^^118^1496^14
- ;;^UTILITY(U,$J,358.3,30048,1,0)
+ ;;^UTILITY(U,$J,358.3,28237,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,28237,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,28237,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,28238,0)
+ ;;=F40.231^^115^1384^7
+ ;;^UTILITY(U,$J,358.3,28238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30048,1,3,0)
- ;;=3^Hereditary deficiency of other clotting factors
- ;;^UTILITY(U,$J,358.3,30048,1,4,0)
- ;;=4^D68.2
- ;;^UTILITY(U,$J,358.3,30048,2)
- ;;=^5002356
- ;;^UTILITY(U,$J,358.3,30049,0)
- ;;=D68.0^^118^1496^26
- ;;^UTILITY(U,$J,358.3,30049,1,0)
+ ;;^UTILITY(U,$J,358.3,28238,1,3,0)
+ ;;=3^Fear of Injections & Transfusions
+ ;;^UTILITY(U,$J,358.3,28238,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,28238,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,28239,0)
+ ;;=F40.232^^115^1384^9
+ ;;^UTILITY(U,$J,358.3,28239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30049,1,3,0)
- ;;=3^Von Willebrand's disease
- ;;^UTILITY(U,$J,358.3,30049,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,30049,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,30050,0)
- ;;=D68.311^^118^1496^2
- ;;^UTILITY(U,$J,358.3,30050,1,0)
+ ;;^UTILITY(U,$J,358.3,28239,1,3,0)
+ ;;=3^Fear of Other Medical Care
+ ;;^UTILITY(U,$J,358.3,28239,1,4,0)
+ ;;=4^F40.232
+ ;;^UTILITY(U,$J,358.3,28239,2)
+ ;;=^5003552
+ ;;^UTILITY(U,$J,358.3,28240,0)
+ ;;=F40.233^^115^1384^8
+ ;;^UTILITY(U,$J,358.3,28240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30050,1,3,0)
- ;;=3^Acquired hemophilia
- ;;^UTILITY(U,$J,358.3,30050,1,4,0)
- ;;=4^D68.311
- ;;^UTILITY(U,$J,358.3,30050,2)
- ;;=^340502
- ;;^UTILITY(U,$J,358.3,30051,0)
- ;;=D68.312^^118^1496^4
- ;;^UTILITY(U,$J,358.3,30051,1,0)
+ ;;^UTILITY(U,$J,358.3,28240,1,3,0)
+ ;;=3^Fear of Injury
+ ;;^UTILITY(U,$J,358.3,28240,1,4,0)
+ ;;=4^F40.233
+ ;;^UTILITY(U,$J,358.3,28240,2)
+ ;;=^5003553
+ ;;^UTILITY(U,$J,358.3,28241,0)
+ ;;=F40.248^^115^1384^16
+ ;;^UTILITY(U,$J,358.3,28241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30051,1,3,0)
- ;;=3^Antiphospholipid antibody with hemorrhagic disorder
- ;;^UTILITY(U,$J,358.3,30051,1,4,0)
- ;;=4^D68.312
- ;;^UTILITY(U,$J,358.3,30051,2)
- ;;=^340503
- ;;^UTILITY(U,$J,358.3,30052,0)
- ;;=D68.318^^118^1496^13
- ;;^UTILITY(U,$J,358.3,30052,1,0)
+ ;;^UTILITY(U,$J,358.3,28241,1,3,0)
+ ;;=3^Situational Phobia 
+ ;;^UTILITY(U,$J,358.3,28241,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,28241,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,28242,0)
+ ;;=F93.0^^115^1384^15
+ ;;^UTILITY(U,$J,358.3,28242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30052,1,3,0)
- ;;=3^Hemorrhagic disord d/t intrns circ anticoag,antib,inhib NEC
- ;;^UTILITY(U,$J,358.3,30052,1,4,0)
- ;;=4^D68.318
- ;;^UTILITY(U,$J,358.3,30052,2)
- ;;=^340504
- ;;^UTILITY(U,$J,358.3,30053,0)
- ;;=D65.^^118^1496^7
- ;;^UTILITY(U,$J,358.3,30053,1,0)
+ ;;^UTILITY(U,$J,358.3,28242,1,3,0)
+ ;;=3^Separation Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,28242,1,4,0)
+ ;;=4^F93.0
+ ;;^UTILITY(U,$J,358.3,28242,2)
+ ;;=^5003702
+ ;;^UTILITY(U,$J,358.3,28243,0)
+ ;;=F40.00^^115^1384^1
+ ;;^UTILITY(U,$J,358.3,28243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30053,1,3,0)
- ;;=3^Disseminated intravascular coagulation
- ;;^UTILITY(U,$J,358.3,30053,1,4,0)
- ;;=4^D65.
- ;;^UTILITY(U,$J,358.3,30053,2)
- ;;=^5002352
- ;;^UTILITY(U,$J,358.3,30054,0)
- ;;=D68.32^^118^1496^12
- ;;^UTILITY(U,$J,358.3,30054,1,0)
+ ;;^UTILITY(U,$J,358.3,28243,1,3,0)
+ ;;=3^Agrophobia
+ ;;^UTILITY(U,$J,358.3,28243,1,4,0)
+ ;;=4^F40.00
+ ;;^UTILITY(U,$J,358.3,28243,2)
+ ;;=^5003542
+ ;;^UTILITY(U,$J,358.3,28244,0)
+ ;;=F41.8^^115^1384^4
+ ;;^UTILITY(U,$J,358.3,28244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30054,1,3,0)
- ;;=3^Hemorrhagic disord d/t extrinsic circulating anticoagulants
- ;;^UTILITY(U,$J,358.3,30054,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,30054,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,30055,0)
- ;;=D68.4^^118^1496^1
- ;;^UTILITY(U,$J,358.3,30055,1,0)
+ ;;^UTILITY(U,$J,358.3,28244,1,3,0)
+ ;;=3^Anxiety Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,28244,1,4,0)
+ ;;=4^F41.8
+ ;;^UTILITY(U,$J,358.3,28244,2)
+ ;;=^5003566
+ ;;^UTILITY(U,$J,358.3,28245,0)
+ ;;=F40.298^^115^1384^13
+ ;;^UTILITY(U,$J,358.3,28245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30055,1,3,0)
- ;;=3^Acquired coagulation factor deficiency
- ;;^UTILITY(U,$J,358.3,30055,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,30055,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,30056,0)
- ;;=D68.8^^118^1496^5
- ;;^UTILITY(U,$J,358.3,30056,1,0)
+ ;;^UTILITY(U,$J,358.3,28245,1,3,0)
+ ;;=3^Phobia,Other Specified
+ ;;^UTILITY(U,$J,358.3,28245,1,4,0)
+ ;;=4^F40.298
+ ;;^UTILITY(U,$J,358.3,28245,2)
+ ;;=^5003561
+ ;;^UTILITY(U,$J,358.3,28246,0)
+ ;;=F41.9^^115^1384^5
+ ;;^UTILITY(U,$J,358.3,28246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30056,1,3,0)
- ;;=3^Coagulation Defects NEC
- ;;^UTILITY(U,$J,358.3,30056,1,4,0)
- ;;=4^D68.8
- ;;^UTILITY(U,$J,358.3,30056,2)
- ;;=^5002363
- ;;^UTILITY(U,$J,358.3,30057,0)
- ;;=D68.9^^118^1496^6
+ ;;^UTILITY(U,$J,358.3,28246,1,3,0)
+ ;;=3^Anxiety Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,28246,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,28246,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,28247,0)
+ ;;=F94.0^^115^1384^14
+ ;;^UTILITY(U,$J,358.3,28247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28247,1,3,0)
+ ;;=3^Selective Mutism
+ ;;^UTILITY(U,$J,358.3,28247,1,4,0)
+ ;;=4^F94.0
+ ;;^UTILITY(U,$J,358.3,28247,2)
+ ;;=^331954

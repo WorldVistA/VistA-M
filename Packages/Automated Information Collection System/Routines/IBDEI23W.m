@@ -1,128 +1,122 @@
-IBDEI23W ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23W ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35725,1,4,0)
- ;;=4^M32.8
- ;;^UTILITY(U,$J,358.3,35725,2)
- ;;=^5011760
- ;;^UTILITY(U,$J,358.3,35726,0)
- ;;=J84.17^^134^1730^18
- ;;^UTILITY(U,$J,358.3,35726,1,0)
+ ;;^UTILITY(U,$J,358.3,33663,0)
+ ;;=S83.241D^^132^1708^81
+ ;;^UTILITY(U,$J,358.3,33663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35726,1,3,0)
- ;;=3^Interstitial Pulmonary Diseases w/ Fibrosis
- ;;^UTILITY(U,$J,358.3,35726,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,35726,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,35727,0)
- ;;=J68.8^^134^1730^25
- ;;^UTILITY(U,$J,358.3,35727,1,0)
+ ;;^UTILITY(U,$J,358.3,33663,1,3,0)
+ ;;=3^Tear of medial meniscus, current injury, r knee, subs
+ ;;^UTILITY(U,$J,358.3,33663,1,4,0)
+ ;;=4^S83.241D
+ ;;^UTILITY(U,$J,358.3,33663,2)
+ ;;=^5043062
+ ;;^UTILITY(U,$J,358.3,33664,0)
+ ;;=M24.661^^132^1708^2
+ ;;^UTILITY(U,$J,358.3,33664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35727,1,3,0)
- ;;=3^Respiratory Condition d/t Chemicals/Gases/Fumes/Vapors
- ;;^UTILITY(U,$J,358.3,35727,1,4,0)
- ;;=4^J68.8
- ;;^UTILITY(U,$J,358.3,35727,2)
- ;;=^5008286
- ;;^UTILITY(U,$J,358.3,35728,0)
- ;;=J69.0^^134^1730^22
- ;;^UTILITY(U,$J,358.3,35728,1,0)
+ ;;^UTILITY(U,$J,358.3,33664,1,3,0)
+ ;;=3^Ankylosis,Right Knee
+ ;;^UTILITY(U,$J,358.3,33664,1,4,0)
+ ;;=4^M24.661
+ ;;^UTILITY(U,$J,358.3,33664,2)
+ ;;=^5011442
+ ;;^UTILITY(U,$J,358.3,33665,0)
+ ;;=M24.662^^132^1708^1
+ ;;^UTILITY(U,$J,358.3,33665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35728,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
- ;;^UTILITY(U,$J,358.3,35728,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,35728,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,35729,0)
- ;;=J69.1^^134^1730^23
- ;;^UTILITY(U,$J,358.3,35729,1,0)
+ ;;^UTILITY(U,$J,358.3,33665,1,3,0)
+ ;;=3^Ankylosis,Left Knee
+ ;;^UTILITY(U,$J,358.3,33665,1,4,0)
+ ;;=4^M24.662
+ ;;^UTILITY(U,$J,358.3,33665,2)
+ ;;=^5011443
+ ;;^UTILITY(U,$J,358.3,33666,0)
+ ;;=G90.521^^132^1708^16
+ ;;^UTILITY(U,$J,358.3,33666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35729,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
- ;;^UTILITY(U,$J,358.3,35729,1,4,0)
- ;;=4^J69.1
- ;;^UTILITY(U,$J,358.3,35729,2)
- ;;=^95664
- ;;^UTILITY(U,$J,358.3,35730,0)
- ;;=J84.115^^134^1730^24
- ;;^UTILITY(U,$J,358.3,35730,1,0)
+ ;;^UTILITY(U,$J,358.3,33666,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,33666,1,4,0)
+ ;;=4^G90.521
+ ;;^UTILITY(U,$J,358.3,33666,2)
+ ;;=^5004168
+ ;;^UTILITY(U,$J,358.3,33667,0)
+ ;;=G90.522^^132^1708^15
+ ;;^UTILITY(U,$J,358.3,33667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35730,1,3,0)
- ;;=3^Respiratory Bronchiolitis Interstitial Lung Disease
- ;;^UTILITY(U,$J,358.3,35730,1,4,0)
- ;;=4^J84.115
- ;;^UTILITY(U,$J,358.3,35730,2)
- ;;=^340537
- ;;^UTILITY(U,$J,358.3,35731,0)
- ;;=M05.172^^134^1730^26
- ;;^UTILITY(U,$J,358.3,35731,1,0)
+ ;;^UTILITY(U,$J,358.3,33667,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,33667,1,4,0)
+ ;;=4^G90.522
+ ;;^UTILITY(U,$J,358.3,33667,2)
+ ;;=^5133371
+ ;;^UTILITY(U,$J,358.3,33668,0)
+ ;;=G90.523^^132^1708^14
+ ;;^UTILITY(U,$J,358.3,33668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35731,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35731,1,4,0)
- ;;=4^M05.172
- ;;^UTILITY(U,$J,358.3,35731,2)
- ;;=^5009882
- ;;^UTILITY(U,$J,358.3,35732,0)
- ;;=M05.122^^134^1730^27
- ;;^UTILITY(U,$J,358.3,35732,1,0)
+ ;;^UTILITY(U,$J,358.3,33668,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Bilateral Lower Limbs
+ ;;^UTILITY(U,$J,358.3,33668,1,4,0)
+ ;;=4^G90.523
+ ;;^UTILITY(U,$J,358.3,33668,2)
+ ;;=^5004169
+ ;;^UTILITY(U,$J,358.3,33669,0)
+ ;;=S80.01XA^^132^1708^21
+ ;;^UTILITY(U,$J,358.3,33669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35732,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Elbow
- ;;^UTILITY(U,$J,358.3,35732,1,4,0)
- ;;=4^M05.122
- ;;^UTILITY(U,$J,358.3,35732,2)
- ;;=^5009867
- ;;^UTILITY(U,$J,358.3,35733,0)
- ;;=M05.142^^134^1730^28
- ;;^UTILITY(U,$J,358.3,35733,1,0)
+ ;;^UTILITY(U,$J,358.3,33669,1,3,0)
+ ;;=3^Contusion Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33669,1,4,0)
+ ;;=4^S80.01XA
+ ;;^UTILITY(U,$J,358.3,33669,2)
+ ;;=^5039891
+ ;;^UTILITY(U,$J,358.3,33670,0)
+ ;;=S80.01XD^^132^1708^22
+ ;;^UTILITY(U,$J,358.3,33670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35733,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hand
- ;;^UTILITY(U,$J,358.3,35733,1,4,0)
- ;;=4^M05.142
- ;;^UTILITY(U,$J,358.3,35733,2)
- ;;=^5009873
- ;;^UTILITY(U,$J,358.3,35734,0)
- ;;=M05.152^^134^1730^29
- ;;^UTILITY(U,$J,358.3,35734,1,0)
+ ;;^UTILITY(U,$J,358.3,33670,1,3,0)
+ ;;=3^Contusion Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33670,1,4,0)
+ ;;=4^S80.01XD
+ ;;^UTILITY(U,$J,358.3,33670,2)
+ ;;=^5039892
+ ;;^UTILITY(U,$J,358.3,33671,0)
+ ;;=S80.02XA^^132^1708^19
+ ;;^UTILITY(U,$J,358.3,33671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35734,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hip
- ;;^UTILITY(U,$J,358.3,35734,1,4,0)
- ;;=4^M05.152
- ;;^UTILITY(U,$J,358.3,35734,2)
- ;;=^5009876
- ;;^UTILITY(U,$J,358.3,35735,0)
- ;;=M05.162^^134^1730^30
- ;;^UTILITY(U,$J,358.3,35735,1,0)
+ ;;^UTILITY(U,$J,358.3,33671,1,3,0)
+ ;;=3^Contusion Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33671,1,4,0)
+ ;;=4^S80.02XA
+ ;;^UTILITY(U,$J,358.3,33671,2)
+ ;;=^5039894
+ ;;^UTILITY(U,$J,358.3,33672,0)
+ ;;=S80.02XD^^132^1708^20
+ ;;^UTILITY(U,$J,358.3,33672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35735,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Knee
- ;;^UTILITY(U,$J,358.3,35735,1,4,0)
- ;;=4^M05.162
- ;;^UTILITY(U,$J,358.3,35735,2)
- ;;=^5009879
- ;;^UTILITY(U,$J,358.3,35736,0)
- ;;=M05.112^^134^1730^31
- ;;^UTILITY(U,$J,358.3,35736,1,0)
+ ;;^UTILITY(U,$J,358.3,33672,1,3,0)
+ ;;=3^Contusion Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33672,1,4,0)
+ ;;=4^S80.02XD
+ ;;^UTILITY(U,$J,358.3,33672,2)
+ ;;=^5039895
+ ;;^UTILITY(U,$J,358.3,33673,0)
+ ;;=M71.21^^132^1708^24
+ ;;^UTILITY(U,$J,358.3,33673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35736,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Shldr
- ;;^UTILITY(U,$J,358.3,35736,1,4,0)
- ;;=4^M05.112
- ;;^UTILITY(U,$J,358.3,35736,2)
- ;;=^5009864
- ;;^UTILITY(U,$J,358.3,35737,0)
- ;;=M05.132^^134^1730^32
- ;;^UTILITY(U,$J,358.3,35737,1,0)
+ ;;^UTILITY(U,$J,358.3,33673,1,3,0)
+ ;;=3^Cyst,Synovial of Popliteal Space,Right Knee
+ ;;^UTILITY(U,$J,358.3,33673,1,4,0)
+ ;;=4^M71.21
+ ;;^UTILITY(U,$J,358.3,33673,2)
+ ;;=^5013147
+ ;;^UTILITY(U,$J,358.3,33674,0)
+ ;;=M71.22^^132^1708^23
+ ;;^UTILITY(U,$J,358.3,33674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35737,1,3,0)
- ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
- ;;^UTILITY(U,$J,358.3,35737,1,4,0)
- ;;=4^M05.132
- ;;^UTILITY(U,$J,358.3,35737,2)
- ;;=^5009870
+ ;;^UTILITY(U,$J,358.3,33674,1,3,0)
+ ;;=3^Cyst,Synovial of Popliteal Space,Left Knee
+ ;;^UTILITY(U,$J,358.3,33674,1,4,0)
+ ;;=4^M71.22

@@ -1,130 +1,120 @@
-IBDEI2LH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2LH ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44048,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Rt Low Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,44048,1,4,0)
- ;;=4^L97.913
- ;;^UTILITY(U,$J,358.3,44048,2)
- ;;=^5133683
- ;;^UTILITY(U,$J,358.3,44049,0)
- ;;=L97.914^^170^2116^14
- ;;^UTILITY(U,$J,358.3,44049,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44049,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Rt Low Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,44049,1,4,0)
- ;;=4^L97.914
- ;;^UTILITY(U,$J,358.3,44049,2)
- ;;=^5133685
- ;;^UTILITY(U,$J,358.3,44050,0)
- ;;=L97.919^^170^2116^15
- ;;^UTILITY(U,$J,358.3,44050,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44050,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Rt Low Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,44050,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,44050,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,44051,0)
- ;;=L97.922^^170^2116^7
- ;;^UTILITY(U,$J,358.3,44051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44051,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Lt Low Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,44051,1,4,0)
- ;;=4^L97.922
- ;;^UTILITY(U,$J,358.3,44051,2)
- ;;=^5133682
- ;;^UTILITY(U,$J,358.3,44052,0)
- ;;=L97.921^^170^2116^11
- ;;^UTILITY(U,$J,358.3,44052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44052,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Lt Low Leg,Limited to Brkdwn Skin
- ;;^UTILITY(U,$J,358.3,44052,1,4,0)
- ;;=4^L97.921
- ;;^UTILITY(U,$J,358.3,44052,2)
- ;;=^5133680
- ;;^UTILITY(U,$J,358.3,44053,0)
- ;;=L97.923^^170^2116^8
- ;;^UTILITY(U,$J,358.3,44053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44053,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Lt Low Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,44053,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,44053,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,44054,0)
- ;;=L97.924^^170^2116^9
- ;;^UTILITY(U,$J,358.3,44054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44054,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Lt Low Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,44054,1,4,0)
- ;;=4^L97.924
- ;;^UTILITY(U,$J,358.3,44054,2)
- ;;=^5133686
- ;;^UTILITY(U,$J,358.3,44055,0)
- ;;=L97.929^^170^2116^10
- ;;^UTILITY(U,$J,358.3,44055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44055,1,3,0)
- ;;=3^Non-Prs Chr Ulc,Lt Low Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,44055,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,44055,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,44056,0)
- ;;=R21.^^170^2116^21
- ;;^UTILITY(U,$J,358.3,44056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44056,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,44056,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,44056,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,44057,0)
- ;;=Z23.^^170^2117^1
- ;;^UTILITY(U,$J,358.3,44057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44057,1,3,0)
- ;;=3^Immunization Encounter
- ;;^UTILITY(U,$J,358.3,44057,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,44057,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,44058,0)
- ;;=Z48.00^^170^2118^6
- ;;^UTILITY(U,$J,358.3,44058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44058,1,3,0)
- ;;=3^Change/Removal Nonsurg Wound Dressing
- ;;^UTILITY(U,$J,358.3,44058,1,4,0)
- ;;=4^Z48.00
- ;;^UTILITY(U,$J,358.3,44058,2)
- ;;=^5063033
- ;;^UTILITY(U,$J,358.3,44059,0)
- ;;=Z48.01^^170^2118^7
- ;;^UTILITY(U,$J,358.3,44059,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44059,1,3,0)
- ;;=3^Change/Removal Surgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,44059,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,44059,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,44060,0)
- ;;=Z09.^^170^2118^14
- ;;^UTILITY(U,$J,358.3,44060,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44060,1,3,0)
- ;;=3^F/U Exam After Treatment
- ;;^UTILITY(U,$J,358.3,44060,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,44060,2)
- ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,41426,1,3,0)
+ ;;=3^J1200
+ ;;^UTILITY(U,$J,358.3,41427,0)
+ ;;=J0585^^154^2041^1^^^^1
+ ;;^UTILITY(U,$J,358.3,41427,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41427,1,2,0)
+ ;;=2^Botulinum Toxin Type A,Botox,Dysport per unit
+ ;;^UTILITY(U,$J,358.3,41427,1,3,0)
+ ;;=3^J0585
+ ;;^UTILITY(U,$J,358.3,41428,0)
+ ;;=J0587^^154^2041^2^^^^1
+ ;;^UTILITY(U,$J,358.3,41428,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41428,1,2,0)
+ ;;=2^Botulinum Toxin Type B,Myobloc per 100 units
+ ;;^UTILITY(U,$J,358.3,41428,1,3,0)
+ ;;=3^J0587
+ ;;^UTILITY(U,$J,358.3,41429,0)
+ ;;=97760^^154^2042^1^^^^1
+ ;;^UTILITY(U,$J,358.3,41429,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41429,1,2,0)
+ ;;=2^Orthotic Mgmt and Training,ea 15min
+ ;;^UTILITY(U,$J,358.3,41429,1,3,0)
+ ;;=3^97760
+ ;;^UTILITY(U,$J,358.3,41430,0)
+ ;;=97761^^154^2042^2^^^^1
+ ;;^UTILITY(U,$J,358.3,41430,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41430,1,2,0)
+ ;;=2^Prosthetic Training,ea 15min
+ ;;^UTILITY(U,$J,358.3,41430,1,3,0)
+ ;;=3^97761
+ ;;^UTILITY(U,$J,358.3,41431,0)
+ ;;=97763^^154^2042^3^^^^1
+ ;;^UTILITY(U,$J,358.3,41431,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41431,1,2,0)
+ ;;=2^Prosthetic/Orthotic F/U Mgmt/Trng,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,41431,1,3,0)
+ ;;=3^97763
+ ;;^UTILITY(U,$J,358.3,41432,0)
+ ;;=97110^^154^2043^7^^^^1
+ ;;^UTILITY(U,$J,358.3,41432,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41432,1,2,0)
+ ;;=2^Therapeutic Exercises, Ea 15 Min
+ ;;^UTILITY(U,$J,358.3,41432,1,3,0)
+ ;;=3^97110
+ ;;^UTILITY(U,$J,358.3,41433,0)
+ ;;=97750^^154^2043^5^^^^1
+ ;;^UTILITY(U,$J,358.3,41433,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41433,1,2,0)
+ ;;=2^Physical Perform Test, Ea 15 Min
+ ;;^UTILITY(U,$J,358.3,41433,1,3,0)
+ ;;=3^97750
+ ;;^UTILITY(U,$J,358.3,41434,0)
+ ;;=97112^^154^2043^4^^^^1
+ ;;^UTILITY(U,$J,358.3,41434,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41434,1,2,0)
+ ;;=2^Neuromuscular Reeduc,  Ea 15 Min
+ ;;^UTILITY(U,$J,358.3,41434,1,3,0)
+ ;;=3^97112
+ ;;^UTILITY(U,$J,358.3,41435,0)
+ ;;=97113^^154^2043^1^^^^1
+ ;;^UTILITY(U,$J,358.3,41435,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41435,1,2,0)
+ ;;=2^Aquatic Exercises,ea 15min
+ ;;^UTILITY(U,$J,358.3,41435,1,3,0)
+ ;;=3^97113
+ ;;^UTILITY(U,$J,358.3,41436,0)
+ ;;=97116^^154^2043^3^^^^1
+ ;;^UTILITY(U,$J,358.3,41436,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41436,1,2,0)
+ ;;=2^Gait Training, Ea 15 Min
+ ;;^UTILITY(U,$J,358.3,41436,1,3,0)
+ ;;=3^97116
+ ;;^UTILITY(U,$J,358.3,41437,0)
+ ;;=97150^^154^2043^8^^^^1
+ ;;^UTILITY(U,$J,358.3,41437,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41437,1,2,0)
+ ;;=2^Therapeutic Proc, Group, 2+ Ind
+ ;;^UTILITY(U,$J,358.3,41437,1,3,0)
+ ;;=3^97150
+ ;;^UTILITY(U,$J,358.3,41438,0)
+ ;;=97530^^154^2043^6^^^^1
+ ;;^UTILITY(U,$J,358.3,41438,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41438,1,2,0)
+ ;;=2^Therapeutic Dynamic Activity,1-1,ea 15min
+ ;;^UTILITY(U,$J,358.3,41438,1,3,0)
+ ;;=3^97530
+ ;;^UTILITY(U,$J,358.3,41439,0)
+ ;;=97537^^154^2043^2^^^^1
+ ;;^UTILITY(U,$J,358.3,41439,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41439,1,2,0)
+ ;;=2^Community/Work Reintegration, Ea 15 Min
+ ;;^UTILITY(U,$J,358.3,41439,1,3,0)
+ ;;=3^97537
+ ;;^UTILITY(U,$J,358.3,41440,0)
+ ;;=97542^^154^2043^9^^^^1
+ ;;^UTILITY(U,$J,358.3,41440,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,41440,1,2,0)
+ ;;=2^Wheelchair Training,ea 15 Min
+ ;;^UTILITY(U,$J,358.3,41440,1,3,0)
+ ;;=3^97542
+ ;;^UTILITY(U,$J,358.3,41441,0)
+ ;;=97750^^154^2044^11^^^^1

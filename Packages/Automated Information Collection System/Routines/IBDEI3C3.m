@@ -1,130 +1,136 @@
-IBDEI3C3 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3C3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56023,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56023,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,56023,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,56023,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,56024,0)
- ;;=R87.619^^256^2791^1
- ;;^UTILITY(U,$J,358.3,56024,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56024,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,56024,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,56024,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,56025,0)
- ;;=Z79.890^^256^2791^26
- ;;^UTILITY(U,$J,358.3,56025,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56025,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,56025,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,56025,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,56026,0)
- ;;=Z33.1^^256^2791^50
- ;;^UTILITY(U,$J,358.3,56026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56026,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,56026,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,56026,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,56027,0)
- ;;=Z39.2^^256^2791^49
- ;;^UTILITY(U,$J,358.3,56027,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56027,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,56027,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,56027,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,56028,0)
- ;;=Z30.09^^256^2791^10
- ;;^UTILITY(U,$J,358.3,56028,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56028,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,56028,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,56028,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,56029,0)
- ;;=Z30.9^^256^2791^9
- ;;^UTILITY(U,$J,358.3,56029,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56029,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,56029,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,56029,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,56030,0)
- ;;=N64.3^^256^2791^23
- ;;^UTILITY(U,$J,358.3,56030,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56030,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,56030,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,56030,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,56031,0)
- ;;=R92.2^^256^2791^27
- ;;^UTILITY(U,$J,358.3,56031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56031,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,56031,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,56031,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,56032,0)
- ;;=Z30.432^^256^2791^53
- ;;^UTILITY(U,$J,358.3,56032,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56032,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,56032,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,56032,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,56033,0)
- ;;=S31.000A^^256^2792^5
- ;;^UTILITY(U,$J,358.3,56033,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56033,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,56033,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,56033,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,56034,0)
- ;;=S31.010A^^256^2792^2
- ;;^UTILITY(U,$J,358.3,56034,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56034,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,56034,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,56034,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,56035,0)
- ;;=T07.^^256^2792^4
- ;;^UTILITY(U,$J,358.3,56035,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56035,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,56035,1,4,0)
- ;;=4^T07.
+ ;;^UTILITY(U,$J,358.5)
+ ;;=^IBE(358.5,
+ ;;^UTILITY(U,$J,358.5,0)
+ ;;=IMP/EXP DATA FIELD^358.5I^281^281
+ ;;^UTILITY(U,$J,358.5,1,0)
+ ;;=HEADER^1
+ ;;^UTILITY(U,$J,358.5,1,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,1,2,1,0)
+ ;;=NATIONAL CAREGIVER ASSESSMENT^^^0^0
+ ;;^UTILITY(U,$J,358.5,2,0)
+ ;;=Patient name^2^1
+ ;;^UTILITY(U,$J,358.5,2,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,2,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,3,0)
+ ;;=SSN^2^2
+ ;;^UTILITY(U,$J,358.5,3,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,3,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,4,0)
+ ;;=Age^2^3
+ ;;^UTILITY(U,$J,358.5,4,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,4,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,4,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,5,0)
+ ;;=HEADER^7
+ ;;^UTILITY(U,$J,358.5,5,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,5,2,1,0)
+ ;;=NATIONAL DEMENTIA CLINIC^^^0^0
+ ;;^UTILITY(U,$J,358.5,6,0)
+ ;;=Patient name^8^1
+ ;;^UTILITY(U,$J,358.5,6,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,6,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,7,0)
+ ;;=SSN^8^2
+ ;;^UTILITY(U,$J,358.5,7,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,7,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,8,0)
+ ;;=Age^8^3
+ ;;^UTILITY(U,$J,358.5,8,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,8,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,8,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,9,0)
+ ;;=HEADER^11
+ ;;^UTILITY(U,$J,358.5,9,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,9,2,1,0)
+ ;;=NATIONAL EPILEPSY CENTER OF EXCELLENCE - PROCEDURES^^B^0^0
+ ;;^UTILITY(U,$J,358.5,10,0)
+ ;;=Patient name^12^1
+ ;;^UTILITY(U,$J,358.5,10,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,10,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,11,0)
+ ;;=SSN^12^2
+ ;;^UTILITY(U,$J,358.5,11,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,11,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,12,0)
+ ;;=Age^12^3
+ ;;^UTILITY(U,$J,358.5,12,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,12,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,12,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,13,0)
+ ;;=HEADER^15
+ ;;^UTILITY(U,$J,358.5,13,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,13,2,1,0)
+ ;;=NATIONAL MOVE!^^^0^0
+ ;;^UTILITY(U,$J,358.5,14,0)
+ ;;=Patient name^17^1
+ ;;^UTILITY(U,$J,358.5,14,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,14,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,15,0)
+ ;;=SSN^17^2
+ ;;^UTILITY(U,$J,358.5,15,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,15,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,16,0)
+ ;;=Age^17^3
+ ;;^UTILITY(U,$J,358.5,16,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,16,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1
+ ;;^UTILITY(U,$J,358.5,16,2,2,0)
+ ;;=Age:^^^78^1^1^83^3^2
+ ;;^UTILITY(U,$J,358.5,17,0)
+ ;;=HEADER^21
+ ;;^UTILITY(U,$J,358.5,17,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,17,2,1,0)
+ ;;=NATIONAL RECREATION THERAPY - GROUPS^^^0^0
+ ;;^UTILITY(U,$J,358.5,18,0)
+ ;;=Patient name^22^1
+ ;;^UTILITY(U,$J,358.5,18,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,18,2,1,0)
+ ;;=Name:^^^1^1^1^7^30^1
+ ;;^UTILITY(U,$J,358.5,19,0)
+ ;;=SSN^22^2
+ ;;^UTILITY(U,$J,358.5,19,2,0)
+ ;;=^358.52^1^1
+ ;;^UTILITY(U,$J,358.5,19,2,1,0)
+ ;;=SSN:^^^39^1^1^44^15^1
+ ;;^UTILITY(U,$J,358.5,20,0)
+ ;;=Age^22^3
+ ;;^UTILITY(U,$J,358.5,20,2,0)
+ ;;=^358.52^2^2
+ ;;^UTILITY(U,$J,358.5,20,2,1,0)
+ ;;=DOB:^^^60^1^1^65^12^1

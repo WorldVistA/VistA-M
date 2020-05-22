@@ -1,132 +1,26 @@
-IBDEI3E0 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
-Q Q
- ;;^UTILITY(U,$J,358.3,56944,1,4,0)
- ;;=4^T33.521A
- ;;^UTILITY(U,$J,358.3,56944,2)
- ;;=^5049076
- ;;^UTILITY(U,$J,358.3,56945,0)
- ;;=T33.522A^^261^2838^29
- ;;^UTILITY(U,$J,358.3,56945,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56945,1,3,0)
- ;;=3^Frostbite Lt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,56945,1,4,0)
- ;;=4^T33.522A
- ;;^UTILITY(U,$J,358.3,56945,2)
- ;;=^5049079
- ;;^UTILITY(U,$J,358.3,56946,0)
- ;;=T34.521A^^261^2838^35
- ;;^UTILITY(U,$J,358.3,56946,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56946,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Rt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,56946,1,4,0)
- ;;=4^T34.521A
- ;;^UTILITY(U,$J,358.3,56946,2)
- ;;=^5049187
- ;;^UTILITY(U,$J,358.3,56947,0)
- ;;=T34.522A^^261^2838^33
- ;;^UTILITY(U,$J,358.3,56947,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56947,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Lt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,56947,1,4,0)
- ;;=4^T34.522A
- ;;^UTILITY(U,$J,358.3,56947,2)
- ;;=^5049190
- ;;^UTILITY(U,$J,358.3,56948,0)
- ;;=T33.821A^^261^2838^30
- ;;^UTILITY(U,$J,358.3,56948,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56948,1,3,0)
- ;;=3^Frostbite Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,56948,1,4,0)
- ;;=4^T33.821A
- ;;^UTILITY(U,$J,358.3,56948,2)
- ;;=^5049121
- ;;^UTILITY(U,$J,358.3,56949,0)
- ;;=T33.822A^^261^2838^28
- ;;^UTILITY(U,$J,358.3,56949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56949,1,3,0)
- ;;=3^Frostbite Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,56949,1,4,0)
- ;;=4^T33.822A
- ;;^UTILITY(U,$J,358.3,56949,2)
- ;;=^5049124
- ;;^UTILITY(U,$J,358.3,56950,0)
- ;;=T34.821A^^261^2838^34
- ;;^UTILITY(U,$J,358.3,56950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56950,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,56950,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,56950,2)
- ;;=^5049232
- ;;^UTILITY(U,$J,358.3,56951,0)
- ;;=T34.822A^^261^2838^32
- ;;^UTILITY(U,$J,358.3,56951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56951,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,56951,1,4,0)
- ;;=4^T34.822A
- ;;^UTILITY(U,$J,358.3,56951,2)
- ;;=^5049235
- ;;^UTILITY(U,$J,358.3,56952,0)
- ;;=T69.021A^^261^2838^46
- ;;^UTILITY(U,$J,358.3,56952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56952,1,3,0)
- ;;=3^Immersion Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,56952,1,4,0)
- ;;=4^T69.021A
- ;;^UTILITY(U,$J,358.3,56952,2)
- ;;=^5053963
- ;;^UTILITY(U,$J,358.3,56953,0)
- ;;=T69.022A^^261^2838^45
- ;;^UTILITY(U,$J,358.3,56953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56953,1,3,0)
- ;;=3^Immersion Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,56953,1,4,0)
- ;;=4^T69.022A
- ;;^UTILITY(U,$J,358.3,56953,2)
- ;;=^5053966
- ;;^UTILITY(U,$J,358.3,56954,0)
- ;;=Z02.3^^261^2838^26
- ;;^UTILITY(U,$J,358.3,56954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56954,1,3,0)
- ;;=3^Exam for Recruitment to Armed Forces
- ;;^UTILITY(U,$J,358.3,56954,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,56954,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,56955,0)
- ;;=Z02.1^^261^2838^25
- ;;^UTILITY(U,$J,358.3,56955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56955,1,3,0)
- ;;=3^Exam for Pre-Employment
- ;;^UTILITY(U,$J,358.3,56955,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,56955,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,56956,0)
- ;;=Z02.89^^261^2838^24
- ;;^UTILITY(U,$J,358.3,56956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56956,1,3,0)
- ;;=3^Exam for Administrative Purpose
- ;;^UTILITY(U,$J,358.3,56956,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,56956,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,56957,0)
- ;;=Z01.810^^261^2839^1
- ;;^UTILITY(U,$J,358.3,56957,1,0)
- ;;=^358.31IA^4^2
+IBDEI3E0 ; ; 05-NOV-2019
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;NOV 05, 2019
+ ;
+ ;
+ I N="DIST(.403," D
+ .N DIFRVAL S DIFRVAL=$$VAL^DIFROMSS(.403,DA)
+ .I DIFRVAL W !,"Compiling form: ",$P(^DIST(.403,DA,0),U) D EN^DDSZ(DA) Q
+ .W !,"ERROR: Form: ",$P(^DIST(.403,DA,0),U)," cannot be compiled"
+ .Q
+ Q
+BLK F J=0:0 S J=$O(^UTILITY(U,$J,N,R,40,J)) Q:'J  I $D(^(J,0)) S %=$P(^(0),U,2) S:%]"" %=$O(^DIST(.404,"B",%,0)) S:% $P(^UTILITY(U,$J,N,R,40,J,0),U,2)=% D B1
+ K A0,A1,A2,J,L Q
+B1 F L=0:0 S L=$O(^UTILITY(U,$J,N,R,40,J,40,L)) Q:'L  S A0=$G(^(L,0)),%=$P(A0,U) I %]"" S %=$O(^DIST(.404,"B",%,0)) I % S $P(A0,U)=%,^UTILITY(U,$J,N,R,40,J,"BLK",%,0)=A0 D
+ .N X S X=0
+ .F  S X=$O(^UTILITY(U,$J,N,R,40,J,40,L,X)) Q:X=""  S ^UTILITY(U,$J,N,R,40,J,"BLK",%,X)=^(X)
+ .Q
+ S A0=$G(^UTILITY(U,$J,N,R,40,J,40,0)) Q:A0=""  K ^UTILITY(U,$J,N,R,40,J,40) S (A1,A2)=0
+ F L=0:0 S L=$O(^UTILITY(U,$J,N,R,40,J,"BLK",L)) Q:'L  S ^UTILITY(U,$J,N,R,40,J,40,L,0)=^(L,0),A1=L,A2=A2+1 D
+ .N X S X=0
+ .F  S X=$O(^UTILITY(U,$J,N,R,40,J,"BLK",L,X)) Q:X=""  S ^UTILITY(U,$J,N,R,40,J,40,L,X)=^(X)
+ .Q
+ S $P(A0,U,3,4)=A1_U_A2,^UTILITY(U,$J,N,R,40,J,40,0)=A0 K ^UTILITY(U,$J,N,R,40,J,"BLK")
+ Q
+KAD(D0) N D1,X
+ S X=0 F  S X=$O(^DIC(19,D0,10,"B",X)) Q:X'>0  S D1=0 F  S D1=$O(^DIC(19,D0,10,"B",X,D1)) Q:D1'>0  K ^DIC(19,"AD",X,D0,D1)
+ Q

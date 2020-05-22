@@ -1,138 +1,122 @@
-IBDEI1LP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1LP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27148,1,0)
+ ;;^UTILITY(U,$J,358.3,25583,0)
+ ;;=T74.21XS^^107^1222^9
+ ;;^UTILITY(U,$J,358.3,25583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27148,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,27148,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,27148,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,27149,0)
- ;;=E10.65^^103^1323^2
- ;;^UTILITY(U,$J,358.3,27149,1,0)
+ ;;^UTILITY(U,$J,358.3,25583,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,25583,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,25583,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,25584,0)
+ ;;=T76.21XD^^107^1222^11
+ ;;^UTILITY(U,$J,358.3,25584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27149,1,3,0)
- ;;=3^Diabetes Type 1 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,27149,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,27149,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,27150,0)
- ;;=R73.09^^103^1323^1
- ;;^UTILITY(U,$J,358.3,27150,1,0)
+ ;;^UTILITY(U,$J,358.3,25584,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,25584,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,25584,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,25585,0)
+ ;;=T76.21XS^^107^1222^12
+ ;;^UTILITY(U,$J,358.3,25585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27150,1,3,0)
- ;;=3^Abnormal Glucose
- ;;^UTILITY(U,$J,358.3,27150,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,27150,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,27151,0)
- ;;=Z79.4^^103^1323^6
- ;;^UTILITY(U,$J,358.3,27151,1,0)
+ ;;^UTILITY(U,$J,358.3,25585,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,25585,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,25585,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,25586,0)
+ ;;=Y07.53^^107^1222^13
+ ;;^UTILITY(U,$J,358.3,25586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27151,1,3,0)
- ;;=3^Long Term (Current) Use of Insulin
- ;;^UTILITY(U,$J,358.3,27151,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,27151,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,27152,0)
- ;;=E66.9^^103^1324^5
- ;;^UTILITY(U,$J,358.3,27152,1,0)
+ ;;^UTILITY(U,$J,358.3,25586,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST
+ ;;^UTILITY(U,$J,358.3,25586,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,25586,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,25587,0)
+ ;;=Y07.59^^107^1222^14
+ ;;^UTILITY(U,$J,358.3,25587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27152,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,27152,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,27152,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,27153,0)
- ;;=E66.01^^103^1324^2
- ;;^UTILITY(U,$J,358.3,27153,1,0)
+ ;;^UTILITY(U,$J,358.3,25587,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,25587,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,25587,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,25588,0)
+ ;;=T74.51XA^^107^1222^1
+ ;;^UTILITY(U,$J,358.3,25588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27153,1,3,0)
- ;;=3^Morbid Obesity d/t Excess Calories
- ;;^UTILITY(U,$J,358.3,27153,1,4,0)
+ ;;^UTILITY(U,$J,358.3,25588,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Init enctr
+ ;;^UTILITY(U,$J,358.3,25588,1,4,0)
+ ;;=4^T74.51XA
+ ;;^UTILITY(U,$J,358.3,25588,2)
+ ;;=^5157560
+ ;;^UTILITY(U,$J,358.3,25589,0)
+ ;;=T74.51XD^^107^1222^2
+ ;;^UTILITY(U,$J,358.3,25589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25589,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Subs
+ ;;^UTILITY(U,$J,358.3,25589,1,4,0)
+ ;;=4^T74.51XD
+ ;;^UTILITY(U,$J,358.3,25589,2)
+ ;;=^5157561
+ ;;^UTILITY(U,$J,358.3,25590,0)
+ ;;=T74.51XS^^107^1222^3
+ ;;^UTILITY(U,$J,358.3,25590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25590,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,25590,1,4,0)
+ ;;=4^T74.51XS
+ ;;^UTILITY(U,$J,358.3,25590,2)
+ ;;=^5157562
+ ;;^UTILITY(U,$J,358.3,25591,0)
+ ;;=T76.51XA^^107^1222^4
+ ;;^UTILITY(U,$J,358.3,25591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25591,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Init 
+ ;;^UTILITY(U,$J,358.3,25591,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,25591,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,25592,0)
+ ;;=T76.51XD^^107^1222^5
+ ;;^UTILITY(U,$J,358.3,25592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25592,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Subs
+ ;;^UTILITY(U,$J,358.3,25592,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,25592,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,25593,0)
+ ;;=T76.51XS^^107^1222^6
+ ;;^UTILITY(U,$J,358.3,25593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25593,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,25593,1,4,0)
+ ;;=4^T76.51XS
+ ;;^UTILITY(U,$J,358.3,25593,2)
+ ;;=^5157574
+ ;;^UTILITY(U,$J,358.3,25594,0)
+ ;;=E66.01^^107^1223^125
+ ;;^UTILITY(U,$J,358.3,25594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25594,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,25594,1,4,0)
  ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,27153,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,27154,0)
- ;;=E66.3^^103^1324^6
- ;;^UTILITY(U,$J,358.3,27154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27154,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,27154,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,27154,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,27155,0)
- ;;=E66.09^^103^1324^4
- ;;^UTILITY(U,$J,358.3,27155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27155,1,3,0)
- ;;=3^Obesity d/t Excess Calories NEC
- ;;^UTILITY(U,$J,358.3,27155,1,4,0)
- ;;=4^E66.09
- ;;^UTILITY(U,$J,358.3,27155,2)
- ;;=^5002827
- ;;^UTILITY(U,$J,358.3,27156,0)
- ;;=E66.1^^103^1324^1
- ;;^UTILITY(U,$J,358.3,27156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27156,1,3,0)
- ;;=3^Drug-Induced Obesity
- ;;^UTILITY(U,$J,358.3,27156,1,4,0)
- ;;=4^E66.1
- ;;^UTILITY(U,$J,358.3,27156,2)
- ;;=^5002828
- ;;^UTILITY(U,$J,358.3,27157,0)
- ;;=E66.2^^103^1324^3
- ;;^UTILITY(U,$J,358.3,27157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27157,1,3,0)
- ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,27157,1,4,0)
- ;;=4^E66.2
- ;;^UTILITY(U,$J,358.3,27157,2)
- ;;=^5002829
- ;;^UTILITY(U,$J,358.3,27158,0)
- ;;=99201^^104^1325^1
- ;;^UTILITY(U,$J,358.3,27158,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,27158,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,27158,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,27159,0)
- ;;=99202^^104^1325^2
- ;;^UTILITY(U,$J,358.3,27159,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,27159,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,27159,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,27160,0)
- ;;=99203^^104^1325^3
- ;;^UTILITY(U,$J,358.3,27160,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,27160,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,27160,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,27161,0)
- ;;=99204^^104^1325^4
- ;;^UTILITY(U,$J,358.3,27161,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,27161,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,27161,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,27162,0)
- ;;=99205^^104^1325^5
- ;;^UTILITY(U,$J,358.3,27162,1,0)
- ;;=^358.31IA^2^2

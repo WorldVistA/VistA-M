@@ -1,132 +1,122 @@
-IBDEI1WQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32361,1,4,0)
- ;;=4^M84.477K
- ;;^UTILITY(U,$J,358.3,32361,2)
- ;;=^5014001
- ;;^UTILITY(U,$J,358.3,32362,0)
- ;;=M21.372^^126^1609^166
- ;;^UTILITY(U,$J,358.3,32362,1,0)
+ ;;^UTILITY(U,$J,358.3,30455,0)
+ ;;=F19.99^^120^1555^25
+ ;;^UTILITY(U,$J,358.3,30455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32362,1,3,0)
- ;;=3^Foot Drop,Left Foot
- ;;^UTILITY(U,$J,358.3,32362,1,4,0)
- ;;=4^M21.372
- ;;^UTILITY(U,$J,358.3,32362,2)
- ;;=^5011111
- ;;^UTILITY(U,$J,358.3,32363,0)
- ;;=M25.272^^126^1609^162
- ;;^UTILITY(U,$J,358.3,32363,1,0)
+ ;;^UTILITY(U,$J,358.3,30455,1,3,0)
+ ;;=3^Oth/Unk Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30455,1,4,0)
+ ;;=4^F19.99
+ ;;^UTILITY(U,$J,358.3,30455,2)
+ ;;=^5133364
+ ;;^UTILITY(U,$J,358.3,30456,0)
+ ;;=F19.21^^120^1555^28
+ ;;^UTILITY(U,$J,358.3,30456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32363,1,3,0)
- ;;=3^Flail Joint,Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32363,1,4,0)
- ;;=4^M25.272
- ;;^UTILITY(U,$J,358.3,32363,2)
- ;;=^5011547
- ;;^UTILITY(U,$J,358.3,32364,0)
- ;;=M25.271^^126^1609^163
- ;;^UTILITY(U,$J,358.3,32364,1,0)
+ ;;^UTILITY(U,$J,358.3,30456,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,30456,1,4,0)
+ ;;=4^F19.21
+ ;;^UTILITY(U,$J,358.3,30456,2)
+ ;;=^5003432
+ ;;^UTILITY(U,$J,358.3,30457,0)
+ ;;=F19.939^^120^1555^30
+ ;;^UTILITY(U,$J,358.3,30457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32364,1,3,0)
- ;;=3^Flail Joint,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32364,1,4,0)
- ;;=4^M25.271
- ;;^UTILITY(U,$J,358.3,32364,2)
- ;;=^5011546
- ;;^UTILITY(U,$J,358.3,32365,0)
- ;;=M21.42^^126^1609^164
- ;;^UTILITY(U,$J,358.3,32365,1,0)
+ ;;^UTILITY(U,$J,358.3,30457,1,3,0)
+ ;;=3^Oth/Unk Substance WD,Unspec
+ ;;^UTILITY(U,$J,358.3,30457,1,4,0)
+ ;;=4^F19.939
+ ;;^UTILITY(U,$J,358.3,30457,2)
+ ;;=^5003459
+ ;;^UTILITY(U,$J,358.3,30458,0)
+ ;;=F19.11^^120^1555^26
+ ;;^UTILITY(U,$J,358.3,30458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32365,1,3,0)
- ;;=3^Flat Foot,Left Foot
- ;;^UTILITY(U,$J,358.3,32365,1,4,0)
- ;;=4^M21.42
- ;;^UTILITY(U,$J,358.3,32365,2)
- ;;=^5011115
- ;;^UTILITY(U,$J,358.3,32366,0)
- ;;=M21.41^^126^1609^165
- ;;^UTILITY(U,$J,358.3,32366,1,0)
+ ;;^UTILITY(U,$J,358.3,30458,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,30458,1,4,0)
+ ;;=4^F19.11
+ ;;^UTILITY(U,$J,358.3,30458,2)
+ ;;=^5151306
+ ;;^UTILITY(U,$J,358.3,30459,0)
+ ;;=F15.99^^120^1556^66
+ ;;^UTILITY(U,$J,358.3,30459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32366,1,3,0)
- ;;=3^Flat Foot,Right Foot
- ;;^UTILITY(U,$J,358.3,32366,1,4,0)
- ;;=4^M21.41
- ;;^UTILITY(U,$J,358.3,32366,2)
- ;;=^5011114
- ;;^UTILITY(U,$J,358.3,32367,0)
- ;;=S92.341K^^126^1609^74
- ;;^UTILITY(U,$J,358.3,32367,1,0)
+ ;;^UTILITY(U,$J,358.3,30459,1,3,0)
+ ;;=3^Oth Stimulant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30459,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,30459,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,30460,0)
+ ;;=F14.99^^120^1556^28
+ ;;^UTILITY(U,$J,358.3,30460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32367,1,3,0)
- ;;=3^Disp fx of 4th metsl bone, r ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32367,1,4,0)
- ;;=4^S92.341K
- ;;^UTILITY(U,$J,358.3,32367,2)
- ;;=^5045190
- ;;^UTILITY(U,$J,358.3,32368,0)
- ;;=S92.001A^^126^1609^209
- ;;^UTILITY(U,$J,358.3,32368,1,0)
+ ;;^UTILITY(U,$J,358.3,30460,1,3,0)
+ ;;=3^Cocaine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30460,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,30460,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,30461,0)
+ ;;=F15.180^^120^1556^35
+ ;;^UTILITY(U,$J,358.3,30461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32368,1,3,0)
- ;;=3^Fx of rt calcaneus,init w/ nonunion,unspec
- ;;^UTILITY(U,$J,358.3,32368,1,4,0)
- ;;=4^S92.001A
- ;;^UTILITY(U,$J,358.3,32368,2)
- ;;=^5044353
- ;;^UTILITY(U,$J,358.3,32369,0)
- ;;=S92.314A^^126^1609^287
- ;;^UTILITY(U,$J,358.3,32369,1,0)
+ ;;^UTILITY(U,$J,358.3,30461,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30461,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,30461,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,30462,0)
+ ;;=F15.280^^120^1556^36
+ ;;^UTILITY(U,$J,358.3,30462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32369,1,3,0)
- ;;=3^Nondisp fx of 1st metrsl bone,rt ft,init w/ nonunion
- ;;^UTILITY(U,$J,358.3,32369,1,4,0)
- ;;=4^S92.314A
- ;;^UTILITY(U,$J,358.3,32369,2)
- ;;=^5045081
- ;;^UTILITY(U,$J,358.3,32370,0)
- ;;=M84.572K^^126^1609^393
- ;;^UTILITY(U,$J,358.3,32370,1,0)
+ ;;^UTILITY(U,$J,358.3,30462,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30462,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,30462,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,30463,0)
+ ;;=F15.980^^120^1556^37
+ ;;^UTILITY(U,$J,358.3,30463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32370,1,3,0)
- ;;=3^Path fx in neoplst disease,lft ankl,subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32370,1,4,0)
- ;;=4^M84.572K
- ;;^UTILITY(U,$J,358.3,32370,2)
- ;;=^5014181
- ;;^UTILITY(U,$J,358.3,32371,0)
- ;;=M84.68XA^^126^1609^394
- ;;^UTILITY(U,$J,358.3,32371,1,0)
+ ;;^UTILITY(U,$J,358.3,30463,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30463,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,30463,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,30464,0)
+ ;;=F15.14^^120^1556^39
+ ;;^UTILITY(U,$J,358.3,30464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32371,1,3,0)
- ;;=3^Path fx initial w/ nonunion,oth disease,oth site
- ;;^UTILITY(U,$J,358.3,32371,1,4,0)
- ;;=4^M84.68XA
- ;;^UTILITY(U,$J,358.3,32371,2)
- ;;=^5134051
- ;;^UTILITY(U,$J,358.3,32372,0)
- ;;=M10.071^^126^1610^14
- ;;^UTILITY(U,$J,358.3,32372,1,0)
+ ;;^UTILITY(U,$J,358.3,30464,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30464,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,30464,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,30465,0)
+ ;;=F15.24^^120^1556^40
+ ;;^UTILITY(U,$J,358.3,30465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32372,1,3,0)
- ;;=3^Gout,Idiopathic Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32372,1,4,0)
- ;;=4^M10.071
- ;;^UTILITY(U,$J,358.3,32372,2)
- ;;=^5010303
- ;;^UTILITY(U,$J,358.3,32373,0)
- ;;=M10.072^^126^1610^13
- ;;^UTILITY(U,$J,358.3,32373,1,0)
+ ;;^UTILITY(U,$J,358.3,30465,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30465,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,30465,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,30466,0)
+ ;;=F15.94^^120^1556^41
+ ;;^UTILITY(U,$J,358.3,30466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32373,1,3,0)
- ;;=3^Gout,Idiopathic Lft Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32373,1,4,0)
- ;;=4^M10.072
- ;;^UTILITY(U,$J,358.3,32373,2)
- ;;=^5010304
- ;;^UTILITY(U,$J,358.3,32374,0)
- ;;=M10.272^^126^1610^10
- ;;^UTILITY(U,$J,358.3,32374,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30466,1,3,0)
+ ;;=3^Oth Stimulant Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30466,1,4,0)
+ ;;=4^F15.94

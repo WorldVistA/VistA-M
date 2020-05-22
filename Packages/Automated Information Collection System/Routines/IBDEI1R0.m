@@ -1,140 +1,118 @@
-IBDEI1R0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1R0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29670,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,29670,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,29670,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,29671,0)
- ;;=N93.8^^115^1478^10
- ;;^UTILITY(U,$J,358.3,29671,1,0)
+ ;;^UTILITY(U,$J,358.3,27935,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,27935,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,27936,0)
+ ;;=F13.129^^113^1364^23
+ ;;^UTILITY(U,$J,358.3,27936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29671,1,3,0)
- ;;=3^Uterine Bleed,Dysfuntional (DUB)
- ;;^UTILITY(U,$J,358.3,29671,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,29671,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,29672,0)
- ;;=C56.1^^115^1479^10
- ;;^UTILITY(U,$J,358.3,29672,1,0)
+ ;;^UTILITY(U,$J,358.3,27936,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27936,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,27936,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,27937,0)
+ ;;=F13.229^^113^1364^24
+ ;;^UTILITY(U,$J,358.3,27937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29672,1,3,0)
- ;;=3^Ovarian CA,Right
- ;;^UTILITY(U,$J,358.3,29672,1,4,0)
- ;;=4^C56.1
- ;;^UTILITY(U,$J,358.3,29672,2)
- ;;=^5001212
- ;;^UTILITY(U,$J,358.3,29673,0)
- ;;=C56.2^^115^1479^9
- ;;^UTILITY(U,$J,358.3,29673,1,0)
+ ;;^UTILITY(U,$J,358.3,27937,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27937,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,27937,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,27938,0)
+ ;;=F13.929^^113^1364^25
+ ;;^UTILITY(U,$J,358.3,27938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29673,1,3,0)
- ;;=3^Ovarian CA,Left
- ;;^UTILITY(U,$J,358.3,29673,1,4,0)
- ;;=4^C56.2
- ;;^UTILITY(U,$J,358.3,29673,2)
- ;;=^5001213
- ;;^UTILITY(U,$J,358.3,29674,0)
- ;;=N70.02^^115^1479^7
- ;;^UTILITY(U,$J,358.3,29674,1,0)
+ ;;^UTILITY(U,$J,358.3,27938,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27938,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,27938,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,27939,0)
+ ;;=F13.121^^113^1364^21
+ ;;^UTILITY(U,$J,358.3,27939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29674,1,3,0)
- ;;=3^Oophoritis,Acute
- ;;^UTILITY(U,$J,358.3,29674,1,4,0)
- ;;=4^N70.02
- ;;^UTILITY(U,$J,358.3,29674,2)
- ;;=^5015803
- ;;^UTILITY(U,$J,358.3,29675,0)
- ;;=N70.03^^115^1479^15
- ;;^UTILITY(U,$J,358.3,29675,1,0)
+ ;;^UTILITY(U,$J,358.3,27939,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27939,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,27939,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,27940,0)
+ ;;=F13.221^^113^1364^22
+ ;;^UTILITY(U,$J,358.3,27940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29675,1,3,0)
- ;;=3^Salpingitis and Oophoritis,Acute
- ;;^UTILITY(U,$J,358.3,29675,1,4,0)
- ;;=4^N70.03
- ;;^UTILITY(U,$J,358.3,29675,2)
- ;;=^270465
- ;;^UTILITY(U,$J,358.3,29676,0)
- ;;=N83.53^^115^1479^1
- ;;^UTILITY(U,$J,358.3,29676,1,0)
+ ;;^UTILITY(U,$J,358.3,27940,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27940,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,27940,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,27941,0)
+ ;;=F13.10^^113^1364^27
+ ;;^UTILITY(U,$J,358.3,27941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29676,1,3,0)
- ;;=3^Adnexal Torsion
- ;;^UTILITY(U,$J,358.3,29676,1,4,0)
- ;;=4^N83.53
- ;;^UTILITY(U,$J,358.3,29676,2)
- ;;=^5015862
- ;;^UTILITY(U,$J,358.3,29677,0)
- ;;=D28.2^^115^1479^2
- ;;^UTILITY(U,$J,358.3,29677,1,0)
+ ;;^UTILITY(U,$J,358.3,27941,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,27941,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,27941,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,27942,0)
+ ;;=F13.20^^113^1364^29
+ ;;^UTILITY(U,$J,358.3,27942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29677,1,3,0)
- ;;=3^Benign Neop,Fallopian
- ;;^UTILITY(U,$J,358.3,29677,1,4,0)
- ;;=4^D28.2
- ;;^UTILITY(U,$J,358.3,29677,2)
- ;;=^5002089
- ;;^UTILITY(U,$J,358.3,29678,0)
- ;;=D27.0^^115^1479^4
- ;;^UTILITY(U,$J,358.3,29678,1,0)
+ ;;^UTILITY(U,$J,358.3,27942,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,27942,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,27942,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,27943,0)
+ ;;=F13.232^^113^1364^33
+ ;;^UTILITY(U,$J,358.3,27943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29678,1,3,0)
- ;;=3^Benign Neop,Right Ovary
- ;;^UTILITY(U,$J,358.3,29678,1,4,0)
- ;;=4^D27.0
- ;;^UTILITY(U,$J,358.3,29678,2)
- ;;=^5002086
- ;;^UTILITY(U,$J,358.3,29679,0)
- ;;=D27.1^^115^1479^3
- ;;^UTILITY(U,$J,358.3,29679,1,0)
+ ;;^UTILITY(U,$J,358.3,27943,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/ Percep Disturb Use DO (Mod/Sev)
+ ;;^UTILITY(U,$J,358.3,27943,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,27943,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,27944,0)
+ ;;=F13.239^^113^1364^35
+ ;;^UTILITY(U,$J,358.3,27944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29679,1,3,0)
- ;;=3^Benign Neop,Left Ovary
- ;;^UTILITY(U,$J,358.3,29679,1,4,0)
- ;;=4^D27.1
- ;;^UTILITY(U,$J,358.3,29679,2)
- ;;=^5002087
- ;;^UTILITY(U,$J,358.3,29680,0)
- ;;=N70.12^^115^1479^8
- ;;^UTILITY(U,$J,358.3,29680,1,0)
+ ;;^UTILITY(U,$J,358.3,27944,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD w/o Percep Disturb Use DO (Mod/Sev)
+ ;;^UTILITY(U,$J,358.3,27944,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,27944,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,27945,0)
+ ;;=F13.231^^113^1364^31
+ ;;^UTILITY(U,$J,358.3,27945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29680,1,3,0)
- ;;=3^Oophoritis,Chronic
- ;;^UTILITY(U,$J,358.3,29680,1,4,0)
- ;;=4^N70.12
- ;;^UTILITY(U,$J,358.3,29680,2)
- ;;=^5015805
- ;;^UTILITY(U,$J,358.3,29681,0)
- ;;=N70.11^^115^1479^17
- ;;^UTILITY(U,$J,358.3,29681,1,0)
+ ;;^UTILITY(U,$J,358.3,27945,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic WD Delirium w/Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27945,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,27945,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,27946,0)
+ ;;=F13.99^^113^1364^26
+ ;;^UTILITY(U,$J,358.3,27946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29681,1,3,0)
- ;;=3^Salpingitis,Chronic
- ;;^UTILITY(U,$J,358.3,29681,1,4,0)
- ;;=4^N70.11
- ;;^UTILITY(U,$J,358.3,29681,2)
- ;;=^5015804
- ;;^UTILITY(U,$J,358.3,29682,0)
- ;;=N70.13^^115^1479^16
- ;;^UTILITY(U,$J,358.3,29682,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29682,1,3,0)
- ;;=3^Salpingitis and Oophoritis,Chronic
- ;;^UTILITY(U,$J,358.3,29682,1,4,0)
- ;;=4^N70.13
- ;;^UTILITY(U,$J,358.3,29682,2)
- ;;=^270466
- ;;^UTILITY(U,$J,358.3,29683,0)
- ;;=N83.1^^115^1479^5
- ;;^UTILITY(U,$J,358.3,29683,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29683,1,3,0)
- ;;=3^Corpus Luteum Cyst
- ;;^UTILITY(U,$J,358.3,29683,1,4,0)
- ;;=4^N83.1
- ;;^UTILITY(U,$J,358.3,29683,2)
- ;;=^28631
+ ;;^UTILITY(U,$J,358.3,27946,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27946,1,4,0)
+ ;;=4^F13.99
+ ;;^UTILITY(U,$J,358.3,27946,2)
+ ;;=^5133353

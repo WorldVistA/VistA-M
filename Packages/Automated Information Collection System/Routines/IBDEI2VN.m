@@ -1,126 +1,120 @@
-IBDEI2VN ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48298,0)
- ;;=29540^^215^2393^51^^^^1
- ;;^UTILITY(U,$J,358.3,48298,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48298,1,2,0)
- ;;=2^Strapping;Ankle and/or Foot
- ;;^UTILITY(U,$J,358.3,48298,1,3,0)
- ;;=3^29540
- ;;^UTILITY(U,$J,358.3,48299,0)
- ;;=29580^^215^2393^52^^^^1
- ;;^UTILITY(U,$J,358.3,48299,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48299,1,2,0)
- ;;=2^Strapping;Unna Boot
- ;;^UTILITY(U,$J,358.3,48299,1,3,0)
- ;;=3^29580
- ;;^UTILITY(U,$J,358.3,48300,0)
- ;;=29581^^215^2393^5^^^^1
- ;;^UTILITY(U,$J,358.3,48300,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48300,1,2,0)
- ;;=2^App Multilay Venous Wnd Compr;Below Knee
- ;;^UTILITY(U,$J,358.3,48300,1,3,0)
- ;;=3^29581
- ;;^UTILITY(U,$J,358.3,48301,0)
- ;;=94010^^215^2393^49^^^^1
- ;;^UTILITY(U,$J,358.3,48301,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48301,1,2,0)
- ;;=2^Spirometry,w/ or w/o Max Vol Vent
- ;;^UTILITY(U,$J,358.3,48301,1,3,0)
- ;;=3^94010
- ;;^UTILITY(U,$J,358.3,48302,0)
- ;;=94667^^215^2393^28^^^^1
- ;;^UTILITY(U,$J,358.3,48302,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48302,1,2,0)
- ;;=2^Manip Chest Wall;Init Demo and/or Eval
- ;;^UTILITY(U,$J,358.3,48302,1,3,0)
- ;;=3^94667
- ;;^UTILITY(U,$J,358.3,48303,0)
- ;;=94668^^215^2393^29^^^^1
- ;;^UTILITY(U,$J,358.3,48303,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48303,1,2,0)
- ;;=2^Manip Chest Wall;Subsequent
- ;;^UTILITY(U,$J,358.3,48303,1,3,0)
- ;;=3^94668
- ;;^UTILITY(U,$J,358.3,48304,0)
- ;;=95992^^215^2393^12^^^^1
- ;;^UTILITY(U,$J,358.3,48304,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48304,1,2,0)
- ;;=2^Canalith Repositioning Proc,per day
- ;;^UTILITY(U,$J,358.3,48304,1,3,0)
- ;;=3^95992
- ;;^UTILITY(U,$J,358.3,48305,0)
- ;;=96000^^215^2393^16^^^^1
- ;;^UTILITY(U,$J,358.3,48305,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48305,1,2,0)
- ;;=2^Comp Cmptr Based Motion Analy Video/3D
- ;;^UTILITY(U,$J,358.3,48305,1,3,0)
- ;;=3^96000
- ;;^UTILITY(U,$J,358.3,48306,0)
- ;;=96125^^215^2393^50^^^^1
- ;;^UTILITY(U,$J,358.3,48306,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48306,1,2,0)
- ;;=2^Standardized Cognitive Perf Test,per hr
- ;;^UTILITY(U,$J,358.3,48306,1,3,0)
- ;;=3^96125
- ;;^UTILITY(U,$J,358.3,48307,0)
- ;;=97024^^215^2393^19^^^^1
- ;;^UTILITY(U,$J,358.3,48307,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48307,1,2,0)
- ;;=2^Diathermy
- ;;^UTILITY(U,$J,358.3,48307,1,3,0)
- ;;=3^97024
- ;;^UTILITY(U,$J,358.3,48308,0)
- ;;=97039^^215^2393^57^^^^1
- ;;^UTILITY(U,$J,358.3,48308,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48308,1,2,0)
- ;;=2^Unlisted Modality (Spec Type/Time)
- ;;^UTILITY(U,$J,358.3,48308,1,3,0)
- ;;=3^97039
- ;;^UTILITY(U,$J,358.3,48309,0)
- ;;=97139^^215^2393^58^^^^1
- ;;^UTILITY(U,$J,358.3,48309,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48309,1,2,0)
- ;;=2^Unlisted Therapeutic Proc (Specify)
- ;;^UTILITY(U,$J,358.3,48309,1,3,0)
- ;;=3^97139
- ;;^UTILITY(U,$J,358.3,48310,0)
- ;;=97533^^215^2393^46^^^^1
- ;;^UTILITY(U,$J,358.3,48310,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48310,1,2,0)
- ;;=2^Sensory Integration,ea 15min
- ;;^UTILITY(U,$J,358.3,48310,1,3,0)
- ;;=3^97533
- ;;^UTILITY(U,$J,358.3,48311,0)
- ;;=97537^^215^2393^15^^^^1
- ;;^UTILITY(U,$J,358.3,48311,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48311,1,2,0)
- ;;=2^Community/Work Reintegration,ea 15min
- ;;^UTILITY(U,$J,358.3,48311,1,3,0)
- ;;=3^97537
- ;;^UTILITY(U,$J,358.3,48312,0)
- ;;=97755^^215^2393^7^^^^1
- ;;^UTILITY(U,$J,358.3,48312,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48312,1,2,0)
- ;;=2^Assistive Tech Assess,ea 15min
- ;;^UTILITY(U,$J,358.3,48312,1,3,0)
- ;;=3^97755
- ;;^UTILITY(U,$J,358.3,48313,0)
- ;;=97810^^215^2393^3^^^^1
+ ;;^UTILITY(U,$J,358.3,45898,0)
+ ;;=H54.511A^^176^2292^9
+ ;;^UTILITY(U,$J,358.3,45898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45898,1,3,0)
+ ;;=3^Low Vision Right Eye Cat 1,Normal Vision Left Eye
+ ;;^UTILITY(U,$J,358.3,45898,1,4,0)
+ ;;=4^H54.511A
+ ;;^UTILITY(U,$J,358.3,45898,2)
+ ;;=^5151369
+ ;;^UTILITY(U,$J,358.3,45899,0)
+ ;;=H54.415A^^176^2292^5
+ ;;^UTILITY(U,$J,358.3,45899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45899,1,3,0)
+ ;;=3^Blindness Right Eye Cat 5,Normal Vision Left Eye
+ ;;^UTILITY(U,$J,358.3,45899,1,4,0)
+ ;;=4^H54.415A
+ ;;^UTILITY(U,$J,358.3,45899,2)
+ ;;=^5151365
+ ;;^UTILITY(U,$J,358.3,45900,0)
+ ;;=H54.1151^^176^2292^4
+ ;;^UTILITY(U,$J,358.3,45900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45900,1,3,0)
+ ;;=3^Blindness Right Eye Cat 5,Low Vision Left Eye Cat 1
+ ;;^UTILITY(U,$J,358.3,45900,1,4,0)
+ ;;=4^H54.1151
+ ;;^UTILITY(U,$J,358.3,45900,2)
+ ;;=^5151351
+ ;;^UTILITY(U,$J,358.3,45901,0)
+ ;;=H54.0X55^^176^2292^3
+ ;;^UTILITY(U,$J,358.3,45901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45901,1,3,0)
+ ;;=3^Blindness Right Eye Cat 5,Blindness Left Eye Cat 5
+ ;;^UTILITY(U,$J,358.3,45901,1,4,0)
+ ;;=4^H54.0X55
+ ;;^UTILITY(U,$J,358.3,45901,2)
+ ;;=^5151346
+ ;;^UTILITY(U,$J,358.3,45902,0)
+ ;;=H54.0X33^^176^2292^6
+ ;;^UTILITY(U,$J,358.3,45902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45902,1,3,0)
+ ;;=3^Blindness Right Eye Cat 3,Blindness Left Eye Cat 3
+ ;;^UTILITY(U,$J,358.3,45902,1,4,0)
+ ;;=4^H54.0X33
+ ;;^UTILITY(U,$J,358.3,45902,2)
+ ;;=^5151338
+ ;;^UTILITY(U,$J,358.3,45903,0)
+ ;;=H54.0X34^^176^2292^7
+ ;;^UTILITY(U,$J,358.3,45903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45903,1,3,0)
+ ;;=3^Blindness Right Eye Cat 4,Blindness Left Eye Cat 3
+ ;;^UTILITY(U,$J,358.3,45903,1,4,0)
+ ;;=4^H54.0X34
+ ;;^UTILITY(U,$J,358.3,45903,2)
+ ;;=^5151339
+ ;;^UTILITY(U,$J,358.3,45904,0)
+ ;;=H54.0X53^^176^2292^8
+ ;;^UTILITY(U,$J,358.3,45904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45904,1,3,0)
+ ;;=3^Blindness Right Eye Cat 5,Blindness Left Eye Cat 3
+ ;;^UTILITY(U,$J,358.3,45904,1,4,0)
+ ;;=4^H54.0X53
+ ;;^UTILITY(U,$J,358.3,45904,2)
+ ;;=^5151344
+ ;;^UTILITY(U,$J,358.3,45905,0)
+ ;;=H54.2X22^^176^2292^10
+ ;;^UTILITY(U,$J,358.3,45905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45905,1,3,0)
+ ;;=3^Low Vision Right Eye Cat 2,Low Vision Left Eye Cat 2
+ ;;^UTILITY(U,$J,358.3,45905,1,4,0)
+ ;;=4^H54.2X22
+ ;;^UTILITY(U,$J,358.3,45905,2)
+ ;;=^5151362
+ ;;^UTILITY(U,$J,358.3,45906,0)
+ ;;=H54.512A^^176^2292^11
+ ;;^UTILITY(U,$J,358.3,45906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45906,1,3,0)
+ ;;=3^Low Vision Right Eye Cat 2,Normal Vision Left Eye
+ ;;^UTILITY(U,$J,358.3,45906,1,4,0)
+ ;;=4^H54.512A
+ ;;^UTILITY(U,$J,358.3,45906,2)
+ ;;=^5151370
+ ;;^UTILITY(U,$J,358.3,45907,0)
+ ;;=Z82.1^^176^2292^17
+ ;;^UTILITY(U,$J,358.3,45907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45907,1,3,0)
+ ;;=3^Family Hx Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,45907,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,45907,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,45908,0)
+ ;;=H35.81^^176^2293^20
+ ;;^UTILITY(U,$J,358.3,45908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45908,1,3,0)
+ ;;=3^Retinal Edema/CME Other Etiology
+ ;;^UTILITY(U,$J,358.3,45908,1,4,0)
+ ;;=4^H35.81
+ ;;^UTILITY(U,$J,358.3,45908,2)
+ ;;=^5005715
+ ;;^UTILITY(U,$J,358.3,45909,0)
+ ;;=H34.11^^176^2293^9
+ ;;^UTILITY(U,$J,358.3,45909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45909,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Right Eye

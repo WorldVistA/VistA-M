@@ -1,130 +1,120 @@
-IBDEI23V ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23V ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35713,0)
- ;;=M32.11^^134^1730^9
- ;;^UTILITY(U,$J,358.3,35713,1,0)
+ ;;^UTILITY(U,$J,358.3,33651,1,3,0)
+ ;;=3^Bilateral primary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,33651,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,33651,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,33652,0)
+ ;;=M17.11^^132^1708^87
+ ;;^UTILITY(U,$J,358.3,33652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35713,1,3,0)
- ;;=3^Endocarditis in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,35713,1,4,0)
- ;;=4^M32.11
- ;;^UTILITY(U,$J,358.3,35713,2)
- ;;=^5011754
- ;;^UTILITY(U,$J,358.3,35714,0)
- ;;=J67.0^^134^1730^10
- ;;^UTILITY(U,$J,358.3,35714,1,0)
+ ;;^UTILITY(U,$J,358.3,33652,1,3,0)
+ ;;=3^Unilateral primary osteoarthritis, right knee
+ ;;^UTILITY(U,$J,358.3,33652,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,33652,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,33653,0)
+ ;;=M17.12^^132^1708^86
+ ;;^UTILITY(U,$J,358.3,33653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35714,1,3,0)
- ;;=3^Farmer's Lung
- ;;^UTILITY(U,$J,358.3,35714,1,4,0)
- ;;=4^J67.0
- ;;^UTILITY(U,$J,358.3,35714,2)
- ;;=^44962
- ;;^UTILITY(U,$J,358.3,35715,0)
- ;;=M32.14^^134^1730^11
- ;;^UTILITY(U,$J,358.3,35715,1,0)
+ ;;^UTILITY(U,$J,358.3,33653,1,3,0)
+ ;;=3^Unilateral primary osteoarthritis, left knee
+ ;;^UTILITY(U,$J,358.3,33653,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,33653,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,33654,0)
+ ;;=M17.2^^132^1708^5
+ ;;^UTILITY(U,$J,358.3,33654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35715,1,3,0)
- ;;=3^Glomerular Disease in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,35715,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,35715,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,35716,0)
- ;;=J67.9^^134^1730^12
- ;;^UTILITY(U,$J,358.3,35716,1,0)
+ ;;^UTILITY(U,$J,358.3,33654,1,3,0)
+ ;;=3^Bilateral post-traumatic osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,33654,1,4,0)
+ ;;=4^M17.2
+ ;;^UTILITY(U,$J,358.3,33654,2)
+ ;;=^5010788
+ ;;^UTILITY(U,$J,358.3,33655,0)
+ ;;=M17.31^^132^1708^84
+ ;;^UTILITY(U,$J,358.3,33655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35716,1,3,0)
- ;;=3^Hypersensitivity Pneumonitis d/t Unspec Organic Dust
- ;;^UTILITY(U,$J,358.3,35716,1,4,0)
- ;;=4^J67.9
- ;;^UTILITY(U,$J,358.3,35716,2)
- ;;=^5008280
- ;;^UTILITY(U,$J,358.3,35717,0)
- ;;=J84.17^^134^1730^14
- ;;^UTILITY(U,$J,358.3,35717,1,0)
+ ;;^UTILITY(U,$J,358.3,33655,1,3,0)
+ ;;=3^Unilateral post-traumatic osteoarthritis, right knee
+ ;;^UTILITY(U,$J,358.3,33655,1,4,0)
+ ;;=4^M17.31
+ ;;^UTILITY(U,$J,358.3,33655,2)
+ ;;=^5010790
+ ;;^UTILITY(U,$J,358.3,33656,0)
+ ;;=M17.32^^132^1708^85
+ ;;^UTILITY(U,$J,358.3,33656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35717,1,3,0)
- ;;=3^Idiopathic Interstitial Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,35717,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,35717,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,35718,0)
- ;;=J84.113^^134^1730^15
- ;;^UTILITY(U,$J,358.3,35718,1,0)
+ ;;^UTILITY(U,$J,358.3,33656,1,3,0)
+ ;;=3^Unilateral post-traumatic osteoarthritis, left knee
+ ;;^UTILITY(U,$J,358.3,33656,1,4,0)
+ ;;=4^M17.32
+ ;;^UTILITY(U,$J,358.3,33656,2)
+ ;;=^5010791
+ ;;^UTILITY(U,$J,358.3,33657,0)
+ ;;=M17.4^^132^1708^7
+ ;;^UTILITY(U,$J,358.3,33657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35718,1,3,0)
- ;;=3^Idiopathic Non-Specific Interstitial Pneumonitis
- ;;^UTILITY(U,$J,358.3,35718,1,4,0)
- ;;=4^J84.113
- ;;^UTILITY(U,$J,358.3,35718,2)
- ;;=^340535
- ;;^UTILITY(U,$J,358.3,35719,0)
- ;;=J84.112^^134^1730^16
- ;;^UTILITY(U,$J,358.3,35719,1,0)
+ ;;^UTILITY(U,$J,358.3,33657,1,3,0)
+ ;;=3^Bilateral secondary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,33657,1,4,0)
+ ;;=4^M17.4
+ ;;^UTILITY(U,$J,358.3,33657,2)
+ ;;=^5010792
+ ;;^UTILITY(U,$J,358.3,33658,0)
+ ;;=M17.5^^132^1708^88
+ ;;^UTILITY(U,$J,358.3,33658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35719,1,3,0)
- ;;=3^Idiopathic Pulmonary Fibrosis
- ;;^UTILITY(U,$J,358.3,35719,1,4,0)
- ;;=4^J84.112
- ;;^UTILITY(U,$J,358.3,35719,2)
- ;;=^340534
- ;;^UTILITY(U,$J,358.3,35720,0)
- ;;=J84.111^^134^1730^13
- ;;^UTILITY(U,$J,358.3,35720,1,0)
+ ;;^UTILITY(U,$J,358.3,33658,1,3,0)
+ ;;=3^Unilateral secondary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,33658,1,4,0)
+ ;;=4^M17.5
+ ;;^UTILITY(U,$J,358.3,33658,2)
+ ;;=^5010793
+ ;;^UTILITY(U,$J,358.3,33659,0)
+ ;;=S83.095D^^132^1708^46
+ ;;^UTILITY(U,$J,358.3,33659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35720,1,3,0)
- ;;=3^Idiopathic Interstitial Pneumonia NOS
- ;;^UTILITY(U,$J,358.3,35720,1,4,0)
- ;;=4^J84.111
- ;;^UTILITY(U,$J,358.3,35720,2)
- ;;=^340610
- ;;^UTILITY(U,$J,358.3,35721,0)
- ;;=J84.9^^134^1730^17
- ;;^UTILITY(U,$J,358.3,35721,1,0)
+ ;;^UTILITY(U,$J,358.3,33659,1,3,0)
+ ;;=3^Dislocation Left Patella, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33659,1,4,0)
+ ;;=4^S83.095D
+ ;;^UTILITY(U,$J,358.3,33659,2)
+ ;;=^5137020
+ ;;^UTILITY(U,$J,358.3,33660,0)
+ ;;=S83.094D^^132^1708^56
+ ;;^UTILITY(U,$J,358.3,33660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35721,1,3,0)
- ;;=3^Interstitial Pulmonary Disease,Unspec
- ;;^UTILITY(U,$J,358.3,35721,1,4,0)
- ;;=4^J84.9
- ;;^UTILITY(U,$J,358.3,35721,2)
- ;;=^5008304
- ;;^UTILITY(U,$J,358.3,35722,0)
- ;;=M32.13^^134^1730^19
- ;;^UTILITY(U,$J,358.3,35722,1,0)
+ ;;^UTILITY(U,$J,358.3,33660,1,3,0)
+ ;;=3^Dislocation Right Patella, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,33660,1,4,0)
+ ;;=4^S83.094D
+ ;;^UTILITY(U,$J,358.3,33660,2)
+ ;;=^5042933
+ ;;^UTILITY(U,$J,358.3,33661,0)
+ ;;=S83.282D^^132^1708^79
+ ;;^UTILITY(U,$J,358.3,33661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35722,1,3,0)
- ;;=3^Lung Involvement in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,35722,1,4,0)
- ;;=4^M32.13
- ;;^UTILITY(U,$J,358.3,35722,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,35723,0)
- ;;=J84.2^^134^1730^20
- ;;^UTILITY(U,$J,358.3,35723,1,0)
+ ;;^UTILITY(U,$J,358.3,33661,1,3,0)
+ ;;=3^Tear of lat mensc, current injury, left knee, subs
+ ;;^UTILITY(U,$J,358.3,33661,1,4,0)
+ ;;=4^S83.282D
+ ;;^UTILITY(U,$J,358.3,33661,2)
+ ;;=^5137065
+ ;;^UTILITY(U,$J,358.3,33662,0)
+ ;;=S83.281D^^132^1708^80
+ ;;^UTILITY(U,$J,358.3,33662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35723,1,3,0)
- ;;=3^Lymphoid Interstitial Pneumonia
- ;;^UTILITY(U,$J,358.3,35723,1,4,0)
- ;;=4^J84.2
- ;;^UTILITY(U,$J,358.3,35723,2)
- ;;=^5008302
- ;;^UTILITY(U,$J,358.3,35724,0)
- ;;=D86.82^^134^1730^21
- ;;^UTILITY(U,$J,358.3,35724,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35724,1,3,0)
- ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
- ;;^UTILITY(U,$J,358.3,35724,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,35724,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,35725,0)
- ;;=M32.8^^134^1730^60
- ;;^UTILITY(U,$J,358.3,35725,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35725,1,3,0)
- ;;=3^Systemic Lupus Erythematosus NEC
+ ;;^UTILITY(U,$J,358.3,33662,1,3,0)
+ ;;=3^Tear of lat mensc, current injury, right knee, subs
+ ;;^UTILITY(U,$J,358.3,33662,1,4,0)
+ ;;=4^S83.281D
+ ;;^UTILITY(U,$J,358.3,33662,2)
+ ;;=^5043092

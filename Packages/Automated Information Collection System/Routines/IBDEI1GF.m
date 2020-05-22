@@ -1,132 +1,128 @@
-IBDEI1GF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1GF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24705,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,24706,0)
- ;;=G21.19^^93^1101^11
- ;;^UTILITY(U,$J,358.3,24706,1,0)
+ ;;^UTILITY(U,$J,358.3,23258,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,23258,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,23259,0)
+ ;;=M17.11^^105^1171^43
+ ;;^UTILITY(U,$J,358.3,23259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24706,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,24706,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,24706,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,24707,0)
- ;;=G21.11^^93^1101^14
- ;;^UTILITY(U,$J,358.3,24707,1,0)
+ ;;^UTILITY(U,$J,358.3,23259,1,3,0)
+ ;;=3^Prim OA,Right Knee
+ ;;^UTILITY(U,$J,358.3,23259,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,23259,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,23260,0)
+ ;;=M17.12^^105^1171^36
+ ;;^UTILITY(U,$J,358.3,23260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24707,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,24707,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,24707,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,24708,0)
- ;;=G24.02^^93^1101^8
- ;;^UTILITY(U,$J,358.3,24708,1,0)
+ ;;^UTILITY(U,$J,358.3,23260,1,3,0)
+ ;;=3^Prim OA,Left Knee
+ ;;^UTILITY(U,$J,358.3,23260,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,23260,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,23261,0)
+ ;;=M19.071^^105^1171^39
+ ;;^UTILITY(U,$J,358.3,23261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24708,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,24708,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,24708,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,24709,0)
- ;;=G24.01^^93^1101^16
- ;;^UTILITY(U,$J,358.3,24709,1,0)
+ ;;^UTILITY(U,$J,358.3,23261,1,3,0)
+ ;;=3^Prim OA,Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,23261,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,23261,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,23262,0)
+ ;;=M19.072^^105^1171^32
+ ;;^UTILITY(U,$J,358.3,23262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24709,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,24709,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,24709,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,24710,0)
- ;;=G24.09^^93^1101^17
- ;;^UTILITY(U,$J,358.3,24710,1,0)
+ ;;^UTILITY(U,$J,358.3,23262,1,3,0)
+ ;;=3^Prim OA,Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,23262,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,23262,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,23263,0)
+ ;;=M18.11^^105^1171^27
+ ;;^UTILITY(U,$J,358.3,23263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24710,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,24710,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,24710,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,24711,0)
- ;;=G25.1^^93^1101^12
- ;;^UTILITY(U,$J,358.3,24711,1,0)
+ ;;^UTILITY(U,$J,358.3,23263,1,3,0)
+ ;;=3^Prim OA,1st Carpometacarp Joint,Right Hand
+ ;;^UTILITY(U,$J,358.3,23263,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,23263,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,23264,0)
+ ;;=M18.12^^105^1171^28
+ ;;^UTILITY(U,$J,358.3,23264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24711,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,24711,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,24711,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,24712,0)
- ;;=G25.71^^93^1101^15
- ;;^UTILITY(U,$J,358.3,24712,1,0)
+ ;;^UTILITY(U,$J,358.3,23264,1,3,0)
+ ;;=3^Prim OA,1st Carpometacarp Joint,Left Hand
+ ;;^UTILITY(U,$J,358.3,23264,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,23264,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,23265,0)
+ ;;=M17.0^^105^1171^31
+ ;;^UTILITY(U,$J,358.3,23265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24712,1,3,0)
- ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
- ;;^UTILITY(U,$J,358.3,24712,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,24712,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,24713,0)
- ;;=G25.79^^93^1101^10
- ;;^UTILITY(U,$J,358.3,24713,1,0)
+ ;;^UTILITY(U,$J,358.3,23265,1,3,0)
+ ;;=3^Prim OA,Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,23265,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,23265,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,23266,0)
+ ;;=M18.0^^105^1171^29
+ ;;^UTILITY(U,$J,358.3,23266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24713,1,3,0)
- ;;=3^Medication-Induced Movement Disorder NEC
- ;;^UTILITY(U,$J,358.3,24713,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,24713,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,24714,0)
- ;;=T43.205A^^93^1101^4
- ;;^UTILITY(U,$J,358.3,24714,1,0)
+ ;;^UTILITY(U,$J,358.3,23266,1,3,0)
+ ;;=3^Prim OA,Bilateral 1st Carpometacarp Joints
+ ;;^UTILITY(U,$J,358.3,23266,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,23266,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,23267,0)
+ ;;=M16.6^^105^1171^58
+ ;;^UTILITY(U,$J,358.3,23267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24714,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,24714,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,24714,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,24715,0)
- ;;=T43.205D^^93^1101^5
- ;;^UTILITY(U,$J,358.3,24715,1,0)
+ ;;^UTILITY(U,$J,358.3,23267,1,3,0)
+ ;;=3^Secondary OA,Bilateral Hips
+ ;;^UTILITY(U,$J,358.3,23267,1,4,0)
+ ;;=4^M16.6
+ ;;^UTILITY(U,$J,358.3,23267,2)
+ ;;=^5010781
+ ;;^UTILITY(U,$J,358.3,23268,0)
+ ;;=M17.4^^105^1171^59
+ ;;^UTILITY(U,$J,358.3,23268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24715,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,24715,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,24715,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,24716,0)
- ;;=T43.205S^^93^1101^6
- ;;^UTILITY(U,$J,358.3,24716,1,0)
+ ;;^UTILITY(U,$J,358.3,23268,1,3,0)
+ ;;=3^Secondary OA,Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,23268,1,4,0)
+ ;;=4^M17.4
+ ;;^UTILITY(U,$J,358.3,23268,2)
+ ;;=^5010792
+ ;;^UTILITY(U,$J,358.3,23269,0)
+ ;;=M18.4^^105^1171^57
+ ;;^UTILITY(U,$J,358.3,23269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24716,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,24716,1,4,0)
- ;;=4^T43.205S
- ;;^UTILITY(U,$J,358.3,24716,2)
- ;;=^5050542
- ;;^UTILITY(U,$J,358.3,24717,0)
- ;;=G25.71^^93^1101^7
- ;;^UTILITY(U,$J,358.3,24717,1,0)
+ ;;^UTILITY(U,$J,358.3,23269,1,3,0)
+ ;;=3^Secondary OA,Bilateral 1st Carpometacarp Joints
+ ;;^UTILITY(U,$J,358.3,23269,1,4,0)
+ ;;=4^M18.4
+ ;;^UTILITY(U,$J,358.3,23269,2)
+ ;;=^5010803
+ ;;^UTILITY(U,$J,358.3,23270,0)
+ ;;=M16.7^^105^1171^60
+ ;;^UTILITY(U,$J,358.3,23270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24717,1,3,0)
- ;;=3^Medication-Induced Acute Akathisia
- ;;^UTILITY(U,$J,358.3,24717,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,24717,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,24718,0)
- ;;=G24.02^^93^1101^9
- ;;^UTILITY(U,$J,358.3,24718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24718,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,23270,1,3,0)
+ ;;=3^Secondary OA,Hip
+ ;;^UTILITY(U,$J,358.3,23270,1,4,0)
+ ;;=4^M16.7
+ ;;^UTILITY(U,$J,358.3,23270,2)
+ ;;=^5010782

@@ -1,362 +1,126 @@
-IBDEI0RL ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0RL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36453,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,36454,0)
- ;;=I50.32^^103^1549^48
- ;;^UTILITY(U,$J,358.3,36454,1,0)
+ ;;^UTILITY(U,$J,358.3,12312,1,3,0)
+ ;;=3^Melanoma in Situ of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,12312,1,4,0)
+ ;;=4^D03.72
+ ;;^UTILITY(U,$J,358.3,12312,2)
+ ;;=^5001906
+ ;;^UTILITY(U,$J,358.3,12313,0)
+ ;;=D03.8^^80^776^30
+ ;;^UTILITY(U,$J,358.3,12313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36454,1,3,0)
- ;;=3^Chr Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,36454,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,36454,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,36455,0)
- ;;=I27.82^^103^1549^49
- ;;^UTILITY(U,$J,358.3,36455,1,0)
+ ;;^UTILITY(U,$J,358.3,12313,1,3,0)
+ ;;=3^Melanoma in Situ of Other Sites
+ ;;^UTILITY(U,$J,358.3,12313,1,4,0)
+ ;;=4^D03.8
+ ;;^UTILITY(U,$J,358.3,12313,2)
+ ;;=^5001907
+ ;;^UTILITY(U,$J,358.3,12314,0)
+ ;;=C43.121^^80^776^6
+ ;;^UTILITY(U,$J,358.3,12314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36455,1,3,0)
- ;;=3^Chr Pulmonary Embolism
- ;;^UTILITY(U,$J,358.3,36455,1,4,0)
- ;;=4^I27.82
- ;;^UTILITY(U,$J,358.3,36455,2)
- ;;=^338238
- ;;^UTILITY(U,$J,358.3,36456,0)
- ;;=I50.22^^103^1549^50
- ;;^UTILITY(U,$J,358.3,36456,1,0)
+ ;;^UTILITY(U,$J,358.3,12314,1,3,0)
+ ;;=3^Malig Melanoma of Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,12314,1,4,0)
+ ;;=4^C43.121
+ ;;^UTILITY(U,$J,358.3,12314,2)
+ ;;=^5157251
+ ;;^UTILITY(U,$J,358.3,12315,0)
+ ;;=C43.122^^80^776^4
+ ;;^UTILITY(U,$J,358.3,12315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36456,1,3,0)
- ;;=3^Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,36456,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,36456,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,36457,0)
- ;;=I42.0^^103^1549^53
- ;;^UTILITY(U,$J,358.3,36457,1,0)
+ ;;^UTILITY(U,$J,358.3,12315,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,12315,1,4,0)
+ ;;=4^C43.122
+ ;;^UTILITY(U,$J,358.3,12315,2)
+ ;;=^5157252
+ ;;^UTILITY(U,$J,358.3,12316,0)
+ ;;=C43.111^^80^776^14
+ ;;^UTILITY(U,$J,358.3,12316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36457,1,3,0)
- ;;=3^Dilated Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,36457,1,4,0)
- ;;=4^I42.0
- ;;^UTILITY(U,$J,358.3,36457,2)
- ;;=^5007194
- ;;^UTILITY(U,$J,358.3,36458,0)
- ;;=I10.^^103^1549^54
- ;;^UTILITY(U,$J,358.3,36458,1,0)
+ ;;^UTILITY(U,$J,358.3,12316,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,12316,1,4,0)
+ ;;=4^C43.111
+ ;;^UTILITY(U,$J,358.3,12316,2)
+ ;;=^5157249
+ ;;^UTILITY(U,$J,358.3,12317,0)
+ ;;=C43.112^^80^776^12
+ ;;^UTILITY(U,$J,358.3,12317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36458,1,3,0)
- ;;=3^Essential Hypertension
- ;;^UTILITY(U,$J,358.3,36458,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,36458,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,36459,0)
- ;;=I50.9^^103^1549^55
- ;;^UTILITY(U,$J,358.3,36459,1,0)
+ ;;^UTILITY(U,$J,358.3,12317,1,3,0)
+ ;;=3^Malig Melanoma of Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,12317,1,4,0)
+ ;;=4^C43.112
+ ;;^UTILITY(U,$J,358.3,12317,2)
+ ;;=^5157250
+ ;;^UTILITY(U,$J,358.3,12318,0)
+ ;;=D03.121^^80^776^27
+ ;;^UTILITY(U,$J,358.3,12318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36459,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,36459,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,36459,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,36460,0)
- ;;=I35.1^^103^1549^60
- ;;^UTILITY(U,$J,358.3,36460,1,0)
+ ;;^UTILITY(U,$J,358.3,12318,1,3,0)
+ ;;=3^Melanoma in Situ of Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,12318,1,4,0)
+ ;;=4^D03.121
+ ;;^UTILITY(U,$J,358.3,12318,2)
+ ;;=^5157280
+ ;;^UTILITY(U,$J,358.3,12319,0)
+ ;;=D03.122^^80^776^25
+ ;;^UTILITY(U,$J,358.3,12319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36460,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,36460,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,36460,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,36461,0)
- ;;=I35.0^^103^1549^61
- ;;^UTILITY(U,$J,358.3,36461,1,0)
+ ;;^UTILITY(U,$J,358.3,12319,1,3,0)
+ ;;=3^Melanoma in Situ of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,12319,1,4,0)
+ ;;=4^D03.122
+ ;;^UTILITY(U,$J,358.3,12319,2)
+ ;;=^5157281
+ ;;^UTILITY(U,$J,358.3,12320,0)
+ ;;=D03.111^^80^776^34
+ ;;^UTILITY(U,$J,358.3,12320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36461,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,36461,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,36461,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,36462,0)
- ;;=I35.2^^103^1549^62
- ;;^UTILITY(U,$J,358.3,36462,1,0)
+ ;;^UTILITY(U,$J,358.3,12320,1,3,0)
+ ;;=3^Melanoma in Situ of Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,12320,1,4,0)
+ ;;=4^D03.111
+ ;;^UTILITY(U,$J,358.3,12320,2)
+ ;;=^5157278
+ ;;^UTILITY(U,$J,358.3,12321,0)
+ ;;=D03.112^^80^776^32
+ ;;^UTILITY(U,$J,358.3,12321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36462,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,36462,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,36462,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,36463,0)
- ;;=I35.9^^103^1549^58
- ;;^UTILITY(U,$J,358.3,36463,1,0)
+ ;;^UTILITY(U,$J,358.3,12321,1,3,0)
+ ;;=3^Melanoma in Situ of Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,12321,1,4,0)
+ ;;=4^D03.112
+ ;;^UTILITY(U,$J,358.3,12321,2)
+ ;;=^5157279
+ ;;^UTILITY(U,$J,358.3,12322,0)
+ ;;=C4A.0^^80^777^9
+ ;;^UTILITY(U,$J,358.3,12322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36463,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,36463,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,36463,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,36464,0)
- ;;=I21.4^^103^1549^57
- ;;^UTILITY(U,$J,358.3,36464,1,0)
+ ;;^UTILITY(U,$J,358.3,12322,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Lip
+ ;;^UTILITY(U,$J,358.3,12322,1,4,0)
+ ;;=4^C4A.0
+ ;;^UTILITY(U,$J,358.3,12322,2)
+ ;;=^5001137
+ ;;^UTILITY(U,$J,358.3,12323,0)
+ ;;=C4A.21^^80^777^12
+ ;;^UTILITY(U,$J,358.3,12323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36464,1,3,0)
- ;;=3^NSTEMI Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,36464,1,4,0)
- ;;=4^I21.4
- ;;^UTILITY(U,$J,358.3,36464,2)
- ;;=^5007088
- ;;^UTILITY(U,$J,358.3,36465,0)
- ;;=I42.8^^103^1549^46
- ;;^UTILITY(U,$J,358.3,36465,1,0)
+ ;;^UTILITY(U,$J,358.3,12323,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,12323,1,4,0)
+ ;;=4^C4A.21
+ ;;^UTILITY(U,$J,358.3,12323,2)
+ ;;=^5001142
+ ;;^UTILITY(U,$J,358.3,12324,0)
+ ;;=C4A.22^^80^777^4
+ ;;^UTILITY(U,$J,358.3,12324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36465,1,3,0)
- ;;=3^Cardiomypathies NEC
- ;;^UTILITY(U,$J,358.3,36465,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,36465,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,36466,0)
- ;;=I20.8^^103^1549^7
- ;;^UTILITY(U,$J,358.3,36466,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36466,1,3,0)
- ;;=3^Angina Pectoris NEC
- ;;^UTILITY(U,$J,358.3,36466,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,36466,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,36467,0)
- ;;=I42.2^^103^1549^56
- ;;^UTILITY(U,$J,358.3,36467,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36467,1,3,0)
- ;;=3^Hypertrophic Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,36467,1,4,0)
- ;;=4^I42.2
- ;;^UTILITY(U,$J,358.3,36467,2)
- ;;=^340521
- ;;^UTILITY(U,$J,358.3,36468,0)
- ;;=I35.8^^103^1549^59
- ;;^UTILITY(U,$J,358.3,36468,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36468,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders NEC
- ;;^UTILITY(U,$J,358.3,36468,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,36468,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,36469,0)
- ;;=I42.5^^103^1549^65
- ;;^UTILITY(U,$J,358.3,36469,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36469,1,3,0)
- ;;=3^Restrictive Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,36469,1,4,0)
- ;;=4^I42.5
- ;;^UTILITY(U,$J,358.3,36469,2)
- ;;=^5007196
- ;;^UTILITY(U,$J,358.3,36470,0)
- ;;=I05.8^^103^1549^69
- ;;^UTILITY(U,$J,358.3,36470,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36470,1,3,0)
- ;;=3^Rheumatic Mitral Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,36470,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,36470,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,36471,0)
- ;;=I08.8^^103^1549^70
- ;;^UTILITY(U,$J,358.3,36471,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36471,1,3,0)
- ;;=3^Rheumatic Multiple Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,36471,1,4,0)
- ;;=4^I08.8
- ;;^UTILITY(U,$J,358.3,36471,2)
- ;;=^5007056
- ;;^UTILITY(U,$J,358.3,36472,0)
- ;;=I47.9^^103^1549^63
- ;;^UTILITY(U,$J,358.3,36472,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36472,1,3,0)
- ;;=3^Paroxysmal Tachycardia,Unspec
- ;;^UTILITY(U,$J,358.3,36472,1,4,0)
- ;;=4^I47.9
- ;;^UTILITY(U,$J,358.3,36472,2)
- ;;=^5007224
- ;;^UTILITY(U,$J,358.3,36473,0)
- ;;=I05.1^^103^1549^66
- ;;^UTILITY(U,$J,358.3,36473,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36473,1,3,0)
- ;;=3^Rheumatic Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,36473,1,4,0)
- ;;=4^I05.1
- ;;^UTILITY(U,$J,358.3,36473,2)
- ;;=^269568
- ;;^UTILITY(U,$J,358.3,36474,0)
- ;;=I05.0^^103^1549^67
- ;;^UTILITY(U,$J,358.3,36474,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36474,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,36474,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,36474,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,36475,0)
- ;;=I05.9^^103^1549^68
- ;;^UTILITY(U,$J,358.3,36475,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36475,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,36475,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,36475,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,36476,0)
- ;;=I21.3^^103^1549^71
- ;;^UTILITY(U,$J,358.3,36476,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36476,1,3,0)
- ;;=3^STEMI Myocardial Infarction,Unspec Site
- ;;^UTILITY(U,$J,358.3,36476,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,36476,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,36477,0)
- ;;=I44.30^^103^1549^43
- ;;^UTILITY(U,$J,358.3,36477,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36477,1,3,0)
- ;;=3^Atrioventricular Block,Unspec
- ;;^UTILITY(U,$J,358.3,36477,1,4,0)
- ;;=4^I44.30
- ;;^UTILITY(U,$J,358.3,36477,2)
- ;;=^5007204
- ;;^UTILITY(U,$J,358.3,36478,0)
- ;;=I50.40^^103^1549^51
- ;;^UTILITY(U,$J,358.3,36478,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36478,1,3,0)
- ;;=3^Combined Systolic & Diastolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,36478,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,36478,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,36479,0)
- ;;=I50.30^^103^1549^52
- ;;^UTILITY(U,$J,358.3,36479,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36479,1,3,0)
- ;;=3^Diastolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,36479,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,36479,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,36480,0)
- ;;=I50.20^^103^1549^72
- ;;^UTILITY(U,$J,358.3,36480,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36480,1,3,0)
- ;;=3^Systolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,36480,1,4,0)
- ;;=4^I50.20
- ;;^UTILITY(U,$J,358.3,36480,2)
- ;;=^5007239
- ;;^UTILITY(U,$J,358.3,36481,0)
- ;;=I20.0^^103^1549^73
- ;;^UTILITY(U,$J,358.3,36481,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36481,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,36481,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,36481,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,36482,0)
- ;;=M32.12^^103^1549^64
- ;;^UTILITY(U,$J,358.3,36482,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36482,1,3,0)
- ;;=3^Pericarditis in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,36482,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,36482,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,36483,0)
- ;;=E87.8^^103^1550^3
- ;;^UTILITY(U,$J,358.3,36483,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36483,1,3,0)
- ;;=3^Electrolyte/Fluid Balance Disorders NEC
- ;;^UTILITY(U,$J,358.3,36483,1,4,0)
- ;;=4^E87.8
- ;;^UTILITY(U,$J,358.3,36483,2)
- ;;=^5003026
- ;;^UTILITY(U,$J,358.3,36484,0)
- ;;=E11.9^^103^1550^2
- ;;^UTILITY(U,$J,358.3,36484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36484,1,3,0)
- ;;=3^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,36484,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,36484,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,36485,0)
- ;;=E10.9^^103^1550^1
- ;;^UTILITY(U,$J,358.3,36485,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36485,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,36485,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,36485,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,36486,0)
- ;;=Z79.4^^103^1550^4
- ;;^UTILITY(U,$J,358.3,36486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36486,1,3,0)
- ;;=3^Long Term Use of Insulin
- ;;^UTILITY(U,$J,358.3,36486,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,36486,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,36487,0)
- ;;=H60.03^^103^1551^1
- ;;^UTILITY(U,$J,358.3,36487,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36487,1,3,0)
- ;;=3^Abscess Bilateral External Ear
- ;;^UTILITY(U,$J,358.3,36487,1,4,0)
- ;;=4^H60.03
- ;;^UTILITY(U,$J,358.3,36487,2)
- ;;=^5006438
- ;;^UTILITY(U,$J,358.3,36488,0)
- ;;=H60.02^^103^1551^2
- ;;^UTILITY(U,$J,358.3,36488,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36488,1,3,0)
- ;;=3^Abscess Left External Ear
- ;;^UTILITY(U,$J,358.3,36488,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,36488,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,36489,0)
- ;;=H60.01^^103^1551^3
- ;;^UTILITY(U,$J,358.3,36489,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36489,1,3,0)
- ;;=3^Abscess Right External Ear
+ ;;^UTILITY(U,$J,358.3,12324,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Ear/External Auric Canal

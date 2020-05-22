@@ -1,5 +1,7 @@
 ONCOCFL1 ;Hines OIFO/GWB - [CF Automatic Casefinding-Lab Search] ;10/21/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,10**;Jul 31, 2013;Build 20
+ ;
+ ;patch 10 - added new eligible cases
  ;
 EN ;Start Date default
  S SDDEF=$P(^ONCO(160.1,OSP,0),U,5)
@@ -51,10 +53,14 @@ ED ;End Date
  G EX:(Y="")!(Y[U)
  S:Y=1 SBCIND="YES"
  K DIR
- ;
+ ;patch 10 Add Urinary Tract Sites
  S ONCO("SD")=LRSDT,ONCO("ED")=LRLDT
  S LRSDT=LRSDT-.01,LRLDT=LRLDT+.99
- F X=8,9 F Y=1,2,3,6,9 S Z=X_"***"_Y,LRM(Z)=5,LRN(Z)=Z
+ F X=8,9 F Y=1,2,3,4,5,6,7,9 S Z=X_"***"_Y,LRM(Z)=5,LRN(Z)=Z
+ S LRM(67654)=5,LRN(67654)=67654
+ S LRM(67664)=5,LRN(67664)=67664
+ S LRM(67674)=5,LRN(67674)=67674
+ S LRM(67684)=5,LRN(67684)=67684
  S LRM(69760)=5,LRN(69760)=69760
  S LRM(74000)=5,LRN(74000)=74000
  S LRM(74006)=5,LRN(74006)=74006

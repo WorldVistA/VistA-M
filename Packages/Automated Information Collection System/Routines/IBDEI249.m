@@ -1,128 +1,122 @@
-IBDEI249 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI249 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35892,1,0)
+ ;;^UTILITY(U,$J,358.3,33813,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,33814,0)
+ ;;=M75.51^^132^1712^8
+ ;;^UTILITY(U,$J,358.3,33814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35892,1,3,0)
- ;;=3^Rheumatoid Nodule Unspec Site
- ;;^UTILITY(U,$J,358.3,35892,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,35892,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,35893,0)
- ;;=M06.38^^134^1731^139
- ;;^UTILITY(U,$J,358.3,35893,1,0)
+ ;;^UTILITY(U,$J,358.3,33814,1,3,0)
+ ;;=3^Bursitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,33814,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,33814,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,33815,0)
+ ;;=M75.32^^132^1712^9
+ ;;^UTILITY(U,$J,358.3,33815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35893,1,3,0)
- ;;=3^Rheumatoid Nodule Vertebrae
- ;;^UTILITY(U,$J,358.3,35893,1,4,0)
- ;;=4^M06.38
- ;;^UTILITY(U,$J,358.3,35893,2)
- ;;=^5010118
- ;;^UTILITY(U,$J,358.3,35894,0)
- ;;=M05.572^^134^1731^74
- ;;^UTILITY(U,$J,358.3,35894,1,0)
+ ;;^UTILITY(U,$J,358.3,33815,1,3,0)
+ ;;=3^Calcific tendinitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,33815,1,4,0)
+ ;;=4^M75.32
+ ;;^UTILITY(U,$J,358.3,33815,2)
+ ;;=^5013255
+ ;;^UTILITY(U,$J,358.3,33816,0)
+ ;;=M75.31^^132^1712^10
+ ;;^UTILITY(U,$J,358.3,33816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35894,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35894,1,4,0)
- ;;=4^M05.572
- ;;^UTILITY(U,$J,358.3,35894,2)
- ;;=^5009974
- ;;^UTILITY(U,$J,358.3,35895,0)
- ;;=M05.522^^134^1731^75
- ;;^UTILITY(U,$J,358.3,35895,1,0)
+ ;;^UTILITY(U,$J,358.3,33816,1,3,0)
+ ;;=3^Calcific tendinitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,33816,1,4,0)
+ ;;=4^M75.31
+ ;;^UTILITY(U,$J,358.3,33816,2)
+ ;;=^5013254
+ ;;^UTILITY(U,$J,358.3,33817,0)
+ ;;=M75.122^^132^1712^11
+ ;;^UTILITY(U,$J,358.3,33817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35895,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Elbow
- ;;^UTILITY(U,$J,358.3,35895,1,4,0)
- ;;=4^M05.522
- ;;^UTILITY(U,$J,358.3,35895,2)
- ;;=^5009959
- ;;^UTILITY(U,$J,358.3,35896,0)
- ;;=M05.542^^134^1731^76
- ;;^UTILITY(U,$J,358.3,35896,1,0)
+ ;;^UTILITY(U,$J,358.3,33817,1,3,0)
+ ;;=3^Complete rotatr-cuff tear/ruptr of left shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,33817,1,4,0)
+ ;;=4^M75.122
+ ;;^UTILITY(U,$J,358.3,33817,2)
+ ;;=^5013249
+ ;;^UTILITY(U,$J,358.3,33818,0)
+ ;;=M75.121^^132^1712^12
+ ;;^UTILITY(U,$J,358.3,33818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35896,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hand
- ;;^UTILITY(U,$J,358.3,35896,1,4,0)
- ;;=4^M05.542
- ;;^UTILITY(U,$J,358.3,35896,2)
- ;;=^5009965
- ;;^UTILITY(U,$J,358.3,35897,0)
- ;;=M05.552^^134^1731^77
- ;;^UTILITY(U,$J,358.3,35897,1,0)
+ ;;^UTILITY(U,$J,358.3,33818,1,3,0)
+ ;;=3^Complete rotatr-cuff tear/ruptr of r shoulder, not trauma
+ ;;^UTILITY(U,$J,358.3,33818,1,4,0)
+ ;;=4^M75.121
+ ;;^UTILITY(U,$J,358.3,33818,2)
+ ;;=^5013248
+ ;;^UTILITY(U,$J,358.3,33819,0)
+ ;;=S40.012A^^132^1712^13
+ ;;^UTILITY(U,$J,358.3,33819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35897,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hip
- ;;^UTILITY(U,$J,358.3,35897,1,4,0)
- ;;=4^M05.552
- ;;^UTILITY(U,$J,358.3,35897,2)
- ;;=^5009968
- ;;^UTILITY(U,$J,358.3,35898,0)
- ;;=M05.562^^134^1731^78
- ;;^UTILITY(U,$J,358.3,35898,1,0)
+ ;;^UTILITY(U,$J,358.3,33819,1,3,0)
+ ;;=3^Contusion of left shoulder, initial encounter
+ ;;^UTILITY(U,$J,358.3,33819,1,4,0)
+ ;;=4^S40.012A
+ ;;^UTILITY(U,$J,358.3,33819,2)
+ ;;=^5026156
+ ;;^UTILITY(U,$J,358.3,33820,0)
+ ;;=S40.011A^^132^1712^15
+ ;;^UTILITY(U,$J,358.3,33820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35898,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Knee
- ;;^UTILITY(U,$J,358.3,35898,1,4,0)
- ;;=4^M05.562
- ;;^UTILITY(U,$J,358.3,35898,2)
- ;;=^5009971
- ;;^UTILITY(U,$J,358.3,35899,0)
- ;;=M05.512^^134^1731^79
- ;;^UTILITY(U,$J,358.3,35899,1,0)
+ ;;^UTILITY(U,$J,358.3,33820,1,3,0)
+ ;;=3^Contusion of right shoulder, initial encounter
+ ;;^UTILITY(U,$J,358.3,33820,1,4,0)
+ ;;=4^S40.011A
+ ;;^UTILITY(U,$J,358.3,33820,2)
+ ;;=^5026153
+ ;;^UTILITY(U,$J,358.3,33821,0)
+ ;;=S42.002A^^132^1712^25
+ ;;^UTILITY(U,$J,358.3,33821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35899,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Shoulder
- ;;^UTILITY(U,$J,358.3,35899,1,4,0)
- ;;=4^M05.512
- ;;^UTILITY(U,$J,358.3,35899,2)
- ;;=^5009956
- ;;^UTILITY(U,$J,358.3,35900,0)
- ;;=M05.532^^134^1731^80
- ;;^UTILITY(U,$J,358.3,35900,1,0)
+ ;;^UTILITY(U,$J,358.3,33821,1,3,0)
+ ;;=3^Fracture of unsp part of left clavicle, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33821,1,4,0)
+ ;;=4^S42.002A
+ ;;^UTILITY(U,$J,358.3,33821,2)
+ ;;=^5026376
+ ;;^UTILITY(U,$J,358.3,33822,0)
+ ;;=S42.001A^^132^1712^26
+ ;;^UTILITY(U,$J,358.3,33822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35900,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Wrist
- ;;^UTILITY(U,$J,358.3,35900,1,4,0)
- ;;=4^M05.532
- ;;^UTILITY(U,$J,358.3,35900,2)
- ;;=^5009962
- ;;^UTILITY(U,$J,358.3,35901,0)
- ;;=M05.59^^134^1731^81
- ;;^UTILITY(U,$J,358.3,35901,1,0)
+ ;;^UTILITY(U,$J,358.3,33822,1,3,0)
+ ;;=3^Fracture of unsp part of right clavicle, init for clos fx
+ ;;^UTILITY(U,$J,358.3,33822,1,4,0)
+ ;;=4^S42.001A
+ ;;^UTILITY(U,$J,358.3,33822,2)
+ ;;=^5026369
+ ;;^UTILITY(U,$J,358.3,33823,0)
+ ;;=M75.42^^132^1712^29
+ ;;^UTILITY(U,$J,358.3,33823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35901,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Mult Sites
- ;;^UTILITY(U,$J,358.3,35901,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,35901,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,35902,0)
- ;;=M05.571^^134^1731^82
- ;;^UTILITY(U,$J,358.3,35902,1,0)
+ ;;^UTILITY(U,$J,358.3,33823,1,3,0)
+ ;;=3^Impingement syndrome of left shoulder
+ ;;^UTILITY(U,$J,358.3,33823,1,4,0)
+ ;;=4^M75.42
+ ;;^UTILITY(U,$J,358.3,33823,2)
+ ;;=^5013258
+ ;;^UTILITY(U,$J,358.3,33824,0)
+ ;;=M75.41^^132^1712^30
+ ;;^UTILITY(U,$J,358.3,33824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35902,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,35902,1,4,0)
- ;;=4^M05.571
- ;;^UTILITY(U,$J,358.3,35902,2)
- ;;=^5009973
- ;;^UTILITY(U,$J,358.3,35903,0)
- ;;=M05.521^^134^1731^83
- ;;^UTILITY(U,$J,358.3,35903,1,0)
+ ;;^UTILITY(U,$J,358.3,33824,1,3,0)
+ ;;=3^Impingement syndrome of right shoulder
+ ;;^UTILITY(U,$J,358.3,33824,1,4,0)
+ ;;=4^M75.41
+ ;;^UTILITY(U,$J,358.3,33824,2)
+ ;;=^5013257
+ ;;^UTILITY(U,$J,358.3,33825,0)
+ ;;=M75.112^^132^1712^31
+ ;;^UTILITY(U,$J,358.3,33825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35903,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Elbow
- ;;^UTILITY(U,$J,358.3,35903,1,4,0)
- ;;=4^M05.521
- ;;^UTILITY(U,$J,358.3,35903,2)
- ;;=^5009958
- ;;^UTILITY(U,$J,358.3,35904,0)
- ;;=M05.541^^134^1731^84
- ;;^UTILITY(U,$J,358.3,35904,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35904,1,3,0)
- ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hand
+ ;;^UTILITY(U,$J,358.3,33825,1,3,0)
+ ;;=3^Incomplete rotatr-cuff tear/ruptr of l shoulder, not trauma

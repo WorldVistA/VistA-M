@@ -1,134 +1,128 @@
-IBDEI1U4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1U4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31154,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,31154,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,31155,0)
- ;;=F43.23^^123^1564^5
- ;;^UTILITY(U,$J,358.3,31155,1,0)
+ ;;^UTILITY(U,$J,358.3,29314,0)
+ ;;=Z65.9^^118^1479^5
+ ;;^UTILITY(U,$J,358.3,29314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31155,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,31155,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,31155,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,31156,0)
- ;;=F43.24^^123^1564^4
- ;;^UTILITY(U,$J,358.3,31156,1,0)
+ ;;^UTILITY(U,$J,358.3,29314,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances,Unspec
+ ;;^UTILITY(U,$J,358.3,29314,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,29314,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,29315,0)
+ ;;=Z65.4^^118^1479^7
+ ;;^UTILITY(U,$J,358.3,29315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31156,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,31156,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,31156,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,31157,0)
- ;;=F43.25^^123^1564^6
- ;;^UTILITY(U,$J,358.3,31157,1,0)
+ ;;^UTILITY(U,$J,358.3,29315,1,3,0)
+ ;;=3^Victim of Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,29315,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,29315,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,29316,0)
+ ;;=Z62.820^^118^1480^3
+ ;;^UTILITY(U,$J,358.3,29316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31157,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
- ;;^UTILITY(U,$J,358.3,31157,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,31157,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,31158,0)
- ;;=F43.8^^123^1564^15
- ;;^UTILITY(U,$J,358.3,31158,1,0)
+ ;;^UTILITY(U,$J,358.3,29316,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,29316,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,29316,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,29317,0)
+ ;;=Z62.891^^118^1480^6
+ ;;^UTILITY(U,$J,358.3,29317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31158,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder NEC
- ;;^UTILITY(U,$J,358.3,31158,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,31158,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,31159,0)
- ;;=F43.20^^123^1564^7
- ;;^UTILITY(U,$J,358.3,31159,1,0)
+ ;;^UTILITY(U,$J,358.3,29317,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,29317,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,29317,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,29318,0)
+ ;;=Z62.898^^118^1480^4
+ ;;^UTILITY(U,$J,358.3,29318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31159,1,3,0)
- ;;=3^Adjustment Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31159,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,31159,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,31160,0)
- ;;=F43.9^^123^1564^16
- ;;^UTILITY(U,$J,358.3,31160,1,0)
+ ;;^UTILITY(U,$J,358.3,29318,1,3,0)
+ ;;=3^Problems Related to Upbringing,Oth Spec
+ ;;^UTILITY(U,$J,358.3,29318,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,29318,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,29319,0)
+ ;;=Z63.0^^118^1480^5
+ ;;^UTILITY(U,$J,358.3,29319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31160,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31160,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,31160,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,31161,0)
- ;;=F43.11^^123^1564^9
- ;;^UTILITY(U,$J,358.3,31161,1,0)
+ ;;^UTILITY(U,$J,358.3,29319,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,29319,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,29319,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,29320,0)
+ ;;=Z63.5^^118^1480^1
+ ;;^UTILITY(U,$J,358.3,29320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31161,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,31161,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,31161,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,31162,0)
- ;;=F43.12^^123^1564^10
- ;;^UTILITY(U,$J,358.3,31162,1,0)
+ ;;^UTILITY(U,$J,358.3,29320,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,29320,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,29320,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,29321,0)
+ ;;=Z63.8^^118^1480^2
+ ;;^UTILITY(U,$J,358.3,29321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31162,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,31162,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,31162,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,31163,0)
- ;;=F43.10^^123^1564^11
- ;;^UTILITY(U,$J,358.3,31163,1,0)
+ ;;^UTILITY(U,$J,358.3,29321,1,3,0)
+ ;;=3^High Expressed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,29321,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,29321,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,29322,0)
+ ;;=Z63.4^^118^1480^7
+ ;;^UTILITY(U,$J,358.3,29322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31163,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,31163,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,31163,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,31164,0)
- ;;=F43.8^^123^1564^12
- ;;^UTILITY(U,$J,358.3,31164,1,0)
+ ;;^UTILITY(U,$J,358.3,29322,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,29322,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,29322,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,29323,0)
+ ;;=Z62.29^^118^1480^8
+ ;;^UTILITY(U,$J,358.3,29323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31164,1,3,0)
- ;;=3^Reaction to Severe Stress,Other
- ;;^UTILITY(U,$J,358.3,31164,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,31164,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,31165,0)
- ;;=F43.9^^123^1564^13
- ;;^UTILITY(U,$J,358.3,31165,1,0)
+ ;;^UTILITY(U,$J,358.3,29323,1,3,0)
+ ;;=3^Upbringing Away from Parents
+ ;;^UTILITY(U,$J,358.3,29323,1,4,0)
+ ;;=4^Z62.29
+ ;;^UTILITY(U,$J,358.3,29323,2)
+ ;;=^5063150
+ ;;^UTILITY(U,$J,358.3,29324,0)
+ ;;=F20.9^^118^1481^10
+ ;;^UTILITY(U,$J,358.3,29324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31165,1,3,0)
- ;;=3^Reaction to Severe Stress,Unspec
- ;;^UTILITY(U,$J,358.3,31165,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,31165,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,31166,0)
- ;;=F94.1^^123^1564^14
- ;;^UTILITY(U,$J,358.3,31166,1,0)
+ ;;^UTILITY(U,$J,358.3,29324,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,29324,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,29324,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,29325,0)
+ ;;=F20.81^^118^1481^13
+ ;;^UTILITY(U,$J,358.3,29325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31166,1,3,0)
- ;;=3^Reactive Attachment Disorder
- ;;^UTILITY(U,$J,358.3,31166,1,4,0)
- ;;=4^F94.1
- ;;^UTILITY(U,$J,358.3,31166,2)
- ;;=^5003705
- ;;^UTILITY(U,$J,358.3,31167,0)
- ;;=F94.2^^123^1564^8
- ;;^UTILITY(U,$J,358.3,31167,1,0)
+ ;;^UTILITY(U,$J,358.3,29325,1,3,0)
+ ;;=3^Schizophreniform D/O
+ ;;^UTILITY(U,$J,358.3,29325,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,29325,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,29326,0)
+ ;;=F22.^^118^1481^3
+ ;;^UTILITY(U,$J,358.3,29326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31167,1,3,0)
- ;;=3^Disinhibited Social Engagement Disorder

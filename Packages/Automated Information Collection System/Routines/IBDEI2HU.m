@@ -1,128 +1,126 @@
-IBDEI2HU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42285,1,4,0)
- ;;=4^F14.220
- ;;^UTILITY(U,$J,358.3,42285,2)
- ;;=^5003255
- ;;^UTILITY(U,$J,358.3,42286,0)
- ;;=F14.20^^159^2018^23
- ;;^UTILITY(U,$J,358.3,42286,1,0)
+ ;;^UTILITY(U,$J,358.3,39818,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,39818,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,39819,0)
+ ;;=Z82.2^^152^2001^19
+ ;;^UTILITY(U,$J,358.3,39819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42286,1,3,0)
- ;;=3^Cocaine Dependence,Uncompicated
- ;;^UTILITY(U,$J,358.3,42286,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,42286,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,42287,0)
- ;;=F10.120^^159^2018^1
- ;;^UTILITY(U,$J,358.3,42287,1,0)
+ ;;^UTILITY(U,$J,358.3,39819,1,3,0)
+ ;;=3^Family Hx of Deafness/Hearing Loss
+ ;;^UTILITY(U,$J,358.3,39819,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,39819,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,39820,0)
+ ;;=Z84.0^^152^2001^41
+ ;;^UTILITY(U,$J,358.3,39820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42287,1,3,0)
- ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42287,1,4,0)
- ;;=4^F10.120
- ;;^UTILITY(U,$J,358.3,42287,2)
- ;;=^5003069
- ;;^UTILITY(U,$J,358.3,42288,0)
- ;;=F10.10^^159^2018^2
- ;;^UTILITY(U,$J,358.3,42288,1,0)
+ ;;^UTILITY(U,$J,358.3,39820,1,3,0)
+ ;;=3^Family Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,39820,1,4,0)
+ ;;=4^Z84.0
+ ;;^UTILITY(U,$J,358.3,39820,2)
+ ;;=^5063388
+ ;;^UTILITY(U,$J,358.3,39821,0)
+ ;;=Z82.79^^152^2001^18
+ ;;^UTILITY(U,$J,358.3,39821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42288,1,3,0)
- ;;=3^Alcohol Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42288,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,42288,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,42289,0)
- ;;=F17.201^^159^2018^28
- ;;^UTILITY(U,$J,358.3,42289,1,0)
+ ;;^UTILITY(U,$J,358.3,39821,1,3,0)
+ ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
+ ;;^UTILITY(U,$J,358.3,39821,1,4,0)
+ ;;=4^Z82.79
+ ;;^UTILITY(U,$J,358.3,39821,2)
+ ;;=^5063374
+ ;;^UTILITY(U,$J,358.3,39822,0)
+ ;;=Z84.89^^152^2001^39
+ ;;^UTILITY(U,$J,358.3,39822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42289,1,3,0)
- ;;=3^Nicotine Dependence In Remission,Unspec
- ;;^UTILITY(U,$J,358.3,42289,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,42289,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,42290,0)
- ;;=F17.210^^159^2018^27
- ;;^UTILITY(U,$J,358.3,42290,1,0)
+ ;;^UTILITY(U,$J,358.3,39822,1,3,0)
+ ;;=3^Family Hx of Other Spec Conditions
+ ;;^UTILITY(U,$J,358.3,39822,1,4,0)
+ ;;=4^Z84.89
+ ;;^UTILITY(U,$J,358.3,39822,2)
+ ;;=^5063393
+ ;;^UTILITY(U,$J,358.3,39823,0)
+ ;;=Z81.1^^152^2001^12
+ ;;^UTILITY(U,$J,358.3,39823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42290,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42290,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,42290,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,42291,0)
- ;;=F17.291^^159^2018^29
- ;;^UTILITY(U,$J,358.3,42291,1,0)
+ ;;^UTILITY(U,$J,358.3,39823,1,3,0)
+ ;;=3^Family Hx of Alcohol Abuse/Dependence
+ ;;^UTILITY(U,$J,358.3,39823,1,4,0)
+ ;;=4^Z81.1
+ ;;^UTILITY(U,$J,358.3,39823,2)
+ ;;=^5063359
+ ;;^UTILITY(U,$J,358.3,39824,0)
+ ;;=Z82.62^^152^2001^38
+ ;;^UTILITY(U,$J,358.3,39824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42291,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,42291,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,42291,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,42292,0)
- ;;=F17.290^^159^2018^30
- ;;^UTILITY(U,$J,358.3,42292,1,0)
+ ;;^UTILITY(U,$J,358.3,39824,1,3,0)
+ ;;=3^Family Hx of Osteoporosis
+ ;;^UTILITY(U,$J,358.3,39824,1,4,0)
+ ;;=4^Z82.62
+ ;;^UTILITY(U,$J,358.3,39824,2)
+ ;;=^5063372
+ ;;^UTILITY(U,$J,358.3,39825,0)
+ ;;=Z83.71^^152^2001^17
+ ;;^UTILITY(U,$J,358.3,39825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42292,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42292,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,42292,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,42293,0)
- ;;=F17.221^^159^2018^24
- ;;^UTILITY(U,$J,358.3,42293,1,0)
+ ;;^UTILITY(U,$J,358.3,39825,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,39825,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,39825,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,39826,0)
+ ;;=Z84.81^^152^2001^22
+ ;;^UTILITY(U,$J,358.3,39826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42293,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,42293,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,42293,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,42294,0)
- ;;=F17.220^^159^2018^25
- ;;^UTILITY(U,$J,358.3,42294,1,0)
+ ;;^UTILITY(U,$J,358.3,39826,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,39826,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,39826,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,39827,0)
+ ;;=Z86.010^^152^2001^70
+ ;;^UTILITY(U,$J,358.3,39827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42294,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42294,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,42294,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,42295,0)
- ;;=F17.211^^159^2018^26
- ;;^UTILITY(U,$J,358.3,42295,1,0)
+ ;;^UTILITY(U,$J,358.3,39827,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,39827,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,39827,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,39828,0)
+ ;;=Z86.14^^152^2001^75
+ ;;^UTILITY(U,$J,358.3,39828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42295,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,42295,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,42295,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,42296,0)
- ;;=F17.200^^159^2018^31
- ;;^UTILITY(U,$J,358.3,42296,1,0)
+ ;;^UTILITY(U,$J,358.3,39828,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,39828,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,39828,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,39829,0)
+ ;;=Z86.31^^152^2001^71
+ ;;^UTILITY(U,$J,358.3,39829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42296,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42296,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,42296,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,42297,0)
- ;;=F11.120^^159^2018^32
- ;;^UTILITY(U,$J,358.3,42297,1,0)
+ ;;^UTILITY(U,$J,358.3,39829,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,39829,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,39829,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,39830,0)
+ ;;=Z86.711^^152^2001^101
+ ;;^UTILITY(U,$J,358.3,39830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42297,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,42297,1,4,0)
- ;;=4^F11.120
- ;;^UTILITY(U,$J,358.3,42297,2)
- ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,39830,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,39830,1,4,0)
+ ;;=4^Z86.711

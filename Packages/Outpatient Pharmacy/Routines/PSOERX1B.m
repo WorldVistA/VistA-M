@@ -1,5 +1,5 @@
 PSOERX1B ;ALB/BWF - Accept eRx function ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,506,520,527,508,551**;DEC 1997;Build 37
+ ;;7.0;OUTPATIENT PHARMACY;**467,506,520,527,508,551,591**;DEC 1997;Build 2
  ;
  Q
 ACVAL(PSOIEN,TYPE) ; NEW MTYPE, GET IT OFF FIELD .08, IF NOT DEFINED, 
@@ -105,7 +105,7 @@ BPROC(PSOIEN,BTYPE,MVFLD,VBFLD,VBDTTMF,VDTTM) ;
  .S EPAT=$$GET1^DIQ(52.46,ERXPAT,.01,"E")
  .S ERXRDT=$P($$GET1^DIQ(52.49,L,.03,"E"),"@")
  .W !,CNT_".) "_$E(EDRUG,1,28),?30,$E(EPROV,1,28),?60,ERXRDT
- W !!,"Would you like apply the above validation to these prescriptions?"
+ W !!,"Would you like to apply the above validation to these prescriptions?"
  K Y S DIR(0)="YO"
  S DIR("B")="N" D ^DIR K DIR
  I Y="^"!(Y=0) Q
@@ -293,7 +293,7 @@ ADD(QUIET) ;Add CHCS message to Outpatient Pending Orders file
  ; add activity to status history
  I MTYPE="N" D UPDSTAT^PSOERXU1(PSOIEN,"PR")
  I MTYPE="RE" D UPDSTAT^PSOERXU1(PSOIEN,"RXP")
- S REQIEN=$$GETREQ^PSOERXU2(PSOIEN) I REQIEN D UPDSTAT^PSOERXU1(REQIEN,"RRP")
+ S REQIEN=$$GETREQ^PSOERXU2(PSOIEN) I REQIEN,$$GET1^DIQ(52.49,REQIEN,.08,"I")="RR" D UPDSTAT^PSOERXU1(REQIEN,"RRP")
  ; PSO*7*508 - end
  ; gather the unexpanded sig and file in 52.41
  S ILOOP=0 F  S ILOOP=$O(^PS(52.49,PSOIEN,31,ILOOP)) Q:'ILOOP  D

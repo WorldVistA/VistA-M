@@ -1,5 +1,5 @@
-DGR113 ;ALB/TGH,HM,KUM - Health Benefit Plan View History - List Manager Screen ;5/21/19 10:56am 
- ;;5.3;Registration;**871,987**;Aug 13, 1993;Build 22
+DGR113 ;ALB/TGH,HM,KUM,BDB - Health Benefit Plan View History - List Manager Screen ;5/21/19 10:56am 
+ ;;5.3;Registration;**871,987,1006**;Aug 13, 1993;Build 6
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP VIEW list
  ; Input  -- DFN      Patient IEN
@@ -41,9 +41,9 @@ GETPLAN ;Load History from HBP array into TMP(VALMAR global for display
  . . S VALMCNT=VALMCNT+1
  . . S LINEVAR=$$SETFLD^VALM1("["_VALMCNT_"]",LINEVAR,"NO") ; DG*5.3*987 KUM
  . . S LINEVAR=$$SETFLD^VALM1($S($P(DATA,"^",5)="A":" ASSIGN",1:" UNASSIGN"),LINEVAR,"ACTION") ; DG*5.3*987 HM
- . . S LINEVAR=$$SETFLD^VALM1($P($TR(Y,"@"," ")," ",1,2),LINEVAR,"DATE/TIME")
+ . . S LINEVAR=$$SETFLD^VALM1(Y,LINEVAR,"DATE/TIME") ; DG*5.3*1006 BDB - Time to be displayed along with the date
  . . ; DG*5.3*987 KUM
- . . S LINEVAR=$$SETSTR^VALM1($P(DATA,"^",1),LINEVAR,28,139)
+ . . S LINEVAR=$$SETSTR^VALM1($P(DATA,"^",1),LINEVAR,37,139) ;DG*5.3*1006 BDB - Plan name begins at location 37
  . . D SET^VALM10(VALMCNT,LINEVAR,VALMCNT)
  Q
  ;
@@ -66,7 +66,8 @@ ACTION ; Get users entered data and process entry to add HBP
  F  S I=$O(VALMY(I)) Q:I=""  D
  . S ACT=$O(@VALMAR@("IDX",I,""))
  . S DGNAME=@VALMAR@(ACT,0)
- . S DGACT=$$FIND1^DIC(25.11,,"XQ",$$TRIM^XLFSTR($E(DGNAME,28,999)))
+ . ; DG*5.3*966 - Plan name is at position 37
+ . S DGACT=$$FIND1^DIC(25.11,,"XQ",$$TRIM^XLFSTR($E(DGNAME,37,999)))
  . D ACT(DGACT)
  Q
  ;

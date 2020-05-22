@@ -1,128 +1,132 @@
-IBDEI2U5 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2U5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47587,1,0)
+ ;;^UTILITY(U,$J,358.3,45229,0)
+ ;;=C85.17^^170^2254^9
+ ;;^UTILITY(U,$J,358.3,45229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47587,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma Unspec,Axilla/Upper Limb Node
- ;;^UTILITY(U,$J,358.3,47587,1,4,0)
- ;;=4^C85.94
- ;;^UTILITY(U,$J,358.3,47587,2)
- ;;=^5001735
- ;;^UTILITY(U,$J,358.3,47588,0)
- ;;=C85.95^^209^2346^425
- ;;^UTILITY(U,$J,358.3,47588,1,0)
+ ;;^UTILITY(U,$J,358.3,45229,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Spleen
+ ;;^UTILITY(U,$J,358.3,45229,1,4,0)
+ ;;=4^C85.17
+ ;;^UTILITY(U,$J,358.3,45229,2)
+ ;;=^5001708
+ ;;^UTILITY(U,$J,358.3,45230,0)
+ ;;=C85.10^^170^2254^10
+ ;;^UTILITY(U,$J,358.3,45230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47588,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma Unspec,Ing Region/Lower Limb Node
- ;;^UTILITY(U,$J,358.3,47588,1,4,0)
- ;;=4^C85.95
- ;;^UTILITY(U,$J,358.3,47588,2)
- ;;=^5001736
- ;;^UTILITY(U,$J,358.3,47589,0)
- ;;=C85.96^^209^2346^427
- ;;^UTILITY(U,$J,358.3,47589,1,0)
+ ;;^UTILITY(U,$J,358.3,45230,1,3,0)
+ ;;=3^B-Cell Lymphoma,Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,45230,1,4,0)
+ ;;=4^C85.10
+ ;;^UTILITY(U,$J,358.3,45230,2)
+ ;;=^5001701
+ ;;^UTILITY(U,$J,358.3,45231,0)
+ ;;=L60.1^^170^2255^2
+ ;;^UTILITY(U,$J,358.3,45231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47589,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma Unspec,Intrapelvic Node
- ;;^UTILITY(U,$J,358.3,47589,1,4,0)
- ;;=4^C85.96
- ;;^UTILITY(U,$J,358.3,47589,2)
- ;;=^5001737
- ;;^UTILITY(U,$J,358.3,47590,0)
- ;;=C85.97^^209^2346^430
- ;;^UTILITY(U,$J,358.3,47590,1,0)
+ ;;^UTILITY(U,$J,358.3,45231,1,3,0)
+ ;;=3^Onycholysis
+ ;;^UTILITY(U,$J,358.3,45231,1,4,0)
+ ;;=4^L60.1
+ ;;^UTILITY(U,$J,358.3,45231,2)
+ ;;=^186837
+ ;;^UTILITY(U,$J,358.3,45232,0)
+ ;;=L60.2^^170^2255^1
+ ;;^UTILITY(U,$J,358.3,45232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47590,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma Unspec,Spleen
- ;;^UTILITY(U,$J,358.3,47590,1,4,0)
- ;;=4^C85.97
- ;;^UTILITY(U,$J,358.3,47590,2)
- ;;=^5001738
- ;;^UTILITY(U,$J,358.3,47591,0)
- ;;=C85.98^^209^2346^429
- ;;^UTILITY(U,$J,358.3,47591,1,0)
+ ;;^UTILITY(U,$J,358.3,45232,1,3,0)
+ ;;=3^Onychogryphosis
+ ;;^UTILITY(U,$J,358.3,45232,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,45232,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,45233,0)
+ ;;=B35.1^^170^2255^3
+ ;;^UTILITY(U,$J,358.3,45233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47591,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma Unspec,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47591,1,4,0)
- ;;=4^C85.98
- ;;^UTILITY(U,$J,358.3,47591,2)
- ;;=^5001739
- ;;^UTILITY(U,$J,358.3,47592,0)
- ;;=C85.99^^209^2346^423
- ;;^UTILITY(U,$J,358.3,47592,1,0)
+ ;;^UTILITY(U,$J,358.3,45233,1,3,0)
+ ;;=3^Onychomycosis
+ ;;^UTILITY(U,$J,358.3,45233,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,45233,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,45234,0)
+ ;;=L60.3^^170^2255^4
+ ;;^UTILITY(U,$J,358.3,45234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47592,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47592,1,4,0)
- ;;=4^C85.99
- ;;^UTILITY(U,$J,358.3,47592,2)
- ;;=^5001740
- ;;^UTILITY(U,$J,358.3,47593,0)
- ;;=C86.0^^209^2346^139
- ;;^UTILITY(U,$J,358.3,47593,1,0)
+ ;;^UTILITY(U,$J,358.3,45234,1,3,0)
+ ;;=3^Onychorrexis/Onychodystrophy
+ ;;^UTILITY(U,$J,358.3,45234,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,45234,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,45235,0)
+ ;;=L50.8^^170^2256^4
+ ;;^UTILITY(U,$J,358.3,45235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47593,1,3,0)
- ;;=3^Extranodal NK/T-Cell Lymphoma,Nasal Type
- ;;^UTILITY(U,$J,358.3,47593,1,4,0)
- ;;=4^C86.0
- ;;^UTILITY(U,$J,358.3,47593,2)
- ;;=^5001741
- ;;^UTILITY(U,$J,358.3,47594,0)
- ;;=C86.2^^209^2346^134
- ;;^UTILITY(U,$J,358.3,47594,1,0)
+ ;;^UTILITY(U,$J,358.3,45235,1,3,0)
+ ;;=3^Urticaria,Other Spec
+ ;;^UTILITY(U,$J,358.3,45235,1,4,0)
+ ;;=4^L50.8
+ ;;^UTILITY(U,$J,358.3,45235,2)
+ ;;=^5009203
+ ;;^UTILITY(U,$J,358.3,45236,0)
+ ;;=L50.0^^170^2256^2
+ ;;^UTILITY(U,$J,358.3,45236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47594,1,3,0)
- ;;=3^Enteropathy-Type T-Cell Lymphoma
- ;;^UTILITY(U,$J,358.3,47594,1,4,0)
- ;;=4^C86.2
- ;;^UTILITY(U,$J,358.3,47594,2)
- ;;=^5001743
- ;;^UTILITY(U,$J,358.3,47595,0)
- ;;=C86.3^^209^2346^476
- ;;^UTILITY(U,$J,358.3,47595,1,0)
+ ;;^UTILITY(U,$J,358.3,45236,1,3,0)
+ ;;=3^Urticaria,Allergic
+ ;;^UTILITY(U,$J,358.3,45236,1,4,0)
+ ;;=4^L50.0
+ ;;^UTILITY(U,$J,358.3,45236,2)
+ ;;=^5009200
+ ;;^UTILITY(U,$J,358.3,45237,0)
+ ;;=L50.6^^170^2256^3
+ ;;^UTILITY(U,$J,358.3,45237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47595,1,3,0)
- ;;=3^Subcutaneous Panniculitis-Like T-Cell Lymphoma
- ;;^UTILITY(U,$J,358.3,47595,1,4,0)
- ;;=4^C86.3
- ;;^UTILITY(U,$J,358.3,47595,2)
- ;;=^5001744
- ;;^UTILITY(U,$J,358.3,47596,0)
- ;;=C86.4^^209^2346^68
- ;;^UTILITY(U,$J,358.3,47596,1,0)
+ ;;^UTILITY(U,$J,358.3,45237,1,3,0)
+ ;;=3^Urticaria,Contact
+ ;;^UTILITY(U,$J,358.3,45237,1,4,0)
+ ;;=4^L50.6
+ ;;^UTILITY(U,$J,358.3,45237,2)
+ ;;=^5009202
+ ;;^UTILITY(U,$J,358.3,45238,0)
+ ;;=L50.2^^170^2256^1
+ ;;^UTILITY(U,$J,358.3,45238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47596,1,3,0)
- ;;=3^Blastic NK-Cell Lymphoma
- ;;^UTILITY(U,$J,358.3,47596,1,4,0)
- ;;=4^C86.4
- ;;^UTILITY(U,$J,358.3,47596,2)
- ;;=^5001745
- ;;^UTILITY(U,$J,358.3,47597,0)
- ;;=C86.5^^209^2346^57
- ;;^UTILITY(U,$J,358.3,47597,1,0)
+ ;;^UTILITY(U,$J,358.3,45238,1,3,0)
+ ;;=3^Urticaria d/t Cold/Heat
+ ;;^UTILITY(U,$J,358.3,45238,1,4,0)
+ ;;=4^L50.2
+ ;;^UTILITY(U,$J,358.3,45238,2)
+ ;;=^271938
+ ;;^UTILITY(U,$J,358.3,45239,0)
+ ;;=L56.3^^170^2256^5
+ ;;^UTILITY(U,$J,358.3,45239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47597,1,3,0)
- ;;=3^Angioimmunoblastic T-Cell Lymphoma
- ;;^UTILITY(U,$J,358.3,47597,1,4,0)
- ;;=4^C86.5
- ;;^UTILITY(U,$J,358.3,47597,2)
- ;;=^5001746
- ;;^UTILITY(U,$J,358.3,47598,0)
- ;;=C86.6^^209^2346^445
- ;;^UTILITY(U,$J,358.3,47598,1,0)
+ ;;^UTILITY(U,$J,358.3,45239,1,3,0)
+ ;;=3^Urticaria,Solar
+ ;;^UTILITY(U,$J,358.3,45239,1,4,0)
+ ;;=4^L56.3
+ ;;^UTILITY(U,$J,358.3,45239,2)
+ ;;=^5009217
+ ;;^UTILITY(U,$J,358.3,45240,0)
+ ;;=B02.8^^170^2257^1
+ ;;^UTILITY(U,$J,358.3,45240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47598,1,3,0)
- ;;=3^Primary Cutaneous CD30-Positive T-Cell Proliferations
- ;;^UTILITY(U,$J,358.3,47598,1,4,0)
- ;;=4^C86.6
- ;;^UTILITY(U,$J,358.3,47598,2)
- ;;=^5001747
- ;;^UTILITY(U,$J,358.3,47599,0)
- ;;=C88.0^^209^2346^478
- ;;^UTILITY(U,$J,358.3,47599,1,0)
+ ;;^UTILITY(U,$J,358.3,45240,1,3,0)
+ ;;=3^Zoster w/ Other Complications
+ ;;^UTILITY(U,$J,358.3,45240,1,4,0)
+ ;;=4^B02.8
+ ;;^UTILITY(U,$J,358.3,45240,2)
+ ;;=^5000500
+ ;;^UTILITY(U,$J,358.3,45241,0)
+ ;;=B02.9^^170^2257^2
+ ;;^UTILITY(U,$J,358.3,45241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47599,1,3,0)
- ;;=3^Waldenstrom Macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,45241,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,45241,1,4,0)
+ ;;=4^B02.9

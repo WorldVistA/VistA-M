@@ -1,136 +1,128 @@
-IBDEI28V ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28V ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38076,2)
- ;;=^5063117
- ;;^UTILITY(U,$J,358.3,38077,0)
- ;;=Z56.82^^145^1836^6
- ;;^UTILITY(U,$J,358.3,38077,1,0)
+ ;;^UTILITY(U,$J,358.3,35836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38077,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,38077,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,38077,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,38078,0)
- ;;=Z56.0^^145^1836^13
- ;;^UTILITY(U,$J,358.3,38078,1,0)
+ ;;^UTILITY(U,$J,358.3,35836,1,3,0)
+ ;;=3^Traumatic Arthropathy,Rt Hip
+ ;;^UTILITY(U,$J,358.3,35836,1,4,0)
+ ;;=4^M12.551
+ ;;^UTILITY(U,$J,358.3,35836,2)
+ ;;=^5010631
+ ;;^UTILITY(U,$J,358.3,35837,0)
+ ;;=M12.561^^139^1826^59
+ ;;^UTILITY(U,$J,358.3,35837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38078,1,3,0)
- ;;=3^Unemployeement,Unspec
- ;;^UTILITY(U,$J,358.3,38078,1,4,0)
- ;;=4^Z56.0
- ;;^UTILITY(U,$J,358.3,38078,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,38079,0)
- ;;=Z56.1^^145^1836^2
- ;;^UTILITY(U,$J,358.3,38079,1,0)
+ ;;^UTILITY(U,$J,358.3,35837,1,3,0)
+ ;;=3^Traumatic Arthropathy,Rt Knee
+ ;;^UTILITY(U,$J,358.3,35837,1,4,0)
+ ;;=4^M12.561
+ ;;^UTILITY(U,$J,358.3,35837,2)
+ ;;=^5010634
+ ;;^UTILITY(U,$J,358.3,35838,0)
+ ;;=M12.511^^139^1826^60
+ ;;^UTILITY(U,$J,358.3,35838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38079,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,38079,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,38079,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,38080,0)
- ;;=Z56.2^^145^1836^11
- ;;^UTILITY(U,$J,358.3,38080,1,0)
+ ;;^UTILITY(U,$J,358.3,35838,1,3,0)
+ ;;=3^Traumatic Arthropathy,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,35838,1,4,0)
+ ;;=4^M12.511
+ ;;^UTILITY(U,$J,358.3,35838,2)
+ ;;=^5010619
+ ;;^UTILITY(U,$J,358.3,35839,0)
+ ;;=M12.531^^139^1826^61
+ ;;^UTILITY(U,$J,358.3,35839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38080,1,3,0)
- ;;=3^Threat of Job Loss
- ;;^UTILITY(U,$J,358.3,38080,1,4,0)
- ;;=4^Z56.2
- ;;^UTILITY(U,$J,358.3,38080,2)
- ;;=^5063109
- ;;^UTILITY(U,$J,358.3,38081,0)
- ;;=Z56.3^^145^1836^10
- ;;^UTILITY(U,$J,358.3,38081,1,0)
+ ;;^UTILITY(U,$J,358.3,35839,1,3,0)
+ ;;=3^Traumatic Arthropathy,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,35839,1,4,0)
+ ;;=4^M12.531
+ ;;^UTILITY(U,$J,358.3,35839,2)
+ ;;=^5010625
+ ;;^UTILITY(U,$J,358.3,35840,0)
+ ;;=M12.9^^139^1826^1
+ ;;^UTILITY(U,$J,358.3,35840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38081,1,3,0)
- ;;=3^Stressful Work Schedule
- ;;^UTILITY(U,$J,358.3,38081,1,4,0)
- ;;=4^Z56.3
- ;;^UTILITY(U,$J,358.3,38081,2)
- ;;=^5063110
- ;;^UTILITY(U,$J,358.3,38082,0)
- ;;=Z56.4^^145^1836^3
- ;;^UTILITY(U,$J,358.3,38082,1,0)
+ ;;^UTILITY(U,$J,358.3,35840,1,3,0)
+ ;;=3^Arthropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,35840,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,35840,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,35841,0)
+ ;;=M18.9^^139^1826^18
+ ;;^UTILITY(U,$J,358.3,35841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38082,1,3,0)
- ;;=3^Discord w/ Boss & Workmates
- ;;^UTILITY(U,$J,358.3,38082,1,4,0)
- ;;=4^Z56.4
- ;;^UTILITY(U,$J,358.3,38082,2)
- ;;=^5063111
- ;;^UTILITY(U,$J,358.3,38083,0)
- ;;=Z56.5^^145^1836^12
- ;;^UTILITY(U,$J,358.3,38083,1,0)
+ ;;^UTILITY(U,$J,358.3,35841,1,3,0)
+ ;;=3^Osteoarthritis,1st Carpometacarpal Joint,Unspec
+ ;;^UTILITY(U,$J,358.3,35841,1,4,0)
+ ;;=4^M18.9
+ ;;^UTILITY(U,$J,358.3,35841,2)
+ ;;=^5010807
+ ;;^UTILITY(U,$J,358.3,35842,0)
+ ;;=M16.9^^139^1826^19
+ ;;^UTILITY(U,$J,358.3,35842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38083,1,3,0)
- ;;=3^Uncongenial Work Environment
- ;;^UTILITY(U,$J,358.3,38083,1,4,0)
- ;;=4^Z56.5
- ;;^UTILITY(U,$J,358.3,38083,2)
- ;;=^5063112
- ;;^UTILITY(U,$J,358.3,38084,0)
- ;;=Z56.6^^145^1836^5
- ;;^UTILITY(U,$J,358.3,38084,1,0)
+ ;;^UTILITY(U,$J,358.3,35842,1,3,0)
+ ;;=3^Osteoarthritis,Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,35842,1,4,0)
+ ;;=4^M16.9
+ ;;^UTILITY(U,$J,358.3,35842,2)
+ ;;=^5010783
+ ;;^UTILITY(U,$J,358.3,35843,0)
+ ;;=M17.9^^139^1826^20
+ ;;^UTILITY(U,$J,358.3,35843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38084,1,3,0)
- ;;=3^Physical & Mental Strain Related to Work NEC
- ;;^UTILITY(U,$J,358.3,38084,1,4,0)
- ;;=4^Z56.6
- ;;^UTILITY(U,$J,358.3,38084,2)
- ;;=^5063113
- ;;^UTILITY(U,$J,358.3,38085,0)
- ;;=Z56.82^^145^1836^4
- ;;^UTILITY(U,$J,358.3,38085,1,0)
+ ;;^UTILITY(U,$J,358.3,35843,1,3,0)
+ ;;=3^Osteoarthritis,Knee,Unspec
+ ;;^UTILITY(U,$J,358.3,35843,1,4,0)
+ ;;=4^M17.9
+ ;;^UTILITY(U,$J,358.3,35843,2)
+ ;;=^5010794
+ ;;^UTILITY(U,$J,358.3,35844,0)
+ ;;=M15.0^^139^1826^23
+ ;;^UTILITY(U,$J,358.3,35844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38085,1,3,0)
- ;;=3^Military Deployment Status
- ;;^UTILITY(U,$J,358.3,38085,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,38085,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,38086,0)
- ;;=Z56.89^^145^1836^7
- ;;^UTILITY(U,$J,358.3,38086,1,0)
+ ;;^UTILITY(U,$J,358.3,35844,1,3,0)
+ ;;=3^Primary Osteoarthritis,Generalized
+ ;;^UTILITY(U,$J,358.3,35844,1,4,0)
+ ;;=4^M15.0
+ ;;^UTILITY(U,$J,358.3,35844,2)
+ ;;=^5010762
+ ;;^UTILITY(U,$J,358.3,35845,0)
+ ;;=M19.072^^139^1826^24
+ ;;^UTILITY(U,$J,358.3,35845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38086,1,3,0)
- ;;=3^Problems Related to Employment,Other
- ;;^UTILITY(U,$J,358.3,38086,1,4,0)
- ;;=4^Z56.89
- ;;^UTILITY(U,$J,358.3,38086,2)
- ;;=^5063116
- ;;^UTILITY(U,$J,358.3,38087,0)
- ;;=F64.1^^145^1837^2
- ;;^UTILITY(U,$J,358.3,38087,1,0)
+ ;;^UTILITY(U,$J,358.3,35845,1,3,0)
+ ;;=3^Primary Osteoarthritis,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35845,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,35845,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,35846,0)
+ ;;=M19.042^^139^1826^25
+ ;;^UTILITY(U,$J,358.3,35846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38087,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,38087,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,38087,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,38088,0)
- ;;=F64.8^^145^1837^1
- ;;^UTILITY(U,$J,358.3,38088,1,0)
+ ;;^UTILITY(U,$J,358.3,35846,1,3,0)
+ ;;=3^Primary Osteoarthritis,Lt Hand
+ ;;^UTILITY(U,$J,358.3,35846,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,35846,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,35847,0)
+ ;;=M19.012^^139^1826^26
+ ;;^UTILITY(U,$J,358.3,35847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38088,1,3,0)
- ;;=3^Gender Dysphoria NEC
- ;;^UTILITY(U,$J,358.3,38088,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,38088,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,38089,0)
- ;;=F64.9^^145^1837^3
- ;;^UTILITY(U,$J,358.3,38089,1,0)
+ ;;^UTILITY(U,$J,358.3,35847,1,3,0)
+ ;;=3^Primary Osteoarthritis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,35847,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,35847,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,35848,0)
+ ;;=M19.071^^139^1826^27
+ ;;^UTILITY(U,$J,358.3,35848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38089,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,38089,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,38089,2)
- ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,35848,1,3,0)
+ ;;=3^Primary Osteoarthritis,Rt Ankle/Foot

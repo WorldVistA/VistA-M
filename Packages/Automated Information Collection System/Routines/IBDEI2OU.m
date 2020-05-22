@@ -1,138 +1,118 @@
-IBDEI2OU ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45112,1,0)
+ ;;^UTILITY(U,$J,358.3,42841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45112,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,45112,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,45112,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,45113,0)
- ;;=R06.1^^200^2238^56
- ;;^UTILITY(U,$J,358.3,45113,1,0)
+ ;;^UTILITY(U,$J,358.3,42841,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,42841,1,4,0)
+ ;;=4^S59.231S
+ ;;^UTILITY(U,$J,358.3,42841,2)
+ ;;=^5032170
+ ;;^UTILITY(U,$J,358.3,42842,0)
+ ;;=S59.132S^^155^2074^149
+ ;;^UTILITY(U,$J,358.3,42842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45113,1,3,0)
- ;;=3^Stridor
- ;;^UTILITY(U,$J,358.3,45113,1,4,0)
- ;;=4^R06.1
- ;;^UTILITY(U,$J,358.3,45113,2)
- ;;=^5019183
- ;;^UTILITY(U,$J,358.3,45114,0)
- ;;=R05.^^200^2238^15
- ;;^UTILITY(U,$J,358.3,45114,1,0)
+ ;;^UTILITY(U,$J,358.3,42842,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end rad, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,42842,1,4,0)
+ ;;=4^S59.132S
+ ;;^UTILITY(U,$J,358.3,42842,2)
+ ;;=^5032110
+ ;;^UTILITY(U,$J,358.3,42843,0)
+ ;;=S59.131S^^155^2074^150
+ ;;^UTILITY(U,$J,358.3,42843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45114,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,45114,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,45114,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,45115,0)
- ;;=R04.2^^200^2238^24
- ;;^UTILITY(U,$J,358.3,45115,1,0)
+ ;;^UTILITY(U,$J,358.3,42843,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,42843,1,4,0)
+ ;;=4^S59.131S
+ ;;^UTILITY(U,$J,358.3,42843,2)
+ ;;=^5032104
+ ;;^UTILITY(U,$J,358.3,42844,0)
+ ;;=S59.242S^^155^2074^151
+ ;;^UTILITY(U,$J,358.3,42844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45115,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,45115,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,45115,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,45116,0)
- ;;=R91.8^^200^2238^1
- ;;^UTILITY(U,$J,358.3,45116,1,0)
+ ;;^UTILITY(U,$J,358.3,42844,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,42844,1,4,0)
+ ;;=4^S59.242S
+ ;;^UTILITY(U,$J,358.3,42844,2)
+ ;;=^5135644
+ ;;^UTILITY(U,$J,358.3,42845,0)
+ ;;=S59.241S^^155^2074^152
+ ;;^UTILITY(U,$J,358.3,42845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45116,1,3,0)
- ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
- ;;^UTILITY(U,$J,358.3,45116,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,45116,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,45117,0)
- ;;=R06.2^^200^2238^57
- ;;^UTILITY(U,$J,358.3,45117,1,0)
+ ;;^UTILITY(U,$J,358.3,42845,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,42845,1,4,0)
+ ;;=4^S59.241S
+ ;;^UTILITY(U,$J,358.3,42845,2)
+ ;;=^5032176
+ ;;^UTILITY(U,$J,358.3,42846,0)
+ ;;=S59.142S^^155^2074^155
+ ;;^UTILITY(U,$J,358.3,42846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45117,1,3,0)
- ;;=3^Wheezing
- ;;^UTILITY(U,$J,358.3,45117,1,4,0)
- ;;=4^R06.2
- ;;^UTILITY(U,$J,358.3,45117,2)
- ;;=^5019184
- ;;^UTILITY(U,$J,358.3,45118,0)
- ;;=J44.0^^200^2238^13
- ;;^UTILITY(U,$J,358.3,45118,1,0)
+ ;;^UTILITY(U,$J,358.3,42846,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,42846,1,4,0)
+ ;;=4^S59.142S
+ ;;^UTILITY(U,$J,358.3,42846,2)
+ ;;=^5032128
+ ;;^UTILITY(U,$J,358.3,42847,0)
+ ;;=S59.141S^^155^2074^156
+ ;;^UTILITY(U,$J,358.3,42847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45118,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,45118,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,45118,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,45119,0)
- ;;=J94.1^^200^2238^23
- ;;^UTILITY(U,$J,358.3,45119,1,0)
+ ;;^UTILITY(U,$J,358.3,42847,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,42847,1,4,0)
+ ;;=4^S59.141S
+ ;;^UTILITY(U,$J,358.3,42847,2)
+ ;;=^5032122
+ ;;^UTILITY(U,$J,358.3,42848,0)
+ ;;=S52.542S^^155^2074^157
+ ;;^UTILITY(U,$J,358.3,42848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45119,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,45119,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,45119,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,45120,0)
- ;;=G47.33^^200^2238^31
- ;;^UTILITY(U,$J,358.3,45120,1,0)
+ ;;^UTILITY(U,$J,358.3,42848,1,3,0)
+ ;;=3^Smith's fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42848,1,4,0)
+ ;;=4^S52.542S
+ ;;^UTILITY(U,$J,358.3,42848,2)
+ ;;=^5030800
+ ;;^UTILITY(U,$J,358.3,42849,0)
+ ;;=S52.541S^^155^2074^158
+ ;;^UTILITY(U,$J,358.3,42849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45120,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,45120,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,45120,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,45121,0)
- ;;=R91.1^^200^2238^55
- ;;^UTILITY(U,$J,358.3,45121,1,0)
+ ;;^UTILITY(U,$J,358.3,42849,1,3,0)
+ ;;=3^Smith's fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42849,1,4,0)
+ ;;=4^S52.541S
+ ;;^UTILITY(U,$J,358.3,42849,2)
+ ;;=^5030784
+ ;;^UTILITY(U,$J,358.3,42850,0)
+ ;;=M84.334S^^155^2074^159
+ ;;^UTILITY(U,$J,358.3,42850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45121,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,45121,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,45121,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,45122,0)
- ;;=T74.21XA^^200^2239^1
- ;;^UTILITY(U,$J,358.3,45122,1,0)
+ ;;^UTILITY(U,$J,358.3,42850,1,3,0)
+ ;;=3^Stress fracture, left radius, sequela
+ ;;^UTILITY(U,$J,358.3,42850,1,4,0)
+ ;;=4^M84.334S
+ ;;^UTILITY(U,$J,358.3,42850,2)
+ ;;=^5013631
+ ;;^UTILITY(U,$J,358.3,42851,0)
+ ;;=M84.333S^^155^2074^161
+ ;;^UTILITY(U,$J,358.3,42851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45122,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
- ;;^UTILITY(U,$J,358.3,45122,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,45122,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,45123,0)
- ;;=T76.21XA^^200^2239^4
- ;;^UTILITY(U,$J,358.3,45123,1,0)
+ ;;^UTILITY(U,$J,358.3,42851,1,3,0)
+ ;;=3^Stress fracture, right radius, sequela
+ ;;^UTILITY(U,$J,358.3,42851,1,4,0)
+ ;;=4^M84.333S
+ ;;^UTILITY(U,$J,358.3,42851,2)
+ ;;=^5013625
+ ;;^UTILITY(U,$J,358.3,42852,0)
+ ;;=S52.522S^^155^2074^163
+ ;;^UTILITY(U,$J,358.3,42852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45123,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
- ;;^UTILITY(U,$J,358.3,45123,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,45123,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,45124,0)
- ;;=Y07.9^^200^2239^9
- ;;^UTILITY(U,$J,358.3,45124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45124,1,3,0)
- ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
- ;;^UTILITY(U,$J,358.3,45124,1,4,0)
- ;;=4^Y07.9
- ;;^UTILITY(U,$J,358.3,45124,2)
- ;;=^5061209
- ;;^UTILITY(U,$J,358.3,45125,0)
- ;;=T74.21XD^^200^2239^3
- ;;^UTILITY(U,$J,358.3,45125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45125,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,42852,1,3,0)
+ ;;=3^Torus fracture of lower end of left radius, sequela

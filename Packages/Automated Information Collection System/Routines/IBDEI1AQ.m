@@ -1,140 +1,122 @@
-IBDEI1AQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1AQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22038,1,4,0)
- ;;=4^E23.0
- ;;^UTILITY(U,$J,358.3,22038,2)
- ;;=^60685
- ;;^UTILITY(U,$J,358.3,22039,0)
- ;;=E27.1^^87^973^51
- ;;^UTILITY(U,$J,358.3,22039,1,0)
+ ;;^UTILITY(U,$J,358.3,20726,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,20727,0)
+ ;;=F34.0^^95^1022^24
+ ;;^UTILITY(U,$J,358.3,20727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22039,1,3,0)
- ;;=3^Primary Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,22039,1,4,0)
- ;;=4^E27.1
- ;;^UTILITY(U,$J,358.3,22039,2)
- ;;=^5002740
- ;;^UTILITY(U,$J,358.3,22040,0)
- ;;=E27.2^^87^973^1
- ;;^UTILITY(U,$J,358.3,22040,1,0)
+ ;;^UTILITY(U,$J,358.3,20727,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,20727,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,20727,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,20728,0)
+ ;;=F31.0^^95^1022^20
+ ;;^UTILITY(U,$J,358.3,20728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22040,1,3,0)
- ;;=3^Addisonian Crisis
- ;;^UTILITY(U,$J,358.3,22040,1,4,0)
- ;;=4^E27.2
- ;;^UTILITY(U,$J,358.3,22040,2)
- ;;=^263725
- ;;^UTILITY(U,$J,358.3,22041,0)
- ;;=E27.3^^87^973^23
- ;;^UTILITY(U,$J,358.3,22041,1,0)
+ ;;^UTILITY(U,$J,358.3,20728,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,20728,1,4,0)
+ ;;=4^F31.0
+ ;;^UTILITY(U,$J,358.3,20728,2)
+ ;;=^5003494
+ ;;^UTILITY(U,$J,358.3,20729,0)
+ ;;=F31.71^^95^1022^22
+ ;;^UTILITY(U,$J,358.3,20729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22041,1,3,0)
- ;;=3^Drug-induced Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,22041,1,4,0)
- ;;=4^E27.3
- ;;^UTILITY(U,$J,358.3,22041,2)
- ;;=^5002741
- ;;^UTILITY(U,$J,358.3,22042,0)
- ;;=E29.1^^87^973^52
- ;;^UTILITY(U,$J,358.3,22042,1,0)
+ ;;^UTILITY(U,$J,358.3,20729,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,20729,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,20729,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,20730,0)
+ ;;=F31.72^^95^1022^21
+ ;;^UTILITY(U,$J,358.3,20730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22042,1,3,0)
- ;;=3^Testicular Hypofunction
- ;;^UTILITY(U,$J,358.3,22042,1,4,0)
- ;;=4^E29.1
- ;;^UTILITY(U,$J,358.3,22042,2)
- ;;=^5002754
- ;;^UTILITY(U,$J,358.3,22043,0)
- ;;=E55.9^^87^973^59
- ;;^UTILITY(U,$J,358.3,22043,1,0)
+ ;;^UTILITY(U,$J,358.3,20730,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Full Remission
+ ;;^UTILITY(U,$J,358.3,20730,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,20730,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,20731,0)
+ ;;=F06.33^^95^1022^3
+ ;;^UTILITY(U,$J,358.3,20731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22043,1,3,0)
- ;;=3^Vitamin D Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,22043,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,22043,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,22044,0)
- ;;=E66.01^^87^973^38
- ;;^UTILITY(U,$J,358.3,22044,1,0)
+ ;;^UTILITY(U,$J,358.3,20731,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic/Hypomanic-Like Episode
+ ;;^UTILITY(U,$J,358.3,20731,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,20731,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,20732,0)
+ ;;=F31.9^^95^1022^12
+ ;;^UTILITY(U,$J,358.3,20732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22044,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,22044,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,22044,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,22045,0)
- ;;=E66.8^^87^973^42
- ;;^UTILITY(U,$J,358.3,22045,1,0)
+ ;;^UTILITY(U,$J,358.3,20732,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Unsp
+ ;;^UTILITY(U,$J,358.3,20732,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,20732,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,20733,0)
+ ;;=F31.9^^95^1022^19
+ ;;^UTILITY(U,$J,358.3,20733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22045,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,22045,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,22045,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,22046,0)
- ;;=E66.9^^87^973^43
- ;;^UTILITY(U,$J,358.3,22046,1,0)
+ ;;^UTILITY(U,$J,358.3,20733,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unsp
+ ;;^UTILITY(U,$J,358.3,20733,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,20733,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,20734,0)
+ ;;=F31.89^^95^1022^4
+ ;;^UTILITY(U,$J,358.3,20734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22046,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,22046,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,22046,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,22047,0)
- ;;=E74.39^^87^973^35
- ;;^UTILITY(U,$J,358.3,22047,1,0)
+ ;;^UTILITY(U,$J,358.3,20734,1,3,0)
+ ;;=3^Bipolar & Related Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,20734,1,4,0)
+ ;;=4^F31.89
+ ;;^UTILITY(U,$J,358.3,20734,2)
+ ;;=^5003520
+ ;;^UTILITY(U,$J,358.3,20735,0)
+ ;;=F31.9^^95^1022^5
+ ;;^UTILITY(U,$J,358.3,20735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22047,1,3,0)
- ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
- ;;^UTILITY(U,$J,358.3,22047,1,4,0)
- ;;=4^E74.39
- ;;^UTILITY(U,$J,358.3,22047,2)
- ;;=^5002928
- ;;^UTILITY(U,$J,358.3,22048,0)
- ;;=E83.30^^87^973^46
- ;;^UTILITY(U,$J,358.3,22048,1,0)
+ ;;^UTILITY(U,$J,358.3,20735,1,3,0)
+ ;;=3^Bipolar & Related Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,20735,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,20735,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,20736,0)
+ ;;=A81.00^^95^1023^8
+ ;;^UTILITY(U,$J,358.3,20736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22048,1,3,0)
- ;;=3^Phosphorus Metabolism Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22048,1,4,0)
- ;;=4^E83.30
- ;;^UTILITY(U,$J,358.3,22048,2)
- ;;=^5002997
- ;;^UTILITY(U,$J,358.3,22049,0)
- ;;=E83.51^^87^973^28
- ;;^UTILITY(U,$J,358.3,22049,1,0)
+ ;;^UTILITY(U,$J,358.3,20736,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,20736,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,20736,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,20737,0)
+ ;;=A81.09^^95^1023^7
+ ;;^UTILITY(U,$J,358.3,20737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22049,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,22049,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,22049,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,22050,0)
- ;;=E83.52^^87^973^26
- ;;^UTILITY(U,$J,358.3,22050,1,0)
+ ;;^UTILITY(U,$J,358.3,20737,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,20737,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,20737,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,20738,0)
+ ;;=A81.2^^95^1023^72
+ ;;^UTILITY(U,$J,358.3,20738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22050,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,22050,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,22050,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,22051,0)
- ;;=E87.5^^87^973^27
- ;;^UTILITY(U,$J,358.3,22051,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22051,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,22051,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,22051,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,22052,0)
- ;;=E89.2^^87^973^48
+ ;;^UTILITY(U,$J,358.3,20738,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy

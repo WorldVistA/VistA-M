@@ -1,140 +1,118 @@
-IBDEI1Y6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Y6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33057,1,3,0)
- ;;=3^Adjustment d/o w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,33057,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,33057,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,33058,0)
- ;;=G43.909^^131^1664^37
- ;;^UTILITY(U,$J,358.3,33058,1,0)
+ ;;^UTILITY(U,$J,358.3,31125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33058,1,3,0)
- ;;=3^Migraine,Unspec
- ;;^UTILITY(U,$J,358.3,33058,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,33058,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,33059,0)
- ;;=H91.90^^131^1664^25
- ;;^UTILITY(U,$J,358.3,33059,1,0)
+ ;;^UTILITY(U,$J,358.3,31125,1,3,0)
+ ;;=3^Venous comp following an ectopic and molar pregnancy NEC
+ ;;^UTILITY(U,$J,358.3,31125,1,4,0)
+ ;;=4^O08.7
+ ;;^UTILITY(U,$J,358.3,31125,2)
+ ;;=^5016042
+ ;;^UTILITY(U,$J,358.3,31126,0)
+ ;;=O08.81^^126^1619^13
+ ;;^UTILITY(U,$J,358.3,31126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33059,1,3,0)
- ;;=3^Hearing Loss,Unspecified Ear
- ;;^UTILITY(U,$J,358.3,33059,1,4,0)
- ;;=4^H91.90
- ;;^UTILITY(U,$J,358.3,33059,2)
- ;;=^5006943
- ;;^UTILITY(U,$J,358.3,33060,0)
- ;;=H91.91^^131^1664^24
- ;;^UTILITY(U,$J,358.3,33060,1,0)
+ ;;^UTILITY(U,$J,358.3,31126,1,3,0)
+ ;;=3^Cardiac arrest following an ectopic and molar pregnancy
+ ;;^UTILITY(U,$J,358.3,31126,1,4,0)
+ ;;=4^O08.81
+ ;;^UTILITY(U,$J,358.3,31126,2)
+ ;;=^5016043
+ ;;^UTILITY(U,$J,358.3,31127,0)
+ ;;=O08.83^^126^1619^55
+ ;;^UTILITY(U,$J,358.3,31127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33060,1,3,0)
- ;;=3^Hearing Loss,Right Ear
- ;;^UTILITY(U,$J,358.3,33060,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,33060,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,33061,0)
- ;;=H91.92^^131^1664^23
- ;;^UTILITY(U,$J,358.3,33061,1,0)
+ ;;^UTILITY(U,$J,358.3,31127,1,3,0)
+ ;;=3^Urinary tract infection fol an ectopic and molar pregnancy
+ ;;^UTILITY(U,$J,358.3,31127,1,4,0)
+ ;;=4^O08.83
+ ;;^UTILITY(U,$J,358.3,31127,2)
+ ;;=^5016045
+ ;;^UTILITY(U,$J,358.3,31128,0)
+ ;;=O08.89^^126^1619^14
+ ;;^UTILITY(U,$J,358.3,31128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33061,1,3,0)
- ;;=3^Hearing Loss,Left Ear
- ;;^UTILITY(U,$J,358.3,33061,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,33061,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,33062,0)
- ;;=H91.93^^131^1664^22
- ;;^UTILITY(U,$J,358.3,33062,1,0)
+ ;;^UTILITY(U,$J,358.3,31128,1,3,0)
+ ;;=3^Complications following an ectopic and molar pregnancy NEC
+ ;;^UTILITY(U,$J,358.3,31128,1,4,0)
+ ;;=4^O08.89
+ ;;^UTILITY(U,$J,358.3,31128,2)
+ ;;=^5016046
+ ;;^UTILITY(U,$J,358.3,31129,0)
+ ;;=O20.0^^126^1619^54
+ ;;^UTILITY(U,$J,358.3,31129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33062,1,3,0)
- ;;=3^Hearing Loss,Bilateral
- ;;^UTILITY(U,$J,358.3,33062,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,33062,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,33063,0)
- ;;=I10.^^131^1664^29
- ;;^UTILITY(U,$J,358.3,33063,1,0)
+ ;;^UTILITY(U,$J,358.3,31129,1,3,0)
+ ;;=3^Threatened abortion
+ ;;^UTILITY(U,$J,358.3,31129,1,4,0)
+ ;;=4^O20.0
+ ;;^UTILITY(U,$J,358.3,31129,2)
+ ;;=^1287
+ ;;^UTILITY(U,$J,358.3,31130,0)
+ ;;=O44.01^^126^1619^21
+ ;;^UTILITY(U,$J,358.3,31130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33063,1,3,0)
- ;;=3^Hypertension
- ;;^UTILITY(U,$J,358.3,33063,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,33063,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,33064,0)
- ;;=I50.9^^131^1664^14
- ;;^UTILITY(U,$J,358.3,33064,1,0)
+ ;;^UTILITY(U,$J,358.3,31130,1,3,0)
+ ;;=3^Placenta Previa,Complete w/o Hemorrhage,1st Trimester
+ ;;^UTILITY(U,$J,358.3,31130,1,4,0)
+ ;;=4^O44.01
+ ;;^UTILITY(U,$J,358.3,31130,2)
+ ;;=^5017437
+ ;;^UTILITY(U,$J,358.3,31131,0)
+ ;;=O44.02^^126^1619^22
+ ;;^UTILITY(U,$J,358.3,31131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33064,1,3,0)
- ;;=3^Congestive Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,33064,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,33064,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,33065,0)
- ;;=I67.89^^131^1664^13
- ;;^UTILITY(U,$J,358.3,33065,1,0)
+ ;;^UTILITY(U,$J,358.3,31131,1,3,0)
+ ;;=3^Placenta Previa,Complete w/o Hemorrhage,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31131,1,4,0)
+ ;;=4^O44.02
+ ;;^UTILITY(U,$J,358.3,31131,2)
+ ;;=^5017438
+ ;;^UTILITY(U,$J,358.3,31132,0)
+ ;;=O44.03^^126^1619^23
+ ;;^UTILITY(U,$J,358.3,31132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33065,1,3,0)
- ;;=3^Cerebrovascular Disease,Oth
- ;;^UTILITY(U,$J,358.3,33065,1,4,0)
- ;;=4^I67.89
- ;;^UTILITY(U,$J,358.3,33065,2)
- ;;=^5007388
- ;;^UTILITY(U,$J,358.3,33066,0)
- ;;=J32.8^^131^1664^49
- ;;^UTILITY(U,$J,358.3,33066,1,0)
+ ;;^UTILITY(U,$J,358.3,31132,1,3,0)
+ ;;=3^Placenta Previa,Complete w/o Hemorrhage,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31132,1,4,0)
+ ;;=4^O44.03
+ ;;^UTILITY(U,$J,358.3,31132,2)
+ ;;=^5017439
+ ;;^UTILITY(U,$J,358.3,31133,0)
+ ;;=O44.11^^126^1619^18
+ ;;^UTILITY(U,$J,358.3,31133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33066,1,3,0)
- ;;=3^Sinusitis,Chr,Oth
- ;;^UTILITY(U,$J,358.3,33066,1,4,0)
- ;;=4^J32.8
- ;;^UTILITY(U,$J,358.3,33066,2)
- ;;=^269890
- ;;^UTILITY(U,$J,358.3,33067,0)
- ;;=J32.4^^131^1664^48
- ;;^UTILITY(U,$J,358.3,33067,1,0)
+ ;;^UTILITY(U,$J,358.3,31133,1,3,0)
+ ;;=3^Placenta Previa,Complete w/ Hemorrhage,1st Trimester
+ ;;^UTILITY(U,$J,358.3,31133,1,4,0)
+ ;;=4^O44.11
+ ;;^UTILITY(U,$J,358.3,31133,2)
+ ;;=^5017441
+ ;;^UTILITY(U,$J,358.3,31134,0)
+ ;;=O44.12^^126^1619^19
+ ;;^UTILITY(U,$J,358.3,31134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33067,1,3,0)
- ;;=3^Pansinusitis,Chr
- ;;^UTILITY(U,$J,358.3,33067,1,4,0)
- ;;=4^J32.4
- ;;^UTILITY(U,$J,358.3,33067,2)
- ;;=^5008206
- ;;^UTILITY(U,$J,358.3,33068,0)
- ;;=J40.^^131^1664^8
- ;;^UTILITY(U,$J,358.3,33068,1,0)
+ ;;^UTILITY(U,$J,358.3,31134,1,3,0)
+ ;;=3^Placenta Previa,Complete w/ Hemorrhage,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31134,1,4,0)
+ ;;=4^O44.12
+ ;;^UTILITY(U,$J,358.3,31134,2)
+ ;;=^5017442
+ ;;^UTILITY(U,$J,358.3,31135,0)
+ ;;=O44.13^^126^1619^20
+ ;;^UTILITY(U,$J,358.3,31135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33068,1,3,0)
- ;;=3^Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,33068,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,33068,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,33069,0)
- ;;=J45.909^^131^1664^4
- ;;^UTILITY(U,$J,358.3,33069,1,0)
+ ;;^UTILITY(U,$J,358.3,31135,1,3,0)
+ ;;=3^Placenta Previa,Complete w/ Hemorrhage,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31135,1,4,0)
+ ;;=4^O44.13
+ ;;^UTILITY(U,$J,358.3,31135,2)
+ ;;=^5017443
+ ;;^UTILITY(U,$J,358.3,31136,0)
+ ;;=O45.8X1^^126^1619^48
+ ;;^UTILITY(U,$J,358.3,31136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33069,1,3,0)
- ;;=3^Asthma,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33069,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,33069,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,33070,0)
- ;;=J44.9^^131^1664^9
- ;;^UTILITY(U,$J,358.3,33070,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33070,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,33070,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,33070,2)
- ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,31136,1,3,0)
+ ;;=3^Prem separtn of placenta, first trimester NEC

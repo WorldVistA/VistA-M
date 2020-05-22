@@ -1,138 +1,124 @@
-IBDEI339 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI339 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51814,1,4,0)
- ;;=4^J98.8
- ;;^UTILITY(U,$J,358.3,51814,2)
- ;;=^5008365
- ;;^UTILITY(U,$J,358.3,51815,0)
- ;;=J96.00^^230^2519^24
- ;;^UTILITY(U,$J,358.3,51815,1,0)
+ ;;^UTILITY(U,$J,358.3,49318,0)
+ ;;=J45.52^^187^2444^26
+ ;;^UTILITY(U,$J,358.3,49318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51815,1,3,0)
- ;;=3^Respiratory Failure,Acute
- ;;^UTILITY(U,$J,358.3,51815,1,4,0)
- ;;=4^J96.00
- ;;^UTILITY(U,$J,358.3,51815,2)
- ;;=^5008347
- ;;^UTILITY(U,$J,358.3,51816,0)
- ;;=J96.90^^230^2519^25
- ;;^UTILITY(U,$J,358.3,51816,1,0)
+ ;;^UTILITY(U,$J,358.3,49318,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,49318,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,49318,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,49319,0)
+ ;;=J45.901^^187^2444^14
+ ;;^UTILITY(U,$J,358.3,49319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51816,1,3,0)
- ;;=3^Respiratory Failure,Unspec
- ;;^UTILITY(U,$J,358.3,51816,1,4,0)
- ;;=4^J96.90
- ;;^UTILITY(U,$J,358.3,51816,2)
- ;;=^5008356
- ;;^UTILITY(U,$J,358.3,51817,0)
- ;;=D86.9^^230^2519^27
- ;;^UTILITY(U,$J,358.3,51817,1,0)
+ ;;^UTILITY(U,$J,358.3,49319,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,49319,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,49319,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,49320,0)
+ ;;=J45.902^^187^2444^15
+ ;;^UTILITY(U,$J,358.3,49320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51817,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,51817,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,51817,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,51818,0)
- ;;=G47.36^^230^2519^28
- ;;^UTILITY(U,$J,358.3,51818,1,0)
+ ;;^UTILITY(U,$J,358.3,49320,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,49320,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,49320,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,49321,0)
+ ;;=J45.909^^187^2444^28
+ ;;^UTILITY(U,$J,358.3,49321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51818,1,3,0)
- ;;=3^Sleep Hypoventilation in Oth Diseases
- ;;^UTILITY(U,$J,358.3,51818,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,51818,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,51819,0)
- ;;=J98.9^^230^2519^23
- ;;^UTILITY(U,$J,358.3,51819,1,0)
+ ;;^UTILITY(U,$J,358.3,49321,1,3,0)
+ ;;=3^Asthma,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,49321,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,49321,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,49322,0)
+ ;;=J95.01^^187^2444^57
+ ;;^UTILITY(U,$J,358.3,49322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51819,1,3,0)
- ;;=3^Respiratory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,51819,1,4,0)
- ;;=4^J98.9
- ;;^UTILITY(U,$J,358.3,51819,2)
- ;;=^5008366
- ;;^UTILITY(U,$J,358.3,51820,0)
- ;;=G47.30^^230^2520^3
- ;;^UTILITY(U,$J,358.3,51820,1,0)
+ ;;^UTILITY(U,$J,358.3,49322,1,3,0)
+ ;;=3^Tracheostomy Stoma Hemorrhage
+ ;;^UTILITY(U,$J,358.3,49322,1,4,0)
+ ;;=4^J95.01
+ ;;^UTILITY(U,$J,358.3,49322,2)
+ ;;=^5008322
+ ;;^UTILITY(U,$J,358.3,49323,0)
+ ;;=J95.02^^187^2444^58
+ ;;^UTILITY(U,$J,358.3,49323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51820,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,51820,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,51820,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,51821,0)
- ;;=G47.10^^230^2520^1
- ;;^UTILITY(U,$J,358.3,51821,1,0)
+ ;;^UTILITY(U,$J,358.3,49323,1,3,0)
+ ;;=3^Tracheostomy Stoma Infection
+ ;;^UTILITY(U,$J,358.3,49323,1,4,0)
+ ;;=4^J95.02
+ ;;^UTILITY(U,$J,358.3,49323,2)
+ ;;=^5008323
+ ;;^UTILITY(U,$J,358.3,49324,0)
+ ;;=J95.03^^187^2444^59
+ ;;^UTILITY(U,$J,358.3,49324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51821,1,3,0)
- ;;=3^Hypersomnia NOS
- ;;^UTILITY(U,$J,358.3,51821,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,51821,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,51822,0)
- ;;=G47.00^^230^2520^2
- ;;^UTILITY(U,$J,358.3,51822,1,0)
+ ;;^UTILITY(U,$J,358.3,49324,1,3,0)
+ ;;=3^Tracheostomy Stoma Malfunction
+ ;;^UTILITY(U,$J,358.3,49324,1,4,0)
+ ;;=4^J95.03
+ ;;^UTILITY(U,$J,358.3,49324,2)
+ ;;=^5008324
+ ;;^UTILITY(U,$J,358.3,49325,0)
+ ;;=J95.04^^187^2444^55
+ ;;^UTILITY(U,$J,358.3,49325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51822,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,51822,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,51822,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,51823,0)
- ;;=F51.8^^230^2520^4
- ;;^UTILITY(U,$J,358.3,51823,1,0)
+ ;;^UTILITY(U,$J,358.3,49325,1,3,0)
+ ;;=3^Tracheo-Esophageal Fistula Following Tracheostomy
+ ;;^UTILITY(U,$J,358.3,49325,1,4,0)
+ ;;=4^J95.04
+ ;;^UTILITY(U,$J,358.3,49325,2)
+ ;;=^5008325
+ ;;^UTILITY(U,$J,358.3,49326,0)
+ ;;=J95.09^^187^2444^56
+ ;;^UTILITY(U,$J,358.3,49326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51823,1,3,0)
- ;;=3^Sleep Related Move Disorder NOS
- ;;^UTILITY(U,$J,358.3,51823,1,4,0)
- ;;=4^F51.8
- ;;^UTILITY(U,$J,358.3,51823,2)
- ;;=^5003616
- ;;^UTILITY(U,$J,358.3,51824,0)
- ;;=G47.31^^230^2521^7
- ;;^UTILITY(U,$J,358.3,51824,1,0)
+ ;;^UTILITY(U,$J,358.3,49326,1,3,0)
+ ;;=3^Tracheostomy Complication,Other
+ ;;^UTILITY(U,$J,358.3,49326,1,4,0)
+ ;;=4^J95.09
+ ;;^UTILITY(U,$J,358.3,49326,2)
+ ;;=^5008326
+ ;;^UTILITY(U,$J,358.3,49327,0)
+ ;;=J95.1^^187^2444^7
+ ;;^UTILITY(U,$J,358.3,49327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51824,1,3,0)
- ;;=3^Primary Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,51824,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,51824,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,51825,0)
- ;;=G47.12^^230^2521^1
- ;;^UTILITY(U,$J,358.3,51825,1,0)
+ ;;^UTILITY(U,$J,358.3,49327,1,3,0)
+ ;;=3^Acute Pulmonary Insufficiency Following Thoracic Surgery
+ ;;^UTILITY(U,$J,358.3,49327,1,4,0)
+ ;;=4^J95.1
+ ;;^UTILITY(U,$J,358.3,49327,2)
+ ;;=^5008327
+ ;;^UTILITY(U,$J,358.3,49328,0)
+ ;;=J95.2^^187^2444^8
+ ;;^UTILITY(U,$J,358.3,49328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51825,1,3,0)
- ;;=3^Idiopathic Hypersomnia w/o Long Sleep Time
- ;;^UTILITY(U,$J,358.3,51825,1,4,0)
- ;;=4^G47.12
- ;;^UTILITY(U,$J,358.3,51825,2)
- ;;=^5003971
- ;;^UTILITY(U,$J,358.3,51826,0)
- ;;=G47.34^^230^2521^2
- ;;^UTILITY(U,$J,358.3,51826,1,0)
+ ;;^UTILITY(U,$J,358.3,49328,1,3,0)
+ ;;=3^Acute Pulmonary Insufficiency Following Non-Thoracic Surgery
+ ;;^UTILITY(U,$J,358.3,49328,1,4,0)
+ ;;=4^J95.2
+ ;;^UTILITY(U,$J,358.3,49328,2)
+ ;;=^5008328
+ ;;^UTILITY(U,$J,358.3,49329,0)
+ ;;=J95.3^^187^2444^36
+ ;;^UTILITY(U,$J,358.3,49329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51826,1,3,0)
- ;;=3^Idiopathic Sleep Related Hypoventilation
- ;;^UTILITY(U,$J,358.3,51826,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,51826,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,51827,0)
- ;;=G47.33^^230^2521^3
- ;;^UTILITY(U,$J,358.3,51827,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51827,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,51827,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,51827,2)
- ;;=^332763
+ ;;^UTILITY(U,$J,358.3,49329,1,3,0)
+ ;;=3^Chronic Pulmonary Insufficiency Following Surgery
+ ;;^UTILITY(U,$J,358.3,49329,1,4,0)
+ ;;=4^J95.3
+ ;;^UTILITY(U,$J,358.3,49329,2)
+ ;;=^5008329

@@ -1,0 +1,12 @@
+XU8P727 ;OAK/BT - POST ROUTINE FOR PATCH XU*8*727; 03/26/2020
+ ;;8.0;KERNEL;**727**;Jul 10, 1995;Build 4
+ ;Per VA Directive 6402, this routine should not be modified.
+ Q
+ ;
+POST ; Post routine
+ N XUOPIEN,XARR,XOPTRM
+ S XUOPIEN=+$$FIND1^DIC(19,,"","XUS SIGNON") I XUOPIEN'>0 Q
+ S XOPTRM=+$$FIND1^DIC(8994,,"","XUS IS USER ACTIVE") I XOPTRM'>0 Q
+ S XARR(19.05,"?+2,"_XUOPIEN_",",.01)=XOPTRM
+ D UPDATE^DIE("","XARR")
+ Q

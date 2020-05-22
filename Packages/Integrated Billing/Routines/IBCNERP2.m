@@ -1,5 +1,5 @@
 IBCNERP2 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT COMPILE ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Input vars from IBCNERP1:
@@ -126,6 +126,8 @@ EN(IBCNERTN,IBCNESPC,IBOUT) ; Entry
  .... D GETDATA^IBCNERPE(IBPTR,.RPTDATA)
  .... ; Merge data from RPTDATA to ^TMP
  .... M ^TMP($J,IBCNERTN,SORT1,SORT2,IBCT)=RPTDATA
+ .... ;IB*2.0*659/TAZ - Store Response File IEN for later use
+ .... S ^TMP($J,IBCNERTN,SORT1,SORT2,IBCT,"RSPIENS")=IBPTR
  ;
  ; Purge index of duplicate Pyr/Pt combos
  K ^TMP($J,IBCNERTN_"X")
@@ -151,6 +153,8 @@ TRCN ; Trace # proc.
  I SORT2="" G EXIT
  ; Merge data- RPTDATA to ^TMP
  M ^TMP($J,IBCNERTN,SORT1,SORT2,1)=RPTDATA
+ ;IB*2.0*659/TAZ - Store Response File IEN for later use
+ S ^TMP($J,IBCNERTN,SORT1,SORT2,1,"RSPIENS")=IBPTR
  ;
 EXIT ;
  Q

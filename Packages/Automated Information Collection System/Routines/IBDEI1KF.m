@@ -1,126 +1,128 @@
-IBDEI1KF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26557,0)
- ;;=F34.0^^100^1267^22
- ;;^UTILITY(U,$J,358.3,26557,1,0)
+ ;;^UTILITY(U,$J,358.3,25019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26557,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,26557,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,26557,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,26558,0)
- ;;=F31.0^^100^1267^3
- ;;^UTILITY(U,$J,358.3,26558,1,0)
+ ;;^UTILITY(U,$J,358.3,25019,1,3,0)
+ ;;=3^Underdose of Med Regiment d/t Age-Related Debility
+ ;;^UTILITY(U,$J,358.3,25019,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,25019,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,25020,0)
+ ;;=Z91.138^^107^1212^153
+ ;;^UTILITY(U,$J,358.3,25020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26558,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,26558,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,26558,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,26559,0)
- ;;=F31.71^^100^1267^4
- ;;^UTILITY(U,$J,358.3,26559,1,0)
+ ;;^UTILITY(U,$J,358.3,25020,1,3,0)
+ ;;=3^Underdose of Med Regiment for Other Reason
+ ;;^UTILITY(U,$J,358.3,25020,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,25020,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,25021,0)
+ ;;=Z91.14^^107^1212^64
+ ;;^UTILITY(U,$J,358.3,25021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26559,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,26559,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,26559,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,26560,0)
- ;;=F31.72^^100^1267^5
- ;;^UTILITY(U,$J,358.3,26560,1,0)
+ ;;^UTILITY(U,$J,358.3,25021,1,3,0)
+ ;;=3^Noncompliance w/ Medication Regimen
+ ;;^UTILITY(U,$J,358.3,25021,1,4,0)
+ ;;=4^Z91.14
+ ;;^UTILITY(U,$J,358.3,25021,2)
+ ;;=^5063616
+ ;;^UTILITY(U,$J,358.3,25022,0)
+ ;;=Z91.19^^107^1212^63
+ ;;^UTILITY(U,$J,358.3,25022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26560,1,3,0)
- ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,26560,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,26560,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,26561,0)
- ;;=F31.89^^100^1267^21
- ;;^UTILITY(U,$J,358.3,26561,1,0)
+ ;;^UTILITY(U,$J,358.3,25022,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment & Regimen
+ ;;^UTILITY(U,$J,358.3,25022,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,25022,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,25023,0)
+ ;;=Z93.1^^107^1212^45
+ ;;^UTILITY(U,$J,358.3,25023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26561,1,3,0)
- ;;=3^Bipolar and Other Related Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,26561,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,26561,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,26562,0)
- ;;=F10.232^^100^1268^2
- ;;^UTILITY(U,$J,358.3,26562,1,0)
+ ;;^UTILITY(U,$J,358.3,25023,1,3,0)
+ ;;=3^Gastrostomy Status
+ ;;^UTILITY(U,$J,358.3,25023,1,4,0)
+ ;;=4^Z93.1
+ ;;^UTILITY(U,$J,358.3,25023,2)
+ ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,25024,0)
+ ;;=Z93.2^^107^1212^51
+ ;;^UTILITY(U,$J,358.3,25024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26562,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,26562,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,26562,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,26563,0)
- ;;=F10.231^^100^1268^3
- ;;^UTILITY(U,$J,358.3,26563,1,0)
+ ;;^UTILITY(U,$J,358.3,25024,1,3,0)
+ ;;=3^Ileostomy Status
+ ;;^UTILITY(U,$J,358.3,25024,1,4,0)
+ ;;=4^Z93.2
+ ;;^UTILITY(U,$J,358.3,25024,2)
+ ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,25025,0)
+ ;;=Z93.3^^107^1212^7
+ ;;^UTILITY(U,$J,358.3,25025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26563,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,26563,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,26563,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,26564,0)
- ;;=F10.121^^100^1268^6
- ;;^UTILITY(U,$J,358.3,26564,1,0)
+ ;;^UTILITY(U,$J,358.3,25025,1,3,0)
+ ;;=3^Colostomy Status
+ ;;^UTILITY(U,$J,358.3,25025,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,25025,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,25026,0)
+ ;;=Z94.0^^107^1212^56
+ ;;^UTILITY(U,$J,358.3,25026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26564,1,3,0)
- ;;=3^Mild Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,26564,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,26564,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,26565,0)
- ;;=F10.221^^100^1268^7
- ;;^UTILITY(U,$J,358.3,26565,1,0)
+ ;;^UTILITY(U,$J,358.3,25026,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,25026,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,25026,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,25027,0)
+ ;;=Z94.1^^107^1212^49
+ ;;^UTILITY(U,$J,358.3,25027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26565,1,3,0)
- ;;=3^Moderate/Severe Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,26565,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,26565,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,26566,0)
- ;;=F10.921^^100^1268^1
- ;;^UTILITY(U,$J,358.3,26566,1,0)
+ ;;^UTILITY(U,$J,358.3,25027,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,25027,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,25027,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,25028,0)
+ ;;=Z94.2^^107^1212^59
+ ;;^UTILITY(U,$J,358.3,25028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26566,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26566,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,26566,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,26567,0)
- ;;=F05.^^100^1268^4
- ;;^UTILITY(U,$J,358.3,26567,1,0)
+ ;;^UTILITY(U,$J,358.3,25028,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,25028,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,25028,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,25029,0)
+ ;;=Z94.3^^107^1212^48
+ ;;^UTILITY(U,$J,358.3,25029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26567,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,26567,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,26567,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,26568,0)
- ;;=F05.^^100^1268^5
- ;;^UTILITY(U,$J,358.3,26568,1,0)
+ ;;^UTILITY(U,$J,358.3,25029,1,3,0)
+ ;;=3^Heart & Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,25029,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,25029,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,25030,0)
+ ;;=Z94.4^^107^1212^58
+ ;;^UTILITY(U,$J,358.3,25030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26568,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,26568,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,26568,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,26569,0)
- ;;=A81.00^^100^1269^9
+ ;;^UTILITY(U,$J,358.3,25030,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,25030,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,25030,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,25031,0)
+ ;;=Z94.84^^107^1212^149
+ ;;^UTILITY(U,$J,358.3,25031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25031,1,3,0)
+ ;;=3^Stem Cell Transplant Status

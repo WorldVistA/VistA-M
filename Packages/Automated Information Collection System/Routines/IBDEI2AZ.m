@@ -1,138 +1,122 @@
-IBDEI2AZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39072,0)
- ;;=L43.2^^151^1915^6
- ;;^UTILITY(U,$J,358.3,39072,1,0)
+ ;;^UTILITY(U,$J,358.3,36767,1,3,0)
+ ;;=3^Skin Graft Failure
+ ;;^UTILITY(U,$J,358.3,36767,1,4,0)
+ ;;=4^T86.821
+ ;;^UTILITY(U,$J,358.3,36767,2)
+ ;;=^5055735
+ ;;^UTILITY(U,$J,358.3,36768,0)
+ ;;=T86.822^^142^1863^409
+ ;;^UTILITY(U,$J,358.3,36768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39072,1,3,0)
- ;;=3^Lichenoid Drug Reaction
- ;;^UTILITY(U,$J,358.3,39072,1,4,0)
- ;;=4^L43.2
- ;;^UTILITY(U,$J,358.3,39072,2)
- ;;=^5009180
- ;;^UTILITY(U,$J,358.3,39073,0)
- ;;=L43.9^^151^1915^3
- ;;^UTILITY(U,$J,358.3,39073,1,0)
+ ;;^UTILITY(U,$J,358.3,36768,1,3,0)
+ ;;=3^Skin Graft Infection
+ ;;^UTILITY(U,$J,358.3,36768,1,4,0)
+ ;;=4^T86.822
+ ;;^UTILITY(U,$J,358.3,36768,2)
+ ;;=^5055736
+ ;;^UTILITY(U,$J,358.3,36769,0)
+ ;;=T86.820^^142^1863^410
+ ;;^UTILITY(U,$J,358.3,36769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39073,1,3,0)
- ;;=3^Lichen Planus,Unspec
- ;;^UTILITY(U,$J,358.3,39073,1,4,0)
- ;;=4^L43.9
- ;;^UTILITY(U,$J,358.3,39073,2)
- ;;=^5009183
- ;;^UTILITY(U,$J,358.3,39074,0)
- ;;=L93.0^^151^1915^8
- ;;^UTILITY(U,$J,358.3,39074,1,0)
+ ;;^UTILITY(U,$J,358.3,36769,1,3,0)
+ ;;=3^Skin Graft Rejection
+ ;;^UTILITY(U,$J,358.3,36769,1,4,0)
+ ;;=4^T86.820
+ ;;^UTILITY(U,$J,358.3,36769,2)
+ ;;=^5055734
+ ;;^UTILITY(U,$J,358.3,36770,0)
+ ;;=N61.1^^142^1863^1
+ ;;^UTILITY(U,$J,358.3,36770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39074,1,3,0)
- ;;=3^Lupus,Erythematosus,Discoid
- ;;^UTILITY(U,$J,358.3,39074,1,4,0)
- ;;=4^L93.0
- ;;^UTILITY(U,$J,358.3,39074,2)
- ;;=^5009467
- ;;^UTILITY(U,$J,358.3,39075,0)
- ;;=L93.2^^151^1915^10
- ;;^UTILITY(U,$J,358.3,39075,1,0)
+ ;;^UTILITY(U,$J,358.3,36770,1,3,0)
+ ;;=3^Abscess of Breast & Nipple
+ ;;^UTILITY(U,$J,358.3,36770,1,4,0)
+ ;;=4^N61.1
+ ;;^UTILITY(U,$J,358.3,36770,2)
+ ;;=^5138937
+ ;;^UTILITY(U,$J,358.3,36771,0)
+ ;;=L03.213^^142^1863^123
+ ;;^UTILITY(U,$J,358.3,36771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39075,1,3,0)
- ;;=3^Lupus,Erythematosus,Local
- ;;^UTILITY(U,$J,358.3,39075,1,4,0)
- ;;=4^L93.2
- ;;^UTILITY(U,$J,358.3,39075,2)
- ;;=^5009469
- ;;^UTILITY(U,$J,358.3,39076,0)
- ;;=L93.1^^151^1915^11
- ;;^UTILITY(U,$J,358.3,39076,1,0)
+ ;;^UTILITY(U,$J,358.3,36771,1,3,0)
+ ;;=3^Cellulitis,Periorbital
+ ;;^UTILITY(U,$J,358.3,36771,1,4,0)
+ ;;=4^L03.213
+ ;;^UTILITY(U,$J,358.3,36771,2)
+ ;;=^259555
+ ;;^UTILITY(U,$J,358.3,36772,0)
+ ;;=L98.7^^142^1863^171
+ ;;^UTILITY(U,$J,358.3,36772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39076,1,3,0)
- ;;=3^Lupus,Erythematosus,Subacute Cutaneous
- ;;^UTILITY(U,$J,358.3,39076,1,4,0)
- ;;=4^L93.1
- ;;^UTILITY(U,$J,358.3,39076,2)
- ;;=^5009468
- ;;^UTILITY(U,$J,358.3,39077,0)
- ;;=M32.0^^151^1915^9
- ;;^UTILITY(U,$J,358.3,39077,1,0)
+ ;;^UTILITY(U,$J,358.3,36772,1,3,0)
+ ;;=3^Excessive & Redundant Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,36772,1,4,0)
+ ;;=4^L98.7
+ ;;^UTILITY(U,$J,358.3,36772,2)
+ ;;=^5138778
+ ;;^UTILITY(U,$J,358.3,36773,0)
+ ;;=S02.32XA^^142^1863^186
+ ;;^UTILITY(U,$J,358.3,36773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39077,1,3,0)
- ;;=3^Lupus,Erythematosus,Drug-Induced Systemic
- ;;^UTILITY(U,$J,358.3,39077,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,39077,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,39078,0)
- ;;=M32.10^^151^1915^12
- ;;^UTILITY(U,$J,358.3,39078,1,0)
+ ;;^UTILITY(U,$J,358.3,36773,1,3,0)
+ ;;=3^Fx Orbital Floor,Left Side,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36773,1,4,0)
+ ;;=4^S02.32XA
+ ;;^UTILITY(U,$J,358.3,36773,2)
+ ;;=^5139331
+ ;;^UTILITY(U,$J,358.3,36774,0)
+ ;;=S02.31XA^^142^1863^187
+ ;;^UTILITY(U,$J,358.3,36774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39078,1,3,0)
- ;;=3^Lupus,Erythematosus,Systemic
- ;;^UTILITY(U,$J,358.3,39078,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,39078,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,39079,0)
- ;;=M32.19^^151^1915^14
- ;;^UTILITY(U,$J,358.3,39079,1,0)
+ ;;^UTILITY(U,$J,358.3,36774,1,3,0)
+ ;;=3^Fx Orbital Floor,Right Side,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36774,1,4,0)
+ ;;=4^S02.31XA
+ ;;^UTILITY(U,$J,358.3,36774,2)
+ ;;=^5139325
+ ;;^UTILITY(U,$J,358.3,36775,0)
+ ;;=L97.816^^142^1863^364
+ ;;^UTILITY(U,$J,358.3,36775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39079,1,3,0)
- ;;=3^Lupus,Erythematosus,Systemic,Skin Involvmnt
- ;;^UTILITY(U,$J,358.3,39079,1,4,0)
- ;;=4^M32.19
- ;;^UTILITY(U,$J,358.3,39079,2)
- ;;=^5011759
- ;;^UTILITY(U,$J,358.3,39080,0)
- ;;=M32.9^^151^1915^13
- ;;^UTILITY(U,$J,358.3,39080,1,0)
+ ;;^UTILITY(U,$J,358.3,36775,1,3,0)
+ ;;=3^Non-Pressure Ulcer,Oth Part Rt Lwr Leg w/ Bone Invlv w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,36775,1,4,0)
+ ;;=4^L97.816
+ ;;^UTILITY(U,$J,358.3,36775,2)
+ ;;=^5151479
+ ;;^UTILITY(U,$J,358.3,36776,0)
+ ;;=L97.826^^142^1863^361
+ ;;^UTILITY(U,$J,358.3,36776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39080,1,3,0)
- ;;=3^Lupus,Erythematosus,Systemic w/o Organ Involvmnt
- ;;^UTILITY(U,$J,358.3,39080,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,39080,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,39081,0)
- ;;=E88.1^^151^1915^7
- ;;^UTILITY(U,$J,358.3,39081,1,0)
+ ;;^UTILITY(U,$J,358.3,36776,1,3,0)
+ ;;=3^Non-Pressure Ulcer,Oth Part Lt Lwr Leg w/ Msl Invlv w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,36776,1,4,0)
+ ;;=4^L97.826
+ ;;^UTILITY(U,$J,358.3,36776,2)
+ ;;=^5151482
+ ;;^UTILITY(U,$J,358.3,36777,0)
+ ;;=L97.828^^142^1863^362
+ ;;^UTILITY(U,$J,358.3,36777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39081,1,3,0)
- ;;=3^Lipodystrophy NOS
- ;;^UTILITY(U,$J,358.3,39081,1,4,0)
- ;;=4^E88.1
- ;;^UTILITY(U,$J,358.3,39081,2)
- ;;=^5003028
- ;;^UTILITY(U,$J,358.3,39082,0)
- ;;=L60.1^^151^1916^2
- ;;^UTILITY(U,$J,358.3,39082,1,0)
+ ;;^UTILITY(U,$J,358.3,36777,1,3,0)
+ ;;=3^Non-Pressure Ulcer,Oth Part Lt Lwr Leg w/ Oth Spec Severity
+ ;;^UTILITY(U,$J,358.3,36777,1,4,0)
+ ;;=4^L97.828
+ ;;^UTILITY(U,$J,358.3,36777,2)
+ ;;=^5151483
+ ;;^UTILITY(U,$J,358.3,36778,0)
+ ;;=L97.815^^142^1863^365
+ ;;^UTILITY(U,$J,358.3,36778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39082,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,39082,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,39082,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,39083,0)
- ;;=L60.2^^151^1916^1
- ;;^UTILITY(U,$J,358.3,39083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39083,1,3,0)
- ;;=3^Onychogryphosis
- ;;^UTILITY(U,$J,358.3,39083,1,4,0)
- ;;=4^L60.2
- ;;^UTILITY(U,$J,358.3,39083,2)
- ;;=^5009235
- ;;^UTILITY(U,$J,358.3,39084,0)
- ;;=B35.1^^151^1916^3
- ;;^UTILITY(U,$J,358.3,39084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39084,1,3,0)
- ;;=3^Onychomycosis
- ;;^UTILITY(U,$J,358.3,39084,1,4,0)
- ;;=4^B35.1
- ;;^UTILITY(U,$J,358.3,39084,2)
- ;;=^119748
- ;;^UTILITY(U,$J,358.3,39085,0)
- ;;=L50.8^^151^1917^4
- ;;^UTILITY(U,$J,358.3,39085,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36778,1,3,0)
+ ;;=3^Non-Pressure Ulcer,Oth Part Rt Lwr Leg w/ Msl Invlv w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,36778,1,4,0)
+ ;;=4^L97.815
+ ;;^UTILITY(U,$J,358.3,36778,2)
+ ;;=^5151478
+ ;;^UTILITY(U,$J,358.3,36779,0)
+ ;;=L97.825^^142^1863^363

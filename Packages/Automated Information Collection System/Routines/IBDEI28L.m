@@ -1,138 +1,120 @@
-IBDEI28L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI28L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37951,0)
- ;;=F06.4^^145^1829^6
- ;;^UTILITY(U,$J,358.3,37951,1,0)
+ ;;^UTILITY(U,$J,358.3,35716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37951,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,37951,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,37951,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,37952,0)
- ;;=F41.0^^145^1829^15
- ;;^UTILITY(U,$J,358.3,37952,1,0)
+ ;;^UTILITY(U,$J,358.3,35716,1,3,0)
+ ;;=3^Spinal Enthesopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,35716,1,4,0)
+ ;;=4^M46.06
+ ;;^UTILITY(U,$J,358.3,35716,2)
+ ;;=^5011976
+ ;;^UTILITY(U,$J,358.3,35717,0)
+ ;;=M46.01^^139^1821^43
+ ;;^UTILITY(U,$J,358.3,35717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37952,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,37952,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,37952,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,37953,0)
- ;;=F41.1^^145^1829^13
- ;;^UTILITY(U,$J,358.3,37953,1,0)
+ ;;^UTILITY(U,$J,358.3,35717,1,3,0)
+ ;;=3^Spinal Enthesopathy,Occipito-Atlanto-Axial Region
+ ;;^UTILITY(U,$J,358.3,35717,1,4,0)
+ ;;=4^M46.01
+ ;;^UTILITY(U,$J,358.3,35717,2)
+ ;;=^5011971
+ ;;^UTILITY(U,$J,358.3,35718,0)
+ ;;=M46.07^^139^1821^42
+ ;;^UTILITY(U,$J,358.3,35718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37953,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,37953,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,37953,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,37954,0)
- ;;=F41.9^^145^1829^5
- ;;^UTILITY(U,$J,358.3,37954,1,0)
+ ;;^UTILITY(U,$J,358.3,35718,1,3,0)
+ ;;=3^Spinal Enthesopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,35718,1,4,0)
+ ;;=4^M46.07
+ ;;^UTILITY(U,$J,358.3,35718,2)
+ ;;=^5011977
+ ;;^UTILITY(U,$J,358.3,35719,0)
+ ;;=M46.05^^139^1821^45
+ ;;^UTILITY(U,$J,358.3,35719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37954,1,3,0)
- ;;=3^Anxiety Disorder NOS
- ;;^UTILITY(U,$J,358.3,37954,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,37954,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,37955,0)
- ;;=F40.02^^145^1829^2
- ;;^UTILITY(U,$J,358.3,37955,1,0)
+ ;;^UTILITY(U,$J,358.3,35719,1,3,0)
+ ;;=3^Spinal Enthesopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,35719,1,4,0)
+ ;;=4^M46.05
+ ;;^UTILITY(U,$J,358.3,35719,2)
+ ;;=^5011975
+ ;;^UTILITY(U,$J,358.3,35720,0)
+ ;;=M46.03^^139^1821^40
+ ;;^UTILITY(U,$J,358.3,35720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37955,1,3,0)
- ;;=3^Agoraphobia
- ;;^UTILITY(U,$J,358.3,37955,1,4,0)
- ;;=4^F40.02
- ;;^UTILITY(U,$J,358.3,37955,2)
- ;;=^5003543
- ;;^UTILITY(U,$J,358.3,37956,0)
- ;;=F40.10^^145^1829^19
- ;;^UTILITY(U,$J,358.3,37956,1,0)
+ ;;^UTILITY(U,$J,358.3,35720,1,3,0)
+ ;;=3^Spinal Enthesopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,35720,1,4,0)
+ ;;=4^M46.03
+ ;;^UTILITY(U,$J,358.3,35720,2)
+ ;;=^5011973
+ ;;^UTILITY(U,$J,358.3,35721,0)
+ ;;=M46.04^^139^1821^44
+ ;;^UTILITY(U,$J,358.3,35721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37956,1,3,0)
- ;;=3^Social Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,37956,1,4,0)
- ;;=4^F40.10
- ;;^UTILITY(U,$J,358.3,37956,2)
- ;;=^5003544
- ;;^UTILITY(U,$J,358.3,37957,0)
- ;;=F40.218^^145^1829^4
- ;;^UTILITY(U,$J,358.3,37957,1,0)
+ ;;^UTILITY(U,$J,358.3,35721,1,3,0)
+ ;;=3^Spinal Enthesopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,35721,1,4,0)
+ ;;=4^M46.04
+ ;;^UTILITY(U,$J,358.3,35721,2)
+ ;;=^5011974
+ ;;^UTILITY(U,$J,358.3,35722,0)
+ ;;=M48.9^^139^1821^48
+ ;;^UTILITY(U,$J,358.3,35722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37957,1,3,0)
- ;;=3^Animal Type Phobias
- ;;^UTILITY(U,$J,358.3,37957,1,4,0)
- ;;=4^F40.218
- ;;^UTILITY(U,$J,358.3,37957,2)
- ;;=^5003547
- ;;^UTILITY(U,$J,358.3,37958,0)
- ;;=F40.228^^145^1829^14
- ;;^UTILITY(U,$J,358.3,37958,1,0)
+ ;;^UTILITY(U,$J,358.3,35722,1,3,0)
+ ;;=3^Spondylopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,35722,1,4,0)
+ ;;=4^M48.9
+ ;;^UTILITY(U,$J,358.3,35722,2)
+ ;;=^5012204
+ ;;^UTILITY(U,$J,358.3,35723,0)
+ ;;=M47.812^^139^1821^49
+ ;;^UTILITY(U,$J,358.3,35723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37958,1,3,0)
- ;;=3^Natural Environment Type Phobia
- ;;^UTILITY(U,$J,358.3,37958,1,4,0)
- ;;=4^F40.228
- ;;^UTILITY(U,$J,358.3,37958,2)
- ;;=^5003549
- ;;^UTILITY(U,$J,358.3,37959,0)
- ;;=F40.230^^145^1829^9
- ;;^UTILITY(U,$J,358.3,37959,1,0)
+ ;;^UTILITY(U,$J,358.3,35723,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,35723,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,35723,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,35724,0)
+ ;;=M47.816^^139^1821^51
+ ;;^UTILITY(U,$J,358.3,35724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37959,1,3,0)
- ;;=3^Fear of Blood
- ;;^UTILITY(U,$J,358.3,37959,1,4,0)
- ;;=4^F40.230
- ;;^UTILITY(U,$J,358.3,37959,2)
- ;;=^5003550
- ;;^UTILITY(U,$J,358.3,37960,0)
- ;;=F40.231^^145^1829^10
- ;;^UTILITY(U,$J,358.3,37960,1,0)
+ ;;^UTILITY(U,$J,358.3,35724,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,35724,1,4,0)
+ ;;=4^M47.816
+ ;;^UTILITY(U,$J,358.3,35724,2)
+ ;;=^5012073
+ ;;^UTILITY(U,$J,358.3,35725,0)
+ ;;=M47.817^^139^1821^52
+ ;;^UTILITY(U,$J,358.3,35725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37960,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,37960,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,37960,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,37961,0)
- ;;=F40.232^^145^1829^12
- ;;^UTILITY(U,$J,358.3,37961,1,0)
+ ;;^UTILITY(U,$J,358.3,35725,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,35725,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,35725,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,35726,0)
+ ;;=M47.811^^139^1821^53
+ ;;^UTILITY(U,$J,358.3,35726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37961,1,3,0)
- ;;=3^Fear of Oth Medical Care
- ;;^UTILITY(U,$J,358.3,37961,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,37961,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,37962,0)
- ;;=F40.233^^145^1829^11
- ;;^UTILITY(U,$J,358.3,37962,1,0)
+ ;;^UTILITY(U,$J,358.3,35726,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Occipt-Atlan-Ax Region
+ ;;^UTILITY(U,$J,358.3,35726,1,4,0)
+ ;;=4^M47.811
+ ;;^UTILITY(U,$J,358.3,35726,2)
+ ;;=^5012068
+ ;;^UTILITY(U,$J,358.3,35727,0)
+ ;;=M47.818^^139^1821^54
+ ;;^UTILITY(U,$J,358.3,35727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37962,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,37962,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,37962,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,37963,0)
- ;;=F40.240^^145^1829^8
- ;;^UTILITY(U,$J,358.3,37963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37963,1,3,0)
- ;;=3^Claustrophobia
- ;;^UTILITY(U,$J,358.3,37963,1,4,0)
- ;;=4^F40.240
- ;;^UTILITY(U,$J,358.3,37963,2)
- ;;=^5003554
- ;;^UTILITY(U,$J,358.3,37964,0)
- ;;=F40.241^^145^1829^1
- ;;^UTILITY(U,$J,358.3,37964,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35727,1,3,0)
+ ;;=3^Spondyls w/o Myelopathy/Radiculopathy,Sacral/Sacrocycgl Region
+ ;;^UTILITY(U,$J,358.3,35727,1,4,0)
+ ;;=4^M47.818

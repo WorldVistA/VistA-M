@@ -1,130 +1,122 @@
-IBDEI2R3 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2R3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46164,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46164,1,2,0)
- ;;=2^94664
- ;;^UTILITY(U,$J,358.3,46164,1,3,0)
- ;;=3^Demo/Eval Pt use of Nebulizer
- ;;^UTILITY(U,$J,358.3,46165,0)
- ;;=94667^^204^2281^3
- ;;^UTILITY(U,$J,358.3,46165,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46165,1,2,0)
- ;;=2^94667
- ;;^UTILITY(U,$J,358.3,46165,1,3,0)
- ;;=3^Manipulation of Chest Wall
- ;;^UTILITY(U,$J,358.3,46166,0)
- ;;=94660^^204^2281^4^^^^1
- ;;^UTILITY(U,$J,358.3,46166,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46166,1,2,0)
- ;;=2^94660
- ;;^UTILITY(U,$J,358.3,46166,1,3,0)
- ;;=3^CPAP Management
- ;;^UTILITY(U,$J,358.3,46167,0)
- ;;=31622^^204^2282^5^^^^1
- ;;^UTILITY(U,$J,358.3,46167,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46167,1,2,0)
- ;;=2^31622
- ;;^UTILITY(U,$J,358.3,46167,1,3,0)
- ;;=3^Bronchoscopy Diag w/ Wash
- ;;^UTILITY(U,$J,358.3,46168,0)
- ;;=31623^^204^2282^14^^^^1
- ;;^UTILITY(U,$J,358.3,46168,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46168,1,2,0)
- ;;=2^31623
- ;;^UTILITY(U,$J,358.3,46168,1,3,0)
- ;;=3^Bronchoscopy w/ Brushings
- ;;^UTILITY(U,$J,358.3,46169,0)
- ;;=31624^^204^2282^16^^^^1
- ;;^UTILITY(U,$J,358.3,46169,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46169,1,2,0)
- ;;=2^31624
- ;;^UTILITY(U,$J,358.3,46169,1,3,0)
- ;;=3^Bronchoscopy w/ Lavage
- ;;^UTILITY(U,$J,358.3,46170,0)
- ;;=31625^^204^2282^13^^^^1
- ;;^UTILITY(U,$J,358.3,46170,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46170,1,2,0)
- ;;=2^31625
- ;;^UTILITY(U,$J,358.3,46170,1,3,0)
- ;;=3^Bronchoscopy w/ Biopsy
- ;;^UTILITY(U,$J,358.3,46171,0)
- ;;=31628^^204^2282^19^^^^1
- ;;^UTILITY(U,$J,358.3,46171,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46171,1,2,0)
- ;;=2^31628
- ;;^UTILITY(U,$J,358.3,46171,1,3,0)
- ;;=3^Bronchoscopy w/ Transbronch Bx
- ;;^UTILITY(U,$J,358.3,46172,0)
- ;;=31629^^204^2282^20^^^^1
- ;;^UTILITY(U,$J,358.3,46172,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46172,1,2,0)
- ;;=2^31629
- ;;^UTILITY(U,$J,358.3,46172,1,3,0)
- ;;=3^Bronchoscopy w/ Transbronch Needle Aspiration
- ;;^UTILITY(U,$J,358.3,46173,0)
- ;;=31635^^204^2282^15^^^^1
- ;;^UTILITY(U,$J,358.3,46173,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46173,1,2,0)
- ;;=2^31635
- ;;^UTILITY(U,$J,358.3,46173,1,3,0)
- ;;=3^Bronchoscopy w/ FB Removal
- ;;^UTILITY(U,$J,358.3,46174,0)
- ;;=31899^^204^2282^1^^^^1
- ;;^UTILITY(U,$J,358.3,46174,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46174,1,2,0)
- ;;=2^31899
- ;;^UTILITY(U,$J,358.3,46174,1,3,0)
- ;;=3^Airways Surgical Procedure
- ;;^UTILITY(U,$J,358.3,46175,0)
- ;;=31630^^204^2282^7^^^^1
- ;;^UTILITY(U,$J,358.3,46175,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46175,1,2,0)
- ;;=2^31630
- ;;^UTILITY(U,$J,358.3,46175,1,3,0)
- ;;=3^Bronchoscopy Dilate/Fx Repair
- ;;^UTILITY(U,$J,358.3,46176,0)
- ;;=31640^^204^2282^21^^^^1
- ;;^UTILITY(U,$J,358.3,46176,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46176,1,2,0)
- ;;=2^31640
- ;;^UTILITY(U,$J,358.3,46176,1,3,0)
- ;;=3^Bronchoscopy w/ Tumor Excise
- ;;^UTILITY(U,$J,358.3,46177,0)
- ;;=31636^^204^2282^2^^^^1
- ;;^UTILITY(U,$J,358.3,46177,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46177,1,2,0)
- ;;=2^31636
- ;;^UTILITY(U,$J,358.3,46177,1,3,0)
- ;;=3^Bronchoscopy Bronch Stents
- ;;^UTILITY(U,$J,358.3,46178,0)
- ;;=31643^^204^2282^23^^^^1
- ;;^UTILITY(U,$J,358.3,46178,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46178,1,2,0)
- ;;=2^31643
- ;;^UTILITY(U,$J,358.3,46178,1,3,0)
- ;;=3^Diag Bronchoscope/Catheter
- ;;^UTILITY(U,$J,358.3,46179,0)
- ;;=31645^^204^2282^4^^^^1
- ;;^UTILITY(U,$J,358.3,46179,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,46179,1,2,0)
- ;;=2^31645
- ;;^UTILITY(U,$J,358.3,46179,1,3,0)
- ;;=3^Bronchoscopy Clear Airways
+ ;;^UTILITY(U,$J,358.3,43873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43873,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,43873,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,43873,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,43874,0)
+ ;;=Z69.11^^164^2166^24
+ ;;^UTILITY(U,$J,358.3,43874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43874,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse,Neglect
+ ;;^UTILITY(U,$J,358.3,43874,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,43874,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,43875,0)
+ ;;=Z91.410^^164^2166^26
+ ;;^UTILITY(U,$J,358.3,43875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43875,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,43875,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,43875,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,43876,0)
+ ;;=T74.21XA^^164^2166^15
+ ;;^UTILITY(U,$J,358.3,43876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43876,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,43876,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,43876,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,43877,0)
+ ;;=T74.21XD^^164^2166^16
+ ;;^UTILITY(U,$J,358.3,43877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43877,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,43877,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,43877,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,43878,0)
+ ;;=T76.21XA^^164^2166^17
+ ;;^UTILITY(U,$J,358.3,43878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43878,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,43878,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,43878,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,43879,0)
+ ;;=T76.21XD^^164^2166^18
+ ;;^UTILITY(U,$J,358.3,43879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43879,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,43879,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,43879,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,43880,0)
+ ;;=Z69.81^^164^2166^23
+ ;;^UTILITY(U,$J,358.3,43880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43880,1,3,0)
+ ;;=3^MH Svc for Victim of Other Abuse
+ ;;^UTILITY(U,$J,358.3,43880,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,43880,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,43881,0)
+ ;;=Z69.82^^164^2166^21
+ ;;^UTILITY(U,$J,358.3,43881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43881,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Other Abuse
+ ;;^UTILITY(U,$J,358.3,43881,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,43881,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,43882,0)
+ ;;=T74.01XA^^164^2166^3
+ ;;^UTILITY(U,$J,358.3,43882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43882,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,43882,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,43882,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,43883,0)
+ ;;=T74.01XD^^164^2166^4
+ ;;^UTILITY(U,$J,358.3,43883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43883,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,43883,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,43883,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,43884,0)
+ ;;=T76.01XA^^164^2166^5
+ ;;^UTILITY(U,$J,358.3,43884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43884,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,43884,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,43884,2)
+ ;;=^5054215

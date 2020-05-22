@@ -1,5 +1,5 @@
 PRCASER1 ;WASH-ISC@ALTOONA,PA/RGY - Accept transaction from billing engine ;9/8/93  2:21 PM
-V ;;4.5;Accounts Receivable;**48,104,165,233,301,307,337,353**;Mar 20, 1995;Build 15
+V ;;4.5;Accounts Receivable;**48,104,165,233,301,307,337,353,364**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*337 Added a bill lock to insure that decreases are stacked
@@ -10,6 +10,7 @@ V ;;4.5;Accounts Receivable;**48,104,165,233,301,307,337,353**;Mar 20, 1995;Buil
  ;             In addition, added modification that will allow 
  ;             decreases to post to 'Suspended' bills to avoid
  ;             further billing issues if the bill is re-opened.
+ ;PRCA*4.5*364 Ensure exempt transaction has date/time stamp
  ;
  NEW AMT,AMT1,PRCAERR,PRCABN,PRCADJ,X1,XMDUZ,XMSUB,XMTEXT,XMY,DEBT
  I '$D(X) S Y="-1^PRCA020" G Q
@@ -59,7 +60,7 @@ DEC(PRCABN,AMT,APR,REA,BDT,PRCAEN) ;Auto decrease from service Bill#,Tran amt,pe
  S AMT=AMT-+$P($G(^PRCA(433,PRCAEN,1)),U,5)
  I PRCAEN,$D(^PRCA(430,"TCSP",PRCABN)) D DECADJ^RCTCSPU(PRCABN,PRCAEN) ;prca*4.5*301 add cs decrease adjustment 5B
  S PRCAAMT=$G(^PRCA(430,PRCABN,7)) I $P(PRCAAMT,U)=0,($P(PRCAAMT,U,2)+$P(PRCAAMT,"^",3)+$P(PRCAAMT,"^",4)+$P(PRCAAMT,"^",5)'=0) D   ;PRCA*4.5*353
- . S PRCATRAN=$$EXEMPT^RCBEUTR2(PRCABN,$P(PRCAAMT,"^",2)_"^"_$P(PRCAAMT,"^",3)_"^^"_$P(PRCAAMT,"^",4)_"^"_$P(PRCAAMT,"^",5),"PRINCIPAL BAL EQUALS ZERO",DT,1)
+ . S PRCATRAN=$$EXEMPT^RCBEUTR2(PRCABN,$P(PRCAAMT,"^",2)_"^"_$P(PRCAAMT,"^",3)_"^^"_$P(PRCAAMT,"^",4)_"^"_$P(PRCAAMT,"^",5),"PRINCIPAL BAL EQUALS ZERO",0,1)
  . I PRCATRAN,$D(^PRCA(430,"TCSP",PRCABN)) D DECADJ^RCTCSPU(PRCABN,PRCATRAN)
 Q1 L -^PRCA(430,PRCABN,"PRCASER1") S Y=$S($G(Y)<0:Y,1:1)
  Q

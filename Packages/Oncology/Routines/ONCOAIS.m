@@ -1,5 +1,5 @@
 ONCOAIS ;Hines OIFO/GWB - POST FOLLOW-UP UPDATE PRIMARY CANCER STATUS ;07/12/00
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,10**;Jul 31, 2013;Build 20
  ;
 PRI ;TUMOR STATUS - from template [ONCO FOLLOWUP]
  I $D(^ONCO(165.5,"C",DA(1))) D
@@ -35,7 +35,7 @@ EDITEM ;Edit Tumor Status for each primary during a follow-up
  Q
  ;
 EDITONE ;CANCER STATUS (165.573,.02)
- S DR=.02
+ S DR=".02;.03;.04"
  N DA
  S DA(1)=$P(XY(KK),U),DA=$P(XY(KK),U,2)
  I DUZ(2)'=$P($G(^ONCO(165.5,DA(1),"DIV")),U,1) Q

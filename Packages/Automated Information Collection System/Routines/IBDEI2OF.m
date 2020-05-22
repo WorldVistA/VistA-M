@@ -1,134 +1,118 @@
-IBDEI2OF ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44916,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,44916,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,44917,0)
- ;;=M72.0^^200^2234^100
- ;;^UTILITY(U,$J,358.3,44917,1,0)
+ ;;^UTILITY(U,$J,358.3,42671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44917,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,44917,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,44917,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,44918,0)
- ;;=M75.111^^200^2234^144
- ;;^UTILITY(U,$J,358.3,44918,1,0)
+ ;;^UTILITY(U,$J,358.3,42671,1,3,0)
+ ;;=3^Disp fx of oblique shaft of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42671,1,4,0)
+ ;;=4^S82.432S
+ ;;^UTILITY(U,$J,358.3,42671,2)
+ ;;=^5041841
+ ;;^UTILITY(U,$J,358.3,42672,0)
+ ;;=S82.431S^^155^2072^19
+ ;;^UTILITY(U,$J,358.3,42672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44918,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,44918,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,44918,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,44919,0)
- ;;=M75.112^^200^2234^143
- ;;^UTILITY(U,$J,358.3,44919,1,0)
+ ;;^UTILITY(U,$J,358.3,42672,1,3,0)
+ ;;=3^Disp fx of oblique shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,42672,1,4,0)
+ ;;=4^S82.431S
+ ;;^UTILITY(U,$J,358.3,42672,2)
+ ;;=^5041825
+ ;;^UTILITY(U,$J,358.3,42673,0)
+ ;;=S82.462S^^155^2072^25
+ ;;^UTILITY(U,$J,358.3,42673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44919,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,44919,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,44919,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,44920,0)
- ;;=M75.51^^200^2234^10
- ;;^UTILITY(U,$J,358.3,44920,1,0)
+ ;;^UTILITY(U,$J,358.3,42673,1,3,0)
+ ;;=3^Disp fx of segmental shaft of left fibula, sequela     
+ ;;^UTILITY(U,$J,358.3,42673,1,4,0)
+ ;;=4^S82.462S
+ ;;^UTILITY(U,$J,358.3,42673,2)
+ ;;=^5042129
+ ;;^UTILITY(U,$J,358.3,42674,0)
+ ;;=S82.461S^^155^2072^27
+ ;;^UTILITY(U,$J,358.3,42674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44920,1,3,0)
- ;;=3^Bursitis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,44920,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,44920,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,44921,0)
- ;;=M75.52^^200^2234^9
- ;;^UTILITY(U,$J,358.3,44921,1,0)
+ ;;^UTILITY(U,$J,358.3,42674,1,3,0)
+ ;;=3^Disp fx of segmental shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,42674,1,4,0)
+ ;;=4^S82.461S
+ ;;^UTILITY(U,$J,358.3,42674,2)
+ ;;=^5042113
+ ;;^UTILITY(U,$J,358.3,42675,0)
+ ;;=S82.442S^^155^2072^29
+ ;;^UTILITY(U,$J,358.3,42675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44921,1,3,0)
- ;;=3^Bursitis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,44921,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,44921,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,44922,0)
- ;;=M77.11^^200^2234^54
- ;;^UTILITY(U,$J,358.3,44922,1,0)
+ ;;^UTILITY(U,$J,358.3,42675,1,3,0)
+ ;;=3^Disp fx of spiral shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,42675,1,4,0)
+ ;;=4^S82.442S
+ ;;^UTILITY(U,$J,358.3,42675,2)
+ ;;=^5041937
+ ;;^UTILITY(U,$J,358.3,42676,0)
+ ;;=S82.441S^^155^2072^31
+ ;;^UTILITY(U,$J,358.3,42676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44922,1,3,0)
- ;;=3^Lateral Epicondylitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,44922,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,44922,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,44923,0)
- ;;=M77.12^^200^2234^53
- ;;^UTILITY(U,$J,358.3,44923,1,0)
+ ;;^UTILITY(U,$J,358.3,42676,1,3,0)
+ ;;=3^Disp fx of spiral shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,42676,1,4,0)
+ ;;=4^S82.441S
+ ;;^UTILITY(U,$J,358.3,42676,2)
+ ;;=^5041921
+ ;;^UTILITY(U,$J,358.3,42677,0)
+ ;;=S82.422S^^155^2072^33
+ ;;^UTILITY(U,$J,358.3,42677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44923,1,3,0)
- ;;=3^Lateral Epicondylitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,44923,1,4,0)
- ;;=4^M77.12
- ;;^UTILITY(U,$J,358.3,44923,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,44924,0)
- ;;=M79.1^^200^2234^61
- ;;^UTILITY(U,$J,358.3,44924,1,0)
+ ;;^UTILITY(U,$J,358.3,42677,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left fibula, sequela    
+ ;;^UTILITY(U,$J,358.3,42677,1,4,0)
+ ;;=4^S82.422S
+ ;;^UTILITY(U,$J,358.3,42677,2)
+ ;;=^5041745
+ ;;^UTILITY(U,$J,358.3,42678,0)
+ ;;=S82.421S^^155^2072^35
+ ;;^UTILITY(U,$J,358.3,42678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44924,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,44924,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,44924,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,44925,0)
- ;;=M79.7^^200^2234^39
- ;;^UTILITY(U,$J,358.3,44925,1,0)
+ ;;^UTILITY(U,$J,358.3,42678,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,42678,1,4,0)
+ ;;=4^S82.421S
+ ;;^UTILITY(U,$J,358.3,42678,2)
+ ;;=^5041729
+ ;;^UTILITY(U,$J,358.3,42679,0)
+ ;;=S82.455S^^155^2072^42
+ ;;^UTILITY(U,$J,358.3,42679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44925,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,44925,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,44925,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,44926,0)
- ;;=M80.08XA^^200^2234^1
- ;;^UTILITY(U,$J,358.3,44926,1,0)
+ ;;^UTILITY(U,$J,358.3,42679,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,42679,1,4,0)
+ ;;=4^S82.455S
+ ;;^UTILITY(U,$J,358.3,42679,2)
+ ;;=^5042081
+ ;;^UTILITY(U,$J,358.3,42680,0)
+ ;;=S82.454S^^155^2072^44
+ ;;^UTILITY(U,$J,358.3,42680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44926,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,44926,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,44926,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,44927,0)
- ;;=M80.08XD^^200^2234^2
- ;;^UTILITY(U,$J,358.3,44927,1,0)
+ ;;^UTILITY(U,$J,358.3,42680,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,42680,1,4,0)
+ ;;=4^S82.454S
+ ;;^UTILITY(U,$J,358.3,42680,2)
+ ;;=^5042065
+ ;;^UTILITY(U,$J,358.3,42681,0)
+ ;;=S82.65XS^^155^2072^47
+ ;;^UTILITY(U,$J,358.3,42681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44927,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
- ;;^UTILITY(U,$J,358.3,44927,1,4,0)
- ;;=4^M80.08XD
- ;;^UTILITY(U,$J,358.3,44927,2)
- ;;=^5013496
- ;;^UTILITY(U,$J,358.3,44928,0)
- ;;=M84.48XA^^200^2234^101
- ;;^UTILITY(U,$J,358.3,44928,1,0)
+ ;;^UTILITY(U,$J,358.3,42681,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,42681,1,4,0)
+ ;;=4^S82.65XS
+ ;;^UTILITY(U,$J,358.3,42681,2)
+ ;;=^5042390
+ ;;^UTILITY(U,$J,358.3,42682,0)
+ ;;=S82.64XS^^155^2072^48
+ ;;^UTILITY(U,$J,358.3,42682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44928,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,44928,1,4,0)
- ;;=4^M84.48XA
- ;;^UTILITY(U,$J,358.3,44928,2)
- ;;=^5014016
- ;;^UTILITY(U,$J,358.3,44929,0)
- ;;=M84.48XD^^200^2234^102
- ;;^UTILITY(U,$J,358.3,44929,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44929,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42682,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela

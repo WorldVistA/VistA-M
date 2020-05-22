@@ -1,130 +1,128 @@
-IBDEI2QY ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46094,0)
- ;;=S43.401S^^203^2275^23
- ;;^UTILITY(U,$J,358.3,46094,1,0)
+ ;;^UTILITY(U,$J,358.3,43803,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,43803,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,43804,0)
+ ;;=Z75.0^^162^2153^3
+ ;;^UTILITY(U,$J,358.3,43804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46094,1,3,0)
- ;;=3^Sprain,Right Shoulder Joint,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46094,1,4,0)
- ;;=4^S43.401S
- ;;^UTILITY(U,$J,358.3,46094,2)
- ;;=^5027866
- ;;^UTILITY(U,$J,358.3,46095,0)
- ;;=S43.402S^^203^2275^10
- ;;^UTILITY(U,$J,358.3,46095,1,0)
+ ;;^UTILITY(U,$J,358.3,43804,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,43804,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,43804,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,43805,0)
+ ;;=Z75.1^^162^2153^4
+ ;;^UTILITY(U,$J,358.3,43805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46095,1,3,0)
- ;;=3^Sprain,Left Shoulder Joint,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46095,1,4,0)
- ;;=4^S43.402S
- ;;^UTILITY(U,$J,358.3,46095,2)
- ;;=^5027869
- ;;^UTILITY(U,$J,358.3,46096,0)
- ;;=S43.421S^^203^2275^22
- ;;^UTILITY(U,$J,358.3,46096,1,0)
+ ;;^UTILITY(U,$J,358.3,43805,1,3,0)
+ ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
+ ;;^UTILITY(U,$J,358.3,43805,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,43805,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,43806,0)
+ ;;=Z75.4^^162^2153^6
+ ;;^UTILITY(U,$J,358.3,43806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46096,1,3,0)
- ;;=3^Sprain,Right Rotator Cuff,Sequela
- ;;^UTILITY(U,$J,358.3,46096,1,4,0)
- ;;=4^S43.421S
- ;;^UTILITY(U,$J,358.3,46096,2)
- ;;=^5027881
- ;;^UTILITY(U,$J,358.3,46097,0)
- ;;=S43.422S^^203^2275^9
- ;;^UTILITY(U,$J,358.3,46097,1,0)
+ ;;^UTILITY(U,$J,358.3,43806,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,43806,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,43806,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,43807,0)
+ ;;=Z75.8^^162^2153^2
+ ;;^UTILITY(U,$J,358.3,43807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46097,1,3,0)
- ;;=3^Sprain,Left Rotator Cuff,Sequela
- ;;^UTILITY(U,$J,358.3,46097,1,4,0)
- ;;=4^S43.422S
- ;;^UTILITY(U,$J,358.3,46097,2)
- ;;=^5027884
- ;;^UTILITY(U,$J,358.3,46098,0)
- ;;=S53.491S^^203^2275^16
- ;;^UTILITY(U,$J,358.3,46098,1,0)
+ ;;^UTILITY(U,$J,358.3,43807,1,3,0)
+ ;;=3^Medical Facilities/Health Care Problems
+ ;;^UTILITY(U,$J,358.3,43807,1,4,0)
+ ;;=4^Z75.8
+ ;;^UTILITY(U,$J,358.3,43807,2)
+ ;;=^5063295
+ ;;^UTILITY(U,$J,358.3,43808,0)
+ ;;=Z71.9^^162^2153^1
+ ;;^UTILITY(U,$J,358.3,43808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46098,1,3,0)
- ;;=3^Sprain,Right Elbow,Sequela
- ;;^UTILITY(U,$J,358.3,46098,1,4,0)
- ;;=4^S53.491S
- ;;^UTILITY(U,$J,358.3,46098,2)
- ;;=^5031405
- ;;^UTILITY(U,$J,358.3,46099,0)
- ;;=S53.492S^^203^2275^3
- ;;^UTILITY(U,$J,358.3,46099,1,0)
+ ;;^UTILITY(U,$J,358.3,43808,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,43808,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,43808,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,43809,0)
+ ;;=Z51.89^^162^2154^1
+ ;;^UTILITY(U,$J,358.3,43809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46099,1,3,0)
- ;;=3^Sprain,Left Elbow,Sequela
- ;;^UTILITY(U,$J,358.3,46099,1,4,0)
- ;;=4^S53.492S
- ;;^UTILITY(U,$J,358.3,46099,2)
- ;;=^5135385
- ;;^UTILITY(U,$J,358.3,46100,0)
- ;;=S63.91XS^^203^2275^24
- ;;^UTILITY(U,$J,358.3,46100,1,0)
+ ;;^UTILITY(U,$J,358.3,43809,1,3,0)
+ ;;=3^Aftercare,Oth Spec
+ ;;^UTILITY(U,$J,358.3,43809,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,43809,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,43810,0)
+ ;;=Z51.5^^162^2154^2
+ ;;^UTILITY(U,$J,358.3,43810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46100,1,3,0)
- ;;=3^Sprain,Right Wrist/Hand,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46100,1,4,0)
- ;;=4^S63.91XS
- ;;^UTILITY(U,$J,358.3,46100,2)
- ;;=^5136050
- ;;^UTILITY(U,$J,358.3,46101,0)
- ;;=S63.92XS^^203^2275^11
- ;;^UTILITY(U,$J,358.3,46101,1,0)
+ ;;^UTILITY(U,$J,358.3,43810,1,3,0)
+ ;;=3^Palliative Care
+ ;;^UTILITY(U,$J,358.3,43810,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,43810,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,43811,0)
+ ;;=Z91.5^^162^2155^1
+ ;;^UTILITY(U,$J,358.3,43811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46101,1,3,0)
- ;;=3^Sprain,Left Wrist/Hand,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46101,1,4,0)
- ;;=4^S63.92XS
- ;;^UTILITY(U,$J,358.3,46101,2)
- ;;=^5136051
- ;;^UTILITY(U,$J,358.3,46102,0)
- ;;=S73.101S^^203^2275^19
- ;;^UTILITY(U,$J,358.3,46102,1,0)
+ ;;^UTILITY(U,$J,358.3,43811,1,3,0)
+ ;;=3^Personal Hx of One or More Suicide Attempts
+ ;;^UTILITY(U,$J,358.3,43811,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,43811,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,43812,0)
+ ;;=R45.851^^162^2155^2
+ ;;^UTILITY(U,$J,358.3,43812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46102,1,3,0)
- ;;=3^Sprain,Right Hip,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46102,1,4,0)
- ;;=4^S73.101S
- ;;^UTILITY(U,$J,358.3,46102,2)
- ;;=^5039311
- ;;^UTILITY(U,$J,358.3,46103,0)
- ;;=S73.102S^^203^2275^6
- ;;^UTILITY(U,$J,358.3,46103,1,0)
+ ;;^UTILITY(U,$J,358.3,43812,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,43812,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,43812,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,43813,0)
+ ;;=T14.91XA^^162^2155^3
+ ;;^UTILITY(U,$J,358.3,43813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46103,1,3,0)
- ;;=3^Sprain,Left Hip,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46103,1,4,0)
- ;;=4^S73.102S
- ;;^UTILITY(U,$J,358.3,46103,2)
- ;;=^5039314
- ;;^UTILITY(U,$J,358.3,46104,0)
- ;;=S93.402S^^203^2275^2
- ;;^UTILITY(U,$J,358.3,46104,1,0)
+ ;;^UTILITY(U,$J,358.3,43813,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,43813,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,43813,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,43814,0)
+ ;;=T14.91XD^^162^2155^4
+ ;;^UTILITY(U,$J,358.3,43814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46104,1,3,0)
- ;;=3^Sprain,Left Ankle Ligament,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46104,1,4,0)
- ;;=4^S93.402S
- ;;^UTILITY(U,$J,358.3,46104,2)
- ;;=^5045779
- ;;^UTILITY(U,$J,358.3,46105,0)
- ;;=S93.401S^^203^2275^15
- ;;^UTILITY(U,$J,358.3,46105,1,0)
+ ;;^UTILITY(U,$J,358.3,43814,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,43814,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,43814,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,43815,0)
+ ;;=T14.91XS^^162^2155^5
+ ;;^UTILITY(U,$J,358.3,43815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46105,1,3,0)
- ;;=3^Sprain,Right Ankle Ligament,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46105,1,4,0)
- ;;=4^S93.401S
- ;;^UTILITY(U,$J,358.3,46105,2)
- ;;=^5045776
- ;;^UTILITY(U,$J,358.3,46106,0)
- ;;=S93.501S^^203^2275^18
- ;;^UTILITY(U,$J,358.3,46106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46106,1,3,0)
- ;;=3^Sprain,Right Great Toe,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,43815,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,43815,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,43815,2)
+ ;;=^5151781

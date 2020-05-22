@@ -1,132 +1,124 @@
-IBDEI1OC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28445,1,3,0)
- ;;=3^DM Type 2 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,28445,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,28445,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,28446,0)
- ;;=E11.641^^112^1421^16
- ;;^UTILITY(U,$J,358.3,28446,1,0)
+ ;;^UTILITY(U,$J,358.3,26760,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,26761,0)
+ ;;=F31.76^^110^1285^12
+ ;;^UTILITY(U,$J,358.3,26761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28446,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,28446,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,28446,2)
- ;;=^5002661
- ;;^UTILITY(U,$J,358.3,28447,0)
- ;;=E11.649^^112^1421^17
- ;;^UTILITY(U,$J,358.3,28447,1,0)
+ ;;^UTILITY(U,$J,358.3,26761,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,26761,1,4,0)
+ ;;=4^F31.76
+ ;;^UTILITY(U,$J,358.3,26761,2)
+ ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,26762,0)
+ ;;=F31.81^^110^1285^25
+ ;;^UTILITY(U,$J,358.3,26762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28447,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,28447,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,28447,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,28448,0)
- ;;=H40.11X0^^112^1422^9
- ;;^UTILITY(U,$J,358.3,28448,1,0)
+ ;;^UTILITY(U,$J,358.3,26762,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,26762,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,26762,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,26763,0)
+ ;;=F34.0^^110^1285^26
+ ;;^UTILITY(U,$J,358.3,26763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28448,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Unspec Stage
- ;;^UTILITY(U,$J,358.3,28448,1,4,0)
- ;;=4^H40.11X0
- ;;^UTILITY(U,$J,358.3,28448,2)
- ;;=^5005753
- ;;^UTILITY(U,$J,358.3,28449,0)
- ;;=H40.11X1^^112^1422^6
- ;;^UTILITY(U,$J,358.3,28449,1,0)
+ ;;^UTILITY(U,$J,358.3,26763,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,26763,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,26763,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,26764,0)
+ ;;=F31.0^^110^1285^16
+ ;;^UTILITY(U,$J,358.3,26764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28449,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Mild Stage
- ;;^UTILITY(U,$J,358.3,28449,1,4,0)
- ;;=4^H40.11X1
- ;;^UTILITY(U,$J,358.3,28449,2)
- ;;=^5005754
- ;;^UTILITY(U,$J,358.3,28450,0)
- ;;=H40.11X2^^112^1422^7
- ;;^UTILITY(U,$J,358.3,28450,1,0)
+ ;;^UTILITY(U,$J,358.3,26764,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic
+ ;;^UTILITY(U,$J,358.3,26764,1,4,0)
+ ;;=4^F31.0
+ ;;^UTILITY(U,$J,358.3,26764,2)
+ ;;=^5003494
+ ;;^UTILITY(U,$J,358.3,26765,0)
+ ;;=F31.71^^110^1285^17
+ ;;^UTILITY(U,$J,358.3,26765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28450,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Moderate Stage
- ;;^UTILITY(U,$J,358.3,28450,1,4,0)
- ;;=4^H40.11X2
- ;;^UTILITY(U,$J,358.3,28450,2)
- ;;=^5005755
- ;;^UTILITY(U,$J,358.3,28451,0)
- ;;=H40.11X3^^112^1422^8
- ;;^UTILITY(U,$J,358.3,28451,1,0)
+ ;;^UTILITY(U,$J,358.3,26765,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,26765,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,26765,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,26766,0)
+ ;;=F31.72^^110^1285^18
+ ;;^UTILITY(U,$J,358.3,26766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28451,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Severe Stage
- ;;^UTILITY(U,$J,358.3,28451,1,4,0)
- ;;=4^H40.11X3
- ;;^UTILITY(U,$J,358.3,28451,2)
- ;;=^5005756
- ;;^UTILITY(U,$J,358.3,28452,0)
- ;;=H40.11X4^^112^1422^5
- ;;^UTILITY(U,$J,358.3,28452,1,0)
+ ;;^UTILITY(U,$J,358.3,26766,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,26766,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,26766,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,26767,0)
+ ;;=F31.89^^110^1285^3
+ ;;^UTILITY(U,$J,358.3,26767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28452,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,28452,1,4,0)
- ;;=4^H40.11X4
- ;;^UTILITY(U,$J,358.3,28452,2)
- ;;=^5005757
- ;;^UTILITY(U,$J,358.3,28453,0)
- ;;=H11.33^^112^1422^2
- ;;^UTILITY(U,$J,358.3,28453,1,0)
+ ;;^UTILITY(U,$J,358.3,26767,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,26767,1,4,0)
+ ;;=4^F31.89
+ ;;^UTILITY(U,$J,358.3,26767,2)
+ ;;=^5003520
+ ;;^UTILITY(U,$J,358.3,26768,0)
+ ;;=F31.9^^110^1285^4
+ ;;^UTILITY(U,$J,358.3,26768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28453,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Bilateral
- ;;^UTILITY(U,$J,358.3,28453,1,4,0)
- ;;=4^H11.33
- ;;^UTILITY(U,$J,358.3,28453,2)
- ;;=^5004784
- ;;^UTILITY(U,$J,358.3,28454,0)
- ;;=H11.31^^112^1422^4
- ;;^UTILITY(U,$J,358.3,28454,1,0)
+ ;;^UTILITY(U,$J,358.3,26768,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Unsp
+ ;;^UTILITY(U,$J,358.3,26768,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,26768,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,26769,0)
+ ;;=F31.60^^110^1285^9
+ ;;^UTILITY(U,$J,358.3,26769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28454,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,28454,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,28454,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,28455,0)
- ;;=H11.32^^112^1422^3
- ;;^UTILITY(U,$J,358.3,28455,1,0)
+ ;;^UTILITY(U,$J,358.3,26769,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Unspec
+ ;;^UTILITY(U,$J,358.3,26769,1,4,0)
+ ;;=4^F31.60
+ ;;^UTILITY(U,$J,358.3,26769,2)
+ ;;=^5003505
+ ;;^UTILITY(U,$J,358.3,26770,0)
+ ;;=F31.61^^110^1285^5
+ ;;^UTILITY(U,$J,358.3,26770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28455,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,28455,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,28455,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,28456,0)
- ;;=H61.23^^112^1422^13
- ;;^UTILITY(U,$J,358.3,28456,1,0)
+ ;;^UTILITY(U,$J,358.3,26770,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Mild
+ ;;^UTILITY(U,$J,358.3,26770,1,4,0)
+ ;;=4^F31.61
+ ;;^UTILITY(U,$J,358.3,26770,2)
+ ;;=^5003506
+ ;;^UTILITY(U,$J,358.3,26771,0)
+ ;;=F31.62^^110^1285^6
+ ;;^UTILITY(U,$J,358.3,26771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28456,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral
- ;;^UTILITY(U,$J,358.3,28456,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,28456,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,28457,0)
- ;;=H61.22^^112^1422^14
- ;;^UTILITY(U,$J,358.3,28457,1,0)
+ ;;^UTILITY(U,$J,358.3,26771,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Moderate
+ ;;^UTILITY(U,$J,358.3,26771,1,4,0)
+ ;;=4^F31.62
+ ;;^UTILITY(U,$J,358.3,26771,2)
+ ;;=^5003507
+ ;;^UTILITY(U,$J,358.3,26772,0)
+ ;;=F31.63^^110^1285^7
+ ;;^UTILITY(U,$J,358.3,26772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28457,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,28457,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,28457,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,28458,0)
- ;;=H66.91^^112^1422^18
+ ;;^UTILITY(U,$J,358.3,26772,1,3,0)
+ ;;=3^Bipolar D/O,Current Episode Mixed,Severe w/o Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,26772,1,4,0)
+ ;;=4^F31.63

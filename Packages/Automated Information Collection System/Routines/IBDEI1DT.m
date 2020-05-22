@@ -1,134 +1,124 @@
-IBDEI1DT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23482,1,4,0)
- ;;=4^T07.
- ;;^UTILITY(U,$J,358.3,23482,2)
- ;;=^5046377
- ;;^UTILITY(U,$J,358.3,23483,0)
- ;;=L08.89^^87^998^3
- ;;^UTILITY(U,$J,358.3,23483,1,0)
+ ;;^UTILITY(U,$J,358.3,22083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23483,1,3,0)
- ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
- ;;^UTILITY(U,$J,358.3,23483,1,4,0)
- ;;=4^L08.89
- ;;^UTILITY(U,$J,358.3,23483,2)
- ;;=^5009081
- ;;^UTILITY(U,$J,358.3,23484,0)
- ;;=T14.90^^87^998^1
- ;;^UTILITY(U,$J,358.3,23484,1,0)
+ ;;^UTILITY(U,$J,358.3,22083,1,3,0)
+ ;;=3^Prblms related to life mngmt difficulty, oth
+ ;;^UTILITY(U,$J,358.3,22083,1,4,0)
+ ;;=4^Z73.89
+ ;;^UTILITY(U,$J,358.3,22083,2)
+ ;;=^5063280
+ ;;^UTILITY(U,$J,358.3,22084,0)
+ ;;=Z55.9^^99^1125^32
+ ;;^UTILITY(U,$J,358.3,22084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23484,1,3,0)
- ;;=3^Injury,Unspec
- ;;^UTILITY(U,$J,358.3,23484,1,4,0)
- ;;=4^T14.90
- ;;^UTILITY(U,$J,358.3,23484,2)
- ;;=^5046379
- ;;^UTILITY(U,$J,358.3,23485,0)
- ;;=S91.002A^^87^998^6
- ;;^UTILITY(U,$J,358.3,23485,1,0)
+ ;;^UTILITY(U,$J,358.3,22084,1,3,0)
+ ;;=3^Prblms related to educ & literacy, unspec
+ ;;^UTILITY(U,$J,358.3,22084,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,22084,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,22085,0)
+ ;;=Z63.8^^99^1125^34
+ ;;^UTILITY(U,$J,358.3,22085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23485,1,3,0)
- ;;=3^Open Wound,Left Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,23485,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,23485,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,23486,0)
- ;;=S91.302A^^87^998^7
- ;;^UTILITY(U,$J,358.3,23486,1,0)
+ ;;^UTILITY(U,$J,358.3,22085,1,3,0)
+ ;;=3^Prblms related to prim support grp, oth, unspec
+ ;;^UTILITY(U,$J,358.3,22085,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,22085,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,22086,0)
+ ;;=Z63.9^^99^1125^35
+ ;;^UTILITY(U,$J,358.3,22086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23486,1,3,0)
- ;;=3^Open Wound,Left Foot,Unspec
- ;;^UTILITY(U,$J,358.3,23486,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,23486,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,23487,0)
- ;;=S51.802A^^87^998^8
- ;;^UTILITY(U,$J,358.3,23487,1,0)
+ ;;^UTILITY(U,$J,358.3,22086,1,3,0)
+ ;;=3^Prblms related to prim support grp, unspec
+ ;;^UTILITY(U,$J,358.3,22086,1,4,0)
+ ;;=4^Z63.9
+ ;;^UTILITY(U,$J,358.3,22086,2)
+ ;;=^5063175
+ ;;^UTILITY(U,$J,358.3,22087,0)
+ ;;=Z65.8^^99^1125^36
+ ;;^UTILITY(U,$J,358.3,22087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23487,1,3,0)
- ;;=3^Open Wound,Left Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,23487,1,4,0)
- ;;=4^S51.802A
- ;;^UTILITY(U,$J,358.3,23487,2)
- ;;=^5028662
- ;;^UTILITY(U,$J,358.3,23488,0)
- ;;=S91.102A^^87^998^9
- ;;^UTILITY(U,$J,358.3,23488,1,0)
+ ;;^UTILITY(U,$J,358.3,22087,1,3,0)
+ ;;=3^Prblms related to psychosocial circumst, oth
+ ;;^UTILITY(U,$J,358.3,22087,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,22087,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,22088,0)
+ ;;=Z65.9^^99^1125^37
+ ;;^UTILITY(U,$J,358.3,22088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23488,1,3,0)
- ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,23488,1,4,0)
- ;;=4^S91.102A
- ;;^UTILITY(U,$J,358.3,23488,2)
- ;;=^5044171
- ;;^UTILITY(U,$J,358.3,23489,0)
- ;;=S61.402A^^87^998^10
- ;;^UTILITY(U,$J,358.3,23489,1,0)
+ ;;^UTILITY(U,$J,358.3,22088,1,3,0)
+ ;;=3^Prblms related to unspec psychosocial circumst
+ ;;^UTILITY(U,$J,358.3,22088,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,22088,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,22089,0)
+ ;;=Z72.0^^99^1125^46
+ ;;^UTILITY(U,$J,358.3,22089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23489,1,3,0)
- ;;=3^Open Wound,Left Hand,Unspec
- ;;^UTILITY(U,$J,358.3,23489,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,23489,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,23490,0)
- ;;=S71.002A^^87^998^11
- ;;^UTILITY(U,$J,358.3,23490,1,0)
+ ;;^UTILITY(U,$J,358.3,22089,1,3,0)
+ ;;=3^Tobacco use, NOS
+ ;;^UTILITY(U,$J,358.3,22089,1,4,0)
+ ;;=4^Z72.0
+ ;;^UTILITY(U,$J,358.3,22089,2)
+ ;;=^5063255
+ ;;^UTILITY(U,$J,358.3,22090,0)
+ ;;=Z73.5^^99^1125^44
+ ;;^UTILITY(U,$J,358.3,22090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23490,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
- ;;^UTILITY(U,$J,358.3,23490,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,23490,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,23491,0)
- ;;=S91.104A^^87^998^22
- ;;^UTILITY(U,$J,358.3,23491,1,0)
+ ;;^UTILITY(U,$J,358.3,22090,1,3,0)
+ ;;=3^Social role conflict, NEC
+ ;;^UTILITY(U,$J,358.3,22090,1,4,0)
+ ;;=4^Z73.5
+ ;;^UTILITY(U,$J,358.3,22090,2)
+ ;;=^5063273
+ ;;^UTILITY(U,$J,358.3,22091,0)
+ ;;=Z91.130^^99^1125^42
+ ;;^UTILITY(U,$J,358.3,22091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23491,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
- ;;^UTILITY(U,$J,358.3,23491,1,4,0)
- ;;=4^S91.104A
- ;;^UTILITY(U,$J,358.3,23491,2)
- ;;=^5044174
- ;;^UTILITY(U,$J,358.3,23492,0)
- ;;=S81.802A^^87^998^13
- ;;^UTILITY(U,$J,358.3,23492,1,0)
+ ;;^UTILITY(U,$J,358.3,22091,1,3,0)
+ ;;=3^Pt's unintent undrdose of meds regimen d/t age-rel dblity
+ ;;^UTILITY(U,$J,358.3,22091,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,22091,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,22092,0)
+ ;;=Z91.138^^99^1125^43
+ ;;^UTILITY(U,$J,358.3,22092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23492,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,23492,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,23492,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,23493,0)
- ;;=S41.102A^^87^998^15
- ;;^UTILITY(U,$J,358.3,23493,1,0)
+ ;;^UTILITY(U,$J,358.3,22092,1,3,0)
+ ;;=3^Pt's unintent undrdose of meds regimen for oth reason
+ ;;^UTILITY(U,$J,358.3,22092,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,22092,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,22093,0)
+ ;;=Z95.3^^99^1125^38
+ ;;^UTILITY(U,$J,358.3,22093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23493,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,23493,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,23493,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,23494,0)
- ;;=S91.001A^^87^998^16
- ;;^UTILITY(U,$J,358.3,23494,1,0)
+ ;;^UTILITY(U,$J,358.3,22093,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,22093,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,22093,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,22094,0)
+ ;;=Z63.31^^99^1125^1
+ ;;^UTILITY(U,$J,358.3,22094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23494,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,23494,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,23494,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,23495,0)
- ;;=S91.301A^^87^998^17
- ;;^UTILITY(U,$J,358.3,23495,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23495,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,22094,1,3,0)
+ ;;=3^Absence of family member d/t military deployment
+ ;;^UTILITY(U,$J,358.3,22094,1,4,0)
+ ;;=4^Z63.31
+ ;;^UTILITY(U,$J,358.3,22094,2)
+ ;;=^5063166
+ ;;^UTILITY(U,$J,358.3,22095,0)
+ ;;=Z71.3^^99^1125^6

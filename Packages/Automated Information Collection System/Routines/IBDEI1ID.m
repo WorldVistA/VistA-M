@@ -1,136 +1,126 @@
-IBDEI1ID ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ID ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25587,1,3,0)
- ;;=3^Cocaine Withdrawal
- ;;^UTILITY(U,$J,358.3,25587,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,25587,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,25588,0)
- ;;=F43.0^^95^1174^1
- ;;^UTILITY(U,$J,358.3,25588,1,0)
+ ;;^UTILITY(U,$J,358.3,24122,0)
+ ;;=M34.9^^107^1201^318
+ ;;^UTILITY(U,$J,358.3,24122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25588,1,3,0)
- ;;=3^Acute Stress Disorder
- ;;^UTILITY(U,$J,358.3,25588,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,25588,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,25589,0)
- ;;=F43.21^^95^1174^3
- ;;^UTILITY(U,$J,358.3,25589,1,0)
+ ;;^UTILITY(U,$J,358.3,24122,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,24122,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,24122,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,24123,0)
+ ;;=R21.^^107^1201^297
+ ;;^UTILITY(U,$J,358.3,24123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25589,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,25589,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,25589,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,25590,0)
- ;;=F43.22^^95^1174^2
- ;;^UTILITY(U,$J,358.3,25590,1,0)
+ ;;^UTILITY(U,$J,358.3,24123,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,24123,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,24123,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,24124,0)
+ ;;=R23.3^^107^1201^309
+ ;;^UTILITY(U,$J,358.3,24124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25590,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,25590,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,25590,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,25591,0)
- ;;=F43.23^^95^1174^5
- ;;^UTILITY(U,$J,358.3,25591,1,0)
+ ;;^UTILITY(U,$J,358.3,24124,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,24124,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,24124,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,24125,0)
+ ;;=L03.113^^107^1201^114
+ ;;^UTILITY(U,$J,358.3,24125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25591,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,25591,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,25591,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,25592,0)
- ;;=F43.24^^95^1174^4
- ;;^UTILITY(U,$J,358.3,25592,1,0)
+ ;;^UTILITY(U,$J,358.3,24125,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,24125,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,24125,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,24126,0)
+ ;;=L03.114^^107^1201^107
+ ;;^UTILITY(U,$J,358.3,24126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25592,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,25592,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,25592,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,25593,0)
- ;;=F43.25^^95^1174^6
- ;;^UTILITY(U,$J,358.3,25593,1,0)
+ ;;^UTILITY(U,$J,358.3,24126,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,24126,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,24126,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,24127,0)
+ ;;=L03.115^^107^1201^111
+ ;;^UTILITY(U,$J,358.3,24127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25593,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
- ;;^UTILITY(U,$J,358.3,25593,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,25593,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,25594,0)
- ;;=F43.8^^95^1174^15
- ;;^UTILITY(U,$J,358.3,25594,1,0)
+ ;;^UTILITY(U,$J,358.3,24127,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,24127,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,24127,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,24128,0)
+ ;;=L03.116^^107^1201^104
+ ;;^UTILITY(U,$J,358.3,24128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25594,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder NEC
- ;;^UTILITY(U,$J,358.3,25594,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,25594,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,25595,0)
- ;;=F43.20^^95^1174^7
- ;;^UTILITY(U,$J,358.3,25595,1,0)
+ ;;^UTILITY(U,$J,358.3,24128,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,24128,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,24128,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,24129,0)
+ ;;=L03.123^^107^1201^28
+ ;;^UTILITY(U,$J,358.3,24129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25595,1,3,0)
- ;;=3^Adjustment Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25595,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,25595,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,25596,0)
- ;;=F43.9^^95^1174^16
- ;;^UTILITY(U,$J,358.3,25596,1,0)
+ ;;^UTILITY(U,$J,358.3,24129,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,24129,1,4,0)
+ ;;=4^L03.123
+ ;;^UTILITY(U,$J,358.3,24129,2)
+ ;;=^5009039
+ ;;^UTILITY(U,$J,358.3,24130,0)
+ ;;=L03.124^^107^1201^22
+ ;;^UTILITY(U,$J,358.3,24130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25596,1,3,0)
- ;;=3^Trauma/Stressor-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25596,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,25596,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,25597,0)
- ;;=F43.11^^95^1174^9
- ;;^UTILITY(U,$J,358.3,25597,1,0)
+ ;;^UTILITY(U,$J,358.3,24130,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,24130,1,4,0)
+ ;;=4^L03.124
+ ;;^UTILITY(U,$J,358.3,24130,2)
+ ;;=^5009040
+ ;;^UTILITY(U,$J,358.3,24131,0)
+ ;;=L03.125^^107^1201^26
+ ;;^UTILITY(U,$J,358.3,24131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25597,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,25597,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,25597,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,25598,0)
- ;;=F43.12^^95^1174^10
- ;;^UTILITY(U,$J,358.3,25598,1,0)
+ ;;^UTILITY(U,$J,358.3,24131,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,24131,1,4,0)
+ ;;=4^L03.125
+ ;;^UTILITY(U,$J,358.3,24131,2)
+ ;;=^5009041
+ ;;^UTILITY(U,$J,358.3,24132,0)
+ ;;=L03.126^^107^1201^20
+ ;;^UTILITY(U,$J,358.3,24132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25598,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,25598,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,25598,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,25599,0)
- ;;=F43.10^^95^1174^11
- ;;^UTILITY(U,$J,358.3,25599,1,0)
+ ;;^UTILITY(U,$J,358.3,24132,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,24132,1,4,0)
+ ;;=4^L03.126
+ ;;^UTILITY(U,$J,358.3,24132,2)
+ ;;=^5133646
+ ;;^UTILITY(U,$J,358.3,24133,0)
+ ;;=L03.211^^107^1201^101
+ ;;^UTILITY(U,$J,358.3,24133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25599,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,25599,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,25599,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,25600,0)
- ;;=F43.8^^95^1174^12
- ;;^UTILITY(U,$J,358.3,25600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25600,1,3,0)
- ;;=3^Reaction to Severe Stress,Other
+ ;;^UTILITY(U,$J,358.3,24133,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,24133,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,24133,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,24134,0)
+ ;;=L03.212^^107^1201^17

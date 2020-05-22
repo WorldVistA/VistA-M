@@ -1,136 +1,120 @@
-IBDEI2RY ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46577,1,3,0)
- ;;=3^Cutaneous Cryptococcosis
- ;;^UTILITY(U,$J,358.3,46577,1,4,0)
- ;;=4^B45.2
- ;;^UTILITY(U,$J,358.3,46577,2)
- ;;=^5000671
- ;;^UTILITY(U,$J,358.3,46578,0)
- ;;=B44.7^^206^2304^56
- ;;^UTILITY(U,$J,358.3,46578,1,0)
+ ;;^UTILITY(U,$J,358.3,44250,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44250,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,44250,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,44251,0)
+ ;;=F16.129^^164^2191^13
+ ;;^UTILITY(U,$J,358.3,44251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46578,1,3,0)
- ;;=3^Disseminated Aspergillosis
- ;;^UTILITY(U,$J,358.3,46578,1,4,0)
- ;;=4^B44.7
- ;;^UTILITY(U,$J,358.3,46578,2)
- ;;=^5000666
- ;;^UTILITY(U,$J,358.3,46579,0)
- ;;=B45.7^^206^2304^57
- ;;^UTILITY(U,$J,358.3,46579,1,0)
+ ;;^UTILITY(U,$J,358.3,44251,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44251,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,44251,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,44252,0)
+ ;;=F16.229^^164^2191^14
+ ;;^UTILITY(U,$J,358.3,44252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46579,1,3,0)
- ;;=3^Disseminated Cryptococcosis
- ;;^UTILITY(U,$J,358.3,46579,1,4,0)
- ;;=4^B45.7
- ;;^UTILITY(U,$J,358.3,46579,2)
- ;;=^5000673
- ;;^UTILITY(U,$J,358.3,46580,0)
- ;;=B39.9^^206^2304^59
- ;;^UTILITY(U,$J,358.3,46580,1,0)
+ ;;^UTILITY(U,$J,358.3,44252,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44252,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,44252,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,44253,0)
+ ;;=F16.929^^164^2191^15
+ ;;^UTILITY(U,$J,358.3,44253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46580,1,3,0)
- ;;=3^Histoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,46580,1,4,0)
- ;;=4^B39.9
- ;;^UTILITY(U,$J,358.3,46580,2)
- ;;=^5000638
- ;;^UTILITY(U,$J,358.3,46581,0)
- ;;=J18.2^^206^2304^60
- ;;^UTILITY(U,$J,358.3,46581,1,0)
+ ;;^UTILITY(U,$J,358.3,44253,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44253,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,44253,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,44254,0)
+ ;;=F16.180^^164^2191^1
+ ;;^UTILITY(U,$J,358.3,44254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46581,1,3,0)
- ;;=3^Hypostatic Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,46581,1,4,0)
- ;;=4^J18.2
- ;;^UTILITY(U,$J,358.3,46581,2)
- ;;=^5008184
- ;;^UTILITY(U,$J,358.3,46582,0)
- ;;=B44.0^^206^2304^61
- ;;^UTILITY(U,$J,358.3,46582,1,0)
+ ;;^UTILITY(U,$J,358.3,44254,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44254,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,44254,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,44255,0)
+ ;;=F16.280^^164^2191^2
+ ;;^UTILITY(U,$J,358.3,44255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46582,1,3,0)
- ;;=3^Invasive Pulmonary Aspergillosis
- ;;^UTILITY(U,$J,358.3,46582,1,4,0)
- ;;=4^B44.0
- ;;^UTILITY(U,$J,358.3,46582,2)
- ;;=^5000663
- ;;^UTILITY(U,$J,358.3,46583,0)
- ;;=J18.1^^206^2304^62
- ;;^UTILITY(U,$J,358.3,46583,1,0)
+ ;;^UTILITY(U,$J,358.3,44255,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44255,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,44255,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,44256,0)
+ ;;=F16.980^^164^2191^3
+ ;;^UTILITY(U,$J,358.3,44256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46583,1,3,0)
- ;;=3^Lobar Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,46583,1,4,0)
- ;;=4^J18.1
- ;;^UTILITY(U,$J,358.3,46583,2)
- ;;=^5008183
- ;;^UTILITY(U,$J,358.3,46584,0)
- ;;=A19.9^^206^2304^63
- ;;^UTILITY(U,$J,358.3,46584,1,0)
+ ;;^UTILITY(U,$J,358.3,44256,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44256,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,44256,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,44257,0)
+ ;;=F16.14^^164^2191^4
+ ;;^UTILITY(U,$J,358.3,44257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46584,1,3,0)
- ;;=3^Miliary Tuberculosis,Unspec
- ;;^UTILITY(U,$J,358.3,46584,1,4,0)
- ;;=4^A19.9
- ;;^UTILITY(U,$J,358.3,46584,2)
- ;;=^5000104
- ;;^UTILITY(U,$J,358.3,46585,0)
- ;;=R76.11^^206^2304^82
- ;;^UTILITY(U,$J,358.3,46585,1,0)
+ ;;^UTILITY(U,$J,358.3,44257,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44257,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,44257,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,44258,0)
+ ;;=F16.24^^164^2191^5
+ ;;^UTILITY(U,$J,358.3,44258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46585,1,3,0)
- ;;=3^Reaction to Skin Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,46585,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,46585,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,46586,0)
- ;;=B45.3^^206^2304^67
- ;;^UTILITY(U,$J,358.3,46586,1,0)
+ ;;^UTILITY(U,$J,358.3,44258,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44258,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,44258,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,44259,0)
+ ;;=F16.94^^164^2191^6
+ ;;^UTILITY(U,$J,358.3,44259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46586,1,3,0)
- ;;=3^Osseous Cryptococcosis
- ;;^UTILITY(U,$J,358.3,46586,1,4,0)
- ;;=4^B45.3
- ;;^UTILITY(U,$J,358.3,46586,2)
- ;;=^5000672
- ;;^UTILITY(U,$J,358.3,46587,0)
- ;;=B44.89^^206^2304^44
- ;;^UTILITY(U,$J,358.3,46587,1,0)
+ ;;^UTILITY(U,$J,358.3,44259,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44259,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,44259,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,44260,0)
+ ;;=F16.159^^164^2191^7
+ ;;^UTILITY(U,$J,358.3,44260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46587,1,3,0)
- ;;=3^Aspergillosis NEC
- ;;^UTILITY(U,$J,358.3,46587,1,4,0)
- ;;=4^B44.89
- ;;^UTILITY(U,$J,358.3,46587,2)
- ;;=^5000667
- ;;^UTILITY(U,$J,358.3,46588,0)
- ;;=B45.8^^206^2304^53
- ;;^UTILITY(U,$J,358.3,46588,1,0)
+ ;;^UTILITY(U,$J,358.3,44260,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44260,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,44260,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,44261,0)
+ ;;=F16.259^^164^2191^8
+ ;;^UTILITY(U,$J,358.3,44261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46588,1,3,0)
- ;;=3^Cryptococcosis NEC
- ;;^UTILITY(U,$J,358.3,46588,1,4,0)
- ;;=4^B45.8
- ;;^UTILITY(U,$J,358.3,46588,2)
- ;;=^5000674
- ;;^UTILITY(U,$J,358.3,46589,0)
- ;;=H60.593^^206^2304^64
- ;;^UTILITY(U,$J,358.3,46589,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46589,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,46589,1,4,0)
- ;;=4^H60.593
- ;;^UTILITY(U,$J,358.3,46589,2)
- ;;=^5006491
- ;;^UTILITY(U,$J,358.3,46590,0)
- ;;=H60.592^^206^2304^65
- ;;^UTILITY(U,$J,358.3,46590,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46590,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,44261,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44261,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,44261,2)
+ ;;=^5003344

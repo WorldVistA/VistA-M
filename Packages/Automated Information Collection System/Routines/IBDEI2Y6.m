@@ -1,124 +1,132 @@
-IBDEI2Y6 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2Y6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49425,1,4,0)
- ;;=4^S42.015S
- ;;^UTILITY(U,$J,358.3,49425,2)
- ;;=^5026417
- ;;^UTILITY(U,$J,358.3,49426,0)
- ;;=S42.014S^^216^2417^106
- ;;^UTILITY(U,$J,358.3,49426,1,0)
+ ;;^UTILITY(U,$J,358.3,47037,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,47038,0)
+ ;;=H26.9^^181^2350^20
+ ;;^UTILITY(U,$J,358.3,47038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49426,1,3,0)
- ;;=3^Posterior disp fx of sternal end of right clavicle, sequela
- ;;^UTILITY(U,$J,358.3,49426,1,4,0)
- ;;=4^S42.014S
- ;;^UTILITY(U,$J,358.3,49426,2)
- ;;=^5026410
- ;;^UTILITY(U,$J,358.3,49427,0)
- ;;=S82.142S^^216^2418^1
- ;;^UTILITY(U,$J,358.3,49427,1,0)
+ ;;^UTILITY(U,$J,358.3,47038,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,47038,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,47038,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,47039,0)
+ ;;=I42.8^^181^2350^17
+ ;;^UTILITY(U,$J,358.3,47039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49427,1,3,0)
- ;;=3^Disp fx of bicondylar left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,49427,1,4,0)
- ;;=4^S82.142S
- ;;^UTILITY(U,$J,358.3,49427,2)
- ;;=^5040902
- ;;^UTILITY(U,$J,358.3,49428,0)
- ;;=S82.141S^^216^2418^2
- ;;^UTILITY(U,$J,358.3,49428,1,0)
+ ;;^UTILITY(U,$J,358.3,47039,1,3,0)
+ ;;=3^Cardiomyopathies,Other
+ ;;^UTILITY(U,$J,358.3,47039,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,47039,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,47040,0)
+ ;;=I50.9^^181^2350^1
+ ;;^UTILITY(U,$J,358.3,47040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49428,1,3,0)
- ;;=3^Disp fx of bicondylar right tibia, sequela
- ;;^UTILITY(U,$J,358.3,49428,1,4,0)
- ;;=4^S82.141S
- ;;^UTILITY(U,$J,358.3,49428,2)
- ;;=^5040886
- ;;^UTILITY(U,$J,358.3,49429,0)
- ;;=S82.252S^^216^2418^4
- ;;^UTILITY(U,$J,358.3,49429,1,0)
+ ;;^UTILITY(U,$J,358.3,47040,1,3,0)
+ ;;=3^CHF
+ ;;^UTILITY(U,$J,358.3,47040,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,47040,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,47041,0)
+ ;;=J44.9^^181^2350^14
+ ;;^UTILITY(U,$J,358.3,47041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49429,1,3,0)
- ;;=3^Disp fx of comminuted shaft of left tibia, sequela    
- ;;^UTILITY(U,$J,358.3,49429,1,4,0)
- ;;=4^S82.252S
- ;;^UTILITY(U,$J,358.3,49429,2)
- ;;=^5041458
- ;;^UTILITY(U,$J,358.3,49430,0)
- ;;=S82.251S^^216^2418^6
- ;;^UTILITY(U,$J,358.3,49430,1,0)
+ ;;^UTILITY(U,$J,358.3,47041,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,47041,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,47041,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,47042,0)
+ ;;=K59.09^^181^2350^36
+ ;;^UTILITY(U,$J,358.3,47042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49430,1,3,0)
- ;;=3^Disp fx of comminuted shaft of right tibia, sequela   
- ;;^UTILITY(U,$J,358.3,49430,1,4,0)
- ;;=4^S82.251S
- ;;^UTILITY(U,$J,358.3,49430,2)
- ;;=^5041442
- ;;^UTILITY(U,$J,358.3,49431,0)
- ;;=S82.122S^^216^2418^7
- ;;^UTILITY(U,$J,358.3,49431,1,0)
+ ;;^UTILITY(U,$J,358.3,47042,1,3,0)
+ ;;=3^Constipation,Other
+ ;;^UTILITY(U,$J,358.3,47042,1,4,0)
+ ;;=4^K59.09
+ ;;^UTILITY(U,$J,358.3,47042,2)
+ ;;=^323540
+ ;;^UTILITY(U,$J,358.3,47043,0)
+ ;;=K74.60^^181^2350^34
+ ;;^UTILITY(U,$J,358.3,47043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49431,1,3,0)
- ;;=3^Disp fx of lateral condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,49431,1,4,0)
- ;;=4^S82.122S
- ;;^UTILITY(U,$J,358.3,49431,2)
- ;;=^5040710
- ;;^UTILITY(U,$J,358.3,49432,0)
- ;;=S82.112S^^216^2418^11
- ;;^UTILITY(U,$J,358.3,49432,1,0)
+ ;;^UTILITY(U,$J,358.3,47043,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,47043,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,47043,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,47044,0)
+ ;;=K80.20^^181^2350^15
+ ;;^UTILITY(U,$J,358.3,47044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49432,1,3,0)
- ;;=3^Disp fx of left tibial spine, sequela        
- ;;^UTILITY(U,$J,358.3,49432,1,4,0)
- ;;=4^S82.112S
- ;;^UTILITY(U,$J,358.3,49432,2)
- ;;=^5040614
- ;;^UTILITY(U,$J,358.3,49433,0)
- ;;=S82.121S^^216^2418^8
- ;;^UTILITY(U,$J,358.3,49433,1,0)
+ ;;^UTILITY(U,$J,358.3,47044,1,3,0)
+ ;;=3^Calculus of Gallbladder w/o Cholecystitis w/o Obstruction
+ ;;^UTILITY(U,$J,358.3,47044,1,4,0)
+ ;;=4^K80.20
+ ;;^UTILITY(U,$J,358.3,47044,2)
+ ;;=^5008846
+ ;;^UTILITY(U,$J,358.3,47045,0)
+ ;;=L03.90^^181^2350^23
+ ;;^UTILITY(U,$J,358.3,47045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49433,1,3,0)
- ;;=3^Disp fx of lateral condyle of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,49433,1,4,0)
- ;;=4^S82.121S
- ;;^UTILITY(U,$J,358.3,49433,2)
- ;;=^5040694
- ;;^UTILITY(U,$J,358.3,49434,0)
- ;;=S82.152S^^216^2418^12
- ;;^UTILITY(U,$J,358.3,49434,1,0)
+ ;;^UTILITY(U,$J,358.3,47045,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,47045,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,47045,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,47046,0)
+ ;;=R05.^^181^2350^37
+ ;;^UTILITY(U,$J,358.3,47046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49434,1,3,0)
- ;;=3^Disp fx of left tibial tuberosity, sequela   
- ;;^UTILITY(U,$J,358.3,49434,1,4,0)
- ;;=4^S82.152S
- ;;^UTILITY(U,$J,358.3,49434,2)
- ;;=^5040998
- ;;^UTILITY(U,$J,358.3,49435,0)
- ;;=S82.132S^^216^2418^13
- ;;^UTILITY(U,$J,358.3,49435,1,0)
+ ;;^UTILITY(U,$J,358.3,47046,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,47046,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,47046,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,47047,0)
+ ;;=R25.2^^181^2350^38
+ ;;^UTILITY(U,$J,358.3,47047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49435,1,3,0)
- ;;=3^Disp fx of medial condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,49435,1,4,0)
- ;;=4^S82.132S
- ;;^UTILITY(U,$J,358.3,49435,2)
- ;;=^5040806
- ;;^UTILITY(U,$J,358.3,49436,0)
- ;;=S82.131S^^216^2418^14
- ;;^UTILITY(U,$J,358.3,49436,1,0)
+ ;;^UTILITY(U,$J,358.3,47047,1,3,0)
+ ;;=3^Cramp and Spasm
+ ;;^UTILITY(U,$J,358.3,47047,1,4,0)
+ ;;=4^R25.2
+ ;;^UTILITY(U,$J,358.3,47047,2)
+ ;;=^5019301
+ ;;^UTILITY(U,$J,358.3,47048,0)
+ ;;=L03.031^^181^2350^22
+ ;;^UTILITY(U,$J,358.3,47048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49436,1,3,0)
- ;;=3^Disp fx of medial condyle of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,49436,1,4,0)
- ;;=4^S82.131S
- ;;^UTILITY(U,$J,358.3,49436,2)
- ;;=^5040790
- ;;^UTILITY(U,$J,358.3,49437,0)
- ;;=S82.52XS^^216^2418^15
- ;;^UTILITY(U,$J,358.3,49437,1,0)
+ ;;^UTILITY(U,$J,358.3,47048,1,3,0)
+ ;;=3^Cellulitis Right Toe
+ ;;^UTILITY(U,$J,358.3,47048,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,47048,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,47049,0)
+ ;;=L03.032^^181^2350^21
+ ;;^UTILITY(U,$J,358.3,47049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49437,1,3,0)
- ;;=3^Disp fx of medial malleolus of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,47049,1,3,0)
+ ;;=3^Cellulitis Left Toe
+ ;;^UTILITY(U,$J,358.3,47049,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,47049,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,47050,0)
+ ;;=M54.2^^181^2350^32
+ ;;^UTILITY(U,$J,358.3,47050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47050,1,3,0)
+ ;;=3^Cervicalgia

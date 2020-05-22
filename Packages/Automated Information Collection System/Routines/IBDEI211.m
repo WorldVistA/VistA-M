@@ -1,126 +1,126 @@
-IBDEI211 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI211 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34384,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,34384,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,34384,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,34385,0)
- ;;=M45.4^^131^1686^7
- ;;^UTILITY(U,$J,358.3,34385,1,0)
+ ;;^UTILITY(U,$J,358.3,32352,0)
+ ;;=H40.1420^^128^1657^40
+ ;;^UTILITY(U,$J,358.3,32352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34385,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,34385,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,34385,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,34386,0)
- ;;=M45.7^^131^1686^4
- ;;^UTILITY(U,$J,358.3,34386,1,0)
+ ;;^UTILITY(U,$J,358.3,32352,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OS,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,32352,1,4,0)
+ ;;=4^H40.1420
+ ;;^UTILITY(U,$J,358.3,32352,2)
+ ;;=^5138022
+ ;;^UTILITY(U,$J,358.3,32353,0)
+ ;;=H40.1431^^128^1657^41
+ ;;^UTILITY(U,$J,358.3,32353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34386,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34386,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,34386,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,34387,0)
- ;;=M45.8^^131^1686^5
- ;;^UTILITY(U,$J,358.3,34387,1,0)
+ ;;^UTILITY(U,$J,358.3,32353,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Mild Stage
+ ;;^UTILITY(U,$J,358.3,32353,1,4,0)
+ ;;=4^H40.1431
+ ;;^UTILITY(U,$J,358.3,32353,2)
+ ;;=^5138028
+ ;;^UTILITY(U,$J,358.3,32354,0)
+ ;;=H40.1432^^128^1657^42
+ ;;^UTILITY(U,$J,358.3,32354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34387,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,34387,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,34387,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,34388,0)
- ;;=M47.22^^131^1686^172
- ;;^UTILITY(U,$J,358.3,34388,1,0)
+ ;;^UTILITY(U,$J,358.3,32354,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,32354,1,4,0)
+ ;;=4^H40.1432
+ ;;^UTILITY(U,$J,358.3,32354,2)
+ ;;=^5138029
+ ;;^UTILITY(U,$J,358.3,32355,0)
+ ;;=H40.1433^^128^1657^43
+ ;;^UTILITY(U,$J,358.3,32355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34388,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,34388,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,34388,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,34389,0)
- ;;=M47.24^^131^1686^174
- ;;^UTILITY(U,$J,358.3,34389,1,0)
+ ;;^UTILITY(U,$J,358.3,32355,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Severe Stage
+ ;;^UTILITY(U,$J,358.3,32355,1,4,0)
+ ;;=4^H40.1433
+ ;;^UTILITY(U,$J,358.3,32355,2)
+ ;;=^5138030
+ ;;^UTILITY(U,$J,358.3,32356,0)
+ ;;=H40.1434^^128^1657^44
+ ;;^UTILITY(U,$J,358.3,32356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34389,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,34389,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,34389,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,34390,0)
- ;;=M47.27^^131^1686^173
- ;;^UTILITY(U,$J,358.3,34390,1,0)
+ ;;^UTILITY(U,$J,358.3,32356,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,32356,1,4,0)
+ ;;=4^H40.1434
+ ;;^UTILITY(U,$J,358.3,32356,2)
+ ;;=^5138031
+ ;;^UTILITY(U,$J,358.3,32357,0)
+ ;;=H40.1430^^128^1657^45
+ ;;^UTILITY(U,$J,358.3,32357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34390,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,34390,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,34390,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,34391,0)
- ;;=M47.812^^131^1686^169
- ;;^UTILITY(U,$J,358.3,34391,1,0)
+ ;;^UTILITY(U,$J,358.3,32357,1,3,0)
+ ;;=3^Pseudoexfoliative GLC,OU,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,32357,1,4,0)
+ ;;=4^H40.1430
+ ;;^UTILITY(U,$J,358.3,32357,2)
+ ;;=^5138027
+ ;;^UTILITY(U,$J,358.3,32358,0)
+ ;;=H40.151^^128^1657^46
+ ;;^UTILITY(U,$J,358.3,32358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34391,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,34391,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,34391,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,34392,0)
- ;;=M47.814^^131^1686^170
- ;;^UTILITY(U,$J,358.3,34392,1,0)
+ ;;^UTILITY(U,$J,358.3,32358,1,3,0)
+ ;;=3^Residual Stage of OAG,OD
+ ;;^UTILITY(U,$J,358.3,32358,1,4,0)
+ ;;=4^H40.151
+ ;;^UTILITY(U,$J,358.3,32358,2)
+ ;;=^5138037
+ ;;^UTILITY(U,$J,358.3,32359,0)
+ ;;=H40.152^^128^1657^47
+ ;;^UTILITY(U,$J,358.3,32359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34392,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,34392,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,34392,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,34393,0)
- ;;=M47.817^^131^1686^171
- ;;^UTILITY(U,$J,358.3,34393,1,0)
+ ;;^UTILITY(U,$J,358.3,32359,1,3,0)
+ ;;=3^Residual Stage of OAG,OS
+ ;;^UTILITY(U,$J,358.3,32359,1,4,0)
+ ;;=4^H40.152
+ ;;^UTILITY(U,$J,358.3,32359,2)
+ ;;=^5138038
+ ;;^UTILITY(U,$J,358.3,32360,0)
+ ;;=H40.153^^128^1657^48
+ ;;^UTILITY(U,$J,358.3,32360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34393,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34393,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,34393,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,34394,0)
- ;;=M48.50XA^^131^1686^21
- ;;^UTILITY(U,$J,358.3,34394,1,0)
+ ;;^UTILITY(U,$J,358.3,32360,1,3,0)
+ ;;=3^Residual Stage of OAG,OU
+ ;;^UTILITY(U,$J,358.3,32360,1,4,0)
+ ;;=4^H40.153
+ ;;^UTILITY(U,$J,358.3,32360,2)
+ ;;=^5138039
+ ;;^UTILITY(U,$J,358.3,32361,0)
+ ;;=H25.9^^128^1658^17
+ ;;^UTILITY(U,$J,358.3,32361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34394,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,34394,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,34394,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,34395,0)
- ;;=M48.50XD^^131^1686^22
- ;;^UTILITY(U,$J,358.3,34395,1,0)
+ ;;^UTILITY(U,$J,358.3,32361,1,3,0)
+ ;;=3^Cataract,Age-Related,Unspec
+ ;;^UTILITY(U,$J,358.3,32361,1,4,0)
+ ;;=4^H25.9
+ ;;^UTILITY(U,$J,358.3,32361,2)
+ ;;=^5005296
+ ;;^UTILITY(U,$J,358.3,32362,0)
+ ;;=H25.89^^128^1658^18
+ ;;^UTILITY(U,$J,358.3,32362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34395,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,34395,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,34395,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,34396,0)
- ;;=M48.52XA^^131^1686^23
- ;;^UTILITY(U,$J,358.3,34396,1,0)
+ ;;^UTILITY(U,$J,358.3,32362,1,3,0)
+ ;;=3^Cataract,Age-Related,Other
+ ;;^UTILITY(U,$J,358.3,32362,1,4,0)
+ ;;=4^H25.89
+ ;;^UTILITY(U,$J,358.3,32362,2)
+ ;;=^5005295
+ ;;^UTILITY(U,$J,358.3,32363,0)
+ ;;=H25.091^^128^1658^5
+ ;;^UTILITY(U,$J,358.3,32363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34396,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32363,1,3,0)
+ ;;=3^Incipient Cataract,Other Age-Related,Rt Eye
+ ;;^UTILITY(U,$J,358.3,32363,1,4,0)
+ ;;=4^H25.091
+ ;;^UTILITY(U,$J,358.3,32363,2)
+ ;;=^5005279
+ ;;^UTILITY(U,$J,358.3,32364,0)
+ ;;=H25.092^^128^1658^6

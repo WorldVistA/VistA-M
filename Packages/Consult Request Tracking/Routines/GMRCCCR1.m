@@ -1,5 +1,5 @@
 GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134**;JUN 1, 2018;Build 20
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146**;JUN 1, 2018;Build 12
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -9,6 +9,7 @@ GMRCCCR1 ;MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ; MJ - 2/28/2019 patch 112 subroutines added or split from GMRCCCRA
  ; MJ - 4/02/2019 patch 123 updated to find VistA user from HSRM message and create NAK if invalid
  ; MJ - 7/30/2019 patch 134 fix control character issue in TIU notes
+ ; MJ - 9/20/2019 patch 146 clear space-only address fields
  ;
  Q
  ;
@@ -26,6 +27,15 @@ GETADD(INSP) ;
  S:X]"" $P(X,"^",7)="M" ; address type = 'mailing'
  Q X
  ; end patch 106 mod
+ ;
+CLRADD(ADDRESS) ;
+ ; patch 146 - take any address field that contains only spaces and change to null
+ N I,J,ADD
+ F I=1:1:$L(ADDRESS,"^") D  ;
+ . S ADD=$P(ADDRESS,"^",I) I $L(ADD) D  ;
+ .. F  Q:$E(ADD,1)'=" "  S ADD=$E(ADD,2,$L(ADD))
+ .. S $P(ADDRESS,"^",I)=ADD
+ Q ADDRESS
  ;
 MESSAGE(MSGID,ERRARY) ; Send a MailMan Message with the errors
  ; moved here for patch 112
@@ -127,3 +137,75 @@ TIUC(X) ; Check each segment of the TIU notes for HL7 control characters
  I $G(X)[$C(21) S X=$TR(X,$C(21),"") ; NAK
  I $G(X)[$C(23) S X=$TR(X,$C(23),"") ; ETB
  Q X
+ADDEND ; moved from ADDEND^GMRCCCRA routine for space ; patch 146 ; MJ
+ ; returns 0 if value not found
+ ;
+ ; modified in patch GMRC*3.0*106 to use ICR 2693
+ D EXTRACT^TIULQ(TIUDA)
+ ;
+ ; Quit if not an addendum
+ S TIUTYP=^TMP("TIULQ",$J,+TIUDA,.01,"I")
+ I TIUTYP'=81 Q 0
+ ;
+ S DFN=^TMP("TIULQ",$J,+TIUDA,.02,"I")
+ I 'DFN!('$D(^DPT(DFN))) Q 0
+ ;
+ ; Get parent note IEN, if addendum IEN is passed in:
+ S GMRCPARN=^TMP("TIULQ",$J,+TIUDA,.06,"I")
+ ;
+ ; Quit if not an addendum
+ ;S TIUTYP=$$GET1^DIQ(8925,TIUDA,.01,"I")
+ ;I TIUTYP'=81 Q
+ ;
+ ;S DFN=$$GET1^DIQ(8925,TIUDA,.02,"I")
+ ;I 'DFN,'$D(^DPT(DFN)) Q
+ ;
+ ; Get parent note IEN, if addendum IEN is passed in:
+ ;S GMRCPARN=$$GET1^DIQ(8925,TIUDA,.06,"I")
+ ;
+ ; end patch 106 mods
+ ;
+ S (GMRCO,GMRCD)=0
+ F  S GMRCD=$O(^GMR(123,"AD",DFN,GMRCD)) Q:'GMRCD!(GMRCO)  D
+ .S GMRCDA=0
+ .F  S GMRCDA=$O(^GMR(123,"AD",DFN,GMRCD,GMRCDA)) Q:'GMRCDA!(GMRCO)  D
+ ..S GMRCD1=0
+ ..F  S GMRCD1=$O(^GMR(123,GMRCDA,50,GMRCD1)) Q:'GMRCD1!(GMRCO)  D
+ ...S GMRC8925=$$GET1^DIQ(123.03,GMRCD1_","_GMRCDA_",",.01,"I")
+ ...I +GMRC8925=$S(+GMRCPARN:+GMRCPARN,1:TIUDA) S GMRCO=GMRCDA
+ Q GMRCO
+ ;
+AUTHDTTM ;
+ S ACTIEN=$G(ACTIEN,$O(^GMR(123,GMRCDA,40,99999),-1))
+ I '+ACTIEN D  Q
+ .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Author\R\\R\"
+ .S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Datetime\R\\R\"
+ .S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Comment\R\\R\"
+ .S NTECNT=4
+ ;
+ S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Author\R\\R\"_$$GET1^DIQ(123.02,ACTIEN_","_GMRCDA_",",4)
+ S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Datetime\R\\R\"_$$FMTHL7^XLFDT($$GET1^DIQ(123.02,ACTIEN_","_GMRCDA_",",2,"I"))
+ S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Comment\R\\R\"
+ S NTECNT=4
+ Q
+ACK ;
+ N GMRCMSG,I,X,DONE,MSGID,ERRARY,ERRI
+ ;Get the message
+ S ERRI=0
+ F I=1:1 X HLNEXT Q:(HLQUIT'>0)  D
+ . S GMRCMSG(I,1)=HLNODE
+ . S X=0 F  S X=+$O(HLNODE(X)) Q:'X  S GMRCMSG(I,(X+1))=HLNODE(X)
+ S DONE=0
+ S I=0 F  S I=$O(GMRCMSG(I)) Q:'+I  D  Q:DONE
+ . I $P($G(GMRCMSG(I,1)),"|",1)="MSA" D  Q
+ . . I $P($G(GMRCMSG(I,1)),"|",2)="AA" S DONE=1 Q
+ . . S MSGID=$P($G(GMRCMSG(I,1)),"|",3)
+ . I $P($G(GMRCMSG(I,1)),"|",1)="ERR" D
+ . . ;Process Error
+ . . S ERRI=ERRI+1
+ . . S ERRARY(ERRI,2)=$P($G(GMRCMSG(I,1)),"|",3)
+ . . I $P($G(GMRCMSG(I,1)),"|",6)'="" D  Q
+ . . . S ERRARY(ERRI,3)=$P($P($G(GMRCMSG(I,1)),"|",6),"^",4)_"^"_$P($P($G(GMRCMSG(I,1)),"|",6),"^",5)
+ . . S ERRARY(ERRI,3)=$P($G(GMRCMSG(I,1)),"|",4)
+ I $D(ERRARY) D MESSAGE(MSGID,.ERRARY)
+ Q 

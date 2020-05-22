@@ -1,9 +1,9 @@
-PRCHNPT ;SF/TKW-INPUT TRANSFORM ;9-1-89/1:58 PM
-V ;;5.1;IFCAP;**108**;Oct 20, 2000;Build 10
- ;Per VHA Directive 2004-038, this routine should not be modified
+PRCHNPT ;SF/TKW-INPUT TRANSFORM ;11/23/16  13:26
+V ;;5.1;IFCAP;**108,198**;Oct 20, 2000;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
 EN1 ;INPUT TRANSFORM FOR NSN (FIELD #5) ON ITEM MASTER FILE (441)
- Q:'$D(X)  I '$D(^PRC(441.2,+X,0)) W $C(7),!,"First 4 digits MUST be an FSC code!!" K X Q
- S Z=$O(^PRC(441,"BB",X,0)) S:Z=DA Z=$O(^(DA)) I Z W $C(7),!,"This NSN has already been assigned to Item # "_Z_"!!" K X,Z Q
+ Q:'$D(X)  I '$D(^PRC(441.2,+X,0)) D EN^DDIOL("First 4 digits MUST be an FSC code!!","","!") K X Q
+ S Z=$O(^PRC(441,"BB",X,0)) S:Z=DA Z=$O(^(DA)) I Z D EN^DDIOL("This NSN has already been assigned to Item # "_Z_"!!","","!") K X,Z Q
  K Z Q
  ; --------------------
  ; *108 - additional Input Transform code and Executable Help code added 4/6/2007 by T. Holloway

@@ -1,124 +1,120 @@
-IBDEI1E6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1E6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23644,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,23644,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,23645,0)
- ;;=Y04.2XXA^^87^1000^5
- ;;^UTILITY(U,$J,358.3,23645,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23645,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,23645,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,23645,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,23646,0)
- ;;=Y04.8XXA^^87^1000^3
- ;;^UTILITY(U,$J,358.3,23646,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23646,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,23646,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,23646,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,23647,0)
- ;;=Y04.2XXD^^87^1000^6
- ;;^UTILITY(U,$J,358.3,23647,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23647,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23647,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,23647,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,23648,0)
- ;;=Y04.8XXD^^87^1000^4
- ;;^UTILITY(U,$J,358.3,23648,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23648,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23648,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,23648,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,23649,0)
- ;;=Y36.200A^^87^1000^124
- ;;^UTILITY(U,$J,358.3,23649,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23649,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23649,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,23649,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,23650,0)
- ;;=Y36.200D^^87^1000^125
- ;;^UTILITY(U,$J,358.3,23650,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23650,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23650,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,23650,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,23651,0)
- ;;=Y36.300A^^87^1000^126
- ;;^UTILITY(U,$J,358.3,23651,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23651,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23651,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,23651,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,23652,0)
- ;;=Y36.300D^^87^1000^127
- ;;^UTILITY(U,$J,358.3,23652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23652,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23652,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,23652,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,23653,0)
- ;;=Y36.410A^^87^1000^121
- ;;^UTILITY(U,$J,358.3,23653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23653,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23653,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,23653,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,23654,0)
- ;;=Y36.410D^^87^1000^123
- ;;^UTILITY(U,$J,358.3,23654,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23654,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23654,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,23654,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,23655,0)
- ;;=Y36.6X0A^^87^1000^113
- ;;^UTILITY(U,$J,358.3,23655,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23655,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23655,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,23655,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,23656,0)
- ;;=Y36.6X0D^^87^1000^115
- ;;^UTILITY(U,$J,358.3,23656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23656,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22255,0)
+ ;;=90688^^101^1134^4^^^^1
+ ;;^UTILITY(U,$J,358.3,22255,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22255,1,2,0)
+ ;;=2^90688
+ ;;^UTILITY(U,$J,358.3,22255,1,3,0)
+ ;;=3^Flu Vaccine,Multi-Dose (Flulaval)
+ ;;^UTILITY(U,$J,358.3,22256,0)
+ ;;=S9445^^101^1135^3^^^^1
+ ;;^UTILITY(U,$J,358.3,22256,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22256,1,2,0)
+ ;;=2^S9445
+ ;;^UTILITY(U,$J,358.3,22256,1,3,0)
+ ;;=3^Pt Education,NOC Individual
+ ;;^UTILITY(U,$J,358.3,22257,0)
+ ;;=99401^^101^1135^1^^^^1
+ ;;^UTILITY(U,$J,358.3,22257,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22257,1,2,0)
+ ;;=2^99401
+ ;;^UTILITY(U,$J,358.3,22257,1,3,0)
+ ;;=3^Preventive Counseling,Ind,15Min
+ ;;^UTILITY(U,$J,358.3,22258,0)
+ ;;=99402^^101^1135^2^^^^1
+ ;;^UTILITY(U,$J,358.3,22258,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22258,1,2,0)
+ ;;=2^99402
+ ;;^UTILITY(U,$J,358.3,22258,1,3,0)
+ ;;=3^Preventive Counseling,Ind,30Min
+ ;;^UTILITY(U,$J,358.3,22259,0)
+ ;;=99354^^101^1136^1^^^^1
+ ;;^UTILITY(U,$J,358.3,22259,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22259,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,22259,1,3,0)
+ ;;=3^Prolonged Svc w/ Pt,1st Hr
+ ;;^UTILITY(U,$J,358.3,22260,0)
+ ;;=99355^^101^1136^2^^^^1
+ ;;^UTILITY(U,$J,358.3,22260,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22260,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,22260,1,3,0)
+ ;;=3^Prolonged Svc w/ Pt,Ea Addl 30Min
+ ;;^UTILITY(U,$J,358.3,22261,0)
+ ;;=99358^^101^1136^3^^^^1
+ ;;^UTILITY(U,$J,358.3,22261,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22261,1,2,0)
+ ;;=2^99358
+ ;;^UTILITY(U,$J,358.3,22261,1,3,0)
+ ;;=3^Prolonged Svc w/o Pt,1st Hr
+ ;;^UTILITY(U,$J,358.3,22262,0)
+ ;;=99359^^101^1136^4^^^^1
+ ;;^UTILITY(U,$J,358.3,22262,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22262,1,2,0)
+ ;;=2^99359
+ ;;^UTILITY(U,$J,358.3,22262,1,3,0)
+ ;;=3^Prolonged Svc w/o Pt,Ea Addl 30Min
+ ;;^UTILITY(U,$J,358.3,22263,0)
+ ;;=90471^^101^1137^1^^^^1
+ ;;^UTILITY(U,$J,358.3,22263,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22263,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,22263,1,3,0)
+ ;;=3^Immunization Admin,Single
+ ;;^UTILITY(U,$J,358.3,22264,0)
+ ;;=90472^^101^1137^2^^^^1
+ ;;^UTILITY(U,$J,358.3,22264,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22264,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,22264,1,3,0)
+ ;;=3^Immunization Admin,Ea Addl
+ ;;^UTILITY(U,$J,358.3,22265,0)
+ ;;=10060^^101^1138^5^^^^1
+ ;;^UTILITY(U,$J,358.3,22265,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22265,1,2,0)
+ ;;=2^10060
+ ;;^UTILITY(U,$J,358.3,22265,1,3,0)
+ ;;=3^I&D Abscess,Simple or Single
+ ;;^UTILITY(U,$J,358.3,22266,0)
+ ;;=10061^^101^1138^4^^^^1
+ ;;^UTILITY(U,$J,358.3,22266,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22266,1,2,0)
+ ;;=2^10061
+ ;;^UTILITY(U,$J,358.3,22266,1,3,0)
+ ;;=3^I&D Abscess,Complicated or Multiple
+ ;;^UTILITY(U,$J,358.3,22267,0)
+ ;;=10180^^101^1138^6^^^^1
+ ;;^UTILITY(U,$J,358.3,22267,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22267,1,2,0)
+ ;;=2^10180
+ ;;^UTILITY(U,$J,358.3,22267,1,3,0)
+ ;;=3^I&D,Complex,Post OP Wound Infection
+ ;;^UTILITY(U,$J,358.3,22268,0)
+ ;;=10160^^101^1138^7^^^^1
+ ;;^UTILITY(U,$J,358.3,22268,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22268,1,2,0)
+ ;;=2^10160
+ ;;^UTILITY(U,$J,358.3,22268,1,3,0)
+ ;;=3^Punc Aspiration Abscess,Hematoma,Bulla,Cyst
+ ;;^UTILITY(U,$J,358.3,22269,0)
+ ;;=11042^^101^1138^3^^^^1
+ ;;^UTILITY(U,$J,358.3,22269,1,0)
+ ;;=^358.31IA^3^2

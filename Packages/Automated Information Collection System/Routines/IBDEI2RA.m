@@ -1,134 +1,126 @@
-IBDEI2RA ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46267,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,46268,0)
- ;;=C34.31^^206^2292^44
- ;;^UTILITY(U,$J,358.3,46268,1,0)
+ ;;^UTILITY(U,$J,358.3,43957,0)
+ ;;=G30.1^^164^2169^3
+ ;;^UTILITY(U,$J,358.3,43957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46268,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46268,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,46268,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,46269,0)
- ;;=C34.32^^206^2292^43
- ;;^UTILITY(U,$J,358.3,46269,1,0)
+ ;;^UTILITY(U,$J,358.3,43957,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,43957,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,43957,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,43958,0)
+ ;;=B20.^^164^2169^21
+ ;;^UTILITY(U,$J,358.3,43958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46269,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46269,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,46269,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,46270,0)
- ;;=C34.81^^206^2292^48
- ;;^UTILITY(U,$J,358.3,46270,1,0)
+ ;;^UTILITY(U,$J,358.3,43958,1,3,0)
+ ;;=3^HIV Infection
+ ;;^UTILITY(U,$J,358.3,43958,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,43958,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,43959,0)
+ ;;=G10.^^164^2169^22
+ ;;^UTILITY(U,$J,358.3,43959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46270,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46270,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,46270,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,46271,0)
- ;;=C34.82^^206^2292^47
- ;;^UTILITY(U,$J,358.3,46271,1,0)
+ ;;^UTILITY(U,$J,358.3,43959,1,3,0)
+ ;;=3^Huntington's Disease
+ ;;^UTILITY(U,$J,358.3,43959,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,43959,2)
+ ;;=^5003751
+ ;;^UTILITY(U,$J,358.3,43960,0)
+ ;;=G30.8^^164^2169^1
+ ;;^UTILITY(U,$J,358.3,43960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46271,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46271,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,46271,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,46272,0)
- ;;=C34.91^^206^2292^51
- ;;^UTILITY(U,$J,358.3,46272,1,0)
+ ;;^UTILITY(U,$J,358.3,43960,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,43960,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,43960,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,43961,0)
+ ;;=A81.89^^164^2169^5
+ ;;^UTILITY(U,$J,358.3,43961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46272,1,3,0)
- ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46272,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,46272,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,46273,0)
- ;;=C34.92^^206^2292^50
- ;;^UTILITY(U,$J,358.3,46273,1,0)
+ ;;^UTILITY(U,$J,358.3,43961,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,43961,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,43961,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,43962,0)
+ ;;=G20.^^164^2169^26
+ ;;^UTILITY(U,$J,358.3,43962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46273,1,3,0)
- ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,46273,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,46273,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,46274,0)
- ;;=C38.4^^206^2292^49
- ;;^UTILITY(U,$J,358.3,46274,1,0)
+ ;;^UTILITY(U,$J,358.3,43962,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,43962,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,43962,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,43963,0)
+ ;;=G23.1^^164^2169^30
+ ;;^UTILITY(U,$J,358.3,43963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46274,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,46274,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,46274,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,46275,0)
- ;;=C39.9^^206^2292^45
- ;;^UTILITY(U,$J,358.3,46275,1,0)
+ ;;^UTILITY(U,$J,358.3,43963,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,43963,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,43963,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,43964,0)
+ ;;=F03.91^^164^2169^16
+ ;;^UTILITY(U,$J,358.3,43964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46275,1,3,0)
- ;;=3^Malig Neop Lower Respiratory Tract
- ;;^UTILITY(U,$J,358.3,46275,1,4,0)
- ;;=4^C39.9
- ;;^UTILITY(U,$J,358.3,46275,2)
- ;;=^5000972
- ;;^UTILITY(U,$J,358.3,46276,0)
- ;;=B49.^^206^2292^58
- ;;^UTILITY(U,$J,358.3,46276,1,0)
+ ;;^UTILITY(U,$J,358.3,43964,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,43964,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,43964,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,43965,0)
+ ;;=F03.90^^164^2169^18
+ ;;^UTILITY(U,$J,358.3,43965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46276,1,3,0)
- ;;=3^Mycosis,Unspec
- ;;^UTILITY(U,$J,358.3,46276,1,4,0)
- ;;=4^B49.
- ;;^UTILITY(U,$J,358.3,46276,2)
- ;;=^5000690
- ;;^UTILITY(U,$J,358.3,46277,0)
- ;;=R76.11^^206^2292^93
- ;;^UTILITY(U,$J,358.3,46277,1,0)
+ ;;^UTILITY(U,$J,358.3,43965,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,43965,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,43965,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,43966,0)
+ ;;=G31.84^^164^2169^23
+ ;;^UTILITY(U,$J,358.3,43966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46277,1,3,0)
- ;;=3^Reaction to Skin Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,46277,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,46277,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,46278,0)
- ;;=E66.9^^206^2292^69
- ;;^UTILITY(U,$J,358.3,46278,1,0)
+ ;;^UTILITY(U,$J,358.3,43966,1,3,0)
+ ;;=3^Mild Cognitive Impairment,So Stated
+ ;;^UTILITY(U,$J,358.3,43966,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,43966,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,43967,0)
+ ;;=F02.81^^164^2169^14
+ ;;^UTILITY(U,$J,358.3,43967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46278,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,46278,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,46278,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,46279,0)
- ;;=I26.99^^206^2292^85
- ;;^UTILITY(U,$J,358.3,46279,1,0)
+ ;;^UTILITY(U,$J,358.3,43967,1,3,0)
+ ;;=3^Dementia in Other Dis Class Elsewhere w/ Behav Dist
+ ;;^UTILITY(U,$J,358.3,43967,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,43967,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,43968,0)
+ ;;=F02.80^^164^2169^15
+ ;;^UTILITY(U,$J,358.3,43968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46279,1,3,0)
- ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,46279,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,46279,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,46280,0)
- ;;=R09.1^^206^2292^73
- ;;^UTILITY(U,$J,358.3,46280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46280,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,46280,1,4,0)
- ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,43968,1,3,0)
+ ;;=3^Dementia in Other Dis Class Elsewhere w/o Behav Dist
+ ;;^UTILITY(U,$J,358.3,43968,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,43968,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,43969,0)
+ ;;=A81.01^^164^2169^9

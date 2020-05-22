@@ -1,138 +1,116 @@
-IBDEI2NX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44684,1,0)
+ ;;^UTILITY(U,$J,358.3,42468,2)
+ ;;=^5026830
+ ;;^UTILITY(U,$J,358.3,42469,0)
+ ;;=S42.232S^^155^2071^5
+ ;;^UTILITY(U,$J,358.3,42469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44684,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,44684,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,44684,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,44685,0)
- ;;=A52.10^^200^2230^53
- ;;^UTILITY(U,$J,358.3,44685,1,0)
+ ;;^UTILITY(U,$J,358.3,42469,1,3,0)
+ ;;=3^3-part fx of surgical neck of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42469,1,4,0)
+ ;;=4^S42.232S
+ ;;^UTILITY(U,$J,358.3,42469,2)
+ ;;=^5026858
+ ;;^UTILITY(U,$J,358.3,42470,0)
+ ;;=S42.331S^^155^2071^39
+ ;;^UTILITY(U,$J,358.3,42470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44685,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,44685,1,4,0)
- ;;=4^A52.10
- ;;^UTILITY(U,$J,358.3,44685,2)
- ;;=^5000291
- ;;^UTILITY(U,$J,358.3,44686,0)
- ;;=A52.9^^200^2230^49
- ;;^UTILITY(U,$J,358.3,44686,1,0)
+ ;;^UTILITY(U,$J,358.3,42470,1,3,0)
+ ;;=3^Disp fx of oblique shaft of humerus, right arm, sequela  
+ ;;^UTILITY(U,$J,358.3,42470,1,4,0)
+ ;;=4^S42.331S
+ ;;^UTILITY(U,$J,358.3,42470,2)
+ ;;=^5027111
+ ;;^UTILITY(U,$J,358.3,42471,0)
+ ;;=S42.242S^^155^2071^6
+ ;;^UTILITY(U,$J,358.3,42471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44686,1,3,0)
- ;;=3^Late Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,44686,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,44686,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,44687,0)
- ;;=A53.9^^200^2230^79
- ;;^UTILITY(U,$J,358.3,44687,1,0)
+ ;;^UTILITY(U,$J,358.3,42471,1,3,0)
+ ;;=3^4-part fx of surgical neck of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42471,1,4,0)
+ ;;=4^S42.242S
+ ;;^UTILITY(U,$J,358.3,42471,2)
+ ;;=^5026879
+ ;;^UTILITY(U,$J,358.3,42472,0)
+ ;;=S42.241S^^155^2071^7
+ ;;^UTILITY(U,$J,358.3,42472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44687,1,3,0)
- ;;=3^Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,44687,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,44687,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,44688,0)
- ;;=B37.3^^200^2230^17
- ;;^UTILITY(U,$J,358.3,44688,1,0)
+ ;;^UTILITY(U,$J,358.3,42472,1,3,0)
+ ;;=3^4-part fx of surgical neck of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42472,1,4,0)
+ ;;=4^S42.241S
+ ;;^UTILITY(U,$J,358.3,42472,2)
+ ;;=^5026872
+ ;;^UTILITY(U,$J,358.3,42473,0)
+ ;;=S42.352S^^155^2071^14
+ ;;^UTILITY(U,$J,358.3,42473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44688,1,3,0)
- ;;=3^Candidiasis Vulva/Vagina
- ;;^UTILITY(U,$J,358.3,44688,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,44688,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,44689,0)
- ;;=B58.9^^200^2230^82
- ;;^UTILITY(U,$J,358.3,44689,1,0)
+ ;;^UTILITY(U,$J,358.3,42473,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42473,1,4,0)
+ ;;=4^S42.352S
+ ;;^UTILITY(U,$J,358.3,42473,2)
+ ;;=^5027202
+ ;;^UTILITY(U,$J,358.3,42474,0)
+ ;;=S42.351S^^155^2071^15
+ ;;^UTILITY(U,$J,358.3,42474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44689,1,3,0)
- ;;=3^Toxoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,44689,1,4,0)
- ;;=4^B58.9
- ;;^UTILITY(U,$J,358.3,44689,2)
- ;;=^5000733
- ;;^UTILITY(U,$J,358.3,44690,0)
- ;;=A59.01^^200^2230^83
- ;;^UTILITY(U,$J,358.3,44690,1,0)
+ ;;^UTILITY(U,$J,358.3,42474,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42474,1,4,0)
+ ;;=4^S42.351S
+ ;;^UTILITY(U,$J,358.3,42474,2)
+ ;;=^5027195
+ ;;^UTILITY(U,$J,358.3,42475,0)
+ ;;=S42.422S^^155^2071^16
+ ;;^UTILITY(U,$J,358.3,42475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44690,1,3,0)
- ;;=3^Trichomonal Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,44690,1,4,0)
- ;;=4^A59.01
- ;;^UTILITY(U,$J,358.3,44690,2)
- ;;=^121763
- ;;^UTILITY(U,$J,358.3,44691,0)
- ;;=B59.^^200^2230^66
- ;;^UTILITY(U,$J,358.3,44691,1,0)
+ ;;^UTILITY(U,$J,358.3,42475,1,3,0)
+ ;;=3^Disp fx of commnt suprcndl w/o intrcndl fx l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42475,1,4,0)
+ ;;=4^S42.422S
+ ;;^UTILITY(U,$J,358.3,42475,2)
+ ;;=^5027356
+ ;;^UTILITY(U,$J,358.3,42476,0)
+ ;;=S42.421S^^155^2071^17
+ ;;^UTILITY(U,$J,358.3,42476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44691,1,3,0)
- ;;=3^Pneumocystosis
- ;;^UTILITY(U,$J,358.3,44691,1,4,0)
- ;;=4^B59.
- ;;^UTILITY(U,$J,358.3,44691,2)
- ;;=^5000734
- ;;^UTILITY(U,$J,358.3,44692,0)
- ;;=H83.09^^200^2230^48
- ;;^UTILITY(U,$J,358.3,44692,1,0)
+ ;;^UTILITY(U,$J,358.3,42476,1,3,0)
+ ;;=3^Disp fx of commnt suprcndl w/o intrcndl fx r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42476,1,4,0)
+ ;;=4^S42.421S
+ ;;^UTILITY(U,$J,358.3,42476,2)
+ ;;=^5027349
+ ;;^UTILITY(U,$J,358.3,42477,0)
+ ;;=S42.432S^^155^2071^28
+ ;;^UTILITY(U,$J,358.3,42477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44692,1,3,0)
- ;;=3^Labyrinthitis,Unspec Ear
- ;;^UTILITY(U,$J,358.3,44692,1,4,0)
- ;;=4^H83.09
- ;;^UTILITY(U,$J,358.3,44692,2)
- ;;=^5006897
- ;;^UTILITY(U,$J,358.3,44693,0)
- ;;=H83.01^^200^2230^47
- ;;^UTILITY(U,$J,358.3,44693,1,0)
+ ;;^UTILITY(U,$J,358.3,42477,1,3,0)
+ ;;=3^Disp fx of lateral epicondyle of l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42477,1,4,0)
+ ;;=4^S42.432S
+ ;;^UTILITY(U,$J,358.3,42477,2)
+ ;;=^5027398
+ ;;^UTILITY(U,$J,358.3,42478,0)
+ ;;=S42.431S^^155^2071^29
+ ;;^UTILITY(U,$J,358.3,42478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44693,1,3,0)
- ;;=3^Labyrinthitis,Right Ear
- ;;^UTILITY(U,$J,358.3,44693,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,44693,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,44694,0)
- ;;=H83.03^^200^2230^45
- ;;^UTILITY(U,$J,358.3,44694,1,0)
+ ;;^UTILITY(U,$J,358.3,42478,1,3,0)
+ ;;=3^Disp fx of lateral epicondyle of r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42478,1,4,0)
+ ;;=4^S42.431S
+ ;;^UTILITY(U,$J,358.3,42478,2)
+ ;;=^5027391
+ ;;^UTILITY(U,$J,358.3,42479,0)
+ ;;=S42.442S^^155^2071^34
+ ;;^UTILITY(U,$J,358.3,42479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44694,1,3,0)
- ;;=3^Labyrinthitis,Bilateral
- ;;^UTILITY(U,$J,358.3,44694,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,44694,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,44695,0)
- ;;=H83.02^^200^2230^46
- ;;^UTILITY(U,$J,358.3,44695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44695,1,3,0)
- ;;=3^Labyrinthitis,Left Ear
- ;;^UTILITY(U,$J,358.3,44695,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,44695,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,44696,0)
- ;;=J01.91^^200^2230^76
- ;;^UTILITY(U,$J,358.3,44696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44696,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,44696,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,44696,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,44697,0)
- ;;=J03.90^^200^2230^81
- ;;^UTILITY(U,$J,358.3,44697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44697,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,42479,1,3,0)
+ ;;=3^Disp fx of medial epicondyle of l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42479,1,4,0)
+ ;;=4^S42.442S
+ ;;^UTILITY(U,$J,358.3,42479,2)
+ ;;=^5027440

@@ -1,48 +1,126 @@
-IBDEI16L ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16L ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.91,0,"GL")
- ;;=^IBE(358.91,
- ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
- ;;=
- ;;^DIC(358.91,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.91,"%D",1,0)
- ;;= 
- ;;^DIC(358.91,"%D",2,0)
- ;;=This file is nearly identical to file #357.91. It is used by the
- ;;^DIC(358.91,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.91,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.91,0)
- ;;=FIELD^^.04^4
- ;;^DD(358.91,0,"DDA")
- ;;=N
- ;;^DD(358.91,0,"DT")
- ;;=2960123
- ;;^DD(358.91,0,"IX","B",358.91,.01)
- ;;=
- ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
- ;;=
- ;;^DD(358.91,0,"PT",358.22,.06)
- ;;=
- ;;^DD(358.91,0,"VRPK")
- ;;=IBD
- ;;^DD(358.91,.01,0)
- ;;=NAME^RFX^^0;1^K:$L(X)>30 X
- ;;^DD(358.91,.01,1,0)
- ;;=^.1
- ;;^DD(358.91,.01,1,1,0)
- ;;=358.91^B
- ;;^DD(358.91,.01,1,1,1)
- ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
- ;;^DD(358.91,.01,1,1,2)
- ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
- ;;^DD(358.91,.01,3)
- ;;=NAME MUST BE UNDER 31 CHARACTERS
- ;;^DD(358.91,.01,21,0)
- ;;=^^1^1^2930608^
- ;;^DD(358.91,.01,21,1,0)
- ;;=The name should describe the appearance of the marking area on the form.
+ ;;^UTILITY(U,$J,358.3,18980,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,18980,1,4,0)
+ ;;=4^F19.221
+ ;;^UTILITY(U,$J,358.3,18980,2)
+ ;;=^5003434
+ ;;^UTILITY(U,$J,358.3,18981,0)
+ ;;=F19.921^^91^975^21
+ ;;^UTILITY(U,$J,358.3,18981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18981,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,18981,1,4,0)
+ ;;=4^F19.921
+ ;;^UTILITY(U,$J,358.3,18981,2)
+ ;;=^5003453
+ ;;^UTILITY(U,$J,358.3,18982,0)
+ ;;=F19.10^^91^975^27
+ ;;^UTILITY(U,$J,358.3,18982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18982,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,18982,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,18982,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,18983,0)
+ ;;=F19.20^^91^975^29
+ ;;^UTILITY(U,$J,358.3,18983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18983,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,18983,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,18983,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,18984,0)
+ ;;=F19.239^^91^975^31
+ ;;^UTILITY(U,$J,358.3,18984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18984,1,3,0)
+ ;;=3^Oth/Unk Substance Withdrawal
+ ;;^UTILITY(U,$J,358.3,18984,1,4,0)
+ ;;=4^F19.239
+ ;;^UTILITY(U,$J,358.3,18984,2)
+ ;;=^5003440
+ ;;^UTILITY(U,$J,358.3,18985,0)
+ ;;=F19.231^^91^975^32
+ ;;^UTILITY(U,$J,358.3,18985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18985,1,3,0)
+ ;;=3^Oth/Unk Substance Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,18985,1,4,0)
+ ;;=4^F19.231
+ ;;^UTILITY(U,$J,358.3,18985,2)
+ ;;=^5003438
+ ;;^UTILITY(U,$J,358.3,18986,0)
+ ;;=F19.99^^91^975^25
+ ;;^UTILITY(U,$J,358.3,18986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18986,1,3,0)
+ ;;=3^Oth/Unk Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,18986,1,4,0)
+ ;;=4^F19.99
+ ;;^UTILITY(U,$J,358.3,18986,2)
+ ;;=^5133364
+ ;;^UTILITY(U,$J,358.3,18987,0)
+ ;;=F19.21^^91^975^28
+ ;;^UTILITY(U,$J,358.3,18987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18987,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,18987,1,4,0)
+ ;;=4^F19.21
+ ;;^UTILITY(U,$J,358.3,18987,2)
+ ;;=^5003432
+ ;;^UTILITY(U,$J,358.3,18988,0)
+ ;;=F19.939^^91^975^30
+ ;;^UTILITY(U,$J,358.3,18988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18988,1,3,0)
+ ;;=3^Oth/Unk Substance WD,Unspec
+ ;;^UTILITY(U,$J,358.3,18988,1,4,0)
+ ;;=4^F19.939
+ ;;^UTILITY(U,$J,358.3,18988,2)
+ ;;=^5003459
+ ;;^UTILITY(U,$J,358.3,18989,0)
+ ;;=F19.11^^91^975^26
+ ;;^UTILITY(U,$J,358.3,18989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18989,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,18989,1,4,0)
+ ;;=4^F19.11
+ ;;^UTILITY(U,$J,358.3,18989,2)
+ ;;=^5151306
+ ;;^UTILITY(U,$J,358.3,18990,0)
+ ;;=F15.99^^91^976^66
+ ;;^UTILITY(U,$J,358.3,18990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18990,1,3,0)
+ ;;=3^Oth Stimulant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,18990,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,18990,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,18991,0)
+ ;;=F14.99^^91^976^28
+ ;;^UTILITY(U,$J,358.3,18991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18991,1,3,0)
+ ;;=3^Cocaine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,18991,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,18991,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,18992,0)
+ ;;=F15.180^^91^976^35
+ ;;^UTILITY(U,$J,358.3,18992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18992,1,3,0)
+ ;;=3^Oth Stimulant Induced Anxiety D/O w/ Mild Use D/O

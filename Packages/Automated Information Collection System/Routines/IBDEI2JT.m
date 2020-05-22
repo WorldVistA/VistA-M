@@ -1,138 +1,124 @@
-IBDEI2JT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43229,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,43230,0)
- ;;=C34.92^^164^2066^10
- ;;^UTILITY(U,$J,358.3,43230,1,0)
+ ;;^UTILITY(U,$J,358.3,40685,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,40686,0)
+ ;;=F12.20^^152^2014^9
+ ;;^UTILITY(U,$J,358.3,40686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43230,1,3,0)
- ;;=3^Malig Neop,Unspec Part,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,43230,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,43230,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,43231,0)
- ;;=J20.9^^164^2066^3
- ;;^UTILITY(U,$J,358.3,43231,1,0)
+ ;;^UTILITY(U,$J,358.3,40686,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40686,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,40686,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,40687,0)
+ ;;=F12.21^^152^2014^8
+ ;;^UTILITY(U,$J,358.3,40687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43231,1,3,0)
- ;;=3^Bronchitis,Acute
- ;;^UTILITY(U,$J,358.3,43231,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,43231,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,43232,0)
- ;;=J42.^^164^2066^4
- ;;^UTILITY(U,$J,358.3,43232,1,0)
+ ;;^UTILITY(U,$J,358.3,40687,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,40687,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,40687,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,40688,0)
+ ;;=F12.90^^152^2014^10
+ ;;^UTILITY(U,$J,358.3,40688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43232,1,3,0)
- ;;=3^Bronchitis,Chronic
- ;;^UTILITY(U,$J,358.3,43232,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,43232,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,43233,0)
- ;;=J45.909^^164^2066^2
- ;;^UTILITY(U,$J,358.3,43233,1,0)
+ ;;^UTILITY(U,$J,358.3,40688,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40688,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,40688,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,40689,0)
+ ;;=F10.11^^152^2014^2
+ ;;^UTILITY(U,$J,358.3,40689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43233,1,3,0)
- ;;=3^Asthma,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,43233,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,43233,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,43234,0)
- ;;=J45.902^^164^2066^1
- ;;^UTILITY(U,$J,358.3,43234,1,0)
+ ;;^UTILITY(U,$J,358.3,40689,1,3,0)
+ ;;=3^Alcohol Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,40689,1,4,0)
+ ;;=4^F10.11
+ ;;^UTILITY(U,$J,358.3,40689,2)
+ ;;=^268230
+ ;;^UTILITY(U,$J,358.3,40690,0)
+ ;;=F12.11^^152^2014^6
+ ;;^UTILITY(U,$J,358.3,40690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43234,1,3,0)
- ;;=3^Asthma,Unspec, w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,43234,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,43234,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,43235,0)
- ;;=J61.^^164^2066^15
- ;;^UTILITY(U,$J,358.3,43235,1,0)
+ ;;^UTILITY(U,$J,358.3,40690,1,3,0)
+ ;;=3^Cannabis Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,40690,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,40690,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,40691,0)
+ ;;=F14.11^^152^2014^11
+ ;;^UTILITY(U,$J,358.3,40691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43235,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbest & Oth Min Fibers
- ;;^UTILITY(U,$J,358.3,43235,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,43235,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,43236,0)
- ;;=R09.1^^164^2066^14
- ;;^UTILITY(U,$J,358.3,43236,1,0)
+ ;;^UTILITY(U,$J,358.3,40691,1,3,0)
+ ;;=3^Cocaine Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,40691,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,40691,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,40692,0)
+ ;;=F11.11^^152^2014^37
+ ;;^UTILITY(U,$J,358.3,40692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43236,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,43236,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,43236,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,43237,0)
- ;;=J84.10^^164^2066^16
- ;;^UTILITY(U,$J,358.3,43237,1,0)
+ ;;^UTILITY(U,$J,358.3,40692,1,3,0)
+ ;;=3^Opioid Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,40692,1,4,0)
+ ;;=4^F11.11
+ ;;^UTILITY(U,$J,358.3,40692,2)
+ ;;=^268246
+ ;;^UTILITY(U,$J,358.3,40693,0)
+ ;;=F12.93^^152^2014^53
+ ;;^UTILITY(U,$J,358.3,40693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43237,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,43237,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,43237,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,43238,0)
- ;;=R91.1^^164^2066^17
- ;;^UTILITY(U,$J,358.3,43238,1,0)
+ ;;^UTILITY(U,$J,358.3,40693,1,3,0)
+ ;;=3^Cannabis Use,Unspec w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,40693,1,4,0)
+ ;;=4^F12.93
+ ;;^UTILITY(U,$J,358.3,40693,2)
+ ;;=^5157302
+ ;;^UTILITY(U,$J,358.3,40694,0)
+ ;;=I83.019^^152^2015^3
+ ;;^UTILITY(U,$J,358.3,40694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43238,1,3,0)
- ;;=3^Pulmonay Nodule,Solitary
- ;;^UTILITY(U,$J,358.3,43238,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,43238,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,43239,0)
- ;;=B49.^^164^2067^52
- ;;^UTILITY(U,$J,358.3,43239,1,0)
+ ;;^UTILITY(U,$J,358.3,40694,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,40694,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,40694,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,40695,0)
+ ;;=I83.219^^152^2015^4
+ ;;^UTILITY(U,$J,358.3,40695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43239,1,3,0)
- ;;=3^Mycosis,Unspec
- ;;^UTILITY(U,$J,358.3,43239,1,4,0)
- ;;=4^B49.
- ;;^UTILITY(U,$J,358.3,43239,2)
- ;;=^5000690
- ;;^UTILITY(U,$J,358.3,43240,0)
- ;;=C49.9^^164^2067^51
- ;;^UTILITY(U,$J,358.3,43240,1,0)
+ ;;^UTILITY(U,$J,358.3,40695,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,40695,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,40695,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,40696,0)
+ ;;=I83.029^^152^2015^1
+ ;;^UTILITY(U,$J,358.3,40696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43240,1,3,0)
- ;;=3^Malig Neop Connective & Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,43240,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,43240,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,43241,0)
- ;;=E11.9^^164^2067^19
- ;;^UTILITY(U,$J,358.3,43241,1,0)
+ ;;^UTILITY(U,$J,358.3,40696,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,40696,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,40696,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,40697,0)
+ ;;=I83.229^^152^2015^2
+ ;;^UTILITY(U,$J,358.3,40697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43241,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,43241,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,43241,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,43242,0)
- ;;=E10.9^^164^2067^18
- ;;^UTILITY(U,$J,358.3,43242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43242,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,43242,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,43242,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,43243,0)
- ;;=D50.0^^164^2067^48
+ ;;^UTILITY(U,$J,358.3,40697,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,40697,1,4,0)
+ ;;=4^I83.229

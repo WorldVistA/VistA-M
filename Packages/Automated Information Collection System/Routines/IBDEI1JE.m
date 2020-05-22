@@ -1,138 +1,124 @@
-IBDEI1JE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26082,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,26083,0)
- ;;=F65.89^^98^1227^4
- ;;^UTILITY(U,$J,358.3,26083,1,0)
+ ;;^UTILITY(U,$J,358.3,24568,0)
+ ;;=K59.03^^107^1207^21
+ ;;^UTILITY(U,$J,358.3,24568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26083,1,3,0)
- ;;=3^Paraphilic Disorder NEC
- ;;^UTILITY(U,$J,358.3,26083,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,26083,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,26084,0)
- ;;=F65.9^^98^1227^5
- ;;^UTILITY(U,$J,358.3,26084,1,0)
+ ;;^UTILITY(U,$J,358.3,24568,1,3,0)
+ ;;=3^Constipation,Drug Induced
+ ;;^UTILITY(U,$J,358.3,24568,1,4,0)
+ ;;=4^K59.03
+ ;;^UTILITY(U,$J,358.3,24568,2)
+ ;;=^5138744
+ ;;^UTILITY(U,$J,358.3,24569,0)
+ ;;=K52.21^^107^1207^51
+ ;;^UTILITY(U,$J,358.3,24569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26084,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26084,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,26084,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,26085,0)
- ;;=F60.0^^98^1228^8
- ;;^UTILITY(U,$J,358.3,26085,1,0)
+ ;;^UTILITY(U,$J,358.3,24569,1,3,0)
+ ;;=3^Enterocolitis Synd Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,24569,1,4,0)
+ ;;=4^K52.21
+ ;;^UTILITY(U,$J,358.3,24569,2)
+ ;;=^5138713
+ ;;^UTILITY(U,$J,358.3,24570,0)
+ ;;=K52.22^^107^1207^52
+ ;;^UTILITY(U,$J,358.3,24570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26085,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,26085,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,26085,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,26086,0)
- ;;=F60.1^^98^1228^11
- ;;^UTILITY(U,$J,358.3,26086,1,0)
+ ;;^UTILITY(U,$J,358.3,24570,1,3,0)
+ ;;=3^Enterocolopathy Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,24570,1,4,0)
+ ;;=4^K52.22
+ ;;^UTILITY(U,$J,358.3,24570,2)
+ ;;=^5138714
+ ;;^UTILITY(U,$J,358.3,24571,0)
+ ;;=K58.2^^107^1207^79
+ ;;^UTILITY(U,$J,358.3,24571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26086,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,26086,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,26086,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,26087,0)
- ;;=F21.^^98^1228^12
- ;;^UTILITY(U,$J,358.3,26087,1,0)
+ ;;^UTILITY(U,$J,358.3,24571,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Mixed
+ ;;^UTILITY(U,$J,358.3,24571,1,4,0)
+ ;;=4^K58.2
+ ;;^UTILITY(U,$J,358.3,24571,2)
+ ;;=^5138742
+ ;;^UTILITY(U,$J,358.3,24572,0)
+ ;;=K58.8^^107^1207^80
+ ;;^UTILITY(U,$J,358.3,24572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26087,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,26087,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,26087,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,26088,0)
- ;;=F60.5^^98^1228^7
- ;;^UTILITY(U,$J,358.3,26088,1,0)
+ ;;^UTILITY(U,$J,358.3,24572,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Other
+ ;;^UTILITY(U,$J,358.3,24572,1,4,0)
+ ;;=4^K58.8
+ ;;^UTILITY(U,$J,358.3,24572,2)
+ ;;=^5138743
+ ;;^UTILITY(U,$J,358.3,24573,0)
+ ;;=K58.1^^107^1207^76
+ ;;^UTILITY(U,$J,358.3,24573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26088,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,26088,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,26088,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,26089,0)
- ;;=F60.4^^98^1228^5
- ;;^UTILITY(U,$J,358.3,26089,1,0)
+ ;;^UTILITY(U,$J,358.3,24573,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Constipation
+ ;;^UTILITY(U,$J,358.3,24573,1,4,0)
+ ;;=4^K58.1
+ ;;^UTILITY(U,$J,358.3,24573,2)
+ ;;=^5138741
+ ;;^UTILITY(U,$J,358.3,24574,0)
+ ;;=K61.39^^107^1207^5
+ ;;^UTILITY(U,$J,358.3,24574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26089,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,26089,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,26089,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,26090,0)
- ;;=F60.7^^98^1228^4
- ;;^UTILITY(U,$J,358.3,26090,1,0)
+ ;;^UTILITY(U,$J,358.3,24574,1,3,0)
+ ;;=3^Abscess,Ischiorectal NOS
+ ;;^UTILITY(U,$J,358.3,24574,1,4,0)
+ ;;=4^K61.39
+ ;;^UTILITY(U,$J,358.3,24574,2)
+ ;;=^5157385
+ ;;^UTILITY(U,$J,358.3,24575,0)
+ ;;=G43.A1^^107^1207^34
+ ;;^UTILITY(U,$J,358.3,24575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26090,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,26090,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,26090,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,26091,0)
- ;;=F60.2^^98^1228^1
- ;;^UTILITY(U,$J,358.3,26091,1,0)
+ ;;^UTILITY(U,$J,358.3,24575,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Intractable
+ ;;^UTILITY(U,$J,358.3,24575,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,24575,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,24576,0)
+ ;;=G43.A0^^107^1207^35
+ ;;^UTILITY(U,$J,358.3,24576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26091,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,26091,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,26091,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,26092,0)
- ;;=F60.81^^98^1228^6
- ;;^UTILITY(U,$J,358.3,26092,1,0)
+ ;;^UTILITY(U,$J,358.3,24576,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Not intractable
+ ;;^UTILITY(U,$J,358.3,24576,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,24576,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,24577,0)
+ ;;=R11.15^^107^1207^33
+ ;;^UTILITY(U,$J,358.3,24577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26092,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,26092,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,26092,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,26093,0)
- ;;=F60.6^^98^1228^2
- ;;^UTILITY(U,$J,358.3,26093,1,0)
+ ;;^UTILITY(U,$J,358.3,24577,1,3,0)
+ ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
+ ;;^UTILITY(U,$J,358.3,24577,1,4,0)
+ ;;=4^R11.15
+ ;;^UTILITY(U,$J,358.3,24577,2)
+ ;;=^5158141
+ ;;^UTILITY(U,$J,358.3,24578,0)
+ ;;=A54.00^^107^1208^50
+ ;;^UTILITY(U,$J,358.3,24578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26093,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,26093,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,26093,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,26094,0)
- ;;=F60.3^^98^1228^3
- ;;^UTILITY(U,$J,358.3,26094,1,0)
+ ;;^UTILITY(U,$J,358.3,24578,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,24578,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,24578,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,24579,0)
+ ;;=A54.09^^107^1208^51
+ ;;^UTILITY(U,$J,358.3,24579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26094,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,26094,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,26094,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,26095,0)
- ;;=F60.89^^98^1228^9
- ;;^UTILITY(U,$J,358.3,26095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26095,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,26095,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,26095,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,26096,0)
- ;;=F60.9^^98^1228^10
+ ;;^UTILITY(U,$J,358.3,24579,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,24579,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,24579,2)
+ ;;=^5000315

@@ -1,340 +1,678 @@
-IBDEI030 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI030 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3508,1,4,0)
- ;;=4^K51.913
- ;;^UTILITY(U,$J,358.3,3508,2)
- ;;=^5008697
- ;;^UTILITY(U,$J,358.3,3509,0)
- ;;=K51.914^^20^257^3
- ;;^UTILITY(U,$J,358.3,3509,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3509,1,3,0)
- ;;=3^Ulcerative Colitis w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,3509,1,4,0)
- ;;=4^K51.914
- ;;^UTILITY(U,$J,358.3,3509,2)
- ;;=^5008698
- ;;^UTILITY(U,$J,358.3,3510,0)
- ;;=K51.918^^20^257^6
- ;;^UTILITY(U,$J,358.3,3510,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3510,1,3,0)
- ;;=3^Ulcerative Colitis w/ Oth Complications,Unspec
- ;;^UTILITY(U,$J,358.3,3510,1,4,0)
- ;;=4^K51.918
- ;;^UTILITY(U,$J,358.3,3510,2)
- ;;=^5008699
- ;;^UTILITY(U,$J,358.3,3511,0)
- ;;=K51.911^^20^257^7
- ;;^UTILITY(U,$J,358.3,3511,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3511,1,3,0)
- ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,3511,1,4,0)
- ;;=4^K51.911
- ;;^UTILITY(U,$J,358.3,3511,2)
- ;;=^5008695
- ;;^UTILITY(U,$J,358.3,3512,0)
- ;;=K50.00^^20^258^11
- ;;^UTILITY(U,$J,358.3,3512,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3512,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/o Complications
- ;;^UTILITY(U,$J,358.3,3512,1,4,0)
- ;;=4^K50.00
- ;;^UTILITY(U,$J,358.3,3512,2)
- ;;=^5008624
- ;;^UTILITY(U,$J,358.3,3513,0)
- ;;=K50.011^^20^258^9
- ;;^UTILITY(U,$J,358.3,3513,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3513,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Rectal Bleeding
- ;;^UTILITY(U,$J,358.3,3513,1,4,0)
- ;;=4^K50.011
- ;;^UTILITY(U,$J,358.3,3513,2)
- ;;=^5008625
- ;;^UTILITY(U,$J,358.3,3514,0)
- ;;=K50.012^^20^258^7
- ;;^UTILITY(U,$J,358.3,3514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3514,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,3514,1,4,0)
- ;;=4^K50.012
- ;;^UTILITY(U,$J,358.3,3514,2)
- ;;=^5008626
- ;;^UTILITY(U,$J,358.3,3515,0)
- ;;=K50.013^^20^258^6
- ;;^UTILITY(U,$J,358.3,3515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3515,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Fistula
- ;;^UTILITY(U,$J,358.3,3515,1,4,0)
- ;;=4^K50.013
- ;;^UTILITY(U,$J,358.3,3515,2)
- ;;=^5008627
- ;;^UTILITY(U,$J,358.3,3516,0)
- ;;=K50.014^^20^258^5
- ;;^UTILITY(U,$J,358.3,3516,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3516,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,3516,1,4,0)
- ;;=4^K50.014
- ;;^UTILITY(U,$J,358.3,3516,2)
- ;;=^5008628
- ;;^UTILITY(U,$J,358.3,3517,0)
- ;;=K50.018^^20^258^8
- ;;^UTILITY(U,$J,358.3,3517,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3517,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Oth Complications
- ;;^UTILITY(U,$J,358.3,3517,1,4,0)
- ;;=4^K50.018
- ;;^UTILITY(U,$J,358.3,3517,2)
- ;;=^5008629
- ;;^UTILITY(U,$J,358.3,3518,0)
- ;;=K50.019^^20^258^10
- ;;^UTILITY(U,$J,358.3,3518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3518,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,3518,1,4,0)
- ;;=4^K50.019
- ;;^UTILITY(U,$J,358.3,3518,2)
- ;;=^5008630
- ;;^UTILITY(U,$J,358.3,3519,0)
- ;;=K50.10^^20^258^4
- ;;^UTILITY(U,$J,358.3,3519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3519,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/o Complications
- ;;^UTILITY(U,$J,358.3,3519,1,4,0)
- ;;=4^K50.10
- ;;^UTILITY(U,$J,358.3,3519,2)
- ;;=^5008631
- ;;^UTILITY(U,$J,358.3,3520,0)
- ;;=K50.818^^20^258^12
- ;;^UTILITY(U,$J,358.3,3520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3520,1,3,0)
- ;;=3^Crohn's Disease of Small/Large Intestine w/ Oth Complication
- ;;^UTILITY(U,$J,358.3,3520,1,4,0)
- ;;=4^K50.818
- ;;^UTILITY(U,$J,358.3,3520,2)
- ;;=^5008643
- ;;^UTILITY(U,$J,358.3,3521,0)
- ;;=K50.819^^20^258^13
- ;;^UTILITY(U,$J,358.3,3521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3521,1,3,0)
- ;;=3^Crohn's Disease of Small/Large Intestine w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,3521,1,4,0)
- ;;=4^K50.819
- ;;^UTILITY(U,$J,358.3,3521,2)
- ;;=^5008644
- ;;^UTILITY(U,$J,358.3,3522,0)
- ;;=K50.912^^20^258^17
- ;;^UTILITY(U,$J,358.3,3522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3522,1,3,0)
- ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,3522,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,3522,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,3523,0)
- ;;=K50.918^^20^258^18
- ;;^UTILITY(U,$J,358.3,3523,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3523,1,3,0)
- ;;=3^Crohn's Disease w/ Oth Complications,Unspec
- ;;^UTILITY(U,$J,358.3,3523,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,3523,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,3524,0)
- ;;=K50.919^^20^258^20
- ;;^UTILITY(U,$J,358.3,3524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3524,1,3,0)
- ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,3524,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,3524,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,3525,0)
- ;;=K50.911^^20^258^19
- ;;^UTILITY(U,$J,358.3,3525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3525,1,3,0)
- ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,3525,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,3525,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,3526,0)
- ;;=K50.90^^20^258^21
- ;;^UTILITY(U,$J,358.3,3526,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3526,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,3526,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,3526,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,3527,0)
- ;;=K50.913^^20^258^16
- ;;^UTILITY(U,$J,358.3,3527,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3527,1,3,0)
- ;;=3^Crohn's Disease w/ Fistual,Unspec
- ;;^UTILITY(U,$J,358.3,3527,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,3527,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,3528,0)
- ;;=K50.914^^20^258^15
- ;;^UTILITY(U,$J,358.3,3528,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3528,1,3,0)
- ;;=3^Crohn's Disease w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,3528,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,3528,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,3529,0)
- ;;=K50.114^^20^258^1
- ;;^UTILITY(U,$J,358.3,3529,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3529,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,3529,1,4,0)
- ;;=4^K50.114
- ;;^UTILITY(U,$J,358.3,3529,2)
- ;;=^5008635
- ;;^UTILITY(U,$J,358.3,3530,0)
- ;;=K50.814^^20^258^14
- ;;^UTILITY(U,$J,358.3,3530,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3530,1,3,0)
- ;;=3^Crohn's Disease of Small/Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,3530,1,4,0)
- ;;=4^K50.814
- ;;^UTILITY(U,$J,358.3,3530,2)
- ;;=^5008642
- ;;^UTILITY(U,$J,358.3,3531,0)
- ;;=K50.111^^20^258^2
- ;;^UTILITY(U,$J,358.3,3531,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3531,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Rectal Bleeding
- ;;^UTILITY(U,$J,358.3,3531,1,4,0)
- ;;=4^K50.111
- ;;^UTILITY(U,$J,358.3,3531,2)
- ;;=^5008632
- ;;^UTILITY(U,$J,358.3,3532,0)
- ;;=K50.119^^20^258^3
- ;;^UTILITY(U,$J,358.3,3532,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3532,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,3532,1,4,0)
- ;;=4^K50.119
- ;;^UTILITY(U,$J,358.3,3532,2)
- ;;=^5008637
- ;;^UTILITY(U,$J,358.3,3533,0)
- ;;=K57.20^^20^259^3
- ;;^UTILITY(U,$J,358.3,3533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3533,1,3,0)
- ;;=3^Diverticulitis of Large Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3533,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,3533,2)
- ;;=^5008721
- ;;^UTILITY(U,$J,358.3,3534,0)
- ;;=K57.92^^20^259^2
- ;;^UTILITY(U,$J,358.3,3534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3534,1,3,0)
- ;;=3^Diverticulitis of Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3534,1,4,0)
- ;;=4^K57.92
- ;;^UTILITY(U,$J,358.3,3534,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,3535,0)
- ;;=K57.80^^20^259^1
- ;;^UTILITY(U,$J,358.3,3535,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3535,1,3,0)
- ;;=3^Diverticulitis of Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3535,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,3535,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,3536,0)
- ;;=K57.52^^20^259^5
- ;;^UTILITY(U,$J,358.3,3536,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3536,1,3,0)
- ;;=3^Diverticulitis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3536,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,3536,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,3537,0)
- ;;=K57.40^^20^259^6
- ;;^UTILITY(U,$J,358.3,3537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3537,1,3,0)
- ;;=3^Diverticulitis of Small/Large Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3537,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,3537,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,3538,0)
- ;;=K57.32^^20^259^4
- ;;^UTILITY(U,$J,358.3,3538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3538,1,3,0)
- ;;=3^Diverticulitis of Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3538,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,3538,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,3539,0)
- ;;=K57.90^^20^260^1
- ;;^UTILITY(U,$J,358.3,3539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3539,1,3,0)
- ;;=3^Diverticulosis of Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3539,1,4,0)
- ;;=4^K57.90
- ;;^UTILITY(U,$J,358.3,3539,2)
- ;;=^5008735
- ;;^UTILITY(U,$J,358.3,3540,0)
- ;;=K57.50^^20^260^4
- ;;^UTILITY(U,$J,358.3,3540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3540,1,3,0)
- ;;=3^Diverticulosis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3540,1,4,0)
- ;;=4^K57.50
- ;;^UTILITY(U,$J,358.3,3540,2)
- ;;=^5008729
- ;;^UTILITY(U,$J,358.3,3541,0)
- ;;=K57.30^^20^260^2
- ;;^UTILITY(U,$J,358.3,3541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3541,1,3,0)
- ;;=3^Diverticulosis of Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,3541,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,3541,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,3542,0)
- ;;=K57.10^^20^260^3
+ ;;^UTILITY(U,$J,358.3,7051,1,2,0)
+ ;;=2^Bevacizumab 0.25mg (use w/ 67028)
+ ;;^UTILITY(U,$J,358.3,7051,1,3,0)
+ ;;=3^C9257
+ ;;^UTILITY(U,$J,358.3,7052,0)
+ ;;=67028^^42^407^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7052,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7052,1,2,0)
+ ;;=2^INTRAVITREAL EYE INJ-1 Eye/Unilateral
+ ;;^UTILITY(U,$J,358.3,7052,1,3,0)
+ ;;=3^67028
+ ;;^UTILITY(U,$J,358.3,7053,0)
+ ;;=J3301^^42^407^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7053,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7053,1,2,0)
+ ;;=2^Triamcinolone/KENALOG (use w/ 68200)
+ ;;^UTILITY(U,$J,358.3,7053,1,3,0)
+ ;;=3^J3301
+ ;;^UTILITY(U,$J,358.3,7054,0)
+ ;;=J0178^^42^407^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7054,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7054,1,2,0)
+ ;;=2^Aflib/EYLEA (use w/ 67028)
+ ;;^UTILITY(U,$J,358.3,7054,1,3,0)
+ ;;=3^J0178
+ ;;^UTILITY(U,$J,358.3,7055,0)
+ ;;=J7312^^42^407^14^^^^1
+ ;;^UTILITY(U,$J,358.3,7055,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7055,1,2,0)
+ ;;=2^Dexameth Implant/OZURDEX
+ ;;^UTILITY(U,$J,358.3,7055,1,3,0)
+ ;;=3^J7312
+ ;;^UTILITY(U,$J,358.3,7056,0)
+ ;;=J3300^^42^407^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7056,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7056,1,2,0)
+ ;;=2^Triamcinolone/TRIESENCE (use w/ 67028)
+ ;;^UTILITY(U,$J,358.3,7056,1,3,0)
+ ;;=3^J3300
+ ;;^UTILITY(U,$J,358.3,7057,0)
+ ;;=64612^^42^407^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7057,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7057,1,2,0)
+ ;;=2^Chemodenervation of Muscle Inj (eg,Botox),Unilat
+ ;;^UTILITY(U,$J,358.3,7057,1,3,0)
+ ;;=3^64612
+ ;;^UTILITY(U,$J,358.3,7058,0)
+ ;;=68200^^42^407^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7058,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7058,1,2,0)
+ ;;=2^Subtenons Injection
+ ;;^UTILITY(U,$J,358.3,7058,1,3,0)
+ ;;=3^68200
+ ;;^UTILITY(U,$J,358.3,7059,0)
+ ;;=67505^^42^407^15^^^^1
+ ;;^UTILITY(U,$J,358.3,7059,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7059,1,2,0)
+ ;;=2^Retrobulbar Inj,Alcohol
+ ;;^UTILITY(U,$J,358.3,7059,1,3,0)
+ ;;=3^67505
+ ;;^UTILITY(U,$J,358.3,7060,0)
+ ;;=67500^^42^407^16^^^^1
+ ;;^UTILITY(U,$J,358.3,7060,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7060,1,2,0)
+ ;;=2^Retrobulbar Inj,Any Medication
+ ;;^UTILITY(U,$J,358.3,7060,1,3,0)
+ ;;=3^67500
+ ;;^UTILITY(U,$J,358.3,7061,0)
+ ;;=68200^^42^407^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7061,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7061,1,2,0)
+ ;;=2^Subconjunctival Injection
+ ;;^UTILITY(U,$J,358.3,7061,1,3,0)
+ ;;=3^68200
+ ;;^UTILITY(U,$J,358.3,7062,0)
+ ;;=J0588^^42^407^13^^^^1
+ ;;^UTILITY(U,$J,358.3,7062,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7062,1,2,0)
+ ;;=2^Xeomin 1 Unit (use w/ 64612)
+ ;;^UTILITY(U,$J,358.3,7062,1,3,0)
+ ;;=3^J0588
+ ;;^UTILITY(U,$J,358.3,7063,0)
+ ;;=J0587^^42^407^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7063,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7063,1,2,0)
+ ;;=2^Myobloc 100 Units (use with 64612)
+ ;;^UTILITY(U,$J,358.3,7063,1,3,0)
+ ;;=3^J0587
+ ;;^UTILITY(U,$J,358.3,7064,0)
+ ;;=J0585^^42^407^12^^^^1
+ ;;^UTILITY(U,$J,358.3,7064,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7064,1,2,0)
+ ;;=2^Botox 1 Unit (use w/ 64612)
+ ;;^UTILITY(U,$J,358.3,7064,1,3,0)
+ ;;=3^J0585
+ ;;^UTILITY(U,$J,358.3,7065,0)
+ ;;=J2778^^42^407^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7065,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7065,1,2,0)
+ ;;=2^Ranibiz/LUCENTIS (use w/ 67028)
+ ;;^UTILITY(U,$J,358.3,7065,1,3,0)
+ ;;=3^J2778
+ ;;^UTILITY(U,$J,358.3,7066,0)
+ ;;=C9257^^42^407^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7066,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7066,1,2,0)
+ ;;=2^Bevaciz/AVASTIN (use w/ 67028)
+ ;;^UTILITY(U,$J,358.3,7066,1,3,0)
+ ;;=3^C9257
+ ;;^UTILITY(U,$J,358.3,7067,0)
+ ;;=67028^^42^407^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7067,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7067,1,2,0)
+ ;;=2^INTRAVITREAL EYE INJ-2 Eye/Bilateral
+ ;;^UTILITY(U,$J,358.3,7067,1,3,0)
+ ;;=3^67028
+ ;;^UTILITY(U,$J,358.3,7067,3,0)
+ ;;=^357.33^1^1
+ ;;^UTILITY(U,$J,358.3,7067,3,1,0)
+ ;;=50
+ ;;^UTILITY(U,$J,358.3,7068,0)
+ ;;=92134^^42^408^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7068,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7068,1,2,0)
+ ;;=2^OCT Macula (retina)
+ ;;^UTILITY(U,$J,358.3,7068,1,3,0)
+ ;;=3^92134
+ ;;^UTILITY(U,$J,358.3,7069,0)
+ ;;=92133^^42^408^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7069,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7069,1,2,0)
+ ;;=2^OCT RNFL (optic nerve)
+ ;;^UTILITY(U,$J,358.3,7069,1,3,0)
+ ;;=3^92133
+ ;;^UTILITY(U,$J,358.3,7070,0)
+ ;;=92132^^42^408^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7070,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7070,1,2,0)
+ ;;=2^OCT Anterior Segment (angle)
+ ;;^UTILITY(U,$J,358.3,7070,1,3,0)
+ ;;=3^92132
+ ;;^UTILITY(U,$J,358.3,7071,0)
+ ;;=92250^^42^408^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7071,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7071,1,2,0)
+ ;;=2^Fundus Photos
+ ;;^UTILITY(U,$J,358.3,7071,1,3,0)
+ ;;=3^92250
+ ;;^UTILITY(U,$J,358.3,7072,0)
+ ;;=92235^^42^408^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7072,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7072,1,2,0)
+ ;;=2^Fluorescein Angiography,Unilat or Bilat
+ ;;^UTILITY(U,$J,358.3,7072,1,3,0)
+ ;;=3^92235
+ ;;^UTILITY(U,$J,358.3,7073,0)
+ ;;=92240^^42^408^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7073,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7073,1,2,0)
+ ;;=2^ICG Angiography,Unilat or Bilat
+ ;;^UTILITY(U,$J,358.3,7073,1,3,0)
+ ;;=3^92240
+ ;;^UTILITY(U,$J,358.3,7074,0)
+ ;;=92285^^42^408^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7074,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7074,1,2,0)
+ ;;=2^External or Slit Lamp Photos
+ ;;^UTILITY(U,$J,358.3,7074,1,3,0)
+ ;;=3^92285
+ ;;^UTILITY(U,$J,358.3,7075,0)
+ ;;=76514^^42^408^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7075,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7075,1,2,0)
+ ;;=2^Pachymetry (corneal thickness)
+ ;;^UTILITY(U,$J,358.3,7075,1,3,0)
+ ;;=3^76514
+ ;;^UTILITY(U,$J,358.3,7076,0)
+ ;;=92025^^42^408^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7076,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7076,1,2,0)
+ ;;=2^Topography (cornea),Unilat or Bilat
+ ;;^UTILITY(U,$J,358.3,7076,1,3,0)
+ ;;=3^92025
+ ;;^UTILITY(U,$J,358.3,7077,0)
+ ;;=92242^^42^408^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7077,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7077,1,2,0)
+ ;;=2^Fluorescein & ICG Angiography,Unilat or Bilat
+ ;;^UTILITY(U,$J,358.3,7077,1,3,0)
+ ;;=3^92242
+ ;;^UTILITY(U,$J,358.3,7078,0)
+ ;;=92286^^42^408^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7078,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7078,1,2,0)
+ ;;=2^Specular Microscopy
+ ;;^UTILITY(U,$J,358.3,7078,1,3,0)
+ ;;=3^92286
+ ;;^UTILITY(U,$J,358.3,7079,0)
+ ;;=92311^^42^409^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7079,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7079,1,2,0)
+ ;;=2^Contact Lens-Aphakia OD/OS
+ ;;^UTILITY(U,$J,358.3,7079,1,3,0)
+ ;;=3^92311
+ ;;^UTILITY(U,$J,358.3,7080,0)
+ ;;=92312^^42^409^12^^^^1
+ ;;^UTILITY(U,$J,358.3,7080,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7080,1,2,0)
+ ;;=2^Contact Lens-Aphakia OU
+ ;;^UTILITY(U,$J,358.3,7080,1,3,0)
+ ;;=3^92312
+ ;;^UTILITY(U,$J,358.3,7081,0)
+ ;;=92340^^42^409^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7081,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7081,1,2,0)
+ ;;=2^Glasses Fitting, Monofocal
+ ;;^UTILITY(U,$J,358.3,7081,1,3,0)
+ ;;=3^92340
+ ;;^UTILITY(U,$J,358.3,7082,0)
+ ;;=92341^^42^409^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7082,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7082,1,2,0)
+ ;;=2^Glasses Fitting, Bifocal
+ ;;^UTILITY(U,$J,358.3,7082,1,3,0)
+ ;;=3^92341
+ ;;^UTILITY(U,$J,358.3,7083,0)
+ ;;=92342^^42^409^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7083,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7083,1,2,0)
+ ;;=2^Glasses Fitting, Multifocal
+ ;;^UTILITY(U,$J,358.3,7083,1,3,0)
+ ;;=3^92342
+ ;;^UTILITY(U,$J,358.3,7084,0)
+ ;;=92352^^42^409^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7084,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7084,1,2,0)
+ ;;=2^Glasses Fitting, Monofocal for Aphakia
+ ;;^UTILITY(U,$J,358.3,7084,1,3,0)
+ ;;=3^92352
+ ;;^UTILITY(U,$J,358.3,7085,0)
+ ;;=92353^^42^409^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7085,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7085,1,2,0)
+ ;;=2^Glasses Fitting, Multifocal, for Aphakia
+ ;;^UTILITY(U,$J,358.3,7085,1,3,0)
+ ;;=3^92353
+ ;;^UTILITY(U,$J,358.3,7086,0)
+ ;;=92354^^42^409^13^^^^1
+ ;;^UTILITY(U,$J,358.3,7086,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7086,1,2,0)
+ ;;=2^Low Vision Aid Fitting, Single Element
+ ;;^UTILITY(U,$J,358.3,7086,1,3,0)
+ ;;=3^92354
+ ;;^UTILITY(U,$J,358.3,7087,0)
+ ;;=92355^^42^409^14^^^^1
+ ;;^UTILITY(U,$J,358.3,7087,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7087,1,2,0)
+ ;;=2^Low Vision Aid Fitting, Telescopic/Compound Lens
+ ;;^UTILITY(U,$J,358.3,7087,1,3,0)
+ ;;=3^92355
+ ;;^UTILITY(U,$J,358.3,7088,0)
+ ;;=92370^^42^409^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7088,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7088,1,2,0)
+ ;;=2^Repair/Refit Glasses
+ ;;^UTILITY(U,$J,358.3,7088,1,3,0)
+ ;;=3^92370
+ ;;^UTILITY(U,$J,358.3,7089,0)
+ ;;=92371^^42^409^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7089,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7089,1,2,0)
+ ;;=2^Repair/Refit Glasses for Aphakia
+ ;;^UTILITY(U,$J,358.3,7089,1,3,0)
+ ;;=3^92371
+ ;;^UTILITY(U,$J,358.3,7090,0)
+ ;;=92071^^42^409^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7090,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7090,1,2,0)
+ ;;=2^Contact Lens Tx for Ocular Disease
+ ;;^UTILITY(U,$J,358.3,7090,1,3,0)
+ ;;=3^92071
+ ;;^UTILITY(U,$J,358.3,7091,0)
+ ;;=92072^^42^409^15^^^^1
+ ;;^UTILITY(U,$J,358.3,7091,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7091,1,2,0)
+ ;;=2^Contact Lens Mgmt Keratoconus,Init
+ ;;^UTILITY(U,$J,358.3,7091,1,3,0)
+ ;;=3^92072
+ ;;^UTILITY(U,$J,358.3,7092,0)
+ ;;=92015^^42^409^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7092,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7092,1,2,0)
+ ;;=2^Refraction
+ ;;^UTILITY(U,$J,358.3,7092,1,3,0)
+ ;;=3^92015
+ ;;^UTILITY(U,$J,358.3,7093,0)
+ ;;=99174^^42^409^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7093,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7093,1,2,0)
+ ;;=2^Autorefraction,Bilateral
+ ;;^UTILITY(U,$J,358.3,7093,1,3,0)
+ ;;=3^99174
+ ;;^UTILITY(U,$J,358.3,7094,0)
+ ;;=92015^^42^410^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7094,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7094,1,2,0)
+ ;;=2^Refraction
+ ;;^UTILITY(U,$J,358.3,7094,1,3,0)
+ ;;=3^92015
+ ;;^UTILITY(U,$J,358.3,7095,0)
+ ;;=92025^^42^410^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7095,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7095,1,2,0)
+ ;;=2^Topography (cornea)
+ ;;^UTILITY(U,$J,358.3,7095,1,3,0)
+ ;;=3^92025
+ ;;^UTILITY(U,$J,358.3,7096,0)
+ ;;=76511^^42^410^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7096,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7096,1,2,0)
+ ;;=2^U/S A-Scan Only
+ ;;^UTILITY(U,$J,358.3,7096,1,3,0)
+ ;;=3^76511
+ ;;^UTILITY(U,$J,358.3,7097,0)
+ ;;=76512^^42^410^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7097,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7097,1,2,0)
+ ;;=2^U/S B-Scan Only
+ ;;^UTILITY(U,$J,358.3,7097,1,3,0)
+ ;;=3^76512
+ ;;^UTILITY(U,$J,358.3,7098,0)
+ ;;=76513^^42^410^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7098,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7098,1,2,0)
+ ;;=2^U/S B-Scan,Ant Seg,Water Immersion
+ ;;^UTILITY(U,$J,358.3,7098,1,3,0)
+ ;;=3^76513
+ ;;^UTILITY(U,$J,358.3,7099,0)
+ ;;=92020^^42^410^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7099,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7099,1,2,0)
+ ;;=2^Gonioscopy
+ ;;^UTILITY(U,$J,358.3,7099,1,3,0)
+ ;;=3^92020
+ ;;^UTILITY(U,$J,358.3,7100,0)
+ ;;=92499^^42^410^12^^^^1
+ ;;^UTILITY(U,$J,358.3,7100,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7100,1,2,0)
+ ;;=2^Hertel's Exophthalmometry
+ ;;^UTILITY(U,$J,358.3,7100,1,3,0)
+ ;;=3^92499
+ ;;^UTILITY(U,$J,358.3,7101,0)
+ ;;=99174^^42^410^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7101,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7101,1,2,0)
+ ;;=2^Autorefraction,Bilateral
+ ;;^UTILITY(U,$J,358.3,7101,1,3,0)
+ ;;=3^99174
+ ;;^UTILITY(U,$J,358.3,7102,0)
+ ;;=92136^^42^410^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7102,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7102,1,2,0)
+ ;;=2^IOL Calc Biometry-Optical
+ ;;^UTILITY(U,$J,358.3,7102,1,3,0)
+ ;;=3^92136
+ ;;^UTILITY(U,$J,358.3,7103,0)
+ ;;=76519^^42^410^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7103,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7103,1,2,0)
+ ;;=2^IOL Calc w/ A-Scan U/S
+ ;;^UTILITY(U,$J,358.3,7103,1,3,0)
+ ;;=3^76519
+ ;;^UTILITY(U,$J,358.3,7104,0)
+ ;;=92132^^42^410^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7104,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7104,1,2,0)
+ ;;=2^OCT Anterior Segment (angle)
+ ;;^UTILITY(U,$J,358.3,7104,1,3,0)
+ ;;=3^92132
+ ;;^UTILITY(U,$J,358.3,7105,0)
+ ;;=92286^^42^410^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7105,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7105,1,2,0)
+ ;;=2^Specular Microscopy
+ ;;^UTILITY(U,$J,358.3,7105,1,3,0)
+ ;;=3^92286
+ ;;^UTILITY(U,$J,358.3,7106,0)
+ ;;=92250^^42^411^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7106,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7106,1,2,0)
+ ;;=2^Fundus Photos
+ ;;^UTILITY(U,$J,358.3,7106,1,3,0)
+ ;;=3^92250
+ ;;^UTILITY(U,$J,358.3,7107,0)
+ ;;=92133^^42^411^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7107,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7107,1,2,0)
+ ;;=2^OCT RNFL (optic nerve)
+ ;;^UTILITY(U,$J,358.3,7107,1,3,0)
+ ;;=3^92133
+ ;;^UTILITY(U,$J,358.3,7108,0)
+ ;;=76514^^42^411^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7108,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7108,1,2,0)
+ ;;=2^Pachymetry (corneal thickness)
+ ;;^UTILITY(U,$J,358.3,7108,1,3,0)
+ ;;=3^76514
+ ;;^UTILITY(U,$J,358.3,7109,0)
+ ;;=92083^^42^411^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7109,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7109,1,2,0)
+ ;;=2^Visual Field (Humphrey)
+ ;;^UTILITY(U,$J,358.3,7109,1,3,0)
+ ;;=3^92083
+ ;;^UTILITY(U,$J,358.3,7110,0)
+ ;;=92082^^42^411^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7110,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7110,1,2,0)
+ ;;=2^Visual Field (Goldmann)
+ ;;^UTILITY(U,$J,358.3,7110,1,3,0)
+ ;;=3^92082
+ ;;^UTILITY(U,$J,358.3,7111,0)
+ ;;=G0118^^42^411^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7111,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7111,1,2,0)
+ ;;=2^Glaucoma Screen by Tech
+ ;;^UTILITY(U,$J,358.3,7111,1,3,0)
+ ;;=3^G0118
+ ;;^UTILITY(U,$J,358.3,7112,0)
+ ;;=92100^^42^411^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7112,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7112,1,2,0)
+ ;;=2^Serial Tonometry Diurnal Curve
+ ;;^UTILITY(U,$J,358.3,7112,1,3,0)
+ ;;=3^92100
+ ;;^UTILITY(U,$J,358.3,7113,0)
+ ;;=92020^^42^411^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7113,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7113,1,2,0)
+ ;;=2^Gonioscopy
+ ;;^UTILITY(U,$J,358.3,7113,1,3,0)
+ ;;=3^92020
+ ;;^UTILITY(U,$J,358.3,7114,0)
+ ;;=92081^^42^411^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7114,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7114,1,2,0)
+ ;;=2^DMV Field/Visual Field Exam
+ ;;^UTILITY(U,$J,358.3,7114,1,3,0)
+ ;;=3^92081
+ ;;^UTILITY(U,$J,358.3,7115,0)
+ ;;=92132^^42^411^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7115,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7115,1,2,0)
+ ;;=2^OCT Anterior Segment (angle)
+ ;;^UTILITY(U,$J,358.3,7115,1,3,0)
+ ;;=3^92132
+ ;;^UTILITY(U,$J,358.3,7116,0)
+ ;;=S9150^^42^412^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7116,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7116,1,2,0)
+ ;;=2^Evaluation by Ocularist
+ ;;^UTILITY(U,$J,358.3,7116,1,3,0)
+ ;;=3^S9150
+ ;;^UTILITY(U,$J,358.3,7117,0)
+ ;;=92065^^42^412^8^^^^1
+ ;;^UTILITY(U,$J,358.3,7117,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7117,1,2,0)
+ ;;=2^Orthoptic/Pleoptic Training
+ ;;^UTILITY(U,$J,358.3,7117,1,3,0)
+ ;;=3^92065
+ ;;^UTILITY(U,$J,358.3,7118,0)
+ ;;=92060^^42^412^9^^^^1
+ ;;^UTILITY(U,$J,358.3,7118,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7118,1,2,0)
+ ;;=2^Sensorimotor Exam w/ Mult Meas Ocular Dev
+ ;;^UTILITY(U,$J,358.3,7118,1,3,0)
+ ;;=3^92060
+ ;;^UTILITY(U,$J,358.3,7119,0)
+ ;;=92081^^42^412^14^^^^1
+ ;;^UTILITY(U,$J,358.3,7119,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7119,1,2,0)
+ ;;=2^Visual Field Exam w/ Interp & Rpt;Limited
+ ;;^UTILITY(U,$J,358.3,7119,1,3,0)
+ ;;=3^92081
+ ;;^UTILITY(U,$J,358.3,7120,0)
+ ;;=92499^^42^412^13^^^^1
+ ;;^UTILITY(U,$J,358.3,7120,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7120,1,2,0)
+ ;;=2^Unlisted Eye Serv/Proc
+ ;;^UTILITY(U,$J,358.3,7120,1,3,0)
+ ;;=3^92499
+ ;;^UTILITY(U,$J,358.3,7121,0)
+ ;;=92499^^42^412^5^^^^1
+ ;;^UTILITY(U,$J,358.3,7121,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7121,1,2,0)
+ ;;=2^Hertel's Exophthalmometry
+ ;;^UTILITY(U,$J,358.3,7121,1,3,0)
+ ;;=3^92499
+ ;;^UTILITY(U,$J,358.3,7122,0)
+ ;;=76512^^42^412^11^^^^1
+ ;;^UTILITY(U,$J,358.3,7122,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7122,1,2,0)
+ ;;=2^U/S B-Scan Only
+ ;;^UTILITY(U,$J,358.3,7122,1,3,0)
+ ;;=3^76512
+ ;;^UTILITY(U,$J,358.3,7123,0)
+ ;;=76513^^42^412^12^^^^1
+ ;;^UTILITY(U,$J,358.3,7123,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7123,1,2,0)
+ ;;=2^U/S B-Scan,Ant Seg,Water Immersion
+ ;;^UTILITY(U,$J,358.3,7123,1,3,0)
+ ;;=3^76513
+ ;;^UTILITY(U,$J,358.3,7124,0)
+ ;;=92136^^42^412^6^^^^1
+ ;;^UTILITY(U,$J,358.3,7124,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7124,1,2,0)
+ ;;=2^Ophthalmic Biometry
+ ;;^UTILITY(U,$J,358.3,7124,1,3,0)
+ ;;=3^92136
+ ;;^UTILITY(U,$J,358.3,7125,0)
+ ;;=76519^^42^412^7^^^^1
+ ;;^UTILITY(U,$J,358.3,7125,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7125,1,2,0)
+ ;;=2^IOL Calc w/ A-Scan U/S
+ ;;^UTILITY(U,$J,358.3,7125,1,3,0)
+ ;;=3^76519
+ ;;^UTILITY(U,$J,358.3,7126,0)
+ ;;=76511^^42^412^10^^^^1
+ ;;^UTILITY(U,$J,358.3,7126,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7126,1,2,0)
+ ;;=2^U/S A-Scan Only
+ ;;^UTILITY(U,$J,358.3,7126,1,3,0)
+ ;;=3^76511
+ ;;^UTILITY(U,$J,358.3,7127,0)
+ ;;=92283^^42^412^15^^^^1
+ ;;^UTILITY(U,$J,358.3,7127,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7127,1,2,0)
+ ;;=2^Color Testing HHR (Hue)/Farnsworth D10
+ ;;^UTILITY(U,$J,358.3,7127,1,3,0)
+ ;;=3^92283
+ ;;^UTILITY(U,$J,358.3,7128,0)
+ ;;=92201^^42^412^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7128,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7128,1,2,0)
+ ;;=2^Ext Ophthalmoscopy w/ Ret Drawing,Unilat/Bilat
+ ;;^UTILITY(U,$J,358.3,7128,1,3,0)
+ ;;=3^92201
+ ;;^UTILITY(U,$J,358.3,7129,0)
+ ;;=92202^^42^412^4^^^^1
+ ;;^UTILITY(U,$J,358.3,7129,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7129,1,2,0)
+ ;;=2^Ext Ophthalmoscopy w/ Optic Nerve/Macula Drawing
+ ;;^UTILITY(U,$J,358.3,7129,1,3,0)
+ ;;=3^92202
+ ;;^UTILITY(U,$J,358.3,7130,0)
+ ;;=92227^^42^412^16^^^^1
+ ;;^UTILITY(U,$J,358.3,7130,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7130,1,2,0)
+ ;;=2^Remote Imaging for DM Retinal Disease
+ ;;^UTILITY(U,$J,358.3,7130,1,3,0)
+ ;;=3^92227
+ ;;^UTILITY(U,$J,358.3,7131,0)
+ ;;=92228^^42^412^17^^^^1
+ ;;^UTILITY(U,$J,358.3,7131,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7131,1,2,0)
+ ;;=2^Remote Imaging for Mgmt of Retinal Dis
+ ;;^UTILITY(U,$J,358.3,7131,1,3,0)
+ ;;=3^92228
+ ;;^UTILITY(U,$J,358.3,7132,0)
+ ;;=4174F^^42^413^1^^^^1
+ ;;^UTILITY(U,$J,358.3,7132,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7132,1,2,0)
+ ;;=2^Couns Potent Glauc Impct
+ ;;^UTILITY(U,$J,358.3,7132,1,3,0)
+ ;;=3^4174F
+ ;;^UTILITY(U,$J,358.3,7133,0)
+ ;;=4450F^^42^413^2^^^^1
+ ;;^UTILITY(U,$J,358.3,7133,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7133,1,2,0)
+ ;;=2^Self-Care Ed Provided to Pt
+ ;;^UTILITY(U,$J,358.3,7133,1,3,0)
+ ;;=3^4450F
+ ;;^UTILITY(U,$J,358.3,7134,0)
+ ;;=4177F^^42^413^3^^^^1
+ ;;^UTILITY(U,$J,358.3,7134,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,7134,1,2,0)
+ ;;=2^Talk Pt/Crgvr Re AREDS
+ ;;^UTILITY(U,$J,358.3,7134,1,3,0)
+ ;;=3^4177F
+ ;;^UTILITY(U,$J,358.3,7135,0)
+ ;;=66984^^42^414^1^^^^1

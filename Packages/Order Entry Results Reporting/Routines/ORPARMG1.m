@@ -1,5 +1,5 @@
-ORPARMG1 ; SPFO/AJB - ListManager Parameter Display for Notifications ;Jun 26, 2019@06:21:36
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**500**;Dec 17, 1997;Build 24
+ORPARMG1 ; SPFO/AJB - ListManager Parameter Display for Notifications ;Dec 18, 2019@08:15:15
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**500,518**;Dec 17, 1997;Build 11
  ;
  ; Global References
  ;    ^VA(200,            ICR   10060
@@ -11,6 +11,34 @@ ORPARMG1 ; SPFO/AJB - ListManager Parameter Display for Notifications ;Jun 26, 2
  ;    DIV4^XUSER          ICR   2343    $$RJ^XLFSTR      ICR   10104   $$CJ^XLFSTR      ICR   10104
  ;    $$KSP^XUPARAM       ICR   2541
  Q
+STATUS(VAL) ; evaluates the levels of a notification and returns the status
+ N ORQ,PKG,SYS,DIV,SRV,TEA,USR,X,Y S ORQ=0
+ S Y=0 F X="PKG","SYS","DIV","SRV","TEA","USR" D  ; set values for each level
+ . S Y=Y+1,@X=$S($P(VAL,U,Y)="":"N",1:$P(VAL,U,Y))
+ S VAL="0^OFF no settings found."
+ I USR="E"!(USR="M") Q "ON User value is "_$S(USR="E":"ENABLED.",1:"MANDATORY.") ; evaluate USER level
+ I USR="D" S VAL="0^OFF User value is DISABLED"
+ F X=1:1:$L(TEA,"|") S Y=$P($P(TEA,"|",X),";") D  Q:+ORQ  ; evaluate TEAM level
+ . I Y="M" S VAL="1^ON "_$P($P(TEA,"|",X),";",2)_" is MANDATORY." S ORQ=1 Q
+ . I Y="E",USR'="D" S VAL="1^ON "_$P($P(TEA,"|",X),";",2)_" is ENABLED." S ORQ=1 Q
+ . I Y="D",USR'="D" S VAL="1^OFF "_$P($P(TEA,"|",X),";",2)_" is DISABLED." Q
+ Q:+VAL $P(VAL,U,2)
+ I SRV="M" Q "ON "_$$GET1^DIQ(200,IEN,29,"E")_" service is MANDATORY."
+ I SRV="E",USR'="D" Q "ON "_$$GET1^DIQ(200,IEN,29,"E")_" service is ENABLED."
+ I SRV="D",USR'="D" S VAL="0^OFF "_$$GET1^DIQ(200,IEN,29,"E")_" service is DISABLED."
+ Q:+VAL $P(VAL,U,2)  S ORQ=0
+ F X=1:1:$L(DIV,"|") S Y=$P($P(DIV,"|",X),";") D  Q:+ORQ  ; evaluate DIVISION level
+ . I Y="M" S VAL="1^ON "_$P($P(DIV,"|",X),";",2)_" is MANDATORY." S ORQ=1 Q
+ . I Y="E",USR'="D" S VAL="1^ON "_$P($P(DIV,"|",X),";",2)_" is ENABLED." S ORQ=1 Q
+ . I Y="D",USR'="D" S VAL="1^OFF "_$P($P(DIV,"|",X),";",2)_" is DISABLED." Q
+ Q:+VAL $P(VAL,U,2)
+ I SYS="M" Q "ON System value is MANDATORY."
+ I SYS="E",USR'="D" Q "ON System value is ENABLED."
+ I SYS="D",USR'="D" Q "OFF System value is DISABLED."
+ I PKG="M" Q "ON Package value is MANDATORY."
+ I PKG="E",USR'="D" Q "ON Packagae value is ENABLED."
+ I PKG="D",USR'="D" Q "OFF Package value is DISABLED."
+ Q "OFF no values found."
 OUTPUT ; display output for detailed view
  N DIV,END,LN,NOT,NOTIFS,NUM,SVS,TM,X,Y
  S (TM,X)=0 F  S TM=$O(^OR(100.21,"C",IEN,TM)) Q:'+TM  S X=X+1,TM(X)=TM_";"_$$GET1^DIQ(100.21,TM,.01) ; get user team(s)
@@ -95,9 +123,9 @@ DETV ; detailed view of notifications a user can receive
  N DIC,IEN,ORUON,ORUOFF,POP,SHOW,X,Y,ZTSAVE
  S DIC="^VA(200,",DIC(0)="AEMQ",DIC("A")="Enter NEW PERSON: ",DIC("B")=DUZ D ^DIC Q:Y=-1  S IEN=+Y ; get user to evaluate
  W ! S SHOW=$P($$READ("SA^C:Condensed;D:Detailed;B:Basic","Condensed, Detailed, or Basic Report? ","B"),U) S:SHOW="D" SHOW=1
- ;W ! S SHOW=$$READ^ORPARMG1("YO","Display TEAMS/DIVSIONS with no values","NO")
  D PREP^XGF S ORUON=IOUON,ORUOFF=IOUOFF S ZTSAVE("ORUON")="",ZTSAVE("ORUFF")="" D CLEAN^XGF
- S ZTSAVE("IEN")="" D EN^XUTMDEVQ("OUTPUT^ORPARMG1","",.ZTSAVE)
+ S ZTSAVE("IEN")="",ZTSAVE("SHOW")=""
+ D EN^XUTMDEVQ("OUTPUT^ORPARMG1","",.ZTSAVE)
  Q
 HDR1 ;
  I $E(IOST,1,2)="C-" D
@@ -204,34 +232,6 @@ SELECT(ACT) ;
  I SEL="" S SEL=$$LOR^ORPARMGR(.SEL) Q:'+SEL
  D @ACT
  Q
-STATUS(VAL) ; evaluates the levels of a notification and returns the status
- N PKG,SYS,DIV,SRV,TEA,USR,X,Y
- S Y=0 F X="PKG","SYS","DIV","SRV","TEA","USR" D  ; set values for each level
- . S Y=Y+1,@X=$S($P(VAL,U,Y)="":"N",1:$P(VAL,U,Y))
- S VAL="" ; reset
- I USR="E"!(USR="M") Q "ON User value is "_$S(USR="E":"ENABLED.",1:"MANDATORY.") ; evaluate USER level
- I USR="D" D  Q $S(+VAL:$P(VAL,U,2),1:"OFF User value is DISABLED.")
- . F X="USR","TEA","SRV","DIV","SYS","PKG" D  Q:+VAL
- . . I X="DIV"!(X="TEA") F Y=1:1:$L(@X,"|") I $P($P(@X,"|",Y),";")="M" S VAL="1^ON "_$P($P(@X,"|",Y),";",2)_" is MANDATORY." Q
- . . I '+VAL,@X="M" S VAL="1^ON "_$S(X="SRV":"Service",X="SYS":"System",1:"Package")_" value is MANDATORY." Q
- F X=1:1:$L(TEA,"|") S Y=$P($P(TEA,"|",X),";") D  Q:+VAL  ; evaluate TEAM level
- . I Y="D" S VAL="1^OFF "_$P($P(TEA,"|",X),";",2)_" is DISABLED." Q
- . I Y="M"!(Y="E") S VAL="1^ON "_$P($P(TEA,"|",X),";",2)_" is "_$S(Y="E":"ENABLED.",Y="M":"MANDATORY.") Q
- Q:+VAL $P(VAL,U,2)
- I SRV="E"!(SRV="M") Q "ON Service value is "_$S(SRV="E":"ENABLED.",1:"MANDATORY.") ; evaluate SERVICE level
- I SRV="D" D  Q $S(+VAL:$P(VAL,U,2),1:"OFF Service value is DISABLED.")
- . F X="DIV","SYS","PKG" D  Q:+VAL
- . . I X="DIV" F Y=1:1:$L(@X,"|") I $P($P(@X,"|",Y),";")="M" S VAL="1^ON "_$P($P(@X,"|",Y),";",2)_" is MANDATORY." Q
- . . I '+VAL,@X="M" S VAL="1^ON "_$S(X="SYS":"System",1:"Package")_" value is MANDATORY." Q
- F X=1:1:$L(DIV,"|") S Y=$P($P(DIV,"|",X),";") D  Q:+VAL  ; evaluate DIVISION level
- . I Y="D" S VAL="1^OFF "_$P($P(DIV,"|",X),";",2)_" is DISABLED." Q
- . I Y="M"!(Y="E") S VAL="1^ON "_$P($P(DIV,"|",X),";",2)_" is "_$S(Y="E":"ENABLED.",Y="M":"MANDATORY.") Q
- Q:+VAL $P(VAL,U,2)
- I SYS="E"!(SYS="M") Q "ON System value is "_$S(SYS="E":"ENABLED.",1:"MANDATORY.") ; evaluate SYSTEM level
- I SYS="D" Q "OFF System value is DISABLED."
- I PKG="E"!(PKG="M") Q "ON Package value is "_$S(PKG="E":"ENABLED.",1:"MANDATORY.") ; evaluate PACKAGE level
- I PKG="D" Q "OFF Package value is DISABLED."
- Q "OFF no values found."
 READ(TYPE,PROMPT,DEFAULT,HELP,SCREEN) ;
  N DIR,X,Y
  S DIR(0)=TYPE

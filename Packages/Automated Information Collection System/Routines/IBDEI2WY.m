@@ -1,126 +1,128 @@
-IBDEI2WY ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48899,1,3,0)
- ;;=3^Stress fracture, left femur, sequela
- ;;^UTILITY(U,$J,358.3,48899,1,4,0)
- ;;=4^M84.352S
- ;;^UTILITY(U,$J,358.3,48899,2)
- ;;=^5013691
- ;;^UTILITY(U,$J,358.3,48900,0)
- ;;=M84.451S^^216^2413^95
- ;;^UTILITY(U,$J,358.3,48900,1,0)
+ ;;^UTILITY(U,$J,358.3,46466,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,46467,0)
+ ;;=T14.91XD^^176^2311^4
+ ;;^UTILITY(U,$J,358.3,46467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48900,1,3,0)
- ;;=3^Pathological fracture, right femur, sequela
- ;;^UTILITY(U,$J,358.3,48900,1,4,0)
- ;;=4^M84.451S
- ;;^UTILITY(U,$J,358.3,48900,2)
- ;;=^5013907
- ;;^UTILITY(U,$J,358.3,48901,0)
- ;;=M84.452S^^216^2413^94
- ;;^UTILITY(U,$J,358.3,48901,1,0)
+ ;;^UTILITY(U,$J,358.3,46467,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,46467,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,46467,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,46468,0)
+ ;;=T14.91XS^^176^2311^5
+ ;;^UTILITY(U,$J,358.3,46468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48901,1,3,0)
- ;;=3^Pathological fracture, left femur, sequela
- ;;^UTILITY(U,$J,358.3,48901,1,4,0)
- ;;=4^M84.452S
- ;;^UTILITY(U,$J,358.3,48901,2)
- ;;=^5013913
- ;;^UTILITY(U,$J,358.3,48902,0)
- ;;=S72.021S^^216^2413^12
- ;;^UTILITY(U,$J,358.3,48902,1,0)
+ ;;^UTILITY(U,$J,358.3,46468,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,46468,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,46468,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,46469,0)
+ ;;=H53.8^^176^2312^1
+ ;;^UTILITY(U,$J,358.3,46469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48902,1,3,0)
- ;;=3^Displaced epiphy fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48902,1,4,0)
- ;;=4^S72.021S
- ;;^UTILITY(U,$J,358.3,48902,2)
- ;;=^5037136
- ;;^UTILITY(U,$J,358.3,48903,0)
- ;;=S72.022S^^216^2413^11
- ;;^UTILITY(U,$J,358.3,48903,1,0)
+ ;;^UTILITY(U,$J,358.3,46469,1,3,0)
+ ;;=3^Visual Disturbances
+ ;;^UTILITY(U,$J,358.3,46469,1,4,0)
+ ;;=4^H53.8
+ ;;^UTILITY(U,$J,358.3,46469,2)
+ ;;=^5006356
+ ;;^UTILITY(U,$J,358.3,46470,0)
+ ;;=H57.11^^176^2312^2
+ ;;^UTILITY(U,$J,358.3,46470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48903,1,3,0)
- ;;=3^Displaced epiphy fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48903,1,4,0)
- ;;=4^S72.022S
- ;;^UTILITY(U,$J,358.3,48903,2)
- ;;=^5037152
- ;;^UTILITY(U,$J,358.3,48904,0)
- ;;=S72.024S^^216^2413^58
- ;;^UTILITY(U,$J,358.3,48904,1,0)
+ ;;^UTILITY(U,$J,358.3,46470,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,46470,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,46470,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,46471,0)
+ ;;=H57.12^^176^2312^3
+ ;;^UTILITY(U,$J,358.3,46471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48904,1,3,0)
- ;;=3^Nondisp epiphy fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48904,1,4,0)
- ;;=4^S72.024S
- ;;^UTILITY(U,$J,358.3,48904,2)
- ;;=^5037184
- ;;^UTILITY(U,$J,358.3,48905,0)
- ;;=S72.025S^^216^2413^57
- ;;^UTILITY(U,$J,358.3,48905,1,0)
+ ;;^UTILITY(U,$J,358.3,46471,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,46471,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,46471,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,46472,0)
+ ;;=H57.13^^176^2312^4
+ ;;^UTILITY(U,$J,358.3,46472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48905,1,3,0)
- ;;=3^Nondisp epiphy fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48905,1,4,0)
- ;;=4^S72.025S
- ;;^UTILITY(U,$J,358.3,48905,2)
- ;;=^5037200
- ;;^UTILITY(U,$J,358.3,48906,0)
- ;;=S72.031S^^216^2413^28
- ;;^UTILITY(U,$J,358.3,48906,1,0)
+ ;;^UTILITY(U,$J,358.3,46472,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,46472,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,46472,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,46473,0)
+ ;;=Z01.00^^176^2312^5
+ ;;^UTILITY(U,$J,358.3,46473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48906,1,3,0)
- ;;=3^Displaced midcervical fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48906,1,4,0)
- ;;=4^S72.031S
- ;;^UTILITY(U,$J,358.3,48906,2)
- ;;=^5037232
- ;;^UTILITY(U,$J,358.3,48907,0)
- ;;=S72.032S^^216^2413^27
- ;;^UTILITY(U,$J,358.3,48907,1,0)
+ ;;^UTILITY(U,$J,358.3,46473,1,3,0)
+ ;;=3^Eye/Vision Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46473,1,4,0)
+ ;;=4^Z01.00
+ ;;^UTILITY(U,$J,358.3,46473,2)
+ ;;=^5062612
+ ;;^UTILITY(U,$J,358.3,46474,0)
+ ;;=Z01.01^^176^2312^6
+ ;;^UTILITY(U,$J,358.3,46474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48907,1,3,0)
- ;;=3^Displaced midcervical fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48907,1,4,0)
- ;;=4^S72.032S
- ;;^UTILITY(U,$J,358.3,48907,2)
- ;;=^5037248
- ;;^UTILITY(U,$J,358.3,48908,0)
- ;;=S72.034S^^216^2413^74
- ;;^UTILITY(U,$J,358.3,48908,1,0)
+ ;;^UTILITY(U,$J,358.3,46474,1,3,0)
+ ;;=3^Eye/Vision Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46474,1,4,0)
+ ;;=4^Z01.01
+ ;;^UTILITY(U,$J,358.3,46474,2)
+ ;;=^5062613
+ ;;^UTILITY(U,$J,358.3,46475,0)
+ ;;=I10.^^176^2312^9
+ ;;^UTILITY(U,$J,358.3,46475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48908,1,3,0)
- ;;=3^Nondisp midcervical fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48908,1,4,0)
- ;;=4^S72.034S
- ;;^UTILITY(U,$J,358.3,48908,2)
- ;;=^5037280
- ;;^UTILITY(U,$J,358.3,48909,0)
- ;;=S72.035S^^216^2413^73
- ;;^UTILITY(U,$J,358.3,48909,1,0)
+ ;;^UTILITY(U,$J,358.3,46475,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,46475,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,46475,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,46476,0)
+ ;;=Z21.^^176^2312^10
+ ;;^UTILITY(U,$J,358.3,46476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48909,1,3,0)
- ;;=3^Nondisp midcervical fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48909,1,4,0)
- ;;=4^S72.035S
- ;;^UTILITY(U,$J,358.3,48909,2)
- ;;=^5037296
- ;;^UTILITY(U,$J,358.3,48910,0)
- ;;=S72.041S^^216^2413^6
- ;;^UTILITY(U,$J,358.3,48910,1,0)
+ ;;^UTILITY(U,$J,358.3,46476,1,3,0)
+ ;;=3^Asymptomatic HIV Infection Status
+ ;;^UTILITY(U,$J,358.3,46476,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,46476,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,46477,0)
+ ;;=Z01.021^^176^2312^7
+ ;;^UTILITY(U,$J,358.3,46477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48910,1,3,0)
- ;;=3^Displaced base of neck fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48910,1,4,0)
- ;;=4^S72.041S
- ;;^UTILITY(U,$J,358.3,48910,2)
- ;;=^5037328
- ;;^UTILITY(U,$J,358.3,48911,0)
- ;;=S72.042S^^216^2413^5
- ;;^UTILITY(U,$J,358.3,48911,1,0)
+ ;;^UTILITY(U,$J,358.3,46477,1,3,0)
+ ;;=3^Eye/Vision Exam After Failed Exam w/ Abnormal Findings 
+ ;;^UTILITY(U,$J,358.3,46477,1,4,0)
+ ;;=4^Z01.021
+ ;;^UTILITY(U,$J,358.3,46477,2)
+ ;;=^5158319
+ ;;^UTILITY(U,$J,358.3,46478,0)
+ ;;=Z01.020^^176^2312^8
+ ;;^UTILITY(U,$J,358.3,46478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48911,1,3,0)
- ;;=3^Displaced base of neck fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,46478,1,3,0)
+ ;;=3^Eye/Vision Exam After Failed Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46478,1,4,0)
+ ;;=4^Z01.020
+ ;;^UTILITY(U,$J,358.3,46478,2)
+ ;;=^5158318
+ ;;^UTILITY(U,$J,358.3,46479,0)
+ ;;=Z82.1^^176^2312^11

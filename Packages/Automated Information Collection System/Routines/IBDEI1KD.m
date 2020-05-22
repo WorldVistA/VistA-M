@@ -1,132 +1,126 @@
-IBDEI1KD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1KD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26532,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,26532,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,26532,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,26533,0)
- ;;=F40.240^^100^1266^8
- ;;^UTILITY(U,$J,358.3,26533,1,0)
+ ;;^UTILITY(U,$J,358.3,24994,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,24994,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,24995,0)
+ ;;=Z84.0^^107^1212^41
+ ;;^UTILITY(U,$J,358.3,24995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26533,1,3,0)
- ;;=3^Claustrophobia
- ;;^UTILITY(U,$J,358.3,26533,1,4,0)
- ;;=4^F40.240
- ;;^UTILITY(U,$J,358.3,26533,2)
- ;;=^5003554
- ;;^UTILITY(U,$J,358.3,26534,0)
- ;;=F40.241^^100^1266^1
- ;;^UTILITY(U,$J,358.3,26534,1,0)
+ ;;^UTILITY(U,$J,358.3,24995,1,3,0)
+ ;;=3^Family Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,24995,1,4,0)
+ ;;=4^Z84.0
+ ;;^UTILITY(U,$J,358.3,24995,2)
+ ;;=^5063388
+ ;;^UTILITY(U,$J,358.3,24996,0)
+ ;;=Z82.79^^107^1212^18
+ ;;^UTILITY(U,$J,358.3,24996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26534,1,3,0)
- ;;=3^Acrophobia
- ;;^UTILITY(U,$J,358.3,26534,1,4,0)
- ;;=4^F40.241
- ;;^UTILITY(U,$J,358.3,26534,2)
- ;;=^5003555
- ;;^UTILITY(U,$J,358.3,26535,0)
- ;;=F40.248^^100^1266^18
- ;;^UTILITY(U,$J,358.3,26535,1,0)
+ ;;^UTILITY(U,$J,358.3,24996,1,3,0)
+ ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
+ ;;^UTILITY(U,$J,358.3,24996,1,4,0)
+ ;;=4^Z82.79
+ ;;^UTILITY(U,$J,358.3,24996,2)
+ ;;=^5063374
+ ;;^UTILITY(U,$J,358.3,24997,0)
+ ;;=Z84.89^^107^1212^39
+ ;;^UTILITY(U,$J,358.3,24997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26535,1,3,0)
- ;;=3^Situational Type Phobia NEC
- ;;^UTILITY(U,$J,358.3,26535,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,26535,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,26536,0)
- ;;=F40.01^^100^1266^3
- ;;^UTILITY(U,$J,358.3,26536,1,0)
+ ;;^UTILITY(U,$J,358.3,24997,1,3,0)
+ ;;=3^Family Hx of Other Spec Conditions
+ ;;^UTILITY(U,$J,358.3,24997,1,4,0)
+ ;;=4^Z84.89
+ ;;^UTILITY(U,$J,358.3,24997,2)
+ ;;=^5063393
+ ;;^UTILITY(U,$J,358.3,24998,0)
+ ;;=Z81.1^^107^1212^12
+ ;;^UTILITY(U,$J,358.3,24998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26536,1,3,0)
- ;;=3^Agoraphobia w/ Panic Disorder
- ;;^UTILITY(U,$J,358.3,26536,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,26536,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,26537,0)
- ;;=F40.298^^100^1266^16
- ;;^UTILITY(U,$J,358.3,26537,1,0)
+ ;;^UTILITY(U,$J,358.3,24998,1,3,0)
+ ;;=3^Family Hx of Alcohol Abuse/Dependence
+ ;;^UTILITY(U,$J,358.3,24998,1,4,0)
+ ;;=4^Z81.1
+ ;;^UTILITY(U,$J,358.3,24998,2)
+ ;;=^5063359
+ ;;^UTILITY(U,$J,358.3,24999,0)
+ ;;=Z82.62^^107^1212^38
+ ;;^UTILITY(U,$J,358.3,24999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26537,1,3,0)
- ;;=3^Phobia,Oth Specified
- ;;^UTILITY(U,$J,358.3,26537,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,26537,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,26538,0)
- ;;=F93.0^^100^1266^17
- ;;^UTILITY(U,$J,358.3,26538,1,0)
+ ;;^UTILITY(U,$J,358.3,24999,1,3,0)
+ ;;=3^Family Hx of Osteoporosis
+ ;;^UTILITY(U,$J,358.3,24999,1,4,0)
+ ;;=4^Z82.62
+ ;;^UTILITY(U,$J,358.3,24999,2)
+ ;;=^5063372
+ ;;^UTILITY(U,$J,358.3,25000,0)
+ ;;=Z83.71^^107^1212^17
+ ;;^UTILITY(U,$J,358.3,25000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26538,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,26538,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,26538,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,26539,0)
- ;;=F41.8^^100^1266^7
- ;;^UTILITY(U,$J,358.3,26539,1,0)
+ ;;^UTILITY(U,$J,358.3,25000,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,25000,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,25000,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,25001,0)
+ ;;=Z84.81^^107^1212^22
+ ;;^UTILITY(U,$J,358.3,25001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26539,1,3,0)
- ;;=3^Anxiety Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,26539,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,26539,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,26540,0)
- ;;=F06.33^^100^1267^1
- ;;^UTILITY(U,$J,358.3,26540,1,0)
+ ;;^UTILITY(U,$J,358.3,25001,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,25001,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,25001,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,25002,0)
+ ;;=Z86.010^^107^1212^70
+ ;;^UTILITY(U,$J,358.3,25002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26540,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,26540,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,26540,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,26541,0)
- ;;=F06.34^^100^1267^2
- ;;^UTILITY(U,$J,358.3,26541,1,0)
+ ;;^UTILITY(U,$J,358.3,25002,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,25002,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,25002,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,25003,0)
+ ;;=Z86.14^^107^1212^75
+ ;;^UTILITY(U,$J,358.3,25003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26541,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,26541,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,26541,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,26542,0)
- ;;=F31.11^^100^1267^6
- ;;^UTILITY(U,$J,358.3,26542,1,0)
+ ;;^UTILITY(U,$J,358.3,25003,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,25003,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,25003,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,25004,0)
+ ;;=Z86.31^^107^1212^71
+ ;;^UTILITY(U,$J,358.3,25004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26542,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,26542,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,26542,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,26543,0)
- ;;=F31.12^^100^1267^7
- ;;^UTILITY(U,$J,358.3,26543,1,0)
+ ;;^UTILITY(U,$J,358.3,25004,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,25004,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,25004,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,25005,0)
+ ;;=Z86.711^^107^1212^101
+ ;;^UTILITY(U,$J,358.3,25005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26543,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,26543,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,26543,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,26544,0)
- ;;=F31.13^^100^1267^8
- ;;^UTILITY(U,$J,358.3,26544,1,0)
+ ;;^UTILITY(U,$J,358.3,25005,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,25005,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,25005,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,25006,0)
+ ;;=Z86.72^^107^1212^107
+ ;;^UTILITY(U,$J,358.3,25006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26544,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,26544,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,26544,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,26545,0)
- ;;=F31.2^^100^1267^9
+ ;;^UTILITY(U,$J,358.3,25006,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,25006,1,4,0)
+ ;;=4^Z86.72

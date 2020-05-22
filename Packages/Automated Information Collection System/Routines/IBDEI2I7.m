@@ -1,124 +1,126 @@
-IBDEI2I7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2I7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42451,0)
- ;;=V00.892A^^159^2023^99
- ;;^UTILITY(U,$J,358.3,42451,1,0)
+ ;;^UTILITY(U,$J,358.3,39978,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,39978,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,39978,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,39979,0)
+ ;;=M00.20^^152^2002^3
+ ;;^UTILITY(U,$J,358.3,39979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42451,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,42451,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,42451,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,42452,0)
- ;;=V00.892D^^159^2023^100
- ;;^UTILITY(U,$J,358.3,42452,1,0)
+ ;;^UTILITY(U,$J,358.3,39979,1,3,0)
+ ;;=3^Arthritis Streptococcal,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,39979,1,4,0)
+ ;;=4^M00.20
+ ;;^UTILITY(U,$J,358.3,39979,2)
+ ;;=^5009645
+ ;;^UTILITY(U,$J,358.3,39980,0)
+ ;;=M00.80^^152^2002^4
+ ;;^UTILITY(U,$J,358.3,39980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42452,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42452,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,42452,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,42453,0)
- ;;=V00.898A^^159^2023^97
- ;;^UTILITY(U,$J,358.3,42453,1,0)
+ ;;^UTILITY(U,$J,358.3,39980,1,3,0)
+ ;;=3^Arthritis d/t Bacteria,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,39980,1,4,0)
+ ;;=4^M00.80
+ ;;^UTILITY(U,$J,358.3,39980,2)
+ ;;=^5009669
+ ;;^UTILITY(U,$J,358.3,39981,0)
+ ;;=M00.9^^152^2002^72
+ ;;^UTILITY(U,$J,358.3,39981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42453,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,42453,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,42453,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,42454,0)
- ;;=V00.898D^^159^2023^98
- ;;^UTILITY(U,$J,358.3,42454,1,0)
+ ;;^UTILITY(U,$J,358.3,39981,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,39981,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,39981,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,39982,0)
+ ;;=M00.00^^152^2002^78
+ ;;^UTILITY(U,$J,358.3,39982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42454,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42454,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,42454,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,42455,0)
- ;;=W00.0XXA^^159^2023^79
- ;;^UTILITY(U,$J,358.3,42455,1,0)
+ ;;^UTILITY(U,$J,358.3,39982,1,3,0)
+ ;;=3^Staphylococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,39982,1,4,0)
+ ;;=4^M00.00
+ ;;^UTILITY(U,$J,358.3,39982,2)
+ ;;=^5009597
+ ;;^UTILITY(U,$J,358.3,39983,0)
+ ;;=M00.10^^152^2002^65
+ ;;^UTILITY(U,$J,358.3,39983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42455,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,42455,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,42455,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,42456,0)
- ;;=W00.0XXD^^159^2023^80
- ;;^UTILITY(U,$J,358.3,42456,1,0)
+ ;;^UTILITY(U,$J,358.3,39983,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,39983,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,39983,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,39984,0)
+ ;;=M86.20^^152^2002^62
+ ;;^UTILITY(U,$J,358.3,39984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42456,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42456,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,42456,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,42457,0)
- ;;=W00.1XXA^^159^2023^59
- ;;^UTILITY(U,$J,358.3,42457,1,0)
+ ;;^UTILITY(U,$J,358.3,39984,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39984,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,39984,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,39985,0)
+ ;;=M86.10^^152^2002^58
+ ;;^UTILITY(U,$J,358.3,39985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42457,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,42457,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,42457,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,42458,0)
- ;;=W00.1XXD^^159^2023^60
- ;;^UTILITY(U,$J,358.3,42458,1,0)
+ ;;^UTILITY(U,$J,358.3,39985,1,3,0)
+ ;;=3^Osteomyelitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39985,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,39985,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,39986,0)
+ ;;=M86.00^^152^2002^57
+ ;;^UTILITY(U,$J,358.3,39986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42458,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42458,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,42458,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,42459,0)
- ;;=W00.2XXA^^159^2023^53
- ;;^UTILITY(U,$J,358.3,42459,1,0)
+ ;;^UTILITY(U,$J,358.3,39986,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39986,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,39986,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,39987,0)
+ ;;=M86.50^^152^2002^59
+ ;;^UTILITY(U,$J,358.3,39987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42459,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,42459,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,42459,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,42460,0)
- ;;=W00.2XXD^^159^2023^54
- ;;^UTILITY(U,$J,358.3,42460,1,0)
+ ;;^UTILITY(U,$J,358.3,39987,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39987,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,39987,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,39988,0)
+ ;;=M86.30^^152^2002^60
+ ;;^UTILITY(U,$J,358.3,39988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42460,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42460,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,42460,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,42461,0)
- ;;=W00.9XXA^^159^2023^25
- ;;^UTILITY(U,$J,358.3,42461,1,0)
+ ;;^UTILITY(U,$J,358.3,39988,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39988,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,39988,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,39989,0)
+ ;;=M86.8X9^^152^2002^63
+ ;;^UTILITY(U,$J,358.3,39989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42461,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,42461,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,42461,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,42462,0)
- ;;=W00.9XXD^^159^2023^26
- ;;^UTILITY(U,$J,358.3,42462,1,0)
+ ;;^UTILITY(U,$J,358.3,39989,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,39989,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,39989,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,39990,0)
+ ;;=M86.60^^152^2002^61
+ ;;^UTILITY(U,$J,358.3,39990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42462,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42462,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,42462,2)
- ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,39990,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site

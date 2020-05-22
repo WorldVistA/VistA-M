@@ -1,126 +1,116 @@
-IBDEI2OK ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2OK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44982,1,0)
+ ;;^UTILITY(U,$J,358.3,42727,1,4,0)
+ ;;=4^S32.032S
+ ;;^UTILITY(U,$J,358.3,42727,2)
+ ;;=^5024448
+ ;;^UTILITY(U,$J,358.3,42728,0)
+ ;;=S22.032S^^155^2073^70
+ ;;^UTILITY(U,$J,358.3,42728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44982,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,44982,1,4,0)
- ;;=4^M48.52XS
- ;;^UTILITY(U,$J,358.3,44982,2)
- ;;=^5012170
- ;;^UTILITY(U,$J,358.3,44983,0)
- ;;=M48.57XG^^200^2234^27
- ;;^UTILITY(U,$J,358.3,44983,1,0)
+ ;;^UTILITY(U,$J,358.3,42728,1,3,0)
+ ;;=3^Unstable burst fracture of third thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42728,1,4,0)
+ ;;=4^S22.032S
+ ;;^UTILITY(U,$J,358.3,42728,2)
+ ;;=^5022912
+ ;;^UTILITY(U,$J,358.3,42729,0)
+ ;;=S32.050S^^155^2073^75
+ ;;^UTILITY(U,$J,358.3,42729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44983,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,44983,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,44983,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,44984,0)
- ;;=M48.57XS^^200^2234^28
- ;;^UTILITY(U,$J,358.3,44984,1,0)
+ ;;^UTILITY(U,$J,358.3,42729,1,3,0)
+ ;;=3^Wedge compression fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42729,1,4,0)
+ ;;=4^S32.050S
+ ;;^UTILITY(U,$J,358.3,42729,2)
+ ;;=^5024496
+ ;;^UTILITY(U,$J,358.3,42730,0)
+ ;;=S32.010S^^155^2073^76
+ ;;^UTILITY(U,$J,358.3,42730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44984,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,44984,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,44984,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,44985,0)
- ;;=M48.54XD^^200^2234^29
- ;;^UTILITY(U,$J,358.3,44985,1,0)
+ ;;^UTILITY(U,$J,358.3,42730,1,3,0)
+ ;;=3^Wedge compression fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42730,1,4,0)
+ ;;=4^S32.010S
+ ;;^UTILITY(U,$J,358.3,42730,2)
+ ;;=^5024376
+ ;;^UTILITY(U,$J,358.3,42731,0)
+ ;;=S22.010S^^155^2073^77
+ ;;^UTILITY(U,$J,358.3,42731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44985,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,44985,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,44985,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,44986,0)
- ;;=M48.57XG^^200^2234^30
- ;;^UTILITY(U,$J,358.3,44986,1,0)
+ ;;^UTILITY(U,$J,358.3,42731,1,3,0)
+ ;;=3^Wedge compression fracture of first thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42731,1,4,0)
+ ;;=4^S22.010S
+ ;;^UTILITY(U,$J,358.3,42731,2)
+ ;;=^5022840
+ ;;^UTILITY(U,$J,358.3,42732,0)
+ ;;=S32.040S^^155^2073^78
+ ;;^UTILITY(U,$J,358.3,42732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44986,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,44986,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,44986,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,44987,0)
- ;;=M48.54XS^^200^2234^31
- ;;^UTILITY(U,$J,358.3,44987,1,0)
+ ;;^UTILITY(U,$J,358.3,42732,1,3,0)
+ ;;=3^Wedge compression fracture of fourth lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42732,1,4,0)
+ ;;=4^S32.040S
+ ;;^UTILITY(U,$J,358.3,42732,2)
+ ;;=^5024466
+ ;;^UTILITY(U,$J,358.3,42733,0)
+ ;;=S22.040S^^155^2073^79
+ ;;^UTILITY(U,$J,358.3,42733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44987,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,44987,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,44987,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,44988,0)
- ;;=M62.830^^200^2234^59
- ;;^UTILITY(U,$J,358.3,44988,1,0)
+ ;;^UTILITY(U,$J,358.3,42733,1,3,0)
+ ;;=3^Wedge compression fracture of fourth thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42733,1,4,0)
+ ;;=4^S22.040S
+ ;;^UTILITY(U,$J,358.3,42733,2)
+ ;;=^5022930
+ ;;^UTILITY(U,$J,358.3,42734,0)
+ ;;=S32.020S^^155^2073^80
+ ;;^UTILITY(U,$J,358.3,42734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44988,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,44988,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,44988,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,44989,0)
- ;;=M19.92^^200^2234^103
- ;;^UTILITY(U,$J,358.3,44989,1,0)
+ ;;^UTILITY(U,$J,358.3,42734,1,3,0)
+ ;;=3^Wedge compression fracture of second lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42734,1,4,0)
+ ;;=4^S32.020S
+ ;;^UTILITY(U,$J,358.3,42734,2)
+ ;;=^5024406
+ ;;^UTILITY(U,$J,358.3,42735,0)
+ ;;=S22.020S^^155^2073^81
+ ;;^UTILITY(U,$J,358.3,42735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44989,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,44989,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,44989,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,44990,0)
- ;;=B02.0^^200^2235^41
- ;;^UTILITY(U,$J,358.3,44990,1,0)
+ ;;^UTILITY(U,$J,358.3,42735,1,3,0)
+ ;;=3^Wedge compression fracture of second thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42735,1,4,0)
+ ;;=4^S22.020S
+ ;;^UTILITY(U,$J,358.3,42735,2)
+ ;;=^5022870
+ ;;^UTILITY(U,$J,358.3,42736,0)
+ ;;=S22.080S^^155^2073^71
+ ;;^UTILITY(U,$J,358.3,42736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44990,1,3,0)
- ;;=3^Zoster Encephalitis
- ;;^UTILITY(U,$J,358.3,44990,1,4,0)
- ;;=4^B02.0
- ;;^UTILITY(U,$J,358.3,44990,2)
- ;;=^5000488
- ;;^UTILITY(U,$J,358.3,44991,0)
- ;;=B02.29^^200^2235^34
- ;;^UTILITY(U,$J,358.3,44991,1,0)
+ ;;^UTILITY(U,$J,358.3,42736,1,3,0)
+ ;;=3^Wedge compression fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42736,1,4,0)
+ ;;=4^S22.080S
+ ;;^UTILITY(U,$J,358.3,42736,2)
+ ;;=^5023050
+ ;;^UTILITY(U,$J,358.3,42737,0)
+ ;;=S22.050S^^155^2073^72
+ ;;^UTILITY(U,$J,358.3,42737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44991,1,3,0)
- ;;=3^Postherpetic Nervous System Involvement,Other
- ;;^UTILITY(U,$J,358.3,44991,1,4,0)
- ;;=4^B02.29
- ;;^UTILITY(U,$J,358.3,44991,2)
- ;;=^5000492
- ;;^UTILITY(U,$J,358.3,44992,0)
- ;;=F03.90^^200^2235^10
- ;;^UTILITY(U,$J,358.3,44992,1,0)
+ ;;^UTILITY(U,$J,358.3,42737,1,3,0)
+ ;;=3^Wedge compression fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42737,1,4,0)
+ ;;=4^S22.050S
+ ;;^UTILITY(U,$J,358.3,42737,2)
+ ;;=^5022960
+ ;;^UTILITY(U,$J,358.3,42738,0)
+ ;;=S22.060S^^155^2073^73
+ ;;^UTILITY(U,$J,358.3,42738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44992,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,44992,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,44992,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,44993,0)
- ;;=F03.91^^200^2235^9
- ;;^UTILITY(U,$J,358.3,44993,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44993,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,44993,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,44993,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,44994,0)
- ;;=F01.50^^200^2235^12
- ;;^UTILITY(U,$J,358.3,44994,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42738,1,3,0)
+ ;;=3^Wedge compression fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,42738,1,4,0)
+ ;;=4^S22.060S

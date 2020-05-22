@@ -1,5 +1,5 @@
 SDCNSLT ;ALB/HAG - LINK APPOINTMENTS TO CONSULTS ;JAN 15, 2016
- ;;5.3;Scheduling;**478,496,630,627,686**;Aug 13, 1993;Build 53
+ ;;5.3;Scheduling;**478,496,630,627,686,737**;Aug 13, 1993;Build 13
  ;;Per VHA Directive 2004-038, this routine should not be modified
 A ;===GET ACTIVE AND PENDING CONSULT
  N A,ND,CNT,CONS,CPRSTAT,DTENTR,DTIN,DTLMT,DTR,NOS,NOSHOW,SENDER,SERVICE,SRV,P8,PROC,PT,PTNM,STATUS
@@ -59,10 +59,10 @@ CANCEL ;===appt was cancelled then mark consult as edit/resubmit, add comment.
  ;TMPD is assumed by the existing code
  S:$D(SDECNOTE) TMPD=SDECNOTE_$S($D(TMPD):"; ",1:"")_$G(TMPD) ;*zeb 686 10/30/18 keep cancel comment from GUI
  S:$D(SCLNK) CONSULT=SCLNK
- S:'$D(SCLNK) CONSULT=$P($G(^SC(SDSC,"S",SDTTM,1,SDPL,"CONS")),U)
+ I SDPL S:'$D(SCLNK) CONSULT=$P($G(^SC(SDSC,"S",SDTTM,1,SDPL,"CONS")),U) ; check for value of SDPL - wtc 737 1/21/20
  Q:'+CONSULT
  S:$D(SCSNOD) SDPATNT=$P(SCSNOD,U)
- S:'$D(SCSNOD) SDPATNT=$P($G(^SC(SDSC,"S",SDTTM,1,SDPL,0)),U)
+ I SDPL S:'$D(SCSNOD) SDPATNT=$P($G(^SC(SDSC,"S",SDTTM,1,SDPL,0)),U) ; check for value of SDPL - wtc 737 1/21/20
  S CPRSSTAT=$P($G(^GMR(123,CONSULT,0)),U,12) I CPRSSTAT'="" S CPRSSTAT=$P($G(^ORD(100.01,CPRSSTAT,0)),U) Q:CPRSSTAT'="SCHEDULED"
  S SNDPRV=$P($G(^GMR(123,CONSULT,0)),U,14)
  S USER=$P(^VA(200,DUZ,0),U),Y=SDTTM D DD^%DT S APPT=$E(SDTTM,4,5)_"/"_$E(SDTTM,6,7)_"/"_$E(SDTTM,2,3)_" @ "_$P(Y,"@",2)
@@ -72,7 +72,7 @@ CANCEL ;===appt was cancelled then mark consult as edit/resubmit, add comment.
  S CNDIE="^GMR(123,"_CONSULT_",40,",CNDA=+$G(COMMENT(0))
  K COMMENT,DA
  S AUTO(SDSC,SDTTM,SDPATNT)=CONSULT
- S DA(2)=SDSC,DA(1)=SDTTM,DA=SDPL,DIE="^SC("_DA(2)_",""S"","_DA(1)_",1,",DR="688///@" D ^DIE
+ I SDPL S DA(2)=SDSC,DA(1)=SDTTM,DA=SDPL,DIE="^SC("_DA(2)_",""S"","_DA(1)_",1,",DR="688///@" D ^DIE ; check for value of SDPL - wtc 737 1/21/20
  K SCSNOD,SDADM,SCLNK
  Q
 AUTOREB(SC,NDATE,LNK,CY) ;===AUTO REBOOK

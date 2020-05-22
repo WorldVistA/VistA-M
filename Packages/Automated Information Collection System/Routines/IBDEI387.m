@@ -1,134 +1,128 @@
-IBDEI387 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI387 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54219,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,54219,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,54220,0)
- ;;=I73.9^^256^2762^19
- ;;^UTILITY(U,$J,358.3,54220,1,0)
+ ;;^UTILITY(U,$J,358.3,51504,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,51504,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,51504,2)
+ ;;=^5008410
+ ;;^UTILITY(U,$J,358.3,51505,0)
+ ;;=K08.401^^193^2509^138
+ ;;^UTILITY(U,$J,358.3,51505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54220,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,54220,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,54220,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,54221,0)
- ;;=I82.891^^256^2762^14
- ;;^UTILITY(U,$J,358.3,54221,1,0)
+ ;;^UTILITY(U,$J,358.3,51505,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,51505,1,4,0)
+ ;;=4^K08.401
+ ;;^UTILITY(U,$J,358.3,51505,2)
+ ;;=^5008432
+ ;;^UTILITY(U,$J,358.3,51506,0)
+ ;;=K08.402^^193^2509^139
+ ;;^UTILITY(U,$J,358.3,51506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54221,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
- ;;^UTILITY(U,$J,358.3,54221,1,4,0)
- ;;=4^I82.891
- ;;^UTILITY(U,$J,358.3,54221,2)
- ;;=^5007939
- ;;^UTILITY(U,$J,358.3,54222,0)
- ;;=I82.890^^256^2762^13
- ;;^UTILITY(U,$J,358.3,54222,1,0)
+ ;;^UTILITY(U,$J,358.3,51506,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,51506,1,4,0)
+ ;;=4^K08.402
+ ;;^UTILITY(U,$J,358.3,51506,2)
+ ;;=^5008433
+ ;;^UTILITY(U,$J,358.3,51507,0)
+ ;;=K08.403^^193^2509^140
+ ;;^UTILITY(U,$J,358.3,51507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54222,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
- ;;^UTILITY(U,$J,358.3,54222,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,54222,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,54223,0)
- ;;=E78.0^^256^2763^12
- ;;^UTILITY(U,$J,358.3,54223,1,0)
+ ;;^UTILITY(U,$J,358.3,51507,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,51507,1,4,0)
+ ;;=4^K08.403
+ ;;^UTILITY(U,$J,358.3,51507,2)
+ ;;=^5008434
+ ;;^UTILITY(U,$J,358.3,51508,0)
+ ;;=K08.404^^193^2509^141
+ ;;^UTILITY(U,$J,358.3,51508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54223,1,3,0)
- ;;=3^Pure Hypercholesterolemia
- ;;^UTILITY(U,$J,358.3,54223,1,4,0)
- ;;=4^E78.0
- ;;^UTILITY(U,$J,358.3,54223,2)
- ;;=^5002966
- ;;^UTILITY(U,$J,358.3,54224,0)
- ;;=E78.1^^256^2763^13
- ;;^UTILITY(U,$J,358.3,54224,1,0)
+ ;;^UTILITY(U,$J,358.3,51508,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,51508,1,4,0)
+ ;;=4^K08.404
+ ;;^UTILITY(U,$J,358.3,51508,2)
+ ;;=^5008435
+ ;;^UTILITY(U,$J,358.3,51509,0)
+ ;;=K08.409^^193^2509^142
+ ;;^UTILITY(U,$J,358.3,51509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54224,1,3,0)
- ;;=3^Pure Hyperglyceridemia
- ;;^UTILITY(U,$J,358.3,54224,1,4,0)
- ;;=4^E78.1
- ;;^UTILITY(U,$J,358.3,54224,2)
- ;;=^101303
- ;;^UTILITY(U,$J,358.3,54225,0)
- ;;=E78.2^^256^2763^11
- ;;^UTILITY(U,$J,358.3,54225,1,0)
+ ;;^UTILITY(U,$J,358.3,51509,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,51509,1,4,0)
+ ;;=4^K08.409
+ ;;^UTILITY(U,$J,358.3,51509,2)
+ ;;=^5008436
+ ;;^UTILITY(U,$J,358.3,51510,0)
+ ;;=N39.42^^193^2509^98
+ ;;^UTILITY(U,$J,358.3,51510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54225,1,3,0)
- ;;=3^Mixed Hyperlipidemia
- ;;^UTILITY(U,$J,358.3,54225,1,4,0)
- ;;=4^E78.2
- ;;^UTILITY(U,$J,358.3,54225,2)
- ;;=^78424
- ;;^UTILITY(U,$J,358.3,54226,0)
- ;;=I10.^^256^2763^3
- ;;^UTILITY(U,$J,358.3,54226,1,0)
+ ;;^UTILITY(U,$J,358.3,51510,1,3,0)
+ ;;=3^Incontinence w/o Sensory Awareness
+ ;;^UTILITY(U,$J,358.3,51510,1,4,0)
+ ;;=4^N39.42
+ ;;^UTILITY(U,$J,358.3,51510,2)
+ ;;=^5015681
+ ;;^UTILITY(U,$J,358.3,51511,0)
+ ;;=N39.43^^193^2509^148
+ ;;^UTILITY(U,$J,358.3,51511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54226,1,3,0)
- ;;=3^Essential Primary Hypertension
- ;;^UTILITY(U,$J,358.3,54226,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,54226,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,54227,0)
- ;;=I11.9^^256^2763^10
- ;;^UTILITY(U,$J,358.3,54227,1,0)
+ ;;^UTILITY(U,$J,358.3,51511,1,3,0)
+ ;;=3^Post-Void Dribbling
+ ;;^UTILITY(U,$J,358.3,51511,1,4,0)
+ ;;=4^N39.43
+ ;;^UTILITY(U,$J,358.3,51511,2)
+ ;;=^5015682
+ ;;^UTILITY(U,$J,358.3,51512,0)
+ ;;=N39.44^^193^2509^128
+ ;;^UTILITY(U,$J,358.3,51512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54227,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,54227,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,54227,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,54228,0)
- ;;=I11.0^^256^2763^9
- ;;^UTILITY(U,$J,358.3,54228,1,0)
+ ;;^UTILITY(U,$J,358.3,51512,1,3,0)
+ ;;=3^Nocturnal Enuresis
+ ;;^UTILITY(U,$J,358.3,51512,1,4,0)
+ ;;=4^N39.44
+ ;;^UTILITY(U,$J,358.3,51512,2)
+ ;;=^5015683
+ ;;^UTILITY(U,$J,358.3,51513,0)
+ ;;=N39.46^^193^2509^124
+ ;;^UTILITY(U,$J,358.3,51513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54228,1,3,0)
- ;;=3^Hypertensive Heart Disease w/ Heart Failure
- ;;^UTILITY(U,$J,358.3,54228,1,4,0)
- ;;=4^I11.0
- ;;^UTILITY(U,$J,358.3,54228,2)
- ;;=^5007063
- ;;^UTILITY(U,$J,358.3,54229,0)
- ;;=I12.0^^256^2763^8
- ;;^UTILITY(U,$J,358.3,54229,1,0)
+ ;;^UTILITY(U,$J,358.3,51513,1,3,0)
+ ;;=3^Mixed Incontinence
+ ;;^UTILITY(U,$J,358.3,51513,1,4,0)
+ ;;=4^N39.46
+ ;;^UTILITY(U,$J,358.3,51513,2)
+ ;;=^5015685
+ ;;^UTILITY(U,$J,358.3,51514,0)
+ ;;=R06.01^^193^2509^132
+ ;;^UTILITY(U,$J,358.3,51514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54229,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
- ;;^UTILITY(U,$J,358.3,54229,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,54229,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,54230,0)
- ;;=I13.10^^256^2763^6
- ;;^UTILITY(U,$J,358.3,54230,1,0)
+ ;;^UTILITY(U,$J,358.3,51514,1,3,0)
+ ;;=3^Orthopnea
+ ;;^UTILITY(U,$J,358.3,51514,1,4,0)
+ ;;=4^R06.01
+ ;;^UTILITY(U,$J,358.3,51514,2)
+ ;;=^186737
+ ;;^UTILITY(U,$J,358.3,51515,0)
+ ;;=R06.4^^193^2509^91
+ ;;^UTILITY(U,$J,358.3,51515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54230,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,54230,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,54230,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,54231,0)
- ;;=I13.0^^256^2763^4
- ;;^UTILITY(U,$J,358.3,54231,1,0)
+ ;;^UTILITY(U,$J,358.3,51515,1,3,0)
+ ;;=3^Hyperventilation
+ ;;^UTILITY(U,$J,358.3,51515,1,4,0)
+ ;;=4^R06.4
+ ;;^UTILITY(U,$J,358.3,51515,2)
+ ;;=^5019186
+ ;;^UTILITY(U,$J,358.3,51516,0)
+ ;;=R06.6^^193^2509^87
+ ;;^UTILITY(U,$J,358.3,51516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54231,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,54231,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,54231,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,54232,0)
- ;;=I13.11^^256^2763^7
- ;;^UTILITY(U,$J,358.3,54232,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54232,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,51516,1,3,0)
+ ;;=3^Hiccough
+ ;;^UTILITY(U,$J,358.3,51516,1,4,0)
+ ;;=4^R06.6

@@ -1,5 +1,5 @@
 ONCOPRT1 ;Hines OIFO/RVD - OncoTrax Reports ICD ;05/14/12
- ;;2.2;ONCOLOGY;**1,7**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,7,10**;Jul 31, 2013;Build 20
  ;This routine invokes Integration Agreement #3151 and #3990.
  ;
 ICD ;check for particular ICD code.
@@ -125,21 +125,14 @@ ICD ;check for particular ICD code.
  .S DIS(119)="I $$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01,""I"")=624.01"
  .;ICD10 Search Logic
  .S DIS(120)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""C"")"
- .S DIS(121)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""D18.02"")!(CODE=""D18.1"")!(CODE=""D35.2"")!(CODE=""D35.4"")!(CODE=""D45"")!(CODE=""D47.2"")!(CODE=""D64.81""))"
- .S DIS(122)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""D47.01"")!(CODE=""D47.3"")!(CODE=""D47.4"")!CODE=""D47.7"")!(CODE=""47.9"")!(CODE=""D49.6"")!(CODE=""D49.7"")!(CODE=""D49.7"")"
- .S DIS(123)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""D70.1"")!(CODE=""D72.1"")!(CODE=""E34.0"")!(CODE=""E88.3"")!(CODE=""K22.711"")!(CODE=""K92.81"")!(CODE=""R18.0""))"
- .S DIS(124)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""R53.0"")!(CODE=""T66"")!(CODE=""Y63.2"")!(CODE=""Y84.2"")!(CODE=""Z08"")!(CODE=""Z17.0"")!(CODE=""Z17.1""))"
- .S DIS(125)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""Z42.1"")!(CODE=""Z48.290"")!(CODE=""Z51.0"")!(CODE=""Z51.5"")!(CODE=""Z51.89"")!(CODE=""Z86.03"")!(CODE=""Z92.21""))"
- .S DIS(126)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""Z92.23"")!(CODE=""Z92.25"")!(CODE=""Z92.3"")!(CODE=""Z94.81"")!(CODE=""Z94.84""))"
- .S DIS(127)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>00)&($E(CODE,2,7)<09.9999))"
- .S DIS(128)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>42)&($E(CODE,2,7)<43.9999))"
- .S DIS(129)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>44.29999)&($E(CODE,2,7)<44.5555))"
- .S DIS(130)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>46)&($E(CODE,2,7)<46.9999))"
- .S DIS(131)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE,1,5)=""D47.Z""),(($E(CODE,6,7)>0)&($E(CODE,6,7)<9999))"
- .S DIS(132)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>75.9999)&($E(CODE,2,7)<76.9999))"
- .S DIS(133)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""T""),(($E(CODE,2,7)>45.1)&($E(CODE,2,7)<45.1999))"
- .S DIS(134)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""Z""),(($E(CODE,2,7)>11.9999)&($E(CODE,2,7)<12.9999))"
- .S DIS(135)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""Z""),(($E(CODE,2,7)>40.0)&($E(CODE,2,7)<40.0999))"
- .S DIS(136)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""Z""),(($E(CODE,2,7)>51.1)&($E(CODE,2,7)<51.1999))"
- .S DIS(137)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""Z""),(($E(CODE,2,7)>85)&($E(CODE,2,7)<86.0199))"
+ .S DIS(121)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""D18.02"")!(CODE=""D35.2"")!(CODE=""D35.4"")!(CODE=""D45"")!(CODE=""D47.02"")!(CODE=""D35.3""))"
+ .S DIS(122)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""D47.1"")!(CODE=""D47.3"")!(CODE=""D47.4"")!(CODE=""47.9"")!(CODE=""D49.6"")!(CODE=""D49.7""))"
+ .S DIS(123)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""D47.Z"")!(CODE=""D47.Z1"")!(CODE=""D47.Z9""))"
+ .S DIS(125)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>00)&($E(CODE,2,7)<09.9999))"
+ .S DIS(126)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>41.9999)&($E(CODE,2,7)<43.9999))"
+ .S DIS(127)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>45.9999)&($E(CODE,2,7)<46.9999))"
+ .S DIS(128)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE,1,5)=""D47.Z""),(($E(CODE,6,7)>0)&($E(CODE,6,7)<9999))"
+ .S DIS(129)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""D""),(($E(CODE,2,7)>31.9999)&($E(CODE,2,7)<33.9999))"
+ .S DIS(130)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ($E(CODE)=""Z""),(($E(CODE,2,7)>84.9999)&($E(CODE,2,7)<86.9999))"
+ .S DIS(131)="S CODE=$$GET1^DIQ(80,$P($G(^AUPNVPOV(D0,0)),U,1),.01) I ((CODE=""R85.614"")!(CODE=""R87.614"")!(CODE=""87.624""))"
  Q

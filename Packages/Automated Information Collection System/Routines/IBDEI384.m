@@ -1,134 +1,122 @@
-IBDEI384 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI384 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54182,1,0)
+ ;;^UTILITY(U,$J,358.3,51467,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,51467,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,51468,0)
+ ;;=T74.21XS^^193^2508^9
+ ;;^UTILITY(U,$J,358.3,51468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54182,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,54182,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,54182,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,54183,0)
- ;;=Z01.810^^256^2760^2
- ;;^UTILITY(U,$J,358.3,54183,1,0)
+ ;;^UTILITY(U,$J,358.3,51468,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,51468,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,51468,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,51469,0)
+ ;;=T76.21XD^^193^2508^11
+ ;;^UTILITY(U,$J,358.3,51469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54183,1,3,0)
- ;;=3^Cardiovascular Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,54183,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,54183,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,54184,0)
- ;;=Z01.811^^256^2760^16
- ;;^UTILITY(U,$J,358.3,54184,1,0)
+ ;;^UTILITY(U,$J,358.3,51469,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,51469,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,51469,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,51470,0)
+ ;;=T76.21XS^^193^2508^12
+ ;;^UTILITY(U,$J,358.3,51470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54184,1,3,0)
- ;;=3^Respiratory Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,54184,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,54184,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,54185,0)
- ;;=Z01.812^^256^2760^13
- ;;^UTILITY(U,$J,358.3,54185,1,0)
+ ;;^UTILITY(U,$J,358.3,51470,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,51470,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,51470,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,51471,0)
+ ;;=Y07.53^^193^2508^13
+ ;;^UTILITY(U,$J,358.3,51471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54185,1,3,0)
- ;;=3^Lab Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,54185,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,54185,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,54186,0)
- ;;=Z01.818^^256^2760^15
- ;;^UTILITY(U,$J,358.3,54186,1,0)
+ ;;^UTILITY(U,$J,358.3,51471,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST
+ ;;^UTILITY(U,$J,358.3,51471,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,51471,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,51472,0)
+ ;;=Y07.59^^193^2508^14
+ ;;^UTILITY(U,$J,358.3,51472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54186,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,54186,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,54186,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,54187,0)
- ;;=Z71.0^^256^2760^9
- ;;^UTILITY(U,$J,358.3,54187,1,0)
+ ;;^UTILITY(U,$J,358.3,51472,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,51472,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,51472,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,51473,0)
+ ;;=T74.51XA^^193^2508^1
+ ;;^UTILITY(U,$J,358.3,51473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54187,1,3,0)
- ;;=3^Hlth Service to Consult on Behalf of Another
- ;;^UTILITY(U,$J,358.3,54187,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,54187,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,54188,0)
- ;;=Z59.8^^256^2760^10
- ;;^UTILITY(U,$J,358.3,54188,1,0)
+ ;;^UTILITY(U,$J,358.3,51473,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Init enctr
+ ;;^UTILITY(U,$J,358.3,51473,1,4,0)
+ ;;=4^T74.51XA
+ ;;^UTILITY(U,$J,358.3,51473,2)
+ ;;=^5157560
+ ;;^UTILITY(U,$J,358.3,51474,0)
+ ;;=T74.51XD^^193^2508^2
+ ;;^UTILITY(U,$J,358.3,51474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54188,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,54188,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,54188,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,54189,0)
- ;;=I20.0^^256^2761^14
- ;;^UTILITY(U,$J,358.3,54189,1,0)
+ ;;^UTILITY(U,$J,358.3,51474,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Subs
+ ;;^UTILITY(U,$J,358.3,51474,1,4,0)
+ ;;=4^T74.51XD
+ ;;^UTILITY(U,$J,358.3,51474,2)
+ ;;=^5157561
+ ;;^UTILITY(U,$J,358.3,51475,0)
+ ;;=T74.51XS^^193^2508^3
+ ;;^UTILITY(U,$J,358.3,51475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54189,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,54189,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,54189,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,54190,0)
- ;;=I25.110^^256^2761^7
- ;;^UTILITY(U,$J,358.3,54190,1,0)
+ ;;^UTILITY(U,$J,358.3,51475,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,51475,1,4,0)
+ ;;=4^T74.51XS
+ ;;^UTILITY(U,$J,358.3,51475,2)
+ ;;=^5157562
+ ;;^UTILITY(U,$J,358.3,51476,0)
+ ;;=T76.51XA^^193^2508^4
+ ;;^UTILITY(U,$J,358.3,51476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54190,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,54190,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,54190,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,54191,0)
- ;;=I25.700^^256^2761^12
- ;;^UTILITY(U,$J,358.3,54191,1,0)
+ ;;^UTILITY(U,$J,358.3,51476,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Init 
+ ;;^UTILITY(U,$J,358.3,51476,1,4,0)
+ ;;=4^T76.51XA
+ ;;^UTILITY(U,$J,358.3,51476,2)
+ ;;=^5157572
+ ;;^UTILITY(U,$J,358.3,51477,0)
+ ;;=T76.51XD^^193^2508^5
+ ;;^UTILITY(U,$J,358.3,51477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54191,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
- ;;^UTILITY(U,$J,358.3,54191,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,54191,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,54192,0)
- ;;=I25.2^^256^2761^13
- ;;^UTILITY(U,$J,358.3,54192,1,0)
+ ;;^UTILITY(U,$J,358.3,51477,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Subs
+ ;;^UTILITY(U,$J,358.3,51477,1,4,0)
+ ;;=4^T76.51XD
+ ;;^UTILITY(U,$J,358.3,51477,2)
+ ;;=^5157573
+ ;;^UTILITY(U,$J,358.3,51478,0)
+ ;;=T76.51XS^^193^2508^6
+ ;;^UTILITY(U,$J,358.3,51478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54192,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,54192,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,54192,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,54193,0)
- ;;=I20.8^^256^2761^2
- ;;^UTILITY(U,$J,358.3,54193,1,0)
+ ;;^UTILITY(U,$J,358.3,51478,1,3,0)
+ ;;=3^Adult Forced Sexual Exploit,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,51478,1,4,0)
+ ;;=4^T76.51XS
+ ;;^UTILITY(U,$J,358.3,51478,2)
+ ;;=^5157574
+ ;;^UTILITY(U,$J,358.3,51479,0)
+ ;;=E66.01^^193^2509^125
+ ;;^UTILITY(U,$J,358.3,51479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54193,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,54193,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,54193,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,54194,0)
- ;;=I20.1^^256^2761^1
- ;;^UTILITY(U,$J,358.3,54194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54194,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,54194,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,54194,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,54195,0)
- ;;=I25.119^^256^2761^5

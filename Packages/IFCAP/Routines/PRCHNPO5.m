@@ -1,6 +1,6 @@
-PRCHNPO5 ;WISC/RSD,RHD/DL-INPUT TRANSFORM FOR FILE 440,441,442 ;9/5/00  10:59
-V ;;5.1;IFCAP;**113,159**;Oct 20, 2000;Build 9
- ;Per VHA Directive 2004-038, this routine should not be modified.
+PRCHNPO5 ;WISC/RSD,RHD/DL-INPUT TRANSFORM FOR FILE 440,441,442 ;11/23/16  13:36
+V ;;5.1;IFCAP;**113,159,198**;Oct 20, 2000;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN1 ;FILE 442, FCP #1
  I '$D(PRCHAMND),$D(^PRCS(410,+$P(^PRC(442,DA,0),U,12),0)),+$P(^(0),"-",4)'=+X W !,"Fund Control Point cannot be changed since 2237 has been selected." K X Q
@@ -83,7 +83,7 @@ EN10 ;FILE 440 CONTRACT NUMBER
  ;
 EN11 ;FILE 441 CONTRACT
  D EN10 S DIC="^PRC(440,Z0,4,",DIC(0)="QEMLZ",DLAYGO=440,ZD=DA(1),DA(1)=Z0 D ^DIC S X=+Y K:Y'>0 X S DA(1)=ZD K ZD,Z0,DIC
- I $D(X),$D(DT),$P(Y(0),U,2)-DT<0 W !?10,"**CONTRACT HAS EXPIRED**",$C(7),$C(7) K X
+ I $D(X),$D(DT),$P(Y(0),U,2)-DT<0 D EN^DDIOL("**CONTRACT HAS EXPIRED**","","!?10") K X
  K DLAYGO
  Q
  ;

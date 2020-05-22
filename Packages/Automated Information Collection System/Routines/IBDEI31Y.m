@@ -1,132 +1,116 @@
-IBDEI31Y ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31Y ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51174,0)
- ;;=M19.042^^222^2471^5
- ;;^UTILITY(U,$J,358.3,51174,1,0)
+ ;;^UTILITY(U,$J,358.3,48737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51174,1,3,0)
- ;;=3^Prim osteoarthritis, lft hand
- ;;^UTILITY(U,$J,358.3,51174,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,51174,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,51175,0)
- ;;=M19.071^^222^2471^10
- ;;^UTILITY(U,$J,358.3,51175,1,0)
+ ;;^UTILITY(U,$J,358.3,48737,1,3,0)
+ ;;=3^Psychomotor Deficit After Ntrm Subarachnoid Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48737,1,4,0)
+ ;;=4^I69.013
+ ;;^UTILITY(U,$J,358.3,48737,2)
+ ;;=^5138623
+ ;;^UTILITY(U,$J,358.3,48738,0)
+ ;;=I69.014^^185^2424^74
+ ;;^UTILITY(U,$J,358.3,48738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51175,1,3,0)
- ;;=3^Prim osteoarthritis, rt ankle & foot
- ;;^UTILITY(U,$J,358.3,51175,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,51175,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,51176,0)
- ;;=M19.072^^222^2471^3
- ;;^UTILITY(U,$J,358.3,51176,1,0)
+ ;;^UTILITY(U,$J,358.3,48738,1,3,0)
+ ;;=3^Fntl Lobe & Exec Fcn Deficit After Ntrm Subarachnoid Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48738,1,4,0)
+ ;;=4^I69.014
+ ;;^UTILITY(U,$J,358.3,48738,2)
+ ;;=^5138624
+ ;;^UTILITY(U,$J,358.3,48739,0)
+ ;;=I69.015^^185^2424^49
+ ;;^UTILITY(U,$J,358.3,48739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51176,1,3,0)
- ;;=3^Prim osteoarthritis, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,51176,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,51176,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,51177,0)
- ;;=M19.93^^222^2471^32
- ;;^UTILITY(U,$J,358.3,51177,1,0)
+ ;;^UTILITY(U,$J,358.3,48739,1,3,0)
+ ;;=3^Cognitive Social/Emotional Deficit After Ntrm Subarachnoid Hemorrage
+ ;;^UTILITY(U,$J,358.3,48739,1,4,0)
+ ;;=4^I69.015
+ ;;^UTILITY(U,$J,358.3,48739,2)
+ ;;=^5138625
+ ;;^UTILITY(U,$J,358.3,48740,0)
+ ;;=I69.018^^185^2424^47
+ ;;^UTILITY(U,$J,358.3,48740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51177,1,3,0)
- ;;=3^Second osteoarthritis, unspec site
- ;;^UTILITY(U,$J,358.3,51177,1,4,0)
- ;;=4^M19.93
- ;;^UTILITY(U,$J,358.3,51177,2)
- ;;=^5010856
- ;;^UTILITY(U,$J,358.3,51178,0)
- ;;=M19.211^^222^2471^30
- ;;^UTILITY(U,$J,358.3,51178,1,0)
+ ;;^UTILITY(U,$J,358.3,48740,1,3,0)
+ ;;=3^Cognitive Fnctn Symptoms/Signs After Ntrm Subarachnoid Hemorrage,Other
+ ;;^UTILITY(U,$J,358.3,48740,1,4,0)
+ ;;=4^I69.018
+ ;;^UTILITY(U,$J,358.3,48740,2)
+ ;;=^5138626
+ ;;^UTILITY(U,$J,358.3,48741,0)
+ ;;=I69.110^^185^2424^9
+ ;;^UTILITY(U,$J,358.3,48741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51178,1,3,0)
- ;;=3^Second osteoarthritis, rt shldr
- ;;^UTILITY(U,$J,358.3,51178,1,4,0)
- ;;=4^M19.211
- ;;^UTILITY(U,$J,358.3,51178,2)
- ;;=^5010838
- ;;^UTILITY(U,$J,358.3,51179,0)
- ;;=M19.212^^222^2471^25
- ;;^UTILITY(U,$J,358.3,51179,1,0)
+ ;;^UTILITY(U,$J,358.3,48741,1,3,0)
+ ;;=3^Attn & Concentration Deficit After Ntrm Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48741,1,4,0)
+ ;;=4^I69.110
+ ;;^UTILITY(U,$J,358.3,48741,2)
+ ;;=^5138628
+ ;;^UTILITY(U,$J,358.3,48742,0)
+ ;;=I69.111^^185^2424^87
+ ;;^UTILITY(U,$J,358.3,48742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51179,1,3,0)
- ;;=3^Second osteoarthritis, lft shldr
- ;;^UTILITY(U,$J,358.3,51179,1,4,0)
- ;;=4^M19.212
- ;;^UTILITY(U,$J,358.3,51179,2)
- ;;=^5010839
- ;;^UTILITY(U,$J,358.3,51180,0)
- ;;=M19.221^^222^2471^28
- ;;^UTILITY(U,$J,358.3,51180,1,0)
+ ;;^UTILITY(U,$J,358.3,48742,1,3,0)
+ ;;=3^Memory Deficit After Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48742,1,4,0)
+ ;;=4^I69.111
+ ;;^UTILITY(U,$J,358.3,48742,2)
+ ;;=^5138629
+ ;;^UTILITY(U,$J,358.3,48743,0)
+ ;;=I69.112^^185^2424^145
+ ;;^UTILITY(U,$J,358.3,48743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51180,1,3,0)
- ;;=3^Second osteoarthritis, rt elbow
- ;;^UTILITY(U,$J,358.3,51180,1,4,0)
- ;;=4^M19.221
- ;;^UTILITY(U,$J,358.3,51180,2)
- ;;=^5010841
- ;;^UTILITY(U,$J,358.3,51181,0)
- ;;=M19.222^^222^2471^23
- ;;^UTILITY(U,$J,358.3,51181,1,0)
+ ;;^UTILITY(U,$J,358.3,48743,1,3,0)
+ ;;=3^Vis Def/Sptl Nglct After Ntrm Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48743,1,4,0)
+ ;;=4^I69.112
+ ;;^UTILITY(U,$J,358.3,48743,2)
+ ;;=^5138630
+ ;;^UTILITY(U,$J,358.3,48744,0)
+ ;;=I69.113^^185^2424^132
+ ;;^UTILITY(U,$J,358.3,48744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51181,1,3,0)
- ;;=3^Second osteoarthritis, lft elbow
- ;;^UTILITY(U,$J,358.3,51181,1,4,0)
- ;;=4^M19.222
- ;;^UTILITY(U,$J,358.3,51181,2)
- ;;=^5010842
- ;;^UTILITY(U,$J,358.3,51182,0)
- ;;=M19.231^^222^2471^31
- ;;^UTILITY(U,$J,358.3,51182,1,0)
+ ;;^UTILITY(U,$J,358.3,48744,1,3,0)
+ ;;=3^Psychomotor Deficit After Ntrm Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48744,1,4,0)
+ ;;=4^I69.113
+ ;;^UTILITY(U,$J,358.3,48744,2)
+ ;;=^5138631
+ ;;^UTILITY(U,$J,358.3,48745,0)
+ ;;=I69.114^^185^2424^75
+ ;;^UTILITY(U,$J,358.3,48745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51182,1,3,0)
- ;;=3^Second osteoarthritis, rt wrist
- ;;^UTILITY(U,$J,358.3,51182,1,4,0)
- ;;=4^M19.231
- ;;^UTILITY(U,$J,358.3,51182,2)
- ;;=^5010844
- ;;^UTILITY(U,$J,358.3,51183,0)
- ;;=M19.232^^222^2471^26
- ;;^UTILITY(U,$J,358.3,51183,1,0)
+ ;;^UTILITY(U,$J,358.3,48745,1,3,0)
+ ;;=3^Fntl Lobe & Exec Fcn Deficit After Ntrm Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48745,1,4,0)
+ ;;=4^I69.114
+ ;;^UTILITY(U,$J,358.3,48745,2)
+ ;;=^5138632
+ ;;^UTILITY(U,$J,358.3,48746,0)
+ ;;=I69.115^^185^2424^50
+ ;;^UTILITY(U,$J,358.3,48746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51183,1,3,0)
- ;;=3^Second osteoarthritis, lft wrist
- ;;^UTILITY(U,$J,358.3,51183,1,4,0)
- ;;=4^M19.232
- ;;^UTILITY(U,$J,358.3,51183,2)
- ;;=^5010845
- ;;^UTILITY(U,$J,358.3,51184,0)
- ;;=M19.241^^222^2471^29
- ;;^UTILITY(U,$J,358.3,51184,1,0)
+ ;;^UTILITY(U,$J,358.3,48746,1,3,0)
+ ;;=3^Cognitive Social/Emotional Deficit After Ntrm Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48746,1,4,0)
+ ;;=4^I69.115
+ ;;^UTILITY(U,$J,358.3,48746,2)
+ ;;=^5138633
+ ;;^UTILITY(U,$J,358.3,48747,0)
+ ;;=I69.118^^185^2424^48
+ ;;^UTILITY(U,$J,358.3,48747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51184,1,3,0)
- ;;=3^Second osteoarthritis, rt hand
- ;;^UTILITY(U,$J,358.3,51184,1,4,0)
- ;;=4^M19.241
- ;;^UTILITY(U,$J,358.3,51184,2)
- ;;=^5010847
- ;;^UTILITY(U,$J,358.3,51185,0)
- ;;=M19.242^^222^2471^24
- ;;^UTILITY(U,$J,358.3,51185,1,0)
+ ;;^UTILITY(U,$J,358.3,48747,1,3,0)
+ ;;=3^Cognitive Fnctn Symptoms/Signs After Ntrm Intcrbl Hemorrhage
+ ;;^UTILITY(U,$J,358.3,48747,1,4,0)
+ ;;=4^I69.118
+ ;;^UTILITY(U,$J,358.3,48747,2)
+ ;;=^5138634
+ ;;^UTILITY(U,$J,358.3,48748,0)
+ ;;=I69.310^^185^2424^7
+ ;;^UTILITY(U,$J,358.3,48748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51185,1,3,0)
- ;;=3^Second osteoarthritis, lft hand
- ;;^UTILITY(U,$J,358.3,51185,1,4,0)
- ;;=4^M19.242
- ;;^UTILITY(U,$J,358.3,51185,2)
- ;;=^5010848
- ;;^UTILITY(U,$J,358.3,51186,0)
- ;;=M19.271^^222^2471^27
- ;;^UTILITY(U,$J,358.3,51186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51186,1,3,0)
- ;;=3^Second osteoarthritis, rt ankle & foot
- ;;^UTILITY(U,$J,358.3,51186,1,4,0)
- ;;=4^M19.271

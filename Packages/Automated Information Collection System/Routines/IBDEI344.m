@@ -1,122 +1,128 @@
-IBDEI344 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI344 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52246,0)
- ;;=96153^^236^2585^6^^^^1
- ;;^UTILITY(U,$J,358.3,52246,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52246,1,2,0)
- ;;=2^96153
- ;;^UTILITY(U,$J,358.3,52246,1,3,0)
- ;;=3^Inter Hlth/Beh,Grp Ea 15min
- ;;^UTILITY(U,$J,358.3,52247,0)
- ;;=96154^^236^2585^5^^^^1
- ;;^UTILITY(U,$J,358.3,52247,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52247,1,2,0)
- ;;=2^96154
- ;;^UTILITY(U,$J,358.3,52247,1,3,0)
- ;;=3^Inter Hlth/Beh,Fam w/Pt Ea 15m
- ;;^UTILITY(U,$J,358.3,52248,0)
- ;;=96155^^236^2585^4^^^^1
- ;;^UTILITY(U,$J,358.3,52248,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52248,1,2,0)
- ;;=2^96155
- ;;^UTILITY(U,$J,358.3,52248,1,3,0)
- ;;=3^Int Hlth/Beh Fam w/o Pt Ea 15m
- ;;^UTILITY(U,$J,358.3,52249,0)
- ;;=99420^^236^2585^1^^^^1
- ;;^UTILITY(U,$J,358.3,52249,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52249,1,2,0)
- ;;=2^99420
- ;;^UTILITY(U,$J,358.3,52249,1,3,0)
- ;;=3^Admin/Int Hlth Risk Assess Tst
- ;;^UTILITY(U,$J,358.3,52250,0)
- ;;=S9445^^236^2586^3^^^^1
- ;;^UTILITY(U,$J,358.3,52250,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52250,1,2,0)
- ;;=2^S9445
- ;;^UTILITY(U,$J,358.3,52250,1,3,0)
- ;;=3^Pt Educ,Individual,NOS
- ;;^UTILITY(U,$J,358.3,52251,0)
- ;;=S9446^^236^2586^2^^^^1
- ;;^UTILITY(U,$J,358.3,52251,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52251,1,2,0)
- ;;=2^S9446
- ;;^UTILITY(U,$J,358.3,52251,1,3,0)
- ;;=3^Pt Educ,Group,NOS
- ;;^UTILITY(U,$J,358.3,52252,0)
- ;;=G0177^^236^2586^1^^^^1
- ;;^UTILITY(U,$J,358.3,52252,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52252,1,2,0)
- ;;=2^G0177
- ;;^UTILITY(U,$J,358.3,52252,1,3,0)
- ;;=3^Train & Ed Svcs R/T Care & Tx of Disabling MH Problem 45+ min
- ;;^UTILITY(U,$J,358.3,52253,0)
- ;;=S9454^^236^2586^4^^^^1
- ;;^UTILITY(U,$J,358.3,52253,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52253,1,2,0)
- ;;=2^S9454
- ;;^UTILITY(U,$J,358.3,52253,1,3,0)
- ;;=3^Stress Mgmt Class
- ;;^UTILITY(U,$J,358.3,52254,0)
- ;;=99366^^236^2587^1^^^^1
- ;;^UTILITY(U,$J,358.3,52254,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,52254,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,52254,1,3,0)
- ;;=3^Non-Phy Team Conf w/ Pt &/or Fam,30 min+
- ;;^UTILITY(U,$J,358.3,52255,0)
- ;;=T74.11XA^^237^2588^8
- ;;^UTILITY(U,$J,358.3,52255,1,0)
+ ;;^UTILITY(U,$J,358.3,49710,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,49711,0)
+ ;;=I48.21^^191^2478^9
+ ;;^UTILITY(U,$J,358.3,49711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52255,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,52255,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,52255,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,52256,0)
- ;;=T74.11XD^^237^2588^9
- ;;^UTILITY(U,$J,358.3,52256,1,0)
+ ;;^UTILITY(U,$J,358.3,49711,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,49711,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,49711,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,49712,0)
+ ;;=I48.20^^191^2478^5
+ ;;^UTILITY(U,$J,358.3,49712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52256,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,52256,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,52256,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,52257,0)
- ;;=T76.11XA^^237^2588^10
- ;;^UTILITY(U,$J,358.3,52257,1,0)
+ ;;^UTILITY(U,$J,358.3,49712,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,49712,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,49712,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,49713,0)
+ ;;=I48.3^^191^2478^4
+ ;;^UTILITY(U,$J,358.3,49713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52257,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Initial Encounter
- ;;^UTILITY(U,$J,358.3,52257,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,52257,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,52258,0)
- ;;=T76.11XD^^237^2588^11
- ;;^UTILITY(U,$J,358.3,52258,1,0)
+ ;;^UTILITY(U,$J,358.3,49713,1,3,0)
+ ;;=3^Artrial Flutter,Typical
+ ;;^UTILITY(U,$J,358.3,49713,1,4,0)
+ ;;=4^I48.3
+ ;;^UTILITY(U,$J,358.3,49713,2)
+ ;;=^5007227
+ ;;^UTILITY(U,$J,358.3,49714,0)
+ ;;=I48.4^^191^2478^10
+ ;;^UTILITY(U,$J,358.3,49714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52258,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,52258,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,52258,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,52259,0)
- ;;=Z69.11^^237^2588^4
- ;;^UTILITY(U,$J,358.3,52259,1,0)
+ ;;^UTILITY(U,$J,358.3,49714,1,3,0)
+ ;;=3^Atrial Flutter,Atypical
+ ;;^UTILITY(U,$J,358.3,49714,1,4,0)
+ ;;=4^I48.4
+ ;;^UTILITY(U,$J,358.3,49714,2)
+ ;;=^5007228
+ ;;^UTILITY(U,$J,358.3,49715,0)
+ ;;=I25.5^^191^2478^27
+ ;;^UTILITY(U,$J,358.3,49715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52259,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
+ ;;^UTILITY(U,$J,358.3,49715,1,3,0)
+ ;;=3^Ischemic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,49715,1,4,0)
+ ;;=4^I25.5
+ ;;^UTILITY(U,$J,358.3,49715,2)
+ ;;=^5007115
+ ;;^UTILITY(U,$J,358.3,49716,0)
+ ;;=I50.22^^191^2478^25
+ ;;^UTILITY(U,$J,358.3,49716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49716,1,3,0)
+ ;;=3^Heart Failure,Congestive,Chronic Systolic
+ ;;^UTILITY(U,$J,358.3,49716,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,49716,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,49717,0)
+ ;;=I50.32^^191^2478^24
+ ;;^UTILITY(U,$J,358.3,49717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49717,1,3,0)
+ ;;=3^Heart Failure,Congestive,Chronic Diastolic
+ ;;^UTILITY(U,$J,358.3,49717,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,49717,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,49718,0)
+ ;;=F03.90^^191^2478^21
+ ;;^UTILITY(U,$J,358.3,49718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49718,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,49718,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,49718,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,49719,0)
+ ;;=G30.9^^191^2478^3
+ ;;^UTILITY(U,$J,358.3,49719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49719,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,49719,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,49719,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,49720,0)
+ ;;=K70.30^^191^2478^2
+ ;;^UTILITY(U,$J,358.3,49720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49720,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,49720,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,49720,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,49721,0)
+ ;;=K70.31^^191^2478^1
+ ;;^UTILITY(U,$J,358.3,49721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49721,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,49721,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,49721,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,49722,0)
+ ;;=K74.60^^191^2478^20
+ ;;^UTILITY(U,$J,358.3,49722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49722,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,49722,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,49722,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,49723,0)
+ ;;=A40.0^^191^2479^1

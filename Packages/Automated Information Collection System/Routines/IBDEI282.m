@@ -1,136 +1,124 @@
-IBDEI282 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI282 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37684,2)
- ;;=^5013301
- ;;^UTILITY(U,$J,358.3,37685,0)
- ;;=M77.02^^140^1797^26
- ;;^UTILITY(U,$J,358.3,37685,1,0)
+ ;;^UTILITY(U,$J,358.3,35482,1,3,0)
+ ;;=3^Aphasia following unspecified cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,35482,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,35482,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,35483,0)
+ ;;=F80.1^^137^1804^4
+ ;;^UTILITY(U,$J,358.3,35483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37685,1,3,0)
- ;;=3^Medial epicondylitis, lft elbow
- ;;^UTILITY(U,$J,358.3,37685,1,4,0)
- ;;=4^M77.02
- ;;^UTILITY(U,$J,358.3,37685,2)
- ;;=^5013302
- ;;^UTILITY(U,$J,358.3,37686,0)
- ;;=M77.11^^140^1797^25
- ;;^UTILITY(U,$J,358.3,37686,1,0)
+ ;;^UTILITY(U,$J,358.3,35483,1,3,0)
+ ;;=3^Expressive language disorder
+ ;;^UTILITY(U,$J,358.3,35483,1,4,0)
+ ;;=4^F80.1
+ ;;^UTILITY(U,$J,358.3,35483,2)
+ ;;=^331958
+ ;;^UTILITY(U,$J,358.3,35484,0)
+ ;;=F80.2^^137^1804^5
+ ;;^UTILITY(U,$J,358.3,35484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37686,1,3,0)
- ;;=3^Lateral epicondylitis, rt elbow
- ;;^UTILITY(U,$J,358.3,37686,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,37686,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,37687,0)
- ;;=M77.12^^140^1797^24
- ;;^UTILITY(U,$J,358.3,37687,1,0)
+ ;;^UTILITY(U,$J,358.3,35484,1,3,0)
+ ;;=3^Mixed receptive-expressive language disorder
+ ;;^UTILITY(U,$J,358.3,35484,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,35484,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,35485,0)
+ ;;=R47.89^^137^1804^6
+ ;;^UTILITY(U,$J,358.3,35485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37687,1,3,0)
- ;;=3^Lateral epicondylitis, lft elbow
- ;;^UTILITY(U,$J,358.3,37687,1,4,0)
- ;;=4^M77.12
- ;;^UTILITY(U,$J,358.3,37687,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,37688,0)
- ;;=M70.21^^140^1797^31
- ;;^UTILITY(U,$J,358.3,37688,1,0)
+ ;;^UTILITY(U,$J,358.3,35485,1,3,0)
+ ;;=3^Speech disturbances NEC
+ ;;^UTILITY(U,$J,358.3,35485,1,4,0)
+ ;;=4^R47.89
+ ;;^UTILITY(U,$J,358.3,35485,2)
+ ;;=^5019493
+ ;;^UTILITY(U,$J,358.3,35486,0)
+ ;;=R49.8^^137^1804^7
+ ;;^UTILITY(U,$J,358.3,35486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37688,1,3,0)
- ;;=3^Olecranon bursitis, rt elbow
- ;;^UTILITY(U,$J,358.3,37688,1,4,0)
- ;;=4^M70.21
- ;;^UTILITY(U,$J,358.3,37688,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,37689,0)
- ;;=M70.22^^140^1797^30
- ;;^UTILITY(U,$J,358.3,37689,1,0)
+ ;;^UTILITY(U,$J,358.3,35486,1,3,0)
+ ;;=3^Voice and resonance disorders NEC
+ ;;^UTILITY(U,$J,358.3,35486,1,4,0)
+ ;;=4^R49.8
+ ;;^UTILITY(U,$J,358.3,35486,2)
+ ;;=^5019505
+ ;;^UTILITY(U,$J,358.3,35487,0)
+ ;;=Z44.011^^137^1805^3
+ ;;^UTILITY(U,$J,358.3,35487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37689,1,3,0)
- ;;=3^Olecranon bursitis, lft elbow
- ;;^UTILITY(U,$J,358.3,37689,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,37689,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,37690,0)
- ;;=M70.61^^140^1797^48
- ;;^UTILITY(U,$J,358.3,37690,1,0)
+ ;;^UTILITY(U,$J,358.3,35487,1,3,0)
+ ;;=3^Fit/adjst of complete right artificial arm
+ ;;^UTILITY(U,$J,358.3,35487,1,4,0)
+ ;;=4^Z44.011
+ ;;^UTILITY(U,$J,358.3,35487,2)
+ ;;=^5062971
+ ;;^UTILITY(U,$J,358.3,35488,0)
+ ;;=Z44.012^^137^1805^1
+ ;;^UTILITY(U,$J,358.3,35488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37690,1,3,0)
- ;;=3^Trochanteric bursitis, rt hip
- ;;^UTILITY(U,$J,358.3,37690,1,4,0)
- ;;=4^M70.61
- ;;^UTILITY(U,$J,358.3,37690,2)
- ;;=^5013059
- ;;^UTILITY(U,$J,358.3,37691,0)
- ;;=M70.62^^140^1797^47
- ;;^UTILITY(U,$J,358.3,37691,1,0)
+ ;;^UTILITY(U,$J,358.3,35488,1,3,0)
+ ;;=3^Fit/adjst of complete left artificial arm
+ ;;^UTILITY(U,$J,358.3,35488,1,4,0)
+ ;;=4^Z44.012
+ ;;^UTILITY(U,$J,358.3,35488,2)
+ ;;=^5062972
+ ;;^UTILITY(U,$J,358.3,35489,0)
+ ;;=Z44.021^^137^1805^8
+ ;;^UTILITY(U,$J,358.3,35489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37691,1,3,0)
- ;;=3^Trochanteric bursitis, lft hip
- ;;^UTILITY(U,$J,358.3,37691,1,4,0)
- ;;=4^M70.62
- ;;^UTILITY(U,$J,358.3,37691,2)
- ;;=^5013060
- ;;^UTILITY(U,$J,358.3,37692,0)
- ;;=M70.71^^140^1797^8
- ;;^UTILITY(U,$J,358.3,37692,1,0)
+ ;;^UTILITY(U,$J,358.3,35489,1,3,0)
+ ;;=3^Fit/adjst of partial artificial right arm
+ ;;^UTILITY(U,$J,358.3,35489,1,4,0)
+ ;;=4^Z44.021
+ ;;^UTILITY(U,$J,358.3,35489,2)
+ ;;=^5062974
+ ;;^UTILITY(U,$J,358.3,35490,0)
+ ;;=Z44.022^^137^1805^6
+ ;;^UTILITY(U,$J,358.3,35490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37692,1,3,0)
- ;;=3^Bursitis of hip, rt hip
- ;;^UTILITY(U,$J,358.3,37692,1,4,0)
- ;;=4^M70.71
- ;;^UTILITY(U,$J,358.3,37692,2)
- ;;=^5013062
- ;;^UTILITY(U,$J,358.3,37693,0)
- ;;=M70.72^^140^1797^7
- ;;^UTILITY(U,$J,358.3,37693,1,0)
+ ;;^UTILITY(U,$J,358.3,35490,1,3,0)
+ ;;=3^Fit/adjst of partial artificial left arm
+ ;;^UTILITY(U,$J,358.3,35490,1,4,0)
+ ;;=4^Z44.022
+ ;;^UTILITY(U,$J,358.3,35490,2)
+ ;;=^5062975
+ ;;^UTILITY(U,$J,358.3,35491,0)
+ ;;=Z44.111^^137^1805^4
+ ;;^UTILITY(U,$J,358.3,35491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37693,1,3,0)
- ;;=3^Bursitis of hip, lft hip
- ;;^UTILITY(U,$J,358.3,37693,1,4,0)
- ;;=4^M70.72
- ;;^UTILITY(U,$J,358.3,37693,2)
- ;;=^5013063
- ;;^UTILITY(U,$J,358.3,37694,0)
- ;;=M76.11^^140^1797^38
- ;;^UTILITY(U,$J,358.3,37694,1,0)
+ ;;^UTILITY(U,$J,358.3,35491,1,3,0)
+ ;;=3^Fit/adjst of complete right artificial leg
+ ;;^UTILITY(U,$J,358.3,35491,1,4,0)
+ ;;=4^Z44.111
+ ;;^UTILITY(U,$J,358.3,35491,2)
+ ;;=^5062980
+ ;;^UTILITY(U,$J,358.3,35492,0)
+ ;;=Z44.112^^137^1805^2
+ ;;^UTILITY(U,$J,358.3,35492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37694,1,3,0)
- ;;=3^Psoas tendinitis, rt hip
- ;;^UTILITY(U,$J,358.3,37694,1,4,0)
- ;;=4^M76.11
- ;;^UTILITY(U,$J,358.3,37694,2)
- ;;=^5013270
- ;;^UTILITY(U,$J,358.3,37695,0)
- ;;=M76.12^^140^1797^37
- ;;^UTILITY(U,$J,358.3,37695,1,0)
+ ;;^UTILITY(U,$J,358.3,35492,1,3,0)
+ ;;=3^Fit/adjst of complete left artificial leg
+ ;;^UTILITY(U,$J,358.3,35492,1,4,0)
+ ;;=4^Z44.112
+ ;;^UTILITY(U,$J,358.3,35492,2)
+ ;;=^5062981
+ ;;^UTILITY(U,$J,358.3,35493,0)
+ ;;=Z44.121^^137^1805^9
+ ;;^UTILITY(U,$J,358.3,35493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37695,1,3,0)
- ;;=3^Psoas tendinitis, lft hip
- ;;^UTILITY(U,$J,358.3,37695,1,4,0)
- ;;=4^M76.12
- ;;^UTILITY(U,$J,358.3,37695,2)
- ;;=^5013271
- ;;^UTILITY(U,$J,358.3,37696,0)
- ;;=M76.21^^140^1797^23
- ;;^UTILITY(U,$J,358.3,37696,1,0)
+ ;;^UTILITY(U,$J,358.3,35493,1,3,0)
+ ;;=3^Fit/adjst of partial artificial right leg
+ ;;^UTILITY(U,$J,358.3,35493,1,4,0)
+ ;;=4^Z44.121
+ ;;^UTILITY(U,$J,358.3,35493,2)
+ ;;=^5062983
+ ;;^UTILITY(U,$J,358.3,35494,0)
+ ;;=Z44.122^^137^1805^7
+ ;;^UTILITY(U,$J,358.3,35494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37696,1,3,0)
- ;;=3^Iliac crest spur, rt hip
- ;;^UTILITY(U,$J,358.3,37696,1,4,0)
- ;;=4^M76.21
- ;;^UTILITY(U,$J,358.3,37696,2)
- ;;=^5013273
- ;;^UTILITY(U,$J,358.3,37697,0)
- ;;=M76.22^^140^1797^22
- ;;^UTILITY(U,$J,358.3,37697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37697,1,3,0)
- ;;=3^Iliac crest spur, lft hip
- ;;^UTILITY(U,$J,358.3,37697,1,4,0)
- ;;=4^M76.22
- ;;^UTILITY(U,$J,358.3,37697,2)
- ;;=^5013274

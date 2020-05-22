@@ -1,128 +1,130 @@
-IBDEI33N ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52011,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,52012,0)
- ;;=Z02.1^^233^2552^25
- ;;^UTILITY(U,$J,358.3,52012,1,0)
+ ;;^UTILITY(U,$J,358.3,49500,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,49501,0)
+ ;;=C64.1^^191^2467^18
+ ;;^UTILITY(U,$J,358.3,49501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52012,1,3,0)
- ;;=3^Pre-employment examination
- ;;^UTILITY(U,$J,358.3,52012,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,52012,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,52013,0)
- ;;=Z13.5^^233^2552^15
- ;;^UTILITY(U,$J,358.3,52013,1,0)
+ ;;^UTILITY(U,$J,358.3,49501,1,3,0)
+ ;;=3^Malig Neop Kidney,Right
+ ;;^UTILITY(U,$J,358.3,49501,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,49501,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,49502,0)
+ ;;=C64.2^^191^2467^17
+ ;;^UTILITY(U,$J,358.3,49502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52013,1,3,0)
- ;;=3^Eye and Ear Disorder Screening
- ;;^UTILITY(U,$J,358.3,52013,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,52013,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,52014,0)
- ;;=Z13.850^^233^2552^32
- ;;^UTILITY(U,$J,358.3,52014,1,0)
+ ;;^UTILITY(U,$J,358.3,49502,1,3,0)
+ ;;=3^Malig Neop Kidney,Left
+ ;;^UTILITY(U,$J,358.3,49502,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,49502,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,49503,0)
+ ;;=C71.9^^191^2467^9
+ ;;^UTILITY(U,$J,358.3,49503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52014,1,3,0)
- ;;=3^Traumatic Brain Injury Screening
- ;;^UTILITY(U,$J,358.3,52014,1,4,0)
- ;;=4^Z13.850
- ;;^UTILITY(U,$J,358.3,52014,2)
- ;;=^5062717
- ;;^UTILITY(U,$J,358.3,52015,0)
- ;;=Z85.841^^233^2552^20
- ;;^UTILITY(U,$J,358.3,52015,1,0)
+ ;;^UTILITY(U,$J,358.3,49503,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,49503,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,49503,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,49504,0)
+ ;;=C16.9^^191^2467^24
+ ;;^UTILITY(U,$J,358.3,49504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52015,1,3,0)
- ;;=3^Personal history of malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,52015,1,4,0)
- ;;=4^Z85.841
- ;;^UTILITY(U,$J,358.3,52015,2)
- ;;=^5063447
- ;;^UTILITY(U,$J,358.3,52016,0)
- ;;=Z85.21^^233^2552^21
- ;;^UTILITY(U,$J,358.3,52016,1,0)
+ ;;^UTILITY(U,$J,358.3,49504,1,3,0)
+ ;;=3^Malig Neop Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,49504,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,49504,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,49505,0)
+ ;;=C20.^^191^2467^23
+ ;;^UTILITY(U,$J,358.3,49505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52016,1,3,0)
- ;;=3^Personal history of malignant neoplasm of larynx
- ;;^UTILITY(U,$J,358.3,52016,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,52016,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,52017,0)
- ;;=Z85.22^^233^2552^22
- ;;^UTILITY(U,$J,358.3,52017,1,0)
+ ;;^UTILITY(U,$J,358.3,49505,1,3,0)
+ ;;=3^Malig Neop Rectum
+ ;;^UTILITY(U,$J,358.3,49505,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,49505,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,49506,0)
+ ;;=C43.9^^191^2467^6
+ ;;^UTILITY(U,$J,358.3,49506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52017,1,3,0)
- ;;=3^Personal history of malignant neoplasm of nasl cav/mid ear/acces sinus
- ;;^UTILITY(U,$J,358.3,52017,1,4,0)
- ;;=4^Z85.22
- ;;^UTILITY(U,$J,358.3,52017,2)
- ;;=^5063412
- ;;^UTILITY(U,$J,358.3,52018,0)
- ;;=Z85.810^^233^2552^23
- ;;^UTILITY(U,$J,358.3,52018,1,0)
+ ;;^UTILITY(U,$J,358.3,49506,1,3,0)
+ ;;=3^Malig Melanoma Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,49506,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,49506,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,49507,0)
+ ;;=C22.9^^191^2467^21
+ ;;^UTILITY(U,$J,358.3,49507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52018,1,3,0)
- ;;=3^Personal history of malignant neoplasm of tongue
- ;;^UTILITY(U,$J,358.3,52018,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,52018,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,52019,0)
- ;;=Z85.12^^233^2552^24
- ;;^UTILITY(U,$J,358.3,52019,1,0)
+ ;;^UTILITY(U,$J,358.3,49507,1,3,0)
+ ;;=3^Malig Neop Liver,Unspec as Prim/Sec
+ ;;^UTILITY(U,$J,358.3,49507,1,4,0)
+ ;;=4^C22.9
+ ;;^UTILITY(U,$J,358.3,49507,2)
+ ;;=^267096
+ ;;^UTILITY(U,$J,358.3,49508,0)
+ ;;=C32.9^^191^2467^19
+ ;;^UTILITY(U,$J,358.3,49508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52019,1,3,0)
- ;;=3^Personal history of malignant neoplasm of trachea
- ;;^UTILITY(U,$J,358.3,52019,1,4,0)
- ;;=4^Z85.12
- ;;^UTILITY(U,$J,358.3,52019,2)
- ;;=^5063409
- ;;^UTILITY(U,$J,358.3,52020,0)
- ;;=Z53.09^^233^2552^26
- ;;^UTILITY(U,$J,358.3,52020,1,0)
+ ;;^UTILITY(U,$J,358.3,49508,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,49508,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,49508,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,49509,0)
+ ;;=C50.911^^191^2467^11
+ ;;^UTILITY(U,$J,358.3,49509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52020,1,3,0)
- ;;=3^Proc/trtmt not crd out d/t contraindication
- ;;^UTILITY(U,$J,358.3,52020,1,4,0)
- ;;=4^Z53.09
- ;;^UTILITY(U,$J,358.3,52020,2)
- ;;=^5063093
- ;;^UTILITY(U,$J,358.3,52021,0)
- ;;=Z53.29^^233^2552^29
- ;;^UTILITY(U,$J,358.3,52021,1,0)
+ ;;^UTILITY(U,$J,358.3,49509,1,3,0)
+ ;;=3^Malig Neop Breast,Right,Female
+ ;;^UTILITY(U,$J,358.3,49509,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,49509,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,49510,0)
+ ;;=C50.912^^191^2467^10
+ ;;^UTILITY(U,$J,358.3,49510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52021,1,3,0)
- ;;=3^Proc/trtmt not crd out d/t pt decision for oth reasons
- ;;^UTILITY(U,$J,358.3,52021,1,4,0)
- ;;=4^Z53.29
- ;;^UTILITY(U,$J,358.3,52021,2)
- ;;=^5063097
- ;;^UTILITY(U,$J,358.3,52022,0)
- ;;=Z53.1^^233^2552^28
- ;;^UTILITY(U,$J,358.3,52022,1,0)
+ ;;^UTILITY(U,$J,358.3,49510,1,3,0)
+ ;;=3^Malig Neop Breast,Left,Female
+ ;;^UTILITY(U,$J,358.3,49510,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,49510,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,49511,0)
+ ;;=C24.9^^191^2467^7
+ ;;^UTILITY(U,$J,358.3,49511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52022,1,3,0)
- ;;=3^Proc/trtmt not crd out d/t pt belief and group pressure
- ;;^UTILITY(U,$J,358.3,52022,1,4,0)
- ;;=4^Z53.1
- ;;^UTILITY(U,$J,358.3,52022,2)
- ;;=^5063094
- ;;^UTILITY(U,$J,358.3,52023,0)
- ;;=Z53.21^^233^2552^30
- ;;^UTILITY(U,$J,358.3,52023,1,0)
+ ;;^UTILITY(U,$J,358.3,49511,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,49511,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,49511,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,49512,0)
+ ;;=C90.00^^191^2467^25
+ ;;^UTILITY(U,$J,358.3,49512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52023,1,3,0)
- ;;=3^Proc/trtmt not crd out d/t pt lv bef seen by hlth care prov
- ;;^UTILITY(U,$J,358.3,52023,1,4,0)
- ;;=4^Z53.21
- ;;^UTILITY(U,$J,358.3,52023,2)
- ;;=^5063096
- ;;^UTILITY(U,$J,358.3,52024,0)
- ;;=Z53.8^^233^2552^27
+ ;;^UTILITY(U,$J,358.3,49512,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,49512,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,49512,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,49513,0)
+ ;;=C85.89^^191^2467^29
+ ;;^UTILITY(U,$J,358.3,49513,1,0)
+ ;;=^358.31IA^4^2

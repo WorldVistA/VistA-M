@@ -1,134 +1,122 @@
-IBDEI1YL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33248,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,33249,0)
- ;;=L03.031^^131^1669^111
- ;;^UTILITY(U,$J,358.3,33249,1,0)
+ ;;^UTILITY(U,$J,358.3,31297,1,4,0)
+ ;;=4^O99.282
+ ;;^UTILITY(U,$J,358.3,31297,2)
+ ;;=^5017936
+ ;;^UTILITY(U,$J,358.3,31298,0)
+ ;;=O99.283^^126^1623^18
+ ;;^UTILITY(U,$J,358.3,31298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33249,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,33249,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,33249,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,33250,0)
- ;;=L03.032^^131^1669^104
- ;;^UTILITY(U,$J,358.3,33250,1,0)
+ ;;^UTILITY(U,$J,358.3,31298,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, third tri
+ ;;^UTILITY(U,$J,358.3,31298,1,4,0)
+ ;;=4^O99.283
+ ;;^UTILITY(U,$J,358.3,31298,2)
+ ;;=^5017937
+ ;;^UTILITY(U,$J,358.3,31299,0)
+ ;;=O99.285^^126^1623^19
+ ;;^UTILITY(U,$J,358.3,31299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33250,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,33250,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,33250,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,33251,0)
- ;;=L03.041^^131^1669^26
- ;;^UTILITY(U,$J,358.3,33251,1,0)
+ ;;^UTILITY(U,$J,358.3,31299,1,3,0)
+ ;;=3^Endocrine, nutritional and metabolic diseases comp the puerp
+ ;;^UTILITY(U,$J,358.3,31299,1,4,0)
+ ;;=4^O99.285
+ ;;^UTILITY(U,$J,358.3,31299,2)
+ ;;=^5017939
+ ;;^UTILITY(U,$J,358.3,31300,0)
+ ;;=O99.011^^126^1623^3
+ ;;^UTILITY(U,$J,358.3,31300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33251,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,33251,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,33251,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,33252,0)
- ;;=L03.042^^131^1669^20
- ;;^UTILITY(U,$J,358.3,33252,1,0)
+ ;;^UTILITY(U,$J,358.3,31300,1,3,0)
+ ;;=3^Anemia complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31300,1,4,0)
+ ;;=4^O99.011
+ ;;^UTILITY(U,$J,358.3,31300,2)
+ ;;=^5017916
+ ;;^UTILITY(U,$J,358.3,31301,0)
+ ;;=O99.012^^126^1623^4
+ ;;^UTILITY(U,$J,358.3,31301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33252,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,33252,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,33252,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,33253,0)
- ;;=M34.0^^131^1669^249
- ;;^UTILITY(U,$J,358.3,33253,1,0)
+ ;;^UTILITY(U,$J,358.3,31301,1,3,0)
+ ;;=3^Anemia complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31301,1,4,0)
+ ;;=4^O99.012
+ ;;^UTILITY(U,$J,358.3,31301,2)
+ ;;=^5017917
+ ;;^UTILITY(U,$J,358.3,31302,0)
+ ;;=O99.013^^126^1623^5
+ ;;^UTILITY(U,$J,358.3,31302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33253,1,3,0)
- ;;=3^Progressive Systemic Sclerosis
- ;;^UTILITY(U,$J,358.3,33253,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,33253,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,33254,0)
- ;;=M34.1^^131^1669^91
- ;;^UTILITY(U,$J,358.3,33254,1,0)
+ ;;^UTILITY(U,$J,358.3,31302,1,3,0)
+ ;;=3^Anemia complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,31302,1,4,0)
+ ;;=4^O99.013
+ ;;^UTILITY(U,$J,358.3,31302,2)
+ ;;=^5017918
+ ;;^UTILITY(U,$J,358.3,31303,0)
+ ;;=O99.03^^126^1623^6
+ ;;^UTILITY(U,$J,358.3,31303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33254,1,3,0)
- ;;=3^CR(E)ST Syndrome
- ;;^UTILITY(U,$J,358.3,33254,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,33254,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,33255,0)
- ;;=M34.2^^131^1669^273
- ;;^UTILITY(U,$J,358.3,33255,1,0)
+ ;;^UTILITY(U,$J,358.3,31303,1,3,0)
+ ;;=3^Anemia complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31303,1,4,0)
+ ;;=4^O99.03
+ ;;^UTILITY(U,$J,358.3,31303,2)
+ ;;=^5017921
+ ;;^UTILITY(U,$J,358.3,31304,0)
+ ;;=O99.321^^126^1623^12
+ ;;^UTILITY(U,$J,358.3,31304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33255,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,33255,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,33255,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,33256,0)
- ;;=M34.81^^131^1669^275
- ;;^UTILITY(U,$J,358.3,33256,1,0)
+ ;;^UTILITY(U,$J,358.3,31304,1,3,0)
+ ;;=3^Drug use complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,31304,1,4,0)
+ ;;=4^O99.321
+ ;;^UTILITY(U,$J,358.3,31304,2)
+ ;;=^5017947
+ ;;^UTILITY(U,$J,358.3,31305,0)
+ ;;=O99.322^^126^1623^13
+ ;;^UTILITY(U,$J,358.3,31305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33256,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,33256,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,33256,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,33257,0)
- ;;=M34.82^^131^1669^276
- ;;^UTILITY(U,$J,358.3,33257,1,0)
+ ;;^UTILITY(U,$J,358.3,31305,1,3,0)
+ ;;=3^Drug use complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,31305,1,4,0)
+ ;;=4^O99.322
+ ;;^UTILITY(U,$J,358.3,31305,2)
+ ;;=^5017948
+ ;;^UTILITY(U,$J,358.3,31306,0)
+ ;;=O99.323^^126^1623^14
+ ;;^UTILITY(U,$J,358.3,31306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33257,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,33257,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,33257,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,33258,0)
- ;;=M34.83^^131^1669^277
- ;;^UTILITY(U,$J,358.3,33258,1,0)
+ ;;^UTILITY(U,$J,358.3,31306,1,3,0)
+ ;;=3^Drug use complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,31306,1,4,0)
+ ;;=4^O99.323
+ ;;^UTILITY(U,$J,358.3,31306,2)
+ ;;=^5017949
+ ;;^UTILITY(U,$J,358.3,31307,0)
+ ;;=O99.325^^126^1623^15
+ ;;^UTILITY(U,$J,358.3,31307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33258,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,33258,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,33258,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,33259,0)
- ;;=M34.89^^131^1669^274
- ;;^UTILITY(U,$J,358.3,33259,1,0)
+ ;;^UTILITY(U,$J,358.3,31307,1,3,0)
+ ;;=3^Drug use complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,31307,1,4,0)
+ ;;=4^O99.325
+ ;;^UTILITY(U,$J,358.3,31307,2)
+ ;;=^5017951
+ ;;^UTILITY(U,$J,358.3,31308,0)
+ ;;=O90.6^^126^1623^64
+ ;;^UTILITY(U,$J,358.3,31308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33259,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,33259,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,33259,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,33260,0)
- ;;=M34.9^^131^1669^278
- ;;^UTILITY(U,$J,358.3,33260,1,0)
+ ;;^UTILITY(U,$J,358.3,31308,1,3,0)
+ ;;=3^Postpartum mood disturbance
+ ;;^UTILITY(U,$J,358.3,31308,1,4,0)
+ ;;=4^O90.6
+ ;;^UTILITY(U,$J,358.3,31308,2)
+ ;;=^5017818
+ ;;^UTILITY(U,$J,358.3,31309,0)
+ ;;=O99.411^^126^1623^8
+ ;;^UTILITY(U,$J,358.3,31309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33260,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,33260,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,33260,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,33261,0)
- ;;=R21.^^131^1669^257
- ;;^UTILITY(U,$J,358.3,33261,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33261,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,33261,1,4,0)
- ;;=4^R21.

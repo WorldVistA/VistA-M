@@ -1,5 +1,5 @@
-RAORD ;HISC/CAH,FPT,GJC AISC/RMO-Rad/NM Order Entry Main Menu ;3/13/98  12:16
- ;;5.0;Radiology/Nuclear Medicine;**133**;Mar 16, 1998;Build 4
+RAORD ;HISC/CAH,FPT,GJC AISC/RMO-Rad/NM Order Entry Main Menu ; Mar 20, 2020@11:24:15
+ ;;5.0;Radiology/Nuclear Medicine;**133,168**;Mar 16, 1998;Build 1
 2 ;;Schedule a Request
  N RAPTLOCK
 21 ; Patient lookup
@@ -116,8 +116,9 @@ Q4 ; unlock if appropriate, kill variables
  S (RAOFNS,RAOPTN)="Update hold reason",RAOVSTS="3"
  W ! D ^RAORDS G 64:'$D(RAORDS)
 61 ; Select a Hold Reason
- S DIC("A")="Select HOLD REASON: ",DIC("S")="I $P(^(0),U,2)=3",DIC="^RA(75.2,",DIC(0)="AEMQ" W ! D ^DIC K DIC
- I +Y<0,(X["^ ") D 64 Q
+ ;p168 - change lookup to catch types hold and general (3&9)
+ S DIC("A")="Select HOLD REASON: ",DIC("S")="I $P(^(0),U,2)=3!($P(^(0),U,2)=9)",DIC="^RA(75.2,",DIC(0)="AEMQ" W ! D ^DIC K DIC
+ I +Y<0,(X["^") D 64 Q
  I +Y<0 W !!?3,"A Hold Reason is required to proceed." G 61
  S RAOREA=+Y
  W !?3,"...will now update the hold reason for the selected request(s)..." S RAOLP=0

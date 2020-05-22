@@ -1,130 +1,120 @@
-IBDEI2SS ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2SS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46964,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,46965,0)
- ;;=I80.211^^206^2316^16
- ;;^UTILITY(U,$J,358.3,46965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46965,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Iliac Vein
- ;;^UTILITY(U,$J,358.3,46965,1,4,0)
- ;;=4^I80.211
- ;;^UTILITY(U,$J,358.3,46965,2)
- ;;=^5007831
- ;;^UTILITY(U,$J,358.3,46966,0)
- ;;=I80.221^^206^2316^19
- ;;^UTILITY(U,$J,358.3,46966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46966,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Popliteal Vein
- ;;^UTILITY(U,$J,358.3,46966,1,4,0)
- ;;=4^I80.221
- ;;^UTILITY(U,$J,358.3,46966,2)
- ;;=^5007835
- ;;^UTILITY(U,$J,358.3,46967,0)
- ;;=I80.231^^206^2316^20
- ;;^UTILITY(U,$J,358.3,46967,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46967,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Tibial Vein
- ;;^UTILITY(U,$J,358.3,46967,1,4,0)
- ;;=4^I80.231
- ;;^UTILITY(U,$J,358.3,46967,2)
- ;;=^5007839
- ;;^UTILITY(U,$J,358.3,46968,0)
- ;;=I80.03^^206^2316^6
- ;;^UTILITY(U,$J,358.3,46968,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46968,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Superfic Vessels
- ;;^UTILITY(U,$J,358.3,46968,1,4,0)
- ;;=4^I80.03
- ;;^UTILITY(U,$J,358.3,46968,2)
- ;;=^5007823
- ;;^UTILITY(U,$J,358.3,46969,0)
- ;;=I80.02^^206^2316^12
- ;;^UTILITY(U,$J,358.3,46969,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46969,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Superfic Vessels
- ;;^UTILITY(U,$J,358.3,46969,1,4,0)
- ;;=4^I80.02
- ;;^UTILITY(U,$J,358.3,46969,2)
- ;;=^5007822
- ;;^UTILITY(U,$J,358.3,46970,0)
- ;;=I80.01^^206^2316^18
- ;;^UTILITY(U,$J,358.3,46970,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46970,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Superfic Vessels
- ;;^UTILITY(U,$J,358.3,46970,1,4,0)
- ;;=4^I80.01
- ;;^UTILITY(U,$J,358.3,46970,2)
- ;;=^5007821
- ;;^UTILITY(U,$J,358.3,46971,0)
- ;;=I80.9^^206^2316^21
- ;;^UTILITY(U,$J,358.3,46971,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46971,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Unspec Site
- ;;^UTILITY(U,$J,358.3,46971,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,46971,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,46972,0)
- ;;=R91.8^^206^2317^2
- ;;^UTILITY(U,$J,358.3,46972,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46972,1,3,0)
- ;;=3^Abnormal Lung Field Findings
- ;;^UTILITY(U,$J,358.3,46972,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,46972,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,46973,0)
- ;;=R63.4^^206^2317^3
- ;;^UTILITY(U,$J,358.3,46973,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46973,1,3,0)
- ;;=3^Abnormal Weight Loss
- ;;^UTILITY(U,$J,358.3,46973,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,46973,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,46974,0)
- ;;=R10.0^^206^2317^4
- ;;^UTILITY(U,$J,358.3,46974,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46974,1,3,0)
- ;;=3^Acute Abdomen
- ;;^UTILITY(U,$J,358.3,46974,1,4,0)
- ;;=4^R10.0
- ;;^UTILITY(U,$J,358.3,46974,2)
- ;;=^885
- ;;^UTILITY(U,$J,358.3,46975,0)
- ;;=M80.08XA^^206^2317^58
- ;;^UTILITY(U,$J,358.3,46975,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46975,1,3,0)
- ;;=3^Osteoporosis,Age-Related w/ Vertebra Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,46975,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,46975,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,46976,0)
- ;;=K52.2^^206^2317^5
- ;;^UTILITY(U,$J,358.3,46976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46976,1,3,0)
- ;;=3^Allergic/Dietetic Gastroenteritis/Colitis
- ;;^UTILITY(U,$J,358.3,46976,1,4,0)
- ;;=4^K52.2
- ;;^UTILITY(U,$J,358.3,46976,2)
- ;;=^5008701
- ;;^UTILITY(U,$J,358.3,46977,0)
- ;;=R63.0^^206^2317^6
- ;;^UTILITY(U,$J,358.3,46977,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44616,1,3,0)
+ ;;=3^ADLS Training Ea 15Min
+ ;;^UTILITY(U,$J,358.3,44617,0)
+ ;;=96105^^166^2215^2^^^^1
+ ;;^UTILITY(U,$J,358.3,44617,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44617,1,2,0)
+ ;;=2^96105
+ ;;^UTILITY(U,$J,358.3,44617,1,3,0)
+ ;;=3^Aphasia Assessment w/ Interp & Rpt,Per Hr
+ ;;^UTILITY(U,$J,358.3,44618,0)
+ ;;=90901^^166^2215^7^^^^1
+ ;;^UTILITY(U,$J,358.3,44618,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44618,1,2,0)
+ ;;=2^90901
+ ;;^UTILITY(U,$J,358.3,44618,1,3,0)
+ ;;=3^Biofeedback Training Any Method
+ ;;^UTILITY(U,$J,358.3,44619,0)
+ ;;=97750^^166^2215^10^^^^1
+ ;;^UTILITY(U,$J,358.3,44619,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44619,1,2,0)
+ ;;=2^97750
+ ;;^UTILITY(U,$J,358.3,44619,1,3,0)
+ ;;=3^Extremity Performance Testing Ea 15Min
+ ;;^UTILITY(U,$J,358.3,44620,0)
+ ;;=97165^^166^2215^12^^^^1
+ ;;^UTILITY(U,$J,358.3,44620,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44620,1,2,0)
+ ;;=2^97165
+ ;;^UTILITY(U,$J,358.3,44620,1,3,0)
+ ;;=3^OT Evaluation,Low Complexity
+ ;;^UTILITY(U,$J,358.3,44621,0)
+ ;;=97166^^166^2215^13^^^^1
+ ;;^UTILITY(U,$J,358.3,44621,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44621,1,2,0)
+ ;;=2^97166
+ ;;^UTILITY(U,$J,358.3,44621,1,3,0)
+ ;;=3^OT Evaluation,Moderate Complexity
+ ;;^UTILITY(U,$J,358.3,44622,0)
+ ;;=97167^^166^2215^11^^^^1
+ ;;^UTILITY(U,$J,358.3,44622,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44622,1,2,0)
+ ;;=2^97167
+ ;;^UTILITY(U,$J,358.3,44622,1,3,0)
+ ;;=3^OT Evaluation,High Complexity
+ ;;^UTILITY(U,$J,358.3,44623,0)
+ ;;=97168^^166^2215^14^^^^1
+ ;;^UTILITY(U,$J,358.3,44623,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44623,1,2,0)
+ ;;=2^97168
+ ;;^UTILITY(U,$J,358.3,44623,1,3,0)
+ ;;=3^OT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,44624,0)
+ ;;=97161^^166^2215^16^^^^1
+ ;;^UTILITY(U,$J,358.3,44624,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44624,1,2,0)
+ ;;=2^97161
+ ;;^UTILITY(U,$J,358.3,44624,1,3,0)
+ ;;=3^PT Evaluation,Low Complexity
+ ;;^UTILITY(U,$J,358.3,44625,0)
+ ;;=97162^^166^2215^17^^^^1
+ ;;^UTILITY(U,$J,358.3,44625,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44625,1,2,0)
+ ;;=2^97162
+ ;;^UTILITY(U,$J,358.3,44625,1,3,0)
+ ;;=3^PT Evaluation,Moderate Complexity
+ ;;^UTILITY(U,$J,358.3,44626,0)
+ ;;=97163^^166^2215^15^^^^1
+ ;;^UTILITY(U,$J,358.3,44626,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44626,1,2,0)
+ ;;=2^97163
+ ;;^UTILITY(U,$J,358.3,44626,1,3,0)
+ ;;=3^PT Evaluation,High Complexity
+ ;;^UTILITY(U,$J,358.3,44627,0)
+ ;;=97164^^166^2215^18^^^^1
+ ;;^UTILITY(U,$J,358.3,44627,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44627,1,2,0)
+ ;;=2^97164
+ ;;^UTILITY(U,$J,358.3,44627,1,3,0)
+ ;;=3^PT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,44628,0)
+ ;;=96112^^166^2215^8^^^^1
+ ;;^UTILITY(U,$J,358.3,44628,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44628,1,2,0)
+ ;;=2^96112
+ ;;^UTILITY(U,$J,358.3,44628,1,3,0)
+ ;;=3^Developmental Testing w/ Int & Rpt,1st Hr
+ ;;^UTILITY(U,$J,358.3,44629,0)
+ ;;=96113^^166^2215^9^^^^1
+ ;;^UTILITY(U,$J,358.3,44629,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44629,1,2,0)
+ ;;=2^96113
+ ;;^UTILITY(U,$J,358.3,44629,1,3,0)
+ ;;=3^Developmental Testing w/ Int & Rpt,Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,44630,0)
+ ;;=97172^^166^2215^6^^^^1
+ ;;^UTILITY(U,$J,358.3,44630,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,44630,1,2,0)
+ ;;=2^97172
+ ;;^UTILITY(U,$J,358.3,44630,1,3,0)
+ ;;=3^Athletic Trn Re-Eval Plan,Ea 20 min
+ ;;^UTILITY(U,$J,358.3,44631,0)
+ ;;=97171^^166^2215^3^^^^1

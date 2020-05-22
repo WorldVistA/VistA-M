@@ -1,134 +1,124 @@
-IBDEI1YD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1YD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33147,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,33147,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,33148,0)
- ;;=I73.9^^131^1667^19
- ;;^UTILITY(U,$J,358.3,33148,1,0)
+ ;;^UTILITY(U,$J,358.3,31204,1,4,0)
+ ;;=4^O16.3
+ ;;^UTILITY(U,$J,358.3,31204,2)
+ ;;=^5016182
+ ;;^UTILITY(U,$J,358.3,31205,0)
+ ;;=O14.02^^126^1620^17
+ ;;^UTILITY(U,$J,358.3,31205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33148,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,33148,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,33148,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,33149,0)
- ;;=I82.891^^131^1667^14
- ;;^UTILITY(U,$J,358.3,33149,1,0)
+ ;;^UTILITY(U,$J,358.3,31205,1,3,0)
+ ;;=3^Mild to Moderate Pre-Eclampsia,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31205,1,4,0)
+ ;;=4^O14.02
+ ;;^UTILITY(U,$J,358.3,31205,2)
+ ;;=^5016163
+ ;;^UTILITY(U,$J,358.3,31206,0)
+ ;;=O14.03^^126^1620^18
+ ;;^UTILITY(U,$J,358.3,31206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33149,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
- ;;^UTILITY(U,$J,358.3,33149,1,4,0)
- ;;=4^I82.891
- ;;^UTILITY(U,$J,358.3,33149,2)
- ;;=^5007939
- ;;^UTILITY(U,$J,358.3,33150,0)
- ;;=I82.890^^131^1667^13
- ;;^UTILITY(U,$J,358.3,33150,1,0)
+ ;;^UTILITY(U,$J,358.3,31206,1,3,0)
+ ;;=3^Mild to Moderate Pre-Eclampsia,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31206,1,4,0)
+ ;;=4^O14.03
+ ;;^UTILITY(U,$J,358.3,31206,2)
+ ;;=^5016164
+ ;;^UTILITY(U,$J,358.3,31207,0)
+ ;;=O14.92^^126^1620^20
+ ;;^UTILITY(U,$J,358.3,31207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33150,1,3,0)
- ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
- ;;^UTILITY(U,$J,358.3,33150,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,33150,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,33151,0)
- ;;=E78.0^^131^1668^12
- ;;^UTILITY(U,$J,358.3,33151,1,0)
+ ;;^UTILITY(U,$J,358.3,31207,1,3,0)
+ ;;=3^Pre-Eclampsia,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31207,1,4,0)
+ ;;=4^O14.92
+ ;;^UTILITY(U,$J,358.3,31207,2)
+ ;;=^5016172
+ ;;^UTILITY(U,$J,358.3,31208,0)
+ ;;=O14.93^^126^1620^21
+ ;;^UTILITY(U,$J,358.3,31208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33151,1,3,0)
- ;;=3^Pure Hypercholesterolemia
- ;;^UTILITY(U,$J,358.3,33151,1,4,0)
- ;;=4^E78.0
- ;;^UTILITY(U,$J,358.3,33151,2)
- ;;=^5002966
- ;;^UTILITY(U,$J,358.3,33152,0)
- ;;=E78.1^^131^1668^13
- ;;^UTILITY(U,$J,358.3,33152,1,0)
+ ;;^UTILITY(U,$J,358.3,31208,1,3,0)
+ ;;=3^Pre-Eclampsia,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31208,1,4,0)
+ ;;=4^O14.93
+ ;;^UTILITY(U,$J,358.3,31208,2)
+ ;;=^5016173
+ ;;^UTILITY(U,$J,358.3,31209,0)
+ ;;=O15.2^^126^1620^3
+ ;;^UTILITY(U,$J,358.3,31209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33152,1,3,0)
- ;;=3^Pure Hyperglyceridemia
- ;;^UTILITY(U,$J,358.3,33152,1,4,0)
- ;;=4^E78.1
- ;;^UTILITY(U,$J,358.3,33152,2)
- ;;=^101303
- ;;^UTILITY(U,$J,358.3,33153,0)
- ;;=E78.2^^131^1668^11
- ;;^UTILITY(U,$J,358.3,33153,1,0)
+ ;;^UTILITY(U,$J,358.3,31209,1,3,0)
+ ;;=3^Eclampsia Complicating the Puerperium
+ ;;^UTILITY(U,$J,358.3,31209,1,4,0)
+ ;;=4^O15.2
+ ;;^UTILITY(U,$J,358.3,31209,2)
+ ;;=^5016178
+ ;;^UTILITY(U,$J,358.3,31210,0)
+ ;;=O14.12^^126^1620^45
+ ;;^UTILITY(U,$J,358.3,31210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33153,1,3,0)
- ;;=3^Mixed Hyperlipidemia
- ;;^UTILITY(U,$J,358.3,33153,1,4,0)
- ;;=4^E78.2
- ;;^UTILITY(U,$J,358.3,33153,2)
- ;;=^78424
- ;;^UTILITY(U,$J,358.3,33154,0)
- ;;=I10.^^131^1668^3
- ;;^UTILITY(U,$J,358.3,33154,1,0)
+ ;;^UTILITY(U,$J,358.3,31210,1,3,0)
+ ;;=3^Severe Pre-Eclampsia,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31210,1,4,0)
+ ;;=4^O14.12
+ ;;^UTILITY(U,$J,358.3,31210,2)
+ ;;=^5016166
+ ;;^UTILITY(U,$J,358.3,31211,0)
+ ;;=O14.13^^126^1620^46
+ ;;^UTILITY(U,$J,358.3,31211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33154,1,3,0)
- ;;=3^Essential Primary Hypertension
- ;;^UTILITY(U,$J,358.3,33154,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,33154,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,33155,0)
- ;;=I11.9^^131^1668^10
- ;;^UTILITY(U,$J,358.3,33155,1,0)
+ ;;^UTILITY(U,$J,358.3,31211,1,3,0)
+ ;;=3^Severe Pre-Eclampsia,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31211,1,4,0)
+ ;;=4^O14.13
+ ;;^UTILITY(U,$J,358.3,31211,2)
+ ;;=^5016167
+ ;;^UTILITY(U,$J,358.3,31212,0)
+ ;;=O14.22^^126^1620^10
+ ;;^UTILITY(U,$J,358.3,31212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33155,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,33155,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,33155,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,33156,0)
- ;;=I11.0^^131^1668^9
- ;;^UTILITY(U,$J,358.3,33156,1,0)
+ ;;^UTILITY(U,$J,358.3,31212,1,3,0)
+ ;;=3^HELLP Syndrome,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31212,1,4,0)
+ ;;=4^O14.22
+ ;;^UTILITY(U,$J,358.3,31212,2)
+ ;;=^5016169
+ ;;^UTILITY(U,$J,358.3,31213,0)
+ ;;=O14.23^^126^1620^11
+ ;;^UTILITY(U,$J,358.3,31213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33156,1,3,0)
- ;;=3^Hypertensive Heart Disease w/ Heart Failure
- ;;^UTILITY(U,$J,358.3,33156,1,4,0)
- ;;=4^I11.0
- ;;^UTILITY(U,$J,358.3,33156,2)
- ;;=^5007063
- ;;^UTILITY(U,$J,358.3,33157,0)
- ;;=I12.0^^131^1668^8
- ;;^UTILITY(U,$J,358.3,33157,1,0)
+ ;;^UTILITY(U,$J,358.3,31213,1,3,0)
+ ;;=3^HELLP Syndrome,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31213,1,4,0)
+ ;;=4^O14.23
+ ;;^UTILITY(U,$J,358.3,31213,2)
+ ;;=^5016170
+ ;;^UTILITY(U,$J,358.3,31214,0)
+ ;;=O15.02^^126^1620^1
+ ;;^UTILITY(U,$J,358.3,31214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33157,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
- ;;^UTILITY(U,$J,358.3,33157,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,33157,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,33158,0)
- ;;=I13.10^^131^1668^6
- ;;^UTILITY(U,$J,358.3,33158,1,0)
+ ;;^UTILITY(U,$J,358.3,31214,1,3,0)
+ ;;=3^Eclampsia Complicating Pregnancy,2nd Trimester
+ ;;^UTILITY(U,$J,358.3,31214,1,4,0)
+ ;;=4^O15.02
+ ;;^UTILITY(U,$J,358.3,31214,2)
+ ;;=^5016175
+ ;;^UTILITY(U,$J,358.3,31215,0)
+ ;;=O15.03^^126^1620^2
+ ;;^UTILITY(U,$J,358.3,31215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33158,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,33158,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,33158,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,33159,0)
- ;;=I13.0^^131^1668^4
- ;;^UTILITY(U,$J,358.3,33159,1,0)
+ ;;^UTILITY(U,$J,358.3,31215,1,3,0)
+ ;;=3^Eclampsia Complicating Pregnancy,3rd Trimester
+ ;;^UTILITY(U,$J,358.3,31215,1,4,0)
+ ;;=4^O15.03
+ ;;^UTILITY(U,$J,358.3,31215,2)
+ ;;=^5016176
+ ;;^UTILITY(U,$J,358.3,31216,0)
+ ;;=O14.15^^126^1620^44
+ ;;^UTILITY(U,$J,358.3,31216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33159,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,33159,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,33159,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,33160,0)
- ;;=I13.11^^131^1668^7
- ;;^UTILITY(U,$J,358.3,33160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33160,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,31216,1,3,0)
+ ;;=3^Severe Pre-Eclampsia Complicating the Puerperium

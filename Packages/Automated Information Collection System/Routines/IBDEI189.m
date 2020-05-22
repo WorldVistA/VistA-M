@@ -1,142 +1,116 @@
-IBDEI189 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI189 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20869,1,0)
+ ;;^UTILITY(U,$J,358.3,19693,2)
+ ;;=^5039106
+ ;;^UTILITY(U,$J,358.3,19694,0)
+ ;;=S72.465S^^93^995^94
+ ;;^UTILITY(U,$J,358.3,19694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20869,1,3,0)
- ;;=3^Eructation
- ;;^UTILITY(U,$J,358.3,20869,1,4,0)
- ;;=4^R14.2
- ;;^UTILITY(U,$J,358.3,20869,2)
- ;;=^5019242
- ;;^UTILITY(U,$J,358.3,20870,0)
- ;;=R14.3^^84^941^74
- ;;^UTILITY(U,$J,358.3,20870,1,0)
+ ;;^UTILITY(U,$J,358.3,19694,1,3,0)
+ ;;=3^Nondisp suprcndl fx w intrcndl extn lower end l femur, sqla
+ ;;^UTILITY(U,$J,358.3,19694,1,4,0)
+ ;;=4^S72.465S
+ ;;^UTILITY(U,$J,358.3,19694,2)
+ ;;=^5136457
+ ;;^UTILITY(U,$J,358.3,19695,0)
+ ;;=S72.471S^^93^995^116
+ ;;^UTILITY(U,$J,358.3,19695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20870,1,3,0)
- ;;=3^Flatulence
- ;;^UTILITY(U,$J,358.3,20870,1,4,0)
- ;;=4^R14.3
- ;;^UTILITY(U,$J,358.3,20870,2)
- ;;=^5019243
- ;;^UTILITY(U,$J,358.3,20871,0)
- ;;=R15.9^^84^941^76
- ;;^UTILITY(U,$J,358.3,20871,1,0)
+ ;;^UTILITY(U,$J,358.3,19695,1,3,0)
+ ;;=3^Torus fracture of lower end of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19695,1,4,0)
+ ;;=4^S72.471S
+ ;;^UTILITY(U,$J,358.3,19695,2)
+ ;;=^5039117
+ ;;^UTILITY(U,$J,358.3,19696,0)
+ ;;=S72.472S^^93^995^115
+ ;;^UTILITY(U,$J,358.3,19696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20871,1,3,0)
- ;;=3^Full Incontinence of Feces
- ;;^UTILITY(U,$J,358.3,20871,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,20871,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,20872,0)
- ;;=R17.^^84^941^99
- ;;^UTILITY(U,$J,358.3,20872,1,0)
+ ;;^UTILITY(U,$J,358.3,19696,1,3,0)
+ ;;=3^Torus fracture of lower end of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19696,1,4,0)
+ ;;=4^S72.472S
+ ;;^UTILITY(U,$J,358.3,19696,2)
+ ;;=^5039123
+ ;;^UTILITY(U,$J,358.3,19697,0)
+ ;;=S79.011S^^93^995^105
+ ;;^UTILITY(U,$J,358.3,19697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20872,1,3,0)
- ;;=3^Jaundice,Unspec
- ;;^UTILITY(U,$J,358.3,20872,1,4,0)
- ;;=4^R17.
- ;;^UTILITY(U,$J,358.3,20872,2)
- ;;=^5019251
- ;;^UTILITY(U,$J,358.3,20873,0)
- ;;=R19.30^^84^941^2
- ;;^UTILITY(U,$J,358.3,20873,1,0)
+ ;;^UTILITY(U,$J,358.3,19697,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,19697,1,4,0)
+ ;;=4^S79.011S
+ ;;^UTILITY(U,$J,358.3,19697,2)
+ ;;=^5039773
+ ;;^UTILITY(U,$J,358.3,19698,0)
+ ;;=S79.012S^^93^995^106
+ ;;^UTILITY(U,$J,358.3,19698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20873,1,3,0)
- ;;=3^Abdominal Rigidity,Unspec Site
- ;;^UTILITY(U,$J,358.3,20873,1,4,0)
- ;;=4^R19.30
- ;;^UTILITY(U,$J,358.3,20873,2)
- ;;=^5019266
- ;;^UTILITY(U,$J,358.3,20874,0)
- ;;=R19.4^^84^941^45
- ;;^UTILITY(U,$J,358.3,20874,1,0)
+ ;;^UTILITY(U,$J,358.3,19698,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,19698,1,4,0)
+ ;;=4^S79.012S
+ ;;^UTILITY(U,$J,358.3,19698,2)
+ ;;=^5039779
+ ;;^UTILITY(U,$J,358.3,19699,0)
+ ;;=S79.111S^^93^995^103
+ ;;^UTILITY(U,$J,358.3,19699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20874,1,3,0)
- ;;=3^Bowel Habit Changes
- ;;^UTILITY(U,$J,358.3,20874,1,4,0)
- ;;=4^R19.4
- ;;^UTILITY(U,$J,358.3,20874,2)
- ;;=^5019273
- ;;^UTILITY(U,$J,358.3,20875,0)
- ;;=R19.8^^84^941^59
- ;;^UTILITY(U,$J,358.3,20875,1,0)
+ ;;^UTILITY(U,$J,358.3,19699,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,19699,1,4,0)
+ ;;=4^S79.111S
+ ;;^UTILITY(U,$J,358.3,19699,2)
+ ;;=^5039803
+ ;;^UTILITY(U,$J,358.3,19700,0)
+ ;;=S79.112S^^93^995^104
+ ;;^UTILITY(U,$J,358.3,19700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20875,1,3,0)
- ;;=3^Digestive System/Abdomen Symptoms NEC
- ;;^UTILITY(U,$J,358.3,20875,1,4,0)
- ;;=4^R19.8
- ;;^UTILITY(U,$J,358.3,20875,2)
- ;;=^5019277
- ;;^UTILITY(U,$J,358.3,20876,0)
- ;;=R20.0^^84^941^35
- ;;^UTILITY(U,$J,358.3,20876,1,0)
+ ;;^UTILITY(U,$J,358.3,19700,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,19700,1,4,0)
+ ;;=4^S79.112S
+ ;;^UTILITY(U,$J,358.3,19700,2)
+ ;;=^5136666
+ ;;^UTILITY(U,$J,358.3,19701,0)
+ ;;=S79.121S^^93^995^107
+ ;;^UTILITY(U,$J,358.3,19701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20876,1,3,0)
- ;;=3^Anesthesia of Skin
- ;;^UTILITY(U,$J,358.3,20876,1,4,0)
- ;;=4^R20.0
- ;;^UTILITY(U,$J,358.3,20876,2)
- ;;=^5019278
- ;;^UTILITY(U,$J,358.3,20877,0)
- ;;=R20.1^^84^941^87
- ;;^UTILITY(U,$J,358.3,20877,1,0)
+ ;;^UTILITY(U,$J,358.3,19701,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,19701,1,4,0)
+ ;;=4^S79.121S
+ ;;^UTILITY(U,$J,358.3,19701,2)
+ ;;=^5039815
+ ;;^UTILITY(U,$J,358.3,19702,0)
+ ;;=S79.122S^^93^995^108
+ ;;^UTILITY(U,$J,358.3,19702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20877,1,3,0)
- ;;=3^Hypoesthesia of Skin
- ;;^UTILITY(U,$J,358.3,20877,1,4,0)
- ;;=4^R20.1
- ;;^UTILITY(U,$J,358.3,20877,2)
- ;;=^5019279
- ;;^UTILITY(U,$J,358.3,20878,0)
- ;;=R20.2^^84^941^131
- ;;^UTILITY(U,$J,358.3,20878,1,0)
+ ;;^UTILITY(U,$J,358.3,19702,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,19702,1,4,0)
+ ;;=4^S79.122S
+ ;;^UTILITY(U,$J,358.3,19702,2)
+ ;;=^5039821
+ ;;^UTILITY(U,$J,358.3,19703,0)
+ ;;=S79.131S^^93^995^109
+ ;;^UTILITY(U,$J,358.3,19703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20878,1,3,0)
- ;;=3^Paresthesia of Skin
- ;;^UTILITY(U,$J,358.3,20878,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,20878,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,20879,0)
- ;;=R20.3^^84^941^83
- ;;^UTILITY(U,$J,358.3,20879,1,0)
+ ;;^UTILITY(U,$J,358.3,19703,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,19703,1,4,0)
+ ;;=4^S79.131S
+ ;;^UTILITY(U,$J,358.3,19703,2)
+ ;;=^5039833
+ ;;^UTILITY(U,$J,358.3,19704,0)
+ ;;=S79.132S^^93^995^110
+ ;;^UTILITY(U,$J,358.3,19704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20879,1,3,0)
- ;;=3^Hyperesthesia
- ;;^UTILITY(U,$J,358.3,20879,1,4,0)
- ;;=4^R20.3
- ;;^UTILITY(U,$J,358.3,20879,2)
- ;;=^60011
- ;;^UTILITY(U,$J,358.3,20880,0)
- ;;=R21.^^84^941^145
- ;;^UTILITY(U,$J,358.3,20880,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20880,1,3,0)
- ;;=3^Rash
- ;;^UTILITY(U,$J,358.3,20880,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,20880,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,20881,0)
- ;;=R22.0^^84^941^105
- ;;^UTILITY(U,$J,358.3,20881,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20881,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Head
- ;;^UTILITY(U,$J,358.3,20881,1,4,0)
- ;;=4^R22.0
- ;;^UTILITY(U,$J,358.3,20881,2)
- ;;=^5019284
- ;;^UTILITY(U,$J,358.3,20882,0)
- ;;=R22.1^^84^941^108
- ;;^UTILITY(U,$J,358.3,20882,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20882,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Neck
- ;;^UTILITY(U,$J,358.3,20882,1,4,0)
- ;;=4^R22.1
- ;;^UTILITY(U,$J,358.3,20882,2)
- ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,19704,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,19704,1,4,0)
+ ;;=4^S79.132S
+ ;;^UTILITY(U,$J,358.3,19704,2)
+ ;;=^5039839

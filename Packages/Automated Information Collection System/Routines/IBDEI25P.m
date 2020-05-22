@@ -1,138 +1,122 @@
-IBDEI25P ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI25P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36584,2)
- ;;=^5008170
- ;;^UTILITY(U,$J,358.3,36585,0)
- ;;=J17.^^137^1767^71
- ;;^UTILITY(U,$J,358.3,36585,1,0)
+ ;;^UTILITY(U,$J,358.3,34439,0)
+ ;;=F11.14^^134^1747^5
+ ;;^UTILITY(U,$J,358.3,34439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36585,1,3,0)
- ;;=3^Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,36585,1,4,0)
- ;;=4^J17.
- ;;^UTILITY(U,$J,358.3,36585,2)
- ;;=^5008181
- ;;^UTILITY(U,$J,358.3,36586,0)
- ;;=J18.9^^137^1767^72
- ;;^UTILITY(U,$J,358.3,36586,1,0)
+ ;;^UTILITY(U,$J,358.3,34439,1,3,0)
+ ;;=3^Opioid Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34439,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,34439,2)
+ ;;=^5003119
+ ;;^UTILITY(U,$J,358.3,34440,0)
+ ;;=F11.182^^134^1747^11
+ ;;^UTILITY(U,$J,358.3,34440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36586,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,36586,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,36586,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,36587,0)
- ;;=A15.7^^137^1767^74
- ;;^UTILITY(U,$J,358.3,36587,1,0)
+ ;;^UTILITY(U,$J,358.3,34440,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34440,1,4,0)
+ ;;=4^F11.182
+ ;;^UTILITY(U,$J,358.3,34440,2)
+ ;;=^5003124
+ ;;^UTILITY(U,$J,358.3,34441,0)
+ ;;=F11.20^^134^1747^28
+ ;;^UTILITY(U,$J,358.3,34441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36587,1,3,0)
- ;;=3^Primary Respiratory TB
- ;;^UTILITY(U,$J,358.3,36587,1,4,0)
- ;;=4^A15.7
- ;;^UTILITY(U,$J,358.3,36587,2)
- ;;=^5000065
- ;;^UTILITY(U,$J,358.3,36588,0)
- ;;=A42.0^^137^1767^75
- ;;^UTILITY(U,$J,358.3,36588,1,0)
+ ;;^UTILITY(U,$J,358.3,34441,1,3,0)
+ ;;=3^Opioid Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,34441,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,34441,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,34442,0)
+ ;;=F11.23^^134^1747^26
+ ;;^UTILITY(U,$J,358.3,34442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36588,1,3,0)
- ;;=3^Pulmonary Actinomycosis
- ;;^UTILITY(U,$J,358.3,36588,1,4,0)
- ;;=4^A42.0
- ;;^UTILITY(U,$J,358.3,36588,2)
- ;;=^5000215
- ;;^UTILITY(U,$J,358.3,36589,0)
- ;;=B40.2^^137^1767^77
- ;;^UTILITY(U,$J,358.3,36589,1,0)
+ ;;^UTILITY(U,$J,358.3,34442,1,3,0)
+ ;;=3^Opioid Use DO,Mod/Sev w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,34442,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,34442,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,34443,0)
+ ;;=F11.24^^134^1747^6
+ ;;^UTILITY(U,$J,358.3,34443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36589,1,3,0)
- ;;=3^Pulmonary Blastomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,36589,1,4,0)
- ;;=4^B40.2
- ;;^UTILITY(U,$J,358.3,36589,2)
- ;;=^5000641
- ;;^UTILITY(U,$J,358.3,36590,0)
- ;;=B38.2^^137^1767^78
- ;;^UTILITY(U,$J,358.3,36590,1,0)
+ ;;^UTILITY(U,$J,358.3,34443,1,3,0)
+ ;;=3^Opioid Induced Depressive D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34443,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,34443,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,34444,0)
+ ;;=F11.188^^134^1747^2
+ ;;^UTILITY(U,$J,358.3,34444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36590,1,3,0)
- ;;=3^Pulmonary Coccidiodomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,36590,1,4,0)
- ;;=4^B38.2
- ;;^UTILITY(U,$J,358.3,36590,2)
- ;;=^295703
- ;;^UTILITY(U,$J,358.3,36591,0)
- ;;=B45.0^^137^1767^79
- ;;^UTILITY(U,$J,358.3,36591,1,0)
+ ;;^UTILITY(U,$J,358.3,34444,1,3,0)
+ ;;=3^Opioid Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34444,1,4,0)
+ ;;=4^F11.188
+ ;;^UTILITY(U,$J,358.3,34444,2)
+ ;;=^5003125
+ ;;^UTILITY(U,$J,358.3,34445,0)
+ ;;=F11.288^^134^1747^3
+ ;;^UTILITY(U,$J,358.3,34445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36591,1,3,0)
- ;;=3^Pulmonary Cryptococcosis
- ;;^UTILITY(U,$J,358.3,36591,1,4,0)
- ;;=4^B45.0
- ;;^UTILITY(U,$J,358.3,36591,2)
- ;;=^5000669
- ;;^UTILITY(U,$J,358.3,36592,0)
- ;;=A31.0^^137^1767^80
- ;;^UTILITY(U,$J,358.3,36592,1,0)
+ ;;^UTILITY(U,$J,358.3,34445,1,3,0)
+ ;;=3^Opioid Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34445,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,34445,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,34446,0)
+ ;;=F11.988^^134^1747^4
+ ;;^UTILITY(U,$J,358.3,34446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36592,1,3,0)
- ;;=3^Pulmonary Mycobacterial Infection
- ;;^UTILITY(U,$J,358.3,36592,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,36592,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,36593,0)
- ;;=A43.0^^137^1767^81
- ;;^UTILITY(U,$J,358.3,36593,1,0)
+ ;;^UTILITY(U,$J,358.3,34446,1,3,0)
+ ;;=3^Opioid Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34446,1,4,0)
+ ;;=4^F11.988
+ ;;^UTILITY(U,$J,358.3,34446,2)
+ ;;=^5003154
+ ;;^UTILITY(U,$J,358.3,34447,0)
+ ;;=F11.921^^134^1747^16
+ ;;^UTILITY(U,$J,358.3,34447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36593,1,3,0)
- ;;=3^Pulmonary Nocardiosis
- ;;^UTILITY(U,$J,358.3,36593,1,4,0)
- ;;=4^A43.0
- ;;^UTILITY(U,$J,358.3,36593,2)
- ;;=^5000223
- ;;^UTILITY(U,$J,358.3,36594,0)
- ;;=B90.9^^137^1767^83
- ;;^UTILITY(U,$J,358.3,36594,1,0)
+ ;;^UTILITY(U,$J,358.3,34447,1,3,0)
+ ;;=3^Opioid Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34447,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,34447,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,34448,0)
+ ;;=F11.94^^134^1747^7
+ ;;^UTILITY(U,$J,358.3,34448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36594,1,3,0)
- ;;=3^Sequelae of Respiratory/Unspec TB
- ;;^UTILITY(U,$J,358.3,36594,1,4,0)
- ;;=4^B90.9
- ;;^UTILITY(U,$J,358.3,36594,2)
- ;;=^5000827
- ;;^UTILITY(U,$J,358.3,36595,0)
- ;;=J41.0^^137^1767^84
- ;;^UTILITY(U,$J,358.3,36595,1,0)
+ ;;^UTILITY(U,$J,358.3,34448,1,3,0)
+ ;;=3^Opioid Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,34448,1,4,0)
+ ;;=4^F11.94
+ ;;^UTILITY(U,$J,358.3,34448,2)
+ ;;=^5003148
+ ;;^UTILITY(U,$J,358.3,34449,0)
+ ;;=F11.181^^134^1747^8
+ ;;^UTILITY(U,$J,358.3,34449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36595,1,3,0)
- ;;=3^Simple Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,36595,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,36595,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,36596,0)
- ;;=B44.2^^137^1767^85
- ;;^UTILITY(U,$J,358.3,36596,1,0)
+ ;;^UTILITY(U,$J,358.3,34449,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysf w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,34449,1,4,0)
+ ;;=4^F11.181
+ ;;^UTILITY(U,$J,358.3,34449,2)
+ ;;=^5003123
+ ;;^UTILITY(U,$J,358.3,34450,0)
+ ;;=F11.281^^134^1747^9
+ ;;^UTILITY(U,$J,358.3,34450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36596,1,3,0)
- ;;=3^Tonsillar Aspergillosis
- ;;^UTILITY(U,$J,358.3,36596,1,4,0)
- ;;=4^B44.2
- ;;^UTILITY(U,$J,358.3,36596,2)
- ;;=^5000665
- ;;^UTILITY(U,$J,358.3,36597,0)
- ;;=A15.0^^137^1767^86
- ;;^UTILITY(U,$J,358.3,36597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36597,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,36597,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,36597,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,36598,0)
- ;;=A15.6^^137^1767^87
+ ;;^UTILITY(U,$J,358.3,34450,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34450,1,4,0)
+ ;;=4^F11.281

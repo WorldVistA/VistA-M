@@ -1,140 +1,112 @@
-IBDEI1M4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1M4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27358,0)
- ;;=R07.89^^106^1350^2
- ;;^UTILITY(U,$J,358.3,27358,1,0)
+ ;;^UTILITY(U,$J,358.3,25770,0)
+ ;;=S56.012A^^107^1224^36
+ ;;^UTILITY(U,$J,358.3,25770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27358,1,3,0)
- ;;=3^Chest Pain,Other
- ;;^UTILITY(U,$J,358.3,27358,1,4,0)
- ;;=4^R07.89
- ;;^UTILITY(U,$J,358.3,27358,2)
- ;;=^5019200
- ;;^UTILITY(U,$J,358.3,27359,0)
- ;;=Z99.2^^106^1350^5
- ;;^UTILITY(U,$J,358.3,27359,1,0)
+ ;;^UTILITY(U,$J,358.3,25770,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25770,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,25770,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,25771,0)
+ ;;=S56.111A^^107^1224^43
+ ;;^UTILITY(U,$J,358.3,25771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27359,1,3,0)
- ;;=3^Dependence on Renal Dialysis
- ;;^UTILITY(U,$J,358.3,27359,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,27359,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,27360,0)
- ;;=Z91.15^^106^1350^13
- ;;^UTILITY(U,$J,358.3,27360,1,0)
+ ;;^UTILITY(U,$J,358.3,25771,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25771,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,25771,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,25772,0)
+ ;;=S56.112A^^107^1224^23
+ ;;^UTILITY(U,$J,358.3,25772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27360,1,3,0)
- ;;=3^Noncompliance w/ Renal Dialysis
- ;;^UTILITY(U,$J,358.3,27360,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,27360,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,27361,0)
- ;;=N18.6^^106^1351^4
- ;;^UTILITY(U,$J,358.3,27361,1,0)
+ ;;^UTILITY(U,$J,358.3,25772,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25772,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,25772,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,25773,0)
+ ;;=S56.113A^^107^1224^51
+ ;;^UTILITY(U,$J,358.3,25773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27361,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,27361,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,27361,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,27362,0)
- ;;=N12.^^106^1351^18
- ;;^UTILITY(U,$J,358.3,27362,1,0)
+ ;;^UTILITY(U,$J,358.3,25773,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25773,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,25773,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,25774,0)
+ ;;=S56.114A^^107^1224^31
+ ;;^UTILITY(U,$J,358.3,25774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27362,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Not Acute or Chronic
- ;;^UTILITY(U,$J,358.3,27362,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,27362,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,27363,0)
- ;;=N20.0^^106^1351^2
- ;;^UTILITY(U,$J,358.3,27363,1,0)
+ ;;^UTILITY(U,$J,358.3,25774,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25774,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,25774,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,25775,0)
+ ;;=S56.115A^^107^1224^53
+ ;;^UTILITY(U,$J,358.3,25775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27363,1,3,0)
- ;;=3^Calculus of Kidney
- ;;^UTILITY(U,$J,358.3,27363,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,27363,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,27364,0)
- ;;=R30.0^^106^1351^3
- ;;^UTILITY(U,$J,358.3,27364,1,0)
+ ;;^UTILITY(U,$J,358.3,25775,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25775,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,25775,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,25776,0)
+ ;;=S56.417A^^107^1224^45
+ ;;^UTILITY(U,$J,358.3,25776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27364,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,27364,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,27364,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,27365,0)
- ;;=R80.3^^106^1351^1
- ;;^UTILITY(U,$J,358.3,27365,1,0)
+ ;;^UTILITY(U,$J,358.3,25776,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25776,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,25776,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,25777,0)
+ ;;=S56.418A^^107^1224^25
+ ;;^UTILITY(U,$J,358.3,25777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27365,1,3,0)
- ;;=3^Bence Jones Proteinuria
- ;;^UTILITY(U,$J,358.3,27365,1,4,0)
- ;;=4^R80.3
- ;;^UTILITY(U,$J,358.3,27365,2)
- ;;=^13272
- ;;^UTILITY(U,$J,358.3,27366,0)
- ;;=N40.1^^106^1351^5
- ;;^UTILITY(U,$J,358.3,27366,1,0)
+ ;;^UTILITY(U,$J,358.3,25777,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25777,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,25777,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,25778,0)
+ ;;=S56.811A^^107^1224^41
+ ;;^UTILITY(U,$J,358.3,25778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27366,1,3,0)
- ;;=3^Enlarged Prostate w/ LUTS
- ;;^UTILITY(U,$J,358.3,27366,1,4,0)
- ;;=4^N40.1
- ;;^UTILITY(U,$J,358.3,27366,2)
- ;;=^5015690
- ;;^UTILITY(U,$J,358.3,27367,0)
- ;;=R31.0^^106^1351^6
- ;;^UTILITY(U,$J,358.3,27367,1,0)
+ ;;^UTILITY(U,$J,358.3,25778,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25778,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,25778,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,25779,0)
+ ;;=S56.812A^^107^1224^21
+ ;;^UTILITY(U,$J,358.3,25779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27367,1,3,0)
- ;;=3^Gross Hematuria
- ;;^UTILITY(U,$J,358.3,27367,1,4,0)
- ;;=4^R31.0
- ;;^UTILITY(U,$J,358.3,27367,2)
- ;;=^5019325
- ;;^UTILITY(U,$J,358.3,27368,0)
- ;;=R31.9^^106^1351^7
- ;;^UTILITY(U,$J,358.3,27368,1,0)
+ ;;^UTILITY(U,$J,358.3,25779,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25779,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,25779,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,25780,0)
+ ;;=S56.116A^^107^1224^33
+ ;;^UTILITY(U,$J,358.3,25780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27368,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,27368,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,27368,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,27369,0)
- ;;=R80.0^^106^1351^9
- ;;^UTILITY(U,$J,358.3,27369,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27369,1,3,0)
- ;;=3^Isolated Proteinuria
- ;;^UTILITY(U,$J,358.3,27369,1,4,0)
- ;;=4^R80.0
- ;;^UTILITY(U,$J,358.3,27369,2)
- ;;=^5019595
- ;;^UTILITY(U,$J,358.3,27370,0)
- ;;=R39.14^^106^1351^8
- ;;^UTILITY(U,$J,358.3,27370,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27370,1,3,0)
- ;;=3^Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,27370,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,27370,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,27371,0)
- ;;=R31.2^^106^1351^10
- ;;^UTILITY(U,$J,358.3,27371,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27371,1,3,0)
- ;;=3^Microscopic Hematuria,Other
+ ;;^UTILITY(U,$J,358.3,25780,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,25780,1,4,0)
+ ;;=4^S56.116A

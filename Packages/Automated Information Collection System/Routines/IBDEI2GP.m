@@ -1,130 +1,130 @@
-IBDEI2GP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2GP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41755,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,41756,0)
- ;;=M18.0^^159^2010^122
- ;;^UTILITY(U,$J,358.3,41756,1,0)
+ ;;^UTILITY(U,$J,358.3,39318,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,39318,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,39319,0)
+ ;;=B18.8^^152^1996^72
+ ;;^UTILITY(U,$J,358.3,39319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41756,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
- ;;^UTILITY(U,$J,358.3,41756,1,4,0)
- ;;=4^M18.0
- ;;^UTILITY(U,$J,358.3,41756,2)
- ;;=^5010795
- ;;^UTILITY(U,$J,358.3,41757,0)
- ;;=M18.11^^159^2010^132
- ;;^UTILITY(U,$J,358.3,41757,1,0)
+ ;;^UTILITY(U,$J,358.3,39319,1,3,0)
+ ;;=3^Hepatitis,Oth Chronic Viral
+ ;;^UTILITY(U,$J,358.3,39319,1,4,0)
+ ;;=4^B18.8
+ ;;^UTILITY(U,$J,358.3,39319,2)
+ ;;=^5000549
+ ;;^UTILITY(U,$J,358.3,39320,0)
+ ;;=B17.8^^152^1996^73
+ ;;^UTILITY(U,$J,358.3,39320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41757,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,41757,1,4,0)
- ;;=4^M18.11
- ;;^UTILITY(U,$J,358.3,41757,2)
- ;;=^5010797
- ;;^UTILITY(U,$J,358.3,41758,0)
- ;;=M18.12^^159^2010^126
- ;;^UTILITY(U,$J,358.3,41758,1,0)
+ ;;^UTILITY(U,$J,358.3,39320,1,3,0)
+ ;;=3^Hepatitis,Oth Spec Acute Viral
+ ;;^UTILITY(U,$J,358.3,39320,1,4,0)
+ ;;=4^B17.8
+ ;;^UTILITY(U,$J,358.3,39320,2)
+ ;;=^5000544
+ ;;^UTILITY(U,$J,358.3,39321,0)
+ ;;=B18.9^^152^1996^71
+ ;;^UTILITY(U,$J,358.3,39321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41758,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,41758,1,4,0)
- ;;=4^M18.12
- ;;^UTILITY(U,$J,358.3,41758,2)
- ;;=^5010798
- ;;^UTILITY(U,$J,358.3,41759,0)
- ;;=M19.011^^159^2010^135
- ;;^UTILITY(U,$J,358.3,41759,1,0)
+ ;;^UTILITY(U,$J,358.3,39321,1,3,0)
+ ;;=3^Hepatitis,Chronic Viral Unspec
+ ;;^UTILITY(U,$J,358.3,39321,1,4,0)
+ ;;=4^B18.9
+ ;;^UTILITY(U,$J,358.3,39321,2)
+ ;;=^5000550
+ ;;^UTILITY(U,$J,358.3,39322,0)
+ ;;=B37.81^^152^1996^18
+ ;;^UTILITY(U,$J,358.3,39322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41759,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,41759,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,41759,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,41760,0)
- ;;=M19.012^^159^2010^129
- ;;^UTILITY(U,$J,358.3,41760,1,0)
+ ;;^UTILITY(U,$J,358.3,39322,1,3,0)
+ ;;=3^Candidal Esophagitis
+ ;;^UTILITY(U,$J,358.3,39322,1,4,0)
+ ;;=4^B37.81
+ ;;^UTILITY(U,$J,358.3,39322,2)
+ ;;=^5000620
+ ;;^UTILITY(U,$J,358.3,39323,0)
+ ;;=D12.0^^152^1996^12
+ ;;^UTILITY(U,$J,358.3,39323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41760,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,41760,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,41760,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,41761,0)
- ;;=M19.031^^159^2010^136
- ;;^UTILITY(U,$J,358.3,41761,1,0)
+ ;;^UTILITY(U,$J,358.3,39323,1,3,0)
+ ;;=3^Benign Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,39323,1,4,0)
+ ;;=4^D12.0
+ ;;^UTILITY(U,$J,358.3,39323,2)
+ ;;=^5001963
+ ;;^UTILITY(U,$J,358.3,39324,0)
+ ;;=D12.6^^152^1996^13
+ ;;^UTILITY(U,$J,358.3,39324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41761,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,41761,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,41761,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,41762,0)
- ;;=M19.032^^159^2010^130
- ;;^UTILITY(U,$J,358.3,41762,1,0)
+ ;;^UTILITY(U,$J,358.3,39324,1,3,0)
+ ;;=3^Benign Neop of Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,39324,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,39324,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,39325,0)
+ ;;=D12.1^^152^1996^10
+ ;;^UTILITY(U,$J,358.3,39325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41762,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,41762,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,41762,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,41763,0)
- ;;=M19.041^^159^2010^131
- ;;^UTILITY(U,$J,358.3,41763,1,0)
+ ;;^UTILITY(U,$J,358.3,39325,1,3,0)
+ ;;=3^Benign Neop of Appendix
+ ;;^UTILITY(U,$J,358.3,39325,1,4,0)
+ ;;=4^D12.1
+ ;;^UTILITY(U,$J,358.3,39325,2)
+ ;;=^5001964
+ ;;^UTILITY(U,$J,358.3,39326,0)
+ ;;=K63.5^^152^1996^83
+ ;;^UTILITY(U,$J,358.3,39326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41763,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,41763,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,41763,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,41764,0)
- ;;=M19.042^^159^2010^125
- ;;^UTILITY(U,$J,358.3,41764,1,0)
+ ;;^UTILITY(U,$J,358.3,39326,1,3,0)
+ ;;=3^Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,39326,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,39326,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,39327,0)
+ ;;=D12.3^^152^1996^17
+ ;;^UTILITY(U,$J,358.3,39327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41764,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,41764,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,41764,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,41765,0)
- ;;=M19.90^^159^2010^68
- ;;^UTILITY(U,$J,358.3,41765,1,0)
+ ;;^UTILITY(U,$J,358.3,39327,1,3,0)
+ ;;=3^Benign Neop of Transverse Colon
+ ;;^UTILITY(U,$J,358.3,39327,1,4,0)
+ ;;=4^D12.3
+ ;;^UTILITY(U,$J,358.3,39327,2)
+ ;;=^5001966
+ ;;^UTILITY(U,$J,358.3,39328,0)
+ ;;=D12.2^^152^1996^11
+ ;;^UTILITY(U,$J,358.3,39328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41765,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,41765,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,41765,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,41766,0)
- ;;=M25.40^^159^2010^37
- ;;^UTILITY(U,$J,358.3,41766,1,0)
+ ;;^UTILITY(U,$J,358.3,39328,1,3,0)
+ ;;=3^Benign Neop of Ascending Colon
+ ;;^UTILITY(U,$J,358.3,39328,1,4,0)
+ ;;=4^D12.2
+ ;;^UTILITY(U,$J,358.3,39328,2)
+ ;;=^5001965
+ ;;^UTILITY(U,$J,358.3,39329,0)
+ ;;=D12.5^^152^1996^16
+ ;;^UTILITY(U,$J,358.3,39329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41766,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,41766,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,41766,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,41767,0)
- ;;=M45.0^^159^2010^6
- ;;^UTILITY(U,$J,358.3,41767,1,0)
+ ;;^UTILITY(U,$J,358.3,39329,1,3,0)
+ ;;=3^Benign Neop of Sigmoid Colon
+ ;;^UTILITY(U,$J,358.3,39329,1,4,0)
+ ;;=4^D12.5
+ ;;^UTILITY(U,$J,358.3,39329,2)
+ ;;=^5001968
+ ;;^UTILITY(U,$J,358.3,39330,0)
+ ;;=D12.4^^152^1996^14
+ ;;^UTILITY(U,$J,358.3,39330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41767,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,41767,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,41767,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,41768,0)
- ;;=M45.2^^159^2010^3
- ;;^UTILITY(U,$J,358.3,41768,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39330,1,3,0)
+ ;;=3^Benign Neop of Descending Colon
+ ;;^UTILITY(U,$J,358.3,39330,1,4,0)
+ ;;=4^D12.4
+ ;;^UTILITY(U,$J,358.3,39330,2)
+ ;;=^5001967
+ ;;^UTILITY(U,$J,358.3,39331,0)
+ ;;=D73.2^^152^1996^19

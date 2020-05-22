@@ -1,136 +1,124 @@
-IBDEI39P ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54913,1,0)
+ ;;^UTILITY(U,$J,358.3,52152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54913,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,54913,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,54913,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,54914,0)
- ;;=C92.40^^256^2775^20
- ;;^UTILITY(U,$J,358.3,54914,1,0)
+ ;;^UTILITY(U,$J,358.3,52152,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Partial
+ ;;^UTILITY(U,$J,358.3,52152,1,4,0)
+ ;;=4^Z90.411
+ ;;^UTILITY(U,$J,358.3,52152,2)
+ ;;=^5063588
+ ;;^UTILITY(U,$J,358.3,52153,0)
+ ;;=Z90.410^^193^2519^30
+ ;;^UTILITY(U,$J,358.3,52153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54914,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,54914,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,54914,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,54915,0)
- ;;=D56.0^^256^2775^21
- ;;^UTILITY(U,$J,358.3,54915,1,0)
+ ;;^UTILITY(U,$J,358.3,52153,1,3,0)
+ ;;=3^Acquired Absence of Pancreas,Total
+ ;;^UTILITY(U,$J,358.3,52153,1,4,0)
+ ;;=4^Z90.410
+ ;;^UTILITY(U,$J,358.3,52153,2)
+ ;;=^5063587
+ ;;^UTILITY(U,$J,358.3,52154,0)
+ ;;=Z89.441^^193^2519^2
+ ;;^UTILITY(U,$J,358.3,52154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54915,1,3,0)
- ;;=3^Alpha Thalassemia
- ;;^UTILITY(U,$J,358.3,54915,1,4,0)
- ;;=4^D56.0
- ;;^UTILITY(U,$J,358.3,54915,2)
- ;;=^340494
- ;;^UTILITY(U,$J,358.3,54916,0)
- ;;=D63.1^^256^2775^23
- ;;^UTILITY(U,$J,358.3,54916,1,0)
+ ;;^UTILITY(U,$J,358.3,52154,1,3,0)
+ ;;=3^Acquired Absence of Ankle,Right
+ ;;^UTILITY(U,$J,358.3,52154,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,52154,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,52155,0)
+ ;;=Z90.11^^193^2519^4
+ ;;^UTILITY(U,$J,358.3,52155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54916,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,54916,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,54916,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,54917,0)
- ;;=D63.0^^256^2775^24
- ;;^UTILITY(U,$J,358.3,54917,1,0)
+ ;;^UTILITY(U,$J,358.3,52155,1,3,0)
+ ;;=3^Acquired Absence of Breast & Nipple,Right
+ ;;^UTILITY(U,$J,358.3,52155,1,4,0)
+ ;;=4^Z90.11
+ ;;^UTILITY(U,$J,358.3,52155,2)
+ ;;=^5063582
+ ;;^UTILITY(U,$J,358.3,52156,0)
+ ;;=Z89.021^^193^2519^9
+ ;;^UTILITY(U,$J,358.3,52156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54917,1,3,0)
- ;;=3^Anemia in Neoplastic Disease
- ;;^UTILITY(U,$J,358.3,54917,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,54917,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,54918,0)
- ;;=D63.8^^256^2775^22
- ;;^UTILITY(U,$J,358.3,54918,1,0)
+ ;;^UTILITY(U,$J,358.3,52156,1,3,0)
+ ;;=3^Acquired Absence of Finger(s),Right
+ ;;^UTILITY(U,$J,358.3,52156,1,4,0)
+ ;;=4^Z89.021
+ ;;^UTILITY(U,$J,358.3,52156,2)
+ ;;=^5063534
+ ;;^UTILITY(U,$J,358.3,52157,0)
+ ;;=Z89.431^^193^2519^11
+ ;;^UTILITY(U,$J,358.3,52157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54918,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,54918,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,54918,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,54919,0)
- ;;=C22.3^^256^2775^25
- ;;^UTILITY(U,$J,358.3,54919,1,0)
+ ;;^UTILITY(U,$J,358.3,52157,1,3,0)
+ ;;=3^Acquired Absence of Foot,Right
+ ;;^UTILITY(U,$J,358.3,52157,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,52157,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,52158,0)
+ ;;=Z89.411^^193^2519^13
+ ;;^UTILITY(U,$J,358.3,52158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54919,1,3,0)
- ;;=3^Angiosarcoma of Liver
- ;;^UTILITY(U,$J,358.3,54919,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,54919,2)
- ;;=^5000936
- ;;^UTILITY(U,$J,358.3,54920,0)
- ;;=D61.9^^256^2775^26
- ;;^UTILITY(U,$J,358.3,54920,1,0)
+ ;;^UTILITY(U,$J,358.3,52158,1,3,0)
+ ;;=3^Acquired Absence of Great Toe,Right
+ ;;^UTILITY(U,$J,358.3,52158,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,52158,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,52159,0)
+ ;;=Z89.111^^193^2519^15
+ ;;^UTILITY(U,$J,358.3,52159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54920,1,3,0)
- ;;=3^Aplastic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,54920,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,54920,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,54921,0)
- ;;=D56.1^^256^2775^28
- ;;^UTILITY(U,$J,358.3,54921,1,0)
+ ;;^UTILITY(U,$J,358.3,52159,1,3,0)
+ ;;=3^Acquired Absence of Hand,Right
+ ;;^UTILITY(U,$J,358.3,52159,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,52159,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,52160,0)
+ ;;=Z89.621^^193^2519^17
+ ;;^UTILITY(U,$J,358.3,52160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54921,1,3,0)
- ;;=3^Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,54921,1,4,0)
- ;;=4^D56.1
- ;;^UTILITY(U,$J,358.3,54921,2)
- ;;=^340495
- ;;^UTILITY(U,$J,358.3,54922,0)
- ;;=C83.79^^256^2775^29
- ;;^UTILITY(U,$J,358.3,54922,1,0)
+ ;;^UTILITY(U,$J,358.3,52160,1,3,0)
+ ;;=3^Acquired Absence of Hip Joint,Right
+ ;;^UTILITY(U,$J,358.3,52160,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,52160,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,52161,0)
+ ;;=Z89.611^^193^2519^21
+ ;;^UTILITY(U,$J,358.3,52161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54922,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,54922,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,54922,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,54923,0)
- ;;=C83.70^^256^2775^30
- ;;^UTILITY(U,$J,358.3,54923,1,0)
+ ;;^UTILITY(U,$J,358.3,52161,1,3,0)
+ ;;=3^Acquired Absence of Leg Above Knee,Right
+ ;;^UTILITY(U,$J,358.3,52161,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,52161,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,52162,0)
+ ;;=Z89.511^^193^2519^23
+ ;;^UTILITY(U,$J,358.3,52162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54923,1,3,0)
- ;;=3^Burkitt Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,54923,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,54923,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,54924,0)
- ;;=D09.0^^256^2775^37
- ;;^UTILITY(U,$J,358.3,54924,1,0)
+ ;;^UTILITY(U,$J,358.3,52162,1,3,0)
+ ;;=3^Acquired Absence of Leg Below Knee,Right
+ ;;^UTILITY(U,$J,358.3,52162,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,52162,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,52163,0)
+ ;;=Z89.231^^193^2519^33
+ ;;^UTILITY(U,$J,358.3,52163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54924,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,54924,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,54924,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,54925,0)
- ;;=D06.9^^256^2775^38
- ;;^UTILITY(U,$J,358.3,54925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54925,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix
- ;;^UTILITY(U,$J,358.3,54925,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,54925,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,54926,0)
- ;;=D06.0^^256^2775^40
- ;;^UTILITY(U,$J,358.3,54926,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52163,1,3,0)
+ ;;=3^Acquired Absence of Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,52163,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,52163,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,52164,0)
+ ;;=Z89.011^^193^2519^37

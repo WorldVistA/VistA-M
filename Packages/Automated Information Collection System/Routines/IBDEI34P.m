@@ -1,134 +1,126 @@
-IBDEI34P ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI34P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52512,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,52512,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,52512,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,52513,0)
- ;;=F52.6^^237^2612^5
- ;;^UTILITY(U,$J,358.3,52513,1,0)
+ ;;^UTILITY(U,$J,358.3,49968,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,49968,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,49968,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,49969,0)
+ ;;=I70.645^^193^2487^70
+ ;;^UTILITY(U,$J,358.3,49969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52513,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,52513,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,52513,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,52514,0)
- ;;=F52.0^^237^2612^6
- ;;^UTILITY(U,$J,358.3,52514,1,0)
+ ;;^UTILITY(U,$J,358.3,49969,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,49969,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,49969,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,49970,0)
+ ;;=K12.0^^193^2487^298
+ ;;^UTILITY(U,$J,358.3,49970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52514,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,52514,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,52514,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,52515,0)
- ;;=F52.4^^237^2612^7
- ;;^UTILITY(U,$J,358.3,52515,1,0)
+ ;;^UTILITY(U,$J,358.3,49970,1,3,0)
+ ;;=3^Recurrent Oral Aphthae
+ ;;^UTILITY(U,$J,358.3,49970,1,4,0)
+ ;;=4^K12.0
+ ;;^UTILITY(U,$J,358.3,49970,2)
+ ;;=^5008483
+ ;;^UTILITY(U,$J,358.3,49971,0)
+ ;;=K12.1^^193^2487^311
+ ;;^UTILITY(U,$J,358.3,49971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52515,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,52515,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,52515,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,52516,0)
- ;;=F52.8^^237^2612^9
- ;;^UTILITY(U,$J,358.3,52516,1,0)
+ ;;^UTILITY(U,$J,358.3,49971,1,3,0)
+ ;;=3^Stomatitis NEC
+ ;;^UTILITY(U,$J,358.3,49971,1,4,0)
+ ;;=4^K12.1
+ ;;^UTILITY(U,$J,358.3,49971,2)
+ ;;=^5008484
+ ;;^UTILITY(U,$J,358.3,49972,0)
+ ;;=K12.2^^193^2487^95
+ ;;^UTILITY(U,$J,358.3,49972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52516,1,3,0)
- ;;=3^Sexual Dysfuntion NEC
- ;;^UTILITY(U,$J,358.3,52516,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,52516,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,52517,0)
- ;;=F52.9^^237^2612^8
- ;;^UTILITY(U,$J,358.3,52517,1,0)
+ ;;^UTILITY(U,$J,358.3,49972,1,3,0)
+ ;;=3^Cellulitis & Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,49972,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,49972,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,49973,0)
+ ;;=L02.01^^193^2487^122
+ ;;^UTILITY(U,$J,358.3,49973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52517,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,52517,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,52517,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,52518,0)
- ;;=G47.09^^237^2613^11
- ;;^UTILITY(U,$J,358.3,52518,1,0)
+ ;;^UTILITY(U,$J,358.3,49973,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,49973,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,49973,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,49974,0)
+ ;;=L02.11^^193^2487^127
+ ;;^UTILITY(U,$J,358.3,49974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52518,1,3,0)
- ;;=3^Insomnia Disorder NEC
- ;;^UTILITY(U,$J,358.3,52518,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,52518,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,52519,0)
- ;;=G47.00^^237^2613^10
- ;;^UTILITY(U,$J,358.3,52519,1,0)
+ ;;^UTILITY(U,$J,358.3,49974,1,3,0)
+ ;;=3^Cutaneous Abscess of Neck
+ ;;^UTILITY(U,$J,358.3,49974,1,4,0)
+ ;;=4^L02.11
+ ;;^UTILITY(U,$J,358.3,49974,2)
+ ;;=^5008947
+ ;;^UTILITY(U,$J,358.3,49975,0)
+ ;;=L02.211^^193^2487^119
+ ;;^UTILITY(U,$J,358.3,49975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52519,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,52519,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,52519,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,52520,0)
- ;;=G47.10^^237^2613^9
- ;;^UTILITY(U,$J,358.3,52520,1,0)
+ ;;^UTILITY(U,$J,358.3,49975,1,3,0)
+ ;;=3^Cutaneous Abscess of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,49975,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,49975,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,49976,0)
+ ;;=L02.212^^193^2487^120
+ ;;^UTILITY(U,$J,358.3,49976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52520,1,3,0)
- ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,52520,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,52520,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,52521,0)
- ;;=G47.419^^237^2613^12
- ;;^UTILITY(U,$J,358.3,52521,1,0)
+ ;;^UTILITY(U,$J,358.3,49976,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,49976,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,49976,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,49977,0)
+ ;;=L02.213^^193^2487^121
+ ;;^UTILITY(U,$J,358.3,49977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52521,1,3,0)
- ;;=3^Narcolepsy
- ;;^UTILITY(U,$J,358.3,52521,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,52521,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,52522,0)
- ;;=G47.33^^237^2613^16
- ;;^UTILITY(U,$J,358.3,52522,1,0)
+ ;;^UTILITY(U,$J,358.3,49977,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,49977,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,49977,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,49978,0)
+ ;;=L02.214^^193^2487^123
+ ;;^UTILITY(U,$J,358.3,49978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52522,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,52522,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,52522,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,52523,0)
- ;;=G47.31^^237^2613^1
- ;;^UTILITY(U,$J,358.3,52523,1,0)
+ ;;^UTILITY(U,$J,358.3,49978,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin
+ ;;^UTILITY(U,$J,358.3,49978,1,4,0)
+ ;;=4^L02.214
+ ;;^UTILITY(U,$J,358.3,49978,2)
+ ;;=^5008953
+ ;;^UTILITY(U,$J,358.3,49979,0)
+ ;;=L02.215^^193^2487^129
+ ;;^UTILITY(U,$J,358.3,49979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52523,1,3,0)
- ;;=3^Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,52523,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,52523,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,52524,0)
- ;;=G47.21^^237^2613^3
- ;;^UTILITY(U,$J,358.3,52524,1,0)
+ ;;^UTILITY(U,$J,358.3,49979,1,3,0)
+ ;;=3^Cutaneous Abscess of Perineum
+ ;;^UTILITY(U,$J,358.3,49979,1,4,0)
+ ;;=4^L02.215
+ ;;^UTILITY(U,$J,358.3,49979,2)
+ ;;=^5008954
+ ;;^UTILITY(U,$J,358.3,49980,0)
+ ;;=L02.216^^193^2487^134
+ ;;^UTILITY(U,$J,358.3,49980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52524,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,52524,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,52524,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,52525,0)
- ;;=G47.22^^237^2613^2
- ;;^UTILITY(U,$J,358.3,52525,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,49980,1,3,0)
+ ;;=3^Cutaneous Abscess of Unbilicus

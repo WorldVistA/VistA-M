@@ -1,136 +1,116 @@
-IBDEI19R ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19R ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21588,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes
- ;;^UTILITY(U,$J,358.3,21588,1,4,0)
- ;;=4^F17.219
- ;;^UTILITY(U,$J,358.3,21588,2)
- ;;=^5003369
- ;;^UTILITY(U,$J,358.3,21589,0)
- ;;=F17.299^^87^965^40
- ;;^UTILITY(U,$J,358.3,21589,1,0)
+ ;;^UTILITY(U,$J,358.3,20309,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, cervicothoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,20309,1,4,0)
+ ;;=4^M48.43XS
+ ;;^UTILITY(U,$J,358.3,20309,2)
+ ;;=^5012138
+ ;;^UTILITY(U,$J,358.3,20310,0)
+ ;;=M48.46XS^^93^1001^13
+ ;;^UTILITY(U,$J,358.3,20310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21589,1,3,0)
- ;;=3^Nicotine Dependence,E-Cigarettes
- ;;^UTILITY(U,$J,358.3,21589,1,4,0)
- ;;=4^F17.299
- ;;^UTILITY(U,$J,358.3,21589,2)
- ;;=^5003379
- ;;^UTILITY(U,$J,358.3,21590,0)
- ;;=Z51.81^^87^966^17
- ;;^UTILITY(U,$J,358.3,21590,1,0)
+ ;;^UTILITY(U,$J,358.3,20310,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, lumbar region, sqla
+ ;;^UTILITY(U,$J,358.3,20310,1,4,0)
+ ;;=4^M48.46XS
+ ;;^UTILITY(U,$J,358.3,20310,2)
+ ;;=^5012150
+ ;;^UTILITY(U,$J,358.3,20311,0)
+ ;;=M48.47XS^^93^1001^14
+ ;;^UTILITY(U,$J,358.3,20311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21590,1,3,0)
- ;;=3^Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,21590,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,21590,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,21591,0)
- ;;=Z02.79^^87^966^11
- ;;^UTILITY(U,$J,358.3,21591,1,0)
+ ;;^UTILITY(U,$J,358.3,20311,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, lumbosacral region, sqla
+ ;;^UTILITY(U,$J,358.3,20311,1,4,0)
+ ;;=4^M48.47XS
+ ;;^UTILITY(U,$J,358.3,20311,2)
+ ;;=^5012154
+ ;;^UTILITY(U,$J,358.3,20312,0)
+ ;;=M48.41XS^^93^1001^15
+ ;;^UTILITY(U,$J,358.3,20312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21591,1,3,0)
- ;;=3^Issue of Medical Certificate NEC
- ;;^UTILITY(U,$J,358.3,21591,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,21591,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,21592,0)
- ;;=Z76.0^^87^966^12
- ;;^UTILITY(U,$J,358.3,21592,1,0)
+ ;;^UTILITY(U,$J,358.3,20312,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, occipt-atlan-ax region, sqla
+ ;;^UTILITY(U,$J,358.3,20312,1,4,0)
+ ;;=4^M48.41XS
+ ;;^UTILITY(U,$J,358.3,20312,2)
+ ;;=^5012130
+ ;;^UTILITY(U,$J,358.3,20313,0)
+ ;;=M48.48XS^^93^1001^16
+ ;;^UTILITY(U,$J,358.3,20313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21592,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,21592,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,21592,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,21593,0)
- ;;=Z04.9^^87^966^3
- ;;^UTILITY(U,$J,358.3,21593,1,0)
+ ;;^UTILITY(U,$J,358.3,20313,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, sacr/sacrocygl region, sqla
+ ;;^UTILITY(U,$J,358.3,20313,1,4,0)
+ ;;=4^M48.48XS
+ ;;^UTILITY(U,$J,358.3,20313,2)
+ ;;=^5012158
+ ;;^UTILITY(U,$J,358.3,20314,0)
+ ;;=M48.44XS^^93^1001^17
+ ;;^UTILITY(U,$J,358.3,20314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21593,1,3,0)
- ;;=3^Exam & Observation for Unsp Reason
- ;;^UTILITY(U,$J,358.3,21593,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,21593,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,21594,0)
- ;;=Z02.2^^87^966^4
- ;;^UTILITY(U,$J,358.3,21594,1,0)
+ ;;^UTILITY(U,$J,358.3,20314,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, thoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,20314,1,4,0)
+ ;;=4^M48.44XS
+ ;;^UTILITY(U,$J,358.3,20314,2)
+ ;;=^5012142
+ ;;^UTILITY(U,$J,358.3,20315,0)
+ ;;=M48.45XS^^93^1001^18
+ ;;^UTILITY(U,$J,358.3,20315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21594,1,3,0)
- ;;=3^Exam for Admission to Residential Institution
- ;;^UTILITY(U,$J,358.3,21594,1,4,0)
- ;;=4^Z02.2
- ;;^UTILITY(U,$J,358.3,21594,2)
- ;;=^5062635
- ;;^UTILITY(U,$J,358.3,21595,0)
- ;;=Z02.4^^87^966^5
- ;;^UTILITY(U,$J,358.3,21595,1,0)
+ ;;^UTILITY(U,$J,358.3,20315,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, thoracolumbar region, sqla
+ ;;^UTILITY(U,$J,358.3,20315,1,4,0)
+ ;;=4^M48.45XS
+ ;;^UTILITY(U,$J,358.3,20315,2)
+ ;;=^5012146
+ ;;^UTILITY(U,$J,358.3,20316,0)
+ ;;=S12.041S^^93^1001^27
+ ;;^UTILITY(U,$J,358.3,20316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21595,1,3,0)
- ;;=3^Exam for Driving License
- ;;^UTILITY(U,$J,358.3,21595,1,4,0)
- ;;=4^Z02.4
- ;;^UTILITY(U,$J,358.3,21595,2)
- ;;=^5062637
- ;;^UTILITY(U,$J,358.3,21596,0)
- ;;=Z00.5^^87^966^7
- ;;^UTILITY(U,$J,358.3,21596,1,0)
+ ;;^UTILITY(U,$J,358.3,20316,1,3,0)
+ ;;=3^Nondisp lateral mass fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20316,1,4,0)
+ ;;=4^S12.041S
+ ;;^UTILITY(U,$J,358.3,20316,2)
+ ;;=^5021592
+ ;;^UTILITY(U,$J,358.3,20317,0)
+ ;;=S12.031S^^93^1001^28
+ ;;^UTILITY(U,$J,358.3,20317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21596,1,3,0)
- ;;=3^Exam of Potential Donor of Organ/Tissue
- ;;^UTILITY(U,$J,358.3,21596,1,4,0)
- ;;=4^Z00.5
- ;;^UTILITY(U,$J,358.3,21596,2)
- ;;=^5062607
- ;;^UTILITY(U,$J,358.3,21597,0)
- ;;=Z02.3^^87^966^6
- ;;^UTILITY(U,$J,358.3,21597,1,0)
+ ;;^UTILITY(U,$J,358.3,20317,1,3,0)
+ ;;=3^Nondisp posterior arch fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20317,1,4,0)
+ ;;=4^S12.031S
+ ;;^UTILITY(U,$J,358.3,20317,2)
+ ;;=^5021580
+ ;;^UTILITY(U,$J,358.3,20318,0)
+ ;;=S32.051S^^93^1001^37
+ ;;^UTILITY(U,$J,358.3,20318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21597,1,3,0)
- ;;=3^Exam for Recruitment to Armed Forces
- ;;^UTILITY(U,$J,358.3,21597,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,21597,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,21598,0)
- ;;=Z02.89^^87^966^1
- ;;^UTILITY(U,$J,358.3,21598,1,0)
+ ;;^UTILITY(U,$J,358.3,20318,1,3,0)
+ ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20318,1,4,0)
+ ;;=4^S32.051S
+ ;;^UTILITY(U,$J,358.3,20318,2)
+ ;;=^5024502
+ ;;^UTILITY(U,$J,358.3,20319,0)
+ ;;=S12.01XS^^93^1001^38
+ ;;^UTILITY(U,$J,358.3,20319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21598,1,3,0)
- ;;=3^Admin Exam NEC
- ;;^UTILITY(U,$J,358.3,21598,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,21598,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,21599,0)
- ;;=Z00.8^^87^966^8
- ;;^UTILITY(U,$J,358.3,21599,1,0)
+ ;;^UTILITY(U,$J,358.3,20319,1,3,0)
+ ;;=3^Stable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20319,1,4,0)
+ ;;=4^S12.01XS
+ ;;^UTILITY(U,$J,358.3,20319,2)
+ ;;=^5021562
+ ;;^UTILITY(U,$J,358.3,20320,0)
+ ;;=S32.011S^^93^1001^39
+ ;;^UTILITY(U,$J,358.3,20320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21599,1,3,0)
- ;;=3^General Exam NEC
- ;;^UTILITY(U,$J,358.3,21599,1,4,0)
- ;;=4^Z00.8
- ;;^UTILITY(U,$J,358.3,21599,2)
- ;;=^5062611
- ;;^UTILITY(U,$J,358.3,21600,0)
- ;;=Z02.1^^87^966^14
- ;;^UTILITY(U,$J,358.3,21600,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21600,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,21600,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,21600,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,21601,0)
- ;;=Z01.810^^87^966^2
- ;;^UTILITY(U,$J,358.3,21601,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21601,1,3,0)
- ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,20320,1,3,0)
+ ;;=3^Stable burst fracture of first lumbar vertebra, sequela

@@ -1,328 +1,690 @@
-IBDEI0CL ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0CL ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15942,2)
- ;;=^5020857
- ;;^UTILITY(U,$J,358.3,15943,0)
- ;;=S06.331S^^47^708^12
- ;;^UTILITY(U,$J,358.3,15943,1,0)
+ ;;^UTILITY(U,$J,358.3,30820,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,30820,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,30821,0)
+ ;;=Z99.2^^92^1206^147
+ ;;^UTILITY(U,$J,358.3,30821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15943,1,3,0)
- ;;=3^Contus/lac cereb, w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,15943,1,4,0)
- ;;=4^S06.331S
- ;;^UTILITY(U,$J,358.3,15943,2)
- ;;=^5020851
- ;;^UTILITY(U,$J,358.3,15944,0)
- ;;=S06.325S^^47^708^13
- ;;^UTILITY(U,$J,358.3,15944,1,0)
+ ;;^UTILITY(U,$J,358.3,30821,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,30821,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,30821,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,30822,0)
+ ;;=Z99.81^^92^1206^150
+ ;;^UTILITY(U,$J,358.3,30822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15944,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,15944,1,4,0)
- ;;=4^S06.325S
- ;;^UTILITY(U,$J,358.3,15944,2)
- ;;=^5020833
- ;;^UTILITY(U,$J,358.3,15945,0)
- ;;=S06.326S^^47^708^14
- ;;^UTILITY(U,$J,358.3,15945,1,0)
+ ;;^UTILITY(U,$J,358.3,30822,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,30822,1,4,0)
+ ;;=4^Z99.81
+ ;;^UTILITY(U,$J,358.3,30822,2)
+ ;;=^5063760
+ ;;^UTILITY(U,$J,358.3,30823,0)
+ ;;=Z98.1^^92^1206^2
+ ;;^UTILITY(U,$J,358.3,30823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15945,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,15945,1,4,0)
- ;;=4^S06.326S
- ;;^UTILITY(U,$J,358.3,15945,2)
- ;;=^5020836
- ;;^UTILITY(U,$J,358.3,15946,0)
- ;;=S06.323S^^47^708^15
- ;;^UTILITY(U,$J,358.3,15946,1,0)
+ ;;^UTILITY(U,$J,358.3,30823,1,3,0)
+ ;;=3^Arthrodesis Status
+ ;;^UTILITY(U,$J,358.3,30823,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,30823,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,30824,0)
+ ;;=Z94.7^^92^1206^8
+ ;;^UTILITY(U,$J,358.3,30824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15946,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,15946,1,4,0)
- ;;=4^S06.323S
- ;;^UTILITY(U,$J,358.3,15946,2)
- ;;=^5020827
- ;;^UTILITY(U,$J,358.3,15947,0)
- ;;=S06.321S^^47^708^16
- ;;^UTILITY(U,$J,358.3,15947,1,0)
+ ;;^UTILITY(U,$J,358.3,30824,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,30824,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,30824,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,30825,0)
+ ;;=Z83.511^^92^1206^23
+ ;;^UTILITY(U,$J,358.3,30825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15947,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,15947,1,4,0)
- ;;=4^S06.321S
- ;;^UTILITY(U,$J,358.3,15947,2)
- ;;=^5020821
- ;;^UTILITY(U,$J,358.3,15948,0)
- ;;=S06.322S^^47^708^17
- ;;^UTILITY(U,$J,358.3,15948,1,0)
+ ;;^UTILITY(U,$J,358.3,30825,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,30825,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,30825,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,30826,0)
+ ;;=Z80.52^^92^1206^26
+ ;;^UTILITY(U,$J,358.3,30826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15948,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,15948,1,4,0)
- ;;=4^S06.322S
- ;;^UTILITY(U,$J,358.3,15948,2)
- ;;=^5020824
- ;;^UTILITY(U,$J,358.3,15949,0)
- ;;=S06.324S^^47^708^18
- ;;^UTILITY(U,$J,358.3,15949,1,0)
+ ;;^UTILITY(U,$J,358.3,30826,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,30826,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,30826,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,30827,0)
+ ;;=Z80.51^^92^1206^29
+ ;;^UTILITY(U,$J,358.3,30827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15949,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,15949,1,4,0)
- ;;=4^S06.324S
- ;;^UTILITY(U,$J,358.3,15949,2)
- ;;=^5020830
- ;;^UTILITY(U,$J,358.3,15950,0)
- ;;=S06.329S^^47^708^19
- ;;^UTILITY(U,$J,358.3,15950,1,0)
+ ;;^UTILITY(U,$J,358.3,30827,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,30827,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,30827,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,30828,0)
+ ;;=Z83.41^^92^1206^36
+ ;;^UTILITY(U,$J,358.3,30828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15950,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,15950,1,4,0)
- ;;=4^S06.329S
- ;;^UTILITY(U,$J,358.3,15950,2)
- ;;=^5020845
- ;;^UTILITY(U,$J,358.3,15951,0)
- ;;=S06.320S^^47^708^20
- ;;^UTILITY(U,$J,358.3,15951,1,0)
+ ;;^UTILITY(U,$J,358.3,30828,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,30828,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,30828,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,30829,0)
+ ;;=Z81.8^^92^1206^43
+ ;;^UTILITY(U,$J,358.3,30829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15951,1,3,0)
- ;;=3^Contus/lac left cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,15951,1,4,0)
- ;;=4^S06.320S
- ;;^UTILITY(U,$J,358.3,15951,2)
- ;;=^5020818
- ;;^UTILITY(U,$J,358.3,15952,0)
- ;;=S06.315S^^47^708^21
- ;;^UTILITY(U,$J,358.3,15952,1,0)
+ ;;^UTILITY(U,$J,358.3,30829,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,30829,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,30829,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,30830,0)
+ ;;=Z81.4^^92^1206^44
+ ;;^UTILITY(U,$J,358.3,30830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15952,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,15952,1,4,0)
- ;;=4^S06.315S
- ;;^UTILITY(U,$J,358.3,15952,2)
- ;;=^5020803
- ;;^UTILITY(U,$J,358.3,15953,0)
- ;;=S06.316S^^47^708^22
- ;;^UTILITY(U,$J,358.3,15953,1,0)
+ ;;^UTILITY(U,$J,358.3,30830,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,30830,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,30830,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,30831,0)
+ ;;=Z98.0^^92^1206^55
+ ;;^UTILITY(U,$J,358.3,30831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15953,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,15953,1,4,0)
- ;;=4^S06.316S
- ;;^UTILITY(U,$J,358.3,15953,2)
- ;;=^5020806
- ;;^UTILITY(U,$J,358.3,15954,0)
- ;;=S06.313S^^47^708^23
- ;;^UTILITY(U,$J,358.3,15954,1,0)
+ ;;^UTILITY(U,$J,358.3,30831,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,30831,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,30831,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,30832,0)
+ ;;=Z91.128^^92^1206^54
+ ;;^UTILITY(U,$J,358.3,30832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15954,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,15954,1,4,0)
- ;;=4^S06.313S
- ;;^UTILITY(U,$J,358.3,15954,2)
- ;;=^5020797
- ;;^UTILITY(U,$J,358.3,15955,0)
- ;;=S06.311S^^47^708^24
- ;;^UTILITY(U,$J,358.3,15955,1,0)
+ ;;^UTILITY(U,$J,358.3,30832,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,30832,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,30832,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,30833,0)
+ ;;=Z77.120^^92^1206^60
+ ;;^UTILITY(U,$J,358.3,30833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15955,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,15955,1,4,0)
- ;;=4^S06.311S
- ;;^UTILITY(U,$J,358.3,15955,2)
- ;;=^5020791
- ;;^UTILITY(U,$J,358.3,15956,0)
- ;;=S06.312S^^47^708^25
- ;;^UTILITY(U,$J,358.3,15956,1,0)
+ ;;^UTILITY(U,$J,358.3,30833,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,30833,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,30833,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,30834,0)
+ ;;=Z86.74^^92^1206^104
+ ;;^UTILITY(U,$J,358.3,30834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15956,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,15956,1,4,0)
- ;;=4^S06.312S
- ;;^UTILITY(U,$J,358.3,15956,2)
- ;;=^5020794
- ;;^UTILITY(U,$J,358.3,15957,0)
- ;;=S06.314S^^47^708^26
- ;;^UTILITY(U,$J,358.3,15957,1,0)
+ ;;^UTILITY(U,$J,358.3,30834,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,30834,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,30834,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,30835,0)
+ ;;=Z86.718^^92^1206^111
+ ;;^UTILITY(U,$J,358.3,30835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15957,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,15957,1,4,0)
- ;;=4^S06.314S
- ;;^UTILITY(U,$J,358.3,15957,2)
- ;;=^5020800
- ;;^UTILITY(U,$J,358.3,15958,0)
- ;;=S06.319S^^47^708^27
- ;;^UTILITY(U,$J,358.3,15958,1,0)
+ ;;^UTILITY(U,$J,358.3,30835,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,30835,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,30835,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,30836,0)
+ ;;=Z96.1^^92^1206^133
+ ;;^UTILITY(U,$J,358.3,30836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15958,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,15958,1,4,0)
- ;;=4^S06.319S
- ;;^UTILITY(U,$J,358.3,15958,2)
- ;;=^5020815
- ;;^UTILITY(U,$J,358.3,15959,0)
- ;;=S06.310S^^47^708^28
- ;;^UTILITY(U,$J,358.3,15959,1,0)
+ ;;^UTILITY(U,$J,358.3,30836,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,30836,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,30836,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,30837,0)
+ ;;=Z96.612^^92^1206^138
+ ;;^UTILITY(U,$J,358.3,30837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15959,1,3,0)
- ;;=3^Contus/lac right cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,15959,1,4,0)
- ;;=4^S06.310S
- ;;^UTILITY(U,$J,358.3,15959,2)
- ;;=^5020788
- ;;^UTILITY(U,$J,358.3,15960,0)
- ;;=S06.385S^^47^708^29
- ;;^UTILITY(U,$J,358.3,15960,1,0)
+ ;;^UTILITY(U,$J,358.3,30837,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,30837,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,30837,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,30838,0)
+ ;;=Z96.611^^92^1206^143
+ ;;^UTILITY(U,$J,358.3,30838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15960,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,15960,1,4,0)
- ;;=4^S06.385S
- ;;^UTILITY(U,$J,358.3,15960,2)
- ;;=^5021013
- ;;^UTILITY(U,$J,358.3,15961,0)
- ;;=S06.386S^^47^708^30
- ;;^UTILITY(U,$J,358.3,15961,1,0)
+ ;;^UTILITY(U,$J,358.3,30838,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,30838,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,30838,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,30839,0)
+ ;;=Z93.0^^92^1206^151
+ ;;^UTILITY(U,$J,358.3,30839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15961,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,15961,1,4,0)
- ;;=4^S06.386S
- ;;^UTILITY(U,$J,358.3,15961,2)
- ;;=^5021016
- ;;^UTILITY(U,$J,358.3,15962,0)
- ;;=S06.383S^^47^708^31
- ;;^UTILITY(U,$J,358.3,15962,1,0)
+ ;;^UTILITY(U,$J,358.3,30839,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,30839,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,30839,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,30840,0)
+ ;;=Z99.3^^92^1206^156
+ ;;^UTILITY(U,$J,358.3,30840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15962,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,15962,1,4,0)
- ;;=4^S06.383S
- ;;^UTILITY(U,$J,358.3,15962,2)
- ;;=^5021007
- ;;^UTILITY(U,$J,358.3,15963,0)
- ;;=S06.381S^^47^708^32
- ;;^UTILITY(U,$J,358.3,15963,1,0)
+ ;;^UTILITY(U,$J,358.3,30840,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,30840,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,30840,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,30841,0)
+ ;;=Z83.42^^92^1206^21
+ ;;^UTILITY(U,$J,358.3,30841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15963,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,15963,1,4,0)
- ;;=4^S06.381S
- ;;^UTILITY(U,$J,358.3,15963,2)
- ;;=^5021001
- ;;^UTILITY(U,$J,358.3,15964,0)
- ;;=S06.382S^^47^708^33
- ;;^UTILITY(U,$J,358.3,15964,1,0)
+ ;;^UTILITY(U,$J,358.3,30841,1,3,0)
+ ;;=3^Family Hx of Familial Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,30841,1,4,0)
+ ;;=4^Z83.42
+ ;;^UTILITY(U,$J,358.3,30841,2)
+ ;;=^8132985
+ ;;^UTILITY(U,$J,358.3,30842,0)
+ ;;=Z98.890^^92^1206^114
+ ;;^UTILITY(U,$J,358.3,30842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15964,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,15964,1,4,0)
- ;;=4^S06.382S
- ;;^UTILITY(U,$J,358.3,15964,2)
- ;;=^5021004
- ;;^UTILITY(U,$J,358.3,15965,0)
- ;;=S06.384S^^47^708^34
- ;;^UTILITY(U,$J,358.3,15965,1,0)
+ ;;^UTILITY(U,$J,358.3,30842,1,3,0)
+ ;;=3^Postprocedural States/HX of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,30842,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,30842,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,30843,0)
+ ;;=Z95.1^^92^1206^115
+ ;;^UTILITY(U,$J,358.3,30843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15965,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,15965,1,4,0)
- ;;=4^S06.384S
- ;;^UTILITY(U,$J,358.3,15965,2)
- ;;=^5021010
- ;;^UTILITY(U,$J,358.3,15966,0)
- ;;=S06.389S^^47^708^35
- ;;^UTILITY(U,$J,358.3,15966,1,0)
+ ;;^UTILITY(U,$J,358.3,30843,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass
+ ;;^UTILITY(U,$J,358.3,30843,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,30843,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,30844,0)
+ ;;=Z98.2^^92^1206^127
+ ;;^UTILITY(U,$J,358.3,30844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15966,1,3,0)
- ;;=3^Contus/lac/hem brnst w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,15966,1,4,0)
- ;;=4^S06.389S
- ;;^UTILITY(U,$J,358.3,15966,2)
- ;;=^5021025
- ;;^UTILITY(U,$J,358.3,15967,0)
- ;;=S06.380S^^47^708^36
- ;;^UTILITY(U,$J,358.3,15967,1,0)
+ ;;^UTILITY(U,$J,358.3,30844,1,3,0)
+ ;;=3^Presence of Cerebrospinal Fluid Drainage Device
+ ;;^UTILITY(U,$J,358.3,30844,1,4,0)
+ ;;=4^Z98.2
+ ;;^UTILITY(U,$J,358.3,30844,2)
+ ;;=^5063735
+ ;;^UTILITY(U,$J,358.3,30845,0)
+ ;;=Z97.5^^92^1206^128
+ ;;^UTILITY(U,$J,358.3,30845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15967,1,3,0)
- ;;=3^Contus/lac/hem brnst w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,15967,1,4,0)
- ;;=4^S06.380S
- ;;^UTILITY(U,$J,358.3,15967,2)
- ;;=^5020998
- ;;^UTILITY(U,$J,358.3,15968,0)
- ;;=S06.375S^^47^708^37
- ;;^UTILITY(U,$J,358.3,15968,1,0)
+ ;;^UTILITY(U,$J,358.3,30845,1,3,0)
+ ;;=3^Presence of Contraceptive (Intrauterine) Device
+ ;;^UTILITY(U,$J,358.3,30845,1,4,0)
+ ;;=4^Z97.5
+ ;;^UTILITY(U,$J,358.3,30845,2)
+ ;;=^5063731
+ ;;^UTILITY(U,$J,358.3,30846,0)
+ ;;=Z95.5^^92^1206^129
+ ;;^UTILITY(U,$J,358.3,30846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15968,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,15968,1,4,0)
- ;;=4^S06.375S
- ;;^UTILITY(U,$J,358.3,15968,2)
- ;;=^5020983
- ;;^UTILITY(U,$J,358.3,15969,0)
- ;;=S06.376S^^47^708^38
- ;;^UTILITY(U,$J,358.3,15969,1,0)
+ ;;^UTILITY(U,$J,358.3,30846,1,3,0)
+ ;;=3^Presence of Coronary Angioplasty Implant/Graft
+ ;;^UTILITY(U,$J,358.3,30846,1,4,0)
+ ;;=4^Z95.5
+ ;;^UTILITY(U,$J,358.3,30846,2)
+ ;;=^5063673
+ ;;^UTILITY(U,$J,358.3,30847,0)
+ ;;=Z97.2^^92^1206^130
+ ;;^UTILITY(U,$J,358.3,30847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15969,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,15969,1,4,0)
- ;;=4^S06.376S
- ;;^UTILITY(U,$J,358.3,15969,2)
- ;;=^5020986
- ;;^UTILITY(U,$J,358.3,15970,0)
- ;;=S06.373S^^47^708^39
- ;;^UTILITY(U,$J,358.3,15970,1,0)
+ ;;^UTILITY(U,$J,358.3,30847,1,3,0)
+ ;;=3^Presence of Dental Prosthetic Device
+ ;;^UTILITY(U,$J,358.3,30847,1,4,0)
+ ;;=4^Z97.2
+ ;;^UTILITY(U,$J,358.3,30847,2)
+ ;;=^5063728
+ ;;^UTILITY(U,$J,358.3,30848,0)
+ ;;=Z97.4^^92^1206^131
+ ;;^UTILITY(U,$J,358.3,30848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15970,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,15970,1,4,0)
- ;;=4^S06.373S
- ;;^UTILITY(U,$J,358.3,15970,2)
- ;;=^5020977
- ;;^UTILITY(U,$J,358.3,15971,0)
- ;;=S06.371S^^47^708^40
- ;;^UTILITY(U,$J,358.3,15971,1,0)
+ ;;^UTILITY(U,$J,358.3,30848,1,3,0)
+ ;;=3^Presence of External Hearing Aid
+ ;;^UTILITY(U,$J,358.3,30848,1,4,0)
+ ;;=4^Z97.4
+ ;;^UTILITY(U,$J,358.3,30848,2)
+ ;;=^5063730
+ ;;^UTILITY(U,$J,358.3,30849,0)
+ ;;=Z96.622^^92^1206^117
+ ;;^UTILITY(U,$J,358.3,30849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15971,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,15971,1,4,0)
- ;;=4^S06.371S
- ;;^UTILITY(U,$J,358.3,15971,2)
- ;;=^5020971
- ;;^UTILITY(U,$J,358.3,15972,0)
- ;;=S06.372S^^47^708^41
- ;;^UTILITY(U,$J,358.3,15972,1,0)
+ ;;^UTILITY(U,$J,358.3,30849,1,3,0)
+ ;;=3^Presence of Artificial Elbow Joint,Left
+ ;;^UTILITY(U,$J,358.3,30849,1,4,0)
+ ;;=4^Z96.622
+ ;;^UTILITY(U,$J,358.3,30849,2)
+ ;;=^5063696
+ ;;^UTILITY(U,$J,358.3,30850,0)
+ ;;=Z96.632^^92^1206^122
+ ;;^UTILITY(U,$J,358.3,30850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15972,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,15972,1,4,0)
- ;;=4^S06.372S
- ;;^UTILITY(U,$J,358.3,15972,2)
- ;;=^5020974
- ;;^UTILITY(U,$J,358.3,15973,0)
- ;;=S06.374S^^47^708^42
- ;;^UTILITY(U,$J,358.3,15973,1,0)
+ ;;^UTILITY(U,$J,358.3,30850,1,3,0)
+ ;;=3^Presence of Artificial Wrist Joint,Left
+ ;;^UTILITY(U,$J,358.3,30850,1,4,0)
+ ;;=4^Z96.632
+ ;;^UTILITY(U,$J,358.3,30850,2)
+ ;;=^5063699
+ ;;^UTILITY(U,$J,358.3,30851,0)
+ ;;=Z96.621^^92^1206^118
+ ;;^UTILITY(U,$J,358.3,30851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15973,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,15973,1,4,0)
- ;;=4^S06.374S
- ;;^UTILITY(U,$J,358.3,15973,2)
- ;;=^5020980
- ;;^UTILITY(U,$J,358.3,15974,0)
- ;;=S06.377S^^47^708^44
- ;;^UTILITY(U,$J,358.3,15974,1,0)
+ ;;^UTILITY(U,$J,358.3,30851,1,3,0)
+ ;;=3^Presence of Artificial Elbow Joint,Right
+ ;;^UTILITY(U,$J,358.3,30851,1,4,0)
+ ;;=4^Z96.621
+ ;;^UTILITY(U,$J,358.3,30851,2)
+ ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,30852,0)
+ ;;=Z96.631^^92^1206^123
+ ;;^UTILITY(U,$J,358.3,30852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15974,1,3,0)
- ;;=3^Contus/lac/hem crblm w LOC w dth d/t brain inj bf consc,sqla
- ;;^UTILITY(U,$J,358.3,15974,1,4,0)
- ;;=4^S06.377S
- ;;^UTILITY(U,$J,358.3,15974,2)
- ;;=^5020989
- ;;^UTILITY(U,$J,358.3,15975,0)
- ;;=S06.378S^^47^708^45
+ ;;^UTILITY(U,$J,358.3,30852,1,3,0)
+ ;;=3^Presence of Artificial Wrist Joint,Right
+ ;;^UTILITY(U,$J,358.3,30852,1,4,0)
+ ;;=4^Z96.631
+ ;;^UTILITY(U,$J,358.3,30852,2)
+ ;;=^5063698
+ ;;^UTILITY(U,$J,358.3,30853,0)
+ ;;=Z93.6^^92^1206^154
+ ;;^UTILITY(U,$J,358.3,30853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30853,1,3,0)
+ ;;=3^Urostomy Status
+ ;;^UTILITY(U,$J,358.3,30853,1,4,0)
+ ;;=4^Z93.6
+ ;;^UTILITY(U,$J,358.3,30853,2)
+ ;;=^5063651
+ ;;^UTILITY(U,$J,358.3,30854,0)
+ ;;=Z95.820^^92^1206^67
+ ;;^UTILITY(U,$J,358.3,30854,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30854,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status w/ Graft
+ ;;^UTILITY(U,$J,358.3,30854,1,4,0)
+ ;;=4^Z95.820
+ ;;^UTILITY(U,$J,358.3,30854,2)
+ ;;=^5063678
+ ;;^UTILITY(U,$J,358.3,30855,0)
+ ;;=Z95.0^^92^1206^126
+ ;;^UTILITY(U,$J,358.3,30855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30855,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,30855,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,30855,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,30856,0)
+ ;;=Z95.810^^92^1206^124
+ ;;^UTILITY(U,$J,358.3,30856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30856,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Debribrillator
+ ;;^UTILITY(U,$J,358.3,30856,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,30856,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,30857,0)
+ ;;=A15.0^^92^1207^85
+ ;;^UTILITY(U,$J,358.3,30857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30857,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,30857,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,30857,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,30858,0)
+ ;;=B20.^^92^1207^32
+ ;;^UTILITY(U,$J,358.3,30858,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30858,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,30858,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,30858,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,30859,0)
+ ;;=B02.9^^92^1207^94
+ ;;^UTILITY(U,$J,358.3,30859,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30859,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,30859,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,30859,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,30860,0)
+ ;;=A60.9^^92^1207^2
+ ;;^UTILITY(U,$J,358.3,30860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30860,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,30860,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,30860,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,30861,0)
+ ;;=A60.04^^92^1207^35
+ ;;^UTILITY(U,$J,358.3,30861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30861,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,30861,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,30861,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,30862,0)
+ ;;=A60.01^^92^1207^33
+ ;;^UTILITY(U,$J,358.3,30862,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30862,1,3,0)
+ ;;=3^Herpesviral Infection of Penis
+ ;;^UTILITY(U,$J,358.3,30862,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,30862,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,30863,0)
+ ;;=B00.1^^92^1207^34
+ ;;^UTILITY(U,$J,358.3,30863,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30863,1,3,0)
+ ;;=3^Herpesviral Vesicular Dermatitis
+ ;;^UTILITY(U,$J,358.3,30863,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,30863,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,30864,0)
+ ;;=B97.89^^92^1207^90
+ ;;^UTILITY(U,$J,358.3,30864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30864,1,3,0)
+ ;;=3^Viral Agent Cause of Disease
+ ;;^UTILITY(U,$J,358.3,30864,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,30864,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,30865,0)
+ ;;=B97.10^^92^1207^22
+ ;;^UTILITY(U,$J,358.3,30865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30865,1,3,0)
+ ;;=3^Enterovirus Cause of Disease
+ ;;^UTILITY(U,$J,358.3,30865,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,30865,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,30866,0)
+ ;;=B34.9^^92^1207^91
+ ;;^UTILITY(U,$J,358.3,30866,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30866,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,30866,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,30866,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,30867,0)
+ ;;=A69.20^^92^1207^51
+ ;;^UTILITY(U,$J,358.3,30867,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30867,1,3,0)
+ ;;=3^Lyme Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,30867,1,4,0)
+ ;;=4^A69.20
+ ;;^UTILITY(U,$J,358.3,30867,2)
+ ;;=^5000375
+ ;;^UTILITY(U,$J,358.3,30868,0)
+ ;;=A69.22^^92^1207^53
+ ;;^UTILITY(U,$J,358.3,30868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30868,1,3,0)
+ ;;=3^Neurologic Disorders d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,30868,1,4,0)
+ ;;=4^A69.22
+ ;;^UTILITY(U,$J,358.3,30868,2)
+ ;;=^5000377
+ ;;^UTILITY(U,$J,358.3,30869,0)
+ ;;=A69.21^^92^1207^52
+ ;;^UTILITY(U,$J,358.3,30869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30869,1,3,0)
+ ;;=3^Meningitis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,30869,1,4,0)
+ ;;=4^A69.21
+ ;;^UTILITY(U,$J,358.3,30869,2)
+ ;;=^5000376
+ ;;^UTILITY(U,$J,358.3,30870,0)
+ ;;=A69.29^^92^1207^19
+ ;;^UTILITY(U,$J,358.3,30870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30870,1,3,0)
+ ;;=3^Conditions d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,30870,1,4,0)
+ ;;=4^A69.29
+ ;;^UTILITY(U,$J,358.3,30870,2)
+ ;;=^5000379
+ ;;^UTILITY(U,$J,358.3,30871,0)
+ ;;=A69.23^^92^1207^5
+ ;;^UTILITY(U,$J,358.3,30871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30871,1,3,0)
+ ;;=3^Arthritis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,30871,1,4,0)
+ ;;=4^A69.23
+ ;;^UTILITY(U,$J,358.3,30871,2)
+ ;;=^5000378
+ ;;^UTILITY(U,$J,358.3,30872,0)
+ ;;=A51.0^^92^1207^30
+ ;;^UTILITY(U,$J,358.3,30872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30872,1,3,0)
+ ;;=3^Genital Syphilis,Primary
+ ;;^UTILITY(U,$J,358.3,30872,1,4,0)
+ ;;=4^A51.0
+ ;;^UTILITY(U,$J,358.3,30872,2)
+ ;;=^5000272
+ ;;^UTILITY(U,$J,358.3,30873,0)
+ ;;=A52.3^^92^1207^55
+ ;;^UTILITY(U,$J,358.3,30873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30873,1,3,0)
+ ;;=3^Neurosyphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,30873,1,4,0)
+ ;;=4^A52.3
+ ;;^UTILITY(U,$J,358.3,30873,2)
+ ;;=^5000298
+ ;;^UTILITY(U,$J,358.3,30874,0)
+ ;;=A52.10^^92^1207^54
+ ;;^UTILITY(U,$J,358.3,30874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30874,1,3,0)
+ ;;=3^Neurosyphilis Symptomatic,Unspec
+ ;;^UTILITY(U,$J,358.3,30874,1,4,0)
+ ;;=4^A52.10
+ ;;^UTILITY(U,$J,358.3,30874,2)
+ ;;=^5000291
+ ;;^UTILITY(U,$J,358.3,30875,0)
+ ;;=A52.9^^92^1207^50
+ ;;^UTILITY(U,$J,358.3,30875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30875,1,3,0)
+ ;;=3^Late Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,30875,1,4,0)
+ ;;=4^A52.9
+ ;;^UTILITY(U,$J,358.3,30875,2)
+ ;;=^5000308
+ ;;^UTILITY(U,$J,358.3,30876,0)
+ ;;=A53.9^^92^1207^80
+ ;;^UTILITY(U,$J,358.3,30876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30876,1,3,0)
+ ;;=3^Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,30876,1,4,0)
+ ;;=4^A53.9
+ ;;^UTILITY(U,$J,358.3,30876,2)
+ ;;=^5000310
+ ;;^UTILITY(U,$J,358.3,30877,0)
+ ;;=B37.3^^92^1207^18
+ ;;^UTILITY(U,$J,358.3,30877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30877,1,3,0)
+ ;;=3^Candidiasis Vulva/Vagina
+ ;;^UTILITY(U,$J,358.3,30877,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,30877,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,30878,0)
+ ;;=B58.9^^92^1207^83
+ ;;^UTILITY(U,$J,358.3,30878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30878,1,3,0)
+ ;;=3^Toxoplasmosis,Unspec
+ ;;^UTILITY(U,$J,358.3,30878,1,4,0)
+ ;;=4^B58.9
+ ;;^UTILITY(U,$J,358.3,30878,2)
+ ;;=^5000733
+ ;;^UTILITY(U,$J,358.3,30879,0)
+ ;;=A59.01^^92^1207^84
+ ;;^UTILITY(U,$J,358.3,30879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30879,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,30879,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,30879,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,30880,0)
+ ;;=B59.^^92^1207^67
+ ;;^UTILITY(U,$J,358.3,30880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30880,1,3,0)
+ ;;=3^Pneumocystosis
+ ;;^UTILITY(U,$J,358.3,30880,1,4,0)
+ ;;=4^B59.
+ ;;^UTILITY(U,$J,358.3,30880,2)
+ ;;=^5000734
+ ;;^UTILITY(U,$J,358.3,30881,0)
+ ;;=H83.09^^92^1207^49
+ ;;^UTILITY(U,$J,358.3,30881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30881,1,3,0)
+ ;;=3^Labyrinthitis,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,30881,1,4,0)
+ ;;=4^H83.09
+ ;;^UTILITY(U,$J,358.3,30881,2)
+ ;;=^5006897
+ ;;^UTILITY(U,$J,358.3,30882,0)
+ ;;=H83.01^^92^1207^48
+ ;;^UTILITY(U,$J,358.3,30882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30882,1,3,0)
+ ;;=3^Labyrinthitis,Right Ear
+ ;;^UTILITY(U,$J,358.3,30882,1,4,0)
+ ;;=4^H83.01
+ ;;^UTILITY(U,$J,358.3,30882,2)
+ ;;=^5006894
+ ;;^UTILITY(U,$J,358.3,30883,0)
+ ;;=H83.03^^92^1207^46
+ ;;^UTILITY(U,$J,358.3,30883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30883,1,3,0)
+ ;;=3^Labyrinthitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,30883,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,30883,2)
+ ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,30884,0)
+ ;;=H83.02^^92^1207^47
+ ;;^UTILITY(U,$J,358.3,30884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30884,1,3,0)
+ ;;=3^Labyrinthitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,30884,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,30884,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,30885,0)
+ ;;=J01.91^^92^1207^77
+ ;;^UTILITY(U,$J,358.3,30885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30885,1,3,0)
+ ;;=3^Sinusitis,Acute Recurrent Unspec
+ ;;^UTILITY(U,$J,358.3,30885,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,30885,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,30886,0)
+ ;;=J03.90^^92^1207^82
+ ;;^UTILITY(U,$J,358.3,30886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30886,1,3,0)
+ ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,30886,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,30886,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,30887,0)
+ ;;=J01.90^^92^1207^78
+ ;;^UTILITY(U,$J,358.3,30887,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30887,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,30887,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,30887,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,30888,0)
+ ;;=J20.1^^92^1207^10
+ ;;^UTILITY(U,$J,358.3,30888,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30888,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,30888,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,30888,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,30889,0)
+ ;;=J20.0^^92^1207^11

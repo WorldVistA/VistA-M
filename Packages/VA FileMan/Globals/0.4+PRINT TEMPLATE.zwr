@@ -1,7 +1,7 @@
 OSEHRA ZGO Export: PRINT TEMPLATE
 ZWR
-^DIPT(0)="PRINT TEMPLATE^.4I^1575^1276"
-^DIPT(.01,0)="CAPTIONED^^^^^^3200122"
+^DIPT(0)="PRINT TEMPLATE^.4I^1576^1277"
+^DIPT(.01,0)="CAPTIONED^"
 ^DIPT(.01,"F",1)="S DIC=DCC,DA=D0 D EN^DIQ"
 ^DIPT(.02,0)="FILE SECURITY CODES^^^1"
 ^DIPT(.02,"F",1)=".01;L20~0;R13~31~33~35~34~32~21~20"
@@ -34,10 +34,9 @@ ZWR
 ^DIPT(2,0)="XUMENULIST^2840701^^19^^^2910801"
 ^DIPT(2,"F",1)="1;L30~.01~4~3.5,.01~D DISP^XQ2;"""";Z;""D DISP^XQ2""~""-----------------------------------------------------------------------""~"""";S2~"
 ^DIPT(2,"H")="Menu list by display terms [MENULIST]"
-^DIPT(3,0)="XUSEC LIST^3161006.062^@^3.081^^@^3170428"
-^DIPT(3,"F",2)="0;""Sign-on time""~99;R9~.01;L17~S X=$I W X K DIP;L9;Z;""$I""~10~100;L40~101;""LOA""~18;L28~"
-^DIPT(3,"H")="USERS WHO HAVE SIGNED ONTO THE COMPUTER"
-^DIPT(3,"HLANG")=1
+^DIPT(3,0)="XUSEC LIST^3191023.1457^@^3.081^^@^3200129"
+^DIPT(3,"F",2)="0;""Sign-on time""~99;R9~.01;L17~S X=$I W X K DIP;L9;Z;""$I""~10~100;L40~101;""LOA""~18;L28~102;L10~103;L70~"
+^DIPT(3,"H")="SIGN-ON LOG List"
 ^DIPT(4,0)="XQHNEW/REVISED FRAMES^2851206^^9.2^^^2940822"
 ^DIPT(4,"F",1)="1;"""";S1~S DIP(1)=$S($D(^DIC(9.2,D0,0)):^(0),1:"""") S X=""[""_$P(DIP(1),U,1)_""]"" W X K DIP;"""";C58;Z;""""[""_NAME_""]""""~8;C5;""LAST UPDATED""~"
 ^DIPT(4,"F",2)="S DIP(1)=$S($D(^DIC(9.2,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,3),X=$P(X,""."",1) S Y=X D DT K DIP;C25;""CREATED"";L12;Z;""DATE(DATE ENTERED)""~6;C43~"
@@ -159,7 +158,7 @@ ZWR
 ^DIPT(26,"F",2)="19.5,X DXS(1,9.2) S DIP(101)=$S($D(^DIC(19,D0,0)):^(0),1:"""") S X=$P(DIP(101),U,2) S D0=I(0,0) S D1=I(1,0) W X K DIP;""MENU TEXT"";N;L25;Z;"".01:MENU TEXT""~"
 ^DIPT(26,"F",200)=".01;L25~"
 ^DIPT(26,"H")="DELEGATED OPTIONS BY USER"
-^DIPT(27,0)="XUSERINQ^3070803.1149^^200^^@^3200129"
+^DIPT(27,0)="XUSERINQ^3070803.1149^^200^^@^3200330"
 ^DIPT(27,"DXS",1,9.2)="S DIP(1)=$S($D(^VA(200,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,1)_""  (#""_$S('$D(D0):"""",D0<0:"""",1:D0)_"")"""
 ^DIPT(27,"DXS",2,9.2)="S DIP(1)=$S($D(^VA(200,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,11),DIP(2)=$G(X) S X=1,X1=DIP(2) S X=$$FMTE^XLFDT(X1,X) S X=X,DIP(3)=$G(X) S X=""TD"""
 ^DIPT(27,"DXS",3,9.2)="S DIP(2)=$C(59)_$P($G(^DD(200,7,0)),U,3),DIP(1)=$S($D(^VA(200,D0,0)):^(0),1:"""") S X=$P($P(DIP(2),$C(59)_$P(DIP(1),U,7)_"":"",2),$C(59)),DIP(3)=$G(X) S X=""DIS"""
@@ -5277,7 +5276,7 @@ ZWR
 ^DIPT(600,"%D",1,0)="Used to generate the Standard Reports Print option."
 ^DIPT(600,"F",1)="0~.01~""Report Text:"";C1~200,.01;C5;""""~""Impression:"";C1~300,.01;C5;""""~"
 ^DIPT(600,"H")="Standard Reports List"
-^DIPT(601,0)="RA IMAGE LOC LIST^3170616.152^^79.1^^^3170616"
+^DIPT(601,0)="RA IMAGE LOC LIST^3190816.1238^^79.1^^^3191121"
 ^DIPT(601,"%D",0)="^^1^1^2940608^"
 ^DIPT(601,"%D",1,0)="Generates a list of locations from the Imaging Location file."
 ^DIPT(601,"F",1)="""Location:"";C18~.01;C28;""""~""Division:"";C18~25;C28;""""~""Inactivation Date:"";C18~19;C37;""""~""Imaging Type:"";C14~6;C28;""""~""Credit Method:"";C13~21;C28;""""~"
@@ -5293,6 +5292,7 @@ ZWR
 ^DIPT(601,"F",11)="""------------------------------------------"";C5~100,.01;"""";C10~"""";S2~""Default CPT Modifiers for this location:"";C5~"
 ^DIPT(601,"F",12)="""----------------------------------------"";C5~135,.01;"""";C10~135,W $P($$MOD^ICPTMOD(X,""I""),""^"",3);"""";Z;""W $P($$MOD^ICPTMOD(X,""I""),""^"",3)""~"""";S2~"
 ^DIPT(601,"F",13)="""'Stat' Alert Recipients For This Location:"";C5~""Urgent Request Alerts?: "";C50~20;"""";C75~""------------------------------------------"";C5~150,.01;"""";C10~"
+^DIPT(601,"F",14)=""""";S2~""Community Care Consults for this location:"";C5~""------------------------------------------"";C5~120,.01;"""";C10~"
 ^DIPT(601,"H")="Imaging Location List"
 ^DIPT(602,0)="RA IMAGE DIV LIST^3001017.15^^79^^^3010319"
 ^DIPT(602,"%D",0)="^^1^1^2960730^^"
@@ -14340,13 +14340,13 @@ ZWR
 ^DIPT(1420,"F",11)="2,S DIP(1)=$S($D(^RMPR(664,D0,1,D1,0)):^(0),1:"""") S X=""     Unit of Issue: ""_$P($G(^PRCD(420.5,+$P(DIP(1),U,5),0)),U) W X K DIP;X;Z;""""     Unit of Issue: ""_UNIT OF""~"
 ^DIPT(1420,"F",12)="2,14,.01;S1;X;m;w~"
 ^DIPT(1420,"H")="Prosthetics Display"
-^DIPT(1421,0)="XTPM COMPLETE PATCH HISTORY^3070615.1018^@^9.9^^@^3170322"
+^DIPT(1421,0)="XTPM COMPLETE PATCH HISTORY^3070615.1018^@^9.9^^@^3200325"
 ^DIPT(1421,"DCL","9.9^.01")="!"
 ^DIPT(1421,"F",1)=""
 ^DIPT(1421,"F",2)="S DIP(1)=$S($D(^XPD(9.9,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,9) S:X X=$E(X,4,5)_""/""_$E(X,6,7)_""/""_$E(X,2,3) W X K DIP;L8;""COMPLIANCE DATE"";Z;""NUMDATE(COMPLIANCE DATE)""~"
 ^DIPT(1421,"F",3)="D INSDATE^XTPMKPCF;""DATE INSTALLED"";L8;Z;""D INSDATE^XTPMKPCF""~.01;L15~6;L40;""SUBJECT""~"
 ^DIPT(1421,"H")="COMPLETE PATCH INSTALLATION HISTORY"
-^DIPT(1422,0)="XTPM UNINSTALLED BY COMPLIANCE^3050721.093^@^9.9^^@^3200122"
+^DIPT(1422,0)="XTPM UNINSTALLED BY COMPLIANCE^3050721.093^@^9.9^^@^3200410"
 ^DIPT(1422,"DCL","9.9^.01")="!"
 ^DIPT(1422,"F",1)=""
 ^DIPT(1422,"F",2)="S DIP(1)=$S($D(^XPD(9.9,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,9) S:X X=$E(X,4,5)_""/""_$E(X,6,7)_""/""_$E(X,2,3) W X K DIP;""COMPLIANCE DATE"";L8;Z;""NUMDATE(COMPLIANCE DATE)""~"
@@ -16200,6 +16200,11 @@ ZWR
 ^DIPT(1575,"F",1)="1~.01~S DIP(1)=$S($D(^SDAUDIT(D0,0)):^(0),1:"""") S X=$P(DIP(1),U,1),X=X W X K DIP;""SchedulerIEN"";Z;""INTERNAL(SCHEDULER)""~2~3~4~5~6~7~8~9~10~11~12~13~14~"
 ^DIPT(1575,"F",2)="15~"
 ^DIPT(1575,"H")="SD Audit Statistics STATISTICS"
+^DIPT(1576,0)="PRCHITEM MANUFACTURER^3170530.2219^@^440.4^^@^3170710"
+^DIPT(1576,"DXS",1,9.2)="S DIP(1)=$S($D(^PRC(440.4,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,2),X=X S X=X=1,DIP(2)=$G(X) S X=""Yes"",DIP(3)=$G(X) S X=1,DIP(4)=$G(X) S X=""NO"""
+^DIPT(1576,"F",1)="""Manufacturer Name: "";C1;""""~.01;C1;""""~""  ID Number: "";C1;""""~S X=$S('$D(D0):"""",D0<0:"""",1:D0)_"" "" W X K DIP;X;"""";Z;""ID NUMBER_"" """"~"
+^DIPT(1576,"F",2)="""DUNS Number: "";C32;""""~.5;X;""""~""Inactive?: "";C63;""""~X DXS(1,9.2) S X=$S(DIP(2):DIP(3),DIP(4):X) W X K DIP;X;"""";Z;""$S(INTERNAL(#1)=1:""Yes"",1:""NO"")""~"
+^DIPT(1576,"H")="MANUFACTURER LIST"
 ^DIPT("AF",2,.01,513)=""
 ^DIPT("AF",2,.02,999)=""
 ^DIPT("AF",2,.03,242)=""
@@ -19052,6 +19057,7 @@ ZWR
 ^DIPT("B","PRCH WHSE STATS",285)=""
 ^DIPT("B","PRCH WORKLOAD",1136)=""
 ^DIPT("B","PRCHITCAT",264)=""
+^DIPT("B","PRCHITEM MANUFACTURER",1576)=""
 ^DIPT("B","PRCHLO410-04_VALIDATE",1478)=""
 ^DIPT("B","PRCHLO410_HDR_VALIDATE",1476)=""
 ^DIPT("B","PRCHLO421-5_CERTIFYING_SVC_VAL",1515)=""
@@ -20187,6 +20193,7 @@ ZWR
 ^DIPT("F44","PSO ACTION PROFILE",466)=1
 ^DIPT("F44","PSO ACTION PROFILE #2",1197)=1
 ^DIPT("F44","SDEC MISSING RESOURCE",1572)=1
+^DIPT("F440.4","PRCHITEM MANUFACTURER",1576)=1
 ^DIPT("F440.5","PRCH CARD INFO",1098)=1
 ^DIPT("F440.5","PRCH IMPAC",1108)=1
 ^DIPT("F440.6","PRCH AO AUDIT",1145)=1

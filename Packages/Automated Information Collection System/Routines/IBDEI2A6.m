@@ -1,138 +1,120 @@
-IBDEI2A6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2A6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38690,1,0)
+ ;;^UTILITY(U,$J,358.3,36427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38690,1,3,0)
- ;;=3^Alopecia Areata,Unspec
- ;;^UTILITY(U,$J,358.3,38690,1,4,0)
- ;;=4^L63.9
- ;;^UTILITY(U,$J,358.3,38690,2)
- ;;=^5009246
- ;;^UTILITY(U,$J,358.3,38691,0)
- ;;=L70.0^^151^1896^3
- ;;^UTILITY(U,$J,358.3,38691,1,0)
+ ;;^UTILITY(U,$J,358.3,36427,1,3,0)
+ ;;=3^Amputation,Traumatic,Right Trnsphal Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36427,1,4,0)
+ ;;=4^S68.616A
+ ;;^UTILITY(U,$J,358.3,36427,2)
+ ;;=^5036753
+ ;;^UTILITY(U,$J,358.3,36428,0)
+ ;;=S68.612A^^142^1863^81
+ ;;^UTILITY(U,$J,358.3,36428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38691,1,3,0)
- ;;=3^Acne Vulgaris
- ;;^UTILITY(U,$J,358.3,38691,1,4,0)
- ;;=4^L70.0
- ;;^UTILITY(U,$J,358.3,38691,2)
- ;;=^5009268
- ;;^UTILITY(U,$J,358.3,38692,0)
- ;;=L73.0^^151^1896^2
- ;;^UTILITY(U,$J,358.3,38692,1,0)
+ ;;^UTILITY(U,$J,358.3,36428,1,3,0)
+ ;;=3^Amputation,Traumatic,Right Trnsphal Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36428,1,4,0)
+ ;;=4^S68.612A
+ ;;^UTILITY(U,$J,358.3,36428,2)
+ ;;=^5036741
+ ;;^UTILITY(U,$J,358.3,36429,0)
+ ;;=S68.614A^^142^1863^82
+ ;;^UTILITY(U,$J,358.3,36429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38692,1,3,0)
- ;;=3^Acne Keloid
- ;;^UTILITY(U,$J,358.3,38692,1,4,0)
- ;;=4^L73.0
- ;;^UTILITY(U,$J,358.3,38692,2)
- ;;=^2149
- ;;^UTILITY(U,$J,358.3,38693,0)
- ;;=L63.0^^151^1896^8
- ;;^UTILITY(U,$J,358.3,38693,1,0)
+ ;;^UTILITY(U,$J,358.3,36429,1,3,0)
+ ;;=3^Amputation,Traumatic,Right Trnsphal Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36429,1,4,0)
+ ;;=4^S68.614A
+ ;;^UTILITY(U,$J,358.3,36429,2)
+ ;;=^5036747
+ ;;^UTILITY(U,$J,358.3,36430,0)
+ ;;=S68.511A^^142^1863^83
+ ;;^UTILITY(U,$J,358.3,36430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38693,1,3,0)
- ;;=3^Alopecia Totalis
- ;;^UTILITY(U,$J,358.3,38693,1,4,0)
- ;;=4^L63.0
- ;;^UTILITY(U,$J,358.3,38693,2)
- ;;=^5009242
- ;;^UTILITY(U,$J,358.3,38694,0)
- ;;=L63.1^^151^1896^9
- ;;^UTILITY(U,$J,358.3,38694,1,0)
+ ;;^UTILITY(U,$J,358.3,36430,1,3,0)
+ ;;=3^Amputation,Traumatic,Right Trnsphal Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36430,1,4,0)
+ ;;=4^S68.511A
+ ;;^UTILITY(U,$J,358.3,36430,2)
+ ;;=^5036717
+ ;;^UTILITY(U,$J,358.3,36431,0)
+ ;;=Q83.0^^142^1863^132
+ ;;^UTILITY(U,$J,358.3,36431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38694,1,3,0)
- ;;=3^Alopecia Universalis
- ;;^UTILITY(U,$J,358.3,38694,1,4,0)
- ;;=4^L63.1
- ;;^UTILITY(U,$J,358.3,38694,2)
- ;;=^5009243
- ;;^UTILITY(U,$J,358.3,38695,0)
- ;;=L65.2^^151^1896^7
- ;;^UTILITY(U,$J,358.3,38695,1,0)
+ ;;^UTILITY(U,$J,358.3,36431,1,3,0)
+ ;;=3^Congenital Absence Breast w/ Absent Nipple
+ ;;^UTILITY(U,$J,358.3,36431,1,4,0)
+ ;;=4^Q83.0
+ ;;^UTILITY(U,$J,358.3,36431,2)
+ ;;=^5019054
+ ;;^UTILITY(U,$J,358.3,36432,0)
+ ;;=Q67.0^^142^1863^135
+ ;;^UTILITY(U,$J,358.3,36432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38695,1,3,0)
- ;;=3^Alopecia Mucinosa
- ;;^UTILITY(U,$J,358.3,38695,1,4,0)
- ;;=4^L65.2
- ;;^UTILITY(U,$J,358.3,38695,2)
- ;;=^5103
- ;;^UTILITY(U,$J,358.3,38696,0)
- ;;=L66.9^^151^1896^6
- ;;^UTILITY(U,$J,358.3,38696,1,0)
+ ;;^UTILITY(U,$J,358.3,36432,1,3,0)
+ ;;=3^Congenital Facial Asymmetry
+ ;;^UTILITY(U,$J,358.3,36432,1,4,0)
+ ;;=4^Q67.0
+ ;;^UTILITY(U,$J,358.3,36432,2)
+ ;;=^5018876
+ ;;^UTILITY(U,$J,358.3,36433,0)
+ ;;=Q27.9^^142^1863^137
+ ;;^UTILITY(U,$J,358.3,36433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38696,1,3,0)
- ;;=3^Alopecia Cicatricial,Unspec
- ;;^UTILITY(U,$J,358.3,38696,1,4,0)
- ;;=4^L66.9
- ;;^UTILITY(U,$J,358.3,38696,2)
- ;;=^5009258
- ;;^UTILITY(U,$J,358.3,38697,0)
- ;;=A60.9^^151^1896^11
- ;;^UTILITY(U,$J,358.3,38697,1,0)
+ ;;^UTILITY(U,$J,358.3,36433,1,3,0)
+ ;;=3^Congenital Malformation Peripheral Vascular System,Unspec
+ ;;^UTILITY(U,$J,358.3,36433,1,4,0)
+ ;;=4^Q27.9
+ ;;^UTILITY(U,$J,358.3,36433,2)
+ ;;=^5018592
+ ;;^UTILITY(U,$J,358.3,36434,0)
+ ;;=M24.542^^142^1863^140
+ ;;^UTILITY(U,$J,358.3,36434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38697,1,3,0)
- ;;=3^Anogenital Herpesviral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,38697,1,4,0)
- ;;=4^A60.9
- ;;^UTILITY(U,$J,358.3,38697,2)
- ;;=^5000359
- ;;^UTILITY(U,$J,358.3,38698,0)
- ;;=L56.1^^151^1897^28
- ;;^UTILITY(U,$J,358.3,38698,1,0)
+ ;;^UTILITY(U,$J,358.3,36434,1,3,0)
+ ;;=3^Contracture,Left Hand
+ ;;^UTILITY(U,$J,358.3,36434,1,4,0)
+ ;;=4^M24.542
+ ;;^UTILITY(U,$J,358.3,36434,2)
+ ;;=^5011412
+ ;;^UTILITY(U,$J,358.3,36435,0)
+ ;;=M24.541^^142^1863^141
+ ;;^UTILITY(U,$J,358.3,36435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38698,1,3,0)
- ;;=3^Drug Photoallergic Response
- ;;^UTILITY(U,$J,358.3,38698,1,4,0)
- ;;=4^L56.1
- ;;^UTILITY(U,$J,358.3,38698,2)
- ;;=^5009215
- ;;^UTILITY(U,$J,358.3,38699,0)
- ;;=L56.0^^151^1897^29
- ;;^UTILITY(U,$J,358.3,38699,1,0)
+ ;;^UTILITY(U,$J,358.3,36435,1,3,0)
+ ;;=3^Contracture,Right Hand
+ ;;^UTILITY(U,$J,358.3,36435,1,4,0)
+ ;;=4^M24.541
+ ;;^UTILITY(U,$J,358.3,36435,2)
+ ;;=^5011411
+ ;;^UTILITY(U,$J,358.3,36436,0)
+ ;;=S40.012A^^142^1863^143
+ ;;^UTILITY(U,$J,358.3,36436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38699,1,3,0)
- ;;=3^Drug Phototoxic Response
- ;;^UTILITY(U,$J,358.3,38699,1,4,0)
- ;;=4^L56.0
- ;;^UTILITY(U,$J,358.3,38699,2)
- ;;=^5009214
- ;;^UTILITY(U,$J,358.3,38700,0)
- ;;=L23.9^^151^1897^6
- ;;^UTILITY(U,$J,358.3,38700,1,0)
+ ;;^UTILITY(U,$J,358.3,36436,1,3,0)
+ ;;=3^Contusion Left Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36436,1,4,0)
+ ;;=4^S40.012A
+ ;;^UTILITY(U,$J,358.3,36436,2)
+ ;;=^5026156
+ ;;^UTILITY(U,$J,358.3,36437,0)
+ ;;=S40.011A^^142^1863^146
+ ;;^UTILITY(U,$J,358.3,36437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38700,1,3,0)
- ;;=3^Dermatitis,Allergic Contact,Cause Unspec
- ;;^UTILITY(U,$J,358.3,38700,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,38700,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,38701,0)
- ;;=L30.9^^151^1897^21
- ;;^UTILITY(U,$J,358.3,38701,1,0)
+ ;;^UTILITY(U,$J,358.3,36437,1,3,0)
+ ;;=3^Contusion Right Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36437,1,4,0)
+ ;;=4^S40.011A
+ ;;^UTILITY(U,$J,358.3,36437,2)
+ ;;=^5026153
+ ;;^UTILITY(U,$J,358.3,36438,0)
+ ;;=S60.212A^^142^1863^144
+ ;;^UTILITY(U,$J,358.3,36438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38701,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,38701,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,38701,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,38702,0)
- ;;=L24.9^^151^1897^16
- ;;^UTILITY(U,$J,358.3,38702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38702,1,3,0)
- ;;=3^Dermatitis,Irritant Contact,Cause Unspec
- ;;^UTILITY(U,$J,358.3,38702,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,38702,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,38703,0)
- ;;=L30.0^^151^1897^17
- ;;^UTILITY(U,$J,358.3,38703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38703,1,3,0)
- ;;=3^Dermatitis,Nummular
+ ;;^UTILITY(U,$J,358.3,36438,1,3,0)
+ ;;=3^Contusion Left Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36438,1,4,0)
+ ;;=4^S60.212A

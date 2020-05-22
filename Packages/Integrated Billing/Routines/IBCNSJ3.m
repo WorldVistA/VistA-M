@@ -1,12 +1,13 @@
 IBCNSJ3 ;ALB/CPM - ADD NEW INSURANCE PLAN ; 11-JAN-95
- ;;2.0;INTEGRATED BILLING;**28,497,506,519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**28,497,506,519,652**;21-MAR-94;Build 23
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
-NEW(IBCNS,IBCPOL,IBFG,IBKEY) ; Add a new insurance plan
+NEW(IBCNS,IBCPOL,IBFG,IBKEY,BYPASS) ; Add a new insurance plan
  ;  Input:   IBCNS  --  Pointer to an insurance company in file #36
  ;            IBFG  --  [Optional] -> Set to 1 to force creation
  ;                      of a group plan
  ;           IBKEY  --  [Optional] -> Set to 1 to check for security key
+ ;           BYPASS --  Bypass new insurance plan
  ; Output:  IBCPOL  --  0, if a new plan was not added, or
  ;                      >0 => pointer to the new plan in file #355.3
  ;
@@ -14,16 +15,23 @@ NEW(IBCNS,IBCPOL,IBFG,IBKEY) ; Add a new insurance plan
  S IBCPOL=0
  I '$G(IBCNS) G NEWQ
  ;
- S DIR(0)="Y",DIR("B")="NO",DIR("A")="Do you wish to add a new Insurance Plan"
- S DIR("?")="If you have identified a new plan that has not been previously entered, and you wish to add it, answer 'YES'.  If you do not wish to add a new plan, enter 'NO'."
- D ^DIR K DIR I Y<1!($D(DIRUT)) G NEWQ
- ;
+ ;IB*2.0*652/TAZ - Moved so user exits before being prompted for a new policy if they don't have the key.
  ; IB*2.0*506 Added the following line.
  I $G(IBKEY),'$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) W !!,"Sorry, you are not authorized to create a new Insurance Plan" D WAIT^IBCNBAA G NEWQ
  ;
+ ;IB*2.0*652/TAZ - Bypass prompt for Insurance Company New Policy Action
+ I '$G(BYPASS) D  G:(Y<1!$D(DIRUT)) NEWQ G NEW1
+ . S DIR(0)="Y",DIR("B")="NO",DIR("A")="Do you wish to add a new Insurance Plan"
+ . S DIR("?")="If you have identified a new plan that has not been previously entered, and you wish to add it, answer 'YES'.  If you do not wish to add a new plan, enter 'NO'."
+ . D ^DIR K DIR
+ ;
+ W !!,"You are about to add a new Insurance Plan."
+ ;
+NEW1 ;
  ; - collect plan characteristics
  I $G(IBFG) S IBGRP=1 G MORE
- S DIR(0)="355.3,.02",DIR("A")="  IS THIS A GROUP PLAN" D ^DIR K DIR S IBGRP=Y
+ ;IB*2.0*652/TAZ Added default response
+ S DIR(0)="355.3,.02",DIR("A")="  IS THIS A GROUP PLAN",DIR("B")="YES" D ^DIR K DIR S IBGRP=Y
  I $D(DIRUT) G NEWQ
  ;
 MORE S IBTL="  "_$S(IBGRP:"GROUP",1:"INDIVIDUAL")_" PLAN "

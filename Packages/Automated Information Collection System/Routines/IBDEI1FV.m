@@ -1,136 +1,120 @@
-IBDEI1FV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24445,1,4,0)
- ;;=4^F54.
- ;;^UTILITY(U,$J,358.3,24445,2)
- ;;=^5003627
- ;;^UTILITY(U,$J,358.3,24446,0)
- ;;=F91.2^^90^1075^1
- ;;^UTILITY(U,$J,358.3,24446,1,0)
+ ;;^UTILITY(U,$J,358.3,23014,0)
+ ;;=I97.611^^105^1166^188
+ ;;^UTILITY(U,$J,358.3,23014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24446,1,3,0)
- ;;=3^Conduct Disorder,Adolescent-Onset Type
- ;;^UTILITY(U,$J,358.3,24446,1,4,0)
- ;;=4^F91.2
- ;;^UTILITY(U,$J,358.3,24446,2)
- ;;=^5003699
- ;;^UTILITY(U,$J,358.3,24447,0)
- ;;=F91.1^^90^1075^2
- ;;^UTILITY(U,$J,358.3,24447,1,0)
+ ;;^UTILITY(U,$J,358.3,23014,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Circ Sys After Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,23014,1,4,0)
+ ;;=4^I97.611
+ ;;^UTILITY(U,$J,358.3,23014,2)
+ ;;=^5008100
+ ;;^UTILITY(U,$J,358.3,23015,0)
+ ;;=I97.618^^105^1166^189
+ ;;^UTILITY(U,$J,358.3,23015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24447,1,3,0)
- ;;=3^Conduct Disorder,Childhood-Onset Type
- ;;^UTILITY(U,$J,358.3,24447,1,4,0)
- ;;=4^F91.1
- ;;^UTILITY(U,$J,358.3,24447,2)
- ;;=^5003698
- ;;^UTILITY(U,$J,358.3,24448,0)
- ;;=F91.9^^90^1075^3
- ;;^UTILITY(U,$J,358.3,24448,1,0)
+ ;;^UTILITY(U,$J,358.3,23015,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Circ Sys After Oth Circ Sys Proc
+ ;;^UTILITY(U,$J,358.3,23015,1,4,0)
+ ;;=4^I97.618
+ ;;^UTILITY(U,$J,358.3,23015,2)
+ ;;=^5008101
+ ;;^UTILITY(U,$J,358.3,23016,0)
+ ;;=J95.830^^105^1166^203
+ ;;^UTILITY(U,$J,358.3,23016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24448,1,3,0)
- ;;=3^Conduct Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24448,1,4,0)
- ;;=4^F91.9
- ;;^UTILITY(U,$J,358.3,24448,2)
- ;;=^5003701
- ;;^UTILITY(U,$J,358.3,24449,0)
- ;;=F63.81^^90^1075^5
- ;;^UTILITY(U,$J,358.3,24449,1,0)
+ ;;^UTILITY(U,$J,358.3,23016,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Resp Sys After Resp Sys Proc
+ ;;^UTILITY(U,$J,358.3,23016,1,4,0)
+ ;;=4^J95.830
+ ;;^UTILITY(U,$J,358.3,23016,2)
+ ;;=^5008340
+ ;;^UTILITY(U,$J,358.3,23017,0)
+ ;;=J95.831^^105^1166^202
+ ;;^UTILITY(U,$J,358.3,23017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24449,1,3,0)
- ;;=3^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,24449,1,4,0)
- ;;=4^F63.81
- ;;^UTILITY(U,$J,358.3,24449,2)
- ;;=^5003644
- ;;^UTILITY(U,$J,358.3,24450,0)
- ;;=F63.2^^90^1075^6
- ;;^UTILITY(U,$J,358.3,24450,1,0)
+ ;;^UTILITY(U,$J,358.3,23017,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Resp Sys After Oth Proc
+ ;;^UTILITY(U,$J,358.3,23017,1,4,0)
+ ;;=4^J95.831
+ ;;^UTILITY(U,$J,358.3,23017,2)
+ ;;=^5008341
+ ;;^UTILITY(U,$J,358.3,23018,0)
+ ;;=K91.840^^105^1166^190
+ ;;^UTILITY(U,$J,358.3,23018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24450,1,3,0)
- ;;=3^Kleptomania
- ;;^UTILITY(U,$J,358.3,24450,1,4,0)
- ;;=4^F63.2
- ;;^UTILITY(U,$J,358.3,24450,2)
- ;;=^5003642
- ;;^UTILITY(U,$J,358.3,24451,0)
- ;;=F91.3^^90^1075^7
- ;;^UTILITY(U,$J,358.3,24451,1,0)
+ ;;^UTILITY(U,$J,358.3,23018,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Dig Sys After Dig Sys Proc
+ ;;^UTILITY(U,$J,358.3,23018,1,4,0)
+ ;;=4^K91.840
+ ;;^UTILITY(U,$J,358.3,23018,2)
+ ;;=^5008910
+ ;;^UTILITY(U,$J,358.3,23019,0)
+ ;;=K91.841^^105^1166^191
+ ;;^UTILITY(U,$J,358.3,23019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24451,1,3,0)
- ;;=3^Oppositional Defiant Disorder
- ;;^UTILITY(U,$J,358.3,24451,1,4,0)
- ;;=4^F91.3
- ;;^UTILITY(U,$J,358.3,24451,2)
- ;;=^331955
- ;;^UTILITY(U,$J,358.3,24452,0)
- ;;=F91.8^^90^1075^4
- ;;^UTILITY(U,$J,358.3,24452,1,0)
+ ;;^UTILITY(U,$J,358.3,23019,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Dig Sys After Oth Proc
+ ;;^UTILITY(U,$J,358.3,23019,1,4,0)
+ ;;=4^K91.841
+ ;;^UTILITY(U,$J,358.3,23019,2)
+ ;;=^5008911
+ ;;^UTILITY(U,$J,358.3,23020,0)
+ ;;=L76.21^^105^1166^206
+ ;;^UTILITY(U,$J,358.3,23020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24452,1,3,0)
- ;;=3^Disruptive,Impulse-Control,Conduct Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,24452,1,4,0)
- ;;=4^F91.8
- ;;^UTILITY(U,$J,358.3,24452,2)
- ;;=^5003700
- ;;^UTILITY(U,$J,358.3,24453,0)
- ;;=F63.1^^90^1075^8
- ;;^UTILITY(U,$J,358.3,24453,1,0)
+ ;;^UTILITY(U,$J,358.3,23020,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Skin After Derm Proc
+ ;;^UTILITY(U,$J,358.3,23020,1,4,0)
+ ;;=4^L76.21
+ ;;^UTILITY(U,$J,358.3,23020,2)
+ ;;=^5009306
+ ;;^UTILITY(U,$J,358.3,23021,0)
+ ;;=L76.22^^105^1166^207
+ ;;^UTILITY(U,$J,358.3,23021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24453,1,3,0)
- ;;=3^Pyromania
- ;;^UTILITY(U,$J,358.3,24453,1,4,0)
- ;;=4^F63.1
- ;;^UTILITY(U,$J,358.3,24453,2)
- ;;=^5003641
- ;;^UTILITY(U,$J,358.3,24454,0)
- ;;=F98.0^^90^1076^5
- ;;^UTILITY(U,$J,358.3,24454,1,0)
+ ;;^UTILITY(U,$J,358.3,23021,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Skin After Oth Proc
+ ;;^UTILITY(U,$J,358.3,23021,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,23021,2)
+ ;;=^5009307
+ ;;^UTILITY(U,$J,358.3,23022,0)
+ ;;=M96.830^^105^1166^198
+ ;;^UTILITY(U,$J,358.3,23022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24454,1,3,0)
- ;;=3^Enuresis
- ;;^UTILITY(U,$J,358.3,24454,1,4,0)
- ;;=4^F98.0
- ;;^UTILITY(U,$J,358.3,24454,2)
- ;;=^5003711
- ;;^UTILITY(U,$J,358.3,24455,0)
- ;;=F98.1^^90^1076^4
- ;;^UTILITY(U,$J,358.3,24455,1,0)
+ ;;^UTILITY(U,$J,358.3,23022,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,MS Struct After MS Sys Proc
+ ;;^UTILITY(U,$J,358.3,23022,1,4,0)
+ ;;=4^M96.830
+ ;;^UTILITY(U,$J,358.3,23022,2)
+ ;;=^5015397
+ ;;^UTILITY(U,$J,358.3,23023,0)
+ ;;=M96.831^^105^1166^199
+ ;;^UTILITY(U,$J,358.3,23023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24455,1,3,0)
- ;;=3^Encopresis
- ;;^UTILITY(U,$J,358.3,24455,1,4,0)
- ;;=4^F98.1
- ;;^UTILITY(U,$J,358.3,24455,2)
- ;;=^5003712
- ;;^UTILITY(U,$J,358.3,24456,0)
- ;;=N39.498^^90^1076^2
- ;;^UTILITY(U,$J,358.3,24456,1,0)
+ ;;^UTILITY(U,$J,358.3,23023,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,MS Struct After Oth Proc
+ ;;^UTILITY(U,$J,358.3,23023,1,4,0)
+ ;;=4^M96.831
+ ;;^UTILITY(U,$J,358.3,23023,2)
+ ;;=^5015398
+ ;;^UTILITY(U,$J,358.3,23024,0)
+ ;;=N99.820^^105^1166^194
+ ;;^UTILITY(U,$J,358.3,23024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24456,1,3,0)
- ;;=3^Elimination Disorder w/ Urinary Symptoms,Oth Specified
- ;;^UTILITY(U,$J,358.3,24456,1,4,0)
- ;;=4^N39.498
- ;;^UTILITY(U,$J,358.3,24456,2)
- ;;=^5015686
- ;;^UTILITY(U,$J,358.3,24457,0)
- ;;=R15.9^^90^1076^1
- ;;^UTILITY(U,$J,358.3,24457,1,0)
+ ;;^UTILITY(U,$J,358.3,23024,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,GU Sys After GU Sys Proc
+ ;;^UTILITY(U,$J,358.3,23024,1,4,0)
+ ;;=4^N99.820
+ ;;^UTILITY(U,$J,358.3,23024,2)
+ ;;=^5015968
+ ;;^UTILITY(U,$J,358.3,23025,0)
+ ;;=N99.821^^105^1166^195
+ ;;^UTILITY(U,$J,358.3,23025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24457,1,3,0)
- ;;=3^Elimination Disorder w/ Fecal Symptoms,Other Specified
- ;;^UTILITY(U,$J,358.3,24457,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,24457,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,24458,0)
- ;;=R32.^^90^1076^3
- ;;^UTILITY(U,$J,358.3,24458,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24458,1,3,0)
- ;;=3^Elimination Disorder w/ Urinary Symptoms,Unspec
- ;;^UTILITY(U,$J,358.3,24458,1,4,0)
- ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,23025,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,GU Sys After Oth Proc

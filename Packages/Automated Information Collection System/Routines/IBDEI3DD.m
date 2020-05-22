@@ -1,132 +1,98 @@
-IBDEI3DD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3DD ; ; 05-NOV-2019
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;NOV 05, 2019
+ Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56645,0)
- ;;=E10.52^^261^2831^78
- ;;^UTILITY(U,$J,358.3,56645,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56645,1,3,0)
- ;;=3^DM Type 1 w/ DM Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,56645,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,56645,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,56646,0)
- ;;=E10.610^^261^2831^75
- ;;^UTILITY(U,$J,358.3,56646,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56646,1,3,0)
- ;;=3^DM Type 1 w/ DM Neuropathic Arthropathy
- ;;^UTILITY(U,$J,358.3,56646,1,4,0)
- ;;=4^E10.610
- ;;^UTILITY(U,$J,358.3,56646,2)
- ;;=^5002613
- ;;^UTILITY(U,$J,358.3,56647,0)
- ;;=E10.620^^261^2831^74
- ;;^UTILITY(U,$J,358.3,56647,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56647,1,3,0)
- ;;=3^DM Type 1 w/ DM Dermatitis
- ;;^UTILITY(U,$J,358.3,56647,1,4,0)
- ;;=4^E10.620
- ;;^UTILITY(U,$J,358.3,56647,2)
- ;;=^5002615
- ;;^UTILITY(U,$J,358.3,56648,0)
- ;;=E10.621^^261^2831^80
- ;;^UTILITY(U,$J,358.3,56648,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56648,1,3,0)
- ;;=3^DM Type 1 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,56648,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,56648,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,56649,0)
- ;;=E10.622^^261^2831^85
- ;;^UTILITY(U,$J,358.3,56649,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56649,1,3,0)
- ;;=3^DM Type 1 w/ Skin Ulcer
- ;;^UTILITY(U,$J,358.3,56649,1,4,0)
- ;;=4^E10.622
- ;;^UTILITY(U,$J,358.3,56649,2)
- ;;=^5002617
- ;;^UTILITY(U,$J,358.3,56650,0)
- ;;=E10.630^^261^2831^84
- ;;^UTILITY(U,$J,358.3,56650,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56650,1,3,0)
- ;;=3^DM Type 1 w/ Peridontal Disease
- ;;^UTILITY(U,$J,358.3,56650,1,4,0)
- ;;=4^E10.630
- ;;^UTILITY(U,$J,358.3,56650,2)
- ;;=^5002619
- ;;^UTILITY(U,$J,358.3,56651,0)
- ;;=E10.641^^261^2831^82
- ;;^UTILITY(U,$J,358.3,56651,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56651,1,3,0)
- ;;=3^DM Type 1 w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,56651,1,4,0)
- ;;=4^E10.641
- ;;^UTILITY(U,$J,358.3,56651,2)
- ;;=^5002621
- ;;^UTILITY(U,$J,358.3,56652,0)
- ;;=E10.649^^261^2831^83
- ;;^UTILITY(U,$J,358.3,56652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56652,1,3,0)
- ;;=3^DM Type 1 w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,56652,1,4,0)
- ;;=4^E10.649
- ;;^UTILITY(U,$J,358.3,56652,2)
- ;;=^5002622
- ;;^UTILITY(U,$J,358.3,56653,0)
- ;;=E10.65^^261^2831^81
- ;;^UTILITY(U,$J,358.3,56653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56653,1,3,0)
- ;;=3^DM Type 1 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,56653,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,56653,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,56654,0)
- ;;=E11.40^^261^2831^90
- ;;^UTILITY(U,$J,358.3,56654,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56654,1,3,0)
- ;;=3^DM Type 2 w/ DM Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,56654,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,56654,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,56655,0)
- ;;=E11.42^^261^2831^93
- ;;^UTILITY(U,$J,358.3,56655,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56655,1,3,0)
- ;;=3^DM Type 2 w/ DM Polyneuropathy
- ;;^UTILITY(U,$J,358.3,56655,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,56655,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,56656,0)
- ;;=E11.43^^261^2831^86
- ;;^UTILITY(U,$J,358.3,56656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56656,1,3,0)
- ;;=3^DM Type 2 w/ DM Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,56656,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,56656,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,56657,0)
- ;;=E11.49^^261^2831^88
- ;;^UTILITY(U,$J,358.3,56657,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56657,1,3,0)
- ;;=3^DM Type 2 w/ DM Neurological Complications
- ;;^UTILITY(U,$J,358.3,56657,1,4,0)
- ;;=4^E11.49
+ ;;^DIC(358.6,0,"GL")
+ ;;=^IBE(358.6,
+ ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
+ ;;=
+ ;;^DIC(358.6,"%D",0)
+ ;;=^^1^1^2950927^^^^
+ ;;^DIC(358.6,"%D",1,0)
+ ;;=This file is used as a workspace by the import/export utility.
+ ;;^DIC(358.6,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.6,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DIC(358.6,"%D",4,0)
+ ;;= 
+ ;;^DIC(358.6,"%D",5,0)
+ ;;=This file contains a description of all of the interfaces with other packages.
+ ;;^DIC(358.6,"%D",6,0)
+ ;;=The form will invoke the proper interface routines by doing a lookup on
+ ;;^DIC(358.6,"%D",7,0)
+ ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
+ ;;^DIC(358.6,"%D",8,0)
+ ;;=fields are for documentation purposes and to verify that the proper
+ ;;^DIC(358.6,"%D",9,0)
+ ;;=variables are defined. Data will be exchanged between the encounter form
+ ;;^DIC(358.6,"%D",10,0)
+ ;;=utilities and other packages by putting the data in a predefined location.
+ ;;^DIC(358.6,"%D",11,0)
+ ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
+ ;;^DIC(358.6,"%D",12,0)
+ ;;=For output routines, but not selection routines, the fourth subscript is
+ ;;^DIC(358.6,"%D",13,0)
+ ;;=be the patient DFN. The next subscript is the name of the Package
+ ;;^DIC(358.6,"%D",14,0)
+ ;;=Interface. For single valued data and record valued data there is no
+ ;;^DIC(358.6,"%D",15,0)
+ ;;=additional subscript. For interfaces returning a list there is one
+ ;;^DIC(358.6,"%D",16,0)
+ ;;=additional subscript level, the number of the item on the list. For
+ ;;^DIC(358.6,"%D",17,0)
+ ;;=word processing type data the data will be in FM word-processing format,
+ ;;^DIC(358.6,"%D",18,0)
+ ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
+ ;;^DIC(358.6,"%D",19,0)
+ ;;=these items of data can have its own entry in the Package Interface file,
+ ;;^DIC(358.6,"%D",20,0)
+ ;;=but by using the same entry point there is a savings because all of the
+ ;;^DIC(358.6,"%D",21,0)
+ ;;=data on that node can be obtained at once. The routines that invoke the
+ ;;^DIC(358.6,"%D",22,0)
+ ;;=entry point keep track of the entry points already invoked so they are
+ ;;^DIC(358.6,"%D",23,0)
+ ;;=not repeated.
+ ;;^DD(358.6,0)
+ ;;=FIELD^^21^76
+ ;;^DD(358.6,0,"DDA")
+ ;;=N
+ ;;^DD(358.6,0,"DT")
+ ;;=3000124
+ ;;^DD(358.6,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.6,0,"ID","WRITE")
+ ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
+ ;;^DD(358.6,0,"ID","WRITE1")
+ ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
+ ;;^DD(358.6,0,"IX","B",358.6,.01)
+ ;;=
+ ;;^DD(358.6,0,"IX","C",358.6,.04)
+ ;;=
+ ;;^DD(358.6,0,"IX","D",358.6,3)
+ ;;=
+ ;;^DD(358.6,0,"IX","E",358.6,.01)
+ ;;=
+ ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
+ ;;=
+ ;;^DD(358.6,0,"PT",358.2,.11)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.5,.03)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.6,.13)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.93,.06)
+ ;;=
+ ;;^DD(358.6,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.6,.01,0)
+ ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.6,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.6,.01,1,1,0)
+ ;;=358.6^B
+ ;;^DD(358.6,.01,1,1,1)
+ ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.6,.01,1,1,2)
+ ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)

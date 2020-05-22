@@ -1,280 +1,128 @@
-IBDEI13E ; ; 12-MAY-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI13E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39660,1,0)
+ ;;^UTILITY(U,$J,358.3,17553,0)
+ ;;=F17.200^^88^893^34
+ ;;^UTILITY(U,$J,358.3,17553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39660,1,3,0)
- ;;=3^Infective Bursitis,Right Knee
- ;;^UTILITY(U,$J,358.3,39660,1,4,0)
- ;;=4^M71.161
- ;;^UTILITY(U,$J,358.3,39660,2)
- ;;=^5013139
- ;;^UTILITY(U,$J,358.3,39661,0)
- ;;=M71.162^^148^1953^46
- ;;^UTILITY(U,$J,358.3,39661,1,0)
+ ;;^UTILITY(U,$J,358.3,17553,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17553,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,17553,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,17554,0)
+ ;;=F11.120^^88^893^35
+ ;;^UTILITY(U,$J,358.3,17554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39661,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
- ;;^UTILITY(U,$J,358.3,39661,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,39661,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,39662,0)
- ;;=M72.0^^148^1953^117
- ;;^UTILITY(U,$J,358.3,39662,1,0)
+ ;;^UTILITY(U,$J,358.3,17554,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17554,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,17554,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,17555,0)
+ ;;=F11.10^^88^893^38
+ ;;^UTILITY(U,$J,358.3,17555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39662,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,39662,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,39662,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,39663,0)
- ;;=M75.111^^148^1953^161
- ;;^UTILITY(U,$J,358.3,39663,1,0)
+ ;;^UTILITY(U,$J,358.3,17555,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17555,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,17555,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,17556,0)
+ ;;=F11.129^^88^893^36
+ ;;^UTILITY(U,$J,358.3,17556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39663,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,39663,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,39663,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,39664,0)
- ;;=M75.112^^148^1953^160
- ;;^UTILITY(U,$J,358.3,39664,1,0)
+ ;;^UTILITY(U,$J,358.3,17556,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,17556,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,17556,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,17557,0)
+ ;;=F10.21^^88^893^4
+ ;;^UTILITY(U,$J,358.3,17557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39664,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,39664,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,39664,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,39665,0)
- ;;=M75.51^^148^1953^10
- ;;^UTILITY(U,$J,358.3,39665,1,0)
+ ;;^UTILITY(U,$J,358.3,17557,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,17557,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,17557,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,17558,0)
+ ;;=F12.10^^88^893^7
+ ;;^UTILITY(U,$J,358.3,17558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39665,1,3,0)
- ;;=3^Bursitis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,39665,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,39665,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,39666,0)
- ;;=M75.52^^148^1953^9
- ;;^UTILITY(U,$J,358.3,39666,1,0)
+ ;;^UTILITY(U,$J,358.3,17558,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17558,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,17558,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,17559,0)
+ ;;=F12.20^^88^893^9
+ ;;^UTILITY(U,$J,358.3,17559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39666,1,3,0)
- ;;=3^Bursitis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,39666,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,39666,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,39667,0)
- ;;=M77.11^^148^1953^54
- ;;^UTILITY(U,$J,358.3,39667,1,0)
+ ;;^UTILITY(U,$J,358.3,17559,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17559,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,17559,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,17560,0)
+ ;;=F12.21^^88^893^8
+ ;;^UTILITY(U,$J,358.3,17560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39667,1,3,0)
- ;;=3^Lateral Epicondylitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,39667,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,39667,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,39668,0)
- ;;=M77.12^^148^1953^53
- ;;^UTILITY(U,$J,358.3,39668,1,0)
+ ;;^UTILITY(U,$J,358.3,17560,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,17560,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,17560,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,17561,0)
+ ;;=F12.90^^88^893^10
+ ;;^UTILITY(U,$J,358.3,17561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39668,1,3,0)
- ;;=3^Lateral Epicondylitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,39668,1,4,0)
- ;;=4^M77.12
- ;;^UTILITY(U,$J,358.3,39668,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,39669,0)
- ;;=M79.1^^148^1953^61
- ;;^UTILITY(U,$J,358.3,39669,1,0)
+ ;;^UTILITY(U,$J,358.3,17561,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,17561,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,17561,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,17562,0)
+ ;;=F10.11^^88^893^2
+ ;;^UTILITY(U,$J,358.3,17562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39669,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,39669,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,39669,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,39670,0)
- ;;=M79.7^^148^1953^39
- ;;^UTILITY(U,$J,358.3,39670,1,0)
+ ;;^UTILITY(U,$J,358.3,17562,1,3,0)
+ ;;=3^Alcohol Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,17562,1,4,0)
+ ;;=4^F10.11
+ ;;^UTILITY(U,$J,358.3,17562,2)
+ ;;=^268230
+ ;;^UTILITY(U,$J,358.3,17563,0)
+ ;;=F12.11^^88^893^6
+ ;;^UTILITY(U,$J,358.3,17563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39670,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,39670,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,39670,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,39671,0)
- ;;=M80.08XA^^148^1953^1
- ;;^UTILITY(U,$J,358.3,39671,1,0)
+ ;;^UTILITY(U,$J,358.3,17563,1,3,0)
+ ;;=3^Cannabis Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,17563,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,17563,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,17564,0)
+ ;;=F14.11^^88^893^11
+ ;;^UTILITY(U,$J,358.3,17564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39671,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,39671,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,39671,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,39672,0)
- ;;=M80.08XD^^148^1953^2
- ;;^UTILITY(U,$J,358.3,39672,1,0)
+ ;;^UTILITY(U,$J,358.3,17564,1,3,0)
+ ;;=3^Cocaine Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,17564,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,17564,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,17565,0)
+ ;;=F11.11^^88^893^37
+ ;;^UTILITY(U,$J,358.3,17565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39672,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
- ;;^UTILITY(U,$J,358.3,39672,1,4,0)
- ;;=4^M80.08XD
- ;;^UTILITY(U,$J,358.3,39672,2)
- ;;=^5013496
- ;;^UTILITY(U,$J,358.3,39673,0)
- ;;=M84.48XA^^148^1953^118
- ;;^UTILITY(U,$J,358.3,39673,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39673,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,39673,1,4,0)
- ;;=4^M84.48XA
- ;;^UTILITY(U,$J,358.3,39673,2)
- ;;=^5014016
- ;;^UTILITY(U,$J,358.3,39674,0)
- ;;=M84.48XD^^148^1953^119
- ;;^UTILITY(U,$J,358.3,39674,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39674,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Subs Encntr
- ;;^UTILITY(U,$J,358.3,39674,1,4,0)
- ;;=4^M84.48XD
- ;;^UTILITY(U,$J,358.3,39674,2)
- ;;=^5014017
- ;;^UTILITY(U,$J,358.3,39675,0)
- ;;=M87.011^^148^1953^45
- ;;^UTILITY(U,$J,358.3,39675,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39675,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,39675,1,4,0)
- ;;=4^M87.011
- ;;^UTILITY(U,$J,358.3,39675,2)
- ;;=^5014658
- ;;^UTILITY(U,$J,358.3,39676,0)
- ;;=M87.012^^148^1953^42
- ;;^UTILITY(U,$J,358.3,39676,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39676,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,39676,1,4,0)
- ;;=4^M87.012
- ;;^UTILITY(U,$J,358.3,39676,2)
- ;;=^5014659
- ;;^UTILITY(U,$J,358.3,39677,0)
- ;;=M87.050^^148^1953^43
- ;;^UTILITY(U,$J,358.3,39677,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39677,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Pelvis
- ;;^UTILITY(U,$J,358.3,39677,1,4,0)
- ;;=4^M87.050
- ;;^UTILITY(U,$J,358.3,39677,2)
- ;;=^5014679
- ;;^UTILITY(U,$J,358.3,39678,0)
- ;;=M87.051^^148^1953^44
- ;;^UTILITY(U,$J,358.3,39678,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39678,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Femur
- ;;^UTILITY(U,$J,358.3,39678,1,4,0)
- ;;=4^M87.051
- ;;^UTILITY(U,$J,358.3,39678,2)
- ;;=^5014680
- ;;^UTILITY(U,$J,358.3,39679,0)
- ;;=M87.052^^148^1953^41
- ;;^UTILITY(U,$J,358.3,39679,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39679,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Femur
- ;;^UTILITY(U,$J,358.3,39679,1,4,0)
- ;;=4^M87.052
- ;;^UTILITY(U,$J,358.3,39679,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,39680,0)
- ;;=M87.111^^148^1953^74
- ;;^UTILITY(U,$J,358.3,39680,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39680,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
- ;;^UTILITY(U,$J,358.3,39680,1,4,0)
- ;;=4^M87.111
- ;;^UTILITY(U,$J,358.3,39680,2)
- ;;=^5014701
- ;;^UTILITY(U,$J,358.3,39681,0)
- ;;=M87.112^^148^1953^71
- ;;^UTILITY(U,$J,358.3,39681,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39681,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
- ;;^UTILITY(U,$J,358.3,39681,1,4,0)
- ;;=4^M87.112
- ;;^UTILITY(U,$J,358.3,39681,2)
- ;;=^5014702
- ;;^UTILITY(U,$J,358.3,39682,0)
- ;;=M87.150^^148^1953^72
- ;;^UTILITY(U,$J,358.3,39682,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39682,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
- ;;^UTILITY(U,$J,358.3,39682,1,4,0)
- ;;=4^M87.150
- ;;^UTILITY(U,$J,358.3,39682,2)
- ;;=^5014722
- ;;^UTILITY(U,$J,358.3,39683,0)
- ;;=M87.151^^148^1953^73
- ;;^UTILITY(U,$J,358.3,39683,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39683,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
- ;;^UTILITY(U,$J,358.3,39683,1,4,0)
- ;;=4^M87.151
- ;;^UTILITY(U,$J,358.3,39683,2)
- ;;=^5014723
- ;;^UTILITY(U,$J,358.3,39684,0)
- ;;=M87.152^^148^1953^70
- ;;^UTILITY(U,$J,358.3,39684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39684,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Femur
- ;;^UTILITY(U,$J,358.3,39684,1,4,0)
- ;;=4^M87.152
- ;;^UTILITY(U,$J,358.3,39684,2)
- ;;=^5014724
- ;;^UTILITY(U,$J,358.3,39685,0)
- ;;=M87.180^^148^1953^69
- ;;^UTILITY(U,$J,358.3,39685,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39685,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Jaw
- ;;^UTILITY(U,$J,358.3,39685,1,4,0)
- ;;=4^M87.180
- ;;^UTILITY(U,$J,358.3,39685,2)
- ;;=^5014741
- ;;^UTILITY(U,$J,358.3,39686,0)
- ;;=M87.311^^148^1953^168
- ;;^UTILITY(U,$J,358.3,39686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39686,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,39686,1,4,0)
- ;;=4^M87.311
- ;;^UTILITY(U,$J,358.3,39686,2)
- ;;=^5014788
- ;;^UTILITY(U,$J,358.3,39687,0)
- ;;=M87.312^^148^1953^165
- ;;^UTILITY(U,$J,358.3,39687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39687,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,39687,1,4,0)
- ;;=4^M87.312

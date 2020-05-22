@@ -1,134 +1,126 @@
-IBDEI2JY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43297,2)
- ;;=^5049187
- ;;^UTILITY(U,$J,358.3,43298,0)
- ;;=T34.522A^^164^2067^33
- ;;^UTILITY(U,$J,358.3,43298,1,0)
+ ;;^UTILITY(U,$J,358.3,40748,0)
+ ;;=R92.8^^152^2016^7
+ ;;^UTILITY(U,$J,358.3,40748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43298,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Lt Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,43298,1,4,0)
- ;;=4^T34.522A
- ;;^UTILITY(U,$J,358.3,43298,2)
- ;;=^5049190
- ;;^UTILITY(U,$J,358.3,43299,0)
- ;;=T33.821A^^164^2067^30
- ;;^UTILITY(U,$J,358.3,43299,1,0)
+ ;;^UTILITY(U,$J,358.3,40748,1,3,0)
+ ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,40748,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,40748,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,40749,0)
+ ;;=R87.619^^152^2016^4
+ ;;^UTILITY(U,$J,358.3,40749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43299,1,3,0)
- ;;=3^Frostbite Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43299,1,4,0)
- ;;=4^T33.821A
- ;;^UTILITY(U,$J,358.3,43299,2)
- ;;=^5049121
- ;;^UTILITY(U,$J,358.3,43300,0)
- ;;=T33.822A^^164^2067^28
- ;;^UTILITY(U,$J,358.3,43300,1,0)
+ ;;^UTILITY(U,$J,358.3,40749,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,40749,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,40749,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,40750,0)
+ ;;=Z79.890^^152^2016^56
+ ;;^UTILITY(U,$J,358.3,40750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43300,1,3,0)
- ;;=3^Frostbite Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43300,1,4,0)
- ;;=4^T33.822A
- ;;^UTILITY(U,$J,358.3,43300,2)
- ;;=^5049124
- ;;^UTILITY(U,$J,358.3,43301,0)
- ;;=T34.821A^^164^2067^34
- ;;^UTILITY(U,$J,358.3,43301,1,0)
+ ;;^UTILITY(U,$J,358.3,40750,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,40750,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,40750,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,40751,0)
+ ;;=Z33.1^^152^2016^94
+ ;;^UTILITY(U,$J,358.3,40751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43301,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43301,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,43301,2)
- ;;=^5049232
- ;;^UTILITY(U,$J,358.3,43302,0)
- ;;=T34.822A^^164^2067^32
- ;;^UTILITY(U,$J,358.3,43302,1,0)
+ ;;^UTILITY(U,$J,358.3,40751,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,40751,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,40751,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,40752,0)
+ ;;=Z39.2^^152^2016^90
+ ;;^UTILITY(U,$J,358.3,40752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43302,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43302,1,4,0)
- ;;=4^T34.822A
- ;;^UTILITY(U,$J,358.3,43302,2)
- ;;=^5049235
- ;;^UTILITY(U,$J,358.3,43303,0)
- ;;=T69.021A^^164^2067^46
- ;;^UTILITY(U,$J,358.3,43303,1,0)
+ ;;^UTILITY(U,$J,358.3,40752,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,40752,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,40752,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,40753,0)
+ ;;=Z30.09^^152^2016^21
+ ;;^UTILITY(U,$J,358.3,40753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43303,1,3,0)
- ;;=3^Immersion Rt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43303,1,4,0)
- ;;=4^T69.021A
- ;;^UTILITY(U,$J,358.3,43303,2)
- ;;=^5053963
- ;;^UTILITY(U,$J,358.3,43304,0)
- ;;=T69.022A^^164^2067^45
- ;;^UTILITY(U,$J,358.3,43304,1,0)
+ ;;^UTILITY(U,$J,358.3,40753,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,40753,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,40753,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,40754,0)
+ ;;=Z30.9^^152^2016^20
+ ;;^UTILITY(U,$J,358.3,40754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43304,1,3,0)
- ;;=3^Immersion Lt Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,43304,1,4,0)
- ;;=4^T69.022A
- ;;^UTILITY(U,$J,358.3,43304,2)
- ;;=^5053966
- ;;^UTILITY(U,$J,358.3,43305,0)
- ;;=Z02.3^^164^2067^26
- ;;^UTILITY(U,$J,358.3,43305,1,0)
+ ;;^UTILITY(U,$J,358.3,40754,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,40754,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,40754,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,40755,0)
+ ;;=N64.3^^152^2016^52
+ ;;^UTILITY(U,$J,358.3,40755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43305,1,3,0)
- ;;=3^Exam for Recruitment to Armed Forces
- ;;^UTILITY(U,$J,358.3,43305,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,43305,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,43306,0)
- ;;=Z02.1^^164^2067^25
- ;;^UTILITY(U,$J,358.3,43306,1,0)
+ ;;^UTILITY(U,$J,358.3,40755,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,40755,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,40755,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,40756,0)
+ ;;=R92.2^^152^2016^59
+ ;;^UTILITY(U,$J,358.3,40756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43306,1,3,0)
- ;;=3^Exam for Pre-Employment
- ;;^UTILITY(U,$J,358.3,43306,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,43306,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,43307,0)
- ;;=Z02.89^^164^2067^24
- ;;^UTILITY(U,$J,358.3,43307,1,0)
+ ;;^UTILITY(U,$J,358.3,40756,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,40756,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,40756,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,40757,0)
+ ;;=Z30.432^^152^2016^98
+ ;;^UTILITY(U,$J,358.3,40757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43307,1,3,0)
- ;;=3^Exam for Administrative Purpose
- ;;^UTILITY(U,$J,358.3,43307,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,43307,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,43308,0)
- ;;=Z01.810^^164^2068^1
- ;;^UTILITY(U,$J,358.3,43308,1,0)
+ ;;^UTILITY(U,$J,358.3,40757,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,40757,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,40757,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,40758,0)
+ ;;=A63.0^^152^2016^12
+ ;;^UTILITY(U,$J,358.3,40758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43308,1,3,0)
- ;;=3^Pre-Op,Cardio Exam
- ;;^UTILITY(U,$J,358.3,43308,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,43308,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,43309,0)
- ;;=Z01.811^^164^2068^4
- ;;^UTILITY(U,$J,358.3,43309,1,0)
+ ;;^UTILITY(U,$J,358.3,40758,1,3,0)
+ ;;=3^Anogenital Warts,Verereal
+ ;;^UTILITY(U,$J,358.3,40758,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,40758,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,40759,0)
+ ;;=R63.0^^152^2016^13
+ ;;^UTILITY(U,$J,358.3,40759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43309,1,3,0)
- ;;=3^Pre-Op,Resp Exam
- ;;^UTILITY(U,$J,358.3,43309,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,43309,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,43310,0)
- ;;=Z01.812^^164^2068^2
- ;;^UTILITY(U,$J,358.3,43310,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43310,1,3,0)
- ;;=3^Pre-Op,Lab Exam
- ;;^UTILITY(U,$J,358.3,43310,1,4,0)
- ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,40759,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,40759,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,40759,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,40760,0)
+ ;;=R87.611^^152^2016^2

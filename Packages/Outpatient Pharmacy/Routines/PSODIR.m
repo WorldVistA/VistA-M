@@ -1,5 +1,5 @@
 PSODIR ;BHAM ISC/SAB - asks data for rx order entry ;10 May 2019 09:01:28
- ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504,457,572**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504,457,572,587**;DEC 1997;Build 3
  ;External reference PSDRUG( supported by DBIA 221
  ;External reference PS(50.7 supported by DBIA 2223
  ;External reference to VA(200 is supported by DBIA 10060
@@ -21,7 +21,10 @@ PROVEN ; Entry point for failed lookup
  I $D(DTOUT)!$D(DUOUT) S PSODIR("DFLG")=1 G PROVX
  I '$G(SPEED),Y=-1 G PROVEN
  Q:$G(SPEED)&(Y=-1)
- L +^VA(200,+Y):1 I '$T W $C(7),!!,"Provider is being edited by "_$P($G(^VA(200,+DUZ,0)),"^") G PROVEN ;572
+ L +^VA(200,+Y):1 I '$T D  G PROVEN ;572
+ . N PSOED S PSOED=$P($G(^VA(200,+Y,1)),"^",8)
+ . I PSOED W $C(7),!!,"Provider is being edited by "_$P($G(^VA(200,PSOED,0)),"^") Q  ;587
+ . W $C(7),!!,"Provider is being edited by an unknown user or has been deleted"
  L -^VA(200,+Y) ;572
  ;PSO*7*211; ADD CHECK FOR DEA# AND VA#
  I $P($G(PSODIR("CS")),"^",1)!($D(CLOZPAT)) N NDEA,SDEA S SDEA=$$DRGSCH() S NDEA=$$SDEA^XUSER(0,+Y,SDEA) I $L($P(NDEA,"^"))<3 D  G PROVEN

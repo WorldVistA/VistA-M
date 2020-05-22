@@ -1,134 +1,126 @@
-IBDEI2ZE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49980,1,3,0)
- ;;=3^Bronchus Diseases NEC
- ;;^UTILITY(U,$J,358.3,49980,1,4,0)
- ;;=4^J98.09
- ;;^UTILITY(U,$J,358.3,49980,2)
- ;;=^5008359
- ;;^UTILITY(U,$J,358.3,49981,0)
- ;;=A15.0^^219^2434^108
- ;;^UTILITY(U,$J,358.3,49981,1,0)
+ ;;^UTILITY(U,$J,358.3,47607,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,47607,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,47608,0)
+ ;;=G30.8^^185^2408^1
+ ;;^UTILITY(U,$J,358.3,47608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49981,1,3,0)
- ;;=3^Tuberculosis of Lung
- ;;^UTILITY(U,$J,358.3,49981,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,49981,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,49982,0)
- ;;=J05.0^^219^2434^41
- ;;^UTILITY(U,$J,358.3,49982,1,0)
+ ;;^UTILITY(U,$J,358.3,47608,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,47608,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,47608,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,47609,0)
+ ;;=G90.3^^185^2408^47
+ ;;^UTILITY(U,$J,358.3,47609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49982,1,3,0)
- ;;=3^Laryngitis,Obstructive,Acute
- ;;^UTILITY(U,$J,358.3,49982,1,4,0)
- ;;=4^J05.0
- ;;^UTILITY(U,$J,358.3,49982,2)
- ;;=^5008141
- ;;^UTILITY(U,$J,358.3,49983,0)
- ;;=J06.9^^219^2434^96
- ;;^UTILITY(U,$J,358.3,49983,1,0)
+ ;;^UTILITY(U,$J,358.3,47609,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,47609,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,47609,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,47610,0)
+ ;;=G91.2^^185^2408^48
+ ;;^UTILITY(U,$J,358.3,47610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49983,1,3,0)
- ;;=3^Respiratory Infection,Upper,Acute
- ;;^UTILITY(U,$J,358.3,49983,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,49983,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,49984,0)
- ;;=R63.4^^219^2434^109
- ;;^UTILITY(U,$J,358.3,49984,1,0)
+ ;;^UTILITY(U,$J,358.3,47610,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,47610,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,47610,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,47611,0)
+ ;;=G91.2^^185^2408^49
+ ;;^UTILITY(U,$J,358.3,47611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49984,1,3,0)
- ;;=3^Weight Loss,Abnormal
- ;;^UTILITY(U,$J,358.3,49984,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,49984,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,49985,0)
- ;;=I26.09^^219^2434^84
- ;;^UTILITY(U,$J,358.3,49985,1,0)
+ ;;^UTILITY(U,$J,358.3,47611,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,47611,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,47611,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,47612,0)
+ ;;=F64.0^^185^2408^57
+ ;;^UTILITY(U,$J,358.3,47612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49985,1,3,0)
- ;;=3^Pulmonary Embolism w/ Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,49985,1,4,0)
- ;;=4^I26.09
- ;;^UTILITY(U,$J,358.3,49985,2)
- ;;=^5007147
- ;;^UTILITY(U,$J,358.3,49986,0)
- ;;=I26.99^^219^2434^86
- ;;^UTILITY(U,$J,358.3,49986,1,0)
+ ;;^UTILITY(U,$J,358.3,47612,1,3,0)
+ ;;=3^Transsexualism
+ ;;^UTILITY(U,$J,358.3,47612,1,4,0)
+ ;;=4^F64.0
+ ;;^UTILITY(U,$J,358.3,47612,2)
+ ;;=^121404
+ ;;^UTILITY(U,$J,358.3,47613,0)
+ ;;=F42.8^^185^2408^50
+ ;;^UTILITY(U,$J,358.3,47613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49986,1,3,0)
- ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,49986,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,49986,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,49987,0)
- ;;=I27.0^^219^2434^90
- ;;^UTILITY(U,$J,358.3,49987,1,0)
+ ;;^UTILITY(U,$J,358.3,47613,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder,Other
+ ;;^UTILITY(U,$J,358.3,47613,1,4,0)
+ ;;=4^F42.8
+ ;;^UTILITY(U,$J,358.3,47613,2)
+ ;;=^5138447
+ ;;^UTILITY(U,$J,358.3,47614,0)
+ ;;=F42.9^^185^2408^51
+ ;;^UTILITY(U,$J,358.3,47614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49987,1,3,0)
- ;;=3^Pulmonary Hypertension,Primary
- ;;^UTILITY(U,$J,358.3,49987,1,4,0)
- ;;=4^I27.0
- ;;^UTILITY(U,$J,358.3,49987,2)
- ;;=^265310
- ;;^UTILITY(U,$J,358.3,49988,0)
- ;;=I27.2^^219^2434^91
- ;;^UTILITY(U,$J,358.3,49988,1,0)
+ ;;^UTILITY(U,$J,358.3,47614,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,47614,1,4,0)
+ ;;=4^F42.9
+ ;;^UTILITY(U,$J,358.3,47614,2)
+ ;;=^5138448
+ ;;^UTILITY(U,$J,358.3,47615,0)
+ ;;=F43.21^^185^2409^1
+ ;;^UTILITY(U,$J,358.3,47615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49988,1,3,0)
- ;;=3^Pulmonary Hypertension,Secondary
- ;;^UTILITY(U,$J,358.3,49988,1,4,0)
- ;;=4^I27.2
- ;;^UTILITY(U,$J,358.3,49988,2)
- ;;=^5007151
- ;;^UTILITY(U,$J,358.3,49989,0)
- ;;=I26.01^^219^2434^102
- ;;^UTILITY(U,$J,358.3,49989,1,0)
+ ;;^UTILITY(U,$J,358.3,47615,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,47615,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,47615,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,47616,0)
+ ;;=F43.23^^185^2409^2
+ ;;^UTILITY(U,$J,358.3,47616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49989,1,3,0)
- ;;=3^Septic Pulmonary Embolism w/ Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,49989,1,4,0)
- ;;=4^I26.01
- ;;^UTILITY(U,$J,358.3,49989,2)
- ;;=^5007145
- ;;^UTILITY(U,$J,358.3,49990,0)
- ;;=I26.90^^219^2434^103
- ;;^UTILITY(U,$J,358.3,49990,1,0)
+ ;;^UTILITY(U,$J,358.3,47616,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,47616,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,47616,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,47617,0)
+ ;;=F10.10^^185^2409^3
+ ;;^UTILITY(U,$J,358.3,47617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49990,1,3,0)
- ;;=3^Septic Pulmonary Embolism w/o Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,49990,1,4,0)
- ;;=4^I26.90
- ;;^UTILITY(U,$J,358.3,49990,2)
- ;;=^5007148
- ;;^UTILITY(U,$J,358.3,49991,0)
- ;;=J06.9^^219^2434^1
- ;;^UTILITY(U,$J,358.3,49991,1,0)
+ ;;^UTILITY(U,$J,358.3,47617,1,3,0)
+ ;;=3^Alcohol Abuse Uncomplicated
+ ;;^UTILITY(U,$J,358.3,47617,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,47617,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,47618,0)
+ ;;=F10.20^^185^2409^4
+ ;;^UTILITY(U,$J,358.3,47618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49991,1,3,0)
- ;;=3^AC Upper Respiratory Infection,Unspec
- ;;^UTILITY(U,$J,358.3,49991,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,49991,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,49992,0)
- ;;=E66.01^^219^2434^54
- ;;^UTILITY(U,$J,358.3,49992,1,0)
+ ;;^UTILITY(U,$J,358.3,47618,1,3,0)
+ ;;=3^Alcohol Dependence Uncomplicated
+ ;;^UTILITY(U,$J,358.3,47618,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,47618,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,47619,0)
+ ;;=F31.81^^185^2409^8
+ ;;^UTILITY(U,$J,358.3,47619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49992,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,49992,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,49992,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,49993,0)
- ;;=E66.2^^219^2434^55
- ;;^UTILITY(U,$J,358.3,49993,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47619,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,47619,1,4,0)
+ ;;=4^F31.81

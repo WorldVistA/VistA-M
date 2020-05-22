@@ -1,5 +1,5 @@
 GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
- ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134**;JUN 1, 2018;Build 20
+ ;;3.0;CONSULT/REQUEST TRACKING;**99,106,112,123,134,146**;JUN 1, 2018;Build 12
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -27,6 +27,10 @@ GMRCCCRA ;COG/PB/LB/MJ - Receive HL7 Message for HCP ;3/21/18 09:00
  ;;Patch 112 critical fix to remove control characters before sending consult, as bad data was causing infinite loop of HL7 process.
  ;;Patch 123 consult status updates inbound to VistA, OHI additions outbound from VistA in IN1 segment
  ;;Patch 134 fix control character issue in TIU notes
+ ;;Patch 146 fix if the consult was transferred from an imaging order, sets the DXCODE from the DX text
+ ;;Patch 146 fix PRD address problem, set to null fields that contain only spaces
+ ;;
+ ;;proposed for CCRA release 8.0 - successfully send Administrative Complete consult notes
  ;
  ;
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to GMRC EVSEND OR
@@ -77,6 +81,7 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  S PDUZ=+$G(@GDATA@(10,"I")),PN=$G(@GDATA@(10,"E")),PN=$$HLNAME^XLFNAME(PN,"S",ECH),$P(PN,ECH,9)=PDUZ
  N NPI S NPI=$P($G(^VA(200,PDUZ,"NPI")),"^")
  S ADDR=$$ADDR^GMRCHL7P(PDUZ,.GMRCHL),PH=$$PH^GMRCHL7P(PDUZ,.GMRCHL)
+ S ADDR=$$CLRADD^GMRCCCR1(ADDR)  ; patch 146 - MJ
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|RP|"_PN_"|"_$G(ADDR)_"||"_$G(PH)_"||"_+$G(NPI)
  ;;commented out PCP code- 2nd PRD segment -until Intersystems ready M14/M15- Cognosante-LB Apr 3 2018
  ;;PCP code-starts here-
@@ -85,6 +90,7 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  I +PCP  D
  . S PCDUZ=+PCP,PCPN=$P(PCP,"^",2),PCPN=$$HLNAME^XLFNAME(PCPN,"S",ECH),$P(PCPN,ECH,9)=PCDUZ
  . S PCADDR=$$ADDR^GMRCHL7P(PCDUZ,.GMRCHL),PCPH=$$PH^GMRCHL7P(PCDUZ,.GMRCHL)
+ . S PCADDR=$$CLRADD^GMRCCCR1(PCADDR)  ; patch 146 - MJ
  . S NPI=$P($G(^VA(200,PCDUZ,"NPI")),"^")
  . S ZCNT=ZCNT+1,GMRCM(ZCNT)="PRD|PP|"_PCPN_"|"_$G(PCADDR)_"||"_$G(PCPH)_"||"_+$G(NPI)
  ;;PCP code-ends here-
@@ -138,9 +144,14 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO CCRA protocol attached to 
  K GMRC0,I,INSP,INSPX,RETVAL,X,GMRCIN1,N,GMRCSTR,PLAN,PRECERT,TYPE ; PLAN, PRECERT, TYPE added for patch 123
  ; end patch 106 changes
  ;DG1 segment ;Patch 85 modified
+ ;if this is a radiology order converted to a consult the dxcode will not be in the consult in field 30.1
+ ;the DX text has the dxcode in it, the code below parses it.
+ ;radiology dx text:Encounter for other specified special examinations (ICD-10-CM Z01.89)
  S DX=$G(@GDATA@(30,"E"))
  S DXCODE=$G(@GDATA@(30.1,"E"))
- I $G(DX)["(" S DX=$P(DX,"(")
+ N TDXCODE
+ I $G(DX)["(" S TDXCODE=$P($P(DX,"ICD-10-CM ",2),")",1),DX=$P(DX,"(")  ;PB - patch 146
+ S:$G(DXCODE)="" DXCODE=$G(TDXCODE)
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="DG1|1||"_$G(DXCODE)_ECH_$G(DX)_"|||W"
  ;OBR segment
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="OBR|1|"_$P(ORC,FS,3)_"|"_$P(ORC,FS,4)_"|ZZ||"_$$FMTHL7^XLFDT($G(@GDATA@(17,"I")))
@@ -207,7 +218,13 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ...S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
  ;
- I MSGTYP3="CM" D  Q
+ ; patch 146 - DONE flag used to determine if notes are found. If so, no need to drop to default
+ ; some cases of DR/CM combo have notes stored in level 50, some in level 40
+ ; both need to be accounted for
+ ;
+ ; I MSGTYP3="CM" D  Q  ; pre-146
+ N DONE S DONE=0           ; patch 146
+ I MSGTYP3="CM" D  Q:DONE  ; patch 146
  .N GMRCN,GMRCTXT
  .D AUTHDTTM
  .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"|P|Progress Note"
@@ -217,7 +234,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  ..S X=$$TRIM^XLFSTR(X) I $L(X)=0 Q
  ..D HL7TXT^GMRCHL7P(.X,.HL,"\")
  ..S X=$$TIUC^GMRCCCR1(X)
- ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X
+ ..S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||"_X,DONE=1  ; patch 146 - DONE
  ..Q
  .K ^TMP("TIUVIEW",$J) ;clean up results of TIUSRVR1 call
  .Q
@@ -247,17 +264,7 @@ NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for compl
  .Q
  Q
 AUTHDTTM ; Add Author and Date/Time to NTE
- S ACTIEN=$G(ACTIEN,$O(^GMR(123,GMRCDA,40,99999),-1))
- I '+ACTIEN D  Q
- .S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Author\R\\R\"
- .S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Datetime\R\\R\"
- .S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Comment\R\\R\"
- .S NTECNT=4
- ;
- S ZCNT=ZCNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Author\R\\R\"_$$GET1^DIQ(123.02,ACTIEN_","_GMRCDA_",",4)
- S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Datetime\R\\R\"_$$FMTHL7^XLFDT($$GET1^DIQ(123.02,ACTIEN_","_GMRCDA_",",2,"I"))
- S ZCNT=ZCNT+1,NTECNT=NTECNT+1,GMRCM(ZCNT)="NTE|"_NTECNT_"||Comment\R\\R\"
- S NTECNT=4
+ D AUTHDTTM^GMRCCCR1 ; patch 146, for size
  Q
 STATUS(T1,T2) ;get status for event
  ;also add IP^COMMENT when those events are captured
@@ -271,7 +278,7 @@ STATUS(T1,T2) ;get status for event
  .I '+$G(GMRCPARN),'+$G(TIUDA) S GMRCPARN=$P($G(^GMR(123,GMRCDA,50,1,0)),U)
  .S $P(ORC,FS,4)=$S(+$G(GMRCPARN):+GMRCPARN_";TIU^TIU",+$G(TIUDA):+TIUDA_";TIU^TIU",1:$P(ORC,FS,4))
  I T1="XX"&(T2="CM") Q "CM^ADDENDED"
- I T2="CM" Q "CM^COMPLETE"
+ I T2="CM" Q "CM^COMPLETE/UPDATE" ; patch 146, was "CM^COMPLETE", didn't match file 123.1 ; MJ
  I T1="XX"&(T2="IP")&$G(OKFROM) Q "XX^FORWARDED"
  I T1="XX"&(T2="IP") Q "IP^RESUBMITTED"
  Q "UNKNOWN"
@@ -296,43 +303,11 @@ COMMENT(GMRCDA) ;send comments on Non VA Care consults to HCP
 ADDEND(TIUDA) ;send addendums on Non VA Care consults to HCP
  ;create a fake event for HCP since there is no HL7 event passed to GMRC EVSEND OR
  ;
- ; modified in patch GMRC*3.0*106 to use ICR 2693
  I '$G(TIUDA) Q
  Q:'$D(^TIU(8925,+TIUDA,0))
  N TIUTYP,DFN,GMRCPARN,GMRCO,GMRCD,GMRCDA,GMRCD1,GMRC8925,T
- D EXTRACT^TIULQ(TIUDA)
  ;
- ; Quit if not an addendum
- S TIUTYP=^TMP("TIULQ",$J,+TIUDA,.01,"I")
- I TIUTYP'=81 Q
- ;
- S DFN=^TMP("TIULQ",$J,+TIUDA,.02,"I")
- I 'DFN!('$D(^DPT(DFN))) Q
- ;
- ; Get parent note IEN, if addendum IEN is passed in:
- S GMRCPARN=^TMP("TIULQ",$J,+TIUDA,.06,"I")
- ;
- ; Quit if not an addendum
- ;S TIUTYP=$$GET1^DIQ(8925,TIUDA,.01,"I")
- ;I TIUTYP'=81 Q
- ;
- ;S DFN=$$GET1^DIQ(8925,TIUDA,.02,"I")
- ;I 'DFN,'$D(^DPT(DFN)) Q
- ;
- ; Get parent note IEN, if addendum IEN is passed in:
- ;S GMRCPARN=$$GET1^DIQ(8925,TIUDA,.06,"I")
- ;
- ; end patch 106 mods
- ;
- S (GMRCO,GMRCD)=0
- F  S GMRCD=$O(^GMR(123,"AD",DFN,GMRCD)) Q:'GMRCD!(GMRCO)  D
- .S GMRCDA=0
- .F  S GMRCDA=$O(^GMR(123,"AD",DFN,GMRCD,GMRCDA)) Q:'GMRCDA!(GMRCO)  D
- ..S GMRCD1=0
- ..F  S GMRCD1=$O(^GMR(123,GMRCDA,50,GMRCD1)) Q:'GMRCD1!(GMRCO)  D
- ...S GMRC8925=$$GET1^DIQ(123.03,GMRCD1_","_GMRCDA_",",.01,"I")
- ...I +GMRC8925=$S(+GMRCPARN:+GMRCPARN,1:TIUDA) S GMRCO=GMRCDA
- Q:'GMRCO
+ S GMRCO=$$ADDEND^GMRCCCR1 Q:'GMRCO   ; patch 146, needed for space ; MJ
  ;
  S T(1)="MSH|^~\&|CONSULTS||||||ORM"
  S T(2)="PID|||"_DFN
@@ -369,25 +344,8 @@ OITEM(GMRCORDN) ; Orderable Item
  ; end patch 106 mods
  Q RETVAL
 ACK ; Process ACK HL7 messages
- N GMRCMSG,I,X,DONE,MSGID,ERRARY,ERRI
- ;Get the message
- S ERRI=0
- F I=1:1 X HLNEXT Q:(HLQUIT'>0)  D
- . S GMRCMSG(I,1)=HLNODE
- . S X=0 F  S X=+$O(HLNODE(X)) Q:'X  S GMRCMSG(I,(X+1))=HLNODE(X)
- S DONE=0
- S I=0 F  S I=$O(GMRCMSG(I)) Q:'+I  D  Q:DONE
- . I $P($G(GMRCMSG(I,1)),"|",1)="MSA" D  Q
- . . I $P($G(GMRCMSG(I,1)),"|",2)="AA" S DONE=1 Q
- . . S MSGID=$P($G(GMRCMSG(I,1)),"|",3)
- . I $P($G(GMRCMSG(I,1)),"|",1)="ERR" D
- . . ;Process Error
- . . S ERRI=ERRI+1
- . . S ERRARY(ERRI,2)=$P($G(GMRCMSG(I,1)),"|",3)
- . . I $P($G(GMRCMSG(I,1)),"|",6)'="" D  Q
- . . . S ERRARY(ERRI,3)=$P($P($G(GMRCMSG(I,1)),"|",6),"^",4)_"^"_$P($P($G(GMRCMSG(I,1)),"|",6),"^",5)
- . . S ERRARY(ERRI,3)=$P($G(GMRCMSG(I,1)),"|",4)
- I $D(ERRARY) D MESSAGE(MSGID,.ERRARY)
+ D ACK^GMRCCCR1 ; patch 146, moved for space
  Q
 MESSAGE(MSGID,ERRARY) ; Send a MailMan Message with the errors
  D MESSAGE^GMRCCCR1(MSGID,.ERRARY)
+ Q

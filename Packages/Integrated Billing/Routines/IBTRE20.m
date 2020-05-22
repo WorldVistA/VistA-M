@@ -1,6 +1,6 @@
 IBTRE20 ;ALB/AAS - CLAIMS TRACKING EXECUTABLE HELP ;13-OCT-93
- ;;2.0;INTEGRATED BILLING;**40,91,249,568**;21-MAR-94;Build 40
- ;;Per VA Directive 6402, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**40,91,249,568,662**;21-MAR-94;Build 8
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 LISTA ; -- list inpatient admissions for patient
@@ -105,7 +105,7 @@ LISTP ; -- list inpatient admissions for patient
  K ^TMP("IBPRO",$J)
  Q
  ;
-WRP S IBX=$P(^TMP("IBPRO",$J,IBI),"^",1,20),N=$P(IBX,U,1),P=$P(IBX,U,7),P1=$P(^RMPR(661,P,0),U,1),P2=$P(^PRC(441,P1,0),U,2)
+WRP S IBX=$P(^TMP("IBPRO",$J,IBI),"^",1,20),N=$P(IBX,U,1),P=$P(IBX,U,7) S P1=$S(+P:$P($G(^RMPR(661,P,0)),U,1),1:""),P2=$S(+P1:$P($G(^PRC(441,P1,0)),U,2),1:"")
  S DDT=$P(IBX,U,13),DDTO=$$FMTE^XLFDT(DDT,"2DZ"),IBARRAY(IBI)=N_U_P_U_DDT_U_P2_U_DDTO
  S TP=$P(IBX,U,4),TYPE=$S(TP="I":"INITIAL ISSUE",TP="R":"REPLACE",TP="S":"SPARE",TP="X":"REPAIR",1:"RENTAL")
  W !,"  ",IBI,?10,$E(P2,1,25),?40,TYPE,?58,"DELIVERED:",DDTO

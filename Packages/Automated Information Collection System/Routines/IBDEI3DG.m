@@ -1,128 +1,110 @@
-IBDEI3DG ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3DG ; ; 05-NOV-2019
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;NOV 05, 2019
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56683,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Ulceration of Ankle
- ;;^UTILITY(U,$J,358.3,56683,1,4,0)
- ;;=4^I70.233
- ;;^UTILITY(U,$J,358.3,56683,2)
- ;;=^5007590
- ;;^UTILITY(U,$J,358.3,56684,0)
- ;;=I70.234^^261^2831^56
- ;;^UTILITY(U,$J,358.3,56684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56684,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Ulceration of Heel & Midfoot
- ;;^UTILITY(U,$J,358.3,56684,1,4,0)
- ;;=4^I70.234
- ;;^UTILITY(U,$J,358.3,56684,2)
- ;;=^5007591
- ;;^UTILITY(U,$J,358.3,56685,0)
- ;;=I70.235^^261^2831^57
- ;;^UTILITY(U,$J,358.3,56685,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56685,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Ulceration of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,56685,1,4,0)
- ;;=4^I70.235
- ;;^UTILITY(U,$J,358.3,56685,2)
- ;;=^5007592
- ;;^UTILITY(U,$J,358.3,56686,0)
- ;;=I70.261^^261^2831^51
- ;;^UTILITY(U,$J,358.3,56686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56686,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,56686,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,56686,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,56687,0)
- ;;=I70.241^^261^2831^50
- ;;^UTILITY(U,$J,358.3,56687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56687,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Ulceration of Thigh
- ;;^UTILITY(U,$J,358.3,56687,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,56687,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,56688,0)
- ;;=I70.242^^261^2831^47
- ;;^UTILITY(U,$J,358.3,56688,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56688,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Ulceration of Calf
- ;;^UTILITY(U,$J,358.3,56688,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,56688,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,56689,0)
- ;;=I70.243^^261^2831^46
- ;;^UTILITY(U,$J,358.3,56689,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56689,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Ulceration of Ankle
- ;;^UTILITY(U,$J,358.3,56689,1,4,0)
- ;;=4^I70.243
- ;;^UTILITY(U,$J,358.3,56689,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,56690,0)
- ;;=I70.244^^261^2831^48
- ;;^UTILITY(U,$J,358.3,56690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56690,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Ulceration of Heel & Midfoot
- ;;^UTILITY(U,$J,358.3,56690,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,56690,2)
- ;;=^5007598
- ;;^UTILITY(U,$J,358.3,56691,0)
- ;;=I70.245^^261^2831^49
- ;;^UTILITY(U,$J,358.3,56691,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56691,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Ulceration of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,56691,1,4,0)
- ;;=4^I70.245
- ;;^UTILITY(U,$J,358.3,56691,2)
- ;;=^5007599
- ;;^UTILITY(U,$J,358.3,56692,0)
- ;;=I70.262^^261^2831^44
- ;;^UTILITY(U,$J,358.3,56692,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56692,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,56692,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,56692,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,56693,0)
- ;;=I70.263^^261^2831^43
- ;;^UTILITY(U,$J,358.3,56693,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56693,1,3,0)
- ;;=3^Athscl of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,56693,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,56693,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,56694,0)
- ;;=I71.2^^261^2831^137
- ;;^UTILITY(U,$J,358.3,56694,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56694,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,56694,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,56694,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,56695,0)
- ;;=I71.3^^261^2831^33
- ;;^UTILITY(U,$J,358.3,56695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56695,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,56695,1,4,0)
- ;;=4^I71.3
+ ;;^UTILITY(U,$J,358.6,6,1,0)
+ ;;=^^2^2^2961007^^^^
+ ;;^UTILITY(U,$J,358.6,6,1,1,0)
+ ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
+ ;;^UTILITY(U,$J,358.6,6,1,2,0)
+ ;;=are allowed.
+ ;;^UTILITY(U,$J,358.6,6,2)
+ ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
+ ;;^UTILITY(U,$J,358.6,6,3)
+ ;;=SELECT CPT PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,6,9)
+ ;;=S X=$$CPT^IBDFN12(X)
+ ;;^UTILITY(U,$J,358.6,6,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,6,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,6,15,1,0)
+ ;;=SHORT NAME^28^2^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,6,15,2,0)
+ ;;=DESCRIPTION^161^3^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,6,16)
+ ;;=o^1^Procedure Narrative^^r^2^CPT CODE^1
+ ;;^UTILITY(U,$J,358.6,7,0)
+ ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,7,1,0)
+ ;;=^^1^1^2960205^^^^
+ ;;^UTILITY(U,$J,358.6,7,1,1,0)
+ ;;=Used for inputting CPT coded procedures performed on the patient.
+ ;;^UTILITY(U,$J,358.6,7,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,7,3)
+ ;;=CPT4 PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,7,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,7,10)
+ ;;=Enter an active CPT procedure code.
+ ;;^UTILITY(U,$J,358.6,7,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,7,12)
+ ;;=PROCEDURE^1^6^7^3^2
+ ;;^UTILITY(U,$J,358.6,7,13,0)
+ ;;=^358.613V^2^2
+ ;;^UTILITY(U,$J,358.6,7,13,1,0)
+ ;;=1;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,7,13,2,0)
+ ;;=2;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,7,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,7,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,7,17)
+ ;;=D SLCTCPT^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,7,18)
+ ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
+ ;;^UTILITY(U,$J,358.6,7,19)
+ ;;=D CPT^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,8,0)
+ ;;=DG SELECT ICD-10 DIAGNOSIS CODES^ICD10^IBDFN4^SCHEDULING^^3^2^^1^^^1^9^^^^1^1^^^^30
+ ;;^UTILITY(U,$J,358.6,8,1,0)
+ ;;=^^2^2^3140327
+ ;;^UTILITY(U,$J,358.6,8,1,1,0)
+ ;;=Allows the user to select ICD-10 diagnosis codes from the ICD Diagnosis
+ ;;^UTILITY(U,$J,358.6,8,1,2,0)
+ ;;=file. Allows only active codes to be selected.
+ ;;^UTILITY(U,$J,358.6,8,2)
+ ;;=CODE^8^^^^^^^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,8,3)
+ ;;=SELECT ICD10 ICD-10 CODES DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,8,9)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,8,11)
+ ;;=D TESTICD0^IBDFN7
+ ;;^UTILITY(U,$J,358.6,8,12)
+ ;;=^^^^^
+ ;;^UTILITY(U,$J,358.6,8,13,0)
+ ;;=^357.613V^2^2
+ ;;^UTILITY(U,$J,358.6,8,13,1,0)
+ ;;=1;IBD(358.98,^^^^^^^
+ ;;^UTILITY(U,$J,358.6,8,13,2,0)
+ ;;=2;IBD(358.98,^^^^^^^
+ ;;^UTILITY(U,$J,358.6,8,15,0)
+ ;;=^357.615I^2^2
+ ;;^UTILITY(U,$J,358.6,8,15,1,0)
+ ;;=DIAGNOSIS^60^2^^DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,8,15,2,0)
+ ;;=DESCRIPTION^200^3^^DIAGNOSIS
+ ;;^UTILITY(U,$J,358.6,8,16)
+ ;;=o^4^Diagnosis^^r^5^ICD-10 Code^^1
+ ;;^UTILITY(U,$J,358.6,8,17)
+ ;;=D SLCTDX10^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,8,19)
+ ;;=D DX10^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,9,0)
+ ;;=INPUT DIAGNOSIS CODE (ICD10)^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP^^^1^^^
+ ;;^UTILITY(U,$J,358.6,9,1,0)
+ ;;=^^1^1^3140327
+ ;;^UTILITY(U,$J,358.6,9,1,1,0)
+ ;;=Used for inputting ICD10 diagnosis codes.
+ ;;^UTILITY(U,$J,358.6,9,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,9,3)
+ ;;=INPUT ICD10 ICD-10 DIAGNOSIS CODES
+ ;;^UTILITY(U,$J,358.6,9,9)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,9,10)
+ ;;=Enter at least two characters of an active ICD10 diagnosis code.

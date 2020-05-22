@@ -1,112 +1,120 @@
-IBDEI1UO ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31428,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; single bursal space 
- ;;^UTILITY(U,$J,358.3,31428,1,3,0)
- ;;=3^28002
- ;;^UTILITY(U,$J,358.3,31429,0)
- ;;=28003^^125^1592^3^^^^1
- ;;^UTILITY(U,$J,358.3,31429,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31429,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; multiple areas 
- ;;^UTILITY(U,$J,358.3,31429,1,3,0)
- ;;=3^28003
- ;;^UTILITY(U,$J,358.3,31430,0)
- ;;=28008^^125^1592^4^^^^1
- ;;^UTILITY(U,$J,358.3,31430,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31430,1,2,0)
- ;;=2^Fasciotomy, foot and/or toe
- ;;^UTILITY(U,$J,358.3,31430,1,3,0)
- ;;=3^28008
- ;;^UTILITY(U,$J,358.3,31431,0)
- ;;=28010^^125^1592^5^^^^1
- ;;^UTILITY(U,$J,358.3,31431,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31431,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; single tendon
- ;;^UTILITY(U,$J,358.3,31431,1,3,0)
- ;;=3^28010
- ;;^UTILITY(U,$J,358.3,31432,0)
- ;;=28011^^125^1592^6^^^^1
- ;;^UTILITY(U,$J,358.3,31432,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31432,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; multiple tendons
- ;;^UTILITY(U,$J,358.3,31432,1,3,0)
- ;;=3^28011
- ;;^UTILITY(U,$J,358.3,31433,0)
- ;;=28020^^125^1592^7^^^^1
- ;;^UTILITY(U,$J,358.3,31433,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31433,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; intertarsal or tarsometatarsal joint
- ;;^UTILITY(U,$J,358.3,31433,1,3,0)
- ;;=3^28020
- ;;^UTILITY(U,$J,358.3,31434,0)
- ;;=28022^^125^1592^8^^^^1
- ;;^UTILITY(U,$J,358.3,31434,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31434,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; metatarsophalangeal joint 
- ;;^UTILITY(U,$J,358.3,31434,1,3,0)
- ;;=3^28022
- ;;^UTILITY(U,$J,358.3,31435,0)
- ;;=28024^^125^1592^9^^^^1
- ;;^UTILITY(U,$J,358.3,31435,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31435,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; interphalangeal joint
- ;;^UTILITY(U,$J,358.3,31435,1,3,0)
- ;;=3^28024
- ;;^UTILITY(U,$J,358.3,31436,0)
- ;;=28035^^125^1592^11^^^^1
- ;;^UTILITY(U,$J,358.3,31436,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31436,1,2,0)
- ;;=2^Release, tarsal tunnel
- ;;^UTILITY(U,$J,358.3,31436,1,3,0)
- ;;=3^28035
- ;;^UTILITY(U,$J,358.3,31437,0)
- ;;=28055^^125^1592^10^^^^1
- ;;^UTILITY(U,$J,358.3,31437,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31437,1,2,0)
- ;;=2^Neurectomy, Foot
- ;;^UTILITY(U,$J,358.3,31437,1,3,0)
- ;;=3^28055
- ;;^UTILITY(U,$J,358.3,31438,0)
- ;;=28043^^125^1593^5^^^^1
- ;;^UTILITY(U,$J,358.3,31438,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31438,1,2,0)
- ;;=2^Excision Tumor-Foot,SQ Tissue >1.5cm
- ;;^UTILITY(U,$J,358.3,31438,1,3,0)
- ;;=3^28043
- ;;^UTILITY(U,$J,358.3,31439,0)
- ;;=28045^^125^1593^4^^^^1
- ;;^UTILITY(U,$J,358.3,31439,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31439,1,2,0)
- ;;=2^Excision Tumor-Foot,Deep Subfascial >1.5cm
- ;;^UTILITY(U,$J,358.3,31439,1,3,0)
- ;;=3^28045
- ;;^UTILITY(U,$J,358.3,31440,0)
- ;;=28050^^125^1593^2^^^^1
- ;;^UTILITY(U,$J,358.3,31440,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31440,1,2,0)
- ;;=2^Arthrotomy with biopsy; intertarsal or tarsometatarsal joint 
- ;;^UTILITY(U,$J,358.3,31440,1,3,0)
- ;;=3^28050
- ;;^UTILITY(U,$J,358.3,31441,0)
- ;;=28052^^125^1593^3^^^^1
- ;;^UTILITY(U,$J,358.3,31441,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31441,1,2,0)
- ;;=2^Arthrotomy with biopsy; metatarsophalangeal joint 
- ;;^UTILITY(U,$J,358.3,31441,1,3,0)
- ;;=3^28052
+ ;;^UTILITY(U,$J,358.3,29551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29551,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29551,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,29551,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,29552,0)
+ ;;=F18.180^^118^1491^1
+ ;;^UTILITY(U,$J,358.3,29552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29552,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29552,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,29552,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,29553,0)
+ ;;=F18.280^^118^1491^2
+ ;;^UTILITY(U,$J,358.3,29553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29553,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29553,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,29553,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,29554,0)
+ ;;=F18.980^^118^1491^3
+ ;;^UTILITY(U,$J,358.3,29554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29554,1,3,0)
+ ;;=3^Inhalant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29554,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,29554,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,29555,0)
+ ;;=F18.94^^118^1491^6
+ ;;^UTILITY(U,$J,358.3,29555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29555,1,3,0)
+ ;;=3^Inhalant Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29555,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,29555,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,29556,0)
+ ;;=F18.17^^118^1491^7
+ ;;^UTILITY(U,$J,358.3,29556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29556,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29556,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,29556,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,29557,0)
+ ;;=F18.27^^118^1491^8
+ ;;^UTILITY(U,$J,358.3,29557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29557,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29557,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,29557,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,29558,0)
+ ;;=F18.97^^118^1491^9
+ ;;^UTILITY(U,$J,358.3,29558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29558,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29558,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,29558,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,29559,0)
+ ;;=F18.188^^118^1491^10
+ ;;^UTILITY(U,$J,358.3,29559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29559,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29559,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,29559,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,29560,0)
+ ;;=F18.288^^118^1491^11
+ ;;^UTILITY(U,$J,358.3,29560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29560,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29560,1,4,0)
+ ;;=4^F18.288
+ ;;^UTILITY(U,$J,358.3,29560,2)
+ ;;=^5003403
+ ;;^UTILITY(U,$J,358.3,29561,0)
+ ;;=F18.988^^118^1491^12
+ ;;^UTILITY(U,$J,358.3,29561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29561,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29561,1,4,0)
+ ;;=4^F18.988
+ ;;^UTILITY(U,$J,358.3,29561,2)
+ ;;=^5003415
+ ;;^UTILITY(U,$J,358.3,29562,0)
+ ;;=F18.159^^118^1491^13
+ ;;^UTILITY(U,$J,358.3,29562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29562,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29562,1,4,0)
+ ;;=4^F18.159

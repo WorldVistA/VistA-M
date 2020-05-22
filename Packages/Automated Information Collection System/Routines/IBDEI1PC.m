@@ -1,124 +1,122 @@
-IBDEI1PC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28925,1,0)
+ ;;^UTILITY(U,$J,358.3,27196,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27196,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,27196,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,27197,0)
+ ;;=F18.97^^110^1313^9
+ ;;^UTILITY(U,$J,358.3,27197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28925,1,3,0)
- ;;=3^Diseases of the nervous sys comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,28925,1,4,0)
- ;;=4^O99.351
- ;;^UTILITY(U,$J,358.3,28925,2)
- ;;=^5017965
- ;;^UTILITY(U,$J,358.3,28926,0)
- ;;=O99.352^^115^1453^11
- ;;^UTILITY(U,$J,358.3,28926,1,0)
+ ;;^UTILITY(U,$J,358.3,27197,1,3,0)
+ ;;=3^Inhalant Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27197,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,27197,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,27198,0)
+ ;;=F18.188^^110^1313^10
+ ;;^UTILITY(U,$J,358.3,27198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28926,1,3,0)
- ;;=3^Diseases of the nervous sys comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,28926,1,4,0)
- ;;=4^O99.352
- ;;^UTILITY(U,$J,358.3,28926,2)
- ;;=^5017966
- ;;^UTILITY(U,$J,358.3,28927,0)
- ;;=O99.353^^115^1453^12
- ;;^UTILITY(U,$J,358.3,28927,1,0)
+ ;;^UTILITY(U,$J,358.3,27198,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27198,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,27198,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,27199,0)
+ ;;=F18.288^^110^1313^11
+ ;;^UTILITY(U,$J,358.3,27199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28927,1,3,0)
- ;;=3^Diseases of the nervous sys comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,28927,1,4,0)
- ;;=4^O99.353
- ;;^UTILITY(U,$J,358.3,28927,2)
- ;;=^5017967
- ;;^UTILITY(U,$J,358.3,28928,0)
- ;;=O26.851^^115^1453^24
- ;;^UTILITY(U,$J,358.3,28928,1,0)
+ ;;^UTILITY(U,$J,358.3,27199,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27199,1,4,0)
+ ;;=4^F18.288
+ ;;^UTILITY(U,$J,358.3,27199,2)
+ ;;=^5003403
+ ;;^UTILITY(U,$J,358.3,27200,0)
+ ;;=F18.988^^110^1313^12
+ ;;^UTILITY(U,$J,358.3,27200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28928,1,3,0)
- ;;=3^Spotting complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,28928,1,4,0)
- ;;=4^O26.851
- ;;^UTILITY(U,$J,358.3,28928,2)
- ;;=^5016349
- ;;^UTILITY(U,$J,358.3,28929,0)
- ;;=O26.852^^115^1453^25
- ;;^UTILITY(U,$J,358.3,28929,1,0)
+ ;;^UTILITY(U,$J,358.3,27200,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27200,1,4,0)
+ ;;=4^F18.988
+ ;;^UTILITY(U,$J,358.3,27200,2)
+ ;;=^5003415
+ ;;^UTILITY(U,$J,358.3,27201,0)
+ ;;=F18.159^^110^1313^13
+ ;;^UTILITY(U,$J,358.3,27201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28929,1,3,0)
- ;;=3^Spotting complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,28929,1,4,0)
- ;;=4^O26.852
- ;;^UTILITY(U,$J,358.3,28929,2)
- ;;=^5016350
- ;;^UTILITY(U,$J,358.3,28930,0)
- ;;=O26.853^^115^1453^26
- ;;^UTILITY(U,$J,358.3,28930,1,0)
+ ;;^UTILITY(U,$J,358.3,27201,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27201,1,4,0)
+ ;;=4^F18.159
+ ;;^UTILITY(U,$J,358.3,27201,2)
+ ;;=^5003387
+ ;;^UTILITY(U,$J,358.3,27202,0)
+ ;;=F18.259^^110^1313^14
+ ;;^UTILITY(U,$J,358.3,27202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28930,1,3,0)
- ;;=3^Spotting complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,28930,1,4,0)
- ;;=4^O26.853
- ;;^UTILITY(U,$J,358.3,28930,2)
- ;;=^5016351
- ;;^UTILITY(U,$J,358.3,28931,0)
- ;;=O26.841^^115^1453^28
- ;;^UTILITY(U,$J,358.3,28931,1,0)
+ ;;^UTILITY(U,$J,358.3,27202,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27202,1,4,0)
+ ;;=4^F18.259
+ ;;^UTILITY(U,$J,358.3,27202,2)
+ ;;=^5003400
+ ;;^UTILITY(U,$J,358.3,27203,0)
+ ;;=F18.959^^110^1313^15
+ ;;^UTILITY(U,$J,358.3,27203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28931,1,3,0)
- ;;=3^Uterine size-date discrepancy, first trimester
- ;;^UTILITY(U,$J,358.3,28931,1,4,0)
- ;;=4^O26.841
- ;;^UTILITY(U,$J,358.3,28931,2)
- ;;=^5016345
- ;;^UTILITY(U,$J,358.3,28932,0)
- ;;=O26.842^^115^1453^29
- ;;^UTILITY(U,$J,358.3,28932,1,0)
+ ;;^UTILITY(U,$J,358.3,27203,1,3,0)
+ ;;=3^Inhalant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27203,1,4,0)
+ ;;=4^F18.959
+ ;;^UTILITY(U,$J,358.3,27203,2)
+ ;;=^5003412
+ ;;^UTILITY(U,$J,358.3,27204,0)
+ ;;=F18.99^^110^1313^22
+ ;;^UTILITY(U,$J,358.3,27204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28932,1,3,0)
- ;;=3^Uterine size-date discrepancy, second trimester
- ;;^UTILITY(U,$J,358.3,28932,1,4,0)
- ;;=4^O26.842
- ;;^UTILITY(U,$J,358.3,28932,2)
- ;;=^5016346
- ;;^UTILITY(U,$J,358.3,28933,0)
- ;;=O26.843^^115^1453^30
- ;;^UTILITY(U,$J,358.3,28933,1,0)
+ ;;^UTILITY(U,$J,358.3,27204,1,3,0)
+ ;;=3^Inhalant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27204,1,4,0)
+ ;;=4^F18.99
+ ;;^UTILITY(U,$J,358.3,27204,2)
+ ;;=^5133360
+ ;;^UTILITY(U,$J,358.3,27205,0)
+ ;;=F18.21^^110^1313^25
+ ;;^UTILITY(U,$J,358.3,27205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28933,1,3,0)
- ;;=3^Uterine size-date discrepancy, third trimester
- ;;^UTILITY(U,$J,358.3,28933,1,4,0)
- ;;=4^O26.843
- ;;^UTILITY(U,$J,358.3,28933,2)
- ;;=^5016347
- ;;^UTILITY(U,$J,358.3,28934,0)
- ;;=O26.872^^115^1453^6
- ;;^UTILITY(U,$J,358.3,28934,1,0)
+ ;;^UTILITY(U,$J,358.3,27205,1,3,0)
+ ;;=3^Inhalant Use D/O,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,27205,1,4,0)
+ ;;=4^F18.21
+ ;;^UTILITY(U,$J,358.3,27205,2)
+ ;;=^5003393
+ ;;^UTILITY(U,$J,358.3,27206,0)
+ ;;=F18.11^^110^1313^24
+ ;;^UTILITY(U,$J,358.3,27206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28934,1,3,0)
- ;;=3^Cervical shortening, second trimester
- ;;^UTILITY(U,$J,358.3,28934,1,4,0)
- ;;=4^O26.872
- ;;^UTILITY(U,$J,358.3,28934,2)
- ;;=^5016354
- ;;^UTILITY(U,$J,358.3,28935,0)
- ;;=O26.873^^115^1453^7
- ;;^UTILITY(U,$J,358.3,28935,1,0)
+ ;;^UTILITY(U,$J,358.3,27206,1,3,0)
+ ;;=3^Inhalant Use D/O,Mild,In Remission
+ ;;^UTILITY(U,$J,358.3,27206,1,4,0)
+ ;;=4^F18.11
+ ;;^UTILITY(U,$J,358.3,27206,2)
+ ;;=^5151305
+ ;;^UTILITY(U,$J,358.3,27207,0)
+ ;;=Z00.6^^110^1314^1
+ ;;^UTILITY(U,$J,358.3,27207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28935,1,3,0)
- ;;=3^Cervical shortening, third trimester
- ;;^UTILITY(U,$J,358.3,28935,1,4,0)
- ;;=4^O26.873
- ;;^UTILITY(U,$J,358.3,28935,2)
- ;;=^5016355
- ;;^UTILITY(U,$J,358.3,28936,0)
- ;;=O30.001^^115^1454^77
- ;;^UTILITY(U,$J,358.3,28936,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28936,1,3,0)
- ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, first trimester
- ;;^UTILITY(U,$J,358.3,28936,1,4,0)
- ;;=4^O30.001
- ;;^UTILITY(U,$J,358.3,28936,2)
- ;;=^5016429
- ;;^UTILITY(U,$J,358.3,28937,0)
- ;;=O30.002^^115^1454^78
+ ;;^UTILITY(U,$J,358.3,27207,1,3,0)
+ ;;=3^Exam Control in Clinical Research
+ ;;^UTILITY(U,$J,358.3,27207,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,27207,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,27208,0)
+ ;;=F45.8^^110^1315^13

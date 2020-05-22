@@ -1,130 +1,130 @@
-IBDEI2PY ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45621,2)
- ;;=^5060679
- ;;^UTILITY(U,$J,358.3,45622,0)
- ;;=X00.8XXD^^200^2247^18
- ;;^UTILITY(U,$J,358.3,45622,1,0)
+ ;;^UTILITY(U,$J,358.3,43344,1,4,0)
+ ;;=4^L89.624
+ ;;^UTILITY(U,$J,358.3,43344,2)
+ ;;=^5009439
+ ;;^UTILITY(U,$J,358.3,43345,0)
+ ;;=L89.899^^158^2105^85
+ ;;^UTILITY(U,$J,358.3,43345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45622,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45622,1,4,0)
- ;;=4^X00.8XXD
- ;;^UTILITY(U,$J,358.3,45622,2)
- ;;=^5060680
- ;;^UTILITY(U,$J,358.3,45623,0)
- ;;=X32.XXXA^^200^2247^15
- ;;^UTILITY(U,$J,358.3,45623,1,0)
+ ;;^UTILITY(U,$J,358.3,43345,1,3,0)
+ ;;=3^Pressure Ulcer of Other Site,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43345,1,4,0)
+ ;;=4^L89.899
+ ;;^UTILITY(U,$J,358.3,43345,2)
+ ;;=^5133663
+ ;;^UTILITY(U,$J,358.3,43346,0)
+ ;;=Z59.0^^158^2106^4
+ ;;^UTILITY(U,$J,358.3,43346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45623,1,3,0)
- ;;=3^Exp to Sunlight,Init Encntr
- ;;^UTILITY(U,$J,358.3,45623,1,4,0)
- ;;=4^X32.XXXA
- ;;^UTILITY(U,$J,358.3,45623,2)
- ;;=^5060847
- ;;^UTILITY(U,$J,358.3,45624,0)
- ;;=X32.XXXD^^200^2247^16
- ;;^UTILITY(U,$J,358.3,45624,1,0)
+ ;;^UTILITY(U,$J,358.3,43346,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,43346,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,43346,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,43347,0)
+ ;;=Z59.1^^158^2106^5
+ ;;^UTILITY(U,$J,358.3,43347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45624,1,3,0)
- ;;=3^Exp to Sunlight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45624,1,4,0)
- ;;=4^X32.XXXD
- ;;^UTILITY(U,$J,358.3,45624,2)
- ;;=^5060848
- ;;^UTILITY(U,$J,358.3,45625,0)
- ;;=Y04.0XXA^^200^2247^7
- ;;^UTILITY(U,$J,358.3,45625,1,0)
+ ;;^UTILITY(U,$J,358.3,43347,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,43347,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,43347,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,43348,0)
+ ;;=Z59.5^^158^2106^2
+ ;;^UTILITY(U,$J,358.3,43348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45625,1,3,0)
- ;;=3^Assault by Unarmed Fight,Init Encntr
- ;;^UTILITY(U,$J,358.3,45625,1,4,0)
- ;;=4^Y04.0XXA
- ;;^UTILITY(U,$J,358.3,45625,2)
- ;;=^5061165
- ;;^UTILITY(U,$J,358.3,45626,0)
- ;;=Y04.0XXD^^200^2247^8
- ;;^UTILITY(U,$J,358.3,45626,1,0)
+ ;;^UTILITY(U,$J,358.3,43348,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,43348,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,43348,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,43349,0)
+ ;;=Z74.2^^158^2106^8
+ ;;^UTILITY(U,$J,358.3,43349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45626,1,3,0)
- ;;=3^Assault by Unarmed Fight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45626,1,4,0)
- ;;=4^Y04.0XXD
- ;;^UTILITY(U,$J,358.3,45626,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,45627,0)
- ;;=Y04.1XXA^^200^2247^1
- ;;^UTILITY(U,$J,358.3,45627,1,0)
+ ;;^UTILITY(U,$J,358.3,43349,1,3,0)
+ ;;=3^No Household Member Able to Render Care
+ ;;^UTILITY(U,$J,358.3,43349,1,4,0)
+ ;;=4^Z74.2
+ ;;^UTILITY(U,$J,358.3,43349,2)
+ ;;=^5063285
+ ;;^UTILITY(U,$J,358.3,43350,0)
+ ;;=Z75.5^^158^2106^3
+ ;;^UTILITY(U,$J,358.3,43350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45627,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,45627,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,45627,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,45628,0)
- ;;=Y04.1XXD^^200^2247^2
- ;;^UTILITY(U,$J,358.3,45628,1,0)
+ ;;^UTILITY(U,$J,358.3,43350,1,3,0)
+ ;;=3^Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,43350,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,43350,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,43351,0)
+ ;;=Z56.0^^158^2106^10
+ ;;^UTILITY(U,$J,358.3,43351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45628,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45628,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,45628,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,45629,0)
- ;;=Y04.2XXA^^200^2247^5
- ;;^UTILITY(U,$J,358.3,45629,1,0)
+ ;;^UTILITY(U,$J,358.3,43351,1,3,0)
+ ;;=3^Unemployment,Unspec
+ ;;^UTILITY(U,$J,358.3,43351,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,43351,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,43352,0)
+ ;;=Z65.5^^158^2106^1
+ ;;^UTILITY(U,$J,358.3,43352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45629,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,45629,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,45629,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,45630,0)
- ;;=Y04.8XXA^^200^2247^3
- ;;^UTILITY(U,$J,358.3,45630,1,0)
+ ;;^UTILITY(U,$J,358.3,43352,1,3,0)
+ ;;=3^Exposure to Disaster/War/Oth Hostilities
+ ;;^UTILITY(U,$J,358.3,43352,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,43352,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,43353,0)
+ ;;=Z65.3^^158^2106^6
+ ;;^UTILITY(U,$J,358.3,43353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45630,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,45630,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,45630,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,45631,0)
- ;;=Y04.2XXD^^200^2247^6
- ;;^UTILITY(U,$J,358.3,45631,1,0)
+ ;;^UTILITY(U,$J,358.3,43353,1,3,0)
+ ;;=3^Legal Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,43353,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,43353,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,43354,0)
+ ;;=Z65.8^^158^2106^9
+ ;;^UTILITY(U,$J,358.3,43354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45631,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45631,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,45631,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,45632,0)
- ;;=Y04.8XXD^^200^2247^4
- ;;^UTILITY(U,$J,358.3,45632,1,0)
+ ;;^UTILITY(U,$J,358.3,43354,1,3,0)
+ ;;=3^Psychosocial Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,43354,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,43354,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,43355,0)
+ ;;=Z75.0^^158^2106^7
+ ;;^UTILITY(U,$J,358.3,43355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45632,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45632,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,45632,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,45633,0)
- ;;=Y36.200A^^200^2247^124
- ;;^UTILITY(U,$J,358.3,45633,1,0)
+ ;;^UTILITY(U,$J,358.3,43355,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,43355,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,43355,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,43356,0)
+ ;;=B18.2^^158^2107^30
+ ;;^UTILITY(U,$J,358.3,43356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45633,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,45633,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,45633,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,45634,0)
- ;;=Y36.200D^^200^2247^125
- ;;^UTILITY(U,$J,358.3,45634,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43356,1,3,0)
+ ;;=3^Hepatitis C,Chr
+ ;;^UTILITY(U,$J,358.3,43356,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,43356,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,43357,0)
+ ;;=C44.99^^158^2107^60

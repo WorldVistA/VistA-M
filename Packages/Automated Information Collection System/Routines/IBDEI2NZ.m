@@ -1,130 +1,116 @@
-IBDEI2NZ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44710,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,44710,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,44711,0)
- ;;=J11.00^^200^2230^28
- ;;^UTILITY(U,$J,358.3,44711,1,0)
+ ;;^UTILITY(U,$J,358.3,42491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44711,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,44711,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,44711,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,44712,0)
- ;;=J12.9^^200^2230^69
- ;;^UTILITY(U,$J,358.3,44712,1,0)
+ ;;^UTILITY(U,$J,358.3,42491,1,3,0)
+ ;;=3^Disp fx of segmental shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42491,1,4,0)
+ ;;=4^S42.362S
+ ;;^UTILITY(U,$J,358.3,42491,2)
+ ;;=^5027244
+ ;;^UTILITY(U,$J,358.3,42492,0)
+ ;;=S42.361S^^155^2071^42
+ ;;^UTILITY(U,$J,358.3,42492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44712,1,3,0)
- ;;=3^Pneumonia,Viral Unspec
- ;;^UTILITY(U,$J,358.3,44712,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,44712,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,44713,0)
- ;;=J10.08^^200^2230^41
- ;;^UTILITY(U,$J,358.3,44713,1,0)
+ ;;^UTILITY(U,$J,358.3,42492,1,3,0)
+ ;;=3^Disp fx of segmental shaft of humerus, right arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42492,1,4,0)
+ ;;=4^S42.361S
+ ;;^UTILITY(U,$J,358.3,42492,2)
+ ;;=^5027237
+ ;;^UTILITY(U,$J,358.3,42493,0)
+ ;;=S42.412S^^155^2071^45
+ ;;^UTILITY(U,$J,358.3,42493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44713,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
- ;;^UTILITY(U,$J,358.3,44713,1,4,0)
- ;;=4^J10.08
- ;;^UTILITY(U,$J,358.3,44713,2)
- ;;=^5008150
- ;;^UTILITY(U,$J,358.3,44714,0)
- ;;=J10.00^^200^2230^40
- ;;^UTILITY(U,$J,358.3,44714,1,0)
+ ;;^UTILITY(U,$J,358.3,42493,1,3,0)
+ ;;=3^Disp fx of simple suprcndl w/o intrcndl fx l humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42493,1,4,0)
+ ;;=4^S42.412S
+ ;;^UTILITY(U,$J,358.3,42493,2)
+ ;;=^5027314
+ ;;^UTILITY(U,$J,358.3,42494,0)
+ ;;=S42.411S^^155^2071^46
+ ;;^UTILITY(U,$J,358.3,42494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44714,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,44714,1,4,0)
- ;;=4^J10.00
- ;;^UTILITY(U,$J,358.3,44714,2)
- ;;=^5008148
- ;;^UTILITY(U,$J,358.3,44715,0)
- ;;=J11.08^^200^2230^43
- ;;^UTILITY(U,$J,358.3,44715,1,0)
+ ;;^UTILITY(U,$J,358.3,42494,1,3,0)
+ ;;=3^Disp fx of simple suprcndl w/o intrcndl fx r humerus, sequela
+ ;;^UTILITY(U,$J,358.3,42494,1,4,0)
+ ;;=4^S42.411S
+ ;;^UTILITY(U,$J,358.3,42494,2)
+ ;;=^5027307
+ ;;^UTILITY(U,$J,358.3,42495,0)
+ ;;=S42.342S^^155^2071^47
+ ;;^UTILITY(U,$J,358.3,42495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44715,1,3,0)
- ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
- ;;^UTILITY(U,$J,358.3,44715,1,4,0)
- ;;=4^J11.08
- ;;^UTILITY(U,$J,358.3,44715,2)
- ;;=^5008157
- ;;^UTILITY(U,$J,358.3,44716,0)
- ;;=J10.1^^200^2230^42
- ;;^UTILITY(U,$J,358.3,44716,1,0)
+ ;;^UTILITY(U,$J,358.3,42495,1,3,0)
+ ;;=3^Disp fx of spiral shaft of humerus, left arm, sequela 
+ ;;^UTILITY(U,$J,358.3,42495,1,4,0)
+ ;;=4^S42.342S
+ ;;^UTILITY(U,$J,358.3,42495,2)
+ ;;=^5027160
+ ;;^UTILITY(U,$J,358.3,42496,0)
+ ;;=S42.341S^^155^2071^48
+ ;;^UTILITY(U,$J,358.3,42496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44716,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,44716,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,44716,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,44717,0)
- ;;=J10.01^^200^2230^39
- ;;^UTILITY(U,$J,358.3,44717,1,0)
+ ;;^UTILITY(U,$J,358.3,42496,1,3,0)
+ ;;=3^Disp fx of spiral shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42496,1,4,0)
+ ;;=4^S42.341S
+ ;;^UTILITY(U,$J,358.3,42496,2)
+ ;;=^5027153
+ ;;^UTILITY(U,$J,358.3,42497,0)
+ ;;=S42.472S^^155^2071^49
+ ;;^UTILITY(U,$J,358.3,42497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44717,1,3,0)
- ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
- ;;^UTILITY(U,$J,358.3,44717,1,4,0)
- ;;=4^J10.01
- ;;^UTILITY(U,$J,358.3,44717,2)
- ;;=^5008149
- ;;^UTILITY(U,$J,358.3,44718,0)
- ;;=J11.1^^200^2230^44
- ;;^UTILITY(U,$J,358.3,44718,1,0)
+ ;;^UTILITY(U,$J,358.3,42497,1,3,0)
+ ;;=3^Disp fx of transcondylar of left humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,42497,1,4,0)
+ ;;=4^S42.472S
+ ;;^UTILITY(U,$J,358.3,42497,2)
+ ;;=^5027587
+ ;;^UTILITY(U,$J,358.3,42498,0)
+ ;;=S42.471S^^155^2071^50
+ ;;^UTILITY(U,$J,358.3,42498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44718,1,3,0)
- ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,44718,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,44718,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,44719,0)
- ;;=N12.^^200^2230^85
- ;;^UTILITY(U,$J,358.3,44719,1,0)
+ ;;^UTILITY(U,$J,358.3,42498,1,3,0)
+ ;;=3^Disp fx of transcondylar of right humerus, sequela 
+ ;;^UTILITY(U,$J,358.3,42498,1,4,0)
+ ;;=4^S42.471S
+ ;;^UTILITY(U,$J,358.3,42498,2)
+ ;;=^5027580
+ ;;^UTILITY(U,$J,358.3,42499,0)
+ ;;=S42.322S^^155^2071^51
+ ;;^UTILITY(U,$J,358.3,42499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44719,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,44719,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,44719,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,44720,0)
- ;;=N11.9^^200^2230^86
- ;;^UTILITY(U,$J,358.3,44720,1,0)
+ ;;^UTILITY(U,$J,358.3,42499,1,3,0)
+ ;;=3^Disp fx of transverse shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42499,1,4,0)
+ ;;=4^S42.322S
+ ;;^UTILITY(U,$J,358.3,42499,2)
+ ;;=^5027076
+ ;;^UTILITY(U,$J,358.3,42500,0)
+ ;;=S42.321S^^155^2071^52
+ ;;^UTILITY(U,$J,358.3,42500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44720,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Chronic
- ;;^UTILITY(U,$J,358.3,44720,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,44720,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,44721,0)
- ;;=N13.6^^200^2230^73
- ;;^UTILITY(U,$J,358.3,44721,1,0)
+ ;;^UTILITY(U,$J,358.3,42500,1,3,0)
+ ;;=3^Disp fx of transverse shaft of humerus, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,42500,1,4,0)
+ ;;=4^S42.321S
+ ;;^UTILITY(U,$J,358.3,42500,2)
+ ;;=^5027069
+ ;;^UTILITY(U,$J,358.3,42501,0)
+ ;;=S42.312S^^155^2071^53
+ ;;^UTILITY(U,$J,358.3,42501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44721,1,3,0)
- ;;=3^Pyonephrosis
- ;;^UTILITY(U,$J,358.3,44721,1,4,0)
- ;;=4^N13.6
- ;;^UTILITY(U,$J,358.3,44721,2)
- ;;=^101552
- ;;^UTILITY(U,$J,358.3,44722,0)
- ;;=N30.91^^200^2230^19
- ;;^UTILITY(U,$J,358.3,44722,1,0)
+ ;;^UTILITY(U,$J,358.3,42501,1,3,0)
+ ;;=3^Greenstick fracture of shaft of humerus, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,42501,1,4,0)
+ ;;=4^S42.312S
+ ;;^UTILITY(U,$J,358.3,42501,2)
+ ;;=^5027056
+ ;;^UTILITY(U,$J,358.3,42502,0)
+ ;;=S42.311S^^155^2071^54
+ ;;^UTILITY(U,$J,358.3,42502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44722,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,44722,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,44722,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,44723,0)
- ;;=N30.90^^200^2230^20

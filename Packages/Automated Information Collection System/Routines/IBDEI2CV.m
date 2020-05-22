@@ -1,134 +1,116 @@
-IBDEI2CV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39933,2)
- ;;=^5005484
- ;;^UTILITY(U,$J,358.3,39934,0)
- ;;=H31.421^^153^1930^97
- ;;^UTILITY(U,$J,358.3,39934,1,0)
+ ;;^UTILITY(U,$J,358.3,37617,1,4,0)
+ ;;=4^S92.352K
+ ;;^UTILITY(U,$J,358.3,37617,2)
+ ;;=^5045239
+ ;;^UTILITY(U,$J,358.3,37618,0)
+ ;;=S92.351K^^146^1917^78
+ ;;^UTILITY(U,$J,358.3,37618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39934,1,3,0)
- ;;=3^Serous Choroidal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,39934,1,4,0)
- ;;=4^H31.421
- ;;^UTILITY(U,$J,358.3,39934,2)
- ;;=^5005483
- ;;^UTILITY(U,$J,358.3,39935,0)
- ;;=B58.01^^153^1930^105
- ;;^UTILITY(U,$J,358.3,39935,1,0)
+ ;;^UTILITY(U,$J,358.3,37618,1,3,0)
+ ;;=3^Disp fx of 5th metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37618,1,4,0)
+ ;;=4^S92.351K
+ ;;^UTILITY(U,$J,358.3,37618,2)
+ ;;=^5045232
+ ;;^UTILITY(U,$J,358.3,37619,0)
+ ;;=S92.345K^^146^1917^298
+ ;;^UTILITY(U,$J,358.3,37619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39935,1,3,0)
- ;;=3^Toxoplasma Chorioretinitis
- ;;^UTILITY(U,$J,358.3,39935,1,4,0)
- ;;=4^B58.01
- ;;^UTILITY(U,$J,358.3,39935,2)
- ;;=^5000724
- ;;^UTILITY(U,$J,358.3,39936,0)
- ;;=H34.812^^153^1930^10
- ;;^UTILITY(U,$J,358.3,39936,1,0)
+ ;;^UTILITY(U,$J,358.3,37619,1,3,0)
+ ;;=3^Nondisp fx of 4th metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37619,1,4,0)
+ ;;=4^S92.345K
+ ;;^UTILITY(U,$J,358.3,37619,2)
+ ;;=^5045218
+ ;;^UTILITY(U,$J,358.3,37620,0)
+ ;;=S92.344K^^146^1917^299
+ ;;^UTILITY(U,$J,358.3,37620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39936,1,3,0)
- ;;=3^Central Retinal Vein Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,39936,1,4,0)
- ;;=4^H34.812
- ;;^UTILITY(U,$J,358.3,39936,2)
- ;;=^5005569
- ;;^UTILITY(U,$J,358.3,39937,0)
- ;;=H34.823^^153^1930^109
- ;;^UTILITY(U,$J,358.3,39937,1,0)
+ ;;^UTILITY(U,$J,358.3,37620,1,3,0)
+ ;;=3^Nondisp fx of 4th metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37620,1,4,0)
+ ;;=4^S92.344K
+ ;;^UTILITY(U,$J,358.3,37620,2)
+ ;;=^5045211
+ ;;^UTILITY(U,$J,358.3,37621,0)
+ ;;=S92.342K^^146^1917^72
+ ;;^UTILITY(U,$J,358.3,37621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39937,1,3,0)
- ;;=3^Venous Engorgement,Bilateral
- ;;^UTILITY(U,$J,358.3,39937,1,4,0)
- ;;=4^H34.823
- ;;^UTILITY(U,$J,358.3,39937,2)
- ;;=^5005574
- ;;^UTILITY(U,$J,358.3,39938,0)
- ;;=H34.822^^153^1930^110
- ;;^UTILITY(U,$J,358.3,39938,1,0)
+ ;;^UTILITY(U,$J,358.3,37621,1,3,0)
+ ;;=3^Disp fx of 4th metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37621,1,4,0)
+ ;;=4^S92.342K
+ ;;^UTILITY(U,$J,358.3,37621,2)
+ ;;=^5045197
+ ;;^UTILITY(U,$J,358.3,37622,0)
+ ;;=S92.341K^^146^1917^73
+ ;;^UTILITY(U,$J,358.3,37622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39938,1,3,0)
- ;;=3^Venous Engorgement,Left Eye
- ;;^UTILITY(U,$J,358.3,39938,1,4,0)
- ;;=4^H34.822
- ;;^UTILITY(U,$J,358.3,39938,2)
- ;;=^5005573
- ;;^UTILITY(U,$J,358.3,39939,0)
- ;;=H34.821^^153^1930^111
- ;;^UTILITY(U,$J,358.3,39939,1,0)
+ ;;^UTILITY(U,$J,358.3,37622,1,3,0)
+ ;;=3^Disp fx of 4th metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37622,1,4,0)
+ ;;=4^S92.341K
+ ;;^UTILITY(U,$J,358.3,37622,2)
+ ;;=^5045190
+ ;;^UTILITY(U,$J,358.3,37623,0)
+ ;;=S92.335K^^146^1917^294
+ ;;^UTILITY(U,$J,358.3,37623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39939,1,3,0)
- ;;=3^Venous Engorgement,Right Eye
- ;;^UTILITY(U,$J,358.3,39939,1,4,0)
- ;;=4^H34.821
- ;;^UTILITY(U,$J,358.3,39939,2)
- ;;=^5005572
- ;;^UTILITY(U,$J,358.3,39940,0)
- ;;=H43.813^^153^1930^115
- ;;^UTILITY(U,$J,358.3,39940,1,0)
+ ;;^UTILITY(U,$J,358.3,37623,1,3,0)
+ ;;=3^Nondisp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37623,1,4,0)
+ ;;=4^S92.335K
+ ;;^UTILITY(U,$J,358.3,37623,2)
+ ;;=^5045176
+ ;;^UTILITY(U,$J,358.3,37624,0)
+ ;;=S92.334K^^146^1917^295
+ ;;^UTILITY(U,$J,358.3,37624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39940,1,3,0)
- ;;=3^Vitreous Degeneration,Bilateral
- ;;^UTILITY(U,$J,358.3,39940,1,4,0)
- ;;=4^H43.813
- ;;^UTILITY(U,$J,358.3,39940,2)
- ;;=^5005955
- ;;^UTILITY(U,$J,358.3,39941,0)
- ;;=H43.812^^153^1930^116
- ;;^UTILITY(U,$J,358.3,39941,1,0)
+ ;;^UTILITY(U,$J,358.3,37624,1,3,0)
+ ;;=3^Nondisp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37624,1,4,0)
+ ;;=4^S92.334K
+ ;;^UTILITY(U,$J,358.3,37624,2)
+ ;;=^5045169
+ ;;^UTILITY(U,$J,358.3,37625,0)
+ ;;=S92.332K^^146^1917^69
+ ;;^UTILITY(U,$J,358.3,37625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39941,1,3,0)
- ;;=3^Vitreous Degeneration,Left Eye
- ;;^UTILITY(U,$J,358.3,39941,1,4,0)
- ;;=4^H43.812
- ;;^UTILITY(U,$J,358.3,39941,2)
- ;;=^5005954
- ;;^UTILITY(U,$J,358.3,39942,0)
- ;;=H43.811^^153^1930^117
- ;;^UTILITY(U,$J,358.3,39942,1,0)
+ ;;^UTILITY(U,$J,358.3,37625,1,3,0)
+ ;;=3^Disp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37625,1,4,0)
+ ;;=4^S92.332K
+ ;;^UTILITY(U,$J,358.3,37625,2)
+ ;;=^5045155
+ ;;^UTILITY(U,$J,358.3,37626,0)
+ ;;=S92.331K^^146^1917^70
+ ;;^UTILITY(U,$J,358.3,37626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39942,1,3,0)
- ;;=3^Vitreous Degeneration,Right Eye
- ;;^UTILITY(U,$J,358.3,39942,1,4,0)
- ;;=4^H43.811
- ;;^UTILITY(U,$J,358.3,39942,2)
- ;;=^5005953
- ;;^UTILITY(U,$J,358.3,39943,0)
- ;;=H53.001^^153^1931^2
- ;;^UTILITY(U,$J,358.3,39943,1,0)
+ ;;^UTILITY(U,$J,358.3,37626,1,3,0)
+ ;;=3^Disp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37626,1,4,0)
+ ;;=4^S92.331K
+ ;;^UTILITY(U,$J,358.3,37626,2)
+ ;;=^5045148
+ ;;^UTILITY(U,$J,358.3,37627,0)
+ ;;=S92.325K^^146^1917^290
+ ;;^UTILITY(U,$J,358.3,37627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39943,1,3,0)
- ;;=3^Amblyopia,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39943,1,4,0)
- ;;=4^H53.001
- ;;^UTILITY(U,$J,358.3,39943,2)
- ;;=^5006292
- ;;^UTILITY(U,$J,358.3,39944,0)
- ;;=H53.002^^153^1931^1
- ;;^UTILITY(U,$J,358.3,39944,1,0)
+ ;;^UTILITY(U,$J,358.3,37627,1,3,0)
+ ;;=3^Nondisp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37627,1,4,0)
+ ;;=4^S92.325K
+ ;;^UTILITY(U,$J,358.3,37627,2)
+ ;;=^5045134
+ ;;^UTILITY(U,$J,358.3,37628,0)
+ ;;=S92.324K^^146^1917^291
+ ;;^UTILITY(U,$J,358.3,37628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39944,1,3,0)
- ;;=3^Amblyopia,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39944,1,4,0)
- ;;=4^H53.002
- ;;^UTILITY(U,$J,358.3,39944,2)
- ;;=^5006293
- ;;^UTILITY(U,$J,358.3,39945,0)
- ;;=H50.00^^153^1931^6
- ;;^UTILITY(U,$J,358.3,39945,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39945,1,3,0)
- ;;=3^Esotropia,Unspec
- ;;^UTILITY(U,$J,358.3,39945,1,4,0)
- ;;=4^H50.00
- ;;^UTILITY(U,$J,358.3,39945,2)
- ;;=^5006208
- ;;^UTILITY(U,$J,358.3,39946,0)
- ;;=H50.10^^153^1931^8
- ;;^UTILITY(U,$J,358.3,39946,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39946,1,3,0)
- ;;=3^Exotropia,Unspec
- ;;^UTILITY(U,$J,358.3,39946,1,4,0)
- ;;=4^H50.10
+ ;;^UTILITY(U,$J,358.3,37628,1,3,0)
+ ;;=3^Nondisp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37628,1,4,0)
+ ;;=4^S92.324K

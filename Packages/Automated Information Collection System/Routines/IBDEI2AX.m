@@ -1,134 +1,122 @@
-IBDEI2AX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39045,1,3,0)
- ;;=3^Behcet's Disease
- ;;^UTILITY(U,$J,358.3,39045,1,4,0)
- ;;=4^M35.2
- ;;^UTILITY(U,$J,358.3,39045,2)
- ;;=^263705
- ;;^UTILITY(U,$J,358.3,39046,0)
- ;;=D23.0^^151^1912^26
- ;;^UTILITY(U,$J,358.3,39046,1,0)
+ ;;^UTILITY(U,$J,358.3,36743,1,3,0)
+ ;;=3^Laceration w/ FB Left Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36743,1,4,0)
+ ;;=4^S61.122A
+ ;;^UTILITY(U,$J,358.3,36743,2)
+ ;;=^5135706
+ ;;^UTILITY(U,$J,358.3,36744,0)
+ ;;=S61.121A^^142^1863^302
+ ;;^UTILITY(U,$J,358.3,36744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39046,1,3,0)
- ;;=3^Benign Neop Skin Lip
- ;;^UTILITY(U,$J,358.3,39046,1,4,0)
- ;;=4^D23.0
- ;;^UTILITY(U,$J,358.3,39046,2)
- ;;=^5002059
- ;;^UTILITY(U,$J,358.3,39047,0)
- ;;=D23.11^^151^1912^28
- ;;^UTILITY(U,$J,358.3,39047,1,0)
+ ;;^UTILITY(U,$J,358.3,36744,1,3,0)
+ ;;=3^Laceration w/ FB Right Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36744,1,4,0)
+ ;;=4^S61.121A
+ ;;^UTILITY(U,$J,358.3,36744,2)
+ ;;=^5135705
+ ;;^UTILITY(U,$J,358.3,36745,0)
+ ;;=D17.0^^142^1863^312
+ ;;^UTILITY(U,$J,358.3,36745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39047,1,3,0)
- ;;=3^Benign Neop Skin Right Eyelid
- ;;^UTILITY(U,$J,358.3,39047,1,4,0)
- ;;=4^D23.11
- ;;^UTILITY(U,$J,358.3,39047,2)
- ;;=^5002061
- ;;^UTILITY(U,$J,358.3,39048,0)
- ;;=D23.12^^151^1912^23
- ;;^UTILITY(U,$J,358.3,39048,1,0)
+ ;;^UTILITY(U,$J,358.3,36745,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Face,Head,Neck
+ ;;^UTILITY(U,$J,358.3,36745,1,4,0)
+ ;;=4^D17.0
+ ;;^UTILITY(U,$J,358.3,36745,2)
+ ;;=^5002005
+ ;;^UTILITY(U,$J,358.3,36746,0)
+ ;;=D17.20^^142^1863^313
+ ;;^UTILITY(U,$J,358.3,36746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39048,1,3,0)
- ;;=3^Benign Neop Skin Left Eyelid
- ;;^UTILITY(U,$J,358.3,39048,1,4,0)
- ;;=4^D23.12
- ;;^UTILITY(U,$J,358.3,39048,2)
- ;;=^5002062
- ;;^UTILITY(U,$J,358.3,39049,0)
- ;;=D23.21^^151^1912^27
- ;;^UTILITY(U,$J,358.3,39049,1,0)
+ ;;^UTILITY(U,$J,358.3,36746,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Limb
+ ;;^UTILITY(U,$J,358.3,36746,1,4,0)
+ ;;=4^D17.20
+ ;;^UTILITY(U,$J,358.3,36746,2)
+ ;;=^5002007
+ ;;^UTILITY(U,$J,358.3,36747,0)
+ ;;=D17.30^^142^1863^314
+ ;;^UTILITY(U,$J,358.3,36747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39049,1,3,0)
- ;;=3^Benign Neop Skin Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,39049,1,4,0)
- ;;=4^D23.21
- ;;^UTILITY(U,$J,358.3,39049,2)
- ;;=^5002064
- ;;^UTILITY(U,$J,358.3,39050,0)
- ;;=D23.22^^151^1912^22
- ;;^UTILITY(U,$J,358.3,39050,1,0)
+ ;;^UTILITY(U,$J,358.3,36747,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Other Sites
+ ;;^UTILITY(U,$J,358.3,36747,1,4,0)
+ ;;=4^D17.30
+ ;;^UTILITY(U,$J,358.3,36747,2)
+ ;;=^5002012
+ ;;^UTILITY(U,$J,358.3,36748,0)
+ ;;=D17.1^^142^1863^315
+ ;;^UTILITY(U,$J,358.3,36748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39050,1,3,0)
- ;;=3^Benign Neop Skin Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,39050,1,4,0)
- ;;=4^D23.22
- ;;^UTILITY(U,$J,358.3,39050,2)
- ;;=^5002065
- ;;^UTILITY(U,$J,358.3,39051,0)
- ;;=D23.30^^151^1912^21
- ;;^UTILITY(U,$J,358.3,39051,1,0)
+ ;;^UTILITY(U,$J,358.3,36748,1,3,0)
+ ;;=3^Lipoma of Skin/Subcutaneous Tissue,Trunk
+ ;;^UTILITY(U,$J,358.3,36748,1,4,0)
+ ;;=4^D17.1
+ ;;^UTILITY(U,$J,358.3,36748,2)
+ ;;=^5002006
+ ;;^UTILITY(U,$J,358.3,36749,0)
+ ;;=C44.202^^142^1863^350
+ ;;^UTILITY(U,$J,358.3,36749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39051,1,3,0)
- ;;=3^Benign Neop Skin Face,Unspec
- ;;^UTILITY(U,$J,358.3,39051,1,4,0)
- ;;=4^D23.30
- ;;^UTILITY(U,$J,358.3,39051,2)
- ;;=^5002066
- ;;^UTILITY(U,$J,358.3,39052,0)
- ;;=D23.39^^151^1912^20
- ;;^UTILITY(U,$J,358.3,39052,1,0)
+ ;;^UTILITY(U,$J,358.3,36749,1,3,0)
+ ;;=3^Malig Neop Skin,Unspec,Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,36749,1,4,0)
+ ;;=4^C44.202
+ ;;^UTILITY(U,$J,358.3,36749,2)
+ ;;=^5001029
+ ;;^UTILITY(U,$J,358.3,36750,0)
+ ;;=C44.292^^142^1863^344
+ ;;^UTILITY(U,$J,358.3,36750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39052,1,3,0)
- ;;=3^Benign Neop Skin Face NEC
- ;;^UTILITY(U,$J,358.3,39052,1,4,0)
- ;;=4^D23.39
- ;;^UTILITY(U,$J,358.3,39052,2)
- ;;=^5002067
- ;;^UTILITY(U,$J,358.3,39053,0)
- ;;=D23.5^^151^1912^32
- ;;^UTILITY(U,$J,358.3,39053,1,0)
+ ;;^UTILITY(U,$J,358.3,36750,1,3,0)
+ ;;=3^Malig Neop Skin,Oth,Right Ear/External Auric Canal NEC
+ ;;^UTILITY(U,$J,358.3,36750,1,4,0)
+ ;;=4^C44.292
+ ;;^UTILITY(U,$J,358.3,36750,2)
+ ;;=^5001038
+ ;;^UTILITY(U,$J,358.3,36751,0)
+ ;;=C44.509^^142^1863^351
+ ;;^UTILITY(U,$J,358.3,36751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39053,1,3,0)
- ;;=3^Benign Neop Skin Trunk
- ;;^UTILITY(U,$J,358.3,39053,1,4,0)
- ;;=4^D23.5
- ;;^UTILITY(U,$J,358.3,39053,2)
- ;;=^5002069
- ;;^UTILITY(U,$J,358.3,39054,0)
- ;;=D23.62^^151^1912^25
- ;;^UTILITY(U,$J,358.3,39054,1,0)
+ ;;^UTILITY(U,$J,358.3,36751,1,3,0)
+ ;;=3^Malig Neop Skin,Unspec,Trunk
+ ;;^UTILITY(U,$J,358.3,36751,1,4,0)
+ ;;=4^C44.509
+ ;;^UTILITY(U,$J,358.3,36751,2)
+ ;;=^5001053
+ ;;^UTILITY(U,$J,358.3,36752,0)
+ ;;=C43.22^^142^1863^318
+ ;;^UTILITY(U,$J,358.3,36752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39054,1,3,0)
- ;;=3^Benign Neop Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,39054,1,4,0)
- ;;=4^D23.62
- ;;^UTILITY(U,$J,358.3,39054,2)
- ;;=^5002072
- ;;^UTILITY(U,$J,358.3,39055,0)
- ;;=D23.61^^151^1912^30
- ;;^UTILITY(U,$J,358.3,39055,1,0)
+ ;;^UTILITY(U,$J,358.3,36752,1,3,0)
+ ;;=3^Malig Melanoma,Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,36752,1,4,0)
+ ;;=4^C43.22
+ ;;^UTILITY(U,$J,358.3,36752,2)
+ ;;=^5001000
+ ;;^UTILITY(U,$J,358.3,36753,0)
+ ;;=C43.0^^142^1863^321
+ ;;^UTILITY(U,$J,358.3,36753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39055,1,3,0)
- ;;=3^Benign Neop Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,39055,1,4,0)
- ;;=4^D23.61
- ;;^UTILITY(U,$J,358.3,39055,2)
- ;;=^5002071
- ;;^UTILITY(U,$J,358.3,39056,0)
- ;;=D23.71^^151^1912^29
- ;;^UTILITY(U,$J,358.3,39056,1,0)
+ ;;^UTILITY(U,$J,358.3,36753,1,3,0)
+ ;;=3^Malig Melanoma,Lip
+ ;;^UTILITY(U,$J,358.3,36753,1,4,0)
+ ;;=4^C43.0
+ ;;^UTILITY(U,$J,358.3,36753,2)
+ ;;=^5000994
+ ;;^UTILITY(U,$J,358.3,36754,0)
+ ;;=C43.31^^142^1863^322
+ ;;^UTILITY(U,$J,358.3,36754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39056,1,3,0)
- ;;=3^Benign Neop Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,39056,1,4,0)
- ;;=4^D23.71
- ;;^UTILITY(U,$J,358.3,39056,2)
- ;;=^5002074
- ;;^UTILITY(U,$J,358.3,39057,0)
- ;;=D23.72^^151^1912^24
- ;;^UTILITY(U,$J,358.3,39057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39057,1,3,0)
- ;;=3^Benign Neop Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,39057,1,4,0)
- ;;=4^D23.72
- ;;^UTILITY(U,$J,358.3,39057,2)
- ;;=^5002075
- ;;^UTILITY(U,$J,358.3,39058,0)
- ;;=L60.4^^151^1912^17
- ;;^UTILITY(U,$J,358.3,39058,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36754,1,3,0)
+ ;;=3^Malig Melanoma,Nose
+ ;;^UTILITY(U,$J,358.3,36754,1,4,0)
+ ;;=4^C43.31
+ ;;^UTILITY(U,$J,358.3,36754,2)
+ ;;=^5001002
+ ;;^UTILITY(U,$J,358.3,36755,0)
+ ;;=C43.39^^142^1863^323

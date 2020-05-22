@@ -1,134 +1,126 @@
-IBDEI2FT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2FT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41341,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,41341,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,41342,0)
- ;;=D47.9^^159^2004^172
- ;;^UTILITY(U,$J,358.3,41342,1,0)
+ ;;^UTILITY(U,$J,358.3,38933,0)
+ ;;=L03.012^^152^1990^103
+ ;;^UTILITY(U,$J,358.3,38933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41342,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,41342,1,4,0)
- ;;=4^D47.9
- ;;^UTILITY(U,$J,358.3,41342,2)
- ;;=^5002260
- ;;^UTILITY(U,$J,358.3,41343,0)
- ;;=D53.9^^159^2004^176
- ;;^UTILITY(U,$J,358.3,41343,1,0)
+ ;;^UTILITY(U,$J,358.3,38933,1,3,0)
+ ;;=3^Cellulitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,38933,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,38933,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,38934,0)
+ ;;=L03.021^^152^1990^25
+ ;;^UTILITY(U,$J,358.3,38934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41343,1,3,0)
- ;;=3^Nutritional Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,41343,1,4,0)
- ;;=4^D53.9
- ;;^UTILITY(U,$J,358.3,41343,2)
- ;;=^5002298
- ;;^UTILITY(U,$J,358.3,41344,0)
- ;;=D47.4^^159^2004^177
- ;;^UTILITY(U,$J,358.3,41344,1,0)
+ ;;^UTILITY(U,$J,358.3,38934,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,38934,1,4,0)
+ ;;=4^L03.021
+ ;;^UTILITY(U,$J,358.3,38934,2)
+ ;;=^5009022
+ ;;^UTILITY(U,$J,358.3,38935,0)
+ ;;=L03.022^^152^1990^19
+ ;;^UTILITY(U,$J,358.3,38935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41344,1,3,0)
- ;;=3^Osteomyelofibrosis
- ;;^UTILITY(U,$J,358.3,41344,1,4,0)
- ;;=4^D47.4
- ;;^UTILITY(U,$J,358.3,41344,2)
- ;;=^5002259
- ;;^UTILITY(U,$J,358.3,41345,0)
- ;;=D59.1^^159^2004^28
- ;;^UTILITY(U,$J,358.3,41345,1,0)
+ ;;^UTILITY(U,$J,358.3,38935,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,38935,1,4,0)
+ ;;=4^L03.022
+ ;;^UTILITY(U,$J,358.3,38935,2)
+ ;;=^5009023
+ ;;^UTILITY(U,$J,358.3,38936,0)
+ ;;=L03.031^^152^1990^113
+ ;;^UTILITY(U,$J,358.3,38936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41345,1,3,0)
- ;;=3^Autoimmune Hemolytic Anemia,Other
- ;;^UTILITY(U,$J,358.3,41345,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,41345,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,41346,0)
- ;;=D51.3^^159^2004^191
- ;;^UTILITY(U,$J,358.3,41346,1,0)
+ ;;^UTILITY(U,$J,358.3,38936,1,3,0)
+ ;;=3^Cellulitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,38936,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,38936,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,38937,0)
+ ;;=L03.032^^152^1990^106
+ ;;^UTILITY(U,$J,358.3,38937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41346,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Other
- ;;^UTILITY(U,$J,358.3,41346,1,4,0)
- ;;=4^D51.3
- ;;^UTILITY(U,$J,358.3,41346,2)
- ;;=^5002287
- ;;^UTILITY(U,$J,358.3,41347,0)
- ;;=D77.^^159^2004^57
- ;;^UTILITY(U,$J,358.3,41347,1,0)
+ ;;^UTILITY(U,$J,358.3,38937,1,3,0)
+ ;;=3^Cellulitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,38937,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,38937,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,38938,0)
+ ;;=L03.041^^152^1990^27
+ ;;^UTILITY(U,$J,358.3,38938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41347,1,3,0)
- ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
- ;;^UTILITY(U,$J,358.3,41347,1,4,0)
- ;;=4^D77.
- ;;^UTILITY(U,$J,358.3,41347,2)
- ;;=^5002396
- ;;^UTILITY(U,$J,358.3,41348,0)
- ;;=D58.2^^159^2004^83
- ;;^UTILITY(U,$J,358.3,41348,1,0)
+ ;;^UTILITY(U,$J,358.3,38938,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,38938,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,38938,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,38939,0)
+ ;;=L03.042^^152^1990^21
+ ;;^UTILITY(U,$J,358.3,38939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41348,1,3,0)
- ;;=3^Hemoglobinopathies,Other
- ;;^UTILITY(U,$J,358.3,41348,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,41348,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,41349,0)
- ;;=C88.8^^159^2004^103
- ;;^UTILITY(U,$J,358.3,41349,1,0)
+ ;;^UTILITY(U,$J,358.3,38939,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,38939,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,38939,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,38940,0)
+ ;;=M34.0^^152^1990^289
+ ;;^UTILITY(U,$J,358.3,38940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41349,1,3,0)
- ;;=3^Malig Immunoproliferative Diseases,Other
- ;;^UTILITY(U,$J,358.3,41349,1,4,0)
- ;;=4^C88.8
- ;;^UTILITY(U,$J,358.3,41349,2)
- ;;=^5001750
- ;;^UTILITY(U,$J,358.3,41350,0)
- ;;=D70.8^^159^2004^174
- ;;^UTILITY(U,$J,358.3,41350,1,0)
+ ;;^UTILITY(U,$J,358.3,38940,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,38940,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,38940,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,38941,0)
+ ;;=M34.1^^152^1990^92
+ ;;^UTILITY(U,$J,358.3,38941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41350,1,3,0)
- ;;=3^Neutropenia,Other
- ;;^UTILITY(U,$J,358.3,41350,1,4,0)
- ;;=4^D70.8
- ;;^UTILITY(U,$J,358.3,41350,2)
- ;;=^334042
- ;;^UTILITY(U,$J,358.3,41351,0)
- ;;=D59.4^^159^2004^175
- ;;^UTILITY(U,$J,358.3,41351,1,0)
+ ;;^UTILITY(U,$J,358.3,38941,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,38941,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,38941,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,38942,0)
+ ;;=M34.2^^152^1990^313
+ ;;^UTILITY(U,$J,358.3,38942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41351,1,3,0)
- ;;=3^Nonautoimmune Hemolytic Anemias,Other
- ;;^UTILITY(U,$J,358.3,41351,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,41351,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,41352,0)
- ;;=D69.59^^159^2004^181
- ;;^UTILITY(U,$J,358.3,41352,1,0)
+ ;;^UTILITY(U,$J,358.3,38942,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,38942,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,38942,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,38943,0)
+ ;;=M34.81^^152^1990^315
+ ;;^UTILITY(U,$J,358.3,38943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41352,1,3,0)
- ;;=3^Secondary Thrombocytopenia,Other
- ;;^UTILITY(U,$J,358.3,41352,1,4,0)
- ;;=4^D69.59
- ;;^UTILITY(U,$J,358.3,41352,2)
- ;;=^5002369
- ;;^UTILITY(U,$J,358.3,41353,0)
- ;;=C22.7^^159^2004^46
- ;;^UTILITY(U,$J,358.3,41353,1,0)
+ ;;^UTILITY(U,$J,358.3,38943,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,38943,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,38943,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,38944,0)
+ ;;=M34.82^^152^1990^316
+ ;;^UTILITY(U,$J,358.3,38944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41353,1,3,0)
- ;;=3^Carcinomas of Liver,Other Spec
- ;;^UTILITY(U,$J,358.3,41353,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,41353,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,41354,0)
- ;;=D75.89^^159^2004^56
- ;;^UTILITY(U,$J,358.3,41354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41354,1,3,0)
- ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec
+ ;;^UTILITY(U,$J,358.3,38944,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,38944,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,38944,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,38945,0)
+ ;;=M34.83^^152^1990^317

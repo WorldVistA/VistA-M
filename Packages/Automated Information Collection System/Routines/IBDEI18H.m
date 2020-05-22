@@ -1,134 +1,120 @@
-IBDEI18H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20976,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,20977,0)
- ;;=R97.8^^84^941^22
- ;;^UTILITY(U,$J,358.3,20977,1,0)
+ ;;^UTILITY(U,$J,358.3,19785,2)
+ ;;=^5044947
+ ;;^UTILITY(U,$J,358.3,19786,0)
+ ;;=S92.225S^^93^996^90
+ ;;^UTILITY(U,$J,358.3,19786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20977,1,3,0)
- ;;=3^Abnormal Tumor Markers NEC
- ;;^UTILITY(U,$J,358.3,20977,1,4,0)
- ;;=4^R97.8
- ;;^UTILITY(U,$J,358.3,20977,2)
- ;;=^5019749
- ;;^UTILITY(U,$J,358.3,20978,0)
- ;;=R93.8^^84^941^12
- ;;^UTILITY(U,$J,358.3,20978,1,0)
+ ;;^UTILITY(U,$J,358.3,19786,1,3,0)
+ ;;=3^Nondisp lateral cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19786,1,4,0)
+ ;;=4^S92.225S
+ ;;^UTILITY(U,$J,358.3,19786,2)
+ ;;=^5044912
+ ;;^UTILITY(U,$J,358.3,19787,0)
+ ;;=S92.224S^^93^996^91
+ ;;^UTILITY(U,$J,358.3,19787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20978,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Body Structures
- ;;^UTILITY(U,$J,358.3,20978,1,4,0)
- ;;=4^R93.8
- ;;^UTILITY(U,$J,358.3,20978,2)
- ;;=^5019721
- ;;^UTILITY(U,$J,358.3,20979,0)
- ;;=R93.1^^84^941^14
- ;;^UTILITY(U,$J,358.3,20979,1,0)
+ ;;^UTILITY(U,$J,358.3,19787,1,3,0)
+ ;;=3^Nondisp lateral cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19787,1,4,0)
+ ;;=4^S92.224S
+ ;;^UTILITY(U,$J,358.3,19787,2)
+ ;;=^5044905
+ ;;^UTILITY(U,$J,358.3,19788,0)
+ ;;=S92.245S^^93^996^92
+ ;;^UTILITY(U,$J,358.3,19788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20979,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
- ;;^UTILITY(U,$J,358.3,20979,1,4,0)
- ;;=4^R93.1
- ;;^UTILITY(U,$J,358.3,20979,2)
- ;;=^5019714
- ;;^UTILITY(U,$J,358.3,20980,0)
- ;;=R68.83^^84^941^48
- ;;^UTILITY(U,$J,358.3,20980,1,0)
+ ;;^UTILITY(U,$J,358.3,19788,1,3,0)
+ ;;=3^Nondisp medial cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19788,1,4,0)
+ ;;=4^S92.245S
+ ;;^UTILITY(U,$J,358.3,19788,2)
+ ;;=^5044996
+ ;;^UTILITY(U,$J,358.3,19789,0)
+ ;;=S92.244S^^93^996^93
+ ;;^UTILITY(U,$J,358.3,19789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20980,1,3,0)
- ;;=3^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,20980,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,20980,2)
- ;;=^5019555
- ;;^UTILITY(U,$J,358.3,20981,0)
- ;;=R68.2^^84^941^62
- ;;^UTILITY(U,$J,358.3,20981,1,0)
+ ;;^UTILITY(U,$J,358.3,19789,1,3,0)
+ ;;=3^Nondisp medial cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19789,1,4,0)
+ ;;=4^S92.244S
+ ;;^UTILITY(U,$J,358.3,19789,2)
+ ;;=^5044989
+ ;;^UTILITY(U,$J,358.3,19790,0)
+ ;;=S92.255S^^93^996^96
+ ;;^UTILITY(U,$J,358.3,19790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20981,1,3,0)
- ;;=3^Dry Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,20981,1,4,0)
- ;;=4^R68.2
- ;;^UTILITY(U,$J,358.3,20981,2)
- ;;=^5019552
- ;;^UTILITY(U,$J,358.3,20982,0)
- ;;=R09.02^^84^941^88
- ;;^UTILITY(U,$J,358.3,20982,1,0)
+ ;;^UTILITY(U,$J,358.3,19790,1,3,0)
+ ;;=3^Nondisp navicular fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19790,1,4,0)
+ ;;=4^S92.255S
+ ;;^UTILITY(U,$J,358.3,19790,2)
+ ;;=^5045038
+ ;;^UTILITY(U,$J,358.3,19791,0)
+ ;;=S92.254S^^93^996^97
+ ;;^UTILITY(U,$J,358.3,19791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20982,1,3,0)
- ;;=3^Hypoxemia
- ;;^UTILITY(U,$J,358.3,20982,1,4,0)
- ;;=4^R09.02
- ;;^UTILITY(U,$J,358.3,20982,2)
- ;;=^332831
- ;;^UTILITY(U,$J,358.3,20983,0)
- ;;=R39.81^^84^941^92
- ;;^UTILITY(U,$J,358.3,20983,1,0)
+ ;;^UTILITY(U,$J,358.3,19791,1,3,0)
+ ;;=3^Nondisp navicular fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19791,1,4,0)
+ ;;=4^S92.254S
+ ;;^UTILITY(U,$J,358.3,19791,2)
+ ;;=^5045031
+ ;;^UTILITY(U,$J,358.3,19792,0)
+ ;;=S92.325S^^93^996^58
+ ;;^UTILITY(U,$J,358.3,19792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20983,1,3,0)
- ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
- ;;^UTILITY(U,$J,358.3,20983,1,4,0)
- ;;=4^R39.81
- ;;^UTILITY(U,$J,358.3,20983,2)
- ;;=^5019349
- ;;^UTILITY(U,$J,358.3,20984,0)
- ;;=R29.6^^84^941^146
- ;;^UTILITY(U,$J,358.3,20984,1,0)
+ ;;^UTILITY(U,$J,358.3,19792,1,3,0)
+ ;;=3^Nondisp 2nd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19792,1,4,0)
+ ;;=4^S92.325S
+ ;;^UTILITY(U,$J,358.3,19792,2)
+ ;;=^5045136
+ ;;^UTILITY(U,$J,358.3,19793,0)
+ ;;=S92.324S^^93^996^59
+ ;;^UTILITY(U,$J,358.3,19793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20984,1,3,0)
- ;;=3^Repeated Falls
- ;;^UTILITY(U,$J,358.3,20984,1,4,0)
- ;;=4^R29.6
- ;;^UTILITY(U,$J,358.3,20984,2)
- ;;=^5019317
- ;;^UTILITY(U,$J,358.3,20985,0)
- ;;=R44.1^^84^941^160
- ;;^UTILITY(U,$J,358.3,20985,1,0)
+ ;;^UTILITY(U,$J,358.3,19793,1,3,0)
+ ;;=3^Nondisp 2nd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19793,1,4,0)
+ ;;=4^S92.324S
+ ;;^UTILITY(U,$J,358.3,19793,2)
+ ;;=^5045129
+ ;;^UTILITY(U,$J,358.3,19794,0)
+ ;;=S92.335S^^93^996^60
+ ;;^UTILITY(U,$J,358.3,19794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20985,1,3,0)
- ;;=3^Visual Hallucinations
- ;;^UTILITY(U,$J,358.3,20985,1,4,0)
- ;;=4^R44.1
- ;;^UTILITY(U,$J,358.3,20985,2)
- ;;=^5019456
- ;;^UTILITY(U,$J,358.3,20986,0)
- ;;=S43.51XA^^84^942^12
- ;;^UTILITY(U,$J,358.3,20986,1,0)
+ ;;^UTILITY(U,$J,358.3,19794,1,3,0)
+ ;;=3^Nondisp 3rd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19794,1,4,0)
+ ;;=4^S92.335S
+ ;;^UTILITY(U,$J,358.3,19794,2)
+ ;;=^5045178
+ ;;^UTILITY(U,$J,358.3,19795,0)
+ ;;=S92.334S^^93^996^61
+ ;;^UTILITY(U,$J,358.3,19795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20986,1,3,0)
- ;;=3^Sprain of Right Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,20986,1,4,0)
- ;;=4^S43.51XA
- ;;^UTILITY(U,$J,358.3,20986,2)
- ;;=^5027903
- ;;^UTILITY(U,$J,358.3,20987,0)
- ;;=S43.52XA^^84^942^1
- ;;^UTILITY(U,$J,358.3,20987,1,0)
+ ;;^UTILITY(U,$J,358.3,19795,1,3,0)
+ ;;=3^Nondisp 3rd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,19795,1,4,0)
+ ;;=4^S92.334S
+ ;;^UTILITY(U,$J,358.3,19795,2)
+ ;;=^5045171
+ ;;^UTILITY(U,$J,358.3,19796,0)
+ ;;=M84.475S^^93^996^109
+ ;;^UTILITY(U,$J,358.3,19796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20987,1,3,0)
- ;;=3^Sprain of Left Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,20987,1,4,0)
- ;;=4^S43.52XA
- ;;^UTILITY(U,$J,358.3,20987,2)
- ;;=^5027906
- ;;^UTILITY(U,$J,358.3,20988,0)
- ;;=S43.421A^^84^942^17
- ;;^UTILITY(U,$J,358.3,20988,1,0)
+ ;;^UTILITY(U,$J,358.3,19796,1,3,0)
+ ;;=3^Pathological fracture, left foot, sequela
+ ;;^UTILITY(U,$J,358.3,19796,1,4,0)
+ ;;=4^M84.475S
+ ;;^UTILITY(U,$J,358.3,19796,2)
+ ;;=^5013991
+ ;;^UTILITY(U,$J,358.3,19797,0)
+ ;;=M84.474S^^93^996^112
+ ;;^UTILITY(U,$J,358.3,19797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20988,1,3,0)
- ;;=3^Sprain of Right Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,20988,1,4,0)
- ;;=4^S43.421A
- ;;^UTILITY(U,$J,358.3,20988,2)
- ;;=^5027879
- ;;^UTILITY(U,$J,358.3,20989,0)
- ;;=S43.422A^^84^942^6
- ;;^UTILITY(U,$J,358.3,20989,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20989,1,3,0)
- ;;=3^Sprain of Left Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,20989,1,4,0)
- ;;=4^S43.422A

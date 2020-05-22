@@ -1,5 +1,5 @@
-XUS ;SFISC/STAFF - SIGNON ;09/22/15  09:24
- ;;8.0;KERNEL;**16,26,49,59,149,180,265,337,419,434,584,659**;Jul 10, 1995;Build 22
+XUS ;SFISC/STAFF - SIGNON ; 3/6/19 5:15pm
+ ;;8.0;KERNEL;**16,26,49,59,149,180,265,337,419,434,584,659,702**;Jul 10, 1995;Build 19
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Sign-on message numbers are 30810.51 to 30810.99
@@ -12,18 +12,25 @@ XUS ;SFISC/STAFF - SIGNON ;09/22/15  09:24
 RESTART ;
  S XUM=$$SET2 G:XUM NO
  I $P(XU1,U,2)]"" S XUM=$$DEVPAS() I XUM G H:XUM<0,NO
-A S (XUSER(0),XUSER(1),XQUR)=""
+A ;
+ S (XUSER(0),XUSER(1),XQUR)=""
  ;Check for locked IP/device.
  I $$LKCHECK^XUSTZIP() S XUM=7,XUFAC=$P(XOPT,U,2),XUHALT=1 G NO
- I $G(DUZ("LOA"))="" S DUZ("LOA")=2,DUZ("AUTHENTICATION")="AVCODES"
+ I $G(DUZ("LOA"))="" D
+ . S DUZ("LOA")=2
+ . S DUZ("AUTHENTICATION")="AVCODES"
+ . S XAPP=+$$FIND1^DIC(8994.5,,"B","TERMINAL EMULATOR") I XAPP<1 S XAPP=""
+ . S DUZ("REMAPP")=XAPP_"^TERMINAL EMULATOR" ;p702 Record application used to access VistA with A/V codes
  ;Auto Sign-on check
  S X=$$AUTOXUS^XUS1B() I X>0 S DUZ=X,DUZ("AUTHENTICATION")="ASHTOKEN" D USER(DUZ) W !!,">> Auto Sign-on: ",$P(XUSER(0),U)," <<<",! G B
+ ;End Auto Sign-on check
  X XUEOFF S AV=$$ASKAV() X XUEON I AV="^;^" G H ;Get out
  I AV["MAIL-BOX",AV[";XMR" S (XUA,PGM)="XMR",XMCHAN=$P($P(AV,";")," ",2),DUZ=.5 G XMR^XUSCLEAN
  S XQUR=$P(AV,";",3)
  S DUZ=$$CHECKAV(AV) K AV
  S XUM=$$UVALID() G:XUM NO
-B K XUF,%1 S XUF=0 X XUEON
+B ;
+ K XUF,%1 S XUF=0 X XUEON
  I DUZ D USER^XUS1 G:XUM NO
  I DUZ D SEC^XUS3:($D(^%ZIS(1,XUDEV,"TIME"))!$D(^(95))) G:XUM NO
  G NO:'DUZ
@@ -37,7 +44,8 @@ PGM ;
  S XUM=16
  G NO
  ;
-OK D CHEK^XQ83
+OK ;
+ D CHEK^XQ83
  S (XUA,PGM)="XQ"
  G NEXT^XUS1
  ;
@@ -45,9 +53,11 @@ CHK() ;Check that option exists and LOCK
  I $D(^DIC(19,Y,0)),$S($P(^(0),U,6)="":1,1:$D(^XUSEC($P(^(0),U,6),DUZ))) Q 1
  Q 0
  ;
-LC S X=$$UP(X)
+LC ;
+ S X=$$UP(X)
  Q
-UP(%) Q $TR(%,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+UP(%) ;
+ Q $TR(%,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;
 FAC ;Failed access
  S:'DUZ XUF(.1)=$E(%1)
@@ -59,11 +69,13 @@ H ;Exit point for all applications
 C ;CLOSE
  G ^XUSCLEAN
  ;
-ON X ^%ZOSF("EON") Q
+ON ;
+ X ^%ZOSF("EON") Q
  ;
 ASKAV(PRE) ;Ask and return Access;Verify code, Turn off echo before calling
  N X,Y S PRE=$G(PRE)
  F  W !,PRE,XUSTMP(51) S X=$$ACCEPT S:X="^" X="^;^" Q:$L(X)
+ I $E(X,1,13)="<?xml version" Q X  ;p702 IAM SAML token
  S X=$TR(X,$C(9),";") ;Convert TAB to ; to match GUI.
  I $P(X," ")="MAIL-BOX" S X=X_";XMR"
  I $E(X,1,7)="~~TOK~~" Q X ;Use CCOW token
@@ -71,18 +83,23 @@ ASKAV(PRE) ;Ask and return Access;Verify code, Turn off echo before calling
  Q X
  ;
  ;Timeout used by XUSTZ call.
-ACCEPT(TO) ;Read A/V and echo '*' char.
+ACCEPT(TO) ;Read A/V and echo '*' char. (p702 Modified to accept IAM STS token)
  ;Have the Read write to flush the buffer on some systems
- N C,A,E K DUOUT S A="",TO=$G(TO,60),E=0
+ N A,B,C,E K DUOUT S A="",TO=$G(TO,60),E=0
  F  D  Q:E
  . R "",*C:TO S:('$T) DUOUT=1 S:('$T)!(C=94) A="^"
  . I (A="^")!(C=13)!($L(A)>60) S E=1 Q
  . I C=127 Q:'$L(A)  S A=$E(A,1,$L(A)-1) W $C(8,32,8) Q
  . S A=A_$C(C) W *42
  . Q
+ I $L(A)>60 D
+ . S E=0 W !!,"Please wait. Authenticating user credentials."
+ . F  D  Q:E
+ . . R B#200:5 W "." S A=A_B
+ . . I $L(B)<200 S E=1 W "." Q
  Q A
  ;
-CHECKAV(X1) ;Check A/V code return DUZ or Zero. (Called from XUSRB)
+CHECKAV(X1) ;Check A/V code return DUZ or Zero. (Called from XUSRB for A/V code sign-on)
  N %,%1,X,Y,IEN,DA,DIK
  S IEN=0
  ;Start CCOW
@@ -91,6 +108,13 @@ CHECKAV(X1) ;Check A/V code return DUZ or Zero. (Called from XUSRB)
  . I $E(X1,8,9)="~2" S IEN=$$CHKCCOW^XUSRB4($E(X1,8,255)),DUZ("AUTHENTICATION")="CCOWTOKEN"
  . Q
  ;End CCOW
+ ;Start SSOi (p702)
+ I $E(X1,1,13)="<?xml version" D  Q:IEN>0 IEN
+ . S IEN=$$SAML(X1)
+ . I +IEN<0 S IEN=0 ;error with 2FA sign-on
+ . I IEN>0 D USER(IEN)
+ . Q
+ ;End SSOi
  S X1=$$UP(X1) S:X1[":" XUTT=1,X1=$TR(X1,":")
  S X=$P(X1,";") Q:X="^" -1 S:XUF %1="Access: "_X
  Q:X'?1.20ANP 0
@@ -153,11 +177,25 @@ UVALID() ;EF. Is it valid for this user to sign on?
  I $P(XUSER(0),U,11),$P(XUSER(0),U,11)'>DT Q 11 ;Access Terminated
  I $D(DUZ("ASH")) Q 0 ;If auto handle, Allow to sign-on p434
  I $P(XUSER(0),U,7) Q 5 ;Disuser flag set
- I ('$L($P(XUSER(1),U,2)))&('($G(DUZ("AUTHENTICATION"))="SSOE"))&('($G(DUZ("AUTHENTICATION"))="M4A")) Q 21 ;Null verify code not allowed p419
+ I '$L($P(XUSER(1),U,2)) Q 21 ;Null verify code not allowed p419
  Q 0
  ;
 DEVPAS() ;EF. Ask device password
  X XUEOFF W !,"DEVICE PASSWORD: " R X:60 X XUEON
  S X=$E(X,1,30) S:'$T X="^" D LC Q:X["^" -1 I $P(XU1,U,2)'=X S:XUF %1="Device: "_X D:XUF FAC Q 6
  Q 0
+ ;
+SAML(X) ;IF. Validate SAML token. (p702)
+ N I,IEND,ISTART,ISTOP
+ K ^TMP("SAML_XUS",$J)
+ S ISTOP=$P($L(X),".")
+ S I=0
+ F  D  Q:IEND>ISTOP
+ . S ISTART=(I*200)+1
+ . S IEND=ISTART+199
+ . S I=I+1
+ . S LINE=$E(X,ISTART,IEND)
+ . I LINE[$C(9) S LINE=$REPLACE(LINE,$C(9),$C(13,10))
+ . S ^TMP("SAML_XUS",$J,I)=LINE
+ Q $$EN^XUSAML($NA(^TMP("SAML_XUS",$J)))
  ;

@@ -1,124 +1,120 @@
-IBDEI1WW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32437,2)
- ;;=^5137436
- ;;^UTILITY(U,$J,358.3,32438,0)
- ;;=S91.121A^^126^1613^4
- ;;^UTILITY(U,$J,358.3,32438,1,0)
+ ;;^UTILITY(U,$J,358.3,30525,0)
+ ;;=F15.21^^120^1556^34
+ ;;^UTILITY(U,$J,358.3,30525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32438,1,3,0)
- ;;=3^Lacrtn w/ foregin body rt grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,32438,1,4,0)
- ;;=4^S91.121A
- ;;^UTILITY(U,$J,358.3,32438,2)
- ;;=^5044204
- ;;^UTILITY(U,$J,358.3,32439,0)
- ;;=S91.221A^^126^1613^11
- ;;^UTILITY(U,$J,358.3,32439,1,0)
+ ;;^UTILITY(U,$J,358.3,30525,1,3,0)
+ ;;=3^Oth Stimulant Dependence,Mod/Sev,In Remission
+ ;;^UTILITY(U,$J,358.3,30525,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,30525,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,30526,0)
+ ;;=Z91.120^^120^1557^1
+ ;;^UTILITY(U,$J,358.3,30526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32439,1,3,0)
- ;;=3^Lacrtn w/ foreign body rt grt toe w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32439,1,4,0)
- ;;=4^S91.221A
- ;;^UTILITY(U,$J,358.3,32439,2)
- ;;=^5137460
- ;;^UTILITY(U,$J,358.3,32440,0)
- ;;=S91.222A^^126^1613^6
- ;;^UTILITY(U,$J,358.3,32440,1,0)
+ ;;^UTILITY(U,$J,358.3,30526,1,3,0)
+ ;;=3^Intentional Underdosing d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,30526,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,30526,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,30527,0)
+ ;;=Z91.128^^120^1557^2
+ ;;^UTILITY(U,$J,358.3,30527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32440,1,3,0)
- ;;=3^Lacrtn w/ foreign body lft grt toe w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32440,1,4,0)
- ;;=4^S91.222A
- ;;^UTILITY(U,$J,358.3,32440,2)
- ;;=^5137461
- ;;^UTILITY(U,$J,358.3,32441,0)
- ;;=S91.225A^^126^1613^9
- ;;^UTILITY(U,$J,358.3,32441,1,0)
+ ;;^UTILITY(U,$J,358.3,30527,1,3,0)
+ ;;=3^Intentional Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,30527,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,30527,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,30528,0)
+ ;;=Z91.130^^120^1557^15
+ ;;^UTILITY(U,$J,358.3,30528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32441,1,3,0)
- ;;=3^Lacrtn w/ foreign body lft lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32441,1,4,0)
- ;;=4^S91.225A
- ;;^UTILITY(U,$J,358.3,32441,2)
- ;;=^5137467
- ;;^UTILITY(U,$J,358.3,32442,0)
- ;;=S91.224A^^126^1613^13
- ;;^UTILITY(U,$J,358.3,32442,1,0)
+ ;;^UTILITY(U,$J,358.3,30528,1,3,0)
+ ;;=3^Unintented Underdosing d/t Age-Related Disability
+ ;;^UTILITY(U,$J,358.3,30528,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,30528,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,30529,0)
+ ;;=Z91.138^^120^1557^16
+ ;;^UTILITY(U,$J,358.3,30529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32442,1,3,0)
- ;;=3^Lacrtn w/ foreign body rt lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32442,1,4,0)
- ;;=4^S91.224A
- ;;^UTILITY(U,$J,358.3,32442,2)
- ;;=^5137466
- ;;^UTILITY(U,$J,358.3,32443,0)
- ;;=S81.811A^^126^1613^29
- ;;^UTILITY(U,$J,358.3,32443,1,0)
+ ;;^UTILITY(U,$J,358.3,30529,1,3,0)
+ ;;=3^Unintented Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,30529,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,30529,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,30530,0)
+ ;;=T38.3X6A^^120^1557^3
+ ;;^UTILITY(U,$J,358.3,30530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32443,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,32443,1,4,0)
- ;;=4^S81.811A
- ;;^UTILITY(U,$J,358.3,32443,2)
- ;;=^5040071
- ;;^UTILITY(U,$J,358.3,32444,0)
- ;;=S81.812A^^126^1613^22
- ;;^UTILITY(U,$J,358.3,32444,1,0)
+ ;;^UTILITY(U,$J,358.3,30530,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30530,1,4,0)
+ ;;=4^T38.3X6A
+ ;;^UTILITY(U,$J,358.3,30530,2)
+ ;;=^5049649
+ ;;^UTILITY(U,$J,358.3,30531,0)
+ ;;=T38.3X6S^^120^1557^4
+ ;;^UTILITY(U,$J,358.3,30531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32444,1,3,0)
- ;;=3^Lacrtn w/o foreign body lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,32444,1,4,0)
- ;;=4^S81.812A
- ;;^UTILITY(U,$J,358.3,32444,2)
- ;;=^5040074
- ;;^UTILITY(U,$J,358.3,32445,0)
- ;;=S91.311A^^126^1613^24
- ;;^UTILITY(U,$J,358.3,32445,1,0)
+ ;;^UTILITY(U,$J,358.3,30531,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,30531,1,4,0)
+ ;;=4^T38.3X6S
+ ;;^UTILITY(U,$J,358.3,30531,2)
+ ;;=^5049651
+ ;;^UTILITY(U,$J,358.3,30532,0)
+ ;;=T38.3X6D^^120^1557^5
+ ;;^UTILITY(U,$J,358.3,30532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32445,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt ft, init
- ;;^UTILITY(U,$J,358.3,32445,1,4,0)
- ;;=4^S91.311A
- ;;^UTILITY(U,$J,358.3,32445,2)
- ;;=^5044320
- ;;^UTILITY(U,$J,358.3,32446,0)
- ;;=S91.114A^^126^1613^27
- ;;^UTILITY(U,$J,358.3,32446,1,0)
+ ;;^UTILITY(U,$J,358.3,30532,1,3,0)
+ ;;=3^Underdosing Insulin/Oral Hypoglycemic Drugs,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,30532,1,4,0)
+ ;;=4^T38.3X6D
+ ;;^UTILITY(U,$J,358.3,30532,2)
+ ;;=^5049650
+ ;;^UTILITY(U,$J,358.3,30533,0)
+ ;;=T46.5X6A^^120^1557^9
+ ;;^UTILITY(U,$J,358.3,30533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32446,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,32446,1,4,0)
- ;;=4^S91.114A
- ;;^UTILITY(U,$J,358.3,32446,2)
- ;;=^5044192
- ;;^UTILITY(U,$J,358.3,32447,0)
- ;;=S91.214A^^126^1613^28
- ;;^UTILITY(U,$J,358.3,32447,1,0)
+ ;;^UTILITY(U,$J,358.3,30533,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30533,1,4,0)
+ ;;=4^T46.5X6A
+ ;;^UTILITY(U,$J,358.3,30533,2)
+ ;;=^5051353
+ ;;^UTILITY(U,$J,358.3,30534,0)
+ ;;=T46.5X6D^^120^1557^10
+ ;;^UTILITY(U,$J,358.3,30534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32447,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32447,1,4,0)
- ;;=4^S91.214A
- ;;^UTILITY(U,$J,358.3,32447,2)
- ;;=^5044279
- ;;^UTILITY(U,$J,358.3,32448,0)
- ;;=S91.212A^^126^1613^18
- ;;^UTILITY(U,$J,358.3,32448,1,0)
+ ;;^UTILITY(U,$J,358.3,30534,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30534,1,4,0)
+ ;;=4^T46.5X6D
+ ;;^UTILITY(U,$J,358.3,30534,2)
+ ;;=^5051354
+ ;;^UTILITY(U,$J,358.3,30535,0)
+ ;;=T46.5X6S^^120^1557^11
+ ;;^UTILITY(U,$J,358.3,30535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32448,1,3,0)
- ;;=3^Lacrtn w/o foreign body lft grt toe w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32448,1,4,0)
- ;;=4^S91.212A
- ;;^UTILITY(U,$J,358.3,32448,2)
- ;;=^5044276
- ;;^UTILITY(U,$J,358.3,32449,0)
- ;;=S91.211A^^126^1613^25
- ;;^UTILITY(U,$J,358.3,32449,1,0)
+ ;;^UTILITY(U,$J,358.3,30535,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,30535,1,4,0)
+ ;;=4^T46.5X6S
+ ;;^UTILITY(U,$J,358.3,30535,2)
+ ;;=^5051355
+ ;;^UTILITY(U,$J,358.3,30536,0)
+ ;;=T43.206A^^120^1557^6
+ ;;^UTILITY(U,$J,358.3,30536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32449,1,3,0)
- ;;=3^Lacrtn w/o foreign body rt grt toe w/ nail dmg, init
- ;;^UTILITY(U,$J,358.3,32449,1,4,0)
- ;;=4^S91.211A
+ ;;^UTILITY(U,$J,358.3,30536,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Init Encntr

@@ -1,132 +1,128 @@
-IBDEI3AO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3AO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,55363,2)
- ;;=^5008834
- ;;^UTILITY(U,$J,358.3,55364,0)
- ;;=F20.3^^256^2779^25
- ;;^UTILITY(U,$J,358.3,55364,1,0)
+ ;;^UTILITY(U,$J,358.3,52581,0)
+ ;;=J15.7^^194^2543^10
+ ;;^UTILITY(U,$J,358.3,52581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55364,1,3,0)
- ;;=3^Undifferentiated/Atypical Schizophrenia
- ;;^UTILITY(U,$J,358.3,55364,1,4,0)
- ;;=4^F20.3
- ;;^UTILITY(U,$J,358.3,55364,2)
- ;;=^5003472
- ;;^UTILITY(U,$J,358.3,55365,0)
- ;;=F20.9^^256^2779^21
- ;;^UTILITY(U,$J,358.3,55365,1,0)
+ ;;^UTILITY(U,$J,358.3,52581,1,3,0)
+ ;;=3^Pneumonia d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,52581,1,4,0)
+ ;;=4^J15.7
+ ;;^UTILITY(U,$J,358.3,52581,2)
+ ;;=^5008177
+ ;;^UTILITY(U,$J,358.3,52582,0)
+ ;;=J15.8^^194^2543^13
+ ;;^UTILITY(U,$J,358.3,52582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55365,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,55365,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,55365,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,55366,0)
- ;;=F31.9^^256^2779^6
- ;;^UTILITY(U,$J,358.3,55366,1,0)
+ ;;^UTILITY(U,$J,358.3,52582,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Bacteria
+ ;;^UTILITY(U,$J,358.3,52582,1,4,0)
+ ;;=4^J15.8
+ ;;^UTILITY(U,$J,358.3,52582,2)
+ ;;=^95571
+ ;;^UTILITY(U,$J,358.3,52583,0)
+ ;;=J15.9^^194^2543^22
+ ;;^UTILITY(U,$J,358.3,52583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55366,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,55366,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,55366,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,55367,0)
- ;;=F31.72^^256^2779^7
- ;;^UTILITY(U,$J,358.3,55367,1,0)
+ ;;^UTILITY(U,$J,358.3,52583,1,3,0)
+ ;;=3^Pneumonia,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,52583,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,52583,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,52584,0)
+ ;;=J16.0^^194^2543^23
+ ;;^UTILITY(U,$J,358.3,52584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55367,1,3,0)
- ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,55367,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,55367,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,55368,0)
- ;;=F31.71^^256^2779^5
- ;;^UTILITY(U,$J,358.3,55368,1,0)
+ ;;^UTILITY(U,$J,358.3,52584,1,3,0)
+ ;;=3^Pneumonia,Chlamydial
+ ;;^UTILITY(U,$J,358.3,52584,1,4,0)
+ ;;=4^J16.0
+ ;;^UTILITY(U,$J,358.3,52584,2)
+ ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,52585,0)
+ ;;=J16.8^^194^2543^14
+ ;;^UTILITY(U,$J,358.3,52585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55368,1,3,0)
- ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,55368,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,55368,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,55369,0)
- ;;=F31.70^^256^2779^4
- ;;^UTILITY(U,$J,358.3,55369,1,0)
+ ;;^UTILITY(U,$J,358.3,52585,1,3,0)
+ ;;=3^Pneumonia d/t Other Spec Infectious Organisms
+ ;;^UTILITY(U,$J,358.3,52585,1,4,0)
+ ;;=4^J16.8
+ ;;^UTILITY(U,$J,358.3,52585,2)
+ ;;=^5008180
+ ;;^UTILITY(U,$J,358.3,52586,0)
+ ;;=J17.^^194^2543^21
+ ;;^UTILITY(U,$J,358.3,52586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55369,1,3,0)
- ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,55369,1,4,0)
- ;;=4^F31.70
- ;;^UTILITY(U,$J,358.3,55369,2)
- ;;=^5003510
- ;;^UTILITY(U,$J,358.3,55370,0)
- ;;=F29.^^256^2779^19
- ;;^UTILITY(U,$J,358.3,55370,1,0)
+ ;;^UTILITY(U,$J,358.3,52586,1,3,0)
+ ;;=3^Pneumonia in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,52586,1,4,0)
+ ;;=4^J17.
+ ;;^UTILITY(U,$J,358.3,52586,2)
+ ;;=^5008181
+ ;;^UTILITY(U,$J,358.3,52587,0)
+ ;;=J18.0^^194^2543^2
+ ;;^UTILITY(U,$J,358.3,52587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55370,1,3,0)
- ;;=3^Psychosis not d/t Substance/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,55370,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,55370,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,55371,0)
- ;;=F28.^^256^2779^20
- ;;^UTILITY(U,$J,358.3,55371,1,0)
+ ;;^UTILITY(U,$J,358.3,52587,1,3,0)
+ ;;=3^Bronchopneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,52587,1,4,0)
+ ;;=4^J18.0
+ ;;^UTILITY(U,$J,358.3,52587,2)
+ ;;=^5008182
+ ;;^UTILITY(U,$J,358.3,52588,0)
+ ;;=J18.1^^194^2543^25
+ ;;^UTILITY(U,$J,358.3,52588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55371,1,3,0)
- ;;=3^Psychosis not d/t Substance/Known Physiol Cond NEC
- ;;^UTILITY(U,$J,358.3,55371,1,4,0)
- ;;=4^F28.
- ;;^UTILITY(U,$J,358.3,55371,2)
- ;;=^5003483
- ;;^UTILITY(U,$J,358.3,55372,0)
- ;;=F41.9^^256^2779^3
- ;;^UTILITY(U,$J,358.3,55372,1,0)
+ ;;^UTILITY(U,$J,358.3,52588,1,3,0)
+ ;;=3^Pneumonia,Lobar,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,52588,1,4,0)
+ ;;=4^J18.1
+ ;;^UTILITY(U,$J,358.3,52588,2)
+ ;;=^5008183
+ ;;^UTILITY(U,$J,358.3,52589,0)
+ ;;=J18.2^^194^2543^24
+ ;;^UTILITY(U,$J,358.3,52589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55372,1,3,0)
- ;;=3^Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,55372,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,55372,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,55373,0)
- ;;=F42.^^256^2779^13
- ;;^UTILITY(U,$J,358.3,55373,1,0)
+ ;;^UTILITY(U,$J,358.3,52589,1,3,0)
+ ;;=3^Pneumonia,Hypostatic,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,52589,1,4,0)
+ ;;=4^J18.2
+ ;;^UTILITY(U,$J,358.3,52589,2)
+ ;;=^5008184
+ ;;^UTILITY(U,$J,358.3,52590,0)
+ ;;=J18.8^^194^2543^26
+ ;;^UTILITY(U,$J,358.3,52590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55373,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder
- ;;^UTILITY(U,$J,358.3,55373,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,55373,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,55374,0)
- ;;=F45.0^^256^2779^23
- ;;^UTILITY(U,$J,358.3,55374,1,0)
+ ;;^UTILITY(U,$J,358.3,52590,1,3,0)
+ ;;=3^Pneumonia,Oth,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,52590,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,52590,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,52591,0)
+ ;;=J18.9^^194^2543^27
+ ;;^UTILITY(U,$J,358.3,52591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55374,1,3,0)
- ;;=3^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,55374,1,4,0)
- ;;=4^F45.0
- ;;^UTILITY(U,$J,358.3,55374,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,55375,0)
- ;;=F69.^^256^2779^2
- ;;^UTILITY(U,$J,358.3,55375,1,0)
+ ;;^UTILITY(U,$J,358.3,52591,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,52591,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,52591,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,52592,0)
+ ;;=N39.0^^194^2544^13
+ ;;^UTILITY(U,$J,358.3,52592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55375,1,3,0)
- ;;=3^Adult Personality and Behavior Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,55375,1,4,0)
- ;;=4^F69.
- ;;^UTILITY(U,$J,358.3,55375,2)
- ;;=^5003667
- ;;^UTILITY(U,$J,358.3,55376,0)
- ;;=F60.9^^256^2779^17
- ;;^UTILITY(U,$J,358.3,55376,1,0)
+ ;;^UTILITY(U,$J,358.3,52592,1,3,0)
+ ;;=3^UTI,Site not Spec
+ ;;^UTILITY(U,$J,358.3,52592,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,52592,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,52593,0)
+ ;;=N30.01^^194^2544^1
+ ;;^UTILITY(U,$J,358.3,52593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,55376,1,3,0)
- ;;=3^Personality Disorder,Unspec

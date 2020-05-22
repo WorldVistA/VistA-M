@@ -1,344 +1,700 @@
-IBDEI06E ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI06E ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7979,1,0)
+ ;;^UTILITY(U,$J,358.3,15542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7979,1,3,0)
- ;;=3^Concussion w loss of consciousness of unsp duration, init
- ;;^UTILITY(U,$J,358.3,7979,1,4,0)
- ;;=4^S06.0X9A
- ;;^UTILITY(U,$J,358.3,7979,2)
- ;;=^5020693
- ;;^UTILITY(U,$J,358.3,7980,0)
- ;;=S60.152A^^29^437^50
- ;;^UTILITY(U,$J,358.3,7980,1,0)
+ ;;^UTILITY(U,$J,358.3,15542,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Chronic
+ ;;^UTILITY(U,$J,358.3,15542,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,15542,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,15543,0)
+ ;;=G89.28^^62^706^18
+ ;;^UTILITY(U,$J,358.3,15543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7980,1,3,0)
- ;;=3^Contusion of left little finger w damage to nail, init
- ;;^UTILITY(U,$J,358.3,7980,1,4,0)
- ;;=4^S60.152A
- ;;^UTILITY(U,$J,358.3,7980,2)
- ;;=^5135669
- ;;^UTILITY(U,$J,358.3,7981,0)
- ;;=S50.11XA^^29^437^52
- ;;^UTILITY(U,$J,358.3,7981,1,0)
+ ;;^UTILITY(U,$J,358.3,15543,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Chronic
+ ;;^UTILITY(U,$J,358.3,15543,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,15543,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,15544,0)
+ ;;=G89.3^^62^706^10
+ ;;^UTILITY(U,$J,358.3,15544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7981,1,3,0)
- ;;=3^Contusion of right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,7981,1,4,0)
- ;;=4^S50.11XA
- ;;^UTILITY(U,$J,358.3,7981,2)
- ;;=^5028494
- ;;^UTILITY(U,$J,358.3,7982,0)
- ;;=S50.12XA^^29^437^47
- ;;^UTILITY(U,$J,358.3,7982,1,0)
+ ;;^UTILITY(U,$J,358.3,15544,1,3,0)
+ ;;=3^Neoplasm Related Pain,Acute/Chronic
+ ;;^UTILITY(U,$J,358.3,15544,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,15544,2)
+ ;;=^5004159
+ ;;^UTILITY(U,$J,358.3,15545,0)
+ ;;=G89.4^^62^706^2
+ ;;^UTILITY(U,$J,358.3,15545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7982,1,3,0)
- ;;=3^Contusion of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,7982,1,4,0)
- ;;=4^S50.12XA
- ;;^UTILITY(U,$J,358.3,7982,2)
- ;;=^5028497
- ;;^UTILITY(U,$J,358.3,7983,0)
- ;;=S60.221A^^29^437^53
- ;;^UTILITY(U,$J,358.3,7983,1,0)
+ ;;^UTILITY(U,$J,358.3,15545,1,3,0)
+ ;;=3^Chronic Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,15545,1,4,0)
+ ;;=4^G89.4
+ ;;^UTILITY(U,$J,358.3,15545,2)
+ ;;=^334079
+ ;;^UTILITY(U,$J,358.3,15546,0)
+ ;;=M27.0^^62^706^3
+ ;;^UTILITY(U,$J,358.3,15546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7983,1,3,0)
- ;;=3^Contusion of right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,7983,1,4,0)
- ;;=4^S60.221A
- ;;^UTILITY(U,$J,358.3,7983,2)
- ;;=^5032276
- ;;^UTILITY(U,$J,358.3,7984,0)
- ;;=S60.222A^^29^437^48
- ;;^UTILITY(U,$J,358.3,7984,1,0)
+ ;;^UTILITY(U,$J,358.3,15546,1,3,0)
+ ;;=3^Developmental Disorder of Jaws
+ ;;^UTILITY(U,$J,358.3,15546,1,4,0)
+ ;;=4^M27.0
+ ;;^UTILITY(U,$J,358.3,15546,2)
+ ;;=^5011722
+ ;;^UTILITY(U,$J,358.3,15547,0)
+ ;;=M27.9^^62^706^4
+ ;;^UTILITY(U,$J,358.3,15547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7984,1,3,0)
- ;;=3^Contusion of left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,7984,1,4,0)
- ;;=4^S60.222A
- ;;^UTILITY(U,$J,358.3,7984,2)
- ;;=^5032279
- ;;^UTILITY(U,$J,358.3,7985,0)
- ;;=S80.01XA^^29^437^54
- ;;^UTILITY(U,$J,358.3,7985,1,0)
+ ;;^UTILITY(U,$J,358.3,15547,1,3,0)
+ ;;=3^Disease of Jaws,Unspec
+ ;;^UTILITY(U,$J,358.3,15547,1,4,0)
+ ;;=4^M27.9
+ ;;^UTILITY(U,$J,358.3,15547,2)
+ ;;=^5011737
+ ;;^UTILITY(U,$J,358.3,15548,0)
+ ;;=R68.84^^62^706^8
+ ;;^UTILITY(U,$J,358.3,15548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7985,1,3,0)
- ;;=3^Contusion of right knee, initial encounter
- ;;^UTILITY(U,$J,358.3,7985,1,4,0)
- ;;=4^S80.01XA
- ;;^UTILITY(U,$J,358.3,7985,2)
- ;;=^5039891
- ;;^UTILITY(U,$J,358.3,7986,0)
- ;;=S80.02XA^^29^437^49
- ;;^UTILITY(U,$J,358.3,7986,1,0)
+ ;;^UTILITY(U,$J,358.3,15548,1,3,0)
+ ;;=3^Jaw Pain
+ ;;^UTILITY(U,$J,358.3,15548,1,4,0)
+ ;;=4^R68.84
+ ;;^UTILITY(U,$J,358.3,15548,2)
+ ;;=^5019556
+ ;;^UTILITY(U,$J,358.3,15549,0)
+ ;;=N48.9^^62^706^6
+ ;;^UTILITY(U,$J,358.3,15549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7986,1,3,0)
- ;;=3^Contusion of left knee, initial encounter
- ;;^UTILITY(U,$J,358.3,7986,1,4,0)
- ;;=4^S80.02XA
- ;;^UTILITY(U,$J,358.3,7986,2)
- ;;=^5039894
- ;;^UTILITY(U,$J,358.3,7987,0)
- ;;=S80.11XA^^29^437^55
- ;;^UTILITY(U,$J,358.3,7987,1,0)
+ ;;^UTILITY(U,$J,358.3,15549,1,3,0)
+ ;;=3^Disorder of Penis,Unspec
+ ;;^UTILITY(U,$J,358.3,15549,1,4,0)
+ ;;=4^N48.9
+ ;;^UTILITY(U,$J,358.3,15549,2)
+ ;;=^5015743
+ ;;^UTILITY(U,$J,358.3,15550,0)
+ ;;=N50.9^^62^706^5
+ ;;^UTILITY(U,$J,358.3,15550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7987,1,3,0)
- ;;=3^Contusion of right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,7987,1,4,0)
- ;;=4^S80.11XA
- ;;^UTILITY(U,$J,358.3,7987,2)
- ;;=^5039900
- ;;^UTILITY(U,$J,358.3,7988,0)
- ;;=S80.12XA^^29^437^51
- ;;^UTILITY(U,$J,358.3,7988,1,0)
+ ;;^UTILITY(U,$J,358.3,15550,1,3,0)
+ ;;=3^Disorder of Male Genital Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,15550,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,15550,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,15551,0)
+ ;;=R10.2^^62^706^14
+ ;;^UTILITY(U,$J,358.3,15551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7988,1,3,0)
- ;;=3^Contusion of left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,7988,1,4,0)
- ;;=4^S80.12XA
- ;;^UTILITY(U,$J,358.3,7988,2)
- ;;=^5039903
- ;;^UTILITY(U,$J,358.3,7989,0)
- ;;=T75.4XXA^^29^437^58
- ;;^UTILITY(U,$J,358.3,7989,1,0)
+ ;;^UTILITY(U,$J,358.3,15551,1,3,0)
+ ;;=3^Pelvic/Perineal Pain
+ ;;^UTILITY(U,$J,358.3,15551,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,15551,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,15552,0)
+ ;;=N94.89^^62^706^7
+ ;;^UTILITY(U,$J,358.3,15552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7989,1,3,0)
- ;;=3^Electrocution, initial encounter
- ;;^UTILITY(U,$J,358.3,7989,1,4,0)
- ;;=4^T75.4XXA
- ;;^UTILITY(U,$J,358.3,7989,2)
- ;;=^5054203
- ;;^UTILITY(U,$J,358.3,7990,0)
- ;;=T15.91XA^^29^437^61
- ;;^UTILITY(U,$J,358.3,7990,1,0)
+ ;;^UTILITY(U,$J,358.3,15552,1,3,0)
+ ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
+ ;;^UTILITY(U,$J,358.3,15552,1,4,0)
+ ;;=4^N94.89
+ ;;^UTILITY(U,$J,358.3,15552,2)
+ ;;=^5015925
+ ;;^UTILITY(U,$J,358.3,15553,0)
+ ;;=N23.^^62^706^19
+ ;;^UTILITY(U,$J,358.3,15553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7990,1,3,0)
- ;;=3^FB on Right External Eye,Part Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,7990,1,4,0)
- ;;=4^T15.91XA
- ;;^UTILITY(U,$J,358.3,7990,2)
- ;;=^5046411
- ;;^UTILITY(U,$J,358.3,7991,0)
- ;;=T15.92XA^^29^437^60
- ;;^UTILITY(U,$J,358.3,7991,1,0)
+ ;;^UTILITY(U,$J,358.3,15553,1,3,0)
+ ;;=3^Renal Colic,Unspec
+ ;;^UTILITY(U,$J,358.3,15553,1,4,0)
+ ;;=4^N23.
+ ;;^UTILITY(U,$J,358.3,15553,2)
+ ;;=^5015615
+ ;;^UTILITY(U,$J,358.3,15554,0)
+ ;;=Z79.891^^62^706^9
+ ;;^UTILITY(U,$J,358.3,15554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7991,1,3,0)
- ;;=3^FB on Left External Eye,Part Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,7991,1,4,0)
- ;;=4^T15.92XA
- ;;^UTILITY(U,$J,358.3,7991,2)
- ;;=^5046414
- ;;^UTILITY(U,$J,358.3,7992,0)
- ;;=S82.891A^^29^437^63
- ;;^UTILITY(U,$J,358.3,7992,1,0)
+ ;;^UTILITY(U,$J,358.3,15554,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,15554,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,15554,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,15555,0)
+ ;;=Z71.89^^62^707^1
+ ;;^UTILITY(U,$J,358.3,15555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7992,1,3,0)
- ;;=3^Fx of Right Lower Leg NEC,Init for Clos Fx
- ;;^UTILITY(U,$J,358.3,7992,1,4,0)
- ;;=4^S82.891A
- ;;^UTILITY(U,$J,358.3,7992,2)
- ;;=^5042863
- ;;^UTILITY(U,$J,358.3,7993,0)
- ;;=S82.892A^^29^437^62
- ;;^UTILITY(U,$J,358.3,7993,1,0)
+ ;;^UTILITY(U,$J,358.3,15555,1,3,0)
+ ;;=3^Activity/Exercise Counseling
+ ;;^UTILITY(U,$J,358.3,15555,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,15555,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,15556,0)
+ ;;=Z13.89^^62^707^2
+ ;;^UTILITY(U,$J,358.3,15556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7993,1,3,0)
- ;;=3^Fx of Left Lower Leg NEC,Init for Clos Fx
- ;;^UTILITY(U,$J,358.3,7993,1,4,0)
- ;;=4^S82.892A
- ;;^UTILITY(U,$J,358.3,7993,2)
- ;;=^5136944
- ;;^UTILITY(U,$J,358.3,7994,0)
- ;;=S62.101A^^29^437^89
- ;;^UTILITY(U,$J,358.3,7994,1,0)
+ ;;^UTILITY(U,$J,358.3,15556,1,3,0)
+ ;;=3^Alcohol Use Screen
+ ;;^UTILITY(U,$J,358.3,15556,1,4,0)
+ ;;=4^Z13.89
+ ;;^UTILITY(U,$J,358.3,15556,2)
+ ;;=^5062720
+ ;;^UTILITY(U,$J,358.3,15557,0)
+ ;;=Z12.39^^62^707^3
+ ;;^UTILITY(U,$J,358.3,15557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7994,1,3,0)
- ;;=3^Fx of unsp carpal bone, right wrist, init for clos fx
- ;;^UTILITY(U,$J,358.3,7994,1,4,0)
- ;;=4^S62.101A
- ;;^UTILITY(U,$J,358.3,7994,2)
- ;;=^5033199
- ;;^UTILITY(U,$J,358.3,7995,0)
- ;;=S62.102A^^29^437^88
- ;;^UTILITY(U,$J,358.3,7995,1,0)
+ ;;^UTILITY(U,$J,358.3,15557,1,3,0)
+ ;;=3^Breast Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,15557,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,15557,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,15558,0)
+ ;;=Z12.4^^62^707^5
+ ;;^UTILITY(U,$J,358.3,15558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7995,1,3,0)
- ;;=3^Fx of unsp carpal bone, left wrist, init for clos fx
- ;;^UTILITY(U,$J,358.3,7995,1,4,0)
- ;;=4^S62.102A
- ;;^UTILITY(U,$J,358.3,7995,2)
- ;;=^5033206
- ;;^UTILITY(U,$J,358.3,7996,0)
- ;;=S42.001A^^29^437^93
- ;;^UTILITY(U,$J,358.3,7996,1,0)
+ ;;^UTILITY(U,$J,358.3,15558,1,3,0)
+ ;;=3^Cervix Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,15558,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,15558,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,15559,0)
+ ;;=Z13.5^^62^707^8
+ ;;^UTILITY(U,$J,358.3,15559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7996,1,3,0)
- ;;=3^Fx of unsp part of right clavicle, init for clos fx
- ;;^UTILITY(U,$J,358.3,7996,1,4,0)
- ;;=4^S42.001A
- ;;^UTILITY(U,$J,358.3,7996,2)
- ;;=^5026369
- ;;^UTILITY(U,$J,358.3,7997,0)
- ;;=S42.002A^^29^437^92
- ;;^UTILITY(U,$J,358.3,7997,1,0)
+ ;;^UTILITY(U,$J,358.3,15559,1,3,0)
+ ;;=3^Eye and Ear Disorder Screen
+ ;;^UTILITY(U,$J,358.3,15559,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,15559,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,15560,0)
+ ;;=Z01.89^^62^707^6
+ ;;^UTILITY(U,$J,358.3,15560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7997,1,3,0)
- ;;=3^Fx of unsp part of left clavicle, init for clos fx
- ;;^UTILITY(U,$J,358.3,7997,1,4,0)
- ;;=4^S42.002A
- ;;^UTILITY(U,$J,358.3,7997,2)
- ;;=^5026376
- ;;^UTILITY(U,$J,358.3,7998,0)
- ;;=S42.401A^^29^437^82
- ;;^UTILITY(U,$J,358.3,7998,1,0)
+ ;;^UTILITY(U,$J,358.3,15560,1,3,0)
+ ;;=3^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,15560,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,15560,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,15561,0)
+ ;;=Z11.59^^62^707^17
+ ;;^UTILITY(U,$J,358.3,15561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7998,1,3,0)
- ;;=3^Fx of right lower end of humerus unspec, init
- ;;^UTILITY(U,$J,358.3,7998,1,4,0)
- ;;=4^S42.401A
- ;;^UTILITY(U,$J,358.3,7998,2)
- ;;=^5027294
- ;;^UTILITY(U,$J,358.3,7999,0)
- ;;=S42.402A^^29^437^69
- ;;^UTILITY(U,$J,358.3,7999,1,0)
+ ;;^UTILITY(U,$J,358.3,15561,1,3,0)
+ ;;=3^Viral Diseases Screen
+ ;;^UTILITY(U,$J,358.3,15561,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,15561,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,15562,0)
+ ;;=Z13.6^^62^707^4
+ ;;^UTILITY(U,$J,358.3,15562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7999,1,3,0)
- ;;=3^Fx of left lower end of humerus unspec, init for cl
- ;;^UTILITY(U,$J,358.3,7999,1,4,0)
- ;;=4^S42.402A
- ;;^UTILITY(U,$J,358.3,7999,2)
- ;;=^5134713
- ;;^UTILITY(U,$J,358.3,8000,0)
- ;;=S72.91XA^^29^437^77
- ;;^UTILITY(U,$J,358.3,8000,1,0)
+ ;;^UTILITY(U,$J,358.3,15562,1,3,0)
+ ;;=3^Cardiovascular Disorder Screen
+ ;;^UTILITY(U,$J,358.3,15562,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,15562,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,15563,0)
+ ;;=Z12.12^^62^707^15
+ ;;^UTILITY(U,$J,358.3,15563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8000,1,3,0)
- ;;=3^Fx of right femur unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,8000,1,4,0)
- ;;=4^S72.91XA
- ;;^UTILITY(U,$J,358.3,8000,2)
- ;;=^5136471
- ;;^UTILITY(U,$J,358.3,8001,0)
- ;;=S72.92XA^^29^437^64
- ;;^UTILITY(U,$J,358.3,8001,1,0)
+ ;;^UTILITY(U,$J,358.3,15563,1,3,0)
+ ;;=3^Rectum Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,15563,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,15563,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,15564,0)
+ ;;=Z71.89^^62^707^13
+ ;;^UTILITY(U,$J,358.3,15564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8001,1,3,0)
- ;;=3^Fx of left femur unspec, init encntr for closed fx
- ;;^UTILITY(U,$J,358.3,8001,1,4,0)
- ;;=4^S72.92XA
- ;;^UTILITY(U,$J,358.3,8001,2)
- ;;=^5136472
- ;;^UTILITY(U,$J,358.3,8002,0)
- ;;=S82.401A^^29^437^78
- ;;^UTILITY(U,$J,358.3,8002,1,0)
+ ;;^UTILITY(U,$J,358.3,15564,1,3,0)
+ ;;=3^Other Specified Counseling
+ ;;^UTILITY(U,$J,358.3,15564,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,15564,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,15565,0)
+ ;;=Z12.5^^62^707^14
+ ;;^UTILITY(U,$J,358.3,15565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8002,1,3,0)
- ;;=3^Fx of right fibula shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,8002,1,4,0)
- ;;=4^S82.401A
- ;;^UTILITY(U,$J,358.3,8002,2)
- ;;=^5041677
- ;;^UTILITY(U,$J,358.3,8003,0)
- ;;=S82.402A^^29^437^65
- ;;^UTILITY(U,$J,358.3,8003,1,0)
+ ;;^UTILITY(U,$J,358.3,15565,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,15565,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,15565,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,15566,0)
+ ;;=Z00.00^^62^707^10
+ ;;^UTILITY(U,$J,358.3,15566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8003,1,3,0)
- ;;=3^Fx of left fibula shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,8003,1,4,0)
- ;;=4^S82.402A
- ;;^UTILITY(U,$J,358.3,8003,2)
- ;;=^5041693
- ;;^UTILITY(U,$J,358.3,8004,0)
- ;;=S62.600A^^29^437^101
- ;;^UTILITY(U,$J,358.3,8004,1,0)
+ ;;^UTILITY(U,$J,358.3,15566,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,15566,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,15566,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,15567,0)
+ ;;=Z02.79^^62^707^12
+ ;;^UTILITY(U,$J,358.3,15567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8004,1,3,0)
- ;;=3^Fx of unsp phalanx of right index finger, init
- ;;^UTILITY(U,$J,358.3,8004,1,4,0)
- ;;=4^S62.600A
- ;;^UTILITY(U,$J,358.3,8004,2)
- ;;=^5034382
- ;;^UTILITY(U,$J,358.3,8005,0)
- ;;=S62.601A^^29^437^96
- ;;^UTILITY(U,$J,358.3,8005,1,0)
+ ;;^UTILITY(U,$J,358.3,15567,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,15567,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,15567,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,15568,0)
+ ;;=Z71.3^^62^707^7
+ ;;^UTILITY(U,$J,358.3,15568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8005,1,3,0)
- ;;=3^Fx of unsp phalanx of left index finger, init
- ;;^UTILITY(U,$J,358.3,8005,1,4,0)
- ;;=4^S62.601A
- ;;^UTILITY(U,$J,358.3,8005,2)
- ;;=^5034389
- ;;^UTILITY(U,$J,358.3,8006,0)
- ;;=S62.602A^^29^437^103
- ;;^UTILITY(U,$J,358.3,8006,1,0)
+ ;;^UTILITY(U,$J,358.3,15568,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,15568,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,15568,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,15569,0)
+ ;;=Z71.7^^62^707^11
+ ;;^UTILITY(U,$J,358.3,15569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8006,1,3,0)
- ;;=3^Fx of unsp phalanx of right middle finger, init
- ;;^UTILITY(U,$J,358.3,8006,1,4,0)
- ;;=4^S62.602A
- ;;^UTILITY(U,$J,358.3,8006,2)
- ;;=^5034396
- ;;^UTILITY(U,$J,358.3,8007,0)
- ;;=S62.603A^^29^437^98
- ;;^UTILITY(U,$J,358.3,8007,1,0)
+ ;;^UTILITY(U,$J,358.3,15569,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,15569,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,15569,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,15570,0)
+ ;;=Z71.6^^62^707^16
+ ;;^UTILITY(U,$J,358.3,15570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8007,1,3,0)
- ;;=3^Fx of unsp phalanx of left middle finger, init
- ;;^UTILITY(U,$J,358.3,8007,1,4,0)
- ;;=4^S62.603A
- ;;^UTILITY(U,$J,358.3,8007,2)
- ;;=^5034403
- ;;^UTILITY(U,$J,358.3,8008,0)
- ;;=S62.604A^^29^437^104
- ;;^UTILITY(U,$J,358.3,8008,1,0)
+ ;;^UTILITY(U,$J,358.3,15570,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,15570,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,15570,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,15571,0)
+ ;;=Z00.01^^62^707^9
+ ;;^UTILITY(U,$J,358.3,15571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8008,1,3,0)
- ;;=3^Fx of unsp phalanx of right ring finger, init
- ;;^UTILITY(U,$J,358.3,8008,1,4,0)
- ;;=4^S62.604A
- ;;^UTILITY(U,$J,358.3,8008,2)
- ;;=^5034410
- ;;^UTILITY(U,$J,358.3,8009,0)
- ;;=S62.605A^^29^437^99
- ;;^UTILITY(U,$J,358.3,8009,1,0)
+ ;;^UTILITY(U,$J,358.3,15571,1,3,0)
+ ;;=3^General Adult Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,15571,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,15571,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,15572,0)
+ ;;=D86.0^^62^708^45
+ ;;^UTILITY(U,$J,358.3,15572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8009,1,3,0)
- ;;=3^Fx of unsp phalanx of left ring finger, init
- ;;^UTILITY(U,$J,358.3,8009,1,4,0)
- ;;=4^S62.605A
- ;;^UTILITY(U,$J,358.3,8009,2)
- ;;=^5034417
- ;;^UTILITY(U,$J,358.3,8010,0)
- ;;=S62.606A^^29^437^102
- ;;^UTILITY(U,$J,358.3,8010,1,0)
+ ;;^UTILITY(U,$J,358.3,15572,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,15572,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,15572,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,15573,0)
+ ;;=D86.1^^62^708^47
+ ;;^UTILITY(U,$J,358.3,15573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8010,1,3,0)
- ;;=3^Fx of unsp phalanx of right little finger, init
- ;;^UTILITY(U,$J,358.3,8010,1,4,0)
- ;;=4^S62.606A
- ;;^UTILITY(U,$J,358.3,8010,2)
- ;;=^5034424
- ;;^UTILITY(U,$J,358.3,8011,0)
- ;;=S62.607A^^29^437^97
- ;;^UTILITY(U,$J,358.3,8011,1,0)
+ ;;^UTILITY(U,$J,358.3,15573,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,15573,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,15573,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,15574,0)
+ ;;=D86.2^^62^708^46
+ ;;^UTILITY(U,$J,358.3,15574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8011,1,3,0)
- ;;=3^Fx of unsp phalanx of left little finger, init
- ;;^UTILITY(U,$J,358.3,8011,1,4,0)
- ;;=4^S62.607A
- ;;^UTILITY(U,$J,358.3,8011,2)
- ;;=^5034431
- ;;^UTILITY(U,$J,358.3,8012,0)
- ;;=S92.901A^^29^437^79
- ;;^UTILITY(U,$J,358.3,8012,1,0)
+ ;;^UTILITY(U,$J,358.3,15574,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,15574,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,15574,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,15575,0)
+ ;;=D86.89^^62^708^48
+ ;;^UTILITY(U,$J,358.3,15575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8012,1,3,0)
- ;;=3^Fx of right foot unspec, init encntr for closed fra
- ;;^UTILITY(U,$J,358.3,8012,1,4,0)
- ;;=4^S92.901A
- ;;^UTILITY(U,$J,358.3,8012,2)
- ;;=^5045578
- ;;^UTILITY(U,$J,358.3,8013,0)
- ;;=S92.902A^^29^437^66
+ ;;^UTILITY(U,$J,358.3,15575,1,3,0)
+ ;;=3^Sarcoidosis of Other Sites
+ ;;^UTILITY(U,$J,358.3,15575,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,15575,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,15576,0)
+ ;;=D86.9^^62^708^51
+ ;;^UTILITY(U,$J,358.3,15576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15576,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,15576,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,15576,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,15577,0)
+ ;;=D86.86^^62^708^39
+ ;;^UTILITY(U,$J,358.3,15577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15577,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,15577,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,15577,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,15578,0)
+ ;;=D86.87^^62^708^43
+ ;;^UTILITY(U,$J,358.3,15578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15578,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,15578,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,15578,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,15579,0)
+ ;;=D86.3^^62^708^49
+ ;;^UTILITY(U,$J,358.3,15579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15579,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,15579,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,15579,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,15580,0)
+ ;;=D86.81^^62^708^41
+ ;;^UTILITY(U,$J,358.3,15580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15580,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,15580,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,15580,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,15581,0)
+ ;;=D86.82^^62^708^50
+ ;;^UTILITY(U,$J,358.3,15581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15581,1,3,0)
+ ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
+ ;;^UTILITY(U,$J,358.3,15581,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,15581,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,15582,0)
+ ;;=D86.84^^62^708^44
+ ;;^UTILITY(U,$J,358.3,15582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15582,1,3,0)
+ ;;=3^Sarcoid Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,15582,1,4,0)
+ ;;=4^D86.84
+ ;;^UTILITY(U,$J,358.3,15582,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,15583,0)
+ ;;=D86.85^^62^708^42
+ ;;^UTILITY(U,$J,358.3,15583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15583,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,15583,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,15583,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,15584,0)
+ ;;=D86.83^^62^708^40
+ ;;^UTILITY(U,$J,358.3,15584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15584,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,15584,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,15584,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,15585,0)
+ ;;=D84.1^^62^708^16
+ ;;^UTILITY(U,$J,358.3,15585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15585,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,15585,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,15585,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,15586,0)
+ ;;=D81.810^^62^708^5
+ ;;^UTILITY(U,$J,358.3,15586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15586,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,15586,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,15586,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,15587,0)
+ ;;=E88.01^^62^708^2
+ ;;^UTILITY(U,$J,358.3,15587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15587,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,15587,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,15587,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,15588,0)
+ ;;=J09.X1^^62^708^25
+ ;;^UTILITY(U,$J,358.3,15588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15588,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,15588,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,15588,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,15589,0)
+ ;;=J09.X2^^62^708^26
+ ;;^UTILITY(U,$J,358.3,15589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15589,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,15589,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,15589,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,15590,0)
+ ;;=J09.X3^^62^708^27
+ ;;^UTILITY(U,$J,358.3,15590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15590,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,15590,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,15590,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,15591,0)
+ ;;=J09.X9^^62^708^28
+ ;;^UTILITY(U,$J,358.3,15591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15591,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,15591,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,15591,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,15592,0)
+ ;;=J44.9^^62^708^14
+ ;;^UTILITY(U,$J,358.3,15592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15592,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,15592,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,15592,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,15593,0)
+ ;;=J44.1^^62^708^12
+ ;;^UTILITY(U,$J,358.3,15593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15593,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,15593,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,15593,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,15594,0)
+ ;;=J42.^^62^708^10
+ ;;^UTILITY(U,$J,358.3,15594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15594,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,15594,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,15594,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,15595,0)
+ ;;=J43.9^^62^708^22
+ ;;^UTILITY(U,$J,358.3,15595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15595,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,15595,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,15595,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,15596,0)
+ ;;=J43.0^^62^708^30
+ ;;^UTILITY(U,$J,358.3,15596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15596,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,15596,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,15596,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,15597,0)
+ ;;=J43.1^^62^708^21
+ ;;^UTILITY(U,$J,358.3,15597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15597,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,15597,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,15597,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,15598,0)
+ ;;=J43.2^^62^708^19
+ ;;^UTILITY(U,$J,358.3,15598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15598,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,15598,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,15598,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,15599,0)
+ ;;=J43.8^^62^708^20
+ ;;^UTILITY(U,$J,358.3,15599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15599,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,15599,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,15599,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,15600,0)
+ ;;=J45.902^^62^708^4
+ ;;^UTILITY(U,$J,358.3,15600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15600,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,15600,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,15600,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,15601,0)
+ ;;=J45.901^^62^708^3
+ ;;^UTILITY(U,$J,358.3,15601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15601,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,15601,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,15601,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,15602,0)
+ ;;=J47.9^^62^708^9
+ ;;^UTILITY(U,$J,358.3,15602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15602,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15602,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,15602,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,15603,0)
+ ;;=J47.1^^62^708^7
+ ;;^UTILITY(U,$J,358.3,15603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15603,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,15603,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,15603,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,15604,0)
+ ;;=J47.0^^62^708^8
+ ;;^UTILITY(U,$J,358.3,15604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15604,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,15604,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,15604,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,15605,0)
+ ;;=R09.1^^62^708^37
+ ;;^UTILITY(U,$J,358.3,15605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15605,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,15605,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,15605,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,15606,0)
+ ;;=J94.9^^62^708^33
+ ;;^UTILITY(U,$J,358.3,15606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15606,1,3,0)
+ ;;=3^Pleural Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,15606,1,4,0)
+ ;;=4^J94.9
+ ;;^UTILITY(U,$J,358.3,15606,2)
+ ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,15607,0)
+ ;;=J92.9^^62^708^36
+ ;;^UTILITY(U,$J,358.3,15607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15607,1,3,0)
+ ;;=3^Pleural Plaque w/o Asbestos
+ ;;^UTILITY(U,$J,358.3,15607,1,4,0)
+ ;;=4^J92.9
+ ;;^UTILITY(U,$J,358.3,15607,2)
+ ;;=^5008313
+ ;;^UTILITY(U,$J,358.3,15608,0)
+ ;;=J94.8^^62^708^34
+ ;;^UTILITY(U,$J,358.3,15608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15608,1,3,0)
+ ;;=3^Pleural Conditions,Other Spec
+ ;;^UTILITY(U,$J,358.3,15608,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,15608,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,15609,0)
+ ;;=J86.9^^62^708^38
+ ;;^UTILITY(U,$J,358.3,15609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15609,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,15609,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,15609,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,15610,0)
+ ;;=J91.8^^62^708^35
+ ;;^UTILITY(U,$J,358.3,15610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15610,1,3,0)
+ ;;=3^Pleural Effusion in Other Conditions
+ ;;^UTILITY(U,$J,358.3,15610,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,15610,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,15611,0)
+ ;;=J84.9^^62^708^29
+ ;;^UTILITY(U,$J,358.3,15611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15611,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,15611,1,4,0)
+ ;;=4^J84.9

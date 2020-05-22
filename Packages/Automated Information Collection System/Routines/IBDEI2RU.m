@@ -1,134 +1,124 @@
-IBDEI2RU ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46525,1,0)
+ ;;^UTILITY(U,$J,358.3,44202,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,44202,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,44203,0)
+ ;;=F10.982^^164^2189^21
+ ;;^UTILITY(U,$J,358.3,44203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46525,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,46525,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,46525,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,46526,0)
- ;;=E79.0^^206^2303^8
- ;;^UTILITY(U,$J,358.3,46526,1,0)
+ ;;^UTILITY(U,$J,358.3,44203,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44203,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,44203,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,44204,0)
+ ;;=F10.281^^164^2189^17
+ ;;^UTILITY(U,$J,358.3,44204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46526,1,3,0)
- ;;=3^Hyperuricemia w/o Signs of Inflam Arthrit/Tophaceous Disease
- ;;^UTILITY(U,$J,358.3,46526,1,4,0)
- ;;=4^E79.0
- ;;^UTILITY(U,$J,358.3,46526,2)
- ;;=^5002978
- ;;^UTILITY(U,$J,358.3,46527,0)
- ;;=K74.69^^206^2303^5
- ;;^UTILITY(U,$J,358.3,46527,1,0)
+ ;;^UTILITY(U,$J,358.3,44204,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44204,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,44204,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,44205,0)
+ ;;=F10.981^^164^2189^18
+ ;;^UTILITY(U,$J,358.3,44205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46527,1,3,0)
- ;;=3^Cirrhosis of Liver NEC
- ;;^UTILITY(U,$J,358.3,46527,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,46527,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,46528,0)
- ;;=K74.60^^206^2303^6
- ;;^UTILITY(U,$J,358.3,46528,1,0)
+ ;;^UTILITY(U,$J,358.3,44205,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysf w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44205,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,44205,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,44206,0)
+ ;;=F10.182^^164^2189^19
+ ;;^UTILITY(U,$J,358.3,44206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46528,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,46528,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,46528,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,46529,0)
- ;;=J85.1^^206^2304^41
- ;;^UTILITY(U,$J,358.3,46529,1,0)
+ ;;^UTILITY(U,$J,358.3,44206,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44206,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,44206,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,44207,0)
+ ;;=F10.121^^164^2189^22
+ ;;^UTILITY(U,$J,358.3,44207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46529,1,3,0)
- ;;=3^Abscess of Lung w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,46529,1,4,0)
- ;;=4^J85.1
- ;;^UTILITY(U,$J,358.3,46529,2)
- ;;=^5008306
- ;;^UTILITY(U,$J,358.3,46530,0)
- ;;=J85.2^^206^2304^42
- ;;^UTILITY(U,$J,358.3,46530,1,0)
+ ;;^UTILITY(U,$J,358.3,44207,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44207,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,44207,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,44208,0)
+ ;;=F10.221^^164^2189^23
+ ;;^UTILITY(U,$J,358.3,44208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46530,1,3,0)
- ;;=3^Abscess of Lung w/o Pneumonia
- ;;^UTILITY(U,$J,358.3,46530,1,4,0)
- ;;=4^J85.2
- ;;^UTILITY(U,$J,358.3,46530,2)
- ;;=^5008307
- ;;^UTILITY(U,$J,358.3,46531,0)
- ;;=H60.513^^206^2304^1
- ;;^UTILITY(U,$J,358.3,46531,1,0)
+ ;;^UTILITY(U,$J,358.3,44208,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44208,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,44208,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,44209,0)
+ ;;=F10.921^^164^2189^24
+ ;;^UTILITY(U,$J,358.3,44209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46531,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,46531,1,4,0)
- ;;=4^H60.513
- ;;^UTILITY(U,$J,358.3,46531,2)
- ;;=^5006472
- ;;^UTILITY(U,$J,358.3,46532,0)
- ;;=H60.512^^206^2304^2
- ;;^UTILITY(U,$J,358.3,46532,1,0)
+ ;;^UTILITY(U,$J,358.3,44209,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44209,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,44209,2)
+ ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,44210,0)
+ ;;=F10.129^^164^2189^25
+ ;;^UTILITY(U,$J,358.3,44210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46532,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,46532,1,4,0)
- ;;=4^H60.512
- ;;^UTILITY(U,$J,358.3,46532,2)
- ;;=^5006471
- ;;^UTILITY(U,$J,358.3,46533,0)
- ;;=H60.511^^206^2304^3
- ;;^UTILITY(U,$J,358.3,46533,1,0)
+ ;;^UTILITY(U,$J,358.3,44210,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,44210,1,4,0)
+ ;;=4^F10.129
+ ;;^UTILITY(U,$J,358.3,44210,2)
+ ;;=^5003071
+ ;;^UTILITY(U,$J,358.3,44211,0)
+ ;;=F10.229^^164^2189^26
+ ;;^UTILITY(U,$J,358.3,44211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46533,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,46533,1,4,0)
- ;;=4^H60.511
- ;;^UTILITY(U,$J,358.3,46533,2)
- ;;=^5006470
- ;;^UTILITY(U,$J,358.3,46534,0)
- ;;=J21.1^^206^2304^5
- ;;^UTILITY(U,$J,358.3,46534,1,0)
+ ;;^UTILITY(U,$J,358.3,44211,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,44211,1,4,0)
+ ;;=4^F10.229
+ ;;^UTILITY(U,$J,358.3,44211,2)
+ ;;=^5003085
+ ;;^UTILITY(U,$J,358.3,44212,0)
+ ;;=F10.929^^164^2189^27
+ ;;^UTILITY(U,$J,358.3,44212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46534,1,3,0)
- ;;=3^AC Bronchiolitis d/t Human Metapneumovirus
- ;;^UTILITY(U,$J,358.3,46534,1,4,0)
- ;;=4^J21.1
- ;;^UTILITY(U,$J,358.3,46534,2)
- ;;=^5008197
- ;;^UTILITY(U,$J,358.3,46535,0)
- ;;=J21.8^^206^2304^6
- ;;^UTILITY(U,$J,358.3,46535,1,0)
+ ;;^UTILITY(U,$J,358.3,44212,1,3,0)
+ ;;=3^Alcohol Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,44212,1,4,0)
+ ;;=4^F10.929
+ ;;^UTILITY(U,$J,358.3,44212,2)
+ ;;=^5003103
+ ;;^UTILITY(U,$J,358.3,44213,0)
+ ;;=F10.99^^164^2189^28
+ ;;^UTILITY(U,$J,358.3,44213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46535,1,3,0)
- ;;=3^AC Bronchiolitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,46535,1,4,0)
- ;;=4^J21.8
- ;;^UTILITY(U,$J,358.3,46535,2)
- ;;=^5008198
- ;;^UTILITY(U,$J,358.3,46536,0)
- ;;=J21.9^^206^2304^4
- ;;^UTILITY(U,$J,358.3,46536,1,0)
+ ;;^UTILITY(U,$J,358.3,44213,1,3,0)
+ ;;=3^Alcohol Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,44213,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,44213,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,44214,0)
+ ;;=F10.14^^164^2189^10
+ ;;^UTILITY(U,$J,358.3,44214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46536,1,3,0)
- ;;=3^AC Bronchilitis,Unspec
- ;;^UTILITY(U,$J,358.3,46536,1,4,0)
- ;;=4^J21.9
- ;;^UTILITY(U,$J,358.3,46536,2)
- ;;=^5008199
- ;;^UTILITY(U,$J,358.3,46537,0)
- ;;=J20.3^^206^2304^7
- ;;^UTILITY(U,$J,358.3,46537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46537,1,3,0)
- ;;=3^AC Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,46537,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,46537,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,46538,0)
- ;;=J20.7^^206^2304^8
+ ;;^UTILITY(U,$J,358.3,44214,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mild Use D/O

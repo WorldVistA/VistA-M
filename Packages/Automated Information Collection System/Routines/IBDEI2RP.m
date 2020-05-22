@@ -1,134 +1,128 @@
-IBDEI2RP ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2RP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46461,1,0)
+ ;;^UTILITY(U,$J,358.3,44142,1,3,0)
+ ;;=3^Catatonic D/O d/t Phys Cond
+ ;;^UTILITY(U,$J,358.3,44142,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,44142,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,44143,0)
+ ;;=R29.818^^164^2186^4
+ ;;^UTILITY(U,$J,358.3,44143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46461,1,3,0)
- ;;=3^Systolic Congestive Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,46461,1,4,0)
- ;;=4^I50.20
- ;;^UTILITY(U,$J,358.3,46461,2)
- ;;=^5007239
- ;;^UTILITY(U,$J,358.3,46462,0)
- ;;=I20.0^^206^2297^73
- ;;^UTILITY(U,$J,358.3,46462,1,0)
+ ;;^UTILITY(U,$J,358.3,44143,1,3,0)
+ ;;=3^Nervous & Musculoskeletal System Symptoms,Other
+ ;;^UTILITY(U,$J,358.3,44143,1,4,0)
+ ;;=4^R29.818
+ ;;^UTILITY(U,$J,358.3,44143,2)
+ ;;=^5019318
+ ;;^UTILITY(U,$J,358.3,44144,0)
+ ;;=F06.2^^164^2186^5
+ ;;^UTILITY(U,$J,358.3,44144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46462,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,46462,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,46462,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,46463,0)
- ;;=M32.12^^206^2297^64
- ;;^UTILITY(U,$J,358.3,46463,1,0)
+ ;;^UTILITY(U,$J,358.3,44144,1,3,0)
+ ;;=3^Psychotic D/O w/ Delusions d/t Phys Cond
+ ;;^UTILITY(U,$J,358.3,44144,1,4,0)
+ ;;=4^F06.2
+ ;;^UTILITY(U,$J,358.3,44144,2)
+ ;;=^5003055
+ ;;^UTILITY(U,$J,358.3,44145,0)
+ ;;=F06.0^^164^2186^6
+ ;;^UTILITY(U,$J,358.3,44145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46463,1,3,0)
- ;;=3^Pericarditis in Systemic Lupus Erythematosus
- ;;^UTILITY(U,$J,358.3,46463,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,46463,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,46464,0)
- ;;=E87.8^^206^2298^3
- ;;^UTILITY(U,$J,358.3,46464,1,0)
+ ;;^UTILITY(U,$J,358.3,44145,1,3,0)
+ ;;=3^Psychotic D/O w/ Hallucinations d/t Phys Cond
+ ;;^UTILITY(U,$J,358.3,44145,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,44145,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,44146,0)
+ ;;=F60.1^^164^2186^9
+ ;;^UTILITY(U,$J,358.3,44146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46464,1,3,0)
- ;;=3^Electrolyte/Fluid Balance Disorders NEC
- ;;^UTILITY(U,$J,358.3,46464,1,4,0)
- ;;=4^E87.8
- ;;^UTILITY(U,$J,358.3,46464,2)
- ;;=^5003026
- ;;^UTILITY(U,$J,358.3,46465,0)
- ;;=E13.9^^206^2298^2
- ;;^UTILITY(U,$J,358.3,46465,1,0)
+ ;;^UTILITY(U,$J,358.3,44146,1,3,0)
+ ;;=3^Schizoid Personality D/O
+ ;;^UTILITY(U,$J,358.3,44146,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,44146,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,44147,0)
+ ;;=F21.^^164^2186^14
+ ;;^UTILITY(U,$J,358.3,44147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46465,1,3,0)
- ;;=3^Diabetes Mellitus w/o Complications 
- ;;^UTILITY(U,$J,358.3,46465,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,46465,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,46466,0)
- ;;=E11.9^^206^2298^1
- ;;^UTILITY(U,$J,358.3,46466,1,0)
+ ;;^UTILITY(U,$J,358.3,44147,1,3,0)
+ ;;=3^Schizotypal D/O
+ ;;^UTILITY(U,$J,358.3,44147,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,44147,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,44148,0)
+ ;;=F52.32^^164^2187^1
+ ;;^UTILITY(U,$J,358.3,44148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46466,1,3,0)
- ;;=3^DM Type 2 w/o Complicataions
- ;;^UTILITY(U,$J,358.3,46466,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,46466,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,46467,0)
- ;;=H60.03^^206^2299^1
- ;;^UTILITY(U,$J,358.3,46467,1,0)
+ ;;^UTILITY(U,$J,358.3,44148,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,44148,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,44148,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,44149,0)
+ ;;=F52.21^^164^2187^2
+ ;;^UTILITY(U,$J,358.3,44149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46467,1,3,0)
- ;;=3^Abscess Bilateral External Ear
- ;;^UTILITY(U,$J,358.3,46467,1,4,0)
- ;;=4^H60.03
- ;;^UTILITY(U,$J,358.3,46467,2)
- ;;=^5006438
- ;;^UTILITY(U,$J,358.3,46468,0)
- ;;=H60.02^^206^2299^2
- ;;^UTILITY(U,$J,358.3,46468,1,0)
+ ;;^UTILITY(U,$J,358.3,44149,1,3,0)
+ ;;=3^Erectile D/O
+ ;;^UTILITY(U,$J,358.3,44149,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,44149,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,44150,0)
+ ;;=F52.31^^164^2187^3
+ ;;^UTILITY(U,$J,358.3,44150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46468,1,3,0)
- ;;=3^Abscess Left External Ear
- ;;^UTILITY(U,$J,358.3,46468,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,46468,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,46469,0)
- ;;=H60.01^^206^2299^3
- ;;^UTILITY(U,$J,358.3,46469,1,0)
+ ;;^UTILITY(U,$J,358.3,44150,1,3,0)
+ ;;=3^Female Orgasmic D/O
+ ;;^UTILITY(U,$J,358.3,44150,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,44150,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,44151,0)
+ ;;=F52.22^^164^2187^4
+ ;;^UTILITY(U,$J,358.3,44151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46469,1,3,0)
- ;;=3^Abscess Right External Ear
- ;;^UTILITY(U,$J,358.3,46469,1,4,0)
- ;;=4^H60.01
- ;;^UTILITY(U,$J,358.3,46469,2)
- ;;=^5006436
- ;;^UTILITY(U,$J,358.3,46470,0)
- ;;=H60.13^^206^2299^5
- ;;^UTILITY(U,$J,358.3,46470,1,0)
+ ;;^UTILITY(U,$J,358.3,44151,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal D/O
+ ;;^UTILITY(U,$J,358.3,44151,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,44151,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,44152,0)
+ ;;=F52.6^^164^2187^5
+ ;;^UTILITY(U,$J,358.3,44152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46470,1,3,0)
- ;;=3^Cellulitis Bilateral External Ear
- ;;^UTILITY(U,$J,358.3,46470,1,4,0)
- ;;=4^H60.13
- ;;^UTILITY(U,$J,358.3,46470,2)
- ;;=^5006442
- ;;^UTILITY(U,$J,358.3,46471,0)
- ;;=H60.12^^206^2299^6
- ;;^UTILITY(U,$J,358.3,46471,1,0)
+ ;;^UTILITY(U,$J,358.3,44152,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration D/O
+ ;;^UTILITY(U,$J,358.3,44152,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,44152,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,44153,0)
+ ;;=F52.0^^164^2187^6
+ ;;^UTILITY(U,$J,358.3,44153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46471,1,3,0)
- ;;=3^Cellulitis Left External Ear
- ;;^UTILITY(U,$J,358.3,46471,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,46471,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,46472,0)
- ;;=H60.11^^206^2299^7
- ;;^UTILITY(U,$J,358.3,46472,1,0)
+ ;;^UTILITY(U,$J,358.3,44153,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire D/O
+ ;;^UTILITY(U,$J,358.3,44153,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,44153,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,44154,0)
+ ;;=F52.4^^164^2187^7
+ ;;^UTILITY(U,$J,358.3,44154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46472,1,3,0)
- ;;=3^Cellulitis Right External Ear
- ;;^UTILITY(U,$J,358.3,46472,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,46472,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,46473,0)
- ;;=H60.323^^206^2299^8
- ;;^UTILITY(U,$J,358.3,46473,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46473,1,3,0)
- ;;=3^Hemorrhagic Bilateral Otitis Externa
- ;;^UTILITY(U,$J,358.3,46473,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,46473,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,46474,0)
- ;;=H60.322^^206^2299^9
+ ;;^UTILITY(U,$J,358.3,44154,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,44154,1,4,0)
+ ;;=4^F52.4

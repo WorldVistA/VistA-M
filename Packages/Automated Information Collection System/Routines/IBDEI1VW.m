@@ -1,124 +1,128 @@
-IBDEI1VW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32000,1,4,0)
- ;;=4^S92.052A
- ;;^UTILITY(U,$J,358.3,32000,2)
- ;;=^5044514
- ;;^UTILITY(U,$J,358.3,32001,0)
- ;;=S92.045A^^126^1609^354
- ;;^UTILITY(U,$J,358.3,32001,1,0)
+ ;;^UTILITY(U,$J,358.3,30096,1,3,0)
+ ;;=3^Victim of Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,30096,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,30096,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,30097,0)
+ ;;=Z62.820^^120^1534^3
+ ;;^UTILITY(U,$J,358.3,30097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32001,1,3,0)
- ;;=3^Nondisp fx of tuberosity of lft calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,32001,1,4,0)
- ;;=4^S92.045A
- ;;^UTILITY(U,$J,358.3,32001,2)
- ;;=^5137560
- ;;^UTILITY(U,$J,358.3,32002,0)
- ;;=S92.044A^^126^1609^355
- ;;^UTILITY(U,$J,358.3,32002,1,0)
+ ;;^UTILITY(U,$J,358.3,30097,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,30097,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,30097,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,30098,0)
+ ;;=Z62.891^^120^1534^6
+ ;;^UTILITY(U,$J,358.3,30098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32002,1,3,0)
- ;;=3^Nondisp fx of tuberosity of rt calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,32002,1,4,0)
- ;;=4^S92.044A
- ;;^UTILITY(U,$J,358.3,32002,2)
- ;;=^5044500
- ;;^UTILITY(U,$J,358.3,32003,0)
- ;;=S92.041A^^126^1609^129
- ;;^UTILITY(U,$J,358.3,32003,1,0)
+ ;;^UTILITY(U,$J,358.3,30098,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,30098,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,30098,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,30099,0)
+ ;;=Z62.898^^120^1534^4
+ ;;^UTILITY(U,$J,358.3,30099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32003,1,3,0)
- ;;=3^Disp fx of tuberosity of rt calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,32003,1,4,0)
- ;;=4^S92.041A
- ;;^UTILITY(U,$J,358.3,32003,2)
- ;;=^5044493
- ;;^UTILITY(U,$J,358.3,32004,0)
- ;;=S92.042A^^126^1609^128
- ;;^UTILITY(U,$J,358.3,32004,1,0)
+ ;;^UTILITY(U,$J,358.3,30099,1,3,0)
+ ;;=3^Problems Related to Upbringing,Oth Spec
+ ;;^UTILITY(U,$J,358.3,30099,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,30099,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,30100,0)
+ ;;=Z63.0^^120^1534^5
+ ;;^UTILITY(U,$J,358.3,30100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32004,1,3,0)
- ;;=3^Disp fx of tuberosity of lft calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,32004,1,4,0)
- ;;=4^S92.042A
- ;;^UTILITY(U,$J,358.3,32004,2)
- ;;=^5137546
- ;;^UTILITY(U,$J,358.3,32005,0)
- ;;=S92.035A^^126^1609^232
- ;;^UTILITY(U,$J,358.3,32005,1,0)
+ ;;^UTILITY(U,$J,358.3,30100,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,30100,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,30100,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,30101,0)
+ ;;=Z63.5^^120^1534^1
+ ;;^UTILITY(U,$J,358.3,30101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32005,1,3,0)
- ;;=3^Nondisp avulsion fx of tuberosity of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,32005,1,4,0)
- ;;=4^S92.035A
- ;;^UTILITY(U,$J,358.3,32005,2)
- ;;=^5044479
- ;;^UTILITY(U,$J,358.3,32006,0)
- ;;=S92.002A^^126^1609^192
- ;;^UTILITY(U,$J,358.3,32006,1,0)
+ ;;^UTILITY(U,$J,358.3,30101,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,30101,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,30101,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,30102,0)
+ ;;=Z63.8^^120^1534^2
+ ;;^UTILITY(U,$J,358.3,30102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32006,1,3,0)
- ;;=3^Fx of lft calcaneus, unspec, init
- ;;^UTILITY(U,$J,358.3,32006,1,4,0)
- ;;=4^S92.002A
- ;;^UTILITY(U,$J,358.3,32006,2)
- ;;=^5044360
- ;;^UTILITY(U,$J,358.3,32007,0)
- ;;=S92.011A^^126^1609^83
- ;;^UTILITY(U,$J,358.3,32007,1,0)
+ ;;^UTILITY(U,$J,358.3,30102,1,3,0)
+ ;;=3^High Expressed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,30102,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,30102,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,30103,0)
+ ;;=Z63.4^^120^1534^7
+ ;;^UTILITY(U,$J,358.3,30103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32007,1,3,0)
- ;;=3^Disp fx of body of rt calcaneus, init
- ;;^UTILITY(U,$J,358.3,32007,1,4,0)
- ;;=4^S92.011A
- ;;^UTILITY(U,$J,358.3,32007,2)
- ;;=^5044367
- ;;^UTILITY(U,$J,358.3,32008,0)
- ;;=S92.012A^^126^1609^81
- ;;^UTILITY(U,$J,358.3,32008,1,0)
+ ;;^UTILITY(U,$J,358.3,30103,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,30103,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,30103,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,30104,0)
+ ;;=Z62.29^^120^1534^8
+ ;;^UTILITY(U,$J,358.3,30104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32008,1,3,0)
- ;;=3^Disp fx of body of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,32008,1,4,0)
- ;;=4^S92.012A
- ;;^UTILITY(U,$J,358.3,32008,2)
- ;;=^5044374
- ;;^UTILITY(U,$J,358.3,32009,0)
- ;;=S92.031A^^126^1609^11
- ;;^UTILITY(U,$J,358.3,32009,1,0)
+ ;;^UTILITY(U,$J,358.3,30104,1,3,0)
+ ;;=3^Upbringing Away from Parents
+ ;;^UTILITY(U,$J,358.3,30104,1,4,0)
+ ;;=4^Z62.29
+ ;;^UTILITY(U,$J,358.3,30104,2)
+ ;;=^5063150
+ ;;^UTILITY(U,$J,358.3,30105,0)
+ ;;=F20.9^^120^1535^10
+ ;;^UTILITY(U,$J,358.3,30105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32009,1,3,0)
- ;;=3^Disp avulsion fx tubersotiy of rt calcaneus, init
- ;;^UTILITY(U,$J,358.3,32009,1,4,0)
- ;;=4^S92.031A
- ;;^UTILITY(U,$J,358.3,32009,2)
- ;;=^5044451
- ;;^UTILITY(U,$J,358.3,32010,0)
- ;;=S92.032A^^126^1609^10
- ;;^UTILITY(U,$J,358.3,32010,1,0)
+ ;;^UTILITY(U,$J,358.3,30105,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,30105,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,30105,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,30106,0)
+ ;;=F20.81^^120^1535^13
+ ;;^UTILITY(U,$J,358.3,30106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32010,1,3,0)
- ;;=3^Disp avulsion fx tuberosity of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,32010,1,4,0)
- ;;=4^S92.032A
- ;;^UTILITY(U,$J,358.3,32010,2)
- ;;=^5044458
- ;;^UTILITY(U,$J,358.3,32011,0)
- ;;=S92.025A^^126^1609^304
- ;;^UTILITY(U,$J,358.3,32011,1,0)
+ ;;^UTILITY(U,$J,358.3,30106,1,3,0)
+ ;;=3^Schizophreniform D/O
+ ;;^UTILITY(U,$J,358.3,30106,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,30106,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,30107,0)
+ ;;=F22.^^120^1535^3
+ ;;^UTILITY(U,$J,358.3,30107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32011,1,3,0)
- ;;=3^Nondisp fx of anterior process of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,32011,1,4,0)
- ;;=4^S92.025A
- ;;^UTILITY(U,$J,358.3,32011,2)
- ;;=^5044437
- ;;^UTILITY(U,$J,358.3,32012,0)
- ;;=S92.024A^^126^1609^305
- ;;^UTILITY(U,$J,358.3,32012,1,0)
+ ;;^UTILITY(U,$J,358.3,30107,1,3,0)
+ ;;=3^Delusional D/O
+ ;;^UTILITY(U,$J,358.3,30107,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,30107,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,30108,0)
+ ;;=F23.^^120^1535^1
+ ;;^UTILITY(U,$J,358.3,30108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32012,1,3,0)
- ;;=3^Nondisp fx of anterior process of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,30108,1,3,0)
+ ;;=3^Brief Psychotic D/O
+ ;;^UTILITY(U,$J,358.3,30108,1,4,0)
+ ;;=4^F23.

@@ -1,5 +1,5 @@
 VPRSDAP ;SLC/MKB -- SDA Pharmacy utilities ;10/25/18  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**8**;Sep 01, 2011;Build 87
+ ;;1.0;VIRTUAL PATIENT RECORD;**8,24**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -12,15 +12,18 @@ VPRSDAP ;SLC/MKB -- SDA Pharmacy utilities ;10/25/18  15:29
  ; ORX8                          2467
  ; PSN50P41                      4531
  ; PSOORRL                       2400
+ ; PSS50                         4533
  ; PSS50P7                       4662
  ; PSS52P6                       4549
+ ; PSS52P7                       4550
+ ; XLFSTR                       10104
  ;
 PS1(IEN) ; -- set up single medication
  ; Returns ORIFN, PSTYPE & VPRPS=^TMP
  N ORPK,X,CLS S ORIFN=+$G(IEN)
  S ORPK=$G(^OR(100,ORIFN,4)) S:'DFN DFN=+$P($G(^(0)),U,2)
  S X=$S(ORPK:$E(ORPK,$L(ORPK)),1:"Z") S:X=+X X="R" ;last char = PS file
- S CLS=$S("RSN"[X:"O","UV"[X:"I",1:$$GET1^DIQ(100,IEN_",",10,"I"))
+ S CLS=$S("RSN"[X:"O",1:"I") ;"UV"[X:"I",1:$$GET1^DIQ(100,IEN_",",10,"I"))
  S PSTYPE=$S(X="N":"N","RS"[X:"O",$$IV:"V",1:"I") K VPRATE
  D:ORPK OEL^PSOORRL(DFN,ORPK_";"_CLS)
  S VPRPS=$NA(^TMP("PS",$J))
@@ -53,6 +56,14 @@ GETFILLS ; -- build DLIST(#)=#^data of fills
 SUPPLY(IEN) ; -- return 1 or 0, if supply item
  N Y,PSOI S PSOI=+$P($G(@VPRPS@("DD",1,0)),U,4)
  S Y=$S($G(^TMP("VPRX",$J,"PSOI",PSOI,.09)):"true",1:"false")
+ Q Y
+ ;
+SIG(IEN) ; -- return Sig, append VPRPI if needed
+ N Y S Y=$$WP^VPRSDA(+$G(IEN),"SIG")
+ I $L(Y),$L($G(VPRPI)),Y'[VPRPI D  ;append PI?
+ . N SIG,PI S SIG=$$UP^XLFSTR(Y)
+ . S PI=$$UP^XLFSTR(VPRPI),PI=$$TRIM^XLFSTR(PI) Q:SIG[PI
+ . S Y=SIG_$S($E(Y,$L(Y))=" ":"",1:" ")_PI
  Q Y
  ;
 DOSEFORM(IEN) ; -- return dose form
@@ -123,9 +134,11 @@ IV1(X) ; -- get VA Drug Product info for IV component X (from DLIST)
  S VPRPSIV=$G(X),NAME=$P(VPRPSIV,U),TYPE=$P(VPRPSIV,U,3)
  D:TYPE="B" ZERO^PSS52P7("",NAME,"","VPRPSIV")
  D:TYPE="A" ZERO^PSS52P6("",NAME,"","VPRPSIV")
- S IEN=$O(^TMP($J,"VPRPSIV",0)),DRUG=+$G(^(IEN,1))
+ S IEN=$O(^TMP($J,"VPRPSIV",0)),DRUG=+$G(^(+IEN,1))
  I DRUG D NDF(.DRUG) S X=+$G(DRUG) ;#50.68 ien
- I 'DRUG S DATA=IEN_U_NAME_U_$S(TYPE="A":"VA52.6",TYPE="B":"VA52.7",1:"VA") ;return IV file
+ I 'DRUG D  ;return IV file instead
+ . S DATA=IEN_U_NAME_U_$S(TYPE="A":"VA52.6",TYPE="B":"VA52.7",1:"VA")
+ . S VPRVAP=$NA(^TMP("VPRX",$J,"NDF",0))
  K ^TMP($J,"VPRPSIV")
  Q
  ;

@@ -1,5 +1,5 @@
-XUSAML ;ISD/HGW Kernel SAML Token Implementation ;07/05/17  12:53
- ;;8.0;KERNEL;**655,659,630**;Jul 10, 1995;Build 13
+XUSAML ;ISD/HGW Kernel SAML Token Implementation ;01/27/20  15:03
+ ;;8.0;KERNEL;**655,659,630,701**;Jul 10, 1995;Build 11
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Implements the Kernel SAML Token message framework for the Identification and
@@ -42,14 +42,18 @@ EN(DOC) ;Function. Main entry point
  S XOBDATA("XOB RPC","SAML","ASSERTION")="notvalidated"
  ;--- Call parser
  S HDL=$$EN^MXMLDOM(DOC,"W")
+ ;p701 determine ultimate failure based on XUERR and record them
  I HDL>0 D
  . D ND(HDL,1,1,.XUPN,.XASSRT) ;Traverse and process document
  . S Y="-1^Invalid SAML assertion"
-  . D VALASSRT(.XASSRT,DOC) ;Validate SAML assertion
-  . I $G(XOBDATA("XOB RPC","SAML","ASSERTION"))="validated" D
-  . . S Y=$$FINDUSER()
+ . D VALASSRT(.XASSRT,DOC,.XUERR) ;Validate SAML assertion
+ . S Y=$$FINDUSER(.XUERR)
  . D DELETE^MXMLDOM(HDL)
- I +Y>0 S XOBDATA("XOB RPC","SECURITY","STATE")="authenticated"
+ I $D(XUERR)>0 S DUZ("WARNINGS")=$$WARNINGS(.XUERR)
+ I +Y'>0!'$$TOKVALID(.DUZ,.XUERR) D LOGFAIL(Y,.DUZ) S Y="-1^Invalid SAML assertion"
+ I +Y>0 D
+ . S XOBDATA("XOB RPC","SAML","ASSERTION")="validated"
+ . S XOBDATA("XOB RPC","SECURITY","STATE")="authenticated"
  K ^TMP("XUSAML",$J)
  Q Y
 ND(HDL,ND,FS,XUPN,XASSRT) ;SR. Traverse tree
@@ -122,11 +126,11 @@ EL(HDL,ND,NM,XUPN) ;SR. Process element
  . E  D
  . . S ^TMP("XUSAML",$J,$P(XUPN,"^",1),$P(XUPN,"^",2))=""
  Q
-FINDUSER() ;Function. Identify user
+FINDUSER(XUERR) ;Function. Identify user
  ;ZEXCEPT: XOBDATA ;environment variable
  N VISTAID,X,XARRY,XAUTH,XCTXT,XDUZ,XEDIPI,XPASS,XC,XT,XUHOME,XUIAM,Z
- I '$$AUTH^XUESSO2() Q "-1^Not an authorized calling routine"
- S Y="-1^User could not be identified"
+ I '$$AUTH^XUESSO2() S XUERR("CALL-RTN")="" Q "-1^Not an authorized calling routine"
+ S XDUZ="-1^User could not be identified"
  S XERR=""
  S DUZ("REMAPP")=""
  S XUIAM=1 ;Do not trigger IAM updates
@@ -134,6 +138,7 @@ FINDUSER() ;Function. Identify user
  S XARRY(2)=$$LOW^XLFSTR($E($G(^TMP("XUSAML",$J,"Name","urn:oasis:names:tc:xspa:1.0:subject:organization-id")),1,50)) ;Subject Organization ID
  S XARRY(3)=$G(^TMP("XUSAML",$J,"Name","uniqueUserId")) ;Unique User ID
  S XARRY(4)=$G(^TMP("XUSAML",$J,"Name","urn:oasis:names:tc:xspa:1.0:subject:subject-id")) ;Subject ID
+ S:XARRY(4)'["," XARRY(4)=$P(XARRY(4)," ",2)_","_$P(XARRY(4)," ",1)_" "_$P(XARRY(4)," ",3,99) ;P701
  S XPASS=$$IDPASS($G(XASSRT("Recipient"))) ;Application ID
  I $G(XPASS)'="" D
  . S XT=$$GETCNTXT^XUESSO2(XPASS)
@@ -156,31 +161,45 @@ FINDUSER() ;Function. Identify user
  ;
  I (XUHOME=$P($G(^XTV(8989.3,1,200)),U,3))&(XAUTH="ssoi") D  ;SSOi
  . S XARRY(3)=XARRY(7) ;UID=SecID
- . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user
- . ;Do not add new SSOi user on the fly (by design). Use IAM Provisioning application.
  . S DUZ("AUTHENTICATION")="SSOI"
+ . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user
+ . Q:XDUZ>0  ; user found
+ . ;Add new user on the fly
+ . I $G(XARRY(5))'="" D
+ . . I '$$TOKVALID(.DUZ,.XUERR) S XDUZ="-1^Cannot add untrusted token-data" Q
+ . . S XDUZ=$$ADDUSER^XUESSO2(.XARRY)
+ ;
  E  I (XUHOME=$P($G(^XTV(8989.3,1,200)),U,3))&(XAUTH="ssoe") D  ;SSOe
  . I ($L($G(XARRY(1)))<3)!($L($G(XARRY(2)))<3) S XDUZ="-1^Invalid SORG or SORGID" Q
  . S XARRY(3)=XARRY(7) ;UID=SecID
  . I +DUZ("REMAPP")>0 D
- . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user
- . . I (+XDUZ<0)&($G(XARRY(5))'="") S XDUZ=$$ADDUSER^XUESSO2(.XARRY) ;Add new user on the fly
  . . S DUZ("AUTHENTICATION")="SSOE"
+ . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify existing user
+ . . I (+XDUZ<0)&($G(XARRY(5))'="") D
+ . . . I '$$TOKVALID(.DUZ,.XUERR) S XDUZ="-1^Cannot add untrusted token-data" Q
+ . . . S XDUZ=$$ADDUSER^XUESSO2(.XARRY) ;Add new user on the fly
+ ;
  E  I (XARRY(2)["http://")!(XARRY(2)["https://")!((XARRY(2)["urn:oid:")&(XARRY(2)'=$P($G(^XTV(8989.3,1,200)),U,3))) D  ; NHIN
  . I (+DUZ("REMAPP")>0)&(XAUTH="nhin") D
  . . I $G(XARRY(3))="" S XARRY(3)=XARRY(8) ;NHIN: UID is NPI if available (preferred)
  . . I $G(XARRY(3))="" S XARRY(3)=XEDIPI ;NHIN: DoD CAC card identifier
  . . I $G(XARRY(3))="" S XARRY(3)=XARRY(11) ;NHIN: UID is e-mail if available (alternative to NPI)
+ . . S DUZ("AUTHENTICATION")="NHIN"
  . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify user by NPI or Unique User ID
  . . I +XDUZ<0 D
  . . . S XARRY(8)=""
  . . . S XDUZ=$$FINDUSER^XUESSO2(.XARRY) ;Identify user by Unique User ID only
- . . I (+XDUZ<0)&($G(XARRY(5))'="") S XDUZ=$$ADDUSER^XUESSO2(.XARRY) ;Add new user on the fly
- . . S DUZ("AUTHENTICATION")="NHIN"
+ . . . I (+XDUZ<0)&($G(XARRY(5))'="") D
+ . . . . I '$$TOKVALID(.DUZ,.XUERR) S XDUZ="-1^Cannot add untrusted token-data" Q
+ . . . . S XDUZ=$$ADDUSER^XUESSO2(.XARRY) ;Add new user on the fly
+ ;
+ I XDUZ<0 D  ; record NAME and SECID to error
+ . S XUERR("SECID")=""
+ . S $P(XDUZ,U,3)=XARRY(4),$P(XDUZ,U,4)=XARRY(7)
  Q XDUZ
-VALASSRT(XASSRT,DOC) ;Intrinsic Subroutine. Validate SAML assertion
+VALASSRT(XASSRT,DOC,XUERR) ;Intrinsic Subroutine. Validate SAML assertion
  ;ZEXCEPT: XOBDATA ;environment variable
- N XAUTH,XD,XNOW,XPROOF,XQ
+ N XAUTH,XD,XNOW,XPROOF
  S XOBDATA("XOB RPC","SAML","AUTHENTICATION TYPE")=$G(^TMP("XUSAML",$J,"Name","authenticationtype"))
  S XOBDATA("XOB RPC","SAML","PROOFING AUTHORITY")=$G(^TMP("XUSAML",$J,"Name","proofingauthority"))
  S XAUTH=$$LOW^XLFSTR($G(^TMP("XUSAML",$J,"Name","authnsystem")))
@@ -190,26 +209,30 @@ VALASSRT(XASSRT,DOC) ;Intrinsic Subroutine. Validate SAML assertion
  S XD=$G(^TMP("XUSAML",$J,"Name","assurancelevel")) I (+XD<1)!(+XD="") S XD=1
  S XOBDATA("XOB RPC","SAML","ASSURANCE LEVEL")=XD
  S DUZ("LOA")=XD ;Set LOA environment variable for SIGN-ON log and permissions
- I (XAUTH'="nhin")&(XPROOF'="VA-JLV") D  Q:XQ  ;temporary for pre-SSOe JLV non-VA users
- . S XQ=0
+ ;p701
+ ;I (XAUTH'="nhin")&(XPROOF'="VA-JLV") D  ;temporary for pre-SSOe JLV non-VA users
+ D
  . ;Validate time stamps (e.g., NotBefore, NotOnOrAfter)
  . S XNOW=$$NOW^XLFDT
- . S XD=$$CONVTIME($G(XASSRT("AuthnInstant"))) I XD=-1 D  Q  ;invalid time stamp
- . . S XQ=1
- . S XD=$$CONVTIME($G(XASSRT("NotBefore"))) I (XD=-1)!(XD>XNOW) D  Q  ;token not valid yet
- . . S XQ=1
- . S XD=$$CONVTIME($G(XASSRT("NotOnOrAfter"))) I (XD=-1)!(XD'>XNOW) D  Q  ;token expired
- . . S XQ=1
- . I '$D(XASSRT("AuthnContextClassRef")) D  Q
- . . S XQ=1
+ . S XD=$$CONVTIME($G(XASSRT("AuthnInstant"))) I XD=-1 D  ;invalid time stamp
+ . . S XUERR("AuthnI")=""
+ . S XD=$$CONVTIME($G(XASSRT("NotBefore"))) I (XD=-1)!(XD>XNOW) D  ;token not valid yet
+ . . S XUERR("NotBefore")=""
+ . S XD=$$CONVTIME($G(XASSRT("NotOnOrAfter"))) D 
+ . . ;N DIF1,HR,DAY
+ . . ;S HR=3600,DAY=86400
+ . . ;S DIF1=$$FMDIFF^XLFDT(XD,XNOW,2) ;DIF1=$$ABS^XLFMTH(DIF1)
+ . . ;I (XD=-1)!(DIF1>DAY) S XUERR("EXPIRED+")="" Q
+ . . I XD<XNOW S XUERR("EXPIRED")=""
+ . . ;
+ . I '$D(XASSRT("AuthnContextClassRef")) D
+ . . S XUERR("AuthnCCR")=""
  . ;Validate Digital Signature
- . I '$$VALIDATE^XUCERT(DOC) D  Q
- . . S XQ=1
+ . D VALIDATE^XUCERT(DOC,.XUERR)
  . ;Validate Token Issuer (Subject of X509 Certificate used to sign token)
- . I '($G(XOBDATA("XOB RPC","SAML","ISSUER"))[$P($G(^XTV(8989.3,1,200)),U,1)) D  Q
- . . S XQ=1
+ . I '($G(XOBDATA("XOB RPC","SAML","ISSUER"))[$P($G(^XTV(8989.3,1,200)),U,1)) D
+ . . S XUERR("ISSUER")=""
  . ;Token has been validated
- S XOBDATA("XOB RPC","SAML","ASSERTION")="validated"
  Q
 IDPASS(XUA) ;Intrinsic Function. Extract Application ID
  N RETURN,XTD,XTE
@@ -235,3 +258,35 @@ CONVTIME(TIME) ;Intrinsic Function. Convert XML time to FileMan format
  I XZ=1 S XOUT=$$FMADD^XLFDT(XOUT,0,+$E($$TZ^XLFDT,1,3),0,0) ;Adjust from GMT
  K %DT(0)
  Q XOUT
+ ;
+WARNINGS(XUERR) ;
+ N X,Y
+ S (X,Y)=""
+ F  S X=$O(XUERR(X)) Q:X=""  S Y=Y_X_";"
+ Q Y
+ ;
+TOKVALID(DUZ,XUERR) ;
+ N STRICT
+ ;S STRICT=$P($G(^XTV(8989.3,1,"XUS")),"^",20)
+ S STRICT=+$P($G(XOPT),U,20)
+ I STRICT,$D(XUERR) Q 0
+ I $G(DUZ("AUTHENTICATION"))="NHIN" Q 1
+ I $D(XUERR("EXPIRED")) Q 0
+ ;I $D(XUERR("DIGEST")),$D(XUERR("EXPIRED+")) Q 0
+ Q 1
+ ;
+LOGFAIL(IEN,DUZ) ; Record failed access
+ N STRICT,WARN,XUF
+ S STRICT=$P($G(XOPT),U,20)
+ S WARN=$S(+STRICT:"STRICT ",1:"NON-STRICT ")
+ I $G(DUZ("WARNINGS"))'="" S WARN=WARN_"Failed-verifications: "_$G(DUZ("WARNINGS"))
+ I $P(IEN,U,2)'="" S WARN=WARN_"    ERROR:"_$P(IEN,U,2)
+ I $P(IEN,U,4)'="" S WARN=WARN_". SECID not linked to existing user, SECID:"_$P(IEN,U,4)_" NAME:"_$P(IEN,U,3)_"  "
+ S IEN=+IEN
+ I IEN>0 S XUF(.3)=IEN S X=$P($G(^VA(200,IEN,1.1)),U,2)+1,$P(^(1.1),"^",2)=X
+ S XUF(.1)=$E($G(DUZ("AUTHENTICATION")))
+ S XUF(.2)=$G(XUF(.2))+1,XUF(XUF(.2))=WARN
+ S XUF=2
+ D FILE^XUSTZ
+ Q
+ ;

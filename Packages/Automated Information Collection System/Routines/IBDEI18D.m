@@ -1,144 +1,116 @@
-IBDEI18D ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18D ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20923,1,4,0)
- ;;=4^R47.9
- ;;^UTILITY(U,$J,358.3,20923,2)
- ;;=^5019494
- ;;^UTILITY(U,$J,358.3,20924,0)
- ;;=R49.8^^84^941^162
- ;;^UTILITY(U,$J,358.3,20924,1,0)
+ ;;^UTILITY(U,$J,358.3,19739,1,4,0)
+ ;;=4^S92.512S
+ ;;^UTILITY(U,$J,358.3,19739,2)
+ ;;=s92411s^5045444
+ ;;^UTILITY(U,$J,358.3,19740,0)
+ ;;=S92.411S^^93^996^52
+ ;;^UTILITY(U,$J,358.3,19740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20924,1,3,0)
- ;;=3^Voice and Resonance Disorders NEC
- ;;^UTILITY(U,$J,358.3,20924,1,4,0)
- ;;=4^R49.8
- ;;^UTILITY(U,$J,358.3,20924,2)
- ;;=^5019505
- ;;^UTILITY(U,$J,358.3,20925,0)
- ;;=R53.0^^84^941^115
- ;;^UTILITY(U,$J,358.3,20925,1,0)
+ ;;^UTILITY(U,$J,358.3,19740,1,3,0)
+ ;;=3^Disp proximal phalanx fx of right great toe, sequela
+ ;;^UTILITY(U,$J,358.3,19740,1,4,0)
+ ;;=4^S92.411S
+ ;;^UTILITY(U,$J,358.3,19740,2)
+ ;;=^5045304
+ ;;^UTILITY(U,$J,358.3,19741,0)
+ ;;=S92.511S^^93^996^53
+ ;;^UTILITY(U,$J,358.3,19741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20925,1,3,0)
- ;;=3^Malig Neop Related Fatigue
- ;;^UTILITY(U,$J,358.3,20925,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,20925,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,20926,0)
- ;;=R53.83^^84^941^71
- ;;^UTILITY(U,$J,358.3,20926,1,0)
+ ;;^UTILITY(U,$J,358.3,19741,1,3,0)
+ ;;=3^Disp proximal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19741,1,4,0)
+ ;;=4^S92.511S
+ ;;^UTILITY(U,$J,358.3,19741,2)
+ ;;=s92425s^5045437
+ ;;^UTILITY(U,$J,358.3,19742,0)
+ ;;=S92.425S^^93^996^80
+ ;;^UTILITY(U,$J,358.3,19742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20926,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,20926,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,20926,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,20927,0)
- ;;=R53.1^^84^941^163
- ;;^UTILITY(U,$J,358.3,20927,1,0)
+ ;;^UTILITY(U,$J,358.3,19742,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of left great toe, sequela
+ ;;^UTILITY(U,$J,358.3,19742,1,4,0)
+ ;;=4^S92.425S
+ ;;^UTILITY(U,$J,358.3,19742,2)
+ ;;=^5045374
+ ;;^UTILITY(U,$J,358.3,19743,0)
+ ;;=S92.535S^^93^996^81
+ ;;^UTILITY(U,$J,358.3,19743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20927,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,20927,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,20927,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,20928,0)
- ;;=R53.81^^84^941^114
- ;;^UTILITY(U,$J,358.3,20928,1,0)
+ ;;^UTILITY(U,$J,358.3,19743,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19743,1,4,0)
+ ;;=4^S92.535S
+ ;;^UTILITY(U,$J,358.3,19743,2)
+ ;;=^5045549
+ ;;^UTILITY(U,$J,358.3,19744,0)
+ ;;=S92.424S^^93^996^82
+ ;;^UTILITY(U,$J,358.3,19744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20928,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,20928,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,20928,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,20929,0)
- ;;=R53.82^^84^941^50
- ;;^UTILITY(U,$J,358.3,20929,1,0)
+ ;;^UTILITY(U,$J,358.3,19744,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of right great toe, sequela
+ ;;^UTILITY(U,$J,358.3,19744,1,4,0)
+ ;;=4^S92.424S
+ ;;^UTILITY(U,$J,358.3,19744,2)
+ ;;=^5045367
+ ;;^UTILITY(U,$J,358.3,19745,0)
+ ;;=S92.534S^^93^996^83
+ ;;^UTILITY(U,$J,358.3,19745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20929,1,3,0)
- ;;=3^Chronic Fatigue,Unspec
- ;;^UTILITY(U,$J,358.3,20929,1,4,0)
- ;;=4^R53.82
- ;;^UTILITY(U,$J,358.3,20929,2)
- ;;=^5019519
- ;;^UTILITY(U,$J,358.3,20930,0)
- ;;=R54.^^84^941^33
- ;;^UTILITY(U,$J,358.3,20930,1,0)
+ ;;^UTILITY(U,$J,358.3,19745,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19745,1,4,0)
+ ;;=4^S92.534S
+ ;;^UTILITY(U,$J,358.3,19745,2)
+ ;;=^5045542
+ ;;^UTILITY(U,$J,358.3,19746,0)
+ ;;=S92.525S^^93^996^94
+ ;;^UTILITY(U,$J,358.3,19746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20930,1,3,0)
- ;;=3^Age-Related Physical Debility
- ;;^UTILITY(U,$J,358.3,20930,1,4,0)
- ;;=4^R54.
- ;;^UTILITY(U,$J,358.3,20930,2)
- ;;=^5019521
- ;;^UTILITY(U,$J,358.3,20931,0)
- ;;=R60.0^^84^941^64
- ;;^UTILITY(U,$J,358.3,20931,1,0)
+ ;;^UTILITY(U,$J,358.3,19746,1,3,0)
+ ;;=3^Nondisp medial phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19746,1,4,0)
+ ;;=4^S92.525S
+ ;;^UTILITY(U,$J,358.3,19746,2)
+ ;;=^5045507
+ ;;^UTILITY(U,$J,358.3,19747,0)
+ ;;=S92.524S^^93^996^95
+ ;;^UTILITY(U,$J,358.3,19747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20931,1,3,0)
- ;;=3^Edema,Localized
- ;;^UTILITY(U,$J,358.3,20931,1,4,0)
- ;;=4^R60.0
- ;;^UTILITY(U,$J,358.3,20931,2)
- ;;=^5019532
- ;;^UTILITY(U,$J,358.3,20932,0)
- ;;=R60.1^^84^941^63
- ;;^UTILITY(U,$J,358.3,20932,1,0)
+ ;;^UTILITY(U,$J,358.3,19747,1,3,0)
+ ;;=3^Nondisp medial phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19747,1,4,0)
+ ;;=4^S92.524S
+ ;;^UTILITY(U,$J,358.3,19747,2)
+ ;;=^5045500
+ ;;^UTILITY(U,$J,358.3,19748,0)
+ ;;=S92.415S^^93^996^102
+ ;;^UTILITY(U,$J,358.3,19748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20932,1,3,0)
- ;;=3^Edema,Generalized
- ;;^UTILITY(U,$J,358.3,20932,1,4,0)
- ;;=4^R60.1
- ;;^UTILITY(U,$J,358.3,20932,2)
- ;;=^5019533
- ;;^UTILITY(U,$J,358.3,20933,0)
- ;;=R60.9^^84^941^65
- ;;^UTILITY(U,$J,358.3,20933,1,0)
+ ;;^UTILITY(U,$J,358.3,19748,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of left great toe, sequela
+ ;;^UTILITY(U,$J,358.3,19748,1,4,0)
+ ;;=4^S92.415S
+ ;;^UTILITY(U,$J,358.3,19748,2)
+ ;;=^5045332
+ ;;^UTILITY(U,$J,358.3,19749,0)
+ ;;=S92.515S^^93^996^103
+ ;;^UTILITY(U,$J,358.3,19749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20933,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,20933,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,20933,2)
- ;;=^5019534
- ;;^UTILITY(U,$J,358.3,20934,0)
- ;;=R61.^^84^941^85
- ;;^UTILITY(U,$J,358.3,20934,1,0)
+ ;;^UTILITY(U,$J,358.3,19749,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,19749,1,4,0)
+ ;;=4^S92.515S
+ ;;^UTILITY(U,$J,358.3,19749,2)
+ ;;=^5045465
+ ;;^UTILITY(U,$J,358.3,19750,0)
+ ;;=S92.414S^^93^996^104
+ ;;^UTILITY(U,$J,358.3,19750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20934,1,3,0)
- ;;=3^Hyperhidrosis,Generalized
- ;;^UTILITY(U,$J,358.3,20934,1,4,0)
- ;;=4^R61.
- ;;^UTILITY(U,$J,358.3,20934,2)
- ;;=^331970
- ;;^UTILITY(U,$J,358.3,20935,0)
- ;;=R63.0^^84^941^36
- ;;^UTILITY(U,$J,358.3,20935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20935,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,20935,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,20935,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,20936,0)
- ;;=R63.1^^84^941^138
- ;;^UTILITY(U,$J,358.3,20936,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20936,1,3,0)
- ;;=3^Polydipsia
- ;;^UTILITY(U,$J,358.3,20936,1,4,0)
- ;;=4^R63.1
- ;;^UTILITY(U,$J,358.3,20936,2)
- ;;=^186699
- ;;^UTILITY(U,$J,358.3,20937,0)
- ;;=R63.2^^84^941^139
- ;;^UTILITY(U,$J,358.3,20937,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20937,1,3,0)
- ;;=3^Polyphagia
+ ;;^UTILITY(U,$J,358.3,19750,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of right great toe, sequela
+ ;;^UTILITY(U,$J,358.3,19750,1,4,0)
+ ;;=4^S92.414S

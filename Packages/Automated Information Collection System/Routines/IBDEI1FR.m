@@ -1,128 +1,122 @@
-IBDEI1FR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24395,1,0)
+ ;;^UTILITY(U,$J,358.3,22968,2)
+ ;;=^5008346
+ ;;^UTILITY(U,$J,358.3,22969,0)
+ ;;=K91.81^^105^1166^105
+ ;;^UTILITY(U,$J,358.3,22969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24395,1,3,0)
- ;;=3^Reaction to Severe Stress,Unspec
- ;;^UTILITY(U,$J,358.3,24395,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,24395,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,24396,0)
- ;;=F94.1^^90^1070^14
- ;;^UTILITY(U,$J,358.3,24396,1,0)
+ ;;^UTILITY(U,$J,358.3,22969,1,3,0)
+ ;;=3^Intraop Complications of Digestive System
+ ;;^UTILITY(U,$J,358.3,22969,1,4,0)
+ ;;=4^K91.81
+ ;;^UTILITY(U,$J,358.3,22969,2)
+ ;;=^5008907
+ ;;^UTILITY(U,$J,358.3,22970,0)
+ ;;=K91.82^^105^1166^211
+ ;;^UTILITY(U,$J,358.3,22970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24396,1,3,0)
- ;;=3^Reactive Attachment Disorder
- ;;^UTILITY(U,$J,358.3,24396,1,4,0)
- ;;=4^F94.1
- ;;^UTILITY(U,$J,358.3,24396,2)
- ;;=^5003705
- ;;^UTILITY(U,$J,358.3,24397,0)
- ;;=F94.2^^90^1070^8
- ;;^UTILITY(U,$J,358.3,24397,1,0)
+ ;;^UTILITY(U,$J,358.3,22970,1,3,0)
+ ;;=3^Postproc Hepatic Failure
+ ;;^UTILITY(U,$J,358.3,22970,1,4,0)
+ ;;=4^K91.82
+ ;;^UTILITY(U,$J,358.3,22970,2)
+ ;;=^5008908
+ ;;^UTILITY(U,$J,358.3,22971,0)
+ ;;=K91.83^^105^1166^212
+ ;;^UTILITY(U,$J,358.3,22971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24397,1,3,0)
- ;;=3^Disinhibited Social Engagement Disorder
- ;;^UTILITY(U,$J,358.3,24397,1,4,0)
- ;;=4^F94.2
- ;;^UTILITY(U,$J,358.3,24397,2)
- ;;=^5003706
- ;;^UTILITY(U,$J,358.3,24398,0)
- ;;=F18.10^^90^1071^21
- ;;^UTILITY(U,$J,358.3,24398,1,0)
+ ;;^UTILITY(U,$J,358.3,22971,1,3,0)
+ ;;=3^Postproc Hepatorenal Syndrome
+ ;;^UTILITY(U,$J,358.3,22971,1,4,0)
+ ;;=4^K91.83
+ ;;^UTILITY(U,$J,358.3,22971,2)
+ ;;=^5008909
+ ;;^UTILITY(U,$J,358.3,22972,0)
+ ;;=K91.89^^105^1166^182
+ ;;^UTILITY(U,$J,358.3,22972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24398,1,3,0)
- ;;=3^Inhalant Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,24398,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,24398,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,24399,0)
- ;;=F18.20^^90^1071^22
- ;;^UTILITY(U,$J,358.3,24399,1,0)
+ ;;^UTILITY(U,$J,358.3,22972,1,3,0)
+ ;;=3^Postproc Compl/Disorders of Digestive System
+ ;;^UTILITY(U,$J,358.3,22972,1,4,0)
+ ;;=4^K91.89
+ ;;^UTILITY(U,$J,358.3,22972,2)
+ ;;=^5008912
+ ;;^UTILITY(U,$J,358.3,22973,0)
+ ;;=N99.89^^105^1166^183
+ ;;^UTILITY(U,$J,358.3,22973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24399,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,24399,1,4,0)
- ;;=4^F18.20
- ;;^UTILITY(U,$J,358.3,24399,2)
- ;;=^5003392
- ;;^UTILITY(U,$J,358.3,24400,0)
- ;;=F18.21^^90^1071^23
- ;;^UTILITY(U,$J,358.3,24400,1,0)
+ ;;^UTILITY(U,$J,358.3,22973,1,3,0)
+ ;;=3^Postproc Compl/Disorders of GU System
+ ;;^UTILITY(U,$J,358.3,22973,1,4,0)
+ ;;=4^N99.89
+ ;;^UTILITY(U,$J,358.3,22973,2)
+ ;;=^5015971
+ ;;^UTILITY(U,$J,358.3,22974,0)
+ ;;=N99.81^^105^1166^106
+ ;;^UTILITY(U,$J,358.3,22974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24400,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,24400,1,4,0)
- ;;=4^F18.21
- ;;^UTILITY(U,$J,358.3,24400,2)
- ;;=^5003393
- ;;^UTILITY(U,$J,358.3,24401,0)
- ;;=F18.14^^90^1071^24
- ;;^UTILITY(U,$J,358.3,24401,1,0)
+ ;;^UTILITY(U,$J,358.3,22974,1,3,0)
+ ;;=3^Intraop Complications of GU System
+ ;;^UTILITY(U,$J,358.3,22974,1,4,0)
+ ;;=4^N99.81
+ ;;^UTILITY(U,$J,358.3,22974,2)
+ ;;=^5015967
+ ;;^UTILITY(U,$J,358.3,22975,0)
+ ;;=D78.01^^105^1166^134
+ ;;^UTILITY(U,$J,358.3,22975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24401,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24401,1,4,0)
- ;;=4^F18.14
- ;;^UTILITY(U,$J,358.3,24401,2)
- ;;=^5003384
- ;;^UTILITY(U,$J,358.3,24402,0)
- ;;=F18.24^^90^1071^25
- ;;^UTILITY(U,$J,358.3,24402,1,0)
+ ;;^UTILITY(U,$J,358.3,22975,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Spleen Complicating Spleen Procedure
+ ;;^UTILITY(U,$J,358.3,22975,1,4,0)
+ ;;=4^D78.01
+ ;;^UTILITY(U,$J,358.3,22975,2)
+ ;;=^5002397
+ ;;^UTILITY(U,$J,358.3,22976,0)
+ ;;=D78.21^^105^1166^209
+ ;;^UTILITY(U,$J,358.3,22976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24402,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24402,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,24402,2)
- ;;=^5003397
- ;;^UTILITY(U,$J,358.3,24403,0)
- ;;=F18.121^^90^1071^14
- ;;^UTILITY(U,$J,358.3,24403,1,0)
+ ;;^UTILITY(U,$J,358.3,22976,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Spleen After Spleen Proc
+ ;;^UTILITY(U,$J,358.3,22976,1,4,0)
+ ;;=4^D78.21
+ ;;^UTILITY(U,$J,358.3,22976,2)
+ ;;=^5002401
+ ;;^UTILITY(U,$J,358.3,22977,0)
+ ;;=D78.22^^105^1166^208
+ ;;^UTILITY(U,$J,358.3,22977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24403,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24403,1,4,0)
- ;;=4^F18.121
- ;;^UTILITY(U,$J,358.3,24403,2)
- ;;=^5003382
- ;;^UTILITY(U,$J,358.3,24404,0)
- ;;=F18.221^^90^1071^15
- ;;^UTILITY(U,$J,358.3,24404,1,0)
+ ;;^UTILITY(U,$J,358.3,22977,1,3,0)
+ ;;=3^Postproc Hemor/Hematom,Spleen After Oth Proc
+ ;;^UTILITY(U,$J,358.3,22977,1,4,0)
+ ;;=4^D78.22
+ ;;^UTILITY(U,$J,358.3,22977,2)
+ ;;=^5002402
+ ;;^UTILITY(U,$J,358.3,22978,0)
+ ;;=E36.01^^105^1166^118
+ ;;^UTILITY(U,$J,358.3,22978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24404,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24404,1,4,0)
- ;;=4^F18.221
- ;;^UTILITY(U,$J,358.3,24404,2)
- ;;=^5003395
- ;;^UTILITY(U,$J,358.3,24405,0)
- ;;=F18.921^^90^1071^16
- ;;^UTILITY(U,$J,358.3,24405,1,0)
+ ;;^UTILITY(U,$J,358.3,22978,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Endo Sys Complicating Endo Sys Procedure
+ ;;^UTILITY(U,$J,358.3,22978,1,4,0)
+ ;;=4^E36.01
+ ;;^UTILITY(U,$J,358.3,22978,2)
+ ;;=^5002779
+ ;;^UTILITY(U,$J,358.3,22979,0)
+ ;;=E36.02^^105^1166^119
+ ;;^UTILITY(U,$J,358.3,22979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24405,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24405,1,4,0)
- ;;=4^F18.921
- ;;^UTILITY(U,$J,358.3,24405,2)
- ;;=^5003407
- ;;^UTILITY(U,$J,358.3,24406,0)
- ;;=F18.129^^90^1071^17
- ;;^UTILITY(U,$J,358.3,24406,1,0)
+ ;;^UTILITY(U,$J,358.3,22979,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Endo Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,22979,1,4,0)
+ ;;=4^E36.02
+ ;;^UTILITY(U,$J,358.3,22979,2)
+ ;;=^5002780
+ ;;^UTILITY(U,$J,358.3,22980,0)
+ ;;=G97.31^^105^1166^126
+ ;;^UTILITY(U,$J,358.3,22980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24406,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24406,1,4,0)
- ;;=4^F18.129
- ;;^UTILITY(U,$J,358.3,24406,2)
- ;;=^5003383
- ;;^UTILITY(U,$J,358.3,24407,0)
- ;;=F18.229^^90^1071^18
- ;;^UTILITY(U,$J,358.3,24407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24407,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,22980,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom of Nervous Sys Complicating Nervous Sys Procedure

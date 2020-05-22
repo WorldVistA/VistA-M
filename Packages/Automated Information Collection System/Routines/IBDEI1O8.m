@@ -1,132 +1,122 @@
-IBDEI1O8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1O8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28393,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,28393,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,28393,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,28394,0)
- ;;=I35.1^^112^1419^16
- ;;^UTILITY(U,$J,358.3,28394,1,0)
+ ;;^UTILITY(U,$J,358.3,26712,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,26713,0)
+ ;;=T76.01XA^^110^1283^5
+ ;;^UTILITY(U,$J,358.3,26713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28394,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,28394,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,28394,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,28395,0)
- ;;=I35.2^^112^1419^18
- ;;^UTILITY(U,$J,358.3,28395,1,0)
+ ;;^UTILITY(U,$J,358.3,26713,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26713,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,26713,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,26714,0)
+ ;;=T76.01XD^^110^1283^6
+ ;;^UTILITY(U,$J,358.3,26714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28395,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,28395,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,28395,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,28396,0)
- ;;=I35.8^^112^1419^14
- ;;^UTILITY(U,$J,358.3,28396,1,0)
+ ;;^UTILITY(U,$J,358.3,26714,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26714,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,26714,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,26715,0)
+ ;;=Z91.412^^110^1283^25
+ ;;^UTILITY(U,$J,358.3,26715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28396,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders,Other
- ;;^UTILITY(U,$J,358.3,28396,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,28396,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,28397,0)
- ;;=I35.9^^112^1419^15
- ;;^UTILITY(U,$J,358.3,28397,1,0)
+ ;;^UTILITY(U,$J,358.3,26715,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,26715,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,26715,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,26716,0)
+ ;;=T74.31XA^^110^1283^11
+ ;;^UTILITY(U,$J,358.3,26716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28397,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorders,Unspec
- ;;^UTILITY(U,$J,358.3,28397,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,28397,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,28398,0)
- ;;=I48.91^^112^1419^5
- ;;^UTILITY(U,$J,358.3,28398,1,0)
+ ;;^UTILITY(U,$J,358.3,26716,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26716,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,26716,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,26717,0)
+ ;;=T74.31XD^^110^1283^12
+ ;;^UTILITY(U,$J,358.3,26717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28398,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,28398,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,28398,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,28399,0)
- ;;=I49.9^^112^1419^8
- ;;^UTILITY(U,$J,358.3,28399,1,0)
+ ;;^UTILITY(U,$J,358.3,26717,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26717,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,26717,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,26718,0)
+ ;;=T76.31XA^^110^1283^13
+ ;;^UTILITY(U,$J,358.3,26718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28399,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,28399,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,28399,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,28400,0)
- ;;=I50.9^^112^1419^12
- ;;^UTILITY(U,$J,358.3,28400,1,0)
+ ;;^UTILITY(U,$J,358.3,26718,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,26718,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,26718,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,26719,0)
+ ;;=T76.31XD^^110^1283^14
+ ;;^UTILITY(U,$J,358.3,26719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28400,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,28400,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,28400,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,28401,0)
- ;;=I73.9^^112^1419^19
- ;;^UTILITY(U,$J,358.3,28401,1,0)
+ ;;^UTILITY(U,$J,358.3,26719,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,26719,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,26719,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,26720,0)
+ ;;=Z91.411^^110^1283^27
+ ;;^UTILITY(U,$J,358.3,26720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28401,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,28401,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,28401,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,28402,0)
- ;;=I87.2^^112^1419^26
- ;;^UTILITY(U,$J,358.3,28402,1,0)
+ ;;^UTILITY(U,$J,358.3,26720,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,26720,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,26720,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,26721,0)
+ ;;=Z69.021^^110^1283^20
+ ;;^UTILITY(U,$J,358.3,26721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28402,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,28402,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,28402,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,28403,0)
- ;;=R03.0^^112^1419^11
- ;;^UTILITY(U,$J,358.3,28403,1,0)
+ ;;^UTILITY(U,$J,358.3,26721,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,26721,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,26721,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,26722,0)
+ ;;=Z69.011^^110^1283^22
+ ;;^UTILITY(U,$J,358.3,26722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28403,1,3,0)
- ;;=3^Elevated B/P Reading w/o HTN Dx
- ;;^UTILITY(U,$J,358.3,28403,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,28403,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,28404,0)
- ;;=I25.110^^112^1419^3
- ;;^UTILITY(U,$J,358.3,28404,1,0)
+ ;;^UTILITY(U,$J,358.3,26722,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,26722,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,26722,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,26723,0)
+ ;;=Z69.12^^110^1283^19
+ ;;^UTILITY(U,$J,358.3,26723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28404,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,28404,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,28404,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,28405,0)
- ;;=I25.119^^112^1419^4
- ;;^UTILITY(U,$J,358.3,28405,1,0)
+ ;;^UTILITY(U,$J,358.3,26723,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,26723,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,26723,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,26724,0)
+ ;;=Z62.812^^110^1283^28
+ ;;^UTILITY(U,$J,358.3,26724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28405,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unspec Angina
- ;;^UTILITY(U,$J,358.3,28405,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,28405,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,28406,0)
- ;;=I48.0^^112^1419^20
+ ;;^UTILITY(U,$J,358.3,26724,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect

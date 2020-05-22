@@ -1,134 +1,126 @@
-IBDEI2GV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2GV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41831,1,4,0)
- ;;=4^M87.350
- ;;^UTILITY(U,$J,358.3,41831,2)
- ;;=^5014809
- ;;^UTILITY(U,$J,358.3,41832,0)
- ;;=M87.351^^159^2010^167
- ;;^UTILITY(U,$J,358.3,41832,1,0)
+ ;;^UTILITY(U,$J,358.3,39391,0)
+ ;;=E53.8^^152^1996^91
+ ;;^UTILITY(U,$J,358.3,39391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41832,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,41832,1,4,0)
- ;;=4^M87.351
- ;;^UTILITY(U,$J,358.3,41832,2)
- ;;=^5014810
- ;;^UTILITY(U,$J,358.3,41833,0)
- ;;=M87.352^^159^2010^164
- ;;^UTILITY(U,$J,358.3,41833,1,0)
+ ;;^UTILITY(U,$J,358.3,39391,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,39391,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,39391,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,39392,0)
+ ;;=K59.04^^152^1996^20
+ ;;^UTILITY(U,$J,358.3,39392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41833,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,41833,1,4,0)
- ;;=4^M87.352
- ;;^UTILITY(U,$J,358.3,41833,2)
- ;;=^5014811
- ;;^UTILITY(U,$J,358.3,41834,0)
- ;;=M87.811^^159^2010^79
- ;;^UTILITY(U,$J,358.3,41834,1,0)
+ ;;^UTILITY(U,$J,358.3,39392,1,3,0)
+ ;;=3^Constipation,Chronic Idiopathic
+ ;;^UTILITY(U,$J,358.3,39392,1,4,0)
+ ;;=4^K59.04
+ ;;^UTILITY(U,$J,358.3,39392,2)
+ ;;=^7148177
+ ;;^UTILITY(U,$J,358.3,39393,0)
+ ;;=K59.03^^152^1996^21
+ ;;^UTILITY(U,$J,358.3,39393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41834,1,3,0)
- ;;=3^Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,41834,1,4,0)
- ;;=4^M87.811
- ;;^UTILITY(U,$J,358.3,41834,2)
- ;;=^5014831
- ;;^UTILITY(U,$J,358.3,41835,0)
- ;;=M87.812^^159^2010^76
- ;;^UTILITY(U,$J,358.3,41835,1,0)
+ ;;^UTILITY(U,$J,358.3,39393,1,3,0)
+ ;;=3^Constipation,Drug Induced
+ ;;^UTILITY(U,$J,358.3,39393,1,4,0)
+ ;;=4^K59.03
+ ;;^UTILITY(U,$J,358.3,39393,2)
+ ;;=^5138744
+ ;;^UTILITY(U,$J,358.3,39394,0)
+ ;;=K52.21^^152^1996^51
+ ;;^UTILITY(U,$J,358.3,39394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41835,1,3,0)
- ;;=3^Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,41835,1,4,0)
- ;;=4^M87.812
- ;;^UTILITY(U,$J,358.3,41835,2)
- ;;=^5014832
- ;;^UTILITY(U,$J,358.3,41836,0)
- ;;=M87.850^^159^2010^77
- ;;^UTILITY(U,$J,358.3,41836,1,0)
+ ;;^UTILITY(U,$J,358.3,39394,1,3,0)
+ ;;=3^Enterocolitis Synd Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,39394,1,4,0)
+ ;;=4^K52.21
+ ;;^UTILITY(U,$J,358.3,39394,2)
+ ;;=^5138713
+ ;;^UTILITY(U,$J,358.3,39395,0)
+ ;;=K52.22^^152^1996^52
+ ;;^UTILITY(U,$J,358.3,39395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41836,1,3,0)
- ;;=3^Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,41836,1,4,0)
- ;;=4^M87.850
- ;;^UTILITY(U,$J,358.3,41836,2)
- ;;=^5014852
- ;;^UTILITY(U,$J,358.3,41837,0)
- ;;=M87.851^^159^2010^78
- ;;^UTILITY(U,$J,358.3,41837,1,0)
+ ;;^UTILITY(U,$J,358.3,39395,1,3,0)
+ ;;=3^Enterocolopathy Induced by Food Protein
+ ;;^UTILITY(U,$J,358.3,39395,1,4,0)
+ ;;=4^K52.22
+ ;;^UTILITY(U,$J,358.3,39395,2)
+ ;;=^5138714
+ ;;^UTILITY(U,$J,358.3,39396,0)
+ ;;=K58.2^^152^1996^79
+ ;;^UTILITY(U,$J,358.3,39396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41837,1,3,0)
- ;;=3^Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,41837,1,4,0)
- ;;=4^M87.851
- ;;^UTILITY(U,$J,358.3,41837,2)
- ;;=^5014853
- ;;^UTILITY(U,$J,358.3,41838,0)
- ;;=M87.852^^159^2010^75
- ;;^UTILITY(U,$J,358.3,41838,1,0)
+ ;;^UTILITY(U,$J,358.3,39396,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Mixed
+ ;;^UTILITY(U,$J,358.3,39396,1,4,0)
+ ;;=4^K58.2
+ ;;^UTILITY(U,$J,358.3,39396,2)
+ ;;=^5138742
+ ;;^UTILITY(U,$J,358.3,39397,0)
+ ;;=K58.8^^152^1996^80
+ ;;^UTILITY(U,$J,358.3,39397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41838,1,3,0)
- ;;=3^Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,41838,1,4,0)
- ;;=4^M87.852
- ;;^UTILITY(U,$J,358.3,41838,2)
- ;;=^5014854
- ;;^UTILITY(U,$J,358.3,41839,0)
- ;;=M88.0^^159^2010^66
- ;;^UTILITY(U,$J,358.3,41839,1,0)
+ ;;^UTILITY(U,$J,358.3,39397,1,3,0)
+ ;;=3^Irritable Bowel Syndrome,Other
+ ;;^UTILITY(U,$J,358.3,39397,1,4,0)
+ ;;=4^K58.8
+ ;;^UTILITY(U,$J,358.3,39397,2)
+ ;;=^5138743
+ ;;^UTILITY(U,$J,358.3,39398,0)
+ ;;=K58.1^^152^1996^76
+ ;;^UTILITY(U,$J,358.3,39398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41839,1,3,0)
- ;;=3^Osteitis Deformans of Skull
- ;;^UTILITY(U,$J,358.3,41839,1,4,0)
- ;;=4^M88.0
- ;;^UTILITY(U,$J,358.3,41839,2)
- ;;=^5014874
- ;;^UTILITY(U,$J,358.3,41840,0)
- ;;=M88.1^^159^2010^67
- ;;^UTILITY(U,$J,358.3,41840,1,0)
+ ;;^UTILITY(U,$J,358.3,39398,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Constipation
+ ;;^UTILITY(U,$J,358.3,39398,1,4,0)
+ ;;=4^K58.1
+ ;;^UTILITY(U,$J,358.3,39398,2)
+ ;;=^5138741
+ ;;^UTILITY(U,$J,358.3,39399,0)
+ ;;=K61.39^^152^1996^5
+ ;;^UTILITY(U,$J,358.3,39399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41840,1,3,0)
- ;;=3^Osteitis Deformans of Vertebrae
- ;;^UTILITY(U,$J,358.3,41840,1,4,0)
- ;;=4^M88.1
- ;;^UTILITY(U,$J,358.3,41840,2)
- ;;=^5014875
- ;;^UTILITY(U,$J,358.3,41841,0)
- ;;=M88.89^^159^2010^65
- ;;^UTILITY(U,$J,358.3,41841,1,0)
+ ;;^UTILITY(U,$J,358.3,39399,1,3,0)
+ ;;=3^Abscess,Ischiorectal NOS
+ ;;^UTILITY(U,$J,358.3,39399,1,4,0)
+ ;;=4^K61.39
+ ;;^UTILITY(U,$J,358.3,39399,2)
+ ;;=^5157385
+ ;;^UTILITY(U,$J,358.3,39400,0)
+ ;;=G43.A1^^152^1996^34
+ ;;^UTILITY(U,$J,358.3,39400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41841,1,3,0)
- ;;=3^Osteitis Deformans of Mult Sites
- ;;^UTILITY(U,$J,358.3,41841,1,4,0)
- ;;=4^M88.89
- ;;^UTILITY(U,$J,358.3,41841,2)
- ;;=^5014898
- ;;^UTILITY(U,$J,358.3,41842,0)
- ;;=M94.0^^159^2010^15
- ;;^UTILITY(U,$J,358.3,41842,1,0)
+ ;;^UTILITY(U,$J,358.3,39400,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Intractable
+ ;;^UTILITY(U,$J,358.3,39400,1,4,0)
+ ;;=4^G43.A1
+ ;;^UTILITY(U,$J,358.3,39400,2)
+ ;;=^5003913
+ ;;^UTILITY(U,$J,358.3,39401,0)
+ ;;=G43.A0^^152^1996^35
+ ;;^UTILITY(U,$J,358.3,39401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41842,1,3,0)
- ;;=3^Chondrocostal Junction Syndrome/Costochondritis
- ;;^UTILITY(U,$J,358.3,41842,1,4,0)
- ;;=4^M94.0
- ;;^UTILITY(U,$J,358.3,41842,2)
- ;;=^5015327
- ;;^UTILITY(U,$J,358.3,41843,0)
- ;;=M94.20^^159^2010^18
- ;;^UTILITY(U,$J,358.3,41843,1,0)
+ ;;^UTILITY(U,$J,358.3,39401,1,3,0)
+ ;;=3^Cyclical Vomiting,In Migraine,Not intractable
+ ;;^UTILITY(U,$J,358.3,39401,1,4,0)
+ ;;=4^G43.A0
+ ;;^UTILITY(U,$J,358.3,39401,2)
+ ;;=^5003912
+ ;;^UTILITY(U,$J,358.3,39402,0)
+ ;;=R11.15^^152^1996^33
+ ;;^UTILITY(U,$J,358.3,39402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41843,1,3,0)
- ;;=3^Chondromalacia,Unspec Site
- ;;^UTILITY(U,$J,358.3,41843,1,4,0)
- ;;=4^M94.20
- ;;^UTILITY(U,$J,358.3,41843,2)
- ;;=^5015329
- ;;^UTILITY(U,$J,358.3,41844,0)
- ;;=M94.261^^159^2010^17
- ;;^UTILITY(U,$J,358.3,41844,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41844,1,3,0)
- ;;=3^Chondromalacia,Right Knee
+ ;;^UTILITY(U,$J,358.3,39402,1,3,0)
+ ;;=3^Cyclical Vomiting Syndrome,Unrelated to Migraine
+ ;;^UTILITY(U,$J,358.3,39402,1,4,0)
+ ;;=4^R11.15
+ ;;^UTILITY(U,$J,358.3,39402,2)
+ ;;=^5158141
+ ;;^UTILITY(U,$J,358.3,39403,0)
+ ;;=A54.00^^152^1997^50

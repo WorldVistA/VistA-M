@@ -1,134 +1,124 @@
-IBDEI1BG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1BG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22376,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,22376,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,22377,0)
- ;;=C91.40^^87^981^79
- ;;^UTILITY(U,$J,358.3,22377,1,0)
+ ;;^UTILITY(U,$J,358.3,21040,1,3,0)
+ ;;=3^Alcohol Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21040,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,21040,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,21041,0)
+ ;;=F10.14^^95^1043^1
+ ;;^UTILITY(U,$J,358.3,21041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22377,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22377,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,22377,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,22378,0)
- ;;=C91.42^^87^981^77
- ;;^UTILITY(U,$J,358.3,22378,1,0)
+ ;;^UTILITY(U,$J,358.3,21041,1,3,0)
+ ;;=3^Alcohol Abuse w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21041,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,21041,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,21042,0)
+ ;;=F10.24^^95^1043^4
+ ;;^UTILITY(U,$J,358.3,21042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22378,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,22378,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,22378,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,22379,0)
- ;;=C91.41^^87^981^78
- ;;^UTILITY(U,$J,358.3,22379,1,0)
+ ;;^UTILITY(U,$J,358.3,21042,1,3,0)
+ ;;=3^Alcohol Dependence w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,21042,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,21042,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,21043,0)
+ ;;=F10.94^^95^1043^31
+ ;;^UTILITY(U,$J,358.3,21043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22379,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22379,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,22379,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,22380,0)
- ;;=D57.01^^87^981^80
- ;;^UTILITY(U,$J,358.3,22380,1,0)
+ ;;^UTILITY(U,$J,358.3,21043,1,3,0)
+ ;;=3^Alcohol Use w/ Induced Mood Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21043,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,21043,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,21044,0)
+ ;;=F10.231^^95^1043^32
+ ;;^UTILITY(U,$J,358.3,21044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22380,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,22380,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,22380,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,22381,0)
- ;;=D57.00^^87^981^81
- ;;^UTILITY(U,$J,358.3,22381,1,0)
+ ;;^UTILITY(U,$J,358.3,21044,1,3,0)
+ ;;=3^Alcohol Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,21044,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,21044,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,21045,0)
+ ;;=F10.232^^95^1043^33
+ ;;^UTILITY(U,$J,358.3,21045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22381,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,22381,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,22381,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,22382,0)
- ;;=D57.02^^87^981^82
- ;;^UTILITY(U,$J,358.3,22382,1,0)
+ ;;^UTILITY(U,$J,358.3,21045,1,3,0)
+ ;;=3^Alcohol Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,21045,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,21045,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,21046,0)
+ ;;=F10.11^^95^1043^2
+ ;;^UTILITY(U,$J,358.3,21046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22382,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,22382,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,22382,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,22383,0)
- ;;=D68.32^^87^981^84
- ;;^UTILITY(U,$J,358.3,22383,1,0)
+ ;;^UTILITY(U,$J,358.3,21046,1,3,0)
+ ;;=3^Alcohol Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,21046,1,4,0)
+ ;;=4^F10.11
+ ;;^UTILITY(U,$J,358.3,21046,2)
+ ;;=^268230
+ ;;^UTILITY(U,$J,358.3,21047,0)
+ ;;=F12.10^^95^1044^21
+ ;;^UTILITY(U,$J,358.3,21047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22383,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,22383,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,22383,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,22384,0)
- ;;=C22.2^^87^981^85
- ;;^UTILITY(U,$J,358.3,22384,1,0)
+ ;;^UTILITY(U,$J,358.3,21047,1,3,0)
+ ;;=3^Cannabis Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,21047,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,21047,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,21048,0)
+ ;;=F12.20^^95^1044^2
+ ;;^UTILITY(U,$J,358.3,21048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22384,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,22384,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,22384,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,22385,0)
- ;;=D58.9^^87^981^87
- ;;^UTILITY(U,$J,358.3,22385,1,0)
+ ;;^UTILITY(U,$J,358.3,21048,1,3,0)
+ ;;=3^Cannabis Dependence
+ ;;^UTILITY(U,$J,358.3,21048,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,21048,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,21049,0)
+ ;;=F12.121^^95^1044^12
+ ;;^UTILITY(U,$J,358.3,21049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22385,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,22385,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,22385,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,22386,0)
- ;;=C81.99^^87^981^88
- ;;^UTILITY(U,$J,358.3,22386,1,0)
+ ;;^UTILITY(U,$J,358.3,21049,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,21049,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,21049,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,21050,0)
+ ;;=F12.221^^95^1044^13
+ ;;^UTILITY(U,$J,358.3,21050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22386,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,22386,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,22386,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,22387,0)
- ;;=C81.90^^87^981^89
- ;;^UTILITY(U,$J,358.3,22387,1,0)
+ ;;^UTILITY(U,$J,358.3,21050,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,21050,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,21050,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,21051,0)
+ ;;=F12.921^^95^1044^14
+ ;;^UTILITY(U,$J,358.3,21051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22387,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,22387,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,22387,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,22388,0)
- ;;=D89.2^^87^981^90
- ;;^UTILITY(U,$J,358.3,22388,1,0)
+ ;;^UTILITY(U,$J,358.3,21051,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,21051,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,21051,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,21052,0)
+ ;;=F12.229^^95^1044^18
+ ;;^UTILITY(U,$J,358.3,21052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22388,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,22388,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,22388,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,22389,0)
- ;;=D05.12^^87^981^91
- ;;^UTILITY(U,$J,358.3,22389,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22389,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast

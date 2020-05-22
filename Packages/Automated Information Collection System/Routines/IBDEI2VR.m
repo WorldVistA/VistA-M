@@ -1,122 +1,124 @@
-IBDEI2VR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48360,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48360,1,2,0)
- ;;=2^Neg Press Wound Tx > 50 Sq Cm using DME
- ;;^UTILITY(U,$J,358.3,48360,1,3,0)
- ;;=3^97606
- ;;^UTILITY(U,$J,358.3,48361,0)
- ;;=97602^^215^2398^10^^^^1
- ;;^UTILITY(U,$J,358.3,48361,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48361,1,2,0)
- ;;=2^Removal devitalized tissue w/o anesth
- ;;^UTILITY(U,$J,358.3,48361,1,3,0)
- ;;=3^97602
- ;;^UTILITY(U,$J,358.3,48362,0)
- ;;=G0281^^215^2398^4^^^^1
- ;;^UTILITY(U,$J,358.3,48362,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48362,1,2,0)
- ;;=2^Electrical Stimulation,Wound Care
- ;;^UTILITY(U,$J,358.3,48362,1,3,0)
- ;;=3^G0281
- ;;^UTILITY(U,$J,358.3,48363,0)
- ;;=G0283^^215^2398^3^^^^1
- ;;^UTILITY(U,$J,358.3,48363,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48363,1,2,0)
- ;;=2^Electrical Stimulation,Oth than Wnd Care
- ;;^UTILITY(U,$J,358.3,48363,1,3,0)
- ;;=3^G0283
- ;;^UTILITY(U,$J,358.3,48364,0)
- ;;=G0329^^215^2398^5^^^^1
- ;;^UTILITY(U,$J,358.3,48364,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48364,1,2,0)
- ;;=2^Electromagnetic Therapy,Wound Care
- ;;^UTILITY(U,$J,358.3,48364,1,3,0)
- ;;=3^G0329
- ;;^UTILITY(U,$J,358.3,48365,0)
- ;;=97610^^215^2398^11^^^^1
- ;;^UTILITY(U,$J,358.3,48365,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48365,1,2,0)
- ;;=2^US LF Non-Contact Non-Therm,Wnd Assess
- ;;^UTILITY(U,$J,358.3,48365,1,3,0)
- ;;=3^97610
- ;;^UTILITY(U,$J,358.3,48366,0)
- ;;=97607^^215^2398^7^^^^1
- ;;^UTILITY(U,$J,358.3,48366,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48366,1,2,0)
- ;;=2^Neg Press Wound Tx </= 50 Sq Cm using non-DME
- ;;^UTILITY(U,$J,358.3,48366,1,3,0)
- ;;=3^97607
- ;;^UTILITY(U,$J,358.3,48367,0)
- ;;=97608^^215^2398^9^^^^1
- ;;^UTILITY(U,$J,358.3,48367,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48367,1,2,0)
- ;;=2^Neg Press Wound Tx > 50 Sq Cm using non-DME
- ;;^UTILITY(U,$J,358.3,48367,1,3,0)
- ;;=3^97608
- ;;^UTILITY(U,$J,358.3,48368,0)
- ;;=93797^^215^2399^2^^^^1
- ;;^UTILITY(U,$J,358.3,48368,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48368,1,2,0)
- ;;=2^Cardiac Rehab w/o Contin ECG Monitor
- ;;^UTILITY(U,$J,358.3,48368,1,3,0)
- ;;=3^93797
- ;;^UTILITY(U,$J,358.3,48369,0)
- ;;=93798^^215^2399^1^^^^1
- ;;^UTILITY(U,$J,358.3,48369,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48369,1,2,0)
- ;;=2^Cardiac Rehab w/Contin ECG Monitor
- ;;^UTILITY(U,$J,358.3,48369,1,3,0)
- ;;=3^93798
- ;;^UTILITY(U,$J,358.3,48370,0)
- ;;=G0422^^215^2399^3^^^^1
- ;;^UTILITY(U,$J,358.3,48370,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48370,1,2,0)
- ;;=2^Intens Card Rehab w/ or w/o ECG,per Session
- ;;^UTILITY(U,$J,358.3,48370,1,3,0)
- ;;=3^G0422
- ;;^UTILITY(U,$J,358.3,48371,0)
- ;;=G0424^^215^2399^4^^^^1
- ;;^UTILITY(U,$J,358.3,48371,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48371,1,2,0)
- ;;=2^Pulm Rehab w/ Exer,1hr,per Session,Max 2/day
- ;;^UTILITY(U,$J,358.3,48371,1,3,0)
- ;;=3^G0424
- ;;^UTILITY(U,$J,358.3,48372,0)
- ;;=98960^^215^2400^3^^^^1
- ;;^UTILITY(U,$J,358.3,48372,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48372,1,2,0)
- ;;=2^Ed/Train Self-Mgmt nonphy;1 pt ea 30min
- ;;^UTILITY(U,$J,358.3,48372,1,3,0)
- ;;=3^98960
- ;;^UTILITY(U,$J,358.3,48373,0)
- ;;=98961^^215^2400^1^^^^1
- ;;^UTILITY(U,$J,358.3,48373,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48373,1,2,0)
- ;;=2^Ed/Train Self-Mgmt HCP;2-4 pts ea 30min
- ;;^UTILITY(U,$J,358.3,48373,1,3,0)
- ;;=3^98961
- ;;^UTILITY(U,$J,358.3,48374,0)
- ;;=98962^^215^2400^2^^^^1
- ;;^UTILITY(U,$J,358.3,48374,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48374,1,2,0)
- ;;=2^Ed/Train Self-Mgmt HCP;5-8 pts ea 30min
- ;;^UTILITY(U,$J,358.3,48374,1,3,0)
- ;;=3^98962
+ ;;^UTILITY(U,$J,358.3,45945,1,4,0)
+ ;;=4^H02.032
+ ;;^UTILITY(U,$J,358.3,45945,2)
+ ;;=^5004289
+ ;;^UTILITY(U,$J,358.3,45946,0)
+ ;;=H02.035^^176^2294^12
+ ;;^UTILITY(U,$J,358.3,45946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45946,1,3,0)
+ ;;=3^Entropion,Senile,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,45946,1,4,0)
+ ;;=4^H02.035
+ ;;^UTILITY(U,$J,358.3,45946,2)
+ ;;=^5133401
+ ;;^UTILITY(U,$J,358.3,45947,0)
+ ;;=H02.112^^176^2294^15
+ ;;^UTILITY(U,$J,358.3,45947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45947,1,3,0)
+ ;;=3^Ectropion,Cicatricial,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,45947,1,4,0)
+ ;;=4^H02.112
+ ;;^UTILITY(U,$J,358.3,45947,2)
+ ;;=^5004308
+ ;;^UTILITY(U,$J,358.3,45948,0)
+ ;;=H02.115^^176^2294^16
+ ;;^UTILITY(U,$J,358.3,45948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45948,1,3,0)
+ ;;=3^Ectropion,Cicatricial,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,45948,1,4,0)
+ ;;=4^H02.115
+ ;;^UTILITY(U,$J,358.3,45948,2)
+ ;;=^5133410
+ ;;^UTILITY(U,$J,358.3,45949,0)
+ ;;=H02.201^^176^2294^22
+ ;;^UTILITY(U,$J,358.3,45949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45949,1,3,0)
+ ;;=3^Lagophthalmos,Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,45949,1,4,0)
+ ;;=4^H02.201
+ ;;^UTILITY(U,$J,358.3,45949,2)
+ ;;=^5004327
+ ;;^UTILITY(U,$J,358.3,45950,0)
+ ;;=H02.204^^176^2294^23
+ ;;^UTILITY(U,$J,358.3,45950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45950,1,3,0)
+ ;;=3^Lagophthalmos,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,45950,1,4,0)
+ ;;=4^H02.204
+ ;;^UTILITY(U,$J,358.3,45950,2)
+ ;;=^5004330
+ ;;^UTILITY(U,$J,358.3,45951,0)
+ ;;=H02.831^^176^2294^18
+ ;;^UTILITY(U,$J,358.3,45951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45951,1,3,0)
+ ;;=3^Dermatochalasis,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,45951,1,4,0)
+ ;;=4^H02.831
+ ;;^UTILITY(U,$J,358.3,45951,2)
+ ;;=^5004418
+ ;;^UTILITY(U,$J,358.3,45952,0)
+ ;;=H02.834^^176^2294^20
+ ;;^UTILITY(U,$J,358.3,45952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45952,1,3,0)
+ ;;=3^Dermatochalasis,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,45952,1,4,0)
+ ;;=4^H02.834
+ ;;^UTILITY(U,$J,358.3,45952,2)
+ ;;=^5004421
+ ;;^UTILITY(U,$J,358.3,45953,0)
+ ;;=H02.829^^176^2294^24
+ ;;^UTILITY(U,$J,358.3,45953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45953,1,3,0)
+ ;;=3^Cysts,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,45953,1,4,0)
+ ;;=4^H02.829
+ ;;^UTILITY(U,$J,358.3,45953,2)
+ ;;=^5133442
+ ;;^UTILITY(U,$J,358.3,45954,0)
+ ;;=H01.119^^176^2294^30
+ ;;^UTILITY(U,$J,358.3,45954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45954,1,3,0)
+ ;;=3^Allergic Dermatitis,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,45954,1,4,0)
+ ;;=4^H01.119
+ ;;^UTILITY(U,$J,358.3,45954,2)
+ ;;=^5133387
+ ;;^UTILITY(U,$J,358.3,45955,0)
+ ;;=H02.421^^176^2294^19
+ ;;^UTILITY(U,$J,358.3,45955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45955,1,3,0)
+ ;;=3^Ptosis,Myogenic,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,45955,1,4,0)
+ ;;=4^H02.421
+ ;;^UTILITY(U,$J,358.3,45955,2)
+ ;;=^5004360
+ ;;^UTILITY(U,$J,358.3,45956,0)
+ ;;=H02.422^^176^2294^21
+ ;;^UTILITY(U,$J,358.3,45956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45956,1,3,0)
+ ;;=3^Ptosis,Myogenic,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,45956,1,4,0)
+ ;;=4^H02.422
+ ;;^UTILITY(U,$J,358.3,45956,2)
+ ;;=^5004361
+ ;;^UTILITY(U,$J,358.3,45957,0)
+ ;;=H02.051^^176^2294^8
+ ;;^UTILITY(U,$J,358.3,45957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45957,1,3,0)
+ ;;=3^Trichiasis w/o Entropion,Right Upper Eyelid

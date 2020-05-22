@@ -1,126 +1,128 @@
-IBDEI1Q6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29278,2)
- ;;=^5017260
- ;;^UTILITY(U,$J,358.3,29279,0)
- ;;=O41.1210^^115^1456^7
- ;;^UTILITY(U,$J,358.3,29279,1,0)
+ ;;^UTILITY(U,$J,358.3,27572,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,27572,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,27573,0)
+ ;;=G31.83^^113^1340^17
+ ;;^UTILITY(U,$J,358.3,27573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29279,1,3,0)
- ;;=3^Chorioamnionitis, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29279,1,4,0)
- ;;=4^O41.1210
- ;;^UTILITY(U,$J,358.3,29279,2)
- ;;=^5017267
- ;;^UTILITY(U,$J,358.3,29280,0)
- ;;=O41.1211^^115^1456^2
- ;;^UTILITY(U,$J,358.3,29280,1,0)
+ ;;^UTILITY(U,$J,358.3,27573,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,27573,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,27573,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,27574,0)
+ ;;=G31.89^^113^1340^11
+ ;;^UTILITY(U,$J,358.3,27574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29280,1,3,0)
- ;;=3^Chorioamnionitis, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29280,1,4,0)
- ;;=4^O41.1211
- ;;^UTILITY(U,$J,358.3,29280,2)
- ;;=^5017268
- ;;^UTILITY(U,$J,358.3,29281,0)
- ;;=O41.1212^^115^1456^3
- ;;^UTILITY(U,$J,358.3,29281,1,0)
+ ;;^UTILITY(U,$J,358.3,27574,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,27574,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,27574,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,27575,0)
+ ;;=G31.9^^113^1340^12
+ ;;^UTILITY(U,$J,358.3,27575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29281,1,3,0)
- ;;=3^Chorioamnionitis, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29281,1,4,0)
- ;;=4^O41.1212
- ;;^UTILITY(U,$J,358.3,29281,2)
- ;;=^5017269
- ;;^UTILITY(U,$J,358.3,29282,0)
- ;;=O41.1213^^115^1456^4
- ;;^UTILITY(U,$J,358.3,29282,1,0)
+ ;;^UTILITY(U,$J,358.3,27575,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,27575,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,27575,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,27576,0)
+ ;;=G23.8^^113^1340^10
+ ;;^UTILITY(U,$J,358.3,27576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29282,1,3,0)
- ;;=3^Chorioamnionitis, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29282,1,4,0)
- ;;=4^O41.1213
- ;;^UTILITY(U,$J,358.3,29282,2)
- ;;=^5017270
- ;;^UTILITY(U,$J,358.3,29283,0)
- ;;=O41.1214^^115^1456^5
- ;;^UTILITY(U,$J,358.3,29283,1,0)
+ ;;^UTILITY(U,$J,358.3,27576,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,27576,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,27576,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,27577,0)
+ ;;=G30.0^^113^1340^2
+ ;;^UTILITY(U,$J,358.3,27577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29283,1,3,0)
- ;;=3^Chorioamnionitis, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29283,1,4,0)
- ;;=4^O41.1214
- ;;^UTILITY(U,$J,358.3,29283,2)
- ;;=^5017271
- ;;^UTILITY(U,$J,358.3,29284,0)
- ;;=O41.1215^^115^1456^6
- ;;^UTILITY(U,$J,358.3,29284,1,0)
+ ;;^UTILITY(U,$J,358.3,27577,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,27577,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,27577,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,27578,0)
+ ;;=G30.1^^113^1340^3
+ ;;^UTILITY(U,$J,358.3,27578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29284,1,3,0)
- ;;=3^Chorioamnionitis, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29284,1,4,0)
- ;;=4^O41.1215
- ;;^UTILITY(U,$J,358.3,29284,2)
- ;;=^5017272
- ;;^UTILITY(U,$J,358.3,29285,0)
- ;;=O41.1220^^115^1456^13
- ;;^UTILITY(U,$J,358.3,29285,1,0)
+ ;;^UTILITY(U,$J,358.3,27578,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,27578,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,27578,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,27579,0)
+ ;;=B20.^^113^1340^21
+ ;;^UTILITY(U,$J,358.3,27579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29285,1,3,0)
- ;;=3^Chorioamnionitis, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29285,1,4,0)
- ;;=4^O41.1220
- ;;^UTILITY(U,$J,358.3,29285,2)
- ;;=^5017274
- ;;^UTILITY(U,$J,358.3,29286,0)
- ;;=O41.1221^^115^1456^8
- ;;^UTILITY(U,$J,358.3,29286,1,0)
+ ;;^UTILITY(U,$J,358.3,27579,1,3,0)
+ ;;=3^HIV Infection
+ ;;^UTILITY(U,$J,358.3,27579,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,27579,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,27580,0)
+ ;;=G10.^^113^1340^22
+ ;;^UTILITY(U,$J,358.3,27580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29286,1,3,0)
- ;;=3^Chorioamnionitis, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,29286,1,4,0)
- ;;=4^O41.1221
- ;;^UTILITY(U,$J,358.3,29286,2)
- ;;=^5017275
- ;;^UTILITY(U,$J,358.3,29287,0)
- ;;=O41.1222^^115^1456^9
- ;;^UTILITY(U,$J,358.3,29287,1,0)
+ ;;^UTILITY(U,$J,358.3,27580,1,3,0)
+ ;;=3^Huntington's Disease
+ ;;^UTILITY(U,$J,358.3,27580,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,27580,2)
+ ;;=^5003751
+ ;;^UTILITY(U,$J,358.3,27581,0)
+ ;;=G30.8^^113^1340^1
+ ;;^UTILITY(U,$J,358.3,27581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29287,1,3,0)
- ;;=3^Chorioamnionitis, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,29287,1,4,0)
- ;;=4^O41.1222
- ;;^UTILITY(U,$J,358.3,29287,2)
- ;;=^5017276
- ;;^UTILITY(U,$J,358.3,29288,0)
- ;;=O41.1223^^115^1456^10
- ;;^UTILITY(U,$J,358.3,29288,1,0)
+ ;;^UTILITY(U,$J,358.3,27581,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,27581,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,27581,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,27582,0)
+ ;;=A81.89^^113^1340^5
+ ;;^UTILITY(U,$J,358.3,27582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29288,1,3,0)
- ;;=3^Chorioamnionitis, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29288,1,4,0)
- ;;=4^O41.1223
- ;;^UTILITY(U,$J,358.3,29288,2)
- ;;=^5017277
- ;;^UTILITY(U,$J,358.3,29289,0)
- ;;=O41.1224^^115^1456^11
- ;;^UTILITY(U,$J,358.3,29289,1,0)
+ ;;^UTILITY(U,$J,358.3,27582,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,27582,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,27582,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,27583,0)
+ ;;=G20.^^113^1340^26
+ ;;^UTILITY(U,$J,358.3,27583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29289,1,3,0)
- ;;=3^Chorioamnionitis, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29289,1,4,0)
- ;;=4^O41.1224
- ;;^UTILITY(U,$J,358.3,29289,2)
- ;;=^5017278
- ;;^UTILITY(U,$J,358.3,29290,0)
- ;;=O41.1225^^115^1456^12
- ;;^UTILITY(U,$J,358.3,29290,1,0)
+ ;;^UTILITY(U,$J,358.3,27583,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,27583,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,27583,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,27584,0)
+ ;;=G23.1^^113^1340^30
+ ;;^UTILITY(U,$J,358.3,27584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29290,1,3,0)
- ;;=3^Chorioamnionitis, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29290,1,4,0)
- ;;=4^O41.1225
- ;;^UTILITY(U,$J,358.3,29290,2)
- ;;=^5017279
+ ;;^UTILITY(U,$J,358.3,27584,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,27584,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,27584,2)
+ ;;=^5003780

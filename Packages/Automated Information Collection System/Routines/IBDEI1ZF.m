@@ -1,128 +1,120 @@
-IBDEI1ZF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33634,1,3,0)
- ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,33634,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,33634,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,33635,0)
- ;;=K50.914^^131^1675^23
- ;;^UTILITY(U,$J,358.3,33635,1,0)
+ ;;^UTILITY(U,$J,358.3,31642,1,4,0)
+ ;;=4^O40.3XX5
+ ;;^UTILITY(U,$J,358.3,31642,2)
+ ;;=^5017206
+ ;;^UTILITY(U,$J,358.3,31643,0)
+ ;;=O36.8311^^126^1626^1
+ ;;^UTILITY(U,$J,358.3,31643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33635,1,3,0)
- ;;=3^Crohn's Disease w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,33635,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,33635,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,33636,0)
- ;;=K50.913^^131^1675^24
- ;;^UTILITY(U,$J,358.3,33636,1,0)
+ ;;^UTILITY(U,$J,358.3,31643,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 1
+ ;;^UTILITY(U,$J,358.3,31643,1,4,0)
+ ;;=4^O36.8311
+ ;;^UTILITY(U,$J,358.3,31643,2)
+ ;;=^5151549
+ ;;^UTILITY(U,$J,358.3,31644,0)
+ ;;=O36.8312^^126^1626^2
+ ;;^UTILITY(U,$J,358.3,31644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33636,1,3,0)
- ;;=3^Crohn's Disease w/ Fistula,Unspec
- ;;^UTILITY(U,$J,358.3,33636,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,33636,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,33637,0)
- ;;=K50.918^^131^1675^26
- ;;^UTILITY(U,$J,358.3,33637,1,0)
+ ;;^UTILITY(U,$J,358.3,31644,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 2
+ ;;^UTILITY(U,$J,358.3,31644,1,4,0)
+ ;;=4^O36.8312
+ ;;^UTILITY(U,$J,358.3,31644,2)
+ ;;=^5151550
+ ;;^UTILITY(U,$J,358.3,31645,0)
+ ;;=O36.8313^^126^1626^3
+ ;;^UTILITY(U,$J,358.3,31645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33637,1,3,0)
- ;;=3^Crohn's Disease w/ Oth Complication,Unspec
- ;;^UTILITY(U,$J,358.3,33637,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,33637,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,33638,0)
- ;;=K51.90^^131^1675^80
- ;;^UTILITY(U,$J,358.3,33638,1,0)
+ ;;^UTILITY(U,$J,358.3,31645,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 3
+ ;;^UTILITY(U,$J,358.3,31645,1,4,0)
+ ;;=4^O36.8313
+ ;;^UTILITY(U,$J,358.3,31645,2)
+ ;;=^5151551
+ ;;^UTILITY(U,$J,358.3,31646,0)
+ ;;=O36.8314^^126^1626^4
+ ;;^UTILITY(U,$J,358.3,31646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33638,1,3,0)
- ;;=3^Ulcerative Colitis w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,33638,1,4,0)
- ;;=4^K51.90
- ;;^UTILITY(U,$J,358.3,33638,2)
- ;;=^5008694
- ;;^UTILITY(U,$J,358.3,33639,0)
- ;;=K51.919^^131^1675^79
- ;;^UTILITY(U,$J,358.3,33639,1,0)
+ ;;^UTILITY(U,$J,358.3,31646,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 4
+ ;;^UTILITY(U,$J,358.3,31646,1,4,0)
+ ;;=4^O36.8314
+ ;;^UTILITY(U,$J,358.3,31646,2)
+ ;;=^5151552
+ ;;^UTILITY(U,$J,358.3,31647,0)
+ ;;=O36.8315^^126^1626^5
+ ;;^UTILITY(U,$J,358.3,31647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33639,1,3,0)
- ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,33639,1,4,0)
- ;;=4^K51.919
- ;;^UTILITY(U,$J,358.3,33639,2)
- ;;=^5008700
- ;;^UTILITY(U,$J,358.3,33640,0)
- ;;=K51.918^^131^1675^77
- ;;^UTILITY(U,$J,358.3,33640,1,0)
+ ;;^UTILITY(U,$J,358.3,31647,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Fts 5
+ ;;^UTILITY(U,$J,358.3,31647,1,4,0)
+ ;;=4^O36.8315
+ ;;^UTILITY(U,$J,358.3,31647,2)
+ ;;=^5151553
+ ;;^UTILITY(U,$J,358.3,31648,0)
+ ;;=O36.8319^^126^1626^6
+ ;;^UTILITY(U,$J,358.3,31648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33640,1,3,0)
- ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
- ;;^UTILITY(U,$J,358.3,33640,1,4,0)
- ;;=4^K51.918
- ;;^UTILITY(U,$J,358.3,33640,2)
- ;;=^5008699
- ;;^UTILITY(U,$J,358.3,33641,0)
- ;;=K51.914^^131^1675^74
- ;;^UTILITY(U,$J,358.3,33641,1,0)
+ ;;^UTILITY(U,$J,358.3,31648,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,1st Tri,Unspec Fts
+ ;;^UTILITY(U,$J,358.3,31648,1,4,0)
+ ;;=4^O36.8319
+ ;;^UTILITY(U,$J,358.3,31648,2)
+ ;;=^5151554
+ ;;^UTILITY(U,$J,358.3,31649,0)
+ ;;=O36.8321^^126^1626^7
+ ;;^UTILITY(U,$J,358.3,31649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33641,1,3,0)
- ;;=3^Ulcerative Colitis w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,33641,1,4,0)
- ;;=4^K51.914
- ;;^UTILITY(U,$J,358.3,33641,2)
- ;;=^5008698
- ;;^UTILITY(U,$J,358.3,33642,0)
- ;;=K51.913^^131^1675^75
- ;;^UTILITY(U,$J,358.3,33642,1,0)
+ ;;^UTILITY(U,$J,358.3,31649,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 1
+ ;;^UTILITY(U,$J,358.3,31649,1,4,0)
+ ;;=4^O36.8321
+ ;;^UTILITY(U,$J,358.3,31649,2)
+ ;;=^5151556
+ ;;^UTILITY(U,$J,358.3,31650,0)
+ ;;=O36.8322^^126^1626^8
+ ;;^UTILITY(U,$J,358.3,31650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33642,1,3,0)
- ;;=3^Ulcerative Colitis w/ Fistula,Unspec
- ;;^UTILITY(U,$J,358.3,33642,1,4,0)
- ;;=4^K51.913
- ;;^UTILITY(U,$J,358.3,33642,2)
- ;;=^5008697
- ;;^UTILITY(U,$J,358.3,33643,0)
- ;;=K51.912^^131^1675^76
- ;;^UTILITY(U,$J,358.3,33643,1,0)
+ ;;^UTILITY(U,$J,358.3,31650,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 2
+ ;;^UTILITY(U,$J,358.3,31650,1,4,0)
+ ;;=4^O36.8322
+ ;;^UTILITY(U,$J,358.3,31650,2)
+ ;;=^5151557
+ ;;^UTILITY(U,$J,358.3,31651,0)
+ ;;=O36.8323^^126^1626^9
+ ;;^UTILITY(U,$J,358.3,31651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33643,1,3,0)
- ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,33643,1,4,0)
- ;;=4^K51.912
- ;;^UTILITY(U,$J,358.3,33643,2)
- ;;=^5008696
- ;;^UTILITY(U,$J,358.3,33644,0)
- ;;=K51.911^^131^1675^78
- ;;^UTILITY(U,$J,358.3,33644,1,0)
+ ;;^UTILITY(U,$J,358.3,31651,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 3
+ ;;^UTILITY(U,$J,358.3,31651,1,4,0)
+ ;;=4^O36.8323
+ ;;^UTILITY(U,$J,358.3,31651,2)
+ ;;=^5151558
+ ;;^UTILITY(U,$J,358.3,31652,0)
+ ;;=O36.8324^^126^1626^10
+ ;;^UTILITY(U,$J,358.3,31652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33644,1,3,0)
- ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,33644,1,4,0)
- ;;=4^K51.911
- ;;^UTILITY(U,$J,358.3,33644,2)
- ;;=^5008695
- ;;^UTILITY(U,$J,358.3,33645,0)
- ;;=K52.89^^131^1675^54
- ;;^UTILITY(U,$J,358.3,33645,1,0)
+ ;;^UTILITY(U,$J,358.3,31652,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 4
+ ;;^UTILITY(U,$J,358.3,31652,1,4,0)
+ ;;=4^O36.8324
+ ;;^UTILITY(U,$J,358.3,31652,2)
+ ;;=^5151559
+ ;;^UTILITY(U,$J,358.3,31653,0)
+ ;;=O36.8325^^126^1626^11
+ ;;^UTILITY(U,$J,358.3,31653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33645,1,3,0)
- ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
- ;;^UTILITY(U,$J,358.3,33645,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,33645,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,33646,0)
- ;;=K52.9^^131^1675^53
- ;;^UTILITY(U,$J,358.3,33646,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33646,1,3,0)
- ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
- ;;^UTILITY(U,$J,358.3,33646,1,4,0)
- ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,31653,1,3,0)
+ ;;=3^Abnormal Fetal Hrt Rate/Rhythm,2nd Tri,Fts 5
+ ;;^UTILITY(U,$J,358.3,31653,1,4,0)
+ ;;=4^O36.8325
+ ;;^UTILITY(U,$J,358.3,31653,2)
+ ;;=^5151560
+ ;;^UTILITY(U,$J,358.3,31654,0)
+ ;;=O36.8329^^126^1626^12

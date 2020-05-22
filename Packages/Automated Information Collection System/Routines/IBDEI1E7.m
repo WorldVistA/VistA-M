@@ -1,122 +1,126 @@
-IBDEI1E7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1E7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23656,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,23656,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,23657,0)
- ;;=Y36.7X0A^^87^1000^128
- ;;^UTILITY(U,$J,358.3,23657,1,0)
+ ;;^UTILITY(U,$J,358.3,22269,1,2,0)
+ ;;=2^11042
+ ;;^UTILITY(U,$J,358.3,22269,1,3,0)
+ ;;=3^Debridement,Subq Tissue,1st 20 sq cm
+ ;;^UTILITY(U,$J,358.3,22270,0)
+ ;;=97598^^101^1138^2^^^^1
+ ;;^UTILITY(U,$J,358.3,22270,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22270,1,2,0)
+ ;;=2^97598
+ ;;^UTILITY(U,$J,358.3,22270,1,3,0)
+ ;;=3^Debridement,Ea Addl 20 sq cm
+ ;;^UTILITY(U,$J,358.3,22271,0)
+ ;;=97597^^101^1138^1^^^^1
+ ;;^UTILITY(U,$J,358.3,22271,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22271,1,2,0)
+ ;;=2^97597
+ ;;^UTILITY(U,$J,358.3,22271,1,3,0)
+ ;;=3^Debridement,1st 20 sq cm
+ ;;^UTILITY(U,$J,358.3,22272,0)
+ ;;=86580^^101^1139^1^^^^1
+ ;;^UTILITY(U,$J,358.3,22272,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22272,1,2,0)
+ ;;=2^86580
+ ;;^UTILITY(U,$J,358.3,22272,1,3,0)
+ ;;=3^PPD Skin Test
+ ;;^UTILITY(U,$J,358.3,22273,0)
+ ;;=96372^^101^1140^1^^^^1
+ ;;^UTILITY(U,$J,358.3,22273,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,22273,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,22273,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj SC/IM
+ ;;^UTILITY(U,$J,358.3,22274,0)
+ ;;=J85.2^^102^1141^8
+ ;;^UTILITY(U,$J,358.3,22274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23657,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23657,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,23657,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,23658,0)
- ;;=Y36.7X0D^^87^1000^129
- ;;^UTILITY(U,$J,358.3,23658,1,0)
+ ;;^UTILITY(U,$J,358.3,22274,1,3,0)
+ ;;=3^Abscess, lung without pneumonia
+ ;;^UTILITY(U,$J,358.3,22274,1,4,0)
+ ;;=4^J85.2
+ ;;^UTILITY(U,$J,358.3,22274,2)
+ ;;=^5008307
+ ;;^UTILITY(U,$J,358.3,22275,0)
+ ;;=K75.0^^102^1141^7
+ ;;^UTILITY(U,$J,358.3,22275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23658,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23658,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,23658,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,23659,0)
- ;;=Y36.810A^^87^1000^22
- ;;^UTILITY(U,$J,358.3,23659,1,0)
+ ;;^UTILITY(U,$J,358.3,22275,1,3,0)
+ ;;=3^Abscess, liver
+ ;;^UTILITY(U,$J,358.3,22275,1,4,0)
+ ;;=4^K75.0
+ ;;^UTILITY(U,$J,358.3,22275,2)
+ ;;=^5008824
+ ;;^UTILITY(U,$J,358.3,22276,0)
+ ;;=K61.1^^102^1141^10
+ ;;^UTILITY(U,$J,358.3,22276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23659,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23659,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,23659,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,23660,0)
- ;;=Y36.810D^^87^1000^23
- ;;^UTILITY(U,$J,358.3,23660,1,0)
+ ;;^UTILITY(U,$J,358.3,22276,1,3,0)
+ ;;=3^Abscess, rectal
+ ;;^UTILITY(U,$J,358.3,22276,1,4,0)
+ ;;=4^K61.1
+ ;;^UTILITY(U,$J,358.3,22276,2)
+ ;;=^259588
+ ;;^UTILITY(U,$J,358.3,22277,0)
+ ;;=N15.1^^102^1141^9
+ ;;^UTILITY(U,$J,358.3,22277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23660,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23660,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,23660,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,23661,0)
- ;;=Y36.820A^^87^1000^19
- ;;^UTILITY(U,$J,358.3,23661,1,0)
+ ;;^UTILITY(U,$J,358.3,22277,1,3,0)
+ ;;=3^Abscess, perinephric and renal
+ ;;^UTILITY(U,$J,358.3,22277,1,4,0)
+ ;;=4^N15.1
+ ;;^UTILITY(U,$J,358.3,22277,2)
+ ;;=^270371
+ ;;^UTILITY(U,$J,358.3,22278,0)
+ ;;=G06.0^^102^1141^6
+ ;;^UTILITY(U,$J,358.3,22278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23661,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23661,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,23661,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,23662,0)
- ;;=Y36.820D^^87^1000^20
- ;;^UTILITY(U,$J,358.3,23662,1,0)
+ ;;^UTILITY(U,$J,358.3,22278,1,3,0)
+ ;;=3^Abscess, intracranial with granuloma
+ ;;^UTILITY(U,$J,358.3,22278,1,4,0)
+ ;;=4^G06.0
+ ;;^UTILITY(U,$J,358.3,22278,2)
+ ;;=^5003745
+ ;;^UTILITY(U,$J,358.3,22279,0)
+ ;;=L02.91^^102^1141^11
+ ;;^UTILITY(U,$J,358.3,22279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23662,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23662,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,23662,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,23663,0)
- ;;=Y37.200A^^87^1000^91
- ;;^UTILITY(U,$J,358.3,23663,1,0)
+ ;;^UTILITY(U,$J,358.3,22279,1,3,0)
+ ;;=3^Abscess, skin and soft tissue
+ ;;^UTILITY(U,$J,358.3,22279,1,4,0)
+ ;;=4^L02.91
+ ;;^UTILITY(U,$J,358.3,22279,2)
+ ;;=^5009016
+ ;;^UTILITY(U,$J,358.3,22280,0)
+ ;;=L02.818^^102^1141^5
+ ;;^UTILITY(U,$J,358.3,22280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23663,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,23663,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,23663,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,23664,0)
- ;;=Y37.200D^^87^1000^92
- ;;^UTILITY(U,$J,358.3,23664,1,0)
+ ;;^UTILITY(U,$J,358.3,22280,1,3,0)
+ ;;=3^Abscess, cutaneous of other sites
+ ;;^UTILITY(U,$J,358.3,22280,1,4,0)
+ ;;=4^L02.818
+ ;;^UTILITY(U,$J,358.3,22280,2)
+ ;;=^5009011
+ ;;^UTILITY(U,$J,358.3,22281,0)
+ ;;=B20.^^102^1141^14
+ ;;^UTILITY(U,$J,358.3,22281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23664,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23664,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,23664,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,23665,0)
- ;;=X00.1XXA^^87^1000^13
- ;;^UTILITY(U,$J,358.3,23665,1,0)
+ ;;^UTILITY(U,$J,358.3,22281,1,3,0)
+ ;;=3^Acquired Immunodeficiency Syndrome (AIDS)
+ ;;^UTILITY(U,$J,358.3,22281,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,22281,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,22282,0)
+ ;;=B44.1^^102^1141^20
+ ;;^UTILITY(U,$J,358.3,22282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23665,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,23665,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,23665,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,23666,0)
- ;;=X00.1XXD^^87^1000^14
- ;;^UTILITY(U,$J,358.3,23666,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23666,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23666,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,23666,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,23667,0)
- ;;=Y36.820S^^87^1000^21
- ;;^UTILITY(U,$J,358.3,23667,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23667,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23667,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,23667,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,23668,0)
- ;;=Y36.810S^^87^1000^24
- ;;^UTILITY(U,$J,358.3,23668,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22282,1,3,0)
+ ;;=3^Aspergillosis,Pulmonary

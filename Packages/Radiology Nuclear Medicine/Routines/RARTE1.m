@@ -1,5 +1,5 @@
-RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ; Oct 17, 2019@10:43:38
- ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47,124,163**;Mar 16, 1998;Build 1
+RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ; Dec 17, 2019@10:05:19
+ ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47,124,163,162**;Mar 16, 1998;Build 2
  ;Private IA #4793 DELETE^WVRALINK, CREATE^WVRALINK 
  ;Supported IA #10035
  ;Supported IA #10007
@@ -74,7 +74,12 @@ UNVER(RAXRPT) ; unverify a report
  ;11/07/2005 KAM/BAY 110020 Modified next line to look for voice recognition
  S DIE="^RARPT(",DR(2,74.01)="2////U;3////"_$S(($D(RAQUIET)#2)&($D(RASUB)#2):$G(^TMP("RARPT-REC",$J,RASUB,"RAVERF")),1:DUZ)
  S RAXIT=$$LOCK^RAUTL12("^RARPT(",RARPT)
- I RAXIT D Q QUIT
+ ;
+ ;this check is to see if a report from the outside is to be amended $G(RAXRPT)>0
+ I RAXIT S:$G(RAXRPT)>0 RAERR="^RARPT("_RARPT_", could not be locked for addendum." D Q QUIT
+ ;if called from RAHLO1 and the lock fails we need to set RAERR
+ ;RAERR is needed back in RAHLO1 p162
+ ;
  D ^DIE K DE,DQ,DIE,DR D UNLOCK^RAUTL12("^RARPT(",RARPT)
  N RA1,RA2,RA3,RA4 S RA1=RADFN,RA2=RADTI,RA3=RACN,RA4=RARPT
  S RA(0)=$G(^RARPT(RARPT,0)),RA(5)=$P(^RARPT(RARPT,0),"^",5)

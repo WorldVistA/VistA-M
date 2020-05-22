@@ -1,132 +1,124 @@
-IBDEI2WA ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48605,0)
- ;;=M62.452^^216^2410^20
- ;;^UTILITY(U,$J,358.3,48605,1,0)
+ ;;^UTILITY(U,$J,358.3,46175,2)
+ ;;=^5005359
+ ;;^UTILITY(U,$J,358.3,46176,0)
+ ;;=D31.31^^176^2300^5
+ ;;^UTILITY(U,$J,358.3,46176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48605,1,3,0)
- ;;=3^Contracture of muscle, left thigh
- ;;^UTILITY(U,$J,358.3,48605,1,4,0)
- ;;=4^M62.452
- ;;^UTILITY(U,$J,358.3,48605,2)
- ;;=^5012645
- ;;^UTILITY(U,$J,358.3,48606,0)
- ;;=M62.422^^216^2410^21
- ;;^UTILITY(U,$J,358.3,48606,1,0)
+ ;;^UTILITY(U,$J,358.3,46176,1,3,0)
+ ;;=3^Benign Neop/Nevus Choroid,Right Eye
+ ;;^UTILITY(U,$J,358.3,46176,1,4,0)
+ ;;=4^D31.31
+ ;;^UTILITY(U,$J,358.3,46176,2)
+ ;;=^5002121
+ ;;^UTILITY(U,$J,358.3,46177,0)
+ ;;=D31.32^^176^2300^4
+ ;;^UTILITY(U,$J,358.3,46177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48606,1,3,0)
- ;;=3^Contracture of muscle, left upper arm
- ;;^UTILITY(U,$J,358.3,48606,1,4,0)
- ;;=4^M62.422
- ;;^UTILITY(U,$J,358.3,48606,2)
- ;;=^5012636
- ;;^UTILITY(U,$J,358.3,48607,0)
- ;;=M62.49^^216^2410^22
- ;;^UTILITY(U,$J,358.3,48607,1,0)
+ ;;^UTILITY(U,$J,358.3,46177,1,3,0)
+ ;;=3^Benign Neop/Nevus Choroid,Left Eye
+ ;;^UTILITY(U,$J,358.3,46177,1,4,0)
+ ;;=4^D31.32
+ ;;^UTILITY(U,$J,358.3,46177,2)
+ ;;=^5002122
+ ;;^UTILITY(U,$J,358.3,46178,0)
+ ;;=H40.1131^^176^2300^47
+ ;;^UTILITY(U,$J,358.3,46178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48607,1,3,0)
- ;;=3^Contracture of muscle, multiple sites
- ;;^UTILITY(U,$J,358.3,48607,1,4,0)
- ;;=4^M62.49
- ;;^UTILITY(U,$J,358.3,48607,2)
- ;;=^5012654
- ;;^UTILITY(U,$J,358.3,48608,0)
- ;;=M62.48^^216^2410^23
- ;;^UTILITY(U,$J,358.3,48608,1,0)
+ ;;^UTILITY(U,$J,358.3,46178,1,3,0)
+ ;;=3^Primary Open-Angle Glaucoma,Mild Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,46178,1,4,0)
+ ;;=4^H40.1131
+ ;;^UTILITY(U,$J,358.3,46178,2)
+ ;;=^5138547
+ ;;^UTILITY(U,$J,358.3,46179,0)
+ ;;=H40.1132^^176^2300^48
+ ;;^UTILITY(U,$J,358.3,46179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48608,1,3,0)
- ;;=3^Contracture of muscle, other site
- ;;^UTILITY(U,$J,358.3,48608,1,4,0)
- ;;=4^M62.48
- ;;^UTILITY(U,$J,358.3,48608,2)
- ;;=^5012653
- ;;^UTILITY(U,$J,358.3,48609,0)
- ;;=M62.471^^216^2410^24
- ;;^UTILITY(U,$J,358.3,48609,1,0)
+ ;;^UTILITY(U,$J,358.3,46179,1,3,0)
+ ;;=3^Primary Open-Angle Glaucoma,Moderate Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,46179,1,4,0)
+ ;;=4^H40.1132
+ ;;^UTILITY(U,$J,358.3,46179,2)
+ ;;=^5138548
+ ;;^UTILITY(U,$J,358.3,46180,0)
+ ;;=Z01.021^^176^2300^27
+ ;;^UTILITY(U,$J,358.3,46180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48609,1,3,0)
- ;;=3^Contracture of muscle, right ankle and foot
- ;;^UTILITY(U,$J,358.3,48609,1,4,0)
- ;;=4^M62.471
- ;;^UTILITY(U,$J,358.3,48609,2)
- ;;=^5012650
- ;;^UTILITY(U,$J,358.3,48610,0)
- ;;=M62.431^^216^2410^25
- ;;^UTILITY(U,$J,358.3,48610,1,0)
+ ;;^UTILITY(U,$J,358.3,46180,1,3,0)
+ ;;=3^Eye/Vision Exam After Failed Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46180,1,4,0)
+ ;;=4^Z01.021
+ ;;^UTILITY(U,$J,358.3,46180,2)
+ ;;=^5158319
+ ;;^UTILITY(U,$J,358.3,46181,0)
+ ;;=Z01.020^^176^2300^28
+ ;;^UTILITY(U,$J,358.3,46181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48610,1,3,0)
- ;;=3^Contracture of muscle, right forearm
- ;;^UTILITY(U,$J,358.3,48610,1,4,0)
- ;;=4^M62.431
- ;;^UTILITY(U,$J,358.3,48610,2)
- ;;=^5012638
- ;;^UTILITY(U,$J,358.3,48611,0)
- ;;=M62.441^^216^2410^26
- ;;^UTILITY(U,$J,358.3,48611,1,0)
+ ;;^UTILITY(U,$J,358.3,46181,1,3,0)
+ ;;=3^Eye/Vision Exam After Failed Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,46181,1,4,0)
+ ;;=4^Z01.020
+ ;;^UTILITY(U,$J,358.3,46181,2)
+ ;;=^5158318
+ ;;^UTILITY(U,$J,358.3,46182,0)
+ ;;=H10.31^^176^2301^1
+ ;;^UTILITY(U,$J,358.3,46182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48611,1,3,0)
- ;;=3^Contracture of muscle, right hand
- ;;^UTILITY(U,$J,358.3,48611,1,4,0)
- ;;=4^M62.441
- ;;^UTILITY(U,$J,358.3,48611,2)
- ;;=^5012641
- ;;^UTILITY(U,$J,358.3,48612,0)
- ;;=M62.461^^216^2410^27
- ;;^UTILITY(U,$J,358.3,48612,1,0)
+ ;;^UTILITY(U,$J,358.3,46182,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Right Eye
+ ;;^UTILITY(U,$J,358.3,46182,1,4,0)
+ ;;=4^H10.31
+ ;;^UTILITY(U,$J,358.3,46182,2)
+ ;;=^5133458
+ ;;^UTILITY(U,$J,358.3,46183,0)
+ ;;=H10.32^^176^2301^2
+ ;;^UTILITY(U,$J,358.3,46183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48612,1,3,0)
- ;;=3^Contracture of muscle, right lower leg
- ;;^UTILITY(U,$J,358.3,48612,1,4,0)
- ;;=4^M62.461
- ;;^UTILITY(U,$J,358.3,48612,2)
- ;;=^5012647
- ;;^UTILITY(U,$J,358.3,48613,0)
- ;;=M62.411^^216^2410^28
- ;;^UTILITY(U,$J,358.3,48613,1,0)
+ ;;^UTILITY(U,$J,358.3,46183,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Left Eye
+ ;;^UTILITY(U,$J,358.3,46183,1,4,0)
+ ;;=4^H10.32
+ ;;^UTILITY(U,$J,358.3,46183,2)
+ ;;=^5133459
+ ;;^UTILITY(U,$J,358.3,46184,0)
+ ;;=H10.401^^176^2301^3
+ ;;^UTILITY(U,$J,358.3,46184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48613,1,3,0)
- ;;=3^Contracture of muscle, right shoulder
- ;;^UTILITY(U,$J,358.3,48613,1,4,0)
- ;;=4^M62.411
- ;;^UTILITY(U,$J,358.3,48613,2)
- ;;=^5012632
- ;;^UTILITY(U,$J,358.3,48614,0)
- ;;=M62.451^^216^2410^29
- ;;^UTILITY(U,$J,358.3,48614,1,0)
+ ;;^UTILITY(U,$J,358.3,46184,1,3,0)
+ ;;=3^Conjunctivitis,Chronic,Right Eye
+ ;;^UTILITY(U,$J,358.3,46184,1,4,0)
+ ;;=4^H10.401
+ ;;^UTILITY(U,$J,358.3,46184,2)
+ ;;=^5004681
+ ;;^UTILITY(U,$J,358.3,46185,0)
+ ;;=H10.402^^176^2301^4
+ ;;^UTILITY(U,$J,358.3,46185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48614,1,3,0)
- ;;=3^Contracture of muscle, right thigh
- ;;^UTILITY(U,$J,358.3,48614,1,4,0)
- ;;=4^M62.451
- ;;^UTILITY(U,$J,358.3,48614,2)
- ;;=^5012644
- ;;^UTILITY(U,$J,358.3,48615,0)
- ;;=M62.421^^216^2410^30
- ;;^UTILITY(U,$J,358.3,48615,1,0)
+ ;;^UTILITY(U,$J,358.3,46185,1,3,0)
+ ;;=3^Conjunctivitis,Chronic,Left Eye
+ ;;^UTILITY(U,$J,358.3,46185,1,4,0)
+ ;;=4^H10.402
+ ;;^UTILITY(U,$J,358.3,46185,2)
+ ;;=^5004682
+ ;;^UTILITY(U,$J,358.3,46186,0)
+ ;;=H10.403^^176^2301^5
+ ;;^UTILITY(U,$J,358.3,46186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48615,1,3,0)
- ;;=3^Contracture of muscle, right upper arm
- ;;^UTILITY(U,$J,358.3,48615,1,4,0)
- ;;=4^M62.421
- ;;^UTILITY(U,$J,358.3,48615,2)
- ;;=^5012635
- ;;^UTILITY(U,$J,358.3,48616,0)
- ;;=M25.262^^216^2410^31
- ;;^UTILITY(U,$J,358.3,48616,1,0)
+ ;;^UTILITY(U,$J,358.3,46186,1,3,0)
+ ;;=3^Conjunctivitis,Chronic,Bilateral
+ ;;^UTILITY(U,$J,358.3,46186,1,4,0)
+ ;;=4^H10.403
+ ;;^UTILITY(U,$J,358.3,46186,2)
+ ;;=^5004683
+ ;;^UTILITY(U,$J,358.3,46187,0)
+ ;;=H10.45^^176^2301^6
+ ;;^UTILITY(U,$J,358.3,46187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48616,1,3,0)
- ;;=3^Flail joint, left knee
- ;;^UTILITY(U,$J,358.3,48616,1,4,0)
- ;;=4^M25.262
- ;;^UTILITY(U,$J,358.3,48616,2)
- ;;=^5011544
- ;;^UTILITY(U,$J,358.3,48617,0)
- ;;=M25.212^^216^2410^32
- ;;^UTILITY(U,$J,358.3,48617,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48617,1,3,0)
- ;;=3^Flail joint, left shoulder
- ;;^UTILITY(U,$J,358.3,48617,1,4,0)
- ;;=4^M25.212
+ ;;^UTILITY(U,$J,358.3,46187,1,3,0)
+ ;;=3^Conjunctivitis,Allergic,Chronic
+ ;;^UTILITY(U,$J,358.3,46187,1,4,0)
+ ;;=4^H10.45

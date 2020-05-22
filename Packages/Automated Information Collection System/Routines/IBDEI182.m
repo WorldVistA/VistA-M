@@ -1,138 +1,122 @@
-IBDEI182 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI182 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20775,1,0)
+ ;;^UTILITY(U,$J,358.3,19613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20775,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,20775,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,20775,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,20776,0)
- ;;=J09.X9^^84^939^28
- ;;^UTILITY(U,$J,358.3,20776,1,0)
+ ;;^UTILITY(U,$J,358.3,19613,1,3,0)
+ ;;=3^Traum subdr hem w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,19613,1,4,0)
+ ;;=4^S06.5X4S
+ ;;^UTILITY(U,$J,358.3,19613,2)
+ ;;=^5021070
+ ;;^UTILITY(U,$J,358.3,19614,0)
+ ;;=S06.5X9S^^93^994^97
+ ;;^UTILITY(U,$J,358.3,19614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20776,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,20776,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,20776,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,20777,0)
- ;;=J44.9^^84^939^14
- ;;^UTILITY(U,$J,358.3,20777,1,0)
+ ;;^UTILITY(U,$J,358.3,19614,1,3,0)
+ ;;=3^Traum subdr hem w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,19614,1,4,0)
+ ;;=4^S06.5X9S
+ ;;^UTILITY(U,$J,358.3,19614,2)
+ ;;=^5021085
+ ;;^UTILITY(U,$J,358.3,19615,0)
+ ;;=S06.5X0S^^93^994^98
+ ;;^UTILITY(U,$J,358.3,19615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20777,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,20777,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,20777,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,20778,0)
- ;;=J44.1^^84^939^12
- ;;^UTILITY(U,$J,358.3,20778,1,0)
+ ;;^UTILITY(U,$J,358.3,19615,1,3,0)
+ ;;=3^Traum subdr hem w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,19615,1,4,0)
+ ;;=4^S06.5X0S
+ ;;^UTILITY(U,$J,358.3,19615,2)
+ ;;=^5021058
+ ;;^UTILITY(U,$J,358.3,19616,0)
+ ;;=M84.351S^^93^995^114
+ ;;^UTILITY(U,$J,358.3,19616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20778,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,20778,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,20778,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,20779,0)
- ;;=J42.^^84^939^10
- ;;^UTILITY(U,$J,358.3,20779,1,0)
+ ;;^UTILITY(U,$J,358.3,19616,1,3,0)
+ ;;=3^Stress fracture, right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19616,1,4,0)
+ ;;=4^M84.351S
+ ;;^UTILITY(U,$J,358.3,19616,2)
+ ;;=^5013685
+ ;;^UTILITY(U,$J,358.3,19617,0)
+ ;;=M84.352S^^93^995^113
+ ;;^UTILITY(U,$J,358.3,19617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20779,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,20779,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,20779,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,20780,0)
- ;;=J43.9^^84^939^22
- ;;^UTILITY(U,$J,358.3,20780,1,0)
+ ;;^UTILITY(U,$J,358.3,19617,1,3,0)
+ ;;=3^Stress fracture, left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19617,1,4,0)
+ ;;=4^M84.352S
+ ;;^UTILITY(U,$J,358.3,19617,2)
+ ;;=^5013691
+ ;;^UTILITY(U,$J,358.3,19618,0)
+ ;;=M84.451S^^93^995^102
+ ;;^UTILITY(U,$J,358.3,19618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20780,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,20780,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,20780,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,20781,0)
- ;;=J43.0^^84^939^30
- ;;^UTILITY(U,$J,358.3,20781,1,0)
+ ;;^UTILITY(U,$J,358.3,19618,1,3,0)
+ ;;=3^Pathological fracture, right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19618,1,4,0)
+ ;;=4^M84.451S
+ ;;^UTILITY(U,$J,358.3,19618,2)
+ ;;=^5013907
+ ;;^UTILITY(U,$J,358.3,19619,0)
+ ;;=M84.452S^^93^995^101
+ ;;^UTILITY(U,$J,358.3,19619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20781,1,3,0)
- ;;=3^MacLeod's Syndrome
- ;;^UTILITY(U,$J,358.3,20781,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,20781,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,20782,0)
- ;;=J43.1^^84^939^21
- ;;^UTILITY(U,$J,358.3,20782,1,0)
+ ;;^UTILITY(U,$J,358.3,19619,1,3,0)
+ ;;=3^Pathological fracture, left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19619,1,4,0)
+ ;;=4^M84.452S
+ ;;^UTILITY(U,$J,358.3,19619,2)
+ ;;=^5013913
+ ;;^UTILITY(U,$J,358.3,19620,0)
+ ;;=S72.021S^^93^995^17
+ ;;^UTILITY(U,$J,358.3,19620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20782,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,20782,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,20782,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,20783,0)
- ;;=J43.2^^84^939^19
- ;;^UTILITY(U,$J,358.3,20783,1,0)
+ ;;^UTILITY(U,$J,358.3,19620,1,3,0)
+ ;;=3^Displaced epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19620,1,4,0)
+ ;;=4^S72.021S
+ ;;^UTILITY(U,$J,358.3,19620,2)
+ ;;=^5037136
+ ;;^UTILITY(U,$J,358.3,19621,0)
+ ;;=S72.022S^^93^995^16
+ ;;^UTILITY(U,$J,358.3,19621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20783,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,20783,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,20783,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,20784,0)
- ;;=J43.8^^84^939^20
- ;;^UTILITY(U,$J,358.3,20784,1,0)
+ ;;^UTILITY(U,$J,358.3,19621,1,3,0)
+ ;;=3^Displaced epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19621,1,4,0)
+ ;;=4^S72.022S
+ ;;^UTILITY(U,$J,358.3,19621,2)
+ ;;=^5037152
+ ;;^UTILITY(U,$J,358.3,19622,0)
+ ;;=S72.024S^^93^995^65
+ ;;^UTILITY(U,$J,358.3,19622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20784,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,20784,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,20784,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,20785,0)
- ;;=J45.902^^84^939^4
- ;;^UTILITY(U,$J,358.3,20785,1,0)
+ ;;^UTILITY(U,$J,358.3,19622,1,3,0)
+ ;;=3^Nondisp epiphy fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19622,1,4,0)
+ ;;=4^S72.024S
+ ;;^UTILITY(U,$J,358.3,19622,2)
+ ;;=^5037184
+ ;;^UTILITY(U,$J,358.3,19623,0)
+ ;;=S72.025S^^93^995^64
+ ;;^UTILITY(U,$J,358.3,19623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20785,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,20785,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,20785,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,20786,0)
- ;;=J45.901^^84^939^3
- ;;^UTILITY(U,$J,358.3,20786,1,0)
+ ;;^UTILITY(U,$J,358.3,19623,1,3,0)
+ ;;=3^Nondisp epiphy fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,19623,1,4,0)
+ ;;=4^S72.025S
+ ;;^UTILITY(U,$J,358.3,19623,2)
+ ;;=^5037200
+ ;;^UTILITY(U,$J,358.3,19624,0)
+ ;;=S72.031S^^93^995^33
+ ;;^UTILITY(U,$J,358.3,19624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20786,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,20786,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,20786,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,20787,0)
- ;;=J47.9^^84^939^9
- ;;^UTILITY(U,$J,358.3,20787,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20787,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,20787,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,20787,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,20788,0)
- ;;=J47.1^^84^939^7
- ;;^UTILITY(U,$J,358.3,20788,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20788,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,19624,1,3,0)
+ ;;=3^Displaced midcervical fx of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,19624,1,4,0)
+ ;;=4^S72.031S
+ ;;^UTILITY(U,$J,358.3,19624,2)
+ ;;=^5037232

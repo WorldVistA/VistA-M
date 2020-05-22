@@ -1,132 +1,128 @@
-IBDEI1RV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30122,0)
- ;;=C34.91^^118^1500^21
- ;;^UTILITY(U,$J,358.3,30122,1,0)
+ ;;^UTILITY(U,$J,358.3,28308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30122,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
- ;;^UTILITY(U,$J,358.3,30122,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,30122,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,30123,0)
- ;;=C34.92^^118^1500^20
- ;;^UTILITY(U,$J,358.3,30123,1,0)
+ ;;^UTILITY(U,$J,358.3,28308,1,3,0)
+ ;;=3^Depress D/O d/t Anth Med Cond w/ Maj Dep-Like Ep
+ ;;^UTILITY(U,$J,358.3,28308,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,28308,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,28309,0)
+ ;;=F32.0^^115^1387^17
+ ;;^UTILITY(U,$J,358.3,28309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30123,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
- ;;^UTILITY(U,$J,358.3,30123,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,30123,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,30124,0)
- ;;=C38.4^^118^1500^14
- ;;^UTILITY(U,$J,358.3,30124,1,0)
+ ;;^UTILITY(U,$J,358.3,28309,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,28309,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,28309,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,28310,0)
+ ;;=F32.1^^115^1387^18
+ ;;^UTILITY(U,$J,358.3,28310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30124,1,3,0)
- ;;=3^Malignant neoplasm of pleura
- ;;^UTILITY(U,$J,358.3,30124,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,30124,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,30125,0)
- ;;=C45.0^^118^1500^22
- ;;^UTILITY(U,$J,358.3,30125,1,0)
+ ;;^UTILITY(U,$J,358.3,28310,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,28310,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,28310,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,28311,0)
+ ;;=F32.2^^115^1387^19
+ ;;^UTILITY(U,$J,358.3,28311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30125,1,3,0)
- ;;=3^Mesothelioma of pleura
- ;;^UTILITY(U,$J,358.3,30125,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,30125,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,30126,0)
- ;;=C73.^^118^1500^16
- ;;^UTILITY(U,$J,358.3,30126,1,0)
+ ;;^UTILITY(U,$J,358.3,28311,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,28311,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,28311,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,28312,0)
+ ;;=F32.3^^115^1387^14
+ ;;^UTILITY(U,$J,358.3,28312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30126,1,3,0)
- ;;=3^Malignant neoplasm of thyroid gland
- ;;^UTILITY(U,$J,358.3,30126,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,30126,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,30127,0)
- ;;=C76.0^^118^1500^4
- ;;^UTILITY(U,$J,358.3,30127,1,0)
+ ;;^UTILITY(U,$J,358.3,28312,1,3,0)
+ ;;=3^MDD,Single Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,28312,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,28312,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,28313,0)
+ ;;=F32.4^^115^1387^16
+ ;;^UTILITY(U,$J,358.3,28313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30127,1,3,0)
- ;;=3^Malignant neoplasm of head, face and neck
- ;;^UTILITY(U,$J,358.3,30127,1,4,0)
- ;;=4^C76.0
- ;;^UTILITY(U,$J,358.3,30127,2)
- ;;=^5001324
- ;;^UTILITY(U,$J,358.3,30128,0)
- ;;=C05.9^^118^1500^11
- ;;^UTILITY(U,$J,358.3,30128,1,0)
+ ;;^UTILITY(U,$J,358.3,28313,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,28313,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,28313,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,28314,0)
+ ;;=F32.5^^115^1387^15
+ ;;^UTILITY(U,$J,358.3,28314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30128,1,3,0)
- ;;=3^Malignant neoplasm of palate,unspec
- ;;^UTILITY(U,$J,358.3,30128,1,4,0)
- ;;=4^C05.9
- ;;^UTILITY(U,$J,358.3,30128,2)
- ;;=^5000898
- ;;^UTILITY(U,$J,358.3,30129,0)
- ;;=C07.^^118^1500^12
- ;;^UTILITY(U,$J,358.3,30129,1,0)
+ ;;^UTILITY(U,$J,358.3,28314,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,28314,1,4,0)
+ ;;=4^F32.5
+ ;;^UTILITY(U,$J,358.3,28314,2)
+ ;;=^5003526
+ ;;^UTILITY(U,$J,358.3,28315,0)
+ ;;=F33.9^^115^1387^13
+ ;;^UTILITY(U,$J,358.3,28315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30129,1,3,0)
- ;;=3^Malignant neoplasm of parotid gland
- ;;^UTILITY(U,$J,358.3,30129,1,4,0)
- ;;=4^C07.
- ;;^UTILITY(U,$J,358.3,30129,2)
- ;;=^267005
- ;;^UTILITY(U,$J,358.3,30130,0)
- ;;=C08.9^^118^1500^7
- ;;^UTILITY(U,$J,358.3,30130,1,0)
+ ;;^UTILITY(U,$J,358.3,28315,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,28315,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,28315,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,28316,0)
+ ;;=F33.0^^115^1387^10
+ ;;^UTILITY(U,$J,358.3,28316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30130,1,3,0)
- ;;=3^Malignant neoplasm of major salivary gland,unspec
- ;;^UTILITY(U,$J,358.3,30130,1,4,0)
- ;;=4^C08.9
- ;;^UTILITY(U,$J,358.3,30130,2)
- ;;=^5000902
- ;;^UTILITY(U,$J,358.3,30131,0)
- ;;=C09.9^^118^1500^18
- ;;^UTILITY(U,$J,358.3,30131,1,0)
+ ;;^UTILITY(U,$J,358.3,28316,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,28316,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,28316,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,28317,0)
+ ;;=F33.1^^115^1387^11
+ ;;^UTILITY(U,$J,358.3,28317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30131,1,3,0)
- ;;=3^Malignant neoplasm of tonsil,unspec
- ;;^UTILITY(U,$J,358.3,30131,1,4,0)
- ;;=4^C09.9
- ;;^UTILITY(U,$J,358.3,30131,2)
- ;;=^5000905
- ;;^UTILITY(U,$J,358.3,30132,0)
- ;;=C12.^^118^1500^15
- ;;^UTILITY(U,$J,358.3,30132,1,0)
+ ;;^UTILITY(U,$J,358.3,28317,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,28317,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,28317,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,28318,0)
+ ;;=F33.2^^115^1387^12
+ ;;^UTILITY(U,$J,358.3,28318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30132,1,3,0)
- ;;=3^Malignant neoplasm of pyriform sinus
- ;;^UTILITY(U,$J,358.3,30132,1,4,0)
- ;;=4^C12.
- ;;^UTILITY(U,$J,358.3,30132,2)
- ;;=^267046
- ;;^UTILITY(U,$J,358.3,30133,0)
- ;;=C13.9^^118^1500^5
- ;;^UTILITY(U,$J,358.3,30133,1,0)
+ ;;^UTILITY(U,$J,358.3,28318,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,28318,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,28318,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,28319,0)
+ ;;=F33.3^^115^1387^7
+ ;;^UTILITY(U,$J,358.3,28319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30133,1,3,0)
- ;;=3^Malignant neoplasm of hypopharynx,unspec
- ;;^UTILITY(U,$J,358.3,30133,1,4,0)
- ;;=4^C13.9
- ;;^UTILITY(U,$J,358.3,30133,2)
- ;;=^5000915
- ;;^UTILITY(U,$J,358.3,30134,0)
- ;;=C14.0^^118^1500^13
- ;;^UTILITY(U,$J,358.3,30134,1,0)
+ ;;^UTILITY(U,$J,358.3,28319,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Feat
+ ;;^UTILITY(U,$J,358.3,28319,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,28319,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,28320,0)
+ ;;=F33.41^^115^1387^9
+ ;;^UTILITY(U,$J,358.3,28320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30134,1,3,0)
- ;;=3^Malignant neoplasm of pharynx,unspec
- ;;^UTILITY(U,$J,358.3,30134,1,4,0)
- ;;=4^C14.0
+ ;;^UTILITY(U,$J,358.3,28320,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission

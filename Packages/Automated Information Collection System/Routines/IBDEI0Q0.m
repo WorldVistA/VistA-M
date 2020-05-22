@@ -1,356 +1,120 @@
-IBDEI0Q0 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0Q0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34432,2)
- ;;=^5003037
- ;;^UTILITY(U,$J,358.3,34433,0)
- ;;=E89.6^^100^1499^47
- ;;^UTILITY(U,$J,358.3,34433,1,0)
+ ;;^UTILITY(U,$J,358.3,11598,1,4,0)
+ ;;=4^E10.3291
+ ;;^UTILITY(U,$J,358.3,11598,2)
+ ;;=^5138283
+ ;;^UTILITY(U,$J,358.3,11599,0)
+ ;;=E10.3292^^77^741^27
+ ;;^UTILITY(U,$J,358.3,11599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34433,1,3,0)
- ;;=3^PostProcedural Adrenocortical Hypofunction
- ;;^UTILITY(U,$J,358.3,34433,1,4,0)
- ;;=4^E89.6
- ;;^UTILITY(U,$J,358.3,34433,2)
- ;;=^5003042
- ;;^UTILITY(U,$J,358.3,34434,0)
- ;;=L68.0^^100^1499^25
- ;;^UTILITY(U,$J,358.3,34434,1,0)
+ ;;^UTILITY(U,$J,358.3,11599,1,3,0)
+ ;;=3^DM Type 1 w/ Mild NPDR w/o Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,11599,1,4,0)
+ ;;=4^E10.3292
+ ;;^UTILITY(U,$J,358.3,11599,2)
+ ;;=^5138284
+ ;;^UTILITY(U,$J,358.3,11600,0)
+ ;;=E10.3391^^77^741^23
+ ;;^UTILITY(U,$J,358.3,11600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34434,1,3,0)
- ;;=3^Hirsutism
- ;;^UTILITY(U,$J,358.3,34434,1,4,0)
- ;;=4^L68.0
- ;;^UTILITY(U,$J,358.3,34434,2)
- ;;=^5009262
- ;;^UTILITY(U,$J,358.3,34435,0)
- ;;=M80.00XA^^100^1499^2
- ;;^UTILITY(U,$J,358.3,34435,1,0)
+ ;;^UTILITY(U,$J,358.3,11600,1,3,0)
+ ;;=3^DM Type 1 w/ Mod NPDR w/o Macula Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,11600,1,4,0)
+ ;;=4^E10.3391
+ ;;^UTILITY(U,$J,358.3,11600,2)
+ ;;=^5138291
+ ;;^UTILITY(U,$J,358.3,11601,0)
+ ;;=E10.3392^^77^741^28
+ ;;^UTILITY(U,$J,358.3,11601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34435,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,34435,1,4,0)
- ;;=4^M80.00XA
- ;;^UTILITY(U,$J,358.3,34435,2)
- ;;=^5013363
- ;;^UTILITY(U,$J,358.3,34436,0)
- ;;=M81.0^^100^1499^3
- ;;^UTILITY(U,$J,358.3,34436,1,0)
+ ;;^UTILITY(U,$J,358.3,11601,1,3,0)
+ ;;=3^DM Type 1 w/ Mod NPDR w/o Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,11601,1,4,0)
+ ;;=4^E10.3392
+ ;;^UTILITY(U,$J,358.3,11601,2)
+ ;;=^5138292
+ ;;^UTILITY(U,$J,358.3,11602,0)
+ ;;=E10.3491^^77^741^24
+ ;;^UTILITY(U,$J,358.3,11602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34436,1,3,0)
- ;;=3^Age-Related Osteoporosis w/o Fx
- ;;^UTILITY(U,$J,358.3,34436,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,34436,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,34437,0)
- ;;=M85.80^^100^1499^44
- ;;^UTILITY(U,$J,358.3,34437,1,0)
+ ;;^UTILITY(U,$J,358.3,11602,1,3,0)
+ ;;=3^DM Type 1 w/ Severe NPDR w/o Macula Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,11602,1,4,0)
+ ;;=4^E10.3491
+ ;;^UTILITY(U,$J,358.3,11602,2)
+ ;;=^5138299
+ ;;^UTILITY(U,$J,358.3,11603,0)
+ ;;=E10.3492^^77^741^29
+ ;;^UTILITY(U,$J,358.3,11603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34437,1,3,0)
- ;;=3^Osteopenia,Unspec Site
- ;;^UTILITY(U,$J,358.3,34437,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,34437,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,34438,0)
- ;;=N62.^^100^1499^24
- ;;^UTILITY(U,$J,358.3,34438,1,0)
+ ;;^UTILITY(U,$J,358.3,11603,1,3,0)
+ ;;=3^DM Type 1 w/ Severe NPDR w/o Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,11603,1,4,0)
+ ;;=4^E10.3492
+ ;;^UTILITY(U,$J,358.3,11603,2)
+ ;;=^5138300
+ ;;^UTILITY(U,$J,358.3,11604,0)
+ ;;=E10.3511^^77^741^25
+ ;;^UTILITY(U,$J,358.3,11604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34438,1,3,0)
- ;;=3^Gynecomastia
- ;;^UTILITY(U,$J,358.3,34438,1,4,0)
- ;;=4^N62.
- ;;^UTILITY(U,$J,358.3,34438,2)
- ;;=^5015790
- ;;^UTILITY(U,$J,358.3,34439,0)
- ;;=E10.43^^100^1499^6
- ;;^UTILITY(U,$J,358.3,34439,1,0)
+ ;;^UTILITY(U,$J,358.3,11604,1,3,0)
+ ;;=3^DM Type 1 w/ PDR w/ Macula Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,11604,1,4,0)
+ ;;=4^E10.3511
+ ;;^UTILITY(U,$J,358.3,11604,2)
+ ;;=^5138303
+ ;;^UTILITY(U,$J,358.3,11605,0)
+ ;;=E10.3512^^77^741^30
+ ;;^UTILITY(U,$J,358.3,11605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34439,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,34439,1,4,0)
- ;;=4^E10.43
- ;;^UTILITY(U,$J,358.3,34439,2)
- ;;=^5002607
- ;;^UTILITY(U,$J,358.3,34440,0)
- ;;=E10.59^^100^1499^4
- ;;^UTILITY(U,$J,358.3,34440,1,0)
+ ;;^UTILITY(U,$J,358.3,11605,1,3,0)
+ ;;=3^DM Type 1 w/ PDR w/ Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,11605,1,4,0)
+ ;;=4^E10.3512
+ ;;^UTILITY(U,$J,358.3,11605,2)
+ ;;=^5138304
+ ;;^UTILITY(U,$J,358.3,11606,0)
+ ;;=E10.3591^^77^741^26
+ ;;^UTILITY(U,$J,358.3,11606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34440,1,3,0)
- ;;=3^DM Type 1 w/ Circulatory Complications
- ;;^UTILITY(U,$J,358.3,34440,1,4,0)
- ;;=4^E10.59
- ;;^UTILITY(U,$J,358.3,34440,2)
- ;;=^5002612
- ;;^UTILITY(U,$J,358.3,34441,0)
- ;;=E10.618^^100^1499^5
- ;;^UTILITY(U,$J,358.3,34441,1,0)
+ ;;^UTILITY(U,$J,358.3,11606,1,3,0)
+ ;;=3^DM Type 1 w/ PDR w/o Macula Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,11606,1,4,0)
+ ;;=4^E10.3591
+ ;;^UTILITY(U,$J,358.3,11606,2)
+ ;;=^5138323
+ ;;^UTILITY(U,$J,358.3,11607,0)
+ ;;=E10.3592^^77^741^31
+ ;;^UTILITY(U,$J,358.3,11607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34441,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Arthropathy
- ;;^UTILITY(U,$J,358.3,34441,1,4,0)
- ;;=4^E10.618
- ;;^UTILITY(U,$J,358.3,34441,2)
- ;;=^5002614
- ;;^UTILITY(U,$J,358.3,34442,0)
- ;;=E10.621^^100^1499^7
- ;;^UTILITY(U,$J,358.3,34442,1,0)
+ ;;^UTILITY(U,$J,358.3,11607,1,3,0)
+ ;;=3^DM Type 1 w/ PDR w/o Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,11607,1,4,0)
+ ;;=4^E10.3592
+ ;;^UTILITY(U,$J,358.3,11607,2)
+ ;;=^5138324
+ ;;^UTILITY(U,$J,358.3,11608,0)
+ ;;=E11.3211^^77^741^4
+ ;;^UTILITY(U,$J,358.3,11608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34442,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,34442,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,34442,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,34443,0)
- ;;=E10.622^^100^1499^11
- ;;^UTILITY(U,$J,358.3,34443,1,0)
+ ;;^UTILITY(U,$J,358.3,11608,1,3,0)
+ ;;=3^DM Type 2 w/ Mild NPDR w/ Macula Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,11608,1,4,0)
+ ;;=4^E11.3211
+ ;;^UTILITY(U,$J,358.3,11608,2)
+ ;;=^5138331
+ ;;^UTILITY(U,$J,358.3,11609,0)
+ ;;=E11.3212^^77^741^12
+ ;;^UTILITY(U,$J,358.3,11609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34443,1,3,0)
- ;;=3^DM Type 1 w/ Skin Ulcer
- ;;^UTILITY(U,$J,358.3,34443,1,4,0)
- ;;=4^E10.622
- ;;^UTILITY(U,$J,358.3,34443,2)
- ;;=^5002617
- ;;^UTILITY(U,$J,358.3,34444,0)
- ;;=E10.65^^100^1499^10
- ;;^UTILITY(U,$J,358.3,34444,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34444,1,3,0)
- ;;=3^DM Type 1 w/ Hyperglycermia
- ;;^UTILITY(U,$J,358.3,34444,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,34444,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,34445,0)
- ;;=E10.39^^100^1499^9
- ;;^UTILITY(U,$J,358.3,34445,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34445,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complications NEC
- ;;^UTILITY(U,$J,358.3,34445,1,4,0)
- ;;=4^E10.39
- ;;^UTILITY(U,$J,358.3,34445,2)
- ;;=^5002603
- ;;^UTILITY(U,$J,358.3,34446,0)
- ;;=E66.3^^100^1499^45
- ;;^UTILITY(U,$J,358.3,34446,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34446,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,34446,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,34446,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,34447,0)
- ;;=E89.1^^100^1499^49
- ;;^UTILITY(U,$J,358.3,34447,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34447,1,3,0)
- ;;=3^Postprocedural Hypoinsulinemia
- ;;^UTILITY(U,$J,358.3,34447,1,4,0)
- ;;=4^E89.1
- ;;^UTILITY(U,$J,358.3,34447,2)
- ;;=^5003036
- ;;^UTILITY(U,$J,358.3,34448,0)
- ;;=H40.9^^100^1500^9
- ;;^UTILITY(U,$J,358.3,34448,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34448,1,3,0)
- ;;=3^Glaucoma,Unspec
- ;;^UTILITY(U,$J,358.3,34448,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,34448,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,34449,0)
- ;;=H26.9^^100^1500^5
- ;;^UTILITY(U,$J,358.3,34449,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34449,1,3,0)
- ;;=3^Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,34449,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,34449,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,34450,0)
- ;;=H10.9^^100^1500^8
- ;;^UTILITY(U,$J,358.3,34450,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34450,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,34450,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,34450,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,34451,0)
- ;;=H11.32^^100^1500^6
- ;;^UTILITY(U,$J,358.3,34451,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34451,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,34451,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,34451,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,34452,0)
- ;;=H11.31^^100^1500^7
- ;;^UTILITY(U,$J,358.3,34452,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34452,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,34452,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,34452,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,34453,0)
- ;;=H01.002^^100^1500^3
- ;;^UTILITY(U,$J,358.3,34453,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34453,1,3,0)
- ;;=3^Blepharitis Unspec,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,34453,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,34453,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,34454,0)
- ;;=H01.004^^100^1500^2
- ;;^UTILITY(U,$J,358.3,34454,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34454,1,3,0)
- ;;=3^Blepharitis Unspec,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,34454,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,34454,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,34455,0)
- ;;=H01.005^^100^1500^1
- ;;^UTILITY(U,$J,358.3,34455,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34455,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,34455,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,34455,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,34456,0)
- ;;=H01.001^^100^1500^4
- ;;^UTILITY(U,$J,358.3,34456,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34456,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,34456,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,34456,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,34457,0)
- ;;=H57.13^^100^1500^10
- ;;^UTILITY(U,$J,358.3,34457,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34457,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,34457,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,34457,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,34458,0)
- ;;=H57.12^^100^1500^11
- ;;^UTILITY(U,$J,358.3,34458,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34458,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,34458,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,34458,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,34459,0)
- ;;=H57.11^^100^1500^12
- ;;^UTILITY(U,$J,358.3,34459,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34459,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,34459,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,34459,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,34460,0)
- ;;=S05.02XA^^100^1501^3
- ;;^UTILITY(U,$J,358.3,34460,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34460,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,34460,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,34460,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,34461,0)
- ;;=S05.01XA^^100^1501^4
- ;;^UTILITY(U,$J,358.3,34461,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34461,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,34461,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,34461,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,34462,0)
- ;;=T15.02XA^^100^1501^1
- ;;^UTILITY(U,$J,358.3,34462,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34462,1,3,0)
- ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,34462,1,4,0)
- ;;=4^T15.02XA
- ;;^UTILITY(U,$J,358.3,34462,2)
- ;;=^5046387
- ;;^UTILITY(U,$J,358.3,34463,0)
- ;;=T15.01XA^^100^1501^2
- ;;^UTILITY(U,$J,358.3,34463,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34463,1,3,0)
- ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,34463,1,4,0)
- ;;=4^T15.01XA
- ;;^UTILITY(U,$J,358.3,34463,2)
- ;;=^5046384
- ;;^UTILITY(U,$J,358.3,34464,0)
- ;;=S00.252A^^100^1501^5
- ;;^UTILITY(U,$J,358.3,34464,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34464,1,3,0)
- ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,34464,1,4,0)
- ;;=4^S00.252A
- ;;^UTILITY(U,$J,358.3,34464,2)
- ;;=^5019820
- ;;^UTILITY(U,$J,358.3,34465,0)
- ;;=S00.251A^^100^1501^6
- ;;^UTILITY(U,$J,358.3,34465,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34465,1,3,0)
- ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,34465,1,4,0)
- ;;=4^S00.251A
- ;;^UTILITY(U,$J,358.3,34465,2)
- ;;=^5019817
- ;;^UTILITY(U,$J,358.3,34466,0)
- ;;=B96.81^^100^1502^56
- ;;^UTILITY(U,$J,358.3,34466,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34466,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,34466,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,34466,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,34467,0)
- ;;=B15.9^^100^1502^58
- ;;^UTILITY(U,$J,358.3,34467,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34467,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,34467,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,34467,2)
- ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,11609,1,3,0)
+ ;;=3^DM Type 2 w/ Mild NPDR w/ Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,11609,1,4,0)
+ ;;=4^E11.3212
+ ;;^UTILITY(U,$J,358.3,11609,2)
+ ;;=^5138332
+ ;;^UTILITY(U,$J,358.3,11610,0)
+ ;;=E11.3291^^77^741^5

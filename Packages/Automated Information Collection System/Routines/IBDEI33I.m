@@ -1,124 +1,130 @@
-IBDEI33I ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51948,0)
- ;;=I69.820^^233^2548^4
- ;;^UTILITY(U,$J,358.3,51948,1,0)
+ ;;^UTILITY(U,$J,358.3,49428,0)
+ ;;=A41.4^^187^2449^11
+ ;;^UTILITY(U,$J,358.3,49428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51948,1,3,0)
- ;;=3^Aphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,51948,1,4,0)
- ;;=4^I69.820
- ;;^UTILITY(U,$J,358.3,51948,2)
- ;;=^5007522
- ;;^UTILITY(U,$J,358.3,51949,0)
- ;;=I69.220^^233^2548^5
- ;;^UTILITY(U,$J,358.3,51949,1,0)
+ ;;^UTILITY(U,$J,358.3,49428,1,3,0)
+ ;;=3^Sepsis d/t Anaerobes
+ ;;^UTILITY(U,$J,358.3,49428,1,4,0)
+ ;;=4^A41.4
+ ;;^UTILITY(U,$J,358.3,49428,2)
+ ;;=^5000206
+ ;;^UTILITY(U,$J,358.3,49429,0)
+ ;;=A41.50^^187^2449^12
+ ;;^UTILITY(U,$J,358.3,49429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51949,1,3,0)
- ;;=3^Aphasia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,51949,1,4,0)
- ;;=4^I69.220
- ;;^UTILITY(U,$J,358.3,51949,2)
- ;;=^5007459
- ;;^UTILITY(U,$J,358.3,51950,0)
- ;;=I69.920^^233^2548^6
- ;;^UTILITY(U,$J,358.3,51950,1,0)
+ ;;^UTILITY(U,$J,358.3,49429,1,3,0)
+ ;;=3^Gram-Negative Sepsis,Unspec
+ ;;^UTILITY(U,$J,358.3,49429,1,4,0)
+ ;;=4^A41.50
+ ;;^UTILITY(U,$J,358.3,49429,2)
+ ;;=^5000207
+ ;;^UTILITY(U,$J,358.3,49430,0)
+ ;;=A41.51^^187^2449^13
+ ;;^UTILITY(U,$J,358.3,49430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51950,1,3,0)
- ;;=3^Aphasia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,51950,1,4,0)
- ;;=4^I69.920
- ;;^UTILITY(U,$J,358.3,51950,2)
- ;;=^5007553
- ;;^UTILITY(U,$J,358.3,51951,0)
- ;;=I69.390^^233^2548^7
- ;;^UTILITY(U,$J,358.3,51951,1,0)
+ ;;^UTILITY(U,$J,358.3,49430,1,3,0)
+ ;;=3^Sepsis d/t Escherichia Coli
+ ;;^UTILITY(U,$J,358.3,49430,1,4,0)
+ ;;=4^A41.51
+ ;;^UTILITY(U,$J,358.3,49430,2)
+ ;;=^5000208
+ ;;^UTILITY(U,$J,358.3,49431,0)
+ ;;=A41.52^^187^2449^14
+ ;;^UTILITY(U,$J,358.3,49431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51951,1,3,0)
- ;;=3^Apraxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,51951,1,4,0)
- ;;=4^I69.390
- ;;^UTILITY(U,$J,358.3,51951,2)
- ;;=^5007515
- ;;^UTILITY(U,$J,358.3,51952,0)
- ;;=I69.190^^233^2548^8
- ;;^UTILITY(U,$J,358.3,51952,1,0)
+ ;;^UTILITY(U,$J,358.3,49431,1,3,0)
+ ;;=3^Sepsis d/t Pseudomonas
+ ;;^UTILITY(U,$J,358.3,49431,1,4,0)
+ ;;=4^A41.52
+ ;;^UTILITY(U,$J,358.3,49431,2)
+ ;;=^5000209
+ ;;^UTILITY(U,$J,358.3,49432,0)
+ ;;=A41.53^^187^2449^15
+ ;;^UTILITY(U,$J,358.3,49432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51952,1,3,0)
- ;;=3^Apraxia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,51952,1,4,0)
- ;;=4^I69.190
- ;;^UTILITY(U,$J,358.3,51952,2)
- ;;=^5007452
- ;;^UTILITY(U,$J,358.3,51953,0)
- ;;=I69.090^^233^2548^9
- ;;^UTILITY(U,$J,358.3,51953,1,0)
+ ;;^UTILITY(U,$J,358.3,49432,1,3,0)
+ ;;=3^Sepsis d/t Serratia
+ ;;^UTILITY(U,$J,358.3,49432,1,4,0)
+ ;;=4^A41.53
+ ;;^UTILITY(U,$J,358.3,49432,2)
+ ;;=^5000210
+ ;;^UTILITY(U,$J,358.3,49433,0)
+ ;;=A41.59^^187^2449^16
+ ;;^UTILITY(U,$J,358.3,49433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51953,1,3,0)
- ;;=3^Apraxia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,51953,1,4,0)
- ;;=4^I69.090
- ;;^UTILITY(U,$J,358.3,51953,2)
- ;;=^5007420
- ;;^UTILITY(U,$J,358.3,51954,0)
- ;;=I69.890^^233^2548^10
- ;;^UTILITY(U,$J,358.3,51954,1,0)
+ ;;^UTILITY(U,$J,358.3,49433,1,3,0)
+ ;;=3^Gram-Negative Sepsis,Other
+ ;;^UTILITY(U,$J,358.3,49433,1,4,0)
+ ;;=4^A41.59
+ ;;^UTILITY(U,$J,358.3,49433,2)
+ ;;=^5000211
+ ;;^UTILITY(U,$J,358.3,49434,0)
+ ;;=A41.81^^187^2449^17
+ ;;^UTILITY(U,$J,358.3,49434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51954,1,3,0)
- ;;=3^Apraxia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,51954,1,4,0)
- ;;=4^I69.890
- ;;^UTILITY(U,$J,358.3,51954,2)
- ;;=^5007546
- ;;^UTILITY(U,$J,358.3,51955,0)
- ;;=I69.290^^233^2548^11
- ;;^UTILITY(U,$J,358.3,51955,1,0)
+ ;;^UTILITY(U,$J,358.3,49434,1,3,0)
+ ;;=3^Sepsis d/t Enterococcus
+ ;;^UTILITY(U,$J,358.3,49434,1,4,0)
+ ;;=4^A41.81
+ ;;^UTILITY(U,$J,358.3,49434,2)
+ ;;=^5000212
+ ;;^UTILITY(U,$J,358.3,49435,0)
+ ;;=A41.89^^187^2449^18
+ ;;^UTILITY(U,$J,358.3,49435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51955,1,3,0)
- ;;=3^Apraxia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,51955,1,4,0)
- ;;=4^I69.290
- ;;^UTILITY(U,$J,358.3,51955,2)
- ;;=^5007484
- ;;^UTILITY(U,$J,358.3,51956,0)
- ;;=I69.990^^233^2548^12
- ;;^UTILITY(U,$J,358.3,51956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51956,1,3,0)
- ;;=3^Apraxia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,51956,1,4,0)
- ;;=4^I69.990
- ;;^UTILITY(U,$J,358.3,51956,2)
- ;;=^5007568
- ;;^UTILITY(U,$J,358.3,51957,0)
- ;;=I69.91^^233^2548^13
- ;;^UTILITY(U,$J,358.3,51957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51957,1,3,0)
- ;;=3^Cognitive deficits following unsp cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,51957,1,4,0)
- ;;=4^I69.91
- ;;^UTILITY(U,$J,358.3,51957,2)
- ;;=^5007552
- ;;^UTILITY(U,$J,358.3,51958,0)
- ;;=I69.322^^233^2548^14
- ;;^UTILITY(U,$J,358.3,51958,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51958,1,3,0)
- ;;=3^Dysarthria following cerebral infarction
- ;;^UTILITY(U,$J,358.3,51958,1,4,0)
- ;;=4^I69.322
- ;;^UTILITY(U,$J,358.3,51958,2)
- ;;=^5007493
- ;;^UTILITY(U,$J,358.3,51959,0)
- ;;=I69.122^^233^2548^15
- ;;^UTILITY(U,$J,358.3,51959,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51959,1,3,0)
- ;;=3^Dysarthria following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,51959,1,4,0)
- ;;=4^I69.122
- ;;^UTILITY(U,$J,358.3,51959,2)
- ;;=^5007429
+ ;;^UTILITY(U,$J,358.3,49435,1,3,0)
+ ;;=3^Sepsis,Oth Spec
+ ;;^UTILITY(U,$J,358.3,49435,1,4,0)
+ ;;=4^A41.89
+ ;;^UTILITY(U,$J,358.3,49435,2)
+ ;;=^5000213
+ ;;^UTILITY(U,$J,358.3,49436,0)
+ ;;=99251^^188^2450^1
+ ;;^UTILITY(U,$J,358.3,49436,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49436,1,1,0)
+ ;;=1^PF HX/EXAM,SF MDM
+ ;;^UTILITY(U,$J,358.3,49436,1,2,0)
+ ;;=2^99251
+ ;;^UTILITY(U,$J,358.3,49437,0)
+ ;;=99252^^188^2450^2
+ ;;^UTILITY(U,$J,358.3,49437,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49437,1,1,0)
+ ;;=1^EPF HX/EXAM,SF MDM
+ ;;^UTILITY(U,$J,358.3,49437,1,2,0)
+ ;;=2^99252
+ ;;^UTILITY(U,$J,358.3,49438,0)
+ ;;=99253^^188^2450^3
+ ;;^UTILITY(U,$J,358.3,49438,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49438,1,1,0)
+ ;;=1^DET HX/EXAM,LOW MDM
+ ;;^UTILITY(U,$J,358.3,49438,1,2,0)
+ ;;=2^99253
+ ;;^UTILITY(U,$J,358.3,49439,0)
+ ;;=99254^^188^2450^4
+ ;;^UTILITY(U,$J,358.3,49439,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49439,1,1,0)
+ ;;=1^COMP HX/EXAM,MOD MDM
+ ;;^UTILITY(U,$J,358.3,49439,1,2,0)
+ ;;=2^99254
+ ;;^UTILITY(U,$J,358.3,49440,0)
+ ;;=99255^^188^2450^5
+ ;;^UTILITY(U,$J,358.3,49440,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49440,1,1,0)
+ ;;=1^COMP HX/EXAM,HIGH COMP MDM
+ ;;^UTILITY(U,$J,358.3,49440,1,2,0)
+ ;;=2^99255
+ ;;^UTILITY(U,$J,358.3,49441,0)
+ ;;=99221^^188^2451^1
+ ;;^UTILITY(U,$J,358.3,49441,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,49441,1,1,0)
+ ;;=1^DETAILED/COMP HX/EXAM,SF MDM

@@ -1,136 +1,116 @@
-IBDEI26M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37010,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,37010,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,37010,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,37011,0)
- ;;=R53.81^^137^1780^48
- ;;^UTILITY(U,$J,358.3,37011,1,0)
+ ;;^UTILITY(U,$J,358.3,34851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37011,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,37011,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,37011,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,37012,0)
- ;;=M87.30^^137^1780^66
- ;;^UTILITY(U,$J,358.3,37012,1,0)
+ ;;^UTILITY(U,$J,358.3,34851,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 30 minutes or less, init
+ ;;^UTILITY(U,$J,358.3,34851,1,4,0)
+ ;;=4^S06.1X1A
+ ;;^UTILITY(U,$J,358.3,34851,2)
+ ;;=^5020699
+ ;;^UTILITY(U,$J,358.3,34852,0)
+ ;;=S06.1X2A^^137^1786^19
+ ;;^UTILITY(U,$J,358.3,34852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37012,1,3,0)
- ;;=3^Secondary Osteonecrosis,Unspec Bone
- ;;^UTILITY(U,$J,358.3,37012,1,4,0)
- ;;=4^M87.30
- ;;^UTILITY(U,$J,358.3,37012,2)
- ;;=^5014787
- ;;^UTILITY(U,$J,358.3,37013,0)
- ;;=M85.80^^137^1780^8
- ;;^UTILITY(U,$J,358.3,37013,1,0)
+ ;;^UTILITY(U,$J,358.3,34852,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 31-59 min, init
+ ;;^UTILITY(U,$J,358.3,34852,1,4,0)
+ ;;=4^S06.1X2A
+ ;;^UTILITY(U,$J,358.3,34852,2)
+ ;;=^5020702
+ ;;^UTILITY(U,$J,358.3,34853,0)
+ ;;=S06.1X4A^^137^1786^20
+ ;;^UTILITY(U,$J,358.3,34853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37013,1,3,0)
- ;;=3^Bone Density/Structure Disorder,Unspec Site
- ;;^UTILITY(U,$J,358.3,37013,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,37013,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,37014,0)
- ;;=K52.89^^137^1780^52
- ;;^UTILITY(U,$J,358.3,37014,1,0)
+ ;;^UTILITY(U,$J,358.3,34853,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of 6 hours to 24 hours, init
+ ;;^UTILITY(U,$J,358.3,34853,1,4,0)
+ ;;=4^S06.1X4A
+ ;;^UTILITY(U,$J,358.3,34853,2)
+ ;;=^5020708
+ ;;^UTILITY(U,$J,358.3,34854,0)
+ ;;=S06.1X7A^^137^1786^22
+ ;;^UTILITY(U,$J,358.3,34854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37014,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis
- ;;^UTILITY(U,$J,358.3,37014,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,37014,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,37015,0)
- ;;=R30.9^^137^1780^59
- ;;^UTILITY(U,$J,358.3,37015,1,0)
+ ;;^UTILITY(U,$J,358.3,34854,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC w death d/t brain inj bf consc, init
+ ;;^UTILITY(U,$J,358.3,34854,1,4,0)
+ ;;=4^S06.1X7A
+ ;;^UTILITY(U,$J,358.3,34854,2)
+ ;;=^5020717
+ ;;^UTILITY(U,$J,358.3,34855,0)
+ ;;=S06.1X8A^^137^1786^23
+ ;;^UTILITY(U,$J,358.3,34855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37015,1,3,0)
- ;;=3^Painful Micturition,Unspec
- ;;^UTILITY(U,$J,358.3,37015,1,4,0)
- ;;=4^R30.9
- ;;^UTILITY(U,$J,358.3,37015,2)
- ;;=^5019324
- ;;^UTILITY(U,$J,358.3,37016,0)
- ;;=R00.2^^137^1780^60
- ;;^UTILITY(U,$J,358.3,37016,1,0)
+ ;;^UTILITY(U,$J,358.3,34855,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC w death d/t oth cause bf consc, init
+ ;;^UTILITY(U,$J,358.3,34855,1,4,0)
+ ;;=4^S06.1X8A
+ ;;^UTILITY(U,$J,358.3,34855,2)
+ ;;=^5020720
+ ;;^UTILITY(U,$J,358.3,34856,0)
+ ;;=S06.1X9A^^137^1786^21
+ ;;^UTILITY(U,$J,358.3,34856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37016,1,3,0)
- ;;=3^Palpitations
- ;;^UTILITY(U,$J,358.3,37016,1,4,0)
- ;;=4^R00.2
- ;;^UTILITY(U,$J,358.3,37016,2)
- ;;=^5019165
- ;;^UTILITY(U,$J,358.3,37017,0)
- ;;=M84.58XA^^137^1780^61
- ;;^UTILITY(U,$J,358.3,37017,1,0)
+ ;;^UTILITY(U,$J,358.3,34856,1,3,0)
+ ;;=3^Traumatic cerebral edema w LOC of unsp duration, init
+ ;;^UTILITY(U,$J,358.3,34856,1,4,0)
+ ;;=4^S06.1X9A
+ ;;^UTILITY(U,$J,358.3,34856,2)
+ ;;=^5020723
+ ;;^UTILITY(U,$J,358.3,34857,0)
+ ;;=S06.1X0A^^137^1786^24
+ ;;^UTILITY(U,$J,358.3,34857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37017,1,3,0)
- ;;=3^Pathological Fx in Neoplastic Disease,Init Encntr
- ;;^UTILITY(U,$J,358.3,37017,1,4,0)
- ;;=4^M84.58XA
- ;;^UTILITY(U,$J,358.3,37017,2)
- ;;=^5014208
- ;;^UTILITY(U,$J,358.3,37018,0)
- ;;=M84.68XA^^137^1780^62
- ;;^UTILITY(U,$J,358.3,37018,1,0)
+ ;;^UTILITY(U,$J,358.3,34857,1,3,0)
+ ;;=3^Traumatic cerebral edema w/o LOC, init
+ ;;^UTILITY(U,$J,358.3,34857,1,4,0)
+ ;;=4^S06.1X0A
+ ;;^UTILITY(U,$J,358.3,34857,2)
+ ;;=^5020696
+ ;;^UTILITY(U,$J,358.3,34858,0)
+ ;;=S06.9X5A^^137^1786^4
+ ;;^UTILITY(U,$J,358.3,34858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37018,1,3,0)
- ;;=3^Pathological Fx in Oth Disease,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,37018,1,4,0)
- ;;=4^M84.68XA
- ;;^UTILITY(U,$J,358.3,37018,2)
- ;;=^5134051
- ;;^UTILITY(U,$J,358.3,37019,0)
- ;;=M84.48XA^^137^1780^63
- ;;^UTILITY(U,$J,358.3,37019,1,0)
+ ;;^UTILITY(U,$J,358.3,34858,1,3,0)
+ ;;=3^Intcrn inj w LOC >24 hr w ret consc lev, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,34858,1,4,0)
+ ;;=4^S06.9X5A
+ ;;^UTILITY(U,$J,358.3,34858,2)
+ ;;=^5021221
+ ;;^UTILITY(U,$J,358.3,34859,0)
+ ;;=S06.9X6A^^137^1786^5
+ ;;^UTILITY(U,$J,358.3,34859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37019,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,37019,1,4,0)
- ;;=4^M84.48XA
- ;;^UTILITY(U,$J,358.3,37019,2)
- ;;=^5014016
- ;;^UTILITY(U,$J,358.3,37020,0)
- ;;=R06.3^^137^1780^64
- ;;^UTILITY(U,$J,358.3,37020,1,0)
+ ;;^UTILITY(U,$J,358.3,34859,1,3,0)
+ ;;=3^Intcrn inj w LOC >24 hr w/o ret consc w surv, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,34859,1,4,0)
+ ;;=4^S06.9X6A
+ ;;^UTILITY(U,$J,358.3,34859,2)
+ ;;=^5021224
+ ;;^UTILITY(U,$J,358.3,34860,0)
+ ;;=S06.9X3A^^137^1786^6
+ ;;^UTILITY(U,$J,358.3,34860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37020,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,37020,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,37020,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,37021,0)
- ;;=G93.3^^137^1780^65
- ;;^UTILITY(U,$J,358.3,37021,1,0)
+ ;;^UTILITY(U,$J,358.3,34860,1,3,0)
+ ;;=3^Intcrn inj w LOC of 1-5 hrs 59 min, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,34860,1,4,0)
+ ;;=4^S06.9X3A
+ ;;^UTILITY(U,$J,358.3,34860,2)
+ ;;=^5021215
+ ;;^UTILITY(U,$J,358.3,34861,0)
+ ;;=S06.9X1A^^137^1786^7
+ ;;^UTILITY(U,$J,358.3,34861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37021,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,37021,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,37021,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,37022,0)
- ;;=G47.9^^137^1780^67
- ;;^UTILITY(U,$J,358.3,37022,1,0)
+ ;;^UTILITY(U,$J,358.3,34861,1,3,0)
+ ;;=3^Intcrn inj w LOC of 30 minutes or less, init encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,34861,1,4,0)
+ ;;=4^S06.9X1A
+ ;;^UTILITY(U,$J,358.3,34861,2)
+ ;;=^5021209
+ ;;^UTILITY(U,$J,358.3,34862,0)
+ ;;=S06.9X2A^^137^1786^8
+ ;;^UTILITY(U,$J,358.3,34862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37022,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,37022,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,37022,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,37023,0)
- ;;=R06.83^^137^1780^68
- ;;^UTILITY(U,$J,358.3,37023,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37023,1,3,0)
- ;;=3^Snoring

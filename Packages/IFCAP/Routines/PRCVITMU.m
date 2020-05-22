@@ -1,9 +1,11 @@
-PRCVITMU ;WOIFO/GJW - Item utilities ; 4/20/05 5:20pm
- ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCVITMU ;WOIFO/GJW - Item utilities ;1/10/17  10:25
+ ;;5.1;IFCAP;**81,198**;Oct 20, 2000;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;Integration agreements
+ ; ICR #10078 OP^XQCHK
  ;
 TRANS ;Called by the input transform on 441/.01
- N PRCVX,PRCVFLG
+ N PRCVX,PRCVFLG,XQORNOD,XQOPT
  S PRCVFLG=0
  Q:'$D(X)
  S X=$TR(X,"new","NEW") ;other letters are irrelevant
@@ -14,6 +16,7 @@ TRANS ;Called by the input transform on 441/.01
  I +X'=X K X Q
  I X?.E1"."1N.N K X Q
  I X<$S(PRCVFLG:$$MIN,1:$$AMIN) K X Q
+ I X>19999999 D OP^XQCHK I $P(XQOPT,U)'="PRCHITEM_LOAD",$P(XQOPT,U)'="PRCHITEM_BULK_LOAD_VIA_HFS" K X Q
  Q
  ;
 CHK() ;

@@ -1,124 +1,130 @@
-IBDEI1ME ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ME ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27489,1,4,0)
- ;;=4^N01.2
- ;;^UTILITY(U,$J,358.3,27489,2)
- ;;=^5015503
- ;;^UTILITY(U,$J,358.3,27490,0)
- ;;=N01.3^^106^1363^65
- ;;^UTILITY(U,$J,358.3,27490,1,0)
+ ;;^UTILITY(U,$J,358.3,25886,0)
+ ;;=N64.53^^107^1227^99
+ ;;^UTILITY(U,$J,358.3,25886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27490,1,3,0)
- ;;=3^Rapidly progr neph synd w/ diffus mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27490,1,4,0)
- ;;=4^N01.3
- ;;^UTILITY(U,$J,358.3,27490,2)
- ;;=^5015504
- ;;^UTILITY(U,$J,358.3,27491,0)
- ;;=N01.4^^106^1363^64
- ;;^UTILITY(U,$J,358.3,27491,1,0)
+ ;;^UTILITY(U,$J,358.3,25886,1,3,0)
+ ;;=3^Retraction of Nipple
+ ;;^UTILITY(U,$J,358.3,25886,1,4,0)
+ ;;=4^N64.53
+ ;;^UTILITY(U,$J,358.3,25886,2)
+ ;;=^5015796
+ ;;^UTILITY(U,$J,358.3,25887,0)
+ ;;=N75.1^^107^1227^8
+ ;;^UTILITY(U,$J,358.3,25887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27491,1,3,0)
- ;;=3^Rapidly progr neph synd w/ diffus endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27491,1,4,0)
- ;;=4^N01.4
- ;;^UTILITY(U,$J,358.3,27491,2)
- ;;=^5015505
- ;;^UTILITY(U,$J,358.3,27492,0)
- ;;=N01.5^^106^1363^68
- ;;^UTILITY(U,$J,358.3,27492,1,0)
+ ;;^UTILITY(U,$J,358.3,25887,1,3,0)
+ ;;=3^Abscess of Bartholin's Gland
+ ;;^UTILITY(U,$J,358.3,25887,1,4,0)
+ ;;=4^N75.1
+ ;;^UTILITY(U,$J,358.3,25887,2)
+ ;;=^5015823
+ ;;^UTILITY(U,$J,358.3,25888,0)
+ ;;=N80.9^^107^1227^37
+ ;;^UTILITY(U,$J,358.3,25888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27492,1,3,0)
- ;;=3^Rapidly progr neph synd w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,27492,1,4,0)
- ;;=4^N01.5
- ;;^UTILITY(U,$J,358.3,27492,2)
- ;;=^5015506
- ;;^UTILITY(U,$J,358.3,27493,0)
- ;;=N01.6^^106^1363^63
- ;;^UTILITY(U,$J,358.3,27493,1,0)
+ ;;^UTILITY(U,$J,358.3,25888,1,3,0)
+ ;;=3^Endometriosis,Unspec
+ ;;^UTILITY(U,$J,358.3,25888,1,4,0)
+ ;;=4^N80.9
+ ;;^UTILITY(U,$J,358.3,25888,2)
+ ;;=^5015837
+ ;;^UTILITY(U,$J,358.3,25889,0)
+ ;;=N81.4^^107^1227^112
+ ;;^UTILITY(U,$J,358.3,25889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27493,1,3,0)
- ;;=3^Rapidly progr neph synd w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,27493,1,4,0)
- ;;=4^N01.6
- ;;^UTILITY(U,$J,358.3,27493,2)
- ;;=^5015507
- ;;^UTILITY(U,$J,358.3,27494,0)
- ;;=N01.7^^106^1363^66
- ;;^UTILITY(U,$J,358.3,27494,1,0)
+ ;;^UTILITY(U,$J,358.3,25889,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Unspec
+ ;;^UTILITY(U,$J,358.3,25889,1,4,0)
+ ;;=4^N81.4
+ ;;^UTILITY(U,$J,358.3,25889,2)
+ ;;=^5015841
+ ;;^UTILITY(U,$J,358.3,25890,0)
+ ;;=N84.8^^107^1227^87
+ ;;^UTILITY(U,$J,358.3,25890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27494,1,3,0)
- ;;=3^Rapidly progr neph synd w/ diffuse crescentic glomrlneph
- ;;^UTILITY(U,$J,358.3,27494,1,4,0)
- ;;=4^N01.7
- ;;^UTILITY(U,$J,358.3,27494,2)
- ;;=^5015508
- ;;^UTILITY(U,$J,358.3,27495,0)
- ;;=N01.8^^106^1363^71
- ;;^UTILITY(U,$J,358.3,27495,1,0)
+ ;;^UTILITY(U,$J,358.3,25890,1,3,0)
+ ;;=3^Polyp of Other Parts of Female Genital Tract
+ ;;^UTILITY(U,$J,358.3,25890,1,4,0)
+ ;;=4^N84.8
+ ;;^UTILITY(U,$J,358.3,25890,2)
+ ;;=^5015868
+ ;;^UTILITY(U,$J,358.3,25891,0)
+ ;;=N84.0^^107^1227^85
+ ;;^UTILITY(U,$J,358.3,25891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27495,1,3,0)
- ;;=3^Rapidly progr neph synd w/ oth morphologic changes
- ;;^UTILITY(U,$J,358.3,27495,1,4,0)
- ;;=4^N01.8
- ;;^UTILITY(U,$J,358.3,27495,2)
- ;;=^5015509
- ;;^UTILITY(U,$J,358.3,27496,0)
- ;;=N01.9^^106^1363^72
- ;;^UTILITY(U,$J,358.3,27496,1,0)
+ ;;^UTILITY(U,$J,358.3,25891,1,3,0)
+ ;;=3^Polyp of Corpus Uteri
+ ;;^UTILITY(U,$J,358.3,25891,1,4,0)
+ ;;=4^N84.0
+ ;;^UTILITY(U,$J,358.3,25891,2)
+ ;;=^270517
+ ;;^UTILITY(U,$J,358.3,25892,0)
+ ;;=N84.9^^107^1227^86
+ ;;^UTILITY(U,$J,358.3,25892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27496,1,3,0)
- ;;=3^Rapidly progr neph synd w/ unsp morphologic changes
- ;;^UTILITY(U,$J,358.3,27496,1,4,0)
- ;;=4^N01.9
- ;;^UTILITY(U,$J,358.3,27496,2)
- ;;=^5015510
- ;;^UTILITY(U,$J,358.3,27497,0)
- ;;=N02.0^^106^1363^80
- ;;^UTILITY(U,$J,358.3,27497,1,0)
+ ;;^UTILITY(U,$J,358.3,25892,1,3,0)
+ ;;=3^Polyp of Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,25892,1,4,0)
+ ;;=4^N84.9
+ ;;^UTILITY(U,$J,358.3,25892,2)
+ ;;=^5015869
+ ;;^UTILITY(U,$J,358.3,25893,0)
+ ;;=N84.1^^107^1227^84
+ ;;^UTILITY(U,$J,358.3,25893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27497,1,3,0)
- ;;=3^Recurrent & perst hematur w/ minor glomerular abnlt
- ;;^UTILITY(U,$J,358.3,27497,1,4,0)
- ;;=4^N02.0
- ;;^UTILITY(U,$J,358.3,27497,2)
- ;;=^5015511
- ;;^UTILITY(U,$J,358.3,27498,0)
- ;;=N02.1^^106^1363^79
- ;;^UTILITY(U,$J,358.3,27498,1,0)
+ ;;^UTILITY(U,$J,358.3,25893,1,3,0)
+ ;;=3^Polyp of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,25893,1,4,0)
+ ;;=4^N84.1
+ ;;^UTILITY(U,$J,358.3,25893,2)
+ ;;=^5015866
+ ;;^UTILITY(U,$J,358.3,25894,0)
+ ;;=N89.1^^107^1227^114
+ ;;^UTILITY(U,$J,358.3,25894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27498,1,3,0)
- ;;=3^Recurrent & perst hematur w/ focal & seg glomerular lesions
- ;;^UTILITY(U,$J,358.3,27498,1,4,0)
- ;;=4^N02.1
- ;;^UTILITY(U,$J,358.3,27498,2)
- ;;=^5015512
- ;;^UTILITY(U,$J,358.3,27499,0)
- ;;=N02.2^^106^1363^77
- ;;^UTILITY(U,$J,358.3,27499,1,0)
+ ;;^UTILITY(U,$J,358.3,25894,1,3,0)
+ ;;=3^Vaginal Dysplasia,Moderate
+ ;;^UTILITY(U,$J,358.3,25894,1,4,0)
+ ;;=4^N89.1
+ ;;^UTILITY(U,$J,358.3,25894,2)
+ ;;=^5015886
+ ;;^UTILITY(U,$J,358.3,25895,0)
+ ;;=N89.0^^107^1227^113
+ ;;^UTILITY(U,$J,358.3,25895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27499,1,3,0)
- ;;=3^Recurrent & perst hematur w/ diffuse membranous glomrlneph
- ;;^UTILITY(U,$J,358.3,27499,1,4,0)
- ;;=4^N02.2
- ;;^UTILITY(U,$J,358.3,27499,2)
- ;;=^5015513
- ;;^UTILITY(U,$J,358.3,27500,0)
- ;;=N02.3^^106^1363^74
- ;;^UTILITY(U,$J,358.3,27500,1,0)
+ ;;^UTILITY(U,$J,358.3,25895,1,3,0)
+ ;;=3^Vaginal Dysplasia,Mild
+ ;;^UTILITY(U,$J,358.3,25895,1,4,0)
+ ;;=4^N89.0
+ ;;^UTILITY(U,$J,358.3,25895,2)
+ ;;=^5015885
+ ;;^UTILITY(U,$J,358.3,25896,0)
+ ;;=N89.3^^107^1227^115
+ ;;^UTILITY(U,$J,358.3,25896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27500,1,3,0)
- ;;=3^Recur & perst hematur w/ diffus mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,27500,1,4,0)
- ;;=4^N02.3
- ;;^UTILITY(U,$J,358.3,27500,2)
- ;;=^5015514
- ;;^UTILITY(U,$J,358.3,27501,0)
- ;;=N02.4^^106^1363^73
- ;;^UTILITY(U,$J,358.3,27501,1,0)
+ ;;^UTILITY(U,$J,358.3,25896,1,3,0)
+ ;;=3^Vaginal Dysplasia,Unspec
+ ;;^UTILITY(U,$J,358.3,25896,1,4,0)
+ ;;=4^N89.3
+ ;;^UTILITY(U,$J,358.3,25896,2)
+ ;;=^5015887
+ ;;^UTILITY(U,$J,358.3,25897,0)
+ ;;=N90.4^^107^1227^65
+ ;;^UTILITY(U,$J,358.3,25897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27501,1,3,0)
- ;;=3^Recur & perst hematur w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,25897,1,3,0)
+ ;;=3^Leukoplakia of Vulva
+ ;;^UTILITY(U,$J,358.3,25897,1,4,0)
+ ;;=4^N90.4
+ ;;^UTILITY(U,$J,358.3,25897,2)
+ ;;=^5015894
+ ;;^UTILITY(U,$J,358.3,25898,0)
+ ;;=N94.2^^107^1227^116
+ ;;^UTILITY(U,$J,358.3,25898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25898,1,3,0)
+ ;;=3^Vaginismus

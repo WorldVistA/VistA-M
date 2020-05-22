@@ -1,124 +1,124 @@
-IBDEI2PS ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45547,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,45547,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,45548,0)
- ;;=W00.1XXD^^200^2247^60
- ;;^UTILITY(U,$J,358.3,45548,1,0)
+ ;;^UTILITY(U,$J,358.3,43272,1,4,0)
+ ;;=4^L89.029
+ ;;^UTILITY(U,$J,358.3,43272,2)
+ ;;=^5133649
+ ;;^UTILITY(U,$J,358.3,43273,0)
+ ;;=L89.119^^158^2105^83
+ ;;^UTILITY(U,$J,358.3,43273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45548,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45548,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,45548,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,45549,0)
- ;;=W00.2XXA^^200^2247^53
- ;;^UTILITY(U,$J,358.3,45549,1,0)
+ ;;^UTILITY(U,$J,358.3,43273,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43273,1,4,0)
+ ;;=4^L89.119
+ ;;^UTILITY(U,$J,358.3,43273,2)
+ ;;=^5009357
+ ;;^UTILITY(U,$J,358.3,43274,0)
+ ;;=L89.110^^158^2105^84
+ ;;^UTILITY(U,$J,358.3,43274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45549,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,45549,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,45549,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,45550,0)
- ;;=W00.2XXD^^200^2247^54
- ;;^UTILITY(U,$J,358.3,45550,1,0)
+ ;;^UTILITY(U,$J,358.3,43274,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,43274,1,4,0)
+ ;;=4^L89.110
+ ;;^UTILITY(U,$J,358.3,43274,2)
+ ;;=^5009352
+ ;;^UTILITY(U,$J,358.3,43275,0)
+ ;;=L89.111^^158^2105^79
+ ;;^UTILITY(U,$J,358.3,43275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45550,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45550,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,45550,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,45551,0)
- ;;=W00.9XXA^^200^2247^25
- ;;^UTILITY(U,$J,358.3,45551,1,0)
+ ;;^UTILITY(U,$J,358.3,43275,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,43275,1,4,0)
+ ;;=4^L89.111
+ ;;^UTILITY(U,$J,358.3,43275,2)
+ ;;=^5009353
+ ;;^UTILITY(U,$J,358.3,43276,0)
+ ;;=L89.112^^158^2105^80
+ ;;^UTILITY(U,$J,358.3,43276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45551,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,45551,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,45551,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,45552,0)
- ;;=W00.9XXD^^200^2247^26
- ;;^UTILITY(U,$J,358.3,45552,1,0)
+ ;;^UTILITY(U,$J,358.3,43276,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,43276,1,4,0)
+ ;;=4^L89.112
+ ;;^UTILITY(U,$J,358.3,43276,2)
+ ;;=^5009354
+ ;;^UTILITY(U,$J,358.3,43277,0)
+ ;;=L89.113^^158^2105^81
+ ;;^UTILITY(U,$J,358.3,43277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45552,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45552,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,45552,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,45553,0)
- ;;=W01.0XXA^^200^2247^87
- ;;^UTILITY(U,$J,358.3,45553,1,0)
+ ;;^UTILITY(U,$J,358.3,43277,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,43277,1,4,0)
+ ;;=4^L89.113
+ ;;^UTILITY(U,$J,358.3,43277,2)
+ ;;=^5009355
+ ;;^UTILITY(U,$J,358.3,43278,0)
+ ;;=L89.114^^158^2105^82
+ ;;^UTILITY(U,$J,358.3,43278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45553,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,45553,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,45553,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,45554,0)
- ;;=W01.0XXD^^200^2247^88
- ;;^UTILITY(U,$J,358.3,45554,1,0)
+ ;;^UTILITY(U,$J,358.3,43278,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,43278,1,4,0)
+ ;;=4^L89.114
+ ;;^UTILITY(U,$J,358.3,43278,2)
+ ;;=^5009356
+ ;;^UTILITY(U,$J,358.3,43279,0)
+ ;;=L89.129^^158^2105^41
+ ;;^UTILITY(U,$J,358.3,43279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45554,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45554,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,45554,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,45555,0)
- ;;=W03.XXXA^^200^2247^85
- ;;^UTILITY(U,$J,358.3,45555,1,0)
+ ;;^UTILITY(U,$J,358.3,43279,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43279,1,4,0)
+ ;;=4^L89.129
+ ;;^UTILITY(U,$J,358.3,43279,2)
+ ;;=^5133652
+ ;;^UTILITY(U,$J,358.3,43280,0)
+ ;;=L89.120^^158^2105^42
+ ;;^UTILITY(U,$J,358.3,43280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45555,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,45555,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,45555,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,45556,0)
- ;;=W03.XXXD^^200^2247^86
- ;;^UTILITY(U,$J,358.3,45556,1,0)
+ ;;^UTILITY(U,$J,358.3,43280,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,43280,1,4,0)
+ ;;=4^L89.120
+ ;;^UTILITY(U,$J,358.3,43280,2)
+ ;;=^5009358
+ ;;^UTILITY(U,$J,358.3,43281,0)
+ ;;=L89.121^^158^2105^37
+ ;;^UTILITY(U,$J,358.3,43281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45556,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45556,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,45556,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,45557,0)
- ;;=W05.0XXA^^200^2247^51
- ;;^UTILITY(U,$J,358.3,45557,1,0)
+ ;;^UTILITY(U,$J,358.3,43281,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,43281,1,4,0)
+ ;;=4^L89.121
+ ;;^UTILITY(U,$J,358.3,43281,2)
+ ;;=^5009359
+ ;;^UTILITY(U,$J,358.3,43282,0)
+ ;;=L89.122^^158^2105^38
+ ;;^UTILITY(U,$J,358.3,43282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45557,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,45557,1,4,0)
- ;;=4^W05.0XXA
- ;;^UTILITY(U,$J,358.3,45557,2)
- ;;=^5059550
- ;;^UTILITY(U,$J,358.3,45558,0)
- ;;=W05.0XXD^^200^2247^52
- ;;^UTILITY(U,$J,358.3,45558,1,0)
+ ;;^UTILITY(U,$J,358.3,43282,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,43282,1,4,0)
+ ;;=4^L89.122
+ ;;^UTILITY(U,$J,358.3,43282,2)
+ ;;=^5009360
+ ;;^UTILITY(U,$J,358.3,43283,0)
+ ;;=L89.123^^158^2105^39
+ ;;^UTILITY(U,$J,358.3,43283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45558,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45558,1,4,0)
- ;;=4^W05.0XXD
- ;;^UTILITY(U,$J,358.3,45558,2)
- ;;=^5059551
- ;;^UTILITY(U,$J,358.3,45559,0)
- ;;=W05.1XXA^^200^2247^49
- ;;^UTILITY(U,$J,358.3,45559,1,0)
+ ;;^UTILITY(U,$J,358.3,43283,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,43283,1,4,0)
+ ;;=4^L89.123
+ ;;^UTILITY(U,$J,358.3,43283,2)
+ ;;=^5009361
+ ;;^UTILITY(U,$J,358.3,43284,0)
+ ;;=L89.124^^158^2105^40
+ ;;^UTILITY(U,$J,358.3,43284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45559,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43284,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 4

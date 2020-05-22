@@ -1,136 +1,120 @@
-IBDEI2DX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40467,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,40468,0)
- ;;=R73.01^^159^1988^30
- ;;^UTILITY(U,$J,358.3,40468,1,0)
+ ;;^UTILITY(U,$J,358.3,38058,2)
+ ;;=^5045846
+ ;;^UTILITY(U,$J,358.3,38059,0)
+ ;;=S93.522A^^146^1927^13
+ ;;^UTILITY(U,$J,358.3,38059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40468,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,40468,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,40468,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,40469,0)
- ;;=R74.8^^159^1988^1
- ;;^UTILITY(U,$J,358.3,40469,1,0)
+ ;;^UTILITY(U,$J,358.3,38059,1,3,0)
+ ;;=3^Sprain of metatarsophalangeal jt lft grt toe, init
+ ;;^UTILITY(U,$J,358.3,38059,1,4,0)
+ ;;=4^S93.522A
+ ;;^UTILITY(U,$J,358.3,38059,2)
+ ;;=^5045849
+ ;;^UTILITY(U,$J,358.3,38060,0)
+ ;;=S93.514A^^146^1927^12
+ ;;^UTILITY(U,$J,358.3,38060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40469,1,3,0)
- ;;=3^Abnormal Levels of Serum Enzymes
- ;;^UTILITY(U,$J,358.3,40469,1,4,0)
- ;;=4^R74.8
- ;;^UTILITY(U,$J,358.3,40469,2)
- ;;=^5019566
- ;;^UTILITY(U,$J,358.3,40470,0)
- ;;=R97.2^^159^1988^18
- ;;^UTILITY(U,$J,358.3,40470,1,0)
+ ;;^UTILITY(U,$J,358.3,38060,1,3,0)
+ ;;=3^Sprain of interphalangeal jt rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,38060,1,4,0)
+ ;;=4^S93.514A
+ ;;^UTILITY(U,$J,358.3,38060,2)
+ ;;=^5045834
+ ;;^UTILITY(U,$J,358.3,38061,0)
+ ;;=S93.515A^^146^1927^10
+ ;;^UTILITY(U,$J,358.3,38061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40470,1,3,0)
- ;;=3^Elevated Prostate Specific Antigen
- ;;^UTILITY(U,$J,358.3,40470,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,40470,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,40471,0)
- ;;=R03.0^^159^1988^17
- ;;^UTILITY(U,$J,358.3,40471,1,0)
+ ;;^UTILITY(U,$J,358.3,38061,1,3,0)
+ ;;=3^Sprain of interphalangeal jt lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,38061,1,4,0)
+ ;;=4^S93.515A
+ ;;^UTILITY(U,$J,358.3,38061,2)
+ ;;=^5045837
+ ;;^UTILITY(U,$J,358.3,38062,0)
+ ;;=S93.511A^^146^1927^11
+ ;;^UTILITY(U,$J,358.3,38062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40471,1,3,0)
- ;;=3^Elevated BP Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,40471,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,40471,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,40472,0)
- ;;=Z91.19^^159^1988^42
- ;;^UTILITY(U,$J,358.3,40472,1,0)
+ ;;^UTILITY(U,$J,358.3,38062,1,3,0)
+ ;;=3^Sprain of interphalangeal jt rt grt toe, init
+ ;;^UTILITY(U,$J,358.3,38062,1,4,0)
+ ;;=4^S93.511A
+ ;;^UTILITY(U,$J,358.3,38062,2)
+ ;;=^5045825
+ ;;^UTILITY(U,$J,358.3,38063,0)
+ ;;=S93.512A^^146^1927^9
+ ;;^UTILITY(U,$J,358.3,38063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40472,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,40472,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,40472,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,40473,0)
- ;;=E66.01^^159^1988^43
- ;;^UTILITY(U,$J,358.3,40473,1,0)
+ ;;^UTILITY(U,$J,358.3,38063,1,3,0)
+ ;;=3^Sprain of interphalangeal jt lft grt toe, init
+ ;;^UTILITY(U,$J,358.3,38063,1,4,0)
+ ;;=4^S93.512A
+ ;;^UTILITY(U,$J,358.3,38063,2)
+ ;;=^5045828
+ ;;^UTILITY(U,$J,358.3,38064,0)
+ ;;=M70.842^^146^1927^3
+ ;;^UTILITY(U,$J,358.3,38064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40473,1,3,0)
- ;;=3^Obesity,Morbid
- ;;^UTILITY(U,$J,358.3,40473,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,40473,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,40474,0)
- ;;=H93.19^^159^1988^54
- ;;^UTILITY(U,$J,358.3,40474,1,0)
+ ;;^UTILITY(U,$J,358.3,38064,1,3,0)
+ ;;=3^Soft Tissue Disorders r/t Use/Pressure,Left Hand
+ ;;^UTILITY(U,$J,358.3,38064,1,4,0)
+ ;;=4^M70.842
+ ;;^UTILITY(U,$J,358.3,38064,2)
+ ;;=^5013075
+ ;;^UTILITY(U,$J,358.3,38065,0)
+ ;;=M70.841^^146^1927^4
+ ;;^UTILITY(U,$J,358.3,38065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40474,1,3,0)
- ;;=3^Tinnitus,Unspec Ear
- ;;^UTILITY(U,$J,358.3,40474,1,4,0)
- ;;=4^H93.19
- ;;^UTILITY(U,$J,358.3,40474,2)
- ;;=^5006967
- ;;^UTILITY(U,$J,358.3,40475,0)
- ;;=G47.00^^159^1988^31
- ;;^UTILITY(U,$J,358.3,40475,1,0)
+ ;;^UTILITY(U,$J,358.3,38065,1,3,0)
+ ;;=3^Soft Tissue Disorders r/t Use/Pressure,Right Hand
+ ;;^UTILITY(U,$J,358.3,38065,1,4,0)
+ ;;=4^M70.841
+ ;;^UTILITY(U,$J,358.3,38065,2)
+ ;;=^5013074
+ ;;^UTILITY(U,$J,358.3,38066,0)
+ ;;=M65.872^^146^1927^47
+ ;;^UTILITY(U,$J,358.3,38066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40475,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,40475,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,40475,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,40476,0)
- ;;=F43.10^^159^1988^47
- ;;^UTILITY(U,$J,358.3,40476,1,0)
+ ;;^UTILITY(U,$J,358.3,38066,1,3,0)
+ ;;=3^Synovitis & Tenosynovitis,Left Ankle/Foot NEC
+ ;;^UTILITY(U,$J,358.3,38066,1,4,0)
+ ;;=4^M65.872
+ ;;^UTILITY(U,$J,358.3,38066,2)
+ ;;=^5012813
+ ;;^UTILITY(U,$J,358.3,38067,0)
+ ;;=M65.871^^146^1927^48
+ ;;^UTILITY(U,$J,358.3,38067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40476,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,40476,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,40476,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,40477,0)
- ;;=F43.11^^159^1988^45
- ;;^UTILITY(U,$J,358.3,40477,1,0)
+ ;;^UTILITY(U,$J,358.3,38067,1,3,0)
+ ;;=3^Synovitis & Tenosynovitis,Right Ankle/Foot NEC
+ ;;^UTILITY(U,$J,358.3,38067,1,4,0)
+ ;;=4^M65.871
+ ;;^UTILITY(U,$J,358.3,38067,2)
+ ;;=^5012812
+ ;;^UTILITY(U,$J,358.3,38068,0)
+ ;;=S93.402D^^146^1927^22
+ ;;^UTILITY(U,$J,358.3,38068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40477,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,40477,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,40477,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,40478,0)
- ;;=F43.12^^159^1988^46
- ;;^UTILITY(U,$J,358.3,40478,1,0)
+ ;;^UTILITY(U,$J,358.3,38068,1,3,0)
+ ;;=3^Sprain of unspec ligament of lft ankl,subs
+ ;;^UTILITY(U,$J,358.3,38068,1,4,0)
+ ;;=4^S93.402D
+ ;;^UTILITY(U,$J,358.3,38068,2)
+ ;;=^5045778
+ ;;^UTILITY(U,$J,358.3,38069,0)
+ ;;=S93.401D^^146^1927^21
+ ;;^UTILITY(U,$J,358.3,38069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40478,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,40478,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,40478,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,40479,0)
- ;;=I25.119^^159^1988^5
- ;;^UTILITY(U,$J,358.3,40479,1,0)
+ ;;^UTILITY(U,$J,358.3,38069,1,3,0)
+ ;;=3^Sprain of unsp ligament rt ankl,subs
+ ;;^UTILITY(U,$J,358.3,38069,1,4,0)
+ ;;=4^S93.401D
+ ;;^UTILITY(U,$J,358.3,38069,2)
+ ;;=^5045775
+ ;;^UTILITY(U,$J,358.3,38070,0)
+ ;;=M76.72^^146^1928^8
+ ;;^UTILITY(U,$J,358.3,38070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40479,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,40479,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,40479,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,40480,0)
- ;;=I25.10^^159^1988^7
- ;;^UTILITY(U,$J,358.3,40480,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40480,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,40480,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,40480,2)
- ;;=^5007107

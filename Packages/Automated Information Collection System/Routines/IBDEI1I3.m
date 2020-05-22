@@ -1,126 +1,124 @@
-IBDEI1I3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1I3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25466,0)
- ;;=F10.181^^95^1165^14
- ;;^UTILITY(U,$J,358.3,25466,1,0)
+ ;;^UTILITY(U,$J,358.3,24001,2)
+ ;;=^5133628
+ ;;^UTILITY(U,$J,358.3,24002,0)
+ ;;=E78.1^^107^1200^23
+ ;;^UTILITY(U,$J,358.3,24002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25466,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25466,1,4,0)
- ;;=4^F10.181
- ;;^UTILITY(U,$J,358.3,25466,2)
- ;;=^5003077
- ;;^UTILITY(U,$J,358.3,25467,0)
- ;;=F10.282^^95^1165^18
- ;;^UTILITY(U,$J,358.3,25467,1,0)
+ ;;^UTILITY(U,$J,358.3,24002,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,24002,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,24002,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,24003,0)
+ ;;=E78.2^^107^1200^21
+ ;;^UTILITY(U,$J,358.3,24003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25467,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25467,1,4,0)
- ;;=4^F10.282
- ;;^UTILITY(U,$J,358.3,25467,2)
- ;;=^5003098
- ;;^UTILITY(U,$J,358.3,25468,0)
- ;;=F10.982^^95^1165^19
- ;;^UTILITY(U,$J,358.3,25468,1,0)
+ ;;^UTILITY(U,$J,358.3,24003,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,24003,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,24003,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,24004,0)
+ ;;=I10.^^107^1200^9
+ ;;^UTILITY(U,$J,358.3,24004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25468,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25468,1,4,0)
- ;;=4^F10.982
- ;;^UTILITY(U,$J,358.3,25468,2)
- ;;=^5003112
- ;;^UTILITY(U,$J,358.3,25469,0)
- ;;=F10.281^^95^1165^15
- ;;^UTILITY(U,$J,358.3,25469,1,0)
+ ;;^UTILITY(U,$J,358.3,24004,1,3,0)
+ ;;=3^Essential Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,24004,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,24004,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,24005,0)
+ ;;=I11.9^^107^1200^19
+ ;;^UTILITY(U,$J,358.3,24005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25469,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25469,1,4,0)
- ;;=4^F10.281
- ;;^UTILITY(U,$J,358.3,25469,2)
- ;;=^5003097
- ;;^UTILITY(U,$J,358.3,25470,0)
- ;;=F10.981^^95^1165^16
- ;;^UTILITY(U,$J,358.3,25470,1,0)
+ ;;^UTILITY(U,$J,358.3,24005,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,24005,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,24005,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,24006,0)
+ ;;=I11.0^^107^1200^18
+ ;;^UTILITY(U,$J,358.3,24006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25470,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25470,1,4,0)
- ;;=4^F10.981
- ;;^UTILITY(U,$J,358.3,25470,2)
- ;;=^5003111
- ;;^UTILITY(U,$J,358.3,25471,0)
- ;;=F10.182^^95^1165^17
- ;;^UTILITY(U,$J,358.3,25471,1,0)
+ ;;^UTILITY(U,$J,358.3,24006,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,24006,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,24006,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,24007,0)
+ ;;=I12.0^^107^1200^15
+ ;;^UTILITY(U,$J,358.3,24007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25471,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25471,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,25471,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,25472,0)
- ;;=F10.121^^95^1165^20
- ;;^UTILITY(U,$J,358.3,25472,1,0)
+ ;;^UTILITY(U,$J,358.3,24007,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
+ ;;^UTILITY(U,$J,358.3,24007,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,24007,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,24008,0)
+ ;;=I13.10^^107^1200^13
+ ;;^UTILITY(U,$J,358.3,24008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25472,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25472,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,25472,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,25473,0)
- ;;=F10.221^^95^1165^21
- ;;^UTILITY(U,$J,358.3,25473,1,0)
+ ;;^UTILITY(U,$J,358.3,24008,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,24008,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,24008,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,24009,0)
+ ;;=I13.0^^107^1200^11
+ ;;^UTILITY(U,$J,358.3,24009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25473,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25473,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,25473,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,25474,0)
- ;;=F10.921^^95^1165^22
- ;;^UTILITY(U,$J,358.3,25474,1,0)
+ ;;^UTILITY(U,$J,358.3,24009,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,24009,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,24009,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,24010,0)
+ ;;=I13.11^^107^1200^14
+ ;;^UTILITY(U,$J,358.3,24010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25474,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25474,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,25474,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,25475,0)
- ;;=F10.129^^95^1165^23
- ;;^UTILITY(U,$J,358.3,25475,1,0)
+ ;;^UTILITY(U,$J,358.3,24010,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,24010,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,24010,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,24011,0)
+ ;;=I13.2^^107^1200^12
+ ;;^UTILITY(U,$J,358.3,24011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25475,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25475,1,4,0)
- ;;=4^F10.129
- ;;^UTILITY(U,$J,358.3,25475,2)
- ;;=^5003071
- ;;^UTILITY(U,$J,358.3,25476,0)
- ;;=F10.229^^95^1165^24
- ;;^UTILITY(U,$J,358.3,25476,1,0)
+ ;;^UTILITY(U,$J,358.3,24011,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,24011,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,24011,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,24012,0)
+ ;;=I48.91^^107^1200^6
+ ;;^UTILITY(U,$J,358.3,24012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25476,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25476,1,4,0)
- ;;=4^F10.229
- ;;^UTILITY(U,$J,358.3,25476,2)
- ;;=^5003085
- ;;^UTILITY(U,$J,358.3,25477,0)
- ;;=F10.929^^95^1165^25
- ;;^UTILITY(U,$J,358.3,25477,1,0)
+ ;;^UTILITY(U,$J,358.3,24012,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,24012,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,24012,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,24013,0)
+ ;;=I48.92^^107^1200^7
+ ;;^UTILITY(U,$J,358.3,24013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25477,1,3,0)
- ;;=3^Alcohol Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25477,1,4,0)
- ;;=4^F10.929
- ;;^UTILITY(U,$J,358.3,25477,2)
- ;;=^5003103
- ;;^UTILITY(U,$J,358.3,25478,0)
- ;;=F10.99^^95^1165^26
+ ;;^UTILITY(U,$J,358.3,24013,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,24013,1,4,0)
+ ;;=4^I48.92

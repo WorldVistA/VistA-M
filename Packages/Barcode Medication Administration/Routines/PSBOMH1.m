@@ -1,5 +1,5 @@
 PSBOMH1 ;BIRMINGHAM/EFC-MAH ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72,83,97,112,116**;Mar 2004;Build 2
+ ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72,83,97,112,116,120**;Mar 2004;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -71,11 +71,13 @@ EN ;
  ...;
  ...;Remove event, insert Give 1st, then re-add Remove event       *83
  ...I $P(X,U,3)="RM" D
+ ....N PSBGWEEK
  ....S Z=X                               ;save remove event
  ....S X=$$FINDGIVE^PSBUTL($P(Z,U,4))     ;find Give and add to grid
- ....S Y=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,".",1)\1,""),-1)+1
- ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,U)\1,Y)=X
- ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,U)\1,0)=Y
+ ....S PSBGWEEK=+$G(PSBAR($$FMTH^XLFDT(X)\1))
+ ....S Y=$O(^TMP("PSB",$J,PSBGWEEK,PSBORD,$P(X,U)\1,""),-1)+1
+ ....S ^TMP("PSB",$J,PSBGWEEK,PSBORD,$P(X,U)\1,Y)=X
+ ....S ^TMP("PSB",$J,PSBGWEEK,PSBORD,$P(X,U)\1,0)=Y
  ....S X=Z                               ;restore remove event to grid
  ...;
  ...S Y=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT\1,""),-1)+1

@@ -1,132 +1,118 @@
-IBDEI18X ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18X ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21179,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,21179,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,21180,0)
- ;;=S41.101A^^84^946^25
- ;;^UTILITY(U,$J,358.3,21180,1,0)
+ ;;^UTILITY(U,$J,358.3,19969,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19969,1,4,0)
+ ;;=4^S62.522S
+ ;;^UTILITY(U,$J,358.3,19969,2)
+ ;;=^5034353
+ ;;^UTILITY(U,$J,358.3,19970,0)
+ ;;=S62.521S^^93^997^20
+ ;;^UTILITY(U,$J,358.3,19970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21180,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,21180,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,21180,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,21181,0)
- ;;=E03.5^^84^947^37
- ;;^UTILITY(U,$J,358.3,21181,1,0)
+ ;;^UTILITY(U,$J,358.3,19970,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19970,1,4,0)
+ ;;=4^S62.521S
+ ;;^UTILITY(U,$J,358.3,19970,2)
+ ;;=^5034346
+ ;;^UTILITY(U,$J,358.3,19971,0)
+ ;;=S62.512S^^93^997^43
+ ;;^UTILITY(U,$J,358.3,19971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21181,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,21181,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,21181,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,21182,0)
- ;;=R40.2121^^84^947^33
- ;;^UTILITY(U,$J,358.3,21182,1,0)
+ ;;^UTILITY(U,$J,358.3,19971,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19971,1,4,0)
+ ;;=4^S62.512S
+ ;;^UTILITY(U,$J,358.3,19971,2)
+ ;;=^5034311
+ ;;^UTILITY(U,$J,358.3,19972,0)
+ ;;=S62.511S^^93^997^48
+ ;;^UTILITY(U,$J,358.3,19972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21182,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,21182,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,21182,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,21183,0)
- ;;=R40.2120^^84^947^34
- ;;^UTILITY(U,$J,358.3,21183,1,0)
+ ;;^UTILITY(U,$J,358.3,19972,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19972,1,4,0)
+ ;;=4^S62.511S
+ ;;^UTILITY(U,$J,358.3,19972,2)
+ ;;=^5034304
+ ;;^UTILITY(U,$J,358.3,19973,0)
+ ;;=S62.525S^^93^997^73
+ ;;^UTILITY(U,$J,358.3,19973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21183,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,21183,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,21183,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,21184,0)
- ;;=R40.2114^^84^947^26
- ;;^UTILITY(U,$J,358.3,21184,1,0)
+ ;;^UTILITY(U,$J,358.3,19973,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19973,1,4,0)
+ ;;=4^S62.525S
+ ;;^UTILITY(U,$J,358.3,19973,2)
+ ;;=^5034374
+ ;;^UTILITY(U,$J,358.3,19974,0)
+ ;;=S62.524S^^93^997^78
+ ;;^UTILITY(U,$J,358.3,19974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21184,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,21184,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,21184,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,21185,0)
- ;;=R40.2113^^84^947^30
- ;;^UTILITY(U,$J,358.3,21185,1,0)
+ ;;^UTILITY(U,$J,358.3,19974,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19974,1,4,0)
+ ;;=4^S62.524S
+ ;;^UTILITY(U,$J,358.3,19974,2)
+ ;;=^5034367
+ ;;^UTILITY(U,$J,358.3,19975,0)
+ ;;=S62.515S^^93^997^101
+ ;;^UTILITY(U,$J,358.3,19975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21185,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,21185,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,21185,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,21186,0)
- ;;=R40.2112^^84^947^27
- ;;^UTILITY(U,$J,358.3,21186,1,0)
+ ;;^UTILITY(U,$J,358.3,19975,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19975,1,4,0)
+ ;;=4^S62.515S
+ ;;^UTILITY(U,$J,358.3,19975,2)
+ ;;=^5034332
+ ;;^UTILITY(U,$J,358.3,19976,0)
+ ;;=S62.514S^^93^997^106
+ ;;^UTILITY(U,$J,358.3,19976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21186,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,21186,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,21186,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,21187,0)
- ;;=R40.2111^^84^947^28
- ;;^UTILITY(U,$J,358.3,21187,1,0)
+ ;;^UTILITY(U,$J,358.3,19976,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,19976,1,4,0)
+ ;;=4^S62.514S
+ ;;^UTILITY(U,$J,358.3,19976,2)
+ ;;=^5034325
+ ;;^UTILITY(U,$J,358.3,19977,0)
+ ;;=S32.462S^^93^998^5
+ ;;^UTILITY(U,$J,358.3,19977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21187,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,21187,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,21187,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,21188,0)
- ;;=R40.2110^^84^947^29
- ;;^UTILITY(U,$J,358.3,21188,1,0)
+ ;;^UTILITY(U,$J,358.3,19977,1,3,0)
+ ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,19977,1,4,0)
+ ;;=4^S32.462S
+ ;;^UTILITY(U,$J,358.3,19977,2)
+ ;;=^5024892
+ ;;^UTILITY(U,$J,358.3,19978,0)
+ ;;=S32.461S^^93^998^6
+ ;;^UTILITY(U,$J,358.3,19978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21188,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,21188,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,21188,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,21189,0)
- ;;=R40.20^^84^947^36
- ;;^UTILITY(U,$J,358.3,21189,1,0)
+ ;;^UTILITY(U,$J,358.3,19978,1,3,0)
+ ;;=3^Disp fx of associated transv/post of right acetab, sequela
+ ;;^UTILITY(U,$J,358.3,19978,1,4,0)
+ ;;=4^S32.461S
+ ;;^UTILITY(U,$J,358.3,19978,2)
+ ;;=^5024886
+ ;;^UTILITY(U,$J,358.3,19979,0)
+ ;;=S32.312S^^93^998^7
+ ;;^UTILITY(U,$J,358.3,19979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21189,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,21189,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,21189,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,21190,0)
- ;;=R40.2123^^84^947^35
- ;;^UTILITY(U,$J,358.3,21190,1,0)
+ ;;^UTILITY(U,$J,358.3,19979,1,3,0)
+ ;;=3^Disp fx of avulsion of left ilium, sequela
+ ;;^UTILITY(U,$J,358.3,19979,1,4,0)
+ ;;=4^S32.312S
+ ;;^UTILITY(U,$J,358.3,19979,2)
+ ;;=^5024658
+ ;;^UTILITY(U,$J,358.3,19980,0)
+ ;;=S32.311S^^93^998^9
+ ;;^UTILITY(U,$J,358.3,19980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21190,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,21190,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,21190,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,21191,0)
- ;;=R40.2122^^84^947^32
- ;;^UTILITY(U,$J,358.3,21191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21191,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,21191,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,21191,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,21192,0)
- ;;=R40.2124^^84^947^31
- ;;^UTILITY(U,$J,358.3,21192,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19980,1,3,0)
+ ;;=3^Disp fx of avulsion of right ilium, sequela
+ ;;^UTILITY(U,$J,358.3,19980,1,4,0)
+ ;;=4^S32.311S

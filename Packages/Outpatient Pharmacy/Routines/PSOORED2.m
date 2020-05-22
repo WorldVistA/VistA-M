@@ -1,5 +1,5 @@
 PSOORED2 ;ISC-BHAM/SAB - edit orders from backdoor con't ;03/06/95 10:24
- ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385,427,538**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**2,51,46,78,102,114,117,133,159,148,247,260,281,289,276,358,251,385,427,538,574**;DEC 1997;Build 53
  ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;called from psooredt. cmop edit checks.
@@ -11,6 +11,8 @@ ISDT D CHK K RF I $G(CMRL) W !,"Released by CMOP.  No editing allowed on Issue D
  ; PSO*7*538 Added Next Line
  I Y=-1 W ! D CIDH^PSOUTL W ! G ISDT
  G:Y=-1 ISDT S PSORXED("FLD",1)=Y
+ ; Added Clozapine check to modify Expires date ; PSO*574
+ I $$ISCLOZ^PSJCLOZ(,,,,$G(PSODRUG("IEN"))) D EXPDT^PSOCLO1(.PSORXED,.CLOZPAT)
  ;S DR="1///"_Y,DIE=52 D ^DIE
  D KV K X,Y,%DT
  Q

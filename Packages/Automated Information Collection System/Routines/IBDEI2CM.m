@@ -1,134 +1,120 @@
-IBDEI2CM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39819,1,3,0)
- ;;=3^Malig Neop of Left Choroid
- ;;^UTILITY(U,$J,358.3,39819,1,4,0)
- ;;=4^C69.32
- ;;^UTILITY(U,$J,358.3,39819,2)
- ;;=^5001277
- ;;^UTILITY(U,$J,358.3,39820,0)
- ;;=D31.31^^153^1930^5
- ;;^UTILITY(U,$J,358.3,39820,1,0)
+ ;;^UTILITY(U,$J,358.3,37513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39820,1,3,0)
- ;;=3^Benign Neop of Right Choroid
- ;;^UTILITY(U,$J,358.3,39820,1,4,0)
- ;;=4^D31.31
- ;;^UTILITY(U,$J,358.3,39820,2)
- ;;=^5002121
- ;;^UTILITY(U,$J,358.3,39821,0)
- ;;=D31.32^^153^1930^4
- ;;^UTILITY(U,$J,358.3,39821,1,0)
+ ;;^UTILITY(U,$J,358.3,37513,1,3,0)
+ ;;=3^Nondisp fx of cuboid bone of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37513,1,4,0)
+ ;;=4^S92.214A
+ ;;^UTILITY(U,$J,358.3,37513,2)
+ ;;=^5044857
+ ;;^UTILITY(U,$J,358.3,37514,0)
+ ;;=S92.215A^^146^1917^310
+ ;;^UTILITY(U,$J,358.3,37514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39821,1,3,0)
- ;;=3^Benign Neop of Left Choroid
- ;;^UTILITY(U,$J,358.3,39821,1,4,0)
- ;;=4^D31.32
- ;;^UTILITY(U,$J,358.3,39821,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,39822,0)
- ;;=H35.81^^153^1930^78
- ;;^UTILITY(U,$J,358.3,39822,1,0)
+ ;;^UTILITY(U,$J,358.3,37514,1,3,0)
+ ;;=3^Nondisp fx of cuboid bone of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37514,1,4,0)
+ ;;=4^S92.215A
+ ;;^UTILITY(U,$J,358.3,37514,2)
+ ;;=^5044864
+ ;;^UTILITY(U,$J,358.3,37515,0)
+ ;;=S92.244A^^146^1917^335
+ ;;^UTILITY(U,$J,358.3,37515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39822,1,3,0)
- ;;=3^Retinal Edema
- ;;^UTILITY(U,$J,358.3,39822,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,39822,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,39823,0)
- ;;=H44.21^^153^1930^35
- ;;^UTILITY(U,$J,358.3,39823,1,0)
+ ;;^UTILITY(U,$J,358.3,37515,1,3,0)
+ ;;=3^Nondisp fx of medial cuneiform of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37515,1,4,0)
+ ;;=4^S92.244A
+ ;;^UTILITY(U,$J,358.3,37515,2)
+ ;;=^5044983
+ ;;^UTILITY(U,$J,358.3,37516,0)
+ ;;=S92.245A^^146^1917^334
+ ;;^UTILITY(U,$J,358.3,37516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39823,1,3,0)
- ;;=3^Degenerative Myopia,Right Eye
- ;;^UTILITY(U,$J,358.3,39823,1,4,0)
- ;;=4^H44.21
- ;;^UTILITY(U,$J,358.3,39823,2)
- ;;=^5005987
- ;;^UTILITY(U,$J,358.3,39824,0)
- ;;=H44.22^^153^1930^34
- ;;^UTILITY(U,$J,358.3,39824,1,0)
+ ;;^UTILITY(U,$J,358.3,37516,1,3,0)
+ ;;=3^Nondisp fx of medial cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37516,1,4,0)
+ ;;=4^S92.245A
+ ;;^UTILITY(U,$J,358.3,37516,2)
+ ;;=^5044990
+ ;;^UTILITY(U,$J,358.3,37517,0)
+ ;;=S92.221A^^146^1917^100
+ ;;^UTILITY(U,$J,358.3,37517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39824,1,3,0)
- ;;=3^Degenerative Myopia,Left Eye
- ;;^UTILITY(U,$J,358.3,39824,1,4,0)
- ;;=4^H44.22
- ;;^UTILITY(U,$J,358.3,39824,2)
- ;;=^5005988
- ;;^UTILITY(U,$J,358.3,39825,0)
- ;;=H33.001^^153^1930^74
- ;;^UTILITY(U,$J,358.3,39825,1,0)
+ ;;^UTILITY(U,$J,358.3,37517,1,3,0)
+ ;;=3^Disp fx of ltrl cuneiform of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37517,1,4,0)
+ ;;=4^S92.221A
+ ;;^UTILITY(U,$J,358.3,37517,2)
+ ;;=^5044878
+ ;;^UTILITY(U,$J,358.3,37518,0)
+ ;;=S92.222A^^146^1917^99
+ ;;^UTILITY(U,$J,358.3,37518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39825,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
- ;;^UTILITY(U,$J,358.3,39825,1,4,0)
- ;;=4^H33.001
- ;;^UTILITY(U,$J,358.3,39825,2)
- ;;=^5005490
- ;;^UTILITY(U,$J,358.3,39826,0)
- ;;=H33.002^^153^1930^73
- ;;^UTILITY(U,$J,358.3,39826,1,0)
+ ;;^UTILITY(U,$J,358.3,37518,1,3,0)
+ ;;=3^Disp fx of ltrl cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37518,1,4,0)
+ ;;=4^S92.222A
+ ;;^UTILITY(U,$J,358.3,37518,2)
+ ;;=^5044885
+ ;;^UTILITY(U,$J,358.3,37519,0)
+ ;;=S92.224A^^146^1917^325
+ ;;^UTILITY(U,$J,358.3,37519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39826,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
- ;;^UTILITY(U,$J,358.3,39826,1,4,0)
- ;;=4^H33.002
- ;;^UTILITY(U,$J,358.3,39826,2)
- ;;=^5005491
- ;;^UTILITY(U,$J,358.3,39827,0)
- ;;=H33.011^^153^1930^76
- ;;^UTILITY(U,$J,358.3,39827,1,0)
+ ;;^UTILITY(U,$J,358.3,37519,1,3,0)
+ ;;=3^Nondisp fx of ltrl cuneiform of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37519,1,4,0)
+ ;;=4^S92.224A
+ ;;^UTILITY(U,$J,358.3,37519,2)
+ ;;=^5044899
+ ;;^UTILITY(U,$J,358.3,37520,0)
+ ;;=S92.225A^^146^1917^324
+ ;;^UTILITY(U,$J,358.3,37520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39827,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Right Eye
- ;;^UTILITY(U,$J,358.3,39827,1,4,0)
- ;;=4^H33.011
- ;;^UTILITY(U,$J,358.3,39827,2)
- ;;=^5005493
- ;;^UTILITY(U,$J,358.3,39828,0)
- ;;=H33.012^^153^1930^75
- ;;^UTILITY(U,$J,358.3,39828,1,0)
+ ;;^UTILITY(U,$J,358.3,37520,1,3,0)
+ ;;=3^Nondisp fx of ltrl cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37520,1,4,0)
+ ;;=4^S92.225A
+ ;;^UTILITY(U,$J,358.3,37520,2)
+ ;;=^5044906
+ ;;^UTILITY(U,$J,358.3,37521,0)
+ ;;=S92.231A^^146^1917^96
+ ;;^UTILITY(U,$J,358.3,37521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39828,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Left Eye
- ;;^UTILITY(U,$J,358.3,39828,1,4,0)
- ;;=4^H33.012
- ;;^UTILITY(U,$J,358.3,39828,2)
- ;;=^5005494
- ;;^UTILITY(U,$J,358.3,39829,0)
- ;;=H33.051^^153^1930^102
- ;;^UTILITY(U,$J,358.3,39829,1,0)
+ ;;^UTILITY(U,$J,358.3,37521,1,3,0)
+ ;;=3^Disp fx of intermed cuneiform of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37521,1,4,0)
+ ;;=4^S92.231A
+ ;;^UTILITY(U,$J,358.3,37521,2)
+ ;;=^5044920
+ ;;^UTILITY(U,$J,358.3,37522,0)
+ ;;=S92.232A^^146^1917^95
+ ;;^UTILITY(U,$J,358.3,37522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39829,1,3,0)
- ;;=3^Total Retinal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,39829,1,4,0)
- ;;=4^H33.051
- ;;^UTILITY(U,$J,358.3,39829,2)
- ;;=^5005509
- ;;^UTILITY(U,$J,358.3,39830,0)
- ;;=H33.052^^153^1930^101
- ;;^UTILITY(U,$J,358.3,39830,1,0)
+ ;;^UTILITY(U,$J,358.3,37522,1,3,0)
+ ;;=3^Disp fx of intermed cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37522,1,4,0)
+ ;;=4^S92.232A
+ ;;^UTILITY(U,$J,358.3,37522,2)
+ ;;=^5044927
+ ;;^UTILITY(U,$J,358.3,37523,0)
+ ;;=S92.234A^^146^1917^319
+ ;;^UTILITY(U,$J,358.3,37523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39830,1,3,0)
- ;;=3^Total Retinal Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,39830,1,4,0)
- ;;=4^H33.052
- ;;^UTILITY(U,$J,358.3,39830,2)
- ;;=^5005510
- ;;^UTILITY(U,$J,358.3,39831,0)
- ;;=H33.8^^153^1930^77
- ;;^UTILITY(U,$J,358.3,39831,1,0)
+ ;;^UTILITY(U,$J,358.3,37523,1,3,0)
+ ;;=3^Nondisp fx of intermed cuneiform of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37523,1,4,0)
+ ;;=4^S92.234A
+ ;;^UTILITY(U,$J,358.3,37523,2)
+ ;;=^5044941
+ ;;^UTILITY(U,$J,358.3,37524,0)
+ ;;=S92.235A^^146^1917^318
+ ;;^UTILITY(U,$J,358.3,37524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39831,1,3,0)
- ;;=3^Retinal Detachments NEC
- ;;^UTILITY(U,$J,358.3,39831,1,4,0)
- ;;=4^H33.8
- ;;^UTILITY(U,$J,358.3,39831,2)
- ;;=^5005551
- ;;^UTILITY(U,$J,358.3,39832,0)
- ;;=H33.101^^153^1930^93
- ;;^UTILITY(U,$J,358.3,39832,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37524,1,3,0)
+ ;;=3^Nondisp fx of intermed cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37524,1,4,0)
+ ;;=4^S92.235A

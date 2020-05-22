@@ -1,130 +1,130 @@
-IBDEI273 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI273 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37235,1,3,0)
- ;;=3^Abscess of tendon sheath, rt shoulder
- ;;^UTILITY(U,$J,358.3,37235,1,4,0)
- ;;=4^M65.011
- ;;^UTILITY(U,$J,358.3,37235,2)
- ;;=^5012710
- ;;^UTILITY(U,$J,358.3,37236,0)
- ;;=M65.012^^140^1787^24
- ;;^UTILITY(U,$J,358.3,37236,1,0)
+ ;;^UTILITY(U,$J,358.3,35054,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,35054,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,35055,0)
+ ;;=I50.9^^137^1793^9
+ ;;^UTILITY(U,$J,358.3,35055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37236,1,3,0)
- ;;=3^Abscess of tendon sheath, lft shoulder
- ;;^UTILITY(U,$J,358.3,37236,1,4,0)
- ;;=4^M65.012
- ;;^UTILITY(U,$J,358.3,37236,2)
- ;;=^5012711
- ;;^UTILITY(U,$J,358.3,37237,0)
- ;;=M65.022^^140^1787^26
- ;;^UTILITY(U,$J,358.3,37237,1,0)
+ ;;^UTILITY(U,$J,358.3,35055,1,3,0)
+ ;;=3^Heart failure, unspecified
+ ;;^UTILITY(U,$J,358.3,35055,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,35055,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,35056,0)
+ ;;=I25.2^^137^1793^10
+ ;;^UTILITY(U,$J,358.3,35056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37237,1,3,0)
- ;;=3^Abscess of tendon sheath, lft upper arm
- ;;^UTILITY(U,$J,358.3,37237,1,4,0)
- ;;=4^M65.022
- ;;^UTILITY(U,$J,358.3,37237,2)
- ;;=^5012714
- ;;^UTILITY(U,$J,358.3,37238,0)
- ;;=M65.031^^140^1787^29
- ;;^UTILITY(U,$J,358.3,37238,1,0)
+ ;;^UTILITY(U,$J,358.3,35056,1,3,0)
+ ;;=3^Old myocardial infarction
+ ;;^UTILITY(U,$J,358.3,35056,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,35056,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,35057,0)
+ ;;=I42.8^^137^1793^5
+ ;;^UTILITY(U,$J,358.3,35057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37238,1,3,0)
- ;;=3^Abscess of tendon sheath, rt forearm
- ;;^UTILITY(U,$J,358.3,37238,1,4,0)
- ;;=4^M65.031
- ;;^UTILITY(U,$J,358.3,37238,2)
- ;;=^5012716
- ;;^UTILITY(U,$J,358.3,37239,0)
- ;;=M65.032^^140^1787^21
- ;;^UTILITY(U,$J,358.3,37239,1,0)
+ ;;^UTILITY(U,$J,358.3,35057,1,3,0)
+ ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,35057,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,35057,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,35058,0)
+ ;;=I42.5^^137^1793^14
+ ;;^UTILITY(U,$J,358.3,35058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37239,1,3,0)
- ;;=3^Abscess of tendon sheath, lft forearm
- ;;^UTILITY(U,$J,358.3,37239,1,4,0)
- ;;=4^M65.032
- ;;^UTILITY(U,$J,358.3,37239,2)
- ;;=^5012717
- ;;^UTILITY(U,$J,358.3,37240,0)
- ;;=M65.041^^140^1787^30
- ;;^UTILITY(U,$J,358.3,37240,1,0)
+ ;;^UTILITY(U,$J,358.3,35058,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,35058,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,35058,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,35059,0)
+ ;;=Z95.1^^137^1793^11
+ ;;^UTILITY(U,$J,358.3,35059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37240,1,3,0)
- ;;=3^Abscess of tendon sheath, rt hand
- ;;^UTILITY(U,$J,358.3,37240,1,4,0)
- ;;=4^M65.041
- ;;^UTILITY(U,$J,358.3,37240,2)
- ;;=^5012719
- ;;^UTILITY(U,$J,358.3,37241,0)
- ;;=M65.042^^140^1787^22
- ;;^UTILITY(U,$J,358.3,37241,1,0)
+ ;;^UTILITY(U,$J,358.3,35059,1,3,0)
+ ;;=3^Presence of aortocoronary bypass graft
+ ;;^UTILITY(U,$J,358.3,35059,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,35059,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,35060,0)
+ ;;=Z95.0^^137^1793^12
+ ;;^UTILITY(U,$J,358.3,35060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37241,1,3,0)
- ;;=3^Abscess of tendon sheath, lft hand
- ;;^UTILITY(U,$J,358.3,37241,1,4,0)
- ;;=4^M65.042
- ;;^UTILITY(U,$J,358.3,37241,2)
- ;;=^5012720
- ;;^UTILITY(U,$J,358.3,37242,0)
- ;;=M65.051^^140^1787^33
- ;;^UTILITY(U,$J,358.3,37242,1,0)
+ ;;^UTILITY(U,$J,358.3,35060,1,3,0)
+ ;;=3^Presence of cardiac pacemaker
+ ;;^UTILITY(U,$J,358.3,35060,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,35060,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,35061,0)
+ ;;=J98.9^^137^1793^13
+ ;;^UTILITY(U,$J,358.3,35061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37242,1,3,0)
- ;;=3^Abscess of tendon sheath, rt thigh
- ;;^UTILITY(U,$J,358.3,37242,1,4,0)
- ;;=4^M65.051
- ;;^UTILITY(U,$J,358.3,37242,2)
- ;;=^5012722
- ;;^UTILITY(U,$J,358.3,37243,0)
- ;;=M65.052^^140^1787^25
- ;;^UTILITY(U,$J,358.3,37243,1,0)
+ ;;^UTILITY(U,$J,358.3,35061,1,3,0)
+ ;;=3^Respiratory disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,35061,1,4,0)
+ ;;=4^J98.9
+ ;;^UTILITY(U,$J,358.3,35061,2)
+ ;;=^5008366
+ ;;^UTILITY(U,$J,358.3,35062,0)
+ ;;=I22.9^^137^1793^15
+ ;;^UTILITY(U,$J,358.3,35062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37243,1,3,0)
- ;;=3^Abscess of tendon sheath, lft thigh
- ;;^UTILITY(U,$J,358.3,37243,1,4,0)
- ;;=4^M65.052
- ;;^UTILITY(U,$J,358.3,37243,2)
- ;;=^5012723
- ;;^UTILITY(U,$J,358.3,37244,0)
- ;;=M65.061^^140^1787^31
- ;;^UTILITY(U,$J,358.3,37244,1,0)
+ ;;^UTILITY(U,$J,358.3,35062,1,3,0)
+ ;;=3^Subsequent STEMI of unsp site
+ ;;^UTILITY(U,$J,358.3,35062,1,4,0)
+ ;;=4^I22.9
+ ;;^UTILITY(U,$J,358.3,35062,2)
+ ;;=^5007093
+ ;;^UTILITY(U,$J,358.3,35063,0)
+ ;;=I48.91^^137^1793^2
+ ;;^UTILITY(U,$J,358.3,35063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37244,1,3,0)
- ;;=3^Abscess of tendon sheath, rt lwr leg
- ;;^UTILITY(U,$J,358.3,37244,1,4,0)
- ;;=4^M65.061
- ;;^UTILITY(U,$J,358.3,37244,2)
- ;;=^5012725
- ;;^UTILITY(U,$J,358.3,37245,0)
- ;;=M65.062^^140^1787^23
- ;;^UTILITY(U,$J,358.3,37245,1,0)
+ ;;^UTILITY(U,$J,358.3,35063,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,35063,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,35063,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,35064,0)
+ ;;=F81.81^^137^1794^3
+ ;;^UTILITY(U,$J,358.3,35064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37245,1,3,0)
- ;;=3^Abscess of tendon sheath, lft lwr leg
- ;;^UTILITY(U,$J,358.3,37245,1,4,0)
- ;;=4^M65.062
- ;;^UTILITY(U,$J,358.3,37245,2)
- ;;=^5012726
- ;;^UTILITY(U,$J,358.3,37246,0)
- ;;=M65.071^^140^1787^28
- ;;^UTILITY(U,$J,358.3,37246,1,0)
+ ;;^UTILITY(U,$J,358.3,35064,1,3,0)
+ ;;=3^Disorder of written expression
+ ;;^UTILITY(U,$J,358.3,35064,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,35064,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,35065,0)
+ ;;=R41.3^^137^1794^1
+ ;;^UTILITY(U,$J,358.3,35065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37246,1,3,0)
- ;;=3^Abscess of tendon sheath, rt ankle & foot
- ;;^UTILITY(U,$J,358.3,37246,1,4,0)
- ;;=4^M65.071
- ;;^UTILITY(U,$J,358.3,37246,2)
- ;;=^5012728
- ;;^UTILITY(U,$J,358.3,37247,0)
- ;;=M65.072^^140^1787^20
- ;;^UTILITY(U,$J,358.3,37247,1,0)
+ ;;^UTILITY(U,$J,358.3,35065,1,3,0)
+ ;;=3^Amnesia NEC
+ ;;^UTILITY(U,$J,358.3,35065,1,4,0)
+ ;;=4^R41.3
+ ;;^UTILITY(U,$J,358.3,35065,2)
+ ;;=^5019439
+ ;;^UTILITY(U,$J,358.3,35066,0)
+ ;;=F81.89^^137^1794^2
+ ;;^UTILITY(U,$J,358.3,35066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37247,1,3,0)
- ;;=3^Abscess of tendon sheath, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,37247,1,4,0)
- ;;=4^M65.072
- ;;^UTILITY(U,$J,358.3,37247,2)
- ;;=^5012729
+ ;;^UTILITY(U,$J,358.3,35066,1,3,0)
+ ;;=3^Developmental disorders of scholastic skills NEC
+ ;;^UTILITY(U,$J,358.3,35066,1,4,0)
+ ;;=4^F81.89
+ ;;^UTILITY(U,$J,358.3,35066,2)
+ ;;=^5003681
+ ;;^UTILITY(U,$J,358.3,35067,0)
+ ;;=F07.81^^137^1794^4

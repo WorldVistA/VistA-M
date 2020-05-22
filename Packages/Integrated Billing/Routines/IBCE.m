@@ -1,5 +1,5 @@
 IBCE ;ALB/TMP - 837 EDI TRANSMISSION UTILITIES/NIGHTLY JOB ;22-JAN-96
- ;;2.0;INTEGRATED BILLING;**137,283,296,371,623**;21-MAR-94;Build 70
+ ;;2.0;INTEGRATED BILLING;**137,283,296,371,623,659**;21-MAR-94;Build 16
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN ; Run all jobs needed for EDI processing nightly
  ; including transmit bills waiting for extract, batches not sent,
@@ -69,8 +69,8 @@ RESUB(IB364) ; Manually resubmit bill for transmission (ien file 364 = IB364)
  . I 'IBBTCH D
  .. S DIR("A",1)="BILL NOT RESUBMITTED - CHECK ALERTS/MAIL FOR DETAILS"
  . E  D
- .. ;JWS;IB*2.0*623v24;add setting resubmission flag
- .. D SETSUB^IBCE837I(NEW364,1)
+ .. ;JWS;IB*2.0*623v24;add setting resubmission flag; 2/12/20 commented out line below for IB*2.0*659
+ .. ;;D SETSUB^IBCE837I(NEW364,1)
  .. N DIE,DR,DA
  .. D UPDEDI^IBCEM(IB364,"R")   ; update EDI files for old transmission
  .. S DIE="^IBA(364,",DR=".06////"_+IBBTCH,DA=IB364 D ^DIE

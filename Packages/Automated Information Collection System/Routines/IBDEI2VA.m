@@ -1,136 +1,126 @@
-IBDEI2VA ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48114,1,3,0)
- ;;=3^Schizophrenia,Disorganized
- ;;^UTILITY(U,$J,358.3,48114,1,4,0)
- ;;=4^F20.1
- ;;^UTILITY(U,$J,358.3,48114,2)
- ;;=^5003470
- ;;^UTILITY(U,$J,358.3,48115,0)
- ;;=F20.2^^211^2382^44
- ;;^UTILITY(U,$J,358.3,48115,1,0)
+ ;;^UTILITY(U,$J,358.3,45736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48115,1,3,0)
- ;;=3^Schizophrenia,Catatonic
- ;;^UTILITY(U,$J,358.3,48115,1,4,0)
- ;;=4^F20.2
- ;;^UTILITY(U,$J,358.3,48115,2)
- ;;=^5003471
- ;;^UTILITY(U,$J,358.3,48116,0)
- ;;=F20.0^^211^2382^46
- ;;^UTILITY(U,$J,358.3,48116,1,0)
+ ;;^UTILITY(U,$J,358.3,45736,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,45736,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,45736,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,45737,0)
+ ;;=J45.50^^172^2277^59
+ ;;^UTILITY(U,$J,358.3,45737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48116,1,3,0)
- ;;=3^Schizophrenia,Paranoid
- ;;^UTILITY(U,$J,358.3,48116,1,4,0)
- ;;=4^F20.0
- ;;^UTILITY(U,$J,358.3,48116,2)
- ;;=^5003469
- ;;^UTILITY(U,$J,358.3,48117,0)
- ;;=F20.5^^211^2382^47
- ;;^UTILITY(U,$J,358.3,48117,1,0)
+ ;;^UTILITY(U,$J,358.3,45737,1,3,0)
+ ;;=3^Asthma,Severe Persistent,Uncomp
+ ;;^UTILITY(U,$J,358.3,45737,1,4,0)
+ ;;=4^J45.50
+ ;;^UTILITY(U,$J,358.3,45737,2)
+ ;;=^5008251
+ ;;^UTILITY(U,$J,358.3,45738,0)
+ ;;=J45.51^^172^2277^57
+ ;;^UTILITY(U,$J,358.3,45738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48117,1,3,0)
- ;;=3^Schizophrenia,Residual
- ;;^UTILITY(U,$J,358.3,48117,1,4,0)
- ;;=4^F20.5
- ;;^UTILITY(U,$J,358.3,48117,2)
- ;;=^5003473
- ;;^UTILITY(U,$J,358.3,48118,0)
- ;;=F25.9^^211^2382^43
- ;;^UTILITY(U,$J,358.3,48118,1,0)
+ ;;^UTILITY(U,$J,358.3,45738,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,45738,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,45738,2)
+ ;;=^5008252
+ ;;^UTILITY(U,$J,358.3,45739,0)
+ ;;=J45.52^^172^2277^58
+ ;;^UTILITY(U,$J,358.3,45739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48118,1,3,0)
- ;;=3^Schizoaffective Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,48118,1,4,0)
- ;;=4^F25.9
- ;;^UTILITY(U,$J,358.3,48118,2)
- ;;=^331857
- ;;^UTILITY(U,$J,358.3,48119,0)
- ;;=F20.9^^211^2382^48
- ;;^UTILITY(U,$J,358.3,48119,1,0)
+ ;;^UTILITY(U,$J,358.3,45739,1,3,0)
+ ;;=3^Asthma,Severe Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,45739,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,45739,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,45740,0)
+ ;;=J45.990^^172^2277^60
+ ;;^UTILITY(U,$J,358.3,45740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48119,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,48119,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,48119,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,48120,0)
- ;;=F33.9^^211^2382^32
- ;;^UTILITY(U,$J,358.3,48120,1,0)
+ ;;^UTILITY(U,$J,358.3,45740,1,3,0)
+ ;;=3^Bronchospasm,Exercise Induced
+ ;;^UTILITY(U,$J,358.3,45740,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,45740,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,45741,0)
+ ;;=J45.991^^172^2277^46
+ ;;^UTILITY(U,$J,358.3,45741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48120,1,3,0)
- ;;=3^MDD,Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,48120,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,48120,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,48121,0)
- ;;=F33.42^^211^2382^31
- ;;^UTILITY(U,$J,358.3,48121,1,0)
+ ;;^UTILITY(U,$J,358.3,45741,1,3,0)
+ ;;=3^Asthma,Cough Variant
+ ;;^UTILITY(U,$J,358.3,45741,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,45741,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,45742,0)
+ ;;=J45.998^^172^2277^56
+ ;;^UTILITY(U,$J,358.3,45742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48121,1,3,0)
- ;;=3^MDD,Recurrent,Full Remission
- ;;^UTILITY(U,$J,358.3,48121,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,48121,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,48122,0)
- ;;=F31.10^^211^2382^13
- ;;^UTILITY(U,$J,358.3,48122,1,0)
+ ;;^UTILITY(U,$J,358.3,45742,1,3,0)
+ ;;=3^Asthma,Other
+ ;;^UTILITY(U,$J,358.3,45742,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,45742,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,45743,0)
+ ;;=H10.11^^172^2278^4
+ ;;^UTILITY(U,$J,358.3,45743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48122,1,3,0)
- ;;=3^Bipolar Disorder,Manic w/o Psych Features,Unspec
- ;;^UTILITY(U,$J,358.3,48122,1,4,0)
- ;;=4^F31.10
- ;;^UTILITY(U,$J,358.3,48122,2)
- ;;=^5003495
- ;;^UTILITY(U,$J,358.3,48123,0)
- ;;=F31.30^^211^2382^12
- ;;^UTILITY(U,$J,358.3,48123,1,0)
+ ;;^UTILITY(U,$J,358.3,45743,1,3,0)
+ ;;=3^Conjunctivitis,Acute Atopic,Right Eye
+ ;;^UTILITY(U,$J,358.3,45743,1,4,0)
+ ;;=4^H10.11
+ ;;^UTILITY(U,$J,358.3,45743,2)
+ ;;=^5004665
+ ;;^UTILITY(U,$J,358.3,45744,0)
+ ;;=H10.12^^172^2278^3
+ ;;^UTILITY(U,$J,358.3,45744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48123,1,3,0)
- ;;=3^Bipolar Disorder,Depressed,Mild/Moderate Severity,Unspec
- ;;^UTILITY(U,$J,358.3,48123,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,48123,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,48124,0)
- ;;=F31.60^^211^2382^14
- ;;^UTILITY(U,$J,358.3,48124,1,0)
+ ;;^UTILITY(U,$J,358.3,45744,1,3,0)
+ ;;=3^Conjunctivitis,Acute Atopic,Left Eye
+ ;;^UTILITY(U,$J,358.3,45744,1,4,0)
+ ;;=4^H10.12
+ ;;^UTILITY(U,$J,358.3,45744,2)
+ ;;=^5004666
+ ;;^UTILITY(U,$J,358.3,45745,0)
+ ;;=H10.13^^172^2278^2
+ ;;^UTILITY(U,$J,358.3,45745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48124,1,3,0)
- ;;=3^Bipolar Disorder,Mixed,Unspec
- ;;^UTILITY(U,$J,358.3,48124,1,4,0)
- ;;=4^F31.60
- ;;^UTILITY(U,$J,358.3,48124,2)
- ;;=^5003505
- ;;^UTILITY(U,$J,358.3,48125,0)
- ;;=F31.9^^211^2382^15
- ;;^UTILITY(U,$J,358.3,48125,1,0)
+ ;;^UTILITY(U,$J,358.3,45745,1,3,0)
+ ;;=3^Conjunctivitis,Acute Atopic,Bilateral
+ ;;^UTILITY(U,$J,358.3,45745,1,4,0)
+ ;;=4^H10.13
+ ;;^UTILITY(U,$J,358.3,45745,2)
+ ;;=^5004667
+ ;;^UTILITY(U,$J,358.3,45746,0)
+ ;;=H10.31^^172^2278^7
+ ;;^UTILITY(U,$J,358.3,45746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48125,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,48125,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,48125,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,48126,0)
- ;;=F22.^^211^2382^21
- ;;^UTILITY(U,$J,358.3,48126,1,0)
+ ;;^UTILITY(U,$J,358.3,45746,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Unspec,Right Eye
+ ;;^UTILITY(U,$J,358.3,45746,1,4,0)
+ ;;=4^H10.31
+ ;;^UTILITY(U,$J,358.3,45746,2)
+ ;;=^5133458
+ ;;^UTILITY(U,$J,358.3,45747,0)
+ ;;=H10.32^^172^2278^6
+ ;;^UTILITY(U,$J,358.3,45747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48126,1,3,0)
- ;;=3^Delusional Disorders
- ;;^UTILITY(U,$J,358.3,48126,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,48126,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,48127,0)
- ;;=F41.0^^211^2382^40
- ;;^UTILITY(U,$J,358.3,48127,1,0)
+ ;;^UTILITY(U,$J,358.3,45747,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Unspec,Left Eye
+ ;;^UTILITY(U,$J,358.3,45747,1,4,0)
+ ;;=4^H10.32
+ ;;^UTILITY(U,$J,358.3,45747,2)
+ ;;=^5133459
+ ;;^UTILITY(U,$J,358.3,45748,0)
+ ;;=H10.33^^172^2278^5
+ ;;^UTILITY(U,$J,358.3,45748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48127,1,3,0)
- ;;=3^Panic Disorder w/o Agoraphobia

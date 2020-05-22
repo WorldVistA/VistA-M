@@ -1,132 +1,122 @@
-IBDEI2CT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2CT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39908,1,3,0)
- ;;=3^Crystalline Deposits in Vitreous Body,Right Eye
- ;;^UTILITY(U,$J,358.3,39908,1,4,0)
- ;;=4^H43.21
- ;;^UTILITY(U,$J,358.3,39908,2)
- ;;=^5005942
- ;;^UTILITY(U,$J,358.3,39909,0)
- ;;=H43.22^^153^1930^29
- ;;^UTILITY(U,$J,358.3,39909,1,0)
+ ;;^UTILITY(U,$J,358.3,37594,1,4,0)
+ ;;=4^S90.851A
+ ;;^UTILITY(U,$J,358.3,37594,2)
+ ;;=^5044078
+ ;;^UTILITY(U,$J,358.3,37595,0)
+ ;;=S90.852A^^146^1917^167
+ ;;^UTILITY(U,$J,358.3,37595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39909,1,3,0)
- ;;=3^Crystalline Deposits in Vitreous Body,Left Eye
- ;;^UTILITY(U,$J,358.3,39909,1,4,0)
- ;;=4^H43.22
- ;;^UTILITY(U,$J,358.3,39909,2)
- ;;=^5005943
- ;;^UTILITY(U,$J,358.3,39910,0)
- ;;=H43.23^^153^1930^28
- ;;^UTILITY(U,$J,358.3,39910,1,0)
+ ;;^UTILITY(U,$J,358.3,37595,1,3,0)
+ ;;=3^Foreign body, lft ft, Superficial,init
+ ;;^UTILITY(U,$J,358.3,37595,1,4,0)
+ ;;=4^S90.852A
+ ;;^UTILITY(U,$J,358.3,37595,2)
+ ;;=^5044081
+ ;;^UTILITY(U,$J,358.3,37596,0)
+ ;;=T34.821A^^146^1917^188
+ ;;^UTILITY(U,$J,358.3,37596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39910,1,3,0)
- ;;=3^Crystalline Deposits in Vitreous Body,Bilateral
- ;;^UTILITY(U,$J,358.3,39910,1,4,0)
- ;;=4^H43.23
- ;;^UTILITY(U,$J,358.3,39910,2)
- ;;=^5005944
- ;;^UTILITY(U,$J,358.3,39911,0)
- ;;=H43.11^^153^1930^119
- ;;^UTILITY(U,$J,358.3,39911,1,0)
+ ;;^UTILITY(U,$J,358.3,37596,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt ft, init
+ ;;^UTILITY(U,$J,358.3,37596,1,4,0)
+ ;;=4^T34.821A
+ ;;^UTILITY(U,$J,358.3,37596,2)
+ ;;=^5049232
+ ;;^UTILITY(U,$J,358.3,37597,0)
+ ;;=T34.822A^^146^1917^183
+ ;;^UTILITY(U,$J,358.3,37597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39911,1,3,0)
- ;;=3^Vitreous Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,39911,1,4,0)
- ;;=4^H43.11
- ;;^UTILITY(U,$J,358.3,39911,2)
- ;;=^5005938
- ;;^UTILITY(U,$J,358.3,39912,0)
- ;;=H43.12^^153^1930^118
- ;;^UTILITY(U,$J,358.3,39912,1,0)
+ ;;^UTILITY(U,$J,358.3,37597,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft ft, init
+ ;;^UTILITY(U,$J,358.3,37597,1,4,0)
+ ;;=4^T34.822A
+ ;;^UTILITY(U,$J,358.3,37597,2)
+ ;;=^5049235
+ ;;^UTILITY(U,$J,358.3,37598,0)
+ ;;=T34.831A^^146^1917^190
+ ;;^UTILITY(U,$J,358.3,37598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39912,1,3,0)
- ;;=3^Vitreous Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,39912,1,4,0)
- ;;=4^H43.12
- ;;^UTILITY(U,$J,358.3,39912,2)
- ;;=^5005939
- ;;^UTILITY(U,$J,358.3,39913,0)
- ;;=H43.391^^153^1930^122
- ;;^UTILITY(U,$J,358.3,39913,1,0)
+ ;;^UTILITY(U,$J,358.3,37598,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt toe(s), init
+ ;;^UTILITY(U,$J,358.3,37598,1,4,0)
+ ;;=4^T34.831A
+ ;;^UTILITY(U,$J,358.3,37598,2)
+ ;;=^5049241
+ ;;^UTILITY(U,$J,358.3,37599,0)
+ ;;=T34.832A^^146^1917^185
+ ;;^UTILITY(U,$J,358.3,37599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39913,1,3,0)
- ;;=3^Vitreous Opacities,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,39913,1,4,0)
- ;;=4^H43.391
- ;;^UTILITY(U,$J,358.3,39913,2)
- ;;=^5005949
- ;;^UTILITY(U,$J,358.3,39914,0)
- ;;=H43.392^^153^1930^121
- ;;^UTILITY(U,$J,358.3,39914,1,0)
+ ;;^UTILITY(U,$J,358.3,37599,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft toe(s), init
+ ;;^UTILITY(U,$J,358.3,37599,1,4,0)
+ ;;=4^T34.832A
+ ;;^UTILITY(U,$J,358.3,37599,2)
+ ;;=^5049244
+ ;;^UTILITY(U,$J,358.3,37600,0)
+ ;;=T33.811A^^146^1917^178
+ ;;^UTILITY(U,$J,358.3,37600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39914,1,3,0)
- ;;=3^Vitreous Opacities,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,39914,1,4,0)
- ;;=4^H43.392
- ;;^UTILITY(U,$J,358.3,39914,2)
- ;;=^5005950
- ;;^UTILITY(U,$J,358.3,39915,0)
- ;;=H43.393^^153^1930^120
- ;;^UTILITY(U,$J,358.3,39915,1,0)
+ ;;^UTILITY(U,$J,358.3,37600,1,3,0)
+ ;;=3^Frostbite of rt ankl, Superficial,init
+ ;;^UTILITY(U,$J,358.3,37600,1,4,0)
+ ;;=4^T33.811A
+ ;;^UTILITY(U,$J,358.3,37600,2)
+ ;;=^5049112
+ ;;^UTILITY(U,$J,358.3,37601,0)
+ ;;=T33.812A^^146^1917^175
+ ;;^UTILITY(U,$J,358.3,37601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39915,1,3,0)
- ;;=3^Vitreous Opacities,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,39915,1,4,0)
- ;;=4^H43.393
- ;;^UTILITY(U,$J,358.3,39915,2)
- ;;=^5005951
- ;;^UTILITY(U,$J,358.3,39916,0)
- ;;=H43.01^^153^1930^125
- ;;^UTILITY(U,$J,358.3,39916,1,0)
+ ;;^UTILITY(U,$J,358.3,37601,1,3,0)
+ ;;=3^Frostbite of lft ankl,Superficial, init
+ ;;^UTILITY(U,$J,358.3,37601,1,4,0)
+ ;;=4^T33.812A
+ ;;^UTILITY(U,$J,358.3,37601,2)
+ ;;=^5049115
+ ;;^UTILITY(U,$J,358.3,37602,0)
+ ;;=T33.821A^^146^1917^179
+ ;;^UTILITY(U,$J,358.3,37602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39916,1,3,0)
- ;;=3^Vitreous Prolapse,Right Eye
- ;;^UTILITY(U,$J,358.3,39916,1,4,0)
- ;;=4^H43.01
- ;;^UTILITY(U,$J,358.3,39916,2)
- ;;=^5005934
- ;;^UTILITY(U,$J,358.3,39917,0)
- ;;=H43.02^^153^1930^124
- ;;^UTILITY(U,$J,358.3,39917,1,0)
+ ;;^UTILITY(U,$J,358.3,37602,1,3,0)
+ ;;=3^Frostbite of rt ft,Superficial, init
+ ;;^UTILITY(U,$J,358.3,37602,1,4,0)
+ ;;=4^T33.821A
+ ;;^UTILITY(U,$J,358.3,37602,2)
+ ;;=^5049121
+ ;;^UTILITY(U,$J,358.3,37603,0)
+ ;;=T33.822A^^146^1917^176
+ ;;^UTILITY(U,$J,358.3,37603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39917,1,3,0)
- ;;=3^Vitreous Prolapse,Left Eye
- ;;^UTILITY(U,$J,358.3,39917,1,4,0)
- ;;=4^H43.02
- ;;^UTILITY(U,$J,358.3,39917,2)
- ;;=^5005935
- ;;^UTILITY(U,$J,358.3,39918,0)
- ;;=H43.03^^153^1930^123
- ;;^UTILITY(U,$J,358.3,39918,1,0)
+ ;;^UTILITY(U,$J,358.3,37603,1,3,0)
+ ;;=3^Frostbite of lft ft, Superficial,init
+ ;;^UTILITY(U,$J,358.3,37603,1,4,0)
+ ;;=4^T33.822A
+ ;;^UTILITY(U,$J,358.3,37603,2)
+ ;;=^5049124
+ ;;^UTILITY(U,$J,358.3,37604,0)
+ ;;=T33.831A^^146^1917^180
+ ;;^UTILITY(U,$J,358.3,37604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39918,1,3,0)
- ;;=3^Vitreous Prolapse,Bilateral
- ;;^UTILITY(U,$J,358.3,39918,1,4,0)
- ;;=4^H43.03
- ;;^UTILITY(U,$J,358.3,39918,2)
- ;;=^5005936
- ;;^UTILITY(U,$J,358.3,39919,0)
- ;;=H43.821^^153^1930^114
- ;;^UTILITY(U,$J,358.3,39919,1,0)
+ ;;^UTILITY(U,$J,358.3,37604,1,3,0)
+ ;;=3^Frostbite of rt toe(s), Superficial,init
+ ;;^UTILITY(U,$J,358.3,37604,1,4,0)
+ ;;=4^T33.831A
+ ;;^UTILITY(U,$J,358.3,37604,2)
+ ;;=^5049130
+ ;;^UTILITY(U,$J,358.3,37605,0)
+ ;;=T33.832A^^146^1917^177
+ ;;^UTILITY(U,$J,358.3,37605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39919,1,3,0)
- ;;=3^Vitreomacular Adhesion,Right Eye
- ;;^UTILITY(U,$J,358.3,39919,1,4,0)
- ;;=4^H43.821
- ;;^UTILITY(U,$J,358.3,39919,2)
- ;;=^5005957
- ;;^UTILITY(U,$J,358.3,39920,0)
- ;;=H43.822^^153^1930^113
- ;;^UTILITY(U,$J,358.3,39920,1,0)
+ ;;^UTILITY(U,$J,358.3,37605,1,3,0)
+ ;;=3^Frostbite of lft toe(s), Superficial,init
+ ;;^UTILITY(U,$J,358.3,37605,1,4,0)
+ ;;=4^T33.832A
+ ;;^UTILITY(U,$J,358.3,37605,2)
+ ;;=^5049133
+ ;;^UTILITY(U,$J,358.3,37606,0)
+ ;;=T34.811A^^146^1917^186
+ ;;^UTILITY(U,$J,358.3,37606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39920,1,3,0)
- ;;=3^Vitreomacular Adhesion,Left Eye
- ;;^UTILITY(U,$J,358.3,39920,1,4,0)
- ;;=4^H43.822
- ;;^UTILITY(U,$J,358.3,39920,2)
- ;;=^5005958
- ;;^UTILITY(U,$J,358.3,39921,0)
- ;;=H43.823^^153^1930^112

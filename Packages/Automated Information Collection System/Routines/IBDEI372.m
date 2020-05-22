@@ -1,134 +1,126 @@
-IBDEI372 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI372 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53650,1,0)
+ ;;^UTILITY(U,$J,358.3,51002,0)
+ ;;=J20.1^^193^2499^10
+ ;;^UTILITY(U,$J,358.3,51002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53650,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,53650,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,53650,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,53651,0)
- ;;=J61.^^250^2703^8
- ;;^UTILITY(U,$J,358.3,53651,1,0)
+ ;;^UTILITY(U,$J,358.3,51002,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,51002,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,51002,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,51003,0)
+ ;;=J20.0^^193^2499^11
+ ;;^UTILITY(U,$J,358.3,51003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53651,1,3,0)
- ;;=3^Pneumoconiosis d/t asbestos and other mineral fibers
- ;;^UTILITY(U,$J,358.3,53651,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,53651,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,53652,0)
- ;;=R09.1^^250^2703^7
- ;;^UTILITY(U,$J,358.3,53652,1,0)
+ ;;^UTILITY(U,$J,358.3,51003,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,51003,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,51003,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,51004,0)
+ ;;=J20.2^^193^2499^6
+ ;;^UTILITY(U,$J,358.3,51004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53652,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,53652,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,53652,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,53653,0)
- ;;=J84.10^^250^2703^10
- ;;^UTILITY(U,$J,358.3,53653,1,0)
+ ;;^UTILITY(U,$J,358.3,51004,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,51004,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,51004,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,51005,0)
+ ;;=J20.4^^193^2499^13
+ ;;^UTILITY(U,$J,358.3,51005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53653,1,3,0)
- ;;=3^Pulmonary fibrosis, unspecified
- ;;^UTILITY(U,$J,358.3,53653,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,53653,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,53654,0)
- ;;=R06.02^^250^2703^11
- ;;^UTILITY(U,$J,358.3,53654,1,0)
+ ;;^UTILITY(U,$J,358.3,51005,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,51005,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,51005,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,51006,0)
+ ;;=J20.3^^193^2499^8
+ ;;^UTILITY(U,$J,358.3,51006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53654,1,3,0)
- ;;=3^Shortness of breath
- ;;^UTILITY(U,$J,358.3,53654,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,53654,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,53655,0)
- ;;=R06.00^^250^2703^6
- ;;^UTILITY(U,$J,358.3,53655,1,0)
+ ;;^UTILITY(U,$J,358.3,51006,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,51006,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,51006,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,51007,0)
+ ;;=J20.9^^193^2499^7
+ ;;^UTILITY(U,$J,358.3,51007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53655,1,3,0)
- ;;=3^Dyspnea, unspecified
- ;;^UTILITY(U,$J,358.3,53655,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,53655,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,53656,0)
- ;;=C49.9^^250^2704^1
- ;;^UTILITY(U,$J,358.3,53656,1,0)
+ ;;^UTILITY(U,$J,358.3,51007,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,51007,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,51007,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,51008,0)
+ ;;=J20.8^^193^2499^12
+ ;;^UTILITY(U,$J,358.3,51008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53656,1,3,0)
- ;;=3^Malig Neop of Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,53656,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,53656,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,53657,0)
- ;;=C34.11^^250^2704^8
- ;;^UTILITY(U,$J,358.3,53657,1,0)
+ ;;^UTILITY(U,$J,358.3,51008,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,51008,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,51008,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,51009,0)
+ ;;=J20.5^^193^2499^14
+ ;;^UTILITY(U,$J,358.3,51009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53657,1,3,0)
- ;;=3^Malig Neop of Right Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,53657,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,53657,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,53658,0)
- ;;=C34.12^^250^2704^4
- ;;^UTILITY(U,$J,358.3,53658,1,0)
+ ;;^UTILITY(U,$J,358.3,51009,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,51009,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,51009,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,51010,0)
+ ;;=J20.7^^193^2499^9
+ ;;^UTILITY(U,$J,358.3,51010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53658,1,3,0)
- ;;=3^Malig Neop of Left Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,53658,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,53658,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,53659,0)
- ;;=C34.2^^250^2704^5
- ;;^UTILITY(U,$J,358.3,53659,1,0)
+ ;;^UTILITY(U,$J,358.3,51010,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,51010,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,51010,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,51011,0)
+ ;;=J20.6^^193^2499^15
+ ;;^UTILITY(U,$J,358.3,51011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53659,1,3,0)
- ;;=3^Malig Neop of Middle Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,53659,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,53659,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,53660,0)
- ;;=C34.31^^250^2704^7
- ;;^UTILITY(U,$J,358.3,53660,1,0)
+ ;;^UTILITY(U,$J,358.3,51011,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,51011,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,51011,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,51012,0)
+ ;;=J18.9^^193^2499^67
+ ;;^UTILITY(U,$J,358.3,51012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53660,1,3,0)
- ;;=3^Malig Neop of Right Lower Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,53660,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,53660,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,53661,0)
- ;;=C34.32^^250^2704^3
- ;;^UTILITY(U,$J,358.3,53661,1,0)
+ ;;^UTILITY(U,$J,358.3,51012,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,51012,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,51012,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,51013,0)
+ ;;=J18.8^^193^2499^68
+ ;;^UTILITY(U,$J,358.3,51013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53661,1,3,0)
- ;;=3^Malig Neop of Left Lower Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,53661,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,53661,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,53662,0)
- ;;=C34.81^^250^2704^6
- ;;^UTILITY(U,$J,358.3,53662,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53662,1,3,0)
- ;;=3^Malig Neop of Right Bronchus/Lung,Overlapping Sites
- ;;^UTILITY(U,$J,358.3,53662,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,53662,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,53663,0)
- ;;=C34.82^^250^2704^2
+ ;;^UTILITY(U,$J,358.3,51013,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,51013,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,51013,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,51014,0)
+ ;;=J11.00^^193^2499^28

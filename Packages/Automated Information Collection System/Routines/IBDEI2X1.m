@@ -1,124 +1,122 @@
-IBDEI2X1 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2X1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48935,1,4,0)
- ;;=4^S72.24XS
- ;;^UTILITY(U,$J,358.3,48935,2)
- ;;=^5038074
- ;;^UTILITY(U,$J,358.3,48936,0)
- ;;=S72.25XS^^216^2413^84
- ;;^UTILITY(U,$J,358.3,48936,1,0)
+ ;;^UTILITY(U,$J,358.3,46503,0)
+ ;;=H34.8110^^176^2313^22
+ ;;^UTILITY(U,$J,358.3,46503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48936,1,3,0)
- ;;=3^Nondisp subtrochanteric fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48936,1,4,0)
- ;;=4^S72.25XS
- ;;^UTILITY(U,$J,358.3,48936,2)
- ;;=^5038090
- ;;^UTILITY(U,$J,358.3,48937,0)
- ;;=S72.321S^^216^2413^46
- ;;^UTILITY(U,$J,358.3,48937,1,0)
+ ;;^UTILITY(U,$J,358.3,46503,1,3,0)
+ ;;=3^CRVO w/ CME,RIGHT eye               
+ ;;^UTILITY(U,$J,358.3,46503,1,4,0)
+ ;;=4^H34.8110
+ ;;^UTILITY(U,$J,358.3,46503,2)
+ ;;=^5138476
+ ;;^UTILITY(U,$J,358.3,46504,0)
+ ;;=H34.8120^^176^2313^23
+ ;;^UTILITY(U,$J,358.3,46504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48937,1,3,0)
- ;;=3^Displaced transverse fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48937,1,4,0)
- ;;=4^S72.321S
- ;;^UTILITY(U,$J,358.3,48937,2)
- ;;=^5038159
- ;;^UTILITY(U,$J,358.3,48938,0)
- ;;=S72.322S^^216^2413^45
- ;;^UTILITY(U,$J,358.3,48938,1,0)
+ ;;^UTILITY(U,$J,358.3,46504,1,3,0)
+ ;;=3^CRVO w/ CME,LEFT eye                
+ ;;^UTILITY(U,$J,358.3,46504,1,4,0)
+ ;;=4^H34.8120
+ ;;^UTILITY(U,$J,358.3,46504,2)
+ ;;=^5138479
+ ;;^UTILITY(U,$J,358.3,46505,0)
+ ;;=H21.1X1^^176^2313^24
+ ;;^UTILITY(U,$J,358.3,46505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48938,1,3,0)
- ;;=3^Displaced transverse fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48938,1,4,0)
- ;;=4^S72.322S
- ;;^UTILITY(U,$J,358.3,48938,2)
- ;;=^5038175
- ;;^UTILITY(U,$J,358.3,48939,0)
- ;;=S72.324S^^216^2413^93
- ;;^UTILITY(U,$J,358.3,48939,1,0)
+ ;;^UTILITY(U,$J,358.3,46505,1,3,0)
+ ;;=3^NVI/NVA/Rubeosis,RIGHT eye          
+ ;;^UTILITY(U,$J,358.3,46505,1,4,0)
+ ;;=4^H21.1X1
+ ;;^UTILITY(U,$J,358.3,46505,2)
+ ;;=^5005175
+ ;;^UTILITY(U,$J,358.3,46506,0)
+ ;;=H21.1X2^^176^2313^25
+ ;;^UTILITY(U,$J,358.3,46506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48939,1,3,0)
- ;;=3^Nondisp transverse fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48939,1,4,0)
- ;;=4^S72.324S
- ;;^UTILITY(U,$J,358.3,48939,2)
- ;;=^5038207
- ;;^UTILITY(U,$J,358.3,48940,0)
- ;;=S72.325S^^216^2413^92
- ;;^UTILITY(U,$J,358.3,48940,1,0)
+ ;;^UTILITY(U,$J,358.3,46506,1,3,0)
+ ;;=3^NVI/NVA/Rubeosis,Left eye           
+ ;;^UTILITY(U,$J,358.3,46506,1,4,0)
+ ;;=4^H21.1X2
+ ;;^UTILITY(U,$J,358.3,46506,2)
+ ;;=^5005176
+ ;;^UTILITY(U,$J,358.3,46507,0)
+ ;;=H35.711^^176^2313^26
+ ;;^UTILITY(U,$J,358.3,46507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48940,1,3,0)
- ;;=3^Nondisp transverse fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48940,1,4,0)
- ;;=4^S72.325S
- ;;^UTILITY(U,$J,358.3,48940,2)
- ;;=^5038223
- ;;^UTILITY(U,$J,358.3,48941,0)
- ;;=S72.331S^^216^2413^30
- ;;^UTILITY(U,$J,358.3,48941,1,0)
+ ;;^UTILITY(U,$J,358.3,46507,1,3,0)
+ ;;=3^Central Serous Retinopathy,RIGHT eye
+ ;;^UTILITY(U,$J,358.3,46507,1,4,0)
+ ;;=4^H35.711
+ ;;^UTILITY(U,$J,358.3,46507,2)
+ ;;=^5005703
+ ;;^UTILITY(U,$J,358.3,46508,0)
+ ;;=H35.712^^176^2313^27
+ ;;^UTILITY(U,$J,358.3,46508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48941,1,3,0)
- ;;=3^Displaced oblique fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48941,1,4,0)
- ;;=4^S72.331S
- ;;^UTILITY(U,$J,358.3,48941,2)
- ;;=^5038255
- ;;^UTILITY(U,$J,358.3,48942,0)
- ;;=S72.332S^^216^2413^29
- ;;^UTILITY(U,$J,358.3,48942,1,0)
+ ;;^UTILITY(U,$J,358.3,46508,1,3,0)
+ ;;=3^Central Serous Retinopathy,LEFT eye 
+ ;;^UTILITY(U,$J,358.3,46508,1,4,0)
+ ;;=4^H35.712
+ ;;^UTILITY(U,$J,358.3,46508,2)
+ ;;=^5005704
+ ;;^UTILITY(U,$J,358.3,46509,0)
+ ;;=E11.9^^176^2314^2
+ ;;^UTILITY(U,$J,358.3,46509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48942,1,3,0)
- ;;=3^Displaced oblique fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48942,1,4,0)
- ;;=4^S72.332S
- ;;^UTILITY(U,$J,358.3,48942,2)
- ;;=^5038271
- ;;^UTILITY(U,$J,358.3,48943,0)
- ;;=S72.334S^^216^2413^76
- ;;^UTILITY(U,$J,358.3,48943,1,0)
+ ;;^UTILITY(U,$J,358.3,46509,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,46509,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,46509,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,46510,0)
+ ;;=E11.39^^176^2314^1
+ ;;^UTILITY(U,$J,358.3,46510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48943,1,3,0)
- ;;=3^Nondisp oblique fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48943,1,4,0)
- ;;=4^S72.334S
- ;;^UTILITY(U,$J,358.3,48943,2)
- ;;=^5038303
- ;;^UTILITY(U,$J,358.3,48944,0)
- ;;=S72.335S^^216^2413^75
- ;;^UTILITY(U,$J,358.3,48944,1,0)
+ ;;^UTILITY(U,$J,358.3,46510,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
+ ;;^UTILITY(U,$J,358.3,46510,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,46510,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,46511,0)
+ ;;=E10.9^^176^2314^21
+ ;;^UTILITY(U,$J,358.3,46511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48944,1,3,0)
- ;;=3^Nondisp oblique fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48944,1,4,0)
- ;;=4^S72.335S
- ;;^UTILITY(U,$J,358.3,48944,2)
- ;;=^5038319
- ;;^UTILITY(U,$J,358.3,48945,0)
- ;;=S72.341S^^216^2413^36
- ;;^UTILITY(U,$J,358.3,48945,1,0)
+ ;;^UTILITY(U,$J,358.3,46511,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,46511,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,46511,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,46512,0)
+ ;;=E10.39^^176^2314^20
+ ;;^UTILITY(U,$J,358.3,46512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48945,1,3,0)
- ;;=3^Displaced spiral fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,48945,1,4,0)
- ;;=4^S72.341S
- ;;^UTILITY(U,$J,358.3,48945,2)
- ;;=^5038351
- ;;^UTILITY(U,$J,358.3,48946,0)
- ;;=S72.342S^^216^2413^35
- ;;^UTILITY(U,$J,358.3,48946,1,0)
+ ;;^UTILITY(U,$J,358.3,46512,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complication
+ ;;^UTILITY(U,$J,358.3,46512,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,46512,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,46513,0)
+ ;;=E10.3291^^176^2314^22
+ ;;^UTILITY(U,$J,358.3,46513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48946,1,3,0)
- ;;=3^Displaced spiral fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,48946,1,4,0)
- ;;=4^S72.342S
- ;;^UTILITY(U,$J,358.3,48946,2)
- ;;=^5038367
- ;;^UTILITY(U,$J,358.3,48947,0)
- ;;=S72.344S^^216^2413^83
- ;;^UTILITY(U,$J,358.3,48947,1,0)
+ ;;^UTILITY(U,$J,358.3,46513,1,3,0)
+ ;;=3^DM Type 1 w/ Mild NPDR w/o Macula Edema,Right Eye
+ ;;^UTILITY(U,$J,358.3,46513,1,4,0)
+ ;;=4^E10.3291
+ ;;^UTILITY(U,$J,358.3,46513,2)
+ ;;=^5138283
+ ;;^UTILITY(U,$J,358.3,46514,0)
+ ;;=E10.3292^^176^2314^27
+ ;;^UTILITY(U,$J,358.3,46514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48947,1,3,0)
- ;;=3^Nondisp spiral fx shaft of right femur, sequela
+ ;;^UTILITY(U,$J,358.3,46514,1,3,0)
+ ;;=3^DM Type 1 w/ Mild NPDR w/o Macula Edema,Left Eye
+ ;;^UTILITY(U,$J,358.3,46514,1,4,0)
+ ;;=4^E10.3292

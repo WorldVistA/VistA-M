@@ -1,136 +1,120 @@
-IBDEI39J ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39J ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54835,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,54835,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,54835,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,54836,0)
- ;;=N18.1^^256^2771^13
- ;;^UTILITY(U,$J,358.3,54836,1,0)
+ ;;^UTILITY(U,$J,358.3,52080,0)
+ ;;=W26.9XXA^^193^2516^17
+ ;;^UTILITY(U,$J,358.3,52080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54836,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 1
- ;;^UTILITY(U,$J,358.3,54836,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,54836,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,54837,0)
- ;;=N18.2^^256^2771^14
- ;;^UTILITY(U,$J,358.3,54837,1,0)
+ ;;^UTILITY(U,$J,358.3,52080,1,3,0)
+ ;;=3^Contact w/ Unspec Sharp Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52080,1,4,0)
+ ;;=4^W26.9XXA
+ ;;^UTILITY(U,$J,358.3,52080,2)
+ ;;=^5140378
+ ;;^UTILITY(U,$J,358.3,52081,0)
+ ;;=X50.0XXA^^193^2516^103
+ ;;^UTILITY(U,$J,358.3,52081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54837,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 2
- ;;^UTILITY(U,$J,358.3,54837,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,54837,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,54838,0)
- ;;=N18.3^^256^2771^15
- ;;^UTILITY(U,$J,358.3,54838,1,0)
+ ;;^UTILITY(U,$J,358.3,52081,1,3,0)
+ ;;=3^Overexertion from Strenuous Movement/Load,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52081,1,4,0)
+ ;;=4^X50.0XXA
+ ;;^UTILITY(U,$J,358.3,52081,2)
+ ;;=^5140381
+ ;;^UTILITY(U,$J,358.3,52082,0)
+ ;;=X50.1XXA^^193^2516^105
+ ;;^UTILITY(U,$J,358.3,52082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54838,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 3
- ;;^UTILITY(U,$J,358.3,54838,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,54838,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,54839,0)
- ;;=N18.4^^256^2771^16
- ;;^UTILITY(U,$J,358.3,54839,1,0)
+ ;;^UTILITY(U,$J,358.3,52082,1,3,0)
+ ;;=3^Overextertion from Prlgd/Akwrd Postures,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52082,1,4,0)
+ ;;=4^X50.1XXA
+ ;;^UTILITY(U,$J,358.3,52082,2)
+ ;;=^5140384
+ ;;^UTILITY(U,$J,358.3,52083,0)
+ ;;=X50.3XXA^^193^2516^102
+ ;;^UTILITY(U,$J,358.3,52083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54839,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 4
- ;;^UTILITY(U,$J,358.3,54839,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,54839,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,54840,0)
- ;;=N18.5^^256^2771^17
- ;;^UTILITY(U,$J,358.3,54840,1,0)
+ ;;^UTILITY(U,$J,358.3,52083,1,3,0)
+ ;;=3^Overexertion from Repetitive Movements,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52083,1,4,0)
+ ;;=4^X50.3XXA
+ ;;^UTILITY(U,$J,358.3,52083,2)
+ ;;=^5140387
+ ;;^UTILITY(U,$J,358.3,52084,0)
+ ;;=X50.9XXA^^193^2516^104
+ ;;^UTILITY(U,$J,358.3,52084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54840,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,54840,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,54840,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,54841,0)
- ;;=Q61.3^^256^2771^80
- ;;^UTILITY(U,$J,358.3,54841,1,0)
+ ;;^UTILITY(U,$J,358.3,52084,1,3,0)
+ ;;=3^Overexertion/Sten Mvmnts/Postures,Oth/Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52084,1,4,0)
+ ;;=4^X50.9XXA
+ ;;^UTILITY(U,$J,358.3,52084,2)
+ ;;=^5140390
+ ;;^UTILITY(U,$J,358.3,52085,0)
+ ;;=F02.81^^193^2517^11
+ ;;^UTILITY(U,$J,358.3,52085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54841,1,3,0)
- ;;=3^Polycystic Kidney,Unspec
- ;;^UTILITY(U,$J,358.3,54841,1,4,0)
- ;;=4^Q61.3
- ;;^UTILITY(U,$J,358.3,54841,2)
- ;;=^5018797
- ;;^UTILITY(U,$J,358.3,54842,0)
- ;;=N20.1^^256^2771^9
- ;;^UTILITY(U,$J,358.3,54842,1,0)
+ ;;^UTILITY(U,$J,358.3,52085,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,52085,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,52085,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,52086,0)
+ ;;=F02.80^^193^2517^12
+ ;;^UTILITY(U,$J,358.3,52086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54842,1,3,0)
- ;;=3^Calculus Ureter
- ;;^UTILITY(U,$J,358.3,54842,1,4,0)
- ;;=4^N20.1
- ;;^UTILITY(U,$J,358.3,54842,2)
- ;;=^5015608
- ;;^UTILITY(U,$J,358.3,54843,0)
- ;;=N18.9^^256^2771^18
- ;;^UTILITY(U,$J,358.3,54843,1,0)
+ ;;^UTILITY(U,$J,358.3,52086,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,52086,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,52086,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,52087,0)
+ ;;=F03.91^^193^2517^13
+ ;;^UTILITY(U,$J,358.3,52087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54843,1,3,0)
- ;;=3^Chronic Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,54843,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,54843,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,54844,0)
- ;;=N18.6^^256^2771^28
- ;;^UTILITY(U,$J,358.3,54844,1,0)
+ ;;^UTILITY(U,$J,358.3,52087,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,52087,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,52087,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,52088,0)
+ ;;=G31.83^^193^2517^14
+ ;;^UTILITY(U,$J,358.3,52088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54844,1,3,0)
- ;;=3^End Stage Renal Disease (ESRD)
- ;;^UTILITY(U,$J,358.3,54844,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,54844,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,54845,0)
- ;;=N52.9^^256^2771^44
- ;;^UTILITY(U,$J,358.3,54845,1,0)
+ ;;^UTILITY(U,$J,358.3,52088,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,52088,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,52088,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,52089,0)
+ ;;=F01.51^^193^2517^30
+ ;;^UTILITY(U,$J,358.3,52089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54845,1,3,0)
- ;;=3^Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,54845,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,54845,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,54846,0)
- ;;=N32.81^^256^2771^75
- ;;^UTILITY(U,$J,358.3,54846,1,0)
+ ;;^UTILITY(U,$J,358.3,52089,1,3,0)
+ ;;=3^Vascular Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,52089,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,52089,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,52090,0)
+ ;;=F01.50^^193^2517^31
+ ;;^UTILITY(U,$J,358.3,52090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54846,1,3,0)
- ;;=3^Overactive Bladder
- ;;^UTILITY(U,$J,358.3,54846,1,4,0)
- ;;=4^N32.81
- ;;^UTILITY(U,$J,358.3,54846,2)
- ;;=^5015652
- ;;^UTILITY(U,$J,358.3,54847,0)
- ;;=Q61.2^^256^2771^79
- ;;^UTILITY(U,$J,358.3,54847,1,0)
+ ;;^UTILITY(U,$J,358.3,52090,1,3,0)
+ ;;=3^Vascular Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,52090,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,52090,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,52091,0)
+ ;;=A81.9^^193^2517^6
+ ;;^UTILITY(U,$J,358.3,52091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54847,1,3,0)
- ;;=3^Polycystic Kidney,Adult Type
- ;;^UTILITY(U,$J,358.3,54847,1,4,0)
- ;;=4^Q61.2
- ;;^UTILITY(U,$J,358.3,54847,2)
- ;;=^5018796
- ;;^UTILITY(U,$J,358.3,54848,0)
- ;;=N41.1^^256^2771^83
- ;;^UTILITY(U,$J,358.3,54848,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54848,1,3,0)
- ;;=3^Prostatitis,Chronic
+ ;;^UTILITY(U,$J,358.3,52091,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec

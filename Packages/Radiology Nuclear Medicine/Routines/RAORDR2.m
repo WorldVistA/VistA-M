@@ -1,11 +1,17 @@
-RAORDR2 ;ABV/SCR/MKN - Refer Pending/Hold Requests Reason for Request ;10/4/2018 09:04 AM
- ;;5.0;Radiology/Nuclear Medicine;**148**;Mar 16, 1998;Build 59
+RAORDR2 ;ABV/SCR/MKN - Refer Pending/Hold Requests Reason for Request ; Oct 25, 2019@14:59:27
+ ;;5.0;Radiology/Nuclear Medicine;**148,161**;Mar 16, 1998;Build 1
+ ;
+ ; Routine              IA          Type
+ ; -------------------------------------
+ ; DETAIL^ORWOR        TBR
+ ; ^OR(100             5771,6475     (C)
+ ;
  ;
 GETREAS ;
  N RAARRAY,RACOUNT,RAERR,RAFILE,RAI,RAL,RAMED,RANEXT,RARTRN1
  S RAIENS=RAOIFN_","
  S RAFILE=100.008 ;get order actions
- S RAFIELDS=".01;.1;2;3;4;5;6;12;13;16;17"
+ S RAFIELDS=".01;.1;2;3;4;5;6;12;13;16;17" ;only using .01,2,3,5,6,12
  S RACOUNT=1,RANEXT=0
  F  S RANEXT=$O(^OR(100,RAORDIEN,8,RANEXT)) Q:'+RANEXT  D
  .S RAIENS=RANEXT_","_RAORDIEN_","
@@ -92,4 +98,16 @@ ORDDET ;Get Order Detail
 SETLINES ;
  S RAI="" F  S RAI=$O(RAL(RAI)) Q:'RAI  S RACOUNT=RACOUNT+1,ORDIALOG("WP",RAWPN,1,RACOUNT,0)="    "_RAL(RAI)
  Q
+ ;
+CCCHK(RADA,RAY) ;p161 -input transform for entering cc consults to the Imaging Location
+ ;Matched on I-TYPE for location and Naming Convention.
+ ;Ex: COMMUNITY CARE-IMAGING GENERAL RADIOLOGY-AUTO
+ ;Allows for site identifier appension
+ ;RADA = ILOC
+ N RAITYP,RACON,RASTR,RAM
+ S RAITYP=$$GET1^DIQ(79.1,RADA,6) S:RAITYP="CT SCAN" RAITYP="CT"
+ S RASTR=$P(^GMR(123.5,RAY,0),U)
+ S RACON="COMMUNITY CARE-IMAGING "_RAITYP
+ I RAITYP="MAMMOGRAPHY" Q $S(($P(RASTR," DIAGNOSTIC-AUTO",1)=RACON)!($P(RASTR," SCREEN-AUTO",1)=RACON):1,1:0)
+ E  Q $S($P(RASTR,"-AUTO",1)=RACON:1,1:0)
  ;

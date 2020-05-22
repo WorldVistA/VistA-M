@@ -1,124 +1,122 @@
-IBDEI1SI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30405,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,30405,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,30406,0)
- ;;=Z85.47^^118^1508^24
- ;;^UTILITY(U,$J,358.3,30406,1,0)
+ ;;^UTILITY(U,$J,358.3,28589,0)
+ ;;=F16.159^^115^1408^7
+ ;;^UTILITY(U,$J,358.3,28589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30406,1,3,0)
- ;;=3^Personal history of malignant neoplasm of testis
- ;;^UTILITY(U,$J,358.3,30406,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,30406,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,30407,0)
- ;;=Z85.49^^118^1508^25
- ;;^UTILITY(U,$J,358.3,30407,1,0)
+ ;;^UTILITY(U,$J,358.3,28589,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28589,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,28589,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,28590,0)
+ ;;=F16.259^^115^1408^8
+ ;;^UTILITY(U,$J,358.3,28590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30407,1,3,0)
- ;;=3^Personal history of malignant neoplasm of male genital organs
- ;;^UTILITY(U,$J,358.3,30407,1,4,0)
- ;;=4^Z85.49
- ;;^UTILITY(U,$J,358.3,30407,2)
- ;;=^5063426
- ;;^UTILITY(U,$J,358.3,30408,0)
- ;;=Z85.51^^118^1508^26
- ;;^UTILITY(U,$J,358.3,30408,1,0)
+ ;;^UTILITY(U,$J,358.3,28590,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28590,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,28590,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,28591,0)
+ ;;=F16.959^^115^1408^9
+ ;;^UTILITY(U,$J,358.3,28591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30408,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bladder
- ;;^UTILITY(U,$J,358.3,30408,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,30408,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,30409,0)
- ;;=Z85.528^^118^1508^27
- ;;^UTILITY(U,$J,358.3,30409,1,0)
+ ;;^UTILITY(U,$J,358.3,28591,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28591,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,28591,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,28592,0)
+ ;;=F16.99^^115^1408^17
+ ;;^UTILITY(U,$J,358.3,28592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30409,1,3,0)
- ;;=3^Personal history of malignant neoplasm of kidney NEC
- ;;^UTILITY(U,$J,358.3,30409,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,30409,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,30410,0)
- ;;=Z85.79^^118^1508^28
- ;;^UTILITY(U,$J,358.3,30410,1,0)
+ ;;^UTILITY(U,$J,358.3,28592,1,3,0)
+ ;;=3^Hallucinogen Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,28592,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,28592,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,28593,0)
+ ;;=F16.983^^115^1408^16
+ ;;^UTILITY(U,$J,358.3,28593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30410,1,3,0)
- ;;=3^Personal history of malignant neoplasm of lymphoid, hematpoetc & rel tiss
- ;;^UTILITY(U,$J,358.3,30410,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,30410,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,30411,0)
- ;;=Z85.831^^118^1508^29
- ;;^UTILITY(U,$J,358.3,30411,1,0)
+ ;;^UTILITY(U,$J,358.3,28593,1,3,0)
+ ;;=3^Hallucinogen Persisting Perception D/O
+ ;;^UTILITY(U,$J,358.3,28593,1,4,0)
+ ;;=4^F16.983
+ ;;^UTILITY(U,$J,358.3,28593,2)
+ ;;=^5003358
+ ;;^UTILITY(U,$J,358.3,28594,0)
+ ;;=F16.21^^115^1408^20
+ ;;^UTILITY(U,$J,358.3,28594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30411,1,3,0)
- ;;=3^Personal history of malignant neoplasm of soft tissue
- ;;^UTILITY(U,$J,358.3,30411,1,4,0)
- ;;=4^Z85.831
- ;;^UTILITY(U,$J,358.3,30411,2)
- ;;=^5063445
- ;;^UTILITY(U,$J,358.3,30412,0)
- ;;=Z85.71^^118^1508^1
- ;;^UTILITY(U,$J,358.3,30412,1,0)
+ ;;^UTILITY(U,$J,358.3,28594,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,28594,1,4,0)
+ ;;=4^F16.21
+ ;;^UTILITY(U,$J,358.3,28594,2)
+ ;;=^5003337
+ ;;^UTILITY(U,$J,358.3,28595,0)
+ ;;=F16.11^^115^1408^18
+ ;;^UTILITY(U,$J,358.3,28595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30412,1,3,0)
- ;;=3^Personal history of Hodgkin lymphoma
- ;;^UTILITY(U,$J,358.3,30412,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,30412,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,30413,0)
- ;;=Z85.830^^118^1508^30
- ;;^UTILITY(U,$J,358.3,30413,1,0)
+ ;;^UTILITY(U,$J,358.3,28595,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,28595,1,4,0)
+ ;;=4^F16.11
+ ;;^UTILITY(U,$J,358.3,28595,2)
+ ;;=^268239
+ ;;^UTILITY(U,$J,358.3,28596,0)
+ ;;=F11.10^^115^1409^25
+ ;;^UTILITY(U,$J,358.3,28596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30413,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,30413,1,4,0)
- ;;=4^Z85.830
- ;;^UTILITY(U,$J,358.3,30413,2)
- ;;=^5063444
- ;;^UTILITY(U,$J,358.3,30414,0)
- ;;=Z85.820^^118^1508^2
- ;;^UTILITY(U,$J,358.3,30414,1,0)
+ ;;^UTILITY(U,$J,358.3,28596,1,3,0)
+ ;;=3^Opioid Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,28596,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,28596,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,28597,0)
+ ;;=F11.129^^115^1409^22
+ ;;^UTILITY(U,$J,358.3,28597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30414,1,3,0)
- ;;=3^Personal history of malignant melanoma of skin
- ;;^UTILITY(U,$J,358.3,30414,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,30414,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,30415,0)
- ;;=Z85.828^^118^1508^31
- ;;^UTILITY(U,$J,358.3,30415,1,0)
+ ;;^UTILITY(U,$J,358.3,28597,1,3,0)
+ ;;=3^Opioid Intox w/o Perceptual Dists w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28597,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,28597,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,28598,0)
+ ;;=F11.14^^115^1409^5
+ ;;^UTILITY(U,$J,358.3,28598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30415,1,3,0)
- ;;=3^Personal history of malignant neoplasm of skin NEC
- ;;^UTILITY(U,$J,358.3,30415,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,30415,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,30416,0)
- ;;=Z85.840^^118^1508^32
- ;;^UTILITY(U,$J,358.3,30416,1,0)
+ ;;^UTILITY(U,$J,358.3,28598,1,3,0)
+ ;;=3^Opioid Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28598,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,28598,2)
+ ;;=^5003119
+ ;;^UTILITY(U,$J,358.3,28599,0)
+ ;;=F11.182^^115^1409^11
+ ;;^UTILITY(U,$J,358.3,28599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30416,1,3,0)
- ;;=3^Personal history of malignant neoplasm of eye
- ;;^UTILITY(U,$J,358.3,30416,1,4,0)
- ;;=4^Z85.840
- ;;^UTILITY(U,$J,358.3,30416,2)
- ;;=^5063446
- ;;^UTILITY(U,$J,358.3,30417,0)
- ;;=Z85.841^^118^1508^33
- ;;^UTILITY(U,$J,358.3,30417,1,0)
+ ;;^UTILITY(U,$J,358.3,28599,1,3,0)
+ ;;=3^Opioid Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28599,1,4,0)
+ ;;=4^F11.182
+ ;;^UTILITY(U,$J,358.3,28599,2)
+ ;;=^5003124
+ ;;^UTILITY(U,$J,358.3,28600,0)
+ ;;=F11.20^^115^1409^28
+ ;;^UTILITY(U,$J,358.3,28600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30417,1,3,0)
- ;;=3^Personal history of malignant neoplasm of brain
+ ;;^UTILITY(U,$J,358.3,28600,1,3,0)
+ ;;=3^Opioid Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,28600,1,4,0)
+ ;;=4^F11.20

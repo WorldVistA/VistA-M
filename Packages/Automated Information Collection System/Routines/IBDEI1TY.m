@@ -1,124 +1,128 @@
-IBDEI1TY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1TY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31082,1,0)
+ ;;^UTILITY(U,$J,358.3,29239,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,29239,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,29239,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,29240,0)
+ ;;=T50.905A^^118^1471^1
+ ;;^UTILITY(U,$J,358.3,29240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31082,1,3,0)
- ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31082,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,31082,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,31083,0)
- ;;=F16.980^^123^1558^3
- ;;^UTILITY(U,$J,358.3,31083,1,0)
+ ;;^UTILITY(U,$J,358.3,29240,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,29240,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,29240,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,29241,0)
+ ;;=T50.905S^^118^1471^2
+ ;;^UTILITY(U,$J,358.3,29241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31083,1,3,0)
- ;;=3^Hallucinogen Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31083,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,31083,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,31084,0)
- ;;=F16.14^^123^1558^4
- ;;^UTILITY(U,$J,358.3,31084,1,0)
+ ;;^UTILITY(U,$J,358.3,29241,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,29241,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,29241,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,29242,0)
+ ;;=T50.905D^^118^1471^3
+ ;;^UTILITY(U,$J,358.3,29242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31084,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31084,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,31084,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,31085,0)
- ;;=F16.24^^123^1558^5
- ;;^UTILITY(U,$J,358.3,31085,1,0)
+ ;;^UTILITY(U,$J,358.3,29242,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,29242,1,4,0)
+ ;;=4^T50.905D
+ ;;^UTILITY(U,$J,358.3,29242,2)
+ ;;=^5052161
+ ;;^UTILITY(U,$J,358.3,29243,0)
+ ;;=F45.22^^118^1472^1
+ ;;^UTILITY(U,$J,358.3,29243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31085,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31085,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,31085,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,31086,0)
- ;;=F16.94^^123^1558^6
- ;;^UTILITY(U,$J,358.3,31086,1,0)
+ ;;^UTILITY(U,$J,358.3,29243,1,3,0)
+ ;;=3^Body Dysmorphic D/O
+ ;;^UTILITY(U,$J,358.3,29243,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,29243,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,29244,0)
+ ;;=F63.3^^118^1472^8
+ ;;^UTILITY(U,$J,358.3,29244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31086,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31086,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,31086,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,31087,0)
- ;;=F16.159^^123^1558^7
- ;;^UTILITY(U,$J,358.3,31087,1,0)
+ ;;^UTILITY(U,$J,358.3,29244,1,3,0)
+ ;;=3^Trichotillomania (Hair-Pulling D/O)
+ ;;^UTILITY(U,$J,358.3,29244,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,29244,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,29245,0)
+ ;;=F06.8^^118^1472^4
+ ;;^UTILITY(U,$J,358.3,29245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31087,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31087,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,31087,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,31088,0)
- ;;=F16.259^^123^1558^8
- ;;^UTILITY(U,$J,358.3,31088,1,0)
+ ;;^UTILITY(U,$J,358.3,29245,1,3,0)
+ ;;=3^OCD & Rel D/O d/t Phys Cond
+ ;;^UTILITY(U,$J,358.3,29245,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,29245,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,29246,0)
+ ;;=F42.4^^118^1472^2
+ ;;^UTILITY(U,$J,358.3,29246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31088,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31088,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,31088,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,31089,0)
- ;;=F16.959^^123^1558^9
- ;;^UTILITY(U,$J,358.3,31089,1,0)
+ ;;^UTILITY(U,$J,358.3,29246,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) D/O
+ ;;^UTILITY(U,$J,358.3,29246,1,4,0)
+ ;;=4^F42.4
+ ;;^UTILITY(U,$J,358.3,29246,2)
+ ;;=^5138446
+ ;;^UTILITY(U,$J,358.3,29247,0)
+ ;;=F42.3^^118^1472^3
+ ;;^UTILITY(U,$J,358.3,29247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31089,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,31089,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,31089,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,31090,0)
- ;;=F16.99^^123^1558^20
- ;;^UTILITY(U,$J,358.3,31090,1,0)
+ ;;^UTILITY(U,$J,358.3,29247,1,3,0)
+ ;;=3^Hoarding D/O
+ ;;^UTILITY(U,$J,358.3,29247,1,4,0)
+ ;;=4^F42.3
+ ;;^UTILITY(U,$J,358.3,29247,2)
+ ;;=^5138445
+ ;;^UTILITY(U,$J,358.3,29248,0)
+ ;;=F42.9^^118^1472^7
+ ;;^UTILITY(U,$J,358.3,29248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31090,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31090,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,31090,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,31091,0)
- ;;=F11.10^^123^1559^23
- ;;^UTILITY(U,$J,358.3,31091,1,0)
+ ;;^UTILITY(U,$J,358.3,29248,1,3,0)
+ ;;=3^OCD,Unspec
+ ;;^UTILITY(U,$J,358.3,29248,1,4,0)
+ ;;=4^F42.9
+ ;;^UTILITY(U,$J,358.3,29248,2)
+ ;;=^5138448
+ ;;^UTILITY(U,$J,358.3,29249,0)
+ ;;=F42.2^^118^1472^5
+ ;;^UTILITY(U,$J,358.3,29249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31091,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,31091,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,31091,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,31092,0)
- ;;=F11.129^^123^1559^19
- ;;^UTILITY(U,$J,358.3,31092,1,0)
+ ;;^UTILITY(U,$J,358.3,29249,1,3,0)
+ ;;=3^OCD,Mixed Obsess Thoughts & Acts
+ ;;^UTILITY(U,$J,358.3,29249,1,4,0)
+ ;;=4^F42.2
+ ;;^UTILITY(U,$J,358.3,29249,2)
+ ;;=^5138444
+ ;;^UTILITY(U,$J,358.3,29250,0)
+ ;;=F42.8^^118^1472^6
+ ;;^UTILITY(U,$J,358.3,29250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31092,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31092,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,31092,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,31093,0)
- ;;=F11.14^^123^1559^27
- ;;^UTILITY(U,$J,358.3,31093,1,0)
+ ;;^UTILITY(U,$J,358.3,29250,1,3,0)
+ ;;=3^OCD,Oth Spec
+ ;;^UTILITY(U,$J,358.3,29250,1,4,0)
+ ;;=4^F42.8
+ ;;^UTILITY(U,$J,358.3,29250,2)
+ ;;=^5138447
+ ;;^UTILITY(U,$J,358.3,29251,0)
+ ;;=Z91.49^^118^1473^16
+ ;;^UTILITY(U,$J,358.3,29251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31093,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31093,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,31093,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,31094,0)
- ;;=F11.182^^123^1559^29
+ ;;^UTILITY(U,$J,358.3,29251,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,29251,1,4,0)
+ ;;=4^Z91.49

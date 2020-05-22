@@ -1,122 +1,120 @@
-IBDEI2XV ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49295,1,3,0)
- ;;=3^Nondisp fx of transverse of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49295,1,4,0)
- ;;=4^S32.454S
- ;;^UTILITY(U,$J,358.3,49295,2)
- ;;=^5024868
- ;;^UTILITY(U,$J,358.3,49296,0)
- ;;=M84.350S^^216^2416^45
- ;;^UTILITY(U,$J,358.3,49296,1,0)
+ ;;^UTILITY(U,$J,358.3,46900,0)
+ ;;=T81.41XS^^179^2338^33
+ ;;^UTILITY(U,$J,358.3,46900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49296,1,3,0)
- ;;=3^Stress fracture, pelvis, sequela
- ;;^UTILITY(U,$J,358.3,49296,1,4,0)
- ;;=4^M84.350S
- ;;^UTILITY(U,$J,358.3,49296,2)
- ;;=^5013679
- ;;^UTILITY(U,$J,358.3,49297,0)
- ;;=S42.222S^^216^2417^1
- ;;^UTILITY(U,$J,358.3,49297,1,0)
+ ;;^UTILITY(U,$J,358.3,46900,1,3,0)
+ ;;=3^Infect Following Proced,Superfic Incis Surg Site,Sequela
+ ;;^UTILITY(U,$J,358.3,46900,1,4,0)
+ ;;=4^T81.41XS
+ ;;^UTILITY(U,$J,358.3,46900,2)
+ ;;=^5157589
+ ;;^UTILITY(U,$J,358.3,46901,0)
+ ;;=T81.42XA^^179^2338^22
+ ;;^UTILITY(U,$J,358.3,46901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49297,1,3,0)
- ;;=3^2-part disp fx of surgical neck of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49297,1,4,0)
- ;;=4^S42.222S
- ;;^UTILITY(U,$J,358.3,49297,2)
- ;;=^5026816
- ;;^UTILITY(U,$J,358.3,49298,0)
- ;;=S42.221S^^216^2417^2
- ;;^UTILITY(U,$J,358.3,49298,1,0)
+ ;;^UTILITY(U,$J,358.3,46901,1,3,0)
+ ;;=3^Infect Following Proced,Deep Incis Surg Site,Init
+ ;;^UTILITY(U,$J,358.3,46901,1,4,0)
+ ;;=4^T81.42XA
+ ;;^UTILITY(U,$J,358.3,46901,2)
+ ;;=^5157590
+ ;;^UTILITY(U,$J,358.3,46902,0)
+ ;;=T81.42XD^^179^2338^23
+ ;;^UTILITY(U,$J,358.3,46902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49298,1,3,0)
- ;;=3^2-part disp fx of surgical neck of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49298,1,4,0)
- ;;=4^S42.221S
- ;;^UTILITY(U,$J,358.3,49298,2)
- ;;=^5026809
- ;;^UTILITY(U,$J,358.3,49299,0)
- ;;=S42.225S^^216^2417^3
- ;;^UTILITY(U,$J,358.3,49299,1,0)
+ ;;^UTILITY(U,$J,358.3,46902,1,3,0)
+ ;;=3^Infect Following Proced,Deep Incis Surg Site,Subs
+ ;;^UTILITY(U,$J,358.3,46902,1,4,0)
+ ;;=4^T81.42XD
+ ;;^UTILITY(U,$J,358.3,46902,2)
+ ;;=^5157591
+ ;;^UTILITY(U,$J,358.3,46903,0)
+ ;;=T81.42XS^^179^2338^24
+ ;;^UTILITY(U,$J,358.3,46903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49299,1,3,0)
- ;;=3^2-part nondisp fx of surgical neck of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49299,1,4,0)
- ;;=4^S42.225S
- ;;^UTILITY(U,$J,358.3,49299,2)
- ;;=^5026837
- ;;^UTILITY(U,$J,358.3,49300,0)
- ;;=S42.224S^^216^2417^4
- ;;^UTILITY(U,$J,358.3,49300,1,0)
+ ;;^UTILITY(U,$J,358.3,46903,1,3,0)
+ ;;=3^Infect Following Proced,Deep Incis Surg Site,Sequela
+ ;;^UTILITY(U,$J,358.3,46903,1,4,0)
+ ;;=4^T81.42XS
+ ;;^UTILITY(U,$J,358.3,46903,2)
+ ;;=^5157592
+ ;;^UTILITY(U,$J,358.3,46904,0)
+ ;;=T81.43XA^^179^2338^25
+ ;;^UTILITY(U,$J,358.3,46904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49300,1,3,0)
- ;;=3^2-part nondisp fx of surgical neck of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49300,1,4,0)
- ;;=4^S42.224S
- ;;^UTILITY(U,$J,358.3,49300,2)
- ;;=^5026830
- ;;^UTILITY(U,$J,358.3,49301,0)
- ;;=S42.232S^^216^2417^5
- ;;^UTILITY(U,$J,358.3,49301,1,0)
+ ;;^UTILITY(U,$J,358.3,46904,1,3,0)
+ ;;=3^Infect Following Proced,Organ/Space Surg Site,Init
+ ;;^UTILITY(U,$J,358.3,46904,1,4,0)
+ ;;=4^T81.43XA
+ ;;^UTILITY(U,$J,358.3,46904,2)
+ ;;=^5157593
+ ;;^UTILITY(U,$J,358.3,46905,0)
+ ;;=T81.43XD^^179^2338^26
+ ;;^UTILITY(U,$J,358.3,46905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49301,1,3,0)
- ;;=3^3-part fx of surgical neck of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49301,1,4,0)
- ;;=4^S42.232S
- ;;^UTILITY(U,$J,358.3,49301,2)
- ;;=^5026858
- ;;^UTILITY(U,$J,358.3,49302,0)
- ;;=S42.331S^^216^2417^39
- ;;^UTILITY(U,$J,358.3,49302,1,0)
+ ;;^UTILITY(U,$J,358.3,46905,1,3,0)
+ ;;=3^Infect Following Proced,Organ/Space Surg Site,Subs
+ ;;^UTILITY(U,$J,358.3,46905,1,4,0)
+ ;;=4^T81.43XD
+ ;;^UTILITY(U,$J,358.3,46905,2)
+ ;;=^5157594
+ ;;^UTILITY(U,$J,358.3,46906,0)
+ ;;=T81.43XS^^179^2338^27
+ ;;^UTILITY(U,$J,358.3,46906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49302,1,3,0)
- ;;=3^Disp fx of oblique shaft of humerus, right arm, sequela  
- ;;^UTILITY(U,$J,358.3,49302,1,4,0)
- ;;=4^S42.331S
- ;;^UTILITY(U,$J,358.3,49302,2)
- ;;=^5027111
- ;;^UTILITY(U,$J,358.3,49303,0)
- ;;=S42.242S^^216^2417^6
- ;;^UTILITY(U,$J,358.3,49303,1,0)
+ ;;^UTILITY(U,$J,358.3,46906,1,3,0)
+ ;;=3^Infect Following Proced,Organ/Space Surg Site,Sequela
+ ;;^UTILITY(U,$J,358.3,46906,1,4,0)
+ ;;=4^T81.43XS
+ ;;^UTILITY(U,$J,358.3,46906,2)
+ ;;=^5157595
+ ;;^UTILITY(U,$J,358.3,46907,0)
+ ;;=T81.49XA^^179^2338^28
+ ;;^UTILITY(U,$J,358.3,46907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49303,1,3,0)
- ;;=3^4-part fx of surgical neck of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,49303,1,4,0)
- ;;=4^S42.242S
- ;;^UTILITY(U,$J,358.3,49303,2)
- ;;=^5026879
- ;;^UTILITY(U,$J,358.3,49304,0)
- ;;=S42.241S^^216^2417^7
- ;;^UTILITY(U,$J,358.3,49304,1,0)
+ ;;^UTILITY(U,$J,358.3,46907,1,3,0)
+ ;;=3^Infect Following Proced,Oth Surg Site,Init
+ ;;^UTILITY(U,$J,358.3,46907,1,4,0)
+ ;;=4^T81.49XA
+ ;;^UTILITY(U,$J,358.3,46907,2)
+ ;;=^5157599
+ ;;^UTILITY(U,$J,358.3,46908,0)
+ ;;=T81.49XD^^179^2338^29
+ ;;^UTILITY(U,$J,358.3,46908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49304,1,3,0)
- ;;=3^4-part fx of surgical neck of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,49304,1,4,0)
- ;;=4^S42.241S
- ;;^UTILITY(U,$J,358.3,49304,2)
- ;;=^5026872
- ;;^UTILITY(U,$J,358.3,49305,0)
- ;;=S42.352S^^216^2417^14
- ;;^UTILITY(U,$J,358.3,49305,1,0)
+ ;;^UTILITY(U,$J,358.3,46908,1,3,0)
+ ;;=3^Infect Following Proced,Oth Surg Site,Subs
+ ;;^UTILITY(U,$J,358.3,46908,1,4,0)
+ ;;=4^T81.49XD
+ ;;^UTILITY(U,$J,358.3,46908,2)
+ ;;=^5157600
+ ;;^UTILITY(U,$J,358.3,46909,0)
+ ;;=T81.49XS^^179^2338^30
+ ;;^UTILITY(U,$J,358.3,46909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49305,1,3,0)
- ;;=3^Disp fx of comminuted shaft of humerus, left arm, sequela
- ;;^UTILITY(U,$J,358.3,49305,1,4,0)
- ;;=4^S42.352S
- ;;^UTILITY(U,$J,358.3,49305,2)
- ;;=^5027202
- ;;^UTILITY(U,$J,358.3,49306,0)
- ;;=S42.351S^^216^2417^15
- ;;^UTILITY(U,$J,358.3,49306,1,0)
+ ;;^UTILITY(U,$J,358.3,46909,1,3,0)
+ ;;=3^Infect Following Proced,Oth Surg Site,Sequela
+ ;;^UTILITY(U,$J,358.3,46909,1,4,0)
+ ;;=4^T81.49XS
+ ;;^UTILITY(U,$J,358.3,46909,2)
+ ;;=^5157601
+ ;;^UTILITY(U,$J,358.3,46910,0)
+ ;;=D29.1^^179^2339^5
+ ;;^UTILITY(U,$J,358.3,46910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49306,1,3,0)
- ;;=3^Disp fx of comminuted shaft of humerus, right arm, sequela
- ;;^UTILITY(U,$J,358.3,49306,1,4,0)
- ;;=4^S42.351S
- ;;^UTILITY(U,$J,358.3,49306,2)
- ;;=^5027195
- ;;^UTILITY(U,$J,358.3,49307,0)
- ;;=S42.422S^^216^2417^16
+ ;;^UTILITY(U,$J,358.3,46910,1,3,0)
+ ;;=3^Benign neoplasm of prostate
+ ;;^UTILITY(U,$J,358.3,46910,1,4,0)
+ ;;=4^D29.1
+ ;;^UTILITY(U,$J,358.3,46910,2)
+ ;;=^267657
+ ;;^UTILITY(U,$J,358.3,46911,0)
+ ;;=N40.0^^179^2339^4
+ ;;^UTILITY(U,$J,358.3,46911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46911,1,3,0)
+ ;;=3^BPH (enlarged prostate) w/o LUTS

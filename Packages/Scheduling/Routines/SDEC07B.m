@@ -1,5 +1,5 @@
 SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;MAY 15, 2017
- ;;5.3;Scheduling;**627,658,665,669,722**;Aug 13, 1993;Build 26
+ ;;5.3;Scheduling;**627,658,665,669,722,744**;Aug 13, 1993;Build 3
  ;
  Q
  ;
@@ -61,7 +61,9 @@ MAKE(BSDR) ;PEP; call to store appt made
  S SDFU=$S(SDFU="YES":1,1:0)
  K @SDRET
  ;store
- I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),(($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="C")!($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="PC")) D
+ N SDECCOND
+ S SDECCOND=0 I $D(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0)),(($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="C")!($P(^DPT(BSDR("PAT"),"S",BSDR("ADT"),0),U,2)="PC")) S SDECCOND=1
+ I SDECCOND=1 D
  . ; "un-cancel" existing appt in file 2
  . N SDECFDA,SDECIENS,SDECMSG
  . S SDECIENS=BSDR("ADT")_","_BSDR("PAT")_","
@@ -110,7 +112,6 @@ MAKE(BSDR) ;PEP; call to store appt made
  . S SDECFDA(2.98,SDECIENS,"27")=BSDR("DDT")   ;desired date of appt
  . S SDECFDA(2.98,SDECIENS,"28")=SDFU          ;follow-up visit  yes/no
  . D UPDATE^DIE("","SDECFDA","SDECIENS","SDECERR(1)")
- ;
  ; add appt to file 44
  K DIC,DA,X,Y,DLAYGO,DD,DO
  I '$D(^SC(BSDR("CLN"),"S",0)) S ^SC(BSDR("CLN"),"S",0)="^44.001DA^^"
@@ -132,8 +133,7 @@ MAKE(BSDR) ;PEP; call to store appt made
  .Q:SDIEN=-1
  .S SDFDA(44.003,SDIEN_","_BSDR("ADT")_","_BSDR("CLN")_",",688)=BSDR("CON")
  .D UPDATE^DIE("","SDFDA")
- ;
- Q 0
+ ; removed quit so event driver could be called pwc 2/26/20 SD*5.3*744
  ; call event driver
  NEW DFN,SDT,SDCL,SDDA,SDMODE
  S DFN=BSDR("PAT"),SDT=BSDR("ADT"),SDCL=BSDR("CLN"),SDMODE=2
@@ -214,6 +214,4 @@ APPVISTA(SDECLEN,SDECNOTE,DFN,SDECRESD,SDECSTART,SDECWKIN,SDCL,SDECI) ;
  . S SDECERR=$$MAKE^SDEC07B(.SDECC)
  . Q:SDECERR
  . D AVUPDT^SDEC07(SDCL,SDECSTART,SDECLEN)
- . ;L
- . Q
  Q +SDECERR

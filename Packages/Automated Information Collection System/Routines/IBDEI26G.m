@@ -1,132 +1,120 @@
-IBDEI26G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI26G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36932,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,36933,0)
- ;;=J45.909^^137^1778^5
- ;;^UTILITY(U,$J,358.3,36933,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36933,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,36933,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,36933,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,36934,0)
- ;;=J42.^^137^1778^13
- ;;^UTILITY(U,$J,358.3,36934,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36934,1,3,0)
- ;;=3^Chr Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,36934,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,36934,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,36935,0)
- ;;=I95.1^^137^1779^1
- ;;^UTILITY(U,$J,358.3,36935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36935,1,3,0)
- ;;=3^Orthostatic Hypotension
- ;;^UTILITY(U,$J,358.3,36935,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,36935,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,36936,0)
- ;;=I73.9^^137^1779^2
- ;;^UTILITY(U,$J,358.3,36936,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36936,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,36936,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,36936,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,36937,0)
- ;;=I80.13^^137^1779^3
- ;;^UTILITY(U,$J,358.3,36937,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36937,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Femoral Vein
- ;;^UTILITY(U,$J,358.3,36937,1,4,0)
- ;;=4^I80.13
- ;;^UTILITY(U,$J,358.3,36937,2)
- ;;=^5007827
- ;;^UTILITY(U,$J,358.3,36938,0)
- ;;=I80.213^^137^1779^4
- ;;^UTILITY(U,$J,358.3,36938,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36938,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Iliac Vein
- ;;^UTILITY(U,$J,358.3,36938,1,4,0)
- ;;=4^I80.213
- ;;^UTILITY(U,$J,358.3,36938,2)
- ;;=^5007833
- ;;^UTILITY(U,$J,358.3,36939,0)
- ;;=I80.223^^137^1779^7
- ;;^UTILITY(U,$J,358.3,36939,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36939,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Popliteal Vein
- ;;^UTILITY(U,$J,358.3,36939,1,4,0)
- ;;=4^I80.223
- ;;^UTILITY(U,$J,358.3,36939,2)
- ;;=^5007837
- ;;^UTILITY(U,$J,358.3,36940,0)
- ;;=I80.233^^137^1779^8
- ;;^UTILITY(U,$J,358.3,36940,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36940,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Tibial Vein
- ;;^UTILITY(U,$J,358.3,36940,1,4,0)
- ;;=4^I80.233
- ;;^UTILITY(U,$J,358.3,36940,2)
- ;;=^5007841
- ;;^UTILITY(U,$J,358.3,36941,0)
- ;;=I80.12^^137^1779^9
- ;;^UTILITY(U,$J,358.3,36941,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36941,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,36941,1,4,0)
- ;;=4^I80.12
- ;;^UTILITY(U,$J,358.3,36941,2)
- ;;=^5007826
- ;;^UTILITY(U,$J,358.3,36942,0)
- ;;=I80.212^^137^1779^10
- ;;^UTILITY(U,$J,358.3,36942,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36942,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Iliac Vein
- ;;^UTILITY(U,$J,358.3,36942,1,4,0)
- ;;=4^I80.212
- ;;^UTILITY(U,$J,358.3,36942,2)
- ;;=^5007832
- ;;^UTILITY(U,$J,358.3,36943,0)
- ;;=I80.222^^137^1779^13
- ;;^UTILITY(U,$J,358.3,36943,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36943,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Popliteal Vein
- ;;^UTILITY(U,$J,358.3,36943,1,4,0)
- ;;=4^I80.222
- ;;^UTILITY(U,$J,358.3,36943,2)
- ;;=^5007836
- ;;^UTILITY(U,$J,358.3,36944,0)
- ;;=I80.232^^137^1779^14
- ;;^UTILITY(U,$J,358.3,36944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36944,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Tibial Vein
- ;;^UTILITY(U,$J,358.3,36944,1,4,0)
- ;;=4^I80.232
- ;;^UTILITY(U,$J,358.3,36944,2)
- ;;=^5007840
- ;;^UTILITY(U,$J,358.3,36945,0)
- ;;=I80.293^^137^1779^5
- ;;^UTILITY(U,$J,358.3,36945,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36945,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Deep Vessels
+ ;;^UTILITY(U,$J,358.3,34764,1,3,0)
+ ;;=3^20550
+ ;;^UTILITY(U,$J,358.3,34765,0)
+ ;;=J1100^^136^1771^4^^^^1
+ ;;^UTILITY(U,$J,358.3,34765,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34765,1,2,0)
+ ;;=2^Dexamethasone Sodium Phos 1 mg
+ ;;^UTILITY(U,$J,358.3,34765,1,3,0)
+ ;;=3^J1100
+ ;;^UTILITY(U,$J,358.3,34766,0)
+ ;;=J0800^^136^1771^3^^^^1
+ ;;^UTILITY(U,$J,358.3,34766,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34766,1,2,0)
+ ;;=2^Corticotropin Inj up to 40 units
+ ;;^UTILITY(U,$J,358.3,34766,1,3,0)
+ ;;=3^J0800
+ ;;^UTILITY(U,$J,358.3,34767,0)
+ ;;=J1040^^136^1771^7^^^^1
+ ;;^UTILITY(U,$J,358.3,34767,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34767,1,2,0)
+ ;;=2^Methylprednisolone 80 Mg Inj
+ ;;^UTILITY(U,$J,358.3,34767,1,3,0)
+ ;;=3^J1040
+ ;;^UTILITY(U,$J,358.3,34768,0)
+ ;;=20552^^136^1771^8^^^^1
+ ;;^UTILITY(U,$J,358.3,34768,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34768,1,2,0)
+ ;;=2^Trigger Point(s) Inj,1-2 Muscles
+ ;;^UTILITY(U,$J,358.3,34768,1,3,0)
+ ;;=3^20552
+ ;;^UTILITY(U,$J,358.3,34769,0)
+ ;;=20553^^136^1771^9^^^^1
+ ;;^UTILITY(U,$J,358.3,34769,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34769,1,2,0)
+ ;;=2^Trigger Point(s) Inj,=/> 3 Muscles
+ ;;^UTILITY(U,$J,358.3,34769,1,3,0)
+ ;;=3^20553
+ ;;^UTILITY(U,$J,358.3,34770,0)
+ ;;=97597^^136^1772^2^^^^1
+ ;;^UTILITY(U,$J,358.3,34770,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34770,1,2,0)
+ ;;=2^Active Wound Care/20 Cm Or <
+ ;;^UTILITY(U,$J,358.3,34770,1,3,0)
+ ;;=3^97597
+ ;;^UTILITY(U,$J,358.3,34771,0)
+ ;;=97598^^136^1772^1^^^^1
+ ;;^UTILITY(U,$J,358.3,34771,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34771,1,2,0)
+ ;;=2^Active Wound Care each adtl 20 Cm
+ ;;^UTILITY(U,$J,358.3,34771,1,3,0)
+ ;;=3^97598
+ ;;^UTILITY(U,$J,358.3,34772,0)
+ ;;=97605^^136^1772^7^^^^1
+ ;;^UTILITY(U,$J,358.3,34772,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34772,1,2,0)
+ ;;=2^Neg Press Wound Tx < 50 Cm
+ ;;^UTILITY(U,$J,358.3,34772,1,3,0)
+ ;;=3^97605
+ ;;^UTILITY(U,$J,358.3,34773,0)
+ ;;=97606^^136^1772^8^^^^1
+ ;;^UTILITY(U,$J,358.3,34773,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34773,1,2,0)
+ ;;=2^Neg Press Wound Tx, > 50 Cm
+ ;;^UTILITY(U,$J,358.3,34773,1,3,0)
+ ;;=3^97606
+ ;;^UTILITY(U,$J,358.3,34774,0)
+ ;;=97602^^136^1772^9^^^^1
+ ;;^UTILITY(U,$J,358.3,34774,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34774,1,2,0)
+ ;;=2^Remove Divit. Tissue w/o Anesth
+ ;;^UTILITY(U,$J,358.3,34774,1,3,0)
+ ;;=3^97602
+ ;;^UTILITY(U,$J,358.3,34775,0)
+ ;;=G0281^^136^1772^5^^^^1
+ ;;^UTILITY(U,$J,358.3,34775,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34775,1,2,0)
+ ;;=2^Electrical Stim,Stg 3/4 Wound Care
+ ;;^UTILITY(U,$J,358.3,34775,1,3,0)
+ ;;=3^G0281
+ ;;^UTILITY(U,$J,358.3,34776,0)
+ ;;=G0283^^136^1772^3^^^^1
+ ;;^UTILITY(U,$J,358.3,34776,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34776,1,2,0)
+ ;;=2^Electrical Stim,Oth than Wnd Care
+ ;;^UTILITY(U,$J,358.3,34776,1,3,0)
+ ;;=3^G0283
+ ;;^UTILITY(U,$J,358.3,34777,0)
+ ;;=G0329^^136^1772^6^^^^1
+ ;;^UTILITY(U,$J,358.3,34777,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34777,1,2,0)
+ ;;=2^Electromagnetic Therapy,Wound Care
+ ;;^UTILITY(U,$J,358.3,34777,1,3,0)
+ ;;=3^G0329
+ ;;^UTILITY(U,$J,358.3,34778,0)
+ ;;=97610^^136^1772^10^^^^1
+ ;;^UTILITY(U,$J,358.3,34778,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,34778,1,2,0)
+ ;;=2^US LF Non-Contact Non-Therm,Wnd Assess
+ ;;^UTILITY(U,$J,358.3,34778,1,3,0)
+ ;;=3^97610
+ ;;^UTILITY(U,$J,358.3,34779,0)
+ ;;=G0282^^136^1772^4^^^^1

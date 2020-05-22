@@ -1,130 +1,122 @@
-IBDEI1T4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1T4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30703,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,30704,0)
- ;;=Z69.021^^123^1529^18
- ;;^UTILITY(U,$J,358.3,30704,1,0)
+ ;;^UTILITY(U,$J,358.3,28850,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,28851,0)
+ ;;=F14.280^^115^1424^2
+ ;;^UTILITY(U,$J,358.3,28851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30704,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
- ;;^UTILITY(U,$J,358.3,30704,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,30704,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,30705,0)
- ;;=Z69.021^^123^1529^19
- ;;^UTILITY(U,$J,358.3,30705,1,0)
+ ;;^UTILITY(U,$J,358.3,28851,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28851,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,28851,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,28852,0)
+ ;;=F14.980^^115^1424^3
+ ;;^UTILITY(U,$J,358.3,28852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30705,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,30705,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,30705,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,30706,0)
- ;;=Z69.021^^123^1529^20
- ;;^UTILITY(U,$J,358.3,30706,1,0)
+ ;;^UTILITY(U,$J,358.3,28852,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28852,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,28852,2)
+ ;;=^5003278
+ ;;^UTILITY(U,$J,358.3,28853,0)
+ ;;=F14.14^^115^1424^4
+ ;;^UTILITY(U,$J,358.3,28853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30706,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,30706,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,30706,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,30707,0)
- ;;=Z69.011^^123^1529^22
- ;;^UTILITY(U,$J,358.3,30707,1,0)
+ ;;^UTILITY(U,$J,358.3,28853,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28853,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,28853,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,28854,0)
+ ;;=F14.24^^115^1424^5
+ ;;^UTILITY(U,$J,358.3,28854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30707,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,30707,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,30707,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,30708,0)
- ;;=Z69.011^^123^1529^23
- ;;^UTILITY(U,$J,358.3,30708,1,0)
+ ;;^UTILITY(U,$J,358.3,28854,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28854,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,28854,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,28855,0)
+ ;;=F14.94^^115^1424^6
+ ;;^UTILITY(U,$J,358.3,28855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30708,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Neglect
- ;;^UTILITY(U,$J,358.3,30708,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,30708,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,30709,0)
- ;;=Z69.011^^123^1529^24
- ;;^UTILITY(U,$J,358.3,30709,1,0)
+ ;;^UTILITY(U,$J,358.3,28855,1,3,0)
+ ;;=3^Cocaine Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28855,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,28855,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,28856,0)
+ ;;=F14.188^^115^1424^7
+ ;;^UTILITY(U,$J,358.3,28856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30709,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,30709,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,30709,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,30710,0)
- ;;=Z69.011^^123^1529^25
- ;;^UTILITY(U,$J,358.3,30710,1,0)
+ ;;^UTILITY(U,$J,358.3,28856,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28856,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,28856,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,28857,0)
+ ;;=F14.288^^115^1424^8
+ ;;^UTILITY(U,$J,358.3,28857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30710,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,30710,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,30710,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,30711,0)
- ;;=F06.4^^123^1530^6
- ;;^UTILITY(U,$J,358.3,30711,1,0)
+ ;;^UTILITY(U,$J,358.3,28857,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28857,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,28857,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,28858,0)
+ ;;=F14.988^^115^1424^9
+ ;;^UTILITY(U,$J,358.3,28858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30711,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30711,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,30711,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,30712,0)
- ;;=F41.0^^123^1530^15
- ;;^UTILITY(U,$J,358.3,30712,1,0)
+ ;;^UTILITY(U,$J,358.3,28858,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28858,1,4,0)
+ ;;=4^F14.988
+ ;;^UTILITY(U,$J,358.3,28858,2)
+ ;;=^5003281
+ ;;^UTILITY(U,$J,358.3,28859,0)
+ ;;=F14.159^^115^1424^10
+ ;;^UTILITY(U,$J,358.3,28859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30712,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,30712,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,30712,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,30713,0)
- ;;=F41.1^^123^1530^13
- ;;^UTILITY(U,$J,358.3,30713,1,0)
+ ;;^UTILITY(U,$J,358.3,28859,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28859,1,4,0)
+ ;;=4^F14.159
+ ;;^UTILITY(U,$J,358.3,28859,2)
+ ;;=^5003247
+ ;;^UTILITY(U,$J,358.3,28860,0)
+ ;;=F14.259^^115^1424^11
+ ;;^UTILITY(U,$J,358.3,28860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30713,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,30713,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,30713,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,30714,0)
- ;;=F41.9^^123^1530^5
- ;;^UTILITY(U,$J,358.3,30714,1,0)
+ ;;^UTILITY(U,$J,358.3,28860,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28860,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,28860,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,28861,0)
+ ;;=F14.959^^115^1424^12
+ ;;^UTILITY(U,$J,358.3,28861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30714,1,3,0)
- ;;=3^Anxiety Disorder NOS
- ;;^UTILITY(U,$J,358.3,30714,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,30714,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,30715,0)
- ;;=F40.02^^123^1530^2
- ;;^UTILITY(U,$J,358.3,30715,1,0)
+ ;;^UTILITY(U,$J,358.3,28861,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28861,1,4,0)
+ ;;=4^F14.959
+ ;;^UTILITY(U,$J,358.3,28861,2)
+ ;;=^5003277
+ ;;^UTILITY(U,$J,358.3,28862,0)
+ ;;=F14.181^^115^1424^13
+ ;;^UTILITY(U,$J,358.3,28862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30715,1,3,0)
- ;;=3^Agoraphobia
- ;;^UTILITY(U,$J,358.3,30715,1,4,0)
- ;;=4^F40.02
- ;;^UTILITY(U,$J,358.3,30715,2)
- ;;=^5003543
- ;;^UTILITY(U,$J,358.3,30716,0)
- ;;=F40.10^^123^1530^19
- ;;^UTILITY(U,$J,358.3,30716,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28862,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunc w/ Mild Use D/O

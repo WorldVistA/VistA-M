@@ -1,126 +1,114 @@
-IBDEI1SL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30448,1,2,0)
- ;;=2^Chemodenervation Larynx,Unil
- ;;^UTILITY(U,$J,358.3,30448,1,4,0)
- ;;=4^64617
- ;;^UTILITY(U,$J,358.3,30449,0)
- ;;=64632^^120^1512^14^^^^1
- ;;^UTILITY(U,$J,358.3,30449,1,0)
+ ;;^UTILITY(U,$J,358.3,28624,1,4,0)
+ ;;=4^F13.180
+ ;;^UTILITY(U,$J,358.3,28624,2)
+ ;;=^5003197
+ ;;^UTILITY(U,$J,358.3,28625,0)
+ ;;=F13.280^^115^1410^2
+ ;;^UTILITY(U,$J,358.3,28625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30449,1,2,0)
- ;;=2^Destr Common Digital Nerve
- ;;^UTILITY(U,$J,358.3,30449,1,4,0)
- ;;=4^64632
- ;;^UTILITY(U,$J,358.3,30450,0)
- ;;=64642^^120^1512^5^^^^1
- ;;^UTILITY(U,$J,358.3,30450,1,0)
+ ;;^UTILITY(U,$J,358.3,28625,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28625,1,4,0)
+ ;;=4^F13.280
+ ;;^UTILITY(U,$J,358.3,28625,2)
+ ;;=^5003216
+ ;;^UTILITY(U,$J,358.3,28626,0)
+ ;;=F13.980^^115^1410^3
+ ;;^UTILITY(U,$J,358.3,28626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30450,1,2,0)
- ;;=2^Chemodenervation 1 Ext,1-4 Muscles
- ;;^UTILITY(U,$J,358.3,30450,1,4,0)
- ;;=4^64642
- ;;^UTILITY(U,$J,358.3,30451,0)
- ;;=64643^^120^1512^6^^^^1
- ;;^UTILITY(U,$J,358.3,30451,1,0)
+ ;;^UTILITY(U,$J,358.3,28626,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28626,1,4,0)
+ ;;=4^F13.980
+ ;;^UTILITY(U,$J,358.3,28626,2)
+ ;;=^5003235
+ ;;^UTILITY(U,$J,358.3,28627,0)
+ ;;=F13.14^^115^1410^4
+ ;;^UTILITY(U,$J,358.3,28627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30451,1,2,0)
- ;;=2^Chemodenervation Ea Addl Ext,1-4 Muscles
- ;;^UTILITY(U,$J,358.3,30451,1,4,0)
- ;;=4^64643
- ;;^UTILITY(U,$J,358.3,30452,0)
- ;;=64644^^120^1512^7^^^^1
- ;;^UTILITY(U,$J,358.3,30452,1,0)
+ ;;^UTILITY(U,$J,358.3,28627,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28627,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,28627,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,28628,0)
+ ;;=F13.24^^115^1410^5
+ ;;^UTILITY(U,$J,358.3,28628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30452,1,2,0)
- ;;=2^Chemodenervation 1 Ext,5 or > Muscles
- ;;^UTILITY(U,$J,358.3,30452,1,4,0)
- ;;=4^64644
- ;;^UTILITY(U,$J,358.3,30453,0)
- ;;=64645^^120^1512^8^^^^1
- ;;^UTILITY(U,$J,358.3,30453,1,0)
+ ;;^UTILITY(U,$J,358.3,28628,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O 
+ ;;^UTILITY(U,$J,358.3,28628,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,28628,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,28629,0)
+ ;;=F13.94^^115^1410^6
+ ;;^UTILITY(U,$J,358.3,28629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30453,1,2,0)
- ;;=2^Chemodenerv Ea Addl Ext,5 or > Muscles
- ;;^UTILITY(U,$J,358.3,30453,1,4,0)
- ;;=4^64645
- ;;^UTILITY(U,$J,358.3,30454,0)
- ;;=64646^^120^1512^11^^^^1
- ;;^UTILITY(U,$J,358.3,30454,1,0)
+ ;;^UTILITY(U,$J,358.3,28629,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28629,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,28629,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,28630,0)
+ ;;=F13.921^^115^1410^7
+ ;;^UTILITY(U,$J,358.3,28630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30454,1,2,0)
- ;;=2^Chemodenervation Trunk Muscles,1-5
- ;;^UTILITY(U,$J,358.3,30454,1,4,0)
- ;;=4^64646
- ;;^UTILITY(U,$J,358.3,30455,0)
- ;;=64647^^120^1512^12^^^^1
- ;;^UTILITY(U,$J,358.3,30455,1,0)
+ ;;^UTILITY(U,$J,358.3,28630,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
+ ;;^UTILITY(U,$J,358.3,28630,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,28630,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,28631,0)
+ ;;=F13.27^^115^1410^8
+ ;;^UTILITY(U,$J,358.3,28631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30455,1,2,0)
- ;;=2^Chemodenervation Trunk Muscles 6 or >
- ;;^UTILITY(U,$J,358.3,30455,1,4,0)
- ;;=4^64647
- ;;^UTILITY(U,$J,358.3,30456,0)
- ;;=64550^^120^1513^6^^^^1
- ;;^UTILITY(U,$J,358.3,30456,1,0)
+ ;;^UTILITY(U,$J,358.3,28631,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28631,1,4,0)
+ ;;=4^F13.27
+ ;;^UTILITY(U,$J,358.3,28631,2)
+ ;;=^5003215
+ ;;^UTILITY(U,$J,358.3,28632,0)
+ ;;=F13.97^^115^1410^9
+ ;;^UTILITY(U,$J,358.3,28632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30456,1,2,0)
- ;;=2^TENS Device Training & Issue
- ;;^UTILITY(U,$J,358.3,30456,1,4,0)
- ;;=4^64550
- ;;^UTILITY(U,$J,358.3,30457,0)
- ;;=64553^^120^1513^2^^^^1
- ;;^UTILITY(U,$J,358.3,30457,1,0)
+ ;;^UTILITY(U,$J,358.3,28632,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28632,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,28632,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,28633,0)
+ ;;=F13.288^^115^1410^10
+ ;;^UTILITY(U,$J,358.3,28633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30457,1,2,0)
- ;;=2^Percut Neuroelectrodes,Cranial Nerve
- ;;^UTILITY(U,$J,358.3,30457,1,4,0)
- ;;=4^64553
- ;;^UTILITY(U,$J,358.3,30458,0)
- ;;=64555^^120^1513^3^^^^1
- ;;^UTILITY(U,$J,358.3,30458,1,0)
+ ;;^UTILITY(U,$J,358.3,28633,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28633,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,28633,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,28634,0)
+ ;;=F13.988^^115^1410^11
+ ;;^UTILITY(U,$J,358.3,28634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30458,1,2,0)
- ;;=2^Percut Neuroelectrodes,Peripheral Nerve
- ;;^UTILITY(U,$J,358.3,30458,1,4,0)
- ;;=4^64555
- ;;^UTILITY(U,$J,358.3,30459,0)
- ;;=64561^^120^1513^4^^^^1
- ;;^UTILITY(U,$J,358.3,30459,1,0)
+ ;;^UTILITY(U,$J,358.3,28634,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28634,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,28634,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,28635,0)
+ ;;=F13.159^^115^1410^12
+ ;;^UTILITY(U,$J,358.3,28635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30459,1,2,0)
- ;;=2^Percut Neuroelectrodes,Sacral Nerve
- ;;^UTILITY(U,$J,358.3,30459,1,4,0)
- ;;=4^64561
- ;;^UTILITY(U,$J,358.3,30460,0)
- ;;=64575^^120^1513^1^^^^1
- ;;^UTILITY(U,$J,358.3,30460,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30460,1,2,0)
- ;;=2^Implant Neuroelectrodes
- ;;^UTILITY(U,$J,358.3,30460,1,4,0)
- ;;=4^64575
- ;;^UTILITY(U,$J,358.3,30461,0)
- ;;=64585^^120^1513^5^^^^1
- ;;^UTILITY(U,$J,358.3,30461,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30461,1,2,0)
- ;;=2^Revise/Remove Neuroelectrode
- ;;^UTILITY(U,$J,358.3,30461,1,4,0)
- ;;=4^64585
- ;;^UTILITY(U,$J,358.3,30462,0)
- ;;=20552^^120^1514^8^^^^1
- ;;^UTILITY(U,$J,358.3,30462,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30462,1,2,0)
- ;;=2^Trigger Point,1-2 Muscles
- ;;^UTILITY(U,$J,358.3,30462,1,4,0)
- ;;=4^20552
- ;;^UTILITY(U,$J,358.3,30463,0)
- ;;=20553^^120^1514^9^^^^1
- ;;^UTILITY(U,$J,358.3,30463,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30463,1,2,0)
- ;;=2^Trigger Point,3 or more Muscles
+ ;;^UTILITY(U,$J,358.3,28635,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O

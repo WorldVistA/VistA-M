@@ -1,130 +1,124 @@
-IBDEI37E ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI37E ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53816,1,0)
+ ;;^UTILITY(U,$J,358.3,51149,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,51149,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,51149,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,51150,0)
+ ;;=M05.59^^193^2503^165
+ ;;^UTILITY(U,$J,358.3,51150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53816,1,3,0)
- ;;=3^Peripheral T-cell lymphoma, not classified, nodes mult site
- ;;^UTILITY(U,$J,358.3,53816,1,4,0)
- ;;=4^C84.48
- ;;^UTILITY(U,$J,358.3,53816,2)
- ;;=^5001649
- ;;^UTILITY(U,$J,358.3,53817,0)
- ;;=C90.01^^253^2724^41
- ;;^UTILITY(U,$J,358.3,53817,1,0)
+ ;;^UTILITY(U,$J,358.3,51150,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,51150,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,51150,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,51151,0)
+ ;;=M05.711^^193^2503^159
+ ;;^UTILITY(U,$J,358.3,51151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53817,1,3,0)
- ;;=3^Multiple myeloma in remission
- ;;^UTILITY(U,$J,358.3,53817,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,53817,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,53818,0)
- ;;=C90.02^^253^2724^40
- ;;^UTILITY(U,$J,358.3,53818,1,0)
+ ;;^UTILITY(U,$J,358.3,51151,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,51151,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,51151,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,51152,0)
+ ;;=M05.712^^193^2503^152
+ ;;^UTILITY(U,$J,358.3,51152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53818,1,3,0)
- ;;=3^Multiple myeloma in relapse
- ;;^UTILITY(U,$J,358.3,53818,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,53818,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,53819,0)
- ;;=C90.11^^253^2724^47
- ;;^UTILITY(U,$J,358.3,53819,1,0)
+ ;;^UTILITY(U,$J,358.3,51152,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,51152,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,51152,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,51153,0)
+ ;;=M05.731^^193^2503^160
+ ;;^UTILITY(U,$J,358.3,51153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53819,1,3,0)
- ;;=3^Plasma cell leukemia in remission
- ;;^UTILITY(U,$J,358.3,53819,1,4,0)
- ;;=4^C90.11
- ;;^UTILITY(U,$J,358.3,53819,2)
- ;;=^267517
- ;;^UTILITY(U,$J,358.3,53820,0)
- ;;=C90.12^^253^2724^46
- ;;^UTILITY(U,$J,358.3,53820,1,0)
+ ;;^UTILITY(U,$J,358.3,51153,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,51153,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,51153,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,51154,0)
+ ;;=M05.732^^193^2503^153
+ ;;^UTILITY(U,$J,358.3,51154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53820,1,3,0)
- ;;=3^Plasma cell leukemia in relapse
- ;;^UTILITY(U,$J,358.3,53820,1,4,0)
- ;;=4^C90.12
- ;;^UTILITY(U,$J,358.3,53820,2)
- ;;=^5001755
- ;;^UTILITY(U,$J,358.3,53821,0)
- ;;=C90.21^^253^2724^25
- ;;^UTILITY(U,$J,358.3,53821,1,0)
+ ;;^UTILITY(U,$J,358.3,51154,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,51154,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,51154,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,51155,0)
+ ;;=M05.741^^193^2503^156
+ ;;^UTILITY(U,$J,358.3,51155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53821,1,3,0)
- ;;=3^Extramedullary plasmacytoma in remission
- ;;^UTILITY(U,$J,358.3,53821,1,4,0)
- ;;=4^C90.21
- ;;^UTILITY(U,$J,358.3,53821,2)
- ;;=^5001757
- ;;^UTILITY(U,$J,358.3,53822,0)
- ;;=C90.31^^253^2724^50
- ;;^UTILITY(U,$J,358.3,53822,1,0)
+ ;;^UTILITY(U,$J,358.3,51155,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,51155,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,51155,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,51156,0)
+ ;;=M05.742^^193^2503^149
+ ;;^UTILITY(U,$J,358.3,51156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53822,1,3,0)
- ;;=3^Solitary plasmacytoma in remission
- ;;^UTILITY(U,$J,358.3,53822,1,4,0)
- ;;=4^C90.31
- ;;^UTILITY(U,$J,358.3,53822,2)
- ;;=^5001760
- ;;^UTILITY(U,$J,358.3,53823,0)
- ;;=C88.8^^253^2724^33
- ;;^UTILITY(U,$J,358.3,53823,1,0)
+ ;;^UTILITY(U,$J,358.3,51156,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,51156,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,51156,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,51157,0)
+ ;;=M05.751^^193^2503^157
+ ;;^UTILITY(U,$J,358.3,51157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53823,1,3,0)
- ;;=3^Malignant immunoproliferative diseases NEC
- ;;^UTILITY(U,$J,358.3,53823,1,4,0)
- ;;=4^C88.8
- ;;^UTILITY(U,$J,358.3,53823,2)
- ;;=^5001750
- ;;^UTILITY(U,$J,358.3,53824,0)
- ;;=C90.22^^253^2724^24
- ;;^UTILITY(U,$J,358.3,53824,1,0)
+ ;;^UTILITY(U,$J,358.3,51157,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,51157,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,51157,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,51158,0)
+ ;;=M05.752^^193^2503^150
+ ;;^UTILITY(U,$J,358.3,51158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53824,1,3,0)
- ;;=3^Extramedullary plasmacytoma in relapse
- ;;^UTILITY(U,$J,358.3,53824,1,4,0)
- ;;=4^C90.22
- ;;^UTILITY(U,$J,358.3,53824,2)
- ;;=^5001758
- ;;^UTILITY(U,$J,358.3,53825,0)
- ;;=C90.32^^253^2724^49
- ;;^UTILITY(U,$J,358.3,53825,1,0)
+ ;;^UTILITY(U,$J,358.3,51158,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,51158,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,51158,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,51159,0)
+ ;;=M05.761^^193^2503^158
+ ;;^UTILITY(U,$J,358.3,51159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53825,1,3,0)
- ;;=3^Solitary plasmacytoma in relapse
- ;;^UTILITY(U,$J,358.3,53825,1,4,0)
- ;;=4^C90.32
- ;;^UTILITY(U,$J,358.3,53825,2)
- ;;=^5001761
- ;;^UTILITY(U,$J,358.3,53826,0)
- ;;=C91.01^^253^2724^2
- ;;^UTILITY(U,$J,358.3,53826,1,0)
+ ;;^UTILITY(U,$J,358.3,51159,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,51159,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,51159,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,51160,0)
+ ;;=M05.762^^193^2503^151
+ ;;^UTILITY(U,$J,358.3,51160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53826,1,3,0)
- ;;=3^Acute lymphoblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,53826,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,53826,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,53827,0)
- ;;=C91.02^^253^2724^1
- ;;^UTILITY(U,$J,358.3,53827,1,0)
+ ;;^UTILITY(U,$J,358.3,51160,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,51160,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,51160,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,51161,0)
+ ;;=M05.771^^193^2503^155
+ ;;^UTILITY(U,$J,358.3,51161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53827,1,3,0)
- ;;=3^Acute lymphoblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,53827,1,4,0)
- ;;=4^C91.02
- ;;^UTILITY(U,$J,358.3,53827,2)
- ;;=^5001764
- ;;^UTILITY(U,$J,358.3,53828,0)
- ;;=C91.11^^253^2724^16
- ;;^UTILITY(U,$J,358.3,53828,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53828,1,3,0)
- ;;=3^Chronic lymphocytic leukemia of B-cell type in remission
- ;;^UTILITY(U,$J,358.3,53828,1,4,0)
- ;;=4^C91.11

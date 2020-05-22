@@ -1,5 +1,5 @@
 ONCATF1 ;Hines OIFO/RTK - Treatment AT THIS FACILITY stuffing (cont.); 06/23/10
- ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,5,10**;Jul 31, 2013;Build 20
  ;
 RAD ;Radiation @fac
  N COC
@@ -205,6 +205,7 @@ RFNS ;If SURGERY OF PRIMARY (F) (165.5,58.6) and SURGERY OF PRIMARY @FAC (F)
  S Y="@431" Q
  ;
 RFNR ;If RADIATION, set REASON FOR NO RADIATION = 0 (Radiation administered)
+ ;I $P($G(^ONCO(165.5,D0,0)),U,16)>3171231 D RFNR18 Q
  N RDTX,RDTXATF
  S RDTX=$P($G(^ONCO(165.5,D0,3)),U,6)
  S RDTXATF=$P($G(^ONCO(165.5,D0,3.1)),U,12)
@@ -215,5 +216,17 @@ RFNR ;If RADIATION, set REASON FOR NO RADIATION = 0 (Radiation administered)
  S Y="@412" Q
  Q
  ;
+RFNR18 ;If RADIATION, set REASON FOR NO RADIATION = 0 (Radiation administered)
+ ; Check new Phase fields for 2018+ cases
+ N RAD1504,RAD1531,RAD1532,RAD1533
+ S RAD1504=$P($G(^ONCO(165.5,D0,"RAD18")),U,4)
+ S RAD1531=$P($G(^ONCO(165.5,D0,"NCR18B")),U,1)
+ S RAD1532=$P($G(^ONCO(165.5,D0,"NCR18B")),U,2)
+ S RAD1533=$P($G(^ONCO(165.5,D0,"NCR18B")),U,3)
+ I ((RAD1504="")!(RAD1504=1))&((RAD1531="")!(RAD1531="00"))&((RAD1532="")!(RAD1532="00"))&((RAD1533="")!(RAD1533=0)!(RAD1533="000000")) Q
+ S $P(^ONCO(165.5,D0,3),U,35)=0
+ W !,$P($G(^DD(165.5,75,0)),U,1)_"........: Radiation administered"
+ S Y="@412" Q
+ Q
 CLEANUP ;Cleanup
  K D0,Y

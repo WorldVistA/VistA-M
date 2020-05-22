@@ -1,5 +1,5 @@
 IBCNERPE ;DAOU/BHS - IBCNE eIV RESPONSE REPORT (cont'd);03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**271,300,416,438,497,506,519,521**;21-MAR-94;Build 33
+ ;;2.0;INTEGRATED BILLING;**271,300,416,438,497,506,519,521,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Must call at tag
@@ -159,9 +159,13 @@ ERR S ERCT=+$O(RPTDATA(6,""),-1) I 'ERCT G DATAX
  .Q
  ;
 DATAX ;
- N RIBVDA,RSPIENS
- S RIBVDA=$P(RPTDATA(0),U,4)
- S RSPIENS=$O(^IBCN(365,"AF",+$G(RIBVDA),""),-1)
+ ;IB*2.0*659/TAZ - Restuctured to get Response IEN that was used previously
+ ;N RIBVDA,RSPIENS
+ ;S RIBVDA=$P(RPTDATA(0),U,4)
+ ;S RSPIENS=$O(^IBCN(365,"AF",+$G(RIBVDA),""),-1)
+ N RSPIENS
+ S RSPIENS=RPTDATA("RSPIENS")
+ ;
  ; Disp Future Date and Misc. Comments
  I $O(RPTDATA(5,0))'="" D
  . F CT=1:1:+$O(RPTDATA(5,""),-1) D

@@ -1,134 +1,116 @@
-IBDEI2FP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2FP ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41289,1,0)
+ ;;^UTILITY(U,$J,358.3,38886,0)
+ ;;=I70.442^^152^1990^37
+ ;;^UTILITY(U,$J,358.3,38886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41289,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,41289,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,41289,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,41290,0)
- ;;=D05.02^^159^2004^98
- ;;^UTILITY(U,$J,358.3,41290,1,0)
+ ;;^UTILITY(U,$J,358.3,38886,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,38886,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,38886,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,38887,0)
+ ;;=I70.443^^152^1990^38
+ ;;^UTILITY(U,$J,358.3,38887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41290,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,41290,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,41290,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,41291,0)
- ;;=D05.01^^159^2004^99
- ;;^UTILITY(U,$J,358.3,41291,1,0)
+ ;;^UTILITY(U,$J,358.3,38887,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,38887,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,38887,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,38888,0)
+ ;;=I70.444^^152^1990^39
+ ;;^UTILITY(U,$J,358.3,38888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41291,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,41291,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,41291,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,41292,0)
- ;;=D05.00^^159^2004^100
- ;;^UTILITY(U,$J,358.3,41292,1,0)
+ ;;^UTILITY(U,$J,358.3,38888,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,38888,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,38888,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,38889,0)
+ ;;=I70.445^^152^1990^40
+ ;;^UTILITY(U,$J,358.3,38889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41292,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,41292,1,4,0)
- ;;=4^D05.00
- ;;^UTILITY(U,$J,358.3,41292,2)
- ;;=^5001926
- ;;^UTILITY(U,$J,358.3,41293,0)
- ;;=R59.0^^159^2004^61
- ;;^UTILITY(U,$J,358.3,41293,1,0)
+ ;;^UTILITY(U,$J,358.3,38889,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,38889,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,38889,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,38890,0)
+ ;;=I70.531^^152^1990^61
+ ;;^UTILITY(U,$J,358.3,38890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41293,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,41293,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,41293,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,41294,0)
- ;;=C83.59^^159^2004^101
- ;;^UTILITY(U,$J,358.3,41294,1,0)
+ ;;^UTILITY(U,$J,358.3,38890,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,38890,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,38890,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,38891,0)
+ ;;=I70.532^^152^1990^62
+ ;;^UTILITY(U,$J,358.3,38891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41294,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,41294,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,41294,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,41295,0)
- ;;=C83.50^^159^2004^102
- ;;^UTILITY(U,$J,358.3,41295,1,0)
+ ;;^UTILITY(U,$J,358.3,38891,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,38891,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,38891,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,38892,0)
+ ;;=I70.533^^152^1990^63
+ ;;^UTILITY(U,$J,358.3,38892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41295,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,41295,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,41295,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,41296,0)
- ;;=C43.9^^159^2004^104
- ;;^UTILITY(U,$J,358.3,41296,1,0)
+ ;;^UTILITY(U,$J,358.3,38892,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,38892,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,38892,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,38893,0)
+ ;;=I70.534^^152^1990^64
+ ;;^UTILITY(U,$J,358.3,38893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41296,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec Site
- ;;^UTILITY(U,$J,358.3,41296,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,41296,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,41297,0)
- ;;=C31.9^^159^2004^105
- ;;^UTILITY(U,$J,358.3,41297,1,0)
+ ;;^UTILITY(U,$J,358.3,38893,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,38893,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,38893,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,38894,0)
+ ;;=I70.535^^152^1990^65
+ ;;^UTILITY(U,$J,358.3,38894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41297,1,3,0)
- ;;=3^Malig Neop Accessory Sinus,Unspec
- ;;^UTILITY(U,$J,358.3,41297,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,41297,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,41298,0)
- ;;=C24.1^^159^2004^107
- ;;^UTILITY(U,$J,358.3,41298,1,0)
+ ;;^UTILITY(U,$J,358.3,38894,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,38894,1,4,0)
+ ;;=4^I70.535
+ ;;^UTILITY(U,$J,358.3,38894,2)
+ ;;=^5007706
+ ;;^UTILITY(U,$J,358.3,38895,0)
+ ;;=I70.541^^152^1990^56
+ ;;^UTILITY(U,$J,358.3,38895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41298,1,3,0)
- ;;=3^Malig Neop Ampulla of Vater
- ;;^UTILITY(U,$J,358.3,41298,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,41298,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,41299,0)
- ;;=C21.0^^159^2004^108
- ;;^UTILITY(U,$J,358.3,41299,1,0)
+ ;;^UTILITY(U,$J,358.3,38895,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,38895,1,4,0)
+ ;;=4^I70.541
+ ;;^UTILITY(U,$J,358.3,38895,2)
+ ;;=^5007709
+ ;;^UTILITY(U,$J,358.3,38896,0)
+ ;;=I70.542^^152^1990^57
+ ;;^UTILITY(U,$J,358.3,38896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41299,1,3,0)
- ;;=3^Malig Neop Anus,Unspec
- ;;^UTILITY(U,$J,358.3,41299,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,41299,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,41300,0)
- ;;=C67.9^^159^2004^111
- ;;^UTILITY(U,$J,358.3,41300,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41300,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,41300,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,41300,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,41301,0)
- ;;=C71.9^^159^2004^115
- ;;^UTILITY(U,$J,358.3,41301,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41301,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,41301,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,41301,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,41302,0)
- ;;=C18.9^^159^2004^117
+ ;;^UTILITY(U,$J,358.3,38896,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,38896,1,4,0)
+ ;;=4^I70.542
+ ;;^UTILITY(U,$J,358.3,38896,2)
+ ;;=^5007710
+ ;;^UTILITY(U,$J,358.3,38897,0)
+ ;;=I70.543^^152^1990^58

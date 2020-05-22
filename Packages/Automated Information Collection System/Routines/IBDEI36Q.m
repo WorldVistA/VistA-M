@@ -1,128 +1,124 @@
-IBDEI36Q ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI36Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53482,1,0)
+ ;;^UTILITY(U,$J,358.3,50854,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,50854,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,50854,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,50855,0)
+ ;;=Z77.128^^193^2498^113
+ ;;^UTILITY(U,$J,358.3,50855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53482,1,3,0)
- ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
- ;;^UTILITY(U,$J,358.3,53482,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,53482,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,53483,0)
- ;;=I83.93^^245^2688^10
- ;;^UTILITY(U,$J,358.3,53483,1,0)
+ ;;^UTILITY(U,$J,358.3,50855,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,50855,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,50855,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,50856,0)
+ ;;=Z77.123^^193^2498^146
+ ;;^UTILITY(U,$J,358.3,50856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53483,1,3,0)
- ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
- ;;^UTILITY(U,$J,358.3,53483,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,53483,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,53484,0)
- ;;=I83.019^^245^2688^9
- ;;^UTILITY(U,$J,358.3,53484,1,0)
+ ;;^UTILITY(U,$J,358.3,50856,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,50856,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,50856,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,50857,0)
+ ;;=Z77.122^^193^2498^61
+ ;;^UTILITY(U,$J,358.3,50857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53484,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,53484,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,53484,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,53485,0)
- ;;=I83.029^^245^2688^8
- ;;^UTILITY(U,$J,358.3,53485,1,0)
+ ;;^UTILITY(U,$J,358.3,50857,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,50857,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,50857,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,50858,0)
+ ;;=Z77.118^^193^2498^11
+ ;;^UTILITY(U,$J,358.3,50858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53485,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,53485,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,53485,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,53486,0)
- ;;=I71.4^^245^2688^1
- ;;^UTILITY(U,$J,358.3,53486,1,0)
+ ;;^UTILITY(U,$J,358.3,50858,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,50858,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,50858,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,50859,0)
+ ;;=Z77.9^^193^2498^47
+ ;;^UTILITY(U,$J,358.3,50859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53486,1,3,0)
- ;;=3^AAA w/o rupture
- ;;^UTILITY(U,$J,358.3,53486,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,53486,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,53487,0)
- ;;=I73.9^^245^2688^3
- ;;^UTILITY(U,$J,358.3,53487,1,0)
+ ;;^UTILITY(U,$J,358.3,50859,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,50859,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,50859,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,50860,0)
+ ;;=Z77.22^^193^2498^10
+ ;;^UTILITY(U,$J,358.3,50860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53487,1,3,0)
- ;;=3^PVD, unspec
- ;;^UTILITY(U,$J,358.3,53487,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,53487,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,53488,0)
- ;;=I80.201^^245^2688^4
- ;;^UTILITY(U,$J,358.3,53488,1,0)
+ ;;^UTILITY(U,$J,358.3,50860,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,50860,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,50860,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,50861,0)
+ ;;=Z80.0^^193^2498^28
+ ;;^UTILITY(U,$J,358.3,50861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53488,1,3,0)
- ;;=3^Phlebitis & thrombophlebitis deep vessels, right lower extremity
- ;;^UTILITY(U,$J,358.3,53488,1,4,0)
- ;;=4^I80.201
- ;;^UTILITY(U,$J,358.3,53488,2)
- ;;=^5007828
- ;;^UTILITY(U,$J,358.3,53489,0)
- ;;=I80.202^^245^2688^5
- ;;^UTILITY(U,$J,358.3,53489,1,0)
+ ;;^UTILITY(U,$J,358.3,50861,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,50861,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,50861,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,50862,0)
+ ;;=Z80.1^^193^2498^34
+ ;;^UTILITY(U,$J,358.3,50862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53489,1,3,0)
- ;;=3^Phlebitis & thrombophlebitis deep vessels, left lower extremities
- ;;^UTILITY(U,$J,358.3,53489,1,4,0)
- ;;=4^I80.202
- ;;^UTILITY(U,$J,358.3,53489,2)
- ;;=^5007829
- ;;^UTILITY(U,$J,358.3,53490,0)
- ;;=I80.203^^245^2688^6
- ;;^UTILITY(U,$J,358.3,53490,1,0)
+ ;;^UTILITY(U,$J,358.3,50862,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,50862,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,50862,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,50863,0)
+ ;;=Z80.3^^193^2498^27
+ ;;^UTILITY(U,$J,358.3,50863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53490,1,3,0)
- ;;=3^Phlebitis & thrombophlebitis deep vessels, bilateral lower extremities
- ;;^UTILITY(U,$J,358.3,53490,1,4,0)
- ;;=4^I80.203
- ;;^UTILITY(U,$J,358.3,53490,2)
- ;;=^5007830
- ;;^UTILITY(U,$J,358.3,53491,0)
- ;;=I80.3^^245^2688^7
- ;;^UTILITY(U,$J,358.3,53491,1,0)
+ ;;^UTILITY(U,$J,358.3,50863,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,50863,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,50863,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,50864,0)
+ ;;=Z80.41^^193^2498^31
+ ;;^UTILITY(U,$J,358.3,50864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53491,1,3,0)
- ;;=3^Phlebitis & thrombophlebitis of lower extremities, unspec
- ;;^UTILITY(U,$J,358.3,53491,1,4,0)
- ;;=4^I80.3
- ;;^UTILITY(U,$J,358.3,53491,2)
- ;;=^5007845
- ;;^UTILITY(U,$J,358.3,53492,0)
- ;;=I95.9^^245^2688^2
- ;;^UTILITY(U,$J,358.3,53492,1,0)
+ ;;^UTILITY(U,$J,358.3,50864,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,50864,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,50864,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,50865,0)
+ ;;=Z80.42^^193^2498^32
+ ;;^UTILITY(U,$J,358.3,50865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53492,1,3,0)
- ;;=3^Hypotension, unspecified
- ;;^UTILITY(U,$J,358.3,53492,1,4,0)
- ;;=4^I95.9
- ;;^UTILITY(U,$J,358.3,53492,2)
- ;;=^5008080
- ;;^UTILITY(U,$J,358.3,53493,0)
- ;;=99441^^246^2689^1^^^^1
- ;;^UTILITY(U,$J,358.3,53493,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,53493,1,1,0)
- ;;=1^99441
- ;;^UTILITY(U,$J,358.3,53493,1,2,0)
- ;;=2^PHONE E/M 5-10 MIN
- ;;^UTILITY(U,$J,358.3,53494,0)
- ;;=99443^^246^2689^3^^^^1
- ;;^UTILITY(U,$J,358.3,53494,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,53494,1,1,0)
- ;;=1^99443
- ;;^UTILITY(U,$J,358.3,53494,1,2,0)
- ;;=2^PHONE E/M 21-30 MIN
+ ;;^UTILITY(U,$J,358.3,50865,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,50865,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,50865,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,50866,0)
+ ;;=Z80.43^^193^2498^33
+ ;;^UTILITY(U,$J,358.3,50866,1,0)
+ ;;=^358.31IA^4^2

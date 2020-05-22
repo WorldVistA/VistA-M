@@ -1,128 +1,130 @@
-IBDEI1S7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1S7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30271,0)
- ;;=C44.521^^118^1504^32
- ;;^UTILITY(U,$J,358.3,30271,1,0)
+ ;;^UTILITY(U,$J,358.3,28456,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,28457,0)
+ ;;=Z62.898^^115^1402^4
+ ;;^UTILITY(U,$J,358.3,28457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30271,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of breast
- ;;^UTILITY(U,$J,358.3,30271,1,4,0)
- ;;=4^C44.521
- ;;^UTILITY(U,$J,358.3,30271,2)
- ;;=^5001058
- ;;^UTILITY(U,$J,358.3,30272,0)
- ;;=C44.529^^118^1504^38
- ;;^UTILITY(U,$J,358.3,30272,1,0)
+ ;;^UTILITY(U,$J,358.3,28457,1,3,0)
+ ;;=3^Problems Related to Upbringing,Oth Spec
+ ;;^UTILITY(U,$J,358.3,28457,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,28457,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,28458,0)
+ ;;=Z63.0^^115^1402^5
+ ;;^UTILITY(U,$J,358.3,28458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30272,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of other part of trunk
- ;;^UTILITY(U,$J,358.3,30272,1,4,0)
- ;;=4^C44.529
- ;;^UTILITY(U,$J,358.3,30272,2)
- ;;=^5001059
- ;;^UTILITY(U,$J,358.3,30273,0)
- ;;=C46.9^^118^1504^13
- ;;^UTILITY(U,$J,358.3,30273,1,0)
+ ;;^UTILITY(U,$J,358.3,28458,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,28458,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,28458,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,28459,0)
+ ;;=Z63.5^^115^1402^1
+ ;;^UTILITY(U,$J,358.3,28459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30273,1,3,0)
- ;;=3^Kaposi's sarcoma, unspecified
- ;;^UTILITY(U,$J,358.3,30273,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,30273,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,30274,0)
- ;;=C71.9^^118^1504^17
- ;;^UTILITY(U,$J,358.3,30274,1,0)
+ ;;^UTILITY(U,$J,358.3,28459,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,28459,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,28459,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,28460,0)
+ ;;=Z63.8^^115^1402^2
+ ;;^UTILITY(U,$J,358.3,28460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30274,1,3,0)
- ;;=3^Malignant neoplasm of brain, unspecified
- ;;^UTILITY(U,$J,358.3,30274,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,30274,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,30275,0)
- ;;=C72.1^^118^1504^18
- ;;^UTILITY(U,$J,358.3,30275,1,0)
+ ;;^UTILITY(U,$J,358.3,28460,1,3,0)
+ ;;=3^High Expressed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,28460,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,28460,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,28461,0)
+ ;;=Z63.4^^115^1402^7
+ ;;^UTILITY(U,$J,358.3,28461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30275,1,3,0)
- ;;=3^Malignant neoplasm of cauda equina
- ;;^UTILITY(U,$J,358.3,30275,1,4,0)
- ;;=4^C72.1
- ;;^UTILITY(U,$J,358.3,30275,2)
- ;;=^5001298
- ;;^UTILITY(U,$J,358.3,30276,0)
- ;;=C72.0^^118^1504^26
- ;;^UTILITY(U,$J,358.3,30276,1,0)
+ ;;^UTILITY(U,$J,358.3,28461,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,28461,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,28461,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,28462,0)
+ ;;=Z62.29^^115^1402^8
+ ;;^UTILITY(U,$J,358.3,28462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30276,1,3,0)
- ;;=3^Malignant neoplasm of spinal cord
- ;;^UTILITY(U,$J,358.3,30276,1,4,0)
- ;;=4^C72.0
- ;;^UTILITY(U,$J,358.3,30276,2)
- ;;=^267292
- ;;^UTILITY(U,$J,358.3,30277,0)
- ;;=C74.01^^118^1504^21
- ;;^UTILITY(U,$J,358.3,30277,1,0)
+ ;;^UTILITY(U,$J,358.3,28462,1,3,0)
+ ;;=3^Upbringing Away from Parents
+ ;;^UTILITY(U,$J,358.3,28462,1,4,0)
+ ;;=4^Z62.29
+ ;;^UTILITY(U,$J,358.3,28462,2)
+ ;;=^5063150
+ ;;^UTILITY(U,$J,358.3,28463,0)
+ ;;=F20.9^^115^1403^10
+ ;;^UTILITY(U,$J,358.3,28463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30277,1,3,0)
- ;;=3^Malignant neoplasm of cortex of right adrenal gland
- ;;^UTILITY(U,$J,358.3,30277,1,4,0)
- ;;=4^C74.01
- ;;^UTILITY(U,$J,358.3,30277,2)
- ;;=^5001312
- ;;^UTILITY(U,$J,358.3,30278,0)
- ;;=C74.02^^118^1504^20
- ;;^UTILITY(U,$J,358.3,30278,1,0)
+ ;;^UTILITY(U,$J,358.3,28463,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,28463,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,28463,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,28464,0)
+ ;;=F20.81^^115^1403^13
+ ;;^UTILITY(U,$J,358.3,28464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30278,1,3,0)
- ;;=3^Malignant neoplasm of cortex of left adrenal gland
- ;;^UTILITY(U,$J,358.3,30278,1,4,0)
- ;;=4^C74.02
- ;;^UTILITY(U,$J,358.3,30278,2)
- ;;=^5001313
- ;;^UTILITY(U,$J,358.3,30279,0)
- ;;=C74.11^^118^1504^23
- ;;^UTILITY(U,$J,358.3,30279,1,0)
+ ;;^UTILITY(U,$J,358.3,28464,1,3,0)
+ ;;=3^Schizophreniform D/O
+ ;;^UTILITY(U,$J,358.3,28464,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,28464,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,28465,0)
+ ;;=F22.^^115^1403^3
+ ;;^UTILITY(U,$J,358.3,28465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30279,1,3,0)
- ;;=3^Malignant neoplasm of medulla of right adrenal gland
- ;;^UTILITY(U,$J,358.3,30279,1,4,0)
- ;;=4^C74.11
- ;;^UTILITY(U,$J,358.3,30279,2)
- ;;=^5001315
- ;;^UTILITY(U,$J,358.3,30280,0)
- ;;=C74.12^^118^1504^22
- ;;^UTILITY(U,$J,358.3,30280,1,0)
+ ;;^UTILITY(U,$J,358.3,28465,1,3,0)
+ ;;=3^Delusional D/O
+ ;;^UTILITY(U,$J,358.3,28465,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,28465,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,28466,0)
+ ;;=F23.^^115^1403^1
+ ;;^UTILITY(U,$J,358.3,28466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30280,1,3,0)
- ;;=3^Malignant neoplasm of medulla of left adrenal gland
- ;;^UTILITY(U,$J,358.3,30280,1,4,0)
- ;;=4^C74.12
- ;;^UTILITY(U,$J,358.3,30280,2)
- ;;=^5001316
- ;;^UTILITY(U,$J,358.3,30281,0)
- ;;=C74.91^^118^1504^28
- ;;^UTILITY(U,$J,358.3,30281,1,0)
+ ;;^UTILITY(U,$J,358.3,28466,1,3,0)
+ ;;=3^Brief Psychotic D/O
+ ;;^UTILITY(U,$J,358.3,28466,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,28466,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,28467,0)
+ ;;=F25.0^^115^1403^7
+ ;;^UTILITY(U,$J,358.3,28467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30281,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right adrenal gland
- ;;^UTILITY(U,$J,358.3,30281,1,4,0)
- ;;=4^C74.91
- ;;^UTILITY(U,$J,358.3,30281,2)
- ;;=^5001318
- ;;^UTILITY(U,$J,358.3,30282,0)
- ;;=C74.92^^118^1504^27
- ;;^UTILITY(U,$J,358.3,30282,1,0)
+ ;;^UTILITY(U,$J,358.3,28467,1,3,0)
+ ;;=3^Schizoaffective D/O,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,28467,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,28467,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,28468,0)
+ ;;=F25.1^^115^1403^8
+ ;;^UTILITY(U,$J,358.3,28468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30282,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left adrenal gland
- ;;^UTILITY(U,$J,358.3,30282,1,4,0)
- ;;=4^C74.92
- ;;^UTILITY(U,$J,358.3,30282,2)
- ;;=^5001319
- ;;^UTILITY(U,$J,358.3,30283,0)
- ;;=C44.112^^118^1504^12
- ;;^UTILITY(U,$J,358.3,30283,1,0)
+ ;;^UTILITY(U,$J,358.3,28468,1,3,0)
+ ;;=3^Schizoaffective D/O,Depressive Type
+ ;;^UTILITY(U,$J,358.3,28468,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,28468,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,28469,0)
+ ;;=F28.^^115^1403^11
+ ;;^UTILITY(U,$J,358.3,28469,1,0)
  ;;=^358.31IA^4^2

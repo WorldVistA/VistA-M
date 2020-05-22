@@ -1,120 +1,120 @@
-IBDEI2W2 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2W2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48507,0)
- ;;=I69.141^^216^2407^62
- ;;^UTILITY(U,$J,358.3,48507,1,0)
+ ;;^UTILITY(U,$J,358.3,46080,0)
+ ;;=S01.122A^^176^2298^4
+ ;;^UTILITY(U,$J,358.3,46080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48507,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,48507,1,4,0)
- ;;=4^I69.141
- ;;^UTILITY(U,$J,358.3,48507,2)
- ;;=^5007437
- ;;^UTILITY(U,$J,358.3,48508,0)
- ;;=I69.142^^216^2407^63
- ;;^UTILITY(U,$J,358.3,48508,1,0)
+ ;;^UTILITY(U,$J,358.3,46080,1,3,0)
+ ;;=3^Laceration w/ FB,Left Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46080,1,4,0)
+ ;;=4^S01.122A
+ ;;^UTILITY(U,$J,358.3,46080,2)
+ ;;=^5134190
+ ;;^UTILITY(U,$J,358.3,46081,0)
+ ;;=S01.111A^^176^2298^5
+ ;;^UTILITY(U,$J,358.3,46081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48508,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,48508,1,4,0)
- ;;=4^I69.142
- ;;^UTILITY(U,$J,358.3,48508,2)
- ;;=^5133573
- ;;^UTILITY(U,$J,358.3,48509,0)
- ;;=I69.143^^216^2407^64
- ;;^UTILITY(U,$J,358.3,48509,1,0)
+ ;;^UTILITY(U,$J,358.3,46081,1,3,0)
+ ;;=3^Laceration w/o FB,Right Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46081,1,4,0)
+ ;;=4^S01.111A
+ ;;^UTILITY(U,$J,358.3,46081,2)
+ ;;=^5020057
+ ;;^UTILITY(U,$J,358.3,46082,0)
+ ;;=S01.112A^^176^2298^6
+ ;;^UTILITY(U,$J,358.3,46082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48509,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,48509,1,4,0)
- ;;=4^I69.143
- ;;^UTILITY(U,$J,358.3,48509,2)
- ;;=^5007438
- ;;^UTILITY(U,$J,358.3,48510,0)
- ;;=I69.144^^216^2407^65
- ;;^UTILITY(U,$J,358.3,48510,1,0)
+ ;;^UTILITY(U,$J,358.3,46082,1,3,0)
+ ;;=3^Laceration w/o FB,Left Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46082,1,4,0)
+ ;;=4^S01.112A
+ ;;^UTILITY(U,$J,358.3,46082,2)
+ ;;=^5020060
+ ;;^UTILITY(U,$J,358.3,46083,0)
+ ;;=S01.141A^^176^2298^7
+ ;;^UTILITY(U,$J,358.3,46083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48510,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,48510,1,4,0)
- ;;=4^I69.144
- ;;^UTILITY(U,$J,358.3,48510,2)
- ;;=^5007439
- ;;^UTILITY(U,$J,358.3,48511,0)
- ;;=I69.041^^216^2407^66
- ;;^UTILITY(U,$J,358.3,48511,1,0)
+ ;;^UTILITY(U,$J,358.3,46083,1,3,0)
+ ;;=3^Puncture Wound w/ FB,Right Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46083,1,4,0)
+ ;;=4^S01.141A
+ ;;^UTILITY(U,$J,358.3,46083,2)
+ ;;=^5020078
+ ;;^UTILITY(U,$J,358.3,46084,0)
+ ;;=S01.142A^^176^2298^8
+ ;;^UTILITY(U,$J,358.3,46084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48511,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,48511,1,4,0)
- ;;=4^I69.041
- ;;^UTILITY(U,$J,358.3,48511,2)
- ;;=^5007405
- ;;^UTILITY(U,$J,358.3,48512,0)
- ;;=I69.042^^216^2407^67
- ;;^UTILITY(U,$J,358.3,48512,1,0)
+ ;;^UTILITY(U,$J,358.3,46084,1,3,0)
+ ;;=3^Puncture Wound w/ FB,Left Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46084,1,4,0)
+ ;;=4^S01.142A
+ ;;^UTILITY(U,$J,358.3,46084,2)
+ ;;=^5134196
+ ;;^UTILITY(U,$J,358.3,46085,0)
+ ;;=S01.131A^^176^2298^9
+ ;;^UTILITY(U,$J,358.3,46085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48512,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,48512,1,4,0)
- ;;=4^I69.042
- ;;^UTILITY(U,$J,358.3,48512,2)
- ;;=^5133572
- ;;^UTILITY(U,$J,358.3,48513,0)
- ;;=I69.043^^216^2407^68
- ;;^UTILITY(U,$J,358.3,48513,1,0)
+ ;;^UTILITY(U,$J,358.3,46085,1,3,0)
+ ;;=3^Puncture Wound w/o FB,Right Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46085,1,4,0)
+ ;;=4^S01.131A
+ ;;^UTILITY(U,$J,358.3,46085,2)
+ ;;=^5020069
+ ;;^UTILITY(U,$J,358.3,46086,0)
+ ;;=S01.132A^^176^2298^10
+ ;;^UTILITY(U,$J,358.3,46086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48513,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff r nondom side
- ;;^UTILITY(U,$J,358.3,48513,1,4,0)
- ;;=4^I69.043
- ;;^UTILITY(U,$J,358.3,48513,2)
- ;;=^5007406
- ;;^UTILITY(U,$J,358.3,48514,0)
- ;;=I69.044^^216^2407^69
- ;;^UTILITY(U,$J,358.3,48514,1,0)
+ ;;^UTILITY(U,$J,358.3,46086,1,3,0)
+ ;;=3^Puncture Wound w/o FB,Left Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46086,1,4,0)
+ ;;=4^S01.132A
+ ;;^UTILITY(U,$J,358.3,46086,2)
+ ;;=^5020072
+ ;;^UTILITY(U,$J,358.3,46087,0)
+ ;;=S05.41XA^^176^2298^11
+ ;;^UTILITY(U,$J,358.3,46087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48514,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,48514,1,4,0)
- ;;=4^I69.044
- ;;^UTILITY(U,$J,358.3,48514,2)
- ;;=^5007407
- ;;^UTILITY(U,$J,358.3,48515,0)
- ;;=I69.841^^216^2407^72
- ;;^UTILITY(U,$J,358.3,48515,1,0)
+ ;;^UTILITY(U,$J,358.3,46087,1,3,0)
+ ;;=3^Penetrating Orbital Wound,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46087,1,4,0)
+ ;;=4^S05.41XA
+ ;;^UTILITY(U,$J,358.3,46087,2)
+ ;;=^5020615
+ ;;^UTILITY(U,$J,358.3,46088,0)
+ ;;=S05.42XA^^176^2298^12
+ ;;^UTILITY(U,$J,358.3,46088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48515,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc disease aff right dom side
- ;;^UTILITY(U,$J,358.3,48515,1,4,0)
- ;;=4^I69.841
- ;;^UTILITY(U,$J,358.3,48515,2)
- ;;=^5007532
- ;;^UTILITY(U,$J,358.3,48516,0)
- ;;=I69.842^^216^2407^73
- ;;^UTILITY(U,$J,358.3,48516,1,0)
+ ;;^UTILITY(U,$J,358.3,46088,1,3,0)
+ ;;=3^Penetrating Orbital Wound,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46088,1,4,0)
+ ;;=4^S05.42XA
+ ;;^UTILITY(U,$J,358.3,46088,2)
+ ;;=^5020618
+ ;;^UTILITY(U,$J,358.3,46089,0)
+ ;;=S02.42XA^^176^2298^17
+ ;;^UTILITY(U,$J,358.3,46089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48516,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc disease aff left dom side
- ;;^UTILITY(U,$J,358.3,48516,1,4,0)
- ;;=4^I69.842
- ;;^UTILITY(U,$J,358.3,48516,2)
- ;;=^5133577
- ;;^UTILITY(U,$J,358.3,48517,0)
- ;;=I69.843^^216^2407^70
- ;;^UTILITY(U,$J,358.3,48517,1,0)
+ ;;^UTILITY(U,$J,358.3,46089,1,3,0)
+ ;;=3^Fx of Alveoulus of Maxilla,Init Encntr for Closed Fx
+ ;;^UTILITY(U,$J,358.3,46089,1,4,0)
+ ;;=4^S02.42XA
+ ;;^UTILITY(U,$J,358.3,46089,2)
+ ;;=^5020354
+ ;;^UTILITY(U,$J,358.3,46090,0)
+ ;;=S00.11XA^^176^2298^18
+ ;;^UTILITY(U,$J,358.3,46090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48517,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
- ;;^UTILITY(U,$J,358.3,48517,1,4,0)
- ;;=4^I69.843
- ;;^UTILITY(U,$J,358.3,48517,2)
- ;;=^5007533
- ;;^UTILITY(U,$J,358.3,48518,0)
- ;;=I69.844^^216^2407^71
- ;;^UTILITY(U,$J,358.3,48518,1,0)
+ ;;^UTILITY(U,$J,358.3,46090,1,3,0)
+ ;;=3^Contusion,Right Eyelid,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46090,1,4,0)
+ ;;=4^S00.11XA
+ ;;^UTILITY(U,$J,358.3,46090,2)
+ ;;=^5019778
+ ;;^UTILITY(U,$J,358.3,46091,0)
+ ;;=S00.12XA^^176^2298^19
+ ;;^UTILITY(U,$J,358.3,46091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48518,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
+ ;;^UTILITY(U,$J,358.3,46091,1,3,0)
+ ;;=3^Contusion,Left Eyelid,Init Encntr

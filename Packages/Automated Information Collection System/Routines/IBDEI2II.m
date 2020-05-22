@@ -1,130 +1,122 @@
-IBDEI2II ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2II ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42585,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,42586,0)
- ;;=F19.97^^159^2024^29
- ;;^UTILITY(U,$J,358.3,42586,1,0)
+ ;;^UTILITY(U,$J,358.3,40113,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,40113,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,40114,0)
+ ;;=M17.11^^152^2006^140
+ ;;^UTILITY(U,$J,358.3,40114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42586,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,42586,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,42586,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,42587,0)
- ;;=F03.90^^159^2024^15
- ;;^UTILITY(U,$J,358.3,42587,1,0)
+ ;;^UTILITY(U,$J,358.3,40114,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,40114,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,40114,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,40115,0)
+ ;;=M17.12^^152^2006^134
+ ;;^UTILITY(U,$J,358.3,40115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42587,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,42587,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,42587,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,42588,0)
- ;;=G30.0^^159^2024^2
- ;;^UTILITY(U,$J,358.3,42588,1,0)
+ ;;^UTILITY(U,$J,358.3,40115,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,40115,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,40115,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,40116,0)
+ ;;=M18.0^^152^2006^128
+ ;;^UTILITY(U,$J,358.3,40116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42588,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,42588,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,42588,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,42589,0)
- ;;=G30.1^^159^2024^3
- ;;^UTILITY(U,$J,358.3,42589,1,0)
+ ;;^UTILITY(U,$J,358.3,40116,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,40116,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,40116,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,40117,0)
+ ;;=M18.11^^152^2006^138
+ ;;^UTILITY(U,$J,358.3,40117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42589,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,42589,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,42589,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,42590,0)
- ;;=G30.9^^159^2024^4
- ;;^UTILITY(U,$J,358.3,42590,1,0)
+ ;;^UTILITY(U,$J,358.3,40117,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,40117,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,40117,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,40118,0)
+ ;;=M18.12^^152^2006^132
+ ;;^UTILITY(U,$J,358.3,40118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42590,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,42590,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,42590,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,42591,0)
- ;;=G10.^^159^2024^19
- ;;^UTILITY(U,$J,358.3,42591,1,0)
+ ;;^UTILITY(U,$J,358.3,40118,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,40118,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,40118,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,40119,0)
+ ;;=M19.011^^152^2006^141
+ ;;^UTILITY(U,$J,358.3,40119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42591,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,42591,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,42591,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,42592,0)
- ;;=G10.^^159^2024^20
- ;;^UTILITY(U,$J,358.3,42592,1,0)
+ ;;^UTILITY(U,$J,358.3,40119,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,40119,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,40119,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,40120,0)
+ ;;=M19.012^^152^2006^135
+ ;;^UTILITY(U,$J,358.3,40120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42592,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,42592,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,42592,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,42593,0)
- ;;=G90.3^^159^2024^21
- ;;^UTILITY(U,$J,358.3,42593,1,0)
+ ;;^UTILITY(U,$J,358.3,40120,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,40120,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,40120,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,40121,0)
+ ;;=M19.031^^152^2006^142
+ ;;^UTILITY(U,$J,358.3,40121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42593,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,42593,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,42593,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,42594,0)
- ;;=G91.2^^159^2024^22
- ;;^UTILITY(U,$J,358.3,42594,1,0)
+ ;;^UTILITY(U,$J,358.3,40121,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,40121,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,40121,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,40122,0)
+ ;;=M19.032^^152^2006^136
+ ;;^UTILITY(U,$J,358.3,40122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42594,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,42594,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,42594,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,42595,0)
- ;;=G91.2^^159^2024^23
- ;;^UTILITY(U,$J,358.3,42595,1,0)
+ ;;^UTILITY(U,$J,358.3,40122,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,40122,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,40122,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,40123,0)
+ ;;=M19.041^^152^2006^137
+ ;;^UTILITY(U,$J,358.3,40123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42595,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,42595,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,42595,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,42596,0)
- ;;=G30.8^^159^2024^5
- ;;^UTILITY(U,$J,358.3,42596,1,0)
+ ;;^UTILITY(U,$J,358.3,40123,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,40123,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,40123,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,40124,0)
+ ;;=M19.042^^152^2006^131
+ ;;^UTILITY(U,$J,358.3,40124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42596,1,3,0)
- ;;=3^Alzheimer's Diseases NEC
- ;;^UTILITY(U,$J,358.3,42596,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,42596,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,42597,0)
- ;;=G31.09^^159^2024^16
- ;;^UTILITY(U,$J,358.3,42597,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42597,1,3,0)
- ;;=3^Frontotemporal Dementia NEC
- ;;^UTILITY(U,$J,358.3,42597,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,42597,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,42598,0)
- ;;=G20.^^159^2024^24
- ;;^UTILITY(U,$J,358.3,42598,1,0)
+ ;;^UTILITY(U,$J,358.3,40124,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,40124,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,40124,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,40125,0)
+ ;;=M19.90^^152^2006^72
+ ;;^UTILITY(U,$J,358.3,40125,1,0)
  ;;=^358.31IA^4^2

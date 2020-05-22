@@ -1,5 +1,5 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656**;21-MAR-94;Build 17
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614,618,646,651,656,663**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
@@ -129,7 +129,10 @@ UCPAY ;IB*2.0*646 Added to allow for skip of clock checks - required for Urgent 
  ;end IB*2.0*651
  ;
  ;IB*2.0*646 If urgent care, process using UC criteria and go to process
- I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
+ ;I IBXA=4,IBUC D UCCHRG^IBECEA36 G ADDQ:IBY<0,PROC
+ ;IB*2.0*TBD Added changes for Urgent Care Visit Tracking
+ I IBXA=4,IBUC D UCCHRG2^IBECEA36(DFN,IBFR) G ADDQ:IBY<0,PROC
+ ;end IB*2.0*646
  ;
  I IBXA=4,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
  I IBXA=4 D  G ADDQ:IBY<0,PROC
@@ -166,6 +169,11 @@ TO ; - ask 'bill to' date
  ;end IB*2.0*651
  ;
  I IBXA>0,IBXA<4,IBGMT'=$$ISGMTPT^IBAGMT(DFN,IBTO) W !!,"The patient's GMT Copayment status changed within the specified period!",! G ADDQ
+ ;
+ ;- IB*2.0*663 - check for Free days used in this billing period
+ I IBXA=9 D  G ADDQ:IBY<0
+ . F IBFEDT=IBFR:1:IBTO I $D(^IBA(351.81,IBCLDA,1,"AC",IBFEDT)) W !!,"One or more of the days in this period is marked as a Free Day." S IBY=-1 Q
+ ;end IB*2.0*663
  ;
  ; - calculate unit charge for LTC inpatient in IBCHG
  I IBXA=9 S IBDT=IBFR,IBEVDA=$$EVF^IBECEA31(DFN,IBFR,IBTO,IBNH),IBEVDT=$E(IBFR,1,5)_"01" D:IBEVDA<1  G ADDQ:IBY<0 D COST^IBAUTL2 I $E(IBFR,1,5)'=$E(IBTO,1,5) W !!,"  LTC Copayment charges cannot go from one month to another." G ADDQ
@@ -207,11 +215,13 @@ PROC ; - okay to proceed?
  ;
  ; - generate entry in file #354.71 (for VA RX only per IB*2.0*618) and #350
  I IBXA=5,(IBUSNM'["CC"),(IBUSNM'["CHOICE") W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE_"^^^^^^^"_$G(IBTIER)) G:IBAM<0 ADDQ
- D ADD^IBECEAU3 G:IBY<0 ADDQ W "done."
+ D ADD^IBECEAU3 G:IBY<0 ADDQ W " done."
  ;
  ; - pass the charge off to AR on-line
  W !,"Passing the charge directly to Accounts Receivable... "
- D PASSCH^IBECEA22 W:IBY>0 "done." G:IBY<0 ADDQ
+ D PASSCH^IBECEA22 W:IBY>0 " done." G:IBY<0 ADDQ   ;IB*2.0*663 added space before done to correct display issue.
+ ;
+ I IBUC D ADDVST^IBECEA36(DFN,IBFR,IBEVDA,2)
  ;
  ; - review the special inpatient billing case
  I $G(IBSIBC1) D CHK^IBAMTI1(IBSIBC1,IBEVDA)
@@ -224,7 +234,7 @@ ADDQ ; - display error, rebuild list, and quit
  I IBCOMMIT S IBBG=VALMBG W !,"Rebuilding list of charges..." D ARRAY^IBECEA0 S VALMBG=IBBG
  K IBMED,IBCLDA,IBCLDT,IBCLDOL,IBCLDAY,IBATYP,IBDG,IBSEQNO,IBXA,IBNH,IBBS,IBLIM,IBFR,IBTO,IBRTED,IBSIBC,IBSIBC1,IBBG,IBFEEV,IBAM
  K IBX,IBCHG,IBUNIT,IBDESC,IBDT,IBEVDT,IBEVDA,IBSL,IBNOS,IBN,IBTOTL,IBARTYP,IBIL,IBTRAN,IBAFY,IBCVA,IBCLSF,IBDD,IBND,VADM,VA,VAERR,IBADJMED
-ADDQ1 K IBEXSTAT,IBCOMMIT,IBCATC,IBCVAEL,IBLTCST,IBTIER,IBEFDT
+ADDQ1 K IBEXSTAT,IBCOMMIT,IBCATC,IBCVAEL,IBLTCST,IBTIER,IBEFDT,IBFEDT
  Q
  ;
  ;

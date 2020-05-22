@@ -1,132 +1,116 @@
-IBDEI2NO ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NO ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44567,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,44567,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,44568,0)
- ;;=Z80.3^^200^2229^34
- ;;^UTILITY(U,$J,358.3,44568,1,0)
+ ;;^UTILITY(U,$J,358.3,42367,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,42367,1,4,0)
+ ;;=4^S62.634S
+ ;;^UTILITY(U,$J,358.3,42367,2)
+ ;;=^5034626
+ ;;^UTILITY(U,$J,358.3,42368,0)
+ ;;=S62.621S^^155^2069^21
+ ;;^UTILITY(U,$J,358.3,42368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44568,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,44568,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,44568,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,44569,0)
- ;;=Z80.41^^200^2229^38
- ;;^UTILITY(U,$J,358.3,44569,1,0)
+ ;;^UTILITY(U,$J,358.3,42368,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,42368,1,4,0)
+ ;;=4^S62.621S
+ ;;^UTILITY(U,$J,358.3,42368,2)
+ ;;=^5034535
+ ;;^UTILITY(U,$J,358.3,42369,0)
+ ;;=S62.627S^^155^2069^22
+ ;;^UTILITY(U,$J,358.3,42369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44569,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,44569,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,44569,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,44570,0)
- ;;=Z80.42^^200^2229^39
- ;;^UTILITY(U,$J,358.3,44570,1,0)
+ ;;^UTILITY(U,$J,358.3,42369,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,42369,1,4,0)
+ ;;=4^S62.627S
+ ;;^UTILITY(U,$J,358.3,42369,2)
+ ;;=^5034577
+ ;;^UTILITY(U,$J,358.3,42370,0)
+ ;;=S62.623S^^155^2069^23
+ ;;^UTILITY(U,$J,358.3,42370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44570,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,44570,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,44570,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,44571,0)
- ;;=Z80.43^^200^2229^40
- ;;^UTILITY(U,$J,358.3,44571,1,0)
+ ;;^UTILITY(U,$J,358.3,42370,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,42370,1,4,0)
+ ;;=4^S62.623S
+ ;;^UTILITY(U,$J,358.3,42370,2)
+ ;;=^5034549
+ ;;^UTILITY(U,$J,358.3,42371,0)
+ ;;=S62.625S^^155^2069^24
+ ;;^UTILITY(U,$J,358.3,42371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44571,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,44571,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,44571,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,44572,0)
- ;;=Z80.6^^200^2229^32
- ;;^UTILITY(U,$J,358.3,44572,1,0)
+ ;;^UTILITY(U,$J,358.3,42371,1,3,0)
+ ;;=3^Disp fx of medial phalanx of left ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,42371,1,4,0)
+ ;;=4^S62.625S
+ ;;^UTILITY(U,$J,358.3,42371,2)
+ ;;=^5034563
+ ;;^UTILITY(U,$J,358.3,42372,0)
+ ;;=S62.620S^^155^2069^25
+ ;;^UTILITY(U,$J,358.3,42372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44572,1,3,0)
- ;;=3^Family Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,44572,1,4,0)
- ;;=4^Z80.6
- ;;^UTILITY(U,$J,358.3,44572,2)
- ;;=^5063354
- ;;^UTILITY(U,$J,358.3,44573,0)
- ;;=Z80.8^^200^2229^37
- ;;^UTILITY(U,$J,358.3,44573,1,0)
+ ;;^UTILITY(U,$J,358.3,42372,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right index finger, sequela
+ ;;^UTILITY(U,$J,358.3,42372,1,4,0)
+ ;;=4^S62.620S
+ ;;^UTILITY(U,$J,358.3,42372,2)
+ ;;=^5034528
+ ;;^UTILITY(U,$J,358.3,42373,0)
+ ;;=S62.626S^^155^2069^26
+ ;;^UTILITY(U,$J,358.3,42373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44573,1,3,0)
- ;;=3^Family Hx of Malig Neop of Organs/Systems
- ;;^UTILITY(U,$J,358.3,44573,1,4,0)
- ;;=4^Z80.8
- ;;^UTILITY(U,$J,358.3,44573,2)
- ;;=^5063356
- ;;^UTILITY(U,$J,358.3,44574,0)
- ;;=Z81.8^^200^2229^42
- ;;^UTILITY(U,$J,358.3,44574,1,0)
+ ;;^UTILITY(U,$J,358.3,42373,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right little finger, sequela
+ ;;^UTILITY(U,$J,358.3,42373,1,4,0)
+ ;;=4^S62.626S
+ ;;^UTILITY(U,$J,358.3,42373,2)
+ ;;=^5034570
+ ;;^UTILITY(U,$J,358.3,42374,0)
+ ;;=S62.622S^^155^2069^27
+ ;;^UTILITY(U,$J,358.3,42374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44574,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,44574,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,44574,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,44575,0)
- ;;=Z82.3^^200^2229^49
- ;;^UTILITY(U,$J,358.3,44575,1,0)
+ ;;^UTILITY(U,$J,358.3,42374,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right middle finger, sequela
+ ;;^UTILITY(U,$J,358.3,42374,1,4,0)
+ ;;=4^S62.622S
+ ;;^UTILITY(U,$J,358.3,42374,2)
+ ;;=^5034542
+ ;;^UTILITY(U,$J,358.3,42375,0)
+ ;;=S62.624S^^155^2069^28
+ ;;^UTILITY(U,$J,358.3,42375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44575,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,44575,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,44575,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,44576,0)
- ;;=Z82.49^^200^2229^31
- ;;^UTILITY(U,$J,358.3,44576,1,0)
+ ;;^UTILITY(U,$J,358.3,42375,1,3,0)
+ ;;=3^Disp fx of medial phalanx of right ring finger, sequela
+ ;;^UTILITY(U,$J,358.3,42375,1,4,0)
+ ;;=4^S62.624S
+ ;;^UTILITY(U,$J,358.3,42375,2)
+ ;;=^5034556
+ ;;^UTILITY(U,$J,358.3,42376,0)
+ ;;=S62.611S^^155^2069^39
+ ;;^UTILITY(U,$J,358.3,42376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44576,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,44576,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,44576,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,44577,0)
- ;;=Z82.5^^200^2229^22
- ;;^UTILITY(U,$J,358.3,44577,1,0)
+ ;;^UTILITY(U,$J,358.3,42376,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left index finger, sequela
+ ;;^UTILITY(U,$J,358.3,42376,1,4,0)
+ ;;=4^S62.611S
+ ;;^UTILITY(U,$J,358.3,42376,2)
+ ;;=^5034465
+ ;;^UTILITY(U,$J,358.3,42377,0)
+ ;;=S62.617S^^155^2069^40
+ ;;^UTILITY(U,$J,358.3,42377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44577,1,3,0)
- ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
- ;;^UTILITY(U,$J,358.3,44577,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,44577,2)
- ;;=^5063370
- ;;^UTILITY(U,$J,358.3,44578,0)
- ;;=Z82.61^^200^2229^21
- ;;^UTILITY(U,$J,358.3,44578,1,0)
+ ;;^UTILITY(U,$J,358.3,42377,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left little finger, sequela
+ ;;^UTILITY(U,$J,358.3,42377,1,4,0)
+ ;;=4^S62.617S
+ ;;^UTILITY(U,$J,358.3,42377,2)
+ ;;=^5034507
+ ;;^UTILITY(U,$J,358.3,42378,0)
+ ;;=S62.613S^^155^2069^41
+ ;;^UTILITY(U,$J,358.3,42378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44578,1,3,0)
- ;;=3^Family Hx of Arthritis
- ;;^UTILITY(U,$J,358.3,44578,1,4,0)
- ;;=4^Z82.61
- ;;^UTILITY(U,$J,358.3,44578,2)
- ;;=^5063371
- ;;^UTILITY(U,$J,358.3,44579,0)
- ;;=Z82.69^^200^2229^44
- ;;^UTILITY(U,$J,358.3,44579,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44579,1,3,0)
- ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
- ;;^UTILITY(U,$J,358.3,44579,1,4,0)
- ;;=4^Z82.69
- ;;^UTILITY(U,$J,358.3,44579,2)
- ;;=^5063373
- ;;^UTILITY(U,$J,358.3,44580,0)
- ;;=Z83.3^^200^2229^28
- ;;^UTILITY(U,$J,358.3,44580,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42378,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left middle finger, sequela

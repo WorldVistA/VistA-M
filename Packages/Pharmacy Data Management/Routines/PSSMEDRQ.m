@@ -1,5 +1,8 @@
 PSSMEDRQ ;BIR/RTR-Request New Standard Medication Route ;10/17/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**129,147,164**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**129,147,164,240**;9/30/97;Build 1
+ ;
+ ; 11/08/19 KAM PSS*1*240 - Change the URL (Website) for Requesting a
+ ;                          Medication Route change
  ;
 REQ ;Request Med Route change
  D WLINK Q
@@ -163,6 +166,7 @@ TEST ;
 WLINK ;Refer to website with patch PSS*1*147
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y
  W !!!,"Standard Medication Route requests must now be made at the following website:",!
- W !?3,"http://vista.domain.ext/ntrt/",!
+ ; 11/08/19 PSS*1*240 Changed the URL (Website) on next line
+ W !?3,"https://vaww.vashare.domain.ext/sites/ntrt/SitePages/Home.aspx",!
  K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
  Q

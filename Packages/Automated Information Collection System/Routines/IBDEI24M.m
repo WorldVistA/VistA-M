@@ -1,130 +1,130 @@
-IBDEI24M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI24M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36059,1,4,0)
- ;;=4^K52.2
- ;;^UTILITY(U,$J,358.3,36059,2)
- ;;=^5008701
- ;;^UTILITY(U,$J,358.3,36060,0)
- ;;=R63.0^^134^1742^6
- ;;^UTILITY(U,$J,358.3,36060,1,0)
+ ;;^UTILITY(U,$J,358.3,33965,1,4,0)
+ ;;=4^G95.89
+ ;;^UTILITY(U,$J,358.3,33965,2)
+ ;;=^5004193
+ ;;^UTILITY(U,$J,358.3,33966,0)
+ ;;=G82.21^^132^1718^14
+ ;;^UTILITY(U,$J,358.3,33966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36060,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,36060,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,36060,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,36061,0)
- ;;=R09.01^^134^1742^7
- ;;^UTILITY(U,$J,358.3,36061,1,0)
+ ;;^UTILITY(U,$J,358.3,33966,1,3,0)
+ ;;=3^Paraplegia,Complete
+ ;;^UTILITY(U,$J,358.3,33966,1,4,0)
+ ;;=4^G82.21
+ ;;^UTILITY(U,$J,358.3,33966,2)
+ ;;=^5004126
+ ;;^UTILITY(U,$J,358.3,33967,0)
+ ;;=G82.22^^132^1718^15
+ ;;^UTILITY(U,$J,358.3,33967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36061,1,3,0)
- ;;=3^Asphyxia
- ;;^UTILITY(U,$J,358.3,36061,1,4,0)
- ;;=4^R09.01
- ;;^UTILITY(U,$J,358.3,36061,2)
- ;;=^11005
- ;;^UTILITY(U,$J,358.3,36062,0)
- ;;=R07.9^^134^1742^12
- ;;^UTILITY(U,$J,358.3,36062,1,0)
+ ;;^UTILITY(U,$J,358.3,33967,1,3,0)
+ ;;=3^Paraplegia,Incomplete
+ ;;^UTILITY(U,$J,358.3,33967,1,4,0)
+ ;;=4^G82.22
+ ;;^UTILITY(U,$J,358.3,33967,2)
+ ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,33968,0)
+ ;;=G82.50^^132^1718^20
+ ;;^UTILITY(U,$J,358.3,33968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36062,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,36062,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,36062,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,36063,0)
- ;;=M48.52XA^^134^1742^13
- ;;^UTILITY(U,$J,358.3,36063,1,0)
+ ;;^UTILITY(U,$J,358.3,33968,1,3,0)
+ ;;=3^Quadraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,33968,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,33968,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,33969,0)
+ ;;=G82.51^^132^1718^16
+ ;;^UTILITY(U,$J,358.3,33969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36063,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36063,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,36063,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,36064,0)
- ;;=M48.53XA^^134^1742^14
- ;;^UTILITY(U,$J,358.3,36064,1,0)
+ ;;^UTILITY(U,$J,358.3,33969,1,3,0)
+ ;;=3^Quadraplegia,C1-C4 Complete
+ ;;^UTILITY(U,$J,358.3,33969,1,4,0)
+ ;;=4^G82.51
+ ;;^UTILITY(U,$J,358.3,33969,2)
+ ;;=^5004129
+ ;;^UTILITY(U,$J,358.3,33970,0)
+ ;;=G82.52^^132^1718^17
+ ;;^UTILITY(U,$J,358.3,33970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36064,1,3,0)
- ;;=3^Collapsed Vertebra,Cervicothoracic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36064,1,4,0)
- ;;=4^M48.53XA
- ;;^UTILITY(U,$J,358.3,36064,2)
- ;;=^5012171
- ;;^UTILITY(U,$J,358.3,36065,0)
- ;;=M48.56XA^^134^1742^15
- ;;^UTILITY(U,$J,358.3,36065,1,0)
+ ;;^UTILITY(U,$J,358.3,33970,1,3,0)
+ ;;=3^Quadraplegia,C1-C4 Incomplete
+ ;;^UTILITY(U,$J,358.3,33970,1,4,0)
+ ;;=4^G82.52
+ ;;^UTILITY(U,$J,358.3,33970,2)
+ ;;=^5004130
+ ;;^UTILITY(U,$J,358.3,33971,0)
+ ;;=G82.53^^132^1718^18
+ ;;^UTILITY(U,$J,358.3,33971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36065,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbar Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36065,1,4,0)
- ;;=4^M48.56XA
- ;;^UTILITY(U,$J,358.3,36065,2)
- ;;=^5012183
- ;;^UTILITY(U,$J,358.3,36066,0)
- ;;=M48.57XA^^134^1742^16
- ;;^UTILITY(U,$J,358.3,36066,1,0)
+ ;;^UTILITY(U,$J,358.3,33971,1,3,0)
+ ;;=3^Quadraplegia,C5-C7 Complete
+ ;;^UTILITY(U,$J,358.3,33971,1,4,0)
+ ;;=4^G82.53
+ ;;^UTILITY(U,$J,358.3,33971,2)
+ ;;=^5004131
+ ;;^UTILITY(U,$J,358.3,33972,0)
+ ;;=G82.54^^132^1718^19
+ ;;^UTILITY(U,$J,358.3,33972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36066,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36066,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,36066,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,36067,0)
- ;;=M48.51XA^^134^1742^17
- ;;^UTILITY(U,$J,358.3,36067,1,0)
+ ;;^UTILITY(U,$J,358.3,33972,1,3,0)
+ ;;=3^Quadraplegia,C5-C7 Incomplete
+ ;;^UTILITY(U,$J,358.3,33972,1,4,0)
+ ;;=4^G82.54
+ ;;^UTILITY(U,$J,358.3,33972,2)
+ ;;=^5004132
+ ;;^UTILITY(U,$J,358.3,33973,0)
+ ;;=M54.12^^132^1718^21
+ ;;^UTILITY(U,$J,358.3,33973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36067,1,3,0)
- ;;=3^Collapsed Vertebra,Occipito/Atlanto/Axial Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36067,1,4,0)
- ;;=4^M48.51XA
- ;;^UTILITY(U,$J,358.3,36067,2)
- ;;=^5012163
- ;;^UTILITY(U,$J,358.3,36068,0)
- ;;=M48.58XA^^134^1742^18
- ;;^UTILITY(U,$J,358.3,36068,1,0)
+ ;;^UTILITY(U,$J,358.3,33973,1,3,0)
+ ;;=3^Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,33973,1,4,0)
+ ;;=4^M54.12
+ ;;^UTILITY(U,$J,358.3,33973,2)
+ ;;=^5012297
+ ;;^UTILITY(U,$J,358.3,33974,0)
+ ;;=M54.13^^132^1718^22
+ ;;^UTILITY(U,$J,358.3,33974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36068,1,3,0)
- ;;=3^Collapsed Vertebra,Sacral/Sacrococcygeal Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36068,1,4,0)
- ;;=4^M48.58XA
- ;;^UTILITY(U,$J,358.3,36068,2)
- ;;=^5012191
- ;;^UTILITY(U,$J,358.3,36069,0)
- ;;=M48.50XA^^134^1742^21
- ;;^UTILITY(U,$J,358.3,36069,1,0)
+ ;;^UTILITY(U,$J,358.3,33974,1,3,0)
+ ;;=3^Radiculopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,33974,1,4,0)
+ ;;=4^M54.13
+ ;;^UTILITY(U,$J,358.3,33974,2)
+ ;;=^5012298
+ ;;^UTILITY(U,$J,358.3,33975,0)
+ ;;=M54.14^^132^1718^26
+ ;;^UTILITY(U,$J,358.3,33975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36069,1,3,0)
- ;;=3^Collapsed Vertebra,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,36069,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,36069,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,36070,0)
- ;;=M48.54XA^^134^1742^19
- ;;^UTILITY(U,$J,358.3,36070,1,0)
+ ;;^UTILITY(U,$J,358.3,33975,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,33975,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,33975,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,33976,0)
+ ;;=M54.15^^132^1718^27
+ ;;^UTILITY(U,$J,358.3,33976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36070,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36070,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,36070,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,36071,0)
- ;;=M48.55XA^^134^1742^20
- ;;^UTILITY(U,$J,358.3,36071,1,0)
+ ;;^UTILITY(U,$J,358.3,33976,1,3,0)
+ ;;=3^Radiculopathy,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,33976,1,4,0)
+ ;;=4^M54.15
+ ;;^UTILITY(U,$J,358.3,33976,2)
+ ;;=^5012300
+ ;;^UTILITY(U,$J,358.3,33977,0)
+ ;;=M54.16^^132^1718^23
+ ;;^UTILITY(U,$J,358.3,33977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36071,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracolumbar Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,36071,1,4,0)
- ;;=4^M48.55XA
- ;;^UTILITY(U,$J,358.3,36071,2)
- ;;=^5012179
- ;;^UTILITY(U,$J,358.3,36072,0)
- ;;=K59.00^^134^1742^22
+ ;;^UTILITY(U,$J,358.3,33977,1,3,0)
+ ;;=3^Radiculopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,33977,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,33977,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,33978,0)
+ ;;=M54.17^^132^1718^24

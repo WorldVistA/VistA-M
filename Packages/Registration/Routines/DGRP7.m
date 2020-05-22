@@ -1,7 +1,10 @@
-DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ; 7/25/06 12:06pm
- ;;5.3;Registration;**528,653,688,842**;Aug 13, 1993;Build 33
- N DGCASH,DGMBCK
- S DGRPS=7 D H^DGRPU F I=0,.29,.3,.31,.32,.321,.36,.362,.385,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ;7/25/06 12:06pm
+ ;;5.3;Registration;**528,653,688,842,952**;Aug 13, 1993;Build 160
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ N DGCASH,DGMBCK,DGEMHCNVT,DGPRVSPE
+ ;DG*5.3*952 add .55 into DRPG array
+ S DGRPS=7 D H^DGRPU F I=0,.29,.3,.31,.32,.321,.36,.362,.385,.55,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S (DGRPW,Z)=1 D WW^DGRPV W "       Patient Type: " S DGRPX=DGRP("TYPE"),Z=$S($D(^DG(391,+DGRPX,0)):$P(^(0),"^",1),1:DGRPU),Z1=34 D WW1^DGRPV W "Veteran: " S DGRPX=DGRP("VET"),(X,Z1)=1 D YN
  W !?9,"Svc Connected: " S DGRPX=DGRP(.3),X=1,Z1=31,DGNA=$S($P(DGRP("VET"),"^",1)="Y":0,1:1) D YN2 W "SC Percent: " W:$E(Z)'="Y" "N/A" I $E(Z)="Y" D
  .S X=$P(DGRPX,"^",2) W $S(X="":"UNANSWERED",1:+X_"%")
@@ -25,6 +28,12 @@ DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ; 7/25/06
  W !?10,"GI Insurance: " S Z=$$YN2^DG1010P0(DGRP(.362),17) S Z1=35 D WW1^DGRPV
  W "Amount: " S X=$$DISP^DG1010P0(DGRP(.362),6) W $S(X:"$"_X,1:X)
  S Z=3 D WW^DGRPV S DGRPE=+DGRP(.36),Z=$S($D(^DIC(8,+DGRPE,0)):$P(^(0),"^",1),1:DGRPU)
+ ;DG*5.3*952
+ ;if the primary eligibility code is EXPANDED MH CARE
+ ;concatenate expanded mental healthcare type when displaying the primary eligibility code
+ ;Vista Registration screen 7
+ S DGPRVSPE=$$GET1^DIQ(2,DFN_",",.361,"I")
+ I $P($G(XQY0),U)'="DG REGISTRATION VIEW",$D(^DIC(8,+DGRPE,0)),$$GET1^DIQ(8,+DGRPE_",",8)="EXPANDED MH CARE NON-ENROLLEE",$G(DGRP(.55))'="" S Z=Z_" - "_$E($$OTHSOC^DGOTHD1($G(DGRP(.55))),1,24)
  W "  Primary Elig Code: ",Z D AAC1^DGLOCK2 I DGAAC(1)]"" W !?8,"Agency/Country: ",$S($D(^DIC(35,+$P(DGRP(.3),"^",9),0)):$P(^(0),"^",1),1:DGRPU)
  W !?4,"Other Elig Code(s): " S I1="" F I=0:0 S I=$O(^DPT("AEL",DFN,I)) Q:'I  I $D(^DIC(8,+I,0)),I'=DGRPE S I1=I1+1 W:I1>1 !?24 W $P(^(0),"^",1)
  W:'I1 "NO ADDITIONAL ELIGIBILITIES IDENTIFIED"

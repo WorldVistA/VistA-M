@@ -1,128 +1,118 @@
-IBDEI1MS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27681,1,3,0)
- ;;=3^Muscle Test,One Limb
- ;;^UTILITY(U,$J,358.3,27682,0)
- ;;=95869^^108^1374^19^^^^1
- ;;^UTILITY(U,$J,358.3,27682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27682,1,2,0)
- ;;=2^95869
- ;;^UTILITY(U,$J,358.3,27682,1,3,0)
- ;;=3^Muscle Test Thor Paraspinal
- ;;^UTILITY(U,$J,358.3,27683,0)
- ;;=95925^^108^1375^7^^^^1
- ;;^UTILITY(U,$J,358.3,27683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27683,1,2,0)
- ;;=2^95925
- ;;^UTILITY(U,$J,358.3,27683,1,3,0)
- ;;=3^Short Latency SSEP, Periph Nerve, Upper Ext
- ;;^UTILITY(U,$J,358.3,27684,0)
- ;;=95926^^108^1375^5^^^^1
- ;;^UTILITY(U,$J,358.3,27684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27684,1,2,0)
- ;;=2^95926
- ;;^UTILITY(U,$J,358.3,27684,1,3,0)
- ;;=3^Short Latency SSEP, Periph Nerve, Lower Ext
- ;;^UTILITY(U,$J,358.3,27685,0)
- ;;=95927^^108^1375^6^^^^1
- ;;^UTILITY(U,$J,358.3,27685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27685,1,2,0)
- ;;=2^95927
- ;;^UTILITY(U,$J,358.3,27685,1,3,0)
- ;;=3^Short Latency SSEP, Periph Nerve, Trunk/Head
- ;;^UTILITY(U,$J,358.3,27686,0)
- ;;=95930^^108^1375^9^^^^1
- ;;^UTILITY(U,$J,358.3,27686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27686,1,2,0)
- ;;=2^95930
- ;;^UTILITY(U,$J,358.3,27686,1,3,0)
- ;;=3^Visual Evoked Potential
- ;;^UTILITY(U,$J,358.3,27687,0)
- ;;=95933^^108^1375^1^^^^1
- ;;^UTILITY(U,$J,358.3,27687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27687,1,2,0)
- ;;=2^95933
- ;;^UTILITY(U,$J,358.3,27687,1,3,0)
- ;;=3^Blink Reflex Test
- ;;^UTILITY(U,$J,358.3,27688,0)
- ;;=95937^^108^1375^4^^^^1
- ;;^UTILITY(U,$J,358.3,27688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27688,1,2,0)
- ;;=2^95937
- ;;^UTILITY(U,$J,358.3,27688,1,3,0)
- ;;=3^Neuromuscular Junction Test
- ;;^UTILITY(U,$J,358.3,27689,0)
- ;;=95938^^108^1375^8^^^^1
- ;;^UTILITY(U,$J,358.3,27689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27689,1,2,0)
- ;;=2^95938
- ;;^UTILITY(U,$J,358.3,27689,1,3,0)
- ;;=3^Short Latency SSEP,Periph Nerve,Upper&Lower
- ;;^UTILITY(U,$J,358.3,27690,0)
- ;;=20206^^108^1376^4^^^^1
- ;;^UTILITY(U,$J,358.3,27690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27690,1,2,0)
- ;;=2^20206
- ;;^UTILITY(U,$J,358.3,27690,1,3,0)
- ;;=3^Needle Biopsy of Muscle
- ;;^UTILITY(U,$J,358.3,27691,0)
- ;;=64795^^108^1376^1^^^^1
- ;;^UTILITY(U,$J,358.3,27691,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27691,1,2,0)
- ;;=2^64795
- ;;^UTILITY(U,$J,358.3,27691,1,3,0)
- ;;=3^Biopsy of Nerve
- ;;^UTILITY(U,$J,358.3,27692,0)
- ;;=20200^^108^1376^2^^^^1
- ;;^UTILITY(U,$J,358.3,27692,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27692,1,2,0)
- ;;=2^20200
- ;;^UTILITY(U,$J,358.3,27692,1,3,0)
- ;;=3^Muscle Biopsy, Superficial
- ;;^UTILITY(U,$J,358.3,27693,0)
- ;;=20205^^108^1376^3^^^^1
- ;;^UTILITY(U,$J,358.3,27693,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27693,1,2,0)
- ;;=2^20205
- ;;^UTILITY(U,$J,358.3,27693,1,3,0)
- ;;=3^Muscle Biopsy,Deep
- ;;^UTILITY(U,$J,358.3,27694,0)
- ;;=95921^^108^1377^1^^^^1
- ;;^UTILITY(U,$J,358.3,27694,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27694,1,2,0)
- ;;=2^95921
- ;;^UTILITY(U,$J,358.3,27694,1,3,0)
- ;;=3^Autonomic Nerv Function Test
- ;;^UTILITY(U,$J,358.3,27695,0)
- ;;=95922^^108^1377^2^^^^1
- ;;^UTILITY(U,$J,358.3,27695,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27695,1,2,0)
- ;;=2^95922
- ;;^UTILITY(U,$J,358.3,27695,1,3,0)
- ;;=3^ANS; Vasomotor Adrenergic Innervation
- ;;^UTILITY(U,$J,358.3,27696,0)
- ;;=95923^^108^1377^3^^^^1
- ;;^UTILITY(U,$J,358.3,27696,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27696,1,2,0)
- ;;=2^95923
- ;;^UTILITY(U,$J,358.3,27696,1,3,0)
- ;;=3^ANS; Sudomotor
- ;;^UTILITY(U,$J,358.3,27697,0)
- ;;=61796^^108^1378^1^^^^1
+ ;;^UTILITY(U,$J,358.3,26057,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26057,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,26057,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,26057,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,26058,0)
+ ;;=V00.811D^^107^1230^51
+ ;;^UTILITY(U,$J,358.3,26058,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26058,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26058,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,26058,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,26059,0)
+ ;;=V00.812A^^107^1230^142
+ ;;^UTILITY(U,$J,358.3,26059,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26059,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26059,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,26059,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,26060,0)
+ ;;=V00.812D^^107^1230^143
+ ;;^UTILITY(U,$J,358.3,26060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26060,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26060,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,26060,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,26061,0)
+ ;;=V00.818A^^107^1230^140
+ ;;^UTILITY(U,$J,358.3,26061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26061,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26061,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,26061,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,26062,0)
+ ;;=V00.818D^^107^1230^141
+ ;;^UTILITY(U,$J,358.3,26062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26062,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26062,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,26062,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,26063,0)
+ ;;=V00.831A^^107^1230^48
+ ;;^UTILITY(U,$J,358.3,26063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26063,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26063,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,26063,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,26064,0)
+ ;;=V00.831D^^107^1230^49
+ ;;^UTILITY(U,$J,358.3,26064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26064,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26064,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,26064,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,26065,0)
+ ;;=V00.832A^^107^1230^100
+ ;;^UTILITY(U,$J,358.3,26065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26065,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26065,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,26065,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,26066,0)
+ ;;=V00.832D^^107^1230^101
+ ;;^UTILITY(U,$J,358.3,26066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26066,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26066,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,26066,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,26067,0)
+ ;;=V00.838A^^107^1230^98
+ ;;^UTILITY(U,$J,358.3,26067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26067,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26067,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,26067,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,26068,0)
+ ;;=V00.838D^^107^1230^99
+ ;;^UTILITY(U,$J,358.3,26068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26068,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr

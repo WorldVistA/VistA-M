@@ -1,5 +1,5 @@
-MAGDGMRC ;WOIFO/PMK,EdM,MLH - Read a DICOM image file ; 07 Feb 2013 5:14 PM
- ;;3.0;IMAGING;**10,51,50,85,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDGMRC ;WOIFO/PMK,EdM,MLH,DAC - Read a DICOM image file ; Nov 08, 2019@10:50:30
+ ;;3.0;IMAGING;**10,51,50,85,118,138,239**;Mar 19, 2002;Build 18;May 19, 2019
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -79,10 +79,11 @@ TIUALL(GMRCIEN,RESULT) ; find all IENs for the TIU notes for this request
  . . Q
  . ; new database structure
  . S TIUXIEN=""
- . F  S TIUXIEN=$O(^MAG(2005.61,"B",TIUIEN,TIUXIEN)) Q:'TIUXIEN  D
- . . S Y=$G(^MAG(2005.61,TIUXIEN,0)) Q:$P(Y,"^",3)'="TIU"
+ . ; P239 DAC - Changed/(fixed) next three global references to ^MAGV instead of ^MAG
+ . F  S TIUXIEN=$O(^MAGV(2005.61,"B",TIUIEN,TIUXIEN)) Q:'TIUXIEN  D
+ . . S Y=$G(^MAGV(2005.61,TIUXIEN,0)) Q:$P(Y,"^",3)'="TIU"
  . . S MAGIEN=""
- . . F  S MAGIEN=$O(^MAG(2005.62,"C",TIUXIEN,MAGIEN)) Q:'MAGIEN  D
+ . . F  S MAGIEN=$O(^MAGV(2005.62,"C",TIUXIEN,MAGIEN)) Q:'MAGIEN  D
  . . . S RESULT=RESULT+1
  . . . S RESULT(RESULT)=TIUIEN_"^"_$$GMRCACN^MAGDFCNV(GMRCIEN)_"^N"_MAGIEN
  . . . Q

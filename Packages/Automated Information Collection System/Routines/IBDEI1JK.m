@@ -1,124 +1,126 @@
-IBDEI1JK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26159,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,26160,0)
- ;;=F10.182^^98^1235^36
- ;;^UTILITY(U,$J,358.3,26160,1,0)
+ ;;^UTILITY(U,$J,358.3,24641,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,24641,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,24642,0)
+ ;;=N52.31^^107^1208^40
+ ;;^UTILITY(U,$J,358.3,24642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26160,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26160,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,26160,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,26161,0)
- ;;=F10.20^^98^1235^28
- ;;^UTILITY(U,$J,358.3,26161,1,0)
+ ;;^UTILITY(U,$J,358.3,24642,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,24642,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,24642,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,24643,0)
+ ;;=N52.2^^107^1208^46
+ ;;^UTILITY(U,$J,358.3,24643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26161,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,26161,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,26161,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,26162,0)
- ;;=F10.21^^98^1235^29
- ;;^UTILITY(U,$J,358.3,26162,1,0)
+ ;;^UTILITY(U,$J,358.3,24643,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,24643,1,4,0)
+ ;;=4^N52.2
+ ;;^UTILITY(U,$J,358.3,24643,2)
+ ;;=^5015756
+ ;;^UTILITY(U,$J,358.3,24644,0)
+ ;;=N52.03^^107^1208^37
+ ;;^UTILITY(U,$J,358.3,24644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26162,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,26162,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,26162,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,26163,0)
- ;;=F10.230^^98^1235^30
- ;;^UTILITY(U,$J,358.3,26163,1,0)
+ ;;^UTILITY(U,$J,358.3,24644,1,3,0)
+ ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
+ ;;^UTILITY(U,$J,358.3,24644,1,4,0)
+ ;;=4^N52.03
+ ;;^UTILITY(U,$J,358.3,24644,2)
+ ;;=^5015754
+ ;;^UTILITY(U,$J,358.3,24645,0)
+ ;;=N52.02^^107^1208^38
+ ;;^UTILITY(U,$J,358.3,24645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26163,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,26163,1,4,0)
- ;;=4^F10.230
- ;;^UTILITY(U,$J,358.3,26163,2)
- ;;=^5003086
- ;;^UTILITY(U,$J,358.3,26164,0)
- ;;=F10.231^^98^1235^31
- ;;^UTILITY(U,$J,358.3,26164,1,0)
+ ;;^UTILITY(U,$J,358.3,24645,1,3,0)
+ ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,24645,1,4,0)
+ ;;=4^N52.02
+ ;;^UTILITY(U,$J,358.3,24645,2)
+ ;;=^5015753
+ ;;^UTILITY(U,$J,358.3,24646,0)
+ ;;=N52.1^^107^1208^45
+ ;;^UTILITY(U,$J,358.3,24646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26164,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,26164,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,26164,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,26165,0)
- ;;=F10.232^^98^1235^32
- ;;^UTILITY(U,$J,358.3,26165,1,0)
+ ;;^UTILITY(U,$J,358.3,24646,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,24646,1,4,0)
+ ;;=4^N52.1
+ ;;^UTILITY(U,$J,358.3,24646,2)
+ ;;=^5015755
+ ;;^UTILITY(U,$J,358.3,24647,0)
+ ;;=N52.01^^107^1208^44
+ ;;^UTILITY(U,$J,358.3,24647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26165,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,26165,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,26165,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,26166,0)
- ;;=F10.239^^98^1235^33
- ;;^UTILITY(U,$J,358.3,26166,1,0)
+ ;;^UTILITY(U,$J,358.3,24647,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
+ ;;^UTILITY(U,$J,358.3,24647,1,4,0)
+ ;;=4^N52.01
+ ;;^UTILITY(U,$J,358.3,24647,2)
+ ;;=^5015752
+ ;;^UTILITY(U,$J,358.3,24648,0)
+ ;;=N95.2^^107^1208^88
+ ;;^UTILITY(U,$J,358.3,24648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26166,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,26166,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,26166,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,26167,0)
- ;;=F10.24^^98^1235^35
- ;;^UTILITY(U,$J,358.3,26167,1,0)
+ ;;^UTILITY(U,$J,358.3,24648,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,24648,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,24648,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,24649,0)
+ ;;=R30.9^^107^1208^69
+ ;;^UTILITY(U,$J,358.3,24649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26167,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26167,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,26167,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,26168,0)
- ;;=F10.29^^98^1235^37
- ;;^UTILITY(U,$J,358.3,26168,1,0)
+ ;;^UTILITY(U,$J,358.3,24649,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,24649,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,24649,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,24650,0)
+ ;;=R30.0^^107^1208^28
+ ;;^UTILITY(U,$J,358.3,24650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26168,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26168,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,26168,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,26169,0)
- ;;=F10.180^^98^1235^1
- ;;^UTILITY(U,$J,358.3,26169,1,0)
+ ;;^UTILITY(U,$J,358.3,24650,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,24650,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,24650,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,24651,0)
+ ;;=R33.9^^107^1208^119
+ ;;^UTILITY(U,$J,358.3,24651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26169,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26169,1,4,0)
- ;;=4^F10.180
- ;;^UTILITY(U,$J,358.3,26169,2)
- ;;=^5003076
- ;;^UTILITY(U,$J,358.3,26170,0)
- ;;=F10.280^^98^1235^2
- ;;^UTILITY(U,$J,358.3,26170,1,0)
+ ;;^UTILITY(U,$J,358.3,24651,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,24651,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,24651,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,24652,0)
+ ;;=R32.^^107^1208^117
+ ;;^UTILITY(U,$J,358.3,24652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26170,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26170,1,4,0)
- ;;=4^F10.280
- ;;^UTILITY(U,$J,358.3,26170,2)
- ;;=^5003096
- ;;^UTILITY(U,$J,358.3,26171,0)
- ;;=F10.980^^98^1235^3
- ;;^UTILITY(U,$J,358.3,26171,1,0)
+ ;;^UTILITY(U,$J,358.3,24652,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,24652,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,24652,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,24653,0)
+ ;;=N39.41^^107^1208^115
+ ;;^UTILITY(U,$J,358.3,24653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26171,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26171,1,4,0)
- ;;=4^F10.980
+ ;;^UTILITY(U,$J,358.3,24653,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,24653,1,4,0)
+ ;;=4^N39.41

@@ -1,132 +1,124 @@
-IBDEI30C ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI30C ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,50419,1,0)
+ ;;^UTILITY(U,$J,358.3,48029,1,4,0)
+ ;;=4^H90.A21
+ ;;^UTILITY(U,$J,358.3,48029,2)
+ ;;=^5138586
+ ;;^UTILITY(U,$J,358.3,48030,0)
+ ;;=H90.A22^^185^2415^21
+ ;;^UTILITY(U,$J,358.3,48030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50419,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Shldr
- ;;^UTILITY(U,$J,358.3,50419,1,4,0)
- ;;=4^M06.011
- ;;^UTILITY(U,$J,358.3,50419,2)
- ;;=^5010048
- ;;^UTILITY(U,$J,358.3,50420,0)
- ;;=M06.031^^219^2448^54
- ;;^UTILITY(U,$J,358.3,50420,1,0)
+ ;;^UTILITY(U,$J,358.3,48030,1,3,0)
+ ;;=3^Snsrnrl Hearing Loss,Uni,Left Ear,w/ Rstrcd Hearing Contra Side
+ ;;^UTILITY(U,$J,358.3,48030,1,4,0)
+ ;;=4^H90.A22
+ ;;^UTILITY(U,$J,358.3,48030,2)
+ ;;=^5138587
+ ;;^UTILITY(U,$J,358.3,48031,0)
+ ;;=H90.A31^^185^2415^14
+ ;;^UTILITY(U,$J,358.3,48031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50420,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Right Wrist
- ;;^UTILITY(U,$J,358.3,50420,1,4,0)
- ;;=4^M06.031
- ;;^UTILITY(U,$J,358.3,50420,2)
- ;;=^5010054
- ;;^UTILITY(U,$J,358.3,50421,0)
- ;;=M06.00^^219^2448^55
- ;;^UTILITY(U,$J,358.3,50421,1,0)
+ ;;^UTILITY(U,$J,358.3,48031,1,3,0)
+ ;;=3^Mixed Hearing Loss,Uni,Right Ear,w/ Rstrcd Hearing Contra Side
+ ;;^UTILITY(U,$J,358.3,48031,1,4,0)
+ ;;=4^H90.A31
+ ;;^UTILITY(U,$J,358.3,48031,2)
+ ;;=^5138588
+ ;;^UTILITY(U,$J,358.3,48032,0)
+ ;;=H90.A32^^185^2415^13
+ ;;^UTILITY(U,$J,358.3,48032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50421,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Unspec Site
- ;;^UTILITY(U,$J,358.3,50421,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,50421,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,50422,0)
- ;;=M06.08^^219^2448^56
- ;;^UTILITY(U,$J,358.3,50422,1,0)
+ ;;^UTILITY(U,$J,358.3,48032,1,3,0)
+ ;;=3^Mixed Hearing Loss,Uni,Left Ear,w/ Rstrcd Hearing Contra Side
+ ;;^UTILITY(U,$J,358.3,48032,1,4,0)
+ ;;=4^H90.A32
+ ;;^UTILITY(U,$J,358.3,48032,2)
+ ;;=^5138589
+ ;;^UTILITY(U,$J,358.3,48033,0)
+ ;;=H81.01^^185^2416^3
+ ;;^UTILITY(U,$J,358.3,48033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50422,1,3,0)
- ;;=3^Rheum Arth w/o Rheum Factor Vertebrae
- ;;^UTILITY(U,$J,358.3,50422,1,4,0)
- ;;=4^M06.08
- ;;^UTILITY(U,$J,358.3,50422,2)
- ;;=^5010069
- ;;^UTILITY(U,$J,358.3,50423,0)
- ;;=M06.9^^219^2448^106
- ;;^UTILITY(U,$J,358.3,50423,1,0)
+ ;;^UTILITY(U,$J,358.3,48033,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,48033,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,48033,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,48034,0)
+ ;;=H81.02^^185^2416^2
+ ;;^UTILITY(U,$J,358.3,48034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50423,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,50423,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,50423,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,50424,0)
- ;;=M06.272^^219^2448^107
- ;;^UTILITY(U,$J,358.3,50424,1,0)
+ ;;^UTILITY(U,$J,358.3,48034,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,48034,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,48034,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,48035,0)
+ ;;=H81.03^^185^2416^1
+ ;;^UTILITY(U,$J,358.3,48035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50424,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,50424,1,4,0)
- ;;=4^M06.272
- ;;^UTILITY(U,$J,358.3,50424,2)
- ;;=^5010092
- ;;^UTILITY(U,$J,358.3,50425,0)
- ;;=M06.222^^219^2448^108
- ;;^UTILITY(U,$J,358.3,50425,1,0)
+ ;;^UTILITY(U,$J,358.3,48035,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,48035,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,48035,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,48036,0)
+ ;;=H81.21^^185^2416^6
+ ;;^UTILITY(U,$J,358.3,48036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50425,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Elbow
- ;;^UTILITY(U,$J,358.3,50425,1,4,0)
- ;;=4^M06.222
- ;;^UTILITY(U,$J,358.3,50425,2)
- ;;=^5010077
- ;;^UTILITY(U,$J,358.3,50426,0)
- ;;=M06.242^^219^2448^109
- ;;^UTILITY(U,$J,358.3,50426,1,0)
+ ;;^UTILITY(U,$J,358.3,48036,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Right Ear
+ ;;^UTILITY(U,$J,358.3,48036,1,4,0)
+ ;;=4^H81.21
+ ;;^UTILITY(U,$J,358.3,48036,2)
+ ;;=^5006869
+ ;;^UTILITY(U,$J,358.3,48037,0)
+ ;;=H81.22^^185^2416^5
+ ;;^UTILITY(U,$J,358.3,48037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50426,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Hand
- ;;^UTILITY(U,$J,358.3,50426,1,4,0)
- ;;=4^M06.242
- ;;^UTILITY(U,$J,358.3,50426,2)
- ;;=^5010083
- ;;^UTILITY(U,$J,358.3,50427,0)
- ;;=M06.252^^219^2448^110
- ;;^UTILITY(U,$J,358.3,50427,1,0)
+ ;;^UTILITY(U,$J,358.3,48037,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Left Ear
+ ;;^UTILITY(U,$J,358.3,48037,1,4,0)
+ ;;=4^H81.22
+ ;;^UTILITY(U,$J,358.3,48037,2)
+ ;;=^5006870
+ ;;^UTILITY(U,$J,358.3,48038,0)
+ ;;=H81.23^^185^2416^4
+ ;;^UTILITY(U,$J,358.3,48038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50427,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Hip
- ;;^UTILITY(U,$J,358.3,50427,1,4,0)
- ;;=4^M06.252
- ;;^UTILITY(U,$J,358.3,50427,2)
- ;;=^5010086
- ;;^UTILITY(U,$J,358.3,50428,0)
- ;;=M06.262^^219^2448^111
- ;;^UTILITY(U,$J,358.3,50428,1,0)
+ ;;^UTILITY(U,$J,358.3,48038,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Bilateral
+ ;;^UTILITY(U,$J,358.3,48038,1,4,0)
+ ;;=4^H81.23
+ ;;^UTILITY(U,$J,358.3,48038,2)
+ ;;=^5006871
+ ;;^UTILITY(U,$J,358.3,48039,0)
+ ;;=H81.311^^185^2416^10
+ ;;^UTILITY(U,$J,358.3,48039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50428,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Knee
- ;;^UTILITY(U,$J,358.3,50428,1,4,0)
- ;;=4^M06.262
- ;;^UTILITY(U,$J,358.3,50428,2)
- ;;=^5010089
- ;;^UTILITY(U,$J,358.3,50429,0)
- ;;=M06.212^^219^2448^112
- ;;^UTILITY(U,$J,358.3,50429,1,0)
+ ;;^UTILITY(U,$J,358.3,48039,1,3,0)
+ ;;=3^Vertigo,Aural,Right Ear
+ ;;^UTILITY(U,$J,358.3,48039,1,4,0)
+ ;;=4^H81.311
+ ;;^UTILITY(U,$J,358.3,48039,2)
+ ;;=^5006872
+ ;;^UTILITY(U,$J,358.3,48040,0)
+ ;;=H81.312^^185^2416^9
+ ;;^UTILITY(U,$J,358.3,48040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50429,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Shoulder
- ;;^UTILITY(U,$J,358.3,50429,1,4,0)
- ;;=4^M06.212
- ;;^UTILITY(U,$J,358.3,50429,2)
- ;;=^5010074
- ;;^UTILITY(U,$J,358.3,50430,0)
- ;;=M06.232^^219^2448^113
- ;;^UTILITY(U,$J,358.3,50430,1,0)
+ ;;^UTILITY(U,$J,358.3,48040,1,3,0)
+ ;;=3^Vertigo,Aural,Left Ear
+ ;;^UTILITY(U,$J,358.3,48040,1,4,0)
+ ;;=4^H81.312
+ ;;^UTILITY(U,$J,358.3,48040,2)
+ ;;=^5006873
+ ;;^UTILITY(U,$J,358.3,48041,0)
+ ;;=H81.313^^185^2416^8
+ ;;^UTILITY(U,$J,358.3,48041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50430,1,3,0)
- ;;=3^Rheumatoid Bursitis Left Wrist
- ;;^UTILITY(U,$J,358.3,50430,1,4,0)
- ;;=4^M06.232
- ;;^UTILITY(U,$J,358.3,50430,2)
- ;;=^5010080
- ;;^UTILITY(U,$J,358.3,50431,0)
- ;;=M06.29^^219^2448^114
- ;;^UTILITY(U,$J,358.3,50431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,50431,1,3,0)
- ;;=3^Rheumatoid Bursitis Mult Sites
- ;;^UTILITY(U,$J,358.3,50431,1,4,0)
- ;;=4^M06.29
- ;;^UTILITY(U,$J,358.3,50431,2)
- ;;=^5010095
+ ;;^UTILITY(U,$J,358.3,48041,1,3,0)
+ ;;=3^Vertigo,Aural,Bilateral

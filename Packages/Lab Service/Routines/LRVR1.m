@@ -1,5 +1,5 @@
 LRVR1 ;DALOI/CJS/JAH - LAB ROUTINE DATA VERIFICATION;Sep 27, 2018@10:00:00
- ;;5.2;LAB SERVICE;**42,153,221,286,291,350,424,440,512**;Sep 27, 1994;Build 7
+ ;;5.2;LAB SERVICE;**42,153,221,286,291,350,424,440,512,524**;Sep 27, 1994;Build 14
  ;
  N LRBETST,LRBEY,LRI,LRN,LRPRGSQ
  S (LRI,LRN)=0
@@ -185,7 +185,10 @@ EX2 ;
  ;  set parent("P" node) to file #60 test being exploded
  S J=0
  F  S J=$O(^LAB(60,+X,2,J)) Q:J<1  I $D(^(J,0))#2 D
- . S LRNT=LRNT+1,Y=^LAB(60,+X,2,J,0)
+ . S Y=^LAB(60,+X,2,J,0)
+ . ;quit if merged or not performed - LR*5.2*524
+ . Q:$L($P($G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,+Y,0)),U,6))
+ . S LRNT=LRNT+1
  . S LRTEST(LRNT)=+Y_U_^LAB(60,+Y,0)
  . S LRTEST(LRNT,"P")=+XP_U_$$NLT^LRVER1(+XP)_"!"
  Q

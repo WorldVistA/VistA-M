@@ -1,124 +1,126 @@
-IBDEI1QD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29364,1,4,0)
- ;;=4^O91.211
- ;;^UTILITY(U,$J,358.3,29364,2)
- ;;=^5017834
- ;;^UTILITY(U,$J,358.3,29365,0)
- ;;=O91.212^^115^1461^16
- ;;^UTILITY(U,$J,358.3,29365,1,0)
+ ;;^UTILITY(U,$J,358.3,27659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29365,1,3,0)
- ;;=3^Nonpurulent mastitis assoc w pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29365,1,4,0)
- ;;=4^O91.212
- ;;^UTILITY(U,$J,358.3,29365,2)
- ;;=^5017835
- ;;^UTILITY(U,$J,358.3,29366,0)
- ;;=O91.213^^115^1461^18
- ;;^UTILITY(U,$J,358.3,29366,1,0)
+ ;;^UTILITY(U,$J,358.3,27659,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,27659,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,27659,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,27660,0)
+ ;;=G24.01^^113^1347^15
+ ;;^UTILITY(U,$J,358.3,27660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29366,1,3,0)
- ;;=3^Nonpurulent mastitis associated w pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29366,1,4,0)
- ;;=4^O91.213
- ;;^UTILITY(U,$J,358.3,29366,2)
- ;;=^5017836
- ;;^UTILITY(U,$J,358.3,29367,0)
- ;;=O91.22^^115^1461^19
- ;;^UTILITY(U,$J,358.3,29367,1,0)
+ ;;^UTILITY(U,$J,358.3,27660,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,27660,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,27660,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,27661,0)
+ ;;=G24.09^^113^1347^16
+ ;;^UTILITY(U,$J,358.3,27661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29367,1,3,0)
- ;;=3^Nonpurulent mastitis associated with the puerperium
- ;;^UTILITY(U,$J,358.3,29367,1,4,0)
- ;;=4^O91.22
- ;;^UTILITY(U,$J,358.3,29367,2)
- ;;=^5017838
- ;;^UTILITY(U,$J,358.3,29368,0)
- ;;=O92.011^^115^1461^21
- ;;^UTILITY(U,$J,358.3,29368,1,0)
+ ;;^UTILITY(U,$J,358.3,27661,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,27661,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,27661,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,27662,0)
+ ;;=G25.1^^113^1347^11
+ ;;^UTILITY(U,$J,358.3,27662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29368,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29368,1,4,0)
- ;;=4^O92.011
- ;;^UTILITY(U,$J,358.3,29368,2)
- ;;=^5017840
- ;;^UTILITY(U,$J,358.3,29369,0)
- ;;=O92.012^^115^1461^22
- ;;^UTILITY(U,$J,358.3,29369,1,0)
+ ;;^UTILITY(U,$J,358.3,27662,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,27662,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,27662,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,27663,0)
+ ;;=G25.71^^113^1347^14
+ ;;^UTILITY(U,$J,358.3,27663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29369,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29369,1,4,0)
- ;;=4^O92.012
- ;;^UTILITY(U,$J,358.3,29369,2)
- ;;=^5017841
- ;;^UTILITY(U,$J,358.3,29370,0)
- ;;=O92.013^^115^1461^23
- ;;^UTILITY(U,$J,358.3,29370,1,0)
+ ;;^UTILITY(U,$J,358.3,27663,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,27663,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,27663,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,27664,0)
+ ;;=G25.79^^113^1347^9
+ ;;^UTILITY(U,$J,358.3,27664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29370,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29370,1,4,0)
- ;;=4^O92.013
- ;;^UTILITY(U,$J,358.3,29370,2)
- ;;=^5017842
- ;;^UTILITY(U,$J,358.3,29371,0)
- ;;=O92.03^^115^1461^20
- ;;^UTILITY(U,$J,358.3,29371,1,0)
+ ;;^UTILITY(U,$J,358.3,27664,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,27664,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,27664,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,27665,0)
+ ;;=T43.205A^^113^1347^4
+ ;;^UTILITY(U,$J,358.3,27665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29371,1,3,0)
- ;;=3^Retracted nipple associated with lactation
- ;;^UTILITY(U,$J,358.3,29371,1,4,0)
- ;;=4^O92.03
- ;;^UTILITY(U,$J,358.3,29371,2)
- ;;=^5017845
- ;;^UTILITY(U,$J,358.3,29372,0)
- ;;=O92.111^^115^1461^7
- ;;^UTILITY(U,$J,358.3,29372,1,0)
+ ;;^UTILITY(U,$J,358.3,27665,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,27665,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,27665,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,27666,0)
+ ;;=T43.205D^^113^1347^5
+ ;;^UTILITY(U,$J,358.3,27666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29372,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,29372,1,4,0)
- ;;=4^O92.111
- ;;^UTILITY(U,$J,358.3,29372,2)
- ;;=^5017846
- ;;^UTILITY(U,$J,358.3,29373,0)
- ;;=O92.112^^115^1461^8
- ;;^UTILITY(U,$J,358.3,29373,1,0)
+ ;;^UTILITY(U,$J,358.3,27666,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,27666,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,27666,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,27667,0)
+ ;;=T43.205S^^113^1347^6
+ ;;^UTILITY(U,$J,358.3,27667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29373,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,29373,1,4,0)
- ;;=4^O92.112
- ;;^UTILITY(U,$J,358.3,29373,2)
- ;;=^5017847
- ;;^UTILITY(U,$J,358.3,29374,0)
- ;;=O92.113^^115^1461^9
- ;;^UTILITY(U,$J,358.3,29374,1,0)
+ ;;^UTILITY(U,$J,358.3,27667,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,27667,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,27667,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,27668,0)
+ ;;=G25.71^^113^1347^7
+ ;;^UTILITY(U,$J,358.3,27668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29374,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,29374,1,4,0)
- ;;=4^O92.113
- ;;^UTILITY(U,$J,358.3,29374,2)
- ;;=^5017848
- ;;^UTILITY(U,$J,358.3,29375,0)
- ;;=O92.13^^115^1461^6
- ;;^UTILITY(U,$J,358.3,29375,1,0)
+ ;;^UTILITY(U,$J,358.3,27668,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,27668,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,27668,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,27669,0)
+ ;;=G24.02^^113^1347^8
+ ;;^UTILITY(U,$J,358.3,27669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29375,1,3,0)
- ;;=3^Cracked nipple associated with lactation
- ;;^UTILITY(U,$J,358.3,29375,1,4,0)
- ;;=4^O92.13
- ;;^UTILITY(U,$J,358.3,29375,2)
- ;;=^5017851
- ;;^UTILITY(U,$J,358.3,29376,0)
- ;;=O92.79^^115^1461^15
- ;;^UTILITY(U,$J,358.3,29376,1,0)
+ ;;^UTILITY(U,$J,358.3,27669,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,27669,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,27669,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,27670,0)
+ ;;=G21.0^^113^1347^12
+ ;;^UTILITY(U,$J,358.3,27670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29376,1,3,0)
- ;;=3^Lactation disorders NEC 
+ ;;^UTILITY(U,$J,358.3,27670,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,27670,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,27670,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,27671,0)
+ ;;=T50.905A^^113^1347^1
+ ;;^UTILITY(U,$J,358.3,27671,1,0)
+ ;;=^358.31IA^4^2

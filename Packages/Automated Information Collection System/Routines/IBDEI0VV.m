@@ -1,356 +1,118 @@
-IBDEI0VV ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0VV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41844,0)
- ;;=T86.32^^124^1807^33
- ;;^UTILITY(U,$J,358.3,41844,1,0)
+ ;;^UTILITY(U,$J,358.3,14187,1,4,0)
+ ;;=4^I69.942
+ ;;^UTILITY(U,$J,358.3,14187,2)
+ ;;=^5133582
+ ;;^UTILITY(U,$J,358.3,14188,0)
+ ;;=I69.944^^83^822^31
+ ;;^UTILITY(U,$J,358.3,14188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41844,1,3,0)
- ;;=3^Heart-lung transplant failure
- ;;^UTILITY(U,$J,358.3,41844,1,4,0)
- ;;=4^T86.32
- ;;^UTILITY(U,$J,358.3,41844,2)
- ;;=^5055721
- ;;^UTILITY(U,$J,358.3,41845,0)
- ;;=T86.33^^124^1807^34
- ;;^UTILITY(U,$J,358.3,41845,1,0)
+ ;;^UTILITY(U,$J,358.3,14188,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Lower Nondominant Side
+ ;;^UTILITY(U,$J,358.3,14188,1,4,0)
+ ;;=4^I69.944
+ ;;^UTILITY(U,$J,358.3,14188,2)
+ ;;=^5133585
+ ;;^UTILITY(U,$J,358.3,14189,0)
+ ;;=I69.932^^83^822^32
+ ;;^UTILITY(U,$J,358.3,14189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41845,1,3,0)
- ;;=3^Heart-lung transplant infection
- ;;^UTILITY(U,$J,358.3,41845,1,4,0)
- ;;=4^T86.33
- ;;^UTILITY(U,$J,358.3,41845,2)
- ;;=^5055722
- ;;^UTILITY(U,$J,358.3,41846,0)
- ;;=T86.39^^124^1807^32
- ;;^UTILITY(U,$J,358.3,41846,1,0)
+ ;;^UTILITY(U,$J,358.3,14189,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Upper Dominant Side
+ ;;^UTILITY(U,$J,358.3,14189,1,4,0)
+ ;;=4^I69.932
+ ;;^UTILITY(U,$J,358.3,14189,2)
+ ;;=^5133580
+ ;;^UTILITY(U,$J,358.3,14190,0)
+ ;;=I69.934^^83^822^33
+ ;;^UTILITY(U,$J,358.3,14190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41846,1,3,0)
- ;;=3^Heart-lung transplant complications, other
- ;;^UTILITY(U,$J,358.3,41846,1,4,0)
- ;;=4^T86.39
- ;;^UTILITY(U,$J,358.3,41846,2)
- ;;=^5055723
- ;;^UTILITY(U,$J,358.3,41847,0)
- ;;=T86.41^^124^1807^44
- ;;^UTILITY(U,$J,358.3,41847,1,0)
+ ;;^UTILITY(U,$J,358.3,14190,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Lt Upper Nondominant Side
+ ;;^UTILITY(U,$J,358.3,14190,1,4,0)
+ ;;=4^I69.934
+ ;;^UTILITY(U,$J,358.3,14190,2)
+ ;;=^5133583
+ ;;^UTILITY(U,$J,358.3,14191,0)
+ ;;=I69.941^^83^822^34
+ ;;^UTILITY(U,$J,358.3,14191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41847,1,3,0)
- ;;=3^Liver transplant rejection
- ;;^UTILITY(U,$J,358.3,41847,1,4,0)
- ;;=4^T86.41
- ;;^UTILITY(U,$J,358.3,41847,2)
- ;;=^5055725
- ;;^UTILITY(U,$J,358.3,41848,0)
- ;;=T86.42^^124^1807^42
- ;;^UTILITY(U,$J,358.3,41848,1,0)
+ ;;^UTILITY(U,$J,358.3,14191,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Lower Dominant Side
+ ;;^UTILITY(U,$J,358.3,14191,1,4,0)
+ ;;=4^I69.941
+ ;;^UTILITY(U,$J,358.3,14191,2)
+ ;;=^5133581
+ ;;^UTILITY(U,$J,358.3,14192,0)
+ ;;=I69.943^^83^822^35
+ ;;^UTILITY(U,$J,358.3,14192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41848,1,3,0)
- ;;=3^Liver transplant failure
- ;;^UTILITY(U,$J,358.3,41848,1,4,0)
- ;;=4^T86.42
- ;;^UTILITY(U,$J,358.3,41848,2)
- ;;=^5055726
- ;;^UTILITY(U,$J,358.3,41849,0)
- ;;=T86.43^^124^1807^43
- ;;^UTILITY(U,$J,358.3,41849,1,0)
+ ;;^UTILITY(U,$J,358.3,14192,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,14192,1,4,0)
+ ;;=4^I69.943
+ ;;^UTILITY(U,$J,358.3,14192,2)
+ ;;=^5133584
+ ;;^UTILITY(U,$J,358.3,14193,0)
+ ;;=I69.931^^83^822^36
+ ;;^UTILITY(U,$J,358.3,14193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41849,1,3,0)
- ;;=3^Liver transplant infection
- ;;^UTILITY(U,$J,358.3,41849,1,4,0)
- ;;=4^T86.43
- ;;^UTILITY(U,$J,358.3,41849,2)
- ;;=^5055727
- ;;^UTILITY(U,$J,358.3,41850,0)
- ;;=T86.49^^124^1807^41
- ;;^UTILITY(U,$J,358.3,41850,1,0)
+ ;;^UTILITY(U,$J,358.3,14193,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Upper Dominant Side
+ ;;^UTILITY(U,$J,358.3,14193,1,4,0)
+ ;;=4^I69.931
+ ;;^UTILITY(U,$J,358.3,14193,2)
+ ;;=^5007558
+ ;;^UTILITY(U,$J,358.3,14194,0)
+ ;;=I69.933^^83^822^37
+ ;;^UTILITY(U,$J,358.3,14194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41850,1,3,0)
- ;;=3^Liver transplant complications, other
- ;;^UTILITY(U,$J,358.3,41850,1,4,0)
- ;;=4^T86.49
- ;;^UTILITY(U,$J,358.3,41850,2)
- ;;=^5055728
- ;;^UTILITY(U,$J,358.3,41851,0)
- ;;=T86.5^^124^1807^15
- ;;^UTILITY(U,$J,358.3,41851,1,0)
+ ;;^UTILITY(U,$J,358.3,14194,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Upper Nondominant Side
+ ;;^UTILITY(U,$J,358.3,14194,1,4,0)
+ ;;=4^I69.933
+ ;;^UTILITY(U,$J,358.3,14194,2)
+ ;;=^5007559
+ ;;^UTILITY(U,$J,358.3,14195,0)
+ ;;=I69.998^^83^822^44
+ ;;^UTILITY(U,$J,358.3,14195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41851,1,3,0)
- ;;=3^Complications of stem cell transplant
- ;;^UTILITY(U,$J,358.3,41851,1,4,0)
- ;;=4^T86.5
- ;;^UTILITY(U,$J,358.3,41851,2)
- ;;=^5055729
- ;;^UTILITY(U,$J,358.3,41852,0)
- ;;=T86.810^^124^1807^48
- ;;^UTILITY(U,$J,358.3,41852,1,0)
+ ;;^UTILITY(U,$J,358.3,14195,1,3,0)
+ ;;=3^Cerebrovascular Disease,Sequelae,Unspec
+ ;;^UTILITY(U,$J,358.3,14195,1,4,0)
+ ;;=4^I69.998
+ ;;^UTILITY(U,$J,358.3,14195,2)
+ ;;=^5007572
+ ;;^UTILITY(U,$J,358.3,14196,0)
+ ;;=I69.928^^83^822^45
+ ;;^UTILITY(U,$J,358.3,14196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41852,1,3,0)
- ;;=3^Lung transplant rejection
- ;;^UTILITY(U,$J,358.3,41852,1,4,0)
- ;;=4^T86.810
- ;;^UTILITY(U,$J,358.3,41852,2)
- ;;=^5055730
- ;;^UTILITY(U,$J,358.3,41853,0)
- ;;=T86.811^^124^1807^46
- ;;^UTILITY(U,$J,358.3,41853,1,0)
+ ;;^UTILITY(U,$J,358.3,14196,1,3,0)
+ ;;=3^Cerebrovascular Disease,Speech/Language Deficits,Unspec
+ ;;^UTILITY(U,$J,358.3,14196,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,14196,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,14197,0)
+ ;;=I69.965^^83^822^39
+ ;;^UTILITY(U,$J,358.3,14197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41853,1,3,0)
- ;;=3^Lung transplant failure
- ;;^UTILITY(U,$J,358.3,41853,1,4,0)
- ;;=4^T86.811
- ;;^UTILITY(U,$J,358.3,41853,2)
- ;;=^5055731
- ;;^UTILITY(U,$J,358.3,41854,0)
- ;;=T86.812^^124^1807^47
- ;;^UTILITY(U,$J,358.3,41854,1,0)
+ ;;^UTILITY(U,$J,358.3,14197,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,14197,1,4,0)
+ ;;=4^I69.965
+ ;;^UTILITY(U,$J,358.3,14197,2)
+ ;;=^5007566
+ ;;^UTILITY(U,$J,358.3,14198,0)
+ ;;=I69.962^^83^822^40
+ ;;^UTILITY(U,$J,358.3,14198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41854,1,3,0)
- ;;=3^Lung transplant infection
- ;;^UTILITY(U,$J,358.3,41854,1,4,0)
- ;;=4^T86.812
- ;;^UTILITY(U,$J,358.3,41854,2)
- ;;=^5055732
- ;;^UTILITY(U,$J,358.3,41855,0)
- ;;=T86.818^^124^1807^45
- ;;^UTILITY(U,$J,358.3,41855,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41855,1,3,0)
- ;;=3^Lung transplant complications, other
- ;;^UTILITY(U,$J,358.3,41855,1,4,0)
- ;;=4^T86.818
- ;;^UTILITY(U,$J,358.3,41855,2)
- ;;=^5055733
- ;;^UTILITY(U,$J,358.3,41856,0)
- ;;=T86.890^^124^1807^58
- ;;^UTILITY(U,$J,358.3,41856,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41856,1,3,0)
- ;;=3^Tissue transplant rejection, other
- ;;^UTILITY(U,$J,358.3,41856,1,4,0)
- ;;=4^T86.890
- ;;^UTILITY(U,$J,358.3,41856,2)
- ;;=^5055754
- ;;^UTILITY(U,$J,358.3,41857,0)
- ;;=T86.891^^124^1807^56
- ;;^UTILITY(U,$J,358.3,41857,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41857,1,3,0)
- ;;=3^Tissue transplant failure, other
- ;;^UTILITY(U,$J,358.3,41857,1,4,0)
- ;;=4^T86.891
- ;;^UTILITY(U,$J,358.3,41857,2)
- ;;=^5055755
- ;;^UTILITY(U,$J,358.3,41858,0)
- ;;=T86.892^^124^1807^57
- ;;^UTILITY(U,$J,358.3,41858,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41858,1,3,0)
- ;;=3^Tissue transplant infection, other
- ;;^UTILITY(U,$J,358.3,41858,1,4,0)
- ;;=4^T86.892
- ;;^UTILITY(U,$J,358.3,41858,2)
- ;;=^5055756
- ;;^UTILITY(U,$J,358.3,41859,0)
- ;;=T86.898^^124^1807^55
- ;;^UTILITY(U,$J,358.3,41859,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41859,1,3,0)
- ;;=3^Tissue transplant complications, other
- ;;^UTILITY(U,$J,358.3,41859,1,4,0)
- ;;=4^T86.898
- ;;^UTILITY(U,$J,358.3,41859,2)
- ;;=^5055757
- ;;^UTILITY(U,$J,358.3,41860,0)
- ;;=D89.810^^124^1807^1
- ;;^UTILITY(U,$J,358.3,41860,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41860,1,3,0)
- ;;=3^Acute graft-versus-host disease
- ;;^UTILITY(U,$J,358.3,41860,1,4,0)
- ;;=4^D89.810
- ;;^UTILITY(U,$J,358.3,41860,2)
- ;;=^336539
- ;;^UTILITY(U,$J,358.3,41861,0)
- ;;=D89.811^^124^1807^13
- ;;^UTILITY(U,$J,358.3,41861,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41861,1,3,0)
- ;;=3^Chronic graft-versus-host disease
- ;;^UTILITY(U,$J,358.3,41861,1,4,0)
- ;;=4^D89.811
- ;;^UTILITY(U,$J,358.3,41861,2)
- ;;=^336540
- ;;^UTILITY(U,$J,358.3,41862,0)
- ;;=D89.812^^124^1807^2
- ;;^UTILITY(U,$J,358.3,41862,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41862,1,3,0)
- ;;=3^Acute on chronic graft-versus-host disease
- ;;^UTILITY(U,$J,358.3,41862,1,4,0)
- ;;=4^D89.812
- ;;^UTILITY(U,$J,358.3,41862,2)
- ;;=^336541
- ;;^UTILITY(U,$J,358.3,41863,0)
- ;;=C80.2^^124^1807^49
- ;;^UTILITY(U,$J,358.3,41863,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41863,1,3,0)
- ;;=3^Malignant neoplasm associated with transplanted organ
- ;;^UTILITY(U,$J,358.3,41863,1,4,0)
- ;;=4^C80.2
- ;;^UTILITY(U,$J,358.3,41863,2)
- ;;=^5001390
- ;;^UTILITY(U,$J,358.3,41864,0)
- ;;=Z91.11^^124^1807^51
- ;;^UTILITY(U,$J,358.3,41864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41864,1,3,0)
- ;;=3^Patient's noncompliance with dietary regimen
- ;;^UTILITY(U,$J,358.3,41864,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,41864,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,41865,0)
- ;;=Z91.15^^124^1807^52
- ;;^UTILITY(U,$J,358.3,41865,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41865,1,3,0)
- ;;=3^Patient's noncompliance with renal dialysis
- ;;^UTILITY(U,$J,358.3,41865,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,41865,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,41866,0)
- ;;=Z91.14^^124^1807^53
- ;;^UTILITY(U,$J,358.3,41866,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41866,1,3,0)
- ;;=3^Patient's other noncompliance with medication regimen
- ;;^UTILITY(U,$J,358.3,41866,1,4,0)
- ;;=4^Z91.14
- ;;^UTILITY(U,$J,358.3,41866,2)
- ;;=^5063616
- ;;^UTILITY(U,$J,358.3,41867,0)
- ;;=Z52.011^^124^1808^1
- ;;^UTILITY(U,$J,358.3,41867,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41867,1,3,0)
- ;;=3^Autologous donor, stem cells
- ;;^UTILITY(U,$J,358.3,41867,1,4,0)
- ;;=4^Z52.011
- ;;^UTILITY(U,$J,358.3,41867,2)
- ;;=^5063070
- ;;^UTILITY(U,$J,358.3,41868,0)
- ;;=Z52.091^^124^1808^2
- ;;^UTILITY(U,$J,358.3,41868,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41868,1,3,0)
- ;;=3^Blood donor, stem cells
- ;;^UTILITY(U,$J,358.3,41868,1,4,0)
- ;;=4^Z52.091
- ;;^UTILITY(U,$J,358.3,41868,2)
- ;;=^5063073
- ;;^UTILITY(U,$J,358.3,41869,0)
- ;;=Z52.3^^124^1808^3
- ;;^UTILITY(U,$J,358.3,41869,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41869,1,3,0)
- ;;=3^Bone marrow donor
- ;;^UTILITY(U,$J,358.3,41869,1,4,0)
- ;;=4^Z52.3
- ;;^UTILITY(U,$J,358.3,41869,2)
- ;;=^5063081
- ;;^UTILITY(U,$J,358.3,41870,0)
- ;;=Z94.81^^124^1808^4
- ;;^UTILITY(U,$J,358.3,41870,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41870,1,3,0)
- ;;=3^Bone marrow transplant status
- ;;^UTILITY(U,$J,358.3,41870,1,4,0)
- ;;=4^Z94.81
- ;;^UTILITY(U,$J,358.3,41870,2)
- ;;=^5063662
- ;;^UTILITY(U,$J,358.3,41871,0)
- ;;=Z94.84^^124^1808^6
- ;;^UTILITY(U,$J,358.3,41871,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41871,1,3,0)
- ;;=3^Stem cells transplant status
- ;;^UTILITY(U,$J,358.3,41871,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,41871,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,41872,0)
- ;;=Z52.89^^124^1808^5
- ;;^UTILITY(U,$J,358.3,41872,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41872,1,3,0)
- ;;=3^Donor of other specified organs or tissues
- ;;^UTILITY(U,$J,358.3,41872,1,4,0)
- ;;=4^Z52.89
- ;;^UTILITY(U,$J,358.3,41872,2)
- ;;=^5063090
- ;;^UTILITY(U,$J,358.3,41873,0)
- ;;=99201^^125^1809^1
- ;;^UTILITY(U,$J,358.3,41873,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41873,1,1,0)
- ;;=1^PROBLEM FOCUSED VISIT
- ;;^UTILITY(U,$J,358.3,41873,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,41874,0)
- ;;=99202^^125^1809^2
- ;;^UTILITY(U,$J,358.3,41874,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41874,1,1,0)
- ;;=1^EXPANDED PROBLEM FOCUSED VISIT
- ;;^UTILITY(U,$J,358.3,41874,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,41875,0)
- ;;=99203^^125^1809^3
- ;;^UTILITY(U,$J,358.3,41875,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41875,1,1,0)
- ;;=1^DETAILED VISIT
- ;;^UTILITY(U,$J,358.3,41875,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,41876,0)
- ;;=99204^^125^1809^4
- ;;^UTILITY(U,$J,358.3,41876,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41876,1,1,0)
- ;;=1^COMPREHENSIVE-MOD COMPLEX
- ;;^UTILITY(U,$J,358.3,41876,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,41877,0)
- ;;=99205^^125^1809^5
- ;;^UTILITY(U,$J,358.3,41877,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41877,1,1,0)
- ;;=1^COMPREHENSIVE-HIGH COMPLEX
- ;;^UTILITY(U,$J,358.3,41877,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,41878,0)
- ;;=99212^^125^1810^2
- ;;^UTILITY(U,$J,358.3,41878,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41878,1,1,0)
- ;;=1^PROBLEM FOCUSED VISIT
- ;;^UTILITY(U,$J,358.3,41878,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,41879,0)
- ;;=99213^^125^1810^3
- ;;^UTILITY(U,$J,358.3,41879,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41879,1,1,0)
- ;;=1^EXPANDED PROBLEM FOCUSED VISIT
- ;;^UTILITY(U,$J,358.3,41879,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,41880,0)
- ;;=99214^^125^1810^4
- ;;^UTILITY(U,$J,358.3,41880,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,41880,1,1,0)
- ;;=1^DETAILED VISIT
+ ;;^UTILITY(U,$J,358.3,14198,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Lt Dominant Side
+ ;;^UTILITY(U,$J,358.3,14198,1,4,0)
+ ;;=4^I69.962
+ ;;^UTILITY(U,$J,358.3,14198,2)
+ ;;=^5133588

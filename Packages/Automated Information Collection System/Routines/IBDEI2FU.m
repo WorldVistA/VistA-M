@@ -1,130 +1,126 @@
-IBDEI2FU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2FU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41354,1,4,0)
- ;;=4^D75.89
- ;;^UTILITY(U,$J,358.3,41354,2)
- ;;=^5002392
- ;;^UTILITY(U,$J,358.3,41355,0)
- ;;=D47.Z9^^159^2004^173
- ;;^UTILITY(U,$J,358.3,41355,1,0)
+ ;;^UTILITY(U,$J,358.3,38945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41355,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
- ;;^UTILITY(U,$J,358.3,41355,1,4,0)
- ;;=4^D47.Z9
- ;;^UTILITY(U,$J,358.3,41355,2)
- ;;=^5002262
- ;;^UTILITY(U,$J,358.3,41356,0)
- ;;=D05.82^^159^2004^34
- ;;^UTILITY(U,$J,358.3,41356,1,0)
+ ;;^UTILITY(U,$J,358.3,38945,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,38945,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,38945,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,38946,0)
+ ;;=M34.89^^152^1990^314
+ ;;^UTILITY(U,$J,358.3,38946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41356,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
- ;;^UTILITY(U,$J,358.3,41356,1,4,0)
- ;;=4^D05.82
- ;;^UTILITY(U,$J,358.3,41356,2)
- ;;=^5001934
- ;;^UTILITY(U,$J,358.3,41357,0)
- ;;=D05.81^^159^2004^36
- ;;^UTILITY(U,$J,358.3,41357,1,0)
+ ;;^UTILITY(U,$J,358.3,38946,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,38946,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,38946,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,38947,0)
+ ;;=M34.9^^152^1990^318
+ ;;^UTILITY(U,$J,358.3,38947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41357,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,41357,1,4,0)
- ;;=4^D05.81
- ;;^UTILITY(U,$J,358.3,41357,2)
- ;;=^5001933
- ;;^UTILITY(U,$J,358.3,41358,0)
- ;;=D05.80^^159^2004^38
- ;;^UTILITY(U,$J,358.3,41358,1,0)
+ ;;^UTILITY(U,$J,358.3,38947,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,38947,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,38947,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,38948,0)
+ ;;=R21.^^152^1990^297
+ ;;^UTILITY(U,$J,358.3,38948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41358,1,3,0)
- ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,41358,1,4,0)
- ;;=4^D05.80
- ;;^UTILITY(U,$J,358.3,41358,2)
- ;;=^5001932
- ;;^UTILITY(U,$J,358.3,41359,0)
- ;;=D56.8^^159^2004^186
- ;;^UTILITY(U,$J,358.3,41359,1,0)
+ ;;^UTILITY(U,$J,358.3,38948,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,38948,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,38948,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,38949,0)
+ ;;=R23.3^^152^1990^309
+ ;;^UTILITY(U,$J,358.3,38949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41359,1,3,0)
- ;;=3^Thalassemias,Other
- ;;^UTILITY(U,$J,358.3,41359,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,41359,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,41360,0)
- ;;=C82.89^^159^2004^76
- ;;^UTILITY(U,$J,358.3,41360,1,0)
+ ;;^UTILITY(U,$J,358.3,38949,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,38949,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,38949,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,38950,0)
+ ;;=L03.113^^152^1990^114
+ ;;^UTILITY(U,$J,358.3,38950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41360,1,3,0)
- ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
- ;;^UTILITY(U,$J,358.3,41360,1,4,0)
- ;;=4^C82.89
- ;;^UTILITY(U,$J,358.3,41360,2)
- ;;=^5001540
- ;;^UTILITY(U,$J,358.3,41361,0)
- ;;=D51.8^^159^2004^193
- ;;^UTILITY(U,$J,358.3,41361,1,0)
+ ;;^UTILITY(U,$J,358.3,38950,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,38950,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,38950,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,38951,0)
+ ;;=L03.114^^152^1990^107
+ ;;^UTILITY(U,$J,358.3,38951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41361,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemias,Other
- ;;^UTILITY(U,$J,358.3,41361,1,4,0)
- ;;=4^D51.8
- ;;^UTILITY(U,$J,358.3,41361,2)
- ;;=^5002288
- ;;^UTILITY(U,$J,358.3,41362,0)
- ;;=I80.9^^159^2004^178
- ;;^UTILITY(U,$J,358.3,41362,1,0)
+ ;;^UTILITY(U,$J,358.3,38951,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,38951,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,38951,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,38952,0)
+ ;;=L03.115^^152^1990^111
+ ;;^UTILITY(U,$J,358.3,38952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41362,1,3,0)
- ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,41362,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,41362,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,41363,0)
- ;;=D45.^^159^2004^179
- ;;^UTILITY(U,$J,358.3,41363,1,0)
+ ;;^UTILITY(U,$J,358.3,38952,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,38952,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,38952,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,38953,0)
+ ;;=L03.116^^152^1990^104
+ ;;^UTILITY(U,$J,358.3,38953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41363,1,3,0)
- ;;=3^Polycythemia Vera
- ;;^UTILITY(U,$J,358.3,41363,1,4,0)
- ;;=4^D45.
- ;;^UTILITY(U,$J,358.3,41363,2)
- ;;=^96105
- ;;^UTILITY(U,$J,358.3,41364,0)
- ;;=C77.3^^159^2004^109
- ;;^UTILITY(U,$J,358.3,41364,1,0)
+ ;;^UTILITY(U,$J,358.3,38953,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,38953,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,38953,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,38954,0)
+ ;;=L03.123^^152^1990^28
+ ;;^UTILITY(U,$J,358.3,38954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41364,1,3,0)
- ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,41364,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,41364,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,41365,0)
- ;;=C77.2^^159^2004^125
- ;;^UTILITY(U,$J,358.3,41365,1,0)
+ ;;^UTILITY(U,$J,358.3,38954,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,38954,1,4,0)
+ ;;=4^L03.123
+ ;;^UTILITY(U,$J,358.3,38954,2)
+ ;;=^5009039
+ ;;^UTILITY(U,$J,358.3,38955,0)
+ ;;=L03.124^^152^1990^22
+ ;;^UTILITY(U,$J,358.3,38955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41365,1,3,0)
- ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,41365,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,41365,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,41366,0)
- ;;=C77.1^^159^2004^126
- ;;^UTILITY(U,$J,358.3,41366,1,0)
+ ;;^UTILITY(U,$J,358.3,38955,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,38955,1,4,0)
+ ;;=4^L03.124
+ ;;^UTILITY(U,$J,358.3,38955,2)
+ ;;=^5009040
+ ;;^UTILITY(U,$J,358.3,38956,0)
+ ;;=L03.125^^152^1990^26
+ ;;^UTILITY(U,$J,358.3,38956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41366,1,3,0)
- ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,41366,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,41366,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,41367,0)
- ;;=C77.0^^159^2004^142
+ ;;^UTILITY(U,$J,358.3,38956,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,38956,1,4,0)
+ ;;=4^L03.125
+ ;;^UTILITY(U,$J,358.3,38956,2)
+ ;;=^5009041
+ ;;^UTILITY(U,$J,358.3,38957,0)
+ ;;=L03.126^^152^1990^20
+ ;;^UTILITY(U,$J,358.3,38957,1,0)
+ ;;=^358.31IA^4^2

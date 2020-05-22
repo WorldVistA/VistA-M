@@ -1,126 +1,114 @@
-IBDEI1P6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1P6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28852,1,4,0)
- ;;=4^O26.832
- ;;^UTILITY(U,$J,358.3,28852,2)
- ;;=^5016342
- ;;^UTILITY(U,$J,358.3,28853,0)
- ;;=O26.833^^115^1452^74
- ;;^UTILITY(U,$J,358.3,28853,1,0)
+ ;;^UTILITY(U,$J,358.3,27126,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27126,1,4,0)
+ ;;=4^F13.980
+ ;;^UTILITY(U,$J,358.3,27126,2)
+ ;;=^5003235
+ ;;^UTILITY(U,$J,358.3,27127,0)
+ ;;=F13.14^^110^1310^4
+ ;;^UTILITY(U,$J,358.3,27127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28853,1,3,0)
- ;;=3^Pregnancy related renal disease, third trimester
- ;;^UTILITY(U,$J,358.3,28853,1,4,0)
- ;;=4^O26.833
- ;;^UTILITY(U,$J,358.3,28853,2)
- ;;=^5016343
- ;;^UTILITY(U,$J,358.3,28854,0)
- ;;=O26.21^^115^1452^66
- ;;^UTILITY(U,$J,358.3,28854,1,0)
+ ;;^UTILITY(U,$J,358.3,27127,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27127,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,27127,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,27128,0)
+ ;;=F13.24^^110^1310^5
+ ;;^UTILITY(U,$J,358.3,27128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28854,1,3,0)
- ;;=3^Preg care for patient w recurrent preg loss, first trimester
- ;;^UTILITY(U,$J,358.3,28854,1,4,0)
- ;;=4^O26.21
- ;;^UTILITY(U,$J,358.3,28854,2)
- ;;=^5016306
- ;;^UTILITY(U,$J,358.3,28855,0)
- ;;=O26.22^^115^1452^67
- ;;^UTILITY(U,$J,358.3,28855,1,0)
+ ;;^UTILITY(U,$J,358.3,27128,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O 
+ ;;^UTILITY(U,$J,358.3,27128,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,27128,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,27129,0)
+ ;;=F13.94^^110^1310^6
+ ;;^UTILITY(U,$J,358.3,27129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28855,1,3,0)
- ;;=3^Preg care for patient w recurrent preg loss, second trimester
- ;;^UTILITY(U,$J,358.3,28855,1,4,0)
- ;;=4^O26.22
- ;;^UTILITY(U,$J,358.3,28855,2)
- ;;=^5016307
- ;;^UTILITY(U,$J,358.3,28856,0)
- ;;=O26.23^^115^1452^68
- ;;^UTILITY(U,$J,358.3,28856,1,0)
+ ;;^UTILITY(U,$J,358.3,27129,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27129,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,27129,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,27130,0)
+ ;;=F13.921^^110^1310^7
+ ;;^UTILITY(U,$J,358.3,27130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28856,1,3,0)
- ;;=3^Preg care for patient w recurrent preg loss, third trimester
- ;;^UTILITY(U,$J,358.3,28856,1,4,0)
- ;;=4^O26.23
- ;;^UTILITY(U,$J,358.3,28856,2)
- ;;=^5016308
- ;;^UTILITY(U,$J,358.3,28857,0)
- ;;=O26.821^^115^1452^69
- ;;^UTILITY(U,$J,358.3,28857,1,0)
+ ;;^UTILITY(U,$J,358.3,27130,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
+ ;;^UTILITY(U,$J,358.3,27130,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,27130,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,27131,0)
+ ;;=F13.27^^110^1310^8
+ ;;^UTILITY(U,$J,358.3,27131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28857,1,3,0)
- ;;=3^Pregnancy related peripheral neuritis, first trimester
- ;;^UTILITY(U,$J,358.3,28857,1,4,0)
- ;;=4^O26.821
- ;;^UTILITY(U,$J,358.3,28857,2)
- ;;=^5016337
- ;;^UTILITY(U,$J,358.3,28858,0)
- ;;=O26.822^^115^1452^70
- ;;^UTILITY(U,$J,358.3,28858,1,0)
+ ;;^UTILITY(U,$J,358.3,27131,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27131,1,4,0)
+ ;;=4^F13.27
+ ;;^UTILITY(U,$J,358.3,27131,2)
+ ;;=^5003215
+ ;;^UTILITY(U,$J,358.3,27132,0)
+ ;;=F13.97^^110^1310^9
+ ;;^UTILITY(U,$J,358.3,27132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28858,1,3,0)
- ;;=3^Pregnancy related peripheral neuritis, second trimester
- ;;^UTILITY(U,$J,358.3,28858,1,4,0)
- ;;=4^O26.822
- ;;^UTILITY(U,$J,358.3,28858,2)
- ;;=^5016338
- ;;^UTILITY(U,$J,358.3,28859,0)
- ;;=O26.823^^115^1452^71
- ;;^UTILITY(U,$J,358.3,28859,1,0)
+ ;;^UTILITY(U,$J,358.3,27132,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27132,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,27132,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,27133,0)
+ ;;=F13.288^^110^1310^10
+ ;;^UTILITY(U,$J,358.3,27133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28859,1,3,0)
- ;;=3^Pregnancy related peripheral neuritis, third trimester
- ;;^UTILITY(U,$J,358.3,28859,1,4,0)
- ;;=4^O26.823
- ;;^UTILITY(U,$J,358.3,28859,2)
- ;;=^5016339
- ;;^UTILITY(U,$J,358.3,28860,0)
- ;;=O86.11^^115^1452^7
- ;;^UTILITY(U,$J,358.3,28860,1,0)
+ ;;^UTILITY(U,$J,358.3,27133,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27133,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,27133,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,27134,0)
+ ;;=F13.988^^110^1310^11
+ ;;^UTILITY(U,$J,358.3,27134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28860,1,3,0)
- ;;=3^Cervicitis following delivery
- ;;^UTILITY(U,$J,358.3,28860,1,4,0)
- ;;=4^O86.11
- ;;^UTILITY(U,$J,358.3,28860,2)
- ;;=^5017755
- ;;^UTILITY(U,$J,358.3,28861,0)
- ;;=O86.13^^115^1452^89
- ;;^UTILITY(U,$J,358.3,28861,1,0)
+ ;;^UTILITY(U,$J,358.3,27134,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27134,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,27134,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,27135,0)
+ ;;=F13.159^^110^1310^12
+ ;;^UTILITY(U,$J,358.3,27135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28861,1,3,0)
- ;;=3^Vaginitis following delivery
- ;;^UTILITY(U,$J,358.3,28861,1,4,0)
- ;;=4^O86.13
- ;;^UTILITY(U,$J,358.3,28861,2)
- ;;=^5017757
- ;;^UTILITY(U,$J,358.3,28862,0)
- ;;=O86.20^^115^1452^88
- ;;^UTILITY(U,$J,358.3,28862,1,0)
+ ;;^UTILITY(U,$J,358.3,27135,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27135,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,27135,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,27136,0)
+ ;;=F13.259^^110^1310^13
+ ;;^UTILITY(U,$J,358.3,27136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28862,1,3,0)
- ;;=3^Urinary tract infection following delivery, unspecified
- ;;^UTILITY(U,$J,358.3,28862,1,4,0)
- ;;=4^O86.20
- ;;^UTILITY(U,$J,358.3,28862,2)
- ;;=^5017759
- ;;^UTILITY(U,$J,358.3,28863,0)
- ;;=O86.21^^115^1452^34
- ;;^UTILITY(U,$J,358.3,28863,1,0)
+ ;;^UTILITY(U,$J,358.3,27136,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27136,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,27136,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,27137,0)
+ ;;=F13.959^^110^1310^14
+ ;;^UTILITY(U,$J,358.3,27137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28863,1,3,0)
- ;;=3^Infection of kidney following delivery
- ;;^UTILITY(U,$J,358.3,28863,1,4,0)
- ;;=4^O86.21
- ;;^UTILITY(U,$J,358.3,28863,2)
- ;;=^5017760
- ;;^UTILITY(U,$J,358.3,28864,0)
- ;;=O86.22^^115^1452^33
- ;;^UTILITY(U,$J,358.3,28864,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28864,1,3,0)
- ;;=3^Infection of bladder following delivery
- ;;^UTILITY(U,$J,358.3,28864,1,4,0)
- ;;=4^O86.22

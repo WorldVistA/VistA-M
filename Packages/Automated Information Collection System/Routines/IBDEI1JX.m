@@ -1,126 +1,126 @@
-IBDEI1JX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26317,1,3,0)
- ;;=3^Reaction to Severe Stress,Unspec
- ;;^UTILITY(U,$J,358.3,26317,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,26317,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,26318,0)
- ;;=F94.1^^98^1244^14
- ;;^UTILITY(U,$J,358.3,26318,1,0)
+ ;;^UTILITY(U,$J,358.3,24800,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,24800,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,24800,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,24801,0)
+ ;;=D05.12^^107^1211^94
+ ;;^UTILITY(U,$J,358.3,24801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26318,1,3,0)
- ;;=3^Reactive Attachment Disorder
- ;;^UTILITY(U,$J,358.3,26318,1,4,0)
- ;;=4^F94.1
- ;;^UTILITY(U,$J,358.3,26318,2)
- ;;=^5003705
- ;;^UTILITY(U,$J,358.3,26319,0)
- ;;=F94.2^^98^1244^8
- ;;^UTILITY(U,$J,358.3,26319,1,0)
+ ;;^UTILITY(U,$J,358.3,24801,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,24801,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,24801,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,24802,0)
+ ;;=D05.11^^107^1211^95
+ ;;^UTILITY(U,$J,358.3,24802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26319,1,3,0)
- ;;=3^Disinhibited Social Engagement Disorder
- ;;^UTILITY(U,$J,358.3,26319,1,4,0)
- ;;=4^F94.2
- ;;^UTILITY(U,$J,358.3,26319,2)
- ;;=^5003706
- ;;^UTILITY(U,$J,358.3,26320,0)
- ;;=F18.10^^98^1245^21
- ;;^UTILITY(U,$J,358.3,26320,1,0)
+ ;;^UTILITY(U,$J,358.3,24802,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,24802,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,24802,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,24803,0)
+ ;;=D05.10^^107^1211^96
+ ;;^UTILITY(U,$J,358.3,24803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26320,1,3,0)
- ;;=3^Inhalant Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,26320,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,26320,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,26321,0)
- ;;=F18.20^^98^1245^22
- ;;^UTILITY(U,$J,358.3,26321,1,0)
+ ;;^UTILITY(U,$J,358.3,24803,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,24803,1,4,0)
+ ;;=4^D05.10
+ ;;^UTILITY(U,$J,358.3,24803,2)
+ ;;=^5001929
+ ;;^UTILITY(U,$J,358.3,24804,0)
+ ;;=D50.0^^107^1211^97
+ ;;^UTILITY(U,$J,358.3,24804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26321,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,26321,1,4,0)
- ;;=4^F18.20
- ;;^UTILITY(U,$J,358.3,26321,2)
- ;;=^5003392
- ;;^UTILITY(U,$J,358.3,26322,0)
- ;;=F18.21^^98^1245^23
- ;;^UTILITY(U,$J,358.3,26322,1,0)
+ ;;^UTILITY(U,$J,358.3,24804,1,3,0)
+ ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,24804,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,24804,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,24805,0)
+ ;;=D50.9^^107^1211^98
+ ;;^UTILITY(U,$J,358.3,24805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26322,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,26322,1,4,0)
- ;;=4^F18.21
- ;;^UTILITY(U,$J,358.3,26322,2)
- ;;=^5003393
- ;;^UTILITY(U,$J,358.3,26323,0)
- ;;=F18.14^^98^1245^24
- ;;^UTILITY(U,$J,358.3,26323,1,0)
+ ;;^UTILITY(U,$J,358.3,24805,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,24805,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,24805,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,24806,0)
+ ;;=C46.9^^107^1211^99
+ ;;^UTILITY(U,$J,358.3,24806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26323,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26323,1,4,0)
- ;;=4^F18.14
- ;;^UTILITY(U,$J,358.3,26323,2)
- ;;=^5003384
- ;;^UTILITY(U,$J,358.3,26324,0)
- ;;=F18.24^^98^1245^25
- ;;^UTILITY(U,$J,358.3,26324,1,0)
+ ;;^UTILITY(U,$J,358.3,24806,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,24806,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,24806,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,24807,0)
+ ;;=C22.0^^107^1211^100
+ ;;^UTILITY(U,$J,358.3,24807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26324,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26324,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,26324,2)
- ;;=^5003397
- ;;^UTILITY(U,$J,358.3,26325,0)
- ;;=F18.121^^98^1245^14
- ;;^UTILITY(U,$J,358.3,26325,1,0)
+ ;;^UTILITY(U,$J,358.3,24807,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,24807,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,24807,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,24808,0)
+ ;;=D05.02^^107^1211^101
+ ;;^UTILITY(U,$J,358.3,24808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26325,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26325,1,4,0)
- ;;=4^F18.121
- ;;^UTILITY(U,$J,358.3,26325,2)
- ;;=^5003382
- ;;^UTILITY(U,$J,358.3,26326,0)
- ;;=F18.221^^98^1245^15
- ;;^UTILITY(U,$J,358.3,26326,1,0)
+ ;;^UTILITY(U,$J,358.3,24808,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,24808,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,24808,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,24809,0)
+ ;;=D05.01^^107^1211^102
+ ;;^UTILITY(U,$J,358.3,24809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26326,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26326,1,4,0)
- ;;=4^F18.221
- ;;^UTILITY(U,$J,358.3,26326,2)
- ;;=^5003395
- ;;^UTILITY(U,$J,358.3,26327,0)
- ;;=F18.921^^98^1245^16
- ;;^UTILITY(U,$J,358.3,26327,1,0)
+ ;;^UTILITY(U,$J,358.3,24809,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,24809,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,24809,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,24810,0)
+ ;;=D05.00^^107^1211^103
+ ;;^UTILITY(U,$J,358.3,24810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26327,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26327,1,4,0)
- ;;=4^F18.921
- ;;^UTILITY(U,$J,358.3,26327,2)
- ;;=^5003407
- ;;^UTILITY(U,$J,358.3,26328,0)
- ;;=F18.129^^98^1245^17
- ;;^UTILITY(U,$J,358.3,26328,1,0)
+ ;;^UTILITY(U,$J,358.3,24810,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,24810,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,24810,2)
+ ;;=^5001926
+ ;;^UTILITY(U,$J,358.3,24811,0)
+ ;;=R59.0^^107^1211^62
+ ;;^UTILITY(U,$J,358.3,24811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26328,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26328,1,4,0)
- ;;=4^F18.129
- ;;^UTILITY(U,$J,358.3,26328,2)
- ;;=^5003383
- ;;^UTILITY(U,$J,358.3,26329,0)
- ;;=F18.229^^98^1245^18
- ;;^UTILITY(U,$J,358.3,26329,1,0)
+ ;;^UTILITY(U,$J,358.3,24811,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,24811,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,24811,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,24812,0)
+ ;;=C83.59^^107^1211^104
+ ;;^UTILITY(U,$J,358.3,24812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26329,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24812,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites

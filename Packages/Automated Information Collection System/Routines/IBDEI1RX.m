@@ -1,130 +1,128 @@
-IBDEI1RX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1RX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30148,0)
- ;;=D57.20^^118^1501^17
- ;;^UTILITY(U,$J,358.3,30148,1,0)
+ ;;^UTILITY(U,$J,358.3,28333,0)
+ ;;=F44.1^^115^1388^3
+ ;;^UTILITY(U,$J,358.3,28333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30148,1,3,0)
- ;;=3^Sickle-cell/Hb-C disease without crisis
- ;;^UTILITY(U,$J,358.3,30148,1,4,0)
- ;;=4^D57.20
- ;;^UTILITY(U,$J,358.3,30148,2)
- ;;=^330080
- ;;^UTILITY(U,$J,358.3,30149,0)
- ;;=D57.811^^118^1501^10
- ;;^UTILITY(U,$J,358.3,30149,1,0)
+ ;;^UTILITY(U,$J,358.3,28333,1,3,0)
+ ;;=3^Dissociative Amnesia w/ Dissociative Fugue
+ ;;^UTILITY(U,$J,358.3,28333,1,4,0)
+ ;;=4^F44.1
+ ;;^UTILITY(U,$J,358.3,28333,2)
+ ;;=^331908
+ ;;^UTILITY(U,$J,358.3,28334,0)
+ ;;=F50.02^^115^1389^1
+ ;;^UTILITY(U,$J,358.3,28334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30149,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Acute Chest Syndrome NEC
- ;;^UTILITY(U,$J,358.3,30149,1,4,0)
- ;;=4^D57.811
- ;;^UTILITY(U,$J,358.3,30149,2)
- ;;=^5002318
- ;;^UTILITY(U,$J,358.3,30150,0)
- ;;=D57.812^^118^1501^11
- ;;^UTILITY(U,$J,358.3,30150,1,0)
+ ;;^UTILITY(U,$J,358.3,28334,1,3,0)
+ ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
+ ;;^UTILITY(U,$J,358.3,28334,1,4,0)
+ ;;=4^F50.02
+ ;;^UTILITY(U,$J,358.3,28334,2)
+ ;;=^5003599
+ ;;^UTILITY(U,$J,358.3,28335,0)
+ ;;=F50.01^^115^1389^2
+ ;;^UTILITY(U,$J,358.3,28335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30150,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,30150,1,4,0)
- ;;=4^D57.812
- ;;^UTILITY(U,$J,358.3,30150,2)
- ;;=^5002319
- ;;^UTILITY(U,$J,358.3,30151,0)
- ;;=D57.819^^118^1501^12
- ;;^UTILITY(U,$J,358.3,30151,1,0)
+ ;;^UTILITY(U,$J,358.3,28335,1,3,0)
+ ;;=3^Anorexia Nervosa,Restricting Type
+ ;;^UTILITY(U,$J,358.3,28335,1,4,0)
+ ;;=4^F50.01
+ ;;^UTILITY(U,$J,358.3,28335,2)
+ ;;=^5003598
+ ;;^UTILITY(U,$J,358.3,28336,0)
+ ;;=F50.9^^115^1389^7
+ ;;^UTILITY(U,$J,358.3,28336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30151,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Unspec Crisis NEC
- ;;^UTILITY(U,$J,358.3,30151,1,4,0)
- ;;=4^D57.819
- ;;^UTILITY(U,$J,358.3,30151,2)
- ;;=^5002320
- ;;^UTILITY(U,$J,358.3,30152,0)
- ;;=D58.8^^118^1501^9
- ;;^UTILITY(U,$J,358.3,30152,1,0)
+ ;;^UTILITY(U,$J,358.3,28336,1,3,0)
+ ;;=3^Eating Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,28336,1,4,0)
+ ;;=4^F50.9
+ ;;^UTILITY(U,$J,358.3,28336,2)
+ ;;=^5003602
+ ;;^UTILITY(U,$J,358.3,28337,0)
+ ;;=F50.2^^115^1389^5
+ ;;^UTILITY(U,$J,358.3,28337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30152,1,3,0)
- ;;=3^Hereditary Hemolytic Anemias NEC
- ;;^UTILITY(U,$J,358.3,30152,1,4,0)
- ;;=4^D58.8
- ;;^UTILITY(U,$J,358.3,30152,2)
- ;;=^267984
- ;;^UTILITY(U,$J,358.3,30153,0)
- ;;=D58.2^^118^1501^8
- ;;^UTILITY(U,$J,358.3,30153,1,0)
+ ;;^UTILITY(U,$J,358.3,28337,1,3,0)
+ ;;=3^Bulimia Nervosa
+ ;;^UTILITY(U,$J,358.3,28337,1,4,0)
+ ;;=4^F50.2
+ ;;^UTILITY(U,$J,358.3,28337,2)
+ ;;=^5003600
+ ;;^UTILITY(U,$J,358.3,28338,0)
+ ;;=F98.21^^115^1389^8
+ ;;^UTILITY(U,$J,358.3,28338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30153,1,3,0)
- ;;=3^Hemoglobinopathies NEC
- ;;^UTILITY(U,$J,358.3,30153,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,30153,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,30154,0)
- ;;=C83.10^^118^1502^52
- ;;^UTILITY(U,$J,358.3,30154,1,0)
+ ;;^UTILITY(U,$J,358.3,28338,1,3,0)
+ ;;=3^Rumination Disorder
+ ;;^UTILITY(U,$J,358.3,28338,1,4,0)
+ ;;=4^F98.21
+ ;;^UTILITY(U,$J,358.3,28338,2)
+ ;;=^5003713
+ ;;^UTILITY(U,$J,358.3,28339,0)
+ ;;=F50.81^^115^1389^4
+ ;;^UTILITY(U,$J,358.3,28339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30154,1,3,0)
- ;;=3^Mantle cell lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,30154,1,4,0)
- ;;=4^C83.10
- ;;^UTILITY(U,$J,358.3,30154,2)
- ;;=^5001561
- ;;^UTILITY(U,$J,358.3,30155,0)
- ;;=C83.19^^118^1502^51
- ;;^UTILITY(U,$J,358.3,30155,1,0)
+ ;;^UTILITY(U,$J,358.3,28339,1,3,0)
+ ;;=3^Binge-Eating Disorder
+ ;;^UTILITY(U,$J,358.3,28339,1,4,0)
+ ;;=4^F50.81
+ ;;^UTILITY(U,$J,358.3,28339,2)
+ ;;=^8123226
+ ;;^UTILITY(U,$J,358.3,28340,0)
+ ;;=F50.89^^115^1389^6
+ ;;^UTILITY(U,$J,358.3,28340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30155,1,3,0)
- ;;=3^Mantle cell lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,30155,1,4,0)
- ;;=4^C83.19
- ;;^UTILITY(U,$J,358.3,30155,2)
- ;;=^5001570
- ;;^UTILITY(U,$J,358.3,30156,0)
- ;;=C83.50^^118^1502^45
- ;;^UTILITY(U,$J,358.3,30156,1,0)
+ ;;^UTILITY(U,$J,358.3,28340,1,3,0)
+ ;;=3^Eating Disorder,Oth Spec
+ ;;^UTILITY(U,$J,358.3,28340,1,4,0)
+ ;;=4^F50.89
+ ;;^UTILITY(U,$J,358.3,28340,2)
+ ;;=^5138449
+ ;;^UTILITY(U,$J,358.3,28341,0)
+ ;;=F50.82^^115^1389^3
+ ;;^UTILITY(U,$J,358.3,28341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30156,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,30156,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,30156,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,30157,0)
- ;;=C83.59^^118^1502^46
- ;;^UTILITY(U,$J,358.3,30157,1,0)
+ ;;^UTILITY(U,$J,358.3,28341,1,3,0)
+ ;;=3^Avoidant/Restrictive Food Intake Disorder
+ ;;^UTILITY(U,$J,358.3,28341,1,4,0)
+ ;;=4^F50.82
+ ;;^UTILITY(U,$J,358.3,28341,2)
+ ;;=^5151308
+ ;;^UTILITY(U,$J,358.3,28342,0)
+ ;;=Z55.9^^115^1390^1
+ ;;^UTILITY(U,$J,358.3,28342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30157,1,3,0)
- ;;=3^Lymphoblastic lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,30157,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,30157,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,30158,0)
- ;;=C83.70^^118^1502^12
- ;;^UTILITY(U,$J,358.3,30158,1,0)
+ ;;^UTILITY(U,$J,358.3,28342,1,3,0)
+ ;;=3^Academic/Educational Problem
+ ;;^UTILITY(U,$J,358.3,28342,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,28342,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,28343,0)
+ ;;=Z56.82^^115^1390^5
+ ;;^UTILITY(U,$J,358.3,28343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30158,1,3,0)
- ;;=3^Burkitt lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,30158,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,30158,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,30159,0)
- ;;=C83.79^^118^1502^11
- ;;^UTILITY(U,$J,358.3,30159,1,0)
+ ;;^UTILITY(U,$J,358.3,28343,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,28343,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,28343,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,28344,0)
+ ;;=Z56.0^^115^1390^11
+ ;;^UTILITY(U,$J,358.3,28344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30159,1,3,0)
- ;;=3^Burkitt lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,30159,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,30159,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,30160,0)
- ;;=C81.00^^118^1502^61
- ;;^UTILITY(U,$J,358.3,30160,1,0)
+ ;;^UTILITY(U,$J,358.3,28344,1,3,0)
+ ;;=3^Unemployment,Unspec
+ ;;^UTILITY(U,$J,358.3,28344,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,28344,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,28345,0)
+ ;;=Z56.1^^115^1390^2
+ ;;^UTILITY(U,$J,358.3,28345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30160,1,3,0)
- ;;=3^Nodular lymphocyte predominant Hodgkin lymphoma, unsp site

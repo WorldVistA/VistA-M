@@ -1,128 +1,128 @@
-IBDEI1ND ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ND ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27958,1,0)
+ ;;^UTILITY(U,$J,358.3,26304,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,26305,0)
+ ;;=J43.0^^107^1237^29
+ ;;^UTILITY(U,$J,358.3,26305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27958,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,27958,1,4,0)
- ;;=4^M47.20
- ;;^UTILITY(U,$J,358.3,27958,2)
- ;;=^5012059
- ;;^UTILITY(U,$J,358.3,27959,0)
- ;;=M47.22^^109^1394^26
- ;;^UTILITY(U,$J,358.3,27959,1,0)
+ ;;^UTILITY(U,$J,358.3,26305,1,3,0)
+ ;;=3^Emphysema,Pulmonary,Unilateral
+ ;;^UTILITY(U,$J,358.3,26305,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,26305,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,26306,0)
+ ;;=J43.1^^107^1237^28
+ ;;^UTILITY(U,$J,358.3,26306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27959,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,27959,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,27959,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,27960,0)
- ;;=M47.23^^109^1394^27
- ;;^UTILITY(U,$J,358.3,27960,1,0)
+ ;;^UTILITY(U,$J,358.3,26306,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,26306,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,26306,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,26307,0)
+ ;;=J43.2^^107^1237^26
+ ;;^UTILITY(U,$J,358.3,26307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27960,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,27960,1,4,0)
- ;;=4^M47.23
- ;;^UTILITY(U,$J,358.3,27960,2)
- ;;=^5012062
- ;;^UTILITY(U,$J,358.3,27961,0)
- ;;=M47.24^^109^1394^32
- ;;^UTILITY(U,$J,358.3,27961,1,0)
+ ;;^UTILITY(U,$J,358.3,26307,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,26307,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,26307,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,26308,0)
+ ;;=J43.8^^107^1237^27
+ ;;^UTILITY(U,$J,358.3,26308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27961,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,27961,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,27961,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,27962,0)
- ;;=M47.25^^109^1394^33
- ;;^UTILITY(U,$J,358.3,27962,1,0)
+ ;;^UTILITY(U,$J,358.3,26308,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,26308,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,26308,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,26309,0)
+ ;;=J43.9^^107^1237^30
+ ;;^UTILITY(U,$J,358.3,26309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27962,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,27962,1,4,0)
- ;;=4^M47.25
- ;;^UTILITY(U,$J,358.3,27962,2)
- ;;=^5012064
- ;;^UTILITY(U,$J,358.3,27963,0)
- ;;=M47.26^^109^1394^28
- ;;^UTILITY(U,$J,358.3,27963,1,0)
+ ;;^UTILITY(U,$J,358.3,26309,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,26309,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,26309,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,26310,0)
+ ;;=J44.0^^107^1237^23
+ ;;^UTILITY(U,$J,358.3,26310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27963,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbar Region
- ;;^UTILITY(U,$J,358.3,27963,1,4,0)
- ;;=4^M47.26
- ;;^UTILITY(U,$J,358.3,27963,2)
- ;;=^5012065
- ;;^UTILITY(U,$J,358.3,27964,0)
- ;;=M47.27^^109^1394^29
- ;;^UTILITY(U,$J,358.3,27964,1,0)
+ ;;^UTILITY(U,$J,358.3,26310,1,3,0)
+ ;;=3^COPD w/ (Acute) Lower Resp Infection
+ ;;^UTILITY(U,$J,358.3,26310,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,26310,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,26311,0)
+ ;;=J45.20^^107^1237^5
+ ;;^UTILITY(U,$J,358.3,26311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27964,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,27964,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,27964,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,27965,0)
- ;;=M47.12^^109^1394^21
- ;;^UTILITY(U,$J,358.3,27965,1,0)
+ ;;^UTILITY(U,$J,358.3,26311,1,3,0)
+ ;;=3^Asthma,Mild Intermittent,Uncompl
+ ;;^UTILITY(U,$J,358.3,26311,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,26311,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,26312,0)
+ ;;=J45.21^^107^1237^3
+ ;;^UTILITY(U,$J,358.3,26312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27965,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,27965,1,4,0)
- ;;=4^M47.12
- ;;^UTILITY(U,$J,358.3,27965,2)
- ;;=^5012052
- ;;^UTILITY(U,$J,358.3,27966,0)
- ;;=M47.13^^109^1394^22
- ;;^UTILITY(U,$J,358.3,27966,1,0)
+ ;;^UTILITY(U,$J,358.3,26312,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,26312,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,26312,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,26313,0)
+ ;;=J45.22^^107^1237^4
+ ;;^UTILITY(U,$J,358.3,26313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27966,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,27966,1,4,0)
- ;;=4^M47.13
- ;;^UTILITY(U,$J,358.3,27966,2)
- ;;=^5012053
- ;;^UTILITY(U,$J,358.3,27967,0)
- ;;=M47.14^^109^1394^24
- ;;^UTILITY(U,$J,358.3,27967,1,0)
+ ;;^UTILITY(U,$J,358.3,26313,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,26313,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,26313,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,26314,0)
+ ;;=J45.31^^107^1237^6
+ ;;^UTILITY(U,$J,358.3,26314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27967,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,27967,1,4,0)
- ;;=4^M47.14
- ;;^UTILITY(U,$J,358.3,27967,2)
- ;;=^5012054
- ;;^UTILITY(U,$J,358.3,27968,0)
- ;;=M47.15^^109^1394^25
- ;;^UTILITY(U,$J,358.3,27968,1,0)
+ ;;^UTILITY(U,$J,358.3,26314,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,26314,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,26314,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,26315,0)
+ ;;=J45.32^^107^1237^7
+ ;;^UTILITY(U,$J,358.3,26315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27968,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,27968,1,4,0)
- ;;=4^M47.15
- ;;^UTILITY(U,$J,358.3,27968,2)
- ;;=^5012055
- ;;^UTILITY(U,$J,358.3,27969,0)
- ;;=M47.16^^109^1394^23
- ;;^UTILITY(U,$J,358.3,27969,1,0)
+ ;;^UTILITY(U,$J,358.3,26315,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,26315,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,26315,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,26316,0)
+ ;;=J45.40^^107^1237^10
+ ;;^UTILITY(U,$J,358.3,26316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27969,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Lumbar Region
- ;;^UTILITY(U,$J,358.3,27969,1,4,0)
- ;;=4^M47.16
- ;;^UTILITY(U,$J,358.3,27969,2)
- ;;=^5012056
- ;;^UTILITY(U,$J,358.3,27970,0)
- ;;=R55.^^109^1395^9
- ;;^UTILITY(U,$J,358.3,27970,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27970,1,3,0)
- ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,26316,1,3,0)
+ ;;=3^Asthma,Moderate Persistent,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,26316,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,26316,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,26317,0)
+ ;;=J44.9^^107^1237^24

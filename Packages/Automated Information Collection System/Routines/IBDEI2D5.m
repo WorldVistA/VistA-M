@@ -1,134 +1,118 @@
-IBDEI2D5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2D5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40077,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,40077,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,40078,0)
- ;;=K76.0^^156^1950^12
- ;;^UTILITY(U,$J,358.3,40078,1,0)
+ ;;^UTILITY(U,$J,358.3,37730,1,3,0)
+ ;;=3^Disp fx body rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37730,1,4,0)
+ ;;=4^S92.121K
+ ;;^UTILITY(U,$J,358.3,37730,2)
+ ;;=^5044651
+ ;;^UTILITY(U,$J,358.3,37731,0)
+ ;;=S92.002K^^146^1917^191
+ ;;^UTILITY(U,$J,358.3,37731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40078,1,3,0)
- ;;=3^Fatty (change of) liver, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,40078,1,4,0)
- ;;=4^K76.0
- ;;^UTILITY(U,$J,358.3,40078,2)
- ;;=^5008831
- ;;^UTILITY(U,$J,358.3,40079,0)
- ;;=K76.89^^156^1950^14
- ;;^UTILITY(U,$J,358.3,40079,1,0)
+ ;;^UTILITY(U,$J,358.3,37731,1,3,0)
+ ;;=3^Fx of lft calcaneus, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37731,1,4,0)
+ ;;=4^S92.002K
+ ;;^UTILITY(U,$J,358.3,37731,2)
+ ;;=^5044364
+ ;;^UTILITY(U,$J,358.3,37732,0)
+ ;;=S92.001K^^146^1917^208
+ ;;^UTILITY(U,$J,358.3,37732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40079,1,3,0)
- ;;=3^Liver Disease NEC
- ;;^UTILITY(U,$J,358.3,40079,1,4,0)
- ;;=4^K76.89
- ;;^UTILITY(U,$J,358.3,40079,2)
- ;;=^5008835
- ;;^UTILITY(U,$J,358.3,40080,0)
- ;;=K70.30^^156^1950^5
- ;;^UTILITY(U,$J,358.3,40080,1,0)
+ ;;^UTILITY(U,$J,358.3,37732,1,3,0)
+ ;;=3^Fx of rt calcaneus, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37732,1,4,0)
+ ;;=4^S92.001K
+ ;;^UTILITY(U,$J,358.3,37732,2)
+ ;;=^5044357
+ ;;^UTILITY(U,$J,358.3,37733,0)
+ ;;=S92.102K^^146^1917^201
+ ;;^UTILITY(U,$J,358.3,37733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40080,1,3,0)
- ;;=3^Alcoholic cirrhosis of liver without ascites
- ;;^UTILITY(U,$J,358.3,40080,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,40080,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,40081,0)
- ;;=K70.31^^156^1950^4
- ;;^UTILITY(U,$J,358.3,40081,1,0)
+ ;;^UTILITY(U,$J,358.3,37733,1,3,0)
+ ;;=3^Fx of lft talus, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37733,1,4,0)
+ ;;=4^S92.102K
+ ;;^UTILITY(U,$J,358.3,37733,2)
+ ;;=^5044602
+ ;;^UTILITY(U,$J,358.3,37734,0)
+ ;;=S92.101K^^146^1917^218
+ ;;^UTILITY(U,$J,358.3,37734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40081,1,3,0)
- ;;=3^Alcoholic cirrhosis of liver with ascites
- ;;^UTILITY(U,$J,358.3,40081,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,40081,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,40082,0)
- ;;=K75.4^^156^1950^6
- ;;^UTILITY(U,$J,358.3,40082,1,0)
+ ;;^UTILITY(U,$J,358.3,37734,1,3,0)
+ ;;=3^Fx of rt talus, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,37734,1,4,0)
+ ;;=4^S92.101K
+ ;;^UTILITY(U,$J,358.3,37734,2)
+ ;;=^5044595
+ ;;^UTILITY(U,$J,358.3,37735,0)
+ ;;=S92.065K^^146^1917^362
+ ;;^UTILITY(U,$J,358.3,37735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40082,1,3,0)
- ;;=3^Autoimmune hepatitis
- ;;^UTILITY(U,$J,358.3,40082,1,4,0)
- ;;=4^K75.4
- ;;^UTILITY(U,$J,358.3,40082,2)
- ;;=^336610
- ;;^UTILITY(U,$J,358.3,40083,0)
- ;;=K74.69^^156^1950^10
- ;;^UTILITY(U,$J,358.3,40083,1,0)
+ ;;^UTILITY(U,$J,358.3,37735,1,3,0)
+ ;;=3^Nondisp intartic fx lft calcaneus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37735,1,4,0)
+ ;;=4^S92.065K
+ ;;^UTILITY(U,$J,358.3,37735,2)
+ ;;=^5044581
+ ;;^UTILITY(U,$J,358.3,37736,0)
+ ;;=S92.064K^^146^1917^363
+ ;;^UTILITY(U,$J,358.3,37736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40083,1,3,0)
- ;;=3^Cirrhosis of liver NEC
- ;;^UTILITY(U,$J,358.3,40083,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,40083,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,40084,0)
- ;;=K74.3^^156^1950^20
- ;;^UTILITY(U,$J,358.3,40084,1,0)
+ ;;^UTILITY(U,$J,358.3,37736,1,3,0)
+ ;;=3^Nondisp intartic fx rt calcaneus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37736,1,4,0)
+ ;;=4^S92.064K
+ ;;^UTILITY(U,$J,358.3,37736,2)
+ ;;=^5044574
+ ;;^UTILITY(U,$J,358.3,37737,0)
+ ;;=S92.062K^^146^1917^136
+ ;;^UTILITY(U,$J,358.3,37737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40084,1,3,0)
- ;;=3^Primary biliary cirrhosis
- ;;^UTILITY(U,$J,358.3,40084,1,4,0)
- ;;=4^K74.3
- ;;^UTILITY(U,$J,358.3,40084,2)
- ;;=^5008819
- ;;^UTILITY(U,$J,358.3,40085,0)
- ;;=K75.81^^156^1950^19
- ;;^UTILITY(U,$J,358.3,40085,1,0)
+ ;;^UTILITY(U,$J,358.3,37737,1,3,0)
+ ;;=3^Disp intraarticular fx lft calcaneus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37737,1,4,0)
+ ;;=4^S92.062K
+ ;;^UTILITY(U,$J,358.3,37737,2)
+ ;;=^5044560
+ ;;^UTILITY(U,$J,358.3,37738,0)
+ ;;=S92.061K^^146^1917^139
+ ;;^UTILITY(U,$J,358.3,37738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40085,1,3,0)
- ;;=3^Nonalcoholic steatohepatitis (NASH)
- ;;^UTILITY(U,$J,358.3,40085,1,4,0)
- ;;=4^K75.81
- ;;^UTILITY(U,$J,358.3,40085,2)
- ;;=K830^5008828
- ;;^UTILITY(U,$J,358.3,40086,0)
- ;;=B16.9^^156^1950^1
- ;;^UTILITY(U,$J,358.3,40086,1,0)
+ ;;^UTILITY(U,$J,358.3,37738,1,3,0)
+ ;;=3^Disp intraarticular fx rt calcaneus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37738,1,4,0)
+ ;;=4^S92.061K
+ ;;^UTILITY(U,$J,358.3,37738,2)
+ ;;=^5044553
+ ;;^UTILITY(U,$J,358.3,37739,0)
+ ;;=S92.252K^^146^1917^55
+ ;;^UTILITY(U,$J,358.3,37739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40086,1,3,0)
- ;;=3^Acute hepatitis B w/o delta-agent and without hepatic coma
- ;;^UTILITY(U,$J,358.3,40086,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,40086,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,40087,0)
- ;;=B18.1^^156^1950^8
- ;;^UTILITY(U,$J,358.3,40087,1,0)
+ ;;^UTILITY(U,$J,358.3,37739,1,3,0)
+ ;;=3^Disp fx navicular lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37739,1,4,0)
+ ;;=4^S92.252K
+ ;;^UTILITY(U,$J,358.3,37739,2)
+ ;;=^5045015
+ ;;^UTILITY(U,$J,358.3,37740,0)
+ ;;=S92.251K^^146^1917^56
+ ;;^UTILITY(U,$J,358.3,37740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40087,1,3,0)
- ;;=3^Chronic viral hepatitis B without delta-agent
- ;;^UTILITY(U,$J,358.3,40087,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,40087,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,40088,0)
- ;;=Z94.4^^156^1950^16
- ;;^UTILITY(U,$J,358.3,40088,1,0)
+ ;;^UTILITY(U,$J,358.3,37740,1,3,0)
+ ;;=3^Disp fx navicular rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37740,1,4,0)
+ ;;=4^S92.251K
+ ;;^UTILITY(U,$J,358.3,37740,2)
+ ;;=^5045008
+ ;;^UTILITY(U,$J,358.3,37741,0)
+ ;;=S92.245K^^146^1917^274
+ ;;^UTILITY(U,$J,358.3,37741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40088,1,3,0)
- ;;=3^Liver transplant status
- ;;^UTILITY(U,$J,358.3,40088,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,40088,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,40089,0)
- ;;=J90.^^156^1951^12
- ;;^UTILITY(U,$J,358.3,40089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40089,1,3,0)
- ;;=3^Pleural effusion, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,40089,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,40089,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,40090,0)
- ;;=C34.91^^156^1951^9
- ;;^UTILITY(U,$J,358.3,40090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40090,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
+ ;;^UTILITY(U,$J,358.3,37741,1,3,0)
+ ;;=3^Nondisp fx med cuneiform lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37741,1,4,0)
+ ;;=4^S92.245K

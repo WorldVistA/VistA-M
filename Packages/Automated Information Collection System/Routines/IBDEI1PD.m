@@ -1,122 +1,128 @@
-IBDEI1PD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28937,1,0)
+ ;;^UTILITY(U,$J,358.3,27208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28937,1,3,0)
- ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, second trimester
- ;;^UTILITY(U,$J,358.3,28937,1,4,0)
- ;;=4^O30.002
- ;;^UTILITY(U,$J,358.3,28937,2)
- ;;=^5016430
- ;;^UTILITY(U,$J,358.3,28938,0)
- ;;=O30.003^^115^1454^79
- ;;^UTILITY(U,$J,358.3,28938,1,0)
+ ;;^UTILITY(U,$J,358.3,27208,1,3,0)
+ ;;=3^Somatoform Symp & Rel D/O,Oth Spec
+ ;;^UTILITY(U,$J,358.3,27208,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,27208,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,27209,0)
+ ;;=F45.0^^110^1315^12
+ ;;^UTILITY(U,$J,358.3,27209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28938,1,3,0)
- ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, third trimester
- ;;^UTILITY(U,$J,358.3,28938,1,4,0)
- ;;=4^O30.003
- ;;^UTILITY(U,$J,358.3,28938,2)
- ;;=^5016431
- ;;^UTILITY(U,$J,358.3,28939,0)
- ;;=O30.011^^115^1454^71
- ;;^UTILITY(U,$J,358.3,28939,1,0)
+ ;;^UTILITY(U,$J,358.3,27209,1,3,0)
+ ;;=3^Somatization D/O
+ ;;^UTILITY(U,$J,358.3,27209,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,27209,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,27210,0)
+ ;;=F45.9^^110^1315^14
+ ;;^UTILITY(U,$J,358.3,27210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28939,1,3,0)
- ;;=3^Twin pregnancy, monochorionic/monoamniotic, first trimester
- ;;^UTILITY(U,$J,358.3,28939,1,4,0)
- ;;=4^O30.011
- ;;^UTILITY(U,$J,358.3,28939,2)
- ;;=^5016432
- ;;^UTILITY(U,$J,358.3,28940,0)
- ;;=O30.012^^115^1454^72
- ;;^UTILITY(U,$J,358.3,28940,1,0)
+ ;;^UTILITY(U,$J,358.3,27210,1,3,0)
+ ;;=3^Somatoform Symp & Rel D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27210,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,27210,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,27211,0)
+ ;;=F45.1^^110^1315^11
+ ;;^UTILITY(U,$J,358.3,27211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28940,1,3,0)
- ;;=3^Twin pregnancy, monochorionic/monoamniotic, second trimester
- ;;^UTILITY(U,$J,358.3,28940,1,4,0)
- ;;=4^O30.012
- ;;^UTILITY(U,$J,358.3,28940,2)
- ;;=^5016433
- ;;^UTILITY(U,$J,358.3,28941,0)
- ;;=O30.013^^115^1454^73
- ;;^UTILITY(U,$J,358.3,28941,1,0)
+ ;;^UTILITY(U,$J,358.3,27211,1,3,0)
+ ;;=3^Somatic Symptom D/O
+ ;;^UTILITY(U,$J,358.3,27211,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,27211,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,27212,0)
+ ;;=F44.4^^110^1315^4
+ ;;^UTILITY(U,$J,358.3,27212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28941,1,3,0)
- ;;=3^Twin pregnancy, monochorionic/monoamniotic, third trimester
- ;;^UTILITY(U,$J,358.3,28941,1,4,0)
- ;;=4^O30.013
- ;;^UTILITY(U,$J,358.3,28941,2)
- ;;=^5016434
- ;;^UTILITY(U,$J,358.3,28942,0)
- ;;=O30.021^^115^1454^1
- ;;^UTILITY(U,$J,358.3,28942,1,0)
+ ;;^UTILITY(U,$J,358.3,27212,1,3,0)
+ ;;=3^Conversion D/O w/ Motor Symp or Deficit
+ ;;^UTILITY(U,$J,358.3,27212,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,27212,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,27213,0)
+ ;;=F44.6^^110^1315^1
+ ;;^UTILITY(U,$J,358.3,27213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28942,1,3,0)
- ;;=3^Conjoined twin pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,28942,1,4,0)
- ;;=4^O30.021
- ;;^UTILITY(U,$J,358.3,28942,2)
- ;;=^5016436
- ;;^UTILITY(U,$J,358.3,28943,0)
- ;;=O30.022^^115^1454^2
- ;;^UTILITY(U,$J,358.3,28943,1,0)
+ ;;^UTILITY(U,$J,358.3,27213,1,3,0)
+ ;;=3^Conversion D/O w/ Anesthesia or Sensory Loss
+ ;;^UTILITY(U,$J,358.3,27213,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,27213,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,27214,0)
+ ;;=F44.5^^110^1315^2
+ ;;^UTILITY(U,$J,358.3,27214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28943,1,3,0)
- ;;=3^Conjoined twin pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,28943,1,4,0)
- ;;=4^O30.022
- ;;^UTILITY(U,$J,358.3,28943,2)
- ;;=^5016437
- ;;^UTILITY(U,$J,358.3,28944,0)
- ;;=O30.023^^115^1454^3
- ;;^UTILITY(U,$J,358.3,28944,1,0)
+ ;;^UTILITY(U,$J,358.3,27214,1,3,0)
+ ;;=3^Conversion D/O w/ Attacks or Seizures
+ ;;^UTILITY(U,$J,358.3,27214,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,27214,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,27215,0)
+ ;;=F44.7^^110^1315^3
+ ;;^UTILITY(U,$J,358.3,27215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28944,1,3,0)
- ;;=3^Conjoined twin pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,28944,1,4,0)
- ;;=4^O30.023
- ;;^UTILITY(U,$J,358.3,28944,2)
- ;;=^5016438
- ;;^UTILITY(U,$J,358.3,28945,0)
- ;;=O30.031^^115^1454^68
- ;;^UTILITY(U,$J,358.3,28945,1,0)
+ ;;^UTILITY(U,$J,358.3,27215,1,3,0)
+ ;;=3^Conversion D/O w/ Mixed Symptoms
+ ;;^UTILITY(U,$J,358.3,27215,1,4,0)
+ ;;=4^F44.7
+ ;;^UTILITY(U,$J,358.3,27215,2)
+ ;;=^5003582
+ ;;^UTILITY(U,$J,358.3,27216,0)
+ ;;=F68.10^^110^1315^7
+ ;;^UTILITY(U,$J,358.3,27216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28945,1,3,0)
- ;;=3^Twin pregnancy, monochorionic/diamniotic, first trimester
- ;;^UTILITY(U,$J,358.3,28945,1,4,0)
- ;;=4^O30.031
- ;;^UTILITY(U,$J,358.3,28945,2)
- ;;=^5016440
- ;;^UTILITY(U,$J,358.3,28946,0)
- ;;=O30.032^^115^1454^69
- ;;^UTILITY(U,$J,358.3,28946,1,0)
+ ;;^UTILITY(U,$J,358.3,27216,1,3,0)
+ ;;=3^Factitious D/O Imposed on Self,Unspec
+ ;;^UTILITY(U,$J,358.3,27216,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,27216,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,27217,0)
+ ;;=F54.^^110^1315^10
+ ;;^UTILITY(U,$J,358.3,27217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28946,1,3,0)
- ;;=3^Twin pregnancy, monochorionic/diamniotic, second trimester
- ;;^UTILITY(U,$J,358.3,28946,1,4,0)
- ;;=4^O30.032
- ;;^UTILITY(U,$J,358.3,28946,2)
- ;;=^5016441
- ;;^UTILITY(U,$J,358.3,28947,0)
- ;;=O30.033^^115^1454^70
- ;;^UTILITY(U,$J,358.3,28947,1,0)
+ ;;^UTILITY(U,$J,358.3,27217,1,3,0)
+ ;;=3^Psychological Factors Affecting Other Med Conditions
+ ;;^UTILITY(U,$J,358.3,27217,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,27217,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,27218,0)
+ ;;=F45.21^^110^1315^8
+ ;;^UTILITY(U,$J,358.3,27218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28947,1,3,0)
- ;;=3^Twin pregnancy, monochorionic/diamniotic, third trimester
- ;;^UTILITY(U,$J,358.3,28947,1,4,0)
- ;;=4^O30.033
- ;;^UTILITY(U,$J,358.3,28947,2)
- ;;=^5016442
- ;;^UTILITY(U,$J,358.3,28948,0)
- ;;=O30.041^^115^1454^65
- ;;^UTILITY(U,$J,358.3,28948,1,0)
+ ;;^UTILITY(U,$J,358.3,27218,1,3,0)
+ ;;=3^Illness Anxiety D/O
+ ;;^UTILITY(U,$J,358.3,27218,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,27218,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,27219,0)
+ ;;=F68.A^^110^1315^6
+ ;;^UTILITY(U,$J,358.3,27219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28948,1,3,0)
- ;;=3^Twin pregnancy, dichorionic/diamniotic, first trimester
- ;;^UTILITY(U,$J,358.3,28948,1,4,0)
- ;;=4^O30.041
- ;;^UTILITY(U,$J,358.3,28948,2)
- ;;=^5016444
+ ;;^UTILITY(U,$J,358.3,27219,1,3,0)
+ ;;=3^Factitious D/O Imposed on Another
+ ;;^UTILITY(U,$J,358.3,27219,1,4,0)
+ ;;=4^F68.A
+ ;;^UTILITY(U,$J,358.3,27219,2)
+ ;;=^5157309
+ ;;^UTILITY(U,$J,358.3,27220,0)
+ ;;=L98.1^^110^1315^5
+ ;;^UTILITY(U,$J,358.3,27220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27220,1,3,0)
+ ;;=3^Factitial Dermatitis

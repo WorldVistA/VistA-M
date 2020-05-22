@@ -1,122 +1,124 @@
-IBDEI1WN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1WN ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32325,2)
- ;;=^5042370
- ;;^UTILITY(U,$J,358.3,32326,0)
- ;;=S82.64XM^^126^1609^273
- ;;^UTILITY(U,$J,358.3,32326,1,0)
+ ;;^UTILITY(U,$J,358.3,30420,0)
+ ;;=F15.982^^120^1553^6
+ ;;^UTILITY(U,$J,358.3,30420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32326,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,32326,1,4,0)
- ;;=4^S82.64XM
- ;;^UTILITY(U,$J,358.3,32326,2)
- ;;=^5042369
- ;;^UTILITY(U,$J,358.3,32327,0)
- ;;=S82.64XK^^126^1609^271
- ;;^UTILITY(U,$J,358.3,32327,1,0)
+ ;;^UTILITY(U,$J,358.3,30420,1,3,0)
+ ;;=3^Caffeine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30420,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,30420,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,30421,0)
+ ;;=F15.99^^120^1553^8
+ ;;^UTILITY(U,$J,358.3,30421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32327,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32327,1,4,0)
- ;;=4^S82.64XK
- ;;^UTILITY(U,$J,358.3,32327,2)
- ;;=^5042368
- ;;^UTILITY(U,$J,358.3,32328,0)
- ;;=S82.842N^^126^1609^13
- ;;^UTILITY(U,$J,358.3,32328,1,0)
+ ;;^UTILITY(U,$J,358.3,30421,1,3,0)
+ ;;=3^Caffeine Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,30421,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,30421,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,30422,0)
+ ;;=R45.851^^120^1554^2
+ ;;^UTILITY(U,$J,358.3,30422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32328,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,32328,1,4,0)
- ;;=4^S82.842N
- ;;^UTILITY(U,$J,358.3,32328,2)
- ;;=^5042506
- ;;^UTILITY(U,$J,358.3,32329,0)
- ;;=S82.842M^^126^1609^14
- ;;^UTILITY(U,$J,358.3,32329,1,0)
+ ;;^UTILITY(U,$J,358.3,30422,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,30422,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,30422,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,30423,0)
+ ;;=Z91.5^^120^1554^1
+ ;;^UTILITY(U,$J,358.3,30423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32329,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,32329,1,4,0)
- ;;=4^S82.842M
- ;;^UTILITY(U,$J,358.3,32329,2)
- ;;=^5042505
- ;;^UTILITY(U,$J,358.3,32330,0)
- ;;=S82.842K^^126^1609^12
- ;;^UTILITY(U,$J,358.3,32330,1,0)
+ ;;^UTILITY(U,$J,358.3,30423,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,30423,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,30423,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,30424,0)
+ ;;=T14.91XA^^120^1554^3
+ ;;^UTILITY(U,$J,358.3,30424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32330,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32330,1,4,0)
- ;;=4^S82.842K
- ;;^UTILITY(U,$J,358.3,32330,2)
- ;;=^5042504
- ;;^UTILITY(U,$J,358.3,32331,0)
- ;;=S82.841N^^126^1609^16
- ;;^UTILITY(U,$J,358.3,32331,1,0)
+ ;;^UTILITY(U,$J,358.3,30424,1,3,0)
+ ;;=3^Suicide Attempt,Inital Encntr
+ ;;^UTILITY(U,$J,358.3,30424,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,30424,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,30425,0)
+ ;;=T14.91XD^^120^1554^4
+ ;;^UTILITY(U,$J,358.3,30425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32331,1,3,0)
- ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,32331,1,4,0)
- ;;=4^S82.841N
- ;;^UTILITY(U,$J,358.3,32331,2)
- ;;=^5042490
- ;;^UTILITY(U,$J,358.3,32332,0)
- ;;=S82.841M^^126^1609^17
- ;;^UTILITY(U,$J,358.3,32332,1,0)
+ ;;^UTILITY(U,$J,358.3,30425,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,30425,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,30425,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,30426,0)
+ ;;=T14.91XS^^120^1554^5
+ ;;^UTILITY(U,$J,358.3,30426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32332,1,3,0)
- ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,32332,1,4,0)
- ;;=4^S82.841M
- ;;^UTILITY(U,$J,358.3,32332,2)
- ;;=^5042489
- ;;^UTILITY(U,$J,358.3,32333,0)
- ;;=S82.841K^^126^1609^15
- ;;^UTILITY(U,$J,358.3,32333,1,0)
+ ;;^UTILITY(U,$J,358.3,30426,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,30426,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,30426,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,30427,0)
+ ;;=F19.14^^120^1555^1
+ ;;^UTILITY(U,$J,358.3,30427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32333,1,3,0)
- ;;=3^Disp bimal fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,32333,1,4,0)
- ;;=4^S82.841K
- ;;^UTILITY(U,$J,358.3,32333,2)
- ;;=^5042488
- ;;^UTILITY(U,$J,358.3,32334,0)
- ;;=M84.452K^^126^1609^400
- ;;^UTILITY(U,$J,358.3,32334,1,0)
+ ;;^UTILITY(U,$J,358.3,30427,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30427,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,30427,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,30428,0)
+ ;;=F19.24^^120^1555^2
+ ;;^UTILITY(U,$J,358.3,30428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32334,1,3,0)
- ;;=3^Path fx lft fem, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,32334,1,4,0)
- ;;=4^M84.452K
- ;;^UTILITY(U,$J,358.3,32334,2)
- ;;=^5013911
- ;;^UTILITY(U,$J,358.3,32335,0)
- ;;=M84.672K^^126^1609^399
- ;;^UTILITY(U,$J,358.3,32335,1,0)
+ ;;^UTILITY(U,$J,358.3,30428,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30428,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,30428,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,30429,0)
+ ;;=F19.94^^120^1555^3
+ ;;^UTILITY(U,$J,358.3,30429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32335,1,3,0)
- ;;=3^Path fx lft ankl, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,32335,1,4,0)
- ;;=4^M84.672K
- ;;^UTILITY(U,$J,358.3,32335,2)
- ;;=^5134030
- ;;^UTILITY(U,$J,358.3,32336,0)
- ;;=M84.671K^^126^1609^413
- ;;^UTILITY(U,$J,358.3,32336,1,0)
+ ;;^UTILITY(U,$J,358.3,30429,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Dep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30429,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,30429,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,30430,0)
+ ;;=F19.17^^120^1555^4
+ ;;^UTILITY(U,$J,358.3,30430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32336,1,3,0)
- ;;=3^Path fx rt ankl, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,32336,1,4,0)
- ;;=4^M84.671K
- ;;^UTILITY(U,$J,358.3,32336,2)
- ;;=^5014295
- ;;^UTILITY(U,$J,358.3,32337,0)
- ;;=S82.55XN^^126^1609^277
- ;;^UTILITY(U,$J,358.3,32337,1,0)
+ ;;^UTILITY(U,$J,358.3,30430,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30430,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,30430,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,30431,0)
+ ;;=F19.27^^120^1555^5
+ ;;^UTILITY(U,$J,358.3,30431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32337,1,3,0)
- ;;=3^Nondisp fx med mall lft tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,30431,1,3,0)
+ ;;=3^Oth/Unk Substance Induced Maj Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30431,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,30431,2)
+ ;;=^5003446

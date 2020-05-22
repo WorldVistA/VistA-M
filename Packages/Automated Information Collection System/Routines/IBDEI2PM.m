@@ -1,130 +1,128 @@
-IBDEI2PM ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45474,0)
- ;;=S71.002A^^200^2245^11
- ;;^UTILITY(U,$J,358.3,45474,1,0)
+ ;;^UTILITY(U,$J,358.3,43199,1,1,0)
+ ;;=1^Comp Visit/High Decision
+ ;;^UTILITY(U,$J,358.3,43199,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,43200,0)
+ ;;=I20.9^^158^2098^3
+ ;;^UTILITY(U,$J,358.3,43200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45474,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
- ;;^UTILITY(U,$J,358.3,45474,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,45474,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,45475,0)
- ;;=S91.104A^^200^2245^22
- ;;^UTILITY(U,$J,358.3,45475,1,0)
+ ;;^UTILITY(U,$J,358.3,43200,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,43200,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,43200,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,43201,0)
+ ;;=I25.10^^158^2098^4
+ ;;^UTILITY(U,$J,358.3,43201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45475,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
- ;;^UTILITY(U,$J,358.3,45475,1,4,0)
- ;;=4^S91.104A
- ;;^UTILITY(U,$J,358.3,45475,2)
- ;;=^5044174
- ;;^UTILITY(U,$J,358.3,45476,0)
- ;;=S81.802A^^200^2245^13
- ;;^UTILITY(U,$J,358.3,45476,1,0)
+ ;;^UTILITY(U,$J,358.3,43201,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43201,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,43201,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,43202,0)
+ ;;=I48.91^^158^2098^11
+ ;;^UTILITY(U,$J,358.3,43202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45476,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,45476,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,45476,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,45477,0)
- ;;=S41.102A^^200^2245^15
- ;;^UTILITY(U,$J,358.3,45477,1,0)
+ ;;^UTILITY(U,$J,358.3,43202,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,43202,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,43202,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,43203,0)
+ ;;=I48.0^^158^2098^9
+ ;;^UTILITY(U,$J,358.3,43203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45477,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,45477,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,45477,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,45478,0)
- ;;=S91.001A^^200^2245^16
- ;;^UTILITY(U,$J,358.3,45478,1,0)
+ ;;^UTILITY(U,$J,358.3,43203,1,3,0)
+ ;;=3^Atrial Fibrillation,Paroxysmal
+ ;;^UTILITY(U,$J,358.3,43203,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,43203,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,43204,0)
+ ;;=Z95.0^^158^2098^18
+ ;;^UTILITY(U,$J,358.3,43204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45478,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,45478,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,45478,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,45479,0)
- ;;=S91.301A^^200^2245^17
- ;;^UTILITY(U,$J,358.3,45479,1,0)
+ ;;^UTILITY(U,$J,358.3,43204,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,43204,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,43204,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,43205,0)
+ ;;=I50.9^^158^2098^15
+ ;;^UTILITY(U,$J,358.3,43205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45479,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
- ;;^UTILITY(U,$J,358.3,45479,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,45479,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,45480,0)
- ;;=S51.801A^^200^2245^18
- ;;^UTILITY(U,$J,358.3,45480,1,0)
+ ;;^UTILITY(U,$J,358.3,43205,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,43205,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,43205,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,43206,0)
+ ;;=I20.0^^158^2098^19
+ ;;^UTILITY(U,$J,358.3,43206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45480,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,45480,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,45480,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,45481,0)
- ;;=S91.101A^^200^2245^19
- ;;^UTILITY(U,$J,358.3,45481,1,0)
+ ;;^UTILITY(U,$J,358.3,43206,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,43206,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,43206,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,43207,0)
+ ;;=I25.110^^158^2098^5
+ ;;^UTILITY(U,$J,358.3,43207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45481,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,45481,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,45481,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,45482,0)
- ;;=S61.401A^^200^2245^20
- ;;^UTILITY(U,$J,358.3,45482,1,0)
+ ;;^UTILITY(U,$J,358.3,43207,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Coronary Artery w/ Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43207,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,43207,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,43208,0)
+ ;;=I25.2^^158^2098^17
+ ;;^UTILITY(U,$J,358.3,43208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45482,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
- ;;^UTILITY(U,$J,358.3,45482,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,45482,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,45483,0)
- ;;=S71.001A^^200^2245^21
- ;;^UTILITY(U,$J,358.3,45483,1,0)
+ ;;^UTILITY(U,$J,358.3,43208,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,43208,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,43208,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,43209,0)
+ ;;=I25.3^^158^2098^2
+ ;;^UTILITY(U,$J,358.3,43209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45483,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
- ;;^UTILITY(U,$J,358.3,45483,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,45483,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,45484,0)
- ;;=S91.105A^^200^2245^12
- ;;^UTILITY(U,$J,358.3,45484,1,0)
+ ;;^UTILITY(U,$J,358.3,43209,1,3,0)
+ ;;=3^Aneurysm of Heart
+ ;;^UTILITY(U,$J,358.3,43209,1,4,0)
+ ;;=4^I25.3
+ ;;^UTILITY(U,$J,358.3,43209,2)
+ ;;=^5007112
+ ;;^UTILITY(U,$J,358.3,43210,0)
+ ;;=I48.3^^158^2098^12
+ ;;^UTILITY(U,$J,358.3,43210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45484,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,45484,1,4,0)
- ;;=4^S91.105A
- ;;^UTILITY(U,$J,358.3,45484,2)
- ;;=^5044177
- ;;^UTILITY(U,$J,358.3,45485,0)
- ;;=S81.801A^^200^2245^23
- ;;^UTILITY(U,$J,358.3,45485,1,0)
+ ;;^UTILITY(U,$J,358.3,43210,1,3,0)
+ ;;=3^Atypical Atrial Flutter,Type I
+ ;;^UTILITY(U,$J,358.3,43210,1,4,0)
+ ;;=4^I48.3
+ ;;^UTILITY(U,$J,358.3,43210,2)
+ ;;=^5007227
+ ;;^UTILITY(U,$J,358.3,43211,0)
+ ;;=I48.4^^158^2098^13
+ ;;^UTILITY(U,$J,358.3,43211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45485,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,45485,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,45485,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,45486,0)
- ;;=S71.102A^^200^2245^14
- ;;^UTILITY(U,$J,358.3,45486,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45486,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,43211,1,3,0)
+ ;;=3^Atypical Atrial Flutter,Type II
+ ;;^UTILITY(U,$J,358.3,43211,1,4,0)
+ ;;=4^I48.4
+ ;;^UTILITY(U,$J,358.3,43211,2)
+ ;;=^5007228

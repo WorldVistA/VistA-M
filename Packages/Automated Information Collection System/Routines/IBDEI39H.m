@@ -1,130 +1,114 @@
-IBDEI39H ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39H ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54809,1,0)
+ ;;^UTILITY(U,$J,358.3,52057,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,52057,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,52058,0)
+ ;;=Y36.810A^^193^2516^27
+ ;;^UTILITY(U,$J,358.3,52058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54809,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,54809,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,54809,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,54810,0)
- ;;=N52.32^^256^2771^36
- ;;^UTILITY(U,$J,358.3,54810,1,0)
+ ;;^UTILITY(U,$J,358.3,52058,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52058,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,52058,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,52059,0)
+ ;;=Y36.810D^^193^2516^28
+ ;;^UTILITY(U,$J,358.3,52059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54810,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,54810,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,54810,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,54811,0)
- ;;=N52.31^^256^2771^37
- ;;^UTILITY(U,$J,358.3,54811,1,0)
+ ;;^UTILITY(U,$J,358.3,52059,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52059,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,52059,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,52060,0)
+ ;;=Y36.820A^^193^2516^24
+ ;;^UTILITY(U,$J,358.3,52060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54811,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,54811,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,54811,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,54812,0)
- ;;=N52.2^^256^2771^43
- ;;^UTILITY(U,$J,358.3,54812,1,0)
+ ;;^UTILITY(U,$J,358.3,52060,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52060,1,4,0)
+ ;;=4^Y36.820A
+ ;;^UTILITY(U,$J,358.3,52060,2)
+ ;;=^5061793
+ ;;^UTILITY(U,$J,358.3,52061,0)
+ ;;=Y36.820D^^193^2516^25
+ ;;^UTILITY(U,$J,358.3,52061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54812,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced
- ;;^UTILITY(U,$J,358.3,54812,1,4,0)
- ;;=4^N52.2
- ;;^UTILITY(U,$J,358.3,54812,2)
- ;;=^5015756
- ;;^UTILITY(U,$J,358.3,54813,0)
- ;;=N52.03^^256^2771^34
- ;;^UTILITY(U,$J,358.3,54813,1,0)
+ ;;^UTILITY(U,$J,358.3,52061,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52061,1,4,0)
+ ;;=4^Y36.820D
+ ;;^UTILITY(U,$J,358.3,52061,2)
+ ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,52062,0)
+ ;;=Y37.200A^^193^2516^96
+ ;;^UTILITY(U,$J,358.3,52062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54813,1,3,0)
- ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
- ;;^UTILITY(U,$J,358.3,54813,1,4,0)
- ;;=4^N52.03
- ;;^UTILITY(U,$J,358.3,54813,2)
- ;;=^5015754
- ;;^UTILITY(U,$J,358.3,54814,0)
- ;;=N52.02^^256^2771^35
- ;;^UTILITY(U,$J,358.3,54814,1,0)
+ ;;^UTILITY(U,$J,358.3,52062,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52062,1,4,0)
+ ;;=4^Y37.200A
+ ;;^UTILITY(U,$J,358.3,52062,2)
+ ;;=^5137997
+ ;;^UTILITY(U,$J,358.3,52063,0)
+ ;;=Y37.200D^^193^2516^97
+ ;;^UTILITY(U,$J,358.3,52063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54814,1,3,0)
- ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,54814,1,4,0)
- ;;=4^N52.02
- ;;^UTILITY(U,$J,358.3,54814,2)
- ;;=^5015753
- ;;^UTILITY(U,$J,358.3,54815,0)
- ;;=N52.1^^256^2771^42
- ;;^UTILITY(U,$J,358.3,54815,1,0)
+ ;;^UTILITY(U,$J,358.3,52063,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52063,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,52063,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,52064,0)
+ ;;=X00.1XXA^^193^2516^18
+ ;;^UTILITY(U,$J,358.3,52064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54815,1,3,0)
- ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,54815,1,4,0)
- ;;=4^N52.1
- ;;^UTILITY(U,$J,358.3,54815,2)
- ;;=^5015755
- ;;^UTILITY(U,$J,358.3,54816,0)
- ;;=N52.01^^256^2771^41
- ;;^UTILITY(U,$J,358.3,54816,1,0)
+ ;;^UTILITY(U,$J,358.3,52064,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52064,1,4,0)
+ ;;=4^X00.1XXA
+ ;;^UTILITY(U,$J,358.3,52064,2)
+ ;;=^5060664
+ ;;^UTILITY(U,$J,358.3,52065,0)
+ ;;=X00.1XXD^^193^2516^19
+ ;;^UTILITY(U,$J,358.3,52065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54816,1,3,0)
- ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
- ;;^UTILITY(U,$J,358.3,54816,1,4,0)
- ;;=4^N52.01
- ;;^UTILITY(U,$J,358.3,54816,2)
- ;;=^5015752
- ;;^UTILITY(U,$J,358.3,54817,0)
- ;;=N95.2^^256^2771^81
- ;;^UTILITY(U,$J,358.3,54817,1,0)
+ ;;^UTILITY(U,$J,358.3,52065,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52065,1,4,0)
+ ;;=4^X00.1XXD
+ ;;^UTILITY(U,$J,358.3,52065,2)
+ ;;=^5060665
+ ;;^UTILITY(U,$J,358.3,52066,0)
+ ;;=Y36.820S^^193^2516^26
+ ;;^UTILITY(U,$J,358.3,52066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54817,1,3,0)
- ;;=3^Postmenopausal Atrophic Vaginitis
- ;;^UTILITY(U,$J,358.3,54817,1,4,0)
- ;;=4^N95.2
- ;;^UTILITY(U,$J,358.3,54817,2)
- ;;=^270577
- ;;^UTILITY(U,$J,358.3,54818,0)
- ;;=R30.9^^256^2771^65
- ;;^UTILITY(U,$J,358.3,54818,1,0)
+ ;;^UTILITY(U,$J,358.3,52066,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,52066,1,4,0)
+ ;;=4^Y36.820S
+ ;;^UTILITY(U,$J,358.3,52066,2)
+ ;;=^5061795
+ ;;^UTILITY(U,$J,358.3,52067,0)
+ ;;=Y36.810S^^193^2516^29
+ ;;^UTILITY(U,$J,358.3,52067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54818,1,3,0)
- ;;=3^Micturition Painful,Unspec
- ;;^UTILITY(U,$J,358.3,54818,1,4,0)
- ;;=4^R30.9
- ;;^UTILITY(U,$J,358.3,54818,2)
- ;;=^5019324
- ;;^UTILITY(U,$J,358.3,54819,0)
- ;;=R30.0^^256^2771^26
- ;;^UTILITY(U,$J,358.3,54819,1,0)
+ ;;^UTILITY(U,$J,358.3,52067,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,52067,1,4,0)
+ ;;=4^Y36.810S
+ ;;^UTILITY(U,$J,358.3,52067,2)
+ ;;=^5061789
+ ;;^UTILITY(U,$J,358.3,52068,0)
+ ;;=Y36.6X0S^^193^2516^123
+ ;;^UTILITY(U,$J,358.3,52068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54819,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,54819,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,54819,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,54820,0)
- ;;=R33.9^^256^2771^105
- ;;^UTILITY(U,$J,358.3,54820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54820,1,3,0)
- ;;=3^Urine Retention,Unspec
- ;;^UTILITY(U,$J,358.3,54820,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,54820,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,54821,0)
- ;;=R32.^^256^2771^103
- ;;^UTILITY(U,$J,358.3,54821,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54821,1,3,0)
- ;;=3^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,54821,1,4,0)
- ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,52068,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Sequela

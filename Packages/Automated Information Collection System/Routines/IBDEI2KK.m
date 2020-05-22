@@ -1,138 +1,118 @@
-IBDEI2KK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2KK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43593,2)
- ;;=^108899
- ;;^UTILITY(U,$J,358.3,43594,0)
- ;;=C78.7^^167^2082^14
- ;;^UTILITY(U,$J,358.3,43594,1,0)
+ ;;^UTILITY(U,$J,358.3,41008,1,4,0)
+ ;;=4^Y36.6X0S
+ ;;^UTILITY(U,$J,358.3,41008,2)
+ ;;=^5061777
+ ;;^UTILITY(U,$J,358.3,41009,0)
+ ;;=Y36.410S^^152^2019^131
+ ;;^UTILITY(U,$J,358.3,41009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43594,1,3,0)
- ;;=3^Met Malig Neop Liver & Intrahepatic Duct
- ;;^UTILITY(U,$J,358.3,43594,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,43594,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,43595,0)
- ;;=C79.81^^167^2082^6
- ;;^UTILITY(U,$J,358.3,43595,1,0)
+ ;;^UTILITY(U,$J,358.3,41009,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,41009,1,4,0)
+ ;;=4^Y36.410S
+ ;;^UTILITY(U,$J,358.3,41009,2)
+ ;;=^5061693
+ ;;^UTILITY(U,$J,358.3,41010,0)
+ ;;=Y36.200S^^152^2019^128
+ ;;^UTILITY(U,$J,358.3,41010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43595,1,3,0)
- ;;=3^Met Malig Neop Breast
- ;;^UTILITY(U,$J,358.3,43595,1,4,0)
- ;;=4^C79.81
- ;;^UTILITY(U,$J,358.3,43595,2)
- ;;=^267338
- ;;^UTILITY(U,$J,358.3,43596,0)
- ;;=C79.82^^167^2082^7
- ;;^UTILITY(U,$J,358.3,43596,1,0)
+ ;;^UTILITY(U,$J,358.3,41010,1,3,0)
+ ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,41010,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,41010,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,41011,0)
+ ;;=Y36.300S^^152^2019^129
+ ;;^UTILITY(U,$J,358.3,41011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43596,1,3,0)
- ;;=3^Met Malig Neop Genital Organs
- ;;^UTILITY(U,$J,358.3,43596,1,4,0)
- ;;=4^C79.82
- ;;^UTILITY(U,$J,358.3,43596,2)
- ;;=^267339
- ;;^UTILITY(U,$J,358.3,43597,0)
- ;;=C79.01^^167^2082^23
- ;;^UTILITY(U,$J,358.3,43597,1,0)
+ ;;^UTILITY(U,$J,358.3,41011,1,3,0)
+ ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,41011,1,4,0)
+ ;;=4^Y36.300S
+ ;;^UTILITY(U,$J,358.3,41011,2)
+ ;;=^5061663
+ ;;^UTILITY(U,$J,358.3,41012,0)
+ ;;=Y36.230A^^152^2019^125
+ ;;^UTILITY(U,$J,358.3,41012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43597,1,3,0)
- ;;=3^Met Malig Neop Rt Kidney & Renal Pelvis
- ;;^UTILITY(U,$J,358.3,43597,1,4,0)
- ;;=4^C79.01
- ;;^UTILITY(U,$J,358.3,43597,2)
- ;;=^5001343
- ;;^UTILITY(U,$J,358.3,43598,0)
- ;;=C79.02^^167^2082^16
- ;;^UTILITY(U,$J,358.3,43598,1,0)
+ ;;^UTILITY(U,$J,358.3,41012,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41012,1,4,0)
+ ;;=4^Y36.230A
+ ;;^UTILITY(U,$J,358.3,41012,2)
+ ;;=^5061625
+ ;;^UTILITY(U,$J,358.3,41013,0)
+ ;;=Y36.230D^^152^2019^126
+ ;;^UTILITY(U,$J,358.3,41013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43598,1,3,0)
- ;;=3^Met Malig Neop Lt Kidney & Renal Pelvis
- ;;^UTILITY(U,$J,358.3,43598,1,4,0)
- ;;=4^C79.02
- ;;^UTILITY(U,$J,358.3,43598,2)
- ;;=^5001344
- ;;^UTILITY(U,$J,358.3,43599,0)
- ;;=C79.11^^167^2082^2
- ;;^UTILITY(U,$J,358.3,43599,1,0)
+ ;;^UTILITY(U,$J,358.3,41013,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,41013,1,4,0)
+ ;;=4^Y36.230D
+ ;;^UTILITY(U,$J,358.3,41013,2)
+ ;;=^5061626
+ ;;^UTILITY(U,$J,358.3,41014,0)
+ ;;=Y36.230S^^152^2019^127
+ ;;^UTILITY(U,$J,358.3,41014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43599,1,3,0)
- ;;=3^Met Malig Neop Bladder
- ;;^UTILITY(U,$J,358.3,43599,1,4,0)
- ;;=4^C79.11
- ;;^UTILITY(U,$J,358.3,43599,2)
- ;;=^5001346
- ;;^UTILITY(U,$J,358.3,43600,0)
- ;;=C79.19^^167^2082^28
- ;;^UTILITY(U,$J,358.3,43600,1,0)
+ ;;^UTILITY(U,$J,358.3,41014,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
+ ;;^UTILITY(U,$J,358.3,41014,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,41014,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,41015,0)
+ ;;=Y36.7X0S^^152^2019^139
+ ;;^UTILITY(U,$J,358.3,41015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43600,1,3,0)
- ;;=3^Met Malig Neop Urinary Organs
- ;;^UTILITY(U,$J,358.3,43600,1,4,0)
- ;;=4^C79.19
- ;;^UTILITY(U,$J,358.3,43600,2)
- ;;=^267332
- ;;^UTILITY(U,$J,358.3,43601,0)
- ;;=C79.2^^167^2082^26
- ;;^UTILITY(U,$J,358.3,43601,1,0)
+ ;;^UTILITY(U,$J,358.3,41015,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,41015,1,4,0)
+ ;;=4^Y36.7X0S
+ ;;^UTILITY(U,$J,358.3,41015,2)
+ ;;=^5061783
+ ;;^UTILITY(U,$J,358.3,41016,0)
+ ;;=V47.6XXA^^152^2019^14
+ ;;^UTILITY(U,$J,358.3,41016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43601,1,3,0)
- ;;=3^Met Malig Neop Skin
- ;;^UTILITY(U,$J,358.3,43601,1,4,0)
- ;;=4^C79.2
- ;;^UTILITY(U,$J,358.3,43601,2)
- ;;=^267333
- ;;^UTILITY(U,$J,358.3,43602,0)
- ;;=C79.31^^167^2082^5
- ;;^UTILITY(U,$J,358.3,43602,1,0)
+ ;;^UTILITY(U,$J,358.3,41016,1,3,0)
+ ;;=3^Car Pasngr Injured in Collsn w/ Fixed Obj/Traffic,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41016,1,4,0)
+ ;;=4^V47.6XXA
+ ;;^UTILITY(U,$J,358.3,41016,2)
+ ;;=^5140366
+ ;;^UTILITY(U,$J,358.3,41017,0)
+ ;;=V47.9XXA^^152^2019^13
+ ;;^UTILITY(U,$J,358.3,41017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43602,1,3,0)
- ;;=3^Met Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,43602,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,43602,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,43603,0)
- ;;=C79.51^^167^2082^3
- ;;^UTILITY(U,$J,358.3,43603,1,0)
+ ;;^UTILITY(U,$J,358.3,41017,1,3,0)
+ ;;=3^Car Occpnt,Unspec,Injured in Collsn w/ Fixed Obj/Traffic,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41017,1,4,0)
+ ;;=4^V47.9XXA
+ ;;^UTILITY(U,$J,358.3,41017,2)
+ ;;=^5140369
+ ;;^UTILITY(U,$J,358.3,41018,0)
+ ;;=W26.2XXA^^152^2019^15
+ ;;^UTILITY(U,$J,358.3,41018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43603,1,3,0)
- ;;=3^Met Malig Neop Bone
- ;;^UTILITY(U,$J,358.3,43603,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,43603,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,43604,0)
- ;;=C79.52^^167^2082^4
- ;;^UTILITY(U,$J,358.3,43604,1,0)
+ ;;^UTILITY(U,$J,358.3,41018,1,3,0)
+ ;;=3^Contact w/ Edge of Stiff Paper,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41018,1,4,0)
+ ;;=4^W26.2XXA
+ ;;^UTILITY(U,$J,358.3,41018,2)
+ ;;=^5140372
+ ;;^UTILITY(U,$J,358.3,41019,0)
+ ;;=W26.8XXA^^152^2019^16
+ ;;^UTILITY(U,$J,358.3,41019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43604,1,3,0)
- ;;=3^Met Malig Neop Bone Marrow
- ;;^UTILITY(U,$J,358.3,43604,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,43604,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,43605,0)
- ;;=C79.61^^167^2082^25
- ;;^UTILITY(U,$J,358.3,43605,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43605,1,3,0)
- ;;=3^Met Malig Neop Rt Ovary
- ;;^UTILITY(U,$J,358.3,43605,1,4,0)
- ;;=4^C79.61
- ;;^UTILITY(U,$J,358.3,43605,2)
- ;;=^5001353
- ;;^UTILITY(U,$J,358.3,43606,0)
- ;;=C79.62^^167^2082^18
- ;;^UTILITY(U,$J,358.3,43606,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43606,1,3,0)
- ;;=3^Met Malig Neop Lt Ovary
- ;;^UTILITY(U,$J,358.3,43606,1,4,0)
- ;;=4^C79.62
- ;;^UTILITY(U,$J,358.3,43606,2)
- ;;=^5001354
- ;;^UTILITY(U,$J,358.3,43607,0)
- ;;=C79.71^^167^2082^22
+ ;;^UTILITY(U,$J,358.3,41019,1,3,0)
+ ;;=3^Contact w/ Other Sharp Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41019,1,4,0)
+ ;;=4^W26.8XXA
+ ;;^UTILITY(U,$J,358.3,41019,2)
+ ;;=^5140375

@@ -1,136 +1,120 @@
-IBDEI1A1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1A1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21714,2)
- ;;=^5008484
- ;;^UTILITY(U,$J,358.3,21715,0)
- ;;=K12.2^^87^970^94
- ;;^UTILITY(U,$J,358.3,21715,1,0)
+ ;;^UTILITY(U,$J,358.3,20423,1,4,0)
+ ;;=4^S62.022S
+ ;;^UTILITY(U,$J,358.3,20423,2)
+ ;;=^5033128
+ ;;^UTILITY(U,$J,358.3,20424,0)
+ ;;=S62.021S^^93^1002^31
+ ;;^UTILITY(U,$J,358.3,20424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21715,1,3,0)
- ;;=3^Cellulitis & Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,21715,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,21715,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,21716,0)
- ;;=L02.01^^87^970^120
- ;;^UTILITY(U,$J,358.3,21716,1,0)
+ ;;^UTILITY(U,$J,358.3,20424,1,3,0)
+ ;;=3^Disp fx of middle third of navic bone of r wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20424,1,4,0)
+ ;;=4^S62.021S
+ ;;^UTILITY(U,$J,358.3,20424,2)
+ ;;=^5033121
+ ;;^UTILITY(U,$J,358.3,20425,0)
+ ;;=S62.162S^^93^1002^41
+ ;;^UTILITY(U,$J,358.3,20425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21716,1,3,0)
- ;;=3^Cutaneous Abscess of Face
- ;;^UTILITY(U,$J,358.3,21716,1,4,0)
- ;;=4^L02.01
- ;;^UTILITY(U,$J,358.3,21716,2)
- ;;=^5008944
- ;;^UTILITY(U,$J,358.3,21717,0)
- ;;=L02.11^^87^970^125
- ;;^UTILITY(U,$J,358.3,21717,1,0)
+ ;;^UTILITY(U,$J,358.3,20425,1,3,0)
+ ;;=3^Disp fx of pisiform, left wrist, sequela     
+ ;;^UTILITY(U,$J,358.3,20425,1,4,0)
+ ;;=4^S62.162S
+ ;;^UTILITY(U,$J,358.3,20425,2)
+ ;;=^5033436
+ ;;^UTILITY(U,$J,358.3,20426,0)
+ ;;=S62.161S^^93^1002^42
+ ;;^UTILITY(U,$J,358.3,20426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21717,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,21717,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,21717,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,21718,0)
- ;;=L02.211^^87^970^117
- ;;^UTILITY(U,$J,358.3,21718,1,0)
+ ;;^UTILITY(U,$J,358.3,20426,1,3,0)
+ ;;=3^Disp fx of pisiform, right wrist, sequela    
+ ;;^UTILITY(U,$J,358.3,20426,1,4,0)
+ ;;=4^S62.161S
+ ;;^UTILITY(U,$J,358.3,20426,2)
+ ;;=^5033429
+ ;;^UTILITY(U,$J,358.3,20427,0)
+ ;;=S62.032S^^93^1002^43
+ ;;^UTILITY(U,$J,358.3,20427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21718,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,21718,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,21718,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,21719,0)
- ;;=L02.212^^87^970^118
- ;;^UTILITY(U,$J,358.3,21719,1,0)
+ ;;^UTILITY(U,$J,358.3,20427,1,3,0)
+ ;;=3^Disp fx of proximal third of navic bone of l wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20427,1,4,0)
+ ;;=4^S62.032S
+ ;;^UTILITY(U,$J,358.3,20427,2)
+ ;;=^5033170
+ ;;^UTILITY(U,$J,358.3,20428,0)
+ ;;=S62.031S^^93^1002^44
+ ;;^UTILITY(U,$J,358.3,20428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21719,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,21719,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,21719,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,21720,0)
- ;;=L02.213^^87^970^119
- ;;^UTILITY(U,$J,358.3,21720,1,0)
+ ;;^UTILITY(U,$J,358.3,20428,1,3,0)
+ ;;=3^Disp fx of proximal third of navic bone of r wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20428,1,4,0)
+ ;;=4^S62.031S
+ ;;^UTILITY(U,$J,358.3,20428,2)
+ ;;=^5033163
+ ;;^UTILITY(U,$J,358.3,20429,0)
+ ;;=S62.172S^^93^1002^59
+ ;;^UTILITY(U,$J,358.3,20429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21720,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,21720,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,21720,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,21721,0)
- ;;=L02.214^^87^970^121
- ;;^UTILITY(U,$J,358.3,21721,1,0)
+ ;;^UTILITY(U,$J,358.3,20429,1,3,0)
+ ;;=3^Disp fx of trapezium, left wrist, sequela    
+ ;;^UTILITY(U,$J,358.3,20429,1,4,0)
+ ;;=4^S62.172S
+ ;;^UTILITY(U,$J,358.3,20429,2)
+ ;;=^5033478
+ ;;^UTILITY(U,$J,358.3,20430,0)
+ ;;=S62.171S^^93^1002^60
+ ;;^UTILITY(U,$J,358.3,20430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21721,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,21721,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,21721,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,21722,0)
- ;;=L02.215^^87^970^126
- ;;^UTILITY(U,$J,358.3,21722,1,0)
+ ;;^UTILITY(U,$J,358.3,20430,1,3,0)
+ ;;=3^Disp fx of trapezium, right wrist, sequela   
+ ;;^UTILITY(U,$J,358.3,20430,1,4,0)
+ ;;=4^S62.171S
+ ;;^UTILITY(U,$J,358.3,20430,2)
+ ;;=^5033471
+ ;;^UTILITY(U,$J,358.3,20431,0)
+ ;;=S62.182S^^93^1002^61
+ ;;^UTILITY(U,$J,358.3,20431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21722,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,21722,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,21722,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,21723,0)
- ;;=L02.216^^87^970^131
- ;;^UTILITY(U,$J,358.3,21723,1,0)
+ ;;^UTILITY(U,$J,358.3,20431,1,3,0)
+ ;;=3^Disp fx of trapezoid, left wrist, sequela   
+ ;;^UTILITY(U,$J,358.3,20431,1,4,0)
+ ;;=4^S62.182S
+ ;;^UTILITY(U,$J,358.3,20431,2)
+ ;;=^5033520
+ ;;^UTILITY(U,$J,358.3,20432,0)
+ ;;=S62.181S^^93^1002^62
+ ;;^UTILITY(U,$J,358.3,20432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21723,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,21723,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,21723,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,21724,0)
- ;;=L02.219^^87^970^130
- ;;^UTILITY(U,$J,358.3,21724,1,0)
+ ;;^UTILITY(U,$J,358.3,20432,1,3,0)
+ ;;=3^Disp fx of trapezoid, right wrist, sequela  
+ ;;^UTILITY(U,$J,358.3,20432,1,4,0)
+ ;;=4^S62.181S
+ ;;^UTILITY(U,$J,358.3,20432,2)
+ ;;=^5033513
+ ;;^UTILITY(U,$J,358.3,20433,0)
+ ;;=S62.112S^^93^1002^63
+ ;;^UTILITY(U,$J,358.3,20433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21724,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,21724,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,21724,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,21725,0)
- ;;=L02.32^^87^970^154
- ;;^UTILITY(U,$J,358.3,21725,1,0)
+ ;;^UTILITY(U,$J,358.3,20433,1,3,0)
+ ;;=3^Disp fx of triquetrum bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20433,1,4,0)
+ ;;=4^S62.112S
+ ;;^UTILITY(U,$J,358.3,20433,2)
+ ;;=^5033226
+ ;;^UTILITY(U,$J,358.3,20434,0)
+ ;;=S62.111S^^93^1002^64
+ ;;^UTILITY(U,$J,358.3,20434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21725,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,21725,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,21725,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,21726,0)
- ;;=L02.33^^87^970^92
- ;;^UTILITY(U,$J,358.3,21726,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21726,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,21726,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,21726,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,21727,0)
- ;;=L02.415^^87^970^129
- ;;^UTILITY(U,$J,358.3,21727,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21727,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,21727,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,21727,2)
- ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,20434,1,3,0)
+ ;;=3^Disp fx of triquetrum bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,20434,1,4,0)
+ ;;=4^S62.111S
+ ;;^UTILITY(U,$J,358.3,20434,2)
+ ;;=^5033219
+ ;;^UTILITY(U,$J,358.3,20435,0)
+ ;;=S62.145S^^93^1002^73

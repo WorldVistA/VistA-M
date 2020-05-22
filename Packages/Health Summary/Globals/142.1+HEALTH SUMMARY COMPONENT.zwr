@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
-17-OCT-2019 20:40:58 ZWR
+ZWR
 ^GMT(142.1,0)="HEALTH SUMMARY COMPONENT^142.1I^270^114"
 ^GMT(142.1,1,0)="ADVERSE REACTIONS/ALLERGIES^ALLRG;GMTSALG^^ADR^^^^^Adv React/Allerg"
 ^GMT(142.1,1,3.5,0)="^^6^6^2950823^^"
@@ -507,7 +507,7 @@ OSEHRA ZGO Export: HEALTH SUMMARY COMPONENT
 ^GMT(142.1,61,3.5,4,0)="parameter is set to NO), date of onset (if problem is active), date"
 ^GMT(142.1,61,3.5,5,0)="problem resolved (if inactive), date last modified, the responsible"
 ^GMT(142.1,61,3.5,6,0)="provider, and all active comments for the problems."
-^GMT(142.1,62,0)="SOCIAL WORK^MAIN;GMTSSOWK^^SW^^^^Social Work Service version 3.0 not yet installed^Social Work"
+^GMT(142.1,62,0)="SOCIAL WORK^MAIN;GMTSSOWK^^SW^^P^^Social Work Service version 3.0 not yet installed^Social Work"
 ^GMT(142.1,62,3.5,0)="^^3^3^2940706^"
 ^GMT(142.1,62,3.5,1,0)="This component provides information from the Social Work package about a"
 ^GMT(142.1,62,3.5,2,0)="patient's Social/Family Relationship, Current Substance Abuse Problems,"

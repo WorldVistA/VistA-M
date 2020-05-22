@@ -1,132 +1,128 @@
-IBDEI1CG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22845,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,22845,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,22845,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,22846,0)
- ;;=M05.762^^87^987^145
- ;;^UTILITY(U,$J,358.3,22846,1,0)
+ ;;^UTILITY(U,$J,358.3,21466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22846,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,22846,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,22846,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,22847,0)
- ;;=M05.771^^87^987^149
- ;;^UTILITY(U,$J,358.3,22847,1,0)
+ ;;^UTILITY(U,$J,358.3,21466,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,21466,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,21466,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,21467,0)
+ ;;=Z99.2^^95^1076^1
+ ;;^UTILITY(U,$J,358.3,21467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22847,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
- ;;^UTILITY(U,$J,358.3,22847,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,22847,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,22848,0)
- ;;=M05.772^^87^987^142
- ;;^UTILITY(U,$J,358.3,22848,1,0)
+ ;;^UTILITY(U,$J,358.3,21467,1,3,0)
+ ;;=3^Dependence on Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,21467,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,21467,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,21468,0)
+ ;;=Z91.15^^95^1076^2
+ ;;^UTILITY(U,$J,358.3,21468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22848,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
- ;;^UTILITY(U,$J,358.3,22848,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,22848,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,22849,0)
- ;;=M05.79^^87^987^148
- ;;^UTILITY(U,$J,358.3,22849,1,0)
+ ;;^UTILITY(U,$J,358.3,21468,1,3,0)
+ ;;=3^Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,21468,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,21468,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,21469,0)
+ ;;=Z98.890^^95^1076^3
+ ;;^UTILITY(U,$J,358.3,21469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22849,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
- ;;^UTILITY(U,$J,358.3,22849,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,22849,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,22850,0)
- ;;=M06.00^^87^987^155
- ;;^UTILITY(U,$J,358.3,22850,1,0)
+ ;;^UTILITY(U,$J,358.3,21469,1,3,0)
+ ;;=3^Postprocedural States,Oth Spec
+ ;;^UTILITY(U,$J,358.3,21469,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,21469,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,21470,0)
+ ;;=Z56.0^^95^1077^14
+ ;;^UTILITY(U,$J,358.3,21470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22850,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
- ;;^UTILITY(U,$J,358.3,22850,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,22850,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,22851,0)
- ;;=M06.30^^87^987^158
- ;;^UTILITY(U,$J,358.3,22851,1,0)
+ ;;^UTILITY(U,$J,358.3,21470,1,3,0)
+ ;;=3^Unemployment,Unspec
+ ;;^UTILITY(U,$J,358.3,21470,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,21470,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,21471,0)
+ ;;=Z65.5^^95^1077^4
+ ;;^UTILITY(U,$J,358.3,21471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22851,1,3,0)
- ;;=3^Rheumatoid Nodule,Unspec Site
- ;;^UTILITY(U,$J,358.3,22851,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,22851,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,22852,0)
- ;;=M06.4^^87^987^48
- ;;^UTILITY(U,$J,358.3,22852,1,0)
+ ;;^UTILITY(U,$J,358.3,21471,1,3,0)
+ ;;=3^Disaster/War/Hostility Exposure
+ ;;^UTILITY(U,$J,358.3,21471,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,21471,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,21472,0)
+ ;;=Z56.1^^95^1077^2
+ ;;^UTILITY(U,$J,358.3,21472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22852,1,3,0)
- ;;=3^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,22852,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,22852,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,22853,0)
- ;;=M06.39^^87^987^157
- ;;^UTILITY(U,$J,358.3,22853,1,0)
+ ;;^UTILITY(U,$J,358.3,21472,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,21472,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,21472,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,21473,0)
+ ;;=Z55.9^^95^1077^5
+ ;;^UTILITY(U,$J,358.3,21473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22853,1,3,0)
- ;;=3^Rheumatoid Nodule,Mult Sites
- ;;^UTILITY(U,$J,358.3,22853,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,22853,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,22854,0)
- ;;=M15.0^^87^987^121
- ;;^UTILITY(U,$J,358.3,22854,1,0)
+ ;;^UTILITY(U,$J,358.3,21473,1,3,0)
+ ;;=3^Education/Literacy Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,21473,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,21473,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,21474,0)
+ ;;=Z60.3^^95^1077^1
+ ;;^UTILITY(U,$J,358.3,21474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22854,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,22854,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,22854,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,22855,0)
- ;;=M06.9^^87^987^156
- ;;^UTILITY(U,$J,358.3,22855,1,0)
+ ;;^UTILITY(U,$J,358.3,21474,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,21474,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,21474,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,21475,0)
+ ;;=Z65.3^^95^1077^8
+ ;;^UTILITY(U,$J,358.3,21475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22855,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,22855,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,22855,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,22856,0)
- ;;=M16.0^^87^987^124
- ;;^UTILITY(U,$J,358.3,22856,1,0)
+ ;;^UTILITY(U,$J,358.3,21475,1,3,0)
+ ;;=3^Legal Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,21475,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,21475,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,21476,0)
+ ;;=Z53.1^^95^1077^11
+ ;;^UTILITY(U,$J,358.3,21476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22856,1,3,0)
- ;;=3^Primary Osteoarthritis of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,22856,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,22856,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,22857,0)
- ;;=M16.11^^87^987^133
- ;;^UTILITY(U,$J,358.3,22857,1,0)
+ ;;^UTILITY(U,$J,358.3,21476,1,3,0)
+ ;;=3^Procedure/Treatment not Done d/t Pt Belief/Group Pressure
+ ;;^UTILITY(U,$J,358.3,21476,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,21476,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,21477,0)
+ ;;=Z63.4^^95^1077^3
+ ;;^UTILITY(U,$J,358.3,21477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22857,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,22857,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,22857,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,22858,0)
- ;;=M16.12^^87^987^127
+ ;;^UTILITY(U,$J,358.3,21477,1,3,0)
+ ;;=3^Disappearance/Death of Family Member
+ ;;^UTILITY(U,$J,358.3,21477,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,21477,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,21478,0)
+ ;;=Z69.021^^95^1077^10
+ ;;^UTILITY(U,$J,358.3,21478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21478,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Non-Parental Child Abuse

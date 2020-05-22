@@ -1,140 +1,116 @@
-IBDEI1A6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1A6 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21780,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,21780,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,21781,0)
- ;;=L20.0^^87^970^90
- ;;^UTILITY(U,$J,358.3,21781,1,0)
+ ;;^UTILITY(U,$J,358.3,20480,1,4,0)
+ ;;=4^S52.271S
+ ;;^UTILITY(U,$J,358.3,20480,2)
+ ;;=^5029810
+ ;;^UTILITY(U,$J,358.3,20481,0)
+ ;;=S52.255S^^93^1002^79
+ ;;^UTILITY(U,$J,358.3,20481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21781,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,21781,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,21781,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,21782,0)
- ;;=L20.81^^87^970^87
- ;;^UTILITY(U,$J,358.3,21782,1,0)
+ ;;^UTILITY(U,$J,358.3,20481,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,20481,1,4,0)
+ ;;=4^S52.255S
+ ;;^UTILITY(U,$J,358.3,20481,2)
+ ;;=^5029682
+ ;;^UTILITY(U,$J,358.3,20482,0)
+ ;;=S52.254S^^93^1002^80
+ ;;^UTILITY(U,$J,358.3,20482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21782,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,21782,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,21782,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,21783,0)
- ;;=L20.82^^87^970^150
- ;;^UTILITY(U,$J,358.3,21783,1,0)
+ ;;^UTILITY(U,$J,358.3,20482,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,20482,1,4,0)
+ ;;=4^S52.254S
+ ;;^UTILITY(U,$J,358.3,20482,2)
+ ;;=^5029666
+ ;;^UTILITY(U,$J,358.3,20483,0)
+ ;;=S52.045S^^93^1002^81
+ ;;^UTILITY(U,$J,358.3,20483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21783,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,21783,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,21783,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,21784,0)
- ;;=L20.84^^87^970^162
- ;;^UTILITY(U,$J,358.3,21784,1,0)
+ ;;^UTILITY(U,$J,358.3,20483,1,3,0)
+ ;;=3^Nondisp fx of coronoid process of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20483,1,4,0)
+ ;;=4^S52.045S
+ ;;^UTILITY(U,$J,358.3,20483,2)
+ ;;=^5028954
+ ;;^UTILITY(U,$J,358.3,20484,0)
+ ;;=S52.044S^^93^1002^82
+ ;;^UTILITY(U,$J,358.3,20484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21784,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,21784,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,21784,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,21785,0)
- ;;=L20.89^^87^970^85
- ;;^UTILITY(U,$J,358.3,21785,1,0)
+ ;;^UTILITY(U,$J,358.3,20484,1,3,0)
+ ;;=3^Nondisp fx of coronoid process of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20484,1,4,0)
+ ;;=4^S52.044S
+ ;;^UTILITY(U,$J,358.3,20484,2)
+ ;;=^5028938
+ ;;^UTILITY(U,$J,358.3,20485,0)
+ ;;=S52.615S^^93^1002^90
+ ;;^UTILITY(U,$J,358.3,20485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21785,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,21785,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,21785,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,21786,0)
- ;;=L20.9^^87^970^86
- ;;^UTILITY(U,$J,358.3,21786,1,0)
+ ;;^UTILITY(U,$J,358.3,20485,1,3,0)
+ ;;=3^Nondisp fx of left ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,20485,1,4,0)
+ ;;=4^S52.615S
+ ;;^UTILITY(U,$J,358.3,20485,2)
+ ;;=^5031114
+ ;;^UTILITY(U,$J,358.3,20486,0)
+ ;;=S52.035S^^93^1002^101
+ ;;^UTILITY(U,$J,358.3,20486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21786,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21786,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,21786,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,21787,0)
- ;;=L21.8^^87^970^262
- ;;^UTILITY(U,$J,358.3,21787,1,0)
+ ;;^UTILITY(U,$J,358.3,20486,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20486,1,4,0)
+ ;;=4^S52.035S
+ ;;^UTILITY(U,$J,358.3,20486,2)
+ ;;=^5135140
+ ;;^UTILITY(U,$J,358.3,20487,0)
+ ;;=S52.034S^^93^1002^102
+ ;;^UTILITY(U,$J,358.3,20487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21787,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,21787,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,21787,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,21788,0)
- ;;=L21.9^^87^970^263
- ;;^UTILITY(U,$J,358.3,21788,1,0)
+ ;;^UTILITY(U,$J,358.3,20487,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w intartic extn right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20487,1,4,0)
+ ;;=4^S52.034S
+ ;;^UTILITY(U,$J,358.3,20487,2)
+ ;;=^5028869
+ ;;^UTILITY(U,$J,358.3,20488,0)
+ ;;=S52.025S^^93^1002^103
+ ;;^UTILITY(U,$J,358.3,20488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21788,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21788,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,21788,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,21789,0)
- ;;=L23.7^^87^970^30
- ;;^UTILITY(U,$J,358.3,21789,1,0)
+ ;;^UTILITY(U,$J,358.3,20488,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20488,1,4,0)
+ ;;=4^S52.025S
+ ;;^UTILITY(U,$J,358.3,20488,2)
+ ;;=^5028832
+ ;;^UTILITY(U,$J,358.3,20489,0)
+ ;;=S52.024S^^93^1002^104
+ ;;^UTILITY(U,$J,358.3,20489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21789,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,21789,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,21789,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,21790,0)
- ;;=L23.9^^87^970^31
- ;;^UTILITY(U,$J,358.3,21790,1,0)
+ ;;^UTILITY(U,$J,358.3,20489,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
+ ;;^UTILITY(U,$J,358.3,20489,1,4,0)
+ ;;=4^S52.024S
+ ;;^UTILITY(U,$J,358.3,20489,2)
+ ;;=^5028816
+ ;;^UTILITY(U,$J,358.3,20490,0)
+ ;;=S52.614S^^93^1002^110
+ ;;^UTILITY(U,$J,358.3,20490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21790,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21790,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,21790,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,21791,0)
- ;;=L24.9^^87^970^163
- ;;^UTILITY(U,$J,358.3,21791,1,0)
+ ;;^UTILITY(U,$J,358.3,20490,1,3,0)
+ ;;=3^Nondisp fx of right ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,20490,1,4,0)
+ ;;=4^S52.614S
+ ;;^UTILITY(U,$J,358.3,20490,2)
+ ;;=^5031098
+ ;;^UTILITY(U,$J,358.3,20491,0)
+ ;;=S52.235S^^93^1002^98
+ ;;^UTILITY(U,$J,358.3,20491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21791,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21791,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,21791,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,21792,0)
- ;;=L25.9^^87^970^115
- ;;^UTILITY(U,$J,358.3,21792,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21792,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21792,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,21792,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,21793,0)
- ;;=L26.^^87^970^148
- ;;^UTILITY(U,$J,358.3,21793,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21793,1,3,0)
- ;;=3^Exfoliative Dermatitis
- ;;^UTILITY(U,$J,358.3,21793,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,21793,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,21794,0)
- ;;=L27.0^^87^970^265
+ ;;^UTILITY(U,$J,358.3,20491,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,20491,1,4,0)
+ ;;=4^S52.235S

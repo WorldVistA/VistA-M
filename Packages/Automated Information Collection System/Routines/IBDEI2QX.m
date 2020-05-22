@@ -1,136 +1,124 @@
-IBDEI2QX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46080,2)
- ;;=^5012306
- ;;^UTILITY(U,$J,358.3,46081,0)
- ;;=M54.32^^203^2274^13
- ;;^UTILITY(U,$J,358.3,46081,1,0)
+ ;;^UTILITY(U,$J,358.3,43791,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,43791,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,43792,0)
+ ;;=Z89.422^^162^2152^7
+ ;;^UTILITY(U,$J,358.3,43792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46081,1,3,0)
- ;;=3^Sciatica,Left Side
- ;;^UTILITY(U,$J,358.3,46081,1,4,0)
- ;;=4^M54.32
- ;;^UTILITY(U,$J,358.3,46081,2)
- ;;=^5012307
- ;;^UTILITY(U,$J,358.3,46082,0)
- ;;=M43.8X9^^203^2274^15
- ;;^UTILITY(U,$J,358.3,46082,1,0)
+ ;;^UTILITY(U,$J,358.3,43792,1,3,0)
+ ;;=3^Acquired Absence of Left Toe(s)
+ ;;^UTILITY(U,$J,358.3,43792,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,43792,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,43793,0)
+ ;;=Z89.431^^162^2152^9
+ ;;^UTILITY(U,$J,358.3,43793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46082,1,3,0)
- ;;=3^Spinal Fusion
- ;;^UTILITY(U,$J,358.3,46082,1,4,0)
- ;;=4^M43.8X9
- ;;^UTILITY(U,$J,358.3,46082,2)
- ;;=^5011958
- ;;^UTILITY(U,$J,358.3,46083,0)
- ;;=M43.00^^203^2274^23
- ;;^UTILITY(U,$J,358.3,46083,1,0)
+ ;;^UTILITY(U,$J,358.3,43793,1,3,0)
+ ;;=3^Acquired Absence of Right Foot
+ ;;^UTILITY(U,$J,358.3,43793,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,43793,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,43794,0)
+ ;;=Z89.432^^162^2152^2
+ ;;^UTILITY(U,$J,358.3,43794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46083,1,3,0)
- ;;=3^Spondylolysis
- ;;^UTILITY(U,$J,358.3,46083,1,4,0)
- ;;=4^M43.00
- ;;^UTILITY(U,$J,358.3,46083,2)
- ;;=^5011911
- ;;^UTILITY(U,$J,358.3,46084,0)
- ;;=M43.10^^203^2274^22
- ;;^UTILITY(U,$J,358.3,46084,1,0)
+ ;;^UTILITY(U,$J,358.3,43794,1,3,0)
+ ;;=3^Acquired Absence of Left Foot
+ ;;^UTILITY(U,$J,358.3,43794,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,43794,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,43795,0)
+ ;;=Z89.441^^162^2152^8
+ ;;^UTILITY(U,$J,358.3,43795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46084,1,3,0)
- ;;=3^Spondylolisthesis
- ;;^UTILITY(U,$J,358.3,46084,1,4,0)
- ;;=4^M43.10
- ;;^UTILITY(U,$J,358.3,46084,2)
- ;;=^5011921
- ;;^UTILITY(U,$J,358.3,46085,0)
- ;;=S93.691S^^203^2275^17
- ;;^UTILITY(U,$J,358.3,46085,1,0)
+ ;;^UTILITY(U,$J,358.3,43795,1,3,0)
+ ;;=3^Acquired Absence of Right Ankle
+ ;;^UTILITY(U,$J,358.3,43795,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,43795,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,43796,0)
+ ;;=Z89.442^^162^2152^1
+ ;;^UTILITY(U,$J,358.3,43796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46085,1,3,0)
- ;;=3^Sprain,Right Foot,Sequela
- ;;^UTILITY(U,$J,358.3,46085,1,4,0)
- ;;=4^S93.691S
- ;;^UTILITY(U,$J,358.3,46085,2)
- ;;=^5045893
- ;;^UTILITY(U,$J,358.3,46086,0)
- ;;=S93.692S^^203^2275^4
- ;;^UTILITY(U,$J,358.3,46086,1,0)
+ ;;^UTILITY(U,$J,358.3,43796,1,3,0)
+ ;;=3^Acquired Absence of Left Ankle
+ ;;^UTILITY(U,$J,358.3,43796,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,43796,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,43797,0)
+ ;;=Z89.511^^162^2152^13
+ ;;^UTILITY(U,$J,358.3,43797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46086,1,3,0)
- ;;=3^Sprain,Left Foot,Sequela
- ;;^UTILITY(U,$J,358.3,46086,1,4,0)
- ;;=4^S93.692S
- ;;^UTILITY(U,$J,358.3,46086,2)
- ;;=^5137697
- ;;^UTILITY(U,$J,358.3,46087,0)
- ;;=S13.4XXS^^203^2275^1
- ;;^UTILITY(U,$J,358.3,46087,1,0)
+ ;;^UTILITY(U,$J,358.3,43797,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,43797,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,43797,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,43798,0)
+ ;;=Z89.512^^162^2152^6
+ ;;^UTILITY(U,$J,358.3,43798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46087,1,3,0)
- ;;=3^Sprain,Cervical Spine Ligaments,Sequela
- ;;^UTILITY(U,$J,358.3,46087,1,4,0)
- ;;=4^S13.4XXS
- ;;^UTILITY(U,$J,358.3,46087,2)
- ;;=^5022030
- ;;^UTILITY(U,$J,358.3,46088,0)
- ;;=S13.9XXS^^203^2275^13
- ;;^UTILITY(U,$J,358.3,46088,1,0)
+ ;;^UTILITY(U,$J,358.3,43798,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,43798,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,43798,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,43799,0)
+ ;;=Z89.611^^162^2152^12
+ ;;^UTILITY(U,$J,358.3,43799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46088,1,3,0)
- ;;=3^Sprain,Neck Joints/Ligaments,Sequela
- ;;^UTILITY(U,$J,358.3,46088,1,4,0)
- ;;=4^S13.9XXS
- ;;^UTILITY(U,$J,358.3,46088,2)
- ;;=^5022039
- ;;^UTILITY(U,$J,358.3,46089,0)
- ;;=S23.3XXS^^203^2275^26
- ;;^UTILITY(U,$J,358.3,46089,1,0)
+ ;;^UTILITY(U,$J,358.3,43799,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,43799,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,43799,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,43800,0)
+ ;;=Z89.612^^162^2152^5
+ ;;^UTILITY(U,$J,358.3,43800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46089,1,3,0)
- ;;=3^Sprain,Thoracic Spine Ligaments,Sequela
- ;;^UTILITY(U,$J,358.3,46089,1,4,0)
- ;;=4^S23.3XXS
- ;;^UTILITY(U,$J,358.3,46089,2)
- ;;=^5023248
- ;;^UTILITY(U,$J,358.3,46090,0)
- ;;=S23.41XS^^203^2275^14
- ;;^UTILITY(U,$J,358.3,46090,1,0)
+ ;;^UTILITY(U,$J,358.3,43800,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,43800,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,43800,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,43801,0)
+ ;;=Z89.621^^162^2152^11
+ ;;^UTILITY(U,$J,358.3,43801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46090,1,3,0)
- ;;=3^Sprain,Ribs,Sequela
- ;;^UTILITY(U,$J,358.3,46090,1,4,0)
- ;;=4^S23.41XS
- ;;^UTILITY(U,$J,358.3,46090,2)
- ;;=^5023251
- ;;^UTILITY(U,$J,358.3,46091,0)
- ;;=S23.429S^^203^2275^25
- ;;^UTILITY(U,$J,358.3,46091,1,0)
+ ;;^UTILITY(U,$J,358.3,43801,1,3,0)
+ ;;=3^Acquired Absence of Right Hip Joint
+ ;;^UTILITY(U,$J,358.3,43801,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,43801,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,43802,0)
+ ;;=Z89.622^^162^2152^4
+ ;;^UTILITY(U,$J,358.3,43802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46091,1,3,0)
- ;;=3^Sprain,Sternum,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46091,1,4,0)
- ;;=4^S23.429S
- ;;^UTILITY(U,$J,358.3,46091,2)
- ;;=^5023263
- ;;^UTILITY(U,$J,358.3,46092,0)
- ;;=S23.9XXS^^203^2275^27
- ;;^UTILITY(U,$J,358.3,46092,1,0)
+ ;;^UTILITY(U,$J,358.3,43802,1,3,0)
+ ;;=3^Acquired Absence of Left Hip Joint
+ ;;^UTILITY(U,$J,358.3,43802,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,43802,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,43803,0)
+ ;;=Z75.3^^162^2153^5
+ ;;^UTILITY(U,$J,358.3,43803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46092,1,3,0)
- ;;=3^Sprain,Thorax,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46092,1,4,0)
- ;;=4^S23.9XXS
- ;;^UTILITY(U,$J,358.3,46092,2)
- ;;=^5023269
- ;;^UTILITY(U,$J,358.3,46093,0)
- ;;=S33.9XXS^^203^2275^12
- ;;^UTILITY(U,$J,358.3,46093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46093,1,3,0)
- ;;=3^Sprain,Lumbar Spine/Pelvis,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46093,1,4,0)
- ;;=4^S33.9XXS
- ;;^UTILITY(U,$J,358.3,46093,2)
- ;;=^5025183
+ ;;^UTILITY(U,$J,358.3,43803,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health-Care Facilities

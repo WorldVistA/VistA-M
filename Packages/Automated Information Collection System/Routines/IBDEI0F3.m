@@ -1,368 +1,120 @@
-IBDEI0F3 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0F3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19073,1,0)
+ ;;^UTILITY(U,$J,358.3,6496,0)
+ ;;=I70.303^^53^417^50
+ ;;^UTILITY(U,$J,358.3,6496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19073,1,3,0)
- ;;=3^Adhesions Prepuce & Glans Penis
- ;;^UTILITY(U,$J,358.3,19073,1,4,0)
- ;;=4^N47.5
- ;;^UTILITY(U,$J,358.3,19073,2)
- ;;=^5015728
- ;;^UTILITY(U,$J,358.3,19074,0)
- ;;=N47.4^^55^784^19
- ;;^UTILITY(U,$J,358.3,19074,1,0)
+ ;;^UTILITY(U,$J,358.3,6496,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,6496,1,4,0)
+ ;;=4^I70.303
+ ;;^UTILITY(U,$J,358.3,6496,2)
+ ;;=^5007613
+ ;;^UTILITY(U,$J,358.3,6497,0)
+ ;;=I70.411^^53^417^26
+ ;;^UTILITY(U,$J,358.3,6497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19074,1,3,0)
- ;;=3^Cyst of Prepuce,Benign
- ;;^UTILITY(U,$J,358.3,19074,1,4,0)
- ;;=4^N47.4
- ;;^UTILITY(U,$J,358.3,19074,2)
- ;;=^5015727
- ;;^UTILITY(U,$J,358.3,19075,0)
- ;;=N47.8^^55^784^25
- ;;^UTILITY(U,$J,358.3,19075,1,0)
+ ;;^UTILITY(U,$J,358.3,6497,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,6497,1,4,0)
+ ;;=4^I70.411
+ ;;^UTILITY(U,$J,358.3,6497,2)
+ ;;=^5007654
+ ;;^UTILITY(U,$J,358.3,6498,0)
+ ;;=I70.412^^53^417^22
+ ;;^UTILITY(U,$J,358.3,6498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19075,1,3,0)
- ;;=3^Disorders of Prepuce
- ;;^UTILITY(U,$J,358.3,19075,1,4,0)
- ;;=4^N47.8
- ;;^UTILITY(U,$J,358.3,19075,2)
- ;;=^5015730
- ;;^UTILITY(U,$J,358.3,19076,0)
- ;;=N47.7^^55^784^58
- ;;^UTILITY(U,$J,358.3,19076,1,0)
+ ;;^UTILITY(U,$J,358.3,6498,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Left Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,6498,1,4,0)
+ ;;=4^I70.412
+ ;;^UTILITY(U,$J,358.3,6498,2)
+ ;;=^5007655
+ ;;^UTILITY(U,$J,358.3,6499,0)
+ ;;=I70.413^^53^417^19
+ ;;^UTILITY(U,$J,358.3,6499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19076,1,3,0)
- ;;=3^Inflammatory Diseases of Prepuce
- ;;^UTILITY(U,$J,358.3,19076,1,4,0)
- ;;=4^N47.7
- ;;^UTILITY(U,$J,358.3,19076,2)
- ;;=^5015729
- ;;^UTILITY(U,$J,358.3,19077,0)
- ;;=N47.6^^55^784^3
- ;;^UTILITY(U,$J,358.3,19077,1,0)
+ ;;^UTILITY(U,$J,358.3,6499,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Bilateral Legs w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,6499,1,4,0)
+ ;;=4^I70.413
+ ;;^UTILITY(U,$J,358.3,6499,2)
+ ;;=^5007656
+ ;;^UTILITY(U,$J,358.3,6500,0)
+ ;;=I70.421^^53^417^27
+ ;;^UTILITY(U,$J,358.3,6500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19077,1,3,0)
- ;;=3^Balanoposthitis
- ;;^UTILITY(U,$J,358.3,19077,1,4,0)
- ;;=4^N47.6
- ;;^UTILITY(U,$J,358.3,19077,2)
- ;;=^12530
- ;;^UTILITY(U,$J,358.3,19078,0)
- ;;=N48.1^^55^784^2
- ;;^UTILITY(U,$J,358.3,19078,1,0)
+ ;;^UTILITY(U,$J,358.3,6500,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,6500,1,4,0)
+ ;;=4^I70.421
+ ;;^UTILITY(U,$J,358.3,6500,2)
+ ;;=^5007659
+ ;;^UTILITY(U,$J,358.3,6501,0)
+ ;;=I70.422^^53^417^23
+ ;;^UTILITY(U,$J,358.3,6501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19078,1,3,0)
- ;;=3^Balanitis
- ;;^UTILITY(U,$J,358.3,19078,1,4,0)
- ;;=4^N48.1
- ;;^UTILITY(U,$J,358.3,19078,2)
- ;;=^12525
- ;;^UTILITY(U,$J,358.3,19079,0)
- ;;=N52.34^^55^784^38
- ;;^UTILITY(U,$J,358.3,19079,1,0)
+ ;;^UTILITY(U,$J,358.3,6501,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Left Leg w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,6501,1,4,0)
+ ;;=4^I70.422
+ ;;^UTILITY(U,$J,358.3,6501,2)
+ ;;=^5007660
+ ;;^UTILITY(U,$J,358.3,6502,0)
+ ;;=I70.423^^53^417^20
+ ;;^UTILITY(U,$J,358.3,6502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19079,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,19079,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,19079,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,19080,0)
- ;;=N52.39^^55^784^40
- ;;^UTILITY(U,$J,358.3,19080,1,0)
+ ;;^UTILITY(U,$J,358.3,6502,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Bilateral Legs w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,6502,1,4,0)
+ ;;=4^I70.423
+ ;;^UTILITY(U,$J,358.3,6502,2)
+ ;;=^5007661
+ ;;^UTILITY(U,$J,358.3,6503,0)
+ ;;=I70.439^^53^417^28
+ ;;^UTILITY(U,$J,358.3,6503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19080,1,3,0)
- ;;=3^Erectile Dysfunction Post-Surgical
- ;;^UTILITY(U,$J,358.3,19080,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,19080,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,19081,0)
- ;;=N52.33^^55^784^39
- ;;^UTILITY(U,$J,358.3,19081,1,0)
+ ;;^UTILITY(U,$J,358.3,6503,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,6503,1,4,0)
+ ;;=4^I70.439
+ ;;^UTILITY(U,$J,358.3,6503,2)
+ ;;=^5007670
+ ;;^UTILITY(U,$J,358.3,6504,0)
+ ;;=I70.449^^53^417^24
+ ;;^UTILITY(U,$J,358.3,6504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19081,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,19081,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,19081,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,19082,0)
- ;;=N52.32^^55^784^36
- ;;^UTILITY(U,$J,358.3,19082,1,0)
+ ;;^UTILITY(U,$J,358.3,6504,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Left Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,6504,1,4,0)
+ ;;=4^I70.449
+ ;;^UTILITY(U,$J,358.3,6504,2)
+ ;;=^5007677
+ ;;^UTILITY(U,$J,358.3,6505,0)
+ ;;=I70.461^^53^417^29
+ ;;^UTILITY(U,$J,358.3,6505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19082,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,19082,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,19082,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,19083,0)
- ;;=N52.31^^55^784^37
- ;;^UTILITY(U,$J,358.3,19083,1,0)
+ ;;^UTILITY(U,$J,358.3,6505,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,6505,1,4,0)
+ ;;=4^I70.461
+ ;;^UTILITY(U,$J,358.3,6505,2)
+ ;;=^5007679
+ ;;^UTILITY(U,$J,358.3,6506,0)
+ ;;=I70.462^^53^417^25
+ ;;^UTILITY(U,$J,358.3,6506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19083,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,19083,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,19083,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,19084,0)
- ;;=N52.2^^55^784^43
- ;;^UTILITY(U,$J,358.3,19084,1,0)
+ ;;^UTILITY(U,$J,358.3,6506,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,6506,1,4,0)
+ ;;=4^I70.462
+ ;;^UTILITY(U,$J,358.3,6506,2)
+ ;;=^5007680
+ ;;^UTILITY(U,$J,358.3,6507,0)
+ ;;=I70.463^^53^417^21
+ ;;^UTILITY(U,$J,358.3,6507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19084,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced
- ;;^UTILITY(U,$J,358.3,19084,1,4,0)
- ;;=4^N52.2
- ;;^UTILITY(U,$J,358.3,19084,2)
- ;;=^5015756
- ;;^UTILITY(U,$J,358.3,19085,0)
- ;;=N52.03^^55^784^34
- ;;^UTILITY(U,$J,358.3,19085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19085,1,3,0)
- ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
- ;;^UTILITY(U,$J,358.3,19085,1,4,0)
- ;;=4^N52.03
- ;;^UTILITY(U,$J,358.3,19085,2)
- ;;=^5015754
- ;;^UTILITY(U,$J,358.3,19086,0)
- ;;=N52.02^^55^784^35
- ;;^UTILITY(U,$J,358.3,19086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19086,1,3,0)
- ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,19086,1,4,0)
- ;;=4^N52.02
- ;;^UTILITY(U,$J,358.3,19086,2)
- ;;=^5015753
- ;;^UTILITY(U,$J,358.3,19087,0)
- ;;=N52.1^^55^784^42
- ;;^UTILITY(U,$J,358.3,19087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19087,1,3,0)
- ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,19087,1,4,0)
- ;;=4^N52.1
- ;;^UTILITY(U,$J,358.3,19087,2)
- ;;=^5015755
- ;;^UTILITY(U,$J,358.3,19088,0)
- ;;=N52.01^^55^784^41
- ;;^UTILITY(U,$J,358.3,19088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19088,1,3,0)
- ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
- ;;^UTILITY(U,$J,358.3,19088,1,4,0)
- ;;=4^N52.01
- ;;^UTILITY(U,$J,358.3,19088,2)
- ;;=^5015752
- ;;^UTILITY(U,$J,358.3,19089,0)
- ;;=N95.2^^55^784^81
- ;;^UTILITY(U,$J,358.3,19089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19089,1,3,0)
- ;;=3^Postmenopausal Atrophic Vaginitis
- ;;^UTILITY(U,$J,358.3,19089,1,4,0)
- ;;=4^N95.2
- ;;^UTILITY(U,$J,358.3,19089,2)
- ;;=^270577
- ;;^UTILITY(U,$J,358.3,19090,0)
- ;;=R30.9^^55^784^65
- ;;^UTILITY(U,$J,358.3,19090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19090,1,3,0)
- ;;=3^Micturition Painful,Unspec
- ;;^UTILITY(U,$J,358.3,19090,1,4,0)
- ;;=4^R30.9
- ;;^UTILITY(U,$J,358.3,19090,2)
- ;;=^5019324
- ;;^UTILITY(U,$J,358.3,19091,0)
- ;;=R30.0^^55^784^26
- ;;^UTILITY(U,$J,358.3,19091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19091,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,19091,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,19091,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,19092,0)
- ;;=R33.9^^55^784^105
- ;;^UTILITY(U,$J,358.3,19092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19092,1,3,0)
- ;;=3^Urine Retention,Unspec
- ;;^UTILITY(U,$J,358.3,19092,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,19092,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,19093,0)
- ;;=R32.^^55^784^103
- ;;^UTILITY(U,$J,358.3,19093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19093,1,3,0)
- ;;=3^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,19093,1,4,0)
- ;;=4^R32.
- ;;^UTILITY(U,$J,358.3,19093,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,19094,0)
- ;;=N39.41^^55^784^101
- ;;^UTILITY(U,$J,358.3,19094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19094,1,3,0)
- ;;=3^Urge Incontinence
- ;;^UTILITY(U,$J,358.3,19094,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,19094,2)
- ;;=^5015680
- ;;^UTILITY(U,$J,358.3,19095,0)
- ;;=R35.0^^55^784^63
- ;;^UTILITY(U,$J,358.3,19095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19095,1,3,0)
- ;;=3^Micturition Frequency
- ;;^UTILITY(U,$J,358.3,19095,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,19095,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,19096,0)
- ;;=R35.1^^55^784^73
- ;;^UTILITY(U,$J,358.3,19096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19096,1,3,0)
- ;;=3^Nocturia
- ;;^UTILITY(U,$J,358.3,19096,1,4,0)
- ;;=4^R35.1
- ;;^UTILITY(U,$J,358.3,19096,2)
- ;;=^5019335
- ;;^UTILITY(U,$J,358.3,19097,0)
- ;;=R39.11^^55^784^64
- ;;^UTILITY(U,$J,358.3,19097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19097,1,3,0)
- ;;=3^Micturition Hesitancy
- ;;^UTILITY(U,$J,358.3,19097,1,4,0)
- ;;=4^R39.11
- ;;^UTILITY(U,$J,358.3,19097,2)
- ;;=^5019341
- ;;^UTILITY(U,$J,358.3,19098,0)
- ;;=R39.16^^55^784^95
- ;;^UTILITY(U,$J,358.3,19098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19098,1,3,0)
- ;;=3^Straining to Void
- ;;^UTILITY(U,$J,358.3,19098,1,4,0)
- ;;=4^R39.16
- ;;^UTILITY(U,$J,358.3,19098,2)
- ;;=^5019346
- ;;^UTILITY(U,$J,358.3,19099,0)
- ;;=R36.0^^55^784^97
- ;;^UTILITY(U,$J,358.3,19099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19099,1,3,0)
- ;;=3^Urethral Discharge w/o Blood
- ;;^UTILITY(U,$J,358.3,19099,1,4,0)
- ;;=4^R36.0
- ;;^UTILITY(U,$J,358.3,19099,2)
- ;;=^5019337
- ;;^UTILITY(U,$J,358.3,19100,0)
- ;;=R36.9^^55^784^98
- ;;^UTILITY(U,$J,358.3,19100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19100,1,3,0)
- ;;=3^Urethral Discharge,Unspec
- ;;^UTILITY(U,$J,358.3,19100,1,4,0)
- ;;=4^R36.9
- ;;^UTILITY(U,$J,358.3,19100,2)
- ;;=^5019338
- ;;^UTILITY(U,$J,358.3,19101,0)
- ;;=R97.2^^55^784^27
- ;;^UTILITY(U,$J,358.3,19101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19101,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,19101,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,19101,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,19102,0)
- ;;=R80.1^^55^784^87
- ;;^UTILITY(U,$J,358.3,19102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19102,1,3,0)
- ;;=3^Proteinuria Persistent,Unspec
- ;;^UTILITY(U,$J,358.3,19102,1,4,0)
- ;;=4^R80.1
- ;;^UTILITY(U,$J,358.3,19102,2)
- ;;=^5019596
- ;;^UTILITY(U,$J,358.3,19103,0)
- ;;=R80.0^^55^784^85
- ;;^UTILITY(U,$J,358.3,19103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19103,1,3,0)
- ;;=3^Proteinuria Isolated
- ;;^UTILITY(U,$J,358.3,19103,1,4,0)
- ;;=4^R80.0
- ;;^UTILITY(U,$J,358.3,19103,2)
- ;;=^5019595
- ;;^UTILITY(U,$J,358.3,19104,0)
- ;;=R80.8^^55^784^88
- ;;^UTILITY(U,$J,358.3,19104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19104,1,3,0)
- ;;=3^Proteinuria,Other
- ;;^UTILITY(U,$J,358.3,19104,1,4,0)
- ;;=4^R80.8
- ;;^UTILITY(U,$J,358.3,19104,2)
- ;;=^5019598
- ;;^UTILITY(U,$J,358.3,19105,0)
- ;;=R80.3^^55^784^84
- ;;^UTILITY(U,$J,358.3,19105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19105,1,3,0)
- ;;=3^Proteinuria Bence Jones
- ;;^UTILITY(U,$J,358.3,19105,1,4,0)
- ;;=4^R80.3
- ;;^UTILITY(U,$J,358.3,19105,2)
- ;;=^13272
- ;;^UTILITY(U,$J,358.3,19106,0)
- ;;=R80.9^^55^784^89
- ;;^UTILITY(U,$J,358.3,19106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19106,1,3,0)
- ;;=3^Proteinuria,Unspec
- ;;^UTILITY(U,$J,358.3,19106,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,19106,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,19107,0)
- ;;=Z87.442^^55^784^77
- ;;^UTILITY(U,$J,358.3,19107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19107,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,19107,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,19107,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,19108,0)
- ;;=N18.1^^55^784^13
- ;;^UTILITY(U,$J,358.3,19108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19108,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 1
- ;;^UTILITY(U,$J,358.3,19108,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,19108,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,19109,0)
- ;;=N18.2^^55^784^14
- ;;^UTILITY(U,$J,358.3,19109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19109,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,6507,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Bilateral Legs w/ Gangrene

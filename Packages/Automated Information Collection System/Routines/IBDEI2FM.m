@@ -1,130 +1,134 @@
-IBDEI2FM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2FM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41251,1,0)
+ ;;^UTILITY(U,$J,358.3,38849,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,38849,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,38850,0)
+ ;;=I48.21^^152^1989^5
+ ;;^UTILITY(U,$J,358.3,38850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41251,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,41251,1,4,0)
- ;;=4^C82.60
- ;;^UTILITY(U,$J,358.3,41251,2)
- ;;=^5001521
- ;;^UTILITY(U,$J,358.3,41252,0)
- ;;=D56.2^^159^2004^54
- ;;^UTILITY(U,$J,358.3,41252,1,0)
+ ;;^UTILITY(U,$J,358.3,38850,1,3,0)
+ ;;=3^Atrial Fibrillation,Permanent
+ ;;^UTILITY(U,$J,358.3,38850,1,4,0)
+ ;;=4^I48.21
+ ;;^UTILITY(U,$J,358.3,38850,2)
+ ;;=^304710
+ ;;^UTILITY(U,$J,358.3,38851,0)
+ ;;=B07.9^^152^1990^328
+ ;;^UTILITY(U,$J,358.3,38851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41252,1,3,0)
- ;;=3^Delta-Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,41252,1,4,0)
- ;;=4^D56.2
- ;;^UTILITY(U,$J,358.3,41252,2)
- ;;=^340496
- ;;^UTILITY(U,$J,358.3,41253,0)
- ;;=D75.9^^159^2004^55
- ;;^UTILITY(U,$J,358.3,41253,1,0)
+ ;;^UTILITY(U,$J,358.3,38851,1,3,0)
+ ;;=3^Viral Wart,Unspec
+ ;;^UTILITY(U,$J,358.3,38851,1,4,0)
+ ;;=4^B07.9
+ ;;^UTILITY(U,$J,358.3,38851,2)
+ ;;=^5000519
+ ;;^UTILITY(U,$J,358.3,38852,0)
+ ;;=A63.0^^152^1990^35
+ ;;^UTILITY(U,$J,358.3,38852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41253,1,3,0)
- ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
- ;;^UTILITY(U,$J,358.3,41253,1,4,0)
- ;;=4^D75.9
- ;;^UTILITY(U,$J,358.3,41253,2)
- ;;=^5002393
- ;;^UTILITY(U,$J,358.3,41254,0)
- ;;=D59.0^^159^2004^58
- ;;^UTILITY(U,$J,358.3,41254,1,0)
+ ;;^UTILITY(U,$J,358.3,38852,1,3,0)
+ ;;=3^Anogenital (Venereal) Warts
+ ;;^UTILITY(U,$J,358.3,38852,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,38852,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,38853,0)
+ ;;=B35.0^^152^1990^319
+ ;;^UTILITY(U,$J,358.3,38853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41254,1,3,0)
- ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,41254,1,4,0)
- ;;=4^D59.0
- ;;^UTILITY(U,$J,358.3,41254,2)
- ;;=^5002323
- ;;^UTILITY(U,$J,358.3,41255,0)
- ;;=D59.2^^159^2004^59
- ;;^UTILITY(U,$J,358.3,41255,1,0)
+ ;;^UTILITY(U,$J,358.3,38853,1,3,0)
+ ;;=3^Tinea Barbae and Tinea Capitis
+ ;;^UTILITY(U,$J,358.3,38853,1,4,0)
+ ;;=4^B35.0
+ ;;^UTILITY(U,$J,358.3,38853,2)
+ ;;=^5000604
+ ;;^UTILITY(U,$J,358.3,38854,0)
+ ;;=B35.1^^152^1990^324
+ ;;^UTILITY(U,$J,358.3,38854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41255,1,3,0)
- ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,41255,1,4,0)
- ;;=4^D59.2
- ;;^UTILITY(U,$J,358.3,41255,2)
- ;;=^5002325
- ;;^UTILITY(U,$J,358.3,41256,0)
- ;;=R59.9^^159^2004^62
- ;;^UTILITY(U,$J,358.3,41256,1,0)
+ ;;^UTILITY(U,$J,358.3,38854,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,38854,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,38854,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,38855,0)
+ ;;=B35.6^^152^1990^321
+ ;;^UTILITY(U,$J,358.3,38855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41256,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,41256,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,41256,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,41257,0)
- ;;=D47.3^^159^2004^63
- ;;^UTILITY(U,$J,358.3,41257,1,0)
+ ;;^UTILITY(U,$J,358.3,38855,1,3,0)
+ ;;=3^Tinea Cruris
+ ;;^UTILITY(U,$J,358.3,38855,1,4,0)
+ ;;=4^B35.6
+ ;;^UTILITY(U,$J,358.3,38855,2)
+ ;;=^119711
+ ;;^UTILITY(U,$J,358.3,38856,0)
+ ;;=B35.3^^152^1990^323
+ ;;^UTILITY(U,$J,358.3,38856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41257,1,3,0)
- ;;=3^Essential Thrombocythemia
- ;;^UTILITY(U,$J,358.3,41257,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,41257,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,41258,0)
- ;;=C82.09^^159^2004^64
- ;;^UTILITY(U,$J,358.3,41258,1,0)
+ ;;^UTILITY(U,$J,358.3,38856,1,3,0)
+ ;;=3^Tinea Pedis
+ ;;^UTILITY(U,$J,358.3,38856,1,4,0)
+ ;;=4^B35.3
+ ;;^UTILITY(U,$J,358.3,38856,2)
+ ;;=^119732
+ ;;^UTILITY(U,$J,358.3,38857,0)
+ ;;=B35.5^^152^1990^322
+ ;;^UTILITY(U,$J,358.3,38857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41258,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,41258,1,4,0)
- ;;=4^C82.09
- ;;^UTILITY(U,$J,358.3,41258,2)
- ;;=^5001470
- ;;^UTILITY(U,$J,358.3,41259,0)
- ;;=C82.00^^159^2004^65
- ;;^UTILITY(U,$J,358.3,41259,1,0)
+ ;;^UTILITY(U,$J,358.3,38857,1,3,0)
+ ;;=3^Tinea Imbricata
+ ;;^UTILITY(U,$J,358.3,38857,1,4,0)
+ ;;=4^B35.5
+ ;;^UTILITY(U,$J,358.3,38857,2)
+ ;;=^119725
+ ;;^UTILITY(U,$J,358.3,38858,0)
+ ;;=B35.4^^152^1990^320
+ ;;^UTILITY(U,$J,358.3,38858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41259,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Unspec Site
- ;;^UTILITY(U,$J,358.3,41259,1,4,0)
- ;;=4^C82.00
- ;;^UTILITY(U,$J,358.3,41259,2)
- ;;=^5001461
- ;;^UTILITY(U,$J,358.3,41260,0)
- ;;=C82.19^^159^2004^66
- ;;^UTILITY(U,$J,358.3,41260,1,0)
+ ;;^UTILITY(U,$J,358.3,38858,1,3,0)
+ ;;=3^Tinea Corporis
+ ;;^UTILITY(U,$J,358.3,38858,1,4,0)
+ ;;=4^B35.4
+ ;;^UTILITY(U,$J,358.3,38858,2)
+ ;;=^119704
+ ;;^UTILITY(U,$J,358.3,38859,0)
+ ;;=B35.8^^152^1990^140
+ ;;^UTILITY(U,$J,358.3,38859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41260,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,41260,1,4,0)
- ;;=4^C82.19
- ;;^UTILITY(U,$J,358.3,41260,2)
- ;;=^5001480
- ;;^UTILITY(U,$J,358.3,41261,0)
- ;;=C82.10^^159^2004^67
- ;;^UTILITY(U,$J,358.3,41261,1,0)
+ ;;^UTILITY(U,$J,358.3,38859,1,3,0)
+ ;;=3^Dermatophytoses,Other
+ ;;^UTILITY(U,$J,358.3,38859,1,4,0)
+ ;;=4^B35.8
+ ;;^UTILITY(U,$J,358.3,38859,2)
+ ;;=^5000606
+ ;;^UTILITY(U,$J,358.3,38860,0)
+ ;;=B36.9^^152^1990^312
+ ;;^UTILITY(U,$J,358.3,38860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41261,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Unspec Site
- ;;^UTILITY(U,$J,358.3,41261,1,4,0)
- ;;=4^C82.10
- ;;^UTILITY(U,$J,358.3,41261,2)
- ;;=^5001471
- ;;^UTILITY(U,$J,358.3,41262,0)
- ;;=C82.29^^159^2004^68
- ;;^UTILITY(U,$J,358.3,41262,1,0)
+ ;;^UTILITY(U,$J,358.3,38860,1,3,0)
+ ;;=3^Superficial Mycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,38860,1,4,0)
+ ;;=4^B36.9
+ ;;^UTILITY(U,$J,358.3,38860,2)
+ ;;=^5000611
+ ;;^UTILITY(U,$J,358.3,38861,0)
+ ;;=D69.0^^152^1990^33
+ ;;^UTILITY(U,$J,358.3,38861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41262,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,41262,1,4,0)
- ;;=4^C82.29
- ;;^UTILITY(U,$J,358.3,41262,2)
- ;;=^5001490
- ;;^UTILITY(U,$J,358.3,41263,0)
- ;;=C82.20^^159^2004^69
- ;;^UTILITY(U,$J,358.3,41263,1,0)
+ ;;^UTILITY(U,$J,358.3,38861,1,3,0)
+ ;;=3^Allergic Purpura
+ ;;^UTILITY(U,$J,358.3,38861,1,4,0)
+ ;;=4^D69.0
+ ;;^UTILITY(U,$J,358.3,38861,2)
+ ;;=^5002365
+ ;;^UTILITY(U,$J,358.3,38862,0)
+ ;;=B00.9^^152^1990^161
+ ;;^UTILITY(U,$J,358.3,38862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41263,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Unspec Site
- ;;^UTILITY(U,$J,358.3,41263,1,4,0)
- ;;=4^C82.20
+ ;;^UTILITY(U,$J,358.3,38862,1,3,0)
+ ;;=3^Herpesviral Infection,Unspec

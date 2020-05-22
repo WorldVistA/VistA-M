@@ -1,130 +1,126 @@
-IBDEI2TX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47489,1,4,0)
- ;;=4^C84.15
- ;;^UTILITY(U,$J,358.3,47489,2)
- ;;=^5001636
- ;;^UTILITY(U,$J,358.3,47490,0)
- ;;=C84.16^^209^2346^458
- ;;^UTILITY(U,$J,358.3,47490,1,0)
+ ;;^UTILITY(U,$J,358.3,45129,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,45129,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,45129,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,45130,0)
+ ;;=B37.0^^170^2249^3
+ ;;^UTILITY(U,$J,358.3,45130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47490,1,3,0)
- ;;=3^Sezary Disease,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47490,1,4,0)
- ;;=4^C84.16
- ;;^UTILITY(U,$J,358.3,47490,2)
- ;;=^5001637
- ;;^UTILITY(U,$J,358.3,47491,0)
- ;;=C84.17^^209^2346^461
- ;;^UTILITY(U,$J,358.3,47491,1,0)
+ ;;^UTILITY(U,$J,358.3,45130,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,45130,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,45130,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,45131,0)
+ ;;=D04.9^^170^2249^20
+ ;;^UTILITY(U,$J,358.3,45131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47491,1,3,0)
- ;;=3^Sezary Disease,Spleen
- ;;^UTILITY(U,$J,358.3,47491,1,4,0)
- ;;=4^C84.17
- ;;^UTILITY(U,$J,358.3,47491,2)
- ;;=^5001638
- ;;^UTILITY(U,$J,358.3,47492,0)
- ;;=C84.18^^209^2346^460
- ;;^UTILITY(U,$J,358.3,47492,1,0)
+ ;;^UTILITY(U,$J,358.3,45131,1,3,0)
+ ;;=3^Carcinoma in Situ Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,45131,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,45131,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,45132,0)
+ ;;=D04.0^^170^2249^11
+ ;;^UTILITY(U,$J,358.3,45132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47492,1,3,0)
- ;;=3^Sezary Disease,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47492,1,4,0)
- ;;=4^C84.18
- ;;^UTILITY(U,$J,358.3,47492,2)
- ;;=^5001639
- ;;^UTILITY(U,$J,358.3,47493,0)
- ;;=C84.19^^209^2346^454
- ;;^UTILITY(U,$J,358.3,47493,1,0)
+ ;;^UTILITY(U,$J,358.3,45132,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Lip
+ ;;^UTILITY(U,$J,358.3,45132,1,4,0)
+ ;;=4^D04.0
+ ;;^UTILITY(U,$J,358.3,45132,2)
+ ;;=^267725
+ ;;^UTILITY(U,$J,358.3,45133,0)
+ ;;=D04.21^^170^2249^13
+ ;;^UTILITY(U,$J,358.3,45133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47493,1,3,0)
- ;;=3^Sezary Disease,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47493,1,4,0)
- ;;=4^C84.19
- ;;^UTILITY(U,$J,358.3,47493,2)
- ;;=^5001640
- ;;^UTILITY(U,$J,358.3,47494,0)
- ;;=C84.40^^209^2346^441
- ;;^UTILITY(U,$J,358.3,47494,1,0)
+ ;;^UTILITY(U,$J,358.3,45133,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,45133,1,4,0)
+ ;;=4^D04.21
+ ;;^UTILITY(U,$J,358.3,45133,2)
+ ;;=^5001913
+ ;;^UTILITY(U,$J,358.3,45134,0)
+ ;;=D04.22^^170^2249^6
+ ;;^UTILITY(U,$J,358.3,45134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47494,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,47494,1,4,0)
- ;;=4^C84.40
- ;;^UTILITY(U,$J,358.3,47494,2)
- ;;=^5001641
- ;;^UTILITY(U,$J,358.3,47495,0)
- ;;=C84.41^^209^2346^434
- ;;^UTILITY(U,$J,358.3,47495,1,0)
+ ;;^UTILITY(U,$J,358.3,45134,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,45134,1,4,0)
+ ;;=4^D04.22
+ ;;^UTILITY(U,$J,358.3,45134,2)
+ ;;=^5001914
+ ;;^UTILITY(U,$J,358.3,45135,0)
+ ;;=D04.30^^170^2249^5
+ ;;^UTILITY(U,$J,358.3,45135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47495,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47495,1,4,0)
- ;;=4^C84.41
- ;;^UTILITY(U,$J,358.3,47495,2)
- ;;=^5001642
- ;;^UTILITY(U,$J,358.3,47496,0)
- ;;=C84.42^^209^2346^438
- ;;^UTILITY(U,$J,358.3,47496,1,0)
+ ;;^UTILITY(U,$J,358.3,45135,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,45135,1,4,0)
+ ;;=4^D04.30
+ ;;^UTILITY(U,$J,358.3,45135,2)
+ ;;=^5001915
+ ;;^UTILITY(U,$J,358.3,45136,0)
+ ;;=D04.39^^170^2249^4
+ ;;^UTILITY(U,$J,358.3,45136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47496,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47496,1,4,0)
- ;;=4^C84.42
- ;;^UTILITY(U,$J,358.3,47496,2)
- ;;=^5001643
- ;;^UTILITY(U,$J,358.3,47497,0)
- ;;=C84.43^^209^2346^436
- ;;^UTILITY(U,$J,358.3,47497,1,0)
+ ;;^UTILITY(U,$J,358.3,45136,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Face NEC
+ ;;^UTILITY(U,$J,358.3,45136,1,4,0)
+ ;;=4^D04.39
+ ;;^UTILITY(U,$J,358.3,45136,2)
+ ;;=^5001916
+ ;;^UTILITY(U,$J,358.3,45137,0)
+ ;;=D04.4^^170^2249^18
+ ;;^UTILITY(U,$J,358.3,45137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47497,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47497,1,4,0)
- ;;=4^C84.43
- ;;^UTILITY(U,$J,358.3,47497,2)
- ;;=^5001644
- ;;^UTILITY(U,$J,358.3,47498,0)
- ;;=C84.44^^209^2346^432
- ;;^UTILITY(U,$J,358.3,47498,1,0)
+ ;;^UTILITY(U,$J,358.3,45137,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,45137,1,4,0)
+ ;;=4^D04.4
+ ;;^UTILITY(U,$J,358.3,45137,2)
+ ;;=^267729
+ ;;^UTILITY(U,$J,358.3,45138,0)
+ ;;=D04.5^^170^2249^19
+ ;;^UTILITY(U,$J,358.3,45138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47498,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47498,1,4,0)
- ;;=4^C84.44
- ;;^UTILITY(U,$J,358.3,47498,2)
- ;;=^5001645
- ;;^UTILITY(U,$J,358.3,47499,0)
- ;;=C84.45^^209^2346^435
- ;;^UTILITY(U,$J,358.3,47499,1,0)
+ ;;^UTILITY(U,$J,358.3,45138,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Trunk
+ ;;^UTILITY(U,$J,358.3,45138,1,4,0)
+ ;;=4^D04.5
+ ;;^UTILITY(U,$J,358.3,45138,2)
+ ;;=^5001917
+ ;;^UTILITY(U,$J,358.3,45139,0)
+ ;;=D04.61^^170^2249^17
+ ;;^UTILITY(U,$J,358.3,45139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47499,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47499,1,4,0)
- ;;=4^C84.45
- ;;^UTILITY(U,$J,358.3,47499,2)
- ;;=^5001646
- ;;^UTILITY(U,$J,358.3,47500,0)
- ;;=C84.46^^209^2346^437
- ;;^UTILITY(U,$J,358.3,47500,1,0)
+ ;;^UTILITY(U,$J,358.3,45139,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,45139,1,4,0)
+ ;;=4^D04.61
+ ;;^UTILITY(U,$J,358.3,45139,2)
+ ;;=^5001919
+ ;;^UTILITY(U,$J,358.3,45140,0)
+ ;;=D04.62^^170^2249^10
+ ;;^UTILITY(U,$J,358.3,45140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47500,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Intrapelvic Node
- ;;^UTILITY(U,$J,358.3,47500,1,4,0)
- ;;=4^C84.46
- ;;^UTILITY(U,$J,358.3,47500,2)
- ;;=^5001647
- ;;^UTILITY(U,$J,358.3,47501,0)
- ;;=C84.47^^209^2346^440
- ;;^UTILITY(U,$J,358.3,47501,1,0)
+ ;;^UTILITY(U,$J,358.3,45140,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,45140,1,4,0)
+ ;;=4^D04.62
+ ;;^UTILITY(U,$J,358.3,45140,2)
+ ;;=^5001920
+ ;;^UTILITY(U,$J,358.3,45141,0)
+ ;;=D04.71^^170^2249^15
+ ;;^UTILITY(U,$J,358.3,45141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47501,1,3,0)
- ;;=3^Peripheral T-Cell Lymphoma,Spleen
- ;;^UTILITY(U,$J,358.3,47501,1,4,0)
- ;;=4^C84.47
- ;;^UTILITY(U,$J,358.3,47501,2)
- ;;=^5001648
- ;;^UTILITY(U,$J,358.3,47502,0)
- ;;=C84.48^^209^2346^439
+ ;;^UTILITY(U,$J,358.3,45141,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Lower Limb

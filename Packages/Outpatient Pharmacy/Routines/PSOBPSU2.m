@@ -1,5 +1,5 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544**;DEC 1997;Build 19
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -265,3 +265,26 @@ UPDFL(RXREC,SUB,INDT) ;update fill date with release date when NDC changes at CM
  D AREC^PSOSUCH1
 FIN ;
  Q
+ ;
+SEND(PSORX,PSOFILL) ; Determine whether to send a claim.
+ ;
+ ; Returns: 1 = Send a claim
+ ;          0 = Do not send a claim
+ ;
+ ; A claim should not be sent if the last submission was rejected
+ ; and all rejects have been closed.
+ ;
+ ; If status of last submission is not E REJECTED, then send a claim.
+ ;
+ N PSOSTATUS
+ S PSOSTATUS=$$STATUS^PSOBPSUT(PSORX,PSOFILL)
+ I PSOSTATUS'="E REJECTED" Q 1
+ ;
+ ; If there are any open rejects, then send a claim.
+ ;
+ I $$FIND^PSOREJUT(PSORX,PSOFILL) Q 1
+ ;
+ ; The last submission was rejected, and there are no open rejects.
+ ; Quit with a 0 (zero) to indicate a claim should not be sent.
+ ;
+ Q 0

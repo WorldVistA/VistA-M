@@ -1,134 +1,122 @@
-IBDEI1M0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1M0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27304,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,27304,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,27305,0)
- ;;=E10.65^^106^1348^6
- ;;^UTILITY(U,$J,358.3,27305,1,0)
+ ;;^UTILITY(U,$J,358.3,25721,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,25721,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,25722,0)
+ ;;=R82.91^^107^1223^53
+ ;;^UTILITY(U,$J,358.3,25722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27305,1,3,0)
- ;;=3^Diabetes Type 1 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,27305,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,27305,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,27306,0)
- ;;=E11.21^^106^1348^9
- ;;^UTILITY(U,$J,358.3,27306,1,0)
+ ;;^UTILITY(U,$J,358.3,25722,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,25722,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,25722,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,25723,0)
+ ;;=R89.9^^107^1223^22
+ ;;^UTILITY(U,$J,358.3,25723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27306,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,27306,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,27306,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,27307,0)
- ;;=E10.29^^106^1348^3
- ;;^UTILITY(U,$J,358.3,27307,1,0)
+ ;;^UTILITY(U,$J,358.3,25723,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,25723,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,25723,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,25724,0)
+ ;;=R90.0^^107^1223^103
+ ;;^UTILITY(U,$J,358.3,25724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27307,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Kidney Complication
- ;;^UTILITY(U,$J,358.3,27307,1,4,0)
- ;;=4^E10.29
- ;;^UTILITY(U,$J,358.3,27307,2)
- ;;=^5002591
- ;;^UTILITY(U,$J,358.3,27308,0)
- ;;=E10.21^^106^1348^4
- ;;^UTILITY(U,$J,358.3,27308,1,0)
+ ;;^UTILITY(U,$J,358.3,25724,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,25724,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,25724,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,25725,0)
+ ;;=R90.89^^107^1223^16
+ ;;^UTILITY(U,$J,358.3,25725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27308,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,27308,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,27308,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,27309,0)
- ;;=E11.40^^106^1348^10
- ;;^UTILITY(U,$J,358.3,27309,1,0)
+ ;;^UTILITY(U,$J,358.3,25725,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,25725,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,25725,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,25726,0)
+ ;;=R91.8^^107^1223^21
+ ;;^UTILITY(U,$J,358.3,25726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27309,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy
- ;;^UTILITY(U,$J,358.3,27309,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,27309,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,27310,0)
- ;;=E10.40^^106^1348^5
- ;;^UTILITY(U,$J,358.3,27310,1,0)
+ ;;^UTILITY(U,$J,358.3,25726,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,25726,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,25726,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,25727,0)
+ ;;=R92.0^^107^1223^122
+ ;;^UTILITY(U,$J,358.3,25727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27310,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Neuropathy
- ;;^UTILITY(U,$J,358.3,27310,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,27310,2)
- ;;=^5002604
- ;;^UTILITY(U,$J,358.3,27311,0)
- ;;=E10.22^^106^1348^2
- ;;^UTILITY(U,$J,358.3,27311,1,0)
+ ;;^UTILITY(U,$J,358.3,25727,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,25727,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,25727,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,25728,0)
+ ;;=R92.1^^107^1223^121
+ ;;^UTILITY(U,$J,358.3,25728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27311,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic CKD
- ;;^UTILITY(U,$J,358.3,27311,1,4,0)
- ;;=4^E10.22
- ;;^UTILITY(U,$J,358.3,27311,2)
- ;;=^5002590
- ;;^UTILITY(U,$J,358.3,27312,0)
- ;;=E10.9^^106^1348^7
- ;;^UTILITY(U,$J,358.3,27312,1,0)
+ ;;^UTILITY(U,$J,358.3,25728,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,25728,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,25728,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,25729,0)
+ ;;=R92.2^^107^1223^96
+ ;;^UTILITY(U,$J,358.3,25729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27312,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,27312,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,27312,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,27313,0)
- ;;=E11.22^^106^1348^8
- ;;^UTILITY(U,$J,358.3,27313,1,0)
+ ;;^UTILITY(U,$J,358.3,25729,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,25729,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,25729,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,25730,0)
+ ;;=R93.0^^107^1223^10
+ ;;^UTILITY(U,$J,358.3,25730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27313,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic CKD
- ;;^UTILITY(U,$J,358.3,27313,1,4,0)
- ;;=4^E11.22
- ;;^UTILITY(U,$J,358.3,27313,2)
- ;;=^5002630
- ;;^UTILITY(U,$J,358.3,27314,0)
- ;;=E11.9^^106^1348^12
- ;;^UTILITY(U,$J,358.3,27314,1,0)
+ ;;^UTILITY(U,$J,358.3,25730,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,25730,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,25730,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,25731,0)
+ ;;=R93.2^^107^1223^9
+ ;;^UTILITY(U,$J,358.3,25731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27314,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,27314,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,27314,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,27315,0)
- ;;=E13.22^^106^1348^1
- ;;^UTILITY(U,$J,358.3,27315,1,0)
+ ;;^UTILITY(U,$J,358.3,25731,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,25731,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,25731,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,25732,0)
+ ;;=R93.3^^107^1223^7
+ ;;^UTILITY(U,$J,358.3,25732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27315,1,3,0)
- ;;=3^DM w/ Diabetic CKD,Other
- ;;^UTILITY(U,$J,358.3,27315,1,4,0)
- ;;=4^E13.22
- ;;^UTILITY(U,$J,358.3,27315,2)
- ;;=^5002671
- ;;^UTILITY(U,$J,358.3,27316,0)
- ;;=E83.30^^106^1349^26
- ;;^UTILITY(U,$J,358.3,27316,1,0)
+ ;;^UTILITY(U,$J,358.3,25732,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,25732,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,25732,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,25733,0)
+ ;;=R93.5^^107^1223^6
+ ;;^UTILITY(U,$J,358.3,25733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27316,1,3,0)
- ;;=3^Phosphorus Metabolism Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27316,1,4,0)
- ;;=4^E83.30
- ;;^UTILITY(U,$J,358.3,27316,2)
- ;;=^5002997
- ;;^UTILITY(U,$J,358.3,27317,0)
- ;;=E83.31^^106^1349^9
- ;;^UTILITY(U,$J,358.3,27317,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27317,1,3,0)
- ;;=3^Familial Hypophosphatemia

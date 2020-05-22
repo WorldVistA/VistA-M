@@ -1,5 +1,5 @@
 PSXRPPL1 ;BIR/WPB - Resets Suspense to Print/Transmit ;10/02/97
- ;;2.0;CMOP;**3,48,62,66,65,69,73,74,81,83**;11 Apr 97;Build 2
+ ;;2.0;CMOP;**3,48,62,66,65,69,73,74,81,83,87**;11 Apr 97;Build 8
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to File #59  supported by DBIA #1976
  ;Reference to PSOSURST  supported by DBIA #1970
@@ -23,6 +23,7 @@ START ;initializes local variables
  I '$D(^XUSEC("PSX XMIT",DUZ)) W !,"You are not authorized to use this option!" Q
  S SWITCH=0
  K ^TMP($J,"PSX")
+ ;
 QRY ;initial message and option menu
  W !
  S DIR(0)="NAO^1:3:0",DIR("A")="Select (1, 2, 3):  ",DIR("A",1)="  1 - Reset CMOP Batches for Transmission"
@@ -33,6 +34,7 @@ QRY ;initial message and option menu
  I REPLY=3 S PSXFLG=1 G START^PSOSURST
  K REPLY
  Q
+ ;
 BEGIN ;confirms CMOP processing, if Yes, checks for active site and status
  ;in the CMOP System file, if not an active site or the system status
  ;is not stopped the routine exits and processing stops
@@ -52,27 +54,33 @@ ASK1 I SWITCH=1 S %DT="AEX",%DT("A")="   BEGIN DATE:  " D ^%DT K %DT,%DT("A") G:
  I SWITCH=2 D PRINT Q
  S PSXSTAT="H" D PSXSTAT^PSXRSYU
  G EXIT
+ ;
 PSXTRANS ;
  W !!
  S DIR(0)="Y",DIR("B")="YES",DIR("A")="DO YOU WISH TO TRANSMIT TO THE CMOP NOW",DIR("?",1)="No - Exits the option.",DIR("?")="Yes - Transmits to the CMOP." D ^DIR K DIR Q:(Y=0)!($D(DIRUT))  K Y
  S PSXSTAT="T" D PSXSTAT^PSXRSYU,ASK^PSXRSUS
  Q
+ ;
 PRINT ;
  W !!
  S DIR(0)="Y",DIR("B")="YES",DIR("A")="DO YOU WISH REPRINT CMOP LABELS NOW",DIR("?",1)="No - Exits the option.",DIR("?")="Yes - Reprints CMOP labels." D ^DIR K DIR Q:(Y=0)!($D(DIRUT))  K Y
  S PSXSTAT="T" D PSXSTAT^PSXRSYU,ASK^PSXRSUS
  Q
+ ;
 SDT ;the following subroutines go through the PS(52.5 global and pull the
  ;data needed to reset the Queued/Printed nodes
  S SDT=PRTDT-1 F  S SDT=$O(^PS(52.5,"AP",SDT)),DFN=0 Q:(SDT>PSXDTRG)!(SDT="")  D DFN
  Q
+ ;
 DFN ;
  F  S DFN=$O(^PS(52.5,"AP",SDT,DFN)),REC=0 Q:(DFN="")!(DFN'>0)  D REC
  Q
+ ;
 REC ;
  F  S REC=$O(^PS(52.5,"AP",SDT,DFN,REC)) Q:(REC'>0)!(REC="")  D:$G(^PS(52.5,REC,0)) CHECK
  K ZDIV
  Q
+ ;
 CHECK ;
  S STAT=$P($G(^PS(52.5,REC,0)),U,7),PRINT=$G(^PS(52.5,REC,"P")),PSXPTR=$P($G(^PS(52.5,REC,0)),U,1)
  S RXF="" F XXF=0:0 S XXF=$O(^PSRX(PSXPTR,1,XXF)) Q:XXF'>0  S RXF=XXF
@@ -82,11 +90,13 @@ CHECK ;
  I (STAT="P")&(PRINT=1)&($G(GONE)="") D RESET
  K GONE,RXF,XXF
  Q
+ ;
 RESET ;resets the Queued/Printed flags to Queued and not Printed
  L +^PS(52.5,REC):DTIME Q:'$T
  S DIE="^PS(52.5,",DA=REC,DR="2////2;3////Q" D ^DIE L -^PS(52.5,REC) K DIE,DR,DA
  S:$G(PSXVER) $P(^PSRX(PSXPTR,"STA"),U,1)=5 S:'$G(PSXVER) $P(^PSRX(PSXPTR,0),U,15)=5 K ^PS(52.5,"AC",DFN,SDT,REC)
  Q
+ ;
 PRTERR ; auto error trap for prt cmop local
  S XXERR=$$EC^%ZOSV
  S PSXDIVNM=$$GET1^DIQ(59,PSOSITE,.01)
@@ -112,7 +122,12 @@ PRTERR ; auto error trap for prt cmop local
  . D ^DIE
  G UNWIND^%ZTER
  ;
-SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ; - Sumitting prescriptions to EMCE (3rd Party Billing)
+ ; $$SBTECME^PSXRPPL1 goes through the suspense queue for either CS
+ ; or non-CS prescriptions (according to PSXTYP), up to and including
+ ; the through date (PRTDT).  For each Rx, it will send a claim if
+ ; the patient has insurance.
+ ;
+SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ;
  ;Input: PSXTP  - Type of prescriptions "C" - Controlled Subs / "N" Non-Controlled Subs
  ;       PSXDV  - Pointer to DIVSION file (#59)
  ;       THRDT  - T+N when scheduling the THROUGH DATE to run CMOP Transmission
@@ -135,10 +150,20 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ; - Sumitting prescriptions to EMCE (3rd Party
  . . . . . I $$RETRX^PSOBPSUT(RX,RFL),SDT>DT Q
  . . . . . I $$DOUBLE(RX,RFL) Q
  . . . . . I $$FIND^PSOREJUT(RX,RFL,,"79,88",,1) Q
+ . . . . . ;
+ . . . . . ; If TRI/CVA and the Rx already has a closed eT/eC
+ . . . . . ; pseudo-reject, then do not send another claim.
+ . . . . . ;
+ . . . . . I $$TRICVANB(RX,RFL) D  Q
+ . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-SBTECME, $$TRICVANB returned 1")  ; ICR #4412,6764
+ . . . . . ;
  . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),'$$ECMESTAT^PSXRPPL2(RX,RFL) Q
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289") Q:'$$DUR^PSXRPPL2(RX,RFL)  ;ePharm Host error hold
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),RFL>0,$$STATUS^PSOBPSUT(RX,RFL-1)'="" Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply (refill)
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),RFL=0 Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply (original fill)
+ . . . . . ;
+ . . . . . ; ECMESND^PSOBPSU1 initiates the claim submission process.
+ . . . . . ;
  . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
  . . . . . ;
  . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-SBTECME, RESP="_$G(RESP))  ; ICR #4412,6764
@@ -170,3 +195,39 @@ EXIT ;
  K DFN,PSXDAYS,PSXDTRG,SWITCH,STAT,PRINT,PSXTRANS,REC,REPLY,SDT,X,X1,X2,Y,ANSWER,STATUS,PSXFLAG,PSXPTR,PSXSTAT
  K DIR,DIRUT,DTOUT,DUOUT,DIROUT
  Q
+ ;
+TRICVANB(PSXRX,PSXRFL) ; Check for TRI/CVA non-billable w/closed eT/eC.
+ ; Return: 1 if this is a TRICARE or CHAMPVA non-billable Rx
+ ;           which already has a closed eT/eC reject for this fill.
+ ;         0 if other.
+ ;
+ N PSXQUIT,PSXREJ,PSXREJCODE,PSXTRICVA
+ ;
+ ; Return 0 if not TRICARE or CHAMPVA.
+ ;
+ S PSXTRICVA=$$TRIC^PSOREJP1(PSXRX,PSXRFL)
+ I 'PSXTRICVA Q 0
+ ;
+ ; Determine which pseudo-reject we're looking for.
+ ;
+ I PSXTRICVA=1 S PSXREJCODE="eT"
+ E  S PSXREJCODE="eC"
+ ;
+ ; Find the most recent eT or eC reject for the current fill, if any.
+ ;
+ S PSXQUIT=0
+ S PSXREJ=999
+ F  S PSXREJ=$O(^PSRX(PSXRX,"REJ","B",PSXREJCODE,PSXREJ),-1) Q:'PSXREJ  D  Q:PSXQUIT
+ . I $$GET1^DIQ(52.25,PSXREJ_","_PSXRX_",",5)=PSXRFL S PSXQUIT=1
+ . Q
+ ;
+ ; Return 0 if we did not find an eT/eC for the current fill.
+ ;
+ I 'PSXREJ Q 0
+ ;
+ ; Return 0 if the reject is still open.
+ ;
+ I $$GET1^DIQ(52.25,PSXREJ_","_PSXRX_",",10)="" Q 0
+ ;
+ Q 1
+ ;

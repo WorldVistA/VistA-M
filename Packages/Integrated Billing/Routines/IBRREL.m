@@ -1,5 +1,5 @@
 IBRREL ;ALB/CPM - RELEASE MEANS TEST CHARGES 'ON HOLD' ; 03-MAR-92
- ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**95,153,199,347,452,651,663**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for stand-alone 'release' option
@@ -56,7 +56,7 @@ RESUME ; - display header and list charges
  ;
  ; - pass charges to Accounts Receivable
  W !!,"Passing charges to Accounts Receivable...",! D HDR
- F IBCTR=1:1 S IBNUM=$P(IBRANGE,",",IBCTR) Q:'IBNUM  I $D(IBA(IBNUM)) S IBNOS=IBA(IBNUM) D ^IBR,ERR:Y<1 I Y>0 S IBN=IBA(IBNUM) D LST
+ F IBCTR=1:1 S IBNUM=$P(IBRANGE,",",IBCTR) Q:'IBNUM  I $D(IBA(IBNUM)) S IBNOS=IBA(IBNUM) D ^IBR,ERR:Y<1 I Y>0 S IBN=IBA(IBNUM) D UPDUCDB(IBNOS) D LST
  W !!,"The charge"_$E("s",$P(IBRANGE,",",2)>0)_" listed above "_$S($P(IBRANGE,",",2):"have",1:"has")_" been passed to Accounts Receivable.",!
  ;
  I $G(IBNCPDPR) W !! S DIR(0)="E" D ^DIR K DIR G END   ; exit for ECME
@@ -118,7 +118,19 @@ HELP ; Help for the 'Select' prompt.
  W !?4,"greater than ",IBNUM-1,", to be passed to Accounts Receivable, or '^' to quit."
  Q
  ;
- ;
 AR ; Accounts Receivable entry point to release charges.
  ;   Input: PRCABN -- ien of Bill/Accounts Receivable
  Q:$D(PRCABN)[0  Q:'$$IB^IBRUTL(PRCABN,1)  G RESUME
+ ;
+ ;Start - IB*2.0*663
+UPDUCDB(IBN) ;Update the Visit Tracking DB with the bill Number
+ N IBND,IBVSTIEN
+ S IBND=$G(^IB(IBN,0))
+ ;IB*2.0*663 If charge successfully passed, extract the bill number and update the visit tracking database if this is a CC URGENT CARE Charge
+ I $P(IBND,U,11)'="",$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^")["CC URGENT CARE" D
+ . ; send update to the Visit Tracking file.
+ . S IBVSTIEN=$$FNDVST^IBECEA4("ON HOLD",$P(IBND,U,14),$P(IBND,U,2))
+ . ;ADD THE NOT FOUND MESSAGE HERE?
+ . D:+IBVSTIEN UPDATE^IBECEA38(IBVSTIEN,2,$P(IBND,U,11),"",1,.IBERROR)
+ Q
+ ;End IB*2.0*663

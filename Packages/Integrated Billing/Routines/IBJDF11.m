@@ -1,5 +1,5 @@
 IBJDF11 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (COMPILE) ;09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530,554,568,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530,554,568,618,663**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DQ ; - Tasked entry point.
@@ -13,14 +13,14 @@ DQ ; - Tasked entry point.
  .;
  .I IBA#100=0 S IBQ=$$STOP^IBOUTL("Third Party Follow-Up Report") Q:IBQ
  .;
- .;
- .;**IB*2.0*668 - Moved ahead of RI Bill check to ensure 
+ .;**IB*2.0*618 - Moved ahead of RI Bill check to ensure 
  .;               claim exists before checking rate types
  .;               on Community Care Categories.
  .I '$D(^DGCR(399,IBA,0)) Q  ; No corresponding claim to this AR.
  .;
  .S IBAR=$G(^PRCA(430,IBA,0))
- .;**IB*2.0*668 - Change add new AR Categories and AR Category/
+ .;
+ .;**IB*2.0*618 - Change add new AR Categories and AR Category/
  .;                 Rate Types
  .S IBARNUM=$$GET1^DIQ(430.2,$P(IBAR,U,2)_",",6)   ; Get AR Cat Num
  .Q:'$$CHKARNUM(IBARNUM)    ;Confirm RI Bill, quit if not
@@ -28,12 +28,9 @@ DQ ; - Tasked entry point.
  .; - Determine whether bill is inpatient, outpatient, or RX refill.
  .S IBTYP=$P($G(^DGCR(399,IBA,0)),U,5),IBTYP=$S(IBTYP>2:2,1:1)
  .S:$D(^IBA(362.4,"C",IBA)) IBTYP=3
- .I $P(IBAR,U,2)=45 S IBTYP=5  ;IB*2*554/DRF Look for Non-VA  *618 - Moved to FEE prompt
- .S IBTYP=$S(IBARNUM=50:7,IBARNUM=51:6,IBARNUM=52:8,IBARNUM=53:9,1:IBTYP)  ;CC types
- .;CC summary flag in case doing all CC types.
- .S IBCCFLG=0 I (IBTYP>4),(IBTYP<10) S IBCCFLG=1
- .;Quit if type doesnt match, didn't select all or not the summary 
- .I IBSEL'[IBTYP,IBSEL'[10,((+IBSEL=4)&(IBCCFLG=0)) Q
+ .I $P(IBAR,U,2)=45 S IBTYP=4  ;IB*2*554/DRF Look for Non-VA
+ .I $P(IBAR,U,2)>47,($P(IBAR,U,2)<52) S IBTYP=4  ;IB*2.0*6 - Community Care third party
+ .I IBSEL'[IBTYP,IBSEL'[5 Q
  .;
  .; - Check the receivable age, if necessary.
  .I IBSMN S:"Aa"[IBSDATE IBARD=$$ACT^IBJDF2(IBA) S:"Dd"[IBSDATE IBARD=$$DATE1^IBJDF2(IBA) Q:'IBARD  S:IBARD IBARD=$$FMDIFF^XLFDT(DT,IBARD) I IBARD<IBSMN!(IBARD>IBSMX) Q
@@ -66,9 +63,8 @@ DQ ; - Tasked entry point.
  .S IBWSC=$$OTH($P(IBWPT,U,5),$P(IBWIN,"@@",2),IBWFR),IBWOR=$P(IBAR,U,3)
  .S IBWSI=$P($G(^DPT(+$P(IBWPT,U,5),.312,+$P($G(^DGCR(399,IBA,"MP")),U,2),0)),U,2)
  .;
- .;**IB*2.0*618 - Add Non-VA summary
- .; - Set up main report index
- .F X=IBTYP,4,10 I IBSEL[X D
+ .; - Set up main report index.
+ .F X=IBTYP,5 I IBSEL[X D
  ..S ^TMP("IBJDF1",$J,IBDIV,X,IBWIN,$P(IBWPT,U)_"@@"_$P(IBWPT,U,5),IBWDP_"@@"_IBWBN)=$P(IBWPT,U,2)_" ("_$P(IBWPT,U,4)_")"_U_$P(IBWPT,U,3)_U_IBWSC_U_IBWFR_U_IBWTO_U_IBWOR_U_IBWBA_"~"_IBWRC_U_IBWSI
  .;
  .; - Add bill comment history, if necessary.
@@ -87,13 +83,11 @@ DQ ; - Tasked entry point.
  ...; - Get main comments.
  ...S X2=0 F  S X2=$O(^PRCA(433,X,7,X2)) Q:'X2  S COM($S(X1:X2+1,1:X2))=^(X2,0)
  ...;
- ...;**IB*2.0*618 - Added Non-VA to index collection.
- ...S X1="" F  S X1=$O(COM(X1)) Q:X1=""  F X2=IBTYP,4,10 I IBSEL[X2 D
+ ...S X1="" F  S X1=$O(COM(X1)) Q:X1=""  F X2=IBTYP,4 I IBSEL[X2 D
  ....S ^TMP("IBJDF1",$J,IBDIV,X2,IBWIN,$P(IBWPT,U)_"@@"_$P(IBWPT,U,5),IBWDP_"@@"_IBWBN,X,X1)=COM(X1)
  ;
  I 'IBQ D EN^IBJDF12 ; Print the report.
  ;
- ;IB*2.0*618 - Extract RI check and add new RI Categories
 CHKARNUM(IBCAT) ; Check for Reimbursable insurance
  ; 
  Q:IBCAT=21 1  ;Reimbursable Insurance - Third Party
@@ -107,8 +101,7 @@ ENQ K ^TMP("IBJDF1",$J)
  ;
  D ^%ZISC
 ENQ1 K IBA,IBAR,IBARD,IBBU,IBDIV,IBQ,IBIO,IBWRC,IBWPT,IBWDP,IBWIN,IBWBN
- K IBTYP,IBWSC,IBWSI,IBWFR,IBWTO,IBWOR,IBWBA,COM,COM1,DAT,VAUTD
- K IBCCFLG,IBARNUM           ;IB*2.0*618
+ K IBTYP,IBWSC,IBWSI,IBWFR,IBWTO,IBWOR,IBWBA,COM,COM1,DAT,VAUTD,IBARNUM
  K X,X1,X2,Y,Z
  Q
  ;

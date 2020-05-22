@@ -1,132 +1,116 @@
-IBDEI2GC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2GC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41587,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,41587,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,41587,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,41588,0)
- ;;=J20.0^^159^2006^11
- ;;^UTILITY(U,$J,358.3,41588,1,0)
+ ;;^UTILITY(U,$J,358.3,39159,2)
+ ;;=^5151437
+ ;;^UTILITY(U,$J,358.3,39160,0)
+ ;;=L97.125^^152^1990^220
+ ;;^UTILITY(U,$J,358.3,39160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41588,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,41588,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,41588,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,41589,0)
- ;;=J20.2^^159^2006^6
- ;;^UTILITY(U,$J,358.3,41589,1,0)
+ ;;^UTILITY(U,$J,358.3,39160,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39160,1,4,0)
+ ;;=4^L97.125
+ ;;^UTILITY(U,$J,358.3,39160,2)
+ ;;=^5151436
+ ;;^UTILITY(U,$J,358.3,39161,0)
+ ;;=L97.128^^152^1990^221
+ ;;^UTILITY(U,$J,358.3,39161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41589,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,41589,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,41589,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,41590,0)
- ;;=J20.4^^159^2006^13
- ;;^UTILITY(U,$J,358.3,41590,1,0)
+ ;;^UTILITY(U,$J,358.3,39161,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,39161,1,4,0)
+ ;;=4^L97.128
+ ;;^UTILITY(U,$J,358.3,39161,2)
+ ;;=^5151438
+ ;;^UTILITY(U,$J,358.3,39162,0)
+ ;;=L97.316^^152^1990^227
+ ;;^UTILITY(U,$J,358.3,39162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41590,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,41590,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,41590,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,41591,0)
- ;;=J20.3^^159^2006^8
- ;;^UTILITY(U,$J,358.3,41591,1,0)
+ ;;^UTILITY(U,$J,358.3,39162,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39162,1,4,0)
+ ;;=4^L97.316
+ ;;^UTILITY(U,$J,358.3,39162,2)
+ ;;=^5151452
+ ;;^UTILITY(U,$J,358.3,39163,0)
+ ;;=L97.315^^152^1990^228
+ ;;^UTILITY(U,$J,358.3,39163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41591,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,41591,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,41591,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,41592,0)
- ;;=J20.9^^159^2006^7
- ;;^UTILITY(U,$J,358.3,41592,1,0)
+ ;;^UTILITY(U,$J,358.3,39163,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39163,1,4,0)
+ ;;=4^L97.315
+ ;;^UTILITY(U,$J,358.3,39163,2)
+ ;;=^5151451
+ ;;^UTILITY(U,$J,358.3,39164,0)
+ ;;=L97.318^^152^1990^229
+ ;;^UTILITY(U,$J,358.3,39164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41592,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,41592,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,41592,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,41593,0)
- ;;=J20.8^^159^2006^12
- ;;^UTILITY(U,$J,358.3,41593,1,0)
+ ;;^UTILITY(U,$J,358.3,39164,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,39164,1,4,0)
+ ;;=4^L97.318
+ ;;^UTILITY(U,$J,358.3,39164,2)
+ ;;=^5151453
+ ;;^UTILITY(U,$J,358.3,39165,0)
+ ;;=L97.216^^152^1990^235
+ ;;^UTILITY(U,$J,358.3,39165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41593,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,41593,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,41593,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,41594,0)
- ;;=J20.5^^159^2006^14
- ;;^UTILITY(U,$J,358.3,41594,1,0)
+ ;;^UTILITY(U,$J,358.3,39165,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39165,1,4,0)
+ ;;=4^L97.216
+ ;;^UTILITY(U,$J,358.3,39165,2)
+ ;;=^5151443
+ ;;^UTILITY(U,$J,358.3,39166,0)
+ ;;=L97.215^^152^1990^236
+ ;;^UTILITY(U,$J,358.3,39166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41594,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,41594,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,41594,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,41595,0)
- ;;=J20.7^^159^2006^9
- ;;^UTILITY(U,$J,358.3,41595,1,0)
+ ;;^UTILITY(U,$J,358.3,39166,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39166,1,4,0)
+ ;;=4^L97.215
+ ;;^UTILITY(U,$J,358.3,39166,2)
+ ;;=^5151442
+ ;;^UTILITY(U,$J,358.3,39167,0)
+ ;;=L97.218^^152^1990^237
+ ;;^UTILITY(U,$J,358.3,39167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41595,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,41595,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,41595,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,41596,0)
- ;;=J20.6^^159^2006^15
- ;;^UTILITY(U,$J,358.3,41596,1,0)
+ ;;^UTILITY(U,$J,358.3,39167,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,39167,1,4,0)
+ ;;=4^L97.218
+ ;;^UTILITY(U,$J,358.3,39167,2)
+ ;;=^5151444
+ ;;^UTILITY(U,$J,358.3,39168,0)
+ ;;=L97.516^^152^1990^243
+ ;;^UTILITY(U,$J,358.3,39168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41596,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,41596,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,41596,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,41597,0)
- ;;=J18.9^^159^2006^67
- ;;^UTILITY(U,$J,358.3,41597,1,0)
+ ;;^UTILITY(U,$J,358.3,39168,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Bone Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39168,1,4,0)
+ ;;=4^L97.516
+ ;;^UTILITY(U,$J,358.3,39168,2)
+ ;;=^5151470
+ ;;^UTILITY(U,$J,358.3,39169,0)
+ ;;=L97.515^^152^1990^244
+ ;;^UTILITY(U,$J,358.3,39169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41597,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,41597,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,41597,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,41598,0)
- ;;=J18.8^^159^2006^68
- ;;^UTILITY(U,$J,358.3,41598,1,0)
+ ;;^UTILITY(U,$J,358.3,39169,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Msl Invl w/o Necrosis
+ ;;^UTILITY(U,$J,358.3,39169,1,4,0)
+ ;;=4^L97.515
+ ;;^UTILITY(U,$J,358.3,39169,2)
+ ;;=^5151469
+ ;;^UTILITY(U,$J,358.3,39170,0)
+ ;;=L97.518^^152^1990^245
+ ;;^UTILITY(U,$J,358.3,39170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41598,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,41598,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,41598,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,41599,0)
- ;;=J11.00^^159^2006^28
- ;;^UTILITY(U,$J,358.3,41599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41599,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
- ;;^UTILITY(U,$J,358.3,41599,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,41599,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,41600,0)
- ;;=J12.9^^159^2006^69
+ ;;^UTILITY(U,$J,358.3,39170,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Oth Severity
+ ;;^UTILITY(U,$J,358.3,39170,1,4,0)
+ ;;=4^L97.518
+ ;;^UTILITY(U,$J,358.3,39170,2)
+ ;;=^5151471

@@ -1,136 +1,114 @@
-IBDEI1FW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FW ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24458,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,24459,0)
- ;;=F63.0^^90^1077^1
- ;;^UTILITY(U,$J,358.3,24459,1,0)
+ ;;^UTILITY(U,$J,358.3,23025,1,4,0)
+ ;;=4^N99.821
+ ;;^UTILITY(U,$J,358.3,23025,2)
+ ;;=^5015969
+ ;;^UTILITY(U,$J,358.3,23026,0)
+ ;;=T88.8XXA^^105^1166^26
+ ;;^UTILITY(U,$J,358.3,23026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24459,1,3,0)
- ;;=3^Gambling Disorder
- ;;^UTILITY(U,$J,358.3,24459,1,4,0)
- ;;=4^F63.0
- ;;^UTILITY(U,$J,358.3,24459,2)
- ;;=^5003640
- ;;^UTILITY(U,$J,358.3,24460,0)
- ;;=F99.^^90^1078^1
- ;;^UTILITY(U,$J,358.3,24460,1,0)
+ ;;^UTILITY(U,$J,358.3,23026,1,3,0)
+ ;;=3^Complic,Surgical/Medical Care NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23026,1,4,0)
+ ;;=4^T88.8XXA
+ ;;^UTILITY(U,$J,358.3,23026,2)
+ ;;=^5055814
+ ;;^UTILITY(U,$J,358.3,23027,0)
+ ;;=T81.83XA^^105^1166^173
+ ;;^UTILITY(U,$J,358.3,23027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24460,1,3,0)
- ;;=3^Mental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,24460,1,4,0)
- ;;=4^F99.
- ;;^UTILITY(U,$J,358.3,24460,2)
- ;;=^5003720
- ;;^UTILITY(U,$J,358.3,24461,0)
- ;;=F06.8^^90^1078^2
- ;;^UTILITY(U,$J,358.3,24461,1,0)
+ ;;^UTILITY(U,$J,358.3,23027,1,3,0)
+ ;;=3^Persistent Postprocedural Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23027,1,4,0)
+ ;;=4^T81.83XA
+ ;;^UTILITY(U,$J,358.3,23027,2)
+ ;;=^5054659
+ ;;^UTILITY(U,$J,358.3,23028,0)
+ ;;=T81.89XA^^105^1166^25
+ ;;^UTILITY(U,$J,358.3,23028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24461,1,3,0)
- ;;=3^Mental Disorders,Oth Specified,d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,24461,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,24461,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,24462,0)
- ;;=F09.^^90^1078^3
- ;;^UTILITY(U,$J,358.3,24462,1,0)
+ ;;^UTILITY(U,$J,358.3,23028,1,3,0)
+ ;;=3^Complic,Procedures NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23028,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,23028,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,23029,0)
+ ;;=T81.9XXA^^105^1166^24
+ ;;^UTILITY(U,$J,358.3,23029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24462,1,3,0)
- ;;=3^Mental Disorders,Unspec,d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,24462,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,24462,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,24463,0)
- ;;=R45.851^^90^1078^4
- ;;^UTILITY(U,$J,358.3,24463,1,0)
+ ;;^UTILITY(U,$J,358.3,23029,1,3,0)
+ ;;=3^Complic,Procedure Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23029,1,4,0)
+ ;;=4^T81.9XXA
+ ;;^UTILITY(U,$J,358.3,23029,2)
+ ;;=^5054665
+ ;;^UTILITY(U,$J,358.3,23030,0)
+ ;;=T85.810A^^105^1166^48
+ ;;^UTILITY(U,$J,358.3,23030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24463,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,24463,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,24463,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,24464,0)
- ;;=F84.0^^90^1079^1
- ;;^UTILITY(U,$J,358.3,24464,1,0)
+ ;;^UTILITY(U,$J,358.3,23030,1,3,0)
+ ;;=3^Embol d/t Nervous System Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23030,1,4,0)
+ ;;=4^T85.810A
+ ;;^UTILITY(U,$J,358.3,23030,2)
+ ;;=^5140309
+ ;;^UTILITY(U,$J,358.3,23031,0)
+ ;;=T85.818A^^105^1166^49
+ ;;^UTILITY(U,$J,358.3,23031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24464,1,3,0)
- ;;=3^Autistic Disorder
- ;;^UTILITY(U,$J,358.3,24464,1,4,0)
- ;;=4^F84.0
- ;;^UTILITY(U,$J,358.3,24464,2)
- ;;=^5003684
- ;;^UTILITY(U,$J,358.3,24465,0)
- ;;=F80.9^^90^1079^2
- ;;^UTILITY(U,$J,358.3,24465,1,0)
+ ;;^UTILITY(U,$J,358.3,23031,1,3,0)
+ ;;=3^Embol d/t Oth Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23031,1,4,0)
+ ;;=4^T85.818A
+ ;;^UTILITY(U,$J,358.3,23031,2)
+ ;;=^5140312
+ ;;^UTILITY(U,$J,358.3,23032,0)
+ ;;=T85.820A^^105^1166^55
+ ;;^UTILITY(U,$J,358.3,23032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24465,1,3,0)
- ;;=3^Communication Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24465,1,4,0)
- ;;=4^F80.9
- ;;^UTILITY(U,$J,358.3,24465,2)
- ;;=^5003678
- ;;^UTILITY(U,$J,358.3,24466,0)
- ;;=F82.^^90^1079^3
- ;;^UTILITY(U,$J,358.3,24466,1,0)
+ ;;^UTILITY(U,$J,358.3,23032,1,3,0)
+ ;;=3^Fibrosis d/t Nervous System Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23032,1,4,0)
+ ;;=4^T85.820A
+ ;;^UTILITY(U,$J,358.3,23032,2)
+ ;;=^5140315
+ ;;^UTILITY(U,$J,358.3,23033,0)
+ ;;=T85.828A^^105^1166^56
+ ;;^UTILITY(U,$J,358.3,23033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24466,1,3,0)
- ;;=3^Developmental Coordination Disorder
- ;;^UTILITY(U,$J,358.3,24466,1,4,0)
- ;;=4^F82.
- ;;^UTILITY(U,$J,358.3,24466,2)
- ;;=^5003683
- ;;^UTILITY(U,$J,358.3,24467,0)
- ;;=F98.5^^90^1079^4
- ;;^UTILITY(U,$J,358.3,24467,1,0)
+ ;;^UTILITY(U,$J,358.3,23033,1,3,0)
+ ;;=3^Fibrosis d/t Other Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23033,1,4,0)
+ ;;=4^T85.828A
+ ;;^UTILITY(U,$J,358.3,23033,2)
+ ;;=^5140318
+ ;;^UTILITY(U,$J,358.3,23034,0)
+ ;;=T85.830A^^105^1166^61
+ ;;^UTILITY(U,$J,358.3,23034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24467,1,3,0)
- ;;=3^Fluency Disorder,Adult-Onset
- ;;^UTILITY(U,$J,358.3,24467,1,4,0)
- ;;=4^F98.5
- ;;^UTILITY(U,$J,358.3,24467,2)
- ;;=^5003717
- ;;^UTILITY(U,$J,358.3,24468,0)
- ;;=F88.^^90^1079^5
- ;;^UTILITY(U,$J,358.3,24468,1,0)
+ ;;^UTILITY(U,$J,358.3,23034,1,3,0)
+ ;;=3^Hemorrh d/t Nervous System Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23034,1,4,0)
+ ;;=4^T85.830A
+ ;;^UTILITY(U,$J,358.3,23034,2)
+ ;;=^5140321
+ ;;^UTILITY(U,$J,358.3,23035,0)
+ ;;=T85.838A^^105^1166^62
+ ;;^UTILITY(U,$J,358.3,23035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24468,1,3,0)
- ;;=3^Global Developmental Delay
- ;;^UTILITY(U,$J,358.3,24468,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,24468,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,24469,0)
- ;;=F80.2^^90^1079^6
- ;;^UTILITY(U,$J,358.3,24469,1,0)
+ ;;^UTILITY(U,$J,358.3,23035,1,3,0)
+ ;;=3^Hemorrh d/t Other Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23035,1,4,0)
+ ;;=4^T85.838A
+ ;;^UTILITY(U,$J,358.3,23035,2)
+ ;;=^5140324
+ ;;^UTILITY(U,$J,358.3,23036,0)
+ ;;=T83.61XA^^105^1166^77
+ ;;^UTILITY(U,$J,358.3,23036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24469,1,3,0)
- ;;=3^Language Disorder
- ;;^UTILITY(U,$J,358.3,24469,1,4,0)
- ;;=4^F80.2
- ;;^UTILITY(U,$J,358.3,24469,2)
- ;;=^331959
- ;;^UTILITY(U,$J,358.3,24470,0)
- ;;=F81.2^^90^1079^7
- ;;^UTILITY(U,$J,358.3,24470,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24470,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Mathematics
- ;;^UTILITY(U,$J,358.3,24470,1,4,0)
- ;;=4^F81.2
- ;;^UTILITY(U,$J,358.3,24470,2)
- ;;=^331957
- ;;^UTILITY(U,$J,358.3,24471,0)
- ;;=F81.0^^90^1079^8
- ;;^UTILITY(U,$J,358.3,24471,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24471,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Reading
- ;;^UTILITY(U,$J,358.3,24471,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,24471,2)
- ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,23036,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Implanted Penile Prosthesis,Init Encntr

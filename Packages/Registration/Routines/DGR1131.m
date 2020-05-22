@@ -1,5 +1,5 @@
-DGR1131 ;ALB/KUM - Health Benefit Plan View History Expanded - List Manager Screen for screen 11.3.1 ;5/30/19 10:56am 
- ;;5.3;Registration;**987**;Aug 13, 1993;Build 22
+DGR1131 ;ALB/KUM,BDB - Health Benefit Plan View History Expanded - List Manager Screen for screen 11.3.1 ;5/30/19 10:56am 
+ ;;5.3;Registration;**987,1006**;Aug 13, 1993;Build 6
  ;
 EN(DFN,DGNAME,HBP) ;Main entry point to invoke the DGEN HBP VIEWEXP list
  ; Input  --  DFN      Patient ID
@@ -19,9 +19,9 @@ HDR ;Header code
  I $D(^DPT(DFN,"TYPE")),$D(^DG(391,+^("TYPE"),0)) S X=$P(^DG(391,+^DPT(DFN,"TYPE"),0),U,1)
  S VALMHDR(1)=$$SETSTR^VALM1(X,VALMHDR(1),60,80)
  S VALMHDR(2)=" "
- S VALMHDR(3)="Action   Date         Plan Name"
- S VALMHDR(4)="------   ----         ---------"
- S DGSTR=$$TRIM^XLFSTR($E(DGNAME,6,999)),DGWD=80,DGSPC="                      "
+ S VALMHDR(3)="Action   Date/Time             Profile" ;DG*5.3*1006 BDB ; Time is now displayed with the date
+ S VALMHDR(4)="------   ---------             -------" ;DG*5.3*1006 BDB
+ S DGSTR=$$TRIM^XLFSTR($E(DGNAME,6,999)),DGWD=80,DGSPC="                               "
  D FSTRING(DGSTR,DGWD,.DGPLAN)
  S VALMHDR(5)=DGPLAN(1,0)
  I DGPLAN=2 D
@@ -35,8 +35,9 @@ INIT ; -- init variables and list array
  D CLEAN^VALM10
  D CLEAR^VALM1
  S LST=$P(HBP("DETAIL",0),"^",4)
- I LST="" W !,"No detail description is available for this Veteran Medical Benefit Plan"
- S DGACT=$$FIND1^DIC(25.11,,"XQ",$$TRIM^XLFSTR($E(DGNAME,28,999)))
+ ;I LST="" W !,"No detail description is available for this Veteran Medical Benefit Plan"
+ I LST="" W !,"No detail description is available for this VHA Profile" ;DG*5.3*1006 BDB
+ S DGACT=$$FIND1^DIC(25.11,,"XQ",$$TRIM^XLFSTR($E(DGNAME,37,999))) ;DG*5.3*1006 ; BDB; Plan name is at location 37
  F CNT=1:1:LST D SET^VALM10(CNT," "_HBP("DETAIL",DGACT,CNT))
  S VALMCNT=CNT
  S VALMBCK="R"

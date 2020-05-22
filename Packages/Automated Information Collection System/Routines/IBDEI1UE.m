@@ -1,122 +1,122 @@
-IBDEI1UE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1UE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31287,0)
- ;;=11011^^125^1579^3
- ;;^UTILITY(U,$J,358.3,31287,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31287,1,2,0)
- ;;=2^Debr Rmvl Foreign Material;Skin,Subq Tissue,Muscle
- ;;^UTILITY(U,$J,358.3,31287,1,3,0)
- ;;=3^11011
- ;;^UTILITY(U,$J,358.3,31288,0)
- ;;=11042^^125^1579^8
- ;;^UTILITY(U,$J,358.3,31288,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31288,1,2,0)
- ;;=2^Debridement; Skin & Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,31288,1,3,0)
- ;;=3^11042
- ;;^UTILITY(U,$J,358.3,31289,0)
- ;;=11043^^125^1579^9
- ;;^UTILITY(U,$J,358.3,31289,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31289,1,2,0)
- ;;=2^Debridement; Skin, Subcutaneous Tissue & Muscle 
- ;;^UTILITY(U,$J,358.3,31289,1,3,0)
- ;;=3^11043
- ;;^UTILITY(U,$J,358.3,31290,0)
- ;;=11044^^125^1579^10
- ;;^UTILITY(U,$J,358.3,31290,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31290,1,2,0)
- ;;=2^Debridement; Skin, Subcutaneous Tissue, Muscle & Bone
- ;;^UTILITY(U,$J,358.3,31290,1,3,0)
- ;;=3^11044
- ;;^UTILITY(U,$J,358.3,31291,0)
- ;;=11012^^125^1579^1^^^^1
- ;;^UTILITY(U,$J,358.3,31291,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31291,1,2,0)
- ;;=2^Debr Rmvl Foreign Material;Muscle,Bone
- ;;^UTILITY(U,$J,358.3,31291,1,3,0)
- ;;=3^11012
- ;;^UTILITY(U,$J,358.3,31292,0)
- ;;=11001^^125^1579^5^^^^1
- ;;^UTILITY(U,$J,358.3,31292,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31292,1,2,0)
- ;;=2^Debr of extensive eczematous;ea addl 10%
- ;;^UTILITY(U,$J,358.3,31292,1,3,0)
- ;;=3^11001
- ;;^UTILITY(U,$J,358.3,31293,0)
- ;;=97597^^125^1579^13^^^^1
- ;;^UTILITY(U,$J,358.3,31293,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31293,1,2,0)
- ;;=2^Rmvl Devital Tiss <= 20 Sq cm
- ;;^UTILITY(U,$J,358.3,31293,1,3,0)
- ;;=3^97597
- ;;^UTILITY(U,$J,358.3,31294,0)
- ;;=97602^^125^1579^12^^^^1
- ;;^UTILITY(U,$J,358.3,31294,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31294,1,2,0)
- ;;=2^Non-Selective Debridement
- ;;^UTILITY(U,$J,358.3,31294,1,3,0)
- ;;=3^97602
- ;;^UTILITY(U,$J,358.3,31295,0)
- ;;=97610^^125^1579^11^^^^1
- ;;^UTILITY(U,$J,358.3,31295,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31295,1,2,0)
- ;;=2^Low Freq Non-Thermal US,Wound Assess
- ;;^UTILITY(U,$J,358.3,31295,1,3,0)
- ;;=3^97610
- ;;^UTILITY(U,$J,358.3,31296,0)
- ;;=97598^^125^1579^14^^^^1
- ;;^UTILITY(U,$J,358.3,31296,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31296,1,2,0)
- ;;=2^Rmvl Devital Tiss,Ea Addl 20 sq cm
- ;;^UTILITY(U,$J,358.3,31296,1,3,0)
- ;;=3^97598
- ;;^UTILITY(U,$J,358.3,31297,0)
- ;;=11721^^125^1579^7^^^^1
- ;;^UTILITY(U,$J,358.3,31297,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31297,1,2,0)
- ;;=2^Debride Nails any method,6 or more
- ;;^UTILITY(U,$J,358.3,31297,1,3,0)
- ;;=3^11721
- ;;^UTILITY(U,$J,358.3,31298,0)
- ;;=11720^^125^1579^6^^^^1
- ;;^UTILITY(U,$J,358.3,31298,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31298,1,2,0)
- ;;=2^Debride Nails any method,1-5
- ;;^UTILITY(U,$J,358.3,31298,1,3,0)
- ;;=3^11720
- ;;^UTILITY(U,$J,358.3,31299,0)
- ;;=11300^^125^1580^5
- ;;^UTILITY(U,$J,358.3,31299,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31299,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;0.5cm or less
- ;;^UTILITY(U,$J,358.3,31299,1,3,0)
- ;;=3^11300
- ;;^UTILITY(U,$J,358.3,31300,0)
- ;;=11301^^125^1580^6
- ;;^UTILITY(U,$J,358.3,31300,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31300,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;0.6cm-1.0cm
- ;;^UTILITY(U,$J,358.3,31300,1,3,0)
- ;;=3^11301
- ;;^UTILITY(U,$J,358.3,31301,0)
- ;;=11302^^125^1580^7
- ;;^UTILITY(U,$J,358.3,31301,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,31301,1,2,0)
- ;;=2^Shaving of Epidermal Lesion,Single-Trunk,Arms,Legs;1.1cm-2.0cm
+ ;;^UTILITY(U,$J,358.3,29434,1,4,0)
+ ;;=4^F12.93
+ ;;^UTILITY(U,$J,358.3,29434,2)
+ ;;=^5157302
+ ;;^UTILITY(U,$J,358.3,29435,0)
+ ;;=F12.11^^118^1485^21
+ ;;^UTILITY(U,$J,358.3,29435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29435,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild,In Early Remission
+ ;;^UTILITY(U,$J,358.3,29435,1,4,0)
+ ;;=4^F12.11
+ ;;^UTILITY(U,$J,358.3,29435,2)
+ ;;=^268236
+ ;;^UTILITY(U,$J,358.3,29436,0)
+ ;;=F16.10^^118^1486^19
+ ;;^UTILITY(U,$J,358.3,29436,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29436,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,29436,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,29436,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,29437,0)
+ ;;=F16.20^^118^1486^21
+ ;;^UTILITY(U,$J,358.3,29437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29437,1,3,0)
+ ;;=3^Hallucinogen Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,29437,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,29437,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,29438,0)
+ ;;=F16.121^^118^1486^10
+ ;;^UTILITY(U,$J,358.3,29438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29438,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29438,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,29438,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,29439,0)
+ ;;=F16.221^^118^1486^11
+ ;;^UTILITY(U,$J,358.3,29439,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29439,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29439,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,29439,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,29440,0)
+ ;;=F16.921^^118^1486^12
+ ;;^UTILITY(U,$J,358.3,29440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29440,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29440,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,29440,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,29441,0)
+ ;;=F16.129^^118^1486^13
+ ;;^UTILITY(U,$J,358.3,29441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29441,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29441,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,29441,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,29442,0)
+ ;;=F16.229^^118^1486^14
+ ;;^UTILITY(U,$J,358.3,29442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29442,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29442,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,29442,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,29443,0)
+ ;;=F16.929^^118^1486^15
+ ;;^UTILITY(U,$J,358.3,29443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29443,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,29443,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,29443,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,29444,0)
+ ;;=F16.180^^118^1486^1
+ ;;^UTILITY(U,$J,358.3,29444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29444,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,29444,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,29444,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,29445,0)
+ ;;=F16.280^^118^1486^2
+ ;;^UTILITY(U,$J,358.3,29445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29445,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,29445,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,29445,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,29446,0)
+ ;;=F16.980^^118^1486^3
+ ;;^UTILITY(U,$J,358.3,29446,1,0)
+ ;;=^358.31IA^4^2

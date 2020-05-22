@@ -1,130 +1,128 @@
-IBDEI2JI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43088,0)
- ;;=I82.C12^^164^2060^14
- ;;^UTILITY(U,$J,358.3,43088,1,0)
+ ;;^UTILITY(U,$J,358.3,40557,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,40558,0)
+ ;;=R93.5^^152^2012^6
+ ;;^UTILITY(U,$J,358.3,40558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43088,1,3,0)
- ;;=3^AC Embol & Thromb Lt Int Jug Vein
- ;;^UTILITY(U,$J,358.3,43088,1,4,0)
- ;;=4^I82.C12
- ;;^UTILITY(U,$J,358.3,43088,2)
- ;;=^5007959
- ;;^UTILITY(U,$J,358.3,43089,0)
- ;;=I82.C13^^164^2060^4
- ;;^UTILITY(U,$J,358.3,43089,1,0)
+ ;;^UTILITY(U,$J,358.3,40558,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,40558,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,40558,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,40559,0)
+ ;;=R93.6^^152^2012^8
+ ;;^UTILITY(U,$J,358.3,40559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43089,1,3,0)
- ;;=3^AC Embol & Thromb Bil Int Jug Vein
- ;;^UTILITY(U,$J,358.3,43089,1,4,0)
- ;;=4^I82.C13
- ;;^UTILITY(U,$J,358.3,43089,2)
- ;;=^5007960
- ;;^UTILITY(U,$J,358.3,43090,0)
- ;;=I82.890^^164^2060^31
- ;;^UTILITY(U,$J,358.3,43090,1,0)
+ ;;^UTILITY(U,$J,358.3,40559,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,40559,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,40559,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,40560,0)
+ ;;=R94.4^^152^2012^19
+ ;;^UTILITY(U,$J,358.3,40560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43090,1,3,0)
- ;;=3^AC Embol & Thromb oth Spec Veins
- ;;^UTILITY(U,$J,358.3,43090,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,43090,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,43091,0)
- ;;=I83.011^^164^2060^169
- ;;^UTILITY(U,$J,358.3,43091,1,0)
+ ;;^UTILITY(U,$J,358.3,40560,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,40560,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,40560,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,40561,0)
+ ;;=R94.5^^152^2012^20
+ ;;^UTILITY(U,$J,358.3,40561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43091,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Thigh
- ;;^UTILITY(U,$J,358.3,43091,1,4,0)
- ;;=4^I83.011
- ;;^UTILITY(U,$J,358.3,43091,2)
- ;;=^5007973
- ;;^UTILITY(U,$J,358.3,43092,0)
- ;;=I83.012^^164^2060^165
- ;;^UTILITY(U,$J,358.3,43092,1,0)
+ ;;^UTILITY(U,$J,358.3,40561,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,40561,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,40561,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,40562,0)
+ ;;=R94.6^^152^2012^24
+ ;;^UTILITY(U,$J,358.3,40562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43092,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Calf
- ;;^UTILITY(U,$J,358.3,43092,1,4,0)
- ;;=4^I83.012
- ;;^UTILITY(U,$J,358.3,43092,2)
- ;;=^5007974
- ;;^UTILITY(U,$J,358.3,43093,0)
- ;;=I83.013^^164^2060^163
- ;;^UTILITY(U,$J,358.3,43093,1,0)
+ ;;^UTILITY(U,$J,358.3,40562,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,40562,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,40562,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,40563,0)
+ ;;=R94.7^^152^2012^5
+ ;;^UTILITY(U,$J,358.3,40563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43093,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Ankle
- ;;^UTILITY(U,$J,358.3,43093,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,43093,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,43094,0)
- ;;=I83.014^^164^2060^166
- ;;^UTILITY(U,$J,358.3,43094,1,0)
+ ;;^UTILITY(U,$J,358.3,40563,1,3,0)
+ ;;=3^Abnormal Endocrine Function Studies NEC
+ ;;^UTILITY(U,$J,358.3,40563,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,40563,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,40564,0)
+ ;;=R94.31^^152^2012^4
+ ;;^UTILITY(U,$J,358.3,40564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43094,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,43094,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,43094,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,43095,0)
- ;;=I83.015^^164^2060^168
- ;;^UTILITY(U,$J,358.3,43095,1,0)
+ ;;^UTILITY(U,$J,358.3,40564,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,40564,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,40564,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,40565,0)
+ ;;=R97.0^^152^2012^72
+ ;;^UTILITY(U,$J,358.3,40565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43095,1,3,0)
- ;;=3^Varic Veins Rt LE w/ Ulc of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,43095,1,4,0)
- ;;=4^I83.015
- ;;^UTILITY(U,$J,358.3,43095,2)
- ;;=^5007977
- ;;^UTILITY(U,$J,358.3,43096,0)
- ;;=I83.023^^164^2060^148
- ;;^UTILITY(U,$J,358.3,43096,1,0)
+ ;;^UTILITY(U,$J,358.3,40565,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,40565,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,40565,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,40566,0)
+ ;;=R97.1^^152^2012^71
+ ;;^UTILITY(U,$J,358.3,40566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43096,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Ankle
- ;;^UTILITY(U,$J,358.3,43096,1,4,0)
- ;;=4^I83.023
- ;;^UTILITY(U,$J,358.3,43096,2)
- ;;=^5007982
- ;;^UTILITY(U,$J,358.3,43097,0)
- ;;=I83.024^^164^2060^152
- ;;^UTILITY(U,$J,358.3,43097,1,0)
+ ;;^UTILITY(U,$J,358.3,40566,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,40566,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,40566,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,40567,0)
+ ;;=R97.8^^152^2012^25
+ ;;^UTILITY(U,$J,358.3,40567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43097,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,43097,1,4,0)
- ;;=4^I83.024
- ;;^UTILITY(U,$J,358.3,43097,2)
- ;;=^5007983
- ;;^UTILITY(U,$J,358.3,43098,0)
- ;;=I83.025^^164^2060^156
- ;;^UTILITY(U,$J,358.3,43098,1,0)
+ ;;^UTILITY(U,$J,358.3,40567,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,40567,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,40567,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,40568,0)
+ ;;=R93.1^^152^2012^17
+ ;;^UTILITY(U,$J,358.3,40568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43098,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,43098,1,4,0)
- ;;=4^I83.025
- ;;^UTILITY(U,$J,358.3,43098,2)
- ;;=^5007984
- ;;^UTILITY(U,$J,358.3,43099,0)
- ;;=I83.021^^164^2060^158
- ;;^UTILITY(U,$J,358.3,43099,1,0)
+ ;;^UTILITY(U,$J,358.3,40568,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,40568,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,40568,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,40569,0)
+ ;;=R68.83^^152^2012^52
+ ;;^UTILITY(U,$J,358.3,40569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43099,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Thigh
- ;;^UTILITY(U,$J,358.3,43099,1,4,0)
- ;;=4^I83.021
- ;;^UTILITY(U,$J,358.3,43099,2)
- ;;=^5007980
- ;;^UTILITY(U,$J,358.3,43100,0)
- ;;=I83.022^^164^2060^150
- ;;^UTILITY(U,$J,358.3,43100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43100,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Calf
+ ;;^UTILITY(U,$J,358.3,40569,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,40569,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,40569,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,40570,0)
+ ;;=R68.2^^152^2012^67

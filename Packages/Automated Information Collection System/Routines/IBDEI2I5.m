@@ -1,126 +1,122 @@
-IBDEI2I5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2I5 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42426,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,42426,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,42427,0)
- ;;=R40.2323^^159^2022^4
- ;;^UTILITY(U,$J,358.3,42427,1,0)
+ ;;^UTILITY(U,$J,358.3,39954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42427,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,42427,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,42427,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,42428,0)
- ;;=R40.2322^^159^2022^2
- ;;^UTILITY(U,$J,358.3,42428,1,0)
+ ;;^UTILITY(U,$J,358.3,39954,1,3,0)
+ ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,39954,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,39954,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,39955,0)
+ ;;=J12.9^^152^2002^69
+ ;;^UTILITY(U,$J,358.3,39955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42428,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,42428,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,42428,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,42429,0)
- ;;=R40.2321^^159^2022^5
- ;;^UTILITY(U,$J,358.3,42429,1,0)
+ ;;^UTILITY(U,$J,358.3,39955,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,39955,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,39955,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,39956,0)
+ ;;=J10.08^^152^2002^41
+ ;;^UTILITY(U,$J,358.3,39956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42429,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,42429,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,42429,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,42430,0)
- ;;=R40.2320^^159^2022^3
- ;;^UTILITY(U,$J,358.3,42430,1,0)
+ ;;^UTILITY(U,$J,358.3,39956,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,39956,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,39956,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,39957,0)
+ ;;=J10.00^^152^2002^40
+ ;;^UTILITY(U,$J,358.3,39957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42430,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,42430,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,42430,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,42431,0)
- ;;=R40.2314^^159^2022^11
- ;;^UTILITY(U,$J,358.3,42431,1,0)
+ ;;^UTILITY(U,$J,358.3,39957,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,39957,1,4,0)
+ ;;=4^J10.00
+ ;;^UTILITY(U,$J,358.3,39957,2)
+ ;;=^5008148
+ ;;^UTILITY(U,$J,358.3,39958,0)
+ ;;=J11.08^^152^2002^43
+ ;;^UTILITY(U,$J,358.3,39958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42431,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,42431,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,42431,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,42432,0)
- ;;=R40.2313^^159^2022^14
- ;;^UTILITY(U,$J,358.3,42432,1,0)
+ ;;^UTILITY(U,$J,358.3,39958,1,3,0)
+ ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
+ ;;^UTILITY(U,$J,358.3,39958,1,4,0)
+ ;;=4^J11.08
+ ;;^UTILITY(U,$J,358.3,39958,2)
+ ;;=^5008157
+ ;;^UTILITY(U,$J,358.3,39959,0)
+ ;;=J10.1^^152^2002^42
+ ;;^UTILITY(U,$J,358.3,39959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42432,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,42432,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,42432,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,42433,0)
- ;;=R40.2312^^159^2022^12
- ;;^UTILITY(U,$J,358.3,42433,1,0)
+ ;;^UTILITY(U,$J,358.3,39959,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,39959,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,39959,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,39960,0)
+ ;;=J10.01^^152^2002^39
+ ;;^UTILITY(U,$J,358.3,39960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42433,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,42433,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,42433,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,42434,0)
- ;;=R40.2311^^159^2022^15
- ;;^UTILITY(U,$J,358.3,42434,1,0)
+ ;;^UTILITY(U,$J,358.3,39960,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,39960,1,4,0)
+ ;;=4^J10.01
+ ;;^UTILITY(U,$J,358.3,39960,2)
+ ;;=^5008149
+ ;;^UTILITY(U,$J,358.3,39961,0)
+ ;;=J11.1^^152^2002^44
+ ;;^UTILITY(U,$J,358.3,39961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42434,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,42434,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,42434,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,42435,0)
- ;;=R40.2310^^159^2022^13
- ;;^UTILITY(U,$J,358.3,42435,1,0)
+ ;;^UTILITY(U,$J,358.3,39961,1,3,0)
+ ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,39961,1,4,0)
+ ;;=4^J11.1
+ ;;^UTILITY(U,$J,358.3,39961,2)
+ ;;=^5008158
+ ;;^UTILITY(U,$J,358.3,39962,0)
+ ;;=N12.^^152^2002^85
+ ;;^UTILITY(U,$J,358.3,39962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42435,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,42435,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,42435,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,42436,0)
- ;;=R40.4^^159^2022^38
- ;;^UTILITY(U,$J,358.3,42436,1,0)
+ ;;^UTILITY(U,$J,358.3,39962,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,39962,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,39962,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,39963,0)
+ ;;=N11.9^^152^2002^86
+ ;;^UTILITY(U,$J,358.3,39963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42436,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,42436,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,42436,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,42437,0)
- ;;=V00.811A^^159^2023^45
- ;;^UTILITY(U,$J,358.3,42437,1,0)
+ ;;^UTILITY(U,$J,358.3,39963,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis,Chronic
+ ;;^UTILITY(U,$J,358.3,39963,1,4,0)
+ ;;=4^N11.9
+ ;;^UTILITY(U,$J,358.3,39963,2)
+ ;;=^5015574
+ ;;^UTILITY(U,$J,358.3,39964,0)
+ ;;=N13.6^^152^2002^73
+ ;;^UTILITY(U,$J,358.3,39964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42437,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,42437,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,42437,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,42438,0)
- ;;=V00.811D^^159^2023^46
- ;;^UTILITY(U,$J,358.3,42438,1,0)
+ ;;^UTILITY(U,$J,358.3,39964,1,3,0)
+ ;;=3^Pyonephrosis
+ ;;^UTILITY(U,$J,358.3,39964,1,4,0)
+ ;;=4^N13.6
+ ;;^UTILITY(U,$J,358.3,39964,2)
+ ;;=^101552
+ ;;^UTILITY(U,$J,358.3,39965,0)
+ ;;=N30.91^^152^2002^19
+ ;;^UTILITY(U,$J,358.3,39965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42438,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,42438,1,4,0)
- ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,39965,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,39965,1,4,0)
+ ;;=4^N30.91
+ ;;^UTILITY(U,$J,358.3,39965,2)
+ ;;=^5015643

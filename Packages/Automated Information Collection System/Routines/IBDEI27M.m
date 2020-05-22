@@ -1,134 +1,126 @@
-IBDEI27M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37481,0)
- ;;=R51.^^140^1790^12
- ;;^UTILITY(U,$J,358.3,37481,1,0)
+ ;;^UTILITY(U,$J,358.3,35287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37481,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,37481,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,37481,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,37482,0)
- ;;=T50.905A^^140^1790^1
- ;;^UTILITY(U,$J,358.3,37482,1,0)
+ ;;^UTILITY(U,$J,358.3,35287,1,3,0)
+ ;;=3^Parosmia
+ ;;^UTILITY(U,$J,358.3,35287,1,4,0)
+ ;;=4^R43.1
+ ;;^UTILITY(U,$J,358.3,35287,2)
+ ;;=^5019451
+ ;;^UTILITY(U,$J,358.3,35288,0)
+ ;;=Z87.828^^137^1800^61
+ ;;^UTILITY(U,$J,358.3,35288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37482,1,3,0)
- ;;=3^Advrs effect of unsp drug/meds/biol subst, init
- ;;^UTILITY(U,$J,358.3,37482,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,37482,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,37483,0)
- ;;=Z09.^^140^1790^10
- ;;^UTILITY(U,$J,358.3,37483,1,0)
+ ;;^UTILITY(U,$J,358.3,35288,1,3,0)
+ ;;=3^Personal history of oth (healed) physical injury and trauma
+ ;;^UTILITY(U,$J,358.3,35288,1,4,0)
+ ;;=4^Z87.828
+ ;;^UTILITY(U,$J,358.3,35288,2)
+ ;;=^5063516
+ ;;^UTILITY(U,$J,358.3,35289,0)
+ ;;=M79.7^^137^1800^15
+ ;;^UTILITY(U,$J,358.3,35289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37483,1,3,0)
- ;;=3^Encntr for f/u exam aft trtmt for cond oth than malig neoplm
- ;;^UTILITY(U,$J,358.3,37483,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,37483,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,37484,0)
- ;;=G95.89^^140^1791^1
- ;;^UTILITY(U,$J,358.3,37484,1,0)
+ ;;^UTILITY(U,$J,358.3,35289,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,35289,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,35289,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,35290,0)
+ ;;=M21.42^^137^1800^16
+ ;;^UTILITY(U,$J,358.3,35290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37484,1,3,0)
- ;;=3^Diseases of spinal cord, oth, spec
- ;;^UTILITY(U,$J,358.3,37484,1,4,0)
- ;;=4^G95.89
- ;;^UTILITY(U,$J,358.3,37484,2)
- ;;=^5004193
- ;;^UTILITY(U,$J,358.3,37485,0)
- ;;=M15.0^^140^1792^2
- ;;^UTILITY(U,$J,358.3,37485,1,0)
+ ;;^UTILITY(U,$J,358.3,35290,1,3,0)
+ ;;=3^Flat Foot,Left Foot
+ ;;^UTILITY(U,$J,358.3,35290,1,4,0)
+ ;;=4^M21.42
+ ;;^UTILITY(U,$J,358.3,35290,2)
+ ;;=^5011115
+ ;;^UTILITY(U,$J,358.3,35291,0)
+ ;;=M21.41^^137^1800^17
+ ;;^UTILITY(U,$J,358.3,35291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37485,1,3,0)
- ;;=3^Prim generalized (osteo)arthritis
- ;;^UTILITY(U,$J,358.3,37485,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,37485,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,37486,0)
- ;;=M19.91^^140^1792^17
- ;;^UTILITY(U,$J,358.3,37486,1,0)
+ ;;^UTILITY(U,$J,358.3,35291,1,3,0)
+ ;;=3^Flat Foot,Right Foot
+ ;;^UTILITY(U,$J,358.3,35291,1,4,0)
+ ;;=4^M21.41
+ ;;^UTILITY(U,$J,358.3,35291,2)
+ ;;=^5011114
+ ;;^UTILITY(U,$J,358.3,35292,0)
+ ;;=G58.9^^137^1800^26
+ ;;^UTILITY(U,$J,358.3,35292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37486,1,3,0)
- ;;=3^Prim osteoarthritis, unspec site
- ;;^UTILITY(U,$J,358.3,37486,1,4,0)
- ;;=4^M19.91
- ;;^UTILITY(U,$J,358.3,37486,2)
- ;;=^5010854
- ;;^UTILITY(U,$J,358.3,37487,0)
- ;;=M19.011^^140^1792^15
- ;;^UTILITY(U,$J,358.3,37487,1,0)
+ ;;^UTILITY(U,$J,358.3,35292,1,3,0)
+ ;;=3^Mononeuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,35292,1,4,0)
+ ;;=4^G58.9
+ ;;^UTILITY(U,$J,358.3,35292,2)
+ ;;=^5004065
+ ;;^UTILITY(U,$J,358.3,35293,0)
+ ;;=M60.9^^137^1800^31
+ ;;^UTILITY(U,$J,358.3,35293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37487,1,3,0)
- ;;=3^Prim osteoarthritis, rt shldr
- ;;^UTILITY(U,$J,358.3,37487,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,37487,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,37488,0)
- ;;=M19.012^^140^1792^8
- ;;^UTILITY(U,$J,358.3,37488,1,0)
+ ;;^UTILITY(U,$J,358.3,35293,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,35293,1,4,0)
+ ;;=4^M60.9
+ ;;^UTILITY(U,$J,358.3,35293,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,35294,0)
+ ;;=L59.9^^137^1800^66
+ ;;^UTILITY(U,$J,358.3,35294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37488,1,3,0)
- ;;=3^Prim osteoarthritis, lft shldr
- ;;^UTILITY(U,$J,358.3,37488,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,37488,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,37489,0)
- ;;=M19.021^^140^1792^11
- ;;^UTILITY(U,$J,358.3,37489,1,0)
+ ;;^UTILITY(U,$J,358.3,35294,1,3,0)
+ ;;=3^Skin Disorder,Related to Radiation,Unspec
+ ;;^UTILITY(U,$J,358.3,35294,1,4,0)
+ ;;=4^L59.9
+ ;;^UTILITY(U,$J,358.3,35294,2)
+ ;;=^5009233
+ ;;^UTILITY(U,$J,358.3,35295,0)
+ ;;=T65.91XS^^137^1800^71
+ ;;^UTILITY(U,$J,358.3,35295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37489,1,3,0)
- ;;=3^Prim osteoarthritis, rt elbow
- ;;^UTILITY(U,$J,358.3,37489,1,4,0)
- ;;=4^M19.021
- ;;^UTILITY(U,$J,358.3,37489,2)
- ;;=^5010811
- ;;^UTILITY(U,$J,358.3,37490,0)
- ;;=M19.022^^140^1792^4
- ;;^UTILITY(U,$J,358.3,37490,1,0)
+ ;;^UTILITY(U,$J,358.3,35295,1,3,0)
+ ;;=3^Toxic effect of unsp substance, accidental, sequela
+ ;;^UTILITY(U,$J,358.3,35295,1,4,0)
+ ;;=4^T65.91XS
+ ;;^UTILITY(U,$J,358.3,35295,2)
+ ;;=^5053908
+ ;;^UTILITY(U,$J,358.3,35296,0)
+ ;;=T65.92XS^^137^1800^72
+ ;;^UTILITY(U,$J,358.3,35296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37490,1,3,0)
- ;;=3^Prim osteoarthritis, lft elbow
- ;;^UTILITY(U,$J,358.3,37490,1,4,0)
- ;;=4^M19.022
- ;;^UTILITY(U,$J,358.3,37490,2)
- ;;=^5010812
- ;;^UTILITY(U,$J,358.3,37491,0)
- ;;=M19.031^^140^1792^16
- ;;^UTILITY(U,$J,358.3,37491,1,0)
+ ;;^UTILITY(U,$J,358.3,35296,1,3,0)
+ ;;=3^Toxic effect of unsp substance, self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,35296,1,4,0)
+ ;;=4^T65.92XS
+ ;;^UTILITY(U,$J,358.3,35296,2)
+ ;;=^5053911
+ ;;^UTILITY(U,$J,358.3,35297,0)
+ ;;=T65.93XS^^137^1800^73
+ ;;^UTILITY(U,$J,358.3,35297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37491,1,3,0)
- ;;=3^Prim osteoarthritis, rt wrist
- ;;^UTILITY(U,$J,358.3,37491,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,37491,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,37492,0)
- ;;=M19.032^^140^1792^9
- ;;^UTILITY(U,$J,358.3,37492,1,0)
+ ;;^UTILITY(U,$J,358.3,35297,1,3,0)
+ ;;=3^Toxic effect of unspecified substance, assault, sequela
+ ;;^UTILITY(U,$J,358.3,35297,1,4,0)
+ ;;=4^T65.93XS
+ ;;^UTILITY(U,$J,358.3,35297,2)
+ ;;=^5053914
+ ;;^UTILITY(U,$J,358.3,35298,0)
+ ;;=T65.94XS^^137^1800^74
+ ;;^UTILITY(U,$J,358.3,35298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37492,1,3,0)
- ;;=3^Prim osteoarthritis, lft wrist
- ;;^UTILITY(U,$J,358.3,37492,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,37492,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,37493,0)
- ;;=M19.041^^140^1792^12
- ;;^UTILITY(U,$J,358.3,37493,1,0)
+ ;;^UTILITY(U,$J,358.3,35298,1,3,0)
+ ;;=3^Toxic effect of unspecified substance, undetermined, sequela
+ ;;^UTILITY(U,$J,358.3,35298,1,4,0)
+ ;;=4^T65.94XS
+ ;;^UTILITY(U,$J,358.3,35298,2)
+ ;;=^5053917
+ ;;^UTILITY(U,$J,358.3,35299,0)
+ ;;=R20.0^^137^1800^33
+ ;;^UTILITY(U,$J,358.3,35299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37493,1,3,0)
- ;;=3^Prim osteoarthritis, rt hand
- ;;^UTILITY(U,$J,358.3,37493,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,37493,2)
- ;;=^5010817

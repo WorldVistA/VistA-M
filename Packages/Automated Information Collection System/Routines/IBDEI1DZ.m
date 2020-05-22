@@ -1,124 +1,134 @@
-IBDEI1DZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23557,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,23557,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,23558,0)
- ;;=V00.892D^^87^1000^100
- ;;^UTILITY(U,$J,358.3,23558,1,0)
+ ;;^UTILITY(U,$J,358.3,22158,1,4,0)
+ ;;=4^Z98.41
+ ;;^UTILITY(U,$J,358.3,22158,2)
+ ;;=^5063737
+ ;;^UTILITY(U,$J,358.3,22159,0)
+ ;;=Z92.21^^99^1129^14
+ ;;^UTILITY(U,$J,358.3,22159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23558,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23558,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,23558,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,23559,0)
- ;;=V00.898A^^87^1000^97
- ;;^UTILITY(U,$J,358.3,23559,1,0)
+ ;;^UTILITY(U,$J,358.3,22159,1,3,0)
+ ;;=3^Chemotherapy
+ ;;^UTILITY(U,$J,358.3,22159,1,4,0)
+ ;;=4^Z92.21
+ ;;^UTILITY(U,$J,358.3,22159,2)
+ ;;=^5063630
+ ;;^UTILITY(U,$J,358.3,22160,0)
+ ;;=Z90.49^^99^1129^15
+ ;;^UTILITY(U,$J,358.3,22160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23559,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23559,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,23559,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,23560,0)
- ;;=V00.898D^^87^1000^98
- ;;^UTILITY(U,$J,358.3,23560,1,0)
+ ;;^UTILITY(U,$J,358.3,22160,1,3,0)
+ ;;=3^Cholecystectomy/Colectomy
+ ;;^UTILITY(U,$J,358.3,22160,1,4,0)
+ ;;=4^Z90.49
+ ;;^UTILITY(U,$J,358.3,22160,2)
+ ;;=^5063589
+ ;;^UTILITY(U,$J,358.3,22161,0)
+ ;;=Z93.3^^99^1129^16
+ ;;^UTILITY(U,$J,358.3,22161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23560,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23560,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,23560,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,23561,0)
- ;;=W00.0XXA^^87^1000^79
- ;;^UTILITY(U,$J,358.3,23561,1,0)
+ ;;^UTILITY(U,$J,358.3,22161,1,3,0)
+ ;;=3^Colostomy
+ ;;^UTILITY(U,$J,358.3,22161,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,22161,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,22162,0)
+ ;;=Z90.6^^99^1129^18
+ ;;^UTILITY(U,$J,358.3,22162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23561,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,23561,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,23561,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,23562,0)
- ;;=W00.0XXD^^87^1000^80
- ;;^UTILITY(U,$J,358.3,23562,1,0)
+ ;;^UTILITY(U,$J,358.3,22162,1,3,0)
+ ;;=3^Cystectomy
+ ;;^UTILITY(U,$J,358.3,22162,1,4,0)
+ ;;=4^Z90.6
+ ;;^UTILITY(U,$J,358.3,22162,2)
+ ;;=^322063
+ ;;^UTILITY(U,$J,358.3,22163,0)
+ ;;=Z95.810^^99^1129^19
+ ;;^UTILITY(U,$J,358.3,22163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23562,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23562,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,23562,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,23563,0)
- ;;=W00.1XXA^^87^1000^59
- ;;^UTILITY(U,$J,358.3,23563,1,0)
+ ;;^UTILITY(U,$J,358.3,22163,1,3,0)
+ ;;=3^Defibrillatory w/ Synchronous Pacemaker
+ ;;^UTILITY(U,$J,358.3,22163,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,22163,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,22164,0)
+ ;;=Z99.2^^99^1129^20
+ ;;^UTILITY(U,$J,358.3,22164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23563,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,23563,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,23563,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,23564,0)
- ;;=W00.1XXD^^87^1000^60
- ;;^UTILITY(U,$J,358.3,23564,1,0)
+ ;;^UTILITY(U,$J,358.3,22164,1,3,0)
+ ;;=3^Dialysis
+ ;;^UTILITY(U,$J,358.3,22164,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,22164,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,22165,0)
+ ;;=Z90.3^^99^1129^21
+ ;;^UTILITY(U,$J,358.3,22165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23564,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23564,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,23564,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,23565,0)
- ;;=W00.2XXA^^87^1000^53
- ;;^UTILITY(U,$J,358.3,23565,1,0)
+ ;;^UTILITY(U,$J,358.3,22165,1,3,0)
+ ;;=3^Gastrectomy
+ ;;^UTILITY(U,$J,358.3,22165,1,4,0)
+ ;;=4^Z90.3
+ ;;^UTILITY(U,$J,358.3,22165,2)
+ ;;=^5063586
+ ;;^UTILITY(U,$J,358.3,22166,0)
+ ;;=Z98.84^^99^1129^22
+ ;;^UTILITY(U,$J,358.3,22166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23565,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,23565,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,23565,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,23566,0)
- ;;=W00.2XXD^^87^1000^54
- ;;^UTILITY(U,$J,358.3,23566,1,0)
+ ;;^UTILITY(U,$J,358.3,22166,1,3,0)
+ ;;=3^Gastric Bypass
+ ;;^UTILITY(U,$J,358.3,22166,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,22166,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,22167,0)
+ ;;=Z94.3^^99^1129^23
+ ;;^UTILITY(U,$J,358.3,22167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23566,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23566,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,23566,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,23567,0)
- ;;=W00.9XXA^^87^1000^25
- ;;^UTILITY(U,$J,358.3,23567,1,0)
+ ;;^UTILITY(U,$J,358.3,22167,1,3,0)
+ ;;=3^Heart & Lung Transplant
+ ;;^UTILITY(U,$J,358.3,22167,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,22167,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,22168,0)
+ ;;=Z94.1^^99^1129^24
+ ;;^UTILITY(U,$J,358.3,22168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23567,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,23567,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,23567,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,23568,0)
- ;;=W00.9XXD^^87^1000^26
- ;;^UTILITY(U,$J,358.3,23568,1,0)
+ ;;^UTILITY(U,$J,358.3,22168,1,3,0)
+ ;;=3^Heart Transplant
+ ;;^UTILITY(U,$J,358.3,22168,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,22168,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,22169,0)
+ ;;=Z95.3^^99^1129^26
+ ;;^UTILITY(U,$J,358.3,22169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23568,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23568,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,23568,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,23569,0)
- ;;=W01.0XXA^^87^1000^87
- ;;^UTILITY(U,$J,358.3,23569,1,0)
+ ;;^UTILITY(U,$J,358.3,22169,1,3,0)
+ ;;=3^Heart Valve Replacement (Porcine)
+ ;;^UTILITY(U,$J,358.3,22169,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,22169,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,22170,0)
+ ;;=Z95.4^^99^1129^27
+ ;;^UTILITY(U,$J,358.3,22170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23569,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22170,1,3,0)
+ ;;=3^Heart Valve Replacement (Tissue Graft)
+ ;;^UTILITY(U,$J,358.3,22170,1,4,0)
+ ;;=4^Z95.4
+ ;;^UTILITY(U,$J,358.3,22170,2)
+ ;;=^5063672
+ ;;^UTILITY(U,$J,358.3,22171,0)
+ ;;=Z96.643^^99^1129^28
+ ;;^UTILITY(U,$J,358.3,22171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22171,1,3,0)
+ ;;=3^Hip Replacement,Bilateral

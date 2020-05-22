@@ -1,140 +1,118 @@
-IBDEI39I ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI39I ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54821,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,54822,0)
- ;;=N39.41^^256^2771^101
- ;;^UTILITY(U,$J,358.3,54822,1,0)
+ ;;^UTILITY(U,$J,358.3,52068,1,4,0)
+ ;;=4^Y36.6X0S
+ ;;^UTILITY(U,$J,358.3,52068,2)
+ ;;=^5061777
+ ;;^UTILITY(U,$J,358.3,52069,0)
+ ;;=Y36.410S^^193^2516^131
+ ;;^UTILITY(U,$J,358.3,52069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54822,1,3,0)
- ;;=3^Urge Incontinence
- ;;^UTILITY(U,$J,358.3,54822,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,54822,2)
- ;;=^5015680
- ;;^UTILITY(U,$J,358.3,54823,0)
- ;;=R35.0^^256^2771^63
- ;;^UTILITY(U,$J,358.3,54823,1,0)
+ ;;^UTILITY(U,$J,358.3,52069,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,52069,1,4,0)
+ ;;=4^Y36.410S
+ ;;^UTILITY(U,$J,358.3,52069,2)
+ ;;=^5061693
+ ;;^UTILITY(U,$J,358.3,52070,0)
+ ;;=Y36.200S^^193^2516^128
+ ;;^UTILITY(U,$J,358.3,52070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54823,1,3,0)
- ;;=3^Micturition Frequency
- ;;^UTILITY(U,$J,358.3,54823,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,54823,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,54824,0)
- ;;=R35.1^^256^2771^73
- ;;^UTILITY(U,$J,358.3,54824,1,0)
+ ;;^UTILITY(U,$J,358.3,52070,1,3,0)
+ ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,52070,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,52070,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,52071,0)
+ ;;=Y36.300S^^193^2516^129
+ ;;^UTILITY(U,$J,358.3,52071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54824,1,3,0)
- ;;=3^Nocturia
- ;;^UTILITY(U,$J,358.3,54824,1,4,0)
- ;;=4^R35.1
- ;;^UTILITY(U,$J,358.3,54824,2)
- ;;=^5019335
- ;;^UTILITY(U,$J,358.3,54825,0)
- ;;=R39.11^^256^2771^64
- ;;^UTILITY(U,$J,358.3,54825,1,0)
+ ;;^UTILITY(U,$J,358.3,52071,1,3,0)
+ ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,52071,1,4,0)
+ ;;=4^Y36.300S
+ ;;^UTILITY(U,$J,358.3,52071,2)
+ ;;=^5061663
+ ;;^UTILITY(U,$J,358.3,52072,0)
+ ;;=Y36.230A^^193^2516^125
+ ;;^UTILITY(U,$J,358.3,52072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54825,1,3,0)
- ;;=3^Micturition Hesitancy
- ;;^UTILITY(U,$J,358.3,54825,1,4,0)
- ;;=4^R39.11
- ;;^UTILITY(U,$J,358.3,54825,2)
- ;;=^5019341
- ;;^UTILITY(U,$J,358.3,54826,0)
- ;;=R39.16^^256^2771^95
- ;;^UTILITY(U,$J,358.3,54826,1,0)
+ ;;^UTILITY(U,$J,358.3,52072,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52072,1,4,0)
+ ;;=4^Y36.230A
+ ;;^UTILITY(U,$J,358.3,52072,2)
+ ;;=^5061625
+ ;;^UTILITY(U,$J,358.3,52073,0)
+ ;;=Y36.230D^^193^2516^126
+ ;;^UTILITY(U,$J,358.3,52073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54826,1,3,0)
- ;;=3^Straining to Void
- ;;^UTILITY(U,$J,358.3,54826,1,4,0)
- ;;=4^R39.16
- ;;^UTILITY(U,$J,358.3,54826,2)
- ;;=^5019346
- ;;^UTILITY(U,$J,358.3,54827,0)
- ;;=R36.0^^256^2771^97
- ;;^UTILITY(U,$J,358.3,54827,1,0)
+ ;;^UTILITY(U,$J,358.3,52073,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,52073,1,4,0)
+ ;;=4^Y36.230D
+ ;;^UTILITY(U,$J,358.3,52073,2)
+ ;;=^5061626
+ ;;^UTILITY(U,$J,358.3,52074,0)
+ ;;=Y36.230S^^193^2516^127
+ ;;^UTILITY(U,$J,358.3,52074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54827,1,3,0)
- ;;=3^Urethral Discharge w/o Blood
- ;;^UTILITY(U,$J,358.3,54827,1,4,0)
- ;;=4^R36.0
- ;;^UTILITY(U,$J,358.3,54827,2)
- ;;=^5019337
- ;;^UTILITY(U,$J,358.3,54828,0)
- ;;=R36.9^^256^2771^98
- ;;^UTILITY(U,$J,358.3,54828,1,0)
+ ;;^UTILITY(U,$J,358.3,52074,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
+ ;;^UTILITY(U,$J,358.3,52074,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,52074,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,52075,0)
+ ;;=Y36.7X0S^^193^2516^139
+ ;;^UTILITY(U,$J,358.3,52075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54828,1,3,0)
- ;;=3^Urethral Discharge,Unspec
- ;;^UTILITY(U,$J,358.3,54828,1,4,0)
- ;;=4^R36.9
- ;;^UTILITY(U,$J,358.3,54828,2)
- ;;=^5019338
- ;;^UTILITY(U,$J,358.3,54829,0)
- ;;=R97.2^^256^2771^27
- ;;^UTILITY(U,$J,358.3,54829,1,0)
+ ;;^UTILITY(U,$J,358.3,52075,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,52075,1,4,0)
+ ;;=4^Y36.7X0S
+ ;;^UTILITY(U,$J,358.3,52075,2)
+ ;;=^5061783
+ ;;^UTILITY(U,$J,358.3,52076,0)
+ ;;=V47.6XXA^^193^2516^14
+ ;;^UTILITY(U,$J,358.3,52076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54829,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,54829,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,54829,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,54830,0)
- ;;=R80.1^^256^2771^87
- ;;^UTILITY(U,$J,358.3,54830,1,0)
+ ;;^UTILITY(U,$J,358.3,52076,1,3,0)
+ ;;=3^Car Pasngr Injured in Collsn w/ Fixed Obj/Traffic,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52076,1,4,0)
+ ;;=4^V47.6XXA
+ ;;^UTILITY(U,$J,358.3,52076,2)
+ ;;=^5140366
+ ;;^UTILITY(U,$J,358.3,52077,0)
+ ;;=V47.9XXA^^193^2516^13
+ ;;^UTILITY(U,$J,358.3,52077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54830,1,3,0)
- ;;=3^Proteinuria Persistent,Unspec
- ;;^UTILITY(U,$J,358.3,54830,1,4,0)
- ;;=4^R80.1
- ;;^UTILITY(U,$J,358.3,54830,2)
- ;;=^5019596
- ;;^UTILITY(U,$J,358.3,54831,0)
- ;;=R80.0^^256^2771^85
- ;;^UTILITY(U,$J,358.3,54831,1,0)
+ ;;^UTILITY(U,$J,358.3,52077,1,3,0)
+ ;;=3^Car Occpnt,Unspec,Injured in Collsn w/ Fixed Obj/Traffic,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52077,1,4,0)
+ ;;=4^V47.9XXA
+ ;;^UTILITY(U,$J,358.3,52077,2)
+ ;;=^5140369
+ ;;^UTILITY(U,$J,358.3,52078,0)
+ ;;=W26.2XXA^^193^2516^15
+ ;;^UTILITY(U,$J,358.3,52078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54831,1,3,0)
- ;;=3^Proteinuria Isolated
- ;;^UTILITY(U,$J,358.3,54831,1,4,0)
- ;;=4^R80.0
- ;;^UTILITY(U,$J,358.3,54831,2)
- ;;=^5019595
- ;;^UTILITY(U,$J,358.3,54832,0)
- ;;=R80.8^^256^2771^88
- ;;^UTILITY(U,$J,358.3,54832,1,0)
+ ;;^UTILITY(U,$J,358.3,52078,1,3,0)
+ ;;=3^Contact w/ Edge of Stiff Paper,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52078,1,4,0)
+ ;;=4^W26.2XXA
+ ;;^UTILITY(U,$J,358.3,52078,2)
+ ;;=^5140372
+ ;;^UTILITY(U,$J,358.3,52079,0)
+ ;;=W26.8XXA^^193^2516^16
+ ;;^UTILITY(U,$J,358.3,52079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54832,1,3,0)
- ;;=3^Proteinuria,Other
- ;;^UTILITY(U,$J,358.3,54832,1,4,0)
- ;;=4^R80.8
- ;;^UTILITY(U,$J,358.3,54832,2)
- ;;=^5019598
- ;;^UTILITY(U,$J,358.3,54833,0)
- ;;=R80.3^^256^2771^84
- ;;^UTILITY(U,$J,358.3,54833,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54833,1,3,0)
- ;;=3^Proteinuria Bence Jones
- ;;^UTILITY(U,$J,358.3,54833,1,4,0)
- ;;=4^R80.3
- ;;^UTILITY(U,$J,358.3,54833,2)
- ;;=^13272
- ;;^UTILITY(U,$J,358.3,54834,0)
- ;;=R80.9^^256^2771^89
- ;;^UTILITY(U,$J,358.3,54834,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54834,1,3,0)
- ;;=3^Proteinuria,Unspec
- ;;^UTILITY(U,$J,358.3,54834,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,54834,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,54835,0)
- ;;=Z87.442^^256^2771^77
- ;;^UTILITY(U,$J,358.3,54835,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,52079,1,3,0)
+ ;;=3^Contact w/ Other Sharp Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,52079,1,4,0)
+ ;;=4^W26.8XXA
+ ;;^UTILITY(U,$J,358.3,52079,2)
+ ;;=^5140375

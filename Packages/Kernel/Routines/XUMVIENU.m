@@ -1,5 +1,5 @@
-XUMVIENU ;MVI/CKN,MKO - Master Veteran Index Enrich New Person ;5 Jun 2019  8:06 PM
- ;;8.0;KERNEL;**711**;Jul 10, 1995;Build 9
+XUMVIENU ;MVI/CKN,MKO - Master Veteran Index Enrich New Person ;29 Jan 2020  11:24 AM
+ ;;8.0;KERNEL;**711,724**;Jul 10, 1995;Build 2
  ;Per VA Directive 6402, this routine should not be modified.
  ;**711,Story 977838 (mko/ckn): New routine
  ;Entry point: UPDATE^XUMVIENU(XURET,.XUARR,XUFLAG)
@@ -239,13 +239,13 @@ SECKEYS(XUDUZ,OLDTDATE,XURET) ;Add or remove Security Keys PROVIDER and XUORES
  .. D ^DIK
  . E  I OLDTDATE]"",NEWTDATE="" D
  .. ;Add the key
- .. N IENS,FDA
- .. Q:$D(^VA(200,XUDUZ,51,"B",KEYIEN,0))
+ .. ;**724,Story 1209890 (mko): The #.01 of the KEYS multiple is DINUM'd, so pass IEN(1).
+ .. ;  Also, GIVEN BY (#1) and DATE GIVEN (#2) are triggered by the #.01.
+ .. N IENS,FDA,IEN
+ .. Q:$O(^VA(200,XUDUZ,51,"B",KEYIEN,0))
  .. S IENS="+1,"_XUDUZ_","
- .. S FDA(200.051,IENS,.01)=KEYIEN ;key
- .. S FDA(200.051,IENS,1)=$G(DUZ) ;given by
- .. S FDA(200.051,IENS,2)=DT ;date given
- .. D UPDATER(.FDA,"",.XURET)
+ .. S (FDA(200.051,IENS,.01),IEN(1))=KEYIEN
+ .. D UPDATER(.FDA,"",.XURET,.IEN)
  Q
  ;
 PERSCLAS(XUDUZ,XUARR,XURET) ;Update PERSON CLASS multiple
@@ -405,8 +405,9 @@ FILER(XUMVIFDA,FLAG,XURET) ;Call the Filer
  D:$G(DIERR) ADDERR(.XURET,$$BLDERR("XUMVIERR"))
  Q
  ;
-UPDATER(XUMVIFDA,FLAG,XURET) ;Call the Updater
- N DIERR,DIHELP,DIMSG,XUMVIERR,XUMVIIEN
+UPDATER(XUMVIFDA,FLAG,XURET,XUMVIIEN) ;Call the Updater
+ ;**724,Story 1209890 (mko): Add XUMVIIEN as an input paramater to allow controlling IEN of new record
+ N DIERR,DIHELP,DIMSG,XUMVIERR
  D UPDATE^DIE(FLAG,"XUMVIFDA","XUMVIIEN","XUMVIERR")
  I $G(DIERR) D ADDERR(.XURET,$$BLDERR("XUMVIERR")) Q 0
  Q +$G(XUMVIIEN(1))

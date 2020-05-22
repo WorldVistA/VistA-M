@@ -1,5 +1,5 @@
-DGENUPL8 ;ISA/KWP,RTK,PHH,ERC - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 8/15/08 12:41pm
- ;;5.3;REGISTRATION;**232,266,327,314,365,417,514,688,940**;Aug 13,1993;Build 11
+DGENUPL8 ;ISA/KWP,RTK,PHH,ERC - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;8/15/08 12:41pm
+ ;;5.3;REGISTRATION;**232,266,327,314,365,417,514,688,940,952**;Aug 13,1993;Build 160
  ;Moved ENRUPLD from DGENUPL3
  ;
 ENRUPLD(DGENR,DGPAT) ;
@@ -78,7 +78,7 @@ ENRUPLD(DGENR,DGPAT) ;
 EXIT Q
  ;
 DUP(DGENR1,DGENR2) ;
- ;Descripition: returns 1 if the enrollments are dupliates (other than
+ ;Description: returns 1 if the enrollments are duplicates (other than
  ;audit information), 0 otherwise
  ;
  ;Inputs:
@@ -127,4 +127,118 @@ STOREHIS(DGENR,PRIORTO) ;
  .N DATA
  .S DATA(.09)=DGENRIEN
  .I $$UPD^DGENDBS(27.11,PRIORTO,.DATA) ;then success
+ Q
+ ;
+OTHUPLD(DFN,DGOTH,DGSSN,PRELIG) ; uploads OTH data. DG*5.3*952
+ ;
+ ; DFN - patient DFN
+ ; DGOTH - OTH array (passed by reference)
+ ; DGSSN - patient SSN
+ ; PRELIG - primary eligibility code
+ ;
+ ; assumes MSGID,ERRCOUNT to be defined in the calling routine
+ ;
+ N DA,DIK
+ N CNT,IEN33,IEN3301,QFLG,PNDCRTS,Z
+ S IEN33=+$O(^DGOTH(33,"B",DFN,"")),QFLG=0
+ I $$GET1^DIQ(8,PRELIG_",",.01)="EXPANDED MH CARE NON-ENROLLEE",'$$CHKTS(IEN33,.DGOTH) D  Q
+ .D ADDERROR^DGENUPL(MSGID,DGSSN,"VISTA HAS THE MOST RECENT OTH-90 DATA",.ERRCOUNT)
+ .Q
+ S PNDCRTS=$$GET1^DIQ(33,IEN33_",",.08,"I")
+ ; pending request
+ I $G(DGOTH("P"))'="" D
+ .S Z=$$FILPEND^DGOTHUT1(DFN,"0^^^^^^") I +Z=0 D ADDERROR^DGENUPL(MSGID,DGSSN,$P(Z,U,2),.ERRCOUNT) S QFLG=1 Q
+ .I $P(DGOTH("P"),U,2)'="@" D
+ ..S Z=$$FILPEND^DGOTHUT1(DFN,DGOTH("P")) I +Z=0 D ADDERROR^DGENUPL(MSGID,DGSSN,$P(Z,U,2),.ERRCOUNT) S QFLG=1
+ ..Q
+ .Q
+ I QFLG Q
+ ; re-sort array
+ D SORTOTH(.DGOTH)
+ ; denied requests
+ I $D(DGOTH("D"))>0 D  Q:QFLG
+ .; clear sub-file 33.03
+ .S DIK="^DGOTH(33,"_IEN33_",3,",DA(1)=IEN33
+ .S DA=0 F  S DA=$O(^DGOTH(33,IEN33,3,DA)) Q:'DA  D ^DIK
+ .K DA
+ .S CNT="" F  S CNT=$O(DGOTH("D",CNT)) Q:'CNT!QFLG  D
+ ..I $P(DGOTH("D",CNT),U)="@" Q  ; skip this entry, if it is marked for deletion
+ ..; if there's a pending request with the same creation timestamp, delete it
+ ..I PNDCRTS=$P(DGOTH("D",CNT),U,5) D  Q:QFLG
+ ...S Z=$$FILPEND^DGOTHUT1(DFN,"0^^^^^^") I +Z=0 D ADDERROR^DGENUPL(MSGID,DGSSN,$P(Z,U,2),.ERRCOUNT) S QFLG=1
+ ...Q
+ ..S Z=$$FILDEN^DGOTHUT1(DFN,DGOTH("D",CNT))
+ ..I +Z=0 D ADDERROR^DGENUPL(MSGID,DGSSN,$P(Z,U,2),.ERRCOUNT) S QFLG=1 Q
+ ..Q
+ .Q
+ ; approved periods
+ I $D(DGOTH("A"))>0 D  Q:QFLG
+ .S IEN3301=0 F  S IEN3301=$O(^DGOTH(33,IEN33,1,IEN3301)) Q:'IEN3301  D
+ ..S DIK="^DGOTH(33,"_IEN33_",1,"_IEN3301_",1,",DA(2)=IEN33,DA(1)=IEN3301
+ ..S DA=0 F  S DA=$O(^DGOTH(33,IEN33,1,IEN3301,1,DA)) Q:'DA  D ^DIK
+ ..K DA S DIK="^DGOTH(33,"_IEN33_",1,",DA(1)=IEN33,DA=IEN3301 D ^DIK
+ ..Q
+ .S CNT="" F  S CNT=$O(DGOTH("A",CNT)) Q:'CNT!QFLG  D
+ ..I $P(DGOTH("A",CNT),U,3)="@" Q  ; skip this entry, if it is marked for deletion
+ ..; if there's a pending request with the same creation timestamp, delete it
+ ..I PNDCRTS=$P(DGOTH("A",CNT),U,9) D  Q:QFLG
+ ...S Z=$$FILPEND^DGOTHUT1(DFN,"0^^^^^^") I +Z=0 D ADDERROR^DGENUPL(MSGID,DGSSN,$P(Z,U,2),.ERRCOUNT) S QFLG=1
+ ...Q
+ ..S Z=$$FILAUTH^DGOTHUT1(DFN,DGOTH("A",CNT))
+ ..I +Z=0 D ADDERROR^DGENUPL(MSGID,DGSSN,$P(Z,U,2),.ERRCOUNT) S QFLG=1 Q
+ ..Q
+ .Q
+ Q
+ ;
+CHKTS(IEN33,DGOTH) ; check "last edited" timestamps in file 33 DG*5.3*952
+ ;
+ ; IEN33 - file 33 ien
+ ; DGOTH - OTH array (passed by reference)
+ ;
+ ; returns 0 if the latest timestamp in file 33 is more recent than the latest timestamp in DGOTH, returns 1 otherwise
+ ;
+ N IENS,LASTTS1,LASTTS2,RES,TMPTS,Z,Z1
+ S RES=1 I $G(IEN33)'>0 G CHKTSX
+ S (LASTTS1,LASTTS2)=0
+ ; find the latest timestamp in file 33
+ S IENS=IEN33_","
+ S TMPTS=+$$GET1^DIQ(33,IENS,.05,"I") I TMPTS>LASTTS1 S LASTTS1=TMPTS
+ S Z=0 F  S Z=$O(^DGOTH(33,IEN33,1,Z)) Q:'Z  D
+ .S Z1=0 F  S Z1=$O(^DGOTH(33,IEN33,1,Z,1,Z1)) Q:'Z1  D
+ ..S IENS=Z1_","_Z_","_IEN33_","
+ ..S TMPTS=+$$GET1^DIQ(33.11,IENS,.06,"I") I TMPTS>LASTTS1 S LASTTS1=TMPTS
+ ..Q
+ .Q
+ S Z=0 F  S Z=$O(^DGOTH(33,IEN33,3,Z)) Q:'Z  D
+ .S IENS=Z_","_IEN33_","
+ .S TMPTS=+$$GET1^DIQ(33.03,IENS,.05,"I") I TMPTS>LASTTS1 S LASTTS1=TMPTS
+ .Q
+ I LASTTS1=0 G CHKTSX
+ ; find the latest timestamp in DGOTH array
+ S TMPTS=+$P($G(DGOTH("P")),U,6) I TMPTS>LASTTS2 S LASTTS2=TMPTS
+ S Z=0 F  S Z=$O(DGOTH("A",Z)) Q:'Z  S TMPTS=+$P($G(DGOTH("A",Z)),U,10) I TMPTS>LASTTS2 S LASTTS2=TMPTS
+ S Z=0 F  S Z=$O(DGOTH("D",Z)) Q:'Z  S TMPTS=+$P($G(DGOTH("D",Z)),U,6) I TMPTS>LASTTS2 S LASTTS2=TMPTS
+ ; compare timestamps
+ I LASTTS1>LASTTS2 S RES=0
+ ;
+CHKTSX ; exit point
+ Q RES
+ ;
+SORTOTH(DGOTH) ; re-sort DGOTH array DG*5.3*952
+ ;
+ ; DGOTH - OTH array (passed by reference)
+ ;
+ N CNT,TMP,TYPE,VAL,Z,Z1
+ ; sort approved requests by 365 day period # and 90 day period #
+ ; sort denied requests by submission date and creation timestamp
+ F TYPE="A","D" D
+ .K TMP S CNT="" F  S CNT=$O(DGOTH(TYPE,CNT)) Q:'CNT  D
+ ..S VAL=DGOTH(TYPE,CNT),Z=$P(VAL,U),Z1=$P(VAL,U,$S(TYPE="A":2,1:5))
+ ..I Z'="",Z1'="" S TMP(Z,Z1)=VAL
+ ..Q
+ .K DGOTH(TYPE) S CNT=0
+ .S Z="" F  S Z=$O(TMP(Z)) Q:Z=""  D
+ ..S Z1="" F  S Z1=$O(TMP(Z,Z1)) Q:Z1=""  S CNT=CNT+1,DGOTH(TYPE,CNT)=TMP(Z,Z1)
+ ..Q
+ .Q
  Q

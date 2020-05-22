@@ -1,128 +1,116 @@
-IBDEI2DA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2DA ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40139,2)
- ;;=^5001803
- ;;^UTILITY(U,$J,358.3,40140,0)
- ;;=C92.52^^156^1952^7
- ;;^UTILITY(U,$J,358.3,40140,1,0)
+ ;;^UTILITY(U,$J,358.3,37786,2)
+ ;;=^5042505
+ ;;^UTILITY(U,$J,358.3,37787,0)
+ ;;=S82.842K^^146^1917^12
+ ;;^UTILITY(U,$J,358.3,37787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40140,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,40140,1,4,0)
- ;;=4^C92.52
- ;;^UTILITY(U,$J,358.3,40140,2)
- ;;=^5001806
- ;;^UTILITY(U,$J,358.3,40141,0)
- ;;=C92.11^^156^1952^18
- ;;^UTILITY(U,$J,358.3,40141,1,0)
+ ;;^UTILITY(U,$J,358.3,37787,1,3,0)
+ ;;=3^Disp bimal fx lft lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37787,1,4,0)
+ ;;=4^S82.842K
+ ;;^UTILITY(U,$J,358.3,37787,2)
+ ;;=^5042504
+ ;;^UTILITY(U,$J,358.3,37788,0)
+ ;;=S82.841N^^146^1917^16
+ ;;^UTILITY(U,$J,358.3,37788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40141,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in remission
- ;;^UTILITY(U,$J,358.3,40141,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,40141,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,40142,0)
- ;;=C92.12^^156^1952^19
- ;;^UTILITY(U,$J,358.3,40142,1,0)
+ ;;^UTILITY(U,$J,358.3,37788,1,3,0)
+ ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37788,1,4,0)
+ ;;=4^S82.841N
+ ;;^UTILITY(U,$J,358.3,37788,2)
+ ;;=^5042490
+ ;;^UTILITY(U,$J,358.3,37789,0)
+ ;;=S82.841M^^146^1917^17
+ ;;^UTILITY(U,$J,358.3,37789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40142,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in relapse
- ;;^UTILITY(U,$J,358.3,40142,1,4,0)
- ;;=4^C92.12
- ;;^UTILITY(U,$J,358.3,40142,2)
- ;;=^5001794
- ;;^UTILITY(U,$J,358.3,40143,0)
- ;;=C92.21^^156^1952^13
- ;;^UTILITY(U,$J,358.3,40143,1,0)
+ ;;^UTILITY(U,$J,358.3,37789,1,3,0)
+ ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37789,1,4,0)
+ ;;=4^S82.841M
+ ;;^UTILITY(U,$J,358.3,37789,2)
+ ;;=^5042489
+ ;;^UTILITY(U,$J,358.3,37790,0)
+ ;;=S82.841K^^146^1917^15
+ ;;^UTILITY(U,$J,358.3,37790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40143,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in remission
- ;;^UTILITY(U,$J,358.3,40143,1,4,0)
- ;;=4^C92.21
- ;;^UTILITY(U,$J,358.3,40143,2)
- ;;=^5001796
- ;;^UTILITY(U,$J,358.3,40144,0)
- ;;=C92.22^^156^1952^14
- ;;^UTILITY(U,$J,358.3,40144,1,0)
+ ;;^UTILITY(U,$J,358.3,37790,1,3,0)
+ ;;=3^Disp bimal fx rt lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37790,1,4,0)
+ ;;=4^S82.841K
+ ;;^UTILITY(U,$J,358.3,37790,2)
+ ;;=^5042488
+ ;;^UTILITY(U,$J,358.3,37791,0)
+ ;;=M84.452K^^146^1917^400
+ ;;^UTILITY(U,$J,358.3,37791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40144,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in relapse
- ;;^UTILITY(U,$J,358.3,40144,1,4,0)
- ;;=4^C92.22
- ;;^UTILITY(U,$J,358.3,40144,2)
- ;;=^5001797
- ;;^UTILITY(U,$J,358.3,40145,0)
- ;;=C93.01^^156^1952^3
- ;;^UTILITY(U,$J,358.3,40145,1,0)
+ ;;^UTILITY(U,$J,358.3,37791,1,3,0)
+ ;;=3^Path fx lft fem, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37791,1,4,0)
+ ;;=4^M84.452K
+ ;;^UTILITY(U,$J,358.3,37791,2)
+ ;;=^5013911
+ ;;^UTILITY(U,$J,358.3,37792,0)
+ ;;=M84.672K^^146^1917^399
+ ;;^UTILITY(U,$J,358.3,37792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40145,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,40145,1,4,0)
- ;;=4^C93.01
- ;;^UTILITY(U,$J,358.3,40145,2)
- ;;=^5001820
- ;;^UTILITY(U,$J,358.3,40146,0)
- ;;=C93.02^^156^1952^4
- ;;^UTILITY(U,$J,358.3,40146,1,0)
+ ;;^UTILITY(U,$J,358.3,37792,1,3,0)
+ ;;=3^Path fx lft ankl, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,37792,1,4,0)
+ ;;=4^M84.672K
+ ;;^UTILITY(U,$J,358.3,37792,2)
+ ;;=^5134030
+ ;;^UTILITY(U,$J,358.3,37793,0)
+ ;;=M84.671K^^146^1917^413
+ ;;^UTILITY(U,$J,358.3,37793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40146,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,40146,1,4,0)
- ;;=4^C93.02
- ;;^UTILITY(U,$J,358.3,40146,2)
- ;;=^5001821
- ;;^UTILITY(U,$J,358.3,40147,0)
- ;;=C93.11^^156^1952^21
- ;;^UTILITY(U,$J,358.3,40147,1,0)
+ ;;^UTILITY(U,$J,358.3,37793,1,3,0)
+ ;;=3^Path fx rt ankl, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,37793,1,4,0)
+ ;;=4^M84.671K
+ ;;^UTILITY(U,$J,358.3,37793,2)
+ ;;=^5014295
+ ;;^UTILITY(U,$J,358.3,37794,0)
+ ;;=S82.55XN^^146^1917^277
+ ;;^UTILITY(U,$J,358.3,37794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40147,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,40147,1,4,0)
- ;;=4^C93.11
- ;;^UTILITY(U,$J,358.3,40147,2)
- ;;=^5001823
- ;;^UTILITY(U,$J,358.3,40148,0)
- ;;=C93.12^^156^1952^20
- ;;^UTILITY(U,$J,358.3,40148,1,0)
+ ;;^UTILITY(U,$J,358.3,37794,1,3,0)
+ ;;=3^Nondisp fx med mall lft tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37794,1,4,0)
+ ;;=4^S82.55XN
+ ;;^UTILITY(U,$J,358.3,37794,2)
+ ;;=^5042290
+ ;;^UTILITY(U,$J,358.3,37795,0)
+ ;;=S82.55XM^^146^1917^278
+ ;;^UTILITY(U,$J,358.3,37795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40148,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,40148,1,4,0)
- ;;=4^C93.12
- ;;^UTILITY(U,$J,358.3,40148,2)
- ;;=^5001824
- ;;^UTILITY(U,$J,358.3,40149,0)
- ;;=C93.91^^156^1952^38
- ;;^UTILITY(U,$J,358.3,40149,1,0)
+ ;;^UTILITY(U,$J,358.3,37795,1,3,0)
+ ;;=3^Nondisp fx med mall lft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37795,1,4,0)
+ ;;=4^S82.55XM
+ ;;^UTILITY(U,$J,358.3,37795,2)
+ ;;=^5042289
+ ;;^UTILITY(U,$J,358.3,37796,0)
+ ;;=S82.55XK^^146^1917^276
+ ;;^UTILITY(U,$J,358.3,37796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40149,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in remission
- ;;^UTILITY(U,$J,358.3,40149,1,4,0)
- ;;=4^C93.91
- ;;^UTILITY(U,$J,358.3,40149,2)
- ;;=^5001829
- ;;^UTILITY(U,$J,358.3,40150,0)
- ;;=C93.92^^156^1952^37
- ;;^UTILITY(U,$J,358.3,40150,1,0)
+ ;;^UTILITY(U,$J,358.3,37796,1,3,0)
+ ;;=3^Nondisp fx med mall lft tib, subs for clo fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37796,1,4,0)
+ ;;=4^S82.55XK
+ ;;^UTILITY(U,$J,358.3,37796,2)
+ ;;=^5042288
+ ;;^UTILITY(U,$J,358.3,37797,0)
+ ;;=S82.54XN^^146^1917^280
+ ;;^UTILITY(U,$J,358.3,37797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40150,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in relapse
- ;;^UTILITY(U,$J,358.3,40150,1,4,0)
- ;;=4^C93.92
- ;;^UTILITY(U,$J,358.3,40150,2)
- ;;=^5001830
- ;;^UTILITY(U,$J,358.3,40151,0)
- ;;=E88.3^^156^1952^51
- ;;^UTILITY(U,$J,358.3,40151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40151,1,3,0)
- ;;=3^Tumor lysis syndrome
- ;;^UTILITY(U,$J,358.3,40151,1,4,0)
- ;;=4^E88.3
- ;;^UTILITY(U,$J,358.3,40151,2)
- ;;=^338229
- ;;^UTILITY(U,$J,358.3,40152,0)
- ;;=C62.11^^156^1953^2
+ ;;^UTILITY(U,$J,358.3,37797,1,3,0)
+ ;;=3^Nondisp fx med mall rt tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,37797,1,4,0)
+ ;;=4^S82.54XN
+ ;;^UTILITY(U,$J,358.3,37797,2)
+ ;;=^5042274

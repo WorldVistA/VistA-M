@@ -1,126 +1,130 @@
-IBDEI2U3 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2U3 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47562,1,4,0)
- ;;=4^C85.19
- ;;^UTILITY(U,$J,358.3,47562,2)
- ;;=^5001710
- ;;^UTILITY(U,$J,358.3,47563,0)
- ;;=C85.20^^209^2346^330
- ;;^UTILITY(U,$J,358.3,47563,1,0)
+ ;;^UTILITY(U,$J,358.3,45204,1,4,0)
+ ;;=4^L68.9
+ ;;^UTILITY(U,$J,358.3,45204,2)
+ ;;=^5009267
+ ;;^UTILITY(U,$J,358.3,45205,0)
+ ;;=L74.510^^170^2253^3
+ ;;^UTILITY(U,$J,358.3,45205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47563,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,47563,1,4,0)
- ;;=4^C85.20
- ;;^UTILITY(U,$J,358.3,47563,2)
- ;;=^5001711
- ;;^UTILITY(U,$J,358.3,47564,0)
- ;;=C85.21^^209^2346^323
- ;;^UTILITY(U,$J,358.3,47564,1,0)
+ ;;^UTILITY(U,$J,358.3,45205,1,3,0)
+ ;;=3^Hyperhidrosis,Primary,Focal,Axilla
+ ;;^UTILITY(U,$J,358.3,45205,1,4,0)
+ ;;=4^L74.510
+ ;;^UTILITY(U,$J,358.3,45205,2)
+ ;;=^5009290
+ ;;^UTILITY(U,$J,358.3,45206,0)
+ ;;=L81.4^^170^2253^4
+ ;;^UTILITY(U,$J,358.3,45206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47564,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Head/Face/Neck Node
- ;;^UTILITY(U,$J,358.3,47564,1,4,0)
- ;;=4^C85.21
- ;;^UTILITY(U,$J,358.3,47564,2)
- ;;=^5001712
- ;;^UTILITY(U,$J,358.3,47565,0)
- ;;=C85.22^^209^2346^325
- ;;^UTILITY(U,$J,358.3,47565,1,0)
+ ;;^UTILITY(U,$J,358.3,45206,1,3,0)
+ ;;=3^Hyperpigmentation,Other
+ ;;^UTILITY(U,$J,358.3,45206,1,4,0)
+ ;;=4^L81.4
+ ;;^UTILITY(U,$J,358.3,45206,2)
+ ;;=^5009314
+ ;;^UTILITY(U,$J,358.3,45207,0)
+ ;;=L90.0^^170^2254^14
+ ;;^UTILITY(U,$J,358.3,45207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47565,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Intrathoracic Node
- ;;^UTILITY(U,$J,358.3,47565,1,4,0)
- ;;=4^C85.22
- ;;^UTILITY(U,$J,358.3,47565,2)
- ;;=^5001713
- ;;^UTILITY(U,$J,358.3,47566,0)
- ;;=C85.23^^209^2346^326
- ;;^UTILITY(U,$J,358.3,47566,1,0)
+ ;;^UTILITY(U,$J,358.3,45207,1,3,0)
+ ;;=3^Lichen Sclerosus et Atrophicus
+ ;;^UTILITY(U,$J,358.3,45207,1,4,0)
+ ;;=4^L90.0
+ ;;^UTILITY(U,$J,358.3,45207,2)
+ ;;=^70699
+ ;;^UTILITY(U,$J,358.3,45208,0)
+ ;;=L28.0^^170^2254^15
+ ;;^UTILITY(U,$J,358.3,45208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47566,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Intra-Abdominal Node
- ;;^UTILITY(U,$J,358.3,47566,1,4,0)
- ;;=4^C85.23
- ;;^UTILITY(U,$J,358.3,47566,2)
- ;;=^5001714
- ;;^UTILITY(U,$J,358.3,47567,0)
- ;;=C85.24^^209^2346^321
- ;;^UTILITY(U,$J,358.3,47567,1,0)
+ ;;^UTILITY(U,$J,358.3,45208,1,3,0)
+ ;;=3^Lichen Simplex Chronicus
+ ;;^UTILITY(U,$J,358.3,45208,1,4,0)
+ ;;=4^L28.0
+ ;;^UTILITY(U,$J,358.3,45208,2)
+ ;;=^259859
+ ;;^UTILITY(U,$J,358.3,45209,0)
+ ;;=L66.1^^170^2254^11
+ ;;^UTILITY(U,$J,358.3,45209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47567,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Axilla/Upper Limb Node
- ;;^UTILITY(U,$J,358.3,47567,1,4,0)
- ;;=4^C85.24
- ;;^UTILITY(U,$J,358.3,47567,2)
- ;;=^5001715
- ;;^UTILITY(U,$J,358.3,47568,0)
- ;;=C85.25^^209^2346^324
- ;;^UTILITY(U,$J,358.3,47568,1,0)
+ ;;^UTILITY(U,$J,358.3,45209,1,3,0)
+ ;;=3^Lichen Planopilaris
+ ;;^UTILITY(U,$J,358.3,45209,1,4,0)
+ ;;=4^L66.1
+ ;;^UTILITY(U,$J,358.3,45209,2)
+ ;;=^5009253
+ ;;^UTILITY(U,$J,358.3,45210,0)
+ ;;=L43.0^^170^2254^12
+ ;;^UTILITY(U,$J,358.3,45210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47568,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Ing Region/Lower Limb Node
- ;;^UTILITY(U,$J,358.3,47568,1,4,0)
- ;;=4^C85.25
- ;;^UTILITY(U,$J,358.3,47568,2)
- ;;=^5001716
- ;;^UTILITY(U,$J,358.3,47569,0)
- ;;=C85.26^^209^2346^327
- ;;^UTILITY(U,$J,358.3,47569,1,0)
+ ;;^UTILITY(U,$J,358.3,45210,1,3,0)
+ ;;=3^Lichen Planus,Hypertrophic
+ ;;^UTILITY(U,$J,358.3,45210,1,4,0)
+ ;;=4^L43.0
+ ;;^UTILITY(U,$J,358.3,45210,2)
+ ;;=^5009178
+ ;;^UTILITY(U,$J,358.3,45211,0)
+ ;;=L43.2^^170^2254^16
+ ;;^UTILITY(U,$J,358.3,45211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47569,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Intrapelvic Node
- ;;^UTILITY(U,$J,358.3,47569,1,4,0)
- ;;=4^C85.26
- ;;^UTILITY(U,$J,358.3,47569,2)
- ;;=^5001717
- ;;^UTILITY(U,$J,358.3,47570,0)
- ;;=C85.27^^209^2346^329
- ;;^UTILITY(U,$J,358.3,47570,1,0)
+ ;;^UTILITY(U,$J,358.3,45211,1,3,0)
+ ;;=3^Lichenoid Drug Reaction
+ ;;^UTILITY(U,$J,358.3,45211,1,4,0)
+ ;;=4^L43.2
+ ;;^UTILITY(U,$J,358.3,45211,2)
+ ;;=^5009180
+ ;;^UTILITY(U,$J,358.3,45212,0)
+ ;;=L43.9^^170^2254^13
+ ;;^UTILITY(U,$J,358.3,45212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47570,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Spleen
- ;;^UTILITY(U,$J,358.3,47570,1,4,0)
- ;;=4^C85.27
- ;;^UTILITY(U,$J,358.3,47570,2)
- ;;=^5001718
- ;;^UTILITY(U,$J,358.3,47571,0)
- ;;=C85.28^^209^2346^328
- ;;^UTILITY(U,$J,358.3,47571,1,0)
+ ;;^UTILITY(U,$J,358.3,45212,1,3,0)
+ ;;=3^Lichen Planus,Unspec
+ ;;^UTILITY(U,$J,358.3,45212,1,4,0)
+ ;;=4^L43.9
+ ;;^UTILITY(U,$J,358.3,45212,2)
+ ;;=^5009183
+ ;;^UTILITY(U,$J,358.3,45213,0)
+ ;;=L93.0^^170^2254^18
+ ;;^UTILITY(U,$J,358.3,45213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47571,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47571,1,4,0)
- ;;=4^C85.28
- ;;^UTILITY(U,$J,358.3,47571,2)
- ;;=^5001719
- ;;^UTILITY(U,$J,358.3,47572,0)
- ;;=C85.29^^209^2346^322
- ;;^UTILITY(U,$J,358.3,47572,1,0)
+ ;;^UTILITY(U,$J,358.3,45213,1,3,0)
+ ;;=3^Lupus,Erythematosus,Discoid
+ ;;^UTILITY(U,$J,358.3,45213,1,4,0)
+ ;;=4^L93.0
+ ;;^UTILITY(U,$J,358.3,45213,2)
+ ;;=^5009467
+ ;;^UTILITY(U,$J,358.3,45214,0)
+ ;;=L93.2^^170^2254^20
+ ;;^UTILITY(U,$J,358.3,45214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47572,1,3,0)
- ;;=3^Mediastinal Large B-Cell Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47572,1,4,0)
- ;;=4^C85.29
- ;;^UTILITY(U,$J,358.3,47572,2)
- ;;=^5001720
- ;;^UTILITY(U,$J,358.3,47573,0)
- ;;=C85.80^^209^2346^421
- ;;^UTILITY(U,$J,358.3,47573,1,0)
+ ;;^UTILITY(U,$J,358.3,45214,1,3,0)
+ ;;=3^Lupus,Erythematosus,Local
+ ;;^UTILITY(U,$J,358.3,45214,1,4,0)
+ ;;=4^L93.2
+ ;;^UTILITY(U,$J,358.3,45214,2)
+ ;;=^5009469
+ ;;^UTILITY(U,$J,358.3,45215,0)
+ ;;=L93.1^^170^2254^21
+ ;;^UTILITY(U,$J,358.3,45215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47573,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma NEC,Unspec Site
- ;;^UTILITY(U,$J,358.3,47573,1,4,0)
- ;;=4^C85.80
- ;;^UTILITY(U,$J,358.3,47573,2)
- ;;=^5001721
- ;;^UTILITY(U,$J,358.3,47574,0)
- ;;=C85.81^^209^2346^414
- ;;^UTILITY(U,$J,358.3,47574,1,0)
+ ;;^UTILITY(U,$J,358.3,45215,1,3,0)
+ ;;=3^Lupus,Erythematosus,Subacute Cutaneous
+ ;;^UTILITY(U,$J,358.3,45215,1,4,0)
+ ;;=4^L93.1
+ ;;^UTILITY(U,$J,358.3,45215,2)
+ ;;=^5009468
+ ;;^UTILITY(U,$J,358.3,45216,0)
+ ;;=M32.0^^170^2254^19
+ ;;^UTILITY(U,$J,358.3,45216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47574,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma NEC,Head/Face/Neck Node
- ;;^UTILITY(U,$J,358.3,47574,1,4,0)
- ;;=4^C85.81
+ ;;^UTILITY(U,$J,358.3,45216,1,3,0)
+ ;;=3^Lupus,Erythematosus,Drug-Induced Systemic
+ ;;^UTILITY(U,$J,358.3,45216,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,45216,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,45217,0)
+ ;;=M32.10^^170^2254^22

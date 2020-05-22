@@ -1,136 +1,120 @@
-IBDEI17G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20489,1,3,0)
- ;;=3^Social Phobia,Generalized
- ;;^UTILITY(U,$J,358.3,20489,1,4,0)
- ;;=4^F40.11
- ;;^UTILITY(U,$J,358.3,20489,2)
- ;;=^5003545
- ;;^UTILITY(U,$J,358.3,20490,0)
- ;;=R56.00^^84^934^6
- ;;^UTILITY(U,$J,358.3,20490,1,0)
+ ;;^UTILITY(U,$J,358.3,19355,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,19356,0)
+ ;;=M05.731^^93^992^104
+ ;;^UTILITY(U,$J,358.3,19356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20490,1,3,0)
- ;;=3^Simple Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,20490,1,4,0)
- ;;=4^R56.00
- ;;^UTILITY(U,$J,358.3,20490,2)
- ;;=^5019522
- ;;^UTILITY(U,$J,358.3,20491,0)
- ;;=R56.9^^84^934^4
- ;;^UTILITY(U,$J,358.3,20491,1,0)
+ ;;^UTILITY(U,$J,358.3,19356,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right wrist w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,19356,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,19356,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,19357,0)
+ ;;=M06.072^^93^992^105
+ ;;^UTILITY(U,$J,358.3,19357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20491,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,20491,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,20491,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,20492,0)
- ;;=R25.0^^84^934^1
- ;;^UTILITY(U,$J,358.3,20492,1,0)
+ ;;^UTILITY(U,$J,358.3,19357,1,3,0)
+ ;;=3^Rheu arthrit w/o rheu factor of left ank/ft
+ ;;^UTILITY(U,$J,358.3,19357,1,4,0)
+ ;;=4^M06.072
+ ;;^UTILITY(U,$J,358.3,19357,2)
+ ;;=^5010067
+ ;;^UTILITY(U,$J,358.3,19358,0)
+ ;;=M06.022^^93^992^106
+ ;;^UTILITY(U,$J,358.3,19358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20492,1,3,0)
- ;;=3^Abnormal Head Movements
- ;;^UTILITY(U,$J,358.3,20492,1,4,0)
- ;;=4^R25.0
- ;;^UTILITY(U,$J,358.3,20492,2)
- ;;=^5019299
- ;;^UTILITY(U,$J,358.3,20493,0)
- ;;=R25.1^^84^934^7
- ;;^UTILITY(U,$J,358.3,20493,1,0)
+ ;;^UTILITY(U,$J,358.3,19358,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left elbow 
+ ;;^UTILITY(U,$J,358.3,19358,1,4,0)
+ ;;=4^M06.022
+ ;;^UTILITY(U,$J,358.3,19358,2)
+ ;;=^5010052
+ ;;^UTILITY(U,$J,358.3,19359,0)
+ ;;=M06.042^^93^992^107
+ ;;^UTILITY(U,$J,358.3,19359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20493,1,3,0)
- ;;=3^Tremor,Unspec
- ;;^UTILITY(U,$J,358.3,20493,1,4,0)
- ;;=4^R25.1
- ;;^UTILITY(U,$J,358.3,20493,2)
- ;;=^5019300
- ;;^UTILITY(U,$J,358.3,20494,0)
- ;;=R25.9^^84^934^3
- ;;^UTILITY(U,$J,358.3,20494,1,0)
+ ;;^UTILITY(U,$J,358.3,19359,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left hand 
+ ;;^UTILITY(U,$J,358.3,19359,1,4,0)
+ ;;=4^M06.042
+ ;;^UTILITY(U,$J,358.3,19359,2)
+ ;;=^5010058
+ ;;^UTILITY(U,$J,358.3,19360,0)
+ ;;=M06.052^^93^992^108
+ ;;^UTILITY(U,$J,358.3,19360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20494,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Unspec
- ;;^UTILITY(U,$J,358.3,20494,1,4,0)
- ;;=4^R25.9
- ;;^UTILITY(U,$J,358.3,20494,2)
- ;;=^5019303
- ;;^UTILITY(U,$J,358.3,20495,0)
- ;;=R25.3^^84^934^5
- ;;^UTILITY(U,$J,358.3,20495,1,0)
+ ;;^UTILITY(U,$J,358.3,19360,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left hip 
+ ;;^UTILITY(U,$J,358.3,19360,1,4,0)
+ ;;=4^M06.052
+ ;;^UTILITY(U,$J,358.3,19360,2)
+ ;;=^5010061
+ ;;^UTILITY(U,$J,358.3,19361,0)
+ ;;=M06.062^^93^992^109
+ ;;^UTILITY(U,$J,358.3,19361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20495,1,3,0)
- ;;=3^Fasciculation/Twitching
- ;;^UTILITY(U,$J,358.3,20495,1,4,0)
- ;;=4^R25.3
- ;;^UTILITY(U,$J,358.3,20495,2)
- ;;=^44985
- ;;^UTILITY(U,$J,358.3,20496,0)
- ;;=R25.8^^84^934^2
- ;;^UTILITY(U,$J,358.3,20496,1,0)
+ ;;^UTILITY(U,$J,358.3,19361,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left knee 
+ ;;^UTILITY(U,$J,358.3,19361,1,4,0)
+ ;;=4^M06.062
+ ;;^UTILITY(U,$J,358.3,19361,2)
+ ;;=^5010064
+ ;;^UTILITY(U,$J,358.3,19362,0)
+ ;;=M06.012^^93^992^110
+ ;;^UTILITY(U,$J,358.3,19362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20496,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Other
- ;;^UTILITY(U,$J,358.3,20496,1,4,0)
- ;;=4^R25.8
- ;;^UTILITY(U,$J,358.3,20496,2)
- ;;=^5019302
- ;;^UTILITY(U,$J,358.3,20497,0)
- ;;=M02.30^^84^935^141
- ;;^UTILITY(U,$J,358.3,20497,1,0)
+ ;;^UTILITY(U,$J,358.3,19362,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left shoulder
+ ;;^UTILITY(U,$J,358.3,19362,1,4,0)
+ ;;=4^M06.012
+ ;;^UTILITY(U,$J,358.3,19362,2)
+ ;;=^5010049
+ ;;^UTILITY(U,$J,358.3,19363,0)
+ ;;=M06.032^^93^992^111
+ ;;^UTILITY(U,$J,358.3,19363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20497,1,3,0)
- ;;=3^Reiter's Disease,Unspec Site
- ;;^UTILITY(U,$J,358.3,20497,1,4,0)
- ;;=4^M02.30
- ;;^UTILITY(U,$J,358.3,20497,2)
- ;;=^5009790
- ;;^UTILITY(U,$J,358.3,20498,0)
- ;;=M10.9^^84^935^40
- ;;^UTILITY(U,$J,358.3,20498,1,0)
+ ;;^UTILITY(U,$J,358.3,19363,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left wrist 
+ ;;^UTILITY(U,$J,358.3,19363,1,4,0)
+ ;;=4^M06.032
+ ;;^UTILITY(U,$J,358.3,19363,2)
+ ;;=^5010055
+ ;;^UTILITY(U,$J,358.3,19364,0)
+ ;;=M06.071^^93^992^112
+ ;;^UTILITY(U,$J,358.3,19364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20498,1,3,0)
- ;;=3^Gout,Unspec
- ;;^UTILITY(U,$J,358.3,20498,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,20498,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,20499,0)
- ;;=G90.59^^84^935^34
- ;;^UTILITY(U,$J,358.3,20499,1,0)
+ ;;^UTILITY(U,$J,358.3,19364,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right ank/ft 
+ ;;^UTILITY(U,$J,358.3,19364,1,4,0)
+ ;;=4^M06.071
+ ;;^UTILITY(U,$J,358.3,19364,2)
+ ;;=^5010066
+ ;;^UTILITY(U,$J,358.3,19365,0)
+ ;;=M06.021^^93^992^113
+ ;;^UTILITY(U,$J,358.3,19365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20499,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
- ;;^UTILITY(U,$J,358.3,20499,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,20499,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,20500,0)
- ;;=G56.01^^84^935^12
- ;;^UTILITY(U,$J,358.3,20500,1,0)
+ ;;^UTILITY(U,$J,358.3,19365,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right elbow 
+ ;;^UTILITY(U,$J,358.3,19365,1,4,0)
+ ;;=4^M06.021
+ ;;^UTILITY(U,$J,358.3,19365,2)
+ ;;=^5010051
+ ;;^UTILITY(U,$J,358.3,19366,0)
+ ;;=M06.041^^93^992^114
+ ;;^UTILITY(U,$J,358.3,19366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20500,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,20500,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,20500,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,20501,0)
- ;;=G56.02^^84^935^11
- ;;^UTILITY(U,$J,358.3,20501,1,0)
+ ;;^UTILITY(U,$J,358.3,19366,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right hand 
+ ;;^UTILITY(U,$J,358.3,19366,1,4,0)
+ ;;=4^M06.041
+ ;;^UTILITY(U,$J,358.3,19366,2)
+ ;;=^5010057
+ ;;^UTILITY(U,$J,358.3,19367,0)
+ ;;=M06.051^^93^992^115
+ ;;^UTILITY(U,$J,358.3,19367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20501,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,20501,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,20501,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,20502,0)
- ;;=G56.21^^84^935^56
- ;;^UTILITY(U,$J,358.3,20502,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20502,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb

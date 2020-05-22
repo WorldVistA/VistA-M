@@ -1,124 +1,120 @@
-IBDEI29M ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI29M ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38415,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38415,1,4,0)
- ;;=4^F18.921
- ;;^UTILITY(U,$J,358.3,38415,2)
- ;;=^5003407
- ;;^UTILITY(U,$J,358.3,38416,0)
- ;;=F18.129^^145^1864^17
- ;;^UTILITY(U,$J,358.3,38416,1,0)
+ ;;^UTILITY(U,$J,358.3,36166,1,3,0)
+ ;;=3^Rheumatoid Nodule,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,36166,1,4,0)
+ ;;=4^M06.331
+ ;;^UTILITY(U,$J,358.3,36166,2)
+ ;;=^5010103
+ ;;^UTILITY(U,$J,358.3,36167,0)
+ ;;=M06.38^^139^1832^80
+ ;;^UTILITY(U,$J,358.3,36167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38416,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38416,1,4,0)
- ;;=4^F18.129
- ;;^UTILITY(U,$J,358.3,38416,2)
- ;;=^5003383
- ;;^UTILITY(U,$J,358.3,38417,0)
- ;;=F18.229^^145^1864^18
- ;;^UTILITY(U,$J,358.3,38417,1,0)
+ ;;^UTILITY(U,$J,358.3,36167,1,3,0)
+ ;;=3^Rheumatoid Nodule,Vertebrae
+ ;;^UTILITY(U,$J,358.3,36167,1,4,0)
+ ;;=4^M06.38
+ ;;^UTILITY(U,$J,358.3,36167,2)
+ ;;=^5010118
+ ;;^UTILITY(U,$J,358.3,36168,0)
+ ;;=M05.572^^139^1832^81
+ ;;^UTILITY(U,$J,358.3,36168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38417,1,3,0)
- ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38417,1,4,0)
- ;;=4^F18.229
- ;;^UTILITY(U,$J,358.3,38417,2)
- ;;=^5003396
- ;;^UTILITY(U,$J,358.3,38418,0)
- ;;=F18.929^^145^1864^19
- ;;^UTILITY(U,$J,358.3,38418,1,0)
+ ;;^UTILITY(U,$J,358.3,36168,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36168,1,4,0)
+ ;;=4^M05.572
+ ;;^UTILITY(U,$J,358.3,36168,2)
+ ;;=^5009974
+ ;;^UTILITY(U,$J,358.3,36169,0)
+ ;;=M05.522^^139^1832^82
+ ;;^UTILITY(U,$J,358.3,36169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38418,1,3,0)
- ;;=3^Inhalant Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38418,1,4,0)
- ;;=4^F18.929
- ;;^UTILITY(U,$J,358.3,38418,2)
- ;;=^5003408
- ;;^UTILITY(U,$J,358.3,38419,0)
- ;;=F18.180^^145^1864^1
- ;;^UTILITY(U,$J,358.3,38419,1,0)
+ ;;^UTILITY(U,$J,358.3,36169,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,36169,1,4,0)
+ ;;=4^M05.522
+ ;;^UTILITY(U,$J,358.3,36169,2)
+ ;;=^5009959
+ ;;^UTILITY(U,$J,358.3,36170,0)
+ ;;=M05.542^^139^1832^83
+ ;;^UTILITY(U,$J,358.3,36170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38419,1,3,0)
- ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38419,1,4,0)
- ;;=4^F18.180
- ;;^UTILITY(U,$J,358.3,38419,2)
- ;;=^5003389
- ;;^UTILITY(U,$J,358.3,38420,0)
- ;;=F18.280^^145^1864^2
- ;;^UTILITY(U,$J,358.3,38420,1,0)
+ ;;^UTILITY(U,$J,358.3,36170,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Hand
+ ;;^UTILITY(U,$J,358.3,36170,1,4,0)
+ ;;=4^M05.542
+ ;;^UTILITY(U,$J,358.3,36170,2)
+ ;;=^5009965
+ ;;^UTILITY(U,$J,358.3,36171,0)
+ ;;=M05.552^^139^1832^84
+ ;;^UTILITY(U,$J,358.3,36171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38420,1,3,0)
- ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38420,1,4,0)
- ;;=4^F18.280
- ;;^UTILITY(U,$J,358.3,38420,2)
- ;;=^5003402
- ;;^UTILITY(U,$J,358.3,38421,0)
- ;;=F18.980^^145^1864^3
- ;;^UTILITY(U,$J,358.3,38421,1,0)
+ ;;^UTILITY(U,$J,358.3,36171,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Hip
+ ;;^UTILITY(U,$J,358.3,36171,1,4,0)
+ ;;=4^M05.552
+ ;;^UTILITY(U,$J,358.3,36171,2)
+ ;;=^5009968
+ ;;^UTILITY(U,$J,358.3,36172,0)
+ ;;=M05.562^^139^1832^85
+ ;;^UTILITY(U,$J,358.3,36172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38421,1,3,0)
- ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38421,1,4,0)
- ;;=4^F18.980
- ;;^UTILITY(U,$J,358.3,38421,2)
- ;;=^5003414
- ;;^UTILITY(U,$J,358.3,38422,0)
- ;;=F18.94^^145^1864^4
- ;;^UTILITY(U,$J,358.3,38422,1,0)
+ ;;^UTILITY(U,$J,358.3,36172,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Knee
+ ;;^UTILITY(U,$J,358.3,36172,1,4,0)
+ ;;=4^M05.562
+ ;;^UTILITY(U,$J,358.3,36172,2)
+ ;;=^5009971
+ ;;^UTILITY(U,$J,358.3,36173,0)
+ ;;=M05.512^^139^1832^86
+ ;;^UTILITY(U,$J,358.3,36173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38422,1,3,0)
- ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38422,1,4,0)
- ;;=4^F18.94
- ;;^UTILITY(U,$J,358.3,38422,2)
- ;;=^5003409
- ;;^UTILITY(U,$J,358.3,38423,0)
- ;;=F18.17^^145^1864^5
- ;;^UTILITY(U,$J,358.3,38423,1,0)
+ ;;^UTILITY(U,$J,358.3,36173,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Shoulder
+ ;;^UTILITY(U,$J,358.3,36173,1,4,0)
+ ;;=4^M05.512
+ ;;^UTILITY(U,$J,358.3,36173,2)
+ ;;=^5009956
+ ;;^UTILITY(U,$J,358.3,36174,0)
+ ;;=M05.532^^139^1832^87
+ ;;^UTILITY(U,$J,358.3,36174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38423,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38423,1,4,0)
- ;;=4^F18.17
- ;;^UTILITY(U,$J,358.3,38423,2)
- ;;=^5003388
- ;;^UTILITY(U,$J,358.3,38424,0)
- ;;=F18.27^^145^1864^6
- ;;^UTILITY(U,$J,358.3,38424,1,0)
+ ;;^UTILITY(U,$J,358.3,36174,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Lt Wrist
+ ;;^UTILITY(U,$J,358.3,36174,1,4,0)
+ ;;=4^M05.532
+ ;;^UTILITY(U,$J,358.3,36174,2)
+ ;;=^5009962
+ ;;^UTILITY(U,$J,358.3,36175,0)
+ ;;=M05.59^^139^1832^88
+ ;;^UTILITY(U,$J,358.3,36175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38424,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38424,1,4,0)
- ;;=4^F18.27
- ;;^UTILITY(U,$J,358.3,38424,2)
- ;;=^5003401
- ;;^UTILITY(U,$J,358.3,38425,0)
- ;;=F18.97^^145^1864^7
- ;;^UTILITY(U,$J,358.3,38425,1,0)
+ ;;^UTILITY(U,$J,358.3,36175,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Mult Sites
+ ;;^UTILITY(U,$J,358.3,36175,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,36175,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,36176,0)
+ ;;=M05.571^^139^1832^89
+ ;;^UTILITY(U,$J,358.3,36176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38425,1,3,0)
- ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38425,1,4,0)
- ;;=4^F18.97
- ;;^UTILITY(U,$J,358.3,38425,2)
- ;;=^5003413
- ;;^UTILITY(U,$J,358.3,38426,0)
- ;;=F18.188^^145^1864^8
- ;;^UTILITY(U,$J,358.3,38426,1,0)
+ ;;^UTILITY(U,$J,358.3,36176,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36176,1,4,0)
+ ;;=4^M05.571
+ ;;^UTILITY(U,$J,358.3,36176,2)
+ ;;=^5009973
+ ;;^UTILITY(U,$J,358.3,36177,0)
+ ;;=M05.521^^139^1832^90
+ ;;^UTILITY(U,$J,358.3,36177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38426,1,3,0)
- ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38426,1,4,0)
- ;;=4^F18.188
- ;;^UTILITY(U,$J,358.3,38426,2)
- ;;=^5003390
- ;;^UTILITY(U,$J,358.3,38427,0)
- ;;=F18.288^^145^1864^9
- ;;^UTILITY(U,$J,358.3,38427,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36177,1,3,0)
+ ;;=3^Rheumatoid Polyneurop w/ Rheum Arthritis,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,36177,1,4,0)
+ ;;=4^M05.521
+ ;;^UTILITY(U,$J,358.3,36177,2)
+ ;;=^5009958

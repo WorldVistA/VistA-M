@@ -1,136 +1,124 @@
-IBDEI2JK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JK ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43113,0)
- ;;=I83.228^^164^2060^154
- ;;^UTILITY(U,$J,358.3,43113,1,0)
+ ;;^UTILITY(U,$J,358.3,40582,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,40582,1,4,0)
+ ;;=4^R82.79
+ ;;^UTILITY(U,$J,358.3,40582,2)
+ ;;=^5139222
+ ;;^UTILITY(U,$J,358.3,40583,0)
+ ;;=K08.9^^152^2012^65
+ ;;^UTILITY(U,$J,358.3,40583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43113,1,3,0)
- ;;=3^Varic Veins Lt LE w/ Ulc of Oth Part LE & Inflam
- ;;^UTILITY(U,$J,358.3,43113,1,4,0)
- ;;=4^I83.228
- ;;^UTILITY(U,$J,358.3,43113,2)
- ;;=^5008009
- ;;^UTILITY(U,$J,358.3,43114,0)
- ;;=I83.91^^164^2060^46
- ;;^UTILITY(U,$J,358.3,43114,1,0)
+ ;;^UTILITY(U,$J,358.3,40583,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Unspec
+ ;;^UTILITY(U,$J,358.3,40583,1,4,0)
+ ;;=4^K08.9
+ ;;^UTILITY(U,$J,358.3,40583,2)
+ ;;=^5008468
+ ;;^UTILITY(U,$J,358.3,40584,0)
+ ;;=R93.89^^152^2012^15
+ ;;^UTILITY(U,$J,358.3,40584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43114,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Rt LE
- ;;^UTILITY(U,$J,358.3,43114,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,43114,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,43115,0)
- ;;=I83.92^^164^2060^45
- ;;^UTILITY(U,$J,358.3,43115,1,0)
+ ;;^UTILITY(U,$J,358.3,40584,1,3,0)
+ ;;=3^Abnormal Finding on Dx Imaging of Oth Body Structures
+ ;;^UTILITY(U,$J,358.3,40584,1,4,0)
+ ;;=4^R93.89
+ ;;^UTILITY(U,$J,358.3,40584,2)
+ ;;=^5157477
+ ;;^UTILITY(U,$J,358.3,40585,0)
+ ;;=R82.998^^152^2012^28
+ ;;^UTILITY(U,$J,358.3,40585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43115,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Lt LE
- ;;^UTILITY(U,$J,358.3,43115,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,43115,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,43116,0)
- ;;=I83.93^^164^2060^44
- ;;^UTILITY(U,$J,358.3,43116,1,0)
+ ;;^UTILITY(U,$J,358.3,40585,1,3,0)
+ ;;=3^Abnormal Urine Findings,Other
+ ;;^UTILITY(U,$J,358.3,40585,1,4,0)
+ ;;=4^R82.998
+ ;;^UTILITY(U,$J,358.3,40585,2)
+ ;;=^5157472
+ ;;^UTILITY(U,$J,358.3,40586,0)
+ ;;=R82.89^^152^2012^27
+ ;;^UTILITY(U,$J,358.3,40586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43116,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Bil LE
- ;;^UTILITY(U,$J,358.3,43116,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,43116,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,43117,0)
- ;;=I89.0^^164^2060^117
- ;;^UTILITY(U,$J,358.3,43117,1,0)
+ ;;^UTILITY(U,$J,358.3,40586,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings,Other
+ ;;^UTILITY(U,$J,358.3,40586,1,4,0)
+ ;;=4^R82.89
+ ;;^UTILITY(U,$J,358.3,40586,2)
+ ;;=^5158142
+ ;;^UTILITY(U,$J,358.3,40587,0)
+ ;;=R82.81^^152^2012^150
+ ;;^UTILITY(U,$J,358.3,40587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43117,1,3,0)
- ;;=3^Lymphedema NEC
- ;;^UTILITY(U,$J,358.3,43117,1,4,0)
- ;;=4^I89.0
- ;;^UTILITY(U,$J,358.3,43117,2)
- ;;=^5008073
- ;;^UTILITY(U,$J,358.3,43118,0)
- ;;=I87.2^^164^2060^170
- ;;^UTILITY(U,$J,358.3,43118,1,0)
+ ;;^UTILITY(U,$J,358.3,40587,1,3,0)
+ ;;=3^Pyuria
+ ;;^UTILITY(U,$J,358.3,40587,1,4,0)
+ ;;=4^R82.81
+ ;;^UTILITY(U,$J,358.3,40587,2)
+ ;;=^101879
+ ;;^UTILITY(U,$J,358.3,40588,0)
+ ;;=S43.51XA^^152^2013^12
+ ;;^UTILITY(U,$J,358.3,40588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43118,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,43118,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,43118,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,43119,0)
- ;;=K55.0^^164^2060^32
- ;;^UTILITY(U,$J,358.3,43119,1,0)
+ ;;^UTILITY(U,$J,358.3,40588,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,40588,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,40588,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,40589,0)
+ ;;=S43.52XA^^152^2013^1
+ ;;^UTILITY(U,$J,358.3,40589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43119,1,3,0)
- ;;=3^AC Intestine Vascular Disorders
- ;;^UTILITY(U,$J,358.3,43119,1,4,0)
- ;;=4^K55.0
- ;;^UTILITY(U,$J,358.3,43119,2)
- ;;=^5008705
- ;;^UTILITY(U,$J,358.3,43120,0)
- ;;=K55.1^^164^2060^74
- ;;^UTILITY(U,$J,358.3,43120,1,0)
+ ;;^UTILITY(U,$J,358.3,40589,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,40589,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,40589,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,40590,0)
+ ;;=S43.421A^^152^2013^17
+ ;;^UTILITY(U,$J,358.3,40590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43120,1,3,0)
- ;;=3^Chr Intestine Vascular Disorders
- ;;^UTILITY(U,$J,358.3,43120,1,4,0)
- ;;=4^K55.1
- ;;^UTILITY(U,$J,358.3,43120,2)
- ;;=^5008706
- ;;^UTILITY(U,$J,358.3,43121,0)
- ;;=N18.9^^164^2060^75
- ;;^UTILITY(U,$J,358.3,43121,1,0)
+ ;;^UTILITY(U,$J,358.3,40590,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,40590,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,40590,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,40591,0)
+ ;;=S43.422A^^152^2013^6
+ ;;^UTILITY(U,$J,358.3,40591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43121,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43121,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,43121,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,43122,0)
- ;;=N28.0^^164^2060^108
- ;;^UTILITY(U,$J,358.3,43122,1,0)
+ ;;^UTILITY(U,$J,358.3,40591,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,40591,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,40591,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,40592,0)
+ ;;=S53.401A^^152^2013^14
+ ;;^UTILITY(U,$J,358.3,40592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43122,1,3,0)
- ;;=3^Kidney Ischemia & Infarction
- ;;^UTILITY(U,$J,358.3,43122,1,4,0)
- ;;=4^N28.0
- ;;^UTILITY(U,$J,358.3,43122,2)
- ;;=^5015626
- ;;^UTILITY(U,$J,358.3,43123,0)
- ;;=L03.114^^164^2060^66
- ;;^UTILITY(U,$J,358.3,43123,1,0)
+ ;;^UTILITY(U,$J,358.3,40592,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,40592,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,40592,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,40593,0)
+ ;;=S53.402A^^152^2013^3
+ ;;^UTILITY(U,$J,358.3,40593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43123,1,3,0)
- ;;=3^Cellulitis Lt Upper Limb
- ;;^UTILITY(U,$J,358.3,43123,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,43123,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,43124,0)
- ;;=L03.113^^164^2060^68
- ;;^UTILITY(U,$J,358.3,43124,1,0)
+ ;;^UTILITY(U,$J,358.3,40593,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,40593,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,40593,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,40594,0)
+ ;;=S56.011A^^152^2013^55
+ ;;^UTILITY(U,$J,358.3,40594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43124,1,3,0)
- ;;=3^Cellulitis Rt Upper Limb
- ;;^UTILITY(U,$J,358.3,43124,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,43124,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,43125,0)
- ;;=L03.115^^164^2060^67
- ;;^UTILITY(U,$J,358.3,43125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43125,1,3,0)
- ;;=3^Cellulitis Rt Lower Limb
- ;;^UTILITY(U,$J,358.3,43125,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,43125,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,43126,0)
- ;;=L03.116^^164^2060^65

@@ -1,128 +1,122 @@
-IBDEI1VC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VC ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31748,1,4,0)
- ;;=4^T25.032A
- ;;^UTILITY(U,$J,358.3,31748,2)
- ;;=^5048505
- ;;^UTILITY(U,$J,358.3,31749,0)
- ;;=T25.031A^^126^1605^49
- ;;^UTILITY(U,$J,358.3,31749,1,0)
+ ;;^UTILITY(U,$J,358.3,29851,1,3,0)
+ ;;=3^MH Svc for Victim of Other Abuse
+ ;;^UTILITY(U,$J,358.3,29851,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,29851,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,29852,0)
+ ;;=Z69.82^^120^1515^21
+ ;;^UTILITY(U,$J,358.3,29852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31749,1,3,0)
- ;;=3^Burn of rt toe(s)(nail), unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,31749,1,4,0)
- ;;=4^T25.031A
- ;;^UTILITY(U,$J,358.3,31749,2)
- ;;=^5048502
- ;;^UTILITY(U,$J,358.3,31750,0)
- ;;=T25.021A^^126^1605^41
- ;;^UTILITY(U,$J,358.3,31750,1,0)
+ ;;^UTILITY(U,$J,358.3,29852,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Other Abuse
+ ;;^UTILITY(U,$J,358.3,29852,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,29852,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,29853,0)
+ ;;=T74.01XA^^120^1515^3
+ ;;^UTILITY(U,$J,358.3,29853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31750,1,3,0)
- ;;=3^Burn of rt ft, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31750,1,4,0)
- ;;=4^T25.021A
- ;;^UTILITY(U,$J,358.3,31750,2)
- ;;=^5048496
- ;;^UTILITY(U,$J,358.3,31751,0)
- ;;=T25.022A^^126^1605^25
- ;;^UTILITY(U,$J,358.3,31751,1,0)
+ ;;^UTILITY(U,$J,358.3,29853,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,29853,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,29853,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,29854,0)
+ ;;=T74.01XD^^120^1515^4
+ ;;^UTILITY(U,$J,358.3,29854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31751,1,3,0)
- ;;=3^Burn of lft ft, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31751,1,4,0)
- ;;=4^T25.022A
- ;;^UTILITY(U,$J,358.3,31751,2)
- ;;=^5048499
- ;;^UTILITY(U,$J,358.3,31752,0)
- ;;=T25.011A^^126^1605^37
- ;;^UTILITY(U,$J,358.3,31752,1,0)
+ ;;^UTILITY(U,$J,358.3,29854,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,29854,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,29854,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,29855,0)
+ ;;=T76.01XA^^120^1515^5
+ ;;^UTILITY(U,$J,358.3,29855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31752,1,3,0)
- ;;=3^Burn of rt ankl, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31752,1,4,0)
- ;;=4^T25.011A
- ;;^UTILITY(U,$J,358.3,31752,2)
- ;;=^5048490
- ;;^UTILITY(U,$J,358.3,31753,0)
- ;;=T25.012A^^126^1605^21
- ;;^UTILITY(U,$J,358.3,31753,1,0)
+ ;;^UTILITY(U,$J,358.3,29855,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,29855,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,29855,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,29856,0)
+ ;;=T76.01XD^^120^1515^6
+ ;;^UTILITY(U,$J,358.3,29856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31753,1,3,0)
- ;;=3^Burn of lft ankl, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31753,1,4,0)
- ;;=4^T25.012A
- ;;^UTILITY(U,$J,358.3,31753,2)
- ;;=^5048493
- ;;^UTILITY(U,$J,358.3,31754,0)
- ;;=T24.031A^^126^1605^45
- ;;^UTILITY(U,$J,358.3,31754,1,0)
+ ;;^UTILITY(U,$J,358.3,29856,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,29856,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,29856,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,29857,0)
+ ;;=Z91.412^^120^1515^25
+ ;;^UTILITY(U,$J,358.3,29857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31754,1,3,0)
- ;;=3^Burn of rt lwr leg, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31754,1,4,0)
- ;;=4^T24.031A
- ;;^UTILITY(U,$J,358.3,31754,2)
- ;;=^5048196
- ;;^UTILITY(U,$J,358.3,31755,0)
- ;;=T24.032A^^126^1605^29
- ;;^UTILITY(U,$J,358.3,31755,1,0)
+ ;;^UTILITY(U,$J,358.3,29857,1,3,0)
+ ;;=3^Personal Hx of Adult Neglect
+ ;;^UTILITY(U,$J,358.3,29857,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,29857,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,29858,0)
+ ;;=T74.31XA^^120^1515^11
+ ;;^UTILITY(U,$J,358.3,29858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31755,1,3,0)
- ;;=3^Burn of lft lwr leg, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31755,1,4,0)
- ;;=4^T24.032A
- ;;^UTILITY(U,$J,358.3,31755,2)
- ;;=^5048199
- ;;^UTILITY(U,$J,358.3,31756,0)
- ;;=E53.8^^126^1605^1
- ;;^UTILITY(U,$J,358.3,31756,1,0)
+ ;;^UTILITY(U,$J,358.3,29858,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Init Enctr
+ ;;^UTILITY(U,$J,358.3,29858,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,29858,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,29859,0)
+ ;;=T74.31XD^^120^1515^12
+ ;;^UTILITY(U,$J,358.3,29859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31756,1,3,0)
- ;;=3^B Group Vitamin Deficiency NEC
- ;;^UTILITY(U,$J,358.3,31756,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,31756,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,31757,0)
- ;;=T25.131A^^126^1605^48
- ;;^UTILITY(U,$J,358.3,31757,1,0)
+ ;;^UTILITY(U,$J,358.3,29859,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,29859,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,29859,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,29860,0)
+ ;;=T76.31XA^^120^1515^13
+ ;;^UTILITY(U,$J,358.3,29860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31757,1,3,0)
- ;;=3^Burn of rt toe(s)(nail), first degree, init enc
- ;;^UTILITY(U,$J,358.3,31757,1,4,0)
- ;;=4^T25.131A
- ;;^UTILITY(U,$J,358.3,31757,2)
- ;;=^5048532
- ;;^UTILITY(U,$J,358.3,31758,0)
- ;;=T25.132A^^126^1605^32
- ;;^UTILITY(U,$J,358.3,31758,1,0)
+ ;;^UTILITY(U,$J,358.3,29860,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Init Enctr
+ ;;^UTILITY(U,$J,358.3,29860,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,29860,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,29861,0)
+ ;;=T76.31XD^^120^1515^14
+ ;;^UTILITY(U,$J,358.3,29861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31758,1,3,0)
- ;;=3^Burn of lft toe(s)(nail), first degree, init enc
- ;;^UTILITY(U,$J,358.3,31758,1,4,0)
- ;;=4^T25.132A
- ;;^UTILITY(U,$J,358.3,31758,2)
- ;;=^5048535
- ;;^UTILITY(U,$J,358.3,31759,0)
- ;;=T25.121A^^126^1605^38
- ;;^UTILITY(U,$J,358.3,31759,1,0)
+ ;;^UTILITY(U,$J,358.3,29861,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subs Enctr
+ ;;^UTILITY(U,$J,358.3,29861,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,29861,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,29862,0)
+ ;;=Z91.411^^120^1515^27
+ ;;^UTILITY(U,$J,358.3,29862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31759,1,3,0)
- ;;=3^Burn of rt foot, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31759,1,4,0)
- ;;=4^T25.121A
- ;;^UTILITY(U,$J,358.3,31759,2)
- ;;=^5048523
- ;;^UTILITY(U,$J,358.3,31760,0)
- ;;=T25.122A^^126^1605^22
- ;;^UTILITY(U,$J,358.3,31760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31760,1,3,0)
- ;;=3^Burn of lft ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31760,1,4,0)
- ;;=4^T25.122A
- ;;^UTILITY(U,$J,358.3,31760,2)
- ;;=^5048526
+ ;;^UTILITY(U,$J,358.3,29862,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,29862,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,29862,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,29863,0)
+ ;;=Z69.021^^120^1515^20

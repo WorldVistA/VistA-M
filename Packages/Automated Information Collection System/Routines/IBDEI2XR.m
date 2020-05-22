@@ -1,124 +1,124 @@
-IBDEI2XR ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XR ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49247,1,4,0)
- ;;=4^S62.511S
- ;;^UTILITY(U,$J,358.3,49247,2)
- ;;=^5034304
- ;;^UTILITY(U,$J,358.3,49248,0)
- ;;=S62.525S^^216^2415^73
- ;;^UTILITY(U,$J,358.3,49248,1,0)
+ ;;^UTILITY(U,$J,358.3,46852,1,4,0)
+ ;;=4^N48.6
+ ;;^UTILITY(U,$J,358.3,46852,2)
+ ;;=^5015739
+ ;;^UTILITY(U,$J,358.3,46853,0)
+ ;;=N52.35^^179^2337^10
+ ;;^UTILITY(U,$J,358.3,46853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49248,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,49248,1,4,0)
- ;;=4^S62.525S
- ;;^UTILITY(U,$J,358.3,49248,2)
- ;;=^5034374
- ;;^UTILITY(U,$J,358.3,49249,0)
- ;;=S62.524S^^216^2415^78
- ;;^UTILITY(U,$J,358.3,49249,1,0)
+ ;;^UTILITY(U,$J,358.3,46853,1,3,0)
+ ;;=3^Erectile Dysfunc Fol Radiation Therapy
+ ;;^UTILITY(U,$J,358.3,46853,1,4,0)
+ ;;=4^N52.35
+ ;;^UTILITY(U,$J,358.3,46853,2)
+ ;;=^5138932
+ ;;^UTILITY(U,$J,358.3,46854,0)
+ ;;=N52.36^^179^2337^8
+ ;;^UTILITY(U,$J,358.3,46854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49249,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,49249,1,4,0)
- ;;=4^S62.524S
- ;;^UTILITY(U,$J,358.3,49249,2)
- ;;=^5034367
- ;;^UTILITY(U,$J,358.3,49250,0)
- ;;=S62.515S^^216^2415^101
- ;;^UTILITY(U,$J,358.3,49250,1,0)
+ ;;^UTILITY(U,$J,358.3,46854,1,3,0)
+ ;;=3^Erectile Dysfunc Fol Interstitial Seed Therapy
+ ;;^UTILITY(U,$J,358.3,46854,1,4,0)
+ ;;=4^N52.36
+ ;;^UTILITY(U,$J,358.3,46854,2)
+ ;;=^5138933
+ ;;^UTILITY(U,$J,358.3,46855,0)
+ ;;=N52.37^^179^2337^9
+ ;;^UTILITY(U,$J,358.3,46855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49250,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left thumb, sequela
- ;;^UTILITY(U,$J,358.3,49250,1,4,0)
- ;;=4^S62.515S
- ;;^UTILITY(U,$J,358.3,49250,2)
- ;;=^5034332
- ;;^UTILITY(U,$J,358.3,49251,0)
- ;;=S62.514S^^216^2415^106
- ;;^UTILITY(U,$J,358.3,49251,1,0)
+ ;;^UTILITY(U,$J,358.3,46855,1,3,0)
+ ;;=3^Erectile Dysfunc Fol Prostate Ablat Therapy
+ ;;^UTILITY(U,$J,358.3,46855,1,4,0)
+ ;;=4^N52.37
+ ;;^UTILITY(U,$J,358.3,46855,2)
+ ;;=^5138934
+ ;;^UTILITY(U,$J,358.3,46856,0)
+ ;;=N50.89^^179^2337^11
+ ;;^UTILITY(U,$J,358.3,46856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49251,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
- ;;^UTILITY(U,$J,358.3,49251,1,4,0)
- ;;=4^S62.514S
- ;;^UTILITY(U,$J,358.3,49251,2)
- ;;=^5034325
- ;;^UTILITY(U,$J,358.3,49252,0)
- ;;=S32.462S^^216^2416^5
- ;;^UTILITY(U,$J,358.3,49252,1,0)
+ ;;^UTILITY(U,$J,358.3,46856,1,3,0)
+ ;;=3^Male Genital Organ Disorders,Oth Specified
+ ;;^UTILITY(U,$J,358.3,46856,1,4,0)
+ ;;=4^N50.89
+ ;;^UTILITY(U,$J,358.3,46856,2)
+ ;;=^5138931
+ ;;^UTILITY(U,$J,358.3,46857,0)
+ ;;=N50.82^^179^2337^27
+ ;;^UTILITY(U,$J,358.3,46857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49252,1,3,0)
- ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49252,1,4,0)
- ;;=4^S32.462S
- ;;^UTILITY(U,$J,358.3,49252,2)
- ;;=^5024892
- ;;^UTILITY(U,$J,358.3,49253,0)
- ;;=S32.461S^^216^2416^6
- ;;^UTILITY(U,$J,358.3,49253,1,0)
+ ;;^UTILITY(U,$J,358.3,46857,1,3,0)
+ ;;=3^Scrotal Pain
+ ;;^UTILITY(U,$J,358.3,46857,1,4,0)
+ ;;=4^N50.82
+ ;;^UTILITY(U,$J,358.3,46857,2)
+ ;;=^5138930
+ ;;^UTILITY(U,$J,358.3,46858,0)
+ ;;=N50.812^^179^2337^28
+ ;;^UTILITY(U,$J,358.3,46858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49253,1,3,0)
- ;;=3^Disp fx of associated transv/post of right acetab, sequela
- ;;^UTILITY(U,$J,358.3,49253,1,4,0)
- ;;=4^S32.461S
- ;;^UTILITY(U,$J,358.3,49253,2)
- ;;=^5024886
- ;;^UTILITY(U,$J,358.3,49254,0)
- ;;=S32.312S^^216^2416^7
- ;;^UTILITY(U,$J,358.3,49254,1,0)
+ ;;^UTILITY(U,$J,358.3,46858,1,3,0)
+ ;;=3^Testicular Pain,Left
+ ;;^UTILITY(U,$J,358.3,46858,1,4,0)
+ ;;=4^N50.812
+ ;;^UTILITY(U,$J,358.3,46858,2)
+ ;;=^5138928
+ ;;^UTILITY(U,$J,358.3,46859,0)
+ ;;=N50.811^^179^2337^29
+ ;;^UTILITY(U,$J,358.3,46859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49254,1,3,0)
- ;;=3^Disp fx of avulsion of left ilium, sequela
- ;;^UTILITY(U,$J,358.3,49254,1,4,0)
- ;;=4^S32.312S
- ;;^UTILITY(U,$J,358.3,49254,2)
- ;;=^5024658
- ;;^UTILITY(U,$J,358.3,49255,0)
- ;;=S32.311S^^216^2416^9
- ;;^UTILITY(U,$J,358.3,49255,1,0)
+ ;;^UTILITY(U,$J,358.3,46859,1,3,0)
+ ;;=3^Testicular Pain,Right
+ ;;^UTILITY(U,$J,358.3,46859,1,4,0)
+ ;;=4^N50.811
+ ;;^UTILITY(U,$J,358.3,46859,2)
+ ;;=^5138927
+ ;;^UTILITY(U,$J,358.3,46860,0)
+ ;;=N50.819^^179^2337^30
+ ;;^UTILITY(U,$J,358.3,46860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49255,1,3,0)
- ;;=3^Disp fx of avulsion of right ilium, sequela
- ;;^UTILITY(U,$J,358.3,49255,1,4,0)
- ;;=4^S32.311S
- ;;^UTILITY(U,$J,358.3,49255,2)
- ;;=^5024652
- ;;^UTILITY(U,$J,358.3,49256,0)
- ;;=S32.612S^^216^2416^8
- ;;^UTILITY(U,$J,358.3,49256,1,0)
+ ;;^UTILITY(U,$J,358.3,46860,1,3,0)
+ ;;=3^Testicular Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,46860,1,4,0)
+ ;;=4^N50.819
+ ;;^UTILITY(U,$J,358.3,46860,2)
+ ;;=^5138929
+ ;;^UTILITY(U,$J,358.3,46861,0)
+ ;;=T83.121A^^179^2338^21
+ ;;^UTILITY(U,$J,358.3,46861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49256,1,3,0)
- ;;=3^Disp fx of avulsion of left ischium, sequela
- ;;^UTILITY(U,$J,358.3,49256,1,4,0)
- ;;=4^S32.612S
- ;;^UTILITY(U,$J,358.3,49256,2)
- ;;=^5025066
- ;;^UTILITY(U,$J,358.3,49257,0)
- ;;=S32.611S^^216^2416^10
- ;;^UTILITY(U,$J,358.3,49257,1,0)
+ ;;^UTILITY(U,$J,358.3,46861,1,3,0)
+ ;;=3^Dsplcmnt urinary sphnctr implnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46861,1,4,0)
+ ;;=4^T83.121A
+ ;;^UTILITY(U,$J,358.3,46861,2)
+ ;;=^5054998
+ ;;^UTILITY(U,$J,358.3,46862,0)
+ ;;=T83.122A^^179^2338^17
+ ;;^UTILITY(U,$J,358.3,46862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49257,1,3,0)
- ;;=3^Disp fx of avulsion of right ischium, sequela
- ;;^UTILITY(U,$J,358.3,49257,1,4,0)
- ;;=4^S32.611S
- ;;^UTILITY(U,$J,358.3,49257,2)
- ;;=^5025060
- ;;^UTILITY(U,$J,358.3,49258,0)
- ;;=S32.482S^^216^2416^11
- ;;^UTILITY(U,$J,358.3,49258,1,0)
+ ;;^UTILITY(U,$J,358.3,46862,1,3,0)
+ ;;=3^Dsplcmnt indwll ureteral stent,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46862,1,4,0)
+ ;;=4^T83.122A
+ ;;^UTILITY(U,$J,358.3,46862,2)
+ ;;=^5055001
+ ;;^UTILITY(U,$J,358.3,46863,0)
+ ;;=T83.128A^^179^2338^20
+ ;;^UTILITY(U,$J,358.3,46863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49258,1,3,0)
- ;;=3^Disp fx of dome of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49258,1,4,0)
- ;;=4^S32.482S
- ;;^UTILITY(U,$J,358.3,49258,2)
- ;;=^5024964
- ;;^UTILITY(U,$J,358.3,49259,0)
- ;;=S32.481S^^216^2416^12
- ;;^UTILITY(U,$J,358.3,49259,1,0)
+ ;;^UTILITY(U,$J,358.3,46863,1,3,0)
+ ;;=3^Dsplcmnt urinary dvc/impl,other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46863,1,4,0)
+ ;;=4^T83.128A
+ ;;^UTILITY(U,$J,358.3,46863,2)
+ ;;=^5055004
+ ;;^UTILITY(U,$J,358.3,46864,0)
+ ;;=T83.190A^^179^2338^42
+ ;;^UTILITY(U,$J,358.3,46864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49259,1,3,0)
- ;;=3^Disp fx of dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,46864,1,3,0)
+ ;;=3^Mech compl urinary elect stim dvc,Oth,Init Encntr

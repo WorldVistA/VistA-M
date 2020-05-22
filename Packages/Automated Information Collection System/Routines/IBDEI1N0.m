@@ -1,134 +1,122 @@
-IBDEI1N0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1N0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27787,1,4,0)
- ;;=4^G44.40
- ;;^UTILITY(U,$J,358.3,27787,2)
- ;;=^5003947
- ;;^UTILITY(U,$J,358.3,27788,0)
- ;;=G43.901^^109^1385^9
- ;;^UTILITY(U,$J,358.3,27788,1,0)
+ ;;^UTILITY(U,$J,358.3,26150,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26150,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,26150,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,26151,0)
+ ;;=X00.8XXA^^107^1230^22
+ ;;^UTILITY(U,$J,358.3,26151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27788,1,3,0)
- ;;=3^Migraine Not Intractable w/ Status Migrainosus
- ;;^UTILITY(U,$J,358.3,27788,1,4,0)
- ;;=4^G43.901
- ;;^UTILITY(U,$J,358.3,27788,2)
- ;;=^5003908
- ;;^UTILITY(U,$J,358.3,27789,0)
- ;;=G43.101^^109^1385^14
- ;;^UTILITY(U,$J,358.3,27789,1,0)
+ ;;^UTILITY(U,$J,358.3,26151,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26151,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,26151,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,26152,0)
+ ;;=X00.8XXD^^107^1230^23
+ ;;^UTILITY(U,$J,358.3,26152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27789,1,3,0)
- ;;=3^Migraine w/ Aura Not Intractable w/ Status Migrainosus
- ;;^UTILITY(U,$J,358.3,27789,1,4,0)
- ;;=4^G43.101
- ;;^UTILITY(U,$J,358.3,27789,2)
- ;;=^5003880
- ;;^UTILITY(U,$J,358.3,27790,0)
- ;;=G43.001^^109^1385^18
- ;;^UTILITY(U,$J,358.3,27790,1,0)
+ ;;^UTILITY(U,$J,358.3,26152,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26152,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,26152,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,26153,0)
+ ;;=X32.XXXA^^107^1230^20
+ ;;^UTILITY(U,$J,358.3,26153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27790,1,3,0)
- ;;=3^Migraine w/o Aura Not Intractable w/ Status Migrainosus
- ;;^UTILITY(U,$J,358.3,27790,1,4,0)
- ;;=4^G43.001
- ;;^UTILITY(U,$J,358.3,27790,2)
- ;;=^5003876
- ;;^UTILITY(U,$J,358.3,27791,0)
- ;;=G44.309^^109^1385^20
- ;;^UTILITY(U,$J,358.3,27791,1,0)
+ ;;^UTILITY(U,$J,358.3,26153,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26153,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,26153,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,26154,0)
+ ;;=X32.XXXD^^107^1230^21
+ ;;^UTILITY(U,$J,358.3,26154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27791,1,3,0)
- ;;=3^Post-Traumatic Headache Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,27791,1,4,0)
- ;;=4^G44.309
- ;;^UTILITY(U,$J,358.3,27791,2)
- ;;=^5003942
- ;;^UTILITY(U,$J,358.3,27792,0)
- ;;=G44.201^^109^1385^21
- ;;^UTILITY(U,$J,358.3,27792,1,0)
+ ;;^UTILITY(U,$J,358.3,26154,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26154,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,26154,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,26155,0)
+ ;;=Y04.0XXA^^107^1230^7
+ ;;^UTILITY(U,$J,358.3,26155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27792,1,3,0)
- ;;=3^Tension-Type Headache Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,27792,1,4,0)
- ;;=4^G44.201
- ;;^UTILITY(U,$J,358.3,27792,2)
- ;;=^5003935
- ;;^UTILITY(U,$J,358.3,27793,0)
- ;;=G20.^^109^1386^13
- ;;^UTILITY(U,$J,358.3,27793,1,0)
+ ;;^UTILITY(U,$J,358.3,26155,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26155,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,26155,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,26156,0)
+ ;;=Y04.0XXD^^107^1230^8
+ ;;^UTILITY(U,$J,358.3,26156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27793,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,27793,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,27793,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,27794,0)
- ;;=G21.8^^109^1386^18
- ;;^UTILITY(U,$J,358.3,27794,1,0)
+ ;;^UTILITY(U,$J,358.3,26156,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26156,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,26156,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,26157,0)
+ ;;=Y04.1XXA^^107^1230^1
+ ;;^UTILITY(U,$J,358.3,26157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27794,1,3,0)
- ;;=3^Secondary Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,27794,1,4,0)
- ;;=4^G21.8
- ;;^UTILITY(U,$J,358.3,27794,2)
- ;;=^5003777
- ;;^UTILITY(U,$J,358.3,27795,0)
- ;;=G25.0^^109^1386^8
- ;;^UTILITY(U,$J,358.3,27795,1,0)
+ ;;^UTILITY(U,$J,358.3,26157,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26157,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,26157,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,26158,0)
+ ;;=Y04.1XXD^^107^1230^2
+ ;;^UTILITY(U,$J,358.3,26158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27795,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,27795,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,27795,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,27796,0)
- ;;=G25.1^^109^1386^6
- ;;^UTILITY(U,$J,358.3,27796,1,0)
+ ;;^UTILITY(U,$J,358.3,26158,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26158,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,26158,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,26159,0)
+ ;;=Y04.2XXA^^107^1230^5
+ ;;^UTILITY(U,$J,358.3,26159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27796,1,3,0)
- ;;=3^Drug-Induced Tremor
- ;;^UTILITY(U,$J,358.3,27796,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,27796,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,27797,0)
- ;;=G25.2^^109^1386^22
- ;;^UTILITY(U,$J,358.3,27797,1,0)
+ ;;^UTILITY(U,$J,358.3,26159,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26159,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,26159,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,26160,0)
+ ;;=Y04.8XXA^^107^1230^3
+ ;;^UTILITY(U,$J,358.3,26160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27797,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,27797,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,27797,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,27798,0)
- ;;=G25.3^^109^1386^11
- ;;^UTILITY(U,$J,358.3,27798,1,0)
+ ;;^UTILITY(U,$J,358.3,26160,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26160,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,26160,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,26161,0)
+ ;;=Y04.2XXD^^107^1230^6
+ ;;^UTILITY(U,$J,358.3,26161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27798,1,3,0)
- ;;=3^Myoclonus
- ;;^UTILITY(U,$J,358.3,27798,1,4,0)
- ;;=4^G25.3
- ;;^UTILITY(U,$J,358.3,27798,2)
- ;;=^80620
- ;;^UTILITY(U,$J,358.3,27799,0)
- ;;=G25.69^^109^1386^20
- ;;^UTILITY(U,$J,358.3,27799,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27799,1,3,0)
- ;;=3^Tics,Organic Origin,Other
- ;;^UTILITY(U,$J,358.3,27799,1,4,0)
- ;;=4^G25.69
- ;;^UTILITY(U,$J,358.3,27799,2)
- ;;=^5003797
- ;;^UTILITY(U,$J,358.3,27800,0)
- ;;=G25.61^^109^1386^5
- ;;^UTILITY(U,$J,358.3,27800,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27800,1,3,0)
- ;;=3^Drug-Induced Tics
+ ;;^UTILITY(U,$J,358.3,26161,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26161,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,26161,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,26162,0)
+ ;;=Y04.8XXD^^107^1230^4

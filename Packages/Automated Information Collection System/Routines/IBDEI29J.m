@@ -1,126 +1,124 @@
-IBDEI29J ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI29J ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38377,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,38377,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,38378,0)
- ;;=F17.210^^145^1861^4
- ;;^UTILITY(U,$J,358.3,38378,1,0)
+ ;;^UTILITY(U,$J,358.3,36130,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Elbow
+ ;;^UTILITY(U,$J,358.3,36130,1,4,0)
+ ;;=4^M06.221
+ ;;^UTILITY(U,$J,358.3,36130,2)
+ ;;=^5010076
+ ;;^UTILITY(U,$J,358.3,36131,0)
+ ;;=M06.241^^139^1832^44
+ ;;^UTILITY(U,$J,358.3,36131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38378,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38378,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,38378,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,38379,0)
- ;;=F17.211^^145^1861^3
- ;;^UTILITY(U,$J,358.3,38379,1,0)
+ ;;^UTILITY(U,$J,358.3,36131,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Hand
+ ;;^UTILITY(U,$J,358.3,36131,1,4,0)
+ ;;=4^M06.241
+ ;;^UTILITY(U,$J,358.3,36131,2)
+ ;;=^5010082
+ ;;^UTILITY(U,$J,358.3,36132,0)
+ ;;=M06.251^^139^1832^45
+ ;;^UTILITY(U,$J,358.3,36132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38379,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,38379,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,38379,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,38380,0)
- ;;=F17.220^^145^1861^2
- ;;^UTILITY(U,$J,358.3,38380,1,0)
+ ;;^UTILITY(U,$J,358.3,36132,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Hip
+ ;;^UTILITY(U,$J,358.3,36132,1,4,0)
+ ;;=4^M06.251
+ ;;^UTILITY(U,$J,358.3,36132,2)
+ ;;=^5010085
+ ;;^UTILITY(U,$J,358.3,36133,0)
+ ;;=M06.261^^139^1832^46
+ ;;^UTILITY(U,$J,358.3,36133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38380,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38380,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,38380,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,38381,0)
- ;;=F17.221^^145^1861^1
- ;;^UTILITY(U,$J,358.3,38381,1,0)
+ ;;^UTILITY(U,$J,358.3,36133,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Knee
+ ;;^UTILITY(U,$J,358.3,36133,1,4,0)
+ ;;=4^M06.261
+ ;;^UTILITY(U,$J,358.3,36133,2)
+ ;;=^5010088
+ ;;^UTILITY(U,$J,358.3,36134,0)
+ ;;=M06.211^^139^1832^47
+ ;;^UTILITY(U,$J,358.3,36134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38381,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,38381,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,38381,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,38382,0)
- ;;=F17.290^^145^1861^5
- ;;^UTILITY(U,$J,358.3,38382,1,0)
+ ;;^UTILITY(U,$J,358.3,36134,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Shoulder
+ ;;^UTILITY(U,$J,358.3,36134,1,4,0)
+ ;;=4^M06.211
+ ;;^UTILITY(U,$J,358.3,36134,2)
+ ;;=^5010073
+ ;;^UTILITY(U,$J,358.3,36135,0)
+ ;;=M06.231^^139^1832^48
+ ;;^UTILITY(U,$J,358.3,36135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38382,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38382,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,38382,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,38383,0)
- ;;=F17.291^^145^1861^6
- ;;^UTILITY(U,$J,358.3,38383,1,0)
+ ;;^UTILITY(U,$J,358.3,36135,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Rt Wrist
+ ;;^UTILITY(U,$J,358.3,36135,1,4,0)
+ ;;=4^M06.231
+ ;;^UTILITY(U,$J,358.3,36135,2)
+ ;;=^5010079
+ ;;^UTILITY(U,$J,358.3,36136,0)
+ ;;=M06.28^^139^1832^49
+ ;;^UTILITY(U,$J,358.3,36136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38383,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,38383,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,38383,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,38384,0)
- ;;=F17.208^^145^1861^7
- ;;^UTILITY(U,$J,358.3,38384,1,0)
+ ;;^UTILITY(U,$J,358.3,36136,1,3,0)
+ ;;=3^Rheumatoid Bursitis,Vertebrae
+ ;;^UTILITY(U,$J,358.3,36136,1,4,0)
+ ;;=4^M06.28
+ ;;^UTILITY(U,$J,358.3,36136,2)
+ ;;=^5010094
+ ;;^UTILITY(U,$J,358.3,36137,0)
+ ;;=M05.472^^139^1832^50
+ ;;^UTILITY(U,$J,358.3,36137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38384,1,3,0)
- ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38384,1,4,0)
- ;;=4^F17.208
- ;;^UTILITY(U,$J,358.3,38384,2)
- ;;=^5003363
- ;;^UTILITY(U,$J,358.3,38385,0)
- ;;=F17.209^^145^1861^8
- ;;^UTILITY(U,$J,358.3,38385,1,0)
+ ;;^UTILITY(U,$J,358.3,36137,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36137,1,4,0)
+ ;;=4^M05.472
+ ;;^UTILITY(U,$J,358.3,36137,2)
+ ;;=^5009951
+ ;;^UTILITY(U,$J,358.3,36138,0)
+ ;;=M05.422^^139^1832^51
+ ;;^UTILITY(U,$J,358.3,36138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38385,1,3,0)
- ;;=3^Nicotine Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38385,1,4,0)
- ;;=4^F17.209
- ;;^UTILITY(U,$J,358.3,38385,2)
- ;;=^5003364
- ;;^UTILITY(U,$J,358.3,38386,0)
- ;;=F14.10^^145^1862^1
- ;;^UTILITY(U,$J,358.3,38386,1,0)
+ ;;^UTILITY(U,$J,358.3,36138,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Elbow
+ ;;^UTILITY(U,$J,358.3,36138,1,4,0)
+ ;;=4^M05.422
+ ;;^UTILITY(U,$J,358.3,36138,2)
+ ;;=^5009936
+ ;;^UTILITY(U,$J,358.3,36139,0)
+ ;;=M05.442^^139^1832^52
+ ;;^UTILITY(U,$J,358.3,36139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38386,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38386,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,38386,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,38387,0)
- ;;=F14.14^^145^1862^5
- ;;^UTILITY(U,$J,358.3,38387,1,0)
+ ;;^UTILITY(U,$J,358.3,36139,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Hand
+ ;;^UTILITY(U,$J,358.3,36139,1,4,0)
+ ;;=4^M05.442
+ ;;^UTILITY(U,$J,358.3,36139,2)
+ ;;=^5009942
+ ;;^UTILITY(U,$J,358.3,36140,0)
+ ;;=M05.452^^139^1832^53
+ ;;^UTILITY(U,$J,358.3,36140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38387,1,3,0)
- ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38387,1,4,0)
- ;;=4^F14.14
- ;;^UTILITY(U,$J,358.3,38387,2)
- ;;=^5003244
- ;;^UTILITY(U,$J,358.3,38388,0)
- ;;=F14.182^^145^1862^6
- ;;^UTILITY(U,$J,358.3,38388,1,0)
+ ;;^UTILITY(U,$J,358.3,36140,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Hip
+ ;;^UTILITY(U,$J,358.3,36140,1,4,0)
+ ;;=4^M05.452
+ ;;^UTILITY(U,$J,358.3,36140,2)
+ ;;=^5009945
+ ;;^UTILITY(U,$J,358.3,36141,0)
+ ;;=M05.462^^139^1832^54
+ ;;^UTILITY(U,$J,358.3,36141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38388,1,3,0)
- ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38388,1,4,0)
- ;;=4^F14.182
- ;;^UTILITY(U,$J,358.3,38388,2)
- ;;=^5003250
- ;;^UTILITY(U,$J,358.3,38389,0)
- ;;=F14.20^^145^1862^3
- ;;^UTILITY(U,$J,358.3,38389,1,0)
+ ;;^UTILITY(U,$J,358.3,36141,1,3,0)
+ ;;=3^Rheumatoid Myopathy w/ Rheum Arthritis,Lt Knee
+ ;;^UTILITY(U,$J,358.3,36141,1,4,0)
+ ;;=4^M05.462
+ ;;^UTILITY(U,$J,358.3,36141,2)
+ ;;=^5009948
+ ;;^UTILITY(U,$J,358.3,36142,0)
+ ;;=M05.412^^139^1832^55
+ ;;^UTILITY(U,$J,358.3,36142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38389,1,3,0)
- ;;=3^Cocaine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38389,1,4,0)
- ;;=4^F14.20

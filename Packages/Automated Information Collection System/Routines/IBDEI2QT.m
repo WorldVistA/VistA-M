@@ -1,134 +1,128 @@
-IBDEI2QT ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2QT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,46027,1,4,0)
- ;;=4^S92.501S
- ;;^UTILITY(U,$J,358.3,46027,2)
- ;;=^5045409
- ;;^UTILITY(U,$J,358.3,46028,0)
- ;;=S92.502S^^203^2270^3
- ;;^UTILITY(U,$J,358.3,46028,1,0)
+ ;;^UTILITY(U,$J,358.3,43742,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,43742,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,43742,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,43743,0)
+ ;;=Z77.090^^162^2144^1
+ ;;^UTILITY(U,$J,358.3,43743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46028,1,3,0)
- ;;=3^Displaced Fx of Lesser Toe(s),Left,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46028,1,4,0)
- ;;=4^S92.502S
- ;;^UTILITY(U,$J,358.3,46028,2)
- ;;=^5045416
- ;;^UTILITY(U,$J,358.3,46029,0)
- ;;=S92.504S^^203^2270^49
- ;;^UTILITY(U,$J,358.3,46029,1,0)
+ ;;^UTILITY(U,$J,358.3,43743,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,43743,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,43743,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,43744,0)
+ ;;=Z91.81^^162^2144^3
+ ;;^UTILITY(U,$J,358.3,43744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46029,1,3,0)
- ;;=3^Nondisplaced Fx of Lesser Toe(s),Right,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46029,1,4,0)
- ;;=4^S92.504S
- ;;^UTILITY(U,$J,358.3,46029,2)
- ;;=^5045423
- ;;^UTILITY(U,$J,358.3,46030,0)
- ;;=S92.505S^^203^2270^48
- ;;^UTILITY(U,$J,358.3,46030,1,0)
+ ;;^UTILITY(U,$J,358.3,43744,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,43744,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,43744,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,43745,0)
+ ;;=Z57.8^^162^2144^6
+ ;;^UTILITY(U,$J,358.3,43745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46030,1,3,0)
- ;;=3^Nondisplaced Fx of Lesser Toe(s),Left,Unspec,Sequela
- ;;^UTILITY(U,$J,358.3,46030,1,4,0)
- ;;=4^S92.505S
- ;;^UTILITY(U,$J,358.3,46030,2)
- ;;=^5045430
- ;;^UTILITY(U,$J,358.3,46031,0)
- ;;=Z96.60^^203^2271^12
- ;;^UTILITY(U,$J,358.3,46031,1,0)
+ ;;^UTILITY(U,$J,358.3,43745,1,3,0)
+ ;;=3^Occupational Risk Factor Exposure
+ ;;^UTILITY(U,$J,358.3,43745,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,43745,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,43746,0)
+ ;;=Z77.011^^162^2144^4
+ ;;^UTILITY(U,$J,358.3,43746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46031,1,3,0)
- ;;=3^Replacement,Unspec Joint
- ;;^UTILITY(U,$J,358.3,46031,1,4,0)
- ;;=4^Z96.60
- ;;^UTILITY(U,$J,358.3,46031,2)
- ;;=^5063691
- ;;^UTILITY(U,$J,358.3,46032,0)
- ;;=Z96.619^^203^2271^11
- ;;^UTILITY(U,$J,358.3,46032,1,0)
+ ;;^UTILITY(U,$J,358.3,43746,1,3,0)
+ ;;=3^Lead Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,43746,1,4,0)
+ ;;=4^Z77.011
+ ;;^UTILITY(U,$J,358.3,43746,2)
+ ;;=^5063306
+ ;;^UTILITY(U,$J,358.3,43747,0)
+ ;;=Z77.9^^162^2144^2
+ ;;^UTILITY(U,$J,358.3,43747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46032,1,3,0)
- ;;=3^Replacement,Shoulder Joint
- ;;^UTILITY(U,$J,358.3,46032,1,4,0)
- ;;=4^Z96.619
- ;;^UTILITY(U,$J,358.3,46032,2)
- ;;=^5063694
- ;;^UTILITY(U,$J,358.3,46033,0)
- ;;=Z96.629^^203^2271^8
- ;;^UTILITY(U,$J,358.3,46033,1,0)
+ ;;^UTILITY(U,$J,358.3,43747,1,3,0)
+ ;;=3^Hazardous to Health Contact/Exposures
+ ;;^UTILITY(U,$J,358.3,43747,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,43747,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,43748,0)
+ ;;=Z91.89^^162^2144^12
+ ;;^UTILITY(U,$J,358.3,43748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46033,1,3,0)
- ;;=3^Replacement,Elbow Joint
- ;;^UTILITY(U,$J,358.3,46033,1,4,0)
- ;;=4^Z96.629
- ;;^UTILITY(U,$J,358.3,46033,2)
- ;;=^5063697
- ;;^UTILITY(U,$J,358.3,46034,0)
- ;;=Z96.639^^203^2271^13
- ;;^UTILITY(U,$J,358.3,46034,1,0)
+ ;;^UTILITY(U,$J,358.3,43748,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,43748,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,43748,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,43749,0)
+ ;;=Z98.890^^162^2144^13
+ ;;^UTILITY(U,$J,358.3,43749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46034,1,3,0)
- ;;=3^Replacement,Wrist Joint
- ;;^UTILITY(U,$J,358.3,46034,1,4,0)
- ;;=4^Z96.639
- ;;^UTILITY(U,$J,358.3,46034,2)
- ;;=^5063700
- ;;^UTILITY(U,$J,358.3,46035,0)
- ;;=Z96.649^^203^2271^9
- ;;^UTILITY(U,$J,358.3,46035,1,0)
+ ;;^UTILITY(U,$J,358.3,43749,1,3,0)
+ ;;=3^Postprocedural States,Oth Spec
+ ;;^UTILITY(U,$J,358.3,43749,1,4,0)
+ ;;=4^Z98.890
+ ;;^UTILITY(U,$J,358.3,43749,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,43750,0)
+ ;;=Z76.3^^162^2145^5
+ ;;^UTILITY(U,$J,358.3,43750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46035,1,3,0)
- ;;=3^Replacement,Hip Joint
- ;;^UTILITY(U,$J,358.3,46035,1,4,0)
- ;;=4^Z96.649
- ;;^UTILITY(U,$J,358.3,46035,2)
- ;;=^5063704
- ;;^UTILITY(U,$J,358.3,46036,0)
- ;;=Z96.659^^203^2271^10
- ;;^UTILITY(U,$J,358.3,46036,1,0)
+ ;;^UTILITY(U,$J,358.3,43750,1,3,0)
+ ;;=3^Healthy Person Accompanying Sick Person
+ ;;^UTILITY(U,$J,358.3,43750,1,4,0)
+ ;;=4^Z76.3
+ ;;^UTILITY(U,$J,358.3,43750,2)
+ ;;=^5063300
+ ;;^UTILITY(U,$J,358.3,43751,0)
+ ;;=Z71.0^^162^2145^3
+ ;;^UTILITY(U,$J,358.3,43751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46036,1,3,0)
- ;;=3^Replacement,Knee Joint
- ;;^UTILITY(U,$J,358.3,46036,1,4,0)
- ;;=4^Z96.659
- ;;^UTILITY(U,$J,358.3,46036,2)
- ;;=^5063708
- ;;^UTILITY(U,$J,358.3,46037,0)
- ;;=Z96.669^^203^2271^7
- ;;^UTILITY(U,$J,358.3,46037,1,0)
+ ;;^UTILITY(U,$J,358.3,43751,1,3,0)
+ ;;=3^Health Service Consult on Behalf of Another Person
+ ;;^UTILITY(U,$J,358.3,43751,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,43751,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,43752,0)
+ ;;=Z76.5^^162^2145^6
+ ;;^UTILITY(U,$J,358.3,43752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46037,1,3,0)
- ;;=3^Replacement,Ankle Joint
- ;;^UTILITY(U,$J,358.3,46037,1,4,0)
- ;;=4^Z96.669
- ;;^UTILITY(U,$J,358.3,46037,2)
- ;;=^5063711
- ;;^UTILITY(U,$J,358.3,46038,0)
- ;;=Z98.1^^203^2271^6
- ;;^UTILITY(U,$J,358.3,46038,1,0)
+ ;;^UTILITY(U,$J,358.3,43752,1,3,0)
+ ;;=3^Malingerer
+ ;;^UTILITY(U,$J,358.3,43752,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,43752,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,43753,0)
+ ;;=Z71.41^^162^2145^1
+ ;;^UTILITY(U,$J,358.3,43753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46038,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,46038,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,46038,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,46039,0)
- ;;=Z89.621^^203^2271^4
- ;;^UTILITY(U,$J,358.3,46039,1,0)
+ ;;^UTILITY(U,$J,358.3,43753,1,3,0)
+ ;;=3^Alcohol Abuse Counseling/Surveillance of Alcoholic
+ ;;^UTILITY(U,$J,358.3,43753,1,4,0)
+ ;;=4^Z71.41
+ ;;^UTILITY(U,$J,358.3,43753,2)
+ ;;=^5063246
+ ;;^UTILITY(U,$J,358.3,43754,0)
+ ;;=Z71.7^^162^2145^2
+ ;;^UTILITY(U,$J,358.3,43754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46039,1,3,0)
- ;;=3^Acq Absence Right Hip Joint
- ;;^UTILITY(U,$J,358.3,46039,1,4,0)
- ;;=4^Z89.621
- ;;^UTILITY(U,$J,358.3,46039,2)
- ;;=^5063575
- ;;^UTILITY(U,$J,358.3,46040,0)
- ;;=Z89.622^^203^2271^1
- ;;^UTILITY(U,$J,358.3,46040,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,46040,1,3,0)
- ;;=3^Acq Absence Left Hip Joint
+ ;;^UTILITY(U,$J,358.3,43754,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,43754,1,4,0)
+ ;;=4^Z71.7

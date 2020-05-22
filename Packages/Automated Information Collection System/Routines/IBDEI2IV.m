@@ -1,136 +1,126 @@
-IBDEI2IV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2IV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42784,0)
- ;;=D30.11^^162^2041^5
- ;;^UTILITY(U,$J,358.3,42784,1,0)
+ ;;^UTILITY(U,$J,358.3,40271,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,40271,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,40272,0)
+ ;;=F06.0^^152^2007^38
+ ;;^UTILITY(U,$J,358.3,40272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42784,1,3,0)
- ;;=3^Benign neoplasm of right renal pelvis
- ;;^UTILITY(U,$J,358.3,42784,1,4,0)
- ;;=4^D30.11
- ;;^UTILITY(U,$J,358.3,42784,2)
- ;;=^5002104
- ;;^UTILITY(U,$J,358.3,42785,0)
- ;;=D30.12^^162^2041^2
- ;;^UTILITY(U,$J,358.3,42785,1,0)
+ ;;^UTILITY(U,$J,358.3,40272,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,40272,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,40272,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,40273,0)
+ ;;=G44.209^^152^2007^43
+ ;;^UTILITY(U,$J,358.3,40273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42785,1,3,0)
- ;;=3^Benign neoplasm of left renal pelvis
- ;;^UTILITY(U,$J,358.3,42785,1,4,0)
- ;;=4^D30.12
- ;;^UTILITY(U,$J,358.3,42785,2)
- ;;=^5002105
- ;;^UTILITY(U,$J,358.3,42786,0)
- ;;=D30.21^^162^2041^6
- ;;^UTILITY(U,$J,358.3,42786,1,0)
+ ;;^UTILITY(U,$J,358.3,40273,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,40273,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,40273,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,40274,0)
+ ;;=F09.^^152^2007^21
+ ;;^UTILITY(U,$J,358.3,40274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42786,1,3,0)
- ;;=3^Benign neoplasm of right ureter
- ;;^UTILITY(U,$J,358.3,42786,1,4,0)
- ;;=4^D30.21
- ;;^UTILITY(U,$J,358.3,42786,2)
- ;;=^5002107
- ;;^UTILITY(U,$J,358.3,42787,0)
- ;;=D30.22^^162^2041^3
- ;;^UTILITY(U,$J,358.3,42787,1,0)
+ ;;^UTILITY(U,$J,358.3,40274,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,40274,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,40274,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,40275,0)
+ ;;=F07.9^^152^2007^36
+ ;;^UTILITY(U,$J,358.3,40275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42787,1,3,0)
- ;;=3^Benign neoplasm of left ureter
- ;;^UTILITY(U,$J,358.3,42787,1,4,0)
- ;;=4^D30.22
- ;;^UTILITY(U,$J,358.3,42787,2)
- ;;=^5002108
- ;;^UTILITY(U,$J,358.3,42788,0)
- ;;=N18.6^^162^2042^7
- ;;^UTILITY(U,$J,358.3,42788,1,0)
+ ;;^UTILITY(U,$J,358.3,40275,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,40275,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,40275,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,40276,0)
+ ;;=G30.0^^152^2007^1
+ ;;^UTILITY(U,$J,358.3,40276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42788,1,3,0)
- ;;=3^End stage renal disease
- ;;^UTILITY(U,$J,358.3,42788,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,42788,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,42789,0)
- ;;=N18.9^^162^2042^4
- ;;^UTILITY(U,$J,358.3,42789,1,0)
+ ;;^UTILITY(U,$J,358.3,40276,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,40276,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,40276,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,40277,0)
+ ;;=G30.8^^152^2007^3
+ ;;^UTILITY(U,$J,358.3,40277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42789,1,3,0)
- ;;=3^Chronic kidney disease Unspec
- ;;^UTILITY(U,$J,358.3,42789,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,42789,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,42790,0)
- ;;=N13.30^^162^2042^10
- ;;^UTILITY(U,$J,358.3,42790,1,0)
+ ;;^UTILITY(U,$J,358.3,40277,1,3,0)
+ ;;=3^Alzheimer's Disease,Other
+ ;;^UTILITY(U,$J,358.3,40277,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,40277,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,40278,0)
+ ;;=G30.1^^152^2007^2
+ ;;^UTILITY(U,$J,358.3,40278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42790,1,3,0)
- ;;=3^Hydronephrosis,Unspec
- ;;^UTILITY(U,$J,358.3,42790,1,4,0)
- ;;=4^N13.30
- ;;^UTILITY(U,$J,358.3,42790,2)
- ;;=^5015578
- ;;^UTILITY(U,$J,358.3,42791,0)
- ;;=N13.2^^162^2042^8
- ;;^UTILITY(U,$J,358.3,42791,1,0)
+ ;;^UTILITY(U,$J,358.3,40278,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,40278,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,40278,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,40279,0)
+ ;;=G30.9^^152^2007^4
+ ;;^UTILITY(U,$J,358.3,40279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42791,1,3,0)
- ;;=3^Hydronephrosis w/ Renal & Ureteral Calc Obstr
- ;;^UTILITY(U,$J,358.3,42791,1,4,0)
- ;;=4^N13.2
- ;;^UTILITY(U,$J,358.3,42791,2)
- ;;=^5015577
- ;;^UTILITY(U,$J,358.3,42792,0)
- ;;=N13.39^^162^2042^9
- ;;^UTILITY(U,$J,358.3,42792,1,0)
+ ;;^UTILITY(U,$J,358.3,40279,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,40279,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,40279,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,40280,0)
+ ;;=G21.4^^152^2007^46
+ ;;^UTILITY(U,$J,358.3,40280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42792,1,3,0)
- ;;=3^Hydronephrosis,Other
- ;;^UTILITY(U,$J,358.3,42792,1,4,0)
- ;;=4^N13.39
- ;;^UTILITY(U,$J,358.3,42792,2)
- ;;=^5015579
- ;;^UTILITY(U,$J,358.3,42793,0)
- ;;=N20.0^^162^2042^1
- ;;^UTILITY(U,$J,358.3,42793,1,0)
+ ;;^UTILITY(U,$J,358.3,40280,1,3,0)
+ ;;=3^Vascular Parkinsonism
+ ;;^UTILITY(U,$J,358.3,40280,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,40280,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,40281,0)
+ ;;=G20.^^152^2007^35
+ ;;^UTILITY(U,$J,358.3,40281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42793,1,3,0)
- ;;=3^Calculus of kidney
- ;;^UTILITY(U,$J,358.3,42793,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,42793,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,42794,0)
- ;;=N20.2^^162^2042^2
- ;;^UTILITY(U,$J,358.3,42794,1,0)
+ ;;^UTILITY(U,$J,358.3,40281,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,40281,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,40281,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,40282,0)
+ ;;=G25.0^^152^2007^16
+ ;;^UTILITY(U,$J,358.3,40282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42794,1,3,0)
- ;;=3^Calculus of kidney w/ calculus of ureter
- ;;^UTILITY(U,$J,358.3,42794,1,4,0)
- ;;=4^N20.2
- ;;^UTILITY(U,$J,358.3,42794,2)
- ;;=^5015609
- ;;^UTILITY(U,$J,358.3,42795,0)
- ;;=N20.1^^162^2042^3
- ;;^UTILITY(U,$J,358.3,42795,1,0)
+ ;;^UTILITY(U,$J,358.3,40282,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,40282,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,40282,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,40283,0)
+ ;;=G25.2^^152^2007^45
+ ;;^UTILITY(U,$J,358.3,40283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42795,1,3,0)
- ;;=3^Calculus of ureter
- ;;^UTILITY(U,$J,358.3,42795,1,4,0)
- ;;=4^N20.1
- ;;^UTILITY(U,$J,358.3,42795,2)
- ;;=^5015608
- ;;^UTILITY(U,$J,358.3,42796,0)
- ;;=N28.1^^162^2042^5
- ;;^UTILITY(U,$J,358.3,42796,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42796,1,3,0)
- ;;=3^Cyst of kidney, acquired
- ;;^UTILITY(U,$J,358.3,42796,1,4,0)
- ;;=4^N28.1
- ;;^UTILITY(U,$J,358.3,42796,2)
- ;;=^270380
- ;;^UTILITY(U,$J,358.3,42797,0)
- ;;=R30.0^^162^2042^6
+ ;;^UTILITY(U,$J,358.3,40283,1,3,0)
+ ;;=3^Tremor,Other Spec Forms
+ ;;^UTILITY(U,$J,358.3,40283,1,4,0)
+ ;;=4^G25.2

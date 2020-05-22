@@ -1,136 +1,124 @@
-IBDEI2B2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2B2 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39113,0)
- ;;=H20.052^^153^1920^87
- ;;^UTILITY(U,$J,358.3,39113,1,0)
+ ;;^UTILITY(U,$J,358.3,36803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39113,1,3,0)
- ;;=3^Hypopyon,Left Eye
- ;;^UTILITY(U,$J,358.3,39113,1,4,0)
- ;;=4^H20.052
- ;;^UTILITY(U,$J,358.3,39113,2)
- ;;=^5005151
- ;;^UTILITY(U,$J,358.3,39114,0)
- ;;=H21.01^^153^1920^85
- ;;^UTILITY(U,$J,358.3,39114,1,0)
+ ;;^UTILITY(U,$J,358.3,36803,1,3,0)
+ ;;=3^Ehlers-Danlos Syndrome Classical
+ ;;^UTILITY(U,$J,358.3,36803,1,4,0)
+ ;;=4^Q79.61
+ ;;^UTILITY(U,$J,358.3,36803,2)
+ ;;=^5158136
+ ;;^UTILITY(U,$J,358.3,36804,0)
+ ;;=S02.122A^^142^1863^188
+ ;;^UTILITY(U,$J,358.3,36804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39114,1,3,0)
- ;;=3^Hyphema,Right Eye
- ;;^UTILITY(U,$J,358.3,39114,1,4,0)
- ;;=4^H21.01
- ;;^UTILITY(U,$J,358.3,39114,2)
- ;;=^5005172
- ;;^UTILITY(U,$J,358.3,39115,0)
- ;;=H21.02^^153^1920^84
- ;;^UTILITY(U,$J,358.3,39115,1,0)
+ ;;^UTILITY(U,$J,358.3,36804,1,3,0)
+ ;;=3^Fx Orbital Roof,Left Side,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36804,1,4,0)
+ ;;=4^S02.122A
+ ;;^UTILITY(U,$J,358.3,36804,2)
+ ;;=^5158150
+ ;;^UTILITY(U,$J,358.3,36805,0)
+ ;;=S02.121A^^142^1863^189
+ ;;^UTILITY(U,$J,358.3,36805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39115,1,3,0)
- ;;=3^Hyphema,Left Eye
- ;;^UTILITY(U,$J,358.3,39115,1,4,0)
- ;;=4^H21.02
- ;;^UTILITY(U,$J,358.3,39115,2)
- ;;=^5005173
- ;;^UTILITY(U,$J,358.3,39116,0)
- ;;=H21.261^^153^1920^94
- ;;^UTILITY(U,$J,358.3,39116,1,0)
+ ;;^UTILITY(U,$J,358.3,36805,1,3,0)
+ ;;=3^Fx Orbital Roof,Right Side,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36805,1,4,0)
+ ;;=4^S02.121A
+ ;;^UTILITY(U,$J,358.3,36805,2)
+ ;;=^5158144
+ ;;^UTILITY(U,$J,358.3,36806,0)
+ ;;=Z48.812^^142^1864^2
+ ;;^UTILITY(U,$J,358.3,36806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39116,1,3,0)
- ;;=3^Iris Atrophy,Right Eye
- ;;^UTILITY(U,$J,358.3,39116,1,4,0)
- ;;=4^H21.261
- ;;^UTILITY(U,$J,358.3,39116,2)
- ;;=^5005199
- ;;^UTILITY(U,$J,358.3,39117,0)
- ;;=H21.262^^153^1920^93
- ;;^UTILITY(U,$J,358.3,39117,1,0)
+ ;;^UTILITY(U,$J,358.3,36806,1,3,0)
+ ;;=3^Aftercare following Surgery,Circulatory System
+ ;;^UTILITY(U,$J,358.3,36806,1,4,0)
+ ;;=4^Z48.812
+ ;;^UTILITY(U,$J,358.3,36806,2)
+ ;;=^5063049
+ ;;^UTILITY(U,$J,358.3,36807,0)
+ ;;=Z48.815^^142^1864^3
+ ;;^UTILITY(U,$J,358.3,36807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39117,1,3,0)
- ;;=3^Iris Atrophy,Left Eye
- ;;^UTILITY(U,$J,358.3,39117,1,4,0)
- ;;=4^H21.262
- ;;^UTILITY(U,$J,358.3,39117,2)
- ;;=^5005200
- ;;^UTILITY(U,$J,358.3,39118,0)
- ;;=H21.541^^153^1920^138
- ;;^UTILITY(U,$J,358.3,39118,1,0)
+ ;;^UTILITY(U,$J,358.3,36807,1,3,0)
+ ;;=3^Aftercare following Surgery,Digestive System
+ ;;^UTILITY(U,$J,358.3,36807,1,4,0)
+ ;;=4^Z48.815
+ ;;^UTILITY(U,$J,358.3,36807,2)
+ ;;=^5063052
+ ;;^UTILITY(U,$J,358.3,36808,0)
+ ;;=Z48.816^^142^1864^4
+ ;;^UTILITY(U,$J,358.3,36808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39118,1,3,0)
- ;;=3^Posterior Synechiae,Right Eye
- ;;^UTILITY(U,$J,358.3,39118,1,4,0)
- ;;=4^H21.541
- ;;^UTILITY(U,$J,358.3,39118,2)
- ;;=^5005251
- ;;^UTILITY(U,$J,358.3,39119,0)
- ;;=H21.542^^153^1920^137
- ;;^UTILITY(U,$J,358.3,39119,1,0)
+ ;;^UTILITY(U,$J,358.3,36808,1,3,0)
+ ;;=3^Aftercare following Surgery,GU System
+ ;;^UTILITY(U,$J,358.3,36808,1,4,0)
+ ;;=4^Z48.816
+ ;;^UTILITY(U,$J,358.3,36808,2)
+ ;;=^5063053
+ ;;^UTILITY(U,$J,358.3,36809,0)
+ ;;=Z48.3^^142^1864^5
+ ;;^UTILITY(U,$J,358.3,36809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39119,1,3,0)
- ;;=3^Posterior Synechiae,Left Eye
- ;;^UTILITY(U,$J,358.3,39119,1,4,0)
- ;;=4^H21.542
- ;;^UTILITY(U,$J,358.3,39119,2)
- ;;=^5005252
- ;;^UTILITY(U,$J,358.3,39120,0)
- ;;=H21.511^^153^1920^8
- ;;^UTILITY(U,$J,358.3,39120,1,0)
+ ;;^UTILITY(U,$J,358.3,36809,1,3,0)
+ ;;=3^Aftercare following Surgery,Neoplasm
+ ;;^UTILITY(U,$J,358.3,36809,1,4,0)
+ ;;=4^Z48.3
+ ;;^UTILITY(U,$J,358.3,36809,2)
+ ;;=^5063046
+ ;;^UTILITY(U,$J,358.3,36810,0)
+ ;;=Z48.811^^142^1864^6
+ ;;^UTILITY(U,$J,358.3,36810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39120,1,3,0)
- ;;=3^Anterior Synechiae,Right Eye
- ;;^UTILITY(U,$J,358.3,39120,1,4,0)
- ;;=4^H21.511
- ;;^UTILITY(U,$J,358.3,39120,2)
- ;;=^5005239
- ;;^UTILITY(U,$J,358.3,39121,0)
- ;;=H21.512^^153^1920^7
- ;;^UTILITY(U,$J,358.3,39121,1,0)
+ ;;^UTILITY(U,$J,358.3,36810,1,3,0)
+ ;;=3^Aftercare following Surgery,Nervous System
+ ;;^UTILITY(U,$J,358.3,36810,1,4,0)
+ ;;=4^Z48.811
+ ;;^UTILITY(U,$J,358.3,36810,2)
+ ;;=^5063048
+ ;;^UTILITY(U,$J,358.3,36811,0)
+ ;;=Z48.813^^142^1864^7
+ ;;^UTILITY(U,$J,358.3,36811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39121,1,3,0)
- ;;=3^Anterior Synechiae,Left Eye
- ;;^UTILITY(U,$J,358.3,39121,1,4,0)
- ;;=4^H21.512
- ;;^UTILITY(U,$J,358.3,39121,2)
- ;;=^5005240
- ;;^UTILITY(U,$J,358.3,39122,0)
- ;;=H21.551^^153^1920^147
- ;;^UTILITY(U,$J,358.3,39122,1,0)
+ ;;^UTILITY(U,$J,358.3,36811,1,3,0)
+ ;;=3^Aftercare following Surgery,Respiratory System
+ ;;^UTILITY(U,$J,358.3,36811,1,4,0)
+ ;;=4^Z48.813
+ ;;^UTILITY(U,$J,358.3,36811,2)
+ ;;=^5063050
+ ;;^UTILITY(U,$J,358.3,36812,0)
+ ;;=Z48.810^^142^1864^8
+ ;;^UTILITY(U,$J,358.3,36812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39122,1,3,0)
- ;;=3^Recession of Chamber Angle,Right Eye
- ;;^UTILITY(U,$J,358.3,39122,1,4,0)
- ;;=4^H21.551
- ;;^UTILITY(U,$J,358.3,39122,2)
- ;;=^5005255
- ;;^UTILITY(U,$J,358.3,39123,0)
- ;;=H21.552^^153^1920^146
- ;;^UTILITY(U,$J,358.3,39123,1,0)
+ ;;^UTILITY(U,$J,358.3,36812,1,3,0)
+ ;;=3^Aftercare following Surgery,Sense Organ System
+ ;;^UTILITY(U,$J,358.3,36812,1,4,0)
+ ;;=4^Z48.810
+ ;;^UTILITY(U,$J,358.3,36812,2)
+ ;;=^5063047
+ ;;^UTILITY(U,$J,358.3,36813,0)
+ ;;=Z48.817^^142^1864^9
+ ;;^UTILITY(U,$J,358.3,36813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39123,1,3,0)
- ;;=3^Recession of Chamber Angle,Left Eye
- ;;^UTILITY(U,$J,358.3,39123,1,4,0)
- ;;=4^H21.552
- ;;^UTILITY(U,$J,358.3,39123,2)
- ;;=^5005256
- ;;^UTILITY(U,$J,358.3,39124,0)
- ;;=H21.81^^153^1920^76
- ;;^UTILITY(U,$J,358.3,39124,1,0)
+ ;;^UTILITY(U,$J,358.3,36813,1,3,0)
+ ;;=3^Aftercare following Surgery,Skin
+ ;;^UTILITY(U,$J,358.3,36813,1,4,0)
+ ;;=4^Z48.817
+ ;;^UTILITY(U,$J,358.3,36813,2)
+ ;;=^5063054
+ ;;^UTILITY(U,$J,358.3,36814,0)
+ ;;=Z48.89^^142^1864^1
+ ;;^UTILITY(U,$J,358.3,36814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39124,1,3,0)
- ;;=3^Floppy Iris Syndrome
- ;;^UTILITY(U,$J,358.3,39124,1,4,0)
- ;;=4^H21.81
- ;;^UTILITY(U,$J,358.3,39124,2)
- ;;=^5005263
- ;;^UTILITY(U,$J,358.3,39125,0)
- ;;=H16.042^^153^1920^116
- ;;^UTILITY(U,$J,358.3,39125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39125,1,3,0)
- ;;=3^Marginal Corneal Ulcer,Left Eye
- ;;^UTILITY(U,$J,358.3,39125,1,4,0)
- ;;=4^H16.042
- ;;^UTILITY(U,$J,358.3,39125,2)
- ;;=^5004883
- ;;^UTILITY(U,$J,358.3,39126,0)
- ;;=H16.041^^153^1920^117
+ ;;^UTILITY(U,$J,358.3,36814,1,3,0)
+ ;;=3^Aftercare following Surgery NEC
+ ;;^UTILITY(U,$J,358.3,36814,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,36814,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,36815,0)
+ ;;=Z48.814^^142^1864^10

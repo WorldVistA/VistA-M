@@ -1,138 +1,120 @@
-IBDEI2AU ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2AU ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39005,0)
- ;;=D04.39^^151^1910^4
- ;;^UTILITY(U,$J,358.3,39005,1,0)
+ ;;^UTILITY(U,$J,358.3,36707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39005,1,3,0)
- ;;=3^Carcinoma in Situ Skin Face NEC
- ;;^UTILITY(U,$J,358.3,39005,1,4,0)
- ;;=4^D04.39
- ;;^UTILITY(U,$J,358.3,39005,2)
- ;;=^5001916
- ;;^UTILITY(U,$J,358.3,39006,0)
- ;;=D04.4^^151^1910^16
- ;;^UTILITY(U,$J,358.3,39006,1,0)
+ ;;^UTILITY(U,$J,358.3,36707,1,3,0)
+ ;;=3^Open Wound Left Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36707,1,4,0)
+ ;;=4^S61.205A
+ ;;^UTILITY(U,$J,358.3,36707,2)
+ ;;=^5032756
+ ;;^UTILITY(U,$J,358.3,36708,0)
+ ;;=S01.101A^^142^1863^373
+ ;;^UTILITY(U,$J,358.3,36708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39006,1,3,0)
- ;;=3^Carcinoma in Situ Skin Scalp/Neck
- ;;^UTILITY(U,$J,358.3,39006,1,4,0)
- ;;=4^D04.4
- ;;^UTILITY(U,$J,358.3,39006,2)
- ;;=^267729
- ;;^UTILITY(U,$J,358.3,39007,0)
- ;;=D04.5^^151^1910^17
- ;;^UTILITY(U,$J,358.3,39007,1,0)
+ ;;^UTILITY(U,$J,358.3,36708,1,3,0)
+ ;;=3^Open Wound Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36708,1,4,0)
+ ;;=4^S01.101A
+ ;;^UTILITY(U,$J,358.3,36708,2)
+ ;;=^5020051
+ ;;^UTILITY(U,$J,358.3,36709,0)
+ ;;=S61.401A^^142^1863^374
+ ;;^UTILITY(U,$J,358.3,36709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39007,1,3,0)
- ;;=3^Carcinoma in Situ Skin Trunk
- ;;^UTILITY(U,$J,358.3,39007,1,4,0)
- ;;=4^D04.5
- ;;^UTILITY(U,$J,358.3,39007,2)
- ;;=^5001917
- ;;^UTILITY(U,$J,358.3,39008,0)
- ;;=D04.61^^151^1910^15
- ;;^UTILITY(U,$J,358.3,39008,1,0)
+ ;;^UTILITY(U,$J,358.3,36709,1,3,0)
+ ;;=3^Open Wound Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36709,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,36709,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,36710,0)
+ ;;=S61.200A^^142^1863^375
+ ;;^UTILITY(U,$J,358.3,36710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39008,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,39008,1,4,0)
- ;;=4^D04.61
- ;;^UTILITY(U,$J,358.3,39008,2)
- ;;=^5001919
- ;;^UTILITY(U,$J,358.3,39009,0)
- ;;=D04.62^^151^1910^9
- ;;^UTILITY(U,$J,358.3,39009,1,0)
+ ;;^UTILITY(U,$J,358.3,36710,1,3,0)
+ ;;=3^Open Wound Right Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36710,1,4,0)
+ ;;=4^S61.200A
+ ;;^UTILITY(U,$J,358.3,36710,2)
+ ;;=^5032741
+ ;;^UTILITY(U,$J,358.3,36711,0)
+ ;;=S61.206A^^142^1863^376
+ ;;^UTILITY(U,$J,358.3,36711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39009,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,39009,1,4,0)
- ;;=4^D04.62
- ;;^UTILITY(U,$J,358.3,39009,2)
- ;;=^5001920
- ;;^UTILITY(U,$J,358.3,39010,0)
- ;;=D04.71^^151^1910^14
- ;;^UTILITY(U,$J,358.3,39010,1,0)
+ ;;^UTILITY(U,$J,358.3,36711,1,3,0)
+ ;;=3^Open Wound Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36711,1,4,0)
+ ;;=4^S61.206A
+ ;;^UTILITY(U,$J,358.3,36711,2)
+ ;;=^5032759
+ ;;^UTILITY(U,$J,358.3,36712,0)
+ ;;=S61.202A^^142^1863^377
+ ;;^UTILITY(U,$J,358.3,36712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39010,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,39010,1,4,0)
- ;;=4^D04.71
- ;;^UTILITY(U,$J,358.3,39010,2)
- ;;=^5001922
- ;;^UTILITY(U,$J,358.3,39011,0)
- ;;=D04.72^^151^1910^8
- ;;^UTILITY(U,$J,358.3,39011,1,0)
+ ;;^UTILITY(U,$J,358.3,36712,1,3,0)
+ ;;=3^Open Wound Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36712,1,4,0)
+ ;;=4^S61.202A
+ ;;^UTILITY(U,$J,358.3,36712,2)
+ ;;=^5032747
+ ;;^UTILITY(U,$J,358.3,36713,0)
+ ;;=S61.204A^^142^1863^378
+ ;;^UTILITY(U,$J,358.3,36713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39011,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,39011,1,4,0)
- ;;=4^D04.72
- ;;^UTILITY(U,$J,358.3,39011,2)
- ;;=^5001923
- ;;^UTILITY(U,$J,358.3,39012,0)
- ;;=D04.8^^151^1910^11
- ;;^UTILITY(U,$J,358.3,39012,1,0)
+ ;;^UTILITY(U,$J,358.3,36713,1,3,0)
+ ;;=3^Open Wound Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36713,1,4,0)
+ ;;=4^S61.204A
+ ;;^UTILITY(U,$J,358.3,36713,2)
+ ;;=^5032753
+ ;;^UTILITY(U,$J,358.3,36714,0)
+ ;;=H02.403^^142^1863^387
+ ;;^UTILITY(U,$J,358.3,36714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39012,1,3,0)
- ;;=3^Carcinoma in Situ Skin Other Sites
- ;;^UTILITY(U,$J,358.3,39012,1,4,0)
- ;;=4^D04.8
- ;;^UTILITY(U,$J,358.3,39012,2)
- ;;=^5001924
- ;;^UTILITY(U,$J,358.3,39013,0)
- ;;=L72.0^^151^1910^40
- ;;^UTILITY(U,$J,358.3,39013,1,0)
+ ;;^UTILITY(U,$J,358.3,36714,1,3,0)
+ ;;=3^Ptosis Bilateral Eyelids,Unspec
+ ;;^UTILITY(U,$J,358.3,36714,1,4,0)
+ ;;=4^H02.403
+ ;;^UTILITY(U,$J,358.3,36714,2)
+ ;;=^5004355
+ ;;^UTILITY(U,$J,358.3,36715,0)
+ ;;=H02.402^^142^1863^388
+ ;;^UTILITY(U,$J,358.3,36715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39013,1,3,0)
- ;;=3^Cyst,Epidermal
- ;;^UTILITY(U,$J,358.3,39013,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,39013,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,39014,0)
- ;;=L72.11^^151^1910^42
- ;;^UTILITY(U,$J,358.3,39014,1,0)
+ ;;^UTILITY(U,$J,358.3,36715,1,3,0)
+ ;;=3^Ptosis Left Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,36715,1,4,0)
+ ;;=4^H02.402
+ ;;^UTILITY(U,$J,358.3,36715,2)
+ ;;=^5004354
+ ;;^UTILITY(U,$J,358.3,36716,0)
+ ;;=H02.401^^142^1863^389
+ ;;^UTILITY(U,$J,358.3,36716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39014,1,3,0)
- ;;=3^Cyst,Pilar
- ;;^UTILITY(U,$J,358.3,39014,1,4,0)
- ;;=4^L72.11
- ;;^UTILITY(U,$J,358.3,39014,2)
- ;;=^5009278
- ;;^UTILITY(U,$J,358.3,39015,0)
- ;;=L72.12^^151^1910^44
- ;;^UTILITY(U,$J,358.3,39015,1,0)
+ ;;^UTILITY(U,$J,358.3,36716,1,3,0)
+ ;;=3^Ptosis Right Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,36716,1,4,0)
+ ;;=4^H02.401
+ ;;^UTILITY(U,$J,358.3,36716,2)
+ ;;=^5004353
+ ;;^UTILITY(U,$J,358.3,36717,0)
+ ;;=S53.402A^^142^1863^417
+ ;;^UTILITY(U,$J,358.3,36717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39015,1,3,0)
- ;;=3^Cyst,Trichodermal
- ;;^UTILITY(U,$J,358.3,39015,1,4,0)
- ;;=4^L72.12
- ;;^UTILITY(U,$J,358.3,39015,2)
- ;;=^5009279
- ;;^UTILITY(U,$J,358.3,39016,0)
- ;;=L72.3^^151^1910^43
- ;;^UTILITY(U,$J,358.3,39016,1,0)
+ ;;^UTILITY(U,$J,358.3,36717,1,3,0)
+ ;;=3^Sprain Left Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36717,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,36717,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,36718,0)
+ ;;=S53.401A^^142^1863^420
+ ;;^UTILITY(U,$J,358.3,36718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39016,1,3,0)
- ;;=3^Cyst,Sebaceous
- ;;^UTILITY(U,$J,358.3,39016,1,4,0)
- ;;=4^L72.3
- ;;^UTILITY(U,$J,358.3,39016,2)
- ;;=^5009281
- ;;^UTILITY(U,$J,358.3,39017,0)
- ;;=A63.0^^151^1910^36
- ;;^UTILITY(U,$J,358.3,39017,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39017,1,3,0)
- ;;=3^Condyloma
- ;;^UTILITY(U,$J,358.3,39017,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,39017,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,39018,0)
- ;;=L84.^^151^1910^1
- ;;^UTILITY(U,$J,358.3,39018,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36718,1,3,0)
+ ;;=3^Sprain Right Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36718,1,4,0)
+ ;;=4^S53.401A

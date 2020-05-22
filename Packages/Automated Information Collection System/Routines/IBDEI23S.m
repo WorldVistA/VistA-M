@@ -1,136 +1,124 @@
-IBDEI23S ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI23S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35673,1,3,0)
- ;;=3^Aspergillosis NEC
- ;;^UTILITY(U,$J,358.3,35673,1,4,0)
- ;;=4^B44.89
- ;;^UTILITY(U,$J,358.3,35673,2)
- ;;=^5000667
- ;;^UTILITY(U,$J,358.3,35674,0)
- ;;=B45.8^^134^1729^53
- ;;^UTILITY(U,$J,358.3,35674,1,0)
+ ;;^UTILITY(U,$J,358.3,33615,1,3,0)
+ ;;=3^Chondromalacia, left knee
+ ;;^UTILITY(U,$J,358.3,33615,1,4,0)
+ ;;=4^M94.262
+ ;;^UTILITY(U,$J,358.3,33615,2)
+ ;;=^5015346
+ ;;^UTILITY(U,$J,358.3,33616,0)
+ ;;=M94.261^^132^1708^13
+ ;;^UTILITY(U,$J,358.3,33616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35674,1,3,0)
- ;;=3^Cryptococcosis NEC
- ;;^UTILITY(U,$J,358.3,35674,1,4,0)
- ;;=4^B45.8
- ;;^UTILITY(U,$J,358.3,35674,2)
- ;;=^5000674
- ;;^UTILITY(U,$J,358.3,35675,0)
- ;;=H60.593^^134^1729^64
- ;;^UTILITY(U,$J,358.3,35675,1,0)
+ ;;^UTILITY(U,$J,358.3,33616,1,3,0)
+ ;;=3^Chondromalacia, right knee
+ ;;^UTILITY(U,$J,358.3,33616,1,4,0)
+ ;;=4^M94.261
+ ;;^UTILITY(U,$J,358.3,33616,2)
+ ;;=^5015345
+ ;;^UTILITY(U,$J,358.3,33617,0)
+ ;;=M24.562^^132^1708^17
+ ;;^UTILITY(U,$J,358.3,33617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35675,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,35675,1,4,0)
- ;;=4^H60.593
- ;;^UTILITY(U,$J,358.3,35675,2)
- ;;=^5006491
- ;;^UTILITY(U,$J,358.3,35676,0)
- ;;=H60.592^^134^1729^65
- ;;^UTILITY(U,$J,358.3,35676,1,0)
+ ;;^UTILITY(U,$J,358.3,33617,1,3,0)
+ ;;=3^Contracture, left knee
+ ;;^UTILITY(U,$J,358.3,33617,1,4,0)
+ ;;=4^M24.562
+ ;;^UTILITY(U,$J,358.3,33617,2)
+ ;;=^5011418
+ ;;^UTILITY(U,$J,358.3,33618,0)
+ ;;=M24.561^^132^1708^18
+ ;;^UTILITY(U,$J,358.3,33618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35676,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
- ;;^UTILITY(U,$J,358.3,35676,1,4,0)
- ;;=4^H60.592
- ;;^UTILITY(U,$J,358.3,35676,2)
- ;;=^5133527
- ;;^UTILITY(U,$J,358.3,35677,0)
- ;;=H60.591^^134^1729^66
- ;;^UTILITY(U,$J,358.3,35677,1,0)
+ ;;^UTILITY(U,$J,358.3,33618,1,3,0)
+ ;;=3^Contracture, right knee
+ ;;^UTILITY(U,$J,358.3,33618,1,4,0)
+ ;;=4^M24.561
+ ;;^UTILITY(U,$J,358.3,33618,2)
+ ;;=^5011417
+ ;;^UTILITY(U,$J,358.3,33619,0)
+ ;;=M23.201^^132^1708^33
+ ;;^UTILITY(U,$J,358.3,33619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35677,1,3,0)
- ;;=3^Noninfective AC Otitis Externa,Right Ear NEC
- ;;^UTILITY(U,$J,358.3,35677,1,4,0)
- ;;=4^H60.591
- ;;^UTILITY(U,$J,358.3,35677,2)
- ;;=^5006490
- ;;^UTILITY(U,$J,358.3,35678,0)
- ;;=J18.8^^134^1729^73
- ;;^UTILITY(U,$J,358.3,35678,1,0)
+ ;;^UTILITY(U,$J,358.3,33619,1,3,0)
+ ;;=3^Derang Unsp Lateral Mensc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,33619,1,4,0)
+ ;;=4^M23.201
+ ;;^UTILITY(U,$J,358.3,33619,2)
+ ;;=^5011213
+ ;;^UTILITY(U,$J,358.3,33620,0)
+ ;;=M23.200^^132^1708^34
+ ;;^UTILITY(U,$J,358.3,33620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35678,1,3,0)
- ;;=3^Pneumonia,Unspec Organism NEC
- ;;^UTILITY(U,$J,358.3,35678,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,35678,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,35679,0)
- ;;=B44.1^^134^1729^76
- ;;^UTILITY(U,$J,358.3,35679,1,0)
+ ;;^UTILITY(U,$J,358.3,33620,1,3,0)
+ ;;=3^Derang Unsp Lateral Mensc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,33620,1,4,0)
+ ;;=4^M23.200
+ ;;^UTILITY(U,$J,358.3,33620,2)
+ ;;=^5011212
+ ;;^UTILITY(U,$J,358.3,33621,0)
+ ;;=M23.204^^132^1708^35
+ ;;^UTILITY(U,$J,358.3,33621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35679,1,3,0)
- ;;=3^Pulmonary Aspergillosis NEC
- ;;^UTILITY(U,$J,358.3,35679,1,4,0)
- ;;=4^B44.1
- ;;^UTILITY(U,$J,358.3,35679,2)
- ;;=^5000664
- ;;^UTILITY(U,$J,358.3,35680,0)
- ;;=B48.4^^134^1729^68
- ;;^UTILITY(U,$J,358.3,35680,1,0)
+ ;;^UTILITY(U,$J,358.3,33621,1,3,0)
+ ;;=3^Derang Unsp Medial Menisc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,33621,1,4,0)
+ ;;=4^M23.204
+ ;;^UTILITY(U,$J,358.3,33621,2)
+ ;;=^5011215
+ ;;^UTILITY(U,$J,358.3,33622,0)
+ ;;=M23.203^^132^1708^36
+ ;;^UTILITY(U,$J,358.3,33622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35680,1,3,0)
- ;;=3^Penicillosis
- ;;^UTILITY(U,$J,358.3,35680,1,4,0)
- ;;=4^B48.4
- ;;^UTILITY(U,$J,358.3,35680,2)
- ;;=^5000688
- ;;^UTILITY(U,$J,358.3,35681,0)
- ;;=J14.^^134^1729^69
- ;;^UTILITY(U,$J,358.3,35681,1,0)
+ ;;^UTILITY(U,$J,358.3,33622,1,3,0)
+ ;;=3^Derang Unsp Medial Menisc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,33622,1,4,0)
+ ;;=4^M23.203
+ ;;^UTILITY(U,$J,358.3,33622,2)
+ ;;=^5011214
+ ;;^UTILITY(U,$J,358.3,33623,0)
+ ;;=M25.462^^132^1708^57
+ ;;^UTILITY(U,$J,358.3,33623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35681,1,3,0)
- ;;=3^Pneumonia d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,35681,1,4,0)
- ;;=4^J14.
- ;;^UTILITY(U,$J,358.3,35681,2)
- ;;=^5008171
- ;;^UTILITY(U,$J,358.3,35682,0)
- ;;=J13.^^134^1729^70
- ;;^UTILITY(U,$J,358.3,35682,1,0)
+ ;;^UTILITY(U,$J,358.3,33623,1,3,0)
+ ;;=3^Effusion, left knee
+ ;;^UTILITY(U,$J,358.3,33623,1,4,0)
+ ;;=4^M25.462
+ ;;^UTILITY(U,$J,358.3,33623,2)
+ ;;=^5011592
+ ;;^UTILITY(U,$J,358.3,33624,0)
+ ;;=M25.461^^132^1708^58
+ ;;^UTILITY(U,$J,358.3,33624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35682,1,3,0)
- ;;=3^Pneumonia d/t Streptococcus Pneumoniae
- ;;^UTILITY(U,$J,358.3,35682,1,4,0)
- ;;=4^J13.
- ;;^UTILITY(U,$J,358.3,35682,2)
- ;;=^5008170
- ;;^UTILITY(U,$J,358.3,35683,0)
- ;;=J17.^^134^1729^71
- ;;^UTILITY(U,$J,358.3,35683,1,0)
+ ;;^UTILITY(U,$J,358.3,33624,1,3,0)
+ ;;=3^Effusion, right knee
+ ;;^UTILITY(U,$J,358.3,33624,1,4,0)
+ ;;=4^M25.461
+ ;;^UTILITY(U,$J,358.3,33624,2)
+ ;;=^5011591
+ ;;^UTILITY(U,$J,358.3,33625,0)
+ ;;=M76.32^^132^1708^59
+ ;;^UTILITY(U,$J,358.3,33625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35683,1,3,0)
- ;;=3^Pneumonia in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,35683,1,4,0)
- ;;=4^J17.
- ;;^UTILITY(U,$J,358.3,35683,2)
- ;;=^5008181
- ;;^UTILITY(U,$J,358.3,35684,0)
- ;;=J18.9^^134^1729^72
- ;;^UTILITY(U,$J,358.3,35684,1,0)
+ ;;^UTILITY(U,$J,358.3,33625,1,3,0)
+ ;;=3^Iliotibial band syndrome, left leg
+ ;;^UTILITY(U,$J,358.3,33625,1,4,0)
+ ;;=4^M76.32
+ ;;^UTILITY(U,$J,358.3,33625,2)
+ ;;=^5013277
+ ;;^UTILITY(U,$J,358.3,33626,0)
+ ;;=M76.31^^132^1708^60
+ ;;^UTILITY(U,$J,358.3,33626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35684,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,35684,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,35684,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,35685,0)
- ;;=A15.7^^134^1729^74
- ;;^UTILITY(U,$J,358.3,35685,1,0)
+ ;;^UTILITY(U,$J,358.3,33626,1,3,0)
+ ;;=3^Iliotibial band syndrome, right leg
+ ;;^UTILITY(U,$J,358.3,33626,1,4,0)
+ ;;=4^M76.31
+ ;;^UTILITY(U,$J,358.3,33626,2)
+ ;;=^5013276
+ ;;^UTILITY(U,$J,358.3,33627,0)
+ ;;=M23.42^^132^1708^63
+ ;;^UTILITY(U,$J,358.3,33627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35685,1,3,0)
- ;;=3^Primary Respiratory TB
- ;;^UTILITY(U,$J,358.3,35685,1,4,0)
- ;;=4^A15.7
- ;;^UTILITY(U,$J,358.3,35685,2)
- ;;=^5000065
- ;;^UTILITY(U,$J,358.3,35686,0)
- ;;=A42.0^^134^1729^75
- ;;^UTILITY(U,$J,358.3,35686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35686,1,3,0)
- ;;=3^Pulmonary Actinomycosis

@@ -1,326 +1,694 @@
-IBDEI0B8 ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0B8 ; ; 01-MAY-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 01, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14252,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14252,1,4,0)
- ;;=4^S56.112A
- ;;^UTILITY(U,$J,358.3,14252,2)
- ;;=^5031619
- ;;^UTILITY(U,$J,358.3,14253,0)
- ;;=S56.113A^^43^637^51
- ;;^UTILITY(U,$J,358.3,14253,1,0)
+ ;;^UTILITY(U,$J,358.3,27443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14253,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14253,1,4,0)
- ;;=4^S56.113A
- ;;^UTILITY(U,$J,358.3,14253,2)
- ;;=^5031622
- ;;^UTILITY(U,$J,358.3,14254,0)
- ;;=S56.114A^^43^637^31
- ;;^UTILITY(U,$J,358.3,14254,1,0)
+ ;;^UTILITY(U,$J,358.3,27443,1,3,0)
+ ;;=3^Neuropathies,Oth Hereditary and Idiopathic
+ ;;^UTILITY(U,$J,358.3,27443,1,4,0)
+ ;;=4^G60.8
+ ;;^UTILITY(U,$J,358.3,27443,2)
+ ;;=^5004070
+ ;;^UTILITY(U,$J,358.3,27444,0)
+ ;;=G60.9^^81^1080^34
+ ;;^UTILITY(U,$J,358.3,27444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14254,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14254,1,4,0)
- ;;=4^S56.114A
- ;;^UTILITY(U,$J,358.3,14254,2)
- ;;=^5031625
- ;;^UTILITY(U,$J,358.3,14255,0)
- ;;=S56.115A^^43^637^53
- ;;^UTILITY(U,$J,358.3,14255,1,0)
+ ;;^UTILITY(U,$J,358.3,27444,1,3,0)
+ ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
+ ;;^UTILITY(U,$J,358.3,27444,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,27444,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,27445,0)
+ ;;=I69.959^^81^1080^19
+ ;;^UTILITY(U,$J,358.3,27445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14255,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14255,1,4,0)
- ;;=4^S56.115A
- ;;^UTILITY(U,$J,358.3,14255,2)
- ;;=^5031628
- ;;^UTILITY(U,$J,358.3,14256,0)
- ;;=S56.417A^^43^637^45
- ;;^UTILITY(U,$J,358.3,14256,1,0)
+ ;;^UTILITY(U,$J,358.3,27445,1,3,0)
+ ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
+ ;;^UTILITY(U,$J,358.3,27445,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,27445,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,27446,0)
+ ;;=I69.359^^81^1080^20
+ ;;^UTILITY(U,$J,358.3,27446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14256,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14256,1,4,0)
- ;;=4^S56.417A
- ;;^UTILITY(U,$J,358.3,14256,2)
- ;;=^5031781
- ;;^UTILITY(U,$J,358.3,14257,0)
- ;;=S56.418A^^43^637^25
- ;;^UTILITY(U,$J,358.3,14257,1,0)
+ ;;^UTILITY(U,$J,358.3,27446,1,3,0)
+ ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
+ ;;^UTILITY(U,$J,358.3,27446,1,4,0)
+ ;;=4^I69.359
+ ;;^UTILITY(U,$J,358.3,27446,2)
+ ;;=^5007508
+ ;;^UTILITY(U,$J,358.3,27447,0)
+ ;;=S14.109S^^81^1080^40
+ ;;^UTILITY(U,$J,358.3,27447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14257,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14257,1,4,0)
- ;;=4^S56.418A
- ;;^UTILITY(U,$J,358.3,14257,2)
- ;;=^5031784
- ;;^UTILITY(U,$J,358.3,14258,0)
- ;;=S56.811A^^43^637^41
- ;;^UTILITY(U,$J,358.3,14258,1,0)
+ ;;^UTILITY(U,$J,358.3,27447,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
+ ;;^UTILITY(U,$J,358.3,27447,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,27447,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,27448,0)
+ ;;=S34.109S^^81^1080^41
+ ;;^UTILITY(U,$J,358.3,27448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14258,1,3,0)
- ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14258,1,4,0)
- ;;=4^S56.811A
- ;;^UTILITY(U,$J,358.3,14258,2)
- ;;=^5031862
- ;;^UTILITY(U,$J,358.3,14259,0)
- ;;=S56.812A^^43^637^21
- ;;^UTILITY(U,$J,358.3,14259,1,0)
+ ;;^UTILITY(U,$J,358.3,27448,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord
+ ;;^UTILITY(U,$J,358.3,27448,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,27448,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,27449,0)
+ ;;=S24.109S^^81^1080^42
+ ;;^UTILITY(U,$J,358.3,27449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14259,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14259,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,14259,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,14260,0)
- ;;=S56.116A^^43^637^33
- ;;^UTILITY(U,$J,358.3,14260,1,0)
+ ;;^UTILITY(U,$J,358.3,27449,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Thoracic Spinal Cord
+ ;;^UTILITY(U,$J,358.3,27449,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,27449,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,27450,0)
+ ;;=I69.393^^81^1080^5
+ ;;^UTILITY(U,$J,358.3,27450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14260,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14260,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,14260,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,14261,0)
- ;;=S56.117A^^43^637^46
- ;;^UTILITY(U,$J,358.3,14261,1,0)
+ ;;^UTILITY(U,$J,358.3,27450,1,3,0)
+ ;;=3^Ataxia following Cerebral Infarction
+ ;;^UTILITY(U,$J,358.3,27450,1,4,0)
+ ;;=4^I69.393
+ ;;^UTILITY(U,$J,358.3,27450,2)
+ ;;=^5007518
+ ;;^UTILITY(U,$J,358.3,27451,0)
+ ;;=G89.0^^81^1081^1
+ ;;^UTILITY(U,$J,358.3,27451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14261,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14261,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,14261,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,14262,0)
- ;;=S56.118A^^43^637^26
- ;;^UTILITY(U,$J,358.3,14262,1,0)
+ ;;^UTILITY(U,$J,358.3,27451,1,3,0)
+ ;;=3^Central Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,27451,1,4,0)
+ ;;=4^G89.0
+ ;;^UTILITY(U,$J,358.3,27451,2)
+ ;;=^334189
+ ;;^UTILITY(U,$J,358.3,27452,0)
+ ;;=G89.11^^81^1081^11
+ ;;^UTILITY(U,$J,358.3,27452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14262,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14262,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,14262,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,14263,0)
- ;;=S56.211A^^43^637^40
- ;;^UTILITY(U,$J,358.3,14263,1,0)
+ ;;^UTILITY(U,$J,358.3,27452,1,3,0)
+ ;;=3^Pain d/t Trauma,Acute
+ ;;^UTILITY(U,$J,358.3,27452,1,4,0)
+ ;;=4^G89.11
+ ;;^UTILITY(U,$J,358.3,27452,2)
+ ;;=^5004152
+ ;;^UTILITY(U,$J,358.3,27453,0)
+ ;;=G89.12^^81^1081^15
+ ;;^UTILITY(U,$J,358.3,27453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14263,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14263,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,14263,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,14264,0)
- ;;=S56.212A^^43^637^20
- ;;^UTILITY(U,$J,358.3,14264,1,0)
+ ;;^UTILITY(U,$J,358.3,27453,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Acute
+ ;;^UTILITY(U,$J,358.3,27453,1,4,0)
+ ;;=4^G89.12
+ ;;^UTILITY(U,$J,358.3,27453,2)
+ ;;=^5004153
+ ;;^UTILITY(U,$J,358.3,27454,0)
+ ;;=G89.18^^81^1081^17
+ ;;^UTILITY(U,$J,358.3,27454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14264,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14264,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,14264,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,14265,0)
- ;;=S56.311A^^43^637^56
- ;;^UTILITY(U,$J,358.3,14265,1,0)
+ ;;^UTILITY(U,$J,358.3,27454,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Acute
+ ;;^UTILITY(U,$J,358.3,27454,1,4,0)
+ ;;=4^G89.18
+ ;;^UTILITY(U,$J,358.3,27454,2)
+ ;;=^5004154
+ ;;^UTILITY(U,$J,358.3,27455,0)
+ ;;=R52.^^81^1081^13
+ ;;^UTILITY(U,$J,358.3,27455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14265,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14265,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,14265,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,14266,0)
- ;;=S56.312A^^43^637^35
- ;;^UTILITY(U,$J,358.3,14266,1,0)
+ ;;^UTILITY(U,$J,358.3,27455,1,3,0)
+ ;;=3^Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,27455,1,4,0)
+ ;;=4^R52.
+ ;;^UTILITY(U,$J,358.3,27455,2)
+ ;;=^5019514
+ ;;^UTILITY(U,$J,358.3,27456,0)
+ ;;=G89.21^^81^1081^12
+ ;;^UTILITY(U,$J,358.3,27456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14266,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14266,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,14266,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,14267,0)
- ;;=S56.411A^^43^637^44
- ;;^UTILITY(U,$J,358.3,14267,1,0)
+ ;;^UTILITY(U,$J,358.3,27456,1,3,0)
+ ;;=3^Pain d/t Trauma,Chronic
+ ;;^UTILITY(U,$J,358.3,27456,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,27456,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,27457,0)
+ ;;=G89.22^^81^1081^16
+ ;;^UTILITY(U,$J,358.3,27457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14267,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14267,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,14267,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,14268,0)
- ;;=S56.412A^^43^637^24
- ;;^UTILITY(U,$J,358.3,14268,1,0)
+ ;;^UTILITY(U,$J,358.3,27457,1,3,0)
+ ;;=3^Post-Thoracotomy Pain,Chronic
+ ;;^UTILITY(U,$J,358.3,27457,1,4,0)
+ ;;=4^G89.22
+ ;;^UTILITY(U,$J,358.3,27457,2)
+ ;;=^5004156
+ ;;^UTILITY(U,$J,358.3,27458,0)
+ ;;=G89.28^^81^1081^18
+ ;;^UTILITY(U,$J,358.3,27458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14268,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14268,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,14268,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,14269,0)
- ;;=S56.413A^^43^637^52
- ;;^UTILITY(U,$J,358.3,14269,1,0)
+ ;;^UTILITY(U,$J,358.3,27458,1,3,0)
+ ;;=3^Postprocedural Pain,Oth Chronic
+ ;;^UTILITY(U,$J,358.3,27458,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,27458,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,27459,0)
+ ;;=G89.3^^81^1081^10
+ ;;^UTILITY(U,$J,358.3,27459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14269,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14269,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,14269,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,14270,0)
- ;;=S56.414A^^43^637^32
- ;;^UTILITY(U,$J,358.3,14270,1,0)
+ ;;^UTILITY(U,$J,358.3,27459,1,3,0)
+ ;;=3^Neoplasm Related Pain,Acute/Chronic
+ ;;^UTILITY(U,$J,358.3,27459,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,27459,2)
+ ;;=^5004159
+ ;;^UTILITY(U,$J,358.3,27460,0)
+ ;;=G89.4^^81^1081^2
+ ;;^UTILITY(U,$J,358.3,27460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14270,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14270,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,14270,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,14271,0)
- ;;=S56.415A^^43^637^54
- ;;^UTILITY(U,$J,358.3,14271,1,0)
+ ;;^UTILITY(U,$J,358.3,27460,1,3,0)
+ ;;=3^Chronic Pain Syndrome
+ ;;^UTILITY(U,$J,358.3,27460,1,4,0)
+ ;;=4^G89.4
+ ;;^UTILITY(U,$J,358.3,27460,2)
+ ;;=^334079
+ ;;^UTILITY(U,$J,358.3,27461,0)
+ ;;=M27.0^^81^1081^3
+ ;;^UTILITY(U,$J,358.3,27461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14271,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14271,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,14271,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,14272,0)
- ;;=S56.416A^^43^637^34
- ;;^UTILITY(U,$J,358.3,14272,1,0)
+ ;;^UTILITY(U,$J,358.3,27461,1,3,0)
+ ;;=3^Developmental Disorder of Jaws
+ ;;^UTILITY(U,$J,358.3,27461,1,4,0)
+ ;;=4^M27.0
+ ;;^UTILITY(U,$J,358.3,27461,2)
+ ;;=^5011722
+ ;;^UTILITY(U,$J,358.3,27462,0)
+ ;;=M27.9^^81^1081^4
+ ;;^UTILITY(U,$J,358.3,27462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14272,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,14272,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,14272,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,14273,0)
- ;;=S66.912A^^43^637^22
- ;;^UTILITY(U,$J,358.3,14273,1,0)
+ ;;^UTILITY(U,$J,358.3,27462,1,3,0)
+ ;;=3^Disease of Jaws,Unspec
+ ;;^UTILITY(U,$J,358.3,27462,1,4,0)
+ ;;=4^M27.9
+ ;;^UTILITY(U,$J,358.3,27462,2)
+ ;;=^5011737
+ ;;^UTILITY(U,$J,358.3,27463,0)
+ ;;=R68.84^^81^1081^8
+ ;;^UTILITY(U,$J,358.3,27463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14273,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,14273,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,14273,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,14274,0)
- ;;=S66.911A^^43^637^42
- ;;^UTILITY(U,$J,358.3,14274,1,0)
+ ;;^UTILITY(U,$J,358.3,27463,1,3,0)
+ ;;=3^Jaw Pain
+ ;;^UTILITY(U,$J,358.3,27463,1,4,0)
+ ;;=4^R68.84
+ ;;^UTILITY(U,$J,358.3,27463,2)
+ ;;=^5019556
+ ;;^UTILITY(U,$J,358.3,27464,0)
+ ;;=N48.9^^81^1081^6
+ ;;^UTILITY(U,$J,358.3,27464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14274,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,14274,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,14274,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,14275,0)
- ;;=S63.501A^^43^637^18
- ;;^UTILITY(U,$J,358.3,14275,1,0)
+ ;;^UTILITY(U,$J,358.3,27464,1,3,0)
+ ;;=3^Disorder of Penis,Unspec
+ ;;^UTILITY(U,$J,358.3,27464,1,4,0)
+ ;;=4^N48.9
+ ;;^UTILITY(U,$J,358.3,27464,2)
+ ;;=^5015743
+ ;;^UTILITY(U,$J,358.3,27465,0)
+ ;;=N50.9^^81^1081^5
+ ;;^UTILITY(U,$J,358.3,27465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14275,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,14275,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,14275,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,14276,0)
- ;;=S63.502A^^43^637^7
- ;;^UTILITY(U,$J,358.3,14276,1,0)
+ ;;^UTILITY(U,$J,358.3,27465,1,3,0)
+ ;;=3^Disorder of Male Genital Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,27465,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,27465,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,27466,0)
+ ;;=R10.2^^81^1081^14
+ ;;^UTILITY(U,$J,358.3,27466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14276,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,14276,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,14276,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,14277,0)
- ;;=S83.8X1A^^43^637^16
- ;;^UTILITY(U,$J,358.3,14277,1,0)
+ ;;^UTILITY(U,$J,358.3,27466,1,3,0)
+ ;;=3^Pelvic/Perineal Pain
+ ;;^UTILITY(U,$J,358.3,27466,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,27466,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,27467,0)
+ ;;=N94.89^^81^1081^7
+ ;;^UTILITY(U,$J,358.3,27467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14277,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,14277,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,14277,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,14278,0)
- ;;=S83.8X2A^^43^637^5
- ;;^UTILITY(U,$J,358.3,14278,1,0)
+ ;;^UTILITY(U,$J,358.3,27467,1,3,0)
+ ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
+ ;;^UTILITY(U,$J,358.3,27467,1,4,0)
+ ;;=4^N94.89
+ ;;^UTILITY(U,$J,358.3,27467,2)
+ ;;=^5015925
+ ;;^UTILITY(U,$J,358.3,27468,0)
+ ;;=N23.^^81^1081^19
+ ;;^UTILITY(U,$J,358.3,27468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14278,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,14278,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,14278,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,14279,0)
- ;;=S86.211A^^43^637^47
- ;;^UTILITY(U,$J,358.3,14279,1,0)
+ ;;^UTILITY(U,$J,358.3,27468,1,3,0)
+ ;;=3^Renal Colic,Unspec
+ ;;^UTILITY(U,$J,358.3,27468,1,4,0)
+ ;;=4^N23.
+ ;;^UTILITY(U,$J,358.3,27468,2)
+ ;;=^5015615
+ ;;^UTILITY(U,$J,358.3,27469,0)
+ ;;=Z79.891^^81^1081^9
+ ;;^UTILITY(U,$J,358.3,27469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14279,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,14279,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,14279,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,14280,0)
- ;;=S86.212A^^43^637^27
- ;;^UTILITY(U,$J,358.3,14280,1,0)
+ ;;^UTILITY(U,$J,358.3,27469,1,3,0)
+ ;;=3^Long Term Opiate/Opioid Analgesic Use
+ ;;^UTILITY(U,$J,358.3,27469,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,27469,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,27470,0)
+ ;;=Z71.89^^81^1082^1
+ ;;^UTILITY(U,$J,358.3,27470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14280,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,14280,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,14280,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,14281,0)
- ;;=S86.311A^^43^637^49
- ;;^UTILITY(U,$J,358.3,14281,1,0)
+ ;;^UTILITY(U,$J,358.3,27470,1,3,0)
+ ;;=3^Activity/Exercise Counseling
+ ;;^UTILITY(U,$J,358.3,27470,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,27470,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,27471,0)
+ ;;=Z13.89^^81^1082^2
+ ;;^UTILITY(U,$J,358.3,27471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14281,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,14281,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,14281,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,14282,0)
- ;;=S86.312A^^43^637^29
- ;;^UTILITY(U,$J,358.3,14282,1,0)
+ ;;^UTILITY(U,$J,358.3,27471,1,3,0)
+ ;;=3^Alcohol Use Screen
+ ;;^UTILITY(U,$J,358.3,27471,1,4,0)
+ ;;=4^Z13.89
+ ;;^UTILITY(U,$J,358.3,27471,2)
+ ;;=^5062720
+ ;;^UTILITY(U,$J,358.3,27472,0)
+ ;;=Z12.39^^81^1082^3
+ ;;^UTILITY(U,$J,358.3,27472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14282,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,14282,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,14282,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,14283,0)
- ;;=S86.811A^^43^637^48
- ;;^UTILITY(U,$J,358.3,14283,1,0)
+ ;;^UTILITY(U,$J,358.3,27472,1,3,0)
+ ;;=3^Breast Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,27472,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,27472,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,27473,0)
+ ;;=Z12.4^^81^1082^5
+ ;;^UTILITY(U,$J,358.3,27473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14283,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,14283,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,14283,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,14284,0)
- ;;=S86.812A^^43^637^28
- ;;^UTILITY(U,$J,358.3,14284,1,0)
+ ;;^UTILITY(U,$J,358.3,27473,1,3,0)
+ ;;=3^Cervix Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,27473,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,27473,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,27474,0)
+ ;;=Z13.5^^81^1082^8
+ ;;^UTILITY(U,$J,358.3,27474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14284,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,27474,1,3,0)
+ ;;=3^Eye and Ear Disorder Screen
+ ;;^UTILITY(U,$J,358.3,27474,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,27474,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,27475,0)
+ ;;=Z01.89^^81^1082^6
+ ;;^UTILITY(U,$J,358.3,27475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27475,1,3,0)
+ ;;=3^Diabetic Foot Exam
+ ;;^UTILITY(U,$J,358.3,27475,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,27475,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,27476,0)
+ ;;=Z11.59^^81^1082^17
+ ;;^UTILITY(U,$J,358.3,27476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27476,1,3,0)
+ ;;=3^Viral Diseases Screen
+ ;;^UTILITY(U,$J,358.3,27476,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,27476,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,27477,0)
+ ;;=Z13.6^^81^1082^4
+ ;;^UTILITY(U,$J,358.3,27477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27477,1,3,0)
+ ;;=3^Cardiovascular Disorder Screen
+ ;;^UTILITY(U,$J,358.3,27477,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,27477,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,27478,0)
+ ;;=Z12.12^^81^1082^15
+ ;;^UTILITY(U,$J,358.3,27478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27478,1,3,0)
+ ;;=3^Rectum Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,27478,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,27478,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,27479,0)
+ ;;=Z71.89^^81^1082^13
+ ;;^UTILITY(U,$J,358.3,27479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27479,1,3,0)
+ ;;=3^Other Specified Counseling
+ ;;^UTILITY(U,$J,358.3,27479,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,27479,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,27480,0)
+ ;;=Z12.5^^81^1082^14
+ ;;^UTILITY(U,$J,358.3,27480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27480,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,27480,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,27480,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,27481,0)
+ ;;=Z00.00^^81^1082^10
+ ;;^UTILITY(U,$J,358.3,27481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27481,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,27481,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,27481,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,27482,0)
+ ;;=Z02.79^^81^1082^12
+ ;;^UTILITY(U,$J,358.3,27482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27482,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,27482,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,27482,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,27483,0)
+ ;;=Z71.3^^81^1082^7
+ ;;^UTILITY(U,$J,358.3,27483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27483,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,27483,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,27483,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,27484,0)
+ ;;=Z71.7^^81^1082^11
+ ;;^UTILITY(U,$J,358.3,27484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27484,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,27484,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,27484,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,27485,0)
+ ;;=Z71.6^^81^1082^16
+ ;;^UTILITY(U,$J,358.3,27485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27485,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,27485,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,27485,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,27486,0)
+ ;;=Z00.01^^81^1082^9
+ ;;^UTILITY(U,$J,358.3,27486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27486,1,3,0)
+ ;;=3^General Adult Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,27486,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,27486,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,27487,0)
+ ;;=D86.0^^81^1083^45
+ ;;^UTILITY(U,$J,358.3,27487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27487,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,27487,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,27487,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,27488,0)
+ ;;=D86.1^^81^1083^47
+ ;;^UTILITY(U,$J,358.3,27488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27488,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,27488,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,27488,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,27489,0)
+ ;;=D86.2^^81^1083^46
+ ;;^UTILITY(U,$J,358.3,27489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27489,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,27489,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,27489,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,27490,0)
+ ;;=D86.89^^81^1083^48
+ ;;^UTILITY(U,$J,358.3,27490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27490,1,3,0)
+ ;;=3^Sarcoidosis of Other Sites
+ ;;^UTILITY(U,$J,358.3,27490,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,27490,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,27491,0)
+ ;;=D86.9^^81^1083^51
+ ;;^UTILITY(U,$J,358.3,27491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27491,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,27491,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,27491,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,27492,0)
+ ;;=D86.86^^81^1083^39
+ ;;^UTILITY(U,$J,358.3,27492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27492,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,27492,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,27492,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,27493,0)
+ ;;=D86.87^^81^1083^43
+ ;;^UTILITY(U,$J,358.3,27493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27493,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,27493,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,27493,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,27494,0)
+ ;;=D86.3^^81^1083^49
+ ;;^UTILITY(U,$J,358.3,27494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27494,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,27494,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,27494,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,27495,0)
+ ;;=D86.81^^81^1083^41
+ ;;^UTILITY(U,$J,358.3,27495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27495,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,27495,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,27495,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,27496,0)
+ ;;=D86.82^^81^1083^50
+ ;;^UTILITY(U,$J,358.3,27496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27496,1,3,0)
+ ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
+ ;;^UTILITY(U,$J,358.3,27496,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,27496,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,27497,0)
+ ;;=D86.84^^81^1083^44
+ ;;^UTILITY(U,$J,358.3,27497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27497,1,3,0)
+ ;;=3^Sarcoid Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,27497,1,4,0)
+ ;;=4^D86.84
+ ;;^UTILITY(U,$J,358.3,27497,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,27498,0)
+ ;;=D86.85^^81^1083^42
+ ;;^UTILITY(U,$J,358.3,27498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27498,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,27498,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,27498,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,27499,0)
+ ;;=D86.83^^81^1083^40
+ ;;^UTILITY(U,$J,358.3,27499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27499,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,27499,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,27499,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,27500,0)
+ ;;=D84.1^^81^1083^16
+ ;;^UTILITY(U,$J,358.3,27500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27500,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,27500,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,27500,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,27501,0)
+ ;;=D81.810^^81^1083^5
+ ;;^UTILITY(U,$J,358.3,27501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27501,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,27501,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,27501,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,27502,0)
+ ;;=E88.01^^81^1083^2
+ ;;^UTILITY(U,$J,358.3,27502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27502,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,27502,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,27502,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,27503,0)
+ ;;=J09.X1^^81^1083^25
+ ;;^UTILITY(U,$J,358.3,27503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27503,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,27503,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,27503,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,27504,0)
+ ;;=J09.X2^^81^1083^26
+ ;;^UTILITY(U,$J,358.3,27504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27504,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,27504,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,27504,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,27505,0)
+ ;;=J09.X3^^81^1083^27
+ ;;^UTILITY(U,$J,358.3,27505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27505,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,27505,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,27505,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,27506,0)
+ ;;=J09.X9^^81^1083^28
+ ;;^UTILITY(U,$J,358.3,27506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27506,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,27506,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,27506,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,27507,0)
+ ;;=J44.9^^81^1083^14
+ ;;^UTILITY(U,$J,358.3,27507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27507,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,27507,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,27507,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,27508,0)
+ ;;=J44.1^^81^1083^12
+ ;;^UTILITY(U,$J,358.3,27508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27508,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,27508,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,27508,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,27509,0)
+ ;;=J42.^^81^1083^10
+ ;;^UTILITY(U,$J,358.3,27509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27509,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,27509,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,27509,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,27510,0)
+ ;;=J43.9^^81^1083^22
+ ;;^UTILITY(U,$J,358.3,27510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27510,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,27510,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,27510,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,27511,0)
+ ;;=J43.0^^81^1083^30
+ ;;^UTILITY(U,$J,358.3,27511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27511,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,27511,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,27511,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,27512,0)
+ ;;=J43.1^^81^1083^21

@@ -1,128 +1,124 @@
-IBDEI1MV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1MV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27723,1,3,0)
- ;;=3^Juvenile Myoclonic Epilepsy Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27723,1,4,0)
- ;;=4^G40.B09
- ;;^UTILITY(U,$J,358.3,27723,2)
- ;;=^5003873
- ;;^UTILITY(U,$J,358.3,27724,0)
- ;;=G40.B11^^109^1381^21
- ;;^UTILITY(U,$J,358.3,27724,1,0)
+ ;;^UTILITY(U,$J,358.3,26091,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26091,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,26091,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,26092,0)
+ ;;=W05.2XXD^^107^1230^53
+ ;;^UTILITY(U,$J,358.3,26092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27724,1,3,0)
- ;;=3^Juvenile Myoclonic Epilepsy Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27724,1,4,0)
- ;;=4^G40.B11
- ;;^UTILITY(U,$J,358.3,27724,2)
- ;;=^5003874
- ;;^UTILITY(U,$J,358.3,27725,0)
- ;;=G40.B19^^109^1381^22
- ;;^UTILITY(U,$J,358.3,27725,1,0)
+ ;;^UTILITY(U,$J,358.3,26092,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26092,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,26092,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,26093,0)
+ ;;=W06.XXXA^^107^1230^34
+ ;;^UTILITY(U,$J,358.3,26093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27725,1,3,0)
- ;;=3^Juvenile Myoclonic Epilepsy Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27725,1,4,0)
- ;;=4^G40.B19
- ;;^UTILITY(U,$J,358.3,27725,2)
- ;;=^5003875
- ;;^UTILITY(U,$J,358.3,27726,0)
- ;;=G40.509^^109^1381^14
- ;;^UTILITY(U,$J,358.3,27726,1,0)
+ ;;^UTILITY(U,$J,358.3,26093,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26093,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,26093,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,26094,0)
+ ;;=W06.XXXD^^107^1230^35
+ ;;^UTILITY(U,$J,358.3,26094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27726,1,3,0)
- ;;=3^Epileptic Seizures d/t External Causes Not Intractalbe w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,27726,1,4,0)
- ;;=4^G40.509
- ;;^UTILITY(U,$J,358.3,27726,2)
- ;;=^5003850
- ;;^UTILITY(U,$J,358.3,27727,0)
- ;;=G40.909^^109^1381^13
- ;;^UTILITY(U,$J,358.3,27727,1,0)
+ ;;^UTILITY(U,$J,358.3,26094,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26094,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,26094,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,26095,0)
+ ;;=W07.XXXA^^107^1230^42
+ ;;^UTILITY(U,$J,358.3,26095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27727,1,3,0)
- ;;=3^Epilepsy Not Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,27727,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,27727,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,27728,0)
- ;;=G40.911^^109^1381^10
- ;;^UTILITY(U,$J,358.3,27728,1,0)
+ ;;^UTILITY(U,$J,358.3,26095,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26095,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,26095,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,26096,0)
+ ;;=W07.XXXD^^107^1230^43
+ ;;^UTILITY(U,$J,358.3,26096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27728,1,3,0)
- ;;=3^Epilepsy Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,27728,1,4,0)
- ;;=4^G40.911
- ;;^UTILITY(U,$J,358.3,27728,2)
- ;;=^5003866
- ;;^UTILITY(U,$J,358.3,27729,0)
- ;;=G40.919^^109^1381^11
- ;;^UTILITY(U,$J,358.3,27729,1,0)
+ ;;^UTILITY(U,$J,358.3,26096,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26096,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,26096,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,26097,0)
+ ;;=W10.1XXA^^107^1230^86
+ ;;^UTILITY(U,$J,358.3,26097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27729,1,3,0)
- ;;=3^Epilepsy Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,27729,1,4,0)
- ;;=4^G40.919
- ;;^UTILITY(U,$J,358.3,27729,2)
- ;;=^5003867
- ;;^UTILITY(U,$J,358.3,27730,0)
- ;;=G93.81^^109^1381^24
- ;;^UTILITY(U,$J,358.3,27730,1,0)
+ ;;^UTILITY(U,$J,358.3,26097,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26097,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,26097,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,26098,0)
+ ;;=W10.1XXD^^107^1230^87
+ ;;^UTILITY(U,$J,358.3,26098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27730,1,3,0)
- ;;=3^Mesial Temporal Sclerosis
- ;;^UTILITY(U,$J,358.3,27730,1,4,0)
- ;;=4^G93.81
- ;;^UTILITY(U,$J,358.3,27730,2)
- ;;=^338233
- ;;^UTILITY(U,$J,358.3,27731,0)
- ;;=F44.5^^109^1381^8
- ;;^UTILITY(U,$J,358.3,27731,1,0)
+ ;;^UTILITY(U,$J,358.3,26098,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26098,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,26098,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,26099,0)
+ ;;=W11.XXXA^^107^1230^46
+ ;;^UTILITY(U,$J,358.3,26099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27731,1,3,0)
- ;;=3^Conversion Disorder w/ Seizures/Convulsions
- ;;^UTILITY(U,$J,358.3,27731,1,4,0)
- ;;=4^F44.5
- ;;^UTILITY(U,$J,358.3,27731,2)
- ;;=^5003580
- ;;^UTILITY(U,$J,358.3,27732,0)
- ;;=R40.4^^109^1381^31
- ;;^UTILITY(U,$J,358.3,27732,1,0)
+ ;;^UTILITY(U,$J,358.3,26099,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26099,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,26099,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,26100,0)
+ ;;=W11.XXXD^^107^1230^47
+ ;;^UTILITY(U,$J,358.3,26100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27732,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,27732,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,27732,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,27733,0)
- ;;=R40.1^^109^1381^30
- ;;^UTILITY(U,$J,358.3,27733,1,0)
+ ;;^UTILITY(U,$J,358.3,26100,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26100,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,26100,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,26101,0)
+ ;;=W13.0XXA^^107^1230^72
+ ;;^UTILITY(U,$J,358.3,26101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27733,1,3,0)
- ;;=3^Stupor
- ;;^UTILITY(U,$J,358.3,27733,1,4,0)
- ;;=4^R40.1
- ;;^UTILITY(U,$J,358.3,27733,2)
- ;;=^5019353
- ;;^UTILITY(U,$J,358.3,27734,0)
- ;;=R40.0^^109^1381^29
- ;;^UTILITY(U,$J,358.3,27734,1,0)
+ ;;^UTILITY(U,$J,358.3,26101,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26101,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,26101,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,26102,0)
+ ;;=W13.0XXD^^107^1230^73
+ ;;^UTILITY(U,$J,358.3,26102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27734,1,3,0)
- ;;=3^Somnolence
- ;;^UTILITY(U,$J,358.3,27734,1,4,0)
- ;;=4^R40.0
- ;;^UTILITY(U,$J,358.3,27734,2)
- ;;=^5019352
- ;;^UTILITY(U,$J,358.3,27735,0)
- ;;=R56.9^^109^1381^9
- ;;^UTILITY(U,$J,358.3,27735,1,0)
+ ;;^UTILITY(U,$J,358.3,26102,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,26102,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,26102,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,26103,0)
+ ;;=W13.1XXA^^107^1230^36
+ ;;^UTILITY(U,$J,358.3,26103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27735,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,27735,1,4,0)
- ;;=4^R56.9

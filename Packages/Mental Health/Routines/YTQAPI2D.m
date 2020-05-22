@@ -1,5 +1,5 @@
 YTQAPI2D ;SLC/BLD- MHAX ANSWERS SPECIAL HANDLING #2 ; 9/27/18 10:27am
- ;;5.01;MENTAL HEALTH;**147**;Dec 30, 1994;Build 283
+ ;;5.01;MENTAL HEALTH;**147,150**;Dec 30, 1994;Build 210
  ;
  ; This routine was split from YTQAPI2A.
  ; This routine handles limited complex reporting requirements without
@@ -56,5 +56,5 @@ SPECIAL(TSTNM,YSDATA,N,YSAD,YSTSTN,QUIT) ; add "hidden" computed question text
  .;
  ;
  ;
- I $L($T(SPECIAL^YTQAPI2E)) D SPECIAL^YTQAPI2E(TSTNM,.YSDATA,N,.YSAD,.YSTSTN)
+ ;I $L($T(SPECIAL^YTQAPI2E)) D SPECIAL^YTQAPI2E(TSTNM,.YSDATA,N,.YSAD,.YSTSTN)
  Q 

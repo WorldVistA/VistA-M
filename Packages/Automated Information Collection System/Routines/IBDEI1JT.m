@@ -1,122 +1,128 @@
-IBDEI1JT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1JT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26268,1,0)
+ ;;^UTILITY(U,$J,358.3,24752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26268,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26268,1,4,0)
- ;;=4^F11.122
- ;;^UTILITY(U,$J,358.3,26268,2)
- ;;=^5003117
- ;;^UTILITY(U,$J,358.3,26269,0)
- ;;=F11.222^^98^1239^17
- ;;^UTILITY(U,$J,358.3,26269,1,0)
+ ;;^UTILITY(U,$J,358.3,24752,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,24752,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,24752,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,24753,0)
+ ;;=D61.9^^107^1211^28
+ ;;^UTILITY(U,$J,358.3,24753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26269,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26269,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,26269,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,26270,0)
- ;;=F11.922^^98^1239^18
- ;;^UTILITY(U,$J,358.3,26270,1,0)
+ ;;^UTILITY(U,$J,358.3,24753,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,24753,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,24753,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,24754,0)
+ ;;=D56.1^^107^1211^30
+ ;;^UTILITY(U,$J,358.3,24754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26270,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26270,1,4,0)
- ;;=4^F11.922
- ;;^UTILITY(U,$J,358.3,26270,2)
- ;;=^5003145
- ;;^UTILITY(U,$J,358.3,26271,0)
- ;;=F11.99^^98^1239^22
- ;;^UTILITY(U,$J,358.3,26271,1,0)
+ ;;^UTILITY(U,$J,358.3,24754,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,24754,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,24754,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,24755,0)
+ ;;=C83.79^^107^1211^32
+ ;;^UTILITY(U,$J,358.3,24755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26271,1,3,0)
- ;;=3^Opioid Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26271,1,4,0)
- ;;=4^F11.99
- ;;^UTILITY(U,$J,358.3,26271,2)
- ;;=^5133352
- ;;^UTILITY(U,$J,358.3,26272,0)
- ;;=F19.10^^98^1240^3
- ;;^UTILITY(U,$J,358.3,26272,1,0)
+ ;;^UTILITY(U,$J,358.3,24755,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,24755,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,24755,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,24756,0)
+ ;;=C83.70^^107^1211^33
+ ;;^UTILITY(U,$J,358.3,24756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26272,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26272,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,26272,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,26273,0)
- ;;=F19.14^^98^1240^1
- ;;^UTILITY(U,$J,358.3,26273,1,0)
+ ;;^UTILITY(U,$J,358.3,24756,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,24756,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,24756,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,24757,0)
+ ;;=D09.0^^107^1211^40
+ ;;^UTILITY(U,$J,358.3,24757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26273,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,26273,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,26273,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,26274,0)
- ;;=F19.182^^98^1240^2
- ;;^UTILITY(U,$J,358.3,26274,1,0)
+ ;;^UTILITY(U,$J,358.3,24757,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,24757,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,24757,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,24758,0)
+ ;;=D06.9^^107^1211^41
+ ;;^UTILITY(U,$J,358.3,24758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26274,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,26274,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,26274,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,26275,0)
- ;;=F19.20^^98^1240^6
- ;;^UTILITY(U,$J,358.3,26275,1,0)
+ ;;^UTILITY(U,$J,358.3,24758,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,24758,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,24758,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,24759,0)
+ ;;=D06.0^^107^1211^43
+ ;;^UTILITY(U,$J,358.3,24759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26275,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,26275,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,26275,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,26276,0)
- ;;=F19.21^^98^1240^5
- ;;^UTILITY(U,$J,358.3,26276,1,0)
+ ;;^UTILITY(U,$J,358.3,24759,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,24759,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,24759,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,24760,0)
+ ;;=D06.1^^107^1211^44
+ ;;^UTILITY(U,$J,358.3,24760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26276,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,26276,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,26276,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,26277,0)
- ;;=F19.24^^98^1240^4
- ;;^UTILITY(U,$J,358.3,26277,1,0)
+ ;;^UTILITY(U,$J,358.3,24760,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,24760,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,24760,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,24761,0)
+ ;;=D06.7^^107^1211^42
+ ;;^UTILITY(U,$J,358.3,24761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26277,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,26277,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,26277,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,26278,0)
- ;;=F13.10^^98^1241^1
- ;;^UTILITY(U,$J,358.3,26278,1,0)
+ ;;^UTILITY(U,$J,358.3,24761,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,24761,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,24761,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,24762,0)
+ ;;=D04.9^^107^1211^45
+ ;;^UTILITY(U,$J,358.3,24762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26278,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,26278,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,26278,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,26279,0)
- ;;=F13.14^^98^1241^7
- ;;^UTILITY(U,$J,358.3,26279,1,0)
+ ;;^UTILITY(U,$J,358.3,24762,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,24762,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,24762,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,24763,0)
+ ;;=C91.11^^107^1211^48
+ ;;^UTILITY(U,$J,358.3,24763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26279,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
- ;;^UTILITY(U,$J,358.3,26279,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,26279,2)
- ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,24763,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,24763,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,24763,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,24764,0)
+ ;;=C91.10^^107^1211^49
+ ;;^UTILITY(U,$J,358.3,24764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24764,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission

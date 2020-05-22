@@ -1,122 +1,124 @@
-IBDEI1Q4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1Q4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29255,0)
- ;;=O42.10^^115^1456^76
- ;;^UTILITY(U,$J,358.3,29255,1,0)
+ ;;^UTILITY(U,$J,358.3,27548,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,27548,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,27549,0)
+ ;;=F31.32^^113^1339^14
+ ;;^UTILITY(U,$J,358.3,27549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29255,1,3,0)
- ;;=3^Prem ROM, onset labor > 24 hr fol rupt, unsp weeks of gest
- ;;^UTILITY(U,$J,358.3,29255,1,4,0)
- ;;=4^O42.10
- ;;^UTILITY(U,$J,358.3,29255,2)
- ;;=^5017378
- ;;^UTILITY(U,$J,358.3,29256,0)
- ;;=O42.111^^115^1456^78
- ;;^UTILITY(U,$J,358.3,29256,1,0)
+ ;;^UTILITY(U,$J,358.3,27549,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
+ ;;^UTILITY(U,$J,358.3,27549,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,27549,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,27550,0)
+ ;;=F31.4^^113^1339^15
+ ;;^UTILITY(U,$J,358.3,27550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29256,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, first tri
- ;;^UTILITY(U,$J,358.3,29256,1,4,0)
- ;;=4^O42.111
- ;;^UTILITY(U,$J,358.3,29256,2)
- ;;=^5017379
- ;;^UTILITY(U,$J,358.3,29257,0)
- ;;=O42.112^^115^1456^79
- ;;^UTILITY(U,$J,358.3,29257,1,0)
+ ;;^UTILITY(U,$J,358.3,27550,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
+ ;;^UTILITY(U,$J,358.3,27550,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,27550,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,27551,0)
+ ;;=F31.5^^113^1339^10
+ ;;^UTILITY(U,$J,358.3,27551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29257,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, second tri
- ;;^UTILITY(U,$J,358.3,29257,1,4,0)
- ;;=4^O42.112
- ;;^UTILITY(U,$J,358.3,29257,2)
- ;;=^5017380
- ;;^UTILITY(U,$J,358.3,29258,0)
- ;;=O42.113^^115^1456^80
- ;;^UTILITY(U,$J,358.3,29258,1,0)
+ ;;^UTILITY(U,$J,358.3,27551,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,27551,1,4,0)
+ ;;=4^F31.5
+ ;;^UTILITY(U,$J,358.3,27551,2)
+ ;;=^5003504
+ ;;^UTILITY(U,$J,358.3,27552,0)
+ ;;=F31.75^^113^1339^11
+ ;;^UTILITY(U,$J,358.3,27552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29258,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, third tri
- ;;^UTILITY(U,$J,358.3,29258,1,4,0)
- ;;=4^O42.113
- ;;^UTILITY(U,$J,358.3,29258,2)
- ;;=^5017381
- ;;^UTILITY(U,$J,358.3,29259,0)
- ;;=O42.119^^115^1456^81
- ;;^UTILITY(U,$J,358.3,29259,1,0)
+ ;;^UTILITY(U,$J,358.3,27552,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,27552,1,4,0)
+ ;;=4^F31.75
+ ;;^UTILITY(U,$J,358.3,27552,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,27553,0)
+ ;;=F31.76^^113^1339^12
+ ;;^UTILITY(U,$J,358.3,27553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29259,1,3,0)
- ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, unsp tri
- ;;^UTILITY(U,$J,358.3,29259,1,4,0)
- ;;=4^O42.119
- ;;^UTILITY(U,$J,358.3,29259,2)
- ;;=^5017382
- ;;^UTILITY(U,$J,358.3,29260,0)
- ;;=O75.5^^115^1456^20
- ;;^UTILITY(U,$J,358.3,29260,1,0)
+ ;;^UTILITY(U,$J,358.3,27553,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,27553,1,4,0)
+ ;;=4^F31.76
+ ;;^UTILITY(U,$J,358.3,27553,2)
+ ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,27554,0)
+ ;;=F31.81^^113^1339^25
+ ;;^UTILITY(U,$J,358.3,27554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29260,1,3,0)
- ;;=3^Delayed delivery after artificial rupture of membranes
- ;;^UTILITY(U,$J,358.3,29260,1,4,0)
- ;;=4^O75.5
- ;;^UTILITY(U,$J,358.3,29260,2)
- ;;=^271331
- ;;^UTILITY(U,$J,358.3,29261,0)
- ;;=O41.1010^^115^1456^21
- ;;^UTILITY(U,$J,358.3,29261,1,0)
+ ;;^UTILITY(U,$J,358.3,27554,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,27554,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,27554,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,27555,0)
+ ;;=F34.0^^113^1339^26
+ ;;^UTILITY(U,$J,358.3,27555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29261,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, unsp
- ;;^UTILITY(U,$J,358.3,29261,1,4,0)
- ;;=4^O41.1010
- ;;^UTILITY(U,$J,358.3,29261,2)
- ;;=^5017241
- ;;^UTILITY(U,$J,358.3,29262,0)
- ;;=O41.1011^^115^1456^22
- ;;^UTILITY(U,$J,358.3,29262,1,0)
+ ;;^UTILITY(U,$J,358.3,27555,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,27555,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,27555,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,27556,0)
+ ;;=F31.0^^113^1339^16
+ ;;^UTILITY(U,$J,358.3,27556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29262,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 1
- ;;^UTILITY(U,$J,358.3,29262,1,4,0)
- ;;=4^O41.1011
- ;;^UTILITY(U,$J,358.3,29262,2)
- ;;=^5017242
- ;;^UTILITY(U,$J,358.3,29263,0)
- ;;=O41.1012^^115^1456^23
- ;;^UTILITY(U,$J,358.3,29263,1,0)
+ ;;^UTILITY(U,$J,358.3,27556,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic
+ ;;^UTILITY(U,$J,358.3,27556,1,4,0)
+ ;;=4^F31.0
+ ;;^UTILITY(U,$J,358.3,27556,2)
+ ;;=^5003494
+ ;;^UTILITY(U,$J,358.3,27557,0)
+ ;;=F31.71^^113^1339^17
+ ;;^UTILITY(U,$J,358.3,27557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29263,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 2
- ;;^UTILITY(U,$J,358.3,29263,1,4,0)
- ;;=4^O41.1012
- ;;^UTILITY(U,$J,358.3,29263,2)
- ;;=^5017243
- ;;^UTILITY(U,$J,358.3,29264,0)
- ;;=O41.1013^^115^1456^24
- ;;^UTILITY(U,$J,358.3,29264,1,0)
+ ;;^UTILITY(U,$J,358.3,27557,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,27557,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,27557,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,27558,0)
+ ;;=F31.72^^113^1339^18
+ ;;^UTILITY(U,$J,358.3,27558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29264,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 3
- ;;^UTILITY(U,$J,358.3,29264,1,4,0)
- ;;=4^O41.1013
- ;;^UTILITY(U,$J,358.3,29264,2)
- ;;=^5017244
- ;;^UTILITY(U,$J,358.3,29265,0)
- ;;=O41.1014^^115^1456^25
- ;;^UTILITY(U,$J,358.3,29265,1,0)
+ ;;^UTILITY(U,$J,358.3,27558,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,27558,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,27558,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,27559,0)
+ ;;=F31.89^^113^1339^3
+ ;;^UTILITY(U,$J,358.3,27559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29265,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 4
- ;;^UTILITY(U,$J,358.3,29265,1,4,0)
- ;;=4^O41.1014
- ;;^UTILITY(U,$J,358.3,29265,2)
- ;;=^5017245
- ;;^UTILITY(U,$J,358.3,29266,0)
- ;;=O41.1015^^115^1456^26
- ;;^UTILITY(U,$J,358.3,29266,1,0)
+ ;;^UTILITY(U,$J,358.3,27559,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,27559,1,4,0)
+ ;;=4^F31.89
+ ;;^UTILITY(U,$J,358.3,27559,2)
+ ;;=^5003520
+ ;;^UTILITY(U,$J,358.3,27560,0)
+ ;;=F31.9^^113^1339^4
+ ;;^UTILITY(U,$J,358.3,27560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29266,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 5
- ;;^UTILITY(U,$J,358.3,29266,1,4,0)
- ;;=4^O41.1015
+ ;;^UTILITY(U,$J,358.3,27560,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Unsp

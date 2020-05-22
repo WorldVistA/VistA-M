@@ -1,118 +1,124 @@
-IBDEI2P9 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2P9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45310,1,0)
+ ;;^UTILITY(U,$J,358.3,43015,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,43015,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,43016,0)
+ ;;=M54.31^^155^2077^12
+ ;;^UTILITY(U,$J,358.3,43016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45310,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45310,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,45310,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,45311,0)
- ;;=S56.116A^^200^2241^33
- ;;^UTILITY(U,$J,358.3,45311,1,0)
+ ;;^UTILITY(U,$J,358.3,43016,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,43016,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,43016,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,43017,0)
+ ;;=M48.02^^155^2077^14
+ ;;^UTILITY(U,$J,358.3,43017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45311,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45311,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,45311,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,45312,0)
- ;;=S56.117A^^200^2241^46
- ;;^UTILITY(U,$J,358.3,45312,1,0)
+ ;;^UTILITY(U,$J,358.3,43017,1,3,0)
+ ;;=3^Spinal Stenosis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,43017,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,43017,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,43018,0)
+ ;;=M48.03^^155^2077^15
+ ;;^UTILITY(U,$J,358.3,43018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45312,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45312,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,45312,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,45313,0)
- ;;=S56.118A^^200^2241^26
- ;;^UTILITY(U,$J,358.3,45313,1,0)
+ ;;^UTILITY(U,$J,358.3,43018,1,3,0)
+ ;;=3^Spinal Stenosis,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,43018,1,4,0)
+ ;;=4^M48.03
+ ;;^UTILITY(U,$J,358.3,43018,2)
+ ;;=^5012090
+ ;;^UTILITY(U,$J,358.3,43019,0)
+ ;;=M48.07^^155^2077^18
+ ;;^UTILITY(U,$J,358.3,43019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45313,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45313,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,45313,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,45314,0)
- ;;=S56.211A^^200^2241^40
- ;;^UTILITY(U,$J,358.3,45314,1,0)
+ ;;^UTILITY(U,$J,358.3,43019,1,3,0)
+ ;;=3^Spinal Stenosis,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,43019,1,4,0)
+ ;;=4^M48.07
+ ;;^UTILITY(U,$J,358.3,43019,2)
+ ;;=^5012094
+ ;;^UTILITY(U,$J,358.3,43020,0)
+ ;;=M48.04^^155^2077^19
+ ;;^UTILITY(U,$J,358.3,43020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45314,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45314,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,45314,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,45315,0)
- ;;=S56.212A^^200^2241^20
- ;;^UTILITY(U,$J,358.3,45315,1,0)
+ ;;^UTILITY(U,$J,358.3,43020,1,3,0)
+ ;;=3^Spinal Stenosis,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,43020,1,4,0)
+ ;;=4^M48.04
+ ;;^UTILITY(U,$J,358.3,43020,2)
+ ;;=^5012091
+ ;;^UTILITY(U,$J,358.3,43021,0)
+ ;;=M48.05^^155^2077^20
+ ;;^UTILITY(U,$J,358.3,43021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45315,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45315,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,45315,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,45316,0)
- ;;=S56.311A^^200^2241^56
- ;;^UTILITY(U,$J,358.3,45316,1,0)
+ ;;^UTILITY(U,$J,358.3,43021,1,3,0)
+ ;;=3^Spinal Stenosis,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,43021,1,4,0)
+ ;;=4^M48.05
+ ;;^UTILITY(U,$J,358.3,43021,2)
+ ;;=^5012092
+ ;;^UTILITY(U,$J,358.3,43022,0)
+ ;;=M47.12^^155^2077^21
+ ;;^UTILITY(U,$J,358.3,43022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45316,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45316,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,45316,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,45317,0)
- ;;=S56.312A^^200^2241^35
- ;;^UTILITY(U,$J,358.3,45317,1,0)
+ ;;^UTILITY(U,$J,358.3,43022,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,43022,1,4,0)
+ ;;=4^M47.12
+ ;;^UTILITY(U,$J,358.3,43022,2)
+ ;;=^5012052
+ ;;^UTILITY(U,$J,358.3,43023,0)
+ ;;=M47.13^^155^2077^22
+ ;;^UTILITY(U,$J,358.3,43023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45317,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45317,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,45317,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,45318,0)
- ;;=S56.411A^^200^2241^44
- ;;^UTILITY(U,$J,358.3,45318,1,0)
+ ;;^UTILITY(U,$J,358.3,43023,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Cervicothoracic Region
+ ;;^UTILITY(U,$J,358.3,43023,1,4,0)
+ ;;=4^M47.13
+ ;;^UTILITY(U,$J,358.3,43023,2)
+ ;;=^5012053
+ ;;^UTILITY(U,$J,358.3,43024,0)
+ ;;=M47.16^^155^2077^23
+ ;;^UTILITY(U,$J,358.3,43024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45318,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45318,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,45318,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,45319,0)
- ;;=S56.412A^^200^2241^24
- ;;^UTILITY(U,$J,358.3,45319,1,0)
+ ;;^UTILITY(U,$J,358.3,43024,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,43024,1,4,0)
+ ;;=4^M47.16
+ ;;^UTILITY(U,$J,358.3,43024,2)
+ ;;=^5012056
+ ;;^UTILITY(U,$J,358.3,43025,0)
+ ;;=M47.14^^155^2077^25
+ ;;^UTILITY(U,$J,358.3,43025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45319,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45319,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,45319,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,45320,0)
- ;;=S56.413A^^200^2241^52
- ;;^UTILITY(U,$J,358.3,45320,1,0)
+ ;;^UTILITY(U,$J,358.3,43025,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,43025,1,4,0)
+ ;;=4^M47.14
+ ;;^UTILITY(U,$J,358.3,43025,2)
+ ;;=^5012054
+ ;;^UTILITY(U,$J,358.3,43026,0)
+ ;;=M47.20^^155^2077^31
+ ;;^UTILITY(U,$J,358.3,43026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45320,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,45320,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,45320,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,45321,0)
- ;;=S56.414A^^200^2241^32
- ;;^UTILITY(U,$J,358.3,45321,1,0)
+ ;;^UTILITY(U,$J,358.3,43026,1,3,0)
+ ;;=3^Spondylosis w/ Radiculopathy,Site Unspec
+ ;;^UTILITY(U,$J,358.3,43026,1,4,0)
+ ;;=4^M47.20
+ ;;^UTILITY(U,$J,358.3,43026,2)
+ ;;=^5012059
+ ;;^UTILITY(U,$J,358.3,43027,0)
+ ;;=M47.15^^155^2077^26
+ ;;^UTILITY(U,$J,358.3,43027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45321,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,43027,1,3,0)
+ ;;=3^Spondylosis w/ Myelopathy,Thoracolumbar Region

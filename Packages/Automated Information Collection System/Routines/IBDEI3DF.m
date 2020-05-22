@@ -1,132 +1,112 @@
-IBDEI3DF ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI3DF ; ; 05-NOV-2019
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;NOV 05, 2019
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,56670,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,56670,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,56671,0)
- ;;=I65.22^^261^2831^123
- ;;^UTILITY(U,$J,358.3,56671,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56671,1,3,0)
- ;;=3^Occlusion & Stenosis Lt Carotid Artery
- ;;^UTILITY(U,$J,358.3,56671,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,56671,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,56672,0)
- ;;=I65.23^^261^2831^122
- ;;^UTILITY(U,$J,358.3,56672,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56672,1,3,0)
- ;;=3^Occlusion & Stenosis Bil Carotid Arteries
- ;;^UTILITY(U,$J,358.3,56672,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,56672,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,56673,0)
- ;;=I63.131^^261^2831^66
- ;;^UTILITY(U,$J,358.3,56673,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56673,1,3,0)
- ;;=3^Cereb Infarc d/t Rt Carotid Artery Embolism
- ;;^UTILITY(U,$J,358.3,56673,1,4,0)
- ;;=4^I63.131
- ;;^UTILITY(U,$J,358.3,56673,2)
- ;;=^5007308
- ;;^UTILITY(U,$J,358.3,56674,0)
- ;;=I63.132^^261^2831^64
- ;;^UTILITY(U,$J,358.3,56674,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56674,1,3,0)
- ;;=3^Cereb Infarc d/t Lt Carotid Artery Embolism
- ;;^UTILITY(U,$J,358.3,56674,1,4,0)
- ;;=4^I63.132
- ;;^UTILITY(U,$J,358.3,56674,2)
- ;;=^5007309
- ;;^UTILITY(U,$J,358.3,56675,0)
- ;;=I63.231^^261^2831^67
- ;;^UTILITY(U,$J,358.3,56675,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56675,1,3,0)
- ;;=3^Cereb Infarc d/t Rt Carotid Artery Occl/Sten
- ;;^UTILITY(U,$J,358.3,56675,1,4,0)
- ;;=4^I63.231
- ;;^UTILITY(U,$J,358.3,56675,2)
- ;;=^5007316
- ;;^UTILITY(U,$J,358.3,56676,0)
- ;;=I63.232^^261^2831^65
- ;;^UTILITY(U,$J,358.3,56676,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56676,1,3,0)
- ;;=3^Cereb Infarc d/t Lt Carotid Artery Occl/Sten
- ;;^UTILITY(U,$J,358.3,56676,1,4,0)
- ;;=4^I63.232
- ;;^UTILITY(U,$J,358.3,56676,2)
- ;;=^5007317
- ;;^UTILITY(U,$J,358.3,56677,0)
- ;;=I63.9^^261^2831^68
- ;;^UTILITY(U,$J,358.3,56677,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56677,1,3,0)
- ;;=3^Cerebral Infarction,Unspec
- ;;^UTILITY(U,$J,358.3,56677,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,56677,2)
- ;;=^5007355
- ;;^UTILITY(U,$J,358.3,56678,0)
- ;;=I70.211^^261^2831^52
- ;;^UTILITY(U,$J,358.3,56678,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56678,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,56678,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,56678,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,56679,0)
- ;;=I70.212^^261^2831^45
- ;;^UTILITY(U,$J,358.3,56679,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56679,1,3,0)
- ;;=3^Athscl of Lt Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,56679,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,56679,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,56680,0)
- ;;=I70.213^^261^2831^42
- ;;^UTILITY(U,$J,358.3,56680,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56680,1,3,0)
- ;;=3^Athscl Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,56680,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,56680,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,56681,0)
- ;;=I70.221^^261^2831^53
- ;;^UTILITY(U,$J,358.3,56681,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56681,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,56681,1,4,0)
- ;;=4^I70.221
- ;;^UTILITY(U,$J,358.3,56681,2)
- ;;=^5007583
- ;;^UTILITY(U,$J,358.3,56682,0)
- ;;=I70.232^^261^2831^55
- ;;^UTILITY(U,$J,358.3,56682,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,56682,1,3,0)
- ;;=3^Athscl of Rt Leg w/ Ulceration of Calf
- ;;^UTILITY(U,$J,358.3,56682,1,4,0)
- ;;=4^I70.232
- ;;^UTILITY(U,$J,358.3,56682,2)
- ;;=^5007589
- ;;^UTILITY(U,$J,358.3,56683,0)
- ;;=I70.233^^261^2831^54
- ;;^UTILITY(U,$J,358.3,56683,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.6)
+ ;;=^IBE(358.6,
+ ;;^UTILITY(U,$J,358.6,0)
+ ;;=IMP/EXP PACKAGE INTERFACE^358.6I^11^11
+ ;;^UTILITY(U,$J,358.6,1,0)
+ ;;=DPT PATIENT'S NAME^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,1,1,0)
+ ;;=^^2^2^2930212^^^^
+ ;;^UTILITY(U,$J,358.6,1,1,1,0)
+ ;;= 
+ ;;^UTILITY(U,$J,358.6,1,1,2,0)
+ ;;=Patient's Name
+ ;;^UTILITY(U,$J,358.6,1,2)
+ ;;=Patient's Name^30^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,1,3)
+ ;;=PATIENT NAME
+ ;;^UTILITY(U,$J,358.6,1,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,1,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,1,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,2,0)
+ ;;=DPT PATIENT'S PID^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,2,1,0)
+ ;;=^^1^1^2931015^^
+ ;;^UTILITY(U,$J,358.6,2,1,1,0)
+ ;;=Used to display the patient identifier.
+ ;;^UTILITY(U,$J,358.6,2,2)
+ ;;=PATIENT IDENTIFIER^15^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,2,3)
+ ;;=PATIENT IDENTIFIER PID
+ ;;^UTILITY(U,$J,358.6,2,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,2,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,2,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,3,0)
+ ;;=DPT PATIENT'S DOB/AGE^VADPT^IBDFN^REGISTRATION^1^2^2^^1^^^1
+ ;;^UTILITY(U,$J,358.6,3,1,0)
+ ;;=^^2^2^2951023^
+ ;;^UTILITY(U,$J,358.6,3,1,1,0)
+ ;;=Patient's DOB in MM DD, YYYY format
+ ;;^UTILITY(U,$J,358.6,3,1,2,0)
+ ;;=Patient's age in years.
+ ;;^UTILITY(U,$J,358.6,3,2)
+ ;;=Patient's DOB^12^Patient's Age^3^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,3,3)
+ ;;=PATIENT DOB AGE PIMS
+ ;;^UTILITY(U,$J,358.6,3,7,0)
+ ;;=^357.67^1^1
+ ;;^UTILITY(U,$J,358.6,3,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,3,15,0)
+ ;;=^357.615I^1^1
+ ;;^UTILITY(U,$J,358.6,3,15,1,0)
+ ;;=Patient's Age^3^2^
+ ;;^UTILITY(U,$J,358.6,4,0)
+ ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^5^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,4,1,0)
+ ;;=^^1^1^2941116^^^^
+ ;;^UTILITY(U,$J,358.6,4,1,1,0)
+ ;;=Allows for select of just Visit type CPT codes from the CPT file.
+ ;;^UTILITY(U,$J,358.6,4,2)
+ ;;=CODE^5^RECOMMENDED TEXT-SHORT NAME^40^RECOMMENDED HEADER^30^SHORT NAME FROM CPT FILE^28^^^^^^^^^1^1
+ ;;^UTILITY(U,$J,358.6,4,3)
+ ;;=SELECT TYPE OF VISIT CPT
+ ;;^UTILITY(U,$J,358.6,4,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,4,15,0)
+ ;;=^357.615I^4^3
+ ;;^UTILITY(U,$J,358.6,4,15,2,0)
+ ;;=RECOMMENDED TEXT-SHORT NAME^40^2
+ ;;^UTILITY(U,$J,358.6,4,15,3,0)
+ ;;=RECOMMENDED HEADER^30^3
+ ;;^UTILITY(U,$J,358.6,4,15,4,0)
+ ;;=SHORT NAME FROM CPT FILE^28^4
+ ;;^UTILITY(U,$J,358.6,5,0)
+ ;;=INPUT VISIT TYPE^^^PATIENT CARE ENCOUNTER^^1^^^1^^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,5,1,0)
+ ;;=^^1^1^2951023^
+ ;;^UTILITY(U,$J,358.6,5,1,1,0)
+ ;;=Used for inputting the visit type that applies to the visit.
+ ;;^UTILITY(U,$J,358.6,5,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,5,3)
+ ;;=VISIT TYPE OF VISIT
+ ;;^UTILITY(U,$J,358.6,5,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,5,10)
+ ;;=Enter an active Visit Type code.
+ ;;^UTILITY(U,$J,358.6,5,11)
+ ;;=D TESTVST^IBDFN7
+ ;;^UTILITY(U,$J,358.6,5,12)
+ ;;=ENCOUNTER^5
+ ;;^UTILITY(U,$J,358.6,5,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,5,15,0)
+ ;;=^357.615I^0^0
+ ;;^UTILITY(U,$J,358.6,5,17)
+ ;;=D SLCTVST^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,5,18)
+ ;;=S IBDF("OTHER")="357.69^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"Visit Type (EM) Code")
+ ;;^UTILITY(U,$J,358.6,5,19)
+ ;;=D VST^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,6,0)
+ ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^^^^^1

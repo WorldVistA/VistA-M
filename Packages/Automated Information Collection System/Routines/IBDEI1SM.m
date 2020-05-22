@@ -1,130 +1,114 @@
-IBDEI1SM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1SM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30463,1,4,0)
- ;;=4^20553
- ;;^UTILITY(U,$J,358.3,30464,0)
- ;;=20612^^120^1514^1^^^^1
- ;;^UTILITY(U,$J,358.3,30464,1,0)
+ ;;^UTILITY(U,$J,358.3,28635,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,28635,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,28636,0)
+ ;;=F13.259^^115^1410^13
+ ;;^UTILITY(U,$J,358.3,28636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30464,1,2,0)
- ;;=2^Ganglion Cyst Aspirate/Inj
- ;;^UTILITY(U,$J,358.3,30464,1,4,0)
- ;;=4^20612
- ;;^UTILITY(U,$J,358.3,30465,0)
- ;;=27096^^120^1514^2^^^^1
- ;;^UTILITY(U,$J,358.3,30465,1,0)
+ ;;^UTILITY(U,$J,358.3,28636,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28636,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,28636,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,28637,0)
+ ;;=F13.959^^115^1410^14
+ ;;^UTILITY(U,$J,358.3,28637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30465,1,2,0)
- ;;=2^Inj Sacroiliac Joint
- ;;^UTILITY(U,$J,358.3,30465,1,4,0)
- ;;=4^27096
- ;;^UTILITY(U,$J,358.3,30466,0)
- ;;=92532^^120^1514^4^^^^1
- ;;^UTILITY(U,$J,358.3,30466,1,0)
+ ;;^UTILITY(U,$J,358.3,28637,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28637,1,4,0)
+ ;;=4^F13.959
+ ;;^UTILITY(U,$J,358.3,28637,2)
+ ;;=^5003232
+ ;;^UTILITY(U,$J,358.3,28638,0)
+ ;;=F13.181^^115^1410^15
+ ;;^UTILITY(U,$J,358.3,28638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30466,1,2,0)
- ;;=2^Positional Nystagmus Study
- ;;^UTILITY(U,$J,358.3,30466,1,4,0)
- ;;=4^92532
- ;;^UTILITY(U,$J,358.3,30467,0)
- ;;=95857^^120^1514^6^^^^1
- ;;^UTILITY(U,$J,358.3,30467,1,0)
+ ;;^UTILITY(U,$J,358.3,28638,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28638,1,4,0)
+ ;;=4^F13.181
+ ;;^UTILITY(U,$J,358.3,28638,2)
+ ;;=^5003198
+ ;;^UTILITY(U,$J,358.3,28639,0)
+ ;;=F13.281^^115^1410^16
+ ;;^UTILITY(U,$J,358.3,28639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30467,1,2,0)
- ;;=2^Tensilon Test
- ;;^UTILITY(U,$J,358.3,30467,1,4,0)
- ;;=4^95857
- ;;^UTILITY(U,$J,358.3,30468,0)
- ;;=95990^^120^1514^5^^^^1
- ;;^UTILITY(U,$J,358.3,30468,1,0)
+ ;;^UTILITY(U,$J,358.3,28639,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28639,1,4,0)
+ ;;=4^F13.281
+ ;;^UTILITY(U,$J,358.3,28639,2)
+ ;;=^5003217
+ ;;^UTILITY(U,$J,358.3,28640,0)
+ ;;=F13.981^^115^1410^17
+ ;;^UTILITY(U,$J,358.3,28640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30468,1,2,0)
- ;;=2^Refill Spinal Implant Pump
- ;;^UTILITY(U,$J,358.3,30468,1,4,0)
- ;;=4^95990
- ;;^UTILITY(U,$J,358.3,30469,0)
- ;;=96372^^120^1514^7^^^^1
- ;;^UTILITY(U,$J,358.3,30469,1,0)
+ ;;^UTILITY(U,$J,358.3,28640,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28640,1,4,0)
+ ;;=4^F13.981
+ ;;^UTILITY(U,$J,358.3,28640,2)
+ ;;=^5003236
+ ;;^UTILITY(U,$J,358.3,28641,0)
+ ;;=F13.182^^115^1410^18
+ ;;^UTILITY(U,$J,358.3,28641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30469,1,2,0)
- ;;=2^Ther/Proph/Diag Inj,SC/IM
- ;;^UTILITY(U,$J,358.3,30469,1,4,0)
- ;;=4^96372
- ;;^UTILITY(U,$J,358.3,30470,0)
- ;;=96402^^120^1514^3^^^^1
- ;;^UTILITY(U,$J,358.3,30470,1,0)
+ ;;^UTILITY(U,$J,358.3,28641,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28641,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,28641,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,28642,0)
+ ;;=F13.282^^115^1410^19
+ ;;^UTILITY(U,$J,358.3,28642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30470,1,2,0)
- ;;=2^Inject,IM,Anti-Neoplastic Horm
- ;;^UTILITY(U,$J,358.3,30470,1,4,0)
- ;;=4^96402
- ;;^UTILITY(U,$J,358.3,30471,0)
- ;;=62270^^120^1515^17^^^^1
- ;;^UTILITY(U,$J,358.3,30471,1,0)
+ ;;^UTILITY(U,$J,358.3,28642,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28642,1,4,0)
+ ;;=4^F13.282
+ ;;^UTILITY(U,$J,358.3,28642,2)
+ ;;=^5003218
+ ;;^UTILITY(U,$J,358.3,28643,0)
+ ;;=F13.982^^115^1410^20
+ ;;^UTILITY(U,$J,358.3,28643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30471,1,2,0)
- ;;=2^Lumbar Puncture
- ;;^UTILITY(U,$J,358.3,30471,1,4,0)
- ;;=4^62270
- ;;^UTILITY(U,$J,358.3,30472,0)
- ;;=62273^^120^1515^14^^^^1
- ;;^UTILITY(U,$J,358.3,30472,1,0)
+ ;;^UTILITY(U,$J,358.3,28643,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,28643,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,28643,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,28644,0)
+ ;;=F13.129^^115^1410^23
+ ;;^UTILITY(U,$J,358.3,28644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30472,1,2,0)
- ;;=2^Inj,Epidural Blood Patch
- ;;^UTILITY(U,$J,358.3,30472,1,4,0)
- ;;=4^62273
- ;;^UTILITY(U,$J,358.3,30473,0)
- ;;=62281^^120^1515^6^^^^1
- ;;^UTILITY(U,$J,358.3,30473,1,0)
+ ;;^UTILITY(U,$J,358.3,28644,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,28644,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,28644,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,28645,0)
+ ;;=F13.229^^115^1410^24
+ ;;^UTILITY(U,$J,358.3,28645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30473,1,2,0)
- ;;=2^Epidural,Cerv/Thor Inj Neuro Subst
- ;;^UTILITY(U,$J,358.3,30473,1,4,0)
- ;;=4^62281
- ;;^UTILITY(U,$J,358.3,30474,0)
- ;;=62282^^120^1515^7^^^^1
- ;;^UTILITY(U,$J,358.3,30474,1,0)
+ ;;^UTILITY(U,$J,358.3,28645,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,28645,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,28645,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,28646,0)
+ ;;=F13.929^^115^1410^25
+ ;;^UTILITY(U,$J,358.3,28646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30474,1,2,0)
- ;;=2^Epidural,Lumb/Sacral Inj Neuro Subst
- ;;^UTILITY(U,$J,358.3,30474,1,4,0)
- ;;=4^62282
- ;;^UTILITY(U,$J,358.3,30475,0)
- ;;=62310^^120^1515^11^^^^1
- ;;^UTILITY(U,$J,358.3,30475,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30475,1,2,0)
- ;;=2^Inj Cerv/Thor,Dx/Ther Subst
- ;;^UTILITY(U,$J,358.3,30475,1,4,0)
- ;;=4^62310
- ;;^UTILITY(U,$J,358.3,30476,0)
- ;;=62311^^120^1515^12^^^^1
- ;;^UTILITY(U,$J,358.3,30476,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30476,1,2,0)
- ;;=2^Inj Lumb/Sacral,Dx/Ther Subst
- ;;^UTILITY(U,$J,358.3,30476,1,4,0)
- ;;=4^62311
- ;;^UTILITY(U,$J,358.3,30477,0)
- ;;=62318^^120^1515^13^^^^1
- ;;^UTILITY(U,$J,358.3,30477,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30477,1,2,0)
- ;;=2^Inj,Cer/Thor Dx/Ther Subst w/Cath
- ;;^UTILITY(U,$J,358.3,30477,1,4,0)
- ;;=4^62318
- ;;^UTILITY(U,$J,358.3,30478,0)
- ;;=62319^^120^1515^15^^^^1
- ;;^UTILITY(U,$J,358.3,30478,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30478,1,2,0)
- ;;=2^Inj,Lumb/Sacral Dx/Ther Subst w/Cath
- ;;^UTILITY(U,$J,358.3,30478,1,4,0)
- ;;=4^62319
- ;;^UTILITY(U,$J,358.3,30479,0)
- ;;=62355^^120^1515^33^^^^1
- ;;^UTILITY(U,$J,358.3,30479,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28646,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intox w/o Use D/O

@@ -1,132 +1,118 @@
-IBDEI2NM ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2NM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44542,1,0)
+ ;;^UTILITY(U,$J,358.3,42344,1,4,0)
+ ;;=4^S62.357S
+ ;;^UTILITY(U,$J,358.3,42344,2)
+ ;;=^5034164
+ ;;^UTILITY(U,$J,358.3,42345,0)
+ ;;=S62.356S^^155^2069^116
+ ;;^UTILITY(U,$J,358.3,42345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44542,1,3,0)
- ;;=3^Personal Hx of Malaria
- ;;^UTILITY(U,$J,358.3,44542,1,4,0)
- ;;=4^Z86.13
- ;;^UTILITY(U,$J,358.3,44542,2)
- ;;=^5063463
- ;;^UTILITY(U,$J,358.3,44543,0)
- ;;=Z86.73^^200^2229^112
- ;;^UTILITY(U,$J,358.3,44543,1,0)
+ ;;^UTILITY(U,$J,358.3,42345,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42345,1,4,0)
+ ;;=4^S62.356S
+ ;;^UTILITY(U,$J,358.3,42345,2)
+ ;;=^5034157
+ ;;^UTILITY(U,$J,358.3,42346,0)
+ ;;=S62.245S^^155^2069^107
+ ;;^UTILITY(U,$J,358.3,42346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44543,1,3,0)
- ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,44543,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,44543,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,44544,0)
- ;;=Z86.79^^200^2229^75
- ;;^UTILITY(U,$J,358.3,44544,1,0)
+ ;;^UTILITY(U,$J,358.3,42346,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42346,1,4,0)
+ ;;=4^S62.245S
+ ;;^UTILITY(U,$J,358.3,42346,2)
+ ;;=^5033702
+ ;;^UTILITY(U,$J,358.3,42347,0)
+ ;;=S62.244S^^155^2069^108
+ ;;^UTILITY(U,$J,358.3,42347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44544,1,3,0)
- ;;=3^Personal Hx of Circulatory System Diseases
- ;;^UTILITY(U,$J,358.3,44544,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,44544,2)
- ;;=^5063479
- ;;^UTILITY(U,$J,358.3,44545,0)
- ;;=Z91.040^^200^2229^64
- ;;^UTILITY(U,$J,358.3,44545,1,0)
+ ;;^UTILITY(U,$J,358.3,42347,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42347,1,4,0)
+ ;;=4^S62.244S
+ ;;^UTILITY(U,$J,358.3,42347,2)
+ ;;=^5033695
+ ;;^UTILITY(U,$J,358.3,42348,0)
+ ;;=S62.355S^^155^2069^113
+ ;;^UTILITY(U,$J,358.3,42348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44545,1,3,0)
- ;;=3^Latex Allergy Status
- ;;^UTILITY(U,$J,358.3,44545,1,4,0)
- ;;=4^Z91.040
- ;;^UTILITY(U,$J,358.3,44545,2)
- ;;=^5063607
- ;;^UTILITY(U,$J,358.3,44546,0)
- ;;=Z98.89^^200^2229^120
- ;;^UTILITY(U,$J,358.3,44546,1,0)
+ ;;^UTILITY(U,$J,358.3,42348,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42348,1,4,0)
+ ;;=4^S62.355S
+ ;;^UTILITY(U,$J,358.3,42348,2)
+ ;;=^5034150
+ ;;^UTILITY(U,$J,358.3,42349,0)
+ ;;=S62.354S^^155^2069^114
+ ;;^UTILITY(U,$J,358.3,42349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44546,1,3,0)
- ;;=3^Postprocedural States/Hx of Surgery NEC
- ;;^UTILITY(U,$J,358.3,44546,1,4,0)
- ;;=4^Z98.89
- ;;^UTILITY(U,$J,358.3,44546,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,44547,0)
- ;;=Z92.3^^200^2229^79
- ;;^UTILITY(U,$J,358.3,44547,1,0)
+ ;;^UTILITY(U,$J,358.3,42349,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42349,1,4,0)
+ ;;=4^S62.354S
+ ;;^UTILITY(U,$J,358.3,42349,2)
+ ;;=^5034143
+ ;;^UTILITY(U,$J,358.3,42350,0)
+ ;;=S62.351S^^155^2069^109
+ ;;^UTILITY(U,$J,358.3,42350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44547,1,3,0)
- ;;=3^Personal Hx of Irradiation
- ;;^UTILITY(U,$J,358.3,44547,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,44547,2)
- ;;=^5063637
- ;;^UTILITY(U,$J,358.3,44548,0)
- ;;=Z91.120^^200^2229^60
- ;;^UTILITY(U,$J,358.3,44548,1,0)
+ ;;^UTILITY(U,$J,358.3,42350,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42350,1,4,0)
+ ;;=4^S62.351S
+ ;;^UTILITY(U,$J,358.3,42350,2)
+ ;;=^5034122
+ ;;^UTILITY(U,$J,358.3,42351,0)
+ ;;=S62.350S^^155^2069^110
+ ;;^UTILITY(U,$J,358.3,42351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44548,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,44548,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,44548,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,44549,0)
- ;;=Z91.11^^200^2229^69
- ;;^UTILITY(U,$J,358.3,44549,1,0)
+ ;;^UTILITY(U,$J,358.3,42351,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42351,1,4,0)
+ ;;=4^S62.350S
+ ;;^UTILITY(U,$J,358.3,42351,2)
+ ;;=^5034115
+ ;;^UTILITY(U,$J,358.3,42352,0)
+ ;;=S62.353S^^155^2069^111
+ ;;^UTILITY(U,$J,358.3,42352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44549,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,44549,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,44549,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,44550,0)
- ;;=Z87.891^^200^2229^103
- ;;^UTILITY(U,$J,358.3,44550,1,0)
+ ;;^UTILITY(U,$J,358.3,42352,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42352,1,4,0)
+ ;;=4^S62.353S
+ ;;^UTILITY(U,$J,358.3,42352,2)
+ ;;=^5034136
+ ;;^UTILITY(U,$J,358.3,42353,0)
+ ;;=S62.352S^^155^2069^112
+ ;;^UTILITY(U,$J,358.3,42353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44550,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,44550,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,44550,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,44551,0)
- ;;=Z77.090^^200^2229^11
- ;;^UTILITY(U,$J,358.3,44551,1,0)
+ ;;^UTILITY(U,$J,358.3,42353,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42353,1,4,0)
+ ;;=4^S62.352S
+ ;;^UTILITY(U,$J,358.3,42353,2)
+ ;;=^5034129
+ ;;^UTILITY(U,$J,358.3,42354,0)
+ ;;=S62.225S^^155^2069^117
+ ;;^UTILITY(U,$J,358.3,42354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44551,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,44551,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,44551,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,44552,0)
- ;;=Z57.8^^200^2229^72
- ;;^UTILITY(U,$J,358.3,44552,1,0)
+ ;;^UTILITY(U,$J,358.3,42354,1,3,0)
+ ;;=3^Nondisp rolando's fx, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,42354,1,4,0)
+ ;;=4^S62.225S
+ ;;^UTILITY(U,$J,358.3,42354,2)
+ ;;=^5033618
+ ;;^UTILITY(U,$J,358.3,42355,0)
+ ;;=S62.224S^^155^2069^118
+ ;;^UTILITY(U,$J,358.3,42355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44552,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,44552,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,44552,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,44553,0)
- ;;=Z77.21^^200^2229^53
- ;;^UTILITY(U,$J,358.3,44553,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44553,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,44553,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,44553,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,44554,0)
- ;;=Z91.81^^200^2229^57
- ;;^UTILITY(U,$J,358.3,44554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44554,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,44554,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,44554,2)
- ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,42355,1,3,0)
+ ;;=3^Nondisp rolando's fx, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,42355,1,4,0)
+ ;;=4^S62.224S
+ ;;^UTILITY(U,$J,358.3,42355,2)
+ ;;=^5033611

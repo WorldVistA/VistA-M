@@ -1,132 +1,122 @@
-IBDEI1XM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1XM ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32770,0)
- ;;=Z02.1^^128^1635^10
- ;;^UTILITY(U,$J,358.3,32770,1,0)
+ ;;^UTILITY(U,$J,358.3,30861,1,3,0)
+ ;;=3^Urinary Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,30861,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,30861,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,30862,0)
+ ;;=I75.81^^123^1596^8
+ ;;^UTILITY(U,$J,358.3,30862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32770,1,3,0)
- ;;=3^Pre-Employment Examination
- ;;^UTILITY(U,$J,358.3,32770,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,32770,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,32771,0)
- ;;=Z02.3^^128^1635^11
- ;;^UTILITY(U,$J,358.3,32771,1,0)
+ ;;^UTILITY(U,$J,358.3,30862,1,3,0)
+ ;;=3^Atheroembolism of Kidney
+ ;;^UTILITY(U,$J,358.3,30862,1,4,0)
+ ;;=4^I75.81
+ ;;^UTILITY(U,$J,358.3,30862,2)
+ ;;=^328516
+ ;;^UTILITY(U,$J,358.3,30863,0)
+ ;;=R34.^^123^1596^7
+ ;;^UTILITY(U,$J,358.3,30863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32771,1,3,0)
- ;;=3^Recruitment to Armed Forces Examination
- ;;^UTILITY(U,$J,358.3,32771,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,32771,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,32772,0)
- ;;=Z00.5^^128^1635^9
- ;;^UTILITY(U,$J,358.3,32772,1,0)
+ ;;^UTILITY(U,$J,358.3,30863,1,3,0)
+ ;;=3^Anuria and Oliguria
+ ;;^UTILITY(U,$J,358.3,30863,1,4,0)
+ ;;=4^R34.
+ ;;^UTILITY(U,$J,358.3,30863,2)
+ ;;=^5019333
+ ;;^UTILITY(U,$J,358.3,30864,0)
+ ;;=K76.7^^123^1596^9
+ ;;^UTILITY(U,$J,358.3,30864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32772,1,3,0)
- ;;=3^Potential Organ/Tissue Donor Examination
- ;;^UTILITY(U,$J,358.3,32772,1,4,0)
- ;;=4^Z00.5
- ;;^UTILITY(U,$J,358.3,32772,2)
- ;;=^5062607
- ;;^UTILITY(U,$J,358.3,32773,0)
- ;;=Z01.419^^128^1635^8
- ;;^UTILITY(U,$J,358.3,32773,1,0)
+ ;;^UTILITY(U,$J,358.3,30864,1,3,0)
+ ;;=3^Hepatorenal Syndrome
+ ;;^UTILITY(U,$J,358.3,30864,1,4,0)
+ ;;=4^K76.7
+ ;;^UTILITY(U,$J,358.3,30864,2)
+ ;;=^56497
+ ;;^UTILITY(U,$J,358.3,30865,0)
+ ;;=N00.0^^123^1597^8
+ ;;^UTILITY(U,$J,358.3,30865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32773,1,3,0)
- ;;=3^Gyn Exam w/ Normal Findings
- ;;^UTILITY(U,$J,358.3,32773,1,4,0)
- ;;=4^Z01.419
- ;;^UTILITY(U,$J,358.3,32773,2)
- ;;=^5062623
- ;;^UTILITY(U,$J,358.3,32774,0)
- ;;=Z01.411^^128^1635^7
- ;;^UTILITY(U,$J,358.3,32774,1,0)
+ ;;^UTILITY(U,$J,358.3,30865,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,30865,1,4,0)
+ ;;=4^N00.0
+ ;;^UTILITY(U,$J,358.3,30865,2)
+ ;;=^5015491
+ ;;^UTILITY(U,$J,358.3,30866,0)
+ ;;=N00.1^^123^1597^7
+ ;;^UTILITY(U,$J,358.3,30866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32774,1,3,0)
- ;;=3^Gyn Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,32774,1,4,0)
- ;;=4^Z01.411
- ;;^UTILITY(U,$J,358.3,32774,2)
- ;;=^5062622
- ;;^UTILITY(U,$J,358.3,32775,0)
- ;;=Z00.01^^128^1635^5
- ;;^UTILITY(U,$J,358.3,32775,1,0)
+ ;;^UTILITY(U,$J,358.3,30866,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ focal and segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,30866,1,4,0)
+ ;;=4^N00.1
+ ;;^UTILITY(U,$J,358.3,30866,2)
+ ;;=^5015492
+ ;;^UTILITY(U,$J,358.3,30867,0)
+ ;;=N00.2^^123^1597^4
+ ;;^UTILITY(U,$J,358.3,30867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32775,1,3,0)
- ;;=3^General Medical Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,32775,1,4,0)
- ;;=4^Z00.01
- ;;^UTILITY(U,$J,358.3,32775,2)
- ;;=^5062600
- ;;^UTILITY(U,$J,358.3,32776,0)
- ;;=Z02.0^^128^1635^2
- ;;^UTILITY(U,$J,358.3,32776,1,0)
+ ;;^UTILITY(U,$J,358.3,30867,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,30867,1,4,0)
+ ;;=4^N00.2
+ ;;^UTILITY(U,$J,358.3,30867,2)
+ ;;=^5015493
+ ;;^UTILITY(U,$J,358.3,30868,0)
+ ;;=N00.3^^123^1597^5
+ ;;^UTILITY(U,$J,358.3,30868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32776,1,3,0)
- ;;=3^Exam for Admission to Educational Institution
- ;;^UTILITY(U,$J,358.3,32776,1,4,0)
- ;;=4^Z02.0
- ;;^UTILITY(U,$J,358.3,32776,2)
- ;;=^5062633
- ;;^UTILITY(U,$J,358.3,32777,0)
- ;;=Z02.2^^128^1635^3
- ;;^UTILITY(U,$J,358.3,32777,1,0)
+ ;;^UTILITY(U,$J,358.3,30868,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,30868,1,4,0)
+ ;;=4^N00.3
+ ;;^UTILITY(U,$J,358.3,30868,2)
+ ;;=^5015494
+ ;;^UTILITY(U,$J,358.3,30869,0)
+ ;;=N00.4^^123^1597^3
+ ;;^UTILITY(U,$J,358.3,30869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32777,1,3,0)
- ;;=3^Exam for Admission to Residential Institution
- ;;^UTILITY(U,$J,358.3,32777,1,4,0)
- ;;=4^Z02.2
- ;;^UTILITY(U,$J,358.3,32777,2)
- ;;=^5062635
- ;;^UTILITY(U,$J,358.3,32778,0)
- ;;=Z85.43^^128^1636^51
- ;;^UTILITY(U,$J,358.3,32778,1,0)
+ ;;^UTILITY(U,$J,358.3,30869,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,30869,1,4,0)
+ ;;=4^N00.4
+ ;;^UTILITY(U,$J,358.3,30869,2)
+ ;;=^5015495
+ ;;^UTILITY(U,$J,358.3,30870,0)
+ ;;=N00.5^^123^1597^6
+ ;;^UTILITY(U,$J,358.3,30870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32778,1,3,0)
- ;;=3^Personal Hx of Malig Neop Ovary
- ;;^UTILITY(U,$J,358.3,32778,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,32778,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,32779,0)
- ;;=Z85.46^^128^1636^52
- ;;^UTILITY(U,$J,358.3,32779,1,0)
+ ;;^UTILITY(U,$J,358.3,30870,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,30870,1,4,0)
+ ;;=4^N00.5
+ ;;^UTILITY(U,$J,358.3,30870,2)
+ ;;=^5015496
+ ;;^UTILITY(U,$J,358.3,30871,0)
+ ;;=N00.6^^123^1597^1
+ ;;^UTILITY(U,$J,358.3,30871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32779,1,3,0)
- ;;=3^Personal Hx of Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,32779,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,32779,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,32780,0)
- ;;=Z85.6^^128^1636^49
- ;;^UTILITY(U,$J,358.3,32780,1,0)
+ ;;^UTILITY(U,$J,358.3,30871,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,30871,1,4,0)
+ ;;=4^N00.6
+ ;;^UTILITY(U,$J,358.3,30871,2)
+ ;;=^5015497
+ ;;^UTILITY(U,$J,358.3,30872,0)
+ ;;=N00.7^^123^1597^2
+ ;;^UTILITY(U,$J,358.3,30872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32780,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,32780,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,32780,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,32781,0)
- ;;=Z85.71^^128^1636^47
- ;;^UTILITY(U,$J,358.3,32781,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32781,1,3,0)
- ;;=3^Personal Hx of Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,32781,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,32781,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,32782,0)
- ;;=Z85.820^^128^1636^50
- ;;^UTILITY(U,$J,358.3,32782,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32782,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of SKin
- ;;^UTILITY(U,$J,358.3,32782,1,4,0)
- ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,30872,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,30872,1,4,0)
+ ;;=4^N00.7
+ ;;^UTILITY(U,$J,358.3,30872,2)
+ ;;=^5015498
+ ;;^UTILITY(U,$J,358.3,30873,0)
+ ;;=N00.8^^123^1597^9

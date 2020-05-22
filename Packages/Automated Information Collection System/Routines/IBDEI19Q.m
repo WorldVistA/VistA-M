@@ -1,136 +1,118 @@
-IBDEI19Q ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21575,1,0)
+ ;;^UTILITY(U,$J,358.3,20298,0)
+ ;;=S22.030S^^93^1001^83
+ ;;^UTILITY(U,$J,358.3,20298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21575,1,3,0)
- ;;=3^Abnormal Levels of Serum Enzymes
- ;;^UTILITY(U,$J,358.3,21575,1,4,0)
- ;;=4^R74.8
- ;;^UTILITY(U,$J,358.3,21575,2)
- ;;=^5019566
- ;;^UTILITY(U,$J,358.3,21576,0)
- ;;=R97.2^^87^965^18
- ;;^UTILITY(U,$J,358.3,21576,1,0)
+ ;;^UTILITY(U,$J,358.3,20298,1,3,0)
+ ;;=3^Wedge compression fracture of third thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20298,1,4,0)
+ ;;=4^S22.030S
+ ;;^UTILITY(U,$J,358.3,20298,2)
+ ;;=^5022900
+ ;;^UTILITY(U,$J,358.3,20299,0)
+ ;;=M48.52XS^^93^1001^2
+ ;;^UTILITY(U,$J,358.3,20299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21576,1,3,0)
- ;;=3^Elevated Prostate Specific Antigen
- ;;^UTILITY(U,$J,358.3,21576,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,21576,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,21577,0)
- ;;=R03.0^^87^965^17
- ;;^UTILITY(U,$J,358.3,21577,1,0)
+ ;;^UTILITY(U,$J,358.3,20299,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, cervical region, sqla
+ ;;^UTILITY(U,$J,358.3,20299,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,20299,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,20300,0)
+ ;;=M48.53XS^^93^1001^3
+ ;;^UTILITY(U,$J,358.3,20300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21577,1,3,0)
- ;;=3^Elevated BP Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,21577,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,21577,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,21578,0)
- ;;=Z91.19^^87^965^42
- ;;^UTILITY(U,$J,358.3,21578,1,0)
+ ;;^UTILITY(U,$J,358.3,20300,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, cervicothoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,20300,1,4,0)
+ ;;=4^M48.53XS
+ ;;^UTILITY(U,$J,358.3,20300,2)
+ ;;=^5012174
+ ;;^UTILITY(U,$J,358.3,20301,0)
+ ;;=M48.57XS^^93^1001^4
+ ;;^UTILITY(U,$J,358.3,20301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21578,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,21578,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,21578,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,21579,0)
- ;;=E66.01^^87^965^43
- ;;^UTILITY(U,$J,358.3,21579,1,0)
+ ;;^UTILITY(U,$J,358.3,20301,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, lumbosacral region, sqla
+ ;;^UTILITY(U,$J,358.3,20301,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,20301,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,20302,0)
+ ;;=M48.51XS^^93^1001^5
+ ;;^UTILITY(U,$J,358.3,20302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21579,1,3,0)
- ;;=3^Obesity,Morbid
- ;;^UTILITY(U,$J,358.3,21579,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,21579,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,21580,0)
- ;;=H93.19^^87^965^54
- ;;^UTILITY(U,$J,358.3,21580,1,0)
+ ;;^UTILITY(U,$J,358.3,20302,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, occipt-atlan-ax region, sqla
+ ;;^UTILITY(U,$J,358.3,20302,1,4,0)
+ ;;=4^M48.51XS
+ ;;^UTILITY(U,$J,358.3,20302,2)
+ ;;=^5012166
+ ;;^UTILITY(U,$J,358.3,20303,0)
+ ;;=M48.58XS^^93^1001^6
+ ;;^UTILITY(U,$J,358.3,20303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21580,1,3,0)
- ;;=3^Tinnitus,Unspec Ear
- ;;^UTILITY(U,$J,358.3,21580,1,4,0)
- ;;=4^H93.19
- ;;^UTILITY(U,$J,358.3,21580,2)
- ;;=^5006967
- ;;^UTILITY(U,$J,358.3,21581,0)
- ;;=G47.00^^87^965^31
- ;;^UTILITY(U,$J,358.3,21581,1,0)
+ ;;^UTILITY(U,$J,358.3,20303,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, sacr/sacrocygl region, sqla
+ ;;^UTILITY(U,$J,358.3,20303,1,4,0)
+ ;;=4^M48.58XS
+ ;;^UTILITY(U,$J,358.3,20303,2)
+ ;;=^5012194
+ ;;^UTILITY(U,$J,358.3,20304,0)
+ ;;=M48.54XS^^93^1001^7
+ ;;^UTILITY(U,$J,358.3,20304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21581,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,21581,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,21581,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,21582,0)
- ;;=F43.10^^87^965^47
- ;;^UTILITY(U,$J,358.3,21582,1,0)
+ ;;^UTILITY(U,$J,358.3,20304,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, thoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,20304,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,20304,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,20305,0)
+ ;;=M48.55XS^^93^1001^8
+ ;;^UTILITY(U,$J,358.3,20305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21582,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,21582,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,21582,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,21583,0)
- ;;=F43.11^^87^965^45
- ;;^UTILITY(U,$J,358.3,21583,1,0)
+ ;;^UTILITY(U,$J,358.3,20305,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, thoracolumbar region, sqla
+ ;;^UTILITY(U,$J,358.3,20305,1,4,0)
+ ;;=4^M48.55XS
+ ;;^UTILITY(U,$J,358.3,20305,2)
+ ;;=^5012182
+ ;;^UTILITY(U,$J,358.3,20306,0)
+ ;;=S12.040S^^93^1001^9
+ ;;^UTILITY(U,$J,358.3,20306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21583,1,3,0)
- ;;=3^PTSD,Acute
- ;;^UTILITY(U,$J,358.3,21583,1,4,0)
- ;;=4^F43.11
- ;;^UTILITY(U,$J,358.3,21583,2)
- ;;=^5003571
- ;;^UTILITY(U,$J,358.3,21584,0)
- ;;=F43.12^^87^965^46
- ;;^UTILITY(U,$J,358.3,21584,1,0)
+ ;;^UTILITY(U,$J,358.3,20306,1,3,0)
+ ;;=3^Displaced lateral mass fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20306,1,4,0)
+ ;;=4^S12.040S
+ ;;^UTILITY(U,$J,358.3,20306,2)
+ ;;=^5021586
+ ;;^UTILITY(U,$J,358.3,20307,0)
+ ;;=S12.030S^^93^1001^10
+ ;;^UTILITY(U,$J,358.3,20307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21584,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,21584,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,21584,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,21585,0)
- ;;=I25.119^^87^965^5
- ;;^UTILITY(U,$J,358.3,21585,1,0)
+ ;;^UTILITY(U,$J,358.3,20307,1,3,0)
+ ;;=3^Displaced posterior arch fx first cervcal vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20307,1,4,0)
+ ;;=4^S12.030S
+ ;;^UTILITY(U,$J,358.3,20307,2)
+ ;;=^5021574
+ ;;^UTILITY(U,$J,358.3,20308,0)
+ ;;=M48.42XS^^93^1001^11
+ ;;^UTILITY(U,$J,358.3,20308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21585,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,21585,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,21585,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,21586,0)
- ;;=I25.10^^87^965^7
- ;;^UTILITY(U,$J,358.3,21586,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21586,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,21586,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,21586,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,21587,0)
- ;;=I25.110^^87^965^6
- ;;^UTILITY(U,$J,358.3,21587,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21587,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,21587,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,21587,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,21588,0)
- ;;=F17.219^^87^965^39
- ;;^UTILITY(U,$J,358.3,21588,1,0)
+ ;;^UTILITY(U,$J,358.3,20308,1,3,0)
+ ;;=3^Fatigue fracture of vertebra, cervical region, sqla
+ ;;^UTILITY(U,$J,358.3,20308,1,4,0)
+ ;;=4^M48.42XS
+ ;;^UTILITY(U,$J,358.3,20308,2)
+ ;;=^5012134
+ ;;^UTILITY(U,$J,358.3,20309,0)
+ ;;=M48.43XS^^93^1001^12
+ ;;^UTILITY(U,$J,358.3,20309,1,0)
  ;;=^358.31IA^4^2

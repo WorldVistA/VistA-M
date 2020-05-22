@@ -1,132 +1,124 @@
-IBDEI2BQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2BQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39413,1,4,0)
- ;;=4^H16.301
- ;;^UTILITY(U,$J,358.3,39413,2)
- ;;=^5004946
- ;;^UTILITY(U,$J,358.3,39414,0)
- ;;=H16.302^^153^1922^14
- ;;^UTILITY(U,$J,358.3,39414,1,0)
+ ;;^UTILITY(U,$J,358.3,37134,0)
+ ;;=Z89.432^^146^1912^14
+ ;;^UTILITY(U,$J,358.3,37134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39414,1,3,0)
- ;;=3^Interstitial Keratitis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,39414,1,4,0)
- ;;=4^H16.302
- ;;^UTILITY(U,$J,358.3,39414,2)
- ;;=^5004947
- ;;^UTILITY(U,$J,358.3,39415,0)
- ;;=H16.303^^153^1922^13
- ;;^UTILITY(U,$J,358.3,39415,1,0)
+ ;;^UTILITY(U,$J,358.3,37134,1,3,0)
+ ;;=3^Absence, acquired of lft ft
+ ;;^UTILITY(U,$J,358.3,37134,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,37134,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,37135,0)
+ ;;=Z89.442^^146^1912^13
+ ;;^UTILITY(U,$J,358.3,37135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39415,1,3,0)
- ;;=3^Interstitial Keratitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,39415,1,4,0)
- ;;=4^H16.303
- ;;^UTILITY(U,$J,358.3,39415,2)
- ;;=^5004948
- ;;^UTILITY(U,$J,358.3,39416,0)
- ;;=H05.011^^153^1922^4
- ;;^UTILITY(U,$J,358.3,39416,1,0)
+ ;;^UTILITY(U,$J,358.3,37135,1,3,0)
+ ;;=3^Absence, acquired of lft ank
+ ;;^UTILITY(U,$J,358.3,37135,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,37135,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,37136,0)
+ ;;=Z89.441^^146^1912^18
+ ;;^UTILITY(U,$J,358.3,37136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39416,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,39416,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,39416,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,39417,0)
- ;;=H05.012^^153^1922^3
- ;;^UTILITY(U,$J,358.3,39417,1,0)
+ ;;^UTILITY(U,$J,358.3,37136,1,3,0)
+ ;;=3^Absence, acquired of rt ank
+ ;;^UTILITY(U,$J,358.3,37136,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,37136,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,37137,0)
+ ;;=I70.211^^146^1912^98
+ ;;^UTILITY(U,$J,358.3,37137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39417,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,39417,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,39417,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,39418,0)
- ;;=J32.9^^153^1922^23
- ;;^UTILITY(U,$J,358.3,39418,1,0)
+ ;;^UTILITY(U,$J,358.3,37137,1,3,0)
+ ;;=3^Athscl nat artries of extrm w/ intrmt claud, rt leg
+ ;;^UTILITY(U,$J,358.3,37137,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,37137,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,37138,0)
+ ;;=I70.213^^146^1912^99
+ ;;^UTILITY(U,$J,358.3,37138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39418,1,3,0)
- ;;=3^Sinusitis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,39418,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,39418,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,39419,0)
- ;;=L03.212^^153^1922^16
- ;;^UTILITY(U,$J,358.3,39419,1,0)
+ ;;^UTILITY(U,$J,358.3,37138,1,3,0)
+ ;;=3^Athscl nat artries of extrm w/ intrmt claud, bi legs
+ ;;^UTILITY(U,$J,358.3,37138,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,37138,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,37139,0)
+ ;;=I70.212^^146^1912^100
+ ;;^UTILITY(U,$J,358.3,37139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39419,1,3,0)
- ;;=3^Lymphangitis of Face,Acute
- ;;^UTILITY(U,$J,358.3,39419,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,39419,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,39420,0)
- ;;=L03.211^^153^1922^2
- ;;^UTILITY(U,$J,358.3,39420,1,0)
+ ;;^UTILITY(U,$J,358.3,37139,1,3,0)
+ ;;=3^Athscl nat artries of extrm w/ intrmt claud, lft leg
+ ;;^UTILITY(U,$J,358.3,37139,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,37139,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,37140,0)
+ ;;=I70.218^^146^1912^101
+ ;;^UTILITY(U,$J,358.3,37140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39420,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,39420,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,39420,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,39421,0)
- ;;=K12.2^^153^1922^5
- ;;^UTILITY(U,$J,358.3,39421,1,0)
+ ;;^UTILITY(U,$J,358.3,37140,1,3,0)
+ ;;=3^Athscl nat artries of extrm w/ intrmt claud, oth extrm
+ ;;^UTILITY(U,$J,358.3,37140,1,4,0)
+ ;;=4^I70.218
+ ;;^UTILITY(U,$J,358.3,37140,2)
+ ;;=^5007581
+ ;;^UTILITY(U,$J,358.3,37141,0)
+ ;;=I70.219^^146^1912^102
+ ;;^UTILITY(U,$J,358.3,37141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39421,1,3,0)
- ;;=3^Cellulitis/Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,39421,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,39421,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,39422,0)
- ;;=T85.79XA^^153^1922^12
- ;;^UTILITY(U,$J,358.3,39422,1,0)
+ ;;^UTILITY(U,$J,358.3,37141,1,3,0)
+ ;;=3^Athscl nat artries of extrm w/ intrmt claud, unsp extrm
+ ;;^UTILITY(U,$J,358.3,37141,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,37141,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,37142,0)
+ ;;=Q84.3^^146^1912^24
+ ;;^UTILITY(U,$J,358.3,37142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39422,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,39422,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,39422,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,39423,0)
- ;;=T86.842^^153^1922^7
- ;;^UTILITY(U,$J,358.3,39423,1,0)
+ ;;^UTILITY(U,$J,358.3,37142,1,3,0)
+ ;;=3^Anonychia
+ ;;^UTILITY(U,$J,358.3,37142,1,4,0)
+ ;;=4^Q84.3
+ ;;^UTILITY(U,$J,358.3,37142,2)
+ ;;=^5019063
+ ;;^UTILITY(U,$J,358.3,37143,0)
+ ;;=Z47.82^^146^1912^21
+ ;;^UTILITY(U,$J,358.3,37143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39423,1,3,0)
- ;;=3^Corneal Transplant Infection
- ;;^UTILITY(U,$J,358.3,39423,1,4,0)
- ;;=4^T86.842
- ;;^UTILITY(U,$J,358.3,39423,2)
- ;;=^5055746
- ;;^UTILITY(U,$J,358.3,39424,0)
- ;;=H05.013^^153^1922^1
- ;;^UTILITY(U,$J,358.3,39424,1,0)
+ ;;^UTILITY(U,$J,358.3,37143,1,3,0)
+ ;;=3^Aftercare Following Scoliosis Surgery
+ ;;^UTILITY(U,$J,358.3,37143,1,4,0)
+ ;;=4^Z47.82
+ ;;^UTILITY(U,$J,358.3,37143,2)
+ ;;=^5063031
+ ;;^UTILITY(U,$J,358.3,37144,0)
+ ;;=Z47.81^^146^1912^22
+ ;;^UTILITY(U,$J,358.3,37144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39424,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,39424,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,39424,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,39425,0)
- ;;=H25.041^^153^1923^14
- ;;^UTILITY(U,$J,358.3,39425,1,0)
+ ;;^UTILITY(U,$J,358.3,37144,1,3,0)
+ ;;=3^Aftercare Following Surgical Amputation
+ ;;^UTILITY(U,$J,358.3,37144,1,4,0)
+ ;;=4^Z47.81
+ ;;^UTILITY(U,$J,358.3,37144,2)
+ ;;=^5063030
+ ;;^UTILITY(U,$J,358.3,37145,0)
+ ;;=L75.8^^146^1912^25
+ ;;^UTILITY(U,$J,358.3,37145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39425,1,3,0)
- ;;=3^Cataract,Posterior Subcapsular Polar Age-Related,Right Eye
- ;;^UTILITY(U,$J,358.3,39425,1,4,0)
- ;;=4^H25.041
- ;;^UTILITY(U,$J,358.3,39425,2)
- ;;=^5005275
- ;;^UTILITY(U,$J,358.3,39426,0)
- ;;=H25.042^^153^1923^15
- ;;^UTILITY(U,$J,358.3,39426,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37145,1,3,0)
+ ;;=3^Apocrine Sweat Disorders NEC
+ ;;^UTILITY(U,$J,358.3,37145,1,4,0)
+ ;;=4^L75.8
+ ;;^UTILITY(U,$J,358.3,37145,2)
+ ;;=^5009300

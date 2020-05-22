@@ -1,128 +1,122 @@
-IBDEI37G ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI37G ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,53841,1,0)
+ ;;^UTILITY(U,$J,358.3,51173,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,51173,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,51174,0)
+ ;;=M17.11^^193^2503^140
+ ;;^UTILITY(U,$J,358.3,51174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53841,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in relapse
- ;;^UTILITY(U,$J,358.3,53841,1,4,0)
- ;;=4^C92.22
- ;;^UTILITY(U,$J,358.3,53841,2)
- ;;=^5001797
- ;;^UTILITY(U,$J,358.3,53842,0)
- ;;=C93.01^^253^2724^3
- ;;^UTILITY(U,$J,358.3,53842,1,0)
+ ;;^UTILITY(U,$J,358.3,51174,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,51174,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,51174,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,51175,0)
+ ;;=M17.12^^193^2503^134
+ ;;^UTILITY(U,$J,358.3,51175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53842,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,53842,1,4,0)
- ;;=4^C93.01
- ;;^UTILITY(U,$J,358.3,53842,2)
- ;;=^5001820
- ;;^UTILITY(U,$J,358.3,53843,0)
- ;;=C93.02^^253^2724^4
- ;;^UTILITY(U,$J,358.3,53843,1,0)
+ ;;^UTILITY(U,$J,358.3,51175,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,51175,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,51175,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,51176,0)
+ ;;=M18.0^^193^2503^128
+ ;;^UTILITY(U,$J,358.3,51176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53843,1,3,0)
- ;;=3^Acute monoblastic/monocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,53843,1,4,0)
- ;;=4^C93.02
- ;;^UTILITY(U,$J,358.3,53843,2)
- ;;=^5001821
- ;;^UTILITY(U,$J,358.3,53844,0)
- ;;=C93.11^^253^2724^21
- ;;^UTILITY(U,$J,358.3,53844,1,0)
+ ;;^UTILITY(U,$J,358.3,51176,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,51176,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,51176,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,51177,0)
+ ;;=M18.11^^193^2503^138
+ ;;^UTILITY(U,$J,358.3,51177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53844,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,53844,1,4,0)
- ;;=4^C93.11
- ;;^UTILITY(U,$J,358.3,53844,2)
- ;;=^5001823
- ;;^UTILITY(U,$J,358.3,53845,0)
- ;;=C93.12^^253^2724^20
- ;;^UTILITY(U,$J,358.3,53845,1,0)
+ ;;^UTILITY(U,$J,358.3,51177,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,51177,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,51177,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,51178,0)
+ ;;=M18.12^^193^2503^132
+ ;;^UTILITY(U,$J,358.3,51178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53845,1,3,0)
- ;;=3^Chronic myelomonocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,53845,1,4,0)
- ;;=4^C93.12
- ;;^UTILITY(U,$J,358.3,53845,2)
- ;;=^5001824
- ;;^UTILITY(U,$J,358.3,53846,0)
- ;;=C93.91^^253^2724^38
- ;;^UTILITY(U,$J,358.3,53846,1,0)
+ ;;^UTILITY(U,$J,358.3,51178,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,51178,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,51178,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,51179,0)
+ ;;=M19.011^^193^2503^141
+ ;;^UTILITY(U,$J,358.3,51179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53846,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in remission
- ;;^UTILITY(U,$J,358.3,53846,1,4,0)
- ;;=4^C93.91
- ;;^UTILITY(U,$J,358.3,53846,2)
- ;;=^5001829
- ;;^UTILITY(U,$J,358.3,53847,0)
- ;;=C93.92^^253^2724^37
- ;;^UTILITY(U,$J,358.3,53847,1,0)
+ ;;^UTILITY(U,$J,358.3,51179,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,51179,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,51179,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,51180,0)
+ ;;=M19.012^^193^2503^135
+ ;;^UTILITY(U,$J,358.3,51180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53847,1,3,0)
- ;;=3^Monocytic leukemia, unspecified in relapse
- ;;^UTILITY(U,$J,358.3,53847,1,4,0)
- ;;=4^C93.92
- ;;^UTILITY(U,$J,358.3,53847,2)
- ;;=^5001830
- ;;^UTILITY(U,$J,358.3,53848,0)
- ;;=E88.3^^253^2724^51
- ;;^UTILITY(U,$J,358.3,53848,1,0)
+ ;;^UTILITY(U,$J,358.3,51180,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,51180,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,51180,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,51181,0)
+ ;;=M19.031^^193^2503^142
+ ;;^UTILITY(U,$J,358.3,51181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53848,1,3,0)
- ;;=3^Tumor lysis syndrome
- ;;^UTILITY(U,$J,358.3,53848,1,4,0)
- ;;=4^E88.3
- ;;^UTILITY(U,$J,358.3,53848,2)
- ;;=^338229
- ;;^UTILITY(U,$J,358.3,53849,0)
- ;;=C62.11^^253^2725^2
- ;;^UTILITY(U,$J,358.3,53849,1,0)
+ ;;^UTILITY(U,$J,358.3,51181,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,51181,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,51181,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,51182,0)
+ ;;=M19.032^^193^2503^136
+ ;;^UTILITY(U,$J,358.3,51182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53849,1,3,0)
- ;;=3^Malignant neoplasm of descended right testis
- ;;^UTILITY(U,$J,358.3,53849,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,53849,2)
- ;;=^5001234
- ;;^UTILITY(U,$J,358.3,53850,0)
- ;;=C62.12^^253^2725^1
- ;;^UTILITY(U,$J,358.3,53850,1,0)
+ ;;^UTILITY(U,$J,358.3,51182,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,51182,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,51182,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,51183,0)
+ ;;=M19.041^^193^2503^137
+ ;;^UTILITY(U,$J,358.3,51183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53850,1,3,0)
- ;;=3^Malignant neoplasm of descended left testis
- ;;^UTILITY(U,$J,358.3,53850,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,53850,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,53851,0)
- ;;=M81.0^^253^2726^1
- ;;^UTILITY(U,$J,358.3,53851,1,0)
+ ;;^UTILITY(U,$J,358.3,51183,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,51183,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,51183,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,51184,0)
+ ;;=M19.042^^193^2503^131
+ ;;^UTILITY(U,$J,358.3,51184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53851,1,3,0)
- ;;=3^Age-related osteoporosis w/o current pathological fracture
- ;;^UTILITY(U,$J,358.3,53851,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,53851,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,53852,0)
- ;;=E10.9^^253^2726^2
- ;;^UTILITY(U,$J,358.3,53852,1,0)
+ ;;^UTILITY(U,$J,358.3,51184,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,51184,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,51184,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,51185,0)
+ ;;=M19.90^^193^2503^72
+ ;;^UTILITY(U,$J,358.3,51185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53852,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,53852,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,53852,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,53853,0)
- ;;=E11.9^^253^2726^3
- ;;^UTILITY(U,$J,358.3,53853,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,53853,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications

@@ -1,122 +1,118 @@
-IBDEI1FI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24285,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24285,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,24285,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,24286,0)
- ;;=F12.121^^90^1063^6
- ;;^UTILITY(U,$J,358.3,24286,1,0)
+ ;;^UTILITY(U,$J,358.3,22868,1,4,0)
+ ;;=4^T82.520A
+ ;;^UTILITY(U,$J,358.3,22868,2)
+ ;;=^5054836
+ ;;^UTILITY(U,$J,358.3,22869,0)
+ ;;=T82.521A^^105^1166^42
+ ;;^UTILITY(U,$J,358.3,22869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24286,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24286,1,4,0)
- ;;=4^F12.121
- ;;^UTILITY(U,$J,358.3,24286,2)
- ;;=^5003157
- ;;^UTILITY(U,$J,358.3,24287,0)
- ;;=F12.221^^90^1063^7
- ;;^UTILITY(U,$J,358.3,24287,1,0)
+ ;;^UTILITY(U,$J,358.3,22869,1,3,0)
+ ;;=3^Dsplcmnt of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22869,1,4,0)
+ ;;=4^T82.521A
+ ;;^UTILITY(U,$J,358.3,22869,2)
+ ;;=^5054839
+ ;;^UTILITY(U,$J,358.3,22870,0)
+ ;;=T82.523A^^105^1166^31
+ ;;^UTILITY(U,$J,358.3,22870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24287,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24287,1,4,0)
- ;;=4^F12.221
- ;;^UTILITY(U,$J,358.3,24287,2)
- ;;=^5003169
- ;;^UTILITY(U,$J,358.3,24288,0)
- ;;=F12.921^^90^1063^8
- ;;^UTILITY(U,$J,358.3,24288,1,0)
+ ;;^UTILITY(U,$J,358.3,22870,1,3,0)
+ ;;=3^Dsplcmnt of Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22870,1,4,0)
+ ;;=4^T82.523A
+ ;;^UTILITY(U,$J,358.3,22870,2)
+ ;;=^5054845
+ ;;^UTILITY(U,$J,358.3,22871,0)
+ ;;=T82.525A^^105^1166^43
+ ;;^UTILITY(U,$J,358.3,22871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24288,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24288,1,4,0)
- ;;=4^F12.921
- ;;^UTILITY(U,$J,358.3,24288,2)
- ;;=^5003180
- ;;^UTILITY(U,$J,358.3,24289,0)
- ;;=F12.229^^90^1063^12
- ;;^UTILITY(U,$J,358.3,24289,1,0)
+ ;;^UTILITY(U,$J,358.3,22871,1,3,0)
+ ;;=3^Dsplcmnt of Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22871,1,4,0)
+ ;;=4^T82.525A
+ ;;^UTILITY(U,$J,358.3,22871,2)
+ ;;=^5054851
+ ;;^UTILITY(U,$J,358.3,22872,0)
+ ;;=T82.529A^^105^1166^34
+ ;;^UTILITY(U,$J,358.3,22872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24289,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24289,1,4,0)
- ;;=4^F12.229
- ;;^UTILITY(U,$J,358.3,24289,2)
- ;;=^5003171
- ;;^UTILITY(U,$J,358.3,24290,0)
- ;;=F12.122^^90^1063^9
- ;;^UTILITY(U,$J,358.3,24290,1,0)
+ ;;^UTILITY(U,$J,358.3,22872,1,3,0)
+ ;;=3^Dsplcmnt of Cardiac/Vascular Devices/Implants Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22872,1,4,0)
+ ;;=4^T82.529A
+ ;;^UTILITY(U,$J,358.3,22872,2)
+ ;;=^5054857
+ ;;^UTILITY(U,$J,358.3,22873,0)
+ ;;=T82.530A^^105^1166^140
+ ;;^UTILITY(U,$J,358.3,22873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24290,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24290,1,4,0)
- ;;=4^F12.122
- ;;^UTILITY(U,$J,358.3,24290,2)
- ;;=^5003158
- ;;^UTILITY(U,$J,358.3,24291,0)
- ;;=F12.222^^90^1063^10
- ;;^UTILITY(U,$J,358.3,24291,1,0)
+ ;;^UTILITY(U,$J,358.3,22873,1,3,0)
+ ;;=3^Leakage of Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22873,1,4,0)
+ ;;=4^T82.530A
+ ;;^UTILITY(U,$J,358.3,22873,2)
+ ;;=^5054860
+ ;;^UTILITY(U,$J,358.3,22874,0)
+ ;;=T82.531A^^105^1166^141
+ ;;^UTILITY(U,$J,358.3,22874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24291,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24291,1,4,0)
- ;;=4^F12.222
- ;;^UTILITY(U,$J,358.3,24291,2)
- ;;=^5003170
- ;;^UTILITY(U,$J,358.3,24292,0)
- ;;=F12.129^^90^1063^14
- ;;^UTILITY(U,$J,358.3,24292,1,0)
+ ;;^UTILITY(U,$J,358.3,22874,1,3,0)
+ ;;=3^Leakage of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22874,1,4,0)
+ ;;=4^T82.531A
+ ;;^UTILITY(U,$J,358.3,22874,2)
+ ;;=^5054863
+ ;;^UTILITY(U,$J,358.3,22875,0)
+ ;;=T82.533A^^105^1166^136
+ ;;^UTILITY(U,$J,358.3,22875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24292,1,3,0)
- ;;=3^Cannabis Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,24292,1,4,0)
- ;;=4^F12.129
- ;;^UTILITY(U,$J,358.3,24292,2)
- ;;=^5003159
- ;;^UTILITY(U,$J,358.3,24293,0)
- ;;=F12.922^^90^1063^11
- ;;^UTILITY(U,$J,358.3,24293,1,0)
+ ;;^UTILITY(U,$J,358.3,22875,1,3,0)
+ ;;=3^Leakage of Balloon Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22875,1,4,0)
+ ;;=4^T82.533A
+ ;;^UTILITY(U,$J,358.3,22875,2)
+ ;;=^5054869
+ ;;^UTILITY(U,$J,358.3,22876,0)
+ ;;=T82.535A^^105^1166^142
+ ;;^UTILITY(U,$J,358.3,22876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24293,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24293,1,4,0)
- ;;=4^F12.922
- ;;^UTILITY(U,$J,358.3,24293,2)
- ;;=^5003181
- ;;^UTILITY(U,$J,358.3,24294,0)
- ;;=F12.980^^90^1063^1
- ;;^UTILITY(U,$J,358.3,24294,1,0)
+ ;;^UTILITY(U,$J,358.3,22876,1,3,0)
+ ;;=3^Leakage of Umbrella Device,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22876,1,4,0)
+ ;;=4^T82.535A
+ ;;^UTILITY(U,$J,358.3,22876,2)
+ ;;=^5054875
+ ;;^UTILITY(U,$J,358.3,22877,0)
+ ;;=T82.539A^^105^1166^137
+ ;;^UTILITY(U,$J,358.3,22877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24294,1,3,0)
- ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24294,1,4,0)
- ;;=4^F12.980
- ;;^UTILITY(U,$J,358.3,24294,2)
- ;;=^5003186
- ;;^UTILITY(U,$J,358.3,24295,0)
- ;;=F12.159^^90^1063^2
- ;;^UTILITY(U,$J,358.3,24295,1,0)
+ ;;^UTILITY(U,$J,358.3,22877,1,3,0)
+ ;;=3^Leakage of Cardiac/Vascular Device/Implant Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22877,1,4,0)
+ ;;=4^T82.539A
+ ;;^UTILITY(U,$J,358.3,22877,2)
+ ;;=^5054881
+ ;;^UTILITY(U,$J,358.3,22878,0)
+ ;;=T82.590A^^105^1166^162
+ ;;^UTILITY(U,$J,358.3,22878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24295,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24295,1,4,0)
- ;;=4^F12.159
- ;;^UTILITY(U,$J,358.3,24295,2)
- ;;=^5003162
- ;;^UTILITY(U,$J,358.3,24296,0)
- ;;=F12.259^^90^1063^3
- ;;^UTILITY(U,$J,358.3,24296,1,0)
+ ;;^UTILITY(U,$J,358.3,22878,1,3,0)
+ ;;=3^Mech Compl of Surgically Created AV Fistula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22878,1,4,0)
+ ;;=4^T82.590A
+ ;;^UTILITY(U,$J,358.3,22878,2)
+ ;;=^5054884
+ ;;^UTILITY(U,$J,358.3,22879,0)
+ ;;=T82.591A^^105^1166^163
+ ;;^UTILITY(U,$J,358.3,22879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24296,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24296,1,4,0)
- ;;=4^F12.259
- ;;^UTILITY(U,$J,358.3,24296,2)
- ;;=^5003174
- ;;^UTILITY(U,$J,358.3,24297,0)
- ;;=F12.959^^90^1063^4
+ ;;^UTILITY(U,$J,358.3,22879,1,3,0)
+ ;;=3^Mech Compl of Surgically Created AV Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22879,1,4,0)
+ ;;=4^T82.591A
+ ;;^UTILITY(U,$J,358.3,22879,2)
+ ;;=^5054887

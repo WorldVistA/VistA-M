@@ -1,6 +1,6 @@
-PRCFAC3 ;WISC/CTB/CLH/SJG/AS-ACCOUNTING MODULE ; 3/8/05
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCFAC3 ;WISC/CTB/CLH/SJG/AS-ACCOUNTING MODULE ;3/24/17  13:12
+V ;;5.1;IFCAP;**81,198**;Oct 20, 2000;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
 E10 ; Enter FMS Vendor Code Numbers into Vendor File
  N TAG,PRCF
  D HILO^PRCFQ
@@ -13,7 +13,8 @@ OUT10 K %W,%X,%Y,D0,DA,DIC,DIE,DQ,DR,I,J,K,X,Y,DIRUT
  QUIT
 E10A ; No adding by Fiscal/editing only
  I 'PRCFA("FISCVEND") W !!,"Only Supply may add new Vendors to the Vendor File",!,"but Fiscal may edit payment information.",!!
-E10A1 W ! S DIC(0)="AENMQ",DIC=440 D ^DIC Q:Y<0
+E10A1 W ! S DIC(0)="AENMQ",DIC=440,DIC("S")="I (+Y<950000)!$D(^XUSEC(""PRCHVEN"",DUZ))"
+ D ^DIC Q:Y<0
  I Y>0 S (DA,PRCFA("VEND"))=+Y D INFO K PRCTMP D EDIT^PRCFAC31
  Q:$D(DIRUT)
  I 'Y W !!,"No further action is being taken on this Vendor.",! G E10A1
@@ -30,7 +31,11 @@ E10A1 W ! S DIC(0)="AENMQ",DIC=440 D ^DIC Q:Y<0
  QUIT
 E10B ; Adding/editing by Fiscal
  I PRCFA("FISCVEND") W !!,"Fiscal may add new Vendors to the Vendor File.",!!
-E10B1 W ! S DIC(0)="AENMQL",DLAYGO=440,DIC=440 D ^DIC K DLAYGO Q:Y<0
+ N PRCIENB4
+E10B1 W ! S DIC(0)="AENMQL",DLAYGO=440,DIC=440,DIC("S")="I (+Y<950000)!$D(^XUSEC(""PRCHVEN"",DUZ))"
+ L +^PRC(440,0):30 S PRCIENB4=$P(^PRC(440,0),U,3) L -^PRC(440,0)
+ D ^DIC K DLAYGO Q:Y<0
+ I +Y>949999,$P(Y,U,3) L +^PRC(440,0):30 S $P(^PRC(440,0),U,3)=PRCIENB4 L -^PRC(440,0)
  I Y>0 S (DA,PRCFA("VEND"))=+Y D INFO K PRCTMP D EDIT^PRCFAC31
  Q:$D(DIRUT)
  I 'Y W !!,"No further action is being taken on this Vendor.",! G E10B1

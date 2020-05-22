@@ -1,124 +1,120 @@
-IBDEI1PV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PV ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29148,1,3,0)
- ;;=3^Maternal care for oth isoimmun, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,29148,1,4,0)
- ;;=4^O36.1933
- ;;^UTILITY(U,$J,358.3,29148,2)
- ;;=^5016934
- ;;^UTILITY(U,$J,358.3,29149,0)
- ;;=O36.1934^^115^1455^162
- ;;^UTILITY(U,$J,358.3,29149,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29149,1,3,0)
- ;;=3^Maternal care for oth isoimmun, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,29149,1,4,0)
- ;;=4^O36.1934
- ;;^UTILITY(U,$J,358.3,29149,2)
- ;;=^5016935
- ;;^UTILITY(U,$J,358.3,29150,0)
- ;;=O36.1935^^115^1455^163
- ;;^UTILITY(U,$J,358.3,29150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29150,1,3,0)
- ;;=3^Maternal care for oth isoimmun, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,29150,1,4,0)
- ;;=4^O36.1935
- ;;^UTILITY(U,$J,358.3,29150,2)
- ;;=^5016936
- ;;^UTILITY(U,$J,358.3,29151,0)
- ;;=O77.9^^115^1455^17
- ;;^UTILITY(U,$J,358.3,29151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29151,1,3,0)
- ;;=3^Labor/delivery comp by fetal stress, unspecified
- ;;^UTILITY(U,$J,358.3,29151,1,4,0)
- ;;=4^O77.9
- ;;^UTILITY(U,$J,358.3,29151,2)
- ;;=^5017750
- ;;^UTILITY(U,$J,358.3,29152,0)
- ;;=O77.8^^115^1455^18
- ;;^UTILITY(U,$J,358.3,29152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29152,1,3,0)
- ;;=3^Labor/delivery comp by oth evidence of fetal stress
- ;;^UTILITY(U,$J,358.3,29152,1,4,0)
- ;;=4^O77.8
- ;;^UTILITY(U,$J,358.3,29152,2)
- ;;=^5017749
- ;;^UTILITY(U,$J,358.3,29153,0)
- ;;=O68.^^115^1455^16
- ;;^UTILITY(U,$J,358.3,29153,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29153,1,3,0)
- ;;=3^Labor/delivery comp by abnlt of fetal acid-base balance
- ;;^UTILITY(U,$J,358.3,29153,1,4,0)
- ;;=4^O68.
- ;;^UTILITY(U,$J,358.3,29153,2)
- ;;=^5017638
- ;;^UTILITY(U,$J,358.3,29154,0)
- ;;=O36.4XX0^^115^1455^121
- ;;^UTILITY(U,$J,358.3,29154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29154,1,3,0)
- ;;=3^Maternal care for intrauterine death, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,29154,1,4,0)
- ;;=4^O36.4XX0
- ;;^UTILITY(U,$J,358.3,29154,2)
- ;;=^5016970
- ;;^UTILITY(U,$J,358.3,29155,0)
- ;;=O36.4XX1^^115^1455^116
- ;;^UTILITY(U,$J,358.3,29155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29155,1,3,0)
- ;;=3^Maternal care for intrauterine death, fetus 1
- ;;^UTILITY(U,$J,358.3,29155,1,4,0)
- ;;=4^O36.4XX1
- ;;^UTILITY(U,$J,358.3,29155,2)
- ;;=^5016971
- ;;^UTILITY(U,$J,358.3,29156,0)
- ;;=O36.4XX2^^115^1455^117
- ;;^UTILITY(U,$J,358.3,29156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29156,1,3,0)
- ;;=3^Maternal care for intrauterine death, fetus 2
- ;;^UTILITY(U,$J,358.3,29156,1,4,0)
- ;;=4^O36.4XX2
- ;;^UTILITY(U,$J,358.3,29156,2)
- ;;=^5016972
- ;;^UTILITY(U,$J,358.3,29157,0)
- ;;=O36.4XX3^^115^1455^118
- ;;^UTILITY(U,$J,358.3,29157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29157,1,3,0)
- ;;=3^Maternal care for intrauterine death, fetus 3
- ;;^UTILITY(U,$J,358.3,29157,1,4,0)
- ;;=4^O36.4XX3
- ;;^UTILITY(U,$J,358.3,29157,2)
- ;;=^5016973
- ;;^UTILITY(U,$J,358.3,29158,0)
- ;;=O36.4XX4^^115^1455^119
- ;;^UTILITY(U,$J,358.3,29158,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29158,1,3,0)
- ;;=3^Maternal care for intrauterine death, fetus 4
- ;;^UTILITY(U,$J,358.3,29158,1,4,0)
- ;;=4^O36.4XX4
- ;;^UTILITY(U,$J,358.3,29158,2)
- ;;=^5016974
- ;;^UTILITY(U,$J,358.3,29159,0)
- ;;=O36.4XX5^^115^1455^120
- ;;^UTILITY(U,$J,358.3,29159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29159,1,3,0)
- ;;=3^Maternal care for intrauterine death, fetus 5
- ;;^UTILITY(U,$J,358.3,29159,1,4,0)
- ;;=4^O36.4XX5
- ;;^UTILITY(U,$J,358.3,29159,2)
- ;;=^5016975
- ;;^UTILITY(U,$J,358.3,29160,0)
- ;;=O36.5110^^115^1455^122
- ;;^UTILITY(U,$J,358.3,29160,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27429,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27429,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,27429,1,3,0)
+ ;;=3^Methadone Administration &/or Svc by Lincensed Program
+ ;;^UTILITY(U,$J,358.3,27430,0)
+ ;;=H0025^^112^1330^2^^^^1
+ ;;^UTILITY(U,$J,358.3,27430,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27430,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,27430,1,3,0)
+ ;;=3^Addictions Health Prevention/Education
+ ;;^UTILITY(U,$J,358.3,27431,0)
+ ;;=H0030^^112^1330^4^^^^1
+ ;;^UTILITY(U,$J,358.3,27431,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27431,1,2,0)
+ ;;=2^H0030
+ ;;^UTILITY(U,$J,358.3,27431,1,3,0)
+ ;;=3^Addictions Hotline Services
+ ;;^UTILITY(U,$J,358.3,27432,0)
+ ;;=T1016^^112^1331^1^^^^1
+ ;;^UTILITY(U,$J,358.3,27432,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27432,1,2,0)
+ ;;=2^T1016
+ ;;^UTILITY(U,$J,358.3,27432,1,3,0)
+ ;;=3^Case Management per 15min
+ ;;^UTILITY(U,$J,358.3,27433,0)
+ ;;=96372^^112^1332^1^^^^1
+ ;;^UTILITY(U,$J,358.3,27433,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27433,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,27433,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj SC/IM
+ ;;^UTILITY(U,$J,358.3,27434,0)
+ ;;=96374^^112^1332^2^^^^1
+ ;;^UTILITY(U,$J,358.3,27434,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27434,1,2,0)
+ ;;=2^96374
+ ;;^UTILITY(U,$J,358.3,27434,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj IV Push
+ ;;^UTILITY(U,$J,358.3,27435,0)
+ ;;=96376^^112^1332^3^^^^1
+ ;;^UTILITY(U,$J,358.3,27435,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27435,1,2,0)
+ ;;=2^96376
+ ;;^UTILITY(U,$J,358.3,27435,1,3,0)
+ ;;=3^Tx/Pro/Dx Inj,ea addl sequential IVP of Same Drug-Add-on
+ ;;^UTILITY(U,$J,358.3,27436,0)
+ ;;=J2680^^112^1333^3^^^^1
+ ;;^UTILITY(U,$J,358.3,27436,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27436,1,2,0)
+ ;;=2^J2680
+ ;;^UTILITY(U,$J,358.3,27436,1,3,0)
+ ;;=3^Fluphenazine Decanoate up to 25mg
+ ;;^UTILITY(U,$J,358.3,27437,0)
+ ;;=J1631^^112^1333^4^^^^1
+ ;;^UTILITY(U,$J,358.3,27437,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27437,1,2,0)
+ ;;=2^J1631
+ ;;^UTILITY(U,$J,358.3,27437,1,3,0)
+ ;;=3^Haloperidol Decanoate per 50mg
+ ;;^UTILITY(U,$J,358.3,27438,0)
+ ;;=J2315^^112^1333^5^^^^1
+ ;;^UTILITY(U,$J,358.3,27438,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27438,1,2,0)
+ ;;=2^J2315
+ ;;^UTILITY(U,$J,358.3,27438,1,3,0)
+ ;;=3^Naltrexone,Depot Form 1mg
+ ;;^UTILITY(U,$J,358.3,27439,0)
+ ;;=J2426^^112^1333^7^^^^1
+ ;;^UTILITY(U,$J,358.3,27439,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27439,1,2,0)
+ ;;=2^J2426
+ ;;^UTILITY(U,$J,358.3,27439,1,3,0)
+ ;;=3^Paliperidone Palmitate Extend Release per 1mg
+ ;;^UTILITY(U,$J,358.3,27440,0)
+ ;;=J2794^^112^1333^8^^^^1
+ ;;^UTILITY(U,$J,358.3,27440,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27440,1,2,0)
+ ;;=2^J2794
+ ;;^UTILITY(U,$J,358.3,27440,1,3,0)
+ ;;=3^Risperidone Long Act per 0.5mg
+ ;;^UTILITY(U,$J,358.3,27441,0)
+ ;;=J2315^^112^1333^9^^^^1
+ ;;^UTILITY(U,$J,358.3,27441,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27441,1,2,0)
+ ;;=2^J2315
+ ;;^UTILITY(U,$J,358.3,27441,1,3,0)
+ ;;=3^Vivitrol 1mg
+ ;;^UTILITY(U,$J,358.3,27442,0)
+ ;;=J0401^^112^1333^1^^^^1
+ ;;^UTILITY(U,$J,358.3,27442,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27442,1,2,0)
+ ;;=2^J0401
+ ;;^UTILITY(U,$J,358.3,27442,1,3,0)
+ ;;=3^Aripiprazole Ext Rel 1mg
+ ;;^UTILITY(U,$J,358.3,27443,0)
+ ;;=J2358^^112^1333^6^^^^1
+ ;;^UTILITY(U,$J,358.3,27443,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27443,1,2,0)
+ ;;=2^J2358

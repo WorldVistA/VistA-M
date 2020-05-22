@@ -1,9 +1,9 @@
-XUCERT ;ISD/HGW Kernel PKI Certificate Utilities ;10/01/15  14:19
- ;;8.0;KERNEL;**659**;Jul 10, 1995;Build 22
+XUCERT ;ISD/HGW Kernel PKI Certificate Utilities ;09/13/2019  12:25
+ ;;8.0;KERNEL;**659,701**;Jul 10, 1995;Build 11
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
-VALIDATE(DOC) ;Extrinsic Function.
+VALIDATE(DOC,ERR) ;Extrinsic Function.
  ;Validate the signatures in a digitally signed XML document which contains an EncryptedData element and EncryptedKey elements.
  ; Input:     DOC     = This string is either a closed reference to a global root containing the XML document or a filename
  ;                      and path reference identifying the XML document on the host system. See the Kernel Developers Guide
@@ -14,15 +14,12 @@ VALIDATE(DOC) ;Extrinsic Function.
  ;ZEXCEPT: %New,%XML,Document,OpenFile,OpenStream,Reader,ValidateDocument,class ;ObjectScript
  N XUREAD,XUSIG,XUSTATUS,XUVER
  S XUREAD=$$READER^XUCERT1(DOC) ;Read XML document
- I $G(XUREAD)["-1^" Q XUREAD
+ I $G(XUREAD)["-1^" S ERR("PARSE")="" Q 0
  S XUSIG=$$SGNTR^XUCERT1(XUREAD) ;Find digital signature
- I $G(XUSIG)["-1^" Q XUSIG
+ I $G(XUSIG)["-1^" S ERR("NO-SIGNATURE")="" Q 0
  D GETISSUE(XUSIG) ;Save subject of X509 certificate (issuer of signature)
- S XUVER=$$VERSION^%ZOSV() S XUVER=$P(XUVER,".",1)_"."_$P(XUVER,".",2)
- I XUVER'<2015.2 D
- . S XUSTATUS=$$VAL1^XUCERT1(XUREAD,XUSIG)
- E  D
- . S XUSTATUS=$$VAL2^XUCERT1(XUREAD,XUSIG)
+ ;p701;S XUVER=$$VERSION^%ZOSV() S XUVER=$P(XUVER,".",1)_"."_$P(XUVER,".",2)
+ S XUSTATUS=$$VAL2^XUCERT1(XUREAD,XUSIG,.ERR)
  Q XUSTATUS
  ;
 GETISSUE(SIG) ;Subroutine. Save X509 Certificate owner to XOBDATA("XOB RPC","SAML",ISSUER")

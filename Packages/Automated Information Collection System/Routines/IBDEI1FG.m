@@ -1,126 +1,120 @@
-IBDEI1FG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1FG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24260,2)
- ;;=^5003077
- ;;^UTILITY(U,$J,358.3,24261,0)
- ;;=F10.282^^90^1061^18
- ;;^UTILITY(U,$J,358.3,24261,1,0)
+ ;;^UTILITY(U,$J,358.3,22845,1,4,0)
+ ;;=4^T82.318A
+ ;;^UTILITY(U,$J,358.3,22845,2)
+ ;;=^5054749
+ ;;^UTILITY(U,$J,358.3,22846,0)
+ ;;=T82.319A^^105^1166^18
+ ;;^UTILITY(U,$J,358.3,22846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24261,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24261,1,4,0)
- ;;=4^F10.282
- ;;^UTILITY(U,$J,358.3,24261,2)
- ;;=^5003098
- ;;^UTILITY(U,$J,358.3,24262,0)
- ;;=F10.982^^90^1061^19
- ;;^UTILITY(U,$J,358.3,24262,1,0)
+ ;;^UTILITY(U,$J,358.3,22846,1,3,0)
+ ;;=3^Breakdown,Vasc Grfts,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22846,1,4,0)
+ ;;=4^T82.319A
+ ;;^UTILITY(U,$J,358.3,22846,2)
+ ;;=^5054752
+ ;;^UTILITY(U,$J,358.3,22847,0)
+ ;;=T82.320A^^105^1166^30
+ ;;^UTILITY(U,$J,358.3,22847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24262,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24262,1,4,0)
- ;;=4^F10.982
- ;;^UTILITY(U,$J,358.3,24262,2)
- ;;=^5003112
- ;;^UTILITY(U,$J,358.3,24263,0)
- ;;=F10.281^^90^1061^15
- ;;^UTILITY(U,$J,358.3,24263,1,0)
+ ;;^UTILITY(U,$J,358.3,22847,1,3,0)
+ ;;=3^Dsplcmnt of Aortic Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22847,1,4,0)
+ ;;=4^T82.320A
+ ;;^UTILITY(U,$J,358.3,22847,2)
+ ;;=^5054755
+ ;;^UTILITY(U,$J,358.3,22848,0)
+ ;;=T82.321A^^105^1166^35
+ ;;^UTILITY(U,$J,358.3,22848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24263,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24263,1,4,0)
- ;;=4^F10.281
- ;;^UTILITY(U,$J,358.3,24263,2)
- ;;=^5003097
- ;;^UTILITY(U,$J,358.3,24264,0)
- ;;=F10.981^^90^1061^16
- ;;^UTILITY(U,$J,358.3,24264,1,0)
+ ;;^UTILITY(U,$J,358.3,22848,1,3,0)
+ ;;=3^Dsplcmnt of Carotid Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22848,1,4,0)
+ ;;=4^T82.321A
+ ;;^UTILITY(U,$J,358.3,22848,2)
+ ;;=^5054758
+ ;;^UTILITY(U,$J,358.3,22849,0)
+ ;;=T82.322A^^105^1166^36
+ ;;^UTILITY(U,$J,358.3,22849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24264,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24264,1,4,0)
- ;;=4^F10.981
- ;;^UTILITY(U,$J,358.3,24264,2)
- ;;=^5003111
- ;;^UTILITY(U,$J,358.3,24265,0)
- ;;=F10.182^^90^1061^17
- ;;^UTILITY(U,$J,358.3,24265,1,0)
+ ;;^UTILITY(U,$J,358.3,22849,1,3,0)
+ ;;=3^Dsplcmnt of Femoral Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22849,1,4,0)
+ ;;=4^T82.322A
+ ;;^UTILITY(U,$J,358.3,22849,2)
+ ;;=^5054761
+ ;;^UTILITY(U,$J,358.3,22850,0)
+ ;;=T82.329A^^105^1166^45
+ ;;^UTILITY(U,$J,358.3,22850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24265,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24265,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,24265,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,24266,0)
- ;;=F10.121^^90^1061^20
- ;;^UTILITY(U,$J,358.3,24266,1,0)
+ ;;^UTILITY(U,$J,358.3,22850,1,3,0)
+ ;;=3^Dsplcmnt of Vascular Grafts,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22850,1,4,0)
+ ;;=4^T82.329A
+ ;;^UTILITY(U,$J,358.3,22850,2)
+ ;;=^5054767
+ ;;^UTILITY(U,$J,358.3,22851,0)
+ ;;=T82.330A^^105^1166^135
+ ;;^UTILITY(U,$J,358.3,22851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24266,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24266,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,24266,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,24267,0)
- ;;=F10.221^^90^1061^21
- ;;^UTILITY(U,$J,358.3,24267,1,0)
+ ;;^UTILITY(U,$J,358.3,22851,1,3,0)
+ ;;=3^Leakage of Aortic Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22851,1,4,0)
+ ;;=4^T82.330A
+ ;;^UTILITY(U,$J,358.3,22851,2)
+ ;;=^5054770
+ ;;^UTILITY(U,$J,358.3,22852,0)
+ ;;=T82.331A^^105^1166^138
+ ;;^UTILITY(U,$J,358.3,22852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24267,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24267,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,24267,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,24268,0)
- ;;=F10.921^^90^1061^22
- ;;^UTILITY(U,$J,358.3,24268,1,0)
+ ;;^UTILITY(U,$J,358.3,22852,1,3,0)
+ ;;=3^Leakage of Carotid Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22852,1,4,0)
+ ;;=4^T82.331A
+ ;;^UTILITY(U,$J,358.3,22852,2)
+ ;;=^5054773
+ ;;^UTILITY(U,$J,358.3,22853,0)
+ ;;=T82.332A^^105^1166^139
+ ;;^UTILITY(U,$J,358.3,22853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24268,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24268,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,24268,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,24269,0)
- ;;=F10.129^^90^1061^23
- ;;^UTILITY(U,$J,358.3,24269,1,0)
+ ;;^UTILITY(U,$J,358.3,22853,1,3,0)
+ ;;=3^Leakage of Femoral Arterial Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22853,1,4,0)
+ ;;=4^T82.332A
+ ;;^UTILITY(U,$J,358.3,22853,2)
+ ;;=^5054776
+ ;;^UTILITY(U,$J,358.3,22854,0)
+ ;;=T82.339A^^105^1166^144
+ ;;^UTILITY(U,$J,358.3,22854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24269,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,24269,1,4,0)
- ;;=4^F10.129
- ;;^UTILITY(U,$J,358.3,24269,2)
- ;;=^5003071
- ;;^UTILITY(U,$J,358.3,24270,0)
- ;;=F10.229^^90^1061^24
- ;;^UTILITY(U,$J,358.3,24270,1,0)
+ ;;^UTILITY(U,$J,358.3,22854,1,3,0)
+ ;;=3^Leakage of Vascular Graft,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22854,1,4,0)
+ ;;=4^T82.339A
+ ;;^UTILITY(U,$J,358.3,22854,2)
+ ;;=^5054782
+ ;;^UTILITY(U,$J,358.3,22855,0)
+ ;;=T82.390A^^105^1166^146
+ ;;^UTILITY(U,$J,358.3,22855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24270,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,24270,1,4,0)
- ;;=4^F10.229
- ;;^UTILITY(U,$J,358.3,24270,2)
- ;;=^5003085
- ;;^UTILITY(U,$J,358.3,24271,0)
- ;;=F10.929^^90^1061^25
- ;;^UTILITY(U,$J,358.3,24271,1,0)
+ ;;^UTILITY(U,$J,358.3,22855,1,3,0)
+ ;;=3^Mech Compl of Aortic Graft,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22855,1,4,0)
+ ;;=4^T82.390A
+ ;;^UTILITY(U,$J,358.3,22855,2)
+ ;;=^5054785
+ ;;^UTILITY(U,$J,358.3,22856,0)
+ ;;=T82.391A^^105^1166^151
+ ;;^UTILITY(U,$J,358.3,22856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24271,1,3,0)
- ;;=3^Alcohol Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,24271,1,4,0)
- ;;=4^F10.929
- ;;^UTILITY(U,$J,358.3,24271,2)
- ;;=^5003103
- ;;^UTILITY(U,$J,358.3,24272,0)
- ;;=F10.99^^90^1061^26
- ;;^UTILITY(U,$J,358.3,24272,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24272,1,3,0)
- ;;=3^Alcohol Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24272,1,4,0)
- ;;=4^F10.99
- ;;^UTILITY(U,$J,358.3,24272,2)
- ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,22856,1,3,0)
+ ;;=3^Mech Compl of Carotid Arterial Graft,NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22856,1,4,0)
+ ;;=4^T82.391A
+ ;;^UTILITY(U,$J,358.3,22856,2)
+ ;;=^5054788
+ ;;^UTILITY(U,$J,358.3,22857,0)
+ ;;=T82.392A^^105^1166^152

@@ -1,138 +1,126 @@
-IBDEI256 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI256 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36340,1,0)
+ ;;^UTILITY(U,$J,358.3,34208,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,34208,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,34208,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,34209,0)
+ ;;=G24.01^^134^1731^15
+ ;;^UTILITY(U,$J,358.3,34209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36340,1,3,0)
- ;;=3^Hypoventilation,Sleep Related
- ;;^UTILITY(U,$J,358.3,36340,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,36340,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,36341,0)
- ;;=G47.33^^137^1757^3
- ;;^UTILITY(U,$J,358.3,36341,1,0)
+ ;;^UTILITY(U,$J,358.3,34209,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,34209,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,34209,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,34210,0)
+ ;;=G24.09^^134^1731^16
+ ;;^UTILITY(U,$J,358.3,34210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36341,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,36341,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,36341,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,36342,0)
- ;;=Z43.0^^137^1758^3
- ;;^UTILITY(U,$J,358.3,36342,1,0)
+ ;;^UTILITY(U,$J,358.3,34210,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,34210,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,34210,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,34211,0)
+ ;;=G25.1^^134^1731^11
+ ;;^UTILITY(U,$J,358.3,34211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36342,1,3,0)
- ;;=3^Attention to Tracheostomy
- ;;^UTILITY(U,$J,358.3,36342,1,4,0)
- ;;=4^Z43.0
- ;;^UTILITY(U,$J,358.3,36342,2)
- ;;=^5062958
- ;;^UTILITY(U,$J,358.3,36343,0)
- ;;=Z71.3^^137^1758^5
- ;;^UTILITY(U,$J,358.3,36343,1,0)
+ ;;^UTILITY(U,$J,358.3,34211,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,34211,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,34211,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,34212,0)
+ ;;=G25.71^^134^1731^14
+ ;;^UTILITY(U,$J,358.3,34212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36343,1,3,0)
- ;;=3^Counseling & Surveillance,Dietary
- ;;^UTILITY(U,$J,358.3,36343,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,36343,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,36344,0)
- ;;=Z71.89^^137^1758^6
- ;;^UTILITY(U,$J,358.3,36344,1,0)
+ ;;^UTILITY(U,$J,358.3,34212,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,34212,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,34212,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,34213,0)
+ ;;=G25.79^^134^1731^9
+ ;;^UTILITY(U,$J,358.3,34213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36344,1,3,0)
- ;;=3^Counseling,Other Spec
- ;;^UTILITY(U,$J,358.3,36344,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,36344,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,36345,0)
- ;;=Z02.3^^137^1758^10
- ;;^UTILITY(U,$J,358.3,36345,1,0)
+ ;;^UTILITY(U,$J,358.3,34213,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,34213,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,34213,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,34214,0)
+ ;;=T43.205A^^134^1731^4
+ ;;^UTILITY(U,$J,358.3,34214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36345,1,3,0)
- ;;=3^Recruitment to Armed Forces Exam
- ;;^UTILITY(U,$J,358.3,36345,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,36345,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,36346,0)
- ;;=Z02.1^^137^1758^9
- ;;^UTILITY(U,$J,358.3,36346,1,0)
+ ;;^UTILITY(U,$J,358.3,34214,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,34214,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,34214,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,34215,0)
+ ;;=T43.205D^^134^1731^5
+ ;;^UTILITY(U,$J,358.3,34215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36346,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,36346,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,36346,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,36347,0)
- ;;=Z02.89^^137^1758^2
- ;;^UTILITY(U,$J,358.3,36347,1,0)
+ ;;^UTILITY(U,$J,358.3,34215,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,34215,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,34215,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,34216,0)
+ ;;=T43.205S^^134^1731^6
+ ;;^UTILITY(U,$J,358.3,34216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36347,1,3,0)
- ;;=3^Administrative Exam
- ;;^UTILITY(U,$J,358.3,36347,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,36347,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,36348,0)
- ;;=Z13.83^^137^1758^11
- ;;^UTILITY(U,$J,358.3,36348,1,0)
+ ;;^UTILITY(U,$J,358.3,34216,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,34216,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,34216,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,34217,0)
+ ;;=G25.71^^134^1731^7
+ ;;^UTILITY(U,$J,358.3,34217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36348,1,3,0)
- ;;=3^Respiratory Disorder Screen
- ;;^UTILITY(U,$J,358.3,36348,1,4,0)
- ;;=4^Z13.83
- ;;^UTILITY(U,$J,358.3,36348,2)
- ;;=^5062715
- ;;^UTILITY(U,$J,358.3,36349,0)
- ;;=J98.01^^137^1758^1
- ;;^UTILITY(U,$J,358.3,36349,1,0)
+ ;;^UTILITY(U,$J,358.3,34217,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,34217,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,34217,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,34218,0)
+ ;;=G24.02^^134^1731^8
+ ;;^UTILITY(U,$J,358.3,34218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36349,1,3,0)
- ;;=3^Acute Bronchospasm
- ;;^UTILITY(U,$J,358.3,36349,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,36349,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,36350,0)
- ;;=G89.12^^137^1758^8
- ;;^UTILITY(U,$J,358.3,36350,1,0)
+ ;;^UTILITY(U,$J,358.3,34218,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,34218,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,34218,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,34219,0)
+ ;;=G21.0^^134^1731^12
+ ;;^UTILITY(U,$J,358.3,34219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36350,1,3,0)
- ;;=3^Post-Thoracotomy Pain
- ;;^UTILITY(U,$J,358.3,36350,1,4,0)
- ;;=4^G89.12
- ;;^UTILITY(U,$J,358.3,36350,2)
- ;;=^5004153
- ;;^UTILITY(U,$J,358.3,36351,0)
- ;;=J98.09^^137^1758^4
- ;;^UTILITY(U,$J,358.3,36351,1,0)
+ ;;^UTILITY(U,$J,358.3,34219,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,34219,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,34219,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,34220,0)
+ ;;=T50.905A^^134^1731^1
+ ;;^UTILITY(U,$J,358.3,34220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36351,1,3,0)
- ;;=3^Bronchus Diseases NEC
- ;;^UTILITY(U,$J,358.3,36351,1,4,0)
- ;;=4^J98.09
- ;;^UTILITY(U,$J,358.3,36351,2)
- ;;=^5008359
- ;;^UTILITY(U,$J,358.3,36352,0)
- ;;=J39.8^^137^1758^12
- ;;^UTILITY(U,$J,358.3,36352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36352,1,3,0)
- ;;=3^Upper Respiratory Tract Diseases
- ;;^UTILITY(U,$J,358.3,36352,1,4,0)
- ;;=4^J39.8
- ;;^UTILITY(U,$J,358.3,36352,2)
- ;;=^5008231
- ;;^UTILITY(U,$J,358.3,36353,0)
- ;;=M31.30^^137^1758^13
- ;;^UTILITY(U,$J,358.3,36353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36353,1,3,0)
- ;;=3^Wegener's Granulomatosis w/o Renal Involvement
+ ;;^UTILITY(U,$J,358.3,34220,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr

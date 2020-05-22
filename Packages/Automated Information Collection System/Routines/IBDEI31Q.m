@@ -1,132 +1,120 @@
-IBDEI31Q ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI31Q ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,51068,2)
- ;;=^5010496
- ;;^UTILITY(U,$J,358.3,51069,0)
- ;;=M11.20^^222^2467^16
- ;;^UTILITY(U,$J,358.3,51069,1,0)
+ ;;^UTILITY(U,$J,358.3,48639,1,4,0)
+ ;;=4^I69.931
+ ;;^UTILITY(U,$J,358.3,48639,2)
+ ;;=^5007558
+ ;;^UTILITY(U,$J,358.3,48640,0)
+ ;;=I69.933^^185^2424^37
+ ;;^UTILITY(U,$J,358.3,48640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51069,1,3,0)
- ;;=3^Chondrocalcinosis, unspec site
- ;;^UTILITY(U,$J,358.3,51069,1,4,0)
- ;;=4^M11.20
- ;;^UTILITY(U,$J,358.3,51069,2)
- ;;=^5010453
- ;;^UTILITY(U,$J,358.3,51070,0)
- ;;=M11.211^^222^2467^14
- ;;^UTILITY(U,$J,358.3,51070,1,0)
+ ;;^UTILITY(U,$J,358.3,48640,1,3,0)
+ ;;=3^Cerebrovascular Disease,Monoplegia,Rt Upper Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48640,1,4,0)
+ ;;=4^I69.933
+ ;;^UTILITY(U,$J,358.3,48640,2)
+ ;;=^5007559
+ ;;^UTILITY(U,$J,358.3,48641,0)
+ ;;=I69.998^^185^2424^44
+ ;;^UTILITY(U,$J,358.3,48641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51070,1,3,0)
- ;;=3^Chondrocalcinosis, rt shldr, oth
- ;;^UTILITY(U,$J,358.3,51070,1,4,0)
- ;;=4^M11.211
- ;;^UTILITY(U,$J,358.3,51070,2)
- ;;=^5010454
- ;;^UTILITY(U,$J,358.3,51071,0)
- ;;=M11.212^^222^2467^6
- ;;^UTILITY(U,$J,358.3,51071,1,0)
+ ;;^UTILITY(U,$J,358.3,48641,1,3,0)
+ ;;=3^Cerebrovascular Disease,Sequelae,Unspec
+ ;;^UTILITY(U,$J,358.3,48641,1,4,0)
+ ;;=4^I69.998
+ ;;^UTILITY(U,$J,358.3,48641,2)
+ ;;=^5007572
+ ;;^UTILITY(U,$J,358.3,48642,0)
+ ;;=I69.928^^185^2424^45
+ ;;^UTILITY(U,$J,358.3,48642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51071,1,3,0)
- ;;=3^Chondrocalcinosis, lft shldr, oth
- ;;^UTILITY(U,$J,358.3,51071,1,4,0)
- ;;=4^M11.212
- ;;^UTILITY(U,$J,358.3,51071,2)
- ;;=^5010455
- ;;^UTILITY(U,$J,358.3,51072,0)
- ;;=M11.221^^222^2467^10
- ;;^UTILITY(U,$J,358.3,51072,1,0)
+ ;;^UTILITY(U,$J,358.3,48642,1,3,0)
+ ;;=3^Cerebrovascular Disease,Speech/Language Deficits,Unspec
+ ;;^UTILITY(U,$J,358.3,48642,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,48642,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,48643,0)
+ ;;=I69.965^^185^2424^39
+ ;;^UTILITY(U,$J,358.3,48643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51072,1,3,0)
- ;;=3^Chondrocalcinosis, rt elbow, oth
- ;;^UTILITY(U,$J,358.3,51072,1,4,0)
- ;;=4^M11.221
- ;;^UTILITY(U,$J,358.3,51072,2)
- ;;=^5010457
- ;;^UTILITY(U,$J,358.3,51073,0)
- ;;=M11.222^^222^2467^2
- ;;^UTILITY(U,$J,358.3,51073,1,0)
+ ;;^UTILITY(U,$J,358.3,48643,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,48643,1,4,0)
+ ;;=4^I69.965
+ ;;^UTILITY(U,$J,358.3,48643,2)
+ ;;=^5007566
+ ;;^UTILITY(U,$J,358.3,48644,0)
+ ;;=I69.962^^185^2424^40
+ ;;^UTILITY(U,$J,358.3,48644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51073,1,3,0)
- ;;=3^Chondrocalcinosis, lft elbow, oth
- ;;^UTILITY(U,$J,358.3,51073,1,4,0)
- ;;=4^M11.222
- ;;^UTILITY(U,$J,358.3,51073,2)
- ;;=^5010458
- ;;^UTILITY(U,$J,358.3,51074,0)
- ;;=M11.231^^222^2467^15
- ;;^UTILITY(U,$J,358.3,51074,1,0)
+ ;;^UTILITY(U,$J,358.3,48644,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Lt Dominant Side
+ ;;^UTILITY(U,$J,358.3,48644,1,4,0)
+ ;;=4^I69.962
+ ;;^UTILITY(U,$J,358.3,48644,2)
+ ;;=^5133588
+ ;;^UTILITY(U,$J,358.3,48645,0)
+ ;;=I69.964^^185^2424^41
+ ;;^UTILITY(U,$J,358.3,48645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51074,1,3,0)
- ;;=3^Chondrocalcinosis, rt wrist, oth
- ;;^UTILITY(U,$J,358.3,51074,1,4,0)
- ;;=4^M11.231
- ;;^UTILITY(U,$J,358.3,51074,2)
- ;;=^5010460
- ;;^UTILITY(U,$J,358.3,51075,0)
- ;;=M11.232^^222^2467^7
- ;;^UTILITY(U,$J,358.3,51075,1,0)
+ ;;^UTILITY(U,$J,358.3,48645,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Lt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48645,1,4,0)
+ ;;=4^I69.964
+ ;;^UTILITY(U,$J,358.3,48645,2)
+ ;;=^5133589
+ ;;^UTILITY(U,$J,358.3,48646,0)
+ ;;=I69.961^^185^2424^42
+ ;;^UTILITY(U,$J,358.3,48646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51075,1,3,0)
- ;;=3^Chondrocalcinosis, lft wrist, oth
- ;;^UTILITY(U,$J,358.3,51075,1,4,0)
- ;;=4^M11.232
- ;;^UTILITY(U,$J,358.3,51075,2)
- ;;=^5010461
- ;;^UTILITY(U,$J,358.3,51076,0)
- ;;=M11.241^^222^2467^11
- ;;^UTILITY(U,$J,358.3,51076,1,0)
+ ;;^UTILITY(U,$J,358.3,48646,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Rt Dominant Side
+ ;;^UTILITY(U,$J,358.3,48646,1,4,0)
+ ;;=4^I69.961
+ ;;^UTILITY(U,$J,358.3,48646,2)
+ ;;=^5007564
+ ;;^UTILITY(U,$J,358.3,48647,0)
+ ;;=I69.963^^185^2424^43
+ ;;^UTILITY(U,$J,358.3,48647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51076,1,3,0)
- ;;=3^Chondrocalcinosis, rt hand, oth
- ;;^UTILITY(U,$J,358.3,51076,1,4,0)
- ;;=4^M11.241
- ;;^UTILITY(U,$J,358.3,51076,2)
- ;;=^5010463
- ;;^UTILITY(U,$J,358.3,51077,0)
- ;;=M11.242^^222^2467^3
- ;;^UTILITY(U,$J,358.3,51077,1,0)
+ ;;^UTILITY(U,$J,358.3,48647,1,3,0)
+ ;;=3^Cerebrovascular Disease,Paralytic Syndrome,Rt Nondominant Side
+ ;;^UTILITY(U,$J,358.3,48647,1,4,0)
+ ;;=4^I69.963
+ ;;^UTILITY(U,$J,358.3,48647,2)
+ ;;=^5007565
+ ;;^UTILITY(U,$J,358.3,48648,0)
+ ;;=G90.50^^185^2424^52
+ ;;^UTILITY(U,$J,358.3,48648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51077,1,3,0)
- ;;=3^Chondrocalcinosis, lft hand, oth
- ;;^UTILITY(U,$J,358.3,51077,1,4,0)
- ;;=4^M11.242
- ;;^UTILITY(U,$J,358.3,51077,2)
- ;;=^5133699
- ;;^UTILITY(U,$J,358.3,51078,0)
- ;;=M11.251^^222^2467^12
- ;;^UTILITY(U,$J,358.3,51078,1,0)
+ ;;^UTILITY(U,$J,358.3,48648,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,48648,1,4,0)
+ ;;=4^G90.50
+ ;;^UTILITY(U,$J,358.3,48648,2)
+ ;;=^5004163
+ ;;^UTILITY(U,$J,358.3,48649,0)
+ ;;=R56.9^^185^2424^53
+ ;;^UTILITY(U,$J,358.3,48649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51078,1,3,0)
- ;;=3^Chondrocalcinosis, rt hip, oth
- ;;^UTILITY(U,$J,358.3,51078,1,4,0)
- ;;=4^M11.251
- ;;^UTILITY(U,$J,358.3,51078,2)
- ;;=^5010464
- ;;^UTILITY(U,$J,358.3,51079,0)
- ;;=M11.252^^222^2467^4
- ;;^UTILITY(U,$J,358.3,51079,1,0)
+ ;;^UTILITY(U,$J,358.3,48649,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,48649,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,48649,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,48650,0)
+ ;;=G37.9^^185^2424^54
+ ;;^UTILITY(U,$J,358.3,48650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51079,1,3,0)
- ;;=3^Chondrocalcinosis, lft hip, oth
- ;;^UTILITY(U,$J,358.3,51079,1,4,0)
- ;;=4^M11.252
- ;;^UTILITY(U,$J,358.3,51079,2)
- ;;=^5010465
- ;;^UTILITY(U,$J,358.3,51080,0)
- ;;=M11.261^^222^2467^13
- ;;^UTILITY(U,$J,358.3,51080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51080,1,3,0)
- ;;=3^Chondrocalcinosis, rt knee, oth
- ;;^UTILITY(U,$J,358.3,51080,1,4,0)
- ;;=4^M11.261
- ;;^UTILITY(U,$J,358.3,51080,2)
- ;;=^5010467
- ;;^UTILITY(U,$J,358.3,51081,0)
- ;;=M11.262^^222^2467^5
- ;;^UTILITY(U,$J,358.3,51081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,51081,1,3,0)
- ;;=3^Chondrocalcinosis, lft knee, oth
+ ;;^UTILITY(U,$J,358.3,48650,1,3,0)
+ ;;=3^Demyelinating Disease of Central Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,48650,1,4,0)
+ ;;=4^G37.9
+ ;;^UTILITY(U,$J,358.3,48650,2)
+ ;;=^5003828
+ ;;^UTILITY(U,$J,358.3,48651,0)
+ ;;=G36.9^^185^2424^55

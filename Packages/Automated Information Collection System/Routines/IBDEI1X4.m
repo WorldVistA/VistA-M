@@ -1,132 +1,126 @@
-IBDEI1X4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1X4 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32539,1,4,0)
- ;;=4^G90.523
- ;;^UTILITY(U,$J,358.3,32539,2)
- ;;=^5004169
- ;;^UTILITY(U,$J,358.3,32540,0)
- ;;=G90.522^^126^1618^2
- ;;^UTILITY(U,$J,358.3,32540,1,0)
+ ;;^UTILITY(U,$J,358.3,30637,1,4,0)
+ ;;=4^I31.9
+ ;;^UTILITY(U,$J,358.3,30637,2)
+ ;;=^5007165
+ ;;^UTILITY(U,$J,358.3,30638,0)
+ ;;=I49.9^^123^1579^2
+ ;;^UTILITY(U,$J,358.3,30638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32540,1,3,0)
- ;;=3^Regional Pain Syndrome,Lft Lower Limb,Complex
- ;;^UTILITY(U,$J,358.3,32540,1,4,0)
- ;;=4^G90.522
- ;;^UTILITY(U,$J,358.3,32540,2)
- ;;=^5133371
- ;;^UTILITY(U,$J,358.3,32541,0)
- ;;=G90.521^^126^1618^3
- ;;^UTILITY(U,$J,358.3,32541,1,0)
+ ;;^UTILITY(U,$J,358.3,30638,1,3,0)
+ ;;=3^Arrhythmia,Cardiac,Unspec
+ ;;^UTILITY(U,$J,358.3,30638,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,30638,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,30639,0)
+ ;;=I13.0^^123^1579^9
+ ;;^UTILITY(U,$J,358.3,30639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32541,1,3,0)
- ;;=3^Regional Pain Syndrome,Rt Lower Limb,Complex
- ;;^UTILITY(U,$J,358.3,32541,1,4,0)
- ;;=4^G90.521
- ;;^UTILITY(U,$J,358.3,32541,2)
- ;;=^5004168
- ;;^UTILITY(U,$J,358.3,32542,0)
- ;;=M06.272^^126^1618^10
- ;;^UTILITY(U,$J,358.3,32542,1,0)
+ ;;^UTILITY(U,$J,358.3,30639,1,3,0)
+ ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD,Stage 1-4
+ ;;^UTILITY(U,$J,358.3,30639,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,30639,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,30640,0)
+ ;;=I13.2^^123^1579^10
+ ;;^UTILITY(U,$J,358.3,30640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32542,1,3,0)
- ;;=3^Rheumatoid Bursitis,Lft Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32542,1,4,0)
- ;;=4^M06.272
- ;;^UTILITY(U,$J,358.3,32542,2)
- ;;=^5010092
- ;;^UTILITY(U,$J,358.3,32543,0)
- ;;=M06.271^^126^1618^11
- ;;^UTILITY(U,$J,358.3,32543,1,0)
+ ;;^UTILITY(U,$J,358.3,30640,1,3,0)
+ ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD, Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,30640,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,30640,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,30641,0)
+ ;;=I13.10^^123^1579^11
+ ;;^UTILITY(U,$J,358.3,30641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32543,1,3,0)
- ;;=3^Rheumatoid Bursitis,Rt Ankle/Foot
- ;;^UTILITY(U,$J,358.3,32543,1,4,0)
- ;;=4^M06.271
- ;;^UTILITY(U,$J,358.3,32543,2)
- ;;=^5010091
- ;;^UTILITY(U,$J,358.3,32544,0)
- ;;=Z47.2^^126^1618^4
- ;;^UTILITY(U,$J,358.3,32544,1,0)
+ ;;^UTILITY(U,$J,358.3,30641,1,3,0)
+ ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD, Stage 1-4
+ ;;^UTILITY(U,$J,358.3,30641,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,30641,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,30642,0)
+ ;;=I13.11^^123^1579^12
+ ;;^UTILITY(U,$J,358.3,30642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32544,1,3,0)
- ;;=3^Removal of Internal Fixation Device
- ;;^UTILITY(U,$J,358.3,32544,1,4,0)
- ;;=4^Z47.2
- ;;^UTILITY(U,$J,358.3,32544,2)
- ;;=^5063026
- ;;^UTILITY(U,$J,358.3,32545,0)
- ;;=Z48.89^^126^1619^46
- ;;^UTILITY(U,$J,358.3,32545,1,0)
+ ;;^UTILITY(U,$J,358.3,30642,1,3,0)
+ ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD,Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,30642,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,30642,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,30643,0)
+ ;;=I50.1^^123^1579^15
+ ;;^UTILITY(U,$J,358.3,30643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32545,1,3,0)
- ;;=3^Surg aftercare, oth, spec
- ;;^UTILITY(U,$J,358.3,32545,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,32545,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,32546,0)
- ;;=R20.8^^126^1619^1
- ;;^UTILITY(U,$J,358.3,32546,1,0)
+ ;;^UTILITY(U,$J,358.3,30643,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,30643,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,30643,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,30644,0)
+ ;;=E21.3^^123^1580^17
+ ;;^UTILITY(U,$J,358.3,30644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32546,1,3,0)
- ;;=3^Skin Sensation Disturbance NEC
- ;;^UTILITY(U,$J,358.3,32546,1,4,0)
- ;;=4^R20.8
- ;;^UTILITY(U,$J,358.3,32546,2)
- ;;=^5019281
- ;;^UTILITY(U,$J,358.3,32547,0)
- ;;=L72.2^^126^1619^23
- ;;^UTILITY(U,$J,358.3,32547,1,0)
+ ;;^UTILITY(U,$J,358.3,30644,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,30644,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,30644,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,30645,0)
+ ;;=E78.5^^123^1580^16
+ ;;^UTILITY(U,$J,358.3,30645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32547,1,3,0)
- ;;=3^Steatocystoma multiplex
- ;;^UTILITY(U,$J,358.3,32547,1,4,0)
- ;;=4^L72.2
- ;;^UTILITY(U,$J,358.3,32547,2)
- ;;=^5009280
- ;;^UTILITY(U,$J,358.3,32548,0)
- ;;=S93.301A^^126^1619^40
- ;;^UTILITY(U,$J,358.3,32548,1,0)
+ ;;^UTILITY(U,$J,358.3,30645,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,30645,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,30645,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,30646,0)
+ ;;=M10.30^^123^1580^11
+ ;;^UTILITY(U,$J,358.3,30646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32548,1,3,0)
- ;;=3^Subluxation rt ft, unspec, init enc
- ;;^UTILITY(U,$J,358.3,32548,1,4,0)
- ;;=4^S93.301A
- ;;^UTILITY(U,$J,358.3,32548,2)
- ;;=^5045720
- ;;^UTILITY(U,$J,358.3,32549,0)
- ;;=S93.302A^^126^1619^29
- ;;^UTILITY(U,$J,358.3,32549,1,0)
+ ;;^UTILITY(U,$J,358.3,30646,1,3,0)
+ ;;=3^Gout d/t Renal Impairment,Unspec Site
+ ;;^UTILITY(U,$J,358.3,30646,1,4,0)
+ ;;=4^M10.30
+ ;;^UTILITY(U,$J,358.3,30646,2)
+ ;;=^5010356
+ ;;^UTILITY(U,$J,358.3,30647,0)
+ ;;=E66.9^^123^1580^33
+ ;;^UTILITY(U,$J,358.3,30647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32549,1,3,0)
- ;;=3^Subluxation lft ft, unspec, init enc
- ;;^UTILITY(U,$J,358.3,32549,1,4,0)
- ;;=4^S93.302A
- ;;^UTILITY(U,$J,358.3,32549,2)
- ;;=^5045723
- ;;^UTILITY(U,$J,358.3,32550,0)
- ;;=S93.311A^^126^1619^43
- ;;^UTILITY(U,$J,358.3,32550,1,0)
+ ;;^UTILITY(U,$J,358.3,30647,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,30647,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,30647,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,30648,0)
+ ;;=E66.01^^123^1580^32
+ ;;^UTILITY(U,$J,358.3,30648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32550,1,3,0)
- ;;=3^Subluxation tarsal jnt rt ft, init enc
- ;;^UTILITY(U,$J,358.3,32550,1,4,0)
- ;;=4^S93.311A
- ;;^UTILITY(U,$J,358.3,32550,2)
- ;;=^5045732
- ;;^UTILITY(U,$J,358.3,32551,0)
- ;;=S93.312A^^126^1619^42
- ;;^UTILITY(U,$J,358.3,32551,1,0)
+ ;;^UTILITY(U,$J,358.3,30648,1,3,0)
+ ;;=3^Obesity,Morbid,d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,30648,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,30648,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,30649,0)
+ ;;=D50.9^^123^1580^2
+ ;;^UTILITY(U,$J,358.3,30649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32551,1,3,0)
- ;;=3^Subluxation tarsal jnt lft ft, init enc
- ;;^UTILITY(U,$J,358.3,32551,1,4,0)
- ;;=4^S93.312A
- ;;^UTILITY(U,$J,358.3,32551,2)
- ;;=^5045735
- ;;^UTILITY(U,$J,358.3,32552,0)
- ;;=S93.322A^^126^1619^44
- ;;^UTILITY(U,$J,358.3,32552,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30649,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,30649,1,4,0)
+ ;;=4^D50.9

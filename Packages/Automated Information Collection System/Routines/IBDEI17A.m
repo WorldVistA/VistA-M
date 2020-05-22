@@ -1,134 +1,126 @@
-IBDEI17A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI17A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20410,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,20411,0)
- ;;=M86.20^^84^931^62
- ;;^UTILITY(U,$J,358.3,20411,1,0)
+ ;;^UTILITY(U,$J,358.3,19283,1,4,0)
+ ;;=4^M75.01
+ ;;^UTILITY(U,$J,358.3,19283,2)
+ ;;=^5013239
+ ;;^UTILITY(U,$J,358.3,19284,0)
+ ;;=M81.0^^93^992^5
+ ;;^UTILITY(U,$J,358.3,19284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20411,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,20411,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,20411,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,20412,0)
- ;;=M86.10^^84^931^58
- ;;^UTILITY(U,$J,358.3,20412,1,0)
+ ;;^UTILITY(U,$J,358.3,19284,1,3,0)
+ ;;=3^Age-related osteoporosis w/o current pathological fracture
+ ;;^UTILITY(U,$J,358.3,19284,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,19284,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,19285,0)
+ ;;=M75.22^^93^992^6
+ ;;^UTILITY(U,$J,358.3,19285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20412,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,20412,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,20412,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,20413,0)
- ;;=M86.00^^84^931^57
- ;;^UTILITY(U,$J,358.3,20413,1,0)
+ ;;^UTILITY(U,$J,358.3,19285,1,3,0)
+ ;;=3^Bicipital tendinitis, left shoulder
+ ;;^UTILITY(U,$J,358.3,19285,1,4,0)
+ ;;=4^M75.22
+ ;;^UTILITY(U,$J,358.3,19285,2)
+ ;;=^5013252
+ ;;^UTILITY(U,$J,358.3,19286,0)
+ ;;=M75.21^^93^992^7
+ ;;^UTILITY(U,$J,358.3,19286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20413,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,20413,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,20413,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,20414,0)
- ;;=M86.50^^84^931^59
- ;;^UTILITY(U,$J,358.3,20414,1,0)
+ ;;^UTILITY(U,$J,358.3,19286,1,3,0)
+ ;;=3^Bicipital tendinitis, right shoulder
+ ;;^UTILITY(U,$J,358.3,19286,1,4,0)
+ ;;=4^M75.21
+ ;;^UTILITY(U,$J,358.3,19286,2)
+ ;;=^5013251
+ ;;^UTILITY(U,$J,358.3,19287,0)
+ ;;=M17.0^^93^992^77
+ ;;^UTILITY(U,$J,358.3,19287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20414,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,20414,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,20414,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,20415,0)
- ;;=M86.30^^84^931^60
- ;;^UTILITY(U,$J,358.3,20415,1,0)
+ ;;^UTILITY(U,$J,358.3,19287,1,3,0)
+ ;;=3^Prim Osteoarth,Knee,Bilateral
+ ;;^UTILITY(U,$J,358.3,19287,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,19287,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,19288,0)
+ ;;=M75.52^^93^992^10
+ ;;^UTILITY(U,$J,358.3,19288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20415,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,20415,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,20415,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,20416,0)
- ;;=M86.8X9^^84^931^63
- ;;^UTILITY(U,$J,358.3,20416,1,0)
+ ;;^UTILITY(U,$J,358.3,19288,1,3,0)
+ ;;=3^Bursitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,19288,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,19288,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,19289,0)
+ ;;=M75.51^^93^992^11
+ ;;^UTILITY(U,$J,358.3,19289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20416,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,20416,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,20416,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,20417,0)
- ;;=M86.60^^84^931^61
- ;;^UTILITY(U,$J,358.3,20417,1,0)
+ ;;^UTILITY(U,$J,358.3,19289,1,3,0)
+ ;;=3^Bursitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,19289,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,19289,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,19290,0)
+ ;;=M75.32^^93^992^12
+ ;;^UTILITY(U,$J,358.3,19290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20417,1,3,0)
- ;;=3^Osteomyelitis,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,20417,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,20417,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,20418,0)
- ;;=M86.40^^84^931^56
- ;;^UTILITY(U,$J,358.3,20418,1,0)
+ ;;^UTILITY(U,$J,358.3,19290,1,3,0)
+ ;;=3^Calcific tendinitis of left shoulder
+ ;;^UTILITY(U,$J,358.3,19290,1,4,0)
+ ;;=4^M75.32
+ ;;^UTILITY(U,$J,358.3,19290,2)
+ ;;=^5013255
+ ;;^UTILITY(U,$J,358.3,19291,0)
+ ;;=M75.31^^93^992^13
+ ;;^UTILITY(U,$J,358.3,19291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20418,1,3,0)
- ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,20418,1,4,0)
- ;;=4^M86.40
- ;;^UTILITY(U,$J,358.3,20418,2)
- ;;=^5014583
- ;;^UTILITY(U,$J,358.3,20419,0)
- ;;=R50.2^^84^931^23
- ;;^UTILITY(U,$J,358.3,20419,1,0)
+ ;;^UTILITY(U,$J,358.3,19291,1,3,0)
+ ;;=3^Calcific tendinitis of right shoulder
+ ;;^UTILITY(U,$J,358.3,19291,1,4,0)
+ ;;=4^M75.31
+ ;;^UTILITY(U,$J,358.3,19291,2)
+ ;;=^5013254
+ ;;^UTILITY(U,$J,358.3,19292,0)
+ ;;=M22.42^^93^992^14
+ ;;^UTILITY(U,$J,358.3,19292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20419,1,3,0)
- ;;=3^Fever,Drug-Induced
- ;;^UTILITY(U,$J,358.3,20419,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,20419,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,20420,0)
- ;;=R50.9^^84^931^27
- ;;^UTILITY(U,$J,358.3,20420,1,0)
+ ;;^UTILITY(U,$J,358.3,19292,1,3,0)
+ ;;=3^Chondromalacia patellae, left knee
+ ;;^UTILITY(U,$J,358.3,19292,1,4,0)
+ ;;=4^M22.42
+ ;;^UTILITY(U,$J,358.3,19292,2)
+ ;;=^5011187
+ ;;^UTILITY(U,$J,358.3,19293,0)
+ ;;=M22.41^^93^992^15
+ ;;^UTILITY(U,$J,358.3,19293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20420,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,20420,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,20420,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,20421,0)
- ;;=R76.11^^84^931^1
- ;;^UTILITY(U,$J,358.3,20421,1,0)
+ ;;^UTILITY(U,$J,358.3,19293,1,3,0)
+ ;;=3^Chondromalacia patellae, right knee
+ ;;^UTILITY(U,$J,358.3,19293,1,4,0)
+ ;;=4^M22.41
+ ;;^UTILITY(U,$J,358.3,19293,2)
+ ;;=^5011186
+ ;;^UTILITY(U,$J,358.3,19294,0)
+ ;;=M62.472^^93^992^16
+ ;;^UTILITY(U,$J,358.3,19294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20421,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,20421,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,20421,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,20422,0)
- ;;=Z21.^^84^931^30
- ;;^UTILITY(U,$J,358.3,20422,1,0)
+ ;;^UTILITY(U,$J,358.3,19294,1,3,0)
+ ;;=3^Contracture of muscle, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,19294,1,4,0)
+ ;;=4^M62.472
+ ;;^UTILITY(U,$J,358.3,19294,2)
+ ;;=^5012651
+ ;;^UTILITY(U,$J,358.3,19295,0)
+ ;;=M62.432^^93^992^17
+ ;;^UTILITY(U,$J,358.3,19295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20422,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,20422,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,20422,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,20423,0)
- ;;=B37.0^^84^931^16
- ;;^UTILITY(U,$J,358.3,20423,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20423,1,3,0)
- ;;=3^Candidal Stomatitis (Oral Thrush)
- ;;^UTILITY(U,$J,358.3,20423,1,4,0)
- ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,19295,1,3,0)
+ ;;=3^Contracture of muscle, left forearm
+ ;;^UTILITY(U,$J,358.3,19295,1,4,0)
+ ;;=4^M62.432

@@ -1,5 +1,5 @@
 PSONEW1 ;BIR/DSD - new Rx order entry ; 12/21/18 9:45am
- ;;7.0;OUTPATIENT PHARMACY;**46,104,117,143,422,457**;DEC 1997;Build 116
+ ;;7.0;OUTPATIENT PHARMACY;**46,104,117,143,422,457,574**;DEC 1997;Build 53
  ;External reference ^PS(55 supported by DBIA 2228
  ;
 START ;
@@ -20,9 +20,10 @@ START ;
 31 I $D(^TMP($J,"CLOZFLG",PSODFN)) D  ; Get Dosing
  . S PSONEW("# OF REFILLS")=0
  . S PSONEW("DAYS SUPPLY")=4
- . S PSONEW("DOSE",1)=100
+ . ;Removed default dose for new Clozapine orders PSO*7.0*574
+ . ;S PSONEW("DOSE",1)=100
  . S PSONEW("DOSE ORDERED",1)=1
- . S PSONEW("DURATION",1)=4
+ . ;S PSONEW("DURATION",1)=4   ; to remove "FOR 4 DAYS" from the SIG ; PSO*7.0*574 
  . S PSONEW("QTY")=4
  . S PSONEW("ENT")=1
  . S CLOZFLG=1 ; /MZR Added it to assure check for duration in PSOORED5

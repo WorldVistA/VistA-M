@@ -1,120 +1,128 @@
-IBDEI38S ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI38S ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,54488,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,54488,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,54488,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,54489,0)
- ;;=L97.421^^256^2764^186
- ;;^UTILITY(U,$J,358.3,54489,1,0)
+ ;;^UTILITY(U,$J,358.3,51757,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,51758,0)
+ ;;=B00.81^^193^2513^55
+ ;;^UTILITY(U,$J,358.3,51758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54489,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,54489,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,54489,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,54490,0)
- ;;=L97.422^^256^2764^187
- ;;^UTILITY(U,$J,358.3,54490,1,0)
+ ;;^UTILITY(U,$J,358.3,51758,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,51758,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,51758,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,51759,0)
+ ;;=D25.9^^193^2513^64
+ ;;^UTILITY(U,$J,358.3,51759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54490,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,54490,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,54490,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,54491,0)
- ;;=L97.423^^256^2764^188
- ;;^UTILITY(U,$J,358.3,54491,1,0)
+ ;;^UTILITY(U,$J,358.3,51759,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,51759,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,51759,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,51760,0)
+ ;;=F52.9^^193^2513^103
+ ;;^UTILITY(U,$J,358.3,51760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54491,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,54491,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,54491,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,54492,0)
- ;;=L97.424^^256^2764^189
- ;;^UTILITY(U,$J,358.3,54492,1,0)
+ ;;^UTILITY(U,$J,358.3,51760,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,51760,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,51760,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,51761,0)
+ ;;=R37.^^193^2513^104
+ ;;^UTILITY(U,$J,358.3,51761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54492,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,54492,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,54492,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,54493,0)
- ;;=L97.429^^256^2764^190
- ;;^UTILITY(U,$J,358.3,54493,1,0)
+ ;;^UTILITY(U,$J,358.3,51761,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,51761,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,51761,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,51762,0)
+ ;;=N60.01^^193^2513^107
+ ;;^UTILITY(U,$J,358.3,51762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54493,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,54493,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,54493,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,54494,0)
- ;;=L97.511^^256^2764^211
- ;;^UTILITY(U,$J,358.3,54494,1,0)
+ ;;^UTILITY(U,$J,358.3,51762,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,51762,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,51762,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,51763,0)
+ ;;=N60.02^^193^2513^106
+ ;;^UTILITY(U,$J,358.3,51763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54494,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,54494,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,54494,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,54495,0)
- ;;=L97.512^^256^2764^212
- ;;^UTILITY(U,$J,358.3,54495,1,0)
+ ;;^UTILITY(U,$J,358.3,51763,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,51763,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,51763,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,51764,0)
+ ;;=N60.09^^193^2513^108
+ ;;^UTILITY(U,$J,358.3,51764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54495,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,54495,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,54495,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,54496,0)
- ;;=L97.513^^256^2764^213
- ;;^UTILITY(U,$J,358.3,54496,1,0)
+ ;;^UTILITY(U,$J,358.3,51764,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,51764,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,51764,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,51765,0)
+ ;;=N60.11^^193^2513^27
+ ;;^UTILITY(U,$J,358.3,51765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54496,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,54496,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,54496,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,54497,0)
- ;;=L97.514^^256^2764^214
- ;;^UTILITY(U,$J,358.3,54497,1,0)
+ ;;^UTILITY(U,$J,358.3,51765,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,51765,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,51765,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,51766,0)
+ ;;=N60.12^^193^2513^26
+ ;;^UTILITY(U,$J,358.3,51766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54497,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,54497,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,54497,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,54498,0)
- ;;=L97.519^^256^2764^215
- ;;^UTILITY(U,$J,358.3,54498,1,0)
+ ;;^UTILITY(U,$J,358.3,51766,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,51766,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,51766,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,51767,0)
+ ;;=N64.4^^193^2513^68
+ ;;^UTILITY(U,$J,358.3,51767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54498,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,54498,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,54498,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,54499,0)
- ;;=L97.521^^256^2764^181
- ;;^UTILITY(U,$J,358.3,54499,1,0)
+ ;;^UTILITY(U,$J,358.3,51767,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,51767,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,51767,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,51768,0)
+ ;;=N64.51^^193^2513^60
+ ;;^UTILITY(U,$J,358.3,51768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,54499,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,54499,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,54499,2)
- ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,51768,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,51768,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,51768,2)
+ ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,51769,0)
+ ;;=N64.59^^193^2513^105
+ ;;^UTILITY(U,$J,358.3,51769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,51769,1,3,0)
+ ;;=3^Signs and Symptoms in Breast,Other
+ ;;^UTILITY(U,$J,358.3,51769,1,4,0)
+ ;;=4^N64.59
+ ;;^UTILITY(U,$J,358.3,51769,2)
+ ;;=^5015797
+ ;;^UTILITY(U,$J,358.3,51770,0)
+ ;;=N64.52^^193^2513^71

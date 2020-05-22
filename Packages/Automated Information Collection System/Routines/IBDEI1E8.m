@@ -1,124 +1,130 @@
-IBDEI1E8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1E8 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23668,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23668,1,4,0)
- ;;=4^Y36.810S
- ;;^UTILITY(U,$J,358.3,23668,2)
- ;;=^5061789
- ;;^UTILITY(U,$J,358.3,23669,0)
- ;;=Y36.6X0S^^87^1000^114
- ;;^UTILITY(U,$J,358.3,23669,1,0)
+ ;;^UTILITY(U,$J,358.3,22282,1,4,0)
+ ;;=4^B44.1
+ ;;^UTILITY(U,$J,358.3,22282,2)
+ ;;=^5000664
+ ;;^UTILITY(U,$J,358.3,22283,0)
+ ;;=B44.89^^102^1141^19
+ ;;^UTILITY(U,$J,358.3,22283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23669,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23669,1,4,0)
- ;;=4^Y36.6X0S
- ;;^UTILITY(U,$J,358.3,23669,2)
- ;;=^5061777
- ;;^UTILITY(U,$J,358.3,23670,0)
- ;;=Y36.410S^^87^1000^122
- ;;^UTILITY(U,$J,358.3,23670,1,0)
+ ;;^UTILITY(U,$J,358.3,22283,1,3,0)
+ ;;=3^Aspergillosis NEC
+ ;;^UTILITY(U,$J,358.3,22283,1,4,0)
+ ;;=4^B44.89
+ ;;^UTILITY(U,$J,358.3,22283,2)
+ ;;=^5000667
+ ;;^UTILITY(U,$J,358.3,22284,0)
+ ;;=R78.81^^102^1141^23
+ ;;^UTILITY(U,$J,358.3,22284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23670,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23670,1,4,0)
- ;;=4^Y36.410S
- ;;^UTILITY(U,$J,358.3,23670,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,23671,0)
- ;;=Y36.200S^^87^1000^119
- ;;^UTILITY(U,$J,358.3,23671,1,0)
+ ;;^UTILITY(U,$J,358.3,22284,1,3,0)
+ ;;=3^Bacteremia
+ ;;^UTILITY(U,$J,358.3,22284,1,4,0)
+ ;;=4^R78.81
+ ;;^UTILITY(U,$J,358.3,22284,2)
+ ;;=^12280
+ ;;^UTILITY(U,$J,358.3,22285,0)
+ ;;=T80.219A^^102^1141^24
+ ;;^UTILITY(U,$J,358.3,22285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23671,1,3,0)
- ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23671,1,4,0)
- ;;=4^Y36.200S
- ;;^UTILITY(U,$J,358.3,23671,2)
- ;;=^5061609
- ;;^UTILITY(U,$J,358.3,23672,0)
- ;;=Y36.300S^^87^1000^120
- ;;^UTILITY(U,$J,358.3,23672,1,0)
+ ;;^UTILITY(U,$J,358.3,22285,1,3,0)
+ ;;=3^Bacteremia, associated w/ central venous cath, init encntr
+ ;;^UTILITY(U,$J,358.3,22285,1,4,0)
+ ;;=4^T80.219A
+ ;;^UTILITY(U,$J,358.3,22285,2)
+ ;;=^5054359
+ ;;^UTILITY(U,$J,358.3,22286,0)
+ ;;=B40.2^^102^1141^26
+ ;;^UTILITY(U,$J,358.3,22286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23672,1,3,0)
- ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23672,1,4,0)
- ;;=4^Y36.300S
- ;;^UTILITY(U,$J,358.3,23672,2)
- ;;=^5061663
- ;;^UTILITY(U,$J,358.3,23673,0)
- ;;=Y36.230A^^87^1000^116
- ;;^UTILITY(U,$J,358.3,23673,1,0)
+ ;;^UTILITY(U,$J,358.3,22286,1,3,0)
+ ;;=3^Blastomycosis,Pulmonary
+ ;;^UTILITY(U,$J,358.3,22286,1,4,0)
+ ;;=4^B40.2
+ ;;^UTILITY(U,$J,358.3,22286,2)
+ ;;=^5000641
+ ;;^UTILITY(U,$J,358.3,22287,0)
+ ;;=B40.3^^102^1141^27
+ ;;^UTILITY(U,$J,358.3,22287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23673,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
- ;;^UTILITY(U,$J,358.3,23673,1,4,0)
- ;;=4^Y36.230A
- ;;^UTILITY(U,$J,358.3,23673,2)
- ;;=^5061625
- ;;^UTILITY(U,$J,358.3,23674,0)
- ;;=Y36.230D^^87^1000^117
- ;;^UTILITY(U,$J,358.3,23674,1,0)
+ ;;^UTILITY(U,$J,358.3,22287,1,3,0)
+ ;;=3^Blastomycosis,Skin and soft tissue
+ ;;^UTILITY(U,$J,358.3,22287,1,4,0)
+ ;;=4^B40.3
+ ;;^UTILITY(U,$J,358.3,22287,2)
+ ;;=^5000642
+ ;;^UTILITY(U,$J,358.3,22288,0)
+ ;;=B40.89^^102^1141^25
+ ;;^UTILITY(U,$J,358.3,22288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23674,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23674,1,4,0)
- ;;=4^Y36.230D
- ;;^UTILITY(U,$J,358.3,23674,2)
- ;;=^5061626
- ;;^UTILITY(U,$J,358.3,23675,0)
- ;;=Y36.230S^^87^1000^118
- ;;^UTILITY(U,$J,358.3,23675,1,0)
+ ;;^UTILITY(U,$J,358.3,22288,1,3,0)
+ ;;=3^Blastomycosis NEC
+ ;;^UTILITY(U,$J,358.3,22288,1,4,0)
+ ;;=4^B40.89
+ ;;^UTILITY(U,$J,358.3,22288,2)
+ ;;=^5000645
+ ;;^UTILITY(U,$J,358.3,22289,0)
+ ;;=J20.9^^102^1141^29
+ ;;^UTILITY(U,$J,358.3,22289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23675,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
- ;;^UTILITY(U,$J,358.3,23675,1,4,0)
- ;;=4^Y36.230S
- ;;^UTILITY(U,$J,358.3,23675,2)
- ;;=^5061627
- ;;^UTILITY(U,$J,358.3,23676,0)
- ;;=Y36.7X0S^^87^1000^130
- ;;^UTILITY(U,$J,358.3,23676,1,0)
+ ;;^UTILITY(U,$J,358.3,22289,1,3,0)
+ ;;=3^Bronchitis, Acute
+ ;;^UTILITY(U,$J,358.3,22289,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,22289,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,22290,0)
+ ;;=B37.42^^102^1141^31
+ ;;^UTILITY(U,$J,358.3,22290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23676,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23676,1,4,0)
- ;;=4^Y36.7X0S
- ;;^UTILITY(U,$J,358.3,23676,2)
- ;;=^5061783
- ;;^UTILITY(U,$J,358.3,23677,0)
- ;;=F02.81^^87^1001^11
- ;;^UTILITY(U,$J,358.3,23677,1,0)
+ ;;^UTILITY(U,$J,358.3,22290,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,22290,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,22290,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,22291,0)
+ ;;=B37.3^^102^1141^38
+ ;;^UTILITY(U,$J,358.3,22291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23677,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23677,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,23677,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,23678,0)
- ;;=F02.80^^87^1001^12
- ;;^UTILITY(U,$J,358.3,23678,1,0)
+ ;;^UTILITY(U,$J,358.3,22291,1,3,0)
+ ;;=3^Candidiasis,Vulvovaginal
+ ;;^UTILITY(U,$J,358.3,22291,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,22291,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,22292,0)
+ ;;=B37.2^^102^1141^35
+ ;;^UTILITY(U,$J,358.3,22292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23678,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23678,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,23678,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,23679,0)
- ;;=F03.91^^87^1001^13
- ;;^UTILITY(U,$J,358.3,23679,1,0)
+ ;;^UTILITY(U,$J,358.3,22292,1,3,0)
+ ;;=3^Candidiasis,Intertriginal
+ ;;^UTILITY(U,$J,358.3,22292,1,4,0)
+ ;;=4^B37.2
+ ;;^UTILITY(U,$J,358.3,22292,2)
+ ;;=^5000614
+ ;;^UTILITY(U,$J,358.3,22293,0)
+ ;;=B37.81^^102^1141^34
+ ;;^UTILITY(U,$J,358.3,22293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23679,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,23679,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,23679,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,23680,0)
- ;;=G31.83^^87^1001^14
- ;;^UTILITY(U,$J,358.3,23680,1,0)
+ ;;^UTILITY(U,$J,358.3,22293,1,3,0)
+ ;;=3^Candidiasis,Esophageal
+ ;;^UTILITY(U,$J,358.3,22293,1,4,0)
+ ;;=4^B37.81
+ ;;^UTILITY(U,$J,358.3,22293,2)
+ ;;=b377^5000620
+ ;;^UTILITY(U,$J,358.3,22294,0)
+ ;;=B37.7^^102^1141^32
+ ;;^UTILITY(U,$J,358.3,22294,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22294,1,3,0)
+ ;;=3^Candidal Sepsis
+ ;;^UTILITY(U,$J,358.3,22294,1,4,0)
+ ;;=4^B37.7
+ ;;^UTILITY(U,$J,358.3,22294,2)
+ ;;=^5000619
+ ;;^UTILITY(U,$J,358.3,22295,0)
+ ;;=B37.0^^102^1141^36

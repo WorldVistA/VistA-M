@@ -1,130 +1,122 @@
-IBDEI2JS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2JS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43217,1,0)
+ ;;^UTILITY(U,$J,358.3,40674,0)
+ ;;=F17.210^^152^2014^30
+ ;;^UTILITY(U,$J,358.3,40674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43217,1,3,0)
- ;;=3^Compl of Surg/Med Care,Init Encntr
- ;;^UTILITY(U,$J,358.3,43217,1,4,0)
- ;;=4^T88.8XXA
- ;;^UTILITY(U,$J,358.3,43217,2)
- ;;=^5055814
- ;;^UTILITY(U,$J,358.3,43218,0)
- ;;=T81.31XA^^164^2065^3
- ;;^UTILITY(U,$J,358.3,43218,1,0)
+ ;;^UTILITY(U,$J,358.3,40674,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40674,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,40674,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,40675,0)
+ ;;=F17.291^^152^2014^32
+ ;;^UTILITY(U,$J,358.3,40675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43218,1,3,0)
- ;;=3^Disruption of External Surg Wound,Init Encntr
- ;;^UTILITY(U,$J,358.3,43218,1,4,0)
- ;;=4^T81.31XA
- ;;^UTILITY(U,$J,358.3,43218,2)
- ;;=^5054470
- ;;^UTILITY(U,$J,358.3,43219,0)
- ;;=T81.4XXA^^164^2065^4
- ;;^UTILITY(U,$J,358.3,43219,1,0)
+ ;;^UTILITY(U,$J,358.3,40675,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,40675,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,40675,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,40676,0)
+ ;;=F17.290^^152^2014^33
+ ;;^UTILITY(U,$J,358.3,40676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43219,1,3,0)
- ;;=3^Infection Following Procedure,Init Encntr
- ;;^UTILITY(U,$J,358.3,43219,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,43219,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,43220,0)
- ;;=T81.83XA^^164^2065^5
- ;;^UTILITY(U,$J,358.3,43220,1,0)
+ ;;^UTILITY(U,$J,358.3,40676,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40676,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,40676,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,40677,0)
+ ;;=F17.221^^152^2014^27
+ ;;^UTILITY(U,$J,358.3,40677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43220,1,3,0)
- ;;=3^Persistent Postprocedural Fistual,Init Encntr
- ;;^UTILITY(U,$J,358.3,43220,1,4,0)
- ;;=4^T81.83XA
- ;;^UTILITY(U,$J,358.3,43220,2)
- ;;=^5054659
- ;;^UTILITY(U,$J,358.3,43221,0)
- ;;=T81.89XA^^164^2065^1
- ;;^UTILITY(U,$J,358.3,43221,1,0)
+ ;;^UTILITY(U,$J,358.3,40677,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,40677,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,40677,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,40678,0)
+ ;;=F17.220^^152^2014^28
+ ;;^UTILITY(U,$J,358.3,40678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43221,1,3,0)
- ;;=3^Compl of Procedure NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,43221,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,43221,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,43222,0)
- ;;=C34.11^^164^2066^13
- ;;^UTILITY(U,$J,358.3,43222,1,0)
+ ;;^UTILITY(U,$J,358.3,40678,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40678,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,40678,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,40679,0)
+ ;;=F17.211^^152^2014^29
+ ;;^UTILITY(U,$J,358.3,40679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43222,1,3,0)
- ;;=3^Malig Neop,Upper Lobe,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,43222,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,43222,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,43223,0)
- ;;=C34.12^^164^2066^12
- ;;^UTILITY(U,$J,358.3,43223,1,0)
+ ;;^UTILITY(U,$J,358.3,40679,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,40679,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,40679,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,40680,0)
+ ;;=F17.200^^152^2014^34
+ ;;^UTILITY(U,$J,358.3,40680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43223,1,3,0)
- ;;=3^Malig Neop,Upper Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,43223,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,43223,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,43224,0)
- ;;=C34.2^^164^2066^7
- ;;^UTILITY(U,$J,358.3,43224,1,0)
+ ;;^UTILITY(U,$J,358.3,40680,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40680,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,40680,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,40681,0)
+ ;;=F11.120^^152^2014^35
+ ;;^UTILITY(U,$J,358.3,40681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43224,1,3,0)
- ;;=3^Malig Neop,Middle Lobe,Lung
- ;;^UTILITY(U,$J,358.3,43224,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,43224,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,43225,0)
- ;;=C34.31^^164^2066^6
- ;;^UTILITY(U,$J,358.3,43225,1,0)
+ ;;^UTILITY(U,$J,358.3,40681,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40681,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,40681,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,40682,0)
+ ;;=F11.10^^152^2014^38
+ ;;^UTILITY(U,$J,358.3,40682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43225,1,3,0)
- ;;=3^Malig Neop,Lower Lobe,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,43225,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,43225,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,43226,0)
- ;;=C34.32^^164^2066^5
- ;;^UTILITY(U,$J,358.3,43226,1,0)
+ ;;^UTILITY(U,$J,358.3,40682,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40682,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,40682,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,40683,0)
+ ;;=F11.129^^152^2014^36
+ ;;^UTILITY(U,$J,358.3,40683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43226,1,3,0)
- ;;=3^Malig Neop,Lower Lobe,Lt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,43226,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,43226,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,43227,0)
- ;;=C34.81^^164^2066^9
- ;;^UTILITY(U,$J,358.3,43227,1,0)
+ ;;^UTILITY(U,$J,358.3,40683,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,40683,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,40683,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,40684,0)
+ ;;=F10.21^^152^2014^4
+ ;;^UTILITY(U,$J,358.3,40684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43227,1,3,0)
- ;;=3^Malig Neop,Overlapping,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,43227,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,43227,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,43228,0)
- ;;=C34.82^^164^2066^8
- ;;^UTILITY(U,$J,358.3,43228,1,0)
+ ;;^UTILITY(U,$J,358.3,40684,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,40684,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,40684,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,40685,0)
+ ;;=F12.10^^152^2014^7
+ ;;^UTILITY(U,$J,358.3,40685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43228,1,3,0)
- ;;=3^Malig Neop,Overlapping,Lt Bronch/Lung
- ;;^UTILITY(U,$J,358.3,43228,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,43228,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,43229,0)
- ;;=C34.91^^164^2066^11
- ;;^UTILITY(U,$J,358.3,43229,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43229,1,3,0)
- ;;=3^Malig Neop,Unspec Part,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,43229,1,4,0)
- ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,40685,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40685,1,4,0)
+ ;;=4^F12.10

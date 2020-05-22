@@ -1,126 +1,126 @@
-IBDEI2GQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2GQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41768,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,41768,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,41768,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,41769,0)
- ;;=M45.4^^159^2010^7
- ;;^UTILITY(U,$J,358.3,41769,1,0)
+ ;;^UTILITY(U,$J,358.3,39331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41769,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,41769,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,41769,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,41770,0)
- ;;=M45.7^^159^2010^4
- ;;^UTILITY(U,$J,358.3,41770,1,0)
+ ;;^UTILITY(U,$J,358.3,39331,1,3,0)
+ ;;=3^Congestive Splenomegaly,Chronic
+ ;;^UTILITY(U,$J,358.3,39331,1,4,0)
+ ;;=4^D73.2
+ ;;^UTILITY(U,$J,358.3,39331,2)
+ ;;=^268000
+ ;;^UTILITY(U,$J,358.3,39332,0)
+ ;;=I85.00^^152^1996^53
+ ;;^UTILITY(U,$J,358.3,39332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41770,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,41770,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,41770,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,41771,0)
- ;;=M45.8^^159^2010^5
- ;;^UTILITY(U,$J,358.3,41771,1,0)
+ ;;^UTILITY(U,$J,358.3,39332,1,3,0)
+ ;;=3^Esophageal Varices w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,39332,1,4,0)
+ ;;=4^I85.00
+ ;;^UTILITY(U,$J,358.3,39332,2)
+ ;;=^5008023
+ ;;^UTILITY(U,$J,358.3,39333,0)
+ ;;=K20.9^^152^1996^54
+ ;;^UTILITY(U,$J,358.3,39333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41771,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,41771,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,41771,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,41772,0)
- ;;=M47.22^^159^2010^172
- ;;^UTILITY(U,$J,358.3,41772,1,0)
+ ;;^UTILITY(U,$J,358.3,39333,1,3,0)
+ ;;=3^Esophagitis,Unspec
+ ;;^UTILITY(U,$J,358.3,39333,1,4,0)
+ ;;=4^K20.9
+ ;;^UTILITY(U,$J,358.3,39333,2)
+ ;;=^295809
+ ;;^UTILITY(U,$J,358.3,39334,0)
+ ;;=K21.9^^152^1996^62
+ ;;^UTILITY(U,$J,358.3,39334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41772,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,41772,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,41772,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,41773,0)
- ;;=M47.24^^159^2010^174
- ;;^UTILITY(U,$J,358.3,41773,1,0)
+ ;;^UTILITY(U,$J,358.3,39334,1,3,0)
+ ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,39334,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,39334,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,39335,0)
+ ;;=K25.7^^152^1996^57
+ ;;^UTILITY(U,$J,358.3,39335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41773,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,41773,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,41773,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,41774,0)
- ;;=M47.27^^159^2010^173
- ;;^UTILITY(U,$J,358.3,41774,1,0)
+ ;;^UTILITY(U,$J,358.3,39335,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
+ ;;^UTILITY(U,$J,358.3,39335,1,4,0)
+ ;;=4^K25.7
+ ;;^UTILITY(U,$J,358.3,39335,2)
+ ;;=^5008521
+ ;;^UTILITY(U,$J,358.3,39336,0)
+ ;;=K26.9^^152^1996^49
+ ;;^UTILITY(U,$J,358.3,39336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41774,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,41774,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,41774,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,41775,0)
- ;;=M47.812^^159^2010^169
- ;;^UTILITY(U,$J,358.3,41775,1,0)
+ ;;^UTILITY(U,$J,358.3,39336,1,3,0)
+ ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,39336,1,4,0)
+ ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,39336,2)
+ ;;=^5008527
+ ;;^UTILITY(U,$J,358.3,39337,0)
+ ;;=K27.9^^152^1996^82
+ ;;^UTILITY(U,$J,358.3,39337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41775,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,41775,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,41775,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,41776,0)
- ;;=M47.814^^159^2010^170
- ;;^UTILITY(U,$J,358.3,41776,1,0)
+ ;;^UTILITY(U,$J,358.3,39337,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,39337,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,39337,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,39338,0)
+ ;;=K29.70^^152^1996^58
+ ;;^UTILITY(U,$J,358.3,39338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41776,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,41776,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,41776,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,41777,0)
- ;;=M47.817^^159^2010^171
- ;;^UTILITY(U,$J,358.3,41777,1,0)
+ ;;^UTILITY(U,$J,358.3,39338,1,3,0)
+ ;;=3^Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,39338,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,39338,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,39339,0)
+ ;;=K29.90^^152^1996^59
+ ;;^UTILITY(U,$J,358.3,39339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41777,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,41777,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,41777,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,41778,0)
- ;;=M48.50XA^^159^2010^21
- ;;^UTILITY(U,$J,358.3,41778,1,0)
+ ;;^UTILITY(U,$J,358.3,39339,1,3,0)
+ ;;=3^Gastroduodenitis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,39339,1,4,0)
+ ;;=4^K29.90
+ ;;^UTILITY(U,$J,358.3,39339,2)
+ ;;=^5008556
+ ;;^UTILITY(U,$J,358.3,39340,0)
+ ;;=K30.^^152^1996^50
+ ;;^UTILITY(U,$J,358.3,39340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41778,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,41778,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,41778,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,41779,0)
- ;;=M48.50XD^^159^2010^22
- ;;^UTILITY(U,$J,358.3,41779,1,0)
+ ;;^UTILITY(U,$J,358.3,39340,1,3,0)
+ ;;=3^Dyspepsia,Functional
+ ;;^UTILITY(U,$J,358.3,39340,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,39340,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,39341,0)
+ ;;=K31.89^^152^1996^39
+ ;;^UTILITY(U,$J,358.3,39341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41779,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,41779,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,41779,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,41780,0)
- ;;=M48.52XA^^159^2010^23
- ;;^UTILITY(U,$J,358.3,41780,1,0)
+ ;;^UTILITY(U,$J,358.3,39341,1,3,0)
+ ;;=3^Diseases of Stomach & Duodenum,Other
+ ;;^UTILITY(U,$J,358.3,39341,1,4,0)
+ ;;=4^K31.89
+ ;;^UTILITY(U,$J,358.3,39341,2)
+ ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,39342,0)
+ ;;=K31.9^^152^1996^38
+ ;;^UTILITY(U,$J,358.3,39342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41780,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39342,1,3,0)
+ ;;=3^Disease of Stomach & Duodenum,Unspec
+ ;;^UTILITY(U,$J,358.3,39342,1,4,0)
+ ;;=4^K31.9
+ ;;^UTILITY(U,$J,358.3,39342,2)
+ ;;=^5008570
+ ;;^UTILITY(U,$J,358.3,39343,0)
+ ;;=K40.90^^152^1996^75
+ ;;^UTILITY(U,$J,358.3,39343,1,0)
+ ;;=^358.31IA^4^2

@@ -1,124 +1,130 @@
-IBDEI2IE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2IE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42537,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,42537,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,42538,0)
- ;;=Y04.1XXD^^159^2023^2
- ;;^UTILITY(U,$J,358.3,42538,1,0)
+ ;;^UTILITY(U,$J,358.3,40064,1,4,0)
+ ;;=4^F42.2
+ ;;^UTILITY(U,$J,358.3,40064,2)
+ ;;=^5138444
+ ;;^UTILITY(U,$J,358.3,40065,0)
+ ;;=F42.9^^152^2004^19
+ ;;^UTILITY(U,$J,358.3,40065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42538,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42538,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,42538,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,42539,0)
- ;;=Y04.2XXA^^159^2023^5
- ;;^UTILITY(U,$J,358.3,42539,1,0)
+ ;;^UTILITY(U,$J,358.3,40065,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40065,1,4,0)
+ ;;=4^F42.9
+ ;;^UTILITY(U,$J,358.3,40065,2)
+ ;;=^5138448
+ ;;^UTILITY(U,$J,358.3,40066,0)
+ ;;=F42.8^^152^2004^18
+ ;;^UTILITY(U,$J,358.3,40066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42539,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,42539,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,42539,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,42540,0)
- ;;=Y04.8XXA^^159^2023^3
- ;;^UTILITY(U,$J,358.3,42540,1,0)
+ ;;^UTILITY(U,$J,358.3,40066,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder,Other
+ ;;^UTILITY(U,$J,358.3,40066,1,4,0)
+ ;;=4^F42.8
+ ;;^UTILITY(U,$J,358.3,40066,2)
+ ;;=^5138447
+ ;;^UTILITY(U,$J,358.3,40067,0)
+ ;;=F50.89^^152^2004^10
+ ;;^UTILITY(U,$J,358.3,40067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42540,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,42540,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,42540,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,42541,0)
- ;;=Y04.2XXD^^159^2023^6
- ;;^UTILITY(U,$J,358.3,42541,1,0)
+ ;;^UTILITY(U,$J,358.3,40067,1,3,0)
+ ;;=3^Eating Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,40067,1,4,0)
+ ;;=4^F50.89
+ ;;^UTILITY(U,$J,358.3,40067,2)
+ ;;=^5138449
+ ;;^UTILITY(U,$J,358.3,40068,0)
+ ;;=R41.0^^152^2004^9
+ ;;^UTILITY(U,$J,358.3,40068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42541,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42541,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,42541,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,42542,0)
- ;;=Y04.8XXD^^159^2023^4
- ;;^UTILITY(U,$J,358.3,42542,1,0)
+ ;;^UTILITY(U,$J,358.3,40068,1,3,0)
+ ;;=3^Delirium,Disorientation NOS
+ ;;^UTILITY(U,$J,358.3,40068,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,40068,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,40069,0)
+ ;;=R56.00^^152^2005^6
+ ;;^UTILITY(U,$J,358.3,40069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42542,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42542,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,42542,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,42543,0)
- ;;=Y36.200A^^159^2023^124
- ;;^UTILITY(U,$J,358.3,42543,1,0)
+ ;;^UTILITY(U,$J,358.3,40069,1,3,0)
+ ;;=3^Simple Febrile Convulsions
+ ;;^UTILITY(U,$J,358.3,40069,1,4,0)
+ ;;=4^R56.00
+ ;;^UTILITY(U,$J,358.3,40069,2)
+ ;;=^5019522
+ ;;^UTILITY(U,$J,358.3,40070,0)
+ ;;=R56.9^^152^2005^4
+ ;;^UTILITY(U,$J,358.3,40070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42543,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42543,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,42543,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,42544,0)
- ;;=Y36.200D^^159^2023^125
- ;;^UTILITY(U,$J,358.3,42544,1,0)
+ ;;^UTILITY(U,$J,358.3,40070,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,40070,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,40070,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,40071,0)
+ ;;=R25.0^^152^2005^1
+ ;;^UTILITY(U,$J,358.3,40071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42544,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42544,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,42544,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,42545,0)
- ;;=Y36.300A^^159^2023^126
- ;;^UTILITY(U,$J,358.3,42545,1,0)
+ ;;^UTILITY(U,$J,358.3,40071,1,3,0)
+ ;;=3^Abnormal Head Movements
+ ;;^UTILITY(U,$J,358.3,40071,1,4,0)
+ ;;=4^R25.0
+ ;;^UTILITY(U,$J,358.3,40071,2)
+ ;;=^5019299
+ ;;^UTILITY(U,$J,358.3,40072,0)
+ ;;=R25.1^^152^2005^7
+ ;;^UTILITY(U,$J,358.3,40072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42545,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42545,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,42545,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,42546,0)
- ;;=Y36.300D^^159^2023^127
- ;;^UTILITY(U,$J,358.3,42546,1,0)
+ ;;^UTILITY(U,$J,358.3,40072,1,3,0)
+ ;;=3^Tremor,Unspec
+ ;;^UTILITY(U,$J,358.3,40072,1,4,0)
+ ;;=4^R25.1
+ ;;^UTILITY(U,$J,358.3,40072,2)
+ ;;=^5019300
+ ;;^UTILITY(U,$J,358.3,40073,0)
+ ;;=R25.9^^152^2005^3
+ ;;^UTILITY(U,$J,358.3,40073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42546,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42546,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,42546,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,42547,0)
- ;;=Y36.410A^^159^2023^121
- ;;^UTILITY(U,$J,358.3,42547,1,0)
+ ;;^UTILITY(U,$J,358.3,40073,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Unspec
+ ;;^UTILITY(U,$J,358.3,40073,1,4,0)
+ ;;=4^R25.9
+ ;;^UTILITY(U,$J,358.3,40073,2)
+ ;;=^5019303
+ ;;^UTILITY(U,$J,358.3,40074,0)
+ ;;=R25.3^^152^2005^5
+ ;;^UTILITY(U,$J,358.3,40074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42547,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,42547,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,42547,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,42548,0)
- ;;=Y36.410D^^159^2023^123
- ;;^UTILITY(U,$J,358.3,42548,1,0)
+ ;;^UTILITY(U,$J,358.3,40074,1,3,0)
+ ;;=3^Fasciculation/Twitching
+ ;;^UTILITY(U,$J,358.3,40074,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,40074,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,40075,0)
+ ;;=R25.8^^152^2005^2
+ ;;^UTILITY(U,$J,358.3,40075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42548,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,42548,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,42548,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,42549,0)
- ;;=Y36.6X0A^^159^2023^113
- ;;^UTILITY(U,$J,358.3,42549,1,0)
+ ;;^UTILITY(U,$J,358.3,40075,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Other
+ ;;^UTILITY(U,$J,358.3,40075,1,4,0)
+ ;;=4^R25.8
+ ;;^UTILITY(U,$J,358.3,40075,2)
+ ;;=^5019302
+ ;;^UTILITY(U,$J,358.3,40076,0)
+ ;;=M02.30^^152^2006^147
+ ;;^UTILITY(U,$J,358.3,40076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42549,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40076,1,3,0)
+ ;;=3^Reiter's Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,40076,1,4,0)
+ ;;=4^M02.30
+ ;;^UTILITY(U,$J,358.3,40076,2)
+ ;;=^5009790
+ ;;^UTILITY(U,$J,358.3,40077,0)
+ ;;=M10.9^^152^2006^41

@@ -1,134 +1,124 @@
-IBDEI1H9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1H9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25083,1,0)
+ ;;^UTILITY(U,$J,358.3,23627,0)
+ ;;=F12.23^^105^1177^2
+ ;;^UTILITY(U,$J,358.3,23627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25083,1,3,0)
- ;;=3^Developmental Coordination Disorder
- ;;^UTILITY(U,$J,358.3,25083,1,4,0)
- ;;=4^F82.
- ;;^UTILITY(U,$J,358.3,25083,2)
- ;;=^5003683
- ;;^UTILITY(U,$J,358.3,25084,0)
- ;;=F98.5^^93^1134^4
- ;;^UTILITY(U,$J,358.3,25084,1,0)
+ ;;^UTILITY(U,$J,358.3,23627,1,3,0)
+ ;;=3^Cannabis Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,23627,1,4,0)
+ ;;=4^F12.23
+ ;;^UTILITY(U,$J,358.3,23627,2)
+ ;;=^5157301
+ ;;^UTILITY(U,$J,358.3,23628,0)
+ ;;=F12.93^^105^1177^6
+ ;;^UTILITY(U,$J,358.3,23628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25084,1,3,0)
- ;;=3^Fluency Disorder,Adult-Onset
- ;;^UTILITY(U,$J,358.3,25084,1,4,0)
- ;;=4^F98.5
- ;;^UTILITY(U,$J,358.3,25084,2)
- ;;=^5003717
- ;;^UTILITY(U,$J,358.3,25085,0)
- ;;=F88.^^93^1134^5
- ;;^UTILITY(U,$J,358.3,25085,1,0)
+ ;;^UTILITY(U,$J,358.3,23628,1,3,0)
+ ;;=3^Cannabis Use,Unsp w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,23628,1,4,0)
+ ;;=4^F12.93
+ ;;^UTILITY(U,$J,358.3,23628,2)
+ ;;=^5157302
+ ;;^UTILITY(U,$J,358.3,23629,0)
+ ;;=F14.10^^105^1178^2
+ ;;^UTILITY(U,$J,358.3,23629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25085,1,3,0)
- ;;=3^Global Developmental Delay
- ;;^UTILITY(U,$J,358.3,25085,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,25085,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,25086,0)
- ;;=F80.2^^93^1134^6
- ;;^UTILITY(U,$J,358.3,25086,1,0)
+ ;;^UTILITY(U,$J,358.3,23629,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,23629,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,23629,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,23630,0)
+ ;;=F14.14^^105^1178^6
+ ;;^UTILITY(U,$J,358.3,23630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25086,1,3,0)
- ;;=3^Language Disorder
- ;;^UTILITY(U,$J,358.3,25086,1,4,0)
- ;;=4^F80.2
- ;;^UTILITY(U,$J,358.3,25086,2)
- ;;=^331959
- ;;^UTILITY(U,$J,358.3,25087,0)
- ;;=F81.2^^93^1134^7
- ;;^UTILITY(U,$J,358.3,25087,1,0)
+ ;;^UTILITY(U,$J,358.3,23630,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23630,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,23630,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,23631,0)
+ ;;=F14.182^^105^1178^7
+ ;;^UTILITY(U,$J,358.3,23631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25087,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Mathematics
- ;;^UTILITY(U,$J,358.3,25087,1,4,0)
- ;;=4^F81.2
- ;;^UTILITY(U,$J,358.3,25087,2)
- ;;=^331957
- ;;^UTILITY(U,$J,358.3,25088,0)
- ;;=F81.0^^93^1134^8
- ;;^UTILITY(U,$J,358.3,25088,1,0)
+ ;;^UTILITY(U,$J,358.3,23631,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23631,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,23631,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,23632,0)
+ ;;=F14.20^^105^1178^4
+ ;;^UTILITY(U,$J,358.3,23632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25088,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Reading
- ;;^UTILITY(U,$J,358.3,25088,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,25088,2)
- ;;=^5003679
- ;;^UTILITY(U,$J,358.3,25089,0)
- ;;=F81.81^^93^1134^9
- ;;^UTILITY(U,$J,358.3,25089,1,0)
+ ;;^UTILITY(U,$J,358.3,23632,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,23632,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,23632,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,23633,0)
+ ;;=F14.21^^105^1178^3
+ ;;^UTILITY(U,$J,358.3,23633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25089,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Writing
- ;;^UTILITY(U,$J,358.3,25089,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,25089,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,25090,0)
- ;;=F88.^^93^1134^10
- ;;^UTILITY(U,$J,358.3,25090,1,0)
+ ;;^UTILITY(U,$J,358.3,23633,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,23633,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,23633,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,23634,0)
+ ;;=F14.23^^105^1178^5
+ ;;^UTILITY(U,$J,358.3,23634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25090,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,25090,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,25090,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,25091,0)
- ;;=F89.^^93^1134^11
- ;;^UTILITY(U,$J,358.3,25091,1,0)
+ ;;^UTILITY(U,$J,358.3,23634,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,23634,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,23634,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,23635,0)
+ ;;=F14.11^^105^1178^1
+ ;;^UTILITY(U,$J,358.3,23635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25091,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25091,1,4,0)
- ;;=4^F89.
- ;;^UTILITY(U,$J,358.3,25091,2)
- ;;=^5003691
- ;;^UTILITY(U,$J,358.3,25092,0)
- ;;=F95.1^^93^1134^12
- ;;^UTILITY(U,$J,358.3,25092,1,0)
+ ;;^UTILITY(U,$J,358.3,23635,1,3,0)
+ ;;=3^Cocaine Abuse,In Remission
+ ;;^UTILITY(U,$J,358.3,23635,1,4,0)
+ ;;=4^F14.11
+ ;;^UTILITY(U,$J,358.3,23635,2)
+ ;;=^268249
+ ;;^UTILITY(U,$J,358.3,23636,0)
+ ;;=F16.10^^105^1179^2
+ ;;^UTILITY(U,$J,358.3,23636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25092,1,3,0)
- ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
- ;;^UTILITY(U,$J,358.3,25092,1,4,0)
- ;;=4^F95.1
- ;;^UTILITY(U,$J,358.3,25092,2)
- ;;=^331941
- ;;^UTILITY(U,$J,358.3,25093,0)
- ;;=F95.0^^93^1134^13
- ;;^UTILITY(U,$J,358.3,25093,1,0)
+ ;;^UTILITY(U,$J,358.3,23636,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,23636,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,23636,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,23637,0)
+ ;;=F16.20^^105^1179^3
+ ;;^UTILITY(U,$J,358.3,23637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25093,1,3,0)
- ;;=3^Provisional Tic Disorder
- ;;^UTILITY(U,$J,358.3,25093,1,4,0)
- ;;=4^F95.0
- ;;^UTILITY(U,$J,358.3,25093,2)
- ;;=^331940
- ;;^UTILITY(U,$J,358.3,25094,0)
- ;;=F80.89^^93^1134^14
- ;;^UTILITY(U,$J,358.3,25094,1,0)
+ ;;^UTILITY(U,$J,358.3,23637,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,23637,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,23637,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,23638,0)
+ ;;=F16.21^^105^1179^4
+ ;;^UTILITY(U,$J,358.3,23638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25094,1,3,0)
- ;;=3^Social Pragmatic Communication Disorder
- ;;^UTILITY(U,$J,358.3,25094,1,4,0)
- ;;=4^F80.89
- ;;^UTILITY(U,$J,358.3,25094,2)
- ;;=^5003677
- ;;^UTILITY(U,$J,358.3,25095,0)
- ;;=F80.0^^93^1134^15
- ;;^UTILITY(U,$J,358.3,25095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25095,1,3,0)
- ;;=3^Speech Sound Disorder
- ;;^UTILITY(U,$J,358.3,25095,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,25095,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,25096,0)
- ;;=F98.4^^93^1134^16
+ ;;^UTILITY(U,$J,358.3,23638,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,23638,1,4,0)
+ ;;=4^F16.21
+ ;;^UTILITY(U,$J,358.3,23638,2)
+ ;;=^5003337

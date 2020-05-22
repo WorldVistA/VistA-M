@@ -1,128 +1,126 @@
-IBDEI1CQ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1CQ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22974,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,22974,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,22975,0)
- ;;=M48.52XG^^87^987^19
- ;;^UTILITY(U,$J,358.3,22975,1,0)
+ ;;^UTILITY(U,$J,358.3,21600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22975,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,22975,1,4,0)
- ;;=4^M48.52XG
- ;;^UTILITY(U,$J,358.3,22975,2)
- ;;=^5012169
- ;;^UTILITY(U,$J,358.3,22976,0)
- ;;=M48.52XS^^87^987^20
- ;;^UTILITY(U,$J,358.3,22976,1,0)
+ ;;^UTILITY(U,$J,358.3,21600,1,3,0)
+ ;;=3^Acquired Absence Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,21600,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,21600,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,21601,0)
+ ;;=D51.9^^99^1096^13
+ ;;^UTILITY(U,$J,358.3,21601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22976,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,22976,1,4,0)
- ;;=4^M48.52XS
- ;;^UTILITY(U,$J,358.3,22976,2)
- ;;=^5012170
- ;;^UTILITY(U,$J,358.3,22977,0)
- ;;=M48.57XG^^87^987^27
- ;;^UTILITY(U,$J,358.3,22977,1,0)
+ ;;^UTILITY(U,$J,358.3,21601,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,21601,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,21601,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,21602,0)
+ ;;=I50.811^^99^1096^6
+ ;;^UTILITY(U,$J,358.3,21602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22977,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,22977,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,22977,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,22978,0)
- ;;=M48.57XS^^87^987^28
- ;;^UTILITY(U,$J,358.3,22978,1,0)
+ ;;^UTILITY(U,$J,358.3,21602,1,3,0)
+ ;;=3^Acute Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,21602,1,4,0)
+ ;;=4^I50.811
+ ;;^UTILITY(U,$J,358.3,21602,2)
+ ;;=^5151385
+ ;;^UTILITY(U,$J,358.3,21603,0)
+ ;;=I50.813^^99^1096^7
+ ;;^UTILITY(U,$J,358.3,21603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22978,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,22978,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,22978,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,22979,0)
- ;;=M48.54XD^^87^987^29
- ;;^UTILITY(U,$J,358.3,22979,1,0)
+ ;;^UTILITY(U,$J,358.3,21603,1,3,0)
+ ;;=3^Acute on Chronic Right Heart Failure
+ ;;^UTILITY(U,$J,358.3,21603,1,4,0)
+ ;;=4^I50.813
+ ;;^UTILITY(U,$J,358.3,21603,2)
+ ;;=^5151387
+ ;;^UTILITY(U,$J,358.3,21604,0)
+ ;;=I48.20^^99^1096^18
+ ;;^UTILITY(U,$J,358.3,21604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22979,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,22979,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,22979,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,22980,0)
- ;;=M48.57XG^^87^987^30
- ;;^UTILITY(U,$J,358.3,22980,1,0)
+ ;;^UTILITY(U,$J,358.3,21604,1,3,0)
+ ;;=3^Atrial Fibrillation,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,21604,1,4,0)
+ ;;=4^I48.20
+ ;;^UTILITY(U,$J,358.3,21604,2)
+ ;;=^5158048
+ ;;^UTILITY(U,$J,358.3,21605,0)
+ ;;=I48.11^^99^1096^19
+ ;;^UTILITY(U,$J,358.3,21605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22980,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,22980,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,22980,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,22981,0)
- ;;=M48.54XS^^87^987^31
- ;;^UTILITY(U,$J,358.3,22981,1,0)
+ ;;^UTILITY(U,$J,358.3,21605,1,3,0)
+ ;;=3^Atrial Fibrillation,Longstanding Persistent
+ ;;^UTILITY(U,$J,358.3,21605,1,4,0)
+ ;;=4^I48.11
+ ;;^UTILITY(U,$J,358.3,21605,2)
+ ;;=^5158046
+ ;;^UTILITY(U,$J,358.3,21606,0)
+ ;;=I48.19^^99^1096^20
+ ;;^UTILITY(U,$J,358.3,21606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22981,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,22981,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,22981,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,22982,0)
- ;;=M62.830^^87^987^59
- ;;^UTILITY(U,$J,358.3,22982,1,0)
+ ;;^UTILITY(U,$J,358.3,21606,1,3,0)
+ ;;=3^Atrial Fibrillation,Persistent,Other
+ ;;^UTILITY(U,$J,358.3,21606,1,4,0)
+ ;;=4^I48.19
+ ;;^UTILITY(U,$J,358.3,21606,2)
+ ;;=^5158047
+ ;;^UTILITY(U,$J,358.3,21607,0)
+ ;;=F43.20^^99^1097^4
+ ;;^UTILITY(U,$J,358.3,21607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22982,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,22982,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,22982,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,22983,0)
- ;;=M19.92^^87^987^120
- ;;^UTILITY(U,$J,358.3,22983,1,0)
+ ;;^UTILITY(U,$J,358.3,21607,1,3,0)
+ ;;=3^Adjustment disorder, unspec
+ ;;^UTILITY(U,$J,358.3,21607,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,21607,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,21608,0)
+ ;;=F43.21^^99^1097^3
+ ;;^UTILITY(U,$J,358.3,21608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22983,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,22983,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,22983,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,22984,0)
- ;;=M85.872^^87^987^80
- ;;^UTILITY(U,$J,358.3,22984,1,0)
+ ;;^UTILITY(U,$J,358.3,21608,1,3,0)
+ ;;=3^Adjustment disorder w/ depressed mood
+ ;;^UTILITY(U,$J,358.3,21608,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,21608,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,21609,0)
+ ;;=F43.22^^99^1097^1
+ ;;^UTILITY(U,$J,358.3,21609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22984,1,3,0)
- ;;=3^Osteopenia,Left Ankle & Foot
- ;;^UTILITY(U,$J,358.3,22984,1,4,0)
- ;;=4^M85.872
- ;;^UTILITY(U,$J,358.3,22984,2)
- ;;=^5014493
- ;;^UTILITY(U,$J,358.3,22985,0)
- ;;=M85.832^^87^987^81
- ;;^UTILITY(U,$J,358.3,22985,1,0)
+ ;;^UTILITY(U,$J,358.3,21609,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,21609,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,21609,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,21610,0)
+ ;;=F43.23^^99^1097^2
+ ;;^UTILITY(U,$J,358.3,21610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22985,1,3,0)
- ;;=3^Osteopenia,Left Forearm
- ;;^UTILITY(U,$J,358.3,22985,1,4,0)
- ;;=4^M85.832
- ;;^UTILITY(U,$J,358.3,22985,2)
- ;;=^5014481
- ;;^UTILITY(U,$J,358.3,22986,0)
- ;;=M85.842^^87^987^82
- ;;^UTILITY(U,$J,358.3,22986,1,0)
+ ;;^UTILITY(U,$J,358.3,21610,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety and Depressed Mood
+ ;;^UTILITY(U,$J,358.3,21610,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,21610,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,21611,0)
+ ;;=F41.9^^99^1098^4
+ ;;^UTILITY(U,$J,358.3,21611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22986,1,3,0)
- ;;=3^Osteopenia,Left Hand
- ;;^UTILITY(U,$J,358.3,22986,1,4,0)
- ;;=4^M85.842
- ;;^UTILITY(U,$J,358.3,22986,2)
- ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,21611,1,3,0)
+ ;;=3^Anxiety disorder, unspec
+ ;;^UTILITY(U,$J,358.3,21611,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,21611,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,21612,0)
+ ;;=F41.0^^99^1098^7
+ ;;^UTILITY(U,$J,358.3,21612,1,0)
+ ;;=^358.31IA^4^2

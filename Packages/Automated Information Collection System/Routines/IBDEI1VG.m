@@ -1,126 +1,124 @@
-IBDEI1VG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1VG ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31798,1,4,0)
- ;;=4^T25.421A
- ;;^UTILITY(U,$J,358.3,31798,2)
- ;;=^5048628
- ;;^UTILITY(U,$J,358.3,31799,0)
- ;;=T25.422A^^126^1606^45
- ;;^UTILITY(U,$J,358.3,31799,1,0)
+ ;;^UTILITY(U,$J,358.3,29899,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Mod
+ ;;^UTILITY(U,$J,358.3,29899,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,29899,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,29900,0)
+ ;;=F31.4^^120^1517^15
+ ;;^UTILITY(U,$J,358.3,29900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31799,1,3,0)
- ;;=3^Corrosion of lft ft, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,31799,1,4,0)
- ;;=4^T25.422A
- ;;^UTILITY(U,$J,358.3,31799,2)
- ;;=^5048631
- ;;^UTILITY(U,$J,358.3,31800,0)
- ;;=T24.431A^^126^1606^64
- ;;^UTILITY(U,$J,358.3,31800,1,0)
+ ;;^UTILITY(U,$J,358.3,29900,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,Sev
+ ;;^UTILITY(U,$J,358.3,29900,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,29900,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,29901,0)
+ ;;=F31.5^^120^1517^10
+ ;;^UTILITY(U,$J,358.3,29901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31800,1,3,0)
- ;;=3^Corrosion of rt lwr leg, unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,31800,1,4,0)
- ;;=4^T24.431A
- ;;^UTILITY(U,$J,358.3,31800,2)
- ;;=^5048352
- ;;^UTILITY(U,$J,358.3,31801,0)
- ;;=T24.432A^^126^1606^49
- ;;^UTILITY(U,$J,358.3,31801,1,0)
+ ;;^UTILITY(U,$J,358.3,29901,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep w/ Psych Feat
+ ;;^UTILITY(U,$J,358.3,29901,1,4,0)
+ ;;=4^F31.5
+ ;;^UTILITY(U,$J,358.3,29901,2)
+ ;;=^5003504
+ ;;^UTILITY(U,$J,358.3,29902,0)
+ ;;=F31.75^^120^1517^11
+ ;;^UTILITY(U,$J,358.3,29902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31801,1,3,0)
- ;;=3^Corrosion of lft lwr leg, unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,31801,1,4,0)
- ;;=4^T24.432A
- ;;^UTILITY(U,$J,358.3,31801,2)
- ;;=^5048355
- ;;^UTILITY(U,$J,358.3,31802,0)
- ;;=T25.531A^^126^1606^65
- ;;^UTILITY(U,$J,358.3,31802,1,0)
+ ;;^UTILITY(U,$J,358.3,29902,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,29902,1,4,0)
+ ;;=4^F31.75
+ ;;^UTILITY(U,$J,358.3,29902,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,29903,0)
+ ;;=F31.76^^120^1517^12
+ ;;^UTILITY(U,$J,358.3,29903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31802,1,3,0)
- ;;=3^Corrosion of rt toe(s), first degree, init enc
- ;;^UTILITY(U,$J,358.3,31802,1,4,0)
- ;;=4^T25.531A
- ;;^UTILITY(U,$J,358.3,31802,2)
- ;;=^5048664
- ;;^UTILITY(U,$J,358.3,31803,0)
- ;;=T25.532A^^126^1606^50
- ;;^UTILITY(U,$J,358.3,31803,1,0)
+ ;;^UTILITY(U,$J,358.3,29903,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Dep,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,29903,1,4,0)
+ ;;=4^F31.76
+ ;;^UTILITY(U,$J,358.3,29903,2)
+ ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,29904,0)
+ ;;=F31.81^^120^1517^25
+ ;;^UTILITY(U,$J,358.3,29904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31803,1,3,0)
- ;;=3^Corrosion of lft toe(s), first degree, init enc
- ;;^UTILITY(U,$J,358.3,31803,1,4,0)
- ;;=4^T25.532A
- ;;^UTILITY(U,$J,358.3,31803,2)
- ;;=^5048667
- ;;^UTILITY(U,$J,358.3,31804,0)
- ;;=T25.521A^^126^1606^57
- ;;^UTILITY(U,$J,358.3,31804,1,0)
+ ;;^UTILITY(U,$J,358.3,29904,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,29904,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,29904,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,29905,0)
+ ;;=F34.0^^120^1517^26
+ ;;^UTILITY(U,$J,358.3,29905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31804,1,3,0)
- ;;=3^Corrosion of rt ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31804,1,4,0)
- ;;=4^T25.521A
- ;;^UTILITY(U,$J,358.3,31804,2)
- ;;=^5048655
- ;;^UTILITY(U,$J,358.3,31805,0)
- ;;=T25.522A^^126^1606^42
- ;;^UTILITY(U,$J,358.3,31805,1,0)
+ ;;^UTILITY(U,$J,358.3,29905,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,29905,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,29905,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,29906,0)
+ ;;=F31.0^^120^1517^16
+ ;;^UTILITY(U,$J,358.3,29906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31805,1,3,0)
- ;;=3^Corrosion of lft ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31805,1,4,0)
- ;;=4^T25.522A
- ;;^UTILITY(U,$J,358.3,31805,2)
- ;;=^5048658
- ;;^UTILITY(U,$J,358.3,31806,0)
- ;;=T25.511A^^126^1606^55
- ;;^UTILITY(U,$J,358.3,31806,1,0)
+ ;;^UTILITY(U,$J,358.3,29906,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic
+ ;;^UTILITY(U,$J,358.3,29906,1,4,0)
+ ;;=4^F31.0
+ ;;^UTILITY(U,$J,358.3,29906,2)
+ ;;=^5003494
+ ;;^UTILITY(U,$J,358.3,29907,0)
+ ;;=F31.71^^120^1517^17
+ ;;^UTILITY(U,$J,358.3,29907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31806,1,3,0)
- ;;=3^Corrosion of rt ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31806,1,4,0)
- ;;=4^T25.511A
- ;;^UTILITY(U,$J,358.3,31806,2)
- ;;=^5048646
- ;;^UTILITY(U,$J,358.3,31807,0)
- ;;=T25.512A^^126^1606^40
- ;;^UTILITY(U,$J,358.3,31807,1,0)
+ ;;^UTILITY(U,$J,358.3,29907,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Part Remiss
+ ;;^UTILITY(U,$J,358.3,29907,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,29907,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,29908,0)
+ ;;=F31.72^^120^1517^18
+ ;;^UTILITY(U,$J,358.3,29908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31807,1,3,0)
- ;;=3^Corrosion of lft ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31807,1,4,0)
- ;;=4^T25.512A
- ;;^UTILITY(U,$J,358.3,31807,2)
- ;;=^5048649
- ;;^UTILITY(U,$J,358.3,31808,0)
- ;;=T24.531A^^126^1606^61
- ;;^UTILITY(U,$J,358.3,31808,1,0)
+ ;;^UTILITY(U,$J,358.3,29908,1,3,0)
+ ;;=3^Bipolar I D/O,Current/Recent Ep Hypomanic,In Full Remiss
+ ;;^UTILITY(U,$J,358.3,29908,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,29908,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,29909,0)
+ ;;=F31.89^^120^1517^3
+ ;;^UTILITY(U,$J,358.3,29909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31808,1,3,0)
- ;;=3^Corrosion of rt lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31808,1,4,0)
- ;;=4^T24.531A
- ;;^UTILITY(U,$J,358.3,31808,2)
- ;;=^5048388
- ;;^UTILITY(U,$J,358.3,31809,0)
- ;;=T24.532A^^126^1606^46
- ;;^UTILITY(U,$J,358.3,31809,1,0)
+ ;;^UTILITY(U,$J,358.3,29909,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Other Specified
+ ;;^UTILITY(U,$J,358.3,29909,1,4,0)
+ ;;=4^F31.89
+ ;;^UTILITY(U,$J,358.3,29909,2)
+ ;;=^5003520
+ ;;^UTILITY(U,$J,358.3,29910,0)
+ ;;=F31.9^^120^1517^4
+ ;;^UTILITY(U,$J,358.3,29910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31809,1,3,0)
- ;;=3^Corrosion of lft lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,31809,1,4,0)
- ;;=4^T24.532A
- ;;^UTILITY(U,$J,358.3,31809,2)
- ;;=^5048391
- ;;^UTILITY(U,$J,358.3,31810,0)
- ;;=T25.631A^^126^1606^66
- ;;^UTILITY(U,$J,358.3,31810,1,0)
+ ;;^UTILITY(U,$J,358.3,29910,1,3,0)
+ ;;=3^Bipolar & Rel D/O,Unsp
+ ;;^UTILITY(U,$J,358.3,29910,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,29910,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,29911,0)
+ ;;=F31.60^^120^1517^9
+ ;;^UTILITY(U,$J,358.3,29911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31810,1,3,0)
- ;;=3^Corrosion of rt toe(s), second degree, init enc
- ;;^UTILITY(U,$J,358.3,31810,1,4,0)
- ;;=4^T25.631A

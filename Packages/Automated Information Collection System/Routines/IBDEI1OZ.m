@@ -1,122 +1,124 @@
-IBDEI1OZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1OZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28767,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, third trimester
- ;;^UTILITY(U,$J,358.3,28767,1,4,0)
- ;;=4^O45.093
- ;;^UTILITY(U,$J,358.3,28767,2)
- ;;=^5017458
- ;;^UTILITY(U,$J,358.3,28768,0)
- ;;=O46.001^^115^1448^4
- ;;^UTILITY(U,$J,358.3,28768,1,0)
+ ;;^UTILITY(U,$J,358.3,27043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28768,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, first trimester
- ;;^UTILITY(U,$J,358.3,28768,1,4,0)
- ;;=4^O46.001
- ;;^UTILITY(U,$J,358.3,28768,2)
- ;;=^5017467
- ;;^UTILITY(U,$J,358.3,28769,0)
- ;;=O46.002^^115^1448^5
- ;;^UTILITY(U,$J,358.3,28769,1,0)
+ ;;^UTILITY(U,$J,358.3,27043,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27043,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,27043,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,27044,0)
+ ;;=F10.24^^110^1306^11
+ ;;^UTILITY(U,$J,358.3,27044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28769,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, second trimester
- ;;^UTILITY(U,$J,358.3,28769,1,4,0)
- ;;=4^O46.002
- ;;^UTILITY(U,$J,358.3,28769,2)
- ;;=^5017468
- ;;^UTILITY(U,$J,358.3,28770,0)
- ;;=O46.003^^115^1448^6
- ;;^UTILITY(U,$J,358.3,28770,1,0)
+ ;;^UTILITY(U,$J,358.3,27044,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27044,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,27044,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,27045,0)
+ ;;=F10.94^^110^1306^12
+ ;;^UTILITY(U,$J,358.3,27045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28770,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, third trimester
- ;;^UTILITY(U,$J,358.3,28770,1,4,0)
- ;;=4^O46.003
- ;;^UTILITY(U,$J,358.3,28770,2)
- ;;=^5017469
- ;;^UTILITY(U,$J,358.3,28771,0)
- ;;=O46.011^^115^1448^1
- ;;^UTILITY(U,$J,358.3,28771,1,0)
+ ;;^UTILITY(U,$J,358.3,27045,1,3,0)
+ ;;=3^Alcohol Induced Mood D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27045,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,27045,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,27046,0)
+ ;;=F10.231^^110^1306^32
+ ;;^UTILITY(U,$J,358.3,27046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28771,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, first trimester
- ;;^UTILITY(U,$J,358.3,28771,1,4,0)
- ;;=4^O46.011
- ;;^UTILITY(U,$J,358.3,28771,2)
- ;;=^5017471
- ;;^UTILITY(U,$J,358.3,28772,0)
- ;;=O46.012^^115^1448^2
- ;;^UTILITY(U,$J,358.3,28772,1,0)
+ ;;^UTILITY(U,$J,358.3,27046,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) w/ WD Delirium
+ ;;^UTILITY(U,$J,358.3,27046,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,27046,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,27047,0)
+ ;;=F10.232^^110^1306^30
+ ;;^UTILITY(U,$J,358.3,27047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28772,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, second trimester
- ;;^UTILITY(U,$J,358.3,28772,1,4,0)
- ;;=4^O46.012
- ;;^UTILITY(U,$J,358.3,28772,2)
- ;;=^5017472
- ;;^UTILITY(U,$J,358.3,28773,0)
- ;;=O46.013^^115^1448^3
- ;;^UTILITY(U,$J,358.3,28773,1,0)
+ ;;^UTILITY(U,$J,358.3,27047,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,27047,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,27047,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,27048,0)
+ ;;=F10.21^^110^1306^33
+ ;;^UTILITY(U,$J,358.3,27048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28773,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, third trimester
- ;;^UTILITY(U,$J,358.3,28773,1,4,0)
- ;;=4^O46.013
- ;;^UTILITY(U,$J,358.3,28773,2)
- ;;=^5017473
- ;;^UTILITY(U,$J,358.3,28774,0)
- ;;=O46.021^^115^1448^7
- ;;^UTILITY(U,$J,358.3,28774,1,0)
+ ;;^UTILITY(U,$J,358.3,27048,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),In Remission
+ ;;^UTILITY(U,$J,358.3,27048,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,27048,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,27049,0)
+ ;;=F12.10^^110^1307^20
+ ;;^UTILITY(U,$J,358.3,27049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28774,1,3,0)
- ;;=3^Antepartum hemorrhage w dissem intravasc coag, first trimester
- ;;^UTILITY(U,$J,358.3,28774,1,4,0)
- ;;=4^O46.021
- ;;^UTILITY(U,$J,358.3,28774,2)
- ;;=^5017475
- ;;^UTILITY(U,$J,358.3,28775,0)
- ;;=O46.022^^115^1448^8
- ;;^UTILITY(U,$J,358.3,28775,1,0)
+ ;;^UTILITY(U,$J,358.3,27049,1,3,0)
+ ;;=3^Cannabis Use D/O,Mild
+ ;;^UTILITY(U,$J,358.3,27049,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,27049,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,27050,0)
+ ;;=F12.20^^110^1307^22
+ ;;^UTILITY(U,$J,358.3,27050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28775,1,3,0)
- ;;=3^Antepartum hemorrhage w dissem intravasc coag, second trimester
- ;;^UTILITY(U,$J,358.3,28775,1,4,0)
- ;;=4^O46.022
- ;;^UTILITY(U,$J,358.3,28775,2)
- ;;=^5017476
- ;;^UTILITY(U,$J,358.3,28776,0)
- ;;=O46.023^^115^1448^9
- ;;^UTILITY(U,$J,358.3,28776,1,0)
+ ;;^UTILITY(U,$J,358.3,27050,1,3,0)
+ ;;=3^Cannabis Use D/O,Mod/Sev
+ ;;^UTILITY(U,$J,358.3,27050,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,27050,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,27051,0)
+ ;;=F12.288^^110^1307^25
+ ;;^UTILITY(U,$J,358.3,27051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28776,1,3,0)
- ;;=3^Antepartum hemorrhage w dissem intravasc coag, third trimester
- ;;^UTILITY(U,$J,358.3,28776,1,4,0)
- ;;=4^O46.023
- ;;^UTILITY(U,$J,358.3,28776,2)
- ;;=^5017477
- ;;^UTILITY(U,$J,358.3,28777,0)
- ;;=O46.091^^115^1448^10
- ;;^UTILITY(U,$J,358.3,28777,1,0)
+ ;;^UTILITY(U,$J,358.3,27051,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,27051,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,27051,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,27052,0)
+ ;;=F12.121^^110^1307^10
+ ;;^UTILITY(U,$J,358.3,27052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28777,1,3,0)
- ;;=3^Antepartum hemorrhage w oth coag defect, first trimester
- ;;^UTILITY(U,$J,358.3,28777,1,4,0)
- ;;=4^O46.091
- ;;^UTILITY(U,$J,358.3,28777,2)
- ;;=^5017479
- ;;^UTILITY(U,$J,358.3,28778,0)
- ;;=O46.092^^115^1448^11
- ;;^UTILITY(U,$J,358.3,28778,1,0)
+ ;;^UTILITY(U,$J,358.3,27052,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27052,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,27052,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,27053,0)
+ ;;=F12.221^^110^1307^11
+ ;;^UTILITY(U,$J,358.3,27053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28778,1,3,0)
- ;;=3^Antepartum hemorrhage w oth coag defect, second trimester
- ;;^UTILITY(U,$J,358.3,28778,1,4,0)
- ;;=4^O46.092
- ;;^UTILITY(U,$J,358.3,28778,2)
- ;;=^5017480
- ;;^UTILITY(U,$J,358.3,28779,0)
- ;;=O46.093^^115^1448^12
+ ;;^UTILITY(U,$J,358.3,27053,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27053,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,27053,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,27054,0)
+ ;;=F12.921^^110^1307^12
+ ;;^UTILITY(U,$J,358.3,27054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27054,1,3,0)
+ ;;=3^Cannabis Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27054,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,27054,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,27055,0)
+ ;;=F12.229^^110^1307^16

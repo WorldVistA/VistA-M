@@ -1,132 +1,124 @@
-IBDEI2ZD ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ZD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49967,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,49967,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,49968,0)
- ;;=J32.9^^219^2434^106
- ;;^UTILITY(U,$J,358.3,49968,1,0)
+ ;;^UTILITY(U,$J,358.3,47595,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,47595,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,47596,0)
+ ;;=R45.86^^185^2408^40
+ ;;^UTILITY(U,$J,358.3,47596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49968,1,3,0)
- ;;=3^Sinusitis,Chr,Unspec
- ;;^UTILITY(U,$J,358.3,49968,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,49968,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,49969,0)
- ;;=G47.9^^219^2434^107
- ;;^UTILITY(U,$J,358.3,49969,1,0)
+ ;;^UTILITY(U,$J,358.3,47596,1,3,0)
+ ;;=3^Emotional Lability
+ ;;^UTILITY(U,$J,358.3,47596,1,4,0)
+ ;;=4^R45.86
+ ;;^UTILITY(U,$J,358.3,47596,2)
+ ;;=^5019475
+ ;;^UTILITY(U,$J,358.3,47597,0)
+ ;;=R44.3^^185^2408^43
+ ;;^UTILITY(U,$J,358.3,47597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49969,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,49969,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,49969,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,49970,0)
- ;;=F17.200^^219^2434^68
- ;;^UTILITY(U,$J,358.3,49970,1,0)
+ ;;^UTILITY(U,$J,358.3,47597,1,3,0)
+ ;;=3^Hallucinations,Unspec
+ ;;^UTILITY(U,$J,358.3,47597,1,4,0)
+ ;;=4^R44.3
+ ;;^UTILITY(U,$J,358.3,47597,2)
+ ;;=^5019458
+ ;;^UTILITY(U,$J,358.3,47598,0)
+ ;;=R46.0^^185^2408^46
+ ;;^UTILITY(U,$J,358.3,47598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49970,1,3,0)
- ;;=3^Nicotine Dependence,Unspec
- ;;^UTILITY(U,$J,358.3,49970,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,49970,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,49971,0)
- ;;=F17.201^^219^2434^60
- ;;^UTILITY(U,$J,358.3,49971,1,0)
+ ;;^UTILITY(U,$J,358.3,47598,1,3,0)
+ ;;=3^Hygiene,Personal,Very Low Level
+ ;;^UTILITY(U,$J,358.3,47598,1,4,0)
+ ;;=4^R46.0
+ ;;^UTILITY(U,$J,358.3,47598,2)
+ ;;=^5019478
+ ;;^UTILITY(U,$J,358.3,47599,0)
+ ;;=Z91.83^^185^2408^54
+ ;;^UTILITY(U,$J,358.3,47599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49971,1,3,0)
- ;;=3^Nicotine Dependence In Remission
- ;;^UTILITY(U,$J,358.3,49971,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,49971,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,49972,0)
- ;;=F17.203^^219^2434^62
- ;;^UTILITY(U,$J,358.3,49972,1,0)
+ ;;^UTILITY(U,$J,358.3,47599,1,3,0)
+ ;;=3^Personal Hx of Wandering
+ ;;^UTILITY(U,$J,358.3,47599,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,47599,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,47600,0)
+ ;;=A81.9^^185^2408^6
+ ;;^UTILITY(U,$J,358.3,47600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49972,1,3,0)
- ;;=3^Nicotine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,49972,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,49972,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,49973,0)
- ;;=F17.208^^219^2434^61
- ;;^UTILITY(U,$J,358.3,49973,1,0)
+ ;;^UTILITY(U,$J,358.3,47600,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,47600,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,47600,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,47601,0)
+ ;;=A81.2^^185^2408^55
+ ;;^UTILITY(U,$J,358.3,47601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49973,1,3,0)
- ;;=3^Nicotine Dependence w/ Nicotine-Induced Disorders
- ;;^UTILITY(U,$J,358.3,49973,1,4,0)
- ;;=4^F17.208
- ;;^UTILITY(U,$J,358.3,49973,2)
- ;;=^5003363
- ;;^UTILITY(U,$J,358.3,49974,0)
- ;;=F17.210^^219^2434^63
- ;;^UTILITY(U,$J,358.3,49974,1,0)
+ ;;^UTILITY(U,$J,358.3,47601,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,47601,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,47601,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,47602,0)
+ ;;=B20.^^185^2408^41
+ ;;^UTILITY(U,$J,358.3,47602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49974,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes
- ;;^UTILITY(U,$J,358.3,49974,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,49974,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,49975,0)
- ;;=F17.211^^219^2434^64
- ;;^UTILITY(U,$J,358.3,49975,1,0)
+ ;;^UTILITY(U,$J,358.3,47602,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,47602,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,47602,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,47603,0)
+ ;;=B20.^^185^2408^42
+ ;;^UTILITY(U,$J,358.3,47603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49975,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes in Remission
- ;;^UTILITY(U,$J,358.3,49975,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,49975,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,49976,0)
- ;;=F17.213^^219^2434^67
- ;;^UTILITY(U,$J,358.3,49976,1,0)
+ ;;^UTILITY(U,$J,358.3,47603,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,47603,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,47603,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,47604,0)
+ ;;=G10.^^185^2408^44
+ ;;^UTILITY(U,$J,358.3,47604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49976,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,49976,1,4,0)
- ;;=4^F17.213
- ;;^UTILITY(U,$J,358.3,49976,2)
- ;;=^5003367
- ;;^UTILITY(U,$J,358.3,49977,0)
- ;;=F17.218^^219^2434^66
- ;;^UTILITY(U,$J,358.3,49977,1,0)
+ ;;^UTILITY(U,$J,358.3,47604,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,47604,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,47604,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,47605,0)
+ ;;=G20.^^185^2408^52
+ ;;^UTILITY(U,$J,358.3,47605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49977,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes w/ Other Disorders
- ;;^UTILITY(U,$J,358.3,49977,1,4,0)
- ;;=4^F17.218
- ;;^UTILITY(U,$J,358.3,49977,2)
- ;;=^5003368
- ;;^UTILITY(U,$J,358.3,49978,0)
- ;;=F17.219^^219^2434^65
- ;;^UTILITY(U,$J,358.3,49978,1,0)
+ ;;^UTILITY(U,$J,358.3,47605,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,47605,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,47605,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,47606,0)
+ ;;=G20.^^185^2408^53
+ ;;^UTILITY(U,$J,358.3,47606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49978,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes w/ Nicotine-Induced Disorders
- ;;^UTILITY(U,$J,358.3,49978,1,4,0)
- ;;=4^F17.219
- ;;^UTILITY(U,$J,358.3,49978,2)
- ;;=^5003369
- ;;^UTILITY(U,$J,358.3,49979,0)
- ;;=J39.8^^219^2434^97
- ;;^UTILITY(U,$J,358.3,49979,1,0)
+ ;;^UTILITY(U,$J,358.3,47606,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,47606,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,47606,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,47607,0)
+ ;;=G23.1^^185^2408^56
+ ;;^UTILITY(U,$J,358.3,47607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49979,1,3,0)
- ;;=3^Respiratory Tract Diseases,Upper
- ;;^UTILITY(U,$J,358.3,49979,1,4,0)
- ;;=4^J39.8
- ;;^UTILITY(U,$J,358.3,49979,2)
- ;;=^5008231
- ;;^UTILITY(U,$J,358.3,49980,0)
- ;;=J98.09^^219^2434^22
- ;;^UTILITY(U,$J,358.3,49980,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47607,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia

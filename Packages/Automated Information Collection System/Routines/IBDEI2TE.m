@@ -1,120 +1,126 @@
-IBDEI2TE ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2TE ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,47257,1,4,0)
- ;;=4^C81.13
- ;;^UTILITY(U,$J,358.3,47257,2)
- ;;=^5001404
- ;;^UTILITY(U,$J,358.3,47258,0)
- ;;=C81.14^^209^2346^386
- ;;^UTILITY(U,$J,358.3,47258,1,0)
+ ;;^UTILITY(U,$J,358.3,44894,2)
+ ;;=^5001006
+ ;;^UTILITY(U,$J,358.3,44895,0)
+ ;;=C43.61^^170^2241^15
+ ;;^UTILITY(U,$J,358.3,44895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47258,1,3,0)
- ;;=3^Nodular Sclerosis Classical Hodgkin Lymphoma,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47258,1,4,0)
- ;;=4^C81.14
- ;;^UTILITY(U,$J,358.3,47258,2)
- ;;=^5001405
- ;;^UTILITY(U,$J,358.3,47259,0)
- ;;=C81.15^^209^2346^387
- ;;^UTILITY(U,$J,358.3,47259,1,0)
+ ;;^UTILITY(U,$J,358.3,44895,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,44895,1,4,0)
+ ;;=4^C43.61
+ ;;^UTILITY(U,$J,358.3,44895,2)
+ ;;=^5001009
+ ;;^UTILITY(U,$J,358.3,44896,0)
+ ;;=C43.62^^170^2241^7
+ ;;^UTILITY(U,$J,358.3,44896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47259,1,3,0)
- ;;=3^Nodular Sclerosis Classical Hodgkin Lymphoma,Ing Region/Lower Limb Nodes
- ;;^UTILITY(U,$J,358.3,47259,1,4,0)
- ;;=4^C81.15
- ;;^UTILITY(U,$J,358.3,47259,2)
- ;;=^5001406
- ;;^UTILITY(U,$J,358.3,47260,0)
- ;;=C81.16^^209^2346^388
- ;;^UTILITY(U,$J,358.3,47260,1,0)
+ ;;^UTILITY(U,$J,358.3,44896,1,3,0)
+ ;;=3^Malig Melanoma of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,44896,1,4,0)
+ ;;=4^C43.62
+ ;;^UTILITY(U,$J,358.3,44896,2)
+ ;;=^5001010
+ ;;^UTILITY(U,$J,358.3,44897,0)
+ ;;=C43.71^^170^2241^13
+ ;;^UTILITY(U,$J,358.3,44897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47260,1,3,0)
- ;;=3^Nodular Sclerosis Classical Hodgkin Lymphoma,Intrapelvic Nodes
- ;;^UTILITY(U,$J,358.3,47260,1,4,0)
- ;;=4^C81.16
- ;;^UTILITY(U,$J,358.3,47260,2)
- ;;=^5001407
- ;;^UTILITY(U,$J,358.3,47261,0)
- ;;=C81.17^^209^2346^389
- ;;^UTILITY(U,$J,358.3,47261,1,0)
+ ;;^UTILITY(U,$J,358.3,44897,1,3,0)
+ ;;=3^Malig Melanoma of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,44897,1,4,0)
+ ;;=4^C43.71
+ ;;^UTILITY(U,$J,358.3,44897,2)
+ ;;=^5001012
+ ;;^UTILITY(U,$J,358.3,44898,0)
+ ;;=C43.72^^170^2241^5
+ ;;^UTILITY(U,$J,358.3,44898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47261,1,3,0)
- ;;=3^Nodular Sclerosis Classical Hodgkin Lymphoma,Spleen
- ;;^UTILITY(U,$J,358.3,47261,1,4,0)
- ;;=4^C81.17
- ;;^UTILITY(U,$J,358.3,47261,2)
- ;;=^5001408
- ;;^UTILITY(U,$J,358.3,47262,0)
- ;;=C81.18^^209^2346^390
- ;;^UTILITY(U,$J,358.3,47262,1,0)
+ ;;^UTILITY(U,$J,358.3,44898,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,44898,1,4,0)
+ ;;=4^C43.72
+ ;;^UTILITY(U,$J,358.3,44898,2)
+ ;;=^5001013
+ ;;^UTILITY(U,$J,358.3,44899,0)
+ ;;=C43.8^^170^2241^10
+ ;;^UTILITY(U,$J,358.3,44899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47262,1,3,0)
- ;;=3^Nodular Sclerosis Classical Hodgkin Lymphoma,Mult Site Nodes
- ;;^UTILITY(U,$J,358.3,47262,1,4,0)
- ;;=4^C81.18
- ;;^UTILITY(U,$J,358.3,47262,2)
- ;;=^5001409
- ;;^UTILITY(U,$J,358.3,47263,0)
- ;;=C81.19^^209^2346^391
- ;;^UTILITY(U,$J,358.3,47263,1,0)
+ ;;^UTILITY(U,$J,358.3,44899,1,3,0)
+ ;;=3^Malig Melanoma of Overlapping Sites of Skin
+ ;;^UTILITY(U,$J,358.3,44899,1,4,0)
+ ;;=4^C43.8
+ ;;^UTILITY(U,$J,358.3,44899,2)
+ ;;=^5001014
+ ;;^UTILITY(U,$J,358.3,44900,0)
+ ;;=D03.0^^170^2241^66
+ ;;^UTILITY(U,$J,358.3,44900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47263,1,3,0)
- ;;=3^Nodular Sclerosis Classical Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,47263,1,4,0)
- ;;=4^C81.19
- ;;^UTILITY(U,$J,358.3,47263,2)
- ;;=^5001410
- ;;^UTILITY(U,$J,358.3,47264,0)
- ;;=C81.20^^209^2346^331
- ;;^UTILITY(U,$J,358.3,47264,1,0)
+ ;;^UTILITY(U,$J,358.3,44900,1,3,0)
+ ;;=3^Melanoma in Situ of Lip
+ ;;^UTILITY(U,$J,358.3,44900,1,4,0)
+ ;;=4^D03.0
+ ;;^UTILITY(U,$J,358.3,44900,2)
+ ;;=^5001888
+ ;;^UTILITY(U,$J,358.3,44901,0)
+ ;;=D03.21^^170^2241^58
+ ;;^UTILITY(U,$J,358.3,44901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47264,1,3,0)
- ;;=3^Mixed Cellularity Classical Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,47264,1,4,0)
- ;;=4^C81.20
- ;;^UTILITY(U,$J,358.3,47264,2)
- ;;=^5001411
- ;;^UTILITY(U,$J,358.3,47265,0)
- ;;=C81.21^^209^2346^332
- ;;^UTILITY(U,$J,358.3,47265,1,0)
+ ;;^UTILITY(U,$J,358.3,44901,1,3,0)
+ ;;=3^Melanoma in Situ Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,44901,1,4,0)
+ ;;=4^D03.21
+ ;;^UTILITY(U,$J,358.3,44901,2)
+ ;;=^5001893
+ ;;^UTILITY(U,$J,358.3,44902,0)
+ ;;=D03.22^^170^2241^55
+ ;;^UTILITY(U,$J,358.3,44902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47265,1,3,0)
- ;;=3^Mixed Cellularity Classical Hodgkin Lymphoma,Head/Face/Neck Nodes
- ;;^UTILITY(U,$J,358.3,47265,1,4,0)
- ;;=4^C81.21
- ;;^UTILITY(U,$J,358.3,47265,2)
- ;;=^5001412
- ;;^UTILITY(U,$J,358.3,47266,0)
- ;;=C81.22^^209^2346^333
- ;;^UTILITY(U,$J,358.3,47266,1,0)
+ ;;^UTILITY(U,$J,358.3,44902,1,3,0)
+ ;;=3^Melanoma in Situ Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,44902,1,4,0)
+ ;;=4^D03.22
+ ;;^UTILITY(U,$J,358.3,44902,2)
+ ;;=^5001894
+ ;;^UTILITY(U,$J,358.3,44903,0)
+ ;;=D03.30^^170^2241^63
+ ;;^UTILITY(U,$J,358.3,44903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47266,1,3,0)
- ;;=3^Mixed Cellularity Classical Hodgkin Lymphoma,Intrathoracic Nodes
- ;;^UTILITY(U,$J,358.3,47266,1,4,0)
- ;;=4^C81.22
- ;;^UTILITY(U,$J,358.3,47266,2)
- ;;=^5001413
- ;;^UTILITY(U,$J,358.3,47267,0)
- ;;=C81.23^^209^2346^334
- ;;^UTILITY(U,$J,358.3,47267,1,0)
+ ;;^UTILITY(U,$J,358.3,44903,1,3,0)
+ ;;=3^Melanoma in Situ Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,44903,1,4,0)
+ ;;=4^D03.30
+ ;;^UTILITY(U,$J,358.3,44903,2)
+ ;;=^5001895
+ ;;^UTILITY(U,$J,358.3,44904,0)
+ ;;=D03.4^^170^2241^61
+ ;;^UTILITY(U,$J,358.3,44904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47267,1,3,0)
- ;;=3^Mixed Cellularity Classical Hodgkin Lymphoma,Intra-Abdominal Nodes
- ;;^UTILITY(U,$J,358.3,47267,1,4,0)
- ;;=4^C81.23
- ;;^UTILITY(U,$J,358.3,47267,2)
- ;;=^5001414
- ;;^UTILITY(U,$J,358.3,47268,0)
- ;;=C81.24^^209^2346^335
- ;;^UTILITY(U,$J,358.3,47268,1,0)
+ ;;^UTILITY(U,$J,358.3,44904,1,3,0)
+ ;;=3^Melanoma in Situ Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,44904,1,4,0)
+ ;;=4^D03.4
+ ;;^UTILITY(U,$J,358.3,44904,2)
+ ;;=^5001897
+ ;;^UTILITY(U,$J,358.3,44905,0)
+ ;;=D03.59^^170^2241^62
+ ;;^UTILITY(U,$J,358.3,44905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,47268,1,3,0)
- ;;=3^Mixed Cellularity Classical Hodgkin Lymphoma,Axilla/Upper Limb Nodes
- ;;^UTILITY(U,$J,358.3,47268,1,4,0)
- ;;=4^C81.24
- ;;^UTILITY(U,$J,358.3,47268,2)
- ;;=^5001415
- ;;^UTILITY(U,$J,358.3,47269,0)
- ;;=C81.25^^209^2346^336
+ ;;^UTILITY(U,$J,358.3,44905,1,3,0)
+ ;;=3^Melanoma in Situ Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,44905,1,4,0)
+ ;;=4^D03.59
+ ;;^UTILITY(U,$J,358.3,44905,2)
+ ;;=^5001900
+ ;;^UTILITY(U,$J,358.3,44906,0)
+ ;;=D03.51^^170^2241^53
+ ;;^UTILITY(U,$J,358.3,44906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44906,1,3,0)
+ ;;=3^Melanoma in Situ Anal Skin
+ ;;^UTILITY(U,$J,358.3,44906,1,4,0)
+ ;;=4^D03.51
+ ;;^UTILITY(U,$J,358.3,44906,2)
+ ;;=^5001898

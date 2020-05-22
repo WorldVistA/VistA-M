@@ -1,5 +1,5 @@
 IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;15-OCT-2015
- ;;2.0;INTEGRATED BILLING;**438,467,497,549,582,593,601,631**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**438,467,497,549,582,593,601,631,659**;21-MAR-94;Build 16
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -102,6 +102,9 @@ IBE(IEN) ; Insurance Buffer Extract
  ; Get symbol, if symbol'=" " OR "!" OR "#" then quit
  S ISYMBOL=$$SYMBOL^IBCNBLL(IEN)                  ;Insurance buffer symbol
  I (ISYMBOL'=" ")&(ISYMBOL'="!")&(ISYMBOL'="#") Q QUEUED
+ ;
+ ;/vd-IB*2.0*659 - Quit if VAMC Site is MANILA (#358) & EIV is disabled for MANILA.
+ I $P($$SITE^VASITE,U,3)=358,$$GET1^DIQ(350.9,"1,",51.33,"I")="N" Q 0
  ;
  ; IB*2.0*549 -  Quit if Realtime  Extract Master switch is off
  ; Note: Checking here instead of the top of TRIG to check for above error conditions first

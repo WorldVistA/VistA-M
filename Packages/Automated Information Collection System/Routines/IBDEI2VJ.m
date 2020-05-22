@@ -1,134 +1,128 @@
-IBDEI2VJ ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2VJ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48237,1,3,0)
- ;;=3^Cocaine Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,48237,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,48237,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,48238,0)
- ;;=F18.10^^213^2389^28
- ;;^UTILITY(U,$J,358.3,48238,1,0)
+ ;;^UTILITY(U,$J,358.3,45846,1,4,0)
+ ;;=4^E66.1
+ ;;^UTILITY(U,$J,358.3,45846,2)
+ ;;=^5002828
+ ;;^UTILITY(U,$J,358.3,45847,0)
+ ;;=E66.01^^173^2285^2
+ ;;^UTILITY(U,$J,358.3,45847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48238,1,3,0)
- ;;=3^Inhalant Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,48238,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,48238,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,48239,0)
- ;;=F45.41^^213^2389^39
- ;;^UTILITY(U,$J,358.3,48239,1,0)
+ ;;^UTILITY(U,$J,358.3,45847,1,3,0)
+ ;;=3^Obesity,Morbid d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,45847,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,45847,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,45848,0)
+ ;;=E66.2^^173^2285^3
+ ;;^UTILITY(U,$J,358.3,45848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48239,1,3,0)
- ;;=3^Pain Disorder Related to Psychological Factors
- ;;^UTILITY(U,$J,358.3,48239,1,4,0)
- ;;=4^F45.41
- ;;^UTILITY(U,$J,358.3,48239,2)
- ;;=^5003590
- ;;^UTILITY(U,$J,358.3,48240,0)
- ;;=F43.20^^213^2389^1
- ;;^UTILITY(U,$J,358.3,48240,1,0)
+ ;;^UTILITY(U,$J,358.3,45848,1,3,0)
+ ;;=3^Obesity,Morbid w/ Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,45848,1,4,0)
+ ;;=4^E66.2
+ ;;^UTILITY(U,$J,358.3,45848,2)
+ ;;=^5002829
+ ;;^UTILITY(U,$J,358.3,45849,0)
+ ;;=E66.09^^173^2285^4
+ ;;^UTILITY(U,$J,358.3,45849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48240,1,3,0)
- ;;=3^Adjustment Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,48240,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,48240,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,48241,0)
- ;;=F07.0^^213^2389^41
- ;;^UTILITY(U,$J,358.3,48241,1,0)
+ ;;^UTILITY(U,$J,358.3,45849,1,3,0)
+ ;;=3^Obesity,Other d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,45849,1,4,0)
+ ;;=4^E66.09
+ ;;^UTILITY(U,$J,358.3,45849,2)
+ ;;=^5002827
+ ;;^UTILITY(U,$J,358.3,45850,0)
+ ;;=E66.9^^173^2285^5
+ ;;^UTILITY(U,$J,358.3,45850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48241,1,3,0)
- ;;=3^Personality Change d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,48241,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,48241,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,48242,0)
- ;;=F32.9^^213^2389^33
- ;;^UTILITY(U,$J,358.3,48242,1,0)
+ ;;^UTILITY(U,$J,358.3,45850,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,45850,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,45850,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,45851,0)
+ ;;=E66.3^^173^2285^6
+ ;;^UTILITY(U,$J,358.3,45851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48242,1,3,0)
- ;;=3^MDD,Single Episode,Unspec
- ;;^UTILITY(U,$J,358.3,48242,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,48242,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,48243,0)
- ;;=F63.81^^213^2389^29
- ;;^UTILITY(U,$J,358.3,48243,1,0)
+ ;;^UTILITY(U,$J,358.3,45851,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,45851,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,45851,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,45852,0)
+ ;;=Z91.5^^173^2286^1
+ ;;^UTILITY(U,$J,358.3,45852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48243,1,3,0)
- ;;=3^Intermittent Explosive Disorder
- ;;^UTILITY(U,$J,358.3,48243,1,4,0)
- ;;=4^F63.81
- ;;^UTILITY(U,$J,358.3,48243,2)
- ;;=^5003644
- ;;^UTILITY(U,$J,358.3,48244,0)
- ;;=F90.8^^213^2389^10
- ;;^UTILITY(U,$J,358.3,48244,1,0)
+ ;;^UTILITY(U,$J,358.3,45852,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,45852,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,45852,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,45853,0)
+ ;;=R45.851^^173^2286^2
+ ;;^UTILITY(U,$J,358.3,45853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48244,1,3,0)
- ;;=3^Attention-Deficit Hyperactivity Disorder
- ;;^UTILITY(U,$J,358.3,48244,1,4,0)
- ;;=4^F90.8
- ;;^UTILITY(U,$J,358.3,48244,2)
- ;;=^5003695
- ;;^UTILITY(U,$J,358.3,48245,0)
- ;;=H54.8^^213^2389^30
- ;;^UTILITY(U,$J,358.3,48245,1,0)
+ ;;^UTILITY(U,$J,358.3,45853,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,45853,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,45853,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,45854,0)
+ ;;=T14.91XA^^173^2286^3
+ ;;^UTILITY(U,$J,358.3,45854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48245,1,3,0)
- ;;=3^Legal Blindness,as Defined in USA
- ;;^UTILITY(U,$J,358.3,48245,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,48245,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,48246,0)
- ;;=R53.1^^213^2389^52
- ;;^UTILITY(U,$J,358.3,48246,1,0)
+ ;;^UTILITY(U,$J,358.3,45854,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,45854,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,45854,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,45855,0)
+ ;;=T14.91XD^^173^2286^4
+ ;;^UTILITY(U,$J,358.3,45855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48246,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,48246,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,48246,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,48247,0)
- ;;=R68.89^^213^2389^25
- ;;^UTILITY(U,$J,358.3,48247,1,0)
+ ;;^UTILITY(U,$J,358.3,45855,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,45855,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,45855,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,45856,0)
+ ;;=T14.91XS^^173^2286^5
+ ;;^UTILITY(U,$J,358.3,45856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48247,1,3,0)
- ;;=3^General Symptoms & Signs
- ;;^UTILITY(U,$J,358.3,48247,1,4,0)
- ;;=4^R68.89
- ;;^UTILITY(U,$J,358.3,48247,2)
- ;;=^5019557
- ;;^UTILITY(U,$J,358.3,48248,0)
- ;;=Z03.89^^213^2389^34
- ;;^UTILITY(U,$J,358.3,48248,1,0)
+ ;;^UTILITY(U,$J,358.3,45856,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,45856,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,45856,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,45857,0)
+ ;;=Z51.81^^173^2287^19
+ ;;^UTILITY(U,$J,358.3,45857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48248,1,3,0)
- ;;=3^Mental Condition,Suspected Disease
- ;;^UTILITY(U,$J,358.3,48248,1,4,0)
- ;;=4^Z03.89
- ;;^UTILITY(U,$J,358.3,48248,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,48249,0)
- ;;=Z51.89^^213^2389^24
- ;;^UTILITY(U,$J,358.3,48249,1,0)
+ ;;^UTILITY(U,$J,358.3,45857,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,45857,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,45857,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,45858,0)
+ ;;=Z79.01^^173^2287^15
+ ;;^UTILITY(U,$J,358.3,45858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48249,1,3,0)
- ;;=3^Encounter for Other Specified Aftercare
- ;;^UTILITY(U,$J,358.3,48249,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,48249,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,48250,0)
- ;;=99201^^214^2390^1
- ;;^UTILITY(U,$J,358.3,48250,1,0)
- ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,45858,1,3,0)
+ ;;=3^Long Term Current Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,45858,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,45858,2)
+ ;;=^5063330

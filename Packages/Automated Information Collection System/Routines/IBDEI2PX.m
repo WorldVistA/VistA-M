@@ -1,128 +1,124 @@
-IBDEI2PX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2PX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,45609,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,45609,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,45609,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,45610,0)
- ;;=W18.43XD^^200^2247^104
- ;;^UTILITY(U,$J,358.3,45610,1,0)
+ ;;^UTILITY(U,$J,358.3,43332,1,4,0)
+ ;;=4^L89.524
+ ;;^UTILITY(U,$J,358.3,43332,2)
+ ;;=^5009424
+ ;;^UTILITY(U,$J,358.3,43333,0)
+ ;;=L89.610^^158^2105^66
+ ;;^UTILITY(U,$J,358.3,43333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45610,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45610,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,45610,2)
- ;;=^5059828
- ;;^UTILITY(U,$J,358.3,45611,0)
- ;;=W18.49XA^^200^2247^111
- ;;^UTILITY(U,$J,358.3,45611,1,0)
+ ;;^UTILITY(U,$J,358.3,43333,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Unstageable
+ ;;^UTILITY(U,$J,358.3,43333,1,4,0)
+ ;;=4^L89.610
+ ;;^UTILITY(U,$J,358.3,43333,2)
+ ;;=^5009430
+ ;;^UTILITY(U,$J,358.3,43334,0)
+ ;;=L89.619^^158^2105^65
+ ;;^UTILITY(U,$J,358.3,43334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45611,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,45611,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,45611,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,45612,0)
- ;;=W18.49XD^^200^2247^112
- ;;^UTILITY(U,$J,358.3,45612,1,0)
+ ;;^UTILITY(U,$J,358.3,43334,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43334,1,4,0)
+ ;;=4^L89.619
+ ;;^UTILITY(U,$J,358.3,43334,2)
+ ;;=^5133676
+ ;;^UTILITY(U,$J,358.3,43335,0)
+ ;;=L89.611^^158^2105^61
+ ;;^UTILITY(U,$J,358.3,43335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45612,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45612,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,45612,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,45613,0)
- ;;=W19.XXXA^^200^2247^89
- ;;^UTILITY(U,$J,358.3,45613,1,0)
+ ;;^UTILITY(U,$J,358.3,43335,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 1
+ ;;^UTILITY(U,$J,358.3,43335,1,4,0)
+ ;;=4^L89.611
+ ;;^UTILITY(U,$J,358.3,43335,2)
+ ;;=^5009431
+ ;;^UTILITY(U,$J,358.3,43336,0)
+ ;;=L89.612^^158^2105^62
+ ;;^UTILITY(U,$J,358.3,43336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45613,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,45613,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,45613,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,45614,0)
- ;;=W19.XXXD^^200^2247^90
- ;;^UTILITY(U,$J,358.3,45614,1,0)
+ ;;^UTILITY(U,$J,358.3,43336,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 2
+ ;;^UTILITY(U,$J,358.3,43336,1,4,0)
+ ;;=4^L89.612
+ ;;^UTILITY(U,$J,358.3,43336,2)
+ ;;=^5009432
+ ;;^UTILITY(U,$J,358.3,43337,0)
+ ;;=L89.613^^158^2105^63
+ ;;^UTILITY(U,$J,358.3,43337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45614,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45614,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,45614,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,45615,0)
- ;;=W54.0XXA^^200^2247^11
- ;;^UTILITY(U,$J,358.3,45615,1,0)
+ ;;^UTILITY(U,$J,358.3,43337,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 3
+ ;;^UTILITY(U,$J,358.3,43337,1,4,0)
+ ;;=4^L89.613
+ ;;^UTILITY(U,$J,358.3,43337,2)
+ ;;=^5009433
+ ;;^UTILITY(U,$J,358.3,43338,0)
+ ;;=L89.614^^158^2105^64
+ ;;^UTILITY(U,$J,358.3,43338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45615,1,3,0)
- ;;=3^Bitten by Dog,Init Encntr
- ;;^UTILITY(U,$J,358.3,45615,1,4,0)
- ;;=4^W54.0XXA
- ;;^UTILITY(U,$J,358.3,45615,2)
- ;;=^5060256
- ;;^UTILITY(U,$J,358.3,45616,0)
- ;;=W54.0XXD^^200^2247^12
- ;;^UTILITY(U,$J,358.3,45616,1,0)
+ ;;^UTILITY(U,$J,358.3,43338,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 4
+ ;;^UTILITY(U,$J,358.3,43338,1,4,0)
+ ;;=4^L89.614
+ ;;^UTILITY(U,$J,358.3,43338,2)
+ ;;=^5009434
+ ;;^UTILITY(U,$J,358.3,43339,0)
+ ;;=L89.620^^158^2105^24
+ ;;^UTILITY(U,$J,358.3,43339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45616,1,3,0)
- ;;=3^Bitten by Dog,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45616,1,4,0)
- ;;=4^W54.0XXD
- ;;^UTILITY(U,$J,358.3,45616,2)
- ;;=^5060257
- ;;^UTILITY(U,$J,358.3,45617,0)
- ;;=W55.01XA^^200^2247^9
- ;;^UTILITY(U,$J,358.3,45617,1,0)
+ ;;^UTILITY(U,$J,358.3,43339,1,3,0)
+ ;;=3^Pressure Ulcer Left Heel,Unstageable
+ ;;^UTILITY(U,$J,358.3,43339,1,4,0)
+ ;;=4^L89.620
+ ;;^UTILITY(U,$J,358.3,43339,2)
+ ;;=^5009435
+ ;;^UTILITY(U,$J,358.3,43340,0)
+ ;;=L89.629^^158^2105^23
+ ;;^UTILITY(U,$J,358.3,43340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45617,1,3,0)
- ;;=3^Bitten by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,45617,1,4,0)
- ;;=4^W55.01XA
- ;;^UTILITY(U,$J,358.3,45617,2)
- ;;=^5060265
- ;;^UTILITY(U,$J,358.3,45618,0)
- ;;=W55.01XD^^200^2247^10
- ;;^UTILITY(U,$J,358.3,45618,1,0)
+ ;;^UTILITY(U,$J,358.3,43340,1,3,0)
+ ;;=3^Pressure Ulcer Left Heel,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,43340,1,4,0)
+ ;;=4^L89.629
+ ;;^UTILITY(U,$J,358.3,43340,2)
+ ;;=^5133677
+ ;;^UTILITY(U,$J,358.3,43341,0)
+ ;;=L89.621^^158^2105^19
+ ;;^UTILITY(U,$J,358.3,43341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45618,1,3,0)
- ;;=3^Bitten by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45618,1,4,0)
- ;;=4^W55.01XD
- ;;^UTILITY(U,$J,358.3,45618,2)
- ;;=^5060266
- ;;^UTILITY(U,$J,358.3,45619,0)
- ;;=W55.03XA^^200^2247^101
- ;;^UTILITY(U,$J,358.3,45619,1,0)
+ ;;^UTILITY(U,$J,358.3,43341,1,3,0)
+ ;;=3^Pressure Ulcer Left Heel,Stage 1
+ ;;^UTILITY(U,$J,358.3,43341,1,4,0)
+ ;;=4^L89.621
+ ;;^UTILITY(U,$J,358.3,43341,2)
+ ;;=^5009436
+ ;;^UTILITY(U,$J,358.3,43342,0)
+ ;;=L89.622^^158^2105^20
+ ;;^UTILITY(U,$J,358.3,43342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45619,1,3,0)
- ;;=3^Scratched by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,45619,1,4,0)
- ;;=4^W55.03XA
- ;;^UTILITY(U,$J,358.3,45619,2)
- ;;=^5060268
- ;;^UTILITY(U,$J,358.3,45620,0)
- ;;=W55.03XD^^200^2247^102
- ;;^UTILITY(U,$J,358.3,45620,1,0)
+ ;;^UTILITY(U,$J,358.3,43342,1,3,0)
+ ;;=3^Pressure Ulcer Left Heel,Stage 2
+ ;;^UTILITY(U,$J,358.3,43342,1,4,0)
+ ;;=4^L89.622
+ ;;^UTILITY(U,$J,358.3,43342,2)
+ ;;=^5009437
+ ;;^UTILITY(U,$J,358.3,43343,0)
+ ;;=L89.623^^158^2105^21
+ ;;^UTILITY(U,$J,358.3,43343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45620,1,3,0)
- ;;=3^Scratched by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,45620,1,4,0)
- ;;=4^W55.03XD
- ;;^UTILITY(U,$J,358.3,45620,2)
- ;;=^5060269
- ;;^UTILITY(U,$J,358.3,45621,0)
- ;;=X00.8XXA^^200^2247^17
- ;;^UTILITY(U,$J,358.3,45621,1,0)
+ ;;^UTILITY(U,$J,358.3,43343,1,3,0)
+ ;;=3^Pressure Ulcer Left Heel,Stage 3
+ ;;^UTILITY(U,$J,358.3,43343,1,4,0)
+ ;;=4^L89.623
+ ;;^UTILITY(U,$J,358.3,43343,2)
+ ;;=^5009438
+ ;;^UTILITY(U,$J,358.3,43344,0)
+ ;;=L89.624^^158^2105^22
+ ;;^UTILITY(U,$J,358.3,43344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,45621,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,45621,1,4,0)
- ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,43344,1,3,0)
+ ;;=3^Pressure Ulcer Left Heel,Stage 4

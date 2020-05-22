@@ -1,5 +1,5 @@
 ONCPCI ;Hines OIFO/GWB - Patient Identification/Cancer Identification screen display ;09/22/11
- ;;2.2;ONCOLOGY;**1,9**;Jul 31, 2013;Build 3
+ ;;2.2;ONCOLOGY;**1,9,10**;Jul 31, 2013;Build 20
  ;
 PI ;Patient Identification
  K DASH S $P(DASH,"-",80)="-"
@@ -30,12 +30,13 @@ PI ;Patient Identification
  Q
  ;
 CI ;Cancer Identification
+ D ^ONCSCHMA
  K DASH S $P(DASH,"-",80)="-"
  N DI,DIC,DR,DA,DIQ,ONC,TM1,TM2,TM3,DOTS1,DOTS2,DOTS3
  S DIC="^ONCO(165.5,"
- S DR=".04;6;7;155;3;28;22;22.1;22.3;24:24.5;26;25.1;25.2;25.3;83;623;684;120;121;1010;5;171;172;173;21;96;102;156;159;193;194;195;196;233;237;237.1;238;250"
+ S DR=".04;.06;6;7;155;3;28;22;22.1;22.3;24:24.5;26;25.1;25.2;25.3;83;623;684;120;121;1010;5;171;172;173;21;96;102;156;159;193;194;195;196;233;237;237.1;238;250;3926;3927"
  S DA=D0,DIQ="ONC" D EN^DIQ1
- F I=.04,28,24,25.1,25.2,25.3,26,83,120,684,1010,5,21,102,159,194,24.1,24.2,24.3,24.4,24.5,233,237,237.1,238 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=.04,28,24,25.1,25.2,25.3,26,83,120,684,1010,5,21,102,159,194,24.1,24.2,24.3,24.4,24.5,233,237,237.1,238,3926,3927 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  S COC=$E($$GET1^DIQ(165.5,D0,.04,"E"),1,2)
  S TM1=$$PRINT^ONCOTM(D0,1)
  K DOTS1 S $P(DOTS1,".",25-$L(TM1))="."
@@ -45,9 +46,9 @@ CI ;Cancer Identification
  K DOTS3 S $P(DOTS3,".",25-$L(TM3))="."
  S TXT=ONC(165.5,D0,.04),LEN=48 D TXT
  W !," Class of Case................: ",TXT1 W:TXT2'="" !,?35,TXT2
- I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14) D
- .W !," Date of First Symptoms.......: ",ONC(165.5,D0,171)
- .W !," Date Workup Ordered/Started..: ",ONC(165.5,D0,172),"  ",ONC(165.5,D0,173)
+ ; I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14) D
+ ;.W !," Date of First Symptoms.......: ",ONC(165.5,D0,171)
+ ;.W !," Date Workup Ordered/Started..: ",ONC(165.5,D0,172),"  ",ONC(165.5,D0,173)
  S TXT=ONC(165.5,D0,6),LEN=46 D TXT
  W !," Facility referred from.......: ",TXT1 W:TXT2'="" !,?32,TXT2
  S TXT=ONC(165.5,D0,7),LEN=46 D TXT
@@ -58,7 +59,7 @@ CI ;Cancer Identification
  W !," Date Dx......................: ",ONC(165.5,D0,3)
  I DATEDX>3091231 D
  .W !," Inpatient Status.............: ",ONC(165.5,D0,233)
- I DATEDX>3061231 D
+ I DATEDX>3061231,DATEDX<3140000 D
  .W !," Ambiguous Terminology Dx.....: ",ONC(165.5,D0,159)
  .W !," Date of Conclusive Dx........: ",ONC(165.5,D0,193)
  S TXT=ONC(165.5,D0,5),LEN=46 D TXT
@@ -67,21 +68,24 @@ CI ;Cancer Identification
  S HIST=$$HIST^ONCFUNC(D0,.HSTFLD,.HISTNAM)
  S TXT=ONC(165.5,D0,HSTFLD),LEN=46 D TXT
  W !," Histology/Behavior Code......: ",ONC(165.5,D0,22.1)_" "_TXT1 W:TXT2'="" !,?32,TXT2
+ W !," Sequence Number..............: ",ONC(165.5,D0,.06)
  W:$G(TOP)=67619 !," Gleason Score (Clinical).....: ",ONC(165.5,D0,623)
  W:$G(TOP)=67619 !," Gleason Score (Pathologic)...: ",ONC(165.5,D0,250)
  W:$G(TOP)=67619 !," PSA..........................: ",ONC(165.5,D0,96)," ",ONC(165.5,D0,684)
  W:$G(TOP)=67619 !," DRE +/-......................: ",ONC(165.5,D0,156)," ",ONC(165.5,D0,102)
  S TXT=ONC(165.5,D0,28),LEN=46 D TXT
  W !," Laterality...................: ",TXT1 W:TXT2'="" !,?32,TXT2
- W !," Grade/Differentiation........: ",ONC(165.5,D0,24)
- I DATEDX>3091231 D
+ W:DATEDX<3180000 !," Grade/Differentiation........: ",ONC(165.5,D0,24)
+ I DATEDX>3091231!(DATEDX<3140000) D
  .W:ONC(165.5,D0,24.1)'="" !," Grade Path System............: ",ONC(165.5,D0,24.1)
  .W:ONC(165.5,D0,24.2)'="" !," Grade Path Value.............: ",ONC(165.5,D0,24.2)
- I DATEDX>2171231 D  ;might only want these for 2018> but now 1918>
- .W:ONC(165.5,D0,24.3)'="" !," Grade Clinical...............: ",ONC(165.5,D0,24.3)
- .W:ONC(165.5,D0,24.4)'="" !," Grade Pathological...........: ",ONC(165.5,D0,24.4)
- .W:ONC(165.5,D0,24.5)'="" !," Grade Post-Therapy...........: ",ONC(165.5,D0,24.5)
- I DATEDX>3061231 D
+ I DATEDX>3171231 D
+ .W:ONC(165.5,D0,3926)'="" !," Schema Discriminator 1.......: ",ONC(165.5,D0,3926)
+ .W:ONC(165.5,D0,3927)'="" !," Schema Discriminator 2.......: ",ONC(165.5,D0,3927)
+ .I ONC(165.5,D0,24.3)'="" S ONCDGSX=ONC(165.5,D0,24.3) D DSP^ONCSCHMG S LEN=47 D TXT W !," Grade Clinical...............: ",TXT1 W:TXT2'="" !,?35,$E(TXT2,1,45)
+ .I ONC(165.5,D0,24.4)'="" S ONCDGSX=ONC(165.5,D0,24.4) D DSP^ONCSCHMG S LEN=47 D TXT W !," Grade Pathological...........: ",TXT1 W:TXT2'="" !,?35,$E(TXT2,1,45)
+ .I ONC(165.5,D0,24.5)'="" S ONCDGSX=ONC(165.5,D0,24.5) D DSP^ONCSCHMG S LEN=47 D TXT W !," Grade Post-Therapy...........: ",TXT1 W:TXT2'="" !,?35,$E(TXT2,1,45)
+ I DATEDX>3061231,DATEDX<3140000 D
  .W !," Mult Tum Rpt as One Prim.....: ",ONC(165.5,D0,194)
  .W !," Date of Multiple Tumors......: ",ONC(165.5,D0,195)
  .W !," Multiplicity Counter.........: ",ONC(165.5,D0,196)

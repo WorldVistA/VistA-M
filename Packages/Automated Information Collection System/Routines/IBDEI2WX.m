@@ -1,126 +1,122 @@
-IBDEI2WX ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2WX ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48887,1,0)
+ ;;^UTILITY(U,$J,358.3,46455,0)
+ ;;=H44.2A3^^176^2310^39
+ ;;^UTILITY(U,$J,358.3,46455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48887,1,3,0)
- ;;=3^Traum subrac hem w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,48887,1,4,0)
- ;;=4^S06.6X4S
- ;;^UTILITY(U,$J,358.3,48887,2)
- ;;=^5021100
- ;;^UTILITY(U,$J,358.3,48888,0)
- ;;=S06.6X9S^^216^2412^112
- ;;^UTILITY(U,$J,358.3,48888,1,0)
+ ;;^UTILITY(U,$J,358.3,46455,1,3,0)
+ ;;=3^Degenerative Myopia w/ CNV,Bilateral
+ ;;^UTILITY(U,$J,358.3,46455,1,4,0)
+ ;;=4^H44.2A3
+ ;;^UTILITY(U,$J,358.3,46455,2)
+ ;;=^5151320
+ ;;^UTILITY(U,$J,358.3,46456,0)
+ ;;=H44.2B1^^176^2310^40
+ ;;^UTILITY(U,$J,358.3,46456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48888,1,3,0)
- ;;=3^Traum subrac hem w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,48888,1,4,0)
- ;;=4^S06.6X9S
- ;;^UTILITY(U,$J,358.3,48888,2)
- ;;=^5021115
- ;;^UTILITY(U,$J,358.3,48889,0)
- ;;=S06.6X0S^^216^2412^113
- ;;^UTILITY(U,$J,358.3,48889,1,0)
+ ;;^UTILITY(U,$J,358.3,46456,1,3,0)
+ ;;=3^Degenerative Myopia w/ Mac Hole,Right Eye
+ ;;^UTILITY(U,$J,358.3,46456,1,4,0)
+ ;;=4^H44.2B1
+ ;;^UTILITY(U,$J,358.3,46456,2)
+ ;;=^5151322
+ ;;^UTILITY(U,$J,358.3,46457,0)
+ ;;=H44.2B2^^176^2310^41
+ ;;^UTILITY(U,$J,358.3,46457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48889,1,3,0)
- ;;=3^Traum subrac hem w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,48889,1,4,0)
- ;;=4^S06.6X0S
- ;;^UTILITY(U,$J,358.3,48889,2)
- ;;=^5021088
- ;;^UTILITY(U,$J,358.3,48890,0)
- ;;=S06.5X5S^^216^2412^98
- ;;^UTILITY(U,$J,358.3,48890,1,0)
+ ;;^UTILITY(U,$J,358.3,46457,1,3,0)
+ ;;=3^Degenerative Myopia w/ Mac Hole,Left Eye
+ ;;^UTILITY(U,$J,358.3,46457,1,4,0)
+ ;;=4^H44.2B2
+ ;;^UTILITY(U,$J,358.3,46457,2)
+ ;;=^5151323
+ ;;^UTILITY(U,$J,358.3,46458,0)
+ ;;=H35.3133^^176^2310^6
+ ;;^UTILITY(U,$J,358.3,46458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48890,1,3,0)
- ;;=3^Traum subdr hem w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,48890,1,4,0)
- ;;=4^S06.5X5S
- ;;^UTILITY(U,$J,358.3,48890,2)
- ;;=^5021073
- ;;^UTILITY(U,$J,358.3,48891,0)
- ;;=S06.5X6S^^216^2412^99
- ;;^UTILITY(U,$J,358.3,48891,1,0)
+ ;;^UTILITY(U,$J,358.3,46458,1,3,0)
+ ;;=3^Non-Exudative ARMD, Advanced Atrophic w/o SF, Bilateral
+ ;;^UTILITY(U,$J,358.3,46458,1,4,0)
+ ;;=4^H35.3133
+ ;;^UTILITY(U,$J,358.3,46458,2)
+ ;;=^5138513
+ ;;^UTILITY(U,$J,358.3,46459,0)
+ ;;=H35.3132^^176^2310^5
+ ;;^UTILITY(U,$J,358.3,46459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48891,1,3,0)
- ;;=3^Traum subdr hem w LOC >24 hr w/o ret consc w surv, sequela
- ;;^UTILITY(U,$J,358.3,48891,1,4,0)
- ;;=4^S06.5X6S
- ;;^UTILITY(U,$J,358.3,48891,2)
- ;;=^5021076
- ;;^UTILITY(U,$J,358.3,48892,0)
- ;;=S06.5X3S^^216^2412^100
- ;;^UTILITY(U,$J,358.3,48892,1,0)
+ ;;^UTILITY(U,$J,358.3,46459,1,3,0)
+ ;;=3^Non-Exudative ARMD, Intermediate Dry Stage, Bilateral
+ ;;^UTILITY(U,$J,358.3,46459,1,4,0)
+ ;;=4^H35.3132
+ ;;^UTILITY(U,$J,358.3,46459,2)
+ ;;=^5138512
+ ;;^UTILITY(U,$J,358.3,46460,0)
+ ;;=H35.3291^^176^2310^9
+ ;;^UTILITY(U,$J,358.3,46460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48892,1,3,0)
- ;;=3^Traum subdr hem w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,48892,1,4,0)
- ;;=4^S06.5X3S
- ;;^UTILITY(U,$J,358.3,48892,2)
- ;;=^5021067
- ;;^UTILITY(U,$J,358.3,48893,0)
- ;;=S06.5X1S^^216^2412^101
- ;;^UTILITY(U,$J,358.3,48893,1,0)
+ ;;^UTILITY(U,$J,358.3,46460,1,3,0)
+ ;;=3^Exudative ARMD, w/ Active CNVM, Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46460,1,4,0)
+ ;;=4^H35.3291
+ ;;^UTILITY(U,$J,358.3,46460,2)
+ ;;=^5138533
+ ;;^UTILITY(U,$J,358.3,46461,0)
+ ;;=H35.3292^^176^2310^10
+ ;;^UTILITY(U,$J,358.3,46461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48893,1,3,0)
- ;;=3^Traum subdr hem w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,48893,1,4,0)
- ;;=4^S06.5X1S
- ;;^UTILITY(U,$J,358.3,48893,2)
- ;;=^5021061
- ;;^UTILITY(U,$J,358.3,48894,0)
- ;;=S06.5X2S^^216^2412^102
- ;;^UTILITY(U,$J,358.3,48894,1,0)
+ ;;^UTILITY(U,$J,358.3,46461,1,3,0)
+ ;;=3^Exudative ARMD, w/ Inactive CNVM, Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46461,1,4,0)
+ ;;=4^H35.3292
+ ;;^UTILITY(U,$J,358.3,46461,2)
+ ;;=^5138534
+ ;;^UTILITY(U,$J,358.3,46462,0)
+ ;;=H35.3293^^176^2310^11
+ ;;^UTILITY(U,$J,358.3,46462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48894,1,3,0)
- ;;=3^Traum subdr hem w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,48894,1,4,0)
- ;;=4^S06.5X2S
- ;;^UTILITY(U,$J,358.3,48894,2)
- ;;=^5021064
- ;;^UTILITY(U,$J,358.3,48895,0)
- ;;=S06.5X4S^^216^2412^103
- ;;^UTILITY(U,$J,358.3,48895,1,0)
+ ;;^UTILITY(U,$J,358.3,46462,1,3,0)
+ ;;=3^Exudative ARMD, w/ Inactive Scar, Unspec Eye
+ ;;^UTILITY(U,$J,358.3,46462,1,4,0)
+ ;;=4^H35.3293
+ ;;^UTILITY(U,$J,358.3,46462,2)
+ ;;=^5138535
+ ;;^UTILITY(U,$J,358.3,46463,0)
+ ;;=Z79.899^^176^2310^33
+ ;;^UTILITY(U,$J,358.3,46463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48895,1,3,0)
- ;;=3^Traum subdr hem w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,48895,1,4,0)
- ;;=4^S06.5X4S
- ;;^UTILITY(U,$J,358.3,48895,2)
- ;;=^5021070
- ;;^UTILITY(U,$J,358.3,48896,0)
- ;;=S06.5X9S^^216^2412^104
- ;;^UTILITY(U,$J,358.3,48896,1,0)
+ ;;^UTILITY(U,$J,358.3,46463,1,3,0)
+ ;;=3^Plaquenil/Long Term Med Screening
+ ;;^UTILITY(U,$J,358.3,46463,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,46463,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,46464,0)
+ ;;=Z91.5^^176^2311^1
+ ;;^UTILITY(U,$J,358.3,46464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48896,1,3,0)
- ;;=3^Traum subdr hem w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,48896,1,4,0)
- ;;=4^S06.5X9S
- ;;^UTILITY(U,$J,358.3,48896,2)
- ;;=^5021085
- ;;^UTILITY(U,$J,358.3,48897,0)
- ;;=S06.5X0S^^216^2412^105
- ;;^UTILITY(U,$J,358.3,48897,1,0)
+ ;;^UTILITY(U,$J,358.3,46464,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,46464,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,46464,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,46465,0)
+ ;;=R45.851^^176^2311^2
+ ;;^UTILITY(U,$J,358.3,46465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48897,1,3,0)
- ;;=3^Traum subdr hem w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,48897,1,4,0)
- ;;=4^S06.5X0S
- ;;^UTILITY(U,$J,358.3,48897,2)
- ;;=^5021058
- ;;^UTILITY(U,$J,358.3,48898,0)
- ;;=M84.351S^^216^2413^107
- ;;^UTILITY(U,$J,358.3,48898,1,0)
+ ;;^UTILITY(U,$J,358.3,46465,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,46465,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,46465,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,46466,0)
+ ;;=T14.91XA^^176^2311^3
+ ;;^UTILITY(U,$J,358.3,46466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48898,1,3,0)
- ;;=3^Stress fracture, right femur, sequela
- ;;^UTILITY(U,$J,358.3,48898,1,4,0)
- ;;=4^M84.351S
- ;;^UTILITY(U,$J,358.3,48898,2)
- ;;=^5013685
- ;;^UTILITY(U,$J,358.3,48899,0)
- ;;=M84.352S^^216^2413^106
- ;;^UTILITY(U,$J,358.3,48899,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46466,1,3,0)
+ ;;=3^Suicide Attempt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46466,1,4,0)
+ ;;=4^T14.91XA

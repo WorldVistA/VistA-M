@@ -1,128 +1,128 @@
-IBDEI1DY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1DY ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23545,1,0)
+ ;;^UTILITY(U,$J,358.3,22146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23545,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,23545,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,23545,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,23546,0)
- ;;=V00.812D^^87^1000^134
- ;;^UTILITY(U,$J,358.3,23546,1,0)
+ ;;^UTILITY(U,$J,358.3,22146,1,3,0)
+ ;;=3^Above the Knee Amputation,Left
+ ;;^UTILITY(U,$J,358.3,22146,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,22146,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,22147,0)
+ ;;=Z89.611^^99^1129^2
+ ;;^UTILITY(U,$J,358.3,22147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23546,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23546,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,23546,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,23547,0)
- ;;=V00.818A^^87^1000^131
- ;;^UTILITY(U,$J,358.3,23547,1,0)
+ ;;^UTILITY(U,$J,358.3,22147,1,3,0)
+ ;;=3^Above the Knee Amputation,Right
+ ;;^UTILITY(U,$J,358.3,22147,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,22147,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,22148,0)
+ ;;=Z98.0^^99^1129^3
+ ;;^UTILITY(U,$J,358.3,22148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23547,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23547,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,23547,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,23548,0)
- ;;=V00.818D^^87^1000^132
- ;;^UTILITY(U,$J,358.3,23548,1,0)
+ ;;^UTILITY(U,$J,358.3,22148,1,3,0)
+ ;;=3^Anastomosis
+ ;;^UTILITY(U,$J,358.3,22148,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,22148,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,22149,0)
+ ;;=Z98.61^^99^1129^5
+ ;;^UTILITY(U,$J,358.3,22149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23548,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23548,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,23548,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,23549,0)
- ;;=V00.831A^^87^1000^43
- ;;^UTILITY(U,$J,358.3,23549,1,0)
+ ;;^UTILITY(U,$J,358.3,22149,1,3,0)
+ ;;=3^Angioplasty,Coronary w/o Stent
+ ;;^UTILITY(U,$J,358.3,22149,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,22149,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,22150,0)
+ ;;=Z95.5^^99^1129^4
+ ;;^UTILITY(U,$J,358.3,22150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23549,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,23549,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,23549,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,23550,0)
- ;;=V00.831D^^87^1000^44
- ;;^UTILITY(U,$J,358.3,23550,1,0)
+ ;;^UTILITY(U,$J,358.3,22150,1,3,0)
+ ;;=3^Angioplasty,Coronary w/ Stent
+ ;;^UTILITY(U,$J,358.3,22150,1,4,0)
+ ;;=4^Z95.5
+ ;;^UTILITY(U,$J,358.3,22150,2)
+ ;;=^5063673
+ ;;^UTILITY(U,$J,358.3,22151,0)
+ ;;=Z98.62^^99^1129^7
+ ;;^UTILITY(U,$J,358.3,22151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23550,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23550,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,23550,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,23551,0)
- ;;=V00.832A^^87^1000^95
- ;;^UTILITY(U,$J,358.3,23551,1,0)
+ ;;^UTILITY(U,$J,358.3,22151,1,3,0)
+ ;;=3^Angioplasty,Peripheral Vascular w/o Stent
+ ;;^UTILITY(U,$J,358.3,22151,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,22151,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,22152,0)
+ ;;=Z89.512^^99^1129^8
+ ;;^UTILITY(U,$J,358.3,22152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23551,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,23551,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,23551,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,23552,0)
- ;;=V00.832D^^87^1000^96
- ;;^UTILITY(U,$J,358.3,23552,1,0)
+ ;;^UTILITY(U,$J,358.3,22152,1,3,0)
+ ;;=3^Below the Knee Amputation,Left
+ ;;^UTILITY(U,$J,358.3,22152,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,22152,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,22153,0)
+ ;;=Z89.511^^99^1129^9
+ ;;^UTILITY(U,$J,358.3,22153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23552,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23552,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,23552,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,23553,0)
- ;;=V00.838A^^87^1000^93
- ;;^UTILITY(U,$J,358.3,23553,1,0)
+ ;;^UTILITY(U,$J,358.3,22153,1,3,0)
+ ;;=3^Below the Knee Amputation,Right
+ ;;^UTILITY(U,$J,358.3,22153,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,22153,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,22154,0)
+ ;;=Z98.82^^99^1129^11
+ ;;^UTILITY(U,$J,358.3,22154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23553,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,23553,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,23553,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,23554,0)
- ;;=V00.838D^^87^1000^94
- ;;^UTILITY(U,$J,358.3,23554,1,0)
+ ;;^UTILITY(U,$J,358.3,22154,1,3,0)
+ ;;=3^Breast Implant (Bilat/Status Post)
+ ;;^UTILITY(U,$J,358.3,22154,1,4,0)
+ ;;=4^Z98.82
+ ;;^UTILITY(U,$J,358.3,22154,2)
+ ;;=^5063747
+ ;;^UTILITY(U,$J,358.3,22155,0)
+ ;;=Z98.86^^99^1129^10
+ ;;^UTILITY(U,$J,358.3,22155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23554,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23554,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,23554,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,23555,0)
- ;;=V00.891A^^87^1000^57
- ;;^UTILITY(U,$J,358.3,23555,1,0)
+ ;;^UTILITY(U,$J,358.3,22155,1,3,0)
+ ;;=3^Breast Implant (Bilat/Removed/Hx Of)
+ ;;^UTILITY(U,$J,358.3,22155,1,4,0)
+ ;;=4^Z98.86
+ ;;^UTILITY(U,$J,358.3,22155,2)
+ ;;=^5063751
+ ;;^UTILITY(U,$J,358.3,22156,0)
+ ;;=Z95.1^^99^1129^17
+ ;;^UTILITY(U,$J,358.3,22156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23555,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,23555,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,23555,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,23556,0)
- ;;=V00.891D^^87^1000^58
- ;;^UTILITY(U,$J,358.3,23556,1,0)
+ ;;^UTILITY(U,$J,358.3,22156,1,3,0)
+ ;;=3^Coronary Artery Bypass Graft
+ ;;^UTILITY(U,$J,358.3,22156,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,22156,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,22157,0)
+ ;;=Z98.42^^99^1129^12
+ ;;^UTILITY(U,$J,358.3,22157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23556,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23556,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,23556,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,23557,0)
- ;;=V00.892A^^87^1000^99
- ;;^UTILITY(U,$J,358.3,23557,1,0)
+ ;;^UTILITY(U,$J,358.3,22157,1,3,0)
+ ;;=3^Cataract Extraction,Left Eye
+ ;;^UTILITY(U,$J,358.3,22157,1,4,0)
+ ;;=4^Z98.42
+ ;;^UTILITY(U,$J,358.3,22157,2)
+ ;;=^5063738
+ ;;^UTILITY(U,$J,358.3,22158,0)
+ ;;=Z98.41^^99^1129^13
+ ;;^UTILITY(U,$J,358.3,22158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23557,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22158,1,3,0)
+ ;;=3^Cataract Extraction,Right Eye

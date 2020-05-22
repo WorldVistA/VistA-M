@@ -1,10 +1,10 @@
 IBECEA1 ;ALB/RLW-Cancel/Edit/Add... Action Entry Points ; 12-JUN-92
- ;;2.0;INTEGRATED BILLING;**15,27,45,176,312**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**15,27,45,176,312,663**;21-MAR-94;Build 27
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 PASS ; 'Pass a Charge' Entry Action (added by Jim Moore 4/30/92)
- N C,IBII,IBNOS,IBND,IBMSG,IBY,IBLINE,IBSTAT,IBAFY,IBATYP,IBHLDR
- N IBARTYP,IBN,IBSEQNO,IBSERV,IBTOTL,IBTRAN,IBIL,IBNOS2,Y,IBXA
+ N C,IBII,IBNOS,IBND,IBMSG,IBY,IBLINE,IBSTAT,IBAFY,IBATYP,IBHLDR,IBERROR
+ N IBARTYP,IBN,IBSEQNO,IBSERV,IBTOTL,IBTRAN,IBIL,IBNOS2,Y,IBXA,IBVSTIEN
  ;
  S VALMBCK="R" D EN^VALM2($G(XQORNOD(0)))
  I $D(VALMY) I '$$PFSSWARN^IBBSHDWN() S VALMBCK="R" Q
@@ -31,6 +31,12 @@ PASS ; 'Pass a Charge' Entry Action (added by Jim Moore 4/30/92)
  .S ^TMP("IBACM",$J,IBII,0)=IBLINE
  .S IBMSG=$S(+IBY=-1:"was not passed -",IBSTAT=8:"has now been placed ON HOLD",1:"has now been passed")
  .;
+ .;IB*2.0*663 If charge successfully passed, extract the bill number and update the visit tracking database if this is a CC URGENT CARE Charge
+ .I $P(IBND,U,11)'="",$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^")["CC URGENT CARE" D
+ .. ; send update to the Visit Tracking file.
+ .. S IBVSTIEN=$$FNDVST^IBECEA4("ON HOLD",$P(IBND,U,14),$P(IBND,U,2))
+ .. ;ADD THE NOT FOUND MESSAGE HERE?
+ .. D:+IBVSTIEN UPDATE^IBECEA38(IBVSTIEN,2,$P(IBND,U,11),"",1,.IBERROR)
  .; - if there is no active billing clock, add one
  .;   added check for LTC, don't do this for LTC
  .S IBXA=$P($G(^IBE(350.1,+$P(IBND,"^",3),0)),"^",11)

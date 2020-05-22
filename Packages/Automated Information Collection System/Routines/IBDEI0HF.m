@@ -1,354 +1,126 @@
-IBDEI0HF ; ; 09-AUG-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI0HF ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22078,0)
- ;;=M05.741^^58^846^150
- ;;^UTILITY(U,$J,358.3,22078,1,0)
+ ;;^UTILITY(U,$J,358.3,7582,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,7582,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,7582,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,7583,0)
+ ;;=I62.00^^63^495^26
+ ;;^UTILITY(U,$J,358.3,7583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22078,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,22078,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,22078,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,22079,0)
- ;;=M05.742^^58^846^143
- ;;^UTILITY(U,$J,358.3,22079,1,0)
+ ;;^UTILITY(U,$J,358.3,7583,1,3,0)
+ ;;=3^Nontraumatic Subdural Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,7583,1,4,0)
+ ;;=4^I62.00
+ ;;^UTILITY(U,$J,358.3,7583,2)
+ ;;=^5007289
+ ;;^UTILITY(U,$J,358.3,7584,0)
+ ;;=C79.31^^63^495^12
+ ;;^UTILITY(U,$J,358.3,7584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22079,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,22079,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,22079,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,22080,0)
- ;;=M05.751^^58^846^151
- ;;^UTILITY(U,$J,358.3,22080,1,0)
+ ;;^UTILITY(U,$J,358.3,7584,1,3,0)
+ ;;=3^Mets Malig Neop of Brain
+ ;;^UTILITY(U,$J,358.3,7584,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,7584,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,7585,0)
+ ;;=R40.0^^63^495^30
+ ;;^UTILITY(U,$J,358.3,7585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22080,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,22080,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,22080,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,22081,0)
- ;;=M05.752^^58^846^144
- ;;^UTILITY(U,$J,358.3,22081,1,0)
+ ;;^UTILITY(U,$J,358.3,7585,1,3,0)
+ ;;=3^Somnolence
+ ;;^UTILITY(U,$J,358.3,7585,1,4,0)
+ ;;=4^R40.0
+ ;;^UTILITY(U,$J,358.3,7585,2)
+ ;;=^5019352
+ ;;^UTILITY(U,$J,358.3,7586,0)
+ ;;=R40.1^^63^495^31
+ ;;^UTILITY(U,$J,358.3,7586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22081,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,22081,1,4,0)
- ;;=4^M05.752
- ;;^UTILITY(U,$J,358.3,22081,2)
- ;;=^5010014
- ;;^UTILITY(U,$J,358.3,22082,0)
- ;;=M05.761^^58^846^152
- ;;^UTILITY(U,$J,358.3,22082,1,0)
+ ;;^UTILITY(U,$J,358.3,7586,1,3,0)
+ ;;=3^Stupor
+ ;;^UTILITY(U,$J,358.3,7586,1,4,0)
+ ;;=4^R40.1
+ ;;^UTILITY(U,$J,358.3,7586,2)
+ ;;=^5019353
+ ;;^UTILITY(U,$J,358.3,7587,0)
+ ;;=I61.0^^63^495^16
+ ;;^UTILITY(U,$J,358.3,7587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22082,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,22082,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,22082,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,22083,0)
- ;;=M05.762^^58^846^145
- ;;^UTILITY(U,$J,358.3,22083,1,0)
+ ;;^UTILITY(U,$J,358.3,7587,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Subcortical
+ ;;^UTILITY(U,$J,358.3,7587,1,4,0)
+ ;;=4^I61.0
+ ;;^UTILITY(U,$J,358.3,7587,2)
+ ;;=^5007280
+ ;;^UTILITY(U,$J,358.3,7588,0)
+ ;;=I61.1^^63^495^17
+ ;;^UTILITY(U,$J,358.3,7588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22083,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,22083,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,22083,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,22084,0)
- ;;=M05.771^^58^846^149
- ;;^UTILITY(U,$J,358.3,22084,1,0)
+ ;;^UTILITY(U,$J,358.3,7588,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Cortical
+ ;;^UTILITY(U,$J,358.3,7588,1,4,0)
+ ;;=4^I61.1
+ ;;^UTILITY(U,$J,358.3,7588,2)
+ ;;=^5007281
+ ;;^UTILITY(U,$J,358.3,7589,0)
+ ;;=I61.2^^63^495^18
+ ;;^UTILITY(U,$J,358.3,7589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22084,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
- ;;^UTILITY(U,$J,358.3,22084,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,22084,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,22085,0)
- ;;=M05.772^^58^846^142
- ;;^UTILITY(U,$J,358.3,22085,1,0)
+ ;;^UTILITY(U,$J,358.3,7589,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage in Hemisphere,Unspec
+ ;;^UTILITY(U,$J,358.3,7589,1,4,0)
+ ;;=4^I61.2
+ ;;^UTILITY(U,$J,358.3,7589,2)
+ ;;=^5007282
+ ;;^UTILITY(U,$J,358.3,7590,0)
+ ;;=I61.3^^63^495^19
+ ;;^UTILITY(U,$J,358.3,7590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22085,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
- ;;^UTILITY(U,$J,358.3,22085,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,22085,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,22086,0)
- ;;=M05.79^^58^846^148
- ;;^UTILITY(U,$J,358.3,22086,1,0)
+ ;;^UTILITY(U,$J,358.3,7590,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage in Brain Stem
+ ;;^UTILITY(U,$J,358.3,7590,1,4,0)
+ ;;=4^I61.3
+ ;;^UTILITY(U,$J,358.3,7590,2)
+ ;;=^5007283
+ ;;^UTILITY(U,$J,358.3,7591,0)
+ ;;=I61.4^^63^495^20
+ ;;^UTILITY(U,$J,358.3,7591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22086,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
- ;;^UTILITY(U,$J,358.3,22086,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,22086,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,22087,0)
- ;;=M06.00^^58^846^155
- ;;^UTILITY(U,$J,358.3,22087,1,0)
+ ;;^UTILITY(U,$J,358.3,7591,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage in Cerebellum
+ ;;^UTILITY(U,$J,358.3,7591,1,4,0)
+ ;;=4^I61.4
+ ;;^UTILITY(U,$J,358.3,7591,2)
+ ;;=^5007284
+ ;;^UTILITY(U,$J,358.3,7592,0)
+ ;;=I61.5^^63^495^21
+ ;;^UTILITY(U,$J,358.3,7592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22087,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
- ;;^UTILITY(U,$J,358.3,22087,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,22087,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,22088,0)
- ;;=M06.30^^58^846^158
- ;;^UTILITY(U,$J,358.3,22088,1,0)
+ ;;^UTILITY(U,$J,358.3,7592,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage,Intraventricular
+ ;;^UTILITY(U,$J,358.3,7592,1,4,0)
+ ;;=4^I61.5
+ ;;^UTILITY(U,$J,358.3,7592,2)
+ ;;=^5007285
+ ;;^UTILITY(U,$J,358.3,7593,0)
+ ;;=I61.6^^63^495^22
+ ;;^UTILITY(U,$J,358.3,7593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22088,1,3,0)
- ;;=3^Rheumatoid Nodule,Unspec Site
- ;;^UTILITY(U,$J,358.3,22088,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,22088,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,22089,0)
- ;;=M06.4^^58^846^48
- ;;^UTILITY(U,$J,358.3,22089,1,0)
+ ;;^UTILITY(U,$J,358.3,7593,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage,Mult Localized
+ ;;^UTILITY(U,$J,358.3,7593,1,4,0)
+ ;;=4^I61.6
+ ;;^UTILITY(U,$J,358.3,7593,2)
+ ;;=^5007286
+ ;;^UTILITY(U,$J,358.3,7594,0)
+ ;;=I61.8^^63^495^23
+ ;;^UTILITY(U,$J,358.3,7594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22089,1,3,0)
- ;;=3^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,22089,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,22089,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,22090,0)
- ;;=M06.39^^58^846^157
- ;;^UTILITY(U,$J,358.3,22090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22090,1,3,0)
- ;;=3^Rheumatoid Nodule,Mult Sites
- ;;^UTILITY(U,$J,358.3,22090,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,22090,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,22091,0)
- ;;=M15.0^^58^846^121
- ;;^UTILITY(U,$J,358.3,22091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22091,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,22091,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,22091,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,22092,0)
- ;;=M06.9^^58^846^156
- ;;^UTILITY(U,$J,358.3,22092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22092,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,22092,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,22092,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,22093,0)
- ;;=M16.0^^58^846^124
- ;;^UTILITY(U,$J,358.3,22093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22093,1,3,0)
- ;;=3^Primary Osteoarthritis of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,22093,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,22093,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,22094,0)
- ;;=M16.11^^58^846^133
- ;;^UTILITY(U,$J,358.3,22094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22094,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,22094,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,22094,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,22095,0)
- ;;=M16.12^^58^846^127
- ;;^UTILITY(U,$J,358.3,22095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22095,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,22095,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,22095,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,22096,0)
- ;;=M17.0^^58^846^123
- ;;^UTILITY(U,$J,358.3,22096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22096,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral Knees
- ;;^UTILITY(U,$J,358.3,22096,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,22096,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,22097,0)
- ;;=M17.11^^58^846^134
- ;;^UTILITY(U,$J,358.3,22097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22097,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,22097,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,22097,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,22098,0)
- ;;=M17.12^^58^846^128
- ;;^UTILITY(U,$J,358.3,22098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22098,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,22098,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,22098,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,22099,0)
- ;;=M18.0^^58^846^122
- ;;^UTILITY(U,$J,358.3,22099,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22099,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
- ;;^UTILITY(U,$J,358.3,22099,1,4,0)
- ;;=4^M18.0
- ;;^UTILITY(U,$J,358.3,22099,2)
- ;;=^5010795
- ;;^UTILITY(U,$J,358.3,22100,0)
- ;;=M18.11^^58^846^132
- ;;^UTILITY(U,$J,358.3,22100,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22100,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,22100,1,4,0)
- ;;=4^M18.11
- ;;^UTILITY(U,$J,358.3,22100,2)
- ;;=^5010797
- ;;^UTILITY(U,$J,358.3,22101,0)
- ;;=M18.12^^58^846^126
- ;;^UTILITY(U,$J,358.3,22101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22101,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,22101,1,4,0)
- ;;=4^M18.12
- ;;^UTILITY(U,$J,358.3,22101,2)
- ;;=^5010798
- ;;^UTILITY(U,$J,358.3,22102,0)
- ;;=M19.011^^58^846^135
- ;;^UTILITY(U,$J,358.3,22102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22102,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,22102,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,22102,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,22103,0)
- ;;=M19.012^^58^846^129
- ;;^UTILITY(U,$J,358.3,22103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22103,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,22103,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,22103,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,22104,0)
- ;;=M19.031^^58^846^136
- ;;^UTILITY(U,$J,358.3,22104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22104,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,22104,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,22104,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,22105,0)
- ;;=M19.032^^58^846^130
- ;;^UTILITY(U,$J,358.3,22105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22105,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,22105,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,22105,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,22106,0)
- ;;=M19.041^^58^846^131
- ;;^UTILITY(U,$J,358.3,22106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22106,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,22106,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,22106,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,22107,0)
- ;;=M19.042^^58^846^125
- ;;^UTILITY(U,$J,358.3,22107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22107,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,22107,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,22107,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,22108,0)
- ;;=M19.90^^58^846^68
- ;;^UTILITY(U,$J,358.3,22108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22108,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,22108,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,22108,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,22109,0)
- ;;=M25.40^^58^846^37
- ;;^UTILITY(U,$J,358.3,22109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22109,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,22109,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,22109,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,22110,0)
- ;;=M45.0^^58^846^6
- ;;^UTILITY(U,$J,358.3,22110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22110,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,22110,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,22110,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,22111,0)
- ;;=M45.2^^58^846^3
- ;;^UTILITY(U,$J,358.3,22111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22111,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,22111,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,22111,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,22112,0)
- ;;=M45.4^^58^846^7
- ;;^UTILITY(U,$J,358.3,22112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22112,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,22112,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,22112,2)
- ;;=^5011964
+ ;;^UTILITY(U,$J,358.3,7594,1,3,0)
+ ;;=3^Nontraumatic Intracerebral Hemorrhage,Other

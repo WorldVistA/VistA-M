@@ -1,120 +1,124 @@
-IBDEI1PL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1PL ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29031,0)
- ;;=O35.2XX4^^115^1455^114
- ;;^UTILITY(U,$J,358.3,29031,1,0)
+ ;;^UTILITY(U,$J,358.3,27306,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27306,1,4,0)
+ ;;=4^F19.121
+ ;;^UTILITY(U,$J,358.3,27306,2)
+ ;;=^5003418
+ ;;^UTILITY(U,$J,358.3,27307,0)
+ ;;=F19.221^^110^1323^20
+ ;;^UTILITY(U,$J,358.3,27307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29031,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 4
- ;;^UTILITY(U,$J,358.3,29031,1,4,0)
- ;;=4^O35.2XX4
- ;;^UTILITY(U,$J,358.3,29031,2)
- ;;=^5016793
- ;;^UTILITY(U,$J,358.3,29032,0)
- ;;=O35.2XX5^^115^1455^115
- ;;^UTILITY(U,$J,358.3,29032,1,0)
+ ;;^UTILITY(U,$J,358.3,27307,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27307,1,4,0)
+ ;;=4^F19.221
+ ;;^UTILITY(U,$J,358.3,27307,2)
+ ;;=^5003434
+ ;;^UTILITY(U,$J,358.3,27308,0)
+ ;;=F19.921^^110^1323^21
+ ;;^UTILITY(U,$J,358.3,27308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29032,1,3,0)
- ;;=3^Maternal care for hereditary disease in fetus, fetus 5
- ;;^UTILITY(U,$J,358.3,29032,1,4,0)
- ;;=4^O35.2XX5
- ;;^UTILITY(U,$J,358.3,29032,2)
- ;;=^5016794
- ;;^UTILITY(U,$J,358.3,29033,0)
- ;;=O35.3XX0^^115^1455^67
- ;;^UTILITY(U,$J,358.3,29033,1,0)
+ ;;^UTILITY(U,$J,358.3,27308,1,3,0)
+ ;;=3^Oth/Unk Substance Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27308,1,4,0)
+ ;;=4^F19.921
+ ;;^UTILITY(U,$J,358.3,27308,2)
+ ;;=^5003453
+ ;;^UTILITY(U,$J,358.3,27309,0)
+ ;;=F19.10^^110^1323^27
+ ;;^UTILITY(U,$J,358.3,27309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29033,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, unsp
- ;;^UTILITY(U,$J,358.3,29033,1,4,0)
- ;;=4^O35.3XX0
- ;;^UTILITY(U,$J,358.3,29033,2)
- ;;=^5016796
- ;;^UTILITY(U,$J,358.3,29034,0)
- ;;=O35.3XX1^^115^1455^68
- ;;^UTILITY(U,$J,358.3,29034,1,0)
+ ;;^UTILITY(U,$J,358.3,27309,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,Uncomp
+ ;;^UTILITY(U,$J,358.3,27309,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,27309,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,27310,0)
+ ;;=F19.20^^110^1323^29
+ ;;^UTILITY(U,$J,358.3,27310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29034,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts1
- ;;^UTILITY(U,$J,358.3,29034,1,4,0)
- ;;=4^O35.3XX1
- ;;^UTILITY(U,$J,358.3,29034,2)
- ;;=^5016797
- ;;^UTILITY(U,$J,358.3,29035,0)
- ;;=O35.3XX2^^115^1455^69
- ;;^UTILITY(U,$J,358.3,29035,1,0)
+ ;;^UTILITY(U,$J,358.3,27310,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,Uncomp
+ ;;^UTILITY(U,$J,358.3,27310,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,27310,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,27311,0)
+ ;;=F19.239^^110^1323^31
+ ;;^UTILITY(U,$J,358.3,27311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29035,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts2
- ;;^UTILITY(U,$J,358.3,29035,1,4,0)
- ;;=4^O35.3XX2
- ;;^UTILITY(U,$J,358.3,29035,2)
- ;;=^5016798
- ;;^UTILITY(U,$J,358.3,29036,0)
- ;;=O35.3XX3^^115^1455^70
- ;;^UTILITY(U,$J,358.3,29036,1,0)
+ ;;^UTILITY(U,$J,358.3,27311,1,3,0)
+ ;;=3^Oth/Unk Substance Withdrawal
+ ;;^UTILITY(U,$J,358.3,27311,1,4,0)
+ ;;=4^F19.239
+ ;;^UTILITY(U,$J,358.3,27311,2)
+ ;;=^5003440
+ ;;^UTILITY(U,$J,358.3,27312,0)
+ ;;=F19.231^^110^1323^32
+ ;;^UTILITY(U,$J,358.3,27312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29036,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts3
- ;;^UTILITY(U,$J,358.3,29036,1,4,0)
- ;;=4^O35.3XX3
- ;;^UTILITY(U,$J,358.3,29036,2)
- ;;=^5016799
- ;;^UTILITY(U,$J,358.3,29037,0)
- ;;=O35.3XX4^^115^1455^71
- ;;^UTILITY(U,$J,358.3,29037,1,0)
+ ;;^UTILITY(U,$J,358.3,27312,1,3,0)
+ ;;=3^Oth/Unk Substance Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,27312,1,4,0)
+ ;;=4^F19.231
+ ;;^UTILITY(U,$J,358.3,27312,2)
+ ;;=^5003438
+ ;;^UTILITY(U,$J,358.3,27313,0)
+ ;;=F19.99^^110^1323^25
+ ;;^UTILITY(U,$J,358.3,27313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29037,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts4
- ;;^UTILITY(U,$J,358.3,29037,1,4,0)
- ;;=4^O35.3XX4
- ;;^UTILITY(U,$J,358.3,29037,2)
- ;;=^5016800
- ;;^UTILITY(U,$J,358.3,29038,0)
- ;;=O35.3XX5^^115^1455^72
- ;;^UTILITY(U,$J,358.3,29038,1,0)
+ ;;^UTILITY(U,$J,358.3,27313,1,3,0)
+ ;;=3^Oth/Unk Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27313,1,4,0)
+ ;;=4^F19.99
+ ;;^UTILITY(U,$J,358.3,27313,2)
+ ;;=^5133364
+ ;;^UTILITY(U,$J,358.3,27314,0)
+ ;;=F19.21^^110^1323^28
+ ;;^UTILITY(U,$J,358.3,27314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29038,1,3,0)
- ;;=3^Maternal care for damag to fts from viral dis in mother, fts5
- ;;^UTILITY(U,$J,358.3,29038,1,4,0)
- ;;=4^O35.3XX5
- ;;^UTILITY(U,$J,358.3,29038,2)
- ;;=^5016801
- ;;^UTILITY(U,$J,358.3,29039,0)
- ;;=O35.4XX0^^115^1455^86
- ;;^UTILITY(U,$J,358.3,29039,1,0)
+ ;;^UTILITY(U,$J,358.3,27314,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mod/Sev,In Remiss
+ ;;^UTILITY(U,$J,358.3,27314,1,4,0)
+ ;;=4^F19.21
+ ;;^UTILITY(U,$J,358.3,27314,2)
+ ;;=^5003432
+ ;;^UTILITY(U,$J,358.3,27315,0)
+ ;;=F19.939^^110^1323^30
+ ;;^UTILITY(U,$J,358.3,27315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29039,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, unsp
- ;;^UTILITY(U,$J,358.3,29039,1,4,0)
- ;;=4^O35.4XX0
- ;;^UTILITY(U,$J,358.3,29039,2)
- ;;=^5016803
- ;;^UTILITY(U,$J,358.3,29040,0)
- ;;=O35.4XX1^^115^1455^87
- ;;^UTILITY(U,$J,358.3,29040,1,0)
+ ;;^UTILITY(U,$J,358.3,27315,1,3,0)
+ ;;=3^Oth/Unk Substance WD,Unspec
+ ;;^UTILITY(U,$J,358.3,27315,1,4,0)
+ ;;=4^F19.939
+ ;;^UTILITY(U,$J,358.3,27315,2)
+ ;;=^5003459
+ ;;^UTILITY(U,$J,358.3,27316,0)
+ ;;=F19.11^^110^1323^26
+ ;;^UTILITY(U,$J,358.3,27316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29040,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 1
- ;;^UTILITY(U,$J,358.3,29040,1,4,0)
- ;;=4^O35.4XX1
- ;;^UTILITY(U,$J,358.3,29040,2)
- ;;=^5016804
- ;;^UTILITY(U,$J,358.3,29041,0)
- ;;=O35.4XX2^^115^1455^88
- ;;^UTILITY(U,$J,358.3,29041,1,0)
+ ;;^UTILITY(U,$J,358.3,27316,1,3,0)
+ ;;=3^Oth/Unk Substance Use DO,Mild,In Remiss
+ ;;^UTILITY(U,$J,358.3,27316,1,4,0)
+ ;;=4^F19.11
+ ;;^UTILITY(U,$J,358.3,27316,2)
+ ;;=^5151306
+ ;;^UTILITY(U,$J,358.3,27317,0)
+ ;;=F15.99^^110^1324^66
+ ;;^UTILITY(U,$J,358.3,27317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29041,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 2
- ;;^UTILITY(U,$J,358.3,29041,1,4,0)
- ;;=4^O35.4XX2
- ;;^UTILITY(U,$J,358.3,29041,2)
- ;;=^5016805
- ;;^UTILITY(U,$J,358.3,29042,0)
- ;;=O35.4XX3^^115^1455^89
- ;;^UTILITY(U,$J,358.3,29042,1,0)
+ ;;^UTILITY(U,$J,358.3,27317,1,3,0)
+ ;;=3^Oth Stimulant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,27317,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,27317,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,27318,0)
+ ;;=F14.99^^110^1324^28
+ ;;^UTILITY(U,$J,358.3,27318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29042,1,3,0)
- ;;=3^Maternal care for damage to fetus from alcohol, fetus 3

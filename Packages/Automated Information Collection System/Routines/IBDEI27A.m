@@ -1,132 +1,124 @@
-IBDEI27A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI27A ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37324,1,3,0)
- ;;=3^Long term (current) use of systmc steroids
- ;;^UTILITY(U,$J,358.3,37324,1,4,0)
- ;;=4^Z79.52
- ;;^UTILITY(U,$J,358.3,37324,2)
- ;;=^5063336
- ;;^UTILITY(U,$J,358.3,37325,0)
- ;;=Z79.1^^140^1787^189
- ;;^UTILITY(U,$J,358.3,37325,1,0)
+ ;;^UTILITY(U,$J,358.3,35140,1,3,0)
+ ;;=3^Fx,Right shoulder girdle, part unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,35140,1,4,0)
+ ;;=4^S42.91XS
+ ;;^UTILITY(U,$J,358.3,35140,2)
+ ;;=^5027649
+ ;;^UTILITY(U,$J,358.3,35141,0)
+ ;;=S72.001S^^137^1797^22
+ ;;^UTILITY(U,$J,358.3,35141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37325,1,3,0)
- ;;=3^Long term (current) use of NSAIDs
- ;;^UTILITY(U,$J,358.3,37325,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,37325,2)
- ;;=^5063332
- ;;^UTILITY(U,$J,358.3,37326,0)
- ;;=M30.1^^140^1787^135
- ;;^UTILITY(U,$J,358.3,37326,1,0)
+ ;;^UTILITY(U,$J,358.3,35141,1,3,0)
+ ;;=3^Fx,Right Femur Neck,Unspec Part,Sequela
+ ;;^UTILITY(U,$J,358.3,35141,1,4,0)
+ ;;=4^S72.001S
+ ;;^UTILITY(U,$J,358.3,35141,2)
+ ;;=^5037062
+ ;;^UTILITY(U,$J,358.3,35142,0)
+ ;;=S32.9XXS^^137^1797^14
+ ;;^UTILITY(U,$J,358.3,35142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37326,1,3,0)
- ;;=3^Eosinophilic Granulomatosis w/ Polyangiitis (EGPA)
- ;;^UTILITY(U,$J,358.3,37326,1,4,0)
- ;;=4^M30.1
- ;;^UTILITY(U,$J,358.3,37326,2)
- ;;=^5011739
- ;;^UTILITY(U,$J,358.3,37327,0)
- ;;=M34.1^^140^1787^89
- ;;^UTILITY(U,$J,358.3,37327,1,0)
+ ;;^UTILITY(U,$J,358.3,35142,1,3,0)
+ ;;=3^Fx,Lumbosacral Spine & Pelvis,Unspec Parts,Sequla
+ ;;^UTILITY(U,$J,358.3,35142,1,4,0)
+ ;;=4^S32.9XXS
+ ;;^UTILITY(U,$J,358.3,35142,2)
+ ;;=^5025126
+ ;;^UTILITY(U,$J,358.3,35143,0)
+ ;;=S92.902S^^137^1797^5
+ ;;^UTILITY(U,$J,358.3,35143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37327,1,3,0)
- ;;=3^CR(E)ST syndrome
- ;;^UTILITY(U,$J,358.3,37327,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,37327,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,37328,0)
- ;;=D89.1^^140^1787^100
- ;;^UTILITY(U,$J,358.3,37328,1,0)
+ ;;^UTILITY(U,$J,358.3,35143,1,3,0)
+ ;;=3^Fx,Left foot, sequela
+ ;;^UTILITY(U,$J,358.3,35143,1,4,0)
+ ;;=4^S92.902S
+ ;;^UTILITY(U,$J,358.3,35143,2)
+ ;;=^5045591
+ ;;^UTILITY(U,$J,358.3,35144,0)
+ ;;=S52.92XS^^137^1797^6
+ ;;^UTILITY(U,$J,358.3,35144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37328,1,3,0)
- ;;=3^Cryoglobulinemia
- ;;^UTILITY(U,$J,358.3,37328,1,4,0)
- ;;=4^D89.1
- ;;^UTILITY(U,$J,358.3,37328,2)
- ;;=^29577
- ;;^UTILITY(U,$J,358.3,37329,0)
- ;;=M33.90^^140^1787^101
- ;;^UTILITY(U,$J,358.3,37329,1,0)
+ ;;^UTILITY(U,$J,358.3,35144,1,3,0)
+ ;;=3^Fx,Left forearm, sequela
+ ;;^UTILITY(U,$J,358.3,35144,1,4,0)
+ ;;=4^S52.92XS
+ ;;^UTILITY(U,$J,358.3,35144,2)
+ ;;=^5031189
+ ;;^UTILITY(U,$J,358.3,35145,0)
+ ;;=S82.92XS^^137^1797^7
+ ;;^UTILITY(U,$J,358.3,35145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37329,1,3,0)
- ;;=3^Dermatoplymyostis, unsp, organ invlvmnt, unspec
- ;;^UTILITY(U,$J,358.3,37329,1,4,0)
- ;;=4^M33.90
- ;;^UTILITY(U,$J,358.3,37329,2)
- ;;=^5011774
- ;;^UTILITY(U,$J,358.3,37330,0)
- ;;=L93.0^^140^1787^102
- ;;^UTILITY(U,$J,358.3,37330,1,0)
+ ;;^UTILITY(U,$J,358.3,35145,1,3,0)
+ ;;=3^Fx,Left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,35145,1,4,0)
+ ;;=4^S82.92XS
+ ;;^UTILITY(U,$J,358.3,35145,2)
+ ;;=^5136992
+ ;;^UTILITY(U,$J,358.3,35146,0)
+ ;;=S82.002S^^137^1797^8
+ ;;^UTILITY(U,$J,358.3,35146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37330,1,3,0)
- ;;=3^Discoid lupus erythematosus
- ;;^UTILITY(U,$J,358.3,37330,1,4,0)
- ;;=4^L93.0
- ;;^UTILITY(U,$J,358.3,37330,2)
- ;;=^5009467
- ;;^UTILITY(U,$J,358.3,37331,0)
- ;;=M1A.20X1^^140^1787^153
- ;;^UTILITY(U,$J,358.3,37331,1,0)
+ ;;^UTILITY(U,$J,358.3,35146,1,3,0)
+ ;;=3^Fx,Left patella, sequela
+ ;;^UTILITY(U,$J,358.3,35146,1,4,0)
+ ;;=4^S82.002S
+ ;;^UTILITY(U,$J,358.3,35146,2)
+ ;;=^5040135
+ ;;^UTILITY(U,$J,358.3,35147,0)
+ ;;=S92.912S^^137^1797^10
+ ;;^UTILITY(U,$J,358.3,35147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37331,1,3,0)
- ;;=3^Gout, chron, drug-inducd, unsp site, w/tophus (tophi)
- ;;^UTILITY(U,$J,358.3,37331,1,4,0)
- ;;=4^M1A.20X1
- ;;^UTILITY(U,$J,358.3,37331,2)
- ;;=^5010926
- ;;^UTILITY(U,$J,358.3,37332,0)
- ;;=M10.9^^140^1787^158
- ;;^UTILITY(U,$J,358.3,37332,1,0)
+ ;;^UTILITY(U,$J,358.3,35147,1,3,0)
+ ;;=3^Fx,Left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,35147,1,4,0)
+ ;;=4^S92.912S
+ ;;^UTILITY(U,$J,358.3,35147,2)
+ ;;=^5045605
+ ;;^UTILITY(U,$J,358.3,35148,0)
+ ;;=S62.92XS^^137^1797^11
+ ;;^UTILITY(U,$J,358.3,35148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37332,1,3,0)
- ;;=3^Gout, unspecified
- ;;^UTILITY(U,$J,358.3,37332,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,37332,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,37333,0)
- ;;=M1A.00X1^^140^1787^154
- ;;^UTILITY(U,$J,358.3,37333,1,0)
+ ;;^UTILITY(U,$J,358.3,35148,1,3,0)
+ ;;=3^Fx,Left wrist and hand, sequela
+ ;;^UTILITY(U,$J,358.3,35148,1,4,0)
+ ;;=4^S62.92XS
+ ;;^UTILITY(U,$J,358.3,35148,2)
+ ;;=^5034892
+ ;;^UTILITY(U,$J,358.3,35149,0)
+ ;;=S42.402S^^137^1797^12
+ ;;^UTILITY(U,$J,358.3,35149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37333,1,3,0)
- ;;=3^Gout, chron, idiopath, unspec site, w/ tophus (tophi)
- ;;^UTILITY(U,$J,358.3,37333,1,4,0)
- ;;=4^M1A.00X1
- ;;^UTILITY(U,$J,358.3,37333,2)
- ;;=^5010858
- ;;^UTILITY(U,$J,358.3,37334,0)
- ;;=M10.00^^140^1787^157
- ;;^UTILITY(U,$J,358.3,37334,1,0)
+ ;;^UTILITY(U,$J,358.3,35149,1,3,0)
+ ;;=3^Fx,Lower end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,35149,1,4,0)
+ ;;=4^S42.402S
+ ;;^UTILITY(U,$J,358.3,35149,2)
+ ;;=^5134725
+ ;;^UTILITY(U,$J,358.3,35150,0)
+ ;;=S42.401S^^137^1797^13
+ ;;^UTILITY(U,$J,358.3,35150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37334,1,3,0)
- ;;=3^Gout, idiopath, unspec site
- ;;^UTILITY(U,$J,358.3,37334,1,4,0)
- ;;=4^M10.00
- ;;^UTILITY(U,$J,358.3,37334,2)
- ;;=^5010284
- ;;^UTILITY(U,$J,358.3,37335,0)
- ;;=Z00.6^^140^1787^1
- ;;^UTILITY(U,$J,358.3,37335,1,0)
+ ;;^UTILITY(U,$J,358.3,35150,1,3,0)
+ ;;=3^Fx,Lower end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,35150,1,4,0)
+ ;;=4^S42.401S
+ ;;^UTILITY(U,$J,358.3,35150,2)
+ ;;=^5027300
+ ;;^UTILITY(U,$J,358.3,35151,0)
+ ;;=S92.901S^^137^1797^23
+ ;;^UTILITY(U,$J,358.3,35151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37335,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,37335,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,37335,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,37336,0)
- ;;=Z00.6^^140^1787^134
- ;;^UTILITY(U,$J,358.3,37336,1,0)
+ ;;^UTILITY(U,$J,358.3,35151,1,3,0)
+ ;;=3^Fx,Right foot, sequela
+ ;;^UTILITY(U,$J,358.3,35151,1,4,0)
+ ;;=4^S92.901S
+ ;;^UTILITY(U,$J,358.3,35151,2)
+ ;;=^5045584
+ ;;^UTILITY(U,$J,358.3,35152,0)
+ ;;=S52.91XS^^137^1797^24
+ ;;^UTILITY(U,$J,358.3,35152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37336,1,3,0)
- ;;=3^Encntr for exam for nrml cmprsn & ctrl in clin rsrch prog
- ;;^UTILITY(U,$J,358.3,37336,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,37336,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,37337,0)
- ;;=M79.7^^140^1787^136

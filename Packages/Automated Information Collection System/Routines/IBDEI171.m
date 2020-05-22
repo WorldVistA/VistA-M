@@ -1,134 +1,118 @@
-IBDEI171 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI171 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20292,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,20293,0)
- ;;=Z94.2^^84^930^66
- ;;^UTILITY(U,$J,358.3,20293,1,0)
+ ;;^UTILITY(U,$J,358.3,19178,2)
+ ;;=^5007486
+ ;;^UTILITY(U,$J,358.3,19179,0)
+ ;;=I69.092^^93^989^30
+ ;;^UTILITY(U,$J,358.3,19179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20293,1,3,0)
- ;;=3^Lung Transplant Status
- ;;^UTILITY(U,$J,358.3,20293,1,4,0)
- ;;=4^Z94.2
- ;;^UTILITY(U,$J,358.3,20293,2)
- ;;=^5063656
- ;;^UTILITY(U,$J,358.3,20294,0)
- ;;=Z94.3^^84^930^55
- ;;^UTILITY(U,$J,358.3,20294,1,0)
+ ;;^UTILITY(U,$J,358.3,19179,1,3,0)
+ ;;=3^Facial weakness following ntrm subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,19179,1,4,0)
+ ;;=4^I69.092
+ ;;^UTILITY(U,$J,358.3,19179,2)
+ ;;=^5007422
+ ;;^UTILITY(U,$J,358.3,19180,0)
+ ;;=I69.892^^93^989^32
+ ;;^UTILITY(U,$J,358.3,19180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20294,1,3,0)
- ;;=3^Heart & Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,20294,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,20294,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,20295,0)
- ;;=Z94.4^^84^930^65
- ;;^UTILITY(U,$J,358.3,20295,1,0)
+ ;;^UTILITY(U,$J,358.3,19180,1,3,0)
+ ;;=3^Facial weakness following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,19180,1,4,0)
+ ;;=4^I69.892
+ ;;^UTILITY(U,$J,358.3,19180,2)
+ ;;=^5007548
+ ;;^UTILITY(U,$J,358.3,19181,0)
+ ;;=I69.351^^93^989^34
+ ;;^UTILITY(U,$J,358.3,19181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20295,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,20295,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,20295,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,20296,0)
- ;;=Z94.84^^84^930^143
- ;;^UTILITY(U,$J,358.3,20296,1,0)
+ ;;^UTILITY(U,$J,358.3,19181,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,19181,1,4,0)
+ ;;=4^I69.351
+ ;;^UTILITY(U,$J,358.3,19181,2)
+ ;;=^5007504
+ ;;^UTILITY(U,$J,358.3,19182,0)
+ ;;=I69.352^^93^989^33
+ ;;^UTILITY(U,$J,358.3,19182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20296,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,20296,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,20296,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,20297,0)
- ;;=Z96.21^^84^930^14
- ;;^UTILITY(U,$J,358.3,20297,1,0)
+ ;;^UTILITY(U,$J,358.3,19182,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,19182,1,4,0)
+ ;;=4^I69.352
+ ;;^UTILITY(U,$J,358.3,19182,2)
+ ;;=^5007505
+ ;;^UTILITY(U,$J,358.3,19183,0)
+ ;;=I69.353^^93^989^35
+ ;;^UTILITY(U,$J,358.3,19183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20297,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,20297,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,20297,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,20298,0)
- ;;=Z96.41^^84^930^126
- ;;^UTILITY(U,$J,358.3,20298,1,0)
+ ;;^UTILITY(U,$J,358.3,19183,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19183,1,4,0)
+ ;;=4^I69.353
+ ;;^UTILITY(U,$J,358.3,19183,2)
+ ;;=^5007506
+ ;;^UTILITY(U,$J,358.3,19184,0)
+ ;;=I69.354^^93^989^36
+ ;;^UTILITY(U,$J,358.3,19184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20298,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,20298,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,20298,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,20299,0)
- ;;=Z96.641^^84^930^134
- ;;^UTILITY(U,$J,358.3,20299,1,0)
+ ;;^UTILITY(U,$J,358.3,19184,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc affecting left nondom side
+ ;;^UTILITY(U,$J,358.3,19184,1,4,0)
+ ;;=4^I69.354
+ ;;^UTILITY(U,$J,358.3,19184,2)
+ ;;=^5007507
+ ;;^UTILITY(U,$J,358.3,19185,0)
+ ;;=I69.151^^93^989^39
+ ;;^UTILITY(U,$J,358.3,19185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20299,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,20299,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,20299,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,20300,0)
- ;;=Z96.642^^84^930^129
- ;;^UTILITY(U,$J,358.3,20300,1,0)
+ ;;^UTILITY(U,$J,358.3,19185,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,19185,1,4,0)
+ ;;=4^I69.151
+ ;;^UTILITY(U,$J,358.3,19185,2)
+ ;;=^5007441
+ ;;^UTILITY(U,$J,358.3,19186,0)
+ ;;=I69.152^^93^989^37
+ ;;^UTILITY(U,$J,358.3,19186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20300,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,20300,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,20300,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,20301,0)
- ;;=Z96.643^^84^930^121
- ;;^UTILITY(U,$J,358.3,20301,1,0)
+ ;;^UTILITY(U,$J,358.3,19186,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,19186,1,4,0)
+ ;;=4^I69.152
+ ;;^UTILITY(U,$J,358.3,19186,2)
+ ;;=^5007442
+ ;;^UTILITY(U,$J,358.3,19187,0)
+ ;;=I69.153^^93^989^40
+ ;;^UTILITY(U,$J,358.3,19187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20301,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,20301,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,20301,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,20302,0)
- ;;=Z96.651^^84^930^135
- ;;^UTILITY(U,$J,358.3,20302,1,0)
+ ;;^UTILITY(U,$J,358.3,19187,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,19187,1,4,0)
+ ;;=4^I69.153
+ ;;^UTILITY(U,$J,358.3,19187,2)
+ ;;=^5007443
+ ;;^UTILITY(U,$J,358.3,19188,0)
+ ;;=I69.154^^93^989^38
+ ;;^UTILITY(U,$J,358.3,19188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20302,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,20302,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,20302,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,20303,0)
- ;;=Z96.652^^84^930^130
- ;;^UTILITY(U,$J,358.3,20303,1,0)
+ ;;^UTILITY(U,$J,358.3,19188,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,19188,1,4,0)
+ ;;=4^I69.154
+ ;;^UTILITY(U,$J,358.3,19188,2)
+ ;;=^5007444
+ ;;^UTILITY(U,$J,358.3,19189,0)
+ ;;=I69.851^^93^989^45
+ ;;^UTILITY(U,$J,358.3,19189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20303,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,20303,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,20303,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,20304,0)
- ;;=Z96.653^^84^930^122
- ;;^UTILITY(U,$J,358.3,20304,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20304,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,20304,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,20304,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,20305,0)
- ;;=Z96.7^^84^930^125
- ;;^UTILITY(U,$J,358.3,20305,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20305,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,20305,1,4,0)
- ;;=4^Z96.7
+ ;;^UTILITY(U,$J,358.3,19189,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,19189,1,4,0)
+ ;;=4^I69.851
+ ;;^UTILITY(U,$J,358.3,19189,2)
+ ;;=^5007535
+ ;;^UTILITY(U,$J,358.3,19190,0)
+ ;;=I69.852^^93^989^46

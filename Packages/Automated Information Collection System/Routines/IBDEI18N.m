@@ -1,124 +1,120 @@
-IBDEI18N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI18N ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21050,1,0)
+ ;;^UTILITY(U,$J,358.3,19855,2)
+ ;;=^5033870
+ ;;^UTILITY(U,$J,358.3,19856,0)
+ ;;=S62.314S^^93^997^8
+ ;;^UTILITY(U,$J,358.3,19856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21050,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,21050,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,21050,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,21051,0)
- ;;=F11.222^^84^943^38
- ;;^UTILITY(U,$J,358.3,21051,1,0)
+ ;;^UTILITY(U,$J,358.3,19856,1,3,0)
+ ;;=3^Disp fx of base of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19856,1,4,0)
+ ;;=4^S62.314S
+ ;;^UTILITY(U,$J,358.3,19856,2)
+ ;;=^5033863
+ ;;^UTILITY(U,$J,358.3,19857,0)
+ ;;=S62.310S^^93^997^4
+ ;;^UTILITY(U,$J,358.3,19857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21051,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,21051,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,21051,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,21052,0)
- ;;=F11.221^^84^943^37
- ;;^UTILITY(U,$J,358.3,21052,1,0)
+ ;;^UTILITY(U,$J,358.3,19857,1,3,0)
+ ;;=3^Disp fx of base of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19857,1,4,0)
+ ;;=4^S62.310S
+ ;;^UTILITY(U,$J,358.3,19857,2)
+ ;;=^5033835
+ ;;^UTILITY(U,$J,358.3,19858,0)
+ ;;=S62.311S^^93^997^3
+ ;;^UTILITY(U,$J,358.3,19858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21052,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,21052,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,21052,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,21053,0)
- ;;=F11.220^^84^943^39
- ;;^UTILITY(U,$J,358.3,21053,1,0)
+ ;;^UTILITY(U,$J,358.3,19858,1,3,0)
+ ;;=3^Disp fx of base of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19858,1,4,0)
+ ;;=4^S62.311S
+ ;;^UTILITY(U,$J,358.3,19858,2)
+ ;;=^5033842
+ ;;^UTILITY(U,$J,358.3,19859,0)
+ ;;=S62.313S^^93^997^5
+ ;;^UTILITY(U,$J,358.3,19859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21053,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,21053,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,21053,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,21054,0)
- ;;=F14.29^^84^943^21
- ;;^UTILITY(U,$J,358.3,21054,1,0)
+ ;;^UTILITY(U,$J,358.3,19859,1,3,0)
+ ;;=3^Disp fx of base of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19859,1,4,0)
+ ;;=4^S62.313S
+ ;;^UTILITY(U,$J,358.3,19859,2)
+ ;;=^5033856
+ ;;^UTILITY(U,$J,358.3,19860,0)
+ ;;=S62.312S^^93^997^6
+ ;;^UTILITY(U,$J,358.3,19860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21054,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,21054,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,21054,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,21055,0)
- ;;=F14.288^^84^943^20
- ;;^UTILITY(U,$J,358.3,21055,1,0)
+ ;;^UTILITY(U,$J,358.3,19860,1,3,0)
+ ;;=3^Disp fx of base of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19860,1,4,0)
+ ;;=4^S62.312S
+ ;;^UTILITY(U,$J,358.3,19860,2)
+ ;;=^5033849
+ ;;^UTILITY(U,$J,358.3,19861,0)
+ ;;=S62.337S^^93^997^37
+ ;;^UTILITY(U,$J,358.3,19861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21055,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,21055,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,21055,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,21056,0)
- ;;=F14.282^^84^943^14
- ;;^UTILITY(U,$J,358.3,21056,1,0)
+ ;;^UTILITY(U,$J,358.3,19861,1,3,0)
+ ;;=3^Disp fx of neck of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19861,1,4,0)
+ ;;=4^S62.337S
+ ;;^UTILITY(U,$J,358.3,19861,2)
+ ;;=^5034024
+ ;;^UTILITY(U,$J,358.3,19862,0)
+ ;;=S62.336S^^93^997^38
+ ;;^UTILITY(U,$J,358.3,19862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21056,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,21056,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,21056,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,21057,0)
- ;;=F14.281^^84^943^15
- ;;^UTILITY(U,$J,358.3,21057,1,0)
+ ;;^UTILITY(U,$J,358.3,19862,1,3,0)
+ ;;=3^Disp fx of neck of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19862,1,4,0)
+ ;;=4^S62.336S
+ ;;^UTILITY(U,$J,358.3,19862,2)
+ ;;=^5034017
+ ;;^UTILITY(U,$J,358.3,19863,0)
+ ;;=S62.252S^^93^997^29
+ ;;^UTILITY(U,$J,358.3,19863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21057,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,21057,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,21057,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,21058,0)
- ;;=F14.280^^84^943^12
- ;;^UTILITY(U,$J,358.3,21058,1,0)
+ ;;^UTILITY(U,$J,358.3,19863,1,3,0)
+ ;;=3^Disp fx of neck of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19863,1,4,0)
+ ;;=4^S62.252S
+ ;;^UTILITY(U,$J,358.3,19863,2)
+ ;;=^5033723
+ ;;^UTILITY(U,$J,358.3,19864,0)
+ ;;=S62.251S^^93^997^30
+ ;;^UTILITY(U,$J,358.3,19864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21058,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,21058,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,21058,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,21059,0)
- ;;=F14.259^^84^943^11
- ;;^UTILITY(U,$J,358.3,21059,1,0)
+ ;;^UTILITY(U,$J,358.3,19864,1,3,0)
+ ;;=3^Disp fx of neck of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19864,1,4,0)
+ ;;=4^S62.251S
+ ;;^UTILITY(U,$J,358.3,19864,2)
+ ;;=^5033716
+ ;;^UTILITY(U,$J,358.3,19865,0)
+ ;;=S62.335S^^93^997^35
+ ;;^UTILITY(U,$J,358.3,19865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21059,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21059,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,21059,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,21060,0)
- ;;=F14.251^^84^943^10
- ;;^UTILITY(U,$J,358.3,21060,1,0)
+ ;;^UTILITY(U,$J,358.3,19865,1,3,0)
+ ;;=3^Disp fx of neck of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,19865,1,4,0)
+ ;;=4^S62.335S
+ ;;^UTILITY(U,$J,358.3,19865,2)
+ ;;=^5034010
+ ;;^UTILITY(U,$J,358.3,19866,0)
+ ;;=S62.334S^^93^997^36
+ ;;^UTILITY(U,$J,358.3,19866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21060,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,21060,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,21060,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,21061,0)
- ;;=F14.250^^84^943^9
- ;;^UTILITY(U,$J,358.3,21061,1,0)
+ ;;^UTILITY(U,$J,358.3,19866,1,3,0)
+ ;;=3^Disp fx of neck of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,19866,1,4,0)
+ ;;=4^S62.334S
+ ;;^UTILITY(U,$J,358.3,19866,2)
+ ;;=^5034003
+ ;;^UTILITY(U,$J,358.3,19867,0)
+ ;;=S62.331S^^93^997^31
+ ;;^UTILITY(U,$J,358.3,19867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21061,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,21061,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,21061,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,21062,0)
- ;;=F14.24^^84^943^13

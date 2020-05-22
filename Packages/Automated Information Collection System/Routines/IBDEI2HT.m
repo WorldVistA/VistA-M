@@ -1,124 +1,126 @@
-IBDEI2HT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2HT ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42273,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,42273,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,42274,0)
- ;;=F14.282^^159^2018^14
- ;;^UTILITY(U,$J,358.3,42274,1,0)
+ ;;^UTILITY(U,$J,358.3,39806,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,39806,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,39806,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,39807,0)
+ ;;=Z80.6^^152^2001^25
+ ;;^UTILITY(U,$J,358.3,39807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42274,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,42274,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,42274,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,42275,0)
- ;;=F14.281^^159^2018^15
- ;;^UTILITY(U,$J,358.3,42275,1,0)
+ ;;^UTILITY(U,$J,358.3,39807,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,39807,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,39807,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,39808,0)
+ ;;=Z80.8^^152^2001^30
+ ;;^UTILITY(U,$J,358.3,39808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42275,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,42275,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,42275,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,42276,0)
- ;;=F14.280^^159^2018^12
- ;;^UTILITY(U,$J,358.3,42276,1,0)
+ ;;^UTILITY(U,$J,358.3,39808,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,39808,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,39808,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,39809,0)
+ ;;=Z81.8^^152^2001^35
+ ;;^UTILITY(U,$J,358.3,39809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42276,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,42276,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,42276,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,42277,0)
- ;;=F14.259^^159^2018^11
- ;;^UTILITY(U,$J,358.3,42277,1,0)
+ ;;^UTILITY(U,$J,358.3,39809,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,39809,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,39809,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,39810,0)
+ ;;=Z82.3^^152^2001^42
+ ;;^UTILITY(U,$J,358.3,39810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42277,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,42277,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,42277,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,42278,0)
- ;;=F14.251^^159^2018^10
- ;;^UTILITY(U,$J,358.3,42278,1,0)
+ ;;^UTILITY(U,$J,358.3,39810,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,39810,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,39810,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,39811,0)
+ ;;=Z82.49^^152^2001^24
+ ;;^UTILITY(U,$J,358.3,39811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42278,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,42278,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,42278,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,42279,0)
- ;;=F14.250^^159^2018^9
- ;;^UTILITY(U,$J,358.3,42279,1,0)
+ ;;^UTILITY(U,$J,358.3,39811,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,39811,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,39811,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,39812,0)
+ ;;=Z82.5^^152^2001^14
+ ;;^UTILITY(U,$J,358.3,39812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42279,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,42279,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,42279,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,42280,0)
- ;;=F14.24^^159^2018^13
- ;;^UTILITY(U,$J,358.3,42280,1,0)
+ ;;^UTILITY(U,$J,358.3,39812,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,39812,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,39812,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,39813,0)
+ ;;=Z82.61^^152^2001^13
+ ;;^UTILITY(U,$J,358.3,39813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42280,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,42280,1,4,0)
- ;;=4^F14.24
- ;;^UTILITY(U,$J,358.3,42280,2)
- ;;=^5003260
- ;;^UTILITY(U,$J,358.3,42281,0)
- ;;=F14.23^^159^2018^22
- ;;^UTILITY(U,$J,358.3,42281,1,0)
+ ;;^UTILITY(U,$J,358.3,39813,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,39813,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,39813,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,39814,0)
+ ;;=Z82.69^^152^2001^37
+ ;;^UTILITY(U,$J,358.3,39814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42281,1,3,0)
- ;;=3^Cocaine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,42281,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,42281,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,42282,0)
- ;;=F14.229^^159^2018^19
- ;;^UTILITY(U,$J,358.3,42282,1,0)
+ ;;^UTILITY(U,$J,358.3,39814,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,39814,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,39814,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,39815,0)
+ ;;=Z83.3^^152^2001^20
+ ;;^UTILITY(U,$J,358.3,39815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42282,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,42282,1,4,0)
- ;;=4^F14.229
- ;;^UTILITY(U,$J,358.3,42282,2)
- ;;=^5003258
- ;;^UTILITY(U,$J,358.3,42283,0)
- ;;=F14.222^^159^2018^17
- ;;^UTILITY(U,$J,358.3,42283,1,0)
+ ;;^UTILITY(U,$J,358.3,39815,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,39815,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,39815,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,39816,0)
+ ;;=Z83.2^^152^2001^16
+ ;;^UTILITY(U,$J,358.3,39816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42283,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,42283,1,4,0)
- ;;=4^F14.222
- ;;^UTILITY(U,$J,358.3,42283,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,42284,0)
- ;;=F14.221^^159^2018^16
- ;;^UTILITY(U,$J,358.3,42284,1,0)
+ ;;^UTILITY(U,$J,358.3,39816,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,39816,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,39816,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,39817,0)
+ ;;=Z82.71^^152^2001^40
+ ;;^UTILITY(U,$J,358.3,39817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42284,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,42284,1,4,0)
- ;;=4^F14.221
- ;;^UTILITY(U,$J,358.3,42284,2)
- ;;=^5003256
- ;;^UTILITY(U,$J,358.3,42285,0)
- ;;=F14.220^^159^2018^18
- ;;^UTILITY(U,$J,358.3,42285,1,0)
+ ;;^UTILITY(U,$J,358.3,39817,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,39817,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,39817,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,39818,0)
+ ;;=Z82.1^^152^2001^15
+ ;;^UTILITY(U,$J,358.3,39818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42285,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,39818,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss

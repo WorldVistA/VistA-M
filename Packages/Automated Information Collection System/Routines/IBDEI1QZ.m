@@ -1,142 +1,114 @@
-IBDEI1QZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1QZ ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29656,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,29656,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,29657,0)
- ;;=R92.0^^115^1477^14
- ;;^UTILITY(U,$J,358.3,29657,1,0)
+ ;;^UTILITY(U,$J,358.3,27924,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,27924,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,27925,0)
+ ;;=F13.288^^113^1364^10
+ ;;^UTILITY(U,$J,358.3,27925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29657,1,3,0)
- ;;=3^Mammographic Microcalcifcn on Dx Image,Breast
- ;;^UTILITY(U,$J,358.3,29657,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,29657,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,29658,0)
- ;;=N61.^^115^1477^15
- ;;^UTILITY(U,$J,358.3,29658,1,0)
+ ;;^UTILITY(U,$J,358.3,27925,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27925,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,27925,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,27926,0)
+ ;;=F13.988^^113^1364^11
+ ;;^UTILITY(U,$J,358.3,27926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29658,1,3,0)
- ;;=3^Mastitis
- ;;^UTILITY(U,$J,358.3,29658,1,4,0)
- ;;=4^N61.
- ;;^UTILITY(U,$J,358.3,29658,2)
- ;;=^5015789
- ;;^UTILITY(U,$J,358.3,29659,0)
- ;;=N64.4^^115^1477^16
- ;;^UTILITY(U,$J,358.3,29659,1,0)
+ ;;^UTILITY(U,$J,358.3,27926,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27926,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,27926,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,27927,0)
+ ;;=F13.159^^113^1364^12
+ ;;^UTILITY(U,$J,358.3,27927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29659,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,29659,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,29659,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,29660,0)
- ;;=N64.52^^115^1477^17
- ;;^UTILITY(U,$J,358.3,29660,1,0)
+ ;;^UTILITY(U,$J,358.3,27927,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27927,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,27927,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,27928,0)
+ ;;=F13.259^^113^1364^13
+ ;;^UTILITY(U,$J,358.3,27928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29660,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,29660,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,29660,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,29661,0)
- ;;=Z12.39^^115^1477^2
- ;;^UTILITY(U,$J,358.3,29661,1,0)
+ ;;^UTILITY(U,$J,358.3,27928,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27928,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,27928,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,27929,0)
+ ;;=F13.959^^113^1364^14
+ ;;^UTILITY(U,$J,358.3,27929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29661,1,3,0)
- ;;=3^Breast CA Screen
- ;;^UTILITY(U,$J,358.3,29661,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,29661,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,29662,0)
- ;;=N91.2^^115^1478^1
- ;;^UTILITY(U,$J,358.3,29662,1,0)
+ ;;^UTILITY(U,$J,358.3,27929,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27929,1,4,0)
+ ;;=4^F13.959
+ ;;^UTILITY(U,$J,358.3,27929,2)
+ ;;=^5003232
+ ;;^UTILITY(U,$J,358.3,27930,0)
+ ;;=F13.181^^113^1364^15
+ ;;^UTILITY(U,$J,358.3,27930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29662,1,3,0)
- ;;=3^Amenorrhea
- ;;^UTILITY(U,$J,358.3,29662,1,4,0)
- ;;=4^N91.2
- ;;^UTILITY(U,$J,358.3,29662,2)
- ;;=^5015904
- ;;^UTILITY(U,$J,358.3,29663,0)
- ;;=N92.1^^115^1478^2
- ;;^UTILITY(U,$J,358.3,29663,1,0)
+ ;;^UTILITY(U,$J,358.3,27930,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27930,1,4,0)
+ ;;=4^F13.181
+ ;;^UTILITY(U,$J,358.3,27930,2)
+ ;;=^5003198
+ ;;^UTILITY(U,$J,358.3,27931,0)
+ ;;=F13.281^^113^1364^16
+ ;;^UTILITY(U,$J,358.3,27931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29663,1,3,0)
- ;;=3^Breakthrough Bleeding
- ;;^UTILITY(U,$J,358.3,29663,1,4,0)
- ;;=4^N92.1
- ;;^UTILITY(U,$J,358.3,29663,2)
- ;;=^5015909
- ;;^UTILITY(U,$J,358.3,29664,0)
- ;;=N92.4^^115^1478^3
- ;;^UTILITY(U,$J,358.3,29664,1,0)
+ ;;^UTILITY(U,$J,358.3,27931,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27931,1,4,0)
+ ;;=4^F13.281
+ ;;^UTILITY(U,$J,358.3,27931,2)
+ ;;=^5003217
+ ;;^UTILITY(U,$J,358.3,27932,0)
+ ;;=F13.981^^113^1364^17
+ ;;^UTILITY(U,$J,358.3,27932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29664,1,3,0)
- ;;=3^Excessive Bleeding in the Premenopausal Period
- ;;^UTILITY(U,$J,358.3,29664,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,29664,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,29665,0)
- ;;=N92.6^^115^1478^4
- ;;^UTILITY(U,$J,358.3,29665,1,0)
+ ;;^UTILITY(U,$J,358.3,27932,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunc w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27932,1,4,0)
+ ;;=4^F13.981
+ ;;^UTILITY(U,$J,358.3,27932,2)
+ ;;=^5003236
+ ;;^UTILITY(U,$J,358.3,27933,0)
+ ;;=F13.182^^113^1364^18
+ ;;^UTILITY(U,$J,358.3,27933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29665,1,3,0)
- ;;=3^Irregular Menses
- ;;^UTILITY(U,$J,358.3,29665,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,29665,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,29666,0)
- ;;=N92.5^^115^1478^5
- ;;^UTILITY(U,$J,358.3,29666,1,0)
+ ;;^UTILITY(U,$J,358.3,27933,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27933,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,27933,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,27934,0)
+ ;;=F13.282^^113^1364^19
+ ;;^UTILITY(U,$J,358.3,27934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29666,1,3,0)
- ;;=3^Irregular Menses,Oth Specified
- ;;^UTILITY(U,$J,358.3,29666,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,29666,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,29667,0)
- ;;=N92.0^^115^1478^6
- ;;^UTILITY(U,$J,358.3,29667,1,0)
+ ;;^UTILITY(U,$J,358.3,27934,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27934,1,4,0)
+ ;;=4^F13.282
+ ;;^UTILITY(U,$J,358.3,27934,2)
+ ;;=^5003218
+ ;;^UTILITY(U,$J,358.3,27935,0)
+ ;;=F13.982^^113^1364^20
+ ;;^UTILITY(U,$J,358.3,27935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29667,1,3,0)
- ;;=3^Menorrhagia
- ;;^UTILITY(U,$J,358.3,29667,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,29667,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,29668,0)
- ;;=N91.5^^115^1478^7
- ;;^UTILITY(U,$J,358.3,29668,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29668,1,3,0)
- ;;=3^Oligomenorrhea
- ;;^UTILITY(U,$J,358.3,29668,1,4,0)
- ;;=4^N91.5
- ;;^UTILITY(U,$J,358.3,29668,2)
- ;;=^5015907
- ;;^UTILITY(U,$J,358.3,29669,0)
- ;;=N93.0^^115^1478^8
- ;;^UTILITY(U,$J,358.3,29669,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29669,1,3,0)
- ;;=3^Postcoital Bleeding
- ;;^UTILITY(U,$J,358.3,29669,1,4,0)
- ;;=4^N93.0
- ;;^UTILITY(U,$J,358.3,29669,2)
- ;;=^5015914
- ;;^UTILITY(U,$J,358.3,29670,0)
- ;;=N95.0^^115^1478^9
- ;;^UTILITY(U,$J,358.3,29670,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27935,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O

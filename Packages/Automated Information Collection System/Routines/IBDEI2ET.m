@@ -1,138 +1,122 @@
-IBDEI2ET ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2ET ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40874,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,40875,0)
- ;;=H81.13^^159^1994^8
- ;;^UTILITY(U,$J,358.3,40875,1,0)
+ ;;^UTILITY(U,$J,358.3,38454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40875,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,40875,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,40875,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,40876,0)
- ;;=H81.10^^159^1994^11
- ;;^UTILITY(U,$J,358.3,40876,1,0)
+ ;;^UTILITY(U,$J,358.3,38454,1,3,0)
+ ;;=3^War op involving unsp explosion and fragments, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38454,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,38454,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,38455,0)
+ ;;=Y36.230S^^149^1955^7
+ ;;^UTILITY(U,$J,358.3,38455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40876,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,40876,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,40876,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,40877,0)
- ;;=B37.84^^159^1994^12
- ;;^UTILITY(U,$J,358.3,40877,1,0)
+ ;;^UTILITY(U,$J,358.3,38455,1,3,0)
+ ;;=3^War op w explosn of improv explosv device, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38455,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,38455,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,38456,0)
+ ;;=Y36.250S^^149^1955^2
+ ;;^UTILITY(U,$J,358.3,38456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40877,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,40877,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,40877,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,40878,0)
- ;;=H60.313^^159^1994^18
- ;;^UTILITY(U,$J,358.3,40878,1,0)
+ ;;^UTILITY(U,$J,358.3,38456,1,3,0)
+ ;;=3^War op involving fragments from munitions, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38456,1,4,0)
+ ;;=4^Y36.250S
+ ;;^UTILITY(U,$J,358.3,38456,2)
+ ;;=^5061639
+ ;;^UTILITY(U,$J,358.3,38457,0)
+ ;;=Y36.260S^^149^1955^8
+ ;;^UTILITY(U,$J,358.3,38457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40878,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,40878,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,40878,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,40879,0)
- ;;=B37.0^^159^1995^13
- ;;^UTILITY(U,$J,358.3,40879,1,0)
+ ;;^UTILITY(U,$J,358.3,38457,1,3,0)
+ ;;=3^War op w fragmt of improv explosv device, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38457,1,4,0)
+ ;;=4^Y36.260S
+ ;;^UTILITY(U,$J,358.3,38457,2)
+ ;;=^5061645
+ ;;^UTILITY(U,$J,358.3,38458,0)
+ ;;=Y36.270S^^149^1955^3
+ ;;^UTILITY(U,$J,358.3,38458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40879,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,40879,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,40879,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,40880,0)
- ;;=B37.83^^159^1995^12
- ;;^UTILITY(U,$J,358.3,40880,1,0)
+ ;;^UTILITY(U,$J,358.3,38458,1,3,0)
+ ;;=3^War op involving fragments from weapons, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38458,1,4,0)
+ ;;=4^Y36.270S
+ ;;^UTILITY(U,$J,358.3,38458,2)
+ ;;=^5061651
+ ;;^UTILITY(U,$J,358.3,38459,0)
+ ;;=Y36.290S^^149^1955^4
+ ;;^UTILITY(U,$J,358.3,38459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40880,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,40880,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,40880,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,40881,0)
- ;;=J00.^^159^1995^6
- ;;^UTILITY(U,$J,358.3,40881,1,0)
+ ;;^UTILITY(U,$J,358.3,38459,1,3,0)
+ ;;=3^War op involving oth explosn and fragments, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38459,1,4,0)
+ ;;=4^Y36.290S
+ ;;^UTILITY(U,$J,358.3,38459,2)
+ ;;=^5061657
+ ;;^UTILITY(U,$J,358.3,38460,0)
+ ;;=Z91.5^^149^1956^1
+ ;;^UTILITY(U,$J,358.3,38460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40881,1,3,0)
- ;;=3^Acute Nasopharyngitis 
- ;;^UTILITY(U,$J,358.3,40881,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,40881,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,40882,0)
- ;;=J01.00^^159^1995^5
- ;;^UTILITY(U,$J,358.3,40882,1,0)
+ ;;^UTILITY(U,$J,358.3,38460,1,3,0)
+ ;;=3^Personal Hx of Suicide Attempt(s)
+ ;;^UTILITY(U,$J,358.3,38460,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,38460,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,38461,0)
+ ;;=R45.851^^149^1956^2
+ ;;^UTILITY(U,$J,358.3,38461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40882,1,3,0)
- ;;=3^Acute Maxillary Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,40882,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,40882,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,40883,0)
- ;;=J01.10^^159^1995^1
- ;;^UTILITY(U,$J,358.3,40883,1,0)
+ ;;^UTILITY(U,$J,358.3,38461,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,38461,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,38461,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,38462,0)
+ ;;=T14.91XA^^149^1956^3
+ ;;^UTILITY(U,$J,358.3,38462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40883,1,3,0)
- ;;=3^Acute Frontal Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,40883,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,40883,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,40884,0)
- ;;=J02.9^^159^1995^7
- ;;^UTILITY(U,$J,358.3,40884,1,0)
+ ;;^UTILITY(U,$J,358.3,38462,1,3,0)
+ ;;=3^Suicide Attempt,Initial Encntr
+ ;;^UTILITY(U,$J,358.3,38462,1,4,0)
+ ;;=4^T14.91XA
+ ;;^UTILITY(U,$J,358.3,38462,2)
+ ;;=^5151779
+ ;;^UTILITY(U,$J,358.3,38463,0)
+ ;;=T14.91XD^^149^1956^4
+ ;;^UTILITY(U,$J,358.3,38463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40884,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,40884,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,40884,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,40885,0)
- ;;=J03.91^^159^1995^8
- ;;^UTILITY(U,$J,358.3,40885,1,0)
+ ;;^UTILITY(U,$J,358.3,38463,1,3,0)
+ ;;=3^Suicide Attempt,Subsequent Encntr
+ ;;^UTILITY(U,$J,358.3,38463,1,4,0)
+ ;;=4^T14.91XD
+ ;;^UTILITY(U,$J,358.3,38463,2)
+ ;;=^5151780
+ ;;^UTILITY(U,$J,358.3,38464,0)
+ ;;=T14.91XS^^149^1956^5
+ ;;^UTILITY(U,$J,358.3,38464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40885,1,3,0)
- ;;=3^Acute Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,40885,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,40885,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,40886,0)
- ;;=J04.0^^159^1995^3
- ;;^UTILITY(U,$J,358.3,40886,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40886,1,3,0)
- ;;=3^Acute Laryngitis
- ;;^UTILITY(U,$J,358.3,40886,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,40886,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,40887,0)
- ;;=J06.0^^159^1995^4
- ;;^UTILITY(U,$J,358.3,40887,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40887,1,3,0)
- ;;=3^Acute Laryngopharyngitis
- ;;^UTILITY(U,$J,358.3,40887,1,4,0)
- ;;=4^J06.0
- ;;^UTILITY(U,$J,358.3,40887,2)
- ;;=^269876
- ;;^UTILITY(U,$J,358.3,40888,0)
- ;;=J06.9^^159^1995^9
+ ;;^UTILITY(U,$J,358.3,38464,1,3,0)
+ ;;=3^Suicide Attempt,Sequela
+ ;;^UTILITY(U,$J,358.3,38464,1,4,0)
+ ;;=4^T14.91XS
+ ;;^UTILITY(U,$J,358.3,38464,2)
+ ;;=^5151781
+ ;;^UTILITY(U,$J,358.3,38465,0)
+ ;;=99201^^150^1957^1
+ ;;^UTILITY(U,$J,358.3,38465,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38465,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,38465,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,38466,0)
+ ;;=99202^^150^1957^2

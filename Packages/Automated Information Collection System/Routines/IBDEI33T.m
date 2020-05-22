@@ -1,134 +1,130 @@
-IBDEI33T ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI33T ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,52096,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,52096,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,52097,0)
- ;;=Z59.8^^235^2563^5
- ;;^UTILITY(U,$J,358.3,52097,1,0)
+ ;;^UTILITY(U,$J,358.3,49576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52097,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,52097,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,52097,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,52098,0)
- ;;=F81.9^^235^2564^2
- ;;^UTILITY(U,$J,358.3,52098,1,0)
+ ;;^UTILITY(U,$J,358.3,49576,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,49576,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,49576,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,49577,0)
+ ;;=K70.30^^191^2472^2
+ ;;^UTILITY(U,$J,358.3,49577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52098,1,3,0)
- ;;=3^Developmental Disorder of Scholastic Skills,Unspec
- ;;^UTILITY(U,$J,358.3,52098,1,4,0)
- ;;=4^F81.9
- ;;^UTILITY(U,$J,358.3,52098,2)
- ;;=^5003682
- ;;^UTILITY(U,$J,358.3,52099,0)
- ;;=Z86.59^^235^2564^4
- ;;^UTILITY(U,$J,358.3,52099,1,0)
+ ;;^UTILITY(U,$J,358.3,49577,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,49577,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,49577,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,49578,0)
+ ;;=K72.91^^191^2472^4
+ ;;^UTILITY(U,$J,358.3,49578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52099,1,3,0)
- ;;=3^Personal Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,52099,1,4,0)
- ;;=4^Z86.59
- ;;^UTILITY(U,$J,358.3,52099,2)
- ;;=^5063471
- ;;^UTILITY(U,$J,358.3,52100,0)
- ;;=F48.9^^235^2564^3
- ;;^UTILITY(U,$J,358.3,52100,1,0)
+ ;;^UTILITY(U,$J,358.3,49578,1,3,0)
+ ;;=3^Hepatic Failure w/ Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,49578,1,4,0)
+ ;;=4^K72.91
+ ;;^UTILITY(U,$J,358.3,49578,2)
+ ;;=^5008810
+ ;;^UTILITY(U,$J,358.3,49579,0)
+ ;;=K76.9^^191^2472^5
+ ;;^UTILITY(U,$J,358.3,49579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52100,1,3,0)
- ;;=3^Nonpsychotic Mental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52100,1,4,0)
- ;;=4^F48.9
- ;;^UTILITY(U,$J,358.3,52100,2)
- ;;=^5003596
- ;;^UTILITY(U,$J,358.3,52101,0)
- ;;=Z91.83^^235^2564^5
- ;;^UTILITY(U,$J,358.3,52101,1,0)
+ ;;^UTILITY(U,$J,358.3,49579,1,3,0)
+ ;;=3^Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,49579,1,4,0)
+ ;;=4^K76.9
+ ;;^UTILITY(U,$J,358.3,49579,2)
+ ;;=^5008836
+ ;;^UTILITY(U,$J,358.3,49580,0)
+ ;;=K70.31^^191^2472^1
+ ;;^UTILITY(U,$J,358.3,49580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52101,1,3,0)
- ;;=3^Wandering in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,52101,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,52101,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,52102,0)
- ;;=F69.^^235^2564^1
- ;;^UTILITY(U,$J,358.3,52102,1,0)
+ ;;^UTILITY(U,$J,358.3,49580,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,49580,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,49580,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,49581,0)
+ ;;=N18.4^^191^2473^5
+ ;;^UTILITY(U,$J,358.3,49581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52102,1,3,0)
- ;;=3^Adult Personality/Behavior Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,52102,1,4,0)
- ;;=4^F69.
- ;;^UTILITY(U,$J,358.3,52102,2)
- ;;=^5003667
- ;;^UTILITY(U,$J,358.3,52103,0)
- ;;=Z94.0^^235^2565^6
- ;;^UTILITY(U,$J,358.3,52103,1,0)
+ ;;^UTILITY(U,$J,358.3,49581,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,49581,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,49581,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,49582,0)
+ ;;=N19.^^191^2473^9
+ ;;^UTILITY(U,$J,358.3,49582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52103,1,3,0)
- ;;=3^Kidney Transplant Status
- ;;^UTILITY(U,$J,358.3,52103,1,4,0)
- ;;=4^Z94.0
- ;;^UTILITY(U,$J,358.3,52103,2)
- ;;=^5063654
- ;;^UTILITY(U,$J,358.3,52104,0)
- ;;=Z94.1^^235^2565^4
- ;;^UTILITY(U,$J,358.3,52104,1,0)
+ ;;^UTILITY(U,$J,358.3,49582,1,3,0)
+ ;;=3^Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,49582,1,4,0)
+ ;;=4^N19.
+ ;;^UTILITY(U,$J,358.3,49582,2)
+ ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,49583,0)
+ ;;=N18.5^^191^2473^6
+ ;;^UTILITY(U,$J,358.3,49583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52104,1,3,0)
- ;;=3^Heart Transplant Status
- ;;^UTILITY(U,$J,358.3,52104,1,4,0)
- ;;=4^Z94.1
- ;;^UTILITY(U,$J,358.3,52104,2)
- ;;=^5063655
- ;;^UTILITY(U,$J,358.3,52105,0)
- ;;=Z95.3^^235^2565^10
- ;;^UTILITY(U,$J,358.3,52105,1,0)
+ ;;^UTILITY(U,$J,358.3,49583,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,49583,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,49583,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,49584,0)
+ ;;=N18.6^^191^2473^8
+ ;;^UTILITY(U,$J,358.3,49584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52105,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
- ;;^UTILITY(U,$J,358.3,52105,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,52105,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,52106,0)
- ;;=Z94.5^^235^2565^11
- ;;^UTILITY(U,$J,358.3,52106,1,0)
+ ;;^UTILITY(U,$J,358.3,49584,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,49584,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,49584,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,49585,0)
+ ;;=N18.3^^191^2473^4
+ ;;^UTILITY(U,$J,358.3,49585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52106,1,3,0)
- ;;=3^Skin Transplant Status
- ;;^UTILITY(U,$J,358.3,52106,1,4,0)
- ;;=4^Z94.5
- ;;^UTILITY(U,$J,358.3,52106,2)
- ;;=^5063659
- ;;^UTILITY(U,$J,358.3,52107,0)
- ;;=Z94.6^^235^2565^2
- ;;^UTILITY(U,$J,358.3,52107,1,0)
+ ;;^UTILITY(U,$J,358.3,49585,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 3
+ ;;^UTILITY(U,$J,358.3,49585,1,4,0)
+ ;;=4^N18.3
+ ;;^UTILITY(U,$J,358.3,49585,2)
+ ;;=^5015604
+ ;;^UTILITY(U,$J,358.3,49586,0)
+ ;;=N17.9^^191^2473^1
+ ;;^UTILITY(U,$J,358.3,49586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52107,1,3,0)
- ;;=3^Bone Transplant Status
- ;;^UTILITY(U,$J,358.3,52107,1,4,0)
- ;;=4^Z94.6
- ;;^UTILITY(U,$J,358.3,52107,2)
- ;;=^5063660
- ;;^UTILITY(U,$J,358.3,52108,0)
- ;;=Z94.7^^235^2565^3
- ;;^UTILITY(U,$J,358.3,52108,1,0)
+ ;;^UTILITY(U,$J,358.3,49586,1,3,0)
+ ;;=3^Acute Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,49586,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,49586,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,49587,0)
+ ;;=N18.1^^191^2473^2
+ ;;^UTILITY(U,$J,358.3,49587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52108,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,52108,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,52108,2)
- ;;=^5063661
- ;;^UTILITY(U,$J,358.3,52109,0)
- ;;=Z94.2^^235^2565^8
- ;;^UTILITY(U,$J,358.3,52109,1,0)
+ ;;^UTILITY(U,$J,358.3,49587,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 1
+ ;;^UTILITY(U,$J,358.3,49587,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,49587,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,49588,0)
+ ;;=N18.2^^191^2473^3
+ ;;^UTILITY(U,$J,358.3,49588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,52109,1,3,0)
- ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,49588,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,49588,1,4,0)
+ ;;=4^N18.2

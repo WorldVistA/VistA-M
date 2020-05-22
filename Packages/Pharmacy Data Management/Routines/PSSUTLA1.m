@@ -1,6 +1,10 @@
 PSSUTLA1 ;BHAM ISC/RTR-PSS utility routine ;08/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**38,49,53,54,66,69**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38,49,53,54,66,69,238**;9/30/97;Build 3
  ;Reference to EN^DDIOL supported by DBIA 10142
+ ;Reference to ^PS(53.1 supported by DBIA 2140
+ ;Reference to ^PS(52.41 supported by DBIA 2844
+ ;Reference to ^PSRX supported by DBIA 2845
+ ;Reference to ^DG(40.8 supported by DBIA 728
  ;
 EN3(PSSBINTR,PSSBLGTH) ;
  ;Pass in to EN3 the internal number from 50.7, and the length of the
@@ -156,3 +160,60 @@ DUP ;delete str/unit if duplicate local doses with strength are found
  ..S PSSLXX="" F  S PSSLXX=$O(PSSLXA(PSSLXLD,PSSLXSTR,PSSLXX)) Q:PSSLXX=""!(PSSLXFL)  I PSSLXX'=PSSLXMED S PSSLXFL=1
  I PSSLXFL S PSSLXQ="" F  S PSSLXQ=$O(PSSX("DD",PSSLXQ)) Q:PSSLXQ=""  S $P(PSSX("DD",PSSLXQ),"^",5)="",$P(PSSX("DD",PSSLXQ),"^",6)=""
  Q
+ ;
+PLACER(PSSPDFN,PSSPIEN) ;Return CPRS order number from Pharmacy order
+ ;PSSPDFN = Patient internal number
+ ;PSSPIEN = Pharmacy number - U-Unit Dose, V-IV, P-Inpatient Pending, S-Outpatient Pending, R-Prescription, N-Non-VA
+ I '$G(PSSPDFN) Q ""
+ I PSSPIEN'?1.N1U Q ""
+ N PSSPAK,PSSLOC S PSSPAK=$E(PSSPIEN,$L(PSSPIEN))
+ S PSSLOC=$S(PSSPAK="U":5,PSSPAK="V":"IV","PSRN"[PSSPAK:1,1:"")
+ I PSSLOC="" Q ""
+ I "UV"[PSSPAK Q $P($G(^PS(55,PSSPDFN,PSSLOC,+PSSPIEN,0)),"^",21)
+ I PSSPAK="R" Q $P($G(^PSRX(+PSSPIEN,"OR1")),"^",2)
+ I PSSPAK="P" Q $P($G(^PS(53.1,+PSSPIEN,0)),"^",21)
+ I PSSPAK="S" Q $P($G(^PS(52.41,+PSSPIEN,0)),"^")
+ Q $P($G(^PS(55,PSSPDFN,"NVA",+PSSPIEN,0)),"^",8)
+ ;
+LOC(PSSPDFN,PSSPIEN) ;Return Location from Pharmacy order
+ ;PSSPDFN = Patient internal number
+ ;PSSPIEN = Pharmacy number - U-Unit Dose, V-IV, P-Inpatient Pending, S-Outpatient Pending, R-Prescription, N-Non-VA
+ I '$G(PSSPDFN)!($G(PSSPIEN)'?1.N1U) Q $$LOCIN
+ N PSSPAK,PSSHLOC,PSSWRD,PSSWRDN,PSSRSLT,PSSROOM,PSSRLIN,PSSRLINN,PSSERR
+ S PSSPAK=$E(PSSPIEN,$L(PSSPIEN)),PSSRSLT=""
+ I "UVP"[PSSPAK D  Q PSSRSLT
+ .I PSSPAK="V" S PSSHLOC=$P($G(^PS(55,PSSPDFN,"IV",+PSSPIEN,"DSS")),"^")
+ .I PSSPAK="P" S PSSHLOC=$P($G(^PS(53.1,+PSSPIEN,"DSS")),"^")
+ .I PSSPAK="U" S PSSHLOC=$P($G(^PS(55,PSSPDFN,5,+PSSPIEN,8)),"^")
+ .I PSSHLOC S PSSRSLT=$$LOCHL(PSSHLOC) I PSSRSLT Q
+ .S PSSWRD=$$LOCWA
+ .I PSSWRD S PSSHLOC=$P($G(^DIC(42,+PSSPIEN,44)),"^") I PSSHLOC S PSSRSLT=$$LOCHL(PSSHLOC) I PSSRSLT Q
+ .I PSSWRD S PSSWRDN=$P($G(^DIC(42,PSSWRD,0)),"^") I PSSWRDN'="" S PSSRSLT=PSSWRD_"^"_PSSWRDN_"^"_42 Q
+ .S PSSROOM="" I PSSPAK="V" S PSSROOM=$P($G(^PS(55,PSSPDFN,"IV",+PSSPIEN,2)),"^",2)
+ .I PSSPAK="P" S PSSROOM=$P($G(^PS(53.1,+PSSPIEN,8)),"^",8)
+ .I PSSROOM S PSSRSLT=$$LOCDI(PSSROOM) I PSSRSLT Q
+ .S PSSRSLT=$$LOCIN
+ I "SRN"[PSSPAK D  Q PSSRSLT
+ .I PSSPAK="N" S PSSHLOC=$P($G(^PS(55,PSSPDFN,"NVA",+PSSPIEN,0)),"^",12)
+ .I PSSPAK="R" S PSSHLOC=$P($G(^PSRX(+PSSPIEN,0)),"^",5)
+ .I PSSPAK="S" S PSSHLOC=$P($G(^PS(52.41,+PSSPIEN,0)),"^",13)
+ .I PSSHLOC S PSSRSLT=$$LOCHL(PSSHLOC) I PSSRSLT Q
+ .I PSSPAK="S" S PSSRLIN=$P($G(^PS(52.41,+PSSPIEN,"INI")),"^") I PSSRLIN S PSSRLINN=$$GET1^DIQ(52.41,+PSSPIEN_",",100,,,"PSSERR") I PSSRLINN'="" S PSSRSLT=PSSRLIN_"^"_PSSRLINN_"^"_4 Q
+ .S PSSRSLT=$$LOCIN
+ Q $$LOCIN
+ ;
+LOCWA() ;Return ward
+ N VAHOW,VAROOT,VAINDT,VAIN,VAERR
+ D INP^VADPT
+ Q +$G(VAIN(4))
+ ;
+LOCHL(PSSCLN) ;Return hospital location file #44
+ N PSSCLNN S PSSCLNN=$P($G(^SC(PSSCLN,0)),"^")
+ Q $S(PSSCLNN'="":PSSCLN_"^"_PSSCLNN_"^"_44,1:"")
+ ;
+LOCDI(PSSDIV) ;Return division file #40.8
+ N PSSDIVN S PSSDIVN=$P($G(^DG(40.8,PSSDIV,0)),"^")
+ Q $S(PSSDIVN'="":PSSDIV_"^"_PSSDIVN_"^"_40.8,1:"")
+ ;
+LOCIN() ;Return institution file #4
+ Q $P($$SITE^VASITE,"^",1,2)_"^"_4

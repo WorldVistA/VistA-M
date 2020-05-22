@@ -1,134 +1,120 @@
-IBDEI1ZD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZD ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33608,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,33608,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,33609,0)
- ;;=D12.1^^131^1675^10
- ;;^UTILITY(U,$J,358.3,33609,1,0)
+ ;;^UTILITY(U,$J,358.3,31619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33609,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,33609,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,33609,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,33610,0)
- ;;=K63.5^^131^1675^73
- ;;^UTILITY(U,$J,358.3,33610,1,0)
+ ;;^UTILITY(U,$J,358.3,31619,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,unsp
+ ;;^UTILITY(U,$J,358.3,31619,1,4,0)
+ ;;=4^O36.63X0
+ ;;^UTILITY(U,$J,358.3,31619,2)
+ ;;=^5017047
+ ;;^UTILITY(U,$J,358.3,31620,0)
+ ;;=O36.63X1^^126^1626^123
+ ;;^UTILITY(U,$J,358.3,31620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33610,1,3,0)
- ;;=3^Polyp of Colon
- ;;^UTILITY(U,$J,358.3,33610,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,33610,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,33611,0)
- ;;=D12.3^^131^1675^17
- ;;^UTILITY(U,$J,358.3,33611,1,0)
+ ;;^UTILITY(U,$J,358.3,31620,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 1
+ ;;^UTILITY(U,$J,358.3,31620,1,4,0)
+ ;;=4^O36.63X1
+ ;;^UTILITY(U,$J,358.3,31620,2)
+ ;;=^5017048
+ ;;^UTILITY(U,$J,358.3,31621,0)
+ ;;=O36.63X2^^126^1626^124
+ ;;^UTILITY(U,$J,358.3,31621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33611,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,33611,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,33611,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,33612,0)
- ;;=D12.2^^131^1675^11
- ;;^UTILITY(U,$J,358.3,33612,1,0)
+ ;;^UTILITY(U,$J,358.3,31621,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 2
+ ;;^UTILITY(U,$J,358.3,31621,1,4,0)
+ ;;=4^O36.63X2
+ ;;^UTILITY(U,$J,358.3,31621,2)
+ ;;=^5017049
+ ;;^UTILITY(U,$J,358.3,31622,0)
+ ;;=O36.63X3^^126^1626^125
+ ;;^UTILITY(U,$J,358.3,31622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33612,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,33612,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,33612,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,33613,0)
- ;;=D12.5^^131^1675^16
- ;;^UTILITY(U,$J,358.3,33613,1,0)
+ ;;^UTILITY(U,$J,358.3,31622,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 3
+ ;;^UTILITY(U,$J,358.3,31622,1,4,0)
+ ;;=4^O36.63X3
+ ;;^UTILITY(U,$J,358.3,31622,2)
+ ;;=^5017050
+ ;;^UTILITY(U,$J,358.3,31623,0)
+ ;;=O36.63X4^^126^1626^126
+ ;;^UTILITY(U,$J,358.3,31623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33613,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,33613,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,33613,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,33614,0)
- ;;=D12.4^^131^1675^14
- ;;^UTILITY(U,$J,358.3,33614,1,0)
+ ;;^UTILITY(U,$J,358.3,31623,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 4
+ ;;^UTILITY(U,$J,358.3,31623,1,4,0)
+ ;;=4^O36.63X4
+ ;;^UTILITY(U,$J,358.3,31623,2)
+ ;;=^5017051
+ ;;^UTILITY(U,$J,358.3,31624,0)
+ ;;=O36.63X5^^126^1626^127
+ ;;^UTILITY(U,$J,358.3,31624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33614,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,33614,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,33614,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,33615,0)
- ;;=D73.2^^131^1675^19
- ;;^UTILITY(U,$J,358.3,33615,1,0)
+ ;;^UTILITY(U,$J,358.3,31624,1,3,0)
+ ;;=3^Maternal care,excess ftl growht,3rd tri,fts 5
+ ;;^UTILITY(U,$J,358.3,31624,1,4,0)
+ ;;=4^O36.63X5
+ ;;^UTILITY(U,$J,358.3,31624,2)
+ ;;=^5017052
+ ;;^UTILITY(U,$J,358.3,31625,0)
+ ;;=O40.1XX0^^126^1626^223
+ ;;^UTILITY(U,$J,358.3,31625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33615,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,33615,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,33615,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,33616,0)
- ;;=I85.00^^131^1675^46
- ;;^UTILITY(U,$J,358.3,33616,1,0)
+ ;;^UTILITY(U,$J,358.3,31625,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, unsp
+ ;;^UTILITY(U,$J,358.3,31625,1,4,0)
+ ;;=4^O40.1XX0
+ ;;^UTILITY(U,$J,358.3,31625,2)
+ ;;=^5017187
+ ;;^UTILITY(U,$J,358.3,31626,0)
+ ;;=O40.1XX1^^126^1626^218
+ ;;^UTILITY(U,$J,358.3,31626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33616,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,33616,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,33616,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,33617,0)
- ;;=K20.9^^131^1675^47
- ;;^UTILITY(U,$J,358.3,33617,1,0)
+ ;;^UTILITY(U,$J,358.3,31626,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,31626,1,4,0)
+ ;;=4^O40.1XX1
+ ;;^UTILITY(U,$J,358.3,31626,2)
+ ;;=^5017188
+ ;;^UTILITY(U,$J,358.3,31627,0)
+ ;;=O40.1XX2^^126^1626^219
+ ;;^UTILITY(U,$J,358.3,31627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33617,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,33617,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,33617,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,33618,0)
- ;;=K21.9^^131^1675^55
- ;;^UTILITY(U,$J,358.3,33618,1,0)
+ ;;^UTILITY(U,$J,358.3,31627,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,31627,1,4,0)
+ ;;=4^O40.1XX2
+ ;;^UTILITY(U,$J,358.3,31627,2)
+ ;;=^5017189
+ ;;^UTILITY(U,$J,358.3,31628,0)
+ ;;=O40.1XX3^^126^1626^220
+ ;;^UTILITY(U,$J,358.3,31628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33618,1,3,0)
- ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,33618,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,33618,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,33619,0)
- ;;=K25.7^^131^1675^50
- ;;^UTILITY(U,$J,358.3,33619,1,0)
+ ;;^UTILITY(U,$J,358.3,31628,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,31628,1,4,0)
+ ;;=4^O40.1XX3
+ ;;^UTILITY(U,$J,358.3,31628,2)
+ ;;=^5017190
+ ;;^UTILITY(U,$J,358.3,31629,0)
+ ;;=O40.1XX4^^126^1626^221
+ ;;^UTILITY(U,$J,358.3,31629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33619,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,33619,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,33619,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,33620,0)
- ;;=K26.9^^131^1675^44
- ;;^UTILITY(U,$J,358.3,33620,1,0)
+ ;;^UTILITY(U,$J,358.3,31629,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31629,1,4,0)
+ ;;=4^O40.1XX4
+ ;;^UTILITY(U,$J,358.3,31629,2)
+ ;;=^5017191
+ ;;^UTILITY(U,$J,358.3,31630,0)
+ ;;=O40.1XX5^^126^1626^222
+ ;;^UTILITY(U,$J,358.3,31630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33620,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,33620,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,33620,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,33621,0)
- ;;=K27.9^^131^1675^72
- ;;^UTILITY(U,$J,358.3,33621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33621,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,31630,1,3,0)
+ ;;=3^Polyhydramnios, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31630,1,4,0)
+ ;;=4^O40.1XX5

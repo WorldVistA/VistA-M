@@ -1,126 +1,122 @@
-IBDEI1S0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1S0 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30184,1,3,0)
- ;;=3^Follicular lymphoma grade I, unspecified site
- ;;^UTILITY(U,$J,358.3,30184,1,4,0)
- ;;=4^C82.00
- ;;^UTILITY(U,$J,358.3,30184,2)
- ;;=^5001461
- ;;^UTILITY(U,$J,358.3,30185,0)
- ;;=C82.90^^118^1502^36
- ;;^UTILITY(U,$J,358.3,30185,1,0)
+ ;;^UTILITY(U,$J,358.3,28370,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,28370,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,28370,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,28371,0)
+ ;;=G25.71^^115^1393^14
+ ;;^UTILITY(U,$J,358.3,28371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30185,1,3,0)
- ;;=3^Follicular lymphoma, unspecified, unspecified site
- ;;^UTILITY(U,$J,358.3,30185,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,30185,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,30186,0)
- ;;=C82.99^^118^1502^35
- ;;^UTILITY(U,$J,358.3,30186,1,0)
+ ;;^UTILITY(U,$J,358.3,28371,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,28371,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,28371,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,28372,0)
+ ;;=G25.79^^115^1393^9
+ ;;^UTILITY(U,$J,358.3,28372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30186,1,3,0)
- ;;=3^Follicular lymphoma, unsp, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,30186,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,30186,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,30187,0)
- ;;=C84.00^^118^1502^60
- ;;^UTILITY(U,$J,358.3,30187,1,0)
+ ;;^UTILITY(U,$J,358.3,28372,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,28372,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,28372,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,28373,0)
+ ;;=T43.205A^^115^1393^4
+ ;;^UTILITY(U,$J,358.3,28373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30187,1,3,0)
- ;;=3^Mycosis fungoides, unspecified site
- ;;^UTILITY(U,$J,358.3,30187,1,4,0)
- ;;=4^C84.00
- ;;^UTILITY(U,$J,358.3,30187,2)
- ;;=^5001621
- ;;^UTILITY(U,$J,358.3,30188,0)
- ;;=C84.09^^118^1502^59
- ;;^UTILITY(U,$J,358.3,30188,1,0)
+ ;;^UTILITY(U,$J,358.3,28373,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28373,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,28373,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,28374,0)
+ ;;=T43.205D^^115^1393^5
+ ;;^UTILITY(U,$J,358.3,28374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30188,1,3,0)
- ;;=3^Mycosis fungoides, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,30188,1,4,0)
- ;;=4^C84.09
- ;;^UTILITY(U,$J,358.3,30188,2)
- ;;=^5001630
- ;;^UTILITY(U,$J,358.3,30189,0)
- ;;=C84.60^^118^1502^8
- ;;^UTILITY(U,$J,358.3,30189,1,0)
+ ;;^UTILITY(U,$J,358.3,28374,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,28374,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,28374,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,28375,0)
+ ;;=T43.205S^^115^1393^6
+ ;;^UTILITY(U,$J,358.3,28375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30189,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-positive, unsp site
- ;;^UTILITY(U,$J,358.3,30189,1,4,0)
- ;;=4^C84.60
- ;;^UTILITY(U,$J,358.3,30189,2)
- ;;=^5001651
- ;;^UTILITY(U,$J,358.3,30190,0)
- ;;=C84.69^^118^1502^10
- ;;^UTILITY(U,$J,358.3,30190,1,0)
+ ;;^UTILITY(U,$J,358.3,28375,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,28375,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,28375,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,28376,0)
+ ;;=G25.71^^115^1393^7
+ ;;^UTILITY(U,$J,358.3,28376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30190,1,3,0)
- ;;=3^Anaplstc lg cell lymph, ALK-pos, extrnod and solid org sites
- ;;^UTILITY(U,$J,358.3,30190,1,4,0)
- ;;=4^C84.69
- ;;^UTILITY(U,$J,358.3,30190,2)
- ;;=^5001660
- ;;^UTILITY(U,$J,358.3,30191,0)
- ;;=C84.70^^118^1502^7
- ;;^UTILITY(U,$J,358.3,30191,1,0)
+ ;;^UTILITY(U,$J,358.3,28376,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,28376,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,28376,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,28377,0)
+ ;;=G24.02^^115^1393^8
+ ;;^UTILITY(U,$J,358.3,28377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30191,1,3,0)
- ;;=3^Anaplastic large cell lymphoma, ALK-negative, unsp site
- ;;^UTILITY(U,$J,358.3,30191,1,4,0)
- ;;=4^C84.70
- ;;^UTILITY(U,$J,358.3,30191,2)
- ;;=^5001661
- ;;^UTILITY(U,$J,358.3,30192,0)
- ;;=C84.79^^118^1502^9
- ;;^UTILITY(U,$J,358.3,30192,1,0)
+ ;;^UTILITY(U,$J,358.3,28377,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,28377,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,28377,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,28378,0)
+ ;;=G21.0^^115^1393^12
+ ;;^UTILITY(U,$J,358.3,28378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30192,1,3,0)
- ;;=3^Anaplstc lg cell lymph, ALK-neg, extrnod and solid org sites
- ;;^UTILITY(U,$J,358.3,30192,1,4,0)
- ;;=4^C84.79
- ;;^UTILITY(U,$J,358.3,30192,2)
- ;;=^5001670
- ;;^UTILITY(U,$J,358.3,30193,0)
- ;;=C91.40^^118^1502^37
- ;;^UTILITY(U,$J,358.3,30193,1,0)
+ ;;^UTILITY(U,$J,358.3,28378,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,28378,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,28378,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,28379,0)
+ ;;=T50.905A^^115^1393^1
+ ;;^UTILITY(U,$J,358.3,28379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30193,1,3,0)
- ;;=3^Hairy cell leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,30193,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,30193,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,30194,0)
- ;;=C91.41^^118^1502^39
- ;;^UTILITY(U,$J,358.3,30194,1,0)
+ ;;^UTILITY(U,$J,358.3,28379,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,28379,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,28379,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,28380,0)
+ ;;=T50.905S^^115^1393^2
+ ;;^UTILITY(U,$J,358.3,28380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30194,1,3,0)
- ;;=3^Hairy cell leukemia, in remission
- ;;^UTILITY(U,$J,358.3,30194,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,30194,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,30195,0)
- ;;=C91.42^^118^1502^38
- ;;^UTILITY(U,$J,358.3,30195,1,0)
+ ;;^UTILITY(U,$J,358.3,28380,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,28380,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,28380,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,28381,0)
+ ;;=T50.905D^^115^1393^3
+ ;;^UTILITY(U,$J,358.3,28381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30195,1,3,0)
- ;;=3^Hairy cell leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,30195,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,30195,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,30196,0)
- ;;=C96.4^^118^1502^71
- ;;^UTILITY(U,$J,358.3,30196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30196,1,3,0)
- ;;=3^Sarcoma of dendritic cells (accessory cells)
+ ;;^UTILITY(U,$J,358.3,28381,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,28381,1,4,0)
+ ;;=4^T50.905D
+ ;;^UTILITY(U,$J,358.3,28381,2)
+ ;;=^5052161
+ ;;^UTILITY(U,$J,358.3,28382,0)
+ ;;=F45.22^^115^1394^1

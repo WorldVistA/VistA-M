@@ -1,5 +1,5 @@
 IBJDF1 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT ;09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,118,128,205,554,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**69,118,128,205,554,618,663**;21-MAR-94;Build 27
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
@@ -64,20 +64,15 @@ NAM2 W !?8,"GO TO PATIENT ",IBI,": LAST// " R X:DTIME G:'$T!(X["^") ENQ
  ;
 TYP ; - Select type of receivables to print.
  ; IB*2.0*554/DRF 10/20/2015 Add Non-VA care
- ; IB*2.0*618/SAB 6/1/2018 Add Community Care
+ ; IB*2.0*? Changed Non-VA care to Community Care
  W !!,"Choose which type of receivables to print:",!
- S DIR(0)="LO^1:10^K:+$P(X,""-"",2)>10 X"
+ S DIR(0)="LO^1:5^K:+$P(X,""-"",2)>5 X"
  S DIR("A",1)="       1 - INPATIENT"
  S DIR("A",2)="       2 - OUTPATIENT"
  S DIR("A",3)="       3 - PHARMACY REFILL"
- S DIR("A",4)="       4 - ALL COMMUNITY CARE AND FEE RECEIVABLES"
- S DIR("A",5)="       5 - FEE REIMB INS"
- S DIR("A",6)="       6 - COMMUNITY CARE"
- S DIR("A",7)="       7 - COMMUNITY CARE CHOICE"
- S DIR("A",8)="       8 - COMMUNITY CARE NETWORK"
- S DIR("A",9)="       9 - COMMUNITY CARE MTF"
- S DIR("A",10)="      10 - ALL RECEIVABLES"
- S DIR("A",11)="",DIR("A")="Select",DIR("B")=10
+ S DIR("A",4)="       4 - COMMUNITY CARE RECEIVABLES"
+ S DIR("A",5)="       5 - ALL RECEIVABLES"
+ S DIR("A",6)="",DIR("A")="Select",DIR("B")=5
  D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) G ENQ
  S IBSEL=Y K DIROUT,DTOUT,DUOUT,DIRUT
  ;

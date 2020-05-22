@@ -1,130 +1,124 @@
-IBDEI2V9 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2V9 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,48100,0)
- ;;=97150^^210^2380^2^^^^1
- ;;^UTILITY(U,$J,358.3,48100,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48100,1,2,0)
- ;;=2^Art Therapy Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48100,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48101,0)
- ;;=97150^^210^2380^4^^^^1
- ;;^UTILITY(U,$J,358.3,48101,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48101,1,2,0)
- ;;=2^Dance Therapy Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48101,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48102,0)
- ;;=97150^^210^2380^5^^^^1
- ;;^UTILITY(U,$J,358.3,48102,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48102,1,2,0)
- ;;=2^Drama Therapy Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48102,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48103,0)
- ;;=97150^^210^2380^6^^^^1
- ;;^UTILITY(U,$J,358.3,48103,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48103,1,2,0)
- ;;=2^Music Therapy Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48103,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48104,0)
- ;;=97150^^210^2380^1^^^^1
- ;;^UTILITY(U,$J,358.3,48104,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48104,1,2,0)
- ;;=2^Aquatic Therapy Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48104,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48105,0)
- ;;=97150^^210^2380^9^^^^1
- ;;^UTILITY(U,$J,358.3,48105,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48105,1,2,0)
- ;;=2^Sports Therapy Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48105,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48106,0)
- ;;=97150^^210^2380^7^^^^1
- ;;^UTILITY(U,$J,358.3,48106,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48106,1,2,0)
- ;;=2^Oth Rec Ther,Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,48106,1,3,0)
- ;;=3^97150
- ;;^UTILITY(U,$J,358.3,48107,0)
- ;;=96154^^210^2381^1^^^^1
- ;;^UTILITY(U,$J,358.3,48107,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48107,1,2,0)
- ;;=2^Train/Support w/Pt/Fam,ea 15min
- ;;^UTILITY(U,$J,358.3,48107,1,3,0)
- ;;=3^96154
- ;;^UTILITY(U,$J,358.3,48108,0)
- ;;=96155^^210^2381^2^^^^1
- ;;^UTILITY(U,$J,358.3,48108,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,48108,1,2,0)
- ;;=2^Train/Support,Fam Only,ea 15min
- ;;^UTILITY(U,$J,358.3,48108,1,3,0)
- ;;=3^96155
- ;;^UTILITY(U,$J,358.3,48109,0)
- ;;=G30.9^^211^2382^7
- ;;^UTILITY(U,$J,358.3,48109,1,0)
+ ;;^UTILITY(U,$J,358.3,45724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48109,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,48109,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,48109,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,48110,0)
- ;;=F01.50^^211^2382^51
- ;;^UTILITY(U,$J,358.3,48110,1,0)
+ ;;^UTILITY(U,$J,358.3,45724,1,3,0)
+ ;;=3^Toxic Effect,Wasps,Sequela
+ ;;^UTILITY(U,$J,358.3,45724,1,4,0)
+ ;;=4^T63.461S
+ ;;^UTILITY(U,$J,358.3,45724,2)
+ ;;=^5053548
+ ;;^UTILITY(U,$J,358.3,45725,0)
+ ;;=T88.6XXA^^172^2277^7
+ ;;^UTILITY(U,$J,358.3,45725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48110,1,3,0)
- ;;=3^Vascular Dementia w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,48110,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,48110,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,48111,0)
- ;;=F10.94^^211^2382^6
- ;;^UTILITY(U,$J,358.3,48111,1,0)
+ ;;^UTILITY(U,$J,358.3,45725,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,1st Encntr
+ ;;^UTILITY(U,$J,358.3,45725,1,4,0)
+ ;;=4^T88.6XXA
+ ;;^UTILITY(U,$J,358.3,45725,2)
+ ;;=^5055808
+ ;;^UTILITY(U,$J,358.3,45726,0)
+ ;;=T88.6XXD^^172^2277^9
+ ;;^UTILITY(U,$J,358.3,45726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48111,1,3,0)
- ;;=3^Alcohol Use w/ Alcohol-Induced Mood Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,48111,1,4,0)
- ;;=4^F10.94
- ;;^UTILITY(U,$J,358.3,48111,2)
- ;;=^5003104
- ;;^UTILITY(U,$J,358.3,48112,0)
- ;;=F06.30^^211^2382^35
- ;;^UTILITY(U,$J,358.3,48112,1,0)
+ ;;^UTILITY(U,$J,358.3,45726,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,45726,1,4,0)
+ ;;=4^T88.6XXD
+ ;;^UTILITY(U,$J,358.3,45726,2)
+ ;;=^5055809
+ ;;^UTILITY(U,$J,358.3,45727,0)
+ ;;=T88.6XXS^^172^2277^8
+ ;;^UTILITY(U,$J,358.3,45727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48112,1,3,0)
- ;;=3^Mood Disorder d/t Physiological Condition,Unspec
- ;;^UTILITY(U,$J,358.3,48112,1,4,0)
- ;;=4^F06.30
- ;;^UTILITY(U,$J,358.3,48112,2)
- ;;=^5003056
- ;;^UTILITY(U,$J,358.3,48113,0)
- ;;=F03.90^^211^2382^22
- ;;^UTILITY(U,$J,358.3,48113,1,0)
+ ;;^UTILITY(U,$J,358.3,45727,1,3,0)
+ ;;=3^Anaphylactic Reaction,Drug/Med,Sequela
+ ;;^UTILITY(U,$J,358.3,45727,1,4,0)
+ ;;=4^T88.6XXS
+ ;;^UTILITY(U,$J,358.3,45727,2)
+ ;;=^5055810
+ ;;^UTILITY(U,$J,358.3,45728,0)
+ ;;=J45.20^^172^2277^49
+ ;;^UTILITY(U,$J,358.3,45728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,48113,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,48113,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,48113,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,48114,0)
- ;;=F20.1^^211^2382^45
- ;;^UTILITY(U,$J,358.3,48114,1,0)
+ ;;^UTILITY(U,$J,358.3,45728,1,3,0)
+ ;;=3^Asthma,Mild Intermittent,Uncompl
+ ;;^UTILITY(U,$J,358.3,45728,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,45728,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,45729,0)
+ ;;=J45.21^^172^2277^47
+ ;;^UTILITY(U,$J,358.3,45729,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45729,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,45729,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,45729,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,45730,0)
+ ;;=J45.22^^172^2277^48
+ ;;^UTILITY(U,$J,358.3,45730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45730,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,45730,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,45730,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,45731,0)
+ ;;=J45.30^^172^2277^52
+ ;;^UTILITY(U,$J,358.3,45731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45731,1,3,0)
+ ;;=3^Asthma,Mild Persistent,Uncomp
+ ;;^UTILITY(U,$J,358.3,45731,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,45731,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,45732,0)
+ ;;=J45.31^^172^2277^50
+ ;;^UTILITY(U,$J,358.3,45732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45732,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,45732,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,45732,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,45733,0)
+ ;;=J45.32^^172^2277^51
+ ;;^UTILITY(U,$J,358.3,45733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45733,1,3,0)
+ ;;=3^Asthma,Mild Persistent w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,45733,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,45733,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,45734,0)
+ ;;=J45.40^^172^2277^55
+ ;;^UTILITY(U,$J,358.3,45734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45734,1,3,0)
+ ;;=3^Asthma,Moderate Persistent,Uncomp
+ ;;^UTILITY(U,$J,358.3,45734,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,45734,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,45735,0)
+ ;;=J45.41^^172^2277^53
+ ;;^UTILITY(U,$J,358.3,45735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45735,1,3,0)
+ ;;=3^Asthma,Moderate Persistent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,45735,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,45735,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,45736,0)
+ ;;=J45.42^^172^2277^54

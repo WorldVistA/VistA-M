@@ -1,124 +1,122 @@
-IBDEI2XS ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2XS ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49259,1,4,0)
- ;;=4^S32.481S
- ;;^UTILITY(U,$J,358.3,49259,2)
- ;;=^5024958
- ;;^UTILITY(U,$J,358.3,49260,0)
- ;;=S32.432S^^216^2416^1
- ;;^UTILITY(U,$J,358.3,49260,1,0)
+ ;;^UTILITY(U,$J,358.3,46864,1,4,0)
+ ;;=4^T83.190A
+ ;;^UTILITY(U,$J,358.3,46864,2)
+ ;;=^5055007
+ ;;^UTILITY(U,$J,358.3,46865,0)
+ ;;=T83.010A^^179^2338^2
+ ;;^UTILITY(U,$J,358.3,46865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49260,1,3,0)
- ;;=3^Disp fx of anterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49260,1,4,0)
- ;;=4^S32.432S
- ;;^UTILITY(U,$J,358.3,49260,2)
- ;;=^5024784
- ;;^UTILITY(U,$J,358.3,49261,0)
- ;;=S32.431S^^216^2416^2
- ;;^UTILITY(U,$J,358.3,49261,1,0)
+ ;;^UTILITY(U,$J,358.3,46865,1,3,0)
+ ;;=3^Brkdwn (mech) cystost cath, Init Encntr
+ ;;^UTILITY(U,$J,358.3,46865,1,4,0)
+ ;;=4^T83.010A
+ ;;^UTILITY(U,$J,358.3,46865,2)
+ ;;=^5054959
+ ;;^UTILITY(U,$J,358.3,46866,0)
+ ;;=T83.020A^^179^2338^14
+ ;;^UTILITY(U,$J,358.3,46866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49261,1,3,0)
- ;;=3^Disp fx of anterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49261,1,4,0)
- ;;=4^S32.431S
- ;;^UTILITY(U,$J,358.3,49261,2)
- ;;=^5024778
- ;;^UTILITY(U,$J,358.3,49262,0)
- ;;=S32.412S^^216^2416^3
- ;;^UTILITY(U,$J,358.3,49262,1,0)
+ ;;^UTILITY(U,$J,358.3,46866,1,3,0)
+ ;;=3^Dsplcmnt cystostom cath,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46866,1,4,0)
+ ;;=4^T83.020A
+ ;;^UTILITY(U,$J,358.3,46866,2)
+ ;;=^5054965
+ ;;^UTILITY(U,$J,358.3,46867,0)
+ ;;=T83.030A^^179^2338^37
+ ;;^UTILITY(U,$J,358.3,46867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49262,1,3,0)
- ;;=3^Disp fx of anterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49262,1,4,0)
- ;;=4^S32.412S
- ;;^UTILITY(U,$J,358.3,49262,2)
- ;;=^5024712
- ;;^UTILITY(U,$J,358.3,49263,0)
- ;;=S32.411S^^216^2416^4
- ;;^UTILITY(U,$J,358.3,49263,1,0)
+ ;;^UTILITY(U,$J,358.3,46867,1,3,0)
+ ;;=3^Leakage of cystostomy cath,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46867,1,4,0)
+ ;;=4^T83.030A
+ ;;^UTILITY(U,$J,358.3,46867,2)
+ ;;=^5054971
+ ;;^UTILITY(U,$J,358.3,46868,0)
+ ;;=T83.090A^^179^2338^38
+ ;;^UTILITY(U,$J,358.3,46868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49263,1,3,0)
- ;;=3^Disp fx of anterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49263,1,4,0)
- ;;=4^S32.411S
- ;;^UTILITY(U,$J,358.3,49263,2)
- ;;=^5024706
- ;;^UTILITY(U,$J,358.3,49264,0)
- ;;=S32.472S^^216^2416^13
- ;;^UTILITY(U,$J,358.3,49264,1,0)
+ ;;^UTILITY(U,$J,358.3,46868,1,3,0)
+ ;;=3^Mech compl cystostomy cath,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46868,1,4,0)
+ ;;=4^T83.090A
+ ;;^UTILITY(U,$J,358.3,46868,2)
+ ;;=^5054977
+ ;;^UTILITY(U,$J,358.3,46869,0)
+ ;;=T83.110A^^179^2338^6
+ ;;^UTILITY(U,$J,358.3,46869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49264,1,3,0)
- ;;=3^Disp fx of medial wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49264,1,4,0)
- ;;=4^S32.472S
- ;;^UTILITY(U,$J,358.3,49264,2)
- ;;=^5024928
- ;;^UTILITY(U,$J,358.3,49265,0)
- ;;=S32.471S^^216^2416^14
- ;;^UTILITY(U,$J,358.3,49265,1,0)
+ ;;^UTILITY(U,$J,358.3,46869,1,3,0)
+ ;;=3^Brkdwn (mech) urin elec stimltr dvc,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46869,1,4,0)
+ ;;=4^T83.110A
+ ;;^UTILITY(U,$J,358.3,46869,2)
+ ;;=^5054983
+ ;;^UTILITY(U,$J,358.3,46870,0)
+ ;;=T83.111A^^179^2338^7
+ ;;^UTILITY(U,$J,358.3,46870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49265,1,3,0)
- ;;=3^Disp fx of medial wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49265,1,4,0)
- ;;=4^S32.471S
- ;;^UTILITY(U,$J,358.3,49265,2)
- ;;=^5024922
- ;;^UTILITY(U,$J,358.3,49266,0)
- ;;=S32.442S^^216^2416^15
- ;;^UTILITY(U,$J,358.3,49266,1,0)
+ ;;^UTILITY(U,$J,358.3,46870,1,3,0)
+ ;;=3^Brkdwn (mech) urin sphnctr implnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46870,1,4,0)
+ ;;=4^T83.111A
+ ;;^UTILITY(U,$J,358.3,46870,2)
+ ;;=^5054986
+ ;;^UTILITY(U,$J,358.3,46871,0)
+ ;;=T83.112A^^179^2338^8
+ ;;^UTILITY(U,$J,358.3,46871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49266,1,3,0)
- ;;=3^Disp fx of posterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49266,1,4,0)
- ;;=4^S32.442S
- ;;^UTILITY(U,$J,358.3,49266,2)
- ;;=^5024820
- ;;^UTILITY(U,$J,358.3,49267,0)
- ;;=S32.441S^^216^2416^16
- ;;^UTILITY(U,$J,358.3,49267,1,0)
+ ;;^UTILITY(U,$J,358.3,46871,1,3,0)
+ ;;=3^Brkdwn (mech) urin stnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46871,1,4,0)
+ ;;=4^T83.112A
+ ;;^UTILITY(U,$J,358.3,46871,2)
+ ;;=^5054989
+ ;;^UTILITY(U,$J,358.3,46872,0)
+ ;;=T83.118A^^179^2338^5
+ ;;^UTILITY(U,$J,358.3,46872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49267,1,3,0)
- ;;=3^Disp fx of posterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49267,1,4,0)
- ;;=4^S32.441S
- ;;^UTILITY(U,$J,358.3,49267,2)
- ;;=^5024814
- ;;^UTILITY(U,$J,358.3,49268,0)
- ;;=S32.422S^^216^2416^17
- ;;^UTILITY(U,$J,358.3,49268,1,0)
+ ;;^UTILITY(U,$J,358.3,46872,1,3,0)
+ ;;=3^Brkdwn (mech) urin dvc/implnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46872,1,4,0)
+ ;;=4^T83.118A
+ ;;^UTILITY(U,$J,358.3,46872,2)
+ ;;=^5054992
+ ;;^UTILITY(U,$J,358.3,46873,0)
+ ;;=T83.191A^^179^2338^43
+ ;;^UTILITY(U,$J,358.3,46873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49268,1,3,0)
- ;;=3^Disp fx of posterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49268,1,4,0)
- ;;=4^S32.422S
- ;;^UTILITY(U,$J,358.3,49268,2)
- ;;=^5024748
- ;;^UTILITY(U,$J,358.3,49269,0)
- ;;=S32.421S^^216^2416^18
- ;;^UTILITY(U,$J,358.3,49269,1,0)
+ ;;^UTILITY(U,$J,358.3,46873,1,3,0)
+ ;;=3^Mech compl urinary sphinct implnt,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46873,1,4,0)
+ ;;=4^T83.191A
+ ;;^UTILITY(U,$J,358.3,46873,2)
+ ;;=^5055010
+ ;;^UTILITY(U,$J,358.3,46874,0)
+ ;;=T83.192A^^179^2338^44
+ ;;^UTILITY(U,$J,358.3,46874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49269,1,3,0)
- ;;=3^Disp fx of posterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49269,1,4,0)
- ;;=4^S32.421S
- ;;^UTILITY(U,$J,358.3,49269,2)
- ;;=^5024742
- ;;^UTILITY(U,$J,358.3,49270,0)
- ;;=S32.452S^^216^2416^19
- ;;^UTILITY(U,$J,358.3,49270,1,0)
+ ;;^UTILITY(U,$J,358.3,46874,1,3,0)
+ ;;=3^Mech compl urinary stent,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46874,1,4,0)
+ ;;=4^T83.192A
+ ;;^UTILITY(U,$J,358.3,46874,2)
+ ;;=^5055013
+ ;;^UTILITY(U,$J,358.3,46875,0)
+ ;;=T83.198A^^179^2338^39
+ ;;^UTILITY(U,$J,358.3,46875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49270,1,3,0)
- ;;=3^Disp fx of transverse of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,49270,1,4,0)
- ;;=4^S32.452S
- ;;^UTILITY(U,$J,358.3,49270,2)
- ;;=^5024856
- ;;^UTILITY(U,$J,358.3,49271,0)
- ;;=S32.451S^^216^2416^20
- ;;^UTILITY(U,$J,358.3,49271,1,0)
+ ;;^UTILITY(U,$J,358.3,46875,1,3,0)
+ ;;=3^Mech compl oth urinary dvc/implnts,Init Encntr
+ ;;^UTILITY(U,$J,358.3,46875,1,4,0)
+ ;;=4^T83.198A
+ ;;^UTILITY(U,$J,358.3,46875,2)
+ ;;=^5055016
+ ;;^UTILITY(U,$J,358.3,46876,0)
+ ;;=T83.410A^^179^2338^4
+ ;;^UTILITY(U,$J,358.3,46876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49271,1,3,0)
- ;;=3^Disp fx of transverse of right acetabulum, sequela

@@ -1,126 +1,118 @@
-IBDEI1W1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1W1 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32062,1,3,0)
- ;;=3^Nondisp fx of intermed cuneiform of lft ft, init
- ;;^UTILITY(U,$J,358.3,32062,1,4,0)
- ;;=4^S92.235A
- ;;^UTILITY(U,$J,358.3,32062,2)
- ;;=^5044948
- ;;^UTILITY(U,$J,358.3,32063,0)
- ;;=S92.241A^^126^1609^111
- ;;^UTILITY(U,$J,358.3,32063,1,0)
+ ;;^UTILITY(U,$J,358.3,30157,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,30158,0)
+ ;;=F10.20^^120^1538^34
+ ;;^UTILITY(U,$J,358.3,30158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32063,1,3,0)
- ;;=3^Disp fx of medial cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,32063,1,4,0)
- ;;=4^S92.241A
- ;;^UTILITY(U,$J,358.3,32063,2)
- ;;=^5044962
- ;;^UTILITY(U,$J,358.3,32064,0)
- ;;=S92.242A^^126^1609^110
- ;;^UTILITY(U,$J,358.3,32064,1,0)
+ ;;^UTILITY(U,$J,358.3,30158,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev),Uncomplicated
+ ;;^UTILITY(U,$J,358.3,30158,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,30158,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,30159,0)
+ ;;=F10.239^^120^1538^31
+ ;;^UTILITY(U,$J,358.3,30159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32064,1,3,0)
- ;;=3^Disp fx of medial cuneiform of lft ft, init
- ;;^UTILITY(U,$J,358.3,32064,1,4,0)
- ;;=4^S92.242A
- ;;^UTILITY(U,$J,358.3,32064,2)
- ;;=^5044969
- ;;^UTILITY(U,$J,358.3,32065,0)
- ;;=S92.354A^^126^1609^301
- ;;^UTILITY(U,$J,358.3,32065,1,0)
+ ;;^UTILITY(U,$J,358.3,30159,1,3,0)
+ ;;=3^Alcohol Use DO (Mod/Sev) WD,Unspec
+ ;;^UTILITY(U,$J,358.3,30159,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,30159,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,30160,0)
+ ;;=F10.180^^120^1538^1
+ ;;^UTILITY(U,$J,358.3,30160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32065,1,3,0)
- ;;=3^Nondisp fx of 5th metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,32065,1,4,0)
- ;;=4^S92.354A
- ;;^UTILITY(U,$J,358.3,32065,2)
- ;;=^5045249
- ;;^UTILITY(U,$J,358.3,32066,0)
- ;;=S92.352A^^126^1609^75
- ;;^UTILITY(U,$J,358.3,32066,1,0)
+ ;;^UTILITY(U,$J,358.3,30160,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,30160,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,30160,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,30161,0)
+ ;;=F10.280^^120^1538^2
+ ;;^UTILITY(U,$J,358.3,30161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32066,1,3,0)
- ;;=3^Disp fx of 5th metatarsal bone, lft ft
- ;;^UTILITY(U,$J,358.3,32066,1,4,0)
- ;;=4^S92.352A
- ;;^UTILITY(U,$J,358.3,32066,2)
- ;;=^5045235
- ;;^UTILITY(U,$J,358.3,32067,0)
- ;;=S92.351A^^126^1609^76
- ;;^UTILITY(U,$J,358.3,32067,1,0)
+ ;;^UTILITY(U,$J,358.3,30161,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30161,1,4,0)
+ ;;=4^F10.280
+ ;;^UTILITY(U,$J,358.3,30161,2)
+ ;;=^5003096
+ ;;^UTILITY(U,$J,358.3,30162,0)
+ ;;=F10.980^^120^1538^3
+ ;;^UTILITY(U,$J,358.3,30162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32067,1,3,0)
- ;;=3^Disp fx of 5th metatarsal bone, rt ft
- ;;^UTILITY(U,$J,358.3,32067,1,4,0)
- ;;=4^S92.351A
- ;;^UTILITY(U,$J,358.3,32067,2)
- ;;=^5045228
- ;;^UTILITY(U,$J,358.3,32068,0)
- ;;=S92.345A^^126^1609^296
- ;;^UTILITY(U,$J,358.3,32068,1,0)
+ ;;^UTILITY(U,$J,358.3,30162,1,3,0)
+ ;;=3^Alcohol Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30162,1,4,0)
+ ;;=4^F10.980
+ ;;^UTILITY(U,$J,358.3,30162,2)
+ ;;=^5003110
+ ;;^UTILITY(U,$J,358.3,30163,0)
+ ;;=F10.26^^120^1538^4
+ ;;^UTILITY(U,$J,358.3,30163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32068,1,3,0)
- ;;=3^Nondisp fx of 4th metatarsal bone, lft ft
- ;;^UTILITY(U,$J,358.3,32068,1,4,0)
- ;;=4^S92.345A
- ;;^UTILITY(U,$J,358.3,32068,2)
- ;;=^5045214
- ;;^UTILITY(U,$J,358.3,32069,0)
- ;;=S92.325A^^126^1609^288
- ;;^UTILITY(U,$J,358.3,32069,1,0)
+ ;;^UTILITY(U,$J,358.3,30163,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Amnestic Cofabul Type w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30163,1,4,0)
+ ;;=4^F10.26
+ ;;^UTILITY(U,$J,358.3,30163,2)
+ ;;=^5003094
+ ;;^UTILITY(U,$J,358.3,30164,0)
+ ;;=F10.96^^120^1538^5
+ ;;^UTILITY(U,$J,358.3,30164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32069,1,3,0)
- ;;=3^Nondisp fx of 2nd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,32069,1,4,0)
- ;;=4^S92.325A
- ;;^UTILITY(U,$J,358.3,32069,2)
- ;;=^5045130
- ;;^UTILITY(U,$J,358.3,32070,0)
- ;;=S92.324A^^126^1609^289
- ;;^UTILITY(U,$J,358.3,32070,1,0)
+ ;;^UTILITY(U,$J,358.3,30164,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Amnestic Cofabul Type w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30164,1,4,0)
+ ;;=4^F10.96
+ ;;^UTILITY(U,$J,358.3,30164,2)
+ ;;=^5003108
+ ;;^UTILITY(U,$J,358.3,30165,0)
+ ;;=F10.27^^120^1538^6
+ ;;^UTILITY(U,$J,358.3,30165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32070,1,3,0)
- ;;=3^Nondisp fx of 2nd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,32070,1,4,0)
- ;;=4^S92.324A
- ;;^UTILITY(U,$J,358.3,32070,2)
- ;;=^5045123
- ;;^UTILITY(U,$J,358.3,32071,0)
- ;;=S92.322A^^126^1609^63
- ;;^UTILITY(U,$J,358.3,32071,1,0)
+ ;;^UTILITY(U,$J,358.3,30165,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Nonamnestic Confabul Type w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30165,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,30165,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,30166,0)
+ ;;=F10.97^^120^1538^7
+ ;;^UTILITY(U,$J,358.3,30166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32071,1,3,0)
- ;;=3^Disp fx of 2nd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,32071,1,4,0)
- ;;=4^S92.322A
- ;;^UTILITY(U,$J,358.3,32071,2)
- ;;=^5045109
- ;;^UTILITY(U,$J,358.3,32072,0)
- ;;=S92.321A^^126^1609^64
- ;;^UTILITY(U,$J,358.3,32072,1,0)
+ ;;^UTILITY(U,$J,358.3,30166,1,3,0)
+ ;;=3^Alcohol Induced Maj Neurocog D/O,Nonamnestic Confabul Type w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30166,1,4,0)
+ ;;=4^F10.97
+ ;;^UTILITY(U,$J,358.3,30166,2)
+ ;;=^5003109
+ ;;^UTILITY(U,$J,358.3,30167,0)
+ ;;=F10.288^^120^1538^8
+ ;;^UTILITY(U,$J,358.3,30167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32072,1,3,0)
- ;;=3^Disp fx of 2nd metatarsal bone, rt ft
- ;;^UTILITY(U,$J,358.3,32072,1,4,0)
- ;;=4^S92.321A
- ;;^UTILITY(U,$J,358.3,32072,2)
- ;;=^5045102
- ;;^UTILITY(U,$J,358.3,32073,0)
- ;;=S92.315A^^126^1609^284
- ;;^UTILITY(U,$J,358.3,32073,1,0)
+ ;;^UTILITY(U,$J,358.3,30167,1,3,0)
+ ;;=3^Alcohol Induced Mild Neurocog D/O w/ Mod/Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,30167,1,4,0)
+ ;;=4^F10.288
+ ;;^UTILITY(U,$J,358.3,30167,2)
+ ;;=^5003099
+ ;;^UTILITY(U,$J,358.3,30168,0)
+ ;;=F10.988^^120^1538^9
+ ;;^UTILITY(U,$J,358.3,30168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32073,1,3,0)
- ;;=3^Nondisp fx of 1st metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,32073,1,4,0)
- ;;=4^S92.315A
- ;;^UTILITY(U,$J,358.3,32073,2)
- ;;=^5045088
- ;;^UTILITY(U,$J,358.3,32074,0)
- ;;=S92.312A^^126^1609^59
- ;;^UTILITY(U,$J,358.3,32074,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32074,1,3,0)
- ;;=3^Disp fx of 1st metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,30168,1,3,0)
+ ;;=3^Alcohol Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,30168,1,4,0)
+ ;;=4^F10.988
+ ;;^UTILITY(U,$J,358.3,30168,2)
+ ;;=^5003113
+ ;;^UTILITY(U,$J,358.3,30169,0)
+ ;;=F10.159^^120^1538^13

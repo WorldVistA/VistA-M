@@ -1,122 +1,122 @@
-IBDEI2X7 ; ; 19-NOV-2015
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI2X7 ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,49007,1,3,0)
- ;;=3^Disp distal phalanx fx of left great toe,sequela
- ;;^UTILITY(U,$J,358.3,49007,1,4,0)
- ;;=4^S92.422S
- ;;^UTILITY(U,$J,358.3,49007,2)
- ;;=^5045353
- ;;^UTILITY(U,$J,358.3,49008,0)
- ;;=S92.532S^^216^2414^26
- ;;^UTILITY(U,$J,358.3,49008,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49008,1,3,0)
- ;;=3^Disp distal phalanx fx of left lesser toe,sequela
- ;;^UTILITY(U,$J,358.3,49008,1,4,0)
- ;;=4^S92.532S
- ;;^UTILITY(U,$J,358.3,49008,2)
- ;;=^5045528
- ;;^UTILITY(U,$J,358.3,49009,0)
- ;;=S92.421S^^216^2414^27
- ;;^UTILITY(U,$J,358.3,49009,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49009,1,3,0)
- ;;=3^Disp distal phalanx fx of right great toe,sequela
- ;;^UTILITY(U,$J,358.3,49009,1,4,0)
- ;;=4^S92.421S
- ;;^UTILITY(U,$J,358.3,49009,2)
- ;;=^5045346
- ;;^UTILITY(U,$J,358.3,49010,0)
- ;;=S92.531S^^216^2414^28
- ;;^UTILITY(U,$J,358.3,49010,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49010,1,3,0)
- ;;=3^Disp distal phalanx fx of right lesser toe,sequela
- ;;^UTILITY(U,$J,358.3,49010,1,4,0)
- ;;=4^S92.531S
- ;;^UTILITY(U,$J,358.3,49010,2)
- ;;=^5045521
- ;;^UTILITY(U,$J,358.3,49011,0)
- ;;=S92.522S^^216^2414^40
- ;;^UTILITY(U,$J,358.3,49011,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49011,1,3,0)
- ;;=3^Disp medial cuneiform fx of left lesser toe(s),sequela
- ;;^UTILITY(U,$J,358.3,49011,1,4,0)
- ;;=4^S92.522S
- ;;^UTILITY(U,$J,358.3,49011,2)
- ;;=^5045486
- ;;^UTILITY(U,$J,358.3,49012,0)
- ;;=S92.521S^^216^2414^43
- ;;^UTILITY(U,$J,358.3,49012,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49012,1,3,0)
- ;;=3^Disp medial phalanx fx of right lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,49012,1,4,0)
- ;;=4^S92.521S
- ;;^UTILITY(U,$J,358.3,49012,2)
- ;;=^5045479
- ;;^UTILITY(U,$J,358.3,49013,0)
- ;;=S92.412S^^216^2414^50
- ;;^UTILITY(U,$J,358.3,49013,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49013,1,3,0)
- ;;=3^Disp proximal phalanx fx of left great toe, sequela
- ;;^UTILITY(U,$J,358.3,49013,1,4,0)
- ;;=4^S92.412S
- ;;^UTILITY(U,$J,358.3,49013,2)
- ;;=^5045311
- ;;^UTILITY(U,$J,358.3,49014,0)
- ;;=S92.512S^^216^2414^51
- ;;^UTILITY(U,$J,358.3,49014,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49014,1,3,0)
- ;;=3^Disp proximal phalanx fx of left lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,49014,1,4,0)
- ;;=4^S92.512S
- ;;^UTILITY(U,$J,358.3,49014,2)
- ;;=s92411s^5045444
- ;;^UTILITY(U,$J,358.3,49015,0)
- ;;=S92.411S^^216^2414^52
- ;;^UTILITY(U,$J,358.3,49015,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49015,1,3,0)
- ;;=3^Disp proximal phalanx fx of right great toe, sequela
- ;;^UTILITY(U,$J,358.3,49015,1,4,0)
- ;;=4^S92.411S
- ;;^UTILITY(U,$J,358.3,49015,2)
- ;;=^5045304
- ;;^UTILITY(U,$J,358.3,49016,0)
- ;;=S92.511S^^216^2414^53
- ;;^UTILITY(U,$J,358.3,49016,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49016,1,3,0)
- ;;=3^Disp proximal phalanx fx of right lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,49016,1,4,0)
- ;;=4^S92.511S
- ;;^UTILITY(U,$J,358.3,49016,2)
- ;;=s92425s^5045437
- ;;^UTILITY(U,$J,358.3,49017,0)
- ;;=S92.425S^^216^2414^80
- ;;^UTILITY(U,$J,358.3,49017,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49017,1,3,0)
- ;;=3^Nondisp distal phalanx fx of left great toe, sequela
- ;;^UTILITY(U,$J,358.3,49017,1,4,0)
- ;;=4^S92.425S
- ;;^UTILITY(U,$J,358.3,49017,2)
- ;;=^5045374
- ;;^UTILITY(U,$J,358.3,49018,0)
- ;;=S92.535S^^216^2414^81
- ;;^UTILITY(U,$J,358.3,49018,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,49018,1,3,0)
- ;;=3^Nondisp distal phalanx fx of left lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,49018,1,4,0)
- ;;=4^S92.535S
- ;;^UTILITY(U,$J,358.3,49018,2)
- ;;=^5045549
- ;;^UTILITY(U,$J,358.3,49019,0)
- ;;=S92.424S^^216^2414^82
+ ;;^UTILITY(U,$J,358.3,46583,0)
+ ;;=51705^^178^2320^16^^^^1
+ ;;^UTILITY(U,$J,358.3,46583,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46583,1,2,0)
+ ;;=2^51705
+ ;;^UTILITY(U,$J,358.3,46583,1,3,0)
+ ;;=3^SPT Exchange,Simple
+ ;;^UTILITY(U,$J,358.3,46584,0)
+ ;;=51710^^178^2320^15^^^^1
+ ;;^UTILITY(U,$J,358.3,46584,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46584,1,2,0)
+ ;;=2^51710
+ ;;^UTILITY(U,$J,358.3,46584,1,3,0)
+ ;;=3^SPT Exchange,Complicated
+ ;;^UTILITY(U,$J,358.3,46585,0)
+ ;;=52000^^178^2320^6^^^^1
+ ;;^UTILITY(U,$J,358.3,46585,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46585,1,2,0)
+ ;;=2^52000
+ ;;^UTILITY(U,$J,358.3,46585,1,3,0)
+ ;;=3^Cysto
+ ;;^UTILITY(U,$J,358.3,46586,0)
+ ;;=53600^^178^2320^20^^^^1
+ ;;^UTILITY(U,$J,358.3,46586,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46586,1,2,0)
+ ;;=2^53600
+ ;;^UTILITY(U,$J,358.3,46586,1,3,0)
+ ;;=3^Urethral Dil Sound/Dilator (Male)
+ ;;^UTILITY(U,$J,358.3,46587,0)
+ ;;=53620^^178^2320^19^^^^1
+ ;;^UTILITY(U,$J,358.3,46587,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46587,1,2,0)
+ ;;=2^53620
+ ;;^UTILITY(U,$J,358.3,46587,1,3,0)
+ ;;=3^Urethral Dil Fil/Fol (Male)
+ ;;^UTILITY(U,$J,358.3,46588,0)
+ ;;=74425^^178^2320^1^^^^1
+ ;;^UTILITY(U,$J,358.3,46588,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46588,1,2,0)
+ ;;=2^74425
+ ;;^UTILITY(U,$J,358.3,46588,1,3,0)
+ ;;=3^Antgrd Urolgraphy,Rad Supvsn & Interp
+ ;;^UTILITY(U,$J,358.3,46589,0)
+ ;;=74430^^178^2320^8^^^^1
+ ;;^UTILITY(U,$J,358.3,46589,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46589,1,2,0)
+ ;;=2^74430
+ ;;^UTILITY(U,$J,358.3,46589,1,3,0)
+ ;;=3^Cystogram,Rad Supv & Interp
+ ;;^UTILITY(U,$J,358.3,46590,0)
+ ;;=76942^^178^2320^18^^^^1
+ ;;^UTILITY(U,$J,358.3,46590,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46590,1,2,0)
+ ;;=2^76942
+ ;;^UTILITY(U,$J,358.3,46590,1,3,0)
+ ;;=3^US Guidance for Needle (SPT) Placement
+ ;;^UTILITY(U,$J,358.3,46591,0)
+ ;;=77002^^178^2320^12^^^^1
+ ;;^UTILITY(U,$J,358.3,46591,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46591,1,2,0)
+ ;;=2^77002
+ ;;^UTILITY(U,$J,358.3,46591,1,3,0)
+ ;;=3^Fluoro Guide for Needle (SPT) Placement
+ ;;^UTILITY(U,$J,358.3,46592,0)
+ ;;=51705^^178^2320^5^^^^1
+ ;;^UTILITY(U,$J,358.3,46592,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46592,1,2,0)
+ ;;=2^51705
+ ;;^UTILITY(U,$J,358.3,46592,1,3,0)
+ ;;=3^Change of Bladder Tube
+ ;;^UTILITY(U,$J,358.3,46593,0)
+ ;;=51715^^178^2320^11^^^^1
+ ;;^UTILITY(U,$J,358.3,46593,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46593,1,2,0)
+ ;;=2^51715
+ ;;^UTILITY(U,$J,358.3,46593,1,3,0)
+ ;;=3^Endoscopic Inj w/ Implant
+ ;;^UTILITY(U,$J,358.3,46594,0)
+ ;;=53601^^178^2320^22^^^^1
+ ;;^UTILITY(U,$J,358.3,46594,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46594,1,2,0)
+ ;;=2^53601
+ ;;^UTILITY(U,$J,358.3,46594,1,3,0)
+ ;;=3^Urethral Dil,Subsequent
+ ;;^UTILITY(U,$J,358.3,46595,0)
+ ;;=53621^^178^2320^21^^^^1
+ ;;^UTILITY(U,$J,358.3,46595,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46595,1,2,0)
+ ;;=2^53621
+ ;;^UTILITY(U,$J,358.3,46595,1,3,0)
+ ;;=3^Urethral Dil,Stricture
+ ;;^UTILITY(U,$J,358.3,46596,0)
+ ;;=50436^^178^2320^10^^^^1
+ ;;^UTILITY(U,$J,358.3,46596,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46596,1,2,0)
+ ;;=2^50436
+ ;;^UTILITY(U,$J,358.3,46596,1,3,0)
+ ;;=3^Dil Exist Tract,Perc,Endouro Proc
+ ;;^UTILITY(U,$J,358.3,46597,0)
+ ;;=50437^^178^2320^9^^^^1
+ ;;^UTILITY(U,$J,358.3,46597,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46597,1,2,0)
+ ;;=2^50437

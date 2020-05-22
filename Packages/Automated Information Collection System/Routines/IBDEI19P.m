@@ -1,136 +1,116 @@
-IBDEI19P ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI19P ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21562,0)
- ;;=N40.0^^87^965^20
- ;;^UTILITY(U,$J,358.3,21562,1,0)
+ ;;^UTILITY(U,$J,358.3,20286,2)
+ ;;=^5024496
+ ;;^UTILITY(U,$J,358.3,20287,0)
+ ;;=S32.010S^^93^1001^76
+ ;;^UTILITY(U,$J,358.3,20287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21562,1,3,0)
- ;;=3^Enlarged Prostate w/o LUTS
- ;;^UTILITY(U,$J,358.3,21562,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,21562,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,21563,0)
- ;;=N40.1^^87^965^19
- ;;^UTILITY(U,$J,358.3,21563,1,0)
+ ;;^UTILITY(U,$J,358.3,20287,1,3,0)
+ ;;=3^Wedge compression fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20287,1,4,0)
+ ;;=4^S32.010S
+ ;;^UTILITY(U,$J,358.3,20287,2)
+ ;;=^5024376
+ ;;^UTILITY(U,$J,358.3,20288,0)
+ ;;=S22.010S^^93^1001^77
+ ;;^UTILITY(U,$J,358.3,20288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21563,1,3,0)
- ;;=3^Enlarged Prostate w/ LUTS
- ;;^UTILITY(U,$J,358.3,21563,1,4,0)
- ;;=4^N40.1
- ;;^UTILITY(U,$J,358.3,21563,2)
- ;;=^5015690
- ;;^UTILITY(U,$J,358.3,21564,0)
- ;;=L03.811^^87^965^10
- ;;^UTILITY(U,$J,358.3,21564,1,0)
+ ;;^UTILITY(U,$J,358.3,20288,1,3,0)
+ ;;=3^Wedge compression fracture of first thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20288,1,4,0)
+ ;;=4^S22.010S
+ ;;^UTILITY(U,$J,358.3,20288,2)
+ ;;=^5022840
+ ;;^UTILITY(U,$J,358.3,20289,0)
+ ;;=S32.040S^^93^1001^78
+ ;;^UTILITY(U,$J,358.3,20289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21564,1,3,0)
- ;;=3^Cellulitis,Head (Except Face)
- ;;^UTILITY(U,$J,358.3,21564,1,4,0)
- ;;=4^L03.811
- ;;^UTILITY(U,$J,358.3,21564,2)
- ;;=^5009063
- ;;^UTILITY(U,$J,358.3,21565,0)
- ;;=L03.818^^87^965^11
- ;;^UTILITY(U,$J,358.3,21565,1,0)
+ ;;^UTILITY(U,$J,358.3,20289,1,3,0)
+ ;;=3^Wedge compression fracture of fourth lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20289,1,4,0)
+ ;;=4^S32.040S
+ ;;^UTILITY(U,$J,358.3,20289,2)
+ ;;=^5024466
+ ;;^UTILITY(U,$J,358.3,20290,0)
+ ;;=S22.040S^^93^1001^79
+ ;;^UTILITY(U,$J,358.3,20290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21565,1,3,0)
- ;;=3^Cellulitis,Oth Sites
- ;;^UTILITY(U,$J,358.3,21565,1,4,0)
- ;;=4^L03.818
- ;;^UTILITY(U,$J,358.3,21565,2)
- ;;=^5009064
- ;;^UTILITY(U,$J,358.3,21566,0)
- ;;=L03.891^^87^965^35
- ;;^UTILITY(U,$J,358.3,21566,1,0)
+ ;;^UTILITY(U,$J,358.3,20290,1,3,0)
+ ;;=3^Wedge compression fracture of fourth thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20290,1,4,0)
+ ;;=4^S22.040S
+ ;;^UTILITY(U,$J,358.3,20290,2)
+ ;;=^5022930
+ ;;^UTILITY(U,$J,358.3,20291,0)
+ ;;=S32.020S^^93^1001^80
+ ;;^UTILITY(U,$J,358.3,20291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21566,1,3,0)
- ;;=3^Lymphangitis,Head (Except Face),Acute
- ;;^UTILITY(U,$J,358.3,21566,1,4,0)
- ;;=4^L03.891
- ;;^UTILITY(U,$J,358.3,21566,2)
- ;;=^5009065
- ;;^UTILITY(U,$J,358.3,21567,0)
- ;;=L03.898^^87^965^36
- ;;^UTILITY(U,$J,358.3,21567,1,0)
+ ;;^UTILITY(U,$J,358.3,20291,1,3,0)
+ ;;=3^Wedge compression fracture of second lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20291,1,4,0)
+ ;;=4^S32.020S
+ ;;^UTILITY(U,$J,358.3,20291,2)
+ ;;=^5024406
+ ;;^UTILITY(U,$J,358.3,20292,0)
+ ;;=S22.020S^^93^1001^81
+ ;;^UTILITY(U,$J,358.3,20292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21567,1,3,0)
- ;;=3^Lymphangitis,Oth Sites,Acute
- ;;^UTILITY(U,$J,358.3,21567,1,4,0)
- ;;=4^L03.898
- ;;^UTILITY(U,$J,358.3,21567,2)
- ;;=^5009066
- ;;^UTILITY(U,$J,358.3,21568,0)
- ;;=L03.90^^87^965^12
- ;;^UTILITY(U,$J,358.3,21568,1,0)
+ ;;^UTILITY(U,$J,358.3,20292,1,3,0)
+ ;;=3^Wedge compression fracture of second thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20292,1,4,0)
+ ;;=4^S22.020S
+ ;;^UTILITY(U,$J,358.3,20292,2)
+ ;;=^5022870
+ ;;^UTILITY(U,$J,358.3,20293,0)
+ ;;=S22.080S^^93^1001^71
+ ;;^UTILITY(U,$J,358.3,20293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21568,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,21568,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,21568,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,21569,0)
- ;;=L03.91^^87^965^34
- ;;^UTILITY(U,$J,358.3,21569,1,0)
+ ;;^UTILITY(U,$J,358.3,20293,1,3,0)
+ ;;=3^Wedge compression fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20293,1,4,0)
+ ;;=4^S22.080S
+ ;;^UTILITY(U,$J,358.3,20293,2)
+ ;;=^5023050
+ ;;^UTILITY(U,$J,358.3,20294,0)
+ ;;=S22.050S^^93^1001^72
+ ;;^UTILITY(U,$J,358.3,20294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21569,1,3,0)
- ;;=3^Lymphangitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,21569,1,4,0)
- ;;=4^L03.91
- ;;^UTILITY(U,$J,358.3,21569,2)
- ;;=^5009068
- ;;^UTILITY(U,$J,358.3,21570,0)
- ;;=M51.26^^87^965^32
- ;;^UTILITY(U,$J,358.3,21570,1,0)
+ ;;^UTILITY(U,$J,358.3,20294,1,3,0)
+ ;;=3^Wedge compression fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20294,1,4,0)
+ ;;=4^S22.050S
+ ;;^UTILITY(U,$J,358.3,20294,2)
+ ;;=^5022960
+ ;;^UTILITY(U,$J,358.3,20295,0)
+ ;;=S22.060S^^93^1001^73
+ ;;^UTILITY(U,$J,358.3,20295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21570,1,3,0)
- ;;=3^Intervertebral Disc Displacement,Lumbar Region
- ;;^UTILITY(U,$J,358.3,21570,1,4,0)
- ;;=4^M51.26
- ;;^UTILITY(U,$J,358.3,21570,2)
- ;;=^5012249
- ;;^UTILITY(U,$J,358.3,21571,0)
- ;;=M51.27^^87^965^33
- ;;^UTILITY(U,$J,358.3,21571,1,0)
+ ;;^UTILITY(U,$J,358.3,20295,1,3,0)
+ ;;=3^Wedge compression fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20295,1,4,0)
+ ;;=4^S22.060S
+ ;;^UTILITY(U,$J,358.3,20295,2)
+ ;;=^5022990
+ ;;^UTILITY(U,$J,358.3,20296,0)
+ ;;=S22.070S^^93^1001^74
+ ;;^UTILITY(U,$J,358.3,20296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21571,1,3,0)
- ;;=3^Intervertebral Disc Displacement,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,21571,1,4,0)
- ;;=4^M51.27
- ;;^UTILITY(U,$J,358.3,21571,2)
- ;;=^5012250
- ;;^UTILITY(U,$J,358.3,21572,0)
- ;;=G47.33^^87^965^51
- ;;^UTILITY(U,$J,358.3,21572,1,0)
+ ;;^UTILITY(U,$J,358.3,20296,1,3,0)
+ ;;=3^Wedge compression fracture of T9-T10 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20296,1,4,0)
+ ;;=4^S22.070S
+ ;;^UTILITY(U,$J,358.3,20296,2)
+ ;;=^5023020
+ ;;^UTILITY(U,$J,358.3,20297,0)
+ ;;=S32.030S^^93^1001^82
+ ;;^UTILITY(U,$J,358.3,20297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21572,1,3,0)
- ;;=3^Sleep Apnea,Obstructive
- ;;^UTILITY(U,$J,358.3,21572,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,21572,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,21573,0)
- ;;=G44.1^^87^965^55
- ;;^UTILITY(U,$J,358.3,21573,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21573,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,21573,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,21573,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,21574,0)
- ;;=R73.01^^87^965^30
- ;;^UTILITY(U,$J,358.3,21574,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21574,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,21574,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,21574,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,21575,0)
- ;;=R74.8^^87^965^1
+ ;;^UTILITY(U,$J,358.3,20297,1,3,0)
+ ;;=3^Wedge compression fracture of third lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,20297,1,4,0)
+ ;;=4^S32.030S
+ ;;^UTILITY(U,$J,358.3,20297,2)
+ ;;=^5024436

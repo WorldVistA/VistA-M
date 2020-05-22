@@ -1,134 +1,116 @@
-IBDEI1ZI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI1ZI ; ; 04-FEB-2020
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;FEB 04, 2020
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33672,0)
- ;;=K92.2^^131^1675^49
- ;;^UTILITY(U,$J,358.3,33672,1,0)
+ ;;^UTILITY(U,$J,358.3,31677,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,31677,1,4,0)
+ ;;=4^O41.03X4
+ ;;^UTILITY(U,$J,358.3,31677,2)
+ ;;=^5017238
+ ;;^UTILITY(U,$J,358.3,31678,0)
+ ;;=O41.03X5^^126^1627^55
+ ;;^UTILITY(U,$J,358.3,31678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33672,1,3,0)
- ;;=3^GI Bleed,Unspec
- ;;^UTILITY(U,$J,358.3,33672,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,33672,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,33673,0)
- ;;=K62.5^^131^1675^8
- ;;^UTILITY(U,$J,358.3,33673,1,0)
+ ;;^UTILITY(U,$J,358.3,31678,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,31678,1,4,0)
+ ;;=4^O41.03X5
+ ;;^UTILITY(U,$J,358.3,31678,2)
+ ;;=^5017239
+ ;;^UTILITY(U,$J,358.3,31679,0)
+ ;;=O41.03X9^^126^1627^57
+ ;;^UTILITY(U,$J,358.3,31679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33673,1,3,0)
- ;;=3^BRBPR
- ;;^UTILITY(U,$J,358.3,33673,1,4,0)
- ;;=4^K62.5
- ;;^UTILITY(U,$J,358.3,33673,2)
- ;;=^5008755
- ;;^UTILITY(U,$J,358.3,33674,0)
- ;;=K92.1^^131^1675^71
- ;;^UTILITY(U,$J,358.3,33674,1,0)
+ ;;^UTILITY(U,$J,358.3,31679,1,3,0)
+ ;;=3^Oligohydramnios, third trimester, other fetus
+ ;;^UTILITY(U,$J,358.3,31679,1,4,0)
+ ;;=4^O41.03X9
+ ;;^UTILITY(U,$J,358.3,31679,2)
+ ;;=^5017240
+ ;;^UTILITY(U,$J,358.3,31680,0)
+ ;;=O42.00^^126^1627^77
+ ;;^UTILITY(U,$J,358.3,31680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33674,1,3,0)
- ;;=3^Melena/Hematochezia
- ;;^UTILITY(U,$J,358.3,33674,1,4,0)
- ;;=4^K92.1
- ;;^UTILITY(U,$J,358.3,33674,2)
- ;;=^5008914
- ;;^UTILITY(U,$J,358.3,33675,0)
- ;;=R19.5^^131^1675^48
- ;;^UTILITY(U,$J,358.3,33675,1,0)
+ ;;^UTILITY(U,$J,358.3,31680,1,3,0)
+ ;;=3^Prem ROM, onset labor w/n 24 hr of rupt, unsp weeks of gest
+ ;;^UTILITY(U,$J,358.3,31680,1,4,0)
+ ;;=4^O42.00
+ ;;^UTILITY(U,$J,358.3,31680,2)
+ ;;=^5017372
+ ;;^UTILITY(U,$J,358.3,31681,0)
+ ;;=O42.011^^126^1627^82
+ ;;^UTILITY(U,$J,358.3,31681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33675,1,3,0)
- ;;=3^Fecal Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,33675,1,4,0)
- ;;=4^R19.5
- ;;^UTILITY(U,$J,358.3,33675,2)
- ;;=^5019274
- ;;^UTILITY(U,$J,358.3,33676,0)
- ;;=E53.8^^131^1675^81
- ;;^UTILITY(U,$J,358.3,33676,1,0)
+ ;;^UTILITY(U,$J,358.3,31681,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, first tri
+ ;;^UTILITY(U,$J,358.3,31681,1,4,0)
+ ;;=4^O42.011
+ ;;^UTILITY(U,$J,358.3,31681,2)
+ ;;=^5017373
+ ;;^UTILITY(U,$J,358.3,31682,0)
+ ;;=O42.012^^126^1627^83
+ ;;^UTILITY(U,$J,358.3,31682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33676,1,3,0)
- ;;=3^Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,33676,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,33676,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,33677,0)
- ;;=A54.00^^131^1676^47
- ;;^UTILITY(U,$J,358.3,33677,1,0)
+ ;;^UTILITY(U,$J,358.3,31682,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, 2nd tri
+ ;;^UTILITY(U,$J,358.3,31682,1,4,0)
+ ;;=4^O42.012
+ ;;^UTILITY(U,$J,358.3,31682,2)
+ ;;=^5017374
+ ;;^UTILITY(U,$J,358.3,31683,0)
+ ;;=O42.013^^126^1627^84
+ ;;^UTILITY(U,$J,358.3,31683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33677,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,33677,1,4,0)
- ;;=4^A54.00
- ;;^UTILITY(U,$J,358.3,33677,2)
- ;;=^5000311
- ;;^UTILITY(U,$J,358.3,33678,0)
- ;;=A54.09^^131^1676^48
- ;;^UTILITY(U,$J,358.3,33678,1,0)
+ ;;^UTILITY(U,$J,358.3,31683,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor w/n 24 hours of rupt, third tri
+ ;;^UTILITY(U,$J,358.3,31683,1,4,0)
+ ;;=4^O42.013
+ ;;^UTILITY(U,$J,358.3,31683,2)
+ ;;=^5017375
+ ;;^UTILITY(U,$J,358.3,31684,0)
+ ;;=O42.10^^126^1627^76
+ ;;^UTILITY(U,$J,358.3,31684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33678,1,3,0)
- ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
- ;;^UTILITY(U,$J,358.3,33678,1,4,0)
- ;;=4^A54.09
- ;;^UTILITY(U,$J,358.3,33678,2)
- ;;=^5000315
- ;;^UTILITY(U,$J,358.3,33679,0)
- ;;=A54.02^^131^1676^49
- ;;^UTILITY(U,$J,358.3,33679,1,0)
+ ;;^UTILITY(U,$J,358.3,31684,1,3,0)
+ ;;=3^Prem ROM, onset labor > 24 hr fol rupt, unsp weeks of gest
+ ;;^UTILITY(U,$J,358.3,31684,1,4,0)
+ ;;=4^O42.10
+ ;;^UTILITY(U,$J,358.3,31684,2)
+ ;;=^5017378
+ ;;^UTILITY(U,$J,358.3,31685,0)
+ ;;=O42.111^^126^1627^78
+ ;;^UTILITY(U,$J,358.3,31685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33679,1,3,0)
- ;;=3^Gonococcal Vulvovaginitis,Unspec
- ;;^UTILITY(U,$J,358.3,33679,1,4,0)
- ;;=4^A54.02
- ;;^UTILITY(U,$J,358.3,33679,2)
- ;;=^5000313
- ;;^UTILITY(U,$J,358.3,33680,0)
- ;;=A54.1^^131^1676^46
- ;;^UTILITY(U,$J,358.3,33680,1,0)
+ ;;^UTILITY(U,$J,358.3,31685,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, first tri
+ ;;^UTILITY(U,$J,358.3,31685,1,4,0)
+ ;;=4^O42.111
+ ;;^UTILITY(U,$J,358.3,31685,2)
+ ;;=^5017379
+ ;;^UTILITY(U,$J,358.3,31686,0)
+ ;;=O42.112^^126^1627^79
+ ;;^UTILITY(U,$J,358.3,31686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33680,1,3,0)
- ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
- ;;^UTILITY(U,$J,358.3,33680,1,4,0)
- ;;=4^A54.1
- ;;^UTILITY(U,$J,358.3,33680,2)
- ;;=^5000316
- ;;^UTILITY(U,$J,358.3,33681,0)
- ;;=A54.01^^131^1676^45
- ;;^UTILITY(U,$J,358.3,33681,1,0)
+ ;;^UTILITY(U,$J,358.3,31686,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, second tri
+ ;;^UTILITY(U,$J,358.3,31686,1,4,0)
+ ;;=4^O42.112
+ ;;^UTILITY(U,$J,358.3,31686,2)
+ ;;=^5017380
+ ;;^UTILITY(U,$J,358.3,31687,0)
+ ;;=O42.113^^126^1627^80
+ ;;^UTILITY(U,$J,358.3,31687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33681,1,3,0)
- ;;=3^Gonococcal Cystitis & Urethritis,Unspec
- ;;^UTILITY(U,$J,358.3,33681,1,4,0)
- ;;=4^A54.01
- ;;^UTILITY(U,$J,358.3,33681,2)
- ;;=^5000312
- ;;^UTILITY(U,$J,358.3,33682,0)
- ;;=B37.49^^131^1676^12
- ;;^UTILITY(U,$J,358.3,33682,1,0)
+ ;;^UTILITY(U,$J,358.3,31687,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, third tri
+ ;;^UTILITY(U,$J,358.3,31687,1,4,0)
+ ;;=4^O42.113
+ ;;^UTILITY(U,$J,358.3,31687,2)
+ ;;=^5017381
+ ;;^UTILITY(U,$J,358.3,31688,0)
+ ;;=O42.119^^126^1627^81
+ ;;^UTILITY(U,$J,358.3,31688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33682,1,3,0)
- ;;=3^Candidiasis Urogenital,Other
- ;;^UTILITY(U,$J,358.3,33682,1,4,0)
- ;;=4^B37.49
- ;;^UTILITY(U,$J,358.3,33682,2)
- ;;=^5000618
- ;;^UTILITY(U,$J,358.3,33683,0)
- ;;=B37.41^^131^1676^11
- ;;^UTILITY(U,$J,358.3,33683,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33683,1,3,0)
- ;;=3^Candidal Cystitis & Urethritis
- ;;^UTILITY(U,$J,358.3,33683,1,4,0)
- ;;=4^B37.41
- ;;^UTILITY(U,$J,358.3,33683,2)
- ;;=^5000616
- ;;^UTILITY(U,$J,358.3,33684,0)
- ;;=B37.42^^131^1676^10
- ;;^UTILITY(U,$J,358.3,33684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33684,1,3,0)
- ;;=3^Candidal Balanitis
- ;;^UTILITY(U,$J,358.3,33684,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,33684,2)
- ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,31688,1,3,0)
+ ;;=3^Pretrm prem ROM, onset labor > 24 hours fol rupt, unsp tri
