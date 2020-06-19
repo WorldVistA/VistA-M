@@ -1,5 +1,5 @@
-RAO7PC1 ;HISC/GJC,SS-Procedure Call utilities. ;04 Mar 2019 11:57 AM
- ;;5.0;Radiology/Nuclear Medicine;**1,16,18,26,36,45,75,143,156**;Mar 16, 1998;Build 1
+RAO7PC1 ;HISC/GJC,SS-Procedure Call utilities. ; Feb 21, 2020@10:08:19
+ ;;5.0;Radiology/Nuclear Medicine;**1,16,18,26,36,45,75,143,156,166**;Mar 16, 1998;Build 2
  ;
 EN1(RADFN,RABDT,RAEDT,RAEXN,RACINC) ;
  ;
@@ -117,50 +117,72 @@ EN3(X) ; DBIA#2265 - Return narrative text for exam(s)
  ; ^TMP($J,"RAE2",Patient IEN,"ORD",case IEN)=name of ordered procedure
  ;  for that case; not part of an examset or printset
  ;
- K RAU,^TMP($J,"RAE2") S RAU=$$DEL(X)
- I RAU="" K RAU Q
- Q:'$P(X,RAU)!('$P(X,RAU,2))  ; Quit if no Pat. DFN -or- no inv. exam DT
- N RACIEN,RADFN,RAINVXDT,RAPSET,RAQRYST,RAY3,Y S RAPSET=0
- S RADFN=$P(X,RAU),RAINVXDT=$P(X,RAU,2),RACIEN=+$P(X,RAU,3)
- K RAU Q:'($D(^RADPT(RADFN,"DT",RAINVXDT,0))#2)
-SS I RACIEN D CASE^RAO7PC2(RACIEN) D SVTCOM^RAUTL11(RADFN,RAINVXDT,RACIEN) Q  ;P18 mod by SS
- S Y=0
- F  S Y=$O(^RADPT(RADFN,"DT",RAINVXDT,"P",Y)) Q:Y'>0  D
- . ; * RA5P156 begin *
- . S RAY3=$G(^RADPT(RADFN,"DT",RAINVXDT,"P",Y,0))
- . ;get the exam status pointer, find the order number
- . ;quit if the order number is zero ('canceled')
- . ;even if you allow canceling of 'complete' studies
- . ;& allow reports on canceled studies the 'Cancel an
- . ;Exam' option prevents the cancel action
- . S RAQRYST=$P($G(^RA(72,+$P(RAY3,U,3),0)),U,3) Q:RAQRYST=0
- . ; * RA5P156 end gjc *
- . D CASE^RAO7PC2(Y)
- . D SVTCOM^RAUTL11(RADFN,RAINVXDT,Y) ;P18 save TCOM in ^TMP
- . S RAPSET=0 ;P18 modified 
- . Q
+ ; parse out RADFN & RADTI
+ N RADELIM,RADFN,RADTI,RACNI,RAINVXDT,RAPSET
+ S RADELIM=$$DEL(X) Q:RADELIM=""
+ ; Quit if no Pat. DFN -or- no inv. exam DT
+ S RADFN=$P(X,RADELIM),RADTI=$P(X,RADELIM,2)
+ Q:RADFN'>0  Q:RADTI'>0
+ S RAPSET=0 ;referenced in RAO7PC2 
+ ;
+ ; if RACNI get our single record and quit
+ I $L(X,RADELIM)=3 D
+ .N RACNI,RAY3,RAQRYST
+ .S RACNI=$P(X,RADELIM,3)
+ .Q:RACNI'>0  Q:'$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ .S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ .; if the order of the exam status is zero (canceled) quit
+ .S RAQRYST=$P($G(^RA(72,+$P(RAY3,U,3),0)),U,3) Q:RAQRYST=0
+ .K ^TMP($J,"RAE2") S RAINVXDT=RADTI
+ .D CASE^RAO7PC2(RACNI) D SVTCOM^RAUTL11(RADFN,RADTI,RACNI) ;P18 mod by SS
+ .Q
+ ; if RACNI not present, get RACNI
+ E  D
+ .K:'$D(RAXSET)#2 ^TMP($J,"RAE2") ;don't kill if called from EN30
+ .N RACNI,RAY3,RAQRYST S RACNI=0
+ .F  S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI)) Q:'RACNI  D
+ ..Q:'$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ ..S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
+ ..;
+ ..; get the exam status pointer, find the order number
+ ..; quit if the order number is zero ('canceled')
+ ..; even if you allow canceling of 'complete' studies
+ ..; & allow reports on canceled studies the 'Cancel an
+ ..; Exam' option prevents the cancel action
+ ..;
+ ..S RAQRYST=$P($G(^RA(72,+$P(RAY3,U,3),0)),U,3) Q:RAQRYST=0
+ ..S RAINVXDT=RADTI D CASE^RAO7PC2(RACNI)
+ ..D SVTCOM^RAUTL11(RADFN,RADTI,RACNI) ;P18 save TCOM in ^TMP
+ ..S RAPSET=0 ;P18 modified
+ ..Q 
+ .Q
  Q
  ;
 EN30(RAOIFN) ; DBIA#2266 - Return narrative text for exam(s). To be used
  ; with the EN3 entry point above.
  ; Input: RAOIFN -> the ien of Rad/Nuc Med Order
+ K ^TMP($J,"RAE2")
  Q:'RAOIFN  ; order passed in as 0 or null
  Q:'$D(^RAO(75.1,RAOIFN,0))  ; no such order
  Q:'$D(^RADPT("AO",RAOIFN))  ; no exam associated with this order
- N RADFN,RADTI,RACNI,RAXSET
+ N RADFN,RADTI,RACNI,RAXSET,RAY2
  S RADFN=+$O(^RADPT("AO",RAOIFN,0)) Q:'RADFN
- ; * RA5P156 begin *
+ ;
  ; This order IEN will be unique for patient 'RADFN'
  ; but this same order could be associated with more
  ; than one study.
+ ;
  S RADTI=0 F  S RADTI=$O(^RADPT("AO",RAOIFN,RADFN,RADTI)) Q:RADTI'>0  D
- .S RAXSET=+$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",5) ; set if RAXSET=1
- .I RAXSET D EN3(RADFN_"^"_RADTI_"^") Q  ; exam set, hit EN3 code
- .; the following code is executed for non-exam set examinations
- .S RACNI=+$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0)) Q:'RACNI
- .D EN3(RADFN_"^"_RADTI_"^"_RACNI)
+ .S RAY2=$G(^RADPT(RADFN,"DT",RADTI,0)),RAXSET=$P(RAY2,U,5)
+ .; if RAXSET=1 we have a exam/printset
+ .I RAXSET D EN3(RADFN_"^"_RADTI) Q  ; exam set, hit EN3 code
+ .; multiple studies can be tied to the same order when an exam is
+ .; canceled (order on 'hold')
+ .S RACNI=0
+ .F  S RACNI=+$O(^RADPT("AO",RAOIFN,RADFN,RADTI,RACNI)) Q:'RACNI  D
+ ..D EN3(RADFN_"^"_RADTI_"^"_RACNI)
+ ..Q
  .Q
- ; * RA5P156 end gjc *
  Q
 EN4(RABBRV,RAARY) ; Return Imaging Locations
  ; Input: RABBRV-> Abbreviation for I-Type    RAARY-> data storage array
@@ -202,3 +224,4 @@ DEL(X) ; Determine the delimiter used to seperate the data
  N Y,Z
  F Y="^","~","\","&",";","-"," " S Z=$F(X,Y) I +Z Q
  Q $S(+Z>0:Y,1:"") ; pass back the delimiter used, or null if not found
+ ;

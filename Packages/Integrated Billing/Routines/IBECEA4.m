@@ -1,5 +1,5 @@
 IBECEA4 ;ALB/CPM - Cancel/Edit/Add... Cancel a Charge ;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**27,52,150,240,663,671**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**27,52,150,240,663,671,669**;21-MAR-94;Build 20
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 ONE ; Cancel a single charge.
@@ -13,25 +13,29 @@ ONE ; Cancel a single charge.
  I 'IBH,IBIL="" S IBY="-1^IB024" G ONEQ
  ;
 REAS ; - ask for the cancellation reason
- N IBUCR1,IBUCR2,IBUCDV
  ;
  D REAS^IBECEAU2("C") G:IBCRES<0 ONEQ
+ ;
+ ;IB*2.0*669
+ ; Temporary inactive flag check until IB*2.0*653 is released.  Then need to move the inactive check to
+ ; the DIC("S") variable in REAS^IBECEAU2.
+ ; cHECK INACTIVE FLAG
+ ; If Cancel reason is inactive, the post message to user and try again.
+ I $$GET1^DIQ(350.3,IBCRES_",",.06,"I") D  G:IBY<0 REAS
+ . S IBY=-1
+ . W !!,"The selected cancellation reason is inactive."
+ . W !,"Please select another cancellation reason.",!!
+ ;
+ ;Check to see if it is an Urgent Care
+ I ('$$GET1^DIQ(350.3,IBCRES_",",.04,"I")),($$GET1^DIQ(350.1,$P(IBND,U,3)_",",.01,"E")["URGENT CARE") D  G:IBY<0 ONEQ
+ . S IBY=-1
+ . W !!,"This is an Urgent Care Copayment. Please use an Urgent Care cancellation reason.",!,"This transaction cannot be completed.",!
  ;
  ; - okay to proceed?
  D PROC^IBECEAU4("cancel") G:IBY<0 ONEQ
  ;
- ; update Visit Tracking file if UC visit entered in error, UC Duplicate Visit,
- ;   or Patient Deceased (#350.3, iens 11, 51, and 53 only)
- S IBUCR1=$O(^IBE(350.3,"B","UC - ENTERED IN ERROR",""))
- S IBUCDV=$O(^IBE(350.3,"B","UC - DUPLICATE VISIT",""))
- S IBUCR2=$O(^IBE(350.3,"B","PATIENT DECEASED",""))
- I (IBCRES=IBUCR1)!(IBCRES=IBUCR2)!(IBCRES=IBUCDV) D UPDVST(1)
- ;
- ; Update visit tracking file (351.82) for visit to Visit Only if Cancelling a UC Copay with
- ;   Received Inpatient Care, or Billed at Higher Tier Rate,
- S IBUCR1=$O(^IBE(350.3,"B","RECD INPATIENT CARE",""))
- S IBUCR2=$O(^IBE(350.3,"B","BILLED AT HIGHER TIER RATE",""))
- I (IBCRES=IBUCR1)!(IBCRES=IBUCR2) D UPDVST(2)
+ ;If Copay being cancelled is CC URGENT CARE check to see if it can be cancelled and do the processing.
+ I $$GET1^DIQ(350.1,$P(IBND,U,3)_",",.01,"E")["URGENT CARE" D UCVSTDB G:IBY<0 ONEQ
  ;
  ; - handle CHAMPVA/TRICARE charges
  I IBXA=6!(IBXA=7) D CANC^IBECEAU4(IBN,IBCRES,1) G ONEQ
@@ -68,8 +72,10 @@ PASS ; Pass the action to Accounts Receivable.
 UPDVST(IBCAN) ; update the Visit Tracking file
  ;
  ;INPUT - IBCAN - Type of Update to perform
- ;             1 - Remove update
+ ;             1 - Remove with Entered in Error Message
  ;             2 - Visit Only Update
+ ;             3 - Free (if free not used) or Visit Only
+ ;             4 - Remove with Duplicate Error message
  ;
  N IBBLNO,IBSTAT,IBVSTIEN,IBREAS,IBRTN,IBERROR,IBSTAT
  S IBERROR=""
@@ -85,8 +91,10 @@ UPDVST(IBCAN) ; update the Visit Tracking file
  . W !,"Tracking Maintenance Utility.",!
  ;
  ;Set Status and Reason based on update type.
- S:IBCAN=1 IBREAS=$S(IBCRES=IBUCDV:4,1:3),IBSTAT=3
- S:IBCAN=2 IBREAS=5,IBSTAT=4
+ S:IBCAN=1 IBREAS=3,IBSTAT=3   ;Visits Removed
+ S:IBCAN=2 IBREAS=5,IBSTAT=4   ;Visit set to Visit Only
+ S:IBCAN=3 IBREAS=1,IBSTAT=1   ;Free visit
+ S:IBCAN=4 IBREAS=4,IBSTAT=3   ;Duplicate Visit
  ;
  S IBRTN=$$UPDATE^IBECEA38(IBVSTIEN,IBSTAT,"",IBREAS,1,IBERROR)
  ;
@@ -101,3 +109,44 @@ FNDVST(IBBLNO,IBVSTDT,IBN) ; Locate the Visit IEN
  . I (IBVSTDT=$P(IBVSTD,U,3)),(IBN=$P(IBVSTD,U)) S IBFOUND=1
  Q +IBVSTIEN
  ;
+UCVSTDB ; Update the UC Visit Tracking DB if the Cancellation Reason is usable on UC copays
+ ;
+ N IBUCBH,IBELIG,IBNOFRVS
+ I +$$GET1^DIQ(350.3,IBCRES_",",.04,"I")=0 D  Q
+ . S IBY=-1
+ . W !!,"The selected Cancellation Reason cannot be used when cancelling"
+ . W !,"an Urgent Care Copay."
+ ;
+ S IBUCBH=$$GET1^DIQ(350.3,IBCRES_",",.05,"I")
+ ;
+ ;For those cancellation reasons deemed to be data entry errors
+ I IBUCBH=1 D UPDVST(1) Q
+ ;
+ ;For those cancellation reasons deemed to be duplicate visits
+ I IBUCBH=4 D UPDVST(4) Q
+ ;
+ ;For those cancellation reasons that need to keep the visit as visit only....
+ I IBUCBH=2 D UPDVST(2) Q
+ ;
+ ;For other valid UC cancellation reasons, assuming that they are 3's (need free visit check)
+ S IBELIG=$$GETELGP^IBECEA36($P(IBND,U,2),$P(IBND,U,14))
+ I IBELIG=6 D  Q
+ . D UPDVST(2)
+ . W !!,"Patient is in Enrollment Group 6 on the day of this visit."
+ . W !,"Urgent Care Visit Tracking for this visit is set to Visit Only."
+ . W !,"If this needs to be a free visit, please update the visit using"
+ . W !,"the Urgent Care Visit Tracking Maintenance Option after RUR review."
+ ;
+ ;If still PG 7 or 8 update to Visit Only and quit.
+ I IBELIG>6 D UPDVST(2) Q
+ ;
+ ;Retrieve # visits
+ S IBNOFRVS=$P($$GETVST^IBECEA36($P(IBND,U,2),$P(IBND,U,14)),U,2)
+ ;
+ ;If free visit remain, convert visit to Free Visit
+ I IBNOFRVS<3 D UPDVST(3) Q
+ ;
+ ;Otherwise, visit only.
+ D UPDVST(2)
+ ;
+ Q

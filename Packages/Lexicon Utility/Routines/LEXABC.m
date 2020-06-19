@@ -1,5 +1,5 @@
-LEXABC ;ISL/KER - Look-up by Code ;05/23/2017
- ;;2.0;LEXICON UTILITY;**4,25,26,29,38,73,51,80,103**;Sep 23, 1996;Build 2
+LEXABC ;ISL/KER - Look-up by Code ;04/19/2020
+ ;;2.0;LEXICON UTILITY;**4,25,26,29,38,73,51,80,103,127**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^ICPT("BA")         ICR   5408
@@ -50,7 +50,7 @@ BLD ;   Build List
  S LEXSO2="" S:$E(LEXSO,$L(LEXSO))="+" LEXSO2=$E(LEXSO,$L(LEXSO)),LEXSO=$$TM(LEXSO,"+")
  I (LEXSO2="+"&($L(LEXSO)'>2))!(LEXSO2=""&($L(LEXSO)'>1)) D CLR Q
  I '(+($$IN(LEXSO))) D CLR Q
- Q:$E(LEXSO,1,3)="U00"  D FND D:$D(^TMP("LEXFND",$J)) BEG^LEXAL Q:$D(^TMP("LEXFND",$J))  D:'$D(^TMP("LEXFND",$J)) CLR
+ D FND D:$D(^TMP("LEXFND",$J)) BEG^LEXAL Q:$D(^TMP("LEXFND",$J))  D:'$D(^TMP("LEXFND",$J)) CLR
  Q
 FND ;   Find expressions
  K ^TMP("LEXL",$J),^TMP("LEXLE",$J)

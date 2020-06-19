@@ -1,8 +1,8 @@
-IVMCMC ;ALB/SEK,BRM,GN,TDM,JAM - CHECK INCOME TEST TRANSMISSION SEGMENTS ;8/15/08 10:20am
- ;;2.0;INCOME VERIFICATION MATCH;**17,34,49,51,90,115,174**;21-OCT-94;Build 15
+IVMCMC ;ALB/SEK,BRM,GN,TDM,JAM,HM - CHECK INCOME TEST TRANSMISSION SEGMENTS;1/6/20 8:25am
+ ;;2.0;INCOME VERIFICATION MATCH;**17,34,49,51,90,115,174,190**;21-OCT-94;Build 47
  ;
  ;IVM*2*90 - stop upload of LTC type 4 test when staus code not valid
- ;
+ ; 
 EN ; Check segment structure of Income Test (Z10) transmission.
  ;  Variable input:
  ;      IVMDA  --  pointer to an incoming message line in file #772
@@ -51,6 +51,7 @@ EN ; Check segment structure of Income Test (Z10) transmission.
  D GET("ZDPS") I IVMSEG1'="ZDP" D PROB("Missing spouse's ZDP segment") G ENQ
  D GET("ZICS") I IVMSEG1'="ZIC" D PROB("Missing spouse's ZIC segment") G ENQ
  D GET("ZIRS") I IVMSEG1'="ZIR" D PROB("Missing spouse's ZIR segment") G ENQ
+ I $E($G(^TMP($J,IVMRTN,IVMDA+1,0)),1,3)="NTE" D GET("NTE") ;NTE segment is optional IVM*2.0*190
  ;
  ; - check for dependent children's ZDP, ZIC, ZIR segments and ZMT segment
  S (IVMFLGC,ZDPIFLG)=0
@@ -135,6 +136,15 @@ GET(SEG,NUM) ; Get the next HL7 segment.
  .D BLDPID^IVMPREC6(.PIDSTR,.IVMPID)
  .M ^TMP($J,"IVMCM","PIDV")=IVMPID
  ;
+ ;IVM*2.0*190
+ I IVMSEG1="NTE" D  Q
+ .N NONTE
+ .S NONTE=0
+ .K ^TMP($J,"IVMCM",SEG)
+ .F I=1:1 D  Q:NONTE
+ ..S IVMSEG=$G(^TMP($J,IVMRTN,IVMDA,0))
+ ..I $P(IVMSEG,HLFS)'="NTE" S NONTE=1,IVMDA=IVMDA-1 Q
+ ..S ^TMP($J,"IVMCM",SEG,I)=$P(IVMSEG,HLFS,4),IVMDA=IVMDA+1
  S ^TMP($J,"IVMCM",SEG)=$P(IVMSEG,HLFS,2,99)
 GETQ Q
  ;

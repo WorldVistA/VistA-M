@@ -1,6 +1,7 @@
-XINDX5 ;SF-ISC/RWF - CROSS REFERENCE ALL ROUTINES ;03/26/2002  09:57
- ;;7.3;TOOLKIT;**20,27,61,121,133,140**;Apr 25, 1995;Build 40
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XINDX5 ;SF-ISC/RWF - CROSS REFERENCE ALL ROUTINES ;2018-02-22  12:56 PM
+ ;;7.3;TOOLKIT;**20,27,61,121,133,10001**;Apr 25, 1995;Build 4
+ ; Routine originally authored by Department of Veterans Affairs
+ ; VTAG+1 modified by John McCormack
  G END:$D(IND("QUIT")) I INP(8) W !,"Called Routines",! D ^XINDX52 ;Get called routines
  K ARG,CCN,CH,COM,ERR,GK,GRB,I,INDDA,INDDS,L,LAB,LAB0,LC,LIN,LOC,PC,PRV,R,RTN,S,STR,TXT,V,X,Y
  D ^XINDX53:INP(7) ;Load routine file

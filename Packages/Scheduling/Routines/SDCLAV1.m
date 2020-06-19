@@ -1,5 +1,5 @@
 SDCLAV1 ;ALB/LDB - OUTPUT PATTERNS (cont.) ; 9/1/00 10:57am
- ;;5.3;Scheduling;**140,167,168,76,383,463,490,517,533,509,674**;Aug 13, 1993;Build 18
+ ;;5.3;Scheduling;**140,167,168,76,383,463,490,517,533,509,674,726**;Aug 13, 1993;Build 36
  ;
  ;PATCH 383 STOPPED REPORT FROM CREATING AVAILIBILTY-TEH
  ;
@@ -136,12 +136,13 @@ CHKDT() ;
  N Y,RET,SDFA
  I '$D(SDFRST(D,+SC)) D
  .; Create array of days that have a current template.
- .N %H,X,SDFMTDAY,SDAYCNT,SDAYI,SDST,SDAYCHK,SDAYNAM,SDAYNUM
+ .N %H,X,SDFMTDAY,SDAYCNT,SDAYI,SDST,SDAYCHK,SDAYNAM,SDAYNUM,SDBEGO,SDCNT
  .S %H=$H
  .D YX^%DTC S SDFMTDAY=X
- .S SDAYCNT=0
+ .S SDAYCNT=0,SDBEGO="" ;Initialize SDBEGO - SD*5.3*726
  .F SDAYI=0:1:6 D
  ..Q:'$D(^SC(+SC,"T"_SDAYI))
+ ..S SDCNT=0 F  S SDCNT=$O(^SC(+SC,"T"_SDAYI,SDCNT)) Q:'SDCNT  S SDBEGO=SDBEGO_U_SDCNT ;Set SDBEGO to determine begin dates - SD*5.3*726
  ..I $O(^SC(+SC,"T"_SDAYI,""),-1)'<SDFMTDAY S SDFRST(D,+SC,SDAYI)="",SDAYCNT=SDAYCNT+1
  .; Calculate first available date for each day that has current template.
  .S SDST=0,SDAYCHK=0
@@ -151,7 +152,7 @@ CHKDT() ;
  ..Q:SDAYNUM=""
  ..Q:$G(SDFRST(D,+SC,SDAYNUM))'=""
  ..Q:'$D(^SC(+SC,"T"_SDAYNUM))
- ..Q:$D(^SC(+SC,"OST",SDST))  ;Quit if non-indefinite schedule, SD*5.3*674
+ ..I $D(^SC(+SC,"OST",SDST)),(SDBEGO'[SDST) Q  ;Quit if non-indefinite schedule and not a begin date, SD*5.3*674 and SD*5.3*726
  ..S SDFRST(D,+SC,SDAYNUM)=SDST,SDAYCHK=SDAYCHK+1
  ; Get first avail date from array for particular day of week
  S Y=SDDD#7,RET=0

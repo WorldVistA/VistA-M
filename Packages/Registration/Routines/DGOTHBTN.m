@@ -1,5 +1,5 @@
 DGOTHBTN ;SLC/SS,RM - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;03/27/2019
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;ICR#   TYPE       DESCRIPTION
@@ -14,44 +14,31 @@ DGOTHBTN ;SLC/SS,RM - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;03/27/2019
  ;           (actual return values of this API below not necessarily should be the same 
  ;           but need to provide all information to support OR M-code that will pass it to the OR RPC) ;
  ;
- ;If RET(0)<0 : error code less than zero ^ error message - it is an error, and do not display anything
+ ;If RET(0)<0 : error code less than zero^error message - it is an error, and do not display anything
  ;
  ; 
  ;If RET(0)=0 : then do not display anything
  ;
  ;
- ;for OTH-MST,COMBAT,PROV ========================
+ ;for OTH-EXT ========================
  ;
  ;RET(0) - number of lines 
- ;   Example for OTH-MST:  RET(0)=5
- ;   Example for OTH-CBMT:  RET(0)=5
- ;   Example for OTH-PROV:  RET(0)=5
+ ;   Example for OTH-EXT:  RET(0)=5
  ;
- ;RET(1)= Text for the 1st line on the button ^ Text to display when hover over the 1st line on the button
- ;   Example for OTH-MST:  RET(1)="OTH-MST^Other than Honorable, click for details"
- ;   Example for OTH-CBMT:  RET(1)="OTH-CMBT^Other than Honorable, click for details"
- ;   Example for OTH-PROV:  RET(1)="OTH-PROV^Other than Honorable, click for details"
+ ;RET(1)= Text for the 1st line on the button^Text to display when hover over the 1st line on the button
+ ;   Example for OTH-EXT  RET(1)="OTH-MST^Other than honorable, click for details"
  ;
  ;RET(2)= Text for the 2nd line on the button^Text to display when hover over the 2nd line on the button
- ;   Example for OTH-MST:  RET(2)=""
- ;   Example for OTH-CBMT:  RET(2)=""
- ;   Example for OTH-PROV:  RET(2)=""
+ ;   Example for OTH-EXT:  RET(2)=""
  ;
- ;RET(3)= Text for the 1st line of the button-click message ^ Text for the 1st line of the warning popup message
- ;   Example for OTH-MST:  RET(3)="Other than Honorable"
- ;   Example for OTH-CBMT:  RET(3)="Other than Honorable"
- ;   Example for OTH-PROV:  RET(3)="Other than Honorable"
+ ;RET(3)= Text for the 1st line of the button-click message^Text for the 1st line of the warning popup message
+ ;   Example for OTH-EXT:  RET(3)="Other than Honorable-Extended"
  ;
  ;RET(4)= Text for the 2nd line on the popup message^Text for the 2nd line of the warning popup message
- ;   Example for OTH-MST:  RET(4)="Eligible for Mental Health care only"
- ;   Example for OTH-CBMT:  RET(4)="Eligible for Mental Health care only"
- ;   Example for OTH-PROV:  RET(4)="Eligible for Mental Health care only"
+ ;   Example for OTH-EXT:  RET(4)="Eligible for Mental Health care only"
  ;
  ;RET(5)= Text for the 3rd line on the popup message^Text for the 3nd line of the warning popup message
- ;   Example for OTH-MST:  RET(5)="Not time limited"
- ;   Example for OTH-CBMT:  RET(5)="Not time limited"
- ;   Example for OTH-PROV:  RET(5)="Not time limited"
- ;
+ ;   Example for OTH-EXT:  RET(5)="Not time limited"
  ;
  ;for OTH-90 ========================
  ;
@@ -85,6 +72,13 @@ OTHBTN(DGDFN,DGDATE,RET) ;
  I DGEXP'?1"OTH".E S RET(0)=0 Q
  I $$ISOTH^DGOTHD(DGEXP)>1 D OTH90(DGDFN,.RET) Q
  S RET(0)=0
+ S RET(0)=6
+ S RET(1)="OTH-EXT^Other than Honorable, click for details"
+ S RET(2)=" "
+ S RET(3)="Other than Honorable - Extended"
+ S RET(4)="Eligible for Mental Health care only"
+ S RET(5)="Not time limited - pending VBA adjudication"
+ S RET(6)="Adjudication will determine eligibility for continuing care"
  Q
  ;
 OTH90(DGDFN,RET) ;calculate the CPRS EMERGENT OTH button
@@ -130,10 +124,11 @@ OTH90(DGDFN,RET) ;calculate the CPRS EMERGENT OTH button
  . . . S DGCNTR=DGCNTR+1
  . . . S RET(DGCNTR)=$$POPUP
  . . . D WARN
- S DGCNTR=DGCNTR+1
  S RET(DGCNTR)="   "
  S DGCNTR=DGCNTR+1
  S RET(DGCNTR)="Call Registration team for details."
+ ;DG*5.3*977 OTH-EXT
+ S DGCNTR=DGCNTR+1,RET(DGCNTR)="Clinician: Determine and document in 1st line of Progress Note if MH treatment related to service."
  S RET(0)=DGCNTR
  Q
  ;

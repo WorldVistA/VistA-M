@@ -1,6 +1,8 @@
-XINDX6 ;ISC/REL,GRK - GET SET OF ROUTINES TO INDEX ;07/22/08  13:54
- ;;7.3;TOOLKIT;**20,27,66,110,132,140**;Apr 25, 1995;Build 40
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XINDX6 ;ISC/REL,GRK - GET SET OF ROUTINES TO INDEX ;2018-02-22  2:44 PM
+ ;;7.3;TOOLKIT;**20,27,66,110,132,10001**;Apr 25, 1995;Build 4
+ ; Original routine authored by U.S. Department of Veterans Affairs
+ ; XINDX6+14,+20 modified by Christopher Edwards 2018
+ ; XINDX6+13,RLIST Modified by David Whitten (year unknown)
  ;INP(1=Print more than warnings, 2= Print routines, 3= Print warnings, 4= Print DDs & Functions & Options, 5= Type of List, 6= Summary only, 7= Save Parameters
  ;INP(8= Index called routines, 9= Include the Compiled template routines, 10 = Build or Package file DA
  ;INP(11= execute to check for version number on second line, 12= Patch number check.
@@ -10,7 +12,7 @@ XINDX6 ;ISC/REL,GRK - GET SET OF ROUTINES TO INDEX ;07/22/08  13:54
  S:'$D(DTIME)#2 DTIME=360
  D HOME^%ZIS,HDR^XINDX7
  D ASKRTN,PARAM
- I $D(^DIC(9.4))!$D(^DIC(9.6)) D ^XINDX10 G END:$D(DUOUT) S INDDA=DA I DA>0,INP(10)'=9.7 D ANS("Include the compiled template routines: N//","NY") G:X="^" END S:"Nn"'[X INP(9)=1
+ I $D(^DIC(9.4))!$D(^DIC(9.6)) D ^XINDX10 G END:$D(DUOUT) S INDDA=DA I DA>0,(INP(10)'=9.7)!(INP(10)="NAMESPACE") D ANS("Include the compiled template routines: N//","NY") G:X="^" END S:"Nn"'[X INP(9)=1
  G END:(NRO'>0)&(INDDA'>0)
  D ANS("Print more than compiled errors and warnings? YES//","YN","Print detailed info") G:X="^" END S INP(1)="Yy"[X G:'INP(1) L7
  D ANS("Print summary only? NO//","NY","Skip detail on each routine") G:X="^" END S INP(6)="Yy"[X G L7:INP(6)

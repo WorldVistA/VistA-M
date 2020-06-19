@@ -1,5 +1,5 @@
 PRCACPV ;WASH-ISC@ALTOONA,PA/LDB- CHAMPVA FMS DOCUMENTS ;5/1/95  3:06 PM
-V ;;4.5;Accounts Receivable;**1,48,90,119,204,192,235,295,315,338,357**;Mar 20, 1995;Build 6
+V ;;4.5;Accounts Receivable;**1,48,90,119,204,192,235,295,315,338,357,365**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Add CAT=47:"INELIGIBLE REIMB. ins. code for PRCA*4.5*315
@@ -10,7 +10,7 @@ EN(BILL,ERR) ;Send CHAMPVA SUBSISTENCE bill to FMS
  S BILL0=$G(^PRCA(430,+BILL,0)) I BILL0']"" S ERR="BILL INFO CORRUPTED FOR BILL '"_BILL D ERR Q
  ;Allow all TRICARE categories to transmit to FMS - PRCA*4.5*295
  ;Add ineligible reimb ins *315
- I "^27^28^30^31^32^47^80"'[("^"_$P(BILL0,"^",2)_"^")  Q
+ I "^27^28^30^31^32^47^80^"'[("^"_$P(BILL0,"^",2)_"^")  Q
  S SITE=$P($P(BILL0,"^"),"-") I SITE']"" S ERR="BILL NUMBER CORRUPTED" D ERR Q
  S BNUM=$P(BILL0,"^")
  S AMT=$J($P(BILL0,"^",3),0,2)

@@ -1,5 +1,5 @@
 IBECEA37 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - CALLER/REQUESTOR ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**663,671,669**;21-MAR-94;Build 20
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#2729 MESSAGE ACTION API
@@ -20,7 +20,7 @@ AWAY Q  ;thought I was being figurative??? Guess again!
  ; to update their file.  If successful at all of the veteran's treating facilities, the UPDATED field will be removed.
  ; If not successful, the record will remain flagged to indicate that it needs to be tried again at a later time. 
  ;
- ; There are multiple calling enty points
+ ; There are multiple calling entry points
  ; UPDATED - pretty much the process described above.
  ; DFN - synch the entries for one veteran across her/his treating facilities.  This one is used when a veteran gets treated at a new facility and the new facility need to get
  ;       caught up
@@ -38,23 +38,6 @@ AWAY Q  ;thought I was being figurative??? Guess again!
 UPDATED ; Get all in File that were UPDATED and not yet pushed out. They may have gotten to some sites but not all sites
  ; 
  D MULTI("AC",1)   ; "AC" index for updated (1's) records
- Q
- ;
-PULLTHEM(IBOSITEEX) ; This gets the records that were requested to be sent to another site and pushes them out to that site - uses "APULL" xref 
- ; IBOSITEEX - Requesting site (external site number)
- ;  
-PULLTASK ; This is called from Taskman which has IBOSITEEX already set.
- ;
- ;D APPERROR^%ZTER("PULLTASK^IBECEA37")
- N IBIEN4
- S IBIEN4=$$FIND1^DIC(4,,"X",IBOSITEEX,"D")   ; get the internal site number (File 4 IEN) - should be the same across sites but then again shouldn't have to.
- D MULTI("APULL",IBIEN4)
- Q
- ;
-DFN(IBDFN,IBICN) ; initiates a pull.  It takes a DFN (or resolve an ICN)
- I $G(IBDFN)="",$G(IBICN)]"" N IBDFN D  Q:$G(IBDFN)=""
- . S IBDFN=+$$DFN^IBARXMU($G(IBICN))
- D MULTI("B",IBDFN)   ; "B" index for a patient
  Q
  ;
  ; This was set up to pass in 1 regular index and an internal lookup value which it does an exact match on.
@@ -81,9 +64,8 @@ MULTI(IBINDEX,IBLOOKUP) ;
  ;^TMP("DILIST",1720,0,"MAP")="IEN^.01I^.01^C2^.03I^.04I^.05^.06I^.07I^1.01I"
  ;^TMP("DILIST",1720,1,0)="1^1234567^PATIENT,TEST A^999^3190801^2^999-K909Z09^^^1"
  ; have at them
- N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEIN,IBOSITEEX,IBPULL,IBPATPR,IBELGRP
+ N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEIN,IBOSITEEX,IBPATPR,IBELGRP
  ;
- S IBPULL=IBINDEX="APULL"   ; Set IBPULL flag since behaviour will be slightly different and we may need to check flag often
  S IBPATPR=IBINDEX="B"  ; Set IBPAT flag since behaviour will be even differenter than the others and we may need to check the flag often
  ;
  D SITE^IBAUTL   ; returns IBSITE (external#) and IBFAC (internal#) based on IB SITE PARAMETERS for this site
@@ -96,11 +78,11 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . S IBDFN=$P(IBDATA,U,2)
  . ;
  . S IBOSITEIN=$P(IBDATA,U,4)  ; IEN file 4 (orginating site internal)
- . I IBOSITEIN'=IBFAC D:'IBPULL REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
+ . I IBOSITEIN'=IBFAC D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
  . S IBOSITEEX=$$GET1^DIQ(4,IBOSITEIN,99)   ; turn external site # into internal one
  . ;
  . S IBT=$$TFL(IBDFN,IBOSITEEX,.IBTFL)
- . I 'IBT D:'IBPULL REMOVE(IBIEN) Q   ; not seen at other treating facilites so no where to send - done with entry
+ . I 'IBT D REMOVE(IBIEN) Q   ; not seen at other treating facilites so no where to send - done with entry
  . ; 
  . S IBICN=$$ICN^IBARXMU(IBDFN)
  . I 'IBICN D LOGRES(IBDFN,.IBERR,"Failed local ICN lookup.") Q  ; no ICN - leave in the index and try again tomorrow since people eventually get ICNs according the MPI documentation
@@ -118,7 +100,7 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . ; DBIA#3144 DIRECT RPC CALLS
  . ; DBIA#3149 XWBDRPC
  . S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
- .. I IBPULL,+IBTFL(IBX)'=IBLOOKUP K IBTFL(IBX) Q  ; if it's a pull  from a specific site, only send to site doing the pulling - duh
+ .. ;I IBPULL,+IBTFL(IBX)'=IBLOOKUP K IBTFL(IBX) Q  ; if it's a pull  from a specific site, only send to site doing the pulling - duh
  .. ;W:'$D(ZTQUEUED) !,"Now sending query to ",$P(IBTFL(IBX),"^",2)," ..."
  .. N IBH
  .. D:'IBPATPR EN1^XWB2HL7(.IBH,+IBTFL(IBX),"IBECEA COPAY SYNCH","",IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ; push one record
@@ -135,7 +117,7 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
  .. I $D(IBTFL(IBX,"ERR")) S IBREMOVE=0 Q
  .. ;
- .. I IBPULL,+IBTFL(IBX)'=IBLOOKUP Q  ; if it's a pull, only read from site doing the pulling - duh
+ .. ;I IBPULL,+IBTFL(IBX)'=IBLOOKUP Q  ; if it's a pull, only read from site doing the pulling - duh
  .. ;
  .. ; try up to 10 times for 2 seconds each (at each site)
  .. N IBR
@@ -158,8 +140,7 @@ MULTI(IBINDEX,IBLOOKUP) ;
  .... S IBREMOVE=0   ; if any failed then leave it in to retry
  ... D CLEAR^XWBDRPC(.IBZ,$P(IBTFL(IBX),"^",3))
  .. E  D LOGRES(IBDFN,.IBERR,"Unable to get remote information from this site.") S IBREMOVE=0  ; IBR(0) did not contain 'Done'
- . ; IBERR is no longer useful - need another flag
- . I IBREMOVE D:'IBPULL REMOVE(IBIEN) D:IBPULL PREMOVE(IBIEN,IBLOOKUP) Q
+ . I IBREMOVE D REMOVE(IBIEN) Q
  . Q
  ;
  ; It was nice that we flagged the errors and stored in a TMP global but we should probably alert somebody
@@ -185,7 +166,6 @@ TFL(DFN,IBS,IBT) ; returns treating facility list (pass IBT by reference)
  ; IBT - By reference for results
  ;
  N IBC,IBZ,IBFT,Y
- ;
  D TFL^VAFCTFU1(.IBZ,DFN)
  Q:-$G(IBZ(1))=1 0
  S (IBZ,IBC)=0
@@ -225,11 +205,8 @@ ALERTSO ; alert someone
  ..... S ^TMP("IBECEA_COPAY",$J,"INDX",IBDFN,IBFAC,IBDATA)=1
  . I $D(MSG)>1 S LN=LN+1,MSG(LN)=" "
  Q:'LN
- ;
  S XMTO("G.IBUC URGENT CARE EXCEPTIONS")=""
- ;
  D SENDMSG^XMXAPI(DUZ,SUBJ,"MSG",.XMTO)
- ;
  D CLEAN^DILF
  Q
  ;
@@ -238,100 +215,4 @@ REMOVE(IBIEN) ; remove from UPDATED index - only called if sent to ALL other tre
  S IENS=IBIEN_","
  S FDA(351.82,IENS,1.01)=0
  D FILE^DIE("","FDA","RETURN")
- ;
- ;I $D(RETURN) D APPERROR^%ZTER("REMOVE^IBECEA37")   ; for debugging purposes only - should not go live with this
  Q
- ;
-PREMOVE(IBIEN,IBRSITE) ; Remove the pull request entry from the subfile
- ; IBIEN - IEN to file 351.82 being impacted
- ; IBRSITE - site requesting the pull
- ;
- ; find the correct subfile enntry ot remove
- N DA,DIK
- S DA=$$FIND1^DIC(351.821,","_IBIEN_",","X",IBRSITE)
- ;
- ; remove it
- S DA(1)=IBIEN
- S DIK="^IBUC(351.82,"_DA(1)_",2,"
- D ^DIK
- Q
- ;
-PATIENTPULL(IBDFN,IBERR) ; This does a lot of the same stuff the push does only for a specific veteran.
- ; It is not really a pull, but a request for the other treating facilities to push them back to the site that runs this.
- ; IBDFN - which patient
- ; IBERR - return array of results
- ;
- K ^TMP("IBECEA_COPAY",$J)  ; start fresh
- ;
- N IBSITE,IBFAC,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBHERE,IBC,IBZ
- ;N IBERR
- S IBERR=0
- ;
- D SITE^IBAUTL   ; returns IBSITE (external#) and IBFAC (internal#) based on IB SITE PARAMETERS for this site
- S IBICN=$$ICN^IBARXMU(IBDFN)
- I 'IBICN S IBERR=IBERR+1,IBERR(IBERR)="Failed local ICN lookup." Q  ; no ICN - leave in the index and try again tomorrow since people eventually get ICNs according the MPI documentation
- S IBT=$$TFL(IBDFN,IBSITE,.IBTFL)
- I 'IBT S IBERR=IBERR+1,IBERR(IBERR)="No record of Veteran being seen at other treating facilities (file #391.91)" Q   ; not seen at other treating facilites so no where to send - done with entry
- ;
- ; send off calls to other treating facilities that this veteran has been seen at
- ; the calls fire off the RPC (stored procedure) at each site
- S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
- . W:'$D(ZTQUEUED) !,"Now sending query to ",$P(IBTFL(IBX),"^",2)," ..."
- . N IBH
- . D EN1^XWB2HL7(.IBH,+IBTFL(IBX),"IBECEA COPAY SYNCH","",IBICN,IBSITE)  ; push a request for all records for a patient (used when playing catch up - possibly adding a treating facility)
- . ; check for handle
- . I $G(IBH(0))="" D  Q
- .. S IBTFL(IBX,"ERR")="No handle returned from RPC"
- .. S IBERR=IBERR+1,IBERR(IBERR)="No handle returned from RPC by site "_$P(IBTFL(IBX),"^",2)
- . S $P(IBTFL(IBX),"^",3)=IBH(0) ; save handle for later.
- ;
- ; now lets look for the remote data
- S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  I '$D(IBTFL(IBX,"ERR")) D
- . ;
- . ; try up to 10 times for 2 seconds each (at each site)
- . N IBR
- . F IBC=1:1:10 D RPCCHK^XWB2HL7(.IBR,$P(IBTFL(IBX),U,3)) Q:$G(IBR(0))["Done"  H 2
- . ;
- . ; If not done at one (or more) facility set a flag so it does not get removed from the index 
- . I $G(IBR(0))'["Done" S IBERR=IBERR+1,IBERR(IBERR)="No reply from site "_+IBTFL(IBX)_"."
- . ; if done get data.
- . I $G(IBR(0))["Done" D
- .. K IBR,IBHERE
- .. D RTNDATA^XWBDRPC(.IBHERE,$P(IBTFL(IBX),"^",3))
- .. I $D(IBHERE)>10 D   ; not sure if was success or failure so save for now
- ... S IBERR=IBERR+1
- ... M IBERR(IBERR,+IBTFL(IBX))=IBHERE
- .. E  D
- ... S IBERR=IBERR+1
- ... M IBERR(+IBTFL(IBX))=^TMP($J,"XWB")
- ... K ^TMP($J,"XWB")
- .. D CLEAR^XWBDRPC(.IBZ,$P(IBTFL(IBX),"^",3))
- ; 
- Q
- ;
-PULL ; This will be called from a menu option.
- ; ask the patient and if selected, initiate the pull
- ;
- N IBDFN,IBERR
- Q:'$$GETPAT(.IBDFN)
- ;
- D PATIENTPULL(IBDFN,.IBERR)
- ;
- I $D(IBERR)<10 W !,"Successful Pull Request",! G PULL
- ;
- ; display results
- N ARR,IBDATA,IBCNT,IBMAX
- S ARR="IBERR",IBCNT=0,IBMAX=10
- F  S ARR=$Q(@ARR) Q:ARR=""  S IBDATA=$G(@ARR) S:IBDATA[U IBDATA=$P(IBDATA,U,2,999) I IBDATA]"" W !,IBDATA S IBCNT=IBCNT+1 Q:IBCNT=IBMAX
- I ARR]""  W !,"...",!
- G PULL
- ;
-GETPAT(IBDFN) ; Select a patient.
- ; Return 0 - no patient selected
- ; Return 1 - patient selected
- ; IBDFN will be the patient's IEN in file 2
- ;
- N DIC,X,Y
- N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
- S DIC="^DPT(",DIC(0)="AEMQ" D ^DIC S IBDFN=+Y
- Q Y>0

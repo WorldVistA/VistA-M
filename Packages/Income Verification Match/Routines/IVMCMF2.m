@@ -1,5 +1,5 @@
-IVMCMF2 ;ALB/SEK,CKN,TDM - CHECK INCOME DEPENDENT DATA ; 4/14/06 1:34pm
- ;;2.0;INCOME VERIFICATION MATCH;**71,107,105,115**;21-OCT-94;Build 28
+IVMCMF2 ;ALB/SEK,CKN,TDM,BDB - CHECK INCOME DEPENDENT DATA ;4/14/06 1:34pm
+ ;;2.0;INCOME VERIFICATION MATCH;**71,107,105,115,190**;21-OCT-94;Build 47
  ;
  ; This routine is a called from IVMCMF.
  ;
@@ -27,7 +27,7 @@ ZMT(STRING) ; check ZMT segment
  .;starting in year 2000, all hardships should have an effective date
  .I $E($P(STRING,HLFS,2),1,4)'<2000,(HARDSHIP("EFFDATE")="") S CNT=CNT+1,IVMERR(CNT)="Missing Hardship Effective Date"
  .I $L(HARDSHIP("EFFDATE")) S X=$$FMDATE^HLFNC(HARDSHIP("EFFDATE")),%DT=X D ^%DT I Y<0 S CNT=CNT+1,IVMERR(CNT)="Invalid Hardship Effective Date"
- .I HARDSHIP("EFFDATE"),(HARDSHIP("EFFDATE")<($P(STRING,HLFS,2))-1) S CNT=CNT+1,IVMERR(CNT)="Hardship Effective Date earlier than Means Test Date"
+ .I HARDSHIP("EFFDATE"),(HARDSHIP("EFFDATE")<$P(STRING,HLFS,2)) S CNT=CNT+1,IVMERR(CNT)="Hardship Effective Date earlier than Means Test Date" ;IVM*2.0*190 BDB
  ;
  ; Source of Test
  S X=$P(STRING,HLFS,18)

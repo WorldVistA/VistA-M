@@ -1,0 +1,57 @@
+SD53726P ;MNT/BJR - REMAP CLINICS 726 POST INSTALL ;4/2/19 10:04am
+ ;;5.3;Scheduling;**726**;Aug 13, 1993;Build 36
+ ;
+ Q
+ ;Calls to XLFDT supported by ICR #10103
+ ;Call to %ZTLOAD supported by ICR #10063
+ ;Call to %ZISC supported by ICR #10089
+ ;Call to BMES^XPDUTL supported by ICR #10141
+ ;
+EN ;Entry point for post install to remap clinics
+ D RMVMES,ADDT,CANC
+ N BEGDATE,ENDDATE,VAUTD,VAUTC,SDBD,SDED,SDIEN,SDQMES
+ S BEGDATE=DT,ENDDATE=$$FMADD^XLFDT(DT,365),SDBD=DT,SDED=ENDDATE,VAUTD=1
+ S SDVAR1="SDBD^SDED^VAUTD#^VAUTC#^DUZ^BEGDATE^ENDDATE",SDPGM="START^SDD",SDFZIS=1
+ S SDIEN=0 F  S SDIEN=$O(^SC(SDIEN)) Q:'SDIEN  D
+ .I $G(^SC(SDIEN,"I")) I +^SC(SDIEN,"I")>=DT!(+^SC(SDIEN,"I")<=DT&(($P(^SC(SDIEN,"I"),U,2)>=DT)!($P(^SC(SDIEN,"I"),U,2)=""))) Q
+ .S ZTIO=$G(XPDQUES("POS1")),ZTDTH=$$NOW^XLFDT
+ .S ZTDESC=SDPGM,ZTRTN=SDPGM,SDZTSAVE=SDVAR1
+ .S VAUTC=0,VAUTC($P(^SC(SDIEN,0),U))=SDIEN D 
+ ..I $D(SDPGM),'$D(ZTSAVE("SDPGM")) S ZTSAVE("SDPGM")="" D SAVE
+ D ^%ZTLOAD
+ S SDQMES=$S($D(ZTSK):"Request Queued!",1:"Request Failed!") D BMES^XPDUTL(SDQMES) D CLOSE:$D(ZTSK)
+ D END1
+ Q
+RMVMES ;Remove MESSAGE (#1400) fields w/o corresponding SDCAN to ensure clinic grid builds properly
+ N SDIEN,SDDT,SDMES
+ S SDIEN=0 F  S SDIEN=$O(^SC(SDIEN)) Q:'SDIEN  S SDDT=0 F  S SDDT=$O(^SC(SDIEN,"S",SDDT)) Q:'SDDT  D 
+ .I $D(^SC(SDIEN,"S",SDDT,"MES")),'$D(^SC(SDIEN,"SDCAN",SDDT,0)),SDDT>=DT K ^SC(SDIEN,"S",SDDT,"MES") D
+ ..S SDMES=$P(^SC(SDIEN,0),U)_"  message field removed for  "_$$FMTE^XLFDT(SDDT) D BMES^XPDUTL(SDMES)
+ Q
+ADDT ;Add any missing "T" zero nodes to ensure clinic grid builds properly
+ N SDIEN,SDDT,SDMES
+ S SDIEN=0 F  S SDIEN=$O(^SC(SDIEN)) Q:'SDIEN  S SDDT=0 F  S SDDT=$O(^SC(SDIEN,"T",SDDT)) Q:'SDDT  D
+ .I $D(^SC(SDIEN,"T",SDDT)),'$D(^SC(SDIEN,"T",SDDT,0)) S ^SC(SDIEN,"T",SDDT,0)=SDDT
+ Q
+CANC ; Cancel appt in 44 that are canceled in 2
+ N SDIEN,SDDT,SDCLIN,SDAPPT,SDMES,DIE,DA,DR
+ S SDIEN=0 F  S SDIEN=$O(^DPT(SDIEN)) Q:'SDIEN  S SDDT=DT F  S SDDT=$O(^DPT(SDIEN,"S",SDDT)) Q:'SDDT  D
+ .I $P(^DPT(SDIEN,"S",SDDT,0),U,2)["C" S SDCLIN=$P(^DPT(SDIEN,"S",SDDT,0),U) I $D(^SC(SDCLIN,"S",SDDT,0)) D
+ ..S SDAPPT=0 F  S SDAPPT=$O(^SC(SDCLIN,"S",SDDT,1,SDAPPT)) Q:'SDAPPT  D
+ ...I +^SC(SDCLIN,"S",SDDT,1,SDAPPT,0)=SDIEN,$P(^SC(SDCLIN,"S",SDDT,1,SDAPPT,0),U,9)'="C" D
+ ....S DIE="^SC("_SDCLIN_",""S"","_SDDT_",1,",DA(2)=SDCLIN,DA(1)=SDDT,DA=SDAPPT,DR="310///C;3///Canceled by patch SD*5.3*726" D ^DIE
+ ....S SDMES="Appointment for patient "_$P(^DPT(SDIEN,0),U)_" at "_$P(^SC(SDCLIN,0),U)_" at "_$$FMTE^XLFDT(SDDT)_" has been canceled in the Hospital Location file."
+ ....D BMES^XPDUTL(SDMES)
+ Q
+SAVE ;Set up save variable for routine
+ D:SDZTSAVE["#" ARRAY F SDI=1:1 S SDVAR=$P(SDZTSAVE,"^",SDI) Q:SDVAR']""  I '$D(ZTSAVE(SDVAR)) S ZTSAVE(SDVAR)="" S:$E(SDVAR,$L(SDVAR))="(" ZTSAVE($E(SDVAR,1,($L(SDVAR)-1)))=""
+ Q
+ARRAY ;Set up routine array
+ F SDJ=1:1:$L(SDZTSAVE) I $E(SDZTSAVE,SDJ)="#" S SDZTSAVE=$E(SDZTSAVE,1,(SDJ-1))_"("_$E(SDZTSAVE,SDJ+1,$L(SDZTSAVE))
+ Q
+CLOSE Q:$D(ZTQUEUED)  N POP D ^%ZISC
+END ;Clean up variables
+ K ZTSK,ZTDESCZTREQ,ZTSAVE,ZTUCI,ZTQUEUED Q
+END1 ;Clean up Variables
+ K SDVAR,SDPGM,SDZTSAVE,SDI,SDJ,SDFZIS,ZTIO,ZTDTH,ZTRTN,ZTDESC,%ZIS,XPDQUES,IO("Q"),IO("C"),SDVAR1
+ Q

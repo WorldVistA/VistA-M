@@ -1,5 +1,5 @@
 IBECEA38 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - RPC RETURN ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**663,671,669**;21-MAR-94;Build 20
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  G AWAY
@@ -25,7 +25,9 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  ;        results are returned in the results array as described in INPUT section
  ;        "-1^Error message"
  ;        "0^No action taken (nor needed) message"
- ;        "1^Success message"    
+ ;        "1^Success message"
+ ; 
+ ; ADDITIONAL OUTPUT on PULL - all records for a patient in file 351.82 that were created at this facility
  ;
  ; 1) check if the entry is already there based on the unique ID (external originating site and their IEN from file 351.82) passed in.
  ; 2) if it's already there, see if anything changed (might be an update).
@@ -83,9 +85,7 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  . S IBUPDATED=$$UPDATE(IBIEN351P82,IBSTAT,IBBILL,IBCOMM,1,.IBRETURN)
  . I 'IBUPDATED D  Q
  .. S @IBR@(1)="-1^Unable to UPDATE record at site# "_IBSITE_"."
- ..; S:IBRETURN["MAX free" @IBR@(1)=@IBR@(1)_" "_IBRETURN
  .. S:IBRETURN["MAX free" @IBR@(2)=-1_U_IBRETURN
- ..; D APPERROR^%ZTER("RETURN(UPDATE)^IBECEA37")  ; only use for debugging purposes
  . S @IBR@(1)="1^successfully updated" Q
  . Q
  ;
@@ -98,9 +98,7 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  . S IBADDED=$$ADD(IBDFN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,0,IBUNIQ,.IBRETURN)
  . I 'IBADDED D  Q
  .. S @IBR@(1)="-1^Unable to ADD record at site# "_IBSITE_"."
- ..; S:IBRETURN["MAX free" @IBR@(1)=@IBR@(1)_" "_IBRETURN
- .. S:IBRETURN["MAX free" @IBR@(2)=-1_U_@IBRETURN
- ..; D APPERROR^%ZTER("RETURN(ADD)^IBECEA37")
+ .. S:IBRETURN["MAX free" @IBR@(2)=-1_U_IBRETURN
  . S @IBR@(1)="1^successfully added" Q
  . Q
  Q
@@ -193,8 +191,7 @@ UPDATE(IBIEN,IBSTAT,IBBILL,IBCOMM,IBUPDATE,RETURN) ; update an entry to the file
  ; if RETURN is defined then BAD else GOOD
  Q $S($D(RETURN):0,1:1)
  ;
-PULL(RETURN,IBFAC,IBSITE,IBICN,IBOSITEEX) ; more "PULL" than PULL.  It's a request to be PUSHed back.
- ; This is actually going to a site and telling them which records to push back since the push was already coded and we will be leveraging that.
+PULL(RETURN,IBFAC,IBSITE,IBICN,IBOSITEEX) ; Pull all records that originated at this site for this patient
  ; RETURN - array
  ; IBFAC - this site internal
  ; IBSITE - this site external
@@ -203,7 +200,7 @@ PULL(RETURN,IBFAC,IBSITE,IBICN,IBOSITEEX) ; more "PULL" than PULL.  It's a reque
  ;
  N IBIEN4,IBDFN,IBSCREEN,IBDATA,IBLOOP,IBADD,IBRESULTS
  S IBIEN4=$$FIND1^DIC(4,,"X",IBOSITEEX,"D")   ; get the internal site number (File 4 IEN) - should be the same across sites but then again shouldn't have to.
- I 'IBIEN4 S @RETURN@(1)="-1^Site# "_IBOSITEEX_" not found in INSTITUTION (#4) file lookup" Q
+ I 'IBIEN4 S @RETURN@(1)="-1^Site# "_IBOSITEEX_" not found in INSTITUTION (#4) file lookup at site# "_IBSITE Q
  ;
  ; make sure the patient is identifiable from this ICN
  ; if not, not much I can do
@@ -212,40 +209,14 @@ PULL(RETURN,IBFAC,IBSITE,IBICN,IBOSITEEX) ; more "PULL" than PULL.  It's a reque
  ;
  ; Get all/only the records for the patient which originated at this site.
  S IBSCREEN="I $P(^(0),U,2)=IBFAC"
- D FIND^DIC(351.82,"",".01;.02:99;.03I;.04I;.05;.06I;.07I;1.01I","QEP",IBDFN,"","B",IBSCREEN)
+ D FIND^DIC(351.82,"",".01;.02:99;.03I;.04I;.05;.06I;.07I;1.01I;.01:991.1;.08","QEP",IBDFN,"","B",IBSCREEN)
  ;
  I '+$G(^TMP("DILIST",$J,0)) D  Q
  . N IBLN,IBL4
  . S IBLN=$P($$GET1^DIQ(2,IBDFN,.01),",",1)   ; last name
  . S IBL4=$$GET1^DIQ(2,IBDFN,.09),IBL4=$E(IBL4,$L(IBL4)-3,9999)  ; last 4
- . S @RETURN@(0)="0^No records to pull for patient "_IBLN_" ("_IBL4_") at site# "_IBSITE
+ . S @RETURN@(1)="0^No records to pull for patient "_IBLN_" ("_IBL4_") at site# "_IBSITE
  ;
- ; mark them somehow
- F IBLOOP=1:1:+$G(^TMP("DILIST",$J,0)) D
- . S IBDATA=$G(^TMP("DILIST",$J,IBLOOP,0))
- . Q:'+IBDATA   ; not sure how this would happen
- . S IBADD=$$MARKPULL(+IBDATA,IBIEN4,.IBRESULTS)
- . I 'IBADD S @RETURN@(1)="-1^Problem pulling from site# "_IBSITE
- I $G(IBADD) S @RETURN@(1)="1^Successfully requested records from site# "_IBSITE
- ;
- ; taskman a process to walk that new "APULL" index and send them where they ought to go.
- N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSK,ZTSAVE
- S ZTRTN="PULLTASK^IBECEA37",ZTDESC="Query Remote Facilities for CC Urgent Care Visits"
- S ZTDTH=$$FMADD^XLFDT($$NOW^XLFDT)
- S (ZTIO,ZTSAVE("IBOSITEEX"))=""
- D ^%ZTLOAD
+ ; sent all the records for this patient created by this facility
+ M @RETURN=^TMP("DILIST",$J)
  Q
- ;
-MARKPULL(IBIEN,IBOSITEIN,IBRESULTS) ; add this facility to subfile as a pull request for this record.  Puts in the "APULL" index as well.
- ; IBIEN - internal enrtry number to file 351.82
- ; IBOSITEIN - originating site internal entry (pointer to file #4)
- ;
- N FDA,IENS,IBNOW,RETIEN,%
- S IENS="?+1,"_IBIEN_","
- S FDA(351.821,IENS,.01)=IBOSITEIN
- D NOW^%DTC S IBNOW=%
- S FDA(351.821,IENS,.02)=IBNOW
- D UPDATE^DIE("","FDA","RETIEN","IBRESULTS")
- ; if IBRESULTS is defined then BAD else GOOD
- ;I $D(IBRESULTS) D APPERROR^%ZTER("MARKPULL^IBECEA38")
- Q $S($D(IBRESULTS):0,1:1)

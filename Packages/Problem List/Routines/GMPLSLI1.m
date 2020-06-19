@@ -1,5 +1,5 @@
-GMPLSLI1 ;ISP/TC - Problem Selection List Import Utility ;07/31/17  13:50
- ;;2.0;Problem List;**49**;Aug 25, 1994;Build 43
+GMPLSLI1 ;ISP/TC - Problem Selection List Import Utility ;04/13/2020
+ ;;2.0;Problem List;**49,55**;Aug 25, 1994;Build 1
  ;
  ; External References:
  ;   ICR  2053   FILE/UPDATE^DIE
@@ -87,8 +87,6 @@ LOADWEB(GMPLNOUT) ;Load the CSV file from a web site into ^TMP
  I (Y="")!(Y=U) Q 0
  S GMPLURL=Y
  S Y=$$LOW^XLFSTR(Y)
- I $E(Y,1,5)="https" D  Q 0
- . D EN^DDIOL("The https protocol is not supported.")
  ;Load the file contents into ^TMP.
  K ^TMP($J,GMPLNOUT),^TMP($J,"GMPLWCSV")
  ;DBIA #5553

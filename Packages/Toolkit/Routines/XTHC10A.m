@@ -1,5 +1,6 @@
-XTHC10A ;HCIOFO/SG - HTTP 1.0 CLIENT (TOOLS) ;12/07/09  16:05
- ;;7.3;TOOLKIT;**123**;Apr 25, 1995;Build 4
+XTHC10A ;HCIOFO/SG - HTTP 1.0 CLIENT (TOOLS) ;2018-07-25  4:15 PM
+ ;;7.3;TOOLKIT;**123,144**;Apr 25, 1995;Build 1
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
  ;
@@ -134,10 +135,12 @@ RECEIVE(TIMEOUT,XT8DATA,XT8HDR) ;
  S XT8DST="XT8H",(EXIT,RTO)=0
  ;F  R BUF#XT8MBL:TIMEOUT  S RTO='$T  D  Q:EXIT!RTO
  F  R BUF#XT8MBL:TIMEOUT  S RTO='$T  D  Q:EXIT!RTO
+ . N ISCONT S ISCONT=XT8BUF]"" ;*p144-(1/0)reads a continuation of a previous read?
  . S I1=1
  . F  S I2=$F(BUF,$C(10),I1)  Q:'I2  D  Q:EXIT
  . . S TMP=$E(BUF,I1,I2-2)  D APPEND(TMP,1)  S I1=I2
- . . S:$TR(TMP,BLCHS)="" EXIT=1
+ . . I $TR(TMP,BLCHS)="",'ISCONT S EXIT=1  ;*p144-terminate header readings only if this header isn't a continuation
+ . . S ISCONT=0                 ;*p144-after the first time through, it's not a continuation
  . D:'EXIT APPEND($E(BUF,I1,XT8MBL))
  ;--- A header must end with an empty line.
  ;--- Otherwise, there was a timeout.

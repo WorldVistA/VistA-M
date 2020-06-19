@@ -1,5 +1,5 @@
-RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;07 Aug 2019 12:26 PM
- ;;5.0;Radiology/Nuclear Medicine;**113,124,162**;Mar 16, 1998;Build 2
+RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ; Mar 24, 2020@11:52:36
+ ;;5.0;Radiology/Nuclear Medicine;**113,124,162,166**;Mar 16, 1998;Build 2
  ;
  ;The variables RADFN, RADTI and RACNI must be defined. The variable
  ;RADELFLG is set when the exam is being deleted.  This routine is
@@ -64,7 +64,11 @@ ASKCAN ;logic to determine whether studies tied to the order meet the criteria
  . W !?5,"procedures are canceled or deleted.",!,$C(7)
  . Q
  ;
- W ! S RAOSTS=$$YNCAN() Q:RAOSTS=-1
+ ;RA5P166
+ ;RAUSUNXF set in RAORDC, killed in RAEDCN1
+ W ! S (RAOSTS,RAUSUNXF)=$$YNCAN() Q:RAOSTS=-1
+ ;RA5P166
+ ;W ! S RAOSTS=$$YNCAN() Q:RAOSTS=-1 ORIGINAL LINE
  I RAOSTS=1,$D(RADELFLG) D
  . ; Remove EXAM SET flag if parent order deleted
  . N DA,DIE,DR
@@ -116,7 +120,7 @@ REASON(RAOSTS) ;cancel/hold reason using DIR
  N %,DIR,DIRUT,DTOUT,DUOUT,RAREAY,X,Y
  S DIR(0)="POA^75.2:EZ"
  S DIR("A")="Select the '"_$S(RAOSTS=1:"cancel",1:"hold")_"' reason for this order: "
- S DIR("S")="I $P(^(0),U,2)=RAOSTS" W ! D ^DIR
+ S DIR("S")="I $P(^(0),U,2)=RAOSTS!($P(^(0),U,2)=9)" W ! D ^DIR
  I $D(DIRUT)#2 D  Q RAREAY
  .S RAREAY="-1^"
  .Q

@@ -25,7 +25,7 @@ ZWR
 ^%ZIS(1,7,"TYPE")="VTRM"
 ^%ZIS(1,8,0)="ZZNULL^NLA0:^0^0^^^^^^^1"
 ^%ZIS(1,8,1)="NT SYSTEM"
-^%ZIS(1,8,5)=90763
+^%ZIS(1,8,5)=90859
 ^%ZIS(1,8,"SUBTYPE")=12
 ^%ZIS(1,8,"TYPE")="TRM"
 ^%ZIS(1,9,0)="LMINIOUT0^64^^^^^^^"
@@ -33,7 +33,7 @@ ZWR
 ^%ZIS(1,9,"TYPE")="TRM"
 ^%ZIS(1,10,0)="HFS^/tmp/hfs.dat^^^^^^^^^"
 ^%ZIS(1,10,1)="Host File Device^^^^1^"
-^%ZIS(1,10,5)=""
+^%ZIS(1,10,5)=2828
 ^%ZIS(1,10,"IOPAR")="""NWS"""
 ^%ZIS(1,10,"SUBTYPE")=172
 ^%ZIS(1,10,"TYPE")="HFS"
@@ -194,7 +194,7 @@ ZWR
 ^%ZIS(1,39,"TYPE")="TRM"
 ^%ZIS(1,40,0)="VIRTUAL TERMINAL^/dev/pts^1^^^^^^^^1^0"
 ^%ZIS(1,40,1)="Virtual Terminal^^^^1"
-^%ZIS(1,40,5)=1
+^%ZIS(1,40,5)=74238
 ^%ZIS(1,40,"MN",0)="^3.501^2^2"
 ^%ZIS(1,40,"MN",1,0)="GTM-LINUX-TELNET"
 ^%ZIS(1,40,"MN",2,0)="TELNET"
@@ -254,7 +254,7 @@ ZWR
 ^%ZIS(1,51,"TYPE")="VTRM"
 ^%ZIS(1,52,0)="FTA^FTA^1^^^^^^^^1"
 ^%ZIS(1,52,1)="SSH VIRTUAL TERMINAL"
-^%ZIS(1,52,5)=7586
+^%ZIS(1,52,5)=7759
 ^%ZIS(1,52,"SUBTYPE")=92
 ^%ZIS(1,52,"TYPE")="VTRM"
 ^%ZIS(1,53,0)="HMP EXTRACT RESOURCE^HMP EXTRACT RESOURCE^^^^^^^"
@@ -445,5 +445,7 @@ ZWR
 ^%ZIS(1,"G","SYS..|TCP|",7)=""
 ^%ZIS(1,"G","SYS.PLA.|TNT|",22)=""
 ^%ZIS(1,"G","SYS.PLA.|TRM|",48)=""
+^%ZIS(1,"G","SYS.VISTA.|TNT|",22)=""
+^%ZIS(1,"G","SYS.VISTA.|TRM|",48)=""
 ^%ZIS(1,"LSYN","P-BROWSER",14)=""
 ^%ZIS(1,"LSYN","P-BROWSER",29)=""

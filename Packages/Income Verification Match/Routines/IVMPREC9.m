@@ -1,8 +1,60 @@
-IVMPREC9 ;ALB/KCL,BRM,CKN,TDM,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;09-05-2017 10:03am
- ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167**; 21-OCT-94;Build 39
+IVMPREC9 ;ALB/KCL,BRM,CKN,TDM,KUM,JAM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;09-05-2017 10:03am
+ ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167,192**;21-OCT-94;Build 14
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ;
+ZCT ; - compare ZCT with DHCP ; IVM*2.0*192;JAM ; Tag ZCT moved from IVMPREC8
+ N ZCTTYP,IVMADDR,IVMPIECE,IVMADFLG,IVMFLD,IVMDHCP
+ S IVMADFLG=0
+ ; IVM*2.0*192;JAM; flag for Foreign address
+ N IVMFORAD
+ S IVMPIECE=$E(IVMXREF,4,8)
+ ;IVM*2.0*188-COMMENT BELOW TO ALLOW QUOTES
+ ;S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
+ S ZCTTYP=$E(IVMPIECE,$L(IVMPIECE)-1,$L(IVMPIECE))
+ Q:$P(IVMSEG,HLFS,2)'=$S(ZCTTYP="K1":1,ZCTTYP="K2":2,ZCTTYP="E1":3,ZCTTYP="E2":4,ZCTTYP="D1":5,1:"")
+ I $P(IVMSEG,HLFS,$E(IVMPIECE,1,2))]"" D
+ .;
+ .; -set var IVMFLD to incoming HL7 field
+ .I 'IVMADFLG S IVMFLD=$P(IVMSEG,HLFS,$E(IVMPIECE,1,2))
+ .;IVM*2.0*188-convert "" to @
+ .I IVMFLD="""""" S IVMFLD="@"
+ .;
+ .; - if HL7 name format convert to FM
+ .I IVMXREF["ZCT03" S IVMFLD=$$FMNAME^HLFNC(IVMFLD)
+ .;
+ .I IVMFLD="@," S IVMFLD="@" ;IVM*2.0*188
+ .; - ZCT05 as the ZCT address field is 5 pieces seperated by HLECH (~)
+ .I IVMXREF["ZCT05" D
+ ..S IVMADDR=$P(IVMSEG,HLFS,$E(IVMPIECE,1,2)),IVMPIECE=$E(IVMPIECE,3)
+ ..; IVM*2.0*192; jam; 6th piece added in z05 - Country - default to USA 
+ ..;  - Set flag and quit if not USA 
+ ..I $S($P(IVMADDR,$E(HLECH),6)'="":$P(IVMADDR,$E(HLECH),6),1:"USA")'="USA" S IVMFORAD=1 Q
+ ..; 
+ ..S IVMFLD=$P(IVMADDR,$E(HLECH),IVMPIECE),IVMADFLG=1
+ ..;IVM*2.0*188-convert "" to @
+ ..I IVMFLD="""""" S IVMFLD="@" Q
+ ..I IVMFLD]"",IVMPIECE=4 S IVMFLD=$O(^DIC(5,"C",IVMFLD,0))
+ ..I IVMFLD]"",IVMPIECE=5 S X=IVMFLD D ZIPIN^VAFADDR S IVMFLD=$G(X)
+ .;
+ .; IVM*2.0*192;jam; Prevent storing of foreign address
+ .I $G(IVMFORAD) Q
+ .;
+ .I IVMADFLG D STORE Q
+ .; - if HL7 date convert to FM date
+ .I IVMXREF["ZCT10" S IVMFLD=$$FMDATE^HLFNC(IVMFLD)
+ .;
+ .; - execute code on the 1 node and get DHCP field
+ .S IVMDHCP="" X:$D(^IVM(301.92,+IVMDEMDA,1)) ^(1) S IVMDHCP=Y
+ .;
+ .;IVM*2.0*188-convert "" to @
+ .I IVMFLD="""""" S IVMFLD="@"
+ .;
+ .; if field from IVM does not equal DHCP-store for upload
+ .I IVMFLD]"",(IVMFLD'=IVMDHCP) D STORE
+ .;
+ .I IVMXREF["ZCT10" D
+ ..I IVMFLD]"",(IVMFLD>IVMDHCP) S UPDAUPG(ZCTTYP)=1
+ Q
  ;
 STORE ; - store HL7 fields that have a different value than DHCP fields in
  ;   the IVM Patient (#301.5) file (#301.511) multiple for uploading

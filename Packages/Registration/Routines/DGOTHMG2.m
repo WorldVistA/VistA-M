@@ -1,5 +1,5 @@
 DGOTHMG2 ;SHRPE/YMG - OTH Management actions (cont.) ;04/30/19
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -218,9 +218,10 @@ ASKAUCMT() ; prompt for authorization comment
  ; returns entered comment or "" on user exit
  ;
  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
- S DIR(0)="FA^1:60"
+ S DIR(0)="FA^1:60^K:$$CHRCHK^DGOTHMG2(X) X"
  S DIR("A")="Authorization comment: "
- S DIR("?")="Free text comment, 1 to 60 characters in length."
+ S DIR("?",1)="Free text comment, 1 to 60 characters in length."
+ S DIR("?")="Characters '|', '^', '&', '\', and '~' are not allowed."
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q ""
  Q Y
@@ -230,9 +231,10 @@ ASKAUBY() ; prompt for authorized by
  ; returns name of the user selected or "" on user exit
  ;
  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
- S DIR(0)="FA^1:60"
+ S DIR(0)="FA^1:60^K:$$CHRCHK^DGOTHMG2(X) X"
  S DIR("A")="Authorized by: "
- S DIR("?")="Free text name, 1 to 60 characters in length."
+ S DIR("?",1)="Free text name, 1 to 60 characters in length."
+ S DIR("?")="Characters '|', '^', '&', '\', and '~' are not allowed."
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q ""
  Q Y
@@ -275,3 +277,10 @@ ASKSTDT(MINDT,MAXDT) ; prompt for period start date
  I $D(DTOUT)!$D(DUOUT) Q 0
  Q +Y
  ;
+CHRCHK(STR) ; check if give string contains one of the characters '|', '^', '&', '\', '~'
+ ;
+ ; STR - string to check
+ ;
+ ; returns 1 if one of those characters is found in the string, 0 otherwise
+ ;
+ Q STR["|"!(STR["^")!(STR["&")!(STR["\")!(STR["~")

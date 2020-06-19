@@ -1,5 +1,5 @@
 SDNACT ;ALB/TMP - INACTIVATE A CLINIC ;JAN 15, 2016
- ;;5.3;Scheduling;**63,380,549,568,622,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**63,380,549,568,622,627,726**;Aug 13, 1993;Build 36
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S SDAY="Sun^Mon^Tues^Wednes^Thurs^Fri^Satur",SDZQ=1
  D DT^DICRW S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
@@ -46,7 +46,7 @@ A I $O(^SC(SC,"T"_Y,SDN(Y)))>0 S SD=$O(^SC(SC,"T"_Y,SDN(Y))) S:^SC(SC,"T"_Y,SD,1
  I SDX'>SDDATE,$O(^SC(SC,"ST",SDX-.1))>0 F Z=SDX-.1:0 S Z=$O(^SC(SC,"ST",Z)) Q:'Z!(SDX1&(Z'<SDX1))  K ^SC(SC,"ST",Z)
  K SD,Z Q
 GOT S SD=$O(^SC(SC,"T"_I,0))
- I J>0,SD'=9999999 S ^SC(SC,"T"_I,SDN(I),1)=^SC(SC,"T"_I,J,1),^(0)=SDN(I) K ^SC(SC,"T"_I,J) F J1=J:0 S J1=$O(^SC(SC,"T"_I,J1)) Q:'J1  K ^SC(SC,"T"_I,J1)
+ I J>0,SD'=9999999,^SC(SC,"T"_I,J,1)'="" S ^SC(SC,"T"_I,SDN(I),1)=^SC(SC,"T"_I,J,1),^(0)=SDN(I) K ^SC(SC,"T"_I,J) F J1=J:0 S J1=$O(^SC(SC,"T"_I,J1)) Q:'J1  K ^SC(SC,"T"_I,J1) ;don't remove if already canceled, SD*5.3*726
  S ^SC(SC,"T"_I,9999999,1)="",^(0)=9999999
  Q
 END K A,DA,CNT,D0,DH,DO,DOW,I,I1,J,J1,POP,SC,SD,SD0,SDAY,SDEL,SDDATE,SDFSW,SDN,SDNL,SDOL,SDREACT,SI,SL,STARTDAY,SDX,SDX1,SDZQ,X,X1,X2,Y,Z,DIE,DR,DIC Q

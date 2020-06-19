@@ -1,5 +1,5 @@
 DGOTHRP3 ;SLC/RM - OTH PATIENT PERIOD STATUS REPORT CONT. ;MAY 8, 2018@5:15
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;     Last Edited: SHRPE/RM - MAY 8, 2018 17:15
@@ -103,7 +103,7 @@ RESULT(DGARR,DG90A,DGIEN33) ;extract the 365 and 90 day period data for OTH pati
  . I '$D(DGCLCK(I)) K DGRET S DONE=1,DGRES="" Q
  . S DGRET(I)="",DGAUTH=""
  . F II=1:1:DGCLCK(I) D  Q:DONE
- . . K DGIENS,DGSDT,DGENDT,DGDIFF,DATASTR
+ . . K DGIENS,DGSDT,DGENDT,DGDIFF
  . . I DGCLCK(I,II)'=II K DGRET S DONE=1,DGRES="" Q
  . . Q:DGCLCK(I,II)<1
  . . S DGIENS=DGCLCK(I,II)_","_I_","_+DGIEN33_","
@@ -126,11 +126,11 @@ RESULT(DGARR,DG90A,DGIEN33) ;extract the 365 and 90 day period data for OTH pati
 SORT(DGRET,DGSORT,DGCLCK) ;
  ;check if OTH-90 Patient will be included or
  ;excluded into the statistical report
- N II,DG90,DGBEG,DGEND,DGNACTVN,DATA,DGDTOK
+ N II,DG90,DGBEG,DGEND,DGNACTVN,DATA,DGDTOK,DGSSN
  F II=1:1:DGLS365D D
  . Q:'$D(DGCLCK(II))
  . S DG90="" F  S DG90=$O(DGRET(II,DG90)) Q:DG90=""  D
- . . K DGBEG,DGEND,DGNACTVN,DATA,DGDTOK
+ . . K DGBEG,DGEND,DGNACTVN,DATA,DGDTOK,DGSSN
  . . S DGBEG=$P(DGRET(II,DG90),U)
  . . S DGEND=$P(DGRET(II,DG90),U,2)
  . . S DGNACTVN=""
@@ -138,7 +138,7 @@ SORT(DGRET,DGSORT,DGCLCK) ;
  . . S DGDTOK=$$PRDDT(.DGSORT,DGBEG,DGEND) I DGDTOK D
  . . . ;check OTH-90 patient status
  . . . ;get the inactivation date if there is one
- . . . I $G(DGARR(33,DGIEN33_",",.02,"I"))<1 S DGNACTVN=$P($$CROSS^DGOTHINQ(DGIEN33),U,3)
+ . . . I $$ISOTHD^DGOTHD(DGDFN)=0!'$$ISOTH90^DGOTHRP2(DGDFN) S DGNACTVN=$P($$CROSS^DGOTHINQ(DGIEN33),U,3)
  . . . S DGIENS=DGCLCK(II,DG90)_","_II_","_+DGIEN33_","
  . . . S DGPTNM=DGARR(33,DGIEN33_",",.01,"E")
  . . . S DGSSN=$$GET1^DIQ(2,DFN_",",.0905,"","DGERR")

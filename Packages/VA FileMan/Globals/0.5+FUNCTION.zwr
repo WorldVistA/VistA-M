@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FUNCTION
 ZWR
-^DD("FUNC",0)="FUNCTION^.5^210^174"
+^DD("FUNC",0)="FUNCTION^.5^211^175"
 ^DD("FUNC",1,0)="SQUAREROOT"
 ^DD("FUNC",1,1)="D SQR^DIXC S X=$S(X'>0:"""",1:Y)"
 ^DD("FUNC",2,0)="TIME"
@@ -702,6 +702,10 @@ ZWR
 ^DD("FUNC",210,1)="S X=$$GETLAB^LRFRSLT(X,X1,X2,X3)"
 ^DD("FUNC",210,3)=4
 ^DD("FUNC",210,9)="Lab result retriever -- used with the format of LRFRSLT(a,b,c,d) where a is referenced as INTERNAL(PATIENT), b is the specimen file 61 IEN, c is the lab file 60 test IEN, and d is the number of days to search back"
+^DD("FUNC",211,0)="IBUC ELIG GROUP"
+^DD("FUNC",211,1)="S X=$$GETELGP^IBECEA36(X,X1)"
+^DD("FUNC",211,3)=2
+^DD("FUNC",211,9)="Get eligibility group for this patient on this event date."
 ^DD("FUNC","B","ABS",8)=""
 ^DD("FUNC","B","ABSV DOLLAR",195)=""
 ^DD("FUNC","B","ABSVAGE",181)=""
@@ -738,6 +742,7 @@ ZWR
 ^DD("FUNC","B","IB CPT BILLING CHARGE",142)=""
 ^DD("FUNC","B","IB CPT BILLING STATUS",143)=""
 ^DD("FUNC","B","IBNEXTAPPT",144)=""
+^DD("FUNC","B","IBUC ELIG GROUP",211)=""
 ^DD("FUNC","B","IMRDAT",171)=""
 ^DD("FUNC","B","IMRVAL",170)=""
 ^DD("FUNC","B","INDENT",34)=""

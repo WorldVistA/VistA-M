@@ -1,6 +1,6 @@
 IBCNSU41 ;ALB/CPM - SPONSOR UTILITIES (CON'T) ; 5/9/03 1:25pm
- ;;2.0;INTEGRATED BILLING;**52,211,240,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,211,240,497,654**;21-MAR-94;Build 8
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SPON(DFN) ; Add/edit sponsor/sponsor relationships for a patient.
  ;  Input:    DFN  --  Pointer to the patient in file #2
@@ -38,6 +38,44 @@ LSP ; Main loop to collect sponsor and relation data.
  I IBSP<0 W !,"Unable to add a new sponsor!" G LSPQ
  ;
 LSPC ; - allow edit of non-patient sponsor name/dob/ssn
+ ; Start of Sponsor changes for IB*2.0*654
+ N IBFLAG,IBIEN,IBPAT,IBSPON,IBTXT1,IBTXT2,IBTXT3,DIR,DIE,DA,DR
+ S IBIEN=""
+ ; Loop though Sponsors to find match
+ F  S IBIEN=$O(^IBA(355.81,"B",DFN,IBIEN)) Q:'IBIEN  I $P($G(^IBA(355.81,IBIEN,0)),U,2)=IBSP D
+ .S DIR(0)="YAO",DIR("B")="NO"
+ .; Get Patient name from #2
+ .S IBPAT=$$GET1^DIQ(2,DFN_",",.01,"E")
+ .; Get Sponsor name from #355.8
+ .S IBSPON=$$GET1^DIQ(355.8,IBSP_",",.01,"E")
+ .S (IBTXT1,IBTXT2,IBTXT3)=""
+ .S IBTXT1=IBSPON_" is a current Sponsor of the Patient "
+ .; IF both Sponsor and Patient will fit on 1 line
+ .I $L(IBTXT1)+$L(IBPAT)+1'>80 D
+ .. S IBTXT1=IBTXT1_IBPAT_"."
+ .. S IBTXT2="Would you like to remove this Sponsor from this Patient?"
+ .; If IBTXT2 is not defined, 1st IF failed so put the Patient Name on 2nd line
+ .I '$L(IBTXT2) D
+ .. S IBTXT2=IBPAT_". Would you like to remove this Sponsor from this Patient?"
+ .. I $L(IBTXT2)>80 D SPTXT(.IBTXT2,.IBTXT3)
+ .W !!,IBTXT1
+ .W !,IBTXT2
+ .I $L(IBTXT3) W !,IBTXT3
+ .S DIR("A")="(Yes to Delete, No to Edit, ^ to Exit ) "
+ .S DIR("??")="^ D HELP^IBCNSU41"
+ .D ^DIR I Y=1 D
+ ..W !
+ ..S DIR("A",1)="This will permanently delete the Sponsor Relationship."
+ ..S DIR("A")="Are you sure you would like to delete this entry? "
+ ..S DIR("??")="^ D HELP^IBCNSU41"
+ ..S DIR(0)="YAO",DIR("B")="NO"
+ ..D ^DIR I Y=1 D
+ ...S DIK="^IBA(355.81,",DA=IBIEN D ^DIK K DIK S IBFLAG=1
+ .W !
+ .; End of Sponsor changes for IB*2.0*654
+ G:$G(IBFLAG) LSPQ
+ ;
+ ; - allow edit of non-patient sponsor name/dob/ssn
  I $P(IBSPD,"^")["IBA" D
  .S DIE="^IBA(355.82,",DA=+IBSPD
  .S DR=".01  NAME;.02  DATE OF BIRTH;.03  SOCIAL SECURITY NUMBER"
@@ -63,7 +101,36 @@ LSPC ; - allow edit of non-patient sponsor name/dob/ssn
  S DIE="^IBA(355.81,",DA=IBSPR,DR=".03:.06" D ^DIE K DA,DIE,DR
  W !
  ;
-LSPQ K IBSP,IBSPD,IBSPP,IBSPR,IBQQ,IBNAM,IBX,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
+LSPQ K IBFLAG,IBIEN,IBPAT,IBSPON,IBSP,IBSPD,IBSPP,IBSPR,IBQQ,IBNAM,IBX,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
+ Q 
+ ;
+LSPCX ; - allow edit of non-patient sponsor name/dob/ssn
+ I $P(IBSPD,"^")["IBA" D
+ .S DIE="^IBA(355.82,",DA=+IBSPD
+ .S DR=".01  NAME;.02  DATE OF BIRTH;.03  SOCIAL SECURITY NUMBER"
+ .D ^DIE K DIE,DA,DR
+ ;
+ ; - edit remaining sponsor attributes
+ S DIE="^IBA(355.8,",DA=IBSP
+ S DR=".02  MILITARY STATUS;.03  BRANCH;.04  RANK"
+ D ^DIE K DA,DR,DIE
+ ;
+ ; - find patient relation to sponsor, or create one
+ S IBSPR=0 F  S IBSPR=$O(^IBA(355.81,"B",DFN,IBSPR)) Q:'IBSPR  I $P($G(^IBA(355.81,IBSPR,0)),"^",2)=IBSP Q
+ I 'IBSPR S IBQQ=0 D  G:IBQQ LSPQ
+ .W !!,"The person '",IBNAM,"' is not currently the sponsor of this patient."
+ .S DIR(0)="Y",DIR("A")="Okay to add this person as the patient's sponsor"
+ .S DIR("?")="Please enter 'YES' to add this person as the patient's sponsor, or 'NO' to select a new sponsor."
+ .D ^DIR K DIR I 'Y W ! S IBQQ=1 Q
+ .;
+ .S X=DFN,DIC="^IBA(355.81,",DIC(0)="L",DIC("DR")=".02////"_IBSP,DLAYGO=355.81
+ .D FILE^DICN S IBSPR=+Y S:Y<0 IBQQ=1 K DLAYGO
+ ;
+ ; - edit sponsor relation attributes
+ S DIE="^IBA(355.81,",DA=IBSPR,DR=".03:.06" D ^DIE K DA,DIE,DR
+ W !
+ ;
+LSPQX K IBSP,IBSPD,IBSPP,IBSPR,IBQQ,IBNAM,IBX,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
  Q
  ;
  ;
@@ -124,3 +191,21 @@ POL(DFN) ; Update TRICARE policies with Sponsor information.
  .S DIE="^DPT(DFN,.312,",DA(1)=DFN,DA=IBX D ^DIE K DA,DIE,DR
  ;
 POLQ Q
+ ;
+HELP ; Sponsor Delete Help
+ W !!,"Answering Yes will only remove this Sponsor from this Patient."
+ W !,"The Sponsor will remain in the Sponsor file and will be"
+ W !,"available for selection for other Patients."
+ Q
+ ;
+SPTXT(IBTXT2,IBTXT3) ;
+ ; Function to split IBTXT2 into 2 lines each <=80 chars.
+ I $L(IBTXT2)'>80 Q
+ N ICNT,IBQUIT
+ S IBQUIT=0
+ F ICNT=80:-1:1 D  Q:IBQUIT
+ .I $E(IBTXT2,ICNT)=" " D  Q
+ ..S IBQUIT=1
+ ..S IBTXT3=$E(IBTXT2,ICNT+1,999)
+ ..S IBTXT2=$E(IBTXT2,1,ICNT)
+ Q

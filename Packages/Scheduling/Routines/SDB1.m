@@ -1,5 +1,5 @@
 SDB1 ;ALB/GRR - SET UP A CLINIC ;JAN 15, 2016
- ;;5.3;Scheduling;**20,183,221,567,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**20,183,221,567,627,726**;Aug 13, 1993;Build 36
  ;
  ;DH=PATTERN  DO=EXPIRATION DATE  X=START DATE
 B1 S DR=0,SB=STARTDAY-1/100,STR="{}&%?#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDONE=1
@@ -12,10 +12,12 @@ X I X'>DO,$G(^SC(DA,"ST",X,1))["**CANCELLED**"!($G(^SC(DA,"ST",X,1))["X") S ^TMP
  S DR=+$O(^SC(DA,"S",X)),SDSAV=0 G X2:DR\1-X
 SM S SM=$P("SU^MO^TU^WE^TH^FR^SA",U,DOW+1)_" "_$E(X,6,7)_$J("",SI+SI-6)_DH_$J("",64-$L(DH)) S:'SDSAV SDSAV=1,SDPAT=SM
 I S I=DR#1-SB*100,I=I#1*SI\.6+(I\1*SI)*2,S=$E(SM,I,999),SM=$E(SM,1,I-1)
- F Y=0:0 S Y=$O(^SC(DA,"S",DR,1,Y)) Q:Y'>0  I $P(^(Y,0),"^",9)'["C" S SDSL=$P(^(0),U,2)/SL*(SL\(60/SDSI))*HSI-HSI F I=0:HSI:SDSL S ST=$E(S,I+2) S:ST="" ST=" " S S=$E(S,1,I+2-1)_$E(STR,$F(STR,ST)-2)_$E(S,I+3,999) D OB
+ F Y=0:0 S Y=$O(^SC(DA,"S",DR,1,Y)) Q:Y'>0  I $P(^(Y,0),"^",9)'["C",((+$E($P(DR,".",2)_"000",1,4)>=($S($P($G(^SC(DA,"SL")),U,3)>0:+$P(^SC(DA,"SL"),U,3)_"00",1:800)))) D  ;Ignore appts prior to Begin time, SD*5.3*726
+ .S SDSL=$P(^SC(DA,"S",DR,1,Y,0),U,2)/SL*(SL\(60/SDSI))*HSI-HSI F I=0:HSI:SDSL S ST=$E(S,I+2) S:ST="" ST=" " S S=$E(S,1,I+2-1)_$E(STR,$F(STR,ST)-2)_$E(S,I+3,999) D OB
  S SM=SM_S,DR=+$O(^SC(DA,"S",DR)) I DR\1=X G I
  I $L(SM)>SM S ^SC(DA,"ST",X,0)=X,^(1)=SM S:'$D(^SC(DA,"ST",0)) ^(0)="^44.005DA^^" I $D(^SC(DA,"ST",X,9)) S ^SC(DA,"OST",X,1)=SDPAT,^(0)=X S:'$D(^SC(DA,"OST",0)) ^(0)="^44.0002DA^^"
- F SDCAN=X:0 S SDCAN=$O(^SC(DA,"SDCAN",SDCAN)) Q:(SDCAN\1-(X\1))!'SDCAN  K ^(SDCAN)
+ N SDCNT F SDCAN=X:0 S SDCAN=$O(^SC(DA,"SDCAN",SDCAN)) Q:(SDCAN\1-(X\1))!'SDCAN  D  ;SD*5.3*726 - Update subfile counter and remove "MES" node when removing "SDCAN" node
+ .K ^SC(DA,"SDCAN",SDCAN),^SC(DA,"S",SDCAN,"MES") I $D(^SC(DA,"SDCAN",0)) S SDCNT=$P(^(0),U,4),SDCNT=$S(SDCNT>0:SDCNT-1,1:0),^(0)=$P(^(0),U,1,3)_U_SDCNT
 X2 I X#100<22 S X=X+7
  E  S X1=X,X2=7 D C^%DTC
  G X

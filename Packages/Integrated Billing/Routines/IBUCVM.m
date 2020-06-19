@@ -1,5 +1,5 @@
 IBUCVM ;LL/ELZ-LONG TERM CARE CLOCK MAINTANCE ; 06-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671**;21-MAR-94;Build 13
+ ;;2.0;INTEGRATED BILLING;**663,671,669**;21-MAR-94;Build 20
  ;; Per VHA Directive 6402, this routine should not be modified
  ;
  ; This routine is used to perform the Urgent Care Visit Tracking
@@ -168,6 +168,7 @@ ADDVST(IBDFN) ; Add a new UC visit for the patient
  Q:IBSTAT=-1
  S:IBSTAT=2 IBBILL=$$GETBILL
  Q:IBBILL=-1
+ S:IBBILL'="" IBBILL=$$UP^XLFSTR(IBBILL)   ;Convert to upper case
  S:IBSTAT'=2 IBCOMM=$$GETCOMM(IBSTAT,IBELPG)
  Q:IBCOMM=-1
  S IBOK=$$GETOK^IBECEA36(IBDUPFLG)
@@ -215,6 +216,7 @@ EDITVST(IBLCT) ; Add a new UC visit for the patient
  ;Prompt for Bill No. if status is billed
  S:IBSTAT=2 IBBILL=$$GETBILL
  Q:IBBILL=-1
+ S:IBBILL'="" IBBILL=$$UP^XLFSTR(IBBILL)   ;Convert to upper case
  ;
  ;Prompt for Comment if changed to Free or Not Counted
  S:IBSTAT'=2 IBCOMM=$$GETCOMM(IBSTAT,IBELPG)
@@ -304,7 +306,7 @@ GETBILL() ;Ask the user for a Bill Number
  N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
  ;
  S DIR("A")="Bill Number: "
- S DIR(0)="FAO^^K:'$$CHKBILL^IBUCVM(X) X"
+ S DIR(0)="FAO^^S X=$$UP^XLFSTR(X) K:'$$CHKBILL^IBUCVM(X) X"
  S DIR("?")="Enter the Bill Number (including site) or ON HOLD if this visit was billed.  <ENTER> to continue."
  ;
  D ^DIR K DIR

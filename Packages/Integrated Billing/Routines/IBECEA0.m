@@ -1,5 +1,5 @@
 IBECEA0 ;ALB/CPM - Cancel/Edit/Add... Build List ; 22-APR-93
- ;;2.0;INTEGRATED BILLING;**167,563,651**;21-MAR-94;Build 9
+ ;;2.0;INTEGRATED BILLING;**167,563,651,669**;21-MAR-94;Build 20
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ARRAY ; Build list for the List Manager.
@@ -45,5 +45,11 @@ APDT ; Gather Means Test and CHAMPVA charges.
  ;
 APTDT ; Gather Rx copay charges entered through Cancel/Edit/Add.
  N IBN,IBDT,IBZ
- S IBN=0 F  S IBN=$O(^IB("C",DFN,IBN)) Q:'IBN  S IBZ=$G(^IB(IBN,0)) I $P(^IBE(350.1,$P(IBZ,"^",3),0),U)["RX" S IBDT=$S($P(IBZ,"^",14):$P(IBZ,"^",14),1:$P($G(^IB(IBN,1)),"^",2))\1 I IBDT,IBDT'<IBABEG,IBDT'>IBAEND S ^TMP("IBECEA",$J,IBDT\1,IBN)=""
- Q
+ ;IB*2.0*669 - protected against a NULL Action Type, restructured For Loop per SAC
+ S IBN=0
+ F  S IBN=$O(^IB("C",DFN,IBN)) Q:'IBN  D
+ . S IBZ=$G(^IB(IBN,0)),IBAT=$P(IBZ,"^",3)
+ . Q:IBAT=""
+ . I $P(^IBE(350.1,$P(IBZ,"^",3),0),U)["RX" D
+ . . S IBDT=$S($P(IBZ,"^",14):$P(IBZ,"^",14),1:$P($G(^IB(IBN,1)),"^",2))\1
+ . . I IBDT,IBDT'<IBABEG,IBDT'>IBAEND S ^TMP("IBECEA",$J,IBDT\1,IBN)=""

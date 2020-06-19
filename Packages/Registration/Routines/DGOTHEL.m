@@ -1,5 +1,5 @@
 DGOTHEL ;SLC/MKN - OTHD (OTHER THAN HONORABLE DISCHARGE) ELIGIBILITY CHANGES ;Mar 13, 2019@08:07
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  ICR#  TYPE  DESCRIPTION
@@ -156,3 +156,13 @@ CLEAN ;
  ..K DGFDA S DGFDA(33.02,DGIEN332_","_DGIEN33_",",.05)=DGFAC D FILE^DIE(,"DGFDA","DGERR")
  Q
  ;
+LASTELIG(DFN) ; get last IEN from sub-file 33.02 DG*5.3*977 OTH-EXT
+ ;
+ ; DFN - patient DFN
+ ;
+ ; returns "file 33 IEN ^ IEN of the latest entry in sub-file 33.02" or 0 if no entries are found
+ ;
+ N DGIEN33,DGTS
+ S DGIEN33=$O(^DGOTH(33,"B",DFN,"")) Q:'DGIEN33 0
+ S DGTS=+$O(^DGOTH(33,DGIEN33,2,"B",""),-1)
+ Q DGIEN33_U_+$O(^DGOTH(33,DGIEN33,2,"B",DGTS,""))

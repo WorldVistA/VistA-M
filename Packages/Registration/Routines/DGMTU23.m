@@ -1,5 +1,5 @@
-DGMTU23 ;ALB/CAW,LD,LBD,LMD - Display means test information ;12/20/01
- ;;5.3;Registration;**33,182,254,272,420,435,456,624,904**;Aug 13, 1993;Build 26
+DGMTU23 ;ALB/CAW,LD,LBD,LMD,HM - Display means test information ;12/20/01
+ ;;5.3;Registration;**33,182,254,272,420,435,456,624,904,996**;Aug 13, 1993;Build 47
  ;
  ;
 DISPLAY(DGMTI,DGMTYPT) ;Display means test data
@@ -111,7 +111,7 @@ DISPLAY(DGMTI,DGMTYPT) ;Display means test data
  ...S X=$$SETSTR^VALM1($P($G(^VA(200,+$P(DGMTDIS,U,22),0)),U),X,DGSCOL,15)
  ..E  S X=$$SETSTR^VALM1("OTHER VAMC",X,DGSCOL,15)
  ..S Y=$$SETSTR^VALM1("Hardship Review Site:",Y,43,21)
- ..S Y=$$SETSTR^VALM1($P($G(^DIC(4,+$P(DGMTDI2,"^",4),0)),"^"),Y,DGSCOL,15)
+ ..S Y=$$SETSTR^VALM1($P(DGMTDI2,U,4),Y,DGSCOL,15) ;DG*5.3*996
  ..S Y1=$$SETSTR^VALM1("Hardship Reason:",Y1,7,16)
  ..S Y1=$$SETSTR^VALM1($P(DGMTDI2,U,9),Y1,DGFCOL,80)
  .W !,X,!,Y,!,Y1,!,Z

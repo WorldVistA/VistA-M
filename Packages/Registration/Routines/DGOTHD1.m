@@ -1,5 +1,5 @@
 DGOTHD1 ;SLC/SS,RM,MKN - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;12/27/17
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -23,7 +23,7 @@ DGOTHD1 ;SLC/SS,RM,MKN - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;12/27/17
 FRSTNTRY(DGDFN,DGSTRDT,DGEXPMH) ;
  N DGIEN33,DGIEN365,DGIEN90,OTHDATA
  ;does the patient already have an entry in file #33 (OTH ELIGIBILITY)?
- S DGIEN33=$$HASENTRY^DGOTHD2(DGDFN) I DGIEN33>0 Q -2  ;already has an entry
+ S DGIEN33=$$HASENTRY^DGOTHD2(DGDFN) D:DGIEN33&('$D(^DGOTH(33,DGIEN33,1)))&($$GETEXPMH^DGOTHD(DGDFN)="OTH-90") OTHDATA(1,1),FILAUTH^DGOTHUT1(DGDFN,OTHDATA) I DGIEN33>0 Q -2  ;already has an entry
  ;if no entry in file 33
  I DGIEN33=0 D
  . ;create the top level of file 33
@@ -64,6 +64,8 @@ XPANDED(DGDFN) ;
  S DGEMHCNVT=0
  Q:'$G(DGDFN)
  N EMHCNV,DGMSG,DGQUIT,DGIEN33,DGERR,DGYN,DGARR
+ N DA,DGXRF,SVX ; for ^DGDDC
+ S SVX=$G(X) ; save X, needed for ^DGDDC call below
  S EMHCNV=$$ISOTHD^DGOTHD(DGDFN)  ;check if primary eligibility is EXPANDED MH CARE NON-ENROLLEE
  I 'EMHCNV D INACT33^DGOTHEL(DGDFN) Q
  ;display EXPANDED MH CARE  warning message
@@ -94,9 +96,13 @@ XPANDED(DGDFN) ;
  ;DGEMHC = 1   Create/Change EXPANDED MH CARE TYPE entry
  N DGEMHC
  S DGEMHC=$$EMHCTYP(DGDFN)
- D:DGEMHC UPDTEMHT(DGDFN)
- ;Call point to create a new OTH ELIGIBILITY PATIENT (#33) entry.
- D:DGEMHC STRDATE^DGOTHD(DGDFN)
+ I DGEMHC D
+ .D UPDTEMHT(DGDFN)
+ .;Call point to create a new OTH ELIGIBILITY PATIENT (#33) entry.
+ .D STRDATE^DGOTHD(DGDFN)
+ .; clear ELIGIBILITY STATUS field (2/.3611)
+ .S DA=DGDFN,DGXRF=.361,X=.361 D ^DGDDC S X=SVX
+ .Q
  S Y=$S(Y=U:"",$G(DGECODE)'="":.323,1:"@7031")
  Q
  ;
@@ -141,7 +147,14 @@ EMHCTYP(DGDFN) ;prompt for EXPANDED MH CARE TYPE
  . . . W ! S (DONE,DGQUIT)=0
  . . W !,"  No Expanded MH Care Type found."
  . . W !,"  Nothing to delete.",!
- . S (DONE,DGQUIT)=1
+ . ;DG*5.3*977 OTH-EXT
+ . D:Y="OTH-EXT"
+ . . S DGMSG(1)=" "
+ . . S DGMSG(2)=" Note: this Expanded Mental Health Care Type selection is only to be used"
+ . . S DGMSG(3)=" prior to VBA Adjudication for OTH patients."
+ . . S DGMSG(4)=" "
+ . . D EN^DDIOL(.DGMSG)
+ . S DONE=1,DGQUIT=$S(DGDIRB=Y:0,1:1)
  K DIR
  Q DGQUIT
  ;

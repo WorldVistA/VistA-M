@@ -1,10 +1,10 @@
 DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ;7/25/06 12:06pm
- ;;5.3;Registration;**528,653,688,842,952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**528,653,688,842,952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N DGCASH,DGMBCK,DGEMHCNVT,DGPRVSPE
  ;DG*5.3*952 add .55 into DRPG array
- S DGRPS=7 D H^DGRPU F I=0,.29,.3,.31,.32,.321,.36,.362,.385,.55,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+ S DGRPS=7 D H^DGRPU F I=0,.29,.3,.31,.32,.321,.36,.362,.385,.55,.56,"TYPE","VET" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"") ;*977
  S (DGRPW,Z)=1 D WW^DGRPV W "       Patient Type: " S DGRPX=DGRP("TYPE"),Z=$S($D(^DG(391,+DGRPX,0)):$P(^(0),"^",1),1:DGRPU),Z1=34 D WW1^DGRPV W "Veteran: " S DGRPX=DGRP("VET"),(X,Z1)=1 D YN
  W !?9,"Svc Connected: " S DGRPX=DGRP(.3),X=1,Z1=31,DGNA=$S($P(DGRP("VET"),"^",1)="Y":0,1:1) D YN2 W "SC Percent: " W:$E(Z)'="Y" "N/A" I $E(Z)="Y" D
  .S X=$P(DGRPX,"^",2) W $S(X="":"UNANSWERED",1:+X_"%")
@@ -38,6 +38,7 @@ DGRP7 ;ALB/MRL,CKN,ERC - REGISTRATION SCREEN 7/ELIGIBILITY INFORMATION ;7/25/06 
  W !?4,"Other Elig Code(s): " S I1="" F I=0:0 S I=$O(^DPT("AEL",DFN,I)) Q:'I  I $D(^DIC(8,+I,0)),I'=DGRPE S I1=I1+1 W:I1>1 !?24 W $P(^(0),"^",1)
  W:'I1 "NO ADDITIONAL ELIGIBILITIES IDENTIFIED"
  S DGRPX=+$P(DGRP(.32),"^",3) W !?5,"Period of Service: ",$S($D(^DIC(21,+DGRPX,0)):$P(^(0),"^",1),1:DGRPU)
+ N DGPP S DGPP=$$GET1^DIQ(2,DFN_",",.5601,"E") I DGPP]"",$G(DGRP("VET"))="Y" W !," Presumptive Psychosis: ",DGPP ;*977
  D ^DGYZODS G:'DGODS CONT S DGRPX=$S($D(^DPT(DFN,"ODS")):^("ODS"),1:"") W !?6,"Recalled to Duty: ",$S($P(DGRPX,"^",2)=1:"FROM NATIONAL GUARDS",$P(DGRPX,"^",2)=2:"FROM RESERVES",$P(DGRPX,"^",2)=0:"NO",1:DGRPU)
  W !?18,"Rank: ",$S($D(^DIC(25002.1,+$P(DGRPX,"^",3),0)):$P(^(0),"^",1),1:DGRPU)
 CONT ;

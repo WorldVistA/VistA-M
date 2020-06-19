@@ -1,5 +1,5 @@
 SDD0 ;SF/GFT,ALB/BOK,JSH,LDB - REMAP A CLINIC ;26 JAN 84  3:00 pm
- ;;5.3;Scheduling;**167,401,529,674**;Aug 13, 1993;Build 18
+ ;;5.3;Scheduling;**167,401,529,674,726**;Aug 13, 1993;Build 36
 SETX ;
  N SDDIV
  S SDDIV=$P($G(SD0),"^",15) Q:SDDIV=""
@@ -7,10 +7,12 @@ SETX ;
  Q:'$D(^SC(SC,"SL"))  S SDSL=^("SL"),SL=+^("SL"),X=$P(SDSL,U,3),STARTDAY=$S($L(X):X,1:8),X=$P(SDSL,U,6),HSI=$S('X:4,X<3:8/X,1:2),SI=$S(X:X,1:4),SDSI=SI
  S:SI=1 SI=4 S:SI=2 SI=4 S SDSOH=$S($P(SDSL,U,8)']"":0,1:1)
  K SDIN,SDRE,SDRE1 N SDNODE I $D(^SC(SC,"I")) S SDIN=+^("I"),SDRE=+$P(^("I"),"^",2),Y=SDRE D DTS^SDUTL S SDRE1=Y
- N SDX,SDIEN,SDBEG,SDDOW ;New variables for SD*5.3*674 changes
+ N SDX,SDIEN,SDBEG,SDDOW,SDBEGO,SDBEGZ ;New variables for SD*5.3*674 and SD*5.3*726 changes
  ;Set beginning date to use for indefinite clinic availabilities
  F SDX=0:1:6 S SDDOW(SDX,9999999)="" ;SD*5.3*674
- S SDX=0 F  S SDX=$O(^SC(SC,"T",SDX)) Q:'SDX!(SDX>ENDDATE)  I '$D(^SC(SC,"OST",SDX)) S SDBEG=$G(^SC(SC,"T",SDX,0)) S SDDOW($$DOW^XLFDT(SDBEG,1),SDBEG)="" ;SD*5.3*674
+ S SDBEGO="" F SDDAY=0:1:6 S SDCNT=0 F  S SDCNT=$O(^SC(+SC,"T"_SDDAY,SDCNT)) Q:'SDCNT  S SDBEGO=SDBEGO_U_SDCNT
+ S SDX=0 F  S SDX=$O(^SC(SC,"T",SDX)) Q:'SDX!(SDX>ENDDATE)  S SDBEGZ=$O(^SC(+SC,"T"_$$DOW^XLFDT(SDX,1),9999999),-1) D  ;Add SDBEGZ to check for duplicate OST entry
+ .I '$D(^SC(SC,"OST",SDX))!(SDBEGO[SDX)!(SDBEGZ=0)!($G(^SC(+SC,"T"_$$DOW^XLFDT(SDX,1),9999999))=""&(SDBEGZ>0)) S SDBEG=$G(^SC(SC,"T",SDX,0),SDX) S SDDOW($$DOW^XLFDT(SDBEG,1),SDBEG)="" ;SD*5.3*674 and SD*5.3*726
  F DATE=$$FMADD^XLFDT(SDBD,-1):0 S X1=DATE,X2=1 N X D C^%DTC S DATE=X S SDNODE=$D(^SC(SC,"ST",DATE)) Q:DATE'>0!(DATE>SDED)  I $S('$D(SDIN):1,'SDIN:1,SDIN>DATE:1,SDRE'>DATE&(SDRE):1,1:0) K SM,SDHOL D CHECK  ;changed 1st part of For loop SD*529
  Q
 CHECK S X=DATE D DW^%DTC S DAY=$P("SUN^MON^TUES^WEDNES^THURS^FRI^SATUR",U,Y+1),DOW=Y
@@ -29,7 +31,8 @@ FIX ;DH=PATTERN  X=DATE
  D SM G:'SDAPPT OVR
 I S I=DR#1-SB*100,I=I#1*SI\.6+(I\1*SI)*2,S=$E(SM,I,999),SM=$E(SM,1,I-1)
  I $D(^SC(SC,"S",DR,"MES")) D CAN S X=SDSAVX K SDSAVX S DR=+$O(^SC(SC,"S",DR)) G:DR\1=X I G OVR
- F Y=0:0 S Y=$O(^SC(SC,"S",DR,1,Y)) Q:Y'>0  I $P(^(Y,0),"^",9)'["C" S SDSL=$P(^(0),U,2)/SL*(SL\(60/SDSI))*HSI-HSI F I=0:HSI:SDSL S ST=$E(S,I+2) S:ST="" ST=" " S S=$E(S,1,I+2-1)_$E(STR,$F(STR,ST)-2)_$E(S,I+3,999)
+ F Y=0:0 S Y=$O(^SC(SC,"S",DR,1,Y)) Q:Y'>0  I $P(^(Y,0),"^",9)'["C",((+$E($P(DR,".",2)_"000",1,4)>=($S($P($G(^SC(SC,"SL")),U,3)>0:+$P(^SC(SC,"SL"),U,3)_"00",1:800)))) D  ;Ignore appts prior to Begin time, SD*5.3*726
+ .S SDSL=$P(^SC(SC,"S",DR,1,Y,0),U,2)/SL*(SL\(60/SDSI))*HSI-HSI F I=0:HSI:SDSL S ST=$E(S,I+2) S:ST="" ST=" " S S=$E(S,1,I+2-1)_$E(STR,$F(STR,ST)-2)_$E(S,I+3,999)
  S SM=SM_S,DR=$O(^SC(SC,"S",DR)) I DR\1=X G I
 OVR I $L(SM)>SM,(X>=$O(SDDOW($$DOW^XLFDT(X,1),(X+1)),-1)&($O(SDDOW($$DOW^XLFDT(X,1),(X+1)),-1)))!($D(^SC(SC,"OST",X))) S ^SC(SC,"ST",X,0)=X,^(1)=SM S:SS'>0 ^(9)=SC ;Verify indefinite schedule after start date, SD*5.3*674
  G Z

@@ -1,5 +1,5 @@
 VAFHLZTE ;SHRPE/YMG - Create HL7 ZTE segment ;06/17/19
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -73,9 +73,9 @@ GETDATA(DGTYPE,DGOTHSTR) ; Get information needed to build ZTE segment
  ; Request entered/edited timestamp
  I VAFSTR[",5," S VAFHLZTE(5)=$$HLDATE^HLFNC($P(DGOTHSTR,U,$S(DGTYPE="A":7,DGTYPE="D":5,1:4)))
  ; Request entered by
- I VAFSTR[",6," S VAFHLZTE(6)=$$ENCHL7^DGPFHLUT($P(DGOTHSTR,U,$S(DGTYPE="A":6,DGTYPE="D":4,1:3)))
+ I VAFSTR[",6," S VAFHLZTE(6)=$P(DGOTHSTR,U,$S(DGTYPE="A":6,DGTYPE="D":4,1:3)) ; DG*5.3*977 OTH-EXT
  ; Facility
- I VAFSTR[",7," S VAFHLZTE(7)=$P(DGOTHSTR,U,$S(DGTYPE="A":9,DGTYPE="D":6,1:5))
+ I VAFSTR[",7," S VAFHLZTE(7)=$$STA^XUAF4($P(DGOTHSTR,U,$S(DGTYPE="A":9,DGTYPE="D":6,1:5)))
  ; 365 day period number
  I VAFSTR[",8," S VAFHLZTE(8)=$S(DGTYPE="A":$P(DGOTHSTR,U),1:"")
  ; 90 day period number
@@ -83,11 +83,11 @@ GETDATA(DGTYPE,DGOTHSTR) ; Get information needed to build ZTE segment
  ; Authorization date
  I VAFSTR[10 S VAFHLZTE(10)=$S(DGTYPE="A":$$HLDATE^HLFNC($P(DGOTHSTR,U,5)),1:"")
  ; Request authorized by
- I VAFSTR[11 S VAFHLZTE(11)=$S(DGTYPE="A":$$ENCHL7^DGPFHLUT($P(DGOTHSTR,U,8)),1:"")
+ I VAFSTR[11 S VAFHLZTE(11)=$S(DGTYPE="A":$P(DGOTHSTR,U,8),1:"") ; DG*5.3*977 OTH-EXT
  ; 90 day period start date
  I VAFSTR[12 S VAFHLZTE(12)=$S(DGTYPE="A":$$HLDATE^HLFNC($P(DGOTHSTR,U,3)),1:"")
  ; Authorization comment
- I VAFSTR[13 S VAFHLZTE(13)=$S(DGTYPE="D":$$ENCHL7^DGPFHLUT($P(DGOTHSTR,U,3)),1:"")
+ I VAFSTR[13 S VAFHLZTE(13)=$S(DGTYPE="D":$P(DGOTHSTR,U,3),1:"") ; DG*5.3*977 OTH-EXT
  Q
  ;
 MAKESEG ; Create segment using obtained data

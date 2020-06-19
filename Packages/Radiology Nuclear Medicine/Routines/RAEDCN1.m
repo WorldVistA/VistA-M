@@ -1,5 +1,5 @@
-RAEDCN1 ;HISC/GJC-Utility routine for RAEDCN ;06 Nov 2018 9:23 AM
- ;;5.0;Radiology/Nuclear Medicine;**18,45,93,106,113,124**;Mar 16, 1998;Build 4
+RAEDCN1 ;HISC/GJC-Utility routine for RAEDCN ; Feb 18, 2020@15:18:21
+ ;;5.0;Radiology/Nuclear Medicine;**18,45,93,106,113,124,166**;Mar 16, 1998;Build 2
  ; last modif by SS for P18
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
  ;
@@ -61,6 +61,13 @@ DEL1 D ^RACNLU G EXIT^RAEDCN:X="^"
 ASKDEL R !!,"Do you wish to delete this exam? NO// ",X:DTIME S:'$T!(X="")!(X["^") X="N" G DEL1:"Nn"[$E(X) I "Yy"'[$E(X) W:X'["?" $C(7) W !!,"Enter 'YES' to delete this exam, or 'NO' not to." G ASKDEL
  L +^RADPT(RADFN,"DT",RADTI):1 I '$T W !,$C(7),"Someone else is editing an exam for this patient on the date/time",!,"you selected. Please try Later" G DEL1
  S RADELFLG="" D ^RAORDC
+ ;
+ ;RA5P166
+ ;RAUSUNXF is set in YNCAN^RAORDC
+ ;QUIT if timeout/^ out (-1)
+ I $G(RAUSUNXF)=-1 K RAUSUNXF Q
+ ;RA5P166
+ ;
  ; trigger RA CANCEL protocol on xam delete if xam not already cancelled
  S RA7003=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),X=+$P(RA7003,"^",3)
  ; no rpt filed, xam status exists & not cancelled -OR- xam status

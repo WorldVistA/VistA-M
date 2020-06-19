@@ -1,5 +1,5 @@
-IVMCM1 ;ALB/SEK,BRM,TDM - DCD INCOME TESTS UPLOAD DRIVER ; 2/9/06 1:57pm
- ;;2.0;INCOME VERIFICATION MATCH;**17,49,71,115**;21-OCT-94;Build 28
+IVMCM1 ;ALB/SEK,BRM,TDM,HM - DCD INCOME TESTS UPLOAD DRIVER ;1/14/20 6:44pm
+ ;;2.0;INCOME VERIFICATION MATCH;**17,49,71,115,190**;21-OCT-94;Build 47
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EN ; this routine will call routines to upload means/copay/LTC test and
@@ -181,6 +181,7 @@ LTC ; transmission contains a long term care test (type 4)
  S IVMMTDT=$$FMDATE^HLFNC($P($G(^TMP($J,"IVMCM","ZMT4")),HLFS,2))
  S TMSTAMP=$$FMDATE^HLFNC($P($G(^TMP($J,"IVMCM","ZMT4")),HLFS,25))
  S SOURCE=$P($G(^TMP($J,"IVMCM","ZMT4")),HLFS,22)
+ S SRCTST=$P($G(^TMP($J,"IVMCM","ZMT4")),HLFS,18) ;IVM*2.0*190
  S IVMLAST=$$LST^DGMTU(DFN,$E(IVMMTDT,1,3)_1231,4)
  S IVMMTIEN=+IVMLAST  ;last LTC test
  ;deletion indicator sent?

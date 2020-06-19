@@ -1,5 +1,5 @@
 RCDPTPLI ;WISC/RFJ-transaction profile init to build array ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**114,153,365**;Mar 20, 1995;Build 6
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -114,8 +114,13 @@ INIT ;  initialization for list manager list
  N BILLCAT,BILLDA,IBDA
  S BILLDA=+$P(^PRCA(433,RCTRANDA,0),"^",2)
  S BILLCAT=$P($G(^PRCA(430,BILLDA,0)),"^",2)
- ;  for category c-means test, rx copay (sc/nsc)
- I BILLCAT=18!(BILLCAT=22)!(BILLCAT=23) D
+ ;
+ ;PRCA*4.5*365 - moved vaild AR Category check to the field DISPLAY ON BILL PROFILE? field
+ ;               in the AR Category (430.2) file.  If IBDSPFLG contains NULL or 0, no IB info
+ ;               will display.  Otherwise it contains a code that will determine what info is
+ ;               displayed.
+ S IBDSPFLG=$$GET1^DIQ(430.2,BILLCAT_",",1.04,"I")
+ I +$G(IBDSPFLG) D
  .   D STMT^IBRFN1(RCTRANDA)
  .   I '$D(^TMP("IBRFN1",$J)) Q
  .   ;  start on 2nd screen if not there already
@@ -126,8 +131,8 @@ INIT ;  initialization for list manager list
  .   .   ;  if more than one ib data transaction to display, skip a line
  .   .   I IBDA>1 S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
  .   .   S RCLINE=RCLINE+1 D SET("IB Ref #: "_$P(DATA,"^"),RCLINE,1,80)
- .   .   ;  show rx
- .   .   I BILLCAT=22!(BILLCAT=23) D  Q
+ .   .   ;  show VA RX (IBDSPFLG=1)
+ .   .   I IBDSPFLG=1 D  Q
  .   .   .   D SET("Pharmacy",RCLINE,28,80)
  .   .   .   D SET("Charge Amt: "_$J($P(DATA,"^",8),0,2),RCLINE,60,80)
  .   .   .   S RCLINE=RCLINE+1
@@ -138,12 +143,12 @@ INIT ;  initialization for list manager list
  .   .   .   D SET("                Physician: "_$P(DATA,"^",5),RCLINE,1,48)
  .   .   .   D SET("Days Supply: "_$P(DATA,"^",4),RCLINE,48,80)
  .   .   .   D SET("Qty: "_$P(DATA,"^",6),RCLINE,67,80)
- .   .   ;  show outpatient (type of care 430.2 = 4 outpatient care)
- .   .   I $P(^PRCA(430,BILLDA,0),"^",16)=4 D  Q
+ .   .   ;  show outpatient (type of care 430.2 = 4 outpatient care), OR IBDSPFLG=2 (Other Outpatient) or 5 (CC RX)
+ .   .   I ($P(^PRCA(430,BILLDA,0),"^",16)=4)!(IBDSPFLG=2)!(IBDSPFLG=5) D  Q
  .   .   .   D SET("Outpatient",RCLINE,26,80)
  .   .   .   D SET("Visit Date: "_$E($P(DATA,"^",2),4,5)_"/"_$E($P(DATA,"^",2),6,7)_"/"_$E($P(DATA,"^",2),2,3),RCLINE,37,80)
  .   .   .   D SET("Charge Amt: "_$J($P(DATA,"^",8),0,2),RCLINE,60,80)
- .   .   ;  show inpatient
+ .   .   ;  show inpatient  [ IBDSPFLG=3 (LTC) or 4 (inpatient) ]
  .   .   D SET("Inpatient",RCLINE,28,80)
  .   .   D SET("Charge Amt: "_$J($P(DATA,"^",8),0,2),RCLINE,60,80)
  .   .   S RCLINE=RCLINE+1
@@ -166,3 +171,4 @@ SET(STRING,LINE,COLBEG,COLEND,FIELD,ON,OFF) ;  set array
  D SET^VALM10(LINE,$$SETSTR^VALM1(STRING,@VALMAR@(LINE,0),COLBEG,COLEND-COLBEG+1))
  I $G(ON)]""!($G(OFF)]"") D CNTRL^VALM10(LINE,COLBEG,$L(STRING),ON,OFF)
  Q
+ ;

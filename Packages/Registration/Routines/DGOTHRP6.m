@@ -1,5 +1,5 @@
 DGOTHRP6 ;SLC/RED(LIB) - OTHD (OTHER THAN HONORABLE DISCHARGE) Reports ;May 9,2018@05:08
- ;;5.3;Registration;**952**;May 9, 2018;Build 160
+ ;;5.3;Registration;**952,977**;May 9, 2018;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;     Last Edited: SHRPE/RED - June 14, 2019 09:00
@@ -55,7 +55,7 @@ ENQUE ;  Queued entry
  . S DGNAME=VADM(1),PID=$E(DGNAME,1)_$P($P(VADM(2),U,2),"-",3) D KVA^VADPT
  . S DGELIG=$$GET1^DIQ(2,DFN_",",".361")                    ;Current Primary Eligibility
  . S @DGARRAY@(DGNAME)=PID_U_DGENDT_U_DGDOD_U_DGELIG,COUNT=COUNT+1
- I $D(@DGARRAY) D PRTHDR,PRNTREP,QUIT
+ D PRTHDR,PRNTREP,QUIT
  Q
  ;
 PRTHDR ;
@@ -75,7 +75,12 @@ PRTHDR ;
  Q
  ;
 PRNTREP ;Print the report
- N NAM S NAM="",EXIT=0
+ N NAM
+ I '$D(@DGARRAY) D  Q
+ .W !!," >>> No records were found using the report criteria.",!
+ .D ASKCONT^DGOTHMG2
+ .Q
+ S NAM="",EXIT=0
  F  S NAM=$O(@DGARRAY@(NAM)) Q:NAM=""  D  Q:EXIT
  .I ($E(IOST,1,2)="C-"),$Y+3>IOSL S DIR(0)="E" D ^DIR K DIR D
  . . I $D(DTOUT)!($D(DUOUT)) S EXIT=1 G QUIT
@@ -84,7 +89,6 @@ PRNTREP ;Print the report
  . W !,$E(NAM,1,20),?22,$P(@DGARRAY@(NAM),U),?30,$$FMTE^XLFDT($P(@DGARRAY@(NAM),U,2),5),?41,$E($P(@DGARRAY@(NAM),U,4),1,23),?65,$$FMTE^XLFDT($P(@DGARRAY@(NAM),U,3),5)
  W:'EXIT !!,"Total number of Patients: ",COUNT
  I $E(IOST,1,2)="C-",'EXIT R !!?8,"End of the Report...Press Enter to Continue",X:DTIME W @IOF
- D QUIT
  Q
  ;
 STARTDT(MINDT,MAXDT) ;

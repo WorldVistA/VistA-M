@@ -1,6 +1,6 @@
 MHVUMRPC ;KUM/LB - myHealtheVet Management Utilities ; 6/18/2013
- ;;1.0;My HealtheVet;**11,22,24,29**;July 10, 2017;Build 73
- ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;;1.0;My HealtheVet;**11,22,24,29,40**;July 10, 2017;Build 26
+ ;;Per VA Directive 6402, this routine should not be modified
  ;
  Q
  ;
@@ -41,9 +41,10 @@ DSSUNT(RESULTS,MHVSTRING) ;
  ;                 6     Send to PCE flag
  ;
  N MHVLIEN,MHVLNAM,MHVCIEN,MHVDIEN,MHVDNAM,MHVCNT,MHVDIACT,MHVCHKF,MHVDPCE,MHVR1
- N MHVR1E,MHVR1C,MHVDIV,MHVDIVN,MHVPDUZ
+ N MHVR1E,MHVR1C,MHVDIV,MHVDIVN,MHVPDUZ,FLAG
  S MHVCNT=0
  S MHVDPCE=0
+ S FLAG=0
  ;JAZZ#409966-Fix Names with Space in SM queries
  ;S MHVCIEN=+$P(MHVSTRING,"^",1)
  S MHVCIEN=$P(MHVSTRING,"^",1)
@@ -56,21 +57,13 @@ DSSUNT(RESULTS,MHVSTRING) ;
  ;and more User Fields: Retrieve all (*) User DSS Units
  ;I '$D(^SC(MHVCIEN,0)) S RESULTS(1)="0^DSS1-No clinic for IEN:"_MHVCIEN Q
  I '$D(^SC(MHVCIEN,0)),$G(MHVCIEN)'="*" S RESULTS(1)="0^DSS1-No clinic for IEN:"_MHVCIEN Q
- I $G(MHVCIEN)'="*" D  ;JAZZ#409966
- . S MHVLIEN=$$GET1^DIQ(44,+MHVCIEN,3,"I")
- . S MHVLNAM=$$GET1^DIQ(44,+MHVCIEN,3,"E")
- . S MHVDIV=$$GET1^DIQ(44,+MHVCIEN,3.5,"I")
- . S MHVDIVN=$$GET1^DIQ(44,+MHVCIEN,3.5,"E")
- . I +$G(MHVLIEN)=0 S RESULTS(1)="0^DSS1-No Institution found for clinic IEN:"_MHVCIEN Q
- . I $G(MHVLNAM)="" S RESULTS(1)="0^DSS1-No Institution found for clinic IEN:"_MHVCIEN Q
- . I +$G(MHVDIV)=0 S RESULTS(1)="0^DSS2-No Division found for clinic IEN:"_MHVCIEN Q
- . I $G(MHVDIVN)="" S RESULTS(1)="0^DSS2-No Divison found for clinic IEN:"_MHVCIEN Q
+ I $G(MHVCIEN)'="*" S FLAG=$$CLINIC Q:FLAG  ;JAZZ#409966  ;JAZZ#
  ; Fetch DSS Unit IEN from file #200
  D LIST^DIC(200.72,","_MHVPDUZ_",","@","QP","","","","","","","MHVR1","MHVR1E")
  I $G(MHVR1("DILIST",0))'>0 S RESULTS(1)="0^DSS3-No DSS Units found in New Person File" Q
  D:$G(MHVR1("DILIST",0))>0
  . S MHVR1C=0
- . F  S MHVR1C=$O(MHVR1("DILIST",MHVR1C))  Q:MHVR1C'>0  D
+ . F  S MHVR1C=$O(MHVR1("DILIST",MHVR1C)) Q:MHVR1C'>0  D
  . . S MHVDIEN=$G(MHVR1("DILIST",MHVR1C,0))
  . . I +$G(MHVDIEN)'>0 Q
  . . S MHVDNAM=$$GET1^DIQ(724,+MHVDIEN,.01)
@@ -81,17 +74,29 @@ DSSUNT(RESULTS,MHVSTRING) ;
  . . ;I (+$G(MHVDIACT)=1)!(MHVCHKF=1)!('$D(^ECJ("AP",MHVLIEN,MHVDIEN))) Q 
  . . I ($G(MHVCIEN)'="*"),((+$G(MHVDIACT)=1)!(MHVCHKF=1)!('$D(^ECJ("AP",MHVLIEN,MHVDIEN)))) Q 
  . . D MHVRST
- I MHVCNT=0 S RESULTS(1)="0^DSS4-No DSS Units found (Missing Event Code Screen) clinic IEN:"_MHVCIEN Q
+ I MHVCNT=0 D
+ .I ($G(MHVCIEN)'="*") S RESULTS(1)="0^DSS4-No DSS Units found (Missing Event Code Screen) clinic IEN:"_MHVCIEN Q
+ .S RESULTS(1)="0^DSS4-No DSS Units found clinic IEN:"_MHVCIEN Q
  Q
 MHVRST ;Populate results array
  S MHVCNT=MHVCNT+1
  S RESULTS(MHVCNT)=$G(MHVLIEN)_"^"_$G(MHVLNAM)_"^"_$G(MHVDIEN)_"^"_$G(MHVDNAM)_"^"_$G(MHVDIACT)_"^"_$G(MHVDPCE)
  Q
-MHVCHK ;Check if DSS Unit is already populated in results array
+MHVCHK ;Check if DSS Unit is already populated in results array  ;JAZZ#
+ N MHVI
  S MHVCHKF=0
- S MHVI=0 F  S MHVI=$O(^TMP($J,"MHVDUNT",MHVI)) Q:'MHVI!MHVCHKF  D
- . I MHVDIEN=$P(^TMP($J,"MHVDUNT",MHVI),"^",3) S MHVCHKF=1
+ S MHVI=0 F  S MHVI=$O(RESULTS(MHVI)) Q:'MHVI!MHVCHKF  D
+ . I MHVDIEN=$P(RESULTS(MHVI),"^",3) S MHVCHKF=1
  Q
+CLINIC() ;Get clinic
+ N FLG
+ S FLG=0
+ S MHVDIV=$$GET1^DIQ(44,+MHVCIEN,3.5,"I"),MHVDIVN=$$GET1^DIQ(44,+MHVCIEN,3.5,"E")
+ I +$G(MHVDIV)=0!($G(MHVDIVN)="") S RESULTS(1)="0^DSS2-No Division found for clinic IEN:"_MHVCIEN,FLG=1 Q FLG
+ S MHVLIEN=$$GET1^DIQ(40.8,+MHVDIV,.07,"I"),MHVLNAM=$$GET1^DIQ(40.8,+MHVDIV,.07,"E")
+ I MHVLIEN="" S MHVLIEN=$$GET1^DIQ(44,+MHVCIEN,3,"I"),MHVLNAM=$$GET1^DIQ(44,+MHVCIEN,3,"E")
+ I +$G(MHVLIEN)=0!($G(MHVLNAM)="") S RESULTS(1)="0^DSS1-No Institution found for clinic IEN:"_MHVCIEN,FLG=1 Q FLG
+ Q FLG
 PRINTRES ; Print Results
  N I
  S I="" F  S I=$O(@RESULTS@(I)) Q:I=""  D

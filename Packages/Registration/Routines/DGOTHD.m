@@ -1,5 +1,5 @@
 DGOTHD ;SLC/SS,RM - OTHD (OTHER THAN HONORABLE DISCHARGE) APIs ;Feb 14, 2019@09:57
- ;;5.3;Registration;**952**;Aug 13, 1993;Build 160
+ ;;5.3;Registration;**952,977**;Aug 13, 1993;Build 177
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;     Last Edited: SHRPE/RM - Feb 14, 2019@09:57
@@ -35,7 +35,7 @@ STRDATE(DGDFN) ;
  ; 1 - eligible for OTHD
  ;
 ISOTHD(DFN) ;
- N VAEL,DGOTHD
+ N VAEL,DGOTHD,X
  D ELIG^VADPT
  S DGOTHD=0
  I +VAEL(1)>0,$$GET1^DIQ(8,+VAEL(1)_",",8)="EXPANDED MH CARE NON-ENROLLEE" S DGOTHD=1
@@ -49,7 +49,7 @@ GETEXPMH(DFN) ;
  ;  Output:
  ;    EXPANDED MH CARE TYPE (File #2,Field #.5501)
  ;
- N VAEL
+ N VAEL,X
  I '$D(^DPT(DFN)) Q "-1^Patient not found"
  D ELIG^VADPT
  Q $P($G(VAEL(10)),U)
@@ -65,5 +65,7 @@ GETEXPR(DFN) ;
  Q $$GETEXPMH(DFN)
  ;
 ISOTH(DGEXP) ;
- Q $S("/OTH-90/"[("/"_DGEXP_"/"):2,1:0)
+ ;DG*5.3*977 OTH-EXT
+ ;Added OTH-EXT check
+ Q $S("/OTH-EXT/"[("/"_DGEXP_"/"):1,"/OTH-90/"[("/"_DGEXP_"/"):2,1:0)
  ;
